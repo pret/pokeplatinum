@@ -31,6 +31,11 @@ enum MoveEffectSystemArc {
     MOVE_EFFECT_SYSTEM_ARC_COUNT,
 };
 
+enum MoveEffectTaskKind {
+    MOVE_EFFECT_TASK_KIND_EFFECT = 1,
+    MOVE_EFFECT_TASK_KIND_SOUND,
+};
+
 typedef struct UnkStruct_ov12_02223178_t {
     u8 unk_00;
     u8 unk_01;
@@ -122,9 +127,9 @@ typedef struct UnkStruct_ov12_022211D8_t {
 
 typedef struct MoveEffectSystem {
     int heapID;
-    int narcID;
+    enum NarcID effectArcID;
     BOOL unk_08;
-    BOOL unk_0C;
+    BOOL isActive;
     BOOL unk_10;
     void *unk_14;
     u32 *unk_18;
@@ -135,12 +140,12 @@ typedef struct MoveEffectSystem {
     u8 unk_78[16];
     s8 unk_88;
     u8 unk_89;
-    u16 unk_8A;
-    u16 unk_8C;
+    u16 activeEffectTasks;
+    u16 activeSoundTasks;
     s32 unk_90[10];
     UnkFuncPtr_ov12_02239EEC unk_B8;
     UnkStruct_ov12_02223178 *unk_BC;
-    BgConfig *unk_C0;
+    BgConfig *bgConfig;
     PaletteData *unk_C4;
     SpriteManager *unk_C8[4];
     ManagedSprite *unk_D8[10];
@@ -157,7 +162,7 @@ typedef struct MoveEffectSystem {
     UnkStruct_ov12_022222D4 *unk_17C;
     UnkStruct_ov16_02264408_sub1 unk_180;
     int unk_198;
-    u8 unk_19C[4];
+    u8 bgLayerPriorities[4];
     NARC *arcs[6];
 } MoveEffectSystem;
 
@@ -165,24 +170,24 @@ typedef struct MoveEffectSystem {
 MoveEffectSystem *MoveEffectSystem_New(enum HeapId heapID);
 void ov12_0221FDC0(MoveEffectSystem *param0, BOOL param1);
 BOOL ov12_0221FDD4(MoveEffectSystem *param0);
-int ov12_0221FDE4(MoveEffectSystem *param0);
+enum HeapId MoveEffectSystem_GetHeapID(MoveEffectSystem *param0);
 BOOL MoveEffectSystem_Delete(MoveEffectSystem *param0);
 BOOL ov12_0221FE30(MoveEffectSystem *param0, UnkStruct_ov16_02265BBC *param1, u16 param2, UnkStruct_ov16_02264408 *param3);
 BOOL ov12_0222016C(MoveEffectSystem *param0);
 BOOL ov12_02220188(MoveEffectSystem *param0);
 BOOL ov12_02220198(MoveEffectSystem *param0);
-BOOL ov12_022201B4(MoveEffectSystem *param0);
-SysTask *ov12_022201CC(MoveEffectSystem *param0, SysTaskFunc param1, void *param2, u32 param3);
-SysTask *ov12_022201E8(MoveEffectSystem *param0, SysTaskFunc param1, void *param2);
-SysTask *ov12_02220204(MoveEffectSystem *param0, SysTaskFunc param1, void *param2, u32 param3);
-void ov12_02220220(MoveEffectSystem *param0, SysTask *param1);
-void ov12_02220230(MoveEffectSystem *param0, SysTask *param1);
+BOOL MoveEffectSystem_IsActive(MoveEffectSystem *param0);
+SysTask *MoveEffectSystem_StartEffectTaskEx(MoveEffectSystem *param0, SysTaskFunc param1, void *param2, u32 param3);
+SysTask *MoveEffectSystem_StartEffectTask(MoveEffectSystem *param0, SysTaskFunc param1, void *param2);
+SysTask *MoveEffectSystem_StartSoundTask(MoveEffectSystem *param0, SysTaskFunc param1, void *param2, u32 param3);
+void MoveEffectSystem_EndEffectTask(MoveEffectSystem *param0, SysTask *param1);
+void MoveEffectSystem_EndSoundTask(MoveEffectSystem *param0, SysTask *param1);
 u16 ov12_02220240(MoveEffectSystem *param0);
 u16 ov12_02220248(MoveEffectSystem *param0);
 ParticleSystem *ov12_02220250(MoveEffectSystem *param0);
 ParticleSystem *ov12_02220260(MoveEffectSystem *param0, int param1);
 SPLEmitter *ov12_0222026C(MoveEffectSystem *param0, int param1);
-BgConfig *ov12_02220278(MoveEffectSystem *param0);
+BgConfig *MoveEffectSystem_GetBgConfig(MoveEffectSystem *param0);
 s32 ov12_02220280(MoveEffectSystem *param0, int param1);
 ManagedSprite *ov12_02220298(MoveEffectSystem *param0, int param1);
 ManagedSprite *ov12_022202C0(MoveEffectSystem *param0, int param1);

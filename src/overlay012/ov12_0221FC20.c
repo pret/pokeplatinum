@@ -90,8 +90,11 @@ typedef struct UnkStruct_ov12_02221BBC_t {
 static void ov12_022224F8(SysTask *param0, void *param1);
 static void ov12_0221FC20(MoveEffectSystem *param0);
 static void ov12_0221FC44(MoveEffectSystem *param0);
-static SysTask *ov12_0221FC68(u8 param0, MoveEffectSystem *param1, SysTaskFunc param2, void *param3, u32 param4);
-static void ov12_0221FCA4(u8 param0, MoveEffectSystem *param1, SysTask *param2);
+
+// See enum MoveEffectTaskKind for 'kind'
+static SysTask *MoveEffectSystem_StartTask(u8 kind, MoveEffectSystem *param1, SysTaskFunc param2, void *param3, u32 param4);
+static void MoveEffectSystem_EndTask(u8 param0, MoveEffectSystem *param1, SysTask *param2);
+
 static UnkStruct_ov12_02220314 *ov12_02220314(MoveEffectSystem *param0);
 static void ov12_02220344(MoveEffectSystem *param0, UnkStruct_ov12_02220314 *param1);
 static void ov12_0222035C(SysTask *param0, void *param1);
@@ -247,41 +250,38 @@ static void ov12_0221FC44(MoveEffectSystem *param0)
     } while (param0->unk_89 == 0 && param0->unk_10 == 1);
 }
 
-static SysTask *ov12_0221FC68(u8 param0, MoveEffectSystem *param1, SysTaskFunc param2, void *param3, u32 param4)
+static SysTask *MoveEffectSystem_StartTask(u8 kind, MoveEffectSystem *system, SysTaskFunc func, void *param, u32 priority)
 {
-    SysTask *v0;
-
-    switch (param0) {
-    case 1:
-        param1->unk_8A++;
+    switch (kind) {
+    case MOVE_EFFECT_TASK_KIND_EFFECT:
+        system->activeEffectTasks++;
         break;
-    case 2:
-        param1->unk_8C++;
+    case MOVE_EFFECT_TASK_KIND_SOUND:
+        system->activeSoundTasks++;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
-    v0 = SysTask_Start(param2, param3, param4);
-    return v0;
+    return SysTask_Start(func, param, priority);
 }
 
-static void ov12_0221FCA4(u8 param0, MoveEffectSystem *param1, SysTask *param2)
+static void MoveEffectSystem_EndTask(u8 kind, MoveEffectSystem *system, SysTask *task)
 {
-    switch (param0) {
-    case 1:
-        param1->unk_8A--;
+    switch (kind) {
+    case MOVE_EFFECT_TASK_KIND_EFFECT:
+        system->activeEffectTasks--;
         break;
-    case 2:
-        param1->unk_8C--;
+    case MOVE_EFFECT_TASK_KIND_SOUND:
+        system->activeSoundTasks--;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
-    SysTask_Done(param2);
+    SysTask_Done(task);
 }
 
 MoveEffectSystem *MoveEffectSystem_New(enum HeapId heapID)
@@ -313,7 +313,7 @@ MoveEffectSystem *MoveEffectSystem_New(enum HeapId heapID)
 
     memset(system->unk_BC, 0, sizeof(UnkStruct_ov12_02223178));
 
-    system->unk_0C = 0;
+    system->isActive = FALSE;
     system->unk_18 = NULL;
 
     for (i = 0; i < 4; i++) {
@@ -325,7 +325,7 @@ MoveEffectSystem *MoveEffectSystem_New(enum HeapId heapID)
     }
 
     system->unk_174 = NULL;
-    system->unk_0C = 1;
+    system->isActive = TRUE;
 
     return system;
 }
@@ -342,15 +342,15 @@ BOOL ov12_0221FDD4(MoveEffectSystem *param0)
     return param0->unk_08;
 }
 
-int ov12_0221FDE4(MoveEffectSystem *param0)
+enum HeapId MoveEffectSystem_GetHeapID(MoveEffectSystem *system)
 {
-    GF_ASSERT(param0 != NULL);
-    return param0->heapID;
+    GF_ASSERT(system != NULL);
+    return system->heapID;
 }
 
 BOOL MoveEffectSystem_Delete(MoveEffectSystem *system)
 {
-    if (ov12_022201B4(system) == 0) {
+    if (MoveEffectSystem_IsActive(system) == 0) {
         return FALSE;
     }
 
@@ -371,7 +371,7 @@ BOOL ov12_0221FE30(MoveEffectSystem *param0, UnkStruct_ov16_02265BBC *param1, u1
 
     ov12_02220474();
 
-    if (ov12_022201B4(param0) == 0) {
+    if (MoveEffectSystem_IsActive(param0) == 0) {
         return 0;
     }
 
@@ -407,7 +407,7 @@ BOOL ov12_0221FE30(MoveEffectSystem *param0, UnkStruct_ov16_02265BBC *param1, u1
 
     GF_ASSERT(param3->unk_00 != NULL);
 
-    param0->unk_C0 = param3->unk_04;
+    param0->bgConfig = param3->unk_04;
     param0->unk_C4 = param3->unk_08;
     param0->unk_BC->battleType = param3->battleType;
 
@@ -456,8 +456,8 @@ BOOL ov12_0221FE30(MoveEffectSystem *param0, UnkStruct_ov16_02265BBC *param1, u1
         v1 = 1;
     }
 
-    param0->narcID = param3->unk_50;
-    param0->unk_14 = NARC_AllocAndReadWholeMemberByIndexPair(param0->narcID, v1, param0->heapID);
+    param0->effectArcID = param3->unk_50;
+    param0->unk_14 = NARC_AllocAndReadWholeMemberByIndexPair(param0->effectArcID, v1, param0->heapID);
 
     if (param0->unk_14 == NULL) {
         GF_ASSERT(param0->unk_14 != NULL);
@@ -465,10 +465,10 @@ BOOL ov12_0221FE30(MoveEffectSystem *param0, UnkStruct_ov16_02265BBC *param1, u1
     }
 
     param0->unk_18 = (u32 *)param0->unk_14;
-    param0->unk_19C[0] = Bg_GetPriority(param0->unk_C0, BG_LAYER_MAIN_0);
-    param0->unk_19C[1] = Bg_GetPriority(param0->unk_C0, BG_LAYER_MAIN_1);
-    param0->unk_19C[2] = Bg_GetPriority(param0->unk_C0, BG_LAYER_MAIN_2);
-    param0->unk_19C[3] = Bg_GetPriority(param0->unk_C0, BG_LAYER_MAIN_3);
+    param0->bgLayerPriorities[BG_LAYER_MAIN_0] = Bg_GetPriority(param0->bgConfig, BG_LAYER_MAIN_0);
+    param0->bgLayerPriorities[BG_LAYER_MAIN_1] = Bg_GetPriority(param0->bgConfig, BG_LAYER_MAIN_1);
+    param0->bgLayerPriorities[BG_LAYER_MAIN_2] = Bg_GetPriority(param0->bgConfig, BG_LAYER_MAIN_2);
+    param0->bgLayerPriorities[BG_LAYER_MAIN_3] = Bg_GetPriority(param0->bgConfig, BG_LAYER_MAIN_3);
 
     for (v0 = 0; v0 < 10; v0++) {
         param0->unk_D8[v0] = NULL;
@@ -496,7 +496,7 @@ BOOL ov12_0221FE30(MoveEffectSystem *param0, UnkStruct_ov16_02265BBC *param1, u1
 
 BOOL ov12_0222016C(MoveEffectSystem *param0)
 {
-    if (ov12_022201B4(param0) == 0) {
+    if (MoveEffectSystem_IsActive(param0) == 0) {
         return 0;
     }
 
@@ -520,51 +520,48 @@ BOOL ov12_02220198(MoveEffectSystem *param0)
     return 1;
 }
 
-BOOL ov12_022201B4(MoveEffectSystem *param0)
+BOOL MoveEffectSystem_IsActive(MoveEffectSystem *system)
 {
-    if (param0 == NULL) {
-        return 0;
+    if (system == NULL) {
+        return FALSE;
     }
 
-    return (param0->unk_0C == 1) ? 1 : 0;
+    return system->isActive == TRUE;
 }
 
-SysTask *ov12_022201CC(MoveEffectSystem *param0, SysTaskFunc param1, void *param2, u32 param3)
+SysTask *MoveEffectSystem_StartEffectTaskEx(MoveEffectSystem *system, SysTaskFunc func, void *param, u32 priority)
 {
-    SysTask *v0 = ov12_0221FC68(1, param0, param1, param2, param3);
-    return v0;
+    return MoveEffectSystem_StartTask(MOVE_EFFECT_TASK_KIND_EFFECT, system, func, param, priority);
 }
 
-SysTask *ov12_022201E8(MoveEffectSystem *param0, SysTaskFunc param1, void *param2)
+SysTask *MoveEffectSystem_StartEffectTask(MoveEffectSystem *system, SysTaskFunc func, void *param)
 {
-    SysTask *v0 = ov12_0221FC68(1, param0, param1, param2, 1100);
-    return v0;
+    return MoveEffectSystem_StartTask(MOVE_EFFECT_TASK_KIND_EFFECT, system, func, param, 1100);
 }
 
-SysTask *ov12_02220204(MoveEffectSystem *param0, SysTaskFunc param1, void *param2, u32 param3)
+SysTask *MoveEffectSystem_StartSoundTask(MoveEffectSystem *system, SysTaskFunc func, void *param, u32 priority)
 {
-    SysTask *v0 = ov12_0221FC68(2, param0, param1, param2, param3);
-    return v0;
+    return MoveEffectSystem_StartTask(MOVE_EFFECT_TASK_KIND_SOUND, system, func, param, priority);
 }
 
-void ov12_02220220(MoveEffectSystem *param0, SysTask *param1)
+void MoveEffectSystem_EndEffectTask(MoveEffectSystem *system, SysTask *task)
 {
-    ov12_0221FCA4(1, param0, param1);
+    MoveEffectSystem_EndTask(MOVE_EFFECT_TASK_KIND_EFFECT, system, task);
 }
 
-void ov12_02220230(MoveEffectSystem *param0, SysTask *param1)
+void MoveEffectSystem_EndSoundTask(MoveEffectSystem *system, SysTask *task)
 {
-    ov12_0221FCA4(2, param0, param1);
+    MoveEffectSystem_EndTask(MOVE_EFFECT_TASK_KIND_SOUND, system, task);
 }
 
-u16 ov12_02220240(MoveEffectSystem *param0)
+u16 ov12_02220240(MoveEffectSystem *system)
 {
-    return param0->unk_BC->unk_14;
+    return system->unk_BC->unk_14;
 }
 
-u16 ov12_02220248(MoveEffectSystem *param0)
+u16 ov12_02220248(MoveEffectSystem *system)
 {
-    return param0->unk_BC->unk_16;
+    return system->unk_BC->unk_16;
 }
 
 ParticleSystem *ov12_02220250(MoveEffectSystem *param0)
@@ -583,9 +580,9 @@ SPLEmitter *ov12_0222026C(MoveEffectSystem *param0, int param1)
     return v0;
 }
 
-BgConfig *ov12_02220278(MoveEffectSystem *param0)
+BgConfig *MoveEffectSystem_GetBgConfig(MoveEffectSystem *system)
 {
-    return param0->unk_C0;
+    return system->bgConfig;
 }
 
 s32 ov12_02220280(MoveEffectSystem *param0, int param1)
@@ -649,7 +646,7 @@ static UnkStruct_ov12_02220314 *ov12_02220314(MoveEffectSystem *param0)
     }
 
     memset(v0, 0, sizeof(UnkStruct_ov12_02220314));
-    param0->unk_8C++;
+    param0->activeSoundTasks++;
 
     return v0;
 }
@@ -668,8 +665,8 @@ static void ov12_0222035C(SysTask *param0, void *param1)
     v0 = Unk_ov12_0223862C[v1->unk_00](v1);
 
     if (v0 == 0) {
-        if (v1->unk_38->unk_8C != 0) {
-            v1->unk_38->unk_8C--;
+        if (v1->unk_38->activeSoundTasks != 0) {
+            v1->unk_38->activeSoundTasks--;
         }
 
         Heap_Free(v1);
@@ -907,7 +904,7 @@ static void ov12_022204C4(MoveEffectSystem *param0)
 
 static void ov12_022204E4(MoveEffectSystem *param0)
 {
-    if (param0->unk_8A == 0) {
+    if (param0->activeEffectTasks == 0) {
         param0->unk_18 += 1;
         param0->unk_89 = 0;
     } else {
@@ -1108,7 +1105,7 @@ static void ov12_02220798(MoveEffectSystem *param0)
         }
     }
 
-    if ((v1 != 0) || (param0->unk_8A != 0) || (param0->unk_8C != 0)) {
+    if ((v1 != 0) || (param0->activeEffectTasks != 0) || (param0->activeSoundTasks != 0)) {
         param0->unk_89 = 1;
         param0->unk_179 = 0;
         return;
@@ -1166,22 +1163,22 @@ static void ov12_02220798(MoveEffectSystem *param0)
     if (ov12_0221FDD4(param0) == 0) {
         Battle_SetDefaultBlend();
 
-        Bg_ClearTilesRange(ov12_022233B0(param0, 1), 0x4000, 0, ov12_0221FDE4(param0));
-        Bg_ClearTilemap(ov12_02220278(param0), ov12_022233B0(param0, 1));
+        Bg_ClearTilesRange(ov12_022233B0(param0, 1), 0x4000, 0, MoveEffectSystem_GetHeapID(param0));
+        Bg_ClearTilemap(MoveEffectSystem_GetBgConfig(param0), ov12_022233B0(param0, 1));
         Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
     } else {
         ov17_022413D8();
     }
 
-    Bg_SetPriority(BG_LAYER_MAIN_0, param0->unk_19C[0]);
-    Bg_SetPriority(BG_LAYER_MAIN_1, param0->unk_19C[1]);
-    Bg_SetPriority(BG_LAYER_MAIN_2, param0->unk_19C[2]);
-    Bg_SetPriority(BG_LAYER_MAIN_3, param0->unk_19C[3]);
+    Bg_SetPriority(BG_LAYER_MAIN_0, param0->bgLayerPriorities[0]);
+    Bg_SetPriority(BG_LAYER_MAIN_1, param0->bgLayerPriorities[1]);
+    Bg_SetPriority(BG_LAYER_MAIN_2, param0->bgLayerPriorities[2]);
+    Bg_SetPriority(BG_LAYER_MAIN_3, param0->bgLayerPriorities[3]);
 
-    Bg_SetOffset(param0->unk_C0, BG_LAYER_MAIN_2, 0, 0);
-    Bg_SetOffset(param0->unk_C0, BG_LAYER_MAIN_2, 3, 0);
-    Bg_SetOffset(param0->unk_C0, BG_LAYER_MAIN_3, 0, 0);
-    Bg_SetOffset(param0->unk_C0, BG_LAYER_MAIN_3, 3, 0);
+    Bg_SetOffset(param0->bgConfig, BG_LAYER_MAIN_2, 0, 0);
+    Bg_SetOffset(param0->bgConfig, BG_LAYER_MAIN_2, 3, 0);
+    Bg_SetOffset(param0->bgConfig, BG_LAYER_MAIN_3, 0, 0);
+    Bg_SetOffset(param0->bgConfig, BG_LAYER_MAIN_3, 3, 0);
 
     param0->unk_10 = 0;
 }
@@ -1886,15 +1883,15 @@ static void ov12_0222128C(MoveEffectSystem *param0)
     }
 
     Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
-    Bg_LoadTiles(param0->unk_C0, 2, v0, (10 * 10 * ((8 / 2) * 8)), 0);
+    Bg_LoadTiles(param0->bgConfig, 2, v0, (10 * 10 * ((8 / 2) * 8)), 0);
     PaletteData_LoadBufferFromFileStart(param0->unk_C4, v4, v5, param0->heapID, 0, 0, (8 * 16));
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->arcs[0], v6, param0->unk_C0, 2, 0, 0, 0, param0->heapID);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->arcs[0], v6, param0->bgConfig, 2, 0, 0, 0, param0->heapID);
 
     if (v2 == 1) {
         SysTask *v9;
 
         param0->unk_174 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov12_0222118C));
-        param0->unk_174->unk_00 = param0->unk_C0;
+        param0->unk_174->unk_00 = param0->bgConfig;
         param0->unk_174->unk_04.unk_04 = ov12_022232FC(param0, v3);
         param0->unk_174->unk_04.unk_00 = 0;
         param0->unk_174->unk_04.unk_01 = 0;
@@ -1912,8 +1909,8 @@ static void ov12_0222128C(MoveEffectSystem *param0)
         v11 = PokemonSprite_GetAttribute(ov12_022232FC(param0, v3), 1);
         v11 -= PokemonSprite_GetAttribute(ov12_022232FC(param0, v3), 41);
 
-        Bg_SetOffset(param0->unk_C0, BG_LAYER_MAIN_2, 0, -(v10 - 40));
-        Bg_SetOffset(param0->unk_C0, BG_LAYER_MAIN_2, 3, -(v11 - 40));
+        Bg_SetOffset(param0->bgConfig, BG_LAYER_MAIN_2, 0, -(v10 - 40));
+        Bg_SetOffset(param0->bgConfig, BG_LAYER_MAIN_2, 3, -(v11 - 40));
     }
 
     Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
@@ -2359,9 +2356,9 @@ static BOOL ov12_02221A54(UnkStruct_ov12_02221BBC *param0, MoveEffectSystem *par
 
 static void ov12_02221AA8(UnkStruct_ov12_02221BBC *param0, MoveEffectSystem *param1, int param2, int param3)
 {
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, ov12_022234E4(param3, HEAP_ID_SYSTEM), param1->unk_C0, param2, 0, 0, 1, param1->heapID);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, ov12_022234E4(param3, HEAP_ID_SYSTEM), param1->bgConfig, param2, 0, 0, 1, param1->heapID);
     PaletteData_LoadBufferFromFileStart(param1->unk_C4, 7, ov12_022234E4(param3, 1), param1->heapID, 0, 0x20, (9 * 16));
-    Bg_ClearTilemap(param1->unk_C0, param2);
+    Bg_ClearTilemap(param1->bgConfig, param2);
 
     {
         int v0 = 2;
@@ -2372,7 +2369,7 @@ static void ov12_02221AA8(UnkStruct_ov12_02221BBC *param0, MoveEffectSystem *par
             v0 = 3;
         }
 
-        Graphics_LoadTilemapToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, ov12_022234E4(param3, v0), param1->unk_C0, param2, 0, 0, 1, param1->heapID);
+        Graphics_LoadTilemapToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, ov12_022234E4(param3, v0), param1->bgConfig, param2, 0, 0, 1, param1->heapID);
     }
 }
 
@@ -2487,10 +2484,10 @@ static BOOL ov12_02221C50(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
         break;
 
     case 1: {
-        Bg_SetControlParam(param1->unk_48->unk_C0, 3, 2, GX_BG_CHARBASE_0x0c000);
+        Bg_SetControlParam(param1->unk_48->bgConfig, 3, 2, GX_BG_CHARBASE_0x0c000);
 
         if (ov12_0221FDD4(param1->unk_48) != 1) {
-            Bg_SetControlParam(param1->unk_48->unk_C0, 3, 0, GX_BG_COLORMODE_16);
+            Bg_SetControlParam(param1->unk_48->bgConfig, 3, 0, GX_BG_COLORMODE_16);
         }
 
         ov12_02221AA8(param1, param1->unk_48, 3, param1->unk_10);
@@ -2583,20 +2580,20 @@ static BOOL ov12_02221D50(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
             ov12_02222338(param1->unk_48);
         }
 
-        Bg_SetOffset(param1->unk_48->unk_C0, 3, 0, 0);
-        Bg_SetOffset(param1->unk_48->unk_C0, 3, 3, 0);
-        Bg_SetControlParam(param1->unk_48->unk_C0, 3, 2, GX_BG_CHARBASE_0x10000);
+        Bg_SetOffset(param1->unk_48->bgConfig, 3, 0, 0);
+        Bg_SetOffset(param1->unk_48->bgConfig, 3, 3, 0);
+        Bg_SetControlParam(param1->unk_48->bgConfig, 3, 2, GX_BG_CHARBASE_0x10000);
 
         if (ov12_0221FDD4(param1->unk_48) == 0) {
-            Bg_SetControlParam(param1->unk_48->unk_C0, 3, 0, GX_BG_COLORMODE_256);
+            Bg_SetControlParam(param1->unk_48->bgConfig, 3, 0, GX_BG_COLORMODE_256);
             ov12_02223460(param1->unk_48, 3);
             ov12_02223488(param1->unk_48);
         } else {
-            Graphics_LoadTilesToBgLayer(param1->unk_48->unk_180.unk_00, param1->unk_48->unk_180.unk_04, param1->unk_48->unk_C0, 3, 0, 0, 1, param1->unk_48->heapID);
+            Graphics_LoadTilesToBgLayer(param1->unk_48->unk_180.unk_00, param1->unk_48->unk_180.unk_04, param1->unk_48->bgConfig, 3, 0, 0, 1, param1->unk_48->heapID);
             PaletteData_LoadBufferFromFileStart(param1->unk_48->unk_C4, param1->unk_48->unk_180.unk_00, param1->unk_48->unk_180.unk_08, param1->unk_48->heapID, 0, param1->unk_48->unk_180.unk_14 * 0x20, param1->unk_48->unk_180.unk_10);
         }
 
-        Graphics_LoadTilemapToBgLayer(param1->unk_48->unk_180.unk_00, param1->unk_48->unk_180.unk_0C, param1->unk_48->unk_C0, 3, 0, 0, 1, param1->unk_48->heapID);
+        Graphics_LoadTilemapToBgLayer(param1->unk_48->unk_180.unk_00, param1->unk_48->unk_180.unk_0C, param1->unk_48->bgConfig, 3, 0, 0, 1, param1->unk_48->heapID);
         param1->unk_05++;
         break;
     case 4:
@@ -2634,7 +2631,7 @@ static BOOL ov12_02221F44(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
             break;
         }
 
-        Bg_SetControlParam(param1->unk_48->unk_C0, 3, 0, GX_BG_COLORMODE_16);
+        Bg_SetControlParam(param1->unk_48->bgConfig, 3, 0, GX_BG_COLORMODE_16);
         ov12_02221AA8(param1, param1->unk_48, 3, param1->unk_10);
 
         if (param1->unk_0D == 0) {
@@ -2691,22 +2688,22 @@ static BOOL ov12_0222206C(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
         Bg_ToggleLayer(BG_LAYER_MAIN_3, 0);
 
         if (ov12_0221FDD4(param1->unk_48) == 0) {
-            Bg_SetControlParam(param1->unk_48->unk_C0, 3, 0, GX_BG_COLORMODE_256);
+            Bg_SetControlParam(param1->unk_48->bgConfig, 3, 0, GX_BG_COLORMODE_256);
 
             ov12_02223460(param1->unk_48, 3);
             ov12_02223488(param1->unk_48);
         } else {
-            Graphics_LoadTilesToBgLayer(param1->unk_48->unk_180.unk_00, param1->unk_48->unk_180.unk_04, param1->unk_48->unk_C0, 3, 0, 0, 1, param1->unk_48->heapID);
+            Graphics_LoadTilesToBgLayer(param1->unk_48->unk_180.unk_00, param1->unk_48->unk_180.unk_04, param1->unk_48->bgConfig, 3, 0, 0, 1, param1->unk_48->heapID);
             PaletteData_LoadBufferFromFileStart(param1->unk_48->unk_C4, param1->unk_48->unk_180.unk_00, param1->unk_48->unk_180.unk_08, param1->unk_48->heapID, 0, param1->unk_48->unk_180.unk_14 * 0x20, param1->unk_48->unk_180.unk_10);
         }
 
-        Graphics_LoadTilemapToBgLayer(param1->unk_48->unk_180.unk_00, param1->unk_48->unk_180.unk_0C, param1->unk_48->unk_C0, 3, 0, 0, 1, param1->unk_48->heapID);
+        Graphics_LoadTilemapToBgLayer(param1->unk_48->unk_180.unk_00, param1->unk_48->unk_180.unk_0C, param1->unk_48->bgConfig, 3, 0, 0, 1, param1->unk_48->heapID);
         Bg_ToggleLayer(BG_LAYER_MAIN_3, 1);
 
         param1->unk_05++;
     case 3:
-        Bg_SetOffset(param1->unk_48->unk_C0, 3, 0, 0);
-        Bg_SetOffset(param1->unk_48->unk_C0, 3, 3, 0);
+        Bg_SetOffset(param1->unk_48->bgConfig, 3, 0, 0);
+        Bg_SetOffset(param1->unk_48->bgConfig, 3, 3, 0);
 
         if (param1->unk_0D == 0) {
             PaletteData_StartFade(param1->unk_48->unk_C4, 0x1, param1->unk_48->unk_198, 0, 16, 0, 0);
@@ -2795,7 +2792,7 @@ static BOOL ov12_02222360(UnkStruct_ov12_02221BBC *param0)
     int v0;
     UnkStruct_ov12_022222D4 *v1 = Heap_AllocFromHeap(param0->unk_48->heapID, sizeof(UnkStruct_ov12_022222D4));
 
-    v1->unk_00 = param0->unk_48->unk_C0;
+    v1->unk_00 = param0->unk_48->bgConfig;
     v1->unk_04 = param0->unk_48->unk_90[2];
     v1->unk_06 = param0->unk_48->unk_90[3];
     v1->unk_08 = param0->unk_48->unk_90[0];
@@ -2899,21 +2896,21 @@ void ov12_02222590(MoveEffectSystem *param0, int param1)
     Bg_ToggleLayer(param1, 0);
 
     if (ov12_0221FDD4(param0) == 1) {
-        Bg_SetControlParam(param0->unk_C0, param1, 2, GX_BG_CHARBASE_0x10000);
+        Bg_SetControlParam(param0->bgConfig, param1, 2, GX_BG_CHARBASE_0x10000);
     } else {
-        Bg_SetControlParam(param0->unk_C0, param1, 0, GX_BG_COLORMODE_256);
-        Bg_SetControlParam(param0->unk_C0, param1, 2, GX_BG_CHARBASE_0x10000);
+        Bg_SetControlParam(param0->bgConfig, param1, 0, GX_BG_COLORMODE_256);
+        Bg_SetControlParam(param0->bgConfig, param1, 2, GX_BG_CHARBASE_0x10000);
     }
 
-    Bg_ClearTilemap(param0->unk_C0, param1);
+    Bg_ClearTilemap(param0->bgConfig, param1);
 
     if (ov12_0221FDD4(param0) == 1) {
-        Graphics_LoadTilesToBgLayer(param0->unk_180.unk_00, param0->unk_180.unk_04, param0->unk_C0, param1, 0, 0, 1, param0->heapID);
+        Graphics_LoadTilesToBgLayer(param0->unk_180.unk_00, param0->unk_180.unk_04, param0->bgConfig, param1, 0, 0, 1, param0->heapID);
     } else {
         ov12_02223460(param0, param1);
     }
 
-    Graphics_LoadTilemapToBgLayer(param0->unk_180.unk_00, param0->unk_180.unk_0C, param0->unk_C0, param1, 0, 0, 1, param0->heapID);
+    Graphics_LoadTilemapToBgLayer(param0->unk_180.unk_00, param0->unk_180.unk_0C, param0->bgConfig, param1, 0, 0, 1, param0->heapID);
 }
 
 void ov12_02222664(MoveEffectSystem *param0, int param1)
@@ -2923,13 +2920,13 @@ void ov12_02222664(MoveEffectSystem *param0, int param1)
     Bg_SetPriority(param1, v0);
 
     if (ov12_0221FDD4(param0) == 1) {
-        Bg_SetControlParam(param0->unk_C0, param1, 2, GX_BG_CHARBASE_0x0c000);
+        Bg_SetControlParam(param0->bgConfig, param1, 2, GX_BG_CHARBASE_0x0c000);
     } else {
-        Bg_SetControlParam(param0->unk_C0, param1, 0, GX_BG_COLORMODE_16);
-        Bg_SetControlParam(param0->unk_C0, param1, 2, GX_BG_CHARBASE_0x0c000);
+        Bg_SetControlParam(param0->bgConfig, param1, 0, GX_BG_COLORMODE_16);
+        Bg_SetControlParam(param0->bgConfig, param1, 2, GX_BG_CHARBASE_0x0c000);
     }
 
-    Bg_ClearTilemap(param0->unk_C0, param1);
+    Bg_ClearTilemap(param0->bgConfig, param1);
 }
 
 static BOOL ov12_022226D0(UnkStruct_ov12_02221BBC *param0)
@@ -3060,9 +3057,9 @@ static void ov12_02222860(MoveEffectSystem *param0)
     v0 = inline_ov12_022204C4(param0->unk_18);
     param0->unk_18 += 1;
 
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, ov12_022234E4(v0, HEAP_ID_SYSTEM), param0->unk_C0, 3, 0, 0, 1, param0->heapID);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, ov12_022234E4(v0, HEAP_ID_SYSTEM), param0->bgConfig, 3, 0, 0, 1, param0->heapID);
     Graphics_LoadPalette(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, ov12_022234E4(v0, HEAP_ID_SAVE), 0, 0, 0, param0->heapID);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, ov12_022234E4(v0, HEAP_ID_DEBUG), param0->unk_C0, 3, 0, 0, 1, param0->heapID);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, ov12_022234E4(v0, HEAP_ID_DEBUG), param0->bgConfig, 3, 0, 0, 1, param0->heapID);
 }
 
 static void ov12_022228DC(MoveEffectSystem *param0)
@@ -3337,7 +3334,7 @@ static void ov12_02222C50(MoveEffectSystem *param0)
 
 static void ov12_02222C54(MoveEffectSystem *param0)
 {
-    if (param0->unk_8C) {
+    if (param0->activeSoundTasks) {
         param0->unk_89 = 1;
         param0->unk_179 = 0;
         return;
@@ -3914,7 +3911,7 @@ int ov12_02223428(MoveEffectSystem *param0, int param1)
 
 void ov12_02223460(MoveEffectSystem *param0, int param1)
 {
-    Bg_LoadTiles(param0->unk_C0, param1, param0->unk_BC->unk_110, 0x10000, 0);
+    Bg_LoadTiles(param0->bgConfig, param1, param0->unk_BC->unk_110, 0x10000, 0);
 }
 
 void ov12_02223488(MoveEffectSystem *param0)

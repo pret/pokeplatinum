@@ -51,7 +51,7 @@ static void ov12_022269C4(SysTask *param0, void *param1)
         v0->unk_00++;
         break;
     case 1:
-        ov12_02220220(v0->unk_04, param0);
+        MoveEffectSystem_EndEffectTask(v0->unk_04, param0);
         Heap_Free(v0);
         break;
     }
@@ -64,7 +64,7 @@ void ov12_022269EC(MoveEffectSystem *param0)
     v0->unk_00 = 0;
     v0->unk_04 = param0;
 
-    ov12_022201CC(v0->unk_04, ov12_022269C4, v0, 0x1000);
+    MoveEffectSystem_StartEffectTaskEx(v0->unk_04, ov12_022269C4, v0, 0x1000);
 }
 
 static void ov12_02226A14(SysTask *param0, void *param1)
@@ -76,7 +76,7 @@ static void ov12_02226A14(SysTask *param0, void *param1)
         v0->unk_00++;
         break;
     case 1:
-        ov12_02220230(v0->unk_04, param0);
+        MoveEffectSystem_EndSoundTask(v0->unk_04, param0);
         Heap_Free(v0);
         break;
     }
@@ -89,7 +89,7 @@ void ov12_02226A3C(MoveEffectSystem *param0)
     v0->unk_00 = 0;
     v0->unk_04 = param0;
 
-    ov12_02220204(v0->unk_04, ov12_02226A14, v0, 0x1000);
+    MoveEffectSystem_StartSoundTask(v0->unk_04, ov12_02226A14, v0, 0x1000);
 }
 
 static void ov12_02226A64(SysTask *param0, void *param1)
@@ -138,7 +138,7 @@ static void ov12_02226AAC(SysTask *param0, void *param1)
 
         Sprite_DeleteAndFreeResources(v0->unk_10);
         Heap_Free(v0);
-        ov12_02220220(v1, param0);
+        MoveEffectSystem_EndEffectTask(v1, param0);
     } break;
     }
 }
@@ -169,5 +169,5 @@ void ov12_02226B1C(MoveEffectSystem *param0, SpriteSystem *param1, SpriteManager
         }
     }
 
-    ov12_022201CC(param0, ov12_02226AAC, v0, 0x1000);
+    MoveEffectSystem_StartEffectTaskEx(param0, ov12_02226AAC, v0, 0x1000);
 }

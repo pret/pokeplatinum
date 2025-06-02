@@ -170,7 +170,7 @@ static void ov12_0222D6B0(SysTask *param0, void *param1)
             Sprite_DeleteAndFreeResources(v1->unk_14[v0]);
         }
 
-        ov12_02220220(v1->unk_08, param0);
+        MoveEffectSystem_EndEffectTask(v1->unk_08, param0);
         Heap_Free(v1);
 
         return;
@@ -189,7 +189,7 @@ void ov12_0222D7C0(MoveEffectSystem *param0, SpriteSystem *param1, SpriteManager
     UnkStruct_ov12_0222D6B0 *v1;
     SpriteTemplate v2;
 
-    v1 = Heap_AllocFromHeap(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_0222D6B0));
+    v1 = Heap_AllocFromHeap(MoveEffectSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222D6B0));
 
     GF_ASSERT(v1 != NULL);
 
@@ -243,7 +243,7 @@ void ov12_0222D7C0(MoveEffectSystem *param0, SpriteSystem *param1, SpriteManager
         }
     }
 
-    ov12_022201CC(param0, ov12_0222D6B0, v1, 1100);
+    MoveEffectSystem_StartEffectTaskEx(param0, ov12_0222D6B0, v1, 1100);
 }
 
 static const UnkStruct_ov12_02235350 Unk_ov12_0223A162[] = {
@@ -388,7 +388,7 @@ static void ov12_0222D934(SysTask *param0, void *param1)
             Sprite_DeleteAndFreeResources(v2->unk_18[v0]);
         }
 
-        ov12_02220220(v2->unk_0C, param0);
+        MoveEffectSystem_EndEffectTask(v2->unk_0C, param0);
         Heap_Free(v2);
         return;
     }
@@ -408,7 +408,7 @@ void ov12_0222DB60(MoveEffectSystem *param0, SpriteSystem *param1, SpriteManager
     UnkStruct_ov12_0222D934 *v1;
     SpriteTemplate v2;
 
-    v1 = Heap_AllocFromHeap(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_0222D934));
+    v1 = Heap_AllocFromHeap(MoveEffectSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222D934));
 
     GF_ASSERT(v1 != NULL);
 
@@ -456,7 +456,7 @@ void ov12_0222DB60(MoveEffectSystem *param0, SpriteSystem *param1, SpriteManager
     ManagedSprite_SetDrawFlag(v1->unk_18[4], 0);
     ManagedSprite_SetDrawFlag(v1->unk_18[5], 0);
 
-    ov12_022201CC(param0, ov12_0222D934, v1, 1100);
+    MoveEffectSystem_StartEffectTaskEx(param0, ov12_0222D934, v1, 1100);
 }
 
 static const UnkStruct_ov12_02235350 Unk_ov12_0223A14A[] = {
@@ -545,7 +545,7 @@ static void ov12_0222DC98(SysTask *param0, void *param1)
     }
     default:
         *(v0->unk_3C) = 3;
-        ov12_02220220(v0->unk_00, param0);
+        MoveEffectSystem_EndEffectTask(v0->unk_00, param0);
         break;
     }
 
@@ -601,7 +601,7 @@ static void ov12_0222DE24(SysTask *param0, void *param1)
         v1->unk_00++;
         break;
     default:
-        ov12_02220220(v1->unk_08, param0);
+        MoveEffectSystem_EndEffectTask(v1->unk_08, param0);
         Heap_Free(v1);
         return;
     }
@@ -625,7 +625,7 @@ void ov12_0222DEFC(MoveEffectSystem *param0, SpriteSystem *param1, SpriteManager
     UnkStruct_ov12_0222DE24 *v2;
     SpriteTemplate v3;
 
-    v2 = Heap_AllocFromHeap(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_0222DE24));
+    v2 = Heap_AllocFromHeap(MoveEffectSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222DE24));
     GF_ASSERT(v2 != NULL);
 
     v2->unk_01 = 0;
@@ -672,14 +672,14 @@ void ov12_0222DEFC(MoveEffectSystem *param0, SpriteSystem *param1, SpriteManager
             ManagedSprite_SetAffineScale(v6, v2->unk_14[v1].unk_38, v2->unk_14[v1].unk_38);
             ManagedSprite_SetDrawFlag(v6, FALSE);
 
-            ov12_022201CC(param0, ov12_0222DC98, &v2->unk_14[v1], 1100 - 1);
+            MoveEffectSystem_StartEffectTaskEx(param0, ov12_0222DC98, &v2->unk_14[v1], 1100 - 1);
 
             v0++;
             v0 %= 6;
         }
     }
 
-    ov12_022201CC(param0, ov12_0222DE24, v2, 1100 + 1);
+    MoveEffectSystem_StartEffectTaskEx(param0, ov12_0222DE24, v2, 1100 + 1);
 }
 
 static void ov12_0222E080(SysTask *param0, void *param1)
@@ -701,7 +701,7 @@ static void ov12_0222E080(SysTask *param0, void *param1)
         }
 
         v0->unk_00 = 0;
-        v0->unk_28 = ov12_0222662C(0, 160, ((2 * 0xffff) / 360), (12 * FX32_ONE), (2 * 100), ov12_022233EC(v0->unk_04.unk_04, 1), 0, ov12_022266E8(0, 0), ov12_0221FDE4(v0->unk_04.unk_04));
+        v0->unk_28 = ov12_0222662C(0, 160, ((2 * 0xffff) / 360), (12 * FX32_ONE), (2 * 100), ov12_022233EC(v0->unk_04.unk_04, 1), 0, ov12_022266E8(0, 0), MoveEffectSystem_GetHeapID(v0->unk_04.unk_04));
         v0->unk_04.unk_00++;
         break;
     case 2:
@@ -731,7 +731,7 @@ static void ov12_0222E080(SysTask *param0, void *param1)
     default:
         GX_SetVisibleWnd(GX_WNDMASK_NONE);
         ov12_02222664(v0->unk_04.unk_04, 2);
-        ov12_02220220(v0->unk_04.unk_04, param0);
+        MoveEffectSystem_EndEffectTask(v0->unk_04.unk_04, param0);
         Heap_Free(v0);
         return;
     }
@@ -762,7 +762,7 @@ void ov12_0222E1A8(MoveEffectSystem *param0)
     ov12_02222590(v0->unk_04.unk_04, 2);
 
     Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
-    ov12_022201E8(v0->unk_04.unk_04, ov12_0222E080, v0);
+    MoveEffectSystem_StartEffectTask(v0->unk_04.unk_04, ov12_0222E080, v0);
 }
 
 void ov12_0222E248(ManagedSprite *param0)
@@ -804,7 +804,7 @@ static void ov12_0222E25C(SysTask *param0, void *param1)
                 Sprite_DeleteAndFreeResources(v0->unk_28[v1]);
             }
 
-            ov12_02220220(v0->unk_00.unk_04, param0);
+            MoveEffectSystem_EndEffectTask(v0->unk_00.unk_04, param0);
             Heap_Free(v0);
             return;
         }
@@ -849,7 +849,7 @@ void ov12_0222E2F8(MoveEffectSystem *param0, SpriteSystem *param1, SpriteManager
         ManagedSprite_OffsetPositionXY(v0->unk_28[3], +32, +32);
     }
 
-    ov12_022201E8(v0->unk_00.unk_04, ov12_0222E25C, v0);
+    MoveEffectSystem_StartEffectTask(v0->unk_00.unk_04, ov12_0222E25C, v0);
 }
 
 static void ov12_0222E390(SysTask *param0, void *param1)
@@ -883,27 +883,27 @@ static void ov12_0222E390(SysTask *param0, void *param1)
         }
 
         if (v0->unk_22[0] == 40 + 10) {
-            v0->unk_3C[0] = ov12_02226870(v0->unk_00.unk_18, ov12_0221FDE4(v0->unk_00.unk_04), 2, v0->unk_1C * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
+            v0->unk_3C[0] = ov12_02226870(v0->unk_00.unk_18, MoveEffectSystem_GetHeapID(v0->unk_00.unk_04), 2, v0->unk_1C * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
         }
 
         if (v0->unk_22[0] == 50 + 10) {
-            v0->unk_3C[1] = ov12_02226870(v0->unk_00.unk_18, ov12_0221FDE4(v0->unk_00.unk_04), 2, v0->unk_1C * 16, 16, -2, 2, 14, 0, 0xFFFF, 1002);
+            v0->unk_3C[1] = ov12_02226870(v0->unk_00.unk_18, MoveEffectSystem_GetHeapID(v0->unk_00.unk_04), 2, v0->unk_1C * 16, 16, -2, 2, 14, 0, 0xFFFF, 1002);
         }
 
         if (v0->unk_22[0] == 60 + 10) {
-            v0->unk_3C[2] = ov12_02226870(v0->unk_00.unk_18, ov12_0221FDE4(v0->unk_00.unk_04), 2, v0->unk_1C * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
+            v0->unk_3C[2] = ov12_02226870(v0->unk_00.unk_18, MoveEffectSystem_GetHeapID(v0->unk_00.unk_04), 2, v0->unk_1C * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
         }
 
         if (v0->unk_22[0] == 70 + 10) {
-            v0->unk_3C[3] = ov12_02226870(v0->unk_00.unk_18, ov12_0221FDE4(v0->unk_00.unk_04), 2, v0->unk_1C * 16, 16, -2, 2, 14, 0, 0xFFFF, 1002);
+            v0->unk_3C[3] = ov12_02226870(v0->unk_00.unk_18, MoveEffectSystem_GetHeapID(v0->unk_00.unk_04), 2, v0->unk_1C * 16, 16, -2, 2, 14, 0, 0xFFFF, 1002);
         }
 
         if (v0->unk_22[0] == 80 + 10) {
-            v0->unk_3C[4] = ov12_02226870(v0->unk_00.unk_18, ov12_0221FDE4(v0->unk_00.unk_04), 2, v0->unk_1C * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
+            v0->unk_3C[4] = ov12_02226870(v0->unk_00.unk_18, MoveEffectSystem_GetHeapID(v0->unk_00.unk_04), 2, v0->unk_1C * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
         }
 
         if (v0->unk_22[0] == 90 + 10) {
-            v0->unk_3C[5] = ov12_02226870(v0->unk_00.unk_18, ov12_0221FDE4(v0->unk_00.unk_04), 2, v0->unk_1C * 16, 16, -2, 2, 14, 0, 0xFFFF, 1002);
+            v0->unk_3C[5] = ov12_02226870(v0->unk_00.unk_18, MoveEffectSystem_GetHeapID(v0->unk_00.unk_04), 2, v0->unk_1C * 16, 16, -2, 2, 14, 0, 0xFFFF, 1002);
         }
 
         if (v0->unk_22[0] == 110) {
@@ -943,7 +943,7 @@ static void ov12_0222E390(SysTask *param0, void *param1)
                 ov12_02226858(v0->unk_3C[v1]);
             }
 
-            ov12_02220220(v0->unk_00.unk_04, param0);
+            MoveEffectSystem_EndEffectTask(v0->unk_00.unk_04, param0);
             Heap_Free(v0);
             return;
         }
@@ -1030,5 +1030,5 @@ void ov12_0222E61C(MoveEffectSystem *param0, SpriteSystem *param1, SpriteManager
     }
 
     v0->unk_1C = ManagedSprite_GetExplicitPaletteOffset(v0->unk_2C[0]);
-    ov12_022201E8(v0->unk_00.unk_04, ov12_0222E390, v0);
+    MoveEffectSystem_StartEffectTask(v0->unk_00.unk_04, ov12_0222E390, v0);
 }

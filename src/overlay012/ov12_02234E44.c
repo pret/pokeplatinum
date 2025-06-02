@@ -59,7 +59,7 @@ static void ov12_02234E54(UnkStruct_ov12_02234E54 *param0, int param1)
     int v0;
     int v1;
 
-    v0 = ov12_0221FDE4(param0->unk_18.unk_04);
+    v0 = MoveEffectSystem_GetHeapID(param0->unk_18.unk_04);
     v1 = ov12_02223428(param0->unk_18.unk_04, 3);
 
     Bg_SetPriority(param1, v1);
@@ -114,7 +114,7 @@ static void ov12_02234EF0(SysTask *param0, void *param1)
         Bg_SetOffset(v0->unk_18.unk_14, 2, 0, 0);
         Bg_SetOffset(v0->unk_18.unk_14, 2, 3, 0);
         GX_SetVisibleWnd(GX_WNDMASK_NONE);
-        ov12_02220220(v0->unk_18.unk_04, param0);
+        MoveEffectSystem_EndEffectTask(v0->unk_18.unk_04, param0);
         ov12_02235E80(v0);
         (v0) = NULL;
         return;
@@ -207,7 +207,7 @@ static void ov12_0223507C(MoveEffectSystem *param0, UnkStruct_ov12_02234E44 *par
     v0->unk_00.unk_10 = 0;
     v0->unk_00.unk_12 = 0;
 
-    ov12_022201E8(v0->unk_18.unk_04, ov12_02234EF0, v0);
+    MoveEffectSystem_StartEffectTask(v0->unk_18.unk_04, ov12_02234EF0, v0);
 }
 
 void ov12_022351A4(MoveEffectSystem *param0)

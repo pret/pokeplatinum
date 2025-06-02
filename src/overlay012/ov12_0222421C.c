@@ -671,7 +671,7 @@ static void ov12_02224EB8(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 void ov12_02224F14(SPLEmitter *param0)
 {
     MoveEffectSystem *v0 = ParticleSystem_GetEmitterCallbackParam();
-    UnkStruct_ov12_02225640 *v1 = Heap_AllocFromHeap(ov12_0221FDE4(v0), sizeof(UnkStruct_ov12_02225640));
+    UnkStruct_ov12_02225640 *v1 = Heap_AllocFromHeap(MoveEffectSystem_GetHeapID(v0), sizeof(UnkStruct_ov12_02225640));
 
     v1->unk_00 = v0;
     v1->unk_04 = ov12_02220250(v1->unk_00);
