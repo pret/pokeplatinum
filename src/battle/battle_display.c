@@ -202,7 +202,7 @@ static void ov16_022641B4(BattleSystem *battleSys, BattlerData *param1, BattleMe
 static void ov16_02264270(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C9F0 *param2, BattleMessage *param3);
 static void ov16_02264360(BattleSystem *battleSys, BattlerData *param1, BattleMessage *param2);
 static ManagedSprite *ov16_022643B8(BattleSystem *battleSys, int param1, int param2, int param3, s16 param4, s16 param5);
-static void ov16_02264408(BattleSystem *battleSys, BattlerData *param1, MoveEffectSystem *param2, UnkStruct_ov16_02265BBC *param3);
+static void ov16_02264408(BattleSystem *battleSys, BattlerData *param1, BattleAnimSystem *param2, UnkStruct_ov16_02265BBC *param3);
 static void ov16_02264530(BattleSystem *battleSys, UnkStruct_ov16_02265BBC *param1, UnkStruct_ov12_022380DC *param2, int param3);
 static void ov16_022645B8(u8 *param0, u8 *param1, int param2, int param3, u16 param4);
 static BOOL ov16_02264650(UnkStruct_ov16_02264650_1 *param0, ManagedSprite *param1);
@@ -1457,7 +1457,7 @@ void ov16_0225E4C8(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
 static void ov16_0225E4E8(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225E4E8 *v0 = (UnkStruct_ov16_0225E4E8 *)param1;
-    MoveEffectSystem *v1 = ov16_0223E008(v0->unk_00);
+    BattleAnimSystem *v1 = ov16_0223E008(v0->unk_00);
     s16 v2, v3;
 
     switch (v0->unk_12) {
@@ -1597,7 +1597,7 @@ static void ov16_0225E4E8(SysTask *param0, void *param1)
 static void ov16_0225E894(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225E4E8 *v0 = (UnkStruct_ov16_0225E4E8 *)param1;
-    MoveEffectSystem *v1 = ov16_0223E008(v0->unk_00);
+    BattleAnimSystem *v1 = ov16_0223E008(v0->unk_00);
     s16 v2, v3;
 
     switch (v0->unk_12) {
@@ -1862,7 +1862,7 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
                 {
                     UnkStruct_ov16_02265BBC v8;
 
-                    v0->unk_24 = MoveEffectSystem_New(HEAP_ID_BATTLE);
+                    v0->unk_24 = BattleAnimSystem_New(HEAP_ID_BATTLE);
                     ov16_02266B78(v0->unk_00, NULL, &v8, 1, 11, v0->unk_81, v0->unk_81, NULL);
                     ov16_02264408(v0->unk_00, v0->unk_04, v0->unk_24, &v8);
                 }
@@ -1877,7 +1877,7 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
 
         if (ov12_02220188(v0->unk_24) == 0) {
             ov12_02220198(v0->unk_24);
-            MoveEffectSystem_Delete(v0->unk_24);
+            BattleAnimSystem_Delete(v0->unk_24);
             v0->unk_83 = 0xff;
         }
         break;
@@ -1893,7 +1893,7 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
 static void ov16_0225F0C0(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225EA80 *v0 = (UnkStruct_ov16_0225EA80 *)param1;
-    MoveEffectSystem *v1 = ov16_0223E008(v0->unk_00);
+    BattleAnimSystem *v1 = ov16_0223E008(v0->unk_00);
 
     switch (v0->unk_83) {
     case 0: {
@@ -2109,7 +2109,7 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
 static void ov16_0225F764(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225F764 *v0 = (UnkStruct_ov16_0225F764 *)param1;
-    MoveEffectSystem *v1 = ov16_0223E008(v0->unk_00);
+    BattleAnimSystem *v1 = ov16_0223E008(v0->unk_00);
 
     switch (v0->unk_6B) {
     case 0:
@@ -4717,7 +4717,7 @@ static void ov16_022629DC(SysTask *param0, void *param1)
 static void ov16_02262A9C(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225DB74 *v0 = (UnkStruct_ov16_0225DB74 *)param1;
-    MoveEffectSystem *v1 = ov16_0223E008(v0->unk_00);
+    BattleAnimSystem *v1 = ov16_0223E008(v0->unk_00);
     int v2;
     int v3;
 
@@ -4863,7 +4863,7 @@ static void ov16_02262D28(SysTask *param0, void *param1)
 static void ov16_02262DC4(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225DCB0 *v0 = (UnkStruct_ov16_0225DCB0 *)param1;
-    MoveEffectSystem *v1 = ov16_0223E008(v0->unk_00);
+    BattleAnimSystem *v1 = ov16_0223E008(v0->unk_00);
 
     switch (v0->unk_62) {
     case 0:
@@ -6082,7 +6082,7 @@ static ManagedSprite *ov16_022643B8(BattleSystem *battleSys, int param1, int par
     return v3;
 }
 
-static void ov16_02264408(BattleSystem *battleSys, BattlerData *param1, MoveEffectSystem *param2, UnkStruct_ov16_02265BBC *param3)
+static void ov16_02264408(BattleSystem *battleSys, BattlerData *param1, BattleAnimSystem *param2, UnkStruct_ov16_02265BBC *param3)
 {
     UnkStruct_ov16_02264408 v0;
     int i;

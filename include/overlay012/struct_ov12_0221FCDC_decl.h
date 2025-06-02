@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV12_0221FCDC_DECL_H
 #define POKEPLATINUM_STRUCT_OV12_0221FCDC_DECL_H
 
-typedef struct MoveEffectSystem MoveEffectSystem;
+typedef struct BattleAnimSystem BattleAnimSystem;
 
 #endif // POKEPLATINUM_STRUCT_OV12_0221FCDC_DECL_H

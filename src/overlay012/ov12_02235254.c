@@ -35,12 +35,12 @@ void include_unk_ov12_0223A218(VecFx32 *dummy)
     *dummy = Unk_ov12_0223A218;
 }
 
-int ov12_02235254(MoveEffectSystem *param0, int param1)
+int ov12_02235254(BattleAnimSystem *param0, int param1)
 {
     return ov12_022232B8(param0, param1);
 }
 
-int ov12_0223525C(MoveEffectSystem *param0, int param1)
+int ov12_0223525C(BattleAnimSystem *param0, int param1)
 {
     int v0;
     int v1;
@@ -63,7 +63,7 @@ int ov12_0223525C(MoveEffectSystem *param0, int param1)
     return v1;
 }
 
-int ov12_02235288(MoveEffectSystem *param0, int param1)
+int ov12_02235288(BattleAnimSystem *param0, int param1)
 {
     int v0;
     int v1;
@@ -79,7 +79,7 @@ int ov12_02235288(MoveEffectSystem *param0, int param1)
     return 0;
 }
 
-int ov12_022352AC(MoveEffectSystem *param0, int param1)
+int ov12_022352AC(BattleAnimSystem *param0, int param1)
 {
     int v0;
     int v1;
@@ -171,7 +171,7 @@ void ov12_02235350(int param0, int param1, UnkStruct_ov12_02235350 *param2)
     *param2 = v0[param0];
 }
 
-void ov12_022353AC(MoveEffectSystem *param0, int param1, UnkStruct_ov12_02235350 *param2)
+void ov12_022353AC(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235350 *param2)
 {
     int v0 = ov12_02235254(param0, param1);
     int v1 = ov12_0221FDD4(param0);
@@ -474,7 +474,7 @@ void ov12_022354F8(int param0, VecFx32 *param1, int param2, int param3)
     ov12_022353CC(param0, param1, param2, param3, 11);
 }
 
-void ov12_02235508(MoveEffectSystem *param0, int param1, VecFx32 *param2)
+void ov12_02235508(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
@@ -486,7 +486,7 @@ void ov12_02235508(MoveEffectSystem *param0, int param1, VecFx32 *param2)
     ov12_02235448(v0, param2, v1, v2);
 }
 
-void ov12_02235538(MoveEffectSystem *param0, int param1, VecFx32 *param2)
+void ov12_02235538(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
@@ -498,7 +498,7 @@ void ov12_02235538(MoveEffectSystem *param0, int param1, VecFx32 *param2)
     ov12_02235458(v0, param2, v1, v2);
 }
 
-void ov12_02235568(MoveEffectSystem *param0, int param1, VecFx32 *param2)
+void ov12_02235568(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
@@ -510,7 +510,7 @@ void ov12_02235568(MoveEffectSystem *param0, int param1, VecFx32 *param2)
     ov12_02235468(v0, param2, v1, v2);
 }
 
-void ov12_02235598(MoveEffectSystem *param0, int param1, VecFx32 *param2)
+void ov12_02235598(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
@@ -522,7 +522,7 @@ void ov12_02235598(MoveEffectSystem *param0, int param1, VecFx32 *param2)
     ov12_02235478(v0, param2, v1, v2);
 }
 
-void ov12_022355C8(MoveEffectSystem *param0, int param1, VecFx32 *param2)
+void ov12_022355C8(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
@@ -534,7 +534,7 @@ void ov12_022355C8(MoveEffectSystem *param0, int param1, VecFx32 *param2)
     ov12_02235488(v0, param2, v1, v2);
 }
 
-void ov12_022355F8(MoveEffectSystem *param0, int param1, VecFx32 *param2)
+void ov12_022355F8(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
@@ -546,7 +546,7 @@ void ov12_022355F8(MoveEffectSystem *param0, int param1, VecFx32 *param2)
     ov12_02235498(v0, param2, v1, v2);
 }
 
-void ov12_02235628(MoveEffectSystem *param0, int param1, VecFx32 *param2)
+void ov12_02235628(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
@@ -558,7 +558,7 @@ void ov12_02235628(MoveEffectSystem *param0, int param1, VecFx32 *param2)
     ov12_022354A8(v0, param2, v1, v2);
 }
 
-void ov12_02235658(MoveEffectSystem *param0, int param1, VecFx32 *param2)
+void ov12_02235658(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
@@ -570,7 +570,7 @@ void ov12_02235658(MoveEffectSystem *param0, int param1, VecFx32 *param2)
     ov12_022354B8(v0, param2, v1, v2);
 }
 
-void ov12_02235688(MoveEffectSystem *param0, int param1, VecFx32 *param2)
+void ov12_02235688(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
@@ -582,7 +582,7 @@ void ov12_02235688(MoveEffectSystem *param0, int param1, VecFx32 *param2)
     ov12_022354C8(v0, param2, v1, v2);
 }
 
-void ov12_022356B8(MoveEffectSystem *param0, int param1, VecFx32 *param2)
+void ov12_022356B8(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
@@ -594,7 +594,7 @@ void ov12_022356B8(MoveEffectSystem *param0, int param1, VecFx32 *param2)
     ov12_022354D8(v0, param2, v1, v2);
 }
 
-void ov12_022356E8(MoveEffectSystem *param0, int param1, VecFx32 *param2)
+void ov12_022356E8(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
@@ -606,7 +606,7 @@ void ov12_022356E8(MoveEffectSystem *param0, int param1, VecFx32 *param2)
     ov12_022354E8(v0, param2, v1, v2);
 }
 
-void ov12_02235718(MoveEffectSystem *param0, int param1, VecFx32 *param2)
+void ov12_02235718(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
@@ -639,7 +639,7 @@ void ov12_02235760(int param0, VecFx32 *param1)
     }
 }
 
-void ov12_02235780(MoveEffectSystem *param0, int param1, int param2)
+void ov12_02235780(BattleAnimSystem *param0, int param1, int param2)
 {
     int v0 = param1;
     int v1 = param2;
@@ -655,7 +655,7 @@ void ov12_02235780(MoveEffectSystem *param0, int param1, int param2)
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, (1 << ov12_022233EC(param0, 2)) | GX_BLEND_PLANEMASK_BG0, v0, v1);
 }
 
-void ov12_022357BC(MoveEffectSystem *param0, int param1, int param2, int param3)
+void ov12_022357BC(BattleAnimSystem *param0, int param1, int param2, int param3)
 {
     int v0 = param2;
     int v1 = param3;
@@ -671,7 +671,7 @@ void ov12_022357BC(MoveEffectSystem *param0, int param1, int param2, int param3)
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, param1, v0, v1);
 }
 
-void ov12_022357EC(MoveEffectSystem *param0, int param1, int param2)
+void ov12_022357EC(BattleAnimSystem *param0, int param1, int param2)
 {
     int v0 = param1;
     int v1 = param2;
@@ -687,7 +687,7 @@ void ov12_022357EC(MoveEffectSystem *param0, int param1, int param2)
     G2_SetBlendAlpha((1 << ov12_022233EC(param0, 1)), (1 << ov12_022233EC(param0, 2)) | GX_WND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ, v0, v1);
 }
 
-void ov12_02235838(MoveEffectSystem *param0, int param1, BOOL param2)
+void ov12_02235838(BattleAnimSystem *param0, int param1, BOOL param2)
 {
     if (param1 == 0) {
         G2_SetWnd0InsidePlane((1 << ov12_022233EC(param0, 2)) | (1 << ov12_022233EC(param0, 0)) | (1 << ov12_022233EC(param0, 1)) | GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_OBJ, param2);
@@ -719,7 +719,7 @@ void ov12_02235950(ManagedSprite *param0, UnkStruct_ov12_02235350 *param1)
     ManagedSprite_GetPositionXY(param0, &(param1->unk_00), &(param1->unk_02));
 }
 
-void ov12_0223595C(MoveEffectSystem *param0, UnkStruct_ov12_0223595C *param1)
+void ov12_0223595C(BattleAnimSystem *param0, UnkStruct_ov12_0223595C *param1)
 {
     param1->unk_00 = 0;
     param1->unk_01 = 0;
@@ -729,11 +729,11 @@ void ov12_0223595C(MoveEffectSystem *param0, UnkStruct_ov12_0223595C *param1)
     param1->unk_08 = ov12_02220308(param0);
     param1->unk_0C = ov12_022202EC(param0);
     param1->unk_10 = ov12_02220300(param0);
-    param1->unk_14 = MoveEffectSystem_GetBgConfig(param0);
+    param1->unk_14 = BattleAnimSystem_GetBgConfig(param0);
     param1->unk_18 = ov12_0222332C(param0);
 }
 
-void ov12_02235998(MoveEffectSystem *param0, int param1, UnkStruct_ov12_02235998 *param2, int *param3)
+void ov12_02235998(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235998 *param2, int *param3)
 {
     *param3 = 0;
 
@@ -874,7 +874,7 @@ void ov12_02235998(MoveEffectSystem *param0, int param1, UnkStruct_ov12_02235998
     }
 }
 
-void ov12_02235D74(MoveEffectSystem *param0, int param1, UnkStruct_ov12_02235998 *param2, int *param3)
+void ov12_02235D74(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235998 *param2, int *param3)
 {
     *param3 = 0;
 
@@ -903,14 +903,14 @@ void ov12_02235D74(MoveEffectSystem *param0, int param1, UnkStruct_ov12_02235998
     }
 }
 
-void *ov12_02235E50(MoveEffectSystem *param0, int param1)
+void *ov12_02235E50(BattleAnimSystem *param0, int param1)
 {
     int heapID;
     void *v1 = NULL;
 
     GF_ASSERT(param0 != NULL);
 
-    heapID = MoveEffectSystem_GetHeapID(param0);
+    heapID = BattleAnimSystem_GetHeapID(param0);
     v1 = Heap_AllocFromHeap(heapID, param1);
 
     GF_ASSERT(v1 != NULL);

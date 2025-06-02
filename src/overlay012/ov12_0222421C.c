@@ -53,7 +53,7 @@ static void ov12_0222421C(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 
 static void ov12_02224260(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1, VecFx32 *param2)
 {
-    MoveEffectSystem *v0;
+    BattleAnimSystem *v0;
     ParticleSystem *v1;
     int v2;
     int v3;
@@ -78,7 +78,7 @@ static void ov12_02224260(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1, V
 
 static void ov12_022242A0(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1, VecFx32 *param2)
 {
-    MoveEffectSystem *v0;
+    BattleAnimSystem *v0;
     ParticleSystem *v1;
     int v2;
     int v3;
@@ -670,8 +670,8 @@ static void ov12_02224EB8(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 
 void ov12_02224F14(SPLEmitter *param0)
 {
-    MoveEffectSystem *v0 = ParticleSystem_GetEmitterCallbackParam();
-    UnkStruct_ov12_02225640 *v1 = Heap_AllocFromHeap(MoveEffectSystem_GetHeapID(v0), sizeof(UnkStruct_ov12_02225640));
+    BattleAnimSystem *v0 = ParticleSystem_GetEmitterCallbackParam();
+    UnkStruct_ov12_02225640 *v1 = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(v0), sizeof(UnkStruct_ov12_02225640));
 
     v1->unk_00 = v0;
     v1->unk_04 = ov12_02220250(v1->unk_00);
