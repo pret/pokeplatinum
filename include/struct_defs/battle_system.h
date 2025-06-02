@@ -65,7 +65,7 @@ struct BattleSystem {
     Party *parties[MAX_BATTLERS];
     ChatotCry *unk_78[MAX_BATTLERS];
     PokemonSpriteManager *unk_88;
-    MoveEffectSystem *unk_8C;
+    BattleAnimSystem *unk_8C;
     SpriteSystem *spriteSys;
     SpriteManager *spriteMan;
     Poketch *poketch;

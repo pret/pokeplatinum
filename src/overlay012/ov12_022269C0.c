@@ -14,22 +14,22 @@
 
 typedef struct {
     u8 unk_00;
-    MoveEffectSystem *unk_04;
+    BattleAnimSystem *unk_04;
 } UnkStruct_ov12_022269C4;
 
 typedef struct {
     u8 unk_00;
-    MoveEffectSystem *unk_04;
+    BattleAnimSystem *unk_04;
 } UnkStruct_ov12_02226A14;
 
 typedef struct {
     u8 unk_00;
-    MoveEffectSystem *unk_04;
+    BattleAnimSystem *unk_04;
 } UnkStruct_ov12_02226A64;
 
 typedef struct {
     u8 unk_00;
-    MoveEffectSystem *unk_04;
+    BattleAnimSystem *unk_04;
     SpriteSystem *unk_08;
     SpriteManager *unk_0C;
     ManagedSprite *unk_10;
@@ -37,7 +37,7 @@ typedef struct {
     Sprite *unk_1A4[10];
 } UnkStruct_ov12_02226AAC;
 
-void ov12_022269C0(MoveEffectSystem *param0)
+void ov12_022269C0(BattleAnimSystem *param0)
 {
     return;
 }
@@ -51,20 +51,20 @@ static void ov12_022269C4(SysTask *param0, void *param1)
         v0->unk_00++;
         break;
     case 1:
-        MoveEffectSystem_EndEffectTask(v0->unk_04, param0);
+        BattleAnimSystem_EndEffectTask(v0->unk_04, param0);
         Heap_Free(v0);
         break;
     }
 }
 
-void ov12_022269EC(MoveEffectSystem *param0)
+void ov12_022269EC(BattleAnimSystem *param0)
 {
     UnkStruct_ov12_022269C4 *v0 = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(UnkStruct_ov12_022269C4));
 
     v0->unk_00 = 0;
     v0->unk_04 = param0;
 
-    MoveEffectSystem_StartEffectTaskEx(v0->unk_04, ov12_022269C4, v0, 0x1000);
+    BattleAnimSystem_StartEffectTaskEx(v0->unk_04, ov12_022269C4, v0, 0x1000);
 }
 
 static void ov12_02226A14(SysTask *param0, void *param1)
@@ -76,20 +76,20 @@ static void ov12_02226A14(SysTask *param0, void *param1)
         v0->unk_00++;
         break;
     case 1:
-        MoveEffectSystem_EndSoundTask(v0->unk_04, param0);
+        BattleAnimSystem_EndSoundTask(v0->unk_04, param0);
         Heap_Free(v0);
         break;
     }
 }
 
-void ov12_02226A3C(MoveEffectSystem *param0)
+void ov12_02226A3C(BattleAnimSystem *param0)
 {
     UnkStruct_ov12_02226A14 *v0 = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(UnkStruct_ov12_02226A14));
 
     v0->unk_00 = 0;
     v0->unk_04 = param0;
 
-    MoveEffectSystem_StartSoundTask(v0->unk_04, ov12_02226A14, v0, 0x1000);
+    BattleAnimSystem_StartSoundTask(v0->unk_04, ov12_02226A14, v0, 0x1000);
 }
 
 static void ov12_02226A64(SysTask *param0, void *param1)
@@ -107,7 +107,7 @@ static void ov12_02226A64(SysTask *param0, void *param1)
     }
 }
 
-void ov12_02226A88(MoveEffectSystem *param0)
+void ov12_02226A88(BattleAnimSystem *param0)
 {
     UnkStruct_ov12_02226A64 *v0 = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(UnkStruct_ov12_02226A64));
 
@@ -134,16 +134,16 @@ static void ov12_02226AAC(SysTask *param0, void *param1)
         SpriteSystem_DrawSprites(v0->unk_0C);
         break;
     case 1: {
-        MoveEffectSystem *v1 = v0->unk_04;
+        BattleAnimSystem *v1 = v0->unk_04;
 
         Sprite_DeleteAndFreeResources(v0->unk_10);
         Heap_Free(v0);
-        MoveEffectSystem_EndEffectTask(v1, param0);
+        BattleAnimSystem_EndEffectTask(v1, param0);
     } break;
     }
 }
 
-void ov12_02226B1C(MoveEffectSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void ov12_02226B1C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
 {
     UnkStruct_ov12_02226AAC *v0;
     SpriteTemplate v1;
@@ -169,5 +169,5 @@ void ov12_02226B1C(MoveEffectSystem *param0, SpriteSystem *param1, SpriteManager
         }
     }
 
-    MoveEffectSystem_StartEffectTaskEx(param0, ov12_02226AAC, v0, 0x1000);
+    BattleAnimSystem_StartEffectTaskEx(param0, ov12_02226AAC, v0, 0x1000);
 }

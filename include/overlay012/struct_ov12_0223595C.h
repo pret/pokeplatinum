@@ -12,7 +12,7 @@ typedef struct {
     u8 unk_01;
     u8 unk_02;
     u8 unk_03;
-    MoveEffectSystem *unk_04;
+    BattleAnimSystem *unk_04;
     SpriteSystem *unk_08;
     SpriteManager *unk_0C;
     SpriteManager *unk_10;

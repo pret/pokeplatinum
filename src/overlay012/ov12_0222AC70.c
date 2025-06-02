@@ -31,7 +31,7 @@ typedef struct {
     u8 unk_04;
     u8 unk_05;
     u8 unk_06;
-    MoveEffectSystem *unk_08;
+    BattleAnimSystem *unk_08;
     SpriteSystem *unk_0C;
     SpriteManager *unk_10;
     ManagedSprite *unk_14[3];
@@ -44,7 +44,7 @@ typedef struct {
     s16 unk_02;
     int unk_04;
     u8 unk_08;
-    MoveEffectSystem *unk_0C;
+    BattleAnimSystem *unk_0C;
     PokemonSprite *unk_10;
     UnkStruct_ov12_02225F6C unk_14;
     UnkStruct_ov12_02225F6C unk_38;
@@ -55,7 +55,7 @@ typedef struct {
     u8 unk_01;
     s16 unk_02;
     int unk_04;
-    MoveEffectSystem *unk_08;
+    BattleAnimSystem *unk_08;
     PokemonSprite *unk_0C;
     UnkStruct_ov12_02225F6C unk_10;
     UnkStruct_ov12_02225F6C unk_34;
@@ -70,7 +70,7 @@ typedef struct {
     u16 unk_06;
     s16 unk_08;
     s16 unk_0A;
-    MoveEffectSystem *unk_0C;
+    BattleAnimSystem *unk_0C;
     PokemonSprite *unk_10;
     SpriteManager *unk_14;
     ManagedSprite *unk_18[4];
@@ -81,7 +81,7 @@ typedef struct {
     u8 unk_00;
     u8 unk_01;
     u8 unk_02;
-    MoveEffectSystem *unk_04;
+    BattleAnimSystem *unk_04;
     PokemonSprite *unk_08;
     UnkStruct_ov12_02225F6C unk_0C;
 } UnkStruct_ov12_0222B914;
@@ -91,7 +91,7 @@ typedef struct {
     u8 unk_01;
     s16 unk_02;
     s16 unk_04;
-    MoveEffectSystem *unk_08;
+    BattleAnimSystem *unk_08;
     PokemonSprite *unk_0C;
     UnkStruct_ov12_02225F6C unk_10;
 } UnkStruct_ov12_0222BA18;
@@ -102,7 +102,7 @@ typedef struct {
     s16 unk_02;
     s16 unk_04;
     s16 unk_06;
-    MoveEffectSystem *unk_08;
+    BattleAnimSystem *unk_08;
     PokemonSprite *unk_0C;
     UnkStruct_ov12_02225F6C unk_10;
 } UnkStruct_ov12_0222BB30;
@@ -111,7 +111,7 @@ typedef struct {
     u8 unk_00;
     u8 unk_01;
     PaletteData *unk_04;
-    MoveEffectSystem *unk_08;
+    BattleAnimSystem *unk_08;
     UnkStruct_ov12_022267D4 *unk_0C;
     PokemonSprite *unk_10;
 } UnkStruct_ov12_0222BD48;
@@ -122,7 +122,7 @@ typedef struct {
     u8 unk_02;
     s16 unk_04;
     s16 unk_06;
-    MoveEffectSystem *unk_08;
+    BattleAnimSystem *unk_08;
     PokemonSprite *unk_0C;
     UnkStruct_ov12_02225F6C unk_10;
     UnkStruct_ov12_02225F6C unk_34;
@@ -131,7 +131,7 @@ typedef struct {
 typedef struct {
     u8 unk_00;
     u8 unk_01;
-    MoveEffectSystem *unk_04;
+    BattleAnimSystem *unk_04;
     SpriteManager *unk_08;
     ManagedSprite *unk_0C;
     ManagedSprite *unk_10;
@@ -151,7 +151,7 @@ typedef struct {
     int unk_04;
     s8 unk_08;
     PokemonSprite *unk_0C;
-    MoveEffectSystem *unk_10;
+    BattleAnimSystem *unk_10;
     SpriteManager *unk_14;
     UnkStruct_ov12_0222C1A4_sub1 unk_18[3];
 } UnkStruct_ov12_0222C1A4;
@@ -163,7 +163,7 @@ typedef struct {
     u8 unk_03;
     int unk_04;
     BgConfig *unk_08;
-    MoveEffectSystem *unk_0C;
+    BattleAnimSystem *unk_0C;
     SpriteManager *unk_10;
     UnkStruct_ov12_02235998 unk_14[4];
     UnkStruct_ov12_02235998 unk_64[4];
@@ -177,7 +177,7 @@ typedef struct {
     u8 unk_03;
     UnkStruct_ov12_02235350 unk_04;
     BgConfig *unk_08;
-    MoveEffectSystem *unk_0C;
+    BattleAnimSystem *unk_0C;
     SpriteManager *unk_10;
     PokemonSprite *unk_14;
     ManagedSprite *unk_18;
@@ -261,7 +261,7 @@ typedef struct {
     int unk_04;
     int unk_08;
     u8 unk_0C;
-    MoveEffectSystem *unk_10;
+    BattleAnimSystem *unk_10;
     SpriteSystem *unk_14;
     SpriteManager *unk_18;
     PokemonSprite *unk_1C;
@@ -360,7 +360,7 @@ static void ov12_0222AC70(SysTask *param0, void *param1)
             Sprite_DeleteAndFreeResources(v1->unk_14[v0]);
         }
 
-        MoveEffectSystem_EndEffectTask(v1->unk_08, param0);
+        BattleAnimSystem_EndEffectTask(v1->unk_08, param0);
         Heap_Free(v1);
         return;
     }
@@ -372,13 +372,13 @@ static void ov12_0222AC70(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v1->unk_10);
 }
 
-void ov12_0222AE68(MoveEffectSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void ov12_0222AE68(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
 {
     int v0;
     UnkStruct_ov12_0222AC70 *v1;
     SpriteTemplate v2;
 
-    v1 = Heap_AllocFromHeap(MoveEffectSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222AC70));
+    v1 = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222AC70));
 
     GF_ASSERT(v1 != NULL);
 
@@ -423,7 +423,7 @@ void ov12_0222AE68(MoveEffectSystem *param0, SpriteSystem *param1, SpriteManager
         ManagedSprite_SetExplicitOamMode(v1->unk_14[v0], GX_OAM_MODE_XLU);
     }
 
-    MoveEffectSystem_StartEffectTaskEx(param0, ov12_0222AC70, v1, 0x1000);
+    BattleAnimSystem_StartEffectTaskEx(param0, ov12_0222AC70, v1, 0x1000);
 }
 
 static void ov12_0222AFA0(SysTask *param0, void *param1)
@@ -498,15 +498,15 @@ static void ov12_0222AFA0(SysTask *param0, void *param1)
         }
         break;
     default:
-        MoveEffectSystem_EndEffectTask(v0->unk_0C, param0);
+        BattleAnimSystem_EndEffectTask(v0->unk_0C, param0);
         Heap_Free(v0);
         break;
     }
 }
 
-void ov12_0222B194(MoveEffectSystem *param0)
+void ov12_0222B194(BattleAnimSystem *param0)
 {
-    UnkStruct_ov12_0222AFA0 *v0 = Heap_AllocFromHeap(MoveEffectSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222AFA0));
+    UnkStruct_ov12_0222AFA0 *v0 = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222AFA0));
 
     v0->unk_08 = 0;
     v0->unk_00 = 0;
@@ -517,7 +517,7 @@ void ov12_0222B194(MoveEffectSystem *param0)
 
     ov12_02225E68(&v0->unk_14, 100, 100, ov12_02220280(param0, 0), ov12_02220280(param0, 2));
     ov12_02226108(&v0->unk_38, 2, 0, 0, 10);
-    MoveEffectSystem_StartEffectTask(v0->unk_0C, ov12_0222AFA0, v0);
+    BattleAnimSystem_StartEffectTask(v0->unk_0C, ov12_0222AFA0, v0);
 }
 
 static void ov12_0222B220(SysTask *param0, void *param1)
@@ -593,15 +593,15 @@ static void ov12_0222B220(SysTask *param0, void *param1)
         }
         break;
     default:
-        MoveEffectSystem_EndEffectTask(v0->unk_08, param0);
+        BattleAnimSystem_EndEffectTask(v0->unk_08, param0);
         Heap_Free(v0);
         break;
     }
 }
 
-void ov12_0222B45C(MoveEffectSystem *param0)
+void ov12_0222B45C(BattleAnimSystem *param0)
 {
-    UnkStruct_ov12_0222B220 *v0 = Heap_AllocFromHeap(MoveEffectSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222B220));
+    UnkStruct_ov12_0222B220 *v0 = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222B220));
 
     v0->unk_00 = 0;
     v0->unk_08 = param0;
@@ -610,7 +610,7 @@ void ov12_0222B45C(MoveEffectSystem *param0)
     v0->unk_04 = ov12_02223354(v0->unk_08, ov12_02220240(v0->unk_08));
 
     ov12_02225EF0(&v0->unk_10, 100, 150, 100, 50, 100, 10);
-    MoveEffectSystem_StartEffectTask(v0->unk_08, ov12_0222B220, v0);
+    BattleAnimSystem_StartEffectTask(v0->unk_08, ov12_0222B220, v0);
 }
 
 static const s16 Unk_ov12_0223A0FE[][3] = {
@@ -675,7 +675,7 @@ static void ov12_0222B4C8(SysTask *param0, void *param1)
         G2_ChangeBlendAlpha(v2->unk_04, v2->unk_05);
         break;
     default:
-        MoveEffectSystem_EndEffectTask(v2->unk_0C, param0);
+        BattleAnimSystem_EndEffectTask(v2->unk_0C, param0);
         Heap_Free(v2);
         return;
     }
@@ -683,9 +683,9 @@ static void ov12_0222B4C8(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v2->unk_14);
 }
 
-void ov12_0222B68C(MoveEffectSystem *param0)
+void ov12_0222B68C(BattleAnimSystem *param0)
 {
-    UnkStruct_ov12_0222B4C8 *v0 = Heap_AllocFromHeap(MoveEffectSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222B4C8));
+    UnkStruct_ov12_0222B4C8 *v0 = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222B4C8));
 
     v0->unk_01 = 0;
     v0->unk_00 = 0;
@@ -724,10 +724,10 @@ void ov12_0222B68C(MoveEffectSystem *param0)
             ManagedSprite_SetExplicitPriority(v0->unk_18[3], v4);
 
             v2 = PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(v0->unk_18[0]->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
-            PaletteData_LoadBufferFromFileStartWithTint(ov12_0222332C(v0->unk_0C), v5, v3, MoveEffectSystem_GetHeapID(param0), 2, 0x20, v2 * 16, 128, 128, 128);
+            PaletteData_LoadBufferFromFileStartWithTint(ov12_0222332C(v0->unk_0C), v5, v3, BattleAnimSystem_GetHeapID(param0), 2, 0x20, v2 * 16, 128, 128, 128);
 
             v2 = PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(v0->unk_18[2]->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
-            PaletteData_LoadBufferFromFileStartWithTint(ov12_0222332C(v0->unk_0C), v5, v3, MoveEffectSystem_GetHeapID(param0), 2, 0x20, v2 * 16, 196, 196, 196);
+            PaletteData_LoadBufferFromFileStartWithTint(ov12_0222332C(v0->unk_0C), v5, v3, BattleAnimSystem_GetHeapID(param0), 2, 0x20, v2 * 16, 196, 196, 196);
         } else {
             ManagedSprite_SetPriority(v0->unk_18[0], 20);
             ManagedSprite_SetPriority(v0->unk_18[1], 20);
@@ -743,14 +743,14 @@ void ov12_0222B68C(MoveEffectSystem *param0)
             ManagedSprite_SetExplicitPriority(v0->unk_18[3], v4);
 
             v2 = PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(v0->unk_18[0]->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
-            PaletteData_LoadBufferFromFileStartWithTint(ov12_0222332C(v0->unk_0C), v5, v3, MoveEffectSystem_GetHeapID(param0), 2, 0x20, v2 * 16, 196, 196, 196);
+            PaletteData_LoadBufferFromFileStartWithTint(ov12_0222332C(v0->unk_0C), v5, v3, BattleAnimSystem_GetHeapID(param0), 2, 0x20, v2 * 16, 196, 196, 196);
 
             v2 = PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(v0->unk_18[2]->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
-            PaletteData_LoadBufferFromFileStartWithTint(ov12_0222332C(v0->unk_0C), v5, v3, MoveEffectSystem_GetHeapID(param0), 2, 0x20, v2 * 16, 128, 128, 128);
+            PaletteData_LoadBufferFromFileStartWithTint(ov12_0222332C(v0->unk_0C), v5, v3, BattleAnimSystem_GetHeapID(param0), 2, 0x20, v2 * 16, 128, 128, 128);
         }
     }
 
-    MoveEffectSystem_StartEffectTask(v0->unk_0C, ov12_0222B4C8, v0);
+    BattleAnimSystem_StartEffectTask(v0->unk_0C, ov12_0222B4C8, v0);
 }
 
 static const u8 Unk_ov12_0223A098[][3] = {
@@ -789,13 +789,13 @@ static void ov12_0222B914(SysTask *param0, void *param1)
         PokemonSprite_SetAttribute(v0->unk_08, MON_SPRITE_SCALE_Y, v0->unk_0C.unk_02);
         break;
     default:
-        MoveEffectSystem_EndEffectTask(v0->unk_04, param0);
+        BattleAnimSystem_EndEffectTask(v0->unk_04, param0);
         Heap_Free(v0);
         break;
     }
 }
 
-void ov12_0222B9E0(MoveEffectSystem *param0)
+void ov12_0222B9E0(BattleAnimSystem *param0)
 {
     UnkStruct_ov12_0222B914 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222B914));
 
@@ -805,7 +805,7 @@ void ov12_0222B9E0(MoveEffectSystem *param0)
     v0->unk_04 = param0;
     v0->unk_08 = ov12_022232FC(v0->unk_04, ov12_02220240(v0->unk_04));
 
-    MoveEffectSystem_StartEffectTask(v0->unk_04, ov12_0222B914, v0);
+    BattleAnimSystem_StartEffectTask(v0->unk_04, ov12_0222B914, v0);
 }
 
 static const u8 Unk_ov12_0223A0DF[][5] = {
@@ -842,13 +842,13 @@ static void ov12_0222BA18(SysTask *param0, void *param1)
         }
         break;
     default:
-        MoveEffectSystem_EndEffectTask(v0->unk_08, param0);
+        BattleAnimSystem_EndEffectTask(v0->unk_08, param0);
         Heap_Free(v0);
         break;
     }
 }
 
-void ov12_0222BAE4(MoveEffectSystem *param0)
+void ov12_0222BAE4(BattleAnimSystem *param0)
 {
     UnkStruct_ov12_0222BA18 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222BA18));
 
@@ -859,7 +859,7 @@ void ov12_0222BAE4(MoveEffectSystem *param0)
     v0->unk_02 = PokemonSprite_GetAttribute(v0->unk_0C, MON_SPRITE_Y_CENTER);
     v0->unk_04 = ov12_02223354(v0->unk_08, ov12_02220240(v0->unk_08));
 
-    MoveEffectSystem_StartEffectTask(v0->unk_08, ov12_0222BA18, v0);
+    BattleAnimSystem_StartEffectTask(v0->unk_08, ov12_0222BA18, v0);
 }
 
 static const u8 Unk_ov12_0223A0B7[][5] = {
@@ -916,13 +916,13 @@ static void ov12_0222BB30(SysTask *param0, void *param1)
         PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_HIDE, 1);
         PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_SCALE_X, 0x100);
         PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_SCALE_Y, 0x100);
-        MoveEffectSystem_EndEffectTask(v0->unk_08, param0);
+        BattleAnimSystem_EndEffectTask(v0->unk_08, param0);
         Heap_Free(v0);
         break;
     }
 }
 
-void ov12_0222BCF4(MoveEffectSystem *param0)
+void ov12_0222BCF4(BattleAnimSystem *param0)
 {
     UnkStruct_ov12_0222BB30 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222BB30));
 
@@ -934,7 +934,7 @@ void ov12_0222BCF4(MoveEffectSystem *param0)
     v0->unk_04 = v0->unk_02;
     v0->unk_06 = ov12_02223354(v0->unk_08, ov12_02220240(v0->unk_08));
 
-    MoveEffectSystem_StartEffectTask(v0->unk_08, ov12_0222BB30, v0);
+    BattleAnimSystem_StartEffectTask(v0->unk_08, ov12_0222BB30, v0);
 }
 
 static void ov12_0222BD48(SysTask *param0, void *param1)
@@ -968,13 +968,13 @@ static void ov12_0222BD48(SysTask *param0, void *param1)
         }
         break;
     default:
-        MoveEffectSystem_EndEffectTask(v0->unk_08, param0);
+        BattleAnimSystem_EndEffectTask(v0->unk_08, param0);
         Heap_Free(v0);
         break;
     }
 }
 
-void ov12_0222BE48(MoveEffectSystem *param0)
+void ov12_0222BE48(BattleAnimSystem *param0)
 {
     UnkStruct_ov12_0222BD48 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222BD48));
 
@@ -982,7 +982,7 @@ void ov12_0222BE48(MoveEffectSystem *param0)
     v0->unk_04 = ov12_0222332C(v0->unk_08);
     v0->unk_10 = ov12_022232FC(v0->unk_08, ov12_02220240(v0->unk_08));
 
-    MoveEffectSystem_StartEffectTask(v0->unk_08, ov12_0222BD48, v0);
+    BattleAnimSystem_StartEffectTask(v0->unk_08, ov12_0222BD48, v0);
 }
 
 static const u8 Unk_ov12_0223A0C1[][5] = {
@@ -1037,13 +1037,13 @@ static void ov12_0222BE80(SysTask *param0, void *param1)
         ov12_02226024(v0->unk_0C, v0->unk_34.unk_02, v0->unk_06, v0->unk_10.unk_04[4], 0);
     } break;
     default:
-        MoveEffectSystem_EndEffectTask(v0->unk_08, param0);
+        BattleAnimSystem_EndEffectTask(v0->unk_08, param0);
         Heap_Free(v0);
         break;
     }
 }
 
-void ov12_0222BFA8(MoveEffectSystem *param0)
+void ov12_0222BFA8(BattleAnimSystem *param0)
 {
     UnkStruct_ov12_0222BE80 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222BE80));
 
@@ -1054,7 +1054,7 @@ void ov12_0222BFA8(MoveEffectSystem *param0)
     v0->unk_04 = PokemonSprite_GetAttribute(v0->unk_0C, MON_SPRITE_Y_CENTER);
     v0->unk_06 = ov12_02223354(v0->unk_08, ov12_02220240(v0->unk_08));
 
-    MoveEffectSystem_StartEffectTask(v0->unk_08, ov12_0222BE80, v0);
+    BattleAnimSystem_StartEffectTask(v0->unk_08, ov12_0222BE80, v0);
 }
 
 static void ov12_0222BFF4(SysTask *param0, void *param1)
@@ -1086,7 +1086,7 @@ static void ov12_0222BFF4(SysTask *param0, void *param1)
         break;
     default:
         GX_SetVisibleWnd(GX_WNDMASK_NONE);
-        MoveEffectSystem_EndEffectTask(v0->unk_04, param0);
+        BattleAnimSystem_EndEffectTask(v0->unk_04, param0);
         Heap_Free(v0);
         return;
     }
@@ -1096,7 +1096,7 @@ static void ov12_0222BFF4(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v0->unk_08);
 }
 
-void ov12_0222C0C0(MoveEffectSystem *param0)
+void ov12_0222C0C0(BattleAnimSystem *param0)
 {
     UnkStruct_ov12_0222BFF4 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222BFF4));
 
@@ -1115,12 +1115,12 @@ void ov12_0222C0C0(MoveEffectSystem *param0)
         int v3 = ov12_02223344(v0->unk_04, ov12_02220240(v0->unk_04));
 
         v1 = PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(v0->unk_0C->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
-        PaletteData_LoadBufferFromFileStartWithTint(ov12_0222332C(v0->unk_04), v3, v2, MoveEffectSystem_GetHeapID(param0), 2, 0x20, v1 * 16, 256, 256, 256);
+        PaletteData_LoadBufferFromFileStartWithTint(ov12_0222332C(v0->unk_04), v3, v2, BattleAnimSystem_GetHeapID(param0), 2, 0x20, v1 * 16, 256, 256, 256);
     }
 
     ManagedSprite_SetDrawFlag(v0->unk_0C, 0);
     ManagedSprite_SetDrawFlag(v0->unk_10, 0);
-    MoveEffectSystem_StartEffectTask(v0->unk_04, ov12_0222BFF4, v0);
+    BattleAnimSystem_StartEffectTask(v0->unk_04, ov12_0222BFF4, v0);
 }
 
 static const u8 Unk_ov12_0223A094[] = {
@@ -1223,7 +1223,7 @@ static void ov12_0222C1A4(SysTask *param0, void *param1)
         break;
     default:
         PokemonSprite_SetAttribute(v2->unk_0C, MON_SPRITE_PARTIAL_DRAW, 0);
-        MoveEffectSystem_EndEffectTask(v2->unk_10, param0);
+        BattleAnimSystem_EndEffectTask(v2->unk_10, param0);
         Heap_Free(v2);
         return;
     }
@@ -1231,7 +1231,7 @@ static void ov12_0222C1A4(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v2->unk_14);
 }
 
-void ov12_0222C3C0(MoveEffectSystem *param0)
+void ov12_0222C3C0(BattleAnimSystem *param0)
 {
     UnkStruct_ov12_0222C1A4 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222C1A4));
 
@@ -1275,7 +1275,7 @@ void ov12_0222C3C0(MoveEffectSystem *param0)
         }
     }
 
-    MoveEffectSystem_StartEffectTask(v0->unk_10, ov12_0222C1A4, v0);
+    BattleAnimSystem_StartEffectTask(v0->unk_10, ov12_0222C1A4, v0);
 }
 
 static const s16 Unk_ov12_0223A0EE[] = {
@@ -1346,13 +1346,13 @@ static void ov12_0222C4A8(SysTask *param0, void *param1)
         Bg_SetOffset(v1->unk_08, BG_LAYER_MAIN_3, 0, v1->unk_B4.unk_00);
         break;
     default:
-        MoveEffectSystem_EndEffectTask(v1->unk_0C, param0);
+        BattleAnimSystem_EndEffectTask(v1->unk_0C, param0);
         Heap_Free(v1);
         break;
     }
 }
 
-void ov12_0222C5FC(MoveEffectSystem *param0)
+void ov12_0222C5FC(BattleAnimSystem *param0)
 {
     int v0;
     UnkStruct_ov12_0222C4A8 *v1 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222C4A8));
@@ -1361,7 +1361,7 @@ void ov12_0222C5FC(MoveEffectSystem *param0)
     v1->unk_01 = 0;
     v1->unk_0C = param0;
     v1->unk_10 = ov12_022202EC(v1->unk_0C);
-    v1->unk_08 = MoveEffectSystem_GetBgConfig(v1->unk_0C);
+    v1->unk_08 = BattleAnimSystem_GetBgConfig(v1->unk_0C);
 
     {
         int v2;
@@ -1383,7 +1383,7 @@ void ov12_0222C5FC(MoveEffectSystem *param0)
         v1->unk_14[v0].unk_00.unk_02 = PokemonSprite_GetAttribute(v1->unk_14[v0].unk_08, MON_SPRITE_Y_CENTER);
     }
 
-    MoveEffectSystem_StartEffectTask(v1->unk_0C, ov12_0222C4A8, v1);
+    BattleAnimSystem_StartEffectTask(v1->unk_0C, ov12_0222C4A8, v1);
 }
 
 static void ov12_0222C678(SysTask *param0, void *param1)
@@ -1404,13 +1404,13 @@ static void ov12_0222C678(SysTask *param0, void *param1)
         SpriteSystem_DrawSprites(v0->unk_10);
         break;
     default:
-        MoveEffectSystem_EndEffectTask(v0->unk_0C, param0);
+        BattleAnimSystem_EndEffectTask(v0->unk_0C, param0);
         Heap_Free(v0);
         break;
     }
 }
 
-void ov12_0222C6D4(MoveEffectSystem *param0)
+void ov12_0222C6D4(BattleAnimSystem *param0)
 {
     UnkStruct_ov12_0222C678 *v0;
     int v1;
@@ -1421,7 +1421,7 @@ void ov12_0222C6D4(MoveEffectSystem *param0)
     v0->unk_01 = 0;
     v0->unk_0C = param0;
     v0->unk_10 = ov12_022202EC(v0->unk_0C);
-    v0->unk_08 = MoveEffectSystem_GetBgConfig(v0->unk_0C);
+    v0->unk_08 = BattleAnimSystem_GetBgConfig(v0->unk_0C);
     v0->unk_18 = ov12_022202C0(v0->unk_0C, 0);
 
     if (ov12_02220280(param0, 0) == 0) {
@@ -1445,7 +1445,7 @@ void ov12_0222C6D4(MoveEffectSystem *param0)
     ov12_02226424(&v0->unk_64, 31, 0, 0, 31, (20 - 5));
 
     ManagedSprite_SetExplicitOamMode(v0->unk_18, GX_OAM_MODE_XLU);
-    MoveEffectSystem_StartEffectTask(v0->unk_0C, ov12_0222C678, v0);
+    BattleAnimSystem_StartEffectTask(v0->unk_0C, ov12_0222C678, v0);
 }
 
 static const int Unk_ov12_0223A118[][2] = {
@@ -1495,7 +1495,7 @@ static void ov12_0222C7E0(SysTask *param0, void *param1)
         break;
     default:
         PokemonSprite_SetAttribute(v0->unk_28[0], MON_SPRITE_ROTATION_Z, 0);
-        MoveEffectSystem_EndEffectTask(v0->unk_00.unk_04, param0);
+        BattleAnimSystem_EndEffectTask(v0->unk_00.unk_04, param0);
         Heap_Free(v0);
         break;
     }
@@ -1520,13 +1520,13 @@ static void ov12_0222C884(SysTask *param0, void *param1)
         }
     } break;
     default:
-        MoveEffectSystem_EndEffectTask(v0->unk_00.unk_04, param0);
+        BattleAnimSystem_EndEffectTask(v0->unk_00.unk_04, param0);
         Heap_Free(v0);
         break;
     }
 }
 
-void ov12_0222C8F8(MoveEffectSystem *param0)
+void ov12_0222C8F8(BattleAnimSystem *param0)
 {
     UnkStruct_ov12_0222C7E0 *v0;
     int v1 = 0;
@@ -1548,9 +1548,9 @@ void ov12_0222C8F8(MoveEffectSystem *param0)
     v0->unk_1C.unk_08 = ov12_02220280(param0, 5);
 
     if (v1 == 0) {
-        MoveEffectSystem_StartEffectTask(v0->unk_00.unk_04, ov12_0222C7E0, v0);
+        BattleAnimSystem_StartEffectTask(v0->unk_00.unk_04, ov12_0222C7E0, v0);
     } else {
-        MoveEffectSystem_StartEffectTask(v0->unk_00.unk_04, ov12_0222C884, v0);
+        BattleAnimSystem_StartEffectTask(v0->unk_00.unk_04, ov12_0222C884, v0);
     }
 }
 
@@ -1581,13 +1581,13 @@ static void ov12_0222C994(SysTask *param0, void *param1)
         }
         break;
     default:
-        MoveEffectSystem_EndEffectTask(v1->unk_00.unk_04, param0);
+        BattleAnimSystem_EndEffectTask(v1->unk_00.unk_04, param0);
         Heap_Free(v1);
         break;
     }
 }
 
-void ov12_0222CA2C(MoveEffectSystem *param0)
+void ov12_0222CA2C(BattleAnimSystem *param0)
 {
     UnkStruct_ov12_0222C994 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222C994));
     int v1;
@@ -1632,7 +1632,7 @@ void ov12_0222CA2C(MoveEffectSystem *param0)
         ov12_02235918(v0->unk_38[v1], &v0->unk_28[v1]);
     }
 
-    MoveEffectSystem_StartEffectTask(v0->unk_00.unk_04, ov12_0222C994, v0);
+    BattleAnimSystem_StartEffectTask(v0->unk_00.unk_04, ov12_0222C994, v0);
 }
 
 static void ov12_0222CACC(SysTask *param0, void *param1)
@@ -1659,13 +1659,13 @@ static void ov12_0222CACC(SysTask *param0, void *param1)
         SpriteSystem_DrawSprites(v1->unk_00.unk_0C);
         break;
     default:
-        MoveEffectSystem_EndEffectTask(v1->unk_00.unk_04, param0);
+        BattleAnimSystem_EndEffectTask(v1->unk_00.unk_04, param0);
         Heap_Free(v1);
         break;
     }
 }
 
-void ov12_0222CB90(MoveEffectSystem *param0)
+void ov12_0222CB90(BattleAnimSystem *param0)
 {
     UnkStruct_ov12_0222CACC *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222CACC));
     int v1;
@@ -1679,7 +1679,7 @@ void ov12_0222CB90(MoveEffectSystem *param0)
 
     ov12_02235918(v0->unk_30[0], &v0->unk_28[0]);
     ov12_02235918(v0->unk_30[1], &v0->unk_28[1]);
-    MoveEffectSystem_StartEffectTask(v0->unk_00.unk_04, ov12_0222CACC, v0);
+    BattleAnimSystem_StartEffectTask(v0->unk_00.unk_04, ov12_0222CACC, v0);
 }
 
 static void ov12_0222CBFC(SysTask *param0, void *param1)
@@ -1689,7 +1689,7 @@ static void ov12_0222CBFC(SysTask *param0, void *param1)
 
     if (ov12_02225D2C(&v1->unk_8C[0], &v1->unk_8C[1], v1->unk_38) == 0) {
         Sprite_DeleteAndFreeResources(v1->unk_38);
-        MoveEffectSystem_EndEffectTask(v1->unk_10.unk_04, param0);
+        BattleAnimSystem_EndEffectTask(v1->unk_10.unk_04, param0);
         ov12_02235E80(v1);
         (v1) = NULL;
         return;
@@ -1703,7 +1703,7 @@ static void ov12_0222CBFC(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v1->unk_10.unk_10);
 }
 
-void ov12_0222CC54(MoveEffectSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void ov12_0222CC54(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
 {
     int v0;
     int v1;
@@ -1745,7 +1745,7 @@ void ov12_0222CC54(MoveEffectSystem *param0, SpriteSystem *param1, SpriteManager
     ov12_02225D2C(&v2->unk_8C[0], &v2->unk_8C[1], v2->unk_38);
 
     ManagedSprite_TickFrame(v2->unk_38);
-    MoveEffectSystem_StartEffectTask(v2->unk_10.unk_04, ov12_0222CBFC, v2);
+    BattleAnimSystem_StartEffectTask(v2->unk_10.unk_04, ov12_0222CBFC, v2);
 }
 
 static void ov12_0222CDF0(SysTask *param0, void *param1)
@@ -1812,7 +1812,7 @@ static void ov12_0222CDF0(SysTask *param0, void *param1)
     default:
         Sprite_DeleteAndFreeResources(v0->unk_44[0]);
         Sprite_DeleteAndFreeResources(v0->unk_44[1]);
-        MoveEffectSystem_EndEffectTask(v0->unk_18.unk_04, param0);
+        BattleAnimSystem_EndEffectTask(v0->unk_18.unk_04, param0);
         ov12_02235E80(v0);
         (v0) = NULL;
         return;
@@ -1822,7 +1822,7 @@ static void ov12_0222CDF0(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v0->unk_18.unk_10);
 }
 
-void ov12_0222CFA0(MoveEffectSystem *param0)
+void ov12_0222CFA0(BattleAnimSystem *param0)
 {
     UnkStruct_ov12_0222CDF0 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222CDF0));
 
@@ -1894,7 +1894,7 @@ void ov12_0222CFA0(MoveEffectSystem *param0)
         ManagedSprite_SetPositionXY(v0->unk_40, v0->unk_14.unk_00, v0->unk_14.unk_02 + v3);
     }
 
-    MoveEffectSystem_StartEffectTask(v0->unk_18.unk_04, ov12_0222CDF0, v0);
+    BattleAnimSystem_StartEffectTask(v0->unk_18.unk_04, ov12_0222CDF0, v0);
 }
 
 static const u8 Unk_ov12_0223A0D0[][5] = {
@@ -2059,7 +2059,7 @@ static void ov12_0222D128(SysTask *param0, void *param1)
             Sprite_DeleteAndFreeResources(v1->unk_30[v0].unk_00);
         }
 
-        MoveEffectSystem_EndEffectTask(v1->unk_10, param0);
+        BattleAnimSystem_EndEffectTask(v1->unk_10, param0);
         Heap_Free(v1);
         return;
     }
@@ -2093,7 +2093,7 @@ static void ov12_0222D128(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v1->unk_18);
 }
 
-void ov12_0222D56C(MoveEffectSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void ov12_0222D56C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
 {
     int v0;
     UnkStruct_ov12_0222D128 *v1;
@@ -2137,5 +2137,5 @@ void ov12_0222D56C(MoveEffectSystem *param0, SpriteSystem *param1, SpriteManager
         ManagedSprite_SetPositionXY(v1->unk_30[1].unk_00, 180, (25 - 16 + 20 + 10));
     }
 
-    MoveEffectSystem_StartEffectTask(v1->unk_10, ov12_0222D128, v1);
+    BattleAnimSystem_StartEffectTask(v1->unk_10, ov12_0222D128, v1);
 }

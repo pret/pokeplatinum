@@ -20,20 +20,15 @@
 #include "sys_task_manager.h"
 
 
-enum MoveEffectSystemArc {
-    MOVE_EFFECT_SYSTEM_ARC_BATT_BG = 0,
-    MOVE_EFFECT_SYSTEM_ARC_BATT_OBJ,
-    MOVE_EFFECT_SYSTEM_ARC_WECHAR,
-    MOVE_EFFECT_SYSTEM_ARC_WEPLTT,
-    MOVE_EFFECT_SYSTEM_ARC_WECELL,
-    MOVE_EFFECT_SYSTEM_ARC_WECELLANM,
+enum BattleAnimSystemArc {
+    BATTLE_ANIM_SYSTEM_ARC_BATT_BG = 0,
+    BATTLE_ANIM_SYSTEM_ARC_BATT_OBJ,
+    BATTLE_ANIM_SYSTEM_ARC_WECHAR,
+    BATTLE_ANIM_SYSTEM_ARC_WEPLTT,
+    BATTLE_ANIM_SYSTEM_ARC_WECELL,
+    BATTLE_ANIM_SYSTEM_ARC_WECELLANM,
 
-    MOVE_EFFECT_SYSTEM_ARC_COUNT,
-};
-
-enum MoveEffectTaskKind {
-    MOVE_EFFECT_TASK_KIND_EFFECT = 1,
-    MOVE_EFFECT_TASK_KIND_SOUND,
+    BATTLE_ANIM_SYSTEM_ARC_COUNT,
 };
 
 typedef struct UnkStruct_ov12_02223178_t {
@@ -76,7 +71,7 @@ typedef struct {
 } UnkStruct_ov12_0221FCDC_sub1;
 
 typedef struct {
-    MoveEffectSystem *unk_00;
+    BattleAnimSystem *unk_00;
     SpriteManager *unk_04;
     ManagedSprite *unk_08;
     BOOL unk_0C;
@@ -125,7 +120,7 @@ typedef struct UnkStruct_ov12_022211D8_t {
     UnkStruct_ov12_0222118C_sub1 unk_04;
 } UnkStruct_ov12_022211D8;
 
-typedef struct MoveEffectSystem {
+typedef struct BattleAnimSystem {
     int heapID;
     enum NarcID effectArcID;
     BOOL unk_08;
@@ -143,7 +138,7 @@ typedef struct MoveEffectSystem {
     u16 activeEffectTasks;
     u16 activeSoundTasks;
     s32 unk_90[10];
-    void (*executeEffectScriptFunc)(MoveEffectSystem *);
+    void (*executeEffectScriptFunc)(BattleAnimSystem *);
     UnkStruct_ov12_02223178 *unk_BC;
     BgConfig *bgConfig;
     PaletteData *unk_C4;
@@ -163,70 +158,70 @@ typedef struct MoveEffectSystem {
     UnkStruct_ov16_02264408_sub1 unk_180;
     int unk_198;
     u8 bgLayerPriorities[4];
-    NARC *arcs[6];
-} MoveEffectSystem;
+    NARC *arcs[BATTLE_ANIM_SYSTEM_ARC_COUNT];
+} BattleAnimSystem;
 
 
-MoveEffectSystem *MoveEffectSystem_New(enum HeapId heapID);
-void ov12_0221FDC0(MoveEffectSystem *param0, BOOL param1);
-BOOL ov12_0221FDD4(MoveEffectSystem *param0);
-enum HeapId MoveEffectSystem_GetHeapID(MoveEffectSystem *param0);
-BOOL MoveEffectSystem_Delete(MoveEffectSystem *param0);
-BOOL ov12_0221FE30(MoveEffectSystem *param0, UnkStruct_ov16_02265BBC *param1, u16 param2, UnkStruct_ov16_02264408 *param3);
-BOOL ov12_0222016C(MoveEffectSystem *param0);
-BOOL ov12_02220188(MoveEffectSystem *param0);
-BOOL ov12_02220198(MoveEffectSystem *param0);
-BOOL MoveEffectSystem_IsActive(MoveEffectSystem *param0);
-SysTask *MoveEffectSystem_StartEffectTaskEx(MoveEffectSystem *param0, SysTaskFunc param1, void *param2, u32 param3);
-SysTask *MoveEffectSystem_StartEffectTask(MoveEffectSystem *param0, SysTaskFunc param1, void *param2);
-SysTask *MoveEffectSystem_StartSoundTask(MoveEffectSystem *param0, SysTaskFunc param1, void *param2, u32 param3);
-void MoveEffectSystem_EndEffectTask(MoveEffectSystem *param0, SysTask *param1);
-void MoveEffectSystem_EndSoundTask(MoveEffectSystem *param0, SysTask *param1);
-u16 ov12_02220240(MoveEffectSystem *param0);
-u16 ov12_02220248(MoveEffectSystem *param0);
-ParticleSystem *ov12_02220250(MoveEffectSystem *param0);
-ParticleSystem *ov12_02220260(MoveEffectSystem *param0, int param1);
-SPLEmitter *ov12_0222026C(MoveEffectSystem *param0, int param1);
-BgConfig *MoveEffectSystem_GetBgConfig(MoveEffectSystem *param0);
-s32 ov12_02220280(MoveEffectSystem *param0, int param1);
-ManagedSprite *ov12_02220298(MoveEffectSystem *param0, int param1);
-ManagedSprite *ov12_022202C0(MoveEffectSystem *param0, int param1);
-SpriteManager *ov12_022202EC(MoveEffectSystem *param0);
-SpriteManager *ov12_02220300(MoveEffectSystem *param0);
-SpriteSystem *ov12_02220308(MoveEffectSystem *param0);
+BattleAnimSystem *BattleAnimSystem_New(enum HeapId heapID);
+void ov12_0221FDC0(BattleAnimSystem *param0, BOOL param1);
+BOOL ov12_0221FDD4(BattleAnimSystem *param0);
+enum HeapId BattleAnimSystem_GetHeapID(BattleAnimSystem *param0);
+BOOL BattleAnimSystem_Delete(BattleAnimSystem *param0);
+BOOL ov12_0221FE30(BattleAnimSystem *param0, UnkStruct_ov16_02265BBC *param1, u16 param2, UnkStruct_ov16_02264408 *param3);
+BOOL ov12_0222016C(BattleAnimSystem *param0);
+BOOL ov12_02220188(BattleAnimSystem *param0);
+BOOL ov12_02220198(BattleAnimSystem *param0);
+BOOL BattleAnimSystem_IsActive(BattleAnimSystem *param0);
+SysTask *BattleAnimSystem_StartEffectTaskEx(BattleAnimSystem *param0, SysTaskFunc param1, void *param2, u32 param3);
+SysTask *BattleAnimSystem_StartEffectTask(BattleAnimSystem *param0, SysTaskFunc param1, void *param2);
+SysTask *BattleAnimSystem_StartSoundTask(BattleAnimSystem *param0, SysTaskFunc param1, void *param2, u32 param3);
+void BattleAnimSystem_EndEffectTask(BattleAnimSystem *param0, SysTask *param1);
+void BattleAnimSystem_EndSoundTask(BattleAnimSystem *param0, SysTask *param1);
+u16 ov12_02220240(BattleAnimSystem *param0);
+u16 ov12_02220248(BattleAnimSystem *param0);
+ParticleSystem *ov12_02220250(BattleAnimSystem *param0);
+ParticleSystem *ov12_02220260(BattleAnimSystem *param0, int param1);
+SPLEmitter *ov12_0222026C(BattleAnimSystem *param0, int param1);
+BgConfig *BattleAnimSystem_GetBgConfig(BattleAnimSystem *param0);
+s32 ov12_02220280(BattleAnimSystem *param0, int param1);
+ManagedSprite *ov12_02220298(BattleAnimSystem *param0, int param1);
+ManagedSprite *ov12_022202C0(BattleAnimSystem *param0, int param1);
+SpriteManager *ov12_022202EC(BattleAnimSystem *param0);
+SpriteManager *ov12_02220300(BattleAnimSystem *param0);
+SpriteSystem *ov12_02220308(BattleAnimSystem *param0);
 void ov12_02220474(void);
-int ov12_02220540(MoveEffectSystem *param0, int param1);
-void ov12_02220590(MoveEffectSystem *param0, UnkStruct_ov12_022380DC *param1, int param2);
-void ov12_02221238(MoveEffectSystem *param0, int param1);
-void ov12_02222338(MoveEffectSystem *param0);
-int ov12_02222354(MoveEffectSystem *param0);
-void ov12_02222590(MoveEffectSystem *param0, int param1);
-void ov12_02222664(MoveEffectSystem *param0, int param1);
-MoveEffectScriptCmd MoveEffectSystem_GetScriptCmd(u32 param0);
+int ov12_02220540(BattleAnimSystem *param0, int param1);
+void ov12_02220590(BattleAnimSystem *param0, UnkStruct_ov12_022380DC *param1, int param2);
+void ov12_02221238(BattleAnimSystem *param0, int param1);
+void ov12_02222338(BattleAnimSystem *param0);
+int ov12_02222354(BattleAnimSystem *param0);
+void ov12_02222590(BattleAnimSystem *param0, int param1);
+void ov12_02222664(BattleAnimSystem *param0, int param1);
+MoveEffectScriptCmd BattleAnimSystem_GetScriptCmd(u32 param0);
 int ov12_02223178(UnkStruct_ov12_02223178 *param0);
-s8 ov12_0222317C(MoveEffectSystem *param0, s8 param1);
+s8 ov12_0222317C(BattleAnimSystem *param0, s8 param1);
 s8 ov12_02223234(s8 param0, s8 param1, s8 param2);
-BOOL ov12_0222325C(MoveEffectSystem *param0, int param1[], int param2);
-SpriteTemplate ov12_0222329C(MoveEffectSystem *param0);
-int ov12_022232B8(MoveEffectSystem *param0, int param1);
-int ov12_022232C4(MoveEffectSystem *param0, int param1);
-int ov12_022232D0(MoveEffectSystem *param0, int param1);
-int ov12_022232E0(MoveEffectSystem *param0, int param1);
-int ov12_022232EC(MoveEffectSystem *param0, int param1);
-PokemonSprite *ov12_022232FC(MoveEffectSystem *param0, int param1);
-PaletteData *ov12_0222332C(MoveEffectSystem *param0);
-int ov12_02223334(MoveEffectSystem *param0, int param1);
-int ov12_02223344(MoveEffectSystem *param0, int param1);
-int ov12_02223354(MoveEffectSystem *param0, int param1);
-BOOL ov12_02223364(MoveEffectSystem *param0);
-BOOL ov12_0222337C(MoveEffectSystem *param0, int param1);
-int ov12_0222339C(MoveEffectSystem *param0);
-int ov12_022233B0(MoveEffectSystem *param0, int param1);
-int ov12_022233EC(MoveEffectSystem *param0, int param1);
-int ov12_02223428(MoveEffectSystem *param0, int param1);
-void ov12_02223460(MoveEffectSystem *param0, int param1);
-void ov12_02223488(MoveEffectSystem *param0);
-BOOL ov12_022234A8(MoveEffectSystem *param0, int param1);
+BOOL ov12_0222325C(BattleAnimSystem *param0, int param1[], int param2);
+SpriteTemplate ov12_0222329C(BattleAnimSystem *param0);
+int ov12_022232B8(BattleAnimSystem *param0, int param1);
+int ov12_022232C4(BattleAnimSystem *param0, int param1);
+int ov12_022232D0(BattleAnimSystem *param0, int param1);
+int ov12_022232E0(BattleAnimSystem *param0, int param1);
+int ov12_022232EC(BattleAnimSystem *param0, int param1);
+PokemonSprite *ov12_022232FC(BattleAnimSystem *param0, int param1);
+PaletteData *ov12_0222332C(BattleAnimSystem *param0);
+int ov12_02223334(BattleAnimSystem *param0, int param1);
+int ov12_02223344(BattleAnimSystem *param0, int param1);
+int ov12_02223354(BattleAnimSystem *param0, int param1);
+BOOL ov12_02223364(BattleAnimSystem *param0);
+BOOL ov12_0222337C(BattleAnimSystem *param0, int param1);
+int ov12_0222339C(BattleAnimSystem *param0);
+int ov12_022233B0(BattleAnimSystem *param0, int param1);
+int ov12_022233EC(BattleAnimSystem *param0, int param1);
+int ov12_02223428(BattleAnimSystem *param0, int param1);
+void ov12_02223460(BattleAnimSystem *param0, int param1);
+void ov12_02223488(BattleAnimSystem *param0);
+BOOL ov12_022234A8(BattleAnimSystem *param0, int param1);
 int ov12_022234E4(int param0, int param1);
 UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, int heapID, int param2);
 UnkStruct_ov12_02223764 *ov12_02223764(BattleSystem *battleSys, int heapID);

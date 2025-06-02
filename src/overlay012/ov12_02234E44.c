@@ -59,7 +59,7 @@ static void ov12_02234E54(UnkStruct_ov12_02234E54 *param0, int param1)
     int v0;
     int v1;
 
-    v0 = MoveEffectSystem_GetHeapID(param0->unk_18.unk_04);
+    v0 = BattleAnimSystem_GetHeapID(param0->unk_18.unk_04);
     v1 = ov12_02223428(param0->unk_18.unk_04, 3);
 
     Bg_SetPriority(param1, v1);
@@ -114,7 +114,7 @@ static void ov12_02234EF0(SysTask *param0, void *param1)
         Bg_SetOffset(v0->unk_18.unk_14, 2, 0, 0);
         Bg_SetOffset(v0->unk_18.unk_14, 2, 3, 0);
         GX_SetVisibleWnd(GX_WNDMASK_NONE);
-        MoveEffectSystem_EndEffectTask(v0->unk_18.unk_04, param0);
+        BattleAnimSystem_EndEffectTask(v0->unk_18.unk_04, param0);
         ov12_02235E80(v0);
         (v0) = NULL;
         return;
@@ -132,14 +132,14 @@ static void ov12_02234EF0(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v0->unk_18.unk_0C);
 }
 
-static void ov12_0223505C(MoveEffectSystem *param0, UnkStruct_ov12_02234E44 *param1)
+static void ov12_0223505C(BattleAnimSystem *param0, UnkStruct_ov12_02234E44 *param1)
 {
     (*param1).unk_00 = 7;
     (*param1).unk_04 = ov12_02220280(param0, 0);
     (*param1).unk_08 = ov12_02220280(param0, 1);
 }
 
-static void ov12_0223507C(MoveEffectSystem *param0, UnkStruct_ov12_02234E44 *param1)
+static void ov12_0223507C(BattleAnimSystem *param0, UnkStruct_ov12_02234E44 *param1)
 {
     UnkStruct_ov12_02234E54 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_02234E54));
 
@@ -207,10 +207,10 @@ static void ov12_0223507C(MoveEffectSystem *param0, UnkStruct_ov12_02234E44 *par
     v0->unk_00.unk_10 = 0;
     v0->unk_00.unk_12 = 0;
 
-    MoveEffectSystem_StartEffectTask(v0->unk_18.unk_04, ov12_02234EF0, v0);
+    BattleAnimSystem_StartEffectTask(v0->unk_18.unk_04, ov12_02234EF0, v0);
 }
 
-void ov12_022351A4(MoveEffectSystem *param0)
+void ov12_022351A4(BattleAnimSystem *param0)
 {
     UnkStruct_ov12_02234E44 v0;
 
@@ -220,7 +220,7 @@ void ov12_022351A4(MoveEffectSystem *param0)
     ov12_0223507C(param0, &v0);
 }
 
-void ov12_022351D0(MoveEffectSystem *param0)
+void ov12_022351D0(BattleAnimSystem *param0)
 {
     UnkStruct_ov12_02234E44 v0;
 
@@ -230,7 +230,7 @@ void ov12_022351D0(MoveEffectSystem *param0)
     ov12_0223507C(param0, &v0);
 }
 
-void ov12_022351FC(MoveEffectSystem *param0)
+void ov12_022351FC(BattleAnimSystem *param0)
 {
     UnkStruct_ov12_02234E44 v0;
 
@@ -240,7 +240,7 @@ void ov12_022351FC(MoveEffectSystem *param0)
     ov12_0223507C(param0, &v0);
 }
 
-void ov12_02235228(MoveEffectSystem *param0)
+void ov12_02235228(BattleAnimSystem *param0)
 {
     UnkStruct_ov12_02234E44 v0;
     s16 v1 = 3 + 3;
