@@ -729,7 +729,7 @@ void ov12_0223595C(MoveEffectSystem *param0, UnkStruct_ov12_0223595C *param1)
     param1->unk_08 = ov12_02220308(param0);
     param1->unk_0C = ov12_022202EC(param0);
     param1->unk_10 = ov12_02220300(param0);
-    param1->unk_14 = ov12_02220278(param0);
+    param1->unk_14 = MoveEffectSystem_GetBgConfig(param0);
     param1->unk_18 = ov12_0222332C(param0);
 }
 
@@ -910,7 +910,7 @@ void *ov12_02235E50(MoveEffectSystem *param0, int param1)
 
     GF_ASSERT(param0 != NULL);
 
-    heapID = ov12_0221FDE4(param0);
+    heapID = MoveEffectSystem_GetHeapID(param0);
     v1 = Heap_AllocFromHeap(heapID, param1);
 
     GF_ASSERT(v1 != NULL);

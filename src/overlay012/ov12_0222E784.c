@@ -36,7 +36,7 @@ static void ov12_0222E784(SysTask *param0, void *param1)
             ManagedSprite_SetDrawFlag(v0->unk_30[0].unk_0C, 0);
             ManagedSprite_SetDrawFlag(v0->unk_30[0].unk_0C, 0);
 
-            ov12_02220220(v0->unk_00.unk_04, param0);
+            MoveEffectSystem_EndEffectTask(v0->unk_00.unk_04, param0);
             ov12_02235E80(v0);
             (v0) = NULL;
 
@@ -97,5 +97,5 @@ void ov12_0222E810(MoveEffectSystem *param0)
     }
 
     ov12_02225EF0(&v0->unk_60, 100, 20, 100, 20, 100, 10);
-    ov12_022201E8(v0->unk_00.unk_04, ov12_0222E784, v0);
+    MoveEffectSystem_StartEffectTask(v0->unk_00.unk_04, ov12_0222E784, v0);
 }
