@@ -19,6 +19,8 @@
 #include "sprite_system.h"
 #include "sys_task_manager.h"
 
+#define BATTLE_ANIM_SCRIPT_VAR_COUNT 10
+
 
 enum BattleAnimSystemArc {
     BATTLE_ANIM_SYSTEM_ARC_BATT_BG = 0,
@@ -127,7 +129,7 @@ typedef struct BattleAnimSystem {
     BOOL isActive;
     BOOL unk_10;
     void *unk_14;
-    u32 *effectScriptPtr;
+    u32 *scriptPtr;
     u32 *unk_1C[3];
     UnkStruct_ov12_0221FCDC_sub1 unk_28[3];
     UnkStruct_ov12_02221810 unk_48[2];
@@ -135,10 +137,10 @@ typedef struct BattleAnimSystem {
     u8 unk_78[16];
     s8 unk_88;
     u8 scriptDelay;
-    u16 activeEffectTasks;
+    u16 activeAnimTasks;
     u16 activeSoundTasks;
-    s32 unk_90[10];
-    void (*executeEffectScriptFunc)(BattleAnimSystem *);
+    s32 scriptVars[BATTLE_ANIM_SCRIPT_VAR_COUNT];
+    void (*executeAnimScriptFunc)(BattleAnimSystem *);
     UnkStruct_ov12_02223178 *unk_BC;
     BgConfig *bgConfig;
     PaletteData *unk_C4;
@@ -172,10 +174,10 @@ BOOL ov12_0222016C(BattleAnimSystem *param0);
 BOOL ov12_02220188(BattleAnimSystem *param0);
 BOOL ov12_02220198(BattleAnimSystem *param0);
 BOOL BattleAnimSystem_IsActive(BattleAnimSystem *param0);
-SysTask *BattleAnimSystem_StartEffectTaskEx(BattleAnimSystem *param0, SysTaskFunc param1, void *param2, u32 param3);
-SysTask *BattleAnimSystem_StartEffectTask(BattleAnimSystem *param0, SysTaskFunc param1, void *param2);
+SysTask *BattleAnimSystem_StartAnimTaskEx(BattleAnimSystem *param0, SysTaskFunc param1, void *param2, u32 param3);
+SysTask *BattleAnimSystem_StartAnimTask(BattleAnimSystem *param0, SysTaskFunc param1, void *param2);
 SysTask *BattleAnimSystem_StartSoundTask(BattleAnimSystem *param0, SysTaskFunc param1, void *param2, u32 param3);
-void BattleAnimSystem_EndEffectTask(BattleAnimSystem *param0, SysTask *param1);
+void BattleAnimSystem_EndAnimTask(BattleAnimSystem *param0, SysTask *param1);
 void BattleAnimSystem_EndSoundTask(BattleAnimSystem *param0, SysTask *param1);
 u16 ov12_02220240(BattleAnimSystem *param0);
 u16 ov12_02220248(BattleAnimSystem *param0);
@@ -197,7 +199,7 @@ void ov12_02222338(BattleAnimSystem *param0);
 int ov12_02222354(BattleAnimSystem *param0);
 void ov12_02222590(BattleAnimSystem *param0, int param1);
 void ov12_02222664(BattleAnimSystem *param0, int param1);
-MoveEffectScriptCmd BattleAnimSystem_GetScriptCmd(u32 param0);
+BattleAnimScriptCmd BattleAnimSystem_GetScriptCmd(u32 param0);
 int ov12_02223178(UnkStruct_ov12_02223178 *param0);
 s8 ov12_0222317C(BattleAnimSystem *param0, s8 param1);
 s8 ov12_02223234(s8 param0, s8 param1, s8 param2);

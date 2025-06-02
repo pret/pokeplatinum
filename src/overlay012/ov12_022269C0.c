@@ -51,7 +51,7 @@ static void ov12_022269C4(SysTask *param0, void *param1)
         v0->unk_00++;
         break;
     case 1:
-        BattleAnimSystem_EndEffectTask(v0->unk_04, param0);
+        BattleAnimSystem_EndAnimTask(v0->unk_04, param0);
         Heap_Free(v0);
         break;
     }
@@ -64,7 +64,7 @@ void ov12_022269EC(BattleAnimSystem *param0)
     v0->unk_00 = 0;
     v0->unk_04 = param0;
 
-    BattleAnimSystem_StartEffectTaskEx(v0->unk_04, ov12_022269C4, v0, 0x1000);
+    BattleAnimSystem_StartAnimTaskEx(v0->unk_04, ov12_022269C4, v0, 0x1000);
 }
 
 static void ov12_02226A14(SysTask *param0, void *param1)
@@ -138,7 +138,7 @@ static void ov12_02226AAC(SysTask *param0, void *param1)
 
         Sprite_DeleteAndFreeResources(v0->unk_10);
         Heap_Free(v0);
-        BattleAnimSystem_EndEffectTask(v1, param0);
+        BattleAnimSystem_EndAnimTask(v1, param0);
     } break;
     }
 }
@@ -169,5 +169,5 @@ void ov12_02226B1C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
         }
     }
 
-    BattleAnimSystem_StartEffectTaskEx(param0, ov12_02226AAC, v0, 0x1000);
+    BattleAnimSystem_StartAnimTaskEx(param0, ov12_02226AAC, v0, 0x1000);
 }
