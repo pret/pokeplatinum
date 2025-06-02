@@ -90,8 +90,8 @@ enum BattleAnimTaskKind {
 };
 
 static void ov12_022224F8(SysTask *param0, void *param1);
-static void BattleAnimSystem_WaitForEffect(BattleAnimSystem *param0);
-static void BattleAnimSystem_ExecuteEffectScript(BattleAnimSystem *param0);
+static void BattleAnimSystem_Script_WaitForDelay(BattleAnimSystem *param0);
+static void BattleAnimSystem_Script_Execute(BattleAnimSystem *param0);
 
 // See enum BattleAnimTaskKind for 'kind'
 static SysTask *BattleAnimSystem_StartTask(u8 kind, BattleAnimSystem *param1, SysTaskFunc param2, void *param3, u32 param4);
@@ -107,7 +107,7 @@ static BOOL ov12_02220404(UnkStruct_ov12_02220314 *param0);
 static BOOL ov12_0222040C(UnkStruct_ov12_02220314 *param0);
 static BOOL ov12_0222044C(UnkStruct_ov12_02220314 *param0);
 static void BattleAnimScriptCmd_Delay(BattleAnimSystem *param0);
-static void BattleAnimScriptCmd_WaitForDelay(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_WaitForAnimTasks(BattleAnimSystem *param0);
 static void ov12_0222070C(BattleAnimSystem *param0);
 static void ov12_0222074C(BattleAnimSystem *param0);
 static void ov12_02220798(BattleAnimSystem *param0);
@@ -118,8 +118,8 @@ static void ov12_02222CAC(BattleAnimSystem *param0);
 static void ov12_02222CDC(BattleAnimSystem *param0);
 static void ov12_02220E14(BattleAnimSystem *param0);
 static void ov12_02220E44(BattleAnimSystem *param0);
-static void ov12_02220504(BattleAnimSystem *param0);
-static void ov12_02220524(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_SetVar(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_ResetVar(BattleAnimSystem *param0);
 static void ov12_022206A4(BattleAnimSystem *param0);
 static void ov12_022206E8(BattleAnimSystem *param0);
 static void ov12_02220F30(BattleAnimSystem *param0);
@@ -209,9 +209,9 @@ static BOOL ov12_022226E8(UnkStruct_ov12_02221BBC *param0);
 static BOOL ov12_0222240C(UnkStruct_ov12_02221BBC *param0);
 static BOOL ov12_022224E4(UnkStruct_ov12_02221BBC *param0);
 
-static inline void MoveEffectScript_Next(BattleAnimSystem *system);
-static inline void MoveEffectScript_SetupArgs(BattleAnimSystem *system);
-static inline int MoveEffectScript_ReadWord(u32 *param0);
+static inline void BattleAnimScript_Next(BattleAnimSystem *system);
+static inline void BattleAnimScript_SetupArgs(BattleAnimSystem *system);
+static inline int BattleAnimScript_ReadWord(u32 *param0);
 
 static const s16 Unk_ov12_02238660[] = {
     0x20,
@@ -232,20 +232,20 @@ static const s16 Unk_ov12_02238660[] = {
     0x20
 };
 
-static void BattleAnimSystem_WaitForEffect(BattleAnimSystem *system)
+static void BattleAnimSystem_Script_WaitForDelay(BattleAnimSystem *system)
 {
     if (system->scriptDelay == 0) {
         system->scriptDelay == 0;
-        system->executeEffectScriptFunc = BattleAnimSystem_ExecuteEffectScript;
+        system->executeAnimScriptFunc = BattleAnimSystem_Script_Execute;
     } else {
         system->scriptDelay--;
     }
 }
 
-static void BattleAnimSystem_ExecuteEffectScript(BattleAnimSystem *system)
+static void BattleAnimSystem_Script_Execute(BattleAnimSystem *system)
 {
     do {
-        MoveEffectScriptCmd cmd = BattleAnimSystem_GetScriptCmd(*system->effectScriptPtr);
+        BattleAnimScriptCmd cmd = BattleAnimSystem_GetScriptCmd(*system->scriptPtr);
         cmd(system);
     } while (system->scriptDelay == 0 && system->unk_10 == 1);
 }
@@ -254,7 +254,7 @@ static SysTask *BattleAnimSystem_StartTask(u8 kind, BattleAnimSystem *system, Sy
 {
     switch (kind) {
     case MOVE_EFFECT_TASK_KIND_EFFECT:
-        system->activeEffectTasks++;
+        system->activeAnimTasks++;
         break;
     case MOVE_EFFECT_TASK_KIND_SOUND:
         system->activeSoundTasks++;
@@ -271,7 +271,7 @@ static void BattleAnimSystem_EndTask(u8 kind, BattleAnimSystem *system, SysTask 
 {
     switch (kind) {
     case MOVE_EFFECT_TASK_KIND_EFFECT:
-        system->activeEffectTasks--;
+        system->activeAnimTasks--;
         break;
     case MOVE_EFFECT_TASK_KIND_SOUND:
         system->activeSoundTasks--;
@@ -314,7 +314,7 @@ BattleAnimSystem *BattleAnimSystem_New(enum HeapId heapID)
     memset(system->unk_BC, 0, sizeof(UnkStruct_ov12_02223178));
 
     system->isActive = FALSE;
-    system->effectScriptPtr = NULL;
+    system->scriptPtr = NULL;
 
     for (i = 0; i < 4; i++) {
         system->unk_C8[i] = NULL;
@@ -381,7 +381,7 @@ BOOL ov12_0221FE30(BattleAnimSystem *param0, UnkStruct_ov16_02265BBC *param1, u1
     }
 
     for (v0 = 0; v0 < (8 + 2); v0++) {
-        param0->unk_90[v0] = 0;
+        param0->scriptVars[v0] = 0;
     }
 
     for (v0 = 0; v0 < 3; v0++) {
@@ -464,7 +464,7 @@ BOOL ov12_0221FE30(BattleAnimSystem *param0, UnkStruct_ov16_02265BBC *param1, u1
         return 0;
     }
 
-    param0->effectScriptPtr = (u32 *)param0->unk_14;
+    param0->scriptPtr = (u32 *)param0->unk_14;
     param0->bgLayerPriorities[BG_LAYER_MAIN_0] = Bg_GetPriority(param0->bgConfig, BG_LAYER_MAIN_0);
     param0->bgLayerPriorities[BG_LAYER_MAIN_1] = Bg_GetPriority(param0->bgConfig, BG_LAYER_MAIN_1);
     param0->bgLayerPriorities[BG_LAYER_MAIN_2] = Bg_GetPriority(param0->bgConfig, BG_LAYER_MAIN_2);
@@ -480,7 +480,7 @@ BOOL ov12_0221FE30(BattleAnimSystem *param0, UnkStruct_ov16_02265BBC *param1, u1
     }
 
     param0->unk_17C = NULL;
-    param0->executeEffectScriptFunc = BattleAnimSystem_ExecuteEffectScript;
+    param0->executeAnimScriptFunc = BattleAnimSystem_Script_Execute;
     param0->scriptDelay = 0;
 
     if (ov12_0221FDD4(param0) == 1) {
@@ -500,7 +500,7 @@ BOOL ov12_0222016C(BattleAnimSystem *param0)
         return 0;
     }
 
-    param0->executeEffectScriptFunc(param0);
+    param0->executeAnimScriptFunc(param0);
     return 1;
 }
 
@@ -529,12 +529,12 @@ BOOL BattleAnimSystem_IsActive(BattleAnimSystem *system)
     return system->isActive == TRUE;
 }
 
-SysTask *BattleAnimSystem_StartEffectTaskEx(BattleAnimSystem *system, SysTaskFunc func, void *param, u32 priority)
+SysTask *BattleAnimSystem_StartAnimTaskEx(BattleAnimSystem *system, SysTaskFunc func, void *param, u32 priority)
 {
     return BattleAnimSystem_StartTask(MOVE_EFFECT_TASK_KIND_EFFECT, system, func, param, priority);
 }
 
-SysTask *BattleAnimSystem_StartEffectTask(BattleAnimSystem *system, SysTaskFunc func, void *param)
+SysTask *BattleAnimSystem_StartAnimTask(BattleAnimSystem *system, SysTaskFunc func, void *param)
 {
     return BattleAnimSystem_StartTask(MOVE_EFFECT_TASK_KIND_EFFECT, system, func, param, 1100);
 }
@@ -544,7 +544,7 @@ SysTask *BattleAnimSystem_StartSoundTask(BattleAnimSystem *system, SysTaskFunc f
     return BattleAnimSystem_StartTask(MOVE_EFFECT_TASK_KIND_SOUND, system, func, param, priority);
 }
 
-void BattleAnimSystem_EndEffectTask(BattleAnimSystem *system, SysTask *task)
+void BattleAnimSystem_EndAnimTask(BattleAnimSystem *system, SysTask *task)
 {
     BattleAnimSystem_EndTask(MOVE_EFFECT_TASK_KIND_EFFECT, system, task);
 }
@@ -588,7 +588,7 @@ BgConfig *BattleAnimSystem_GetBgConfig(BattleAnimSystem *system)
 s32 ov12_02220280(BattleAnimSystem *param0, int param1)
 {
     GF_ASSERT(param1 < (8 + 2));
-    return param0->unk_90[param1];
+    return param0->scriptVars[param1];
 }
 
 ManagedSprite *ov12_02220298(BattleAnimSystem *param0, int param1)
@@ -765,9 +765,9 @@ static BOOL ov12_0222044C(UnkStruct_ov12_02220314 *param0)
     return v0;
 }
 
-static const MoveEffectScriptCmd sMoveEffectScriptCmdTable[] = {
+static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
     BattleAnimScriptCmd_Delay,
-    BattleAnimScriptCmd_WaitForDelay,
+    BattleAnimScriptCmd_WaitForAnimTasks,
     ov12_0222070C,
     ov12_0222074C,
     ov12_02220798,
@@ -778,7 +778,7 @@ static const MoveEffectScriptCmd sMoveEffectScriptCmdTable[] = {
     ov12_02222CDC,
     ov12_02220E14,
     ov12_02220E44,
-    ov12_02220504,
+    BattleAnimScriptCmd_SetVar,
     ov12_02220F30,
     ov12_02221064,
     ov12_02221098,
@@ -833,7 +833,7 @@ static const MoveEffectScriptCmd sMoveEffectScriptCmdTable[] = {
     ov12_02220F5C,
     ov12_022230D4,
     ov12_02223134,
-    ov12_02220524,
+    BattleAnimScriptCmd_ResetVar,
     ov12_022206A4,
     ov12_022206E8,
     ov12_02220FA0,
@@ -858,17 +858,17 @@ void ov12_02220474(void)
     G2_SetBlendAlpha((GX_BLEND_PLANEMASK_NONE), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 8, 8);
 }
 
-static inline void MoveEffectScript_Next(BattleAnimSystem *system)
+static inline void BattleAnimScript_Next(BattleAnimSystem *system)
 {
-    system->effectScriptPtr += 1;
+    system->scriptPtr += 1;
 }
 
-static inline void MoveEffectScript_SetupArgs(BattleAnimSystem *system)
+static inline void BattleAnimScript_SetupArgs(BattleAnimSystem *system)
 {
-    MoveEffectScript_Next(system);
+    BattleAnimScript_Next(system);
 }
 
-static inline int MoveEffectScript_ReadWord(u32 *scriptPtr)
+static inline int BattleAnimScript_ReadWord(u32 *scriptPtr)
 {
     return *scriptPtr;
 }
@@ -880,7 +880,7 @@ static void ov12_0222048C(BattleAnimSystem *param0)
     if (gSystem.heldKeys & PAD_BUTTON_L) {
         if (gSystem.heldKeys & PAD_BUTTON_R) {
             if (gSystem.pressedKeys & PAD_BUTTON_X) {
-                param0->effectScriptPtr += 1;
+                param0->scriptPtr += 1;
                 param0->scriptDelay = 0;
             }
         }
@@ -889,51 +889,45 @@ static void ov12_0222048C(BattleAnimSystem *param0)
 
 static void BattleAnimScriptCmd_Delay(BattleAnimSystem *system)
 {
-    MoveEffectScript_SetupArgs(system);
+    BattleAnimScript_SetupArgs(system);
 
-    system->scriptDelay = (u8)MoveEffectScript_ReadWord(system->effectScriptPtr);
-    MoveEffectScript_Next(system);
+    system->scriptDelay = (u8)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    system->executeEffectScriptFunc = BattleAnimSystem_WaitForEffect;
+    system->executeAnimScriptFunc = BattleAnimSystem_Script_WaitForDelay;
 }
 
-static void BattleAnimScriptCmd_WaitForDelay(BattleAnimSystem *system)
+static void BattleAnimScriptCmd_WaitForAnimTasks(BattleAnimSystem *system)
 {
-    if (system->activeEffectTasks == 0) {
-        MoveEffectScript_Next(system);
+    if (system->activeAnimTasks == 0) {
+        BattleAnimScript_Next(system);
         system->scriptDelay = 0;
     } else {
         system->scriptDelay = 1;
     }
 }
 
-static void ov12_02220504(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_SetVar(BattleAnimSystem *system)
 {
-    u32 v0;
-    u32 v1;
+    BattleAnimScript_Next(system);
+    u32 id = (u32)BattleAnimScript_ReadWord(system->scriptPtr);
 
-    param0->effectScriptPtr += 1;
-    v0 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    BattleAnimScript_Next(system);
+    u32 value = (u32)BattleAnimScript_ReadWord(system->scriptPtr);
 
-    param0->effectScriptPtr += 1;
-    v1 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    BattleAnimScript_Next(system);
 
-    param0->effectScriptPtr += 1;
-
-    if (v0 < (8 + 2)) {
-        param0->unk_90[v0] = v1;
-        return;
+    if (id < BATTLE_ANIM_SCRIPT_VAR_COUNT) {
+        system->scriptVars[id] = value;
     }
 }
 
-static void ov12_02220524(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_ResetVar(BattleAnimSystem *system)
 {
-    int v0;
+    BattleAnimScript_Next(system);
 
-    param0->effectScriptPtr += 1;
-
-    for (v0 = 0; v0 < (8 + 2); v0++) {
-        param0->unk_90[v0] = 0;
+    for (int i = 0; i < BATTLE_ANIM_SCRIPT_VAR_COUNT; i++) {
+        system->scriptVars[i] = 0;
     }
 }
 
@@ -1011,9 +1005,9 @@ static void ov12_022206A4(BattleAnimSystem *param0)
     int v0;
     UnkStruct_ov12_022380DC v1;
 
-    param0->effectScriptPtr += 1;
-    v0 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
+    v0 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     ov12_02220590(param0, &v1, v0);
 
@@ -1031,9 +1025,9 @@ static void ov12_022206E8(BattleAnimSystem *param0)
     int v0;
     UnkStruct_ov12_022380DC v1;
 
-    param0->effectScriptPtr += 1;
-    v0 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
+    v0 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     ov12_02220590(param0, &v1, v0);
     ov12_022382BC(&v1, param0->heapID);
@@ -1043,7 +1037,7 @@ static void ov12_0222070C(BattleAnimSystem *param0)
 {
     int v0;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
     for (v0 = 0; v0 < 3; v0++) {
         if (param0->unk_28[v0].unk_08 == 1) {
@@ -1052,9 +1046,9 @@ static void ov12_0222070C(BattleAnimSystem *param0)
 
         param0->unk_28[v0].unk_08 = 1;
         param0->unk_28[v0].unk_04 = 0;
-        param0->unk_28[v0].unk_05 = (u8)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-        param0->effectScriptPtr += 1;
-        param0->unk_28[v0].unk_00 = param0->effectScriptPtr;
+        param0->unk_28[v0].unk_05 = (u8)BattleAnimScript_ReadWord(param0->scriptPtr);
+        param0->scriptPtr += 1;
+        param0->unk_28[v0].unk_00 = param0->scriptPtr;
 
         return;
     }
@@ -1064,7 +1058,7 @@ static void ov12_0222074C(BattleAnimSystem *param0)
 {
     int v0;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
     for (v0 = 3 - 1; v0 >= 0; v0--) {
         if (param0->unk_28[v0].unk_08 == 0) {
@@ -1076,7 +1070,7 @@ static void ov12_0222074C(BattleAnimSystem *param0)
         if (param0->unk_28[v0].unk_04 == param0->unk_28[v0].unk_05) {
             param0->unk_28[v0].unk_08 = 0;
         } else {
-            param0->effectScriptPtr = param0->unk_28[v0].unk_00;
+            param0->scriptPtr = param0->unk_28[v0].unk_00;
         }
 
         return;
@@ -1100,7 +1094,7 @@ static void ov12_02220798(BattleAnimSystem *param0)
         }
     }
 
-    if ((v1 != 0) || (param0->activeEffectTasks != 0) || (param0->activeSoundTasks != 0)) {
+    if ((v1 != 0) || (param0->activeAnimTasks != 0) || (param0->activeSoundTasks != 0)) {
         param0->scriptDelay = 1;
         param0->unk_179 = 0;
         return;
@@ -1184,16 +1178,16 @@ static void ov12_022209A8(BattleAnimSystem *param0)
     u32 v1;
     u32 v2;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v2 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v2 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v0 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v1 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v1 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     param0->unk_BC->unk_18 = v2;
 
@@ -1217,19 +1211,19 @@ static void ov12_02220A3C(BattleAnimSystem *param0)
     u32 v2;
     u32 v3;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v2 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v2 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v3 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v3 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v0 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v1 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v1 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     param0->unk_BC->unk_18 = v2;
 
@@ -1304,18 +1298,18 @@ static void ov12_02220B8C(BattleAnimSystem *param0)
     u32 v3;
     u32 v4;
 
-    MoveEffectScript_SetupArgs(param0);
-    v3 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    BattleAnimScript_SetupArgs(param0);
+    v3 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     for (v0 = 0; v0 < 6; v0++) {
-        v1[v0] = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-        param0->effectScriptPtr += 1;
+        v1[v0] = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
+        param0->scriptPtr += 1;
     }
 
-    v2 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    v2 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
     param0->unk_BC->unk_18 = v3;
 
     if (param0->unk_78[v3] != 0) {
@@ -1345,18 +1339,18 @@ static void ov12_02220C44(BattleAnimSystem *param0)
     u32 v3;
     u32 v4;
 
-    param0->effectScriptPtr += 1;
-    v3 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
+    v3 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     for (v0 = 0; v0 < 4; v0++) {
-        v1[v0] = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-        param0->effectScriptPtr += 1;
+        v1[v0] = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
+        param0->scriptPtr += 1;
     }
 
-    v2 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    v2 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
     param0->unk_BC->unk_18 = v3;
 
     if (param0->unk_78[v3] != 0) {
@@ -1392,7 +1386,7 @@ static void ov12_02220CFC(BattleAnimSystem *param0)
     }
 
     if (v1 == 0) {
-        param0->effectScriptPtr += 1;
+        param0->scriptPtr += 1;
         param0->scriptDelay = 0;
     } else {
         param0->scriptDelay = 1;
@@ -1404,19 +1398,19 @@ static void ov12_02220D3C(BattleAnimSystem *param0)
     u32 v0;
     u32 v1;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v1 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v1 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     GF_ASSERT(param0->unk_BC->unk_1C[v1] == NULL);
 
-    v0 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    v0 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
     param0->unk_BC->unk_1C[v1] = ov12_022237F0(param0->heapID, v0, 0);
     param0->scriptDelay = 2;
-    param0->executeEffectScriptFunc = BattleAnimSystem_WaitForEffect;
+    param0->executeAnimScriptFunc = BattleAnimSystem_Script_WaitForDelay;
 }
 
 static void ov12_02220D90(BattleAnimSystem *param0)
@@ -1425,31 +1419,31 @@ static void ov12_02220D90(BattleAnimSystem *param0)
     u32 v1;
     u32 v2;
 
-    param0->effectScriptPtr += 1;
-    v2 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
+    v2 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v1 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v1 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
     v1 = 100;
 
     GF_ASSERT(param0->unk_BC->unk_1C[v2] == NULL);
 
-    v0 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    v0 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
     param0->unk_BC->unk_1C[v2] = ov12_02223818(param0->heapID, v1, v0, 0);
     param0->scriptDelay = 2;
-    param0->executeEffectScriptFunc = BattleAnimSystem_WaitForEffect;
+    param0->executeAnimScriptFunc = BattleAnimSystem_Script_WaitForDelay;
 }
 
 static void ov12_02220DE8(BattleAnimSystem *param0)
 {
     u32 v0;
 
-    param0->effectScriptPtr += 1;
-    v0 = (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
+    v0 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     ov12_02223894(param0->unk_BC->unk_1C[v0]);
     param0->unk_BC->unk_1C[v0] = NULL;
@@ -1459,15 +1453,15 @@ static void ov12_02220E14(BattleAnimSystem *param0)
 {
     int v0;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
     for (v0 = 0; v0 < 3; v0++) {
         if (param0->unk_1C[v0] != NULL) {
             continue;
         }
 
-        param0->unk_1C[v0] = param0->effectScriptPtr + 1;
-        param0->effectScriptPtr += (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+        param0->unk_1C[v0] = param0->scriptPtr + 1;
+        param0->scriptPtr += (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
 
         return;
     }
@@ -1477,14 +1471,14 @@ static void ov12_02220E44(BattleAnimSystem *param0)
 {
     int v0;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
     for (v0 = 3 - 1; v0 >= 0; v0--) {
         if (param0->unk_1C[v0] == NULL) {
             continue;
         }
 
-        param0->effectScriptPtr = param0->unk_1C[v0];
+        param0->scriptPtr = param0->unk_1C[v0];
         param0->unk_1C[v0] = NULL;
 
         return;
@@ -1496,29 +1490,29 @@ static void ov12_02220E70(BattleAnimSystem *param0)
     u32 v0;
     u32 v1;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    if (v1 == param0->unk_90[v0]) {
-        param0->effectScriptPtr = (u32 *)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    if (v1 == param0->scriptVars[v0]) {
+        param0->scriptPtr = (u32 *)BattleAnimScript_ReadWord(param0->scriptPtr);
     } else {
-        param0->effectScriptPtr += 1;
+        param0->scriptPtr += 1;
     }
 }
 
 static void ov12_02220EA8(BattleAnimSystem *param0)
 {
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
     if (ov12_02223178(param0->unk_BC)) {
-        param0->effectScriptPtr = (u32 *)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+        param0->scriptPtr = (u32 *)BattleAnimScript_ReadWord(param0->scriptPtr);
     } else {
-        param0->effectScriptPtr += 1;
+        param0->scriptPtr += 1;
     }
 }
 
@@ -1527,25 +1521,25 @@ static void ov12_02220ED0(BattleAnimSystem *param0)
     int v0;
     u32 v1;
     u32 v2;
-    MoveEffectScriptCmd v3;
+    BattleAnimScriptCmd v3;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     v3 = ov12_02226998(v1);
 
-    v2 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v2 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     for (v0 = 0; v0 < v2; v0++) {
-        param0->unk_90[v0] = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-        param0->effectScriptPtr += 1;
+        param0->scriptVars[v0] = BattleAnimScript_ReadWord(param0->scriptPtr);
+        param0->scriptPtr += 1;
     }
 
     for (; v0 < (8 + 2); v0++) {
-        param0->unk_90[v0] = 0;
+        param0->scriptVars[v0] = 0;
     }
 
     v3(param0);
@@ -1555,13 +1549,13 @@ static void ov12_02220F30(BattleAnimSystem *param0)
 {
     int v0;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
     if (param0->unk_BC->unk_10 & 1) {
-        param0->effectScriptPtr += 1;
+        param0->scriptPtr += 1;
     }
 
-    param0->effectScriptPtr += (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->scriptPtr += (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
 }
 
 static void ov12_02220F5C(BattleAnimSystem *param0)
@@ -1569,10 +1563,10 @@ static void ov12_02220F5C(BattleAnimSystem *param0)
     int v0;
     int v1;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     if (v0 == 0) {
         v1 = ov12_0223525C(param0, param0->unk_BC->unk_14);
@@ -1581,10 +1575,10 @@ static void ov12_02220F5C(BattleAnimSystem *param0)
     }
 
     if (v1 == 0x4) {
-        param0->effectScriptPtr += 1;
+        param0->scriptPtr += 1;
     }
 
-    param0->effectScriptPtr += (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->scriptPtr += (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
 }
 
 static void ov12_02220FA0(BattleAnimSystem *param0)
@@ -1597,11 +1591,11 @@ static void ov12_02220FA0(BattleAnimSystem *param0)
         0xC0,
     };
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
     v0 = param0->unk_BC->unk_0C;
 
     if (v0 != 0) {
-        param0->effectScriptPtr += 1;
+        param0->scriptPtr += 1;
         {
             int v2;
 
@@ -1609,23 +1603,23 @@ static void ov12_02220FA0(BattleAnimSystem *param0)
                 if (v0 & v1[v2]) {
                     break;
                 } else {
-                    param0->effectScriptPtr += 1;
+                    param0->scriptPtr += 1;
                 }
             }
         }
     }
 
-    param0->effectScriptPtr += (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->scriptPtr += (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
 }
 
 static void ov12_02220FFC(BattleAnimSystem *param0)
 {
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
     if (ov12_0221FDD4(param0) == 1) {
-        param0->effectScriptPtr += (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+        param0->scriptPtr += (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
     } else {
-        param0->effectScriptPtr += 1;
+        param0->scriptPtr += 1;
     }
 }
 
@@ -1634,15 +1628,15 @@ static void ov12_02221024(BattleAnimSystem *param0)
     int v0;
     int v1;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
     v0 = ov12_0223525C(param0, param0->unk_BC->unk_14);
     v1 = ov12_0223525C(param0, param0->unk_BC->unk_16);
 
     if (v0 == v1) {
-        param0->effectScriptPtr += (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+        param0->scriptPtr += (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
     } else {
-        param0->effectScriptPtr += 1;
+        param0->scriptPtr += 1;
     }
 }
 
@@ -1650,22 +1644,22 @@ static void ov12_02221064(BattleAnimSystem *param0)
 {
     int v0;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     if (v0 == param0->unk_BC->unk_10) {
-        param0->effectScriptPtr += (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+        param0->scriptPtr += (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
     } else {
-        param0->effectScriptPtr += 1;
+        param0->scriptPtr += 1;
     }
 }
 
 static void ov12_02221098(BattleAnimSystem *param0)
 {
-    param0->effectScriptPtr += 1;
-    param0->effectScriptPtr += (u32)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    param0->scriptPtr += 1;
+    param0->scriptPtr += (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
 }
 
 static int ov12_022210A8(BattleAnimSystem *param0, int param1)
@@ -1852,13 +1846,13 @@ static void ov12_0222128C(BattleAnimSystem *param0)
     int v6;
     int v7;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v2 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v2 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     v3 = ov12_022210A8(param0, v1);
     v4 = param0->unk_BC->unk_B0[v3]->unk_04;
@@ -1914,8 +1908,8 @@ static void ov12_0222128C(BattleAnimSystem *param0)
 
 static void ov12_02221424(BattleAnimSystem *param0)
 {
-    param0->effectScriptPtr += 1;
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
+    param0->scriptPtr += 1;
 
     {
         u8 *v0 = Bg_GetCharPtr(2);
@@ -1937,7 +1931,7 @@ static void ov12_0222144C(BattleAnimSystem *param0)
         0x0
     };
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
     param0->unk_134 = SpriteManager_New(param0->unk_BC->unk_AC);
 
     SpriteSystem_InitSprites(param0->unk_BC->unk_AC, param0->unk_134, v0);
@@ -1950,9 +1944,9 @@ static void ov12_022214C4(BattleAnimSystem *param0)
     int v0[6];
     int v1;
 
-    param0->effectScriptPtr += 1;
-    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
+    v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     v0[0] = 20001 + v1 + ((param0->unk_BC->unk_14) * 5000);
     v0[1] = 20001 + v1 + ((param0->unk_BC->unk_14) * 5000);
@@ -1981,19 +1975,19 @@ static void ov12_02221580(BattleAnimSystem *param0)
     int v9;
     int v10;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v3 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v3 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v4 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v4 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v5 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v5 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v6 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v6 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     v2[0] = 20001 + v6 + ((param0->unk_BC->unk_14) * 5000);
     v2[1] = 20001 + v6 + ((param0->unk_BC->unk_14) * 5000);
@@ -2095,7 +2089,7 @@ static void ov12_02221580(BattleAnimSystem *param0)
 
 static void ov12_022217B4(BattleAnimSystem *param0)
 {
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
     if (param0->unk_134 != NULL) {
         SpriteSystem_FreeResourcesAndManager(param0->unk_BC->unk_AC, param0->unk_134);
@@ -2108,10 +2102,10 @@ static void ov12_022217E0(BattleAnimSystem *param0)
 {
     int v0;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     if (param0->unk_138[v0] != NULL) {
         Sprite_DeleteAndFreeResources(param0->unk_138[v0]);
@@ -2141,16 +2135,16 @@ static void ov12_02221834(BattleAnimSystem *param0)
     int v1;
     int v2;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v2 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v2 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     param0->unk_48[v1].unk_00 = param0;
     param0->unk_48[v1].unk_04 = param0->unk_134;
@@ -2245,10 +2239,10 @@ static void ov12_022219E8(BattleAnimSystem *param0)
 {
     int v0;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
     param0->unk_48[v0].unk_0C = 0;
 }
 
@@ -2256,9 +2250,9 @@ static void ov12_02221A00(BattleAnimSystem *param0)
 {
     int v0;
 
-    param0->effectScriptPtr += 1;
-    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
+    v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     ov12_02221238(param0, v0);
 }
@@ -2268,13 +2262,13 @@ static void ov12_02221A14(BattleAnimSystem *param0)
     int v0;
     int v1;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
     param0->unk_68[v0] = v1;
 }
 
@@ -2283,13 +2277,13 @@ void ov12_02221A30(BattleAnimSystem *param0)
     int v0;
     int v1;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
     param0->unk_78[v0] = v1;
 }
 
@@ -2451,7 +2445,7 @@ static UnkStruct_ov12_02221BBC *ov12_02221BBC(BattleAnimSystem *param0)
         int v1;
 
         for (v1 = 0; v1 < (8 + 2); v1++) {
-            v0->unk_1C[v1] = param0->unk_90[v1];
+            v0->unk_1C[v1] = param0->scriptVars[v1];
         }
     }
 
@@ -2788,10 +2782,10 @@ static BOOL ov12_02222360(UnkStruct_ov12_02221BBC *param0)
     UnkStruct_ov12_022222D4 *v1 = Heap_AllocFromHeap(param0->unk_48->heapID, sizeof(UnkStruct_ov12_022222D4));
 
     v1->unk_00 = param0->unk_48->bgConfig;
-    v1->unk_04 = param0->unk_48->unk_90[2];
-    v1->unk_06 = param0->unk_48->unk_90[3];
-    v1->unk_08 = param0->unk_48->unk_90[0];
-    v1->unk_0A = param0->unk_48->unk_90[1];
+    v1->unk_04 = param0->unk_48->scriptVars[2];
+    v1->unk_06 = param0->unk_48->scriptVars[3];
+    v1->unk_08 = param0->unk_48->scriptVars[0];
+    v1->unk_0A = param0->unk_48->scriptVars[1];
     v1->unk_0C = 3;
     v1->unk_10 = 3;
 
@@ -2957,13 +2951,13 @@ static void ov12_02222724(BattleAnimSystem *param0)
     v0 = ov12_02221BBC(param0);
 
     v0->unk_0D = ov12_02220280(param0, 4);
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v0->unk_10 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0->unk_10 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     v0->unk_14 = (v1 & 0xFFFF);
     v0->unk_18 = (v1 & 0xFFFF0000) >> 16;
@@ -2976,13 +2970,13 @@ static void ov12_02222774(BattleAnimSystem *param0)
     int v0;
     s16 v1;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     switch (v0) {
     case 0:
@@ -3010,13 +3004,13 @@ static void ov12_022227CC(BattleAnimSystem *param0)
     v0 = ov12_02221BBC(param0);
 
     v0->unk_0D = ov12_02220280(param0, 4);
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v0->unk_10 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0->unk_10 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     v0->unk_14 = (v1 & 0xFFFF) + 3;
     v0->unk_18 = (v1 & 0xFFFF0000) >> 16;
@@ -3027,7 +3021,7 @@ static void ov12_022227CC(BattleAnimSystem *param0)
 static void ov12_02222820(BattleAnimSystem *param0)
 {
     if (param0->unk_178 == 2) {
-        param0->effectScriptPtr += 1;
+        param0->scriptPtr += 1;
         param0->scriptDelay = 0;
     } else {
         param0->scriptDelay = 1;
@@ -3037,7 +3031,7 @@ static void ov12_02222820(BattleAnimSystem *param0)
 static void ov12_02222840(BattleAnimSystem *param0)
 {
     if (param0->unk_178 == 0) {
-        param0->effectScriptPtr += 1;
+        param0->scriptPtr += 1;
         param0->scriptDelay = 0;
     } else {
         param0->scriptDelay = 1;
@@ -3048,9 +3042,9 @@ static void ov12_02222860(BattleAnimSystem *param0)
 {
     int v0;
 
-    param0->effectScriptPtr += 1;
-    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
+    v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     Graphics_LoadTilesToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, ov12_022234E4(v0, HEAP_ID_SYSTEM), param0->bgConfig, 3, 0, 0, 1, param0->heapID);
     Graphics_LoadPalette(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, ov12_022234E4(v0, HEAP_ID_SAVE), 0, 0, 0, param0->heapID);
@@ -3064,16 +3058,16 @@ static void ov12_022228DC(BattleAnimSystem *param0)
 
     v0 = ov12_02221BBC(param0);
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v2 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v2 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v3 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v3 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     if (ov12_0221FDD4(param0) == 1) {
         v0->unk_10 = v3;
@@ -3117,9 +3111,9 @@ static void ov12_02222950(BattleAnimSystem *param0)
 {
     u16 v0;
 
-    param0->effectScriptPtr += 1;
-    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
+    v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     Sound_PlayEffect(v0);
 }
@@ -3128,10 +3122,10 @@ static void ov12_02222968(BattleAnimSystem *param0)
 {
     u16 v0;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     Sound_StopEffect(v0, 0);
 }
@@ -3141,13 +3135,13 @@ static void ov12_02222984(BattleAnimSystem *param0)
     u16 v0;
     int v1;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v0 = (u16)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0 = (u16)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v1 = (int)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v1 = (int)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     v1 = ov12_0222317C(param0, v1);
 
@@ -3159,10 +3153,10 @@ static void ov12_022229BC(BattleAnimSystem *param0)
 {
     int v0;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v0 = (int)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0 = (int)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     v0 = ov12_0222317C(param0, v0);
     Sound_PanAllEffects(v0);
@@ -3176,22 +3170,22 @@ static void ov12_022229D8(BattleAnimSystem *param0)
     memset(v0, 0, sizeof(UnkStruct_ov12_02220314));
 
     v0->unk_00 = 1;
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v0->unk_1A = (u16)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0->unk_1A = (u16)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v0->unk_08 = (int)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0->unk_08 = (int)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v0->unk_0C = (int)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0->unk_0C = (int)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v0->unk_10 = (int)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0->unk_10 = (int)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v0->unk_03 = (u8)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0->unk_03 = (u8)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     v0->unk_08 = ov12_0222317C(param0, v0->unk_08);
     v0->unk_0C = ov12_0222317C(param0, v0->unk_0C);
@@ -3211,22 +3205,22 @@ static void ov12_02222A78(BattleAnimSystem *param0)
     memset(v0, 0, sizeof(UnkStruct_ov12_02220314));
 
     v0->unk_00 = 2;
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v0->unk_1A = (u16)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0->unk_1A = (u16)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v0->unk_08 = (s8)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0->unk_08 = (s8)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v0->unk_0C = (s8)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0->unk_0C = (s8)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v0->unk_10 = (s8)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0->unk_10 = (s8)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v0->unk_03 = (u8)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0->unk_03 = (u8)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     Sound_PlayEffect(v0->unk_1A);
     Sound_PanEffect(v0->unk_1A, SOUND_PLAYBACK_TRACK_ALL, v0->unk_08);
@@ -3242,22 +3236,22 @@ static void ov12_02222AF0(BattleAnimSystem *param0)
     memset(v0, 0, sizeof(UnkStruct_ov12_02220314));
 
     v0->unk_00 = 1;
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v0->unk_1A = (u16)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0->unk_1A = (u16)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v0->unk_08 = (s8)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0->unk_08 = (s8)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v0->unk_0C = (s8)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0->unk_0C = (s8)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v0->unk_10 = (s8)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0->unk_10 = (s8)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v0->unk_03 = (u8)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0->unk_03 = (u8)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     v0->unk_08 = ov12_0222317C(param0, v0->unk_08);
     v0->unk_0C = ov12_0222317C(param0, v0->unk_0C);
@@ -3277,19 +3271,19 @@ static void ov12_02222B94(BattleAnimSystem *param0)
     memset(v0, 0, sizeof(UnkStruct_ov12_02220314));
 
     v0->unk_00 = 4;
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v0->unk_1A = (u16)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0->unk_1A = (u16)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v0->unk_14 = (s8)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0->unk_14 = (s8)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v0->unk_03 = (u8)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0->unk_03 = (u8)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v0->unk_18 = (u8)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0->unk_18 = (u8)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     v0->unk_04 = v0->unk_03;
     v0->unk_14 = ov12_0222317C(param0, v0->unk_14);
@@ -3306,16 +3300,16 @@ static void ov12_02222BF8(BattleAnimSystem *param0)
 
     v0->unk_00 = 5;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v0->unk_1A = (u16)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0->unk_1A = (u16)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v0->unk_14 = (s8)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0->unk_14 = (s8)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v0->unk_03 = (u8)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0->unk_03 = (u8)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     v0->unk_14 = ov12_0222317C(param0, v0->unk_14);
 
@@ -3347,7 +3341,7 @@ static void ov12_02222C54(BattleAnimSystem *param0)
     } else {
         param0->scriptDelay = 0;
         param0->unk_179 = 0;
-        param0->effectScriptPtr += 1;
+        param0->scriptPtr += 1;
     }
 }
 
@@ -3356,13 +3350,13 @@ static void ov12_02222CAC(BattleAnimSystem *param0)
     u16 v0;
     u16 v1;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v0 = (u16)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0 = (u16)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v1 = (u16)MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v1 = (u16)BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_PLANEMASK_BG1, v0, v1);
 }
@@ -3383,13 +3377,13 @@ static void ov12_02222CE8(BattleAnimSystem *param0)
     int v1;
     int v2;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v2 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v2 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     GF_ASSERT(param0->unk_C8[v1] == NULL);
     param0->unk_C8[v1] = SpriteManager_New(param0->unk_BC->unk_AC);
@@ -3402,8 +3396,8 @@ static void ov12_02222CE8(BattleAnimSystem *param0)
         SpriteResourceCapacities v3;
 
         for (v0 = 0; v0 < 6; v0++) {
-            v3.asArray[v0] = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-            param0->effectScriptPtr += 1;
+            v3.asArray[v0] = BattleAnimScript_ReadWord(param0->scriptPtr);
+            param0->scriptPtr += 1;
         }
 
         SpriteSystem_InitManagerWithCapacities(param0->unk_BC->unk_AC, param0->unk_C8[v1], &v3);
@@ -3415,13 +3409,13 @@ static void ov12_02222D84(BattleAnimSystem *param0)
     int v0;
     int v1;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_BC->unk_AC, param0->unk_C8[v0], param0->arcs[2], v1, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, v1 + 5000);
 }
@@ -3432,16 +3426,16 @@ static void ov12_02222DCC(BattleAnimSystem *param0)
     int v1;
     int v2;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v2 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v2 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_C4, 2, param0->unk_BC->unk_AC, param0->unk_C8[v0], param0->arcs[3], v1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, v2, v1 + 5000);
 }
@@ -3451,13 +3445,13 @@ static void ov12_02222E2C(BattleAnimSystem *param0)
     int v0;
     int v1;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_BC->unk_AC, param0->unk_C8[v0], param0->arcs[4], v1, 1, v1 + 5000);
 }
@@ -3467,13 +3461,13 @@ static void ov12_02222E74(BattleAnimSystem *param0)
     int v0;
     int v1;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_BC->unk_AC, param0->unk_C8[v0], param0->arcs[5], v1, 1, v1 + 5000);
 }
@@ -3487,13 +3481,13 @@ static void ov12_02222EBC(BattleAnimSystem *param0)
     ManagedSprite *v4;
     UnkFuncPtr_ov12_02239E68 v5;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v2 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v2 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     {
         SpriteTemplate v6;
@@ -3512,8 +3506,8 @@ static void ov12_02222EBC(BattleAnimSystem *param0)
         v6.vramTransfer = FALSE;
 
         for (v0 = 0; v0 < 6; v0++) {
-            v6.resources[v0] = MoveEffectScript_ReadWord(param0->effectScriptPtr) + 5000;
-            param0->effectScriptPtr += 1;
+            v6.resources[v0] = BattleAnimScript_ReadWord(param0->scriptPtr) + 5000;
+            param0->scriptPtr += 1;
         }
 
         param0->unk_100 = v6;
@@ -3521,16 +3515,16 @@ static void ov12_02222EBC(BattleAnimSystem *param0)
         v4 = SpriteSystem_NewSprite(param0->unk_BC->unk_AC, param0->unk_C8[v2], &v6);
     }
 
-    v3 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v3 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     for (v0 = 0; v0 < v3; v0++) {
-        param0->unk_90[v0] = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-        param0->effectScriptPtr += 1;
+        param0->scriptVars[v0] = BattleAnimScript_ReadWord(param0->scriptPtr);
+        param0->scriptPtr += 1;
     }
 
     for (; v0 < (8 + 2); v0++) {
-        param0->unk_90[v0] = 0;
+        param0->scriptVars[v0] = 0;
     }
 
     v5 = ov12_022269AC(v1);
@@ -3545,13 +3539,13 @@ static void ov12_02222FC8(BattleAnimSystem *param0)
     ManagedSprite *v3;
     UnkFuncPtr_ov12_02239E68 v4;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v2 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v2 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     {
         SpriteTemplate v5;
@@ -3570,8 +3564,8 @@ static void ov12_02222FC8(BattleAnimSystem *param0)
         v5.vramTransfer = FALSE;
 
         for (v0 = 0; v0 < 6; v0++) {
-            v5.resources[v0] = MoveEffectScript_ReadWord(param0->effectScriptPtr) + 5000;
-            param0->effectScriptPtr += 1;
+            v5.resources[v0] = BattleAnimScript_ReadWord(param0->scriptPtr) + 5000;
+            param0->scriptPtr += 1;
         }
 
         param0->unk_100 = v5;
@@ -3586,10 +3580,10 @@ static void ov12_0222307C(BattleAnimSystem *param0)
 {
     int v0;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     if (param0->unk_C8[v0] != NULL) {
         SpriteSystem_FreeResourcesAndManager(param0->unk_BC->unk_AC, param0->unk_C8[v0]);
@@ -3603,13 +3597,13 @@ static void ov12_022230A8(BattleAnimSystem *param0)
     int v0;
     int v1;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v1 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     ManagedSprite_SetDrawFlag(param0->unk_138[v0], v1);
 }
@@ -3627,17 +3621,17 @@ static void ov12_022230D4(BattleAnimSystem *param0)
     int v3;
     int v4;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    cryMod = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    cryMod = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
-    v1 = (s16)MoveEffectScript_ReadWord(param0->effectScriptPtr);
+    v1 = (s16)BattleAnimScript_ReadWord(param0->scriptPtr);
     v1 = ov12_0222317C(param0, v1);
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v2 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v2 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     v3 = param0->unk_BC->unk_D8[param0->unk_BC->unk_14];
     v4 = param0->unk_BC->unk_E8[param0->unk_BC->unk_14];
@@ -3650,9 +3644,9 @@ static void ov12_02223134(BattleAnimSystem *param0)
     int v0;
 
     if (Sound_IsPokemonCryPlaying() == 0) {
-        param0->effectScriptPtr += 1;
-        v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-        param0->effectScriptPtr += 1;
+        param0->scriptPtr += 1;
+        v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
+        param0->scriptPtr += 1;
         param0->scriptDelay = 0;
         Sound_StopPokemonCries(v0);
     } else {
@@ -3665,13 +3659,13 @@ static void ov12_02223160(BattleAnimSystem *param0)
     return;
 }
 
-MoveEffectScriptCmd BattleAnimSystem_GetScriptCmd(u32 id)
+BattleAnimScriptCmd BattleAnimSystem_GetScriptCmd(u32 id)
 {
-    if (id > NELEMS(sMoveEffectScriptCmdTable)) {
+    if (id > NELEMS(sBattleAnimScriptCmdTable)) {
         return NULL;
     }
 
-    return sMoveEffectScriptCmdTable[id];
+    return sBattleAnimScriptCmdTable[id];
 }
 
 int ov12_02223178(UnkStruct_ov12_02223178 *param0)
@@ -3730,10 +3724,10 @@ BOOL ov12_0222325C(BattleAnimSystem *param0, int param1[], int param2)
 {
     int v0, v1;
 
-    param0->effectScriptPtr += 1;
+    param0->scriptPtr += 1;
 
-    v0 = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-    param0->effectScriptPtr += 1;
+    v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    param0->scriptPtr += 1;
 
     if (v0 != param2) {
         GF_ASSERT(v0 == param2);
@@ -3741,8 +3735,8 @@ BOOL ov12_0222325C(BattleAnimSystem *param0, int param1[], int param2)
     }
 
     for (v1 = 0; v1 < param2; v1++) {
-        param1[v1] = MoveEffectScript_ReadWord(param0->effectScriptPtr);
-        param0->effectScriptPtr += 1;
+        param1[v1] = BattleAnimScript_ReadWord(param0->scriptPtr);
+        param0->scriptPtr += 1;
     }
 
     return 1;

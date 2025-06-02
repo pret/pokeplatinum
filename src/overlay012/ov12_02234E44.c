@@ -114,7 +114,7 @@ static void ov12_02234EF0(SysTask *param0, void *param1)
         Bg_SetOffset(v0->unk_18.unk_14, 2, 0, 0);
         Bg_SetOffset(v0->unk_18.unk_14, 2, 3, 0);
         GX_SetVisibleWnd(GX_WNDMASK_NONE);
-        BattleAnimSystem_EndEffectTask(v0->unk_18.unk_04, param0);
+        BattleAnimSystem_EndAnimTask(v0->unk_18.unk_04, param0);
         ov12_02235E80(v0);
         (v0) = NULL;
         return;
@@ -207,7 +207,7 @@ static void ov12_0223507C(BattleAnimSystem *param0, UnkStruct_ov12_02234E44 *par
     v0->unk_00.unk_10 = 0;
     v0->unk_00.unk_12 = 0;
 
-    BattleAnimSystem_StartEffectTask(v0->unk_18.unk_04, ov12_02234EF0, v0);
+    BattleAnimSystem_StartAnimTask(v0->unk_18.unk_04, ov12_02234EF0, v0);
 }
 
 void ov12_022351A4(BattleAnimSystem *param0)

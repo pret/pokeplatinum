@@ -18,7 +18,7 @@
 
 void include_unk_ov12_02239E64(void);
 
-static const MoveEffectScriptCmd Unk_ov12_02239EEC[] = {
+static const BattleAnimScriptCmd Unk_ov12_02239EEC[] = {
     ov12_022269C0,
     ov12_022269EC,
     ov12_02226A3C,
@@ -150,9 +150,9 @@ void include_unk_ov12_02239E64()
     Unk_ov12_02239E64[0];
 }
 
-MoveEffectScriptCmd ov12_02226998(u32 param0)
+BattleAnimScriptCmd ov12_02226998(u32 param0)
 {
-    MoveEffectScriptCmd v0;
+    BattleAnimScriptCmd v0;
 
     if (param0 >= (NELEMS(Unk_ov12_02239EEC))) {
         return NULL;
