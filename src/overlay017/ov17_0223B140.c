@@ -200,7 +200,7 @@ int ov17_0223B140(ApplicationManager *appMan, int *param1)
     v0->unk_0C.unk_04 = PokemonSpriteManager_New(HEAP_ID_21);
     ov17_0223B884();
 
-    v0->unk_0C.unk_20 = ov12_0221FCDC(HEAP_ID_21);
+    v0->unk_0C.unk_20 = MoveEffectSystem_New(HEAP_ID_21);
     ov12_0221FDC0(v0->unk_0C.unk_20, 1);
 
     v0->unk_0C.unk_38 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_TEXT, HEAP_ID_21);
@@ -320,7 +320,7 @@ int ov17_0223B580(ApplicationManager *appMan, int *param1)
 
     ParticleSystem_FreeAll();
 
-    ov12_0221FDF4(v0->unk_0C.unk_20);
+    MoveEffectSystem_Delete(v0->unk_0C.unk_20);
     ov17_0223B9A4(v0);
     ov17_0223BAD0(v0);
     ov17_0223BCDC(v0);

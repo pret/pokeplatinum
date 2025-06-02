@@ -8,7 +8,7 @@
 #include "particle_system.h"
 
 typedef struct {
-    UnkStruct_ov12_0221FCDC *unk_00;
+    MoveEffectSystem *unk_00;
     ParticleSystem *unk_04;
     s8 unk_08;
     int unk_0C[6];

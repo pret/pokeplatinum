@@ -16,11 +16,11 @@
 #include "sprite.h"
 
 void ov12_02225864(int param0, int param1, s16 *param2, s16 *param3);
-void ov12_02225898(UnkStruct_ov12_0221FCDC *param0, int param1, s16 *param2, s16 *param3);
-s16 ov12_022258E0(UnkStruct_ov12_0221FCDC *param0, int param1, int param2);
+void ov12_02225898(MoveEffectSystem *param0, int param1, s16 *param2, s16 *param3);
+s16 ov12_022258E0(MoveEffectSystem *param0, int param1, int param2);
 u8 ov12_02225950(ManagedSprite *param0);
-int ov12_02225964(UnkStruct_ov12_0221FCDC *param0, int param1);
-int ov12_0222598C(UnkStruct_ov12_0221FCDC *param0, int param1);
+int ov12_02225964(MoveEffectSystem *param0, int param1);
+int ov12_0222598C(MoveEffectSystem *param0, int param1);
 fx32 ov12_022259A0(fx32 param0, fx32 param1, u32 param2);
 u32 ov12_022259AC(fx32 param0, fx32 param1, fx32 param2);
 void ov12_022259DC(UnkStruct_ov12_02225F6C *param0, ManagedSprite *param1, s16 param2, s16 param3);
@@ -81,7 +81,7 @@ BOOL ov12_022267A8(int *param0, int param1, s32 param2);
 BOOL ov12_02226848(UnkStruct_ov12_022267D4 *param0);
 void ov12_02226858(UnkStruct_ov12_022267D4 *param0);
 UnkStruct_ov12_022267D4 *ov12_02226870(PaletteData *param0, int heapID, int param2, u16 param3, u16 param4, s8 param5, s8 param6, u8 param7, u8 param8, u16 param9, int param10);
-void ov12_02226924(UnkStruct_ov12_0221FCDC *param0);
-void ov12_02226954(UnkStruct_ov12_0221FCDC *param0);
+void ov12_02226924(MoveEffectSystem *param0);
+void ov12_02226954(MoveEffectSystem *param0);
 
 #endif // POKEPLATINUM_OV12_02225864_H

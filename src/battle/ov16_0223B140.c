@@ -607,7 +607,7 @@ static void ov16_0223B790(ApplicationManager *appMan)
     ov16_0223F36C(battleSys);
     ov16_0223CE28();
 
-    battleSys->unk_8C = ov12_0221FCDC(HEAP_ID_BATTLE);
+    battleSys->unk_8C = MoveEffectSystem_New(HEAP_ID_BATTLE);
 
     ov16_0223C210(battleSys);
 
@@ -764,7 +764,7 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
     sub_02015FB8(battleSystem->pokemonAnimationSys);
     ParticleSystem_FreeAll();
 
-    ov12_0221FDF4(battleSystem->unk_8C);
+    MoveEffectSystem_Delete(battleSystem->unk_8C);
     BattleContext_Free(battleSystem->battleCtx);
 
     for (battlerId = 0; battlerId < battleSystem->maxBattlers; battlerId++) {

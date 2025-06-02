@@ -28,7 +28,7 @@ typedef struct {
     u8 unk_05;
     u8 unk_06;
     u8 unk_07;
-    UnkStruct_ov12_0221FCDC *unk_08;
+    MoveEffectSystem *unk_08;
     SpriteSystem *unk_0C;
     SpriteManager *unk_10;
     ManagedSprite *unk_14[3];
@@ -42,7 +42,7 @@ typedef struct {
     u8 unk_08;
     u8 unk_09;
     u8 unk_0A;
-    UnkStruct_ov12_0221FCDC *unk_0C;
+    MoveEffectSystem *unk_0C;
     SpriteSystem *unk_10;
     SpriteManager *unk_14;
     ManagedSprite *unk_18[6];
@@ -54,7 +54,7 @@ typedef struct {
 } UnkStruct_ov12_0222D934;
 
 typedef struct {
-    UnkStruct_ov12_0221FCDC *unk_00;
+    MoveEffectSystem *unk_00;
     SpriteSystem *unk_04;
     SpriteManager *unk_08;
     u8 unk_0C;
@@ -73,7 +73,7 @@ typedef struct {
     u8 unk_02;
     u8 unk_03;
     u8 unk_04;
-    UnkStruct_ov12_0221FCDC *unk_08;
+    MoveEffectSystem *unk_08;
     SpriteSystem *unk_0C;
     SpriteManager *unk_10;
     UnkStruct_ov12_0222DC98 unk_14[20];
@@ -183,7 +183,7 @@ static void ov12_0222D6B0(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v1->unk_10);
 }
 
-void ov12_0222D7C0(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void ov12_0222D7C0(MoveEffectSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
 {
     int v0;
     UnkStruct_ov12_0222D6B0 *v1;
@@ -402,7 +402,7 @@ static void ov12_0222D934(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v2->unk_14);
 }
 
-void ov12_0222DB60(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void ov12_0222DB60(MoveEffectSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
 {
     int v0;
     UnkStruct_ov12_0222D934 *v1;
@@ -618,7 +618,7 @@ static const s16 Unk_ov12_0223A19A[][4] = {
     { 0x50, 0x92, 0x32, 0x35 }
 };
 
-void ov12_0222DEFC(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void ov12_0222DEFC(MoveEffectSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
 {
     int v0;
     int v1;
@@ -741,7 +741,7 @@ static void ov12_0222E080(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v0->unk_04.unk_0C);
 }
 
-void ov12_0222E1A8(UnkStruct_ov12_0221FCDC *param0)
+void ov12_0222E1A8(MoveEffectSystem *param0)
 {
     UnkStruct_ov12_0222E080 *v0 = NULL;
 
@@ -813,7 +813,7 @@ static void ov12_0222E25C(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v0->unk_00.unk_10);
 }
 
-void ov12_0222E2F8(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void ov12_0222E2F8(MoveEffectSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
 {
     UnkStruct_ov12_0222E25C *v0 = NULL;
 
@@ -952,7 +952,7 @@ static void ov12_0222E390(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v0->unk_00.unk_10);
 }
 
-void ov12_0222E61C(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void ov12_0222E61C(MoveEffectSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
 {
     UnkStruct_ov12_0222E390 *v0 = NULL;
 

@@ -17,7 +17,7 @@
 #include "sys_task_manager.h"
 
 typedef struct {
-    UnkStruct_ov12_0221FCDC *unk_00;
+    MoveEffectSystem *unk_00;
     int unk_04;
     int unk_08;
     SpriteManager *unk_0C;
@@ -28,7 +28,7 @@ typedef struct {
 } UnkStruct_ov12_022346A4;
 
 typedef struct {
-    UnkStruct_ov12_0221FCDC *unk_00;
+    MoveEffectSystem *unk_00;
     int unk_04;
     int unk_08;
     SpriteManager *unk_0C;
@@ -37,7 +37,7 @@ typedef struct {
 } UnkStruct_ov12_022348C8;
 
 typedef struct {
-    UnkStruct_ov12_0221FCDC *unk_00;
+    MoveEffectSystem *unk_00;
     int unk_04;
     SpriteManager *unk_08;
     ManagedSprite *unk_0C[6];
@@ -46,7 +46,7 @@ typedef struct {
 } UnkStruct_ov12_02234A10;
 
 typedef struct {
-    UnkStruct_ov12_0221FCDC *unk_00;
+    MoveEffectSystem *unk_00;
     SpriteSystem *unk_04;
     SpriteManager *unk_08;
     int unk_0C;
@@ -68,7 +68,7 @@ static BOOL ov12_02234B34(ManagedSprite *param0, int *param1, int *param2);
 static void ov12_02234AE0(ManagedSprite *param0, int *param1, int *param2, int param3, int param4);
 static void ov12_02234CA8(SysTask *param0, void *param1);
 
-void ov12_022346A4(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void ov12_022346A4(MoveEffectSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
 {
     SpriteTemplate v0;
     UnkStruct_ov12_022346A4 *v1;
@@ -176,7 +176,7 @@ static BOOL ov12_0223489C(ManagedSprite *param0, UnkStruct_ov12_02225F6C *param1
     return 1;
 }
 
-void ov12_022348C8(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void ov12_022348C8(MoveEffectSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
 {
     UnkStruct_ov12_022348C8 *v0;
     int v1;
@@ -244,7 +244,7 @@ static void ov12_02234918(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v0->unk_0C);
 }
 
-void ov12_02234A10(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void ov12_02234A10(MoveEffectSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
 {
     SpriteTemplate v0;
     UnkStruct_ov12_02234A10 *v1;
@@ -429,7 +429,7 @@ static void ov12_02234CA8(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v0->unk_08);
 }
 
-void ov12_02234D98(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void ov12_02234D98(MoveEffectSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
 {
     UnkStruct_ov12_02234BD8 *v0;
     int v1;

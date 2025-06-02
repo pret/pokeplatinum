@@ -53,7 +53,7 @@ static void ov12_0222421C(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 
 static void ov12_02224260(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1, VecFx32 *param2)
 {
-    UnkStruct_ov12_0221FCDC *v0;
+    MoveEffectSystem *v0;
     ParticleSystem *v1;
     int v2;
     int v3;
@@ -78,7 +78,7 @@ static void ov12_02224260(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1, V
 
 static void ov12_022242A0(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1, VecFx32 *param2)
 {
-    UnkStruct_ov12_0221FCDC *v0;
+    MoveEffectSystem *v0;
     ParticleSystem *v1;
     int v2;
     int v3;
@@ -670,7 +670,7 @@ static void ov12_02224EB8(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 
 void ov12_02224F14(SPLEmitter *param0)
 {
-    UnkStruct_ov12_0221FCDC *v0 = ParticleSystem_GetEmitterCallbackParam();
+    MoveEffectSystem *v0 = ParticleSystem_GetEmitterCallbackParam();
     UnkStruct_ov12_02225640 *v1 = Heap_AllocFromHeap(ov12_0221FDE4(v0), sizeof(UnkStruct_ov12_02225640));
 
     v1->unk_00 = v0;

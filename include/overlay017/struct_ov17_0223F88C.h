@@ -22,7 +22,7 @@ typedef struct {
     PokemonSprite *unk_08[4];
     SpriteSystem *unk_18;
     SpriteManager *unk_1C;
-    UnkStruct_ov12_0221FCDC *unk_20;
+    MoveEffectSystem *unk_20;
     BgConfig *unk_24;
     Window unk_28[1];
     MessageLoader *unk_38;

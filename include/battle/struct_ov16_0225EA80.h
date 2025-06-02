@@ -17,7 +17,7 @@ typedef struct {
     BallRotation *unk_0C;
     UnkStruct_ov12_02223764 *unk_10;
     PokemonSpriteTemplate unk_14;
-    UnkStruct_ov12_0221FCDC *unk_24;
+    MoveEffectSystem *unk_24;
     UnkStruct_ov16_02265BBC unk_28;
     u8 unk_80;
     u8 unk_81;
