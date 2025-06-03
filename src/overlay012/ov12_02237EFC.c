@@ -145,7 +145,7 @@ UnkStruct_ov12_02238004 *ov12_02237FC8(int heapID, UnkStruct_ov12_02237F38 *para
     v0->heapID = heapID;
     v0->unk_08 = *param1;
     v0->unk_1C = ov12_02238088(v0->unk_08.unk_00);
-    v0->unk_10 = ov12_022237F0(v0->heapID, v0->unk_08.unk_00, 1);
+    v0->unk_10 = BattleParticleUtil_CreateParticleSystem(v0->heapID, v0->unk_08.unk_00, 1);
 
     return v0;
 }

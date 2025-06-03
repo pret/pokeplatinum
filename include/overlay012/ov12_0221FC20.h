@@ -19,8 +19,9 @@
 #include "sprite_system.h"
 #include "sys_task_manager.h"
 
-#define BATTLE_ANIM_SCRIPT_VAR_COUNT        10
-#define BATTLE_ANIM_SCRIPT_MAX_NESTED_LOOPS 3
+#define BATTLE_ANIM_SCRIPT_VAR_COUNT            10
+#define BATTLE_ANIM_SCRIPT_MAX_NESTED_LOOPS     3
+#define BATTLE_ANIM_SCRIPT_MAX_CALL_STACK_DEPTH 3
 
 
 enum BattleAnimSystemArc {
@@ -131,7 +132,7 @@ typedef struct BattleAnimSystem {
     BOOL unk_10;
     void *unk_14;
     u32 *scriptPtr;
-    u32 *unk_1C[3];
+    u32 *callStack[BATTLE_ANIM_SCRIPT_MAX_CALL_STACK_DEPTH];
     BattleAnimScriptLoop loopStack[BATTLE_ANIM_SCRIPT_MAX_NESTED_LOOPS];
     UnkStruct_ov12_02221810 unk_48[2];
     u8 cameraProjections[MAX_PARTICLE_SYSTEMS]; // Projection setting for each particle system. See enum CameraProjection

@@ -44,22 +44,22 @@ static void ov12_022237EC(SPLEmitter *param0)
     return;
 }
 
-ParticleSystem *ov12_022237F0(int heapID, int param1, int param2)
+ParticleSystem *BattleParticleUtil_CreateParticleSystem(enum HeapId heapID, int narcMemberIndex, BOOL uploadResImmediately)
 {
-    ParticleSystem *v0 = ov11_0221F840(heapID);
-    void *v1 = ParticleSystem_LoadResourceFromNARC(29, param1, heapID);
+    ParticleSystem *ps = ov11_0221F840(heapID);
+    void *resource = ParticleSystem_LoadResourceFromNARC(NARC_INDEX_WAZAEFFECT__EFFECTDATA__WAZA_PARTICLE, narcMemberIndex, heapID);
+    ParticleSystem_SetResource(ps, resource, VRAM_AUTO_RELEASE_TEXTURE_LNK | VRAM_AUTO_RELEASE_PALETTE_LNK, uploadResImmediately);
 
-    ParticleSystem_SetResource(v0, v1, (1 << 1) | (1 << 3), param2);
-    return v0;
+    return ps;
 }
 
-ParticleSystem *ov12_02223818(int heapID, int param1, int param2, int param3)
+ParticleSystem *BattleParticleUtil_CreateParticleSystemEx(enum HeapId heapID, enum NarcID narcID, int memberIndex, BOOL uploadResImmediately)
 {
-    ParticleSystem *v0 = ov11_0221F840(heapID);
-    void *v1 = ParticleSystem_LoadResourceFromNARC(param1, param2, heapID);
+    ParticleSystem *ps = ov11_0221F840(heapID);
+    void *resource = ParticleSystem_LoadResourceFromNARC(narcID, memberIndex, heapID);
+    ParticleSystem_SetResource(ps, resource, VRAM_AUTO_RELEASE_TEXTURE_LNK | VRAM_AUTO_RELEASE_PALETTE_LNK, uploadResImmediately);
 
-    ParticleSystem_SetResource(v0, v1, (1 << 1) | (1 << 3), param3);
-    return v0;
+    return ps;
 }
 
 void *ov12_02223844(NARC *param0, int param1, int param2)
@@ -67,7 +67,7 @@ void *ov12_02223844(NARC *param0, int param1, int param2)
     return NARC_AllocAndReadWholeMember(param0, param1, param2);
 }
 
-ParticleSystem *ov12_0222384C(NARC *param0, int heapID, int param2, int param3)
+ParticleSystem *ov12_0222384C(NARC *param0, enum HeapId heapID, int param2, int param3)
 {
     ParticleSystem *v0;
     void *v1;
