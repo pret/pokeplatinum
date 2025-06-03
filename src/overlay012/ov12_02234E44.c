@@ -164,9 +164,9 @@ static void ov12_0223507C(BattleAnimSystem *param0, UnkStruct_ov12_02234E44 *par
             int v3;
 
             if (v0->unk_00.unk_08 == 0) {
-                v3 = ov12_02220240(param0);
+                v3 = BattleAnimSystem_GetAttacker(param0);
             } else {
-                v3 = ov12_02220248(param0);
+                v3 = BattleAnimSystem_GetDefender(param0);
             }
 
             v2 = ov12_02235254(param0, v3);

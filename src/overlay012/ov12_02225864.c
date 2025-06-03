@@ -107,7 +107,7 @@ void ov12_02225898(BattleAnimSystem *param0, int param1, s16 *param2, s16 *param
     if (ov12_0221FDD4(param0) == 1) {
         ov12_02225864(0, param1 + 2, param2, param3);
     } else {
-        if (ov12_02223364(param0) == 1) {
+        if (BattleAnimSystem_IsDoubleBattle(param0) == 1) {
             ov12_02225864(1, param1 - 2, param2, param3);
         } else {
             ov12_02225864(0, param1, param2, param3);
@@ -121,7 +121,7 @@ s16 ov12_022258E0(BattleAnimSystem *param0, int param1, int param2)
 
     v0 = ov12_02235254(param0, param1);
 
-    if (ov12_02223364(param0) == 1) {
+    if (BattleAnimSystem_IsDoubleBattle(param0) == 1) {
         v1 = 1;
     } else {
         v1 = 0;
