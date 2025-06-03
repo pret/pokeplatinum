@@ -116,8 +116,8 @@ static void ov12_02221284(BattleAnimSystem *param0);
 static void ov12_02221288(BattleAnimSystem *param0);
 static void ov12_02222CAC(BattleAnimSystem *param0);
 static void ov12_02222CDC(BattleAnimSystem *param0);
-static void ov12_02220E14(BattleAnimSystem *param0);
-static void ov12_02220E44(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_Call(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_Return(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_SetVar(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_ResetVar(BattleAnimSystem *param0);
 static void ov12_022206A4(BattleAnimSystem *param0);
@@ -139,7 +139,7 @@ static void ov12_02222BF8(BattleAnimSystem *param0);
 static void ov12_02222CE4(BattleAnimSystem *param0);
 static void ov12_02222C50(BattleAnimSystem *param0);
 static void ov12_02222C54(BattleAnimSystem *param0);
-static void ov12_02220E70(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_JumpIfEqual(BattleAnimSystem *param0);
 static void ov12_0222128C(BattleAnimSystem *param0);
 static void ov12_0222144C(BattleAnimSystem *param0);
 static void ov12_022214C4(BattleAnimSystem *param0);
@@ -173,10 +173,10 @@ static void BattleAnimScriptCmd_CreateEmitter(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_CreateEmitterEx(BattleAnimSystem *param0);
 static void ov12_02220B8C(BattleAnimSystem *param0);
 static void ov12_02220C44(BattleAnimSystem *param0);
-static void ov12_02220CFC(BattleAnimSystem *param0);
-static void ov12_02220D3C(BattleAnimSystem *param0);
-static void ov12_02220D90(BattleAnimSystem *param0);
-static void ov12_02220DE8(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_WaitForAllEmitters(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_LoadParticleSystem(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_LoadDebugParticleSystem(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_UnloadParticleSystem(BattleAnimSystem *param0);
 static void ov12_022230CC(BattleAnimSystem *param0);
 static void ov12_02223160(BattleAnimSystem *param0);
 static void ov12_02222CE8(BattleAnimSystem *param0);
@@ -210,6 +210,7 @@ static BOOL ov12_0222240C(UnkStruct_ov12_02221BBC *param0);
 static BOOL ov12_022224E4(UnkStruct_ov12_02221BBC *param0);
 
 static inline void BattleAnimScript_Next(BattleAnimSystem *system);
+static inline void BattleAnimScript_Jump(BattleAnimSystem *system, u32 *dst);
 static inline int BattleAnimScript_ReadWord(u32 *param0);
 
 static const s16 Unk_ov12_02238660[] = {
@@ -775,8 +776,8 @@ static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
     ov12_02221288,
     ov12_02222CAC,
     ov12_02222CDC,
-    ov12_02220E14,
-    ov12_02220E44,
+    BattleAnimScriptCmd_Call,
+    BattleAnimScriptCmd_Return,
     BattleAnimScriptCmd_SetVar,
     ov12_02220F30,
     ov12_02221064,
@@ -795,7 +796,7 @@ static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
     ov12_02222CE4,
     ov12_02222C50,
     ov12_02222C54,
-    ov12_02220E70,
+    BattleAnimScriptCmd_JumpIfEqual,
     ov12_0222128C,
     ov12_02221424,
     ov12_02220EA8,
@@ -815,10 +816,10 @@ static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
     BattleAnimScriptCmd_CreateEmitterEx,
     ov12_02220B8C,
     ov12_02220C44,
-    ov12_02220CFC,
-    ov12_02220D3C,
-    ov12_02220D90,
-    ov12_02220DE8,
+    BattleAnimScriptCmd_WaitForAllEmitters,
+    BattleAnimScriptCmd_LoadParticleSystem,
+    BattleAnimScriptCmd_LoadDebugParticleSystem,
+    BattleAnimScriptCmd_UnloadParticleSystem,
     ov12_02223160,
     ov12_022230CC,
     ov12_0222144C,
@@ -860,6 +861,11 @@ void ov12_02220474(void)
 static inline void BattleAnimScript_Next(BattleAnimSystem *system)
 {
     system->scriptPtr += 1;
+}
+
+static inline void BattleAnimScript_Jump(BattleAnimSystem *system, u32 *dst)
+{
+    system->scriptPtr = dst;
 }
 
 static inline int BattleAnimScript_ReadWord(u32 *scriptPtr)
@@ -1106,7 +1112,7 @@ static void ov12_02220798(BattleAnimSystem *system)
     system->unk_17A = 0;
 
     for (i = 0; i < 3; i++) {
-        system->unk_1C[i] = NULL;
+        system->callStack[i] = NULL;
     }
 
     for (i = 0; i < BATTLE_ANIM_SCRIPT_MAX_NESTED_LOOPS; i++) {
@@ -1353,136 +1359,120 @@ static void ov12_02220C44(BattleAnimSystem *param0)
     param0->context->emitters[0] = BattleParticleUtil_CreateEmitter(param0->context->particleSystems[v3], v4, v2, param0);
 }
 
-static void ov12_02220CFC(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_WaitForAllEmitters(BattleAnimSystem *system)
 {
-    int v0;
-    int v1 = 0;
-
-    for (v0 = 0; v0 < 16; v0++) {
-        if (param0->context->particleSystems[v0] == NULL) {
+    int activeEmitters = 0;
+    for (int i = 0; i < MAX_PARTICLE_SYSTEMS; i++) {
+        if (system->context->particleSystems[i] == NULL) {
             continue;
         }
 
-        v1 += ParticleSystem_GetActiveEmitterCount(param0->context->particleSystems[v0]);
+        activeEmitters += ParticleSystem_GetActiveEmitterCount(system->context->particleSystems[i]);
     }
 
-    if (v1 == 0) {
-        param0->scriptPtr += 1;
-        param0->scriptDelay = 0;
+    if (activeEmitters == 0) {
+        BattleAnimScript_Next(system);
+        system->scriptDelay = 0;
     } else {
-        param0->scriptDelay = 1;
+        system->scriptDelay = 1;
     }
 }
 
-static void ov12_02220D3C(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_LoadParticleSystem(BattleAnimSystem *system)
 {
-    u32 v0;
-    u32 v1;
+    BattleAnimScript_Next(system);
 
-    param0->scriptPtr += 1;
+    u32 psIndex = (u32)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v1 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    GF_ASSERT(system->context->particleSystems[psIndex] == NULL);
 
-    GF_ASSERT(param0->context->particleSystems[v1] == NULL);
+    u32 memberIndex = (u32)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
-
-    param0->scriptPtr += 1;
-    param0->context->particleSystems[v1] = ov12_022237F0(param0->heapID, v0, 0);
-    param0->scriptDelay = 2;
-    param0->executeAnimScriptFunc = BattleAnimSystem_Script_WaitForDelay;
+    system->context->particleSystems[psIndex] = BattleParticleUtil_CreateParticleSystem(system->heapID, memberIndex, FALSE);
+    system->scriptDelay = 2; // Allow the resource upload to complete
+    system->executeAnimScriptFunc = BattleAnimSystem_Script_WaitForDelay;
 }
 
-static void ov12_02220D90(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_LoadDebugParticleSystem(BattleAnimSystem *system)
 {
-    u32 v0;
-    u32 v1;
-    u32 v2;
+    BattleAnimScript_Next(system);
 
-    param0->scriptPtr += 1;
-    v2 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    u32 psIndex = (u32)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v1 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
-    v1 = 100;
+    u32 narcID = (u32)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
+    narcID = NARC_INDEX_WAZAEFFECT__PT_DEBUG__DEBUG_PARTICLE;
 
-    GF_ASSERT(param0->context->particleSystems[v2] == NULL);
+    GF_ASSERT(system->context->particleSystems[psIndex] == NULL);
 
-    v0 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
+    u32 memberIndex = (u32)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    param0->scriptPtr += 1;
-    param0->context->particleSystems[v2] = ov12_02223818(param0->heapID, v1, v0, 0);
-    param0->scriptDelay = 2;
-    param0->executeAnimScriptFunc = BattleAnimSystem_Script_WaitForDelay;
+    system->context->particleSystems[psIndex] = BattleParticleUtil_CreateParticleSystemEx(system->heapID, narcID, memberIndex, FALSE);
+    system->scriptDelay = 2; // Allow the resource upload to complete
+    system->executeAnimScriptFunc = BattleAnimSystem_Script_WaitForDelay;
 }
 
-static void ov12_02220DE8(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_UnloadParticleSystem(BattleAnimSystem *system)
 {
-    u32 v0;
+    BattleAnimScript_Next(system);
 
-    param0->scriptPtr += 1;
-    v0 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    u32 psIndex = (u32)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    BattleParticleUtil_FreeParticleSystem(param0->context->particleSystems[v0]);
-    param0->context->particleSystems[v0] = NULL;
+    BattleParticleUtil_FreeParticleSystem(system->context->particleSystems[psIndex]);
+    system->context->particleSystems[psIndex] = NULL;
 }
 
-static void ov12_02220E14(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_Call(BattleAnimSystem *system)
 {
-    int v0;
+    BattleAnimScript_Next(system);
 
-    param0->scriptPtr += 1;
-
-    for (v0 = 0; v0 < 3; v0++) {
-        if (param0->unk_1C[v0] != NULL) {
+    for (int i = 0; i < BATTLE_ANIM_SCRIPT_MAX_CALL_STACK_DEPTH; i++) {
+        if (system->callStack[i] != NULL) {
             continue;
         }
 
-        param0->unk_1C[v0] = param0->scriptPtr + 1;
-        param0->scriptPtr += (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
+        system->callStack[i] = system->scriptPtr + 1;
+        system->scriptPtr += (u32)BattleAnimScript_ReadWord(system->scriptPtr);
 
         return;
     }
 }
 
-static void ov12_02220E44(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_Return(BattleAnimSystem *system)
 {
-    int v0;
+    BattleAnimScript_Next(system);
 
-    param0->scriptPtr += 1;
-
-    for (v0 = 3 - 1; v0 >= 0; v0--) {
-        if (param0->unk_1C[v0] == NULL) {
+    for (int i = BATTLE_ANIM_SCRIPT_MAX_CALL_STACK_DEPTH - 1; i >= 0; i--) {
+        if (system->callStack[i] == NULL) {
             continue;
         }
 
-        param0->scriptPtr = param0->unk_1C[v0];
-        param0->unk_1C[v0] = NULL;
+        BattleAnimScript_Jump(system, system->callStack[i]);
+        system->callStack[i] = NULL;
 
         return;
     }
 }
 
-static void ov12_02220E70(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_JumpIfEqual(BattleAnimSystem *system)
 {
-    u32 v0;
-    u32 v1;
+    BattleAnimScript_Next(system);
 
-    param0->scriptPtr += 1;
+    u32 id = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    u32 value = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
-
-    if (v1 == param0->scriptVars[v0]) {
-        param0->scriptPtr = (u32 *)BattleAnimScript_ReadWord(param0->scriptPtr);
+    if (value == system->scriptVars[id]) {
+        BattleAnimScript_Jump(system, (u32 *)BattleAnimScript_ReadWord(system->scriptPtr));
     } else {
-        param0->scriptPtr += 1;
+        BattleAnimScript_Next(system);
     }
 }
 

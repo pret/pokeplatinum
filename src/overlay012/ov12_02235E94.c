@@ -553,7 +553,7 @@ void ov12_02236320(UnkStruct_ov12_02235FE0 *param0)
         v3 = ov12_02235F64(param0->unk_98);
 
         param0->unk_10 = 1;
-        param0->unk_14[0] = ov12_02223818(param0->heapID, 99, v3, 0);
+        param0->unk_14[0] = BattleParticleUtil_CreateParticleSystemEx(param0->heapID, 99, v3, 0);
         param0->unk_90 = 0xFF;
     } else {
         param0->unk_10 = 0;
@@ -835,7 +835,7 @@ UnkStruct_ov12_02236648 *ov12_02236690(UnkStruct_ov12_02236690 *param0)
         v0->unk_1C = ov12_02235FA0(v0->unk_00.unk_04);
     }
 
-    v0->unk_18 = ov12_02223818(v0->unk_00.heapID, 99, v0->unk_20, 0);
+    v0->unk_18 = BattleParticleUtil_CreateParticleSystemEx(v0->unk_00.heapID, 99, v0->unk_20, 0);
 
     return v0;
 }
