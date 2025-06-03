@@ -5,7 +5,7 @@
 
 #include "palette.h"
 
-__attribute__((aligned(4))) const u16 Unk_ov11_0221F94C[] = {
+__attribute__((aligned(4))) const u16 MovePaletteNormal[] = {
     0x75CD,
     0x7fff,
     0x6AD7,
@@ -24,7 +24,7 @@ __attribute__((aligned(4))) const u16 Unk_ov11_0221F94C[] = {
     0x0
 };
 
-__attribute__((aligned(4))) const u16 Unk_ov11_0221FB8C[] = {
+__attribute__((aligned(4))) const u16 MovePaletteFighting[] = {
     0x75CD,
     0x7fff,
     0x3adf,
@@ -43,7 +43,7 @@ __attribute__((aligned(4))) const u16 Unk_ov11_0221FB8C[] = {
     0x0
 };
 
-__attribute__((aligned(4))) const u16 Unk_ov11_0221FB6C[] = {
+__attribute__((aligned(4))) const u16 MovePaletteFlying[] = {
     0x75CD,
     0x7fff,
     0x7eaf,
@@ -62,7 +62,7 @@ __attribute__((aligned(4))) const u16 Unk_ov11_0221FB6C[] = {
     0x0
 };
 
-__attribute__((aligned(4))) const u16 Unk_ov11_0221FB4C[] = {
+__attribute__((aligned(4))) const u16 MovePalettePoison[] = {
     0x75CD,
     0x7fff,
     0x7E1A,
@@ -81,7 +81,7 @@ __attribute__((aligned(4))) const u16 Unk_ov11_0221FB4C[] = {
     0x0
 };
 
-__attribute__((aligned(4))) const u16 Unk_ov11_0221FB2C[] = {
+__attribute__((aligned(4))) const u16 MovePaletteGround[] = {
     0x75CD,
     0x7fff,
     0x32DE,
@@ -100,7 +100,7 @@ __attribute__((aligned(4))) const u16 Unk_ov11_0221FB2C[] = {
     0x0
 };
 
-__attribute__((aligned(4))) const u16 Unk_ov11_0221FB0C[] = {
+__attribute__((aligned(4))) const u16 MovePaletteRock[] = {
     0x75CD,
     0x7fff,
     0x4276,
@@ -119,7 +119,7 @@ __attribute__((aligned(4))) const u16 Unk_ov11_0221FB0C[] = {
     0x0
 };
 
-__attribute__((aligned(4))) const u16 Unk_ov11_0221FAEC[] = {
+__attribute__((aligned(4))) const u16 MovePaletteBug[] = {
     0x75CD,
     0x7fff,
     0x373A,
@@ -138,7 +138,7 @@ __attribute__((aligned(4))) const u16 Unk_ov11_0221FAEC[] = {
     0x0
 };
 
-__attribute__((aligned(4))) const u16 Unk_ov11_0221FACC[] = {
+__attribute__((aligned(4))) const u16 MovePaletteGhost[] = {
     0x75CD,
     0x7fff,
     0x50D9,
@@ -157,7 +157,7 @@ __attribute__((aligned(4))) const u16 Unk_ov11_0221FACC[] = {
     0x0
 };
 
-__attribute__((aligned(4))) const u16 Unk_ov11_0221FAAC[] = {
+__attribute__((aligned(4))) const u16 MovePaletteSteel[] = {
     0x75CD,
     0x7fff,
     0x6B9C,
@@ -176,7 +176,7 @@ __attribute__((aligned(4))) const u16 Unk_ov11_0221FAAC[] = {
     0x0
 };
 
-__attribute__((aligned(4))) const u16 Unk_ov11_0221FA8C[] = {
+__attribute__((aligned(4))) const u16 MovePaletteMystery[] = {
     0x75CD,
     0x7fff,
     0x5A7A,
@@ -195,7 +195,7 @@ __attribute__((aligned(4))) const u16 Unk_ov11_0221FA8C[] = {
     0x0
 };
 
-__attribute__((aligned(4))) const u16 Unk_ov11_0221FA6C[] = {
+__attribute__((aligned(4))) const u16 MovePaletteFire[] = {
     0x75CD,
     0x7fff,
     0x3a3f,
@@ -214,7 +214,7 @@ __attribute__((aligned(4))) const u16 Unk_ov11_0221FA6C[] = {
     0x0
 };
 
-__attribute__((aligned(4))) const u16 Unk_ov11_0221FA4C[] = {
+__attribute__((aligned(4))) const u16 MovePaletteWater[] = {
     0x75CD,
     0x7fff,
     0x7792,
@@ -233,7 +233,7 @@ __attribute__((aligned(4))) const u16 Unk_ov11_0221FA4C[] = {
     0x0
 };
 
-__attribute__((aligned(4))) const u16 Unk_ov11_0221FA2C[] = {
+__attribute__((aligned(4))) const u16 MovePaletteGrass[] = {
     0x75CD,
     0x7fff,
     0x23af,
@@ -252,7 +252,7 @@ __attribute__((aligned(4))) const u16 Unk_ov11_0221FA2C[] = {
     0x0
 };
 
-__attribute__((aligned(4))) const u16 Unk_ov11_0221FA0C[] = {
+__attribute__((aligned(4))) const u16 MovePaletteElectric[] = {
     0x75CD,
     0x7fff,
     0x37bf,
@@ -271,7 +271,7 @@ __attribute__((aligned(4))) const u16 Unk_ov11_0221FA0C[] = {
     0x0
 };
 
-__attribute__((aligned(4))) const u16 Unk_ov11_0221F9EC[] = {
+__attribute__((aligned(4))) const u16 MovePalettePsychic[] = {
     0x75CD,
     0x7fff,
     0x7dff,
@@ -290,7 +290,7 @@ __attribute__((aligned(4))) const u16 Unk_ov11_0221F9EC[] = {
     0x0
 };
 
-__attribute__((aligned(4))) const u16 Unk_ov11_0221F9CC[] = {
+__attribute__((aligned(4))) const u16 MovePaletteIce[] = {
     0x75CD,
     0x7fff,
     0x7f94,
@@ -309,7 +309,7 @@ __attribute__((aligned(4))) const u16 Unk_ov11_0221F9CC[] = {
     0x0
 };
 
-__attribute__((aligned(4))) const u16 Unk_ov11_0221F9AC[] = {
+__attribute__((aligned(4))) const u16 MovePaletteDragon[] = {
     0x75CD,
     0x7fff,
     0x6df2,
@@ -328,7 +328,7 @@ __attribute__((aligned(4))) const u16 Unk_ov11_0221F9AC[] = {
     0x0
 };
 
-__attribute__((aligned(4))) const u16 Unk_ov11_0221F98C[] = {
+__attribute__((aligned(4))) const u16 MovePaletteDark[] = {
     0x75CD,
     0x7fff,
     0x3DD5,
@@ -387,25 +387,25 @@ __attribute__((aligned(4))) static const u16 Unk_ov11_0221FBAC[] = {
     0x33
 };
 
-__attribute__((aligned(4))) static const u16 *const Unk_ov11_0221FBD0[] = {
-    Unk_ov11_0221F94C,
-    Unk_ov11_0221FB8C,
-    Unk_ov11_0221FB6C,
-    Unk_ov11_0221FB4C,
-    Unk_ov11_0221FB2C,
-    Unk_ov11_0221FB0C,
-    Unk_ov11_0221FAEC,
-    Unk_ov11_0221FACC,
-    Unk_ov11_0221FAAC,
-    Unk_ov11_0221FA8C,
-    Unk_ov11_0221FA6C,
-    Unk_ov11_0221FA4C,
-    Unk_ov11_0221FA2C,
-    Unk_ov11_0221FA0C,
-    Unk_ov11_0221F9EC,
-    Unk_ov11_0221F9CC,
-    Unk_ov11_0221F9AC,
-    Unk_ov11_0221F98C
+__attribute__((aligned(4))) static const u16 *const sMovePaletteTable[] = {
+    MovePaletteNormal,
+    MovePaletteFighting,
+    MovePaletteFlying,
+    MovePalettePoison,
+    MovePaletteGround,
+    MovePaletteRock,
+    MovePaletteBug,
+    MovePaletteGhost,
+    MovePaletteSteel,
+    MovePaletteMystery,
+    MovePaletteFire,
+    MovePaletteWater,
+    MovePaletteGrass,
+    MovePaletteElectric,
+    MovePalettePsychic,
+    MovePaletteIce,
+    MovePaletteDragon,
+    MovePaletteDark
 };
 
 void include_unk_ov11_0221FBAC();
@@ -417,19 +417,19 @@ void include_unk_ov11_0221FBAC()
 
 const u16 *GetPaletteSourceFromMoveType(int moveType)
 {
-    const u16 *paletteSource;
+    const u16 *paletteSourceAdr;
 
     if (moveType != -1) {
-        paletteSource = Unk_ov11_0221FBD0[moveType];
+        paletteSourceAdr = sMovePaletteTable[moveType];
     } else {
-        paletteSource = Unk_ov11_0221F96C;
+        paletteSourceAdr = Unk_ov11_0221F96C;
     }
 
-    return paletteSource;
+    return paletteSourceAdr;
 }
 
-void ov11_0221F81C(PaletteData *paletteSys, int moveType, int unused, int bufferID, int paletteIndex)
+void LoadMoveSelectionPalette(PaletteData *paletteSys, int moveType, int unused, int bufferID, int paletteDest)
 {
     const u16 *paletteSource = GetPaletteSourceFromMoveType(moveType);
-    PaletteData_LoadBuffer(paletteSys, paletteSource, bufferID, paletteIndex * 16, 0x20);
+    PaletteData_LoadBuffer(paletteSys, paletteSource, bufferID, paletteDest * 16, 0x20);
 }

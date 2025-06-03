@@ -298,7 +298,7 @@ static void ov16_02269DB0(UnkStruct_ov16_02268A14 *param0, int param1, int param
 static void ov16_02269F68(UnkStruct_ov16_02268A14 *param0, int param1, int param2);
 static void ov16_0226A04C(UnkStruct_ov16_02268A14 *param0, int param1, int param2);
 static void ov16_0226A12C(UnkStruct_ov16_02268A14 *param0, int param1, int param2);
-static void ov16_0226B06C(UnkStruct_ov16_02268A14 *param0, int moveType, int moveSlot);
+static void LoadPaletteForMoveInSlot(UnkStruct_ov16_02268A14 *param0, int moveType, int moveSlot);
 static void ov16_0226B088(UnkStruct_ov16_02268A14 *param0, int param1);
 static void ov16_0226B0DC(UnkStruct_ov16_02268A14 *param0, int param1);
 static int ov16_0226A934(u8 param0);
@@ -1897,7 +1897,7 @@ static void ov16_022699AC(UnkStruct_ov16_02268A14 *param0, int param1, int param
         for (i = 0; i < LEARNED_MOVES_MAX; i++) {
             if (v0->moveIDs[i] != 0) {
                 moveType = MoveTable_LoadParam(v0->moveIDs[i], MOVEATTRIBUTE_TYPE);
-                ov16_0226B06C(param0, moveType, i);
+                LoadPaletteForMoveInSlot(param0, moveType, i);
             } else {
                 ov16_0226B088(param0, i);
                 break;
@@ -2894,21 +2894,21 @@ static void ov16_0226B028(UnkStruct_ov16_02268A14 *param0)
     }
 }
 
-static void ov16_0226B06C(UnkStruct_ov16_02268A14 *param0, int moveType, int moveSlot)
+static void LoadPaletteForMoveInSlot(UnkStruct_ov16_02268A14 *param0, int moveType, int moveSlot)
 {
-    ov11_0221F81C(BattleSystem_PaletteSys(param0->battleSys), moveType, 5, 1, 8 + moveSlot);
+    LoadMoveSelectionPalette(BattleSystem_PaletteSys(param0->battleSys), moveType, 5, 1, 8 + moveSlot);
 }
 
 static void ov16_0226B088(UnkStruct_ov16_02268A14 *param0, int param1)
 {
-    PaletteData *v0;
+    PaletteData *paletteSys;
     int i;
 
-    v0 = BattleSystem_PaletteSys(param0->battleSys);
+    paletteSys = BattleSystem_PaletteSys(param0->battleSys);
 
     for (i = param1; i < 4; i++) {
         ov16_0226B31C(param0, &Unk_ov16_0227022C[i], &Unk_ov16_02270274[i], 3, 0);
-        PaletteData_LoadBuffer(v0, &param0->unk_58[0xe * 16], 1, (8 + i) * 16, 0x20);
+        PaletteData_LoadBuffer(paletteSys, &param0->unk_58[0xe * 16], 1, (8 + i) * 16, 0x20);
     }
 }
 
