@@ -667,7 +667,7 @@ static void ov17_022444BC(SysTask *param0, void *param1)
         v3.unk_08 = 10;
         v3.unk_0A = v0->unk_104.unk_07;
         v3.unk_0C = v0->unk_104.unk_08;
-        v3.unk_10 = 0;
+        v3.fieldConditions = 0;
         v3.unk_14 = 0;
         v3.unk_16 = 1;
         v3.unk_54 = 9;
