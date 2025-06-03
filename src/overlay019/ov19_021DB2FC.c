@@ -162,7 +162,7 @@ static void ov19_021DB4B4(BgConfig *param0, u32 param1, u32 param2, u32 param3, 
 void ov19_021DB57C(UnkStruct_ov19_021DB6F0 *param0, const BoxMenu *param1)
 {
     Window *v0;
-    u32 v1, v2;
+    u32 v1, i;
 
     if (param0->unk_1E) {
         ov19_021DB84C(param0->unk_00, &param0->unk_18[1]);
@@ -172,11 +172,11 @@ void ov19_021DB57C(UnkStruct_ov19_021DB6F0 *param0, const BoxMenu *param1)
     Window_FillTilemap(v0, 15);
     v1 = (8 - param1->totalMenuItems) * 16;
 
-    for (v2 = 0; v2 < param1->totalMenuItems; v2++) {
-        if ((param1->menuItems[v2] >= BOX_MENU_CIRCLE) && (param1->menuItems[v2] <= BOX_MENU_DIAMOND)) {
-            ov19_021DB638(param0, v0, param1->markings, param1->menuItems[v2] - BOX_MENU_CIRCLE);
+    for (i = 0; i < param1->totalMenuItems; i++) {
+        if ((param1->menuItems[i] >= BOX_MENU_FIRST_MARKING) && (param1->menuItems[i] <= BOX_MENU_LAST_MARKING)) {
+            ov19_021DB638(param0, v0, param1->markings, param1->menuItems[i] - BOX_MENU_FIRST_MARKING);
         } else {
-            MessageLoader_GetStrbuf(param0->unk_14, 24 + param1->menuItems[v2], param0->unk_30);
+            MessageLoader_GetStrbuf(param0->unk_14, 24 + param1->menuItems[i], param0->unk_30);
             Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->unk_30, 10, v1, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(11, 12, 15), NULL);
         }
 
@@ -192,9 +192,9 @@ void ov19_021DB57C(UnkStruct_ov19_021DB6F0 *param0, const BoxMenu *param1)
     param0->unk_1E = 1;
 }
 
-static void ov19_021DB638(UnkStruct_ov19_021DB6F0 *param0, Window *param1, u8 markings, u32 param3)
+static void ov19_021DB638(UnkStruct_ov19_021DB6F0 *param0, Window *param1, u8 markings, u32 markingID)
 {
-    Window_BlitBitmapRectWithTransparency(param1, param0->unk_28->pRawData, param3 * 8, ((markings & (1 << param3)) ? 0 : 8), 48, 16, 44, param3 * 16 + 4, 8, 8, 0xff);
+    Window_BlitBitmapRectWithTransparency(param1, param0->unk_28->pRawData, markingID * 8, ((markings & (1 << markingID)) ? 0 : 8), 48, 16, 44, markingID * 16 + 4, 8, 8, 0xff);
 }
 
 static void ov19_021DB684(UnkStruct_ov19_021DB6F0 *param0, u32 param1)
