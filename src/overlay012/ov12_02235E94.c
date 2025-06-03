@@ -613,7 +613,7 @@ static void ov12_022363CC(SysTask *param0, void *param1)
         }
 
         if ((ParticleSystem_GetActiveEmitterCount(v2->unk_14[v0]) == 0) && (v2->unk_5C[v0] != 0)) {
-            ov12_02223894(v2->unk_14[v0]);
+            BattleParticleUtil_FreeParticleSystem(v2->unk_14[v0]);
             v2->unk_14[v0] = NULL;
             v2->unk_5C[v0] = 0;
             continue;
@@ -873,7 +873,7 @@ BOOL ov12_02236764(UnkStruct_ov12_02236648 *param0)
     UnkStruct_ov12_02236648 *v0 = param0;
 
     if (ParticleSystem_GetActiveEmitterCount(v0->unk_18) == 0) {
-        ov12_02223894(v0->unk_18);
+        BattleParticleUtil_FreeParticleSystem(v0->unk_18);
         return 0;
     }
 

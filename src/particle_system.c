@@ -12,9 +12,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
-#define MAX_PARTICLE_SYSTEMS 16
-#define MAX_EMITTERS         20
-#define MAX_PARTICLES        200
 #define FIXED_POLYGON_ID     5
 #define MIN_POLYGON_ID       6
 #define MAX_POLYGON_ID       63

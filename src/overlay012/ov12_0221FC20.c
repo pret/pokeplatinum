@@ -169,8 +169,8 @@ static void ov12_02221024(BattleAnimSystem *param0);
 static void ov12_022230D4(BattleAnimSystem *param0);
 static void ov12_02223134(BattleAnimSystem *param0);
 static void ov12_02220ED0(BattleAnimSystem *param0);
-static void ov12_022209A8(BattleAnimSystem *param0);
-static void ov12_02220A3C(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_CreateEmitter(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_CreateEmitterEx(BattleAnimSystem *param0);
 static void ov12_02220B8C(BattleAnimSystem *param0);
 static void ov12_02220C44(BattleAnimSystem *param0);
 static void ov12_02220CFC(BattleAnimSystem *param0);
@@ -375,7 +375,7 @@ BOOL ov12_0221FE30(BattleAnimSystem *system, UnkStruct_ov16_02265BBC *param1, u1
     }
 
     for (i = 0; i < 16; i++) {
-        system->unk_68[i] = 1;
+        system->cameraProjections[i] = 1;
         system->unk_78[i] = 0;
     }
 
@@ -565,7 +565,7 @@ u16 ov12_02220248(BattleAnimSystem *system)
 
 ParticleSystem *ov12_02220250(BattleAnimSystem *param0)
 {
-    return param0->context->particleSystems[param0->context->unk_18];
+    return param0->context->particleSystems[param0->context->currentParticleSystem];
 }
 
 ParticleSystem *BattleAnimSystem_GetParticleSystem(BattleAnimSystem *system, int index)
@@ -575,7 +575,7 @@ ParticleSystem *BattleAnimSystem_GetParticleSystem(BattleAnimSystem *system, int
 
 SPLEmitter *ov12_0222026C(BattleAnimSystem *param0, int param1)
 {
-    SPLEmitter *v0 = param0->context->unk_5C[param1];
+    SPLEmitter *v0 = param0->context->emitters[param1];
     return v0;
 }
 
@@ -811,8 +811,8 @@ static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
     ov12_0222294C,
     ov12_02222968,
     ov12_02220ED0,
-    ov12_022209A8,
-    ov12_02220A3C,
+    BattleAnimScriptCmd_CreateEmitter,
+    BattleAnimScriptCmd_CreateEmitterEx,
     ov12_02220B8C,
     ov12_02220C44,
     ov12_02220CFC,
@@ -1128,9 +1128,9 @@ static void ov12_02220798(BattleAnimSystem *system)
         ov12_02221238(system, i);
     }
 
-    for (i = 0; i < 16; i++) {
+    for (i = 0; i < MAX_PARTICLE_SYSTEMS; i++) {
         if (system->context->particleSystems[i]) {
-            ov12_02223894(system->context->particleSystems[i]);
+            BattleParticleUtil_FreeParticleSystem(system->context->particleSystems[i]);
             system->context->particleSystems[i] = NULL;
         }
     }
@@ -1162,72 +1162,63 @@ static void ov12_02220798(BattleAnimSystem *system)
     system->unk_10 = 0;
 }
 
-static void ov12_022209A8(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_CreateEmitter(BattleAnimSystem *system)
 {
-    u32 v0;
-    u32 v1;
-    u32 v2;
+    BattleAnimScript_Next(system);
 
-    param0->scriptPtr += 1;
+    u32 psIndex = (u32)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v2 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    u32 resourceID = (u32)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    u32 callbackID = (u32)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v1 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    system->context->currentParticleSystem = psIndex;
 
-    param0->context->unk_18 = v2;
-
-    if (param0->unk_78[v2] != 0) {
+    if (system->unk_78[psIndex] != 0) {
         VecFx32 v3;
 
-        ParticleSystem_GetCameraUp(param0->context->particleSystems[v2], &v3);
+        ParticleSystem_GetCameraUp(system->context->particleSystems[psIndex], &v3);
         v3.y *= -1;
-        ParticleSystem_SetCameraUp(param0->context->particleSystems[v2], &v3);
+        ParticleSystem_SetCameraUp(system->context->particleSystems[psIndex], &v3);
     }
 
-    ParticleSystem_SetCameraProjection(param0->context->particleSystems[v2], param0->unk_68[v2]);
+    ParticleSystem_SetCameraProjection(system->context->particleSystems[psIndex], system->cameraProjections[psIndex]);
 
-    param0->context->unk_5C[0] = ov12_02223880(param0->context->particleSystems[v2], v0, v1, param0);
+    system->context->emitters[0] = BattleParticleUtil_CreateEmitter(system->context->particleSystems[psIndex], resourceID, callbackID, system);
 }
 
-static void ov12_02220A3C(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_CreateEmitterEx(BattleAnimSystem *system)
 {
-    u32 v0;
-    u32 v1;
-    u32 v2;
-    u32 v3;
+    BattleAnimScript_Next(system);
 
-    param0->scriptPtr += 1;
+    u32 psIndex = (u32)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v2 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    u32 emitterIndex = (u32)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v3 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    u32 resourceID = (u32)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    u32 callbackID = (u32)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v1 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    system->context->currentParticleSystem = psIndex;
 
-    param0->context->unk_18 = v2;
-
-    if (param0->unk_78[v2] != 0) {
+    if (system->unk_78[psIndex] != 0) {
         VecFx32 v4;
 
-        ParticleSystem_GetCameraUp(param0->context->particleSystems[v2], &v4);
+        ParticleSystem_GetCameraUp(system->context->particleSystems[psIndex], &v4);
         v4.y *= -1;
-        ParticleSystem_SetCameraUp(param0->context->particleSystems[v2], &v4);
+        ParticleSystem_SetCameraUp(system->context->particleSystems[psIndex], &v4);
     }
 
-    ParticleSystem_SetCameraProjection(param0->context->particleSystems[v2], param0->unk_68[v2]);
+    ParticleSystem_SetCameraProjection(system->context->particleSystems[psIndex], system->cameraProjections[psIndex]);
 
-    param0->context->unk_5C[v3] = ov12_02223880(param0->context->particleSystems[v2], v0, v1, param0);
+    system->context->emitters[emitterIndex] = BattleParticleUtil_CreateEmitter(system->context->particleSystems[psIndex], resourceID, callbackID, system);
 }
 
 static int ov12_02220ADC(BattleAnimSystem *param0)
@@ -1300,7 +1291,7 @@ static void ov12_02220B8C(BattleAnimSystem *param0)
     v2 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
 
     param0->scriptPtr += 1;
-    param0->context->unk_18 = v3;
+    param0->context->currentParticleSystem = v3;
 
     if (param0->unk_78[v3] != 0) {
         VecFx32 v5;
@@ -1317,8 +1308,8 @@ static void ov12_02220B8C(BattleAnimSystem *param0)
         v4 = v1[v6];
     }
 
-    ParticleSystem_SetCameraProjection(param0->context->particleSystems[v3], param0->unk_68[v3]);
-    param0->context->unk_5C[0] = ov12_02223880(param0->context->particleSystems[v3], v4, v2, param0);
+    ParticleSystem_SetCameraProjection(param0->context->particleSystems[v3], param0->cameraProjections[v3]);
+    param0->context->emitters[0] = BattleParticleUtil_CreateEmitter(param0->context->particleSystems[v3], v4, v2, param0);
 }
 
 static void ov12_02220C44(BattleAnimSystem *param0)
@@ -1341,7 +1332,7 @@ static void ov12_02220C44(BattleAnimSystem *param0)
     v2 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
 
     param0->scriptPtr += 1;
-    param0->context->unk_18 = v3;
+    param0->context->currentParticleSystem = v3;
 
     if (param0->unk_78[v3] != 0) {
         VecFx32 v5;
@@ -1358,8 +1349,8 @@ static void ov12_02220C44(BattleAnimSystem *param0)
         v4 = v1[v6];
     }
 
-    ParticleSystem_SetCameraProjection(param0->context->particleSystems[v3], param0->unk_68[v3]);
-    param0->context->unk_5C[0] = ov12_02223880(param0->context->particleSystems[v3], v4, v2, param0);
+    ParticleSystem_SetCameraProjection(param0->context->particleSystems[v3], param0->cameraProjections[v3]);
+    param0->context->emitters[0] = BattleParticleUtil_CreateEmitter(param0->context->particleSystems[v3], v4, v2, param0);
 }
 
 static void ov12_02220CFC(BattleAnimSystem *param0)
@@ -1435,7 +1426,7 @@ static void ov12_02220DE8(BattleAnimSystem *param0)
     v0 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    ov12_02223894(param0->context->particleSystems[v0]);
+    BattleParticleUtil_FreeParticleSystem(param0->context->particleSystems[v0]);
     param0->context->particleSystems[v0] = NULL;
 }
 
@@ -2259,7 +2250,7 @@ static void ov12_02221A14(BattleAnimSystem *param0)
 
     v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
-    param0->unk_68[v0] = v1;
+    param0->cameraProjections[v0] = v1;
 }
 
 void ov12_02221A30(BattleAnimSystem *param0)

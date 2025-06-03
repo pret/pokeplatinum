@@ -13,7 +13,7 @@
 
 static void ov12_022237EC(SPLEmitter *param0);
 
-static const SPLEmitterCallback Unk_ov12_02238DB0[] = {
+static const SPLEmitterCallback sEmitterCallbackTable[] = {
     ov12_022237EC,
     ov12_022238E0,
     ov12_02223998,
@@ -84,12 +84,12 @@ ParticleSystem *ov12_0222384C(NARC *param0, int heapID, int param2, int param3)
     return v0;
 }
 
-SPLEmitter *ov12_02223880(ParticleSystem *param0, int param1, int param2, void *param3)
+SPLEmitter *BattleParticleUtil_CreateEmitter(ParticleSystem *ps, int resourceID, int callbackID, void *param)
 {
-    return ParticleSystem_CreateEmitterWithCallback(param0, param1, Unk_ov12_02238DB0[param2], param3);
+    return ParticleSystem_CreateEmitterWithCallback(ps, resourceID, sEmitterCallbackTable[callbackID], param);
 }
 
-void ov12_02223894(ParticleSystem *param0)
+void BattleParticleUtil_FreeParticleSystem(ParticleSystem *ps)
 {
-    ov11_0221F8D8(param0);
+    ov11_0221F8D8(ps);
 }
