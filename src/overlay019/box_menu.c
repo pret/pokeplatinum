@@ -22,7 +22,7 @@ static void BoxMenu_AddMenuItem(BoxMenu *menu, BoxMenuItem menuItem);
 
 void BoxMenu_FillYesNo(UnkStruct_ov19_021D4DF0 *param0, u32 menuItemIndex)
 {
-    BoxMenu *menu = &(param0->boxMenu);
+    BoxMenu *menu = &param0->boxMenu;
 
     BoxMenu_ClearMenuItems(menu);
     BoxMenu_AddMenuItem(menu, BOX_MENU_YES);
@@ -50,12 +50,10 @@ void BoxMenu_FillTopLevelMenuItems(UnkStruct_ov19_021D4DF0 *param0)
 
         BoxMenu_AddMenuItem(menu, BOX_MENU_SUMMARY);
 
-        {
-            const PCMonPreview *preview = ov19_GetPCMonPreview(param0);
+        const PCMonPreview *preview = ov19_GetPCMonPreview(param0);
 
-            if (preview->isEgg == FALSE) {
-                BoxMenu_AddMenuItem(menu, BOX_MENU_ITEM);
-            }
+        if (preview->isEgg == FALSE) {
+            BoxMenu_AddMenuItem(menu, BOX_MENU_ITEM);
         }
 
         BoxMenu_AddMenuItem(menu, (ov19_GetCursorLocation(param0) == CURSOR_IN_BOX) ? BOX_MENU_WITHDRAW : BOX_MENU_STORE);
@@ -170,7 +168,7 @@ void BoxMenu_FillWallpaperMenu(UnkStruct_ov19_021D4DF0 *param0, BoxMenuItem menu
 
 void BoxMenu_FillWallpaperSelectionMenu(UnkStruct_ov19_021D4DF0 *param0, BoxMenuItem menuItem)
 {
-    static const u16 v0[][4] = {
+    static const u16 sWallpaperPages[][4] = {
         { BOX_MENU_FOREST, BOX_MENU_CITY, BOX_MENU_DESERT, BOX_MENU_SAVANNA },
         { BOX_MENU_CRAG, BOX_MENU_VOLCANO, BOX_MENU_SNOW, BOX_MENU_CAVE },
         { BOX_MENU_BEACH, BOX_MENU_SEAFLOOR, BOX_MENU_RIVER, BOX_MENU_SKY },
@@ -186,7 +184,7 @@ void BoxMenu_FillWallpaperSelectionMenu(UnkStruct_ov19_021D4DF0 *param0, BoxMenu
         menuItem -= BOX_MENU_SCENERY_1;
 
         for (i = 0; i < 4; i++) {
-            BoxMenu_AddMenuItem(menu, v0[menuItem][i]);
+            BoxMenu_AddMenuItem(menu, sWallpaperPages[menuItem][i]);
         }
     } else {
         int v4 = 0;
