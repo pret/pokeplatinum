@@ -3120,7 +3120,7 @@ void ov12_0222A00C(BattleAnimSystem *param0)
     ov12_02235508(param0, v0->unk_24, &v0->unk_88);
 
     v0->unk_38 = ov12_0222026C(param0, v0->unk_00);
-    v0->unk_34 = ov12_02220260(param0, ov12_02220280(param0, 9));
+    v0->unk_34 = BattleAnimSystem_GetParticleSystem(param0, ov12_02220280(param0, 9));
 
     ov12_02225A5C(&v0->unk_58, ((v0->unk_04 * 0xffff) / 360), ((v0->unk_0C * 0xffff) / 360), ((v0->unk_08 * 0xffff) / 360), ((v0->unk_10 * 0xffff) / 360), v0->unk_14 * FX32_ONE, v0->unk_18 * FX32_ONE, v0->unk_1C);
 
