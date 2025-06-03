@@ -46,9 +46,9 @@ typedef struct UnkStruct_ov12_02223178_t {
     u16 unk_12;
     u16 unk_14;
     u16 unk_16;
-    int unk_18;
-    ParticleSystem *particleSystems[16];
-    SPLEmitter *unk_5C[20];
+    int currentParticleSystem;
+    ParticleSystem *particleSystems[MAX_PARTICLE_SYSTEMS];
+    SPLEmitter *emitters[MAX_EMITTERS];
     SpriteSystem *unk_AC;
     UnkStruct_ov16_0223E0C8 *unk_B0[4];
     u8 unk_C0[4];
@@ -134,8 +134,8 @@ typedef struct BattleAnimSystem {
     u32 *unk_1C[3];
     BattleAnimScriptLoop loopStack[BATTLE_ANIM_SCRIPT_MAX_NESTED_LOOPS];
     UnkStruct_ov12_02221810 unk_48[2];
-    u8 unk_68[16];
-    u8 unk_78[16];
+    u8 cameraProjections[MAX_PARTICLE_SYSTEMS]; // Projection setting for each particle system. See enum CameraProjection
+    u8 unk_78[MAX_PARTICLE_SYSTEMS];
     s8 unk_88;
     u8 scriptDelay;
     u16 activeAnimTasks;

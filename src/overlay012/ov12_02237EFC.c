@@ -115,7 +115,7 @@ void ov12_02237F98(UnkStruct_ov12_02237F98 *param0)
             continue;
         }
 
-        ov12_02223894(param0->unk_08[v0]->unk_10);
+        BattleParticleUtil_FreeParticleSystem(param0->unk_08[v0]->unk_10);
 
         if (param0->unk_08[v0]->unk_20 == 0) {
             continue;
@@ -175,7 +175,7 @@ static void ov12_02238030(SysTask *param0, void *param1)
 
     v0->unk_20 = 0;
 
-    ov12_02223894(v0->unk_10);
+    BattleParticleUtil_FreeParticleSystem(v0->unk_10);
     SysTask_Done(param0);
 }
 
