@@ -61,17 +61,19 @@ typedef enum {
     BOX_MENU_SET_ON_RIGHT,
     BOX_MENU_YES,
     BOX_MENU_NO,
-    BOX_MENU_CIRCLE,
+    BOX_MENU_FIRST_MARKING,
+    BOX_MENU_CIRCLE = BOX_MENU_FIRST_MARKING,
     BOX_MENU_TRIANGLE,
     BOX_MENU_SQUARE,
     BOX_MENU_HEART,
     BOX_MENU_STAR,
-    BOX_MENU_DIAMOND
+    BOX_MENU_DIAMOND,
+    BOX_MENU_LAST_MARKING = BOX_MENU_DIAMOND
 } BoxMenuItem;
 
 #define MAX_MENU_ITEMS 8
 
-typedef struct {
+typedef struct BoxMenu {
     BoxMenuItem menuItems[MAX_MENU_ITEMS];
     u8 selectedMenuItemIndex;
     u8 totalMenuItems;
