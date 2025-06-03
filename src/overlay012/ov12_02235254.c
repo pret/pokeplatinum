@@ -37,7 +37,7 @@ void include_unk_ov12_0223A218(VecFx32 *dummy)
 
 int ov12_02235254(BattleAnimSystem *param0, int param1)
 {
-    return ov12_022232B8(param0, param1);
+    return BattleAnimSystem_GetBattlerType(param0, param1);
 }
 
 int ov12_0223525C(BattleAnimSystem *param0, int param1)
@@ -45,7 +45,7 @@ int ov12_0223525C(BattleAnimSystem *param0, int param1)
     int v0;
     int v1;
 
-    v0 = ov12_022232B8(param0, param1);
+    v0 = BattleAnimSystem_GetBattlerType(param0, param1);
 
     switch (v0) {
     case 0:
@@ -69,7 +69,7 @@ int ov12_02235288(BattleAnimSystem *param0, int param1)
     int v1;
 
     for (v0 = 0; v0 < 4; v0++) {
-        v1 = ov12_022232B8(param0, v0);
+        v1 = BattleAnimSystem_GetBattlerType(param0, v0);
 
         if (v1 == param1) {
             return v0;
@@ -85,14 +85,14 @@ int ov12_022352AC(BattleAnimSystem *param0, int param1)
     int v1;
     int v2;
 
-    v1 = ov12_022232B8(param0, param1);
+    v1 = BattleAnimSystem_GetBattlerType(param0, param1);
 
     if ((v1 == 0) || (v1 == 1)) {
         return v1;
     }
 
     for (v0 = 0; v0 < 4; v0++) {
-        v2 = ov12_022232B8(param0, v0);
+        v2 = BattleAnimSystem_GetBattlerType(param0, v0);
 
         switch (v1) {
         case 2:
@@ -738,11 +738,11 @@ void ov12_02235998(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235998
     *param3 = 0;
 
     if (inline_ov12_02235998(param1, 0x40) == 1) {
-        int v0 = ov12_02220240(param0);
+        int v0 = BattleAnimSystem_GetAttacker(param0);
         int v1;
         int v2;
 
-        param2[*param3].unk_08 = ov12_022232FC(param0, v0);
+        param2[*param3].unk_08 = BattleAnimSystem_GetBattlerSprite(param0, v0);
 
         if (param2[*param3].unk_08 != NULL) {
             param2[*param3].unk_10 = v0;
@@ -751,7 +751,7 @@ void ov12_02235998(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235998
         }
 
         v1 = ov12_022352AC(param0, v0);
-        param2[*param3].unk_08 = ov12_022232FC(param0, v1);
+        param2[*param3].unk_08 = BattleAnimSystem_GetBattlerSprite(param0, v1);
 
         if (param2[*param3].unk_08 != NULL) {
             param2[*param3].unk_10 = v1;
@@ -759,11 +759,11 @@ void ov12_02235998(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235998
             (*param3)++;
         }
 
-        v2 = ov12_022232B8(param0, v0);
+        v2 = BattleAnimSystem_GetBattlerType(param0, v0);
         v2 = ov12_02235310(v2);
         v1 = ov12_02235288(param0, v2);
 
-        param2[*param3].unk_08 = ov12_022232FC(param0, v1);
+        param2[*param3].unk_08 = BattleAnimSystem_GetBattlerSprite(param0, v1);
 
         if (param2[*param3].unk_08 != NULL) {
             param2[*param3].unk_10 = v1;
@@ -772,7 +772,7 @@ void ov12_02235998(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235998
         }
 
         v1 = ov12_022352AC(param0, v1);
-        param2[*param3].unk_08 = ov12_022232FC(param0, v1);
+        param2[*param3].unk_08 = BattleAnimSystem_GetBattlerSprite(param0, v1);
 
         if (param2[*param3].unk_08 != NULL) {
             param2[*param3].unk_10 = v1;
@@ -784,14 +784,14 @@ void ov12_02235998(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235998
     }
 
     if (inline_ov12_02235998(param1, 0x20) == 1) {
-        int v3 = ov12_02220240(param0);
+        int v3 = BattleAnimSystem_GetAttacker(param0);
         int v4;
         int v5;
 
         v4 = ov12_022352AC(param0, v3);
 
         if (v4 != v3) {
-            param2[*param3].unk_08 = ov12_022232FC(param0, v4);
+            param2[*param3].unk_08 = BattleAnimSystem_GetBattlerSprite(param0, v4);
 
             if (param2[*param3].unk_08 != NULL) {
                 param2[*param3].unk_10 = v4;
@@ -800,12 +800,12 @@ void ov12_02235998(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235998
             }
         }
 
-        v5 = ov12_022232B8(param0, v3);
+        v5 = BattleAnimSystem_GetBattlerType(param0, v3);
         v5 = ov12_02235310(v5);
         v4 = ov12_02235288(param0, v5);
 
         if (v4 != v3) {
-            param2[*param3].unk_08 = ov12_022232FC(param0, v4);
+            param2[*param3].unk_08 = BattleAnimSystem_GetBattlerSprite(param0, v4);
 
             if (param2[*param3].unk_08 != NULL) {
                 param2[*param3].unk_10 = v4;
@@ -817,7 +817,7 @@ void ov12_02235998(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235998
         v4 = ov12_022352AC(param0, v4);
 
         if (v4 != v3) {
-            param2[*param3].unk_08 = ov12_022232FC(param0, v4);
+            param2[*param3].unk_08 = BattleAnimSystem_GetBattlerSprite(param0, v4);
 
             if (param2[*param3].unk_08 != NULL) {
                 param2[*param3].unk_10 = v4;
@@ -830,21 +830,21 @@ void ov12_02235998(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235998
     }
 
     if (inline_ov12_02235998(param1, 0x2) == 1) {
-        param2[*param3].unk_08 = ov12_022232FC(param0, ov12_02220240(param0));
+        param2[*param3].unk_08 = BattleAnimSystem_GetBattlerSprite(param0, BattleAnimSystem_GetAttacker(param0));
 
         if (param2[*param3].unk_08 != NULL) {
-            param2[*param3].unk_10 = ov12_02220240(param0);
+            param2[*param3].unk_10 = BattleAnimSystem_GetAttacker(param0);
             ov12_02235918(param2[*param3].unk_08, &param2[*param3].unk_04);
             (*param3)++;
         }
     }
 
-    if (ov12_02223364(param0) == 1) {
+    if (BattleAnimSystem_IsDoubleBattle(param0) == 1) {
         if (inline_ov12_02235998(param1, 0x4) == 1) {
-            param2[*param3].unk_08 = ov12_022232FC(param0, ov12_022352AC(param0, ov12_02220240(param0)));
+            param2[*param3].unk_08 = BattleAnimSystem_GetBattlerSprite(param0, ov12_022352AC(param0, BattleAnimSystem_GetAttacker(param0)));
 
             if (param2[*param3].unk_08 != NULL) {
-                param2[*param3].unk_10 = ov12_022352AC(param0, ov12_02220240(param0));
+                param2[*param3].unk_10 = ov12_022352AC(param0, BattleAnimSystem_GetAttacker(param0));
                 ov12_02235918(param2[*param3].unk_08, &param2[*param3].unk_04);
                 (*param3)++;
             }
@@ -852,21 +852,21 @@ void ov12_02235998(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235998
     }
 
     if (inline_ov12_02235998(param1, 0x8) == 1) {
-        param2[*param3].unk_08 = ov12_022232FC(param0, ov12_02220248(param0));
+        param2[*param3].unk_08 = BattleAnimSystem_GetBattlerSprite(param0, BattleAnimSystem_GetDefender(param0));
 
         if (param2[*param3].unk_08 != NULL) {
-            param2[*param3].unk_10 = ov12_02220248(param0);
+            param2[*param3].unk_10 = BattleAnimSystem_GetDefender(param0);
             ov12_02235918(param2[*param3].unk_08, &param2[*param3].unk_04);
             (*param3)++;
         }
     }
 
-    if (ov12_02223364(param0) == 1) {
+    if (BattleAnimSystem_IsDoubleBattle(param0) == 1) {
         if (inline_ov12_02235998(param1, 0x10) == 1) {
-            param2[*param3].unk_08 = ov12_022232FC(param0, ov12_022352AC(param0, ov12_02220248(param0)));
+            param2[*param3].unk_08 = BattleAnimSystem_GetBattlerSprite(param0, ov12_022352AC(param0, BattleAnimSystem_GetDefender(param0)));
 
             if (param2[*param3].unk_08 != NULL) {
-                param2[*param3].unk_10 = ov12_022352AC(param0, ov12_02220248(param0));
+                param2[*param3].unk_10 = ov12_022352AC(param0, BattleAnimSystem_GetDefender(param0));
                 ov12_02235918(param2[*param3].unk_08, &param2[*param3].unk_04);
                 (*param3)++;
             }

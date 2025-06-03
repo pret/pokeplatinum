@@ -67,10 +67,10 @@ void ov12_0222E810(BattleAnimSystem *param0)
 
     ov12_0223595C(param0, &v0->unk_00);
 
-    v0->unk_1C.unk_08 = ov12_022232FC(v0->unk_00.unk_04, ov12_02220248(v0->unk_00.unk_04));
+    v0->unk_1C.unk_08 = BattleAnimSystem_GetBattlerSprite(v0->unk_00.unk_04, BattleAnimSystem_GetDefender(v0->unk_00.unk_04));
     v0->unk_58 = PokemonSprite_GetAttribute(v0->unk_1C.unk_08, MON_SPRITE_Y_CENTER);
     v0->unk_5C = v0->unk_58;
-    v0->unk_5A = ov12_02223354(v0->unk_00.unk_04, ov12_02220248(v0->unk_00.unk_04));
+    v0->unk_5A = ov12_02223354(v0->unk_00.unk_04, BattleAnimSystem_GetDefender(v0->unk_00.unk_04));
     v0->unk_1C.unk_0C = ov12_022202C0(param0, 0);
     v0->unk_30[0].unk_0C = ov12_022202C0(param0, 1);
     v0->unk_30[1].unk_0C = ov12_022202C0(param0, 2);
@@ -83,7 +83,7 @@ void ov12_0222E810(BattleAnimSystem *param0)
     {
         int v1;
 
-        v1 = ov12_022232B8(v0->unk_00.unk_04, ov12_02220248(v0->unk_00.unk_04));
+        v1 = BattleAnimSystem_GetBattlerType(v0->unk_00.unk_04, BattleAnimSystem_GetDefender(v0->unk_00.unk_04));
 
         if ((v1 == 3) || (v1 == 4)) {
             ManagedSprite_SetPriority(v0->unk_1C.unk_0C, 30);

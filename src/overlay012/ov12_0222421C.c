@@ -64,7 +64,7 @@ static void ov12_02224260(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1, V
 
     v1 = ov12_02220250(v0);
     v2 = ParticleSystem_GetCameraProjection(v1);
-    v4 = ov12_02220248(v0);
+    v4 = BattleAnimSystem_GetDefender(v0);
     v5 = ov12_0223525C(v0, v4);
 
     if (v5 == 0x3) {
@@ -89,7 +89,7 @@ static void ov12_022242A0(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1, V
     v0 = param1->unk_00;
     v1 = ov12_02220250(v0);
     v3 = ParticleSystem_GetCameraProjection(v1);
-    v5 = ov12_02220240(v0);
+    v5 = BattleAnimSystem_GetAttacker(v0);
     v6 = ov12_0223525C(v0, v5);
 
     if (v6 == 0x3) {
@@ -682,24 +682,24 @@ void ov12_02224F14(SPLEmitter *param0)
         switch (v1->unk_0C[1]) {
         case 0:
         default:
-            v1->unk_24 = ov12_02220240(v1->unk_00);
-            v1->unk_28 = ov12_02220248(v1->unk_00);
+            v1->unk_24 = BattleAnimSystem_GetAttacker(v1->unk_00);
+            v1->unk_28 = BattleAnimSystem_GetDefender(v1->unk_00);
             break;
         case 1:
-            v1->unk_24 = ov12_02220248(v1->unk_00);
-            v1->unk_28 = ov12_02220240(v1->unk_00);
+            v1->unk_24 = BattleAnimSystem_GetDefender(v1->unk_00);
+            v1->unk_28 = BattleAnimSystem_GetAttacker(v1->unk_00);
             break;
         case 2:
-            v1->unk_24 = ov12_02220240(v1->unk_00);
-            v1->unk_28 = ov12_02220248(v1->unk_00);
+            v1->unk_24 = BattleAnimSystem_GetAttacker(v1->unk_00);
+            v1->unk_28 = BattleAnimSystem_GetDefender(v1->unk_00);
             break;
         case 3:
-            v1->unk_24 = ov12_02220248(v1->unk_00);
-            v1->unk_28 = ov12_02220240(v1->unk_00);
+            v1->unk_24 = BattleAnimSystem_GetDefender(v1->unk_00);
+            v1->unk_28 = BattleAnimSystem_GetAttacker(v1->unk_00);
             break;
         case 4:
-            v1->unk_24 = ov12_02220240(v1->unk_00);
-            v1->unk_28 = ov12_02220248(v1->unk_00);
+            v1->unk_24 = BattleAnimSystem_GetAttacker(v1->unk_00);
+            v1->unk_28 = BattleAnimSystem_GetDefender(v1->unk_00);
             break;
         }
     }

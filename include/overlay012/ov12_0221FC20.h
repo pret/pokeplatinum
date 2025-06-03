@@ -11,6 +11,7 @@
 #include "overlay012/struct_ov12_02223764.h"
 #include "overlay012/struct_ov12_022380DC.h"
 
+#include "constants/battle.h"
 #include "bg_window.h"
 #include "palette.h"
 #include "particle_system.h"
@@ -45,22 +46,22 @@ typedef struct BattleAnimContext {
     u32 fieldConditions;
     u16 unk_10;
     u16 unk_12;
-    u16 unk_14;
-    u16 unk_16;
+    u16 attacker;
+    u16 defender;
     int currentParticleSystem;
     ParticleSystem *particleSystems[MAX_PARTICLE_SYSTEMS];
     SPLEmitter *emitters[MAX_EMITTERS];
     SpriteSystem *unk_AC;
     UnkStruct_ov16_0223E0C8 *unk_B0[4];
-    u8 unk_C0[4];
-    PokemonSprite *unk_C4[4];
+    u8 battlerTypes[MAX_BATTLERS];
+    PokemonSprite *battlerSprites[MAX_BATTLERS];
     u32 battleType;
-    u16 unk_D8[4];
-    u8 unk_E0[4];
-    u8 unk_E4[4];
-    u8 unk_E8[4];
-    u32 unk_EC[4];
-    u32 unk_FC[4];
+    u16 battlerSpecies[MAX_BATTLERS];
+    u8 battlerGenders[MAX_BATTLERS];
+    u8 battlerShinyFlags[MAX_BATTLERS];
+    u8 battlerForms[MAX_BATTLERS];
+    u32 battlerPersonalities[MAX_BATTLERS];
+    u32 battlerMoveEffects[MAX_BATTLERS];
     ChatotCry *unk_10C;
     u8 *unk_110;
     u16 *unk_114;
@@ -181,8 +182,8 @@ SysTask *BattleAnimSystem_StartAnimTask(BattleAnimSystem *param0, SysTaskFunc pa
 SysTask *BattleAnimSystem_StartSoundTask(BattleAnimSystem *param0, SysTaskFunc param1, void *param2, u32 param3);
 void BattleAnimSystem_EndAnimTask(BattleAnimSystem *param0, SysTask *param1);
 void BattleAnimSystem_EndSoundTask(BattleAnimSystem *param0, SysTask *param1);
-u16 ov12_02220240(BattleAnimSystem *param0);
-u16 ov12_02220248(BattleAnimSystem *param0);
+u16 BattleAnimSystem_GetAttacker(BattleAnimSystem *param0);
+u16 BattleAnimSystem_GetDefender(BattleAnimSystem *param0);
 ParticleSystem *ov12_02220250(BattleAnimSystem *param0);
 ParticleSystem *BattleAnimSystem_GetParticleSystem(BattleAnimSystem *param0, int param1);
 SPLEmitter *BattleAnimSystem_GetEmitter(BattleAnimSystem *param0, int param1);
@@ -207,18 +208,18 @@ s8 ov12_0222317C(BattleAnimSystem *param0, s8 param1);
 s8 ov12_02223234(s8 param0, s8 param1, s8 param2);
 BOOL ov12_0222325C(BattleAnimSystem *param0, int param1[], int param2);
 SpriteTemplate ov12_0222329C(BattleAnimSystem *param0);
-int ov12_022232B8(BattleAnimSystem *param0, int param1);
-int ov12_022232C4(BattleAnimSystem *param0, int param1);
-int ov12_022232D0(BattleAnimSystem *param0, int param1);
-int ov12_022232E0(BattleAnimSystem *param0, int param1);
-int ov12_022232EC(BattleAnimSystem *param0, int param1);
-PokemonSprite *ov12_022232FC(BattleAnimSystem *param0, int param1);
+int BattleAnimSystem_GetBattlerType(BattleAnimSystem *param0, int param1);
+int BattleAnimSystem_GetBattlerGender(BattleAnimSystem *param0, int param1);
+int BattleAnimSystem_GetBattlerSpecies(BattleAnimSystem *param0, int param1);
+int BattleAnimSystem_GetBattlerForm(BattleAnimSystem *param0, int param1);
+int BattleAnimSystem_GetBattlerPersonality(BattleAnimSystem *param0, int param1);
+PokemonSprite *BattleAnimSystem_GetBattlerSprite(BattleAnimSystem *param0, int param1);
 PaletteData *ov12_0222332C(BattleAnimSystem *param0);
 int ov12_02223334(BattleAnimSystem *param0, int param1);
 int ov12_02223344(BattleAnimSystem *param0, int param1);
 int ov12_02223354(BattleAnimSystem *param0, int param1);
-BOOL ov12_02223364(BattleAnimSystem *param0);
-BOOL ov12_0222337C(BattleAnimSystem *param0, int param1);
+BOOL BattleAnimSystem_IsDoubleBattle(BattleAnimSystem *param0);
+BOOL BattleAnimSystem_IsBattlerSemiInvulnerable(BattleAnimSystem *param0, int param1);
 int ov12_0222339C(BattleAnimSystem *param0);
 int ov12_022233B0(BattleAnimSystem *param0, int param1);
 int ov12_022233EC(BattleAnimSystem *param0, int param1);
