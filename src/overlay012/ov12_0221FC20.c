@@ -168,7 +168,7 @@ static void ov12_02220FFC(BattleAnimSystem *param0);
 static void ov12_02221024(BattleAnimSystem *param0);
 static void ov12_022230D4(BattleAnimSystem *param0);
 static void ov12_02223134(BattleAnimSystem *param0);
-static void ov12_02220ED0(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_CallFunc(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_CreateEmitter(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_CreateEmitterEx(BattleAnimSystem *param0);
 static void ov12_02220B8C(BattleAnimSystem *param0);
@@ -575,10 +575,9 @@ ParticleSystem *BattleAnimSystem_GetParticleSystem(BattleAnimSystem *system, int
     return system->context->particleSystems[index];
 }
 
-SPLEmitter *ov12_0222026C(BattleAnimSystem *param0, int param1)
+SPLEmitter *BattleAnimSystem_GetEmitter(BattleAnimSystem *system, int index)
 {
-    SPLEmitter *v0 = param0->context->emitters[param1];
-    return v0;
+    return system->context->emitters[index];
 }
 
 BgConfig *BattleAnimSystem_GetBgConfig(BattleAnimSystem *system)
@@ -586,10 +585,10 @@ BgConfig *BattleAnimSystem_GetBgConfig(BattleAnimSystem *system)
     return system->bgConfig;
 }
 
-s32 ov12_02220280(BattleAnimSystem *param0, int param1)
+s32 BattleAnimSystem_GetScriptVar(BattleAnimSystem *system, int id)
 {
-    GF_ASSERT(param1 < (8 + 2));
-    return param0->scriptVars[param1];
+    GF_ASSERT(id < BATTLE_ANIM_SCRIPT_VAR_COUNT);
+    return system->scriptVars[id];
 }
 
 ManagedSprite *ov12_02220298(BattleAnimSystem *param0, int param1)
@@ -812,7 +811,7 @@ static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
     ov12_02222948,
     ov12_0222294C,
     ov12_02222968,
-    ov12_02220ED0,
+    BattleAnimScriptCmd_CallFunc,
     BattleAnimScriptCmd_CreateEmitter,
     BattleAnimScriptCmd_CreateEmitterEx,
     ov12_02220B8C,
@@ -1493,33 +1492,30 @@ static void ov12_02220EA8(BattleAnimSystem *param0)
     }
 }
 
-static void ov12_02220ED0(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_CallFunc(BattleAnimSystem *system)
 {
-    int v0;
-    u32 v1;
-    u32 v2;
-    BattleAnimScriptCmd v3;
+    int i;
 
-    param0->scriptPtr += 1;
+    BattleAnimScript_Next(system);
 
-    v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    u32 funcID = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v3 = ov12_02226998(v1);
+    BattleAnimScriptFunc func = BattleAnimScript_GetFunc(funcID);
 
-    v2 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    u32 argCount = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    for (v0 = 0; v0 < v2; v0++) {
-        param0->scriptVars[v0] = BattleAnimScript_ReadWord(param0->scriptPtr);
-        param0->scriptPtr += 1;
+    for (i = 0; i < argCount; i++) {
+        system->scriptVars[i] = BattleAnimScript_ReadWord(system->scriptPtr);
+        BattleAnimScript_Next(system);
     }
 
-    for (; v0 < (8 + 2); v0++) {
-        param0->scriptVars[v0] = 0;
+    for (; i < BATTLE_ANIM_SCRIPT_VAR_COUNT; i++) {
+        system->scriptVars[i] = 0;
     }
 
-    v3(param0);
+    func(system);
 }
 
 static void ov12_02220F30(BattleAnimSystem *param0)
@@ -2400,14 +2396,14 @@ static UnkStruct_ov12_02221BBC *ov12_02221BBC(BattleAnimSystem *param0)
     v0->unk_0B = 31 - 2;
     v0->unk_0C = 0 + 2;
 
-    if (ov12_02220280(param0, 5) == 1) {
+    if (BattleAnimSystem_GetScriptVar(param0, 5) == 1) {
         v0->unk_09 = 0;
         v0->unk_0A = 31;
         v0->unk_0B = 15;
         v0->unk_0C = 7;
     }
 
-    if (ov12_02220280(param0, 5) == 2) {
+    if (BattleAnimSystem_GetScriptVar(param0, 5) == 2) {
         v0->unk_09 = 7;
         v0->unk_0A = 15;
         v0->unk_0B = 31 - 2;
@@ -2923,7 +2919,7 @@ static void ov12_02222724(BattleAnimSystem *param0)
 
     v0 = ov12_02221BBC(param0);
 
-    v0->unk_0D = ov12_02220280(param0, 4);
+    v0->unk_0D = BattleAnimSystem_GetScriptVar(param0, 4);
     param0->scriptPtr += 1;
 
     v0->unk_10 = BattleAnimScript_ReadWord(param0->scriptPtr);
@@ -2976,7 +2972,7 @@ static void ov12_022227CC(BattleAnimSystem *param0)
 
     v0 = ov12_02221BBC(param0);
 
-    v0->unk_0D = ov12_02220280(param0, 4);
+    v0->unk_0D = BattleAnimSystem_GetScriptVar(param0, 4);
     param0->scriptPtr += 1;
 
     v0->unk_10 = BattleAnimScript_ReadWord(param0->scriptPtr);

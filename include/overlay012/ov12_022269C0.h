@@ -5,10 +5,10 @@
 
 #include "sprite_system.h"
 
-void ov12_022269C0(BattleAnimSystem *param0);
-void ov12_022269EC(BattleAnimSystem *param0);
-void ov12_02226A3C(BattleAnimSystem *param0);
-void ov12_02226A88(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_NoOp(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_AnimExample(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_SoundExample(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_GenericExample(BattleAnimSystem *param0);
 void ov12_02226B1C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
 
 #endif // POKEPLATINUM_OV12_022269C0_H

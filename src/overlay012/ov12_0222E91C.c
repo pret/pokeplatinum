@@ -557,7 +557,7 @@ void ov12_0222F2F8(BattleAnimSystem *param0)
 
     {
         int v5;
-        ov12_02235998(param0, ov12_02220280(param0, 0), &(v1->unk_1C), &v5);
+        ov12_02235998(param0, BattleAnimSystem_GetScriptVar(param0, 0), &(v1->unk_1C), &v5);
     }
 
     v0 = PokemonSprite_GetAttribute(v1->unk_1C.unk_08, MON_SPRITE_Y_CENTER) - v1->unk_5C[0].unk_02;

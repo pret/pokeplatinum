@@ -290,7 +290,7 @@ static void ov12_0222AC70(SysTask *param0, void *param1)
     case 0:
         v1->unk_04++;
 
-        for (v0 = 0; v0 < ov12_02220280(v1->unk_08, 0); v0++) {
+        for (v0 = 0; v0 < BattleAnimSystem_GetScriptVar(v1->unk_08, 0); v0++) {
             {
                 s16 v2, v3;
                 ManagedSprite_GetPositionXY(v1->unk_14[v0], &v2, &v3);
@@ -314,7 +314,7 @@ static void ov12_0222AC70(SysTask *param0, void *param1)
         }
 
         if (v1->unk_04 >= 45) {
-            for (v0 = 0; v0 < ov12_02220280(v1->unk_08, 0); v0++) {
+            for (v0 = 0; v0 < BattleAnimSystem_GetScriptVar(v1->unk_08, 0); v0++) {
                 ManagedSprite_SetDrawFlag(v1->unk_14[v0], 1);
             }
 
@@ -328,7 +328,7 @@ static void ov12_0222AC70(SysTask *param0, void *param1)
         break;
     case 2:
         if (ov12_02225F6C(&v1->unk_20) == 1) {
-            for (v0 = 0; v0 < ov12_02220280(v1->unk_08, 0); v0++) {
+            for (v0 = 0; v0 < BattleAnimSystem_GetScriptVar(v1->unk_08, 0); v0++) {
                 f32 v4, v5;
 
                 ov12_02225FA4(&v1->unk_20, &v4, &v5);
@@ -356,7 +356,7 @@ static void ov12_0222AC70(SysTask *param0, void *param1)
         G2_ChangeBlendAlpha(v1->unk_05, v1->unk_06);
         break;
     default:
-        for (v0 = 0; v0 < ov12_02220280(v1->unk_08, 0); v0++) {
+        for (v0 = 0; v0 < BattleAnimSystem_GetScriptVar(v1->unk_08, 0); v0++) {
             Sprite_DeleteAndFreeResources(v1->unk_14[v0]);
         }
 
@@ -365,7 +365,7 @@ static void ov12_0222AC70(SysTask *param0, void *param1)
         return;
     }
 
-    for (v0 = 0; v0 < ov12_02220280(v1->unk_08, 0); v0++) {
+    for (v0 = 0; v0 < BattleAnimSystem_GetScriptVar(v1->unk_08, 0); v0++) {
         Sprite_TickFrame(v1->unk_14[v0]->sprite);
     }
 
@@ -408,7 +408,7 @@ void ov12_0222AE68(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
             ov12_02235350(1, ov12_0221FDD4(param0), &v3);
         }
 
-        for (v0 = 1; v0 < ov12_02220280(v1->unk_08, 0); v0++) {
+        for (v0 = 1; v0 < BattleAnimSystem_GetScriptVar(v1->unk_08, 0); v0++) {
             v1->unk_14[v0] = SpriteSystem_NewSprite(v1->unk_0C, v1->unk_10, &v2);
             ManagedSprite_SetPositionXY(v1->unk_14[v0], v3.unk_00, v3.unk_02);
         }
@@ -416,7 +416,7 @@ void ov12_0222AE68(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
         ManagedSprite_SetPositionXY(v1->unk_14[0], v3.unk_00, v3.unk_02);
     }
 
-    for (v0 = 0; v0 < ov12_02220280(v1->unk_08, 0); v0++) {
+    for (v0 = 0; v0 < BattleAnimSystem_GetScriptVar(v1->unk_08, 0); v0++) {
         v1->unk_01[v0] = 0;
         ManagedSprite_SetAffineOverwriteMode(v1->unk_14[v0], AFFINE_OVERWRITE_MODE_DOUBLE);
         ManagedSprite_OffsetPositionXY(v1->unk_14[v0], 0, 32 - (v0 * 4));
@@ -463,7 +463,7 @@ static void ov12_0222AFA0(SysTask *param0, void *param1)
             v0->unk_08++;
 
             if (v0->unk_08 >= 3) {
-                ov12_02225E68(&v0->unk_14, ov12_02220280(v0->unk_0C, 0), 100, ov12_02220280(v0->unk_0C, 1), ov12_02220280(v0->unk_0C, 3));
+                ov12_02225E68(&v0->unk_14, BattleAnimSystem_GetScriptVar(v0->unk_0C, 0), 100, BattleAnimSystem_GetScriptVar(v0->unk_0C, 1), BattleAnimSystem_GetScriptVar(v0->unk_0C, 3));
                 v0->unk_00++;
             } else {
                 v0->unk_00 = 1;
@@ -515,7 +515,7 @@ void ov12_0222B194(BattleAnimSystem *param0)
     v0->unk_02 = PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_Y_CENTER);
     v0->unk_04 = ov12_02223354(v0->unk_0C, ov12_02220240(v0->unk_0C));
 
-    ov12_02225E68(&v0->unk_14, 100, 100, ov12_02220280(param0, 0), ov12_02220280(param0, 2));
+    ov12_02225E68(&v0->unk_14, 100, 100, BattleAnimSystem_GetScriptVar(param0, 0), BattleAnimSystem_GetScriptVar(param0, 2));
     ov12_02226108(&v0->unk_38, 2, 0, 0, 10);
     BattleAnimSystem_StartAnimTask(v0->unk_0C, ov12_0222AFA0, v0);
 }
@@ -1424,7 +1424,7 @@ void ov12_0222C6D4(BattleAnimSystem *param0)
     v0->unk_08 = BattleAnimSystem_GetBgConfig(v0->unk_0C);
     v0->unk_18 = ov12_022202C0(v0->unk_0C, 0);
 
-    if (ov12_02220280(param0, 0) == 0) {
+    if (BattleAnimSystem_GetScriptVar(param0, 0) == 0) {
         v1 = ov12_02220248(v0->unk_0C);
     } else {
         v1 = ov12_02220240(v0->unk_0C);
@@ -1539,13 +1539,13 @@ void ov12_0222C8F8(BattleAnimSystem *param0)
 
     PokemonSprite_SetAttribute(v0->unk_28[0], MON_SPRITE_Y_PIVOT, 100);
 
-    v1 = ov12_02220280(param0, 0);
+    v1 = BattleAnimSystem_GetScriptVar(param0, 0);
 
-    v0->unk_1C.unk_00 = ov12_02220280(param0, 1);
-    v0->unk_1C.unk_02 = ov12_02220280(param0, 2);
-    v0->unk_1C.unk_04 = ov12_02220280(param0, 3);
-    v0->unk_1C.unk_06 = ov12_02220280(param0, 4);
-    v0->unk_1C.unk_08 = ov12_02220280(param0, 5);
+    v0->unk_1C.unk_00 = BattleAnimSystem_GetScriptVar(param0, 1);
+    v0->unk_1C.unk_02 = BattleAnimSystem_GetScriptVar(param0, 2);
+    v0->unk_1C.unk_04 = BattleAnimSystem_GetScriptVar(param0, 3);
+    v0->unk_1C.unk_06 = BattleAnimSystem_GetScriptVar(param0, 4);
+    v0->unk_1C.unk_08 = BattleAnimSystem_GetScriptVar(param0, 5);
 
     if (v1 == 0) {
         BattleAnimSystem_StartAnimTask(v0->unk_00.unk_04, ov12_0222C7E0, v0);
@@ -1710,10 +1710,10 @@ void ov12_0222CC54(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     UnkStruct_ov12_0222CBFC *v2 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222CBFC));
     ov12_0223595C(param0, &v2->unk_10);
 
-    v2->unk_0C.unk_00 = ov12_02220280(param0, 0);
-    v2->unk_0C.unk_02 = ov12_02220280(param0, 1);
-    v2->unk_04 = ov12_02220280(param0, 2);
-    v2->unk_08 = ov12_02220280(param0, 3);
+    v2->unk_0C.unk_00 = BattleAnimSystem_GetScriptVar(param0, 0);
+    v2->unk_0C.unk_02 = BattleAnimSystem_GetScriptVar(param0, 1);
+    v2->unk_04 = BattleAnimSystem_GetScriptVar(param0, 2);
+    v2->unk_08 = BattleAnimSystem_GetScriptVar(param0, 3);
 
     v1 = ov12_02225964(param0, ov12_02220240(param0));
     v2->unk_38 = param3;
@@ -1833,7 +1833,7 @@ void ov12_0222CFA0(BattleAnimSystem *param0)
 
     ov12_02235780(v0->unk_18.unk_04, 0xffffffff, 0xffffffff);
 
-    if (ov12_02220280(param0, 0) == 0) {
+    if (BattleAnimSystem_GetScriptVar(param0, 0) == 0) {
         v0->unk_0C = 0;
         v0->unk_0D = 31;
         v0->unk_0E = 0;
@@ -2055,7 +2055,7 @@ static void ov12_0222D128(SysTask *param0, void *param1)
         }
     } break;
     default:
-        for (v0 = 0; v0 < ov12_02220280(v1->unk_10, 0); v0++) {
+        for (v0 = 0; v0 < BattleAnimSystem_GetScriptVar(v1->unk_10, 0); v0++) {
             Sprite_DeleteAndFreeResources(v1->unk_30[v0].unk_00);
         }
 
@@ -2067,7 +2067,7 @@ static void ov12_0222D128(SysTask *param0, void *param1)
     {
         s16 v18, v19;
 
-        for (v0 = 0; v0 < ov12_02220280(v1->unk_10, 0); v0++) {
+        for (v0 = 0; v0 < BattleAnimSystem_GetScriptVar(v1->unk_10, 0); v0++) {
             ManagedSprite_GetPositionXY(v1->unk_30[v0].unk_00, &v18, &v19);
 
             if (v19 < 80) {
@@ -2086,7 +2086,7 @@ static void ov12_0222D128(SysTask *param0, void *param1)
         return;
     }
 
-    for (v0 = 0; v0 < ov12_02220280(v1->unk_10, 0); v0++) {
+    for (v0 = 0; v0 < BattleAnimSystem_GetScriptVar(v1->unk_10, 0); v0++) {
         ManagedSprite_TickFrame(v1->unk_30[v0].unk_00);
     }
 
@@ -2119,12 +2119,12 @@ void ov12_0222D56C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v1->unk_30[0].unk_00 = param3;
 
     {
-        for (v0 = 1; v0 < ov12_02220280(v1->unk_10, 0); v0++) {
+        for (v0 = 1; v0 < BattleAnimSystem_GetScriptVar(v1->unk_10, 0); v0++) {
             v1->unk_30[v0].unk_00 = SpriteSystem_NewSprite(v1->unk_14, v1->unk_18, &v2);
         }
     }
 
-    for (v0 = 0; v0 < ov12_02220280(v1->unk_10, 0); v0++) {
+    for (v0 = 0; v0 < BattleAnimSystem_GetScriptVar(v1->unk_10, 0); v0++) {
         ManagedSprite_SetExplicitOamMode(v1->unk_30[v0].unk_00, GX_OAM_MODE_XLU);
         ManagedSprite_SetExplicitPriority(v1->unk_30[v0].unk_00, ov12_0222339C(v1->unk_10) + 1);
     }

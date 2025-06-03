@@ -18,11 +18,11 @@
 
 void include_unk_ov12_02239E64(void);
 
-static const BattleAnimScriptCmd Unk_ov12_02239EEC[] = {
-    ov12_022269C0,
-    ov12_022269EC,
-    ov12_02226A3C,
-    ov12_02226A88,
+static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
+    BattleAnimScriptFunc_NoOp,
+    BattleAnimScriptFunc_AnimExample,
+    BattleAnimScriptFunc_SoundExample,
+    BattleAnimScriptFunc_GenericExample,
     ov12_02227408,
     ov12_0222B194,
     ov12_0222B45C,
@@ -150,16 +150,13 @@ void include_unk_ov12_02239E64()
     Unk_ov12_02239E64[0];
 }
 
-BattleAnimScriptCmd ov12_02226998(u32 param0)
+BattleAnimScriptFunc BattleAnimScript_GetFunc(enum BattleAnimScriptFuncID id)
 {
-    BattleAnimScriptCmd v0;
-
-    if (param0 >= (NELEMS(Unk_ov12_02239EEC))) {
+    if (id >= (NELEMS(sBattleAnimScriptFuncs))) {
         return NULL;
     }
 
-    v0 = Unk_ov12_02239EEC[param0];
-    return v0;
+    return sBattleAnimScriptFuncs[id];
 }
 
 UnkFuncPtr_ov12_02239E68 ov12_022269AC(u32 param0)
