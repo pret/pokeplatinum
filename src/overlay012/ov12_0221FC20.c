@@ -124,7 +124,7 @@ static void ov12_022206A4(BattleAnimSystem *param0);
 static void ov12_022206E8(BattleAnimSystem *param0);
 static void ov12_02220F30(BattleAnimSystem *param0);
 static void ov12_02221064(BattleAnimSystem *param0);
-static void ov12_02221098(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_Jump(BattleAnimSystem *param0);
 static void ov12_02222724(BattleAnimSystem *param0);
 static void ov12_02222774(BattleAnimSystem *param0);
 static void ov12_022227CC(BattleAnimSystem *param0);
@@ -163,7 +163,7 @@ static void ov12_02222948(BattleAnimSystem *param0);
 static void ov12_0222294C(BattleAnimSystem *param0);
 static void ov12_02222968(BattleAnimSystem *param0);
 static void ov12_02220F5C(BattleAnimSystem *param0);
-static void ov12_02220FA0(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_JumpIfWeather(BattleAnimSystem *param0);
 static void ov12_02220FFC(BattleAnimSystem *param0);
 static void ov12_02221024(BattleAnimSystem *param0);
 static void ov12_022230D4(BattleAnimSystem *param0);
@@ -210,7 +210,8 @@ static BOOL ov12_0222240C(UnkStruct_ov12_02221BBC *param0);
 static BOOL ov12_022224E4(UnkStruct_ov12_02221BBC *param0);
 
 static inline void BattleAnimScript_Next(BattleAnimSystem *system);
-static inline void BattleAnimScript_Jump(BattleAnimSystem *system, u32 *dst);
+static inline void BattleAnimScript_JumpTo(BattleAnimSystem *system, u32 *dst);
+static inline void BattleAnimScript_JumpBy(BattleAnimSystem *system, u32 offset);
 static inline int BattleAnimScript_ReadWord(u32 *param0);
 
 static const s16 Unk_ov12_02238660[] = {
@@ -397,7 +398,7 @@ BOOL ov12_0221FE30(BattleAnimSystem *system, UnkStruct_ov16_02265BBC *param1, u1
     system->context->unk_04 = param1->unk_04;
     system->context->unk_08 = param1->unk_08;
     system->context->unk_0A = param1->unk_0C;
-    system->context->unk_0C = param1->unk_10;
+    system->context->fieldConditions = param1->fieldConditions;
     system->context->unk_10 = param1->unk_0A;
     system->context->unk_12 = param1->unk_54;
     system->context->unk_14 = param1->unk_14;
@@ -781,7 +782,7 @@ static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
     BattleAnimScriptCmd_SetVar,
     ov12_02220F30,
     ov12_02221064,
-    ov12_02221098,
+    BattleAnimScriptCmd_Jump,
     ov12_02222724,
     ov12_02222774,
     ov12_022227CC,
@@ -836,7 +837,7 @@ static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
     BattleAnimScriptCmd_ResetVar,
     ov12_022206A4,
     ov12_022206E8,
-    ov12_02220FA0,
+    BattleAnimScriptCmd_JumpIfWeather,
     ov12_02220FFC,
     ov12_02221024,
     ov12_02222CE8,
@@ -863,9 +864,14 @@ static inline void BattleAnimScript_Next(BattleAnimSystem *system)
     system->scriptPtr += 1;
 }
 
-static inline void BattleAnimScript_Jump(BattleAnimSystem *system, u32 *dst)
+static inline void BattleAnimScript_JumpTo(BattleAnimSystem *system, u32 *dst)
 {
     system->scriptPtr = dst;
+}
+
+static inline void BattleAnimScript_JumpBy(BattleAnimSystem *system, u32 offset)
+{
+    system->scriptPtr += offset;
 }
 
 static inline int BattleAnimScript_ReadWord(u32 *scriptPtr)
@@ -946,7 +952,7 @@ int ov12_02220540(BattleAnimSystem *param0, int param1)
         v0 = param0->context->unk_0A;
         break;
     case 3:
-        v0 = param0->context->unk_0C;
+        v0 = param0->context->fieldConditions;
         break;
     case 4:
         v0 = param0->context->unk_10;
@@ -1437,7 +1443,7 @@ static void BattleAnimScriptCmd_Call(BattleAnimSystem *system)
         }
 
         system->callStack[i] = system->scriptPtr + 1;
-        system->scriptPtr += (u32)BattleAnimScript_ReadWord(system->scriptPtr);
+        BattleAnimScript_JumpBy(system, (u32)BattleAnimScript_ReadWord(system->scriptPtr));
 
         return;
     }
@@ -1452,7 +1458,7 @@ static void BattleAnimScriptCmd_Return(BattleAnimSystem *system)
             continue;
         }
 
-        BattleAnimScript_Jump(system, system->callStack[i]);
+        BattleAnimScript_JumpTo(system, system->callStack[i]);
         system->callStack[i] = NULL;
 
         return;
@@ -1470,7 +1476,7 @@ static void BattleAnimScriptCmd_JumpIfEqual(BattleAnimSystem *system)
     BattleAnimScript_Next(system);
 
     if (value == system->scriptVars[id]) {
-        BattleAnimScript_Jump(system, (u32 *)BattleAnimScript_ReadWord(system->scriptPtr));
+        BattleAnimScript_JumpTo(system, (u32 *)BattleAnimScript_ReadWord(system->scriptPtr));
     } else {
         BattleAnimScript_Next(system);
     }
@@ -1552,35 +1558,31 @@ static void ov12_02220F5C(BattleAnimSystem *param0)
     param0->scriptPtr += (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
 }
 
-static void ov12_02220FA0(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_JumpIfWeather(BattleAnimSystem *system)
 {
-    int v0;
-    int v1[] = {
-        0x3,
-        0xC,
-        0x30,
-        0xC0,
+    int weatherConditions[] = {
+        FIELD_CONDITION_RAINING,
+        FIELD_CONDITION_SANDSTORM,
+        FIELD_CONDITION_SUNNY,
+        FIELD_CONDITION_HAILING,
     };
 
-    param0->scriptPtr += 1;
-    v0 = param0->context->unk_0C;
+    BattleAnimScript_Next(system);
+    int fieldConditions = system->context->fieldConditions;
 
-    if (v0 != 0) {
-        param0->scriptPtr += 1;
-        {
-            int v2;
+    if (fieldConditions != 0) {
+        BattleAnimScript_Next(system);
 
-            for (v2 = 0; v2 < NELEMS(v1); v2++) {
-                if (v0 & v1[v2]) {
-                    break;
-                } else {
-                    param0->scriptPtr += 1;
-                }
+        for (int i = 0; i < NELEMS(weatherConditions); i++) {
+            if (fieldConditions & weatherConditions[i]) {
+                break;
+            } else {
+                BattleAnimScript_Next(system);
             }
         }
     }
 
-    param0->scriptPtr += (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
+    BattleAnimScript_JumpBy(system, (u32)BattleAnimScript_ReadWord(system->scriptPtr));
 }
 
 static void ov12_02220FFC(BattleAnimSystem *param0)
@@ -1627,10 +1629,10 @@ static void ov12_02221064(BattleAnimSystem *param0)
     }
 }
 
-static void ov12_02221098(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_Jump(BattleAnimSystem *system)
 {
-    param0->scriptPtr += 1;
-    param0->scriptPtr += (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
+    BattleAnimScript_Next(system);
+    BattleAnimScript_JumpBy(system, (u32)BattleAnimScript_ReadWord(system->scriptPtr));
 }
 
 static int ov12_022210A8(BattleAnimSystem *param0, int param1)

@@ -35,14 +35,14 @@ enum BattleAnimSystemArc {
     BATTLE_ANIM_SYSTEM_ARC_COUNT,
 };
 
-typedef struct UnkStruct_ov12_02223178_t {
+typedef struct BattleAnimContext {
     u8 unk_00;
     u8 unk_01;
     u16 unk_02;
     s32 unk_04;
     u16 unk_08;
     u16 unk_0A;
-    u32 unk_0C;
+    u32 fieldConditions;
     u16 unk_10;
     u16 unk_12;
     u16 unk_14;

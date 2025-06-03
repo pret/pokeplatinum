@@ -12,7 +12,7 @@ typedef struct {
     u16 unk_0E_0 : 1;
     u16 unk_0E_1 : 1;
     u16 : 14;
-    u32 unk_10;
+    u32 fieldConditions;
     u16 unk_14;
     u16 unk_16;
     u16 unk_18[4];
