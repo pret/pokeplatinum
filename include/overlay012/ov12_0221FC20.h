@@ -19,7 +19,8 @@
 #include "sprite_system.h"
 #include "sys_task_manager.h"
 
-#define BATTLE_ANIM_SCRIPT_VAR_COUNT 10
+#define BATTLE_ANIM_SCRIPT_VAR_COUNT        10
+#define BATTLE_ANIM_SCRIPT_MAX_NESTED_LOOPS 3
 
 
 enum BattleAnimSystemArc {
@@ -46,7 +47,7 @@ typedef struct UnkStruct_ov12_02223178_t {
     u16 unk_14;
     u16 unk_16;
     int unk_18;
-    ParticleSystem *unk_1C[16];
+    ParticleSystem *particleSystems[16];
     SPLEmitter *unk_5C[20];
     SpriteSystem *unk_AC;
     UnkStruct_ov16_0223E0C8 *unk_B0[4];
@@ -63,14 +64,14 @@ typedef struct UnkStruct_ov12_02223178_t {
     u8 *unk_110;
     u16 *unk_114;
     int unk_118;
-} UnkStruct_ov12_02223178;
+} BattleAnimContext;
 
-typedef struct {
-    u32 *unk_00;
-    u8 unk_04;
-    u8 unk_05;
-    BOOL unk_08;
-} UnkStruct_ov12_0221FCDC_sub1;
+typedef struct BattleAnimScriptLoop {
+    u32 *startPos;
+    u8 curIteration;
+    u8 maxIterations;
+    BOOL isActive;
+} BattleAnimScriptLoop;
 
 typedef struct {
     BattleAnimSystem *unk_00;
@@ -131,7 +132,7 @@ typedef struct BattleAnimSystem {
     void *unk_14;
     u32 *scriptPtr;
     u32 *unk_1C[3];
-    UnkStruct_ov12_0221FCDC_sub1 unk_28[3];
+    BattleAnimScriptLoop loopStack[BATTLE_ANIM_SCRIPT_MAX_NESTED_LOOPS];
     UnkStruct_ov12_02221810 unk_48[2];
     u8 unk_68[16];
     u8 unk_78[16];
@@ -141,7 +142,7 @@ typedef struct BattleAnimSystem {
     u16 activeSoundTasks;
     s32 scriptVars[BATTLE_ANIM_SCRIPT_VAR_COUNT];
     void (*executeAnimScriptFunc)(BattleAnimSystem *);
-    UnkStruct_ov12_02223178 *unk_BC;
+    BattleAnimContext *context;
     BgConfig *bgConfig;
     PaletteData *unk_C4;
     SpriteManager *unk_C8[4];
@@ -170,7 +171,7 @@ BOOL ov12_0221FDD4(BattleAnimSystem *param0);
 enum HeapId BattleAnimSystem_GetHeapID(BattleAnimSystem *param0);
 BOOL BattleAnimSystem_Delete(BattleAnimSystem *param0);
 BOOL ov12_0221FE30(BattleAnimSystem *param0, UnkStruct_ov16_02265BBC *param1, u16 param2, UnkStruct_ov16_02264408 *param3);
-BOOL ov12_0222016C(BattleAnimSystem *param0);
+BOOL BattleAnimSystem_ExecuteScript(BattleAnimSystem *param0);
 BOOL ov12_02220188(BattleAnimSystem *param0);
 BOOL ov12_02220198(BattleAnimSystem *param0);
 BOOL BattleAnimSystem_IsActive(BattleAnimSystem *param0);
@@ -182,7 +183,7 @@ void BattleAnimSystem_EndSoundTask(BattleAnimSystem *param0, SysTask *param1);
 u16 ov12_02220240(BattleAnimSystem *param0);
 u16 ov12_02220248(BattleAnimSystem *param0);
 ParticleSystem *ov12_02220250(BattleAnimSystem *param0);
-ParticleSystem *ov12_02220260(BattleAnimSystem *param0, int param1);
+ParticleSystem *BattleAnimSystem_GetParticleSystem(BattleAnimSystem *param0, int param1);
 SPLEmitter *ov12_0222026C(BattleAnimSystem *param0, int param1);
 BgConfig *BattleAnimSystem_GetBgConfig(BattleAnimSystem *param0);
 s32 ov12_02220280(BattleAnimSystem *param0, int param1);
@@ -200,7 +201,7 @@ int ov12_02222354(BattleAnimSystem *param0);
 void ov12_02222590(BattleAnimSystem *param0, int param1);
 void ov12_02222664(BattleAnimSystem *param0, int param1);
 BattleAnimScriptCmd BattleAnimSystem_GetScriptCmd(u32 param0);
-int ov12_02223178(UnkStruct_ov12_02223178 *param0);
+int ov12_02223178(BattleAnimContext *param0);
 s8 ov12_0222317C(BattleAnimSystem *param0, s8 param1);
 s8 ov12_02223234(s8 param0, s8 param1, s8 param2);
 BOOL ov12_0222325C(BattleAnimSystem *param0, int param1[], int param2);

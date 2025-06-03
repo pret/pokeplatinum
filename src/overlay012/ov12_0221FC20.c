@@ -108,8 +108,8 @@ static BOOL ov12_0222040C(UnkStruct_ov12_02220314 *param0);
 static BOOL ov12_0222044C(UnkStruct_ov12_02220314 *param0);
 static void BattleAnimScriptCmd_Delay(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_WaitForAnimTasks(BattleAnimSystem *param0);
-static void ov12_0222070C(BattleAnimSystem *param0);
-static void ov12_0222074C(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_BeginLoop(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_EndLoop(BattleAnimSystem *param0);
 static void ov12_02220798(BattleAnimSystem *param0);
 static void ov12_02222950(BattleAnimSystem *param0);
 static void ov12_02221284(BattleAnimSystem *param0);
@@ -210,7 +210,6 @@ static BOOL ov12_0222240C(UnkStruct_ov12_02221BBC *param0);
 static BOOL ov12_022224E4(UnkStruct_ov12_02221BBC *param0);
 
 static inline void BattleAnimScript_Next(BattleAnimSystem *system);
-static inline void BattleAnimScript_SetupArgs(BattleAnimSystem *system);
 static inline int BattleAnimScript_ReadWord(u32 *param0);
 
 static const s16 Unk_ov12_02238660[] = {
@@ -298,7 +297,7 @@ BattleAnimSystem *BattleAnimSystem_New(enum HeapId heapID)
 
     system->heapID = heapID;
     system->unk_08 = 0;
-    system->unk_BC = Heap_AllocFromHeap(system->heapID, sizeof(UnkStruct_ov12_02223178));
+    system->context = Heap_AllocFromHeap(system->heapID, sizeof(BattleAnimContext));
     system->arcs[BATTLE_ANIM_SYSTEM_ARC_BATT_BG] = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, heapID);
     system->arcs[BATTLE_ANIM_SYSTEM_ARC_BATT_OBJ] = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, heapID);
     system->arcs[BATTLE_ANIM_SYSTEM_ARC_WECHAR] = NARC_ctor(NARC_INDEX_WAZAEFFECT__EFFECTCLACT__WECHAR, heapID);
@@ -306,12 +305,12 @@ BattleAnimSystem *BattleAnimSystem_New(enum HeapId heapID)
     system->arcs[BATTLE_ANIM_SYSTEM_ARC_WECELL] = NARC_ctor(NARC_INDEX_WAZAEFFECT__EFFECTCLACT__WECELL, heapID);
     system->arcs[BATTLE_ANIM_SYSTEM_ARC_WECELLANM] = NARC_ctor(NARC_INDEX_WAZAEFFECT__EFFECTCLACT__WECELLANM, heapID);
 
-    if (system->unk_BC == NULL) {
-        GF_ASSERT(system->unk_BC != NULL);
+    if (system->context == NULL) {
+        GF_ASSERT(system->context != NULL);
         return NULL;
     }
 
-    memset(system->unk_BC, 0, sizeof(UnkStruct_ov12_02223178));
+    memset(system->context, 0, sizeof(BattleAnimContext));
 
     system->isActive = FALSE;
     system->scriptPtr = NULL;
@@ -358,75 +357,75 @@ BOOL BattleAnimSystem_Delete(BattleAnimSystem *system)
         NARC_dtor(system->arcs[i]);
     }
 
-    Heap_Free(system->unk_BC);
+    Heap_Free(system->context);
     Heap_Free(system);
 
     return TRUE;
 }
 
-BOOL ov12_0221FE30(BattleAnimSystem *param0, UnkStruct_ov16_02265BBC *param1, u16 param2, UnkStruct_ov16_02264408 *param3)
+BOOL ov12_0221FE30(BattleAnimSystem *system, UnkStruct_ov16_02265BBC *param1, u16 param2, UnkStruct_ov16_02264408 *param3)
 {
-    int v0;
+    int i;
     int v1 = param2;
 
     ov12_02220474();
 
-    if (BattleAnimSystem_IsActive(param0) == 0) {
-        return 0;
+    if (BattleAnimSystem_IsActive(system) == FALSE) {
+        return FALSE;
     }
 
-    for (v0 = 0; v0 < 16; v0++) {
-        param0->unk_68[v0] = 1;
-        param0->unk_78[v0] = 0;
+    for (i = 0; i < 16; i++) {
+        system->unk_68[i] = 1;
+        system->unk_78[i] = 0;
     }
 
-    for (v0 = 0; v0 < (8 + 2); v0++) {
-        param0->scriptVars[v0] = 0;
+    for (i = 0; i < BATTLE_ANIM_SCRIPT_VAR_COUNT; i++) {
+        system->scriptVars[i] = 0;
     }
 
-    for (v0 = 0; v0 < 3; v0++) {
-        param0->unk_28[v0].unk_08 = 0;
-        param0->unk_28[v0].unk_00 = NULL;
-        param0->unk_28[v0].unk_04 = 0;
-        param0->unk_28[v0].unk_05 = 0;
+    for (i = 0; i < BATTLE_ANIM_SCRIPT_MAX_NESTED_LOOPS; i++) {
+        system->loopStack[i].isActive = FALSE;
+        system->loopStack[i].startPos = NULL;
+        system->loopStack[i].curIteration = 0;
+        system->loopStack[i].maxIterations = 0;
     }
 
-    param0->unk_BC->unk_00 = param1->unk_00;
-    param0->unk_BC->unk_01 = param1->unk_01;
-    param0->unk_BC->unk_02 = param1->unk_02;
-    param0->unk_BC->unk_04 = param1->unk_04;
-    param0->unk_BC->unk_08 = param1->unk_08;
-    param0->unk_BC->unk_0A = param1->unk_0C;
-    param0->unk_BC->unk_0C = param1->unk_10;
-    param0->unk_BC->unk_10 = param1->unk_0A;
-    param0->unk_BC->unk_12 = param1->unk_54;
-    param0->unk_BC->unk_14 = param1->unk_14;
-    param0->unk_BC->unk_16 = param1->unk_16;
-    param0->unk_BC->unk_118 = param1->unk_0E_1;
-    param0->unk_BC->unk_AC = param3->unk_00;
+    system->context->unk_00 = param1->unk_00;
+    system->context->unk_01 = param1->unk_01;
+    system->context->unk_02 = param1->unk_02;
+    system->context->unk_04 = param1->unk_04;
+    system->context->unk_08 = param1->unk_08;
+    system->context->unk_0A = param1->unk_0C;
+    system->context->unk_0C = param1->unk_10;
+    system->context->unk_10 = param1->unk_0A;
+    system->context->unk_12 = param1->unk_54;
+    system->context->unk_14 = param1->unk_14;
+    system->context->unk_16 = param1->unk_16;
+    system->context->unk_118 = param1->unk_0E_1;
+    system->context->unk_AC = param3->unk_00;
 
     GF_ASSERT(param3->unk_00 != NULL);
 
-    param0->bgConfig = param3->unk_04;
-    param0->unk_C4 = param3->unk_08;
-    param0->unk_BC->battleType = param3->battleType;
+    system->bgConfig = param3->unk_04;
+    system->unk_C4 = param3->unk_08;
+    system->context->battleType = param3->battleType;
 
-    for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_BC->unk_B0[v0] = param3->unk_0C[v0];
-        param0->unk_BC->unk_C0[v0] = param3->unk_1C[v0];
-        param0->unk_BC->unk_C4[v0] = param3->unk_20[v0];
-        param0->unk_BC->unk_D8[v0] = param3->unk_34[v0];
-        param0->unk_BC->unk_E0[v0] = param3->unk_3C[v0];
-        param0->unk_BC->unk_E4[v0] = param3->unk_40[v0];
-        param0->unk_BC->unk_E8[v0] = param3->unk_44[v0];
-        param0->unk_BC->unk_EC[v0] = param3->unk_48[v0];
-        param0->unk_BC->unk_FC[v0] = param3->unk_4C[v0];
+    for (i = 0; i < 4; i++) {
+        system->context->unk_B0[i] = param3->unk_0C[i];
+        system->context->unk_C0[i] = param3->unk_1C[i];
+        system->context->unk_C4[i] = param3->unk_20[i];
+        system->context->unk_D8[i] = param3->unk_34[i];
+        system->context->unk_E0[i] = param3->unk_3C[i];
+        system->context->unk_E4[i] = param3->unk_40[i];
+        system->context->unk_E8[i] = param3->unk_44[i];
+        system->context->unk_EC[i] = param3->unk_48[i];
+        system->context->unk_FC[i] = param3->unk_4C[i];
     }
 
-    param0->unk_180 = param3->unk_54;
-    param0->unk_BC->unk_10C = param3->unk_6C;
-    param0->unk_BC->unk_114 = param3->unk_74;
-    param0->unk_BC->unk_110 = param3->unk_70;
+    system->unk_180 = param3->unk_54;
+    system->context->unk_10C = param3->unk_6C;
+    system->context->unk_114 = param3->unk_74;
+    system->context->unk_110 = param3->unk_70;
 
     if (v1 == 290) {
         int v2[] = {
@@ -445,10 +444,10 @@ BOOL ov12_0221FE30(BattleAnimSystem *param0, UnkStruct_ov16_02265BBC *param1, u1
             0x22
         };
 
-        if (param0->unk_BC->unk_12 >= 24) {
+        if (system->context->unk_12 >= 24) {
             v1 = 161;
         } else {
-            v1 = v2[param0->unk_BC->unk_12];
+            v1 = v2[system->context->unk_12];
         }
     }
 
@@ -456,57 +455,57 @@ BOOL ov12_0221FE30(BattleAnimSystem *param0, UnkStruct_ov16_02265BBC *param1, u1
         v1 = 1;
     }
 
-    param0->effectArcID = param3->unk_50;
-    param0->unk_14 = NARC_AllocAndReadWholeMemberByIndexPair(param0->effectArcID, v1, param0->heapID);
+    system->effectArcID = param3->unk_50;
+    system->unk_14 = NARC_AllocAndReadWholeMemberByIndexPair(system->effectArcID, v1, system->heapID);
 
-    if (param0->unk_14 == NULL) {
-        GF_ASSERT(param0->unk_14 != NULL);
-        return 0;
+    if (system->unk_14 == NULL) {
+        GF_ASSERT(system->unk_14 != NULL);
+        return FALSE;
     }
 
-    param0->scriptPtr = (u32 *)param0->unk_14;
-    param0->bgLayerPriorities[BG_LAYER_MAIN_0] = Bg_GetPriority(param0->bgConfig, BG_LAYER_MAIN_0);
-    param0->bgLayerPriorities[BG_LAYER_MAIN_1] = Bg_GetPriority(param0->bgConfig, BG_LAYER_MAIN_1);
-    param0->bgLayerPriorities[BG_LAYER_MAIN_2] = Bg_GetPriority(param0->bgConfig, BG_LAYER_MAIN_2);
-    param0->bgLayerPriorities[BG_LAYER_MAIN_3] = Bg_GetPriority(param0->bgConfig, BG_LAYER_MAIN_3);
+    system->scriptPtr = (u32 *)system->unk_14;
+    system->bgLayerPriorities[BG_LAYER_MAIN_0] = Bg_GetPriority(system->bgConfig, BG_LAYER_MAIN_0);
+    system->bgLayerPriorities[BG_LAYER_MAIN_1] = Bg_GetPriority(system->bgConfig, BG_LAYER_MAIN_1);
+    system->bgLayerPriorities[BG_LAYER_MAIN_2] = Bg_GetPriority(system->bgConfig, BG_LAYER_MAIN_2);
+    system->bgLayerPriorities[BG_LAYER_MAIN_3] = Bg_GetPriority(system->bgConfig, BG_LAYER_MAIN_3);
 
-    for (v0 = 0; v0 < 10; v0++) {
-        param0->unk_D8[v0] = NULL;
+    for (i = 0; i < 10; i++) {
+        system->unk_D8[i] = NULL;
     }
 
-    for (v0 = 0; v0 < (4 + 1); v0++) {
-        param0->unk_138[v0] = NULL;
-        param0->unk_14C[v0] = 0;
+    for (i = 0; i < (4 + 1); i++) {
+        system->unk_138[i] = NULL;
+        system->unk_14C[i] = 0;
     }
 
-    param0->unk_17C = NULL;
-    param0->executeAnimScriptFunc = BattleAnimSystem_Script_Execute;
-    param0->scriptDelay = 0;
+    system->unk_17C = NULL;
+    system->executeAnimScriptFunc = BattleAnimSystem_Script_Execute;
+    system->scriptDelay = 0;
 
-    if (ov12_0221FDD4(param0) == 1) {
-        param0->unk_198 = 0x7;
+    if (ov12_0221FDD4(system) == 1) {
+        system->unk_198 = 0x7;
     } else {
-        param0->unk_198 = 0xFF;
+        system->unk_198 = 0xFF;
     }
 
-    param0->unk_10 = 1;
+    system->unk_10 = 1;
 
-    return 1;
+    return TRUE;
 }
 
-BOOL ov12_0222016C(BattleAnimSystem *param0)
+BOOL BattleAnimSystem_ExecuteScript(BattleAnimSystem *system)
 {
-    if (BattleAnimSystem_IsActive(param0) == 0) {
-        return 0;
+    if (BattleAnimSystem_IsActive(system) == FALSE) {
+        return FALSE;
     }
 
-    param0->executeAnimScriptFunc(param0);
-    return 1;
+    system->executeAnimScriptFunc(system);
+    return TRUE;
 }
 
 BOOL ov12_02220188(BattleAnimSystem *param0)
 {
-    return (param0->unk_10 == 1) ? 1 : 0;
+    return (param0->unk_10 == 1) ? TRUE : FALSE;
 }
 
 BOOL ov12_02220198(BattleAnimSystem *param0)
@@ -556,27 +555,27 @@ void BattleAnimSystem_EndSoundTask(BattleAnimSystem *system, SysTask *task)
 
 u16 ov12_02220240(BattleAnimSystem *system)
 {
-    return system->unk_BC->unk_14;
+    return system->context->unk_14;
 }
 
 u16 ov12_02220248(BattleAnimSystem *system)
 {
-    return system->unk_BC->unk_16;
+    return system->context->unk_16;
 }
 
 ParticleSystem *ov12_02220250(BattleAnimSystem *param0)
 {
-    return param0->unk_BC->unk_1C[param0->unk_BC->unk_18];
+    return param0->context->particleSystems[param0->context->unk_18];
 }
 
-ParticleSystem *ov12_02220260(BattleAnimSystem *param0, int param1)
+ParticleSystem *BattleAnimSystem_GetParticleSystem(BattleAnimSystem *system, int index)
 {
-    return param0->unk_BC->unk_1C[param1];
+    return system->context->particleSystems[index];
 }
 
 SPLEmitter *ov12_0222026C(BattleAnimSystem *param0, int param1)
 {
-    SPLEmitter *v0 = param0->unk_BC->unk_5C[param1];
+    SPLEmitter *v0 = param0->context->unk_5C[param1];
     return v0;
 }
 
@@ -622,7 +621,7 @@ SpriteManager *ov12_02220300(BattleAnimSystem *param0)
 
 SpriteSystem *ov12_02220308(BattleAnimSystem *param0)
 {
-    return param0->unk_BC->unk_AC;
+    return param0->context->unk_AC;
 }
 
 static BOOL (*const Unk_ov12_0223862C[])(UnkStruct_ov12_02220314 *) = {
@@ -768,8 +767,8 @@ static BOOL ov12_0222044C(UnkStruct_ov12_02220314 *param0)
 static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
     BattleAnimScriptCmd_Delay,
     BattleAnimScriptCmd_WaitForAnimTasks,
-    ov12_0222070C,
-    ov12_0222074C,
+    BattleAnimScriptCmd_BeginLoop,
+    BattleAnimScriptCmd_EndLoop,
     ov12_02220798,
     ov12_02222950,
     ov12_02221284,
@@ -863,11 +862,6 @@ static inline void BattleAnimScript_Next(BattleAnimSystem *system)
     system->scriptPtr += 1;
 }
 
-static inline void BattleAnimScript_SetupArgs(BattleAnimSystem *system)
-{
-    BattleAnimScript_Next(system);
-}
-
 static inline int BattleAnimScript_ReadWord(u32 *scriptPtr)
 {
     return *scriptPtr;
@@ -889,7 +883,7 @@ static void ov12_0222048C(BattleAnimSystem *param0)
 
 static void BattleAnimScriptCmd_Delay(BattleAnimSystem *system)
 {
-    BattleAnimScript_SetupArgs(system);
+    BattleAnimScript_Next(system);
 
     system->scriptDelay = (u8)BattleAnimScript_ReadWord(system->scriptPtr);
     BattleAnimScript_Next(system);
@@ -937,22 +931,22 @@ int ov12_02220540(BattleAnimSystem *param0, int param1)
 
     switch (param1) {
     case 0:
-        v0 = param0->unk_BC->unk_04;
+        v0 = param0->context->unk_04;
         break;
     case 1:
-        v0 = param0->unk_BC->unk_08;
+        v0 = param0->context->unk_08;
         break;
     case 2:
-        v0 = param0->unk_BC->unk_0A;
+        v0 = param0->context->unk_0A;
         break;
     case 3:
-        v0 = param0->unk_BC->unk_0C;
+        v0 = param0->context->unk_0C;
         break;
     case 4:
-        v0 = param0->unk_BC->unk_10;
+        v0 = param0->context->unk_10;
         break;
     case 5:
-        v0 = param0->unk_BC->unk_12;
+        v0 = param0->context->unk_12;
         break;
     default:
         v0 = 0;
@@ -967,32 +961,32 @@ void ov12_02220590(BattleAnimSystem *param0, UnkStruct_ov12_022380DC *param1, in
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        param1->unk_08[v0] = param0->unk_BC->unk_B0[v0];
-        param1->unk_18[v0] = param0->unk_BC->unk_C4[v0];
-        param1->unk_28[v0] = param0->unk_BC->unk_D8[v0];
-        param1->unk_30[v0] = param0->unk_BC->unk_E0[v0];
-        param1->unk_34[v0] = param0->unk_BC->unk_E4[v0];
-        param1->unk_38[v0] = param0->unk_BC->unk_E8[v0];
-        param1->unk_3C[v0] = param0->unk_BC->unk_EC[v0];
-        param1->unk_4C[v0] = param0->unk_BC->unk_C0[v0];
+        param1->unk_08[v0] = param0->context->unk_B0[v0];
+        param1->unk_18[v0] = param0->context->unk_C4[v0];
+        param1->unk_28[v0] = param0->context->unk_D8[v0];
+        param1->unk_30[v0] = param0->context->unk_E0[v0];
+        param1->unk_34[v0] = param0->context->unk_E4[v0];
+        param1->unk_38[v0] = param0->context->unk_E8[v0];
+        param1->unk_3C[v0] = param0->context->unk_EC[v0];
+        param1->unk_4C[v0] = param0->context->unk_C0[v0];
     }
 
     switch (param2) {
     case 0:
-        param1->unk_00 = param0->unk_BC->unk_14;
-        param1->unk_04 = param0->unk_BC->unk_16;
+        param1->unk_00 = param0->context->unk_14;
+        param1->unk_04 = param0->context->unk_16;
         break;
     case 1:
-        param1->unk_00 = param0->unk_BC->unk_14;
-        param1->unk_04 = param0->unk_BC->unk_14;
+        param1->unk_00 = param0->context->unk_14;
+        param1->unk_04 = param0->context->unk_14;
         break;
     case 2:
-        param1->unk_00 = param0->unk_BC->unk_14;
-        param1->unk_04 = param0->unk_BC->unk_14;
+        param1->unk_00 = param0->context->unk_14;
+        param1->unk_04 = param0->context->unk_14;
         break;
     case 3:
-        param1->unk_00 = param0->unk_BC->unk_14;
-        param1->unk_04 = param0->unk_BC->unk_14;
+        param1->unk_00 = param0->context->unk_14;
+        param1->unk_04 = param0->context->unk_14;
         break;
     default:
         GF_ASSERT(0);
@@ -1033,143 +1027,139 @@ static void ov12_022206E8(BattleAnimSystem *param0)
     ov12_022382BC(&v1, param0->heapID);
 }
 
-static void ov12_0222070C(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_BeginLoop(BattleAnimSystem *system)
 {
-    int v0;
+    BattleAnimScript_Next(system);
 
-    param0->scriptPtr += 1;
-
-    for (v0 = 0; v0 < 3; v0++) {
-        if (param0->unk_28[v0].unk_08 == 1) {
+    for (int i = 0; i < BATTLE_ANIM_SCRIPT_MAX_NESTED_LOOPS; i++) {
+        if (system->loopStack[i].isActive == TRUE) {
             continue;
         }
 
-        param0->unk_28[v0].unk_08 = 1;
-        param0->unk_28[v0].unk_04 = 0;
-        param0->unk_28[v0].unk_05 = (u8)BattleAnimScript_ReadWord(param0->scriptPtr);
-        param0->scriptPtr += 1;
-        param0->unk_28[v0].unk_00 = param0->scriptPtr;
+        system->loopStack[i].isActive = TRUE;
+        system->loopStack[i].curIteration = 0;
+        system->loopStack[i].maxIterations = (u8)BattleAnimScript_ReadWord(system->scriptPtr);
+        BattleAnimScript_Next(system);
+        system->loopStack[i].startPos = system->scriptPtr;
 
         return;
     }
 }
 
-static void ov12_0222074C(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_EndLoop(BattleAnimSystem *system)
 {
-    int v0;
+    BattleAnimScript_Next(system);
 
-    param0->scriptPtr += 1;
-
-    for (v0 = 3 - 1; v0 >= 0; v0--) {
-        if (param0->unk_28[v0].unk_08 == 0) {
+    for (int i = BATTLE_ANIM_SCRIPT_MAX_NESTED_LOOPS - 1; i >= 0; i--) {
+        if (system->loopStack[i].isActive == FALSE) {
             continue;
         }
 
-        param0->unk_28[v0].unk_04++;
+        system->loopStack[i].curIteration++;
 
-        if (param0->unk_28[v0].unk_04 == param0->unk_28[v0].unk_05) {
-            param0->unk_28[v0].unk_08 = 0;
+        if (system->loopStack[i].curIteration == system->loopStack[i].maxIterations) {
+            system->loopStack[i].isActive = FALSE;
         } else {
-            param0->scriptPtr = param0->unk_28[v0].unk_00;
+            system->scriptPtr = system->loopStack[i].startPos;
         }
 
         return;
     }
 }
 
-static void ov12_02220798(BattleAnimSystem *param0)
+static void ov12_02220798(BattleAnimSystem *system)
 {
-    int v0;
+    int i;
     int v1 = 0;
 
-    if (param0->unk_17A < 1) {
-        param0->scriptDelay = 1;
-        param0->unk_17A++;
+    if (system->unk_17A < 1) {
+        system->scriptDelay = 1;
+        system->unk_17A++;
         return;
     }
 
-    for (v0 = 0; v0 < 16; v0++) {
-        if (param0->unk_BC->unk_1C[v0]) {
-            v1 += ParticleSystem_GetActiveEmitterCount(param0->unk_BC->unk_1C[v0]);
+    for (i = 0; i < 16; i++) {
+        if (system->context->particleSystems[i]) {
+            v1 += ParticleSystem_GetActiveEmitterCount(system->context->particleSystems[i]);
         }
     }
 
-    if ((v1 != 0) || (param0->activeAnimTasks != 0) || (param0->activeSoundTasks != 0)) {
-        param0->scriptDelay = 1;
-        param0->unk_179 = 0;
+    if ((v1 != 0) || (system->activeAnimTasks != 0) || (system->activeSoundTasks != 0)) {
+        system->scriptDelay = 1;
+        system->unk_179 = 0;
         return;
     }
 
     if (Sound_IsAnyEffectPlaying()) {
-        param0->unk_179++;
+        system->unk_179++;
 
-        if (param0->unk_179 > 90) {
-            param0->unk_179 = 0;
-            param0->scriptDelay = 0;
+        if (system->unk_179 > 90) {
+            system->unk_179 = 0;
+            system->scriptDelay = 0;
         } else {
-            param0->scriptDelay = 1;
+            system->scriptDelay = 1;
             return;
         }
     }
 
-    param0->unk_179 = 0;
-    param0->unk_17A = 0;
+    system->unk_179 = 0;
+    system->unk_17A = 0;
 
-    for (v0 = 0; v0 < 3; v0++) {
-        param0->unk_1C[v0] = NULL;
+    for (i = 0; i < 3; i++) {
+        system->unk_1C[i] = NULL;
     }
 
-    for (v0 = 0; v0 < 3; v0++) {
-        param0->unk_28[v0].unk_00 = NULL;
-        param0->unk_28[v0].unk_04 = 0;
-        param0->unk_28[v0].unk_05 = 0;
-        param0->unk_28[v0].unk_08 = 0;
+    for (i = 0; i < BATTLE_ANIM_SCRIPT_MAX_NESTED_LOOPS; i++) {
+        system->loopStack[i].startPos = NULL;
+        system->loopStack[i].curIteration = 0;
+        system->loopStack[i].maxIterations = 0;
+        system->loopStack[i].isActive = FALSE;
     }
 
-    for (v0 = 0; v0 < 4; v0++) {
-        if (param0->unk_C8[v0] != NULL) {
-            SpriteSystem_FreeResourcesAndManager(param0->unk_BC->unk_AC, param0->unk_C8[v0]);
+    for (i = 0; i < 4; i++) {
+        if (system->unk_C8[i] != NULL) {
+            SpriteSystem_FreeResourcesAndManager(system->context->unk_AC, system->unk_C8[i]);
         }
 
-        param0->unk_C8[v0] = NULL;
+        system->unk_C8[i] = NULL;
     }
 
-    for (v0 = 0; v0 < 5; v0++) {
-        ov12_02221238(param0, v0);
+    for (i = 0; i < 5; i++) {
+        ov12_02221238(system, i);
     }
 
-    for (v0 = 0; v0 < 16; v0++) {
-        if (param0->unk_BC->unk_1C[v0]) {
-            ov12_02223894(param0->unk_BC->unk_1C[v0]);
-            param0->unk_BC->unk_1C[v0] = NULL;
+    for (i = 0; i < 16; i++) {
+        if (system->context->particleSystems[i]) {
+            ov12_02223894(system->context->particleSystems[i]);
+            system->context->particleSystems[i] = NULL;
         }
     }
 
-    if (param0->unk_17C != NULL) {
-        param0->unk_17C = NULL;
+    if (system->unk_17C != NULL) {
+        system->unk_17C = NULL;
     }
 
-    if (ov12_0221FDD4(param0) == 0) {
+    if (ov12_0221FDD4(system) == 0) {
         Battle_SetDefaultBlend();
 
-        Bg_ClearTilesRange(ov12_022233B0(param0, 1), 0x4000, 0, BattleAnimSystem_GetHeapID(param0));
-        Bg_ClearTilemap(BattleAnimSystem_GetBgConfig(param0), ov12_022233B0(param0, 1));
-        Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
+        Bg_ClearTilesRange(ov12_022233B0(system, 1), 0x4000, 0, BattleAnimSystem_GetHeapID(system));
+        Bg_ClearTilemap(BattleAnimSystem_GetBgConfig(system), ov12_022233B0(system, 1));
+        Bg_ToggleLayer(BG_LAYER_MAIN_2, TRUE);
     } else {
         ov17_022413D8();
     }
 
-    Bg_SetPriority(BG_LAYER_MAIN_0, param0->bgLayerPriorities[0]);
-    Bg_SetPriority(BG_LAYER_MAIN_1, param0->bgLayerPriorities[1]);
-    Bg_SetPriority(BG_LAYER_MAIN_2, param0->bgLayerPriorities[2]);
-    Bg_SetPriority(BG_LAYER_MAIN_3, param0->bgLayerPriorities[3]);
+    Bg_SetPriority(BG_LAYER_MAIN_0, system->bgLayerPriorities[BG_LAYER_MAIN_0]);
+    Bg_SetPriority(BG_LAYER_MAIN_1, system->bgLayerPriorities[BG_LAYER_MAIN_1]);
+    Bg_SetPriority(BG_LAYER_MAIN_2, system->bgLayerPriorities[BG_LAYER_MAIN_2]);
+    Bg_SetPriority(BG_LAYER_MAIN_3, system->bgLayerPriorities[BG_LAYER_MAIN_3]);
 
-    Bg_SetOffset(param0->bgConfig, BG_LAYER_MAIN_2, 0, 0);
-    Bg_SetOffset(param0->bgConfig, BG_LAYER_MAIN_2, 3, 0);
-    Bg_SetOffset(param0->bgConfig, BG_LAYER_MAIN_3, 0, 0);
-    Bg_SetOffset(param0->bgConfig, BG_LAYER_MAIN_3, 3, 0);
+    Bg_SetOffset(system->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_X, 0);
+    Bg_SetOffset(system->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_Y, 0);
+    Bg_SetOffset(system->bgConfig, BG_LAYER_MAIN_3, BG_OFFSET_UPDATE_SET_X, 0);
+    Bg_SetOffset(system->bgConfig, BG_LAYER_MAIN_3, BG_OFFSET_UPDATE_SET_Y, 0);
 
-    param0->unk_10 = 0;
+    system->unk_10 = 0;
 }
 
 static void ov12_022209A8(BattleAnimSystem *param0)
@@ -1189,19 +1179,19 @@ static void ov12_022209A8(BattleAnimSystem *param0)
     v1 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    param0->unk_BC->unk_18 = v2;
+    param0->context->unk_18 = v2;
 
     if (param0->unk_78[v2] != 0) {
         VecFx32 v3;
 
-        ParticleSystem_GetCameraUp(param0->unk_BC->unk_1C[v2], &v3);
+        ParticleSystem_GetCameraUp(param0->context->particleSystems[v2], &v3);
         v3.y *= -1;
-        ParticleSystem_SetCameraUp(param0->unk_BC->unk_1C[v2], &v3);
+        ParticleSystem_SetCameraUp(param0->context->particleSystems[v2], &v3);
     }
 
-    ParticleSystem_SetCameraProjection(param0->unk_BC->unk_1C[v2], param0->unk_68[v2]);
+    ParticleSystem_SetCameraProjection(param0->context->particleSystems[v2], param0->unk_68[v2]);
 
-    param0->unk_BC->unk_5C[0] = ov12_02223880(param0->unk_BC->unk_1C[v2], v0, v1, param0);
+    param0->context->unk_5C[0] = ov12_02223880(param0->context->particleSystems[v2], v0, v1, param0);
 }
 
 static void ov12_02220A3C(BattleAnimSystem *param0)
@@ -1225,19 +1215,19 @@ static void ov12_02220A3C(BattleAnimSystem *param0)
     v1 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    param0->unk_BC->unk_18 = v2;
+    param0->context->unk_18 = v2;
 
     if (param0->unk_78[v2] != 0) {
         VecFx32 v4;
 
-        ParticleSystem_GetCameraUp(param0->unk_BC->unk_1C[v2], &v4);
+        ParticleSystem_GetCameraUp(param0->context->particleSystems[v2], &v4);
         v4.y *= -1;
-        ParticleSystem_SetCameraUp(param0->unk_BC->unk_1C[v2], &v4);
+        ParticleSystem_SetCameraUp(param0->context->particleSystems[v2], &v4);
     }
 
-    ParticleSystem_SetCameraProjection(param0->unk_BC->unk_1C[v2], param0->unk_68[v2]);
+    ParticleSystem_SetCameraProjection(param0->context->particleSystems[v2], param0->unk_68[v2]);
 
-    param0->unk_BC->unk_5C[v3] = ov12_02223880(param0->unk_BC->unk_1C[v2], v0, v1, param0);
+    param0->context->unk_5C[v3] = ov12_02223880(param0->context->particleSystems[v2], v0, v1, param0);
 }
 
 static int ov12_02220ADC(BattleAnimSystem *param0)
@@ -1298,7 +1288,7 @@ static void ov12_02220B8C(BattleAnimSystem *param0)
     u32 v3;
     u32 v4;
 
-    BattleAnimScript_SetupArgs(param0);
+    BattleAnimScript_Next(param0);
     v3 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
@@ -1310,14 +1300,14 @@ static void ov12_02220B8C(BattleAnimSystem *param0)
     v2 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
 
     param0->scriptPtr += 1;
-    param0->unk_BC->unk_18 = v3;
+    param0->context->unk_18 = v3;
 
     if (param0->unk_78[v3] != 0) {
         VecFx32 v5;
 
-        ParticleSystem_GetCameraUp(param0->unk_BC->unk_1C[v3], &v5);
+        ParticleSystem_GetCameraUp(param0->context->particleSystems[v3], &v5);
         v5.y *= -1;
-        ParticleSystem_SetCameraUp(param0->unk_BC->unk_1C[v3], &v5);
+        ParticleSystem_SetCameraUp(param0->context->particleSystems[v3], &v5);
     }
 
     {
@@ -1327,8 +1317,8 @@ static void ov12_02220B8C(BattleAnimSystem *param0)
         v4 = v1[v6];
     }
 
-    ParticleSystem_SetCameraProjection(param0->unk_BC->unk_1C[v3], param0->unk_68[v3]);
-    param0->unk_BC->unk_5C[0] = ov12_02223880(param0->unk_BC->unk_1C[v3], v4, v2, param0);
+    ParticleSystem_SetCameraProjection(param0->context->particleSystems[v3], param0->unk_68[v3]);
+    param0->context->unk_5C[0] = ov12_02223880(param0->context->particleSystems[v3], v4, v2, param0);
 }
 
 static void ov12_02220C44(BattleAnimSystem *param0)
@@ -1351,14 +1341,14 @@ static void ov12_02220C44(BattleAnimSystem *param0)
     v2 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
 
     param0->scriptPtr += 1;
-    param0->unk_BC->unk_18 = v3;
+    param0->context->unk_18 = v3;
 
     if (param0->unk_78[v3] != 0) {
         VecFx32 v5;
 
-        ParticleSystem_GetCameraUp(param0->unk_BC->unk_1C[v3], &v5);
+        ParticleSystem_GetCameraUp(param0->context->particleSystems[v3], &v5);
         v5.y *= -1;
-        ParticleSystem_SetCameraUp(param0->unk_BC->unk_1C[v3], &v5);
+        ParticleSystem_SetCameraUp(param0->context->particleSystems[v3], &v5);
     }
 
     {
@@ -1368,8 +1358,8 @@ static void ov12_02220C44(BattleAnimSystem *param0)
         v4 = v1[v6];
     }
 
-    ParticleSystem_SetCameraProjection(param0->unk_BC->unk_1C[v3], param0->unk_68[v3]);
-    param0->unk_BC->unk_5C[0] = ov12_02223880(param0->unk_BC->unk_1C[v3], v4, v2, param0);
+    ParticleSystem_SetCameraProjection(param0->context->particleSystems[v3], param0->unk_68[v3]);
+    param0->context->unk_5C[0] = ov12_02223880(param0->context->particleSystems[v3], v4, v2, param0);
 }
 
 static void ov12_02220CFC(BattleAnimSystem *param0)
@@ -1378,11 +1368,11 @@ static void ov12_02220CFC(BattleAnimSystem *param0)
     int v1 = 0;
 
     for (v0 = 0; v0 < 16; v0++) {
-        if (param0->unk_BC->unk_1C[v0] == NULL) {
+        if (param0->context->particleSystems[v0] == NULL) {
             continue;
         }
 
-        v1 += ParticleSystem_GetActiveEmitterCount(param0->unk_BC->unk_1C[v0]);
+        v1 += ParticleSystem_GetActiveEmitterCount(param0->context->particleSystems[v0]);
     }
 
     if (v1 == 0) {
@@ -1403,12 +1393,12 @@ static void ov12_02220D3C(BattleAnimSystem *param0)
     v1 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    GF_ASSERT(param0->unk_BC->unk_1C[v1] == NULL);
+    GF_ASSERT(param0->context->particleSystems[v1] == NULL);
 
     v0 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
 
     param0->scriptPtr += 1;
-    param0->unk_BC->unk_1C[v1] = ov12_022237F0(param0->heapID, v0, 0);
+    param0->context->particleSystems[v1] = ov12_022237F0(param0->heapID, v0, 0);
     param0->scriptDelay = 2;
     param0->executeAnimScriptFunc = BattleAnimSystem_Script_WaitForDelay;
 }
@@ -1427,12 +1417,12 @@ static void ov12_02220D90(BattleAnimSystem *param0)
     param0->scriptPtr += 1;
     v1 = 100;
 
-    GF_ASSERT(param0->unk_BC->unk_1C[v2] == NULL);
+    GF_ASSERT(param0->context->particleSystems[v2] == NULL);
 
     v0 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
 
     param0->scriptPtr += 1;
-    param0->unk_BC->unk_1C[v2] = ov12_02223818(param0->heapID, v1, v0, 0);
+    param0->context->particleSystems[v2] = ov12_02223818(param0->heapID, v1, v0, 0);
     param0->scriptDelay = 2;
     param0->executeAnimScriptFunc = BattleAnimSystem_Script_WaitForDelay;
 }
@@ -1445,8 +1435,8 @@ static void ov12_02220DE8(BattleAnimSystem *param0)
     v0 = (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    ov12_02223894(param0->unk_BC->unk_1C[v0]);
-    param0->unk_BC->unk_1C[v0] = NULL;
+    ov12_02223894(param0->context->particleSystems[v0]);
+    param0->context->particleSystems[v0] = NULL;
 }
 
 static void ov12_02220E14(BattleAnimSystem *param0)
@@ -1509,7 +1499,7 @@ static void ov12_02220EA8(BattleAnimSystem *param0)
 {
     param0->scriptPtr += 1;
 
-    if (ov12_02223178(param0->unk_BC)) {
+    if (ov12_02223178(param0->context)) {
         param0->scriptPtr = (u32 *)BattleAnimScript_ReadWord(param0->scriptPtr);
     } else {
         param0->scriptPtr += 1;
@@ -1551,7 +1541,7 @@ static void ov12_02220F30(BattleAnimSystem *param0)
 
     param0->scriptPtr += 1;
 
-    if (param0->unk_BC->unk_10 & 1) {
+    if (param0->context->unk_10 & 1) {
         param0->scriptPtr += 1;
     }
 
@@ -1569,9 +1559,9 @@ static void ov12_02220F5C(BattleAnimSystem *param0)
     param0->scriptPtr += 1;
 
     if (v0 == 0) {
-        v1 = ov12_0223525C(param0, param0->unk_BC->unk_14);
+        v1 = ov12_0223525C(param0, param0->context->unk_14);
     } else {
-        v1 = ov12_0223525C(param0, param0->unk_BC->unk_16);
+        v1 = ov12_0223525C(param0, param0->context->unk_16);
     }
 
     if (v1 == 0x4) {
@@ -1592,7 +1582,7 @@ static void ov12_02220FA0(BattleAnimSystem *param0)
     };
 
     param0->scriptPtr += 1;
-    v0 = param0->unk_BC->unk_0C;
+    v0 = param0->context->unk_0C;
 
     if (v0 != 0) {
         param0->scriptPtr += 1;
@@ -1630,8 +1620,8 @@ static void ov12_02221024(BattleAnimSystem *param0)
 
     param0->scriptPtr += 1;
 
-    v0 = ov12_0223525C(param0, param0->unk_BC->unk_14);
-    v1 = ov12_0223525C(param0, param0->unk_BC->unk_16);
+    v0 = ov12_0223525C(param0, param0->context->unk_14);
+    v1 = ov12_0223525C(param0, param0->context->unk_16);
 
     if (v0 == v1) {
         param0->scriptPtr += (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
@@ -1649,7 +1639,7 @@ static void ov12_02221064(BattleAnimSystem *param0)
     v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    if (v0 == param0->unk_BC->unk_10) {
+    if (v0 == param0->context->unk_10) {
         param0->scriptPtr += (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
     } else {
         param0->scriptPtr += 1;
@@ -1668,16 +1658,16 @@ static int ov12_022210A8(BattleAnimSystem *param0, int param1)
 
     switch (param1) {
     case 0:
-        v0 = param0->unk_BC->unk_14;
+        v0 = param0->context->unk_14;
         break;
     case 1:
-        v0 = param0->unk_BC->unk_16;
+        v0 = param0->context->unk_16;
         break;
     case 2:
-        v0 = ov12_022352AC(param0, param0->unk_BC->unk_14);
+        v0 = ov12_022352AC(param0, param0->context->unk_14);
         break;
     case 3:
-        v0 = ov12_022352AC(param0, param0->unk_BC->unk_16);
+        v0 = ov12_022352AC(param0, param0->context->unk_16);
         break;
 
     case 4: {
@@ -1855,10 +1845,10 @@ static void ov12_0222128C(BattleAnimSystem *param0)
     param0->scriptPtr += 1;
 
     v3 = ov12_022210A8(param0, v1);
-    v4 = param0->unk_BC->unk_B0[v3]->unk_04;
-    v5 = param0->unk_BC->unk_B0[v3]->unk_08;
-    v0 = param0->unk_BC->unk_B0[v3]->unk_00;
-    v7 = param0->unk_BC->unk_E8[v3];
+    v4 = param0->context->unk_B0[v3]->unk_04;
+    v5 = param0->context->unk_B0[v3]->unk_08;
+    v0 = param0->context->unk_B0[v3]->unk_00;
+    v7 = param0->context->unk_E8[v3];
 
     if ((ov12_0221FDD4(param0) == 1) && (IsFormSymmetrical(ov12_022232D0(param0, v3), v7) == 1)) {
         v6 = 265;
@@ -1932,11 +1922,11 @@ static void ov12_0222144C(BattleAnimSystem *param0)
     };
 
     param0->scriptPtr += 1;
-    param0->unk_134 = SpriteManager_New(param0->unk_BC->unk_AC);
+    param0->unk_134 = SpriteManager_New(param0->context->unk_AC);
 
-    SpriteSystem_InitSprites(param0->unk_BC->unk_AC, param0->unk_134, v0);
-    SetSubScreenViewRect(SpriteSystem_GetRenderer(param0->unk_BC->unk_AC), 0, ((192 + 80) << FX32_SHIFT));
-    SpriteSystem_InitManagerWithCapacities(param0->unk_BC->unk_AC, param0->unk_134, &v1);
+    SpriteSystem_InitSprites(param0->context->unk_AC, param0->unk_134, v0);
+    SetSubScreenViewRect(SpriteSystem_GetRenderer(param0->context->unk_AC), 0, ((192 + 80) << FX32_SHIFT));
+    SpriteSystem_InitManagerWithCapacities(param0->context->unk_AC, param0->unk_134, &v1);
 }
 
 static void ov12_022214C4(BattleAnimSystem *param0)
@@ -1948,17 +1938,17 @@ static void ov12_022214C4(BattleAnimSystem *param0)
     v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    v0[0] = 20001 + v1 + ((param0->unk_BC->unk_14) * 5000);
-    v0[1] = 20001 + v1 + ((param0->unk_BC->unk_14) * 5000);
-    v0[2] = 20001 + v1 + ((param0->unk_BC->unk_14) * 5000);
-    v0[3] = 20001 + v1 + ((param0->unk_BC->unk_14) * 5000);
+    v0[0] = 20001 + v1 + ((param0->context->unk_14) * 5000);
+    v0[1] = 20001 + v1 + ((param0->context->unk_14) * 5000);
+    v0[2] = 20001 + v1 + ((param0->context->unk_14) * 5000);
+    v0[3] = 20001 + v1 + ((param0->context->unk_14) * 5000);
     v0[4] = 0;
     v0[5] = 0;
 
-    SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_BC->unk_AC, param0->unk_134, param0->arcs[1], 76, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, v0[SPRITE_RESOURCE_PLTT]);
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_C4, PLTTBUF_MAIN_OBJ, param0->unk_BC->unk_AC, param0->unk_134, param0->arcs[1], 75, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 1, v0[SPRITE_RESOURCE_PLTT]);
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_BC->unk_AC, param0->unk_134, param0->arcs[1], 77, FALSE, v0[SPRITE_RESOURCE_CELL]);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_BC->unk_AC, param0->unk_134, param0->arcs[1], 78, FALSE, v0[SPRITE_RESOURCE_ANIM]);
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0->context->unk_AC, param0->unk_134, param0->arcs[1], 76, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, v0[SPRITE_RESOURCE_PLTT]);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_C4, PLTTBUF_MAIN_OBJ, param0->context->unk_AC, param0->unk_134, param0->arcs[1], 75, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 1, v0[SPRITE_RESOURCE_PLTT]);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0->context->unk_AC, param0->unk_134, param0->arcs[1], 77, FALSE, v0[SPRITE_RESOURCE_CELL]);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->context->unk_AC, param0->unk_134, param0->arcs[1], 78, FALSE, v0[SPRITE_RESOURCE_ANIM]);
 }
 
 static void ov12_02221580(BattleAnimSystem *param0)
@@ -1989,18 +1979,18 @@ static void ov12_02221580(BattleAnimSystem *param0)
     v6 = BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    v2[0] = 20001 + v6 + ((param0->unk_BC->unk_14) * 5000);
-    v2[1] = 20001 + v6 + ((param0->unk_BC->unk_14) * 5000);
-    v2[2] = 20001 + v6 + ((param0->unk_BC->unk_14) * 5000);
-    v2[3] = 20001 + v6 + ((param0->unk_BC->unk_14) * 5000);
+    v2[0] = 20001 + v6 + ((param0->context->unk_14) * 5000);
+    v2[1] = 20001 + v6 + ((param0->context->unk_14) * 5000);
+    v2[2] = 20001 + v6 + ((param0->context->unk_14) * 5000);
+    v2[3] = 20001 + v6 + ((param0->context->unk_14) * 5000);
     v2[4] = 0;
     v2[5] = 0;
 
     v7 = ov12_022210A8(param0, v3);
-    v8 = param0->unk_BC->unk_B0[v7]->unk_04;
-    v9 = param0->unk_BC->unk_B0[v7]->unk_08;
-    v0 = param0->unk_BC->unk_B0[v7]->unk_00;
-    v10 = param0->unk_BC->unk_E8[v7];
+    v8 = param0->context->unk_B0[v7]->unk_04;
+    v9 = param0->context->unk_B0[v7]->unk_08;
+    v0 = param0->context->unk_B0[v7]->unk_00;
+    v10 = param0->context->unk_E8[v7];
     {
         SpriteTemplate v11;
         PokemonSprite *v12 = ov12_022232FC(param0, v7);
@@ -2029,7 +2019,7 @@ static void ov12_02221580(BattleAnimSystem *param0)
             v11.resources[v14] = v2[v14];
         }
 
-        v1 = SpriteSystem_NewSprite(param0->unk_BC->unk_AC, param0->unk_134, &v11);
+        v1 = SpriteSystem_NewSprite(param0->context->unk_AC, param0->unk_134, &v11);
 
         if (v12 == NULL) {
             ManagedSprite_SetDrawFlag(v1, 0);
@@ -2092,7 +2082,7 @@ static void ov12_022217B4(BattleAnimSystem *param0)
     param0->scriptPtr += 1;
 
     if (param0->unk_134 != NULL) {
-        SpriteSystem_FreeResourcesAndManager(param0->unk_BC->unk_AC, param0->unk_134);
+        SpriteSystem_FreeResourcesAndManager(param0->context->unk_AC, param0->unk_134);
     }
 
     param0->unk_134 = NULL;
@@ -2321,8 +2311,8 @@ static BOOL ov12_02221A54(UnkStruct_ov12_02221BBC *param0, BattleAnimSystem *par
     int v0;
     int v1;
 
-    v0 = ov12_0223525C(param1, param1->unk_BC->unk_14);
-    v1 = ov12_0223525C(param1, param1->unk_BC->unk_16);
+    v0 = ov12_0223525C(param1, param1->context->unk_14);
+    v1 = ov12_0223525C(param1, param1->context->unk_16);
 
     if (param0->unk_1C[param2] == 2) {
         if (v0 == v1) {
@@ -3072,7 +3062,7 @@ static void ov12_022228DC(BattleAnimSystem *param0)
     if (ov12_0221FDD4(param0) == 1) {
         v0->unk_10 = v3;
     } else {
-        if (ov12_0223525C(param0, param0->unk_BC->unk_16) == 0x3) {
+        if (ov12_0223525C(param0, param0->context->unk_16) == 0x3) {
             v0->unk_10 = v2;
         } else {
             v0->unk_10 = v1;
@@ -3386,11 +3376,11 @@ static void ov12_02222CE8(BattleAnimSystem *param0)
     param0->scriptPtr += 1;
 
     GF_ASSERT(param0->unk_C8[v1] == NULL);
-    param0->unk_C8[v1] = SpriteManager_New(param0->unk_BC->unk_AC);
+    param0->unk_C8[v1] = SpriteManager_New(param0->context->unk_AC);
     GF_ASSERT(param0->unk_C8[v1] != NULL);
 
-    SpriteSystem_InitSprites(param0->unk_BC->unk_AC, param0->unk_C8[v1], v2);
-    SetSubScreenViewRect(SpriteSystem_GetRenderer(param0->unk_BC->unk_AC), 0, ((192 + 80) << FX32_SHIFT));
+    SpriteSystem_InitSprites(param0->context->unk_AC, param0->unk_C8[v1], v2);
+    SetSubScreenViewRect(SpriteSystem_GetRenderer(param0->context->unk_AC), 0, ((192 + 80) << FX32_SHIFT));
 
     {
         SpriteResourceCapacities v3;
@@ -3400,7 +3390,7 @@ static void ov12_02222CE8(BattleAnimSystem *param0)
             param0->scriptPtr += 1;
         }
 
-        SpriteSystem_InitManagerWithCapacities(param0->unk_BC->unk_AC, param0->unk_C8[v1], &v3);
+        SpriteSystem_InitManagerWithCapacities(param0->context->unk_AC, param0->unk_C8[v1], &v3);
     }
 }
 
@@ -3417,7 +3407,7 @@ static void ov12_02222D84(BattleAnimSystem *param0)
     v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_BC->unk_AC, param0->unk_C8[v0], param0->arcs[2], v1, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, v1 + 5000);
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0->context->unk_AC, param0->unk_C8[v0], param0->arcs[2], v1, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, v1 + 5000);
 }
 
 static void ov12_02222DCC(BattleAnimSystem *param0)
@@ -3437,7 +3427,7 @@ static void ov12_02222DCC(BattleAnimSystem *param0)
     v2 = BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_C4, 2, param0->unk_BC->unk_AC, param0->unk_C8[v0], param0->arcs[3], v1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, v2, v1 + 5000);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_C4, 2, param0->context->unk_AC, param0->unk_C8[v0], param0->arcs[3], v1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, v2, v1 + 5000);
 }
 
 static void ov12_02222E2C(BattleAnimSystem *param0)
@@ -3453,7 +3443,7 @@ static void ov12_02222E2C(BattleAnimSystem *param0)
     v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_BC->unk_AC, param0->unk_C8[v0], param0->arcs[4], v1, 1, v1 + 5000);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0->context->unk_AC, param0->unk_C8[v0], param0->arcs[4], v1, 1, v1 + 5000);
 }
 
 static void ov12_02222E74(BattleAnimSystem *param0)
@@ -3469,7 +3459,7 @@ static void ov12_02222E74(BattleAnimSystem *param0)
     v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_BC->unk_AC, param0->unk_C8[v0], param0->arcs[5], v1, 1, v1 + 5000);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->context->unk_AC, param0->unk_C8[v0], param0->arcs[5], v1, 1, v1 + 5000);
 }
 
 static void ov12_02222EBC(BattleAnimSystem *param0)
@@ -3512,7 +3502,7 @@ static void ov12_02222EBC(BattleAnimSystem *param0)
 
         param0->unk_100 = v6;
 
-        v4 = SpriteSystem_NewSprite(param0->unk_BC->unk_AC, param0->unk_C8[v2], &v6);
+        v4 = SpriteSystem_NewSprite(param0->context->unk_AC, param0->unk_C8[v2], &v6);
     }
 
     v3 = BattleAnimScript_ReadWord(param0->scriptPtr);
@@ -3528,7 +3518,7 @@ static void ov12_02222EBC(BattleAnimSystem *param0)
     }
 
     v5 = ov12_022269AC(v1);
-    v5(param0, param0->unk_BC->unk_AC, param0->unk_C8[v2], v4);
+    v5(param0, param0->context->unk_AC, param0->unk_C8[v2], v4);
 }
 
 static void ov12_02222FC8(BattleAnimSystem *param0)
@@ -3570,7 +3560,7 @@ static void ov12_02222FC8(BattleAnimSystem *param0)
 
         param0->unk_100 = v5;
 
-        v3 = SpriteSystem_NewSprite(param0->unk_BC->unk_AC, param0->unk_C8[v1], &v5);
+        v3 = SpriteSystem_NewSprite(param0->context->unk_AC, param0->unk_C8[v1], &v5);
         GF_ASSERT(param0->unk_D8[v2] == NULL);
         param0->unk_D8[v2] = v3;
     }
@@ -3586,7 +3576,7 @@ static void ov12_0222307C(BattleAnimSystem *param0)
     param0->scriptPtr += 1;
 
     if (param0->unk_C8[v0] != NULL) {
-        SpriteSystem_FreeResourcesAndManager(param0->unk_BC->unk_AC, param0->unk_C8[v0]);
+        SpriteSystem_FreeResourcesAndManager(param0->context->unk_AC, param0->unk_C8[v0]);
     }
 
     param0->unk_C8[v0] = NULL;
@@ -3633,10 +3623,10 @@ static void ov12_022230D4(BattleAnimSystem *param0)
     v2 = BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    v3 = param0->unk_BC->unk_D8[param0->unk_BC->unk_14];
-    v4 = param0->unk_BC->unk_E8[param0->unk_BC->unk_14];
+    v3 = param0->context->unk_D8[param0->context->unk_14];
+    v4 = param0->context->unk_E8[param0->context->unk_14];
 
-    Pokemon_PlayCry(param0->unk_BC->unk_10C, cryMod, v3, v4, v1, v2, param0->unk_BC->unk_118, param0->heapID);
+    Pokemon_PlayCry(param0->context->unk_10C, cryMod, v3, v4, v1, v2, param0->context->unk_118, param0->heapID);
 }
 
 static void ov12_02223134(BattleAnimSystem *param0)
@@ -3668,7 +3658,7 @@ BattleAnimScriptCmd BattleAnimSystem_GetScriptCmd(u32 id)
     return sBattleAnimScriptCmdTable[id];
 }
 
-int ov12_02223178(UnkStruct_ov12_02223178 *param0)
+int ov12_02223178(BattleAnimContext *param0)
 {
     return param0->unk_01;
 }
@@ -3749,37 +3739,37 @@ SpriteTemplate ov12_0222329C(BattleAnimSystem *param0)
 
 int ov12_022232B8(BattleAnimSystem *param0, int param1)
 {
-    return param0->unk_BC->unk_C0[param1];
+    return param0->context->unk_C0[param1];
 }
 
 int ov12_022232C4(BattleAnimSystem *param0, int param1)
 {
-    return param0->unk_BC->unk_E0[param1];
+    return param0->context->unk_E0[param1];
 }
 
 int ov12_022232D0(BattleAnimSystem *param0, int param1)
 {
-    return param0->unk_BC->unk_D8[param1];
+    return param0->context->unk_D8[param1];
 }
 
 int ov12_022232E0(BattleAnimSystem *param0, int param1)
 {
-    return param0->unk_BC->unk_E8[param1];
+    return param0->context->unk_E8[param1];
 }
 
 int ov12_022232EC(BattleAnimSystem *param0, int param1)
 {
-    return param0->unk_BC->unk_EC[param1];
+    return param0->context->unk_EC[param1];
 }
 
 PokemonSprite *ov12_022232FC(BattleAnimSystem *param0, int param1)
 {
-    if (param0->unk_BC->unk_C4[param1] == NULL) {
+    if (param0->context->unk_C4[param1] == NULL) {
         return NULL;
     }
 
-    if (PokemonSprite_IsActive(param0->unk_BC->unk_C4[param1])) {
-        return param0->unk_BC->unk_C4[param1];
+    if (PokemonSprite_IsActive(param0->context->unk_C4[param1])) {
+        return param0->context->unk_C4[param1];
     } else {
         return NULL;
     }
@@ -3792,28 +3782,28 @@ PaletteData *ov12_0222332C(BattleAnimSystem *param0)
 
 int ov12_02223334(BattleAnimSystem *param0, int param1)
 {
-    return param0->unk_BC->unk_B0[param1]->unk_08;
+    return param0->context->unk_B0[param1]->unk_08;
 }
 
 int ov12_02223344(BattleAnimSystem *param0, int param1)
 {
-    return param0->unk_BC->unk_B0[param1]->unk_04;
+    return param0->context->unk_B0[param1]->unk_04;
 }
 
 int ov12_02223354(BattleAnimSystem *param0, int param1)
 {
-    return param0->unk_BC->unk_B0[param1]->unk_0C;
+    return param0->context->unk_B0[param1]->unk_0C;
 }
 
 BOOL ov12_02223364(BattleAnimSystem *param0)
 {
-    u32 v0 = (param0->unk_BC->battleType & BATTLE_TYPE_DOUBLES);
+    u32 v0 = (param0->context->battleType & BATTLE_TYPE_DOUBLES);
     return (v0 != 0) ? 1 : 0;
 }
 
 BOOL ov12_0222337C(BattleAnimSystem *param0, int param1)
 {
-    int v0 = param0->unk_BC->unk_FC[param1] & (0x40 | 0x80 | 0x40000 | 0x20000000);
+    int v0 = param0->context->unk_FC[param1] & (0x40 | 0x80 | 0x40000 | 0x20000000);
     return (v0 != 0) ? 1 : 0;
 }
 
@@ -3900,12 +3890,12 @@ int ov12_02223428(BattleAnimSystem *param0, int param1)
 
 void ov12_02223460(BattleAnimSystem *param0, int param1)
 {
-    Bg_LoadTiles(param0->bgConfig, param1, param0->unk_BC->unk_110, 0x10000, 0);
+    Bg_LoadTiles(param0->bgConfig, param1, param0->context->unk_110, 0x10000, 0);
 }
 
 void ov12_02223488(BattleAnimSystem *param0)
 {
-    PaletteData_LoadBuffer(param0->unk_C4, param0->unk_BC->unk_114, 0, 0, 0x200);
+    PaletteData_LoadBuffer(param0->unk_C4, param0->context->unk_114, 0, 0, 0x200);
 }
 
 BOOL ov12_022234A8(BattleAnimSystem *param0, int param1)
@@ -3914,7 +3904,7 @@ BOOL ov12_022234A8(BattleAnimSystem *param0, int param1)
     int v1;
 
     v0 = ov12_022210A8(param0, param1);
-    v1 = param0->unk_BC->unk_E8[v0];
+    v1 = param0->context->unk_E8[v0];
 
     if ((ov12_0221FDD4(param0) == 1) && (IsFormSymmetrical(ov12_022232D0(param0, v0), v1) == 1)) {
         return 1;

@@ -741,7 +741,7 @@ static void ov17_022444BC(SysTask *param0, void *param1)
         v0->unk_0C++;
         break;
     case 11:
-        ov12_0222016C(v0->unk_00->unk_0C.unk_20);
+        BattleAnimSystem_ExecuteScript(v0->unk_00->unk_0C.unk_20);
 
         if (ov12_02220188(v0->unk_00->unk_0C.unk_20) == 0) {
             ov12_02220198(v0->unk_00->unk_0C.unk_20);

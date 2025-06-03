@@ -1578,7 +1578,7 @@ static void ov16_0225E4E8(SysTask *param0, void *param1)
         }
         break;
     case 4:
-        ov12_0222016C(v1);
+        BattleAnimSystem_ExecuteScript(v1);
 
         if (ov12_02220188(v1) == 0) {
             ov12_02220198(v1);
@@ -1660,7 +1660,7 @@ static void ov16_0225E894(SysTask *param0, void *param1)
         }
         break;
     case 4:
-        ov12_0222016C(v1);
+        BattleAnimSystem_ExecuteScript(v1);
 
         if (ov12_02220188(v1) == 0) {
             ov12_02220198(v1);
@@ -1873,7 +1873,7 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
         }
         break;
     case 7:
-        ov12_0222016C(v0->unk_24);
+        BattleAnimSystem_ExecuteScript(v0->unk_24);
 
         if (ov12_02220188(v0->unk_24) == 0) {
             ov12_02220198(v0->unk_24);
@@ -2065,7 +2065,7 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
     case 7:
     case 9:
     case 11:
-        ov12_0222016C(v1);
+        BattleAnimSystem_ExecuteScript(v1);
 
         if (ov12_02220188(v1) == 0) {
             ov12_02220198(v1);
@@ -2139,7 +2139,7 @@ static void ov16_0225F764(SysTask *param0, void *param1)
         break;
     case 1:
     case 3:
-        ov12_0222016C(v1);
+        BattleAnimSystem_ExecuteScript(v1);
 
         if (ov12_02220188(v1) == 0) {
             ov12_02220198(v1);
@@ -4024,7 +4024,7 @@ static void ov16_022611DC(SysTask *param0, void *param1)
     case 20:
     case 26:
     case 28:
-        ov12_0222016C(ov16_0223E008(v0->unk_00));
+        BattleAnimSystem_ExecuteScript(ov16_0223E008(v0->unk_00));
 
         if (ov12_02220188(ov16_0223E008(v0->unk_00)) == 0) {
             ov12_02220198(ov16_0223E008(v0->unk_00));
@@ -4613,7 +4613,7 @@ static void ov16_022626C0(SysTask *param0, void *param1)
     case 5:
     case 7:
     case 9:
-        ov12_0222016C(v0->unk_0C);
+        BattleAnimSystem_ExecuteScript(v0->unk_0C);
 
         if (ov12_02220188(v0->unk_0C) == 0) {
             ov12_02220198(v0->unk_0C);
@@ -4750,7 +4750,7 @@ static void ov16_02262A9C(SysTask *param0, void *param1)
         break;
     case 1:
     case 3:
-        ov12_0222016C(v1);
+        BattleAnimSystem_ExecuteScript(v1);
 
         if (ov12_02220188(v1) == 0) {
             ov12_02220198(v1);
@@ -4907,7 +4907,7 @@ static void ov16_02262DC4(SysTask *param0, void *param1)
         break;
     case 2:
     case 4:
-        ov12_0222016C(v1);
+        BattleAnimSystem_ExecuteScript(v1);
 
         if (ov12_02220188(v1) == 0) {
             ov12_02220198(v1);
