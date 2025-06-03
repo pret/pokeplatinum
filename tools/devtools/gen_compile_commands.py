@@ -8,7 +8,7 @@ builddir = homedir / "build"
 
 cwsdkdir = homedir / "subprojects" / "metroskrew" / "lib" / "metroskrew" / "sdk" / "ds" / "2.0" / "sp2"
 cwlibcdir = cwsdkdir / "msl" / "MSL_C" / "MSL_Common" / "Include"
-cwextrasdir = cwsdkdir / "msl" / "MSL_Extras" / "MSL_Common" / "Inlcude"
+cwextrasdir = cwsdkdir / "msl" / "MSL_Extras" / "MSL_Common" / "Include"
 
 arm7_c_flags = [
     "arm-none-eabi-gcc",
