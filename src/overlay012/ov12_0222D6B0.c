@@ -202,7 +202,7 @@ void ov12_0222D7C0(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v2 = ov12_0222329C(param0);
     ov12_02235780(v1->unk_08, 0xffffffff, 0xffffffff);
 
-    v1->unk_05 = ov12_02220280(v1->unk_08, 0);
+    v1->unk_05 = BattleAnimSystem_GetScriptVar(v1->unk_08, 0);
     v1->unk_06 = 0;
     v1->unk_07 = 15;
 
@@ -427,7 +427,7 @@ void ov12_0222DB60(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
 
     G2_ChangeBlendAlpha(v1->unk_09, v1->unk_0A);
 
-    v1->unk_08 = ov12_02220280(v1->unk_0C, 0);
+    v1->unk_08 = BattleAnimSystem_GetScriptVar(v1->unk_0C, 0);
     v1->unk_18[0] = param3;
 
     {
@@ -637,7 +637,7 @@ void ov12_0222DEFC(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v3 = ov12_0222329C(param0);
     ov12_02235780(v2->unk_08, 0xffffffff, 0xffffffff);
 
-    v2->unk_02 = ov12_02220280(v2->unk_08, 0);
+    v2->unk_02 = BattleAnimSystem_GetScriptVar(v2->unk_08, 0);
     v2->unk_02 = 12;
 
     {

@@ -135,8 +135,8 @@ static void ov12_02234EF0(SysTask *param0, void *param1)
 static void ov12_0223505C(BattleAnimSystem *param0, UnkStruct_ov12_02234E44 *param1)
 {
     (*param1).unk_00 = 7;
-    (*param1).unk_04 = ov12_02220280(param0, 0);
-    (*param1).unk_08 = ov12_02220280(param0, 1);
+    (*param1).unk_04 = BattleAnimSystem_GetScriptVar(param0, 0);
+    (*param1).unk_08 = BattleAnimSystem_GetScriptVar(param0, 1);
 }
 
 static void ov12_0223507C(BattleAnimSystem *param0, UnkStruct_ov12_02234E44 *param1)
