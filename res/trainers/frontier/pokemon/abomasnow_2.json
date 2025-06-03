@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_ABOMASNOW",
+    "moves": [
+        "MOVE_GIGA_DRAIN",
+        "MOVE_SHEER_COLD",
+        "MOVE_INGRAIN",
+        "MOVE_LEECH_SEED"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_BOLD",
+    "item": "ITEM_BIG_ROOT",
+    "form": 0
+}

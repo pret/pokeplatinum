@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_VENONAT",
+    "moves": [
+        "MOVE_BUG_BITE",
+        "MOVE_POISON_POWDER",
+        "MOVE_PSYBEAM",
+        "MOVE_SUPERSONIC"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_RELAXED",
+    "item": "ITEM_SILVERPOWDER",
+    "form": 0
+}

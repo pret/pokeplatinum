@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_WEEZING",
+    "moves": [
+        "MOVE_SLUDGE_BOMB",
+        "MOVE_THUNDERBOLT",
+        "MOVE_DARK_PULSE",
+        "MOVE_EXPLOSION"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": true
+    },
+    "nature": "NATURE_SASSY",
+    "item": "ITEM_LAX_INCENSE",
+    "form": 0
+}

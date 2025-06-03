@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_CLOYSTER",
+    "moves": [
+        "MOVE_AVALANCHE",
+        "MOVE_DIVE",
+        "MOVE_TOXIC",
+        "MOVE_PROTECT"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_IMPISH",
+    "item": "ITEM_LEFTOVERS",
+    "form": 0
+}

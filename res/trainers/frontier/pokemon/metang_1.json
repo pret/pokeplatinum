@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_METANG",
+    "moves": [
+        "MOVE_METAL_CLAW",
+        "MOVE_CONFUSION",
+        "MOVE_MAGNET_RISE",
+        "MOVE_SCARY_FACE"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_HARDY",
+    "item": "ITEM_CHESTO_BERRY",
+    "form": 0
+}

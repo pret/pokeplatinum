@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_MISMAGIUS",
+    "moves": [
+        "MOVE_SHADOW_BALL",
+        "MOVE_POWER_GEM",
+        "MOVE_MAGICAL_LEAF",
+        "MOVE_MEMENTO"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": true,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_KASIB_BERRY",
+    "form": 0
+}

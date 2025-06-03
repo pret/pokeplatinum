@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_SCYTHER",
+    "moves": [
+        "MOVE_X_SCISSOR",
+        "MOVE_AERIAL_ACE",
+        "MOVE_NIGHT_SLASH",
+        "MOVE_SWORDS_DANCE"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": true,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_BRIGHTPOWDER",
+    "form": 0
+}

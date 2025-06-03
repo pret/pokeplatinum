@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_METAGROSS",
+    "moves": [
+        "MOVE_ZEN_HEADBUTT",
+        "MOVE_BULLET_PUNCH",
+        "MOVE_FACADE",
+        "MOVE_LIGHT_SCREEN"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_BRIGHTPOWDER",
+    "form": 0
+}

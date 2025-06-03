@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_CLAYDOL",
+    "moves": [
+        "MOVE_EARTH_POWER",
+        "MOVE_ANCIENT_POWER",
+        "MOVE_SIGNAL_BEAM",
+        "MOVE_SHADOW_BALL"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_RINDO_BERRY",
+    "form": 0
+}

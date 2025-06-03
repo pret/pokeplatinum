@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_CRADILY",
+    "moves": [
+        "MOVE_TOXIC",
+        "MOVE_STOCKPILE",
+        "MOVE_DOUBLE_TEAM",
+        "MOVE_INGRAIN"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_IMPISH",
+    "item": "ITEM_LEFTOVERS",
+    "form": 0
+}

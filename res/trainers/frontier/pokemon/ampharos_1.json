@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_AMPHAROS",
+    "moves": [
+        "MOVE_THUNDERBOLT",
+        "MOVE_POWER_GEM",
+        "MOVE_LIGHT_SCREEN",
+        "MOVE_THUNDER_WAVE"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": true
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_SHUCA_BERRY",
+    "form": 0
+}

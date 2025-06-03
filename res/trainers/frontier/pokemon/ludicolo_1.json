@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_LUDICOLO",
+    "moves": [
+        "MOVE_WATERFALL",
+        "MOVE_RAZOR_LEAF",
+        "MOVE_DRAIN_PUNCH",
+        "MOVE_SWORDS_DANCE"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_MUSCLE_BAND",
+    "form": 0
+}

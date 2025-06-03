@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_PROBOPASS",
+    "moves": [
+        "MOVE_IRON_HEAD",
+        "MOVE_FIRE_PUNCH",
+        "MOVE_THUNDER_PUNCH",
+        "MOVE_ICE_PUNCH"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_CHOPLE_BERRY",
+    "form": 0
+}

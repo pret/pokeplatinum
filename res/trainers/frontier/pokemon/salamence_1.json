@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_SALAMENCE",
+    "moves": [
+        "MOVE_DRAGON_CLAW",
+        "MOVE_AERIAL_ACE",
+        "MOVE_AQUA_TAIL",
+        "MOVE_SCARY_FACE"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": true,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_CHERI_BERRY",
+    "form": 0
+}

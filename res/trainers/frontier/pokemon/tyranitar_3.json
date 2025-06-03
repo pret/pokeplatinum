@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_TYRANITAR",
+    "moves": [
+        "MOVE_SUPERPOWER",
+        "MOVE_DRAGON_CLAW",
+        "MOVE_SHADOW_CLAW",
+        "MOVE_AQUA_TAIL"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_WHITE_HERB",
+    "form": 0
+}

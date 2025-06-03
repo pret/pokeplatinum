@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_ARTICUNO",
+    "moves": [
+        "MOVE_AVALANCHE",
+        "MOVE_AERIAL_ACE",
+        "MOVE_FACADE",
+        "MOVE_REFLECT"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_BRAVE",
+    "item": "ITEM_WACAN_BERRY",
+    "form": 0
+}

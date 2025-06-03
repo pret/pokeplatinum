@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_BUDEW",
+    "moves": [
+        "MOVE_MEGA_DRAIN",
+        "MOVE_TOXIC",
+        "MOVE_GROWTH",
+        "MOVE_WORRY_SEED"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": true
+    },
+    "nature": "NATURE_CALM",
+    "item": "ITEM_BIG_ROOT",
+    "form": 0
+}

@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_POLITOED",
+    "moves": [
+        "MOVE_WATERFALL",
+        "MOVE_EARTHQUAKE",
+        "MOVE_BELLY_DRUM",
+        "MOVE_REST"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_CAREFUL",
+    "item": "ITEM_CHESTO_BERRY",
+    "form": 0
+}

@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_KADABRA",
+    "moves": [
+        "MOVE_CONFUSION",
+        "MOVE_ROLE_PLAY",
+        "MOVE_DISABLE",
+        "MOVE_FUTURE_SIGHT"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": true,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_TIMID",
+    "item": "ITEM_TWISTEDSPOON",
+    "form": 0
+}

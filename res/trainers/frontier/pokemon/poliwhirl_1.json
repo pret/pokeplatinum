@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_POLIWHIRL",
+    "moves": [
+        "MOVE_BUBBLE_BEAM",
+        "MOVE_DOUBLE_SLAP",
+        "MOVE_MIST",
+        "MOVE_RAIN_DANCE"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_HARDY",
+    "item": "ITEM_LIECHI_BERRY",
+    "form": 0
+}

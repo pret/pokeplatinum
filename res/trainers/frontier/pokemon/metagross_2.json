@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_METAGROSS",
+    "moves": [
+        "MOVE_PSYCHIC",
+        "MOVE_FLASH_CANNON",
+        "MOVE_SHADOW_BALL",
+        "MOVE_SLUDGE_BOMB"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_WISE_GLASSES",
+    "form": 0
+}

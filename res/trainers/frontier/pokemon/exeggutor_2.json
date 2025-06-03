@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_EXEGGUTOR",
+    "moves": [
+        "MOVE_DREAM_EATER",
+        "MOVE_HYPNOSIS",
+        "MOVE_LEECH_SEED",
+        "MOVE_INGRAIN"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_LUM_BERRY",
+    "form": 0
+}

@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_ARIADOS",
+    "moves": [
+        "MOVE_BUG_BITE",
+        "MOVE_TOXIC",
+        "MOVE_SHADOW_SNEAK",
+        "MOVE_SPIDER_WEB"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_SILVERPOWDER",
+    "form": 0
+}

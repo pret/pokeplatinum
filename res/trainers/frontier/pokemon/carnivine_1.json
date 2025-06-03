@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_CARNIVINE",
+    "moves": [
+        "MOVE_RAZOR_LEAF",
+        "MOVE_BITE",
+        "MOVE_SWEET_SCENT",
+        "MOVE_INGRAIN"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_MIRACLE_SEED",
+    "form": 0
+}

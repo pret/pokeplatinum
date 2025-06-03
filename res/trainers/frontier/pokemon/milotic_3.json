@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_MILOTIC",
+    "moves": [
+        "MOVE_HYDRO_PUMP",
+        "MOVE_BLIZZARD",
+        "MOVE_MIRROR_COAT",
+        "MOVE_RECOVER"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": true
+    },
+    "nature": "NATURE_CALM",
+    "item": "ITEM_WIDE_LENS",
+    "form": 0
+}

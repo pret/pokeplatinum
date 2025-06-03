@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_SEALEO",
+    "moves": [
+        "MOVE_ICE_BEAM",
+        "MOVE_SURF",
+        "MOVE_SIGNAL_BEAM",
+        "MOVE_HAIL"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_QUIET",
+    "item": "ITEM_CHESTO_BERRY",
+    "form": 0
+}

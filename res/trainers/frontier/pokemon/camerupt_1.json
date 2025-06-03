@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_CAMERUPT",
+    "moves": [
+        "MOVE_MAGNITUDE",
+        "MOVE_WILL_O_WISP",
+        "MOVE_ROCK_TOMB",
+        "MOVE_AMNESIA"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_BRAVE",
+    "item": "ITEM_FOCUS_BAND",
+    "form": 0
+}

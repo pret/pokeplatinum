@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_HERACROSS",
+    "moves": [
+        "MOVE_CLOSE_COMBAT",
+        "MOVE_AERIAL_ACE",
+        "MOVE_NIGHT_SLASH",
+        "MOVE_BULK_UP"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_SCOPE_LENS",
+    "form": 0
+}

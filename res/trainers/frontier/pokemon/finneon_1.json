@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_FINNEON",
+    "moves": [
+        "MOVE_WATER_PULSE",
+        "MOVE_SILVER_WIND",
+        "MOVE_ATTRACT",
+        "MOVE_AQUA_RING"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": true
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_WAVE_INCENSE",
+    "form": 0
+}

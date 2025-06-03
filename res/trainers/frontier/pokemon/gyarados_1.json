@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_GYARADOS",
+    "moves": [
+        "MOVE_AQUA_TAIL",
+        "MOVE_ICE_FANG",
+        "MOVE_BITE",
+        "MOVE_RAIN_DANCE"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_CAREFUL",
+    "item": "ITEM_RAZOR_FANG",
+    "form": 0
+}

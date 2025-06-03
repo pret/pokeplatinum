@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_NOCTOWL",
+    "moves": [
+        "MOVE_AIR_SLASH",
+        "MOVE_SWIFT",
+        "MOVE_PSYCHIC",
+        "MOVE_REFLECT"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_QUIET",
+    "item": "ITEM_PERSIM_BERRY",
+    "form": 0
+}

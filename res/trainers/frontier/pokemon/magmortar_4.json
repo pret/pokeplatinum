@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_MAGMORTAR",
+    "moves": [
+        "MOVE_OVERHEAT",
+        "MOVE_PSYCHIC",
+        "MOVE_FOCUS_BLAST",
+        "MOVE_CONFUSE_RAY"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": true,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_WHITE_HERB",
+    "form": 0
+}

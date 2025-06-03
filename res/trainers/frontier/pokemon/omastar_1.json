@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_OMASTAR",
+    "moves": [
+        "MOVE_WATER_GUN",
+        "MOVE_ROLLOUT",
+        "MOVE_WITHDRAW",
+        "MOVE_SPIKES"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_BRAVE",
+    "item": "ITEM_METRONOME",
+    "form": 0
+}

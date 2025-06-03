@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_KECLEON",
+    "moves": [
+        "MOVE_FRUSTRATION",
+        "MOVE_SHADOW_CLAW",
+        "MOVE_AERIAL_ACE",
+        "MOVE_TRICK"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_CAREFUL",
+    "item": "ITEM_CHOICE_SCARF",
+    "form": 0
+}

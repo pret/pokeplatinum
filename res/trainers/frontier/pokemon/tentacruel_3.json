@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_TENTACRUEL",
+    "moves": [
+        "MOVE_SURF",
+        "MOVE_SLUDGE_BOMB",
+        "MOVE_GIGA_DRAIN",
+        "MOVE_MIRROR_COAT"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": true
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_FOCUS_SASH",
+    "form": 0
+}

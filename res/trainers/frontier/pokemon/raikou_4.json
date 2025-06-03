@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_RAIKOU",
+    "moves": [
+        "MOVE_THUNDERBOLT",
+        "MOVE_EXTRASENSORY",
+        "MOVE_SHADOW_BALL",
+        "MOVE_CALM_MIND"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": true,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_SHUCA_BERRY",
+    "form": 0
+}

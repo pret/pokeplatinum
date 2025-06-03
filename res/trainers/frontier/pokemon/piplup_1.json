@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_PIPLUP",
+    "moves": [
+        "MOVE_BUBBLE_BEAM",
+        "MOVE_AERIAL_ACE",
+        "MOVE_GROWL",
+        "MOVE_SUPERSONIC"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_BASHFUL",
+    "item": "ITEM_RINDO_BERRY",
+    "form": 0
+}

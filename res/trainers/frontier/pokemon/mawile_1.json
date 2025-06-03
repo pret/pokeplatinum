@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_MAWILE",
+    "moves": [
+        "MOVE_IRON_HEAD",
+        "MOVE_BITE",
+        "MOVE_TICKLE",
+        "MOVE_IRON_DEFENSE"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_IMPISH",
+    "item": "ITEM_BRIGHTPOWDER",
+    "form": 0
+}

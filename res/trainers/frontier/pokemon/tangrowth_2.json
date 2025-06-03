@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_TANGROWTH",
+    "moves": [
+        "MOVE_GIGA_DRAIN",
+        "MOVE_LEECH_SEED",
+        "MOVE_TOXIC",
+        "MOVE_DOUBLE_TEAM"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_BOLD",
+    "item": "ITEM_BIG_ROOT",
+    "form": 0
+}

@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_LATIAS",
+    "moves": [
+        "MOVE_PSYCHIC",
+        "MOVE_DRAGON_PULSE",
+        "MOVE_ATTRACT",
+        "MOVE_CALM_MIND"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": true
+    },
+    "nature": "NATURE_CALM",
+    "item": "ITEM_LUM_BERRY",
+    "form": 0
+}

@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_MOTHIM",
+    "moves": [
+        "MOVE_SILVER_WIND",
+        "MOVE_AIR_CUTTER",
+        "MOVE_POISON_POWDER",
+        "MOVE_CAPTIVATE"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_PETAYA_BERRY",
+    "form": 0
+}

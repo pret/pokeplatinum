@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_SHELGON",
+    "moves": [
+        "MOVE_DRAGON_CLAW",
+        "MOVE_CRUNCH",
+        "MOVE_DRAGON_DANCE",
+        "MOVE_SCARY_FACE"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_FOCUS_BAND",
+    "form": 0
+}
