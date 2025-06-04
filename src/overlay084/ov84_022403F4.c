@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/pokemon_types.h"
+
 #include "struct_defs/struct_0207CB08.h"
 
 #include "overlay084/struct_ov84_0223B5A0.h"
@@ -232,7 +234,7 @@ static void ov84_022404C0(UnkStruct_ov84_0223B5A0 *param0)
     SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_D8, param0->unk_DC, param0->unk_D4, 36, FALSE, NNS_G2D_VRAM_TYPE_2DSUB, 49406);
     SpriteSystem_LoadCharResObj(param0->unk_D8, param0->unk_DC, 62, 4, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49408);
     SpriteSystem_LoadCharResObj(param0->unk_D8, param0->unk_DC, 16, Item_FileID(0, 1), FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49407);
-    TypeIcon_LoadChar(param0->unk_D8, param0->unk_DC, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 49409);
+    TypeIcon_LoadChar(param0->unk_D8, param0->unk_DC, NNS_G2D_VRAM_TYPE_2DMAIN, TYPE_NORMAL, 49409);
     CategoryIcon_LoadChar(param0->unk_D8, param0->unk_DC, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 49410);
     SpriteSystem_LoadPlttResObjFromOpenNarc(param0->unk_D8, param0->unk_DC, param0->unk_D4, v1, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 49401);
     SpriteSystem_LoadPlttResObjFromOpenNarc(param0->unk_D8, param0->unk_DC, param0->unk_D4, 20, FALSE, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 49402);

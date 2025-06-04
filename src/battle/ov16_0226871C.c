@@ -3,6 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/moves.h"
+#include "generated/moves.h"
+#include "generated/pokemon_types.h"
+
 #include "struct_decls/battle_system.h"
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02012744_decl.h"
@@ -1193,13 +1197,13 @@ void ov16_02268A14(UnkStruct_ov16_02268A14 *param0)
 void ov16_02268A88(UnkStruct_ov16_02268A14 *param0)
 {
     BgConfig *v0;
-    SpriteSystem *v1;
-    SpriteManager *v2;
+    SpriteSystem *spriteSys;
+    SpriteManager *spriteMan;
     PaletteData *v3;
     int i;
 
-    v1 = BattleSystem_GetSpriteSystem(param0->battleSys);
-    v2 = BattleSystem_GetSpriteManager(param0->battleSys);
+    spriteSys = BattleSystem_GetSpriteSystem(param0->battleSys);
+    spriteMan = BattleSystem_GetSpriteManager(param0->battleSys);
     v0 = BattleSystem_BGL(param0->battleSys);
     v3 = BattleSystem_PaletteSys(param0->battleSys);
 
@@ -1215,16 +1219,16 @@ void ov16_02268A88(UnkStruct_ov16_02268A14 *param0)
         Graphics_LoadTilesToBgLayer(7, v5, v0, 4, 0, 0x6000, 1, HEAP_ID_BATTLE);
     }
 
-    TypeIcon_LoadAnim(v1, v2, 20017, 20017);
-    TypeIcon_LoadPltt(BattleSystem_PaletteSys(param0->battleSys), 3, v1, v2, NNS_G2D_VRAM_TYPE_2DSUB, 20020);
+    TypeIcon_LoadAnim(spriteSys, spriteMan, 20017, 20017);
+    TypeIcon_LoadPltt(BattleSystem_PaletteSys(param0->battleSys), PLTTBUF_SUB_OBJ, spriteSys, spriteMan, NNS_G2D_VRAM_TYPE_2DSUB, 20020);
 
-    for (i = 0; i < 4; i++) {
-        TypeIcon_LoadChar(v1, v2, NNS_G2D_VRAM_TYPE_2DSUB, 0, 20025 + i);
+    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        TypeIcon_LoadChar(spriteSys, spriteMan, NNS_G2D_VRAM_TYPE_2DSUB, TYPE_NORMAL, 20025 + i);
     }
 
     if (BattleSystem_BattleType(param0->battleSys) & BATTLE_TYPE_CATCH_TUTORIAL) {
-        ov16_0226DE44(v1, v2, 5, v3, 20412, 20036, 20406, 20395);
-        param0->unk_6C4.unk_00 = ov16_0226DEEC(v1, v2, HEAP_ID_BATTLE, 20412, 20036, 20406, 20395, 10, 0);
+        ov16_0226DE44(spriteSys, spriteMan, 5, v3, 20412, 20036, 20406, 20395);
+        param0->unk_6C4.unk_00 = ov16_0226DEEC(spriteSys, spriteMan, HEAP_ID_BATTLE, 20412, 20036, 20406, 20395, 10, 0);
     }
 }
 

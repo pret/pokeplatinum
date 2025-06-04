@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/narc.h"
+#include "generated/move_classes.h"
 
 #include "pch/global_pch.h"
 
@@ -160,13 +161,13 @@ void TypeIcon_DeleteSprite(ManagedSprite *managedSprite)
     Sprite_DeleteAndFreeResources(managedSprite);
 }
 
-u32 CategoryIcon_GetChar(int moveCat)
+u32 CategoryIcon_GetChar(enum MoveClass moveCat)
 {
     GF_ASSERT(moveCat < NELEMS(sMoveCategoryIconIndex));
     return sMoveCategoryIconIndex[moveCat];
 }
 
-u8 CategoryIcon_GetPltt(int moveCat)
+u8 CategoryIcon_GetPltt(enum MoveClass moveCat)
 {
     GF_ASSERT(moveCat < NELEMS(sMoveCategoryIconPaletteIndex));
     return sMoveCategoryIconPaletteIndex[moveCat];
@@ -177,7 +178,7 @@ enum NarcID CategoryIcon_GetNARC(void)
     return NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ;
 }
 
-void CategoryIcon_LoadChar(SpriteSystem *spriteSys, SpriteManager *spriteMan, NNS_G2D_VRAM_TYPE vramType, int moveCat, u32 resourceID)
+void CategoryIcon_LoadChar(SpriteSystem *spriteSys, SpriteManager *spriteMan, NNS_G2D_VRAM_TYPE vramType, enum MoveClass moveCat, u32 resourceID)
 {
     SpriteSystem_LoadCharResObj(spriteSys, spriteMan, CategoryIcon_GetNARC(), CategoryIcon_GetChar(moveCat), TRUE, vramType, resourceID);
 }

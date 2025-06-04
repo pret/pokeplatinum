@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/pokemon_types.h"
+
 #include "struct_defs/struct_020997B8.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -1326,7 +1328,7 @@ static void ov91_021D2110(UnkStruct_ov91_021D0ED8 *param0, NARC *param1)
     SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 2, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 47274);
 
     for (v0 = 47276; v0 <= 47282; v0++) {
-        TypeIcon_LoadChar(param0->unk_110, param0->unk_114, NNS_G2D_VRAM_TYPE_2DMAIN, 0, v0);
+        TypeIcon_LoadChar(param0->unk_110, param0->unk_114, NNS_G2D_VRAM_TYPE_2DMAIN, TYPE_NORMAL, v0);
     }
 
     CategoryIcon_LoadChar(param0->unk_110, param0->unk_114, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 47275);

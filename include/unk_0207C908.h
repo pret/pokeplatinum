@@ -3,6 +3,7 @@
 
 #include <nnsys.h>
 
+#include "generated/move_classes.h"
 #include "generated/pokemon_types.h"
 
 #include "palette.h"
@@ -23,10 +24,10 @@ void TypeIcon_UnloadPlttSrc(SpriteManager *spriteMan, u32 resourceID);
 void TypeIcon_UnloadAnim(SpriteManager *spriteMan, u32 cellResourceID, u32 animResourceID);
 ManagedSprite *TypeIcon_NewTypeIconSprite(SpriteSystem *spriteSys, SpriteManager *spriteMan, enum PokemonType moveType, const SpriteTemplate *spriteTemplate);
 void TypeIcon_DeleteSprite(ManagedSprite *managedSprite);
-u32 CategoryIcon_GetChar(int moveCat);
-u8 CategoryIcon_GetPltt(int moveCat);
+u32 CategoryIcon_GetChar(enum MoveClass moveCat);
+u8 CategoryIcon_GetPltt(enum MoveClass moveCat);
 enum NarcID CategoryIcon_GetNARC(void);
-void CategoryIcon_LoadChar(SpriteSystem *spriteSys, SpriteManager *spriteMan, NNS_G2D_VRAM_TYPE vramType, int moveCat, u32 resourceID);
+void CategoryIcon_LoadChar(SpriteSystem *spriteSys, SpriteManager *spriteMan, NNS_G2D_VRAM_TYPE vramType, enum MoveClass moveCat, u32 resourceID);
 void CategoryIcon_UnloadChar(SpriteManager *spriteMan, u32 resourceID);
 void CategoryIcon_DeleteSprite(ManagedSprite *managedSprite);
 
