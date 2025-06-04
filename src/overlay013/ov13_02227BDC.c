@@ -1,13 +1,9 @@
 #include "overlay013/ov13_02227BDC.h"
 
-#include <nitro.h>
-#include <string.h>
-
 #include "battle/ov16_0223DF00.h"
 #include "battle/ov16_0226DB7C.h"
 #include "battle/ov16_0226DE44.h"
 #include "battle/struct_ov16_0226DC24_decl.h"
-#include "battle/struct_ov16_0226DEEC_decl.h"
 #include "overlay013/battle_bag.h"
 #include "overlay013/battle_bag_utils.h"
 #include "overlay013/battle_sub_menu_cursor.h"
@@ -19,262 +15,277 @@
 #include "palette.h"
 #include "sprite_system.h"
 
-static void ov13_02227C08(BattleBag *param0);
-static void ov13_02227C54(BattleBag *param0);
-static void ov13_02227D10(BattleBag *param0, u16 param1, u32 param2);
-static void ov13_02227D48(BattleBag *param0, u16 param1, u16 param2, u32 param3);
-static void ov13_02227DE8(BattleBag *param0);
-static void ov13_02227EAC(BattleBag *param0);
-static void ov13_02227EE0(BattleBag *param0);
-static void ov13_02227F38(BattleBag *param0);
-static void ov13_02227F7C(BattleBag *param0);
-static void ov13_02227FDC(BattleBag *param0);
-static void ov13_02228070(BattleBag *param0);
-static void ov13_022280C8(BattleBag *param0);
+#define SPRITE_MANAGER_IMAGE_RESOURCE_CAPACITY      8
+#define SPRITE_MANAGER_ANIM_RESOURCE_CAPACITY       3
+#define SPRITE_MANAGER_MULTI_ANIM_RESOURCE_CAPACITY 0
+#define SPRITE_MANAGER_MAX_SPRITES                  12
 
-static const int Unk_ov13_02229BC0[2] = {
-    0x18,
-    0xB2
+#define POCKET_SLOT_1_RESOURCE_ID 46263
+#define POCKET_SLOT_2_RESOURCE_ID 46264
+#define POCKET_SLOT_3_RESOURCE_ID 46265
+#define POCKET_SLOT_4_RESOURCE_ID 46266
+#define POCKET_SLOT_5_RESOURCE_ID 46267
+#define POCKET_SLOT_6_RESOURCE_ID 46268
+
+#define CURSOR_IMAGE_RESOURCE_ID 46270
+#define CURSOR_ANIM_RESOURCE_ID  46265
+
+#define CATCH_TUTORIAL_CURSOR_IMAGE_RESOURCE_ID 46269
+#define CATCH_TUTORIAL_CURSOR_ANIM_RESOURCE_ID  46264
+
+#define PALETTE_FILE_SIZE 32
+
+static void InitializeSpriteManager(BattleBag *battleBag);
+static void LoadSpriteData(BattleBag *battleBag);
+static void LoadItemIcon(BattleBag *battleBag, u16 item, u32 resourceID);
+static void LoadItemPaletteData(BattleBag *battleBag, u16 item, u16 slotIndex, u32 resourceID);
+static void InitializePocketItemSprites(BattleBag *battleBag);
+static void DrawLastUsedItem(BattleBag *battleBag);
+static void DrawPocketItems(BattleBag *battleBag);
+static void DrawSelectedItem(BattleBag *battleBag);
+static void InitializeCursor(BattleBag *battleBag);
+static void CleanupCursor(BattleBag *battleBag);
+static void InitializeCatchTutorialCursor(BattleBag *battleBag);
+static void CleanupCatchTutorialCursor(BattleBag *battleBag);
+
+static const int lastUsedItemSpritePosition[2] = {
+    24,
+    178
 };
 
-static const int Unk_ov13_02229C44[][2] = {
-    { 0x2C, 0x2D },
-    { 0xAC, 0x2D },
-    { 0x2C, 0x5D },
-    { 0xAC, 0x5D },
-    { 0x2C, 0x8D },
-    { 0xAC, 0x8D }
+static const int pocketItemSpritePositions[][2] = {
+    { 44, 45 },
+    { 172, 45 },
+    { 44, 93 },
+    { 172, 93 },
+    { 44, 141 },
+    { 172, 141 }
 };
 
-static const int Unk_ov13_02229BB8[2] = {
-    0x28,
-    0x2C
+static const int selectedItemSpritePosition[2] = {
+    40,
+    44
 };
 
-static const int Unk_ov13_02229CBC[][5] = {
-    { 0xB4B7, 0xB4B7, 0xB4B7, 0xB4B7, 0x1 },
-    { 0xB4B8, 0xB4B8, 0xB4B7, 0xB4B7, 0x1 },
-    { 0xB4B9, 0xB4B9, 0xB4B7, 0xB4B7, 0x1 },
-    { 0xB4BA, 0xB4BA, 0xB4B7, 0xB4B7, 0x1 },
-    { 0xB4BB, 0xB4BB, 0xB4B7, 0xB4B7, 0x1 },
-    { 0xB4BC, 0xB4BC, 0xB4B7, 0xB4B7, 0x1 }
+static const int pocketItemSpriteResourcesAndPriority[][5] = {
+    { [SPRITE_RESOURCE_CHAR] = POCKET_SLOT_1_RESOURCE_ID, [SPRITE_RESOURCE_PLTT] = POCKET_SLOT_1_RESOURCE_ID, [SPRITE_RESOURCE_CELL] = POCKET_SLOT_1_RESOURCE_ID, [SPRITE_RESOURCE_ANIM] = POCKET_SLOT_1_RESOURCE_ID, 1 },
+    { [SPRITE_RESOURCE_CHAR] = POCKET_SLOT_2_RESOURCE_ID, [SPRITE_RESOURCE_PLTT] = POCKET_SLOT_2_RESOURCE_ID, [SPRITE_RESOURCE_CELL] = POCKET_SLOT_1_RESOURCE_ID, [SPRITE_RESOURCE_ANIM] = POCKET_SLOT_1_RESOURCE_ID, 1 },
+    { [SPRITE_RESOURCE_CHAR] = POCKET_SLOT_3_RESOURCE_ID, [SPRITE_RESOURCE_PLTT] = POCKET_SLOT_3_RESOURCE_ID, [SPRITE_RESOURCE_CELL] = POCKET_SLOT_1_RESOURCE_ID, [SPRITE_RESOURCE_ANIM] = POCKET_SLOT_1_RESOURCE_ID, 1 },
+    { [SPRITE_RESOURCE_CHAR] = POCKET_SLOT_4_RESOURCE_ID, [SPRITE_RESOURCE_PLTT] = POCKET_SLOT_4_RESOURCE_ID, [SPRITE_RESOURCE_CELL] = POCKET_SLOT_1_RESOURCE_ID, [SPRITE_RESOURCE_ANIM] = POCKET_SLOT_1_RESOURCE_ID, 1 },
+    { [SPRITE_RESOURCE_CHAR] = POCKET_SLOT_5_RESOURCE_ID, [SPRITE_RESOURCE_PLTT] = POCKET_SLOT_5_RESOURCE_ID, [SPRITE_RESOURCE_CELL] = POCKET_SLOT_1_RESOURCE_ID, [SPRITE_RESOURCE_ANIM] = POCKET_SLOT_1_RESOURCE_ID, 1 },
+    { [SPRITE_RESOURCE_CHAR] = POCKET_SLOT_6_RESOURCE_ID, [SPRITE_RESOURCE_PLTT] = POCKET_SLOT_6_RESOURCE_ID, [SPRITE_RESOURCE_CELL] = POCKET_SLOT_1_RESOURCE_ID, [SPRITE_RESOURCE_ANIM] = POCKET_SLOT_1_RESOURCE_ID, 1 }
 };
 
-void ov13_02227BDC(BattleBag *param0)
+void BattleBagSprites_InitializeSprites(BattleBag *battleBag)
 {
-    ov13_02227C08(param0);
-    ov13_02227C54(param0);
-    ov13_02227DE8(param0);
-    ov13_02227F7C(param0);
-    ov13_02228070(param0);
+    InitializeSpriteManager(battleBag);
+    LoadSpriteData(battleBag);
+    InitializePocketItemSprites(battleBag);
+    InitializeCursor(battleBag);
+    InitializeCatchTutorialCursor(battleBag);
 
-    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, TRUE);
 }
 
-static void ov13_02227C08(BattleBag *param0)
+static void InitializeSpriteManager(BattleBag *battleBag)
 {
-    SpriteResourceCapacities v0 = { 8, 8, 3, 3, 0, 0 };
-    SpriteSystem *v1 = ov16_0223E010(param0->context->battleSystem);
+    SpriteResourceCapacities capacities = { .asArray[SPRITE_RESOURCE_CHAR] = SPRITE_MANAGER_IMAGE_RESOURCE_CAPACITY, .asArray[SPRITE_RESOURCE_PLTT] = SPRITE_MANAGER_IMAGE_RESOURCE_CAPACITY, .asArray[SPRITE_RESOURCE_CELL] = SPRITE_MANAGER_ANIM_RESOURCE_CAPACITY, .asArray[SPRITE_RESOURCE_ANIM] = SPRITE_MANAGER_ANIM_RESOURCE_CAPACITY, .asArray[SPRITE_RESOURCE_MULTI_CELL] = SPRITE_MANAGER_MULTI_ANIM_RESOURCE_CAPACITY, .asArray[SPRITE_RESOURCE_MULTI_ANIM] = SPRITE_MANAGER_MULTI_ANIM_RESOURCE_CAPACITY };
+    SpriteSystem *spriteSystem = ov16_0223E010(battleBag->context->battleSystem);
 
-    param0->spriteManager = SpriteManager_New(v1);
+    battleBag->spriteManager = SpriteManager_New(spriteSystem);
 
-    SpriteSystem_InitSprites(v1, param0->spriteManager, 6 + 5 + 1);
-    SpriteSystem_InitManagerWithCapacities(v1, param0->spriteManager, &v0);
+    SpriteSystem_InitSprites(spriteSystem, battleBag->spriteManager, SPRITE_MANAGER_MAX_SPRITES);
+    SpriteSystem_InitManagerWithCapacities(spriteSystem, battleBag->spriteManager, &capacities);
 }
 
-static void ov13_02227C54(BattleBag *param0)
+static void LoadSpriteData(BattleBag *battleBag)
 {
-    SpriteSystem *v0;
-    u32 v1;
-    NARC *v2 = NARC_ctor(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, param0->context->heapID);
-    v0 = ov16_0223E010(param0->context->battleSystem);
+    u32 i;
+    NARC *narc = NARC_ctor(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, battleBag->context->heapID);
+    SpriteSystem *spriteSystem = ov16_0223E010(battleBag->context->battleSystem);
 
-    for (v1 = 0; v1 < 6; v1++) {
-        SpriteSystem_LoadCharResObjFromOpenNarc(v0, param0->spriteManager, v2, Item_FileID(1, 1), FALSE, NNS_G2D_VRAM_TYPE_2DSUB, 46263 + v1);
-        SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->palette, PLTTBUF_SUB_OBJ, v0, param0->spriteManager, v2, Item_FileID(1, 2), FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, 46263 + v1);
+    for (i = 0; i < BATTLE_POCKET_ITEMS_PER_PAGE; i++) {
+        SpriteSystem_LoadCharResObjFromOpenNarc(spriteSystem, battleBag->spriteManager, narc, Item_FileID(ITEM_MASTER_BALL, ITEM_FILE_TYPE_ICON), FALSE, NNS_G2D_VRAM_TYPE_2DSUB, POCKET_SLOT_1_RESOURCE_ID + i);
+        SpriteSystem_LoadPaletteBufferFromOpenNarc(battleBag->palette, PLTTBUF_SUB_OBJ, spriteSystem, battleBag->spriteManager, narc, Item_FileID(ITEM_MASTER_BALL, ITEM_FILE_TYPE_PALETTE), FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, POCKET_SLOT_1_RESOURCE_ID + i);
     }
 
-    SpriteSystem_LoadCellResObjFromOpenNarc(v0, param0->spriteManager, v2, Item_IconNCERFile(), FALSE, 46263);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(v0, param0->spriteManager, v2, Item_IconNANRFile(), FALSE, 46263);
-    NARC_dtor(v2);
+    SpriteSystem_LoadCellResObjFromOpenNarc(spriteSystem, battleBag->spriteManager, narc, Item_IconNCERFile(), FALSE, POCKET_SLOT_1_RESOURCE_ID);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(spriteSystem, battleBag->spriteManager, narc, Item_IconNANRFile(), FALSE, POCKET_SLOT_1_RESOURCE_ID);
+    NARC_dtor(narc);
 }
 
-static void ov13_02227D10(BattleBag *param0, u16 param1, u32 param2)
+static void LoadItemIcon(BattleBag *battleBag, u16 item, u32 resourceID)
 {
-    SpriteSystem *v0 = ov16_0223E010(param0->context->battleSystem);
-    SpriteSystem_ReplaceCharResObj(v0, param0->spriteManager, 16, Item_FileID(param1, 1), 0, param2);
+    SpriteSystem *spriteSystem = ov16_0223E010(battleBag->context->battleSystem);
+    SpriteSystem_ReplaceCharResObj(spriteSystem, battleBag->spriteManager, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(item, ITEM_FILE_TYPE_ICON), FALSE, resourceID);
 }
 
-static void ov13_02227D48(BattleBag *param0, u16 param1, u16 param2, u32 param3)
+static void LoadItemPaletteData(BattleBag *battleBag, u16 item, u16 slotIndex, u32 resourceID)
 {
-    PaletteData_LoadBufferFromFileStart(param0->palette, 16, Item_FileID(param1, 2), param0->context->heapID, 3, 0x20, param2 * 16);
+    PaletteData_LoadBufferFromFileStart(battleBag->palette, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(item, ITEM_FILE_TYPE_PALETTE), battleBag->context->heapID, PLTTBUF_SUB_OBJ, PALETTE_FILE_SIZE, slotIndex * 16);
 }
 
-static ManagedSprite *ov13_02227D78(BattleBag *param0, u32 param1)
+static ManagedSprite *CreatePocketItemSprite(BattleBag *battleBag, u32 slotIndex)
 {
-    SpriteTemplate v0;
-    SpriteSystem *v1 = ov16_0223E010(param0->context->battleSystem);
+    SpriteTemplate template;
+    SpriteSystem *spriteSystem = ov16_0223E010(battleBag->context->battleSystem);
 
-    v0.x = 0;
-    v0.y = 0;
-    v0.z = 0;
-    v0.animIdx = 0;
-    v0.priority = Unk_ov13_02229CBC[param1][4];
-    v0.plttIdx = 0;
-    v0.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
-    v0.resources[0] = Unk_ov13_02229CBC[param1][0];
-    v0.resources[1] = Unk_ov13_02229CBC[param1][1];
-    v0.resources[2] = Unk_ov13_02229CBC[param1][2];
-    v0.resources[3] = Unk_ov13_02229CBC[param1][3];
-    v0.bgPriority = 1;
-    v0.vramTransfer = FALSE;
+    template.x = 0;
+    template.y = 0;
+    template.z = 0;
+    template.animIdx = 0;
+    template.priority = pocketItemSpriteResourcesAndPriority[slotIndex][4];
+    template.plttIdx = 0;
+    template.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
+    template.resources[SPRITE_RESOURCE_CHAR] = pocketItemSpriteResourcesAndPriority[slotIndex][SPRITE_RESOURCE_CHAR];
+    template.resources[SPRITE_RESOURCE_PLTT] = pocketItemSpriteResourcesAndPriority[slotIndex][SPRITE_RESOURCE_PLTT];
+    template.resources[SPRITE_RESOURCE_CELL] = pocketItemSpriteResourcesAndPriority[slotIndex][SPRITE_RESOURCE_CELL];
+    template.resources[SPRITE_RESOURCE_ANIM] = pocketItemSpriteResourcesAndPriority[slotIndex][SPRITE_RESOURCE_ANIM];
+    template.bgPriority = 1;
+    template.vramTransfer = FALSE;
 
-    return SpriteSystem_NewSprite(v1, param0->spriteManager, &v0);
+    return SpriteSystem_NewSprite(spriteSystem, battleBag->spriteManager, &template);
 }
 
-static void ov13_02227DE8(BattleBag *param0)
+static void InitializePocketItemSprites(BattleBag *battleBag)
 {
-    u32 v0;
+    u32 i;
 
-    for (v0 = 0; v0 < 6; v0++) {
-        param0->unk_310[v0] = ov13_02227D78(param0, v0);
+    for (i = 0; i < BATTLE_POCKET_ITEMS_PER_PAGE; i++) {
+        battleBag->pocketItemSprites[i] = CreatePocketItemSprite(battleBag, i);
     }
 }
 
-void ov13_02227E08(BattleBag *param0)
+void BattleBagSprites_CleanupSprites(BattleBag *battleBag)
 {
-    SpriteSystem *v0;
-    u32 v1;
+    u32 i;
+    SpriteSystem *spriteSystem = ov16_0223E010(battleBag->context->battleSystem);
 
-    v0 = ov16_0223E010(param0->context->battleSystem);
-
-    for (v1 = 0; v1 < 6; v1++) {
-        Sprite_DeleteAndFreeResources(param0->unk_310[v1]);
+    for (i = 0; i < BATTLE_POCKET_ITEMS_PER_PAGE; i++) {
+        Sprite_DeleteAndFreeResources(battleBag->pocketItemSprites[i]);
     }
 
-    ov13_02227FDC(param0);
-    ov13_022280C8(param0);
-    SpriteSystem_FreeResourcesAndManager(v0, param0->spriteManager);
+    CleanupCursor(battleBag);
+    CleanupCatchTutorialCursor(battleBag);
+    SpriteSystem_FreeResourcesAndManager(spriteSystem, battleBag->spriteManager);
 }
 
-static void ov13_02227E48(ManagedSprite *param0, const int param1, const int param2)
+static void RenderSprite(ManagedSprite *sprite, const int x, const int y)
 {
-    ManagedSprite_SetDrawFlag(param0, 1);
-    ManagedSprite_SetPositionXY(param0, param1, param2);
+    ManagedSprite_SetDrawFlag(sprite, TRUE);
+    ManagedSprite_SetPositionXY(sprite, x, y);
 }
 
-void ov13_02227E68(BattleBag *param0, u32 param1)
+void BattleBagSprites_SetupScreen(BattleBag *battleBag, enum BattleBagScreen screen)
 {
-    u32 v0;
+    u32 i;
 
-    for (v0 = 0; v0 < 6; v0++) {
-        ManagedSprite_SetDrawFlag(param0->unk_310[v0], 0);
+    for (i = 0; i < BATTLE_POCKET_ITEMS_PER_PAGE; i++) {
+        ManagedSprite_SetDrawFlag(battleBag->pocketItemSprites[i], FALSE);
     }
 
-    switch (param1) {
-    case 0:
-        ov13_02227EAC(param0);
+    switch (screen) {
+    case BATTLE_BAG_SCREEN_MENU:
+        DrawLastUsedItem(battleBag);
         break;
-    case 1:
-        ov13_02227EE0(param0);
+    case BATTLE_BAG_SCREEN_POCKET_MENU:
+        DrawPocketItems(battleBag);
         break;
-    case 2:
-        ov13_02227F38(param0);
+    case BATTLE_BAG_SCREEN_USE_ITEM:
+        DrawSelectedItem(battleBag);
         break;
     }
 }
 
-static void ov13_02227EAC(BattleBag *param0)
+static void DrawLastUsedItem(BattleBag *battleBag)
 {
-    u16 v0;
-
-    if (param0->context->lastUsedItem != ITEM_NONE) {
-        ov13_02227D10(param0, param0->context->lastUsedItem, 46263);
-        ov13_02227D48(param0, param0->context->lastUsedItem, 0, 46263);
-        ov13_02227E48(param0->unk_310[0], Unk_ov13_02229BC0[0], Unk_ov13_02229BC0[1]);
+    if (battleBag->context->lastUsedItem != ITEM_NONE) {
+        LoadItemIcon(battleBag, battleBag->context->lastUsedItem, POCKET_SLOT_1_RESOURCE_ID);
+        LoadItemPaletteData(battleBag, battleBag->context->lastUsedItem, 0, POCKET_SLOT_1_RESOURCE_ID);
+        RenderSprite(battleBag->pocketItemSprites[0], lastUsedItemSpritePosition[0], lastUsedItemSpritePosition[1]);
     }
 }
 
-static void ov13_02227EE0(BattleBag *param0)
+static void DrawPocketItems(BattleBag *battleBag)
 {
-    u32 v0;
-    u16 v1;
+    u32 i;
+    u16 item;
 
-    for (v0 = 0; v0 < BATTLE_POCKET_ITEMS_PER_PAGE; v0++) {
-        v1 = BattleBag_GetItem(param0, v0);
+    for (i = 0; i < BATTLE_POCKET_ITEMS_PER_PAGE; i++) {
+        item = BattleBag_GetItem(battleBag, i);
 
-        if (v1 == ITEM_NONE) {
+        if (item == ITEM_NONE) {
             continue;
         }
 
-        ov13_02227D10(param0, v1, 46263 + v0);
-        ov13_02227D48(param0, v1, (u16)v0, 46263 + v0);
-        ov13_02227E48(param0->unk_310[v0], Unk_ov13_02229C44[v0][0], Unk_ov13_02229C44[v0][1]);
+        LoadItemIcon(battleBag, item, POCKET_SLOT_1_RESOURCE_ID + i);
+        LoadItemPaletteData(battleBag, item, (u16)i, POCKET_SLOT_1_RESOURCE_ID + i);
+        RenderSprite(battleBag->pocketItemSprites[i], pocketItemSpritePositions[i][0], pocketItemSpritePositions[i][1]);
     }
 }
 
-static void ov13_02227F38(BattleBag *param0)
+static void DrawSelectedItem(BattleBag *battleBag)
 {
-    u16 v0 = BattleBag_GetItem(param0, param0->context->pocketCurrentPagePositions[param0->currentBattlePocket]);
+    u16 item = BattleBag_GetItem(battleBag, battleBag->context->pocketCurrentPagePositions[battleBag->currentBattlePocket]);
 
-    ov13_02227D10(param0, v0, 46263);
-    ov13_02227D48(param0, v0, 0, 46263);
-    ov13_02227E48(param0->unk_310[0], Unk_ov13_02229BB8[0], Unk_ov13_02229BB8[1]);
+    LoadItemIcon(battleBag, item, POCKET_SLOT_1_RESOURCE_ID);
+    LoadItemPaletteData(battleBag, item, 0, POCKET_SLOT_1_RESOURCE_ID);
+    RenderSprite(battleBag->pocketItemSprites[0], selectedItemSpritePosition[0], selectedItemSpritePosition[1]);
 }
 
-static void ov13_02227F7C(BattleBag *param0)
+static void InitializeCursor(BattleBag *battleBag)
 {
-    SpriteSystem *v0;
-    UnkStruct_ov16_0226DC24 *v1;
+    SpriteSystem *spriteSystem;
+    UnkStruct_ov16_0226DC24 *cursorSprites;
 
-    v0 = ov16_0223E010(param0->context->battleSystem);
-    ov16_0226DB7C(v0, param0->spriteManager, param0->palette, param0->context->heapID, 46270, 46270, 46265, 46265);
-    v1 = ov16_0226DC24(v0, param0->spriteManager, param0->context->heapID, 46270, 46270, 46265, 46265, 0, 1);
+    spriteSystem = ov16_0223E010(battleBag->context->battleSystem);
+    ov16_0226DB7C(spriteSystem, battleBag->spriteManager, battleBag->palette, battleBag->context->heapID, CURSOR_IMAGE_RESOURCE_ID, CURSOR_IMAGE_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID);
+    cursorSprites = ov16_0226DC24(spriteSystem, battleBag->spriteManager, battleBag->context->heapID, CURSOR_IMAGE_RESOURCE_ID, CURSOR_IMAGE_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID, 0, 1);
 
-    SetBattleSubMenuCursorSprites(param0->cursor, v1);
+    SetBattleSubMenuCursorSprites(battleBag->cursor, cursorSprites);
 }
 
-static void ov13_02227FDC(BattleBag *param0)
+static void CleanupCursor(BattleBag *battleBag)
 {
-    ov16_0226DCA8(GetBattleSubMenuCursorSprites(param0->cursor));
-    ov16_0226DBFC(param0->spriteManager, 46270, 46270, 46265, 46265);
+    ov16_0226DCA8(GetBattleSubMenuCursorSprites(battleBag->cursor));
+    ov16_0226DBFC(battleBag->spriteManager, CURSOR_IMAGE_RESOURCE_ID, CURSOR_IMAGE_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID);
 }
 
-static const GridMenuCursorPosition Unk_ov13_02229C14[] = {
-    { 0x8, 0x10, 0x78, 0x48, 0x0, 0x1, 0x0, 0x2 },
-    { 0x8, 0x58, 0x78, 0x90, 0x0, 0x4, 0x1, 0x3 },
-    { 0x88, 0x10, 0xF8, 0x48, 0x2, 0x3, 0x0, 0x2 },
-    { 0x88, 0x58, 0xF8, 0x90, 0x2, 0x5, 0x1, 0x3 },
-    { 0x8, 0xA0, 0xC8, 0xB8, 0x1, 0x4, 0x4, 0x5 },
-    { 0xE0, 0xA0, 0xF8, 0xB8, 0x83, 0x5, 0x4, 0x5 }
+static const GridMenuCursorPosition menuScreenCursorPositions[] = {
+    [BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_HP_POCKET] = { .xCoord1 = 8, .yCoord1 = 16, .xCoord2 = 120, .yCoord2 = 72, .upIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_HP_POCKET, .downIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_STATUS_POCKET, .leftIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_HP_POCKET, .rightIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_POKE_BALLS_POCKET },
+    [BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_STATUS_POCKET] = { .xCoord1 = 8, .yCoord1 = 88, .xCoord2 = 120, .yCoord2 = 144, .upIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_HP_POCKET, .downIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_LAST_USED_ITEM, .leftIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_STATUS_POCKET, .rightIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_BATTLE_ITEMS_POCKET },
+    [BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_POKE_BALLS_POCKET] = { .xCoord1 = 136, .yCoord1 = 16, .xCoord2 = 248, .yCoord2 = 72, .upIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_POKE_BALLS_POCKET, .downIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_BATTLE_ITEMS_POCKET, .leftIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_HP_POCKET, .rightIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_POKE_BALLS_POCKET },
+    [BATTLE_BAG_MENU_SCREEN_BUTTON_BATTLE_ITEMS_POCKET] = { .xCoord1 = 136, .yCoord1 = 88, .xCoord2 = 248, .yCoord2 = 144, .upIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_POKE_BALLS_POCKET, .downIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_CANCEL, .leftIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_STATUS_POCKET, .rightIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_BATTLE_ITEMS_POCKET },
+    [BATTLE_BAG_MENU_SCREEN_BUTTON_LAST_USED_ITEM] = { .xCoord1 = 8, .yCoord1 = 160, .xCoord2 = 200, .yCoord2 = 184, .upIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_STATUS_POCKET, .downIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_LAST_USED_ITEM, .leftIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_LAST_USED_ITEM, .rightIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_CANCEL },
+    [BATTLE_BAG_MENU_SCREEN_BUTTON_CANCEL] = { .xCoord1 = 224, .yCoord1 = 160, .xCoord2 = 248, .yCoord2 = 184, .upIndex = BATTLE_SUB_MENU_CURSOR_GO_TO_PREVIOUS_POSITION_INDEX_MASK + BATTLE_BAG_MENU_SCREEN_BUTTON_BATTLE_ITEMS_POCKET, .downIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_CANCEL, .leftIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_LAST_USED_ITEM, .rightIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_CANCEL }
 };
 
-static const GridMenuCursorPosition Unk_ov13_02229C74[] = {
-    { 0x8, 0x10, 0x78, 0x30, 0x0, 0x2, 0x0, 0x1 },
-    { 0x88, 0x10, 0xF8, 0x30, 0x1, 0x3, 0x0, 0x1 },
-    { 0x8, 0x40, 0x78, 0x60, 0x0, 0x4, 0x2, 0x3 },
-    { 0x88, 0x40, 0xF8, 0x60, 0x1, 0x5, 0x2, 0x3 },
-    { 0x8, 0x70, 0x78, 0x90, 0x2, 0x86, 0x4, 0x5 },
-    { 0x88, 0x70, 0xF8, 0x90, 0x3, 0x8, 0x4, 0x5 },
-    { 0x8, 0xA0, 0x20, 0xB8, 0x4, 0x6, 0x6, 0x7 },
-    { 0x30, 0xA0, 0x48, 0xB8, 0x4, 0x7, 0x6, 0x8 },
-    { 0xE0, 0xA0, 0xF8, 0xB8, 0x5, 0x8, 0x7, 0x8 }
+static const GridMenuCursorPosition pocketMenuScreenCursorPositions[] = {
+    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_1] = { .xCoord1 = 8, .yCoord1 = 16, .xCoord2 = 120, .yCoord2 = 48, .upIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_1, .downIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_3, .leftIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_1, .rightIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_2 },
+    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_2] = { .xCoord1 = 136, .yCoord1 = 16, .xCoord2 = 248, .yCoord2 = 48, .upIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_2, .downIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_4, .leftIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_1, .rightIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_2 },
+    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_3] = { .xCoord1 = 8, .yCoord1 = 64, .xCoord2 = 120, .yCoord2 = 96, .upIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_1, .downIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_5, .leftIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_3, .rightIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_4 },
+    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_4] = { .xCoord1 = 136, .yCoord1 = 64, .xCoord2 = 248, .yCoord2 = 96, .upIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_2, .downIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_6, .leftIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_3, .rightIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_4 },
+    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_5] = { .xCoord1 = 8, .yCoord1 = 112, .xCoord2 = 120, .yCoord2 = 144, .upIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_3, .downIndex = BATTLE_SUB_MENU_CURSOR_GO_TO_PREVIOUS_POSITION_INDEX_MASK + BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_PREV_PAGE, .leftIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_5, .rightIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_6 },
+    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_6] = { .xCoord1 = 136, .yCoord1 = 112, .xCoord2 = 248, .yCoord2 = 144, .upIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_4, .downIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_CANCEL, .leftIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_5, .rightIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_6 },
+    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_PREV_PAGE] = { .xCoord1 = 8, .yCoord1 = 160, .xCoord2 = 32, .yCoord2 = 184, .upIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_5, .downIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_PREV_PAGE, .leftIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_PREV_PAGE, .rightIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_NEXT_PAGE },
+    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_NEXT_PAGE] = { .xCoord1 = 48, .yCoord1 = 160, .xCoord2 = 72, .yCoord2 = 184, .upIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_5, .downIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_NEXT_PAGE, .leftIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_PREV_PAGE, .rightIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_CANCEL },
+    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_CANCEL] = { .xCoord1 = 224, .yCoord1 = 160, .xCoord2 = 248, .yCoord2 = 184, .upIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_6, .downIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_CANCEL, .leftIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_NEXT_PAGE, .rightIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_CANCEL }
 };
 
-static const GridMenuCursorPosition Unk_ov13_02229BD4[] = {
-    { 0x8, 0xA0, 0xC8, 0xB8, 0x0, 0x0, 0x0, 0x1 },
-    { 0xE0, 0xA0, 0xF8, 0xB8, 0x1, 0x1, 0x0, 0x1 }
+static const GridMenuCursorPosition useItemScreenCursorPositions[] = {
+    [BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_USE] = { .xCoord1 = 8, .yCoord1 = 160, .xCoord2 = 200, .yCoord2 = 184, .upIndex = BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_USE, .downIndex = BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_USE, .leftIndex = BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_USE, .rightIndex = BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_CANCEL },
+    [BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_CANCEL] = { .xCoord1 = 224, .yCoord1 = 160, .xCoord2 = 248, .yCoord2 = 184, .upIndex = BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_CANCEL, .downIndex = BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_CANCEL, .leftIndex = BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_USE, .rightIndex = BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_CANCEL }
 };
 
-static const GridMenuCursorPosition *const Unk_ov13_02229BC8[] = {
-    Unk_ov13_02229C14,
-    Unk_ov13_02229C74,
-    Unk_ov13_02229BD4
+static const GridMenuCursorPosition *const screenCursorPositions[] = {
+    [BATTLE_BAG_SCREEN_MENU] = menuScreenCursorPositions,
+    [BATTLE_BAG_SCREEN_POCKET_MENU] = pocketMenuScreenCursorPositions,
+    [BATTLE_BAG_SCREEN_USE_ITEM] = useItemScreenCursorPositions
 };
 
-void SetupBattleBagCursor(BattleBag *battleBag, enum BattleBagScreen screen)
+void BattleBagSprites_SetupCursor(BattleBag *battleBag, enum BattleBagScreen screen)
 {
-    SetBattleSubMenuCursorPositions(battleBag->cursor, Unk_ov13_02229BC8[screen]);
+    SetBattleSubMenuCursorPositions(battleBag->cursor, screenCursorPositions[screen]);
 
     switch (screen) {
     case BATTLE_BAG_SCREEN_MENU:
@@ -288,42 +299,39 @@ void SetupBattleBagCursor(BattleBag *battleBag, enum BattleBagScreen screen)
     }
 }
 
-void DisableBattleBagCursor(BattleBag *battleBag)
+void BattleBagSprites_DisableCursor(BattleBag *battleBag)
 {
     SetBattleSubMenuCursorVisibility(battleBag->cursor, FALSE);
     ResetBattleSubMenuCursorCurrentPosition(battleBag->cursor);
     ov16_0226DDE8(GetBattleSubMenuCursorSprites(battleBag->cursor));
 }
 
-static void ov13_02228070(BattleBag *param0)
+static void InitializeCatchTutorialCursor(BattleBag *battleBag)
 {
-    SpriteSystem *v0;
-    UnkStruct_ov16_0226DEEC *v1;
+    SpriteSystem *spriteSystem = ov16_0223E010(battleBag->context->battleSystem);
 
-    v0 = ov16_0223E010(param0->context->battleSystem);
-
-    ov16_0226DE44(v0, param0->spriteManager, param0->context->heapID, param0->palette, 46269, 46269, 46264, 46264);
-    param0->unk_38 = ov16_0226DEEC(v0, param0->spriteManager, param0->context->heapID, 46269, 46269, 46264, 46264, 0, 0);
+    ov16_0226DE44(spriteSystem, battleBag->spriteManager, battleBag->context->heapID, battleBag->palette, CATCH_TUTORIAL_CURSOR_IMAGE_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_IMAGE_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_ANIM_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_ANIM_RESOURCE_ID);
+    battleBag->catchTutorialCursor = ov16_0226DEEC(spriteSystem, battleBag->spriteManager, battleBag->context->heapID, CATCH_TUTORIAL_CURSOR_IMAGE_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_IMAGE_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_ANIM_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_ANIM_RESOURCE_ID, 0, 0);
 }
 
-static void ov13_022280C8(BattleBag *param0)
+static void CleanupCatchTutorialCursor(BattleBag *battleBag)
 {
-    ov16_0226DF68(param0->unk_38);
-    ov16_0226DEC4(param0->spriteManager, 46269, 46269, 46264, 46264);
+    ov16_0226DF68(battleBag->catchTutorialCursor);
+    ov16_0226DEC4(battleBag->spriteManager, CATCH_TUTORIAL_CURSOR_IMAGE_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_IMAGE_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_ANIM_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_ANIM_RESOURCE_ID);
 }
 
-static const int Unk_ov13_02229BFC[3][2] = {
-    { 0xC0, 0x18 },
-    { 0x40, 0x10 },
-    { 0x68, 0x98 }
+static const int catchTutorialCursorPositions[3][2] = {
+    [BATTLE_BAG_SCREEN_MENU] = { 192, 24 },
+    [BATTLE_BAG_SCREEN_POCKET_MENU] = { 64, 16 },
+    [BATTLE_BAG_SCREEN_USE_ITEM] = { 104, 152 }
 };
 
-void ov13_022280F0(BattleBag *param0, u8 param1)
+void BattleBagSprites_SetupCatchTutorialCursor(BattleBag *battleBag, enum BattleBagScreen screen)
 {
-    if (param0->context->isInCatchTutorial == 1) {
-        ov16_0226DFB0(param0->unk_38, Unk_ov13_02229BFC[param1][0], Unk_ov13_02229BFC[param1][1]);
-        ov16_0226DFD0(param0->unk_38, 60);
+    if (battleBag->context->isInCatchTutorial == TRUE) {
+        ov16_0226DFB0(battleBag->catchTutorialCursor, catchTutorialCursorPositions[screen][0], catchTutorialCursorPositions[screen][1]);
+        ov16_0226DFD0(battleBag->catchTutorialCursor, 60);
     } else {
-        ov16_0226DFBC(param0->unk_38);
+        ov16_0226DFBC(battleBag->catchTutorialCursor);
     }
 }
