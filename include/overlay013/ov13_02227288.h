@@ -3,14 +3,14 @@
 
 #include "overlay013/battle_bag.h"
 
-void ov13_02227288(BattleBag *param0);
-void ov13_022272AC(BattleBag *param0, u32 param1);
-void ov13_02227324(BattleBag *param0);
-void ov13_02227334(BattleBag *param0);
-void ov13_02227350(BattleBag *param0, u32 param1);
-void ov13_02227650(BattleBag *param0);
-void ov13_02227698(BattleBag *param0);
-void DisplayBattleBagMessage(BattleBag *battleBag);
-void ov13_02227A1C(BattleBag *param0);
+void BattleBagText_InitializeWindows(BattleBag *battleBag);
+void BattleBagText_InitializeScreenWindows(BattleBag *battleBag, enum BattleBagScreen screen);
+void BattleBagText_ClearScreenWindows(BattleBag *battleBag);
+void BattleBagText_ClearWindows(BattleBag *battleBag);
+void BattleBagText_ChangeScreen(BattleBag *battleBag, enum BattleBagScreen screen);
+void BattleBagText_PrintAllPocketItemInfo(BattleBag *battleBag);
+void BattleBagText_PrintPocketPageNums(BattleBag *battleBag);
+void BattleBagText_DisplayMessage(BattleBag *battleBag);
+void BattleBagText_PrintToMessageBox(BattleBag *battleBag);
 
 #endif // POKEPLATINUM_OV13_02227288_H

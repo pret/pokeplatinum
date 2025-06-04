@@ -1,8 +1,5 @@
 #include "overlay013/ov13_02227288.h"
 
-#include <nitro.h>
-#include <string.h>
-
 #include "battle/ov16_0223DF00.h"
 #include "overlay013/battle_bag.h"
 
@@ -16,367 +13,415 @@
 #include "string_template.h"
 #include "text.h"
 
-static void ov13_022273CC(BattleBag *param0);
-static void ov13_02227888(BattleBag *param0);
-static void ov13_02227974(BattleBag *param0);
+#include "res/text/bank/battle_bag.h"
 
-static const WindowTemplate Unk_ov13_02229A60 = {
-    0x4,
-    0x2,
-    0x13,
-    0x1B,
-    0x4,
-    0xF,
-    0x376
+#define BATTLE_BAG_MENU_SCREEN_WINDOW_NUM        5
+#define BATTLE_BAG_MENU_POCKET_SCREEN_WINDOW_NUM 26
+#define BATTLE_BAG_USE_ITEM_SCREEN_WINDOW_NUM    4
+
+enum menuScreenWindow {
+    MENU_SCREEN_WINDOW_HP_PP_RESTORE = 0,
+    MENU_SCREEN_WINDOW_STATUS_HEALERS,
+    MENU_SCREEN_WINDOW_POKE_BALLS,
+    MENU_SCREEN_WINDOW_BATTLE_ITEMS,
+    MENU_SCREEN_WINDOW_LAST_USED_ITEM,
 };
 
-static const WindowTemplate Unk_ov13_02229A88[] = {
-    { 0x4, 0x2, 0x4, 0xC, 0x5, 0x0, 0x2CE },
-    { 0x4, 0x2, 0xD, 0xC, 0x5, 0x0, 0x30A },
-    { 0x4, 0x12, 0x5, 0xC, 0x3, 0x0, 0x286 },
-    { 0x4, 0x12, 0xE, 0xC, 0x3, 0x0, 0x2AA },
-    { 0x4, 0x5, 0x14, 0x14, 0x3, 0x0, 0x24A }
+enum pocketMenuScreenWindow {
+    POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_1_NAME = 0,
+    POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_1_AMOUNT,
+    POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_2_NAME,
+    POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_2_AMOUNT,
+    POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_3_NAME,
+    POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_3_AMOUNT,
+    POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_4_NAME,
+    POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_4_AMOUNT,
+    POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_5_NAME,
+    POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_5_AMOUNT,
+    POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_6_NAME,
+    POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_6_AMOUNT,
+    POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_1_NAME,
+    POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_1_AMOUNT,
+    POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_2_NAME,
+    POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_2_AMOUNT,
+    POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_3_NAME,
+    POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_3_AMOUNT,
+    POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_4_NAME,
+    POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_4_AMOUNT,
+    POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_5_NAME,
+    POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_5_AMOUNT,
+    POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_6_NAME,
+    POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_6_AMOUNT,
+    POCKET_MENU_SCREEN_WINDOW_POCKET_NAME,
+    POCKET_MENU_SCREEN_WINDOW_PAGE_NUMS,
 };
 
-static const WindowTemplate Unk_ov13_02229AE0[] = {
-    { 0x5, 0x1, 0x1, 0xE, 0x3, 0x0, 0x1 },
-    { 0x5, 0x8, 0x4, 0x4, 0x3, 0x4, 0x2B },
-    { 0x5, 0x11, 0x1, 0xE, 0x3, 0x0, 0x37 },
-    { 0x5, 0x18, 0x4, 0x4, 0x3, 0x4, 0x61 },
-    { 0x5, 0x1, 0x7, 0xE, 0x3, 0x0, 0x6D },
-    { 0x5, 0x8, 0xA, 0x4, 0x3, 0x4, 0x97 },
-    { 0x5, 0x11, 0x7, 0xE, 0x3, 0x0, 0xA3 },
-    { 0x5, 0x18, 0xA, 0x4, 0x3, 0x4, 0xCD },
-    { 0x5, 0x1, 0xD, 0xE, 0x3, 0x0, 0xD9 },
-    { 0x5, 0x8, 0x10, 0x4, 0x3, 0x4, 0x103 },
-    { 0x5, 0x11, 0xD, 0xE, 0x3, 0x0, 0x10F },
-    { 0x5, 0x18, 0x10, 0x4, 0x3, 0x4, 0x139 },
-    { 0x5, 0x1, 0x1, 0xE, 0x3, 0x0, 0x145 },
-    { 0x5, 0x8, 0x4, 0x4, 0x3, 0x4, 0x16F },
-    { 0x5, 0x11, 0x1, 0xE, 0x3, 0x0, 0x17B },
-    { 0x5, 0x18, 0x4, 0x4, 0x3, 0x4, 0x1A5 },
-    { 0x5, 0x1, 0x7, 0xE, 0x3, 0x0, 0x1B1 },
-    { 0x5, 0x8, 0xA, 0x4, 0x3, 0x4, 0x1DB },
-    { 0x5, 0x11, 0x7, 0xE, 0x3, 0x0, 0x1E7 },
-    { 0x5, 0x18, 0xA, 0x4, 0x3, 0x4, 0x211 },
-    { 0x5, 0x1, 0xD, 0xE, 0x3, 0x0, 0x21D },
-    { 0x5, 0x8, 0x10, 0x4, 0x3, 0x4, 0x247 },
-    { 0x5, 0x11, 0xD, 0xE, 0x3, 0x0, 0x253 },
-    { 0x5, 0x18, 0x10, 0x4, 0x3, 0x4, 0x27D },
-    { 0x5, 0xB, 0x13, 0xA, 0x5, 0x4, 0x289 },
-    { 0x5, 0x16, 0x14, 0x4, 0x3, 0x4, 0x2BB }
+enum useItemScreenWindow {
+    USE_ITEM_SCREEM_WINDOW_ITEM_NAME = 0,
+    USE_ITEM_SCREEM_WINDOW_ITEM_AMOUNT,
+    USE_ITEM_SCREEM_WINDOW_ITEM_DESC,
+    USE_ITEM_SCREEM_WINDOW_ITEM_USE,
 };
 
-static const WindowTemplate Unk_ov13_02229A68[] = {
-    { 0x5, 0x7, 0x4, 0xC, 0x2, 0x4, 0x2C7 },
-    { 0x5, 0x14, 0x4, 0x4, 0x2, 0x4, 0x2DF },
-    { 0x5, 0x2, 0x9, 0x1C, 0x6, 0x4, 0x2E7 },
-    { 0x5, 0xA, 0x14, 0x6, 0x3, 0x0, 0x38F }
+static void RenderMenuScreen(BattleBag *battleBag);
+static void RenderPocketMenuScreen(BattleBag *battleBag);
+static void RenderUseItemScreen(BattleBag *battleBag);
+
+static const WindowTemplate messageBoxWindowTemplate = {
+    .bgLayer = BG_LAYER_SUB_0,
+    .tilemapLeft = 2,
+    .tilemapTop = 19,
+    .width = 27,
+    .height = 4,
+    .palette = 15,
+    .baseTile = 886
 };
 
-void ov13_02227288(BattleBag *param0)
-{
-    Window_AddFromTemplate(param0->background, &param0->messageBoxWindow, &Unk_ov13_02229A60);
-    ov13_022272AC(param0, param0->currentScreen);
-}
-
-void ov13_022272AC(BattleBag *param0, u32 param1)
-{
-    const WindowTemplate *v0;
-    u8 v1;
-
-    switch (param1) {
-    case 0:
-        v0 = Unk_ov13_02229A88;
-        param0->numWindows = 5;
-        break;
-    case 1:
-        v0 = Unk_ov13_02229AE0;
-        param0->numWindows = 26;
-        break;
-    case 2:
-        v0 = Unk_ov13_02229A68;
-        param0->numWindows = 4;
-        break;
-    }
-
-    param0->windows = Window_New(param0->context->heapID, param0->numWindows);
-
-    for (v1 = 0; v1 < param0->numWindows; v1++) {
-        Window_AddFromTemplate(param0->background, &param0->windows[v1], &v0[v1]);
-    }
-}
-
-void ov13_02227324(BattleBag *param0)
-{
-    Windows_Delete(param0->windows, param0->numWindows);
-}
-
-void ov13_02227334(BattleBag *param0)
-{
-    u32 v0;
-
-    Windows_Delete(param0->windows, param0->numWindows);
-    Window_Remove(&param0->messageBoxWindow);
-}
-
-void ov13_02227350(BattleBag *param0, u32 param1)
-{
-    switch (param1) {
-    case 0:
-        ov13_022273CC(param0);
-        break;
-    case 1:
-        ov13_02227888(param0);
-        break;
-    case 2:
-        ov13_02227974(param0);
-        break;
-    }
-}
-
-static void ov13_02227374(BattleBag *param0, u32 param1, u32 param2, u32 param3, u32 param4, TextColor param5)
-{
-    Window *v0;
-    Strbuf *v1;
-    u32 v2;
-    u32 v3;
-
-    v0 = &param0->windows[param1];
-    v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, param2);
-    v2 = Font_CalcStrbufWidth(param3, v1, 0);
-    v3 = (Window_GetWidth(v0) * 8 - v2) / 2;
-
-    Text_AddPrinterWithParamsAndColor(v0, param3, v1, v3, param4, TEXT_SPEED_NO_TRANSFER, param5, NULL);
-    Strbuf_Free(v1);
-    Window_ScheduleCopyToVRAM(v0);
-}
-
-static void ov13_022273CC(BattleBag *param0)
-{
-    u32 v0;
-
-    for (v0 = 0; v0 < 5; v0++) {
-        Window_FillTilemap(&param0->windows[v0], 0);
-    }
-
-    ov13_02227374(param0, 0, 0, FONT_SUBSCREEN, 8, TEXT_COLOR(3, 2, 1));
-    ov13_02227374(param0, 0, 1, FONT_SUBSCREEN, 24, TEXT_COLOR(3, 2, 1));
-    ov13_02227374(param0, 1, 2, FONT_SUBSCREEN, 8, TEXT_COLOR(3, 2, 1));
-    ov13_02227374(param0, 1, 3, FONT_SUBSCREEN, 24, TEXT_COLOR(3, 2, 1));
-    ov13_02227374(param0, 2, 7, FONT_SUBSCREEN, 8, TEXT_COLOR(3, 2, 1));
-    ov13_02227374(param0, 3, 6, FONT_SUBSCREEN, 8, TEXT_COLOR(3, 2, 1));
-
-    if (param0->context->lastUsedItem != ITEM_NONE) {
-        Strbuf *v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 8); // Possibly TRAINER_NAME_LEN + 1
-
-        Text_AddPrinterWithParamsAndColor(&param0->windows[4], FONT_SUBSCREEN, v1, 0, 6, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);
-        Strbuf_Free(v1);
-        Window_ScheduleCopyToVRAM(&param0->windows[4]);
-    }
-}
-
-static const u32 Unk_ov13_02229AB0[][2] = {
-    { 0x9, 0xA },
-    { 0xB, 0xC },
-    { 0xD, 0xE },
-    { 0xF, 0x10 },
-    { 0x11, 0x12 },
-    { 0x13, 0x14 }
+static const WindowTemplate menuScreenWindowTemplates[] = {
+    [MENU_SCREEN_WINDOW_HP_PP_RESTORE] = { .bgLayer = BG_LAYER_SUB_0, .tilemapLeft = 2, .tilemapTop = 4, .width = 12, .height = 5, .palette = 0, .baseTile = 718 },
+    [MENU_SCREEN_WINDOW_STATUS_HEALERS] = { .bgLayer = BG_LAYER_SUB_0, .tilemapLeft = 2, .tilemapTop = 13, .width = 12, .height = 5, .palette = 0, .baseTile = 778 },
+    [MENU_SCREEN_WINDOW_POKE_BALLS] = { .bgLayer = BG_LAYER_SUB_0, .tilemapLeft = 18, .tilemapTop = 5, .width = 12, .height = 3, .palette = 0, .baseTile = 646 },
+    [MENU_SCREEN_WINDOW_BATTLE_ITEMS] = { .bgLayer = BG_LAYER_SUB_0, .tilemapLeft = 18, .tilemapTop = 14, .width = 12, .height = 3, .palette = 0, .baseTile = 682 },
+    [MENU_SCREEN_WINDOW_LAST_USED_ITEM] = { .bgLayer = BG_LAYER_SUB_0, .tilemapLeft = 5, .tilemapTop = 20, .width = 20, .height = 3, .palette = 0, .baseTile = 586 }
 };
 
-static void ov13_022274A8(BattleBag *param0, u32 param1, u32 param2, u32 param3, u32 param4, TextColor param5)
+static const WindowTemplate pocketMenuScreenWindowTemplates[] = {
+    [POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_1_NAME] = { .bgLayer = BG_LAYER_SUB_1, .tilemapLeft = 1, .tilemapTop = 1, .width = 14, .height = 3, .palette = 0, .baseTile = 1 },
+    [POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_1_AMOUNT] = { .bgLayer = BG_LAYER_SUB_1, .tilemapLeft = 8, .tilemapTop = 4, .width = 4, .height = 3, .palette = 4, .baseTile = 43 },
+    [POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_2_NAME] = { .bgLayer = BG_LAYER_SUB_1, .tilemapLeft = 17, .tilemapTop = 1, .width = 14, .height = 3, .palette = 0, .baseTile = 55 },
+    [POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_2_AMOUNT] = { .bgLayer = BG_LAYER_SUB_1, .tilemapLeft = 24, .tilemapTop = 4, .width = 4, .height = 3, .palette = 4, .baseTile = 97 },
+    [POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_3_NAME] = { .bgLayer = BG_LAYER_SUB_1, .tilemapLeft = 1, .tilemapTop = 7, .width = 14, .height = 3, .palette = 0, .baseTile = 109 },
+    [POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_3_AMOUNT] = { .bgLayer = BG_LAYER_SUB_1, .tilemapLeft = 8, .tilemapTop = 10, .width = 4, .height = 3, .palette = 4, .baseTile = 151 },
+    [POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_4_NAME] = { .bgLayer = BG_LAYER_SUB_1, .tilemapLeft = 17, .tilemapTop = 7, .width = 14, .height = 3, .palette = 0, .baseTile = 163 },
+    [POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_4_AMOUNT] = { .bgLayer = BG_LAYER_SUB_1, .tilemapLeft = 24, .tilemapTop = 10, .width = 4, .height = 3, .palette = 4, .baseTile = 205 },
+    [POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_5_NAME] = { .bgLayer = BG_LAYER_SUB_1, .tilemapLeft = 1, .tilemapTop = 13, .width = 14, .height = 3, .palette = 0, .baseTile = 217 },
+    [POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_5_AMOUNT] = { .bgLayer = BG_LAYER_SUB_1, .tilemapLeft = 8, .tilemapTop = 16, .width = 4, .height = 3, .palette = 4, .baseTile = 259 },
+    [POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_6_NAME] = { .bgLayer = BG_LAYER_SUB_1, .tilemapLeft = 17, .tilemapTop = 13, .width = 14, .height = 3, .palette = 0, .baseTile = 271 },
+    [POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_6_AMOUNT] = { .bgLayer = BG_LAYER_SUB_1, .tilemapLeft = 24, .tilemapTop = 16, .width = 4, .height = 3, .palette = 4, .baseTile = 313 },
+    [POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_1_NAME] = { .bgLayer = BG_LAYER_SUB_1, .tilemapLeft = 1, .tilemapTop = 1, .width = 14, .height = 3, .palette = 0, .baseTile = 325 },
+    [POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_1_AMOUNT] = { .bgLayer = BG_LAYER_SUB_1, .tilemapLeft = 8, .tilemapTop = 4, .width = 4, .height = 3, .palette = 4, .baseTile = 367 },
+    [POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_2_NAME] = { .bgLayer = BG_LAYER_SUB_1, .tilemapLeft = 17, .tilemapTop = 1, .width = 14, .height = 3, .palette = 0, .baseTile = 379 },
+    [POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_2_AMOUNT] = { .bgLayer = BG_LAYER_SUB_1, .tilemapLeft = 24, .tilemapTop = 4, .width = 4, .height = 3, .palette = 4, .baseTile = 421 },
+    [POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_3_NAME] = { .bgLayer = BG_LAYER_SUB_1, .tilemapLeft = 1, .tilemapTop = 7, .width = 14, .height = 3, .palette = 0, .baseTile = 433 },
+    [POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_3_AMOUNT] = { .bgLayer = BG_LAYER_SUB_1, .tilemapLeft = 8, .tilemapTop = 10, .width = 4, .height = 3, .palette = 4, .baseTile = 475 },
+    [POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_4_NAME] = { .bgLayer = BG_LAYER_SUB_1, .tilemapLeft = 17, .tilemapTop = 7, .width = 14, .height = 3, .palette = 0, .baseTile = 487 },
+    [POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_4_AMOUNT] = { .bgLayer = BG_LAYER_SUB_1, .tilemapLeft = 24, .tilemapTop = 10, .width = 4, .height = 3, .palette = 4, .baseTile = 529 },
+    [POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_5_NAME] = { .bgLayer = BG_LAYER_SUB_1, .tilemapLeft = 1, .tilemapTop = 13, .width = 14, .height = 3, .palette = 0, .baseTile = 541 },
+    [POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_5_AMOUNT] = { .bgLayer = BG_LAYER_SUB_1, .tilemapLeft = 8, .tilemapTop = 16, .width = 4, .height = 3, .palette = 4, .baseTile = 583 },
+    [POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_6_NAME] = { .bgLayer = BG_LAYER_SUB_1, .tilemapLeft = 17, .tilemapTop = 13, .width = 14, .height = 3, .palette = 0, .baseTile = 595 },
+    [POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_6_AMOUNT] = { .bgLayer = BG_LAYER_SUB_1, .tilemapLeft = 24, .tilemapTop = 16, .width = 4, .height = 3, .palette = 4, .baseTile = 637 },
+    [POCKET_MENU_SCREEN_WINDOW_POCKET_NAME] = { .bgLayer = BG_LAYER_SUB_1, .tilemapLeft = 11, .tilemapTop = 19, .width = 10, .height = 5, .palette = 4, .baseTile = 649 },
+    [POCKET_MENU_SCREEN_WINDOW_PAGE_NUMS] = { .bgLayer = BG_LAYER_SUB_1, .tilemapLeft = 22, .tilemapTop = 20, .width = 4, .height = 3, .palette = 4, .baseTile = 699 }
+};
+
+static const WindowTemplate useItemScreenWindowTemplates[] = {
+    [USE_ITEM_SCREEM_WINDOW_ITEM_NAME] = { .bgLayer = BG_LAYER_SUB_1, .tilemapLeft = 7, .tilemapTop = 4, .width = 12, .height = 2, .palette = 4, .baseTile = 711 },
+    [USE_ITEM_SCREEM_WINDOW_ITEM_AMOUNT] = { .bgLayer = BG_LAYER_SUB_1, .tilemapLeft = 20, .tilemapTop = 4, .width = 4, .height = 2, .palette = 4, .baseTile = 735 },
+    [USE_ITEM_SCREEM_WINDOW_ITEM_DESC] = { .bgLayer = BG_LAYER_SUB_1, .tilemapLeft = 2, .tilemapTop = 9, .width = 28, .height = 6, .palette = 4, .baseTile = 743 },
+    [USE_ITEM_SCREEM_WINDOW_ITEM_USE] = { .bgLayer = BG_LAYER_SUB_1, .tilemapLeft = 10, .tilemapTop = 20, .width = 6, .height = 3, .palette = 0, .baseTile = 911 }
+};
+
+static const u32 pocketSlotTextIds[][2] = {
+    { BattleBag_Text_PocketSlot1ItemName, BattleBag_Text_PocketSlot1ItemAmount },
+    { BattleBag_Text_PocketSlot2ItemName, BattleBag_Text_PocketSlot2ItemAmount },
+    { BattleBag_Text_PocketSlot3ItemName, BattleBag_Text_PocketSlot3ItemAmount },
+    { BattleBag_Text_PocketSlot4ItemName, BattleBag_Text_PocketSlot4ItemAmount },
+    { BattleBag_Text_PocketSlot5ItemName, BattleBag_Text_PocketSlot5ItemAmount },
+    { BattleBag_Text_PocketSlot6ItemName, BattleBag_Text_PocketSlot6ItemAmount }
+};
+
+void BattleBagText_InitializeWindows(BattleBag *battleBag)
 {
-    Window *v0;
-    Strbuf *v1;
-    u32 v2;
-    u32 v3;
-
-    v0 = &param0->windows[param3];
-
-    Window_FillTilemap(v0, 0);
-
-    if (param0->items[param0->currentBattlePocket][param1].item != 0) {
-        v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, Unk_ov13_02229AB0[param2][0]);
-
-        StringTemplate_SetItemName(param0->stringTemplate, 0, param0->items[param0->currentBattlePocket][param1].item);
-        StringTemplate_Format(param0->stringTemplate, param0->strbuf, v1);
-
-        v2 = Font_CalcStrbufWidth(param4, param0->strbuf, 0);
-        v3 = (Window_GetWidth(v0) * 8 - v2) / 2;
-
-        Text_AddPrinterWithParamsAndColor(v0, param4, param0->strbuf, v3, 8, TEXT_SPEED_NO_TRANSFER, param5, NULL);
-        Strbuf_Free(v1);
-    }
-
-    Window_ScheduleCopyToVRAM(v0);
+    Window_AddFromTemplate(battleBag->background, &battleBag->messageBoxWindow, &messageBoxWindowTemplate);
+    BattleBagText_InitializeScreenWindows(battleBag, battleBag->currentScreen);
 }
 
-static void ov13_0222754C(BattleBag *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, TextColor param6)
+void BattleBagText_InitializeScreenWindows(BattleBag *battleBag, enum BattleBagScreen screen)
 {
-    Strbuf *v0;
-    Window *v1 = &param0->windows[param3];
+    const WindowTemplate *windowTemplates;
+    u8 i;
 
-    Window_FillTilemap(v1, 0);
-
-    if (param0->items[param0->currentBattlePocket][param1].quantity != 0) {
-        v0 = MessageLoader_GetNewStrbuf(param0->messageLoader, Unk_ov13_02229AB0[param2][1]);
-
-        StringTemplate_SetNumber(param0->stringTemplate, 0, param0->items[param0->currentBattlePocket][param1].quantity, 3, 0, 1);
-        StringTemplate_Format(param0->stringTemplate, param0->strbuf, v0);
-        Text_AddPrinterWithParamsAndColor(v1, param4, param0->strbuf, 0, param5, TEXT_SPEED_NO_TRANSFER, param6, NULL);
-        Strbuf_Free(v0);
+    switch (screen) {
+    case BATTLE_BAG_SCREEN_MENU:
+        windowTemplates = menuScreenWindowTemplates;
+        battleBag->numWindows = BATTLE_BAG_MENU_SCREEN_WINDOW_NUM;
+        break;
+    case BATTLE_BAG_SCREEN_POCKET_MENU:
+        windowTemplates = pocketMenuScreenWindowTemplates;
+        battleBag->numWindows = BATTLE_BAG_MENU_POCKET_SCREEN_WINDOW_NUM;
+        break;
+    case BATTLE_BAG_SCREEN_USE_ITEM:
+        windowTemplates = useItemScreenWindowTemplates;
+        battleBag->numWindows = BATTLE_BAG_USE_ITEM_SCREEN_WINDOW_NUM;
+        break;
     }
 
-    Window_ScheduleCopyToVRAM(v1);
+    battleBag->windows = Window_New(battleBag->context->heapID, battleBag->numWindows);
+
+    for (i = 0; i < battleBag->numWindows; i++) {
+        Window_AddFromTemplate(battleBag->background, &battleBag->windows[i], &windowTemplates[i]);
+    }
 }
 
-static void ov13_022275E0(BattleBag *param0, u32 param1)
+void BattleBagText_ClearScreenWindows(BattleBag *battleBag)
 {
-    u32 v0;
-    u32 v1 = param0->context->pocketCurrentPages[param0->currentBattlePocket] * 6 + param1;
+    Windows_Delete(battleBag->windows, battleBag->numWindows);
+}
 
-    if (param0->unk_31 == 0) {
-        v0 = 0;
+void BattleBagText_ClearWindows(BattleBag *battleBag)
+{
+    Windows_Delete(battleBag->windows, battleBag->numWindows);
+    Window_Remove(&battleBag->messageBoxWindow);
+}
+
+void BattleBagText_ChangeScreen(BattleBag *battleBag, enum BattleBagScreen screen)
+{
+    switch (screen) {
+    case BATTLE_BAG_SCREEN_MENU:
+        RenderMenuScreen(battleBag);
+        break;
+    case BATTLE_BAG_SCREEN_POCKET_MENU:
+        RenderPocketMenuScreen(battleBag);
+        break;
+    case BATTLE_BAG_SCREEN_USE_ITEM:
+        RenderUseItemScreen(battleBag);
+        break;
+    }
+}
+
+static void PrintTextToWindow(BattleBag *battleBag, u8 windowIndex, u32 textID, enum Font font, u32 yOffset, TextColor color)
+{
+    Window *window;
+    Strbuf *strbuf;
+    u32 stringWidth;
+    u32 xOffset;
+
+    window = &battleBag->windows[windowIndex];
+    strbuf = MessageLoader_GetNewStrbuf(battleBag->messageLoader, textID);
+    stringWidth = Font_CalcStrbufWidth(font, strbuf, 0);
+    xOffset = (Window_GetWidth(window) * 8 - stringWidth) / 2;
+
+    Text_AddPrinterWithParamsAndColor(window, font, strbuf, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, color, NULL);
+    Strbuf_Free(strbuf);
+    Window_ScheduleCopyToVRAM(window);
+}
+
+static void RenderMenuScreen(BattleBag *battleBag)
+{
+    u32 i;
+
+    for (i = 0; i < BATTLE_POCKET_MAX; i++) {
+        Window_FillTilemap(&battleBag->windows[i], 0);
+    }
+
+    PrintTextToWindow(battleBag, MENU_SCREEN_WINDOW_HP_PP_RESTORE, BattleBag_Text_MenuTitleHPPP, FONT_SUBSCREEN, 8, TEXT_COLOR(3, 2, 1));
+    PrintTextToWindow(battleBag, MENU_SCREEN_WINDOW_HP_PP_RESTORE, BattleBag_Text_MenuTitleRestore, FONT_SUBSCREEN, 24, TEXT_COLOR(3, 2, 1));
+    PrintTextToWindow(battleBag, MENU_SCREEN_WINDOW_STATUS_HEALERS, BattleBag_Text_MenuTitleStatus, FONT_SUBSCREEN, 8, TEXT_COLOR(3, 2, 1));
+    PrintTextToWindow(battleBag, MENU_SCREEN_WINDOW_STATUS_HEALERS, BattleBag_Text_MenuTitleHealers, FONT_SUBSCREEN, 24, TEXT_COLOR(3, 2, 1));
+    PrintTextToWindow(battleBag, MENU_SCREEN_WINDOW_POKE_BALLS, BattleBag_Text_MenuTitlePokeBalls, FONT_SUBSCREEN, 8, TEXT_COLOR(3, 2, 1));
+    PrintTextToWindow(battleBag, MENU_SCREEN_WINDOW_BATTLE_ITEMS, BattleBag_Text_MenuTitleBattleItems, FONT_SUBSCREEN, 8, TEXT_COLOR(3, 2, 1));
+
+    if (battleBag->context->lastUsedItem != ITEM_NONE) {
+        Strbuf *strbuf = MessageLoader_GetNewStrbuf(battleBag->messageLoader, BattleBag_Text_ItemUsedLast);
+
+        Text_AddPrinterWithParamsAndColor(&battleBag->windows[MENU_SCREEN_WINDOW_LAST_USED_ITEM], FONT_SUBSCREEN, strbuf, 0, 6, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);
+        Strbuf_Free(strbuf);
+        Window_ScheduleCopyToVRAM(&battleBag->windows[MENU_SCREEN_WINDOW_LAST_USED_ITEM]);
+    }
+}
+
+static void PrintPocketItemNameToWindow(BattleBag *battleBag, u32 itemIndex, u32 slot, u32 windowIndex, enum Font font, TextColor color)
+{
+    Window *window;
+    Strbuf *strbuf;
+    u32 width;
+    u32 xOffset;
+
+    window = &battleBag->windows[windowIndex];
+
+    Window_FillTilemap(window, 0);
+
+    if (battleBag->items[battleBag->currentBattlePocket][itemIndex].item != ITEM_NONE) {
+        strbuf = MessageLoader_GetNewStrbuf(battleBag->messageLoader, pocketSlotTextIds[slot][0]);
+
+        StringTemplate_SetItemName(battleBag->stringTemplate, 0, battleBag->items[battleBag->currentBattlePocket][itemIndex].item);
+        StringTemplate_Format(battleBag->stringTemplate, battleBag->strbuf, strbuf);
+
+        width = Font_CalcStrbufWidth(font, battleBag->strbuf, 0);
+        xOffset = (Window_GetWidth(window) * 8 - width) / 2;
+
+        Text_AddPrinterWithParamsAndColor(window, font, battleBag->strbuf, xOffset, 8, TEXT_SPEED_NO_TRANSFER, color, NULL);
+        Strbuf_Free(strbuf);
+    }
+
+    Window_ScheduleCopyToVRAM(window);
+}
+
+static void PrintPocketItemAmountToWindow(BattleBag *battleBag, u32 itemIndex, u32 slot, u32 windowIndex, enum Font font, u32 yOffset, TextColor color)
+{
+    Strbuf *strbuf;
+    Window *window = &battleBag->windows[windowIndex];
+
+    Window_FillTilemap(window, 0);
+
+    if (battleBag->items[battleBag->currentBattlePocket][itemIndex].quantity != ITEM_NONE) {
+        strbuf = MessageLoader_GetNewStrbuf(battleBag->messageLoader, pocketSlotTextIds[slot][1]);
+
+        StringTemplate_SetNumber(battleBag->stringTemplate, 0, battleBag->items[battleBag->currentBattlePocket][itemIndex].quantity, 3, 0, CHARSET_MODE_EN);
+        StringTemplate_Format(battleBag->stringTemplate, battleBag->strbuf, strbuf);
+        Text_AddPrinterWithParamsAndColor(window, font, battleBag->strbuf, 0, yOffset, TEXT_SPEED_NO_TRANSFER, color, NULL);
+        Strbuf_Free(strbuf);
+    }
+
+    Window_ScheduleCopyToVRAM(window);
+}
+
+static void PrintPocketItemInfo(BattleBag *battleBag, u32 slot_index)
+{
+    u32 first_window_index;
+    u32 itemIndex = battleBag->context->pocketCurrentPages[battleBag->currentBattlePocket] * BATTLE_POCKET_ITEMS_PER_PAGE + slot_index;
+
+    if (battleBag->useAltPocketMenuWindows == FALSE) {
+        first_window_index = POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_1_NAME;
     } else {
-        v0 = 12;
+        first_window_index = POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_1_NAME;
     }
 
-    ov13_022274A8(param0, v1, param1, v0 + param1 * 2, FONT_SUBSCREEN, TEXT_COLOR(3, 2, 1));
-    ov13_0222754C(param0, v1, param1, v0 + 1 + param1 * 2, FONT_SYSTEM, 4, TEXT_COLOR(1, 2, 0));
+    PrintPocketItemNameToWindow(battleBag, itemIndex, slot_index, first_window_index + slot_index * 2, FONT_SUBSCREEN, TEXT_COLOR(3, 2, 1));
+    PrintPocketItemAmountToWindow(battleBag, itemIndex, slot_index, first_window_index + 1 + slot_index * 2, FONT_SYSTEM, 4, TEXT_COLOR(1, 2, 0));
 }
 
-void ov13_02227650(BattleBag *param0)
+void BattleBagText_PrintAllPocketItemInfo(BattleBag *battleBag)
 {
-    u16 v0;
+    u16 i;
 
-    Bg_FillTilemapRect(param0->background, 5, 0, 0, 0, 32, 19, 17);
+    Bg_FillTilemapRect(battleBag->background, BG_LAYER_SUB_1, 0, 0, 0, 32, 19, 17);
 
-    for (v0 = 0; v0 < 6; v0++) {
-        ov13_022275E0(param0, v0);
+    for (i = 0; i < BATTLE_POCKET_ITEMS_PER_PAGE; i++) {
+        PrintPocketItemInfo(battleBag, i);
     }
 
-    param0->unk_31 ^= 1;
+    battleBag->useAltPocketMenuWindows ^= TRUE;
 }
 
-void ov13_02227698(BattleBag *param0)
+void BattleBagText_PrintPocketPageNums(BattleBag *battleBag)
 {
-    Window *v0;
-    Strbuf *v1;
-    u32 v2;
-    u32 v3;
+    Window *window;
+    Strbuf *strbuf;
+    u32 width;
+    u32 xOffset;
 
-    Window_FillTilemap(&param0->windows[25], 0);
+    Window_FillTilemap(&battleBag->windows[POCKET_MENU_SCREEN_WINDOW_PAGE_NUMS], 0);
 
-    v0 = &param0->windows[25];
-    v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 28);
-    v2 = Font_CalcStrbufWidth(FONT_SYSTEM, v1, 0);
-    v3 = (Window_GetWidth(v0) * 8 - v2) / 2;
+    window = &battleBag->windows[POCKET_MENU_SCREEN_WINDOW_PAGE_NUMS];
+    strbuf = MessageLoader_GetNewStrbuf(battleBag->messageLoader, BattleBag_Text_PocketPageDivider);
+    width = Font_CalcStrbufWidth(FONT_SYSTEM, strbuf, 0);
+    xOffset = (Window_GetWidth(window) * 8 - width) / 2;
 
-    Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, v1, v3, 4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
-    Strbuf_Free(v1);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strbuf, xOffset, 4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Strbuf_Free(strbuf);
 
-    v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 29);
-    StringTemplate_SetNumber(param0->stringTemplate, 0, param0->numBattlePocketPages[param0->currentBattlePocket] + 1, 2, 0, 1);
-    StringTemplate_Format(param0->stringTemplate, param0->strbuf, v1);
-    Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->strbuf, v3 + v2, 4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
-    Strbuf_Free(v1);
+    strbuf = MessageLoader_GetNewStrbuf(battleBag->messageLoader, BattleBag_Text_PocketCurrentPage);
+    StringTemplate_SetNumber(battleBag->stringTemplate, 0, battleBag->numBattlePocketPages[battleBag->currentBattlePocket] + 1, 2, 0, CHARSET_MODE_EN);
+    StringTemplate_Format(battleBag->stringTemplate, battleBag->strbuf, strbuf);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, battleBag->strbuf, xOffset + width, 4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Strbuf_Free(strbuf);
 
-    v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 30);
-    StringTemplate_SetNumber(param0->stringTemplate, 0, param0->context->pocketCurrentPages[param0->currentBattlePocket] + 1, 2, 0, 1);
-    StringTemplate_Format(param0->stringTemplate, param0->strbuf, v1);
+    strbuf = MessageLoader_GetNewStrbuf(battleBag->messageLoader, BattleBag_Text_PocketPageNum);
+    StringTemplate_SetNumber(battleBag->stringTemplate, 0, battleBag->context->pocketCurrentPages[battleBag->currentBattlePocket] + 1, 2, 0, CHARSET_MODE_EN);
+    StringTemplate_Format(battleBag->stringTemplate, battleBag->strbuf, strbuf);
 
-    v2 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->strbuf, 0);
-    Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->strbuf, v3 - v2, 4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
-    Strbuf_Free(v1);
-    Window_ScheduleCopyToVRAM(v0);
+    width = Font_CalcStrbufWidth(FONT_SYSTEM, battleBag->strbuf, 0);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, battleBag->strbuf, xOffset - width, 4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Strbuf_Free(strbuf);
+    Window_ScheduleCopyToVRAM(window);
 }
 
-static void ov13_022277C8(BattleBag *param0)
+static void PrintPocketName(BattleBag *battleBag)
 {
-    Window_FillTilemap(&param0->windows[24], 0);
+    Window_FillTilemap(&battleBag->windows[POCKET_MENU_SCREEN_WINDOW_POCKET_NAME], 0);
 
-    switch (param0->currentBattlePocket) {
+    switch (battleBag->currentBattlePocket) {
     case ITEM_BATTLE_CATEGORY_RECOVER_HP:
-        ov13_02227374(param0, 24, 22, FONT_SYSTEM, 4, TEXT_COLOR(1, 2, 0));
-        ov13_02227374(param0, 24, 23, FONT_SYSTEM, (4 + 16), TEXT_COLOR(1, 2, 0));
+        PrintTextToWindow(battleBag, POCKET_MENU_SCREEN_WINDOW_POCKET_NAME, BattleBag_Text_PocketNameHPPP, FONT_SYSTEM, 4, TEXT_COLOR(1, 2, 0));
+        PrintTextToWindow(battleBag, POCKET_MENU_SCREEN_WINDOW_POCKET_NAME, BattleBag_Text_PocketNameRestore, FONT_SYSTEM, 20, TEXT_COLOR(1, 2, 0));
         break;
     case ITEM_BATTLE_CATEGORY_RECOVER_STATUS:
-        ov13_02227374(param0, 24, 24, FONT_SYSTEM, 4, TEXT_COLOR(1, 2, 0));
-        ov13_02227374(param0, 24, 25, FONT_SYSTEM, (4 + 16), TEXT_COLOR(1, 2, 0));
+        PrintTextToWindow(battleBag, POCKET_MENU_SCREEN_WINDOW_POCKET_NAME, BattleBag_Text_PocketNameStatus, FONT_SYSTEM, 4, TEXT_COLOR(1, 2, 0));
+        PrintTextToWindow(battleBag, POCKET_MENU_SCREEN_WINDOW_POCKET_NAME, BattleBag_Text_PocketNameHealers, FONT_SYSTEM, 20, TEXT_COLOR(1, 2, 0));
         break;
     case ITEM_BATTLE_CATEGORY_POKE_BALLS:
-        ov13_02227374(param0, 24, 26, FONT_SYSTEM, 12, TEXT_COLOR(1, 2, 0));
+        PrintTextToWindow(battleBag, POCKET_MENU_SCREEN_WINDOW_POCKET_NAME, BattleBag_Text_PocketNamePokeBalls, FONT_SYSTEM, 12, TEXT_COLOR(1, 2, 0));
         break;
     case ITEM_BATTLE_CATEGORY_BATTLE_ITEMS:
-        ov13_02227374(param0, 24, 27, FONT_SYSTEM, 12, TEXT_COLOR(1, 2, 0));
+        PrintTextToWindow(battleBag, POCKET_MENU_SCREEN_WINDOW_POCKET_NAME, BattleBag_Text_PocketNameBattleItems, FONT_SYSTEM, 12, TEXT_COLOR(1, 2, 0));
         break;
     }
 }
 
-static void ov13_02227888(BattleBag *param0)
+static void RenderPocketMenuScreen(BattleBag *battleBag)
 {
-    ov13_02227650(param0);
-    ov13_022277C8(param0);
-    ov13_02227698(param0);
+    BattleBagText_PrintAllPocketItemInfo(battleBag);
+    PrintPocketName(battleBag);
+    BattleBagText_PrintPocketPageNums(battleBag);
 }
 
-static void ov13_022278A0(BattleBag *param0, u32 param1)
+static void PrintUseItemName(BattleBag *battleBag, u32 slot)
 {
-    Window *v0;
-    Strbuf *v1;
+    Window *window;
+    Strbuf *strbuf;
 
-    v0 = &param0->windows[0];
-    v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, Unk_ov13_02229AB0[0][0]);
+    window = &battleBag->windows[USE_ITEM_SCREEM_WINDOW_ITEM_NAME];
+    strbuf = MessageLoader_GetNewStrbuf(battleBag->messageLoader, pocketSlotTextIds[0][0]);
 
-    StringTemplate_SetItemName(param0->stringTemplate, 0, param0->items[param0->currentBattlePocket][param1].item);
-    StringTemplate_Format(param0->stringTemplate, param0->strbuf, v1);
-    Window_FillTilemap(v0, 0);
-    Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->strbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
-    Strbuf_Free(v1);
-    Window_ScheduleCopyToVRAM(v0);
+    StringTemplate_SetItemName(battleBag->stringTemplate, 0, battleBag->items[battleBag->currentBattlePocket][slot].item);
+    StringTemplate_Format(battleBag->stringTemplate, battleBag->strbuf, strbuf);
+    Window_FillTilemap(window, 0);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, battleBag->strbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Strbuf_Free(strbuf);
+    Window_ScheduleCopyToVRAM(window);
 }
 
-static void ov13_02227910(BattleBag *param0, u32 param1)
+static void PrintUseItemDesc(BattleBag *battleBag, u32 slot)
 {
-    Window *v0;
-    Strbuf *v1;
+    Window *window;
+    Strbuf *strbuf;
 
-    v0 = &param0->windows[2];
-    v1 = Strbuf_Init(130, param0->context->heapID);
+    window = &battleBag->windows[USE_ITEM_SCREEM_WINDOW_ITEM_DESC];
+    strbuf = Strbuf_Init(130, battleBag->context->heapID);
 
-    Item_LoadDescription(v1, param0->items[param0->currentBattlePocket][param1].item, param0->context->heapID);
-    Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, v1, 4, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
-    Strbuf_Free(v1);
-    Window_ScheduleCopyToVRAM(v0);
+    Item_LoadDescription(strbuf, battleBag->items[battleBag->currentBattlePocket][slot].item, battleBag->context->heapID);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strbuf, 4, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Strbuf_Free(strbuf);
+    Window_ScheduleCopyToVRAM(window);
 }
 
-static void ov13_02227974(BattleBag *param0)
+static void RenderUseItemScreen(BattleBag *battleBag)
 {
-    u32 v0;
-    u32 v1;
+    u32 i;
+    u32 slot;
 
-    for (v0 = 0; v0 < 4; v0++) {
-        Window_FillTilemap(&param0->windows[v0], 0);
+    for (i = 0; i < BATTLE_BAG_USE_ITEM_SCREEN_WINDOW_NUM; i++) {
+        Window_FillTilemap(&battleBag->windows[i], 0);
     }
 
-    v1 = param0->context->pocketCurrentPages[param0->currentBattlePocket] * 6 + param0->context->pocketCurrentPagePositions[param0->currentBattlePocket];
+    slot = battleBag->context->pocketCurrentPages[battleBag->currentBattlePocket] * 6 + battleBag->context->pocketCurrentPagePositions[battleBag->currentBattlePocket];
 
-    ov13_022278A0(param0, v1);
-    ov13_0222754C(param0, v1, 0, 1, FONT_SYSTEM, 0, TEXT_COLOR(1, 2, 0));
-    ov13_02227910(param0, v1);
-    ov13_02227374(param0, 3, 31, FONT_SUBSCREEN, 6, TEXT_COLOR(3, 2, 1));
+    PrintUseItemName(battleBag, slot);
+    PrintPocketItemAmountToWindow(battleBag, slot, 0, USE_ITEM_SCREEM_WINDOW_ITEM_AMOUNT, FONT_SYSTEM, 0, TEXT_COLOR(1, 2, 0));
+    PrintUseItemDesc(battleBag, slot);
+    PrintTextToWindow(battleBag, USE_ITEM_SCREEM_WINDOW_ITEM_USE, BattleBag_Text_Use, FONT_SUBSCREEN, 6, TEXT_COLOR(3, 2, 1));
 }
 
-void DisplayBattleBagMessage(BattleBag *battleBag)
+void BattleBagText_DisplayMessage(BattleBag *battleBag)
 {
-    Window_DrawMessageBoxWithScrollCursor(&battleBag->messageBoxWindow, 1, 1024 - (18 + 12), 14);
+    Window_DrawMessageBoxWithScrollCursor(&battleBag->messageBoxWindow, TRUE, 994, 14);
     Window_FillTilemap(&battleBag->messageBoxWindow, 15);
-    ov13_02227A1C(battleBag);
+    BattleBagText_PrintToMessageBox(battleBag);
 }
 
-void ov13_02227A1C(BattleBag *param0)
+void BattleBagText_PrintToMessageBox(BattleBag *battleBag)
 {
-    RenderControlFlags_SetCanABSpeedUpPrint(1);
-    param0->textPrinterID = Text_AddPrinterWithParams(&param0->messageBoxWindow, FONT_MESSAGE, param0->strbuf, 0, 0, BattleSystem_TextSpeed(param0->context->battleSystem), NULL);
+    RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
+    battleBag->textPrinterID = Text_AddPrinterWithParams(&battleBag->messageBoxWindow, FONT_MESSAGE, battleBag->strbuf, 0, 0, BattleSystem_TextSpeed(battleBag->context->battleSystem), NULL);
 }
