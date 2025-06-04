@@ -3,9 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "pch/global_pch.h"
+
 #include "palette.h"
 
-__attribute__((aligned(4))) const u16 MovePaletteNormal[] = {
+ALIGN_4 static const u16 sMovePaletteNormal[] = {
     0x75CD,
     0x7fff,
     0x6AD7,
@@ -24,7 +26,7 @@ __attribute__((aligned(4))) const u16 MovePaletteNormal[] = {
     0x0
 };
 
-__attribute__((aligned(4))) const u16 MovePaletteFighting[] = {
+ALIGN_4 static const u16 sMovePaletteFighting[] = {
     0x75CD,
     0x7fff,
     0x3adf,
@@ -43,7 +45,7 @@ __attribute__((aligned(4))) const u16 MovePaletteFighting[] = {
     0x0
 };
 
-__attribute__((aligned(4))) const u16 MovePaletteFlying[] = {
+ALIGN_4 static const u16 sMovePaletteFlying[] = {
     0x75CD,
     0x7fff,
     0x7eaf,
@@ -62,7 +64,7 @@ __attribute__((aligned(4))) const u16 MovePaletteFlying[] = {
     0x0
 };
 
-__attribute__((aligned(4))) const u16 MovePalettePoison[] = {
+ALIGN_4 static const u16 sMovePalettePoison[] = {
     0x75CD,
     0x7fff,
     0x7E1A,
@@ -81,7 +83,7 @@ __attribute__((aligned(4))) const u16 MovePalettePoison[] = {
     0x0
 };
 
-__attribute__((aligned(4))) const u16 MovePaletteGround[] = {
+ALIGN_4 static const u16 sMovePaletteGround[] = {
     0x75CD,
     0x7fff,
     0x32DE,
@@ -100,7 +102,7 @@ __attribute__((aligned(4))) const u16 MovePaletteGround[] = {
     0x0
 };
 
-__attribute__((aligned(4))) const u16 MovePaletteRock[] = {
+ALIGN_4 static const u16 sMovePaletteRock[] = {
     0x75CD,
     0x7fff,
     0x4276,
@@ -119,7 +121,7 @@ __attribute__((aligned(4))) const u16 MovePaletteRock[] = {
     0x0
 };
 
-__attribute__((aligned(4))) const u16 MovePaletteBug[] = {
+ALIGN_4 static const u16 sMovePaletteBug[] = {
     0x75CD,
     0x7fff,
     0x373A,
@@ -138,7 +140,7 @@ __attribute__((aligned(4))) const u16 MovePaletteBug[] = {
     0x0
 };
 
-__attribute__((aligned(4))) const u16 MovePaletteGhost[] = {
+ALIGN_4 static const u16 sMovePaletteGhost[] = {
     0x75CD,
     0x7fff,
     0x50D9,
@@ -157,7 +159,7 @@ __attribute__((aligned(4))) const u16 MovePaletteGhost[] = {
     0x0
 };
 
-__attribute__((aligned(4))) const u16 MovePaletteSteel[] = {
+ALIGN_4 static const u16 sMovePaletteSteel[] = {
     0x75CD,
     0x7fff,
     0x6B9C,
@@ -176,7 +178,7 @@ __attribute__((aligned(4))) const u16 MovePaletteSteel[] = {
     0x0
 };
 
-__attribute__((aligned(4))) const u16 MovePaletteMystery[] = {
+ALIGN_4 static const u16 sMovePaletteMystery[] = {
     0x75CD,
     0x7fff,
     0x5A7A,
@@ -195,7 +197,7 @@ __attribute__((aligned(4))) const u16 MovePaletteMystery[] = {
     0x0
 };
 
-__attribute__((aligned(4))) const u16 MovePaletteFire[] = {
+ALIGN_4 static const u16 sMovePaletteFire[] = {
     0x75CD,
     0x7fff,
     0x3a3f,
@@ -214,7 +216,7 @@ __attribute__((aligned(4))) const u16 MovePaletteFire[] = {
     0x0
 };
 
-__attribute__((aligned(4))) const u16 MovePaletteWater[] = {
+ALIGN_4 static const u16 sMovePaletteWater[] = {
     0x75CD,
     0x7fff,
     0x7792,
@@ -233,7 +235,7 @@ __attribute__((aligned(4))) const u16 MovePaletteWater[] = {
     0x0
 };
 
-__attribute__((aligned(4))) const u16 MovePaletteGrass[] = {
+ALIGN_4 static const u16 sMovePaletteGrass[] = {
     0x75CD,
     0x7fff,
     0x23af,
@@ -252,7 +254,7 @@ __attribute__((aligned(4))) const u16 MovePaletteGrass[] = {
     0x0
 };
 
-__attribute__((aligned(4))) const u16 MovePaletteElectric[] = {
+ALIGN_4 static const u16 sMovePaletteElectric[] = {
     0x75CD,
     0x7fff,
     0x37bf,
@@ -271,7 +273,7 @@ __attribute__((aligned(4))) const u16 MovePaletteElectric[] = {
     0x0
 };
 
-__attribute__((aligned(4))) const u16 MovePalettePsychic[] = {
+ALIGN_4 static const u16 sMovePalettePsychic[] = {
     0x75CD,
     0x7fff,
     0x7dff,
@@ -290,7 +292,7 @@ __attribute__((aligned(4))) const u16 MovePalettePsychic[] = {
     0x0
 };
 
-__attribute__((aligned(4))) const u16 MovePaletteIce[] = {
+ALIGN_4 static const u16 sMovePaletteIce[] = {
     0x75CD,
     0x7fff,
     0x7f94,
@@ -309,7 +311,7 @@ __attribute__((aligned(4))) const u16 MovePaletteIce[] = {
     0x0
 };
 
-__attribute__((aligned(4))) const u16 MovePaletteDragon[] = {
+ALIGN_4 static const u16 sMovePaletteDragon[] = {
     0x75CD,
     0x7fff,
     0x6df2,
@@ -328,7 +330,7 @@ __attribute__((aligned(4))) const u16 MovePaletteDragon[] = {
     0x0
 };
 
-__attribute__((aligned(4))) const u16 MovePaletteDark[] = {
+ALIGN_4 static const u16 sMovePaletteDark[] = {
     0x75CD,
     0x7fff,
     0x3DD5,
@@ -347,7 +349,7 @@ __attribute__((aligned(4))) const u16 MovePaletteDark[] = {
     0x0
 };
 
-__attribute__((aligned(4))) const u16 Unk_ov11_0221F96C[] = {
+ALIGN_4 static const u16 Unk_ov11_0221F96C[] = {
     0x75CD,
     0x7739,
     0x49AD,
@@ -366,7 +368,7 @@ __attribute__((aligned(4))) const u16 Unk_ov11_0221F96C[] = {
     0x0
 };
 
-__attribute__((aligned(4))) static const u16 Unk_ov11_0221FBAC[] = {
+ALIGN_4 static const u16 Unk_ov11_0221FBAC[] = {
     0x33,
     0x33,
     0x33,
@@ -387,25 +389,25 @@ __attribute__((aligned(4))) static const u16 Unk_ov11_0221FBAC[] = {
     0x33
 };
 
-__attribute__((aligned(4))) static const u16 *const sMovePaletteTable[] = {
-    MovePaletteNormal,
-    MovePaletteFighting,
-    MovePaletteFlying,
-    MovePalettePoison,
-    MovePaletteGround,
-    MovePaletteRock,
-    MovePaletteBug,
-    MovePaletteGhost,
-    MovePaletteSteel,
-    MovePaletteMystery,
-    MovePaletteFire,
-    MovePaletteWater,
-    MovePaletteGrass,
-    MovePaletteElectric,
-    MovePalettePsychic,
-    MovePaletteIce,
-    MovePaletteDragon,
-    MovePaletteDark
+ALIGN_4 static const u16 *const sMovePaletteTable[] = {
+    sMovePaletteNormal,
+    sMovePaletteFighting,
+    sMovePaletteFlying,
+    sMovePalettePoison,
+    sMovePaletteGround,
+    sMovePaletteRock,
+    sMovePaletteBug,
+    sMovePaletteGhost,
+    sMovePaletteSteel,
+    sMovePaletteMystery,
+    sMovePaletteFire,
+    sMovePaletteWater,
+    sMovePaletteGrass,
+    sMovePaletteElectric,
+    sMovePalettePsychic,
+    sMovePaletteIce,
+    sMovePaletteDragon,
+    sMovePaletteDark
 };
 
 void include_unk_ov11_0221FBAC();
@@ -415,7 +417,7 @@ void include_unk_ov11_0221FBAC()
     Unk_ov11_0221FBAC[0];
 }
 
-const u16 *GetPaletteSourceFromMoveType(int moveType)
+const u16 *GetMoveTypePalette(int moveType)
 {
     const u16 *paletteSourceAdr;
 
@@ -428,8 +430,8 @@ const u16 *GetPaletteSourceFromMoveType(int moveType)
     return paletteSourceAdr;
 }
 
-void LoadMoveSelectionPalette(PaletteData *paletteSys, int moveType, int unused, int bufferID, int paletteDest)
+void LoadMoveSelectPltt(PaletteData *paletteSys, int moveType, int unused, int bufferID, int paletteDest)
 {
-    const u16 *paletteSource = GetPaletteSourceFromMoveType(moveType);
+    const u16 *paletteSource = GetMoveTypePalette(moveType);
     PaletteData_LoadBuffer(paletteSys, paletteSource, bufferID, paletteDest * 16, 0x20);
 }

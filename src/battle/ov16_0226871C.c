@@ -2900,7 +2900,7 @@ static void ov16_0226B028(UnkStruct_ov16_02268A14 *param0)
 
 static void LoadPaletteForMoveInSlot(UnkStruct_ov16_02268A14 *param0, int moveType, int moveSlot)
 {
-    LoadMoveSelectionPalette(BattleSystem_PaletteSys(param0->battleSys), moveType, 5, 1, 8 + moveSlot);
+    LoadMoveSelectPltt(BattleSystem_PaletteSys(param0->battleSys), moveType, 5, 1, 8 + moveSlot);
 }
 
 static void ov16_0226B088(UnkStruct_ov16_02268A14 *param0, int param1)
