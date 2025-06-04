@@ -1,4 +1,4 @@
-#include "overlay013/ov13_02227288.h"
+#include "overlay013/battle_bag_text.h"
 
 #include "battle/ov16_0223DF00.h"
 #include "overlay013/battle_bag.h"

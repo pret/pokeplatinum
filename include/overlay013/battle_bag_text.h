@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV13_02227288_H
-#define POKEPLATINUM_OV13_02227288_H
+#ifndef POKEPLATINUM_BATTLE_BAG_TEXT_H
+#define POKEPLATINUM_BATTLE_BAG_TEXT_H
 
 #include "overlay013/battle_bag.h"
 
@@ -13,4 +13,4 @@ void BattleBagText_PrintPocketPageNums(BattleBag *battleBag);
 void BattleBagText_DisplayMessage(BattleBag *battleBag);
 void BattleBagText_PrintToMessageBox(BattleBag *battleBag);
 
-#endif // POKEPLATINUM_OV13_02227288_H
+#endif // POKEPLATINUM_BATTLE_BAG_TEXT_H

@@ -8,8 +8,8 @@
 #include "battle/battle_lib.h"
 #include "battle/ov16_0223DF00.h"
 #include "battle/ov16_0226DE44.h"
+#include "overlay013/battle_bag_text.h"
 #include "overlay013/battle_bag_utils.h"
-#include "overlay013/ov13_02227288.h"
 #include "overlay013/ov13_02227BDC.h"
 #include "overlay013/ov13_02228128.h"
 
