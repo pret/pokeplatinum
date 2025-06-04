@@ -89,6 +89,18 @@ enum MarkState {
     MARK_END,
 };
 
+enum WallpaperMenuState {
+    WALLPAPER_MENU_0,
+    WALLPAPER_MENU_PICK_THEME_INIT,
+    WALLPAPER_MENU_PICK_THEME_WAIT_FOR_TASK,
+    WALLPAPER_MENU_PICK_THEME_WAIT_FOR_USER,
+    WALLPAPER_MENU_PICK_WALLPAPER_WAIT_FOR_TASK,
+    WALLPAPER_MENU_PICK_WALLPAPER_WAIT_FOR_USER,
+    WALLPAPER_MENU_TRANSITION_WALLPAPER,
+    WALLPAPER_MENU_UNREACHABLE,
+    WALLPAPER_MENU_END,
+};
+
 static const TouchScreenHitTable sMainPcButtons[] = {
     { TOUCHSCREEN_USE_CIRCLE, MAIN_PC_LEFT_BUTTON_X, MAIN_PC_BUTTON_Y, MAIN_PC_BUTTON_RADIUS },
     { TOUCHSCREEN_USE_CIRCLE, MAIN_PC_RIGHT_BUTTON_X, MAIN_PC_BUTTON_Y, MAIN_PC_BUTTON_RADIUS },
@@ -162,8 +174,8 @@ typedef struct UnkStruct_ov19_021D5DF8_t {
     int (*cursorLocationInputHandler)(struct UnkStruct_ov19_021D5DF8_t *param0);
     void (*boxApplicationAction)(struct UnkStruct_ov19_021D5DF8_t *param0, u32 *param1);
     u32 cursorLocationHandlerState;
-    u32 unk_1B4;
-    BoxMenuItem menuItem; // This stops being a BoxMenuItem in ov19_ReleaseMon, where it does something completely different and unrelated
+    u32 boxApplicationActionState;
+    enum BoxMenuItem menuItem; // This stops being a BoxMenuItem in ov19_ReleaseMon, where it does something completely different and unrelated
     UnkStruct_ov19_021D4468 unk_1BC;
     u32 unk_1C4;
     UnkStruct_ov19_021D6104 unk_1C8;
@@ -322,7 +334,7 @@ int ov19_021D0DEC(ApplicationManager *appMan, int *param1)
     UnkStruct_ov19_021D5DF8 *v0 = ApplicationManager_Data(appMan);
 
     if (v0->boxApplicationAction != NULL) {
-        v0->boxApplicationAction(v0, &(v0->unk_1B4));
+        v0->boxApplicationAction(v0, &(v0->boxApplicationActionState));
         return 0;
     } else {
         if (v0->cursorLocationInputHandler != NULL) {
@@ -370,7 +382,7 @@ static void ov19_RegisterCursorLocationInputHandler(UnkStruct_ov19_021D5DF8 *par
 static void ov19_RegisterBoxApplicationAction(UnkStruct_ov19_021D5DF8 *param0, UnkFuncPtr_ov19_021D0EB0 param1)
 {
     param0->boxApplicationAction = param1;
-    param0->unk_1B4 = 0;
+    param0->boxApplicationActionState = 0;
 }
 
 static void ov19_ClearBoxApplicationAction(UnkStruct_ov19_021D5DF8 *param0)
@@ -968,7 +980,7 @@ static void ov19_021D1DEC(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
     case 2:
         switch (BoxMenu_GetMenuNavigation(&(param0->unk_00))) {
         case BOX_MENU_NAVIGATION_UP_DOWN:
-            ov19_BoxTaskHandler(param0->unk_114, FUNCTION_ov19_021D6EDC);
+            ov19_BoxTaskHandler(param0->unk_114, FUNCTION_BoxGraphics_UpdateMenuCursor);
             break;
         case BOX_MENU_NAVIGATION_B:
         case BOX_MENU_NO:
@@ -1025,7 +1037,7 @@ static void ov19_021D1F5C(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
     case 5:
         switch (BoxMenu_GetMenuNavigation(&(param0->unk_00))) {
         case BOX_MENU_NAVIGATION_UP_DOWN:
-            ov19_BoxTaskHandler(param0->unk_114, FUNCTION_ov19_021D6EDC);
+            ov19_BoxTaskHandler(param0->unk_114, FUNCTION_BoxGraphics_UpdateMenuCursor);
             break;
         case BOX_MENU_NAVIGATION_B:
         case BOX_MENU_NO:
@@ -1086,7 +1098,7 @@ static void ov19_021D20A4(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         case BOX_MENU_NAVIGATION_NONE:
             break;
         case BOX_MENU_NAVIGATION_UP_DOWN:
-            ov19_BoxTaskHandler(param0->unk_114, FUNCTION_ov19_021D6EDC);
+            ov19_BoxTaskHandler(param0->unk_114, FUNCTION_BoxGraphics_UpdateMenuCursor);
             break;
         case BOX_MENU_NAVIGATION_B:
         case BOX_MENU_CANCEL:
@@ -1213,7 +1225,7 @@ static void ov19_021D2308(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         case BOX_MENU_NAVIGATION_NONE:
             break;
         case BOX_MENU_NAVIGATION_UP_DOWN:
-            ov19_BoxTaskHandler(param0->unk_114, FUNCTION_ov19_021D6EDC);
+            ov19_BoxTaskHandler(param0->unk_114, FUNCTION_BoxGraphics_UpdateMenuCursor);
             break;
         case BOX_MENU_NAVIGATION_B:
         case BOX_MENU_ITEMS_CANCEL:
@@ -1343,7 +1355,7 @@ static void ov19_021D2694(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         case BOX_MENU_NAVIGATION_NONE:
             break;
         case BOX_MENU_NAVIGATION_UP_DOWN:
-            ov19_BoxTaskHandler(param0->unk_114, FUNCTION_ov19_021D6EDC);
+            ov19_BoxTaskHandler(param0->unk_114, FUNCTION_BoxGraphics_UpdateMenuCursor);
             break;
         case BOX_MENU_NAVIGATION_B:
         case BOX_MENU_HEADER_CANCEL:
@@ -1415,35 +1427,35 @@ static void ov19_021D27E8(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
     }
 }
 
-static void ov19_021D2890(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
+static void ov19_021D2890(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
 {
-    switch (*param1) {
-    case 0:
+    switch (*state) {
+    case WALLPAPER_MENU_0:
         param0->menuItem = BOX_MENU_SCENERY_1;
-        (*param1) = 1;
-    case 1:
+        *state = WALLPAPER_MENU_PICK_THEME_INIT;
+    case WALLPAPER_MENU_PICK_THEME_INIT:
         ov19_SetBoxMessage(&param0->unk_00, BoxText_PickTheme);
         BoxMenu_FillWallpaperMenu(&param0->unk_00, param0->menuItem);
         ov19_BoxTaskHandler(param0->unk_114, FUNCTION_ov19_021D6E70);
-        (*param1) = 2;
+        *state = WALLPAPER_MENU_PICK_THEME_WAIT_FOR_TASK;
         break;
-    case 2:
+    case WALLPAPER_MENU_PICK_THEME_WAIT_FOR_TASK:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNCTION_ov19_021D6E70) == FALSE) {
             break;
         }
-        (*param1) = 3;
-    case 3:
+        *state = WALLPAPER_MENU_PICK_THEME_WAIT_FOR_USER;
+    case WALLPAPER_MENU_PICK_THEME_WAIT_FOR_USER:
         switch (BoxMenu_GetMenuNavigation(&(param0->unk_00))) {
         case BOX_MENU_NAVIGATION_NONE:
             break;
         case BOX_MENU_NAVIGATION_UP_DOWN:
-            ov19_BoxTaskHandler(param0->unk_114, FUNCTION_ov19_021D6EDC);
+            ov19_BoxTaskHandler(param0->unk_114, FUNCTION_BoxGraphics_UpdateMenuCursor);
             break;
         case BOX_MENU_NAVIGATION_B:
         case BOX_MENU_HEADER_CANCEL:
         default:
             ov19_BoxTaskHandler(param0->unk_114, FUNCTION_BoxGraphics_CloseMessageBox);
-            (*param1) = 8;
+            *state = WALLPAPER_MENU_END;
             break;
         case BOX_MENU_SCENERY_1:
         case BOX_MENU_SCENERY_2:
@@ -1455,50 +1467,50 @@ static void ov19_021D2890(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             ov19_SetBoxMessage(&param0->unk_00, BoxText_Wallpaper);
             BoxMenu_FillWallpaperSelectionMenu(&param0->unk_00, param0->menuItem);
             ov19_BoxTaskHandler(param0->unk_114, FUNCTION_ov19_021D6E70);
-            (*param1) = 4;
+            *state = WALLPAPER_MENU_PICK_WALLPAPER_WAIT_FOR_TASK;
             break;
         }
         break;
-    case 4:
+    case WALLPAPER_MENU_PICK_WALLPAPER_WAIT_FOR_TASK:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNCTION_ov19_021D6E70) == FALSE) {
             break;
         }
-        (*param1) = 5;
-    case 5:
+        *state = WALLPAPER_MENU_PICK_WALLPAPER_WAIT_FOR_USER;
+    case WALLPAPER_MENU_PICK_WALLPAPER_WAIT_FOR_USER:
         switch (BoxMenu_GetMenuNavigation(&(param0->unk_00))) {
-        case -3:
+        case BOX_MENU_NAVIGATION_NONE:
             break;
-        case -2:
-            ov19_BoxTaskHandler(param0->unk_114, FUNCTION_ov19_021D6EDC);
+        case BOX_MENU_NAVIGATION_UP_DOWN:
+            ov19_BoxTaskHandler(param0->unk_114, FUNCTION_BoxGraphics_UpdateMenuCursor);
             break;
-        case -1:
+        case BOX_MENU_NAVIGATION_B:
         case BOX_MENU_HEADER_CANCEL:
-            (*param1) = 1;
+            *state = WALLPAPER_MENU_PICK_THEME_INIT;
             break;
         default:
             param0->menuItem = BoxMenu_GetSelectedMenuItem(&param0->unk_00);
 
-            if ((param0->menuItem >= BOX_MENU_FOREST) && (param0->menuItem <= BOX_MENU_TEAM_GALACTIC)) {
-                PCBoxes_SetWallpaper(param0->pcBoxes, USE_CURRENT_BOX, param0->menuItem - BOX_MENU_FOREST);
+            if (param0->menuItem >= BOX_MENU_FIRST_WALLPAPER && param0->menuItem <= BOX_MENU_LAST_WALLPAPER) {
+                PCBoxes_SetWallpaper(param0->pcBoxes, USE_CURRENT_BOX, param0->menuItem - BOX_MENU_FIRST_WALLPAPER);
                 ov19_LoadWallpaper(&param0->unk_00, param0->pcBoxes);
                 ov19_BoxTaskHandler(param0->unk_114, FUNCTION_BoxGraphics_CloseMessageBox);
-                (*param1) = 6;
+                *state = WALLPAPER_MENU_TRANSITION_WALLPAPER;
             } else {
-                GF_ASSERT(0);
-                (*param1) = 1;
+                GF_ASSERT(FALSE);
+                *state = WALLPAPER_MENU_PICK_THEME_INIT;
             }
         }
         break;
-    case 6:
-        ov19_BoxTaskHandler(param0->unk_114, FUNCTION_ov19_021D6FEC);
-        (*param1) = 8;
+    case WALLPAPER_MENU_TRANSITION_WALLPAPER:
+        ov19_BoxTaskHandler(param0->unk_114, FUNCTION_BoxGraphics_TransitionWallpaper);
+        *state = WALLPAPER_MENU_END;
         break;
-    case 7:
+    case WALLPAPER_MENU_UNREACHABLE:
         if (ov19_CheckAllTasksDone(param0->unk_114)) {
-            (*param1) = 1;
+            *state = WALLPAPER_MENU_PICK_THEME_INIT;
         }
         break;
-    case 8:
+    case WALLPAPER_MENU_END:
         if (ov19_CheckAllTasksDone(param0->unk_114)) {
             ov19_ClearBoxApplicationAction(param0);
         }
@@ -1526,7 +1538,7 @@ static void ov19_Mark(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
             case BOX_MENU_NAVIGATION_NONE:
                 break;
             case BOX_MENU_NAVIGATION_UP_DOWN:
-                ov19_BoxTaskHandler(param0->unk_114, FUNCTION_ov19_021D6EDC);
+                ov19_BoxTaskHandler(param0->unk_114, FUNCTION_BoxGraphics_UpdateMenuCursor);
                 break;
             case BOX_MENU_NAVIGATION_B:
             case BOX_MENU_MARK_CANCEL:
@@ -2113,7 +2125,7 @@ static void ov19_ReleaseMon(UnkStruct_ov19_021D5DF8 *param0, u32 *releaseMonStat
 
         switch (BoxMenu_GetMenuNavigation(&(param0->unk_00))) {
         case BOX_MENU_NAVIGATION_UP_DOWN:
-            ov19_BoxTaskHandler(param0->unk_114, FUNCTION_ov19_021D6EDC);
+            ov19_BoxTaskHandler(param0->unk_114, FUNCTION_BoxGraphics_UpdateMenuCursor);
             break;
         case BOX_MENU_NAVIGATION_B:
         case BOX_MENU_NO:
@@ -2578,7 +2590,7 @@ static void ov19_021D3FB0(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
 
         switch (BoxMenu_GetMenuNavigation(&(param0->unk_00))) {
         case BOX_MENU_NAVIGATION_UP_DOWN:
-            ov19_BoxTaskHandler(param0->unk_114, FUNCTION_ov19_021D6EDC);
+            ov19_BoxTaskHandler(param0->unk_114, FUNCTION_BoxGraphics_UpdateMenuCursor);
             break;
         case BOX_MENU_NAVIGATION_B:
         case BOX_MENU_NO:
@@ -2655,7 +2667,7 @@ static void ov19_021D4184(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
 
         switch (BoxMenu_GetMenuNavigation(&(param0->unk_00))) {
         case BOX_MENU_NAVIGATION_UP_DOWN:
-            ov19_BoxTaskHandler(param0->unk_114, FUNCTION_ov19_021D6EDC);
+            ov19_BoxTaskHandler(param0->unk_114, FUNCTION_BoxGraphics_UpdateMenuCursor);
             break;
         case BOX_MENU_NAVIGATION_B:
         case BOX_MENU_NO:
