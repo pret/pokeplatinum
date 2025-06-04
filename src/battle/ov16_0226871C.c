@@ -1215,11 +1215,11 @@ void ov16_02268A88(UnkStruct_ov16_02268A14 *param0)
         Graphics_LoadTilesToBgLayer(7, v5, v0, 4, 0, 0x6000, 1, HEAP_ID_BATTLE);
     }
 
-    sub_0207C9EC(v1, v2, 20017, 20017);
-    sub_0207C9B0(BattleSystem_PaletteSys(param0->battleSys), 3, v1, v2, NNS_G2D_VRAM_TYPE_2DSUB, 20020);
+    TypeIcon_LoadAnim(v1, v2, 20017, 20017);
+    TypeIcon_LoadPltt(BattleSystem_PaletteSys(param0->battleSys), 3, v1, v2, NNS_G2D_VRAM_TYPE_2DSUB, 20020);
 
     for (i = 0; i < 4; i++) {
-        sub_0207C948(v1, v2, NNS_G2D_VRAM_TYPE_2DSUB, 0, 20025 + i);
+        TypeIcon_LoadChar(v1, v2, NNS_G2D_VRAM_TYPE_2DSUB, 0, 20025 + i);
     }
 
     if (BattleSystem_BattleType(param0->battleSys) & BATTLE_TYPE_CATCH_TUTORIAL) {
@@ -1238,11 +1238,11 @@ void ov16_02268B8C(UnkStruct_ov16_02268A14 *param0)
     v2 = BattleSystem_GetSpriteManager(param0->battleSys);
 
     for (i = 0; i < 4; i++) {
-        sub_0207CA34(v2, 20025 + i);
+        TypeIcon_UnloadChar(v2, 20025 + i);
     }
 
-    sub_0207CA3C(v2, 20020);
-    sub_0207CA44(v2, 20017, 20017);
+    TypeIcon_UnloadPlttSrc(v2, 20020);
+    TypeIcon_UnloadAnim(v2, 20017, 20017);
 
     if (BattleSystem_BattleType(param0->battleSys) & BATTLE_TYPE_CATCH_TUTORIAL) {
         ov16_0226DF68(param0->unk_6C4.unk_00);
@@ -2763,7 +2763,7 @@ void ov16_0226AC98(UnkStruct_ov16_02268A14 *param0, int param1, const MoveDispla
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
         if ((param2->move[i] != v0->unk_00.move[i]) && (param2->move[i] != 0)) {
             v5 = MoveTable_LoadParam(param2->move[i], MOVEATTRIBUTE_TYPE);
-            v1 = Graphics_GetCharData(GetBattleGraphicNarcIndex(), GetIconFromMoveType(v5), 1, &v2, HEAP_ID_BATTLE);
+            v1 = Graphics_GetCharData(TypeIcon_GetNARC(), TypeIcon_GetChar(v5), 1, &v2, HEAP_ID_BATTLE);
             MI_CpuCopy32(v2->pRawData, v0->moveIcons[i], v3);
             Heap_FreeToHeap(v1);
         }
@@ -2842,7 +2842,7 @@ static void DrawMoveTypeIcons(UnkStruct_ov16_02268A14 *param0)
             spriteTemplate.x = Unk_ov16_022702B4[i][0];
             spriteTemplate.y = Unk_ov16_022702B4[i][1];
 
-            param0->moveSelectSprites[i] = CreateMoveSelectSprite(spriteSys, spriteMan, moveType, &spriteTemplate);
+            param0->moveSelectSprites[i] = TypeIcon_NewTypeIconSprite(spriteSys, spriteMan, moveType, &spriteTemplate);
 
             ManagedSprite_SetPositionXYWithSubscreenOffset(param0->moveSelectSprites[i], spriteTemplate.x, spriteTemplate.y, ((192 + 80) << FX32_SHIFT));
 
@@ -2870,7 +2870,7 @@ static void ov16_0226AFF4(UnkStruct_ov16_02268A14 *param0)
 
     for (i = 0; i < 4; i++) {
         if (param0->moveSelectSprites[i] != NULL) {
-            sub_0207CA88(param0->moveSelectSprites[i]);
+            TypeIcon_DeleteSprite(param0->moveSelectSprites[i]);
             param0->moveSelectSprites[i] = NULL;
         }
     }
@@ -2887,8 +2887,8 @@ static void ov16_0226B028(UnkStruct_ov16_02268A14 *param0)
 
     for (i = 0; i < 4; i++) {
         if (param0->unk_5FC[i] != NULL) {
-            sub_0207CB00(param0->unk_5FC[i]);
-            sub_0207CAF8(v2, 20029 + i);
+            CategoryIcon_DeleteSprite(param0->unk_5FC[i]);
+            CategoryIcon_UnloadChar(v2, 20029 + i);
             param0->unk_5FC[i] = NULL;
         }
     }

@@ -1197,8 +1197,8 @@ void PokemonSummaryScreen_SetMonTypeIcons(PokemonSummaryScreen *summaryScreen)
 
 static void SetTypeIcon(PokemonSummaryScreen *summaryScreen, u8 spriteIndex, u8 param2, u8 type)
 {
-    SpriteSystem_ReplaceCharResObj(summaryScreen->spriteSys, summaryScreen->spriteMan, GetBattleGraphicNarcIndex(), GetIconFromMoveType(type), 1, param2);
-    Sprite_SetExplicitPalette2(summaryScreen->sprites[spriteIndex], GetPaletteFromMoveType(type) + 3);
+    SpriteSystem_ReplaceCharResObj(summaryScreen->spriteSys, summaryScreen->spriteMan, TypeIcon_GetNARC(), TypeIcon_GetChar(type), 1, param2);
+    Sprite_SetExplicitPalette2(summaryScreen->sprites[spriteIndex], TypeIcon_GetPltt(type) + 3);
 }
 
 static void GetMoveTypeIconPos(PokemonSummaryScreen *summaryScreen, u8 *moveIndex, s16 *outX, s16 *outY)
@@ -1230,8 +1230,8 @@ void PokemonSummaryScreen_UpdateMoveCategoryIcon(PokemonSummaryScreen *summarySc
 {
     u32 category = MoveTable_LoadParam(move, MOVEATTRIBUTE_CLASS);
 
-    SpriteSystem_ReplaceCharResObj(summaryScreen->spriteSys, summaryScreen->spriteMan, GetBattleObjNarcID(), GetIconFromMoveCategory(category), 1, 10);
-    Sprite_SetExplicitPalette2(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_CATEGORY_ICON], GetPaletteFromMoveCategory(category) + 3);
+    SpriteSystem_ReplaceCharResObj(summaryScreen->spriteSys, summaryScreen->spriteMan, CategoryIcon_GetNARC(), CategoryIcon_GetChar(category), 1, 10);
+    Sprite_SetExplicitPalette2(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_CATEGORY_ICON], CategoryIcon_GetPltt(category) + 3);
 }
 
 void PokemonSummaryScreen_UpdateMoveSelectorPos(PokemonSummaryScreen *summaryScreen)

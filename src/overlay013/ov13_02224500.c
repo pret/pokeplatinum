@@ -283,14 +283,14 @@ static void ov13_02224720(UnkStruct_ov13_022213F0 *param0)
 
     v0 = BattleSystem_GetSpriteSystem(param0->unk_00->unk_08);
 
-    sub_0207C9B0(param0->unk_1E4, 3, v0, param0->unk_1FB0, NNS_G2D_VRAM_TYPE_2DSUB, 45065);
-    sub_0207C9EC(v0, param0->unk_1FB0, 45065, 45065);
+    TypeIcon_LoadPltt(param0->unk_1E4, 3, v0, param0->unk_1FB0, NNS_G2D_VRAM_TYPE_2DSUB, 45065);
+    TypeIcon_LoadAnim(v0, param0->unk_1FB0, 45065, 45065);
 
     for (v1 = 45070; v1 <= 45076; v1++) {
-        sub_0207C948(v0, param0->unk_1FB0, NNS_G2D_VRAM_TYPE_2DSUB, 0, v1);
+        TypeIcon_LoadChar(v0, param0->unk_1FB0, NNS_G2D_VRAM_TYPE_2DSUB, 0, v1);
     }
 
-    sub_0207CAC4(v0, param0->unk_1FB0, NNS_G2D_VRAM_TYPE_2DSUB, 0, 45077);
+    CategoryIcon_LoadChar(v0, param0->unk_1FB0, NNS_G2D_VRAM_TYPE_2DSUB, 0, 45077);
 }
 
 static void ov13_02224798(UnkStruct_ov13_022213F0 *param0)
@@ -388,16 +388,16 @@ static void ov13_02224A0C(UnkStruct_ov13_022213F0 *param0, ManagedSprite *param1
 {
     SpriteSystem *v0 = BattleSystem_GetSpriteSystem(param0->unk_00->unk_08);
 
-    SpriteSystem_ReplaceCharResObj(v0, param0->unk_1FB0, GetBattleGraphicNarcIndex(), GetIconFromMoveType(moveType), 1, param2);
-    ManagedSprite_SetExplicitPalette(param1, GetPaletteFromMoveType(moveType) + 4);
+    SpriteSystem_ReplaceCharResObj(v0, param0->unk_1FB0, TypeIcon_GetNARC(), TypeIcon_GetChar(moveType), 1, param2);
+    ManagedSprite_SetExplicitPalette(param1, TypeIcon_GetPltt(moveType) + 4);
 }
 
 static void ov13_02224A5C(UnkStruct_ov13_022213F0 *param0, ManagedSprite *param1, u32 param2)
 {
     SpriteSystem *v0 = BattleSystem_GetSpriteSystem(param0->unk_00->unk_08);
 
-    SpriteSystem_ReplaceCharResObj(v0, param0->unk_1FB0, GetBattleObjNarcID(), GetIconFromMoveCategory(param2), 1, 45077);
-    ManagedSprite_SetExplicitPalette(param1, GetPaletteFromMoveCategory(param2) + 4);
+    SpriteSystem_ReplaceCharResObj(v0, param0->unk_1FB0, CategoryIcon_GetNARC(), CategoryIcon_GetChar(param2), 1, 45077);
+    ManagedSprite_SetExplicitPalette(param1, CategoryIcon_GetPltt(param2) + 4);
 }
 
 static void ov13_02224AB0(u16 param0, ManagedSprite *param1, const int param2, const int param3)
