@@ -1,527 +1,527 @@
 #include "generated/movement_actions.h"
 
     .macro MoveAction_000 length=1
-    .short MOVEMENT_ACTION_000
+    .short MOVEMENT_ACTION_FACE_NORTH
     .short \length
     .endm
 
     .macro MoveAction_001 length=1
-    .short MOVEMENT_ACTION_001
+    .short MOVEMENT_ACTION_FACE_SOUTH
     .short \length
     .endm
 
     .macro MoveAction_002 length=1
-    .short MOVEMENT_ACTION_002
+    .short MOVEMENT_ACTION_FACE_WEST
     .short \length
     .endm
 
     .macro MoveAction_003 length=1
-    .short MOVEMENT_ACTION_003
+    .short MOVEMENT_ACTION_FACE_EAST
     .short \length
     .endm
 
     .macro MoveAction_004 length=1
-    .short MOVEMENT_ACTION_004
+    .short MOVEMENT_ACTION_WALK_SLOWER_NORTH
     .short \length
     .endm
 
     .macro MoveAction_005 length=1
-    .short MOVEMENT_ACTION_005
+    .short MOVEMENT_ACTION_WALK_SLOWER_SOUTH
     .short \length
     .endm
 
     .macro MoveAction_006 length=1
-    .short MOVEMENT_ACTION_006
+    .short MOVEMENT_ACTION_WALK_SLOWER_WEST
     .short \length
     .endm
 
     .macro MoveAction_007 length=1
-    .short MOVEMENT_ACTION_007
+    .short MOVEMENT_ACTION_WALK_SLOWER_EAST
     .short \length
     .endm
 
     .macro MoveAction_008 length=1
-    .short MOVEMENT_ACTION_008
+    .short MOVEMENT_ACTION_WALK_SLOW_NORTH
     .short \length
     .endm
 
     .macro MoveAction_009 length=1
-    .short MOVEMENT_ACTION_009
+    .short MOVEMENT_ACTION_WALK_SLOW_SOUTH
     .short \length
     .endm
 
     .macro MoveAction_010 length=1
-    .short MOVEMENT_ACTION_010
+    .short MOVEMENT_ACTION_WALK_SLOW_WEST
     .short \length
     .endm
 
     .macro MoveAction_011 length=1
-    .short MOVEMENT_ACTION_011
+    .short MOVEMENT_ACTION_WALK_SLOW_EAST
     .short \length
     .endm
 
     .macro MoveAction_012 length=1
-    .short MOVEMENT_ACTION_012
+    .short MOVEMENT_ACTION_WALK_NORMAL_NORTH
     .short \length
     .endm
 
     .macro MoveAction_013 length=1
-    .short MOVEMENT_ACTION_013
+    .short MOVEMENT_ACTION_WALK_NORMAL_SOUTH
     .short \length
     .endm
 
     .macro MoveAction_014 length=1
-    .short MOVEMENT_ACTION_014
+    .short MOVEMENT_ACTION_WALK_NORMAL_WEST
     .short \length
     .endm
 
     .macro MoveAction_015 length=1
-    .short MOVEMENT_ACTION_015
+    .short MOVEMENT_ACTION_WALK_NORMAL_EAST
     .short \length
     .endm
 
     .macro MoveAction_016 length=1
-    .short MOVEMENT_ACTION_016
+    .short MOVEMENT_ACTION_WALK_FAST_NORTH
     .short \length
     .endm
 
     .macro MoveAction_017 length=1
-    .short MOVEMENT_ACTION_017
+    .short MOVEMENT_ACTION_WALK_FAST_SOUTH
     .short \length
     .endm
 
     .macro MoveAction_018 length=1
-    .short MOVEMENT_ACTION_018
+    .short MOVEMENT_ACTION_WALK_FAST_WEST
     .short \length
     .endm
 
     .macro MoveAction_019 length=1
-    .short MOVEMENT_ACTION_019
+    .short MOVEMENT_ACTION_WALK_FAST_EAST
     .short \length
     .endm
 
     .macro MoveAction_020 length=1
-    .short MOVEMENT_ACTION_020
+    .short MOVEMENT_ACTION_WALK_FASTER_NORTH
     .short \length
     .endm
 
     .macro MoveAction_021 length=1
-    .short MOVEMENT_ACTION_021
+    .short MOVEMENT_ACTION_WALK_FASTER_SOUTH
     .short \length
     .endm
 
     .macro MoveAction_022 length=1
-    .short MOVEMENT_ACTION_022
+    .short MOVEMENT_ACTION_WALK_FASTER_WEST
     .short \length
     .endm
 
     .macro MoveAction_023 length=1
-    .short MOVEMENT_ACTION_023
+    .short MOVEMENT_ACTION_WALK_FASTER_EAST
     .short \length
     .endm
 
     .macro MoveAction_024 length=1
-    .short MOVEMENT_ACTION_024
+    .short MOVEMENT_ACTION_WALK_ON_SPOT_SLOWER_NORTH
     .short \length
     .endm
 
     .macro MoveAction_025 length=1
-    .short MOVEMENT_ACTION_025
+    .short MOVEMENT_ACTION_WALK_ON_SPOT_SLOWER_SOUTH
     .short \length
     .endm
 
     .macro MoveAction_026 length=1
-    .short MOVEMENT_ACTION_026
+    .short MOVEMENT_ACTION_WALK_ON_SPOT_SLOWER_WEST
     .short \length
     .endm
 
     .macro MoveAction_027 length=1
-    .short MOVEMENT_ACTION_027
+    .short MOVEMENT_ACTION_WALK_ON_SPOT_SLOWER_EAST
     .short \length
     .endm
 
     .macro MoveAction_028 length=1
-    .short MOVEMENT_ACTION_028
+    .short MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH
     .short \length
     .endm
 
     .macro MoveAction_029 length=1
-    .short MOVEMENT_ACTION_029
+    .short MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_SOUTH
     .short \length
     .endm
 
     .macro MoveAction_030 length=1
-    .short MOVEMENT_ACTION_030
+    .short MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_WEST
     .short \length
     .endm
 
     .macro MoveAction_031 length=1
-    .short MOVEMENT_ACTION_031
+    .short MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_EAST
     .short \length
     .endm
 
     .macro MoveAction_032 length=1
-    .short MOVEMENT_ACTION_032
+    .short MOVEMENT_ACTION_WALK_ON_SPOT_NORMAL_NORTH
     .short \length
     .endm
 
     .macro MoveAction_033 length=1
-    .short MOVEMENT_ACTION_033
+    .short MOVEMENT_ACTION_WALK_ON_SPOT_NORMAL_SOUTH
     .short \length
     .endm
 
     .macro MoveAction_034 length=1
-    .short MOVEMENT_ACTION_034
+    .short MOVEMENT_ACTION_WALK_ON_SPOT_NORMAL_WEST
     .short \length
     .endm
 
     .macro MoveAction_035 length=1
-    .short MOVEMENT_ACTION_035
+    .short MOVEMENT_ACTION_WALK_ON_SPOT_NORMAL_EAST
     .short \length
     .endm
 
     .macro MoveAction_036 length=1
-    .short MOVEMENT_ACTION_036
+    .short MOVEMENT_ACTION_WALK_ON_SPOT_FAST_NORTH
     .short \length
     .endm
 
     .macro MoveAction_037 length=1
-    .short MOVEMENT_ACTION_037
+    .short MOVEMENT_ACTION_WALK_ON_SPOT_FAST_SOUTH
     .short \length
     .endm
 
     .macro MoveAction_038 length=1
-    .short MOVEMENT_ACTION_038
+    .short MOVEMENT_ACTION_WALK_ON_SPOT_FAST_WEST
     .short \length
     .endm
 
     .macro MoveAction_039 length=1
-    .short MOVEMENT_ACTION_039
+    .short MOVEMENT_ACTION_WALK_ON_SPOT_FAST_EAST
     .short \length
     .endm
 
     .macro MoveAction_040 length=1
-    .short MOVEMENT_ACTION_040
+    .short MOVEMENT_ACTION_WALK_ON_SPOT_FASTER_NORTH
     .short \length
     .endm
 
     .macro MoveAction_041 length=1
-    .short MOVEMENT_ACTION_041
+    .short MOVEMENT_ACTION_WALK_ON_SPOT_FASTER_SOUTH
     .short \length
     .endm
 
     .macro MoveAction_042 length=1
-    .short MOVEMENT_ACTION_042
+    .short MOVEMENT_ACTION_WALK_ON_SPOT_FASTER_WEST
     .short \length
     .endm
 
     .macro MoveAction_043 length=1
-    .short MOVEMENT_ACTION_043
+    .short MOVEMENT_ACTION_WALK_ON_SPOT_FASTER_EAST
     .short \length
     .endm
 
     .macro MoveAction_044 length=1
-    .short MOVEMENT_ACTION_044
+    .short MOVEMENT_ACTION_JUMP_ON_SPOT_SLOW_NORTH
     .short \length
     .endm
 
     .macro MoveAction_045 length=1
-    .short MOVEMENT_ACTION_045
+    .short MOVEMENT_ACTION_JUMP_ON_SPOT_SLOW_SOUTH
     .short \length
     .endm
 
     .macro MoveAction_046 length=1
-    .short MOVEMENT_ACTION_046
+    .short MOVEMENT_ACTION_JUMP_ON_SPOT_SLOW_WEST
     .short \length
     .endm
 
     .macro MoveAction_047 length=1
-    .short MOVEMENT_ACTION_047
+    .short MOVEMENT_ACTION_JUMP_ON_SPOT_SLOW_EAST
     .short \length
     .endm
 
     .macro MoveAction_048 length=1
-    .short MOVEMENT_ACTION_048
+    .short MOVEMENT_ACTION_JUMP_ON_SPOT_FAST_NORTH
     .short \length
     .endm
 
     .macro MoveAction_049 length=1
-    .short MOVEMENT_ACTION_049
+    .short MOVEMENT_ACTION_JUMP_ON_SPOT_FAST_SOUTH
     .short \length
     .endm
 
     .macro MoveAction_050 length=1
-    .short MOVEMENT_ACTION_050
+    .short MOVEMENT_ACTION_JUMP_ON_SPOT_FAST_WEST
     .short \length
     .endm
 
     .macro MoveAction_051 length=1
-    .short MOVEMENT_ACTION_051
+    .short MOVEMENT_ACTION_JUMP_ON_SPOT_FAST_EAST
     .short \length
     .endm
 
     .macro MoveAction_052 length=1
-    .short MOVEMENT_ACTION_052
+    .short MOVEMENT_ACTION_JUMP_NEAR_FAST_NORTH
     .short \length
     .endm
 
     .macro MoveAction_053 length=1
-    .short MOVEMENT_ACTION_053
+    .short MOVEMENT_ACTION_JUMP_NEAR_FAST_SOUTH
     .short \length
     .endm
 
     .macro MoveAction_054 length=1
-    .short MOVEMENT_ACTION_054
+    .short MOVEMENT_ACTION_JUMP_NEAR_FAST_WEST
     .short \length
     .endm
 
     .macro MoveAction_055 length=1
-    .short MOVEMENT_ACTION_055
+    .short MOVEMENT_ACTION_JUMP_NEAR_FAST_EAST
     .short \length
     .endm
 
     .macro MoveAction_056 length=1
-    .short MOVEMENT_ACTION_056
+    .short MOVEMENT_ACTION_JUMP_FAR_NORTH
     .short \length
     .endm
 
     .macro MoveAction_057 length=1
-    .short MOVEMENT_ACTION_057
+    .short MOVEMENT_ACTION_JUMP_FAR_SOUTH
     .short \length
     .endm
 
     .macro MoveAction_058 length=1
-    .short MOVEMENT_ACTION_058
+    .short MOVEMENT_ACTION_JUMP_FAR_WEST
     .short \length
     .endm
 
     .macro MoveAction_059 length=1
-    .short MOVEMENT_ACTION_059
+    .short MOVEMENT_ACTION_JUMP_FAR_EAST
     .short \length
     .endm
 
     .macro MoveAction_060 length=1
-    .short MOVEMENT_ACTION_060
+    .short MOVEMENT_ACTION_DELAY_1
     .short \length
     .endm
 
     .macro MoveAction_061 length=1
-    .short MOVEMENT_ACTION_061
+    .short MOVEMENT_ACTION_DELAY_2
     .short \length
     .endm
 
     .macro MoveAction_062 length=1
-    .short MOVEMENT_ACTION_062
+    .short MOVEMENT_ACTION_DELAY_4
     .short \length
     .endm
 
     .macro MoveAction_063 length=1
-    .short MOVEMENT_ACTION_063
+    .short MOVEMENT_ACTION_DELAY_8
     .short \length
     .endm
 
     .macro MoveAction_064 length=1
-    .short MOVEMENT_ACTION_064
+    .short MOVEMENT_ACTION_DELAY_15
     .short \length
     .endm
 
     .macro MoveAction_065 length=1
-    .short MOVEMENT_ACTION_065
+    .short MOVEMENT_ACTION_DELAY_16
     .short \length
     .endm
 
     .macro MoveAction_066 length=1
-    .short MOVEMENT_ACTION_066
+    .short MOVEMENT_ACTION_DELAY_32
     .short \length
     .endm
 
     .macro MoveAction_067 length=1
-    .short MOVEMENT_ACTION_067
+    .short MOVEMENT_ACTION_WARP_OUT
     .short \length
     .endm
 
     .macro MoveAction_068 length=1
-    .short MOVEMENT_ACTION_068
+    .short MOVEMENT_ACTION_WARP_IN
     .short \length
     .endm
 
     .macro MoveAction_069 length=1
-    .short MOVEMENT_ACTION_069
+    .short MOVEMENT_ACTION_SET_INVISIBLE
     .short \length
     .endm
 
     .macro MoveAction_070 length=1
-    .short MOVEMENT_ACTION_070
+    .short MOVEMENT_ACTION_SET_VISIBLE
     .short \length
     .endm
 
     .macro MoveAction_071 length=1
-    .short MOVEMENT_ACTION_071
+    .short MOVEMENT_ACTION_LOCK_DIR
     .short \length
     .endm
 
     .macro MoveAction_072 length=1
-    .short MOVEMENT_ACTION_072
+    .short MOVEMENT_ACTION_UNLOCK_DIR
     .short \length
     .endm
 
     .macro MoveAction_073 length=1
-    .short MOVEMENT_ACTION_073
+    .short MOVEMENT_ACTION_PAUSE_ANIMATION
     .short \length
     .endm
 
     .macro MoveAction_074 length=1
-    .short MOVEMENT_ACTION_074
+    .short MOVEMENT_ACTION_RESUME_ANIMATION
     .short \length
     .endm
 
     .macro MoveAction_075 length=1
-    .short MOVEMENT_ACTION_075
+    .short MOVEMENT_ACTION_EMOTE_EXCLAMATION_MARK
     .short \length
     .endm
 
     .macro MoveAction_076 length=1
-    .short MOVEMENT_ACTION_076
+    .short MOVEMENT_ACTION_WALK_SLIGHTLY_FAST_NORTH
     .short \length
     .endm
 
     .macro MoveAction_077 length=1
-    .short MOVEMENT_ACTION_077
+    .short MOVEMENT_ACTION_WALK_SLIGHTLY_FAST_SOUTH
     .short \length
     .endm
 
     .macro MoveAction_078 length=1
-    .short MOVEMENT_ACTION_078
+    .short MOVEMENT_ACTION_WALK_SLIGHTLY_FAST_WEST
     .short \length
     .endm
 
     .macro MoveAction_079 length=1
-    .short MOVEMENT_ACTION_079
+    .short MOVEMENT_ACTION_WALK_SLIGHTLY_FAST_EAST
     .short \length
     .endm
 
     .macro MoveAction_080 length=1
-    .short MOVEMENT_ACTION_080
+    .short MOVEMENT_ACTION_WALK_SLIGHTLY_FASTER_NORTH
     .short \length
     .endm
 
     .macro MoveAction_081 length=1
-    .short MOVEMENT_ACTION_081
+    .short MOVEMENT_ACTION_WALK_SLIGHTLY_FASTER_SOUTH
     .short \length
     .endm
 
     .macro MoveAction_082 length=1
-    .short MOVEMENT_ACTION_082
+    .short MOVEMENT_ACTION_WALK_SLIGHTLY_FASTER_WEST
     .short \length
     .endm
 
     .macro MoveAction_083 length=1
-    .short MOVEMENT_ACTION_083
+    .short MOVEMENT_ACTION_WALK_SLIGHTLY_FASTER_EAST
     .short \length
     .endm
 
     .macro MoveAction_084 length=1
-    .short MOVEMENT_ACTION_084
+    .short MOVEMENT_ACTION_WALK_FASTEST_NORTH
     .short \length
     .endm
 
     .macro MoveAction_085 length=1
-    .short MOVEMENT_ACTION_085
+    .short MOVEMENT_ACTION_WALK_FASTEST_SOUTH
     .short \length
     .endm
 
     .macro MoveAction_086 length=1
-    .short MOVEMENT_ACTION_086
+    .short MOVEMENT_ACTION_WALK_FASTEST_WEST
     .short \length
     .endm
 
     .macro MoveAction_087 length=1
-    .short MOVEMENT_ACTION_087
+    .short MOVEMENT_ACTION_WALK_FASTEST_EAST
     .short \length
     .endm
 
     .macro MoveAction_088 length=1
-    .short MOVEMENT_ACTION_088
+    .short MOVEMENT_ACTION_RUN_NORTH
     .short \length
     .endm
 
     .macro MoveAction_089 length=1
-    .short MOVEMENT_ACTION_089
+    .short MOVEMENT_ACTION_RUN_SOUTH
     .short \length
     .endm
 
     .macro MoveAction_090 length=1
-    .short MOVEMENT_ACTION_090
+    .short MOVEMENT_ACTION_RUN_WEST
     .short \length
     .endm
 
     .macro MoveAction_091 length=1
-    .short MOVEMENT_ACTION_091
+    .short MOVEMENT_ACTION_RUN_EAST
     .short \length
     .endm
 
     .macro MoveAction_092 length=1
-    .short MOVEMENT_ACTION_092
+    .short MOVEMENT_ACTION_JUMP_NEAR_SLOW_WEST
     .short \length
     .endm
 
     .macro MoveAction_093 length=1
-    .short MOVEMENT_ACTION_093
+    .short MOVEMENT_ACTION_JUMP_NEAR_SLOW_EAST
     .short \length
     .endm
 
     .macro MoveAction_094 length=1
-    .short MOVEMENT_ACTION_094
+    .short MOVEMENT_ACTION_JUMP_FARTHER_WEST
     .short \length
     .endm
 
     .macro MoveAction_095 length=1
-    .short MOVEMENT_ACTION_095
+    .short MOVEMENT_ACTION_JUMP_FARTHER_EAST
     .short \length
     .endm
 
     .macro MoveAction_096 length=1
-    .short MOVEMENT_ACTION_096
+    .short MOVEMENT_ACTION_WALK_EVER_SO_SLIGHTLY_FAST_NORTH
     .short \length
     .endm
 
     .macro MoveAction_097 length=1
-    .short MOVEMENT_ACTION_097
+    .short MOVEMENT_ACTION_WALK_EVER_SO_SLIGHTLY_FAST_SOUTH
     .short \length
     .endm
 
     .macro MoveAction_098 length=1
-    .short MOVEMENT_ACTION_098
+    .short MOVEMENT_ACTION_WALK_EVER_SO_SLIGHTLY_FAST_WEST
     .short \length
     .endm
 
     .macro MoveAction_099 length=1
-    .short MOVEMENT_ACTION_099
+    .short MOVEMENT_ACTION_WALK_EVER_SO_SLIGHTLY_FAST_EAST
     .short \length
     .endm
 
     .macro MoveAction_100 length=1
-    .short MOVEMENT_ACTION_100
+    .short MOVEMENT_ACTION_NURSE_JOY_BOW
     .short \length
     .endm
 
     .macro MoveAction_101 length=1
-    .short MOVEMENT_ACTION_101
+    .short MOVEMENT_ACTION_REVEAL_TRAINER
     .short \length
     .endm
 
     .macro MoveAction_102 length=1
-    .short MOVEMENT_ACTION_102
+    .short MOVEMENT_ACTION_PLAYER_GIVE
     .short \length
     .endm
 
     .macro MoveAction_103 length=1
-    .short MOVEMENT_ACTION_103
+    .short MOVEMENT_ACTION_EMOTE_QUESTION_MARK
     .short \length
     .endm
 
     .macro MoveAction_104 length=1
-    .short MOVEMENT_ACTION_104
+    .short MOVEMENT_ACTION_PLAYER_RECEIVE
     .short \length
     .endm
 

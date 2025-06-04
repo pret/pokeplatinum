@@ -5,6 +5,7 @@
 
 #include "constants/field/dynamic_map_features.h"
 #include "generated/game_records.h"
+#include "generated/movement_actions.h"
 
 #include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
@@ -524,11 +525,11 @@ static BOOL ov5_021DFFBC(FieldTask *param0)
         }
 
         {
-            int v3 = MovementAction_TurnActionTowardsDir(v0->unk_04, 0x8);
+            int v3 = MovementAction_TurnActionTowardsDir(v0->unk_04, MOVEMENT_ACTION_WALK_SLOW_NORTH);
 
             LocalMapObj_SetAnimationCode(v2, v3);
 
-            v3 = MovementAction_TurnActionTowardsDir(v0->unk_04, 0x20);
+            v3 = MovementAction_TurnActionTowardsDir(v0->unk_04, MOVEMENT_ACTION_WALK_ON_SPOT_NORMAL_NORTH);
             LocalMapObj_SetAnimationCode(v1, v3);
             Sound_PlayEffect(SEQ_SE_DP_UG_023);
         }
@@ -1044,7 +1045,7 @@ static int ov5_021E07FC(UnkStruct_ov5_021F9B54 *param0)
 static int ov5_021E0850(UnkStruct_ov5_021F9B54 *param0)
 {
     if (LocalMapObj_IsAnimationSet(param0->unk_14) == 1) {
-        int v0 = MovementAction_TurnActionTowardsDir(param0->unk_04, 0x34);
+        int v0 = MovementAction_TurnActionTowardsDir(param0->unk_04, MOVEMENT_ACTION_JUMP_NEAR_FAST_NORTH);
 
         LocalMapObj_SetAnimationCode(param0->unk_14, v0);
         param0->unk_00++;
@@ -1066,7 +1067,7 @@ static int ov5_021E0878(UnkStruct_ov5_021F9B54 *param0)
 static int ov5_021E0898(UnkStruct_ov5_021F9B54 *param0)
 {
     if (LocalMapObj_IsAnimationSet(param0->unk_14) == 1) {
-        int v0 = MovementAction_TurnActionTowardsDir(param0->unk_04, 0x10);
+        int v0 = MovementAction_TurnActionTowardsDir(param0->unk_04, MOVEMENT_ACTION_WALK_FAST_NORTH);
 
         LocalMapObj_SetAnimationCode(param0->unk_14, v0);
         param0->unk_00++;
@@ -1092,7 +1093,7 @@ static int ov5_021E08C0(UnkStruct_ov5_021F9B54 *param0)
     }
 
     {
-        int v2 = MovementAction_TurnActionTowardsDir(param0->unk_04, 0x34);
+        int v2 = MovementAction_TurnActionTowardsDir(param0->unk_04, MOVEMENT_ACTION_JUMP_NEAR_FAST_NORTH);
 
         LocalMapObj_SetAnimationCode(param0->unk_14, v2);
         param0->unk_08 = 0;

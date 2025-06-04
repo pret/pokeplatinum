@@ -7,6 +7,7 @@
 
 #include "constants/communication/comm_packets.h"
 #include "constants/heap.h"
+#include "generated/movement_actions.h"
 #include "generated/trainer_score_events.h"
 
 #include "struct_decls/struct_0202855C_decl.h"
@@ -1078,7 +1079,7 @@ static void CommPlayer_MoveClient(int netId)
                 break;
             }
         } else if (((pad & ~PAD_BUTTON_B) == 0) && (playerLocation->dir != dir)) {
-            animCode = MovementAction_TurnActionTowardsDir(playerLocation->dir, 0x24);
+            animCode = MovementAction_TurnActionTowardsDir(playerLocation->dir, MOVEMENT_ACTION_WALK_ON_SPOT_FAST_NORTH);
         } else {
             animCode = sub_0206147C(playerAvatar, pad, pad, v10, 1, 0);
         }
@@ -1565,10 +1566,10 @@ void CommPlayer_SetBattleDir(void)
 
     if (CommPlayer_XPos(netId) > 8) {
         CommPlayer_SetDir(2);
-        code = MovementAction_TurnActionTowardsDir(2, 0x24);
+        code = MovementAction_TurnActionTowardsDir(DIR_WEST, MOVEMENT_ACTION_WALK_ON_SPOT_FAST_NORTH);
     } else {
         CommPlayer_SetDir(3);
-        code = MovementAction_TurnActionTowardsDir(3, 0x24);
+        code = MovementAction_TurnActionTowardsDir(DIR_EAST, MOVEMENT_ACTION_WALK_ON_SPOT_FAST_NORTH);
     }
 
     PlayerAvatar_SetAnimationCode(sCommPlayerManager->playerAvatar[netId], code, 1);

@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/movement_actions.h"
+
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
@@ -291,7 +293,7 @@ void sub_02064690(MapObject *mapObj)
         MapObject_SetEndMovementOff(mapObj);
 
         v0 = MapObject_GetFacingDir(mapObj);
-        v0 = MovementAction_TurnActionTowardsDir(v0, 0x0);
+        v0 = MovementAction_TurnActionTowardsDir(v0, MOVEMENT_ACTION_FACE_NORTH);
 
         sub_02065668(mapObj, v0);
 
@@ -521,7 +523,7 @@ static int sub_020649CC(MapObject *mapObj, UnkStruct_0206496C *param1)
         v0 = MapObject_GetFacingDir(mapObj);
     }
 
-    v0 = MovementAction_TurnActionTowardsDir(v0, 0x0);
+    v0 = MovementAction_TurnActionTowardsDir(v0, MOVEMENT_ACTION_FACE_NORTH);
     sub_02065668(mapObj, v0);
     param1->unk_02 = 1;
 
@@ -620,7 +622,7 @@ static int sub_02064B20(MapObject *mapObj, UnkStruct_0206496C *param1)
 {
     int v0 = MapObject_GetFacingDir(mapObj);
 
-    v0 = MovementAction_TurnActionTowardsDir(v0, 0x0);
+    v0 = MovementAction_TurnActionTowardsDir(v0, MOVEMENT_ACTION_FACE_NORTH);
     sub_02065668(mapObj, v0);
     param1->unk_02 = 1;
 
@@ -1102,7 +1104,7 @@ static int sub_02065124(MapObject *mapObj, UnkStruct_0206502C *param1)
         int v4 = sub_02067D58(mapObj, playerAvatar, v2, v3);
 
         if (v4 != -1) {
-            int v5 = MovementAction_TurnActionTowardsDir(v2, 0x30);
+            int v5 = MovementAction_TurnActionTowardsDir(v2, MOVEMENT_ACTION_JUMP_ON_SPOT_FAST_NORTH);
 
             sub_02065668(mapObj, v4);
             sub_02062D04(mapObj);

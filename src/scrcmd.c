@@ -2907,21 +2907,21 @@ static BOOL ScrCmd_2A1(ScriptContext *ctx)
     int v11 = 0;
 
     if (v8 < v6) {
-        v10[v11].movementAction = MOVEMENT_ACTION_015;
+        v10[v11].movementAction = MOVEMENT_ACTION_WALK_NORMAL_EAST;
         v10[v11].count = v6 - v8;
         v11++;
     } else if (v8 > v6) {
-        v10[v11].movementAction = MOVEMENT_ACTION_014;
+        v10[v11].movementAction = MOVEMENT_ACTION_WALK_NORMAL_WEST;
         v10[v11].count = v8 - v6;
         v11++;
     }
 
     if (v9 < v7) {
-        v10[v11].movementAction = MOVEMENT_ACTION_012;
+        v10[v11].movementAction = MOVEMENT_ACTION_WALK_NORMAL_NORTH;
         v10[v11].count = v7 - v9;
         v11++;
     } else if (v9 > v7) {
-        v10[v11].movementAction = MOVEMENT_ACTION_013;
+        v10[v11].movementAction = MOVEMENT_ACTION_WALK_NORMAL_SOUTH;
         v10[v11].count = v9 - v7;
         v11++;
     }

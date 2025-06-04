@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/movement_actions.h"
+
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -605,7 +607,7 @@ static int sub_0206A2E0(MapObject *mapObj, UnkStruct_0206A23C *param1)
 {
     int v0 = MapObject_GetFacingDir(mapObj);
 
-    v0 = MovementAction_TurnActionTowardsDir(v0, 0x0);
+    v0 = MovementAction_TurnActionTowardsDir(v0, MOVEMENT_ACTION_FACE_NORTH);
 
     sub_02065668(mapObj, v0);
     sub_02062D10(mapObj);
@@ -663,7 +665,7 @@ static void sub_0206A37C(MapObject *mapObj, int param1, int param2, u32 param3)
     }
 
     if (v0 != 0) {
-        param2 = MovementAction_TurnActionTowardsDir(param1, 0x0);
+        param2 = MovementAction_TurnActionTowardsDir(param1, MOVEMENT_ACTION_FACE_NORTH);
     } else {
         param2 = MovementAction_TurnActionTowardsDir(param1, param2);
         sub_02062D04(mapObj);
@@ -682,7 +684,7 @@ static int sub_0206A3BC(MapObject *mapObj, UnkStruct_0206A23C *param1)
     switch (v3) {
     case 0:
     case 1:
-        v0 = MovementAction_TurnActionTowardsDir(v2, 0x0);
+        v0 = MovementAction_TurnActionTowardsDir(v2, MOVEMENT_ACTION_FACE_NORTH);
         sub_02065668(mapObj, v0);
         break;
     case 2:
@@ -922,7 +924,7 @@ static int sub_0206A630(MapObject *mapObj, UnkStruct_0206A47C *param1, int param
 
     if (v2 == -1) {
         v2 = MapObject_GetFacingDir(mapObj);
-        param2 = MovementAction_TurnActionTowardsDir(v2, 0x1c);
+        param2 = MovementAction_TurnActionTowardsDir(v2, MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH);
         sub_02065668(mapObj, param2);
         return 0;
     }
@@ -943,7 +945,7 @@ static int sub_0206A630(MapObject *mapObj, UnkStruct_0206A47C *param1, int param
 
         if (v2 == -1) {
             v2 = MapObject_GetFacingDir(mapObj);
-            param2 = MovementAction_TurnActionTowardsDir(v2, 0x1c);
+            param2 = MovementAction_TurnActionTowardsDir(v2, MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH);
             sub_02065668(mapObj, param2);
             return 0;
         }
@@ -962,7 +964,7 @@ static int sub_0206A630(MapObject *mapObj, UnkStruct_0206A47C *param1, int param
 
         if (v2 == -1) {
             v2 = MapObject_GetFacingDir(mapObj);
-            param2 = MovementAction_TurnActionTowardsDir(v2, 0x1c);
+            param2 = MovementAction_TurnActionTowardsDir(v2, MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH);
             sub_02065668(mapObj, param2);
             return 0;
         }
@@ -976,7 +978,7 @@ static int sub_0206A630(MapObject *mapObj, UnkStruct_0206A47C *param1, int param
     }
 
     v2 = MapObject_GetFacingDir(mapObj);
-    param2 = MovementAction_TurnActionTowardsDir(v2, 0x1c);
+    param2 = MovementAction_TurnActionTowardsDir(v2, MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH);
 
     sub_02065668(mapObj, param2);
     return 0;

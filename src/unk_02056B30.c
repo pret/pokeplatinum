@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/movement_actions.h"
+
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system.h"
@@ -345,9 +347,9 @@ static BOOL sub_02056F1C(FieldTask *taskMan)
         v2 = Player_MapObject(fieldSystem->playerAvatar);
 
         if (v3 == 2) {
-            LocalMapObj_SetAnimationCode(v2, 0xa);
+            LocalMapObj_SetAnimationCode(v2, MOVEMENT_ACTION_WALK_SLOW_WEST);
         } else if (v3 == 3) {
-            LocalMapObj_SetAnimationCode(v2, 0xb);
+            LocalMapObj_SetAnimationCode(v2, MOVEMENT_ACTION_WALK_SLOW_EAST);
         } else {
             GF_ASSERT(FALSE);
         }
@@ -549,9 +551,9 @@ static BOOL sub_02057218(FieldTask *taskMan)
             v3 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
             if (v3 == 2) {
-                LocalMapObj_SetAnimationCode(v2, 0xa);
+                LocalMapObj_SetAnimationCode(v2, MOVEMENT_ACTION_WALK_SLOW_WEST);
             } else if (v3 == 3) {
-                LocalMapObj_SetAnimationCode(v2, 0xb);
+                LocalMapObj_SetAnimationCode(v2, MOVEMENT_ACTION_WALK_SLOW_EAST);
             } else {
                 GF_ASSERT(FALSE);
             }
