@@ -2379,7 +2379,7 @@ static BOOL ov9_0224AAD4(FieldTask *param0)
             } break;
             }
 
-            v6 = sub_02065838(v5, 0x0);
+            v6 = MovementAction_TurnActionTowardsDir(v5, 0x0);
 
             LocalMapObj_SetAnimationCode(v4, v6);
             MapObject_TryFace(v4, v5);
@@ -2431,7 +2431,7 @@ static BOOL ov9_0224AAD4(FieldTask *param0)
         if (LocalMapObj_IsAnimationSet(v4) == 0) {
             break;
         } else {
-            int v14 = sub_02065838(
+            int v14 = MovementAction_TurnActionTowardsDir(
                 v2->unk_34.unk_22, 0x0);
 
             LocalMapObj_SetAnimationCode(v4, v14);

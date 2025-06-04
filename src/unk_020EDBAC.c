@@ -11,160 +11,160 @@
 #include "unk_020677F4.h"
 #include "unk_02069BE0.h"
 
-extern int (*const gMovementActionFuncs_000[])(MapObject *);
-extern int (*const gMovementActionFuncs_001[])(MapObject *);
-extern int (*const gMovementActionFuncs_002[])(MapObject *);
-extern int (*const gMovementActionFuncs_003[])(MapObject *);
-extern int (*const gMovementActionFuncs_004[])(MapObject *);
-extern int (*const gMovementActionFuncs_005[])(MapObject *);
-extern int (*const gMovementActionFuncs_006[])(MapObject *);
-extern int (*const gMovementActionFuncs_007[])(MapObject *);
-extern int (*const gMovementActionFuncs_008[])(MapObject *);
-extern int (*const gMovementActionFuncs_009[])(MapObject *);
-extern int (*const gMovementActionFuncs_010[])(MapObject *);
-extern int (*const gMovementActionFuncs_011[])(MapObject *);
-extern int (*const gMovementActionFuncs_012[])(MapObject *);
-extern int (*const gMovementActionFuncs_013[])(MapObject *);
-extern int (*const gMovementActionFuncs_014[])(MapObject *);
-extern int (*const gMovementActionFuncs_015[])(MapObject *);
-extern int (*const gMovementActionFuncs_016[])(MapObject *);
-extern int (*const gMovementActionFuncs_017[])(MapObject *);
-extern int (*const gMovementActionFuncs_018[])(MapObject *);
-extern int (*const gMovementActionFuncs_019[])(MapObject *);
-extern int (*const gMovementActionFuncs_020[])(MapObject *);
-extern int (*const gMovementActionFuncs_021[])(MapObject *);
-extern int (*const gMovementActionFuncs_022[])(MapObject *);
-extern int (*const gMovementActionFuncs_023[])(MapObject *);
-extern int (*const gMovementActionFuncs_084[])(MapObject *);
-extern int (*const gMovementActionFuncs_085[])(MapObject *);
-extern int (*const gMovementActionFuncs_086[])(MapObject *);
-extern int (*const gMovementActionFuncs_087[])(MapObject *);
-extern int (*const gMovementActionFuncs_088[])(MapObject *);
-extern int (*const gMovementActionFuncs_089[])(MapObject *);
-extern int (*const gMovementActionFuncs_090[])(MapObject *);
-extern int (*const gMovementActionFuncs_091[])(MapObject *);
-extern int (*const gMovementActionFuncs_024[])(MapObject *);
-extern int (*const gMovementActionFuncs_025[])(MapObject *);
-extern int (*const gMovementActionFuncs_026[])(MapObject *);
-extern int (*const gMovementActionFuncs_027[])(MapObject *);
-extern int (*const gMovementActionFuncs_028[])(MapObject *);
-extern int (*const gMovementActionFuncs_029[])(MapObject *);
-extern int (*const gMovementActionFuncs_030[])(MapObject *);
-extern int (*const gMovementActionFuncs_031[])(MapObject *);
-extern int (*const gMovementActionFuncs_032[])(MapObject *);
-extern int (*const gMovementActionFuncs_033[])(MapObject *);
-extern int (*const gMovementActionFuncs_034[])(MapObject *);
-extern int (*const gMovementActionFuncs_035[])(MapObject *);
-extern int (*const gMovementActionFuncs_036[])(MapObject *);
-extern int (*const gMovementActionFuncs_037[])(MapObject *);
-extern int (*const gMovementActionFuncs_038[])(MapObject *);
-extern int (*const gMovementActionFuncs_039[])(MapObject *);
-extern int (*const gMovementActionFuncs_040[])(MapObject *);
-extern int (*const gMovementActionFuncs_041[])(MapObject *);
-extern int (*const gMovementActionFuncs_042[])(MapObject *);
-extern int (*const gMovementActionFuncs_043[])(MapObject *);
-extern int (*const gMovementActionFuncs_044[])(MapObject *);
-extern int (*const gMovementActionFuncs_045[])(MapObject *);
-extern int (*const gMovementActionFuncs_046[])(MapObject *);
-extern int (*const gMovementActionFuncs_047[])(MapObject *);
-extern int (*const gMovementActionFuncs_048[])(MapObject *);
-extern int (*const gMovementActionFuncs_049[])(MapObject *);
-extern int (*const gMovementActionFuncs_050[])(MapObject *);
-extern int (*const gMovementActionFuncs_051[])(MapObject *);
-extern int (*const gMovementActionFuncs_052[])(MapObject *);
-extern int (*const gMovementActionFuncs_053[])(MapObject *);
-extern int (*const gMovementActionFuncs_054[])(MapObject *);
-extern int (*const gMovementActionFuncs_055[])(MapObject *);
-extern int (*const gMovementActionFuncs_056[])(MapObject *);
-extern int (*const gMovementActionFuncs_057[])(MapObject *);
-extern int (*const gMovementActionFuncs_058[])(MapObject *);
-extern int (*const gMovementActionFuncs_059[])(MapObject *);
-extern int (*const gMovementActionFuncs_092[])(MapObject *);
-extern int (*const gMovementActionFuncs_093[])(MapObject *);
-extern int (*const gMovementActionFuncs_094[])(MapObject *);
-extern int (*const gMovementActionFuncs_095[])(MapObject *);
-extern int (*const gMovementActionFuncs_117[])(MapObject *);
-extern int (*const gMovementActionFuncs_118[])(MapObject *);
-extern int (*const gMovementActionFuncs_119[])(MapObject *);
-extern int (*const gMovementActionFuncs_120[])(MapObject *);
-extern int (*const gMovementActionFuncs_060[])(MapObject *);
-extern int (*const gMovementActionFuncs_061[])(MapObject *);
-extern int (*const gMovementActionFuncs_062[])(MapObject *);
-extern int (*const gMovementActionFuncs_063[])(MapObject *);
-extern int (*const gMovementActionFuncs_064[])(MapObject *);
-extern int (*const gMovementActionFuncs_065[])(MapObject *);
-extern int (*const gMovementActionFuncs_066[])(MapObject *);
-extern int (*const gMovementActionFuncs_067[])(MapObject *);
-extern int (*const gMovementActionFuncs_068[])(MapObject *);
-extern int (*const gMovementActionFuncs_069[])(MapObject *);
-extern int (*const gMovementActionFuncs_070[])(MapObject *);
-extern int (*const gMovementActionFuncs_071[])(MapObject *);
-extern int (*const gMovementActionFuncs_072[])(MapObject *);
-extern int (*const gMovementActionFuncs_073[])(MapObject *);
-extern int (*const gMovementActionFuncs_074[])(MapObject *);
-extern int (*const gMovementActionFuncs_075[])(MapObject *);
-extern int (*const gMovementActionFuncs_103[])(MapObject *);
-extern int (*const gMovementActionFuncs_076[])(MapObject *);
-extern int (*const gMovementActionFuncs_077[])(MapObject *);
-extern int (*const gMovementActionFuncs_078[])(MapObject *);
-extern int (*const gMovementActionFuncs_079[])(MapObject *);
-extern int (*const gMovementActionFuncs_080[])(MapObject *);
-extern int (*const gMovementActionFuncs_081[])(MapObject *);
-extern int (*const gMovementActionFuncs_082[])(MapObject *);
-extern int (*const gMovementActionFuncs_083[])(MapObject *);
-extern int (*const gMovementActionFuncs_096[])(MapObject *);
-extern int (*const gMovementActionFuncs_097[])(MapObject *);
-extern int (*const gMovementActionFuncs_098[])(MapObject *);
-extern int (*const gMovementActionFuncs_099[])(MapObject *);
-extern int (*const gMovementActionFuncs_100[])(MapObject *);
-extern int (*const gMovementActionFuncs_101[])(MapObject *);
-extern int (*const gMovementActionFuncs_102[])(MapObject *);
-extern int (*const gMovementActionFuncs_104[])(MapObject *);
-extern int (*const gMovementActionFuncs_105[])(MapObject *);
-extern int (*const gMovementActionFuncs_106[])(MapObject *);
-extern int (*const gMovementActionFuncs_107[])(MapObject *);
-extern int (*const gMovementActionFuncs_108[])(MapObject *);
-extern int (*const gMovementActionFuncs_109[])(MapObject *);
-extern int (*const gMovementActionFuncs_110[])(MapObject *);
-extern int (*const gMovementActionFuncs_111[])(MapObject *);
-extern int (*const gMovementActionFuncs_112[])(MapObject *);
-extern int (*const gMovementActionFuncs_113[])(MapObject *);
-extern int (*const gMovementActionFuncs_114[])(MapObject *);
-extern int (*const gMovementActionFuncs_115[])(MapObject *);
-extern int (*const gMovementActionFuncs_116[])(MapObject *);
-extern int (*const gMovementActionFuncs_145[])(MapObject *);
-extern int (*const gMovementActionFuncs_146[])(MapObject *);
-extern int (*const gMovementActionFuncs_147[])(MapObject *);
-extern int (*const gMovementActionFuncs_148[])(MapObject *);
-extern int (*const gMovementActionFuncs_149[])(MapObject *);
-extern int (*const gMovementActionFuncs_150[])(MapObject *);
-extern int (*const gMovementActionFuncs_151[])(MapObject *);
-extern int (*const gMovementActionFuncs_152[])(MapObject *);
-extern int (*const gMovementActionFuncs_121[])(MapObject *);
-extern int (*const gMovementActionFuncs_122[])(MapObject *);
-extern int (*const gMovementActionFuncs_123[])(MapObject *);
-extern int (*const gMovementActionFuncs_124[])(MapObject *);
-extern int (*const gMovementActionFuncs_125[])(MapObject *);
-extern int (*const gMovementActionFuncs_126[])(MapObject *);
-extern int (*const gMovementActionFuncs_127[])(MapObject *);
-extern int (*const gMovementActionFuncs_128[])(MapObject *);
-extern int (*const gMovementActionFuncs_129[])(MapObject *);
-extern int (*const gMovementActionFuncs_130[])(MapObject *);
-extern int (*const gMovementActionFuncs_131[])(MapObject *);
-extern int (*const gMovementActionFuncs_132[])(MapObject *);
-extern int (*const gMovementActionFuncs_133[])(MapObject *);
-extern int (*const gMovementActionFuncs_134[])(MapObject *);
-extern int (*const gMovementActionFuncs_135[])(MapObject *);
-extern int (*const gMovementActionFuncs_136[])(MapObject *);
-extern int (*const gMovementActionFuncs_137[])(MapObject *);
-extern int (*const gMovementActionFuncs_138[])(MapObject *);
-extern int (*const gMovementActionFuncs_139[])(MapObject *);
-extern int (*const gMovementActionFuncs_140[])(MapObject *);
-extern int (*const gMovementActionFuncs_141[])(MapObject *);
-extern int (*const gMovementActionFuncs_142[])(MapObject *);
-extern int (*const gMovementActionFuncs_143[])(MapObject *);
-extern int (*const gMovementActionFuncs_144[])(MapObject *);
-extern int (*const gMovementActionFuncs_153[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_FaceNorth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_FaceSouth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_FaceWest[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_FaceEast[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkSlowerNorth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkSlowerSouth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkSlowerWest[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkSlowerEast[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkSlowNorth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkSlowSouth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkSlowWest[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkSlowEast[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkNormalNorth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkNormalSouth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkNormalWest[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkNormalEast[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkFastNorth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkFastSouth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkFastWest[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkFastEast[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkFasterNorth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkFasterSouth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkFasterWest[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkFasterEast[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkFastestNorth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkFastestSouth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkFastestWest[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkFastestEast[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_RunNorth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_RunSouth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_RunWest[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_RunEast[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkOnSpotSlowerNorth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkOnSpotSlowerSouth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkOnSpotSlowerWest[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkOnSpotSlowerEast[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkOnSpotSlowNorth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkOnSpotSlowSouth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkOnSpotSlowWest[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkOnSpotSlowEast[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkOnSpotNormalNorth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkOnSpotNormalSouth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkOnSpotNormalWest[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkOnSpotNormalEast[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkOnSpotFastNorth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkOnSpotFastSouth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkOnSpotFastWest[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkOnSpotFastEast[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkOnSpotFasterNorth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkOnSpotFasterSouth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkOnSpotFasterWest[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkOnSpotFasterEast[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_JumpOnSpotSlowNorth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_JumpOnSpotSlowSouth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_JumpOnSpotSlowWest[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_JumpOnSpotSlowEast[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_JumpOnSpotFastNorth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_JumpOnSpotFastSouth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_JumpOnSpotFastWest[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_JumpOnSpotFastEast[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_JumpNearFastNorth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_JumpNearFastSouth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_JumpNearFastWest[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_JumpNearFastEast[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_JumpFarNorth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_JumpFarSouth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_JumpFarWest[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_JumpFarEast[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_JumpNearSlowWest[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_JumpNearSlowEast[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_JumpFartherWest[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_JumpFartherEast[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_117[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_118[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_119[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_120[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_Delay1[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_Delay2[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_Delay4[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_Delay8[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_Delay15[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_Delay16[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_Delay32[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WarpOut[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WarpIn[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_SetInvisible[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_SetVisible[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_LockDir[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_UnlockDir[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_PauseAnimation[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_ResumeAnimation[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_EmoteExclamationMark[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_EmoteQuestionMark[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkSlightlyFastNorth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkSlightlyFastSouth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkSlightlyFastWest[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkSlightlyFastEast[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkSlightlyFasterNorth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkSlightlyFasterSouth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkSlightlyFasterWest[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkSlightlyFasterEast[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkEverSoSlightlyFastNorth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkEverSoSlightlyFastSouth[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkEverSoSlightlyFastWest[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_WalkEverSoSlightlyFastEast[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_NurseJoyBow[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_RevealTrainer[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_PlayerGive[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_PlayerReceive[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_105[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_106[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_107[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_108[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_109[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_110[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_111[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_112[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_113[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_114[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_115[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_116[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_145[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_146[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_147[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_148[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_149[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_150[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_151[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_152[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_121[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_122[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_123[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_124[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_125[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_126[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_127[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_128[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_129[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_130[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_131[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_132[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_133[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_134[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_135[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_136[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_137[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_138[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_139[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_140[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_141[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_142[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_143[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_144[])(MapObject *);
+extern BOOL (*const gMovementActionFuncs_153[])(MapObject *);
 
 static const UnkStruct_020EDF0C Unk_020EDF0C = {
     0x0,
@@ -781,112 +781,112 @@ const UnkStruct_020EDF0C *const Unk_020EE3A8[] = {
     &Unk_020EE2B8
 };
 
-int (*const *const gMovementActionFuncs[MAX_MOVEMENT_ACTION])(MapObject *) = {
-    gMovementActionFuncs_000,
-    gMovementActionFuncs_001,
-    gMovementActionFuncs_002,
-    gMovementActionFuncs_003,
-    gMovementActionFuncs_004,
-    gMovementActionFuncs_005,
-    gMovementActionFuncs_006,
-    gMovementActionFuncs_007,
-    gMovementActionFuncs_008,
-    gMovementActionFuncs_009,
-    gMovementActionFuncs_010,
-    gMovementActionFuncs_011,
-    gMovementActionFuncs_012,
-    gMovementActionFuncs_013,
-    gMovementActionFuncs_014,
-    gMovementActionFuncs_015,
-    gMovementActionFuncs_016,
-    gMovementActionFuncs_017,
-    gMovementActionFuncs_018,
-    gMovementActionFuncs_019,
-    gMovementActionFuncs_020,
-    gMovementActionFuncs_021,
-    gMovementActionFuncs_022,
-    gMovementActionFuncs_023,
-    gMovementActionFuncs_024,
-    gMovementActionFuncs_025,
-    gMovementActionFuncs_026,
-    gMovementActionFuncs_027,
-    gMovementActionFuncs_028,
-    gMovementActionFuncs_029,
-    gMovementActionFuncs_030,
-    gMovementActionFuncs_031,
-    gMovementActionFuncs_032,
-    gMovementActionFuncs_033,
-    gMovementActionFuncs_034,
-    gMovementActionFuncs_035,
-    gMovementActionFuncs_036,
-    gMovementActionFuncs_037,
-    gMovementActionFuncs_038,
-    gMovementActionFuncs_039,
-    gMovementActionFuncs_040,
-    gMovementActionFuncs_041,
-    gMovementActionFuncs_042,
-    gMovementActionFuncs_043,
-    gMovementActionFuncs_044,
-    gMovementActionFuncs_045,
-    gMovementActionFuncs_046,
-    gMovementActionFuncs_047,
-    gMovementActionFuncs_048,
-    gMovementActionFuncs_049,
-    gMovementActionFuncs_050,
-    gMovementActionFuncs_051,
-    gMovementActionFuncs_052,
-    gMovementActionFuncs_053,
-    gMovementActionFuncs_054,
-    gMovementActionFuncs_055,
-    gMovementActionFuncs_056,
-    gMovementActionFuncs_057,
-    gMovementActionFuncs_058,
-    gMovementActionFuncs_059,
-    gMovementActionFuncs_060,
-    gMovementActionFuncs_061,
-    gMovementActionFuncs_062,
-    gMovementActionFuncs_063,
-    gMovementActionFuncs_064,
-    gMovementActionFuncs_065,
-    gMovementActionFuncs_066,
-    gMovementActionFuncs_067,
-    gMovementActionFuncs_068,
-    gMovementActionFuncs_069,
-    gMovementActionFuncs_070,
-    gMovementActionFuncs_071,
-    gMovementActionFuncs_072,
-    gMovementActionFuncs_073,
-    gMovementActionFuncs_074,
-    gMovementActionFuncs_075,
-    gMovementActionFuncs_076,
-    gMovementActionFuncs_077,
-    gMovementActionFuncs_078,
-    gMovementActionFuncs_079,
-    gMovementActionFuncs_080,
-    gMovementActionFuncs_081,
-    gMovementActionFuncs_082,
-    gMovementActionFuncs_083,
-    gMovementActionFuncs_084,
-    gMovementActionFuncs_085,
-    gMovementActionFuncs_086,
-    gMovementActionFuncs_087,
-    gMovementActionFuncs_088,
-    gMovementActionFuncs_089,
-    gMovementActionFuncs_090,
-    gMovementActionFuncs_091,
-    gMovementActionFuncs_092,
-    gMovementActionFuncs_093,
-    gMovementActionFuncs_094,
-    gMovementActionFuncs_095,
-    gMovementActionFuncs_096,
-    gMovementActionFuncs_097,
-    gMovementActionFuncs_098,
-    gMovementActionFuncs_099,
-    gMovementActionFuncs_100,
-    gMovementActionFuncs_101,
-    gMovementActionFuncs_102,
-    gMovementActionFuncs_103,
-    gMovementActionFuncs_104,
+BOOL (*const *const gMovementActionFuncs[MAX_MOVEMENT_ACTION])(MapObject *) = {
+    gMovementActionFuncs_FaceNorth,
+    gMovementActionFuncs_FaceSouth,
+    gMovementActionFuncs_FaceWest,
+    gMovementActionFuncs_FaceEast,
+    gMovementActionFuncs_WalkSlowerNorth,
+    gMovementActionFuncs_WalkSlowerSouth,
+    gMovementActionFuncs_WalkSlowerWest,
+    gMovementActionFuncs_WalkSlowerEast,
+    gMovementActionFuncs_WalkSlowNorth,
+    gMovementActionFuncs_WalkSlowSouth,
+    gMovementActionFuncs_WalkSlowWest,
+    gMovementActionFuncs_WalkSlowEast,
+    gMovementActionFuncs_WalkNormalNorth,
+    gMovementActionFuncs_WalkNormalSouth,
+    gMovementActionFuncs_WalkNormalWest,
+    gMovementActionFuncs_WalkNormalEast,
+    gMovementActionFuncs_WalkFastNorth,
+    gMovementActionFuncs_WalkFastSouth,
+    gMovementActionFuncs_WalkFastWest,
+    gMovementActionFuncs_WalkFastEast,
+    gMovementActionFuncs_WalkFasterNorth,
+    gMovementActionFuncs_WalkFasterSouth,
+    gMovementActionFuncs_WalkFasterWest,
+    gMovementActionFuncs_WalkFasterEast,
+    gMovementActionFuncs_WalkOnSpotSlowerNorth,
+    gMovementActionFuncs_WalkOnSpotSlowerSouth,
+    gMovementActionFuncs_WalkOnSpotSlowerWest,
+    gMovementActionFuncs_WalkOnSpotSlowerEast,
+    gMovementActionFuncs_WalkOnSpotSlowNorth,
+    gMovementActionFuncs_WalkOnSpotSlowSouth,
+    gMovementActionFuncs_WalkOnSpotSlowWest,
+    gMovementActionFuncs_WalkOnSpotSlowEast,
+    gMovementActionFuncs_WalkOnSpotNormalNorth,
+    gMovementActionFuncs_WalkOnSpotNormalSouth,
+    gMovementActionFuncs_WalkOnSpotNormalWest,
+    gMovementActionFuncs_WalkOnSpotNormalEast,
+    gMovementActionFuncs_WalkOnSpotFastNorth,
+    gMovementActionFuncs_WalkOnSpotFastSouth,
+    gMovementActionFuncs_WalkOnSpotFastWest,
+    gMovementActionFuncs_WalkOnSpotFastEast,
+    gMovementActionFuncs_WalkOnSpotFasterNorth,
+    gMovementActionFuncs_WalkOnSpotFasterSouth,
+    gMovementActionFuncs_WalkOnSpotFasterWest,
+    gMovementActionFuncs_WalkOnSpotFasterEast,
+    gMovementActionFuncs_JumpOnSpotSlowNorth,
+    gMovementActionFuncs_JumpOnSpotSlowSouth,
+    gMovementActionFuncs_JumpOnSpotSlowWest,
+    gMovementActionFuncs_JumpOnSpotSlowEast,
+    gMovementActionFuncs_JumpOnSpotFastNorth,
+    gMovementActionFuncs_JumpOnSpotFastSouth,
+    gMovementActionFuncs_JumpOnSpotFastWest,
+    gMovementActionFuncs_JumpOnSpotFastEast,
+    gMovementActionFuncs_JumpNearFastNorth,
+    gMovementActionFuncs_JumpNearFastSouth,
+    gMovementActionFuncs_JumpNearFastWest,
+    gMovementActionFuncs_JumpNearFastEast,
+    gMovementActionFuncs_JumpFarNorth,
+    gMovementActionFuncs_JumpFarSouth,
+    gMovementActionFuncs_JumpFarWest,
+    gMovementActionFuncs_JumpFarEast,
+    gMovementActionFuncs_Delay1,
+    gMovementActionFuncs_Delay2,
+    gMovementActionFuncs_Delay4,
+    gMovementActionFuncs_Delay8,
+    gMovementActionFuncs_Delay15,
+    gMovementActionFuncs_Delay16,
+    gMovementActionFuncs_Delay32,
+    gMovementActionFuncs_WarpOut,
+    gMovementActionFuncs_WarpIn,
+    gMovementActionFuncs_SetInvisible,
+    gMovementActionFuncs_SetVisible,
+    gMovementActionFuncs_LockDir,
+    gMovementActionFuncs_UnlockDir,
+    gMovementActionFuncs_PauseAnimation,
+    gMovementActionFuncs_ResumeAnimation,
+    gMovementActionFuncs_EmoteExclamationMark,
+    gMovementActionFuncs_WalkSlightlyFastNorth,
+    gMovementActionFuncs_WalkSlightlyFastSouth,
+    gMovementActionFuncs_WalkSlightlyFastWest,
+    gMovementActionFuncs_WalkSlightlyFastEast,
+    gMovementActionFuncs_WalkSlightlyFasterNorth,
+    gMovementActionFuncs_WalkSlightlyFasterSouth,
+    gMovementActionFuncs_WalkSlightlyFasterWest,
+    gMovementActionFuncs_WalkSlightlyFasterEast,
+    gMovementActionFuncs_WalkFastestNorth,
+    gMovementActionFuncs_WalkFastestSouth,
+    gMovementActionFuncs_WalkFastestWest,
+    gMovementActionFuncs_WalkFastestEast,
+    gMovementActionFuncs_RunNorth,
+    gMovementActionFuncs_RunSouth,
+    gMovementActionFuncs_RunWest,
+    gMovementActionFuncs_RunEast,
+    gMovementActionFuncs_JumpNearSlowWest,
+    gMovementActionFuncs_JumpNearSlowEast,
+    gMovementActionFuncs_JumpFartherWest,
+    gMovementActionFuncs_JumpFartherEast,
+    gMovementActionFuncs_WalkEverSoSlightlyFastNorth,
+    gMovementActionFuncs_WalkEverSoSlightlyFastSouth,
+    gMovementActionFuncs_WalkEverSoSlightlyFastWest,
+    gMovementActionFuncs_WalkEverSoSlightlyFastEast,
+    gMovementActionFuncs_NurseJoyBow,
+    gMovementActionFuncs_RevealTrainer,
+    gMovementActionFuncs_PlayerGive,
+    gMovementActionFuncs_EmoteQuestionMark,
+    gMovementActionFuncs_PlayerReceive,
     gMovementActionFuncs_105,
     gMovementActionFuncs_106,
     gMovementActionFuncs_107,
@@ -938,154 +938,154 @@ int (*const *const gMovementActionFuncs[MAX_MOVEMENT_ACTION])(MapObject *) = {
     gMovementActionFuncs_153,
 };
 
-static const int Unk_020EDD5C[] = {
+static const int sMovementActionCodes_Face[] = {
     0x0,
     0x1,
     0x2,
     0x3
 };
 
-static const int Unk_020EDCDC[] = {
+static const int sMovementActionCodes_WalkSlower[] = {
     0x4,
     0x5,
     0x6,
     0x7
 };
 
-static const int Unk_020EDC5C[] = {
+static const int sMovementActionCodes_WalkSlow[] = {
     0x8,
     0x9,
     0xA,
     0xB
 };
 
-static const int Unk_020EDCEC[] = {
+static const int sMovementActionCodes_WalkNormal[] = {
     0xC,
     0xD,
     0xE,
     0xf
 };
 
-static const int Unk_020EDD2C[] = {
+static const int sMovementActionCodes_WalkFast[] = {
     0x10,
     0x11,
     0x12,
     0x13
 };
 
-static const int Unk_020EDCFC[] = {
+static const int sMovementActionCodes_WalkFaster[] = {
     0x14,
     0x15,
     0x16,
     0x17
 };
 
-static const int Unk_020EDC3C[] = {
+static const int sMovementActionCodes_WalkOnSpotSlower[] = {
     0x18,
     0x19,
     0x1A,
     0x1B
 };
 
-static const int Unk_020EDBAC[] = {
+static const int sMovementActionCodes_WalkOnSpotSlow[] = {
     0x1C,
     0x1D,
     0x1E,
     0x1f
 };
 
-static const int Unk_020EDD0C[] = {
+static const int sMovementActionCodes_WalkOnSpotNormal[] = {
     0x20,
     0x21,
     0x22,
     0x23
 };
 
-static const int Unk_020EDD9C[] = {
+static const int sMovementActionCodes_WalkOnSpotFast[] = {
     0x24,
     0x25,
     0x26,
     0x27
 };
 
-static const int Unk_020EDC8C[] = {
+static const int sMovementActionCodes_WalkOnSpotFaster[] = {
     0x28,
     0x29,
     0x2A,
     0x2B
 };
 
-static const int Unk_020EDDBC[] = {
+static const int sMovementActionCodes_JumpOnSpotSlow[] = {
     0x2C,
     0x2D,
     0x2E,
     0x2f
 };
 
-static const int Unk_020EDC9C[] = {
+static const int sMovementActionCodes_JumpOnSpotFast[] = {
     0x30,
     0x31,
     0x32,
     0x33
 };
 
-static const int Unk_020EDCBC[] = {
+static const int sMovementActionCodes_JumpNearFast[] = {
     0x34,
     0x35,
     0x36,
     0x37
 };
 
-static const int Unk_020EDBFC[] = {
+static const int sMovementActionCodes_JumpFar[] = {
     0x38,
     0x39,
     0x3A,
     0x3B
 };
 
-static const int Unk_020EDC7C[] = {
+static const int sMovementActionCodes_WalkSlightlyFast[] = {
     0x4C,
     0x4D,
     0x4E,
     0x4f
 };
 
-static const int Unk_020EDD7C[] = {
+static const int sMovementActionCodes_WalkSlightlyFaster[] = {
     0x50,
     0x51,
     0x52,
     0x53
 };
 
-static const int Unk_020EDC6C[] = {
+static const int sMovementActionCodes_WalkFastest[] = {
     0x54,
     0x55,
     0x56,
     0x57
 };
 
-static const int Unk_020EDBEC[] = {
+static const int sMovementActionCodes_Run[] = {
     0x58,
     0x59,
     0x5A,
     0x5B
 };
 
-static const int Unk_020EDD3C[] = {
+static const int sMovementActionCodes_JumpNearSlow[] = {
     0x5C,
     0x5D,
     0x5C,
     0x5D
 };
 
-static const int Unk_020EDC4C[] = {
+static const int sMovementActionCodes_JumpFarther[] = {
     0x5E,
     0x5f,
     0x5E,
     0x5f
 };
 
-static const int Unk_020EDBDC[] = {
+static const int sMovementActionCodes_WalkEverSoSlightlyFast[] = {
     0x60,
     0x61,
     0x62,
@@ -1176,29 +1176,29 @@ static const int Unk_020EDBBC[] = {
     0x90
 };
 
-const int *const Unk_020EE31C[] = {
-    Unk_020EDD5C,
-    Unk_020EDCDC,
-    Unk_020EDC5C,
-    Unk_020EDCEC,
-    Unk_020EDD2C,
-    Unk_020EDCFC,
-    Unk_020EDC3C,
-    Unk_020EDBAC,
-    Unk_020EDD0C,
-    Unk_020EDD9C,
-    Unk_020EDC8C,
-    Unk_020EDDBC,
-    Unk_020EDC9C,
-    Unk_020EDCBC,
-    Unk_020EDBFC,
-    Unk_020EDC7C,
-    Unk_020EDD7C,
-    Unk_020EDC6C,
-    Unk_020EDBEC,
-    Unk_020EDD3C,
-    Unk_020EDC4C,
-    Unk_020EDBDC,
+const int *const gMovementActionCodes[] = {
+    sMovementActionCodes_Face,
+    sMovementActionCodes_WalkSlower,
+    sMovementActionCodes_WalkSlow,
+    sMovementActionCodes_WalkNormal,
+    sMovementActionCodes_WalkFast,
+    sMovementActionCodes_WalkFaster,
+    sMovementActionCodes_WalkOnSpotSlower,
+    sMovementActionCodes_WalkOnSpotSlow,
+    sMovementActionCodes_WalkOnSpotNormal,
+    sMovementActionCodes_WalkOnSpotFast,
+    sMovementActionCodes_WalkOnSpotFaster,
+    sMovementActionCodes_JumpOnSpotSlow,
+    sMovementActionCodes_JumpOnSpotFast,
+    sMovementActionCodes_JumpNearFast,
+    sMovementActionCodes_JumpFar,
+    sMovementActionCodes_WalkSlightlyFast,
+    sMovementActionCodes_WalkSlightlyFaster,
+    sMovementActionCodes_WalkFastest,
+    sMovementActionCodes_Run,
+    sMovementActionCodes_JumpNearSlow,
+    sMovementActionCodes_JumpFarther,
+    sMovementActionCodes_WalkEverSoSlightlyFast,
     Unk_020EDCCC,
     Unk_020EDC0C,
     Unk_020EDC2C,

@@ -291,7 +291,7 @@ void sub_02064690(MapObject *mapObj)
         MapObject_SetEndMovementOff(mapObj);
 
         v0 = MapObject_GetFacingDir(mapObj);
-        v0 = sub_02065838(v0, 0x0);
+        v0 = MovementAction_TurnActionTowardsDir(v0, 0x0);
 
         sub_02065668(mapObj, v0);
 
@@ -339,7 +339,7 @@ void sub_02064690(MapObject *mapObj)
             }
         }
 
-        v0 = sub_02065838(v0, v1->unk_08);
+        v0 = MovementAction_TurnActionTowardsDir(v0, v1->unk_08);
 
         sub_02065668(mapObj, v0);
         sub_02062D04(mapObj);
@@ -521,7 +521,7 @@ static int sub_020649CC(MapObject *mapObj, UnkStruct_0206496C *param1)
         v0 = MapObject_GetFacingDir(mapObj);
     }
 
-    v0 = sub_02065838(v0, 0x0);
+    v0 = MovementAction_TurnActionTowardsDir(v0, 0x0);
     sub_02065668(mapObj, v0);
     param1->unk_02 = 1;
 
@@ -620,7 +620,7 @@ static int sub_02064B20(MapObject *mapObj, UnkStruct_0206496C *param1)
 {
     int v0 = MapObject_GetFacingDir(mapObj);
 
-    v0 = sub_02065838(v0, 0x0);
+    v0 = MovementAction_TurnActionTowardsDir(v0, 0x0);
     sub_02065668(mapObj, v0);
     param1->unk_02 = 1;
 
@@ -781,7 +781,7 @@ static int sub_02064CA8(MapObject *mapObj, UnkStruct_02064C28 *param1)
             v6 = 0x20;
         }
 
-        v6 = sub_02065838(v5, v6);
+        v6 = MovementAction_TurnActionTowardsDir(v5, v6);
         sub_02065668(mapObj, v6);
 
         if (sub_0206553C(mapObj) == 1) {
@@ -983,7 +983,7 @@ static int sub_02064EEC(MapObject *mapObj, UnkStruct_02064D98 *param1)
             v10 = 0x20;
         }
 
-        v10 = sub_02065838(v9, v10);
+        v10 = MovementAction_TurnActionTowardsDir(v9, v10);
         sub_02065668(mapObj, v10);
 
         if (sub_0206553C(mapObj) == 1) {
@@ -1102,7 +1102,7 @@ static int sub_02065124(MapObject *mapObj, UnkStruct_0206502C *param1)
         int v4 = sub_02067D58(mapObj, playerAvatar, v2, v3);
 
         if (v4 != -1) {
-            int v5 = sub_02065838(v2, 0x30);
+            int v5 = MovementAction_TurnActionTowardsDir(v2, 0x30);
 
             sub_02065668(mapObj, v4);
             sub_02062D04(mapObj);
@@ -1192,7 +1192,7 @@ static int sub_020651A4(MapObject *mapObj, UnkStruct_0206502C *param1)
             v10 = 0x20;
         }
 
-        v10 = sub_02065838(v9, v10);
+        v10 = MovementAction_TurnActionTowardsDir(v9, v10);
         sub_02065668(mapObj, v10);
 
         if (sub_0206553C(mapObj) == 1) {

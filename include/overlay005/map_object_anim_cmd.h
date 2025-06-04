@@ -2,8 +2,8 @@
 #define POKEPLATINUM_MAP_OBJECT_ANIM_CMD_H
 
 typedef struct MapObjectAnimCmd {
-    u16 unk_00;
-    u16 unk_02;
+    u16 movementAction;
+    u16 count;
 } MapObjectAnimCmd;
 
 #endif // POKEPLATINUM_MAP_OBJECT_ANIM_CMD_H

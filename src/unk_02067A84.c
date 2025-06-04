@@ -517,7 +517,7 @@ static int sub_02068118(UnkStruct_020EF6D0 *param0)
 
     GF_ASSERT(param0->unk_08 != -1);
 
-    v0 = sub_02065838(param0->unk_08, 0x0);
+    v0 = MovementAction_TurnActionTowardsDir(param0->unk_08, 0x0);
     LocalMapObj_SetAnimationCode(param0->unk_24, v0);
     param0->unk_00 = 4;
 
@@ -597,7 +597,7 @@ static int sub_02068200(UnkStruct_020EF6D0 *param0)
     int v0;
 
     if (LocalMapObj_IsAnimationSet(param0->unk_24) == 1) {
-        v0 = sub_02065838(param0->unk_08, 0xc);
+        v0 = MovementAction_TurnActionTowardsDir(param0->unk_08, 0xc);
         LocalMapObj_SetAnimationCode(param0->unk_24, v0);
         param0->unk_00 = 12;
     }
@@ -640,7 +640,7 @@ static int sub_02068264(UnkStruct_020EF6D0 *param0)
     if ((PlayerAvatar_GetDir(param0->playerAvatar) != v1) && ((param0->unk_18 == 0) || (param0->unk_14 == 2))) {
         if (LocalMapObj_IsAnimationSet(v2) == 1) {
             MapObject_SetStatusFlagOff(v2, MAP_OBJ_STATUS_LOCK_DIR);
-            v0 = sub_02065838(v1, 0x0);
+            v0 = MovementAction_TurnActionTowardsDir(v1, 0x0);
             LocalMapObj_SetAnimationCode(v2, v0);
             param0->unk_00 = 15;
         }

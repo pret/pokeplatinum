@@ -2632,15 +2632,15 @@ static BOOL ov8_0224B2E8(UnkStruct_ov8_0224B28C *param0)
 
         if (param0->unk_04) {
             if (v2 != param0->unk_08) {
-                v1 = sub_02065838(param0->unk_18, 0xc);
+                v1 = MovementAction_TurnActionTowardsDir(param0->unk_18, 0xc);
             } else if (v3 != param0->unk_0C) {
-                v1 = sub_02065838(param0->unk_1C, 0xc);
+                v1 = MovementAction_TurnActionTowardsDir(param0->unk_1C, 0xc);
             }
         } else {
             if (v3 != param0->unk_0C) {
-                v1 = sub_02065838(param0->unk_1C, 0xc);
+                v1 = MovementAction_TurnActionTowardsDir(param0->unk_1C, 0xc);
             } else if (v2 != param0->unk_08) {
-                v1 = sub_02065838(param0->unk_18, 0xc);
+                v1 = MovementAction_TurnActionTowardsDir(param0->unk_18, 0xc);
             }
         }
 
@@ -3201,7 +3201,7 @@ static BOOL ov8_0224BAF4(FieldTask *taskMan)
     switch (v2->unk_00) {
     case 0:
         if (LocalMapObj_IsAnimationSet(v0) == 1) {
-            LocalMapObj_SetAnimationCode(v0, sub_02065838(v2->unk_08, 0x28));
+            LocalMapObj_SetAnimationCode(v0, MovementAction_TurnActionTowardsDir(v2->unk_08, 0x28));
             ov5_021F4698(v2->unk_34->unk_08.unk_0C, v2->unk_08, 0);
             Sound_PlayEffect(SEQ_SE_PL_SUTYA2);
             v2->unk_00++;
@@ -3258,7 +3258,7 @@ static int ov8_0224BBD0(UnkStruct_ov8_0224C098 *param0)
         return 0;
     }
 
-    LocalMapObj_SetAnimationCode(v0, sub_02065838(param0->unk_08, 0x1c));
+    LocalMapObj_SetAnimationCode(v0, MovementAction_TurnActionTowardsDir(param0->unk_08, 0x1c));
 
     {
         UnkStruct_ov8_0224BCA8 *v1 = param0->unk_34;
@@ -3616,7 +3616,7 @@ static void ov8_0224C11C(UnkStruct_ov8_0224C098 *param0, int param1)
             if (v0->unk_28 >= v0->unk_24) {
                 v0->unk_00++;
             } else {
-                param1 = sub_02065838(v0->unk_20, param1);
+                param1 = MovementAction_TurnActionTowardsDir(v0->unk_20, param1);
                 LocalMapObj_SetAnimationCode(v0->unk_30, param1);
                 v0->unk_28++;
             }

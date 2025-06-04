@@ -7,18 +7,18 @@
 
 #include "sys_task_manager.h"
 
-int LocalMapObj_IsAnimationSet(const MapObject *param0);
-void LocalMapObj_SetAnimationCode(MapObject *param0, int param1);
-void sub_02065668(MapObject *param0, int param1);
-int LocalMapObj_CheckAnimationFinished(const MapObject *param0);
-int sub_020656AC(MapObject *param0);
-void sub_020656DC(MapObject *param0);
-SysTask *MapObject_StartAnimation(MapObject *param0, const MapObjectAnimCmd *param1);
-int MapObject_HasAnimationEnded(SysTask *param0);
-void MapObject_FinishAnimation(SysTask *param0);
-int sub_02065838(int param0, int param1);
-int sub_0206587C(int param0);
-void MapObject_DoMovementAction(MapObject *param0);
-int sub_020658DC(MapObject *param0);
+BOOL LocalMapObj_IsAnimationSet(const MapObject *mapObj);
+void LocalMapObj_SetAnimationCode(MapObject *mapObj, int movementAction);
+void sub_02065668(MapObject *mapObj, int movementAction);
+BOOL LocalMapObj_CheckAnimationFinished(const MapObject *mapObj);
+BOOL sub_020656AC(MapObject *mapObj);
+void sub_020656DC(MapObject *mapObj);
+SysTask *MapObject_StartAnimation(MapObject *mapObj, const MapObjectAnimCmd *animCmd);
+BOOL MapObject_HasAnimationEnded(SysTask *task);
+void MapObject_FinishAnimation(SysTask *task);
+int MovementAction_TurnActionTowardsDir(int targetDir, int movementAction);
+int MovementAction_GetDirFromAction(int movementAction);
+void MapObject_DoMovementAction(MapObject *mapObj);
+BOOL sub_020658DC(MapObject *mapObj);
 
 #endif // POKEPLATINUM_UNK_020655F4_H

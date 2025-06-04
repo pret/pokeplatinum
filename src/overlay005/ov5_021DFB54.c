@@ -524,11 +524,11 @@ static BOOL ov5_021DFFBC(FieldTask *param0)
         }
 
         {
-            int v3 = sub_02065838(v0->unk_04, 0x8);
+            int v3 = MovementAction_TurnActionTowardsDir(v0->unk_04, 0x8);
 
             LocalMapObj_SetAnimationCode(v2, v3);
 
-            v3 = sub_02065838(v0->unk_04, 0x20);
+            v3 = MovementAction_TurnActionTowardsDir(v0->unk_04, 0x20);
             LocalMapObj_SetAnimationCode(v1, v3);
             Sound_PlayEffect(SEQ_SE_DP_UG_023);
         }
@@ -664,7 +664,7 @@ static BOOL ov5_021E0160(FieldTask *taskMan)
             };
             enum AvatarDistortionState distortionState = PlayerAvatar_MapDistortionState(v0->playerAvatar);
 
-            v7 = sub_02065838(v0->unk_04, v8[distortionState]);
+            v7 = MovementAction_TurnActionTowardsDir(v0->unk_04, v8[distortionState]);
             LocalMapObj_SetAnimationCode(v0->unk_24, v7);
             v0->unk_00++;
         }
@@ -765,7 +765,7 @@ static BOOL ov5_021E03C8(FieldTask *param0)
 
             PlayerAvatar_Redraw(v0->playerAvatar, v1);
 
-            v1 = sub_02065838(v0->unk_04, v3[distortionState]);
+            v1 = MovementAction_TurnActionTowardsDir(v0->unk_04, v3[distortionState]);
             LocalMapObj_SetAnimationCode(v0->unk_10, v1);
             v0->unk_00++;
         }
@@ -898,7 +898,7 @@ static BOOL ov5_021E0560(FieldTask *param0)
             sub_02062EE0(v1, 1);
         }
 
-        v3 = sub_02065838(v6, v3);
+        v3 = MovementAction_TurnActionTowardsDir(v6, v3);
         PlayerAvatar_SetAnimationCode(v0->playerAvatar, v3, 1);
     } break;
     }
@@ -1044,7 +1044,7 @@ static int ov5_021E07FC(UnkStruct_ov5_021F9B54 *param0)
 static int ov5_021E0850(UnkStruct_ov5_021F9B54 *param0)
 {
     if (LocalMapObj_IsAnimationSet(param0->unk_14) == 1) {
-        int v0 = sub_02065838(param0->unk_04, 0x34);
+        int v0 = MovementAction_TurnActionTowardsDir(param0->unk_04, 0x34);
 
         LocalMapObj_SetAnimationCode(param0->unk_14, v0);
         param0->unk_00++;
@@ -1066,7 +1066,7 @@ static int ov5_021E0878(UnkStruct_ov5_021F9B54 *param0)
 static int ov5_021E0898(UnkStruct_ov5_021F9B54 *param0)
 {
     if (LocalMapObj_IsAnimationSet(param0->unk_14) == 1) {
-        int v0 = sub_02065838(param0->unk_04, 0x10);
+        int v0 = MovementAction_TurnActionTowardsDir(param0->unk_04, 0x10);
 
         LocalMapObj_SetAnimationCode(param0->unk_14, v0);
         param0->unk_00++;
@@ -1092,7 +1092,7 @@ static int ov5_021E08C0(UnkStruct_ov5_021F9B54 *param0)
     }
 
     {
-        int v2 = sub_02065838(param0->unk_04, 0x34);
+        int v2 = MovementAction_TurnActionTowardsDir(param0->unk_04, 0x34);
 
         LocalMapObj_SetAnimationCode(param0->unk_14, v2);
         param0->unk_08 = 0;

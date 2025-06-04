@@ -1664,7 +1664,7 @@ static BOOL ov23_0224C790(FieldTask *param0)
         break;
     case 11:
         CommPlayerMan_ForceDir();
-        PlayerAvatar_SetAnimationCode(fieldSystem->playerAvatar, sub_02065838(1, 0x24), 1);
+        PlayerAvatar_SetAnimationCode(fieldSystem->playerAvatar, MovementAction_TurnActionTowardsDir(1, 0x24), 1);
         CommPlayer_SetDir(1);
         ov23_02253F40(ov23_0224219C(), 68, 0, NULL);
         Sound_PlayEffect(SEQ_SE_DP_DOOR);

@@ -1078,7 +1078,7 @@ static void CommPlayer_MoveClient(int netId)
                 break;
             }
         } else if (((pad & ~PAD_BUTTON_B) == 0) && (playerLocation->dir != dir)) {
-            animCode = sub_02065838(playerLocation->dir, 0x24);
+            animCode = MovementAction_TurnActionTowardsDir(playerLocation->dir, 0x24);
         } else {
             animCode = sub_0206147C(playerAvatar, pad, pad, v10, 1, 0);
         }
@@ -1565,10 +1565,10 @@ void CommPlayer_SetBattleDir(void)
 
     if (CommPlayer_XPos(netId) > 8) {
         CommPlayer_SetDir(2);
-        code = sub_02065838(2, 0x24);
+        code = MovementAction_TurnActionTowardsDir(2, 0x24);
     } else {
         CommPlayer_SetDir(3);
-        code = sub_02065838(3, 0x24);
+        code = MovementAction_TurnActionTowardsDir(3, 0x24);
     }
 
     PlayerAvatar_SetAnimationCode(sCommPlayerManager->playerAvatar[netId], code, 1);
