@@ -75,50 +75,50 @@ _00EF:
 
     .balign 4, 0
 _00FC:
-    MoveAction_000
-    MoveAction_061
-    MoveAction_003
-    MoveAction_061
-    MoveAction_001
-    MoveAction_061
-    MoveAction_002
-    MoveAction_061
+    FaceNorth
+    Delay2
+    FaceEast
+    Delay2
+    FaceSouth
+    Delay2
+    FaceWest
+    Delay2
     EndMovement
 
     .balign 4, 0
 _0120:
-    MoveAction_003
-    MoveAction_061
-    MoveAction_001
-    MoveAction_061
-    MoveAction_002
-    MoveAction_061
-    MoveAction_000
-    MoveAction_061
+    FaceEast
+    Delay2
+    FaceSouth
+    Delay2
+    FaceWest
+    Delay2
+    FaceNorth
+    Delay2
     EndMovement
 
     .balign 4, 0
 _0144:
-    MoveAction_001
-    MoveAction_061
-    MoveAction_002
-    MoveAction_061
-    MoveAction_000
-    MoveAction_061
-    MoveAction_003
-    MoveAction_061
+    FaceSouth
+    Delay2
+    FaceWest
+    Delay2
+    FaceNorth
+    Delay2
+    FaceEast
+    Delay2
     EndMovement
 
     .balign 4, 0
 _0168:
-    MoveAction_002
-    MoveAction_061
-    MoveAction_000
-    MoveAction_061
-    MoveAction_003
-    MoveAction_061
-    MoveAction_001
-    MoveAction_061
+    FaceWest
+    Delay2
+    FaceNorth
+    Delay2
+    FaceEast
+    Delay2
+    FaceSouth
+    Delay2
     EndMovement
 
 _018C:

@@ -109,7 +109,7 @@ _0114:
 
     .balign 4, 0
 _0124:
-    MoveAction_012
+    WalkNormalNorth
     EndMovement
 
 _012C:
@@ -132,7 +132,7 @@ _0159:
 
     .balign 4, 0
 _0168:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
 _0170:

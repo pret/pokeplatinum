@@ -212,18 +212,18 @@ _02D4:
 
     .balign 4, 0
 _02E0:
-    MoveAction_100
-    MoveAction_062
+    NurseJoyBow
+    Delay4
     EndMovement
 
     .balign 4, 0
 _02EC:
-    MoveAction_102
+    PlayerGive
     EndMovement
 
     .balign 4, 0
 _02F4:
-    MoveAction_104
+    PlayerReceive
     EndMovement
 
 Common_HandleSignpostInput:
@@ -1333,17 +1333,17 @@ _1245:
 
     .balign 4, 0
 _1250:
-    MoveAction_002
+    FaceWest
     EndMovement
 
     .balign 4, 0
 _1258:
-    MoveAction_003
+    FaceEast
     EndMovement
 
     .balign 4, 0
 _1260:
-    MoveAction_002
+    FaceWest
     EndMovement
 
     .byte 0
@@ -1365,7 +1365,7 @@ _1260:
 
     .balign 4, 0
 _1278:
-    MoveAction_001
+    FaceSouth
     EndMovement
 
 _1280:
