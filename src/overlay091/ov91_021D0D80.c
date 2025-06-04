@@ -1429,7 +1429,7 @@ static void ov91_021D24B4(UnkStruct_ov91_021D0ED8 *param0, u16 param1)
 {
     u32 v0 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_CLASS);
 
-    SpriteSystem_ReplaceCharResObj(param0->unk_110, param0->unk_114, sub_0207CAC0(), GetIconFromMoveCategory(v0), 1, 47275);
+    SpriteSystem_ReplaceCharResObj(param0->unk_110, param0->unk_114, GetBattleObjNarcID(), GetIconFromMoveCategory(v0), 1, 47275);
     ManagedSprite_SetExplicitPalette(param0->unk_118[5], GetPaletteFromMoveCategory(v0) + 2);
 }
 

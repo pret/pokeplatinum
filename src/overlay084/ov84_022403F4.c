@@ -445,7 +445,7 @@ void ov84_02240D5C(UnkStruct_ov84_0223B5A0 *param0, u16 param1, u8 param2)
 
     SpriteSystem_ReplaceCharResObj(param0->unk_D8, param0->unk_DC, GetBattleGraphicNarcIndex(), GetIconFromMoveType(v1), 1, 49409);
     ManagedSprite_SetExplicitPalette(param0->unk_E0[10], GetPaletteFromMoveType(v1) + 6);
-    SpriteSystem_ReplaceCharResObj(param0->unk_D8, param0->unk_DC, sub_0207CAC0(), GetIconFromMoveCategory(v2), 1, 49410);
+    SpriteSystem_ReplaceCharResObj(param0->unk_D8, param0->unk_DC, GetBattleObjNarcID(), GetIconFromMoveCategory(v2), 1, 49410);
     ManagedSprite_SetExplicitPalette(param0->unk_E0[11], GetPaletteFromMoveCategory(v2) + 6);
 }
 

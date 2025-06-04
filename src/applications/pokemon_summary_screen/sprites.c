@@ -1230,7 +1230,7 @@ void PokemonSummaryScreen_UpdateMoveCategoryIcon(PokemonSummaryScreen *summarySc
 {
     u32 category = MoveTable_LoadParam(move, MOVEATTRIBUTE_CLASS);
 
-    SpriteSystem_ReplaceCharResObj(summaryScreen->spriteSys, summaryScreen->spriteMan, sub_0207CAC0(), GetIconFromMoveCategory(category), 1, 10);
+    SpriteSystem_ReplaceCharResObj(summaryScreen->spriteSys, summaryScreen->spriteMan, GetBattleObjNarcID(), GetIconFromMoveCategory(category), 1, 10);
     Sprite_SetExplicitPalette2(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_CATEGORY_ICON], GetPaletteFromMoveCategory(category) + 3);
 }
 

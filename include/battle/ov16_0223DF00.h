@@ -30,6 +30,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "pokemon_sprite.h"
+#include "render_window.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -88,8 +89,8 @@ SpriteSystem *BattleSystem_GetSpriteSystem(BattleSystem *battleSys);
 SpriteManager *BattleSystem_GetSpriteManager(BattleSystem *battleSys);
 UnkStruct_ov16_02268520 *ov16_0223E020(BattleSystem *battleSys, int param1);
 UnkStruct_ov16_02268A14 *ov16_0223E02C(BattleSystem *battleSys);
-PartyGauge *ov16_0223E034(BattleSystem *battleSys, enum PartyGaugeSide param1);
-void ov16_0223E040(BattleSystem *battleSys, enum PartyGaugeSide param1, PartyGauge *param2);
+PartyGauge *BattleSystem_GetPartyGauge(BattleSystem *battleSys, enum PartyGaugeSide param1);
+void BattleSystem_SetPartyGauge(BattleSystem *battleSys, enum PartyGaugeSide param1, PartyGauge *param2);
 UnkStruct_0200C440 *ov16_0223E04C(BattleSystem *battleSys);
 UnkStruct_0200C440 *ov16_0223E054(BattleSystem *battleSys);
 MessageLoader *BattleSystem_MessageLoader(BattleSystem *battleSys);
@@ -128,7 +129,7 @@ Trainer *BattleSystem_GetTrainer(BattleSystem *battleSys, int param1);
 TrainerInfo *BattleSystem_TrainerInfo(BattleSystem *battleSys, int battler);
 Bag *BattleSystem_Bag(BattleSystem *battleSys);
 BagCursor *BattleSystem_BagCursor(BattleSystem *battleSys);
-u32 BattleSystem_GetTrainerGender(BattleSystem *battleSys, int param1);
+u32 BattleSystem_GetTrainerGender(BattleSystem *battleSys, int battler);
 
 /**
  * @brief Get a battler of a particular type.
@@ -195,7 +196,7 @@ u8 ov16_0223ED60(BattleSystem *battleSys);
 u8 ov16_0223ED6C(BattleSystem *battleSys);
 int BattleSystem_NumSafariBalls(BattleSystem *battleSys);
 void BattleSystem_SetSafariBalls(BattleSystem *battleSys, int param1);
-Options *ov16_0223EDA4(BattleSystem *battleSys);
+Options *BattleSystem_GetOptions(BattleSystem *battleSys);
 
 /**
  * @brief Check if battle animations are turned on.
@@ -227,8 +228,8 @@ void ov16_0223F24C(BattleSystem *battleSys, int param1);
 void ov16_0223F268(BattleSystem *battleSys);
 void BattleSystem_SetCommandSelectionFlags(BattleSystem *battleSys, int flags);
 void ov16_0223F290(BattleSystem *battleSys, int param1);
-void *Battle_WaitDial(BattleSystem *battleSys);
-void Battle_SetWaitDial(BattleSystem *battleSys, void *param1);
+WaitDial *Battle_WaitDial(BattleSystem *battleSys);
+void Battle_SetWaitDial(BattleSystem *battleSys, WaitDial *waitDial);
 UnkStruct_ov16_0223E0C8 *ov16_0223F2AC(BattleSystem *battleSys, int param1);
 u8 *ov16_0223F2B8(UnkStruct_ov16_0223E0C8 *param0, int param1);
 void ov16_0223F2CC(UnkStruct_ov16_0223E0C8 *param0, int param1, int param2);

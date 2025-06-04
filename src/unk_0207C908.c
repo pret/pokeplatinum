@@ -170,14 +170,14 @@ u8 GetPaletteFromMoveCategory(int moveCat)
     return sMoveCategoryIconPaletteIndex[moveCat];
 }
 
-enum NarcID sub_0207CAC0(void)
+enum NarcID GetBattleObjNarcID(void)
 {
     return NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ;
 }
 
 void sub_0207CAC4(SpriteSystem *param0, SpriteManager *param1, NNS_G2D_VRAM_TYPE param2, int param3, u32 param4)
 {
-    SpriteSystem_LoadCharResObj(param0, param1, sub_0207CAC0(), GetIconFromMoveCategory(param3), TRUE, param2, param4);
+    SpriteSystem_LoadCharResObj(param0, param1, GetBattleObjNarcID(), GetIconFromMoveCategory(param3), TRUE, param2, param4);
 }
 
 void sub_0207CAF8(SpriteManager *param0, u32 param1)

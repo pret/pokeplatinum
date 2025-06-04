@@ -396,7 +396,7 @@ static void ov13_02224A5C(UnkStruct_ov13_022213F0 *param0, ManagedSprite *param1
 {
     SpriteSystem *v0 = BattleSystem_GetSpriteSystem(param0->unk_00->unk_08);
 
-    SpriteSystem_ReplaceCharResObj(v0, param0->unk_1FB0, sub_0207CAC0(), GetIconFromMoveCategory(param2), 1, 45077);
+    SpriteSystem_ReplaceCharResObj(v0, param0->unk_1FB0, GetBattleObjNarcID(), GetIconFromMoveCategory(param2), 1, 45077);
     ManagedSprite_SetExplicitPalette(param1, GetPaletteFromMoveCategory(param2) + 4);
 }
 

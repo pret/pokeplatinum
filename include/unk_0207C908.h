@@ -23,7 +23,7 @@ ManagedSprite *CreateMoveSelectSprite(SpriteSystem *spriteSys, SpriteManager *sp
 void sub_0207CA88(ManagedSprite *param0);
 u32 GetIconFromMoveCategory(int moveCat);
 u8 GetPaletteFromMoveCategory(int moveCat);
-enum NarcID sub_0207CAC0(void);
+enum NarcID GetBattleObjNarcID(void);
 void sub_0207CAC4(SpriteSystem *param0, SpriteManager *param1, NNS_G2D_VRAM_TYPE param2, int param3, u32 param4);
 void sub_0207CAF8(SpriteManager *param0, u32 param1);
 void sub_0207CB00(ManagedSprite *param0);

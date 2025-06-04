@@ -284,7 +284,7 @@ static void ov16_02269E94(UnkStruct_ov16_02268A14 *param0, int param1, int param
 static int ov16_0226A318(UnkStruct_ov16_02268A14 *param0, int param1, int param2);
 static int ov16_0226A3F4(UnkStruct_ov16_02268A14 *param0, int param1, int param2);
 static void ov16_022699AC(UnkStruct_ov16_02268A14 *param0, int param1, int param2);
-static void DisplayMoveTypeIcons(UnkStruct_ov16_02268A14 *param0);
+static void DrawMoveTypeIcons(UnkStruct_ov16_02268A14 *param0);
 static void ov16_0226AFF4(UnkStruct_ov16_02268A14 *param0);
 static void ov16_0226B028(UnkStruct_ov16_02268A14 *param0);
 static void ov16_0226B2BC(SysTaskFunc param0, UnkStruct_ov16_02268A14 *param1);
@@ -1866,7 +1866,7 @@ static void ov16_022699AC(UnkStruct_ov16_02268A14 *param0, int param1, int param
     messageLoader = BattleSystem_MessageLoader(param0->battleSys);
     v3 = ov16_0226ABD4(param0, v0->unk_10);
 
-    DisplayMoveTypeIcons(param0);
+    DrawMoveTypeIcons(param0);
 
     {
         ov16_0226A98C(param0, &param0->unk_4CC[0], NULL, FONT_SUBSCREEN, TEXT_COLOR(7, 8, 9), 3, 20023, 64, 46, 1, &v3->unk_28[0]);
@@ -2816,7 +2816,7 @@ static void ov16_0226AEA0(UnkStruct_ov16_02268A14 *param0, const Strbuf *param1,
     Text_AddPrinterWithParamsColorAndSpacing(&param3->unk_00, param2, param1, 0, 0, TEXT_SPEED_NO_TRANSFER, param4, 0, 0, NULL);
 }
 
-static void DisplayMoveTypeIcons(UnkStruct_ov16_02268A14 *param0)
+static void DrawMoveTypeIcons(UnkStruct_ov16_02268A14 *param0)
 {
     int i;
     SpriteSystem *spriteSys;

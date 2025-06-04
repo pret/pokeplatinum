@@ -5298,12 +5298,12 @@ static void ShowPartyGaugeTask(SysTask *param0, void *param1)
         }
 
         v3 = PartyGauge_Show(v0->status, v1, v4, v5, BattleSystem_GetSpriteSystem(v0->battleSys), BattleSystem_GetSpriteManager(v0->battleSys));
-        ov16_0223E040(v0->battleSys, v1, v3);
+        BattleSystem_SetPartyGauge(v0->battleSys, v1, v3);
     }
         v0->state++;
         break;
     case 1:
-        if (PartyGauge_ShowIsDone(ov16_0223E034(v0->battleSys, v1)) == 1) {
+        if (PartyGauge_ShowIsDone(BattleSystem_GetPartyGauge(v0->battleSys, v1)) == 1) {
             v0->state++;
         }
         break;
@@ -5329,7 +5329,7 @@ static void HidePartyGaugeTask(SysTask *param0, void *param1)
         v1 = PARTY_GAUGE_THEIRS;
     }
 
-    v2 = ov16_0223E034(v0->battleSys, v1);
+    v2 = BattleSystem_GetPartyGauge(v0->battleSys, v1);
 
     switch (v0->state) {
     case 0:
@@ -5347,7 +5347,7 @@ static void HidePartyGaugeTask(SysTask *param0, void *param1)
     case 1:
         if (PartyGauge_HideIsDone(v2) == 1) {
             PartyGauge_Free(v2);
-            ov16_0223E040(v0->battleSys, v1, NULL);
+            BattleSystem_SetPartyGauge(v0->battleSys, v1, NULL);
             v0->state++;
         }
         break;
