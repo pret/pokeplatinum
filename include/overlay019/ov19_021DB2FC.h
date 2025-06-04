@@ -18,7 +18,7 @@ void ov19_021DB448(UnkStruct_ov19_021DB6F0 *param0, u32 boxMessageID);
 void ov19_021DB57C(UnkStruct_ov19_021DB6F0 *param0, const BoxMenu *menu);
 void ov19_021DB6F0(UnkStruct_ov19_021DB6F0 *param0);
 void ov19_021DB724(UnkStruct_ov19_021DB6F0 *param0);
-void ov19_021DB748(UnkStruct_ov19_021DB6F0 *param0, const BoxMenu *menu);
+void BoxGraphics_DrawMenuCursorBox(UnkStruct_ov19_021DB6F0 *param0, const BoxMenu *menu);
 void ov19_021DB790(UnkStruct_ov19_021DB6F0 *param0, const BoxMenu *menu);
 
 #endif // POKEPLATINUM_OV19_021DB2FC_H

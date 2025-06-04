@@ -18,7 +18,7 @@
 #include "system.h"
 
 static void BoxMenu_ClearMenuItems(BoxMenu *menu);
-static void BoxMenu_AddMenuItem(BoxMenu *menu, BoxMenuItem menuItem);
+static void BoxMenu_AddMenuItem(BoxMenu *menu, enum BoxMenuItem menuItem);
 
 void BoxMenu_FillYesNo(UnkStruct_ov19_021D4DF0 *param0, u32 menuItemIndex)
 {
@@ -29,7 +29,7 @@ void BoxMenu_FillYesNo(UnkStruct_ov19_021D4DF0 *param0, u32 menuItemIndex)
     BoxMenu_AddMenuItem(menu, BOX_MENU_NO);
 
     menu->selectedMenuItemIndex = menuItemIndex;
-    menu->unk_23 = 0;
+    menu->unused = 0;
 }
 
 void BoxMenu_FillTopLevelMenuItems(UnkStruct_ov19_021D4DF0 *param0)
@@ -37,7 +37,7 @@ void BoxMenu_FillTopLevelMenuItems(UnkStruct_ov19_021D4DF0 *param0)
     BoxMenu *menu = &(param0->boxMenu);
 
     BoxMenu_ClearMenuItems(menu);
-    menu->unk_23 = 1;
+    menu->unused = 1;
 
     switch (ov19_GetBoxMode(param0)) {
     case PC_MODE_MOVE_MONS:
@@ -93,7 +93,7 @@ void BoxMenu_FillItemsMenu(UnkStruct_ov19_021D4DF0 *param0)
     monItem = ov19_GetPreviewedMonHeldItem(param0);
 
     BoxMenu_ClearMenuItems(menu);
-    menu->unk_23 = 1;
+    menu->unused = 1;
 
     if (cursorItem != ITEM_NONE) {
         if (monItem != ITEM_NONE) {
@@ -132,10 +132,10 @@ void BoxMenu_FillHeaderMenu(UnkStruct_ov19_021D4DF0 *param0)
 
     BoxMenu_AddMenuItem(menu, BOX_MENU_HEADER_CANCEL);
 
-    menu->unk_23 = 2;
+    menu->unused = 2;
 }
 
-void BoxMenu_FillWallpaperMenu(UnkStruct_ov19_021D4DF0 *param0, BoxMenuItem menuItem)
+void BoxMenu_FillWallpaperMenu(UnkStruct_ov19_021D4DF0 *param0, enum BoxMenuItem menuItem)
 {
     BoxMenu *menu = &(param0->boxMenu);
     const PCBoxes *pcBoxes = ov19_GetPCBoxes(param0);
@@ -157,18 +157,18 @@ void BoxMenu_FillWallpaperMenu(UnkStruct_ov19_021D4DF0 *param0, BoxMenuItem menu
         BoxMenu_AddMenuItem(menu, BOX_MENU_FRIENDS_2);
     }
 
-    menu->unk_23 = 3;
+    menu->unused = 3;
 
-    if ((menuItem >= BOX_MENU_SCENERY_1) && (menuItem <= BOX_MENU_FRIENDS_2)) {
-        menu->selectedMenuItemIndex = menuItem - BOX_MENU_SCENERY_1;
+    if (menuItem >= BOX_MENU_FIRST_WALLPAPER_PAGE && menuItem <= BOX_MENU_LAST_WALLPAPER_PAGE) {
+        menu->selectedMenuItemIndex = menuItem - BOX_MENU_FIRST_WALLPAPER_PAGE;
     } else {
         GF_ASSERT(0);
     }
 }
 
-void BoxMenu_FillWallpaperSelectionMenu(UnkStruct_ov19_021D4DF0 *param0, BoxMenuItem menuItem)
+void BoxMenu_FillWallpaperSelectionMenu(UnkStruct_ov19_021D4DF0 *param0, enum BoxMenuItem menuItem)
 {
-    static const u16 sWallpaperPages[][4] = {
+    static const u16 sWallpaperPages[][MAX_WALLPAPERS_PER_PAGE] = {
         { BOX_MENU_FOREST, BOX_MENU_CITY, BOX_MENU_DESERT, BOX_MENU_SAVANNA },
         { BOX_MENU_CRAG, BOX_MENU_VOLCANO, BOX_MENU_SNOW, BOX_MENU_CAVE },
         { BOX_MENU_BEACH, BOX_MENU_SEAFLOOR, BOX_MENU_RIVER, BOX_MENU_SKY },
@@ -180,28 +180,28 @@ void BoxMenu_FillWallpaperSelectionMenu(UnkStruct_ov19_021D4DF0 *param0, BoxMenu
 
     BoxMenu_ClearMenuItems(menu);
 
-    if ((menuItem >= BOX_MENU_SCENERY_1) && (menuItem <= BOX_MENU_ETCETERA)) {
-        menuItem -= BOX_MENU_SCENERY_1;
+    if (menuItem >= BOX_MENU_FIRST_WALLPAPER_PAGE && menuItem <= BOX_MENU_LAST_DEFAULT_WALLPAPER_PAGE) {
+        menuItem -= BOX_MENU_FIRST_WALLPAPER_PAGE;
 
-        for (i = 0; i < 4; i++) {
+        for (i = 0; i < MAX_WALLPAPERS_PER_PAGE; i++) {
             BoxMenu_AddMenuItem(menu, sWallpaperPages[menuItem][i]);
         }
-    } else {
-        int v4 = 0;
-        int v5 = 0;
+    } else { // unlockable wallpapers
+        int firstUnlockedWallpaperPageCount = 0;
+        int addedWallpaperCount = 0;
 
         if (menuItem == BOX_MENU_FRIENDS_2) {
-            v4 = 4;
+            firstUnlockedWallpaperPageCount = 4;
         }
 
-        for (i = 0; i < 8; i++) {
+        for (i = 0; i < MAX_UNLOCKABLE_WALLPAPERS; i++) {
             if (PCBoxes_CheckHasUnlockedWallpaper(pcBoxes, i)) {
-                if (v4) {
-                    v4--;
+                if (firstUnlockedWallpaperPageCount) {
+                    firstUnlockedWallpaperPageCount--;
                 } else {
-                    BoxMenu_AddMenuItem(menu, BOX_MENU_DISTORTION + i);
+                    BoxMenu_AddMenuItem(menu, BOX_MENU_FIRST_UNLOCKABLE_WALLPAPER + i);
 
-                    if (++v5 >= 4) {
+                    if (++addedWallpaperCount >= MAX_WALLPAPERS_PER_PAGE) {
                         break;
                     }
                 }
@@ -209,7 +209,7 @@ void BoxMenu_FillWallpaperSelectionMenu(UnkStruct_ov19_021D4DF0 *param0, BoxMenu
         }
     }
 
-    menu->unk_23 = 3;
+    menu->unused = 3;
 }
 
 void BoxMenu_FillMarkingsMenu(UnkStruct_ov19_021D4DF0 *param0)
@@ -217,7 +217,7 @@ void BoxMenu_FillMarkingsMenu(UnkStruct_ov19_021D4DF0 *param0)
     BoxMenu *menu = &(param0->boxMenu);
     BoxMenu_ClearMenuItems(menu);
 
-    menu->unk_23 = 4;
+    menu->unused = 4;
     menu->markings = param0->pcMonPreview.markings;
 
     BoxMenu_AddMenuItem(menu, BOX_MENU_CIRCLE);
@@ -242,14 +242,14 @@ static void BoxMenu_ClearMenuItems(BoxMenu *menu)
     menu->selectedMenuItemIndex = 0;
 }
 
-static void BoxMenu_AddMenuItem(BoxMenu *menu, BoxMenuItem menuItem)
+static void BoxMenu_AddMenuItem(BoxMenu *menu, enum BoxMenuItem menuItem)
 {
     if (menu->totalMenuItems < MAX_MENU_ITEMS) {
         menu->menuItems[menu->totalMenuItems++] = menuItem;
     }
 }
 
-BoxMenuItem BoxMenu_GetMenuNavigation(UnkStruct_ov19_021D4DF0 *param0)
+enum BoxMenuItem BoxMenu_GetMenuNavigation(UnkStruct_ov19_021D4DF0 *param0)
 {
     BoxMenu *menu = &(param0->boxMenu);
 
@@ -286,13 +286,13 @@ BoxMenuItem BoxMenu_GetMenuNavigation(UnkStruct_ov19_021D4DF0 *param0)
     return BOX_MENU_NAVIGATION_NONE;
 }
 
-BoxMenuItem BoxMenu_GetSelectedMenuItem(UnkStruct_ov19_021D4DF0 *param0)
+enum BoxMenuItem BoxMenu_GetSelectedMenuItem(UnkStruct_ov19_021D4DF0 *param0)
 {
     BoxMenu *menu = &(param0->boxMenu);
     return menu->menuItems[menu->selectedMenuItemIndex];
 }
 
-BoxMenuItem BoxMenu_GetDefaultMenuItem(UnkStruct_ov19_021D4DF0 *param0)
+enum BoxMenuItem BoxMenu_GetDefaultMenuItem(UnkStruct_ov19_021D4DF0 *param0)
 {
     BoxMenu *menu = &(param0->boxMenu);
     return menu->menuItems[0];

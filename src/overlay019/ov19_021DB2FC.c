@@ -159,7 +159,7 @@ static void ov19_021DB4B4(BgConfig *param0, u32 param1, u32 param2, u32 param3, 
     v0[4 + param4] = (8 << 12) | (521 + 17);
 }
 
-void ov19_021DB57C(UnkStruct_ov19_021DB6F0 *param0, const BoxMenu *param1)
+void ov19_021DB57C(UnkStruct_ov19_021DB6F0 *param0, const BoxMenu *menu)
 {
     Window *v0;
     u32 v1, i;
@@ -170,21 +170,21 @@ void ov19_021DB57C(UnkStruct_ov19_021DB6F0 *param0, const BoxMenu *param1)
 
     v0 = &(param0->unk_18[1]);
     Window_FillTilemap(v0, 15);
-    v1 = (8 - param1->totalMenuItems) * 16;
+    v1 = (8 - menu->totalMenuItems) * 16;
 
-    for (i = 0; i < param1->totalMenuItems; i++) {
-        if ((param1->menuItems[i] >= BOX_MENU_FIRST_MARKING) && (param1->menuItems[i] <= BOX_MENU_LAST_MARKING)) {
-            ov19_021DB638(param0, v0, param1->markings, param1->menuItems[i] - BOX_MENU_FIRST_MARKING);
+    for (i = 0; i < menu->totalMenuItems; i++) {
+        if ((menu->menuItems[i] >= BOX_MENU_FIRST_MARKING) && (menu->menuItems[i] <= BOX_MENU_LAST_MARKING)) {
+            ov19_021DB638(param0, v0, menu->markings, menu->menuItems[i] - BOX_MENU_FIRST_MARKING);
         } else {
-            MessageLoader_GetStrbuf(param0->unk_14, 24 + param1->menuItems[i], param0->unk_30);
+            MessageLoader_GetStrbuf(param0->unk_14, 24 + menu->menuItems[i], param0->unk_30);
             Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->unk_30, 10, v1, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(11, 12, 15), NULL);
         }
 
         v1 += 16;
     }
 
-    ov19_021DB748(param0, param1);
-    ov19_021DB684(param0, param1->totalMenuItems);
+    BoxGraphics_DrawMenuCursorBox(param0, menu);
+    ov19_021DB684(param0, menu->totalMenuItems);
 
     Window_LoadTiles(v0);
     Bg_CopyTilemapBufferToVRAM(param0->unk_00, 1);
@@ -246,17 +246,17 @@ void ov19_021DB724(UnkStruct_ov19_021DB6F0 *param0)
     Bg_CopyTilemapBufferToVRAM(param0->unk_00, 1);
 }
 
-void ov19_021DB748(UnkStruct_ov19_021DB6F0 *param0, const BoxMenu *menu)
+void BoxGraphics_DrawMenuCursorBox(UnkStruct_ov19_021DB6F0 *param0, const BoxMenu *menu)
 {
-    Window *v0;
+    Window *menuWindow;
     u32 v1;
 
-    v0 = &(param0->unk_18[1]);
+    menuWindow = &(param0->unk_18[1]);
     v1 = (8 - menu->totalMenuItems) * 16;
 
-    Window_FillRectWithColor(v0, 15, 0, v1, 10, menu->totalMenuItems * 16);
-    Window_DrawMenuCursor(v0, 0, v1 + (menu->selectedMenuItemIndex * 16));
-    Window_LoadTiles(v0);
+    Window_FillRectWithColor(menuWindow, 15, 0, v1, 10, menu->totalMenuItems * 16);
+    Window_DrawMenuCursor(menuWindow, 0, v1 + (menu->selectedMenuItemIndex * 16));
+    Window_LoadTiles(menuWindow);
 }
 
 void ov19_021DB790(UnkStruct_ov19_021DB6F0 *param0, const BoxMenu *menu)
