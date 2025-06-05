@@ -5,7 +5,7 @@
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
-#include "overlay025/poketch_system.h"
+#include "poketch/poketch_system.h"
 #include "pre_poketch_subscreen/pre_poketch_subscreen.h"
 
 #include "brightness_controller.h"
