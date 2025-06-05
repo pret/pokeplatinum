@@ -31,7 +31,7 @@
 #include "unk_020996D0.h"
 
 #include "res/text/bank/common_strings.h"
-#include "res/text/bank/common_strings_2.h"
+#include "res/text/bank/menu_entries.h"
 #include "res/text/bank/mystery_gift_event_names.h"
 #include "res/text/bank/special_met_location_names.h"
 
@@ -611,7 +611,7 @@ void StringTemplate_CapitalizeArgAtIndex(StringTemplate *template, u32 idx)
 
 void StringTemplate_SetDepartmentStoreFloor(StringTemplate *template, u32 idx, u32 floor)
 {
-    MessageLoader *loader = InitMessageLoader(TEXT_BANK_COMMON_STRINGS_2, template->heapID);
+    MessageLoader *loader = InitMessageLoader(TEXT_BANK_MENU_ENTRIES, template->heapID);
 
     GF_ASSERT(floor <= 5);
 
