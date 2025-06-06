@@ -12,9 +12,9 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
-#define FIXED_POLYGON_ID     5
-#define MIN_POLYGON_ID       6
-#define MAX_POLYGON_ID       63
+#define FIXED_POLYGON_ID 5
+#define MIN_POLYGON_ID   6
+#define MAX_POLYGON_ID   63
 
 enum SPLBehaviorType {
     SPL_BEHAVIOR_GRAVITY = 0,

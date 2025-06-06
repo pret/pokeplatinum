@@ -666,7 +666,7 @@ static void ov17_022444BC(SysTask *param0, void *param1)
         v3.unk_04 = 1;
         v3.unk_08 = 10;
         v3.unk_0A = v0->unk_104.unk_07;
-        v3.unk_0C = v0->unk_104.unk_08;
+        v3.friendship = v0->unk_104.unk_08;
         v3.fieldConditions = 0;
         v3.unk_14 = 0;
         v3.unk_16 = 1;
@@ -717,7 +717,7 @@ static void ov17_022444BC(SysTask *param0, void *param1)
         v4.unk_00 = v0->unk_00->unk_0C.unk_18;
         v4.unk_6C = v0->unk_00->unk_00->unk_14C[v0->unk_0D];
 
-        ov12_0221FE30(v0->unk_00->unk_0C.unk_20, &v3, v0->unk_104.unk_04, &v4);
+        BattleAnimSystem_StartMove(v0->unk_00->unk_0C.unk_20, &v3, v0->unk_104.unk_04, &v4);
     }
 
         {
@@ -743,8 +743,8 @@ static void ov17_022444BC(SysTask *param0, void *param1)
     case 11:
         BattleAnimSystem_ExecuteScript(v0->unk_00->unk_0C.unk_20);
 
-        if (ov12_02220188(v0->unk_00->unk_0C.unk_20) == 0) {
-            ov12_02220198(v0->unk_00->unk_0C.unk_20);
+        if (BattleAnimSystem_IsMoveActive(v0->unk_00->unk_0C.unk_20) == 0) {
+            BattleAnimSystem_FreeScriptData(v0->unk_00->unk_0C.unk_20);
 
             if (v0->unk_104.unk_06 > 0) {
                 v0->unk_104.unk_06--;

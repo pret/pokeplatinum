@@ -3,6 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/battle_terrains.h"
+#include "generated/moves.h"
+
 #include "struct_decls/battle_system.h"
 #include "struct_defs/chatot_cry.h"
 
@@ -45,22 +48,39 @@
 #include "system.h"
 #include "vram_transfer.h"
 
+typedef struct BattleAnimSoundContext {
+    u8 type;
 
-typedef struct UnkStruct_ov12_02220314_t {
-    u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
-    u8 unk_03;
-    u8 unk_04;
-    int unk_08;
-    int unk_0C;
-    int unk_10;
-    int unk_14;
-    u8 unk_18;
-    u16 unk_1A;
-    u32 unk_1C[7];
-    BattleAnimSystem *unk_38;
-} UnkStruct_ov12_02220314;
+    u8 unused01;
+    u8 unused02;
+
+    u8 applyInterval; // Number of frames/ticks between application
+    u8 tickCount;
+
+    // Pan
+    int startPan;
+    int endPan;
+    int panIncrement;
+    int curPan;
+
+    u8 repeatCount; // Number of times to repeat the sound effect
+    u16 effectID;
+
+    u32 unused1C[7];
+
+    BattleAnimSystem *system;
+} BattleAnimSoundContext;
+
+enum BattleAnimSoundTaskType {
+    BATTLE_ANIM_SOUND_TASK_NONE = 0,
+    BATTLE_ANIM_SOUND_TASK_PAN,
+    BATTLE_ANIM_SOUND_TASK_PAN_2,
+    BATTLE_ANIM_SOUND_TASK_PAN_3,
+    BATTLE_ANIM_SOUND_TASK_REPEAT,
+    BATTLE_ANIM_SOUND_TASK_DELAY,
+
+    BATTLE_ANIM_SOUND_TASK_COUNT,
+};
 
 typedef struct UnkStruct_ov12_02221BBC_t {
     int unk_00;
@@ -97,15 +117,15 @@ static void BattleAnimSystem_Script_Execute(BattleAnimSystem *param0);
 static SysTask *BattleAnimSystem_StartTask(u8 kind, BattleAnimSystem *param1, SysTaskFunc param2, void *param3, u32 param4);
 static void BattleAnimSystem_EndTask(u8 param0, BattleAnimSystem *param1, SysTask *param2);
 
-static UnkStruct_ov12_02220314 *ov12_02220314(BattleAnimSystem *param0);
-static void ov12_02220344(BattleAnimSystem *param0, UnkStruct_ov12_02220314 *param1);
-static void ov12_0222035C(SysTask *param0, void *param1);
-static BOOL ov12_0222039C(UnkStruct_ov12_02220314 *param0);
-static BOOL ov12_022203A0(UnkStruct_ov12_02220314 *param0);
-static BOOL ov12_022203FC(UnkStruct_ov12_02220314 *param0);
-static BOOL ov12_02220404(UnkStruct_ov12_02220314 *param0);
-static BOOL ov12_0222040C(UnkStruct_ov12_02220314 *param0);
-static BOOL ov12_0222044C(UnkStruct_ov12_02220314 *param0);
+static BattleAnimSoundContext *BattleAnimSystem_CreateSoundContext(BattleAnimSystem *param0);
+static void BattleAnimSystem_StartSoundTaskInternal(BattleAnimSystem *param0, BattleAnimSoundContext *param1);
+static void BattleAnimSound_Task(SysTask *param0, void *param1);
+static BOOL BattleAnimSoundFunc_None(BattleAnimSoundContext *param0);
+static BOOL BattleAnimSoundFunc_Pan(BattleAnimSoundContext *param0);
+static BOOL BattleAnimSoundFunc_Pan2(BattleAnimSoundContext *param0);
+static BOOL BattleAnimSoundFunc_Pan3(BattleAnimSoundContext *param0);
+static BOOL BattleAnimSoundFunc_Repeat(BattleAnimSoundContext *param0);
+static BOOL BattleAnimSoundFunc_Delay(BattleAnimSoundContext *param0);
 static void BattleAnimScriptCmd_Delay(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_WaitForAnimTasks(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_BeginLoop(BattleAnimSystem *param0);
@@ -248,7 +268,7 @@ static void BattleAnimSystem_Script_Execute(BattleAnimSystem *system)
     do {
         BattleAnimScriptCmd cmd = BattleAnimSystem_GetScriptCmd(*system->scriptPtr);
         cmd(system);
-    } while (system->scriptDelay == 0 && system->unk_10 == 1);
+    } while (system->scriptDelay == 0 && system->moveActive == TRUE);
 }
 
 static SysTask *BattleAnimSystem_StartTask(u8 kind, BattleAnimSystem *system, SysTaskFunc func, void *param, u32 priority)
@@ -298,7 +318,7 @@ BattleAnimSystem *BattleAnimSystem_New(enum HeapId heapID)
     memset(system, 0, sizeof(BattleAnimSystem));
 
     system->heapID = heapID;
-    system->unk_08 = 0;
+    system->isContest = FALSE;
     system->context = Heap_AllocFromHeap(system->heapID, sizeof(BattleAnimContext));
     system->arcs[BATTLE_ANIM_SYSTEM_ARC_BATT_BG] = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, heapID);
     system->arcs[BATTLE_ANIM_SYSTEM_ARC_BATT_OBJ] = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, heapID);
@@ -331,16 +351,16 @@ BattleAnimSystem *BattleAnimSystem_New(enum HeapId heapID)
     return system;
 }
 
-void ov12_0221FDC0(BattleAnimSystem *param0, BOOL param1)
+void BattleAnimSystem_SetIsContest(BattleAnimSystem *system, BOOL isContest)
 {
-    GF_ASSERT(param0 != NULL);
-    param0->unk_08 = param1;
+    GF_ASSERT(system != NULL);
+    system->isContest = isContest;
 }
 
-BOOL ov12_0221FDD4(BattleAnimSystem *param0)
+BOOL BattleAnimSystem_IsContest(BattleAnimSystem *system)
 {
-    GF_ASSERT(param0 != NULL);
-    return param0->unk_08;
+    GF_ASSERT(system != NULL);
+    return system->isContest;
 }
 
 enum HeapId BattleAnimSystem_GetHeapID(BattleAnimSystem *system)
@@ -351,7 +371,7 @@ enum HeapId BattleAnimSystem_GetHeapID(BattleAnimSystem *system)
 
 BOOL BattleAnimSystem_Delete(BattleAnimSystem *system)
 {
-    if (BattleAnimSystem_IsActive(system) == 0) {
+    if (BattleAnimSystem_IsActive(system) == FALSE) {
         return FALSE;
     }
 
@@ -365,19 +385,18 @@ BOOL BattleAnimSystem_Delete(BattleAnimSystem *system)
     return TRUE;
 }
 
-BOOL ov12_0221FE30(BattleAnimSystem *system, UnkStruct_ov16_02265BBC *param1, u16 param2, UnkStruct_ov16_02264408 *param3)
+BOOL BattleAnimSystem_StartMove(BattleAnimSystem *system, UnkStruct_ov16_02265BBC *param1, u16 move, UnkStruct_ov16_02264408 *param3)
 {
     int i;
-    int v1 = param2;
 
-    ov12_02220474();
+    BattleAnimSystem_SetBlendState();
 
     if (BattleAnimSystem_IsActive(system) == FALSE) {
         return FALSE;
     }
 
     for (i = 0; i < MAX_PARTICLE_SYSTEMS; i++) {
-        system->cameraProjections[i] = 1;
+        system->cameraProjections[i] = CAMERA_PROJECTION_ORTHOGRAPHIC;
         system->unk_78[i] = 0;
     }
 
@@ -394,17 +413,17 @@ BOOL ov12_0221FE30(BattleAnimSystem *system, UnkStruct_ov16_02265BBC *param1, u1
 
     system->context->unk_00 = param1->unk_00;
     system->context->unk_01 = param1->unk_01;
-    system->context->unk_02 = param1->unk_02;
-    system->context->unk_04 = param1->unk_04;
-    system->context->unk_08 = param1->unk_08;
-    system->context->unk_0A = param1->unk_0C;
+    system->context->move = param1->unk_02;
+    system->context->damage = param1->unk_04;
+    system->context->power = param1->unk_08;
+    system->context->friendship = param1->friendship;
     system->context->fieldConditions = param1->fieldConditions;
     system->context->unk_10 = param1->unk_0A;
-    system->context->unk_12 = param1->unk_54;
+    system->context->terrain = param1->unk_54;
     system->context->attacker = param1->unk_14;
     system->context->defender = param1->unk_16;
-    system->context->unk_118 = param1->unk_0E_1;
-    system->context->unk_AC = param3->unk_00;
+    system->context->transformed = param1->unk_0E_1;
+    system->context->spriteSystem = param3->unk_00;
 
     GF_ASSERT(param3->unk_00 != NULL);
 
@@ -425,47 +444,48 @@ BOOL ov12_0221FE30(BattleAnimSystem *system, UnkStruct_ov16_02265BBC *param1, u1
     }
 
     system->unk_180 = param3->unk_54;
-    system->context->unk_10C = param3->unk_6C;
+    system->context->chatotCry = param3->unk_6C;
     system->context->unk_114 = param3->unk_74;
     system->context->unk_110 = param3->unk_70;
 
-    if (v1 == 290) {
-        int v2[] = {
-            0xBD,
-            0xBD,
-            0x12E,
-            0x12E,
-            0x58,
-            0x58,
-            0x1A3,
-            0x160,
-            0x1A4,
-            0x22,
-            0x155,
-            0x10,
-            0x22
+    int moveID = move;
+    if (moveID == MOVE_SECRET_POWER) {
+        int terrainMoveTable[] = {
+            [TERRAIN_PLAIN] = MOVE_MUD_SLAP,
+            [TERRAIN_SAND] = MOVE_MUD_SLAP,
+            [TERRAIN_GRASS] = MOVE_NEEDLE_ARM,
+            [TERRAIN_PUDDLE] = MOVE_NEEDLE_ARM,
+            [TERRAIN_MOUNTAIN] = MOVE_ROCK_THROW,
+            [TERRAIN_CAVE] = MOVE_ROCK_THROW,
+            [TERRAIN_SNOW] = MOVE_AVALANCHE,
+            [TERRAIN_WATER] = MOVE_WATER_PULSE,
+            [TERRAIN_ICE] = MOVE_ICE_SHARD,
+            [TERRAIN_BUILDING] = MOVE_BODY_SLAM,
+            [TERRAIN_GREAT_MARSH] = MOVE_MUD_SHOT,
+            [TERRAIN_BRIDGE] = MOVE_GUST,
+            [TERRAIN_AARON] = MOVE_BODY_SLAM
         };
 
-        if (system->context->unk_12 >= 24) {
-            v1 = 161;
+        if (system->context->terrain >= TERRAIN_MAX) {
+            moveID = MOVE_TRI_ATTACK;
         } else {
-            v1 = v2[system->context->unk_12];
+            moveID = terrainMoveTable[system->context->terrain];
         }
     }
 
-    if ((v1 == 0) || (v1 > 467)) {
-        v1 = 1;
+    if (moveID == MOVE_NONE || moveID > MOVE_SHADOW_FORCE) {
+        moveID = MOVE_POUND;
     }
 
-    system->effectArcID = param3->unk_50;
-    system->unk_14 = NARC_AllocAndReadWholeMemberByIndexPair(system->effectArcID, v1, system->heapID);
+    system->moveArcID = param3->unk_50;
+    system->scriptData = NARC_AllocAndReadWholeMemberByIndexPair(system->moveArcID, moveID, system->heapID);
 
-    if (system->unk_14 == NULL) {
-        GF_ASSERT(system->unk_14 != NULL);
+    if (system->scriptData == NULL) {
+        GF_ASSERT(system->scriptData != NULL);
         return FALSE;
     }
 
-    system->scriptPtr = (u32 *)system->unk_14;
+    system->scriptPtr = (u32 *)system->scriptData;
     system->bgLayerPriorities[BG_LAYER_MAIN_0] = Bg_GetPriority(system->bgConfig, BG_LAYER_MAIN_0);
     system->bgLayerPriorities[BG_LAYER_MAIN_1] = Bg_GetPriority(system->bgConfig, BG_LAYER_MAIN_1);
     system->bgLayerPriorities[BG_LAYER_MAIN_2] = Bg_GetPriority(system->bgConfig, BG_LAYER_MAIN_2);
@@ -484,13 +504,13 @@ BOOL ov12_0221FE30(BattleAnimSystem *system, UnkStruct_ov16_02265BBC *param1, u1
     system->executeAnimScriptFunc = BattleAnimSystem_Script_Execute;
     system->scriptDelay = 0;
 
-    if (ov12_0221FDD4(system) == 1) {
+    if (BattleAnimSystem_IsContest(system) == TRUE) {
         system->unk_198 = 0x7;
     } else {
         system->unk_198 = 0xFF;
     }
 
-    system->unk_10 = 1;
+    system->moveActive = TRUE;
 
     return TRUE;
 }
@@ -505,20 +525,20 @@ BOOL BattleAnimSystem_ExecuteScript(BattleAnimSystem *system)
     return TRUE;
 }
 
-BOOL ov12_02220188(BattleAnimSystem *param0)
+BOOL BattleAnimSystem_IsMoveActive(BattleAnimSystem *system)
 {
-    return (param0->unk_10 == 1) ? TRUE : FALSE;
+    return system->moveActive == TRUE;
 }
 
-BOOL ov12_02220198(BattleAnimSystem *param0)
+BOOL BattleAnimSystem_FreeScriptData(BattleAnimSystem *system)
 {
-    if (param0->unk_14 == NULL) {
-        GF_ASSERT(param0->unk_14);
-        return 0;
+    if (system->scriptData == NULL) {
+        GF_ASSERT(system->scriptData);
+        return FALSE;
     }
 
-    Heap_Free(param0->unk_14);
-    return 1;
+    Heap_Free(system->scriptData);
+    return TRUE;
 }
 
 BOOL BattleAnimSystem_IsActive(BattleAnimSystem *system)
@@ -565,9 +585,9 @@ u16 BattleAnimSystem_GetDefender(BattleAnimSystem *system)
     return system->context->defender;
 }
 
-ParticleSystem *ov12_02220250(BattleAnimSystem *param0)
+ParticleSystem *BattleAnimSystem_GetCurrentParticleSystem(BattleAnimSystem *system)
 {
-    return param0->context->particleSystems[param0->context->currentParticleSystem];
+    return system->context->particleSystems[system->context->currentParticleSystem];
 }
 
 ParticleSystem *BattleAnimSystem_GetParticleSystem(BattleAnimSystem *system, int index)
@@ -620,149 +640,135 @@ SpriteManager *ov12_02220300(BattleAnimSystem *param0)
     return param0->unk_C8[0];
 }
 
-SpriteSystem *ov12_02220308(BattleAnimSystem *param0)
+SpriteSystem *BattleAnimSystem_GetSpriteSystem(BattleAnimSystem *system)
 {
-    return param0->context->unk_AC;
+    return system->context->spriteSystem;
 }
 
-static BOOL (*const Unk_ov12_0223862C[])(UnkStruct_ov12_02220314 *) = {
-    ov12_0222039C,
-    ov12_022203A0,
-    ov12_022203FC,
-    ov12_02220404,
-    ov12_0222040C,
-    ov12_0222044C
+static BOOL (*const sBattleAnimSoundFuncs[BATTLE_ANIM_SOUND_TASK_COUNT])(BattleAnimSoundContext *) = {
+    [BATTLE_ANIM_SOUND_TASK_NONE] = BattleAnimSoundFunc_None,
+    [BATTLE_ANIM_SOUND_TASK_PAN] = BattleAnimSoundFunc_Pan,
+    [BATTLE_ANIM_SOUND_TASK_PAN_2] = BattleAnimSoundFunc_Pan2,
+    [BATTLE_ANIM_SOUND_TASK_PAN_3] = BattleAnimSoundFunc_Pan3,
+    [BATTLE_ANIM_SOUND_TASK_REPEAT] = BattleAnimSoundFunc_Repeat,
+    [BATTLE_ANIM_SOUND_TASK_DELAY] = BattleAnimSoundFunc_Delay
 };
 
-static UnkStruct_ov12_02220314 *ov12_02220314(BattleAnimSystem *param0)
+static BattleAnimSoundContext *BattleAnimSystem_CreateSoundContext(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_02220314 *v0 = NULL;
-
-    v0 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov12_02220314));
-
-    if (v0 == NULL) {
+    BattleAnimSoundContext *ctx = Heap_AllocFromHeap(system->heapID, sizeof(BattleAnimSoundContext));
+    if (ctx == NULL) {
         GF_ASSERT(FALSE);
         return NULL;
     }
 
-    memset(v0, 0, sizeof(UnkStruct_ov12_02220314));
-    param0->activeSoundTasks++;
+    memset(ctx, 0, sizeof(BattleAnimSoundContext));
+    system->activeSoundTasks++;
 
-    return v0;
+    return ctx;
 }
 
-static void ov12_02220344(BattleAnimSystem *param0, UnkStruct_ov12_02220314 *param1)
+static void BattleAnimSystem_StartSoundTaskInternal(BattleAnimSystem *system, BattleAnimSoundContext *ctx)
 {
-    param1->unk_38 = param0;
-    SysTask_Start(ov12_0222035C, param1, 1100);
+    ctx->system = system;
+    SysTask_Start(BattleAnimSound_Task, ctx, 1100);
 }
 
-static void ov12_0222035C(SysTask *param0, void *param1)
+static void BattleAnimSound_Task(SysTask *task, void *param)
 {
-    BOOL v0;
-    UnkStruct_ov12_02220314 *v1 = (UnkStruct_ov12_02220314 *)param1;
+    BattleAnimSoundContext *ctx = param;
 
-    v0 = Unk_ov12_0223862C[v1->unk_00](v1);
-
-    if (v0 == 0) {
-        if (v1->unk_38->activeSoundTasks != 0) {
-            v1->unk_38->activeSoundTasks--;
+    BOOL result = sBattleAnimSoundFuncs[ctx->type](ctx);
+    if (result == FALSE) {
+        if (ctx->system->activeSoundTasks != 0) {
+            ctx->system->activeSoundTasks--;
         }
 
-        Heap_Free(v1);
-        SysTask_Done(param0);
+        Heap_Free(ctx);
+        SysTask_Done(task);
     }
 }
 
-static BOOL ov12_0222039C(UnkStruct_ov12_02220314 *param0)
+static BOOL BattleAnimSoundFunc_None(BattleAnimSoundContext *ctx)
 {
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov12_022203A0(UnkStruct_ov12_02220314 *param0)
+static BOOL BattleAnimSoundFunc_Pan(BattleAnimSoundContext *ctx)
 {
-    BOOL v0;
-    s8 v1;
-
-    if (param0->unk_04++ < param0->unk_03) {
-        return 1;
+    if (ctx->tickCount++ < ctx->applyInterval) {
+        return TRUE;
     }
 
-    v0 = 1;
+    BOOL isActive = TRUE;
 
-    param0->unk_04 = 0;
-    param0->unk_14 += param0->unk_10;
+    ctx->tickCount = 0;
+    ctx->curPan += ctx->panIncrement;
 
-    if (param0->unk_10 == 0) {
-        v0 = 0;
-    } else if (param0->unk_08 < param0->unk_0C) {
-        if (param0->unk_14 >= param0->unk_0C) {
-            v0 = 0;
+    if (ctx->panIncrement == 0) {
+        isActive = FALSE;
+    } else if (ctx->startPan < ctx->endPan) {
+        if (ctx->curPan >= ctx->endPan) {
+            isActive = FALSE;
         }
     } else {
-        if (param0->unk_14 <= param0->unk_0C) {
-            v0 = 0;
+        if (ctx->curPan <= ctx->endPan) {
+            isActive = FALSE;
         }
     }
 
-    Sound_PanAllEffects(param0->unk_14);
+    Sound_PanAllEffects(ctx->curPan);
 
-    if (Sound_IsEffectPlaying(param0->unk_1A) == 0) {
-        if (v0 == 1) {
-            (void)0;
-        }
-
-        return 0;
+    if (!Sound_IsEffectPlaying(ctx->effectID)) {
+        return FALSE;
     }
 
-    return v0;
+    return isActive;
 }
 
-static BOOL ov12_022203FC(UnkStruct_ov12_02220314 *param0)
+static BOOL BattleAnimSoundFunc_Pan2(BattleAnimSoundContext *ctx)
 {
-    return ov12_022203A0(param0);
+    return BattleAnimSoundFunc_Pan(ctx);
 }
 
-static BOOL ov12_02220404(UnkStruct_ov12_02220314 *param0)
+static BOOL BattleAnimSoundFunc_Pan3(BattleAnimSoundContext *ctx)
 {
-    return ov12_022203A0(param0);
+    return BattleAnimSoundFunc_Pan(ctx);
 }
 
-static BOOL ov12_0222040C(UnkStruct_ov12_02220314 *param0)
+static BOOL BattleAnimSoundFunc_Repeat(BattleAnimSoundContext *ctx)
 {
-    BOOL v0;
-
-    if (param0->unk_04++ < param0->unk_03) {
-        return 1;
+    if (ctx->tickCount++ < ctx->applyInterval) {
+        return TRUE;
     }
 
-    v0 = 1;
+    BOOL isActive = TRUE;
 
-    param0->unk_04 = 0;
-    param0->unk_18--;
+    ctx->tickCount = 0;
+    ctx->repeatCount--;
 
-    Sound_PlayEffect(param0->unk_1A);
-    Sound_PanEffect(param0->unk_1A, SOUND_PLAYBACK_TRACK_ALL, param0->unk_14);
+    Sound_PlayEffect(ctx->effectID);
+    Sound_PanEffect(ctx->effectID, SOUND_PLAYBACK_TRACK_ALL, ctx->curPan);
 
-    if (param0->unk_18 == 0) {
-        v0 = 0;
+    if (ctx->repeatCount == 0) {
+        isActive = FALSE;
     }
 
-    return v0;
+    return isActive;
 }
 
-static BOOL ov12_0222044C(UnkStruct_ov12_02220314 *param0)
+static BOOL BattleAnimSoundFunc_Delay(BattleAnimSoundContext *ctx)
 {
-    BOOL v0 = 1;
+    BOOL isActive = TRUE;
 
-    if ((param0->unk_03--) == 0) {
-        Sound_PlayEffect(param0->unk_1A);
-        Sound_PanEffect(param0->unk_1A, SOUND_PLAYBACK_TRACK_ALL, param0->unk_14);
+    if ((ctx->applyInterval--) == 0) {
+        Sound_PlayEffect(ctx->effectID);
+        Sound_PanEffect(ctx->effectID, SOUND_PLAYBACK_TRACK_ALL, ctx->curPan);
 
-        v0 = 0;
+        isActive = FALSE;
     }
 
-    return v0;
+    return isActive;
 }
 
 static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
@@ -853,7 +859,7 @@ static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
     ov12_0222048C
 };
 
-void ov12_02220474(void)
+void BattleAnimSystem_SetBlendState(void)
 {
     G2_SetBlendAlpha((GX_BLEND_PLANEMASK_NONE), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 8, 8);
 }
@@ -936,35 +942,24 @@ static void BattleAnimScriptCmd_ResetVar(BattleAnimSystem *system)
     }
 }
 
-int ov12_02220540(BattleAnimSystem *param0, int param1)
+int BattleAnimSystem_GetMoveInfo(BattleAnimSystem *system, enum BattleAnimMoveInfoType info)
 {
-    int v0 = 0;
-
-    switch (param1) {
-    case 0:
-        v0 = param0->context->unk_04;
-        break;
-    case 1:
-        v0 = param0->context->unk_08;
-        break;
-    case 2:
-        v0 = param0->context->unk_0A;
-        break;
-    case 3:
-        v0 = param0->context->fieldConditions;
-        break;
+    switch (info) {
+    case BATTLE_ANIM_MOVE_INFO_DAMAGE:
+        return system->context->damage;
+    case BATTLE_ANIM_MOVE_INFO_POWER:
+        return system->context->power;
+    case BATTLE_ANIM_MOVE_INFO_FRIENDSHIP:
+        return system->context->friendship;
+    case BATTLE_ANIM_MOVE_INFO_FIELD_CONDITIONS:
+        return system->context->fieldConditions;
     case 4:
-        v0 = param0->context->unk_10;
-        break;
-    case 5:
-        v0 = param0->context->unk_12;
-        break;
+        return system->context->unk_10;
+    case BATTLE_ANIM_MOVE_INFO_TERRAIN:
+        return system->context->terrain;
     default:
-        v0 = 0;
-        break;
+        return 0;
     }
-
-    return v0;
 }
 
 void ov12_02220590(BattleAnimSystem *param0, UnkStruct_ov12_022380DC *param1, int param2)
@@ -1089,7 +1084,7 @@ static void ov12_02220798(BattleAnimSystem *system)
         return;
     }
 
-    for (i = 0; i < 16; i++) {
+    for (i = 0; i < MAX_PARTICLE_SYSTEMS; i++) {
         if (system->context->particleSystems[i]) {
             v1 += ParticleSystem_GetActiveEmitterCount(system->context->particleSystems[i]);
         }
@@ -1129,7 +1124,7 @@ static void ov12_02220798(BattleAnimSystem *system)
 
     for (i = 0; i < 4; i++) {
         if (system->unk_C8[i] != NULL) {
-            SpriteSystem_FreeResourcesAndManager(system->context->unk_AC, system->unk_C8[i]);
+            SpriteSystem_FreeResourcesAndManager(system->context->spriteSystem, system->unk_C8[i]);
         }
 
         system->unk_C8[i] = NULL;
@@ -1150,7 +1145,7 @@ static void ov12_02220798(BattleAnimSystem *system)
         system->unk_17C = NULL;
     }
 
-    if (ov12_0221FDD4(system) == 0) {
+    if (BattleAnimSystem_IsContest(system) == 0) {
         Battle_SetDefaultBlend();
 
         Bg_ClearTilesRange(ov12_022233B0(system, 1), 0x4000, 0, BattleAnimSystem_GetHeapID(system));
@@ -1170,7 +1165,7 @@ static void ov12_02220798(BattleAnimSystem *system)
     Bg_SetOffset(system->bgConfig, BG_LAYER_MAIN_3, BG_OFFSET_UPDATE_SET_X, 0);
     Bg_SetOffset(system->bgConfig, BG_LAYER_MAIN_3, BG_OFFSET_UPDATE_SET_Y, 0);
 
-    system->unk_10 = 0;
+    system->moveActive = FALSE;
 }
 
 static void BattleAnimScriptCmd_CreateEmitter(BattleAnimSystem *system)
@@ -1585,7 +1580,7 @@ static void ov12_02220FFC(BattleAnimSystem *param0)
 {
     param0->scriptPtr += 1;
 
-    if (ov12_0221FDD4(param0) == 1) {
+    if (BattleAnimSystem_IsContest(param0) == 1) {
         param0->scriptPtr += (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
     } else {
         param0->scriptPtr += 1;
@@ -1829,7 +1824,7 @@ static void ov12_0222128C(BattleAnimSystem *param0)
     v0 = param0->context->unk_B0[v3]->unk_00;
     v7 = param0->context->battlerForms[v3];
 
-    if ((ov12_0221FDD4(param0) == 1) && (IsFormSymmetrical(BattleAnimSystem_GetBattlerSpecies(param0, v3), v7) == 1)) {
+    if ((BattleAnimSystem_IsContest(param0) == 1) && (IsFormSymmetrical(BattleAnimSystem_GetBattlerSpecies(param0, v3), v7) == 1)) {
         v6 = 265;
     } else {
         v6 = 264;
@@ -1901,33 +1896,65 @@ static void ov12_0222144C(BattleAnimSystem *param0)
     };
 
     param0->scriptPtr += 1;
-    param0->unk_134 = SpriteManager_New(param0->context->unk_AC);
+    param0->unk_134 = SpriteManager_New(param0->context->spriteSystem);
 
-    SpriteSystem_InitSprites(param0->context->unk_AC, param0->unk_134, v0);
-    SetSubScreenViewRect(SpriteSystem_GetRenderer(param0->context->unk_AC), 0, ((192 + 80) << FX32_SHIFT));
-    SpriteSystem_InitManagerWithCapacities(param0->context->unk_AC, param0->unk_134, &v1);
+    SpriteSystem_InitSprites(param0->context->spriteSystem, param0->unk_134, v0);
+    SetSubScreenViewRect(SpriteSystem_GetRenderer(param0->context->spriteSystem), 0, ((192 + 80) << FX32_SHIFT));
+    SpriteSystem_InitManagerWithCapacities(param0->context->spriteSystem, param0->unk_134, &v1);
 }
 
 static void ov12_022214C4(BattleAnimSystem *param0)
 {
-    int v0[6];
+    int resourceIDs[6];
     int v1;
 
     param0->scriptPtr += 1;
     v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    v0[0] = 20001 + v1 + ((param0->context->attacker) * 5000);
-    v0[1] = 20001 + v1 + ((param0->context->attacker) * 5000);
-    v0[2] = 20001 + v1 + ((param0->context->attacker) * 5000);
-    v0[3] = 20001 + v1 + ((param0->context->attacker) * 5000);
-    v0[4] = 0;
-    v0[5] = 0;
+    resourceIDs[0] = 20001 + v1 + ((param0->context->attacker) * 5000);
+    resourceIDs[1] = 20001 + v1 + ((param0->context->attacker) * 5000);
+    resourceIDs[2] = 20001 + v1 + ((param0->context->attacker) * 5000);
+    resourceIDs[3] = 20001 + v1 + ((param0->context->attacker) * 5000);
+    resourceIDs[4] = 0;
+    resourceIDs[5] = 0;
 
-    SpriteSystem_LoadCharResObjFromOpenNarc(param0->context->unk_AC, param0->unk_134, param0->arcs[1], 76, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, v0[SPRITE_RESOURCE_PLTT]);
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_C4, PLTTBUF_MAIN_OBJ, param0->context->unk_AC, param0->unk_134, param0->arcs[1], 75, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 1, v0[SPRITE_RESOURCE_PLTT]);
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0->context->unk_AC, param0->unk_134, param0->arcs[1], 77, FALSE, v0[SPRITE_RESOURCE_CELL]);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->context->unk_AC, param0->unk_134, param0->arcs[1], 78, FALSE, v0[SPRITE_RESOURCE_ANIM]);
+    SpriteSystem_LoadCharResObjFromOpenNarc(
+        param0->context->spriteSystem,
+        param0->unk_134,
+        param0->arcs[BATTLE_ANIM_SYSTEM_ARC_BATT_OBJ],
+        76,
+        FALSE,
+        NNS_G2D_VRAM_TYPE_2DMAIN,
+        resourceIDs[SPRITE_RESOURCE_PLTT]);
+
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(
+        param0->unk_C4,
+        PLTTBUF_MAIN_OBJ,
+        param0->context->spriteSystem,
+        param0->unk_134,
+        param0->arcs[BATTLE_ANIM_SYSTEM_ARC_BATT_OBJ],
+        75,
+        FALSE,
+        1,
+        NNS_G2D_VRAM_TYPE_2DMAIN,
+        resourceIDs[SPRITE_RESOURCE_PLTT]);
+
+    SpriteSystem_LoadCellResObjFromOpenNarc(
+        param0->context->spriteSystem,
+        param0->unk_134,
+        param0->arcs[BATTLE_ANIM_SYSTEM_ARC_BATT_OBJ],
+        77,
+        FALSE,
+        resourceIDs[SPRITE_RESOURCE_CELL]);
+
+    SpriteSystem_LoadAnimResObjFromOpenNarc(
+        param0->context->spriteSystem,
+        param0->unk_134,
+        param0->arcs[BATTLE_ANIM_SYSTEM_ARC_BATT_OBJ],
+        78,
+        FALSE,
+        resourceIDs[SPRITE_RESOURCE_ANIM]);
 }
 
 static void ov12_02221580(BattleAnimSystem *param0)
@@ -1998,7 +2025,7 @@ static void ov12_02221580(BattleAnimSystem *param0)
             v11.resources[v14] = v2[v14];
         }
 
-        v1 = SpriteSystem_NewSprite(param0->context->unk_AC, param0->unk_134, &v11);
+        v1 = SpriteSystem_NewSprite(param0->context->spriteSystem, param0->unk_134, &v11);
 
         if (v12 == NULL) {
             ManagedSprite_SetDrawFlag(v1, 0);
@@ -2010,7 +2037,7 @@ static void ov12_02221580(BattleAnimSystem *param0)
             }
         }
 
-        if ((ov12_0221FDD4(param0) == 1) && (IsFormSymmetrical(BattleAnimSystem_GetBattlerSpecies(param0, v7), v10) == 1)) {
+        if ((BattleAnimSystem_IsContest(param0) == 1) && (IsFormSymmetrical(BattleAnimSystem_GetBattlerSpecies(param0, v7), v10) == 1)) {
             ManagedSprite_SetFlipMode(v1, 1);
         }
     }
@@ -2061,7 +2088,7 @@ static void ov12_022217B4(BattleAnimSystem *param0)
     param0->scriptPtr += 1;
 
     if (param0->unk_134 != NULL) {
-        SpriteSystem_FreeResourcesAndManager(param0->context->unk_AC, param0->unk_134);
+        SpriteSystem_FreeResourcesAndManager(param0->context->spriteSystem, param0->unk_134);
     }
 
     param0->unk_134 = NULL;
@@ -2321,7 +2348,7 @@ static void ov12_02221AA8(UnkStruct_ov12_02221BBC *param0, BattleAnimSystem *par
     {
         int v0 = 2;
 
-        if (ov12_0221FDD4(param1) == 1) {
+        if (BattleAnimSystem_IsContest(param1) == 1) {
             v0 = 4;
         } else if (ov12_02221A54(param0, param1, 7) == 1) {
             v0 = 3;
@@ -2444,7 +2471,7 @@ static BOOL ov12_02221C50(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
     case 1: {
         Bg_SetControlParam(param1->unk_48->bgConfig, 3, 2, GX_BG_CHARBASE_0x0c000);
 
-        if (ov12_0221FDD4(param1->unk_48) != 1) {
+        if (BattleAnimSystem_IsContest(param1->unk_48) != 1) {
             Bg_SetControlParam(param1->unk_48->bgConfig, 3, 0, GX_BG_COLORMODE_16);
         }
 
@@ -2542,7 +2569,7 @@ static BOOL ov12_02221D50(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
         Bg_SetOffset(param1->unk_48->bgConfig, 3, 3, 0);
         Bg_SetControlParam(param1->unk_48->bgConfig, 3, 2, GX_BG_CHARBASE_0x10000);
 
-        if (ov12_0221FDD4(param1->unk_48) == 0) {
+        if (BattleAnimSystem_IsContest(param1->unk_48) == 0) {
             Bg_SetControlParam(param1->unk_48->bgConfig, 3, 0, GX_BG_COLORMODE_256);
             ov12_02223460(param1->unk_48, 3);
             ov12_02223488(param1->unk_48);
@@ -2555,7 +2582,7 @@ static BOOL ov12_02221D50(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
         param1->unk_05++;
         break;
     case 4:
-        if (ov12_0221FDD4(param1->unk_48) == 0) {
+        if (BattleAnimSystem_IsContest(param1->unk_48) == 0) {
             Battle_SetDefaultBlend();
         } else {
             ov17_022413D8();
@@ -2645,7 +2672,7 @@ static BOOL ov12_0222206C(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
 
         Bg_ToggleLayer(BG_LAYER_MAIN_3, 0);
 
-        if (ov12_0221FDD4(param1->unk_48) == 0) {
+        if (BattleAnimSystem_IsContest(param1->unk_48) == 0) {
             Bg_SetControlParam(param1->unk_48->bgConfig, 3, 0, GX_BG_COLORMODE_256);
 
             ov12_02223460(param1->unk_48, 3);
@@ -2853,7 +2880,7 @@ void ov12_02222590(BattleAnimSystem *param0, int param1)
     Bg_SetPriority(param1, v0);
     Bg_ToggleLayer(param1, 0);
 
-    if (ov12_0221FDD4(param0) == 1) {
+    if (BattleAnimSystem_IsContest(param0) == 1) {
         Bg_SetControlParam(param0->bgConfig, param1, 2, GX_BG_CHARBASE_0x10000);
     } else {
         Bg_SetControlParam(param0->bgConfig, param1, 0, GX_BG_COLORMODE_256);
@@ -2862,7 +2889,7 @@ void ov12_02222590(BattleAnimSystem *param0, int param1)
 
     Bg_ClearTilemap(param0->bgConfig, param1);
 
-    if (ov12_0221FDD4(param0) == 1) {
+    if (BattleAnimSystem_IsContest(param0) == 1) {
         Graphics_LoadTilesToBgLayer(param0->unk_180.unk_00, param0->unk_180.unk_04, param0->bgConfig, param1, 0, 0, 1, param0->heapID);
     } else {
         ov12_02223460(param0, param1);
@@ -2877,7 +2904,7 @@ void ov12_02222664(BattleAnimSystem *param0, int param1)
 
     Bg_SetPriority(param1, v0);
 
-    if (ov12_0221FDD4(param0) == 1) {
+    if (BattleAnimSystem_IsContest(param0) == 1) {
         Bg_SetControlParam(param0->bgConfig, param1, 2, GX_BG_CHARBASE_0x0c000);
     } else {
         Bg_SetControlParam(param0->bgConfig, param1, 0, GX_BG_COLORMODE_16);
@@ -3038,7 +3065,7 @@ static void ov12_022228DC(BattleAnimSystem *param0)
     v3 = BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    if (ov12_0221FDD4(param0) == 1) {
+    if (BattleAnimSystem_IsContest(param0) == 1) {
         v0->unk_10 = v3;
     } else {
         if (ov12_0223525C(param0, param0->context->defender) == 0x3) {
@@ -3133,156 +3160,156 @@ static void ov12_022229BC(BattleAnimSystem *param0)
 
 static void ov12_022229D8(BattleAnimSystem *param0)
 {
-    UnkStruct_ov12_02220314 *v0 = NULL;
+    BattleAnimSoundContext *v0 = NULL;
 
-    v0 = ov12_02220314(param0);
-    memset(v0, 0, sizeof(UnkStruct_ov12_02220314));
+    v0 = BattleAnimSystem_CreateSoundContext(param0);
+    memset(v0, 0, sizeof(BattleAnimSoundContext));
 
-    v0->unk_00 = 1;
+    v0->type = 1;
     param0->scriptPtr += 1;
 
-    v0->unk_1A = (u16)BattleAnimScript_ReadWord(param0->scriptPtr);
+    v0->effectID = (u16)BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    v0->unk_08 = (int)BattleAnimScript_ReadWord(param0->scriptPtr);
+    v0->startPan = (int)BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    v0->unk_0C = (int)BattleAnimScript_ReadWord(param0->scriptPtr);
+    v0->endPan = (int)BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    v0->unk_10 = (int)BattleAnimScript_ReadWord(param0->scriptPtr);
+    v0->panIncrement = (int)BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    v0->unk_03 = (u8)BattleAnimScript_ReadWord(param0->scriptPtr);
+    v0->applyInterval = (u8)BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    v0->unk_08 = ov12_0222317C(param0, v0->unk_08);
-    v0->unk_0C = ov12_0222317C(param0, v0->unk_0C);
-    v0->unk_10 = ov12_02223234(v0->unk_08, v0->unk_0C, v0->unk_10);
+    v0->startPan = ov12_0222317C(param0, v0->startPan);
+    v0->endPan = ov12_0222317C(param0, v0->endPan);
+    v0->panIncrement = ov12_02223234(v0->startPan, v0->endPan, v0->panIncrement);
 
-    Sound_PlayEffect(v0->unk_1A);
-    Sound_PanEffect(v0->unk_1A, SOUND_PLAYBACK_TRACK_ALL, v0->unk_08);
+    Sound_PlayEffect(v0->effectID);
+    Sound_PanEffect(v0->effectID, SOUND_PLAYBACK_TRACK_ALL, v0->startPan);
 
-    ov12_02220344(param0, v0);
+    BattleAnimSystem_StartSoundTaskInternal(param0, v0);
 }
 
 static void ov12_02222A78(BattleAnimSystem *param0)
 {
-    UnkStruct_ov12_02220314 *v0 = NULL;
+    BattleAnimSoundContext *v0 = NULL;
 
-    v0 = ov12_02220314(param0);
-    memset(v0, 0, sizeof(UnkStruct_ov12_02220314));
+    v0 = BattleAnimSystem_CreateSoundContext(param0);
+    memset(v0, 0, sizeof(BattleAnimSoundContext));
 
-    v0->unk_00 = 2;
+    v0->type = 2;
     param0->scriptPtr += 1;
 
-    v0->unk_1A = (u16)BattleAnimScript_ReadWord(param0->scriptPtr);
+    v0->effectID = (u16)BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    v0->unk_08 = (s8)BattleAnimScript_ReadWord(param0->scriptPtr);
+    v0->startPan = (s8)BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    v0->unk_0C = (s8)BattleAnimScript_ReadWord(param0->scriptPtr);
+    v0->endPan = (s8)BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    v0->unk_10 = (s8)BattleAnimScript_ReadWord(param0->scriptPtr);
+    v0->panIncrement = (s8)BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    v0->unk_03 = (u8)BattleAnimScript_ReadWord(param0->scriptPtr);
+    v0->applyInterval = (u8)BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    Sound_PlayEffect(v0->unk_1A);
-    Sound_PanEffect(v0->unk_1A, SOUND_PLAYBACK_TRACK_ALL, v0->unk_08);
+    Sound_PlayEffect(v0->effectID);
+    Sound_PanEffect(v0->effectID, SOUND_PLAYBACK_TRACK_ALL, v0->startPan);
 
-    ov12_02220344(param0, v0);
+    BattleAnimSystem_StartSoundTaskInternal(param0, v0);
 }
 
 static void ov12_02222AF0(BattleAnimSystem *param0)
 {
-    UnkStruct_ov12_02220314 *v0 = NULL;
+    BattleAnimSoundContext *v0 = NULL;
 
-    v0 = ov12_02220314(param0);
-    memset(v0, 0, sizeof(UnkStruct_ov12_02220314));
+    v0 = BattleAnimSystem_CreateSoundContext(param0);
+    memset(v0, 0, sizeof(BattleAnimSoundContext));
 
-    v0->unk_00 = 1;
+    v0->type = 1;
     param0->scriptPtr += 1;
 
-    v0->unk_1A = (u16)BattleAnimScript_ReadWord(param0->scriptPtr);
+    v0->effectID = (u16)BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    v0->unk_08 = (s8)BattleAnimScript_ReadWord(param0->scriptPtr);
+    v0->startPan = (s8)BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    v0->unk_0C = (s8)BattleAnimScript_ReadWord(param0->scriptPtr);
+    v0->endPan = (s8)BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    v0->unk_10 = (s8)BattleAnimScript_ReadWord(param0->scriptPtr);
+    v0->panIncrement = (s8)BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    v0->unk_03 = (u8)BattleAnimScript_ReadWord(param0->scriptPtr);
+    v0->applyInterval = (u8)BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    v0->unk_08 = ov12_0222317C(param0, v0->unk_08);
-    v0->unk_0C = ov12_0222317C(param0, v0->unk_0C);
-    v0->unk_10 = ov12_0222317C(param0, v0->unk_10);
+    v0->startPan = ov12_0222317C(param0, v0->startPan);
+    v0->endPan = ov12_0222317C(param0, v0->endPan);
+    v0->panIncrement = ov12_0222317C(param0, v0->panIncrement);
 
-    Sound_PlayEffect(v0->unk_1A);
-    Sound_PanEffect(v0->unk_1A, SOUND_PLAYBACK_TRACK_ALL, v0->unk_08);
+    Sound_PlayEffect(v0->effectID);
+    Sound_PanEffect(v0->effectID, SOUND_PLAYBACK_TRACK_ALL, v0->startPan);
 
-    ov12_02220344(param0, v0);
+    BattleAnimSystem_StartSoundTaskInternal(param0, v0);
 }
 
 static void ov12_02222B94(BattleAnimSystem *param0)
 {
-    UnkStruct_ov12_02220314 *v0 = NULL;
+    BattleAnimSoundContext *v0 = NULL;
 
-    v0 = ov12_02220314(param0);
-    memset(v0, 0, sizeof(UnkStruct_ov12_02220314));
+    v0 = BattleAnimSystem_CreateSoundContext(param0);
+    memset(v0, 0, sizeof(BattleAnimSoundContext));
 
-    v0->unk_00 = 4;
+    v0->type = 4;
     param0->scriptPtr += 1;
 
-    v0->unk_1A = (u16)BattleAnimScript_ReadWord(param0->scriptPtr);
+    v0->effectID = (u16)BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    v0->unk_14 = (s8)BattleAnimScript_ReadWord(param0->scriptPtr);
+    v0->curPan = (s8)BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    v0->unk_03 = (u8)BattleAnimScript_ReadWord(param0->scriptPtr);
+    v0->applyInterval = (u8)BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    v0->unk_18 = (u8)BattleAnimScript_ReadWord(param0->scriptPtr);
+    v0->repeatCount = (u8)BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    v0->unk_04 = v0->unk_03;
-    v0->unk_14 = ov12_0222317C(param0, v0->unk_14);
+    v0->tickCount = v0->applyInterval;
+    v0->curPan = ov12_0222317C(param0, v0->curPan);
 
-    ov12_02220344(param0, v0);
+    BattleAnimSystem_StartSoundTaskInternal(param0, v0);
 }
 
 static void ov12_02222BF8(BattleAnimSystem *param0)
 {
-    UnkStruct_ov12_02220314 *v0 = NULL;
+    BattleAnimSoundContext *v0 = NULL;
 
-    v0 = ov12_02220314(param0);
-    memset(v0, 0, sizeof(UnkStruct_ov12_02220314));
+    v0 = BattleAnimSystem_CreateSoundContext(param0);
+    memset(v0, 0, sizeof(BattleAnimSoundContext));
 
-    v0->unk_00 = 5;
+    v0->type = 5;
 
     param0->scriptPtr += 1;
 
-    v0->unk_1A = (u16)BattleAnimScript_ReadWord(param0->scriptPtr);
+    v0->effectID = (u16)BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    v0->unk_14 = (s8)BattleAnimScript_ReadWord(param0->scriptPtr);
+    v0->curPan = (s8)BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    v0->unk_03 = (u8)BattleAnimScript_ReadWord(param0->scriptPtr);
+    v0->applyInterval = (u8)BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    v0->unk_14 = ov12_0222317C(param0, v0->unk_14);
+    v0->curPan = ov12_0222317C(param0, v0->curPan);
 
-    ov12_02220344(param0, v0);
+    BattleAnimSystem_StartSoundTaskInternal(param0, v0);
 }
 
 static void ov12_02222C50(BattleAnimSystem *param0)
@@ -3332,7 +3359,7 @@ static void ov12_02222CAC(BattleAnimSystem *param0)
 
 static void ov12_02222CDC(BattleAnimSystem *param0)
 {
-    ov12_02220474();
+    BattleAnimSystem_SetBlendState();
 }
 
 static void ov12_02222CE4(BattleAnimSystem *param0)
@@ -3355,11 +3382,11 @@ static void ov12_02222CE8(BattleAnimSystem *param0)
     param0->scriptPtr += 1;
 
     GF_ASSERT(param0->unk_C8[v1] == NULL);
-    param0->unk_C8[v1] = SpriteManager_New(param0->context->unk_AC);
+    param0->unk_C8[v1] = SpriteManager_New(param0->context->spriteSystem);
     GF_ASSERT(param0->unk_C8[v1] != NULL);
 
-    SpriteSystem_InitSprites(param0->context->unk_AC, param0->unk_C8[v1], v2);
-    SetSubScreenViewRect(SpriteSystem_GetRenderer(param0->context->unk_AC), 0, ((192 + 80) << FX32_SHIFT));
+    SpriteSystem_InitSprites(param0->context->spriteSystem, param0->unk_C8[v1], v2);
+    SetSubScreenViewRect(SpriteSystem_GetRenderer(param0->context->spriteSystem), 0, ((192 + 80) << FX32_SHIFT));
 
     {
         SpriteResourceCapacities v3;
@@ -3369,7 +3396,7 @@ static void ov12_02222CE8(BattleAnimSystem *param0)
             param0->scriptPtr += 1;
         }
 
-        SpriteSystem_InitManagerWithCapacities(param0->context->unk_AC, param0->unk_C8[v1], &v3);
+        SpriteSystem_InitManagerWithCapacities(param0->context->spriteSystem, param0->unk_C8[v1], &v3);
     }
 }
 
@@ -3386,7 +3413,7 @@ static void ov12_02222D84(BattleAnimSystem *param0)
     v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    SpriteSystem_LoadCharResObjFromOpenNarc(param0->context->unk_AC, param0->unk_C8[v0], param0->arcs[2], v1, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, v1 + 5000);
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0->context->spriteSystem, param0->unk_C8[v0], param0->arcs[2], v1, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, v1 + 5000);
 }
 
 static void ov12_02222DCC(BattleAnimSystem *param0)
@@ -3406,7 +3433,7 @@ static void ov12_02222DCC(BattleAnimSystem *param0)
     v2 = BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_C4, 2, param0->context->unk_AC, param0->unk_C8[v0], param0->arcs[3], v1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, v2, v1 + 5000);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_C4, 2, param0->context->spriteSystem, param0->unk_C8[v0], param0->arcs[3], v1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, v2, v1 + 5000);
 }
 
 static void ov12_02222E2C(BattleAnimSystem *param0)
@@ -3422,7 +3449,7 @@ static void ov12_02222E2C(BattleAnimSystem *param0)
     v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0->context->unk_AC, param0->unk_C8[v0], param0->arcs[4], v1, 1, v1 + 5000);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0->context->spriteSystem, param0->unk_C8[v0], param0->arcs[4], v1, 1, v1 + 5000);
 }
 
 static void ov12_02222E74(BattleAnimSystem *param0)
@@ -3438,7 +3465,7 @@ static void ov12_02222E74(BattleAnimSystem *param0)
     v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->context->unk_AC, param0->unk_C8[v0], param0->arcs[5], v1, 1, v1 + 5000);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->context->spriteSystem, param0->unk_C8[v0], param0->arcs[5], v1, 1, v1 + 5000);
 }
 
 static void ov12_02222EBC(BattleAnimSystem *param0)
@@ -3481,7 +3508,7 @@ static void ov12_02222EBC(BattleAnimSystem *param0)
 
         param0->unk_100 = v6;
 
-        v4 = SpriteSystem_NewSprite(param0->context->unk_AC, param0->unk_C8[v2], &v6);
+        v4 = SpriteSystem_NewSprite(param0->context->spriteSystem, param0->unk_C8[v2], &v6);
     }
 
     v3 = BattleAnimScript_ReadWord(param0->scriptPtr);
@@ -3497,7 +3524,7 @@ static void ov12_02222EBC(BattleAnimSystem *param0)
     }
 
     v5 = ov12_022269AC(v1);
-    v5(param0, param0->context->unk_AC, param0->unk_C8[v2], v4);
+    v5(param0, param0->context->spriteSystem, param0->unk_C8[v2], v4);
 }
 
 static void ov12_02222FC8(BattleAnimSystem *param0)
@@ -3539,7 +3566,7 @@ static void ov12_02222FC8(BattleAnimSystem *param0)
 
         param0->unk_100 = v5;
 
-        v3 = SpriteSystem_NewSprite(param0->context->unk_AC, param0->unk_C8[v1], &v5);
+        v3 = SpriteSystem_NewSprite(param0->context->spriteSystem, param0->unk_C8[v1], &v5);
         GF_ASSERT(param0->unk_D8[v2] == NULL);
         param0->unk_D8[v2] = v3;
     }
@@ -3555,7 +3582,7 @@ static void ov12_0222307C(BattleAnimSystem *param0)
     param0->scriptPtr += 1;
 
     if (param0->unk_C8[v0] != NULL) {
-        SpriteSystem_FreeResourcesAndManager(param0->context->unk_AC, param0->unk_C8[v0]);
+        SpriteSystem_FreeResourcesAndManager(param0->context->spriteSystem, param0->unk_C8[v0]);
     }
 
     param0->unk_C8[v0] = NULL;
@@ -3605,7 +3632,7 @@ static void ov12_022230D4(BattleAnimSystem *param0)
     v3 = param0->context->battlerSpecies[param0->context->attacker];
     v4 = param0->context->battlerForms[param0->context->attacker];
 
-    Pokemon_PlayCry(param0->context->unk_10C, cryMod, v3, v4, v1, v2, param0->context->unk_118, param0->heapID);
+    Pokemon_PlayCry(param0->context->chatotCry, cryMod, v3, v4, v1, v2, param0->context->transformed, param0->heapID);
 }
 
 static void ov12_02223134(BattleAnimSystem *param0)
@@ -3667,7 +3694,7 @@ s8 ov12_0222317C(BattleAnimSystem *param0, s8 param1)
         }
     }
 
-    if (ov12_0221FDD4(param0) == 1) {
+    if (BattleAnimSystem_IsContest(param0) == 1) {
         v0 *= -1;
     }
 
@@ -3788,7 +3815,7 @@ int ov12_0222339C(BattleAnimSystem *param0)
 {
     int v0;
 
-    if (ov12_0221FDD4(param0) == 1) {
+    if (BattleAnimSystem_IsContest(param0) == 1) {
         v0 = 2;
     } else {
         v0 = 1;
@@ -3805,7 +3832,7 @@ int ov12_022233B0(BattleAnimSystem *param0, int param1)
         { 0x1, 0x2, 0x3 }
     };
 
-    if (ov12_0221FDD4(param0) == 1) {
+    if (BattleAnimSystem_IsContest(param0) == 1) {
         v0 = v1[1][param1];
     } else {
         v0 = v1[0][param1];
@@ -3822,7 +3849,7 @@ int ov12_022233EC(BattleAnimSystem *param0, int param1)
         { 0x1, 0x2, 0x3 }
     };
 
-    if (ov12_0221FDD4(param0) == 1) {
+    if (BattleAnimSystem_IsContest(param0) == 1) {
         v0 = v1[1][param1];
     } else {
         v0 = v1[0][param1];
@@ -3837,21 +3864,21 @@ int ov12_02223428(BattleAnimSystem *param0, int param1)
 
     switch (param1) {
     case 0:
-        if (ov12_0221FDD4(param0) == 1) {
+        if (BattleAnimSystem_IsContest(param0) == 1) {
             v0 = 0;
         } else {
             v0 = 0;
         }
         break;
     case 1:
-        if (ov12_0221FDD4(param0) == 1) {
+        if (BattleAnimSystem_IsContest(param0) == 1) {
             v0 = 1;
         } else {
             v0 = 1;
         }
         break;
     case 2:
-        if (ov12_0221FDD4(param0) == 1) {
+        if (BattleAnimSystem_IsContest(param0) == 1) {
             v0 = 3;
         } else {
             v0 = 3;
@@ -3883,7 +3910,7 @@ BOOL ov12_022234A8(BattleAnimSystem *param0, int param1)
     v0 = ov12_022210A8(param0, param1);
     v1 = param0->context->battlerForms[v0];
 
-    if ((ov12_0221FDD4(param0) == 1) && (IsFormSymmetrical(BattleAnimSystem_GetBattlerSpecies(param0, v0), v1) == 1)) {
+    if ((BattleAnimSystem_IsContest(param0) == 1) && (IsFormSymmetrical(BattleAnimSystem_GetBattlerSpecies(param0, v0), v1) == 1)) {
         return 1;
     }
 

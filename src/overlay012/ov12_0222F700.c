@@ -1199,7 +1199,7 @@ void ov12_02230754(BattleAnimSystem *param0)
 
     v0->unk_00 = param0;
     v0->unk_04 = ov12_022202EC(v0->unk_00);
-    v0->unk_4C = ov12_0221FDD4(param0);
+    v0->unk_4C = BattleAnimSystem_IsContest(param0);
     v0->unk_10 = ov12_022202C0(v0->unk_00, 0);
 
     ov12_02225E68(&v0->unk_14, 14, 10, 10, 8);

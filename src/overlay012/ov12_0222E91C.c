@@ -298,7 +298,7 @@ void ov12_0222EC90(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
             for (v1 = 0; v1 < 8; v1++) {
                 v0->unk_1E[v1] = (8 - v1) * 4;
 
-                if (ov12_0221FDD4(v0->unk_00.unk_04) == 0) {
+                if (BattleAnimSystem_IsContest(v0->unk_00.unk_04) == 0) {
                     if (ov12_0223525C(v0->unk_00.unk_04, BattleAnimSystem_GetAttacker(v0->unk_00.unk_04)) == 0x3) {
                         if (v1 < 4) {
                             ManagedSprite_SetExplicitPriority(v0->unk_30[v1], v15);
@@ -436,7 +436,7 @@ void ov12_0222EFB0(BattleAnimSystem *param0)
         v8 = BattleAnimSystem_GetAttacker(v0->unk_00.unk_04);
         v9 = ov12_02235254(v0->unk_00.unk_04, v8);
 
-        ov12_02235350(v9, ov12_0221FDD4(v0->unk_00.unk_04), &v11);
+        ov12_02235350(v9, BattleAnimSystem_IsContest(v0->unk_00.unk_04), &v11);
         ManagedSprite_GetPositionXY(v0->unk_1C[0], &v12.unk_00, &v12.unk_02);
 
         {

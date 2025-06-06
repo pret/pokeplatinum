@@ -8,7 +8,7 @@ typedef struct {
     s32 unk_04;
     u16 unk_08;
     u16 unk_0A;
-    u16 unk_0C;
+    u16 friendship;
     u16 unk_0E_0 : 1;
     u16 unk_0E_1 : 1;
     u16 : 14;
