@@ -625,7 +625,7 @@ void ov12_02226EB0(BattleAnimSystem *param0)
         v0->unk_0C += ((128 / 3) * 2);
     }
 
-    if (ov12_0221FDD4(param0) == 1) {
+    if (BattleAnimSystem_IsContest(param0) == 1) {
         v0->unk_0E *= -1;
     }
 
@@ -645,7 +645,7 @@ void ov12_02226EB0(BattleAnimSystem *param0)
         {
             int v3 = 2;
 
-            if (ov12_0221FDD4(param0) == 1) {
+            if (BattleAnimSystem_IsContest(param0) == 1) {
                 v3 = 4;
             } else if (ov12_0223525C(param0, BattleAnimSystem_GetAttacker(param0)) == 0x4) {
                 v3 = 3;
@@ -783,7 +783,7 @@ void ov12_022271D8(BattleAnimSystem *param0)
         v0->unk_0C += ((128 / 3) * 2);
     }
 
-    if (ov12_0221FDD4(param0) == 1) {
+    if (BattleAnimSystem_IsContest(param0) == 1) {
         v0->unk_0E *= -1;
     }
 
@@ -805,7 +805,7 @@ void ov12_022271D8(BattleAnimSystem *param0)
         {
             int v3 = 2;
 
-            if (ov12_0221FDD4(param0) == 1) {
+            if (BattleAnimSystem_IsContest(param0) == 1) {
                 v3 = 4;
             } else if (ov12_0223525C(param0, BattleAnimSystem_GetAttacker(param0)) == 0x4) {
                 v3 = 3;
@@ -1811,7 +1811,7 @@ void ov12_02228520(BattleAnimSystem *param0)
         v3->unk_64 *= -1;
     }
 
-    if (ov12_0221FDD4(param0) == 1) {
+    if (BattleAnimSystem_IsContest(param0) == 1) {
         (void)0;
     }
 
@@ -2140,7 +2140,7 @@ void ov12_02228C6C(BattleAnimSystem *param0)
         v3->unk_66 *= -1;
     }
 
-    if (ov12_0221FDD4(param0) == 1) {
+    if (BattleAnimSystem_IsContest(param0) == 1) {
         v3->unk_66 *= -1;
     }
 
@@ -2824,7 +2824,7 @@ static void ov12_02229980(BattleAnimSystem *param0, UnkStruct_ov12_02229980 *par
     }
 
     param1->unk_38 = BattleAnimSystem_GetEmitter(param0, param1->unk_00);
-    param1->unk_34 = ov12_02220250(param0);
+    param1->unk_34 = BattleAnimSystem_GetCurrentParticleSystem(param0);
 
     if (param1->unk_10 == 0) {
         param1->unk_14 = BattleAnimSystem_GetAttacker(param0);
@@ -2971,7 +2971,7 @@ void ov12_02229C5C(BattleAnimSystem *param0)
     }
 
     v3->unk_38 = BattleAnimSystem_GetEmitter(param0, v3->unk_00);
-    v3->unk_34 = ov12_02220250(param0);
+    v3->unk_34 = BattleAnimSystem_GetCurrentParticleSystem(param0);
 
     if (v3->unk_10 == 0) {
         v3->unk_14 = BattleAnimSystem_GetAttacker(param0);
@@ -3358,7 +3358,7 @@ void ov12_0222A410(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
         s16 v3 = ov12_022258E0(param0, v2, 0);
         s16 v4 = ov12_022258E0(param0, v2, 1);
 
-        if (ov12_0221FDD4(param0) == 1) {
+        if (BattleAnimSystem_IsContest(param0) == 1) {
             v3 = 72;
             v4 = 32;
             v1 = 0;

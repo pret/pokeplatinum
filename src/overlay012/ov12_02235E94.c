@@ -581,7 +581,7 @@ void ov12_02236384(UnkStruct_ov12_02235FE0 *param0, SPLEmitterCallback param1)
 {
     param0->unk_88 = 1;
 
-    ov12_02220474();
+    BattleAnimSystem_SetBlendState();
     ov12_0223646C(param0, param1);
 
     param0->unk_84 = SysTask_Start(ov12_022363CC, param0, 1000);
@@ -2001,7 +2001,7 @@ BallRotation *ov12_02237728(BallThrow *param0)
     v0->unk_20 = 16;
     v0->unk_21 = 0;
 
-    ov12_02220474();
+    BattleAnimSystem_SetBlendState();
 
     {
         int v1;
@@ -2310,7 +2310,7 @@ static void ov12_02237D8C(BallRotation *param0)
     ManagedSprite_SetAnim(param0->unk_30, 0);
     ManagedSprite_TickFrame(param0->unk_30);
 
-    ov12_02220474();
+    BattleAnimSystem_SetBlendState();
 }
 
 void ov12_02237E0C(BallRotation *param0, int param1)

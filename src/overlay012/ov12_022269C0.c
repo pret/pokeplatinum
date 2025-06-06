@@ -13,7 +13,7 @@
 #include "sys_task_manager.h"
 
 #define TASK_STATE_RUNNING 0
-#define TASK_STATE_DONE 1
+#define TASK_STATE_DONE    1
 
 typedef struct {
     u8 state;

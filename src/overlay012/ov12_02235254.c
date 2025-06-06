@@ -174,7 +174,7 @@ void ov12_02235350(int param0, int param1, UnkStruct_ov12_02235350 *param2)
 void ov12_022353AC(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235350 *param2)
 {
     int v0 = ov12_02235254(param0, param1);
-    int v1 = ov12_0221FDD4(param0);
+    int v1 = BattleAnimSystem_IsContest(param0);
 
     ov12_02235350(v0, v1, param2);
 }
@@ -478,10 +478,10 @@ void ov12_02235508(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    ParticleSystem *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
     v2 = ParticleSystem_GetCameraProjection(v3);
     v0 = ov12_02235254(param0, param1);
-    v1 = ov12_0221FDD4(param0);
+    v1 = BattleAnimSystem_IsContest(param0);
 
     ov12_02235448(v0, param2, v1, v2);
 }
@@ -490,10 +490,10 @@ void ov12_02235538(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    ParticleSystem *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
     v2 = ParticleSystem_GetCameraProjection(v3);
     v0 = ov12_02235254(param0, param1);
-    v1 = ov12_0221FDD4(param0);
+    v1 = BattleAnimSystem_IsContest(param0);
 
     ov12_02235458(v0, param2, v1, v2);
 }
@@ -502,10 +502,10 @@ void ov12_02235568(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    ParticleSystem *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
     v2 = ParticleSystem_GetCameraProjection(v3);
     v0 = ov12_02235254(param0, param1);
-    v1 = ov12_0221FDD4(param0);
+    v1 = BattleAnimSystem_IsContest(param0);
 
     ov12_02235468(v0, param2, v1, v2);
 }
@@ -514,10 +514,10 @@ void ov12_02235598(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    ParticleSystem *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
     v2 = ParticleSystem_GetCameraProjection(v3);
     v0 = ov12_02235254(param0, param1);
-    v1 = ov12_0221FDD4(param0);
+    v1 = BattleAnimSystem_IsContest(param0);
 
     ov12_02235478(v0, param2, v1, v2);
 }
@@ -526,10 +526,10 @@ void ov12_022355C8(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    ParticleSystem *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
     v2 = ParticleSystem_GetCameraProjection(v3);
     v0 = ov12_02235254(param0, param1);
-    v1 = ov12_0221FDD4(param0);
+    v1 = BattleAnimSystem_IsContest(param0);
 
     ov12_02235488(v0, param2, v1, v2);
 }
@@ -538,10 +538,10 @@ void ov12_022355F8(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    ParticleSystem *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
     v2 = ParticleSystem_GetCameraProjection(v3);
     v0 = ov12_02235254(param0, param1);
-    v1 = ov12_0221FDD4(param0);
+    v1 = BattleAnimSystem_IsContest(param0);
 
     ov12_02235498(v0, param2, v1, v2);
 }
@@ -550,10 +550,10 @@ void ov12_02235628(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    ParticleSystem *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
     v2 = ParticleSystem_GetCameraProjection(v3);
     v0 = ov12_02235254(param0, param1);
-    v1 = ov12_0221FDD4(param0);
+    v1 = BattleAnimSystem_IsContest(param0);
 
     ov12_022354A8(v0, param2, v1, v2);
 }
@@ -562,10 +562,10 @@ void ov12_02235658(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    ParticleSystem *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
     v2 = ParticleSystem_GetCameraProjection(v3);
     v0 = ov12_02235254(param0, param1);
-    v1 = ov12_0221FDD4(param0);
+    v1 = BattleAnimSystem_IsContest(param0);
 
     ov12_022354B8(v0, param2, v1, v2);
 }
@@ -574,10 +574,10 @@ void ov12_02235688(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    ParticleSystem *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
     v2 = ParticleSystem_GetCameraProjection(v3);
     v0 = ov12_02235254(param0, param1);
-    v1 = ov12_0221FDD4(param0);
+    v1 = BattleAnimSystem_IsContest(param0);
 
     ov12_022354C8(v0, param2, v1, v2);
 }
@@ -586,10 +586,10 @@ void ov12_022356B8(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    ParticleSystem *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
     v2 = ParticleSystem_GetCameraProjection(v3);
     v0 = ov12_02235254(param0, param1);
-    v1 = ov12_0221FDD4(param0);
+    v1 = BattleAnimSystem_IsContest(param0);
 
     ov12_022354D8(v0, param2, v1, v2);
 }
@@ -598,10 +598,10 @@ void ov12_022356E8(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    ParticleSystem *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
     v2 = ParticleSystem_GetCameraProjection(v3);
     v0 = ov12_02235254(param0, param1);
-    v1 = ov12_0221FDD4(param0);
+    v1 = BattleAnimSystem_IsContest(param0);
 
     ov12_022354E8(v0, param2, v1, v2);
 }
@@ -610,10 +610,10 @@ void ov12_02235718(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    ParticleSystem *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
     v2 = ParticleSystem_GetCameraProjection(v3);
     v0 = ov12_02235254(param0, param1);
-    v1 = ov12_0221FDD4(param0);
+    v1 = BattleAnimSystem_IsContest(param0);
 
     ov12_022354F8(v0, param2, v1, v2);
 }
@@ -726,7 +726,7 @@ void ov12_0223595C(BattleAnimSystem *param0, UnkStruct_ov12_0223595C *param1)
     param1->unk_02 = 0;
     param1->unk_03 = 0;
     param1->unk_04 = param0;
-    param1->unk_08 = ov12_02220308(param0);
+    param1->unk_08 = BattleAnimSystem_GetSpriteSystem(param0);
     param1->unk_0C = ov12_022202EC(param0);
     param1->unk_10 = ov12_02220300(param0);
     param1->unk_14 = BattleAnimSystem_GetBgConfig(param0);

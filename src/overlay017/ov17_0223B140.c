@@ -201,7 +201,7 @@ int ov17_0223B140(ApplicationManager *appMan, int *param1)
     ov17_0223B884();
 
     v0->unk_0C.unk_20 = BattleAnimSystem_New(HEAP_ID_21);
-    ov12_0221FDC0(v0->unk_0C.unk_20, 1);
+    BattleAnimSystem_SetIsContest(v0->unk_0C.unk_20, 1);
 
     v0->unk_0C.unk_38 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_TEXT, HEAP_ID_21);
     v0->unk_0C.unk_3C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0205, HEAP_ID_21);

@@ -70,7 +70,7 @@ void ov12_022238E0(SPLEmitter *param0)
     v3 = BattleAnimSystem_GetDefender(v0);
     v2 = 1;
     v3 = 0;
-    v1 = ov12_02220250(v0);
+    v1 = BattleAnimSystem_GetCurrentParticleSystem(v0);
 
     {
         int v8, v9;
@@ -82,7 +82,7 @@ void ov12_022238E0(SPLEmitter *param0)
             v8 = ov12_02235254(v0, v2);
             v9 = ov12_02235310(v8);
             v10 = ParticleSystem_GetCameraProjection(v1);
-            v4 = ov12_0221FDD4(v0);
+            v4 = BattleAnimSystem_IsContest(v0);
 
             ov12_02235448(v9, &v5, v4, v10);
             ov12_02235448(v8, &v6, v4, v10);
@@ -126,7 +126,7 @@ void ov12_02223998(SPLEmitter *param0)
 
     v0 = ParticleSystem_GetEmitterCallbackParam();
     v2 = BattleAnimSystem_GetDefender(v0);
-    v1 = ov12_02220250(v0);
+    v1 = BattleAnimSystem_GetCurrentParticleSystem(v0);
 
     ov12_02235508(v0, 0, &v3);
 
@@ -199,7 +199,7 @@ void ov12_02223AC8(SPLEmitter *param0)
     int v6;
 
     v0 = ParticleSystem_GetEmitterCallbackParam();
-    v2 = ov12_02220250(v0);
+    v2 = BattleAnimSystem_GetCurrentParticleSystem(v0);
     v3 = ParticleSystem_GetCameraProjection(v2);
     v5 = BattleAnimSystem_GetAttacker(v0);
     v6 = ov12_0223525C(v0, v5);
@@ -210,7 +210,7 @@ void ov12_02223AC8(SPLEmitter *param0)
         v4 = 1;
     }
 
-    ov12_02235448(v4, &v1, ov12_0221FDD4(v0), v3);
+    ov12_02235448(v4, &v1, BattleAnimSystem_IsContest(v0), v3);
 
     SPLEmitter_SetPosX(param0, v1.x);
     SPLEmitter_SetPosY(param0, v1.y);
@@ -229,7 +229,7 @@ void ov12_02223B30(SPLEmitter *param0)
     int v7;
 
     v0 = ParticleSystem_GetEmitterCallbackParam();
-    v2 = ov12_02220250(v0);
+    v2 = BattleAnimSystem_GetCurrentParticleSystem(v0);
     v4 = ParticleSystem_GetCameraProjection(v2);
     v6 = BattleAnimSystem_GetDefender(v0);
     v7 = ov12_0223525C(v0, v6);
@@ -240,7 +240,7 @@ void ov12_02223B30(SPLEmitter *param0)
         v5 = 1;
     }
 
-    ov12_02235448(v5, &v1, ov12_0221FDD4(v0), v4);
+    ov12_02235448(v5, &v1, BattleAnimSystem_IsContest(v0), v4);
 
     SPLEmitter_SetPosX(param0, v1.x);
     SPLEmitter_SetPosY(param0, v1.y);
@@ -416,7 +416,7 @@ static void ov12_02223E74(BattleAnimSystem *param0, SPLEmitter *param1, int para
     VecFx16 v4;
     s8 v5 = 1;
 
-    v0 = ov12_02220250(param0);
+    v0 = BattleAnimSystem_GetCurrentParticleSystem(param0);
     v2 = ov12_02235254(param0, param2);
     v3 = ov12_02235254(param0, param3);
 

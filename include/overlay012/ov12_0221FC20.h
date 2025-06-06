@@ -1,17 +1,18 @@
 #ifndef POKEPLATINUM_OV12_0221FC20_H
 #define POKEPLATINUM_OV12_0221FC20_H
 
+#include "constants/battle.h"
+
 #include "struct_decls/battle_system.h"
 
 #include "battle/struct_ov16_02264408.h"
 #include "battle/struct_ov16_02265BBC.h"
 #include "overlay012/funcptr_ov12_02239EEC.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
-#include "overlay012/struct_ov12_02226504_decl.h"
 #include "overlay012/struct_ov12_02223764.h"
+#include "overlay012/struct_ov12_02226504_decl.h"
 #include "overlay012/struct_ov12_022380DC.h"
 
-#include "constants/battle.h"
 #include "bg_window.h"
 #include "palette.h"
 #include "particle_system.h"
@@ -24,7 +25,6 @@
 #define BATTLE_ANIM_SCRIPT_MAX_NESTED_LOOPS     3
 #define BATTLE_ANIM_SCRIPT_MAX_CALL_STACK_DEPTH 3
 
-
 enum BattleAnimSystemArc {
     BATTLE_ANIM_SYSTEM_ARC_BATT_BG = 0,
     BATTLE_ANIM_SYSTEM_ARC_BATT_OBJ,
@@ -36,22 +36,39 @@ enum BattleAnimSystemArc {
     BATTLE_ANIM_SYSTEM_ARC_COUNT,
 };
 
+enum BattleAnimMoveInfoType {
+    BATTLE_ANIM_MOVE_INFO_DAMAGE = 0,
+    BATTLE_ANIM_MOVE_INFO_POWER,
+    BATTLE_ANIM_MOVE_INFO_FRIENDSHIP,
+    BATTLE_ANIM_MOVE_INFO_FIELD_CONDITIONS,
+    // BATTLE_ANIM_MOVE_INFO_??? = 4,
+    BATTLE_ANIM_MOVE_INFO_TERRAIN = 5,
+
+    BATTLE_ANIM_MOVE_INFO_COUNT
+};
+
+// Holds context information for the current move animation
 typedef struct BattleAnimContext {
     u8 unk_00;
     u8 unk_01;
-    u16 unk_02;
-    s32 unk_04;
-    u16 unk_08;
-    u16 unk_0A;
-    u32 fieldConditions;
+
+    // Current Move info
+    u16 move;
+    s32 damage;
+    u16 power;
+    u16 friendship; // Friendship of the attacker
+    u32 fieldConditions; // Field conditions at the time of the move
     u16 unk_10;
-    u16 unk_12;
+    u16 terrain; // Terrain at the time of the move
+
     u16 attacker;
     u16 defender;
-    int currentParticleSystem;
+    int currentParticleSystem; // Index of the last accessed particle system
     ParticleSystem *particleSystems[MAX_PARTICLE_SYSTEMS];
     SPLEmitter *emitters[MAX_EMITTERS];
-    SpriteSystem *unk_AC;
+    SpriteSystem *spriteSystem;
+
+    // Battler info
     UnkStruct_ov16_0223E0C8 *unk_B0[4];
     u8 battlerTypes[MAX_BATTLERS];
     PokemonSprite *battlerSprites[MAX_BATTLERS];
@@ -62,10 +79,10 @@ typedef struct BattleAnimContext {
     u8 battlerForms[MAX_BATTLERS];
     u32 battlerPersonalities[MAX_BATTLERS];
     u32 battlerMoveEffects[MAX_BATTLERS];
-    ChatotCry *unk_10C;
+    ChatotCry *chatotCry;
     u8 *unk_110;
     u16 *unk_114;
-    int unk_118;
+    int transformed; // Flag for if transform is currently active
 } BattleAnimContext;
 
 typedef struct BattleAnimScriptLoop {
@@ -126,12 +143,12 @@ typedef struct UnkStruct_ov12_022211D8_t {
 } UnkStruct_ov12_022211D8;
 
 typedef struct BattleAnimSystem {
-    int heapID;
-    enum NarcID effectArcID;
-    BOOL unk_08;
+    enum HeapId heapID;
+    enum NarcID moveArcID;
+    BOOL isContest;
     BOOL isActive;
-    BOOL unk_10;
-    void *unk_14;
+    BOOL moveActive;
+    void *scriptData; // Raw pointer to data read from NARC
     u32 *scriptPtr;
     u32 *callStack[BATTLE_ANIM_SCRIPT_MAX_CALL_STACK_DEPTH];
     BattleAnimScriptLoop loopStack[BATTLE_ANIM_SCRIPT_MAX_NESTED_LOOPS];
@@ -166,16 +183,15 @@ typedef struct BattleAnimSystem {
     NARC *arcs[BATTLE_ANIM_SYSTEM_ARC_COUNT];
 } BattleAnimSystem;
 
-
 BattleAnimSystem *BattleAnimSystem_New(enum HeapId heapID);
-void ov12_0221FDC0(BattleAnimSystem *param0, BOOL param1);
-BOOL ov12_0221FDD4(BattleAnimSystem *param0);
+void BattleAnimSystem_SetIsContest(BattleAnimSystem *param0, BOOL param1);
+BOOL BattleAnimSystem_IsContest(BattleAnimSystem *param0);
 enum HeapId BattleAnimSystem_GetHeapID(BattleAnimSystem *param0);
 BOOL BattleAnimSystem_Delete(BattleAnimSystem *param0);
-BOOL ov12_0221FE30(BattleAnimSystem *param0, UnkStruct_ov16_02265BBC *param1, u16 param2, UnkStruct_ov16_02264408 *param3);
+BOOL BattleAnimSystem_StartMove(BattleAnimSystem *param0, UnkStruct_ov16_02265BBC *param1, u16 param2, UnkStruct_ov16_02264408 *param3);
 BOOL BattleAnimSystem_ExecuteScript(BattleAnimSystem *param0);
-BOOL ov12_02220188(BattleAnimSystem *param0);
-BOOL ov12_02220198(BattleAnimSystem *param0);
+BOOL BattleAnimSystem_IsMoveActive(BattleAnimSystem *param0);
+BOOL BattleAnimSystem_FreeScriptData(BattleAnimSystem *param0);
 BOOL BattleAnimSystem_IsActive(BattleAnimSystem *param0);
 SysTask *BattleAnimSystem_StartAnimTaskEx(BattleAnimSystem *param0, SysTaskFunc param1, void *param2, u32 param3);
 SysTask *BattleAnimSystem_StartAnimTask(BattleAnimSystem *param0, SysTaskFunc param1, void *param2);
@@ -184,7 +200,7 @@ void BattleAnimSystem_EndAnimTask(BattleAnimSystem *param0, SysTask *param1);
 void BattleAnimSystem_EndSoundTask(BattleAnimSystem *param0, SysTask *param1);
 u16 BattleAnimSystem_GetAttacker(BattleAnimSystem *param0);
 u16 BattleAnimSystem_GetDefender(BattleAnimSystem *param0);
-ParticleSystem *ov12_02220250(BattleAnimSystem *param0);
+ParticleSystem *BattleAnimSystem_GetCurrentParticleSystem(BattleAnimSystem *param0);
 ParticleSystem *BattleAnimSystem_GetParticleSystem(BattleAnimSystem *param0, int param1);
 SPLEmitter *BattleAnimSystem_GetEmitter(BattleAnimSystem *param0, int param1);
 BgConfig *BattleAnimSystem_GetBgConfig(BattleAnimSystem *param0);
@@ -193,9 +209,9 @@ ManagedSprite *ov12_02220298(BattleAnimSystem *param0, int param1);
 ManagedSprite *ov12_022202C0(BattleAnimSystem *param0, int param1);
 SpriteManager *ov12_022202EC(BattleAnimSystem *param0);
 SpriteManager *ov12_02220300(BattleAnimSystem *param0);
-SpriteSystem *ov12_02220308(BattleAnimSystem *param0);
-void ov12_02220474(void);
-int ov12_02220540(BattleAnimSystem *param0, int param1);
+SpriteSystem *BattleAnimSystem_GetSpriteSystem(BattleAnimSystem *param0);
+void BattleAnimSystem_SetBlendState(void);
+int BattleAnimSystem_GetMoveInfo(BattleAnimSystem *param0, enum BattleAnimMoveInfoType param1);
 void ov12_02220590(BattleAnimSystem *param0, UnkStruct_ov12_022380DC *param1, int param2);
 void ov12_02221238(BattleAnimSystem *param0, int param1);
 void ov12_02222338(BattleAnimSystem *param0);

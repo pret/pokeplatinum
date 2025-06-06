@@ -403,9 +403,9 @@ void ov12_0222AE68(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
         int v4 = ov12_0223525C(param0, BattleAnimSystem_GetDefender(param0));
 
         if (v4 == 0x3) {
-            ov12_02235350(0, ov12_0221FDD4(param0), &v3);
+            ov12_02235350(0, BattleAnimSystem_IsContest(param0), &v3);
         } else {
-            ov12_02235350(1, ov12_0221FDD4(param0), &v3);
+            ov12_02235350(1, BattleAnimSystem_IsContest(param0), &v3);
         }
 
         for (v0 = 1; v0 < BattleAnimSystem_GetScriptVar(v1->unk_08, 0); v0++) {
@@ -1595,7 +1595,7 @@ void ov12_0222CA2C(BattleAnimSystem *param0)
     ov12_0223595C(param0, &v0->unk_00);
 
     {
-        int v2 = ov12_02220540(v0->unk_00.unk_04, 1);
+        int v2 = BattleAnimSystem_GetMoveInfo(v0->unk_00.unk_04, 1);
 
         switch (v2) {
         case 150:
@@ -1849,7 +1849,7 @@ void ov12_0222CFA0(BattleAnimSystem *param0)
         v0->unk_11 = 4;
     }
 
-    if (ov12_0221FDD4(param0) == 1) {
+    if (BattleAnimSystem_IsContest(param0) == 1) {
         v0->unk_40 = v0->unk_44[0];
         ManagedSprite_SetDrawFlag(v0->unk_44[1], 0);
         ManagedSprite_SetAnim(v0->unk_40, 0);
@@ -2129,7 +2129,7 @@ void ov12_0222D56C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
         ManagedSprite_SetExplicitPriority(v1->unk_30[v0].unk_00, ov12_0222339C(v1->unk_10) + 1);
     }
 
-    if (ov12_0221FDD4(param0) == 1) {
+    if (BattleAnimSystem_IsContest(param0) == 1) {
         ManagedSprite_SetPositionXY(v1->unk_30[0].unk_00, 180 - 20, (40 - 16 + 20 + 10));
         ManagedSprite_SetPositionXY(v1->unk_30[1].unk_00, 100 - 20, (25 - 16 + 20 + 10));
     } else {

@@ -104,7 +104,7 @@ void ov12_02225864(int param0, int param1, s16 *param2, s16 *param3)
 
 void ov12_02225898(BattleAnimSystem *param0, int param1, s16 *param2, s16 *param3)
 {
-    if (ov12_0221FDD4(param0) == 1) {
+    if (BattleAnimSystem_IsContest(param0) == 1) {
         ov12_02225864(0, param1 + 2, param2, param3);
     } else {
         if (BattleAnimSystem_IsDoubleBattle(param0) == 1) {
@@ -127,7 +127,7 @@ s16 ov12_022258E0(BattleAnimSystem *param0, int param1, int param2)
         v1 = 0;
     }
 
-    if (ov12_0221FDD4(param0) == 1) {
+    if (BattleAnimSystem_IsContest(param0) == 1) {
         v0 += 2;
     }
 
@@ -156,7 +156,7 @@ int ov12_02225964(BattleAnimSystem *param0, int param1)
 
     v0 = ov12_0223525C(param0, param1);
 
-    if (ov12_0221FDD4(param0)) {
+    if (BattleAnimSystem_IsContest(param0)) {
         if (v0 == 0x3) {
             v1 = -1;
         }
@@ -1195,7 +1195,7 @@ void ov12_02226924(BattleAnimSystem *param0)
     PaletteData *v0 = ov12_0222332C(param0);
     u16 *v1 = PaletteData_GetFadedBuffer(v0, 0);
 
-    if (ov12_0221FDD4(param0) == 1) {
+    if (BattleAnimSystem_IsContest(param0) == 1) {
         ov12_022268DC(v1, 16 * 3);
     } else {
         ov12_022268DC(v1, 16 * 8);
@@ -1206,7 +1206,7 @@ void ov12_02226954(BattleAnimSystem *param0)
 {
     PaletteData *v0 = ov12_0222332C(param0);
 
-    if (ov12_0221FDD4(param0) == 1) {
+    if (BattleAnimSystem_IsContest(param0) == 1) {
         PaletteData_CopyBuffer(v0, 0, 0, 0, 0, 16 * 3 * 2);
     } else {
         PaletteData_CopyBuffer(v0, 0, 0, 0, 0, 16 * 8 * 2);

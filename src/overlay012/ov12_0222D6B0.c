@@ -238,7 +238,7 @@ void ov12_0222D7C0(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
         ManagedSprite_SetAffineOverwriteMode(v1->unk_14[v0], AFFINE_OVERWRITE_MODE_DOUBLE);
         ManagedSprite_SetExplicitOamMode(v1->unk_14[v0], GX_OAM_MODE_XLU);
 
-        if (ov12_0221FDD4(v1->unk_08) == 1) {
+        if (BattleAnimSystem_IsContest(v1->unk_08) == 1) {
             ManagedSprite_SetAffineScale(v1->unk_14[v0], -1.0f, 1.0f);
         }
     }

@@ -171,7 +171,7 @@ static void ov12_0223507C(BattleAnimSystem *param0, UnkStruct_ov12_02234E44 *par
 
             v2 = ov12_02235254(param0, v3);
 
-            if (ov12_0221FDD4(param0) == 1) {
+            if (BattleAnimSystem_IsContest(param0) == 1) {
                 ManagedSprite_SetDrawFlag(v0->unk_3C, 0);
                 v1 = ov12_02223428(v0->unk_18.unk_04, 2);
                 ManagedSprite_SetExplicitPriority(v0->unk_34, v1);
