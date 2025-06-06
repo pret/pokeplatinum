@@ -170,7 +170,7 @@ void BattleBagSprites_CleanupSprites(BattleBag *battleBag)
     SpriteSystem_FreeResourcesAndManager(spriteSystem, battleBag->spriteManager);
 }
 
-static void RenderSprite(ManagedSprite *sprite, const int x, const int y)
+static void DrawSprite(ManagedSprite *sprite, const int x, const int y)
 {
     ManagedSprite_SetDrawFlag(sprite, TRUE);
     ManagedSprite_SetPositionXY(sprite, x, y);
@@ -202,7 +202,7 @@ static void DrawLastUsedItem(BattleBag *battleBag)
     if (battleBag->context->lastUsedItem != ITEM_NONE) {
         LoadItemIcon(battleBag, battleBag->context->lastUsedItem, POCKET_SLOT_1_RESOURCE_ID);
         LoadItemPaletteData(battleBag, battleBag->context->lastUsedItem, 0, POCKET_SLOT_1_RESOURCE_ID);
-        RenderSprite(battleBag->pocketItemSprites[0], lastUsedItemSpritePosition[0], lastUsedItemSpritePosition[1]);
+        DrawSprite(battleBag->pocketItemSprites[0], lastUsedItemSpritePosition[0], lastUsedItemSpritePosition[1]);
     }
 }
 
@@ -220,7 +220,7 @@ static void DrawPocketItems(BattleBag *battleBag)
 
         LoadItemIcon(battleBag, item, POCKET_SLOT_1_RESOURCE_ID + i);
         LoadItemPaletteData(battleBag, item, (u16)i, POCKET_SLOT_1_RESOURCE_ID + i);
-        RenderSprite(battleBag->pocketItemSprites[i], pocketItemSpritePositions[i][0], pocketItemSpritePositions[i][1]);
+        DrawSprite(battleBag->pocketItemSprites[i], pocketItemSpritePositions[i][0], pocketItemSpritePositions[i][1]);
     }
 }
 
@@ -230,7 +230,7 @@ static void DrawSelectedItem(BattleBag *battleBag)
 
     LoadItemIcon(battleBag, item, POCKET_SLOT_1_RESOURCE_ID);
     LoadItemPaletteData(battleBag, item, 0, POCKET_SLOT_1_RESOURCE_ID);
-    RenderSprite(battleBag->pocketItemSprites[0], selectedItemSpritePosition[0], selectedItemSpritePosition[1]);
+    DrawSprite(battleBag->pocketItemSprites[0], selectedItemSpritePosition[0], selectedItemSpritePosition[1]);
 }
 
 static void InitializeCursor(BattleBag *battleBag)
