@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/pokemon_types.h"
+
 #include "pch/global_pch.h"
 
 #include "palette.h"
@@ -349,7 +351,7 @@ ALIGN_4 static const u16 sMovePaletteDark[] = {
     RGB(0, 0, 0),
 };
 
-ALIGN_4 static const u16 Unk_ov11_0221F96C[] = {
+ALIGN_4 static const u16 sMovePaletteNone[] = {
     RGB(13, 14, 29),
     RGB(25, 25, 29),
     RGB(13, 13, 18),
@@ -424,14 +426,14 @@ const u16 *GetMoveTypePalette(int moveType)
     if (moveType != -1) {
         paletteSourceAdr = sMovePaletteTable[moveType];
     } else {
-        paletteSourceAdr = Unk_ov11_0221F96C;
+        paletteSourceAdr = sMovePaletteNone;
     }
 
     return paletteSourceAdr;
 }
 
-void LoadMoveSelectPltt(PaletteData *paletteSys, int moveType, int unused, int bufferID, int paletteDest)
+void LoadMoveSelectPltt(PaletteData *paletteSys, enum PokemonType moveType, int unused, enum PaletteBufferID bufferID, enum Palette paletteDest)
 {
     const u16 *paletteSource = GetMoveTypePalette(moveType);
-    PaletteData_LoadBuffer(paletteSys, paletteSource, bufferID, paletteDest * 16, 0x20);
+    PaletteData_LoadBuffer(paletteSys, paletteSource, bufferID, PLTT_DEST(paletteDest), PALETTE_SIZE_BYTES);
 }

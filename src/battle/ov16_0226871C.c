@@ -302,7 +302,7 @@ static void ov16_02269DB0(UnkStruct_ov16_02268A14 *param0, int param1, int param
 static void ov16_02269F68(UnkStruct_ov16_02268A14 *param0, int param1, int param2);
 static void ov16_0226A04C(UnkStruct_ov16_02268A14 *param0, int param1, int param2);
 static void ov16_0226A12C(UnkStruct_ov16_02268A14 *param0, int param1, int param2);
-static void LoadPaletteForMoveInSlot(UnkStruct_ov16_02268A14 *param0, int moveType, int moveSlot);
+static void LoadMoveSelectPlttSlot(UnkStruct_ov16_02268A14 *param0, enum PokemonType moveType, int moveSlot);
 static void ov16_0226B088(UnkStruct_ov16_02268A14 *param0, int param1);
 static void ov16_0226B0DC(UnkStruct_ov16_02268A14 *param0, int param1);
 static int ov16_0226A934(u8 param0);
@@ -1901,7 +1901,7 @@ static void ov16_022699AC(UnkStruct_ov16_02268A14 *param0, int param1, int param
         for (i = 0; i < LEARNED_MOVES_MAX; i++) {
             if (v0->moveIDs[i] != 0) {
                 moveType = MoveTable_LoadParam(v0->moveIDs[i], MOVEATTRIBUTE_TYPE);
-                LoadPaletteForMoveInSlot(param0, moveType, i);
+                LoadMoveSelectPlttSlot(param0, moveType, i);
             } else {
                 ov16_0226B088(param0, i);
                 break;
@@ -2898,9 +2898,9 @@ static void ov16_0226B028(UnkStruct_ov16_02268A14 *param0)
     }
 }
 
-static void LoadPaletteForMoveInSlot(UnkStruct_ov16_02268A14 *param0, int moveType, int moveSlot)
+static void LoadMoveSelectPlttSlot(UnkStruct_ov16_02268A14 *param0, enum PokemonType moveType, int moveSlot)
 {
-    LoadMoveSelectPltt(BattleSystem_PaletteSys(param0->battleSys), moveType, 5, 1, 8 + moveSlot);
+    LoadMoveSelectPltt(BattleSystem_PaletteSys(param0->battleSys), moveType, 5, PLTTBUF_SUB_BG, PLTT_8 + moveSlot);
 }
 
 static void ov16_0226B088(UnkStruct_ov16_02268A14 *param0, int param1)

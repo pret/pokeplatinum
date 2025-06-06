@@ -10,6 +10,7 @@
 #define PALETTE_SIZE_BYTES     (PALETTE_SIZE * sizeof(u16))
 #define PALETTE_SIZE_EXT_BYTES (PALETTE_SIZE_EXT * sizeof(u16))
 #define PLTT_OFFSET(i)         ((i) * PALETTE_SIZE_BYTES)
+#define PLTT_DEST(i)           ((i) * PALETTE_SIZE)
 
 #define BlendColor(source, target, fraction) ((source) + (((target) - (source)) * (fraction) >> 4))
 
@@ -59,6 +60,25 @@ enum PaletteSelector {
     PLTTSEL_FADED,
     PLTTSEL_UNFADED,
     PLTTSEL_BOTH,
+};
+
+enum Palette {
+    PLTT_0 = 0,
+    PLTT_1,
+    PLTT_2,
+    PLTT_3,
+    PLTT_4,
+    PLTT_5,
+    PLTT_6,
+    PLTT_7,
+    PLTT_8,
+    PLTT_9,
+    PLTT_10,
+    PLTT_11,
+    PLTT_12,
+    PLTT_13,
+    PLTT_14,
+    PLTT_15,
 };
 
 typedef struct RgbColor {

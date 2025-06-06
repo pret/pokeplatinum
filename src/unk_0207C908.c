@@ -114,12 +114,12 @@ void TypeIcon_LoadChar(SpriteSystem *spriteSys, SpriteManager *spriteMan, NNS_G2
 
 void TypeIcon_LoadPlttSrc(SpriteSystem *spriteSys, SpriteManager *spriteMan, NNS_G2D_VRAM_TYPE vramType, u32 resourceID)
 {
-    SpriteSystem_LoadPlttResObj(spriteSys, spriteMan, TypeIcon_GetNARC(), TypeIcon_GetPlttSrc(), FALSE, 3, vramType, resourceID);
+    SpriteSystem_LoadPlttResObj(spriteSys, spriteMan, TypeIcon_GetNARC(), TypeIcon_GetPlttSrc(), FALSE, PLTT_3, vramType, resourceID);
 }
 
 void TypeIcon_LoadPltt(PaletteData *paletteData, enum PaletteBufferID bufferID, SpriteSystem *spriteSys, SpriteManager *spriteMan, NNS_G2D_VRAM_TYPE vramType, u32 resourceID)
 {
-    SpriteSystem_LoadPaletteBuffer(paletteData, bufferID, spriteSys, spriteMan, TypeIcon_GetNARC(), TypeIcon_GetPlttSrc(), FALSE, 3, vramType, resourceID);
+    SpriteSystem_LoadPaletteBuffer(paletteData, bufferID, spriteSys, spriteMan, TypeIcon_GetNARC(), TypeIcon_GetPlttSrc(), FALSE, PLTT_3, vramType, resourceID);
 }
 
 void TypeIcon_LoadAnim(SpriteSystem *spriteSys, SpriteManager *spriteMan, u32 cellResourceID, u32 animResourceID)

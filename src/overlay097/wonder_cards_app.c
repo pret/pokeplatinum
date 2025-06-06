@@ -3,7 +3,6 @@
 
 #include "constants/heap.h"
 #include "constants/narc.h"
-#include "constants/palette.h"
 #include "generated/string_padding_mode.h"
 
 #include "overlay097/ov97_0222D04C.h"
