@@ -192,7 +192,7 @@ typedef struct {
     UnkStruct_ov16_0226AEA0 unk_C8[4];
 } UnkStruct_ov16_0226ABD4;
 
-typedef struct UnkStruct_ov16_02268A14_t {
+typedef struct BattleDisplayData {
     BattleSystem *battleSys;
     u8 *unk_04;
     SysTask *unk_08;
@@ -245,7 +245,7 @@ typedef struct UnkStruct_ov16_02268A14_t {
         u8 unk_05;
         u8 unk_06;
     } unk_6C4;
-} UnkStruct_ov16_02268A14;
+} BattleDisplayData;
 
 typedef struct {
     u16 unk_00;
