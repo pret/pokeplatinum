@@ -105,7 +105,7 @@ typedef struct PlayerGiveReceiveMovementData {
 } PlayerGiveReceiveMovementData;
 
 static void MapObject_DoAnimation(SysTask *task, void *data);
-static BOOL MapObject_DoMovementActionStep(MapObject *mapObj, int movementAction, int movementStep);
+static BOOL MapObject_DoMovementActionStep(MapObject *mapObj, enum MovementAction movementAction, int movementStep);
 
 static const fx32 *sJumpHeightsTable[];
 static const fx32 sStepSizes_WalkEverSoSlightlyFast[7];
@@ -129,7 +129,7 @@ BOOL LocalMapObj_IsAnimationSet(const MapObject *mapObj)
     return TRUE;
 }
 
-void LocalMapObj_SetAnimationCode(MapObject *mapObj, int movementAction)
+void LocalMapObj_SetAnimationCode(MapObject *mapObj, enum MovementAction movementAction)
 {
     GF_ASSERT(movementAction < MAX_MOVEMENT_ACTION);
 
@@ -139,7 +139,7 @@ void LocalMapObj_SetAnimationCode(MapObject *mapObj, int movementAction)
     MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_5);
 }
 
-void sub_02065668(MapObject *mapObj, int movementAction)
+void sub_02065668(MapObject *mapObj, enum MovementAction movementAction)
 {
     MapObject_SetMovementAction(mapObj, movementAction);
     MapObject_SetMovementStep(mapObj, 0);
@@ -308,7 +308,7 @@ static BOOL MovementAnimation_End(MoveAnimData *data)
     return FALSE;
 }
 
-int MovementAction_TurnActionTowardsDir(int targetDir, int movementAction)
+enum MovementAction MovementAction_TurnActionTowardsDir(int targetDir, enum MovementAction movementAction)
 {
     int dir;
     GF_ASSERT(targetDir < MAX_DIR);
@@ -333,7 +333,7 @@ int MovementAction_TurnActionTowardsDir(int targetDir, int movementAction)
     return movementAction;
 }
 
-int MovementAction_GetDirFromAction(int movementAction)
+int MovementAction_GetDirFromAction(enum MovementAction movementAction)
 {
     int dir;
     const int *const *movementActionCodes = gMovementActionCodes;
@@ -358,7 +358,7 @@ int MovementAction_GetDirFromAction(int movementAction)
 
 void MapObject_DoMovementAction(MapObject *mapObj)
 {
-    int movementAction, movementStep;
+    enum MovementAction movementAction, movementStep;
 
     do {
         movementAction = MapObject_GetMovementAction(mapObj);
@@ -386,7 +386,7 @@ BOOL sub_020658DC(MapObject *mapObj)
     return TRUE;
 }
 
-static BOOL MapObject_DoMovementActionStep(MapObject *mapObj, int movementAction, int movementStep)
+static BOOL MapObject_DoMovementActionStep(MapObject *mapObj, enum MovementAction movementAction, int movementStep)
 {
     return gMovementActionFuncs[movementAction][movementStep](mapObj);
 }

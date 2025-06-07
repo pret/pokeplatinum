@@ -79,7 +79,7 @@ typedef struct MapObject {
     VecFx32 unk_88;
     VecFx32 unk_94;
     u32 unk_A0;
-    int movementAction;
+    enum MovementAction movementAction;
     int movementStep;
     u16 currTileBehavior;
     u16 prevTileBehavior;
@@ -1579,12 +1579,12 @@ void sub_02062BA4(MapObject *mapObj)
     mapObj->unk_D4(mapObj);
 }
 
-void MapObject_SetMovementAction(MapObject *mapObj, int movementAction)
+void MapObject_SetMovementAction(MapObject *mapObj, enum MovementAction movementAction)
 {
     mapObj->movementAction = movementAction;
 }
 
-int MapObject_GetMovementAction(const MapObject *mapObj)
+enum MovementAction MapObject_GetMovementAction(const MapObject *mapObj)
 {
     return mapObj->movementAction;
 }
