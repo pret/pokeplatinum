@@ -18,7 +18,7 @@
 #include "ribbon.h"
 #include "sprite.h"
 #include "sprite_system.h"
-#include "unk_0207C908.h"
+#include "type_icon.h"
 #include "vram_transfer.h"
 
 #include "res/graphics/pokemon_summary_screen/pl_pst_gra.naix.h"

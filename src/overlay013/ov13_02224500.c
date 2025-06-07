@@ -23,7 +23,7 @@
 #include "party.h"
 #include "pokemon_icon.h"
 #include "sprite_system.h"
-#include "unk_0207C908.h"
+#include "type_icon.h"
 #include "unk_0207E0B8.h"
 #include "unk_0208C098.h"
 

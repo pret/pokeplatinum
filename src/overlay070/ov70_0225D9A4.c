@@ -72,11 +72,11 @@
 #include "touch_screen.h"
 #include "touch_screen_actions.h"
 #include "trainer_info.h"
+#include "type_icon.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
-#include "unk_0207C908.h"
 #include "vram_transfer.h"
 
 typedef struct {

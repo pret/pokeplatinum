@@ -1,4 +1,4 @@
-#include "unk_0207C908.h"
+#include "type_icon.h"
 
 #include <nitro.h>
 #include <string.h>

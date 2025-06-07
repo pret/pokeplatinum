@@ -1,4 +1,4 @@
-#include "overlay011/ov11_0221F800.h"
+#include "overlay011/move_palettes.h"
 
 #include <nitro.h>
 #include <string.h>

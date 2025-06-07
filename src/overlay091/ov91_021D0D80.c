@@ -34,7 +34,7 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0207C908.h"
+#include "type_icon.h"
 #include "unk_0208C098.h"
 #include "unk_02094EDC.h"
 #include "vram_transfer.h"

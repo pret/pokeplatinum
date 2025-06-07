@@ -22,8 +22,8 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
+#include "type_icon.h"
 #include "unk_0200C440.h"
-#include "unk_0207C908.h"
 
 typedef struct {
     u16 unk_00;

@@ -25,7 +25,7 @@
 #include "battle/struct_ov16_0226C378.h"
 #include "battle/struct_ov16_0226DC24_decl.h"
 #include "battle/struct_ov16_0226DEEC_decl.h"
-#include "overlay011/ov11_0221F800.h"
+#include "overlay011/move_palettes.h"
 
 #include "assert.h"
 #include "bg_window.h"
@@ -55,8 +55,8 @@
 #include "system.h"
 #include "text.h"
 #include "touch_screen.h"
+#include "type_icon.h"
 #include "unk_02012744.h"
-#include "unk_0207C908.h"
 #include "unk_0208C098.h"
 
 typedef struct {

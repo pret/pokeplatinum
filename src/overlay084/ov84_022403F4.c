@@ -14,7 +14,7 @@
 #include "move_table.h"
 #include "sprite.h"
 #include "sprite_system.h"
-#include "unk_0207C908.h"
+#include "type_icon.h"
 #include "vram_transfer.h"
 
 static void ov84_02240424(UnkStruct_ov84_0223B5A0 *param0);

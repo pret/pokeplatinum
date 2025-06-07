@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0207C908_H
-#define POKEPLATINUM_UNK_0207C908_H
+#ifndef POKEPLATINUM_TYPE_ICON_H
+#define POKEPLATINUM_TYPE_ICON_H
 
 #include <nnsys.h>
 
@@ -31,4 +31,4 @@ void CategoryIcon_LoadChar(SpriteSystem *spriteSys, SpriteManager *spriteMan, NN
 void CategoryIcon_UnloadChar(SpriteManager *spriteMan, u32 resourceID);
 void CategoryIcon_DeleteSprite(ManagedSprite *managedSprite);
 
-#endif // POKEPLATINUM_UNK_0207C908_H
+#endif // POKEPLATINUM_TYPE_ICON_H
