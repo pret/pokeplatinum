@@ -2794,7 +2794,7 @@ static int ov64_0223044C (UnkStruct_ov64_02230444 * param0, UnkStruct_ov64_0222D
         }
 
         ApplicationManager_Free(param0->appMan);
-        ov64_0222E07C(param2, param0->unk_04->unk_18, param0->unk_08->unk_1C);
+        ov64_0222E07C(param2, param0->unk_04->textInputStr, param0->unk_08->unk_1C);
         ov64_0222E074(param2, 0, 6);
         param2->unk_04 = 3;
         break;
@@ -2818,7 +2818,7 @@ static int ov64_0223044C (UnkStruct_ov64_02230444 * param0, UnkStruct_ov64_0222D
 
         if (param0->unk_04->unk_14 == 0) {
             ov64_0222E074(param2, 1, 12);
-            ov64_0222E07C(param2, param0->unk_04->unk_18, NULL);
+            ov64_0222E07C(param2, param0->unk_04->textInputStr, NULL);
             param2->unk_04 = 6;
         } else {
             ov64_0222E074(param2, 1, 13);
@@ -2858,9 +2858,9 @@ static UnkStruct_0208737C * ov64_022305DC (UnkStruct_ov64_02230444 * param0, Unk
     if (param1->unk_34.unk_04 == 1) {
         {
             if (IsFullWidthChar(*param1->unk_34.unk_00) == 0) {
-                Strbuf_CopyChars(v0->unk_18, param1->unk_34.unk_00);
+                Strbuf_CopyChars(v0->textInputStr, param1->unk_34.unk_00);
             } else {
-                Strbuf_Clear(v0->unk_18);
+                Strbuf_Clear(v0->textInputStr);
             }
         }
 

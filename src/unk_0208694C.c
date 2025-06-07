@@ -1074,17 +1074,17 @@ static void sub_02086E6C(UnkStruct_02087A10 *param0, UnkStruct_0208737C *param1)
             v0 = MessageLoader_GetNewStrbuf(param0->unk_170, 18 + LCRNG_Next() % 18);
         }
 
-        Strbuf_Copy(param1->unk_18, v0);
+        Strbuf_Copy(param1->textInputStr, v0);
         Strbuf_Free(v0);
-        Strbuf_ToChars(param1->unk_18, param1->unk_1C, 10);
+        Strbuf_ToChars(param1->textInputStr, param1->unk_1C, 10);
     } else if (param0->unk_00 == 3) {
         Strbuf *v1;
 
         v1 = MessageLoader_GetNewStrbuf(param0->unk_170, 88 + (LCRNG_Next() % 2));
 
-        Strbuf_Copy(param1->unk_18, v1);
+        Strbuf_Copy(param1->textInputStr, v1);
         Strbuf_Free(v1);
-        Strbuf_ToChars(param1->unk_18, param1->unk_1C, 10);
+        Strbuf_ToChars(param1->textInputStr, param1->unk_1C, 10);
     } else {
         param1->unk_14 = 1;
     }
@@ -1130,7 +1130,7 @@ static int sub_02086F3C(ApplicationManager *appMan, int *param1)
     } else {
         CharCode_Copy(v0->unk_118, v0->unk_D8);
         CharCode_Copy(v1->unk_1C, v0->unk_D8);
-        Strbuf_CopyChars(v1->unk_18, v0->unk_D8);
+        Strbuf_CopyChars(v1->textInputStr, v0->unk_D8);
     }
 
     Strbuf_Free(v0->unk_184);
@@ -1198,7 +1198,7 @@ UnkStruct_0208737C *sub_0208712C(int heapID, int param1, int param2, int param3,
     v0->unk_0C = param3;
     v0->unk_14 = 0;
     v0->unk_1C[0] = 0xffff;
-    v0->unk_18 = Strbuf_Init(32, heapID);
+    v0->textInputStr = Strbuf_Init(32, heapID);
     v0->unk_44 = 0;
     v0->unk_48 = NULL;
     v0->unk_10 = 0;
@@ -1210,10 +1210,10 @@ UnkStruct_0208737C *sub_0208712C(int heapID, int param1, int param2, int param3,
 
 void sub_0208716C(UnkStruct_0208737C *param0)
 {
-    GF_ASSERT((param0->unk_18) != NULL);
+    GF_ASSERT((param0->textInputStr) != NULL);
     GF_ASSERT((param0) != NULL);
 
-    Strbuf_Free(param0->unk_18);
+    Strbuf_Free(param0->textInputStr);
     Heap_FreeToHeap(param0);
 }
 
@@ -1387,8 +1387,8 @@ static void sub_0208737C(UnkStruct_02087A10 *param0, ApplicationManager *appMan)
 
     param0->unk_118[0] = 0xffff;
 
-    if (v0->unk_18) {
-        Strbuf_ToChars(v0->unk_18, param0->unk_118, 32);
+    if (v0->textInputStr) {
+        Strbuf_ToChars(v0->textInputStr, param0->unk_118, 32);
     }
 
     MI_CpuFill16(param0->unk_D8, 0x1, 32 * 2);

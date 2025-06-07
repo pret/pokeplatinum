@@ -1179,11 +1179,11 @@ static BOOL sub_0203DE98(FieldTask *param0)
         break;
     case 3:
         if (v2->unk_0C->unk_00 == 1) {
-            if (Strbuf_Compare(v2->unk_0C->unk_18, v2->unk_10) == 0) {
+            if (Strbuf_Compare(v2->unk_0C->textInputStr, v2->unk_10) == 0) {
                 v2->unk_0C->unk_14 = 1;
             }
         } else if (v2->unk_0C->unk_00 == 5) {
-            const u16 *v3 = Strbuf_GetData(v2->unk_0C->unk_18);
+            const u16 *v3 = Strbuf_GetData(v2->unk_0C->textInputStr);
             RecordMixedRNG *v4 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
 
             if (RecordMixedRNG_DoesCollectionContainGroup(v4, v3)) {
@@ -1228,11 +1228,11 @@ static void sub_0203DF68(FieldTask *param0)
     } break;
     case 5: {
         RecordMixedRNG *v5 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
-        RecordMixedRNG_GetEntryNameAsStrbuf(v5, 0, 0, v1->unk_0C->unk_18);
+        RecordMixedRNG_GetEntryNameAsStrbuf(v5, 0, 0, v1->unk_0C->textInputStr);
     } break;
     case 6: {
         MiscSaveBlock *v6 = SaveData_MiscSaveBlock(fieldSystem->saveData);
-        MiscSaveBlock_SetTabletName(v6, v1->unk_0C->unk_18);
+        MiscSaveBlock_SetTabletName(v6, v1->unk_0C->textInputStr);
     } break;
     }
 
@@ -1266,7 +1266,7 @@ void sub_0203DFE8(FieldTask *param0, int param1, int param2, int param3, int par
         break;
     default:
         if (param5 != NULL) {
-            Strbuf_CopyChars(v2->unk_0C->unk_18, param5);
+            Strbuf_CopyChars(v2->unk_0C->textInputStr, param5);
         }
         break;
     }
