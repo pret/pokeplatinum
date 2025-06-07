@@ -16,6 +16,7 @@
 #include "generated/accessories.h"
 #include "generated/first_arrival_to_zones.h"
 #include "generated/journal_location_events.h"
+#include "generated/movement_actions.h"
 #include "generated/save_types.h"
 #include "generated/signpost_commands.h"
 
@@ -2906,27 +2907,27 @@ static BOOL ScrCmd_2A1(ScriptContext *ctx)
     int v11 = 0;
 
     if (v8 < v6) {
-        v10[v11].unk_00 = 0xf;
-        v10[v11].unk_02 = v6 - v8;
+        v10[v11].movementAction = MOVEMENT_ACTION_WALK_NORMAL_EAST;
+        v10[v11].count = v6 - v8;
         v11++;
     } else if (v8 > v6) {
-        v10[v11].unk_00 = 0xe;
-        v10[v11].unk_02 = v8 - v6;
+        v10[v11].movementAction = MOVEMENT_ACTION_WALK_NORMAL_WEST;
+        v10[v11].count = v8 - v6;
         v11++;
     }
 
     if (v9 < v7) {
-        v10[v11].unk_00 = 0xc;
-        v10[v11].unk_02 = v7 - v9;
+        v10[v11].movementAction = MOVEMENT_ACTION_WALK_NORMAL_NORTH;
+        v10[v11].count = v7 - v9;
         v11++;
     } else if (v9 > v7) {
-        v10[v11].unk_00 = 0xd;
-        v10[v11].unk_02 = v9 - v7;
+        v10[v11].movementAction = MOVEMENT_ACTION_WALK_NORMAL_SOUTH;
+        v10[v11].count = v9 - v7;
         v11++;
     }
 
-    v10[v11].unk_00 = 0xfe;
-    v10[v11].unk_02 = 0;
+    v10[v11].movementAction = MOVEMENT_ACTION_END;
+    v10[v11].count = 0;
 
     SysTask *v1 = MapObject_StartAnimation(v4, v10);
     u8 *v2 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_MOVEMENT_COUNT);

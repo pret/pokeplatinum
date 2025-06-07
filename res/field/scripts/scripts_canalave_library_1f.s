@@ -51,7 +51,7 @@ _0068:
 
     .balign 4, 0
 _0078:
-    MoveAction_000
+    FaceNorth
     EndMovement
 
 _0080:
@@ -138,28 +138,28 @@ _0175:
 
     .balign 4, 0
 _018C:
-    MoveAction_014 5
-    MoveAction_013 6
-    MoveAction_062
+    WalkNormalWest 5
+    WalkNormalSouth 6
+    Delay4
     EndMovement
 
     .balign 4, 0
 _019C:
-    MoveAction_013
-    MoveAction_014 5
-    MoveAction_013 5
-    MoveAction_062
+    WalkNormalSouth
+    WalkNormalWest 5
+    WalkNormalSouth 5
+    Delay4
     EndMovement
 
     .balign 4, 0
 _01B0:
-    MoveAction_063
-    MoveAction_034
+    Delay8
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _01BC:
-    MoveAction_063 2
-    MoveAction_062
-    MoveAction_034
+    Delay8 2
+    Delay4
+    WalkOnSpotNormalWest
     EndMovement

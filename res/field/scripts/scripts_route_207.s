@@ -107,7 +107,7 @@ _0156:
 
     .balign 4, 0
 _0174:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .byte 63
@@ -137,18 +137,18 @@ _0174:
 
     .balign 4, 0
 _0194:
-    MoveAction_015 3
-    MoveAction_075
+    WalkNormalEast 3
+    EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
 _01A0:
-    MoveAction_015 5
+    WalkNormalEast 5
     EndMovement
 
     .balign 4, 0
 _01A8:
-    MoveAction_014 8
+    WalkNormalWest 8
     EndMovement
 
 _01B0:

@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/field/map_prop.h"
+#include "generated/movement_actions.h"
 
 #include "struct_decls/struct_02061AB4_decl.h"
 
@@ -168,7 +169,7 @@ BOOL ov5_021D433C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
     } break;
     case 3:
         v0 = Player_MapObject(fieldSystem->playerAvatar);
-        LocalMapObj_SetAnimationCode(v0, 0xc);
+        LocalMapObj_SetAnimationCode(v0, MOVEMENT_ACTION_WALK_NORMAL_NORTH);
         (param1->unk_00)++;
         break;
     case 4:
@@ -339,7 +340,7 @@ BOOL ov5_021D453C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
     } break;
     case 3:
         v0 = Player_MapObject(fieldSystem->playerAvatar);
-        LocalMapObj_SetAnimationCode(v0, 0xd);
+        LocalMapObj_SetAnimationCode(v0, MOVEMENT_ACTION_WALK_NORMAL_SOUTH);
         (param1->unk_00)++;
         break;
     case 4:
@@ -514,7 +515,7 @@ BOOL ov5_021D4858(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
         v0 = Player_MapObject(fieldSystem->playerAvatar);
 
         if (LocalMapObj_IsAnimationSet(v0) == 1) {
-            LocalMapObj_SetAnimationCode(v0, 0x49);
+            LocalMapObj_SetAnimationCode(v0, MOVEMENT_ACTION_PAUSE_ANIMATION);
         } else {
             GF_ASSERT(FALSE);
         }
@@ -547,7 +548,7 @@ BOOL ov5_021D4858(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
         v0 = Player_MapObject(fieldSystem->playerAvatar);
 
         if (LocalMapObj_IsAnimationSet(v0) == 1) {
-            LocalMapObj_SetAnimationCode(v0, 0x4a);
+            LocalMapObj_SetAnimationCode(v0, MOVEMENT_ACTION_RESUME_ANIMATION);
             (param1->unk_00)++;
         }
         break;
@@ -631,7 +632,7 @@ BOOL ov5_021D4A24(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
         v0 = Player_MapObject(fieldSystem->playerAvatar);
 
         if (LocalMapObj_IsAnimationSet(v0) == 1) {
-            LocalMapObj_SetAnimationCode(v0, 0x49);
+            LocalMapObj_SetAnimationCode(v0, MOVEMENT_ACTION_PAUSE_ANIMATION);
         } else {
             GF_ASSERT(FALSE);
         }
@@ -662,7 +663,7 @@ BOOL ov5_021D4A24(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
         v0 = Player_MapObject(fieldSystem->playerAvatar);
 
         if (LocalMapObj_IsAnimationSet(v0) == 1) {
-            LocalMapObj_SetAnimationCode(v0, 0x4a);
+            LocalMapObj_SetAnimationCode(v0, MOVEMENT_ACTION_RESUME_ANIMATION);
 
             ov5_021D1744(0);
             (param1->unk_00)++;
@@ -902,7 +903,7 @@ BOOL ov5_021D4E10(FieldTask *param0)
     case 1:
         v0 = Player_MapObject(fieldSystem->playerAvatar);
         MapObject_SetHidden(v0, 0);
-        LocalMapObj_SetAnimationCode(v0, 0xd);
+        LocalMapObj_SetAnimationCode(v0, MOVEMENT_ACTION_WALK_NORMAL_SOUTH);
         (v2->unk_00)++;
         break;
     case 2:
@@ -1049,7 +1050,7 @@ BOOL ov5_021D5020(FieldTask *param0)
     case 1:
         v0 = Player_MapObject(fieldSystem->playerAvatar);
         MapObject_SetHidden(v0, 0);
-        LocalMapObj_SetAnimationCode(v0, 0xd);
+        LocalMapObj_SetAnimationCode(v0, MOVEMENT_ACTION_WALK_NORMAL_SOUTH);
         (v2->unk_00)++;
         break;
     case 2:
@@ -1102,7 +1103,7 @@ BOOL ov5_021D5150(FieldTask *param0)
     case 1:
         v0 = Player_MapObject(fieldSystem->playerAvatar);
         MapObject_SetHidden(v0, 0);
-        LocalMapObj_SetAnimationCode(v0, 0xd);
+        LocalMapObj_SetAnimationCode(v0, MOVEMENT_ACTION_WALK_NORMAL_SOUTH);
         (v2->unk_00)++;
         break;
     case 2:

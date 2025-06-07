@@ -5,6 +5,7 @@
 
 #include "constants/field/dynamic_map_features.h"
 #include "constants/species.h"
+#include "generated/movement_actions.h"
 
 #include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
@@ -2379,7 +2380,7 @@ static BOOL ov9_0224AAD4(FieldTask *param0)
             } break;
             }
 
-            v6 = sub_02065838(v5, 0x0);
+            v6 = MovementAction_TurnActionTowardsDir(v5, MOVEMENT_ACTION_FACE_NORTH);
 
             LocalMapObj_SetAnimationCode(v4, v6);
             MapObject_TryFace(v4, v5);
@@ -2431,7 +2432,7 @@ static BOOL ov9_0224AAD4(FieldTask *param0)
         if (LocalMapObj_IsAnimationSet(v4) == 0) {
             break;
         } else {
-            int v14 = sub_02065838(
+            int v14 = MovementAction_TurnActionTowardsDir(
                 v2->unk_34.unk_22, 0x0);
 
             LocalMapObj_SetAnimationCode(v4, v14);

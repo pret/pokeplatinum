@@ -91,15 +91,15 @@ _00EC:
 
     .balign 4, 0
 _00FC:
-    MoveAction_041 2
+    WalkOnSpotFasterSouth 2
     EndMovement
 
     .balign 4, 0
 _0104:
-    MoveAction_043 2
+    WalkOnSpotFasterEast 2
     EndMovement
 
     .balign 4, 0
 _010C:
-    MoveAction_042 2
+    WalkOnSpotFasterWest 2
     EndMovement

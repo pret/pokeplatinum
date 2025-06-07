@@ -101,5 +101,5 @@ _0164:
 
     .balign 4, 0
 _017C:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
