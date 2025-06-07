@@ -96,7 +96,7 @@ enum MarkState {
 };
 
 enum WallpaperMenuState {
-    WALLPAPER_MENU_0,
+    WALLPAPER_MENU_START,
     WALLPAPER_MENU_PICK_THEME_INIT,
     WALLPAPER_MENU_PICK_THEME_WAIT_FOR_TASK,
     WALLPAPER_MENU_PICK_THEME_WAIT_FOR_USER,
@@ -122,6 +122,12 @@ enum StoreMonState {
     STORE_MON_FROM_CURSOR,
     STORE_MON_FROM_PARTY,
     STORE_MON_END
+};
+
+enum BoxJumpState {
+    JUMP_START,
+    JUMP_TO_BOX,
+    JUMP_END
 };
 
 static const TouchScreenHitTable sMainPcButtons[] = {
@@ -215,13 +221,13 @@ typedef struct UnkStruct_ov19_021D5DF8_t {
     u32 unk_218;
 } UnkStruct_ov19_021D5DF8;
 
-typedef int (*UnkFuncPtr_ov19_021D0EA0)(UnkStruct_ov19_021D5DF8 *);
-typedef void (*UnkFuncPtr_ov19_021D0EB0)(UnkStruct_ov19_021D5DF8 *, u32 *);
+typedef int (*CursorLocationInputHandler)(UnkStruct_ov19_021D5DF8 *);
+typedef void (*BoxApplicationAction)(UnkStruct_ov19_021D5DF8 *, u32 *);
 
-static void ov19_RegisterCursorLocationInputHandler(UnkStruct_ov19_021D5DF8 *param0, UnkFuncPtr_ov19_021D0EA0 cursorLocationInputHandler);
-static void ov19_RegisterBoxApplicationAction(UnkStruct_ov19_021D5DF8 *param0, UnkFuncPtr_ov19_021D0EB0 param1);
+static void ov19_RegisterCursorLocationInputHandler(UnkStruct_ov19_021D5DF8 *param0, CursorLocationInputHandler cursorLocationInputHandler);
+static void ov19_RegisterBoxApplicationAction(UnkStruct_ov19_021D5DF8 *param0, BoxApplicationAction boxApplicationAction);
 static void ov19_ClearBoxApplicationAction(UnkStruct_ov19_021D5DF8 *param0);
-static UnkFuncPtr_ov19_021D0EA0 ov19_GetCursorLocationInputHandler(UnkStruct_ov19_021D5DF8 *param0);
+static CursorLocationInputHandler ov19_GetCursorLocationInputHandler(UnkStruct_ov19_021D5DF8 *param0);
 static void ov19_FlagRecordBoxUseInJournal(UnkStruct_ov19_021D5DF8 *param0);
 static void ov19_021D0F20(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D0F88(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
@@ -239,8 +245,8 @@ static void ov19_021D1F5C(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D20A4(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D2308(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D2694(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
-static void ov19_021D27E8(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
-static void ov19_021D2890(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
+static void ov19_BoxJump(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
+static void ov19_WallpaperMenu(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_Mark(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D2B54(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static BOOL ov19_IsBoxUnderSelectedMonsEmpty(const UnkStruct_ov19_021D4DF0 *param0);
@@ -399,15 +405,15 @@ int ov19_021D0E58(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static void ov19_RegisterCursorLocationInputHandler(UnkStruct_ov19_021D5DF8 *param0, UnkFuncPtr_ov19_021D0EA0 cursorLocationInputHandler)
+static void ov19_RegisterCursorLocationInputHandler(UnkStruct_ov19_021D5DF8 *param0, CursorLocationInputHandler cursorLocationInputHandler)
 {
     param0->cursorLocationInputHandler = cursorLocationInputHandler;
     param0->cursorLocationHandlerState = 0;
 }
 
-static void ov19_RegisterBoxApplicationAction(UnkStruct_ov19_021D5DF8 *param0, UnkFuncPtr_ov19_021D0EB0 param1)
+static void ov19_RegisterBoxApplicationAction(UnkStruct_ov19_021D5DF8 *param0, BoxApplicationAction boxApplicationAction)
 {
-    param0->boxApplicationAction = param1;
+    param0->boxApplicationAction = boxApplicationAction;
     param0->boxApplicationActionState = 0;
 }
 
@@ -416,7 +422,7 @@ static void ov19_ClearBoxApplicationAction(UnkStruct_ov19_021D5DF8 *param0)
     param0->boxApplicationAction = NULL;
 }
 
-static UnkFuncPtr_ov19_021D0EA0 ov19_GetCursorLocationInputHandler(UnkStruct_ov19_021D5DF8 *param0)
+static CursorLocationInputHandler ov19_GetCursorLocationInputHandler(UnkStruct_ov19_021D5DF8 *param0)
 {
     switch (ov19_GetCursorLocation(&(param0->unk_00))) {
     case CURSOR_IN_BOX:
@@ -1352,10 +1358,11 @@ static void ov19_021D2308(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
     }
 }
 
+// box header action handling?
 static void ov19_021D2694(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
 {
     switch (*param1) {
-    case 0:
+    case 0: // box state?  Cursor state/location?
         ov19_SetBoxMessage(&param0->unk_00, BoxText_WhatDo);
         BoxMenu_FillHeaderMenu(&param0->unk_00);
 
@@ -1397,7 +1404,7 @@ static void ov19_021D2694(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         switch (param0->menuItem) {
         case BOX_MENU_JUMP:
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_CloseMessageBox);
-            ov19_RegisterBoxApplicationAction(param0, ov19_021D27E8);
+            ov19_RegisterBoxApplicationAction(param0, ov19_BoxJump);
             break;
         case BOX_MENU_WALLPAPER:
             ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6EC0);
@@ -1415,38 +1422,37 @@ static void ov19_021D2694(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         break;
     case 7:
         if (ov19_CheckAllTasksDone(param0->unk_114)) {
-            ov19_RegisterBoxApplicationAction(param0, ov19_021D2890);
+            ov19_RegisterBoxApplicationAction(param0, ov19_WallpaperMenu);
         }
         break;
     }
 }
 
-// jump to box
-static void ov19_021D27E8(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
+static void ov19_BoxJump(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
 {
     switch (*param1) {
-    case 0:
+    case JUMP_START:
         BoxSelectorPopup_Init(param0, ov19_GetCurrentBox(&param0->unk_00), BoxText_JumpToBox);
-        (*param1) = 1;
+        (*param1) = JUMP_TO_BOX;
         break;
-    case 1:
+    case JUMP_TO_BOX:
         if (ov19_TrySelectBoxFromPopup(param0) == FALSE) {
             break;
         }
 
-        if ((param0->boxSelector.boxID == -1) || (param0->boxSelector.boxID == ov19_GetCurrentBox(&param0->unk_00))) {
-            (*param1) = 2;
+        if (param0->boxSelector.boxID == -1 || param0->boxSelector.boxID == ov19_GetCurrentBox(&param0->unk_00)) {
+            (*param1) = JUMP_END;
         } else {
             ov19_LoadCustomizationsFor(&param0->unk_00, param0->boxSelector.boxID);
             PCBoxes_SetCurrentBox(param0->pcBoxes, param0->boxSelector.boxID);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6824);
-            (*param1) = 2;
+            (*param1) = JUMP_END;
         }
 
         ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_CloseMessageBox);
         ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6FB0);
         break;
-    case 2:
+    case JUMP_END:
         if (ov19_CheckAllTasksDone(param0->unk_114)) {
             ov19_ClearBoxApplicationAction(param0);
         }
@@ -1454,10 +1460,10 @@ static void ov19_021D27E8(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
     }
 }
 
-static void ov19_021D2890(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
+static void ov19_WallpaperMenu(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
 {
     switch (*state) {
-    case WALLPAPER_MENU_0:
+    case WALLPAPER_MENU_START:
         param0->menuItem = BOX_MENU_SCENERY_1;
         *state = WALLPAPER_MENU_PICK_THEME_INIT;
     case WALLPAPER_MENU_PICK_THEME_INIT:
