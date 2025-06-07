@@ -108,6 +108,16 @@ enum BoxSelectorState {
     BOX_SELECTOR_WAIT_FOR_USER
 };
 
+enum StoreMonState {
+    STORE_MON_CHECK_CAN_STORE_MON,
+    STORE_MON_SELECT_BOX,
+    STORE_MON_BOX_FULL,
+    STORE_MON_CONFIRM_CANNOT_STORE_MON,
+    STORE_MON_FROM_CURSOR,
+    STORE_MON_FROM_PARTY,
+    STORE_MON_END
+};
+
 static const TouchScreenHitTable sMainPcButtons[] = {
     { TOUCHSCREEN_USE_CIRCLE, MAIN_PC_LEFT_BUTTON_X, MAIN_PC_BUTTON_Y, MAIN_PC_BUTTON_RADIUS },
     { TOUCHSCREEN_USE_CIRCLE, MAIN_PC_RIGHT_BUTTON_X, MAIN_PC_BUTTON_Y, MAIN_PC_BUTTON_RADIUS },
@@ -229,7 +239,7 @@ static void ov19_021D2E1C(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D2F14(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D3010(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D30D0(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
-static void ov19_021D3294(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
+static void ov19_StoreMon(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static BOOL ov19_OnLastAliveMon(UnkStruct_ov19_021D5DF8 *param0);
 static BOOL ov19_CheckReleaseMonValid(UnkStruct_ov19_021D5DF8 *param0, int *destBoxMessageID);
 static void ov19_ReleaseMon(UnkStruct_ov19_021D5DF8 *param0, u32 *releaseMonState);
@@ -1140,7 +1150,7 @@ static void ov19_021D20A4(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             ov19_RegisterBoxApplicationAction(param0, ov19_021D30D0);
             break;
         case BOX_MENU_STORE:
-            ov19_RegisterBoxApplicationAction(param0, ov19_021D3294);
+            ov19_RegisterBoxApplicationAction(param0, ov19_StoreMon);
             break;
         case BOX_MENU_MARK:
             ov19_RegisterBoxApplicationAction(param0, ov19_Mark);
@@ -1935,16 +1945,16 @@ static void ov19_021D30D0(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
     }
 }
 
-static void ov19_021D3294(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
+static void ov19_StoreMon(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
 {
-    switch (*param1) {
-    case 0:
+    switch (*state) {
+    case STORE_MON_CHECK_CAN_STORE_MON:
         if (ov19_GetPreviewMonSource(&param0->unk_00) == PREVIEW_MON_UNDER_CURSOR && ov19_OnLastAliveMon(param0) == TRUE) {
             Sound_PlayEffect(SEQ_SE_DP_BOX03);
             ov19_SetBoxMessage(&param0->unk_00, BoxText_LastMon);
             ov19_BoxTaskHandler(param0->unk_114, FUNCTION_ov19_021D6EC0);
             ov19_BoxTaskHandler(param0->unk_114, FUNCTION_BoxGraphics_DisplayBoxMessage);
-            (*param1) = 3;
+            (*state) = STORE_MON_CONFIRM_CANNOT_STORE_MON;
         } else {
             int boxMessageID;
 
@@ -1953,15 +1963,15 @@ static void ov19_021D3294(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
                 ov19_SetBoxMessage(&param0->unk_00, boxMessageID);
                 ov19_BoxTaskHandler(param0->unk_114, FUNCTION_ov19_021D6EC0);
                 ov19_BoxTaskHandler(param0->unk_114, FUNCTION_BoxGraphics_DisplayBoxMessage);
-                (*param1) = 3;
+                (*state) = STORE_MON_CONFIRM_CANNOT_STORE_MON;
             } else {
                 BoxSelectorPopup_Init(param0, param0->unk_00.unk_110, BoxText_PickDepositBox);
                 ov19_BoxTaskHandler(param0->unk_114, FUNCTION_BoxGraphics_CloseMessageBox);
-                (*param1) = 1;
+                (*state) = STORE_MON_SELECT_BOX;
             }
         }
         break;
-    case 1:
+    case STORE_MON_SELECT_BOX:
         if (ov19_TrySelectBoxFromPopup(param0) == FALSE) {
             break;
         }
@@ -1969,7 +1979,7 @@ static void ov19_021D3294(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         if (param0->boxSelector.boxID == -1) {
             ov19_BoxTaskHandler(param0->unk_114, FUNCTION_BoxGraphics_CloseMessageBox);
             ov19_BoxTaskHandler(param0->unk_114, FUNCTION_ov19_021D6FB0);
-            (*param1) = 6;
+            (*state) = STORE_MON_END;
             break;
         }
 
@@ -1980,7 +1990,7 @@ static void ov19_021D3294(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
                 ov19_FlagRecordBoxUseInJournal(param0);
                 ov19_BoxTaskHandler(param0->unk_114, FUNCTION_BoxGraphics_CloseMessageBox);
                 ov19_BoxTaskHandler(param0->unk_114, FUNCTION_ov19_021D6FB0);
-                (*param1) = 4;
+                (*state) = STORE_MON_FROM_CURSOR;
                 break;
             }
         } else {
@@ -1988,7 +1998,7 @@ static void ov19_021D3294(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
                 ov19_FlagRecordBoxUseInJournal(param0);
                 ov19_BoxTaskHandler(param0->unk_114, FUNCTION_BoxGraphics_CloseMessageBox);
                 ov19_BoxTaskHandler(param0->unk_114, FUNCTION_ov19_021D6FB0);
-                (*param1) = 5;
+                (*state) = STORE_MON_FROM_PARTY;
                 break;
             }
         }
@@ -1996,43 +2006,43 @@ static void ov19_021D3294(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         Sound_PlayEffect(SEQ_SE_DP_BOX03);
         ov19_SetBoxMessage(&param0->unk_00, BoxText_BoxFull);
         ov19_BoxTaskHandler(param0->unk_114, FUNCTION_BoxGraphics_DisplayBoxMessage);
-        (*param1) = 2;
+        (*state) = STORE_MON_BOX_FULL;
         break;
-    case 2:
+    case STORE_MON_BOX_FULL:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNCTION_BoxGraphics_DisplayBoxMessage) == FALSE) {
             break;
         }
 
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
             BoxSelectorPopup_Reset(param0);
-            (*param1) = 1;
+            (*state) = STORE_MON_SELECT_BOX;
         }
         break;
-    case 3:
+    case STORE_MON_CONFIRM_CANNOT_STORE_MON:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNCTION_BoxGraphics_DisplayBoxMessage) == FALSE) {
             break;
         }
 
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
             ov19_BoxTaskHandler(param0->unk_114, FUNCTION_BoxGraphics_CloseMessageBox);
-            (*param1) = 6;
+            (*state) = STORE_MON_END;
         }
         break;
-    case 4:
+    case STORE_MON_FROM_CURSOR:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNCTION_ov19_021D6FB0)) {
             ov19_BoxTaskHandler(param0->unk_114, FUNCTION_ov19_021D6AEC);
             ov19_BoxTaskHandler(param0->unk_114, FUNCTION_ov19_021D6940);
-            (*param1) = 6;
+            (*state) = STORE_MON_END;
         }
         break;
-    case 5:
+    case STORE_MON_FROM_PARTY:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNCTION_ov19_021D6FB0)) {
             ov19_BoxTaskHandler(param0->unk_114, FUNCTION_ov19_021D6B1C);
             ov19_BoxTaskHandler(param0->unk_114, FUNCTION_ov19_021D6940);
-            (*param1) = 6;
+            (*state) = STORE_MON_END;
         }
         break;
-    case 6:
+    case STORE_MON_END:
         if (ov19_CheckAllTasksDone(param0->unk_114)) {
             ov19_ClearBoxApplicationAction(param0);
         }
