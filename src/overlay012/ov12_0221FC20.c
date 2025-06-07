@@ -1,6 +1,7 @@
 #include "overlay012/ov12_0221FC20.h"
 
 #include <nitro.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include "generated/battle_terrains.h"
@@ -60,7 +61,7 @@ typedef struct BattleAnimSoundContext {
     // Pan
     int startPan;
     int endPan;
-    int panIncrement;
+    int panStep;
     int curPan;
 
     u8 repeatCount; // Number of times to repeat the sound effect
@@ -131,7 +132,7 @@ static void BattleAnimScriptCmd_WaitForAnimTasks(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_BeginLoop(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_EndLoop(BattleAnimSystem *param0);
 static void ov12_02220798(BattleAnimSystem *param0);
-static void ov12_02222950(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_PlaySoundEffect(BattleAnimSystem *param0);
 static void ov12_02221284(BattleAnimSystem *param0);
 static void ov12_02221288(BattleAnimSystem *param0);
 static void ov12_02222CAC(BattleAnimSystem *param0);
@@ -151,14 +152,14 @@ static void ov12_022227CC(BattleAnimSystem *param0);
 static void ov12_02222820(BattleAnimSystem *param0);
 static void ov12_02222840(BattleAnimSystem *param0);
 static void ov12_02222860(BattleAnimSystem *param0);
-static void ov12_02222984(BattleAnimSystem *param0);
-static void ov12_022229BC(BattleAnimSystem *param0);
-static void ov12_022229D8(BattleAnimSystem *param0);
-static void ov12_02222B94(BattleAnimSystem *param0);
-static void ov12_02222BF8(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_PlayPannedSoundEffect(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_PanSoundEffects(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_PlayMovingSoundEffectAtkDef(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_PlayLoopedSoundEffect(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_PlayDelayedSoundEffect(BattleAnimSystem *param0);
 static void ov12_02222CE4(BattleAnimSystem *param0);
 static void ov12_02222C50(BattleAnimSystem *param0);
-static void ov12_02222C54(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_WaitForSoundEffects(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_JumpIfEqual(BattleAnimSystem *param0);
 static void ov12_0222128C(BattleAnimSystem *param0);
 static void ov12_0222144C(BattleAnimSystem *param0);
@@ -172,8 +173,8 @@ static void ov12_02221A30(BattleAnimSystem *param0);
 static void ov12_02221424(BattleAnimSystem *param0);
 static void ov12_02220EA8(BattleAnimSystem *param0);
 static void ov12_022228DC(BattleAnimSystem *param0);
-static void ov12_02222A78(BattleAnimSystem *param0);
-static void ov12_02222AF0(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_PlayMovingSoundEffectNoCorrection(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_PlayMovingSoundEffectAtkDef2(BattleAnimSystem *param0);
 static void ov12_0222293C(BattleAnimSystem *param0);
 static void ov12_02222940(BattleAnimSystem *param0);
 static void ov12_02222944(BattleAnimSystem *param0);
@@ -181,7 +182,7 @@ static void ov12_02221A4C(BattleAnimSystem *param0);
 static void ov12_02221A50(BattleAnimSystem *param0);
 static void ov12_02222948(BattleAnimSystem *param0);
 static void ov12_0222294C(BattleAnimSystem *param0);
-static void ov12_02222968(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_StopSoundEffect(BattleAnimSystem *param0);
 static void ov12_02220F5C(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_JumpIfWeather(BattleAnimSystem *param0);
 static void ov12_02220FFC(BattleAnimSystem *param0);
@@ -703,9 +704,9 @@ static BOOL BattleAnimSoundFunc_Pan(BattleAnimSoundContext *ctx)
     BOOL isActive = TRUE;
 
     ctx->tickCount = 0;
-    ctx->curPan += ctx->panIncrement;
+    ctx->curPan += ctx->panStep;
 
-    if (ctx->panIncrement == 0) {
+    if (ctx->panStep == 0) {
         isActive = FALSE;
     } else if (ctx->startPan < ctx->endPan) {
         if (ctx->curPan >= ctx->endPan) {
@@ -777,7 +778,7 @@ static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
     BattleAnimScriptCmd_BeginLoop,
     BattleAnimScriptCmd_EndLoop,
     ov12_02220798,
-    ov12_02222950,
+    BattleAnimScriptCmd_PlaySoundEffect,
     ov12_02221284,
     ov12_02221288,
     ov12_02222CAC,
@@ -794,21 +795,21 @@ static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
     ov12_02222820,
     ov12_02222840,
     ov12_02222860,
-    ov12_02222984,
-    ov12_022229BC,
-    ov12_022229D8,
-    ov12_02222B94,
-    ov12_02222BF8,
+    BattleAnimScriptCmd_PlayPannedSoundEffect,
+    BattleAnimScriptCmd_PanSoundEffects,
+    BattleAnimScriptCmd_PlayMovingSoundEffectAtkDef,
+    BattleAnimScriptCmd_PlayLoopedSoundEffect,
+    BattleAnimScriptCmd_PlayDelayedSoundEffect,
     ov12_02222CE4,
     ov12_02222C50,
-    ov12_02222C54,
+    BattleAnimScriptCmd_WaitForSoundEffects,
     BattleAnimScriptCmd_JumpIfEqual,
     ov12_0222128C,
     ov12_02221424,
     ov12_02220EA8,
     ov12_022228DC,
-    ov12_02222A78,
-    ov12_02222AF0,
+    BattleAnimScriptCmd_PlayMovingSoundEffectNoCorrection,
+    BattleAnimScriptCmd_PlayMovingSoundEffectAtkDef2,
     ov12_0222293C,
     ov12_02222940,
     ov12_02222944,
@@ -816,7 +817,7 @@ static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
     ov12_02221A50,
     ov12_02222948,
     ov12_0222294C,
-    ov12_02222968,
+    BattleAnimScriptCmd_StopSoundEffect,
     BattleAnimScriptCmd_CallFunc,
     BattleAnimScriptCmd_CreateEmitter,
     BattleAnimScriptCmd_CreateEmitterEx,
@@ -3103,213 +3104,195 @@ static void ov12_0222294C(BattleAnimSystem *param0)
     return;
 }
 
-static void ov12_02222950(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_PlaySoundEffect(BattleAnimSystem *system)
 {
-    u16 v0;
+    BattleAnimScript_Next(system);
 
-    param0->scriptPtr += 1;
-    v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    u16 effectID = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    Sound_PlayEffect(v0);
+    Sound_PlayEffect(effectID);
 }
 
-static void ov12_02222968(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_StopSoundEffect(BattleAnimSystem *system)
 {
-    u16 v0;
+    BattleAnimScript_Next(system);
 
-    param0->scriptPtr += 1;
+    u16 effectID = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
-
-    Sound_StopEffect(v0, 0);
+    Sound_StopEffect(effectID, 0);
 }
 
-static void ov12_02222984(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_PlayPannedSoundEffect(BattleAnimSystem *system)
 {
-    u16 v0;
-    int v1;
+    BattleAnimScript_Next(system);
 
-    param0->scriptPtr += 1;
+    u16 effectID = (u16)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0 = (u16)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    int pan = (int)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v1 = (int)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    pan = BattleAnimSound_CorrectPanDirection(system, pan);
 
-    v1 = ov12_0222317C(param0, v1);
-
-    Sound_PlayEffect(v0);
-    Sound_PanEffect(v0, SOUND_PLAYBACK_TRACK_ALL, v1);
+    Sound_PlayEffect(effectID);
+    Sound_PanEffect(effectID, SOUND_PLAYBACK_TRACK_ALL, pan);
 }
 
-static void ov12_022229BC(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_PanSoundEffects(BattleAnimSystem *system)
 {
-    int v0;
+    BattleAnimScript_Next(system);
 
-    param0->scriptPtr += 1;
+    int pan = (int)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0 = (int)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
-
-    v0 = ov12_0222317C(param0, v0);
-    Sound_PanAllEffects(v0);
+    Sound_PanAllEffects(BattleAnimSound_CorrectPanDirection(system, pan));
 }
 
-static void ov12_022229D8(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_PlayMovingSoundEffectAtkDef(BattleAnimSystem *system)
 {
-    BattleAnimSoundContext *v0 = NULL;
+    BattleAnimSoundContext *ctx = BattleAnimSystem_CreateSoundContext(system);
+    memset(ctx, 0, sizeof(BattleAnimSoundContext));
 
-    v0 = BattleAnimSystem_CreateSoundContext(param0);
-    memset(v0, 0, sizeof(BattleAnimSoundContext));
+    ctx->type = BATTLE_ANIM_SOUND_TASK_PAN;
 
-    v0->type = 1;
-    param0->scriptPtr += 1;
+    BattleAnimScript_Next(system);
 
-    v0->effectID = (u16)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    ctx->effectID = (u16)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0->startPan = (int)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    ctx->startPan = (int)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0->endPan = (int)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    ctx->endPan = (int)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0->panIncrement = (int)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    ctx->panStep = (int)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0->applyInterval = (u8)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    ctx->applyInterval = (u8)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0->startPan = ov12_0222317C(param0, v0->startPan);
-    v0->endPan = ov12_0222317C(param0, v0->endPan);
-    v0->panIncrement = ov12_02223234(v0->startPan, v0->endPan, v0->panIncrement);
+    ctx->startPan = BattleAnimSound_CorrectPanDirection(system, ctx->startPan);
+    ctx->endPan = BattleAnimSound_CorrectPanDirection(system, ctx->endPan);
+    ctx->panStep = BattleAnimSound_CorrectStepDirection(ctx->startPan, ctx->endPan, ctx->panStep);
 
-    Sound_PlayEffect(v0->effectID);
-    Sound_PanEffect(v0->effectID, SOUND_PLAYBACK_TRACK_ALL, v0->startPan);
+    Sound_PlayEffect(ctx->effectID);
+    Sound_PanEffect(ctx->effectID, SOUND_PLAYBACK_TRACK_ALL, ctx->startPan);
 
-    BattleAnimSystem_StartSoundTaskInternal(param0, v0);
+    BattleAnimSystem_StartSoundTaskInternal(system, ctx);
 }
 
-static void ov12_02222A78(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_PlayMovingSoundEffectNoCorrection(BattleAnimSystem *system)
 {
-    BattleAnimSoundContext *v0 = NULL;
+    BattleAnimSoundContext *ctx = BattleAnimSystem_CreateSoundContext(system);
+    memset(ctx, 0, sizeof(BattleAnimSoundContext));
 
-    v0 = BattleAnimSystem_CreateSoundContext(param0);
-    memset(v0, 0, sizeof(BattleAnimSoundContext));
+    ctx->type = BATTLE_ANIM_SOUND_TASK_PAN_2;
+    BattleAnimScript_Next(system);
 
-    v0->type = 2;
-    param0->scriptPtr += 1;
+    ctx->effectID = (u16)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0->effectID = (u16)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    ctx->startPan = (s8)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0->startPan = (s8)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    ctx->endPan = (s8)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0->endPan = (s8)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    ctx->panStep = (s8)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0->panIncrement = (s8)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    ctx->applyInterval = (u8)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0->applyInterval = (u8)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    Sound_PlayEffect(ctx->effectID);
+    Sound_PanEffect(ctx->effectID, SOUND_PLAYBACK_TRACK_ALL, ctx->startPan);
 
-    Sound_PlayEffect(v0->effectID);
-    Sound_PanEffect(v0->effectID, SOUND_PLAYBACK_TRACK_ALL, v0->startPan);
-
-    BattleAnimSystem_StartSoundTaskInternal(param0, v0);
+    BattleAnimSystem_StartSoundTaskInternal(system, ctx);
 }
 
-static void ov12_02222AF0(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_PlayMovingSoundEffectAtkDef2(BattleAnimSystem *system)
 {
-    BattleAnimSoundContext *v0 = NULL;
+    BattleAnimSoundContext *ctx = BattleAnimSystem_CreateSoundContext(system);
+    memset(ctx, 0, sizeof(BattleAnimSoundContext));
 
-    v0 = BattleAnimSystem_CreateSoundContext(param0);
-    memset(v0, 0, sizeof(BattleAnimSoundContext));
+    ctx->type = BATTLE_ANIM_SOUND_TASK_PAN;
+    BattleAnimScript_Next(system);
 
-    v0->type = 1;
-    param0->scriptPtr += 1;
+    ctx->effectID = (u16)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0->effectID = (u16)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    ctx->startPan = (s8)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0->startPan = (s8)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    ctx->endPan = (s8)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0->endPan = (s8)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    ctx->panStep = (s8)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0->panIncrement = (s8)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    ctx->applyInterval = (u8)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0->applyInterval = (u8)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    ctx->startPan = BattleAnimSound_CorrectPanDirection(system, ctx->startPan);
+    ctx->endPan = BattleAnimSound_CorrectPanDirection(system, ctx->endPan);
+    ctx->panStep = BattleAnimSound_CorrectPanDirection(system, ctx->panStep);
 
-    v0->startPan = ov12_0222317C(param0, v0->startPan);
-    v0->endPan = ov12_0222317C(param0, v0->endPan);
-    v0->panIncrement = ov12_0222317C(param0, v0->panIncrement);
+    Sound_PlayEffect(ctx->effectID);
+    Sound_PanEffect(ctx->effectID, SOUND_PLAYBACK_TRACK_ALL, ctx->startPan);
 
-    Sound_PlayEffect(v0->effectID);
-    Sound_PanEffect(v0->effectID, SOUND_PLAYBACK_TRACK_ALL, v0->startPan);
-
-    BattleAnimSystem_StartSoundTaskInternal(param0, v0);
+    BattleAnimSystem_StartSoundTaskInternal(system, ctx);
 }
 
-static void ov12_02222B94(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_PlayLoopedSoundEffect(BattleAnimSystem *system)
 {
-    BattleAnimSoundContext *v0 = NULL;
+    BattleAnimSoundContext *ctx = BattleAnimSystem_CreateSoundContext(system);
+    memset(ctx, 0, sizeof(BattleAnimSoundContext));
 
-    v0 = BattleAnimSystem_CreateSoundContext(param0);
-    memset(v0, 0, sizeof(BattleAnimSoundContext));
+    ctx->type = BATTLE_ANIM_SOUND_TASK_REPEAT;
+    BattleAnimScript_Next(system);
 
-    v0->type = 4;
-    param0->scriptPtr += 1;
+    ctx->effectID = (u16)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0->effectID = (u16)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    ctx->curPan = (s8)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0->curPan = (s8)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    ctx->applyInterval = (u8)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0->applyInterval = (u8)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    ctx->repeatCount = (u8)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0->repeatCount = (u8)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    ctx->tickCount = ctx->applyInterval;
+    ctx->curPan = BattleAnimSound_CorrectPanDirection(system, ctx->curPan);
 
-    v0->tickCount = v0->applyInterval;
-    v0->curPan = ov12_0222317C(param0, v0->curPan);
-
-    BattleAnimSystem_StartSoundTaskInternal(param0, v0);
+    BattleAnimSystem_StartSoundTaskInternal(system, ctx);
 }
 
-static void ov12_02222BF8(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_PlayDelayedSoundEffect(BattleAnimSystem *system)
 {
-    BattleAnimSoundContext *v0 = NULL;
+    BattleAnimSoundContext *ctx = BattleAnimSystem_CreateSoundContext(system);
+    memset(ctx, 0, sizeof(BattleAnimSoundContext));
 
-    v0 = BattleAnimSystem_CreateSoundContext(param0);
-    memset(v0, 0, sizeof(BattleAnimSoundContext));
+    ctx->type = BATTLE_ANIM_SOUND_TASK_DELAY;
 
-    v0->type = 5;
+    BattleAnimScript_Next(system);
 
-    param0->scriptPtr += 1;
+    ctx->effectID = (u16)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0->effectID = (u16)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    ctx->curPan = (s8)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0->curPan = (s8)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    ctx->applyInterval = (u8)BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0->applyInterval = (u8)BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    ctx->curPan = BattleAnimSound_CorrectPanDirection(system, ctx->curPan);
 
-    v0->curPan = ov12_0222317C(param0, v0->curPan);
-
-    BattleAnimSystem_StartSoundTaskInternal(param0, v0);
+    BattleAnimSystem_StartSoundTaskInternal(system, ctx);
 }
 
 static void ov12_02222C50(BattleAnimSystem *param0)
@@ -3317,27 +3300,27 @@ static void ov12_02222C50(BattleAnimSystem *param0)
     (void)0;
 }
 
-static void ov12_02222C54(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_WaitForSoundEffects(BattleAnimSystem *system)
 {
-    if (param0->activeSoundTasks) {
-        param0->scriptDelay = 1;
-        param0->unk_179 = 0;
+    if (system->activeSoundTasks) {
+        system->scriptDelay = 1;
+        system->unk_179 = 0;
         return;
     }
 
     if (Sound_IsAnyEffectPlaying()) {
-        param0->unk_179++;
+        system->unk_179++;
 
-        if (param0->unk_179 > 90) {
-            param0->unk_179 = 0;
+        if (system->unk_179 > 90) {
+            system->unk_179 = 0;
         } else {
-            param0->scriptDelay = 1;
+            system->scriptDelay = 1;
             return;
         }
     } else {
-        param0->scriptDelay = 0;
-        param0->unk_179 = 0;
-        param0->scriptPtr += 1;
+        system->scriptDelay = 0;
+        system->unk_179 = 0;
+        BattleAnimScript_Next(system);
     }
 }
 
@@ -3623,7 +3606,7 @@ static void ov12_022230D4(BattleAnimSystem *param0)
     param0->scriptPtr += 1;
 
     v1 = (s16)BattleAnimScript_ReadWord(param0->scriptPtr);
-    v1 = ov12_0222317C(param0, v1);
+    v1 = BattleAnimSound_CorrectPanDirection(param0, v1);
     param0->scriptPtr += 1;
 
     v2 = BattleAnimScript_ReadWord(param0->scriptPtr);
@@ -3669,51 +3652,48 @@ int ov12_02223178(BattleAnimContext *param0)
     return param0->unk_01;
 }
 
-s8 ov12_0222317C(BattleAnimSystem *param0, s8 param1)
+s8 BattleAnimSound_CorrectPanDirection(BattleAnimSystem *system, s8 pan)
 {
-    int v0 = param1;
+    int adjustedPan = pan;
+    int attacker = BattleAnimSystem_GetAttacker(system);
+    int defender = BattleAnimSystem_GetDefender(system);
+    (void)ov12_0223525C(system, attacker);
+    (void)ov12_0223525C(system, defender);
 
-    {
-        int v1 = BattleAnimSystem_GetAttacker(param0);
-        int v2 = BattleAnimSystem_GetDefender(param0);
-        int v3 = ov12_0223525C(param0, v1);
-        int v4 = ov12_0223525C(param0, v2);
-
-        if ((ov12_0223525C(param0, v1) == 0x3) && (ov12_0223525C(param0, v2) == 0x4)) {
-            (void)0;
-        } else if ((ov12_0223525C(param0, v1) == 0x4) && (ov12_0223525C(param0, v2) == 0x3)) {
-            v0 *= -1;
-        } else if ((ov12_0223525C(param0, v1) == 0x3) && (ov12_0223525C(param0, v2) == 0x3)) {
-            if (v0 > 0) {
-                v0 *= -1;
-            }
-        } else if ((ov12_0223525C(param0, v1) == 0x4) && (ov12_0223525C(param0, v2) == 0x4)) {
-            if (v0 < 0) {
-                v0 *= -1;
-            }
+    if ((ov12_0223525C(system, attacker) == 0x3) && (ov12_0223525C(system, defender) == 0x4)) { // Player attacking Oponent
+        // Do nothing. Branch needed to match
+    } else if ((ov12_0223525C(system, attacker) == 0x4) && (ov12_0223525C(system, defender) == 0x3)) { // Opponent attacking Player
+        adjustedPan *= -1;
+    } else if ((ov12_0223525C(system, attacker) == 0x3) && (ov12_0223525C(system, defender) == 0x3)) { // Player attacking Player
+        if (adjustedPan > 0) {
+            adjustedPan *= -1;
+        }
+    } else if ((ov12_0223525C(system, attacker) == 0x4) && (ov12_0223525C(system, defender) == 0x4)) { // Opponent attacking Opponent
+        if (adjustedPan < 0) {
+            adjustedPan *= -1;
         }
     }
 
-    if (BattleAnimSystem_IsContest(param0) == 1) {
-        v0 *= -1;
+    if (BattleAnimSystem_IsContest(system) == TRUE) {
+        adjustedPan *= -1;
     }
 
-    return v0;
+    return adjustedPan;
 }
 
-s8 ov12_02223234(s8 param0, s8 param1, s8 param2)
+s8 BattleAnimSound_CorrectStepDirection(s8 start, s8 end, s8 step)
 {
-    s8 v0;
+    s8 adjustedStep;
 
-    if (param0 < param1) {
-        v0 = +abs(param2);
-    } else if (param0 > param1) {
-        v0 = -abs(param2);
+    if (start < end) {
+        adjustedStep = +abs(step);
+    } else if (start > end) {
+        adjustedStep = -abs(step);
     } else {
-        v0 = 0;
+        adjustedStep = 0;
     }
 
-    return v0;
+    return adjustedStep;
 }
 
 BOOL ov12_0222325C(BattleAnimSystem *param0, int param1[], int param2)

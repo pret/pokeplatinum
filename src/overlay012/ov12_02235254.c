@@ -40,22 +40,22 @@ int ov12_02235254(BattleAnimSystem *param0, int param1)
     return BattleAnimSystem_GetBattlerType(param0, param1);
 }
 
-int ov12_0223525C(BattleAnimSystem *param0, int param1)
+int ov12_0223525C(BattleAnimSystem *system, int battler)
 {
     int v0;
     int v1;
 
-    v0 = BattleAnimSystem_GetBattlerType(param0, param1);
+    v0 = BattleAnimSystem_GetBattlerType(system, battler);
 
     switch (v0) {
-    case 0:
-    case 2:
-    case 4:
+    case BATTLER_TYPE_SOLO_PLAYER:
+    case BATTLER_TYPE_PLAYER_SIDE_SLOT_1:
+    case BATTLER_TYPE_PLAYER_SIDE_SLOT_2:
         v1 = 0x3;
         break;
-    case 1:
-    case 3:
-    case 5:
+    case BATTLER_TYPE_SOLO_ENEMY:
+    case BATTLER_TYPE_ENEMY_SIDE_SLOT_1:
+    case BATTLER_TYPE_ENEMY_SIDE_SLOT_2:
         v1 = 0x4;
         break;
     }
