@@ -5,8 +5,9 @@
 
 #include "grid_menu_cursor_position.h"
 
-#define BATTLE_SUB_MENU_CURSOR_BACK_INDEX        0xfffffffe
-#define BATTLE_SUB_MENU_CURSOR_NO_MOVEMENT_INDEX 0xffffffff
+#define BATTLE_SUB_MENU_CURSOR_BACK_INDEX                         0xfffffffe
+#define BATTLE_SUB_MENU_CURSOR_NO_MOVEMENT_INDEX                  0xffffffff
+#define BATTLE_SUB_MENU_CURSOR_GO_TO_PREVIOUS_POSITION_INDEX_MASK 0x80
 
 typedef struct BattleSubMenuCursor {
     UnkStruct_ov16_0226DC24 *sprites;
