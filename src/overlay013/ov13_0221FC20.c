@@ -284,7 +284,7 @@ static void ov13_0221FCAC(SysTask *param0, void *param1)
     }
 
     ov13_0222537C(v0);
-    SpriteSystem_DrawSprites(v0->unk_1FB0);
+    SpriteSystem_DrawSprites(v0->spriteMan);
     ov13_0222601C(v0);
 }
 

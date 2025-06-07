@@ -293,13 +293,6 @@ static void WaitAndApplyBlendStepToPaletteBuffer(PaletteData *paletteData, u16 b
     ApplyBlendStepToPaletteBuffer(paletteData, bufferID, paletteSize);
 }
 
-#define BlendColor(source, target, fraction) ((source) + (((target) - (source)) * (fraction) >> 4))
-
-#define ColorR(source) ((source) & 0x1F)
-#define ColorG(source) (((source) >> 5) & 0x1F)
-#define ColorB(source) (((source) >> 10) & 0x1F)
-#define RGB(r, g, b)   (((b) << 10) | ((g) << 5) | (r))
-
 static void ApplyBlendStepToPaletteBuffer(PaletteData *paletteData, u16 bufferID, u16 paletteSize)
 {
     for (u32 i = 0; i < SLOTS_PER_PALETTE; i++) {

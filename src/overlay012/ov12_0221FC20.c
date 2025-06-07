@@ -4152,8 +4152,8 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, int heapID, int 
 
     v2->heapID = heapID;
     v2->unk_04 = param2;
-    v2->unk_08.unk_00 = ov16_0223E010(battleSys);
-    v2->unk_08.unk_04 = ov16_0223E018(battleSys);
+    v2->unk_08.unk_00 = BattleSystem_GetSpriteSystem(battleSys);
+    v2->unk_08.unk_04 = BattleSystem_GetSpriteManager(battleSys);
     v2->unk_08.unk_08 = BattleSystem_PaletteSys(battleSys);
 
     {

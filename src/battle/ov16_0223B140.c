@@ -316,8 +316,8 @@ void ov16_0223B3E4(BattleSystem *battleSys)
     ov16_0223C288(battleSys->unk_04);
     ov16_0223C2BC(battleSys);
 
-    SpriteSystem_FreeResourcesAndManager(battleSys->unk_90, battleSys->unk_94);
-    SpriteSystem_Free(battleSys->unk_90);
+    SpriteSystem_FreeResourcesAndManager(battleSys->spriteSys, battleSys->spriteMan);
+    SpriteSystem_Free(battleSys->spriteSys);
     VramTransfer_Free();
     Font_Free(FONT_SUBSCREEN);
 }
@@ -358,7 +358,7 @@ void ov16_0223B430(BattleSystem *battleSys)
     NARC_dtor(v1);
     TextPrinter_SetScrollArrowBaseTile(1);
     ov16_0223DD4C(battleSys);
-    SetSubScreenViewRect(SpriteSystem_GetRenderer(battleSys->unk_90), 0, ((192 + 80) << FX32_SHIFT));
+    SetSubScreenViewRect(SpriteSystem_GetRenderer(battleSys->spriteSys), 0, ((192 + 80) << FX32_SHIFT));
 }
 
 void ov16_0223B53C(BattleSystem *battleSys)
@@ -445,9 +445,9 @@ void ov16_0223B578(BattleSystem *battleSys)
 
         ReplaceTransparentTiles(battleSys->unk_04, 1, 1, 10, v1, 5);
         Graphics_LoadTilesToBgLayer(7, 3 + battleSys->unk_2400, battleSys->unk_04, 3, 0, 0, 1, HEAP_ID_BATTLE);
-        PaletteData_LoadBufferFromFileStart(battleSys->unk_28, 7, 172 + (battleSys->unk_2400 * 3) + ov16_0223EC04(battleSys), 5, 0, 0, 0);
-        PaletteData_LoadBufferFromFileStart(battleSys->unk_28, 38, GetMessageBoxPaletteNARCMember(v1), 5, 0, 0x20, 10 * 0x10);
-        PaletteData_LoadBufferFromFileStart(battleSys->unk_28, 14, 7, 5, 0, 0x20, 0xb * 0x10);
+        PaletteData_LoadBufferFromFileStart(battleSys->paletteSys, 7, 172 + (battleSys->unk_2400 * 3) + ov16_0223EC04(battleSys), 5, 0, 0, 0);
+        PaletteData_LoadBufferFromFileStart(battleSys->paletteSys, 38, GetMessageBoxPaletteNARCMember(v1), 5, 0, 0x20, 10 * 0x10);
+        PaletteData_LoadBufferFromFileStart(battleSys->paletteSys, 14, 7, 5, 0, 0x20, 0xb * 0x10);
         Graphics_LoadTilemapToBgLayer(7, 2, battleSys->unk_04, 3, 0, 0, 1, HEAP_ID_BATTLE);
     }
 
@@ -538,13 +538,13 @@ static void ov16_0223B790(ApplicationManager *appMan)
     }
 
     battleSys->unk_1A8 = battleSys->unk_1A4;
-    battleSys->unk_28 = PaletteData_New(HEAP_ID_BATTLE);
+    battleSys->paletteSys = PaletteData_New(HEAP_ID_BATTLE);
 
-    PaletteData_SetAutoTransparent(battleSys->unk_28, 1);
-    PaletteData_AllocBuffer(battleSys->unk_28, 0, 0x200, HEAP_ID_BATTLE);
-    PaletteData_AllocBuffer(battleSys->unk_28, 1, 0x200, HEAP_ID_BATTLE);
-    PaletteData_AllocBuffer(battleSys->unk_28, 2, (((16 - 2) * 16) * sizeof(u16)), HEAP_ID_BATTLE);
-    PaletteData_AllocBuffer(battleSys->unk_28, 3, 0x200, HEAP_ID_BATTLE);
+    PaletteData_SetAutoTransparent(battleSys->paletteSys, 1);
+    PaletteData_AllocBuffer(battleSys->paletteSys, 0, 0x200, HEAP_ID_BATTLE);
+    PaletteData_AllocBuffer(battleSys->paletteSys, 1, 0x200, HEAP_ID_BATTLE);
+    PaletteData_AllocBuffer(battleSys->paletteSys, 2, (((16 - 2) * 16) * sizeof(u16)), HEAP_ID_BATTLE);
+    PaletteData_AllocBuffer(battleSys->paletteSys, 3, 0x200, HEAP_ID_BATTLE);
 
     battleSys->unk_04 = BgConfig_New(HEAP_ID_BATTLE);
     battleSys->windows = Window_New(HEAP_ID_BATTLE, 3);
@@ -571,17 +571,17 @@ static void ov16_0223B790(ApplicationManager *appMan)
     Window_FillTilemap(&battleSys->windows[0], 0xff);
     Window_DrawMessageBoxWithScrollCursor(&battleSys->windows[0], 0, 1, 10);
 
-    battleSys->unk_90 = SpriteSystem_Alloc(5);
+    battleSys->spriteSys = SpriteSystem_Alloc(5);
 
-    SpriteSystem_Init(battleSys->unk_90, &Unk_ov16_0226E2E4, &Unk_ov16_0226E29C, (16 + 16));
+    SpriteSystem_Init(battleSys->spriteSys, &Unk_ov16_0226E2E4, &Unk_ov16_0226E29C, (16 + 16));
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
     ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    battleSys->unk_94 = SpriteManager_New(battleSys->unk_90);
+    battleSys->spriteMan = SpriteManager_New(battleSys->spriteSys);
 
-    SpriteSystem_InitSprites(battleSys->unk_90, battleSys->unk_94, (64 + 64));
-    SpriteSystem_InitManagerWithCapacities(battleSys->unk_90, battleSys->unk_94, &Unk_ov16_0226E2B0);
-    SetSubScreenViewRect(SpriteSystem_GetRenderer(battleSys->unk_90), 0, ((192 + 80) << FX32_SHIFT));
+    SpriteSystem_InitSprites(battleSys->spriteSys, battleSys->spriteMan, (64 + 64));
+    SpriteSystem_InitManagerWithCapacities(battleSys->spriteSys, battleSys->spriteMan, &Unk_ov16_0226E2B0);
+    SetSubScreenViewRect(SpriteSystem_GetRenderer(battleSys->spriteSys), 0, ((192 + 80) << FX32_SHIFT));
 
     ov16_02268A88(battleSys->unk_198);
 
@@ -617,23 +617,23 @@ static void ov16_0223B790(ApplicationManager *appMan)
     battleSys->strFormatter = StringTemplate_Default(HEAP_ID_BATTLE);
     battleSys->msgBuffer = Strbuf_Init((2 * 160), HEAP_ID_BATTLE);
 
-    MI_CpuCopy16(PaletteData_GetUnfadedBuffer(battleSys->unk_28, 0), &battleSys->unk_2224[0], 0x20 * 7);
-    MI_CpuCopy16(PaletteData_GetUnfadedBuffer(battleSys->unk_28, 2), &battleSys->unk_2304[0], 0x20 * 7);
+    MI_CpuCopy16(PaletteData_GetUnfadedBuffer(battleSys->paletteSys, 0), &battleSys->unk_2224[0], 0x20 * 7);
+    MI_CpuCopy16(PaletteData_GetUnfadedBuffer(battleSys->paletteSys, 2), &battleSys->unk_2304[0], 0x20 * 7);
 
     {
         int v10;
         v10 = ov16_0223EC04(battleSys);
 
-        PaletteData_FillBufferRange(battleSys->unk_28, 0, 2, Unk_ov16_0226E44C[battleSys->unk_2400][v10], 0, 112);
-        PaletteData_FillBufferRange(battleSys->unk_28, 0, 2, Unk_ov16_0226E44C[battleSys->unk_2400][v10], 0xc * 16, 0xc * 16 + 4 * 16);
-        PaletteData_FillBufferRange(battleSys->unk_28, 2, 2, Unk_ov16_0226E44C[battleSys->unk_2400][v10], 0, ((16 - 2) * 16) - 1);
+        PaletteData_FillBufferRange(battleSys->paletteSys, 0, 2, Unk_ov16_0226E44C[battleSys->unk_2400][v10], 0, 112);
+        PaletteData_FillBufferRange(battleSys->paletteSys, 0, 2, Unk_ov16_0226E44C[battleSys->unk_2400][v10], 0xc * 16, 0xc * 16 + 4 * 16);
+        PaletteData_FillBufferRange(battleSys->paletteSys, 2, 2, Unk_ov16_0226E44C[battleSys->unk_2400][v10], 0, ((16 - 2) * 16) - 1);
     }
 
-    PaletteData_FillBufferRange(battleSys->unk_28, 0, 0, 0x0, 0xa * 16, 0xa * 16 + 2 * 16);
-    PaletteData_FillBufferRange(battleSys->unk_28, 1, 0, 0x0, 0, 255);
-    PaletteData_FillBufferRange(battleSys->unk_28, 3, 0, 0xffff, 0, 255);
+    PaletteData_FillBufferRange(battleSys->paletteSys, 0, 0, 0x0, 0xa * 16, 0xa * 16 + 2 * 16);
+    PaletteData_FillBufferRange(battleSys->paletteSys, 1, 0, 0x0, 0, 255);
+    PaletteData_FillBufferRange(battleSys->paletteSys, 3, 0, 0xffff, 0, 255);
 
-    battleSys->unk_1AC = sub_0201567C(battleSys->unk_28, 0, 0xb, HEAP_ID_BATTLE);
+    battleSys->unk_1AC = sub_0201567C(battleSys->paletteSys, 0, 0xb, HEAP_ID_BATTLE);
     sub_02015738(battleSys->unk_1AC, 1);
 
     battleSys->unk_1C = SysTask_Start(ov16_0223CF48, battleSys, 60000);
@@ -644,7 +644,7 @@ static void ov16_0223B790(ApplicationManager *appMan)
     ov16_0223DD4C(battleSys);
     BagCursor_ResetBattle(BattleSystem_BagCursor(battleSys));
 
-    battleSys->unk_1C4 = sub_02015F84(HEAP_ID_BATTLE, 4, 0);
+    battleSys->pokemonAnimationSys = sub_02015F84(HEAP_ID_BATTLE, 4, 0);
     battleSys->cellTransferState = CellTransfer_New(4, HEAP_ID_BATTLE);
 
     if (battleSys->battleStatusMask & 0x10) {
@@ -727,12 +727,12 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
     }
 
     sub_02015760(battleSystem->unk_1AC);
-    Bag_Copy(battleSystem->unk_58, v1->bag);
-    Heap_FreeToHeap(battleSystem->unk_58);
+    Bag_Copy(battleSystem->bag, v1->bag);
+    Heap_FreeToHeap(battleSystem->bag);
     Pokedex_Copy(battleSystem->pokedex, v1->pokedex);
     Heap_FreeToHeap(battleSystem->pokedex);
     v1->pcBoxes = battleSystem->pcBoxes;
-    v1->bagCursor = battleSystem->unk_5C;
+    v1->bagCursor = battleSystem->bagCursor;
     v1->subscreenCursorOn = battleSystem->unk_1BC;
     v1->poketch = battleSystem->poketch;
     v1->unk_10C = battleSystem->unk_9C;
@@ -744,22 +744,22 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
     v1->battleRecords.totalFainted += (BattleContext_Get(battleSystem, battleSystem->battleCtx, 6, 0) + BattleContext_Get(battleSystem, battleSystem->battleCtx, 6, 2));
     v1->battleRecords.totalDamage += (BattleContext_Get(battleSystem, battleSystem->battleCtx, 7, 0) + BattleContext_Get(battleSystem, battleSystem->battleCtx, 7, 2));
     v1->totalTurnsElapsed = BattleContext_Get(battleSystem, battleSystem->battleCtx, 3, NULL);
-    v1->unk_19C = battleSystem->unk_2474_0;
+    v1->unk_19C = battleSystem->recordingStopped;
 
     for (battlerId = 0; battlerId < 4; battlerId++) {
         Heap_FreeToHeap(battleSystem->unk_1CC[battlerId].unk_00);
     }
 
     Heap_FreeToHeap(battleSystem->msgBuffer);
-    PaletteData_FreeBuffer(battleSystem->unk_28, 0);
-    PaletteData_FreeBuffer(battleSystem->unk_28, 1);
-    PaletteData_FreeBuffer(battleSystem->unk_28, 2);
-    PaletteData_FreeBuffer(battleSystem->unk_28, 3);
-    PaletteData_Free(battleSystem->unk_28);
+    PaletteData_FreeBuffer(battleSystem->paletteSys, 0);
+    PaletteData_FreeBuffer(battleSystem->paletteSys, 1);
+    PaletteData_FreeBuffer(battleSystem->paletteSys, 2);
+    PaletteData_FreeBuffer(battleSystem->paletteSys, 3);
+    PaletteData_Free(battleSystem->paletteSys);
     MessageLoader_Free(battleSystem->unk_0C);
     MessageLoader_Free(battleSystem->unk_10);
     StringTemplate_Free(battleSystem->strFormatter);
-    sub_02015FB8(battleSystem->unk_1C4);
+    sub_02015FB8(battleSystem->pokemonAnimationSys);
     ParticleSystem_FreeAll();
 
     ov12_0221FDF4(battleSystem->unk_8C);
@@ -929,9 +929,9 @@ static void ov16_0223C004(BattleSystem *battleSys, BgConfig *param1)
 
         ReplaceTransparentTiles(param1, 1, 1, 10, v3, 5);
         Graphics_LoadTilesToBgLayer(7, 3 + battleSys->unk_2400, param1, 3, 0, 0, 1, HEAP_ID_BATTLE);
-        PaletteData_LoadBufferFromFileStart(battleSys->unk_28, 7, 172 + (battleSys->unk_2400 * 3) + ov16_0223EC04(battleSys), 5, 0, 0, 0);
-        PaletteData_LoadBufferFromFileStart(battleSys->unk_28, 38, GetMessageBoxPaletteNARCMember(v3), 5, 0, 0x20, 10 * 0x10);
-        PaletteData_LoadBufferFromFileStart(battleSys->unk_28, 14, 7, 5, 0, 0x20, 0xb * 0x10);
+        PaletteData_LoadBufferFromFileStart(battleSys->paletteSys, 7, 172 + (battleSys->unk_2400 * 3) + ov16_0223EC04(battleSys), 5, 0, 0, 0);
+        PaletteData_LoadBufferFromFileStart(battleSys->paletteSys, 38, GetMessageBoxPaletteNARCMember(v3), 5, 0, 0x20, 10 * 0x10);
+        PaletteData_LoadBufferFromFileStart(battleSys->paletteSys, 14, 7, 5, 0, 0x20, 0xb * 0x10);
         Graphics_LoadTilemapToBgLayer(7, 2, param1, 3, 0, 0, 1, HEAP_ID_BATTLE);
     }
 
@@ -1078,16 +1078,16 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *param1)
     battleSys->unk_2444 = param1->seed;
     battleSys->unk_2448 = param1->seed;
     battleSys->battleStatusMask = param1->battleStatusMask;
-    battleSys->unk_58 = Bag_New(HEAP_ID_BATTLE);
+    battleSys->bag = Bag_New(HEAP_ID_BATTLE);
 
-    Bag_Copy(param1->bag, battleSys->unk_58);
+    Bag_Copy(param1->bag, battleSys->bag);
     battleSys->pokedex = Pokedex_New(5);
     Pokedex_Copy(param1->pokedex, battleSys->pokedex);
 
     battleSys->pcBoxes = param1->pcBoxes;
-    battleSys->unk_1B0 = param1->options;
+    battleSys->options = param1->options;
     battleSys->unk_1B4 = param1->unk_124;
-    battleSys->unk_5C = param1->bagCursor;
+    battleSys->bagCursor = param1->bagCursor;
     battleSys->unk_1BC = param1->subscreenCursorOn;
     battleSys->poketch = param1->poketch;
     battleSys->unk_2420 = param1->mapEvolutionMethod;
@@ -1095,7 +1095,7 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *param1)
     battleSys->safariBalls = param1->countSafariBalls;
     battleSys->terrain = param1->terrain;
     battleSys->unk_2400 = param1->background;
-    battleSys->unk_2404 = param1->mapLabelTextID;
+    battleSys->mapHeader = param1->mapLabelTextID;
     battleSys->time = param1->timeOfDay;
     battleSys->unk_2418 = param1->rulesetMask;
     battleSys->unk_2424 = param1->visitedContestHall;
@@ -1387,12 +1387,12 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *param1)
         if ((ov16_0223CD3C(battleSys->trainers[1].header.trainerType) == 1) || (ov16_0223CD3C(battleSys->trainers[3].header.trainerType) == 1)) {
             for (v0 = 0; v0 < Party_GetCurrentCount(battleSys->parties[0]); v0++) {
                 v3 = Party_GetPokemonBySlotIndex(battleSys->parties[0], v0);
-                Pokemon_UpdateFriendship(v3, 3, battleSys->unk_2404);
+                Pokemon_UpdateFriendship(v3, 3, battleSys->mapHeader);
             }
 
             for (v0 = 0; v0 < Party_GetCurrentCount(battleSys->parties[2]); v0++) {
                 v3 = Party_GetPokemonBySlotIndex(battleSys->parties[2], v0);
-                Pokemon_UpdateFriendship(v3, 3, battleSys->unk_2404);
+                Pokemon_UpdateFriendship(v3, 3, battleSys->mapHeader);
             }
         }
     }
@@ -1517,7 +1517,7 @@ static void ov16_0223CE68(void *param0)
     PokemonSpriteManager_UpdateCharAndPltt(v0->unk_88);
     VramTransfer_Process();
     SpriteSystem_TransferOam();
-    PaletteData_CommitFadedBuffers(v0->unk_28);
+    PaletteData_CommitFadedBuffers(v0->paletteSys);
     Bg_RunScheduledUpdates(v0->unk_04);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
@@ -1546,7 +1546,7 @@ static void ov16_0223CF48(SysTask *param0, void *param1)
         }
 
         PokemonSpriteManager_DrawSprites(v0->unk_88);
-        SpriteSystem_DrawSprites(v0->unk_94);
+        SpriteSystem_DrawSprites(v0->spriteMan);
         SpriteSystem_UpdateTransfer();
         G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
     }

@@ -5,7 +5,6 @@
 
 #include "constants/forms.h"
 #include "constants/heap.h"
-#include "constants/palette.h"
 #include "constants/species.h"
 #include "generated/items.h"
 #include "generated/moves.h"

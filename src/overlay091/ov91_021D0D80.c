@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/pokemon_types.h"
+
 #include "struct_defs/struct_020997B8.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -32,7 +34,7 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0207C908.h"
+#include "type_icon.h"
 #include "unk_0208C098.h"
 #include "unk_02094EDC.h"
 #include "vram_transfer.h"
@@ -1326,19 +1328,19 @@ static void ov91_021D2110(UnkStruct_ov91_021D0ED8 *param0, NARC *param1)
     SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 2, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 47274);
 
     for (v0 = 47276; v0 <= 47282; v0++) {
-        sub_0207C948(param0->unk_110, param0->unk_114, NNS_G2D_VRAM_TYPE_2DMAIN, 0, v0);
+        TypeIcon_LoadChar(param0->unk_110, param0->unk_114, NNS_G2D_VRAM_TYPE_2DMAIN, TYPE_NORMAL, v0);
     }
 
-    sub_0207CAC4(param0->unk_110, param0->unk_114, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 47275);
+    CategoryIcon_LoadChar(param0->unk_110, param0->unk_114, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 47275);
     SpriteSystem_LoadPlttResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 9, FALSE, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 47272);
-    sub_0207C97C(param0->unk_110, param0->unk_114, NNS_G2D_VRAM_TYPE_2DMAIN, 47273);
+    TypeIcon_LoadPlttSrc(param0->unk_110, param0->unk_114, NNS_G2D_VRAM_TYPE_2DMAIN, 47273);
     SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 4, FALSE, 47272);
     SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 7, FALSE, 47273);
     SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 1, FALSE, 47274);
     SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 3, FALSE, 47272);
     SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 6, FALSE, 47273);
     SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 0, FALSE, 47274);
-    sub_0207C9EC(param0->unk_110, param0->unk_114, 47275, 47275);
+    TypeIcon_LoadAnim(param0->unk_110, param0->unk_114, 47275, 47275);
 }
 
 static void ov91_021D22A0(UnkStruct_ov91_021D0ED8 *param0, u16 param1, u16 param2)
@@ -1351,8 +1353,8 @@ static void ov91_021D22A0(UnkStruct_ov91_021D0ED8 *param0, u16 param1, u16 param
         v0 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_CONTEST_TYPE) + 18;
     }
 
-    SpriteSystem_ReplaceCharResObj(param0->unk_110, param0->unk_114, sub_0207C944(), sub_0207C908(v0), 1, 47276 + param2);
-    ManagedSprite_SetExplicitPalette(param0->unk_118[6 + param2], sub_0207C92C(v0) + 2);
+    SpriteSystem_ReplaceCharResObj(param0->unk_110, param0->unk_114, TypeIcon_GetNARC(), TypeIcon_GetChar(v0), 1, 47276 + param2);
+    ManagedSprite_SetExplicitPalette(param0->unk_118[6 + param2], TypeIcon_GetPltt(v0) + 2);
 }
 
 static void ov91_021D2314(UnkStruct_ov91_021D0ED8 *param0)
@@ -1429,8 +1431,8 @@ static void ov91_021D24B4(UnkStruct_ov91_021D0ED8 *param0, u16 param1)
 {
     u32 v0 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_CLASS);
 
-    SpriteSystem_ReplaceCharResObj(param0->unk_110, param0->unk_114, sub_0207CAC0(), sub_0207CA90(v0), 1, 47275);
-    ManagedSprite_SetExplicitPalette(param0->unk_118[5], sub_0207CAA8(v0) + 2);
+    SpriteSystem_ReplaceCharResObj(param0->unk_110, param0->unk_114, CategoryIcon_GetNARC(), CategoryIcon_GetChar(v0), 1, 47275);
+    ManagedSprite_SetExplicitPalette(param0->unk_118[5], CategoryIcon_GetPltt(v0) + 2);
 }
 
 static void ov91_021D2508(UnkStruct_ov91_021D0ED8 *param0, NARC *param1)

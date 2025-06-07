@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/pokemon_types.h"
+
 #include "applications/pokedex/ov21_021E29DC.h"
 #include "applications/pokedex/pokedex_app.h"
 #include "applications/pokedex/pokedex_data_manager.h"
@@ -623,8 +625,8 @@ static void ov21_021DF098(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **
 
     type1 = SpeciesData_GetFormValue(species, v6, SPECIES_DATA_TYPE_1);
     type2 = SpeciesData_GetFormValue(species, v6, SPECIES_DATA_TYPE_2);
-    type1 = ov21_021DF180(type1);
-    type2 = ov21_021DF180(type2);
+    type1 = PokedexGraphics_GetAnimIDfromType(type1);
+    type2 = PokedexGraphics_GetAnimIDfromType(type2);
 
     SpriteResourcesHeader_Init(&v0, 90 + 4000, 13 + 4000, 88 + 4000, 89 + 4000, 0xffffffff, 0xffffffff, 0, 0, v2->spriteResourceCollection[0], v2->spriteResourceCollection[1], v2->spriteResourceCollection[2], v2->spriteResourceCollection[3], NULL, NULL);
 
@@ -650,66 +652,67 @@ static void ov21_021DF098(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **
     }
 }
 
-int ov21_021DF180(int param0)
+// This maps the type to an animation ID used in the Pokedex graphics. See zukan.narc -> files 88 (NCER), 89 (NANR), 90 (NCGR)
+int PokedexGraphics_GetAnimIDfromType(int monType)
 {
-    int v0;
+    int animID;
 
-    switch (param0) {
-    case 0:
-        v0 = 0x0;
+    switch (monType) {
+    case TYPE_NORMAL:
+        animID = 0x0;
         break;
-    case 1:
-        v0 = 0x6;
+    case TYPE_FIGHTING:
+        animID = 0x6;
         break;
-    case 2:
-        v0 = 0xe;
+    case TYPE_FLYING:
+        animID = 0xe;
         break;
-    case 3:
-        v0 = 0xa;
+    case TYPE_POISON:
+        animID = 0xa;
         break;
-    case 4:
-        v0 = 0x8;
+    case TYPE_GROUND:
+        animID = 0x8;
         break;
-    case 5:
-        v0 = 0x5;
+    case TYPE_ROCK:
+        animID = 0x5;
         break;
-    case 6:
-        v0 = 0xb;
+    case TYPE_BUG:
+        animID = 0xb;
         break;
-    case 7:
-    case 9:
-        v0 = 0x7;
+    case TYPE_GHOST:
+    case TYPE_MYSTERY:
+        animID = 0x7;
         break;
-    case 8:
-        v0 = 0x9;
+    case TYPE_STEEL:
+        animID = 0x9;
         break;
-    case 10:
-        v0 = 0x1;
+    case TYPE_FIRE:
+        animID = 0x1;
         break;
-    case 11:
-        v0 = 0x3;
+    case TYPE_WATER:
+        animID = 0x3;
         break;
-    case 12:
-        v0 = 0x2;
+    case TYPE_GRASS:
+        animID = 0x2;
         break;
-    case 13:
-        v0 = 0x4;
+    case TYPE_ELECTRIC:
+        animID = 0x4;
         break;
-    case 14:
-        v0 = 0xf;
+    case TYPE_PSYCHIC:
+        animID = 0xf;
         break;
-    case 15:
-        v0 = 0xd;
+    case TYPE_ICE:
+        animID = 0xd;
         break;
-    case 16:
-        v0 = 0x10;
+    case TYPE_DRAGON:
+        animID = 0x10;
         break;
-    case 17:
-        v0 = 0xc;
+    case TYPE_DARK:
+        animID = 0xc;
         break;
     }
 
-    return v0;
+    return animID;
 }
 
 static void ov21_021DF1F8(UnkStruct_ov21_021DF374 *param0)

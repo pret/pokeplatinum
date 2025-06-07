@@ -33,6 +33,7 @@
 #include "palette.h"
 #include "party.h"
 #include "poketch.h"
+#include "render_window.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -50,22 +51,22 @@ struct BattleSystem {
     SysTask *unk_1C;
     SysTask *unk_20;
     SysTask *unk_24;
-    PaletteData *unk_28;
+    PaletteData *paletteSys;
     u32 battleType;
     BattleContext *battleCtx;
     BattlerData *battlers[MAX_BATTLERS];
     int maxBattlers;
     TrainerInfo *trainerInfo[MAX_BATTLERS];
-    Bag *unk_58;
-    BagCursor *unk_5C;
+    Bag *bag;
+    BagCursor *bagCursor;
     Pokedex *pokedex;
     PCBoxes *pcBoxes;
     Party *parties[MAX_BATTLERS];
     ChatotCry *unk_78[MAX_BATTLERS];
     PokemonSpriteManager *unk_88;
     UnkStruct_ov12_0221FCDC *unk_8C;
-    SpriteSystem *unk_90;
-    SpriteManager *unk_94;
+    SpriteSystem *spriteSys;
+    SpriteManager *spriteMan;
     Poketch *poketch;
     UnkStruct_0206D140 *unk_9C;
     u16 trainerIDs[MAX_BATTLERS];
@@ -73,16 +74,16 @@ struct BattleSystem {
     Trainer trainers[MAX_BATTLERS];
     UnkStruct_ov16_02268520 unk_17C[2];
     UnkStruct_ov16_02268A14 *unk_198;
-    PartyGauge *unk_19C[2];
+    PartyGauge *partyGauges[2];
     UnkStruct_0200C440 *unk_1A4;
     UnkStruct_0200C440 *unk_1A8;
     void *unk_1AC;
-    Options *unk_1B0;
+    Options *options;
     PalPad *unk_1B4;
-    void *unk_1B8;
+    WaitDial *waitDial;
     u8 *unk_1BC;
     UnkStruct_ov10_0221F800 *unk_1C0;
-    PokemonAnimationSys *unk_1C4;
+    PokemonAnimationSys *pokemonAnimationSys;
     NNSG2dCellTransferState *cellTransferState;
     UnkStruct_ov16_0223E0C8 unk_1CC[4];
     BattleRecords unusedBattleRecords;
@@ -111,7 +112,7 @@ struct BattleSystem {
     u8 unk_23FB_5 : 3;
     enum BattleTerrain terrain;
     int unk_2400;
-    int unk_2404;
+    int mapHeader;
     u32 battleStatusMask;
     enum Time time;
     int safariBalls;
@@ -137,7 +138,7 @@ struct BattleSystem {
     u16 unk_2454[4];
     u16 unk_245C[4];
     int unk_2464[4];
-    u32 unk_2474_0 : 1;
+    u32 recordingStopped : 1;
     u32 unk_2474_1 : 31;
     SysTask *playbackStopButton;
     u8 unk_247C[4];

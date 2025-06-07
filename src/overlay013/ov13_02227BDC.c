@@ -74,7 +74,7 @@ void ov13_02227BDC(BattleBag *param0)
 static void ov13_02227C08(BattleBag *param0)
 {
     SpriteResourceCapacities v0 = { 8, 8, 3, 3, 0, 0 };
-    SpriteSystem *v1 = ov16_0223E010(param0->context->battleSystem);
+    SpriteSystem *v1 = BattleSystem_GetSpriteSystem(param0->context->battleSystem);
 
     param0->spriteManager = SpriteManager_New(v1);
 
@@ -87,7 +87,7 @@ static void ov13_02227C54(BattleBag *param0)
     SpriteSystem *v0;
     u32 v1;
     NARC *v2 = NARC_ctor(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, param0->context->heapID);
-    v0 = ov16_0223E010(param0->context->battleSystem);
+    v0 = BattleSystem_GetSpriteSystem(param0->context->battleSystem);
 
     for (v1 = 0; v1 < 6; v1++) {
         SpriteSystem_LoadCharResObjFromOpenNarc(v0, param0->spriteManager, v2, Item_FileID(1, 1), FALSE, NNS_G2D_VRAM_TYPE_2DSUB, 46263 + v1);
@@ -101,7 +101,7 @@ static void ov13_02227C54(BattleBag *param0)
 
 static void ov13_02227D10(BattleBag *param0, u16 param1, u32 param2)
 {
-    SpriteSystem *v0 = ov16_0223E010(param0->context->battleSystem);
+    SpriteSystem *v0 = BattleSystem_GetSpriteSystem(param0->context->battleSystem);
     SpriteSystem_ReplaceCharResObj(v0, param0->spriteManager, 16, Item_FileID(param1, 1), 0, param2);
 }
 
@@ -113,7 +113,7 @@ static void ov13_02227D48(BattleBag *param0, u16 param1, u16 param2, u32 param3)
 static ManagedSprite *ov13_02227D78(BattleBag *param0, u32 param1)
 {
     SpriteTemplate v0;
-    SpriteSystem *v1 = ov16_0223E010(param0->context->battleSystem);
+    SpriteSystem *v1 = BattleSystem_GetSpriteSystem(param0->context->battleSystem);
 
     v0.x = 0;
     v0.y = 0;
@@ -146,7 +146,7 @@ void ov13_02227E08(BattleBag *param0)
     SpriteSystem *v0;
     u32 v1;
 
-    v0 = ov16_0223E010(param0->context->battleSystem);
+    v0 = BattleSystem_GetSpriteSystem(param0->context->battleSystem);
 
     for (v1 = 0; v1 < 6; v1++) {
         Sprite_DeleteAndFreeResources(param0->unk_310[v1]);
@@ -227,7 +227,7 @@ static void ov13_02227F7C(BattleBag *param0)
     SpriteSystem *v0;
     UnkStruct_ov16_0226DC24 *v1;
 
-    v0 = ov16_0223E010(param0->context->battleSystem);
+    v0 = BattleSystem_GetSpriteSystem(param0->context->battleSystem);
     ov16_0226DB7C(v0, param0->spriteManager, param0->palette, param0->context->heapID, 46270, 46270, 46265, 46265);
     v1 = ov16_0226DC24(v0, param0->spriteManager, param0->context->heapID, 46270, 46270, 46265, 46265, 0, 1);
 
@@ -300,7 +300,7 @@ static void ov13_02228070(BattleBag *param0)
     SpriteSystem *v0;
     UnkStruct_ov16_0226DEEC *v1;
 
-    v0 = ov16_0223E010(param0->context->battleSystem);
+    v0 = BattleSystem_GetSpriteSystem(param0->context->battleSystem);
 
     ov16_0226DE44(v0, param0->spriteManager, param0->context->heapID, param0->palette, 46269, 46269, 46264, 46264);
     param0->unk_38 = ov16_0226DEEC(v0, param0->spriteManager, param0->context->heapID, 46269, 46269, 46264, 46264, 0, 0);
