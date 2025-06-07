@@ -60,12 +60,12 @@ _00A0:
 
     .balign 4, 0
 _00A8:
-    MoveAction_018
+    WalkFastWest
     EndMovement
 
     .balign 4, 0
 _00B0:
-    MoveAction_019
+    WalkFastEast
     EndMovement
 
 _00B8:

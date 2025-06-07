@@ -49,7 +49,7 @@ _007E:
 
     .balign 4, 0
 _0094:
-    MoveAction_071
-    MoveAction_012
-    MoveAction_072
+    LockDir
+    WalkNormalNorth
+    UnlockDir
     EndMovement

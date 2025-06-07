@@ -37,10 +37,10 @@ _003E:
 
     .balign 4, 0
 _0060:
-    MoveAction_012 7
+    WalkNormalNorth 7
     EndMovement
 
     .balign 4, 0
 _0068:
-    MoveAction_013 7
+    WalkNormalSouth 7
     EndMovement

@@ -28,12 +28,12 @@ _0012:
 
     .balign 4, 0
 _0044:
-    MoveAction_003
+    FaceEast
     EndMovement
 
     .balign 4, 0
 _004C:
-    MoveAction_002
+    FaceWest
     EndMovement
 
 _0054:
