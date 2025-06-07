@@ -101,6 +101,13 @@ enum WallpaperMenuState {
     WALLPAPER_MENU_END,
 };
 
+enum BoxSelectorState {
+    BOX_SELECTOR_START,
+    BOX_SELECTOR_DISPLAY_MESSAGE_START,
+    BOX_SELECTOR_DISPLAY_MESSAGE_DONE,
+    BOX_SELECTOR_WAIT_FOR_USER
+};
+
 static const TouchScreenHitTable sMainPcButtons[] = {
     { TOUCHSCREEN_USE_CIRCLE, MAIN_PC_LEFT_BUTTON_X, MAIN_PC_BUTTON_Y, MAIN_PC_BUTTON_RADIUS },
     { TOUCHSCREEN_USE_CIRCLE, MAIN_PC_RIGHT_BUTTON_X, MAIN_PC_BUTTON_Y, MAIN_PC_BUTTON_RADIUS },
@@ -130,12 +137,12 @@ static const u16 sReleaseBlockingMoves[] = {
     MOVE_WATERFALL
 };
 
-typedef struct {
-    u32 unk_00;
-    u8 unk_04;
+typedef struct BoxSelectorPopup {
+    u32 state;
+    u8 hasReset;
     s8 boxID;
     u16 boxMessageID;
-} UnkStruct_ov19_021D4468;
+} BoxSelectorPopup;
 
 typedef struct {
     u8 checkedCanReleaseMon;
@@ -176,7 +183,7 @@ typedef struct UnkStruct_ov19_021D5DF8_t {
     u32 cursorLocationHandlerState;
     u32 boxApplicationActionState;
     enum BoxMenuItem menuItem; // This stops being a BoxMenuItem in ov19_ReleaseMon, where it does something completely different and unrelated
-    UnkStruct_ov19_021D4468 unk_1BC;
+    BoxSelectorPopup boxSelector;
     u32 unk_1C4;
     UnkStruct_ov19_021D6104 unk_1C8;
     int unk_1FC;
@@ -236,9 +243,9 @@ static void ov19_021D3D44(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D3FB0(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D4184(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D4390(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
-static void ov19_021D443C(UnkStruct_ov19_021D5DF8 *param0, u32 param1, u32 param2);
-static void ov19_021D4458(UnkStruct_ov19_021D5DF8 *param0);
-static BOOL ov19_021D4468(UnkStruct_ov19_021D5DF8 *param0);
+static void BoxSelectorPopup_Init(UnkStruct_ov19_021D5DF8 *param0, u32 boxID, u32 boxMessageID);
+static void BoxSelectorPopup_Reset(UnkStruct_ov19_021D5DF8 *param0);
+static BOOL ov19_TrySelectBoxFromPopup(UnkStruct_ov19_021D5DF8 *param0);
 static void ov19_021D45A8(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D4640(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D4938(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
@@ -1395,23 +1402,24 @@ static void ov19_021D2694(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
     }
 }
 
+// jump to box
 static void ov19_021D27E8(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
 {
     switch (*param1) {
     case 0:
-        ov19_021D443C(param0, ov19_GetCurrentBox(&param0->unk_00), BoxText_JumpToBox);
+        BoxSelectorPopup_Init(param0, ov19_GetCurrentBox(&param0->unk_00), BoxText_JumpToBox);
         (*param1) = 1;
         break;
     case 1:
-        if (ov19_021D4468(param0) == 0) {
+        if (ov19_TrySelectBoxFromPopup(param0) == FALSE) {
             break;
         }
 
-        if ((param0->unk_1BC.boxID == -1) || (param0->unk_1BC.boxID == ov19_GetCurrentBox(&param0->unk_00))) {
+        if ((param0->boxSelector.boxID == -1) || (param0->boxSelector.boxID == ov19_GetCurrentBox(&param0->unk_00))) {
             (*param1) = 2;
         } else {
-            ov19_LoadCustomizationsFor(&param0->unk_00, param0->unk_1BC.boxID);
-            PCBoxes_SetCurrentBox(param0->pcBoxes, param0->unk_1BC.boxID);
+            ov19_LoadCustomizationsFor(&param0->unk_00, param0->boxSelector.boxID);
+            PCBoxes_SetCurrentBox(param0->pcBoxes, param0->boxSelector.boxID);
             ov19_BoxTaskHandler(param0->unk_114, FUNCTION_ov19_021D6824);
             (*param1) = 2;
         }
@@ -1947,28 +1955,28 @@ static void ov19_021D3294(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
                 ov19_BoxTaskHandler(param0->unk_114, FUNCTION_BoxGraphics_DisplayBoxMessage);
                 (*param1) = 3;
             } else {
-                ov19_021D443C(param0, param0->unk_00.unk_110, BoxText_PickDepositBox);
+                BoxSelectorPopup_Init(param0, param0->unk_00.unk_110, BoxText_PickDepositBox);
                 ov19_BoxTaskHandler(param0->unk_114, FUNCTION_BoxGraphics_CloseMessageBox);
                 (*param1) = 1;
             }
         }
         break;
     case 1:
-        if (ov19_021D4468(param0) == 0) {
+        if (ov19_TrySelectBoxFromPopup(param0) == FALSE) {
             break;
         }
 
-        if (param0->unk_1BC.boxID == -1) {
+        if (param0->boxSelector.boxID == -1) {
             ov19_BoxTaskHandler(param0->unk_114, FUNCTION_BoxGraphics_CloseMessageBox);
             ov19_BoxTaskHandler(param0->unk_114, FUNCTION_ov19_021D6FB0);
             (*param1) = 6;
             break;
         }
 
-        param0->unk_00.unk_110 = param0->unk_1BC.boxID;
+        param0->unk_00.unk_110 = param0->boxSelector.boxID;
 
         if (ov19_GetPreviewMonSource(&param0->unk_00) == PREVIEW_MON_IN_CURSOR) {
-            if (ov19_TryStoreCursorMonInBox(param0, param0->unk_1BC.boxID)) {
+            if (ov19_TryStoreCursorMonInBox(param0, param0->boxSelector.boxID)) {
                 ov19_FlagRecordBoxUseInJournal(param0);
                 ov19_BoxTaskHandler(param0->unk_114, FUNCTION_BoxGraphics_CloseMessageBox);
                 ov19_BoxTaskHandler(param0->unk_114, FUNCTION_ov19_021D6FB0);
@@ -1976,7 +1984,7 @@ static void ov19_021D3294(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
                 break;
             }
         } else {
-            if (ov19_TryStoreSelectedMonInBox(param0, param0->unk_1BC.boxID)) {
+            if (ov19_TryStoreSelectedMonInBox(param0, param0->boxSelector.boxID)) {
                 ov19_FlagRecordBoxUseInJournal(param0);
                 ov19_BoxTaskHandler(param0->unk_114, FUNCTION_BoxGraphics_CloseMessageBox);
                 ov19_BoxTaskHandler(param0->unk_114, FUNCTION_ov19_021D6FB0);
@@ -1996,7 +2004,7 @@ static void ov19_021D3294(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         }
 
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-            ov19_021D4458(param0);
+            BoxSelectorPopup_Reset(param0);
             (*param1) = 1;
         }
         break;
@@ -2760,76 +2768,76 @@ static void ov19_021D4390(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
     }
 }
 
-static void ov19_021D443C(UnkStruct_ov19_021D5DF8 *param0, u32 boxID, u32 boxMessageID)
+static void BoxSelectorPopup_Init(UnkStruct_ov19_021D5DF8 *param0, u32 boxID, u32 boxMessageID)
 {
-    param0->unk_1BC.unk_00 = 0;
-    param0->unk_1BC.boxID = boxID;
-    param0->unk_1BC.boxMessageID = boxMessageID;
-    param0->unk_1BC.unk_04 = 0;
+    param0->boxSelector.state = BOX_SELECTOR_START;
+    param0->boxSelector.boxID = boxID;
+    param0->boxSelector.boxMessageID = boxMessageID;
+    param0->boxSelector.hasReset = FALSE;
 }
 
-static void ov19_021D4458(UnkStruct_ov19_021D5DF8 *param0)
+static void BoxSelectorPopup_Reset(UnkStruct_ov19_021D5DF8 *param0)
 {
-    param0->unk_1BC.unk_00 = 0;
-    param0->unk_1BC.unk_04 = 1;
+    param0->boxSelector.state = BOX_SELECTOR_START;
+    param0->boxSelector.hasReset = TRUE;
 }
 
-static BOOL ov19_021D4468(UnkStruct_ov19_021D5DF8 *param0)
+static BOOL ov19_TrySelectBoxFromPopup(UnkStruct_ov19_021D5DF8 *param0)
 {
-    UnkStruct_ov19_021D4468 *v0 = &(param0->unk_1BC);
+    BoxSelectorPopup *boxSelector = &(param0->boxSelector);
 
-    switch (v0->unk_00) {
-    case 0:
-        if (v0->unk_04 == 1) {
-            v0->unk_00 = 1;
+    switch (boxSelector->state) {
+    case BOX_SELECTOR_START:
+        if (boxSelector->hasReset == TRUE) {
+            boxSelector->state = BOX_SELECTOR_DISPLAY_MESSAGE_START;
             break;
         }
 
-        if (v0->boxID == -1) {
-            v0->boxID = 0;
+        if (boxSelector->boxID == -1) {
+            boxSelector->boxID = 0;
         }
 
-        ov19_SetBoxSelectionBoxID(&param0->unk_00, v0->boxID);
-        ov19_BoxTaskHandler(param0->unk_114, FUNCTION_ov19_021D6F3C);
-        v0->unk_00 = 1;
+        ov19_SetBoxSelectionBoxID(&param0->unk_00, boxSelector->boxID);
+        ov19_BoxTaskHandler(param0->unk_114, FUNCTION_BoxGraphics_ShowBoxSelectionPopup);
+        boxSelector->state = BOX_SELECTOR_DISPLAY_MESSAGE_START;
         break;
-    case 1:
-        if (ov19_IsSysTaskDone(param0->unk_114, FUNCTION_ov19_021D6F3C)) {
-            ov19_SetBoxMessage(&param0->unk_00, v0->boxMessageID);
+    case BOX_SELECTOR_DISPLAY_MESSAGE_START:
+        if (ov19_IsSysTaskDone(param0->unk_114, FUNCTION_BoxGraphics_ShowBoxSelectionPopup)) {
+            ov19_SetBoxMessage(&param0->unk_00, boxSelector->boxMessageID);
             ov19_BoxTaskHandler(param0->unk_114, FUNCTION_BoxGraphics_DisplayBoxMessage);
-            v0->unk_00 = 2;
+            boxSelector->state = BOX_SELECTOR_DISPLAY_MESSAGE_DONE;
         }
         break;
-    case 2:
+    case BOX_SELECTOR_DISPLAY_MESSAGE_DONE:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNCTION_BoxGraphics_DisplayBoxMessage) == FALSE) {
             break;
         }
 
-        v0->unk_00 = 3;
-    case 3:
-        if (ov19_IsSysTaskDone(param0->unk_114, FUNCTION_ov19_021D6F78) == FALSE) {
+        boxSelector->state = BOX_SELECTOR_WAIT_FOR_USER;
+    case BOX_SELECTOR_WAIT_FOR_USER:
+        if (ov19_IsSysTaskDone(param0->unk_114, FUNCTION_BoxGraphics_ScrollBoxSelectionPopup) == FALSE) {
             break;
         }
 
         if (JOY_NEW(PAD_KEY_LEFT | PAD_BUTTON_L)) {
-            v0->boxID--;
+            boxSelector->boxID--;
 
-            if (v0->boxID < 0) {
-                v0->boxID = MAX_PC_BOXES - 1;
+            if (boxSelector->boxID < 0) {
+                boxSelector->boxID = MAX_PC_BOXES - 1;
             }
 
-            ov19_SetBoxSelectionBoxID(&param0->unk_00, v0->boxID);
-            ov19_BoxTaskHandler(param0->unk_114, FUNCTION_ov19_021D6F78);
+            ov19_SetBoxSelectionBoxID(&param0->unk_00, boxSelector->boxID);
+            ov19_BoxTaskHandler(param0->unk_114, FUNCTION_BoxGraphics_ScrollBoxSelectionPopup);
             break;
         }
 
         if (JOY_NEW(PAD_KEY_RIGHT | PAD_BUTTON_R)) {
-            if (++(v0->boxID) >= MAX_PC_BOXES) {
-                v0->boxID = 0;
+            if (++(boxSelector->boxID) >= MAX_PC_BOXES) {
+                boxSelector->boxID = 0;
             }
 
-            ov19_SetBoxSelectionBoxID(&param0->unk_00, v0->boxID);
-            ov19_BoxTaskHandler(param0->unk_114, FUNCTION_ov19_021D6F78);
+            ov19_SetBoxSelectionBoxID(&param0->unk_00, boxSelector->boxID);
+            ov19_BoxTaskHandler(param0->unk_114, FUNCTION_BoxGraphics_ScrollBoxSelectionPopup);
             break;
         }
 
@@ -2840,7 +2848,7 @@ static BOOL ov19_021D4468(UnkStruct_ov19_021D5DF8 *param0)
 
         if (JOY_NEW(PAD_BUTTON_B)) {
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
-            v0->boxID = -1;
+            boxSelector->boxID = -1;
             return TRUE;
         }
         break;
