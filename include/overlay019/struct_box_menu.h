@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_OV19_021DF964_H
-#define POKEPLATINUM_STRUCT_OV19_021DF964_H
+#ifndef POKEPLATINUM_STRUCT_BOX_MENU_H
+#define POKEPLATINUM_STRUCT_BOX_MENU_H
 
 enum BoxMenuItem {
     BOX_MENU_NAVIGATION_NONE = -3,
@@ -88,4 +88,4 @@ typedef struct BoxMenu {
     u8 unused; // only assigned to, never read from
 } BoxMenu;
 
-#endif // POKEPLATINUM_STRUCT_OV19_021DF964_H
+#endif // POKEPLATINUM_STRUCT_BOX_MENU_H
