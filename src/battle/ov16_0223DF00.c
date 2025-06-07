@@ -150,7 +150,7 @@ void ov16_0223F24C(BattleSystem *battleSystem, int param1);
 void ov16_0223F268(BattleSystem *battleSystem);
 void BattleSystem_SetCommandSelectionFlags(BattleSystem *battleSys, int flags);
 void ov16_0223F290(BattleSystem *battleSystem, int param1);
-WaitDial *Battle_WaitDial(BattleSystem *battleSystem);
+WaitDial *Battle_GetWaitDial(BattleSystem *battleSystem);
 void Battle_SetWaitDial(BattleSystem *battleSystem, WaitDial *waitDial);
 u8 *ov16_0223F2B8(UnkStruct_ov16_0223E0C8 *param0, int param1);
 void ov16_0223F2CC(UnkStruct_ov16_0223E0C8 *param0, int param1, int param2);
@@ -1275,7 +1275,7 @@ void ov16_0223F290(BattleSystem *battleSystem, int param1)
     battleSystem->unk_2440 = param1;
 }
 
-WaitDial *Battle_WaitDial(BattleSystem *battleSystem)
+WaitDial *Battle_GetWaitDial(BattleSystem *battleSystem)
 {
     return battleSystem->waitDial;
 }

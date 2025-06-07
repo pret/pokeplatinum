@@ -4954,8 +4954,8 @@ static void WaitForBattleMessagePrint(SysTask *task, void *data)
 {
     BattleMessageWaitTask *waitTask = data;
 
-    if (Battle_WaitDial(waitTask->battleSys)) {
-        DestroyWaitDial(Battle_WaitDial(waitTask->battleSys));
+    if (Battle_GetWaitDial(waitTask->battleSys)) {
+        DestroyWaitDial(Battle_GetWaitDial(waitTask->battleSys));
         Battle_SetWaitDial(waitTask->battleSys, NULL);
     }
 
