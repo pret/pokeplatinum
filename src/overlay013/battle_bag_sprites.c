@@ -33,8 +33,6 @@
 #define CATCH_TUTORIAL_CURSOR_IMAGE_RESOURCE_ID 46269
 #define CATCH_TUTORIAL_CURSOR_ANIM_RESOURCE_ID  46264
 
-#define PALETTE_FILE_SIZE 32
-
 static void InitializeSpriteManager(BattleBag *battleBag);
 static void LoadSpriteData(BattleBag *battleBag);
 static void LoadItemIcon(BattleBag *battleBag, u16 item, u32 resourceID);
@@ -48,32 +46,43 @@ static void CleanupCursor(BattleBag *battleBag);
 static void InitializeCatchTutorialCursor(BattleBag *battleBag);
 static void CleanupCatchTutorialCursor(BattleBag *battleBag);
 
-static const int lastUsedItemSpritePosition[2] = {
-    24,
-    178
+typedef struct SpritePosition {
+    int x;
+    int y;
+} SpritePosition;
+
+static const SpritePosition sLastUsedItemSpritePosition = {
+    .x = 24,
+    .y = 178
 };
 
-static const int pocketItemSpritePositions[][2] = {
-    { 44, 45 },
-    { 172, 45 },
-    { 44, 93 },
-    { 172, 93 },
-    { 44, 141 },
-    { 172, 141 }
+static const SpritePosition sPocketItemSpritePositions[] = {
+    { .x = 44, .y = 45 },
+    { .x = 172, .y = 45 },
+    { .x = 44, .y = 93 },
+    { .x = 172, .y = 93 },
+    { .x = 44, .y = 141 },
+    { .x = 172, .y = 141 }
 };
 
-static const int selectedItemSpritePosition[2] = {
-    40,
-    44
+static const SpritePosition sSelectedItemSpritePosition = {
+    .x = 40,
+    .y = 44
 };
 
-static const int pocketItemSpriteResourcesAndPriority[][5] = {
-    { [SPRITE_RESOURCE_CHAR] = POCKET_SLOT_1_RESOURCE_ID, [SPRITE_RESOURCE_PLTT] = POCKET_SLOT_1_RESOURCE_ID, [SPRITE_RESOURCE_CELL] = POCKET_SLOT_1_RESOURCE_ID, [SPRITE_RESOURCE_ANIM] = POCKET_SLOT_1_RESOURCE_ID, 1 },
-    { [SPRITE_RESOURCE_CHAR] = POCKET_SLOT_2_RESOURCE_ID, [SPRITE_RESOURCE_PLTT] = POCKET_SLOT_2_RESOURCE_ID, [SPRITE_RESOURCE_CELL] = POCKET_SLOT_1_RESOURCE_ID, [SPRITE_RESOURCE_ANIM] = POCKET_SLOT_1_RESOURCE_ID, 1 },
-    { [SPRITE_RESOURCE_CHAR] = POCKET_SLOT_3_RESOURCE_ID, [SPRITE_RESOURCE_PLTT] = POCKET_SLOT_3_RESOURCE_ID, [SPRITE_RESOURCE_CELL] = POCKET_SLOT_1_RESOURCE_ID, [SPRITE_RESOURCE_ANIM] = POCKET_SLOT_1_RESOURCE_ID, 1 },
-    { [SPRITE_RESOURCE_CHAR] = POCKET_SLOT_4_RESOURCE_ID, [SPRITE_RESOURCE_PLTT] = POCKET_SLOT_4_RESOURCE_ID, [SPRITE_RESOURCE_CELL] = POCKET_SLOT_1_RESOURCE_ID, [SPRITE_RESOURCE_ANIM] = POCKET_SLOT_1_RESOURCE_ID, 1 },
-    { [SPRITE_RESOURCE_CHAR] = POCKET_SLOT_5_RESOURCE_ID, [SPRITE_RESOURCE_PLTT] = POCKET_SLOT_5_RESOURCE_ID, [SPRITE_RESOURCE_CELL] = POCKET_SLOT_1_RESOURCE_ID, [SPRITE_RESOURCE_ANIM] = POCKET_SLOT_1_RESOURCE_ID, 1 },
-    { [SPRITE_RESOURCE_CHAR] = POCKET_SLOT_6_RESOURCE_ID, [SPRITE_RESOURCE_PLTT] = POCKET_SLOT_6_RESOURCE_ID, [SPRITE_RESOURCE_CELL] = POCKET_SLOT_1_RESOURCE_ID, [SPRITE_RESOURCE_ANIM] = POCKET_SLOT_1_RESOURCE_ID, 1 }
+static const struct {
+    int charResID;
+    int plttResID;
+    int cellResID;
+    int animResID;
+    int priority;
+} sPocketItemSpriteResourcesAndPriority[] = {
+    { .charResID = POCKET_SLOT_1_RESOURCE_ID, .plttResID = POCKET_SLOT_1_RESOURCE_ID, .cellResID = POCKET_SLOT_1_RESOURCE_ID, .animResID = POCKET_SLOT_1_RESOURCE_ID, .priority = 1 },
+    { .charResID = POCKET_SLOT_2_RESOURCE_ID, .plttResID = POCKET_SLOT_2_RESOURCE_ID, .cellResID = POCKET_SLOT_1_RESOURCE_ID, .animResID = POCKET_SLOT_1_RESOURCE_ID, .priority = 1 },
+    { .charResID = POCKET_SLOT_3_RESOURCE_ID, .plttResID = POCKET_SLOT_3_RESOURCE_ID, .cellResID = POCKET_SLOT_1_RESOURCE_ID, .animResID = POCKET_SLOT_1_RESOURCE_ID, .priority = 1 },
+    { .charResID = POCKET_SLOT_4_RESOURCE_ID, .plttResID = POCKET_SLOT_4_RESOURCE_ID, .cellResID = POCKET_SLOT_1_RESOURCE_ID, .animResID = POCKET_SLOT_1_RESOURCE_ID, .priority = 1 },
+    { .charResID = POCKET_SLOT_5_RESOURCE_ID, .plttResID = POCKET_SLOT_5_RESOURCE_ID, .cellResID = POCKET_SLOT_1_RESOURCE_ID, .animResID = POCKET_SLOT_1_RESOURCE_ID, .priority = 1 },
+    { .charResID = POCKET_SLOT_6_RESOURCE_ID, .plttResID = POCKET_SLOT_6_RESOURCE_ID, .cellResID = POCKET_SLOT_1_RESOURCE_ID, .animResID = POCKET_SLOT_1_RESOURCE_ID, .priority = 1 }
 };
 
 void BattleBagSprites_InitializeSprites(BattleBag *battleBag)
@@ -100,11 +109,10 @@ static void InitializeSpriteManager(BattleBag *battleBag)
 
 static void LoadSpriteData(BattleBag *battleBag)
 {
-    u32 i;
     NARC *narc = NARC_ctor(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, battleBag->context->heapID);
     SpriteSystem *spriteSystem = ov16_0223E010(battleBag->context->battleSystem);
 
-    for (i = 0; i < BATTLE_POCKET_ITEMS_PER_PAGE; i++) {
+    for (u32 i = 0; i < BATTLE_POCKET_ITEMS_PER_PAGE; i++) {
         SpriteSystem_LoadCharResObjFromOpenNarc(spriteSystem, battleBag->spriteManager, narc, Item_FileID(ITEM_MASTER_BALL, ITEM_FILE_TYPE_ICON), FALSE, NNS_G2D_VRAM_TYPE_2DSUB, POCKET_SLOT_1_RESOURCE_ID + i);
         SpriteSystem_LoadPaletteBufferFromOpenNarc(battleBag->palette, PLTTBUF_SUB_OBJ, spriteSystem, battleBag->spriteManager, narc, Item_FileID(ITEM_MASTER_BALL, ITEM_FILE_TYPE_PALETTE), FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, POCKET_SLOT_1_RESOURCE_ID + i);
     }
@@ -122,7 +130,7 @@ static void LoadItemIcon(BattleBag *battleBag, u16 item, u32 resourceID)
 
 static void LoadItemPaletteData(BattleBag *battleBag, u16 item, u16 slotIndex, u32 resourceID)
 {
-    PaletteData_LoadBufferFromFileStart(battleBag->palette, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(item, ITEM_FILE_TYPE_PALETTE), battleBag->context->heapID, PLTTBUF_SUB_OBJ, PALETTE_FILE_SIZE, slotIndex * 16);
+    PaletteData_LoadBufferFromFileStart(battleBag->palette, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(item, ITEM_FILE_TYPE_PALETTE), battleBag->context->heapID, PLTTBUF_SUB_OBJ, PALETTE_SIZE_BYTES, slotIndex * 16);
 }
 
 static ManagedSprite *CreatePocketItemSprite(BattleBag *battleBag, u32 slotIndex)
@@ -134,13 +142,13 @@ static ManagedSprite *CreatePocketItemSprite(BattleBag *battleBag, u32 slotIndex
     template.y = 0;
     template.z = 0;
     template.animIdx = 0;
-    template.priority = pocketItemSpriteResourcesAndPriority[slotIndex][4];
+    template.priority = sPocketItemSpriteResourcesAndPriority[slotIndex].priority;
     template.plttIdx = 0;
     template.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
-    template.resources[SPRITE_RESOURCE_CHAR] = pocketItemSpriteResourcesAndPriority[slotIndex][SPRITE_RESOURCE_CHAR];
-    template.resources[SPRITE_RESOURCE_PLTT] = pocketItemSpriteResourcesAndPriority[slotIndex][SPRITE_RESOURCE_PLTT];
-    template.resources[SPRITE_RESOURCE_CELL] = pocketItemSpriteResourcesAndPriority[slotIndex][SPRITE_RESOURCE_CELL];
-    template.resources[SPRITE_RESOURCE_ANIM] = pocketItemSpriteResourcesAndPriority[slotIndex][SPRITE_RESOURCE_ANIM];
+    template.resources[SPRITE_RESOURCE_CHAR] = sPocketItemSpriteResourcesAndPriority[slotIndex].charResID;
+    template.resources[SPRITE_RESOURCE_PLTT] = sPocketItemSpriteResourcesAndPriority[slotIndex].plttResID;
+    template.resources[SPRITE_RESOURCE_CELL] = sPocketItemSpriteResourcesAndPriority[slotIndex].cellResID;
+    template.resources[SPRITE_RESOURCE_ANIM] = sPocketItemSpriteResourcesAndPriority[slotIndex].animResID;
     template.bgPriority = 1;
     template.vramTransfer = FALSE;
 
@@ -149,19 +157,16 @@ static ManagedSprite *CreatePocketItemSprite(BattleBag *battleBag, u32 slotIndex
 
 static void InitializePocketItemSprites(BattleBag *battleBag)
 {
-    u32 i;
-
-    for (i = 0; i < BATTLE_POCKET_ITEMS_PER_PAGE; i++) {
+    for (u32 i = 0; i < BATTLE_POCKET_ITEMS_PER_PAGE; i++) {
         battleBag->pocketItemSprites[i] = CreatePocketItemSprite(battleBag, i);
     }
 }
 
 void BattleBagSprites_CleanupSprites(BattleBag *battleBag)
 {
-    u32 i;
     SpriteSystem *spriteSystem = ov16_0223E010(battleBag->context->battleSystem);
 
-    for (i = 0; i < BATTLE_POCKET_ITEMS_PER_PAGE; i++) {
+    for (u32 i = 0; i < BATTLE_POCKET_ITEMS_PER_PAGE; i++) {
         Sprite_DeleteAndFreeResources(battleBag->pocketItemSprites[i]);
     }
 
@@ -178,9 +183,7 @@ static void DrawSprite(ManagedSprite *sprite, const int x, const int y)
 
 void BattleBagSprites_SetupScreen(BattleBag *battleBag, enum BattleBagScreen screen)
 {
-    u32 i;
-
-    for (i = 0; i < BATTLE_POCKET_ITEMS_PER_PAGE; i++) {
+    for (u32 i = 0; i < BATTLE_POCKET_ITEMS_PER_PAGE; i++) {
         ManagedSprite_SetDrawFlag(battleBag->pocketItemSprites[i], FALSE);
     }
 
@@ -202,17 +205,14 @@ static void DrawLastUsedItem(BattleBag *battleBag)
     if (battleBag->context->lastUsedItem != ITEM_NONE) {
         LoadItemIcon(battleBag, battleBag->context->lastUsedItem, POCKET_SLOT_1_RESOURCE_ID);
         LoadItemPaletteData(battleBag, battleBag->context->lastUsedItem, 0, POCKET_SLOT_1_RESOURCE_ID);
-        DrawSprite(battleBag->pocketItemSprites[0], lastUsedItemSpritePosition[0], lastUsedItemSpritePosition[1]);
+        DrawSprite(battleBag->pocketItemSprites[0], sLastUsedItemSpritePosition.x, sLastUsedItemSpritePosition.y);
     }
 }
 
 static void DrawPocketItems(BattleBag *battleBag)
 {
-    u32 i;
-    u16 item;
-
-    for (i = 0; i < BATTLE_POCKET_ITEMS_PER_PAGE; i++) {
-        item = BattleBag_GetItem(battleBag, i);
+    for (u32 i = 0; i < BATTLE_POCKET_ITEMS_PER_PAGE; i++) {
+        u16 item = BattleBag_GetItem(battleBag, i);
 
         if (item == ITEM_NONE) {
             continue;
@@ -220,7 +220,7 @@ static void DrawPocketItems(BattleBag *battleBag)
 
         LoadItemIcon(battleBag, item, POCKET_SLOT_1_RESOURCE_ID + i);
         LoadItemPaletteData(battleBag, item, (u16)i, POCKET_SLOT_1_RESOURCE_ID + i);
-        DrawSprite(battleBag->pocketItemSprites[i], pocketItemSpritePositions[i][0], pocketItemSpritePositions[i][1]);
+        DrawSprite(battleBag->pocketItemSprites[i], sPocketItemSpritePositions[i].x, sPocketItemSpritePositions[i].y);
     }
 }
 
@@ -230,7 +230,7 @@ static void DrawSelectedItem(BattleBag *battleBag)
 
     LoadItemIcon(battleBag, item, POCKET_SLOT_1_RESOURCE_ID);
     LoadItemPaletteData(battleBag, item, 0, POCKET_SLOT_1_RESOURCE_ID);
-    DrawSprite(battleBag->pocketItemSprites[0], selectedItemSpritePosition[0], selectedItemSpritePosition[1]);
+    DrawSprite(battleBag->pocketItemSprites[0], sSelectedItemSpritePosition.x, sSelectedItemSpritePosition.y);
 }
 
 static void InitializeCursor(BattleBag *battleBag)
@@ -252,29 +252,182 @@ static void CleanupCursor(BattleBag *battleBag)
 }
 
 static const GridMenuCursorPosition menuScreenCursorPositions[] = {
-    [BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_HP_POCKET] = { .xCoord1 = 8, .yCoord1 = 16, .xCoord2 = 120, .yCoord2 = 72, .upIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_HP_POCKET, .downIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_STATUS_POCKET, .leftIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_HP_POCKET, .rightIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_POKE_BALLS_POCKET },
-    [BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_STATUS_POCKET] = { .xCoord1 = 8, .yCoord1 = 88, .xCoord2 = 120, .yCoord2 = 144, .upIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_HP_POCKET, .downIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_LAST_USED_ITEM, .leftIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_STATUS_POCKET, .rightIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_BATTLE_ITEMS_POCKET },
-    [BATTLE_BAG_MENU_SCREEN_BUTTON_POKE_BALLS_POCKET] = { .xCoord1 = 136, .yCoord1 = 16, .xCoord2 = 248, .yCoord2 = 72, .upIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_POKE_BALLS_POCKET, .downIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_BATTLE_ITEMS_POCKET, .leftIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_HP_POCKET, .rightIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_POKE_BALLS_POCKET },
-    [BATTLE_BAG_MENU_SCREEN_BUTTON_BATTLE_ITEMS_POCKET] = { .xCoord1 = 136, .yCoord1 = 88, .xCoord2 = 248, .yCoord2 = 144, .upIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_POKE_BALLS_POCKET, .downIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_CANCEL, .leftIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_STATUS_POCKET, .rightIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_BATTLE_ITEMS_POCKET },
-    [BATTLE_BAG_MENU_SCREEN_BUTTON_LAST_USED_ITEM] = { .xCoord1 = 8, .yCoord1 = 160, .xCoord2 = 200, .yCoord2 = 184, .upIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_STATUS_POCKET, .downIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_LAST_USED_ITEM, .leftIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_LAST_USED_ITEM, .rightIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_CANCEL },
-    [BATTLE_BAG_MENU_SCREEN_BUTTON_CANCEL] = { .xCoord1 = 224, .yCoord1 = 160, .xCoord2 = 248, .yCoord2 = 184, .upIndex = BATTLE_SUB_MENU_CURSOR_GO_TO_PREVIOUS_POSITION_INDEX_MASK + BATTLE_BAG_MENU_SCREEN_BUTTON_BATTLE_ITEMS_POCKET, .downIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_CANCEL, .leftIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_LAST_USED_ITEM, .rightIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_CANCEL }
+    [BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_HP_POCKET] = {
+        .xCoord1 = 8,
+        .yCoord1 = 16,
+        .xCoord2 = 120,
+        .yCoord2 = 72,
+        .upIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_HP_POCKET,
+        .downIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_STATUS_POCKET,
+        .leftIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_HP_POCKET,
+        .rightIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_POKE_BALLS_POCKET,
+    },
+    [BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_STATUS_POCKET] = {
+        .xCoord1 = 8,
+        .yCoord1 = 88,
+        .xCoord2 = 120,
+        .yCoord2 = 144,
+        .upIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_HP_POCKET,
+        .downIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_LAST_USED_ITEM,
+        .leftIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_STATUS_POCKET,
+        .rightIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_BATTLE_ITEMS_POCKET,
+    },
+    [BATTLE_BAG_MENU_SCREEN_BUTTON_POKE_BALLS_POCKET] = {
+        .xCoord1 = 136,
+        .yCoord1 = 16,
+        .xCoord2 = 248,
+        .yCoord2 = 72,
+        .upIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_POKE_BALLS_POCKET,
+        .downIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_BATTLE_ITEMS_POCKET,
+        .leftIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_HP_POCKET,
+        .rightIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_POKE_BALLS_POCKET,
+    },
+    [BATTLE_BAG_MENU_SCREEN_BUTTON_BATTLE_ITEMS_POCKET] = {
+        .xCoord1 = 136,
+        .yCoord1 = 88,
+        .xCoord2 = 248,
+        .yCoord2 = 144,
+        .upIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_POKE_BALLS_POCKET,
+        .downIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_CANCEL,
+        .leftIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_STATUS_POCKET,
+        .rightIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_BATTLE_ITEMS_POCKET,
+    },
+    [BATTLE_BAG_MENU_SCREEN_BUTTON_LAST_USED_ITEM] = {
+        .xCoord1 = 8,
+        .yCoord1 = 160,
+        .xCoord2 = 200,
+        .yCoord2 = 184,
+        .upIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_STATUS_POCKET,
+        .downIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_LAST_USED_ITEM,
+        .leftIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_LAST_USED_ITEM,
+        .rightIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_CANCEL,
+    },
+    [BATTLE_BAG_MENU_SCREEN_BUTTON_CANCEL] = {
+        .xCoord1 = 224,
+        .yCoord1 = 160,
+        .xCoord2 = 248,
+        .yCoord2 = 184,
+        .upIndex = BATTLE_SUB_MENU_CURSOR_GO_TO_PREVIOUS_POSITION_INDEX_MASK + BATTLE_BAG_MENU_SCREEN_BUTTON_BATTLE_ITEMS_POCKET,
+        .downIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_CANCEL,
+        .leftIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_LAST_USED_ITEM,
+        .rightIndex = BATTLE_BAG_MENU_SCREEN_BUTTON_CANCEL,
+    }
 };
 
 static const GridMenuCursorPosition pocketMenuScreenCursorPositions[] = {
-    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_1] = { .xCoord1 = 8, .yCoord1 = 16, .xCoord2 = 120, .yCoord2 = 48, .upIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_1, .downIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_3, .leftIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_1, .rightIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_2 },
-    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_2] = { .xCoord1 = 136, .yCoord1 = 16, .xCoord2 = 248, .yCoord2 = 48, .upIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_2, .downIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_4, .leftIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_1, .rightIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_2 },
-    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_3] = { .xCoord1 = 8, .yCoord1 = 64, .xCoord2 = 120, .yCoord2 = 96, .upIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_1, .downIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_5, .leftIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_3, .rightIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_4 },
-    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_4] = { .xCoord1 = 136, .yCoord1 = 64, .xCoord2 = 248, .yCoord2 = 96, .upIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_2, .downIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_6, .leftIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_3, .rightIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_4 },
-    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_5] = { .xCoord1 = 8, .yCoord1 = 112, .xCoord2 = 120, .yCoord2 = 144, .upIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_3, .downIndex = BATTLE_SUB_MENU_CURSOR_GO_TO_PREVIOUS_POSITION_INDEX_MASK + BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_PREV_PAGE, .leftIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_5, .rightIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_6 },
-    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_6] = { .xCoord1 = 136, .yCoord1 = 112, .xCoord2 = 248, .yCoord2 = 144, .upIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_4, .downIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_CANCEL, .leftIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_5, .rightIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_6 },
-    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_PREV_PAGE] = { .xCoord1 = 8, .yCoord1 = 160, .xCoord2 = 32, .yCoord2 = 184, .upIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_5, .downIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_PREV_PAGE, .leftIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_PREV_PAGE, .rightIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_NEXT_PAGE },
-    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_NEXT_PAGE] = { .xCoord1 = 48, .yCoord1 = 160, .xCoord2 = 72, .yCoord2 = 184, .upIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_5, .downIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_NEXT_PAGE, .leftIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_PREV_PAGE, .rightIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_CANCEL },
-    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_CANCEL] = { .xCoord1 = 224, .yCoord1 = 160, .xCoord2 = 248, .yCoord2 = 184, .upIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_6, .downIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_CANCEL, .leftIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_NEXT_PAGE, .rightIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_CANCEL }
+    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_1] = {
+        .xCoord1 = 8,
+        .yCoord1 = 16,
+        .xCoord2 = 120,
+        .yCoord2 = 48,
+        .upIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_1,
+        .downIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_3,
+        .leftIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_1,
+        .rightIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_2,
+    },
+    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_2] = {
+        .xCoord1 = 136,
+        .yCoord1 = 16,
+        .xCoord2 = 248,
+        .yCoord2 = 48,
+        .upIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_2,
+        .downIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_4,
+        .leftIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_1,
+        .rightIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_2,
+    },
+    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_3] = {
+        .xCoord1 = 8,
+        .yCoord1 = 64,
+        .xCoord2 = 120,
+        .yCoord2 = 96,
+        .upIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_1,
+        .downIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_5,
+        .leftIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_3,
+        .rightIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_4,
+    },
+    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_4] = {
+        .xCoord1 = 136,
+        .yCoord1 = 64,
+        .xCoord2 = 248,
+        .yCoord2 = 96,
+        .upIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_2,
+        .downIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_6,
+        .leftIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_3,
+        .rightIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_4,
+    },
+    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_5] = {
+        .xCoord1 = 8,
+        .yCoord1 = 112,
+        .xCoord2 = 120,
+        .yCoord2 = 144,
+        .upIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_3,
+        .downIndex = BATTLE_SUB_MENU_CURSOR_GO_TO_PREVIOUS_POSITION_INDEX_MASK + BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_PREV_PAGE,
+        .leftIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_5,
+        .rightIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_6,
+    },
+    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_6] = {
+        .xCoord1 = 136,
+        .yCoord1 = 112,
+        .xCoord2 = 248,
+        .yCoord2 = 144,
+        .upIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_4,
+        .downIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_CANCEL,
+        .leftIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_5,
+        .rightIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_6,
+    },
+    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_PREV_PAGE] = {
+        .xCoord1 = 8,
+        .yCoord1 = 160,
+        .xCoord2 = 32,
+        .yCoord2 = 184,
+        .upIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_5,
+        .downIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_PREV_PAGE,
+        .leftIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_PREV_PAGE,
+        .rightIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_NEXT_PAGE,
+    },
+    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_NEXT_PAGE] = {
+        .xCoord1 = 48,
+        .yCoord1 = 160,
+        .xCoord2 = 72,
+        .yCoord2 = 184,
+        .upIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_5,
+        .downIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_NEXT_PAGE,
+        .leftIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_PREV_PAGE,
+        .rightIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_CANCEL,
+    },
+    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_CANCEL] = {
+        .xCoord1 = 224,
+        .yCoord1 = 160,
+        .xCoord2 = 248,
+        .yCoord2 = 184,
+        .upIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_6,
+        .downIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_CANCEL,
+        .leftIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_NEXT_PAGE,
+        .rightIndex = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_CANCEL,
+    }
 };
 
 static const GridMenuCursorPosition useItemScreenCursorPositions[] = {
-    [BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_USE] = { .xCoord1 = 8, .yCoord1 = 160, .xCoord2 = 200, .yCoord2 = 184, .upIndex = BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_USE, .downIndex = BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_USE, .leftIndex = BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_USE, .rightIndex = BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_CANCEL },
-    [BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_CANCEL] = { .xCoord1 = 224, .yCoord1 = 160, .xCoord2 = 248, .yCoord2 = 184, .upIndex = BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_CANCEL, .downIndex = BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_CANCEL, .leftIndex = BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_USE, .rightIndex = BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_CANCEL }
+    [BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_USE] = {
+        .xCoord1 = 8,
+        .yCoord1 = 160,
+        .xCoord2 = 200,
+        .yCoord2 = 184,
+        .upIndex = BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_USE,
+        .downIndex = BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_USE,
+        .leftIndex = BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_USE,
+        .rightIndex = BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_CANCEL,
+    },
+    [BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_CANCEL] = {
+        .xCoord1 = 224,
+        .yCoord1 = 160,
+        .xCoord2 = 248,
+        .yCoord2 = 184,
+        .upIndex = BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_CANCEL,
+        .downIndex = BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_CANCEL,
+        .leftIndex = BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_USE,
+        .rightIndex = BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_CANCEL,
+    }
 };
 
 static const GridMenuCursorPosition *const screenCursorPositions[] = {
@@ -320,16 +473,16 @@ static void CleanupCatchTutorialCursor(BattleBag *battleBag)
     ov16_0226DEC4(battleBag->spriteManager, CATCH_TUTORIAL_CURSOR_IMAGE_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_IMAGE_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_ANIM_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_ANIM_RESOURCE_ID);
 }
 
-static const int catchTutorialCursorPositions[3][2] = {
-    [BATTLE_BAG_SCREEN_MENU] = { 192, 24 },
-    [BATTLE_BAG_SCREEN_POCKET_MENU] = { 64, 16 },
-    [BATTLE_BAG_SCREEN_USE_ITEM] = { 104, 152 }
+static const SpritePosition catchTutorialCursorPositions[3] = {
+    [BATTLE_BAG_SCREEN_MENU] = { .x = 192, .y = 24 },
+    [BATTLE_BAG_SCREEN_POCKET_MENU] = { .x = 64, .y = 16 },
+    [BATTLE_BAG_SCREEN_USE_ITEM] = { .x = 104, .y = 152 }
 };
 
 void BattleBagSprites_SetupCatchTutorialCursor(BattleBag *battleBag, enum BattleBagScreen screen)
 {
     if (battleBag->context->isInCatchTutorial == TRUE) {
-        ov16_0226DFB0(battleBag->catchTutorialCursor, catchTutorialCursorPositions[screen][0], catchTutorialCursorPositions[screen][1]);
+        ov16_0226DFB0(battleBag->catchTutorialCursor, catchTutorialCursorPositions[screen].x, catchTutorialCursorPositions[screen].y);
         ov16_0226DFD0(battleBag->catchTutorialCursor, 60);
     } else {
         ov16_0226DFBC(battleBag->catchTutorialCursor);
