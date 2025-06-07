@@ -117,8 +117,8 @@ static void BoxGraphics_CloseMessageBox(SysTask *task, void *param1);
 static void ov19_021D6EC0(SysTask *param0, void *param1);
 static void BoxGraphics_UpdateMenuCursor(SysTask *param0, void *param1);
 static void ov19_021D6F0C(SysTask *param0, void *param1);
-static void ov19_021D6F3C(SysTask *param0, void *param1);
-static void ov19_021D6F78(SysTask *param0, void *param1);
+static void BoxGraphics_ShowBoxSelectionPopup(SysTask *param0, void *param1);
+static void BoxGraphics_ScrollBoxSelectionPopup(SysTask *param0, void *param1);
 static void ov19_021D6FB0(SysTask *param0, void *param1);
 static void BoxGraphics_TransitionWallpaper(SysTask *param0, void *param1);
 static void ov19_021D7028(SysTask *param0, void *param1);
@@ -297,8 +297,8 @@ void ov19_BoxTaskHandler(UnkStruct_ov19_021D61B0 *param0, enum BoxFunctions func
         { ov19_021D6EC0, 0 },
         { BoxGraphics_UpdateMenuCursor, 0 },
         { ov19_021D6F0C, 0 },
-        { ov19_021D6F3C, 0 },
-        { ov19_021D6F78, 0 },
+        { BoxGraphics_ShowBoxSelectionPopup, 0 },
+        { BoxGraphics_ScrollBoxSelectionPopup, 0 },
         { ov19_021D6FB0, 0 },
         { BoxGraphics_TransitionWallpaper, 0 },
         { ov19_021D7028, 0 },
@@ -1047,29 +1047,29 @@ static void ov19_021D6F0C(SysTask *param0, void *param1)
     BoxTaskParams_Free(v1);
 }
 
-static void ov19_021D6F3C(SysTask *param0, void *param1)
+static void BoxGraphics_ShowBoxSelectionPopup(SysTask *task, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
-    BoxTaskParams *v1;
+    BoxTaskParams *params;
     const UnkStruct_ov19_021D4DF0 *v2;
 
-    v1 = (BoxTaskParams *)param1;
-    v0 = v1->unk_0C;
+    params = (BoxTaskParams *)param1;
+    v0 = params->unk_0C;
     v2 = v0->unk_1C4;
 
-    switch (v1->state) {
+    switch (params->state) {
     case 0:
         ov19_021DBB48(&(v0->unk_6690));
-        v1->state++;
+        params->state++;
         break;
     case 1:
         if (ov19_021DBB68(&(v0->unk_6690))) {
-            BoxTaskParams_Free(v1);
+            BoxTaskParams_Free(params);
         }
     }
 }
 
-static void ov19_021D6F78(SysTask *param0, void *param1)
+static void BoxGraphics_ScrollBoxSelectionPopup(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     BoxTaskParams *v1;
