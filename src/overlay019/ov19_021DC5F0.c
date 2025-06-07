@@ -67,8 +67,8 @@ BOOL ov19_021DC5F0(UnkStruct_ov19_021DC680 *param0, UnkStruct_ov19_021D61B0 *par
 
     ov19_021DA3CC(param0->unk_38, param0->unk_3C, 6);
 
-    param0->unk_1C = Heap_AllocFromHeap(HEAP_ID_10, sizeof(VecFx32) * 6 * 8);
-    param0->unk_14 = Graphics_GetScrnDataFromOpenNARC(param5, 6, 1, &(param0->unk_18), HEAP_ID_10);
+    param0->unk_1C = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(VecFx32) * 6 * 8);
+    param0->unk_14 = Graphics_GetScrnDataFromOpenNARC(param5, 6, 1, &(param0->unk_18), HEAP_ID_BOX_GRAPHICS);
 
     if ((param0->unk_14 == NULL) || (param0->unk_1C == NULL)) {
         return 0;
@@ -185,14 +185,12 @@ static void ov19_021DC79C(SysTask *param0, void *param1)
 
 void ov19_021DC834(UnkStruct_ov19_021DC680 *param0)
 {
-    int v0 = Party_GetCurrentCount(param0->unk_0C->party);
+    int partyCount = Party_GetCurrentCount(param0->unk_0C->party);
 
-    if (param0->unk_28 < v0) {
-        int v1, v2;
+    if (param0->unk_28 < partyCount) {
+        int v2 = partyCount - param0->unk_28;
 
-        v2 = v0 - param0->unk_28;
-
-        for (v1 = param0->unk_28; v1 < (6 - 1); v1++) {
+        for (int v1 = param0->unk_28; v1 < MAX_PARTY_SIZE - 1; v1++) {
             ov19_021DA418(&(param0->unk_3C[v1 + 1]), &(param0->unk_3C[v1]), 1);
             ov19_021DA3CC(param0->unk_38, &(param0->unk_3C[v1 + 1]), 1);
 
@@ -319,8 +317,8 @@ BOOL ov19_021DCB20(UnkStruct_ov19_021DC680 *param0)
         if (ov19_021DA7E0(param0->unk_38, v0)) {
             const UnkStruct_ov19_021D5DF8 *v1 = ov19_021D7964(param0->unk_00);
 
-            if (ov19_021D3B18(v1)) {
-                if (ov19_021D3B20(v1)) {
+            if (ov19_HasCheckedCanReleaseMon(v1)) {
+                if (ov19_CanReleaseMon(v1)) {
                     ov19_021DA3F0(param0->unk_38, v0, 1);
                     return 1;
                 } else {
@@ -397,7 +395,7 @@ void ov19_021DCC80(UnkStruct_ov19_021DC680 *param0, u32 param1, const UnkStruct_
     ov19_021DA418(param2, v2, 1);
     ov19_021DA754(param0->unk_38, v2, v1);
     Sprite_SetExplicitPriority(v2->unk_00, 1);
-    ov19_021D78AC(v2->unk_00, 4 + v0);
+    BoxGraphics_SetSpritePriority(v2->unk_00, 4 + v0);
 
     param0->unk_28 = param1;
 }
@@ -415,7 +413,7 @@ void ov19_021DCCD4(UnkStruct_ov19_021DC680 *param0, u32 param1, const UnkStruct_
     ov19_021DA418(param2, v2, 1);
     ov19_021DA754(param0->unk_38, v2, v1);
     Sprite_SetExplicitPriority(v2->unk_00, 1);
-    ov19_021D78AC(v2->unk_00, 4 + v0);
+    BoxGraphics_SetSpritePriority(v2->unk_00, 4 + v0);
 
     param0->unk_28 = param1;
 }
