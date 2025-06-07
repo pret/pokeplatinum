@@ -1,9 +1,7 @@
-#ifndef POKEPLATINUM_OV19_021DF964_H
-#define POKEPLATINUM_OV19_021DF964_H
+#ifndef POKEPLATINUM_BOX_MENU_H
+#define POKEPLATINUM_BOX_MENU_H
 
 #include "overlay019/struct_ov19_021D4DF0.h"
-
-#define MAX_MENU_ITEMS 8
 
 void BoxMenu_FillYesNo(UnkStruct_ov19_021D4DF0 *param0, u32 menuItemIndex);
 void BoxMenu_FillTopLevelMenuItems(UnkStruct_ov19_021D4DF0 *param0);
@@ -17,4 +15,4 @@ enum BoxMenuItem BoxMenu_GetMenuNavigation(UnkStruct_ov19_021D4DF0 *param0);
 enum BoxMenuItem BoxMenu_GetSelectedMenuItem(UnkStruct_ov19_021D4DF0 *param0);
 enum BoxMenuItem BoxMenu_GetDefaultMenuItem(UnkStruct_ov19_021D4DF0 *param0);
 
-#endif // POKEPLATINUM_OV19_021DF964_H
+#endif // POKEPLATINUM_BOX_MENU_H

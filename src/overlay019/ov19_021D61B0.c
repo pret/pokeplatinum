@@ -147,6 +147,64 @@ static int ov19_021D77A4(u32 param0, u32 param1);
 static void ov19_021D7970(void);
 static void ov19_021D797C(void);
 
+static const struct {
+    SysTaskFunc sysTaskFunc;
+    u32 unk_04;
+} sBoxGraphicsTaskHandlers[] = {
+    [FUNC_ov19_021D6694] = { ov19_021D6694, 0 },
+    [FUNC_BoxGraphics_ScreenFadeBothToBlack0] = { BoxGraphics_ScreenFadeBothToBlackLogIn, 0 },
+    [FUNC_BoxGraphics_ScreenFadeBothToBlack1] = { BoxGraphics_ScreenFadeBothToBlack1, 0 },
+    [FUNC_BoxGraphics_ScreenFadeBothToBlack2] = { BoxGraphics_ScreenFadeBothToBlack2, 0 },
+    [FUNC_ov19_021D6824] = { ov19_021D6824, 0 },
+    [FUNC_ov19_021D68E4] = { ov19_021D68E4, 0 },
+    [FUNC_ov19_021D6940] = { ov19_021D6940, 0 },
+    [FUNC_ov19_021D69BC] = { ov19_021D69BC, 0 },
+    [FUNC_ov19_021D6A1C] = { ov19_021D6A1C, 0 },
+    [FUNC_ov19_021D6A38] = { ov19_021D6A38, 0 },
+    [FUNC_ov19_021D6A74] = { ov19_021D6A74, 0 },
+    [FUNC_ov19_021D6AB0] = { ov19_021D6AB0, 0 },
+    [FUNC_ov19_021D6AEC] = { ov19_021D6AEC, 0 },
+    [FUNC_ov19_021D6B1C] = { ov19_021D6B1C, 0 },
+    [FUNC_BoxGraphics_PlayReleaseCursorMonAnimation] = { BoxGraphics_PlayReleaseCursorMonAnimation, 0 },
+    [FUNC_BoxGraphics_PlayReleaseBoxMonAnimation] = { BoxGraphics_PlayReleaseBoxMonAnimation, 0 },
+    [FUNC_BoxGraphics_PlayReleasePartyMonAnimation] = { BoxGraphics_PlayReleasePartyMonAnimation, 0 },
+    [FUNC_ov19_021D6C38] = { ov19_021D6C38, 0 },
+    [FUNC_ov19_021D6C74] = { ov19_021D6C74, 0 },
+    [FUNC_ov19_021D6CB0] = { ov19_021D6CB0, 0 },
+    [FUNC_ov19_021D6CF8] = { ov19_021D6CF8, 0 },
+    [FUNC_ov19_021D6D40] = { ov19_021D6D40, 0 },
+    [FUNC_ov19_021D6D88] = { ov19_021D6D88, 0 },
+    [FUNC_ov19_021D6DF8] = { ov19_021D6DF8, 0 },
+    [FUNC_BoxGraphics_DisplayBoxMessage] = { BoxGraphics_DisplayBoxMessage, 0 },
+    [FUNC_ov19_021D6E70] = { ov19_021D6E70, 0 },
+    [FUNC_BoxGraphics_CloseMessageBox] = { BoxGraphics_CloseMessageBox, 0 },
+    [FUNC_ov19_021D6EC0] = { ov19_021D6EC0, 0 },
+    [FUNC_BoxGraphics_UpdateMenuCursor] = { BoxGraphics_UpdateMenuCursor, 0 },
+    [FUNC_ov19_021D6F0C] = { ov19_021D6F0C, 0 },
+    [FUNC_BoxGraphics_ShowBoxSelectionPopup] = { BoxGraphics_ShowBoxSelectionPopup, 0 },
+    [FUNC_BoxGraphics_ScrollBoxSelectionPopup] = { BoxGraphics_ScrollBoxSelectionPopup, 0 },
+    [FUNC_ov19_021D6FB0] = { ov19_021D6FB0, 0 },
+    [FUNC_BoxGraphics_TransitionWallpaper] = { BoxGraphics_TransitionWallpaper, 0 },
+    [FUNC_ov19_021D7028] = { ov19_021D7028, 0 },
+    [FUNC_ov19_021D70E8] = { ov19_021D70E8, 0 },
+    [FUNC_ov19_021D7138] = { ov19_021D7138, 0 },
+    [FUNC_BoxGraphics_PlayAdjustPartyAnimation] = { BoxGraphics_PlayAdjustPartyAnimation, 0 },
+    [FUNC_ov19_021D71F8] = { ov19_021D71F8, 0 },
+    [FUNC_ov19_021D7248] = { ov19_021D7248, 0 },
+    [FUNC_ov19_021D7278] = { ov19_021D7278, 0 },
+    [FUNC_ov19_021D72E8] = { ov19_021D72E8, 0 },
+    [FUNC_ov19_021D7324] = { ov19_021D7324, 0 },
+    [FUNC_ov19_021D7340] = { ov19_021D7340, 0 },
+    [FUNC_ov19_021D735C] = { ov19_021D735C, 0 },
+    [FUNC_ov19_021D7380] = { ov19_021D7380, 0 },
+    [FUNC_ov19_021D7398] = { ov19_021D7398, 0 },
+    [FUNC_ov19_021D73B0] = { ov19_021D73B0, 0 },
+    [FUNC_ov19_021D73EC] = { ov19_021D73EC, 0 },
+    [FUNC_ov19_021D7408] = { ov19_021D7408, 0 },
+    [FUNC_ov19_021D7424] = { ov19_021D7424, 0 },
+    [FUNC_BoxGraphics_ScreenFadeBothToBlackLogOff] = { BoxGraphics_ScreenFadeBothToBlackLogOff, 0 },
+};
+
 BOOL BoxGraphics_Load(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021D4DF0 *param1, const UnkStruct_ov19_021D5DF8 *param2)
 {
     UnkStruct_ov19_021D61B0 *v0 = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021D61B0));
@@ -263,79 +321,21 @@ void BoxGraphics_Free(UnkStruct_ov19_021D61B0 *param0)
 
 void ov19_BoxTaskHandler(UnkStruct_ov19_021D61B0 *param0, enum BoxFunctions function)
 {
-    static const struct {
-        SysTaskFunc sysTaskFunc;
-        u32 unk_04;
-    } functions[] = {
-        { ov19_021D6694, 0 },
-        { BoxGraphics_ScreenFadeBothToBlackLogIn, 0 },
-        { BoxGraphics_ScreenFadeBothToBlack1, 0 },
-        { BoxGraphics_ScreenFadeBothToBlack2, 0 },
-        { ov19_021D6824, 0 },
-        { ov19_021D68E4, 0 },
-        { ov19_021D6940, 0 },
-        { ov19_021D69BC, 0 },
-        { ov19_021D6A1C, 0 },
-        { ov19_021D6A38, 0 },
-        { ov19_021D6A74, 0 },
-        { ov19_021D6AB0, 0 },
-        { ov19_021D6AEC, 0 },
-        { ov19_021D6B1C, 0 },
-        { BoxGraphics_PlayReleaseCursorMonAnimation, 0 },
-        { BoxGraphics_PlayReleaseBoxMonAnimation, 0 },
-        { BoxGraphics_PlayReleasePartyMonAnimation, 0 },
-        { ov19_021D6C38, 0 },
-        { ov19_021D6C74, 0 },
-        { ov19_021D6CB0, 0 },
-        { ov19_021D6CF8, 0 },
-        { ov19_021D6D40, 0 },
-        { ov19_021D6D88, 0 },
-        { ov19_021D6DF8, 0 },
-        { BoxGraphics_DisplayBoxMessage, 0 },
-        { ov19_021D6E70, 0 },
-        { BoxGraphics_CloseMessageBox, 0 },
-        { ov19_021D6EC0, 0 },
-        { BoxGraphics_UpdateMenuCursor, 0 },
-        { ov19_021D6F0C, 0 },
-        { BoxGraphics_ShowBoxSelectionPopup, 0 },
-        { BoxGraphics_ScrollBoxSelectionPopup, 0 },
-        { ov19_021D6FB0, 0 },
-        { BoxGraphics_TransitionWallpaper, 0 },
-        { ov19_021D7028, 0 },
-        { ov19_021D70E8, 0 },
-        { ov19_021D7138, 0 },
-        { BoxGraphics_PlayAdjustPartyAnimation, 0 },
-        { ov19_021D71F8, 0 },
-        { ov19_021D7248, 0 },
-        { ov19_021D7278, 0 },
-        { ov19_021D72E8, 0 },
-        { ov19_021D7324, 0 },
-        { ov19_021D7340, 0 },
-        { ov19_021D735C, 0 },
-        { ov19_021D7380, 0 },
-        { ov19_021D7398, 0 },
-        { ov19_021D73B0, 0 },
-        { ov19_021D73EC, 0 },
-        { ov19_021D7408, 0 },
-        { ov19_021D7424, 0 },
-        { BoxGraphics_ScreenFadeBothToBlackLogOff, 0 },
-    };
-
-    if (function < NELEMS(functions)) {
+    if (function < NELEMS(sBoxGraphicsTaskHandlers)) {
         BoxTaskParams *taskParams;
 
         for (u32 i = 0; i < 4; i++) {
             if (param0->unk_08[i] == NULL) {
-                taskParams = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(BoxTaskParams) + functions[function].unk_04);
+                taskParams = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(BoxTaskParams) + sBoxGraphicsTaskHandlers[function].unk_04);
 
                 if (taskParams != NULL) {
                     taskParams->function = function;
                     taskParams->unk_04 = i;
                     taskParams->state = 0;
                     taskParams->unk_0C = param0;
-                    taskParams->unk_10 = ((u8 *)(taskParams) + functions[function].unk_04);
+                    taskParams->unk_10 = ((u8 *)(taskParams) + sBoxGraphicsTaskHandlers[function].unk_04);
 
-                    param0->unk_08[i] = SysTask_Start(functions[function].sysTaskFunc, taskParams, 1);
+                    param0->unk_08[i] = SysTask_Start(sBoxGraphicsTaskHandlers[function].sysTaskFunc, taskParams, 1);
                 } else {
                     GF_ASSERT(0);
                 }
