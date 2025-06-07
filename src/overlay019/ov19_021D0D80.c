@@ -130,6 +130,12 @@ enum BoxJumpState {
     JUMP_END
 };
 
+enum RenameBoxStates {
+    RENAME_BOX_START,
+    RENAME_BOX_LAUNCH_TEXT_INPUT_APP,
+    RENAME_BOX_RETURN_TO_BOX
+};
+
 static const TouchScreenHitTable sMainPcButtons[] = {
     { TOUCHSCREEN_USE_CIRCLE, MAIN_PC_LEFT_BUTTON_X, MAIN_PC_BUTTON_Y, MAIN_PC_BUTTON_RADIUS },
     { TOUCHSCREEN_USE_CIRCLE, MAIN_PC_RIGHT_BUTTON_X, MAIN_PC_BUTTON_Y, MAIN_PC_BUTTON_RADIUS },
@@ -261,7 +267,7 @@ static void ov19_ReleaseMon(UnkStruct_ov19_021D5DF8 *param0, u32 *releaseMonStat
 static void ov19_CheckShouldMonReturn(UnkStruct_ov19_021D5DF8 *param0);
 static void ov19_CheckLastMonWithReleaseBlockingMove(SysTask *task, void *releaseMon);
 static BOOL BoxPokemon_HasMove(BoxPokemon *boxMon, u16 param1);
-static void ov19_021D3B34(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
+static void ov19_RenameBox(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_OpenSummary(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_SetCursorPosToSummaryMonPos(UnkStruct_ov19_021D4DF0 *param0, UnkStruct_ov19_021D5DF8 *param1);
 static void ov19_021D3D44(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
@@ -1411,7 +1417,7 @@ static void ov19_021D2694(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             (*param1) = 7;
             break;
         case BOX_MENU_NAME:
-            ov19_RegisterBoxApplicationAction(param0, ov19_021D3B34);
+            ov19_RegisterBoxApplicationAction(param0, ov19_RenameBox);
             break;
         }
         break;
@@ -2412,30 +2418,29 @@ BOOL ov19_CanReleaseMon(const UnkStruct_ov19_021D5DF8 *param0)
     return FALSE;
 }
 
-// TODO: ov19_RenameBox
-static void ov19_021D3B34(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
+static void ov19_RenameBox(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
 {
-    switch (*param1) {
-    case 0:
+    switch (*state) {
+    case RENAME_BOX_START:
         ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_ScreenFadeBothToBlack2);
-        (*param1)++;
+        (*state)++;
         break;
-    case 1:
+    case RENAME_BOX_LAUNCH_TEXT_INPUT_APP:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNC_BoxGraphics_ScreenFadeBothToBlack2)) {
             BoxGraphics_Free(param0->unk_114);
             Heap_Destroy(HEAP_ID_BOX_GRAPHICS);
-            PCBoxes_BufferBoxName(param0->pcBoxes, PCBoxes_GetCurrentBoxID(param0->pcBoxes), param0->unk_128->unk_18);
+            PCBoxes_BufferBoxName(param0->pcBoxes, PCBoxes_GetCurrentBoxID(param0->pcBoxes), param0->unk_128->textInputStr);
             param0->ApplicationManager = ApplicationManager_New(&Unk_020F2DAC, param0->unk_128, HEAP_ID_BOX_DATA);
-            (*param1)++;
+            (*state)++;
         }
         break;
-    case 2:
+    case RENAME_BOX_RETURN_TO_BOX:
         if (ApplicationManager_Exec(param0->ApplicationManager)) {
             u32 boxID = PCBoxes_GetCurrentBoxID(param0->pcBoxes);
 
             ApplicationManager_Free(param0->ApplicationManager);
             Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_BOX_GRAPHICS, 245760);
-            PCBoxes_RenameBox(param0->pcBoxes, boxID, param0->unk_128->unk_18);
+            PCBoxes_RenameBox(param0->pcBoxes, boxID, param0->unk_128->textInputStr);
 
             PCBoxes_LoadCustomization(param0->pcBoxes, &param0->unk_00.customization);
             BoxGraphics_Load(&(param0->unk_114), &param0->unk_00, param0);
