@@ -32,7 +32,7 @@ typedef struct BattleBag {
     Window messageBoxWindow;
     Window *windows;
     u8 numWindows;
-    u8 unk_31;
+    u8 useAltPocketMenuWindows;
     u8 textPrinterID;
     BattleSubMenuCursor *cursor;
     UnkStruct_ov16_0226DEEC *unk_38;

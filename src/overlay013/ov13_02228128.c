@@ -352,7 +352,7 @@ static void ov13_0222872C(BattleBag *param0, u8 param1, u8 param2)
     u16 v1;
     u8 v2, v3;
 
-    if ((param1 >= 6) && (param1 <= 11) && (param0->unk_31 == 0)) {
+    if ((param1 >= 6) && (param1 <= 11) && (param0->useAltPocketMenuWindows == FALSE)) {
         v0 = Unk_ov13_02229DC0[(16 + 1) + param1 - 6];
     } else {
         v0 = Unk_ov13_02229DC0[param1];
