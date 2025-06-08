@@ -74,7 +74,7 @@ static void ov47_02256684(UnkStruct_ov47_02256634 *param0, const UnkStruct_ov47_
 
     PoketchAnimation_LoadSpriteFromNARC(&param0->unk_68, 12, 118, 119, 8);
 
-    v0.flip = FLIP_NONE;
+    v0.flip = NNS_G2D_RENDERERFLIP_NONE;
     v0.oamPriority = 2;
     v0.hasAffineTransform = FALSE;
 

@@ -6,10 +6,6 @@
 #include "constants/heap.h"
 #include "constants/narc.h"
 
-#define FLIP_NONE 0
-#define FLIP_H    1
-#define FLIP_V    2
-
 typedef struct PoketchAnimation_AnimationManager PoketchAnimation_AnimationManager;
 typedef struct PoketchAnimation_AnimatedSpriteData PoketchAnimation_AnimatedSpriteData;
 

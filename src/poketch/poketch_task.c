@@ -3,14 +3,13 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/palette.h"
-
 #include "poketch/poketch_graphics.h"
 
 #include "bg_window.h"
 #include "graphics.h"
 #include "heap.h"
 #include "narc.h"
+#include "palette.h"
 #include "pokemon_icon.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"

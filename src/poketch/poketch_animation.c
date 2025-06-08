@@ -220,8 +220,8 @@ PoketchAnimation_AnimatedSpriteData *PoketchAnimation_SetupNewAnimatedSprite(Pok
         animatedSprite->position = animData->translation;
         animatedSprite->cParam = 0;
         animatedSprite->charNo = 0;
-        animatedSprite->flipH = ((animData->flip & FLIP_H) != FLIP_NONE);
-        animatedSprite->flipV = ((animData->flip & FLIP_V) != FLIP_NONE);
+        animatedSprite->flipH = ((animData->flip & NNS_G2D_RENDERERFLIP_H) != NNS_G2D_RENDERERFLIP_NONE);
+        animatedSprite->flipV = ((animData->flip & NNS_G2D_RENDERERFLIP_V) != NNS_G2D_RENDERERFLIP_NONE);
         animatedSprite->mosaic = FALSE;
         animatedSprite->rotZ = 0;
         animatedSprite->affineTransformationPtr = &(animatedSprite->affineTransformation);

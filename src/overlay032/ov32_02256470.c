@@ -241,7 +241,7 @@ static void ov32_02256898(PoketchPartyStatusGraphics *param0, const PlayerPartyS
 
     Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 109, DS_SCREEN_SUB, 0 * TILE_SIZE_4BPP, 0, TRUE, HEAP_ID_POKETCH_APP);
 
-    v1.flip = FLIP_NONE;
+    v1.flip = NNS_G2D_RENDERERFLIP_NONE;
     v1.oamPriority = 2;
     v1.priority = 0;
     v1.hasAffineTransform = FALSE;
@@ -267,7 +267,7 @@ static void ov32_0225692C(PoketchPartyStatusGraphics *param0, const PlayerPartyS
         int v3;
 
         v1.animIdx = 0;
-        v1.flip = FLIP_NONE;
+        v1.flip = NNS_G2D_RENDERERFLIP_NONE;
         v1.oamPriority = 2;
         v1.priority = 1;
         v1.hasAffineTransform = TRUE;

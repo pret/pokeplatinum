@@ -250,7 +250,7 @@ static void ov33_02256634(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
         int v5;
 
         v2.animIdx = 0;
-        v2.flip = FLIP_NONE;
+        v2.flip = NNS_G2D_RENDERERFLIP_NONE;
         v2.oamPriority = 2;
         v2.hasAffineTransform = TRUE;
 

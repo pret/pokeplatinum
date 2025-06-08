@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/palette.h"
-
 #include "poketch/poketch_animation.h"
 #include "poketch/poketch_system.h"
 #include "poketch/poketch_task.h"
@@ -28,9 +26,9 @@
 #define POKETCH_DISPLAY_TILEMAP_NARC_IDX        15
 
 #define NUM_PALETTES                        16
-#define NUM_PALETTES_PER_PALETTE_COLOUR_SET 2
-#define NUM_PALETTE_COLOUR_SETS             (NUM_PALETTES / NUM_PALETTES_PER_PALETTE_COLOUR_SET)
-#define SLOTS_PER_PALETTE_COLOUR_SET        (SLOTS_PER_PALETTE * NUM_PALETTES_PER_PALETTE_COLOUR_SET)
+#define NUM_PALETTES_PER_POKETCH_THEME 2
+#define NUM_POKETCH_THEMES             (NUM_PALETTES / NUM_PALETTES_PER_POKETCH_THEME)
+#define SLOTS_PER_POKETCH_THEME        (SLOTS_PER_PALETTE * NUM_PALETTES_PER_POKETCH_THEME)
 #define BACKLIGHT_PALETTE_SLOT_OFFSET       (SLOTS_PER_PALETTE)
 
 #define NUM_TASK_SLOTS 8
@@ -68,7 +66,7 @@ struct PoketchGraphics_TaskData {
     PoketchGraphics_AppCounterAnimationData appCounterAnim;
     BgConfig *bgConfig;
     PoketchSystem *poketchSys;
-    u16 poketchPalettes[NUM_PALETTE_COLOUR_SETS * SLOTS_PER_PALETTE_COLOUR_SET];
+    u16 poketchPalettes[NUM_POKETCH_THEMES * SLOTS_PER_POKETCH_THEME];
     u16 palette[SLOTS_PER_PALETTE];
 };
 
@@ -183,8 +181,8 @@ void PoketchGraphics_LoadActivePalette(u32 bgOffset, u32 objOffset)
     Poketch *poketch = PoketchSystem_GetPoketchData(taskData->poketchSys);
     u32 screenColour = Poketch_CurrentScreenColor(poketch);
 
-    GXS_LoadBGPltt(&taskData->poketchPalettes[screenColour * SLOTS_PER_PALETTE_COLOUR_SET], PLTT_OFFSET(bgOffset), PALETTE_SIZE_BYTES);
-    GXS_LoadOBJPltt(&taskData->poketchPalettes[screenColour * SLOTS_PER_PALETTE_COLOUR_SET], objOffset, PALETTE_SIZE_BYTES);
+    GXS_LoadBGPltt(&taskData->poketchPalettes[screenColour * SLOTS_PER_POKETCH_THEME], PLTT_OFFSET(bgOffset), PALETTE_SIZE_BYTES);
+    GXS_LoadOBJPltt(&taskData->poketchPalettes[screenColour * SLOTS_PER_POKETCH_THEME], objOffset, PALETTE_SIZE_BYTES);
 }
 
 void PoketchGraphics_LoadActiveBacklightPalette(u32, u32)
@@ -193,8 +191,8 @@ void PoketchGraphics_LoadActiveBacklightPalette(u32, u32)
     Poketch *poketch = PoketchSystem_GetPoketchData(taskData->poketchSys);
     u32 screenColour = Poketch_CurrentScreenColor(poketch);
 
-    GXS_LoadBGPltt(&taskData->poketchPalettes[screenColour * SLOTS_PER_PALETTE_COLOUR_SET + BACKLIGHT_PALETTE_SLOT_OFFSET], 0, PALETTE_SIZE_BYTES);
-    GXS_LoadOBJPltt(&taskData->poketchPalettes[screenColour * SLOTS_PER_PALETTE_COLOUR_SET + BACKLIGHT_PALETTE_SLOT_OFFSET], 0, PALETTE_SIZE_BYTES);
+    GXS_LoadBGPltt(&taskData->poketchPalettes[screenColour * SLOTS_PER_POKETCH_THEME + BACKLIGHT_PALETTE_SLOT_OFFSET], 0, PALETTE_SIZE_BYTES);
+    GXS_LoadOBJPltt(&taskData->poketchPalettes[screenColour * SLOTS_PER_POKETCH_THEME + BACKLIGHT_PALETTE_SLOT_OFFSET], 0, PALETTE_SIZE_BYTES);
 }
 
 void PoketchGraphics_CopyActivePalette(u16 *dest)
@@ -203,7 +201,7 @@ void PoketchGraphics_CopyActivePalette(u16 *dest)
     Poketch *poketch = PoketchSystem_GetPoketchData(taskData->poketchSys);
     u32 screenColour = Poketch_CurrentScreenColor(poketch);
 
-    MI_CpuCopy16(&taskData->poketchPalettes[screenColour * SLOTS_PER_PALETTE_COLOUR_SET], dest, PALETTE_SIZE_BYTES);
+    MI_CpuCopy16(&taskData->poketchPalettes[screenColour * SLOTS_PER_POKETCH_THEME], dest, PALETTE_SIZE_BYTES);
 }
 
 void PoketchGraphics_Close(PoketchGraphics_TaskData *taskData)
@@ -578,7 +576,7 @@ static void PoketchGraphics_LoadAppCounter(PoketchGraphics_TaskData *taskData, P
         static const PoketchAnimation_AnimationData animData = {
             .translation = { (176 << FX32_SHIFT), (40 << FX32_SHIFT) },
             .animIdx = 0,
-            .flip = FLIP_NONE,
+            .flip = NNS_G2D_RENDERERFLIP_NONE,
             .oamPriority = 0,
             .priority = 0,
             .hasAffineTransform = FALSE
