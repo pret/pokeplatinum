@@ -521,7 +521,7 @@ pokeplatinum_c = files(
     'overlay013/battle_bag.c',
     'overlay013/battle_bag_text.c',
     'overlay013/battle_bag_utils.c',
-    'overlay013/ov13_02227BDC.c',
+    'overlay013/battle_bag_sprites.c',
     'overlay013/ov13_02228128.c',
     'overlay013/battle_sub_menu_cursor.c',
     'battle/trainer_ai/trainer_ai.c',

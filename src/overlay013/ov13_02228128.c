@@ -390,10 +390,10 @@ static void ov13_022287A4(BattleBag *param0, u8 param1, u8 param2)
     u8 v1;
 
     if ((param1 >= 6) && (param1 <= 11)) {
-        v0 = param0->unk_310[param1 - 6];
+        v0 = param0->pocketItemSprites[param1 - 6];
     } else if (param1 == 4) {
         for (v1 = 0; v1 < 6; v1++) {
-            v0 = param0->unk_310[v1];
+            v0 = param0->pocketItemSprites[v1];
 
             if (ManagedSprite_GetDrawFlag(v0) != 0) {
                 break;

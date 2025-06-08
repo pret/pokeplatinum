@@ -8,9 +8,9 @@
 #include "battle/battle_lib.h"
 #include "battle/ov16_0223DF00.h"
 #include "battle/ov16_0226DE44.h"
+#include "overlay013/battle_bag_sprites.h"
 #include "overlay013/battle_bag_text.h"
 #include "overlay013/battle_bag_utils.h"
-#include "overlay013/ov13_02227BDC.h"
 #include "overlay013/ov13_02228128.h"
 
 #include "font.h"
@@ -58,32 +58,6 @@ enum CatchTutorialState {
     CATCH_TUTORIAL_STATE_USE_ITEM_SCREEN,
 };
 
-enum MenuScreenButton {
-    MENU_SCREEN_BUTTON_RECOVER_HP_POCKET = 0,
-    MENU_SCREEN_BUTTON_RECOVER_STATUS_POCKET,
-    MENU_SCREEN_BUTTON_RECOVER_POKE_BALLS_POCKET,
-    MENU_SCREEN_BUTTON_BATTLE_ITEMS_POCKET,
-    MENU_SCREEN_BUTTON_LAST_USED_ITEM,
-    MENU_SCREEN_BUTTON_CANCEL,
-};
-
-enum PocketMenuScreenButton {
-    POCKET_MENU_SCREEN_BUTTON_ITEM_1 = 0,
-    POCKET_MENU_SCREEN_BUTTON_ITEM_2,
-    POCKET_MENU_SCREEN_BUTTON_ITEM_3,
-    POCKET_MENU_SCREEN_BUTTON_ITEM_4,
-    POCKET_MENU_SCREEN_BUTTON_ITEM_5,
-    POCKET_MENU_SCREEN_BUTTON_ITEM_6,
-    POCKET_MENU_SCREEN_BUTTON_PREV_PAGE,
-    POCKET_MENU_SCREEN_BUTTON_NEXT_PAGE,
-    POCKET_MENU_SCREEN_BUTTON_CANCEL,
-};
-
-enum UseItemScreenButton {
-    USE_ITEM_SCREEN_BUTTON_USE = 0,
-    USE_ITEM_SCREEN_BUTTON_CANCEL,
-};
-
 #define POCKET_NEXT_PAGE 1
 #define POCKET_PREV_PAGE -1
 
@@ -115,31 +89,31 @@ static BOOL CheckTouchRectIsPressed(BattleBag *battleBag, const TouchScreenRect 
 static void UseBagItem(BattleSystem *battleSys, u16 item, u16 category, u32 heapID);
 
 static const TouchScreenRect menuScreenTouchRects[] = {
-    [MENU_SCREEN_BUTTON_RECOVER_HP_POCKET] = { 8, 79, 0, 127 },
-    [MENU_SCREEN_BUTTON_RECOVER_STATUS_POCKET] = { 80, 151, 0, 127 },
-    [MENU_SCREEN_BUTTON_RECOVER_POKE_BALLS_POCKET] = { 8, 79, 128, 255 },
-    [MENU_SCREEN_BUTTON_BATTLE_ITEMS_POCKET] = { 80, 151, 128, 255 },
-    [MENU_SCREEN_BUTTON_LAST_USED_ITEM] = { 152, 191, 0, 207 },
-    [MENU_SCREEN_BUTTON_CANCEL] = { 152, 191, 216, 255 },
+    [BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_HP_POCKET] = { 8, 79, 0, 127 },
+    [BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_STATUS_POCKET] = { 80, 151, 0, 127 },
+    [BATTLE_BAG_MENU_SCREEN_BUTTON_POKE_BALLS_POCKET] = { 8, 79, 128, 255 },
+    [BATTLE_BAG_MENU_SCREEN_BUTTON_BATTLE_ITEMS_POCKET] = { 80, 151, 128, 255 },
+    [BATTLE_BAG_MENU_SCREEN_BUTTON_LAST_USED_ITEM] = { 152, 191, 0, 207 },
+    [BATTLE_BAG_MENU_SCREEN_BUTTON_CANCEL] = { 152, 191, 216, 255 },
     { TOUCHSCREEN_TABLE_TERMINATOR, 0, 0, 0 }
 };
 
 static const TouchScreenRect pocketMenuScreenTouchRects[] = {
-    [POCKET_MENU_SCREEN_BUTTON_ITEM_1] = { 8, 55, 0, 127 },
-    [POCKET_MENU_SCREEN_BUTTON_ITEM_2] = { 8, 55, 128, 255 },
-    [POCKET_MENU_SCREEN_BUTTON_ITEM_3] = { 56, 103, 0, 127 },
-    [POCKET_MENU_SCREEN_BUTTON_ITEM_4] = { 56, 103, 128, 255 },
-    [POCKET_MENU_SCREEN_BUTTON_ITEM_5] = { 104, 151, 0, 127 },
-    [POCKET_MENU_SCREEN_BUTTON_ITEM_6] = { 104, 151, 128, 255 },
-    [POCKET_MENU_SCREEN_BUTTON_PREV_PAGE] = { 152, 191, 0, 39 },
-    [POCKET_MENU_SCREEN_BUTTON_NEXT_PAGE] = { 152, 191, 40, 79 },
-    [POCKET_MENU_SCREEN_BUTTON_CANCEL] = { 152, 191, 216, 255 },
+    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_1] = { 8, 55, 0, 127 },
+    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_2] = { 8, 55, 128, 255 },
+    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_3] = { 56, 103, 0, 127 },
+    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_4] = { 56, 103, 128, 255 },
+    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_5] = { 104, 151, 0, 127 },
+    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_6] = { 104, 151, 128, 255 },
+    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_PREV_PAGE] = { 152, 191, 0, 39 },
+    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_NEXT_PAGE] = { 152, 191, 40, 79 },
+    [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_CANCEL] = { 152, 191, 216, 255 },
     { TOUCHSCREEN_TABLE_TERMINATOR, 0, 0, 0 }
 };
 
 static const TouchScreenRect useItemScreenTouchRects[] = {
-    [USE_ITEM_SCREEN_BUTTON_USE] = { 152, 191, 0, 207 },
-    [USE_ITEM_SCREEN_BUTTON_CANCEL] = { 152, 191, 216, 255 },
+    [BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_USE] = { 152, 191, 0, 207 },
+    [BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_CANCEL] = { 152, 191, 216, 255 },
     { TOUCHSCREEN_TABLE_TERMINATOR, 0, 0, 0 }
 };
 
@@ -242,17 +216,18 @@ static u8 BattleBagTask_Initialize(BattleBag *battleBag)
 
     BattleBag_Init(battleBag);
     ov13_02228924(battleBag, battleBag->currentScreen);
+
     BattleBagText_InitializeWindows(battleBag);
     BattleBagText_ChangeScreen(battleBag, battleBag->currentScreen);
-    ov13_02227BDC(battleBag);
-    ov13_02227E68(battleBag, battleBag->currentScreen);
+    BattleBagSprites_InitializeSprites(battleBag);
+    BattleBagSprites_SetupScreen(battleBag, battleBag->currentScreen);
 
     if (battleBag->context->isCursorEnabled != FALSE) {
         SetBattleSubMenuCursorVisibility(battleBag->cursor, TRUE);
     }
 
-    SetupBattleBagCursor(battleBag, battleBag->currentScreen);
-    ov13_022280F0(battleBag, battleBag->currentScreen);
+    BattleBagSprites_SetupCursor(battleBag, battleBag->currentScreen);
+    BattleBagSprites_SetupCatchTutorialCursor(battleBag, battleBag->currentScreen);
     PaletteData_StartFade(battleBag->palette, PLTTBUF_SUB_BG_F | PLTTBUF_SUB_OBJ_F, 0xffff, -8, 16, 0, 0);
 
     if (battleBag->context->isInCatchTutorial == TRUE) {
@@ -268,29 +243,29 @@ static u8 BattleBagTask_MenuScreen(BattleBag *battleBag)
         return TASK_STATE_MENU_SCREEN;
     }
 
-    enum MenuScreenButton menuButtonPressed = CheckTouchRectIsPressed(battleBag, menuScreenTouchRects);
+    enum BattleBagMenuScreenButton menuButtonPressed = CheckTouchRectIsPressed(battleBag, menuScreenTouchRects);
 
     if (menuButtonPressed == TOUCHSCREEN_INPUT_NONE) {
         menuButtonPressed = BattleSubMenuCursorTick(battleBag->cursor);
 
         if (menuButtonPressed == BATTLE_SUB_MENU_CURSOR_BACK_INDEX) {
-            menuButtonPressed = MENU_SCREEN_BUTTON_CANCEL;
+            menuButtonPressed = BATTLE_BAG_MENU_SCREEN_BUTTON_CANCEL;
         }
     } else {
-        DisableBattleBagCursor(battleBag);
+        BattleBagSprites_DisableCursor(battleBag);
     }
 
     switch (menuButtonPressed) {
-    case MENU_SCREEN_BUTTON_RECOVER_HP_POCKET:
-    case MENU_SCREEN_BUTTON_RECOVER_STATUS_POCKET:
-    case MENU_SCREEN_BUTTON_RECOVER_POKE_BALLS_POCKET:
-    case MENU_SCREEN_BUTTON_BATTLE_ITEMS_POCKET:
+    case BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_HP_POCKET:
+    case BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_STATUS_POCKET:
+    case BATTLE_BAG_MENU_SCREEN_BUTTON_POKE_BALLS_POCKET:
+    case BATTLE_BAG_MENU_SCREEN_BUTTON_BATTLE_ITEMS_POCKET:
         Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         battleBag->currentBattlePocket = menuButtonPressed;
         battleBag->queuedState = TASK_STATE_SETUP_POCKET_MENU_SCREEN;
         ov13_0222880C(battleBag, menuButtonPressed, 0);
         return TASK_STATE_SCREEN_TRANSITION;
-    case MENU_SCREEN_BUTTON_LAST_USED_ITEM:
+    case BATTLE_BAG_MENU_SCREEN_BUTTON_LAST_USED_ITEM:
         if (battleBag->context->lastUsedItem != ITEM_NONE) {
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             battleBag->currentBattlePocket = battleBag->context->lastUsedItemPocket;
@@ -300,7 +275,7 @@ static u8 BattleBagTask_MenuScreen(BattleBag *battleBag)
             return TASK_STATE_SCREEN_TRANSITION;
         }
         break;
-    case MENU_SCREEN_BUTTON_CANCEL:
+    case BATTLE_BAG_MENU_SCREEN_BUTTON_CANCEL:
         Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         battleBag->context->selectedBattleBagItem = ITEM_NONE;
         battleBag->context->selectedBattleBagPocket = BATTLE_POCKET_INDEX_NONE;
@@ -313,25 +288,25 @@ static u8 BattleBagTask_MenuScreen(BattleBag *battleBag)
 
 static u8 BattleBagTask_PocketMenuScreen(BattleBag *battleBag)
 {
-    enum PocketMenuScreenButton pocketMenuScreenButtonPressed = CheckTouchRectIsPressed(battleBag, pocketMenuScreenTouchRects);
+    enum BattleBagPocketMenuScreenButton pocketMenuScreenButtonPressed = CheckTouchRectIsPressed(battleBag, pocketMenuScreenTouchRects);
 
     if (pocketMenuScreenButtonPressed == TOUCHSCREEN_INPUT_NONE) {
         pocketMenuScreenButtonPressed = BattleSubMenuCursorTick(battleBag->cursor);
 
         if (pocketMenuScreenButtonPressed == BATTLE_SUB_MENU_CURSOR_BACK_INDEX) {
-            pocketMenuScreenButtonPressed = POCKET_MENU_SCREEN_BUTTON_CANCEL;
+            pocketMenuScreenButtonPressed = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_CANCEL;
         }
     } else {
-        DisableBattleBagCursor(battleBag);
+        BattleBagSprites_DisableCursor(battleBag);
     }
 
     switch (pocketMenuScreenButtonPressed) {
-    case POCKET_MENU_SCREEN_BUTTON_ITEM_1:
-    case POCKET_MENU_SCREEN_BUTTON_ITEM_2:
-    case POCKET_MENU_SCREEN_BUTTON_ITEM_3:
-    case POCKET_MENU_SCREEN_BUTTON_ITEM_4:
-    case POCKET_MENU_SCREEN_BUTTON_ITEM_5:
-    case POCKET_MENU_SCREEN_BUTTON_ITEM_6:
+    case BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_1:
+    case BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_2:
+    case BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_3:
+    case BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_4:
+    case BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_5:
+    case BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_6:
         if (BattleBag_GetItem(battleBag, pocketMenuScreenButtonPressed) != ITEM_NONE) {
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             battleBag->context->pocketCurrentPagePositions[battleBag->currentBattlePocket] = pocketMenuScreenButtonPressed;
@@ -340,7 +315,7 @@ static u8 BattleBagTask_PocketMenuScreen(BattleBag *battleBag)
             return TASK_STATE_SCREEN_TRANSITION;
         }
         break;
-    case POCKET_MENU_SCREEN_BUTTON_PREV_PAGE:
+    case BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_PREV_PAGE:
         if (battleBag->numBattlePocketPages[battleBag->currentBattlePocket] != 0) {
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             battleBag->queuedState = TASK_STATE_CHANGE_POCKET_PAGE;
@@ -349,7 +324,7 @@ static u8 BattleBagTask_PocketMenuScreen(BattleBag *battleBag)
             return TASK_STATE_SCREEN_TRANSITION;
         }
         break;
-    case POCKET_MENU_SCREEN_BUTTON_NEXT_PAGE:
+    case BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_NEXT_PAGE:
         if (battleBag->numBattlePocketPages[battleBag->currentBattlePocket] != 0) {
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             battleBag->queuedState = TASK_STATE_CHANGE_POCKET_PAGE;
@@ -358,7 +333,7 @@ static u8 BattleBagTask_PocketMenuScreen(BattleBag *battleBag)
             return TASK_STATE_SCREEN_TRANSITION;
         }
         break;
-    case POCKET_MENU_SCREEN_BUTTON_CANCEL:
+    case BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_CANCEL:
         Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         battleBag->queuedState = TASK_STATE_SETUP_MENU_SCREEN;
         ov13_0222880C(battleBag, 14, 0);
@@ -385,7 +360,7 @@ static u8 BattleBagTask_ChangePocketPage(BattleBag *battleBag)
 
     BattleBagText_PrintAllPocketItemInfo(battleBag);
     BattleBagText_PrintPocketPageNums(battleBag);
-    ov13_02227E68(battleBag, battleBag->currentScreen);
+    BattleBagSprites_SetupScreen(battleBag, battleBag->currentScreen);
     ov13_02228924(battleBag, battleBag->currentScreen);
 
     return TASK_STATE_POCKET_MENU_SCREEN;
@@ -393,26 +368,26 @@ static u8 BattleBagTask_ChangePocketPage(BattleBag *battleBag)
 
 static u8 BattleBagTask_UseItemScreen(BattleBag *battleBag)
 {
-    enum UseItemScreenButton useItemScreenButtonPressed = CheckTouchRectIsPressed(battleBag, useItemScreenTouchRects);
+    enum BattleBagUseItemScreenButton useItemScreenButtonPressed = CheckTouchRectIsPressed(battleBag, useItemScreenTouchRects);
 
     if (useItemScreenButtonPressed == TOUCHSCREEN_INPUT_NONE) {
         useItemScreenButtonPressed = BattleSubMenuCursorTick(battleBag->cursor);
 
         if (useItemScreenButtonPressed == BATTLE_SUB_MENU_CURSOR_BACK_INDEX) {
-            useItemScreenButtonPressed = USE_ITEM_SCREEN_BUTTON_CANCEL;
+            useItemScreenButtonPressed = BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_CANCEL;
         }
     } else {
-        DisableBattleBagCursor(battleBag);
+        BattleBagSprites_DisableCursor(battleBag);
     }
 
     switch (useItemScreenButtonPressed) {
-    case USE_ITEM_SCREEN_BUTTON_USE:
+    case BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_USE:
         Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         battleBag->context->selectedBattleBagItem = BattleBag_GetItem(battleBag, battleBag->context->pocketCurrentPagePositions[battleBag->currentBattlePocket]);
         battleBag->context->selectedBattleBagPocket = battleBag->currentBattlePocket;
         ov13_0222880C(battleBag, 15, 0);
         return TryUseItem(battleBag);
-    case USE_ITEM_SCREEN_BUTTON_CANCEL:
+    case BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_CANCEL:
         Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         battleBag->queuedState = TASK_STATE_SETUP_POCKET_MENU_SCREEN;
         ov13_0222880C(battleBag, 16, 0);
@@ -576,7 +551,7 @@ static BOOL BattleBagTask_FinishTask(SysTask *task, BattleBag *battleBag)
         return FALSE;
     }
 
-    ov13_02227E08(battleBag);
+    BattleBagSprites_CleanupSprites(battleBag);
     BattleBagText_ClearWindows(battleBag);
     CleanupMessageLoader(battleBag);
     CleanupBackground(battleBag->background);
@@ -613,7 +588,7 @@ static u8 BattleBagTask_CatchTutorial(BattleBag *battleBag)
 
     switch (battleBag->catchTutorialState) {
     case CATCH_TUTORIAL_STATE_MENU_SCREEN:
-        if (ov16_0226DFD4(battleBag->unk_38) == TRUE) {
+        if (ov16_0226DFD4(battleBag->catchTutorialCursor) == TRUE) {
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             battleBag->currentBattlePocket = BATTLE_POCKET_INDEX_POKE_BALLS;
             battleBag->queuedState = TASK_STATE_CATCH_TUTORIAL;
@@ -630,7 +605,7 @@ static u8 BattleBagTask_CatchTutorial(BattleBag *battleBag)
         battleBag->catchTutorialState++;
         break;
     case CATCH_TUTORIAL_STATE_POCKET_MENU_SCREEN:
-        if (ov16_0226DFD4(battleBag->unk_38) == TRUE) {
+        if (ov16_0226DFD4(battleBag->catchTutorialCursor) == TRUE) {
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             battleBag->context->pocketCurrentPagePositions[battleBag->currentBattlePocket] = 0;
             battleBag->queuedState = TASK_STATE_CATCH_TUTORIAL;
@@ -647,7 +622,7 @@ static u8 BattleBagTask_CatchTutorial(BattleBag *battleBag)
         battleBag->catchTutorialState++;
         break;
     case CATCH_TUTORIAL_STATE_USE_ITEM_SCREEN:
-        if (ov16_0226DFD4(battleBag->unk_38) == TRUE) {
+        if (ov16_0226DFD4(battleBag->catchTutorialCursor) == TRUE) {
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             battleBag->context->selectedBattleBagItem = BattleBag_GetItem(battleBag, battleBag->context->pocketCurrentPagePositions[battleBag->currentBattlePocket]);
             battleBag->context->selectedBattleBagPocket = battleBag->currentBattlePocket;
@@ -828,12 +803,12 @@ static void ChangeBattleBagScreen(BattleBag *battleBag, u8 screen)
     BattleBagText_InitializeScreenWindows(battleBag, screen);
     BattleBagText_ChangeScreen(battleBag, screen);
     ov13_02228924(battleBag, screen);
-    SetupBattleBagCursor(battleBag, screen);
-    ov13_022280F0(battleBag, screen);
+    BattleBagSprites_SetupCursor(battleBag, screen);
+    BattleBagSprites_SetupCatchTutorialCursor(battleBag, screen);
 
     battleBag->currentScreen = screen;
 
-    ov13_02227E68(battleBag, battleBag->currentScreen);
+    BattleBagSprites_SetupScreen(battleBag, battleBag->currentScreen);
 }
 
 static BOOL CheckTouchRectIsPressed(BattleBag *battleBag, const TouchScreenRect *rect)
