@@ -63,17 +63,17 @@ _009A:
 
     .balign 4, 0
 _00E8:
-    MoveAction_012 6
+    WalkNormalNorth 6
     EndMovement
 
     .balign 4, 0
 _00F0:
-    MoveAction_013 6
+    WalkNormalSouth 6
     EndMovement
 
     .balign 4, 0
 _00F8:
-    MoveAction_012 3
-    MoveAction_014
-    MoveAction_012 4
+    WalkNormalNorth 3
+    WalkNormalWest
+    WalkNormalNorth 4
     EndMovement

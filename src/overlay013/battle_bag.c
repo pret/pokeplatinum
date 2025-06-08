@@ -9,8 +9,8 @@
 #include "battle/ov16_0223DF00.h"
 #include "battle/ov16_0226DE44.h"
 #include "overlay013/battle_bag_sprites.h"
+#include "overlay013/battle_bag_text.h"
 #include "overlay013/battle_bag_utils.h"
-#include "overlay013/ov13_02227288.h"
 #include "overlay013/ov13_02228128.h"
 
 #include "font.h"
@@ -217,8 +217,8 @@ static u8 BattleBagTask_Initialize(BattleBag *battleBag)
     BattleBag_Init(battleBag);
     ov13_02228924(battleBag, battleBag->currentScreen);
 
-    ov13_02227288(battleBag);
-    ov13_02227350(battleBag, battleBag->currentScreen);
+    BattleBagText_InitializeWindows(battleBag);
+    BattleBagText_ChangeScreen(battleBag, battleBag->currentScreen);
     BattleBagSprites_InitializeSprites(battleBag);
     BattleBagSprites_SetupScreen(battleBag, battleBag->currentScreen);
 
@@ -358,8 +358,8 @@ static u8 BattleBagTask_ChangePocketPage(BattleBag *battleBag)
         battleBag->context->pocketCurrentPages[battleBag->currentBattlePocket] = currentPage;
     }
 
-    ov13_02227650(battleBag);
-    ov13_02227698(battleBag);
+    BattleBagText_PrintAllPocketItemInfo(battleBag);
+    BattleBagText_PrintPocketPageNums(battleBag);
     BattleBagSprites_SetupScreen(battleBag, battleBag->currentScreen);
     ov13_02228924(battleBag, battleBag->currentScreen);
 
@@ -417,7 +417,7 @@ static u8 TryUseItem(BattleBag *battleBag)
             StringTemplate_Format(battleBag->stringTemplate, battleBag->strbuf, strbuf);
             Strbuf_Free(strbuf);
 
-            DisplayBattleBagMessage(battleBag);
+            BattleBagText_DisplayMessage(battleBag);
             battleBag->queuedState = TASK_STATE_CLEAR_ERROR_MESSAGE;
 
             return TASK_STATE_AWAITING_TEXT_FINISH;
@@ -440,34 +440,34 @@ static u8 TryUseItem(BattleBag *battleBag)
                 StringTemplate_Format(battleBag->stringTemplate, battleBag->strbuf, strbuf);
                 Strbuf_Free(strbuf);
                 MessageLoader_Free(messageLoader);
-                DisplayBattleBagMessage(battleBag);
+                BattleBagText_DisplayMessage(battleBag);
                 battleBag->queuedState = TASK_STATE_CLEAR_ERROR_MESSAGE;
                 return TASK_STATE_AWAITING_TEXT_FINISH;
             }
         } else {
             MessageLoader_GetStrbuf(battleBag->messageLoader, BattleBag_Text_ItemHasNoUse, battleBag->strbuf);
-            DisplayBattleBagMessage(battleBag);
+            BattleBagText_DisplayMessage(battleBag);
             battleBag->queuedState = TASK_STATE_CLEAR_ERROR_MESSAGE;
             return TASK_STATE_AWAITING_TEXT_FINISH;
         }
     } else if (battleBag->currentBattlePocket == ITEM_BATTLE_CATEGORY_POKE_BALLS) {
         if (context->hasTwoOpponents == TRUE) {
             MessageLoader_GetStrbuf(battleBag->messageLoader, BattleBag_Text_CantUseBallTwoPokemon, battleBag->strbuf);
-            DisplayBattleBagMessage(battleBag);
+            BattleBagText_DisplayMessage(battleBag);
             battleBag->queuedState = TASK_STATE_CLEAR_ERROR_MESSAGE;
             return TASK_STATE_AWAITING_TEXT_FINISH;
         }
 
         if (context->opponentHidden == TRUE) {
             MessageLoader_GetStrbuf(battleBag->messageLoader, BattleBag_Text_CantUseBallPokemonHidden, battleBag->strbuf);
-            DisplayBattleBagMessage(battleBag);
+            BattleBagText_DisplayMessage(battleBag);
             battleBag->queuedState = TASK_STATE_CLEAR_ERROR_MESSAGE;
             return TASK_STATE_AWAITING_TEXT_FINISH;
         }
 
         if (context->opponentSubstituted == TRUE) {
             MessageLoader_GetStrbuf(battleBag->messageLoader, BattleBag_Text_CantUseBallPokemonSubstituted, battleBag->strbuf);
-            DisplayBattleBagMessage(battleBag);
+            BattleBagText_DisplayMessage(battleBag);
             battleBag->queuedState = TASK_STATE_CLEAR_ERROR_MESSAGE;
             return TASK_STATE_AWAITING_TEXT_FINISH;
         }
@@ -478,7 +478,7 @@ static u8 TryUseItem(BattleBag *battleBag)
 
             if (Party_GetCurrentCount(party) == MAX_PARTY_SIZE && PCBoxes_FirstEmptyBox(boxes) == MAX_PC_BOXES) {
                 MessageLoader_GetStrbuf(battleBag->messageLoader, BattleBag_Text_CantUseBallNoRoomLeft, battleBag->strbuf);
-                DisplayBattleBagMessage(battleBag);
+                BattleBagText_DisplayMessage(battleBag);
                 battleBag->queuedState = TASK_STATE_CLEAR_ERROR_MESSAGE;
                 return TASK_STATE_AWAITING_TEXT_FINISH;
             }
@@ -552,7 +552,7 @@ static BOOL BattleBagTask_FinishTask(SysTask *task, BattleBag *battleBag)
     }
 
     BattleBagSprites_CleanupSprites(battleBag);
-    ov13_02227334(battleBag);
+    BattleBagText_ClearWindows(battleBag);
     CleanupMessageLoader(battleBag);
     CleanupBackground(battleBag->background);
 
@@ -799,9 +799,9 @@ static void ChangeBattleBagScreen(BattleBag *battleBag, u8 screen)
     Bg_ScheduleFillTilemap(battleBag->background, BG_LAYER_SUB_0, 0);
     Bg_ScheduleFillTilemap(battleBag->background, BG_LAYER_SUB_1, 0);
 
-    ov13_02227324(battleBag);
-    ov13_022272AC(battleBag, screen);
-    ov13_02227350(battleBag, screen);
+    BattleBagText_ClearScreenWindows(battleBag);
+    BattleBagText_InitializeScreenWindows(battleBag, screen);
+    BattleBagText_ChangeScreen(battleBag, screen);
     ov13_02228924(battleBag, screen);
     BattleBagSprites_SetupCursor(battleBag, screen);
     BattleBagSprites_SetupCatchTutorialCursor(battleBag, screen);

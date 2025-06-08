@@ -201,34 +201,34 @@ _0289:
 
     .balign 4, 0
 _02D4:
-    MoveAction_034
-    MoveAction_075
-    MoveAction_063
+    WalkOnSpotNormalWest
+    EmoteExclamationMark
+    Delay8
     EndMovement
 
     .balign 4, 0
 _02E4:
-    MoveAction_033
-    MoveAction_063 2
+    WalkOnSpotNormalSouth
+    Delay8 2
     EndMovement
 
     .balign 4, 0
 _02F0:
-    MoveAction_003
-    MoveAction_061
-    MoveAction_000
-    MoveAction_061
-    MoveAction_002
-    MoveAction_061
-    MoveAction_001
-    MoveAction_061
-    MoveAction_003
-    MoveAction_060
-    MoveAction_000
-    MoveAction_060
-    MoveAction_002
-    MoveAction_060
-    MoveAction_001
-    MoveAction_067
-    MoveAction_063 2
+    FaceEast
+    Delay2
+    FaceNorth
+    Delay2
+    FaceWest
+    Delay2
+    FaceSouth
+    Delay2
+    FaceEast
+    Delay1
+    FaceNorth
+    Delay1
+    FaceWest
+    Delay1
+    FaceSouth
+    WarpOut
+    Delay8 2
     EndMovement

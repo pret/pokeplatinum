@@ -6,6 +6,7 @@
 #include "constants/field/dynamic_map_features.h"
 #include "constants/field/map.h"
 #include "constants/field/map_prop.h"
+#include "generated/movement_actions.h"
 
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
@@ -1403,7 +1404,7 @@ static BOOL ov8_0224A620(FieldTask *taskMan)
     switch (v3->unk_00) {
     case 0:
         if (LocalMapObj_IsAnimationSet(v1) == 1) {
-            LocalMapObj_SetAnimationCode(v1, 0x49);
+            LocalMapObj_SetAnimationCode(v1, MOVEMENT_ACTION_PAUSE_ANIMATION);
 
             Sound_PlayEffect(SEQ_SE_DP_ELEBETA);
             (v3->unk_00)++;
@@ -1430,7 +1431,7 @@ static BOOL ov8_0224A620(FieldTask *taskMan)
                     (v3->unk_00)++;
                 } else {
                     if (LocalMapObj_IsAnimationSet(v1) == 1) {
-                        LocalMapObj_SetAnimationCode(v1, 0x17);
+                        LocalMapObj_SetAnimationCode(v1, MOVEMENT_ACTION_WALK_FASTER_EAST);
                     }
                 }
             } else if (v4->unk_F0 == 5) {
@@ -1441,7 +1442,7 @@ static BOOL ov8_0224A620(FieldTask *taskMan)
                     (v3->unk_00)++;
                 } else {
                     if (LocalMapObj_IsAnimationSet(v1) == 1) {
-                        LocalMapObj_SetAnimationCode(v1, 0x16);
+                        LocalMapObj_SetAnimationCode(v1, MOVEMENT_ACTION_WALK_FASTER_WEST);
                     }
                 }
             } else {
@@ -1453,7 +1454,7 @@ static BOOL ov8_0224A620(FieldTask *taskMan)
     } break;
     case 2:
         if (LocalMapObj_IsAnimationSet(v1) == 1) {
-            LocalMapObj_SetAnimationCode(v1, 0x4a);
+            LocalMapObj_SetAnimationCode(v1, MOVEMENT_ACTION_RESUME_ANIMATION);
             (v3->unk_00)++;
         }
     case 3:
@@ -1483,7 +1484,7 @@ static BOOL ov8_0224A770(FieldTask *taskMan)
     switch (v3->unk_00) {
     case 0:
         if (LocalMapObj_IsAnimationSet(v1) == 1) {
-            LocalMapObj_SetAnimationCode(v1, 0x49);
+            LocalMapObj_SetAnimationCode(v1, MOVEMENT_ACTION_PAUSE_ANIMATION);
 
             Sound_PlayEffect(SEQ_SE_DP_ELEBETA);
             (v3->unk_00)++;
@@ -1510,7 +1511,7 @@ static BOOL ov8_0224A770(FieldTask *taskMan)
                     (v3->unk_00)++;
                 } else {
                     if (LocalMapObj_IsAnimationSet(v1) == 1) {
-                        LocalMapObj_SetAnimationCode(v1, 0x15);
+                        LocalMapObj_SetAnimationCode(v1, MOVEMENT_ACTION_WALK_FASTER_SOUTH);
                     }
                 }
             } else if (v4->unk_F0 == 2) {
@@ -1521,7 +1522,7 @@ static BOOL ov8_0224A770(FieldTask *taskMan)
                     (v3->unk_00)++;
                 } else {
                     if (LocalMapObj_IsAnimationSet(v1) == 1) {
-                        LocalMapObj_SetAnimationCode(v1, 0x14);
+                        LocalMapObj_SetAnimationCode(v1, MOVEMENT_ACTION_WALK_FASTER_NORTH);
                     }
                 }
             } else {
@@ -1533,7 +1534,7 @@ static BOOL ov8_0224A770(FieldTask *taskMan)
     } break;
     case 2:
         if (LocalMapObj_IsAnimationSet(v1) == 1) {
-            LocalMapObj_SetAnimationCode(v1, 0x4a);
+            LocalMapObj_SetAnimationCode(v1, MOVEMENT_ACTION_RESUME_ANIMATION);
             (v3->unk_00)++;
         }
         break;
@@ -2632,15 +2633,15 @@ static BOOL ov8_0224B2E8(UnkStruct_ov8_0224B28C *param0)
 
         if (param0->unk_04) {
             if (v2 != param0->unk_08) {
-                v1 = sub_02065838(param0->unk_18, 0xc);
+                v1 = MovementAction_TurnActionTowardsDir(param0->unk_18, MOVEMENT_ACTION_WALK_NORMAL_NORTH);
             } else if (v3 != param0->unk_0C) {
-                v1 = sub_02065838(param0->unk_1C, 0xc);
+                v1 = MovementAction_TurnActionTowardsDir(param0->unk_1C, MOVEMENT_ACTION_WALK_NORMAL_NORTH);
             }
         } else {
             if (v3 != param0->unk_0C) {
-                v1 = sub_02065838(param0->unk_1C, 0xc);
+                v1 = MovementAction_TurnActionTowardsDir(param0->unk_1C, MOVEMENT_ACTION_WALK_NORMAL_NORTH);
             } else if (v2 != param0->unk_08) {
-                v1 = sub_02065838(param0->unk_18, 0xc);
+                v1 = MovementAction_TurnActionTowardsDir(param0->unk_18, MOVEMENT_ACTION_WALK_NORMAL_NORTH);
             }
         }
 
@@ -3201,7 +3202,7 @@ static BOOL ov8_0224BAF4(FieldTask *taskMan)
     switch (v2->unk_00) {
     case 0:
         if (LocalMapObj_IsAnimationSet(v0) == 1) {
-            LocalMapObj_SetAnimationCode(v0, sub_02065838(v2->unk_08, 0x28));
+            LocalMapObj_SetAnimationCode(v0, MovementAction_TurnActionTowardsDir(v2->unk_08, MOVEMENT_ACTION_WALK_ON_SPOT_FASTER_NORTH));
             ov5_021F4698(v2->unk_34->unk_08.unk_0C, v2->unk_08, 0);
             Sound_PlayEffect(SEQ_SE_PL_SUTYA2);
             v2->unk_00++;
@@ -3258,7 +3259,7 @@ static int ov8_0224BBD0(UnkStruct_ov8_0224C098 *param0)
         return 0;
     }
 
-    LocalMapObj_SetAnimationCode(v0, sub_02065838(param0->unk_08, 0x1c));
+    LocalMapObj_SetAnimationCode(v0, MovementAction_TurnActionTowardsDir(param0->unk_08, MOVEMENT_ACTION_WALK_ON_SPOT_SLOW_NORTH));
 
     {
         UnkStruct_ov8_0224BCA8 *v1 = param0->unk_34;
@@ -3616,7 +3617,7 @@ static void ov8_0224C11C(UnkStruct_ov8_0224C098 *param0, int param1)
             if (v0->unk_28 >= v0->unk_24) {
                 v0->unk_00++;
             } else {
-                param1 = sub_02065838(v0->unk_20, param1);
+                param1 = MovementAction_TurnActionTowardsDir(v0->unk_20, param1);
                 LocalMapObj_SetAnimationCode(v0->unk_30, param1);
                 v0->unk_28++;
             }

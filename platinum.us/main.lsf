@@ -297,7 +297,7 @@ Static main
 	Object main.nef.p/src_unk_0207A6DC.c.o
 	Object main.nef.p/src_unk_0207AE68.c.o
 	Object main.nef.p/src_unk_0207C63C.c.o
-	Object main.nef.p/src_unk_0207C908.c.o
+	Object main.nef.p/src_type_icon.c.o
 	Object main.nef.p/src_unk_0207CB08.c.o
 	Object main.nef.p/src_item.c.o
 	Object main.nef.p/src_bag.c.o
@@ -625,7 +625,7 @@ Overlay overlay10
 Overlay overlay11
 {
 	After overlay4
-	Object main.nef.p/src_overlay011_ov11_0221F800.c.o
+	Object main.nef.p/src_overlay011_move_palettes.c.o
 	Object main.nef.p/src_overlay011_ov11_0221F840.c.o
 }
 
@@ -665,7 +665,7 @@ Overlay overlay13
 	Object main.nef.p/src_overlay013_ov13_02224500.c.o
 	Object main.nef.p/src_overlay013_ov13_02225710.c.o
 	Object main.nef.p/src_overlay013_battle_bag.c.o
-	Object main.nef.p/src_overlay013_ov13_02227288.c.o
+	Object main.nef.p/src_overlay013_battle_bag_text.c.o
 	Object main.nef.p/src_overlay013_battle_bag_utils.c.o
 	Object main.nef.p/src_overlay013_battle_bag_sprites.c.o
 	Object main.nef.p/src_overlay013_ov13_02228128.c.o

@@ -66,17 +66,17 @@ _008F:
 
     .balign 4, 0
 _00F0:
-    MoveAction_013
+    WalkNormalSouth
     EndMovement
 
     .balign 4, 0
 _00F8:
-    MoveAction_013
+    WalkNormalSouth
     EndMovement
 
     .balign 4, 0
 _0100:
-    MoveAction_013 2
+    WalkNormalSouth 2
     EndMovement
 
 _0108:
@@ -406,19 +406,19 @@ _051E:
 
     .balign 4, 0
 _0524:
-    MoveAction_015
-    MoveAction_012 2
+    WalkNormalEast
+    WalkNormalNorth 2
     EndMovement
 
     .balign 4, 0
 _0530:
-    MoveAction_012
+    WalkNormalNorth
     EndMovement
 
     .balign 4, 0
 _0538:
-    MoveAction_012
-    MoveAction_069
+    WalkNormalNorth
+    SetInvisible
     EndMovement
 
 _0544:

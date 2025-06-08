@@ -1097,31 +1097,31 @@ _1205:
 
     .balign 4, 0
 _1248:
-    MoveAction_062
-    MoveAction_012 2
+    Delay4
+    WalkNormalNorth 2
     EndMovement
 
     .balign 4, 0
 _1254:
-    MoveAction_012
-    MoveAction_069
+    WalkNormalNorth
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _1260:
-    MoveAction_062
-    MoveAction_012 2
+    Delay4
+    WalkNormalNorth 2
     EndMovement
 
     .balign 4, 0
 _126C:
-    MoveAction_012 2
-    MoveAction_069
+    WalkNormalNorth 2
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _1278:
-    MoveAction_003
+    FaceEast
     EndMovement
 
 _1280:

@@ -99,7 +99,7 @@ void BattleBagSprites_InitializeSprites(BattleBag *battleBag)
 static void InitializeSpriteManager(BattleBag *battleBag)
 {
     SpriteResourceCapacities capacities = { .asArray[SPRITE_RESOURCE_CHAR] = SPRITE_MANAGER_IMAGE_RESOURCE_CAPACITY, .asArray[SPRITE_RESOURCE_PLTT] = SPRITE_MANAGER_IMAGE_RESOURCE_CAPACITY, .asArray[SPRITE_RESOURCE_CELL] = SPRITE_MANAGER_ANIM_RESOURCE_CAPACITY, .asArray[SPRITE_RESOURCE_ANIM] = SPRITE_MANAGER_ANIM_RESOURCE_CAPACITY, .asArray[SPRITE_RESOURCE_MULTI_CELL] = SPRITE_MANAGER_MULTI_ANIM_RESOURCE_CAPACITY, .asArray[SPRITE_RESOURCE_MULTI_ANIM] = SPRITE_MANAGER_MULTI_ANIM_RESOURCE_CAPACITY };
-    SpriteSystem *spriteSystem = ov16_0223E010(battleBag->context->battleSystem);
+    SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(battleBag->context->battleSystem);
 
     battleBag->spriteManager = SpriteManager_New(spriteSystem);
 
@@ -110,7 +110,7 @@ static void InitializeSpriteManager(BattleBag *battleBag)
 static void LoadSpriteData(BattleBag *battleBag)
 {
     NARC *narc = NARC_ctor(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, battleBag->context->heapID);
-    SpriteSystem *spriteSystem = ov16_0223E010(battleBag->context->battleSystem);
+    SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(battleBag->context->battleSystem);
 
     for (u32 i = 0; i < BATTLE_POCKET_ITEMS_PER_PAGE; i++) {
         SpriteSystem_LoadCharResObjFromOpenNarc(spriteSystem, battleBag->spriteManager, narc, Item_FileID(ITEM_MASTER_BALL, ITEM_FILE_TYPE_ICON), FALSE, NNS_G2D_VRAM_TYPE_2DSUB, POCKET_SLOT_1_RESOURCE_ID + i);
@@ -124,7 +124,7 @@ static void LoadSpriteData(BattleBag *battleBag)
 
 static void LoadItemIcon(BattleBag *battleBag, u16 item, u32 resourceID)
 {
-    SpriteSystem *spriteSystem = ov16_0223E010(battleBag->context->battleSystem);
+    SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(battleBag->context->battleSystem);
     SpriteSystem_ReplaceCharResObj(spriteSystem, battleBag->spriteManager, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(item, ITEM_FILE_TYPE_ICON), FALSE, resourceID);
 }
 
@@ -136,7 +136,7 @@ static void LoadItemPaletteData(BattleBag *battleBag, u16 item, u16 slotIndex, u
 static ManagedSprite *CreatePocketItemSprite(BattleBag *battleBag, u32 slotIndex)
 {
     SpriteTemplate template;
-    SpriteSystem *spriteSystem = ov16_0223E010(battleBag->context->battleSystem);
+    SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(battleBag->context->battleSystem);
 
     template.x = 0;
     template.y = 0;
@@ -164,7 +164,7 @@ static void InitializePocketItemSprites(BattleBag *battleBag)
 
 void BattleBagSprites_CleanupSprites(BattleBag *battleBag)
 {
-    SpriteSystem *spriteSystem = ov16_0223E010(battleBag->context->battleSystem);
+    SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(battleBag->context->battleSystem);
 
     for (u32 i = 0; i < BATTLE_POCKET_ITEMS_PER_PAGE; i++) {
         Sprite_DeleteAndFreeResources(battleBag->pocketItemSprites[i]);
@@ -238,7 +238,7 @@ static void InitializeCursor(BattleBag *battleBag)
     SpriteSystem *spriteSystem;
     UnkStruct_ov16_0226DC24 *cursorSprites;
 
-    spriteSystem = ov16_0223E010(battleBag->context->battleSystem);
+    spriteSystem = BattleSystem_GetSpriteSystem(battleBag->context->battleSystem);
     ov16_0226DB7C(spriteSystem, battleBag->spriteManager, battleBag->palette, battleBag->context->heapID, CURSOR_IMAGE_RESOURCE_ID, CURSOR_IMAGE_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID);
     cursorSprites = ov16_0226DC24(spriteSystem, battleBag->spriteManager, battleBag->context->heapID, CURSOR_IMAGE_RESOURCE_ID, CURSOR_IMAGE_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID, 0, 1);
 
@@ -461,7 +461,7 @@ void BattleBagSprites_DisableCursor(BattleBag *battleBag)
 
 static void InitializeCatchTutorialCursor(BattleBag *battleBag)
 {
-    SpriteSystem *spriteSystem = ov16_0223E010(battleBag->context->battleSystem);
+    SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(battleBag->context->battleSystem);
 
     ov16_0226DE44(spriteSystem, battleBag->spriteManager, battleBag->context->heapID, battleBag->palette, CATCH_TUTORIAL_CURSOR_IMAGE_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_IMAGE_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_ANIM_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_ANIM_RESOURCE_ID);
     battleBag->catchTutorialCursor = ov16_0226DEEC(spriteSystem, battleBag->spriteManager, battleBag->context->heapID, CATCH_TUTORIAL_CURSOR_IMAGE_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_IMAGE_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_ANIM_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_ANIM_RESOURCE_ID, 0, 0);

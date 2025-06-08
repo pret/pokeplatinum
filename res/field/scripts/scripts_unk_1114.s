@@ -1046,7 +1046,7 @@ _1043:
 
     .balign 4, 0
 _104C:
-    MoveAction_101
+    RevealTrainer
     EndMovement
 
 _1054:
