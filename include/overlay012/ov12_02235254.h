@@ -8,11 +8,13 @@
 #include "overlay012/struct_ov12_0223595C.h"
 #include "overlay012/struct_ov12_02235998.h"
 
+#include "generated/battle_script_battlers.h"
+
 #include "pokemon_sprite.h"
 #include "sprite.h"
 
 int ov12_02235254(BattleAnimSystem *param0, int param1);
-int ov12_0223525C(BattleAnimSystem *param0, int param1);
+enum Battler ov12_0223525C(BattleAnimSystem *param0, int param1);
 int ov12_02235288(BattleAnimSystem *param0, int param1);
 int ov12_022352AC(BattleAnimSystem *param0, int param1);
 int ov12_02235310(int param0);

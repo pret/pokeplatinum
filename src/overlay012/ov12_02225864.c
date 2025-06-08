@@ -117,9 +117,8 @@ void ov12_02225898(BattleAnimSystem *param0, int param1, s16 *param2, s16 *param
 
 s16 ov12_022258E0(BattleAnimSystem *param0, int param1, int param2)
 {
-    int v0, v1;
-
-    v0 = ov12_02235254(param0, param1);
+    int v1;
+    int battlerType = ov12_02235254(param0, param1);
 
     if (BattleAnimSystem_IsDoubleBattle(param0) == 1) {
         v1 = 1;
@@ -128,16 +127,16 @@ s16 ov12_022258E0(BattleAnimSystem *param0, int param1, int param2)
     }
 
     if (BattleAnimSystem_IsContest(param0) == 1) {
-        v0 += 2;
+        battlerType += 2;
     }
 
     switch (param2) {
     case 0:
     case 2:
-        return Unk_ov12_02239E34[v1][v0].unk_00;
+        return Unk_ov12_02239E34[v1][battlerType].unk_00;
     case 1:
     case 3:
-        return Unk_ov12_02239E34[v1][v0].unk_02;
+        return Unk_ov12_02239E34[v1][battlerType].unk_02;
     }
 
     GF_ASSERT(0);
