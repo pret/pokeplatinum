@@ -39,7 +39,7 @@ typedef struct PoketchButton {
     u8 state;
     u8 screenTouched;
     u8 prevScreenTouched;
-    u8 unk_03; // unused
+    u8 unused;
     u16 timer;
     u16 doubleTapTime;
     u16 timerDurations[BUTTON_MANAGER_NUM_TIMERS_PER_BUTTON];

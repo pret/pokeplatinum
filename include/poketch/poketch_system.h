@@ -4,12 +4,11 @@
 #include <nnsys.h>
 
 #include "field/field_system_decl.h"
-#include "overlay025/poketch_button.h"
-#include "overlay025/struct_ov25_02254560_1.h"
-#include "overlay025/struct_ov25_02254560_decl.h"
+#include "poketch/poketch_button.h"
 
 #include "bg_window.h"
 #include "poketch.h"
+#include "poketch_graphics_task_structs.h"
 #include "savedata.h"
 #include "sys_task_manager.h"
 
@@ -34,7 +33,7 @@
 #define POKETCH_BUTTON_BOTTOM_MAX_Y 160
 
 enum ButtonDir {
-    BUTTON_UP,
+    BUTTON_UP = 0,
     BUTTON_DOWN,
 };
 
@@ -85,21 +84,21 @@ struct PoketchSystem {
     u8 touchingScreen;
     u8 playerMoving;
     u8 appChanging;
-    u8 unk_06;
+    u8 appStarting;
     u8 pedometerUpdated;
     u32 buttonState;
     BOOL skipApp;
     u32 appSkipTimer;
     enum PoketchAppID loadedAppID;
     FSOverlayID loadedAppOverlayID;
-    UnkStruct_ov25_02254560 *unk_1C;
-    UnkStruct_ov25_02254560_1 unk_20;
-    void *unk_24;
+    PoketchGraphics_TaskData *taskData;
+    PoketchGraphics_ConstTaskData constTaskData;
+    void *appData;
     PoketchButtonManager *buttonManager;
-    u32 unk_2C;
-    u32 unk_30;
+    u32 nextBtnTask;
+    u32 lastBtnReleaseTask;
     PoketchSystem **poketchSysPtr;
-    SysTask *unk_38;
+    SysTask *postRenderTask;
 
     PoketchAppInitFunction currAppInit;
     PoketchAppShutdownFunction currAppShutdown;
@@ -125,7 +124,7 @@ void PoketchSystem_SetAppFunctions(PoketchAppInitFunction initFunction, PoketchA
 void PoketchSystem_NotifyAppLoaded(PoketchSystem *poketchSys);
 void PoketchSystem_NotifyAppUnloaded(PoketchSystem *poketchSys);
 void PoketchSystem_SetSaveFunction(PoketchAppSaveFunction saveFunction, void *saveData);
-UnkStruct_ov25_02254560 *ov25_02254418(void);
+PoketchGraphics_TaskData *PoketchSystem_GetTaskData(void);
 void PoketchSystem_PlaySoundEffect(u32 soundID);
 void PoketchSystem_PlayCry(u32 species, u32 form);
 BOOL PoketchSystem_GetDisplayHeldCoords(u32 *x, u32 *y);

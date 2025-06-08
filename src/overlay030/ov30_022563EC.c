@@ -3,15 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay025/ov25_02254560.h"
-#include "overlay025/ov25_02255090.h"
-#include "overlay025/ov25_02255540.h"
-#include "overlay025/struct_ov25_022555E8_decl.h"
-#include "overlay025/struct_ov25_02255810.h"
-#include "overlay025/struct_ov25_022558C4_decl.h"
-#include "overlay025/struct_ov25_02255958.h"
 #include "overlay030/struct_ov30_022563EC_1.h"
 #include "overlay030/struct_ov30_022563EC_decl.h"
+#include "poketch/poketch_animation.h"
+#include "poketch/poketch_graphics.h"
+#include "poketch/poketch_task.h"
 
 #include "bg_window.h"
 #include "graphics.h"
@@ -24,9 +20,9 @@ struct UnkStruct_ov30_022563EC_t {
     BgConfig *unk_04;
     u32 unk_08[10];
     SysTask *unk_30;
-    UnkStruct_ov25_02255958 unk_34;
-    UnkStruct_ov25_022555E8 *unk_48;
-    UnkStruct_ov25_022558C4 *unk_4C[2];
+    PoketchAnimation_SpriteData unk_34;
+    PoketchAnimation_AnimationManager *unk_48;
+    PoketchAnimation_AnimatedSpriteData *unk_4C[2];
 };
 
 static void ov30_02256460(SysTask *param0, void *param1);
@@ -50,8 +46,8 @@ BOOL ov30_022563EC(UnkStruct_ov30_022563EC **param0, const UnkStruct_ov30_022563
         PoketchTask_InitActiveTaskList(v0->unk_08, 8);
 
         v0->unk_00 = param1;
-        v0->unk_04 = Poketch_GetBgConfig();
-        v0->unk_48 = ov25_02254664();
+        v0->unk_04 = PoketchGraphics_GetBgConfig();
+        v0->unk_48 = PoketchGraphics_GetAnimationManager();
 
         if (ov30_022565F4(v0) == 0) {
             Heap_FreeToHeap(v0);
@@ -139,7 +135,7 @@ static void ov30_022564B4(SysTask *param0, void *param1)
     Graphics_LoadTilesToBgLayer(12, 23, v2->unk_04, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
     Graphics_LoadTilemapToBgLayer(12, 26, v2->unk_04, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
 
-    Poketch_LoadActivePalette(0, 0);
+    PoketchGraphics_LoadActivePalette(0, 0);
     ov30_022565B0(v2);
 
     Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);
@@ -163,9 +159,9 @@ static void ov30_02256568(SysTask *param0, void *param1)
     UnkStruct_ov30_022563EC *v0 = PoketchTask_GetTaskData(param1);
 
     if (v0->unk_00->unk_0C) {
-        Poketch_LoadActiveBacklightPalette(0, 0);
+        PoketchGraphics_LoadActiveBacklightPalette(0, 0);
     } else {
-        Poketch_LoadActivePalette(0, 0);
+        PoketchGraphics_LoadActivePalette(0, 0);
     }
 
     ov30_022564A0(param1);
@@ -186,15 +182,15 @@ static void ov30_022565B0(UnkStruct_ov30_022563EC *param0)
     CP_SetDiv32_32(param0->unk_00->unk_00.hour, 10);
 
     v0 = 60 + ((param0->unk_00->unk_00.hour % 12) * 30) + (param0->unk_00->unk_00.minute / 2);
-    ov25_022558C4(param0->unk_4C[0], v0);
+    PoketchAnimation_UpdateAnimationIdx(param0->unk_4C[0], v0);
 
     v0 = 0 + param0->unk_00->unk_00.minute;
-    ov25_022558C4(param0->unk_4C[1], v0);
+    PoketchAnimation_UpdateAnimationIdx(param0->unk_4C[1], v0);
 }
 
 static BOOL ov30_022565F4(UnkStruct_ov30_022563EC *param0)
 {
-    static const UnkStruct_ov25_02255810 v0[] = {
+    static const PoketchAnimation_AnimationData v0[] = {
         {
             { 116 << FX32_SHIFT, 100 << FX32_SHIFT },
             60,
@@ -215,11 +211,11 @@ static BOOL ov30_022565F4(UnkStruct_ov30_022563EC *param0)
 
     Graphics_LoadObjectTiles(12, 29, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
 
-    if (ov25_02255958(&param0->unk_34, 12, 27, 28, 8)) {
+    if (PoketchAnimation_LoadSpriteFromNARC(&param0->unk_34, 12, 27, 28, 8)) {
         int v1;
 
         for (v1 = 0; v1 < 2; v1++) {
-            param0->unk_4C[v1] = ov25_02255810(param0->unk_48, &v0[v1], &param0->unk_34);
+            param0->unk_4C[v1] = PoketchAnimation_SetupNewAnimatedSprite(param0->unk_48, &v0[v1], &param0->unk_34);
         }
 
         return 1;
@@ -232,9 +228,9 @@ static void ov30_02256658(UnkStruct_ov30_022563EC *param0)
 {
     int v0;
 
-    ov25_022559B0(&(param0->unk_34));
+    PoketchAnimation_FreeSpriteData(&(param0->unk_34));
 
     for (v0 = 0; v0 < 2; v0++) {
-        ov25_022558B0(param0->unk_48, param0->unk_4C[v0]);
+        PoketchAnimation_RemoveAnimatedSprite(param0->unk_48, param0->unk_4C[v0]);
     }
 }

@@ -187,7 +187,7 @@ Sprite *SpriteList_AddAffine(const AffineSpriteListTemplate *template)
     sprite->vramType = template->vramType;
     sprite->priority = template->priority;
     sprite->affineOverwriteMode = NNS_G2D_RND_AFFINE_OVERWRITE_NONE;
-    sprite->flip = SPRITE_FLIP_NONE;
+    sprite->flip = NNS_G2D_RENDERERFLIP_NONE;
     sprite->explicitMosaic = FALSE;
     sprite->explicitOamMode = GX_OAM_MODE_NORMAL;
     sprite->overwriteFlags = NNS_G2D_RND_OVERWRITE_PLTTNO_OFFS | NNS_G2D_RND_OVERWRITE_PRIORITY;
@@ -197,8 +197,8 @@ Sprite *SpriteList_AddAffine(const AffineSpriteListTemplate *template)
         sprite->affineOverwriteMode);
     NNS_G2dSetRndCoreFlipMode(
         &template->list->renderer->rendererCore,
-        sprite->flip & SPRITE_FLIP_H,
-        sprite->flip & SPRITE_FLIP_V);
+        sprite->flip & NNS_G2D_RENDERERFLIP_H,
+        sprite->flip & NNS_G2D_RENDERERFLIP_V);
 
     sprite->draw = TRUE;
     sprite->animate = FALSE;
@@ -794,8 +794,8 @@ static void SpriteList_DrawSprite(const SpriteList *list, Sprite *sprite)
     if (sprite->affineOverwriteMode == NNS_G2D_RND_AFFINE_OVERWRITE_NONE) {
         NNS_G2dSetRndCoreFlipMode(
             &list->renderer->rendererCore,
-            sprite->flip & SPRITE_FLIP_H,
-            sprite->flip & SPRITE_FLIP_V);
+            sprite->flip & NNS_G2D_RENDERERFLIP_H,
+            sprite->flip & NNS_G2D_RENDERERFLIP_V);
     } else {
         NNS_G2dSetRndCoreFlipMode(&list->renderer->rendererCore, FALSE, FALSE);
     }
