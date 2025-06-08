@@ -12,10 +12,10 @@
 #include "heap.h"
 #include "map_object.h"
 #include "player_avatar.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0200F174.h"
 
 typedef struct {
     FieldSystem *fieldSystem;
@@ -67,8 +67,8 @@ static void ov5_021E139C(SysTask *param0, void *param1)
         v0->unk_0C++;
 
         if (v0->unk_0C == 20) {
-            StartScreenTransition(2, 0, 0, 0x0, 6, 1, HEAP_ID_FIELD);
-        } else if ((v0->unk_0C > 20) && IsScreenTransitionDone()) {
+            StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
+        } else if ((v0->unk_0C > 20) && IsScreenFadeDone()) {
             *v0->unk_04 = 1;
             Heap_FreeToHeap(v0);
             SysTask_Done(param0);
@@ -109,7 +109,7 @@ static void ov5_021E1470(SysTask *param0, void *param1)
         v0->unk_0C++;
 
         if (v0->unk_0C == 2) {
-            StartScreenTransition(1, 1, 1, 0x0, 6, 1, HEAP_ID_FIELD);
+            StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
         }
 
         if (v0->unk_0C > 20) {
@@ -117,7 +117,7 @@ static void ov5_021E1470(SysTask *param0, void *param1)
         }
         break;
     case 2:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             Player_SetDir(v0->fieldSystem->playerAvatar, 1);
             *v0->unk_04 = 1;
             Heap_FreeToHeap(v0);
@@ -129,7 +129,7 @@ static void ov5_021E1470(SysTask *param0, void *param1)
 
 void FieldSystem_StartWarpAnimation(FieldSystem *fieldSystem, BOOL param1, BOOL *param2)
 {
-    UnkStruct_ov5_021E135C *v0 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov5_021E135C));
+    UnkStruct_ov5_021E135C *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E135C));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov5_021E135C));
 

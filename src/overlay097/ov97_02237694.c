@@ -29,6 +29,7 @@
 #include "render_oam.h"
 #include "render_window.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
@@ -38,7 +39,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02033200.h"
 #include "vram_transfer.h"
@@ -50,7 +50,7 @@ typedef struct {
     int unk_0C;
     int unk_10;
     int unk_14;
-    SaveData *unk_18;
+    SaveData *saveData;
     void *unk_1C;
     int unk_20;
     BOOL unk_24[4];
@@ -77,17 +77,17 @@ void ov97_02237694(int heapID)
     v0->heapID = heapID;
 }
 
-void *ov97_022376C4(OverlayManager *param0, int heapID, int param2, int param3)
+void *ov97_022376C4(ApplicationManager *appMan, int heapID, int param2, int param3)
 {
     void *v0;
 
     Heap_Create(HEAP_ID_APPLICATION, heapID, param3);
-    v0 = OverlayManager_NewData(param0, param2, heapID);
+    v0 = ApplicationManager_NewData(appMan, param2, heapID);
 
     memset(v0, 0, param2);
 
-    sub_0200F344(0, 0x0);
-    sub_0200F344(1, 0x0);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
 
     return v0;
 }
@@ -145,9 +145,9 @@ void ov97_02237790(int param0, int param1, int *param2, int param3)
     UnkStruct_ov97_0223F550 *v0 = &Unk_ov97_0223F550;
 
     if (v0->unk_10 == 0) {
-        StartScreenTransition(0, param0, param0, 0x0, 6, 1, v0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, param0, param0, 0x0, 6, 1, v0->heapID);
     } else {
-        StartScreenTransition(0, param0, param0, 0x7fff, 6, 1, v0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, param0, param0, 0x7fff, 6, 1, v0->heapID);
     }
 
     if (param2) {
@@ -161,7 +161,7 @@ void ov97_022377F0(int *param0)
 {
     UnkStruct_ov97_0223F550 *v0 = &Unk_ov97_0223F550;
 
-    if (IsScreenTransitionDone()) {
+    if (IsScreenFadeDone()) {
         *param0 = v0->unk_0C;
     }
 }
@@ -823,11 +823,11 @@ void ov97_02238440(void)
     OS_EnableIrq();
 }
 
-void ov97_0223846C(SaveData *param0)
+void ov97_0223846C(SaveData *saveData)
 {
     UnkStruct_ov97_0223F550 *v0 = &Unk_ov97_0223F550;
 
-    v0->unk_18 = param0;
+    v0->saveData = saveData;
     v0->unk_14 = 0;
 }
 
@@ -839,11 +839,11 @@ int ov97_0223847C(void)
     switch (v1->unk_14) {
     case 0:
         ResetLock(RESET_LOCK_SOFT_RESET);
-        SaveData_SaveStateInit(v1->unk_18, 2);
+        SaveData_SaveStateInit(v1->saveData, 2);
         v1->unk_14++;
         break;
     case 1:
-        v0 = SaveData_SaveStateMain(v1->unk_18);
+        v0 = SaveData_SaveStateMain(v1->saveData);
 
         if (v0 == 3) {
             v1->unk_14 = 3;
@@ -883,7 +883,7 @@ void ov97_0223850C(void)
 {
     UnkStruct_ov97_0223F550 *v0 = &Unk_ov97_0223F550;
 
-    SaveData_SaveStateCancel(v0->unk_18);
+    SaveData_SaveStateCancel(v0->saveData);
     v0->unk_14 = 3;
     ResetUnlock(RESET_LOCK_SOFT_RESET);
 }

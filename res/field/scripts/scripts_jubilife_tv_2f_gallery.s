@@ -212,76 +212,76 @@ _0335:
 
     .balign 4, 0
 _0340:
-    MoveAction_008 2
+    WalkSlowNorth 2
     EndMovement
 
     .balign 4, 0
 _0348:
-    MoveAction_010
-    MoveAction_008
+    WalkSlowWest
+    WalkSlowNorth
     EndMovement
 
     .balign 4, 0
 _0354:
-    MoveAction_011
-    MoveAction_008
+    WalkSlowEast
+    WalkSlowNorth
     EndMovement
 
     .balign 4, 0
 _0360:
-    MoveAction_001
+    FaceSouth
     EndMovement
 
     .balign 4, 0
 _0368:
-    MoveAction_009 2
-    MoveAction_000
+    WalkSlowSouth 2
+    FaceNorth
     EndMovement
 
     .balign 4, 0
 _0374:
-    MoveAction_014
-    MoveAction_003
+    WalkNormalWest
+    FaceEast
     EndMovement
 
     .balign 4, 0
 _0380:
-    MoveAction_014
-    MoveAction_003
+    WalkNormalWest
+    FaceEast
     EndMovement
 
     .balign 4, 0
 _038C:
-    MoveAction_015
-    MoveAction_002
+    WalkNormalEast
+    FaceWest
     EndMovement
 
     .balign 4, 0
 _0398:
-    MoveAction_015
-    MoveAction_001
+    WalkNormalEast
+    FaceSouth
     EndMovement
 
     .balign 4, 0
 _03A4:
-    MoveAction_015
-    MoveAction_001
+    WalkNormalEast
+    FaceSouth
     EndMovement
 
     .balign 4, 0
 _03B0:
-    MoveAction_014
-    MoveAction_001
+    WalkNormalWest
+    FaceSouth
     EndMovement
 
     .balign 4, 0
 _03BC:
-    MoveAction_003
+    FaceEast
     EndMovement
 
     .balign 4, 0
 _03C4:
-    MoveAction_001
+    FaceSouth
     EndMovement
 
 _03CC:

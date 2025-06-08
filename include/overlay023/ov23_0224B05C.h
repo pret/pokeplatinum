@@ -44,7 +44,7 @@ int ov23_0224CD7C(void);
 void ov23_0224CD80(int param0, int param1, void *param2, void *param3);
 void ov23_0224CF18(int param0, int param1, void *param2, void *param3);
 BOOL ov23_0224D020(Strbuf *param0);
-UnkStruct_02029894 *ov23_0224D130(SaveData *param0);
+UnkStruct_02029894 *ov23_0224D130(SaveData *saveData);
 int ov23_0224D150(void);
 int ov23_0224D178(void);
 BOOL ov23_0224D1A0(int param0, int param1);

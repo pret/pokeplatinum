@@ -6,10 +6,10 @@
 #include "constants/screen.h"
 
 #include "struct_decls/struct_02015920_decl.h"
-#include "struct_decls/struct_0202C878_decl.h"
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
+#include "struct_defs/wi_fi_history.h"
 
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/ov66_02231428.h"
@@ -38,6 +38,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
@@ -49,7 +50,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_02015920.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
@@ -247,7 +247,7 @@ typedef struct {
     u16 unk_00;
     u16 unk_02;
     UnkStruct_ov69_0225DA74 unk_04;
-    UnkStruct_0202C878 *unk_0C;
+    WiFiHistory *wiFiHistory;
     Options *unk_10;
     int unk_14;
     int unk_18;
@@ -321,7 +321,7 @@ static void ov69_0225DC54(UnkStruct_ov69_0225DC48 *param0);
 static int ov69_0225DD10(const UnkStruct_ov69_0225DC48 *param0, u32 param1);
 static void ov69_0225DD2C(UnkStruct_ov69_0225DC48 *param0);
 static void ov69_0225DD44(UnkStruct_ov69_0225DC48 *param0);
-static void ov69_0225DD60(UnkStruct_ov69_0225DDC8 *param0, UnkStruct_ov69_0225D35C *param1, UnkStruct_ov69_0225EF54 *param2, SaveData *param3, u32 heapID);
+static void ov69_0225DD60(UnkStruct_ov69_0225DDC8 *param0, UnkStruct_ov69_0225D35C *param1, UnkStruct_ov69_0225EF54 *param2, SaveData *saveData, u32 heapID);
 static void ov69_0225DDC8(UnkStruct_ov69_0225DDC8 *param0);
 static void ov69_0225DDFC(UnkStruct_ov69_0225DDC8 *param0);
 static u32 ov69_0225DE40(UnkStruct_ov69_0225DDC8 *param0);
@@ -675,19 +675,19 @@ static const UnkStruct_ov69_0225F118 Unk_ov69_0225F118[5] = {
     },
 };
 
-int ov69_0225C700(OverlayManager *param0, int *param1)
+int ov69_0225C700(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov69_0225CE64 *v0;
-    UnkStruct_ov66_02230F50 *v1 = OverlayManager_Args(param0);
+    UnkStruct_ov66_02230F50 *v1 = ApplicationManager_Args(appMan);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_105, 0x50000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov69_0225CE64), HEAP_ID_105);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov69_0225CE64), HEAP_ID_105);
     memset(v0, 0, sizeof(UnkStruct_ov69_0225CE64));
 
-    v0->unk_0C = sub_0202C878(v1->unk_04);
-    v0->unk_10 = SaveData_GetOptions(v1->unk_04);
-    v0->unk_14 = sub_0202C8C0(v0->unk_0C);
-    v0->unk_18 = sub_0202C8C4(v0->unk_0C);
+    v0->wiFiHistory = SaveData_WiFiHistory(v1->saveData);
+    v0->unk_10 = SaveData_GetOptions(v1->saveData);
+    v0->unk_14 = WiFiHistory_GetCountry(v0->wiFiHistory);
+    v0->unk_18 = sub_0202C8C4(v0->wiFiHistory);
     v0->unk_1C = v1->unk_08;
 
     ov69_0225D2A8(v0, v1);
@@ -697,7 +697,7 @@ int ov69_0225C700(OverlayManager *param0, int *param1)
     ov69_0225D7A0(&v0->unk_288, v1->unk_00, &v0->unk_20, v0->unk_04, HEAP_ID_105);
     ov69_0225DA74(&v0->unk_BC30, v0->unk_04, HEAP_ID_105);
     ov69_0225DBB4(&v0->unk_BC44, &v0->unk_20, &v0->unk_1CC, HEAP_ID_105);
-    ov69_0225DD60(&v0->unk_BF64, &v0->unk_20, &v0->unk_1CC, v1->unk_04, HEAP_ID_105);
+    ov69_0225DD60(&v0->unk_BF64, &v0->unk_20, &v0->unk_1CC, v1->saveData, HEAP_ID_105);
     ov69_0225DEC0(&v0->unk_BC70, &v0->unk_20, &v0->unk_1CC, HEAP_ID_105);
     ov69_0225D030(v0, v1);
 
@@ -707,23 +707,23 @@ int ov69_0225C700(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov69_0225C820(OverlayManager *param0, int *param1)
+int ov69_0225C820(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov69_0225CE64 *v0;
     UnkStruct_ov66_02230F50 *v1;
     BOOL v2;
 
-    v0 = OverlayManager_Data(param0);
-    v1 = OverlayManager_Args(param0);
+    v0 = ApplicationManager_Data(appMan);
+    v1 = ApplicationManager_Args(appMan);
 
     switch (*param1) {
     case 0:
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_105);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_105);
         ov66_0222E31C(v1->unk_0C, 1);
         (*param1)++;
         break;
     case 1:
-        v2 = IsScreenTransitionDone();
+        v2 = IsScreenFadeDone();
 
         if (v2 == 1) {
             (*param1)++;
@@ -747,11 +747,11 @@ int ov69_0225C820(OverlayManager *param0, int *param1)
         }
         break;
     case 5:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_105);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_105);
         (*param1)++;
         break;
     case 6:
-        v2 = IsScreenTransitionDone();
+        v2 = IsScreenFadeDone();
 
         if (v2 == 1) {
             return 1;
@@ -764,13 +764,13 @@ int ov69_0225C820(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov69_0225C8FC(OverlayManager *param0, int *param1)
+int ov69_0225C8FC(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov69_0225CE64 *v0;
     UnkStruct_ov66_02230F50 *v1;
 
-    v0 = OverlayManager_Data(param0);
-    v1 = OverlayManager_Args(param0);
+    v0 = ApplicationManager_Data(appMan);
+    v1 = ApplicationManager_Args(appMan);
 
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
@@ -784,7 +784,7 @@ int ov69_0225C8FC(OverlayManager *param0, int *param1)
     ov69_0225EF54(&v0->unk_1CC);
     ov69_0225D35C(&v0->unk_20);
 
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_105);
 
     return 1;
@@ -1917,14 +1917,14 @@ static void ov69_0225DD44(UnkStruct_ov69_0225DC48 *param0)
     Window_DrawStandardFrame(&param0->unk_1C, 0, (1 + (18 + 12)), 0);
 }
 
-static void ov69_0225DD60(UnkStruct_ov69_0225DDC8 *param0, UnkStruct_ov69_0225D35C *param1, UnkStruct_ov69_0225EF54 *param2, SaveData *param3, u32 heapID)
+static void ov69_0225DD60(UnkStruct_ov69_0225DDC8 *param0, UnkStruct_ov69_0225D35C *param1, UnkStruct_ov69_0225EF54 *param2, SaveData *saveData, u32 heapID)
 {
     memset(param0, 0, sizeof(UnkStruct_ov69_0225DC48));
 
     {
         Options *v0;
 
-        v0 = SaveData_GetOptions(param3);
+        v0 = SaveData_GetOptions(saveData);
         param0->unk_08 = Options_TextFrameDelay(v0);
     }
 

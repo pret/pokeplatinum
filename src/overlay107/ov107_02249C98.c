@@ -16,7 +16,6 @@ FS_EXTERN_OVERLAY(overlay104);
 
 u8 ov107_02249C98(u8 param0, u8 param1);
 u8 ov107_02249C9C(u8 param0, u8 param1);
-u8 ov107_02249CAC(SaveData *param0, u8 param1, u8 param2);
 void ov107_02249CE0(u32 param0, u16 param1);
 void ov107_02249CF4(StringTemplate *param0, u32 param1);
 
@@ -34,9 +33,9 @@ u8 ov107_02249C9C(u8 param0, u8 param1)
     return param1 - param0;
 }
 
-u8 ov107_02249CAC(SaveData *param0, u8 param1, u8 param2)
+u8 ov107_02249CAC(SaveData *saveData, u8 param1, u8 param2)
 {
-    return sub_02030698(SaveData_GetBattleFrontier(param0), sub_0205E5B4(param1, param2), sub_0205E6A8(sub_0205E5B4(param1, param2)));
+    return sub_02030698(SaveData_GetBattleFrontier(saveData), sub_0205E5B4(param1, param2), sub_0205E6A8(sub_0205E5B4(param1, param2)));
 }
 
 void ov107_02249CE0(u32 param0, u16 param1)

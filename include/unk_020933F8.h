@@ -39,7 +39,7 @@ u32 sub_02094904(UnkStruct_02095C48 *param0);
 void sub_02094A58(UnkStruct_02095C48 *param0, int param1);
 BOOL sub_02094B1C(UnkStruct_02095C48 *param0);
 void sub_02094BB4(UnkStruct_02095C48 *param0, int *param1, int *param2, int *param3, int *param4, int *param5);
-void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *param1, u32 param2, JournalEntry *param3);
+void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *saveData, u32 param2, JournalEntry *param3);
 u16 sub_02094E98(UnkStruct_02095C48 *param0);
 u16 sub_02094EA0(u32 param0, u32 *param1);
 

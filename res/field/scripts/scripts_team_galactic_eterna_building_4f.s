@@ -93,12 +93,12 @@ _0135:
 
     .balign 4, 0
 _013C:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0144:
-    MoveAction_012
+    WalkNormalNorth
     EndMovement
 
     .byte 63
@@ -120,20 +120,20 @@ _0144:
 
     .balign 4, 0
 _015C:
-    MoveAction_012 3
-    MoveAction_035
+    WalkNormalNorth 3
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0168:
-    MoveAction_012 3
-    MoveAction_034
+    WalkNormalNorth 3
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0174:
-    MoveAction_063
-    MoveAction_033
+    Delay8
+    WalkOnSpotNormalSouth
     EndMovement
 
     .byte 34

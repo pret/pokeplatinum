@@ -20,7 +20,7 @@ typedef struct {
 
 static BOOL sub_020574CC(FieldTask *param0);
 
-static const OverlayManagerTemplate Unk_020ED4CC = {
+static const ApplicationManagerTemplate Unk_020ED4CC = {
     ov66_0222DCE0,
     ov66_0222DD6C,
     ov66_0222DD90,
@@ -29,7 +29,7 @@ static const OverlayManagerTemplate Unk_020ED4CC = {
 
 void sub_0205749C(FieldTask *param0, BOOL param1)
 {
-    UnkStruct_0205749C *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205749C));
+    UnkStruct_0205749C *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0205749C));
     memset(v0, 0, sizeof(UnkStruct_0205749C));
 
     v0->unk_02 = param1;
@@ -43,7 +43,7 @@ static BOOL sub_020574CC(FieldTask *param0)
 
     switch (v1->unk_00) {
     case 0: {
-        v1->unk_04.unk_04 = fieldSystem->saveData;
+        v1->unk_04.saveData = fieldSystem->saveData;
         v1->unk_04.unk_08 = v1->unk_02;
         v1->unk_04.unk_00 = &fieldSystem->unk_C4;
         FieldTask_RunApplication(param0, &Unk_020ED4CC, &v1->unk_04);

@@ -29,13 +29,13 @@ BOOL ov5_021F101C(FieldTask *param0)
 
     switch (*v2) {
     case 0:
-        v1->unk_04 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov5_021F101C));
+        v1->unk_04 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov5_021F101C));
         (*v2)++;
         break;
     case 1: {
         int v4 = ov5_021F0484();
 
-        v3->unk_04 = Heap_AllocFromHeapAtEnd(11, v4);
+        v3->unk_04 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, v4);
         memset(v3->unk_04, 0, v4);
     }
         (*v2)++;

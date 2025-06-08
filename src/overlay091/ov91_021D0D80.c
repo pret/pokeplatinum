@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/pokemon_types.h"
+
 #include "struct_defs/struct_020997B8.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -23,6 +25,7 @@
 #include "pokemon.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
@@ -31,8 +34,7 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
-#include "unk_0207C908.h"
+#include "type_icon.h"
 #include "unk_0208C098.h"
 #include "unk_02094EDC.h"
 #include "vram_transfer.h"
@@ -53,7 +55,7 @@ typedef struct {
     SpriteManager *unk_114;
     ManagedSprite *unk_118[13];
     PokemonSummary unk_14C;
-    OverlayManager *unk_17C;
+    ApplicationManager *appMan;
     int unk_180;
     u8 unk_184;
     u8 unk_185;
@@ -339,15 +341,15 @@ static const SpriteTemplate Unk_ov91_021D28FC[] = {
     },
 };
 
-int ov91_021D0D80(OverlayManager *param0, int *param1)
+int ov91_021D0D80(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov91_021D0ED8 *v0;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_67, 0x20000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov91_021D0ED8), HEAP_ID_67);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov91_021D0ED8), HEAP_ID_67);
     memset(v0, 0, sizeof(UnkStruct_ov91_021D0ED8));
-    v0->unk_00 = OverlayManager_Args(param0);
+    v0->unk_00 = ApplicationManager_Args(appMan);
 
     ov91_021D0ED8(v0);
     ov91_021D2548(v0, v0->unk_00->unk_10, 0);
@@ -363,9 +365,9 @@ int ov91_021D0D80(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov91_021D0E08(OverlayManager *param0, int *param1)
+int ov91_021D0E08(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov91_021D0ED8 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov91_021D0ED8 *v0 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
     case 0:
@@ -414,13 +416,13 @@ int ov91_021D0E08(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov91_021D0EBC(OverlayManager *param0, int *param1)
+int ov91_021D0EBC(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov91_021D0ED8 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov91_021D0ED8 *v0 = ApplicationManager_Data(appMan);
 
     ov91_021D0F6C(v0);
 
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_67);
 
     return 1;
@@ -637,7 +639,7 @@ static void ov91_021D11F0(UnkStruct_ov91_021D0ED8 *param0)
 
 static int ov91_021D1214(UnkStruct_ov91_021D0ED8 *param0)
 {
-    if (IsScreenTransitionDone() == 1) {
+    if (IsScreenFadeDone() == TRUE) {
         return param0->unk_180;
     }
 
@@ -1326,19 +1328,19 @@ static void ov91_021D2110(UnkStruct_ov91_021D0ED8 *param0, NARC *param1)
     SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 2, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 47274);
 
     for (v0 = 47276; v0 <= 47282; v0++) {
-        sub_0207C948(param0->unk_110, param0->unk_114, NNS_G2D_VRAM_TYPE_2DMAIN, 0, v0);
+        TypeIcon_LoadChar(param0->unk_110, param0->unk_114, NNS_G2D_VRAM_TYPE_2DMAIN, TYPE_NORMAL, v0);
     }
 
-    sub_0207CAC4(param0->unk_110, param0->unk_114, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 47275);
+    CategoryIcon_LoadChar(param0->unk_110, param0->unk_114, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 47275);
     SpriteSystem_LoadPlttResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 9, FALSE, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 47272);
-    sub_0207C97C(param0->unk_110, param0->unk_114, NNS_G2D_VRAM_TYPE_2DMAIN, 47273);
+    TypeIcon_LoadPlttSrc(param0->unk_110, param0->unk_114, NNS_G2D_VRAM_TYPE_2DMAIN, 47273);
     SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 4, FALSE, 47272);
     SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 7, FALSE, 47273);
     SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 1, FALSE, 47274);
     SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 3, FALSE, 47272);
     SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 6, FALSE, 47273);
     SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 0, FALSE, 47274);
-    sub_0207C9EC(param0->unk_110, param0->unk_114, 47275, 47275);
+    TypeIcon_LoadAnim(param0->unk_110, param0->unk_114, 47275, 47275);
 }
 
 static void ov91_021D22A0(UnkStruct_ov91_021D0ED8 *param0, u16 param1, u16 param2)
@@ -1351,8 +1353,8 @@ static void ov91_021D22A0(UnkStruct_ov91_021D0ED8 *param0, u16 param1, u16 param
         v0 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_CONTEST_TYPE) + 18;
     }
 
-    SpriteSystem_ReplaceCharResObj(param0->unk_110, param0->unk_114, sub_0207C944(), sub_0207C908(v0), 1, 47276 + param2);
-    ManagedSprite_SetExplicitPalette(param0->unk_118[6 + param2], sub_0207C92C(v0) + 2);
+    SpriteSystem_ReplaceCharResObj(param0->unk_110, param0->unk_114, TypeIcon_GetNARC(), TypeIcon_GetChar(v0), 1, 47276 + param2);
+    ManagedSprite_SetExplicitPalette(param0->unk_118[6 + param2], TypeIcon_GetPltt(v0) + 2);
 }
 
 static void ov91_021D2314(UnkStruct_ov91_021D0ED8 *param0)
@@ -1429,8 +1431,8 @@ static void ov91_021D24B4(UnkStruct_ov91_021D0ED8 *param0, u16 param1)
 {
     u32 v0 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_CLASS);
 
-    SpriteSystem_ReplaceCharResObj(param0->unk_110, param0->unk_114, sub_0207CAC0(), sub_0207CA90(v0), 1, 47275);
-    ManagedSprite_SetExplicitPalette(param0->unk_118[5], sub_0207CAA8(v0) + 2);
+    SpriteSystem_ReplaceCharResObj(param0->unk_110, param0->unk_114, CategoryIcon_GetNARC(), CategoryIcon_GetChar(v0), 1, 47275);
+    ManagedSprite_SetExplicitPalette(param0->unk_118[5], CategoryIcon_GetPltt(v0) + 2);
 }
 
 static void ov91_021D2508(UnkStruct_ov91_021D0ED8 *param0, NARC *param1)
@@ -1505,14 +1507,14 @@ static int ov91_021D261C(UnkStruct_ov91_021D0ED8 *param0)
 
     PokemonSummaryScreen_FlagVisiblePages(&param0->unk_14C, v0);
 
-    param0->unk_17C = OverlayManager_New(&gPokemonSummaryScreenApp, &param0->unk_14C, 67);
+    param0->appMan = ApplicationManager_New(&gPokemonSummaryScreenApp, &param0->unk_14C, 67);
     return 12;
 }
 
 static int ov91_021D26AC(UnkStruct_ov91_021D0ED8 *param0)
 {
-    if (OverlayManager_Exec(param0->unk_17C)) {
-        OverlayManager_Free(param0->unk_17C);
+    if (ApplicationManager_Exec(param0->appMan)) {
+        ApplicationManager_Free(param0->appMan);
         ov91_021D0ED8(param0);
         ov91_021D2548(param0, param0->unk_00->unk_10, 1);
         ov91_021D2574(param0, 0);

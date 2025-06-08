@@ -41,7 +41,7 @@
 #include "system_data.h"
 #include "text.h"
 #include "sound_playback.h"
-#include "unk_0200F174.h"
+#include "screen_fade.h"
 #include "touch_pad.h"
 #include "unk_0202ACE0.h"
 #include "unk_02030CE8.h"
@@ -100,9 +100,9 @@ typedef struct {
     u32 unk_04;
 } UnkStruct_ov98_02249BDC;
 
-int ov98_022471C8(OverlayManager *param0, int *param1);
-int ov98_022473D8(OverlayManager *param0, int *param1);
-int ov98_02247440(OverlayManager *param0, int *param1);
+int ov98_022471C8(ApplicationManager *appMan, int *param1);
+int ov98_022473D8(ApplicationManager *appMan, int *param1);
+int ov98_02247440(ApplicationManager *appMan, int *param1);
 static void ov98_022474E8(void *param0);
 static void ov98_02247510(BgConfig *param0);
 static void ov98_022476D0(BgConfig *param0);
@@ -280,7 +280,7 @@ static const WindowTemplate Unk_ov98_02249BC4 = {
     0x0
 };
 
-int ov98_022471C8(OverlayManager *param0, int *param1)
+int ov98_022471C8(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov98_02247704 *v0;
 
@@ -297,10 +297,10 @@ int ov98_022471C8(OverlayManager *param0, int *param1)
     G2S_BlendNone();
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_109, 0x70000);
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov98_02247704), HEAP_ID_109);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov98_02247704), HEAP_ID_109);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov98_02247704));
 
-    v0->unk_00 = OverlayManager_Args(param0);
+    v0->unk_00 = ApplicationManager_Args(appMan);
     v0->unk_04 = BgConfig_New(HEAP_ID_109);
 
     VramTransfer_New(64, HEAP_ID_109);
@@ -344,7 +344,7 @@ int ov98_022471C8(OverlayManager *param0, int *param1)
 
     ov98_02246E9C(v0->unk_00, 0);
 
-    StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_109);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_109);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
@@ -363,14 +363,14 @@ int ov98_022471C8(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov98_022473D8(OverlayManager *param0, int *param1)
+int ov98_022473D8(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov98_02247704 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov98_02247704 *v0 = ApplicationManager_Data(appMan);
     int v1, v2;
 
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             *param1 = 1;
         }
         break;
@@ -389,7 +389,7 @@ int ov98_022473D8(OverlayManager *param0, int *param1)
         }
         break;
     case 2:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             return 1;
         }
         break;
@@ -400,9 +400,9 @@ int ov98_022473D8(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov98_02247440(OverlayManager *param0, int *param1)
+int ov98_02247440(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov98_02247704 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov98_02247704 *v0 = ApplicationManager_Data(appMan);
 
     inline_ov61_0222C160(&v0->unk_EC);
 
@@ -426,7 +426,7 @@ int ov98_02247440(OverlayManager *param0, int *param1)
     RenderControlFlags_SetAutoScrollFlags(0);
     RenderControlFlags_SetSpeedUpOnTouch(0);
     sub_02039794();
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_109);
 
     return 1;
@@ -2180,7 +2180,7 @@ static int ov98_02249464(UnkStruct_ov98_02247704 *param0)
 
     sub_02039794();
     ov98_02247B0C(param0);
-    StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_109);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_109);
 
     param0->unk_08 = 0;
 

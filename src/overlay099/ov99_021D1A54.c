@@ -27,12 +27,12 @@
 #include "heap.h"
 #include "message.h"
 #include "palette.h"
+#include "screen_fade.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 
 typedef void (*UnkFuncPtr_ov99_021D4A04)(UnkStruct_ov99_021D2CB0 *);
 typedef BOOL (*UnkFuncPtr_ov99_021D4A04_1)(UnkStruct_ov99_021D2CB0 *, UnkStruct_ov99_021D3A40 *);
@@ -1085,8 +1085,8 @@ static void ov99_021D2AAC(UnkStruct_ov99_021D2CB0 *param0)
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
 
-    sub_0200F44C(0, -16);
-    sub_0200F44C(1, -16);
+    SetScreenMasterBrightness(DS_SCREEN_MAIN, BRIGHTNESS_BLACK);
+    SetScreenMasterBrightness(DS_SCREEN_SUB, BRIGHTNESS_BLACK);
     BrightnessController_SetScreenBrightness(0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_BOTH_SCREENS);
     Bg_ScheduleTilemapTransfer(param0->unk_08, 7);
 }

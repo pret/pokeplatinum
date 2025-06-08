@@ -3,24 +3,19 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0204B184.h"
-
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/struct_ov104_02230BE4.h"
-#include "overlay104/struct_ov104_0223A348_sub1.h"
-#include "overlay104/struct_ov104_0223A348_sub2.h"
 #include "overlay104/struct_ov104_0223B5C0.h"
 
 #include "communication_information.h"
 #include "communication_system.h"
 #include "field_battle_data_transfer.h"
 #include "heap.h"
+#include "item_use_pokemon.h"
 #include "math_util.h"
 #include "party.h"
 #include "pokemon.h"
-#include "trainer_info.h"
 #include "unk_02030108.h"
-#include "unk_02096420.h"
 
 typedef struct {
     u8 unk_00;
@@ -41,7 +36,7 @@ u8 ov104_0223B500(u8 param0);
 u8 ov104_0223B50C(u8 param0);
 FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104_02230BE4 *param1);
 static u32 ov104_0223B4D4(u8 param0);
-static void ov104_0223B518(UnkStruct_ov104_0223A348_sub2 *param0, u8 param1, u16 param2, u16 param3[], int param4, int param5, int param6);
+static void ov104_0223B518(FrontierPokemonDataDTO *param0, u8 param1, u16 param2, u16 param3[], int param4, int param5, int param6);
 static u32 ov104_0223B57C(UnkStruct_ov104_0223B5C0 *param0, u8 param1);
 u8 ov104_0223B5A4(u8 param0);
 u8 ov104_0223B5C0(UnkStruct_ov104_0223B5C0 *param0);
@@ -1568,26 +1563,19 @@ void ov104_0223B0C8(u8 param0, u8 param1, u8 param2, u8 param3, u16 param4, u16 
 
 FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104_02230BE4 *param1)
 {
-    BOOL v0;
     int v1;
-    u16 v2;
-    u32 v3;
-    u8 v4, v5, v6, v7;
-    FieldBattleDTO *v8;
+    u8 v7;
     Pokemon *v9;
-    UnkStruct_ov104_0223A348_sub1 v10;
-    UnkStruct_0204B184 *v11;
-    TrainerInfo *v12;
-    Party *v13;
+    FrontierTrainerDataDTO v10;
 
-    v6 = (param0->unk_05 * 2);
-    v4 = ov104_0223B500(param0->unk_04);
-    v5 = ov104_0223B50C(param0->unk_04);
-    v13 = SaveData_GetParty(param0->unk_6FC);
+    u8 v6 = (param0->unk_05 * 2);
+    u8 v4 = ov104_0223B500(param0->unk_04);
+    u8 v5 = ov104_0223B50C(param0->unk_04);
+    Party *v13 = SaveData_GetParty(param0->saveData);
 
-    HealAllPokemonInParty(v13);
+    Party_HealAllMembers(v13);
 
-    v8 = FieldBattleDTO_New(11, ov104_0223B4D4(param0->unk_04));
+    FieldBattleDTO *v8 = FieldBattleDTO_New(11, ov104_0223B4D4(param0->unk_04));
     FieldBattleDTO_InitFromGameState(v8, NULL, param1->saveData, param1->unk_1C, param1->journalEntry, param1->bagCursor, param1->unk_20);
 
     v8->background = BACKGROUND_BATTLE_HALL;
@@ -1604,9 +1592,7 @@ FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104
     Heap_FreeToHeap(v9);
     FieldBattleDTO_CopyPlayerInfoToTrainerData(v8);
 
-    v11 = ov104_0222DD04(&v10, param0->unk_18[v6], 11, 178);
-
-    Heap_FreeToHeap(v11);
+    Heap_FreeToHeap(ov104_0222DD04(&v10, param0->unk_18[v6], HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
     ov104_0222E284(v8, &v10, v5, 1, 11);
     Party_InitWithCapacity(v8->parties[1], v5);
 
@@ -1616,13 +1602,13 @@ FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104
         v7 = (10 - 1);
     }
 
-    v2 = ov104_0223B604(param0, v6, v7);
+    u16 v2 = ov104_0223B604(param0, v6, v7);
 
     for (v1 = 0; v1 < 4; v1++) {
         v8->trainer[v1].header.aiMask = v2;
     }
 
-    ov104_0223B518(&param0->unk_290[v6], v7, param0->unk_18[v6], &param0->unk_268[v6], v5, 11, 180);
+    ov104_0223B518(&param0->unk_290[v6], v7, param0->unk_18[v6], &param0->unk_268[v6], v5, HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_STAGE__PL_BSDPM);
 
     v9 = Pokemon_New(HEAP_ID_FIELDMAP);
 
@@ -1646,11 +1632,9 @@ FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104
     case 3:
         FieldBattleDTO_CopyPlayerInfoToTrainerData(v8);
 
-        v12 = CommInfo_TrainerInfo(1 - CommSys_CurNetId());
-        TrainerInfo_Copy(v12, v8->trainerInfo[2]);
+        TrainerInfo_Copy(CommInfo_TrainerInfo(1 - CommSys_CurNetId()), v8->trainerInfo[2]);
 
-        v11 = ov104_0222DD04(&v10, param0->unk_18[v6 + 1], 11, 178);
-        Heap_FreeToHeap(v11);
+        Heap_FreeToHeap(ov104_0222DD04(&v10, param0->unk_18[v6 + 1], HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
 
         ov104_0222E284(v8, &v10, v5, 3, 11);
         Party_InitWithCapacity(v8->parties[3], v5);
@@ -1676,13 +1660,13 @@ FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104
 
 static BOOL ov104_0223B4A4(UnkStruct_ov104_0223B5C0 *param0, u8 param1)
 {
-    if (param0->unk_290[param1].unk_10 > ((24 + 1) * 10001)) {
-        param0->unk_290[param1].unk_10 -= ((24 + 1) * 10001);
+    if (param0->unk_290[param1].personality > ((24 + 1) * 10001)) {
+        param0->unk_290[param1].personality -= ((24 + 1) * 10001);
     } else {
-        param0->unk_290[param1].unk_10 += ((24 + 1) * 10001);
+        param0->unk_290[param1].personality += ((24 + 1) * 10001);
     }
 
-    return Pokemon_IsPersonalityShiny(param0->unk_290[param1].unk_0C, param0->unk_290[param1].unk_10);
+    return Pokemon_IsPersonalityShiny(param0->unk_290[param1].otID, param0->unk_290[param1].personality);
 }
 
 static u32 ov104_0223B4D4(u8 param0)
@@ -1721,7 +1705,7 @@ u8 ov104_0223B50C(u8 param0)
     return 1;
 }
 
-static void ov104_0223B518(UnkStruct_ov104_0223A348_sub2 *param0, u8 param1, u16 param2, u16 param3[], int param4, int param5, int param6)
+static void ov104_0223B518(FrontierPokemonDataDTO *param0, u8 param1, u16 param2, u16 param3[], int param4, int param5, int param6)
 {
     int v0;
     u32 v1;
@@ -1805,7 +1789,7 @@ u8 ov104_0223B5C0(UnkStruct_ov104_0223B5C0 *param0)
     Party *v2;
     Pokemon *v3;
 
-    v2 = SaveData_GetParty(param0->unk_6FC);
+    v2 = SaveData_GetParty(param0->saveData);
     v3 = Party_GetPokemonBySlotIndex(v2, param0->unk_260[0]);
     v1 = Pokemon_GetValue(v3, MON_DATA_LEVEL, NULL);
 
@@ -1862,7 +1846,7 @@ u16 ov104_0223B64C(UnkStruct_ov104_0223B5C0 *param0)
     Pokemon *v1;
     u16 v2, v3;
 
-    v0 = SaveData_GetParty(param0->unk_6FC);
+    v0 = SaveData_GetParty(param0->saveData);
     v1 = Party_GetPokemonBySlotIndex(v0, param0->unk_260[0]);
     v2 = Pokemon_GetValue(v1, MON_DATA_LEVEL, NULL);
 

@@ -19,6 +19,7 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "render_oam.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite.h"
@@ -26,7 +27,6 @@
 #include "system.h"
 #include "touch_pad.h"
 #include "touch_screen.h"
-#include "unk_0200F174.h"
 #include "unk_020393C8.h"
 #include "vram_transfer.h"
 
@@ -136,7 +136,7 @@ static const int Unk_ov71_0223D604[16] = {
     0x3F
 };
 
-int ov71_0223B140(OverlayManager *param0, int *param1)
+int ov71_0223B140(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov71_0223B620 *v0;
     NARC *v1;
@@ -153,11 +153,11 @@ int ov71_0223B140(OverlayManager *param0, int *param1)
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_25, 0x28000);
 
     v1 = NARC_ctor(NARC_INDEX_GRAPHIC__TRAINER_CASE, HEAP_ID_25);
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov71_0223B620), HEAP_ID_25);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov71_0223B620), HEAP_ID_25);
 
     memset(v0, 0, sizeof(UnkStruct_ov71_0223B620));
 
-    v0->unk_B4 = OverlayManager_Args(param0);
+    v0->unk_B4 = ApplicationManager_Args(appMan);
     v0->unk_00 = BgConfig_New(HEAP_ID_25);
 
     ov71_0223B620(v0);
@@ -245,19 +245,19 @@ int ov71_0223B140(OverlayManager *param0, int *param1)
     SetVBlankCallback(ov71_0223C18C, NULL);
     DrawWifiConnectionIcon();
     Sound_SetPlayerVolume(1, (127 / 3));
-    StartScreenTransition(2, 3, 3, 0x0, 6, 1, HEAP_ID_25);
+    StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_3, FADE_TYPE_UNK_3, FADE_TO_BLACK, 6, 1, HEAP_ID_25);
     NARC_dtor(v1);
 
     return 1;
 }
 
-int ov71_0223B388(OverlayManager *param0, int *param1)
+int ov71_0223B388(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov71_0223B620 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov71_0223B620 *v0 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             *param1 = 1;
         }
 
@@ -315,7 +315,7 @@ int ov71_0223B388(OverlayManager *param0, int *param1)
             } else if (v1 == 4) {
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
 
-                StartScreenTransition(1, 4, 4, 0x0, 6, 1, HEAP_ID_25);
+                StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_4, FADE_TYPE_UNK_4, FADE_TO_BLACK, 6, 1, HEAP_ID_25);
                 *param1 = 2;
             }
         }
@@ -323,7 +323,7 @@ int ov71_0223B388(OverlayManager *param0, int *param1)
         ov71_0223C5A4(v0, v0->unk_B4->unk_04_1);
     } break;
     case 2:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             return 1;
         }
         break;
@@ -375,9 +375,9 @@ int ov71_0223B388(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov71_0223B5B8(OverlayManager *param0, int *param1)
+int ov71_0223B5B8(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov71_0223B620 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov71_0223B620 *v0 = ApplicationManager_Data(appMan);
 
     ov71_0223C288();
     ov71_0223B668(v0);
@@ -390,7 +390,7 @@ int ov71_0223B5B8(OverlayManager *param0, int *param1)
     ov71_0223BBDC(v0->unk_00);
 
     DisableTouchPad();
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     SetVBlankCallback(NULL, NULL);
     Heap_Destroy(HEAP_ID_25);
     Sound_SetPlayerVolume(1, 127);

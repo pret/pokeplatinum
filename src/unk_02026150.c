@@ -106,7 +106,7 @@ const BattleRegulation *sub_02026150(SaveData *saveData, int param1)
     return &v0->unk_00[0];
 }
 
-void sub_0202616C(SaveData *param0, int param1, Strbuf *param2, int param3)
+void sub_0202616C(SaveData *saveData, int param1, Strbuf *param2, int param3)
 {
     MessageLoader *v0;
     UnkStruct_02026030 *v1 = NULL;
@@ -116,7 +116,7 @@ void sub_0202616C(SaveData *param0, int param1, Strbuf *param2, int param3)
         MessageLoader_GetStrbuf(v0, 70 + param1, param2);
         MessageLoader_Free(v0);
     } else {
-        sub_0202604C(sub_0202610C(param0, 0), param2);
+        sub_0202604C(sub_0202610C(saveData, 0), param2);
     }
 }
 

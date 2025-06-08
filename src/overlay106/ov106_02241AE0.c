@@ -37,6 +37,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_util.h"
@@ -47,7 +48,6 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_0200C440.h"
-#include "unk_0200F174.h"
 #include "unk_02030108.h"
 #include "unk_020363E8.h"
 #include "unk_020393C8.h"
@@ -59,8 +59,8 @@
 FS_EXTERN_OVERLAY(overlay104);
 
 struct UnkStruct_ov106_02243118_t {
-    OverlayManager *unk_00;
-    OverlayManager *unk_04;
+    ApplicationManager *unk_00;
+    ApplicationManager *unk_04;
     u8 unk_08;
     u8 unk_09;
     u8 unk_0A;
@@ -95,7 +95,7 @@ struct UnkStruct_ov106_02243118_t {
     PaletteData *unk_AC;
     UnkStruct_0200C440 *unk_B0;
     Options *unk_B4;
-    SaveData *unk_B8;
+    SaveData *saveData;
     PokemonSummary *unk_BC;
     UnkStruct_ov106_02243310 unk_C0;
     UnkStruct_ov106_02243650 *unk_280;
@@ -113,9 +113,9 @@ struct UnkStruct_ov106_02243118_t {
     u32 unk_2FC;
 };
 
-int ov106_02241AE0(OverlayManager *param0, int *param1);
-int ov106_02241B9C(OverlayManager *param0, int *param1);
-int ov106_02241CF0(OverlayManager *param0, int *param1);
+int ov106_02241AE0(ApplicationManager *appMan, int *param1);
+int ov106_02241B9C(ApplicationManager *appMan, int *param1);
+int ov106_02241CF0(ApplicationManager *appMan, int *param1);
 static BOOL ov106_02241D28(UnkStruct_ov106_02243118 *param0);
 static BOOL ov106_02241E14(UnkStruct_ov106_02243118 *param0);
 static void ov106_02241DD4(UnkStruct_ov106_02243118 *param0);
@@ -181,7 +181,7 @@ static const u8 Unk_ov106_02243798[] = {
     0x8
 };
 
-int ov106_02241AE0(OverlayManager *param0, int *param1)
+int ov106_02241AE0(ApplicationManager *appMan, int *param1)
 {
     int v0;
     UnkStruct_ov106_02243118 *v1;
@@ -191,18 +191,18 @@ int ov106_02241AE0(OverlayManager *param0, int *param1)
     ov106_022424C8();
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_98, 0x20000);
 
-    v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov106_02243118), HEAP_ID_98);
+    v1 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov106_02243118), HEAP_ID_98);
     memset(v1, 0, sizeof(UnkStruct_ov106_02243118));
 
     v1->unk_48 = BgConfig_New(HEAP_ID_98);
-    v1->unk_00 = param0;
+    v1->unk_00 = appMan;
 
-    v2 = (UnkStruct_ov104_02235208 *)OverlayManager_Args(param0);
+    v2 = (UnkStruct_ov104_02235208 *)ApplicationManager_Args(appMan);
 
-    v1->unk_B8 = v2->unk_00;
+    v1->saveData = v2->saveData;
     v1->unk_09 = v2->unk_04;
     v1->unk_28C = &v2->unk_06;
-    v1->unk_B4 = SaveData_GetOptions(v1->unk_B8);
+    v1->unk_B4 = SaveData_GetOptions(v1->saveData);
     v1->unk_290 = v2->unk_0C;
     v1->unk_294 = v2->unk_08;
     v1->unk_298 = v2->unk_14;
@@ -223,9 +223,9 @@ int ov106_02241AE0(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov106_02241B9C(OverlayManager *param0, int *param1)
+int ov106_02241B9C(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov106_02243118 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov106_02243118 *v0 = ApplicationManager_Data(appMan);
 
     if (v0->unk_18 != 0xff) {
         switch (*param1) {
@@ -303,16 +303,16 @@ int ov106_02241B9C(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov106_02241CF0(OverlayManager *param0, int *param1)
+int ov106_02241CF0(ApplicationManager *appMan, int *param1)
 {
     int v0;
-    UnkStruct_ov106_02243118 *v1 = OverlayManager_Data(param0);
+    UnkStruct_ov106_02243118 *v1 = ApplicationManager_Data(appMan);
 
     *(v1->unk_28C) = v1->unk_0D;
 
     ov106_022423E8(v1);
 
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     SetVBlankCallback(NULL, NULL);
     Heap_Destroy(HEAP_ID_98);
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay104));
@@ -344,11 +344,11 @@ static BOOL ov106_02241D28(UnkStruct_ov106_02243118 *param0)
         break;
     case 2:
         ov106_02241DD4(param0);
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, HEAP_ID_98);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1 * 3, HEAP_ID_98);
         param0->unk_08++;
         break;
     case 3:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             return 1;
         }
         break;
@@ -377,7 +377,7 @@ static BOOL ov106_02241E14(UnkStruct_ov106_02243118 *param0)
     switch (param0->unk_08) {
     case 0:
 
-        if (OverlayManager_Exec(param0->unk_04) == 1) {
+        if (ApplicationManager_Exec(param0->unk_04) == 1) {
             param0->unk_288 = param0->unk_BC->monIndex;
             Heap_FreeToHeap(param0->unk_BC);
             Heap_FreeToHeap(param0->unk_04);
@@ -408,7 +408,7 @@ static BOOL ov106_02241E5C(UnkStruct_ov106_02243118 *param0)
         if (gSystem.pressedKeys & PAD_BUTTON_A) {
             if (ov104_0223B5A4(param0->unk_0D) == 0xfe) {
                 Sound_PlayEffect(SEQ_SE_DP_DECIDE);
-                StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_98);
+                StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_98);
 
                 param0->unk_10 = 1;
                 param0->unk_08 = 6;
@@ -493,7 +493,7 @@ static BOOL ov106_02241E5C(UnkStruct_ov106_02243118 *param0)
         break;
     case 4:
         ov106_02243758(&param0->unk_4C[0], Options_Frame(param0->unk_B4));
-        param0->unk_0A = ov106_02242918(param0, &param0->unk_4C[0], 32, 1, 1, Options_TextFrameDelay(SaveData_GetOptions(param0->unk_B8)), 1, 2, 15, FONT_MESSAGE);
+        param0->unk_0A = ov106_02242918(param0, &param0->unk_4C[0], 32, 1, 1, Options_TextFrameDelay(SaveData_GetOptions(param0->saveData)), 1, 2, 15, FONT_MESSAGE);
         Window_CopyToVRAM(&param0->unk_4C[0]);
         param0->unk_08 = 5;
         break;
@@ -510,10 +510,10 @@ static BOOL ov106_02241E5C(UnkStruct_ov106_02243118 *param0)
         }
         break;
     case 6:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             ov106_02242CA4(param0);
             ov106_022423E8(param0);
-            param0->unk_04 = OverlayManager_New(&gPokemonSummaryScreenApp, param0->unk_BC, 98);
+            param0->unk_04 = ApplicationManager_New(&gPokemonSummaryScreenApp, param0->unk_BC, 98);
             param0->unk_0B = 1;
             return 1;
         }
@@ -692,12 +692,12 @@ static BOOL ov106_02242344(UnkStruct_ov106_02243118 *param0)
 
         if (param0->unk_1B == 0) {
             ov106_022432D4(param0);
-            StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_98);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_98);
             param0->unk_08++;
         }
         break;
     case 2:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             return 1;
         }
         break;
@@ -1214,11 +1214,11 @@ static void ov106_02242CA4(UnkStruct_ov106_02243118 *param0)
     param0->unk_BC->monMax = Party_GetCurrentCount(param0->unk_290);
     param0->unk_BC->monIndex = 0;
     param0->unk_BC->move = 0;
-    param0->unk_BC->dexMode = SaveData_GetDexMode(param0->unk_B8);
-    param0->unk_BC->showContest = PokemonSummaryScreen_ShowContestData(param0->unk_B8);
+    param0->unk_BC->dexMode = SaveData_GetDexMode(param0->saveData);
+    param0->unk_BC->showContest = PokemonSummaryScreen_ShowContestData(param0->saveData);
 
     PokemonSummaryScreen_FlagVisiblePages(param0->unk_BC, Unk_ov106_02243798);
-    PokemonSummaryScreen_SetPlayerProfile(param0->unk_BC, SaveData_GetTrainerInfo(param0->unk_B8));
+    PokemonSummaryScreen_SetPlayerProfile(param0->unk_BC, SaveData_GetTrainerInfo(param0->saveData));
 
     return;
 }
@@ -1499,7 +1499,7 @@ BOOL ov106_022430B4(UnkStruct_ov106_02243118 *param0, u16 param1, u16 param2)
 
 void ov106_02243118(UnkStruct_ov106_02243118 *param0, u16 param1)
 {
-    TrainerInfo *v0 = SaveData_GetTrainerInfo(param0->unk_B8);
+    TrainerInfo *v0 = SaveData_GetTrainerInfo(param0->saveData);
     param0->unk_2A0[0] = param1;
 
     return;

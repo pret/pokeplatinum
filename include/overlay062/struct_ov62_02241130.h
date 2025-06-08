@@ -9,7 +9,7 @@
 typedef struct {
     int unk_00;
     int heapID;
-    SaveData *unk_08;
+    SaveData *saveData;
     UnkStruct_ov62_022349A8_sub2 unk_0C;
     UnkFuncPtr_ov62_022349A8 unk_38;
     void *unk_3C;

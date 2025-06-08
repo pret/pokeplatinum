@@ -69,7 +69,7 @@ An `.editorconfig` file exists at the root of the repository, which helps
 alleviate configuring individual editors to present code identically. Many
 popular editors will provide support for this integration out-of-the-box with no
 installation required; others may require a plugin or extension. For details on
-which is which, refer to the documentation [here](https://editorconfig.org).
+which is which, refer to [this documentation](https://editorconfig.org).
 
 ### Code Formatting
 
@@ -91,6 +91,17 @@ smooth out this experience, we:
    `clang-format` used within the repository and ensure that end-users can
    easily install it.
 
+> [!WARNING]
+> To ensure that a pull request passes our CI checks, it is recommended that you
+> install a version of `clang-format` which is the same version or more recent
+> as is used in the CI checks. You can verify what version is expected by
+> checking the field `version` in the file `.github/workflows/pr-lint.yml`.
+
+> [!TIP]
+> It is heavily recommended that you make use of `pre-commit` as a contributor.
+> Doing so will ensure that you are using the same version of any on-commit
+> tools as all other contributors.
+
 To install `pre-commit` via a project-local Python virtual environment, run the
 following commands in sequence:
 
@@ -109,7 +120,6 @@ pre-commit install
 
 [clang-format]: https://clang.llvm.org/docs/ClangFormat.html
 [pre-commit]: https://pre-commit.com/
-[pre-commit-install]: https://pre-commit.com/#install
 
 ## How should I name things?
 

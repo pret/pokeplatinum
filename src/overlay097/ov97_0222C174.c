@@ -345,7 +345,7 @@ UnkStruct_ov97_0223E0B0 Unk_ov97_0223E0B0[] = {
 typedef struct {
     int heapID;
     BgConfig *unk_04;
-    SaveData *unk_08;
+    SaveData *saveData;
     Pokedex *unk_0C;
     TrainerInfo *unk_10;
     Options *unk_14;
@@ -366,7 +366,7 @@ typedef struct {
     int unk_164;
     int unk_168;
     u8 unk_16C[12288];
-    OverlayManager *unk_316C;
+    ApplicationManager *appMan;
     Sprite *unk_3170;
     MysteryGift *unk_3174;
     int unk_3178;
@@ -430,7 +430,7 @@ enum {
 
 static void ov97_0222C388(UnkStruct_ov97_0222C388 *param0);
 int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0);
-MysteryGift *SaveData_GetMysteryGift(SaveData *param0);
+MysteryGift *SaveData_GetMysteryGift(SaveData *saveData);
 void WonderCardsApp_ShowWondercard(BgConfig *bgConfig, WonderCard *wonderCard, enum HeapId heapID);
 
 static u16 ov97_0222C174(u16 param0)
@@ -641,10 +641,10 @@ static void ov97_0222C578(UnkStruct_ov97_0222C388 *param0)
     StringTemplate_Free(v6);
 }
 
-static void ov97_0222C688(OverlayManager *param0)
+static void ov97_0222C688(ApplicationManager *appMan)
 {
     int v0;
-    UnkStruct_ov97_0222C388 *v1 = OverlayManager_Data(param0);
+    UnkStruct_ov97_0222C388 *v1 = ApplicationManager_Data(appMan);
 
     ov97_02237DA0();
 
@@ -664,20 +664,20 @@ static void ov97_0222C688(OverlayManager *param0)
     Heap_FreeToHeap(v1->unk_04);
 }
 
-static int ov97_0222C6F8(OverlayManager *param0, int *param1)
+static int ov97_0222C6F8(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov97_0222C388 *v0 = ov97_022376C4(param0, HEAP_ID_85, sizeof(UnkStruct_ov97_0222C388), 0x20000);
+    UnkStruct_ov97_0222C388 *v0 = ov97_022376C4(appMan, HEAP_ID_85, sizeof(UnkStruct_ov97_0222C388), 0x20000);
 
     v0->heapID = HEAP_ID_85;
     v0->unk_04 = BgConfig_New(v0->heapID);
-    v0->unk_08 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
-    v0->unk_10 = SaveData_GetTrainerInfo(v0->unk_08);
-    v0->unk_0C = SaveData_GetPokedex(v0->unk_08);
-    v0->unk_14 = SaveData_GetOptions(v0->unk_08);
+    v0->saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
+    v0->unk_10 = SaveData_GetTrainerInfo(v0->saveData);
+    v0->unk_0C = SaveData_GetPokedex(v0->saveData);
+    v0->unk_14 = SaveData_GetOptions(v0->saveData);
 
     ov97_02237694(v0->heapID);
 
-    v0->unk_3174 = SaveData_GetMysteryGift(v0->unk_08);
+    v0->unk_3174 = SaveData_GetMysteryGift(v0->saveData);
     v0->unk_14C = UnkEnum_ov97_0222C78C_09;
     v0->unk_144 = ((1 + 9) + (18 + 12));
     v0->unk_154 = 0;
@@ -690,9 +690,9 @@ static int ov97_0222C6F8(OverlayManager *param0, int *param1)
     return 1;
 }
 
-static int ov97_0222C78C(OverlayManager *param0, int *param1)
+static int ov97_0222C78C(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov97_0222C388 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov97_0222C388 *v0 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
     case UnkEnum_ov97_0222C78C_00:
@@ -758,7 +758,7 @@ static int ov97_0222C78C(OverlayManager *param0, int *param1)
         OS_ResetSystem(0);
         break;
     case UnkEnum_ov97_0222C78C_12:
-        ov97_0222C688(param0);
+        ov97_0222C688(appMan);
         return 1;
         break;
     case UnkEnum_ov97_0222C78C_13:
@@ -771,11 +771,11 @@ static int ov97_0222C78C(OverlayManager *param0, int *param1)
     return 0;
 }
 
-static int ov97_0222C948(OverlayManager *param0, int *param1)
+static int ov97_0222C948(ApplicationManager *appMan, int *param1)
 {
     Heap_Destroy(HEAP_ID_91);
-    EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenOverlayTemplate);
-    OverlayManager_FreeData(param0);
+    EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenAppTemplate);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_85);
 
     return 1;
@@ -985,7 +985,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
             ov97_0223795C(param0->unk_04, &param0->unk_48, 2, 19, 72);
             param0->unk_34D8 = Window_AddWaitDial(&param0->unk_28, (1 + 9));
             ov97_0222C974(param0);
-            ov97_0223846C(param0->unk_08);
+            ov97_0223846C(param0->saveData);
             *v3 = UnkEnum_ov97_0222C6F8_14;
         }
         break;
@@ -1122,7 +1122,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
     return 0;
 }
 
-const OverlayManagerTemplate Unk_ov97_0223D6BC = {
+const ApplicationManagerTemplate Unk_ov97_0223D6BC = {
     ov97_0222C6F8,
     ov97_0222C78C,
     ov97_0222C948,

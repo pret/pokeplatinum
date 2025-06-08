@@ -31,9 +31,9 @@ void GameRecords_Init(GameRecords *records)
     EncodeGameRecords(records, START_ENCODED_RECORDS);
 }
 
-GameRecords *SaveData_GetGameRecords(SaveData *savedata)
+GameRecords *SaveData_GetGameRecords(SaveData *saveData)
 {
-    return SaveData_SaveTable(savedata, SAVE_TABLE_ENTRY_GAME_RECORDS);
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_GAME_RECORDS);
 }
 
 // this inline does not match when operating on the substruct

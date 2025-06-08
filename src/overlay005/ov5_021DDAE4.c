@@ -66,7 +66,7 @@ static BOOL ov5_021DDAE4(FieldTask *param0)
 
 void ov5_021DDBC8(FieldTask *param0)
 {
-    UnkStruct_ov5_021DDBC8 *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov5_021DDBC8));
+    UnkStruct_ov5_021DDBC8 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov5_021DDBC8));
 
     v0->unk_00 = 0;
     FieldTask_InitCall(param0, ov5_021DDAE4, v0);

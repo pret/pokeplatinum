@@ -149,28 +149,28 @@ _01DB:
 
     .balign 4, 0
 _01E4:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _01EC:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _01F4:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _01FC:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0204:
-    MoveAction_062 5
-    MoveAction_013
+    Delay4 5
+    WalkNormalSouth
     EndMovement
 
 _0210:
@@ -308,32 +308,32 @@ _03D8:
 
     .balign 4, 0
 _03F4:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _03FC:
-    MoveAction_014
+    WalkNormalWest
     EndMovement
 
     .balign 4, 0
 _0404:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _040C:
-    MoveAction_014
+    WalkNormalWest
     EndMovement
 
     .balign 4, 0
 _0414:
-    MoveAction_015
+    WalkNormalEast
     EndMovement
 
     .balign 4, 0
 _041C:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
 SpearPillar_SetRivalPartnerTeam:
@@ -435,13 +435,13 @@ _04A7:
 
     .balign 4, 0
 _04F4:
-    MoveAction_062 2
-    MoveAction_016 8
+    Delay4 2
+    WalkFastNorth 8
     EndMovement
 
     .balign 4, 0
 _0500:
-    MoveAction_017 8
+    WalkFastSouth 8
     EndMovement
 
 _0508:
@@ -486,7 +486,7 @@ _0567:
 
     .balign 4, 0
 _05B8:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
 _05C0:
@@ -521,34 +521,34 @@ _0637:
 
     .balign 4, 0
 _0644:
-    MoveAction_063
-    MoveAction_012 6
-    MoveAction_015 2
+    Delay8
+    WalkNormalNorth 6
+    WalkNormalEast 2
     EndMovement
 
     .balign 4, 0
 _0654:
-    MoveAction_063
-    MoveAction_012 6
-    MoveAction_015
+    Delay8
+    WalkNormalNorth 6
+    WalkNormalEast
     EndMovement
 
     .balign 4, 0
 _0664:
-    MoveAction_063
-    MoveAction_012 6
+    Delay8
+    WalkNormalNorth 6
     EndMovement
 
     .balign 4, 0
 _0670:
-    MoveAction_063
-    MoveAction_012 6
-    MoveAction_014
+    Delay8
+    WalkNormalNorth 6
+    WalkNormalWest
     EndMovement
 
     .balign 4, 0
 _0680:
-    MoveAction_063
-    MoveAction_012 6
-    MoveAction_014 2
+    Delay8
+    WalkNormalNorth 6
+    WalkNormalWest 2
     EndMovement

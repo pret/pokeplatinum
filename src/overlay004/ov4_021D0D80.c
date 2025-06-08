@@ -26,7 +26,7 @@ typedef struct {
     DWCFriendsMatchControl unk_104;
     DWCUserData *unk_F08;
     DWCInetControl unk_F0C;
-    SaveData *unk_F6C;
+    SaveData *saveData;
     void *unk_F70;
     void *unk_F74[4];
     void *unk_F84;
@@ -101,7 +101,7 @@ static void ov4_021D24AC(int param0, void *param1);
 
 static UnkStruct_ov4_0221A400 *Unk_ov4_0221A400 = NULL;
 
-int ov4_021D0D80(SaveData *param0, int heapID, int param2, int param3)
+int ov4_021D0D80(SaveData *saveData, int heapID, int param2, int param3)
 {
     void *v0;
 
@@ -112,7 +112,7 @@ int ov4_021D0D80(SaveData *param0, int heapID, int param2, int param3)
 
     Unk_ov4_0221A400 = (UnkStruct_ov4_0221A400 *)(((u32)v0 + 31) / 32 * 32);
     Unk_ov4_0221A400->unk_F70 = v0;
-    Unk_ov4_0221A400->unk_F6C = param0;
+    Unk_ov4_0221A400->saveData = saveData;
     Unk_ov4_0221A400->unk_F98 = NULL;
     Unk_ov4_0221A400->unk_F9C = NULL;
     Unk_ov4_0221A400->unk_FB4 = NULL;
@@ -140,9 +140,9 @@ int ov4_021D0D80(SaveData *param0, int heapID, int param2, int param3)
     Unk_ov4_0221A400->unk_10C4 = 1;
     Unk_ov4_0221A400->unk_10CA = 1;
 
-    if (param0 != NULL) {
-        Unk_ov4_0221A400->unk_F08 = sub_0202AD28(SaveData_GetWiFiList(Unk_ov4_0221A400->unk_F6C));
-        Unk_ov4_0221A400->unk_100 = (DWCFriendData *)sub_0202AED8(SaveData_GetWiFiList(Unk_ov4_0221A400->unk_F6C), 0);
+    if (saveData != NULL) {
+        Unk_ov4_0221A400->unk_F08 = sub_0202AD28(SaveData_GetWiFiList(Unk_ov4_0221A400->saveData));
+        Unk_ov4_0221A400->unk_100 = (DWCFriendData *)sub_0202AED8(SaveData_GetWiFiList(Unk_ov4_0221A400->saveData), 0);
     }
 
     Unk_ov4_0221A400->unk_10D9 = 1;
@@ -554,10 +554,10 @@ static void ov4_021D1744(int param0, int param1, void *param2)
 {
 #pragma unused(param2)
 
-    MI_CpuCopy8(Unk_ov4_0221A400->unk_100, sub_0202AED8(SaveData_GetWiFiList(Unk_ov4_0221A400->unk_F6C), 0), 32 * sizeof(DWCFriendData));
+    MI_CpuCopy8(Unk_ov4_0221A400->unk_100, sub_0202AED8(SaveData_GetWiFiList(Unk_ov4_0221A400->saveData), 0), 32 * sizeof(DWCFriendData));
 
-    sub_0202B270(SaveData_GetWiFiList(Unk_ov4_0221A400->unk_F6C), param0, param1);
-    sub_020307F0(SaveData_GetBattleFrontier(Unk_ov4_0221A400->unk_F6C), param0, param1);
+    sub_0202B270(SaveData_GetWiFiList(Unk_ov4_0221A400->saveData), param0, param1);
+    sub_020307F0(SaveData_GetBattleFrontier(Unk_ov4_0221A400->saveData), param0, param1);
 }
 
 static void ov4_021D17A0(int param0, void *param1)

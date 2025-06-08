@@ -32,11 +32,11 @@
 #include "pokemon_sprite.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "system.h"
 #include "touch_pad.h"
 #include "touch_screen_actions.h"
-#include "unk_0200F174.h"
 #include "unk_02015F84.h"
 #include "unk_02024220.h"
 #include "unk_02028124.h"
@@ -60,22 +60,22 @@ typedef struct {
     UnkStruct_02097F38_sub1 *unk_04;
     UnkStruct_02097F18 *unk_08;
     PartyManagementData *unk_0C;
-    SaveData *unk_10;
+    SaveData *saveData;
     int unk_14;
 } UnkStruct_02097F38;
 
-static int sub_02097B18(OverlayManager *param0, int *param1);
-static int sub_02097D30(OverlayManager *param0, int *param1);
-static int sub_02097D88(OverlayManager *param0, int *param1);
+static int sub_02097B18(ApplicationManager *appMan, int *param1);
+static int sub_02097D30(ApplicationManager *appMan, int *param1);
+static int sub_02097D88(ApplicationManager *appMan, int *param1);
 
-const OverlayManagerTemplate Unk_020F64C0 = {
+const ApplicationManagerTemplate Unk_020F64C0 = {
     sub_02097B18,
     sub_02097D30,
     sub_02097D88,
     FS_OVERLAY_ID(overlay76),
 };
 
-static int sub_02097B18(OverlayManager *param0, int *param1)
+static int sub_02097B18(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov76_0223DE00 *v0;
     UnkStruct_02097F18 *v1;
@@ -84,11 +84,11 @@ static int sub_02097B18(OverlayManager *param0, int *param1)
     ov76_0223EB20(53);
     ov76_0223D3A0();
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov76_0223DE00), HEAP_ID_53);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov76_0223DE00), HEAP_ID_53);
     memset(v0, 0, sizeof(UnkStruct_ov76_0223DE00));
 
     v0->unk_D4.unk_15C = ov76_0223BE6C();
-    v1 = OverlayManager_Args(param0);
+    v1 = ApplicationManager_Args(appMan);
     v0->unk_00 = v1;
     v0->unk_42C = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_53);
     v0->unk_428 = Pokemon_New(HEAP_ID_53);
@@ -133,7 +133,7 @@ static int sub_02097B18(OverlayManager *param0, int *param1)
                 continue;
             }
 
-            v5 = Pokemon_GetValue(v0->unk_00->unk_04[v4], MON_DATA_MAIL_ID, 0);
+            v5 = Pokemon_GetValue(v0->unk_00->unk_04[v4], MON_DATA_BALL_CAPSULE_ID, 0);
 
             if (v5 != 0) {
                 v0->unk_04[v5 - 1].unk_00 = v4;
@@ -185,13 +185,13 @@ static int sub_02097B18(OverlayManager *param0, int *param1)
     return 1;
 }
 
-static int sub_02097D30(OverlayManager *param0, int *param1)
+static int sub_02097D30(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov76_0223DE00 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov76_0223DE00 *v0 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             *param1 = 1;
         }
         break;
@@ -207,7 +207,7 @@ static int sub_02097D30(OverlayManager *param0, int *param1)
         ov76_0223BF50();
     } break;
     case 2:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             return 1;
         }
         break;
@@ -216,9 +216,9 @@ static int sub_02097D30(OverlayManager *param0, int *param1)
     return 0;
 }
 
-static int sub_02097D88(OverlayManager *param0, int *param1)
+static int sub_02097D88(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov76_0223DE00 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov76_0223DE00 *v0 = ApplicationManager_Data(appMan);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
@@ -253,7 +253,7 @@ static int sub_02097D88(OverlayManager *param0, int *param1)
     sub_020242C4(v0->unk_D4.unk_15C);
     ov76_0223EB54(53);
     NARC_dtor(v0->unk_42C);
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
 
     {
         u32 v1;
@@ -314,14 +314,14 @@ static BOOL sub_02097F38(FieldTask *param0)
     case 0:
 
         FieldTransition_FinishMap(param0);
-        v1->unk_20 = SaveData_GetBallSeals(v0->unk_10);
+        v1->unk_20 = SaveData_GetBallSeals(v0->saveData);
         sub_02097F20(v1, 0);
 
         {
             int v3;
             int v4;
 
-            v1->unk_1C = SaveData_GetParty(v0->unk_10);
+            v1->unk_1C = SaveData_GetParty(v0->saveData);
             v4 = Party_GetCurrentCount(v1->unk_1C);
             v1->unk_00 = v4;
 
@@ -357,21 +357,21 @@ static BOOL sub_02097F38(FieldTask *param0)
         }
     } break;
     case 3: {
-        PartyManagementData *v6 = v0->unk_0C;
+        PartyManagementData *partyMan = v0->unk_0C;
 
-        v6->unk_00 = v1->unk_1C;
-        v6->unk_04 = SaveData_GetBag(v0->unk_10);
-        v6->unk_08 = SaveData_GetMailBox(v0->unk_10);
-        v6->selectedMonSlot = 0;
-        v6->unk_21 = 0;
-        v6->unk_20 = 15;
-        v6->unk_0C = v1->unk_24;
+        partyMan->party = v1->unk_1C;
+        partyMan->bag = SaveData_GetBag(v0->saveData);
+        partyMan->mailBox = SaveData_GetMailBox(v0->saveData);
+        partyMan->selectedMonSlot = 0;
+        partyMan->unk_21 = 0;
+        partyMan->unk_20 = 15;
+        partyMan->options = v1->unk_24;
 
-        FieldTask_RunApplication(param0, &Unk_020F1E88, v6);
+        FieldTask_RunApplication(param0, &Unk_020F1E88, partyMan);
         v0->unk_14 = 4;
     } break;
     case 4: {
-        PartyManagementData *v7 = v0->unk_0C;
+        PartyManagementData *partyMan = v0->unk_0C;
         Pokemon *v8;
         UnkStruct_0202CA28 *v9;
         UnkStruct_0202CA64 *v10;
@@ -381,10 +381,10 @@ static BOOL sub_02097F38(FieldTask *param0)
 
         v13 = sub_02097F18(v0->unk_08) + 1;
 
-        if (v7->selectedMonSlot != 7) {
-            v8 = sub_02097F00(v0->unk_08, v7->selectedMonSlot);
+        if (partyMan->selectedMonSlot != 7) {
+            v8 = sub_02097F00(v0->unk_08, partyMan->selectedMonSlot);
 
-            Pokemon_SetValue(v8, MON_DATA_MAIL_ID, (u8 *)&v13);
+            Pokemon_SetValue(v8, MON_DATA_BALL_CAPSULE_ID, (u8 *)&v13);
             Pokemon_SetValue(v8, MON_DATA_171, sub_0202CA28(v1->unk_20, v13 - 1));
 
             v9 = sub_0202CA28(v1->unk_20, v13 - 1);
@@ -412,16 +412,16 @@ static BOOL sub_02097F38(FieldTask *param0)
     return 0;
 }
 
-void sub_020980DC(FieldTask *param0, SaveData *param1)
+void sub_020980DC(FieldTask *param0, SaveData *saveData)
 {
-    UnkStruct_02097F38 *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02097F38));
+    UnkStruct_02097F38 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02097F38));
 
     memset(v0, 0, sizeof(UnkStruct_02097F38));
-    v0->unk_10 = param1;
+    v0->saveData = saveData;
     v0->unk_08 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02097F18));
     memset(v0->unk_08, 0, sizeof(UnkStruct_02097F18));
-    v0->unk_08->unk_24 = SaveData_GetOptions(param1);
-    v0->unk_08->unk_28 = param1;
+    v0->unk_08->unk_24 = SaveData_GetOptions(saveData);
+    v0->unk_08->saveData = saveData;
     v0->unk_0C = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
     memset(v0->unk_0C, 0, sizeof(PartyManagementData));
 

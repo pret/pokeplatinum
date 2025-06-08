@@ -71,5 +71,5 @@ _00B7:
 
     .balign 4, 0
 _00DC:
-    MoveAction_012 2
+    WalkNormalNorth 2
     EndMovement

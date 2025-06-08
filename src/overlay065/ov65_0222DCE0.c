@@ -9,8 +9,8 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02012B20_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
-#include "struct_decls/struct_0202C878_decl.h"
-#include "struct_decls/struct_0203068C_decl.h"
+#include "struct_defs/battle_frontier.h"
+#include "struct_defs/wi_fi_history.h"
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_0207DFAC.h"
 #include "struct_defs/struct_0207E060.h"
@@ -73,7 +73,7 @@
 #include "trainer_info.h"
 #include "sound.h"
 #include "sound_playback.h"
-#include "unk_0200F174.h"
+#include "screen_fade.h"
 #include "unk_02012744.h"
 #include "touch_pad.h"
 #include "touch_screen_actions.h"
@@ -715,7 +715,7 @@ static void ov65_0222E01C(UnkStruct_ov65_0222EBE0 *param0)
     NARC_dtor(v0);
 }
 
-int ov65_0222E2A8(OverlayManager *param0, int *param1)
+int ov65_0222E2A8(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov65_0222EBE0 *v0;
     UnkStruct_ov98_02247168 *v1;
@@ -723,7 +723,7 @@ int ov65_0222E2A8(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        v1 = OverlayManager_Args(param0);
+        v1 = ApplicationManager_Args(appMan);
 
         if (sub_020389B8()) {
             switch (v1->unk_04) {
@@ -755,7 +755,7 @@ int ov65_0222E2A8(OverlayManager *param0, int *param1)
             Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_54, 0xa0000);
         }
 
-        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov65_0222EBE0), HEAP_ID_54);
+        v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov65_0222EBE0), HEAP_ID_54);
 
         MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov65_0222EBE0));
         VramTransfer_New(32, HEAP_ID_54);
@@ -773,7 +773,7 @@ int ov65_0222E2A8(OverlayManager *param0, int *param1)
         ov65_0222EBE0(v0);
         ov65_0222E01C(v0);
 
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_54);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_54);
 
         if (sub_020389B8()) {
             sub_02039734();
@@ -786,7 +786,7 @@ int ov65_0222E2A8(OverlayManager *param0, int *param1)
         (*param1)++;
         break;
     case 1:
-        v0 = OverlayManager_Data(param0);
+        v0 = ApplicationManager_Data(appMan);
         (*param1) = 0;
         return 1;
         break;
@@ -795,13 +795,13 @@ int ov65_0222E2A8(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov65_0222E3FC(OverlayManager *param0, int *param1)
+int ov65_0222E3FC(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov65_0222EBE0 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov65_0222EBE0 *v0 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             *param1 = 1;
         }
         break;
@@ -818,7 +818,7 @@ int ov65_0222E3FC(OverlayManager *param0, int *param1)
         }
         break;
     case 2:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             return 1;
         }
         break;
@@ -874,14 +874,14 @@ static void ov65_0222E47C(UnkStruct_ov65_0222EBE0 *param0)
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay63));
 }
 
-int ov65_0222E548(OverlayManager *param0, int *param1)
+int ov65_0222E548(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov65_0222EBE0 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov65_0222EBE0 *v0 = ApplicationManager_Data(appMan);
     UnkStruct_ov98_02247168 *v1;
 
     ov65_0222E47C(v0);
 
-    v1 = OverlayManager_Args(param0);
+    v1 = ApplicationManager_Args(appMan);
     v1->unk_04 = v0->unk_3AC;
 
     if ((v0->unk_3AC == 8) || (v0->unk_3AC == 10)) {
@@ -892,7 +892,7 @@ int ov65_0222E548(OverlayManager *param0, int *param1)
 
     ov65_0222EC2C(v0);
 
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     DisableTouchPad();
     VramTransfer_Free();
     Heap_Destroy(HEAP_ID_54);
@@ -933,8 +933,8 @@ static void ov65_0222E5E0(void *param0)
     inline_ov61_0222C1FC(&v0->unk_E2C);
 
     if (v0->unk_1158 == 1) {
-        sub_0200F338(0);
-        sub_0200F338(1);
+        ResetScreenMasterBrightness(DS_SCREEN_MAIN);
+        ResetScreenMasterBrightness(DS_SCREEN_SUB);
         v0->unk_1158 = 0;
     }
 }
@@ -1396,7 +1396,7 @@ static int ov65_0222EBAC(u32 param0)
 
 static int ov65_0222EBB8(void)
 {
-    StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_54);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_54);
     ov65_02231A0C();
 
     return 18;
@@ -1790,7 +1790,7 @@ static void ov65_0222F4C4(UnkStruct_ov65_0222EBE0 *param0, int param1)
     TrainerInfo *v0 = SaveData_GetTrainerInfo(param0->saveData);
     Pokedex *v1 = SaveData_GetPokedex(param0->saveData);
     Party *v2 = SaveData_GetParty(param0->saveData);
-    UnkStruct_0202C878 *v3 = sub_0202C878(param0->saveData);
+    WiFiHistory *wiFiHistory = SaveData_WiFiHistory(param0->saveData);
     int v4, v5;
 
     GF_ASSERT((sizeof(UnkStruct_0207E060)) == sizeof(UnkStruct_0207E060));
@@ -1814,8 +1814,8 @@ static void ov65_0222F4C4(UnkStruct_ov65_0222EBE0 *param0, int param1)
     param0->unk_04->unk_00.unk_1C = 0;
     param0->unk_04->unk_00.unk_1D = TrainerInfo_Appearance(v0);
     param0->unk_04->unk_00.unk_1E = TrainerInfo_Gender(v0);
-    param0->unk_04->unk_00.unk_1F = sub_0202C8C0(v3);
-    param0->unk_04->unk_00.unk_20 = sub_0202C8C4(v3);
+    param0->unk_04->unk_00.unk_1F = WiFiHistory_GetCountry(wiFiHistory);
+    param0->unk_04->unk_00.unk_20 = sub_0202C8C4(wiFiHistory);
     param0->unk_04->unk_00.unk_21 = 1;
     param0->unk_04->unk_00.unk_22 = 1;
 
@@ -2031,8 +2031,8 @@ static int ov65_0222F90C(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
     if (!sub_020334A4()) {
         if (ov65_02235194(&param0->unk_3EC) == 1) {
-            sub_0200F344(0, 0x0);
-            sub_0200F344(1, 0x0);
+            SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+            SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
             ov65_02235130(&param0->unk_3EC);
 
             for (v0 = 0; v0 < (32 + 1); v0++) {
@@ -2379,7 +2379,7 @@ static int ov65_0222FFAC(UnkStruct_ov65_0222EBE0 *param0, int param1)
     UnkStruct_ov65_022354D8 *v4;
     int v5;
 
-    if (IsScreenTransitionDone() == 0) {
+    if (IsScreenFadeDone() == FALSE) {
         return param1;
     }
 
@@ -2437,7 +2437,7 @@ static int ov65_0222FFAC(UnkStruct_ov65_0222EBE0 *param0, int param1)
     param0->unk_3D0 = -1;
 
     NARC_dtor(v3);
-    StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_54);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_54);
     param0->unk_3A8 = 19;
 
     CommMan_SetErrorHandling(0, 0);
@@ -2564,7 +2564,7 @@ static int ov65_022302C4(UnkStruct_ov65_0222EBE0 *param0, int param1)
     UnkStruct_ov65_022354D8 *v3;
     u32 v4;
 
-    if (IsScreenTransitionDone() == 0) {
+    if (IsScreenFadeDone() == FALSE) {
         return param1;
     }
 
@@ -3411,7 +3411,7 @@ static int ov65_02231200(UnkStruct_ov65_0222EBE0 *param0, int param1)
         CommMan_SetErrorHandling(0, 1);
 
         sub_0203632C(0);
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_54);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_54);
 
         param0->unk_3E4 = 0;
 
@@ -3788,7 +3788,7 @@ static u32 ov65_022319B8(UnkStruct_ov65_0222EBE0 *param0)
         return 3;
     }
 
-    if (Poffin_GetNumberOfFilledSlots(SaveData_GetPoffinCase(param0->saveData)) >= MAX_POFFINS) {
+    if (PoffinCase_CountFilledSlots(SaveData_GetPoffinCase(param0->saveData)) >= MAX_POFFINS) {
         return 2;
     }
 
@@ -4076,7 +4076,7 @@ static int ov65_02231E64(UnkStruct_ov65_0222EBE0 *param0, int param1)
             param0->unk_3AC = ov65_0222DD94(v0);
 
             sub_0203632C(0);
-            StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_54);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_54);
 
             param0->unk_3E4 = 0;
             param1 = 2;
@@ -4374,7 +4374,7 @@ static int ov65_022323C0(UnkStruct_ov65_0222EBE0 *param0, int param1)
         ov65_02231A74(param0, ov4_021D2388());
         ov65_02232E58(param0, v0);
 
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_54);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_54);
 
         param1 = 2;
     }
@@ -4705,7 +4705,7 @@ static int ov65_0223294C(UnkStruct_ov65_0222EBE0 *param0, int param1)
 static int ov65_02232B28(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
     if (!CommMan_IsInitialized()) {
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_54);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_54);
         param1 = 2;
     }
 
@@ -6268,17 +6268,17 @@ static void ov65_022342A8(UnkStruct_ov65_0222EBE0 *param0, u32 heapID)
 {
     int v0;
     int v1;
-    BattleFrontier *v2;
+    BattleFrontier *frontier;
     Strbuf *v3;
 
-    v2 = SaveData_GetBattleFrontier(param0->saveData);
+    frontier = SaveData_GetBattleFrontier(param0->saveData);
     v0 = param0->unk_BE0.unk_71 - 1;
 
     {
         MessageLoader_GetStrbuf(param0->unk_168, 55, param0->unk_178);
         Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, 8, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
 
-        v1 = sub_02030698(v2, 124, v0);
+        v1 = sub_02030698(frontier, 124, v0);
         v3 = MessageUtil_SpeciesName(v1, heapID);
 
         {
@@ -6376,15 +6376,15 @@ static void ov65_02234628(UnkStruct_ov65_0222EBE0 *param0)
 static void ov65_02234694(UnkStruct_ov65_0222EBE0 *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5)
 {
     int v0;
-    BattleFrontier *v1 = SaveData_GetBattleFrontier(param0->saveData);
-    v0 = sub_02030698(v1, param2, param3);
+    BattleFrontier *frontier = SaveData_GetBattleFrontier(param0->saveData);
+    v0 = sub_02030698(frontier, param2, param3);
 
     ov65_02234708(param0, param1, v0, param4, param5);
 }
 
 static void ov65_022346C4(UnkStruct_ov65_0222EBE0 *param0, Strbuf *param1, u32 param2, u32 param3)
 {
-    BattleFrontier *v0;
+    BattleFrontier *frontier;
     BOOL v1;
     u32 v2;
     static const u32 v3[6] = {
@@ -6398,8 +6398,8 @@ static void ov65_022346C4(UnkStruct_ov65_0222EBE0 *param0, Strbuf *param1, u32 p
 
     GF_ASSERT(param2 < 6);
 
-    v0 = SaveData_GetBattleFrontier(param0->saveData);
-    v1 = sub_02030698(v0, v3[param2], param3);
+    frontier = SaveData_GetBattleFrontier(param0->saveData);
+    v1 = sub_02030698(frontier, v3[param2], param3);
 
     if (v1 == 0) {
         v2 = 57;

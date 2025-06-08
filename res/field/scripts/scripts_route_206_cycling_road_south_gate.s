@@ -55,12 +55,12 @@ _0080:
 
     .balign 4, 0
 _0090:
-    MoveAction_075
+    EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
 _0098:
-    MoveAction_013
+    WalkNormalSouth
     EndMovement
 
 _00A0:

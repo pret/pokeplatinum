@@ -5,8 +5,6 @@
 
 #include "constants/narc.h"
 
-#include "fonts/pl_font.naix"
-
 #include "charcode.h"
 #include "font_manager.h"
 #include "graphics.h"
@@ -15,6 +13,8 @@
 #include "render_text.h"
 #include "strbuf.h"
 #include "text.h"
+
+#include "res/fonts/pl_font.naix.h"
 
 typedef struct {
     TextGlyph curGlyph;

@@ -5,8 +5,8 @@
 
 #include "constants/screen.h"
 
-#include "struct_decls/struct_0202C878_decl.h"
 #include "struct_defs/struct_02099F80.h"
+#include "struct_defs/wi_fi_history.h"
 
 #include "overlay092/struct_ov92_021D28C0.h"
 #include "overlay115/camera_angle.h"
@@ -29,13 +29,13 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_0202419C.h"
 #include "unk_0202C858.h"
 #include "unk_020996D0.h"
@@ -67,7 +67,7 @@ typedef struct {
 
 typedef struct {
     int heapID;
-    UnkStruct_0202C878 *unk_04;
+    WiFiHistory *wiFiHistory;
     Options *unk_08;
     UnkStruct_ov92_021D1B24_sub1 unk_0C;
     BgConfig *unk_B810;
@@ -124,9 +124,9 @@ typedef struct {
 
 BOOL ov92_021D27E8(int param0, int param1, Strbuf *param2, Strbuf *param3, int param4);
 BOOL ov92_021D2854(int param0);
-int ov92_021D0D80(OverlayManager *param0, int *param1);
-int ov92_021D0EB8(OverlayManager *param0, int *param1);
-int ov92_021D1478(OverlayManager *param0, int *param1);
+int ov92_021D0D80(ApplicationManager *appMan, int *param1);
+int ov92_021D0EB8(ApplicationManager *appMan, int *param1);
+int ov92_021D1478(ApplicationManager *appMan, int *param1);
 static void ov92_021D14F0(void);
 static void ov92_021D1510(void);
 static void ov92_021D1888(UnkStruct_ov92_021D1B24 *param0, NARC *param1);
@@ -157,7 +157,7 @@ static void ov92_021D2370(MtxFx33 *param0, VecFx32 *param1);
 static void ov92_021D23E8(MtxFx33 *param0, VecFx32 *param1);
 static void ov92_021D2868(UnkStruct_ov92_021D28C0 *param0);
 static u32 ov92_021D28C0(const UnkStruct_ov92_021D28C0 *param0, const UnkStruct_ov92_021D28C0 *param1);
-void sub_02000EC4(FSOverlayID param0, const OverlayManagerTemplate *param1);
+void sub_02000EC4(FSOverlayID param0, const ApplicationManagerTemplate *param1);
 
 static const BgTemplate Unk_ov92_021D2970 = {
     0x0,
@@ -299,7 +299,7 @@ static const ListMenuTemplate Unk_ov92_021D29C8 = {
     0x0
 };
 
-int ov92_021D0D80(OverlayManager *param0, int *param1)
+int ov92_021D0D80(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov92_021D1B24 *v0;
     int heapID = HEAP_ID_50;
@@ -314,7 +314,7 @@ int ov92_021D0D80(OverlayManager *param0, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, heapID, 0x80000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov92_021D1B24), heapID);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov92_021D1B24), heapID);
     memset(v0, 0, sizeof(UnkStruct_ov92_021D1B24));
     v0->heapID = heapID;
 
@@ -325,13 +325,13 @@ int ov92_021D0D80(OverlayManager *param0, int *param1)
     }
 
     {
-        SaveData *v2 = OverlayManager_Args(param0);
+        SaveData *saveData = ApplicationManager_Args(appMan);
 
-        v0->unk_04 = sub_0202C878(v2);
-        v0->unk_BB14 = sub_0202C8C0(v0->unk_04);
-        v0->unk_BB18 = sub_0202C8C4(v0->unk_04);
-        v0->unk_BB24 = sub_0202C990(v0->unk_04);
-        v0->unk_08 = SaveData_GetOptions(v2);
+        v0->wiFiHistory = SaveData_WiFiHistory(saveData);
+        v0->unk_BB14 = WiFiHistory_GetCountry(v0->wiFiHistory);
+        v0->unk_BB18 = sub_0202C8C4(v0->wiFiHistory);
+        v0->unk_BB24 = sub_0202C990(v0->wiFiHistory);
+        v0->unk_08 = SaveData_GetOptions(saveData);
     }
 
     ov92_021D14F0();
@@ -360,9 +360,9 @@ int ov92_021D0D80(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov92_021D0EB8(OverlayManager *param0, int *param1)
+int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov92_021D1B24 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov92_021D1B24 *v0 = ApplicationManager_Data(appMan);
     int v1 = 0;
     NARC *v2;
 
@@ -377,7 +377,7 @@ int ov92_021D0EB8(OverlayManager *param0, int *param1)
 
         v0->unk_BAEC = 0;
 
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, v0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, v0->heapID);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
@@ -385,7 +385,7 @@ int ov92_021D0EB8(OverlayManager *param0, int *param1)
         *param1 = 1;
         break;
     case 1:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             *param1 = 2;
         }
         break;
@@ -545,7 +545,7 @@ int ov92_021D0EB8(OverlayManager *param0, int *param1)
         switch (v9) {
         case 0:
             ov92_021D1F74(v0);
-            sub_0202C88C(v0->unk_04, v0->unk_BB1C, v0->unk_BB20);
+            sub_0202C88C(v0->wiFiHistory, v0->unk_BB1C, v0->unk_BB20);
 
             v0->unk_BB14 = v0->unk_BB1C;
             v0->unk_BB18 = v0->unk_BB20;
@@ -646,11 +646,11 @@ int ov92_021D0EB8(OverlayManager *param0, int *param1)
     } break;
     case 17:
         v0->unk_BAEC = 0;
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, v0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, v0->heapID);
         *param1 = 18;
         break;
     case 18:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             v0->unk_BAE8 = 1;
 
             ov92_021D1B24(v0);
@@ -667,9 +667,9 @@ int ov92_021D0EB8(OverlayManager *param0, int *param1)
     return v1;
 }
 
-int ov92_021D1478(OverlayManager *param0, int *param1)
+int ov92_021D1478(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov92_021D1B24 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov92_021D1B24 *v0 = ApplicationManager_Data(appMan);
     int heapID = v0->heapID;
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
@@ -681,7 +681,7 @@ int ov92_021D1478(OverlayManager *param0, int *param1)
     Easy3D_Shutdown();
     Heap_FreeToHeap(v0->unk_B810);
     SetVBlankCallback(NULL, NULL);
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(heapID);
 
     gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
@@ -794,7 +794,7 @@ static void ov92_021D1634(UnkStruct_ov92_021D1B24 *param0, u32 param1, s16 param
     ov92_021D23E8(&v0, &v1);
 
     param0->unk_0C.unk_04[param1].unk_04 = v0;
-    param0->unk_0C.unk_04[param1].unk_28 = sub_0202C8C8(param0->unk_04, param4, param5);
+    param0->unk_0C.unk_04[param1].unk_28 = sub_0202C8C8(param0->wiFiHistory, param4, param5);
     param0->unk_0C.unk_04[param1].unk_2A = param4;
     param0->unk_0C.unk_04[param1].unk_2C = param5;
 }

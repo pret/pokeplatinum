@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_decls/struct_0202D764_decl.h"
-#include "struct_decls/struct_0203068C_decl.h"
+#include "struct_defs/battle_frontier.h"
 #include "struct_defs/sentence.h"
 #include "struct_defs/struct_02049A68.h"
 #include "struct_defs/struct_02099F80.h"
@@ -24,6 +24,7 @@
 #include "overlay_manager.h"
 #include "render_oam.h"
 #include "save_player.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
@@ -31,7 +32,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "unk_0202D05C.h"
 #include "unk_0203061C.h"
@@ -74,7 +74,7 @@ typedef struct {
     BgConfig *unk_10;
     UnkStruct_ov90_021D0D80 *unk_14;
     Options *unk_18;
-    BattleFrontier *unk_1C;
+    BattleFrontier *frontier;
     UnkStruct_0202D750 *unk_20;
     UnkStruct_0202D764 *unk_24;
     UnkStruct_ov90_021D0ECC_sub1 unk_28;
@@ -115,21 +115,21 @@ static void ov90_021D1C28(UnkStruct_ov90_021D0ECC *param0);
 static void ov90_021D1C44(UnkStruct_ov90_021D0ECC *param0, BOOL param1);
 static void ov90_021D1C90(UnkStruct_ov90_021D0ECC *param0, u8 param1, u8 param2, u8 param3);
 
-int ov90_021D0D80(OverlayManager *param0, int *param1)
+int ov90_021D0D80(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov90_021D0ECC *v0 = NULL;
-    UnkStruct_ov90_021D0D80 *v1 = (UnkStruct_ov90_021D0D80 *)OverlayManager_Args(param0);
+    UnkStruct_ov90_021D0D80 *v1 = (UnkStruct_ov90_021D0D80 *)ApplicationManager_Args(appMan);
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_74, 0x10000);
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov90_021D0ECC), HEAP_ID_74);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov90_021D0ECC), HEAP_ID_74);
     memset(v0, 0, sizeof(UnkStruct_ov90_021D0ECC));
 
     v0->unk_08 = v1->unk_04;
     v0->unk_0A = v1->unk_06;
-    v0->unk_18 = SaveData_GetOptions(v1->unk_00);
-    v0->unk_1C = SaveData_GetBattleFrontier(v1->unk_00);
-    v0->unk_20 = sub_0202D750(v1->unk_00);
-    v0->unk_24 = sub_0202D764(v1->unk_00);
+    v0->unk_18 = SaveData_GetOptions(v1->saveData);
+    v0->frontier = SaveData_GetBattleFrontier(v1->saveData);
+    v0->unk_20 = sub_0202D750(v1->saveData);
+    v0->unk_24 = sub_0202D764(v1->saveData);
     v0->heapID = HEAP_ID_74;
 
     SetAutorepeat(4, 8);
@@ -137,20 +137,20 @@ int ov90_021D0D80(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov90_021D0DE8(OverlayManager *param0, int *param1)
+int ov90_021D0DE8(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov90_021D0ECC *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov90_021D0ECC *v0 = ApplicationManager_Data(appMan);
 
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(v0->heapID);
 
     return 1;
 }
 
-int ov90_021D0E04(OverlayManager *param0, int *param1)
+int ov90_021D0E04(ApplicationManager *appMan, int *param1)
 {
     int v0 = 0;
-    UnkStruct_ov90_021D0ECC *v1 = OverlayManager_Data(param0);
+    UnkStruct_ov90_021D0ECC *v1 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
     case 0:
@@ -158,11 +158,11 @@ int ov90_021D0E04(OverlayManager *param0, int *param1)
             break;
         }
 
-        StartScreenTransition(3, 1, 1, 0x0, 6, 1, v1->heapID);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, v1->heapID);
         (*param1)++;
         break;
     case 1:
-        if (!IsScreenTransitionDone()) {
+        if (!IsScreenFadeDone()) {
             break;
         }
 
@@ -179,11 +179,11 @@ int ov90_021D0E04(OverlayManager *param0, int *param1)
             break;
         }
 
-        StartScreenTransition(3, 0, 0, 0x0, 6, 1, v1->heapID);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, v1->heapID);
         (*param1)++;
         break;
     case 3:
-        if (!IsScreenTransitionDone()) {
+        if (!IsScreenFadeDone()) {
             break;
         }
 
@@ -217,8 +217,8 @@ static int ov90_021D0ECC(UnkStruct_ov90_021D0ECC *param0)
         GXS_SetVisiblePlane(0);
 
         ov90_021D1014();
-        sub_0200F32C(0);
-        sub_0200F32C(1);
+        ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
+        ResetVisibleHardwareWindows(DS_SCREEN_SUB);
         ov90_021D11EC(param0);
         break;
     case 1:
@@ -643,8 +643,8 @@ static void ov90_021D14C8(UnkStruct_ov90_021D0ECC *param0, Window *param1, u8 pa
     u16 v0, v1, v2;
     int v3;
 
-    v1 = sub_02030698(param0->unk_1C, param3, 0xff);
-    v2 = sub_02030698(param0->unk_1C, param3 + 1, 0xff);
+    v1 = sub_02030698(param0->frontier, param3, 0xff);
+    v2 = sub_02030698(param0->frontier, param3 + 1, 0xff);
     v0 = sub_0202D414(param0->unk_20, 8 + param2, 0);
 
     Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_28.unk_24[v0], 4, param4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 4, 0), NULL);

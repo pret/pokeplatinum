@@ -20,10 +20,10 @@
 #include "strbuf.h"
 #include "unk_020298BC.h"
 
-void ov61_0222AE60(SaveData *param0, const UnkStruct_02029C68 *param1, UnkStruct_ov61_0222AE80 *param2)
+void ov61_0222AE60(SaveData *saveData, const UnkStruct_02029C68 *param1, UnkStruct_ov61_0222AE80 *param2)
 {
     sub_0202A75C(param1, param2);
-    param2->unk_5C.unk_00 = SaveData_CalculateChecksum(param0, param2, sizeof(UnkStruct_ov61_0222AE80) - (sizeof(UnkStruct_ov62_02239DA4_sub1)));
+    param2->unk_5C.unk_00 = SaveData_CalculateChecksum(saveData, param2, sizeof(UnkStruct_ov61_0222AE80) - (sizeof(UnkStruct_ov62_02239DA4_sub1)));
 }
 
 void ov61_0222AE80(const UnkStruct_ov61_0222AE80 *param0, UnkStruct_02029C68 *param1)
@@ -31,7 +31,7 @@ void ov61_0222AE80(const UnkStruct_ov61_0222AE80 *param0, UnkStruct_02029C68 *pa
     sub_0202A824(param0, param1);
 }
 
-void ov61_0222AE88(SaveData *param0, const PCBoxes *param1, int param2, UnkStruct_ov62_02239DA4 *param3, int heapID)
+void ov61_0222AE88(SaveData *saveData, const PCBoxes *param1, int param2, UnkStruct_ov62_02239DA4 *param3, int heapID)
 {
     Strbuf *v0;
     int v1;
@@ -57,16 +57,16 @@ void ov61_0222AE88(SaveData *param0, const PCBoxes *param1, int param2, UnkStruc
 
     param3->unk_176 = PCBoxes_GetWallpaper(param1, param2);
     param3->unk_177 = 0;
-    param3->unk_198.unk_00 = SaveData_CalculateChecksum(param0, param3, sizeof(UnkStruct_ov62_02239DA4) - (sizeof(UnkStruct_ov62_02239DA4_sub1)));
+    param3->unk_198.unk_00 = SaveData_CalculateChecksum(saveData, param3, sizeof(UnkStruct_ov62_02239DA4) - (sizeof(UnkStruct_ov62_02239DA4_sub1)));
 }
 
-void ov61_0222AF88(SaveData *param0, UnkStruct_ov62_02239DA4 *param1, int param2)
+void ov61_0222AF88(SaveData *saveData, UnkStruct_ov62_02239DA4 *param1, int param2)
 {
     param1->unk_177 = param2;
-    param1->unk_198.unk_00 = SaveData_CalculateChecksum(param0, param1, sizeof(UnkStruct_ov62_02239DA4) - (sizeof(UnkStruct_ov62_02239DA4_sub1)));
+    param1->unk_198.unk_00 = SaveData_CalculateChecksum(saveData, param1, sizeof(UnkStruct_ov62_02239DA4) - (sizeof(UnkStruct_ov62_02239DA4_sub1)));
 }
 
-void ov61_0222AFA4(SaveData *param0, const UnkStruct_02030A80 *param1, UnkStruct_ov61_0222AFC0 *param2)
+void ov61_0222AFA4(SaveData *saveData, const UnkStruct_02030A80 *param1, UnkStruct_ov61_0222AFC0 *param2)
 {
     GF_ASSERT(sizeof(UnkStruct_ov61_0222AFC0) == sizeof(UnkStruct_02030A80));
     MI_CpuClear8(param2, sizeof(UnkStruct_ov61_0222AFC0));
@@ -79,7 +79,7 @@ void ov61_0222AFC0(const UnkStruct_ov61_0222AFC0 *param0, UnkStruct_02030A80 *pa
     MI_CpuCopy8(param0, param1, sizeof(UnkStruct_ov61_0222AFC0));
 }
 
-void ov61_0222AFCC(SaveData *param0, const UnkStruct_02030A80 *param1, UnkStruct_ov61_0222AFCC *param2)
+void ov61_0222AFCC(SaveData *saveData, const UnkStruct_02030A80 *param1, UnkStruct_ov61_0222AFCC *param2)
 {
     MI_CpuClear8(param2, sizeof(UnkStruct_ov61_0222AFCC));
 

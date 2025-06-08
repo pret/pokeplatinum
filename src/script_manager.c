@@ -8,7 +8,6 @@
 
 #include "data/field/hidden_items.h"
 #include "field/field_system.h"
-#include "field/scripts/scr_seq.naix"
 
 #include "field_task.h"
 #include "heap.h"
@@ -26,6 +25,7 @@
 
 #include "constdata/const_020EAB80.h"
 #include "constdata/const_020EAC58.h"
+#include "res/field/scripts/scr_seq.naix.h"
 
 static BOOL FieldTask_RunScript(FieldTask *taskManager);
 static ScriptManager *ScriptManager_New();

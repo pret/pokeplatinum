@@ -5,7 +5,7 @@
 
 #include "savedata.h"
 
-UnkStruct_ov104_0223ADA0 *ov104_022339B4(SaveData *param0, u16 param1, u8 param2, u8 param3);
+UnkStruct_ov104_0223ADA0 *ov104_022339B4(SaveData *saveData, u16 param1, u8 param2, u8 param3);
 void ov104_02233B98(UnkStruct_ov104_0223ADA0 *param0, u16 param1);
 void ov104_022340D0(UnkStruct_ov104_0223ADA0 *param0);
 void ov104_0223410C(UnkStruct_ov104_0223ADA0 *param0, void *param1);

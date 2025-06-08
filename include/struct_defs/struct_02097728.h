@@ -14,7 +14,7 @@ typedef struct {
     u16 unk_0C;
     u8 unk_0E;
     u8 unk_0F;
-    SaveData *unk_10;
+    SaveData *saveData;
     Mail *unk_14;
     MailBox *unk_18;
 } UnkStruct_02097728;

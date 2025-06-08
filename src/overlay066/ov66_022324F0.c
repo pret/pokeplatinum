@@ -6,7 +6,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0202B370_decl.h"
-#include "struct_decls/struct_0202C878_decl.h"
+#include "struct_defs/wi_fi_history.h"
 
 #include "overlay004/ov4_021D0D80.h"
 #include "overlay066/struct_ov66_02232B20.h"
@@ -56,9 +56,9 @@ typedef struct {
 } UnkStruct_ov66_0223439C;
 
 typedef struct {
-    SaveData *unk_00;
+    SaveData *saveData;
     WiFiList *unk_04;
-    UnkStruct_0202C878 *unk_08;
+    WiFiHistory *wiFiHistory;
     UnkStruct_ov66_022324F0 unk_0C;
     void *unk_20;
     u8 *unk_24;
@@ -152,7 +152,7 @@ static const char *Unk_ov66_02258DF0[1] = {
 
 static UnkStruct_ov66_022336C4 *Unk_ov66_0225B6C0 = NULL;
 
-void ov66_022324F0(u32 heapID, SaveData *param1, u32 param2, const UnkStruct_ov66_022324F0 *param3, void *param4)
+void ov66_022324F0(u32 heapID, SaveData *saveData, u32 param2, const UnkStruct_ov66_022324F0 *param3, void *param4)
 {
     GF_ASSERT(Unk_ov66_0225B6C0 == NULL);
     GF_ASSERT(param2 < PPW_LOBBY_MAX_BINARY_SIZE);
@@ -160,9 +160,9 @@ void ov66_022324F0(u32 heapID, SaveData *param1, u32 param2, const UnkStruct_ov6
     Unk_ov66_0225B6C0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov66_022336C4));
     memset(Unk_ov66_0225B6C0, 0, sizeof(UnkStruct_ov66_022336C4));
 
-    Unk_ov66_0225B6C0->unk_00 = param1;
-    Unk_ov66_0225B6C0->unk_04 = SaveData_GetWiFiList(param1);
-    Unk_ov66_0225B6C0->unk_08 = sub_0202C878(param1);
+    Unk_ov66_0225B6C0->saveData = saveData;
+    Unk_ov66_0225B6C0->unk_04 = SaveData_GetWiFiList(saveData);
+    Unk_ov66_0225B6C0->wiFiHistory = SaveData_WiFiHistory(saveData);
     Unk_ov66_0225B6C0->unk_0C = *param3;
     Unk_ov66_0225B6C0->unk_20 = param4;
 
@@ -1164,8 +1164,8 @@ static BOOL ov66_022336C4(UnkStruct_ov66_022336C4 *param0)
     int v2;
     PPW_LOBBY_RESULT v3;
 
-    v0 = sub_0202C8C0(param0->unk_08);
-    v1 = sub_0202C8C4(param0->unk_08);
+    v0 = WiFiHistory_GetCountry(param0->wiFiHistory);
+    v1 = sub_0202C8C4(param0->wiFiHistory);
 
     if (v0 == 0) {
         return 0;

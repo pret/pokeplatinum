@@ -32,8 +32,8 @@
 #include "math_util.h"
 #include "narc.h"
 #include "pokemon.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
-#include "unk_0200F174.h"
 
 __attribute__((aligned(4))) static const s16 Unk_ov113_02260BCC[] = {
     0xFF,
@@ -529,7 +529,7 @@ void ov113_0225E65C(UnkStruct_ov113_0225EB20 *param0, int param1)
     }
 
     if (param0->unk_740 && (param1 != 3)) {
-        sub_0200F44C(0, param0->unk_742);
+        SetScreenMasterBrightness(DS_SCREEN_MAIN, param0->unk_742);
         param0->unk_740 = 0;
     }
 }

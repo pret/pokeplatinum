@@ -22,11 +22,11 @@
 
 static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, int heapID);
 
-void Trainer_Encounter(FieldBattleDTO *dto, const SaveData *save, int heapID)
+void Trainer_Encounter(FieldBattleDTO *dto, const SaveData *saveData, int heapID)
 {
     Trainer trdata;
     MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NPC_TRAINER_NAMES, heapID);
-    const charcode_t *rivalName = MiscSaveBlock_RivalName(SaveData_MiscSaveBlockConst(save));
+    const charcode_t *rivalName = MiscSaveBlock_RivalName(SaveData_MiscSaveBlockConst(saveData));
 
     for (int i = 0; i < MAX_BATTLERS; i++) {
         if (!dto->trainerIDs[i]) {
