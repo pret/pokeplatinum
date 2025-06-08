@@ -20,8 +20,8 @@
 #include "text.h"
 
 struct UnkStruct_ov43_02256544_t {
-    const UnkStruct_ov43_02256544_1 *unk_00;
-    BgConfig *unk_04;
+    const MoveTesterData *moveTesterData;
+    BgConfig *bgConfig;
     u32 unk_08[10];
     PoketchAnimation_AnimationManager *unk_30;
     PoketchAnimation_AnimatedSpriteData *unk_34[6];
@@ -36,29 +36,29 @@ struct UnkStruct_ov43_02256544_t {
     Strbuf *unk_BC;
 };
 
-static void ov43_022565B4(UnkStruct_ov43_02256544 *param0);
-static void ov43_02256640(UnkStruct_ov43_02256544 *param0);
+static void ov43_022565B4(PoketchMoveTesterGraphics *param0);
+static void ov43_02256640(PoketchMoveTesterGraphics *param0);
 static void ov43_022566EC(PoketchTaskManager *param0);
 static void ov43_02256700(SysTask *param0, void *param1);
-static void ov43_022567A4(UnkStruct_ov43_02256544 *param0, const UnkStruct_ov43_02256544_1 *param1, u32 param2);
-static void ov43_02256870(UnkStruct_ov43_02256544 *param0);
+static void ov43_022567A4(PoketchMoveTesterGraphics *param0, const MoveTesterData *param1, u32 param2);
+static void ov43_02256870(PoketchMoveTesterGraphics *param0);
 static void ov43_02256894(SysTask *param0, void *param1);
 static void ov43_022568B4(SysTask *param0, void *param1);
 static void ov43_022568F0(SysTask *param0, void *param1);
 static void ov43_02256924(SysTask *param0, void *param1);
-static void ov43_02256948(UnkStruct_ov43_02256544 *param0, const UnkStruct_ov43_02256544_1 *param1);
-static void ov43_02256988(UnkStruct_ov43_02256544 *param0, Window *param1, u32 param2);
-static void ov43_02256A00(UnkStruct_ov43_02256544 *param0, Window *param1, u32 param2);
-static void ov43_02256A4C(UnkStruct_ov43_02256544 *param0, u32 param1);
+static void ov43_02256948(PoketchMoveTesterGraphics *param0, const MoveTesterData *param1);
+static void ov43_02256988(PoketchMoveTesterGraphics *param0, Window *param1, u32 param2);
+static void ov43_02256A00(PoketchMoveTesterGraphics *param0, Window *param1, u32 param2);
+static void ov43_02256A4C(PoketchMoveTesterGraphics *param0, u32 param1);
 
-BOOL ov43_02256544(UnkStruct_ov43_02256544 **param0, const UnkStruct_ov43_02256544_1 *param1, BgConfig *param2)
+BOOL ov43_02256544(PoketchMoveTesterGraphics **param0, const MoveTesterData *moveTesterData, BgConfig *bgConfig)
 {
-    UnkStruct_ov43_02256544 *v0 = (UnkStruct_ov43_02256544 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov43_02256544));
+    PoketchMoveTesterGraphics *v0 = (PoketchMoveTesterGraphics *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(PoketchMoveTesterGraphics));
 
     if (v0 != NULL) {
         PoketchTask_InitActiveTaskList(v0->unk_08, 8);
-        v0->unk_00 = param1;
-        v0->unk_04 = PoketchGraphics_GetBgConfig();
+        v0->moveTesterData = moveTesterData;
+        v0->bgConfig = PoketchGraphics_GetBgConfig();
         v0->unk_30 = PoketchGraphics_GetAnimationManager();
         v0->unk_B4 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_TYPE_NAMES, HEAP_ID_POKETCH_APP);
         v0->unk_B8 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0456, HEAP_ID_POKETCH_APP);
@@ -72,7 +72,7 @@ BOOL ov43_02256544(UnkStruct_ov43_02256544 **param0, const UnkStruct_ov43_022565
     return 0;
 }
 
-static void ov43_022565B4(UnkStruct_ov43_02256544 *param0)
+static void ov43_022565B4(PoketchMoveTesterGraphics *param0)
 {
     static const PoketchAnimation_AnimationData v0[] = {
         {
@@ -147,7 +147,7 @@ static void ov43_022565B4(UnkStruct_ov43_02256544 *param0)
     }
 }
 
-static void ov43_02256640(UnkStruct_ov43_02256544 *param0)
+static void ov43_02256640(PoketchMoveTesterGraphics *param0)
 {
     int v0;
 
@@ -166,7 +166,7 @@ static void ov43_02256640(UnkStruct_ov43_02256544 *param0)
     PoketchAnimation_FreeSpriteData(&param0->unk_60);
 }
 
-void ov43_02256680(UnkStruct_ov43_02256544 *param0)
+void ov43_02256680(PoketchMoveTesterGraphics *param0)
 {
     if (param0 != NULL) {
         Strbuf_Free(param0->unk_BC);
@@ -186,24 +186,24 @@ static const PoketchTask Unk_ov43_02256C34[] = {
     { 0x0, NULL, 0x0 }
 };
 
-void ov43_022566B0(UnkStruct_ov43_02256544 *param0, u32 param1)
+void ov43_022566B0(PoketchMoveTesterGraphics *param0, u32 param1)
 {
-    PoketchTask_Start(Unk_ov43_02256C34, param1, param0, param0->unk_00, param0->unk_08, 2, 8);
+    PoketchTask_Start(Unk_ov43_02256C34, param1, param0, param0->moveTesterData, param0->unk_08, 2, 8);
 }
 
-BOOL ov43_022566D4(UnkStruct_ov43_02256544 *param0, u32 param1)
+BOOL ov43_022566D4(PoketchMoveTesterGraphics *param0, u32 param1)
 {
     return PoketchTask_TaskIsNotActive(param0->unk_08, param1);
 }
 
-BOOL ov43_022566E0(UnkStruct_ov43_02256544 *param0)
+BOOL ov43_022566E0(PoketchMoveTesterGraphics *param0)
 {
     return PoketchTask_NoActiveTasks(param0->unk_08);
 }
 
 static void ov43_022566EC(PoketchTaskManager *param0)
 {
-    UnkStruct_ov43_02256544 *v0 = PoketchTask_GetTaskData(param0);
+    PoketchMoveTesterGraphics *v0 = PoketchTask_GetTaskData(param0);
     PoketchTask_EndTask(v0->unk_08, param0);
 }
 
@@ -225,8 +225,8 @@ static void ov43_02256700(SysTask *param0, void *param1)
         0
     };
     GXSDispCnt v1;
-    UnkStruct_ov43_02256544 *v2;
-    const UnkStruct_ov43_02256544_1 *v3;
+    PoketchMoveTesterGraphics *v2;
+    const MoveTesterData *v3;
     void *v4;
     NNSG2dPaletteData *v5;
     u32 v6;
@@ -234,15 +234,15 @@ static void ov43_02256700(SysTask *param0, void *param1)
     v2 = PoketchTask_GetTaskData(param1);
     v3 = PoketchTask_GetConstTaskData(param1);
 
-    Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
+    Bg_InitFromTemplate(v2->bgConfig, 6, &v0, 0);
 
-    v6 = Graphics_LoadTilesToBgLayer(12, 61, v2->unk_04, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
-    Graphics_LoadTilemapToBgLayer(12, 60, v2->unk_04, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
+    v6 = Graphics_LoadTilesToBgLayer(12, 61, v2->bgConfig, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilemapToBgLayer(12, 60, v2->bgConfig, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
     PoketchGraphics_LoadActivePalette(0, 0);
 
     v6 /= 0x20;
     ov43_022567A4(v2, v3, v6);
-    Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);
+    Bg_CopyTilemapBufferToVRAM(v2->bgConfig, 6);
 
     v1 = GXS_GetDispCnt();
     GXS_SetVisiblePlane(v1.visiblePlane | GX_PLANEMASK_BG2);
@@ -250,18 +250,18 @@ static void ov43_02256700(SysTask *param0, void *param1)
     ov43_022566EC(param1);
 }
 
-static void ov43_022567A4(UnkStruct_ov43_02256544 *param0, const UnkStruct_ov43_02256544_1 *param1, u32 param2)
+static void ov43_022567A4(PoketchMoveTesterGraphics *param0, const MoveTesterData *param1, u32 param2)
 {
-    Window_Add(param0->unk_04, &(param0->unk_74), 6, 6, 15, 6, 2, 0, param2);
+    Window_Add(param0->bgConfig, &(param0->unk_74), 6, 6, 15, 6, 2, 0, param2);
     param2 += 12;
 
-    Window_Add(param0->unk_04, &(param0->unk_84), 6, 16, 4, 6, 2, 0, param2);
+    Window_Add(param0->bgConfig, &(param0->unk_84), 6, 16, 4, 6, 2, 0, param2);
     param2 += 12;
 
-    Window_Add(param0->unk_04, &(param0->unk_94), 6, 16, 8, 6, 2, 0, param2);
+    Window_Add(param0->bgConfig, &(param0->unk_94), 6, 16, 8, 6, 2, 0, param2);
     param2 += 12;
 
-    Window_Add(param0->unk_04, &(param0->unk_A4), 6, 3, 19, 22, 2, 0, param2);
+    Window_Add(param0->bgConfig, &(param0->unk_A4), 6, 3, 19, 22, 2, 0, param2);
 
     Window_PutToTilemap(&(param0->unk_74));
     Window_PutToTilemap(&(param0->unk_84));
@@ -271,7 +271,7 @@ static void ov43_022567A4(UnkStruct_ov43_02256544 *param0, const UnkStruct_ov43_
     ov43_02256948(param0, param1);
 }
 
-static void ov43_02256870(UnkStruct_ov43_02256544 *param0)
+static void ov43_02256870(PoketchMoveTesterGraphics *param0)
 {
     Window_Remove(&(param0->unk_74));
     Window_Remove(&(param0->unk_84));
@@ -281,53 +281,53 @@ static void ov43_02256870(UnkStruct_ov43_02256544 *param0)
 
 static void ov43_02256894(SysTask *param0, void *param1)
 {
-    UnkStruct_ov43_02256544 *v0 = PoketchTask_GetTaskData(param1);
+    PoketchMoveTesterGraphics *v0 = PoketchTask_GetTaskData(param1);
 
     ov43_02256870(v0);
-    Bg_FreeTilemapBuffer(v0->unk_04, 6);
+    Bg_FreeTilemapBuffer(v0->bgConfig, 6);
     ov43_022566EC(param1);
 }
 
 static void ov43_022568B4(SysTask *param0, void *param1)
 {
-    UnkStruct_ov43_02256544 *v0 = PoketchTask_GetTaskData(param1);
-    const UnkStruct_ov43_02256544_1 *v1 = PoketchTask_GetConstTaskData(param1);
-    u32 v2 = (v1->unk_00 & 1) ? 3 : 1;
+    PoketchMoveTesterGraphics *v0 = PoketchTask_GetTaskData(param1);
+    const MoveTesterData *v1 = PoketchTask_GetConstTaskData(param1);
+    u32 v2 = (v1->lastButtonPressed & 1) ? 3 : 1;
 
-    PoketchAnimation_UpdateAnimationIdx(v0->unk_34[v1->unk_00], v2);
+    PoketchAnimation_UpdateAnimationIdx(v0->unk_34[v1->lastButtonPressed], v2);
     PoketchSystem_PlaySoundEffect(1635);
     ov43_022566EC(param1);
 }
 
 static void ov43_022568F0(SysTask *param0, void *param1)
 {
-    UnkStruct_ov43_02256544 *v0 = PoketchTask_GetTaskData(param1);
-    const UnkStruct_ov43_02256544_1 *v1 = PoketchTask_GetConstTaskData(param1);
-    u32 v2 = (v1->unk_00 & 1) ? 2 : 0;
+    PoketchMoveTesterGraphics *v0 = PoketchTask_GetTaskData(param1);
+    const MoveTesterData *v1 = PoketchTask_GetConstTaskData(param1);
+    u32 v2 = (v1->lastButtonPressed & 1) ? 2 : 0;
 
-    PoketchAnimation_UpdateAnimationIdx(v0->unk_34[v1->unk_00], v2);
+    PoketchAnimation_UpdateAnimationIdx(v0->unk_34[v1->lastButtonPressed], v2);
     ov43_022566EC(param1);
 }
 
 static void ov43_02256924(SysTask *param0, void *param1)
 {
-    UnkStruct_ov43_02256544 *v0 = PoketchTask_GetTaskData(param1);
-    const UnkStruct_ov43_02256544_1 *v1 = PoketchTask_GetConstTaskData(param1);
+    PoketchMoveTesterGraphics *v0 = PoketchTask_GetTaskData(param1);
+    const MoveTesterData *v1 = PoketchTask_GetConstTaskData(param1);
 
     ov43_02256948(v0, v1);
     ov43_022566EC(param1);
 }
 
-static void ov43_02256948(UnkStruct_ov43_02256544 *param0, const UnkStruct_ov43_02256544_1 *param1)
+static void ov43_02256948(PoketchMoveTesterGraphics *param0, const MoveTesterData *param1)
 {
-    ov43_02256988(param0, &(param0->unk_74), param1->unk_06);
-    ov43_02256988(param0, &(param0->unk_84), param1->unk_08);
-    ov43_02256988(param0, &(param0->unk_94), param1->unk_0A);
-    ov43_02256A00(param0, &(param0->unk_A4), param1->unk_04);
-    ov43_02256A4C(param0, param1->unk_04);
+    ov43_02256988(param0, &(param0->unk_74), param1->attackType);
+    ov43_02256988(param0, &(param0->unk_84), param1->defenderType1);
+    ov43_02256988(param0, &(param0->unk_94), param1->defenderType2);
+    ov43_02256A00(param0, &(param0->unk_A4), param1->exclamCount);
+    ov43_02256A4C(param0, param1->exclamCount);
 }
 
-static void ov43_02256988(UnkStruct_ov43_02256544 *param0, Window *param1, u32 param2)
+static void ov43_02256988(PoketchMoveTesterGraphics *param0, Window *param1, u32 param2)
 {
     u32 v0;
 
@@ -345,7 +345,7 @@ static void ov43_02256988(UnkStruct_ov43_02256544 *param0, Window *param1, u32 p
     Window_LoadTiles(param1);
 }
 
-static void ov43_02256A00(UnkStruct_ov43_02256544 *param0, Window *param1, u32 param2)
+static void ov43_02256A00(PoketchMoveTesterGraphics *param0, Window *param1, u32 param2)
 {
     Window_FillTilemap(param1, 4);
     MessageLoader_GetStrbuf(param0->unk_B8, param2, param0->unk_BC);
@@ -353,7 +353,7 @@ static void ov43_02256A00(UnkStruct_ov43_02256544 *param0, Window *param1, u32 p
     Window_LoadTiles(param1);
 }
 
-static void ov43_02256A4C(UnkStruct_ov43_02256544 *param0, u32 param1)
+static void ov43_02256A4C(PoketchMoveTesterGraphics *param0, u32 param1)
 {
     u32 v0;
 

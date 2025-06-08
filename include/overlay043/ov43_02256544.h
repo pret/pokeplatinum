@@ -6,10 +6,10 @@
 
 #include "bg_window.h"
 
-BOOL ov43_02256544(UnkStruct_ov43_02256544 **param0, const UnkStruct_ov43_02256544_1 *param1, BgConfig *param2);
-void ov43_02256680(UnkStruct_ov43_02256544 *param0);
-void ov43_022566B0(UnkStruct_ov43_02256544 *param0, u32 param1);
-BOOL ov43_022566D4(UnkStruct_ov43_02256544 *param0, u32 param1);
-BOOL ov43_022566E0(UnkStruct_ov43_02256544 *param0);
+BOOL ov43_02256544(PoketchMoveTesterGraphics **param0, const MoveTesterData *moveTesterData, BgConfig *bgConfig);
+void ov43_02256680(PoketchMoveTesterGraphics *param0);
+void ov43_022566B0(PoketchMoveTesterGraphics *param0, u32 param1);
+BOOL ov43_022566D4(PoketchMoveTesterGraphics *param0, u32 param1);
+BOOL ov43_022566E0(PoketchMoveTesterGraphics *param0);
 
 #endif // POKEPLATINUM_OV43_02256544_H

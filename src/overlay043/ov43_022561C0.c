@@ -2,6 +2,9 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
+#include "constants/heap.h"
+#include "generated/pokemon_types.h"
+
 #include "overlay043/ov43_02256544.h"
 #include "overlay043/struct_ov43_02256544_1.h"
 #include "overlay043/struct_ov43_02256544_decl.h"
@@ -16,59 +19,66 @@
 #include "touch_screen.h"
 
 typedef struct {
-    u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
-    u32 unk_04;
-    UnkStruct_ov43_02256544_1 unk_08;
-    UnkStruct_ov43_02256544 *unk_14;
+    u8 sysTaskState;
+    u8 taskFuncState;
+    u8 shouldExit;
+    u32 appID;
+    MoveTesterData moveTesterData;
+    PoketchMoveTesterGraphics *graphics;
     PoketchSystem *poketchSys;
     PoketchButtonManager *buttonManager;
-    u32 unk_20;
-} UnkStruct_ov43_0225621C;
+    u32 buttonState;
+} PoketchMoveTester;
+
+enum MoveTesterMatchup {
+    MOVE_TESTER_NEUTRAL = 0,
+    MOVE_TESTER_VERY_EFFECTIVE = 1,
+    MOVE_TESTER_NOT_VERY_EFFECTIVE = -1,
+    MOVE_TESTER_IMMUNE = -10,
+};
 
 static void NitroStaticInit(void);
 
-static BOOL ov43_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3);
-static BOOL ov43_0225621C(UnkStruct_ov43_0225621C *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3);
-static void ov43_02256288(UnkStruct_ov43_02256544_1 *param0);
-static void ov43_022562A8(UnkStruct_ov43_0225621C *param0);
-static void ov43_022562CC(SysTask *param0, void *param1);
-static void ov43_02256308(u32 param0, u32 param1, u32 param2, void *param3);
-static void ov43_02256310(void *param0);
-static void ov43_02256318(UnkStruct_ov43_0225621C *param0, u32 param1);
-static BOOL ov43_0225632C(UnkStruct_ov43_0225621C *param0);
-static BOOL ov43_0225636C(UnkStruct_ov43_0225621C *param0);
-static BOOL ov43_02256478(UnkStruct_ov43_0225621C *param0);
-static u32 ov43_022564AC(u32 param0, u32 param1, u32 param2);
-static u32 ov43_022564EC(s32 param0, s32 param1, BOOL param2);
+static BOOL PoketchMoveTester_New(void **appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 appID);
+static BOOL PoketchMoveTester_Init(PoketchMoveTester *appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 appID);
+static void PoketchMoveTester_InitData(MoveTesterData *moveTesterData);
+static void PoketchMoveTester_Free(PoketchMoveTester *appData);
+static void Task_MoveTesterMain(SysTask *task, void *appData);
+static void PoketchMoveTester_ButtonChanged(u32 buttonID, u32 buttonState, u32 touchState, void *appData);
+static void PoketchMoveTester_Shutdown(void *appData);
+static void ov43_02256318(PoketchMoveTester *appData, u32 param1);
+static BOOL ov43_0225632C(PoketchMoveTester *appData);
+static BOOL ov43_0225636C(PoketchMoveTester *appData);
+static BOOL ov43_02256478(PoketchMoveTester *appData);
+static u32 PoketchMoveTester_GetExclamation(u32 attackType, u32 defenderType1, u32 defenderType2);
+static u32 PoketchMoveTester_GetTypeAfterShift(s32 type, s32 shift, BOOL isType2);
 
 static void NitroStaticInit(void)
 {
-    PoketchSystem_SetAppFunctions(ov43_022561D4, ov43_02256310);
+    PoketchSystem_SetAppFunctions(PoketchMoveTester_New, PoketchMoveTester_Shutdown);
 }
 
-static BOOL ov43_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
+static BOOL PoketchMoveTester_New(void **appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 appID)
 {
-    UnkStruct_ov43_0225621C *v0 = (UnkStruct_ov43_0225621C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov43_0225621C));
+    PoketchMoveTester *moveTester = (PoketchMoveTester *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(PoketchMoveTester));
 
-    if (v0 != NULL) {
-        if (ov43_0225621C(v0, poketchSys, param2, param3)) {
-            if (SysTask_Start(ov43_022562CC, v0, 1) != NULL) {
-                *param0 = v0;
-                return 1;
+    if (moveTester != NULL) {
+        if (PoketchMoveTester_Init(moveTester, poketchSys, bgConfig, appID)) {
+            if (SysTask_Start(Task_MoveTesterMain, moveTester, 1) != NULL) {
+                *appData = moveTester;
+                return TRUE;
             }
         }
 
-        Heap_FreeToHeap(v0);
+        Heap_FreeToHeap(moveTester);
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov43_0225621C(UnkStruct_ov43_0225621C *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
+static BOOL PoketchMoveTester_Init(PoketchMoveTester *appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 appID)
 {
-    static const TouchScreenHitTable v0[] = {
+    static const TouchScreenHitTable sHitTableMoveTester[] = {
         { 112, 144, 16, 40 },
         { 112, 144, 104, 128 },
         { 24, 56, 96, 120 },
@@ -77,100 +87,100 @@ static BOOL ov43_0225621C(UnkStruct_ov43_0225621C *param0, PoketchSystem *poketc
         { 56, 88, 184, 208 }
     };
 
-    param0->unk_04 = param3;
+    appData->appID = appID;
 
-    if (PoketchMemory_Read32(param3, &(param0->unk_08), sizeof(param0->unk_08)) == FALSE) {
-        ov43_02256288(&(param0->unk_08));
+    if (PoketchMemory_Read32(appID, &(appData->moveTesterData), sizeof(appData->moveTesterData)) == FALSE) {
+        PoketchMoveTester_InitData(&(appData->moveTesterData));
     }
 
-    if (ov43_02256544(&(param0->unk_14), &(param0->unk_08), param2)) {
-        param0->unk_00 = 0;
-        param0->unk_01 = 0;
-        param0->unk_02 = 0;
-        param0->buttonManager = PoketchButtonManager_New(v0, NELEMS(v0), ov43_02256308, param0, 8);
-        param0->unk_20 = 0;
-        param0->poketchSys = poketchSys;
+    if (ov43_02256544(&(appData->graphics), &(appData->moveTesterData), bgConfig)) {
+        appData->sysTaskState = 0;
+        appData->taskFuncState = 0;
+        appData->shouldExit = 0;
+        appData->buttonManager = PoketchButtonManager_New(sHitTableMoveTester, NELEMS(sHitTableMoveTester), PoketchMoveTester_ButtonChanged, appData, HEAP_ID_POKETCH_APP);
+        appData->buttonState = 0;
+        appData->poketchSys = poketchSys;
 
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static void ov43_02256288(UnkStruct_ov43_02256544_1 *param0)
+static void PoketchMoveTester_InitData(MoveTesterData *moveTesterData)
 {
-    param0->unk_00 = 0;
-    param0->unk_06 = 0;
-    param0->unk_08 = 0;
-    param0->unk_0A = 18;
-    param0->unk_04 = ov43_022564AC(param0->unk_06, param0->unk_08, param0->unk_0A);
+    moveTesterData->lastButtonPressed = TYPE_NORMAL;
+    moveTesterData->attackType = TYPE_NORMAL;
+    moveTesterData->defenderType1 = TYPE_NORMAL;
+    moveTesterData->defenderType2 = 18;
+    moveTesterData->exclamCount = PoketchMoveTester_GetExclamation(moveTesterData->attackType, moveTesterData->defenderType1, moveTesterData->defenderType2);
 }
 
-static void ov43_022562A8(UnkStruct_ov43_0225621C *param0)
+static void PoketchMoveTester_Free(PoketchMoveTester *appData)
 {
-    PoketchMemory_Write32(param0->unk_04, &(param0->unk_08), sizeof(param0->unk_08));
-    PoketchButtonManager_Free(param0->buttonManager);
-    ov43_02256680(param0->unk_14);
-    Heap_FreeToHeap(param0);
+    PoketchMemory_Write32(appData->appID, &(appData->moveTesterData), sizeof(appData->moveTesterData));
+    PoketchButtonManager_Free(appData->buttonManager);
+    ov43_02256680(appData->graphics);
+    Heap_FreeToHeap(appData);
 }
 
-static void ov43_022562CC(SysTask *param0, void *param1)
+static void Task_MoveTesterMain(SysTask *task, void *appData)
 {
-    static BOOL (*const v0[])(UnkStruct_ov43_0225621C *) = {
+    static BOOL (*const stateFuncs[])(PoketchMoveTester *) = {
         ov43_0225632C,
         ov43_0225636C,
         ov43_02256478
     };
 
-    UnkStruct_ov43_0225621C *v1 = (UnkStruct_ov43_0225621C *)param1;
+    PoketchMoveTester *moveTester = (PoketchMoveTester *)appData;
 
-    if (v1->unk_00 < NELEMS(v0)) {
-        PoketechSystem_UpdateButtonManager(v1->poketchSys, v1->buttonManager);
+    if (moveTester->sysTaskState < NELEMS(stateFuncs)) {
+        PoketechSystem_UpdateButtonManager(moveTester->poketchSys, moveTester->buttonManager);
 
-        if (v0[v1->unk_00](v1)) {
-            ov43_022562A8(v1);
-            SysTask_Done(param0);
-            PoketchSystem_NotifyAppUnloaded(v1->poketchSys);
+        if (stateFuncs[moveTester->sysTaskState](moveTester)) {
+            PoketchMoveTester_Free(moveTester);
+            SysTask_Done(task);
+            PoketchSystem_NotifyAppUnloaded(moveTester->poketchSys);
         }
     } else {
     }
 }
 
-static void ov43_02256308(u32 param0, u32 param1, u32 param2, void *param3)
+static void PoketchMoveTester_ButtonChanged(u32 buttonID, u32 buttonState, u32 touchState, void *appData)
 {
-    UnkStruct_ov43_0225621C *v0 = (UnkStruct_ov43_0225621C *)param3;
+    PoketchMoveTester *moveTester = (PoketchMoveTester *)appData;
 
-    v0->unk_08.unk_00 = param0;
-    v0->unk_20 = param1;
+    moveTester->moveTesterData.lastButtonPressed = buttonID;
+    moveTester->buttonState = buttonState;
 }
 
-static void ov43_02256310(void *param0)
+static void PoketchMoveTester_Shutdown(void *appData)
 {
-    ((UnkStruct_ov43_0225621C *)param0)->unk_02 = 1;
+    ((PoketchMoveTester *)appData)->shouldExit = TRUE;
 }
 
-static void ov43_02256318(UnkStruct_ov43_0225621C *param0, u32 param1)
+static void ov43_02256318(PoketchMoveTester *appData, u32 param1)
 {
-    if (param0->unk_02 == 0) {
-        param0->unk_00 = param1;
+    if (appData->shouldExit == FALSE) {
+        appData->sysTaskState = param1;
     } else {
-        param0->unk_00 = 2;
+        appData->sysTaskState = 2;
     }
 
-    param0->unk_01 = 0;
+    appData->taskFuncState = 0;
 }
 
-static BOOL ov43_0225632C(UnkStruct_ov43_0225621C *param0)
+static BOOL ov43_0225632C(PoketchMoveTester *appData)
 {
-    switch (param0->unk_01) {
+    switch (appData->taskFuncState) {
     case 0:
-        ov43_022566B0(param0->unk_14, 0);
-        param0->unk_01++;
+        ov43_022566B0(appData->graphics, 0);
+        appData->taskFuncState++;
         break;
     case 1:
-        if (ov43_022566D4(param0->unk_14, 0)) {
-            PoketchSystem_NotifyAppLoaded(param0->poketchSys);
-            ov43_02256318(param0, 1);
+        if (ov43_022566D4(appData->graphics, 0)) {
+            PoketchSystem_NotifyAppLoaded(appData->poketchSys);
+            ov43_02256318(appData, 1);
         }
         break;
     }
@@ -178,78 +188,78 @@ static BOOL ov43_0225632C(UnkStruct_ov43_0225621C *param0)
     return 0;
 }
 
-static BOOL ov43_0225636C(UnkStruct_ov43_0225621C *param0)
+static BOOL ov43_0225636C(PoketchMoveTester *appData)
 {
-    if (param0->unk_02) {
-        if (ov43_022566E0(param0->unk_14)) {
-            ov43_02256318(param0, 2);
+    if (appData->shouldExit) {
+        if (ov43_022566E0(appData->graphics)) {
+            ov43_02256318(appData, 2);
         }
 
-        return 0;
+        return FALSE;
     }
 
-    switch (param0->unk_01) {
+    switch (appData->taskFuncState) {
     case 0:
-        if (param0->unk_20 == 1) {
-            ov43_022566B0(param0->unk_14, 2);
-            param0->unk_01++;
+        if (appData->buttonState == 1) {
+            ov43_022566B0(appData->graphics, 2);
+            appData->taskFuncState++;
         }
         break;
     case 1:
-        if (param0->unk_20 == 2) {
-            ov43_022566B0(param0->unk_14, 3);
-            param0->unk_01 = 0;
+        if (appData->buttonState == 2) {
+            ov43_022566B0(appData->graphics, 3);
+            appData->taskFuncState = 0;
             break;
         }
 
-        if (param0->unk_20 == 3) {
-            switch (param0->unk_08.unk_00) {
+        if (appData->buttonState == 3) {
+            switch (appData->moveTesterData.lastButtonPressed) {
             case 0:
-                param0->unk_08.unk_06 = ov43_022564EC(param0->unk_08.unk_06, -1, 0);
+                appData->moveTesterData.attackType = PoketchMoveTester_GetTypeAfterShift(appData->moveTesterData.attackType, -1, 0);
                 break;
             case 1:
-                param0->unk_08.unk_06 = ov43_022564EC(param0->unk_08.unk_06, 1, 0);
+                appData->moveTesterData.attackType = PoketchMoveTester_GetTypeAfterShift(appData->moveTesterData.attackType, 1, 0);
                 break;
             case 2:
-                param0->unk_08.unk_08 = ov43_022564EC(param0->unk_08.unk_08, -1, 0);
+                appData->moveTesterData.defenderType1 = PoketchMoveTester_GetTypeAfterShift(appData->moveTesterData.defenderType1, -1, 0);
                 break;
             case 3:
-                param0->unk_08.unk_08 = ov43_022564EC(param0->unk_08.unk_08, 1, 0);
+                appData->moveTesterData.defenderType1 = PoketchMoveTester_GetTypeAfterShift(appData->moveTesterData.defenderType1, 1, 0);
                 break;
             case 4:
-                param0->unk_08.unk_0A = ov43_022564EC(param0->unk_08.unk_0A, -1, 1);
+                appData->moveTesterData.defenderType2 = PoketchMoveTester_GetTypeAfterShift(appData->moveTesterData.defenderType2, -1, 1);
                 break;
             case 5:
-                param0->unk_08.unk_0A = ov43_022564EC(param0->unk_08.unk_0A, 1, 1);
+                appData->moveTesterData.defenderType2 = PoketchMoveTester_GetTypeAfterShift(appData->moveTesterData.defenderType2, 1, 1);
                 break;
             }
 
-            param0->unk_08.unk_04 = ov43_022564AC(param0->unk_08.unk_06, param0->unk_08.unk_08, param0->unk_08.unk_0A);
-            ov43_022566B0(param0->unk_14, 3);
-            ov43_022566B0(param0->unk_14, 4);
-            param0->unk_01++;
+            appData->moveTesterData.exclamCount = PoketchMoveTester_GetExclamation(appData->moveTesterData.attackType, appData->moveTesterData.defenderType1, appData->moveTesterData.defenderType2);
+            ov43_022566B0(appData->graphics, 3);
+            ov43_022566B0(appData->graphics, 4);
+            appData->taskFuncState++;
             break;
         }
         break;
     case 2:
-        if (ov43_022566E0(param0->unk_14)) {
-            param0->unk_01 = 0;
+        if (ov43_022566E0(appData->graphics)) {
+            appData->taskFuncState = 0;
         }
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov43_02256478(UnkStruct_ov43_0225621C *param0)
+static BOOL ov43_02256478(PoketchMoveTester *appData)
 {
-    switch (param0->unk_01) {
+    switch (appData->taskFuncState) {
     case 0:
-        ov43_022566B0(param0->unk_14, 1);
-        param0->unk_01++;
+        ov43_022566B0(appData->graphics, 1);
+        appData->taskFuncState++;
         break;
     case 1:
-        if (ov43_022566E0(param0->unk_14)) {
+        if (ov43_022566E0(appData->graphics)) {
             return 1;
         }
         break;
@@ -258,94 +268,95 @@ static BOOL ov43_02256478(UnkStruct_ov43_0225621C *param0)
     return 0;
 }
 
-static u32 ov43_022564AC(u32 param0, u32 param1, u32 param2)
+static u32 PoketchMoveTester_GetExclamation(u32 attackType, u32 defenderType1, u32 defenderType2)
 {
-    static const s8 v0[][18] = {
-        { 0, 0, 0, 0, 0, -1, 0, -10, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        { 1, 0, -1, -1, 0, 1, -1, -10, 1, 0, 0, 0, 0, 0, -1, 1, 0, 1 },
-        { 0, 1, 0, 0, 0, -1, 1, 0, -1, 0, 0, 0, 1, -1, 0, 0, 0, 0 },
-        { 0, 0, 0, -1, -1, -1, 0, -1, -10, 0, 0, 0, 1, 0, 0, 0, 0, 0 },
-        { 0, 0, -10, 1, 0, 1, -1, 0, 1, 0, 1, 0, -1, 1, 0, 0, 0, 0 },
-        { 0, -1, 1, 0, -1, 0, 1, 0, -1, 0, 1, 0, 0, 0, 0, 1, 0, 0 },
-        { 0, -1, -1, -1, 0, 0, 0, -1, -1, 0, -1, 0, 1, 0, 1, 0, 0, 1 },
-        { -10, 0, 0, 0, 0, 0, 0, 1, -1, 0, 0, 0, 0, 0, 1, 0, 0, -1 },
-        { 0, 0, 0, 0, 0, 1, 0, 0, -1, 0, -1, -1, 0, -1, 0, 1, 0, 0 },
-        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        { 0, 0, 0, 0, 0, -1, 1, 0, 1, 0, -1, -1, 1, 0, 0, 1, -1, 0 },
-        { 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, -1, -1, 0, 0, 0, -1, 0 },
-        { 0, 0, -1, -1, 1, 1, -1, 0, -1, 0, -1, 1, -1, 0, 0, 0, -1, 0 },
-        { 0, 0, 1, 0, -10, 0, 0, 0, 0, 0, 0, 1, -1, -1, 0, 0, -1, 0 },
-        { 0, 1, 0, 1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, -1, 0, 0, -10 },
-        { 0, 0, 1, 0, 1, 0, 0, 0, -1, 0, -1, -1, 1, 0, 0, -1, 1, 0 },
-        { 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 1, 0 },
-        { 0, -1, 0, 0, 0, 0, 0, 1, -1, 0, 0, 0, 0, 0, 1, 0, 0, -1 }
+    static const s8 sMoveTesterTypeChart[][18] = {
+        { MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_IMMUNE, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL },
+        { MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_IMMUNE, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE },
+        { MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL },
+        { MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_IMMUNE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL },
+        { MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_IMMUNE, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL },
+        { MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL },
+        { MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE },
+        { MOVE_TESTER_IMMUNE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE },
+        { MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL },
+        { MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL },
+        { MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL },
+        { MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL },
+        { MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL },
+        { MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_IMMUNE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL },
+        { MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_IMMUNE },
+        { MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL },
+        { MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL },
+        { MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE }
     };
 
-    if ((v0[param0][param1] == -10) || ((param2 != 18) && (v0[param0][param2] == -10))) {
+    if ((sMoveTesterTypeChart[attackType][defenderType1] == MOVE_TESTER_IMMUNE) || ((defenderType2 != 18) && (sMoveTesterTypeChart[attackType][defenderType2] == MOVE_TESTER_IMMUNE))) {
         return 0;
     } else {
-        u32 v1 = 3;
+        u32 exclamationCount = 3;
 
-        v1 += v0[param0][param1];
+        exclamationCount += sMoveTesterTypeChart[attackType][defenderType1];
 
-        if ((param2 != 18) && (param2 != param1)) {
-            v1 += v0[param0][param2];
+        if ((defenderType2 != 18) && (defenderType2 != defenderType1)) {
+            exclamationCount += sMoveTesterTypeChart[attackType][defenderType2];
         }
 
-        return v1;
+        return exclamationCount;
     }
 }
 
-static u32 ov43_022564EC(s32 param0, s32 param1, BOOL param2)
+static u32 PoketchMoveTester_GetTypeAfterShift(s32 currentType, s32 shift, BOOL isType2)
 {
-    static const u8 v0[] = {
-        0,
-        10,
-        11,
-        13,
-        12,
-        15,
-        1,
-        3,
-        4,
-        2,
-        14,
-        6,
-        5,
-        7,
-        16,
-        17,
-        8
+    static const u8 sMoveTesterTypeOrder[] = {
+        TYPE_NORMAL,
+        TYPE_FIRE,
+        TYPE_WATER,
+        TYPE_ELECTRIC,
+        TYPE_GRASS,
+        TYPE_ICE,
+        TYPE_FIGHTING,
+        TYPE_POISON,
+        TYPE_GROUND,
+        TYPE_FLYING,
+        TYPE_PSYCHIC,
+        TYPE_BUG,
+        TYPE_ROCK,
+        TYPE_GHOST,
+        TYPE_DRAGON,
+        TYPE_DARK,
+        TYPE_STEEL
     };
-    int v1;
 
-    for (v1 = 0; v1 < NELEMS(v0); v1++) {
-        if (v0[v1] == param0) {
+    int index;
+
+    for (index = 0; index < NELEMS(sMoveTesterTypeOrder); index++) {
+        if (sMoveTesterTypeOrder[index] == currentType) {
             break;
         }
     }
 
-    if (v1 == NELEMS(v0)) {
-        return (param1 > 0) ? v0[0] : v0[(NELEMS(v0) - 1)];
+    if (index == NELEMS(sMoveTesterTypeOrder)) {
+        return (shift > 0) ? sMoveTesterTypeOrder[0] : sMoveTesterTypeOrder[(NELEMS(sMoveTesterTypeOrder) - 1)];
     }
 
-    v1 += param1;
+    index += shift;
 
-    if (v1 >= (int)(NELEMS(v0))) {
-        if (param2) {
+    if (index >= (int)(NELEMS(sMoveTesterTypeOrder))) {
+        if (isType2) {
             return 18;
         }
 
-        v1 = 0;
+        index = 0;
     }
 
-    if (v1 < 0) {
-        if (param2) {
+    if (index < 0) {
+        if (isType2) {
             return 18;
         }
 
-        v1 = NELEMS(v0) - 1;
+        index = NELEMS(sMoveTesterTypeOrder) - 1;
     }
 
-    return v0[v1];
+    return sMoveTesterTypeOrder[index];
 }
