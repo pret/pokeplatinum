@@ -47,6 +47,13 @@ enum BattleBagUseItemScreenButton {
     BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_CANCEL,
 };
 
+enum ButtonState {
+    BUTTON_STATE_UNPRESSED = 0,
+    BUTTON_STATE_PRESSING,
+    BUTTON_STATE_PRESSED,
+    BUTTON_STATE_DISABLED,
+};
+
 typedef struct BattleBag {
     BattleBagContext *context;
     BgConfig *background;
@@ -65,22 +72,22 @@ typedef struct BattleBag {
     BagItem items[BATTLE_POCKET_MAX][BATTLE_POCKET_SIZE];
     SpriteManager *spriteManager;
     ManagedSprite *pocketItemSprites[BATTLE_POCKET_ITEMS_PER_PAGE];
-    u16 unk_328[3][144];
-    u16 unk_688[4][130];
-    u16 unk_A98[3][25];
-    u16 unk_B2E[4][96];
-    u16 unk_E2E[4][25];
-    u16 unk_EF6[4][25];
-    u16 unk_FBE[3][16];
-    u16 unk_101E[3][16];
-    u16 unk_107E[3][16];
-    u16 unk_10DE[3][16];
-    u8 unk_113E;
-    u8 unk_113F; // Seems unused
-    u8 unk_1140;
-    u8 unk_1141_0 : 4; // Seems unused
-    u8 unk_1141_4 : 4; // Seems unused
-    u8 unk_1142[8]; // Seems unused
+    u16 menuPocketButtonData[3][144];
+    u16 useItemButtonData[4][130];
+    u16 cancelButtonData[3][25];
+    u16 pocketItemButtonData[4][96];
+    u16 pocketPrevPageButtonData[4][25];
+    u16 pocketNextPageButtonData[4][25];
+    u16 menuScreenRecoverHPPocketIconData[3][16];
+    u16 menuScreenRecoverStatusPocketIconData[3][16];
+    u16 menuScreenPokeBallsPocketIconData[3][16];
+    u16 menuScreenBattleItemsIconData[3][16];
+    u8 pressedButtonState;
+    u8 Unused1;
+    u8 pressedButton;
+    u8 isAButtonPressed : 4;
+    u8 Unused2 : 4;
+    u8 Unused3[8];
     u8 currentState;
     u8 queuedState;
     u8 currentScreen;
@@ -89,7 +96,7 @@ typedef struct BattleBag {
     u8 numBattlePocketItems[BATTLE_POCKET_MAX];
     u8 numBattlePocketPages[BATTLE_POCKET_MAX];
     u8 catchTutorialState;
-    u8 catchTutorialTickCount; // Seems unused
+    u8 catchTutorialTickCount; // Doesn't seem to be used for anything
 } BattleBag;
 
 void BattleBagTask_Start(BattleBagContext *context);

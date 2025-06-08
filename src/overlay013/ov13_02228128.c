@@ -1,292 +1,355 @@
 #include "overlay013/ov13_02228128.h"
 
-#include <nitro.h>
-#include <string.h>
-
 #include "overlay013/battle_bag.h"
+#include "overlay013/battle_bag_text.h"
 #include "overlay013/battle_bag_utils.h"
 
 #include "bg_window.h"
 #include "heap.h"
+#include "palette.h"
 #include "sprite_system.h"
 
-typedef struct {
-    u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
-    u8 unk_03;
-} UnkStruct_ov13_02229D7C;
+#define BATTLE_BAG_POCKET_MENU_SCREEN_ALT_BUTTON_OFFSET 17
 
-static void ov13_02228460(u16 *param0, u16 *param1, u8 param2, u8 param3, u8 param4, u8 param5);
+#define MENU_POCKET_BUTTON_WIDTH  16
+#define MENU_POCKET_BUTTON_HEIGHT 9
 
-static const UnkStruct_ov13_02229D7C Unk_ov13_02229D7C[] = {
-    { 0x0, 0x1, 0x10, 0x9 },
-    { 0x0, 0xA, 0x10, 0x9 },
-    { 0x10, 0x1, 0x10, 0x9 },
-    { 0x10, 0xA, 0x10, 0x9 },
-    { 0x0, 0x13, 0x1A, 0x5 },
-    { 0x1B, 0x13, 0x5, 0x5 },
-    { 0x20, 0x1, 0x10, 0x6 },
-    { 0x30, 0x1, 0x10, 0x6 },
-    { 0x20, 0x7, 0x10, 0x6 },
-    { 0x30, 0x7, 0x10, 0x6 },
-    { 0x20, 0xD, 0x10, 0x6 },
-    { 0x30, 0xD, 0x10, 0x6 },
-    { 0x20, 0x13, 0x5, 0x5 },
-    { 0x25, 0x13, 0x5, 0x5 },
-    { 0x3B, 0x13, 0x5, 0x5 },
-    { 0x0, 0x33, 0x1A, 0x5 },
-    { 0x1B, 0x33, 0x5, 0x5 }
+#define USE_ITEM_BUTTON_WIDTH         26
+#define USE_ITEM_BUTTON_HEIGHT        5
+#define USE_ITEM_BUTTON_DATA_Y_OFFSET 27
+
+#define CANCEL_BUTTON_WIDTH         5
+#define CANCEL_BUTTON_HEIGHT        5
+#define CANCEL_BUTTON_DATA_Y_OFFSET 57
+
+#define POCKET_ITEM_BUTTON_WIDTH         16
+#define POCKET_ITEM_BUTTON_HEIGHT        6
+#define POCKET_ITEM_BUTTON_DATA_X_OFFSET 16
+
+#define POCKET_MENU_PREV_PAGE_BUTTON_WIDTH         5
+#define POCKET_MENU_PREV_PAGE_BUTTON_HEIGHT        5
+#define POCKET_MENU_PREV_PAGE_BUTTON_DATA_Y_OFFSET 47
+
+#define POCKET_MENU_NEXT_PAGE_BUTTON_WIDTH         5
+#define POCKET_MENU_NEXT_PAGE_BUTTON_HEIGHT        5
+#define POCKET_MENU_NEXT_PAGE_BUTTON_DATA_Y_OFFSET 52
+
+#define MENU_POCKET_ICON_WIDTH         4
+#define MENU_POCKET_ICON_HEIGHT        4
+#define MENU_POCKET_ICON_DATA_X_OFFSET 20
+#define MENU_POCKET_ICON_DATA_Y_OFFSET 47
+
+#define SPRITE_Y_POSITION_DEFAULT   2
+#define SPRITE_Y_POSITION_DPRESSING -4
+
+#define WINDOW_SCROLL_DEFAULT    2
+#define WINDOW_SCROLL_PRESSING   4
+#define MAX_SCROLLABLE_WINDOWS   8
+#define WINDOWS_ARRAY_TERMINATOR 255
+
+enum Button {
+    BUTTON_MENU_SCREEN_RECOVER_HP_POCKET = BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_HP_POCKET,
+    BUTTON_MENU_SCREEN_RECOVER_STATUS_POCKET = BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_STATUS_POCKET,
+    BUTTON_MENU_SCREEN_POKE_BALLS_POCKET = BATTLE_BAG_MENU_SCREEN_BUTTON_POKE_BALLS_POCKET,
+    BUTTON_MENU_SCREEN_BATTLE_ITEMS_POCKET = BATTLE_BAG_MENU_SCREEN_BUTTON_BATTLE_ITEMS_POCKET,
+    BUTTON_MENU_SCREEN_LAST_USED_ITEM = BATTLE_BAG_MENU_SCREEN_BUTTON_LAST_USED_ITEM,
+    BUTTON_MENU_SCREEN_CANCEL = BATTLE_BAG_MENU_SCREEN_BUTTON_CANCEL,
+    BUTTON_POCKET_MENU_SCREEN_ITEM_1 = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_OFFSET + BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_1,
+    BUTTON_POCKET_MENU_SCREEN_ITEM_2 = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_OFFSET + BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_2,
+    BUTTON_POCKET_MENU_SCREEN_ITEM_3 = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_OFFSET + BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_3,
+    BUTTON_POCKET_MENU_SCREEN_ITEM_4 = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_OFFSET + BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_4,
+    BUTTON_POCKET_MENU_SCREEN_ITEM_5 = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_OFFSET + BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_5,
+    BUTTON_POCKET_MENU_SCREEN_ITEM_6 = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_OFFSET + BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_6,
+    BUTTON_POCKET_MENU_SCREEN_PREV_PAGE = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_OFFSET + BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_PREV_PAGE,
+    BUTTON_POCKET_MENU_SCREEN_NEXT_PAGE = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_OFFSET + BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_NEXT_PAGE,
+    BUTTON_POCKET_MENU_SCREEN_CANCEL = BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_OFFSET + BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_CANCEL,
+    BUTTON_USE_ITEM_SCREEN_USE = BATTLE_BAG_USE_ITEM_MENU_SCREEN_BUTTON_OFFSET + BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_USE,
+    BUTTON_USE_ITEM_SCREEN_CANCEL = BATTLE_BAG_USE_ITEM_MENU_SCREEN_BUTTON_OFFSET + BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_CANCEL,
+    BUTTON_POCKET_MENU_SCREEN_ALT_ITEM_1 = BATTLE_BAG_POCKET_MENU_SCREEN_ALT_BUTTON_OFFSET + BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_1,
+    BUTTON_POCKET_MENU_SCREEN_ALT_ITEM_2 = BATTLE_BAG_POCKET_MENU_SCREEN_ALT_BUTTON_OFFSET + BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_2,
+    BUTTON_POCKET_MENU_SCREEN_ALT_ITEM_3 = BATTLE_BAG_POCKET_MENU_SCREEN_ALT_BUTTON_OFFSET + BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_3,
+    BUTTON_POCKET_MENU_SCREEN_ALT_ITEM_4 = BATTLE_BAG_POCKET_MENU_SCREEN_ALT_BUTTON_OFFSET + BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_4,
+    BUTTON_POCKET_MENU_SCREEN_ALT_ITEM_5 = BATTLE_BAG_POCKET_MENU_SCREEN_ALT_BUTTON_OFFSET + BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_5,
+    BUTTON_POCKET_MENU_SCREEN_ALT_ITEM_6 = BATTLE_BAG_POCKET_MENU_SCREEN_ALT_BUTTON_OFFSET + BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_6,
 };
 
-static const u8 Unk_ov13_02229D48[] = {
-    0x0,
-    0xFF
+typedef struct ButtonDimensions {
+    u8 xCoord;
+    u8 yCoord;
+    u8 width;
+    u8 height;
+} ButtonDimensions;
+
+static void LoadButtonData(u16 *buttonData, u16 *screenData, u8 xOffset, u8 yOffset, u8 width, u8 height);
+
+static const ButtonDimensions buttonDimensions[] = {
+    [BUTTON_MENU_SCREEN_RECOVER_HP_POCKET] = { .xCoord = 0, .yCoord = 1, .width = MENU_POCKET_BUTTON_WIDTH, .height = MENU_POCKET_BUTTON_HEIGHT },
+    [BUTTON_MENU_SCREEN_RECOVER_STATUS_POCKET] = { .xCoord = 0, .yCoord = 10, .width = MENU_POCKET_BUTTON_WIDTH, .height = MENU_POCKET_BUTTON_HEIGHT },
+    [BUTTON_MENU_SCREEN_POKE_BALLS_POCKET] = { .xCoord = 16, .yCoord = 1, .width = MENU_POCKET_BUTTON_WIDTH, .height = MENU_POCKET_BUTTON_HEIGHT },
+    [BUTTON_MENU_SCREEN_BATTLE_ITEMS_POCKET] = { .xCoord = 16, .yCoord = 10, .width = MENU_POCKET_BUTTON_WIDTH, .height = MENU_POCKET_BUTTON_HEIGHT },
+    [BUTTON_MENU_SCREEN_LAST_USED_ITEM] = { .xCoord = 0, .yCoord = 19, .width = USE_ITEM_BUTTON_WIDTH, .height = USE_ITEM_BUTTON_HEIGHT },
+    [BUTTON_MENU_SCREEN_CANCEL] = { .xCoord = 27, .yCoord = 19, .width = CANCEL_BUTTON_WIDTH, .height = CANCEL_BUTTON_HEIGHT },
+    [BUTTON_POCKET_MENU_SCREEN_ITEM_1] = { .xCoord = 32, .yCoord = 1, .width = POCKET_ITEM_BUTTON_WIDTH, .height = POCKET_ITEM_BUTTON_HEIGHT },
+    [BUTTON_POCKET_MENU_SCREEN_ITEM_2] = { .xCoord = 48, .yCoord = 1, .width = POCKET_ITEM_BUTTON_WIDTH, .height = POCKET_ITEM_BUTTON_HEIGHT },
+    [BUTTON_POCKET_MENU_SCREEN_ITEM_3] = { .xCoord = 32, .yCoord = 7, .width = POCKET_ITEM_BUTTON_WIDTH, .height = POCKET_ITEM_BUTTON_HEIGHT },
+    [BUTTON_POCKET_MENU_SCREEN_ITEM_4] = { .xCoord = 48, .yCoord = 7, .width = POCKET_ITEM_BUTTON_WIDTH, .height = POCKET_ITEM_BUTTON_HEIGHT },
+    [BUTTON_POCKET_MENU_SCREEN_ITEM_5] = { .xCoord = 32, .yCoord = 13, .width = POCKET_ITEM_BUTTON_WIDTH, .height = POCKET_ITEM_BUTTON_HEIGHT },
+    [BUTTON_POCKET_MENU_SCREEN_ITEM_6] = { .xCoord = 48, .yCoord = 13, .width = POCKET_ITEM_BUTTON_WIDTH, .height = POCKET_ITEM_BUTTON_HEIGHT },
+    [BUTTON_POCKET_MENU_SCREEN_PREV_PAGE] = { .xCoord = 32, .yCoord = 19, .width = POCKET_MENU_PREV_PAGE_BUTTON_WIDTH, .height = POCKET_MENU_PREV_PAGE_BUTTON_HEIGHT },
+    [BUTTON_POCKET_MENU_SCREEN_NEXT_PAGE] = { .xCoord = 37, .yCoord = 19, .width = POCKET_MENU_NEXT_PAGE_BUTTON_WIDTH, .height = POCKET_MENU_NEXT_PAGE_BUTTON_HEIGHT },
+    [BUTTON_POCKET_MENU_SCREEN_CANCEL] = { .xCoord = 59, .yCoord = 19, .width = CANCEL_BUTTON_WIDTH, .height = CANCEL_BUTTON_HEIGHT },
+    [BUTTON_USE_ITEM_SCREEN_USE] = { .xCoord = 0, .yCoord = 51, .width = USE_ITEM_BUTTON_WIDTH, .height = USE_ITEM_BUTTON_HEIGHT },
+    [BUTTON_USE_ITEM_SCREEN_CANCEL] = { .xCoord = 27, .yCoord = 51, .width = CANCEL_BUTTON_WIDTH, .height = CANCEL_BUTTON_HEIGHT }
 };
 
-static const u8 Unk_ov13_02229D3C[] = {
-    0x1,
-    0xFF
+static const u8 menuRecoverHPPocketButtonWindows[] = {
+    BATTLE_BAG_MENU_SCREEN_WINDOW_HP_PP_RESTORE,
+    WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 Unk_ov13_02229D44[] = {
-    0x2,
-    0xFF
+static const u8 menuRecoverStatusPocketButtonWindows[] = {
+    BATTLE_BAG_MENU_SCREEN_WINDOW_STATUS_HEALERS,
+    WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 Unk_ov13_02229D34[] = {
-    0x3,
-    0xFF
+static const u8 menuPokeBallsPocketButtonWindows[] = {
+    BATTLE_BAG_MENU_SCREEN_WINDOW_POKE_BALLS,
+    WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 Unk_ov13_02229D40[] = {
-    0x4,
-    0xFF
+static const u8 menuBattleItemsPocketButtonWindows[] = {
+    BATTLE_BAG_MENU_SCREEN_WINDOW_BATTLE_ITEMS,
+    WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 Unk_ov13_02229D64[] = {
-    0x0,
-    0x1,
-    0xFF
+static const u8 menuLastUsedItemButtonWindows[] = {
+    BATTLE_BAG_MENU_SCREEN_WINDOW_LAST_USED_ITEM,
+    WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 Unk_ov13_02229D60[] = {
-    0x2,
-    0x3,
-    0xFF
+static const u8 pocketMenuScreenItem1ButtonWindows[] = {
+    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_1_NAME,
+    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_1_AMOUNT,
+    WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 Unk_ov13_02229D5C[] = {
-    0x4,
-    0x5,
-    0xFF
+static const u8 pocketMenuScreenItem2ButtonWindows[] = {
+    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_2_NAME,
+    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_2_AMOUNT,
+    WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 Unk_ov13_02229D58[] = {
-    0x6,
-    0x7,
-    0xFF
+static const u8 pocketMenuScreenItem3ButtonWindows[] = {
+    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_3_NAME,
+    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_3_AMOUNT,
+    WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 Unk_ov13_02229D68[] = {
-    0x8,
-    0x9,
-    0xFF
+static const u8 pocketMenuScreenItem4ButtonWindows[] = {
+    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_4_NAME,
+    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_4_AMOUNT,
+    WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 Unk_ov13_02229D70[] = {
-    0xA,
-    0xB,
-    0xFF
+static const u8 pocketMenuScreenItem5ButtonWindows[] = {
+    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_5_NAME,
+    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_5_AMOUNT,
+    WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 Unk_ov13_02229D74[] = {
-    0xC,
-    0xD,
-    0xFF
+static const u8 pocketMenuScreenItem6ButtonWindows[] = {
+    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_6_NAME,
+    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_6_AMOUNT,
+    WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 Unk_ov13_02229D4C[] = {
-    0xE,
-    0xF,
-    0xFF
+static const u8 pocketMenuScreenAltItem1ButtonWindows[] = {
+    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_1_NAME,
+    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_1_AMOUNT,
+    WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 Unk_ov13_02229D50[] = {
-    0x10,
-    0x11,
-    0xFF
+static const u8 pocketMenuScreenAltItem2ButtonWindows[] = {
+    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_2_NAME,
+    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_2_AMOUNT,
+    WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 Unk_ov13_02229D6C[] = {
-    0x12,
-    0x13,
-    0xFF
+static const u8 pocketMenuScreenAltItem3ButtonWindows[] = {
+    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_3_NAME,
+    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_3_AMOUNT,
+    WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 Unk_ov13_02229D78[] = {
-    0x14,
-    0x15,
-    0xFF
+static const u8 pocketMenuScreenAltItem4ButtonWindows[] = {
+    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_4_NAME,
+    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_4_AMOUNT,
+    WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 Unk_ov13_02229D54[] = {
-    0x16,
-    0x17,
-    0xFF
+static const u8 pocketMenuScreenAltItem5ButtonWindows[] = {
+    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_5_NAME,
+    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_5_AMOUNT,
+    WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 Unk_ov13_02229D38[] = {
-    0x3,
-    0xFF
+static const u8 pocketMenuScreenAltItem6ButtonWindows[] = {
+    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_6_NAME,
+    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_6_AMOUNT,
+    WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 *const Unk_ov13_02229DC0[] = {
-    Unk_ov13_02229D48,
-    Unk_ov13_02229D3C,
-    Unk_ov13_02229D44,
-    Unk_ov13_02229D34,
-    Unk_ov13_02229D40,
-    NULL,
-    Unk_ov13_02229D64,
-    Unk_ov13_02229D60,
-    Unk_ov13_02229D5C,
-    Unk_ov13_02229D58,
-    Unk_ov13_02229D68,
-    Unk_ov13_02229D70,
-    NULL,
-    NULL,
-    NULL,
-    Unk_ov13_02229D38,
-    NULL,
-    Unk_ov13_02229D74,
-    Unk_ov13_02229D4C,
-    Unk_ov13_02229D50,
-    Unk_ov13_02229D6C,
-    Unk_ov13_02229D78,
-    Unk_ov13_02229D54
+static const u8 useItemScreenUseButtonWindows[] = {
+    BATTLE_BAG_USE_ITEM_SCREEM_WINDOW_ITEM_USE,
+    WINDOWS_ARRAY_TERMINATOR
 };
 
-void ov13_02228128(BattleBag *param0, u16 *param1)
+static const u8 *const scrollableWindows[] = {
+    [BUTTON_MENU_SCREEN_RECOVER_HP_POCKET] = menuRecoverHPPocketButtonWindows,
+    [BUTTON_MENU_SCREEN_RECOVER_STATUS_POCKET] = menuRecoverStatusPocketButtonWindows,
+    [BUTTON_MENU_SCREEN_POKE_BALLS_POCKET] = menuPokeBallsPocketButtonWindows,
+    [BUTTON_MENU_SCREEN_BATTLE_ITEMS_POCKET] = menuBattleItemsPocketButtonWindows,
+    [BUTTON_MENU_SCREEN_LAST_USED_ITEM] = menuLastUsedItemButtonWindows,
+    [BUTTON_MENU_SCREEN_CANCEL] = NULL,
+    [BUTTON_POCKET_MENU_SCREEN_ITEM_1] = pocketMenuScreenItem1ButtonWindows,
+    [BUTTON_POCKET_MENU_SCREEN_ITEM_2] = pocketMenuScreenItem2ButtonWindows,
+    [BUTTON_POCKET_MENU_SCREEN_ITEM_3] = pocketMenuScreenItem3ButtonWindows,
+    [BUTTON_POCKET_MENU_SCREEN_ITEM_4] = pocketMenuScreenItem4ButtonWindows,
+    [BUTTON_POCKET_MENU_SCREEN_ITEM_5] = pocketMenuScreenItem5ButtonWindows,
+    [BUTTON_POCKET_MENU_SCREEN_ITEM_6] = pocketMenuScreenItem6ButtonWindows,
+    [BUTTON_POCKET_MENU_SCREEN_PREV_PAGE] = NULL,
+    [BUTTON_POCKET_MENU_SCREEN_NEXT_PAGE] = NULL,
+    [BUTTON_POCKET_MENU_SCREEN_CANCEL] = NULL,
+    [BUTTON_USE_ITEM_SCREEN_USE] = useItemScreenUseButtonWindows,
+    [BUTTON_USE_ITEM_SCREEN_CANCEL] = NULL,
+    [BUTTON_POCKET_MENU_SCREEN_ALT_ITEM_1] = pocketMenuScreenAltItem1ButtonWindows,
+    [BUTTON_POCKET_MENU_SCREEN_ALT_ITEM_2] = pocketMenuScreenAltItem2ButtonWindows,
+    [BUTTON_POCKET_MENU_SCREEN_ALT_ITEM_3] = pocketMenuScreenAltItem3ButtonWindows,
+    [BUTTON_POCKET_MENU_SCREEN_ALT_ITEM_4] = pocketMenuScreenAltItem4ButtonWindows,
+    [BUTTON_POCKET_MENU_SCREEN_ALT_ITEM_5] = pocketMenuScreenAltItem5ButtonWindows,
+    [BUTTON_POCKET_MENU_SCREEN_ALT_ITEM_6] = pocketMenuScreenAltItem6ButtonWindows
+};
+
+void BattleBagButtons_InitializeButtonData(BattleBag *battleBag, u16 *screenData)
 {
-    ov13_02228460(param0->unk_328[0], param1, 0, 0, 16, 9);
-    ov13_02228460(param0->unk_328[1], param1, 0, (0 + 9), 16, 9);
-    ov13_02228460(param0->unk_328[2], param1, 0, ((0 + 9) + 9), 16, 9);
+    LoadButtonData(battleBag->menuPocketButtonData[BUTTON_STATE_UNPRESSED], screenData, 0, 0, MENU_POCKET_BUTTON_WIDTH, MENU_POCKET_BUTTON_HEIGHT);
+    LoadButtonData(battleBag->menuPocketButtonData[BUTTON_STATE_PRESSING], screenData, 0, MENU_POCKET_BUTTON_HEIGHT, MENU_POCKET_BUTTON_WIDTH, MENU_POCKET_BUTTON_HEIGHT);
+    LoadButtonData(battleBag->menuPocketButtonData[BUTTON_STATE_PRESSED], screenData, 0, MENU_POCKET_BUTTON_HEIGHT * 2, MENU_POCKET_BUTTON_WIDTH, MENU_POCKET_BUTTON_HEIGHT);
 
-    ov13_02228460(param0->unk_688[0], param1, 0, 27, 26, 5);
-    ov13_02228460(param0->unk_688[1], param1, 0, (27 + 5), 26, 5);
-    ov13_02228460(param0->unk_688[2], param1, 0, ((27 + 5) + 5), 26, 5);
-    ov13_02228460(param0->unk_688[3], param1, 0, ((27 + 5) + 5), 26, 5);
+    LoadButtonData(battleBag->useItemButtonData[BUTTON_STATE_UNPRESSED], screenData, 0, USE_ITEM_BUTTON_DATA_Y_OFFSET, USE_ITEM_BUTTON_WIDTH, USE_ITEM_BUTTON_HEIGHT);
+    LoadButtonData(battleBag->useItemButtonData[BUTTON_STATE_PRESSING], screenData, 0, USE_ITEM_BUTTON_DATA_Y_OFFSET + USE_ITEM_BUTTON_HEIGHT, USE_ITEM_BUTTON_WIDTH, USE_ITEM_BUTTON_HEIGHT);
+    LoadButtonData(battleBag->useItemButtonData[BUTTON_STATE_PRESSED], screenData, 0, USE_ITEM_BUTTON_DATA_Y_OFFSET + USE_ITEM_BUTTON_HEIGHT * 2, USE_ITEM_BUTTON_WIDTH, USE_ITEM_BUTTON_HEIGHT);
+    LoadButtonData(battleBag->useItemButtonData[BUTTON_STATE_DISABLED], screenData, 0, USE_ITEM_BUTTON_DATA_Y_OFFSET + USE_ITEM_BUTTON_HEIGHT * 2, USE_ITEM_BUTTON_WIDTH, USE_ITEM_BUTTON_HEIGHT);
 
-    ov13_02228460(param0->unk_A98[0], param1, 0, 57, 5, 5);
-    ov13_02228460(param0->unk_A98[1], param1, (0 + 5), 57, 5, 5);
-    ov13_02228460(param0->unk_A98[2], param1, ((0 + 5) + 5), 57, 5, 5);
+    LoadButtonData(battleBag->cancelButtonData[BUTTON_STATE_UNPRESSED], screenData, 0, CANCEL_BUTTON_DATA_Y_OFFSET, CANCEL_BUTTON_WIDTH, CANCEL_BUTTON_HEIGHT);
+    LoadButtonData(battleBag->cancelButtonData[BUTTON_STATE_PRESSING], screenData, CANCEL_BUTTON_WIDTH, CANCEL_BUTTON_DATA_Y_OFFSET, CANCEL_BUTTON_WIDTH, CANCEL_BUTTON_HEIGHT);
+    LoadButtonData(battleBag->cancelButtonData[BUTTON_STATE_PRESSED], screenData, CANCEL_BUTTON_WIDTH * 2, CANCEL_BUTTON_DATA_Y_OFFSET, CANCEL_BUTTON_WIDTH, CANCEL_BUTTON_HEIGHT);
 
-    ov13_02228460(param0->unk_B2E[0], param1, 16, 0, 16, 6);
-    ov13_02228460(param0->unk_B2E[1], param1, 16, (0 + 6), 16, 6);
-    ov13_02228460(param0->unk_B2E[2], param1, 16, ((0 + 6) + 6), 16, 6);
-    ov13_02228460(param0->unk_B2E[3], param1, 16, (((0 + 6) + 6) + 6), 16, 6);
+    LoadButtonData(battleBag->pocketItemButtonData[BUTTON_STATE_UNPRESSED], screenData, POCKET_ITEM_BUTTON_DATA_X_OFFSET, 0, POCKET_ITEM_BUTTON_WIDTH, POCKET_ITEM_BUTTON_HEIGHT);
+    LoadButtonData(battleBag->pocketItemButtonData[BUTTON_STATE_PRESSING], screenData, POCKET_ITEM_BUTTON_DATA_X_OFFSET, POCKET_ITEM_BUTTON_HEIGHT, POCKET_ITEM_BUTTON_WIDTH, POCKET_ITEM_BUTTON_HEIGHT);
+    LoadButtonData(battleBag->pocketItemButtonData[BUTTON_STATE_PRESSED], screenData, POCKET_ITEM_BUTTON_DATA_X_OFFSET, POCKET_ITEM_BUTTON_HEIGHT * 2, POCKET_ITEM_BUTTON_WIDTH, POCKET_ITEM_BUTTON_HEIGHT);
+    LoadButtonData(battleBag->pocketItemButtonData[BUTTON_STATE_DISABLED], screenData, POCKET_ITEM_BUTTON_DATA_X_OFFSET, POCKET_ITEM_BUTTON_HEIGHT * 3, POCKET_ITEM_BUTTON_WIDTH, POCKET_ITEM_BUTTON_HEIGHT);
 
-    ov13_02228460(param0->unk_E2E[0], param1, 0, 47, 5, 5);
-    ov13_02228460(param0->unk_E2E[1], param1, (0 + 5), 47, 5, 5);
-    ov13_02228460(param0->unk_E2E[2], param1, ((0 + 5) + 5), 47, 5, 5);
-    ov13_02228460(param0->unk_E2E[3], param1, (((0 + 5) + 5) + 5), 47, 5, 5);
+    LoadButtonData(battleBag->pocketPrevPageButtonData[BUTTON_STATE_UNPRESSED], screenData, 0, POCKET_MENU_PREV_PAGE_BUTTON_DATA_Y_OFFSET, POCKET_MENU_PREV_PAGE_BUTTON_WIDTH, POCKET_MENU_PREV_PAGE_BUTTON_HEIGHT);
+    LoadButtonData(battleBag->pocketPrevPageButtonData[BUTTON_STATE_PRESSING], screenData, POCKET_MENU_PREV_PAGE_BUTTON_WIDTH, POCKET_MENU_PREV_PAGE_BUTTON_DATA_Y_OFFSET, POCKET_MENU_PREV_PAGE_BUTTON_WIDTH, POCKET_MENU_PREV_PAGE_BUTTON_HEIGHT);
+    LoadButtonData(battleBag->pocketPrevPageButtonData[BUTTON_STATE_PRESSED], screenData, POCKET_MENU_PREV_PAGE_BUTTON_WIDTH * 2, POCKET_MENU_PREV_PAGE_BUTTON_DATA_Y_OFFSET, POCKET_MENU_PREV_PAGE_BUTTON_WIDTH, POCKET_MENU_PREV_PAGE_BUTTON_HEIGHT);
+    LoadButtonData(battleBag->pocketPrevPageButtonData[BUTTON_STATE_DISABLED], screenData, POCKET_MENU_PREV_PAGE_BUTTON_WIDTH * 3, POCKET_MENU_PREV_PAGE_BUTTON_DATA_Y_OFFSET, POCKET_MENU_PREV_PAGE_BUTTON_WIDTH, POCKET_MENU_PREV_PAGE_BUTTON_HEIGHT);
 
-    ov13_02228460(param0->unk_EF6[0], param1, 0, 52, 5, 5);
-    ov13_02228460(param0->unk_EF6[1], param1, (0 + 5), 52, 5, 5);
-    ov13_02228460(param0->unk_EF6[2], param1, ((0 + 5) + 5), 52, 5, 5);
-    ov13_02228460(param0->unk_EF6[3], param1, (((0 + 5) + 5) + 5), 52, 5, 5);
+    LoadButtonData(battleBag->pocketNextPageButtonData[BUTTON_STATE_UNPRESSED], screenData, 0, POCKET_MENU_NEXT_PAGE_BUTTON_DATA_Y_OFFSET, POCKET_MENU_NEXT_PAGE_BUTTON_WIDTH, POCKET_MENU_NEXT_PAGE_BUTTON_HEIGHT);
+    LoadButtonData(battleBag->pocketNextPageButtonData[BUTTON_STATE_PRESSING], screenData, POCKET_MENU_NEXT_PAGE_BUTTON_WIDTH, POCKET_MENU_NEXT_PAGE_BUTTON_DATA_Y_OFFSET, POCKET_MENU_NEXT_PAGE_BUTTON_WIDTH, POCKET_MENU_NEXT_PAGE_BUTTON_HEIGHT);
+    LoadButtonData(battleBag->pocketNextPageButtonData[BUTTON_STATE_PRESSED], screenData, POCKET_MENU_NEXT_PAGE_BUTTON_WIDTH * 2, POCKET_MENU_NEXT_PAGE_BUTTON_DATA_Y_OFFSET, POCKET_MENU_NEXT_PAGE_BUTTON_WIDTH, POCKET_MENU_NEXT_PAGE_BUTTON_HEIGHT);
+    LoadButtonData(battleBag->pocketNextPageButtonData[BUTTON_STATE_DISABLED], screenData, POCKET_MENU_NEXT_PAGE_BUTTON_WIDTH * 3, POCKET_MENU_NEXT_PAGE_BUTTON_DATA_Y_OFFSET, POCKET_MENU_NEXT_PAGE_BUTTON_WIDTH, POCKET_MENU_NEXT_PAGE_BUTTON_HEIGHT);
 
-    ov13_02228460(param0->unk_FBE[0], param1, 20, 47, 4, 4);
-    ov13_02228460(param0->unk_FBE[1], param1, (20 + 4), 47, 4, 4);
-    ov13_02228460(param0->unk_FBE[2], param1, ((20 + 4) + 4), 47, 4, 4);
+    LoadButtonData(battleBag->menuScreenRecoverHPPocketIconData[BUTTON_STATE_UNPRESSED], screenData, MENU_POCKET_ICON_DATA_X_OFFSET, MENU_POCKET_ICON_DATA_Y_OFFSET, MENU_POCKET_ICON_WIDTH, MENU_POCKET_ICON_HEIGHT);
+    LoadButtonData(battleBag->menuScreenRecoverHPPocketIconData[BUTTON_STATE_PRESSING], screenData, MENU_POCKET_ICON_DATA_X_OFFSET + MENU_POCKET_ICON_WIDTH, MENU_POCKET_ICON_DATA_Y_OFFSET, MENU_POCKET_ICON_WIDTH, MENU_POCKET_ICON_HEIGHT);
+    LoadButtonData(battleBag->menuScreenRecoverHPPocketIconData[BUTTON_STATE_PRESSED], screenData, MENU_POCKET_ICON_DATA_X_OFFSET + MENU_POCKET_ICON_WIDTH * 2, MENU_POCKET_ICON_DATA_Y_OFFSET, MENU_POCKET_ICON_WIDTH, MENU_POCKET_ICON_HEIGHT);
 
-    ov13_02228460(param0->unk_101E[0], param1, 20, (47 + 4), 4, 4);
-    ov13_02228460(param0->unk_101E[1], param1, (20 + 4), (47 + 4), 4, 4);
-    ov13_02228460(param0->unk_101E[2], param1, ((20 + 4) + 4), (47 + 4), 4, 4);
+    LoadButtonData(battleBag->menuScreenRecoverStatusPocketIconData[BUTTON_STATE_UNPRESSED], screenData, MENU_POCKET_ICON_DATA_X_OFFSET, MENU_POCKET_ICON_DATA_Y_OFFSET + MENU_POCKET_ICON_HEIGHT, MENU_POCKET_ICON_WIDTH, MENU_POCKET_ICON_HEIGHT);
+    LoadButtonData(battleBag->menuScreenRecoverStatusPocketIconData[BUTTON_STATE_PRESSING], screenData, MENU_POCKET_ICON_DATA_X_OFFSET + MENU_POCKET_ICON_WIDTH, MENU_POCKET_ICON_DATA_Y_OFFSET + MENU_POCKET_ICON_HEIGHT, MENU_POCKET_ICON_WIDTH, MENU_POCKET_ICON_HEIGHT);
+    LoadButtonData(battleBag->menuScreenRecoverStatusPocketIconData[BUTTON_STATE_PRESSED], screenData, MENU_POCKET_ICON_DATA_X_OFFSET + MENU_POCKET_ICON_WIDTH * 2, MENU_POCKET_ICON_DATA_Y_OFFSET + MENU_POCKET_ICON_HEIGHT, MENU_POCKET_ICON_WIDTH, MENU_POCKET_ICON_HEIGHT);
 
-    ov13_02228460(param0->unk_107E[0], param1, 20, ((47 + 4) + 4), 4, 4);
-    ov13_02228460(param0->unk_107E[1], param1, (20 + 4), ((47 + 4) + 4), 4, 4);
-    ov13_02228460(param0->unk_107E[2], param1, ((20 + 4) + 4), ((47 + 4) + 4), 4, 4);
+    LoadButtonData(battleBag->menuScreenPokeBallsPocketIconData[BUTTON_STATE_UNPRESSED], screenData, MENU_POCKET_ICON_DATA_X_OFFSET, MENU_POCKET_ICON_DATA_Y_OFFSET + MENU_POCKET_ICON_HEIGHT * 2, MENU_POCKET_ICON_WIDTH, MENU_POCKET_ICON_HEIGHT);
+    LoadButtonData(battleBag->menuScreenPokeBallsPocketIconData[BUTTON_STATE_PRESSING], screenData, MENU_POCKET_ICON_DATA_X_OFFSET + MENU_POCKET_ICON_WIDTH, MENU_POCKET_ICON_DATA_Y_OFFSET + MENU_POCKET_ICON_HEIGHT * 2, MENU_POCKET_ICON_WIDTH, MENU_POCKET_ICON_HEIGHT);
+    LoadButtonData(battleBag->menuScreenPokeBallsPocketIconData[BUTTON_STATE_PRESSED], screenData, MENU_POCKET_ICON_DATA_X_OFFSET + MENU_POCKET_ICON_WIDTH * 2, MENU_POCKET_ICON_DATA_Y_OFFSET + MENU_POCKET_ICON_HEIGHT * 2, MENU_POCKET_ICON_WIDTH, MENU_POCKET_ICON_HEIGHT);
 
-    ov13_02228460(param0->unk_10DE[0], param1, 20, (((47 + 4) + 4) + 4), 4, 4);
-    ov13_02228460(param0->unk_10DE[1], param1, (20 + 4), (((47 + 4) + 4) + 4), 4, 4);
-    ov13_02228460(param0->unk_10DE[2], param1, ((20 + 4) + 4), (((47 + 4) + 4) + 4), 4, 4);
+    LoadButtonData(battleBag->menuScreenBattleItemsIconData[BUTTON_STATE_UNPRESSED], screenData, MENU_POCKET_ICON_DATA_X_OFFSET, MENU_POCKET_ICON_DATA_Y_OFFSET + MENU_POCKET_ICON_HEIGHT * 3, MENU_POCKET_ICON_WIDTH, MENU_POCKET_ICON_HEIGHT);
+    LoadButtonData(battleBag->menuScreenBattleItemsIconData[BUTTON_STATE_PRESSING], screenData, MENU_POCKET_ICON_DATA_X_OFFSET + MENU_POCKET_ICON_WIDTH, MENU_POCKET_ICON_DATA_Y_OFFSET + MENU_POCKET_ICON_HEIGHT * 3, MENU_POCKET_ICON_WIDTH, MENU_POCKET_ICON_HEIGHT);
+    LoadButtonData(battleBag->menuScreenBattleItemsIconData[BUTTON_STATE_PRESSED], screenData, MENU_POCKET_ICON_DATA_X_OFFSET + MENU_POCKET_ICON_WIDTH * 2, MENU_POCKET_ICON_DATA_Y_OFFSET + MENU_POCKET_ICON_HEIGHT * 3, MENU_POCKET_ICON_WIDTH, MENU_POCKET_ICON_HEIGHT);
 }
 
-static void ov13_02228460(u16 *param0, u16 *param1, u8 param2, u8 param3, u8 param4, u8 param5)
+static void LoadButtonData(u16 *buttonData, u16 *screenData, u8 xOffset, u8 yOffset, u8 width, u8 height)
 {
-    u16 v0, v1;
+    u16 i, l;
 
-    for (v0 = 0; v0 < param5; v0++) {
-        for (v1 = 0; v1 < param4; v1++) {
-            param0[v0 * param4 + v1] = param1[(param3 + v0) * 32 + param2 + v1];
+    for (i = 0; i < height; i++) {
+        for (l = 0; l < width; l++) {
+            buttonData[i * width + l] = screenData[(yOffset + i) * PALETTE_SIZE_BYTES + xOffset + l];
         }
     }
 }
 
-static u16 *ov13_022284B0(BattleBag *param0, u8 param1, u8 param2)
+static u16 *RetrieveRawButtonData(BattleBag *battleBag, u8 button, u8 buttonState)
 {
-    switch (param1) {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-        return param0->unk_328[param2];
-    case 4:
-        return param0->unk_688[param2];
-    case 5:
-    case 14:
-    case 16:
-        return param0->unk_A98[param2];
-    case 6:
-    case 7:
-    case 8:
-    case 9:
-    case 10:
-    case 11:
-        return param0->unk_B2E[param2];
-    case 12:
-        return param0->unk_E2E[param2];
-    case 13:
-        return param0->unk_EF6[param2];
-    case 15:
-        return param0->unk_688[param2];
+    switch (button) {
+    case BUTTON_MENU_SCREEN_RECOVER_HP_POCKET:
+    case BUTTON_MENU_SCREEN_RECOVER_STATUS_POCKET:
+    case BUTTON_MENU_SCREEN_POKE_BALLS_POCKET:
+    case BUTTON_MENU_SCREEN_BATTLE_ITEMS_POCKET:
+        return battleBag->menuPocketButtonData[buttonState];
+    case BUTTON_MENU_SCREEN_LAST_USED_ITEM:
+        return battleBag->useItemButtonData[buttonState];
+    case BUTTON_MENU_SCREEN_CANCEL:
+    case BUTTON_POCKET_MENU_SCREEN_CANCEL:
+    case BUTTON_USE_ITEM_SCREEN_CANCEL:
+        return battleBag->cancelButtonData[buttonState];
+    case BUTTON_POCKET_MENU_SCREEN_ITEM_1:
+    case BUTTON_POCKET_MENU_SCREEN_ITEM_2:
+    case BUTTON_POCKET_MENU_SCREEN_ITEM_3:
+    case BUTTON_POCKET_MENU_SCREEN_ITEM_4:
+    case BUTTON_POCKET_MENU_SCREEN_ITEM_5:
+    case BUTTON_POCKET_MENU_SCREEN_ITEM_6:
+        return battleBag->pocketItemButtonData[buttonState];
+    case BUTTON_POCKET_MENU_SCREEN_PREV_PAGE:
+        return battleBag->pocketPrevPageButtonData[buttonState];
+    case BUTTON_POCKET_MENU_SCREEN_NEXT_PAGE:
+        return battleBag->pocketNextPageButtonData[buttonState];
+    case BUTTON_USE_ITEM_SCREEN_USE:
+        return battleBag->useItemButtonData[buttonState];
     }
 
     return NULL;
 }
 
-static u16 ov13_02228558(BattleBag *param0, u8 param1, u8 param2, u8 param3)
+static u16 GetButtonColor(BattleBag *battleBag, u8 button, u8 buttonState, u8 screen)
 {
-    if (param2 == 3) {
+    if (buttonState == BUTTON_STATE_DISABLED) {
         return 5;
     }
 
-    switch (param1) {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
+    switch (button) {
+    case BUTTON_MENU_SCREEN_RECOVER_HP_POCKET:
+    case BUTTON_MENU_SCREEN_RECOVER_STATUS_POCKET:
+    case BUTTON_MENU_SCREEN_POKE_BALLS_POCKET:
+    case BUTTON_MENU_SCREEN_BATTLE_ITEMS_POCKET:
         return 0;
-    case 4:
+    case BUTTON_MENU_SCREEN_LAST_USED_ITEM:
         return 3;
-    case 5:
-    case 14:
-    case 16:
-    case 12:
-    case 13:
+    case BUTTON_MENU_SCREEN_CANCEL:
+    case BUTTON_POCKET_MENU_SCREEN_CANCEL:
+    case BUTTON_USE_ITEM_SCREEN_CANCEL:
+    case BUTTON_POCKET_MENU_SCREEN_PREV_PAGE:
+    case BUTTON_POCKET_MENU_SCREEN_NEXT_PAGE:
         return 2;
-    case 6:
-    case 7:
-    case 8:
-    case 9:
-    case 10:
-    case 11:
-        return 8 + param0->currentBattlePocket;
-    case 15:
-        if (param3 == 2) {
-            return 8 + param0->currentBattlePocket;
+    case BUTTON_POCKET_MENU_SCREEN_ITEM_1:
+    case BUTTON_POCKET_MENU_SCREEN_ITEM_2:
+    case BUTTON_POCKET_MENU_SCREEN_ITEM_3:
+    case BUTTON_POCKET_MENU_SCREEN_ITEM_4:
+    case BUTTON_POCKET_MENU_SCREEN_ITEM_5:
+    case BUTTON_POCKET_MENU_SCREEN_ITEM_6:
+        return 8 + battleBag->currentBattlePocket;
+    case BUTTON_USE_ITEM_SCREEN_USE:
+        if (screen == BATTLE_BAG_SCREEN_USE_ITEM) {
+            return 8 + battleBag->currentBattlePocket;
         } else {
             return 1;
         }
@@ -295,107 +358,104 @@ static u16 ov13_02228558(BattleBag *param0, u8 param1, u8 param2, u8 param3)
     return 0;
 }
 
-static void ov13_022285C8(BattleBag *param0, u16 *param1, u8 param2, u8 param3)
+static void AddIconDataToButtonData(BattleBag *battleBag, u16 *buttonData, u8 button, u8 buttonState)
 {
-    u16 *v0;
-    u16 v1, v2;
+    u16 *iconData;
+    u16 i, l;
 
-    if (param2 == 0) {
-        v0 = param0->unk_FBE[param3];
-    } else if (param2 == 1) {
-        v0 = param0->unk_101E[param3];
-    } else if (param2 == 2) {
-        v0 = param0->unk_107E[param3];
-    } else if (param2 == 3) {
-        v0 = param0->unk_10DE[param3];
+    if (button == BUTTON_MENU_SCREEN_RECOVER_HP_POCKET) {
+        iconData = battleBag->menuScreenRecoverHPPocketIconData[buttonState];
+    } else if (button == BUTTON_MENU_SCREEN_RECOVER_STATUS_POCKET) {
+        iconData = battleBag->menuScreenRecoverStatusPocketIconData[buttonState];
+    } else if (button == BUTTON_MENU_SCREEN_POKE_BALLS_POCKET) {
+        iconData = battleBag->menuScreenPokeBallsPocketIconData[buttonState];
+    } else if (button == BUTTON_MENU_SCREEN_BATTLE_ITEMS_POCKET) {
+        iconData = battleBag->menuScreenBattleItemsIconData[buttonState];
     } else {
         return;
     }
 
-    for (v1 = 0; v1 < 4; v1++) {
-        for (v2 = 0; v2 < 4; v2++) {
-            param1[16 * (0 + v1) + 6 + v2] = v0[4 * v1 + v2];
+    for (i = 0; i < MENU_POCKET_ICON_HEIGHT; i++) {
+        for (l = 0; l < MENU_POCKET_ICON_WIDTH; l++) {
+            buttonData[MENU_POCKET_BUTTON_WIDTH * i + ((MENU_POCKET_BUTTON_WIDTH - MENU_POCKET_ICON_WIDTH) / 2) + l] = iconData[MENU_POCKET_ICON_WIDTH * i + l];
         }
     }
 }
 
-static void ov13_0222863C(BattleBag *param0, u16 *param1, u8 param2, u8 param3, u8 param4)
+static void RetrieveButtonData(BattleBag *battleBag, u16 *buttonData, u8 button, u8 buttonState, u8 screen)
 {
-    u16 *v0;
-    u16 v1;
-    u16 v2;
+    u16 i;
+    u16 *rawButtonData = RetrieveRawButtonData(battleBag, button, buttonState);
+    u16 colorData = GetButtonColor(battleBag, button, buttonState, screen) << 12;
 
-    v0 = ov13_022284B0(param0, param2, param3);
-    v1 = ov13_02228558(param0, param2, param3, param4) << 12;
-
-    for (v2 = 0; v2 < Unk_ov13_02229D7C[param2].unk_02 * Unk_ov13_02229D7C[param2].unk_03; v2++) {
-        param1[v2] = v1 | (v0[v2] & 0xfff);
+    for (i = 0; i < buttonDimensions[button].width * buttonDimensions[button].height; i++) {
+        buttonData[i] = colorData | (rawButtonData[i] & 0xfff);
     }
 
-    ov13_022285C8(param0, param1, param2, param3);
+    AddIconDataToButtonData(battleBag, buttonData, button, buttonState);
 }
 
-static void ov13_022286B8(BattleBag *param0, u8 param1, u8 param2, u8 param3)
+static void DrawButton(BattleBag *battleBag, u8 button, u8 buttonState, u8 screen)
 {
-    u16 *v0 = Heap_AllocFromHeap(param0->context->heapID, Unk_ov13_02229D7C[param1].unk_02 * Unk_ov13_02229D7C[param1].unk_03 * 2);
+    u16 *buttonData = Heap_AllocFromHeap(battleBag->context->heapID, buttonDimensions[button].width * buttonDimensions[button].height * sizeof(u16));
 
-    ov13_0222863C(param0, v0, param1, param2, param3);
+    RetrieveButtonData(battleBag, buttonData, button, buttonState, screen);
 
-    Bg_LoadToTilemapRect(param0->background, 6, v0, Unk_ov13_02229D7C[param1].unk_00, Unk_ov13_02229D7C[param1].unk_01, Unk_ov13_02229D7C[param1].unk_02, Unk_ov13_02229D7C[param1].unk_03);
-    Bg_ScheduleTilemapTransfer(param0->background, 6);
-    Heap_FreeToHeap(v0);
+    Bg_LoadToTilemapRect(battleBag->background, BG_LAYER_SUB_2, buttonData, buttonDimensions[button].xCoord, buttonDimensions[button].yCoord, buttonDimensions[button].width, buttonDimensions[button].height);
+    Bg_ScheduleTilemapTransfer(battleBag->background, BG_LAYER_SUB_2);
+    Heap_FreeToHeap(buttonData);
 }
 
-static void ov13_0222872C(BattleBag *param0, u8 param1, u8 param2)
+static void UpdateWindowScroll(BattleBag *battleBag, u8 button, u8 buttonState)
 {
-    const u8 *v0;
-    u16 v1;
-    u8 v2, v3;
+    const u8 *windowsToScroll;
+    u16 i;
+    u8 scrollDirection, scrollDistance;
 
-    if ((param1 >= 6) && (param1 <= 11) && (param0->useAltPocketMenuWindows == FALSE)) {
-        v0 = Unk_ov13_02229DC0[(16 + 1) + param1 - 6];
+    if (button >= BUTTON_POCKET_MENU_SCREEN_ITEM_1 && button <= BUTTON_POCKET_MENU_SCREEN_ITEM_6 && battleBag->useAltPocketMenuWindows == FALSE) {
+        windowsToScroll = scrollableWindows[BATTLE_BAG_POCKET_MENU_SCREEN_ALT_BUTTON_OFFSET + button - BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_OFFSET];
     } else {
-        v0 = Unk_ov13_02229DC0[param1];
+        windowsToScroll = scrollableWindows[button];
     }
 
-    if (v0 == NULL) {
+    if (windowsToScroll == NULL) {
         return;
     }
 
-    switch (param2) {
-    case 0:
-    case 2:
-        v2 = 1;
-        v3 = 2;
+    switch (buttonState) {
+    case BUTTON_STATE_UNPRESSED:
+    case BUTTON_STATE_PRESSED:
+        scrollDirection = SCROLL_DIRECTION_DOWN;
+        scrollDistance = WINDOW_SCROLL_DEFAULT;
         break;
-    case 1:
-        v2 = 0;
-        v3 = 4;
+    case BUTTON_STATE_PRESSING:
+        scrollDirection = SCROLL_DIRECTION_UP;
+        scrollDistance = WINDOW_SCROLL_PRESSING;
         break;
     }
 
-    for (v1 = 0; v1 < 8; v1++) {
-        if (v0[v1] == 0xff) {
+    for (i = 0; i < MAX_SCROLLABLE_WINDOWS; i++) {
+        if (windowsToScroll[i] == WINDOWS_ARRAY_TERMINATOR) {
             break;
         }
 
-        Window_Scroll(&param0->windows[v0[v1]], v2, v3, 0);
-        Window_ScheduleCopyToVRAM(&param0->windows[v0[v1]]);
+        Window_Scroll(&battleBag->windows[windowsToScroll[i]], scrollDirection, scrollDistance, 0);
+        Window_ScheduleCopyToVRAM(&battleBag->windows[windowsToScroll[i]]);
     }
 }
 
-static void ov13_022287A4(BattleBag *param0, u8 param1, u8 param2)
+static void UpdateSpritePositions(BattleBag *battleBag, u8 button, u8 buttonState)
 {
-    ManagedSprite *v0;
-    u8 v1;
+    ManagedSprite *sprite;
+    u8 i;
 
-    if ((param1 >= 6) && (param1 <= 11)) {
-        v0 = param0->pocketItemSprites[param1 - 6];
-    } else if (param1 == 4) {
-        for (v1 = 0; v1 < 6; v1++) {
-            v0 = param0->pocketItemSprites[v1];
+    if (button >= BUTTON_POCKET_MENU_SCREEN_ITEM_1 && button <= BUTTON_POCKET_MENU_SCREEN_ITEM_6) {
+        sprite = battleBag->pocketItemSprites[button - BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_OFFSET];
+    } else if (button == BUTTON_MENU_SCREEN_LAST_USED_ITEM) {
+        for (i = 0; i < BATTLE_POCKET_ITEMS_PER_PAGE; i++) {
+            sprite = battleBag->pocketItemSprites[i];
 
-            if (ManagedSprite_GetDrawFlag(v0) != 0) {
+            if (ManagedSprite_GetDrawFlag(sprite) != FALSE) {
                 break;
             }
         }
@@ -403,99 +463,97 @@ static void ov13_022287A4(BattleBag *param0, u8 param1, u8 param2)
         return;
     }
 
-    switch (param2) {
-    case 0:
-    case 2:
-        ManagedSprite_OffsetPositionXY(v0, 0, 2);
+    switch (buttonState) {
+    case BUTTON_STATE_UNPRESSED:
+    case BUTTON_STATE_PRESSED:
+        ManagedSprite_OffsetPositionXY(sprite, 0, SPRITE_Y_POSITION_DEFAULT);
         break;
-    case 1:
-        ManagedSprite_OffsetPositionXY(v0, 0, -4);
+    case BUTTON_STATE_PRESSING:
+        ManagedSprite_OffsetPositionXY(sprite, 0, SPRITE_Y_POSITION_DPRESSING);
         break;
     }
 }
 
-void ov13_0222880C(BattleBag *param0, u8 param1, u8 param2)
+void BattleBagButtons_PressButton(BattleBag *battleBag, u8 pressedButton, u8 unused)
 {
-    param0->unk_113E = 0;
-    param0->unk_113F = 0;
-    param0->unk_1140 = param1;
-    param0->unk_1141_4 = param2;
-    param0->unk_1141_0 = 1;
+    battleBag->pressedButtonState = BUTTON_STATE_UNPRESSED;
+    battleBag->Unused1 = 0;
+    battleBag->pressedButton = pressedButton;
+    battleBag->Unused2 = unused;
+    battleBag->isAButtonPressed = TRUE;
 }
 
-void ov13_02228848(BattleBag *param0)
+void BattleBagButtons_Tick(BattleBag *battleBag)
 {
-    if (param0->unk_1141_0 == 0) {
+    if (battleBag->isAButtonPressed == FALSE) {
         return;
     }
 
-    switch (param0->unk_113E) {
-    case 0:
-        ov13_022286B8(param0, param0->unk_1140, 1, param0->currentScreen);
-        ov13_0222872C(param0, param0->unk_1140, 1);
-        ov13_022287A4(param0, param0->unk_1140, 1);
-        param0->unk_113F = 0;
-        param0->unk_113E = 1;
+    switch (battleBag->pressedButtonState) {
+    case BUTTON_STATE_UNPRESSED:
+        DrawButton(battleBag, battleBag->pressedButton, BUTTON_STATE_PRESSING, battleBag->currentScreen);
+        UpdateWindowScroll(battleBag, battleBag->pressedButton, BUTTON_STATE_PRESSING);
+        UpdateSpritePositions(battleBag, battleBag->pressedButton, BUTTON_STATE_PRESSING);
+        battleBag->Unused1 = 0;
+        battleBag->pressedButtonState = BUTTON_STATE_PRESSING;
         break;
-    case 1:
-        ov13_022286B8(param0, param0->unk_1140, 2, param0->currentScreen);
-        ov13_0222872C(param0, param0->unk_1140, 2);
-        ov13_022287A4(param0, param0->unk_1140, 2);
-        param0->unk_113F = 0;
-        param0->unk_113E = 2;
+    case BUTTON_STATE_PRESSING:
+        DrawButton(battleBag, battleBag->pressedButton, BUTTON_STATE_PRESSED, battleBag->currentScreen);
+        UpdateWindowScroll(battleBag, battleBag->pressedButton, BUTTON_STATE_PRESSED);
+        UpdateSpritePositions(battleBag, battleBag->pressedButton, BUTTON_STATE_PRESSED);
+        battleBag->Unused1 = 0;
+        battleBag->pressedButtonState = BUTTON_STATE_PRESSED;
         break;
-    case 2:
-        ov13_022286B8(param0, param0->unk_1140, 0, param0->currentScreen);
-        ov13_0222872C(param0, param0->unk_1140, 0);
-        ov13_022287A4(param0, param0->unk_1140, 0);
-        param0->unk_113F = 0;
-        param0->unk_113E = 0;
-        param0->unk_1141_0 = 0;
+    case BUTTON_STATE_PRESSED:
+        DrawButton(battleBag, battleBag->pressedButton, BUTTON_STATE_UNPRESSED, battleBag->currentScreen);
+        UpdateWindowScroll(battleBag, battleBag->pressedButton, BUTTON_STATE_UNPRESSED);
+        UpdateSpritePositions(battleBag, battleBag->pressedButton, BUTTON_STATE_UNPRESSED);
+        battleBag->Unused1 = 0;
+        battleBag->pressedButtonState = BUTTON_STATE_UNPRESSED;
+        battleBag->isAButtonPressed = FALSE;
         break;
     }
 }
 
-void ov13_02228924(BattleBag *param0, u8 param1)
+void BattleBagButtons_InitializeButtons(BattleBag *battleBag, u8 screen)
 {
-    switch (param1) {
-    case 0:
-        ov13_022286B8(param0, 0, 0, param1);
-        ov13_022286B8(param0, 1, 0, param1);
-        ov13_022286B8(param0, 2, 0, param1);
-        ov13_022286B8(param0, 3, 0, param1);
+    switch (screen) {
+    case BATTLE_BAG_SCREEN_MENU:
+        DrawButton(battleBag, BUTTON_MENU_SCREEN_RECOVER_HP_POCKET, BUTTON_STATE_UNPRESSED, screen);
+        DrawButton(battleBag, BUTTON_MENU_SCREEN_RECOVER_STATUS_POCKET, BUTTON_STATE_UNPRESSED, screen);
+        DrawButton(battleBag, BUTTON_MENU_SCREEN_POKE_BALLS_POCKET, BUTTON_STATE_UNPRESSED, screen);
+        DrawButton(battleBag, BUTTON_MENU_SCREEN_BATTLE_ITEMS_POCKET, BUTTON_STATE_UNPRESSED, screen);
 
-        if (param0->context->lastUsedItem == ITEM_NONE) {
-            ov13_022286B8(param0, 4, 3, param1);
+        if (battleBag->context->lastUsedItem == ITEM_NONE) {
+            DrawButton(battleBag, BUTTON_MENU_SCREEN_LAST_USED_ITEM, BUTTON_STATE_DISABLED, screen);
         } else {
-            ov13_022286B8(param0, 4, 0, param1);
+            DrawButton(battleBag, BUTTON_MENU_SCREEN_LAST_USED_ITEM, BUTTON_STATE_UNPRESSED, screen);
         }
 
-        ov13_022286B8(param0, 5, 0, param1);
+        DrawButton(battleBag, BUTTON_MENU_SCREEN_CANCEL, BUTTON_STATE_UNPRESSED, screen);
         break;
-    case 1: {
-        u32 v0;
-
-        for (v0 = 0; v0 < BATTLE_POCKET_ITEMS_PER_PAGE; v0++) {
-            if (BattleBag_GetItem(param0, v0) == ITEM_NONE) {
-                ov13_022286B8(param0, 6 + v0, 3, param1);
+    case BATTLE_BAG_SCREEN_POCKET_MENU: {
+        for (u32 i = 0; i < BATTLE_POCKET_ITEMS_PER_PAGE; i++) {
+            if (BattleBag_GetItem(battleBag, i) == ITEM_NONE) {
+                DrawButton(battleBag, BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_OFFSET + i, BUTTON_STATE_DISABLED, screen);
             } else {
-                ov13_022286B8(param0, 6 + v0, 0, param1);
+                DrawButton(battleBag, BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_OFFSET + i, BUTTON_STATE_UNPRESSED, screen);
             }
         }
     }
 
-        if (param0->numBattlePocketPages[param0->currentBattlePocket] == 0) {
-            ov13_022286B8(param0, 12, 3, param1);
-            ov13_022286B8(param0, 13, 3, param1);
+        if (battleBag->numBattlePocketPages[battleBag->currentBattlePocket] == 0) {
+            DrawButton(battleBag, BUTTON_POCKET_MENU_SCREEN_PREV_PAGE, BUTTON_STATE_DISABLED, screen);
+            DrawButton(battleBag, BUTTON_POCKET_MENU_SCREEN_NEXT_PAGE, BUTTON_STATE_DISABLED, screen);
         } else {
-            ov13_022286B8(param0, 12, 0, param1);
-            ov13_022286B8(param0, 13, 0, param1);
+            DrawButton(battleBag, BUTTON_POCKET_MENU_SCREEN_PREV_PAGE, BUTTON_STATE_UNPRESSED, screen);
+            DrawButton(battleBag, BUTTON_POCKET_MENU_SCREEN_NEXT_PAGE, BUTTON_STATE_UNPRESSED, screen);
         }
 
-        ov13_022286B8(param0, 14, 0, param1);
+        DrawButton(battleBag, BUTTON_POCKET_MENU_SCREEN_CANCEL, BUTTON_STATE_UNPRESSED, screen);
         break;
-    case 2:
-        ov13_022286B8(param0, 15, 0, param1);
-        ov13_022286B8(param0, 16, 0, param1);
+    case BATTLE_BAG_SCREEN_USE_ITEM:
+        DrawButton(battleBag, BUTTON_USE_ITEM_SCREEN_USE, BUTTON_STATE_UNPRESSED, screen);
+        DrawButton(battleBag, BUTTON_USE_ITEM_SCREEN_CANCEL, BUTTON_STATE_UNPRESSED, screen);
     }
 }
