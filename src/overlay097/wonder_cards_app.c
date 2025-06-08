@@ -68,10 +68,10 @@ FS_EXTERN_OVERLAY(overlay97);
 
 #define EMPTY_ORDER_SLOT 0x7fff * 0x7fff
 
-#define BASE_TILE_SYSTEM_WINDOW_BORDER 1
-#define BASE_TILE_FIELD_WINDOW_BORDER  (BASE_TILE_SYSTEM_WINDOW_BORDER + NUM_TILES_SYSTEM_WINDOW_BORDER)
-#define BASE_TILE_MESSAGE_BOX_BORDER   (BASE_TILE_FIELD_WINDOW_BORDER + NUM_TILES_FIELD_WINDOW_BORDER)
-#define BASE_TILE_WINDOWS_START        (BASE_TILE_MESSAGE_BOX_BORDER + NUM_TILES_MESSAGE_BOX_BORDER)
+#define BASE_TILE_SYSTEM_WINDOW_FRAME 1
+#define BASE_TILE_FIELD_WINDOW_FRAME  (BASE_TILE_SYSTEM_WINDOW_FRAME + NUM_TILES_STANDARD_WINDOW_FRAME)
+#define BASE_TILE_MESSAGE_BOX_FRAME   (BASE_TILE_FIELD_WINDOW_FRAME + NUM_TILES_STANDARD_WINDOW_FRAME)
+#define BASE_TILE_WINDOWS_START       (BASE_TILE_MESSAGE_BOX_FRAME + NUM_TILES_MESSAGE_BOX_FRAME)
 
 // Make sure to update the TILESET_SIZE constants if you edit the tilesets
 #define WC_SHARE_SCREEN_TILESET_SIZE   96
@@ -761,7 +761,7 @@ static enum WonderCardsAppState DeleteWcAndOpenNextWcActionsMenu(ApplicationMana
     WonderCardsApp_CloseListMenu(appData);
     PrintTextEntryToWindow(&appData->messageBox, MysteryGiftMenu_Text_DiscardingDontTurnOff);
 
-    appData->waitDial = Window_AddWaitDial(&appData->messageBox, BASE_TILE_MESSAGE_BOX_BORDER);
+    appData->waitDial = Window_AddWaitDial(&appData->messageBox, BASE_TILE_MESSAGE_BOX_FRAME);
 
     if (MysteryGift_CheckWcHasPgtSaved(appData->mysteryGift, appData->selectedWondercardSlot) == TRUE) {
         MysteryGift_FreeWcErasePgt(appData->mysteryGift, appData->selectedWondercardSlot);
@@ -1037,9 +1037,9 @@ static int ShowWindowFromTemplateIndex(WonderCardsAppData *appData, Window *wind
     }
 
     if (window == &appData->messageBox) {
-        Window_DrawMessageBoxWithScrollCursor(window, FALSE, BASE_TILE_MESSAGE_BOX_BORDER, PLTT_10);
+        Window_DrawMessageBoxWithScrollCursor(window, FALSE, BASE_TILE_MESSAGE_BOX_FRAME, PLTT_10);
     } else {
-        Window_DrawStandardFrame(window, FALSE, BASE_TILE_FIELD_WINDOW_BORDER, PLTT_14);
+        Window_DrawStandardFrame(window, FALSE, BASE_TILE_FIELD_WINDOW_FRAME, PLTT_14);
     }
 
     return baseTile + windowTemplate->width * windowTemplate->height;
@@ -1378,7 +1378,7 @@ static void HandleWCShareScreenInput(WonderCardsAppData *appData, int playerCoun
         appData->shouldSendWc = TRUE;
         *state = WC_APP_STATE_DISTRIBUTION_UNDERWAY;
         ShowWindowFromTemplateIndex(appData, &appData->messageBox, MSG_BOX_DISTRIBUTION_UNDER_WAY, 640);
-        appData->waitDial = Window_AddWaitDial(&appData->messageBox, BASE_TILE_MESSAGE_BOX_BORDER);
+        appData->waitDial = Window_AddWaitDial(&appData->messageBox, BASE_TILE_MESSAGE_BOX_FRAME);
     }
 
     if (nextAction == WC_SHARE_ACTION_EXIT) {
@@ -1418,9 +1418,9 @@ static int WonderCardsApp_Main(ApplicationManager *appMan, enum WonderCardsAppSt
         Text_ResetAllPrinters();
         LoadWondercardGraphics(appData, WC_SCREEN_WONDERCARD_FRONT);
         Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(15), HEAP_ID_WONDER_CARDS_APP);
-        LoadStandardWindowGraphics(appData->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_SYSTEM_WINDOW_BORDER, PLTT_13, STANDARD_WINDOW_SYSTEM, HEAP_ID_WONDER_CARDS_APP);
-        LoadStandardWindowGraphics(appData->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_FIELD_WINDOW_BORDER, PLTT_14, STANDARD_WINDOW_FIELD, HEAP_ID_WONDER_CARDS_APP);
-        LoadMessageBoxGraphics(appData->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_MESSAGE_BOX_BORDER, PLTT_10, appData->msgBoxFrame, HEAP_ID_WONDER_CARDS_APP);
+        LoadStandardWindowGraphics(appData->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_SYSTEM_WINDOW_FRAME, PLTT_13, STANDARD_WINDOW_SYSTEM, HEAP_ID_WONDER_CARDS_APP);
+        LoadStandardWindowGraphics(appData->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_FIELD_WINDOW_FRAME, PLTT_14, STANDARD_WINDOW_FIELD, HEAP_ID_WONDER_CARDS_APP);
+        LoadMessageBoxGraphics(appData->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_MESSAGE_BOX_FRAME, PLTT_10, appData->msgBoxFrame, HEAP_ID_WONDER_CARDS_APP);
 
         ShowWindowsForScreen(appData, 1, WC_SCREEN_WONDERCARD_FRONT);
         DoScreenTransitionToState(appData, 1, WC_APP_STATE_SELECT_WONDERCARD, state);
@@ -1494,8 +1494,8 @@ static int WonderCardsApp_Main(ApplicationManager *appMan, enum WonderCardsAppSt
         break;
     case WC_APP_STATE_WAIT_WC_FLIP_TO_FRONT_HALFWAY:
         if (RunFlipAnimFrame(appData)) {
-            Window_DrawMessageBoxWithScrollCursor(&appData->messageBox, FALSE, BASE_TILE_MESSAGE_BOX_BORDER, PLTT_10);
-            Window_DrawStandardFrame(&appData->standardWindow, FALSE, BASE_TILE_FIELD_WINDOW_BORDER, PLTT_14);
+            Window_DrawMessageBoxWithScrollCursor(&appData->messageBox, FALSE, BASE_TILE_MESSAGE_BOX_FRAME, PLTT_10);
+            Window_DrawStandardFrame(&appData->standardWindow, FALSE, BASE_TILE_FIELD_WINDOW_FRAME, PLTT_14);
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
             CancelFlipAnim(appData);
             *state = WC_APP_STATE_WAIT_FOR_MENU_CHOICE;
