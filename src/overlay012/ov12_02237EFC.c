@@ -46,7 +46,7 @@ UnkStruct_ov12_02237F98 *ov12_02237EFC(int heapID, UnkStruct_ov12_02237EFC *para
         return NULL;
     }
 
-    BattleAnimSystem_SetBlendState();
+    BattleAnimSystem_SetDefaultAlphaBlending();
 
     v0->heapID = heapID;
 
