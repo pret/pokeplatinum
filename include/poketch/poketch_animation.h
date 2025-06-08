@@ -21,7 +21,7 @@ typedef struct PoketchAnimation_AnimationData {
 typedef struct PoketchAnimation_SpriteData {
     void *compressedSprite;
     void *compressedAnim;
-    NNSG2dCellDataBank *sprite;
+    NNSG2dCellDataBank *cell;
     NNSG2dAnimBankData *anim;
     u32 heapID;
 } PoketchAnimation_SpriteData;

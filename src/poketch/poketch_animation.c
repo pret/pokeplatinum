@@ -7,7 +7,7 @@
 #include "heap.h"
 
 struct PoketchAnimation_AnimatedSpriteData {
-    const NNSG2dCellDataBank *sprite;
+    const NNSG2dCellDataBank *cell;
     const NNSG2dAnimBankData *anim;
     NNSG2dCellAnimation spriteAnimation;
 
@@ -212,10 +212,10 @@ PoketchAnimation_AnimatedSpriteData *PoketchAnimation_SetupNewAnimatedSprite(Pok
 
         PoketchAnimation_SortAnimIntoList(animMan, animatedSprite);
 
-        animatedSprite->sprite = spriteData->sprite;
+        animatedSprite->cell = spriteData->cell;
         animatedSprite->anim = spriteData->anim;
 
-        NNS_G2dInitCellAnimation(&(animatedSprite->spriteAnimation), NNS_G2dGetAnimSequenceByIdx(animatedSprite->anim, animData->animIdx), animatedSprite->sprite);
+        NNS_G2dInitCellAnimation(&(animatedSprite->spriteAnimation), NNS_G2dGetAnimSequenceByIdx(animatedSprite->anim, animData->animIdx), animatedSprite->cell);
 
         animatedSprite->position = animData->translation;
         animatedSprite->cParam = 0;
@@ -240,7 +240,7 @@ void PoketchAnimation_RemoveAnimatedSprite(PoketchAnimation_AnimationManager *an
 
 void PoketchAnimation_UpdateAnimationIdx(PoketchAnimation_AnimatedSpriteData *animatedSprite, u32 animIdx)
 {
-    NNS_G2dInitCellAnimation(&(animatedSprite->spriteAnimation), NNS_G2dGetAnimSequenceByIdx(animatedSprite->anim, animIdx), animatedSprite->sprite);
+    NNS_G2dInitCellAnimation(&(animatedSprite->spriteAnimation), NNS_G2dGetAnimSequenceByIdx(animatedSprite->anim, animIdx), animatedSprite->cell);
 }
 
 BOOL PoketchAnimation_AnimationInactive(PoketchAnimation_AnimatedSpriteData *animatedSprite)
@@ -306,7 +306,7 @@ BOOL PoketchAnimation_LoadSpriteFromNARC(PoketchAnimation_SpriteData *spriteData
     spriteData->compressedAnim = LoadCompressedMemberFromNARC(narcId, animId, heapId);
 
     if ((spriteData->compressedSprite != NULL) && (spriteData->compressedAnim != NULL)) {
-        if (!NNS_G2dGetUnpackedCellBank(spriteData->compressedSprite, &(spriteData->sprite))) {
+        if (!NNS_G2dGetUnpackedCellBank(spriteData->compressedSprite, &(spriteData->cell))) {
             return FALSE;
         }
 
