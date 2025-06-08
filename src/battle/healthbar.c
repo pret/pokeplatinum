@@ -697,8 +697,8 @@ void ov16_02267258(Healthbar *param0)
     SpriteSystem *v0;
     SpriteManager *v1;
     const SpriteTemplate *v2 = Healthbar_SpriteTemplate(param0->type);
-    v0 = ov16_0223E010(param0->battleSys);
-    v1 = ov16_0223E018(param0->battleSys);
+    v0 = BattleSystem_GetSpriteSystem(param0->battleSys);
+    v1 = BattleSystem_GetSpriteManager(param0->battleSys);
 
     SpriteManager_UnloadCharObjById(v1, v2->resources[0]);
     SpriteManager_UnloadCellObjById(v1, v2->resources[2]);
@@ -715,8 +715,8 @@ static void ov16_0226728C(Healthbar *param0)
         return;
     }
 
-    v0 = ov16_0223E010(param0->battleSys);
-    v1 = ov16_0223E018(param0->battleSys);
+    v0 = BattleSystem_GetSpriteSystem(param0->battleSys);
+    v1 = BattleSystem_GetSpriteManager(param0->battleSys);
 
     SpriteManager_UnloadCharObjById(v1, v2->resources[0]);
     SpriteManager_UnloadCellObjById(v1, v2->resources[2]);
@@ -730,8 +730,8 @@ void ov16_022672C4(Healthbar *param0)
     SpriteManager *v2;
     PaletteData *v3;
     NARC *v4 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
-    v1 = ov16_0223E010(param0->battleSys);
-    v2 = ov16_0223E018(param0->battleSys);
+    v1 = BattleSystem_GetSpriteSystem(param0->battleSys);
+    v2 = BattleSystem_GetSpriteManager(param0->battleSys);
     v3 = BattleSystem_PaletteSys(param0->battleSys);
     v0 = Healthbar_SpriteTemplate(param0->type);
 
@@ -1756,7 +1756,7 @@ static void ov16_02268380(SysTask *param0, void *param1)
     int v2;
     PaletteData *v3;
 
-    v1 = ov16_0223E018(v0->unk_00->battleSys);
+    v1 = BattleSystem_GetSpriteManager(v0->unk_00->battleSys);
     v3 = BattleSystem_PaletteSys(v0->unk_00->battleSys);
 
     switch (v0->unk_08) {

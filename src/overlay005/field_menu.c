@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "constants/narc.h"
-#include "constants/palette.h"
 #include "constants/scrcmd.h"
 #include "generated/map_headers.h"
 
