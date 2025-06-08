@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV13_02228128_H
-#define POKEPLATINUM_OV13_02228128_H
+#ifndef POKEPLATINUM_BATTLE_BAG_BUTTONS_H
+#define POKEPLATINUM_BATTLE_BAG_BUTTONS_H
 
 #include "overlay013/battle_bag.h"
 
@@ -11,4 +11,4 @@ void BattleBagButtons_PressButton(BattleBag *battleBag, u8 pressedButton, u8 unu
 void BattleBagButtons_Tick(BattleBag *battleBag);
 void BattleBagButtons_InitializeButtons(BattleBag *battleBag, u8 screen);
 
-#endif // POKEPLATINUM_OV13_02228128_H
+#endif // POKEPLATINUM_BATTLE_BAG_BUTTONS_H
