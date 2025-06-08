@@ -25,11 +25,15 @@
 #define POKETCH_DISPLAY_TILES_NARC_IDX          14
 #define POKETCH_DISPLAY_TILEMAP_NARC_IDX        15
 
-#define NUM_PALETTES                        16
+/*
+The poketch palette file contains 16 pallets of 16 colors each.
+These are grouped into 8 themes, with each theme containing 2 palettes.
+*/
+#define NUM_PALETTES                   16
 #define NUM_PALETTES_PER_POKETCH_THEME 2
 #define NUM_POKETCH_THEMES             (NUM_PALETTES / NUM_PALETTES_PER_POKETCH_THEME)
 #define SLOTS_PER_POKETCH_THEME        (SLOTS_PER_PALETTE * NUM_PALETTES_PER_POKETCH_THEME)
-#define BACKLIGHT_PALETTE_SLOT_OFFSET       (SLOTS_PER_PALETTE)
+#define BACKLIGHT_PALETTE_SLOT_OFFSET  (SLOTS_PER_PALETTE)
 
 #define NUM_TASK_SLOTS 8
 
