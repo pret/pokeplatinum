@@ -5,9 +5,7 @@
 #include "constants/heap.h"
 #include "generated/pokemon_types.h"
 
-#include "overlay043/ov43_02256544.h"
-#include "overlay043/struct_ov43_02256544_1.h"
-#include "overlay043/struct_ov43_02256544_decl.h"
+#include "overlay043/poketch_move_tester_graphics.h"
 #include "poketch/poketch_button.h"
 #include "poketch/poketch_system.h"
 
@@ -37,6 +35,12 @@ enum MoveTesterMatchup {
     MOVE_TESTER_IMMUNE = -10,
 };
 
+enum MoveTesterTasks {
+    TASK_LOAD_APP = 0,
+    TASK_UPDATE_LOOP,
+    TASK_SHUTDOWN,
+};
+
 static void NitroStaticInit(void);
 
 static BOOL PoketchMoveTester_New(void **appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 appID);
@@ -46,10 +50,10 @@ static void PoketchMoveTester_Free(PoketchMoveTester *appData);
 static void Task_MoveTesterMain(SysTask *task, void *appData);
 static void PoketchMoveTester_ButtonChanged(u32 buttonID, u32 buttonState, u32 touchState, void *appData);
 static void PoketchMoveTester_Shutdown(void *appData);
-static void ov43_02256318(PoketchMoveTester *appData, u32 param1);
-static BOOL ov43_0225632C(PoketchMoveTester *appData);
-static BOOL ov43_0225636C(PoketchMoveTester *appData);
-static BOOL ov43_02256478(PoketchMoveTester *appData);
+static void PoketchMoveTester_SetTaskState(PoketchMoveTester *appData, u32 state);
+static BOOL Task_LoadApp(PoketchMoveTester *appData);
+static BOOL Task_UpdateLoop(PoketchMoveTester *appData);
+static BOOL Task_Shutdown(PoketchMoveTester *appData);
 static u32 PoketchMoveTester_GetExclamation(u32 attackType, u32 defenderType1, u32 defenderType2);
 static u32 PoketchMoveTester_GetTypeAfterShift(s32 type, s32 shift, BOOL isType2);
 
@@ -93,10 +97,10 @@ static BOOL PoketchMoveTester_Init(PoketchMoveTester *appData, PoketchSystem *po
         PoketchMoveTester_InitData(&(appData->moveTesterData));
     }
 
-    if (ov43_02256544(&(appData->graphics), &(appData->moveTesterData), bgConfig)) {
-        appData->sysTaskState = 0;
+    if (PoketchMoveTesterGraphics_New(&(appData->graphics), &(appData->moveTesterData), bgConfig)) {
+        appData->sysTaskState = TASK_LOAD_APP;
         appData->taskFuncState = 0;
-        appData->shouldExit = 0;
+        appData->shouldExit = FALSE;
         appData->buttonManager = PoketchButtonManager_New(sHitTableMoveTester, NELEMS(sHitTableMoveTester), PoketchMoveTester_ButtonChanged, appData, HEAP_ID_POKETCH_APP);
         appData->buttonState = 0;
         appData->poketchSys = poketchSys;
@@ -112,7 +116,7 @@ static void PoketchMoveTester_InitData(MoveTesterData *moveTesterData)
     moveTesterData->lastButtonPressed = TYPE_NORMAL;
     moveTesterData->attackType = TYPE_NORMAL;
     moveTesterData->defenderType1 = TYPE_NORMAL;
-    moveTesterData->defenderType2 = 18;
+    moveTesterData->defenderType2 = MOVE_TESTER_NONE_SELECTED;
     moveTesterData->exclamCount = PoketchMoveTester_GetExclamation(moveTesterData->attackType, moveTesterData->defenderType1, moveTesterData->defenderType2);
 }
 
@@ -120,16 +124,16 @@ static void PoketchMoveTester_Free(PoketchMoveTester *appData)
 {
     PoketchMemory_Write32(appData->appID, &(appData->moveTesterData), sizeof(appData->moveTesterData));
     PoketchButtonManager_Free(appData->buttonManager);
-    ov43_02256680(appData->graphics);
+    PoketchMoveTesterGraphics_Free(appData->graphics);
     Heap_FreeToHeap(appData);
 }
 
 static void Task_MoveTesterMain(SysTask *task, void *appData)
 {
     static BOOL (*const stateFuncs[])(PoketchMoveTester *) = {
-        ov43_0225632C,
-        ov43_0225636C,
-        ov43_02256478
+        Task_LoadApp,
+        Task_UpdateLoop,
+        Task_Shutdown
     };
 
     PoketchMoveTester *moveTester = (PoketchMoveTester *)appData;
@@ -159,40 +163,40 @@ static void PoketchMoveTester_Shutdown(void *appData)
     ((PoketchMoveTester *)appData)->shouldExit = TRUE;
 }
 
-static void ov43_02256318(PoketchMoveTester *appData, u32 param1)
+static void PoketchMoveTester_SetTaskState(PoketchMoveTester *appData, u32 state)
 {
     if (appData->shouldExit == FALSE) {
-        appData->sysTaskState = param1;
+        appData->sysTaskState = state;
     } else {
-        appData->sysTaskState = 2;
+        appData->sysTaskState = TASK_SHUTDOWN;
     }
 
     appData->taskFuncState = 0;
 }
 
-static BOOL ov43_0225632C(PoketchMoveTester *appData)
+static BOOL Task_LoadApp(PoketchMoveTester *appData)
 {
     switch (appData->taskFuncState) {
     case 0:
-        ov43_022566B0(appData->graphics, 0);
+        PoketchMoveTesterGraphics_StartTask(appData->graphics, TASK_DRAW_APP_SCREEN);
         appData->taskFuncState++;
         break;
     case 1:
-        if (ov43_022566D4(appData->graphics, 0)) {
+        if (PoketchMoveTesterGraphics_CheckTaskActive(appData->graphics, TASK_DRAW_APP_SCREEN)) {
             PoketchSystem_NotifyAppLoaded(appData->poketchSys);
-            ov43_02256318(appData, 1);
+            PoketchMoveTester_SetTaskState(appData, TASK_UPDATE_LOOP);
         }
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov43_0225636C(PoketchMoveTester *appData)
+static BOOL Task_UpdateLoop(PoketchMoveTester *appData)
 {
     if (appData->shouldExit) {
-        if (ov43_022566E0(appData->graphics)) {
-            ov43_02256318(appData, 2);
+        if (PoketchMoveTesterGraphics_NoActiveTasks(appData->graphics)) {
+            PoketchMoveTester_SetTaskState(appData, TASK_SHUTDOWN);
         }
 
         return FALSE;
@@ -201,13 +205,13 @@ static BOOL ov43_0225636C(PoketchMoveTester *appData)
     switch (appData->taskFuncState) {
     case 0:
         if (appData->buttonState == 1) {
-            ov43_022566B0(appData->graphics, 2);
+            PoketchMoveTesterGraphics_StartTask(appData->graphics, TASK_BUTTON_PRESSED);
             appData->taskFuncState++;
         }
         break;
     case 1:
         if (appData->buttonState == 2) {
-            ov43_022566B0(appData->graphics, 3);
+            PoketchMoveTesterGraphics_StartTask(appData->graphics, TASK_BUTTON_RELEASED);
             appData->taskFuncState = 0;
             break;
         }
@@ -235,14 +239,14 @@ static BOOL ov43_0225636C(PoketchMoveTester *appData)
             }
 
             appData->moveTesterData.exclamCount = PoketchMoveTester_GetExclamation(appData->moveTesterData.attackType, appData->moveTesterData.defenderType1, appData->moveTesterData.defenderType2);
-            ov43_022566B0(appData->graphics, 3);
-            ov43_022566B0(appData->graphics, 4);
+            PoketchMoveTesterGraphics_StartTask(appData->graphics, TASK_BUTTON_RELEASED);
+            PoketchMoveTesterGraphics_StartTask(appData->graphics, TASK_UPDATE_GRAPHICS);
             appData->taskFuncState++;
             break;
         }
         break;
     case 2:
-        if (ov43_022566E0(appData->graphics)) {
+        if (PoketchMoveTesterGraphics_NoActiveTasks(appData->graphics)) {
             appData->taskFuncState = 0;
         }
         break;
@@ -251,26 +255,26 @@ static BOOL ov43_0225636C(PoketchMoveTester *appData)
     return FALSE;
 }
 
-static BOOL ov43_02256478(PoketchMoveTester *appData)
+static BOOL Task_Shutdown(PoketchMoveTester *appData)
 {
     switch (appData->taskFuncState) {
     case 0:
-        ov43_022566B0(appData->graphics, 1);
+        PoketchMoveTesterGraphics_StartTask(appData->graphics, TASK_FREE_WINDOWS_AND_BG);
         appData->taskFuncState++;
         break;
     case 1:
-        if (ov43_022566E0(appData->graphics)) {
-            return 1;
+        if (PoketchMoveTesterGraphics_NoActiveTasks(appData->graphics)) {
+            return TRUE;
         }
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static u32 PoketchMoveTester_GetExclamation(u32 attackType, u32 defenderType1, u32 defenderType2)
 {
-    static const s8 sMoveTesterTypeChart[][18] = {
+    static const s8 sMoveTesterTypeChart[][MOVE_TESTER_NONE_SELECTED] = {
         { MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_IMMUNE, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL },
         { MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_IMMUNE, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE },
         { MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL },
@@ -291,14 +295,14 @@ static u32 PoketchMoveTester_GetExclamation(u32 attackType, u32 defenderType1, u
         { MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NOT_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_VERY_EFFECTIVE, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NEUTRAL, MOVE_TESTER_NOT_VERY_EFFECTIVE }
     };
 
-    if ((sMoveTesterTypeChart[attackType][defenderType1] == MOVE_TESTER_IMMUNE) || ((defenderType2 != 18) && (sMoveTesterTypeChart[attackType][defenderType2] == MOVE_TESTER_IMMUNE))) {
+    if ((sMoveTesterTypeChart[attackType][defenderType1] == MOVE_TESTER_IMMUNE) || ((defenderType2 != MOVE_TESTER_NONE_SELECTED) && (sMoveTesterTypeChart[attackType][defenderType2] == MOVE_TESTER_IMMUNE))) {
         return 0;
     } else {
         u32 exclamationCount = 3;
 
         exclamationCount += sMoveTesterTypeChart[attackType][defenderType1];
 
-        if ((defenderType2 != 18) && (defenderType2 != defenderType1)) {
+        if ((defenderType2 != MOVE_TESTER_NONE_SELECTED) && (defenderType2 != defenderType1)) {
             exclamationCount += sMoveTesterTypeChart[attackType][defenderType2];
         }
 
@@ -344,7 +348,7 @@ static u32 PoketchMoveTester_GetTypeAfterShift(s32 currentType, s32 shift, BOOL 
 
     if (index >= (int)(NELEMS(sMoveTesterTypeOrder))) {
         if (isType2) {
-            return 18;
+            return MOVE_TESTER_NONE_SELECTED;
         }
 
         index = 0;
@@ -352,7 +356,7 @@ static u32 PoketchMoveTester_GetTypeAfterShift(s32 currentType, s32 shift, BOOL 
 
     if (index < 0) {
         if (isType2) {
-            return 18;
+            return MOVE_TESTER_NONE_SELECTED;
         }
 
         index = NELEMS(sMoveTesterTypeOrder) - 1;
