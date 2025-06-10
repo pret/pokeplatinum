@@ -1,5 +1,6 @@
 #include "applications/poketch/move_tester/graphics.h"
 
+#include "nitro/fx/fx.h"
 #include <nitro.h>
 #include <string.h>
 
@@ -23,6 +24,66 @@
 #include "strbuf.h"
 #include "sys_task_manager.h"
 #include "text.h"
+
+static const PoketchAnimation_AnimationData sPoketchMoveTester_AnimDataButtons[6] = {
+    {
+        .translation = { FX32_CONST(28), FX32_CONST(128) },
+        .animIdx = 0,
+        .flip = 0,
+        .oamPriority = 2,
+        .priority = 0,
+        .hasAffineTransform = 0,
+    },
+    {
+        .translation = { FX32_CONST(116), FX32_CONST(128) },
+        .animIdx = 2,
+        .flip = 0,
+        .oamPriority = 2,
+        .priority = 0,
+        .hasAffineTransform = 0,
+    },
+    {
+        .translation = { FX32_CONST(108), FX32_CONST(40) },
+        .animIdx = 0,
+        .flip = 0,
+        .oamPriority = 2,
+        .priority = 0,
+        .hasAffineTransform = 0,
+    },
+    {
+        .translation = { FX32_CONST(196), FX32_CONST(40) },
+        .animIdx = 2,
+        .flip = 0,
+        .oamPriority = 2,
+        .priority = 0,
+        .hasAffineTransform = 0,
+    },
+    {
+        .translation = { FX32_CONST(108), FX32_CONST(72) },
+        .animIdx = 0,
+        .flip = 0,
+        .oamPriority = 2,
+        .priority = 0,
+        .hasAffineTransform = 0,
+    },
+    {
+        .translation = { FX32_CONST(196), FX32_CONST(72) },
+        .animIdx = 2,
+        .flip = 0,
+        .oamPriority = 2,
+        .priority = 0,
+        .hasAffineTransform = 0,
+    }
+};
+
+static const PoketchAnimation_AnimationData sPoketchMoveTester_AnimDataExclamation = {
+    .translation = { FX32_CONST(44), FX32_CONST(48) },
+    .animIdx = 5,
+    .flip = 0,
+    .oamPriority = 2,
+    .priority = 0,
+    .hasAffineTransform = 0,
+};
 
 static void SetupSprites(PoketchMoveTesterGraphics *graphics);
 static void UnloadSprites(PoketchMoveTesterGraphics *graphics);
@@ -62,76 +123,18 @@ BOOL PoketchMoveTesterGraphics_New(PoketchMoveTesterGraphics **graphics, const M
 
 static void SetupSprites(PoketchMoveTesterGraphics *graphics)
 {
-    static const PoketchAnimation_AnimationData sPoketchMoveTester_AnimDataMain[] = {
-        {
-            .translation = { (28 << FX32_SHIFT), (128 << FX32_SHIFT) },
-            .animIdx = 0,
-            .flip = 0,
-            .oamPriority = 2,
-            .priority = 0,
-            .hasAffineTransform = 0,
-        },
-        {
-            .translation = { (116 << FX32_SHIFT), (128 << FX32_SHIFT) },
-            .animIdx = 2,
-            .flip = 0,
-            .oamPriority = 2,
-            .priority = 0,
-            .hasAffineTransform = 0,
-        },
-        {
-            .translation = { (108 << FX32_SHIFT), (40 << FX32_SHIFT) },
-            .animIdx = 0,
-            .flip = 0,
-            .oamPriority = 2,
-            .priority = 0,
-            .hasAffineTransform = 0,
-        },
-        {
-            .translation = { (196 << FX32_SHIFT), (40 << FX32_SHIFT) },
-            .animIdx = 2,
-            .flip = 0,
-            .oamPriority = 2,
-            .priority = 0,
-            .hasAffineTransform = 0,
-        },
-        {
-            .translation = { (108 << FX32_SHIFT), (72 << FX32_SHIFT) },
-            .animIdx = 0,
-            .flip = 0,
-            .oamPriority = 2,
-            .priority = 0,
-            .hasAffineTransform = 0,
-        },
-        {
-            .translation = { (196 << FX32_SHIFT), (72 << FX32_SHIFT) },
-            .animIdx = 2,
-            .flip = 0,
-            .oamPriority = 2,
-            .priority = 0,
-            .hasAffineTransform = 0,
-        }
-    };
-    static const PoketchAnimation_AnimationData sPoketchMoveTester_AnimDataExclamation = {
-        .translation = { (44 << FX32_SHIFT), (48 << FX32_SHIFT) },
-        .animIdx = 5,
-        .flip = 0,
-        .oamPriority = 2,
-        .priority = 0,
-        .hasAffineTransform = 0,
-    };
     int index;
 
     Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 64, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
     PoketchAnimation_LoadSpriteFromNARC(&graphics->spriteData, NARC_INDEX_GRAPHIC__POKETCH, 62, 63, HEAP_ID_POKETCH_APP);
 
     for (index = 0; index < 6; index++) {
-        graphics->animSpriteData[index] = PoketchAnimation_SetupNewAnimatedSprite(graphics->animMan, &sPoketchMoveTester_AnimDataMain[index], &graphics->spriteData);
+        graphics->animSpriteData[index] = PoketchAnimation_SetupNewAnimatedSprite(graphics->animMan, &sPoketchMoveTester_AnimDataButtons[index], &graphics->spriteData);
     }
 
     for (index = 0; index < 5; index++) {
         graphics->exclamSprites[index] = PoketchAnimation_SetupNewAnimatedSprite(graphics->animMan, &sPoketchMoveTester_AnimDataExclamation, &graphics->spriteData);
-        PoketchAnimation_SetSpritePosition(graphics->exclamSprites[index], ((44 + 8 * index) << FX32_SHIFT), 48 << FX32_SHIFT);
+        PoketchAnimation_SetSpritePosition(graphics->exclamSprites[index], ((44 + 8 * index) << FX32_SHIFT), FX32_CONST(48));
     }
 }
 

@@ -45,7 +45,7 @@ enum MoveTesterMatchup {
 };
 
 // clang-format off
-static const s8 sMoveTesterTypeChart[][NUM_POKEMON_TYPES] = 
+static const s8 sMoveTesterTypeChart[NUM_POKEMON_TYPES][NUM_POKEMON_TYPES] = 
 { //                                                                                Defending Type
                     //  Normal Fighting Flying  Poison  Ground  Rock    Bug    Ghost    Steel   Mystery Fire    Water   Grass  Electric Psychic Ice     Dragon  Dark
   // Attacking Type  
