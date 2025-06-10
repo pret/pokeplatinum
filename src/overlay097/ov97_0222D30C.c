@@ -3,16 +3,22 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/narc.h"
+#include "constants/savedata/savedata.h"
+#include "constants/screen.h"
+#include "generated/string_padding_mode.h"
+#include "generated/text_banks.h"
+
 #include "overlay077/const_ov77_021D742C.h"
 #include "overlay097/ov97_0222D04C.h"
 #include "overlay097/ov97_02232054.h"
 #include "overlay097/ov97_02237520.h"
 #include "overlay097/ov97_02237694.h"
 #include "overlay097/ov97_02238534.h"
-#include "overlay097/struct_ov97_0222D04C.h"
+#include "overlay097/ov97_02238D74.h"
 #include "overlay097/struct_ov97_02237808.h"
 #include "overlay097/struct_ov97_02237AEC.h"
-#include "overlay097/struct_ov97_0223829C.h"
+#include "overlay097/wonder_cards_app.h"
 #include "savedata/save_table.h"
 
 #include "bg_window.h"
@@ -54,2400 +60,2427 @@
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 
+#include "res/text/bank/mystery_gift_menu.h"
+#include "res/text/bank/unk_0695.h"
+
 FS_EXTERN_OVERLAY(overlay77);
 FS_EXTERN_OVERLAY(overlay97);
 
-typedef struct {
-    int unk_00;
-    u32 unk_04;
-} UnkStruct_ov97_0223E5B8;
+#define EVENT_LOCATION_MOVIES_START     3
+#define EVENT_LOCATION_MOVIES_END       14
+#define EVENT_LOCATION_POKEMON_EVENT_09 64
+#define EVENT_LOCATION_POKEMON_EVENT_16 71
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    BOOL unk_08;
-    Sprite *unk_0C;
-    VecFx32 unk_10;
-    fx32 unk_1C;
-    fx32 unk_20;
-    int unk_24;
-    int unk_28;
-    int unk_2C;
-    int unk_30;
-    int unk_34;
-    int unk_38;
-    int unk_3C;
-    int unk_40;
-    int unk_44;
-    SysTask *unk_48;
-} UnkStruct_ov97_0222EEB8;
+#define MG_BACKGROUND_TILESET_SIZE   (10 * 16)
+#define MG_BACKGROUND_TILEMAP_WIDTH  (HW_LCD_WIDTH / 8)
+#define MG_BACKGROUND_TILEMAP_HEIGHT (HW_LCD_HEIGHT / 8)
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    s8 unk_08;
+#define NUM_MYSTERY_GIFT_PARTICLES 80
+
+#define HIDE_DOWNLOADING_ARROW -1
+
+#define PARTICLES_MAN_BLEND_BRIGHTNESS_BLACK -16
+#define PARTICLES_MAN_BLEND_BRIGHTNESS_WHITE +16
+
+#define FOUND_GIFT_CARTRIDGE 19
+#define FOUND_GIFT_WIFI      27
+
+// Make sure to update the NUM_TILES constants below if you change the size of these windows.
+#define MAIN_MG_MENU_MSG_BOX_WIDTH    27
+#define MAIN_MG_MENU_MSG_BOX_HEIGHT   4
+#define MAIN_MG_MENU_WIDTH            16
+#define MAIN_MG_MENU_MAX_HEIGHT       (2 * NELEMS(sMysteryGiftMenuOptions))
+#define RECEPTION_METHODS_MENU_WIDTH  16
+#define RECEPTION_METHODS_MENU_HEIGHT (2 * NELEMS(sMysteryGiftReceiveOptions))
+#define YES_NO_MENU_WIDTH             6
+#define YES_NO_MENU_HEIGHT            4
+
+// Integer literals in these macros are used where the actual dimensions of the window above don't match the number of tiles allocated to them
+#define NUM_TILES_MAIN_MG_MENU_MSG_BOX   (26 * 6)
+#define NUM_TILES_MAIN_MG_MENU           (16 * MAIN_MG_MENU_MAX_HEIGHT)
+#define NUM_TILES_RECEPTION_METHODS_MENU (17 * RECEPTION_METHODS_MENU_HEIGHT)
+#define NUM_TILES_YES_NO_MENU            (YES_NO_MENU_WIDTH * YES_NO_MENU_HEIGHT)
+
+#define BASE_TILE_MESSAGE_BOX_FRAME      1
+#define BASE_TILE_STANDARD_WINDOW_FRAME  (BASE_TILE_MESSAGE_BOX_FRAME + NUM_TILES_MESSAGE_BOX_FRAME)
+#define BASE_TILE_MAIN_APP_MENU_MSG_BOX  (BASE_TILE_STANDARD_WINDOW_FRAME + NUM_TILES_STANDARD_WINDOW_FRAME)
+#define BASE_TILE_MAIN_APP_MENU          (BASE_TILE_MAIN_APP_MENU_MSG_BOX + NUM_TILES_MAIN_MG_MENU_MSG_BOX)
+#define BASE_TILE_RECEPTION_METHODS_MENU (BASE_TILE_MAIN_APP_MENU + NUM_TILES_MAIN_MG_MENU)
+#define BASE_TILE_YES_NO_MENU            (BASE_TILE_RECEPTION_METHODS_MENU + NUM_TILES_RECEPTION_METHODS_MENU)
+#define BASE_TILE_WONDERCARD_TITLE       (BASE_TILE_YES_NO_MENU + NUM_TILES_YES_NO_MENU)
+
+enum MysteryGiftAnimBrightnessFadeDirection {
+    FADE_TOWARDS_NORMAL,
+    FADE_TOWARDS_BLACK,
+    FADE_TOWARDS_WHITE
+};
+
+enum MysteryGiftMenuOption {
+    MG_MENU_RECEIVE_GIFT,
+    MG_MENU_CHECK_CARD,
+    MG_MENU_EXIT,
+};
+
+enum MysteryGiftReceptionMethod {
+    RECEPTION_METHOD_NONE = 0,
+    RECEIVE_FROM_FRIEND,
+    RECEIVE_FROM_GBA_CARTRIDGE,
+    RECEIVE_FROM_LOCAL_WIRELESS,
+    RECEIVE_FROM_WIFI,
+};
+
+enum MysteryGiftCanReceiveStatus {
+    MYSTERY_GIFT_CAN_RECEIVE,
+    MYSTERY_GIFT_CANT_RECEIVE_WRONG_VERSION,
+    MYSTERY_GIFT_CANT_RECEIVE_ALREADY_RECEIVED,
+    MYSTERY_GIFT_CANT_RECEIVE_NO_PGT_SLOT,
+    MYSTERY_GIFT_CANT_RECEIVE_NO_WC_SLOT,
+    MYSTERY_GIFT_CAN_RECEIVE_FROM_FRIEND,
+};
+
+enum WirelessDistributionSearchState {
+    WIRELESS_DISTRIBUTION_STATE_INIT = 37,
+    WIRELESS_DISTRIBUTION_STATE_38,
+    WIRELESS_DISTRIBUTION_STATE_39,
+    WIRELESS_DISTRIBUTION_STATE_40,
+    WIRELESS_DISTRIBUTION_STATE_41,
+    WIRELESS_DISTRIBUTION_STATE_42,
+    WIRELESS_DISTRIBUTION_STATE_43,
+    WIRELESS_DISTRIBUTION_STATE_44,
+    WIRELESS_DISTRIBUTION_STATE_45,
+    WIRELESS_DISTRIBUTION_STATE_46,
+    WIRELESS_DISTRIBUTION_STATE_47,
+    WIRELESS_DISTRIBUTION_STATE_48,
+};
+
+enum MysteryGiftAnimationStage {
+    MG_ANIMATION_STAGE_SETUP = 0,
+    MG_ANIMATION_STAGE_FADE_BG_BLACK,
+    MG_ANIMATION_STAGE_PARTICLES_GATHERING,
+    MG_ANIMATION_STAGE_SETUP_IMPLOSION,
+    MG_ANIMATION_STAGE_IMPLODE,
+    MG_ANIMATION_STAGE_FLASH_WHITE,
+    MG_ANIMATION_STAGE_MOVE_TO_BOTTOM_SCREEN,
+    MG_ANIMATION_STAGE_SPIRAL_OUT,
+    MG_ANIMATION_STAGE_FADE_BG_WHITE,
+    MG_ANIMATION_STAGE_RETURN_BG_NORMAL,
+    MG_ANIMATION_STAGE_DONE = 255,
+};
+
+enum MysteryGiftAnimationStatus {
+    MG_ANIMATION_STATUS_DONE = 0,
+    MG_ANIMATION_STATUS_BEGIN,
+    MG_ANIMATION_STATUS_PROCEED_IMPLOSION
+};
+
+enum ParticleAnimationType {
+    PARTICLE_ANIMATION_TYPE_ORBIT_0 = 0,
+    PARTICLE_ANIMATION_TYPE_ORBIT_1,
+    PARTICLE_ANIMATION_TYPE_ORBIT_2,
+    PARTICLE_ANIMATION_TYPE_ORBIT_3,
+
+    PARTICLE_ANIMATION_TYPE_SPIRAL_OUT_0 = 4,
+    PARTICLE_ANIMATION_TYPE_SPIRAL_OUT_1,
+
+    PARTICLE_ANIMATION_TYPE_RUSH_TO_CENTER = 255,
+};
+
+typedef enum MysteryGiftAppState (*StateTransitionFuncPtr)(ApplicationManager *);
+
+typedef struct StateChangeMenuOptionTemplate {
+    int textEntryId;
+    StateTransitionFuncPtr stateTransitionFuncPtr;
+} StateChangeMenuOptionTemplate;
+
+typedef struct MysteryGiftParticle {
+    int unused_00;
+    int timeSinceCenterReached;
+    BOOL animationDone;
+    Sprite *sprite;
+    VecFx32 animationCenter;
+    fx32 speedToCenter;
+    fx32 centerZoneRadius;
+    int inFinalAnimationPhase;
+    int angleAroundCenter;
+    int animationType;
+    int apparitionDelay;
+    int movementAngle;
+    int speed;
+    int spiralOutAcceleration;
+    int horizontalSpeed;
+    int verticalSpeed;
+    SysTask *animationSysTask;
+} MysteryGiftParticle;
+
+typedef struct MysteryGiftAnimationManager {
+    int animationStage;
+    int unused_04;
+    s8 blendBrightness;
     UnkStruct_ov97_02237AEC *unk_0C;
-    SpriteResourcesHeader unk_10[2];
-    SpriteResource *unk_58[2][6];
-    UnkStruct_ov97_0222EEB8 unk_88[80];
-    UnkStruct_ov97_0222EEB8 unk_1848[80];
-    UnkStruct_ov97_0222EEB8 unk_3008;
-    UnkStruct_ov97_0222EEB8 unk_3054;
-    int *unk_30A0;
-} UnkStruct_ov97_0222E398;
+    SpriteResourcesHeader spriteResourcesHeaders[DS_SCREEN_MAX];
+    SpriteResource *spriteResources[DS_SCREEN_MAX][SPRITE_RESOURCE_MAX];
+    MysteryGiftParticle topScreenSmallParticles[NUM_MYSTERY_GIFT_PARTICLES];
+    MysteryGiftParticle bottomScreenSmallParticles[NUM_MYSTERY_GIFT_PARTICLES];
+    MysteryGiftParticle topScreenLargeParticle;
+    MysteryGiftParticle bottomScreenLargeParticle;
+    int *animationStatusPtr;
+} MysteryGiftAnimationManager;
 
-typedef struct {
-    f32 unk_00;
-    f32 unk_04;
-} UnkStruct_ov97_0222EDC0;
+typedef struct Vec2F32 {
+    f32 x;
+    f32 y;
+} Vec2F32;
 
-void Strbuf_ToChars(const Strbuf *param0, u16 *param1, u32 param2);
-void Strbuf_CopyNumChars(Strbuf *param0, const u16 *param1, u32 param2);
-MysteryGift *SaveData_GetMysteryGift(SaveData *saveData);
-void WonderCardsApp_ShowWondercard(BgConfig *bgConfig, WonderCard *wonderCard, enum HeapId heapID);
-static int ov97_0222D474(ApplicationManager *param0);
-static int ov97_0222D4D8(ApplicationManager *param0);
-static int ov97_0222DA18(ApplicationManager *param0);
-static int ov97_0222D984(ApplicationManager *param0);
-static int ov97_0222D75C(ApplicationManager *param0);
-static int ov97_0222D94C(ApplicationManager *param0);
-static int ov97_0222D798(ApplicationManager *param0);
-static int ov97_0222D814(ApplicationManager *param0);
-static int ov97_0222D884(ApplicationManager *param0);
-static int ov97_0222D9BC(ApplicationManager *param0);
-static int ov97_0222D9F0(ApplicationManager *param0);
-static int ov97_0222DA64(ApplicationManager *param0);
-static int ov97_0222DA84(ApplicationManager *param0);
-static int ov97_0222DB08(ApplicationManager *param0);
-static int ov97_0222DB40(ApplicationManager *param0);
-static void ov97_0222DD1C(ApplicationManager *param0, UnkStruct_ov97_0223E5B8 *param1, int param2, Window *param3, u32 param4);
-static void ov97_0222DDD0(ApplicationManager *param0, int param1, u32 param2);
-static void ov97_0222DE78(ApplicationManager *param0, Window *param1, u32 param2);
+static enum MysteryGiftAppState ShowMysteryGiftReceptionMethodsMenu(ApplicationManager *appMan);
+static enum MysteryGiftAppState ExitToWonderCardsApp(ApplicationManager *appMan);
+static enum MysteryGiftAppState ExitToTitleScreen(ApplicationManager *appMan);
+static enum MysteryGiftAppState AskConfirmWireless_FriendOrGBA(ApplicationManager *appMan);
+static enum MysteryGiftAppState AskConfirmWireless_WirelessDistribution(ApplicationManager *appMan);
+static enum MysteryGiftAppState AskConfirmConnectToWFC(ApplicationManager *appMan);
+static enum MysteryGiftAppState ReturnToMysteryGiftMenu(ApplicationManager *appMan);
+static enum MysteryGiftAppState SetupFriendOrGBADistribution(ApplicationManager *appMan);
+static enum MysteryGiftAppState ReturnToReceptionMethodChoiceAfterRefusingWireless(ApplicationManager *appMan);
+static enum MysteryGiftAppState SendGiftRequestIfCanReceive(ApplicationManager *appMan);
+static enum MysteryGiftAppState ReturnToReceptionMethodChoiceAfterRefusingGift(ApplicationManager *appMan);
+static enum MysteryGiftAppState InitWFCConnection(ApplicationManager *appMan);
+static enum MysteryGiftAppState StartSearchLocalWirelessDistribution(ApplicationManager *appMan);
+static enum MysteryGiftAppState CheckPlayerCanReceive_WirelessDistribution(ApplicationManager *appMan);
+static enum MysteryGiftAppState DisconnectLocalWireless(ApplicationManager *appMan);
+
+static void MakeStateChangeListMenuFromEntryTemplates(ApplicationManager *appMan, StateChangeMenuOptionTemplate *entries, int numEntries, Window *window, u32 msgBoxEntryId);
+static void ShowMysteryGiftMenuOptions(ApplicationManager *appMan, int windowBaseTile, u32 textEntryId);
+static void ShowMessageBox(ApplicationManager *appMan, Window *window, u32 entryId);
 static void ov97_022302D4(void);
-static void ov97_02230224(UnkStruct_ov97_0222D04C *param0);
-static void ov97_022302F4(UnkStruct_ov97_0222D04C *param0);
-static int ov97_0222E228(ApplicationManager *param0, Window *param1, int param2, int param3);
-int ov97_02238EAC(ApplicationManager *param0, int *param1);
-static void ov97_0222EEB8(SysTask *param0, void *param1);
+static void ov97_02230224(MysteryGiftAppData *appData);
+static void UpdateLocalWirelessDistributionState(MysteryGiftAppData *appData);
+static int ShowMessageBoxIntoStateTransition(ApplicationManager *appMan, Window *window, int textEntryId, int nextState);
+static void RunParticleAnimationFrame(SysTask *sysTask, MysteryGiftParticle *particle);
+static void MysteryGiftApp_SetApplicationManager(ApplicationManager *appMan);
 
-static ApplicationManager *Unk_ov97_0223F1B0;
+static ApplicationManager *sApplicationManager;
 
-UnkStruct_ov97_0223E5B8 Unk_ov97_0223E5B8[] = {
-    { 0xC, (u32)ov97_0222DA84 },
-    { 0xD, (u32)ov97_0222DB08 },
-    { 0xE, (u32)ov97_0222DB40 }
+StateChangeMenuOptionTemplate sMysteryGiftMenuOptions[] = {
+    [MG_MENU_RECEIVE_GIFT] = { MysteryGiftMenu_Text_ReceiveGift, ShowMysteryGiftReceptionMethodsMenu },
+    [MG_MENU_CHECK_CARD] = { MysteryGiftMenu_Text_CheckCard, ExitToWonderCardsApp },
+    [MG_MENU_EXIT] = { MysteryGiftMenu_Text_Exit_MysteryGift, ExitToTitleScreen }
 };
 
-UnkStruct_ov97_0223E5B8 Unk_ov97_0223E5F0[] = {
-    { 0xF, (u32)ov97_0222D798 },
-    { 0x14, (u32)ov97_0222D884 },
-    { 0x10, (u32)ov97_0222D814 },
-    { 0x11, (u32)ov97_0222DA64 }
+StateChangeMenuOptionTemplate sMysteryGiftReceiveOptions[] = {
+    { MysteryGiftMenu_Text_GetFromFriend, AskConfirmWireless_FriendOrGBA },
+    { MysteryGiftMenu_Text_GetViaWireless, AskConfirmWireless_WirelessDistribution },
+    { MysteryGiftMenu_Text_GetViaWFC, AskConfirmConnectToWFC },
+    { MysteryGiftMenu_Text_Cancel_MysteryGift, ReturnToMysteryGiftMenu }
 };
 
-UnkStruct_ov97_0223E5B8 Unk_ov97_0223E598[] = {
-    { 0x12, (u32)ov97_0222D474 },
-    { 0x13, (u32)ov97_0222D75C }
+StateChangeMenuOptionTemplate sStartWirelessCommsOptions_FriendOrGBA[] = {
+    { MysteryGiftMenu_Text_Yes_MysteryGift, SetupFriendOrGBADistribution },
+    { MysteryGiftMenu_Text_No_MysteryGift, ReturnToReceptionMethodChoiceAfterRefusingWireless }
 };
 
-UnkStruct_ov97_0223E5B8 Unk_ov97_0223E5A8[] = {
-    { 0x12, (u32)ov97_0222D4D8 },
-    { 0x13, (u32)ov97_0222D94C }
+StateChangeMenuOptionTemplate sConfirmReceiveGiftOptions[] = {
+    { MysteryGiftMenu_Text_Yes_MysteryGift, SendGiftRequestIfCanReceive },
+    { MysteryGiftMenu_Text_No_MysteryGift, ReturnToReceptionMethodChoiceAfterRefusingGift }
 };
 
-UnkStruct_ov97_0223E5B8 Unk_ov97_0223E568[] = {
-    { 0x12, (u32)ov97_0222DA18 },
-    { 0x13, (u32)ov97_0222D75C }
+StateChangeMenuOptionTemplate sConfirmConnectToWFCOptions[] = {
+    { MysteryGiftMenu_Text_Yes_MysteryGift, InitWFCConnection },
+    { MysteryGiftMenu_Text_No_MysteryGift, ReturnToReceptionMethodChoiceAfterRefusingWireless }
 };
 
-UnkStruct_ov97_0223E5B8 dummy_UnkStruct_ov97_0223E5B8[] = {
-    { 0x12, (u32)ov97_0222D4D8 },
-    { 0x13, (u32)NULL }
+StateChangeMenuOptionTemplate sUnusedYesNoOptions[] = {
+    { MysteryGiftMenu_Text_Yes_MysteryGift, SendGiftRequestIfCanReceive },
+    { MysteryGiftMenu_Text_No_MysteryGift, NULL }
 };
 
-UnkStruct_ov97_0223E5B8 Unk_ov97_0223E578[] = {
-    { 0x12, (u32)ov97_0222D984 },
-    { 0x13, (u32)ov97_0222D75C }
+StateChangeMenuOptionTemplate sStartWirelessCommsOption_WirelessDistribution[] = {
+    { MysteryGiftMenu_Text_Yes_MysteryGift, StartSearchLocalWirelessDistribution },
+    { MysteryGiftMenu_Text_No_MysteryGift, ReturnToReceptionMethodChoiceAfterRefusingWireless }
 };
 
-UnkStruct_ov97_0223E5B8 Unk_ov97_0223E588[] = {
-    { 0x12, (u32)ov97_0222D9BC },
-    { 0x13, (u32)ov97_0222D9F0 }
+StateChangeMenuOptionTemplate sConfirmReceiveGiftOptions_WirelessDistribution[] = {
+    { MysteryGiftMenu_Text_Yes_MysteryGift, CheckPlayerCanReceive_WirelessDistribution },
+    { MysteryGiftMenu_Text_No_MysteryGift, DisconnectLocalWireless }
 };
 
-static ListMenuTemplate Unk_ov97_0223E5D0 = {
-    NULL,
-    ov97_022383C4,
-    NULL,
-    NULL,
-    0x0,
-    0x3,
-    0x0,
-    0xC,
-    0x0,
-    0x0,
-    0x1,
-    0xF,
-    0x2,
-    0x0,
-    0x10,
-    0x1,
-    0x0,
-    0x0
+static ListMenuTemplate sMysteryGiftAppListMenuTemplate = {
+    .choices = NULL,
+    .cursorCallback = ov97_022383C4,
+    .printCallback = NULL,
+    .window = NULL,
+    .count = 0,
+    .maxDisplay = 3,
+    .headerXOffset = 0,
+    .textXOffset = 12,
+    .cursorXOffset = 0,
+    .yOffset = 0,
+    .textColorFg = 0x1,
+    .textColorBg = 0xF,
+    .textColorShadow = 0x2,
+    .letterSpacing = 0,
+    .lineSpacing = 0x10,
+    .pagerMode = PAGER_MODE_LEFT_RIGHT_PAD,
+    .fontID = FONT_SYSTEM,
+    .cursorType = 0x0
 };
 
-static int Unk_ov97_0223F1A8;
+static int sWirelessDistribState;
 static int Unk_ov97_0223F1B4;
 static void *Unk_ov97_0223F1AC;
 
-static void ov97_0222D30C(UnkStruct_ov97_0222D04C *param0, int param1)
+static void ToggleWaitDial(MysteryGiftAppData *appData, BOOL show)
 {
-    if (param1 == 1) {
-        if (param0->unk_2A50 == NULL) {
-            param0->unk_2A50 = Window_AddWaitDial(&param0->unk_18, 1);
+    if (show == TRUE) {
+        if (appData->waitDial == NULL) {
+            appData->waitDial = Window_AddWaitDial(&appData->messageBox, BASE_TILE_MESSAGE_BOX_FRAME);
         }
     } else {
-        if (param0->unk_2A50) {
-            DestroyWaitDial(param0->unk_2A50);
+        if (appData->waitDial) {
+            DestroyWaitDial(appData->waitDial);
         }
 
-        param0->unk_2A50 = NULL;
+        appData->waitDial = NULL;
     }
 }
 
-void ov97_0222D344(UnkStruct_ov97_0222D04C *param0, int param1)
+void MysteryGiftApp_ToggleWaitDial(MysteryGiftAppData *appData, BOOL show)
 {
-    ov97_0222D30C(param0, param1);
+    ToggleWaitDial(appData, show);
 }
 
-static void ov97_0222D34C(ApplicationManager *param0)
+static void FreeApplicationResources(ApplicationManager *appMan)
 {
-    int v0;
-    UnkStruct_ov97_0222D04C *v1 = ApplicationManager_Data(param0);
+    MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
 
     ov97_02237DA0();
 
-    if (v1->unk_7C) {
-        StringList_Free(v1->unk_7C);
+    if (appData->listMenuOptions) {
+        StringList_Free(appData->listMenuOptions);
     }
 
-    if (v1->unk_78) {
-        ListMenu_Free(v1->unk_78, NULL, NULL);
+    if (appData->listMenu) {
+        ListMenu_Free(appData->listMenu, NULL, NULL);
     }
 
-    Window_ClearAndCopyToVRAM(&v1->unk_18);
-    Window_Remove(&v1->unk_18);
+    Window_ClearAndCopyToVRAM(&appData->messageBox);
+    Window_Remove(&appData->messageBox);
 
-    if (Window_IsInUse(&v1->unk_58)) {
-        Window_ClearAndCopyToVRAM(&v1->unk_58);
-        Window_Remove(&v1->unk_58);
+    if (Window_IsInUse(&appData->wonderCardTitleWindow)) {
+        Window_ClearAndCopyToVRAM(&appData->wonderCardTitleWindow);
+        Window_Remove(&appData->wonderCardTitleWindow);
     }
 
-    for (v0 = 0; v0 < 3; v0++) {
-        if (v1->unk_28[v0].bgConfig) {
-            Window_ClearAndCopyToVRAM(&v1->unk_28[v0]);
-            Window_Remove(&v1->unk_28[v0]);
+    for (int i = 0; i < MG_APP_NUM_MENU_WINDOWS; i++) {
+        if (appData->menuWindows[i].bgConfig) {
+            Window_ClearAndCopyToVRAM(&appData->menuWindows[i]);
+            Window_Remove(&appData->menuWindows[i]);
         }
     }
 
-    Bg_FreeTilemapBuffer(v1->unk_00, 0);
-    Bg_FreeTilemapBuffer(v1->unk_00, 1);
-    Bg_FreeTilemapBuffer(v1->unk_00, 4);
-    Bg_FreeTilemapBuffer(v1->unk_00, 5);
-    Heap_FreeToHeap(v1->unk_00);
+    Bg_FreeTilemapBuffer(appData->bgConfig, BG_LAYER_MAIN_0);
+    Bg_FreeTilemapBuffer(appData->bgConfig, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(appData->bgConfig, BG_LAYER_SUB_0);
+    Bg_FreeTilemapBuffer(appData->bgConfig, BG_LAYER_SUB_1);
+    Heap_FreeToHeap(appData->bgConfig);
 }
 
-static void ov97_0222D3E8(UnkStruct_ov97_0222D04C *param0)
+static void LoadDownloadArrowSpriteResources(MysteryGiftAppData *appData)
 {
     ov97_02237A20();
     ov97_02237A74();
-    ov97_02237B0C(116, 10, 7, 9, 8, 0);
+    ov97_02237B0C(NARC_INDEX_GRAPHIC__MYSTERY, 10, 7, 9, 8, 0);
 }
 
-static void ov97_0222D40C(UnkStruct_ov97_0222D04C *param0, int param1)
+static void SetDownloadArrowAnim(MysteryGiftAppData *appData, int animID)
 {
-    if (param1 != -1) {
-        param0->unk_628 = ov97_02237D14(0, param0->unk_628, HW_LCD_WIDTH / 2, 100, param1);
+    if (animID != HIDE_DOWNLOADING_ARROW) {
+        appData->dowloadArrowSprite = ov97_02237D14(0, appData->dowloadArrowSprite, HW_LCD_WIDTH / 2, 100, animID);
     } else {
-        Sprite_SetDrawFlag(param0->unk_628, 0);
+        Sprite_SetDrawFlag(appData->dowloadArrowSprite, FALSE);
     }
 }
 
-static void ov97_0222D444(Window *param0, u8 param1)
+static void EraseStdFrameIfInUse(Window *window, u8 skipTransfer)
 {
-    if (Window_IsInUse(param0) == 1) {
-        Window_EraseStandardFrame(param0, param1);
+    if (Window_IsInUse(window) == TRUE) {
+        Window_EraseStandardFrame(window, skipTransfer);
     }
 }
 
-static void ov97_0222D45C(Window *param0, u8 param1)
+static void EraseMsgBoxIfInUse(Window *window, u8 skipTransfer)
 {
-    if (Window_IsInUse(param0) == 1) {
-        Window_EraseMessageBox(param0, param1);
+    if (Window_IsInUse(window) == TRUE) {
+        Window_EraseMessageBox(window, skipTransfer);
     }
 }
 
-static int ov97_0222D474(ApplicationManager *param0)
+static enum MysteryGiftAppState SetupFriendOrGBADistribution(ApplicationManager *appMan)
 {
-    UnkStruct_ov97_0222D04C *v0 = ApplicationManager_Data(param0);
+    MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
 
-    if (v0->unk_1638 != 2) {
-        ov97_0222DE78(param0, &v0->unk_18, 3);
+    if (appData->receptionMethod != RECEIVE_FROM_GBA_CARTRIDGE) {
+        ShowMessageBox(appMan, &appData->messageBox, MysteryGiftMenu_Text_SearchingForGift);
     }
 
-    ov97_0222D444(&v0->unk_28[2], 0);
+    EraseStdFrameIfInUse(&appData->menuWindows[2], FALSE);
 
-    if (v0->unk_1638 != 2) {
-        ov97_0222D200(v0, 15);
-        v0->unk_434 = (60 * 120);
+    if (appData->receptionMethod != RECEIVE_FROM_GBA_CARTRIDGE) {
+        ov97_0222D200(appData, 15);
+        appData->wirelessCommsTimeout = (60 * 120);
         sub_02039734();
-        ov97_0222D30C(v0, 1);
-        return 7;
+        ToggleWaitDial(appData, TRUE);
+        return MG_APP_STATE_SEARCH_FOR_FRIEND_GIFT;
     } else {
-        v0->unk_84 = 19;
-        return 19;
+        appData->foundGiftType = FOUND_GIFT_CARTRIDGE;
+        return MG_APP_STATE_FOUND_WIFI_OR_GBA_GIFT;
     }
 }
 
-static int ov97_0222D4D8(ApplicationManager *param0)
+static enum MysteryGiftAppState SendGiftRequestIfCanReceive(ApplicationManager *appMan)
 {
-    UnkStruct_ov97_0222D04C *v0 = ApplicationManager_Data(param0);
+    MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
 
-    if (v0->unk_80 == 1) {
-        return 49;
+    if (appData->canReceiveGiftStatus == MYSTERY_GIFT_CANT_RECEIVE_WRONG_VERSION) {
+        return MG_APP_STATE_FROM_FRIEND_OR_CANT_RECEIVE;
     }
 
-    if ((v0->unk_80 == 3) || (v0->unk_80 == 4) || (v0->unk_80 == 2)) {
-        return 49;
+    if (appData->canReceiveGiftStatus == MYSTERY_GIFT_CANT_RECEIVE_NO_PGT_SLOT
+        || appData->canReceiveGiftStatus == MYSTERY_GIFT_CANT_RECEIVE_NO_WC_SLOT
+        || appData->canReceiveGiftStatus == MYSTERY_GIFT_CANT_RECEIVE_ALREADY_RECEIVED) {
+        return MG_APP_STATE_FROM_FRIEND_OR_CANT_RECEIVE;
     }
 
-    if (v0->unk_80 == 5) {
-        return 49;
+    if (appData->canReceiveGiftStatus == MYSTERY_GIFT_CAN_RECEIVE_FROM_FRIEND) {
+        return MG_APP_STATE_FROM_FRIEND_OR_CANT_RECEIVE;
     }
 
-    if (v0->unk_1638 == 1) {
-        ov97_0222D234(v0->unk_438);
+    if (appData->receptionMethod == RECEIVE_FROM_FRIEND) {
+        ov97_0222D234(appData->unk_438);
     }
 
-    ov97_0222DE78(param0, &v0->unk_18, 6);
-    ov97_0222D444(&v0->unk_28[2], 0);
+    ShowMessageBox(appMan, &appData->messageBox, MysteryGiftMenu_Text_RequestSentPleaseWait);
+    EraseStdFrameIfInUse(&appData->menuWindows[2], FALSE);
 
-    if (v0->unk_1638 == 1) {
-        ov97_0222D40C(v0, 0);
-        ov97_0222D30C(v0, 1);
+    if (appData->receptionMethod == RECEIVE_FROM_FRIEND) {
+        SetDownloadArrowAnim(appData, 0);
+        ToggleWaitDial(appData, TRUE);
     }
 
-    if (v0->unk_1638 == 1) {
+    if (appData->receptionMethod == RECEIVE_FROM_FRIEND) {
         CommTiming_StartSync(0xAB);
-        return 9;
+        return MG_APP_STATE_CONNECT_WITH_FRIEND;
     } else {
-        return 21;
+        return MG_APP_STATE_GOTO_SHOW_RECEIVING_GIFT_MSG;
     }
 }
 
-static PGT *ov97_0222D55C(ApplicationManager *param0)
+static WonderCard *GetReceivedWonderCard(ApplicationManager *appMan)
 {
-    UnkStruct_ov97_0222D04C *v0 = ApplicationManager_Data(param0);
-    WonderCard *v1 = &v0->unk_8C.unk_50;
-    WonderCardMetadata *v2 = &v0->unk_8C.unk_00;
-    UnkStruct_ov97_0223829C *v3;
+    MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
+    WonderCard *wonderCard = &appData->eventData.wonderCard;
+    MysteryGiftEventHeader *eventHeader = &appData->eventData.header;
+    MysteryGiftEventData *eventData;
 
-    switch (v0->unk_1638) {
-    case 1:
-        memcpy(v1, ov97_0222D2B8(0, NULL, 0), sizeof(WonderCard));
-        ov97_02238324(&v0->unk_8C, &v0->unk_8C.unk_50, HEAP_ID_86);
+    switch (appData->receptionMethod) {
+    case RECEIVE_FROM_FRIEND:
+        memcpy(wonderCard, ov97_0222D2B8(0, NULL, 0), sizeof(WonderCard));
+        ov97_02238324(&appData->eventData, &appData->eventData.wonderCard, HEAP_ID_MYSTERY_GIFT_APP);
         break;
-    case 3:
-        v3 = (UnkStruct_ov97_0223829C *)v0->unk_638;
-        memcpy(v1, &v3->unk_50, sizeof(WonderCard));
-        memcpy(v2, &v3->unk_00, sizeof(WonderCardMetadata));
+    case RECEIVE_FROM_LOCAL_WIRELESS:
+        eventData = (MysteryGiftEventData *)appData->wirelessDistributionBuffer;
+        memcpy(wonderCard, &eventData->wonderCard, sizeof(WonderCard));
+        memcpy(eventHeader, &eventData->header, sizeof(MysteryGiftEventHeader));
         break;
     }
 
-    return &v1->pgt;
+    return wonderCard;
 }
 
-static BOOL ov97_0222D5C8(PGT *param0)
+static BOOL ShouldPlayAnimation(WonderCard *wonderCard)
 {
-    switch (param0->type) {
-    case 13:
-        return 1;
-    case 3:
-        if (param0->data.itemGiftData.unk_04 == 1) {
-            return 1;
+    switch (wonderCard->pgt.type) {
+    case MYST_GIFT_UNKNOWN:
+        return TRUE;
+    case MYST_GIFT_ITEM:
+        if (wonderCard->pgt.data.itemGiftData.shouldPlayAnimation == TRUE) {
+            return TRUE;
         }
         break;
-    case 1:
-    case 2: {
-        Pokemon *v0;
-        int v1;
+    case MYST_GIFT_POKEMON:
+    case MYST_GIFT_EGG: {
+        Pokemon *pokemon = &wonderCard->pgt.data.pokemonGiftData.pokemon;
+        int metLocation = Pokemon_GetValue(pokemon, MON_DATA_MET_LOCATION, NULL);
 
-        v0 = &param0->data.pokemonGiftData.pokemon;
-        v1 = Pokemon_GetValue(v0, MON_DATA_MET_LOCATION, NULL);
-
-        if (((v1 >= 3) && (v1 <= 14)) || ((v1 >= 64) && (v1 <= 71))) {
-            return 1;
+        if ((metLocation >= EVENT_LOCATION_MOVIES_START && metLocation <= EVENT_LOCATION_MOVIES_END)
+            || (metLocation >= EVENT_LOCATION_POKEMON_EVENT_09 && metLocation <= EVENT_LOCATION_POKEMON_EVENT_16)) {
+            return TRUE;
         }
     } break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static void ov97_0222D614(void *param0)
+static void MainCallbackSaveGame(MysteryGiftAppData *appData)
 {
-    int v0;
-    UnkStruct_ov97_0222D04C *v1 = (UnkStruct_ov97_0222D04C *)param0;
-
-    if (v1->unk_2A4C == 1) {
-        v1->unk_2A48 = NULL;
+    if (appData->cancelSave == TRUE) {
+        appData->mainCallback = NULL;
     }
 
-    v0 = ov97_0223847C();
+    int saveStatus = ov97_0223847C();
 
-    if ((v0 == 2) || (v0 == 3)) {
-        if (ov97_0222D5C8(&v1->unk_8C.unk_50.pgt) == 1) {
-            (void)0;
-        } else {
+    if (saveStatus == SAVE_RESULT_OK || saveStatus == SAVE_RESULT_CORRUPT) {
+        if (ShouldPlayAnimation(&appData->eventData.wonderCard) != TRUE) {
             Sound_PlayEffect(SEQ_SE_DP_SAVE);
         }
 
-        v1->unk_2A48 = NULL;
+        appData->mainCallback = NULL;
     }
 }
 
-static void ov97_0222D658(ApplicationManager *param0)
+static void SaveReceivedGift(ApplicationManager *appMan)
 {
-    int v0, v1;
-    UnkStruct_ov97_0222D04C *v2 = ApplicationManager_Data(param0);
-    WonderCardMetadata *v3 = &v2->unk_8C.unk_00;
-    WonderCard *v4 = &v2->unk_8C.unk_50;
-    SaveData *saveData = ((ApplicationArgs *)ApplicationManager_Args(param0))->saveData;
-    MysteryGift *v6;
+    MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
+    MysteryGiftEventHeader *metadata = &appData->eventData.header;
+    WonderCard *wonderCard = &appData->eventData.wonderCard;
+    SaveData *saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
 
-    if (v3->saveWonderCard == 0) {
-        v0 = 0;
+    BOOL saveWonderCard;
+    if (metadata->hasWonderCard == FALSE) {
+        saveWonderCard = FALSE;
     } else {
-        RTCDate v7;
+        RTCDate receivedDate;
 
-        v0 = 1;
-        v4->timesShared = 0;
+        saveWonderCard = TRUE;
+        wonderCard->timesShared = 0;
 
-        if (v3->shareable == 0) {
-            v4->sharesLeft = 0;
+        if (metadata->shareable == FALSE) {
+            wonderCard->sharesLeft = 0;
         }
 
-        GetCurrentDate(&v7);
-        v4->receivedDate = RTC_ConvertDateToDay(&v7);
+        GetCurrentDate(&receivedDate);
+        wonderCard->receivedDate = RTC_ConvertDateToDay(&receivedDate);
     }
 
-    v6 = SaveData_GetMysteryGift(saveData);
-    MysteryGift_SetWcIDReceived(v6, v3->id);
+    MysteryGift *mysteryGift = SaveData_GetMysteryGift(saveData);
+    MysteryGift_SetWcIDReceived(mysteryGift, metadata->id);
 
-    if (v0 == 0) {
-        v1 = MysteryGift_TrySavePgt(v6, (const void *)v4, 3);
+    BOOL saved;
+    if (saveWonderCard == FALSE) {
+        saved = MysteryGift_TrySavePgt(mysteryGift, &wonderCard->pgt, 3);
     } else {
-        v1 = MysteryGift_TrySaveWondercard(v6, (const void *)v4);
+        saved = MysteryGift_TrySaveWondercard(mysteryGift, wonderCard);
     }
 
     ov97_0223846C(saveData);
 
-    v2->unk_2A4C = 0;
-    v2->unk_2A48 = ov97_0222D614;
+    appData->cancelSave = FALSE;
+    appData->mainCallback = MainCallbackSaveGame;
 }
 
-static void ov97_0222D6F8(ApplicationManager *param0, int param1)
+static void ShowConfirmReceiveGiftMenu(ApplicationManager *appMan, BOOL hideMsgBox)
 {
-    int v0;
-    Window *v1;
-    UnkStruct_ov97_0222D04C *v2 = ApplicationManager_Data(param0);
+    MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
 
-    if (param1 == 0) {
-        v0 = 4;
-    } else {
-        v0 = -1;
+    int msgBoxTextId = !hideMsgBox ? MysteryGiftMenu_Text_ReceiveThisGift : -1;
+
+    Window *window = &appData->menuWindows[2];
+
+    if (window->bgConfig == NULL) {
+        Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_0, 23, 10, 6, 4, PLTT_0, BASE_TILE_YES_NO_MENU);
     }
 
-    v1 = &v2->unk_28[2];
-
-    if (v1->bgConfig == NULL) {
-        Window_Add(v2->unk_00, v1, 0, 23, 10, 6, 4, 0, (((((1 + (18 + 12)) + 9) + 26 * 6) + 16 * 6) + 17 * 8));
-    }
-
-    Window_DrawStandardFrame(v1, 1, (1 + (18 + 12)), 3);
-    ov97_0222DD1C(param0, Unk_ov97_0223E5A8, NELEMS(Unk_ov97_0223E5A8), v1, v0);
+    Window_DrawStandardFrame(window, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_3);
+    MakeStateChangeListMenuFromEntryTemplates(appMan, sConfirmReceiveGiftOptions, NELEMS(sConfirmReceiveGiftOptions), window, msgBoxTextId);
 }
 
-static int ov97_0222D75C(ApplicationManager *param0)
+static enum MysteryGiftAppState ReturnToReceptionMethodChoiceAfterRefusingWireless(ApplicationManager *appMan)
 {
-    UnkStruct_ov97_0222D04C *v0 = ApplicationManager_Data(param0);
+    MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
 
-    ov97_0222D444(&v0->unk_28[2], 0);
-    ov97_0222D444(&v0->unk_58, 0);
+    EraseStdFrameIfInUse(&appData->menuWindows[2], FALSE);
+    EraseStdFrameIfInUse(&appData->wonderCardTitleWindow, FALSE);
 
-    if (v0->unk_1638 == 1) {
-        ov97_0222D30C(v0, 0);
+    if (appData->receptionMethod == RECEIVE_FROM_FRIEND) {
+        ToggleWaitDial(appData, FALSE);
     }
 
     sub_02039794();
 
-    return ov97_0222DA84(param0);
+    return ShowMysteryGiftReceptionMethodsMenu(appMan);
 }
 
-static int ov97_0222D798(ApplicationManager *param0)
+static enum MysteryGiftAppState AskConfirmWireless_FriendOrGBA(ApplicationManager *appMan)
 {
-    Window *v0;
-    UnkStruct_ov97_0222D04C *v1 = ApplicationManager_Data(param0);
+    Window *window;
+    MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
 
     if (ov97_02237624()) {
-        v1->unk_1638 = 2;
+        appData->receptionMethod = RECEIVE_FROM_GBA_CARTRIDGE;
     } else {
-        v1->unk_1638 = 1;
+        appData->receptionMethod = RECEIVE_FROM_FRIEND;
     }
 
-    ov97_0222D444(&v1->unk_28[1], 0);
+    EraseStdFrameIfInUse(&appData->menuWindows[1], FALSE);
 
-    v0 = &v1->unk_28[2];
+    window = &appData->menuWindows[2];
 
-    if (v0->bgConfig == NULL) {
-        Window_Add(v1->unk_00, v0, 0, 23, 10, 6, 4, 0, (((((1 + (18 + 12)) + 9) + 26 * 6) + 16 * 6) + 17 * 8));
+    if (window->bgConfig == NULL) {
+        Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_0, 23, 10, 6, 4, PLTT_0, BASE_TILE_YES_NO_MENU);
     }
 
-    Window_DrawStandardFrame(v0, 1, (1 + (18 + 12)), 3);
-    ov97_0222DD1C(param0, Unk_ov97_0223E598, NELEMS(Unk_ov97_0223E598), v0, 2);
+    Window_DrawStandardFrame(window, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_3);
+    MakeStateChangeListMenuFromEntryTemplates(appMan, sStartWirelessCommsOptions_FriendOrGBA, NELEMS(sStartWirelessCommsOptions_FriendOrGBA), window, MysteryGiftMenu_Text_WirelessCommunicationsWillBeLaunched);
 
-    return 5;
+    return MG_APP_STATE_WAIT_CONFIRM_WIRELESS_COMMS;
 }
 
-static int ov97_0222D814(ApplicationManager *param0)
+static enum MysteryGiftAppState AskConfirmConnectToWFC(ApplicationManager *appMan)
 {
-    Window *v0;
-    UnkStruct_ov97_0222D04C *v1 = ApplicationManager_Data(param0);
+    Window *window;
+    MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
 
-    v1->unk_1638 = 4;
+    appData->receptionMethod = RECEIVE_FROM_WIFI;
 
-    ov97_0222D444(&v1->unk_28[1], 0);
+    EraseStdFrameIfInUse(&appData->menuWindows[1], FALSE);
 
-    v0 = &v1->unk_28[2];
+    window = &appData->menuWindows[2];
 
-    if (v0->bgConfig == NULL) {
-        Window_Add(v1->unk_00, v0, 0, 23, 10, 6, 4, 0, (((((1 + (18 + 12)) + 9) + 26 * 6) + 16 * 6) + 17 * 8));
+    if (window->bgConfig == NULL) {
+        Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_0, 23, 10, 6, 4, PLTT_0, BASE_TILE_YES_NO_MENU);
     }
 
-    Window_DrawStandardFrame(v0, 1, (1 + (18 + 12)), 3);
-    ov97_0222DD1C(param0, Unk_ov97_0223E568, NELEMS(Unk_ov97_0223E568), v0, 78);
+    Window_DrawStandardFrame(window, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_3);
+    MakeStateChangeListMenuFromEntryTemplates(appMan, sConfirmConnectToWFCOptions, NELEMS(sConfirmConnectToWFCOptions), window, MysteryGiftMenu_Text_ConnectToWFC);
 
-    return 5;
+    return MG_APP_STATE_WAIT_CONFIRM_WIRELESS_COMMS;
 }
 
-static int ov97_0222D884(ApplicationManager *param0)
+static enum MysteryGiftAppState AskConfirmWireless_WirelessDistribution(ApplicationManager *appMan)
 {
-    Window *v0;
-    UnkStruct_ov97_0222D04C *v1 = ApplicationManager_Data(param0);
+    MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
 
-    v1->unk_1638 = 3;
+    appData->receptionMethod = RECEIVE_FROM_LOCAL_WIRELESS;
 
-    ov97_0222D444(&v1->unk_28[1], 0);
+    EraseStdFrameIfInUse(&appData->menuWindows[1], FALSE);
 
-    v0 = &v1->unk_28[2];
+    Window *window = &appData->menuWindows[2];
 
-    if (v0->bgConfig == NULL) {
-        Window_Add(v1->unk_00, v0, 0, 23, 10, 6, 4, 0, (((((1 + (18 + 12)) + 9) + 26 * 6) + 16 * 6) + 17 * 8));
+    if (window->bgConfig == NULL) {
+        Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_0, 23, 10, 6, 4, PLTT_0, BASE_TILE_YES_NO_MENU);
     }
 
-    Window_DrawStandardFrame(v0, 1, (1 + (18 + 12)), 3);
-    ov97_0222DD1C(param0, Unk_ov97_0223E578, NELEMS(Unk_ov97_0223E578), v0, 77);
+    Window_DrawStandardFrame(window, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_3);
+    MakeStateChangeListMenuFromEntryTemplates(appMan, sStartWirelessCommsOption_WirelessDistribution, NELEMS(sStartWirelessCommsOption_WirelessDistribution), window, MysteryGiftMenu_Text_WirelessCommunicationsWillBeLaunched2);
 
-    return 5;
+    return MG_APP_STATE_WAIT_CONFIRM_WIRELESS_COMMS;
 }
 
-static void ov97_0222D8F4(ApplicationManager *param0)
+static void ShowConfirmReceiveGiftMenu_LocalWireless(ApplicationManager *appMan)
 {
-    Window *v0;
-    UnkStruct_ov97_0222D04C *v1 = ApplicationManager_Data(param0);
+    MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
 
-    v0 = &v1->unk_28[2];
+    Window *window = &appData->menuWindows[2];
 
-    if (v0->bgConfig == NULL) {
-        Window_Add(v1->unk_00, v0, 0, 23, 10, 6, 4, 0, (((((1 + (18 + 12)) + 9) + 26 * 6) + 16 * 6) + 17 * 8));
+    if (window->bgConfig == NULL) {
+        Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_0, 23, 10, 6, 4, PLTT_0, BASE_TILE_YES_NO_MENU);
     }
 
-    Window_DrawStandardFrame(v0, 1, (1 + (18 + 12)), 3);
-    ov97_0222DD1C(param0, Unk_ov97_0223E588, NELEMS(Unk_ov97_0223E588), v0, 4);
+    Window_DrawStandardFrame(window, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_3);
+    MakeStateChangeListMenuFromEntryTemplates(appMan, sConfirmReceiveGiftOptions_WirelessDistribution, NELEMS(sConfirmReceiveGiftOptions_WirelessDistribution), window, MysteryGiftMenu_Text_ReceiveThisGift);
 }
 
-static int ov97_0222D94C(ApplicationManager *param0)
+static enum MysteryGiftAppState ReturnToReceptionMethodChoiceAfterRefusingGift(ApplicationManager *appMan)
 {
-    UnkStruct_ov97_0222D04C *v0 = ApplicationManager_Data(param0);
+    MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
 
-    ov97_0222D444(&v0->unk_28[2], 0);
-    ov97_0222D444(&v0->unk_58, 0);
+    EraseStdFrameIfInUse(&appData->menuWindows[2], FALSE);
+    EraseStdFrameIfInUse(&appData->wonderCardTitleWindow, FALSE);
 
     sub_02039794();
 
-    if (v0->unk_1638 == 1) {
+    if (appData->receptionMethod == RECEIVE_FROM_FRIEND) {
         ov97_0222D2DC();
     }
 
-    return ov97_0222DA84(param0);
+    return ShowMysteryGiftReceptionMethodsMenu(appMan);
 }
 
-static int ov97_0222D984(ApplicationManager *param0)
+static enum MysteryGiftAppState StartSearchLocalWirelessDistribution(ApplicationManager *appMan)
 {
-    UnkStruct_ov97_0222D04C *v0 = ApplicationManager_Data(param0);
+    MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
 
-    ov97_0222DE78(param0, &v0->unk_18, 3);
-    ov97_0222D444(&v0->unk_28[2], 0);
-    ov97_0222D30C(v0, 1);
+    ShowMessageBox(appMan, &appData->messageBox, MysteryGiftMenu_Text_SearchingForGift);
+    EraseStdFrameIfInUse(&appData->menuWindows[2], FALSE);
+    ToggleWaitDial(appData, TRUE);
 
-    Unk_ov97_0223F1A8 = 37;
-    return 32;
+    sWirelessDistribState = WIRELESS_DISTRIBUTION_STATE_INIT;
+    return MG_APP_STATE_SEARCH_FOR_LOCAL_WIRELESS_EVENT;
 }
 
-static int ov97_0222D9BC(ApplicationManager *param0)
+static enum MysteryGiftAppState CheckPlayerCanReceive_WirelessDistribution(ApplicationManager *appMan)
 {
-    UnkStruct_ov97_0222D04C *v0 = ApplicationManager_Data(param0);
+    MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
 
-    if ((v0->unk_80 == 3) || (v0->unk_80 == 4) || (v0->unk_80 == 2)) {
-        return 49;
+    if (appData->canReceiveGiftStatus == MYSTERY_GIFT_CANT_RECEIVE_NO_PGT_SLOT
+        || appData->canReceiveGiftStatus == MYSTERY_GIFT_CANT_RECEIVE_NO_WC_SLOT
+        || appData->canReceiveGiftStatus == MYSTERY_GIFT_CANT_RECEIVE_ALREADY_RECEIVED) {
+        return MG_APP_STATE_FROM_FRIEND_OR_CANT_RECEIVE;
     }
 
-    ov97_0222D444(&v0->unk_28[2], 0);
-    ov97_0222DE78(param0, &v0->unk_18, 7);
+    EraseStdFrameIfInUse(&appData->menuWindows[2], FALSE);
+    ShowMessageBox(appMan, &appData->messageBox, MysteryGiftMenu_Text_ReceivingGiftDontTurnOff);
 
-    return 33;
+    return MG_APP_STATE_RECEIVE_FROM_LOCAL_WIRELESS;
 }
 
-static int ov97_0222D9F0(ApplicationManager *param0)
+static enum MysteryGiftAppState DisconnectLocalWireless(ApplicationManager *appMan)
 {
-    if ((Unk_ov97_0223F1A8 == 40) || (Unk_ov97_0223F1A8 == 41) || (Unk_ov97_0223F1A8 == 48)) {
+    if (sWirelessDistribState == WIRELESS_DISTRIBUTION_STATE_40
+        || sWirelessDistribState == WIRELESS_DISTRIBUTION_STATE_41
+        || sWirelessDistribState == WIRELESS_DISTRIBUTION_STATE_48) {
         if (ov97_022389C8()) {
-            Unk_ov97_0223F1A8 = 43;
+            sWirelessDistribState = WIRELESS_DISTRIBUTION_STATE_43;
         }
     }
 
-    return 36;
+    return MG_APP_STATE_DISCONNECT_FROM_LOCAL_WIRELESS;
 }
 
-static int ov97_0222DA18(ApplicationManager *param0)
+static enum MysteryGiftAppState InitWFCConnection(ApplicationManager *appMan)
 {
-    UnkStruct_ov97_0222D04C *v0 = ApplicationManager_Data(param0);
+    MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
 
-    ov97_0222DE78(param0, &v0->unk_18, 3);
-    ov97_0222D30C(v0, 1);
-    ov97_0222D444(&v0->unk_28[2], 0);
-    ov97_0222D30C(v0, 1);
+    ShowMessageBox(appMan, &appData->messageBox, MysteryGiftMenu_Text_SearchingForGift);
+    ToggleWaitDial(appData, TRUE);
+    EraseStdFrameIfInUse(&appData->menuWindows[2], FALSE);
+    ToggleWaitDial(appData, TRUE);
 
-    v0->unk_1644 = 0x1000;
-    v0->unk_26DC = NULL;
+    appData->nasAuthState = 4096;
+    appData->dwcCallback = NULL;
 
-    return 27;
+    return MG_APP_STATE_SEARCH_FOR_WIFI_EVENT;
 }
 
-static int ov97_0222DA64(ApplicationManager *param0)
+static enum MysteryGiftAppState ReturnToMysteryGiftMenu(ApplicationManager *appMan)
 {
-    UnkStruct_ov97_0222D04C *v0 = ApplicationManager_Data(param0);
+    MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
 
-    ov97_0222D444(&v0->unk_28[1], 0);
-    ov97_0222DDD0(param0, (((1 + (18 + 12)) + 9) + 26 * 6), 0);
+    EraseStdFrameIfInUse(&appData->menuWindows[1], FALSE);
+    ShowMysteryGiftMenuOptions(appMan, BASE_TILE_MAIN_APP_MENU, MysteryGiftMenu_Text_Welcome);
 
-    return 3;
+    return MG_APP_STATE_WAIT_MAIN_MENU_INPUT;
 }
 
-static int ov97_0222DA84(ApplicationManager *param0)
+static enum MysteryGiftAppState ShowMysteryGiftReceptionMethodsMenu(ApplicationManager *appMan)
 {
-    Window *v0;
-    SystemData *v1;
-    UnkStruct_ov97_0222D04C *v2 = ApplicationManager_Data(param0);
-    MysteryGift *v3 = SaveData_GetMysteryGift(v2->saveData);
+    // Forward declaration required to match
+    Window *window;
+    MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
+    MysteryGift *mysteryGift = SaveData_GetMysteryGift(appData->saveData);
 
-    if (v2->unk_62C == 30) {
-        v2->unk_630 = 1;
-        ov97_02230224(v2);
+    if (appData->unk_62C == 30) {
+        appData->unk_630 = 1;
+        ov97_02230224(appData);
     }
 
-    ov97_0222D444(&v2->unk_28[0], 0);
-    v0 = &v2->unk_28[1];
+    EraseStdFrameIfInUse(&appData->menuWindows[0], FALSE);
+    window = &appData->menuWindows[1];
 
-    if (v0->bgConfig == NULL) {
-        Window_Add(v2->unk_00, v0, 0, 15, 9, 16, 8, 0, ((((1 + (18 + 12)) + 9) + 26 * 6) + 16 * 6));
+    if (window->bgConfig == NULL) {
+        Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_0, 15, 9, 16, 8, PLTT_0, BASE_TILE_RECEPTION_METHODS_MENU);
     }
 
-    Window_DrawStandardFrame(v0, 1, (1 + (18 + 12)), 3);
-    ov97_0222DD1C(param0, Unk_ov97_0223E5F0, 4, v0, 1);
+    Window_DrawStandardFrame(window, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_3);
+    MakeStateChangeListMenuFromEntryTemplates(appMan, sMysteryGiftReceiveOptions, NELEMS(sMysteryGiftReceiveOptions), window, MysteryGiftMenu_Text_ChooseHowToReceiveGift);
 
-    return 4;
+    return MG_APP_STATE_WAIT_RECEPTION_METHOD_CHOICE;
 }
 
-static int ov97_0222DB08(ApplicationManager *param0)
+static enum MysteryGiftAppState ExitToWonderCardsApp(ApplicationManager *appMan)
 {
-    UnkStruct_ov97_0222D04C *v0 = ApplicationManager_Data(param0);
+    MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
 
-    if (v0->unk_62C == 30) {
-        v0->unk_630 = 1;
-        ov97_02230224(v0);
+    if (appData->unk_62C == 30) {
+        appData->unk_630 = 1;
+        ov97_02230224(appData);
     }
 
-    ov97_02237790(0, 54, v0->unk_163C, 2);
-    return -1;
+    ov97_02237790(0, MG_APP_STATE_EXIT_TO_WONDER_CARDS_APP, (int *)appData->statePtr, MG_APP_STATE_WAIT_SCREEN_TRANSITION);
+    return MG_APP_KEEP_PREVIOUS_STATE;
 }
 
-static int ov97_0222DB40(ApplicationManager *param0)
+static enum MysteryGiftAppState ExitToTitleScreen(ApplicationManager *appMan)
 {
-    UnkStruct_ov97_0222D04C *v0 = ApplicationManager_Data(param0);
+    MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
 
-    if (v0->unk_62C == 30) {
-        v0->unk_630 = 1;
+    if (appData->unk_62C == 30) {
+        appData->unk_630 = 1;
     }
 
     ov97_02237784(1);
-    ov97_02237790(0, 53, v0->unk_163C, 2);
+    ov97_02237790(0, MG_APP_STATE_EXIT_TO_TITLE_SCREEN, (int *)appData->statePtr, MG_APP_STATE_WAIT_SCREEN_TRANSITION);
 
-    return -1;
+    return MG_APP_KEEP_PREVIOUS_STATE;
 }
 
-static void ov97_0222DB78(BgConfig *param0, int param1, u32 param2, u32 param3)
+static void InitBgLayer(BgConfig *bgConfig, int bgLayer, u32 screenBase, u32 charBase)
 {
-    BgTemplate v0 = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xe000,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        0,
-        0,
-        0,
-        0
+    BgTemplate bgTemplate = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = 1,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xe000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0,
+        .areaOver = 0,
+        .dummy = 0,
+        .mosaic = 0
     };
 
-    v0.screenBase = param2 / 0x800;
-    v0.charBase = param3 / 0x4000;
+    bgTemplate.screenBase = screenBase / 0x800;
+    bgTemplate.charBase = charBase / 0x4000;
 
-    Bg_InitFromTemplate(param0, param1, &v0, 0);
-    Bg_ClearTilemap(param0, param1);
+    Bg_InitFromTemplate(bgConfig, bgLayer, &bgTemplate, BG_TYPE_STATIC);
+    Bg_ClearTilemap(bgConfig, bgLayer);
 }
 
-static void ov97_0222DBC4(BgConfig *param0)
+static void SetupGraphics(BgConfig *bgConfig)
 {
-    GraphicsModes v0 = {
+    GraphicsModes graphicsModes = {
         GX_DISPMODE_GRAPHICS,
         GX_BGMODE_0,
         GX_BGMODE_0,
         GX_BG0_AS_2D
     };
 
-    SetAllGraphicsModes(&v0);
+    SetAllGraphicsModes(&graphicsModes);
 
-    ov97_0222DB78(param0, 0, 0xF000, 0x0);
-    ov97_0222DB78(param0, 1, 0xF800, 0x8000);
-    ov97_0222DB78(param0, 4, 0x3800, 0x0);
-    ov97_0222DB78(param0, 5, 0x7800, 0x4000);
+    InitBgLayer(bgConfig, BG_LAYER_MAIN_0, GX_BG_SCRBASE_0xf000 * 0x800, GX_BG_CHARBASE_0x00000 * 0x4000);
+    InitBgLayer(bgConfig, BG_LAYER_MAIN_1, GX_BG_SCRBASE_0xf800 * 0x800, GX_BG_CHARBASE_0x08000 * 0x4000);
+    InitBgLayer(bgConfig, BG_LAYER_SUB_0, GX_BG_SCRBASE_0x3800 * 0x800, GX_BG_CHARBASE_0x00000 * 0x4000);
+    InitBgLayer(bgConfig, BG_LAYER_SUB_1, GX_BG_SCRBASE_0x7800 * 0x800, GX_BG_CHARBASE_0x04000 * 0x4000);
 }
 
-static void ov97_0222DC20(BgConfig *param0)
+static void LoadBottomScreenBg(BgConfig *bgConfig)
 {
-    Graphics_LoadPalette(116, 0, 4, 16 * 2 * 8, 16 * 2, HEAP_ID_86);
-    Graphics_LoadTilesToBgLayer(116, 1, param0, 5, 0, 10 * 16 * 0x20, 1, HEAP_ID_86);
-    Graphics_LoadTilemapToBgLayer(116, 2, param0, 5, 0, 32 * 24 * 2, 1, HEAP_ID_86);
-    Bg_ChangeTilemapRectPalette(param0, 5, 0, 0, 32, 24, 8);
-    Bg_CopyTilemapBufferToVRAM(param0, 5);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 0, PAL_LOAD_SUB_BG, PLTT_OFFSET(8), PALETTE_SIZE_BYTES, HEAP_ID_MYSTERY_GIFT_APP);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 1, bgConfig, BG_LAYER_SUB_1, 0, MG_BACKGROUND_TILESET_SIZE * TILE_SIZE_4BPP, TRUE, HEAP_ID_MYSTERY_GIFT_APP);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 2, bgConfig, BG_LAYER_SUB_1, 0, MG_BACKGROUND_TILEMAP_WIDTH * MG_BACKGROUND_TILEMAP_HEIGHT * 2, TRUE, HEAP_ID_MYSTERY_GIFT_APP);
+    Bg_ChangeTilemapRectPalette(bgConfig, BG_LAYER_SUB_1, 0, 0, MG_BACKGROUND_TILEMAP_WIDTH, MG_BACKGROUND_TILEMAP_HEIGHT, PLTT_8);
+    Bg_CopyTilemapBufferToVRAM(bgConfig, BG_LAYER_SUB_1);
 }
 
-static void ov97_0222DC9C(BgConfig *param0)
+static void LoadBothScreensBg(BgConfig *bgConfig)
 {
-    Graphics_LoadPalette(116, 0, 0, 16 * 2 * 8, 16 * 2, HEAP_ID_86);
-    Graphics_LoadTilesToBgLayer(116, 1, param0, 1, 0, 10 * 16 * 0x20, 1, HEAP_ID_86);
-    Graphics_LoadTilemapToBgLayer(116, 2, param0, 1, 0, 32 * 24 * 2, 1, HEAP_ID_86);
-    Bg_ChangeTilemapRectPalette(param0, 1, 0, 0, 32, 24, 8);
-    Bg_CopyTilemapBufferToVRAM(param0, 1);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 0, PAL_LOAD_MAIN_BG, PLTT_OFFSET(8), PALETTE_SIZE_BYTES, HEAP_ID_MYSTERY_GIFT_APP);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 1, bgConfig, BG_LAYER_MAIN_1, 0, MG_BACKGROUND_TILESET_SIZE * TILE_SIZE_4BPP, TRUE, HEAP_ID_MYSTERY_GIFT_APP);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 2, bgConfig, BG_LAYER_MAIN_1, 0, MG_BACKGROUND_TILEMAP_WIDTH * MG_BACKGROUND_TILEMAP_HEIGHT * 2, TRUE, HEAP_ID_MYSTERY_GIFT_APP);
+    Bg_ChangeTilemapRectPalette(bgConfig, BG_LAYER_MAIN_1, 0, 0, MG_BACKGROUND_TILEMAP_WIDTH, MG_BACKGROUND_TILEMAP_HEIGHT, PLTT_8);
+    Bg_CopyTilemapBufferToVRAM(bgConfig, BG_LAYER_MAIN_1);
 
-    ov97_0222DC20(param0);
+    LoadBottomScreenBg(bgConfig);
 }
 
-static void ov97_0222DD1C(ApplicationManager *param0, UnkStruct_ov97_0223E5B8 *param1, int param2, Window *param3, u32 param4)
+static void MakeStateChangeListMenuFromEntryTemplates(ApplicationManager *appMan, StateChangeMenuOptionTemplate *entries, int numEntries, Window *window, u32 msgBoxEntryId)
 {
-    int v0;
-    ListMenuTemplate v1;
-    UnkStruct_ov97_0222D04C *v2 = ApplicationManager_Data(param0);
+    MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
 
-    if (v2->unk_7C) {
-        StringList_Free(v2->unk_7C);
+    if (appData->listMenuOptions) {
+        StringList_Free(appData->listMenuOptions);
     }
 
-    v2->unk_7C = StringList_New(param2, 86);
-    v2->unk_10 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_86);
+    appData->listMenuOptions = StringList_New(numEntries, HEAP_ID_MYSTERY_GIFT_APP);
+    appData->msgLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_MYSTERY_GIFT_APP);
 
-    for (v0 = 0; v0 < param2; v0++) {
-        StringList_AddFromMessageBank(v2->unk_7C, v2->unk_10, param1[v0].unk_00, param1[v0].unk_04);
+    for (int i = 0; i < numEntries; i++) {
+        StringList_AddFromMessageBank(appData->listMenuOptions, appData->msgLoader, entries[i].textEntryId, (u32)entries[i].stateTransitionFuncPtr);
     }
 
-    MessageLoader_Free(v2->unk_10);
+    MessageLoader_Free(appData->msgLoader);
 
-    v1 = Unk_ov97_0223E5D0;
+    ListMenuTemplate listMenuTemplate = sMysteryGiftAppListMenuTemplate;
 
-    v1.choices = v2->unk_7C;
-    v1.count = v1.maxDisplay = param2;
-    v1.window = param3;
+    listMenuTemplate.choices = appData->listMenuOptions;
+    listMenuTemplate.count = listMenuTemplate.maxDisplay = numEntries;
+    listMenuTemplate.window = window;
 
-    if (v2->unk_78) {
-        ListMenu_Free(v2->unk_78, NULL, NULL);
+    if (appData->listMenu) {
+        ListMenu_Free(appData->listMenu, NULL, NULL);
     }
 
-    v2->unk_78 = ListMenu_New(&v1, 0, 0, 86);
+    appData->listMenu = ListMenu_New(&listMenuTemplate, 0, 0, HEAP_ID_MYSTERY_GIFT_APP);
 
-    if (param4 != -1) {
-        ov97_0222DE78(param0, &v2->unk_18, param4);
+    if (msgBoxEntryId != -1) {
+        ShowMessageBox(appMan, &appData->messageBox, msgBoxEntryId);
     }
 }
 
-static void ov97_0222DDD0(ApplicationManager *param0, int param1, u32 param2)
+static void ShowMysteryGiftMenuOptions(ApplicationManager *appMan, int windowBaseTile, u32 textEntryId)
 {
-    UnkStruct_ov97_0222D04C *v0 = ApplicationManager_Data(param0);
-    Window *v1;
-    UnkStruct_ov97_0223E5B8 v2[4];
-    int v3, v4 = 0;
-    MysteryGift *v5 = SaveData_GetMysteryGift(v0->saveData);
+    MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
+    StateChangeMenuOptionTemplate entries[4];
+    int numEntries = 0;
+    MysteryGift *mysteryGift = SaveData_GetMysteryGift(appData->saveData);
 
-    v1 = &v0->unk_28[0];
-    v2[v4++] = Unk_ov97_0223E5B8[0];
+    Window *window = &appData->menuWindows[0];
+    entries[numEntries++] = sMysteryGiftMenuOptions[MG_MENU_RECEIVE_GIFT];
 
-    if (MysteryGift_CheckHasWonderCards(v5)) {
-        v2[v4++] = Unk_ov97_0223E5B8[1];
+    if (MysteryGift_CheckHasWonderCards(mysteryGift)) {
+        entries[numEntries++] = sMysteryGiftMenuOptions[MG_MENU_CHECK_CARD];
     }
 
-    v2[v4++] = Unk_ov97_0223E5B8[2];
+    entries[numEntries++] = sMysteryGiftMenuOptions[MG_MENU_EXIT];
 
-    if (v1->bgConfig == NULL) {
-        Window_Add(v0->unk_00, v1, 0, 8, 7, 16, v4 * 2, 0, param1);
+    if (window->bgConfig == NULL) {
+        Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_0, 8, 7, 16, numEntries * 2, PLTT_0, windowBaseTile);
     }
 
-    Window_DrawStandardFrame(v1, 1, (1 + (18 + 12)), 3);
-    ov97_0222DD1C(param0, v2, v4, v1, param2);
+    Window_DrawStandardFrame(window, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_3);
+    MakeStateChangeListMenuFromEntryTemplates(appMan, entries, numEntries, window, textEntryId);
 }
 
-static void ov97_0222DE78(ApplicationManager *param0, Window *param1, u32 param2)
+static void ShowMessageBox(ApplicationManager *appMan, Window *window, u32 entryId)
 {
-    Strbuf *v0;
-    UnkStruct_ov97_0222D04C *v1 = ApplicationManager_Data(param0);
+    MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
 
-    v1->unk_10 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_86);
-    v1->unk_0C = StringTemplate_Default(HEAP_ID_86);
+    appData->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_MYSTERY_GIFT_APP);
+    appData->strTemplate = StringTemplate_Default(HEAP_ID_MYSTERY_GIFT_APP);
 
-    Window_FillTilemap(param1, Font_GetAttribute(FONT_MESSAGE, FONTATTR_BG_COLOR));
+    Window_FillTilemap(window, Font_GetAttribute(FONT_MESSAGE, FONTATTR_BG_COLOR));
 
-    if (v1->unk_14) {
-        v0 = v1->unk_14;
-    } else {
-        v0 = MessageUtil_ExpandedStrbuf(v1->unk_0C, v1->unk_10, param2, HEAP_ID_86);
+    Strbuf *strBuf = appData->strBuf ? appData->strBuf : MessageUtil_ExpandedStrbuf(appData->strTemplate, appData->msgLoader, entryId, HEAP_ID_MYSTERY_GIFT_APP);
+
+    appData->textPrinterId = Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, strBuf, 0, 0, appData->msgBoxPrinterDelay, TEXT_COLOR(1, 2, 15), NULL);
+
+    if (appData->strBuf == NULL) {
+        Strbuf_Free(strBuf);
     }
 
-    v1->unk_6C = Text_AddPrinterWithParamsAndColor(param1, FONT_MESSAGE, v0, 0, 0, v1->unk_68, TEXT_COLOR(1, 2, 15), NULL);
+    Window_DrawMessageBoxWithScrollCursor(window, FALSE, BASE_TILE_MESSAGE_BOX_FRAME, PLTT_2);
+    MessageLoader_Free(appData->msgLoader);
+    StringTemplate_Free(appData->strTemplate);
 
-    if (v1->unk_14 == NULL) {
-        Strbuf_Free(v0);
-    }
-
-    Window_DrawMessageBoxWithScrollCursor(param1, 0, 1, 2);
-    MessageLoader_Free(v1->unk_10);
-    StringTemplate_Free(v1->unk_0C);
-
-    v1->unk_68 = 0xff;
+    appData->msgBoxPrinterDelay = TEXT_SPEED_NO_TRANSFER;
 }
 
-static void ov97_0222DF10(ApplicationManager *param0, Window *param1, u16 *param2)
+static void ShowWonderCardTitle(ApplicationManager *appMann, Window *window, charcode_t *title)
 {
-    Strbuf *v0;
-    UnkStruct_ov97_0222D04C *v1 = ApplicationManager_Data(param0);
+    MysteryGiftAppData *appData = ApplicationManager_Data(appMann);
 
-    v0 = Strbuf_Init(36 + 1, HEAP_ID_86);
+    Strbuf *strBuf = Strbuf_Init(WONDERCARD_TITLE_LENGTH + 1, HEAP_ID_MYSTERY_GIFT_APP);
 
-    Strbuf_CopyNumChars(v0, param2, 36);
-    Window_FillTilemap(param1, Font_GetAttribute(FONT_SYSTEM, FONTATTR_BG_COLOR));
-    Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
-    Window_DrawStandardFrame(param1, 0, (1 + (18 + 12)), 3);
-    Strbuf_Free(v0);
+    Strbuf_CopyNumChars(strBuf, title, WONDERCARD_TITLE_LENGTH);
+    Window_FillTilemap(window, Font_GetAttribute(FONT_SYSTEM, FONTATTR_BG_COLOR));
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strBuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
+    Window_DrawStandardFrame(window, FALSE, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_3);
+    Strbuf_Free(strBuf);
 }
 
-static void ov97_0222DF70(ApplicationManager *param0, int *param1, int (*param2)(ApplicationManager *))
+static void ProcessStateTransitionMenuInput(ApplicationManager *appMan, enum MysteryGiftAppState *state, StateTransitionFuncPtr onCancel)
 {
-    u32 v0;
-    int v1;
-    UnkStruct_ov97_0222D04C *v2 = ApplicationManager_Data(param0);
-    static int (*v3)(ApplicationManager *);
+    MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
+    static StateTransitionFuncPtr optionStateTransitionFunc;
 
-    v0 = ListMenu_ProcessInput(v2->unk_78);
+    u32 input = ListMenu_ProcessInput(appData->listMenu);
 
-    switch (v0) {
-    case 0xffffffff:
+    switch (input) {
+    case LIST_NOTHING_CHOSEN:
         break;
-    case 0xfffffffe:
+    case LIST_CANCEL:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
 
-        if (param2) {
-            v1 = param2(param0);
+        if (onCancel) {
+            enum MysteryGiftAppState nextState = onCancel(appMan);
 
-            if (v1 != -1) {
-                *param1 = v1;
+            if (nextState != MG_APP_KEEP_PREVIOUS_STATE) {
+                *state = nextState;
             }
         }
         break;
     default:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
 
-        if (v0) {
-            v3 = (static int (*)(ApplicationManager *))v0;
-            v1 = v3(param0);
+        if (input) {
+            optionStateTransitionFunc = (StateTransitionFuncPtr)input;
+            enum MysteryGiftAppState nextState = optionStateTransitionFunc(appMan);
 
-            if (v1 != -1) {
-                *param1 = v1;
+            if (nextState != MG_APP_KEEP_PREVIOUS_STATE) {
+                *state = nextState;
             }
         }
         break;
     }
 }
 
-static BOOL ov97_0222DFD4(ApplicationManager *param0, UnkStruct_ov97_0222D04C *param1)
+static BOOL ShowAppMainMenu(ApplicationManager *appMan, MysteryGiftAppData *appData)
 {
-    int v0;
-
     Text_ResetAllPrinters();
-    Font_LoadTextPalette(0, 0 * 32, HEAP_ID_86);
-    Font_LoadTextPalette(0, 1 * 32, HEAP_ID_86);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(0), HEAP_ID_MYSTERY_GIFT_APP);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(1), HEAP_ID_MYSTERY_GIFT_APP);
 
-    v0 = Options_Frame(param1->unk_08);
+    int frameType = Options_Frame(appData->options);
 
-    LoadMessageBoxGraphics(param1->unk_00, 0, 1, 2, v0, HEAP_ID_86);
-    LoadStandardWindowGraphics(param1->unk_00, 0, (1 + (18 + 12)), 3, 1, HEAP_ID_86);
+    LoadMessageBoxGraphics(appData->bgConfig, BG_LAYER_MAIN_0, 1, 2, frameType, HEAP_ID_MYSTERY_GIFT_APP);
+    LoadStandardWindowGraphics(appData->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_STANDARD_WINDOW_FRAME, 3, STANDARD_WINDOW_FIELD, HEAP_ID_MYSTERY_GIFT_APP);
 
-    *((u16 *)HW_BG_PLTT) = ((31 & 31) << 10 | (12 & 31) << 5 | (12 & 31));
+    *(GXRgb *)HW_BG_PLTT = GX_RGB(12, 12, 31);
 
-    if (!Window_IsInUse(&param1->unk_18)) {
-        Window_Add(param1->unk_00, &param1->unk_18, 0, 2, 19, 27, 4, 0, ((1 + (18 + 12)) + 9));
+    if (!Window_IsInUse(&appData->messageBox)) {
+        Window_Add(appData->bgConfig, &appData->messageBox, BG_LAYER_MAIN_0, 2, 19, 27, 4, PLTT_0, BASE_TILE_MAIN_APP_MENU_MSG_BOX);
     }
 
-    ov97_0222DE78(param0, &param1->unk_18, 0);
-    ov97_0222DDD0(param0, (((1 + (18 + 12)) + 9) + 26 * 6), 0);
-    ov97_0222DC9C(param1->unk_00);
+    ShowMessageBox(appMan, &appData->messageBox, MysteryGiftMenu_Text_Welcome);
+    ShowMysteryGiftMenuOptions(appMan, BASE_TILE_MAIN_APP_MENU, MysteryGiftMenu_Text_Welcome);
+    LoadBothScreensBg(appData->bgConfig);
 
-    return 1;
+    return TRUE;
 }
 
-static void ov97_0222E080(ApplicationManager *param0, int *param1)
+static void SearchForWiFiDistributionEvent(ApplicationManager *appMan, enum MysteryGiftAppState *state)
 {
-    UnkStruct_ov97_0222D04C *v0 = ApplicationManager_Data(param0);
+    MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
 
-    switch (ov97_02238EAC(param0, &v0->unk_1644)) {
+    switch (ov97_02238EAC(appMan, &appData->nasAuthState)) {
     case 0:
         break;
     case 1:
-        memcpy(&v0->unk_8C, v0->unk_16B8, sizeof(UnkStruct_ov97_0223829C));
-        ov97_0222D30C(v0, 0);
-        v0->unk_84 = 27;
-        *param1 = 19;
-        v0->unk_1640 = 0;
+        memcpy(&appData->eventData, appData->wifiDistributionBuffer, sizeof(MysteryGiftEventData));
+        ToggleWaitDial(appData, FALSE);
+        appData->foundGiftType = FOUND_GIFT_WIFI;
+        *state = MG_APP_STATE_FOUND_WIFI_OR_GBA_GIFT;
+        appData->unk_1640 = 0;
         break;
     case 2:
     case 3:
-        ov97_0222D30C(v0, 0);
-        v0->unk_1640 = 0;
-        *param1 = 17;
+        ToggleWaitDial(appData, FALSE);
+        appData->unk_1640 = 0;
+        *state = MG_APP_STATE_NO_GIFT_FOUND;
         break;
     case 4:
-        Window_ClearAndCopyToVRAM(&v0->unk_26E0);
-        Window_Remove(&v0->unk_26E0);
-        Bg_ClearTilemap(v0->unk_00, 0);
+        Window_ClearAndCopyToVRAM(&appData->wifiCommErrorWindow);
+        Window_Remove(&appData->wifiCommErrorWindow);
+        Bg_ClearTilemap(appData->bgConfig, BG_LAYER_MAIN_0);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        ov97_0222DDD0(param0, (((1 + (18 + 12)) + 9) + 26 * 6), 0);
-        GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-        *param1 = 3;
+        ShowMysteryGiftMenuOptions(appMan, BASE_TILE_MAIN_APP_MENU, MysteryGiftMenu_Text_Welcome);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
+        *state = MG_APP_STATE_WAIT_MAIN_MENU_INPUT;
         break;
     }
 }
 
-void ov97_0222E13C(UnkStruct_ov97_0222D04C *param0)
+void MysteryGiftApp_ShowWiFiCommError(MysteryGiftAppData *appData)
 {
-    StringTemplate *v0;
+    int textEntryID = appData->wifiCommErrorStringID != -1 ? appData->wifiCommErrorStringID : pl_msg_00000695_00011;
+
+    ToggleWaitDial(appData, FALSE);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, FALSE);
+    Bg_ClearTilemap(appData->bgConfig, BG_LAYER_MAIN_0);
+
+    StringTemplate *strTemplate = StringTemplate_Default(HEAP_ID_MYSTERY_GIFT_APP);
+    StringTemplate_SetNumber(strTemplate, 0, appData->wifiCommErrorCode, 5, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
+
     UnkStruct_ov97_02237808 v1;
-    int v2;
-
-    if (param0->unk_26CC != -1) {
-        v2 = 0 + param0->unk_26CC;
-    } else {
-        v2 = 11;
-    }
-
-    ov97_0222D30C(param0, 0);
-    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
-    Bg_ClearTilemap(param0->unk_00, 0);
-
-    v0 = StringTemplate_Default(HEAP_ID_86);
-    StringTemplate_SetNumber(v0, 0, param0->unk_26D0, 5, 2, 1);
-
-    ov97_02237808(&v1, &param0->unk_26E0, 1, 695, (1 + (18 + 12)), 3);
+    ov97_02237808(&v1, &appData->wifiCommErrorWindow, PLTT_1, TEXT_BANK_UNK_0695, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_3);
     ov97_02237858(&v1, 24, 16, 100);
-    ov97_02237860(&v1, 0, 1);
+    ov97_02237860(&v1, FALSE, FONT_MESSAGE);
 
-    v1.unk_14 = v0;
+    v1.unk_14 = strTemplate;
 
-    ov97_0223795C(param0->unk_00, &v1, 4, 4, v2);
-    StringTemplate_Free(v0);
+    ov97_0223795C(appData->bgConfig, &v1, 4, 4, textEntryID);
+    StringTemplate_Free(strTemplate);
 }
 
-static int ov97_0222E1D8(ApplicationManager *param0)
+static int ShowMessageBoxForCanReceiveStatus(ApplicationManager *appMan)
 {
-    int v0;
-    UnkStruct_ov97_0222D04C *v1 = ApplicationManager_Data(param0);
+    int textEntryID;
+    MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
 
-    if (v1->unk_80 == 3) {
-        v0 = 21;
-    } else if (v1->unk_80 == 4) {
-        v0 = 25;
-    } else if (v1->unk_80 == 2) {
-        v0 = 22;
-    } else if (v1->unk_80 == 1) {
-        v0 = 27;
-    } else if (v1->unk_80 == 5) {
-        v0 = 9;
-        return ov97_0222E228(param0, &v1->unk_18, v0, 52);
+    if (appData->canReceiveGiftStatus == MYSTERY_GIFT_CANT_RECEIVE_NO_PGT_SLOT) {
+        textEntryID = MysteryGiftMenu_Text_DeliveryManOverloaded;
+    } else if (appData->canReceiveGiftStatus == MYSTERY_GIFT_CANT_RECEIVE_NO_WC_SLOT) {
+        textEntryID = MysteryGiftMenu_Text_OutOfRoomForWonderCards;
+    } else if (appData->canReceiveGiftStatus == MYSTERY_GIFT_CANT_RECEIVE_ALREADY_RECEIVED) {
+        textEntryID = MysteryGiftMenu_Text_AlreadyReceivedCantGetAnotherOne;
+    } else if (appData->canReceiveGiftStatus == MYSTERY_GIFT_CANT_RECEIVE_WRONG_VERSION) {
+        textEntryID = MysteryGiftMenu_Text_GiftCannotBeReceivedInThisVersion;
+    } else if (appData->canReceiveGiftStatus == MYSTERY_GIFT_CAN_RECEIVE_FROM_FRIEND) {
+        textEntryID = MysteryGiftMenu_Text_GiftBeingSharedByAnotherPerson;
+        return ShowMessageBoxIntoStateTransition(appMan, &appData->messageBox, textEntryID, MG_APP_STATE_ASK_CONFIRM_RECEIVE_SHARED_GIFT);
     }
 
-    return ov97_0222E228(param0, &v1->unk_18, v0, 51);
+    return ShowMessageBoxIntoStateTransition(appMan, &appData->messageBox, textEntryID, MG_APP_STATE_WAIT_INPUT_RETURN_TO_MENU);
 }
 
-static int ov97_0222E228(ApplicationManager *param0, Window *param1, int param2, int param3)
+static inline int WaitUntilMsgBoxPrinterFinished(ApplicationManager *appMan, int nextState)
 {
-    StringTemplate *v0;
-    MessageLoader *v1;
-    UnkStruct_ov97_0222D04C *v2 = ApplicationManager_Data(param0);
+    return ShowMessageBoxIntoStateTransition(appMan, NULL, 0, nextState);
+}
 
-    if (param1 && param2) {
-        v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_86);
-        v0 = StringTemplate_Default(HEAP_ID_86);
-        v2->unk_14 = MessageUtil_ExpandedStrbuf(v0, v1, param2, HEAP_ID_86);
-        v2->unk_68 = 1;
+static int ShowMessageBoxIntoStateTransition(ApplicationManager *appMan, Window *window, int textEntryId, int nextState)
+{
+    StringTemplate *strTemplate;
+    MessageLoader *msgLoader;
+    MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
 
-        ov97_0222DE78(param0, param1, param2);
-        v2->unk_74 = param3;
+    if (window && textEntryId) {
+        msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_MYSTERY_GIFT_APP);
+        strTemplate = StringTemplate_Default(HEAP_ID_MYSTERY_GIFT_APP);
+        appData->strBuf = MessageUtil_ExpandedStrbuf(strTemplate, msgLoader, textEntryId, HEAP_ID_MYSTERY_GIFT_APP);
+        appData->msgBoxPrinterDelay = TEXT_SPEED_FAST;
 
-        StringTemplate_Free(v0);
-        MessageLoader_Free(v1);
+        ShowMessageBox(appMan, window, textEntryId);
+        appData->queuedState = nextState;
+
+        StringTemplate_Free(strTemplate);
+        MessageLoader_Free(msgLoader);
     } else {
-        if (Text_IsPrinterActive(v2->unk_6C) == 0) {
-            Strbuf_Free(v2->unk_14);
-            v2->unk_14 = NULL;
-            v2->unk_68 = 0;
-            return v2->unk_74;
+        if (Text_IsPrinterActive(appData->textPrinterId) == FALSE) {
+            Strbuf_Free(appData->strBuf);
+            appData->strBuf = NULL;
+            appData->msgBoxPrinterDelay = TEXT_SPEED_INSTANT;
+            return appData->queuedState;
         }
     }
 
-    return 50;
+    return MG_APP_STATE_WAIT_MESSAGE_BOX_FOR_TRANSITION;
 }
 
-static void ov97_0222E2AC(UnkStruct_ov97_0222D04C *param0)
+static void FreeMultiplayerCommResources(MysteryGiftAppData *appData)
 {
-    switch (param0->unk_1638) {
-    case 0:
+    switch (appData->receptionMethod) {
+    case RECEPTION_METHOD_NONE:
         break;
-    case 1:
+    case RECEIVE_FROM_FRIEND:
         ov97_0222D2DC();
         sub_02039794();
         break;
-    case 2:
+    case RECEIVE_FROM_GBA_CARTRIDGE:
         break;
-    case 3:
+    case RECEIVE_FROM_LOCAL_WIRELESS:
         break;
-    case 4:
+    case RECEIVE_FROM_WIFI:
         break;
     }
 }
 
-static int ov97_0222E2DC(ApplicationManager *param0, int *param1)
+static int MysteryGiftApp_Init(ApplicationManager *appMan, int *unused)
 {
-    UnkStruct_ov97_0222D04C *v0;
+    MysteryGiftApp_SetApplicationManager(appMan);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_MYSTERY_GIFT_APP, HEAP_SIZE_MYSTERY_GIFT_APP);
 
-    ov97_022301B0(param0);
-    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_86, 0x30000);
-
-    v0 = ApplicationManager_NewData(param0, sizeof(UnkStruct_ov97_0222D04C), HEAP_ID_86);
-    memset(v0, 0, sizeof(UnkStruct_ov97_0222D04C));
-    v0->unk_00 = BgConfig_New(HEAP_ID_86);
+    MysteryGiftAppData *appData = ApplicationManager_NewData(appMan, sizeof(MysteryGiftAppData), HEAP_ID_MYSTERY_GIFT_APP);
+    memset(appData, 0, sizeof(MysteryGiftAppData));
+    appData->bgConfig = BgConfig_New(HEAP_ID_MYSTERY_GIFT_APP);
 
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
     ov97_02232054();
-    ov97_0222DBC4(v0->unk_00);
+    SetupGraphics(appData->bgConfig);
 
     SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
     SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
 
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_10, SEQ_PRESENT, 1);
-    ov97_02237520(86);
+    ov97_02237520(HEAP_ID_MYSTERY_GIFT_APP);
 
     if (ov97_02237624()) {
-        v0->unk_1638 = 2;
+        appData->receptionMethod = RECEIVE_FROM_GBA_CARTRIDGE;
         SetGBACartridgeVersion(gGameVersion);
-        ov97_02238400(1);
+        ov97_02238400(TRUE);
     }
 
-    v0->unk_62C = 29;
-    v0->saveData = ((ApplicationArgs *)ApplicationManager_Args(param0))->saveData;
-    v0->unk_08 = SaveData_GetOptions(v0->saveData);
-    v0->unk_68 = 0xff;
+    appData->unk_62C = 29;
+    appData->saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
+    appData->options = SaveData_GetOptions(appData->saveData);
+    appData->msgBoxPrinterDelay = TEXT_SPEED_NO_TRANSFER;
 
     Heap_Create(HEAP_ID_SYSTEM, HEAP_ID_91, 0x300);
 
-    return 1;
+    return TRUE;
 }
 
-static void ov97_0222E398(UnkStruct_ov97_0222E398 *param0)
+static void LoadParticleSpriteResources(MysteryGiftAnimationManager *animMan)
 {
-    int v0 = 116;
-    int v1 = 39;
-    int v2 = 36;
-    int v3 = 38;
-    int v4 = 37;
-    int v5 = 1;
-    int v6 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    int v7 = 20000 + v6;
-    int v8 = 86;
-    int v9 = 0 + 0;
+    enum NarcID narcID = NARC_INDEX_GRAPHIC__MYSTERY;
+    int tilesID = 39;
+    int paletteID = 36;
+    int cellsID = 38;
+    int animationID = 37;
+    int compressed = TRUE;
+    int vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    int resourceID = 20000 + vramType;
+    int heapID = HEAP_ID_MYSTERY_GIFT_APP;
+    int baseIndex = 0;
 
-    {
-        v6 = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v7 = 20000 + v6;
+    vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    resourceID = 20000 + vramType;
 
-        param0->unk_58[v9 + 0][0] = SpriteResourceCollection_AddTiles(param0->unk_0C->unk_190[0], v0, v1, v5, v7, v6, v8);
-        param0->unk_58[v9 + 0][1] = SpriteResourceCollection_AddPalette(param0->unk_0C->unk_190[1], v0, v2, 0, v7, v6, 1, v8);
-        param0->unk_58[v9 + 0][2] = SpriteResourceCollection_Add(param0->unk_0C->unk_190[2], v0, v3, v5, v7, 2, v8);
-        param0->unk_58[v9 + 0][3] = SpriteResourceCollection_Add(param0->unk_0C->unk_190[3], v0, v4, v5, v7, 3, v8);
-    }
+    animMan->spriteResources[DS_SCREEN_MAIN][SPRITE_RESOURCE_CHAR] = SpriteResourceCollection_AddTiles(animMan->unk_0C->unk_190[SPRITE_RESOURCE_CHAR], narcID, tilesID, compressed, resourceID, vramType, heapID);
+    animMan->spriteResources[DS_SCREEN_MAIN][SPRITE_RESOURCE_PLTT] = SpriteResourceCollection_AddPalette(animMan->unk_0C->unk_190[SPRITE_RESOURCE_PLTT], narcID, paletteID, FALSE, resourceID, vramType, PLTT_1, heapID);
+    animMan->spriteResources[DS_SCREEN_MAIN][SPRITE_RESOURCE_CELL] = SpriteResourceCollection_Add(animMan->unk_0C->unk_190[SPRITE_RESOURCE_CELL], narcID, cellsID, compressed, resourceID, SPRITE_RESOURCE_CELL, heapID);
+    animMan->spriteResources[DS_SCREEN_MAIN][SPRITE_RESOURCE_ANIM] = SpriteResourceCollection_Add(animMan->unk_0C->unk_190[SPRITE_RESOURCE_ANIM], narcID, animationID, compressed, resourceID, SPRITE_RESOURCE_ANIM, heapID);
 
-    {
-        v6 = NNS_G2D_VRAM_TYPE_2DSUB;
-        v7 = 20000 + v6;
+    vramType = NNS_G2D_VRAM_TYPE_2DSUB;
+    resourceID = 20000 + vramType;
 
-        param0->unk_58[v9 + 1][0] = SpriteResourceCollection_AddTiles(param0->unk_0C->unk_190[0], v0, v1, v5, v7, v6, v8);
-        param0->unk_58[v9 + 1][1] = SpriteResourceCollection_AddPalette(param0->unk_0C->unk_190[1], v0, v2, 0, v7, v6, 1, v8);
-        param0->unk_58[v9 + 1][2] = SpriteResourceCollection_Add(param0->unk_0C->unk_190[2], v0, v3, v5, v7, 2, v8);
-        param0->unk_58[v9 + 1][3] = SpriteResourceCollection_Add(param0->unk_0C->unk_190[3], v0, v4, v5, v7, 3, v8);
-    }
+    animMan->spriteResources[DS_SCREEN_SUB][SPRITE_RESOURCE_CHAR] = SpriteResourceCollection_AddTiles(animMan->unk_0C->unk_190[SPRITE_RESOURCE_CHAR], narcID, tilesID, compressed, resourceID, vramType, heapID);
+    animMan->spriteResources[DS_SCREEN_SUB][SPRITE_RESOURCE_PLTT] = SpriteResourceCollection_AddPalette(animMan->unk_0C->unk_190[SPRITE_RESOURCE_PLTT], narcID, paletteID, FALSE, resourceID, vramType, PLTT_1, heapID);
+    animMan->spriteResources[DS_SCREEN_SUB][SPRITE_RESOURCE_CELL] = SpriteResourceCollection_Add(animMan->unk_0C->unk_190[SPRITE_RESOURCE_CELL], narcID, cellsID, compressed, resourceID, SPRITE_RESOURCE_CELL, heapID);
+    animMan->spriteResources[DS_SCREEN_SUB][SPRITE_RESOURCE_ANIM] = SpriteResourceCollection_Add(animMan->unk_0C->unk_190[SPRITE_RESOURCE_ANIM], narcID, animationID, compressed, resourceID, SPRITE_RESOURCE_ANIM, heapID);
 
-    SpriteTransfer_RequestChar(param0->unk_58[v9 + 0][0]);
-    SpriteTransfer_RequestChar(param0->unk_58[v9 + 1][0]);
+    SpriteTransfer_RequestChar(animMan->spriteResources[DS_SCREEN_MAIN][SPRITE_RESOURCE_CHAR]);
+    SpriteTransfer_RequestChar(animMan->spriteResources[DS_SCREEN_SUB][SPRITE_RESOURCE_CHAR]);
 
-    SpriteTransfer_RequestPlttFreeSpace(param0->unk_58[v9 + 0][1]);
-    SpriteTransfer_RequestPlttFreeSpace(param0->unk_58[v9 + 1][1]);
+    SpriteTransfer_RequestPlttFreeSpace(animMan->spriteResources[DS_SCREEN_MAIN][SPRITE_RESOURCE_PLTT]);
+    SpriteTransfer_RequestPlttFreeSpace(animMan->spriteResources[DS_SCREEN_SUB][SPRITE_RESOURCE_PLTT]);
 
-    v6 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v7 = 20000 + v6;
+    vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    resourceID = 20000 + vramType;
 
-    SpriteResourcesHeader_Init(&param0->unk_10[v9 + 0], v7, v7, v7, v7, 0xffffffff, 0xffffffff, 0, 0, param0->unk_0C->unk_190[0], param0->unk_0C->unk_190[1], param0->unk_0C->unk_190[2], param0->unk_0C->unk_190[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&animMan->spriteResourcesHeaders[DS_SCREEN_MAIN], resourceID, resourceID, resourceID, resourceID, 0xffffffff, 0xffffffff, FALSE, 0, animMan->unk_0C->unk_190[SPRITE_RESOURCE_CHAR], animMan->unk_0C->unk_190[SPRITE_RESOURCE_PLTT], animMan->unk_0C->unk_190[SPRITE_RESOURCE_CELL], animMan->unk_0C->unk_190[SPRITE_RESOURCE_ANIM], NULL, NULL);
 
-    v6 = NNS_G2D_VRAM_TYPE_2DSUB;
-    v7 = 20000 + v6;
+    vramType = NNS_G2D_VRAM_TYPE_2DSUB;
+    resourceID = 20000 + vramType;
 
-    SpriteResourcesHeader_Init(&param0->unk_10[v9 + 1], v7, v7, v7, v7, 0xffffffff, 0xffffffff, 0, 0, param0->unk_0C->unk_190[0], param0->unk_0C->unk_190[1], param0->unk_0C->unk_190[2], param0->unk_0C->unk_190[3], NULL, NULL);
+    // Despite baseIndex always being 0, replacing `baseIndex + DS_SCREEN_SUB` with `DS_SCREEN_SUB` doesn't match here.
+    SpriteResourcesHeader_Init(&animMan->spriteResourcesHeaders[baseIndex + DS_SCREEN_SUB], resourceID, resourceID, resourceID, resourceID, 0xffffffff, 0xffffffff, FALSE, 0, animMan->unk_0C->unk_190[SPRITE_RESOURCE_CHAR], animMan->unk_0C->unk_190[SPRITE_RESOURCE_PLTT], animMan->unk_0C->unk_190[SPRITE_RESOURCE_CELL], animMan->unk_0C->unk_190[SPRITE_RESOURCE_ANIM], NULL, NULL);
 }
 
-static Sprite *ov97_0222E538(UnkStruct_ov97_0222E398 *param0, int param1)
+static Sprite *InitParticleSprite(MysteryGiftAnimationManager *animMan, int vramType)
 {
-    Sprite *v0;
+    Sprite *sprite;
 
     {
-        AffineSpriteListTemplate v1;
-        int v2 = (param1 == NNS_G2D_VRAM_TYPE_2DMAIN) ? 0 : 1;
+        AffineSpriteListTemplate template;
 
-        v1.list = param0->unk_0C->unk_00;
-        v1.resourceData = &param0->unk_10[v2];
-        v1.position.z = 0;
-        v1.affineScale.x = FX32_ONE;
-        v1.affineScale.y = FX32_ONE;
-        v1.affineScale.z = FX32_ONE;
-        v1.affineZRotation = 0;
-        v1.position.x = FX32_ONE * 128;
-        v1.position.y = FX32_ONE * 32;
-        v1.priority = 10;
-        v1.vramType = param1;
-        v1.heapID = HEAP_ID_86;
+        // 0 is the top screen, 1 is the bottom screen. Using enum variants doesn't match.
+        enum DSScreen screen = (vramType == NNS_G2D_VRAM_TYPE_2DMAIN) ? 0 : 1;
 
-        if (v1.vramType == NNS_G2D_VRAM_TYPE_2DSUB) {
-            v1.position.y += FX32_CONST(256);
+        template.list = animMan->unk_0C->unk_00;
+        template.resourceData = &animMan->spriteResourcesHeaders[screen];
+        template.position.z = 0;
+        template.affineScale.x = FX32_ONE;
+        template.affineScale.y = FX32_ONE;
+        template.affineScale.z = FX32_ONE;
+        template.affineZRotation = 0;
+        template.position.x = FX32_CONST(HW_LCD_WIDTH / 2);
+        template.position.y = FX32_CONST(32);
+        template.priority = 10;
+        template.vramType = vramType;
+        template.heapID = HEAP_ID_MYSTERY_GIFT_APP;
+
+        if (template.vramType == NNS_G2D_VRAM_TYPE_2DSUB) {
+            template.position.y += FX32_CONST(256);
         }
 
-        v0 = SpriteList_AddAffine(&v1);
+        sprite = SpriteList_AddAffine(&template);
     }
 
-    if (v0) {
-        Sprite_SetAnimateFlag(v0, 1);
-        Sprite_SetExplicitPriority(v0, 0);
-        Sprite_SetAnim(v0, 0);
-        Sprite_SetDrawFlag(v0, 1);
+    if (sprite) {
+        Sprite_SetAnimateFlag(sprite, TRUE);
+        Sprite_SetExplicitPriority(sprite, 0);
+        Sprite_SetAnim(sprite, 0);
+        Sprite_SetDrawFlag(sprite, TRUE);
     }
 
-    return v0;
+    return sprite;
 }
 
-static void ov97_0222E5B4(UnkStruct_ov97_0222E398 *param0)
+static void SetupTopScreenLargeParticle(MysteryGiftAnimationManager *animMan)
 {
-    param0->unk_3008.unk_0C = ov97_0222E538(param0, NNS_G2D_VRAM_TYPE_2DMAIN);
+    animMan->topScreenLargeParticle.sprite = InitParticleSprite(animMan, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    Sprite_SetAnimNoRestart(param0->unk_3008.unk_0C, 2);
-    Sprite_SetAnimFrame(param0->unk_3008.unk_0C, 0);
-    Sprite_SetDrawFlag(param0->unk_3008.unk_0C, 0);
-    Sprite_SetPriority(param0->unk_3008.unk_0C, 0);
-    Sprite_SetAffineOverwriteMode(param0->unk_3008.unk_0C, 2);
+    Sprite_SetAnimNoRestart(animMan->topScreenLargeParticle.sprite, 2);
+    Sprite_SetAnimFrame(animMan->topScreenLargeParticle.sprite, 0);
+    Sprite_SetDrawFlag(animMan->topScreenLargeParticle.sprite, FALSE);
+    Sprite_SetPriority(animMan->topScreenLargeParticle.sprite, 0);
+    Sprite_SetAffineOverwriteMode(animMan->topScreenLargeParticle.sprite, AFFINE_OVERWRITE_MODE_DOUBLE);
 
-    {
-        VecFx32 *v0;
-
-        v0 = (VecFx32 *)Sprite_GetPosition(param0->unk_3008.unk_0C);
-        v0->x = FX32_CONST(128);
-        v0->y = FX32_CONST(96);
-    }
+    // Cast to explicitly remove the const qualifier
+    VecFx32 *spritePos = (VecFx32 *)Sprite_GetPosition(animMan->topScreenLargeParticle.sprite);
+    spritePos->x = FX32_CONST(HW_LCD_WIDTH / 2);
+    spritePos->y = FX32_CONST(HW_LCD_HEIGHT / 2);
 }
 
-static void ov97_0222E60C(UnkStruct_ov97_0222E398 *param0)
+static void SetupBottomScreenLargeParticle(MysteryGiftAnimationManager *animMan)
 {
-    param0->unk_3054.unk_0C = ov97_0222E538(param0, NNS_G2D_VRAM_TYPE_2DSUB);
+    animMan->bottomScreenLargeParticle.sprite = InitParticleSprite(animMan, NNS_G2D_VRAM_TYPE_2DSUB);
 
-    Sprite_SetAnimNoRestart(param0->unk_3054.unk_0C, 4);
-    Sprite_SetAnimFrame(param0->unk_3054.unk_0C, 0);
-    Sprite_SetDrawFlag(param0->unk_3054.unk_0C, 0);
-    Sprite_SetPriority(param0->unk_3054.unk_0C, 0);
-    Sprite_SetAffineOverwriteMode(param0->unk_3054.unk_0C, 2);
+    Sprite_SetAnimNoRestart(animMan->bottomScreenLargeParticle.sprite, 4);
+    Sprite_SetAnimFrame(animMan->bottomScreenLargeParticle.sprite, 0);
+    Sprite_SetDrawFlag(animMan->bottomScreenLargeParticle.sprite, FALSE);
+    Sprite_SetPriority(animMan->bottomScreenLargeParticle.sprite, 0);
+    Sprite_SetAffineOverwriteMode(animMan->bottomScreenLargeParticle.sprite, AFFINE_OVERWRITE_MODE_DOUBLE);
 
-    {
-        VecFx32 *v0;
-
-        v0 = (VecFx32 *)Sprite_GetPosition(param0->unk_3054.unk_0C);
-        v0->x = FX32_CONST(128);
-        v0->y = FX32_CONST(0) + FX32_CONST(256);
-    }
+    // Cast to explicitly remove the const qualifier
+    VecFx32 *spritePos = (VecFx32 *)Sprite_GetPosition(animMan->bottomScreenLargeParticle.sprite);
+    spritePos->x = FX32_CONST(HW_LCD_WIDTH / 2);
+    spritePos->y = FX32_CONST(256);
 }
 
-static void ov97_0222E664(UnkStruct_ov97_0222E398 *param0)
+static void DeleteTopScreenLargeParticle(MysteryGiftAnimationManager *animMan)
 {
-    Sprite_Delete(param0->unk_3008.unk_0C);
-    param0->unk_3008.unk_0C = NULL;
+    Sprite_Delete(animMan->topScreenLargeParticle.sprite);
+    animMan->topScreenLargeParticle.sprite = NULL;
 }
 
-static void ov97_0222E67C(UnkStruct_ov97_0222E398 *param0)
+static void DeleteBottomScreenLargeParticle(MysteryGiftAnimationManager *animMan)
 {
-    Sprite_Delete(param0->unk_3054.unk_0C);
-    param0->unk_3054.unk_0C = NULL;
+    Sprite_Delete(animMan->bottomScreenLargeParticle.sprite);
+    animMan->bottomScreenLargeParticle.sprite = NULL;
 }
 
-static void ov97_0222E694(UnkStruct_ov97_0222E398 *param0)
+static void UpdateAllParticleSpritesAnimations(MysteryGiftAnimationManager *animMan)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 80; v0++) {
-        if (param0->unk_88[v0].unk_0C) {
-            Sprite_UpdateAnim(param0->unk_88[v0].unk_0C, FX32_CONST(2));
+    for (int i = 0; i < NUM_MYSTERY_GIFT_PARTICLES; i++) {
+        if (animMan->topScreenSmallParticles[i].sprite) {
+            Sprite_UpdateAnim(animMan->topScreenSmallParticles[i].sprite, FX32_CONST(2));
         }
 
-        if (param0->unk_1848[v0].unk_0C) {
-            Sprite_UpdateAnim(param0->unk_1848[v0].unk_0C, FX32_CONST(2));
+        if (animMan->bottomScreenSmallParticles[i].sprite) {
+            Sprite_UpdateAnim(animMan->bottomScreenSmallParticles[i].sprite, FX32_CONST(2));
         }
     }
 
-    if (param0->unk_3008.unk_0C) {
-        Sprite_UpdateAnim(param0->unk_3008.unk_0C, FX32_CONST(2));
+    if (animMan->topScreenLargeParticle.sprite) {
+        Sprite_UpdateAnim(animMan->topScreenLargeParticle.sprite, FX32_CONST(2));
     }
 
-    if (param0->unk_3054.unk_0C) {
-        Sprite_UpdateAnim(param0->unk_3054.unk_0C, FX32_CONST(2));
-    }
-}
-
-static void ov97_0222E6F8(UnkStruct_ov97_0222E398 *param0)
-{
-    int v0;
-
-    for (v0 = 0; v0 < 80; v0++) {
-        param0->unk_88[v0].unk_0C = ov97_0222E538(param0, NNS_G2D_VRAM_TYPE_2DMAIN);
-        Sprite_SetAnimNoRestart(param0->unk_88[v0].unk_0C, 1);
-        Sprite_SetAnimFrame(param0->unk_88[v0].unk_0C, 0);
+    if (animMan->bottomScreenLargeParticle.sprite) {
+        Sprite_UpdateAnim(animMan->bottomScreenLargeParticle.sprite, FX32_CONST(2));
     }
 }
 
-static void ov97_0222E734(UnkStruct_ov97_0222E398 *param0)
+static void InitAllTopScreenParticlesSprite(MysteryGiftAnimationManager *animMan)
 {
-    int v0;
+    for (int i = 0; i < NUM_MYSTERY_GIFT_PARTICLES; i++) {
+        animMan->topScreenSmallParticles[i].sprite = InitParticleSprite(animMan, NNS_G2D_VRAM_TYPE_2DMAIN);
+        Sprite_SetAnimNoRestart(animMan->topScreenSmallParticles[i].sprite, 1);
+        Sprite_SetAnimFrame(animMan->topScreenSmallParticles[i].sprite, 0);
+    }
+}
 
-    for (v0 = 0; v0 < 80; v0++) {
-        if (v0 < (80 / 4)) {
-            param0->unk_88[v0].unk_0C = ov97_0222E538(param0, NNS_G2D_VRAM_TYPE_2DMAIN);
-            Sprite_SetAnimNoRestart(param0->unk_88[v0].unk_0C, 1);
-            Sprite_SetAnimFrame(param0->unk_88[v0].unk_0C, 0);
+static void InitSomeTopScreenParticlesSprite(MysteryGiftAnimationManager *animMan)
+{
+    for (int i = 0; i < NUM_MYSTERY_GIFT_PARTICLES; i++) {
+        if (i < (NUM_MYSTERY_GIFT_PARTICLES / 4)) {
+            animMan->topScreenSmallParticles[i].sprite = InitParticleSprite(animMan, NNS_G2D_VRAM_TYPE_2DMAIN);
+            Sprite_SetAnimNoRestart(animMan->topScreenSmallParticles[i].sprite, 1);
+            Sprite_SetAnimFrame(animMan->topScreenSmallParticles[i].sprite, 0);
         } else {
-            param0->unk_88[v0].unk_0C = NULL;
+            animMan->topScreenSmallParticles[i].sprite = NULL;
         }
     }
 }
 
-static void ov97_0222E77C(UnkStruct_ov97_0222E398 *param0)
+static void InitAllBottomScreenParticlesSprite(MysteryGiftAnimationManager *animMan)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 80; v0++) {
-        param0->unk_1848[v0].unk_0C = ov97_0222E538(param0, NNS_G2D_VRAM_TYPE_2DSUB);
-        Sprite_SetAnimNoRestart(param0->unk_1848[v0].unk_0C, 5);
-        Sprite_SetAnimFrame(param0->unk_1848[v0].unk_0C, 0);
+    for (int i = 0; i < NUM_MYSTERY_GIFT_PARTICLES; i++) {
+        animMan->bottomScreenSmallParticles[i].sprite = InitParticleSprite(animMan, NNS_G2D_VRAM_TYPE_2DSUB);
+        Sprite_SetAnimNoRestart(animMan->bottomScreenSmallParticles[i].sprite, 5);
+        Sprite_SetAnimFrame(animMan->bottomScreenSmallParticles[i].sprite, 0);
     }
 }
 
-static void ov97_0222E7B4(UnkStruct_ov97_0222E398 *param0)
+static void DeleteTopScreenSmallParticles(MysteryGiftAnimationManager *animMan)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 80; v0++) {
-        if (param0->unk_88[v0].unk_0C == NULL) {
+    for (int i = 0; i < NUM_MYSTERY_GIFT_PARTICLES; i++) {
+        if (animMan->topScreenSmallParticles[i].sprite == NULL) {
             continue;
         }
 
-        Sprite_Delete(param0->unk_88[v0].unk_0C);
-        param0->unk_88[v0].unk_0C = NULL;
-        SysTask_Done(param0->unk_88[v0].unk_48);
+        Sprite_Delete(animMan->topScreenSmallParticles[i].sprite);
+        animMan->topScreenSmallParticles[i].sprite = NULL;
+        SysTask_Done(animMan->topScreenSmallParticles[i].animationSysTask);
     }
 }
 
-static void ov97_0222E7E4(UnkStruct_ov97_0222E398 *param0)
+static void DeleteBottomScreenSmallParticles(MysteryGiftAnimationManager *animMan)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 80; v0++) {
-        Sprite_Delete(param0->unk_1848[v0].unk_0C);
-        param0->unk_1848[v0].unk_0C = NULL;
-        SysTask_Done(param0->unk_1848[v0].unk_48);
+    for (int i = 0; i < NUM_MYSTERY_GIFT_PARTICLES; i++) {
+        Sprite_Delete(animMan->bottomScreenSmallParticles[i].sprite);
+        animMan->bottomScreenSmallParticles[i].sprite = NULL;
+        SysTask_Done(animMan->bottomScreenSmallParticles[i].animationSysTask);
     }
 }
 
-static void ov97_0222E814(UnkStruct_ov97_0222E398 *param0)
+static void SetupTopScreenParticlesForGather(MysteryGiftAnimationManager *animMan)
 {
-    int v0;
-    VecFx32 v1;
-
-    for (v0 = 0; v0 < 80; v0++) {
-        param0->unk_88[v0].unk_10.x = FX32_CONST(128);
-        param0->unk_88[v0].unk_10.y = FX32_CONST(96);
-        param0->unk_88[v0].unk_1C = FX32_CONST(4);
-        param0->unk_88[v0].unk_20 = FX32_CONST(5);
-        param0->unk_88[v0].unk_2C = v0 % 4;
-        param0->unk_88[v0].unk_34 = 0;
-        param0->unk_88[v0].unk_04 = 0;
+    for (int i = 0; i < 80; i++) {
+        animMan->topScreenSmallParticles[i].animationCenter.x = FX32_CONST(HW_LCD_WIDTH / 2);
+        animMan->topScreenSmallParticles[i].animationCenter.y = FX32_CONST(HW_LCD_HEIGHT / 2);
+        animMan->topScreenSmallParticles[i].speedToCenter = FX32_CONST(4);
+        animMan->topScreenSmallParticles[i].centerZoneRadius = FX32_CONST(5);
+        animMan->topScreenSmallParticles[i].animationType = PARTICLE_ANIMATION_TYPE_ORBIT_0 + (i % 4);
+        animMan->topScreenSmallParticles[i].movementAngle = 0;
+        animMan->topScreenSmallParticles[i].timeSinceCenterReached = 0;
 
         {
-            param0->unk_88[v0].unk_1C = FX32_CONST((v0 / 10) + 4);
+            animMan->topScreenSmallParticles[i].speedToCenter = FX32_CONST((i / 10) + 4);
         }
         {
-            if (v0 > 50) {
-                param0->unk_88[v0].unk_30 = 210 + 50 + v0 + LCRNG_Next() % 5;
-            } else if (v0 > 40) {
-                param0->unk_88[v0].unk_30 = 210 + 40 + v0 + LCRNG_Next() % 5;
-            } else if (v0 > 30) {
-                param0->unk_88[v0].unk_30 = 210 + 30 + v0 + LCRNG_Next() % 5;
-            } else if (v0 > 25) {
-                param0->unk_88[v0].unk_30 = 210 + 20 + v0 + LCRNG_Next() % 5;
-            } else if (v0 > 20) {
-                param0->unk_88[v0].unk_30 = 210 + 10 + v0 + LCRNG_Next() % 5;
+            if (i > 50) {
+                animMan->topScreenSmallParticles[i].apparitionDelay = 260 + i + LCRNG_Next() % 5;
+            } else if (i > 40) {
+                animMan->topScreenSmallParticles[i].apparitionDelay = 250 + i + LCRNG_Next() % 5;
+            } else if (i > 30) {
+                animMan->topScreenSmallParticles[i].apparitionDelay = 240 + i + LCRNG_Next() % 5;
+            } else if (i > 25) {
+                animMan->topScreenSmallParticles[i].apparitionDelay = 230 + i + LCRNG_Next() % 5;
+            } else if (i > 20) {
+                animMan->topScreenSmallParticles[i].apparitionDelay = 220 + i + LCRNG_Next() % 5;
             } else {
-                int v2[] = {
-                    1,
-                    30,
-                    60,
-                    90,
-                    90,
-                    120,
-                    120,
-                    120,
-                    150,
-                    150,
-                    150,
-                    150,
-                    180,
-                    180,
-                    180,
-                    180,
-                    210,
-                    210,
-                    210,
-                    210,
-                    210
-                };
+                int presetDelays[] = { 1, 30, 60, 90, 90, 120, 120, 120, 150, 150, 150, 150, 180, 180, 180, 180, 210, 210, 210, 210, 210 };
 
-                param0->unk_88[v0].unk_30 = v2[v0];
+                animMan->topScreenSmallParticles[i].apparitionDelay = presetDelays[i];
             }
 
-            param0->unk_88[v0].unk_30 = ((param0->unk_88[v0].unk_30 + 1) / 2) * 0.7;
-            param0->unk_88[v0].unk_30 += 1;
+            animMan->topScreenSmallParticles[i].apparitionDelay = ((animMan->topScreenSmallParticles[i].apparitionDelay + 1) / 2) * 0.7;
+            animMan->topScreenSmallParticles[i].apparitionDelay += 1;
         }
 
-        param0->unk_88[v0].unk_38 = 5 * 3;
-        param0->unk_88[v0].unk_40 = param0->unk_88[v0].unk_38;
-        param0->unk_88[v0].unk_44 = param0->unk_88[v0].unk_38;
+        animMan->topScreenSmallParticles[i].speed = 5 * 3;
+        animMan->topScreenSmallParticles[i].horizontalSpeed = animMan->topScreenSmallParticles[i].speed;
+        animMan->topScreenSmallParticles[i].verticalSpeed = animMan->topScreenSmallParticles[i].speed;
 
-        v1 = *(VecFx32 *)Sprite_GetPosition(param0->unk_88[v0].unk_0C);
-        v1.x = FX32_CONST(16 + (LCRNG_Next() % (256 - 32)));
-        v1.y = FX32_CONST(0);
+        VecFx32 spritePos = *(VecFx32 *)Sprite_GetPosition(animMan->topScreenSmallParticles[i].sprite);
+        // Random position at the top of the screen, excluding the outermost 16 pixels on each side
+        spritePos.x = FX32_CONST(16 + (LCRNG_Next() % (HW_LCD_WIDTH - (2 * 16))));
+        spritePos.y = FX32_CONST(0);
 
-        Sprite_SetPosition(param0->unk_88[v0].unk_0C, &v1);
-        Sprite_SetDrawFlag(param0->unk_88[v0].unk_0C, 0);
+        Sprite_SetPosition(animMan->topScreenSmallParticles[i].sprite, &spritePos);
+        Sprite_SetDrawFlag(animMan->topScreenSmallParticles[i].sprite, FALSE);
 
-        param0->unk_88[v0].unk_48 = SysTask_Start(ov97_0222EEB8, &param0->unk_88[v0], 6);
+        animMan->topScreenSmallParticles[i].animationSysTask = SysTask_Start((SysTaskFunc)RunParticleAnimationFrame, &animMan->topScreenSmallParticles[i], 6);
     }
 }
 
-static void ov97_0222EA68(UnkStruct_ov97_0222E398 *param0)
+static void SetupTopScreenParticlesForImplosion(MysteryGiftAnimationManager *animMan)
 {
-    int v0;
-    VecFx32 v1;
+    VecFx32 spritePos;
 
-    for (v0 = 0; v0 < 80; v0++) {
-        if (param0->unk_88[v0].unk_0C == NULL) {
+    for (int i = 0; i < NUM_MYSTERY_GIFT_PARTICLES; i++) {
+        if (animMan->topScreenSmallParticles[i].sprite == NULL) {
             continue;
         }
 
-        param0->unk_88[v0].unk_10.x = FX32_CONST(128);
-        param0->unk_88[v0].unk_10.y = FX32_CONST(96);
-        param0->unk_88[v0].unk_1C = FX32_CONST(12);
-        param0->unk_88[v0].unk_20 = FX32_CONST(1);
+        animMan->topScreenSmallParticles[i].animationCenter.x = FX32_CONST(HW_LCD_WIDTH / 2);
+        animMan->topScreenSmallParticles[i].animationCenter.y = FX32_CONST(HW_LCD_HEIGHT / 2);
+        animMan->topScreenSmallParticles[i].speedToCenter = FX32_CONST(12);
+        animMan->topScreenSmallParticles[i].centerZoneRadius = FX32_CONST(1);
 
-        param0->unk_88[v0].unk_2C = 0xFF;
-        param0->unk_88[v0].unk_34 = 0;
-        param0->unk_88[v0].unk_04 = 0;
-        param0->unk_88[v0].unk_08 = 0;
+        animMan->topScreenSmallParticles[i].animationType = PARTICLE_ANIMATION_TYPE_RUSH_TO_CENTER;
+        animMan->topScreenSmallParticles[i].movementAngle = 0;
+        animMan->topScreenSmallParticles[i].timeSinceCenterReached = 0;
+        animMan->topScreenSmallParticles[i].animationDone = FALSE;
 
-        if (v0 > 30) {
-            param0->unk_88[v0].unk_30 = 15 + (LCRNG_Next() % 10);
-        } else if (v0 > 20) {
-            param0->unk_88[v0].unk_30 = 10 + (LCRNG_Next() % 10);
-        } else if (v0 > 10) {
-            param0->unk_88[v0].unk_30 = 10 + (LCRNG_Next() % 5);
+        if (i > 30) {
+            animMan->topScreenSmallParticles[i].apparitionDelay = 15 + (LCRNG_Next() % 10);
+        } else if (i > 20) {
+            animMan->topScreenSmallParticles[i].apparitionDelay = 10 + (LCRNG_Next() % 10);
+        } else if (i > 10) {
+            animMan->topScreenSmallParticles[i].apparitionDelay = 10 + (LCRNG_Next() % 5);
         } else {
-            param0->unk_88[v0].unk_30 = 5 + (LCRNG_Next() % 5);
+            animMan->topScreenSmallParticles[i].apparitionDelay = 5 + (LCRNG_Next() % 5);
         }
 
-        param0->unk_88[v0].unk_30 = 0;
-        param0->unk_88[v0].unk_40 = param0->unk_88[v0].unk_38;
-        param0->unk_88[v0].unk_44 = param0->unk_88[v0].unk_38;
+        animMan->topScreenSmallParticles[i].apparitionDelay = 0;
+        animMan->topScreenSmallParticles[i].horizontalSpeed = animMan->topScreenSmallParticles[i].speed;
+        animMan->topScreenSmallParticles[i].verticalSpeed = animMan->topScreenSmallParticles[i].speed;
 
-        {
-            int v2 = LCRNG_Next() % 360;
-            int v3 = 64 + (LCRNG_Next() % 32);
+        int angle = LCRNG_Next() % 360;
+        int distance = 64 + (LCRNG_Next() % 32);
 
-            v1.x = param0->unk_88[v0].unk_10.x + (CalcSineDegrees_Wraparound(v2) * v3);
-            v1.y = param0->unk_88[v0].unk_10.y + (CalcCosineDegrees_Wraparound(v2) * v3);
+        spritePos.x = animMan->topScreenSmallParticles[i].animationCenter.x + (CalcSineDegrees_Wraparound(angle) * distance);
+        spritePos.y = animMan->topScreenSmallParticles[i].animationCenter.y + (CalcCosineDegrees_Wraparound(angle) * distance);
 
-            Sprite_SetPosition(param0->unk_88[v0].unk_0C, &v1);
-        }
+        Sprite_SetPosition(animMan->topScreenSmallParticles[i].sprite, &spritePos);
 
-        Sprite_SetAnimNoRestart(param0->unk_88[v0].unk_0C, 1);
-        Sprite_SetDrawFlag(param0->unk_88[v0].unk_0C, 0);
+        Sprite_SetAnimNoRestart(animMan->topScreenSmallParticles[i].sprite, 1);
+        Sprite_SetDrawFlag(animMan->topScreenSmallParticles[i].sprite, FALSE);
 
-        param0->unk_88[v0].unk_48 = SysTask_Start(ov97_0222EEB8, &param0->unk_88[v0], 6);
+        animMan->topScreenSmallParticles[i].animationSysTask = SysTask_Start((SysTaskFunc)RunParticleAnimationFrame, &animMan->topScreenSmallParticles[i], 6);
     }
 }
 
-static void ov97_0222EBD0(UnkStruct_ov97_0222E398 *param0)
+static void SetupBottomScreenSmallParticlesForSpiralOut(MysteryGiftAnimationManager *animMan)
 {
-    int v0;
-    VecFx32 v1;
+    int i;
+    VecFx32 spritePos;
 
-    for (v0 = 0; v0 < 80; v0++) {
-        param0->unk_1848[v0].unk_10.x = FX32_CONST(128);
-        param0->unk_1848[v0].unk_10.y = FX32_CONST(384);
-        param0->unk_1848[v0].unk_1C = FX32_CONST(4);
-        param0->unk_1848[v0].unk_20 = FX32_CONST(5);
-        param0->unk_1848[v0].unk_2C = 4 + (v0 % 2);
-        param0->unk_1848[v0].unk_34 = 0;
-        param0->unk_1848[v0].unk_04 = 0;
-        param0->unk_1848[v0].unk_3C = 2 + (LCRNG_Next() % 4);
-        param0->unk_1848[v0].unk_1C = FX32_CONST((v0 / 30) + 4);
+    for (i = 0; i < NUM_MYSTERY_GIFT_PARTICLES; i++) {
+        animMan->bottomScreenSmallParticles[i].animationCenter.x = FX32_CONST(HW_LCD_WIDTH / 2);
+        animMan->bottomScreenSmallParticles[i].animationCenter.y = FX32_CONST(384);
+        animMan->bottomScreenSmallParticles[i].speedToCenter = FX32_CONST(4);
+        animMan->bottomScreenSmallParticles[i].centerZoneRadius = FX32_CONST(5);
+        animMan->bottomScreenSmallParticles[i].animationType = PARTICLE_ANIMATION_TYPE_SPIRAL_OUT_0 + (i % 2);
+        animMan->bottomScreenSmallParticles[i].movementAngle = 0;
+        animMan->bottomScreenSmallParticles[i].timeSinceCenterReached = 0;
+        animMan->bottomScreenSmallParticles[i].spiralOutAcceleration = 2 + (LCRNG_Next() % 4);
+        animMan->bottomScreenSmallParticles[i].speedToCenter = FX32_CONST((i / 30) + 4);
 
-        if (v0 > 60) {
-            param0->unk_1848[v0].unk_38 = 5;
-            param0->unk_1848[v0].unk_30 = 70 + (LCRNG_Next() % 10);
-        } else if (v0 > 50) {
-            param0->unk_1848[v0].unk_38 = 5;
-            param0->unk_1848[v0].unk_30 = 60 + (LCRNG_Next() % 10);
-        } else if (v0 > 40) {
-            param0->unk_1848[v0].unk_38 = 5;
-            param0->unk_1848[v0].unk_30 = 50 + (LCRNG_Next() % 5);
-        } else if (v0 > 30) {
-            param0->unk_1848[v0].unk_38 = 5;
-            param0->unk_1848[v0].unk_30 = 40 + (LCRNG_Next() % 10);
-        } else if (v0 > 20) {
-            param0->unk_1848[v0].unk_38 = 5;
-            param0->unk_1848[v0].unk_30 = 30 + (LCRNG_Next() % 10);
-        } else if (v0 > 10) {
-            param0->unk_1848[v0].unk_38 = 5;
-            param0->unk_1848[v0].unk_30 = 20 + (LCRNG_Next() % 5);
+        if (i > 60) {
+            animMan->bottomScreenSmallParticles[i].speed = 5;
+            animMan->bottomScreenSmallParticles[i].apparitionDelay = 70 + (LCRNG_Next() % 10);
+        } else if (i > 50) {
+            animMan->bottomScreenSmallParticles[i].speed = 5;
+            animMan->bottomScreenSmallParticles[i].apparitionDelay = 60 + (LCRNG_Next() % 10);
+        } else if (i > 40) {
+            animMan->bottomScreenSmallParticles[i].speed = 5;
+            animMan->bottomScreenSmallParticles[i].apparitionDelay = 50 + (LCRNG_Next() % 5);
+        } else if (i > 30) {
+            animMan->bottomScreenSmallParticles[i].speed = 5;
+            animMan->bottomScreenSmallParticles[i].apparitionDelay = 40 + (LCRNG_Next() % 10);
+        } else if (i > 20) {
+            animMan->bottomScreenSmallParticles[i].speed = 5;
+            animMan->bottomScreenSmallParticles[i].apparitionDelay = 30 + (LCRNG_Next() % 10);
+        } else if (i > 10) {
+            animMan->bottomScreenSmallParticles[i].speed = 5;
+            animMan->bottomScreenSmallParticles[i].apparitionDelay = 20 + (LCRNG_Next() % 5);
         } else {
-            param0->unk_1848[v0].unk_38 = 5;
-            param0->unk_1848[v0].unk_30 = 10 + (LCRNG_Next() % 5);
+            animMan->bottomScreenSmallParticles[i].speed = 5;
+            animMan->bottomScreenSmallParticles[i].apparitionDelay = 10 + (LCRNG_Next() % 5);
         }
 
-        param0->unk_1848[v0].unk_40 = param0->unk_1848[v0].unk_38;
-        param0->unk_1848[v0].unk_44 = param0->unk_1848[v0].unk_38;
+        animMan->bottomScreenSmallParticles[i].horizontalSpeed = animMan->bottomScreenSmallParticles[i].speed;
+        animMan->bottomScreenSmallParticles[i].verticalSpeed = animMan->bottomScreenSmallParticles[i].speed;
 
-        v1 = *(VecFx32 *)Sprite_GetPosition(param0->unk_1848[v0].unk_0C);
+        spritePos = *(VecFx32 *)Sprite_GetPosition(animMan->bottomScreenSmallParticles[i].sprite);
 
-        v1.x = FX32_CONST(128);
-        v1.y = FX32_CONST(384);
+        spritePos.x = FX32_CONST(HW_LCD_WIDTH / 2);
+        spritePos.y = FX32_CONST(384);
 
-        Sprite_SetPosition(param0->unk_1848[v0].unk_0C, &v1);
-        Sprite_SetDrawFlag(param0->unk_1848[v0].unk_0C, 1);
+        Sprite_SetPosition(animMan->bottomScreenSmallParticles[i].sprite, &spritePos);
+        Sprite_SetDrawFlag(animMan->bottomScreenSmallParticles[i].sprite, TRUE);
 
-        param0->unk_1848[v0].unk_48 = SysTask_Start(ov97_0222EEB8, &param0->unk_1848[v0], 6);
+        animMan->bottomScreenSmallParticles[i].animationSysTask = SysTask_Start((SysTaskFunc)RunParticleAnimationFrame, &animMan->bottomScreenSmallParticles[i], 6);
     }
 }
 
-static BOOL ov97_0222EDC0(s16 param0, s16 param1, f32 param2, f32 param3, f32 *param4, f32 *param5, f32 param6, s16 param7)
+static BOOL CalcVecTowardsCenter(s16 centerX, s16 centerY, f32 particleX, f32 particleY, f32 *outX, f32 *outY, f32 length, s16 minDistanceToCenter)
 {
-    f32 v0;
-    f32 v1;
-    UnkStruct_ov97_0222EDC0 v2;
-    UnkStruct_ov97_0222EDC0 v3;
-    UnkStruct_ov97_0222EDC0 v4;
+    Vec2F32 outVec, vecToCenter, zeroVec;
 
-    v4.unk_00 = 0;
-    v4.unk_04 = 0;
+    zeroVec.x = 0;
+    zeroVec.y = 0;
 
-    v3.unk_00 = (param0 - param2);
-    v3.unk_04 = (param1 - param3);
+    vecToCenter.x = (centerX - particleX);
+    vecToCenter.y = (centerY - particleY);
 
-    v2.unk_00 = 0;
-    v2.unk_04 = 0;
+    outVec.x = 0;
+    outVec.y = 0;
 
-    v1 = (v3.unk_00 * v3.unk_00) + (v3.unk_04 * v3.unk_04);
+    f32 distSquared = (vecToCenter.x * vecToCenter.x) + (vecToCenter.y * vecToCenter.y);
 
-    v0 = FX_Sqrt(FX_F32_TO_FX32(v1));
-    v0 = FX_FX32_TO_F32(v0);
+    f32 dist = FX_FX32_TO_F32(FX_Sqrt(FX_F32_TO_FX32(distSquared)));
 
-    if ((v0 < param6) || (param7 > v0) || (v0 == 0)) {
-        return 0;
+    if (dist < length || minDistanceToCenter > dist || dist == 0) {
+        return FALSE;
     }
 
-    v2.unk_00 = (v3.unk_00 * param6) / v0;
-    v2.unk_04 = (v3.unk_04 * param6) / v0;
+    outVec.x = (vecToCenter.x * length) / dist;
+    outVec.y = (vecToCenter.y * length) / dist;
 
-    *param4 = (v2.unk_00 + v4.unk_00);
-    *param5 = (v2.unk_04 + v4.unk_04);
+    *outX = (outVec.x + zeroVec.x);
+    *outY = (outVec.y + zeroVec.y);
 
-    return 1;
+    return TRUE;
 }
 
-static void ov97_0222EEB8(SysTask *param0, void *param1)
+static void RunParticleAnimationFrame(SysTask *sysTask, MysteryGiftParticle *particle)
 {
-    UnkStruct_ov97_0222EEB8 *v0 = (UnkStruct_ov97_0222EEB8 *)param1;
-    VecFx32 v1;
-    f32 v2, v3;
-
-    if (v0->unk_30) {
-        Sprite_SetAnimFrame(v0->unk_0C, 0);
-        v0->unk_30--;
+    if (particle->apparitionDelay) {
+        Sprite_SetAnimFrame(particle->sprite, 0);
+        particle->apparitionDelay--;
         return;
     } else {
-        Sprite_SetDrawFlag(v0->unk_0C, 1);
+        Sprite_SetDrawFlag(particle->sprite, TRUE);
     }
 
-    {
-        BOOL v4;
+    f32 towardsCenterX, towardsCenterY;
 
-        v1 = *((VecFx32 *)Sprite_GetPosition(v0->unk_0C));
-        v4 = ov97_0222EDC0(v0->unk_10.x >> FX32_SHIFT, v0->unk_10.y >> FX32_SHIFT, FX_FX32_TO_F32(v1.x), FX_FX32_TO_F32(v1.y), &v2, &v3, FX_FX32_TO_F32(v0->unk_1C), FX_FX32_TO_F32(v0->unk_20));
+    VecFx32 spritePos = *(VecFx32 *)Sprite_GetPosition(particle->sprite);
+    BOOL hasNotReachedCenter = CalcVecTowardsCenter(particle->animationCenter.x >> FX32_SHIFT, particle->animationCenter.y >> FX32_SHIFT, FX_FX32_TO_F32(spritePos.x), FX_FX32_TO_F32(spritePos.y), &towardsCenterX, &towardsCenterY, FX_FX32_TO_F32(particle->speedToCenter), FX_FX32_TO_F32(particle->centerZoneRadius));
 
-        if (v4 && (v0->unk_24 == 0)) {
-            v1.x += FX_F32_TO_FX32(v2);
-            v1.y += FX_F32_TO_FX32(v3);
+    if (hasNotReachedCenter && particle->inFinalAnimationPhase == FALSE) {
+        spritePos.x += FX_F32_TO_FX32(towardsCenterX);
+        spritePos.y += FX_F32_TO_FX32(towardsCenterY);
 
-            Sprite_SetPosition(v0->unk_0C, &v1);
-        } else {
-            switch (v0->unk_24) {
-            case 0:
-                v0->unk_28 = FX_Atan2Idx(FX_F32_TO_FX32(v0->unk_10.y - v1.y), FX_F32_TO_FX32(v0->unk_10.x - v1.x));
-                v0->unk_24++;
-                break;
-            case 1:
-                if (v0->unk_04 < 20) {
-                    v0->unk_04++;
-                } else {
-                    v0->unk_08 = 1;
+        Sprite_SetPosition(particle->sprite, &spritePos);
+    } else {
+        switch (particle->inFinalAnimationPhase) {
+        case FALSE:
+            particle->angleAroundCenter = FX_Atan2Idx(FX_F32_TO_FX32(particle->animationCenter.y - spritePos.y), FX_F32_TO_FX32(particle->animationCenter.x - spritePos.x));
+            particle->inFinalAnimationPhase++;
+            break;
+        case TRUE:
+            if (particle->timeSinceCenterReached < 20) {
+                particle->timeSinceCenterReached++;
+            } else {
+                particle->animationDone = TRUE;
+            }
+
+            particle->angleAroundCenter += 8;
+
+            if (particle->animationType == PARTICLE_ANIMATION_TYPE_ORBIT_0) {
+                particle->movementAngle += 8;
+                particle->movementAngle %= 360;
+                particle->horizontalSpeed = (CalcCosineDegrees_Wraparound(particle->movementAngle) * particle->speed) >> FX32_SHIFT;
+
+                spritePos.x = particle->animationCenter.x + (CalcSineDegrees_Wraparound(particle->angleAroundCenter) * particle->horizontalSpeed * +1);
+                spritePos.y = particle->animationCenter.y + (CalcCosineDegrees_Wraparound(particle->angleAroundCenter) * particle->verticalSpeed * +1);
+            } else if (particle->animationType == PARTICLE_ANIMATION_TYPE_ORBIT_1) {
+                particle->movementAngle += 8;
+                particle->movementAngle %= 360;
+                particle->verticalSpeed = (CalcSineDegrees_Wraparound(particle->movementAngle) * particle->speed) >> FX32_SHIFT;
+
+                spritePos.x = particle->animationCenter.x + (CalcSineDegrees_Wraparound(particle->angleAroundCenter) * particle->horizontalSpeed * +1);
+                spritePos.y = particle->animationCenter.y + (CalcCosineDegrees_Wraparound(particle->angleAroundCenter) * particle->verticalSpeed * +1);
+            } else if (particle->animationType == PARTICLE_ANIMATION_TYPE_ORBIT_2) {
+                particle->movementAngle += 8;
+                particle->movementAngle %= 360;
+                particle->verticalSpeed = (CalcSineDegrees_Wraparound(particle->movementAngle) * particle->speed) >> FX32_SHIFT;
+
+                spritePos.x = particle->animationCenter.x + (CalcSineDegrees_Wraparound(particle->angleAroundCenter) * particle->horizontalSpeed * -1);
+                spritePos.y = particle->animationCenter.y + (CalcCosineDegrees_Wraparound(particle->angleAroundCenter) * particle->verticalSpeed * -1);
+            } else if (particle->animationType == PARTICLE_ANIMATION_TYPE_ORBIT_3) {
+                particle->movementAngle += 8;
+                particle->movementAngle %= 360;
+                particle->horizontalSpeed = (CalcCosineDegrees_Wraparound(particle->movementAngle) * particle->speed) >> FX32_SHIFT;
+
+                spritePos.x = particle->animationCenter.x + (CalcSineDegrees_Wraparound(particle->angleAroundCenter) * particle->horizontalSpeed * -1);
+                spritePos.y = particle->animationCenter.y + (CalcCosineDegrees_Wraparound(particle->angleAroundCenter) * particle->verticalSpeed * -1);
+            } else if (particle->animationType == PARTICLE_ANIMATION_TYPE_SPIRAL_OUT_0) {
+                if (particle->speed < (64 + 32)) {
+                    particle->speed += particle->spiralOutAcceleration;
                 }
 
-                v0->unk_28 += 8;
+                particle->horizontalSpeed = particle->speed;
+                particle->verticalSpeed = particle->speed;
 
-                if (v0->unk_2C == 0) {
-                    v0->unk_34 += 8;
-                    v0->unk_34 %= 360;
-                    v0->unk_40 = (CalcCosineDegrees_Wraparound(v0->unk_34) * v0->unk_38) >> FX32_SHIFT;
-
-                    v1.x = v0->unk_10.x + (CalcSineDegrees_Wraparound(v0->unk_28) * v0->unk_40 * +1);
-                    v1.y = v0->unk_10.y + (CalcCosineDegrees_Wraparound(v0->unk_28) * v0->unk_44 * +1);
-                } else if (v0->unk_2C == 1) {
-                    v0->unk_34 += 8;
-                    v0->unk_34 %= 360;
-                    v0->unk_44 = (CalcSineDegrees_Wraparound(v0->unk_34) * v0->unk_38) >> FX32_SHIFT;
-
-                    v1.x = v0->unk_10.x + (CalcSineDegrees_Wraparound(v0->unk_28) * v0->unk_40 * +1);
-                    v1.y = v0->unk_10.y + (CalcCosineDegrees_Wraparound(v0->unk_28) * v0->unk_44 * +1);
-                } else if (v0->unk_2C == 2) {
-                    v0->unk_34 += 8;
-                    v0->unk_34 %= 360;
-                    v0->unk_44 = (CalcSineDegrees_Wraparound(v0->unk_34) * v0->unk_38) >> FX32_SHIFT;
-
-                    v1.x = v0->unk_10.x + (CalcSineDegrees_Wraparound(v0->unk_28) * v0->unk_40 * -1);
-                    v1.y = v0->unk_10.y + (CalcCosineDegrees_Wraparound(v0->unk_28) * v0->unk_44 * -1);
-                } else if (v0->unk_2C == 3) {
-                    v0->unk_34 += 8;
-                    v0->unk_34 %= 360;
-                    v0->unk_40 = (CalcCosineDegrees_Wraparound(v0->unk_34) * v0->unk_38) >> FX32_SHIFT;
-
-                    v1.x = v0->unk_10.x + (CalcSineDegrees_Wraparound(v0->unk_28) * v0->unk_40 * -1);
-                    v1.y = v0->unk_10.y + (CalcCosineDegrees_Wraparound(v0->unk_28) * v0->unk_44 * -1);
-                } else if (v0->unk_2C == 4) {
-                    if (v0->unk_38 < (64 + 32)) {
-                        v0->unk_38 += v0->unk_3C;
-                    }
-
-                    v0->unk_40 = v0->unk_38;
-                    v0->unk_44 = v0->unk_38;
-
-                    v1.x = v0->unk_10.x + (CalcSineDegrees_Wraparound(v0->unk_28) * v0->unk_40 * +1);
-                    v1.y = v0->unk_10.y + (CalcCosineDegrees_Wraparound(v0->unk_28) * v0->unk_44 * +1);
-                } else if (v0->unk_2C == 5) {
-                    if (v0->unk_38 < (64 + 32)) {
-                        v0->unk_38 += v0->unk_3C;
-                    }
-
-                    v0->unk_40 = v0->unk_38;
-                    v0->unk_44 = v0->unk_38;
-
-                    v1.x = v0->unk_10.x + (CalcSineDegrees_Wraparound(v0->unk_28) * v0->unk_40 * -1);
-                    v1.y = v0->unk_10.y + (CalcCosineDegrees_Wraparound(v0->unk_28) * v0->unk_44 * -1);
-                } else {
-                    v0->unk_04 = 10;
-                    v0->unk_1C += FX32_CONST(0.5);
-
-                    v4 = ov97_0222EDC0(v0->unk_10.x >> FX32_SHIFT, v0->unk_10.y >> FX32_SHIFT, FX_FX32_TO_F32(v1.x), FX_FX32_TO_F32(v1.y), &v2, &v3, FX_FX32_TO_F32(v0->unk_1C), FX_FX32_TO_F32(0));
-
-                    if (v4) {
-                        v1.x += FX_F32_TO_FX32(v2);
-                        v1.y += FX_F32_TO_FX32(v3);
-
-                        Sprite_SetPosition(v0->unk_0C, &v1);
-                    } else {
-                        v0->unk_08 = 1;
-                    }
+                spritePos.x = particle->animationCenter.x + (CalcSineDegrees_Wraparound(particle->angleAroundCenter) * particle->horizontalSpeed * +1);
+                spritePos.y = particle->animationCenter.y + (CalcCosineDegrees_Wraparound(particle->angleAroundCenter) * particle->verticalSpeed * +1);
+            } else if (particle->animationType == PARTICLE_ANIMATION_TYPE_SPIRAL_OUT_1) {
+                if (particle->speed < (64 + 32)) {
+                    particle->speed += particle->spiralOutAcceleration;
                 }
 
-                v0->unk_28 %= 360;
-                Sprite_SetPosition(v0->unk_0C, &v1);
-                break;
+                particle->horizontalSpeed = particle->speed;
+                particle->verticalSpeed = particle->speed;
+
+                spritePos.x = particle->animationCenter.x + (CalcSineDegrees_Wraparound(particle->angleAroundCenter) * particle->horizontalSpeed * -1);
+                spritePos.y = particle->animationCenter.y + (CalcCosineDegrees_Wraparound(particle->angleAroundCenter) * particle->verticalSpeed * -1);
+            } else {
+                particle->timeSinceCenterReached = 10;
+                particle->speedToCenter += FX32_CONST(0.5);
+
+                hasNotReachedCenter = CalcVecTowardsCenter(particle->animationCenter.x >> FX32_SHIFT, particle->animationCenter.y >> FX32_SHIFT, FX_FX32_TO_F32(spritePos.x), FX_FX32_TO_F32(spritePos.y), &towardsCenterX, &towardsCenterY, FX_FX32_TO_F32(particle->speedToCenter), FX_FX32_TO_F32(0));
+
+                if (hasNotReachedCenter) {
+                    spritePos.x += FX_F32_TO_FX32(towardsCenterX);
+                    spritePos.y += FX_F32_TO_FX32(towardsCenterY);
+
+                    Sprite_SetPosition(particle->sprite, &spritePos);
+                } else {
+                    particle->animationDone = TRUE;
+                }
             }
+
+            particle->angleAroundCenter %= 360;
+            Sprite_SetPosition(particle->sprite, &spritePos);
+            break;
         }
     }
 }
 
-static void ov97_0222F348(UnkStruct_ov97_0222E398 *param0)
+static void SetTopScreenBlendBrightness(MysteryGiftAnimationManager *animMan)
 {
-    G2_SetBlendBrightness((GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BD), param0->unk_08);
+    G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BD, animMan->blendBrightness);
 }
 
-static void ov97_0222F360(UnkStruct_ov97_0222E398 *param0)
+static void SetBottomScreenBlendBrightness(MysteryGiftAnimationManager *animMan)
 {
-    G2S_SetBlendBrightness((GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BD), param0->unk_08);
+    G2S_SetBlendBrightness(GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BD, animMan->blendBrightness);
 }
 
-static void ov97_0222F378(UnkStruct_ov97_0222E398 *param0)
+static void SetBothScreensBlendBrightness(MysteryGiftAnimationManager *animMan)
 {
-    ov97_0222F348(param0);
-    ov97_0222F360(param0);
+    SetTopScreenBlendBrightness(animMan);
+    SetBottomScreenBlendBrightness(animMan);
 }
 
-static void ov97_0222F388(void)
+static void MakeBlackTransparent(void)
 {
-    Bg_MaskPalette(1, 0x0);
-    Bg_MaskPalette(5, 0x0);
+    Bg_MaskPalette(BG_LAYER_MAIN_1, GX_RGB(0, 0, 0));
+    Bg_MaskPalette(BG_LAYER_SUB_1, GX_RGB(0, 0, 0));
 }
 
-static BOOL ov97_0222F39C(UnkStruct_ov97_0222E398 *param0, int param1, s8 param2)
+static BOOL FadeBothScreensBlendBrightness(MysteryGiftAnimationManager *animMan, enum MysteryGiftAnimBrightnessFadeDirection direction, s8 speed)
 {
-    BOOL v0 = 1;
+    BOOL reachedLimit = TRUE;
 
-    switch (param1) {
-    case 0:
-        if (param0->unk_08 > 0) {
-            if (param0->unk_08 - param2 > 0) {
-                param0->unk_08 -= param2;
-                v0 = 0;
+    switch (direction) {
+    case FADE_TOWARDS_NORMAL:
+        if (animMan->blendBrightness > 0) {
+            if (animMan->blendBrightness - speed > 0) {
+                animMan->blendBrightness -= speed;
+                reachedLimit = FALSE;
             } else {
-                param0->unk_08 = 0;
+                animMan->blendBrightness = 0;
             }
-        } else if (param0->unk_08 < 0) {
-            if (param0->unk_08 + param2 < 0) {
-                param0->unk_08 += param2;
-                v0 = 0;
+        } else if (animMan->blendBrightness < 0) {
+            if (animMan->blendBrightness + speed < 0) {
+                animMan->blendBrightness += speed;
+                reachedLimit = FALSE;
             } else {
-                param0->unk_08 = 0;
+                animMan->blendBrightness = 0;
             }
         }
         break;
-    case 1:
-        if (param0->unk_08 - param2 > -16) {
-            param0->unk_08 -= param2;
-            v0 = 0;
+    case FADE_TOWARDS_BLACK:
+        if (animMan->blendBrightness - speed > PARTICLES_MAN_BLEND_BRIGHTNESS_BLACK) {
+            animMan->blendBrightness -= speed;
+            reachedLimit = FALSE;
         } else {
-            param0->unk_08 = -16;
+            animMan->blendBrightness = PARTICLES_MAN_BLEND_BRIGHTNESS_BLACK;
         }
         break;
-    case 2:
-        if (param0->unk_08 + param2 < +16) {
-            param0->unk_08 += param2;
-            v0 = 0;
+    case FADE_TOWARDS_WHITE:
+        if (animMan->blendBrightness + speed < PARTICLES_MAN_BLEND_BRIGHTNESS_WHITE) {
+            animMan->blendBrightness += speed;
+            reachedLimit = FALSE;
         } else {
-            param0->unk_08 = +16;
+            animMan->blendBrightness = PARTICLES_MAN_BLEND_BRIGHTNESS_WHITE;
         }
         break;
     }
 
-    ov97_0222F378(param0);
-    return v0;
+    SetBothScreensBlendBrightness(animMan);
+    return reachedLimit;
 }
 
-static BOOL ov97_0222F410(UnkStruct_ov97_0222E398 *param0, int param1, s8 param2)
+static BOOL FadeTopScreenBlendBrightness(MysteryGiftAnimationManager *animMan, enum MysteryGiftAnimBrightnessFadeDirection direction, s8 speed)
 {
-    BOOL v0 = 1;
+    BOOL reachedLimit = TRUE;
 
-    switch (param1) {
-    case 0:
-        if (param0->unk_08 > 0) {
-            if (param0->unk_08 - param2 > 0) {
-                param0->unk_08 -= param2;
-                v0 = 0;
+    switch (direction) {
+    case FADE_TOWARDS_NORMAL:
+        if (animMan->blendBrightness > 0) {
+            if (animMan->blendBrightness - speed > 0) {
+                animMan->blendBrightness -= speed;
+                reachedLimit = FALSE;
             } else {
-                param0->unk_08 = 0;
+                animMan->blendBrightness = 0;
             }
-        } else if (param0->unk_08 < 0) {
-            if (param0->unk_08 + param2 < 0) {
-                param0->unk_08 += param2;
-                v0 = 0;
+        } else if (animMan->blendBrightness < 0) {
+            if (animMan->blendBrightness + speed < 0) {
+                animMan->blendBrightness += speed;
+                reachedLimit = FALSE;
             } else {
-                param0->unk_08 = 0;
+                animMan->blendBrightness = 0;
             }
         }
         break;
-    case 1:
-        if (param0->unk_08 - param2 > -16) {
-            param0->unk_08 -= param2;
-            v0 = 0;
+    case FADE_TOWARDS_BLACK:
+        if (animMan->blendBrightness - speed > PARTICLES_MAN_BLEND_BRIGHTNESS_BLACK) {
+            animMan->blendBrightness -= speed;
+            reachedLimit = FALSE;
         } else {
-            param0->unk_08 = -16;
+            animMan->blendBrightness = PARTICLES_MAN_BLEND_BRIGHTNESS_BLACK;
         }
         break;
-    case 2:
-        if (param0->unk_08 + param2 < +16) {
-            param0->unk_08 += param2;
-            v0 = 0;
+    case FADE_TOWARDS_WHITE:
+        if (animMan->blendBrightness + speed < PARTICLES_MAN_BLEND_BRIGHTNESS_WHITE) {
+            animMan->blendBrightness += speed;
+            reachedLimit = FALSE;
         } else {
-            param0->unk_08 = +16;
+            animMan->blendBrightness = PARTICLES_MAN_BLEND_BRIGHTNESS_WHITE;
         }
-
         break;
     }
 
-    ov97_0222F348(param0);
-    return v0;
+    SetTopScreenBlendBrightness(animMan);
+    return reachedLimit;
 }
 
-static void ov97_0222F484(UnkStruct_ov97_0222E398 *param0)
+static void SetupTopScreenParticlesAnimation(MysteryGiftAnimationManager *animMan)
 {
-    param0->unk_08 = 0;
+    animMan->blendBrightness = 0;
 
-    ov97_0222F378(param0);
-    ov97_0222E398(param0);
-    ov97_0222E6F8(param0);
-    ov97_0222E814(param0);
-    ov97_0222E5B4(param0);
+    SetBothScreensBlendBrightness(animMan);
+    LoadParticleSpriteResources(animMan);
+    InitAllTopScreenParticlesSprite(animMan);
+    SetupTopScreenParticlesForGather(animMan);
+    SetupTopScreenLargeParticle(animMan);
 
-    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, TRUE);
 }
 
-static void ov97_0222F4BC(SysTask *param0, void *param1)
+static void RunMysteryGiftAnimationFrame(SysTask *sysTask, MysteryGiftAnimationManager *animMan)
 {
-    UnkStruct_ov97_0222E398 *v0 = (UnkStruct_ov97_0222E398 *)param1;
-    BOOL v1;
+    BOOL goToNextStage;
 
-    switch (v0->unk_00) {
-    case 0: {
-        ov97_0222F484(v0);
-        v0->unk_00 = 1;
+    switch (animMan->animationStage) {
+    case MG_ANIMATION_STAGE_SETUP: {
+        SetupTopScreenParticlesAnimation(animMan);
+        animMan->animationStage = MG_ANIMATION_STAGE_FADE_BG_BLACK;
     } break;
-    case 1: {
-        v1 = ov97_0222F39C(v0, 1, 2);
+    case MG_ANIMATION_STAGE_FADE_BG_BLACK: {
+        goToNextStage = FadeBothScreensBlendBrightness(animMan, FADE_TOWARDS_BLACK, 2);
 
-        if (v1) {
-            v0->unk_00 = 2;
+        if (goToNextStage) {
+            animMan->animationStage = MG_ANIMATION_STAGE_PARTICLES_GATHERING;
         }
     } break;
-    case 2: {
-        int v2;
-        int v3;
+    case MG_ANIMATION_STAGE_PARTICLES_GATHERING: {
+        int numParticlesDone = 0;
 
-        v1 = 1;
-        v3 = 0;
+        goToNextStage = TRUE;
 
-        for (v2 = 0; v2 < 80; v2++) {
-            if (v0->unk_88[v2].unk_08) {
-                v3++;
+        for (int i = 0; i < NUM_MYSTERY_GIFT_PARTICLES; i++) {
+            if (animMan->topScreenSmallParticles[i].animationDone) {
+                numParticlesDone++;
                 continue;
             }
 
-            v1 = 0;
+            goToNextStage = FALSE;
         }
 
-        if (v3 > 50) {
-            Sprite_SetAnimNoRestart(v0->unk_3008.unk_0C, 4);
-        } else if (v3 > 30) {
-            Sprite_SetAnimNoRestart(v0->unk_3008.unk_0C, 3);
-        } else if (v3 > 7) {
-            Sprite_SetDrawFlag(v0->unk_3008.unk_0C, 1);
+        if (numParticlesDone > 50) {
+            Sprite_SetAnimNoRestart(animMan->topScreenLargeParticle.sprite, 4);
+        } else if (numParticlesDone > 30) {
+            Sprite_SetAnimNoRestart(animMan->topScreenLargeParticle.sprite, 3);
+        } else if (numParticlesDone > 7) {
+            Sprite_SetDrawFlag(animMan->topScreenLargeParticle.sprite, 1);
         }
 
-        if (v1 || (v3 == (80 - 1))) {
-            v0->unk_00 = 3;
-            ov97_0222E7B4(v0);
+        if (goToNextStage || (numParticlesDone == (NUM_MYSTERY_GIFT_PARTICLES - 1))) {
+            animMan->animationStage = MG_ANIMATION_STAGE_SETUP_IMPLOSION;
+            DeleteTopScreenSmallParticles(animMan);
         }
     } break;
-    case 3:
-        if (*(v0->unk_30A0) == 2) {
-            ov97_0222E734(v0);
-            ov97_0222EA68(v0);
-            GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
-            ov97_0222F388();
-            v0->unk_00 = 4;
+    case MG_ANIMATION_STAGE_SETUP_IMPLOSION:
+        if (*animMan->animationStatusPtr == MG_ANIMATION_STATUS_PROCEED_IMPLOSION) {
+            InitSomeTopScreenParticlesSprite(animMan);
+            SetupTopScreenParticlesForImplosion(animMan);
+            GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, FALSE);
+            MakeBlackTransparent();
+            animMan->animationStage = MG_ANIMATION_STAGE_IMPLODE;
         }
         break;
-    case 4: {
-        int v4;
-        int v5 = 0;
+    case MG_ANIMATION_STAGE_IMPLODE: {
+        int numParticlesDone = 0;
 
-        v1 = 1;
+        goToNextStage = TRUE;
 
-        for (v4 = 0; v4 < 80; v4++) {
-            if (v0->unk_88[v4].unk_0C == NULL) {
+        for (int i = 0; i < NUM_MYSTERY_GIFT_PARTICLES; i++) {
+            if (animMan->topScreenSmallParticles[i].sprite == NULL) {
                 continue;
             }
 
-            if (v0->unk_88[v4].unk_08) {
-                v5++;
+            if (animMan->topScreenSmallParticles[i].animationDone) {
+                numParticlesDone++;
                 continue;
             }
 
-            v1 = 0;
+            goToNextStage = FALSE;
         }
 
-        ov97_0222F410(v0, 2, 2);
+        FadeTopScreenBlendBrightness(animMan, FADE_TOWARDS_WHITE, 2);
 
-        if (v1 || (v5 == ((80 / 4) - 1))) {
+        if (goToNextStage || (numParticlesDone == ((NUM_MYSTERY_GIFT_PARTICLES / 4) - 1))) {
             Sound_PlayEffect(SEQ_SE_DP_SAVE);
-            v0->unk_00 = 5;
-            ov97_0222E7B4(v0);
-            ov97_0222E60C(v0);
+            animMan->animationStage = MG_ANIMATION_STAGE_FLASH_WHITE;
+            DeleteTopScreenSmallParticles(animMan);
+            SetupBottomScreenLargeParticle(animMan);
         }
     } break;
-    case 5:
-        v1 = ov97_0222F410(v0, 2, 2);
+    case MG_ANIMATION_STAGE_FLASH_WHITE:
+        goToNextStage = FadeTopScreenBlendBrightness(animMan, FADE_TOWARDS_WHITE, 2);
 
-        if (v1) {
-            ov97_0222F410(v0, 1, 2);
-            v0->unk_00 = 6;
+        if (goToNextStage) {
+            FadeTopScreenBlendBrightness(animMan, FADE_TOWARDS_BLACK, 2);
+            animMan->animationStage = MG_ANIMATION_STAGE_MOVE_TO_BOTTOM_SCREEN;
         }
         break;
-    case 6: {
-        VecFx32 *v6;
-        VecFx32 *v7;
-        fx32 v8;
+    case MG_ANIMATION_STAGE_MOVE_TO_BOTTOM_SCREEN:
+        goToNextStage = FadeTopScreenBlendBrightness(animMan, FADE_TOWARDS_BLACK, 2);
 
-        v1 = ov97_0222F410(v0, 1, 2);
-
-        if (v1 == 0) {
+        if (goToNextStage == 0) {
             break;
         }
 
-        v6 = (VecFx32 *)Sprite_GetPosition(v0->unk_3008.unk_0C);
-        v7 = (VecFx32 *)Sprite_GetPosition(v0->unk_3054.unk_0C);
+        VecFx32 *topLargeParticlePos = (VecFx32 *)Sprite_GetPosition(animMan->topScreenLargeParticle.sprite);
+        VecFx32 *bottomLargeParticlePos = (VecFx32 *)Sprite_GetPosition(animMan->bottomScreenLargeParticle.sprite);
 
-        if (v6->y < FX32_CONST(256 - 32)) {
-            v6->y += FX32_CONST(8);
+        if (topLargeParticlePos->y < FX32_CONST(256 - 32)) {
+            topLargeParticlePos->y += FX32_CONST(8);
         }
 
-        v8 = v6->y - FX32_CONST(192);
+        fx32 topLargeParticleYPastScreen = topLargeParticlePos->y - FX32_CONST(HW_LCD_HEIGHT);
 
-        if (v8 > FX32_CONST(0)) {
-            if (v7->y < FX32_CONST(384)) {
-                v7->y += FX32_CONST(8);
+        if (topLargeParticleYPastScreen > FX32_CONST(0)) {
+            if (bottomLargeParticlePos->y < FX32_CONST(384)) {
+                bottomLargeParticlePos->y += FX32_CONST(8);
 
-                if (Sprite_GetDrawFlag(v0->unk_3054.unk_0C) == 0) {
-                    Sprite_SetDrawFlag(v0->unk_3054.unk_0C, 1);
+                if (Sprite_GetDrawFlag(animMan->bottomScreenLargeParticle.sprite) == 0) {
+                    Sprite_SetDrawFlag(animMan->bottomScreenLargeParticle.sprite, 1);
                 }
             } else {
-                v0->unk_00 = 7;
-                ov97_0222E664(v0);
-                ov97_0222E77C(v0);
-                ov97_0222EBD0(v0);
-                GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
+                animMan->animationStage = MG_ANIMATION_STAGE_SPIRAL_OUT;
+                DeleteTopScreenLargeParticle(animMan);
+                InitAllBottomScreenParticlesSprite(animMan);
+                SetupBottomScreenSmallParticlesForSpiralOut(animMan);
+                GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, TRUE);
             }
         }
-    } break;
-    case 7: {
-        int v9;
-        int v10 = 0;
+        break;
+    case MG_ANIMATION_STAGE_SPIRAL_OUT:
+        goToNextStage = TRUE;
 
-        v1 = 1;
+        int numParticlesDone = 0;
 
-        for (v9 = 0; v9 < 80; v9++) {
-            if (v0->unk_1848[v9].unk_08) {
-                v10++;
+        for (int i = 0; i < NUM_MYSTERY_GIFT_PARTICLES; i++) {
+            if (animMan->bottomScreenSmallParticles[i].animationDone) {
+                numParticlesDone++;
                 continue;
             }
 
-            v1 = 0;
+            goToNextStage = FALSE;
         }
 
-        if (v10 > 7) {
-            ov97_0222F39C(v0, 2, 1);
+        if (numParticlesDone > 7) {
+            FadeBothScreensBlendBrightness(animMan, FADE_TOWARDS_WHITE, 1);
         }
 
-        if (v10 > 50) {
-            Sprite_SetDrawFlag(v0->unk_3054.unk_0C, 0);
-        } else if (v10 > 30) {
-            Sprite_SetAnimNoRestart(v0->unk_3054.unk_0C, 2);
-        } else if (v10 > 7) {
-            Sprite_SetAnimNoRestart(v0->unk_3054.unk_0C, 3);
+        if (numParticlesDone > 50) {
+            Sprite_SetDrawFlag(animMan->bottomScreenLargeParticle.sprite, FALSE);
+        } else if (numParticlesDone > 30) {
+            Sprite_SetAnimNoRestart(animMan->bottomScreenLargeParticle.sprite, 2);
+        } else if (numParticlesDone > 7) {
+            Sprite_SetAnimNoRestart(animMan->bottomScreenLargeParticle.sprite, 3);
         }
 
-        if (v1) {
-            v0->unk_00 = 8;
-            ov97_0222E7E4(v0);
-            ov97_0222E67C(v0);
+        if (goToNextStage) {
+            animMan->animationStage = MG_ANIMATION_STAGE_FADE_BG_WHITE;
+            DeleteBottomScreenSmallParticles(animMan);
+            DeleteBottomScreenLargeParticle(animMan);
+        }
+        break;
+    case MG_ANIMATION_STAGE_FADE_BG_WHITE: {
+        goToNextStage = FadeBothScreensBlendBrightness(animMan, FADE_TOWARDS_WHITE, 1);
+
+        if (goToNextStage) {
+            animMan->animationStage = MG_ANIMATION_STAGE_RETURN_BG_NORMAL;
         }
     } break;
-    case 8: {
-        v1 = ov97_0222F39C(v0, 2, 1);
+    case MG_ANIMATION_STAGE_RETURN_BG_NORMAL: {
+        goToNextStage = FadeBothScreensBlendBrightness(animMan, FADE_TOWARDS_NORMAL, 2);
 
-        if (v1) {
-            v0->unk_00 = 9;
-        }
-    } break;
-    case 9: {
-        v1 = ov97_0222F39C(v0, 0, 2);
-
-        if (v1) {
-            v0->unk_00 = 255;
+        if (goToNextStage) {
+            animMan->animationStage = MG_ANIMATION_STAGE_DONE;
         }
     } break;
     default:
-        *(v0->unk_30A0) = 0;
-        SysTask_Done(param0);
-        Heap_FreeToHeap(v0);
+        *animMan->animationStatusPtr = MG_ANIMATION_STATUS_DONE;
+        SysTask_Done(sysTask);
+        Heap_FreeToHeap(animMan);
         return;
     }
 
-    ov97_0222E694(v0);
+    UpdateAllParticleSpritesAnimations(animMan);
 }
 
-static int ov97_0222F75C(ApplicationManager *param0, int *param1)
+static BOOL MysteryGiftApp_Main(ApplicationManager *appMan, enum MysteryGiftAppState *state)
 {
-    u32 v0, v1;
-    PGT *v2;
-    UnkStruct_ov97_0222D04C *v3 = ApplicationManager_Data(param0);
+    MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
 
     CTRDG_IsExisting();
 
-    if (v3->unk_62C != 29) {
-        ov97_02230224(v3);
+    if (appData->unk_62C != 29) {
+        ov97_02230224(appData);
     }
 
-    switch (*param1) {
-    case 0:
-        ov97_02237694(HEAP_ID_86);
-        v3->unk_163C = param1;
-        *param1 = 1;
+    switch (*state) {
+    case MG_APP_STATE_SETUP:
+        ov97_02237694(HEAP_ID_MYSTERY_GIFT_APP);
+        appData->statePtr = state;
+        *state = MG_APP_STATE_INIT_GRAPHICS;
         break;
 
-    case 1:
-        ov97_0222DFD4(param0, v3);
-        ov97_0222D3E8(v3);
-        ov97_02237790(1, 3, param1, 2);
+    case MG_APP_STATE_INIT_GRAPHICS:
+        ShowAppMainMenu(appMan, appData);
+        LoadDownloadArrowSpriteResources(appData);
+        ov97_02237790(1, MG_APP_STATE_WAIT_MAIN_MENU_INPUT, (int *)state, MG_APP_STATE_WAIT_SCREEN_TRANSITION);
         break;
-    case 2:
-        ov97_022377F0(param1);
+    case MG_APP_STATE_WAIT_SCREEN_TRANSITION:
+        ov97_022377F0((int *)state);
         break;
-    case 3:
-        ov97_0222DF70(param0, param1, ov97_0222DB40);
+    case MG_APP_STATE_WAIT_MAIN_MENU_INPUT:
+        ProcessStateTransitionMenuInput(appMan, state, ExitToTitleScreen);
         break;
-    case 4:
-        ov97_0222DF70(param0, param1, ov97_0222DA64);
+    case MG_APP_STATE_WAIT_RECEPTION_METHOD_CHOICE:
+        ProcessStateTransitionMenuInput(appMan, state, ReturnToMysteryGiftMenu);
         break;
-    case 5:
-        ov97_0222DF70(param0, param1, ov97_0222D75C);
+    case MG_APP_STATE_WAIT_CONFIRM_WIRELESS_COMMS:
+        ProcessStateTransitionMenuInput(appMan, state, ReturnToReceptionMethodChoiceAfterRefusingWireless);
         break;
-    case 27:
-        ov97_0222E080(param0, param1);
+    case MG_APP_STATE_SEARCH_FOR_WIFI_EVENT:
+        SearchForWiFiDistributionEvent(appMan, state);
         break;
-    case 32:
-        ov97_022302F4(v3);
+    case MG_APP_STATE_SEARCH_FOR_LOCAL_WIRELESS_EVENT:
+        UpdateLocalWirelessDistributionState(appData);
 
-        if (Unk_ov97_0223F1A8 == 45) {
-            ov97_0222D30C(v3, 0);
-            ov97_0222D55C(param0);
+        if (sWirelessDistribState == WIRELESS_DISTRIBUTION_STATE_45) {
+            ToggleWaitDial(appData, FALSE);
+            GetReceivedWonderCard(appMan);
 
-            v3->unk_80 = ov97_02232148(v3->saveData, &v3->unk_8C);
+            appData->canReceiveGiftStatus = ov97_02232148(appData->saveData, &appData->eventData);
 
-            if (v3->unk_80 == 1) {
-                ov97_0222D30C(v3, 0);
-                *param1 = 49;
+            if (appData->canReceiveGiftStatus == MYSTERY_GIFT_CANT_RECEIVE_WRONG_VERSION) {
+                ToggleWaitDial(appData, FALSE);
+                *state = MG_APP_STATE_FROM_FRIEND_OR_CANT_RECEIVE;
             } else {
-                if (!Window_IsInUse(&v3->unk_58)) {
-                    Window_Add(v3->unk_00, &v3->unk_58, 0, 3, 2, 26, 4, 0, ((((((1 + (18 + 12)) + 9) + 26 * 6) + 16 * 6) + 17 * 8) + 6 * 4));
+                if (!Window_IsInUse(&appData->wonderCardTitleWindow)) {
+                    Window_Add(appData->bgConfig, &appData->wonderCardTitleWindow, BG_LAYER_MAIN_0, 3, 2, 26, 4, PLTT_0, BASE_TILE_WONDERCARD_TITLE);
                 }
 
-                ov97_0222DF10(param0, &v3->unk_58, ov97_02238D54());
-                ov97_0222DE78(param0, &v3->unk_18, 4);
-                ov97_0222D8F4(param0);
-                *param1 = 31;
+                ShowWonderCardTitle(appMan, &appData->wonderCardTitleWindow, ov97_02238D54());
+                ShowMessageBox(appMan, &appData->messageBox, MysteryGiftMenu_Text_ReceiveThisGift);
+                ShowConfirmReceiveGiftMenu_LocalWireless(appMan);
+                *state = MG_APP_STATE_WAIT_CONFIRM_RECEIVE_LOCAL_WIRELESS_GIFT;
             }
         }
 
-        if ((Unk_ov97_0223F1A8 == 47) || (Unk_ov97_0223F1A8 == 46)) {
+        if (sWirelessDistribState == WIRELESS_DISTRIBUTION_STATE_47
+            || sWirelessDistribState == WIRELESS_DISTRIBUTION_STATE_46) {
             ov97_022302D4();
-            *param1 = 17;
+            *state = MG_APP_STATE_NO_GIFT_FOUND;
         }
         break;
-    case 31:
-        ov97_0222DF70(param0, param1, ov97_0222D9F0);
-        ov97_022302F4(v3);
+    case MG_APP_STATE_WAIT_CONFIRM_RECEIVE_LOCAL_WIRELESS_GIFT:
+        ProcessStateTransitionMenuInput(appMan, state, DisconnectLocalWireless);
+        UpdateLocalWirelessDistributionState(appData);
         break;
-    case 33:
-        v2 = ov97_0222D55C(param0);
+    case MG_APP_STATE_RECEIVE_FROM_LOCAL_WIRELESS: {
+        WonderCard *wonderCard = GetReceivedWonderCard(appMan);
 
-        ov97_0222D30C(v3, 1);
-        ov97_0222D40C(v3, 1);
+        ToggleWaitDial(appData, TRUE);
+        SetDownloadArrowAnim(appData, 1);
 
-        if (ov97_0222D5C8(v2) == 1) {
-            ov97_0222D658(param0);
+        if (ShouldPlayAnimation(wonderCard) == TRUE) {
+            SaveReceivedGift(appMan);
 
-            v3->unk_2A54 = 1;
+            appData->animationStatus = MG_ANIMATION_STATUS_BEGIN;
 
-            ov97_0222D40C(v3, -1);
-            ov97_0222D444(&v3->unk_58, 0);
+            SetDownloadArrowAnim(appData, HIDE_DOWNLOADING_ARROW);
+            EraseStdFrameIfInUse(&appData->wonderCardTitleWindow, FALSE);
 
             {
-                UnkStruct_ov97_0222E398 *v4 = Heap_AllocFromHeap(HEAP_ID_86, sizeof(UnkStruct_ov97_0222E398));
+                MysteryGiftAnimationManager *animMan = Heap_AllocFromHeap(HEAP_ID_MYSTERY_GIFT_APP, sizeof(MysteryGiftAnimationManager));
 
-                memset(v4, 0, sizeof(UnkStruct_ov97_0222E398));
+                memset(animMan, 0, sizeof(MysteryGiftAnimationManager));
 
-                v4->unk_30A0 = &v3->unk_2A54;
-                v4->unk_0C = ov97_02237AEC();
+                animMan->animationStatusPtr = &appData->animationStatus;
+                animMan->unk_0C = ov97_02237AEC();
 
-                SysTask_Start(ov97_0222F4BC, v4, 5);
+                SysTask_Start((SysTaskFunc)RunMysteryGiftAnimationFrame, animMan, 5);
             }
         } else {
-            ov97_02238194(v3->unk_00, v2);
-            ov97_0222D658(param0);
+            ov97_02238194(appData->bgConfig, wonderCard);
+            SaveReceivedGift(appMan);
         }
 
-        *param1 = 34;
-        break;
-    case 35: {
-        if (v3->unk_2A54 == 0) {
-            *param1 = ov97_0222E228(param0, &v3->unk_18, 8, 55);
-            GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
-        }
+        *state = MG_APP_STATE_WAIT_LOCAL_WIRELESS_GIFT_SAVED;
     } break;
-    case 34: {
-        int v5;
+    case MG_APP_STATE_WAIT_FOR_ANIMATION_FINISHED:
+        if (appData->animationStatus == MG_ANIMATION_STATUS_DONE) {
+            *state = ShowMessageBoxIntoStateTransition(appMan, &appData->messageBox, MysteryGiftMenu_Text_GiftReceivedPickUpInPokeMart, MG_APP_STATE_EXIT_AFTER_RECEIVING_GIFT);
+            GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, TRUE);
+        }
+        break;
+    case MG_APP_STATE_WAIT_LOCAL_WIRELESS_GIFT_SAVED: {
+        int saveStatus = ov97_02238528();
 
-        v5 = ov97_02238528();
-
-        if (v5 == 4) {
+        if (saveStatus == 4) {
             ov97_022384F4();
         }
 
-        if (v5 == 2) {
-            ov97_0222D30C(v3, 0);
-            ov97_0222D40C(v3, -1);
-            ov97_0222D45C(&v3->unk_18, 0);
+        if (saveStatus == SAVE_RESULT_OK) {
+            ToggleWaitDial(appData, FALSE);
+            SetDownloadArrowAnim(appData, HIDE_DOWNLOADING_ARROW);
+            EraseMsgBoxIfInUse(&appData->messageBox, FALSE);
 
-            Bg_ClearTilemap(v3->unk_00, 0);
-            GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
+            Bg_ClearTilemap(appData->bgConfig, BG_LAYER_MAIN_0);
+            GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, FALSE);
 
-            v2 = &v3->unk_8C.unk_50.pgt;
+            WonderCard *wonderCard = &appData->eventData.wonderCard;
 
-            if (ov97_0222D5C8(v2) == 1) {
-                ov97_02238194(v3->unk_00, v2);
-                v3->unk_2A54 = 2;
+            if (ShouldPlayAnimation(wonderCard) == TRUE) {
+                ov97_02238194(appData->bgConfig, wonderCard);
+                appData->animationStatus = MG_ANIMATION_STATUS_PROCEED_IMPLOSION;
             } else {
                 Sound_PlayEffect(SEQ_SE_DP_UG_020);
             }
 
-            *param1 = 35;
-        } else if (v5 == 3) {
-            ov97_0222D30C(v3, 0);
-            ov97_0222D40C(v3, -1);
+            *state = MG_APP_STATE_WAIT_FOR_ANIMATION_FINISHED;
+        } else if (saveStatus == SAVE_RESULT_CORRUPT) {
+            ToggleWaitDial(appData, FALSE);
+            SetDownloadArrowAnim(appData, HIDE_DOWNLOADING_ARROW);
 
-            v3->unk_8C.unk_00.saveWonderCard = 0;
-            *param1 = ov97_0222E228(param0, &v3->unk_18, 26, 55);
+            appData->eventData.header.hasWonderCard = FALSE;
+            *state = ShowMessageBoxIntoStateTransition(appMan, &appData->messageBox, MysteryGiftMenu_Text_ProblemWithReceivingTheGift, MG_APP_STATE_EXIT_AFTER_RECEIVING_GIFT);
         }
     } break;
-    case 36:
-        ov97_022302F4(v3);
+    case MG_APP_STATE_DISCONNECT_FROM_LOCAL_WIRELESS:
+        UpdateLocalWirelessDistributionState(appData);
 
-        if ((Unk_ov97_0223F1A8 == 47) || (Unk_ov97_0223F1A8 == 45) || (Unk_ov97_0223F1A8 == 46)) {
-            if (Unk_ov97_0223F1A8 == 47) {
+        if (sWirelessDistribState == WIRELESS_DISTRIBUTION_STATE_47
+            || sWirelessDistribState == WIRELESS_DISTRIBUTION_STATE_45
+            || sWirelessDistribState == WIRELESS_DISTRIBUTION_STATE_46) {
+            if (sWirelessDistribState == WIRELESS_DISTRIBUTION_STATE_47) {
                 ov97_022302D4();
             }
 
-            *param1 = ov97_0222D94C(param0);
+            *state = ReturnToReceptionMethodChoiceAfterRefusingGift(appMan);
         }
         break;
-    case 7:
-        if ((v3->unk_438 = ov97_0222D250(v3)) != -1) {
-            ov97_0222D30C(v3, 0);
+    case MG_APP_STATE_SEARCH_FOR_FRIEND_GIFT:
+        if ((appData->unk_438 = ov97_0222D250(appData)) != -1) {
+            ToggleWaitDial(appData, FALSE);
 
-            v3->unk_80 = ov97_02232148(v3->saveData, &v3->unk_8C);
+            appData->canReceiveGiftStatus = ov97_02232148(appData->saveData, &appData->eventData);
 
-            if (!Window_IsInUse(&v3->unk_58)) {
-                Window_Add(v3->unk_00, &v3->unk_58, 0, 3, 2, 26, 4, 0, ((((((1 + (18 + 12)) + 9) + 26 * 6) + 16 * 6) + 17 * 8) + 6 * 4));
+            if (!Window_IsInUse(&appData->wonderCardTitleWindow)) {
+                Window_Add(appData->bgConfig, &appData->wonderCardTitleWindow, BG_LAYER_MAIN_0, 3, 2, 26, 4, PLTT_0, BASE_TILE_WONDERCARD_TITLE);
             }
 
-            ov97_0222DF10(param0, &v3->unk_58, v3->unk_8C.unk_00.title);
-            ov97_0222DE78(param0, &v3->unk_18, 4);
-            ov97_0222D6F8(param0, 0);
-            *param1 = 8;
+            ShowWonderCardTitle(appMan, &appData->wonderCardTitleWindow, appData->eventData.header.title);
+            ShowMessageBox(appMan, &appData->messageBox, MysteryGiftMenu_Text_ReceiveThisGift);
+            ShowConfirmReceiveGiftMenu(appMan, FALSE);
+            *state = MG_APP_STATE_WAIT_CONFIRM_RECEIVE_FRIEND_GIFT;
         }
 
-        if ((gSystem.pressedKeys & PAD_BUTTON_B) || (--v3->unk_434 == 0)) {
-            ov97_0222D30C(v3, 0);
+        if (JOY_NEW(PAD_BUTTON_B) || --appData->wirelessCommsTimeout == 0) {
+            ToggleWaitDial(appData, FALSE);
             ov97_0222D2DC();
             sub_02039794();
-            *param1 = 17;
+            *state = MG_APP_STATE_NO_GIFT_FOUND;
         }
         break;
-    case 8:
-        ov97_0222DF70(param0, param1, ov97_0222D94C);
+    case MG_APP_STATE_WAIT_CONFIRM_RECEIVE_FRIEND_GIFT:
+        ProcessStateTransitionMenuInput(appMan, state, ReturnToReceptionMethodChoiceAfterRefusingGift);
         break;
-    case 9:
-        v1 = CommSys_CurNetId();
+    case MG_APP_STATE_CONNECT_WITH_FRIEND: {
+        int netID = CommSys_CurNetId();
 
-        if ((v1 != 0) && CommSys_IsPlayerConnected(v1)) {
-            if (CommTiming_IsSyncState(0xAB) == 1) {
-                ov97_0222D30C(v3, 0);
-                CommMan_SetErrorHandling(1, 1);
-                ov97_0222DE78(param0, &v3->unk_18, 7);
-                ov97_0222D40C(v3, 1);
-                ov97_0222D30C(v3, 1);
-                v3->unk_434 = 60 * 10;
-                *param1 = 10;
+        if (netID != 0 && CommSys_IsPlayerConnected(netID)) {
+            if (CommTiming_IsSyncState(0xAB) == TRUE) {
+                ToggleWaitDial(appData, FALSE);
+                CommMan_SetErrorHandling(TRUE, TRUE);
+                ShowMessageBox(appMan, &appData->messageBox, MysteryGiftMenu_Text_ReceivingGiftDontTurnOff);
+                SetDownloadArrowAnim(appData, 1);
+                ToggleWaitDial(appData, TRUE);
+                appData->wirelessCommsTimeout = 60 * 10;
+                *state = MG_APP_STATE_RECEIVING_FROM_FRIEND;
             }
-        } else if ((v1 != 0) && (CommSys_IsPlayerConnected(v1) == 0)) {
+        } else if (netID != 0 && CommSys_IsPlayerConnected(netID) == FALSE) {
             ov97_0222D2DC();
             sub_02039794();
-            ov97_0222D40C(v3, -1);
-            ov97_0222D30C(v3, 0);
-            *param1 = 16;
+            SetDownloadArrowAnim(appData, HIDE_DOWNLOADING_ARROW);
+            ToggleWaitDial(appData, FALSE);
+            *state = MG_APP_STATE_FRIEND_LEFT_BEFORE_SENDING;
             break;
         }
 
-        if ((gSystem.pressedKeys & PAD_BUTTON_B) || (--v3->unk_434 == 0)) {
+        if (JOY_NEW(PAD_BUTTON_B) || --appData->wirelessCommsTimeout == 0) {
             ov97_0222D2DC();
             sub_02039794();
-            ov97_0222D40C(v3, -1);
-            ov97_0222D30C(v3, 0);
-            *param1 = 17;
+            SetDownloadArrowAnim(appData, HIDE_DOWNLOADING_ARROW);
+            ToggleWaitDial(appData, FALSE);
+            *state = MG_APP_STATE_NO_GIFT_FOUND;
         }
-        break;
-    case 10:
+    } break;
+    case MG_APP_STATE_RECEIVING_FROM_FRIEND:
         if (ov97_0222D2A0()) {
-            *param1 = 11;
+            *state = MG_APP_STATE_SAVE_GIFT_FROM_FRIEND;
         }
 
-        v1 = CommSys_CurNetId();
+        int netID = CommSys_CurNetId();
 
-        if ((gSystem.pressedKeys & PAD_BUTTON_B) || (--v3->unk_434 == 0) || ((v1 != 0) && (CommSys_IsPlayerConnected(v1) == 0))) {
-            ov97_0222D30C(v3, 0);
+        if (JOY_NEW(PAD_BUTTON_B)
+            || --appData->wirelessCommsTimeout == 0
+            || (netID != 0 && CommSys_IsPlayerConnected(netID) == FALSE)) {
+            ToggleWaitDial(appData, FALSE);
             ov97_0222D2DC();
             sub_02039794();
-            *param1 = 17;
+            *state = MG_APP_STATE_NO_GIFT_FOUND;
         }
         break;
-    case 11:
-        v2 = ov97_0222D55C(param0);
-        ov97_02238194(v3->unk_00, v2);
+    case MG_APP_STATE_SAVE_GIFT_FROM_FRIEND:
+        ov97_02238194(appData->bgConfig, GetReceivedWonderCard(appMan));
         CommMan_SetErrorHandling(0, 0);
-        ov97_0222D658(param0);
-        *param1 = 12;
+        SaveReceivedGift(appMan);
+        *state = MG_APP_STATE_CHECK_FRIEND_CONNECTION_STILL_VALID;
         break;
-    case 12:
-        v1 = CommSys_CurNetId();
+    case MG_APP_STATE_CHECK_FRIEND_CONNECTION_STILL_VALID: {
+        int netID = CommSys_CurNetId();
 
-        if ((v1 != 0) && (CommSys_IsPlayerConnected(v1) == 0)) {
+        if (netID != 0 && CommSys_IsPlayerConnected(netID) == FALSE) {
             ov97_0222D2DC();
-            v3->unk_2A4C = 1;
+            appData->cancelSave = TRUE;
             ov97_0223850C();
-            ov97_0222D30C(v3, 0);
+            ToggleWaitDial(appData, FALSE);
             sub_02039794();
-            ov97_0222D40C(v3, -1);
-            *param1 = 14;
+            SetDownloadArrowAnim(appData, HIDE_DOWNLOADING_ARROW);
+            *state = MG_APP_STATE_PERSON_SHARING_DISCONNECTED;
             break;
         }
 
         if (ov97_02238528() == 4) {
             CommTiming_StartSync(0x93);
-            *param1 = 13;
-            v3->unk_43C = 120;
-        } else if (ov97_02238528() == 3) {
+            *state = MG_APP_STATE_WAIT_FRIEND_READY_TO_DISCONNECT;
+            appData->delay = 120;
+        } else if (ov97_02238528() == SAVE_RESULT_CORRUPT) {
             ov97_0223850C();
-            v3->unk_8C.unk_00.saveWonderCard = 0;
-            ov97_0222D30C(v3, 0);
-            *param1 = ov97_0222E228(param0, &v3->unk_18, 26, 55);
+            appData->eventData.header.hasWonderCard = FALSE;
+            ToggleWaitDial(appData, FALSE);
+            *state = ShowMessageBoxIntoStateTransition(appMan, &appData->messageBox, MysteryGiftMenu_Text_ProblemWithReceivingTheGift, MG_APP_STATE_EXIT_AFTER_RECEIVING_GIFT);
         }
-        break;
-    case 13:
-        if (CommTiming_IsSyncState(0x93) == 1) {
+    } break;
+    case MG_APP_STATE_WAIT_FRIEND_READY_TO_DISCONNECT:
+        if (CommTiming_IsSyncState(0x93) == TRUE) {
             ov97_022384F4();
-            v3->unk_43C = 10;
-            *param1 = 15;
-        } else if (--v3->unk_43C == 0) {
+            appData->delay = 10;
+            *state = MG_APP_STATE_RECEIVE_FROM_FRIEND_SUCCESS;
+        } else if (--appData->delay == 0) {
             ov97_0223850C();
-            v3->unk_8C.unk_00.saveWonderCard = 0;
-            ov97_0222D30C(v3, 0);
-            *param1 = ov97_0222E228(param0, &v3->unk_18, 26, 55);
+            appData->eventData.header.hasWonderCard = FALSE;
+            ToggleWaitDial(appData, FALSE);
+            *state = ShowMessageBoxIntoStateTransition(appMan, &appData->messageBox, MysteryGiftMenu_Text_ProblemWithReceivingTheGift, MG_APP_STATE_EXIT_AFTER_RECEIVING_GIFT);
         }
         break;
-    case 14:
-        ov97_0222D444(&v3->unk_58, 0);
-        v3->unk_8C.unk_00.saveWonderCard = 0;
-        *param1 = ov97_0222E228(param0, &v3->unk_18, 28, 55);
+    case MG_APP_STATE_PERSON_SHARING_DISCONNECTED:
+        EraseStdFrameIfInUse(&appData->wonderCardTitleWindow, FALSE);
+        appData->eventData.header.hasWonderCard = FALSE;
+        *state = ShowMessageBoxIntoStateTransition(appMan, &appData->messageBox, MysteryGiftMenu_Text_PersonSharingDisconnected, MG_APP_STATE_EXIT_AFTER_RECEIVING_GIFT);
         break;
-    case 15:
-        if (--v3->unk_43C == 0) {
-            ov97_0222D30C(v3, 0);
+    case MG_APP_STATE_RECEIVE_FROM_FRIEND_SUCCESS:
+        if (--appData->delay == 0) {
+            ToggleWaitDial(appData, FALSE);
             ov97_0222D2DC();
             sub_02039794();
             Sound_PlayEffect(SEQ_SE_DP_UG_020);
-            ov97_0222D40C(v3, -1);
-            *param1 = ov97_0222E228(param0, &v3->unk_18, 8, 55);
+            SetDownloadArrowAnim(appData, HIDE_DOWNLOADING_ARROW);
+            *state = ShowMessageBoxIntoStateTransition(appMan, &appData->messageBox, MysteryGiftMenu_Text_GiftReceivedPickUpInPokeMart, MG_APP_STATE_EXIT_AFTER_RECEIVING_GIFT);
         }
         break;
-    case 16:
+    case MG_APP_STATE_FRIEND_LEFT_BEFORE_SENDING:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        ov97_0222DE78(param0, &v3->unk_18, 24);
-        ov97_0222D444(&v3->unk_58, 0);
-        *param1 = 18;
+        ShowMessageBox(appMan, &appData->messageBox, MysteryGiftMenu_Text_RequestTurnedDown);
+        EraseStdFrameIfInUse(&appData->wonderCardTitleWindow, FALSE);
+        *state = MG_APP_STATE_RETURN_TO_MENU;
         break;
-    case 17:
-        if (v3->unk_1640) {
-            v3->unk_1640--;
+    case MG_APP_STATE_NO_GIFT_FOUND:
+        if (appData->unk_1640) {
+            appData->unk_1640--;
             break;
         }
 
-        ov97_0222D30C(v3, 0);
+        ToggleWaitDial(appData, FALSE);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        ov97_0222DE78(param0, &v3->unk_18, 23);
-        ov97_0222D444(&v3->unk_58, 0);
-        *param1 = 18;
+        ShowMessageBox(appMan, &appData->messageBox, MysteryGiftMenu_Text_NoGiftsToBeFound);
+        EraseStdFrameIfInUse(&appData->wonderCardTitleWindow, FALSE);
+        *state = MG_APP_STATE_RETURN_TO_MENU;
         break;
-    case 18:
+    case MG_APP_STATE_RETURN_TO_MENU:
         if (gSystem.pressedKeys) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            ov97_0222DDD0(param0, (((1 + (18 + 12)) + 9) + 26 * 6), 0);
-            *param1 = 3;
+            ShowMysteryGiftMenuOptions(appMan, BASE_TILE_MAIN_APP_MENU, MysteryGiftMenu_Text_Welcome);
+            *state = MG_APP_STATE_WAIT_MAIN_MENU_INPUT;
         }
         break;
-    case 19:
-        if (v3->unk_1640) {
-            v3->unk_1640--;
+    case MG_APP_STATE_FOUND_WIFI_OR_GBA_GIFT:
+        if (appData->unk_1640) {
+            appData->unk_1640--;
             break;
         }
 
-        if (v3->unk_84 != 27) {
-            ov97_0223764C(&v3->unk_8C, sizeof(UnkStruct_ov97_0223829C));
+        if (appData->foundGiftType != FOUND_GIFT_WIFI) {
+            ov97_0223764C(&appData->eventData, sizeof(MysteryGiftEventData));
         }
 
-        v3->unk_80 = ov97_02232148(v3->saveData, &v3->unk_8C);
+        appData->canReceiveGiftStatus = ov97_02232148(appData->saveData, &appData->eventData);
 
-        if (v3->unk_80 == 1) {
-            ov97_0222D30C(v3, 0);
-            *param1 = 49;
+        if (appData->canReceiveGiftStatus == MYSTERY_GIFT_CANT_RECEIVE_WRONG_VERSION) {
+            ToggleWaitDial(appData, FALSE);
+            *state = MG_APP_STATE_FROM_FRIEND_OR_CANT_RECEIVE;
         } else {
-            if (!Window_IsInUse(&v3->unk_58)) {
-                Window_Add(v3->unk_00, &v3->unk_58, 0, 3, 2, 26, 4, 0, ((((((1 + (18 + 12)) + 9) + 26 * 6) + 16 * 6) + 17 * 8) + 6 * 4));
+            if (!Window_IsInUse(&appData->wonderCardTitleWindow)) {
+                Window_Add(appData->bgConfig, &appData->wonderCardTitleWindow, BG_LAYER_MAIN_0, 3, 2, 26, 4, PLTT_0, BASE_TILE_WONDERCARD_TITLE);
             }
 
-            ov97_0222DF10(param0, &v3->unk_58, v3->unk_8C.unk_00.title);
-            ov97_0222DE78(param0, &v3->unk_18, 4);
-            ov97_0222D6F8(param0, 0);
-            *param1 = 20;
+            ShowWonderCardTitle(appMan, &appData->wonderCardTitleWindow, appData->eventData.header.title);
+            ShowMessageBox(appMan, &appData->messageBox, MysteryGiftMenu_Text_ReceiveThisGift);
+            ShowConfirmReceiveGiftMenu(appMan, FALSE);
+            *state = MG_APP_STATE_WAIT_ACCEPT_WIFI_OR_GBA_GIFT;
         }
         break;
-    case 20:
-        ov97_0222DF70(param0, param1, ov97_0222D94C);
+    case MG_APP_STATE_WAIT_ACCEPT_WIFI_OR_GBA_GIFT:
+        ProcessStateTransitionMenuInput(appMan, state, ReturnToReceptionMethodChoiceAfterRefusingGift);
         break;
-    case 21:
-        *param1 = 22;
+    case MG_APP_STATE_GOTO_SHOW_RECEIVING_GIFT_MSG:
+        *state = MG_APP_STATE_SHOW_RECEIVING_GIFT_MSG;
         break;
-    case 22:
-        v2 = ov97_0222D55C(param0);
+    case MG_APP_STATE_SHOW_RECEIVING_GIFT_MSG: {
+        WonderCard *wonderCard = GetReceivedWonderCard(appMan);
 
-        ov97_02238194(v3->unk_00, v2);
-        ov97_0222DE78(param0, &v3->unk_18, 7);
-        ov97_0222D40C(v3, 1);
-        ov97_0222D30C(v3, 1);
-        v3->unk_43C = 60;
-        *param1 = 23;
-        break;
-    case 23:
-        if (--v3->unk_43C == 0) {
-            ov97_0222D658(param0);
-            *param1 = 24;
+        ov97_02238194(appData->bgConfig, wonderCard);
+        ShowMessageBox(appMan, &appData->messageBox, MysteryGiftMenu_Text_ReceivingGiftDontTurnOff);
+        SetDownloadArrowAnim(appData, 1);
+        ToggleWaitDial(appData, TRUE);
+        appData->delay = 60;
+        *state = MG_APP_STATE_SAVE_RECEIVED_MYSTERY_GIFT;
+    } break;
+    case MG_APP_STATE_SAVE_RECEIVED_MYSTERY_GIFT:
+        if (--appData->delay == 0) {
+            SaveReceivedGift(appMan);
+            *state = MG_APP_STATE_WAIT_MYSTERY_GIFT_SAVED;
         }
         break;
-    case 24:
+    case MG_APP_STATE_WAIT_MYSTERY_GIFT_SAVED:
         if (ov97_02238528() == 4) {
             ov97_022384F4();
         }
 
-        if (ov97_02238528() == 2) {
-            v3->unk_43C = 1;
-            ov97_0222D30C(v3, 0);
-            ov97_0222D40C(v3, -1);
+        if (ov97_02238528() == SAVE_RESULT_OK) {
+            appData->delay = 1;
+            ToggleWaitDial(appData, FALSE);
+            SetDownloadArrowAnim(appData, HIDE_DOWNLOADING_ARROW);
             Sound_PlayEffect(SEQ_SE_DP_UG_020);
-            *param1 = ov97_0222E228(param0, &v3->unk_18, 8, 25);
-        } else if (ov97_02238528() == 3) {
-            ov97_0222D40C(v3, -1);
-            v3->unk_8C.unk_00.saveWonderCard = 0;
-            *param1 = ov97_0222E228(param0, &v3->unk_18, 26, 55);
+            *state = ShowMessageBoxIntoStateTransition(appMan, &appData->messageBox, MysteryGiftMenu_Text_GiftReceivedPickUpInPokeMart, MG_APP_STATE_WAIT_BEFORE_EXIT_AFTER_RECEIVING_GIFT);
+        } else if (ov97_02238528() == SAVE_RESULT_CORRUPT) {
+            SetDownloadArrowAnim(appData, HIDE_DOWNLOADING_ARROW);
+            appData->eventData.header.hasWonderCard = FALSE;
+            *state = ShowMessageBoxIntoStateTransition(appMan, &appData->messageBox, MysteryGiftMenu_Text_ProblemWithReceivingTheGift, MG_APP_STATE_EXIT_AFTER_RECEIVING_GIFT);
         }
         break;
-    case 25:
-        if (--v3->unk_43C == 0) {
-            v3->unk_43C = 256 * 256;
-            *param1 = 55;
+    case MG_APP_STATE_WAIT_BEFORE_EXIT_AFTER_RECEIVING_GIFT:
+        if (--appData->delay == 0) {
+            appData->delay = 256 * 256;
+            *state = MG_APP_STATE_EXIT_AFTER_RECEIVING_GIFT;
         }
         break;
-    case 49:
-        if (v3->unk_80 != 5) {
-            ov97_0222E2AC(v3);
+    case MG_APP_STATE_FROM_FRIEND_OR_CANT_RECEIVE:
+        if (appData->canReceiveGiftStatus != MYSTERY_GIFT_CAN_RECEIVE_FROM_FRIEND) {
+            FreeMultiplayerCommResources(appData);
         }
 
-        *param1 = ov97_0222E1D8(param0);
-        ov97_0222D444(&v3->unk_28[2], 0);
+        *state = ShowMessageBoxForCanReceiveStatus(appMan);
+        EraseStdFrameIfInUse(&appData->menuWindows[2], FALSE);
         break;
-    case 50:
-        *param1 = ov97_0222E228(param0, NULL, NULL, *param1);
+    case MG_APP_STATE_WAIT_MESSAGE_BOX_FOR_TRANSITION:
+        *state = WaitUntilMsgBoxPrinterFinished(appMan, *state);
         break;
-    case 51:
+    case MG_APP_STATE_WAIT_INPUT_RETURN_TO_MENU:
         if (gSystem.pressedKeys) {
-            ov97_0222D444(&v3->unk_58, 0);
-            *param1 = ov97_0222DA64(param0);
+            EraseStdFrameIfInUse(&appData->wonderCardTitleWindow, FALSE);
+            *state = ReturnToMysteryGiftMenu(appMan);
         }
         break;
-    case 52:
-        ov97_0222D6F8(param0, 1);
-        *param1 = 8;
-        v3->unk_80 = 0;
+    case MG_APP_STATE_ASK_CONFIRM_RECEIVE_SHARED_GIFT:
+        ShowConfirmReceiveGiftMenu(appMan, TRUE);
+        *state = MG_APP_STATE_WAIT_CONFIRM_RECEIVE_FRIEND_GIFT;
+        appData->canReceiveGiftStatus = MYSTERY_GIFT_CAN_RECEIVE;
         break;
-    case 53:
-        ov97_0222D34C(param0);
-        v3->unk_440 = 0;
-        return 1;
+    case MG_APP_STATE_EXIT_TO_TITLE_SCREEN:
+        FreeApplicationResources(appMan);
+        appData->exitToWondercardsApp = FALSE;
+        return TRUE;
         break;
-    case 54:
-        ov97_0222D34C(param0);
-        v3->unk_440 = 1;
-        return 1;
+    case MG_APP_STATE_EXIT_TO_WONDER_CARDS_APP:
+        FreeApplicationResources(appMan);
+        appData->exitToWondercardsApp = TRUE;
+        return TRUE;
         break;
-    case 55:
+    case MG_APP_STATE_EXIT_AFTER_RECEIVING_GIFT:
         if (gSystem.pressedKeys) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
 
-            if (v3->unk_8C.unk_00.saveWonderCard == 1) {
-                ov97_02237790(0, 56, v3->unk_163C, 2);
+            if (appData->eventData.header.hasWonderCard == TRUE) {
+                ov97_02237790(0, MG_APP_STATE_SHOW_RECEIVED_WONDERCARD, (int *)appData->statePtr, MG_APP_STATE_WAIT_SCREEN_TRANSITION);
             } else {
                 ov97_02237784(1);
-                ov97_02237790(0, 57, v3->unk_163C, 2);
+                ov97_02237790(0, MG_APP_STATE_RESET_SYSTEM, (int *)appData->statePtr, MG_APP_STATE_WAIT_SCREEN_TRANSITION);
             }
         }
         break;
-    case 56:
-        ov97_0222DC20(v3->unk_00);
-        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
-        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
-        WonderCardsApp_ShowWondercard(v3->unk_00, &v3->unk_8C.unk_50, HEAP_ID_86);
-        ov97_02237790(1, 55, v3->unk_163C, 2);
-        v3->unk_8C.unk_00.saveWonderCard = 0;
+    case MG_APP_STATE_SHOW_RECEIVED_WONDERCARD:
+        LoadBottomScreenBg(appData->bgConfig);
+        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, FALSE);
+        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, TRUE);
+        WonderCardsApp_ShowWondercard(appData->bgConfig, &appData->eventData.wonderCard, HEAP_ID_MYSTERY_GIFT_APP);
+        ov97_02237790(1, MG_APP_STATE_EXIT_AFTER_RECEIVING_GIFT, (int *)appData->statePtr, MG_APP_STATE_WAIT_SCREEN_TRANSITION);
+        appData->eventData.header.hasWonderCard = FALSE; // Makes the game exit the application
         break;
-    case 57:
+    case MG_APP_STATE_RESET_SYSTEM:
         OS_ResetSystem(0);
         break;
     }
 
-    if (v3->unk_2A48) {
-        v3->unk_2A48(v3);
+    if (appData->mainCallback) {
+        appData->mainCallback(appData);
     }
 
-    ov97_02237CAC(v3->unk_2A54);
-    return 0;
+    ov97_02237CAC(appData->animationStatus);
+    return FALSE;
 }
 
-ApplicationManager *ov97_022301A4(void)
+ApplicationManager *MysteryGiftApp_GetApplicationManager(void)
 {
-    return Unk_ov97_0223F1B0;
+    return sApplicationManager;
 }
 
-void ov97_022301B0(ApplicationManager *param0)
+void MysteryGiftApp_SetApplicationManager(ApplicationManager *param0)
 {
-    Unk_ov97_0223F1B0 = param0;
+    sApplicationManager = param0;
 }
 
 extern const ApplicationManagerTemplate gWonderCardsAppTemplate;
 
-static int ov97_022301BC(ApplicationManager *param0, int *param1)
+static int MysteryGiftApp_Exit(ApplicationManager *appMan, int *unused)
 {
     FS_EXTERN_OVERLAY(overlay77);
     FS_EXTERN_OVERLAY(overlay97);
 
-    UnkStruct_ov97_0222D04C *v0 = ApplicationManager_Data(param0);
+    MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
 
-    if (v0->unk_440 == 0) {
+    if (appData->exitToWondercardsApp == FALSE) {
         EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenAppTemplate);
-    } else if (v0->unk_440 == 1) {
+    } else if (appData->exitToWondercardsApp == TRUE) {
         EnqueueApplication(FS_OVERLAY_ID(overlay97), &gWonderCardsAppTemplate);
     }
 
     Heap_Destroy(HEAP_ID_91);
-    ApplicationManager_FreeData(param0);
-    Heap_Destroy(HEAP_ID_86);
+    ApplicationManager_FreeData(appMan);
+    Heap_Destroy(HEAP_ID_MYSTERY_GIFT_APP);
 
-    if (v0->unk_1638 == 2) {
+    if (appData->receptionMethod == RECEIVE_FROM_GBA_CARTRIDGE) {
         SetGBACartridgeVersion(VERSION_NONE);
     }
 
-    ov97_02238400(0);
+    ov97_02238400(FALSE);
 
-    return 1;
+    return TRUE;
 }
 
-static void ov97_02230224(UnkStruct_ov97_0222D04C *param0)
+static void ov97_02230224(MysteryGiftAppData *param0)
 {
     int v0;
 
@@ -2478,23 +2511,23 @@ static void ov97_02230280(int param0)
 {
     switch (param0) {
     case 0:
-        Unk_ov97_0223F1A8 = 40;
+        sWirelessDistribState = WIRELESS_DISTRIBUTION_STATE_40;
         break;
     case 1:
-        Unk_ov97_0223F1A8 = 41;
+        sWirelessDistribState = WIRELESS_DISTRIBUTION_STATE_41;
         break;
     case 2:
-        Unk_ov97_0223F1A8 = 42;
+        sWirelessDistribState = WIRELESS_DISTRIBUTION_STATE_42;
         break;
     case 3:
-        if (Unk_ov97_0223F1A8 == 42) {
-            Unk_ov97_0223F1A8 = 44;
+        if (sWirelessDistribState == WIRELESS_DISTRIBUTION_STATE_42) {
+            sWirelessDistribState = WIRELESS_DISTRIBUTION_STATE_44;
         } else {
-            Unk_ov97_0223F1A8 = 47;
+            sWirelessDistribState = WIRELESS_DISTRIBUTION_STATE_47;
         }
         break;
     case 4:
-        Unk_ov97_0223F1A8 = 48;
+        sWirelessDistribState = WIRELESS_DISTRIBUTION_STATE_48;
         break;
     }
 }
@@ -2508,70 +2541,75 @@ static void ov97_022302D4(void)
     Unk_ov97_0223F1AC = NULL;
 }
 
-static void ov97_022302F4(UnkStruct_ov97_0222D04C *param0)
+static void UpdateLocalWirelessDistributionState(MysteryGiftAppData *appData)
 {
-    if (Unk_ov97_0223F1A8 == 44) {
+    if (sWirelessDistribState == WIRELESS_DISTRIBUTION_STATE_44) {
         ov97_022302D4();
 
         if (ov97_02238CA0()) {
-            Unk_ov97_0223F1A8 = 45;
+            sWirelessDistribState = WIRELESS_DISTRIBUTION_STATE_45;
         } else {
-            Unk_ov97_0223F1A8 = 46;
+            sWirelessDistribState = WIRELESS_DISTRIBUTION_STATE_46;
         }
     }
 
-    if ((Unk_ov97_0223F1A8 == 37) || (Unk_ov97_0223F1A8 == 38) || (Unk_ov97_0223F1A8 == 39) || (Unk_ov97_0223F1A8 == 40) || (Unk_ov97_0223F1A8 == 41) || (Unk_ov97_0223F1A8 == 43)) {
+    if (sWirelessDistribState == WIRELESS_DISTRIBUTION_STATE_INIT
+        || sWirelessDistribState == WIRELESS_DISTRIBUTION_STATE_38
+        || sWirelessDistribState == WIRELESS_DISTRIBUTION_STATE_39
+        || sWirelessDistribState == WIRELESS_DISTRIBUTION_STATE_40
+        || sWirelessDistribState == WIRELESS_DISTRIBUTION_STATE_41
+        || sWirelessDistribState == WIRELESS_DISTRIBUTION_STATE_43) {
         sub_020397B0(WM_LINK_LEVEL_3 - WM_GetLinkLevel());
     }
 
-    switch (Unk_ov97_0223F1A8) {
-    case 37:
+    switch (sWirelessDistribState) {
+    case WIRELESS_DISTRIBUTION_STATE_INIT:
         sub_02033478();
-        Unk_ov97_0223F1A8 = 38;
+        sWirelessDistribState = WIRELESS_DISTRIBUTION_STATE_38;
         break;
-    case 38:
+    case WIRELESS_DISTRIBUTION_STATE_38:
         if (sub_020334A4() == 1) {
             Unk_ov97_0223F1B4 = 0;
-            Unk_ov97_0223F1AC = Heap_AllocFromHeap(HEAP_ID_86, ov97_02238D4C());
-            ov97_02238A4C(&(param0->unk_638[0]), ov97_02230280, Unk_ov97_0223F1AC);
-            Unk_ov97_0223F1A8 = 39;
+            Unk_ov97_0223F1AC = Heap_AllocFromHeap(HEAP_ID_MYSTERY_GIFT_APP, ov97_02238D4C());
+            ov97_02238A4C(appData->wirelessDistributionBuffer, ov97_02230280, Unk_ov97_0223F1AC);
+            sWirelessDistribState = WIRELESS_DISTRIBUTION_STATE_39;
             sub_02039734();
         }
         break;
-    case 39:
+    case WIRELESS_DISTRIBUTION_STATE_39:
         break;
-    case 40:
+    case WIRELESS_DISTRIBUTION_STATE_40:
         break;
-    case 41:
+    case WIRELESS_DISTRIBUTION_STATE_41:
         Unk_ov97_0223F1B4++;
         break;
-    case 42:
+    case WIRELESS_DISTRIBUTION_STATE_42:
         break;
-    case 43:
+    case WIRELESS_DISTRIBUTION_STATE_43:
         break;
-    case 45:
+    case WIRELESS_DISTRIBUTION_STATE_45:
         break;
-    case 47:
+    case WIRELESS_DISTRIBUTION_STATE_47:
         return;
         break;
-    case 48:
+    case WIRELESS_DISTRIBUTION_STATE_48:
         break;
-    case 46:
+    case WIRELESS_DISTRIBUTION_STATE_46:
         break;
     }
 
-    if (gSystem.pressedKeys & PAD_BUTTON_B) {
-        switch (Unk_ov97_0223F1A8) {
-        case 40:
-        case 41:
-        case 48:
+    if (JOY_NEW(PAD_BUTTON_B)) {
+        switch (sWirelessDistribState) {
+        case WIRELESS_DISTRIBUTION_STATE_40:
+        case WIRELESS_DISTRIBUTION_STATE_41:
+        case WIRELESS_DISTRIBUTION_STATE_48:
             if (ov97_022389C8()) {
-                Unk_ov97_0223F1A8 = 43;
+                sWirelessDistribState = WIRELESS_DISTRIBUTION_STATE_43;
             }
             break;
-        case 45:
-        case 47:
-        case 46:
+        case WIRELESS_DISTRIBUTION_STATE_45:
+        case WIRELESS_DISTRIBUTION_STATE_47:
+        case WIRELESS_DISTRIBUTION_STATE_46:
             return;
         default:
             break;
@@ -2579,9 +2617,9 @@ static void ov97_022302F4(UnkStruct_ov97_0222D04C *param0)
     }
 }
 
-const ApplicationManagerTemplate Unk_ov97_0223D71C = {
-    ov97_0222E2DC,
-    ov97_0222F75C,
-    ov97_022301BC,
-    0xffffffff
+const ApplicationManagerTemplate gMysteryGiftAppTemplate = {
+    MysteryGiftApp_Init,
+    (OverlayFunc)MysteryGiftApp_Main,
+    MysteryGiftApp_Exit,
+    FS_OVERLAY_ID_NONE
 };

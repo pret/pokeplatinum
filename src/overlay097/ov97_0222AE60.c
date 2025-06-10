@@ -1147,7 +1147,7 @@ static int ov97_0222BE24(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-extern const ApplicationManagerTemplate Unk_ov97_0223D71C;
+extern const ApplicationManagerTemplate gMysteryGiftAppTemplate;
 extern const ApplicationManagerTemplate gGBAMigratorAppTemplate;
 extern const ApplicationManagerTemplate Unk_ov97_0223D6BC;
 extern const ApplicationManagerTemplate Unk_020F6DF0;
@@ -1163,7 +1163,7 @@ static void ov97_0222C094(UnkStruct_0222AE60 *param0)
         EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartRowanIntroAppTemplate);
         break;
     case 3:
-        EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D71C);
+        EnqueueApplication(FS_OVERLAY_ID(overlay97), &gMysteryGiftAppTemplate);
         break;
     case 5:
         EnqueueApplication(FS_OVERLAY_ID(overlay97), &gGBAMigratorAppTemplate);

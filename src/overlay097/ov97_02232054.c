@@ -5,7 +5,7 @@
 
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay097/struct_ov97_0223829C.h"
+#include "overlay097/ov97_0222D30C.h"
 #include "savedata/save_table.h"
 
 #include "bg_window.h"
@@ -129,21 +129,21 @@ void ov97_02232074(BgConfig *param0)
     }
 }
 
-int ov97_02232148(SaveData *saveData, UnkStruct_ov97_0223829C *param1)
+int ov97_02232148(SaveData *saveData, MysteryGiftEventData *param1)
 {
     u32 v0;
     MysteryGift *v1 = SaveData_GetMysteryGift(saveData);
 
-    v0 = param1->unk_00.validGames;
+    v0 = param1->header.validGames;
 
-    if ((v0 == 0xFFFFFFFF) && (param1->unk_00.id == 0xFFFF)) {
+    if ((v0 == 0xFFFFFFFF) && (param1->header.id == 0xFFFF)) {
         MysteryGift_Init(v1);
         SaveData_SaveBlock(saveData, 0);
 
         OS_ResetSystem(0);
     }
 
-    if ((param1->unk_00.id >= 100) && (param1->unk_00.id <= 152)) {
+    if ((param1->header.id >= 100) && (param1->header.id <= 152)) {
         v0 |= (1 << 12) + (1 << 7) + (1 << 8);
     }
 
@@ -155,11 +155,11 @@ int ov97_02232148(SaveData *saveData, UnkStruct_ov97_0223829C *param1)
         return 1;
     }
 
-    if ((param1->unk_00.unique == 1) && (MysteryGift_GetWcIDReceived(v1, param1->unk_00.id) == 1)) {
+    if ((param1->header.unique == 1) && (MysteryGift_GetWcIDReceived(v1, param1->header.id) == 1)) {
         return 2;
     }
 
-    if ((param1->unk_00.saveWonderCard == 1) && (MysteryGift_CheckFreeWcSlotExists(v1) == 0)) {
+    if ((param1->header.hasWonderCard == 1) && (MysteryGift_CheckFreeWcSlotExists(v1) == 0)) {
         return 4;
     }
 
@@ -167,7 +167,7 @@ int ov97_02232148(SaveData *saveData, UnkStruct_ov97_0223829C *param1)
         return 3;
     }
 
-    if (param1->unk_00.fromSharing == 1) {
+    if (param1->header.fromSharing == 1) {
         return 5;
     }
 
