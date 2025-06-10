@@ -1000,8 +1000,8 @@ Overlay overlay42
 Overlay overlay43
 {
 	After overlay25
-	Object main.nef.p/src_overlay043_poketch_move_tester.c.o
-	Object main.nef.p/src_overlay043_poketch_move_tester_graphics.c.o
+	Object main.nef.p/src_applications_poketch_move_tester_main.c.o
+	Object main.nef.p/src_applications_poketch_move_tester_graphics.c.o
 }
 
 Overlay overlay44

@@ -1,4 +1,4 @@
-#include "overlay043/poketch_move_tester_graphics.h"
+#include "applications/poketch/move_tester/graphics.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -64,61 +64,61 @@ static void SetupSprites(PoketchMoveTesterGraphics *graphics)
 {
     static const PoketchAnimation_AnimationData sPoketchMoveTester_AnimDataMain[] = {
         {
-            { (28 << FX32_SHIFT), (128 << FX32_SHIFT) },
-            0,
-            0,
-            2,
-            0,
-            0,
+            .translation = { (28 << FX32_SHIFT), (128 << FX32_SHIFT) },
+            .animIdx = 0,
+            .flip = 0,
+            .oamPriority = 2,
+            .priority = 0,
+            .hasAffineTransform = 0,
         },
         {
-            { (116 << FX32_SHIFT), (128 << FX32_SHIFT) },
-            2,
-            0,
-            2,
-            0,
-            0,
+            .translation = { (116 << FX32_SHIFT), (128 << FX32_SHIFT) },
+            .animIdx = 2,
+            .flip = 0,
+            .oamPriority = 2,
+            .priority = 0,
+            .hasAffineTransform = 0,
         },
         {
-            { (108 << FX32_SHIFT), (40 << FX32_SHIFT) },
-            0,
-            0,
-            2,
-            0,
-            0,
+            .translation = { (108 << FX32_SHIFT), (40 << FX32_SHIFT) },
+            .animIdx = 0,
+            .flip = 0,
+            .oamPriority = 2,
+            .priority = 0,
+            .hasAffineTransform = 0,
         },
         {
-            { (196 << FX32_SHIFT), (40 << FX32_SHIFT) },
-            2,
-            0,
-            2,
-            0,
-            0,
+            .translation = { (196 << FX32_SHIFT), (40 << FX32_SHIFT) },
+            .animIdx = 2,
+            .flip = 0,
+            .oamPriority = 2,
+            .priority = 0,
+            .hasAffineTransform = 0,
         },
         {
-            { (108 << FX32_SHIFT), (72 << FX32_SHIFT) },
-            0,
-            0,
-            2,
-            0,
-            0,
+            .translation = { (108 << FX32_SHIFT), (72 << FX32_SHIFT) },
+            .animIdx = 0,
+            .flip = 0,
+            .oamPriority = 2,
+            .priority = 0,
+            .hasAffineTransform = 0,
         },
         {
-            { (196 << FX32_SHIFT), (72 << FX32_SHIFT) },
-            2,
-            0,
-            2,
-            0,
-            0,
-        },
+            .translation = { (196 << FX32_SHIFT), (72 << FX32_SHIFT) },
+            .animIdx = 2,
+            .flip = 0,
+            .oamPriority = 2,
+            .priority = 0,
+            .hasAffineTransform = 0,
+        }
     };
     static const PoketchAnimation_AnimationData sPoketchMoveTester_AnimDataExclamation = {
-        { (44 << FX32_SHIFT), (48 << FX32_SHIFT) },
-        5,
-        0,
-        2,
-        0,
-        0
+        .translation = { (44 << FX32_SHIFT), (48 << FX32_SHIFT) },
+        .animIdx = 5,
+        .flip = 0,
+        .oamPriority = 2,
+        .priority = 0,
+        .hasAffineTransform = 0,
     };
     int index;
 
@@ -171,7 +171,7 @@ static const PoketchTask sMoveTesterTasks[] = {
     { TASK_BUTTON_PRESSED, Task_ButtonPressed, 0x0 },
     { TASK_BUTTON_RELEASED, Task_ButtonReleased, 0x0 },
     { TASK_UPDATE_GRAPHICS, Task_UpdateGraphics, 0x0 },
-    { 0x0, NULL, 0x0 }
+    { 0 }
 };
 
 void PoketchMoveTesterGraphics_StartTask(PoketchMoveTesterGraphics *graphics, enum MoveTesterGraphicsTasks taskID)
@@ -198,19 +198,19 @@ static void EndPoketchTask(PoketchTaskManager *taskMan)
 static void Task_DrawAppScreen(SysTask *task, void *taskMan)
 {
     static const BgTemplate sMoveTesterBgTemplate = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0x7000,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        2,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = 1,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x7000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 0,
+        .dummy = 0,
+        .mosaic = FALSE
     };
     GXSDispCnt dispCnt;
     PoketchMoveTesterGraphics *graphics;

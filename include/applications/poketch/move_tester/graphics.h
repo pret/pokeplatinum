@@ -10,7 +10,7 @@
 
 typedef struct PoketchMoveTesterGraphics PoketchMoveTesterGraphics;
 
-typedef struct {
+typedef struct MoveTesterData {
     u32 lastButtonPressed;
     u16 exclamCount;
     u16 attackType;
