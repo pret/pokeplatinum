@@ -6,8 +6,8 @@
 
 #include "overlay077/const_ov77_021D742C.h"
 #include "overlay097/const_ov97_0223D674.h"
+#include "overlay097/distribution_cartridge.h"
 #include "overlay097/ov97_02235D18.h"
-#include "overlay097/ov97_02237520.h"
 #include "overlay097/ov97_02237694.h"
 #include "overlay097/struct_ov97_02237808.h"
 #include "savedata/save_table.h"

@@ -10,9 +10,9 @@
 #include "generated/text_banks.h"
 
 #include "overlay077/const_ov77_021D742C.h"
+#include "overlay097/distribution_cartridge.h"
 #include "overlay097/ov97_0222D04C.h"
 #include "overlay097/ov97_02232054.h"
-#include "overlay097/ov97_02237520.h"
 #include "overlay097/ov97_02237694.h"
 #include "overlay097/ov97_02238534.h"
 #include "overlay097/ov97_02238D74.h"
