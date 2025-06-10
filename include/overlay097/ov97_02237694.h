@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV97_02237694_H
 #define POKEPLATINUM_OV97_02237694_H
 
-#include "overlay097/ov97_0222D30C.h"
+#include "overlay097/mystery_gift_app.h"
 #include "overlay097/struct_ov97_02237808.h"
 #include "overlay097/struct_ov97_02237AEC.h"
 

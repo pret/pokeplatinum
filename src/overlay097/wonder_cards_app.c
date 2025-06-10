@@ -7,8 +7,8 @@
 #include "constants/narc.h"
 #include "generated/string_padding_mode.h"
 
+#include "overlay097/mystery_gift_app.h"
 #include "overlay097/ov97_0222D04C.h"
-#include "overlay097/ov97_0222D30C.h"
 #include "overlay097/ov97_02232054.h"
 #include "overlay097/ov97_02237694.h"
 #include "savedata/save_table.h"

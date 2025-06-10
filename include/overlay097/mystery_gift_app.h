@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV97_0222D30C_H
-#define POKEPLATINUM_OV97_0222D30C_H
+#ifndef POKEPLATINUM_MYSTERY_GIFT_APP_H
+#define POKEPLATINUM_MYSTERY_GIFT_APP_H
 
 #include <dwc.h>
 
@@ -167,4 +167,4 @@ void MysteryGiftApp_ToggleWaitDial(MysteryGiftAppData *appData, BOOL show);
 void MysteryGiftApp_ShowWiFiCommError(MysteryGiftAppData *appData);
 ApplicationManager *MysteryGiftApp_GetApplicationManager(void);
 
-#endif // POKEPLATINUM_OV97_0222D30C_H
+#endif // POKEPLATINUM_MYSTERY_GIFT_APP_H

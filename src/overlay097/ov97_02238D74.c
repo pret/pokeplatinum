@@ -5,7 +5,7 @@
 #include <string.h>
 
 #include "overlay004/ov4_021D0D80.h"
-#include "overlay097/ov97_0222D30C.h"
+#include "overlay097/mystery_gift_app.h"
 
 #include "heap.h"
 #include "overlay_manager.h"

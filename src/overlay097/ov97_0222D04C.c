@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "overlay097/mystery_gift_app.h"
 #include "overlay097/ov97_0222D2F8.h"
-#include "overlay097/ov97_0222D30C.h"
 
 #include "communication_information.h"
 #include "communication_system.h"

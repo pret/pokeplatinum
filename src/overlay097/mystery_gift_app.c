@@ -1,4 +1,4 @@
-#include "overlay097/ov97_0222D30C.h"
+#include "overlay097/mystery_gift_app.h"
 
 #include <nitro.h>
 #include <string.h>
