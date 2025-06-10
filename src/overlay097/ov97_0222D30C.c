@@ -614,7 +614,7 @@ static enum MysteryGiftAppState AskConfirmWireless_FriendOrGBA(ApplicationManage
     Window *window;
     MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
 
-    if (ov97_02237624()) {
+    if (DistributionCartridge_ReadLength()) {
         appData->receptionMethod = RECEIVE_FROM_GBA_CARTRIDGE;
     } else {
         appData->receptionMethod = RECEIVE_FROM_FRIEND;
@@ -1186,9 +1186,9 @@ static int MysteryGiftApp_Init(ApplicationManager *appMan, int *unused)
     SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
 
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_10, SEQ_PRESENT, 1);
-    ov97_02237520(HEAP_ID_MYSTERY_GIFT_APP);
+    DistributionCartridge_UseHeap(HEAP_ID_MYSTERY_GIFT_APP);
 
-    if (ov97_02237624()) {
+    if (DistributionCartridge_ReadLength()) {
         appData->receptionMethod = RECEIVE_FROM_GBA_CARTRIDGE;
         SetGBACartridgeVersion(gGameVersion);
         ov97_02238400(TRUE);
@@ -2313,7 +2313,7 @@ static BOOL MysteryGiftApp_Main(ApplicationManager *appMan, enum MysteryGiftAppS
         }
 
         if (appData->foundGiftType != FOUND_GIFT_WIFI) {
-            ov97_0223764C(&appData->eventData, sizeof(MysteryGiftEventData));
+            DistributionCartridge_ReadData(&appData->eventData, sizeof(MysteryGiftEventData));
         }
 
         appData->canReceiveGiftStatus = ov97_02232148(appData->saveData, &appData->eventData);

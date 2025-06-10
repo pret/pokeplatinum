@@ -656,9 +656,9 @@ static BOOL ov97_0222B7DC(void *param0, int param1, UnkStruct_ov97_02237808 *par
             v0->unk_34 = 1;
         }
 
-        ov97_02237520(81);
+        DistributionCartridge_UseHeap(HEAP_ID_81);
 
-        if (ov97_02237624()) {
+        if (DistributionCartridge_ReadLength()) {
             v0->unk_34 = 1;
             ov97_02238400(1);
         }
