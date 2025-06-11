@@ -17,7 +17,7 @@
 #include "sprite.h"
 #include "sys_task_manager.h"
 
-enum BoxFunctions {
+enum BoxGraphicsFunctions {
     FUNC_ov19_021D6694,
     FUNC_BoxGraphics_ScreenFadeBothToBlack0,
     FUNC_BoxGraphics_ScreenFadeBothToBlack1,
@@ -27,8 +27,8 @@ enum BoxFunctions {
     FUNC_ov19_021D6940,
     FUNC_ov19_021D69BC,
     FUNC_ov19_021D6A1C,
-    FUNC_ov19_021D6A38,
-    FUNC_ov19_021D6A74,
+    FUNC_BoxGraphics_PickUpMonIntoCursor,
+    FUNC_BoxGraphics_PlaceMonDownFromCursor,
     FUNC_ov19_021D6AB0,
     FUNC_ov19_021D6AEC,
     FUNC_ov19_021D6B1C,
@@ -53,7 +53,7 @@ enum BoxFunctions {
     FUNC_ov19_021D6FB0,
     FUNC_BoxGraphics_TransitionWallpaper,
     FUNC_ov19_021D7028,
-    FUNC_ov19_021D70E8,
+    FUNC_BoxGraphics_OpenPartyPopup,
     FUNC_ov19_021D7138,
     FUNC_BoxGraphics_PlayAdjustPartyAnimation,
     FUNC_ov19_021D71F8,
@@ -74,8 +74,8 @@ enum BoxFunctions {
 
 BOOL BoxGraphics_Load(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021D4DF0 *param1, const UnkStruct_ov19_021D5DF8 *param2);
 void BoxGraphics_Free(UnkStruct_ov19_021D61B0 *param0);
-void ov19_BoxTaskHandler(UnkStruct_ov19_021D61B0 *param0, enum BoxFunctions function);
-BOOL ov19_IsSysTaskDone(UnkStruct_ov19_021D61B0 *param0, enum BoxFunctions function);
+void ov19_BoxTaskHandler(UnkStruct_ov19_021D61B0 *param0, enum BoxGraphicsFunctions function);
+BOOL ov19_IsSysTaskDone(UnkStruct_ov19_021D61B0 *param0, enum BoxGraphicsFunctions function);
 BOOL ov19_CheckAllTasksDone(UnkStruct_ov19_021D61B0 *param0);
 SysTask *ov19_021D77C8(SysTaskFunc param0, void *param1, u32 param2);
 NNSG2dImagePaletteProxy *ov19_021D77D0(UnkStruct_ov19_021D61B0 *param0);
