@@ -17,6 +17,7 @@
 #include "berry_patches.h"
 #include "easy3d.h"
 #include "field_task.h"
+#include "gfx_box_test.h"
 #include "heap.h"
 #include "map_object.h"
 #include "player_avatar.h"
@@ -24,7 +25,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "terrain_collision_manager.h"
-#include "unk_0201CED8.h"
 #include "unk_020655F4.h"
 #include "unk_020677F4.h"
 #include "unk_0206CCB0.h"
@@ -142,7 +142,7 @@ static BOOL sub_02055D54(FieldSystem *fieldSystem, const VecFx32 *param1)
 
     MTX_Identity33(&v1);
 
-    if (sub_0201CED8(fieldSystem->unk_04->unk_18->unk_5C, param1, &v1, &v0) != 0) {
+    if (GFXBoxTest_IsModelInView(fieldSystem->unk_04->unk_18->unk_5C, param1, &v1, &v0) != 0) {
         return 1;
     } else {
         return 0;

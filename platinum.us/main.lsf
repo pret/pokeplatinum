@@ -71,7 +71,7 @@ Static main
 	Object main.nef.p/src_bg_window.c.o
 	Object main.nef.p/src_easy3d.c.o
 	Object main.nef.p/src_sys_task_manager.c.o
-	Object main.nef.p/src_unk_0201CED8.c.o
+	Object main.nef.p/src_gfx_box_test.c.o
 	Object main.nef.p/src_charcode.c.o
 	Object main.nef.p/src_math_util.c.o
 	Object main.nef.p/src_text.c.o
