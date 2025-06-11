@@ -75,7 +75,7 @@ struct UnkStruct_ov19_021D61B0_t {
 };
 
 typedef struct {
-    enum BoxFunctions function;
+    enum BoxGraphicsFunctions function;
     u16 unk_04;
     u16 state;
     u16 unk_08;
@@ -96,8 +96,8 @@ static void ov19_021D68E4(SysTask *param0, void *param1);
 static void ov19_021D6940(SysTask *param0, void *param1);
 static void ov19_021D69BC(SysTask *param0, void *param1);
 static void ov19_021D6A1C(SysTask *param0, void *param1);
-static void ov19_021D6A38(SysTask *param0, void *param1);
-static void ov19_021D6A74(SysTask *param0, void *param1);
+static void BoxGraphics_PickUpMonIntoCursor(SysTask *param0, void *param1);
+static void BoxGraphics_PlaceMonDownFromCursor(SysTask *param0, void *param1);
 static void ov19_021D6AB0(SysTask *param0, void *param1);
 static void ov19_021D6AEC(SysTask *param0, void *param1);
 static void ov19_021D6B1C(SysTask *param0, void *param1);
@@ -122,7 +122,7 @@ static void BoxGraphics_ScrollBoxSelectionPopup(SysTask *param0, void *param1);
 static void ov19_021D6FB0(SysTask *param0, void *param1);
 static void BoxGraphics_TransitionWallpaper(SysTask *param0, void *param1);
 static void ov19_021D7028(SysTask *param0, void *param1);
-static void ov19_021D70E8(SysTask *param0, void *param1);
+static void BoxGraphics_OpenPartyPopup(SysTask *param0, void *param1);
 static void ov19_021D7138(SysTask *param0, void *param1);
 static void BoxGraphics_PlayAdjustPartyAnimation(SysTask *task, void *param1);
 static void ov19_021D71F8(SysTask *param0, void *param1);
@@ -160,8 +160,8 @@ static const struct {
     [FUNC_ov19_021D6940] = { ov19_021D6940, 0 },
     [FUNC_ov19_021D69BC] = { ov19_021D69BC, 0 },
     [FUNC_ov19_021D6A1C] = { ov19_021D6A1C, 0 },
-    [FUNC_ov19_021D6A38] = { ov19_021D6A38, 0 },
-    [FUNC_ov19_021D6A74] = { ov19_021D6A74, 0 },
+    [FUNC_BoxGraphics_PickUpMonIntoCursor] = { BoxGraphics_PickUpMonIntoCursor, 0 },
+    [FUNC_BoxGraphics_PlaceMonDownFromCursor] = { BoxGraphics_PlaceMonDownFromCursor, 0 },
     [FUNC_ov19_021D6AB0] = { ov19_021D6AB0, 0 },
     [FUNC_ov19_021D6AEC] = { ov19_021D6AEC, 0 },
     [FUNC_ov19_021D6B1C] = { ov19_021D6B1C, 0 },
@@ -186,7 +186,7 @@ static const struct {
     [FUNC_ov19_021D6FB0] = { ov19_021D6FB0, 0 },
     [FUNC_BoxGraphics_TransitionWallpaper] = { BoxGraphics_TransitionWallpaper, 0 },
     [FUNC_ov19_021D7028] = { ov19_021D7028, 0 },
-    [FUNC_ov19_021D70E8] = { ov19_021D70E8, 0 },
+    [FUNC_BoxGraphics_OpenPartyPopup] = { BoxGraphics_OpenPartyPopup, 0 },
     [FUNC_ov19_021D7138] = { ov19_021D7138, 0 },
     [FUNC_BoxGraphics_PlayAdjustPartyAnimation] = { BoxGraphics_PlayAdjustPartyAnimation, 0 },
     [FUNC_ov19_021D71F8] = { ov19_021D71F8, 0 },
@@ -319,7 +319,7 @@ void BoxGraphics_Free(UnkStruct_ov19_021D61B0 *param0)
     RenderOam_Free();
 }
 
-void ov19_BoxTaskHandler(UnkStruct_ov19_021D61B0 *param0, enum BoxFunctions function)
+void ov19_BoxTaskHandler(UnkStruct_ov19_021D61B0 *param0, enum BoxGraphicsFunctions function)
 {
     if (function < NELEMS(sBoxGraphicsTaskHandlers)) {
         BoxTaskParams *taskParams;
@@ -348,7 +348,7 @@ void ov19_BoxTaskHandler(UnkStruct_ov19_021D61B0 *param0, enum BoxFunctions func
     }
 }
 
-BOOL ov19_IsSysTaskDone(UnkStruct_ov19_021D61B0 *param0, enum BoxFunctions function)
+BOOL ov19_IsSysTaskDone(UnkStruct_ov19_021D61B0 *param0, enum BoxGraphicsFunctions function)
 {
     BoxTaskParams *params;
 
@@ -636,28 +636,28 @@ static void ov19_021D6A1C(SysTask *param0, void *param1)
     BoxTaskParams_Free(v2);
 }
 
-static void ov19_021D6A38(SysTask *param0, void *param1)
+static void BoxGraphics_PickUpMonIntoCursor(SysTask *task, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
-    BoxTaskParams *v2 = (BoxTaskParams *)param1;
-    v0 = v2->unk_0C;
+    BoxTaskParams *params = (BoxTaskParams *)param1;
+    v0 = params->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->state) {
+    switch (params->state) {
     case 0:
         ov19_021D9230(&(v0->unk_5E24));
-        v2->state++;
+        params->state++;
         break;
     case 1:
         if (ov19_021D9278(&(v0->unk_5E24))) {
-            BoxTaskParams_Free(v2);
+            BoxTaskParams_Free(params);
         }
         break;
     }
 }
 
-static void ov19_021D6A74(SysTask *param0, void *param1)
+static void BoxGraphics_PlaceMonDownFromCursor(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
@@ -1181,7 +1181,7 @@ static void ov19_021D7028(SysTask *param0, void *param1)
     }
 }
 
-static void ov19_021D70E8(SysTask *param0, void *param1)
+static void BoxGraphics_OpenPartyPopup(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     BoxTaskParams *v1;
