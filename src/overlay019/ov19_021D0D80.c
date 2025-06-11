@@ -65,7 +65,7 @@
 FS_EXTERN_OVERLAY(overlay84);
 
 enum ReleaseMonState {
-    RELEASE_MON_START = 0,
+    RELEASE_MON_START,
     RELEASE_MON_CONFIRM,
     RELEASE_MON_RELEASE_ANIMATION,
     RELEASE_MON_TRY_RELEASE,
@@ -134,6 +134,13 @@ enum RenameBoxStates {
     RENAME_BOX_START,
     RENAME_BOX_LAUNCH_TEXT_INPUT_APP,
     RENAME_BOX_RETURN_TO_BOX
+};
+
+enum PickUpMonState {
+    PICK_UP_MON_START,
+    PICK_UP_PARTY_MON,
+    PICK_UP_MON_CONFIRM_LAST_MON,
+    PICK_UP_MON_DONE
 };
 
 static const TouchScreenHitTable sMainPcButtons[] = {
@@ -251,24 +258,24 @@ static void ov19_021D1F5C(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D20A4(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D2308(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D2694(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
-static void ov19_BoxJump(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
+static void ov19_BoxJumpAction(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_WallpaperMenu(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
-static void ov19_Mark(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
+static void ov19_MarkAction(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D2B54(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static BOOL ov19_IsBoxUnderSelectedMonsEmpty(const UnkStruct_ov19_021D4DF0 *param0);
-static void ov19_021D2E1C(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
+static void ov19_PickUpMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D2F14(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D3010(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D30D0(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
-static void ov19_StoreMon(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
+static void ov19_StoreMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static BOOL ov19_OnLastAliveMon(UnkStruct_ov19_021D5DF8 *param0);
 static BOOL ov19_CheckReleaseMonValid(UnkStruct_ov19_021D5DF8 *param0, int *destBoxMessageID);
-static void ov19_ReleaseMon(UnkStruct_ov19_021D5DF8 *param0, u32 *releaseMonState);
+static void ov19_ReleaseMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *releaseMonState);
 static void ov19_CheckShouldMonReturn(UnkStruct_ov19_021D5DF8 *param0);
 static void ov19_CheckLastMonWithReleaseBlockingMove(SysTask *task, void *releaseMon);
 static BOOL BoxPokemon_HasMove(BoxPokemon *boxMon, u16 param1);
-static void ov19_RenameBox(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
-static void ov19_OpenSummary(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
+static void ov19_RenameBoxAction(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
+static void ov19_OpenSummaryAction(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_SetCursorPosToSummaryMonPos(UnkStruct_ov19_021D4DF0 *param0, UnkStruct_ov19_021D5DF8 *param1);
 static void ov19_021D3D44(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D3FB0(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
@@ -1156,7 +1163,7 @@ static void ov19_021D20A4(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
                 ov19_RegisterBoxApplicationAction(param0, ov19_021D2B54);
             } else {
                 ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_CloseMessageBox);
-                ov19_RegisterBoxApplicationAction(param0, ov19_021D2E1C);
+                ov19_RegisterBoxApplicationAction(param0, ov19_PickUpMonAction);
             }
             break;
         case BOX_MENU_PLACE:
@@ -1171,16 +1178,16 @@ static void ov19_021D20A4(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             ov19_RegisterBoxApplicationAction(param0, ov19_021D30D0);
             break;
         case BOX_MENU_STORE:
-            ov19_RegisterBoxApplicationAction(param0, ov19_StoreMon);
+            ov19_RegisterBoxApplicationAction(param0, ov19_StoreMonAction);
             break;
         case BOX_MENU_MARK:
-            ov19_RegisterBoxApplicationAction(param0, ov19_Mark);
+            ov19_RegisterBoxApplicationAction(param0, ov19_MarkAction);
             break;
         case BOX_MENU_RELEASE:
-            ov19_RegisterBoxApplicationAction(param0, ov19_ReleaseMon);
+            ov19_RegisterBoxApplicationAction(param0, ov19_ReleaseMonAction);
             break;
         case BOX_MENU_SUMMARY:
-            ov19_RegisterBoxApplicationAction(param0, ov19_OpenSummary);
+            ov19_RegisterBoxApplicationAction(param0, ov19_OpenSummaryAction);
             break;
         case BOX_MENU_ITEM: {
             if (ov19_GetPreviewedMonHeldItem(&param0->unk_00) == 0) {
@@ -1410,14 +1417,14 @@ static void ov19_021D2694(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         switch (param0->menuItem) {
         case BOX_MENU_JUMP:
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_CloseMessageBox);
-            ov19_RegisterBoxApplicationAction(param0, ov19_BoxJump);
+            ov19_RegisterBoxApplicationAction(param0, ov19_BoxJumpAction);
             break;
         case BOX_MENU_WALLPAPER:
             ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6EC0);
             (*param1) = 7;
             break;
         case BOX_MENU_NAME:
-            ov19_RegisterBoxApplicationAction(param0, ov19_RenameBox);
+            ov19_RegisterBoxApplicationAction(param0, ov19_RenameBoxAction);
             break;
         }
         break;
@@ -1434,7 +1441,7 @@ static void ov19_021D2694(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
     }
 }
 
-static void ov19_BoxJump(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
+static void ov19_BoxJumpAction(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
 {
     switch (*param1) {
     case JUMP_START:
@@ -1557,7 +1564,7 @@ static void ov19_WallpaperMenu(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
     }
 }
 
-static void ov19_Mark(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
+static void ov19_MarkAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
 {
     switch (*state) {
     case MARK_START:
@@ -1619,7 +1626,7 @@ static void ov19_021D2B54(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             *param1 = 1;
         } else {
-            ov19_RegisterBoxApplicationAction(param0, ov19_021D2E1C);
+            ov19_RegisterBoxApplicationAction(param0, ov19_PickUpMonAction);
         }
         break;
 
@@ -1643,7 +1650,7 @@ static void ov19_021D2B54(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         } else {
             if (ov19_IsMultiSelectSingleSelect(&param0->unk_00)) {
                 ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D7380);
-                ov19_RegisterBoxApplicationAction(param0, ov19_021D2E1C);
+                ov19_RegisterBoxApplicationAction(param0, ov19_PickUpMonAction);
             } else {
                 ov19_PickUpMultiSelectedMons(param0, &param0->unk_00);
                 ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D73B0);
@@ -1751,43 +1758,43 @@ static BOOL ov19_IsBoxUnderSelectedMonsEmpty(const UnkStruct_ov19_021D4DF0 *para
     return TRUE;
 }
 
-static void ov19_021D2E1C(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
+static void ov19_PickUpMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
 {
-    switch (*param1) {
-    case 0:
+    switch (*state) {
+    case PICK_UP_MON_START:
         if (ov19_GetCursorLocation(&param0->unk_00) == CURSOR_IN_PARTY) {
             if (ov19_OnLastAliveMon(param0) == FALSE) {
                 Sound_PlayEffect(SEQ_SE_DP_BOX02);
                 ov19_PickUpMon(param0, &param0->unk_00);
                 ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6A38);
-                (*param1) = 1;
+                *state = PICK_UP_PARTY_MON;
             } else {
                 Sound_PlayEffect(SEQ_SE_DP_BOX03);
                 ov19_SetBoxMessage(&param0->unk_00, BoxText_LastMon);
                 ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
-                (*param1) = 2;
+                *state = PICK_UP_MON_CONFIRM_LAST_MON;
             }
         } else {
             Sound_PlayEffect(SEQ_SE_DP_BOX02);
             ov19_PickUpMon(param0, &param0->unk_00);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6A38);
-            (*param1) = 3;
+            *state = PICK_UP_MON_DONE;
         }
         break;
-    case 1:
+    case PICK_UP_PARTY_MON:
         if (ov19_CheckAllTasksDone(param0->unk_114)) {
             ov19_TryPreviewCursorMon(param0);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_PlayAdjustPartyAnimation);
-            (*param1) = 3;
+            *state = PICK_UP_MON_DONE;
         }
         break;
-    case 2:
+    case PICK_UP_MON_CONFIRM_LAST_MON:
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_CloseMessageBox);
-            (*param1) = 3;
+            *state = PICK_UP_MON_DONE;
         }
         break;
-    case 3:
+    case PICK_UP_MON_DONE:
         if (ov19_CheckAllTasksDone(param0->unk_114)) {
             ov19_ClearBoxApplicationAction(param0);
         }
@@ -1966,7 +1973,7 @@ static void ov19_021D30D0(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
     }
 }
 
-static void ov19_StoreMon(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
+static void ov19_StoreMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
 {
     switch (*state) {
     case STORE_MON_CHECK_CAN_STORE_MON:
@@ -2137,7 +2144,7 @@ static BOOL ov19_CheckReleaseMonValid(UnkStruct_ov19_021D5DF8 *param0, int *dest
     return TRUE;
 }
 
-static void ov19_ReleaseMon(UnkStruct_ov19_021D5DF8 *param0, u32 *releaseMonState)
+static void ov19_ReleaseMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *releaseMonState)
 {
     switch (*releaseMonState) {
     case RELEASE_MON_START: {
@@ -2418,7 +2425,7 @@ BOOL ov19_CanReleaseMon(const UnkStruct_ov19_021D5DF8 *param0)
     return FALSE;
 }
 
-static void ov19_RenameBox(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
+static void ov19_RenameBoxAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
 {
     switch (*state) {
     case RENAME_BOX_START:
@@ -2450,7 +2457,7 @@ static void ov19_RenameBox(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
     }
 }
 
-static void ov19_OpenSummary(UnkStruct_ov19_021D5DF8 *param0, u32 *openSummaryState)
+static void ov19_OpenSummaryAction(UnkStruct_ov19_021D5DF8 *param0, u32 *openSummaryState)
 {
     switch (*openSummaryState) {
     case SUMMARY_START:
