@@ -25,7 +25,7 @@
 #include "sys_task_manager.h"
 #include "text.h"
 
-static const PoketchAnimation_AnimationData sPoketchMoveTester_AnimDataButtons[6] = {
+static const PoketchAnimation_AnimationData sPoketchMoveTester_AnimDataButtons[] = {
     {
         .translation = { FX32_CONST(28), FX32_CONST(128) },
         .animIdx = 0,
@@ -83,6 +83,22 @@ static const PoketchAnimation_AnimationData sPoketchMoveTester_AnimDataExclamati
     .oamPriority = 2,
     .priority = 0,
     .hasAffineTransform = 0,
+};
+
+static const BgTemplate sMoveTesterBgTemplate = {
+    .x = 0,
+    .y = 0,
+    .bufferSize = 0x800,
+    .baseTile = 0,
+    .screenSize = 1,
+    .colorMode = GX_BG_COLORMODE_16,
+    .screenBase = GX_BG_SCRBASE_0x7000,
+    .charBase = GX_BG_CHARBASE_0x00000,
+    .bgExtPltt = GX_BG_EXTPLTT_01,
+    .priority = 2,
+    .areaOver = 0,
+    .dummy = 0,
+    .mosaic = FALSE
 };
 
 static void SetupSprites(PoketchMoveTesterGraphics *graphics);
@@ -200,21 +216,6 @@ static void EndPoketchTask(PoketchTaskManager *taskMan)
 
 static void Task_DrawAppScreen(SysTask *task, void *taskMan)
 {
-    static const BgTemplate sMoveTesterBgTemplate = {
-        .x = 0,
-        .y = 0,
-        .bufferSize = 0x800,
-        .baseTile = 0,
-        .screenSize = 1,
-        .colorMode = GX_BG_COLORMODE_16,
-        .screenBase = GX_BG_SCRBASE_0x7000,
-        .charBase = GX_BG_CHARBASE_0x00000,
-        .bgExtPltt = GX_BG_EXTPLTT_01,
-        .priority = 2,
-        .areaOver = 0,
-        .dummy = 0,
-        .mosaic = FALSE
-    };
     GXSDispCnt dispCnt;
     PoketchMoveTesterGraphics *graphics;
     const MoveTesterData *moveTesterData;

@@ -16,7 +16,7 @@
 #include "sys_task_manager.h"
 #include "touch_screen.h"
 
-typedef struct {
+typedef struct PoketchMoveTester {
     u8 sysTaskState;
     u8 taskFuncState;
     u8 shouldExit;
