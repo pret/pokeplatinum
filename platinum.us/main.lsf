@@ -997,11 +997,11 @@ Overlay overlay42
 	Object main.nef.p/src_overlay042_ov42_022563D4.c.o
 }
 
-Overlay overlay43
+Overlay poketch_move_tester
 {
 	After overlay25
-	Object main.nef.p/src_overlay043_ov43_022561C0.c.o
-	Object main.nef.p/src_overlay043_ov43_02256544.c.o
+	Object main.nef.p/src_applications_poketch_move_tester_main.c.o
+	Object main.nef.p/src_applications_poketch_move_tester_graphics.c.o
 }
 
 Overlay overlay44
