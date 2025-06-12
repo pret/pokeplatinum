@@ -11,7 +11,7 @@ void sub_02028124(Mail *param0);
 BOOL sub_0202817C(Mail *param0);
 Mail *sub_0202818C(int heapID);
 void sub_020281A0(Mail *param0, Mail *param1);
-void sub_020281AC(Mail *param0, u8 param1, u8 param2, SaveData *param3);
+void sub_020281AC(Mail *param0, u8 param1, u8 param2, SaveData *saveData);
 u32 sub_02028308(const Mail *param0);
 u16 *sub_0202830C(Mail *param0);
 u8 sub_02028310(const Mail *param0);

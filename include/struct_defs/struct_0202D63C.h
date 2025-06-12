@@ -1,10 +1,10 @@
 #ifndef POKEPLATINUM_STRUCT_0202D63C_H
 #define POKEPLATINUM_STRUCT_0202D63C_H
 
-#include "overlay104/struct_ov104_0223A348_sub2.h"
+#include "overlay104/frontier_data_transfer.h"
 
 typedef struct UnkStruct_0202D63C_t {
-    UnkStruct_ov104_0223A348_sub2 unk_00[3];
+    FrontierPokemonDataDTO unk_00[3];
     u16 unk_A8[8];
     u8 unk_B8;
     u8 unk_B9;

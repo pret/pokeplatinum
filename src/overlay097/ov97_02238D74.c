@@ -21,7 +21,7 @@ static Unk_ov97_02240408;
 static DWCNdFileInfo Unk_ov97_02240414[10];
 
 static void ov97_02238E88(void);
-int ov97_02238EAC(OverlayManager *param0, int *param1);
+int ov97_02238EAC(ApplicationManager *appMan, int *param1);
 
 static void *ov97_02238D74(DWCAllocType param0, u32 param1, int param2)
 {
@@ -182,11 +182,11 @@ static void ov97_02238E94(void)
     sub_020334CC();
 }
 
-int ov97_02238EAC(OverlayManager *param0, int *param1)
+int ov97_02238EAC(ApplicationManager *appMan, int *param1)
 {
     int v0;
     DWCNasLoginState v1;
-    UnkStruct_ov97_0222D04C *v2 = OverlayManager_Data(param0);
+    UnkStruct_ov97_0222D04C *v2 = ApplicationManager_Data(appMan);
 
     if (v2->unk_26DC) {
         if (v2->unk_26DC() == 1) {
@@ -204,7 +204,7 @@ int ov97_02238EAC(OverlayManager *param0, int *param1)
     case 4097:
         if (sub_020334A4()) {
             DWC_SetMemFunc(ov97_02238D74, ov97_02238D94);
-            sub_020384C0(v2->unk_04);
+            sub_020384C0(v2->saveData);
             *param1 = 4098;
         }
         break;

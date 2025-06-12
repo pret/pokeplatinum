@@ -29,6 +29,7 @@
 #include "render_text.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "screen_fade.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
@@ -36,7 +37,6 @@
 #include "system_data.h"
 #include "text.h"
 #include "touch_pad.h"
-#include "unk_0200F174.h"
 #include "unk_0202ACE0.h"
 #include "unk_020366A0.h"
 #include "unk_02038FFC.h"
@@ -76,9 +76,9 @@ typedef struct {
     UnkStruct_ov61_0222C3B0 unk_A4;
 } UnkStruct_ov61_0222C664;
 
-int ov61_0222BF44(OverlayManager *param0, int *param1);
-int ov61_0222C0F8(OverlayManager *param0, int *param1);
-int ov61_0222C160(OverlayManager *param0, int *param1);
+int ov61_0222BF44(ApplicationManager *appMan, int *param1);
+int ov61_0222C0F8(ApplicationManager *appMan, int *param1);
+int ov61_0222C160(ApplicationManager *appMan, int *param1);
 static void ov61_0222C1FC(void *param0);
 static void ov61_0222C224(BgConfig *param0);
 static void ov61_0222C38C(BgConfig *param0);
@@ -137,7 +137,7 @@ static const WindowTemplate Unk_ov61_0222E4A0 = {
     0x0
 };
 
-int ov61_0222BF44(OverlayManager *param0, int *param1)
+int ov61_0222BF44(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov61_0222C664 *v0;
 
@@ -155,9 +155,9 @@ int ov61_0222BF44(OverlayManager *param0, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_117, 0x50000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov61_0222C664), HEAP_ID_117);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov61_0222C664), HEAP_ID_117);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov61_0222C664));
-    v0->unk_00 = OverlayManager_Args(param0);
+    v0->unk_00 = ApplicationManager_Args(appMan);
     v0->unk_04 = BgConfig_New(HEAP_ID_117);
 
     VramTransfer_New(64, HEAP_ID_117);
@@ -177,7 +177,7 @@ int ov61_0222BF44(OverlayManager *param0, int *param1)
     ov61_0222C3B0(v0);
     ov61_0222C664(v0);
 
-    StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_117);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_117);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
@@ -207,14 +207,14 @@ int ov61_0222BF44(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov61_0222C0F8(OverlayManager *param0, int *param1)
+int ov61_0222C0F8(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov61_0222C664 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov61_0222C664 *v0 = ApplicationManager_Data(appMan);
     int v1, v2;
 
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             *param1 = 1;
         }
         break;
@@ -233,7 +233,7 @@ int ov61_0222C0F8(OverlayManager *param0, int *param1)
         }
         break;
     case 2:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             return 1;
         }
         break;
@@ -243,9 +243,9 @@ int ov61_0222C0F8(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov61_0222C160(OverlayManager *param0, int *param1)
+int ov61_0222C160(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov61_0222C664 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov61_0222C664 *v0 = ApplicationManager_Data(appMan);
 
     inline_ov61_0222C160(&v0->unk_A4);
 
@@ -267,7 +267,7 @@ int ov61_0222C160(OverlayManager *param0, int *param1)
     RenderControlFlags_SetAutoScrollFlags(0);
     RenderControlFlags_SetSpeedUpOnTouch(0);
     sub_02039794();
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_117);
 
     return 1;
@@ -433,7 +433,7 @@ static void ov61_0222C3B0(UnkStruct_ov61_0222C664 *param0)
     Graphics_LoadPaletteFromOpenNARC(v1, 3, 4, 0, 0, HEAP_ID_117);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_117);
     Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, HEAP_ID_117);
-    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(SaveData_GetOptions(param0->unk_00->unk_00->unk_04)), HEAP_ID_117);
+    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(SaveData_GetOptions(param0->unk_00->unk_00->saveData)), HEAP_ID_117);
     LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, HEAP_ID_117);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 2, v0, 1, 0, 0, 0, HEAP_ID_117);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 5, v0, 1, 0, 32 * 24 * 2, 0, HEAP_ID_117);
@@ -651,7 +651,7 @@ static int ov61_0222CA20(UnkStruct_ov61_0222C664 *param0)
 {
     switch (param0->unk_90) {
     case 0:
-        sub_02038438(param0->unk_00->unk_00->unk_04);
+        sub_02038438(param0->unk_00->unk_00->saveData);
         sub_02039734();
         ov61_0222C8B8(param0, param0->unk_28, 1, TEXT_SPEED_FAST, 0xf0f);
         ov61_0222C850(param0);
@@ -798,8 +798,8 @@ static int ov61_0222CBF0(UnkStruct_ov61_0222C664 *param0)
     DWCUserData *v0;
     s32 v1;
     SystemData *v2;
-    WiFiList *v3 = SaveData_GetWiFiList(param0->unk_00->unk_00->unk_04);
-    v2 = SaveData_GetSystemData(param0->unk_00->unk_00->unk_04);
+    WiFiList *v3 = SaveData_GetWiFiList(param0->unk_00->unk_00->saveData);
+    v2 = SaveData_GetSystemData(param0->unk_00->unk_00->saveData);
     v0 = sub_0202AD28(v3);
     v1 = sub_02025D74(v2);
 
@@ -848,7 +848,7 @@ static int ov61_0222CCAC(UnkStruct_ov61_0222C664 *param0)
 
     sub_02039794();
     ov61_0222C86C(param0);
-    StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_117);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_117);
     param0->unk_08 = 0;
 
     return 1;

@@ -118,7 +118,7 @@ BOOL ov104_0223740C(UnkStruct_ov104_0222E930 *param0)
 
     FS_EXTERN_OVERLAY(overlay108);
 
-    static const OverlayManagerTemplate v4 = {
+    static const ApplicationManagerTemplate v4 = {
         ov108_02241AE0,
         ov108_02241C38,
         ov108_02241D70,
@@ -129,7 +129,7 @@ BOOL ov104_0223740C(UnkStruct_ov104_0222E930 *param0)
     v2 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov104_02238240));
 
     MI_CpuClear8(v2, sizeof(UnkStruct_ov104_02238240));
-    v2->unk_00 = v3->saveData;
+    v2->saveData = v3->saveData;
 
     ov104_02237634(v2, v1);
     sub_0209B988(param0->unk_00->unk_00, &v4, v2, 0, ov104_0223770C);
@@ -224,7 +224,7 @@ BOOL ov104_022375F8(UnkStruct_ov104_0222E930 *param0)
     v0 = ov104_0223BDD8(v1, v2);
 
     v1->unk_0C = v0;
-    sub_0209B988(param0->unk_00->unk_00, &gBattleOverlayTemplate, v0, 0, NULL);
+    sub_0209B988(param0->unk_00->unk_00, &gBattleApplicationTemplate, v0, 0, NULL);
 
     return 1;
 }

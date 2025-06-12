@@ -50,17 +50,17 @@ typedef struct {
 } UnkStruct_ov66_02230E4C;
 
 typedef struct UnkStruct_ov66_02230C90_t {
-    OverlayManager *unk_00;
+    ApplicationManager *appMan;
     UnkStruct_ov66_02230E4C unk_04[13];
     u8 unk_38;
     u8 unk_39;
     u16 heapID;
     UnkStruct_ov66_0222DFF8 *unk_3C;
-    SaveData *unk_40;
+    SaveData *saveData;
     UnkStruct_ov66_0222DCE0_sub1 *unk_44;
 } UnkStruct_ov66_02230C90;
 
-static void ov66_02230CEC(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1, const OverlayManagerTemplate *param2);
+static void ov66_02230CEC(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1, const ApplicationManagerTemplate *param2);
 static void ov66_02230D0C(UnkStruct_ov66_02230C90 *param0, u32 param1, u32 heapID);
 static void ov66_02230D34(UnkStruct_ov66_02230C90 *param0, u32 param1);
 static void ov66_02230D54(UnkStruct_ov66_02230C90 *param0, u32 param1);
@@ -113,13 +113,13 @@ static void ov66_022313E8(UnkStruct_ov66_02230E4C *param0);
 static void ov66_022313F4(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1);
 static int ov66_02231404(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1);
 
-UnkStruct_ov66_02230C90 *ov66_02230C44(BOOL param0, SaveData *param1, UnkStruct_ov66_0222DCE0_sub1 *param2, UnkStruct_ov66_0222DFF8 *param3, u32 heapID)
+UnkStruct_ov66_02230C90 *ov66_02230C44(BOOL param0, SaveData *saveData, UnkStruct_ov66_0222DCE0_sub1 *param2, UnkStruct_ov66_0222DFF8 *param3, u32 heapID)
 {
     UnkStruct_ov66_02230C90 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov66_02230C90));
     memset(v0, 0, sizeof(UnkStruct_ov66_02230C90));
 
     v0->unk_3C = param3;
-    v0->unk_40 = param1;
+    v0->saveData = saveData;
     v0->unk_44 = param2;
     v0->unk_39 = param0;
     v0->heapID = heapID;
@@ -158,12 +158,12 @@ int ov66_02230CB8(UnkStruct_ov66_02230C90 *param0)
     BOOL v0;
     u32 v1 = 0;
 
-    if (param0->unk_00) {
-        v0 = OverlayManager_Exec(param0->unk_00);
+    if (param0->appMan) {
+        v0 = ApplicationManager_Exec(param0->appMan);
 
         if (v0) {
-            OverlayManager_Free(param0->unk_00);
-            param0->unk_00 = NULL;
+            ApplicationManager_Free(param0->appMan);
+            param0->appMan = NULL;
             v1 = ov66_02230D7C(param0, param0->unk_38);
         }
     }
@@ -176,10 +176,10 @@ void ov66_02230CE8(UnkStruct_ov66_02230C90 *param0)
     return;
 }
 
-static void ov66_02230CEC(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1, const OverlayManagerTemplate *param2)
+static void ov66_02230CEC(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1, const ApplicationManagerTemplate *param2)
 {
-    GF_ASSERT(param0->unk_00 == NULL);
-    param0->unk_00 = OverlayManager_New(param2, param1->unk_00, param0->heapID);
+    GF_ASSERT(param0->appMan == NULL);
+    param0->appMan = ApplicationManager_New(param2, param1->unk_00, param0->heapID);
 }
 
 static void ov66_02230D0C(UnkStruct_ov66_02230C90 *param0, u32 param1, u32 heapID)
@@ -323,7 +323,7 @@ static void ov66_02230E28(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
     memset(param1->unk_00, 0, sizeof(UnkStruct_ov66_02230E68));
 
     v0 = param1->unk_00;
-    v0->unk_00 = param0->unk_40;
+    v0->saveData = param0->saveData;
     v0->unk_1C = param0->unk_3C;
 }
 
@@ -340,7 +340,7 @@ static void ov66_02230E68(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
 
     FS_EXTERN_OVERLAY(overlay70);
 
-    static const OverlayManagerTemplate v1 = {
+    static const ApplicationManagerTemplate v1 = {
         ov70_0225D9A4, ov70_0225DB90, ov70_0225DDF8, FS_OVERLAY_ID(overlay70)
     };
 
@@ -406,7 +406,7 @@ static void ov66_02230F1C(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
 
     v0 = param1->unk_00;
 
-    v0->unk_04 = param0->unk_40;
+    v0->saveData = param0->saveData;
     v0->unk_0C = param0->unk_3C;
 }
 
@@ -421,7 +421,7 @@ static void ov66_02230F50(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
 
     FS_EXTERN_OVERLAY(overlay69);
 
-    static const OverlayManagerTemplate v1 = {
+    static const ApplicationManagerTemplate v1 = {
         ov69_0225C700, ov69_0225C820, ov69_0225C8FC, FS_OVERLAY_ID(overlay69)
     };
 
@@ -467,7 +467,7 @@ static void ov66_02230FF0(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
 {
     FS_EXTERN_OVERLAY(overlay112);
 
-    static const OverlayManagerTemplate v0 = {
+    static const ApplicationManagerTemplate v0 = {
         ov112_0225C700, ov112_0225C7C4, ov112_0225C8FC, FS_OVERLAY_ID(overlay112)
     };
 
@@ -494,7 +494,7 @@ static void ov66_02231024(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
 
     v0 = param1->unk_00;
 
-    v0->unk_00 = param0->unk_40;
+    v0->saveData = param0->saveData;
     v0->unk_04 = param0->unk_3C;
     v0->unk_08 = param0->unk_39;
     v0->unk_0C = param0->unk_44;
@@ -510,7 +510,7 @@ static void ov66_02231064(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
 {
     FS_EXTERN_OVERLAY(overlay67);
 
-    static const OverlayManagerTemplate v0 = {
+    static const ApplicationManagerTemplate v0 = {
         ov67_0225C700, ov67_0225C820, ov67_0225CB1C, FS_OVERLAY_ID(overlay67)
     };
 
@@ -540,7 +540,7 @@ static void ov66_0223108C(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
 
     v0->unk_38 = 0;
     v0->unk_39 = 1;
-    v0->unk_34 = param0->unk_40;
+    v0->saveData = param0->saveData;
 
     ov66_02230DA0(&v0->unk_00, heapID);
 }
@@ -558,7 +558,7 @@ static void ov66_022310D8(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
     FS_EXTERN_OVERLAY(overlay115);
     FS_EXTERN_OVERLAY(overlay114);
 
-    static const OverlayManagerTemplate v0 = {
+    static const ApplicationManagerTemplate v0 = {
         ov115_02260440,
         ov115_0226048C,
         ov115_022608E4,
@@ -607,7 +607,7 @@ static void ov66_02231134(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
 
     v0->unk_3C = 0;
     v0->unk_38 = 1;
-    v0->unk_34 = param0->unk_40;
+    v0->saveData = param0->saveData;
 
     ov66_02230DA0(&v0->unk_00, heapID);
 }
@@ -625,7 +625,7 @@ static void ov66_02231178(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
     FS_EXTERN_OVERLAY(overlay116);
     FS_EXTERN_OVERLAY(overlay114);
 
-    static const OverlayManagerTemplate v0 = {
+    static const ApplicationManagerTemplate v0 = {
         ov116_022609B4,
         ov116_02260CF4,
         ov116_0226126C,
@@ -673,7 +673,7 @@ static void ov66_022311D4(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
     v0 = param1->unk_00;
     v0->unk_38 = 0;
     v0->unk_39 = 1;
-    v0->unk_34 = param0->unk_40;
+    v0->saveData = param0->saveData;
 
     ov66_02230DA0(&v0->unk_00, heapID);
 }
@@ -691,7 +691,7 @@ static void ov66_02231220(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
     FS_EXTERN_OVERLAY(overlay117);
     FS_EXTERN_OVERLAY(overlay114);
 
-    static const OverlayManagerTemplate v0 = {
+    static const ApplicationManagerTemplate v0 = {
         ov117_02260440,
         ov117_02260474,
         ov117_022605C0,
@@ -762,7 +762,7 @@ static void ov66_022312D8(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
 
     FS_EXTERN_OVERLAY(overlay113);
 
-    static const OverlayManagerTemplate v1 = {
+    static const ApplicationManagerTemplate v1 = {
         ov113_0225C700,
         ov113_0225CA04,
         ov113_0225CDFC,
@@ -781,7 +781,7 @@ static void ov66_022312EC(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
 
     FS_EXTERN_OVERLAY(overlay113);
 
-    static const OverlayManagerTemplate v1 = {
+    static const ApplicationManagerTemplate v1 = {
         ov113_0225C700,
         ov113_0225CA04,
         ov113_0225CDFC,
@@ -802,7 +802,7 @@ static void ov66_02231300(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
     memset(param1->unk_00, 0, sizeof(UnkStruct_ov66_02231300));
 
     v0 = param1->unk_00;
-    v0->unk_00 = param0->unk_40;
+    v0->saveData = param0->saveData;
     v0->unk_04 = param0->unk_3C;
 }
 
@@ -825,7 +825,7 @@ static void ov66_0223135C(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
 {
     FS_EXTERN_OVERLAY(overlay67);
 
-    static const OverlayManagerTemplate v0 = {
+    static const ApplicationManagerTemplate v0 = {
         ov67_0225CB8C, ov67_0225CC6C, ov67_0225CDC0, FS_OVERLAY_ID(overlay67)
     };
 
@@ -852,7 +852,7 @@ static void ov66_02231374(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
     memset(param1->unk_00, 0, sizeof(UnkStruct_ov66_02231374));
 
     v0 = param1->unk_00;
-    v0->unk_00 = param0->unk_40;
+    v0->saveData = param0->saveData;
     v0->unk_04 = param0->unk_3C;
     v0->unk_08 = 0;
 }
@@ -865,7 +865,7 @@ static void ov66_022313AC(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
     memset(param1->unk_00, 0, sizeof(UnkStruct_ov66_02231374));
 
     v0 = param1->unk_00;
-    v0->unk_00 = param0->unk_40;
+    v0->saveData = param0->saveData;
     v0->unk_04 = param0->unk_3C;
     v0->unk_08 = 1;
 }
@@ -879,7 +879,7 @@ static void ov66_022313F4(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
 {
     FS_EXTERN_OVERLAY(overlay68);
 
-    static const OverlayManagerTemplate v0 = {
+    static const ApplicationManagerTemplate v0 = {
         ov68_0225C700, ov68_0225C798, ov68_0225C8A8, FS_OVERLAY_ID(overlay68)
     };
 

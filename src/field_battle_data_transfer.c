@@ -108,7 +108,7 @@ FieldBattleDTO *FieldBattleDTO_New(enum HeapId heapID, u32 battleType)
     dto->bagCursor = NULL;
     dto->subscreenCursorOn = NULL;
     dto->countSafariBalls = 0;
-    dto->unk_104 = NULL;
+    dto->wiFiHistory = NULL;
     dto->records = NULL;
     dto->journalEntry = NULL;
     dto->rulesetMask = 0;
@@ -235,15 +235,15 @@ void FieldBattleDTO_CopyChatotCryToBattler(FieldBattleDTO *dto, const ChatotCry 
     CopyChatotCryData(dto->chatotCries[battler], src);
 }
 
-void FieldBattleDTO_InitFromGameState(FieldBattleDTO *dto, const FieldSystem *fieldSystem, SaveData *save, enum MapHeader mapHeaderID, JournalEntry *journalEntry, BagCursor *bagCursor, u8 *subscreenCursorOn)
+void FieldBattleDTO_InitFromGameState(FieldBattleDTO *dto, const FieldSystem *fieldSystem, SaveData *saveData, enum MapHeader mapHeaderID, JournalEntry *journalEntry, BagCursor *bagCursor, u8 *subscreenCursorOn)
 {
-    TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(save);
-    Party *party = SaveData_GetParty(save);
-    Bag *bag = SaveData_GetBag(save);
-    Pokedex *pokedex = SaveData_GetPokedex(save);
-    ChatotCry *chatotCry = SaveData_GetChatotCry(save);
-    Options *options = SaveData_GetOptions(save);
-    FieldOverworldState *fieldOverworldState = SaveData_GetFieldOverworldState(save);
+    TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(saveData);
+    Party *party = SaveData_GetParty(saveData);
+    Bag *bag = SaveData_GetBag(saveData);
+    Pokedex *pokedex = SaveData_GetPokedex(saveData);
+    ChatotCry *chatotCry = SaveData_GetChatotCry(saveData);
+    Options *options = SaveData_GetOptions(saveData);
+    FieldOverworldState *fieldOverworldState = SaveData_GetFieldOverworldState(saveData);
 
     if (fieldSystem != NULL) {
         SetBackgroundAndTerrain(dto, fieldSystem);
@@ -252,7 +252,7 @@ void FieldBattleDTO_InitFromGameState(FieldBattleDTO *dto, const FieldSystem *fi
         dto->background = MapHeader_GetBattleBG(mapHeaderID);
         dto->terrain = TERRAIN_BUILDING;
 
-        GameTime *gameTime = SaveData_GetGameTime(save);
+        GameTime *gameTime = SaveData_GetGameTime(saveData);
         dto->timeOfDay = TimeOfDayForHour(gameTime->time.hour);
     }
 
@@ -263,21 +263,21 @@ void FieldBattleDTO_InitFromGameState(FieldBattleDTO *dto, const FieldSystem *fi
     Options_Copy(options, dto->options);
     FieldBattleDTO_CopyChatotCryToBattler(dto, chatotCry, BATTLER_PLAYER_1);
 
-    dto->pcBoxes = SaveData_GetPCBoxes(save);
+    dto->pcBoxes = SaveData_GetPCBoxes(saveData);
     dto->mapLabelTextID = MapHeader_GetMapLabelTextID(mapHeaderID);
     dto->mapEvolutionMethod = MapHeader_GetMapEvolutionMethod(mapHeaderID);
-    dto->visitedContestHall = PokemonSummaryScreen_ShowContestData(save);
-    dto->metBebe = SystemFlag_CheckMetBebe(SaveData_GetVarsFlags(save));
+    dto->visitedContestHall = PokemonSummaryScreen_ShowContestData(saveData);
+    dto->metBebe = SystemFlag_CheckMetBebe(SaveData_GetVarsFlags(saveData));
     dto->fieldWeather = FieldOverworldState_GetWeather(fieldOverworldState);
     dto->bagCursor = bagCursor;
     dto->subscreenCursorOn = subscreenCursorOn;
-    dto->poketch = SaveData_GetPoketch(save);
-    dto->unk_104 = sub_0202C878(save);
-    dto->records = SaveData_GetGameRecords(save);
+    dto->poketch = SaveData_GetPoketch(saveData);
+    dto->wiFiHistory = SaveData_WiFiHistory(saveData);
+    dto->records = SaveData_GetGameRecords(saveData);
     dto->journalEntry = journalEntry;
-    dto->unk_124 = SaveData_GetPalPad(save);
+    dto->unk_124 = SaveData_GetPalPad(saveData);
     dto->mapHeaderID = mapHeaderID;
-    dto->saveData = save;
+    dto->saveData = saveData;
 }
 
 void FieldBattleDTO_Init(FieldBattleDTO *dto, const FieldSystem *fieldSystem)
@@ -327,7 +327,7 @@ void FieldBattleDTO_InitWithNormalizedMonLevels(FieldBattleDTO *dto, const Field
     dto->bagCursor = fieldSystem->bagCursor;
     dto->subscreenCursorOn = fieldSystem->battleSubscreenCursorOn;
     dto->poketch = SaveData_GetPoketch(fieldSystem->saveData);
-    dto->unk_104 = sub_0202C878(fieldSystem->saveData);
+    dto->wiFiHistory = SaveData_WiFiHistory(fieldSystem->saveData);
     dto->records = SaveData_GetGameRecords(fieldSystem->saveData);
     dto->journalEntry = fieldSystem->journalEntry;
     dto->unk_124 = SaveData_GetPalPad(fieldSystem->saveData);
@@ -392,7 +392,7 @@ void FieldBattleDTO_InitWithPartyOrder(FieldBattleDTO *dto, const FieldSystem *f
     dto->timeOfDay = FieldSystem_GetTimeOfDay(fieldSystem);
     dto->bagCursor = fieldSystem->bagCursor;
     dto->subscreenCursorOn = fieldSystem->battleSubscreenCursorOn;
-    dto->unk_104 = sub_0202C878(fieldSystem->saveData);
+    dto->wiFiHistory = SaveData_WiFiHistory(fieldSystem->saveData);
     dto->records = SaveData_GetGameRecords(fieldSystem->saveData);
     dto->journalEntry = fieldSystem->journalEntry;
     dto->mapHeaderID = fieldSystem->location->mapId;

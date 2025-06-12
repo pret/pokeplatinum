@@ -14,7 +14,7 @@ typedef struct {
     Party *unk_1C;
     BallSeals *unk_20;
     Options *unk_24;
-    SaveData *unk_28;
+    SaveData *saveData;
     u8 unk_2C;
     u8 unk_2D;
     u8 padding[2];

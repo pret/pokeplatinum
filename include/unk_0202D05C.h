@@ -14,8 +14,7 @@
 #include "overlay090/struct_ov90_021D1750.h"
 #include "overlay096/struct_ov96_0223B450_sub1.h"
 #include "overlay096/struct_ov96_0223B450_sub2.h"
-#include "overlay104/struct_ov104_0223A348.h"
-#include "overlay104/struct_ov104_0223A348_sub2.h"
+#include "overlay104/frontier_data_transfer.h"
 
 #include "savedata.h"
 
@@ -32,7 +31,7 @@ void sub_0202D21C(UnkStruct_0202D060 *param0, BOOL param1);
 u16 sub_0202D230(UnkStruct_0202D750 *param0, u16 param1, int param2);
 u8 sub_0202D288(UnkStruct_0202D750 *param0, int param1);
 u8 sub_0202D2C0(UnkStruct_0202D750 *param0, int param1);
-void sub_0202D2F0(UnkStruct_0202D750 *param0, int param1, UnkStruct_ov104_0223A348_sub2 *param2);
+void sub_0202D2F0(UnkStruct_0202D750 *param0, int param1, FrontierPokemonDataDTO *param2);
 void sub_0202D314(UnkStruct_0202D750 *param0, int param1, UnkStruct_0202D314 *param2);
 u16 sub_0202D334(UnkStruct_0202D750 *param0, UnkStruct_0202D060 *param1);
 u16 sub_0202D39C(UnkStruct_0202D750 *param0);
@@ -42,7 +41,7 @@ u16 sub_0202D3FC(UnkStruct_0202D750 *param0, u16 param1, u16 param2);
 BOOL sub_0202D414(UnkStruct_0202D750 *param0, u16 param1, int param2);
 void sub_0202D470(UnkStruct_0202D750 *param0, u32 param1);
 u32 sub_0202D474(UnkStruct_0202D750 *param0);
-void sub_0202D478(SaveData *param0, int param1, Sentence *param2);
+void sub_0202D478(SaveData *saveData, int param1, Sentence *param2);
 Sentence *sub_0202D498(SaveData *saveData, int param1);
 void sub_0202D4B0(UnkStruct_0202D764 *param0, u8 param1, u8 param2, RTCDate *param3);
 void sub_0202D514(UnkStruct_0202D764 *param0);

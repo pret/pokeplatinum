@@ -23,6 +23,7 @@
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "strbuf.h"
@@ -30,7 +31,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_0202419C.h"
 
 enum {
@@ -312,7 +312,7 @@ static int ov95_0224B520(UnkStruct_ov95_0224B4D4 *param0, int *param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_PLANEMASK_BG2, 16, 0);
-    StartScreenTransition(3, 1, 1, 0x0, 16, 1, HEAP_ID_58);
+    StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 16, 1, HEAP_ID_58);
 
     return 1;
 }
@@ -321,7 +321,7 @@ static int ov95_0224B6F0(UnkStruct_ov95_0224B4D4 *param0, int *param1)
 {
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             Sprite_SetAnim(param0->unk_40[0], 1);
             Sprite_SetDrawFlag(param0->unk_40[0], 1);
             return 1;
@@ -436,12 +436,12 @@ static int ov95_0224B81C(UnkStruct_ov95_0224B4D4 *param0, int *param1)
         break;
     case 4:
         if (++(param0->unk_08) > 10) {
-            StartScreenTransition(3, 0, 0, 0x0, 16, 1, HEAP_ID_58);
+            StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 16, 1, HEAP_ID_58);
             (*param1)++;
         }
         break;
     case 5:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             return 1;
         }
         break;

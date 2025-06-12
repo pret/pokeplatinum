@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/movement_actions.h"
 #include "generated/trainer_score_events.h"
 
 #include "struct_decls/struct_0202855C_decl.h"
@@ -44,6 +45,7 @@
 #include "player_avatar.h"
 #include "render_window.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
@@ -53,7 +55,6 @@
 #include "system_flags.h"
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_0202854C.h"
 #include "unk_02030EE0.h"
 #include "unk_02033200.h"
@@ -937,7 +938,7 @@ static void ov23_0224BC5C(FieldSystem *fieldSystem, int param1, int param2, int 
     UnkStruct_ov23_0224BA48 *v0 = NULL;
 
     ov23_0224DC08();
-    v0 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov23_0224BA48));
+    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_0224BA48));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov23_0224BA48));
 
     v0->unk_18 = -1;
@@ -959,7 +960,7 @@ static UnkStruct_ov23_0224BA48 *ov23_0224BCC4(FieldSystem *fieldSystem, int para
     UnkStruct_ov23_0224BA48 *v0 = NULL;
 
     if (fieldSystem->task == NULL) {
-        v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov23_0224BA48));
+        v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov23_0224BA48));
         MI_CpuClear8(v0, sizeof(UnkStruct_ov23_0224BA48));
 
         v0->unk_18 = -1;
@@ -1167,7 +1168,7 @@ static void ov23_0224C090(FieldSystem *fieldSystem, int param1, int param2, int 
 {
     UnkStruct_ov23_0224BA48 *v0 = NULL;
 
-    v0 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov23_0224BA48));
+    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_0224BA48));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov23_0224BA48));
 
     v0->unk_18 = -1;
@@ -1580,14 +1581,14 @@ static BOOL ov23_0224C790(FieldTask *param0)
         }
         break;
     case 1:
-        sub_0200F2C0();
-        StartScreenTransition(2, 16, 18, 0x0, 6, 1, HEAP_ID_FIELD);
+        FinishScreenFade();
+        StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_16, FADE_TYPE_UNK_18, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
         ov23_0224942C(fieldSystem->unk_6C);
         Sound_PlayEffect(SEQ_SE_DP_KAIDAN2);
         v1->unk_0C++;
         break;
     case 2:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             if (fieldSystem->unk_6C == NULL) {
                 (v1->unk_0C)++;
             }
@@ -1614,12 +1615,12 @@ static BOOL ov23_0224C790(FieldTask *param0)
         break;
     case 6:
         fieldSystem->unk_6C = ov23_02249404(fieldSystem);
-        sub_0200F2C0();
-        StartScreenTransition(1, 17, 19, 0x0, 6, 1, HEAP_ID_FIELD);
+        FinishScreenFade();
+        StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_17, FADE_TYPE_UNK_19, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
         (v1->unk_0C)++;
         break;
     case 7:
-        if (!IsScreenTransitionDone()) {
+        if (!IsScreenFadeDone()) {
             break;
         }
 
@@ -1664,7 +1665,7 @@ static BOOL ov23_0224C790(FieldTask *param0)
         break;
     case 11:
         CommPlayerMan_ForceDir();
-        PlayerAvatar_SetAnimationCode(fieldSystem->playerAvatar, sub_02065838(1, 0x24), 1);
+        PlayerAvatar_SetAnimationCode(fieldSystem->playerAvatar, MovementAction_TurnActionTowardsDir(1, MOVEMENT_ACTION_WALK_ON_SPOT_FAST_NORTH), 1);
         CommPlayer_SetDir(1);
         ov23_02253F40(ov23_0224219C(), 68, 0, NULL);
         Sound_PlayEffect(SEQ_SE_DP_DOOR);
@@ -1962,7 +1963,7 @@ static void ov23_0224CEC8(void)
 
     ov23_0224DC08();
 
-    v0 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov23_0224CB1C));
+    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_0224CB1C));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov23_0224CB1C));
 
     v0->unk_0C = 0;
@@ -2080,7 +2081,7 @@ BOOL ov23_0224D020(Strbuf *param0)
     return 0;
 }
 
-UnkStruct_02029894 *ov23_0224D130(SaveData *param0)
+UnkStruct_02029894 *ov23_0224D130(SaveData *saveData)
 {
     if (Unk_ov23_022577AC) {
         if (Unk_ov23_022577AC->unk_A00) {
@@ -2378,7 +2379,7 @@ static void ov23_0224D5BC(SysTask *param0, void *param1)
         }
         break;
     case 3:
-        StartScreenTransition(2, 0, 0, 0x0, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
         break;
     case 4:
         Heap_FreeToHeap(param1);

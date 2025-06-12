@@ -12,7 +12,7 @@
 #include "sprite.h"
 #include "trainer_info.h"
 
-void ov114_0225C700(UnkStruct_ov114_0225C76C *param0, BOOL param1, SaveData *param2, BOOL param3, UnkStruct_ov66_02230DBC *param4);
+void ov114_0225C700(UnkStruct_ov114_0225C76C *param0, BOOL param1, SaveData *saveData, BOOL param3, UnkStruct_ov66_02230DBC *param4);
 u32 ov114_0225C76C(const UnkStruct_ov114_0225C76C *param0, u32 param1);
 u32 ov114_0225C78C(const UnkStruct_ov114_0225C76C *param0, u32 param1);
 BOOL ov114_0225C7A4(const UnkStruct_ov114_0225C76C *param0, u32 param1);

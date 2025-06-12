@@ -6,10 +6,9 @@
 #include "sound_playback.h"
 #include "system.h"
 
-#define CURSOR_STARTING_INDEX              0
-#define NULL_POSITION_INDEX                0xff
-#define GO_TO_PREVIOUS_POSITION_INDEX_MASK 0x80
-#define ALL_POSITIONS_ENABLED_MASK         0xffffffff
+#define CURSOR_STARTING_INDEX      0
+#define NULL_POSITION_INDEX        0xff
+#define ALL_POSITIONS_ENABLED_MASK 0xffffffff
 
 BattleSubMenuCursor *MakeBattleSubMenuCursor(u32 heapID)
 {
@@ -95,22 +94,22 @@ static BOOL CheckShouldStorePreviousPosition(const GridMenuCursorPosition *newPo
 {
     switch (incomingDirection) {
     case GRID_MENU_CURSOR_POSITION_DIRECTION_UP:
-        if (newPosition->downIndex & GO_TO_PREVIOUS_POSITION_INDEX_MASK) {
+        if (newPosition->downIndex & BATTLE_SUB_MENU_CURSOR_GO_TO_PREVIOUS_POSITION_INDEX_MASK) {
             return TRUE;
         }
         break;
     case GRID_MENU_CURSOR_POSITION_DIRECTION_DOWN:
-        if (newPosition->upIndex & GO_TO_PREVIOUS_POSITION_INDEX_MASK) {
+        if (newPosition->upIndex & BATTLE_SUB_MENU_CURSOR_GO_TO_PREVIOUS_POSITION_INDEX_MASK) {
             return TRUE;
         }
         break;
     case GRID_MENU_CURSOR_POSITION_DIRECTION_LEFT:
-        if (newPosition->rightIndex & GO_TO_PREVIOUS_POSITION_INDEX_MASK) {
+        if (newPosition->rightIndex & BATTLE_SUB_MENU_CURSOR_GO_TO_PREVIOUS_POSITION_INDEX_MASK) {
             return TRUE;
         }
         break;
     case GRID_MENU_CURSOR_POSITION_DIRECTION_RIGHT:
-        if (newPosition->leftIndex & GO_TO_PREVIOUS_POSITION_INDEX_MASK) {
+        if (newPosition->leftIndex & BATTLE_SUB_MENU_CURSOR_GO_TO_PREVIOUS_POSITION_INDEX_MASK) {
             return TRUE;
         }
         break;
@@ -147,11 +146,11 @@ u32 BattleSubMenuCursorTick(BattleSubMenuCursor *cursor)
     if (nextPositionIndex != NULL_POSITION_INDEX) {
         u8 nextPositionIsEnabled = TRUE;
 
-        if (nextPositionIndex & GO_TO_PREVIOUS_POSITION_INDEX_MASK) {
+        if (nextPositionIndex & BATTLE_SUB_MENU_CURSOR_GO_TO_PREVIOUS_POSITION_INDEX_MASK) {
             if (cursor->previousPositionIndex != NULL_POSITION_INDEX) {
                 nextPositionIndex = cursor->previousPositionIndex;
             } else {
-                nextPositionIndex ^= GO_TO_PREVIOUS_POSITION_INDEX_MASK;
+                nextPositionIndex ^= BATTLE_SUB_MENU_CURSOR_GO_TO_PREVIOUS_POSITION_INDEX_MASK;
             }
         }
 
@@ -163,7 +162,7 @@ u32 BattleSubMenuCursorTick(BattleSubMenuCursor *cursor)
             }
 
             nextPositionIsEnabled = FALSE;
-            replacementPositionIndex = GridMenuCursor_CheckNavigation(cursor->positions, NULL, NULL, NULL, NULL, nextPositionIndex, pressedDirection) & (NULL_POSITION_INDEX ^ GO_TO_PREVIOUS_POSITION_INDEX_MASK);
+            replacementPositionIndex = GridMenuCursor_CheckNavigation(cursor->positions, NULL, NULL, NULL, NULL, nextPositionIndex, pressedDirection) & (NULL_POSITION_INDEX ^ BATTLE_SUB_MENU_CURSOR_GO_TO_PREVIOUS_POSITION_INDEX_MASK);
 
             if ((replacementPositionIndex == nextPositionIndex) || (replacementPositionIndex == cursor->currentPositionIndex)) {
                 nextPositionIndex = cursor->currentPositionIndex;

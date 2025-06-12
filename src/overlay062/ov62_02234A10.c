@@ -18,12 +18,12 @@
 #include "math_util.h"
 #include "message.h"
 #include "palette.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0208B284.h"
 
@@ -70,7 +70,7 @@ static BOOL ov62_02234AB4(UnkStruct_0208C06C *param0)
             break;
         }
 
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_102);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_102);
         PaletteData_BlendMulti(param0->unk_14.unk_14, 2, 0xFFFE, 16, ov62_022316D0(param0));
         PaletteData_BlendMulti(param0->unk_14.unk_14, 0, 0xBFFF, 16, ov62_022316D0(param0));
         PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0x3FFE, 16, ov62_022316D0(param0));
@@ -80,7 +80,7 @@ static BOOL ov62_02234AB4(UnkStruct_0208C06C *param0)
         param0->unk_08++;
         break;
     case 1:
-        if (IsScreenTransitionDone() == 0) {
+        if (IsScreenFadeDone() == FALSE) {
             break;
         }
 
@@ -183,7 +183,7 @@ static BOOL ov62_02234CDC(UnkStruct_0208C06C *param0)
         break;
     case 1:
         if (ov62_022300BC(param0) == 1) {
-            if (IsScreenTransitionDone() == 1) {
+            if (IsScreenFadeDone() == TRUE) {
                 param0->unk_08++;
             }
         } else {

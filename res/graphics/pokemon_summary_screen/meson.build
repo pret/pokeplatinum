@@ -213,7 +213,7 @@ pokemon_summary_screen_order = files('pokemon_summary_screen.order')
 pokemon_summary_screen_narc = custom_target('pl_pst_gra.narc',
     output: [
         'pl_pst_gra.narc',
-        'pl_pst_gra.naix',
+        'pl_pst_gra.naix.h',
     ],
     input: [
         tiles_ncgr,

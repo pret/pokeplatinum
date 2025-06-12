@@ -52,7 +52,7 @@ typedef struct {
 
 struct UnkStruct_0205B43C_t {
     FieldSystem *fieldSystem;
-    SaveData *unk_04;
+    SaveData *saveData;
     TrainerInfo *unk_08;
     SysTask *unk_0C;
     UnkFuncPtr_0205B43C unk_10;
@@ -143,15 +143,15 @@ void sub_0205B388(FieldSystem *fieldSystem)
 static UnkStruct_0205B43C *sub_0205B3A0(FieldSystem *fieldSystem)
 {
     void *v0;
-    SaveData *v1;
+    SaveData *saveData;
     UnkStruct_0205B43C *v2 = NULL;
 
     if (fieldSystem->unk_7C != NULL) {
         return NULL;
     }
 
-    v1 = FieldSystem_GetSaveData(fieldSystem);
-    sub_020369EC(v1);
+    saveData = FieldSystem_GetSaveData(fieldSystem);
+    sub_020369EC(saveData);
 
     v2 = (UnkStruct_0205B43C *)Heap_AllocFromHeap(HEAP_ID_31, sizeof(UnkStruct_0205B43C));
     MI_CpuClear8(v2, sizeof(UnkStruct_0205B43C));
@@ -160,8 +160,8 @@ static UnkStruct_0205B43C *sub_0205B3A0(FieldSystem *fieldSystem)
     v2->unk_14 = 40;
     v2->unk_0C = SysTask_Start(sub_0205B5BC, v2, 10);
     v2->fieldSystem = fieldSystem;
-    v2->unk_04 = v1;
-    v2->unk_08 = SaveData_GetTrainerInfo(v1);
+    v2->saveData = saveData;
+    v2->unk_08 = SaveData_GetTrainerInfo(saveData);
 
     sub_0205C160(v2);
     CommSys_Seed(&v2->unk_150);

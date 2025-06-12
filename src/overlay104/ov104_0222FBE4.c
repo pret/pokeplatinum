@@ -74,6 +74,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sprite_system.h"
 #include "strbuf.h"
@@ -83,7 +84,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202D05C.h"
 #include "unk_0202F1D4.h"
@@ -824,9 +824,9 @@ static BOOL ov104_0222FF90(UnkStruct_ov104_0222E930 *param0)
     u16 v2 = ov104_0222EA48(param0);
     u16 v3 = ov104_0222EA48(param0);
 
-    StartScreenTransition(0, v2, v2, v3, v0, v1, HEAP_ID_FIELDMAP);
-    sub_0200F32C(0);
-    sub_0200F32C(1);
+    StartScreenFade(FADE_BOTH_SCREENS, v2, v2, v3, v0, v1, HEAP_ID_FIELDMAP);
+    ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
+    ResetVisibleHardwareWindows(DS_SCREEN_SUB);
 
     return 0;
 }
@@ -839,7 +839,7 @@ static BOOL ov104_0222FFD8(UnkStruct_ov104_0222E930 *param0)
 
 static BOOL ov104_0222FFE8(UnkStruct_ov104_0222E930 *param0)
 {
-    if (IsScreenTransitionDone() == 1) {
+    if (IsScreenFadeDone() == TRUE) {
         return 1;
     }
 
@@ -1642,7 +1642,7 @@ static BOOL ov104_02230B50(UnkStruct_ov104_0222E930 *param0)
 
     sub_0202F298(v2->saveData, 11, &v0, v1, 0);
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, SEQ_BATTLE_TRAINER, 1);
-    sub_0209B988(param0->unk_00->unk_00, &gBattleOverlayTemplate, v1, 1, NULL);
+    sub_0209B988(param0->unk_00->unk_00, &gBattleApplicationTemplate, v1, 1, NULL);
 
     return 1;
 }
@@ -2051,13 +2051,13 @@ static BOOL ov104_02231148(UnkStruct_ov104_02231148 *param0)
             break;
         }
 
-        sub_0200F32C(0);
-        sub_0200F32C(1);
-        StartScreenTransition(0, 32, 32, 0x0, 12, 1, HEAP_ID_FIELDMAP);
+        ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
+        ResetVisibleHardwareWindows(DS_SCREEN_SUB);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_32, FADE_TYPE_UNK_32, FADE_TO_BLACK, 12, 1, HEAP_ID_FIELDMAP);
         param0->unk_04++;
         break;
     default:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             return 0;
         }
         break;
@@ -2101,14 +2101,14 @@ static BOOL ov104_022311BC(UnkStruct_ov104_02231148 *param0)
         }
     } break;
     default:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             ov104_0223EBD0(param0->unk_2C);
 
             Window_ClearAndCopyToVRAM(param0->unk_28);
             Window_Remove(param0->unk_28);
             Windows_Delete(param0->unk_28, 1);
-            sub_0200F344(0, 0x0);
-            sub_0200F344(1, 0x0);
+            SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+            SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
             Bg_ClearTilesRange(1, 32, 0, HEAP_ID_FIELDMAP);
             Bg_ClearTilemap(param0->unk_00->unk_00, 1);
 
@@ -2156,15 +2156,15 @@ static BOOL ov104_022312D8(UnkStruct_ov104_02231148 *param0)
     } break;
 
     default:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             ov104_0223EBD0(param0->unk_2C);
 
             Window_ClearAndCopyToVRAM(param0->unk_28);
             Window_Remove(param0->unk_28);
             Windows_Delete(param0->unk_28, 1);
 
-            sub_0200F344(0, 0x0);
-            sub_0200F344(1, 0x0);
+            SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+            SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
 
             Bg_ClearTilesRange(1, 32, 0, HEAP_ID_FIELDMAP);
             Bg_ClearTilemap(param0->unk_00->unk_00, 1);
@@ -2499,8 +2499,8 @@ static BOOL ov104_02231AA8(UnkStruct_ov104_0222E930 *param0)
     v0 = Unk_ov104_0223F65C[v1->unk_08](v1);
 
     if (v0 == 0) {
-        sub_0200F344(0, 0x0);
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
         sub_0209B980(param0->unk_00->unk_00, v1->unk_14);
         Heap_FreeToHeap(v1);
     }

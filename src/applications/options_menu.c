@@ -21,17 +21,17 @@
 #include "palette.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_020393C8.h"
 #include "vram_transfer.h"
 
-#include "res/graphics/options_menu/config_gra.naix"
+#include "res/graphics/options_menu/config_gra.naix.h"
 #include "res/text/bank/options_menu.h"
 
 #define MENU_TITLE_BASE_TILE      10
@@ -148,14 +148,14 @@ static void TeardownBgs(OptionsMenuData *menuData);
 static void TeardownTilemaps(OptionsMenuData *menuData);
 static void TeardownWindows(OptionsMenuData *menuData);
 
-BOOL OptionsMenu_Init(OverlayManager *ovyManager, int *state)
+BOOL OptionsMenu_Init(ApplicationManager *appMan, int *state)
 {
     OptionsMenuData *menuData = NULL;
-    Options *options = OverlayManager_Args(ovyManager);
+    Options *options = ApplicationManager_Args(appMan);
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_OPTIONS_MENU, HEAP_ALLOCATION_SIZE);
 
-    menuData = OverlayManager_NewData(ovyManager, sizeof(OptionsMenuData), HEAP_ID_OPTIONS_MENU);
+    menuData = ApplicationManager_NewData(appMan, sizeof(OptionsMenuData), HEAP_ID_OPTIONS_MENU);
     memset(menuData, 0, sizeof(OptionsMenuData));
 
     menuData->options.textSpeed = Options_TextSpeed(options);
@@ -172,9 +172,9 @@ BOOL OptionsMenu_Init(OverlayManager *ovyManager, int *state)
     return TRUE;
 }
 
-BOOL OptionsMenu_Exit(OverlayManager *ovyManager, int *state)
+BOOL OptionsMenu_Exit(ApplicationManager *appMan, int *state)
 {
-    OptionsMenuData *menuData = OverlayManager_Data(ovyManager);
+    OptionsMenuData *menuData = ApplicationManager_Data(appMan);
 
     if (menuData->saveSelections == 1) {
         menuData->options.textSpeed = menuData->entries.textSpeed.selected;
@@ -196,7 +196,7 @@ BOOL OptionsMenu_Exit(OverlayManager *ovyManager, int *state)
 
     RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
 
-    OverlayManager_FreeData(ovyManager);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(menuData->heapID);
 
     return TRUE;
@@ -214,9 +214,9 @@ enum OptonsMenuState {
     STATE_TEARDOWN,
 };
 
-BOOL OptionsMenu_Main(OverlayManager *ovyManager, int *state)
+BOOL OptionsMenu_Main(ApplicationManager *appMan, int *state)
 {
-    OptionsMenuData *menuData = OverlayManager_Data(ovyManager);
+    OptionsMenuData *menuData = ApplicationManager_Data(appMan);
     u32 choiceYesNo;
 
     switch (menuData->state) {
@@ -225,11 +225,11 @@ BOOL OptionsMenu_Main(OverlayManager *ovyManager, int *state)
             return FALSE;
         }
 
-        StartScreenTransition(3, 1, 1, 0x0, 6, 1, menuData->heapID);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, menuData->heapID);
         break;
 
     case STATE_WAIT_FOR_FADE_IN:
-        if (!IsScreenTransitionDone()) {
+        if (!IsScreenFadeDone()) {
             return FALSE;
         }
         break;
@@ -286,11 +286,11 @@ BOOL OptionsMenu_Main(OverlayManager *ovyManager, int *state)
             Text_RemovePrinter(menuData->textPrinter);
         }
 
-        StartScreenTransition(3, 0, 0, 0x0, 6, 1, menuData->heapID);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, menuData->heapID);
         break;
 
     case STATE_WAIT_FOR_FADE_OUT:
-        if (!IsScreenTransitionDone()) {
+        if (!IsScreenFadeDone()) {
             return FALSE;
         }
         break;
@@ -358,8 +358,8 @@ static int SetupMenuVisuals(OptionsMenuData *menuData)
         GXS_SetVisiblePlane(0);
 
         SetVRAMBanks();
-        sub_0200F32C(0);
-        sub_0200F32C(1);
+        ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
+        ResetVisibleHardwareWindows(DS_SCREEN_SUB);
         SetupBgs(menuData);
         break;
 

@@ -32,6 +32,7 @@
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
 #include "string_list.h"
@@ -40,7 +41,6 @@
 #include "system.h"
 #include "touch_screen.h"
 #include "touch_screen_actions.h"
-#include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02015920.h"
 #include "unk_02015F84.h"
@@ -345,7 +345,7 @@ static BOOL ov76_0223D674(UnkStruct_ov76_0223DE00 *param0)
         break;
 
     case 2:
-        if (IsScreenTransitionDone() != 1) {
+        if (IsScreenFadeDone() != 1) {
             break;
         }
 
@@ -424,7 +424,7 @@ static BOOL ov76_0223D674(UnkStruct_ov76_0223DE00 *param0)
         param0->unk_3D4++;
         break;
     case 6:
-        if (IsScreenTransitionDone() != 1) {
+        if (IsScreenFadeDone() != 1) {
             break;
         }
         Window_Remove(&param0->unk_D4.unk_18[0]);
@@ -975,7 +975,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
         ov76_0223C7E0(param0);
         {
             GameRecords *v7;
-            v7 = SaveData_GetGameRecords(param0->unk_00->unk_28);
+            v7 = SaveData_GetGameRecords(param0->unk_00->saveData);
 
             GameRecords_IncrementTrainerScore(v7, TRAINER_SCORE_EVENT_UNK_06);
         }
@@ -1180,7 +1180,7 @@ static BOOL ov76_0223E8A4(UnkStruct_ov76_0223DE00 *param0)
         param0->unk_3D4++;
         break;
     case 2:
-        if (IsScreenTransitionDone() != 1) {
+        if (IsScreenFadeDone() != 1) {
             break;
         }
 

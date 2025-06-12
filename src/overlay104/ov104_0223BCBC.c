@@ -3,11 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0204B184.h"
+#include "struct_defs/battle_frontier_trainer_data.h"
 
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/struct_ov104_02230BE4.h"
-#include "overlay104/struct_ov104_0223A348_sub1.h"
 #include "overlay104/struct_ov104_0223BFFC.h"
 
 #include "communication_information.h"
@@ -161,21 +160,15 @@ u8 ov104_0223BDA4(u8 param0, BOOL param1)
 FieldBattleDTO *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_02230BE4 *param1)
 {
     int v0;
-    u32 v1;
     u8 v2, v3, v4;
-    FieldBattleDTO *v5;
     Pokemon *v6;
-    UnkStruct_ov104_0223A348_sub1 v7;
-    UnkStruct_0204B184 *v8;
-    MessageLoader *v9;
-    Strbuf *v10;
-    TrainerInfo *v11;
+    FrontierTrainerDataDTO v7;
     Party *v12;
     Party *v13;
 
     v2 = ov104_0223BD70(param0->unk_10, 0);
     v3 = ov104_0223BDA4(param0->unk_10, 0);
-    v5 = FieldBattleDTO_New(11, ov104_0223BFD0(param0->unk_10));
+    FieldBattleDTO *v5 = FieldBattleDTO_New(11, ov104_0223BFD0(param0->unk_10));
 
     FieldBattleDTO_InitFromGameState(v5, NULL, param1->saveData, param1->unk_1C, param1->journalEntry, param1->bagCursor, param1->unk_20);
 
@@ -209,7 +202,7 @@ FieldBattleDTO *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104
     Heap_FreeToHeap(v6);
     FieldBattleDTO_CopyPlayerInfoToTrainerData(v5);
 
-    v8 = ov104_0222DD04(&v7, param0->unk_78[param0->unk_11], 11, 178);
+    BattleFrontierTrainerData *v8 = ov104_0222DD04(&v7, param0->unk_78[param0->unk_11], HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR);
 
     Heap_FreeToHeap(v8);
     ov104_0222E284(v5, &v7, v3, 1, 11);
@@ -233,10 +226,9 @@ FieldBattleDTO *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104
     case 3:
         FieldBattleDTO_CopyPlayerInfoToTrainerData(v5);
 
-        v11 = CommInfo_TrainerInfo(1 - CommSys_CurNetId());
-        TrainerInfo_Copy(v11, v5->trainerInfo[2]);
+        TrainerInfo_Copy(CommInfo_TrainerInfo(1 - CommSys_CurNetId()), v5->trainerInfo[2]);
 
-        v8 = ov104_0222DD04(&v7, param0->unk_78[param0->unk_11 + 7], 11, 178);
+        v8 = ov104_0222DD04(&v7, param0->unk_78[param0->unk_11 + 7], HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR);
         Heap_FreeToHeap(v8);
 
         ov104_0222E284(v5, &v7, v3, 3, 11);
@@ -293,7 +285,7 @@ BOOL ov104_0223C000(u8 param0)
 
 void ov104_0223C010(UnkStruct_ov104_0223BFFC *param0, Pokemon *param1)
 {
-    Pokemon_UpdateAfterCatch(param1, SaveData_GetTrainerInfo(param0->unk_04), 4, 0, 0, 11);
+    Pokemon_UpdateAfterCatch(param1, SaveData_GetTrainerInfo(param0->saveData), 4, 0, 0, 11);
     return;
 }
 

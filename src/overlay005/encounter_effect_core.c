@@ -28,6 +28,7 @@
 #include "heap.h"
 #include "message.h"
 #include "save_player.h"
+#include "screen_fade.h"
 #include "screen_scroll_manager.h"
 #include "sprite.h"
 #include "strbuf.h"
@@ -36,7 +37,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_0202419C.h"
 
 // EncounterEffect_Grass_HigherLevel
@@ -180,7 +180,7 @@ void EncounterEffect_Grass_HigherLevel(SysTask *task, void *param)
         }
         break;
     case 5:
-        sub_0200F370(0x0);
+        SetColorBrightness(FADE_TO_BLACK);
 
         G2_SetBG0Offset(0, 0);
         G2_SetBG1Offset(0, 0);
@@ -273,7 +273,7 @@ void EncounterEffect_Grass_LowerLevel(SysTask *task, void *param)
         }
         break;
     case 5:
-        sub_0200F370(0x0);
+        SetColorBrightness(FADE_TO_BLACK);
 
         G2_SetBG0Offset(0, 0);
         G2_SetBG1Offset(0, 0);
@@ -328,11 +328,11 @@ void EncounterEffect_Water_LowerLevel(SysTask *task, void *param)
         }
         break;
     case 4:
-        StartScreenTransition(3, 30, 0, 0x0, 8, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_30, FADE_TYPE_UNK_0, FADE_TO_BLACK, 8, 1, HEAP_ID_FIELD);
         encEffect->state++;
         break;
     case 5:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             encEffect->state++;
         }
         break;
@@ -345,7 +345,7 @@ void EncounterEffect_Water_LowerLevel(SysTask *task, void *param)
         }
 
         EncounterEffect_Finish(encEffect, task);
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
         break;
     }
 }
@@ -386,11 +386,11 @@ void EncounterEffect_Water_HigherLevel(SysTask *task, void *param)
         }
         break;
     case 4:
-        StartScreenTransition(3, 30, 0, 0x0, 8, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_30, FADE_TYPE_UNK_0, FADE_TO_BLACK, 8, 1, HEAP_ID_FIELD);
         encEffect->state++;
         break;
     case 5:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             encEffect->state++;
         }
         break;
@@ -403,7 +403,7 @@ void EncounterEffect_Water_HigherLevel(SysTask *task, void *param)
         }
 
         EncounterEffect_Finish(encEffect, task);
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
         break;
     }
 }
@@ -484,7 +484,7 @@ void EncounterEffect_Cave_LowerLevel(SysTask *task, void *param)
         break;
     case 3:
         HBlankSystem_Stop(encEffect->fieldSystem->unk_04->hBlankSystem);
-        StartScreenTransition(3, 16, 16, 0x0, 12, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_16, FADE_TYPE_UNK_16, FADE_TO_BLACK, 12, 1, HEAP_ID_FIELD);
 
         caveEffect->camera = encEffect->fieldSystem->camera;
         distance = Camera_GetDistance(caveEffect->camera);
@@ -501,7 +501,7 @@ void EncounterEffect_Cave_LowerLevel(SysTask *task, void *param)
         QuadraticInterpolationTaskFX32_Update(&caveEffect->camInterpolation);
         Camera_SetDistance(caveEffect->camInterpolation.currentValue, caveEffect->camera);
 
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             encEffect->state++;
         }
         break;
@@ -513,7 +513,7 @@ void EncounterEffect_Cave_LowerLevel(SysTask *task, void *param)
         }
 
         EncounterEffect_Finish(encEffect, task);
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
         break;
     }
 }
@@ -542,7 +542,7 @@ void EncounterEffect_Cave_HigherLevel(SysTask *task, void *param)
         break;
     case 3:
         HBlankSystem_Stop(encEffect->fieldSystem->unk_04->hBlankSystem);
-        StartScreenTransition(3, 16, 16, 0x0, 12, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_16, FADE_TYPE_UNK_16, FADE_TO_BLACK, 12, 1, HEAP_ID_FIELD);
 
         caveEffect->camera = encEffect->fieldSystem->camera;
         distance = Camera_GetDistance(caveEffect->camera);
@@ -559,7 +559,7 @@ void EncounterEffect_Cave_HigherLevel(SysTask *task, void *param)
         QuadraticInterpolationTaskFX32_Update(&caveEffect->camInterpolation);
         Camera_SetDistance(caveEffect->camInterpolation.currentValue, caveEffect->camera);
 
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             encEffect->state++;
         }
         break;
@@ -571,7 +571,7 @@ void EncounterEffect_Cave_HigherLevel(SysTask *task, void *param)
         }
 
         EncounterEffect_Finish(encEffect, task);
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
         break;
     }
 }
@@ -797,7 +797,7 @@ void EncounterEffect_Trainer_Grass_LowerLevel(SysTask *task, void *param)
         break;
 
     case 7:
-        sub_0200F370(0x0);
+        SetColorBrightness(FADE_TO_BLACK);
 
         if (encEffect->done != NULL) {
             *(encEffect->done) = 1;
@@ -941,7 +941,7 @@ void EncounterEffect_Trainer_Grass_HigherLevel(SysTask *param0, void *param1)
         break;
 
     case 7:
-        sub_0200F370(0x0);
+        SetColorBrightness(FADE_TO_BLACK);
 
         if (encEffect->done != NULL) {
             *(encEffect->done) = 1;
@@ -1085,7 +1085,7 @@ void EncounterEffect_Trainer_Water_LowerLevel(SysTask *param0, void *param1)
         v4 = Camera_GetDistance(v1->camera);
         QuadraticInterpolationTaskFX32_Init(&v1->unk_230, v4, v4 + (-FX32_CONST(500)), (-FX32_CONST(10)), 8);
 
-        StartScreenTransition(3, 24, 0, 0x0, 8, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_24, FADE_TYPE_UNK_0, FADE_TO_BLACK, 8, 1, HEAP_ID_FIELD);
         v0->state++;
         break;
 
@@ -1103,14 +1103,14 @@ void EncounterEffect_Trainer_Water_LowerLevel(SysTask *param0, void *param1)
         QuadraticInterpolationTaskFX32_Update(&v1->unk_230);
         Camera_SetDistance(v1->unk_230.currentValue, v1->camera);
 
-        if ((v2 == 1) && (IsScreenTransitionDone() == 1)) {
+        if ((v2 == 1) && (IsScreenFadeDone() == TRUE)) {
             v0->state++;
         }
 
         break;
 
     case 7:
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
 
         if (v0->done != NULL) {
             *(v0->done) = 1;
@@ -1289,7 +1289,7 @@ void EncounterEffect_Trainer_Water_HigherLevel(SysTask *param0, void *param1)
         break;
 
     case 7:
-        sub_0200F370(0x0);
+        SetColorBrightness(FADE_TO_BLACK);
 
         if (v0->done != NULL) {
             *(v0->done) = 1;
@@ -1440,7 +1440,7 @@ void EncounterEffect_Trainer_Cave_LowerLevel(SysTask *param0, void *param1)
         v3 = Camera_GetDistance(v1->camera);
         QuadraticInterpolationTaskFX32_Init(&v1->unk_238, v3, v3 + (-FX32_CONST(1000)), (FX32_CONST(10)), 8);
 
-        StartScreenTransition(3, 18, 0, 0x0, 8, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_18, FADE_TYPE_UNK_0, FADE_TO_BLACK, 8, 1, HEAP_ID_FIELD);
         v0->state++;
         break;
 
@@ -1449,14 +1449,14 @@ void EncounterEffect_Trainer_Cave_LowerLevel(SysTask *param0, void *param1)
         QuadraticInterpolationTaskFX32_Update(&v1->unk_238);
         Camera_SetDistance(v1->unk_238.currentValue, v1->camera);
 
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             v0->state++;
         }
 
         break;
 
     case 7:
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
 
         HBlankSystem_Start(v0->fieldSystem->unk_04->hBlankSystem);
 
@@ -1638,7 +1638,7 @@ void EncounterEffect_Trainer_Cave_HigherLevel(SysTask *param0, void *param1)
         break;
 
     case 9:
-        sub_0200F370(0x0);
+        SetColorBrightness(FADE_TO_BLACK);
 
         if (v0->done != NULL) {
             *(v0->done) = 1;
@@ -1778,7 +1778,7 @@ void EncounterEffect_Frontier(SysTask *param0, void *param1)
         }
 
         HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
-        StartScreenTransition(3, 16, 0, 0x0, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_16, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
         v0->state++;
         break;
 
@@ -1791,14 +1791,14 @@ void EncounterEffect_Frontier(SysTask *param0, void *param1)
                 v1->unk_200, &v4);
         }
 
-        if ((v2 == 1) && (IsScreenTransitionDone() == 1)) {
+        if ((v2 == 1) && (IsScreenFadeDone() == TRUE)) {
             v0->state++;
         }
 
         break;
 
     case 7:
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
 
         HBlankSystem_Start(v0->fieldSystem->unk_04->hBlankSystem);
 
@@ -1902,19 +1902,19 @@ void EncounterEffect_Double(SysTask *param0, void *param1)
     case 5:
 
         HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
-        StartScreenTransition(3, 34, 0, 0x0, 8, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_34, FADE_TYPE_UNK_0, FADE_TO_BLACK, 8, 1, HEAP_ID_FIELD);
         v0->state++;
         break;
 
     case 6:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             v0->state++;
         }
 
         break;
 
     case 7:
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
 
         HBlankSystem_Start(v0->fieldSystem->unk_04->hBlankSystem);
 
@@ -2062,19 +2062,19 @@ void EncounterEffect_GalacticGrunt(SysTask *param0, void *param1)
 
         HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
 
-        StartScreenTransition(3, 34, 0, 0x0, 12, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_34, FADE_TYPE_UNK_0, FADE_TO_BLACK, 12, 1, HEAP_ID_FIELD);
         v0->state++;
         break;
 
     case 6:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             v0->state++;
         }
 
         break;
 
     case 7:
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
 
         HBlankSystem_Start(v0->fieldSystem->unk_04->hBlankSystem);
 
@@ -2218,7 +2218,7 @@ void EncounterEffect_GalacticBoss(SysTask *param0, void *param1)
         break;
 
     case 7:
-        sub_0200F370(0x0);
+        SetColorBrightness(FADE_TO_BLACK);
 
         ov5_021DEC18(v1->unk_04);
 
@@ -2452,12 +2452,12 @@ void EncounterEffect_Mythical(SysTask *task, void *param)
         break;
 
     case 5:
-        StartScreenTransition(3, 0, 0, 0x7fff, 10, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_WHITE, 10, 1, HEAP_ID_FIELD);
         encEffect->state++;
         break;
 
     case 6:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             encEffect->effectComplete = FALSE;
             encEffect->state++;
         }
@@ -2465,7 +2465,7 @@ void EncounterEffect_Mythical(SysTask *task, void *param)
         break;
 
     case 7:
-        sub_0200F344(1, 0x7fff);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_WHITE);
 
         FieldMotionBlur_Stop(&mythicalEffect->motionBlur);
 
@@ -2476,7 +2476,7 @@ void EncounterEffect_Mythical(SysTask *task, void *param)
         }
 
         EncounterEffect_Finish(encEffect, task);
-        sub_0200F344(1, 0x7fff);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_WHITE);
         break;
     }
 }
@@ -2555,12 +2555,12 @@ void EncounterEffect_Legendary(SysTask *task, void *param)
         break;
 
     case 7:
-        StartScreenTransition(3, 0, 0, 0x7fff, 60, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_WHITE, 60, 1, HEAP_ID_FIELD);
         encEffect->state++;
         break;
 
     case 8:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             encEffect->effectComplete = FALSE;
             encEffect->state++;
         }
@@ -2568,7 +2568,7 @@ void EncounterEffect_Legendary(SysTask *task, void *param)
         break;
 
     case 9:
-        sub_0200F344(1, 0x7fff);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_WHITE);
 
         FieldMotionBlur_Stop(&legendaryEffect->motionBlur);
 
@@ -2579,7 +2579,7 @@ void EncounterEffect_Legendary(SysTask *task, void *param)
         }
 
         EncounterEffect_Finish(encEffect, task);
-        sub_0200F344(1, 0x7fff);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_WHITE);
         break;
     }
 }
@@ -3064,20 +3064,20 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId he
 
     case 13:
 
-        StartScreenTransition(3, 0, 0, 0x7fff, 15, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_WHITE, 15, 1, HEAP_ID_FIELD);
         encEffect->state++;
         break;
 
     case 14:
 
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             encEffect->state++;
         }
 
         break;
 
     case 15:
-        sub_0200F344(1, 0x7fff);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_WHITE);
 
         if (encEffect->done != NULL) {
             *(encEffect->done) = 1;
@@ -3507,7 +3507,7 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
             QuadraticInterpolationTaskFX32_Init(&v0->unk_00, 0, (FX32_CONST(192.0f)), (FX32_CONST(24.0f)), 16);
             QuadraticInterpolationTaskFX32_Init(&v0->unk_18, 0, (FX32_CONST(192.0f)), (FX32_CONST(24.0f)), 16);
 
-            StartScreenTransition(3, 0, 0, 0x7fff, 8, 1, HEAP_ID_FIELD);
+            StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_WHITE, 8, 1, HEAP_ID_FIELD);
         }
 
         break;
@@ -3530,14 +3530,14 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
         v3.x += (-16 * FX32_ONE);
         Sprite_SetPosition(v0->unk_2CC[3], &v3);
 
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             encEffect->state++;
         }
 
         break;
 
     case 14:
-        sub_0200F344(1, 0x7fff);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_WHITE);
 
         if (encEffect->done != NULL) {
             *(encEffect->done) = 1;

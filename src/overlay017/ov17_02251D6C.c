@@ -29,10 +29,10 @@
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0200F174.h"
 
 static int ov17_02251DAC(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3);
 static void ov17_02251DC0(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3);
@@ -480,12 +480,12 @@ static void ov17_022523AC(SysTask *param0, void *param1)
         }
         break;
     case 2:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_24);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_24);
         Sound_StopBGM(SEQ_CONTEST_DRESSING_ROOM, 30);
         v0->unk_10++;
         break;
     case 3:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             v0->unk_10++;
         }
         break;
@@ -516,12 +516,12 @@ static void ov17_022523AC(SysTask *param0, void *param1)
         break;
     case 5:
         if (Sound_IsFadeActive() == FALSE) {
-            StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_24);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_24);
             v0->unk_10++;
         }
         break;
     case 6:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             Sound_PlayBGM(SEQ_CO_KEKKA);
             v0->unk_10++;
         }

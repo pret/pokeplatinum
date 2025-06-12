@@ -20,6 +20,7 @@
 #include "pokemon.h"
 #include "render_oam.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sound_chatot.h"
 #include "sound_playback.h"
 #include "sprite.h"
@@ -28,7 +29,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_020131EC.h"
 
 typedef struct UnkStruct_ov87_021D106C_t {
@@ -154,11 +154,11 @@ static BOOL ov87_021D1210(UnkStruct_ov87_021D106C *param0, int *param1)
     case 0:
         ov87_021D139C(param0);
         ov87_021D1818(param0);
-        StartScreenTransition(3, 1, 1, 0x0, 6, 1, HEAP_ID_61);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_61);
         (*param1)++;
         break;
     case 1:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             return 1;
         }
 
@@ -173,11 +173,11 @@ static BOOL ov87_021D1260(UnkStruct_ov87_021D106C *param0, int *param1)
     switch (*param1) {
     case 0:
         Sound_PlayEffect(SEQ_SE_DP_PC_LOGOFF);
-        StartScreenTransition(3, 0, 0, 0x0, 6, 1, HEAP_ID_61);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_61);
         (*param1)++;
         break;
     case 1:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             ov87_021D186C(param0);
             ov87_021D14B8(param0);
             return 1;

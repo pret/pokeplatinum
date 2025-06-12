@@ -7,13 +7,13 @@
 
 #include "heap.h"
 #include "palette.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "system.h"
 #include "touch_screen.h"
 #include "touch_screen_actions.h"
-#include "unk_0200F174.h"
 #include "unk_020393C8.h"
 #include "unk_0208A3F4.h"
 
@@ -128,7 +128,7 @@ BOOL sub_02089820(UnkStruct_02089688 *param0)
     }
 
     sub_02089808(param0, 1);
-    StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_101);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_101);
 
     return 0;
 }
@@ -137,11 +137,11 @@ BOOL sub_020898DC(UnkStruct_02089688 *param0)
 {
     switch (param0->unk_29C) {
     case 0:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_101);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_101);
         param0->unk_29C++;
         break;
     case 1:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             param0->unk_29C++;
         }
         break;
@@ -156,7 +156,7 @@ BOOL sub_02089938(UnkStruct_02089688 *param0)
 {
     switch (param0->unk_29C) {
     case 0:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             param0->unk_29C++;
         }
         break;

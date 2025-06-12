@@ -25,13 +25,13 @@
 #include "pokemon.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "screen_fade.h"
 #include "script_manager.h"
 #include "sound_playback.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_0203A7D8.h"
 #include "unk_020553DC.h"
 #include "unk_02070428.h"
@@ -141,22 +141,22 @@ static BOOL sub_020529C4(FieldTask *task)
 
     switch (v0->unk_00) {
     case 0:
-        StartScreenTransition(3, 1, 42, 0x0, 8, 1, HEAP_ID_FIELD_TASK);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_MAX, FADE_TO_BLACK, 8, 1, HEAP_ID_FIELD_TASK);
         v0->unk_00++;
         break;
     case 1:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             v0->unk_00++;
         }
         break;
     case 2:
         if ((gSystem.pressedKeys & PAD_BUTTON_A) || (gSystem.pressedKeys & PAD_BUTTON_B)) {
-            StartScreenTransition(0, 0, 0, 0x0, 8, 1, HEAP_ID_FIELD_TASK);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 8, 1, HEAP_ID_FIELD_TASK);
             v0->unk_00++;
         }
         break;
     case 3:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             Window_FillTilemap(&v0->unk_0C, 0);
             v0->unk_00++;
         }

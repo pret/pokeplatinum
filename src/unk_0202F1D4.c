@@ -36,10 +36,10 @@ BattleRecording *Unk_021C07A4 = NULL;
 
 static void sub_0202FCE8(const Party *param0, UnkStruct_0202FD30 *param1);
 static void sub_0202FD30(UnkStruct_0202FD30 *param0, Party *param1);
-static BOOL sub_0202F75C(SaveData *param0, BattleRecording *param1);
-static BOOL sub_0202F794(SaveData *param0, const BattleRecording *param1);
+static BOOL sub_0202F75C(SaveData *saveData, BattleRecording *param1);
+static BOOL sub_0202F794(SaveData *saveData, const BattleRecording *param1);
 static void sub_0202F860(void *param0, u32 param1, u32 param2);
-static void sub_0202F510(SaveData *param0, UnkStruct_0202F41C *param1, const UnkStruct_0202F298 *param2, int param3, int param4);
+static void sub_0202F510(SaveData *saveData, UnkStruct_0202F41C *param1, const UnkStruct_0202F298 *param2, int param3, int param4);
 
 int BattleRecording_SaveSize(void)
 {
@@ -94,7 +94,7 @@ void *sub_0202F27C(void)
     return &v0[sizeof(u32)];
 }
 
-BOOL sub_0202F298(SaveData *param0, int param1, int *param2, FieldBattleDTO *param3, int param4)
+BOOL sub_0202F298(SaveData *saveData, int param1, int *param2, FieldBattleDTO *param3, int param4)
 {
     UnkStruct_0202F298 *v0;
     UnkStruct_0202F41C *v1;
@@ -104,7 +104,7 @@ BOOL sub_0202F298(SaveData *param0, int param1, int *param2, FieldBattleDTO *par
         Unk_021C07A4 = NULL;
     }
 
-    Unk_021C07A4 = SaveData_BattleRecording(param0, param1, param2, param4);
+    Unk_021C07A4 = SaveData_BattleRecording(saveData, param1, param2, param4);
 
     if (*param2 != 1) {
         *param2 = 3;
@@ -116,29 +116,29 @@ BOOL sub_0202F298(SaveData *param0, int param1, int *param2, FieldBattleDTO *par
 
     sub_0202F860(v0, sizeof(UnkStruct_0202F298) - (sizeof(UnkStruct_0202F298_sub1)), v0->unk_1BEC.unk_00 + ((v0->unk_1BEC.unk_00 ^ 0xffff) << 16));
 
-    if (sub_0202F75C(param0, Unk_021C07A4) == 1) {
+    if (sub_0202F75C(saveData, Unk_021C07A4) == 1) {
         *param2 = 0;
         return 1;
     }
 
-    if (sub_0202F794(param0, Unk_021C07A4) == 0) {
+    if (sub_0202F794(saveData, Unk_021C07A4) == 0) {
         *param2 = 2;
         return 1;
     }
 
     if (param3) {
-        sub_0202FAFC(param3, param0);
+        sub_0202FAFC(param3, saveData);
     }
 
     *param2 = 1;
     return 1;
 }
 
-BOOL sub_0202F330(SaveData *param0, int param1, int *param2, int param3)
+BOOL sub_0202F330(SaveData *saveData, int param1, int *param2, int param3)
 {
     UnkStruct_0202F298 *v0;
     UnkStruct_0202F41C *v1;
-    BattleRecording *v2 = SaveData_BattleRecording(param0, param1, param2, param3);
+    BattleRecording *v2 = SaveData_BattleRecording(saveData, param1, param2, param3);
 
     if (*param2 != 1) {
         *param2 = 3;
@@ -151,13 +151,13 @@ BOOL sub_0202F330(SaveData *param0, int param1, int *param2, int param3)
 
     sub_0202F860(v0, sizeof(UnkStruct_0202F298) - (sizeof(UnkStruct_0202F298_sub1)), v0->unk_1BEC.unk_00 + ((v0->unk_1BEC.unk_00 ^ 0xffff) << 16));
 
-    if (sub_0202F75C(param0, v2) == 1) {
+    if (sub_0202F75C(saveData, v2) == 1) {
         *param2 = 0;
         Heap_FreeToHeap(v2);
         return 0;
     }
 
-    if (sub_0202F794(param0, v2) == 0) {
+    if (sub_0202F794(saveData, v2) == 0) {
         *param2 = 2;
         Heap_FreeToHeap(v2);
         return 0;
@@ -168,7 +168,7 @@ BOOL sub_0202F330(SaveData *param0, int param1, int *param2, int param3)
     return 1;
 }
 
-int sub_0202F3AC(SaveData *param0, BattleRecording *param1, int param2, u16 *param3)
+int sub_0202F3AC(SaveData *saveData, BattleRecording *param1, int param2, u16 *param3)
 {
     int v0;
 
@@ -177,10 +177,10 @@ int sub_0202F3AC(SaveData *param0, BattleRecording *param1, int param2, u16 *par
         ResetLock(RESET_LOCK_0x8);
         InitHeapCanary(11);
 
-        v0 = SaveData_SaveBattleRecording(param0, param1, param2);
+        v0 = SaveData_SaveBattleRecording(saveData, param1, param2);
 
         if (v0 == 2) {
-            SaveData_SaveStateInit(param0, 2);
+            SaveData_SaveStateInit(saveData, 2);
             (*param3)++;
             return 0;
         }
@@ -188,7 +188,7 @@ int sub_0202F3AC(SaveData *param0, BattleRecording *param1, int param2, u16 *par
         ResetUnlock(RESET_LOCK_0x8);
         return v0;
     case 1:
-        v0 = SaveData_SaveStateMain(param0);
+        v0 = SaveData_SaveStateMain(saveData);
 
         if ((v0 == 2) || (v0 == 3)) {
             (*param3) = 0;
@@ -202,7 +202,7 @@ int sub_0202F3AC(SaveData *param0, BattleRecording *param1, int param2, u16 *par
     return 0;
 }
 
-int sub_0202F41C(SaveData *param0, int param1, int param2, int param3, u16 *param4, u16 *param5)
+int sub_0202F41C(SaveData *saveData, int param1, int param2, int param3, u16 *param4, u16 *param5)
 {
     UnkStruct_0202F41C *v0;
     UnkStruct_0202F298 *v1;
@@ -218,12 +218,12 @@ int sub_0202F41C(SaveData *param0, int param1, int param2, int param3, u16 *para
         v0 = &Unk_021C07A4->unk_84;
         v1 = &Unk_021C07A4->unk_E8;
 
-        sub_0202F510(param0, v0, v1, param1, param2);
+        sub_0202F510(saveData, v0, v1, param1, param2);
 
         v0->unk_48 = 0xe281;
-        v0->unk_60.unk_00 = SaveData_CalculateChecksum(param0, v0, sizeof(UnkStruct_0202F41C) - (sizeof(UnkStruct_0202F298_sub1)) - (sizeof(u64)));
+        v0->unk_60.unk_00 = SaveData_CalculateChecksum(saveData, v0, sizeof(UnkStruct_0202F41C) - (sizeof(UnkStruct_0202F298_sub1)) - (sizeof(u64)));
         v1->unk_1BEA = 0xe281;
-        v1->unk_1BEC.unk_00 = SaveData_CalculateChecksum(param0, v1, sizeof(UnkStruct_0202F298) - (sizeof(UnkStruct_0202F298_sub1)));
+        v1->unk_1BEC.unk_00 = SaveData_CalculateChecksum(saveData, v1, sizeof(UnkStruct_0202F298) - (sizeof(UnkStruct_0202F298_sub1)));
 
         sub_0202F858(v1, sizeof(UnkStruct_0202F298) - (sizeof(UnkStruct_0202F298_sub1)), v1->unk_1BEC.unk_00 + ((v1->unk_1BEC.unk_00 ^ 0xffff) << 16));
 
@@ -231,7 +231,7 @@ int sub_0202F41C(SaveData *param0, int param1, int param2, int param3, u16 *para
         (*param4)++;
         break;
     case 1:
-        v2 = sub_0202F3AC(param0, Unk_021C07A4, param3, param5);
+        v2 = sub_0202F3AC(saveData, Unk_021C07A4, param3, param5);
         return v2;
     }
 
@@ -258,7 +258,7 @@ void sub_0202F4C0(int param0, int *param1, int *param2)
     }
 }
 
-static void sub_0202F510(SaveData *param0, UnkStruct_0202F41C *param1, const UnkStruct_0202F298 *param2, int param3, int param4)
+static void sub_0202F510(SaveData *saveData, UnkStruct_0202F41C *param1, const UnkStruct_0202F298 *param2, int param3, int param4)
 {
     int v0, v1, v2, v3, v4, v5, v6;
     const UnkStruct_02078B40 *v7;
@@ -315,27 +315,27 @@ static void sub_0202F510(SaveData *param0, UnkStruct_0202F41C *param1, const Unk
     switch (param3) {
     case (UnkEnum_0202F510_01):
     case (UnkEnum_0202F510_08):
-        param1->unk_28 = *(sub_02026150(param0, 0));
+        param1->unk_28 = *(sub_02026150(saveData, 0));
         break;
     case (UnkEnum_0202F510_02):
     case (UnkEnum_0202F510_09):
-        param1->unk_28 = *(sub_02026150(param0, 1));
+        param1->unk_28 = *(sub_02026150(saveData, 1));
         break;
     case (UnkEnum_0202F510_03):
     case (UnkEnum_0202F510_10):
-        param1->unk_28 = *(sub_02026150(param0, 2));
+        param1->unk_28 = *(sub_02026150(saveData, 2));
         break;
     case (UnkEnum_0202F510_04):
     case (UnkEnum_0202F510_11):
-        param1->unk_28 = *(sub_02026150(param0, 3));
+        param1->unk_28 = *(sub_02026150(saveData, 3));
         break;
     case (UnkEnum_0202F510_05):
     case (UnkEnum_0202F510_12):
-        param1->unk_28 = *(sub_02026150(param0, 4));
+        param1->unk_28 = *(sub_02026150(saveData, 4));
         break;
     case (UnkEnum_0202F510_06):
     case (UnkEnum_0202F510_13):
-        param1->unk_28 = *(sub_02026150(param0, 5));
+        param1->unk_28 = *(sub_02026150(saveData, 5));
         break;
     case (UnkEnum_0202F510_00):
     case (UnkEnum_0202F510_07):
@@ -348,12 +348,12 @@ static void sub_0202F510(SaveData *param0, UnkStruct_0202F41C *param1, const Unk
     param1->unk_26 = param3;
 }
 
-static BOOL sub_0202F75C(SaveData *param0, BattleRecording *param1)
+static BOOL sub_0202F75C(SaveData *saveData, BattleRecording *param1)
 {
     UnkStruct_0202F298 *v0 = &param1->unk_E8;
     UnkStruct_0202F41C *v1 = &param1->unk_84;
 
-    if (SaveData_MiscSaveBlock_InitFlag(param0) == 0) {
+    if (SaveData_MiscSaveBlock_InitFlag(saveData) == 0) {
         return 1;
     }
 
@@ -364,7 +364,7 @@ static BOOL sub_0202F75C(SaveData *param0, BattleRecording *param1)
     return 0;
 }
 
-static BOOL sub_0202F794(SaveData *param0, const BattleRecording *param1)
+static BOOL sub_0202F794(SaveData *saveData, const BattleRecording *param1)
 {
     const UnkStruct_0202F298 *v0 = &param1->unk_E8;
     const UnkStruct_0202F41C *v1 = &param1->unk_84;
@@ -374,13 +374,13 @@ static BOOL sub_0202F794(SaveData *param0, const BattleRecording *param1)
         return 0;
     }
 
-    v2 = SaveData_CalculateChecksum(param0, v1, sizeof(UnkStruct_0202F41C) - (sizeof(UnkStruct_0202F298_sub1)) - (sizeof(u64)));
+    v2 = SaveData_CalculateChecksum(saveData, v1, sizeof(UnkStruct_0202F41C) - (sizeof(UnkStruct_0202F298_sub1)) - (sizeof(u64)));
 
     if (v2 != v1->unk_60.unk_00) {
         return 0;
     }
 
-    v2 = SaveData_CalculateChecksum(param0, v0, sizeof(UnkStruct_0202F298) - (sizeof(UnkStruct_0202F298_sub1)));
+    v2 = SaveData_CalculateChecksum(saveData, v0, sizeof(UnkStruct_0202F298) - (sizeof(UnkStruct_0202F298_sub1)));
 
     if (v2 != v0->unk_1BEC.unk_00) {
         return 0;
@@ -651,7 +651,7 @@ UnkStruct_0202F41C *sub_0202FE04(void)
     return &Unk_021C07A4->unk_84;
 }
 
-void sub_0202FE20(UnkStruct_02030A80 *param0, UnkStruct_0202F41C *param1, UnkStruct_0202F298 *param2, FieldBattleDTO *param3, SaveData *param4)
+void sub_0202FE20(UnkStruct_02030A80 *param0, UnkStruct_0202F41C *param1, UnkStruct_0202F298 *param2, FieldBattleDTO *param3, SaveData *saveData)
 {
     GF_ASSERT(Unk_021C07A4 != NULL);
 
@@ -662,7 +662,7 @@ void sub_0202FE20(UnkStruct_02030A80 *param0, UnkStruct_0202F41C *param1, UnkStr
     sub_0202F860(&Unk_021C07A4->unk_E8, sizeof(UnkStruct_0202F298) - (sizeof(UnkStruct_0202F298_sub1)), Unk_021C07A4->unk_E8.unk_1BEC.unk_00 + ((Unk_021C07A4->unk_E8.unk_1BEC.unk_00 ^ 0xffff) << 16));
 
     if (param3 != NULL) {
-        sub_0202FAFC(param3, param4);
+        sub_0202FAFC(param3, saveData);
     }
 }
 

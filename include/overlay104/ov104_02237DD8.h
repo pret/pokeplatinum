@@ -7,7 +7,7 @@
 #include "party.h"
 #include "savedata.h"
 
-UnkStruct_ov104_0223BFFC *ov104_02237DD8(SaveData *param0, u16 param1, u8 param2, u16 param3, u16 param4, u16 param5, u16 *param6);
+UnkStruct_ov104_0223BFFC *ov104_02237DD8(SaveData *saveData, u16 param1, u8 param2, u16 param3, u16 param4, u16 param5, u16 *param6);
 void ov104_0223806C(UnkStruct_ov104_0223BFFC *param0, u16 param1);
 void ov104_02238210(UnkStruct_ov104_0223BFFC *param0);
 void ov104_02238240(UnkStruct_ov104_0223BFFC *param0, void *param1);

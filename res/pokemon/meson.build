@@ -238,7 +238,7 @@ pl_pokegra_narc = custom_target('pl_pokegra.narc',
 pl_otherpoke_narc = custom_target('pl_otherpoke.narc',
     output: [
         'pl_otherpoke.narc',
-        'pl_otherpoke.naix',
+        'pl_otherpoke.naix.h',
     ],
     input: [
         otherpoke_files,
@@ -256,6 +256,7 @@ pl_otherpoke_narc = custom_target('pl_otherpoke.narc',
         form_sprites_shared,
     ]
 )
+naix_headers += pl_otherpoke_narc[1]
 
 pl_pokezukan_narc = custom_target('pl_pokezukan.narc',
     output: 'pl_pokezukan.narc',
@@ -327,7 +328,10 @@ pokedex_data_giratina_altered_narc = custom_target('zukan_data_gira.narc',
 )
 
 pokefoot_narc = custom_target('pokefoot.narc',
-    output: 'pokefoot.narc',
+    output: [
+        'pokefoot.narc',
+        'pokefoot.naix.h',
+    ],
     input: pokefoot_files,
     command: [
         make_pokefoot_py,
@@ -340,6 +344,7 @@ pokefoot_narc = custom_target('pokefoot.narc',
     env: species_env,
     depends: [ py_consts_generators ],
 )
+naix_headers += pokefoot_narc[1]
 
 nitrofs_files += datagen_species_out
 

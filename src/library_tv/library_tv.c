@@ -14,9 +14,9 @@
 #include "heap.h"
 #include "message.h"
 #include "overlay_manager.h"
+#include "screen_fade.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 
 #define LIBRARY_TV_DURATION 90 + 150
 
@@ -30,7 +30,7 @@ typedef struct LibraryTV {
     int waitTiming;
 } LibraryTV;
 
-extern void EnqueueApplication(FSOverlayID param0, const OverlayManagerTemplate *param1);
+extern void EnqueueApplication(FSOverlayID param0, const ApplicationManagerTemplate *param1);
 static void LibraryTV_VBlank(void *data);
 static void LibraryTV_SetVramBank(LibraryTV *ltv);
 static void LibraryTV_ReleaseVramBank(LibraryTV *ltv);
@@ -38,13 +38,13 @@ static void LibraryTV_SetMsgLdr(LibraryTV *ltv);
 static void LibraryTV_ReleaseMsgLdr(LibraryTV *ltv);
 static void LibraryTV_UpdateScanLines(LibraryTV *ltv);
 
-BOOL LibraryTV_Init(OverlayManager *ovy, int *state)
+BOOL LibraryTV_Init(ApplicationManager *appMan, int *state)
 {
     int heapID = HEAP_ID_LIBRARY_TV;
 
     Heap_Create(HEAP_ID_APPLICATION, heapID, HEAP_SIZE_LIBRARY_TV);
 
-    LibraryTV *ltv = OverlayManager_NewData(ovy, sizeof(LibraryTV), heapID);
+    LibraryTV *ltv = ApplicationManager_NewData(appMan, sizeof(LibraryTV), heapID);
     memset(ltv, 0, sizeof(LibraryTV));
 
     ltv->heapID = heapID;
@@ -62,15 +62,15 @@ enum LibraryTVAppState {
     STATE_EXIT
 };
 
-BOOL LibraryTV_Main(OverlayManager *ovy, int *state)
+BOOL LibraryTV_Main(ApplicationManager *appMan, int *state)
 {
-    LibraryTV *ltv = OverlayManager_Data(ovy);
+    LibraryTV *ltv = ApplicationManager_Data(appMan);
     BOOL result = FALSE;
 
     switch (*state) {
     case STATE_INIT:
-        sub_0200F344(0, 0x0);
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
 
         SetVBlankCallback(NULL, NULL);
         SetHBlankCallback(NULL, NULL);
@@ -107,14 +107,14 @@ BOOL LibraryTV_Main(OverlayManager *ovy, int *state)
             ltv->waitTiming--;
         } else {
             ltv->waitTiming = 0;
-            StartScreenTransition(0, 1, 1, 0x0, 6, 1, ltv->heapID);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, ltv->heapID);
             *state = STATE_FADE_WAIT;
         }
         break;
     case STATE_FADE_WAIT:
         LibraryTV_UpdateScanLines(ltv);
 
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             ltv->waitTiming = LIBRARY_TV_DURATION;
             *state = STATE_MAIN;
         }
@@ -126,14 +126,14 @@ BOOL LibraryTV_Main(OverlayManager *ovy, int *state)
             ltv->waitTiming--;
         } else {
             ltv->waitTiming = 0;
-            StartScreenTransition(0, 0, 0, 0x0, 6, 1, ltv->heapID);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, ltv->heapID);
             *state = STATE_EXIT;
         }
         break;
     case STATE_EXIT:
         LibraryTV_UpdateScanLines(ltv);
 
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             LibraryTV_ReleaseMsgLdr(ltv);
             LibraryTV_ReleaseVramBank(ltv);
             SetVBlankCallback(NULL, NULL);
@@ -145,12 +145,12 @@ BOOL LibraryTV_Main(OverlayManager *ovy, int *state)
     return result;
 }
 
-BOOL LibraryTV_Exit(OverlayManager *ovy, int *state)
+BOOL LibraryTV_Exit(ApplicationManager *appMan, int *state)
 {
-    LibraryTV *ltv = OverlayManager_Data(ovy);
+    LibraryTV *ltv = ApplicationManager_Data(appMan);
     int heapID = ltv->heapID;
 
-    OverlayManager_FreeData(ovy);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(heapID);
 
     return TRUE;

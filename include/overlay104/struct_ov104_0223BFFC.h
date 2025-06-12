@@ -3,8 +3,7 @@
 
 #include "struct_decls/struct_020304A0_decl.h"
 
-#include "overlay104/struct_ov104_0223A348.h"
-#include "overlay104/struct_ov104_0223A348_sub2.h"
+#include "overlay104/frontier_data_transfer.h"
 
 #include "party.h"
 #include "savedata.h"
@@ -12,7 +11,7 @@
 
 typedef struct {
     int unk_00;
-    SaveData *unk_04;
+    SaveData *saveData;
     UnkStruct_020304A0 *unk_08;
     void *unk_0C;
     u8 unk_10;
@@ -49,7 +48,7 @@ typedef struct {
     u16 unk_314[4];
     u8 unk_31C[4];
     u32 unk_320[4];
-    UnkStruct_ov104_0223A348_sub2 unk_330[4];
+    FrontierPokemonDataDTO unk_330[4];
     u16 unk_410;
     u16 unk_412[3];
     u16 unk_418[6];

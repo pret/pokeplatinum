@@ -52,10 +52,10 @@ _0078:
 
     .balign 4, 0
 _00AC:
-    MoveAction_002
-    MoveAction_071
-    MoveAction_015
-    MoveAction_072
+    FaceWest
+    LockDir
+    WalkNormalEast
+    UnlockDir
     EndMovement
 
 _00C0:

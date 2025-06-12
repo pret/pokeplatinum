@@ -33,7 +33,7 @@ typedef struct {
     u8 unk_04[6];
     MATHRandContext32 unk_0C;
     UnkFuncPtr_02036C94 unk_24;
-    SaveData *unk_28;
+    SaveData *saveData;
     TrainerInfo *unk_2C;
     const BattleRegulation *unk_30;
     UnkStruct_ov65_0222F6EC unk_34;
@@ -144,7 +144,7 @@ static u8 Unk_02100A20[] = { "FREAK" };
 static u8 Unk_02100A30[] = { " GAME" };
 static u8 Unk_02100A28[] = { " FULL" };
 
-static void sub_020366A0(SaveData *param0, int param1)
+static void sub_020366A0(SaveData *saveData, int param1)
 {
     void *v0;
 
@@ -152,7 +152,7 @@ static void sub_020366A0(SaveData *param0, int param1)
         return;
     }
 
-    GF_ASSERT(param0);
+    GF_ASSERT(saveData);
     sub_02033478();
 
     Unk_021C07D4 = (UnkStruct_021C07D4 *)Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sizeof(UnkStruct_021C07D4));
@@ -160,8 +160,8 @@ static void sub_020366A0(SaveData *param0, int param1)
 
     Unk_021C07D4->unk_40 = 50;
     Unk_021C07D4->unk_4E = 1;
-    Unk_021C07D4->unk_28 = param0;
-    Unk_021C07D4->unk_2C = SaveData_GetTrainerInfo(param0);
+    Unk_021C07D4->saveData = saveData;
+    Unk_021C07D4->unk_2C = SaveData_GetTrainerInfo(saveData);
     Unk_021C07D4->unk_46 = 1 + 1;
     Unk_021C07D4->unk_48 = 0;
     Unk_021C07D4->unk_53 = 0;
@@ -208,14 +208,14 @@ BOOL CommMan_IsInitialized(void)
     return 0;
 }
 
-void sub_02036794(SaveData *param0)
+void sub_02036794(SaveData *saveData)
 {
     if (Unk_021C07D4 != NULL) {
         return;
     }
 
     Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0xF000);
-    sub_020366A0(param0, 10);
+    sub_020366A0(saveData, 10);
 
     Unk_021C07D4->unk_4B = 0;
 
@@ -286,14 +286,14 @@ void sub_020368A4(void)
     sub_02036C94(sub_02037108, 0);
 }
 
-void CommMan_StartBattleServer(SaveData *param0, int param1, int param2, const BattleRegulation *param3, BOOL param4)
+void CommMan_StartBattleServer(SaveData *saveData, int param1, int param2, const BattleRegulation *param3, BOOL param4)
 {
     if (CommSys_IsInitialized()) {
         return;
     }
 
     Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x7080);
-    sub_020366A0(param0, param1);
+    sub_020366A0(saveData, param1);
 
     Unk_021C07D4->unk_4B = param2;
     Unk_021C07D4->unk_30 = param3;
@@ -301,14 +301,14 @@ void CommMan_StartBattleServer(SaveData *param0, int param1, int param2, const B
     sub_02036C94(sub_02037144, 0);
 }
 
-void CommMan_StartBattleClient(SaveData *param0, int param1, int param2, const BattleRegulation *param3, BOOL param4)
+void CommMan_StartBattleClient(SaveData *saveData, int param1, int param2, const BattleRegulation *param3, BOOL param4)
 {
     if (CommSys_IsInitialized()) {
         return;
     }
 
     Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x7080);
-    sub_020366A0(param0, param1);
+    sub_020366A0(saveData, param1);
 
     Unk_021C07D4->unk_4B = param2;
     Unk_021C07D4->unk_30 = param3;
@@ -365,7 +365,7 @@ BOOL sub_0203699C(void)
     return 0;
 }
 
-void sub_020369EC(SaveData *param0)
+void sub_020369EC(SaveData *saveData)
 {
     if (Unk_021C07D4 != NULL) {
         return;
@@ -375,7 +375,7 @@ void sub_020369EC(SaveData *param0)
         sub_02038A0C();
     }
 
-    sub_020366A0(param0, 9);
+    sub_020366A0(saveData, 9);
 
     Unk_021C07D4->unk_4A = 9;
     Unk_021C07D4->unk_4B = 0;
@@ -512,25 +512,25 @@ void sub_02036BD8(void)
     Unk_021C07D4->unk_4A = 9;
 }
 
-void sub_02036BE8(SaveData *param0, int param1)
+void sub_02036BE8(SaveData *saveData, int param1)
 {
     if (CommSys_IsInitialized()) {
         return;
     }
 
     Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x7080);
-    sub_020366A0(param0, param1);
+    sub_020366A0(saveData, param1);
     sub_02036C94(sub_02037E20, 0);
 }
 
-void sub_02036C1C(SaveData *param0, int param1)
+void sub_02036C1C(SaveData *saveData, int param1)
 {
     if (CommSys_IsInitialized()) {
         return;
     }
 
     Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x7080);
-    sub_020366A0(param0, param1);
+    sub_020366A0(saveData, param1);
     sub_02036C94(sub_02037E68, 0);
 }
 
@@ -570,7 +570,7 @@ static void sub_02036CA4(void)
     }
 
     CommServerClient_Init(Unk_021C07D4->unk_2C, 1);
-    CommInfo_Init(Unk_021C07D4->unk_28, NULL);
+    CommInfo_Init(Unk_021C07D4->saveData, NULL);
     CommSys_SetAlone(1);
     CommSys_EnableSendMovementData();
 
@@ -846,7 +846,7 @@ static void sub_02037144(void)
     }
 
     CommServerClient_Init(Unk_021C07D4->unk_2C, 1);
-    CommInfo_Init(Unk_021C07D4->unk_28, Unk_021C07D4->unk_30);
+    CommInfo_Init(Unk_021C07D4->saveData, Unk_021C07D4->unk_30);
 
     if (CommSys_InitServer(1, 1, 512, 1)) {
         CommSys_SwitchTransitionTypeToParallel();
@@ -877,7 +877,7 @@ static void sub_020371C0(void)
     }
 
     CommServerClient_Init(Unk_021C07D4->unk_2C, 1);
-    CommInfo_Init(Unk_021C07D4->unk_28, Unk_021C07D4->unk_30);
+    CommInfo_Init(Unk_021C07D4->saveData, Unk_021C07D4->unk_30);
 
     if (CommSys_InitClient(1, 1, 512)) {
         CommSys_SwitchTransitionTypeToParallel();
@@ -1042,7 +1042,7 @@ static void sub_020373F0(void)
 
     CommServerClient_Init(Unk_021C07D4->unk_2C, 1);
     sub_02031FA4(Unk_021C07D4->unk_46);
-    CommInfo_Init(Unk_021C07D4->unk_28, NULL);
+    CommInfo_Init(Unk_021C07D4->saveData, NULL);
 
     if (CommSys_InitClient(1, 1, 512)) {
         CommSys_SwitchTransitionTypeToParallel();
@@ -1514,7 +1514,7 @@ static void sub_02037B78(void)
     }
 
     CommServerClient_Init(Unk_021C07D4->unk_2C, 1);
-    CommInfo_Init(Unk_021C07D4->unk_28, NULL);
+    CommInfo_Init(Unk_021C07D4->saveData, NULL);
 
     if (CommSys_InitClient(1, 1, 32)) {
         CommSys_SwitchTransitionTypeToParallel();
@@ -1522,14 +1522,14 @@ static void sub_02037B78(void)
     }
 }
 
-void sub_02037BC0(SaveData *param0)
+void sub_02037BC0(SaveData *saveData)
 {
     if (CommSys_IsInitialized()) {
         return;
     }
 
     Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x7000);
-    sub_020366A0(param0, 14);
+    sub_020366A0(saveData, 14);
 
     Unk_021C07D4->unk_4B = 0;
 
@@ -1601,19 +1601,19 @@ static void sub_02037D08(void)
     }
 
     CommServerClient_Init(Unk_021C07D4->unk_2C, 0);
-    CommInfo_Init(Unk_021C07D4->unk_28, NULL);
+    CommInfo_Init(Unk_021C07D4->saveData, NULL);
     sub_020320FC(sub_02037C5C);
     sub_02036C94(sub_02037CE4, 0);
 }
 
-void sub_02037D48(SaveData *param0)
+void sub_02037D48(SaveData *saveData)
 {
     if (CommSys_IsInitialized()) {
         return;
     }
 
     Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x7000);
-    sub_020366A0(param0, 17);
+    sub_020366A0(saveData, 17);
     Unk_021C07D4->unk_4B = 0;
     sub_02036C94(sub_02037D08, 0);
 }
@@ -1665,7 +1665,7 @@ static void sub_02037E20(void)
     }
 
     CommServerClient_Init(Unk_021C07D4->unk_2C, 1);
-    CommInfo_Init(Unk_021C07D4->unk_28, NULL);
+    CommInfo_Init(Unk_021C07D4->saveData, NULL);
 
     if (CommSys_InitServer(1, 1, 512, 1)) {
         CommSys_SwitchTransitionTypeToParallel();
@@ -1680,7 +1680,7 @@ static void sub_02037E68(void)
     }
 
     CommServerClient_Init(Unk_021C07D4->unk_2C, 1);
-    CommInfo_Init(Unk_021C07D4->unk_28, NULL);
+    CommInfo_Init(Unk_021C07D4->saveData, NULL);
 
     if (CommSys_InitClient(1, 1, 512)) {
         CommSys_SwitchTransitionTypeToParallel();
@@ -2063,7 +2063,7 @@ BOOL sub_020383E8(void)
     return 0;
 }
 
-void sub_02038438(SaveData *param0)
+void sub_02038438(SaveData *saveData)
 {
     if (!Unk_021C07D4) {
         Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x100);
@@ -2071,7 +2071,7 @@ void sub_02038438(SaveData *param0)
         MI_CpuFill8(Unk_021C07D4, 0, sizeof(UnkStruct_021C07D4));
         Unk_021C07D4->unk_4A = 24;
         Unk_021C07D4->unk_51 = 1;
-        Unk_021C07D4->unk_28 = param0;
+        Unk_021C07D4->saveData = saveData;
         CommMan_SetErrorHandling(0, 1);
         ResetLock(RESET_LOCK_0x1);
     }
@@ -2088,7 +2088,7 @@ void sub_0203848C(void)
     }
 }
 
-void sub_020384C0(SaveData *param0)
+void sub_020384C0(SaveData *saveData)
 {
     if (!Unk_021C07D4) {
         Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x100);
@@ -2096,7 +2096,7 @@ void sub_020384C0(SaveData *param0)
         MI_CpuFill8(Unk_021C07D4, 0, sizeof(UnkStruct_021C07D4));
         Unk_021C07D4->unk_4A = 25;
         Unk_021C07D4->unk_51 = 1;
-        Unk_021C07D4->unk_28 = param0;
+        Unk_021C07D4->saveData = saveData;
         CommMan_SetErrorHandling(0, 1);
         ResetLock(RESET_LOCK_0x1);
     }
@@ -2113,7 +2113,7 @@ void sub_02038514(void)
     }
 }
 
-void sub_02038548(SaveData *param0)
+void sub_02038548(SaveData *saveData)
 {
     if (!Unk_021C07D4) {
         Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x100);
@@ -2121,7 +2121,7 @@ void sub_02038548(SaveData *param0)
         MI_CpuFill8(Unk_021C07D4, 0, sizeof(UnkStruct_021C07D4));
         Unk_021C07D4->unk_4A = 36;
         Unk_021C07D4->unk_51 = 1;
-        Unk_021C07D4->unk_28 = param0;
+        Unk_021C07D4->saveData = saveData;
         CommMan_SetErrorHandling(0, 1);
         ResetLock(RESET_LOCK_0x1);
     }
@@ -2213,16 +2213,16 @@ static void sub_020386B4(void)
     }
 
     if (CommSys_InitServer(1, 1, 512, 1)) {
-        ov4_021D0D80(Unk_021C07D4->unk_28, HEAP_ID_49, (0x2B000 + 0x1400), CommLocal_MaxMachines(Unk_021C07D4->unk_4A) + 1);
+        ov4_021D0D80(Unk_021C07D4->saveData, HEAP_ID_49, (0x2B000 + 0x1400), CommLocal_MaxMachines(Unk_021C07D4->unk_4A) + 1);
         ov4_021D2170(sub_020389FC);
         CommSys_SwitchTransitionTypeToParallel();
         sub_02036C94(sub_0203862C, (30 * 60 * 2));
     }
 }
 
-void *sub_0203871C(SaveData *param0, int param1)
+void *sub_0203871C(SaveData *saveData, int param1)
 {
-    TrainerInfo *v0 = SaveData_GetTrainerInfo(param0);
+    TrainerInfo *v0 = SaveData_GetTrainerInfo(saveData);
 
     if (CommSys_IsInitialized()) {
         return NULL;
@@ -2230,21 +2230,21 @@ void *sub_0203871C(SaveData *param0, int param1)
 
     ResetLock(RESET_LOCK_0x1);
     Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x7080);
-    sub_020366A0(param0, 23);
+    sub_020366A0(saveData, 23);
     Unk_021C07D4->unk_00 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, param1);
     MI_CpuFill8(Unk_021C07D4->unk_00, 0, param1);
 
     Unk_021C07D4->unk_4B = 0;
-    Unk_021C07D4->unk_28 = param0;
+    Unk_021C07D4->saveData = saveData;
 
     sub_02036C94(sub_020386B4, 0);
 
     return Unk_021C07D4->unk_00;
 }
 
-void sub_0203878C(SaveData *param0, const void *param1)
+void sub_0203878C(SaveData *saveData, const void *param1)
 {
-    TrainerInfo *v0 = SaveData_GetTrainerInfo(param0);
+    TrainerInfo *v0 = SaveData_GetTrainerInfo(saveData);
 
     if (CommSys_IsInitialized()) {
         return;
@@ -2252,13 +2252,13 @@ void sub_0203878C(SaveData *param0, const void *param1)
 
     ResetLock(RESET_LOCK_0x1);
     Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x7080);
-    sub_020366A0(param0, 33);
+    sub_020366A0(saveData, 33);
 
     Unk_021C07D4->unk_00 = NULL;
     Unk_021C07D4->unk_5C = param1;
     Unk_021C07D4->unk_60 = 0;
     Unk_021C07D4->unk_4B = 0;
-    Unk_021C07D4->unk_28 = param0;
+    Unk_021C07D4->saveData = saveData;
 
     sub_02036C94(sub_02038BA8, 0);
 }
@@ -2460,7 +2460,7 @@ void sub_02038A20(int param0)
             if (!HeapCanaryOK()) {
                 if (!sub_020389D8()) {
                     Sound_StopWaveOutAndSequences();
-                    SaveData_SaveStateCancel(Unk_021C07D4->unk_28);
+                    SaveData_SaveStateCancel(Unk_021C07D4->saveData);
                     gSystem.touchAutoSampling = TRUE;
 
                     if (Unk_021C07D4->unk_59 == 3) {
@@ -2541,7 +2541,7 @@ static void sub_02038BA8(void)
     }
 
     if (CommSys_InitServer(1, 1, 512, 1)) {
-        ov4_021D0D80(Unk_021C07D4->unk_28, HEAP_ID_49, 0x58000, CommLocal_MaxMachines(Unk_021C07D4->unk_4A) + 1);
+        ov4_021D0D80(Unk_021C07D4->saveData, HEAP_ID_49, 0x58000, CommLocal_MaxMachines(Unk_021C07D4->unk_4A) + 1);
         ov4_021D2170(sub_020389FC);
         CommSys_SwitchTransitionTypeToParallel();
         ov4_021D2584(0);

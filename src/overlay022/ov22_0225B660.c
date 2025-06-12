@@ -23,12 +23,12 @@
 #include "message.h"
 #include "overlay_manager.h"
 #include "pokemon.h"
+#include "screen_fade.h"
 #include "sprite.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_0202419C.h"
 #include "unk_020298BC.h"
 #include "unk_02094EDC.h"
@@ -55,7 +55,7 @@ static void ov22_0225BAD0(UnkStruct_ov22_0225B85C *param0);
 static void ov22_0225BB00(UnkStruct_ov22_0225B85C *param0);
 static void ov22_0225BC18(UnkStruct_ov22_0225B85C *param0);
 
-int ov22_0225B660(OverlayManager *param0, int *param1)
+int ov22_0225B660(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov22_0225B85C *v0;
     UnkStruct_02041DC8 *v1;
@@ -63,13 +63,13 @@ int ov22_0225B660(OverlayManager *param0, int *param1)
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_13, 0x20000);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_14, 0x40000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov22_0225B85C), HEAP_ID_13);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov22_0225B85C), HEAP_ID_13);
     memset(v0, 0, sizeof(UnkStruct_ov22_0225B85C));
 
     SetVBlankCallback(ov22_0225B848, v0);
     DisableHBlank();
 
-    v1 = OverlayManager_Args(param0);
+    v1 = ApplicationManager_Args(appMan);
 
     if (v1->unk_08 == 0) {
         v0->unk_00 = sub_02029CA8(v1->unk_00, v1->unk_04);
@@ -109,9 +109,9 @@ int ov22_0225B660(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov22_0225B738(OverlayManager *param0, int *param1)
+int ov22_0225B738(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov22_0225B85C *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov22_0225B85C *v0 = ApplicationManager_Data(appMan);
 
     {
         sub_020241B4();
@@ -127,11 +127,11 @@ int ov22_0225B738(OverlayManager *param0, int *param1)
         (*param1)++;
         break;
     case 1:
-        StartScreenTransition(0, 5, 1, 0x0, 6, 1, HEAP_ID_13);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_5, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_13);
         (*param1)++;
         break;
     case 2:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             (*param1)++;
         }
         break;
@@ -141,11 +141,11 @@ int ov22_0225B738(OverlayManager *param0, int *param1)
         }
         break;
     case 4:
-        StartScreenTransition(0, 2, 0, 0x0, 6, 1, HEAP_ID_13);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_2, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_13);
         (*param1)++;
         break;
     case 5:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             return 1;
         }
         break;
@@ -154,9 +154,9 @@ int ov22_0225B738(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov22_0225B7FC(OverlayManager *param0, int *param1)
+int ov22_0225B7FC(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov22_0225B85C *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov22_0225B85C *v0 = ApplicationManager_Data(appMan);
 
     ov22_0225B020(v0->unk_10);
     ov22_0225BA00(v0);
@@ -166,7 +166,7 @@ int ov22_0225B7FC(OverlayManager *param0, int *param1)
 
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_13);
     Heap_Destroy(HEAP_ID_14);
 

@@ -17,12 +17,12 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "render_text.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
 #include "touch_pad.h"
-#include "unk_0200F174.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 
@@ -60,7 +60,7 @@ static void DWWarp_Setup3D(void);
 static void DWWarp_Exit3D(GenericPointerData *param0);
 static void DWWarp_CameraMove(DistortionWorldWarp *warp);
 
-BOOL DWWarp_Init(OverlayManager *ovy, int *state)
+BOOL DWWarp_Init(ApplicationManager *appMan, int *state)
 {
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
@@ -76,7 +76,7 @@ BOOL DWWarp_Init(OverlayManager *ovy, int *state)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_DISTORTION_WORLD_WARP, HEAP_SIZE_DISTORTION_WORLD_WARP);
 
-    DistortionWorldWarp *dww = OverlayManager_NewData(ovy, sizeof(DistortionWorldWarp), HEAP_ID_DISTORTION_WORLD_WARP);
+    DistortionWorldWarp *dww = ApplicationManager_NewData(appMan, sizeof(DistortionWorldWarp), HEAP_ID_DISTORTION_WORLD_WARP);
     MI_CpuClear8(dww, sizeof(DistortionWorldWarp));
     dww->p3DCallback = DWWarp_Init3D(HEAP_ID_DISTORTION_WORLD_WARP);
 
@@ -87,7 +87,7 @@ BOOL DWWarp_Init(OverlayManager *ovy, int *state)
 
     DWWarp_InitModel(dww);
     DWWarp_InitCamera(dww);
-    StartScreenTransition(0, 1, 1, 0x0, 16, 1, HEAP_ID_DISTORTION_WORLD_WARP);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 16, 1, HEAP_ID_DISTORTION_WORLD_WARP);
 
     gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
 
@@ -110,13 +110,13 @@ enum DWWarpState {
     DWARP_SEQ_WAIT
 };
 
-BOOL DWWarp_Main(OverlayManager *ovy, int *state)
+BOOL DWWarp_Main(ApplicationManager *appMan, int *state)
 {
-    DistortionWorldWarp *warp = OverlayManager_Data(ovy);
+    DistortionWorldWarp *warp = ApplicationManager_Data(appMan);
 
     switch (*state) {
     case DWARP_SEQ_SCREENWIPE:
-        if (IsScreenTransitionDone() == TRUE) {
+        if (IsScreenFadeDone() == TRUE) {
             (*state)++;
         }
         break;
@@ -133,11 +133,11 @@ BOOL DWWarp_Main(OverlayManager *ovy, int *state)
         }
         break;
     case DWARP_SEQ_CLEAR_SCREEN:
-        StartScreenTransition(0, 0, 0, 0x0, 20, 1, HEAP_ID_DISTORTION_WORLD_WARP);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 20, 1, HEAP_ID_DISTORTION_WORLD_WARP);
         (*state)++;
         break;
     case DWARP_SEQ_WAIT:
-        if (IsScreenTransitionDone() == TRUE) {
+        if (IsScreenFadeDone() == TRUE) {
             return TRUE;
         }
         break;
@@ -148,9 +148,9 @@ BOOL DWWarp_Main(OverlayManager *ovy, int *state)
     return FALSE;
 }
 
-BOOL DWWarp_Exit(OverlayManager *ovy, int *state)
+BOOL DWWarp_Exit(ApplicationManager *appMan, int *state)
 {
-    DistortionWorldWarp *warp = OverlayManager_Data(ovy);
+    DistortionWorldWarp *warp = ApplicationManager_Data(appMan);
 
     SysTask_Done(warp->task);
 
@@ -164,7 +164,7 @@ BOOL DWWarp_Exit(OverlayManager *ovy, int *state)
     RenderControlFlags_SetCanABSpeedUpPrint(0);
     RenderControlFlags_SetAutoScrollFlags(0);
     RenderControlFlags_SetSpeedUpOnTouch(0);
-    OverlayManager_FreeData(ovy);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_DISTORTION_WORLD_WARP);
 
     return TRUE;

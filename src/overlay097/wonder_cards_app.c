@@ -3,7 +3,6 @@
 
 #include "constants/heap.h"
 #include "constants/narc.h"
-#include "constants/palette.h"
 #include "generated/string_padding_mode.h"
 
 #include "overlay097/ov97_0222D04C.h"
@@ -32,6 +31,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
@@ -44,7 +44,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
@@ -69,10 +68,10 @@ FS_EXTERN_OVERLAY(overlay97);
 
 #define EMPTY_ORDER_SLOT 0x7fff * 0x7fff
 
-#define BASE_TILE_SYSTEM_WINDOW_BORDER 1
-#define BASE_TILE_FIELD_WINDOW_BORDER  (BASE_TILE_SYSTEM_WINDOW_BORDER + NUM_TILES_SYSTEM_WINDOW_BORDER)
-#define BASE_TILE_MESSAGE_BOX_BORDER   (BASE_TILE_FIELD_WINDOW_BORDER + NUM_TILES_FIELD_WINDOW_BORDER)
-#define BASE_TILE_WINDOWS_START        (BASE_TILE_MESSAGE_BOX_BORDER + NUM_TILES_MESSAGE_BOX_BORDER)
+#define BASE_TILE_SYSTEM_WINDOW_FRAME 1
+#define BASE_TILE_FIELD_WINDOW_FRAME  (BASE_TILE_SYSTEM_WINDOW_FRAME + NUM_TILES_STANDARD_WINDOW_FRAME)
+#define BASE_TILE_MESSAGE_BOX_FRAME   (BASE_TILE_FIELD_WINDOW_FRAME + NUM_TILES_STANDARD_WINDOW_FRAME)
+#define BASE_TILE_WINDOWS_START       (BASE_TILE_MESSAGE_BOX_FRAME + NUM_TILES_MESSAGE_BOX_FRAME)
 
 // Make sure to update the TILESET_SIZE constants if you edit the tilesets
 #define WC_SHARE_SCREEN_TILESET_SIZE   96
@@ -178,7 +177,7 @@ enum WonderCardFlipStage {
 typedef struct WonderCardsAppData WonderCardsAppData;
 
 typedef BOOL (*WcAppWindowSetupFuncPtr)(WonderCardsAppData *, Window *, TextColor);
-typedef enum WonderCardsAppState (*StateTransitionFuncPtr)(OverlayManager *);
+typedef enum WonderCardsAppState (*StateTransitionFuncPtr)(ApplicationManager *);
 typedef void (*WcAppMainCallbackFuncPtr)(WonderCardsAppData *);
 
 typedef struct WonderCardFlipAnimManager {
@@ -273,10 +272,10 @@ struct WonderCardsAppData {
     WaitDial *waitDial;
 };
 
-static enum WonderCardsAppState AskConfirmDeleteWc(OverlayManager *ovlMan);
-static enum WonderCardsAppState AskConfirmShareWc(OverlayManager *ovlMan);
-static enum WonderCardsAppState GoBackToWcActionsMenu(OverlayManager *ovlMan);
-static enum WonderCardsAppState DeleteWcAndOpenNextWcActionsMenu(OverlayManager *ovlMan);
+static enum WonderCardsAppState AskConfirmDeleteWc(ApplicationManager *appMan);
+static enum WonderCardsAppState AskConfirmShareWc(ApplicationManager *appMan);
+static enum WonderCardsAppState GoBackToWcActionsMenu(ApplicationManager *appMan);
+static enum WonderCardsAppState DeleteWcAndOpenNextWcActionsMenu(ApplicationManager *appMan);
 static void WonderCardsApp_CloseListMenu(WonderCardsAppData *appData);
 static BOOL DoNothing(WonderCardsAppData *appData, Window *window, TextColor color);
 static BOOL PrintWondercardTitle(WonderCardsAppData *appData, Window *window, TextColor color);
@@ -728,9 +727,9 @@ static void LoadWcShareScreenBackground(BgConfig *bgConfig)
     Bg_CopyTilemapBufferToVRAM(bgConfig, BG_LAYER_MAIN_1);
 }
 
-static enum WonderCardsAppState AskConfirmShareWc(OverlayManager *ovlMan)
+static enum WonderCardsAppState AskConfirmShareWc(ApplicationManager *appMan)
 {
-    WonderCardsAppData *appData = OverlayManager_Data(ovlMan);
+    WonderCardsAppData *appData = ApplicationManager_Data(appMan);
 
     WonderCardsApp_CloseListMenu(appData);
     PrintTextEntryToWindow(&appData->messageBox, MysteryGiftMenu_Text_WouldYouLikeToShareThisGift);
@@ -739,9 +738,9 @@ static enum WonderCardsAppState AskConfirmShareWc(OverlayManager *ovlMan)
     return WC_APP_STATE_WAIT_CONFIRM_START_WIRELESS;
 }
 
-static enum WonderCardsAppState AskConfirmDeleteWc(OverlayManager *ovlMan)
+static enum WonderCardsAppState AskConfirmDeleteWc(ApplicationManager *appMan)
 {
-    WonderCardsAppData *appData = OverlayManager_Data(ovlMan);
+    WonderCardsAppData *appData = ApplicationManager_Data(appMan);
 
     WonderCardsApp_CloseListMenu(appData);
 
@@ -755,14 +754,14 @@ static enum WonderCardsAppState AskConfirmDeleteWc(OverlayManager *ovlMan)
     return WC_APP_STATE_WAIT_CONFIRM_DELETION;
 }
 
-static enum WonderCardsAppState DeleteWcAndOpenNextWcActionsMenu(OverlayManager *ovlMan)
+static enum WonderCardsAppState DeleteWcAndOpenNextWcActionsMenu(ApplicationManager *appMan)
 {
-    WonderCardsAppData *appData = OverlayManager_Data(ovlMan);
+    WonderCardsAppData *appData = ApplicationManager_Data(appMan);
 
     WonderCardsApp_CloseListMenu(appData);
     PrintTextEntryToWindow(&appData->messageBox, MysteryGiftMenu_Text_DiscardingDontTurnOff);
 
-    appData->waitDial = Window_AddWaitDial(&appData->messageBox, BASE_TILE_MESSAGE_BOX_BORDER);
+    appData->waitDial = Window_AddWaitDial(&appData->messageBox, BASE_TILE_MESSAGE_BOX_FRAME);
 
     if (MysteryGift_CheckWcHasPgtSaved(appData->mysteryGift, appData->selectedWondercardSlot) == TRUE) {
         MysteryGift_FreeWcErasePgt(appData->mysteryGift, appData->selectedWondercardSlot);
@@ -786,9 +785,9 @@ static enum WonderCardsAppState DeleteWcAndOpenNextWcActionsMenu(OverlayManager 
     return WC_APP_STATE_WAIT_FOR_MENU_CHOICE;
 }
 
-static enum WonderCardsAppState GoBackToWcActionsMenu(OverlayManager *ovlMan)
+static enum WonderCardsAppState GoBackToWcActionsMenu(ApplicationManager *appMan)
 {
-    WonderCardsAppData *appData = OverlayManager_Data(ovlMan);
+    WonderCardsAppData *appData = ApplicationManager_Data(appMan);
 
     WonderCardsApp_CloseListMenu(appData);
     PrintTextEntryToWindow(&appData->messageBox, MysteryGiftMenu_Text_WonderCard);
@@ -939,7 +938,7 @@ static BOOL SetupEntriesCount(WonderCardsAppData *appData, Window *window, TextC
 
 static void DoScreenTransitionToState(WonderCardsAppData *appData, int param1, enum WonderCardsAppState nextState, enum WonderCardsAppState *state)
 {
-    StartScreenTransition(0, param1, param1, 0x0, 6, 1, HEAP_ID_WONDER_CARDS_APP);
+    StartScreenFade(FADE_BOTH_SCREENS, param1, param1, 0x0, 6, 1, HEAP_ID_WONDER_CARDS_APP);
 
     if (state) {
         *state = WC_APP_STATE_WAIT_FOR_SCREEN_TRANSITION;
@@ -1038,9 +1037,9 @@ static int ShowWindowFromTemplateIndex(WonderCardsAppData *appData, Window *wind
     }
 
     if (window == &appData->messageBox) {
-        Window_DrawMessageBoxWithScrollCursor(window, FALSE, BASE_TILE_MESSAGE_BOX_BORDER, PLTT_10);
+        Window_DrawMessageBoxWithScrollCursor(window, FALSE, BASE_TILE_MESSAGE_BOX_FRAME, PLTT_10);
     } else {
-        Window_DrawStandardFrame(window, FALSE, BASE_TILE_FIELD_WINDOW_BORDER, PLTT_14);
+        Window_DrawStandardFrame(window, FALSE, BASE_TILE_FIELD_WINDOW_FRAME, PLTT_14);
     }
 
     return baseTile + windowTemplate->width * windowTemplate->height;
@@ -1107,10 +1106,10 @@ static void LoadWondercardGraphics(WonderCardsAppData *appData, enum WonderCards
     Bg_CopyTilemapBufferToVRAM(appData->bgConfig, BG_LAYER_MAIN_3);
 }
 
-static void ProcessStateTransitionMenuInput(OverlayManager *ovlMan, enum WonderCardsAppState *state, StateTransitionFuncPtr onCancelStateTransition)
+static void ProcessStateTransitionMenuInput(ApplicationManager *appMan, enum WonderCardsAppState *state, StateTransitionFuncPtr onCancelStateTransition)
 {
     enum WonderCardsAppState nextState;
-    WonderCardsAppData *appData = OverlayManager_Data(ovlMan);
+    WonderCardsAppData *appData = ApplicationManager_Data(appMan);
     static StateTransitionFuncPtr optionStateTransitionFunc;
 
     u32 input = ListMenu_ProcessInput(appData->listMenu);
@@ -1122,7 +1121,7 @@ static void ProcessStateTransitionMenuInput(OverlayManager *ovlMan, enum WonderC
         Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         if (onCancelStateTransition) {
-            nextState = onCancelStateTransition(ovlMan);
+            nextState = onCancelStateTransition(appMan);
 
             if (nextState != -1) {
                 *state = nextState;
@@ -1137,7 +1136,7 @@ static void ProcessStateTransitionMenuInput(OverlayManager *ovlMan, enum WonderC
                 *state = input;
             } else {
                 optionStateTransitionFunc = (StateTransitionFuncPtr)input;
-                nextState = optionStateTransitionFunc(ovlMan);
+                nextState = optionStateTransitionFunc(appMan);
 
                 if (nextState != -1) {
                     *state = nextState;
@@ -1191,18 +1190,18 @@ static void LoadPokemonSpritesForSelectedWc(WonderCardsAppData *appData)
     }
 }
 
-static BOOL WonderCardsApp_Init(OverlayManager *ovlMan, int *unused)
+static BOOL WonderCardsApp_Init(ApplicationManager *appMan, int *unused)
 {
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_WONDER_CARDS_APP, HEAP_SIZE_WONDER_CARDS_APP);
 
-    WonderCardsAppData *appData = OverlayManager_NewData(ovlMan, sizeof(WonderCardsAppData), HEAP_ID_WONDER_CARDS_APP);
+    WonderCardsAppData *appData = ApplicationManager_NewData(appMan, sizeof(WonderCardsAppData), HEAP_ID_WONDER_CARDS_APP);
     memset(appData, 0, sizeof(WonderCardsAppData));
 
     appData->bgConfig = BgConfig_New(HEAP_ID_WONDER_CARDS_APP);
     appData->heapID = HEAP_ID_WONDER_CARDS_APP;
 
-    sub_0200F344(DS_SCREEN_MAIN, 0x0);
-    sub_0200F344(DS_SCREEN_SUB, 0x0);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
 
     appData->selectedWondercardSlot = NUM_WONDERCARD_SLOTS - 1;
     appData->numPlayerConnections = 1;
@@ -1379,7 +1378,7 @@ static void HandleWCShareScreenInput(WonderCardsAppData *appData, int playerCoun
         appData->shouldSendWc = TRUE;
         *state = WC_APP_STATE_DISTRIBUTION_UNDERWAY;
         ShowWindowFromTemplateIndex(appData, &appData->messageBox, MSG_BOX_DISTRIBUTION_UNDER_WAY, 640);
-        appData->waitDial = Window_AddWaitDial(&appData->messageBox, BASE_TILE_MESSAGE_BOX_BORDER);
+        appData->waitDial = Window_AddWaitDial(&appData->messageBox, BASE_TILE_MESSAGE_BOX_FRAME);
     }
 
     if (nextAction == WC_SHARE_ACTION_EXIT) {
@@ -1392,13 +1391,13 @@ static void HandleWCShareScreenInput(WonderCardsAppData *appData, int playerCoun
     }
 }
 
-static int WonderCardsApp_Main(OverlayManager *ovlMan, enum WonderCardsAppState *state)
+static int WonderCardsApp_Main(ApplicationManager *appMan, enum WonderCardsAppState *state)
 {
-    WonderCardsAppData *appData = OverlayManager_Data(ovlMan);
+    WonderCardsAppData *appData = ApplicationManager_Data(appMan);
 
     switch (*state) {
     case WC_APP_STATE_LOAD_FROM_SAVE:
-        appData->saveData = ((ApplicationArgs *)OverlayManager_Args(ovlMan))->saveData;
+        appData->saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
         appData->mysteryGift = SaveData_GetMysteryGift(appData->saveData);
         appData->options = SaveData_GetOptions(appData->saveData);
         appData->msgBoxFrame = Options_Frame(appData->options);
@@ -1419,9 +1418,9 @@ static int WonderCardsApp_Main(OverlayManager *ovlMan, enum WonderCardsAppState 
         Text_ResetAllPrinters();
         LoadWondercardGraphics(appData, WC_SCREEN_WONDERCARD_FRONT);
         Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(15), HEAP_ID_WONDER_CARDS_APP);
-        LoadStandardWindowGraphics(appData->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_SYSTEM_WINDOW_BORDER, PLTT_13, STANDARD_WINDOW_SYSTEM, HEAP_ID_WONDER_CARDS_APP);
-        LoadStandardWindowGraphics(appData->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_FIELD_WINDOW_BORDER, PLTT_14, STANDARD_WINDOW_FIELD, HEAP_ID_WONDER_CARDS_APP);
-        LoadMessageBoxGraphics(appData->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_MESSAGE_BOX_BORDER, PLTT_10, appData->msgBoxFrame, HEAP_ID_WONDER_CARDS_APP);
+        LoadStandardWindowGraphics(appData->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_SYSTEM_WINDOW_FRAME, PLTT_13, STANDARD_WINDOW_SYSTEM, HEAP_ID_WONDER_CARDS_APP);
+        LoadStandardWindowGraphics(appData->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_FIELD_WINDOW_FRAME, PLTT_14, STANDARD_WINDOW_FIELD, HEAP_ID_WONDER_CARDS_APP);
+        LoadMessageBoxGraphics(appData->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_MESSAGE_BOX_FRAME, PLTT_10, appData->msgBoxFrame, HEAP_ID_WONDER_CARDS_APP);
 
         ShowWindowsForScreen(appData, 1, WC_SCREEN_WONDERCARD_FRONT);
         DoScreenTransitionToState(appData, 1, WC_APP_STATE_SELECT_WONDERCARD, state);
@@ -1454,7 +1453,7 @@ static int WonderCardsApp_Main(OverlayManager *ovlMan, enum WonderCardsAppState 
         *state = WC_APP_STATE_WAIT_FOR_MENU_CHOICE;
         break;
     case WC_APP_STATE_WAIT_FOR_MENU_CHOICE:
-        ProcessStateTransitionMenuInput(ovlMan, state, NULL);
+        ProcessStateTransitionMenuInput(appMan, state, NULL);
 
         if (JOY_NEW(PAD_BUTTON_B)) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
@@ -1495,8 +1494,8 @@ static int WonderCardsApp_Main(OverlayManager *ovlMan, enum WonderCardsAppState 
         break;
     case WC_APP_STATE_WAIT_WC_FLIP_TO_FRONT_HALFWAY:
         if (RunFlipAnimFrame(appData)) {
-            Window_DrawMessageBoxWithScrollCursor(&appData->messageBox, FALSE, BASE_TILE_MESSAGE_BOX_BORDER, PLTT_10);
-            Window_DrawStandardFrame(&appData->standardWindow, FALSE, BASE_TILE_FIELD_WINDOW_BORDER, PLTT_14);
+            Window_DrawMessageBoxWithScrollCursor(&appData->messageBox, FALSE, BASE_TILE_MESSAGE_BOX_FRAME, PLTT_10);
+            Window_DrawStandardFrame(&appData->standardWindow, FALSE, BASE_TILE_FIELD_WINDOW_FRAME, PLTT_14);
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
             CancelFlipAnim(appData);
             *state = WC_APP_STATE_WAIT_FOR_MENU_CHOICE;
@@ -1510,10 +1509,10 @@ static int WonderCardsApp_Main(OverlayManager *ovlMan, enum WonderCardsAppState 
         *state = WC_APP_STATE_SELECT_WONDERCARD;
         break;
     case WC_APP_STATE_WAIT_CONFIRM_DELETION:
-        ProcessStateTransitionMenuInput(ovlMan, state, GoBackToWcActionsMenu);
+        ProcessStateTransitionMenuInput(appMan, state, GoBackToWcActionsMenu);
         break;
     case WC_APP_STATE_WAIT_CONFIRM_START_WIRELESS:
-        ProcessStateTransitionMenuInput(ovlMan, state, GoBackToWcActionsMenu);
+        ProcessStateTransitionMenuInput(appMan, state, GoBackToWcActionsMenu);
         break;
     case WC_APP_STATE_ASK_START_WIRELESS_TO_SHARE_WC:
         AskConfirmStartWireless(appData, &appData->standardWindow, TEXT_COLOR(1, 2, 0));
@@ -1606,7 +1605,7 @@ static int WonderCardsApp_Main(OverlayManager *ovlMan, enum WonderCardsAppState 
         DoScreenTransitionToState(appData, 0, WC_APP_STATE_EXIT, state);
         break;
     case WC_APP_STATE_WAIT_FOR_SCREEN_TRANSITION:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             *state = appData->queuedState;
         }
         break;
@@ -1797,11 +1796,11 @@ static void StopWirelessCommunication(WonderCardsAppData *appData, enum WonderCa
     *state = WC_APP_STATE_WAIT_FOR_COMM_MAN_EXIT;
 }
 
-extern const OverlayManagerTemplate Unk_ov97_0223D71C;
+extern const ApplicationManagerTemplate Unk_ov97_0223D71C;
 
-static BOOL WonderCardsApp_Exit(OverlayManager *ovyMan, int *unused)
+static BOOL WonderCardsApp_Exit(ApplicationManager *appMan, int *unused)
 {
-    WonderCardsAppData *appData = OverlayManager_Data(ovyMan);
+    WonderCardsAppData *appData = ApplicationManager_Data(appMan);
 
     for (int i = 0; i < NELEMS(sWonderCardsAppWindows); i++) {
         if (appData->windows[i].bgConfig) {
@@ -1827,13 +1826,13 @@ static BOOL WonderCardsApp_Exit(OverlayManager *ovyMan, int *unused)
     Heap_FreeToHeap(appData->bgConfig);
     EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D71C);
     Heap_Destroy(HEAP_ID_91);
-    OverlayManager_FreeData(ovyMan);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_WONDER_CARDS_APP);
 
     return TRUE;
 }
 
-const OverlayManagerTemplate gWonderCardsAppTemplate = {
+const ApplicationManagerTemplate gWonderCardsAppTemplate = {
     WonderCardsApp_Init,
     (OverlayFunc)WonderCardsApp_Main, // Erase enum type information for the second argument
     WonderCardsApp_Exit,

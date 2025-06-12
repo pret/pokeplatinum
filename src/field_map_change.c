@@ -48,6 +48,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "savedata_misc.h"
+#include "screen_fade.h"
 #include "script_manager.h"
 #include "sound.h"
 #include "sound_playback.h"
@@ -59,7 +60,6 @@
 #include "terrain_attributes.h"
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_0202854C.h"
 #include "unk_0203A7D8.h"
 #include "unk_0203D1B8.h"
@@ -552,8 +552,8 @@ static BOOL FieldTask_LoadMapFromError(FieldTask *task)
 
     switch (*state) {
     case 0:
-        sub_0200F344(0, 0x0);
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
         SaveData_LoadAndUpdateUnderground(fieldSystem->saveData);
         fieldSystem->journalEntry = Journal_GetSavedPage(SaveData_GetJournal(fieldSystem->saveData), CheckJournalAcquired(varsFlags));
         (*state)++;
@@ -606,7 +606,7 @@ void FieldSystem_StartLoadMapFromErrorTask(FieldSystem *fieldSystem)
         }
     }
 
-    errorData = Heap_AllocFromHeapAtEnd(11, sizeof(MapChangeFromErrorData));
+    errorData = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(MapChangeFromErrorData));
     errorData->finishedFlag = FALSE;
 
     Location_Set(&errorData->location, 466, -1, 8, 14, 0);
@@ -650,7 +650,7 @@ static BOOL FieldTask_ChangeMap(FieldTask *task)
 
 void FieldSystem_StartChangeMapTask(FieldTask *task, const Location *nextLocation)
 {
-    MapChangeData *mapChangeData = Heap_AllocFromHeapAtEnd(11, sizeof(MapChangeData));
+    MapChangeData *mapChangeData = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(MapChangeData));
 
     mapChangeData->state = 0;
     mapChangeData->nextLocation = *nextLocation;
@@ -688,7 +688,7 @@ static BOOL FieldTask_ChangeMapSub(FieldTask *task)
 void FieldTask_ChangeMapByLocation(FieldTask *task, const Location *nextLocation)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
-    MapChangeSubData *mapChangeSub = Heap_AllocFromHeapAtEnd(11, sizeof(MapChangeSubData));
+    MapChangeSubData *mapChangeSub = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(MapChangeSubData));
 
     if (FieldSystem_HasParentProcess(fieldSystem)) {
         GF_ASSERT(FALSE);
@@ -744,7 +744,7 @@ static BOOL FieldTask_ChangeMapFull(FieldTask *task)
 
 void FieldTask_StartMapChangeFull(FieldTask *task, int mapId, int param2, int x, int z, int dir)
 {
-    MapChangeSubData *mapChangeSub = Heap_AllocFromHeapAtEnd(11, sizeof(MapChangeSubData));
+    MapChangeSubData *mapChangeSub = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(MapChangeSubData));
 
     mapChangeSub->state = 0;
 
@@ -758,7 +758,7 @@ void FieldTask_StartMapChangeFly(FieldSystem *fieldSystem, int param1, int param
 
     Location_Set(&location, param1, param2, param3, param4, param5);
 
-    MapChangeFlyData *mapChangeData = Heap_AllocFromHeapAtEnd(11, sizeof(MapChangeFlyData));
+    MapChangeFlyData *mapChangeData = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(MapChangeFlyData));
 
     mapChangeData->state = 0;
     mapChangeData->task = NULL;
@@ -773,7 +773,7 @@ void FieldTask_ChangeMapChangeFly(FieldTask *task, int param1, int param2, int p
 
     Location_Set(&location, param1, param2, param3, param4, param5);
 
-    MapChangeFlyData *mapChangeData = Heap_AllocFromHeapAtEnd(11, sizeof(MapChangeFlyData));
+    MapChangeFlyData *mapChangeData = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(MapChangeFlyData));
 
     mapChangeData->state = 0;
     mapChangeData->task = NULL;
@@ -894,7 +894,7 @@ static BOOL FieldTask_WaitFadeInFly(FieldTask *task)
 
 void FieldTask_ChangeMapChangeByDig(FieldTask *task, const Location *location, u32 param2)
 {
-    MapChangeDigData *mapChangeData = Heap_AllocFromHeapAtEnd(11, sizeof(MapChangeDigData));
+    MapChangeDigData *mapChangeData = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(MapChangeDigData));
 
     mapChangeData->state = 0;
     mapChangeData->unk_04 = param2;
@@ -1063,7 +1063,7 @@ static BOOL FieldTask_MapChangeWarp(FieldTask *task)
 void FieldSystem_StartMapChangeWarpTask(FieldSystem *fieldSystem, int param1, int param2)
 {
     Location nextLocation;
-    MapChangeWarpData *mapChangeWarpData = Heap_AllocFromHeapAtEnd(11, sizeof(MapChangeWarpData));
+    MapChangeWarpData *mapChangeWarpData = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(MapChangeWarpData));
 
     MI_CpuClear8(mapChangeWarpData, sizeof(MapChangeWarpData));
 
@@ -1077,7 +1077,7 @@ void *sub_02053FAC(FieldSystem *fieldSystem)
     MapChangeUndergroundData *mapChangeUndergroundData;
     Location *location = FieldOverworldState_GetSpecialLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
-    mapChangeUndergroundData = Heap_AllocFromHeapAtEnd(11, sizeof(MapChangeUndergroundData));
+    mapChangeUndergroundData = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(MapChangeUndergroundData));
     mapChangeUndergroundData->state = 0;
     mapChangeUndergroundData->unk_04 = 0;
 
@@ -1376,7 +1376,7 @@ static BOOL sub_02054494(FieldTask *task)
 void sub_020544F0(FieldTask *task, const Location *nextLocation)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
-    MapChangeSubData *mapChangeData = Heap_AllocFromHeapAtEnd(11, sizeof(MapChangeSubData));
+    MapChangeSubData *mapChangeData = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(MapChangeSubData));
 
     if (FieldSystem_HasParentProcess(fieldSystem)) {
         GF_ASSERT(FALSE);
@@ -1436,7 +1436,7 @@ static BOOL sub_02054538(FieldTask *task)
 void sub_020545EC(FieldSystem *fieldSystem)
 {
     Location *location = FieldOverworldState_GetSpecialLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
-    MapChangeUnionData *mapChangeData = Heap_AllocFromHeapAtEnd(11, sizeof(MapChangeUnionData));
+    MapChangeUnionData *mapChangeData = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(MapChangeUnionData));
 
     MI_CpuClear8(mapChangeData, sizeof(MapChangeUnionData));
 
@@ -1501,7 +1501,7 @@ void sub_02054708(FieldTask *task)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     Location *location = FieldOverworldState_GetSpecialLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
-    MapChangeUnionData *mapChangeData = Heap_AllocFromHeapAtEnd(11, sizeof(MapChangeUnionData));
+    MapChangeUnionData *mapChangeData = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(MapChangeUnionData));
 
     MI_CpuClear8(mapChangeData, sizeof(MapChangeUnionData));
     Location_SetToPlayerLocation(location, fieldSystem);
@@ -1559,7 +1559,7 @@ void sub_02054800(FieldTask *task, int mapId, int param2, int x, int z, int para
 
     fieldSystem->mapLoadType = MAP_LOAD_TYPE_COLOSSEUM;
 
-    MapChangeData *mapChangeData = Heap_AllocFromHeapAtEnd(11, sizeof(MapChangeData));
+    MapChangeData *mapChangeData = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(MapChangeData));
 
     Location_Set(&nextLocation, mapId, param2, x, z, param5);
 

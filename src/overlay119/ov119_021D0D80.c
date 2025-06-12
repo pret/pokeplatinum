@@ -26,6 +26,7 @@
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "spl.h"
 #include "sprite.h"
 #include "sprite_system.h"
@@ -33,7 +34,6 @@
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "vram_transfer.h"
@@ -259,12 +259,12 @@ void ov119_021D1004(void)
 
 void ov119_021D1028(void)
 {
-    StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_71);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_71);
 }
 
 void ov119_021D1048(void)
 {
-    StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_71);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_71);
 }
 
 void ov119_021D1068(BgConfig *param0, PaletteData *param1, int param2)

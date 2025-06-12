@@ -1136,7 +1136,7 @@ scr_seq_narc_order = files('scripts.order')
 scr_seq_narc = custom_target('scr_seq.narc',
     output: [
         'scr_seq.narc',
-        'scr_seq.naix',
+        'scr_seq.naix.h',
     ],
     input: script_bin_gen.process(
         scr_seq_files,

@@ -7,7 +7,7 @@
 
 typedef struct {
     FieldSystem *fieldSystem;
-    SaveData *unk_04;
+    SaveData *saveData;
     int unk_08;
     u8 unk_0C;
     u8 padding_0D[3];

@@ -31,13 +31,13 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_0202602C.h"
 #include "unk_0202D778.h"
 #include "unk_020363E8.h"
@@ -118,27 +118,27 @@ static BOOL sub_0205AD20(UnkStruct_0205A0D8 *param0);
 static void sub_0205A0D8(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem, Party *param2, int param3, int param4, int heapID)
 {
     PokemonSummary *v0;
-    SaveData *v1;
+    SaveData *saveData;
     static const u8 v2[] = {
         0, 1, 2, 4, 3, 5, 6, 7, 8
     };
 
-    v1 = fieldSystem->saveData;
+    saveData = fieldSystem->saveData;
     v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(PokemonSummary));
 
     MI_CpuClear8(v0, sizeof(PokemonSummary));
     PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(fieldSystem->saveData));
 
-    v0->dexMode = SaveData_GetDexMode(v1);
-    v0->showContest = PokemonSummaryScreen_ShowContestData(v1);
-    v0->options = SaveData_GetOptions(v1);
+    v0->dexMode = SaveData_GetDexMode(saveData);
+    v0->showContest = PokemonSummaryScreen_ShowContestData(saveData);
+    v0->options = SaveData_GetOptions(saveData);
     v0->monData = param2;
     v0->dataType = SUMMARY_DATA_PARTY_MON;
     v0->monIndex = param3;
     v0->monMax = Party_GetCurrentCount(v0->monData);
     v0->move = 0;
     v0->mode = param4;
-    v0->specialRibbons = sub_0202D79C(v1);
+    v0->specialRibbons = sub_0202D79C(saveData);
 
     PokemonSummaryScreen_FlagVisiblePages(v0, v2);
     FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, v0);
@@ -149,34 +149,34 @@ static void sub_0205A0D8(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem, P
 static void sub_0205A164(UnkStruct_0205A0D8 *param0, int heapID)
 {
     int v0;
-    PartyManagementData *v1 = Heap_AllocFromHeap(heapID, sizeof(PartyManagementData));
+    PartyManagementData *partyMan = Heap_AllocFromHeap(heapID, sizeof(PartyManagementData));
 
-    MI_CpuClear8(v1, sizeof(PartyManagementData));
+    MI_CpuClear8(partyMan, sizeof(PartyManagementData));
 
-    v1->unk_0C = SaveData_GetOptions(param0->fieldSystem->saveData);
-    v1->unk_14 = (void *)param0->fieldSystem->unk_B0;
-    v1->unk_00 = SaveData_GetParty(param0->fieldSystem->saveData);
-    v1->unk_04 = SaveData_GetBag(param0->fieldSystem->saveData);
-    v1->unk_21 = 0;
-    v1->unk_20 = 2;
+    partyMan->options = SaveData_GetOptions(param0->fieldSystem->saveData);
+    partyMan->battleRegulation = (void *)param0->fieldSystem->unk_B0;
+    partyMan->party = SaveData_GetParty(param0->fieldSystem->saveData);
+    partyMan->bag = SaveData_GetBag(param0->fieldSystem->saveData);
+    partyMan->unk_21 = 0;
+    partyMan->unk_20 = 2;
 
     if (param0->fieldSystem->unk_B0) {
-        v1->unk_32_0 = sub_02026074(param0->fieldSystem->unk_B0, 1);
-        v1->unk_32_4 = v1->unk_32_0;
+        partyMan->unk_32_0 = sub_02026074(param0->fieldSystem->unk_B0, 1);
+        partyMan->unk_32_4 = partyMan->unk_32_0;
     } else {
-        v1->unk_32_0 = 3;
-        v1->unk_32_4 = 3;
+        partyMan->unk_32_0 = 3;
+        partyMan->unk_32_4 = 3;
     }
 
-    v1->unk_33 = 100;
-    v1->selectedMonSlot = param0->unk_3C;
+    partyMan->unk_33 = 100;
+    partyMan->selectedMonSlot = param0->unk_3C;
 
     for (v0 = 0; v0 < 6; v0++) {
-        v1->unk_2C[v0] = param0->unk_3D[v0];
+        partyMan->unk_2C[v0] = param0->unk_3D[v0];
     }
 
-    FieldSystem_StartChildProcess(param0->fieldSystem, &Unk_020F1E88, v1);
-    param0->unk_04 = v1;
+    FieldSystem_StartChildProcess(param0->fieldSystem, &Unk_020F1E88, partyMan);
+    param0->unk_04 = partyMan;
 }
 
 static BOOL sub_0205A258(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem)
@@ -547,7 +547,7 @@ static BOOL sub_0205A324(FieldTask *param0)
         }
         break;
     case 33:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             sub_0205AAA0(v0, 0);
             sub_0205A0D8(v0, v0->fieldSystem, v0->unk_50, v0->unk_84, 1, HEAP_ID_FIELDMAP);
             v0->unk_34 = 34;
@@ -658,7 +658,7 @@ void sub_0205AB10(FieldSystem *fieldSystem, UnkFuncPtr_0205AB10 *param1)
         return;
     }
 
-    v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205A0D8));
+    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0205A0D8));
     MI_CpuClear8(v0, sizeof(UnkStruct_0205A0D8));
 
     v0->unk_43 = 5;
@@ -686,8 +686,8 @@ void sub_0205AB10(FieldSystem *fieldSystem, UnkFuncPtr_0205AB10 *param1)
     case 3: {
         u32 v2 = sub_0205B0E4();
 
-        v0->unk_4C = Heap_AllocFromHeapAtEnd(11, v2);
-        v0->unk_48 = Heap_AllocFromHeapAtEnd(11, v2);
+        v0->unk_4C = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, v2);
+        v0->unk_48 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, v2);
         v0->unk_50 = Party_New(HEAP_ID_FIELDMAP);
 
         Party_InitWithCapacity(v0->unk_50, 3);
@@ -1036,7 +1036,7 @@ static BOOL sub_0205B140(FieldTask *param0)
         }
         break;
     case 2:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             v1->unk_28++;
         }
         break;
@@ -1084,7 +1084,7 @@ void sub_0205B2D4(FieldSystem *fieldSystem)
         }
 
         if ((v2 == CommPlayer_XPos(v0)) && (v3 == CommPlayer_ZPos(v0))) {
-            UnkStruct_0205B2D4 *v4 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205B2D4));
+            UnkStruct_0205B2D4 *v4 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0205B2D4));
 
             v4->unk_24 = v0;
             v4->unk_28 = 0;

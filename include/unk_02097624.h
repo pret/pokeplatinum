@@ -7,10 +7,10 @@
 #include "pokemon.h"
 #include "savedata.h"
 
-UnkStruct_02097728 *sub_02097624(SaveData *param0, int param1, u8 param2, u8 param3, int heapID);
-UnkStruct_02097728 *sub_0209767C(SaveData *param0, int param1, u16 param2, int heapID);
-UnkStruct_02097728 *sub_020976BC(SaveData *param0, Pokemon *param1, int heapID);
-UnkStruct_02097728 *sub_020976F4(SaveData *param0, u8 param1, int heapID);
+UnkStruct_02097728 *sub_02097624(SaveData *saveData, int param1, u8 param2, u8 param3, int heapID);
+UnkStruct_02097728 *sub_0209767C(SaveData *saveData, int param1, u16 param2, int heapID);
+UnkStruct_02097728 *sub_020976BC(SaveData *saveData, Pokemon *param1, int heapID);
+UnkStruct_02097728 *sub_020976F4(SaveData *saveData, u8 param1, int heapID);
 BOOL sub_02097728(UnkStruct_02097728 *param0);
 int sub_0209772C(UnkStruct_02097728 *param0, int param1, u8 param2);
 int sub_02097750(UnkStruct_02097728 *param0, Pokemon *param1);

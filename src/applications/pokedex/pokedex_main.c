@@ -48,6 +48,7 @@
 #include "pokedex_data_index.h"
 #include "pokemon.h"
 #include "render_oam.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sprite.h"
 #include "sprite_resource.h"
@@ -57,7 +58,6 @@
 #include "text.h"
 #include "touch_pad.h"
 #include "touch_screen.h"
-#include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0202419C.h"
 #include "vram_transfer.h"
@@ -82,21 +82,21 @@ static void InitG3(void);
 static void ResetFrm(void);
 static void ov21_021D1EEC(PokedexApp *pokedexApp);
 
-int PokedexMain_Init(OverlayManager *overlayMan, int *state)
+int PokedexMain_Init(ApplicationManager *appMan, int *state)
 {
     PokedexOverlayArgs pokedexOverlayArgs;
 
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_54, SEQ_NONE, 0);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_POKEDEX, 0x40000);
 
-    PokedexApp **appPtr = OverlayManager_NewData(overlayMan, sizeof(PokedexApp **), HEAP_ID_POKEDEX);
+    PokedexApp **appPtr = ApplicationManager_NewData(appMan, sizeof(PokedexApp **), HEAP_ID_POKEDEX);
 
     GF_ASSERT(appPtr);
     memset(appPtr, 0, sizeof(PokedexApp **));
 
     VramTransfer_New(8, HEAP_ID_POKEDEX);
 
-    PokedexOverlayArgs *overlayArgsInput = OverlayManager_Args(overlayMan);
+    PokedexOverlayArgs *overlayArgsInput = ApplicationManager_Args(appMan);
 
     Pokedex_SetupGiratina(Pokedex_GetDisplayForm(overlayArgsInput->pokedex, SPECIES_GIRATINA, 0));
 
@@ -124,9 +124,9 @@ int PokedexMain_Init(OverlayManager *overlayMan, int *state)
     return 1;
 }
 
-int PokedexMain_Main(OverlayManager *overlayMan, int *state)
+int PokedexMain_Main(ApplicationManager *appMan, int *state)
 {
-    PokedexApp **appPtr = OverlayManager_Data(overlayMan);
+    PokedexApp **appPtr = ApplicationManager_Data(appMan);
 
     switch (*state) {
     case POKEDEX_STATE_TRANSITION_IN:
@@ -146,8 +146,8 @@ int PokedexMain_Main(OverlayManager *overlayMan, int *state)
         break;
     case POKEDEX_STATE_WAIT_EXIT:
         if (TransitionComplete(appPtr)) {
-            sub_0200F32C(0);
-            sub_0200F32C(1);
+            ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
+            ResetVisibleHardwareWindows(DS_SCREEN_SUB);
             G2_BlendNone();
             G2S_BlendNone();
             return 1;
@@ -158,9 +158,9 @@ int PokedexMain_Main(OverlayManager *overlayMan, int *state)
     return 0;
 }
 
-int PokedexMain_Exit(OverlayManager *overlayMan, int *state)
+int PokedexMain_Exit(ApplicationManager *appMan, int *state)
 {
-    OverlayManager_Data(overlayMan);
+    ApplicationManager_Data(appMan);
 
     SetVBlankCallback(NULL, NULL);
 
@@ -168,7 +168,7 @@ int PokedexMain_Exit(OverlayManager *overlayMan, int *state)
 
     PokedexMain_FreeGraphics();
     VramTransfer_Free();
-    OverlayManager_FreeData(overlayMan);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_POKEDEX);
     Sound_SetPlayerVolume(1, 127);
 
@@ -188,17 +188,17 @@ static void VBlankCallBack(void *data)
 
 static void EntranceTransition(PokedexApp **appPtr)
 {
-    StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_POKEDEX);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_POKEDEX);
 }
 
 static void ExitTransition(PokedexApp **appPtr)
 {
-    StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_POKEDEX);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_POKEDEX);
 }
 
 static BOOL TransitionComplete(PokedexApp **appPtr)
 {
-    return IsScreenTransitionDone();
+    return IsScreenFadeDone();
 }
 
 const static UnkFuncPtr_ov21_021E9B74 Unk_ov21_021E9B74[10] = {

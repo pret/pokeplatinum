@@ -96,7 +96,7 @@ static BOOL ov5_021E120C(FieldTask *param0)
         if (sub_02061544(v0->playerAvatar)) {
             int v3 = 0xc;
 
-            v3 = sub_02065838(v0->unk_00, v3);
+            v3 = MovementAction_TurnActionTowardsDir(v0->unk_00, v3);
             PlayerAvatar_SetAnimationCode(v0->playerAvatar, v3, 1);
             Player_SetDir(v0->playerAvatar, v0->unk_00);
             v0->unk_08++;
@@ -153,7 +153,7 @@ static BOOL ov5_021E120C(FieldTask *param0)
 
 static void *ov5_021E132C(int param0)
 {
-    void *v0 = Heap_AllocFromHeapAtEnd(4, param0);
+    void *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, param0);
 
     GF_ASSERT(v0 != NULL);
     memset(v0, 0, param0);

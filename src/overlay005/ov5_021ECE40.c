@@ -1890,7 +1890,7 @@ static UnkStruct_020216E0 *ov5_021EE454(MapObject *param0, int param1, UnkFuncPt
     UnkStruct_ov5_021ED0A4 *v8 = ov5_021EDEA8(param0);
     UnkStruct_02020C44 *v9 = ov5_021EDC8C(v8);
     UnkStruct_020216E0 *v10 = ov5_021EB1A0(param0);
-    UnkStruct_ov5_021EE698 *v11 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov5_021EE698));
+    UnkStruct_ov5_021EE698 *v11 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021EE698));
 
     memset(v11, 0, sizeof(UnkStruct_ov5_021EE698));
 

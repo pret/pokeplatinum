@@ -161,7 +161,7 @@ void ov62_0222F514(UnkStruct_0208C06C *param0)
     PaletteData_Free(param0->unk_14.unk_14);
 
     if (param0->unk_00 == 0) {
-        MiscSaveBlock *v0 = SaveData_MiscSaveBlock(param0->unk_830);
+        MiscSaveBlock *v0 = SaveData_MiscSaveBlock(param0->saveData);
         MiscSaveBlock_SetVsRecorderColor(v0, param0->unk_14.unk_48);
     }
 
@@ -593,7 +593,7 @@ BOOL ov62_0222FD3C(UnkStruct_0208C06C *param0)
         break;
     case 5:
         if (v0 == 0) {
-            UnkStruct_02029C68 *v2 = sub_02029CA8(sub_0202A750(param0->unk_830), v0);
+            UnkStruct_02029C68 *v2 = sub_02029CA8(sub_0202A750(param0->saveData), v0);
             v1 = sub_02029F34(v2);
 
             if (v1 == 0) {

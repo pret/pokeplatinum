@@ -5,7 +5,7 @@
 
 #include "savedata.h"
 
-void ov97_0222D1C4(UnkStruct_ov97_0222D04C *param0, SaveData *param1, int param2);
+void ov97_0222D1C4(UnkStruct_ov97_0222D04C *param0, SaveData *saveData, int param2);
 void ov97_0222D1F0(const void *param0, int param1);
 void ov97_0222D200(UnkStruct_ov97_0222D04C *param0, int param1);
 void ov97_0222D234(int param0);

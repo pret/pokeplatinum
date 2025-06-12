@@ -356,60 +356,60 @@ _05E1:
 
     .balign 4, 0
 _05F0:
-    MoveAction_012 2
-    MoveAction_015
-    MoveAction_012 2
-    MoveAction_069
+    WalkNormalNorth 2
+    WalkNormalEast
+    WalkNormalNorth 2
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _0604:
-    MoveAction_012 4
-    MoveAction_069
+    WalkNormalNorth 4
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _0610:
-    MoveAction_012
-    MoveAction_015
-    MoveAction_012 2
-    MoveAction_069
+    WalkNormalNorth
+    WalkNormalEast
+    WalkNormalNorth 2
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _0624:
-    MoveAction_012 3
-    MoveAction_069
+    WalkNormalNorth 3
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _0630:
-    MoveAction_021 2
-    MoveAction_022
-    MoveAction_021 2
-    MoveAction_000
-    MoveAction_070
+    WalkFasterSouth 2
+    WalkFasterWest
+    WalkFasterSouth 2
+    FaceNorth
+    SetVisible
     EndMovement
 
     .balign 4, 0
 _0648:
-    MoveAction_021 4
-    MoveAction_000
-    MoveAction_070
+    WalkFasterSouth 4
+    FaceNorth
+    SetVisible
     EndMovement
 
     .balign 4, 0
 _0658:
-    MoveAction_021
-    MoveAction_022
-    MoveAction_021 2
-    MoveAction_070
+    WalkFasterSouth
+    WalkFasterWest
+    WalkFasterSouth 2
+    SetVisible
     EndMovement
 
     .balign 4, 0
 _066C:
-    MoveAction_021 3
-    MoveAction_070
+    WalkFasterSouth 3
+    SetVisible
     EndMovement
 
 _0678:

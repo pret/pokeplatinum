@@ -50,7 +50,7 @@ typedef struct {
 typedef struct UnkStruct_ov23_02253598_t {
     UnkStruct_ov23_022537D4 *unk_00;
     SysTask *unk_04;
-    SaveData *unk_08;
+    SaveData *saveData;
     SecretBaseRecord *unk_0C;
     SecretBaseRecord *unk_10;
     MATHRandContext32 unk_14;
@@ -60,12 +60,12 @@ typedef struct UnkStruct_ov23_02253598_t {
 static UnkStruct_ov23_02253598 *Unk_ov23_022577BC = NULL;
 static void ov23_022537D4(SysTask *param0, void *param1);
 
-void ov23_02253598(UnkStruct_ov23_02253598 *param0, SecretBaseRecord *param1, SaveData *param2)
+void ov23_02253598(UnkStruct_ov23_02253598 *param0, SecretBaseRecord *param1, SaveData *saveData)
 {
     MI_CpuFill8(param0, 0, sizeof(UnkStruct_ov23_02253598));
 
     Unk_ov23_022577BC = param0;
-    Unk_ov23_022577BC->unk_08 = param2;
+    Unk_ov23_022577BC->saveData = saveData;
     Unk_ov23_022577BC->unk_0C = param1;
     Unk_ov23_022577BC->unk_10 = sub_0202855C(HEAP_ID_COMMUNICATION);
 
@@ -247,7 +247,7 @@ void ov23_02253834(BgConfig *param0, TrainerInfo *param1, UnkFuncPtr_ov23_022538
 void ov23_022538FC(int param0)
 {
     int v0 = sub_02028558();
-    int v1 = GameRecords_GetTrainerScore(SaveData_GetGameRecords(Unk_ov23_022577BC->unk_08));
+    int v1 = GameRecords_GetTrainerScore(SaveData_GetGameRecords(Unk_ov23_022577BC->saveData));
     u8 *v2 = Heap_AllocFromHeap(HEAP_ID_FIELD, v0 + 1);
 
     MI_CpuClear8(v2, v0 + 1);
@@ -267,7 +267,7 @@ void ov23_022538FC(int param0)
 
 void ov23_02253968(void)
 {
-    int v0 = GameRecords_GetTrainerScore(SaveData_GetGameRecords(Unk_ov23_022577BC->unk_08));
+    int v0 = GameRecords_GetTrainerScore(SaveData_GetGameRecords(Unk_ov23_022577BC->saveData));
 
     if (v0 >= 999999) {
         v0 = 999999;

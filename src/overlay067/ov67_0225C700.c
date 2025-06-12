@@ -32,12 +32,12 @@
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 
@@ -54,7 +54,7 @@ typedef struct {
 } UnkStruct_ov67_0225D210;
 
 typedef struct {
-    SaveData *unk_00;
+    SaveData *saveData;
     u32 unk_04;
     u32 unk_08;
     BgConfig *unk_0C;
@@ -70,7 +70,7 @@ static void ov67_0225CE28(void *param0);
 static void ov67_0225CE30(UnkStruct_ov67_0225D154 *param0, u32 param1);
 static void ov67_0225D154(UnkStruct_ov67_0225D154 *param0);
 static void ov67_0225D17C(UnkStruct_ov67_0225D154 *param0);
-static void ov67_0225D188(UnkStruct_ov67_0225D210 *param0, BgConfig *param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, SaveData *param9, u32 param10);
+static void ov67_0225D188(UnkStruct_ov67_0225D210 *param0, BgConfig *param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, SaveData *saveData, u32 param10);
 static void ov67_0225D210(UnkStruct_ov67_0225D210 *param0, u32 param1);
 static void ov67_0225D294(UnkStruct_ov67_0225D210 *param0);
 static void ov67_0225D2EC(UnkStruct_ov67_0225D210 *param0);
@@ -163,26 +163,26 @@ static const WindowTemplate Unk_ov67_0225D3EC = {
     0x204
 };
 
-int ov67_0225C700(OverlayManager *param0, int *param1)
+int ov67_0225C700(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov67_0225D154 *v0;
     UnkStruct_ov66_02231024 *v1;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_112, 0x20000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov67_0225D154), HEAP_ID_112);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov67_0225D154), HEAP_ID_112);
     memset(v0, 0, sizeof(UnkStruct_ov67_0225D154));
-    v1 = OverlayManager_Args(param0);
+    v1 = ApplicationManager_Args(appMan);
 
-    v0->unk_00 = v1->unk_00;
+    v0->saveData = v1->saveData;
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, SEQ_WIFILOBBY, 0);
     v1->unk_10 = 0;
 
     ov67_0225CE30(v0, 112);
-    ov67_0225D188(&v0->unk_40, v0->unk_0C, 1, 674, 2, 19, 27, 4, ((1 + (18 + 12)) + 9), v0->unk_00, 112);
-    ov67_0225D188(&v0->unk_70, v0->unk_0C, 1, 695, 2, 19, 27, 4, ((1 + (18 + 12)) + 9), v0->unk_00, 112);
-    ov67_0225D188(&v0->unk_A0, v0->unk_0C, 0, 695, 4, 4, 23, 16, (((1 + (18 + 12)) + 9) + (27 * 4)), v0->unk_00, 112);
-    ov67_0225D188(&v0->unk_10, v0->unk_0C, 1, 674, 5, 1, 22, 2, (((((1 + (18 + 12)) + 9) + (27 * 4)) + (23 * 16)) + (6 * 4)), v0->unk_00, 112);
+    ov67_0225D188(&v0->unk_40, v0->unk_0C, 1, 674, 2, 19, 27, 4, ((1 + (18 + 12)) + 9), v0->saveData, 112);
+    ov67_0225D188(&v0->unk_70, v0->unk_0C, 1, 695, 2, 19, 27, 4, ((1 + (18 + 12)) + 9), v0->saveData, 112);
+    ov67_0225D188(&v0->unk_A0, v0->unk_0C, 0, 695, 4, 4, 23, 16, (((1 + (18 + 12)) + 9) + (27 * 4)), v0->saveData, 112);
+    ov67_0225D188(&v0->unk_10, v0->unk_0C, 1, 674, 5, 1, 22, 2, (((((1 + (18 + 12)) + 9) + (27 * 4)) + (23 * 16)) + (6 * 4)), v0->saveData, 112);
     ov67_0225D37C(&v0->unk_10, 21);
 
     SetVBlankCallback(ov67_0225CE28, v0);
@@ -191,21 +191,21 @@ int ov67_0225C700(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov67_0225C820(OverlayManager *param0, int *param1)
+int ov67_0225C820(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov67_0225D154 *v0;
     UnkStruct_ov66_02231024 *v1;
 
-    v0 = OverlayManager_Data(param0);
-    v1 = OverlayManager_Args(param0);
+    v0 = ApplicationManager_Data(appMan);
+    v1 = ApplicationManager_Args(appMan);
 
     switch (*param1) {
     case 0:
-        StartScreenTransition(0, 1, 1, 0xffff, 6, 1, HEAP_ID_112);
+        StartScreenFade(FADE_BOTH_SCREENS, 1, 1, 0xffff, 6, 1, HEAP_ID_112);
         (*param1)++;
         break;
     case 1:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             (*param1)++;
         }
         break;
@@ -236,7 +236,7 @@ int ov67_0225C820(OverlayManager *param0, int *param1)
         UnkStruct_ov66_0222E71C *v3;
 
         v3 = ov66_0222E3BC(v1->unk_04);
-        sub_0203878C(v0->unk_00, v3);
+        sub_0203878C(v0->saveData, v3);
     }
 
         ov67_0225D210(&v0->unk_70, 23);
@@ -266,7 +266,7 @@ int ov67_0225C820(OverlayManager *param0, int *param1)
             {
                 GameRecords *v4;
 
-                v4 = SaveData_GetGameRecords(v0->unk_00);
+                v4 = SaveData_GetGameRecords(v0->saveData);
                 GameRecords_IncrementTrainerScore(v4, TRAINER_SCORE_EVENT_UNK_44);
             }
 
@@ -360,11 +360,11 @@ int ov67_0225C820(OverlayManager *param0, int *param1)
         }
         break;
     case 7:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_112);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_112);
         (*param1)++;
         break;
     case 8:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             return 1;
         }
         break;
@@ -378,9 +378,9 @@ int ov67_0225C820(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov67_0225CB1C(OverlayManager *param0, int *param1)
+int ov67_0225CB1C(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov67_0225D154 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov67_0225D154 *v0 = ApplicationManager_Data(appMan);
 
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
@@ -401,23 +401,23 @@ int ov67_0225CB1C(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov67_0225CB8C(OverlayManager *param0, int *param1)
+int ov67_0225CB8C(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov67_0225D154 *v0;
     UnkStruct_ov66_02231300 *v1;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_112, 0x20000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov67_0225D154), HEAP_ID_112);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov67_0225D154), HEAP_ID_112);
     memset(v0, 0, sizeof(UnkStruct_ov67_0225D154));
 
-    v1 = OverlayManager_Args(param0);
-    v0->unk_00 = v1->unk_00;
+    v1 = ApplicationManager_Args(appMan);
+    v0->saveData = v1->saveData;
 
     ov67_0225CE30(v0, 112);
-    ov67_0225D188(&v0->unk_40, v0->unk_0C, 1, 695, 2, 19, 27, 4, ((1 + (18 + 12)) + 9), v0->unk_00, 112);
-    ov67_0225D188(&v0->unk_A0, v0->unk_0C, 0, 695, 4, 4, 23, 16, (((1 + (18 + 12)) + 9) + (27 * 4)), v0->unk_00, 112);
-    ov67_0225D188(&v0->unk_10, v0->unk_0C, 1, 674, 5, 1, 22, 2, (((((1 + (18 + 12)) + 9) + (27 * 4)) + (23 * 16)) + (6 * 4)), v0->unk_00, 112);
+    ov67_0225D188(&v0->unk_40, v0->unk_0C, 1, 695, 2, 19, 27, 4, ((1 + (18 + 12)) + 9), v0->saveData, 112);
+    ov67_0225D188(&v0->unk_A0, v0->unk_0C, 0, 695, 4, 4, 23, 16, (((1 + (18 + 12)) + 9) + (27 * 4)), v0->saveData, 112);
+    ov67_0225D188(&v0->unk_10, v0->unk_0C, 1, 674, 5, 1, 22, 2, (((((1 + (18 + 12)) + 9) + (27 * 4)) + (23 * 16)) + (6 * 4)), v0->saveData, 112);
     ov67_0225D37C(&v0->unk_10, 21);
 
     sub_02039734();
@@ -427,21 +427,21 @@ int ov67_0225CB8C(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov67_0225CC6C(OverlayManager *param0, int *param1)
+int ov67_0225CC6C(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov67_0225D154 *v0;
     UnkStruct_ov66_02231300 *v1;
 
-    v0 = OverlayManager_Data(param0);
-    v1 = OverlayManager_Args(param0);
+    v0 = ApplicationManager_Data(appMan);
+    v1 = ApplicationManager_Args(appMan);
 
     switch (*param1) {
     case 0:
-        StartScreenTransition(0, 1, 1, 0xffff, 6, 1, HEAP_ID_112);
+        StartScreenFade(FADE_BOTH_SCREENS, 1, 1, 0xffff, 6, 1, HEAP_ID_112);
         (*param1)++;
         break;
     case 1:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             (*param1) = 2;
         }
         break;
@@ -497,11 +497,11 @@ int ov67_0225CC6C(OverlayManager *param0, int *param1)
         }
         break;
     case 9:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_112);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_112);
         (*param1)++;
         break;
     case 10:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             ov67_0225D310(&v0->unk_40);
             return 1;
         }
@@ -513,9 +513,9 @@ int ov67_0225CC6C(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov67_0225CDC0(OverlayManager *param0, int *param1)
+int ov67_0225CDC0(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov67_0225D154 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov67_0225D154 *v0 = ApplicationManager_Data(appMan);
 
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
@@ -571,7 +571,7 @@ static void ov67_0225CE30(UnkStruct_ov67_0225D154 *param0, u32 heapID)
         Options *v1;
         u8 v2;
 
-        v1 = SaveData_GetOptions(param0->unk_00);
+        v1 = SaveData_GetOptions(param0->saveData);
         v2 = Options_Frame(v1);
 
         Font_LoadTextPalette(0, 12 * 32, heapID);
@@ -620,14 +620,14 @@ static void ov67_0225D17C(UnkStruct_ov67_0225D154 *param0)
     Bg_RunScheduledUpdates(param0->unk_0C);
 }
 
-static void ov67_0225D188(UnkStruct_ov67_0225D210 *param0, BgConfig *param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, SaveData *param9, u32 heapID)
+static void ov67_0225D188(UnkStruct_ov67_0225D210 *param0, BgConfig *param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, SaveData *saveData, u32 heapID)
 {
     param0->unk_00 = StringTemplate_Default(heapID);
     param0->unk_04 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, param3, heapID);
     param0->unk_18 = Strbuf_Init(256, heapID);
     param0->unk_1C = Strbuf_Init(256, heapID);
     param0->unk_20 = param2;
-    param0->unk_28 = Options_TextFrameDelay(SaveData_GetOptions(param9));
+    param0->unk_28 = Options_TextFrameDelay(SaveData_GetOptions(saveData));
     param0->unk_2C = 0;
 
     Window_Add(param1, &param0->unk_08, Unk_ov67_0225D3F4[1], param4, param5, param6, param7, 11, param8);

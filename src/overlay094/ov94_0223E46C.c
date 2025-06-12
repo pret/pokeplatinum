@@ -29,13 +29,13 @@
 #include "narc.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_0202DA40.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
@@ -143,7 +143,7 @@ int ov94_0223E46C(UnkStruct_ov94_0223FD4C *param0, int param1)
     ov94_022422B8(&param0->unk_FCC[5], param0->unk_B90, ov94_02242970(param0->unk_B7A.level, param0->unk_B7A.level2, 1), 0, 0, TEXT_COLOR(1, 2, 0), 1);
     ov94_0224218C(&param0->unk_10AC[1], param0->unk_BA0, param0->unk_B90, param0->unk_11B0, 0, 0, TEXT_COLOR(1, 2, 0));
 
-    StartScreenTransition(3, 1, 1, 0x0, 6, 1, HEAP_ID_62);
+    StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
     param0->unk_2C = 0;
 
     return 2;
@@ -731,7 +731,7 @@ static void ov94_0223EFAC(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_0223F0A8(UnkStruct_ov94_0223FD4C *param0)
 {
-    StartScreenTransition(3, 0, 0, 0x0, 6, 1, HEAP_ID_62);
+    StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
 
     param0->unk_2C = 0;
 

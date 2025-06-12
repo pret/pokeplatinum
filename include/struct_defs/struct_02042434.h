@@ -6,7 +6,7 @@
 #include "savedata.h"
 
 typedef struct {
-    SaveData *unk_00;
+    SaveData *saveData;
     enum BoxMode boxMode;
     BOOL unk_08;
 } UnkStruct_02042434;

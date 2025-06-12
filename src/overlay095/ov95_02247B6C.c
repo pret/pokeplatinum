@@ -22,6 +22,7 @@
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "strbuf.h"
@@ -29,7 +30,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_0202419C.h"
 #include "unk_020393C8.h"
 
@@ -285,7 +285,7 @@ static int ov95_02247CB4(UnkStruct_ov95_02247C6C *param0, int *param1)
 
     sub_02039734();
     sub_020397C8(1, HEAP_ID_57);
-    StartScreenTransition(0, 1, 1, 0x0, 16, 1, HEAP_ID_58);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 16, 1, HEAP_ID_58);
 
     return 1;
 }
@@ -294,7 +294,7 @@ static int ov95_02247ED8(UnkStruct_ov95_02247C6C *param0, int *param1)
 {
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             Sprite_SetAnim(param0->unk_3C[0], 1);
             Sprite_SetDrawFlag(param0->unk_3C[0], 1);
             return 1;
@@ -405,12 +405,12 @@ static int ov95_02248090(UnkStruct_ov95_02247C6C *param0, int *param1)
         break;
     case 3:
         if ((ov95_0224847C(param0) >= 2) || (ov95_0224846C(param0) == 1)) {
-            StartScreenTransition(0, 0, 0, 0x0, 24, 1, HEAP_ID_58);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 24, 1, HEAP_ID_58);
             (*param1)++;
         }
         break;
     case 4:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             if (ov95_0224846C(param0)) {
                 return 1;
             }
