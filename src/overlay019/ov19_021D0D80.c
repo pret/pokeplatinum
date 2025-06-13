@@ -167,6 +167,25 @@ enum PlaceMonState {
     PLACE_MON_END
 };
 
+enum ItemHeldState {
+    ITEM_HELD_START,
+    ITEM_HELD_YES_NO,
+    ITEM_HELD_ADD_TO_BAG,
+    ITEM_HELD_DISPLAY_TOOK_ITEM_MESSAGE,
+    ITEM_HELD_CONFIRM_MESSAGE,
+    ITEM_HELD_END
+};
+
+enum GiveItemFromBag {
+    GIVE_FROM_BAG_START,
+    GIVE_FROM_BAG_INIT_BAG_APP,
+    GIVE_FROM_BAG_SELECT_ITEM,
+    GIVE_FROM_BAG_RETURN_TO_BOX,
+    GIVE_FROM_BAG_DISPLAY_MESSAGE,
+    GIVE_FROM_BAG_CONFIRM_MESSAGE,
+    GIVE_FROM_BAG_END
+};
+
 static const TouchScreenHitTable sMainPcButtons[] = {
     { TOUCHSCREEN_USE_CIRCLE, MAIN_PC_LEFT_BUTTON_X, MAIN_PC_BUTTON_Y, MAIN_PC_BUTTON_RADIUS },
     { TOUCHSCREEN_USE_CIRCLE, MAIN_PC_RIGHT_BUTTON_X, MAIN_PC_BUTTON_Y, MAIN_PC_BUTTON_RADIUS },
@@ -301,8 +320,8 @@ static BOOL BoxPokemon_HasMove(BoxPokemon *boxMon, u16 param1);
 static void ov19_RenameBoxAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state);
 static void ov19_OpenSummaryAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state);
 static void ov19_SetCursorPosToSummaryMonPos(UnkStruct_ov19_021D4DF0 *param0, UnkStruct_ov19_021D5DF8 *param1);
-static void ov19_021D3D44(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
-static void ov19_021D3FB0(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
+static void ov19_GiveItemFromBagAction(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
+static void ov19_MonItemHeldAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state);
 static void ov19_021D4184(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D4390(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void BoxSelectorPopup_Init(UnkStruct_ov19_021D5DF8 *param0, u32 boxID, u32 boxMessageID);
@@ -1214,10 +1233,10 @@ static void ov19_021D20A4(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             ov19_RegisterBoxApplicationAction(param0, ov19_OpenSummaryAction);
             break;
         case BOX_MENU_ITEM: {
-            if (ov19_GetPreviewedMonHeldItem(&param0->unk_00) == 0) {
-                ov19_RegisterBoxApplicationAction(param0, ov19_021D3D44);
+            if (ov19_GetPreviewedMonHeldItem(&param0->unk_00) == ITEM_NONE) {
+                ov19_RegisterBoxApplicationAction(param0, ov19_GiveItemFromBagAction);
             } else {
-                ov19_RegisterBoxApplicationAction(param0, ov19_021D3FB0);
+                ov19_RegisterBoxApplicationAction(param0, ov19_MonItemHeldAction);
             }
         } break;
         case BOX_MENU_SET_ON_LEFT:
@@ -1323,7 +1342,7 @@ static void ov19_021D2308(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
                 Sound_PlayEffect(SEQ_SE_DP_DECIDE);
                 (*param1) = 5;
             } else {
-                ov19_RegisterBoxApplicationAction(param0, ov19_021D3D44);
+                ov19_RegisterBoxApplicationAction(param0, ov19_GiveItemFromBagAction);
             }
 
             break;
@@ -2535,7 +2554,7 @@ static void ov19_SetCursorPosToSummaryMonPos(UnkStruct_ov19_021D4DF0 *param0, Un
     ov19_TryPreviewCursorMon(param1);
 }
 
-static void ov19_021D3D44(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
+static void ov19_GiveItemFromBagAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
 {
     FS_EXTERN_OVERLAY(overlay84);
 
@@ -2551,12 +2570,12 @@ static void ov19_021D3D44(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
     };
     static u32 item;
 
-    switch (*param1) {
-    case 0:
+    switch (*state) {
+    case GIVE_FROM_BAG_START:
         ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_ScreenFadeBothToBlack2);
-        (*param1)++;
+        (*state)++;
         break;
-    case 1:
+    case GIVE_FROM_BAG_INIT_BAG_APP:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNC_BoxGraphics_ScreenFadeBothToBlack2)) {
             BoxGraphics_Free(param0->unk_114);
             Heap_Destroy(HEAP_ID_BOX_GRAPHICS);
@@ -2566,10 +2585,10 @@ static void ov19_021D3D44(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             sub_0207CB2C(param0->unk_214, param0->saveData, 1, NULL);
             Overlay_LoadByID(FS_OVERLAY_ID(overlay84), 2);
             param0->ApplicationManager = ApplicationManager_New(&Unk_ov84_02241130, param0->unk_214, HEAP_ID_BOX_DATA);
-            (*param1)++;
+            (*state)++;
         }
         break;
-    case 2:
+    case GIVE_FROM_BAG_SELECT_ITEM:
         if (ApplicationManager_Exec(param0->ApplicationManager)) {
             item = sub_0207CB94((UnkStruct_0207CB08 *)(param0->unk_214));
 
@@ -2577,7 +2596,7 @@ static void ov19_021D3D44(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             Heap_FreeToHeap(param0->unk_214);
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay84));
 
-            if ((item == ITEM_GRISEOUS_ORB) && (BoxPokemon_GetValue(param0->unk_00.pcMonPreview.mon, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA)) {
+            if (item == ITEM_GRISEOUS_ORB && BoxPokemon_GetValue(param0->unk_00.pcMonPreview.mon, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA) {
                 (void)0;
             } else if (item != ITEM_NONE) {
                 Bag_TryRemoveItem(SaveData_GetBag(param0->saveData), item, 1, HEAP_ID_BOX_DATA);
@@ -2588,42 +2607,42 @@ static void ov19_021D3D44(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_BOX_GRAPHICS, 245760);
             BoxGraphics_Load(&(param0->unk_114), &param0->unk_00, param0);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6694);
-            (*param1)++;
+            (*state)++;
         }
         break;
-    case 3:
+    case GIVE_FROM_BAG_RETURN_TO_BOX:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNC_ov19_021D6694)) {
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_ScreenFadeBothToBlack1);
-            (*param1)++;
+            (*state)++;
         }
         break;
-    case 4:
+    case GIVE_FROM_BAG_DISPLAY_MESSAGE:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNC_BoxGraphics_ScreenFadeBothToBlack1)) {
             if (item == ITEM_NONE) {
                 ov19_ClearBoxApplicationAction(param0);
-            } else if ((item == ITEM_GRISEOUS_ORB) && (BoxPokemon_GetValue(param0->unk_00.pcMonPreview.mon, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA)) {
+            } else if (item == ITEM_GRISEOUS_ORB && BoxPokemon_GetValue(param0->unk_00.pcMonPreview.mon, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA) {
                 StringTemplate_SetItemName(param0->MessageVariableBuffer, 0, item);
                 ov19_SetBoxMessage(&param0->unk_00, BoxText_MonCantHoldItem);
                 ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
-                (*param1)++;
+                (*state)++;
             } else {
                 StringTemplate_SetItemName(param0->MessageVariableBuffer, 0, item);
                 ov19_SetBoxMessage(&param0->unk_00, BoxText_HoldingItem);
                 ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
-                (*param1)++;
+                (*state)++;
             }
         }
         break;
-    case 5:
+    case GIVE_FROM_BAG_CONFIRM_MESSAGE:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNC_BoxGraphics_DisplayBoxMessage)) {
             if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
                 Sound_PlayEffect(SEQ_SE_DP_DECIDE);
                 ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_CloseMessageBox);
-                (*param1)++;
+                (*state)++;
             }
         }
         break;
-    case 6:
+    case GIVE_FROM_BAG_END:
         if (ov19_CheckAllTasksDone(param0->unk_114)) {
             ov19_ClearBoxApplicationAction(param0);
         }
@@ -2631,28 +2650,28 @@ static void ov19_021D3D44(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
     }
 }
 
-static void ov19_021D3FB0(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
+static void ov19_MonItemHeldAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
 {
     static u32 item;
 
-    switch (*param1) {
-    case 0:
+    switch (*state) {
+    case ITEM_HELD_START:
         item = ov19_GetPreviewedMonHeldItem(&param0->unk_00);
 
         if (Item_IsMail(item)) {
             Sound_PlayEffect(SEQ_SE_DP_BOX03);
             ov19_SetBoxMessage(&param0->unk_00, BoxText_CantTakeMail);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
-            (*param1) = 4;
+            *state = ITEM_HELD_CONFIRM_MESSAGE;
         } else {
             StringTemplate_SetItemName(param0->MessageVariableBuffer, 0, item);
             BoxMenu_FillYesNo(&(param0->unk_00), 0);
             ov19_SetBoxMessage(&param0->unk_00, BoxText_ConfirmTakeItem);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6E70);
-            (*param1) = 1;
+            *state = ITEM_HELD_YES_NO;
         }
         break;
-    case 1:
+    case ITEM_HELD_YES_NO:
         if (ov19_CheckAllTasksDone(param0->unk_114) == FALSE) {
             break;
         }
@@ -2664,43 +2683,43 @@ static void ov19_021D3FB0(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         case BOX_MENU_NAVIGATION_B:
         case BOX_MENU_NO:
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_CloseMessageBox);
-            (*param1) = 5;
+            *state = ITEM_HELD_END;
             break;
         case BOX_MENU_YES:
             ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6EC0);
-            (*param1) = 2;
+            *state = ITEM_HELD_ADD_TO_BAG;
             break;
         }
         break;
-    case 2:
+    case ITEM_HELD_ADD_TO_BAG:
         if (Bag_TryAddItem(SaveData_GetBag(param0->saveData), item, 1, HEAP_ID_BOX_DATA)) {
             ov19_GiveItemToSelectedMon(&param0->unk_00, ITEM_NONE, param0);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6D88);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6940);
-            *param1 = 3;
+            *state = ITEM_HELD_DISPLAY_TOOK_ITEM_MESSAGE;
         } else {
             ov19_SetBoxMessage(&param0->unk_00, BoxText_BagFull);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
-            *param1 = 4;
+            *state = ITEM_HELD_CONFIRM_MESSAGE;
         }
         break;
-    case 3:
+    case ITEM_HELD_DISPLAY_TOOK_ITEM_MESSAGE:
         if (ov19_CheckAllTasksDone(param0->unk_114)) {
             ov19_SetBoxMessage(&param0->unk_00, BoxText_TookItem);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
-            *param1 = 4;
+            *state = ITEM_HELD_CONFIRM_MESSAGE;
         }
         break;
-    case 4:
+    case ITEM_HELD_CONFIRM_MESSAGE:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNC_BoxGraphics_DisplayBoxMessage)) {
             if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
                 Sound_PlayEffect(SEQ_SE_DP_DECIDE);
                 ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_CloseMessageBox);
-                (*param1) = 5;
+                *state = ITEM_HELD_END;
             }
         }
         break;
-    case 5:
+    case ITEM_HELD_END:
         if (ov19_CheckAllTasksDone(param0->unk_114)) {
             ov19_ClearBoxApplicationAction(param0);
         }
