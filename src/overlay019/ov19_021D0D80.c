@@ -161,6 +161,12 @@ enum ShiftState {
     SHIFT_END
 };
 
+enum PlaceMonState {
+    PLACE_MON_DOWN,
+    PLACE_ADJUST_PARTY_ANIMATION,
+    PLACE_MON_END
+};
+
 static const TouchScreenHitTable sMainPcButtons[] = {
     { TOUCHSCREEN_USE_CIRCLE, MAIN_PC_LEFT_BUTTON_X, MAIN_PC_BUTTON_Y, MAIN_PC_BUTTON_RADIUS },
     { TOUCHSCREEN_USE_CIRCLE, MAIN_PC_RIGHT_BUTTON_X, MAIN_PC_BUTTON_Y, MAIN_PC_BUTTON_RADIUS },
@@ -276,24 +282,24 @@ static void ov19_021D1F5C(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D20A4(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D2308(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D2694(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
-static void ov19_BoxJumpAction(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
-static void ov19_WallpaperMenu(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
-static void ov19_MarkAction(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
+static void ov19_BoxJumpAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state);
+static void ov19_WallpaperMenu(UnkStruct_ov19_021D5DF8 *param0, u32 *state);
+static void ov19_MarkAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state);
 static void ov19_021D2B54(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static BOOL ov19_IsBoxUnderSelectedMonsEmpty(const UnkStruct_ov19_021D4DF0 *param0);
-static void ov19_PickUpMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
-static void ov19_021D2F14(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
-static void ov19_ShiftMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
-static void ov19_WithdrawMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
-static void ov19_StoreMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
+static void ov19_PickUpMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state);
+static void ov19_PlaceMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state);
+static void ov19_ShiftMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state);
+static void ov19_WithdrawMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state);
+static void ov19_StoreMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state);
 static BOOL ov19_OnLastAliveMon(UnkStruct_ov19_021D5DF8 *param0);
 static BOOL ov19_CheckReleaseMonValid(UnkStruct_ov19_021D5DF8 *param0, int *destBoxMessageID);
 static void ov19_ReleaseMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *releaseMonState);
 static void ov19_CheckShouldMonReturn(UnkStruct_ov19_021D5DF8 *param0);
 static void ov19_CheckLastMonWithReleaseBlockingMove(SysTask *task, void *releaseMon);
 static BOOL BoxPokemon_HasMove(BoxPokemon *boxMon, u16 param1);
-static void ov19_RenameBoxAction(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
-static void ov19_OpenSummaryAction(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
+static void ov19_RenameBoxAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state);
+static void ov19_OpenSummaryAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state);
 static void ov19_SetCursorPosToSummaryMonPos(UnkStruct_ov19_021D4DF0 *param0, UnkStruct_ov19_021D5DF8 *param1);
 static void ov19_021D3D44(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D3FB0(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
@@ -1186,7 +1192,7 @@ static void ov19_021D20A4(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             break;
         case BOX_MENU_PLACE:
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_CloseMessageBox);
-            ov19_RegisterBoxApplicationAction(param0, ov19_021D2F14);
+            ov19_RegisterBoxApplicationAction(param0, ov19_PlaceMonAction);
             break;
         case BOX_MENU_SHIFT:
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_CloseMessageBox);
@@ -1820,10 +1826,10 @@ static void ov19_PickUpMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
     }
 }
 
-static void ov19_021D2F14(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
+static void ov19_PlaceMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
 {
-    switch (*param1) {
-    case 0:
+    switch (*state) {
+    case PLACE_MON_DOWN:
         ov19_PutDownCursorMon(param0, &param0->unk_00);
         ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_PlaceMonDownFromCursor);
         Sound_PlayEffect(SEQ_SE_DP_BOX01);
@@ -1833,22 +1839,22 @@ static void ov19_021D2F14(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             u32 partyCount = Party_GetCurrentCount(param0->party);
 
             if (cursorPosition != (partyCount - 1)) {
-                (*param1) = 1;
+                *state = PLACE_ADJUST_PARTY_ANIMATION;
                 ov19_TryPreviewCursorMon(param0);
                 break;
             }
         }
-        (*param1) = 2;
+        *state = PLACE_MON_END;
         break;
-    case 1:
+    case PLACE_ADJUST_PARTY_ANIMATION:
         if (ov19_CheckAllTasksDone(param0->unk_114)) {
             ov19_TryPreviewCursorMon(param0);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D71F8);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6940);
-            (*param1) = 2;
+            *state = PLACE_MON_END;
         }
         break;
-    case 2:
+    case PLACE_MON_END:
         if (ov19_CheckAllTasksDone(param0->unk_114)) {
             ov19_FlagRecordBoxUseInJournal(param0);
             ov19_ClearBoxApplicationAction(param0);
