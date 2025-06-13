@@ -155,6 +155,12 @@ enum WithdrawMonState {
     WITHDRAW_END
 };
 
+enum ShiftState {
+    SHIFT_START,
+    SHIFT_CONFIRM_MESSAGE,
+    SHIFT_END
+};
+
 static const TouchScreenHitTable sMainPcButtons[] = {
     { TOUCHSCREEN_USE_CIRCLE, MAIN_PC_LEFT_BUTTON_X, MAIN_PC_BUTTON_Y, MAIN_PC_BUTTON_RADIUS },
     { TOUCHSCREEN_USE_CIRCLE, MAIN_PC_RIGHT_BUTTON_X, MAIN_PC_BUTTON_Y, MAIN_PC_BUTTON_RADIUS },
@@ -277,7 +283,7 @@ static void ov19_021D2B54(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static BOOL ov19_IsBoxUnderSelectedMonsEmpty(const UnkStruct_ov19_021D4DF0 *param0);
 static void ov19_PickUpMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D2F14(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
-static void ov19_021D3010(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
+static void ov19_ShiftMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_WithdrawMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_StoreMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static BOOL ov19_OnLastAliveMon(UnkStruct_ov19_021D5DF8 *param0);
@@ -1184,7 +1190,7 @@ static void ov19_021D20A4(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             break;
         case BOX_MENU_SHIFT:
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_CloseMessageBox);
-            ov19_RegisterBoxApplicationAction(param0, ov19_021D3010);
+            ov19_RegisterBoxApplicationAction(param0, ov19_ShiftMonAction);
             break;
         case BOX_MENU_WITHDRAW:
             ov19_RegisterBoxApplicationAction(param0, ov19_WithdrawMonAction);
@@ -1870,36 +1876,36 @@ static BOOL ov19_CheckLastAliveMonReason(UnkStruct_ov19_021D5DF8 *param0, u32 *d
     return FALSE;
 }
 
-static void ov19_021D3010(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
+static void ov19_ShiftMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
 {
-    switch (*param1) {
-    case 0: {
+    switch (*state) {
+    case SHIFT_START: {
         u32 messageID;
 
         if (ov19_CheckLastAliveMonReason(param0, &messageID)) {
             Sound_PlayEffect(SEQ_SE_DP_BOX03);
             ov19_SetBoxMessage(&param0->unk_00, messageID);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
-            (*param1) = 1;
+            *state = SHIFT_CONFIRM_MESSAGE;
         } else {
             ov19_SwapMonInCursor(param0, &param0->unk_00);
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6AB0);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6940);
-            (*param1) = 2;
+            *state = SHIFT_END;
         }
     } break;
-    case 1:
+    case SHIFT_CONFIRM_MESSAGE:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNC_BoxGraphics_DisplayBoxMessage) == FALSE) {
             break;
         }
 
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_CloseMessageBox);
-            (*param1) = 2;
+            *state = SHIFT_END;
         }
         break;
-    case 2:
+    case SHIFT_END:
         if (ov19_CheckAllTasksDone(param0->unk_114)) {
             ov19_FlagRecordBoxUseInJournal(param0);
             ov19_ClearBoxApplicationAction(param0);
