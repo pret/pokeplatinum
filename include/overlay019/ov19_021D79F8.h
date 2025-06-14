@@ -28,7 +28,7 @@ void ov19_021D8938(UnkStruct_ov19_021D8318 *param0);
 void ov19_021D8988(UnkStruct_ov19_021D8318 *param0, u32 param1, u32 param2);
 void ov19_021D89F4(UnkStruct_ov19_021D8318 *param0, u32 param1);
 void ov19_021D8A24(UnkStruct_ov19_021D8318 *param0);
-void ov19_021D8A6C(UnkStruct_ov19_021D8318 *param0);
+void BoxGraphics_ApplyMultiSelectMonShading(UnkStruct_ov19_021D8318 *param0);
 void ov19_021D8B14(UnkStruct_ov19_021D8318 *param0);
 
 #endif // POKEPLATINUM_OV19_021D79F8_H

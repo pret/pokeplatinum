@@ -833,7 +833,7 @@ void ov19_021D9AEC(UnkStruct_ov19_021D8E00 *param0)
     }
 }
 
-void ov19_021D9B10(UnkStruct_ov19_021D8E00 *param0)
+void BoxGraphics_OpenMultiSelectCursor(UnkStruct_ov19_021D8E00 *param0)
 {
     Sprite_SetAnim(param0->unk_04, 1);
 }
