@@ -20,7 +20,6 @@
 #include "overlay022/struct_ov22_022550D4.h"
 #include "overlay022/struct_ov22_022557A0.h"
 #include "overlay022/struct_ov22_02255800.h"
-#include "overlay115/camera_angle.h"
 
 #include "bg_window.h"
 #include "camera.h"

@@ -5,7 +5,8 @@
 
 #include "overlay095/struct_ov95_0224773C_decl.h"
 #include "overlay095/struct_ov95_02247958_decl.h"
-#include "overlay115/camera_angle.h"
+
+#include "camera.h"
 
 UnkStruct_ov95_0224773C *ov95_022476F0(u32 param0, fx32 param1, fx32 param2, fx32 param3);
 void ov95_0224773C(UnkStruct_ov95_0224773C *param0);

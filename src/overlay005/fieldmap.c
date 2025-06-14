@@ -22,6 +22,7 @@
 #include "overlay005/const_ov5_021FF744.h"
 #include "overlay005/const_ov5_021FF7D0.h"
 #include "overlay005/dynamic_terrain_height.h"
+#include "overlay005/field_camera.h"
 #include "overlay005/hblank_system.h"
 #include "overlay005/honey_tree.h"
 #include "overlay005/land_data.h"
@@ -31,7 +32,6 @@
 #include "overlay005/model_attributes.h"
 #include "overlay005/ov5_021D1A94.h"
 #include "overlay005/ov5_021D57BC.h"
-#include "overlay005/ov5_021D5B40.h"
 #include "overlay005/ov5_021D5BC0.h"
 #include "overlay005/ov5_021D5CB0.h"
 #include "overlay005/ov5_021D5EB8.h"
@@ -308,7 +308,7 @@ static BOOL FieldMap_Exit(ApplicationManager *appMan, int *param1)
             AreaDataManager_Free(&fieldSystem->areaDataManager);
             LandDataManager_FreeNARCAndLoadedMapBuffers(fieldSystem->landDataMan);
             HoneyTree_FreeShakeData(&fieldSystem->unk_A8);
-            ov5_021D5BA8(fieldSystem);
+            FieldCamera_Delete(fieldSystem);
             AreaLightManager_Free(&fieldSystem->areaLightMan);
             Signpost_Free(fieldSystem->signpost);
             MapNamePopUp_Destroy(fieldSystem->unk_04->unk_08);
@@ -894,7 +894,7 @@ static void ov5_021D1968(FieldSystem *fieldSystem)
 
     {
         int v0 = FieldOverworldState_GetCameraType(SaveData_GetFieldOverworldState(fieldSystem->saveData));
-        ov5_021D5B40(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem, v0, 1);
+        FieldCamera_Create(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem, v0, 1);
     }
 
     fieldSystem->areaLightMan = AreaLightManager_New(fieldSystem->areaModelAttrs, AreaDataManager_GetAreaLightArchiveID(fieldSystem->areaDataManager));

@@ -5,17 +5,25 @@
 
 #include "constants/heap.h"
 
-#include "overlay115/camera_angle.h"
-
 #define CAMERA_DELAY_NONE 0
 #define CAMERA_DELAY_X    1
 #define CAMERA_DELAY_Y    2
 #define CAMERA_DELAY_Z    4
 
+#define CAMERA_DEFAULT_NEAR_CLIP (FX32_ONE * 150)
+#define CAMERA_DEFAULT_FAR_CLIP  (FX32_ONE * 900)
+
 enum CameraProjection {
     CAMERA_PROJECTION_PERSPECTIVE = 0,
     CAMERA_PROJECTION_ORTHOGRAPHIC,
 };
+
+typedef struct CameraAngle {
+    u16 x;
+    u16 y;
+    u16 z;
+    u16 padding_06;
+} CameraAngle;
 
 typedef struct CameraLookAt {
     VecFx32 position;

@@ -5,7 +5,6 @@
 
 #include "overlay079/struct_ov79_021D3820.h"
 #include "overlay079/struct_ov79_021D38D0.h"
-#include "overlay115/camera_angle.h"
 
 #include "camera.h"
 #include "gx_layers.h"

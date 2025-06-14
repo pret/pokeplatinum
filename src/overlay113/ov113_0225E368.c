@@ -22,7 +22,6 @@
 #include "overlay113/struct_ov113_0226046C.h"
 #include "overlay113/struct_ov113_02260544.h"
 #include "overlay113/struct_ov113_02260818.h"
-#include "overlay115/camera_angle.h"
 
 #include "camera.h"
 #include "easy3d.h"

@@ -37,7 +37,6 @@
 #include "overlay009/struct_ov9_0224F6EC_decl.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 #include "overlay101/struct_ov101_021D86B0.h"
-#include "overlay115/camera_angle.h"
 
 #include "bg_window.h"
 #include "camera.h"

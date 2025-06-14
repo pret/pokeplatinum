@@ -5,7 +5,6 @@
 
 #include "overlay095/struct_ov95_0224773C_decl.h"
 #include "overlay095/struct_ov95_02247958_decl.h"
-#include "overlay115/camera_angle.h"
 
 #include "camera.h"
 #include "easy3d.h"

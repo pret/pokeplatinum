@@ -18,7 +18,6 @@
 #include "overlay066/struct_ov66_02231560.h"
 #include "overlay069/struct_ov69_0225C980.h"
 #include "overlay092/struct_ov92_021D1530.h"
-#include "overlay115/camera_angle.h"
 
 #include "bg_window.h"
 #include "camera.h"

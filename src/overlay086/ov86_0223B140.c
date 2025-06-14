@@ -9,7 +9,6 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay005/struct_ov5_021DE5D0.h"
-#include "overlay115/camera_angle.h"
 
 #include "bg_window.h"
 #include "camera.h"

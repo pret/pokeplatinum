@@ -6,7 +6,6 @@
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_02235254.h"
 #include "overlay012/struct_ov12_02225640.h"
-#include "overlay115/camera_angle.h"
 
 #include "camera.h"
 #include "particle_system.h"

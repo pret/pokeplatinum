@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV113_02260218_H
 #define POKEPLATINUM_STRUCT_OV113_02260218_H
 
-#include "overlay115/camera_angle.h"
+#include "camera.h"
 
 typedef struct {
     CameraAngle cameraAngle;

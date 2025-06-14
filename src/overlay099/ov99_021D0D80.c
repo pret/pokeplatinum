@@ -12,7 +12,6 @@
 #include "overlay099/ov99_021D3E78.h"
 #include "overlay099/struct_ov99_021D2CB0.h"
 #include "overlay099/struct_ov99_021D3A40.h"
-#include "overlay115/camera_angle.h"
 
 #include "bg_window.h"
 #include "brightness_controller.h"

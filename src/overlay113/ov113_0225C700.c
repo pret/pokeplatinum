@@ -28,7 +28,6 @@
 #include "overlay113/struct_ov113_0225EB20.h"
 #include "overlay113/struct_ov113_022607EC.h"
 #include "overlay113/struct_ov113_02260818.h"
-#include "overlay115/camera_angle.h"
 
 #include "bg_window.h"
 #include "camera.h"
