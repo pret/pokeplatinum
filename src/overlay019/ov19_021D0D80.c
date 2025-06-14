@@ -186,6 +186,15 @@ enum GiveItemFromBag {
     GIVE_FROM_BAG_END
 };
 
+enum MultiSelectMoveStates {
+    MULTI_MOVE_START,
+    MULTI_MOVE_DEFINE_SELECTION,
+    MULTI_MOVE_SELECTED_MONS,
+    MULTI_MOVE_WAIT_FOR_ANIMATIONS,
+    MULTI_MOVE_END,
+    MULTI_MOVE_PREVIEW_MON
+};
+
 static const TouchScreenHitTable sMainPcButtons[] = {
     { TOUCHSCREEN_USE_CIRCLE, MAIN_PC_LEFT_BUTTON_X, MAIN_PC_BUTTON_Y, MAIN_PC_BUTTON_RADIUS },
     { TOUCHSCREEN_USE_CIRCLE, MAIN_PC_RIGHT_BUTTON_X, MAIN_PC_BUTTON_Y, MAIN_PC_BUTTON_RADIUS },
@@ -304,7 +313,7 @@ static void ov19_021D2694(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_BoxJumpAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state);
 static void ov19_WallpaperMenu(UnkStruct_ov19_021D5DF8 *param0, u32 *state);
 static void ov19_MarkAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state);
-static void ov19_021D2B54(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
+static void ov19_MultiSelectAction(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static BOOL ov19_IsBoxUnderSelectedMonsEmpty(const UnkStruct_ov19_021D4DF0 *param0);
 static void ov19_PickUpMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state);
 static void ov19_PlaceMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state);
@@ -547,7 +556,7 @@ static inline void inline_ov19_021D0FF0_sub1(UnkStruct_ov19_021D5DF8 *wk)
     ov19_ToggleCompareMonSlot(&wk->unk_00);
     ov19_PreviewBoxMon(&wk->unk_00, wk->unk_00.cursor.mon, wk);
     ov19_BoxTaskHandler(wk->unk_114, FUNC_ov19_021D7408);
-    ov19_BoxTaskHandler(wk->unk_114, FUNC_ov19_021D6940);
+    ov19_BoxTaskHandler(wk->unk_114, FUNC_BoxGraphics_PreviewMon);
 }
 
 // main touch screen handling?
@@ -633,10 +642,10 @@ static int ov19_CursorInBoxInputHandler(UnkStruct_ov19_021D5DF8 *param0)
         }
 
         if (ov19_TryMoveCursorFromUserInput(gSystem.heldKeys, param0)) {
-            ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D68E4);
+            ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_MoveCursor);
 
             if (ov19_GetPreviewMonSource(&param0->unk_00) == PREVIEW_MON_UNDER_CURSOR) {
-                ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6940);
+                ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_PreviewMon);
             }
 
             param0->cursorLocationHandlerState++;
@@ -648,7 +657,7 @@ static int ov19_CursorInBoxInputHandler(UnkStruct_ov19_021D5DF8 *param0)
         }
         break;
     case 1:
-        if (ov19_IsSysTaskDone(param0->unk_114, FUNC_ov19_021D68E4)) {
+        if (ov19_IsSysTaskDone(param0->unk_114, FUNC_BoxGraphics_MoveCursor)) {
             ov19_RegisterCursorLocationInputHandler(param0, ov19_GetCursorLocationInputHandler(param0));
         }
         break;
@@ -704,10 +713,10 @@ static int ov19_CursorInPartyInputHandler(UnkStruct_ov19_021D5DF8 *param0)
         }
 
         if (ov19_TryMoveCursorFromUserInput(gSystem.heldKeys, param0)) {
-            ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D68E4);
+            ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_MoveCursor);
 
             if (ov19_GetPreviewMonSource(&param0->unk_00) == PREVIEW_MON_UNDER_CURSOR) {
-                ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6940);
+                ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_PreviewMon);
             }
 
             param0->cursorLocationHandlerState = 1;
@@ -720,7 +729,7 @@ static int ov19_CursorInPartyInputHandler(UnkStruct_ov19_021D5DF8 *param0)
         }
         break;
     case 1:
-        if (ov19_IsSysTaskDone(param0->unk_114, FUNC_ov19_021D68E4)) {
+        if (ov19_IsSysTaskDone(param0->unk_114, FUNC_BoxGraphics_MoveCursor)) {
             param0->cursorLocationHandlerState = 0;
         }
         break;
@@ -745,17 +754,17 @@ static int ov19_CursorInPartyInputHandler(UnkStruct_ov19_021D5DF8 *param0)
     case 3:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNC_ov19_021D7138)) {
             ov19_ReturnCursorToBox(param0);
-            ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D68E4);
+            ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_MoveCursor);
 
             if (ov19_GetPreviewMonSource(&param0->unk_00) == PREVIEW_MON_UNDER_CURSOR) {
-                ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6940);
+                ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_PreviewMon);
             }
 
             param0->cursorLocationHandlerState = 4;
         }
         break;
     case 4:
-        if (ov19_IsSysTaskDone(param0->unk_114, FUNC_ov19_021D68E4)) {
+        if (ov19_IsSysTaskDone(param0->unk_114, FUNC_BoxGraphics_MoveCursor)) {
             ov19_RegisterCursorLocationInputHandler(param0, ov19_GetCursorLocationInputHandler(param0));
         }
         break;
@@ -806,10 +815,10 @@ static int ov19_CursorOnHeaderInputHandler(UnkStruct_ov19_021D5DF8 *param0)
         }
 
         if (ov19_TryMoveCursorFromUserInput(gSystem.heldKeys, param0)) {
-            ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D68E4);
+            ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_MoveCursor);
 
             if (ov19_GetPreviewMonSource(&param0->unk_00) == PREVIEW_MON_UNDER_CURSOR) {
-                ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6940);
+                ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_PreviewMon);
             }
 
             param0->cursorLocationHandlerState = 1;
@@ -819,7 +828,7 @@ static int ov19_CursorOnHeaderInputHandler(UnkStruct_ov19_021D5DF8 *param0)
         inline_ov19_021D0FF0(param0);
         break;
     case 1:
-        if (ov19_IsSysTaskDone(param0->unk_114, FUNC_ov19_021D68E4)) {
+        if (ov19_IsSysTaskDone(param0->unk_114, FUNC_BoxGraphics_MoveCursor)) {
             ov19_RegisterCursorLocationInputHandler(param0, ov19_GetCursorLocationInputHandler(param0));
         }
         break;
@@ -855,10 +864,10 @@ static int ov19_CursorOnCloseInputHandler(UnkStruct_ov19_021D5DF8 *param0)
         }
 
         if (ov19_TryMoveCursorFromUserInput(gSystem.heldKeys, param0)) {
-            ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D68E4);
+            ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_MoveCursor);
 
             if (ov19_GetPreviewMonSource(&param0->unk_00) == PREVIEW_MON_UNDER_CURSOR) {
-                ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6940);
+                ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_PreviewMon);
             }
 
             param0->cursorLocationHandlerState = 2;
@@ -873,7 +882,7 @@ static int ov19_CursorOnCloseInputHandler(UnkStruct_ov19_021D5DF8 *param0)
         }
         break;
     case 2:
-        if (ov19_IsSysTaskDone(param0->unk_114, FUNC_ov19_021D68E4)) {
+        if (ov19_IsSysTaskDone(param0->unk_114, FUNC_BoxGraphics_MoveCursor)) {
             ov19_RegisterCursorLocationInputHandler(param0, ov19_GetCursorLocationInputHandler(param0));
         }
         break;
@@ -917,10 +926,10 @@ static int ov19_CursorOnPartyButtonInputHandler(UnkStruct_ov19_021D5DF8 *param0)
         }
 
         if (ov19_TryMoveCursorFromUserInput(gSystem.heldKeys, param0)) {
-            ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D68E4);
+            ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_MoveCursor);
 
             if (ov19_GetPreviewMonSource(&param0->unk_00) == PREVIEW_MON_UNDER_CURSOR) {
-                ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6940);
+                ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_PreviewMon);
             }
 
             param0->cursorLocationHandlerState = 4;
@@ -939,10 +948,10 @@ static int ov19_CursorOnPartyButtonInputHandler(UnkStruct_ov19_021D5DF8 *param0)
     case 2:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNC_BoxGraphics_OpenPartyPopup)) {
             ov19_MoveCursorToParty(param0);
-            ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D68E4);
+            ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_MoveCursor);
 
             if (ov19_GetPreviewMonSource(&param0->unk_00) == PREVIEW_MON_UNDER_CURSOR) {
-                ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6940);
+                ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_PreviewMon);
             }
 
             param0->cursorLocationHandlerState = 4;
@@ -954,7 +963,7 @@ static int ov19_CursorOnPartyButtonInputHandler(UnkStruct_ov19_021D5DF8 *param0)
         }
         break;
     case 4:
-        if (ov19_IsSysTaskDone(param0->unk_114, FUNC_ov19_021D68E4)) {
+        if (ov19_IsSysTaskDone(param0->unk_114, FUNC_BoxGraphics_MoveCursor)) {
             ov19_RegisterCursorLocationInputHandler(param0, ov19_GetCursorLocationInputHandler(param0));
         }
         break;
@@ -1199,11 +1208,11 @@ static void ov19_021D20A4(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             break;
         }
         break;
-    case 3:
+    case 3: // box mon management menu actions
         switch (param0->menuItem) {
         case BOX_MENU_MOVE:
             if (ov19_GetCursorLocation(&param0->unk_00) == CURSOR_IN_BOX && ov19_IsCursorFastMode(&param0->unk_00) == TRUE) {
-                ov19_RegisterBoxApplicationAction(param0, ov19_021D2B54);
+                ov19_RegisterBoxApplicationAction(param0, ov19_MultiSelectAction);
             } else {
                 ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_CloseMessageBox);
                 ov19_RegisterBoxApplicationAction(param0, ov19_PickUpMonAction);
@@ -1245,7 +1254,7 @@ static void ov19_021D20A4(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             ov19_PreviewBoxMon(&param0->unk_00, param0->unk_00.cursor.mon, param0);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_CloseMessageBox);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D73EC);
-            ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6940);
+            ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_PreviewMon);
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             (*param1) = 5;
             break;
@@ -1395,7 +1404,7 @@ static void ov19_021D2308(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         break;
     case 5:
         if (ov19_CheckAllTasksDone(param0->unk_114)) {
-            ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6940);
+            ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_PreviewMon);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6D88);
             *param1 = 6;
         }
@@ -1659,21 +1668,21 @@ static void ov19_MarkAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
     }
 }
 
-static void ov19_021D2B54(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
+static void ov19_MultiSelectAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
 {
-    switch (*param1) {
-    case 0:
+    switch (*state) {
+    case MULTI_MOVE_START:
         if (JOY_HELD(PAD_BUTTON_A)) {
             ov19_ResetMultiSelectLocation(param0, &param0->unk_00);
-            ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D735C);
+            ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_StartDrawMultiSelect);
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            *param1 = 1;
+            *state = MULTI_MOVE_DEFINE_SELECTION;
         } else {
             ov19_RegisterBoxApplicationAction(param0, ov19_PickUpMonAction);
         }
         break;
 
-    case 1:
+    case MULTI_MOVE_DEFINE_SELECTION:
         if (JOY_HELD(PAD_BUTTON_A)) {
             switch (ov19_TryMoveSelectionFromUserInput(gSystem.heldKeys, param0)) {
             case CURSOR_STOP:
@@ -1684,10 +1693,10 @@ static void ov19_021D2B54(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
 
             case CURSOR_MOVE:
                 ov19_SetMultiSelectionEndLocation(param0, &param0->unk_00);
-                ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D7398);
-                ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D68E4);
-                ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6940);
-                *param1 = 3;
+                ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_ApplyMultiSelectMonShadingTask);
+                ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_MoveCursor);
+                ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_PreviewMon);
+                *state = MULTI_MOVE_WAIT_FOR_ANIMATIONS;
                 break;
             }
         } else {
@@ -1698,12 +1707,12 @@ static void ov19_021D2B54(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
                 ov19_PickUpMultiSelectedMons(param0, &param0->unk_00);
                 ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D73B0);
                 Sound_PlayEffect(SEQ_SE_DP_BOX02);
-                *param1 = 2;
+                *state = MULTI_MOVE_SELECTED_MONS;
             }
         }
         break;
 
-    case 2:
+    case MULTI_MOVE_SELECTED_MONS:
         if (ov19_CheckAllTasksDone(param0->unk_114) == FALSE) {
             break;
         }
@@ -1716,9 +1725,9 @@ static void ov19_021D2B54(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             break;
 
         case CURSOR_MOVE:
-            ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D68E4);
+            ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_MoveCursor);
             if ((ov19_GetPreviewMonSource(&param0->unk_00) & PREVIEW_MON_HELD) == 0) {
-                ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6940);
+                ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_PreviewMon);
             }
             break;
 
@@ -1726,14 +1735,14 @@ static void ov19_021D2B54(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             ov19_LoadLeftBoxCustomization(&param0->unk_00);
             PCBoxes_SetCurrentBox(param0->pcBoxes, ov19_GetCurrentBox(&param0->unk_00));
             ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6824);
-            *param1 = 5;
+            *state = MULTI_MOVE_PREVIEW_MON;
             break;
 
         case CURSOR_MOVE_TO_RIGHT_BOX:
             ov19_LoadRightBoxCustomization(&(param0->unk_00));
             PCBoxes_SetCurrentBox(param0->pcBoxes, ov19_GetCurrentBox(&param0->unk_00));
             ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6824);
-            *param1 = 5;
+            *state = MULTI_MOVE_PREVIEW_MON;
             break;
 
         case CURSOR_NO_MOVEMENT:
@@ -1742,7 +1751,7 @@ static void ov19_021D2B54(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
                     ov19_PutDownSelectedMons(param0, &param0->unk_00);
                     ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_PlaceMonDownFromCursor);
                     Sound_PlayEffect(SEQ_SE_DP_BOX01);
-                    *param1 = 4;
+                    *state = MULTI_MOVE_END;
                 } else {
                     Sound_PlayEffect(SEQ_SE_DP_BOX03);
                 }
@@ -1755,23 +1764,23 @@ static void ov19_021D2B54(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         }
         break;
 
-    case 5:
+    case MULTI_MOVE_PREVIEW_MON:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNC_ov19_021D6824)) {
             if (!(ov19_GetPreviewMonSource(&param0->unk_00) & PREVIEW_MON_HELD)) {
                 ov19_TryPreviewCursorMon(param0);
-                ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6940);
+                ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_PreviewMon);
             }
-            *param1 = 2;
+            *state = MULTI_MOVE_SELECTED_MONS;
         }
         break;
 
-    case 3:
+    case MULTI_MOVE_WAIT_FOR_ANIMATIONS:
         if (ov19_CheckAllTasksDone(param0->unk_114)) {
-            *param1 = 1;
+            *state = MULTI_MOVE_DEFINE_SELECTION;
         }
         break;
 
-    case 4:
+    case MULTI_MOVE_END:
         if (ov19_CheckAllTasksDone(param0->unk_114)) {
             ov19_ClearBoxApplicationAction(param0);
         }
@@ -1869,7 +1878,7 @@ static void ov19_PlaceMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
         if (ov19_CheckAllTasksDone(param0->unk_114)) {
             ov19_TryPreviewCursorMon(param0);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D71F8);
-            ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6940);
+            ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_PreviewMon);
             *state = PLACE_MON_END;
         }
         break;
@@ -1916,7 +1925,7 @@ static void ov19_ShiftMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
             ov19_SwapMonInCursor(param0, &param0->unk_00);
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6AB0);
-            ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6940);
+            ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_PreviewMon);
             *state = SHIFT_END;
         }
     } break;
@@ -1971,12 +1980,12 @@ static void ov19_WithdrawMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
     case WITHDRAW_WAIT_FOR_PARTY_POPUP:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNC_BoxGraphics_OpenPartyPopup)) {
             ov19_MoveCursorToParty(param0);
-            ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D68E4);
+            ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_MoveCursor);
             *state = WITHDRAW_WAIT_FOR_MOVE_CURSOR_TO_PARTY;
         }
         break;
     case WITHDRAW_WAIT_FOR_MOVE_CURSOR_TO_PARTY:
-        if (ov19_IsSysTaskDone(param0->unk_114, FUNC_ov19_021D68E4)) {
+        if (ov19_IsSysTaskDone(param0->unk_114, FUNC_BoxGraphics_MoveCursor)) {
             ov19_PutDownCursorMon(param0, &param0->unk_00);
             ov19_FlagRecordBoxUseInJournal(param0);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_PlaceMonDownFromCursor);
@@ -1992,8 +2001,8 @@ static void ov19_WithdrawMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
     case WITHDRAW_RETURN_TO_BOX:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNC_ov19_021D7138)) {
             ov19_ReturnCursorToBox(param0);
-            ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D68E4);
-            ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6940);
+            ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_MoveCursor);
+            ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_PreviewMon);
             *state = WITHDRAW_END;
         }
         break;
@@ -2102,14 +2111,14 @@ static void ov19_StoreMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
     case STORE_MON_FROM_CURSOR:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNC_ov19_021D6FB0)) {
             ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6AEC);
-            ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6940);
+            ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_PreviewMon);
             (*state) = STORE_MON_END;
         }
         break;
     case STORE_MON_FROM_PARTY:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNC_ov19_021D6FB0)) {
             ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6B1C);
-            ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6940);
+            ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_PreviewMon);
             (*state) = STORE_MON_END;
         }
         break;
@@ -2309,7 +2318,7 @@ static void ov19_ReleaseMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *releaseM
                 ov19_FlagRecordBoxUseInJournal(param0);
             }
 
-            ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6940);
+            ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_PreviewMon);
             (*releaseMonState) = RELEASE_MON_END;
         }
         break;
@@ -2695,7 +2704,7 @@ static void ov19_MonItemHeldAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
         if (Bag_TryAddItem(SaveData_GetBag(param0->saveData), item, 1, HEAP_ID_BOX_DATA)) {
             ov19_GiveItemToSelectedMon(&param0->unk_00, ITEM_NONE, param0);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6D88);
-            ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6940);
+            ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_PreviewMon);
             *state = ITEM_HELD_DISPLAY_TOOK_ITEM_MESSAGE;
         } else {
             ov19_SetBoxMessage(&param0->unk_00, BoxText_BagFull);
@@ -2788,7 +2797,7 @@ static void ov19_021D4184(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
     case 3:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNC_ov19_021D6DF8)) {
             ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6D88);
-            ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6940);
+            ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_PreviewMon);
             (*param1) = 4;
         }
         break;
@@ -2949,7 +2958,7 @@ static void ov19_021D45A8(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
     case 1:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNC_ov19_021D6824)) {
             if (ov19_GetCursorLocation(&param0->unk_00) == CURSOR_IN_BOX && ov19_GetPreviewMonSource(&param0->unk_00) == PREVIEW_MON_UNDER_CURSOR) {
-                ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6940);
+                ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_PreviewMon);
                 (*param1)++;
             } else {
                 ov19_ClearBoxApplicationAction(param0);
@@ -2957,7 +2966,7 @@ static void ov19_021D45A8(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         }
         break;
     case 2:
-        if (ov19_IsSysTaskDone(param0->unk_114, FUNC_ov19_021D6940)) {
+        if (ov19_IsSysTaskDone(param0->unk_114, FUNC_BoxGraphics_PreviewMon)) {
             ov19_ClearBoxApplicationAction(param0);
         }
         break;
@@ -3090,7 +3099,7 @@ static void ov19_021D4640(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
     case 3:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNC_ov19_021D6824)) {
             if (ov19_GetPreviewMonSource(&param0->unk_00) == PREVIEW_MON_UNDER_CURSOR && ov19_IsMonUnderCursor(&param0->unk_00)) {
-                ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6940);
+                ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_PreviewMon);
                 (*param1) = 4;
             } else {
                 (*param1) = 1;
@@ -3098,7 +3107,7 @@ static void ov19_021D4640(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         }
         break;
     case 4:
-        if (ov19_IsSysTaskDone(param0->unk_114, FUNC_ov19_021D6940)) {
+        if (ov19_IsSysTaskDone(param0->unk_114, FUNC_BoxGraphics_PreviewMon)) {
             (*param1) = 1;
         }
         break;
@@ -3935,7 +3944,7 @@ static void ov19_PutDownCursorMon(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov1
 
     if (isMonInPreview == FALSE && shayminIsForm1 == TRUE) {
         ov19_LoadBoxMonIntoPreview(param1, boxMon, param0);
-        ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6940);
+        ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_PreviewMon);
     }
 
     param1->cursor.previewMonSource = PREVIEW_MON_UNDER_CURSOR;
@@ -4480,7 +4489,7 @@ BOOL ov19_IsCursorFastMode(const UnkStruct_ov19_021D4DF0 *param0)
     return param0->boxSettings.isCursorFastMode;
 }
 
-void ov19_GetMultiSelectBoundingBox(const UnkStruct_ov19_021D4DF0 *param0, u32 *leftCol, u32 *rightCol, u32 *topCol, u32 *bottomCol)
+void ov19_GetMultiSelectBoundingBox(const UnkStruct_ov19_021D4DF0 *param0, u32 *leftCol, u32 *rightCol, u32 *topRow, u32 *bottomRow)
 {
     const BoxMonSelection *selection = &param0->selection;
 
@@ -4493,11 +4502,11 @@ void ov19_GetMultiSelectBoundingBox(const UnkStruct_ov19_021D4DF0 *param0, u32 *
     }
 
     if (selection->selectionStartRow <= selection->selectionEndRow) {
-        *topCol = selection->selectionStartRow;
-        *bottomCol = selection->selectionEndRow;
+        *topRow = selection->selectionStartRow;
+        *bottomRow = selection->selectionEndRow;
     } else {
-        *topCol = selection->selectionEndRow;
-        *bottomCol = selection->selectionStartRow;
+        *topRow = selection->selectionEndRow;
+        *bottomRow = selection->selectionStartRow;
     }
 }
 

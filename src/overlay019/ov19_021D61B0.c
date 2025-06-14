@@ -92,8 +92,8 @@ static void BoxGraphics_ScreenFadeBothToBlackLogIn(SysTask *task, void *param1);
 static void BoxGraphics_ScreenFadeBothToBlack1(SysTask *task, void *param1);
 static void BoxGraphics_ScreenFadeBothToBlack2(SysTask *task, void *param1);
 static void ov19_021D6824(SysTask *param0, void *param1);
-static void ov19_021D68E4(SysTask *param0, void *param1);
-static void ov19_021D6940(SysTask *param0, void *param1);
+static void BoxGraphics_MoveCursor(SysTask *param0, void *param1);
+static void BoxGraphics_PreviewMon(SysTask *param0, void *param1);
 static void ov19_021D69BC(SysTask *param0, void *param1);
 static void ov19_021D6A1C(SysTask *param0, void *param1);
 static void BoxGraphics_PickUpMonIntoCursor(SysTask *param0, void *param1);
@@ -131,9 +131,9 @@ static void ov19_021D7278(SysTask *param0, void *param1);
 static void ov19_021D72E8(SysTask *param0, void *param1);
 static void ov19_021D7324(SysTask *param0, void *param1);
 static void ov19_021D7340(SysTask *param0, void *param1);
-static void ov19_021D735C(SysTask *param0, void *param1);
+static void BoxGraphics_StartDrawMultiSelect(SysTask *param0, void *param1);
 static void ov19_021D7380(SysTask *param0, void *param1);
-static void ov19_021D7398(SysTask *param0, void *param1);
+static void BoxGraphics_ApplyMultiSelectMonShadingTask(SysTask *param0, void *param1);
 static void ov19_021D73B0(SysTask *param0, void *param1);
 static void ov19_021D73EC(SysTask *param0, void *param1);
 static void ov19_021D7408(SysTask *param0, void *param1);
@@ -156,8 +156,8 @@ static const struct {
     [FUNC_BoxGraphics_ScreenFadeBothToBlack1] = { BoxGraphics_ScreenFadeBothToBlack1, 0 },
     [FUNC_BoxGraphics_ScreenFadeBothToBlack2] = { BoxGraphics_ScreenFadeBothToBlack2, 0 },
     [FUNC_ov19_021D6824] = { ov19_021D6824, 0 },
-    [FUNC_ov19_021D68E4] = { ov19_021D68E4, 0 },
-    [FUNC_ov19_021D6940] = { ov19_021D6940, 0 },
+    [FUNC_BoxGraphics_MoveCursor] = { BoxGraphics_MoveCursor, 0 },
+    [FUNC_BoxGraphics_PreviewMon] = { BoxGraphics_PreviewMon, 0 },
     [FUNC_ov19_021D69BC] = { ov19_021D69BC, 0 },
     [FUNC_ov19_021D6A1C] = { ov19_021D6A1C, 0 },
     [FUNC_BoxGraphics_PickUpMonIntoCursor] = { BoxGraphics_PickUpMonIntoCursor, 0 },
@@ -195,9 +195,9 @@ static const struct {
     [FUNC_ov19_021D72E8] = { ov19_021D72E8, 0 },
     [FUNC_ov19_021D7324] = { ov19_021D7324, 0 },
     [FUNC_ov19_021D7340] = { ov19_021D7340, 0 },
-    [FUNC_ov19_021D735C] = { ov19_021D735C, 0 },
+    [FUNC_BoxGraphics_StartDrawMultiSelect] = { BoxGraphics_StartDrawMultiSelect, 0 },
     [FUNC_ov19_021D7380] = { ov19_021D7380, 0 },
-    [FUNC_ov19_021D7398] = { ov19_021D7398, 0 },
+    [FUNC_BoxGraphics_ApplyMultiSelectMonShadingTask] = { BoxGraphics_ApplyMultiSelectMonShadingTask, 0 },
     [FUNC_ov19_021D73B0] = { ov19_021D73B0, 0 },
     [FUNC_ov19_021D73EC] = { ov19_021D73EC, 0 },
     [FUNC_ov19_021D7408] = { ov19_021D7408, 0 },
@@ -540,7 +540,7 @@ static void ov19_021D6824(SysTask *param0, void *param1)
     }
 }
 
-static void ov19_021D68E4(SysTask *param0, void *param1)
+static void BoxGraphics_MoveCursor(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
@@ -564,7 +564,7 @@ static void ov19_021D68E4(SysTask *param0, void *param1)
     }
 }
 
-static void ov19_021D6940(SysTask *param0, void *param1)
+static void BoxGraphics_PreviewMon(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
@@ -1391,7 +1391,7 @@ static void ov19_021D7340(SysTask *param0, void *param1)
     BoxTaskParams_Free(v1);
 }
 
-static void ov19_021D735C(SysTask *param0, void *param1)
+static void BoxGraphics_StartDrawMultiSelect(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     BoxTaskParams *v1;
@@ -1401,8 +1401,8 @@ static void ov19_021D735C(SysTask *param0, void *param1)
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
-    ov19_021D9B10(&(v0->unk_5E24));
-    ov19_021D8A6C(&(v0->unk_494));
+    BoxGraphics_OpenMultiSelectCursor(&(v0->unk_5E24));
+    BoxGraphics_ApplyMultiSelectMonShading(&(v0->unk_494));
     BoxTaskParams_Free(v1);
 }
 
@@ -1420,7 +1420,7 @@ static void ov19_021D7380(SysTask *param0, void *param1)
     BoxTaskParams_Free(v1);
 }
 
-static void ov19_021D7398(SysTask *param0, void *param1)
+static void BoxGraphics_ApplyMultiSelectMonShadingTask(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     BoxTaskParams *v1;
@@ -1430,7 +1430,7 @@ static void ov19_021D7398(SysTask *param0, void *param1)
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
-    ov19_021D8A6C(&(v0->unk_494));
+    BoxGraphics_ApplyMultiSelectMonShading(&(v0->unk_494));
     BoxTaskParams_Free(v1);
 }
 

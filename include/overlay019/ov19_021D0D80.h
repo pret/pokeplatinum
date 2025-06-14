@@ -79,7 +79,7 @@ u32 ov19_021D5EB8(const UnkStruct_ov19_021D4DF0 *param0);
 u32 ov19_GetMarkingsButtonsScrollOffset(const UnkStruct_ov19_021D4DF0 *param0);
 u32 ov19_GetMonSpriteTransparencyMask(const UnkStruct_ov19_021D4DF0 *param0);
 BOOL ov19_IsCursorFastMode(const UnkStruct_ov19_021D4DF0 *param0);
-void ov19_GetMultiSelectBoundingBox(const UnkStruct_ov19_021D4DF0 *param0, u32 *leftCol, u32 *rightCol, u32 *topCol, u32 *bottomCol);
+void ov19_GetMultiSelectBoundingBox(const UnkStruct_ov19_021D4DF0 *param0, u32 *leftCol, u32 *rightCol, u32 *topRow, u32 *bottomRow);
 BOOL ov19_IsMultiSelectSingleSelect(const UnkStruct_ov19_021D4DF0 *param0);
 u32 ov19_GetMultiSelectTopLeftPos(const UnkStruct_ov19_021D4DF0 *param0);
 u32 ov19_GetRelativeMonPosInMultiSelection(const UnkStruct_ov19_021D4DF0 *param0, u32 param1);

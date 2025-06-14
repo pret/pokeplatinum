@@ -569,7 +569,7 @@ void ov19_021D845C(UnkStruct_ov19_021D8318 *param0, u32 param1, const UnkStruct_
     v0 = 88 + (param0->unk_02 * 480) + ((4 * 4) * param1);
     v1 = &param0->unk_A8[param0->unk_02][param1];
     ov19_021DA418(param2, v1, 1);
-    ov19_021DA7F4(param0->unk_58F0, v1, 0);
+    BoxGraphics_ApplyMonInMultiSelectShading(param0->unk_58F0, v1, FALSE);
     ov19_021DA754(param0->unk_58F0, v1, v0);
     BoxGraphics_SetSpritePriority(v1->unk_00, ov19_021D85B4(param1));
 
@@ -862,36 +862,34 @@ void ov19_021D8A24(UnkStruct_ov19_021D8318 *param0)
     }
 }
 
-void ov19_021D8A6C(UnkStruct_ov19_021D8318 *param0)
+void BoxGraphics_ApplyMultiSelectMonShading(UnkStruct_ov19_021D8318 *param0)
 {
-    u32 v0, v1, v2, v3, v4, v5, v6;
+    u32 leftCol, rightCol, topRow, bottomRow, col, row, posInBox;
 
-    ov19_GetMultiSelectBoundingBox(param0->unk_58F8, &v0, &v1, &v2, &v3);
+    ov19_GetMultiSelectBoundingBox(param0->unk_58F8, &leftCol, &rightCol, &topRow, &bottomRow);
 
-    v6 = 0;
+    posInBox = 0;
 
-    for (v5 = 0; v5 < 5; v5++) {
-        for (v4 = 0; v4 < 6; v4++) {
-            if (param0->unk_A8[param0->unk_02][v6].unk_00 != NULL) {
-                if (((u32)(v4 - v0) <= (u32)(v1 - v0)) & ((u32)(v5 - v2) <= (u32)(v3 - v2))) {
-                    ov19_021DA7F4(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][v6]), 1);
+    for (row = 0; row < MAX_PC_ROWS; row++) {
+        for (col = 0; col < MAX_PC_COLS; col++) {
+            if (param0->unk_A8[param0->unk_02][posInBox].unk_00 != NULL) {
+                if (((u32)(col - leftCol) <= (u32)(rightCol - leftCol)) & ((u32)(row - topRow) <= (u32)(bottomRow - topRow))) {
+                    BoxGraphics_ApplyMonInMultiSelectShading(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][posInBox]), TRUE);
                 } else {
-                    ov19_021DA7F4(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][v6]), 0);
+                    BoxGraphics_ApplyMonInMultiSelectShading(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][posInBox]), FALSE);
                 }
             }
 
-            v6++;
+            posInBox++;
         }
     }
 }
 
 void ov19_021D8B14(UnkStruct_ov19_021D8318 *param0)
 {
-    int v0;
-
-    for (v0 = 0; v0 < (5 * 6); v0++) {
-        if (param0->unk_A8[param0->unk_02][v0].unk_00 != NULL) {
-            ov19_021DA7F4(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][v0]), 0);
+    for (int i = 0; i < MAX_MONS_PER_BOX; i++) {
+        if (param0->unk_A8[param0->unk_02][i].unk_00 != NULL) {
+            BoxGraphics_ApplyMonInMultiSelectShading(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][i]), FALSE);
         }
     }
 }

@@ -282,9 +282,9 @@ BOOL ov19_021DA7E0(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *par
     return Sprite_IsAnimated(param1->unk_00) == 0;
 }
 
-void ov19_021DA7F4(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *param1, BOOL param2)
+void BoxGraphics_ApplyMonInMultiSelectShading(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *param1, BOOL isSelected)
 {
-    u32 v0 = ((param2) ? 6 : 2) + param1->unk_2C;
+    u32 v0 = ((isSelected) ? 6 : 2) + param1->unk_2C;
 
     Sprite_SetExplicitPalette(param1->unk_00, v0);
 }
