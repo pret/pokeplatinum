@@ -1,11 +1,11 @@
 {
     "class": "TRAINER_CLASS_CASTLE_VALET",
-    "setIds": [
-        362,
-        381,
-        426,
-        498,
-        517,
-        562
+    "availableSets": [
+        "empoleon_1",
+        "staraptor_1",
+        "houndoom_1",
+        "empoleon_2",
+        "staraptor_2",
+        "houndoom_2"
     ]
 }

@@ -1,9 +1,9 @@
 {
     "class": "TRAINER_CLASS_ARCADE_STAR",
-    "setIds": [
-        766,
-        887,
-        938,
-        0
+    "availableSets": [
+        "blaziken_4",
+        "togekiss_4",
+        "zapdos_4",
+        "none_1"
     ]
 }

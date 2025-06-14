@@ -1,11 +1,11 @@
 {
     "class": "TRAINER_CLASS_CASTLE_VALET",
-    "setIds": [
-        634,
-        720,
-        770,
-        856,
-        927,
-        941
+    "availableSets": [
+        "empoleon_3",
+        "gallade_3",
+        "empoleon_4",
+        "gallade_4",
+        "entei_3",
+        "entei_4"
     ]
 }

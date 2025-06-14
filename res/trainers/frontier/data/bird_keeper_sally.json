@@ -1,23 +1,23 @@
 {
     "class": "TRAINER_CLASS_BIRD_KEEPER",
-    "setIds": [
-        624,
-        645,
-        649,
-        653,
-        676,
-        686,
-        710,
-        713,
-        715,
-        716,
-        718,
-        723,
-        739,
-        743,
-        744,
-        751,
-        753,
-        755
+    "availableSets": [
+        "charizard_3",
+        "skarmory_3",
+        "vespiquen_3",
+        "staraptor_3",
+        "altaria_3",
+        "drifblim_3",
+        "honchkrow_3",
+        "gliscor_3",
+        "aerodactyl_3",
+        "porygon2_3",
+        "yanmega_3",
+        "flygon_3",
+        "crobat_3",
+        "porygon_z_3",
+        "gyarados_3",
+        "togekiss_3",
+        "dragonite_3",
+        "salamence_3"
     ]
 }

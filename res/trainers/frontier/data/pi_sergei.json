@@ -1,23 +1,23 @@
 {
     "class": "TRAINER_CLASS_PI",
-    "setIds": [
-        635,
-        647,
-        651,
-        654,
-        664,
-        670,
-        683,
-        685,
-        686,
-        689,
-        713,
-        721,
-        732,
-        733,
-        736,
-        737,
-        741,
-        0
+    "availableSets": [
+        "dugtrio_3",
+        "whiscash_3",
+        "dewgong_3",
+        "gastrodon_3",
+        "froslass_3",
+        "weezing_3",
+        "bastiodon_3",
+        "mismagius_3",
+        "drifblim_3",
+        "rapidash_3",
+        "gliscor_3",
+        "exeggutor_3",
+        "hippowdon_3",
+        "probopass_3",
+        "walrein_3",
+        "mamoswine_3",
+        "rhyperior_3",
+        "none_1"
     ]
 }

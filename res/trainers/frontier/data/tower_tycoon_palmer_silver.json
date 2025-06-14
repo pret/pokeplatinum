@@ -1,9 +1,9 @@
 {
     "class": "TRAINER_CLASS_TOWER_TYCOON",
-    "setIds": [
-        469,
-        476,
-        481,
-        0
+    "availableSets": [
+        "rhyperior_1",
+        "milotic_1",
+        "dragonite_1",
+        "none_1"
     ]
 }

@@ -1,9 +1,9 @@
 {
     "class": "TRAINER_CLASS_TOWER_TYCOON",
-    "setIds": [
-        948,
-        949,
-        950,
-        0
+    "availableSets": [
+        "heatran_4",
+        "cresselia_4",
+        "regigigas_4",
+        "none_1"
     ]
 }
