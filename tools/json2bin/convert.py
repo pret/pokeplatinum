@@ -11,7 +11,6 @@ from generated import (
     maps,
     moves,
     movement_types,
-    natures,
     object_events,
     species,
     trainer_classes,
@@ -39,9 +38,6 @@ def from_item(s: str) -> int:
 
 def from_move(s: str) -> int:
     return moves.Move[s].value
-
-def from_nature(s: str) -> int:
-    return natures.Nature[s].value
 
 def from_species(s: str) -> int:
     return species.Species[s].value
