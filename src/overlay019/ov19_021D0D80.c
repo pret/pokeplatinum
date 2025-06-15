@@ -187,7 +187,7 @@ static int ov19_CursorOnCloseInputHandler(UnkStruct_ov19_021D5DF8 *param0);
 static int ov19_CursorOnPartyButtonInputHandler(UnkStruct_ov19_021D5DF8 *param0);
 static void ov19_InitSummary(UnkStruct_ov19_021D5DF8 *param0);
 static int ov19_LogOffScreenFade(UnkStruct_ov19_021D5DF8 *param0);
-static void ov19_021D1DEC(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
+static void ov19_CloseBoxAction(UnkStruct_ov19_021D5DF8 *param0, u32 *close);
 static void ov19_ContinueBoxOperationsAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state);
 static void ov19_MonCursorMenuAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state);
 static void ov19_MonItemMenuAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state);
@@ -719,12 +719,18 @@ static int ov19_CursorOnHeaderInputHandler(UnkStruct_ov19_021D5DF8 *param0)
     return 0;
 }
 
+enum CursorOnCloseState {
+    CURSOR_CLOSE_WAIT_FOR_INPUT,
+    CURSOR_CLOSE_WAIT_FOR_BOX_CHANGE,
+    CURSOR_CLOSE_WAIT_FOR_CURSOR_MOVE
+};
+
 static int ov19_CursorOnCloseInputHandler(UnkStruct_ov19_021D5DF8 *param0)
 {
     switch (param0->cursorLocationHandlerState) {
-    case 0:
+    case CURSOR_CLOSE_WAIT_FOR_INPUT:
         if (JOY_NEW(PAD_BUTTON_A)) {
-            ov19_RegisterBoxApplicationAction(param0, ov19_021D1DEC);
+            ov19_RegisterBoxApplicationAction(param0, ov19_CloseBoxAction);
             break;
         }
 
@@ -752,18 +758,18 @@ static int ov19_CursorOnCloseInputHandler(UnkStruct_ov19_021D5DF8 *param0)
                 ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_PreviewMon);
             }
 
-            param0->cursorLocationHandlerState = 2;
+            param0->cursorLocationHandlerState = CURSOR_CLOSE_WAIT_FOR_CURSOR_MOVE;
             break;
         }
 
         inline_ov19_021D0FF0(param0);
         break;
-    case 1:
+    case CURSOR_CLOSE_WAIT_FOR_BOX_CHANGE:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNC_BoxGraphics_ChangeToNewBox)) {
-            param0->cursorLocationHandlerState = 0;
+            param0->cursorLocationHandlerState = CURSOR_CLOSE_WAIT_FOR_INPUT;
         }
         break;
-    case 2:
+    case CURSOR_CLOSE_WAIT_FOR_CURSOR_MOVE:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNC_BoxGraphics_MoveCursor)) {
             ov19_RegisterCursorLocationInputHandler(param0, ov19_GetCursorLocationInputHandler(param0));
         }
@@ -925,10 +931,20 @@ static int ov19_LogOffScreenFade(UnkStruct_ov19_021D5DF8 *param0)
     return 0;
 }
 
-static void ov19_021D1DEC(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
+enum CloseBoxState {
+    CLOSE_BOX_START,
+    CLOSE_BOX_SHOW_MENU,
+    CLOSE_BOX_YES_NO,
+    CLOSE_BOX_3,
+    CLOSE_BOX_CANNOT_CLOSE,
+    CLOSE_BOX_CONFIRM_MESSAGE,
+    CLOSE_BOX_END
+};
+
+static void ov19_CloseBoxAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
 {
-    switch (*param1) {
-    case 0:
+    switch (*state) {
+    case CLOSE_BOX_START:
         if (ov19_GetBoxMode(&(param0->unk_00)) == PC_MODE_MOVE_ITEMS && ov19_GetCursorItem(&(param0->unk_00)) != ITEM_NONE) {
             ov19_RegisterBoxApplicationAction(param0, ov19_PutAwayItemAction);
             break;
@@ -938,25 +954,25 @@ static void ov19_021D1DEC(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             Sound_PlayEffect(SEQ_SE_DP_BOX03);
             ov19_SetBoxMessage(&param0->unk_00, BoxText_HoldingMon);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
-            (*param1) = 4;
+            *state = CLOSE_BOX_CANNOT_CLOSE;
             break;
         } else {
             ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D7028);
-            (*param1) = 1;
+            *state = CLOSE_BOX_SHOW_MENU;
         }
 
         break;
 
-    case 1:
+    case CLOSE_BOX_SHOW_MENU:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNC_ov19_021D7028)) {
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             ov19_SetBoxMessage(&param0->unk_00, BoxText_ConfirmExit);
             BoxMenu_FillYesNo(&(param0->unk_00), 1);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_ShowMenu);
-            (*param1) = 2;
+            *state = CLOSE_BOX_YES_NO;
         }
         break;
-    case 2:
+    case CLOSE_BOX_YES_NO:
         switch (BoxMenu_GetMenuNavigation(&(param0->unk_00))) {
         case BOX_MENU_NAVIGATION_UP_DOWN:
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_UpdateMenuCursor);
@@ -965,7 +981,7 @@ static void ov19_021D1DEC(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         case BOX_MENU_NO:
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_CloseMessageBox);
-            (*param1) = 6;
+            *state = CLOSE_BOX_END;
             break;
         case BOX_MENU_YES:
             ov19_RegisterCursorLocationInputHandler(param0, ov19_LogOffScreenFade);
@@ -973,18 +989,18 @@ static void ov19_021D1DEC(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             break;
         }
         break;
-    case 4:
+    case CLOSE_BOX_CANNOT_CLOSE:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNC_BoxGraphics_ShowMenu) == FALSE) {
             break;
         }
-        (*param1) = 5;
-    case 5:
+        *state = CLOSE_BOX_CONFIRM_MESSAGE;
+    case CLOSE_BOX_CONFIRM_MESSAGE:
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_CloseMessageBox);
-            (*param1) = 6;
+            *state = CLOSE_BOX_END;
         }
         break;
-    case 6:
+    case CLOSE_BOX_END:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNC_BoxGraphics_CloseMessageBox)) {
             ov19_ClearBoxApplicationAction(param0);
         }
