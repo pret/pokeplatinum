@@ -23,12 +23,12 @@ BOOL ov19_021DA270(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021D61B0 *par
     NNSG2dPaletteData *v1;
     void *v2;
 
-    param0->unk_48 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_10);
+    param0->unk_48 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_BOX_GRAPHICS);
 
     NNS_G2dInitImagePaletteProxy(&v0);
     Graphics_LoadPartialPaletteFromOpenNARC(param0->unk_48, PokeIconPalettesFileIndex(), NNS_G2D_VRAM_TYPE_2DMAIN, 2 * 0x20, 10, &v0);
 
-    v2 = Graphics_GetPlttDataFromOpenNARC(param0->unk_48, PokeIconPalettesFileIndex(), &v1, HEAP_ID_10);
+    v2 = Graphics_GetPlttDataFromOpenNARC(param0->unk_48, PokeIconPalettesFileIndex(), &v1, HEAP_ID_BOX_GRAPHICS);
 
     if (v2) {
         BOOL v3;
@@ -47,10 +47,10 @@ BOOL ov19_021DA270(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021D61B0 *par
         Heap_FreeToHeap(v2);
     }
 
-    param0->unk_08 = Graphics_GetCellBankFromOpenNARC(param4, 21, 1, &(param0->unk_10), HEAP_ID_10);
-    param0->unk_00 = Graphics_GetAnimBankFromOpenNARC(param4, 22, 1, &(param0->unk_04), HEAP_ID_10);
-    param0->unk_14 = Graphics_GetCellBankFromOpenNARC(param4, 23, 1, &(param0->unk_1C), HEAP_ID_10);
-    param0->unk_18 = Graphics_GetAnimBankFromOpenNARC(param4, 24, 1, &(param0->unk_20), HEAP_ID_10);
+    param0->unk_08 = Graphics_GetCellBankFromOpenNARC(param4, 21, 1, &(param0->unk_10), HEAP_ID_BOX_GRAPHICS);
+    param0->unk_00 = Graphics_GetAnimBankFromOpenNARC(param4, 22, 1, &(param0->unk_04), HEAP_ID_BOX_GRAPHICS);
+    param0->unk_14 = Graphics_GetCellBankFromOpenNARC(param4, 23, 1, &(param0->unk_1C), HEAP_ID_BOX_GRAPHICS);
+    param0->unk_18 = Graphics_GetAnimBankFromOpenNARC(param4, 24, 1, &(param0->unk_20), HEAP_ID_BOX_GRAPHICS);
 
     if ((param0->unk_08 == NULL) || (param0->unk_00 == NULL) || (param0->unk_48 == NULL)) {
         return 0;
@@ -282,9 +282,9 @@ BOOL ov19_021DA7E0(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *par
     return Sprite_IsAnimated(param1->unk_00) == 0;
 }
 
-void ov19_021DA7F4(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *param1, BOOL param2)
+void BoxGraphics_ApplyMonInMultiSelectShading(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *param1, BOOL isSelected)
 {
-    u32 v0 = ((param2) ? 6 : 2) + param1->unk_2C;
+    u32 v0 = ((isSelected) ? 6 : 2) + param1->unk_2C;
 
     Sprite_SetExplicitPalette(param1->unk_00, v0);
 }

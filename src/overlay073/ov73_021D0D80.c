@@ -235,13 +235,13 @@ int ov73_021D0F7C(ApplicationManager *appMan, int *param1)
     Heap_FreeToHeap(v0->unk_B8);
     Heap_FreeToHeap(v0->unk_BC);
 
-    TrainerInfo_SetNameFromStrbuf(SaveData_GetTrainerInfo(v0->saveData), v0->unk_70->unk_18);
+    TrainerInfo_SetNameFromStrbuf(SaveData_GetTrainerInfo(v0->saveData), v0->unk_70->textInputStr);
     TrainerInfo_SetGender(SaveData_GetTrainerInfo(v0->saveData), v0->unk_70->unk_04);
 
     {
         MiscSaveBlock *v2 = SaveData_MiscSaveBlock(v0->saveData);
 
-        MiscSaveBlock_SetRivalName(v2, v0->unk_74->unk_18);
+        MiscSaveBlock_SetRivalName(v2, v0->unk_74->textInputStr);
     }
 
     sub_0208716C(v0->unk_70);
@@ -706,8 +706,8 @@ static BOOL ov73_021D1510(UnkStruct_ov73_021D1058 *param0, u32 param1, int param
             param0->unk_5C = Strbuf_Init(0x400, param0->heapID);
 
             MessageLoader_GetStrbuf(param0->unk_4C, param1, v1);
-            StringTemplate_SetStrbuf(param0->unk_64, 0, param0->unk_70->unk_18, param0->unk_84, 1, GAME_LANGUAGE);
-            StringTemplate_SetStrbuf(param0->unk_64, 1, param0->unk_74->unk_18, 0, 1, GAME_LANGUAGE);
+            StringTemplate_SetStrbuf(param0->unk_64, 0, param0->unk_70->textInputStr, param0->unk_84, 1, GAME_LANGUAGE);
+            StringTemplate_SetStrbuf(param0->unk_64, 1, param0->unk_74->textInputStr, 0, 1, GAME_LANGUAGE);
             StringTemplate_Format(param0->unk_64, param0->unk_5C, v1);
             Strbuf_Free(v1);
         }
@@ -2025,7 +2025,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
                 break;
             case 2:
             case 0xfffffffe:
-                Strbuf_Clear(param0->unk_70->unk_18);
+                Strbuf_Clear(param0->unk_70->textInputStr);
                 param0->unk_10 = 63;
                 param0->unk_0C = 81;
                 break;
@@ -2110,7 +2110,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
                 {
                     Strbuf *v10 = MessageLoader_GetNewStrbuf(param0->unk_4C, v9);
 
-                    Strbuf_Copy(param0->unk_74->unk_18, v10);
+                    Strbuf_Copy(param0->unk_74->textInputStr, v10);
                     Strbuf_Free(v10);
                 }
             }
@@ -2157,7 +2157,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
                 break;
             case 2:
             case 0xfffffffe:
-                Strbuf_Clear(param0->unk_74->unk_18);
+                Strbuf_Clear(param0->unk_74->textInputStr);
                 param0->unk_0C = 88;
                 break;
             }

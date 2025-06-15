@@ -34,7 +34,7 @@ void ov19_021D9A64(UnkStruct_ov19_021D8E00 *param0);
 void ov19_021D9A8C(UnkStruct_ov19_021D8E00 *param0);
 void ov19_021D9AB0(UnkStruct_ov19_021D8E00 *param0, u32 param1);
 void ov19_021D9AEC(UnkStruct_ov19_021D8E00 *param0);
-void ov19_021D9B10(UnkStruct_ov19_021D8E00 *param0);
+void BoxGraphics_OpenMultiSelectCursor(UnkStruct_ov19_021D8E00 *param0);
 void ov19_021D9B1C(UnkStruct_ov19_021D8E00 *param0, VecFx32 *param1);
 void ov19_021D9B34(UnkStruct_ov19_021D8E00 *param0);
 BOOL ov19_021D9B64(UnkStruct_ov19_021D8E00 *param0);
