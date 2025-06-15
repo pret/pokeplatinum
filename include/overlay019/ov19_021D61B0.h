@@ -22,7 +22,7 @@ enum BoxGraphicsFunctions {
     FUNC_BoxGraphics_ScreenFadeBothToBlack0,
     FUNC_BoxGraphics_ScreenFadeBothToBlack1,
     FUNC_BoxGraphics_ScreenFadeBothToBlack2,
-    FUNC_ov19_021D6824,
+    FUNC_BoxGraphics_ChangeToNewBox,
     FUNC_BoxGraphics_MoveCursor,
     FUNC_BoxGraphics_PreviewMon,
     FUNC_ov19_021D69BC,
