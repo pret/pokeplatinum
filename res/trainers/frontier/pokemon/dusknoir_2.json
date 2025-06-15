@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_DUSKNOIR",
+    "moves": [
+        "MOVE_CURSE",
+        "MOVE_PAIN_SPLIT",
+        "MOVE_CONFUSE_RAY",
+        "MOVE_ATTRACT"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_CAREFUL",
+    "item": "ITEM_LEFTOVERS",
+    "form": 0
+}

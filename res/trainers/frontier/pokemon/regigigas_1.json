@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_REGIGIGAS",
+    "moves": [
+        "MOVE_RETURN",
+        "MOVE_AERIAL_ACE",
+        "MOVE_THUNDER_WAVE",
+        "MOVE_CONFUSE_RAY"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_IMPISH",
+    "item": "ITEM_LAX_INCENSE",
+    "form": 0
+}

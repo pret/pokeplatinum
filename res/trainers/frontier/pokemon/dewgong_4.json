@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_DEWGONG",
+    "moves": [
+        "MOVE_SURF",
+        "MOVE_ICE_BEAM",
+        "MOVE_SIGNAL_BEAM",
+        "MOVE_REST"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": true
+    },
+    "nature": "NATURE_CALM",
+    "item": "ITEM_CHESTO_BERRY",
+    "form": 0
+}

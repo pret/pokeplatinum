@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_YANMEGA",
+    "moves": [
+        "MOVE_BUG_BUZZ",
+        "MOVE_AIR_SLASH",
+        "MOVE_PSYCHIC",
+        "MOVE_SHADOW_BALL"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": true,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_WISE_GLASSES",
+    "form": 0
+}

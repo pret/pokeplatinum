@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_BUTTERFREE",
+    "moves": [
+        "MOVE_SILVER_WIND",
+        "MOVE_AIR_CUTTER",
+        "MOVE_PSYBEAM",
+        "MOVE_TAILWIND"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": true
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_PECHA_BERRY",
+    "form": 0
+}

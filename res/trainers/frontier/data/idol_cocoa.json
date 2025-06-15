@@ -1,0 +1,33 @@
+{
+    "class": "TRAINER_CLASS_IDOL",
+    "availableSets": [
+        "vaporeon_1",
+        "jolteon_1",
+        "flareon_1",
+        "espeon_1",
+        "umbreon_1",
+        "leafeon_1",
+        "glaceon_1",
+        "vaporeon_2",
+        "jolteon_2",
+        "flareon_2",
+        "espeon_2",
+        "umbreon_2",
+        "leafeon_2",
+        "glaceon_2",
+        "vaporeon_3",
+        "jolteon_3",
+        "flareon_3",
+        "espeon_3",
+        "umbreon_3",
+        "leafeon_3",
+        "glaceon_3",
+        "vaporeon_4",
+        "jolteon_4",
+        "flareon_4",
+        "espeon_4",
+        "umbreon_4",
+        "leafeon_4",
+        "glaceon_4"
+    ]
+}

@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_ABOMASNOW",
+    "moves": [
+        "MOVE_GIGA_DRAIN",
+        "MOVE_ICE_BEAM",
+        "MOVE_WATER_PULSE",
+        "MOVE_GRASS_WHISTLE"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_CALM",
+    "item": "ITEM_LUM_BERRY",
+    "form": 0
+}

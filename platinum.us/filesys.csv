@@ -322,8 +322,8 @@ res/prebuilt/fielddata/tornworld/tw_arc.narc,/fielddata/tornworld/tw_arc.narc
 res/prebuilt/fielddata/tornworld/tw_arc_attr.narc,/fielddata/tornworld/tw_arc_attr.narc
 res/prebuilt/particledata/pl_pokelist/pokelist_particle.narc,/particledata/pl_pokelist/pokelist_particle.narc
 res/prebuilt/battle/b_pl_stage/pl_bsdpm.narc,/battle/b_pl_stage/pl_bsdpm.narc
-res/prebuilt/battle/b_pl_tower/pl_btdpm.narc,/battle/b_pl_tower/pl_btdpm.narc
-res/prebuilt/battle/b_pl_tower/pl_btdtr.narc,/battle/b_pl_tower/pl_btdtr.narc
+res/trainers/frontier/pl_btdpm.narc,/battle/b_pl_tower/pl_btdpm.narc
+res/trainers/frontier/pl_btdtr.narc,/battle/b_pl_tower/pl_btdtr.narc
 res/prebuilt/application/bucket/ballslow_data.narc,/application/bucket/ballslow_data.narc
 res/prebuilt/particledata/pl_etc/pl_etc_particle.narc,/particledata/pl_etc/pl_etc_particle.narc
 res/prebuilt/contest/graphic/contest_bg.narc,/contest/graphic/contest_bg.narc

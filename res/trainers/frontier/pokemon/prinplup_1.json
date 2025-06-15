@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_PRINPLUP",
+    "moves": [
+        "MOVE_BUBBLE_BEAM",
+        "MOVE_METAL_CLAW",
+        "MOVE_PECK",
+        "MOVE_DOUBLE_TEAM"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": true
+    },
+    "nature": "NATURE_QUIET",
+    "item": "ITEM_WACAN_BERRY",
+    "form": 0
+}

@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_LUNATONE",
+    "moves": [
+        "MOVE_PSYCHIC",
+        "MOVE_ANCIENT_POWER",
+        "MOVE_SHADOW_BALL",
+        "MOVE_COSMIC_POWER"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": true
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_PASSHO_BERRY",
+    "form": 0
+}

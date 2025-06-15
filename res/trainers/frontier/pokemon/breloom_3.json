@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_BRELOOM",
+    "moves": [
+        "MOVE_DYNAMIC_PUNCH",
+        "MOVE_THUNDER_PUNCH",
+        "MOVE_STONE_EDGE",
+        "MOVE_FACADE"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_TOXIC_ORB",
+    "form": 0
+}

@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_WIGGLYTUFF",
+    "moves": [
+        "MOVE_HYPER_VOICE",
+        "MOVE_SHADOW_BALL",
+        "MOVE_SING",
+        "MOVE_DREAM_EATER"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_SITRUS_BERRY",
+    "form": 0
+}

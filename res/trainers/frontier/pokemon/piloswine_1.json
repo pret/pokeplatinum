@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_PILOSWINE",
+    "moves": [
+        "MOVE_ICY_WIND",
+        "MOVE_MUD_BOMB",
+        "MOVE_MIST",
+        "MOVE_HAIL"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_NEVERMELTICE",
+    "form": 0
+}

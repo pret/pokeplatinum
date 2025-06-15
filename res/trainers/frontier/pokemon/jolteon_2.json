@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_JOLTEON",
+    "moves": [
+        "MOVE_DISCHARGE",
+        "MOVE_DOUBLE_KICK",
+        "MOVE_DIG",
+        "MOVE_THUNDER_WAVE"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_DOCILE",
+    "item": "ITEM_RAZOR_CLAW",
+    "form": 0
+}

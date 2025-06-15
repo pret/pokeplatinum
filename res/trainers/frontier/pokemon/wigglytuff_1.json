@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_WIGGLYTUFF",
+    "moves": [
+        "MOVE_SECRET_POWER",
+        "MOVE_GRASS_KNOT",
+        "MOVE_WISH",
+        "MOVE_SING"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_SILK_SCARF",
+    "form": 0
+}

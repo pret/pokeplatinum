@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_CRADILY",
+    "moves": [
+        "MOVE_ANCIENT_POWER",
+        "MOVE_ENERGY_BALL",
+        "MOVE_CONFUSE_RAY",
+        "MOVE_SANDSTORM"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_IMPISH",
+    "item": "ITEM_RAZOR_CLAW",
+    "form": 0
+}
