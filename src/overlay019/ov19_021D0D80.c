@@ -64,47 +64,10 @@
 
 FS_EXTERN_OVERLAY(overlay84);
 
-enum ReleaseMonState {
-    RELEASE_MON_START,
-    RELEASE_MON_CONFIRM,
-    RELEASE_MON_RELEASE_ANIMATION,
-    RELEASE_MON_TRY_RELEASE,
-    RELEASE_MON_CONFIRM_RETURNED,
-    RELEASE_MON_CONFIRM_RELEASED,
-    RELEASE_MON_CLOSE_MESSAGE_BOX,
-    RELEASE_MON_PREPARE_END_RELEASE,
-    RELEASE_MON_CANNOT_RELEASE,
-    RELEASE_MON_END
-};
-
 enum ReleasedFrom {
     RELEASED_FROM_CURSOR,
     RELEASED_FROM_BOX,
     RELEASED_FROM_PARTY
-};
-
-enum SummaryState {
-    SUMMARY_START,
-    SUMMARY_LAUNCH,
-    SUMMARY_RETURN_TO_BOX,
-};
-
-enum MarkState {
-    MARK_START,
-    MARK_PROCESS_USER_INPUT,
-    MARK_END,
-};
-
-enum WallpaperMenuState {
-    WALLPAPER_MENU_START,
-    WALLPAPER_MENU_PICK_THEME_INIT,
-    WALLPAPER_MENU_PICK_THEME_WAIT_FOR_TASK,
-    WALLPAPER_MENU_PICK_THEME_WAIT_FOR_USER,
-    WALLPAPER_MENU_PICK_WALLPAPER_WAIT_FOR_TASK,
-    WALLPAPER_MENU_PICK_WALLPAPER_WAIT_FOR_USER,
-    WALLPAPER_MENU_TRANSITION_WALLPAPER,
-    WALLPAPER_MENU_UNREACHABLE,
-    WALLPAPER_MENU_END,
 };
 
 enum BoxSelectorState {
@@ -112,87 +75,6 @@ enum BoxSelectorState {
     BOX_SELECTOR_DISPLAY_MESSAGE_START,
     BOX_SELECTOR_DISPLAY_MESSAGE_DONE,
     BOX_SELECTOR_WAIT_FOR_USER
-};
-
-enum StoreMonState {
-    STORE_MON_CHECK_CAN_STORE_MON,
-    STORE_MON_SELECT_BOX,
-    STORE_MON_BOX_FULL,
-    STORE_MON_CONFIRM_CANNOT_STORE_MON,
-    STORE_MON_FROM_CURSOR,
-    STORE_MON_FROM_PARTY,
-    STORE_MON_END
-};
-
-enum BoxJumpState {
-    JUMP_START,
-    JUMP_TO_BOX,
-    JUMP_END
-};
-
-enum RenameBoxStates {
-    RENAME_BOX_START,
-    RENAME_BOX_LAUNCH_TEXT_INPUT_APP,
-    RENAME_BOX_RETURN_TO_BOX
-};
-
-enum PickUpMonState {
-    PICK_UP_MON_START,
-    PICK_UP_PARTY_MON,
-    PICK_UP_MON_CONFIRM_LAST_MON,
-    PICK_UP_MON_DONE
-};
-
-enum WithdrawMonState {
-    WITHDRAW_START,
-    WITHDRAW_WAIT_FOR_PICK_UP_MON,
-    WITHDRAW_WAIT_FOR_PARTY_POPUP,
-    WITHDRAW_WAIT_FOR_MOVE_CURSOR_TO_PARTY,
-    WITHDRAW_WAIT_FOR_MOVE_PLACE_MON_DOWN,
-    WITHDRAW_RETURN_TO_BOX,
-    WITHDRAW_UNUSED,
-    WITHDRAW_CONFIRM_PARTY_FULL,
-    WITHDRAW_END
-};
-
-enum ShiftState {
-    SHIFT_START,
-    SHIFT_CONFIRM_MESSAGE,
-    SHIFT_END
-};
-
-enum PlaceMonState {
-    PLACE_MON_DOWN,
-    PLACE_ADJUST_PARTY_ANIMATION,
-    PLACE_MON_END
-};
-
-enum ItemHeldState {
-    ITEM_HELD_START,
-    ITEM_HELD_YES_NO,
-    ITEM_HELD_ADD_TO_BAG,
-    ITEM_HELD_DISPLAY_TOOK_ITEM_MESSAGE,
-    ITEM_HELD_CONFIRM_MESSAGE,
-    ITEM_HELD_END
-};
-
-enum GiveItemFromBag {
-    GIVE_FROM_BAG_START,
-    GIVE_FROM_BAG_INIT_BAG_APP,
-    GIVE_FROM_BAG_SELECT_ITEM,
-    GIVE_FROM_BAG_RETURN_TO_BOX,
-    GIVE_FROM_BAG_DISPLAY_MESSAGE,
-    GIVE_FROM_BAG_CONFIRM_MESSAGE,
-    GIVE_FROM_BAG_END
-};
-
-enum MultiSelectMoveStates {
-    MULTI_MOVE_START,
-    MULTI_MOVE_DEFINE_SELECTION,
-    MULTI_MOVE_SELECTED_MONS,
-    MULTI_MOVE_WAIT_FOR_ANIMATIONS,
-    MULTI_MOVE_END,
-    MULTI_MOVE_PREVIEW_MON
 };
 
 static const TouchScreenHitTable sMainPcButtons[] = {
@@ -307,7 +189,7 @@ static void ov19_InitSummary(UnkStruct_ov19_021D5DF8 *param0);
 static int ov19_LogOffScreenFade(UnkStruct_ov19_021D5DF8 *param0);
 static void ov19_021D1DEC(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D1F5C(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
-static void ov19_021D20A4(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
+static void ov19_MonCursorMenuAction(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D2308(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D2694(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_BoxJumpAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state);
@@ -616,7 +498,7 @@ static int ov19_CursorInBoxInputHandler(UnkStruct_ov19_021D5DF8 *param0)
         if (JOY_NEW(PAD_BUTTON_A)) {
             if (ov19_IsMonAvailableToCursor(&param0->unk_00)) {
                 if (ov19_GetBoxMode(&param0->unk_00) != PC_MODE_MOVE_ITEMS) {
-                    ov19_RegisterBoxApplicationAction(param0, ov19_021D20A4);
+                    ov19_RegisterBoxApplicationAction(param0, ov19_MonCursorMenuAction);
                 } else {
                     ov19_RegisterBoxApplicationAction(param0, ov19_021D2308);
                 }
@@ -698,7 +580,7 @@ static int ov19_CursorInPartyInputHandler(UnkStruct_ov19_021D5DF8 *param0)
 
             if (ov19_IsMonAvailableToCursor(&param0->unk_00)) {
                 if (ov19_GetBoxMode(&param0->unk_00) != PC_MODE_MOVE_ITEMS) {
-                    ov19_RegisterBoxApplicationAction(param0, ov19_021D20A4);
+                    ov19_RegisterBoxApplicationAction(param0, ov19_MonCursorMenuAction);
                 } else {
                     ov19_RegisterBoxApplicationAction(param0, ov19_021D2308);
                 }
@@ -1070,7 +952,7 @@ static void ov19_021D1DEC(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             ov19_SetBoxMessage(&param0->unk_00, BoxText_ConfirmExit);
             BoxMenu_FillYesNo(&(param0->unk_00), 1);
-            ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6E70);
+            ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_ShowMenu);
             (*param1) = 2;
         }
         break;
@@ -1092,7 +974,7 @@ static void ov19_021D1DEC(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         }
         break;
     case 4:
-        if (ov19_IsSysTaskDone(param0->unk_114, FUNC_ov19_021D6E70) == FALSE) {
+        if (ov19_IsSysTaskDone(param0->unk_114, FUNC_BoxGraphics_ShowMenu) == FALSE) {
             break;
         }
         (*param1) = 5;
@@ -1127,7 +1009,7 @@ static void ov19_021D1F5C(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             ov19_SetBoxMessage(&param0->unk_00, BoxText_ConfirmContinue);
             BoxMenu_FillYesNo(&(param0->unk_00), 0);
-            ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6E70);
+            ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_ShowMenu);
             (*param1) = 5;
         }
         break;
@@ -1148,7 +1030,7 @@ static void ov19_021D1F5C(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         }
         break;
     case 2:
-        if (ov19_IsSysTaskDone(param0->unk_114, FUNC_ov19_021D6E70) == FALSE) {
+        if (ov19_IsSysTaskDone(param0->unk_114, FUNC_BoxGraphics_ShowMenu) == FALSE) {
             break;
         }
         (*param1) = 3;
@@ -1166,29 +1048,38 @@ static void ov19_021D1F5C(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
     }
 }
 
-static void ov19_021D20A4(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
+enum MonCursorMenuState {
+    MON_CURSOR_MENU_START,
+    MON_CURSOR_MENU_SHOW_MENU,
+    MON_CURSOR_MENU_NAVIGATE_MENU,
+    MON_CURSOR_MENU_ITEM_SELECTED,
+    MON_CURSOR_MENU_END_WHEN_READY,
+    MON_CURSOR_MENU_END
+};
+
+static void ov19_MonCursorMenuAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
 {
-    switch (*param1) {
-    case 0:
+    switch (*state) {
+    case MON_CURSOR_MENU_START:
         StringTemplate_SetNickname(param0->MessageVariableBuffer, 0, ov19_GetPreviewedBoxMon(&param0->unk_00));
         ov19_SetBoxMessage(&param0->unk_00, BoxText_MonSelected);
         BoxMenu_FillTopLevelMenuItems(&param0->unk_00);
 
         if (ov19_IsCursorFastMode(&param0->unk_00)) {
             param0->menuItem = BoxMenu_GetDefaultMenuItem(&param0->unk_00);
-            (*param1) = 3;
+            *state = MON_CURSOR_MENU_ITEM_SELECTED;
         } else {
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
-            ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6E70);
-            (*param1) = 1;
+            ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_ShowMenu);
+            *state = MON_CURSOR_MENU_SHOW_MENU;
         }
         break;
-    case 1:
-        if (ov19_IsSysTaskDone(param0->unk_114, FUNC_ov19_021D6E70) == FALSE) {
+    case MON_CURSOR_MENU_SHOW_MENU:
+        if (ov19_IsSysTaskDone(param0->unk_114, FUNC_BoxGraphics_ShowMenu) == FALSE) {
             break;
         }
-        (*param1) = 2;
-    case 2:
+        *state = MON_CURSOR_MENU_NAVIGATE_MENU;
+    case MON_CURSOR_MENU_NAVIGATE_MENU:
         param0->menuItem = BoxMenu_GetMenuNavigation(&(param0->unk_00));
 
         switch (param0->menuItem) {
@@ -1201,14 +1092,14 @@ static void ov19_021D20A4(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         case BOX_MENU_CANCEL:
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_CloseMessageBox);
-            (*param1) = 4;
+            *state = MON_CURSOR_MENU_END_WHEN_READY;
             break;
         default:
-            (*param1) = 3;
+            *state = MON_CURSOR_MENU_ITEM_SELECTED;
             break;
         }
         break;
-    case 3: // box mon management menu actions
+    case MON_CURSOR_MENU_ITEM_SELECTED:
         switch (param0->menuItem) {
         case BOX_MENU_MOVE:
             if (ov19_GetCursorLocation(&param0->unk_00) == CURSOR_IN_BOX && ov19_IsCursorFastMode(&param0->unk_00) == TRUE) {
@@ -1256,16 +1147,16 @@ static void ov19_021D20A4(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D73EC);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_PreviewMon);
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
-            (*param1) = 5;
+            *state = MON_CURSOR_MENU_END;
             break;
         }
         break;
-    case 4:
+    case MON_CURSOR_MENU_END_WHEN_READY:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNC_BoxGraphics_CloseMessageBox)) {
             ov19_ClearBoxApplicationAction(param0);
         }
         break;
-    case 5:
+    case MON_CURSOR_MENU_END:
         if (ov19_CheckAllTasksDone(param0->unk_114)) {
             ov19_ClearBoxApplicationAction(param0);
         }
@@ -1306,12 +1197,12 @@ static void ov19_021D2308(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             (*param1) = 3;
         } else {
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
-            ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6E70);
+            ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_ShowMenu);
             (*param1) = 1;
         }
         break;
     case 1:
-        if (ov19_IsSysTaskDone(param0->unk_114, FUNC_ov19_021D6E70) == FALSE) {
+        if (ov19_IsSysTaskDone(param0->unk_114, FUNC_BoxGraphics_ShowMenu) == FALSE) {
             break;
         }
         (*param1) = 2;
@@ -1437,12 +1328,12 @@ static void ov19_021D2694(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             (*param1) = 3;
         } else {
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
-            ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6E70);
+            ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_ShowMenu);
             (*param1) = 1;
         }
         break;
     case 1:
-        if (ov19_IsSysTaskDone(param0->unk_114, FUNC_ov19_021D6E70) == FALSE) {
+        if (ov19_IsSysTaskDone(param0->unk_114, FUNC_BoxGraphics_ShowMenu) == FALSE) {
             break;
         }
         (*param1) = 2;
@@ -1493,6 +1384,12 @@ static void ov19_021D2694(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
     }
 }
 
+enum BoxJumpState {
+    JUMP_START,
+    JUMP_TO_BOX,
+    JUMP_END
+};
+
 static void ov19_BoxJumpAction(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
 {
     switch (*param1) {
@@ -1525,6 +1422,18 @@ static void ov19_BoxJumpAction(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
     }
 }
 
+enum WallpaperMenuState {
+    WALLPAPER_MENU_START,
+    WALLPAPER_MENU_PICK_THEME_INIT,
+    WALLPAPER_MENU_PICK_THEME_WAIT_FOR_TASK,
+    WALLPAPER_MENU_PICK_THEME_WAIT_FOR_USER,
+    WALLPAPER_MENU_PICK_WALLPAPER_WAIT_FOR_TASK,
+    WALLPAPER_MENU_PICK_WALLPAPER_WAIT_FOR_USER,
+    WALLPAPER_MENU_TRANSITION_WALLPAPER,
+    WALLPAPER_MENU_UNREACHABLE,
+    WALLPAPER_MENU_END,
+};
+
 static void ov19_WallpaperMenu(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
 {
     switch (*state) {
@@ -1534,11 +1443,11 @@ static void ov19_WallpaperMenu(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
     case WALLPAPER_MENU_PICK_THEME_INIT:
         ov19_SetBoxMessage(&param0->unk_00, BoxText_PickTheme);
         BoxMenu_FillWallpaperMenu(&param0->unk_00, param0->menuItem);
-        ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6E70);
+        ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_ShowMenu);
         *state = WALLPAPER_MENU_PICK_THEME_WAIT_FOR_TASK;
         break;
     case WALLPAPER_MENU_PICK_THEME_WAIT_FOR_TASK:
-        if (ov19_IsSysTaskDone(param0->unk_114, FUNC_ov19_021D6E70) == FALSE) {
+        if (ov19_IsSysTaskDone(param0->unk_114, FUNC_BoxGraphics_ShowMenu) == FALSE) {
             break;
         }
         *state = WALLPAPER_MENU_PICK_THEME_WAIT_FOR_USER;
@@ -1564,13 +1473,13 @@ static void ov19_WallpaperMenu(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
             param0->menuItem = BoxMenu_GetSelectedMenuItem(&param0->unk_00);
             ov19_SetBoxMessage(&param0->unk_00, BoxText_Wallpaper);
             BoxMenu_FillWallpaperSelectionMenu(&param0->unk_00, param0->menuItem);
-            ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6E70);
+            ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_ShowMenu);
             *state = WALLPAPER_MENU_PICK_WALLPAPER_WAIT_FOR_TASK;
             break;
         }
         break;
     case WALLPAPER_MENU_PICK_WALLPAPER_WAIT_FOR_TASK:
-        if (ov19_IsSysTaskDone(param0->unk_114, FUNC_ov19_021D6E70) == FALSE) {
+        if (ov19_IsSysTaskDone(param0->unk_114, FUNC_BoxGraphics_ShowMenu) == FALSE) {
             break;
         }
         *state = WALLPAPER_MENU_PICK_WALLPAPER_WAIT_FOR_USER;
@@ -1616,13 +1525,19 @@ static void ov19_WallpaperMenu(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
     }
 }
 
+enum MarkState {
+    MARK_START,
+    MARK_PROCESS_USER_INPUT,
+    MARK_END,
+};
+
 static void ov19_MarkAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
 {
     switch (*state) {
     case MARK_START:
         BoxMenu_FillMarkingsMenu(&param0->unk_00);
         ov19_SetBoxMessage(&param0->unk_00, BoxText_MarkMon);
-        ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6E70);
+        ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_ShowMenu);
         (*state) = MARK_PROCESS_USER_INPUT;
         break;
     case MARK_PROCESS_USER_INPUT:
@@ -1667,6 +1582,15 @@ static void ov19_MarkAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
         break;
     }
 }
+
+enum MultiSelectMoveStates {
+    MULTI_MOVE_START,
+    MULTI_MOVE_DEFINE_SELECTION,
+    MULTI_MOVE_SELECTED_MONS,
+    MULTI_MOVE_WAIT_FOR_ANIMATIONS,
+    MULTI_MOVE_END,
+    MULTI_MOVE_PREVIEW_MON
+};
 
 static void ov19_MultiSelectAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
 {
@@ -1810,6 +1734,13 @@ static BOOL ov19_IsBoxUnderSelectedMonsEmpty(const UnkStruct_ov19_021D4DF0 *para
     return TRUE;
 }
 
+enum PickUpMonState {
+    PICK_UP_MON_START,
+    PICK_UP_PARTY_MON,
+    PICK_UP_MON_CONFIRM_LAST_MON,
+    PICK_UP_MON_DONE
+};
+
 static void ov19_PickUpMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
 {
     switch (*state) {
@@ -1853,6 +1784,12 @@ static void ov19_PickUpMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
         break;
     }
 }
+
+enum PlaceMonState {
+    PLACE_MON_DOWN,
+    PLACE_ADJUST_PARTY_ANIMATION,
+    PLACE_MON_END
+};
 
 static void ov19_PlaceMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
 {
@@ -1910,6 +1847,12 @@ static BOOL ov19_CheckLastAliveMonReason(UnkStruct_ov19_021D5DF8 *param0, u32 *d
     return FALSE;
 }
 
+enum ShiftState {
+    SHIFT_START,
+    SHIFT_CONFIRM_MESSAGE,
+    SHIFT_END
+};
+
 static void ov19_ShiftMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
 {
     switch (*state) {
@@ -1947,6 +1890,18 @@ static void ov19_ShiftMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
         break;
     }
 }
+
+enum WithdrawMonState {
+    WITHDRAW_START,
+    WITHDRAW_WAIT_FOR_PICK_UP_MON,
+    WITHDRAW_WAIT_FOR_PARTY_POPUP,
+    WITHDRAW_WAIT_FOR_MOVE_CURSOR_TO_PARTY,
+    WITHDRAW_WAIT_FOR_MOVE_PLACE_MON_DOWN,
+    WITHDRAW_RETURN_TO_BOX,
+    WITHDRAW_UNUSED,
+    WITHDRAW_CONFIRM_PARTY_FULL,
+    WITHDRAW_END
+};
 
 static void ov19_WithdrawMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
 {
@@ -2024,6 +1979,16 @@ static void ov19_WithdrawMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
         break;
     }
 }
+
+enum StoreMonState {
+    STORE_MON_CHECK_CAN_STORE_MON,
+    STORE_MON_SELECT_BOX,
+    STORE_MON_BOX_FULL,
+    STORE_MON_CONFIRM_CANNOT_STORE_MON,
+    STORE_MON_FROM_CURSOR,
+    STORE_MON_FROM_PARTY,
+    STORE_MON_END
+};
 
 static void ov19_StoreMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
 {
@@ -2196,6 +2161,19 @@ static BOOL ov19_CheckReleaseMonValid(UnkStruct_ov19_021D5DF8 *param0, int *dest
     return TRUE;
 }
 
+enum ReleaseMonState {
+    RELEASE_MON_START,
+    RELEASE_MON_CONFIRM,
+    RELEASE_MON_RELEASE_ANIMATION,
+    RELEASE_MON_TRY_RELEASE,
+    RELEASE_MON_CONFIRM_RETURNED,
+    RELEASE_MON_CONFIRM_RELEASED,
+    RELEASE_MON_CLOSE_MESSAGE_BOX,
+    RELEASE_MON_PREPARE_END_RELEASE,
+    RELEASE_MON_CANNOT_RELEASE,
+    RELEASE_MON_END
+};
+
 static void ov19_ReleaseMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *releaseMonState)
 {
     switch (*releaseMonState) {
@@ -2205,7 +2183,7 @@ static void ov19_ReleaseMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *releaseM
         if (ov19_CheckReleaseMonValid(param0, &boxMessageID)) {
             ov19_SetBoxMessage(&param0->unk_00, BoxText_ReleaseMon);
             BoxMenu_FillYesNo(&(param0->unk_00), 1);
-            ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6E70);
+            ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_ShowMenu);
             (*releaseMonState) = RELEASE_MON_CONFIRM;
         } else {
             Sound_PlayEffect(SEQ_SE_DP_BOX03);
@@ -2477,6 +2455,12 @@ BOOL ov19_CanReleaseMon(const UnkStruct_ov19_021D5DF8 *param0)
     return FALSE;
 }
 
+enum RenameBoxStates {
+    RENAME_BOX_START,
+    RENAME_BOX_LAUNCH_TEXT_INPUT_APP,
+    RENAME_BOX_RETURN_TO_BOX
+};
+
 static void ov19_RenameBoxAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
 {
     switch (*state) {
@@ -2508,6 +2492,12 @@ static void ov19_RenameBoxAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
         break;
     }
 }
+
+enum SummaryState {
+    SUMMARY_START,
+    SUMMARY_LAUNCH,
+    SUMMARY_RETURN_TO_BOX,
+};
 
 static void ov19_OpenSummaryAction(UnkStruct_ov19_021D5DF8 *param0, u32 *openSummaryState)
 {
@@ -2562,6 +2552,16 @@ static void ov19_SetCursorPosToSummaryMonPos(UnkStruct_ov19_021D4DF0 *param0, Un
 
     ov19_TryPreviewCursorMon(param1);
 }
+
+enum GiveItemFromBag {
+    GIVE_FROM_BAG_START,
+    GIVE_FROM_BAG_INIT_BAG_APP,
+    GIVE_FROM_BAG_SELECT_ITEM,
+    GIVE_FROM_BAG_RETURN_TO_BOX,
+    GIVE_FROM_BAG_DISPLAY_MESSAGE,
+    GIVE_FROM_BAG_CONFIRM_MESSAGE,
+    GIVE_FROM_BAG_END
+};
 
 static void ov19_GiveItemFromBagAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
 {
@@ -2659,6 +2659,15 @@ static void ov19_GiveItemFromBagAction(UnkStruct_ov19_021D5DF8 *param0, u32 *sta
     }
 }
 
+enum ItemHeldState {
+    ITEM_HELD_START,
+    ITEM_HELD_YES_NO,
+    ITEM_HELD_ADD_TO_BAG,
+    ITEM_HELD_DISPLAY_TOOK_ITEM_MESSAGE,
+    ITEM_HELD_CONFIRM_MESSAGE,
+    ITEM_HELD_END
+};
+
 static void ov19_MonItemHeldAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
 {
     static u32 item;
@@ -2676,7 +2685,7 @@ static void ov19_MonItemHeldAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
             StringTemplate_SetItemName(param0->MessageVariableBuffer, 0, item);
             BoxMenu_FillYesNo(&(param0->unk_00), 0);
             ov19_SetBoxMessage(&param0->unk_00, BoxText_ConfirmTakeItem);
-            ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6E70);
+            ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_ShowMenu);
             *state = ITEM_HELD_YES_NO;
         }
         break;
@@ -2753,7 +2762,7 @@ static void ov19_021D4184(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             StringTemplate_SetItemName(param0->MessageVariableBuffer, 0, item);
             ov19_SetBoxMessage(&param0->unk_00, BoxText_PutAwayItem);
             BoxMenu_FillYesNo(&(param0->unk_00), 0);
-            ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6E70);
+            ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_ShowMenu);
             (*param1) = 1;
         }
         break;
