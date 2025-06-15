@@ -148,7 +148,7 @@ typedef struct UnkStruct_ov19_021D5DF8_t {
     Pokemon *mon;
     Options *options;
     int (*cursorLocationInputHandler)(struct UnkStruct_ov19_021D5DF8_t *param0);
-    void (*boxApplicationAction)(struct UnkStruct_ov19_021D5DF8_t *param0, u32 *param1);
+    void (*boxApplicationAction)(struct UnkStruct_ov19_021D5DF8_t *param0, u32 *state);
     u32 cursorLocationHandlerState;
     u32 boxApplicationActionState;
     union {
@@ -204,7 +204,7 @@ static void ov19_WithdrawMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state);
 static void ov19_StoreMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state);
 static BOOL ov19_OnLastAliveMon(UnkStruct_ov19_021D5DF8 *param0);
 static BOOL ov19_CheckReleaseMonValid(UnkStruct_ov19_021D5DF8 *param0, int *destBoxMessageID);
-static void ov19_ReleaseMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *releaseMonState);
+static void ov19_ReleaseMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state);
 static void ov19_CheckShouldMonReturn(UnkStruct_ov19_021D5DF8 *param0);
 static void ov19_CheckLastMonWithReleaseBlockingMove(SysTask *task, void *releaseMon);
 static BOOL BoxPokemon_HasMove(BoxPokemon *boxMon, u16 move);
@@ -218,7 +218,7 @@ static void ov19_DisplayItemInfoAction(UnkStruct_ov19_021D5DF8 *param0, u32 *sta
 static void BoxSelectorPopup_Init(UnkStruct_ov19_021D5DF8 *param0, u32 boxID, u32 boxMessageID);
 static void BoxSelectorPopup_Reset(UnkStruct_ov19_021D5DF8 *param0);
 static BOOL ov19_TrySelectBoxFromPopup(UnkStruct_ov19_021D5DF8 *param0);
-static void ov19_ChangeToNewBoxAction(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
+static void ov19_ChangeToNewBoxAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state);
 static void ov19_021D4640(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D4938(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static BOOL ov19_021D4B88(UnkStruct_ov19_021D5DF8 *param0);
@@ -441,7 +441,6 @@ static inline void inline_ov19_021D0FF0_sub1(UnkStruct_ov19_021D5DF8 *wk)
     ov19_BoxTaskHandler(wk->unk_114, FUNC_BoxGraphics_PreviewMon);
 }
 
-// main touch screen handling?
 static inline int inline_ov19_021D0FF0(UnkStruct_ov19_021D5DF8 *param0)
 {
     if (ov19_TryPressTouchScreenButton(param0)) {
@@ -1611,7 +1610,7 @@ static void ov19_MarkAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
         BoxMenu_FillMarkingsMenu(&param0->unk_00);
         ov19_SetBoxMessage(&param0->unk_00, BoxText_MarkMon);
         ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_ShowMenu);
-        (*state) = MARK_PROCESS_USER_INPUT;
+        *state = MARK_PROCESS_USER_INPUT;
         break;
     case MARK_PROCESS_USER_INPUT:
         if (ov19_CheckAllTasksDone(param0->unk_114) == FALSE) {
@@ -1628,17 +1627,17 @@ static void ov19_MarkAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
             case BOX_MENU_NAVIGATION_B:
             case BOX_MENU_MARK_CANCEL:
                 ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_CloseMessageBox);
-                (*state) = MARK_END;
+                *state = MARK_END;
                 break;
             case BOX_MENU_CONFIRM:
                 ov19_UpdatePreviewMonMarkings(&param0->unk_00);
                 ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_CloseMessageBox);
                 ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D69BC);
                 ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D7248);
-                (*state) = MARK_END;
+                *state = MARK_END;
                 break;
             default:
-                if ((selectedItem >= BOX_MENU_FIRST_MARKING) && (selectedItem <= BOX_MENU_LAST_MARKING)) {
+                if (selectedItem >= BOX_MENU_FIRST_MARKING && selectedItem <= BOX_MENU_LAST_MARKING) {
                     selectedItem -= BOX_MENU_FIRST_MARKING;
                     BoxMenu_ToggleMarking(&param0->unk_00, selectedItem);
                     ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6F0C);
@@ -2071,7 +2070,7 @@ static void ov19_StoreMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
             ov19_SetBoxMessage(&param0->unk_00, BoxText_LastMon);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6EC0);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
-            (*state) = STORE_MON_CONFIRM_CANNOT_STORE_MON;
+            *state = STORE_MON_CONFIRM_CANNOT_STORE_MON;
         } else {
             int boxMessageID;
 
@@ -2080,11 +2079,11 @@ static void ov19_StoreMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
                 ov19_SetBoxMessage(&param0->unk_00, boxMessageID);
                 ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6EC0);
                 ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
-                (*state) = STORE_MON_CONFIRM_CANNOT_STORE_MON;
+                *state = STORE_MON_CONFIRM_CANNOT_STORE_MON;
             } else {
                 BoxSelectorPopup_Init(param0, param0->unk_00.unk_110, BoxText_PickDepositBox);
                 ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_CloseMessageBox);
-                (*state) = STORE_MON_SELECT_BOX;
+                *state = STORE_MON_SELECT_BOX;
             }
         }
         break;
@@ -2096,7 +2095,7 @@ static void ov19_StoreMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
         if (param0->boxSelector.boxID == -1) {
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_CloseMessageBox);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6FB0);
-            (*state) = STORE_MON_END;
+            *state = STORE_MON_END;
             break;
         }
 
@@ -2107,7 +2106,7 @@ static void ov19_StoreMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
                 ov19_FlagRecordBoxUseInJournal(param0);
                 ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_CloseMessageBox);
                 ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6FB0);
-                (*state) = STORE_MON_FROM_CURSOR;
+                *state = STORE_MON_FROM_CURSOR;
                 break;
             }
         } else {
@@ -2115,7 +2114,7 @@ static void ov19_StoreMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
                 ov19_FlagRecordBoxUseInJournal(param0);
                 ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_CloseMessageBox);
                 ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6FB0);
-                (*state) = STORE_MON_FROM_PARTY;
+                *state = STORE_MON_FROM_PARTY;
                 break;
             }
         }
@@ -2123,7 +2122,7 @@ static void ov19_StoreMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
         Sound_PlayEffect(SEQ_SE_DP_BOX03);
         ov19_SetBoxMessage(&param0->unk_00, BoxText_BoxFull);
         ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
-        (*state) = STORE_MON_BOX_FULL;
+        *state = STORE_MON_BOX_FULL;
         break;
     case STORE_MON_BOX_FULL:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNC_BoxGraphics_DisplayBoxMessage) == FALSE) {
@@ -2132,7 +2131,7 @@ static void ov19_StoreMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
 
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
             BoxSelectorPopup_Reset(param0);
-            (*state) = STORE_MON_SELECT_BOX;
+            *state = STORE_MON_SELECT_BOX;
         }
         break;
     case STORE_MON_CONFIRM_CANNOT_STORE_MON:
@@ -2142,21 +2141,21 @@ static void ov19_StoreMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
 
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_CloseMessageBox);
-            (*state) = STORE_MON_END;
+            *state = STORE_MON_END;
         }
         break;
     case STORE_MON_FROM_CURSOR:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNC_ov19_021D6FB0)) {
             ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6AEC);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_PreviewMon);
-            (*state) = STORE_MON_END;
+            *state = STORE_MON_END;
         }
         break;
     case STORE_MON_FROM_PARTY:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNC_ov19_021D6FB0)) {
             ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6B1C);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_PreviewMon);
-            (*state) = STORE_MON_END;
+            *state = STORE_MON_END;
         }
         break;
     case STORE_MON_END:
@@ -2246,9 +2245,9 @@ enum ReleaseMonState {
     RELEASE_MON_END
 };
 
-static void ov19_ReleaseMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *releaseMonState)
+static void ov19_ReleaseMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
 {
-    switch (*releaseMonState) {
+    switch (*state) {
     case RELEASE_MON_START: {
         int boxMessageID;
 
@@ -2256,13 +2255,13 @@ static void ov19_ReleaseMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *releaseM
             ov19_SetBoxMessage(&param0->unk_00, BoxText_ReleaseMon);
             BoxMenu_FillYesNo(&(param0->unk_00), 1);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_ShowMenu);
-            (*releaseMonState) = RELEASE_MON_CONFIRM;
+            *state = RELEASE_MON_CONFIRM;
         } else {
             Sound_PlayEffect(SEQ_SE_DP_BOX03);
             ov19_SetBoxMessage(&param0->unk_00, boxMessageID);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6EC0);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
-            (*releaseMonState) = RELEASE_MON_CANNOT_RELEASE;
+            *state = RELEASE_MON_CANNOT_RELEASE;
         }
     } break;
 
@@ -2278,11 +2277,11 @@ static void ov19_ReleaseMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *releaseM
         case BOX_MENU_NAVIGATION_B:
         case BOX_MENU_NO:
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_CloseMessageBox);
-            (*releaseMonState) = RELEASE_MON_END;
+            *state = RELEASE_MON_END;
             break;
         case BOX_MENU_YES:
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_CloseMessageBox);
-            (*releaseMonState) = RELEASE_MON_RELEASE_ANIMATION;
+            *state = RELEASE_MON_RELEASE_ANIMATION;
             break;
         }
         break;
@@ -2303,7 +2302,7 @@ static void ov19_ReleaseMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *releaseM
                     param0->releasedFrom = RELEASED_FROM_PARTY;
                 }
             }
-            (*releaseMonState) = RELEASE_MON_TRY_RELEASE;
+            *state = RELEASE_MON_TRY_RELEASE;
         }
         break;
     case RELEASE_MON_TRY_RELEASE:
@@ -2316,10 +2315,10 @@ static void ov19_ReleaseMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *releaseM
                 }
 
                 ov19_SetBoxMessage(&param0->unk_00, BoxText_MonReleased);
-                (*releaseMonState) = RELEASE_MON_CONFIRM_RELEASED;
+                *state = RELEASE_MON_CONFIRM_RELEASED;
             } else {
                 ov19_SetBoxMessage(&param0->unk_00, BoxText_MonReturned);
-                (*releaseMonState) = RELEASE_MON_CONFIRM_RETURNED;
+                *state = RELEASE_MON_CONFIRM_RETURNED;
             }
 
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
@@ -2333,7 +2332,7 @@ static void ov19_ReleaseMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *releaseM
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
             ov19_SetBoxMessage(&param0->unk_00, BoxText_GoodbyeForever);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
-            (*releaseMonState) = RELEASE_MON_CLOSE_MESSAGE_BOX;
+            *state = RELEASE_MON_CLOSE_MESSAGE_BOX;
         }
         break;
     case RELEASE_MON_CONFIRM_RETURNED:
@@ -2344,7 +2343,7 @@ static void ov19_ReleaseMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *releaseM
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
             ov19_SetBoxMessage(&param0->unk_00, BoxText_MonWasWorried);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
-            (*releaseMonState) = RELEASE_MON_CLOSE_MESSAGE_BOX;
+            *state = RELEASE_MON_CLOSE_MESSAGE_BOX;
         }
         break;
     case RELEASE_MON_CLOSE_MESSAGE_BOX:
@@ -2354,7 +2353,7 @@ static void ov19_ReleaseMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *releaseM
 
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_CloseMessageBox);
-            (*releaseMonState) = RELEASE_MON_PREPARE_END_RELEASE;
+            *state = RELEASE_MON_PREPARE_END_RELEASE;
         }
         break;
     case RELEASE_MON_PREPARE_END_RELEASE:
@@ -2368,7 +2367,7 @@ static void ov19_ReleaseMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *releaseM
             }
 
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_PreviewMon);
-            (*releaseMonState) = RELEASE_MON_END;
+            *state = RELEASE_MON_END;
         }
         break;
     case RELEASE_MON_CANNOT_RELEASE:
@@ -2378,7 +2377,7 @@ static void ov19_ReleaseMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *releaseM
 
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_CloseMessageBox);
-            (*releaseMonState) = RELEASE_MON_END;
+            *state = RELEASE_MON_END;
         }
         break;
     case RELEASE_MON_END:
@@ -2417,7 +2416,7 @@ static void ov19_CheckShouldMonReturn(UnkStruct_ov19_021D5DF8 *param0)
         releaseMon->party = param0->party;
         releaseMon->monHeldInCursor = ov19_GetPreviewMonSource(&param0->unk_00) != PREVIEW_MON_UNDER_CURSOR;
 
-        for (i = 0; i < (NELEMS(sReleaseBlockingMoves)); i++) {
+        for (i = 0; i < NELEMS(sReleaseBlockingMoves); i++) {
             releaseMon->monsWithReleaseBlockingMoveCount[i] = 0;
         }
 
@@ -2442,7 +2441,7 @@ static void ov19_CheckLastMonWithReleaseBlockingMove(SysTask *task, void *releas
             boxMon = PCBoxes_GetBoxMonAt(releaseMon->pcBoxes, releaseMon->boxID, monIndex);
 
             if (BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES_EXISTS, NULL)) {
-                for (i = 0; i < (NELEMS(sReleaseBlockingMoves)); i++) {
+                for (i = 0; i < NELEMS(sReleaseBlockingMoves); i++) {
                     if (BoxPokemon_HasMove(boxMon, sReleaseBlockingMoves[i])) {
                         releaseMon->monsWithReleaseBlockingMoveCount[i]++;
                     }
@@ -2462,7 +2461,7 @@ static void ov19_CheckLastMonWithReleaseBlockingMove(SysTask *task, void *releas
         for (monIndex = 0; monIndex < partyCount; monIndex++) {
             boxMon = (BoxPokemon *)Party_GetPokemonBySlotIndex(releaseMon->party, monIndex);
 
-            for (i = 0; i < (NELEMS(sReleaseBlockingMoves)); i++) {
+            for (i = 0; i < NELEMS(sReleaseBlockingMoves); i++) {
                 if (BoxPokemon_HasMove(boxMon, sReleaseBlockingMoves[i])) {
                     releaseMon->monsWithReleaseBlockingMoveCount[i]++;
                 }
@@ -2470,7 +2469,7 @@ static void ov19_CheckLastMonWithReleaseBlockingMove(SysTask *task, void *releas
         }
 
         if (releaseMon->monHeldInCursor) {
-            for (i = 0; i < (NELEMS(sReleaseBlockingMoves)); i++) {
+            for (i = 0; i < NELEMS(sReleaseBlockingMoves); i++) {
                 if (BoxPokemon_HasMove(releaseMon->boxMon, sReleaseBlockingMoves[i])) {
                     releaseMon->monsWithReleaseBlockingMoveCount[i]++;
                 }
@@ -2479,7 +2478,7 @@ static void ov19_CheckLastMonWithReleaseBlockingMove(SysTask *task, void *releas
 
         releaseMon->canReleaseMon = TRUE;
 
-        for (i = 0; i < (NELEMS(sReleaseBlockingMoves)); i++) {
+        for (i = 0; i < NELEMS(sReleaseBlockingMoves); i++) {
             if (releaseMon->monsWithReleaseBlockingMoveCount[i] == 1 && releaseMon->hasReleaseBlockingMove[i] == TRUE) {
                 releaseMon->canReleaseMon = FALSE;
                 break;
