@@ -6,8 +6,8 @@
 
 #include "overlay077/const_ov77_021D742C.h"
 #include "overlay097/const_ov97_0223D674.h"
+#include "overlay097/distribution_cartridge.h"
 #include "overlay097/ov97_02235D18.h"
-#include "overlay097/ov97_02237520.h"
 #include "overlay097/ov97_02237694.h"
 #include "overlay097/struct_ov97_02237808.h"
 #include "savedata/save_table.h"
@@ -656,9 +656,9 @@ static BOOL ov97_0222B7DC(void *param0, int param1, UnkStruct_ov97_02237808 *par
             v0->unk_34 = 1;
         }
 
-        ov97_02237520(81);
+        DistributionCartridge_UseHeap(HEAP_ID_81);
 
-        if (ov97_02237624()) {
+        if (DistributionCartridge_ReadLength()) {
             v0->unk_34 = 1;
             ov97_02238400(1);
         }
@@ -1147,7 +1147,7 @@ static int ov97_0222BE24(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-extern const ApplicationManagerTemplate Unk_ov97_0223D71C;
+extern const ApplicationManagerTemplate gMysteryGiftAppTemplate;
 extern const ApplicationManagerTemplate gGBAMigratorAppTemplate;
 extern const ApplicationManagerTemplate Unk_ov97_0223D6BC;
 extern const ApplicationManagerTemplate Unk_020F6DF0;
@@ -1163,7 +1163,7 @@ static void ov97_0222C094(UnkStruct_0222AE60 *param0)
         EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartRowanIntroAppTemplate);
         break;
     case 3:
-        EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D71C);
+        EnqueueApplication(FS_OVERLAY_ID(overlay97), &gMysteryGiftAppTemplate);
         break;
     case 5:
         EnqueueApplication(FS_OVERLAY_ID(overlay97), &gGBAMigratorAppTemplate);

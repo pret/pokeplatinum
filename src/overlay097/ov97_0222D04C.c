@@ -3,9 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "overlay097/mystery_gift_app.h"
 #include "overlay097/ov97_0222D2F8.h"
-#include "overlay097/ov97_0222D30C.h"
-#include "overlay097/struct_ov97_0222D04C.h"
 
 #include "communication_information.h"
 #include "communication_system.h"
@@ -24,7 +23,7 @@
 typedef void (*UnkFuncPtr_ov97_0222D0A4)(void);
 
 typedef struct {
-    UnkStruct_ov97_0222D04C *unk_00;
+    MysteryGiftAppData *unk_00;
     MATHRandContext32 unk_04;
     SysTask *unk_1C;
     UnkFuncPtr_ov97_0222D0A4 unk_20;
@@ -48,7 +47,7 @@ static void ov97_0222D198(void);
 
 static UnkStruct_ov97_0223F1A4 *Unk_ov97_0223F1A4 = NULL;
 
-static void ov97_0222D04C(UnkStruct_ov97_0222D04C *param0)
+static void ov97_0222D04C(MysteryGiftAppData *param0)
 {
     void *v0;
 
@@ -159,7 +158,7 @@ void ov97_0222D19C(SysTask *param0, void *param1)
     }
 }
 
-void ov97_0222D1C4(UnkStruct_ov97_0222D04C *param0, SaveData *saveData, int param2)
+void ov97_0222D1C4(MysteryGiftAppData *param0, SaveData *saveData, int param2)
 {
     if (CommSys_IsInitialized()) {
         return;
@@ -176,7 +175,7 @@ void ov97_0222D1F0(const void *param0, int param1)
     sub_02035A3C(22, param0, param1);
 }
 
-void ov97_0222D200(UnkStruct_ov97_0222D04C *param0, int param1)
+void ov97_0222D200(MysteryGiftAppData *param0, int param1)
 {
     SaveData *saveData;
 
@@ -184,7 +183,7 @@ void ov97_0222D200(UnkStruct_ov97_0222D04C *param0, int param1)
         return;
     }
 
-    saveData = ((ApplicationArgs *)ApplicationManager_Args(ov97_022301A4()))->saveData;
+    saveData = ((ApplicationArgs *)ApplicationManager_Args(MysteryGiftApp_GetApplicationManager()))->saveData;
     sub_02036C1C(saveData, param1);
 
     ov97_0222D04C(param0);
@@ -197,17 +196,17 @@ void ov97_0222D234(int param0)
     ov97_0222D0A4(ov97_0222D144, 0);
 }
 
-int ov97_0222D250(UnkStruct_ov97_0222D04C *param0)
+int ov97_0222D250(MysteryGiftAppData *param0)
 {
     int v0;
-    WonderCardMetadata *v1;
+    MysteryGiftEventHeader *v1;
 
     for (v0 = 0; v0 < 16; v0++) {
-        v1 = (WonderCardMetadata *)sub_02034168(v0);
+        v1 = (MysteryGiftEventHeader *)sub_02034168(v0);
 
         if (v1) {
             if (v1->id) {
-                memcpy(&param0->unk_8C.unk_00, v1, sizeof(WonderCardMetadata));
+                memcpy(&param0->eventData.header, v1, sizeof(MysteryGiftEventHeader));
                 return v0;
             }
         }

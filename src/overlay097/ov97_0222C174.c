@@ -747,7 +747,7 @@ static int ov97_0222C78C(ApplicationManager *appMan, int *param1)
 
         WonderCardsApp_ShowWondercard(v0->unk_04, &v0->unk_3180, HEAP_ID_85);
         ov97_02237790(1, UnkEnum_ov97_0222C78C_06, param1, UnkEnum_ov97_0222C78C_13);
-        v0->unk_3180.metadata.saveWonderCard = 0;
+        v0->unk_3180.eventHeader.hasWonderCard = 0;
         break;
     case UnkEnum_ov97_0222C78C_06:
         if (gSystem.pressedKeys) {
@@ -797,16 +797,16 @@ static void ov97_0222C974(UnkStruct_ov97_0222C388 *param0)
     v4->pgt.type = 7;
     v1 = MessageUtil_ExpandedStrbuf(v2, v3, 76, param0->heapID);
 
-    Strbuf_ToChars((const Strbuf *)v1, v4->metadata.title, 36);
+    Strbuf_ToChars((const Strbuf *)v1, v4->eventHeader.title, 36);
     Strbuf_Free(v1);
 
-    v4->metadata.validGames = (ov97_02237E4C(10) | ov97_02237E4C(11) | ov97_02237E4C(12));
-    v4->metadata.id = 1;
-    v4->metadata.unique = 0;
-    v4->metadata.unk_4E_1 = 0;
-    v4->metadata.saveWonderCard = 1;
-    v4->metadata.savePgt = 1;
-    v4->metadata.fromSharing = 0;
+    v4->eventHeader.validGames = (ov97_02237E4C(10) | ov97_02237E4C(11) | ov97_02237E4C(12));
+    v4->eventHeader.id = 1;
+    v4->eventHeader.unique = 0;
+    v4->eventHeader.unk_4E_1 = 0;
+    v4->eventHeader.hasWonderCard = 1;
+    v4->eventHeader.savePgt = 1;
+    v4->eventHeader.fromSharing = 0;
 
     v1 = MessageUtil_ExpandedStrbuf(v2, v3, 75, param0->heapID);
 
@@ -826,7 +826,7 @@ static void ov97_0222C974(UnkStruct_ov97_0222C388 *param0)
     MysteryGift_TrySavePgt(param0->unk_3174, &v4->pgt, 3);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
 
-    ov97_02238194(param0->unk_04, (PGT *)v4);
+    ov97_02238194(param0->unk_04, v4);
 }
 
 static void ov97_0222CAAC(UnkStruct_ov97_0222C388 *param0, int param1)

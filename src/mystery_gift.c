@@ -78,7 +78,7 @@ BOOL MysteryGift_TrySaveWondercard(MysteryGift *mysteryGift, const WonderCard *w
         return FALSE;
     }
 
-    if (wonderCard->metadata.savePgt == TRUE && MysteryGift_CheckFreePgtSlotExists(mysteryGift) == FALSE) {
+    if (wonderCard->eventHeader.savePgt == TRUE && MysteryGift_CheckFreePgtSlotExists(mysteryGift) == FALSE) {
         return FALSE;
     }
 
@@ -86,7 +86,7 @@ BOOL MysteryGift_TrySaveWondercard(MysteryGift *mysteryGift, const WonderCard *w
         if (!CheckIsValidWcType(mysteryGift->wonderCards[wondercardSlot].pgt.type)) {
             MI_CpuCopy8(wonderCard, &mysteryGift->wonderCards[wondercardSlot], sizeof(WonderCard));
 
-            if (wonderCard->metadata.savePgt == TRUE) {
+            if (wonderCard->eventHeader.savePgt == TRUE) {
                 MysteryGift_TrySavePgt(mysteryGift, &wonderCard->pgt, wondercardSlot);
             }
 
@@ -118,7 +118,7 @@ BOOL MysteryGift_FreeWcErasePgt(MysteryGift *mysteryGift, int wondercardSlot)
 
     mysteryGift->wonderCards[wondercardSlot].pgt.type = MYST_GIFT_NONE;
 
-    MysteryGift_UnsetWcIDReceived(mysteryGift, mysteryGift->wonderCards[wondercardSlot].metadata.id);
+    MysteryGift_UnsetWcIDReceived(mysteryGift, mysteryGift->wonderCards[wondercardSlot].eventHeader.id);
     MysteryGift_FreePgtSlotForWc(mysteryGift, wondercardSlot);
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_MYSTERY_GIFT);
 
