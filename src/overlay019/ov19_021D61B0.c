@@ -110,7 +110,7 @@ static void ov19_021D6CB0(SysTask *param0, void *param1);
 static void ov19_021D6CF8(SysTask *param0, void *param1);
 static void ov19_021D6D40(SysTask *param0, void *param1);
 static void ov19_021D6D88(SysTask *param0, void *param1);
-static void ov19_021D6DF8(SysTask *param0, void *param1);
+static void BoxGraphics_ItemShrinkToNothing(SysTask *param0, void *param1);
 static void BoxGraphics_DisplayBoxMessage(SysTask *task, void *param1);
 static void BoxGraphics_ShowMenu(SysTask *param0, void *param1);
 static void BoxGraphics_CloseMessageBox(SysTask *task, void *param1);
@@ -174,7 +174,7 @@ static const struct {
     [FUNC_ov19_021D6CF8] = { ov19_021D6CF8, 0 },
     [FUNC_ov19_021D6D40] = { ov19_021D6D40, 0 },
     [FUNC_ov19_021D6D88] = { ov19_021D6D88, 0 },
-    [FUNC_ov19_021D6DF8] = { ov19_021D6DF8, 0 },
+    [FUNC_BoxGraphics_ItemShrinkToNothing] = { BoxGraphics_ItemShrinkToNothing, 0 },
     [FUNC_BoxGraphics_DisplayBoxMessage] = { BoxGraphics_DisplayBoxMessage, 0 },
     [FUNC_BoxGraphics_ShowMenu] = { BoxGraphics_ShowMenu, 0 },
     [FUNC_BoxGraphics_CloseMessageBox] = { BoxGraphics_CloseMessageBox, 0 },
@@ -942,7 +942,7 @@ static void ov19_021D6D88(SysTask *param0, void *param1)
     BoxTaskParams_Free(v2);
 }
 
-static void ov19_021D6DF8(SysTask *param0, void *param1)
+static void BoxGraphics_ItemShrinkToNothing(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
