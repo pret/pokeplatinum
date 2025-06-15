@@ -191,7 +191,7 @@ static void ov19_021D1DEC(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D1F5C(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_MonCursorMenuAction(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D2308(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
-static void ov19_021D2694(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
+static void ov19_BoxHeaderMenuAction(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_BoxJumpAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state);
 static void ov19_WallpaperMenu(UnkStruct_ov19_021D5DF8 *param0, u32 *state);
 static void ov19_MarkAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state);
@@ -687,7 +687,7 @@ static int ov19_CursorOnHeaderInputHandler(UnkStruct_ov19_021D5DF8 *param0)
         }
 
         if (JOY_NEW(PAD_BUTTON_A)) {
-            ov19_RegisterBoxApplicationAction(param0, ov19_021D2694);
+            ov19_RegisterBoxApplicationAction(param0, ov19_BoxHeaderMenuAction);
             break;
         }
 
@@ -1314,30 +1314,40 @@ static void ov19_021D2308(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
     }
 }
 
-// box header action handling?
-static void ov19_021D2694(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
+enum BoxHeaderActionState {
+    BOX_HEADER_MENU_START,
+    BOX_HEADER_MENU_SHOW_MENU,
+    BOX_HEADER_MENU_NAVIGATE_MENU,
+    BOX_HEADER_MENU_ITEM_SELECTED,
+    BOX_HEADER_MENU_END_WHEN_READY,
+    BOX_HEADER_MENU_UNUSED1,
+    BOX_HEADER_MENU_UNUSED2,
+    BOX_HEADER_MENU_END
+};
+
+static void ov19_BoxHeaderMenuAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
 {
-    switch (*param1) {
-    case 0: // box state?  Cursor state/location?
+    switch (*state) {
+    case BOX_HEADER_MENU_START:
         ov19_SetBoxMessage(&param0->unk_00, BoxText_WhatDo);
         BoxMenu_FillHeaderMenu(&param0->unk_00);
 
         if (ov19_IsCursorFastMode(&param0->unk_00)) {
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             param0->menuItem = BoxMenu_GetDefaultMenuItem(&param0->unk_00);
-            (*param1) = 3;
+            *state = BOX_HEADER_MENU_ITEM_SELECTED;
         } else {
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_ShowMenu);
-            (*param1) = 1;
+            *state = BOX_HEADER_MENU_SHOW_MENU;
         }
         break;
-    case 1:
+    case BOX_HEADER_MENU_SHOW_MENU:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNC_BoxGraphics_ShowMenu) == FALSE) {
             break;
         }
-        (*param1) = 2;
-    case 2:
+        *state = BOX_HEADER_MENU_NAVIGATE_MENU;
+    case BOX_HEADER_MENU_NAVIGATE_MENU:
         param0->menuItem = BoxMenu_GetMenuNavigation(&(param0->unk_00));
 
         switch (param0->menuItem) {
@@ -1349,14 +1359,14 @@ static void ov19_021D2694(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         case BOX_MENU_NAVIGATION_B:
         case BOX_MENU_HEADER_CANCEL:
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_CloseMessageBox);
-            (*param1) = 4;
+            *state = BOX_HEADER_MENU_END_WHEN_READY;
             break;
         default:
-            (*param1) = 3;
+            *state = BOX_HEADER_MENU_ITEM_SELECTED;
             break;
         }
         break;
-    case 3:
+    case BOX_HEADER_MENU_ITEM_SELECTED:
         switch (param0->menuItem) {
         case BOX_MENU_JUMP:
             ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_CloseMessageBox);
@@ -1364,19 +1374,19 @@ static void ov19_021D2694(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             break;
         case BOX_MENU_WALLPAPER:
             ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D6EC0);
-            (*param1) = 7;
+            *state = BOX_HEADER_MENU_END;
             break;
         case BOX_MENU_NAME:
             ov19_RegisterBoxApplicationAction(param0, ov19_RenameBoxAction);
             break;
         }
         break;
-    case 4:
+    case BOX_HEADER_MENU_END_WHEN_READY:
         if (ov19_IsSysTaskDone(param0->unk_114, FUNC_BoxGraphics_CloseMessageBox)) {
             ov19_ClearBoxApplicationAction(param0);
         }
         break;
-    case 7:
+    case BOX_HEADER_MENU_END:
         if (ov19_CheckAllTasksDone(param0->unk_114)) {
             ov19_RegisterBoxApplicationAction(param0, ov19_WallpaperMenu);
         }
