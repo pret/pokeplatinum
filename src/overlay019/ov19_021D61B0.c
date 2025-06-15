@@ -104,8 +104,8 @@ static void ov19_021D6B1C(SysTask *param0, void *param1);
 static void BoxGraphics_PlayReleaseCursorMonAnimation(SysTask *task, void *param1);
 static void BoxGraphics_PlayReleaseBoxMonAnimation(SysTask *task, void *param1);
 static void BoxGraphics_PlayReleasePartyMonAnimation(SysTask *task, void *param1);
-static void ov19_021D6C38(SysTask *param0, void *param1);
-static void ov19_021D6C74(SysTask *param0, void *param1);
+static void BoxGraphics_DisplayItemInfo(SysTask *param0, void *param1);
+static void BoxGraphics_CloseItemInfo(SysTask *param0, void *param1);
 static void ov19_021D6CB0(SysTask *param0, void *param1);
 static void ov19_021D6CF8(SysTask *param0, void *param1);
 static void ov19_021D6D40(SysTask *param0, void *param1);
@@ -168,8 +168,8 @@ static const struct {
     [FUNC_BoxGraphics_PlayReleaseCursorMonAnimation] = { BoxGraphics_PlayReleaseCursorMonAnimation, 0 },
     [FUNC_BoxGraphics_PlayReleaseBoxMonAnimation] = { BoxGraphics_PlayReleaseBoxMonAnimation, 0 },
     [FUNC_BoxGraphics_PlayReleasePartyMonAnimation] = { BoxGraphics_PlayReleasePartyMonAnimation, 0 },
-    [FUNC_ov19_021D6C38] = { ov19_021D6C38, 0 },
-    [FUNC_ov19_021D6C74] = { ov19_021D6C74, 0 },
+    [FUNC_BoxGraphics_DisplayItemInfo] = { BoxGraphics_DisplayItemInfo, 0 },
+    [FUNC_BoxGraphics_CloseItemInfo] = { BoxGraphics_CloseItemInfo, 0 },
     [FUNC_ov19_021D6CB0] = { ov19_021D6CB0, 0 },
     [FUNC_ov19_021D6CF8] = { ov19_021D6CF8, 0 },
     [FUNC_ov19_021D6D40] = { ov19_021D6D40, 0 },
@@ -806,7 +806,7 @@ static void BoxGraphics_PlayReleasePartyMonAnimation(SysTask *param0, void *para
     }
 }
 
-static void ov19_021D6C38(SysTask *param0, void *param1)
+static void BoxGraphics_DisplayItemInfo(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
@@ -827,7 +827,7 @@ static void ov19_021D6C38(SysTask *param0, void *param1)
     }
 }
 
-static void ov19_021D6C74(SysTask *param0, void *param1)
+static void BoxGraphics_CloseItemInfo(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
