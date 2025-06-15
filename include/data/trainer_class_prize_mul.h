@@ -1,4 +1,4 @@
-#include "constants/trainer.h"
+#include "generated/trainer_classes.h"
 
 // clang-format off
 static u8 sTrainerClassPrizeMul[] = {

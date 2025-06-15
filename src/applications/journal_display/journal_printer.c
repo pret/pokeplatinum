@@ -3,10 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/trainer.h"
 #include "generated/genders.h"
 #include "generated/journal_location_events.h"
 #include "generated/journal_online_events.h"
+#include "generated/trainer_classes.h"
 
 #include "applications/journal_display/journal_controller.h"
 

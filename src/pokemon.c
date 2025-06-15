@@ -28,8 +28,6 @@
 #include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_02078B40.h"
 
-#include "overlay005/struct_ov5_021DE5D0.h"
-
 #include "charcode_util.h"
 #include "flags.h"
 #include "heap.h"
@@ -3090,7 +3088,7 @@ static u8 LoadPokemonDPSpriteHeight(u16 species, u8 gender, u8 face, u8 form, u3
 
 void sub_0207697C(PokemonSpriteTemplate *param0, u16 param1)
 {
-    param0->narcID = 60;
+    param0->narcID = NARC_INDEX_POKETOOL__TRGRA__TRFGRA;
     param0->character = param1 * 2;
     param0->palette = param1 * 2 + 1;
     param0->spindaSpots = 0;
@@ -3120,27 +3118,26 @@ static const int Unk_020F0588[] = {
     0x1
 };
 
-ManagedSprite *sub_02076994(SpriteSystem *param0, SpriteManager *param1, PaletteData *param2, int param3, int param4, int param5, int param6, int param7, int heapID)
+ManagedSprite *sub_02076994(SpriteSystem *param0, SpriteManager *param1, PaletteData *param2, int param3, int param4, enum TrainerClass trainerClass, int param6, int param7, int heapID)
 {
     SpriteTemplate v0;
     ManagedSprite *v1;
     NARC *narc;
-    UnkStruct_ov5_021DE5D0 v3;
-    int v4 = 1;
+    TrainerClassGraphics trainerClassGraphics;
+    int paletteIdx = 1;
 
-    sub_02076AAC(param5, param6, &v3);
+    Pokemon_InitTrainerClassGraphics(trainerClass, param6, &trainerClassGraphics);
 
-    // TODO enum values?
-    if (param5 == 102) {
-        v4 = 2;
+    if (trainerClass == TRAINER_CLASS_CASTLE_VALET) {
+        paletteIdx = 2;
     }
 
-    narc = NARC_ctor(v3.unk_00, heapID);
+    narc = NARC_ctor(trainerClassGraphics.narcID, heapID);
 
-    SpriteSystem_LoadCharResObjFromOpenNarc(param0, param1, narc, v3.unk_04, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 20015 + param7);
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(param2, PLTTBUF_MAIN_OBJ, param0, param1, narc, v3.unk_08, FALSE, v4, NNS_G2D_VRAM_TYPE_2DMAIN, 20010 + param7);
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0, param1, narc, v3.unk_0C, FALSE, 20007 + param7);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0, param1, narc, v3.unk_10, FALSE, 20007 + param7);
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0, param1, narc, trainerClassGraphics.tiles, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 20015 + param7);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(param2, PLTTBUF_MAIN_OBJ, param0, param1, narc, trainerClassGraphics.palette, FALSE, paletteIdx, NNS_G2D_VRAM_TYPE_2DMAIN, 20010 + param7);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0, param1, narc, trainerClassGraphics.cells, FALSE, 20007 + param7);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0, param1, narc, trainerClassGraphics.anims, FALSE, 20007 + param7);
     NARC_dtor(narc);
 
     v0 = Unk_020F05E4;
@@ -3162,24 +3159,23 @@ ManagedSprite *sub_02076994(SpriteSystem *param0, SpriteManager *param1, Palette
     return v1;
 }
 
-void sub_02076AAC(int param0, int param1, UnkStruct_ov5_021DE5D0 *param2)
+void Pokemon_InitTrainerClassGraphics(enum TrainerClass trainerClass, int param1, TrainerClassGraphics *trainerClassGraphics)
 {
-    // TODO enum values?
     if (param1 == 2) {
-        param2->unk_00 = 60;
-        param2->unk_04 = 0 + param0 * 5;
-        param2->unk_08 = 1 + param0 * 5;
-        param2->unk_0C = 2 + param0 * 5;
-        param2->unk_10 = 3 + param0 * 5;
-        param2->unk_14 = 4 + param0 * 5;
+        trainerClassGraphics->narcID = NARC_INDEX_POKETOOL__TRGRA__TRFGRA;
+        trainerClassGraphics->tiles = 0 + trainerClass * 5;
+        trainerClassGraphics->palette = 1 + trainerClass * 5;
+        trainerClassGraphics->cells = 2 + trainerClass * 5;
+        trainerClassGraphics->anims = 3 + trainerClass * 5;
+        trainerClassGraphics->scan = 4 + trainerClass * 5;
     } else {
-        param2->unk_00 = 6;
-        param0 = sub_020788D0(param0);
-        param2->unk_04 = 0 + param0 * 5;
-        param2->unk_08 = 1 + param0 * 5;
-        param2->unk_0C = 2 + param0 * 5;
-        param2->unk_10 = 3 + param0 * 5;
-        param2->unk_14 = 4 + param0 * 5;
+        trainerClassGraphics->narcID = NARC_INDEX_POKETOOL__TRGRA__TRBGRA;
+        trainerClass = Pokemon_TrainerClassBackSpriteIdx(trainerClass);
+        trainerClassGraphics->tiles = 0 + trainerClass * 5;
+        trainerClassGraphics->palette = 1 + trainerClass * 5;
+        trainerClassGraphics->cells = 2 + trainerClass * 5;
+        trainerClassGraphics->anims = 3 + trainerClass * 5;
+        trainerClassGraphics->scan = 4 + trainerClass * 5;
     }
 }
 
@@ -4789,37 +4785,36 @@ BOOL sub_0207884C(BoxPokemon *boxMon, TrainerInfo *param1, int heapID)
     return v6;
 }
 
-int sub_020788D0(int param0)
+int Pokemon_TrainerClassBackSpriteIdx(enum TrainerClass trainerClass)
 {
-    // TODO enum values?
-    switch (param0) {
-    case 0:
-    case 1:
+    switch (trainerClass) {
+    case TRAINER_CLASS_PLAYER_MALE:
+    case TRAINER_CLASS_PLAYER_FEMALE:
         break;
-    case 63:
-        param0 = 2;
+    case TRAINER_CLASS_RIVAL:
+        trainerClass = 2;
         break;
-    case 90:
-    case 91:
-    case 92:
-    case 93:
-    case 94:
-        param0 = 3 + (param0 - 90);
+    case TRAINER_CLASS_TRAINER_CHERYL:
+    case TRAINER_CLASS_TRAINER_RILEY:
+    case TRAINER_CLASS_TRAINER_MARLEY:
+    case TRAINER_CLASS_TRAINER_BUCK:
+    case TRAINER_CLASS_TRAINER_MIRA:
+        trainerClass = 3 + (trainerClass - TRAINER_CLASS_TRAINER_CHERYL);
         break;
-    case 103:
-    case 104:
-        param0 = 8 + (param0 - 103);
+    case TRAINER_CLASS_DP_PLAYER_MALE_2:
+    case TRAINER_CLASS_DP_PLAYER_FEMALE_2:
+        trainerClass = 8 + (trainerClass - TRAINER_CLASS_DP_PLAYER_MALE_2);
         break;
     default:
-        if (TrainerClass_Gender(param0) == 1) {
-            param0 = 1;
+        if (TrainerClass_Gender(trainerClass) == GENDER_FEMALE) {
+            trainerClass = TRAINER_CLASS_PLAYER_FEMALE;
         } else {
-            param0 = 0;
+            trainerClass = TRAINER_CLASS_PLAYER_MALE;
         }
         break;
     }
 
-    return param0;
+    return trainerClass;
 }
 
 void sub_0207893C(Pokemon *mon)

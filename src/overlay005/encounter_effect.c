@@ -21,7 +21,6 @@
 #include "overlay005/struct_ov5_021DDF24.h"
 #include "overlay005/struct_ov5_021DE47C.h"
 #include "overlay005/struct_ov5_021DE5A4.h"
-#include "overlay005/struct_ov5_021DE5D0.h"
 
 #include "bg_window.h"
 #include "camera.h"
@@ -773,14 +772,14 @@ void ov5_021DE5A4(UnkStruct_ov5_021DE47C *param0, UnkStruct_ov5_021DE5A4 *param1
 
 void ov5_021DE5D0(Sprite *param0, u32 heapID, u32 param2, u8 param3, u16 param4)
 {
-    UnkStruct_ov5_021DE5D0 v0;
+    TrainerClassGraphics trainerClassGraphics;
     NNSG2dPaletteData *v1;
     void *v2;
     u16 *v3;
 
-    sub_02076AAC(param2, 2, &v0);
+    Pokemon_InitTrainerClassGraphics(param2, 2, &trainerClassGraphics);
     v3 = Heap_AllocFromHeap(heapID, 32);
-    v2 = Graphics_GetPlttData(v0.unk_00, v0.unk_08, &v1, heapID);
+    v2 = Graphics_GetPlttData(trainerClassGraphics.narcID, trainerClassGraphics.palette, &v1, heapID);
     BlendPalette(v1->pRawData, v3, 16, param3, param4);
 
     ov5_021DE67C(param0, v3, 32);
