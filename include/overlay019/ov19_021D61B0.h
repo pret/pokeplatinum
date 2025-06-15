@@ -43,7 +43,7 @@ enum BoxGraphicsFunctions {
     FUNC_ov19_021D6D88,
     FUNC_ov19_021D6DF8,
     FUNC_BoxGraphics_DisplayBoxMessage,
-    FUNC_ov19_021D6E70,
+    FUNC_BoxGraphics_ShowMenu,
     FUNC_BoxGraphics_CloseMessageBox,
     FUNC_ov19_021D6EC0,
     FUNC_BoxGraphics_UpdateMenuCursor,
