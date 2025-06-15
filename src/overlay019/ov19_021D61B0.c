@@ -121,7 +121,7 @@ static void BoxGraphics_ShowBoxSelectionPopup(SysTask *param0, void *param1);
 static void BoxGraphics_ScrollBoxSelectionPopup(SysTask *param0, void *param1);
 static void ov19_021D6FB0(SysTask *param0, void *param1);
 static void BoxGraphics_TransitionWallpaper(SysTask *param0, void *param1);
-static void ov19_021D7028(SysTask *param0, void *param1);
+static void BoxGraphics_PressBoxButton(SysTask *param0, void *param1);
 static void BoxGraphics_OpenPartyPopup(SysTask *param0, void *param1);
 static void ov19_021D7138(SysTask *param0, void *param1);
 static void BoxGraphics_PlayAdjustPartyAnimation(SysTask *task, void *param1);
@@ -185,7 +185,7 @@ static const struct {
     [FUNC_BoxGraphics_ScrollBoxSelectionPopup] = { BoxGraphics_ScrollBoxSelectionPopup, 0 },
     [FUNC_ov19_021D6FB0] = { ov19_021D6FB0, 0 },
     [FUNC_BoxGraphics_TransitionWallpaper] = { BoxGraphics_TransitionWallpaper, 0 },
-    [FUNC_ov19_021D7028] = { ov19_021D7028, 0 },
+    [FUNC_BoxGraphics_PressBoxButton] = { BoxGraphics_PressBoxButton, 0 },
     [FUNC_BoxGraphics_OpenPartyPopup] = { BoxGraphics_OpenPartyPopup, 0 },
     [FUNC_ov19_021D7138] = { ov19_021D7138, 0 },
     [FUNC_BoxGraphics_PlayAdjustPartyAnimation] = { BoxGraphics_PlayAdjustPartyAnimation, 0 },
@@ -1135,7 +1135,7 @@ static void BoxGraphics_TransitionWallpaper(SysTask *task, void *param1)
     }
 }
 
-static void ov19_021D7028(SysTask *param0, void *param1)
+static void BoxGraphics_PressBoxButton(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     BoxTaskParams *v1;

@@ -52,7 +52,7 @@ enum BoxGraphicsFunctions {
     FUNC_BoxGraphics_ScrollBoxSelectionPopup,
     FUNC_ov19_021D6FB0,
     FUNC_BoxGraphics_TransitionWallpaper,
-    FUNC_ov19_021D7028,
+    FUNC_BoxGraphics_PressBoxButton,
     FUNC_BoxGraphics_OpenPartyPopup,
     FUNC_ov19_021D7138,
     FUNC_BoxGraphics_PlayAdjustPartyAnimation,
