@@ -226,11 +226,6 @@ typedef struct MysteryGiftAnimationManager {
     int *animationStatusPtr;
 } MysteryGiftAnimationManager;
 
-typedef struct Vec2F32 {
-    f32 x;
-    f32 y;
-} Vec2F32;
-
 static enum MysteryGiftAppState ShowMysteryGiftReceptionMethodsMenu(ApplicationManager *appMan);
 static enum MysteryGiftAppState ExitToWonderCardsApp(ApplicationManager *appMan);
 static enum MysteryGiftAppState ExitToTitleScreen(ApplicationManager *appMan);
