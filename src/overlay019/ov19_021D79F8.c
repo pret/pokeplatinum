@@ -153,18 +153,18 @@ static void ov19_021D7AF4(const UnkStruct_ov19_021D8318 *param0, int param1, u32
     }
 }
 
-void ov19_021D7B4C(UnkStruct_ov19_021D8318 *param0, const BoxCustomization *customization, int param2, BOOL param3)
+void ov19_021D7B4C(UnkStruct_ov19_021D8318 *param0, const BoxCustomization *customization, int boxChangeDirection, BOOL param3)
 {
     u32 v0, v1, v2;
 
-    ov19_021D7AF4(param0, param2, &v0, &v1, &v2);
+    ov19_021D7AF4(param0, boxChangeDirection, &v0, &v1, &v2);
     ov19_021D7BC0(param0, customization, v2, param3);
     ov19_021D7C58(param0, customization, v0);
     ov19_021D7D00(param0, customization, v1, v0, v2);
 
     if (param3) {
-        if (param2 == 0) {
-            ov19_021D85C4(param0, param0->unk_58F0, customization->boxID, param0->unk_02, param2 * ((21 + 2) * 8), param0->unk_A8[param0->unk_02]);
+        if (boxChangeDirection == 0) {
+            ov19_021D85C4(param0, param0->unk_58F0, customization->boxID, param0->unk_02, boxChangeDirection * ((21 + 2) * 8), param0->unk_A8[param0->unk_02]);
         }
     }
 }
@@ -248,22 +248,22 @@ static void ov19_021D7D00(UnkStruct_ov19_021D8318 *param0, const BoxCustomizatio
     }
 }
 
-void ov19_021D7D70(UnkStruct_ov19_021D8318 *param0, const BoxCustomization *customization, int param2)
+void ov19_021D7D70(UnkStruct_ov19_021D8318 *param0, const BoxCustomization *customization, int boxChangeDirection)
 {
     param0->unk_08 = (Bg_GetXOffset(param0->unk_58F4, 3) & (REG_G2_BG3HOFS_OFFSET_MASK)) << FX32_SHIFT;
-    param0->unk_14 = param0->unk_08 + ((((21 + 2) * 8) * param2) << FX32_SHIFT);
+    param0->unk_14 = param0->unk_08 + ((((21 + 2) * 8) * boxChangeDirection) << FX32_SHIFT);
     param0->unk_10 = (param0->unk_14 - param0->unk_08) / (15 * 2);
     param0->unk_14 >>= FX32_SHIFT;
     param0->unk_14 &= (REG_G2_BG3HOFS_OFFSET_MASK);
     param0->unk_04 = (15 * 2);
     param0->unk_03 = param0->unk_02;
-    param0->unk_01 += ((21 + 2) * param2);
+    param0->unk_01 += ((21 + 2) * boxChangeDirection);
     param0->unk_01 &= 63;
     param0->unk_02 ^= 1;
 
     {
         ov19_021D813C(param0, customization->boxID);
-        ov19_021D7F14(param0, param0->unk_10, param2 * ((21 + 2) * 8));
+        ov19_021D7F14(param0, param0->unk_10, boxChangeDirection * ((21 + 2) * 8));
 
         param0->unk_30 = customization->boxID;
         param0->unk_34 = param0->unk_02;

@@ -91,7 +91,7 @@ static void ov19_021D6694(SysTask *param0, void *param1);
 static void BoxGraphics_ScreenFadeBothToBlackLogIn(SysTask *task, void *param1);
 static void BoxGraphics_ScreenFadeBothToBlack1(SysTask *task, void *param1);
 static void BoxGraphics_ScreenFadeBothToBlack2(SysTask *task, void *param1);
-static void ov19_021D6824(SysTask *param0, void *param1);
+static void BoxGraphics_ChangeToNewBox(SysTask *param0, void *param1);
 static void BoxGraphics_MoveCursor(SysTask *param0, void *param1);
 static void BoxGraphics_PreviewMon(SysTask *param0, void *param1);
 static void ov19_021D69BC(SysTask *param0, void *param1);
@@ -143,7 +143,7 @@ static void ov19_021D74B4(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_
 static void ov19_021D75CC(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_021D4DF0 *param1, NARC *param2);
 static void ov19_021D76FC(void);
 static void ov19_021D7774(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_021D4DF0 *param1, NARC *param2);
-static int ov19_021D77A4(u32 param0, u32 param1);
+static int BoxGraphics_GetBoxMoveDirection(u32 param0, u32 param1);
 static void ov19_021D7970(void);
 static void ov19_021D797C(void);
 
@@ -155,7 +155,7 @@ static const struct {
     [FUNC_BoxGraphics_ScreenFadeBothToBlack0] = { BoxGraphics_ScreenFadeBothToBlackLogIn, 0 },
     [FUNC_BoxGraphics_ScreenFadeBothToBlack1] = { BoxGraphics_ScreenFadeBothToBlack1, 0 },
     [FUNC_BoxGraphics_ScreenFadeBothToBlack2] = { BoxGraphics_ScreenFadeBothToBlack2, 0 },
-    [FUNC_ov19_021D6824] = { ov19_021D6824, 0 },
+    [FUNC_BoxGraphics_ChangeToNewBox] = { BoxGraphics_ChangeToNewBox, 0 },
     [FUNC_BoxGraphics_MoveCursor] = { BoxGraphics_MoveCursor, 0 },
     [FUNC_BoxGraphics_PreviewMon] = { BoxGraphics_PreviewMon, 0 },
     [FUNC_ov19_021D69BC] = { ov19_021D69BC, 0 },
@@ -497,31 +497,31 @@ static void BoxGraphics_ScreenFadeBothToBlack2(SysTask *task, void *param1)
     }
 }
 
-static void ov19_021D6824(SysTask *param0, void *param1)
+static void BoxGraphics_ChangeToNewBox(SysTask *param0, void *taskParams)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
-    BoxTaskParams *v2 = (BoxTaskParams *)param1;
-    v0 = v2->unk_0C;
+    BoxTaskParams *params = (BoxTaskParams *)taskParams;
+    v0 = params->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->state) {
+    switch (params->state) {
     case 0:
         ov19_021DE9B8(v0->unk_B40C);
-        v2->state++;
+        params->state++;
     case 1:
-        if (ov19_021DE9E4(v0->unk_B40C) == 0) {
+        if (ov19_021DE9E4(v0->unk_B40C) == FALSE) {
             break;
         }
 
-        v2->state++;
+        params->state++;
     case 2: {
-        int v3 = ov19_021D77A4(v0->unk_494.boxID, v1->customization.boxID);
+        int boxChangeDirection = BoxGraphics_GetBoxMoveDirection(v0->unk_494.boxID, v1->customization.boxID);
 
-        ov19_021D7B4C(&v0->unk_494, &v1->customization, v3, TRUE);
-        ov19_021D7D70(&v0->unk_494, &v1->customization, v3);
+        ov19_021D7B4C(&v0->unk_494, &v1->customization, boxChangeDirection, TRUE);
+        ov19_021D7D70(&v0->unk_494, &v1->customization, boxChangeDirection);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        v2->state++;
+        params->state++;
     }
     case 3:
         if (ov19_021D7E1C(&v0->unk_494) == 0) {
@@ -529,13 +529,13 @@ static void ov19_021D6824(SysTask *param0, void *param1)
         }
 
         ov19_021DE7A0(v0->unk_B40C);
-        v2->state++;
+        params->state++;
     case 4:
         if (ov19_021DE800(v0->unk_B40C) == 0) {
             break;
         }
 
-        BoxTaskParams_Free(v2);
+        BoxTaskParams_Free(params);
         break;
     }
 }
@@ -1790,19 +1790,19 @@ static void ov19_021D7774(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_
     ov19_021DE584(param0->unk_B40C);
 }
 
-static int ov19_021D77A4(u32 param0, u32 param1)
+static int BoxGraphics_GetBoxMoveDirection(u32 sourceBoxID, u32 destBoxID)
 {
-    int v0, v1;
+    int distanceRight, distanceLeft;
 
-    if (param1 > param0) {
-        v0 = param1 - param0;
-        v1 = param0 + (18 - param1);
+    if (destBoxID > sourceBoxID) {
+        distanceRight = destBoxID - sourceBoxID;
+        distanceLeft = sourceBoxID + (MAX_PC_BOXES - destBoxID);
     } else {
-        v0 = param1 + (18 - param0);
-        v1 = param0 - param1;
+        distanceRight = destBoxID + (MAX_PC_BOXES - sourceBoxID);
+        distanceLeft = sourceBoxID - destBoxID;
     }
 
-    return (v0 >= v1) ? -1 : 1;
+    return (distanceRight >= distanceLeft) ? -1 : 1;
 }
 
 SysTask *ov19_021D77C8(SysTaskFunc param0, void *param1, u32 param2)
