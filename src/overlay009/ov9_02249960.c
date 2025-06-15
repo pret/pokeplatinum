@@ -43,6 +43,7 @@
 #include "camera.h"
 #include "field_system.h"
 #include "field_task.h"
+#include "gfx_box_test.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "map_header_data.h"
@@ -66,7 +67,6 @@
 #include "sys_task_manager.h"
 #include "system_flags.h"
 #include "system_vars.h"
-#include "unk_0201CED8.h"
 #include "unk_02020AEC.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
@@ -5625,7 +5625,7 @@ static BOOL ov9_0224DBE4(UnkStruct_ov9_02249B04 *param0, int param1, VecFx32 *pa
 
         MTX_Identity33(&v3);
 
-        if (sub_0201CED8(v2->unk_0C, param2, &v3, v0)) {
+        if (GFXBoxTest_IsModelInView(v2->unk_0C, param2, &v3, v0)) {
             return 1;
         }
     }

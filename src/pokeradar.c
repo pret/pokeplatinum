@@ -6,7 +6,6 @@
 #include "constants/battle.h"
 
 #include "struct_defs/radar_chain_records.h"
-#include "struct_defs/struct_0201CFEC.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021F2D20.h"
@@ -15,6 +14,7 @@
 
 #include "bag.h"
 #include "field_task.h"
+#include "gfx_box_test.h"
 #include "heap.h"
 #include "inlines.h"
 #include "map_matrix.h"
@@ -26,7 +26,6 @@
 #include "sound_playback.h"
 #include "special_encounter.h"
 #include "terrain_collision_manager.h"
-#include "unk_0201CED8.h"
 #include "unk_020553DC.h"
 #include "unk_020711EC.h"
 
@@ -50,7 +49,7 @@ typedef struct RadarChain {
     BOOL unk_14;
     BOOL unk_18;
     GrassPatch patch[NUM_GRASS_PATCHES];
-    UnkStruct_0201CFEC unk_BC;
+    GFXTestBox unk_BC;
     u8 unk_D0;
 } RadarChain;
 
@@ -65,7 +64,7 @@ static void IncWithCap(int *param0);
 RadarChain *RadarChain_Init(const int heapID)
 {
     RadarChain *chain = Heap_AllocFromHeap(heapID, sizeof(RadarChain));
-    sub_0201CFEC(FX32_ONE * 16, FX32_ONE * 8, FX32_ONE * 16, &chain->unk_BC);
+    GFXBoxTest_MakeBox(FX32_ONE * 16, FX32_ONE * 8, FX32_ONE * 16, &chain->unk_BC);
     return chain;
 }
 
@@ -275,7 +274,7 @@ void sub_0206979C(FieldSystem *fieldSystem)
 
     for (patchRing = 0; patchRing < NUM_GRASS_PATCHES; patchRing++) {
         patch = &(fieldSystem->chain->patch[patchRing]);
-        v0 = sub_0201CF7C(&(patch->position), &(fieldSystem->chain->unk_BC));
+        v0 = GFXBoxTest_IsBoxAtPositionInView(&(patch->position), &(fieldSystem->chain->unk_BC));
         if (patch->active && !v0) {
             patch->active = FALSE;
         }

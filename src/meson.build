@@ -66,7 +66,7 @@ pokeplatinum_c = files(
     'bg_window.c',
     'easy3d.c',
     'sys_task_manager.c',
-    'unk_0201CED8.c',
+    'gfx_box_test.c',
     'charcode.c',
     'math_util.c',
     'text.c',
