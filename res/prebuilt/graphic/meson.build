@@ -9,7 +9,6 @@ prebuilt_files = [
     'ending.narc',
     'ev_pokeselect.narc',
     'f_note_gra.narc',
-    'field_encounteffect.narc',
     'fld_comact.narc',
     'font.narc',
     'fontoam.narc',

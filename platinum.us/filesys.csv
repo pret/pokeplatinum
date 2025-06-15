@@ -154,8 +154,8 @@ res/prebuilt/poketool/pokegra/poke_shadow.narc,/poketool/pokegra/poke_shadow.nar
 res/prebuilt/poketool/pokegra/poke_shadow_ofx.narc,/poketool/pokegra/poke_shadow_ofx.narc
 res/prebuilt/poketool/pokegra/poke_yofs.narc,/poketool/pokegra/poke_yofs.narc
 res/prebuilt/poketool/pokegra/pokegra.narc,/poketool/pokegra/pokegra.narc
-res/prebuilt/poketool/trgra/trbgra.narc,/poketool/trgra/trbgra.narc
-res/prebuilt/poketool/trgra/trfgra.narc,/poketool/trgra/trfgra.narc
+res/trainers/classes/trbgra.narc,/poketool/trgra/trbgra.narc
+res/trainers/classes/trfgra.narc,/poketool/trgra/trfgra.narc
 res/prebuilt/poketool/personal/personal.narc,/poketool/personal/personal.narc
 res/pokemon/pl_personal.narc,/poketool/personal/pl_personal.narc
 res/pokemon/evo.narc,/poketool/personal/evo.narc
@@ -199,7 +199,7 @@ res/prebuilt/graphic/ending.narc,/graphic/ending.narc
 res/prebuilt/graphic/ev_pokeselect.narc,/graphic/ev_pokeselect.narc
 res/prebuilt/graphic/f_note_gra.narc,/graphic/f_note_gra.narc
 res/graphics/signposts/field_board.narc,/graphic/field_board.narc
-res/prebuilt/graphic/field_encounteffect.narc,/graphic/field_encounteffect.narc
+res/trainers/classes/field_encounteffect.narc,/graphic/field_encounteffect.narc
 res/prebuilt/graphic/fld_comact.narc,/graphic/fld_comact.narc
 res/prebuilt/graphic/font.narc,/graphic/font.narc
 res/prebuilt/graphic/fontoam.narc,/graphic/fontoam.narc
