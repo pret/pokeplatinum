@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_LEAFEON",
+    "moves": [
+        "MOVE_LEAF_BLADE",
+        "MOVE_X_SCISSOR",
+        "MOVE_SYNTHESIS",
+        "MOVE_SUNNY_DAY"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_HEAT_ROCK",
+    "form": 0
+}

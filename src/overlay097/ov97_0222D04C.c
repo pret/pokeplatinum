@@ -159,13 +159,13 @@ void ov97_0222D19C(SysTask *param0, void *param1)
     }
 }
 
-void ov97_0222D1C4(UnkStruct_ov97_0222D04C *param0, SaveData *param1, int param2)
+void ov97_0222D1C4(UnkStruct_ov97_0222D04C *param0, SaveData *saveData, int param2)
 {
     if (CommSys_IsInitialized()) {
         return;
     }
 
-    sub_02036BE8(param1, param2);
+    sub_02036BE8(saveData, param2);
 
     ov97_0222D04C(param0);
     ov97_0222D0A4(ov97_0222D0B4, 0);
@@ -178,14 +178,14 @@ void ov97_0222D1F0(const void *param0, int param1)
 
 void ov97_0222D200(UnkStruct_ov97_0222D04C *param0, int param1)
 {
-    SaveData *v0;
+    SaveData *saveData;
 
     if (CommSys_IsInitialized()) {
         return;
     }
 
-    v0 = ((ApplicationArgs *)OverlayManager_Args(ov97_022301A4()))->saveData;
-    sub_02036C1C(v0, param1);
+    saveData = ((ApplicationArgs *)ApplicationManager_Args(ov97_022301A4()))->saveData;
+    sub_02036C1C(saveData, param1);
 
     ov97_0222D04C(param0);
     ov97_0222D0A4(ov97_0222D128, 0);

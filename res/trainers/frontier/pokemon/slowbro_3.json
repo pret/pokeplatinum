@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_SLOWBRO",
+    "moves": [
+        "MOVE_PSYCHIC",
+        "MOVE_FLAMETHROWER",
+        "MOVE_SHADOW_BALL",
+        "MOVE_SIGNAL_BEAM"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_CHOICE_SPECS",
+    "form": 0
+}

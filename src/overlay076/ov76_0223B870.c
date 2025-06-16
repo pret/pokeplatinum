@@ -31,6 +31,7 @@
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
@@ -39,7 +40,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
@@ -866,12 +866,12 @@ void ov76_0223C80C(UnkStruct_ov76_0223DE00 *param0, int param1, int param2)
 
     if (v1 != 0xff) {
         v3 = param2 + 1;
-        Pokemon_SetValue(param0->unk_00->unk_04[v1], MON_DATA_MAIL_ID, (u8 *)&v3);
+        Pokemon_SetValue(param0->unk_00->unk_04[v1], MON_DATA_BALL_CAPSULE_ID, (u8 *)&v3);
     }
 
     if (v2 != 0xff) {
         v4 = param1 + 1;
-        Pokemon_SetValue(param0->unk_00->unk_04[v2], MON_DATA_MAIL_ID, (u8 *)&v4);
+        Pokemon_SetValue(param0->unk_00->unk_04[v2], MON_DATA_BALL_CAPSULE_ID, (u8 *)&v4);
     }
 
     v0 = param0->unk_04[param1].unk_00;
@@ -1078,12 +1078,12 @@ void ov76_0223CE2C(void)
 
 void ov76_0223CE44(void)
 {
-    StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_53);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_53);
 }
 
 void ov76_0223CE64(void)
 {
-    StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_53);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_53);
 }
 
 void ov76_0223CE84(UnkStruct_ov76_0223DE00 *param0, NARC *param1)

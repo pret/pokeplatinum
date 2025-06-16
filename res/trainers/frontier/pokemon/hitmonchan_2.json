@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_HITMONCHAN",
+    "moves": [
+        "MOVE_SKY_UPPERCUT",
+        "MOVE_MEGA_PUNCH",
+        "MOVE_BULLET_PUNCH",
+        "MOVE_COUNTER"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": true,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_KINGS_ROCK",
+    "form": 0
+}

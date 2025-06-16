@@ -4,6 +4,7 @@
 enum DSScreen {
     DS_SCREEN_MAIN = 0,
     DS_SCREEN_SUB,
+    DS_SCREEN_MAX,
 };
 
 #endif // POKEPLATINUM_CONSTANTS_SCREEN_H

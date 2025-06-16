@@ -128,24 +128,24 @@ _0182:
 
     .balign 4, 0
 _0194:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _019C:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _01A4:
-    MoveAction_012
-    MoveAction_033
+    WalkNormalNorth
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _01B0:
-    MoveAction_015
-    MoveAction_034
+    WalkNormalEast
+    WalkOnSpotNormalWest
     EndMovement
 
     .byte 63
@@ -179,26 +179,26 @@ _01B0:
 
     .balign 4, 0
 _01D8:
-    MoveAction_034
-    MoveAction_075
+    WalkOnSpotNormalWest
+    EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
 _01E4:
-    MoveAction_033
-    MoveAction_075
+    WalkOnSpotNormalSouth
+    EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
 _01F0:
-    MoveAction_063 3
-    MoveAction_014
-    MoveAction_033
+    Delay8 3
+    WalkNormalWest
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0200:
-    MoveAction_063 3
-    MoveAction_013
-    MoveAction_033
+    Delay8 3
+    WalkNormalSouth
+    WalkOnSpotNormalSouth
     EndMovement

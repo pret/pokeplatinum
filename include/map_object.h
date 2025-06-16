@@ -4,6 +4,7 @@
 #include <nitro/fx/fx.h>
 
 #include "constants/map_object.h"
+#include "generated/movement_actions.h"
 
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -166,8 +167,8 @@ void sub_02062B88(MapObject *mapObj, UnkFuncPtr_ov5_021FB0F0_3 param1);
 void sub_02062B90(MapObject *mapObj);
 void sub_02062B9C(MapObject *mapObj, UnkFuncPtr_ov5_021FB0F0_4 param1);
 void sub_02062BA4(MapObject *mapObj);
-void MapObject_SetMovementAction(MapObject *mapObj, int movementAction);
-int MapObject_GetMovementAction(const MapObject *mapObj);
+void MapObject_SetMovementAction(MapObject *mapObj, enum MovementAction movementAction);
+enum MovementAction MapObject_GetMovementAction(const MapObject *mapObj);
 void MapObject_SetMovementStep(MapObject *mapObj, int movementStep);
 void MapObject_AdvanceMovementStep(MapObject *mapObj);
 int MapObject_GetMovementStep(const MapObject *mapObj);

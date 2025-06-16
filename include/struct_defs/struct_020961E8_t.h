@@ -69,7 +69,7 @@ struct UnkStruct_020961E8_t {
     UnkStruct_ov59_021D30E0 unk_418;
     UnkStruct_ov59_021D30E0 unk_FD8[5];
     int unk_4A98;
-    SaveData *unk_4A9C;
+    SaveData *saveData;
     int unk_4AA0;
     u8 unk_4AA4;
     volatile int unk_4AA8;

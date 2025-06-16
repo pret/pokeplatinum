@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_CYNDAQUIL",
+    "moves": [
+        "MOVE_FLAME_WHEEL",
+        "MOVE_DOUBLE_KICK",
+        "MOVE_SWIFT",
+        "MOVE_SMOKE_SCREEN"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_QUICK_CLAW",
+    "form": 0
+}

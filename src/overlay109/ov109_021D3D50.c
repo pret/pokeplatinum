@@ -35,6 +35,7 @@
 #include "render_oam.h"
 #include "render_window.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite.h"
@@ -48,7 +49,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_02030EE0.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
@@ -125,7 +125,7 @@ static int ov109_021D4D20(UnkStruct_ov109_021D5140 *param0, int param1);
 static int ov109_021D4D80(UnkStruct_ov109_021D5140 *param0, int param1);
 static int ov109_021D4F28(UnkStruct_ov109_021D5140 *param0, int param1);
 static int ov109_021D510C(UnkStruct_ov109_021D5140 *param0, int param1);
-static void ov109_021D59A8(SaveData *param0, const UnkStruct_ov109_021D5140_sub2 *param1);
+static void ov109_021D59A8(SaveData *saveData, const UnkStruct_ov109_021D5140_sub2 *param1);
 
 static int (*const Unk_ov109_021D5E9C[])(UnkStruct_ov109_021D5140 *, int) = {
     ov109_021D474C,
@@ -162,11 +162,11 @@ static int (*const Unk_ov109_021D5E9C[])(UnkStruct_ov109_021D5140 *, int) = {
     ov109_021D510C,
 };
 
-int ov109_021D3D50(OverlayManager *param0, int *param1)
+int ov109_021D3D50(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov109_021D5140 *v0;
     NARC *v1;
-    UnkStruct_0209C194 *v2 = OverlayManager_Args(param0);
+    UnkStruct_0209C194 *v2 = ApplicationManager_Args(appMan);
 
     switch (*param1) {
     case 0:
@@ -183,7 +183,7 @@ int ov109_021D3D50(OverlayManager *param0, int *param1)
         v1 = NARC_ctor(NARC_INDEX_GRAPHIC__RECORD, HEAP_ID_95);
         GF_ASSERT(v1);
 
-        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov109_021D5140), HEAP_ID_95);
+        v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov109_021D5140), HEAP_ID_95);
         memset(v0, 0, sizeof(UnkStruct_ov109_021D5140));
 
         v2->unk_3C = v0;
@@ -196,7 +196,7 @@ int ov109_021D3D50(OverlayManager *param0, int *param1)
         SetAutorepeat(4, 8);
         ov109_021D40D0();
         ov109_021D40F0(v0->unk_14);
-        StartScreenTransition(0, 17, 17, 0x0, 16, 1, HEAP_ID_95);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_17, FADE_TYPE_UNK_17, FADE_TO_BLACK, 16, 1, HEAP_ID_95);
         ov109_021D4300(v0, v1);
         SetVBlankCallback(ov109_021D40A8, v0);
         ov109_021D41F8(v0, v1);
@@ -226,9 +226,9 @@ int ov109_021D3D50(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov109_021D3EB0(OverlayManager *param0, int *param1)
+int ov109_021D3EB0(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov109_021D5140 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov109_021D5140 *v0 = ApplicationManager_Data(appMan);
 
     if ((CommSys_CurNetId() == 0) && (v0->unk_10->unk_30 != 0)) {
         v0->unk_10->unk_30 &= sub_020318EC();
@@ -236,7 +236,7 @@ int ov109_021D3EB0(OverlayManager *param0, int *param1)
 
     switch (v0->unk_00) {
     case 0:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             v0->unk_00 = 1;
 
             if (CommSys_CurNetId() != 0) {
@@ -276,7 +276,7 @@ int ov109_021D3EB0(OverlayManager *param0, int *param1)
 
         break;
     case 3:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             return 1;
         }
 
@@ -287,10 +287,10 @@ int ov109_021D3EB0(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov109_021D3F9C(OverlayManager *param0, int *param1)
+int ov109_021D3F9C(ApplicationManager *appMan, int *param1)
 {
     int v0;
-    UnkStruct_ov109_021D5140 *v1 = OverlayManager_Data(param0);
+    UnkStruct_ov109_021D5140 *v1 = ApplicationManager_Data(appMan);
 
     SysTask_Done(v1->unk_30);
     SpriteTransfer_ResetCharTransfer(v1->unk_200[2][0]);
@@ -320,7 +320,7 @@ int ov109_021D3F9C(OverlayManager *param0, int *param1)
     v1->unk_0C->unk_0C = ov109_021D54A8();
 
     ov109_021D4294(v1);
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_95);
 
     return 1;
@@ -1038,7 +1038,7 @@ static int ov109_021D4C7C(UnkStruct_ov109_021D5140 *param0, int param1)
 
 static int ov109_021D4CA8(UnkStruct_ov109_021D5140 *param0, int param1)
 {
-    ov109_021D59A8(param0->unk_0C->unk_14.unk_08, param0->unk_FE4);
+    ov109_021D59A8(param0->unk_0C->unk_14.saveData, param0->unk_FE4);
 
     param0->unk_3B8 = 27;
 
@@ -1069,7 +1069,7 @@ static int ov109_021D4D20(UnkStruct_ov109_021D5140 *param0, int param1)
         (void)0;
     }
 
-    if (sub_02038EDC(param0->unk_0C->unk_14.unk_08, 2, &param0->unk_414)) {
+    if (sub_02038EDC(param0->unk_0C->unk_14.saveData, 2, &param0->unk_414)) {
         Sound_StopEffect(1624, 8);
         ov109_021D55A8(param0, 13, 0);
         ov109_021D48EC(param0, 29);
@@ -1109,7 +1109,7 @@ static int ov109_021D4D9C(UnkStruct_ov109_021D5140 *param0, int param1)
 static int ov109_021D4DBC(UnkStruct_ov109_021D5140 *param0, int param1)
 {
     if (++param0->unk_3C4 > 60) {
-        StartScreenTransition(0, 16, 16, 0x0, 16, 1, HEAP_ID_95);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_16, FADE_TYPE_UNK_16, FADE_TO_BLACK, 16, 1, HEAP_ID_95);
         param1 = 3;
     }
 
@@ -1203,7 +1203,7 @@ static int ov109_021D4F6C(UnkStruct_ov109_021D5140 *param0, int param1)
 {
     if (CommTiming_IsSyncState(202)) {
         CommMan_SetErrorHandling(0, 0);
-        StartScreenTransition(0, 16, 16, 0x0, 16, 1, HEAP_ID_95);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_16, FADE_TYPE_UNK_16, FADE_TO_BLACK, 16, 1, HEAP_ID_95);
         param1 = 3;
     }
 
@@ -1294,7 +1294,7 @@ static int ov109_021D5098(UnkStruct_ov109_021D5140 *param0, int param1)
 static int ov109_021D510C(UnkStruct_ov109_021D5140 *param0, int param1)
 {
     sub_0205BEA8(12);
-    StartScreenTransition(0, 16, 16, 0x0, 16, 1, HEAP_ID_95);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_16, FADE_TYPE_UNK_16, FADE_TO_BLACK, 16, 1, HEAP_ID_95);
 
     param0->unk_08 = 1;
     param1 = 3;
@@ -1772,7 +1772,7 @@ static int ov109_021D58AC(UnkStruct_ov109_021D5140 *param0, int param1)
     return 1;
 }
 
-void ov109_021D59A8(SaveData *param0, const UnkStruct_ov109_021D5140_sub2 *param1)
+void ov109_021D59A8(SaveData *saveData, const UnkStruct_ov109_021D5140_sub2 *param1)
 {
     return;
 }

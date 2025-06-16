@@ -38,6 +38,7 @@
 #include "player_avatar.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
@@ -46,7 +47,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "system_flags.h"
-#include "unk_0200F174.h"
 #include "unk_0202854C.h"
 #include "unk_02033200.h"
 #include "unk_0206A780.h"
@@ -613,11 +613,11 @@ static BOOL ov23_02251ACC(FieldTask *param0)
     switch (v1->unk_00) {
     case 0:
         Sound_PlayEffect(SEQ_SE_DP_PC_LOGIN);
-        StartScreenTransition(2, 0, 0, 0x0, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
         v1->unk_00 = 1;
         break;
     case 1:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             PlayerAvatar_SetHidden(fieldSystem->playerAvatar, 0);
 
             ov23_02251A84(1, fieldSystem);
@@ -634,11 +634,11 @@ static BOOL ov23_02251ACC(FieldTask *param0)
     case 4:
         PlayerAvatar_SetHidden(fieldSystem->playerAvatar, 1);
         ov23_02251A84(0, fieldSystem);
-        StartScreenTransition(1, 1, 1, 0x0, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
         v1->unk_00 = 5;
         break;
     case 5:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             ov23_0224B2C8(fieldSystem);
             SystemFlag_SetDecoratedSecretBase(SaveData_GetVarsFlags(fieldSystem->saveData));
             ov23_02251F94(fieldSystem);
@@ -781,7 +781,7 @@ static void ov23_02251C04(SysTask *param0, void *param1)
         break;
     case 3:
         if (v0->fieldSystem->task == NULL) {
-            v2 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov23_02251ACC));
+            v2 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov23_02251ACC));
             MI_CpuClear8(v2, sizeof(UnkStruct_ov23_02251ACC));
             v2->unk_00 = 0;
             v2->unk_04 = 0;

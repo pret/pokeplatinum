@@ -13,7 +13,7 @@
 typedef struct {
     int unk_00;
     int unk_04;
-    SaveData *unk_08;
+    SaveData *saveData;
     UnkStruct_0205C22C *unk_0C;
     Options *unk_10;
     GameRecords *records;

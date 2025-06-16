@@ -7,7 +7,7 @@
 
 typedef struct {
     UnkStruct_ov66_02230DBC unk_00;
-    SaveData *unk_34;
+    SaveData *saveData;
     BOOL unk_38;
     u32 unk_3C;
 } UnkStruct_ov66_02231134;

@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_ONIX",
+    "moves": [
+        "MOVE_ROCK_SLIDE",
+        "MOVE_DIG",
+        "MOVE_SCREECH",
+        "MOVE_SANDSTORM"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_HARD_STONE",
+    "form": 0
+}

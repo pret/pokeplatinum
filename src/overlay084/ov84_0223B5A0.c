@@ -35,6 +35,7 @@
 #include "render_text.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "special_encounter.h"
@@ -48,7 +49,6 @@
 #include "touch_screen.h"
 #include "trainer_info.h"
 #include "unk_0200C440.h"
-#include "unk_0200F174.h"
 #include "unk_020393C8.h"
 #include "unk_020683F4.h"
 #include "unk_0207CB08.h"
@@ -154,7 +154,7 @@ static BOOL ov84_0223ED64(UnkStruct_ov84_0223B5A0 *param0, u16 param1);
 static BOOL ov84_0223EE80(UnkStruct_ov84_0223B5A0 *param0, u16 param1);
 static BOOL ov84_0223EF9C(UnkStruct_ov84_0223B5A0 *param0, u8 param1);
 
-const OverlayManagerTemplate Unk_ov84_02241130 = {
+const ApplicationManagerTemplate Unk_ov84_02241130 = {
     ov84_0223B5A0,
     ov84_0223B76C,
     ov84_0223B900,
@@ -382,7 +382,7 @@ static const TouchScreenHitTable Unk_ov84_02240EB4[] = {
     { TOUCHSCREEN_TABLE_TERMINATOR, 0x0, 0x0, 0x0 }
 };
 
-int ov84_0223B5A0(OverlayManager *param0, int *param1)
+int ov84_0223B5A0(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov84_0223B5A0 *v0;
 
@@ -398,16 +398,16 @@ int ov84_0223B5A0(OverlayManager *param0, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_6, 0x30000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov84_0223B5A0), HEAP_ID_6);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov84_0223B5A0), HEAP_ID_6);
     memset(v0, 0, sizeof(UnkStruct_ov84_0223B5A0));
-    v0->unk_C4 = OverlayManager_Args(param0);
+    v0->unk_C4 = ApplicationManager_Args(appMan);
 
     ov84_0223B9AC(v0);
 
     v0->unk_00 = BgConfig_New(HEAP_ID_6);
     v0->unk_425 = TrainerInfo_Gender(v0->unk_CC);
 
-    StartScreenTransition(1, 3, 3, 0x0, 6, 1, HEAP_ID_6);
+    StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_3, FADE_TYPE_UNK_3, FADE_TO_BLACK, 6, 1, HEAP_ID_6);
     SetAutorepeat(3, 8);
 
     ov84_0223BEAC(v0);
@@ -448,13 +448,13 @@ int ov84_0223B5A0(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov84_0223B76C(OverlayManager *param0, int *param1)
+int ov84_0223B76C(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov84_0223B5A0 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov84_0223B5A0 *v0 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             if (v0->unk_C4->unk_65 == 2) {
                 *param1 = 16;
             } else if (v0->unk_C4->unk_65 == 1) {
@@ -547,7 +547,7 @@ int ov84_0223B76C(OverlayManager *param0, int *param1)
         *param1 = ov84_0223EA18(v0);
         break;
     case 24:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             return 1;
         }
         break;
@@ -561,9 +561,9 @@ int ov84_0223B76C(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov84_0223B900(OverlayManager *param0, int *param1)
+int ov84_0223B900(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov84_0223B5A0 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov84_0223B5A0 *v0 = ApplicationManager_Data(appMan);
 
     ov84_02240A88(v0);
     ov84_0223C4E0(v0);
@@ -586,7 +586,7 @@ int ov84_0223B900(OverlayManager *param0, int *param1)
     sub_0200C560(v0->unk_110);
     StringTemplate_Free(v0->unk_118);
     NARC_dtor(v0->unk_D4);
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     SetVBlankCallback(NULL, NULL);
     Heap_Destroy(HEAP_ID_6);
     SetAutorepeat(4, 8);
@@ -596,14 +596,14 @@ int ov84_0223B900(OverlayManager *param0, int *param1)
 
 static void ov84_0223B9AC(UnkStruct_ov84_0223B5A0 *param0)
 {
-    param0->unk_C8 = SaveData_GetBag(param0->unk_C4->unk_00);
-    param0->unk_CC = SaveData_GetTrainerInfo(param0->unk_C4->unk_00);
-    param0->unk_D0 = SaveData_GetOptions(param0->unk_C4->unk_00);
+    param0->unk_C8 = SaveData_GetBag(param0->unk_C4->saveData);
+    param0->unk_CC = SaveData_GetTrainerInfo(param0->unk_C4->saveData);
+    param0->unk_D0 = SaveData_GetOptions(param0->unk_C4->saveData);
 }
 
 static SpecialEncounter *ov84_0223B9E4(UnkStruct_ov84_0223B5A0 *param0)
 {
-    return SaveData_GetSpecialEncounters(param0->unk_C4->unk_00);
+    return SaveData_GetSpecialEncounters(param0->unk_C4->saveData);
 }
 
 static void SetRepelSteps(UnkStruct_ov84_0223B5A0 *param0, u8 stepCount)
@@ -2147,7 +2147,7 @@ static int ov84_0223D94C(UnkStruct_ov84_0223B5A0 *param0)
         return 13;
     }
 
-    if (sub_0207CC10(param0->unk_C4->unk_00, param0->unk_3F8, param0->unk_C4->unk_66, 6) == 1) {
+    if (sub_0207CC10(param0->unk_C4->saveData, param0->unk_3F8, param0->unk_C4->unk_66, 6) == 1) {
         Window_FillTilemap(&param0->unk_04[6], 15);
         Window_DrawMessageBoxWithScrollCursor(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);
         param0->unk_426 = ov84_022400A0(param0);

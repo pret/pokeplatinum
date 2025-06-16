@@ -23,6 +23,7 @@
 #include "render_oam.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
 #include "strbuf.h"
@@ -30,7 +31,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "unk_020393C8.h"
 #include "vram_transfer.h"
@@ -106,22 +106,19 @@ static void ov75_021D19A8(UnkStruct_ov75_021D1184 *param0);
 static void ov75_021D19C8(UnkStruct_ov75_021D1184 *param0);
 static void ov75_021D1ADC(UnkStruct_ov75_021D1184 *param0);
 static void ov75_021D1CB8(UnkStruct_ov75_021D1184 *param0);
-int ov75_021D0D80(OverlayManager *param0, int *param1);
-int ov75_021D0DF8(OverlayManager *param0, int *param1);
-int ov75_021D0E10(OverlayManager *param0, int *param1);
 
-int ov75_021D0D80(OverlayManager *param0, int *param1)
+int ov75_021D0D80(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_020978D8 *v0;
-    UnkStruct_ov75_021D1184 *v1 = (UnkStruct_ov75_021D1184 *)OverlayManager_Data(param0);
+    UnkStruct_ov75_021D1184 *v1 = (UnkStruct_ov75_021D1184 *)ApplicationManager_Data(appMan);
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_41, 0x20000);
-    v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov75_021D1184), HEAP_ID_41);
+    v1 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov75_021D1184), HEAP_ID_41);
     memset(v1, 0, sizeof(UnkStruct_ov75_021D1184));
 
     v1->heapID = HEAP_ID_41;
 
-    v1->unk_1C = (UnkStruct_020978D8 *)OverlayManager_Args(param0);
+    v1->unk_1C = (UnkStruct_020978D8 *)ApplicationManager_Args(appMan);
     v1->unk_0D = v1->unk_0C = v1->unk_1C->unk_00;
     v1->unk_11 = v1->unk_1C->unk_02;
     v1->unk_12 = v1->unk_1C->unk_03;
@@ -134,9 +131,9 @@ int ov75_021D0D80(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov75_021D0DF8(OverlayManager *param0, int *param1)
+int ov75_021D0DF8(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov75_021D1184 *v0 = (UnkStruct_ov75_021D1184 *)OverlayManager_Data(param0);
+    UnkStruct_ov75_021D1184 *v0 = (UnkStruct_ov75_021D1184 *)ApplicationManager_Data(appMan);
 
     if (ov75_021D1184(v0)) {
         return 1;
@@ -145,16 +142,16 @@ int ov75_021D0DF8(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov75_021D0E10(OverlayManager *param0, int *param1)
+int ov75_021D0E10(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov75_021D1184 *v0 = (UnkStruct_ov75_021D1184 *)OverlayManager_Data(param0);
+    UnkStruct_ov75_021D1184 *v0 = (UnkStruct_ov75_021D1184 *)ApplicationManager_Data(appMan);
     int heapID;
 
     RenderControlFlags_SetCanABSpeedUpPrint(0);
 
     heapID = v0->heapID;
 
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(heapID);
 
     return 1;
@@ -374,10 +371,10 @@ static int ov75_021D1184(UnkStruct_ov75_021D1184 *param0)
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
 
-        sub_0200F344(0, 0x0);
-        sub_0200F344(1, 0x0);
-        sub_0200F32C(0);
-        sub_0200F32C(1);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+        ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
+        ResetVisibleHardwareWindows(DS_SCREEN_SUB);
         break;
     case 1:
         if (!ov75_021D13E8(param0)) {
@@ -386,7 +383,7 @@ static int ov75_021D1184(UnkStruct_ov75_021D1184 *param0)
 
         SetVBlankCallback(ov75_021D131C, param0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-        sub_0200F338(0);
+        ResetScreenMasterBrightness(DS_SCREEN_MAIN);
 
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG3, 28, 4);
 
@@ -428,8 +425,8 @@ static int ov75_021D1184(UnkStruct_ov75_021D1184 *param0)
             return 0;
         }
 
-        sub_0200F344(0, 0x0);
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
         SetVBlankCallback(NULL, NULL);
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();

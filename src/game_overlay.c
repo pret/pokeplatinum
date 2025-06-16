@@ -59,7 +59,7 @@ void LoadOverlayGDB(const FSOverlayID overlayID)
     GF_ASSERT(FS_LoadOverlayInfo(&overlayInfo, MI_PROCESSOR_ARM9, overlayID) == TRUE);
 
     // 2. add entry to _ovly_table
-    // note that this is a little hacky. the VMA is correct but the LMA is not exposed by the OverlayManager
+    // note that this is a little hacky. the VMA is correct but the LMA is not exposed by the ApplicationManager
     // and the size field is not correct compared to what's stored in the NEF.
     // the standard overlay manager in GDB bases comparisons on VMA and LMA, so it's not viable here.
     // requires a custom GDB build which maps based on section ID and can override section size.

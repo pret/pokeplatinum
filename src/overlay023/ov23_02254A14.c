@@ -23,10 +23,10 @@
 #include "easy3d.h"
 #include "field_task.h"
 #include "heap.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_0202854C.h"
 #include "unk_020573FC.h"
 
@@ -221,11 +221,11 @@ static BOOL ov23_02254AD4(FieldTask *param0)
         ov23_02255EBC(1, v1);
         break;
     case 1:
-        StartScreenTransition(1, 41, 41, 0x0, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_41, FADE_TYPE_UNK_41, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
         ov23_02255EBC(2, v1);
         break;
     case 2:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             ov23_02255EBC(3, v1);
         }
         break;
@@ -254,11 +254,11 @@ static BOOL ov23_02254AD4(FieldTask *param0)
         break;
     case 9:
         Sound_PlayEffect(SEQ_SE_DP_PC_LOGOFF);
-        StartScreenTransition(2, 40, 40, 0x0, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_40, FADE_TYPE_UNK_40, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
         ov23_02255EBC(10, v1);
         break;
     case 10:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             ov23_022545D0(v1->unk_508);
             ov23_0225430C(v1->unk_504);
             ov5_021D1BEC(v1->unk_50C);
@@ -334,7 +334,7 @@ static BOOL ov23_02254C84(FieldTask *param0)
 
 void ov23_02254D98(FieldSystem *fieldSystem, FieldTask *param1)
 {
-    UnkStruct_ov23_02256098 *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov23_02256098));
+    UnkStruct_ov23_02256098 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov23_02256098));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov23_02256098));
     ov23_02255EBC(0, v0);

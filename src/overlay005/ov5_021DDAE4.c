@@ -5,7 +5,7 @@
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
-#include "overlay025/poketch_system.h"
+#include "poketch/poketch_system.h"
 #include "pre_poketch_subscreen/pre_poketch_subscreen.h"
 
 #include "brightness_controller.h"
@@ -66,7 +66,7 @@ static BOOL ov5_021DDAE4(FieldTask *param0)
 
 void ov5_021DDBC8(FieldTask *param0)
 {
-    UnkStruct_ov5_021DDBC8 *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov5_021DDBC8));
+    UnkStruct_ov5_021DDBC8 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov5_021DDBC8));
 
     v0->unk_00 = 0;
     FieldTask_InitCall(param0, ov5_021DDAE4, v0);

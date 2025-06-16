@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_SLOWBRO",
+    "moves": [
+        "MOVE_PSYCHIC",
+        "MOVE_SURF",
+        "MOVE_CALM_MIND",
+        "MOVE_YAWN"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_BOLD",
+    "item": "ITEM_CHESTO_BERRY",
+    "form": 0
+}

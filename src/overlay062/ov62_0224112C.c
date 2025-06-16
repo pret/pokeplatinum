@@ -33,9 +33,9 @@ void ov62_02241130(UnkStruct_0208C06C *param0)
 {
     UnkStruct_ov62_02241130 v0;
 
-    v0.unk_00 = sub_02025D74(SaveData_GetSystemData(param0->unk_830));
+    v0.unk_00 = sub_02025D74(SaveData_GetSystemData(param0->saveData));
     v0.heapID = HEAP_ID_102;
-    v0.unk_08 = param0->unk_830;
+    v0.saveData = param0->saveData;
     v0.unk_0C.unk_00 = param0;
     v0.unk_0C.unk_04 = ov62_02239D34;
     v0.unk_0C.unk_08 = ov62_02239D38;

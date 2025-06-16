@@ -21,6 +21,7 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
@@ -30,7 +31,6 @@
 #include "text.h"
 #include "touch_pad.h"
 #include "touch_screen.h"
-#include "unk_0200F174.h"
 #include "unk_020158A8.h"
 #include "unk_0208C098.h"
 #include "unk_02098FFC.h"
@@ -38,9 +38,9 @@
 
 typedef int (*UnkFuncPtr_ov79_021D394C)(UnkStruct_ov79_021D0E1C *);
 
-int ov79_021D0D80(OverlayManager *param0, int *param1);
-int ov79_021D0DC4(OverlayManager *param0, int *param1);
-int ov79_021D0DDC(OverlayManager *param0, int *param1);
+int ov79_021D0D80(ApplicationManager *appMan, int *param1);
+int ov79_021D0DC4(ApplicationManager *appMan, int *param1);
+int ov79_021D0DDC(ApplicationManager *appMan, int *param1);
 static int ov79_021D0E1C(UnkStruct_ov79_021D0E1C *param0);
 static int ov79_021D122C(UnkStruct_ov79_021D0E1C *param0);
 static int ov79_021D12A0(UnkStruct_ov79_021D0E1C *param0);
@@ -71,14 +71,14 @@ static const UnkFuncPtr_ov79_021D394C Unk_ov79_021D394C[] = {
     ov79_021D11C0
 };
 
-int ov79_021D0D80(OverlayManager *param0, int *param1)
+int ov79_021D0D80(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov79_021D0E1C *v0 = NULL;
-    UnkStruct_0203D9B8 *v1 = OverlayManager_Args(param0);
+    UnkStruct_0203D9B8 *v1 = ApplicationManager_Args(appMan);
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_45, 0x20000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov79_021D0E1C), HEAP_ID_45);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov79_021D0E1C), HEAP_ID_45);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov79_021D0E1C));
 
     v0->heapID = HEAP_ID_45;
@@ -89,9 +89,9 @@ int ov79_021D0D80(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov79_021D0DC4(OverlayManager *param0, int *param1)
+int ov79_021D0DC4(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov79_021D0E1C *v0 = (UnkStruct_ov79_021D0E1C *)OverlayManager_Data(param0);
+    UnkStruct_ov79_021D0E1C *v0 = (UnkStruct_ov79_021D0E1C *)ApplicationManager_Data(appMan);
 
     if (ov79_021D0E1C(v0)) {
         return 1;
@@ -100,9 +100,9 @@ int ov79_021D0DC4(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov79_021D0DDC(OverlayManager *param0, int *param1)
+int ov79_021D0DDC(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov79_021D0E1C *v0 = (UnkStruct_ov79_021D0E1C *)OverlayManager_Data(param0);
+    UnkStruct_ov79_021D0E1C *v0 = (UnkStruct_ov79_021D0E1C *)ApplicationManager_Data(appMan);
 
     v0->unk_20->unk_01 = v0->unk_1A;
     v0->unk_20->unk_02 = v0->unk_10;
@@ -110,7 +110,7 @@ int ov79_021D0DDC(OverlayManager *param0, int *param1)
     v0->unk_20->unk_04 = v0->unk_80;
     v0->unk_20->unk_06 = v0->unk_82;
 
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(v0->heapID);
 
     return 1;
@@ -129,10 +129,10 @@ static int ov79_021D0E1C(UnkStruct_ov79_021D0E1C *param0)
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
 
-        sub_0200F344(0, 0x0);
-        sub_0200F344(1, 0x0);
-        sub_0200F32C(0);
-        sub_0200F32C(1);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+        ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
+        ResetVisibleHardwareWindows(DS_SCREEN_SUB);
         EnableTouchPad();
         InitializeTouchPad(4);
         break;
@@ -142,12 +142,12 @@ static int ov79_021D0E1C(UnkStruct_ov79_021D0E1C *param0)
         }
 
         param0->unk_0C = 0;
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, param0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, param0->heapID);
         break;
     case 2:
         ov79_021D21F8(param0);
 
-        if (!IsScreenTransitionDone()) {
+        if (!IsScreenFadeDone()) {
             return 0;
         }
         break;
@@ -159,12 +159,12 @@ static int ov79_021D0E1C(UnkStruct_ov79_021D0E1C *param0)
         }
 
         param0->unk_0C = 0;
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, param0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, param0->heapID);
         break;
     case 4:
         ov79_021D21F8(param0);
 
-        if (!IsScreenTransitionDone()) {
+        if (!IsScreenFadeDone()) {
             return 0;
         }
         break;
@@ -175,8 +175,8 @@ static int ov79_021D0E1C(UnkStruct_ov79_021D0E1C *param0)
         break;
     case 6:
         DisableTouchPad();
-        sub_0200F344(0, 0x0);
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
         SetVBlankCallback(NULL, NULL);
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();

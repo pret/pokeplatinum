@@ -295,7 +295,7 @@ static BOOL ov62_02237F08(UnkStruct_0208C06C *param0)
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
         ov62_02234540(param0, 1);
 
-        v0->unk_22C = sub_02029CA8(sub_0202A750(param0->unk_830), 0);
+        v0->unk_22C = sub_02029CA8(sub_0202A750(param0->saveData), 0);
 
         if (v0->unk_228 == NULL) {
             v0->unk_228 = ov22_0225AF8C(&v0->unk_218, v0->unk_22C);
@@ -412,7 +412,7 @@ static BOOL ov62_022380B0(UnkStruct_0208C06C *param0)
         sub_0208BA08(param0->unk_6F0, 24, 24);
         ov62_02231AAC(param0, 286);
         v0->unk_2DC = sub_02030A80(HEAP_ID_102);
-        sub_02030AA0(v0->unk_2DC, param0->unk_830);
+        sub_02030AA0(v0->unk_2DC, param0->saveData);
         Sound_PlayEffect(SEQ_SE_PL_BREC80);
         param0->unk_08++;
         break;
@@ -1471,7 +1471,7 @@ static BOOL ov62_02239984(UnkStruct_0208C06C *param0, int param1)
         int v7;
         int v8 = 0;
         BOOL v9;
-        Pokedex *pokedex = SaveData_GetPokedex(param0->unk_830);
+        Pokedex *pokedex = SaveData_GetPokedex(param0->saveData);
 
         for (v7 = v3; v7 < v4; v7++) {
             v9 = Pokedex_HasSeenSpecies(pokedex, v1[v7]);
@@ -1515,7 +1515,7 @@ static void ov62_02239A0C(UnkStruct_0208C06C *param0, int param1)
         int v5;
         int v6 = 0;
         BOOL v7;
-        Pokedex *v8 = SaveData_GetPokedex(param0->unk_830);
+        Pokedex *v8 = SaveData_GetPokedex(param0->saveData);
 
         v4->unk_1D4.unk_00 = 0;
 

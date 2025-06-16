@@ -83,7 +83,7 @@ void sub_020281A0(Mail *param0, Mail *param1)
     MI_CpuCopy8(param0, param1, sizeof(Mail));
 }
 
-void sub_020281AC(Mail *param0, u8 param1, u8 param2, SaveData *param3)
+void sub_020281AC(Mail *param0, u8 param1, u8 param2, SaveData *saveData)
 {
     u8 v0, v1, v2, v3;
     u16 v4;
@@ -95,8 +95,8 @@ void sub_020281AC(Mail *param0, u8 param1, u8 param2, SaveData *param3)
     sub_02028124(param0);
 
     param0->unk_07 = param1;
-    v9 = SaveData_GetParty(param3);
-    v8 = SaveData_GetTrainerInfo(param3);
+    v9 = SaveData_GetParty(saveData);
+    v8 = SaveData_GetTrainerInfo(saveData);
 
     CharCode_Copy(param0->unk_08, TrainerInfo_Name(v8));
 

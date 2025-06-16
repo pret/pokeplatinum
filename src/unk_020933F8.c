@@ -95,35 +95,35 @@ static void sub_02094B30(SysTask *param0, void *param1);
 static int sub_02093B2C(Pokemon *param0, int param1);
 static void sub_020939E0(UnkStruct_02095C48 *param0, int param1, int param2);
 
-const OverlayManagerTemplate Unk_020F560C = {
+const ApplicationManagerTemplate Unk_020F560C = {
     ov17_0223B140,
     ov17_0223B444,
     ov17_0223B580,
     FS_OVERLAY_ID(overlay17)
 };
 
-const OverlayManagerTemplate Unk_020F561C = {
+const ApplicationManagerTemplate Unk_020F561C = {
     ov17_0223DAD0,
     ov17_0223DDD4,
     ov17_0223DF0C,
     FS_OVERLAY_ID(overlay17)
 };
 
-const OverlayManagerTemplate Unk_020F55EC = {
+const ApplicationManagerTemplate Unk_020F55EC = {
     ov17_0223CB1C,
     ov17_0223CDDC,
     ov17_0223CF8C,
     FS_OVERLAY_ID(overlay17)
 };
 
-const OverlayManagerTemplate Unk_020F55DC = {
+const ApplicationManagerTemplate Unk_020F55DC = {
     ov17_0224F4D4,
     ov17_0224F754,
     ov17_0224F86C,
     FS_OVERLAY_ID(overlay17)
 };
 
-const OverlayManagerTemplate Unk_020F55FC = {
+const ApplicationManagerTemplate Unk_020F55FC = {
     ov22_02256174,
     ov22_022562EC,
     ov22_02256600,
@@ -152,7 +152,7 @@ __attribute__((aligned(4))) static const u8 Unk_020F55D0[][6] = {
 
 void sub_020933F8(FieldTask *param0, UnkStruct_02095C48 *param1)
 {
-    UnkStruct_020933F8 *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_020933F8));
+    UnkStruct_020933F8 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_020933F8));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_020933F8));
     v0->unk_00 = param1;
@@ -419,7 +419,7 @@ UnkStruct_02095C48 *sub_02093800(const UnkStruct_02093800 *param0)
     v0->unk_00.unk_10E = 1;
     v0->unk_1980 = param0->unk_14;
     v0->unk_196C = param0->unk_18;
-    v0->unk_1970 = param0->unk_1C;
+    v0->saveData = param0->saveData;
     v0->unk_1974 = param0->unk_08;
     v0->unk_197C = param0->unk_05;
     v0->unk_1978 = param0->unk_10;
@@ -1431,7 +1431,7 @@ u32 sub_02094904(UnkStruct_02095C48 *param0)
         UnkStruct_0202A750 *v1;
         UnkStruct_02029D04 *v2;
 
-        v1 = sub_0202A750(param0->unk_1970);
+        v1 = sub_0202A750(param0->saveData);
         v2 = sub_02029D04(v1);
 
         if (sub_02029D50(v2, v0, 1) == 0) {
@@ -1448,7 +1448,7 @@ void sub_02094A58(UnkStruct_02095C48 *param0, int param1)
 
     GF_ASSERT(param0->unk_19A0 == NULL);
 
-    v0 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_02094A58));
+    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_02094A58));
     MI_CpuClear8(v0, sizeof(UnkStruct_02094A58));
     v0->unk_0C = sub_02095904(param1);
 
@@ -1562,7 +1562,7 @@ void sub_02094BB4(UnkStruct_02095C48 *param0, int *param1, int *param2, int *par
     }
 }
 
-void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *param1, u32 param2, JournalEntry *journalEntry)
+void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *saveData, u32 param2, JournalEntry *journalEntry)
 {
     int v0 = 0;
 
@@ -1577,7 +1577,7 @@ void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *param1, u32 param2, Jour
     }
 
     if (param0->unk_155 == 0) {
-        VarsFlags *v1 = SaveData_GetVarsFlags(param0->unk_1970);
+        VarsFlags *v1 = SaveData_GetVarsFlags(param0->saveData);
 
         if (param0->unk_00.unk_111 == 2 && param0->unk_00.unk_110 >= 3 && sub_02094790(param0) == 0
             && SystemFlag_CheckContestMaster(v1, param0->unk_00.unk_10F) == 0) {
@@ -1593,13 +1593,13 @@ void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *param1, u32 param2, Jour
             }
 
             Pokemon_SetValue(param0->unk_1974, v2, &v3);
-            sub_0206DDB8(param0->unk_1970, param0->unk_1974, v2);
+            sub_0206DDB8(param0->saveData, param0->unk_1974, v2);
         }
 
-        TVBroadcast *v4 = SaveData_GetTVBroadcast(param0->unk_1970);
+        TVBroadcast *v4 = SaveData_GetTVBroadcast(param0->saveData);
         sub_0206CF14(v4, param0->unk_1974, param0->unk_00.unk_10F, param0->unk_00.unk_110, param0->unk_00.unk_118[param0->unk_00.unk_113].unk_08 + 1);
 
-        GameRecords *v5 = SaveData_GetGameRecords(param0->unk_1970);
+        GameRecords *v5 = SaveData_GetGameRecords(param0->saveData);
         GameRecords_IncrementRecordValue(v5, RECORD_UNK_090);
 
         if (sub_02094790(param0) == 0) {
@@ -1612,15 +1612,15 @@ void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *param1, u32 param2, Jour
         }
 
         int i;
-        Pokedex *pokedex = SaveData_GetPokedex(param0->unk_1970);
+        Pokedex *pokedex = SaveData_GetPokedex(param0->saveData);
 
         for (i = param0->unk_00.unk_117; i < 4; i++) {
             Pokedex_Encounter(pokedex, param0->unk_00.unk_00[i]);
         }
     } else {
-        sub_0202F134(param0->unk_1970, param0->unk_00.unk_10F, param0->unk_00.unk_118[param0->unk_00.unk_113].unk_08);
+        sub_0202F134(param0->saveData, param0->unk_00.unk_10F, param0->unk_00.unk_118[param0->unk_00.unk_113].unk_08);
 
-        GameRecords *records = SaveData_GetGameRecords(param0->unk_1970);
+        GameRecords *records = SaveData_GetGameRecords(param0->saveData);
         GameRecords_IncrementRecordValue(records, RECORD_UNK_091);
 
         if (sub_02094790(param0) == 0) {
@@ -1629,13 +1629,13 @@ void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *param1, u32 param2, Jour
         }
 
         void *journalEntryOnlineEvent = JournalEntry_CreateEventPlacedInContest(param0->unk_00.unk_118[param0->unk_00.unk_113].unk_08 + 1, 11);
-        JournalEntry *unused = SaveData_GetJournal(param0->unk_1970);
+        JournalEntry *unused = SaveData_GetJournal(param0->saveData);
 
         JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
     }
 
     if (sub_02094790(param0) == 0) {
-        UnkStruct_0202A750 *v11 = sub_0202A750(param0->unk_1970);
+        UnkStruct_0202A750 *v11 = sub_0202A750(param0->saveData);
         UnkStruct_02029C88 *v12 = sub_02029CD0(v11, param0->unk_00.unk_10F);
 
         sub_0202A25C(v12);

@@ -3,12 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "applications/pokedex/ov21_021D1FA4.h"
 #include "applications/pokedex/ov21_021D4340.h"
 #include "applications/pokedex/ov21_021E29DC.h"
 #include "applications/pokedex/pokedex_app.h"
 #include "applications/pokedex/pokedex_data_manager.h"
-#include "applications/pokedex/pokedex_graphic_data.h"
+#include "applications/pokedex/pokedex_graphics.h"
 #include "applications/pokedex/pokedex_graphics_manager.h"
 #include "applications/pokedex/pokedex_main.h"
 #include "applications/pokedex/pokedex_sort.h"
@@ -287,7 +286,7 @@ static int ov21_021E6B20(void *graphics, PokedexGraphicsManager *graphicsMan, co
         }
         break;
     case 3:
-        ov21_021D25AC(&(*v2)->unk_1E0, 0);
+        PokedexGraphics_SetStaticCursorSize(&(*v2)->cursorGraphics, 0);
         return 1;
     default:
         break;
@@ -320,7 +319,7 @@ static int ov21_021E6BD8(void *graphics, PokedexGraphicsManager *graphicsMan, co
 
     switch (graphicsMan->state) {
     case 0:
-        ov21_021D25AC(&(*v2)->unk_1E0, 1);
+        PokedexGraphics_SetStaticCursorSize(&(*v2)->cursorGraphics, 1);
         ov21_021E6CB0(v3, v2, v0, 0);
         graphicsMan->state++;
         break;
@@ -372,9 +371,9 @@ static void ov21_021E6CB0(UnkStruct_ov21_021E6C60 *param0, PokedexGraphicData **
 
     if (ov21_021E33A4(param2->unk_0C)) {
         if (param3) {
-            ov21_021D23F8(&(*param1)->unk_18C, 1, -16, 0, 0, 16, (GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 1);
+            PokedexGraphics_InitBlendTransition(&(*param1)->blendSub, 1, -16, 0, 0, 16, (GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 1);
         } else {
-            ov21_021D23F8(&(*param1)->unk_18C, 1, 0, -16, 16, 0, (GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 1);
+            PokedexGraphics_InitBlendTransition(&(*param1)->blendSub, 1, 0, -16, 16, 0, (GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD), 1);
         }
     }
 }
@@ -384,7 +383,7 @@ static BOOL ov21_021E6D1C(UnkStruct_ov21_021E6C60 *param0, PokedexGraphicData **
     BOOL v0;
 
     if (ov21_021E33A4(param2->unk_0C)) {
-        v0 = ov21_021D2424(&(*param1)->unk_18C);
+        v0 = PokedexGraphics_TakeBlendTransitionStep(&(*param1)->blendSub);
     } else {
         v0 = BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN);
     }
@@ -497,8 +496,8 @@ static void ov21_021E6E94(UnkStruct_ov21_021E6C60 *param0, PokedexGraphicData **
 {
     int v0;
 
-    ov21_021D276C(*param1, 9, 4, 4 * 32, 32, heapID);
-    ov21_021D276C(*param1, 9, 4, 5 * 32, 32, heapID);
+    PokedexGraphics_LoadGraphicNarcPaletteData(*param1, 9, 4, 4 * 32, 32, heapID);
+    PokedexGraphics_LoadGraphicNarcPaletteData(*param1, 9, 4, 5 * 32, 32, heapID);
     ov21_021E70BC(param0);
     ov21_021E71B8(param0, param1);
     ov21_021E6FD8(param0, param1);
@@ -515,9 +514,9 @@ static void ov21_021E6EF0(PokedexGraphicData **param0, int heapID)
     void *v0;
     NNSG2dScreenData *v1;
 
-    ov21_021D2724(*param0, 34, (*param0)->bgConfig, 6, 0, 0, 1, heapID);
+    PokedexGraphics_LoadGraphicNarcCharacterData(*param0, 34, (*param0)->bgConfig, 6, 0, 0, 1, heapID);
 
-    v0 = ov21_021D27B8(*param0, 61, 1, &v1, heapID);
+    v0 = PokedexGraphics_GetGraphicNarcScreenData(*param0, 61, 1, &v1, heapID);
 
     Bg_LoadToTilemapRect((*param0)->bgConfig, 6, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
@@ -527,7 +526,7 @@ static void ov21_021E6EF0(PokedexGraphicData **param0, int heapID)
 static void ov21_021E6F58(UnkStruct_ov21_021E6C60 *param0, PokedexGraphicData **param1, int param2)
 {
     PokedexGraphicData *v0 = *param1;
-    NARC *v1 = ov21_021D26E0(*param1);
+    NARC *v1 = PokedexGraphics_GetNARC(*param1);
 
     param0->unk_10[0] = SpriteResourceCollection_AddTilesFrom(v0->spriteResourceCollection[0], v1, 102, 1, 102 + 9000, NNS_G2D_VRAM_TYPE_2DSUB, param2);
 
@@ -602,7 +601,7 @@ static void ov21_021E70D4(UnkStruct_ov21_021E6C60 *param0, PokedexGraphicData **
 
     v2 = SpriteResourceCollection_Find(v3->spriteResourceCollection[1], 11 + 2100);
 
-    displayBox.textMan = v3->unk_14C;
+    displayBox.textMan = v3->textMan;
     displayBox.paletteProxy = SpriteTransfer_GetPaletteProxy(v2, NULL);
     displayBox.y = -8;
     displayBox.spriteResourcePriority = 2;
@@ -611,8 +610,8 @@ static void ov21_021E70D4(UnkStruct_ov21_021E6C60 *param0, PokedexGraphicData **
     displayBox.heapID = param2;
 
     v4 = PlttTransfer_GetPlttOffset(displayBox.paletteProxy, NNS_G2D_VRAM_TYPE_2DSUB);
-    v0 = PokedexTextManager_NewWindow(v3->unk_14C, 12, 2);
-    v5 = PokedexTextManager_DisplayMessage(v3->unk_14C, v0, TEXT_BANK_POKEDEX, pl_msg_pokedex_heightcheck_button, 0, 0);
+    v0 = PokedexTextManager_NewWindow(v3->textMan, 12, 2);
+    v5 = PokedexTextManager_DisplayMessage(v3->textMan, v0, TEXT_BANK_POKEDEX, pl_msg_pokedex_heightcheck_button, 0, 0);
 
     displayBox.x = -(v5 / 2);
     displayBox.window = v0;
@@ -623,8 +622,8 @@ static void ov21_021E70D4(UnkStruct_ov21_021E6C60 *param0, PokedexGraphicData **
     sub_02012A60(param0->unk_08[0]->fontOAM, v4 + 4);
     PokedexTextManager_FreeWindow(v0);
 
-    v0 = PokedexTextManager_NewWindow(v3->unk_14C, 12, 2);
-    v5 = PokedexTextManager_DisplayMessage(v3->unk_14C, v0, TEXT_BANK_POKEDEX, pl_msg_pokedex_weightcheck_button, 0, 0);
+    v0 = PokedexTextManager_NewWindow(v3->textMan, 12, 2);
+    v5 = PokedexTextManager_DisplayMessage(v3->textMan, v0, TEXT_BANK_POKEDEX, pl_msg_pokedex_weightcheck_button, 0, 0);
 
     displayBox.x = -(v5 / 2);
     displayBox.window = v0;
@@ -688,7 +687,7 @@ static void ov21_021E71D0(PokedexGraphicData **param0, Sprite *param1, PokedexTe
             Heap_FreeToHeap(*param10);
         }
 
-        *param10 = ov21_021D27E0(*param0, v4, &v1, heapID);
+        *param10 = PokedexGraphics_GetGraphicNarcPaletteData(*param0, v4, &v1, heapID);
 
         v2 = VramTransfer_Request(NNS_GFD_DST_2D_BG_PLTT_SUB, param5 * 32, v1->pRawData, 32);
         GF_ASSERT(v2);
@@ -747,5 +746,5 @@ static void ov21_021E732C(PokedexGraphicData **param0, const UnkStruct_ov21_021E
 static void ov21_021E7368(PokedexGraphicData **param0, int param1, int param2, int param3, int param4)
 {
     PokedexGraphicData *v0 = *param0;
-    ov21_021D2574(v0, param1, param2, param3, param4);
+    PokedexGraphics_TransformCursor(v0, param1, param2, param3, param4);
 }

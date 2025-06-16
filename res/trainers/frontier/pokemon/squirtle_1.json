@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_SQUIRTLE",
+    "moves": [
+        "MOVE_AQUA_JET",
+        "MOVE_BITE",
+        "MOVE_WITHDRAW",
+        "MOVE_PROTECT"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_SEA_INCENSE",
+    "form": 0
+}

@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_VILEPLUME",
+    "moves": [
+        "MOVE_SEED_BOMB",
+        "MOVE_DRAIN_PUNCH",
+        "MOVE_FRUSTRATION",
+        "MOVE_SWORDS_DANCE"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_LUM_BERRY",
+    "form": 0
+}

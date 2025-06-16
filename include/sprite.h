@@ -7,10 +7,6 @@
 
 #include "constants/heap.h"
 
-#define SPRITE_FLIP_NONE 0
-#define SPRITE_FLIP_H    1
-#define SPRITE_FLIP_V    2
-
 #define SPRITE_ANIM_SIZE 29
 #define MAX_SPRITES      128
 

@@ -21,6 +21,7 @@
 #include "game_records.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "item_use_pokemon.h"
 #include "location.h"
 #include "message.h"
 #include "message_util.h"
@@ -30,17 +31,16 @@
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system_flags.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_0202DF8C.h"
 #include "unk_0203D1B8.h"
 #include "unk_02054884.h"
 #include "unk_020559DC.h"
-#include "unk_02096420.h"
 #include "vars_flags.h"
 
 typedef struct {
@@ -100,12 +100,12 @@ static BOOL sub_02052CBC(FieldTask *param0)
         if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELD, 0x20000);
             sub_02052F28(fieldSystem, v3);
-            StartScreenTransition(3, 1, 1, 0x0, 8, 1, HEAP_ID_FIELD_TASK);
+            StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 8, 1, HEAP_ID_FIELD_TASK);
             (*v4)++;
         }
         break;
     case 2:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             if (SaveData_OverwriteCheck(fieldSystem->saveData) == 0) {
                 sub_02052FA8(fieldSystem, v3);
                 (*v4)++;
@@ -122,7 +122,7 @@ static BOOL sub_02052CBC(FieldTask *param0)
     case 4: {
         int v6;
 
-        HealAllPokemonInParty(SaveData_GetParty(fieldSystem->saveData));
+        Party_HealAllMembers(SaveData_GetParty(fieldSystem->saveData));
         SaveData_SetFullSaveRequired();
         v6 = SaveData_Save(fieldSystem->saveData);
         sub_02052C6C(fieldSystem, v3->unk_00);
@@ -145,11 +145,11 @@ static BOOL sub_02052CBC(FieldTask *param0)
         }
         break;
     case 7:
-        StartScreenTransition(3, 0, 0, 0x0, 8, 1, HEAP_ID_FIELD_TASK);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 8, 1, HEAP_ID_FIELD_TASK);
         (*v4)++;
         break;
     case 8:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             sub_02053098(fieldSystem, v3);
             sub_0203E274(fieldSystem, &(v3->unk_10));
             (*v4)++;

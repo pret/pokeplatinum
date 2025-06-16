@@ -28,7 +28,6 @@
 #include "battle/common.h"
 #include "battle/ov16_0223B140.h"
 #include "battle/ov16_0223DF00.h"
-#include "battle/scripts/sub_seq.naix"
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 
@@ -40,9 +39,11 @@
 #include "move_table.h"
 #include "party.h"
 #include "pokemon.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
+
+#include "res/battle/scripts/sub_seq.naix.h"
 
 enum BattleControllerState {
     STATE_PROCESSING = 0,
@@ -4032,7 +4033,7 @@ static void BattleController_HandleResult(BattleSystem *battleSys, BattleContext
 
 static void BattleController_ScreenWipe(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    if (IsScreenTransitionDone() == TRUE) {
+    if (IsScreenFadeDone() == TRUE) {
         battleCtx->command = BATTLE_CONTROL_FIGHT_END;
     }
 }

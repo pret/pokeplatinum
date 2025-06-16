@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_CRESSELIA",
+    "moves": [
+        "MOVE_PSYCHIC",
+        "MOVE_SOLAR_BEAM",
+        "MOVE_MOONLIGHT",
+        "MOVE_SUNNY_DAY"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_BOLD",
+    "item": "ITEM_HEAT_ROCK",
+    "form": 0
+}

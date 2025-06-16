@@ -23,6 +23,6 @@ void Daycare_SetStepCounter(Daycare *daycare, int steps);
 BOOL Daycare_AreParentLanguagesDifferent(Daycare *daycare);
 void DaycareMon_CopyToDaycareMon(DaycareMon *dest, const DaycareMon *src);
 void DaycareMon_Init(DaycareMon *daycareMon);
-Daycare *SaveData_GetDaycare(SaveData *param0);
+Daycare *SaveData_GetDaycare(SaveData *saveData);
 
 #endif // POKEPLATINUM_DAYCARE_SAVE_H

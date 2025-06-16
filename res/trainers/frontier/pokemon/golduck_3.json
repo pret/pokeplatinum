@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_GOLDUCK",
+    "moves": [
+        "MOVE_AQUA_TAIL",
+        "MOVE_CROSS_CHOP",
+        "MOVE_ICE_PUNCH",
+        "MOVE_ZEN_HEADBUTT"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_SCOPE_LENS",
+    "form": 0
+}

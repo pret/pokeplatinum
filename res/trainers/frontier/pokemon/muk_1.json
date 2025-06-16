@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_MUK",
+    "moves": [
+        "MOVE_POISON_JAB",
+        "MOVE_SHADOW_SNEAK",
+        "MOVE_MINIMIZE",
+        "MOVE_ACID_ARMOR"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_BLACK_SLUDGE",
+    "form": 0
+}

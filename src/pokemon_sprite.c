@@ -14,7 +14,7 @@
 #include "palette.h"
 #include "pokemon_sprite.h"
 
-#include "res/pokemon/pl_otherpoke.naix"
+#include "res/pokemon/pl_otherpoke.naix.h"
 
 #define MAX_SPINDA_SPOTS       4
 #define SPINDA_SPOT_COORDS_END 0xFF

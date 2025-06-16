@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_POLIWRATH",
+    "moves": [
+        "MOVE_SURF",
+        "MOVE_VACUUM_WAVE",
+        "MOVE_PSYCHIC",
+        "MOVE_DOUBLE_TEAM"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_RINDO_BERRY",
+    "form": 0
+}

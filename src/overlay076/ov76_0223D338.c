@@ -32,6 +32,7 @@
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
 #include "string_list.h"
@@ -40,7 +41,6 @@
 #include "system.h"
 #include "touch_screen.h"
 #include "touch_screen_actions.h"
-#include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02015920.h"
 #include "unk_02015F84.h"
@@ -345,7 +345,7 @@ static BOOL ov76_0223D674(UnkStruct_ov76_0223DE00 *param0)
         break;
 
     case 2:
-        if (IsScreenTransitionDone() != 1) {
+        if (IsScreenFadeDone() != 1) {
             break;
         }
 
@@ -424,7 +424,7 @@ static BOOL ov76_0223D674(UnkStruct_ov76_0223DE00 *param0)
         param0->unk_3D4++;
         break;
     case 6:
-        if (IsScreenTransitionDone() != 1) {
+        if (IsScreenFadeDone() != 1) {
             break;
         }
         Window_Remove(&param0->unk_D4.unk_18[0]);
@@ -858,7 +858,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
             v1 = param0->unk_3C4[0] + 1;
 
             ov76_0223B848(&v2, param0);
-            Pokemon_SetValue(param0->unk_428, MON_DATA_MAIL_ID, (u8 *)&v1);
+            Pokemon_SetValue(param0->unk_428, MON_DATA_BALL_CAPSULE_ID, (u8 *)&v1);
             Pokemon_SetValue(param0->unk_428, MON_DATA_171, &v2);
 
             param0->unk_D4.unk_154 = ov12_02236004(HEAP_ID_53, &v3);
@@ -975,7 +975,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
         ov76_0223C7E0(param0);
         {
             GameRecords *v7;
-            v7 = SaveData_GetGameRecords(param0->unk_00->unk_28);
+            v7 = SaveData_GetGameRecords(param0->unk_00->saveData);
 
             GameRecords_IncrementTrainerScore(v7, TRAINER_SCORE_EVENT_UNK_06);
         }
@@ -1180,7 +1180,7 @@ static BOOL ov76_0223E8A4(UnkStruct_ov76_0223DE00 *param0)
         param0->unk_3D4++;
         break;
     case 2:
-        if (IsScreenTransitionDone() != 1) {
+        if (IsScreenFadeDone() != 1) {
             break;
         }
 
@@ -1211,7 +1211,7 @@ void ov76_0223E91C(UnkStruct_ov76_0223DE00 *param0, int param1)
     v1 = param0->unk_04[param1].unk_00;
 
     if (v1 != 0xff) {
-        Pokemon_SetValue(param0->unk_00->unk_04[v1], MON_DATA_MAIL_ID, (u8 *)&v2);
+        Pokemon_SetValue(param0->unk_00->unk_04[v1], MON_DATA_BALL_CAPSULE_ID, (u8 *)&v2);
     }
 
     param0->unk_04[param1].unk_00 = 0xff;

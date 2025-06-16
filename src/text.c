@@ -6,8 +6,6 @@
 #include "constants/heap.h"
 #include "constants/narc.h"
 
-#include "fonts/pl_font.naix"
-
 #include "bg_window.h"
 #include "font.h"
 #include "graphics.h"
@@ -16,6 +14,8 @@
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+
+#include "res/fonts/pl_font.naix.h"
 
 static enum RenderResult TextPrinter_Render(TextPrinter *printer);
 static u8 Text_CreatePrinterTask(SysTaskFunc taskFunc, TextPrinter *printer, u32 priority);

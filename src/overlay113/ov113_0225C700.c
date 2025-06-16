@@ -50,6 +50,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
@@ -61,7 +62,6 @@
 #include "system.h"
 #include "text.h"
 #include "touch_pad.h"
-#include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02015920.h"
 #include "unk_0202419C.h"
@@ -82,7 +82,7 @@ typedef struct {
 
 typedef struct UnkStruct_ov113_0225DBCC_t {
     UnkStruct_ov66_0223127C *unk_00;
-    SaveData *unk_04;
+    SaveData *saveData;
     BgConfig *unk_08;
     PaletteData *unk_0C;
     UnkStruct_02012744 *unk_10;
@@ -147,7 +147,7 @@ static void ov113_0225DB08(UnkStruct_ov113_0225DBCC *param0);
 static void ov113_0225E364(UnkStruct_ov113_0225DBCC *param0);
 static void ov113_0225DD14(UnkStruct_ov113_0225DBCC *param0);
 static void ov113_0225DD24(UnkStruct_ov113_0225DBCC *param0, UnkStruct_ov113_0225CA04 *param1);
-static void ov113_0225DD4C(int param0, SaveData *param1, UnkStruct_ov113_02260818 *param2);
+static void ov113_0225DD4C(int param0, SaveData *saveData, UnkStruct_ov113_02260818 *param2);
 static void ov113_0225D304(UnkStruct_ov113_0225DBCC *param0, NARC *param1);
 static void ov113_0225D630(UnkStruct_ov113_0225DBCC *param0, NARC *param1);
 static void ov113_0225D484(UnkStruct_ov113_0225DBCC *param0);
@@ -329,7 +329,7 @@ static const SpriteTemplate Unk_ov113_022609D0 = {
     0x0
 };
 
-int ov113_0225C700(OverlayManager *param0, int *param1)
+int ov113_0225C700(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov113_0225DBCC *v0;
 
@@ -347,15 +347,15 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_118, 0x50000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov113_0225DBCC), HEAP_ID_118);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov113_0225DBCC), HEAP_ID_118);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov113_0225DBCC));
 
-    v0->unk_00 = OverlayManager_Args(param0);
-    v0->unk_04 = ov66_0222E0C4(v0->unk_00->unk_00);
+    v0->unk_00 = ApplicationManager_Args(appMan);
+    v0->saveData = ov66_0222E0C4(v0->unk_00->unk_00);
     v0->unk_19E0 = ov66_0222E0C8(v0->unk_00->unk_00);
 
     ov113_0225DD14(v0);
-    ov113_0225DD4C(v0->unk_00->unk_04, v0->unk_04, v0->unk_8D8);
+    ov113_0225DD4C(v0->unk_00->unk_04, v0->saveData, v0->unk_8D8);
 
     v0->unk_19D4 = (32 << 8);
     v0->unk_19D8 = v0->unk_19D4;
@@ -414,7 +414,7 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
 
     v0->unk_24 = sub_02015920(HEAP_ID_118);
 
-    StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_118);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_118);
 
     if (v0->unk_00->unk_00 != NULL) {
         ov66_0222E31C(v0->unk_00->unk_00, 1);
@@ -444,9 +444,9 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov113_0225CA04(OverlayManager *param0, int *param1)
+int ov113_0225CA04(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov113_0225DBCC *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov113_0225DBCC *v0 = ApplicationManager_Data(appMan);
 
     ov113_0225E3F0(&v0->unk_194, v0->camera, v0->unk_9BC, v0->unk_00->unk_04);
 
@@ -462,7 +462,7 @@ int ov113_0225CA04(OverlayManager *param0, int *param1)
         (*param1)++;
         break;
     case 1:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             v0->unk_9BC = 1;
             (*param1)++;
         }
@@ -499,7 +499,7 @@ int ov113_0225CA04(OverlayManager *param0, int *param1)
         Window_FillTilemap(&v0->unk_B4, 0xf);
         Window_DrawMessageBoxWithScrollCursor(&v0->unk_B4, 0, 1, 14);
         MessageLoader_GetStrbuf(v0->unk_30, 2, v0->unk_C4);
-        v0->unk_C8 = Text_AddPrinterWithParams(&v0->unk_B4, FONT_MESSAGE, v0->unk_C4, 0, 0, Options_TextFrameDelay(SaveData_GetOptions(v0->unk_04)), NULL);
+        v0->unk_C8 = Text_AddPrinterWithParams(&v0->unk_B4, FONT_MESSAGE, v0->unk_C4, 0, 0, Options_TextFrameDelay(SaveData_GetOptions(v0->saveData)), NULL);
         (*param1)++;
         break;
     case 4:
@@ -549,7 +549,7 @@ int ov113_0225CA04(OverlayManager *param0, int *param1)
         Window_FillTilemap(&v0->unk_B4, 0xf);
         Window_DrawMessageBoxWithScrollCursor(&v0->unk_B4, 0, 1, 14);
         MessageLoader_GetStrbuf(v0->unk_30, 3, v0->unk_C4);
-        v0->unk_C8 = Text_AddPrinterWithParams(&v0->unk_B4, FONT_MESSAGE, v0->unk_C4, 0, 0, Options_TextFrameDelay(SaveData_GetOptions(v0->unk_04)), NULL);
+        v0->unk_C8 = Text_AddPrinterWithParams(&v0->unk_B4, FONT_MESSAGE, v0->unk_C4, 0, 0, Options_TextFrameDelay(SaveData_GetOptions(v0->saveData)), NULL);
         (*param1)++;
         break;
     case 7:
@@ -565,15 +565,15 @@ int ov113_0225CA04(OverlayManager *param0, int *param1)
         }
         break;
     case 9:
-        if (IsScreenTransitionDone() == 0) {
-            sub_0200F2C0();
+        if (IsScreenFadeDone() == FALSE) {
+            FinishScreenFade();
         }
 
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_118);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_118);
         (*param1)++;
         break;
     case 10:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             (*param1)++;
         }
         break;
@@ -616,9 +616,9 @@ int ov113_0225CA04(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov113_0225CDFC(OverlayManager *param0, int *param1)
+int ov113_0225CDFC(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov113_0225DBCC *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov113_0225DBCC *v0 = ApplicationManager_Data(appMan);
 
     SysTask_Done(v0->unk_18);
     ov113_0225D5D8(v0);
@@ -658,7 +658,7 @@ int ov113_0225CDFC(OverlayManager *param0, int *param1)
     RenderControlFlags_SetAutoScrollFlags(0);
     RenderControlFlags_SetSpeedUpOnTouch(0);
     sub_02039794();
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_118);
 
     return 1;
@@ -900,7 +900,7 @@ static void ov113_0225D160(UnkStruct_ov113_0225DBCC *param0, NARC *param1)
 
     {
         int v2;
-        v2 = Options_Frame(SaveData_GetOptions(param0->unk_04));
+        v2 = Options_Frame(SaveData_GetOptions(param0->saveData));
 
         PaletteData_LoadBufferFromFileStart(param0->unk_0C, 38, GetMessageBoxPaletteNARCMember(v2), 118, 0, 0x20, 14 * 16);
         LoadMessageBoxGraphics(param0->unk_08, 1, 1, 14, v2, HEAP_ID_118);
@@ -1311,7 +1311,7 @@ UnkStruct_ov113_022607EC *ov113_0225DD44(UnkStruct_ov113_0225DBCC *param0)
     return &param0->unk_168;
 }
 
-static void ov113_0225DD4C(int param0, SaveData *param1, UnkStruct_ov113_02260818 *param2)
+static void ov113_0225DD4C(int param0, SaveData *saveData, UnkStruct_ov113_02260818 *param2)
 {
     Party *v0;
     int v1;
@@ -1320,7 +1320,7 @@ static void ov113_0225DD4C(int param0, SaveData *param1, UnkStruct_ov113_0226081
 
     MI_CpuClear8(param2, sizeof(UnkStruct_ov113_02260818) * 6);
 
-    v0 = SaveData_GetParty(param1);
+    v0 = SaveData_GetParty(saveData);
     v1 = Party_GetCurrentCount(v0);
 
     for (v3 = 0; v3 < v1; v3++) {

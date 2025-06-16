@@ -16,12 +16,12 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "palette.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
-#include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0208B284.h"
 
@@ -122,12 +122,12 @@ static BOOL ov62_02235324(UnkStruct_0208C06C *param0)
         if (param0->unk_0C != 0) {
             param0->unk_0C -= 4;
         } else {
-            StartScreenTransition(0, 0, 0, 0, 6, 1, HEAP_ID_102);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_102);
             param0->unk_08++;
         }
         break;
     default:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             ov62_02234540(param0, 0);
             return 1;
         }

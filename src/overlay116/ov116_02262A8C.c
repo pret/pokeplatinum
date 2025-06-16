@@ -19,13 +19,13 @@
 #include "heap.h"
 #include "inlines.h"
 #include "math_util.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
-#include "unk_0200F174.h"
 
 static const s16 Unk_ov116_02267BFC[] = {
     -2,
@@ -388,7 +388,7 @@ void ov116_02262E50(SysTask *param0, void *param1)
         v8 = FX32_CONST(48);
     }
 
-    if ((IsScreenTransitionDone() == 0) || (v0->unk_78->unk_2C.unk_00 == 1)) {
+    if ((IsScreenFadeDone() == FALSE) || (v0->unk_78->unk_2C.unk_00 == 1)) {
         SysTask_Done(param0);
         Heap_FreeToHeap(v0);
         return;
@@ -513,7 +513,7 @@ void ov116_02263158(SysTask *param0, void *param1)
     UnkStruct_ov116_02262CB8 *v0 = param1;
     int v1 = ManagedSprite_GetAnimationFrame(v0->unk_0C);
 
-    if ((IsScreenTransitionDone() == 0) || (v0->unk_2C->unk_2C.unk_00 == 1)) {
+    if ((IsScreenFadeDone() == FALSE) || (v0->unk_2C->unk_2C.unk_00 == 1)) {
         SysTask_Done(param0);
         Heap_FreeToHeap(v0);
         return;
@@ -568,7 +568,7 @@ static void ov116_0226323C(SysTask *param0, void *param1)
 {
     UnkStruct_ov116_02262D08 *v0 = param1;
 
-    if ((IsScreenTransitionDone() == 0) || (v0->unk_3C->unk_2C.unk_00 == 1)) {
+    if ((IsScreenFadeDone() == FALSE) || (v0->unk_3C->unk_2C.unk_00 == 1)) {
         v0->unk_30 = 0;
         SysTask_Done(param0);
         return;
@@ -664,7 +664,7 @@ static void ov116_02263434(SysTask *param0, void *param1)
     UnkStruct_ov116_0226501C *v2 = v1->unk_34;
     UnkStruct_ov116_0226501C *v3 = v1->unk_38;
 
-    if ((IsScreenTransitionDone() == 0) || (v1->unk_3C->unk_2C.unk_00 == 1)) {
+    if ((IsScreenFadeDone() == FALSE) || (v1->unk_3C->unk_2C.unk_00 == 1)) {
         ov116_0226192C(v2);
         ov116_0226192C(v3);
 

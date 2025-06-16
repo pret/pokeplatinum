@@ -36,8 +36,8 @@ typedef struct {
 } UnkStruct_0209C1EC;
 
 static BOOL (*const Unk_020F951C[6])(UnkStruct_0209C1EC *);
-static const OverlayManagerTemplate Unk_020F94FC;
-static const OverlayManagerTemplate Unk_020F950C;
+static const ApplicationManagerTemplate Unk_020F94FC;
+static const ApplicationManagerTemplate Unk_020F950C;
 
 UnkStruct_0209C194 *sub_0209C194(UnkStruct_0209C194_1 *param0, u32 heapID)
 {
@@ -67,7 +67,7 @@ void *sub_0209C1EC(FieldSystem *fieldSystem)
     memset(v0, 0, sizeof(UnkStruct_0209C1EC));
 
     v0->fieldSystem = fieldSystem;
-    v0->unk_08.unk_08 = fieldSystem->saveData;
+    v0->unk_08.saveData = fieldSystem->saveData;
     v0->unk_08.unk_0C = fieldSystem->unk_80;
     v0->unk_08.unk_10 = SaveData_GetOptions(fieldSystem->saveData);
     v0->unk_08.records = SaveData_GetGameRecords(fieldSystem->saveData);
@@ -122,7 +122,7 @@ static BOOL sub_0209C2C0(UnkStruct_0209C1EC *param0)
 
         Heap_FreeToHeap(param0->unk_30);
 
-        if (param0->unk_30->unk_23 == 1) {
+        if (param0->unk_30->menuSelectionResult == 1) {
             param0->unk_34 = sub_0203D670(param0->fieldSystem, HEAP_ID_APPLICATION, SUMMARY_MODE_NORMAL);
             param0->unk_04 = v0;
             param0->unk_34->monIndex = v0;
@@ -174,14 +174,14 @@ static BOOL (*const Unk_020F951C[6])(UnkStruct_0209C1EC *) = {
     sub_0209C364,
 };
 
-static const OverlayManagerTemplate Unk_020F94FC = {
+static const ApplicationManagerTemplate Unk_020F94FC = {
     ov109_021D3D50,
     ov109_021D3EB0,
     ov109_021D3F9C,
     FS_OVERLAY_ID(overlay109)
 };
 
-static const OverlayManagerTemplate Unk_020F950C = {
+static const ApplicationManagerTemplate Unk_020F950C = {
     ov109_021D0D80,
     ov109_021D0F2C,
     ov109_021D0EB4,

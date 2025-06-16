@@ -25,6 +25,7 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "palette.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
@@ -32,7 +33,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "touch_pad.h"
-#include "unk_0200F174.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "vram_transfer.h"
@@ -85,7 +85,7 @@ static void ov99_021D1270(UnkStruct_ov99_021D2CB0 *param0);
 static void ov99_021D1314(UnkStruct_ov99_021D2CB0 *param0);
 static void ov99_021D1580(BgConfig *param0);
 
-int ov99_021D0D80(OverlayManager *param0, int *param1)
+int ov99_021D0D80(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov99_021D2CB0 *v0;
 
@@ -103,10 +103,10 @@ int ov99_021D0D80(OverlayManager *param0, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_75, 0x80000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov99_021D2CB0), HEAP_ID_75);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov99_021D2CB0), HEAP_ID_75);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov99_021D2CB0));
 
-    v0->unk_00 = OverlayManager_Args(param0);
+    v0->unk_00 = ApplicationManager_Args(appMan);
     v0->unk_10 = ov99_021D19AC(HEAP_ID_75);
     v0->unk_0C = PaletteData_New(HEAP_ID_75);
 
@@ -170,8 +170,8 @@ int ov99_021D0D80(OverlayManager *param0, int *param1)
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_14, SEQ_BLD_ENDING, 1);
 
     BrightnessController_SetScreenBrightness(-16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_BOTH_SCREENS);
-    sub_0200F44C(0, 0);
-    sub_0200F44C(1, 0);
+    SetScreenMasterBrightness(DS_SCREEN_MAIN, 0);
+    SetScreenMasterBrightness(1, 0);
 
     Bg_ToggleLayer(1, 1);
     Bg_ToggleLayer(5, 1);
@@ -179,9 +179,9 @@ int ov99_021D0D80(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov99_021D1028(OverlayManager *param0, int *param1)
+int ov99_021D1028(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov99_021D2CB0 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov99_021D2CB0 *v0 = ApplicationManager_Data(appMan);
 
     if (v0->unk_1108 != NULL) {
         ov99_021D3F6C(v0->unk_1108, 1);
@@ -190,7 +190,7 @@ int ov99_021D1028(OverlayManager *param0, int *param1)
 
     if (v0->unk_00->unk_04 && (gSystem.pressedKeys & PAD_BUTTON_START)) {
         if ((v0->unk_1100 == 0) && (v0->unk_1101 < 6)) {
-            StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_75);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_75);
             v0->unk_1100 = 1;
         }
     }
@@ -199,7 +199,7 @@ int ov99_021D1028(OverlayManager *param0, int *param1)
     case 0:
         break;
     case 1:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             if (v0->unk_1102 == 1) {
                 ov99_021D1CFC(v0, v0->unk_1101);
                 v0->unk_1102 = 0;
@@ -254,9 +254,9 @@ int ov99_021D1028(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov99_021D11A8(OverlayManager *param0, int *param1)
+int ov99_021D11A8(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov99_021D2CB0 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov99_021D2CB0 *v0 = ApplicationManager_Data(appMan);
 
     SysTask_Done(v0->unk_14);
 
@@ -282,7 +282,7 @@ int ov99_021D11A8(OverlayManager *param0, int *param1)
     DisableHBlank();
     VramTransfer_Free();
     DisableTouchPad();
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_75);
 
     return 1;

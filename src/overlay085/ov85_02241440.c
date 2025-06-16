@@ -19,13 +19,13 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "screen_fade.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
 #include "touch_pad.h"
 #include "unk_0200C440.h"
-#include "unk_0200F174.h"
 #include "unk_0202419C.h"
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"
@@ -200,7 +200,7 @@ static const UnkStruct_ov85_022423A0 Unk_ov85_02242938[][4] = {
     },
 };
 
-int ov85_02241440(OverlayManager *param0, int *param1)
+int ov85_02241440(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov85_022417E4 *v0;
     NARC *v1;
@@ -217,9 +217,9 @@ int ov85_02241440(OverlayManager *param0, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_36, 0x20000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov85_022417E4), HEAP_ID_36);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov85_022417E4), HEAP_ID_36);
     memset(v0, 0, sizeof(UnkStruct_ov85_022417E4));
-    v0->unk_1F8 = OverlayManager_Args(param0);
+    v0->unk_1F8 = ApplicationManager_Args(appMan);
     v0->unk_00 = BgConfig_New(HEAP_ID_36);
     v0->unk_1FC = BerryData_Load(v0->unk_1F8->unk_08, 36);
 
@@ -251,9 +251,9 @@ int ov85_02241440(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov85_0224154C(OverlayManager *param0, int *param1)
+int ov85_0224154C(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov85_022417E4 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov85_022417E4 *v0 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
     case 0:
@@ -277,9 +277,9 @@ int ov85_0224154C(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov85_022415A0(OverlayManager *param0, int *param1)
+int ov85_022415A0(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov85_022417E4 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov85_022417E4 *v0 = ApplicationManager_Data(appMan);
 
     ov85_02241860(v0->unk_04);
     ov85_022416E8(v0->unk_00);
@@ -290,7 +290,7 @@ int ov85_022415A0(OverlayManager *param0, int *param1)
     ov85_0224202C(v0);
 
     Heap_FreeToHeap(v0->unk_1FC);
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     SetVBlankCallback(NULL, NULL);
     Heap_Destroy(HEAP_ID_36);
 
@@ -692,7 +692,7 @@ static void ov85_02241CD0(UnkStruct_ov85_022417E4 *param0)
 
 static int ov85_02241CE8(UnkStruct_ov85_022417E4 *param0)
 {
-    if (IsScreenTransitionDone() == 1) {
+    if (IsScreenFadeDone() == TRUE) {
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_PLANEMASK_BG2, 16, 0);
         return 1;
     }
@@ -754,7 +754,7 @@ static int ov85_02241D10(UnkStruct_ov85_022417E4 *param0)
 
 static u8 ov85_02241DEC(UnkStruct_ov85_022417E4 *param0)
 {
-    return IsScreenTransitionDone();
+    return IsScreenFadeDone();
 }
 
 static int ov85_02241DF8(UnkStruct_ov85_022417E4 *param0)

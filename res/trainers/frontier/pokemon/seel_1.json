@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_SEEL",
+    "moves": [
+        "MOVE_AQUA_JET",
+        "MOVE_ICE_SHARD",
+        "MOVE_FAKE_OUT",
+        "MOVE_ENCORE"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_ASPEAR_BERRY",
+    "form": 0
+}

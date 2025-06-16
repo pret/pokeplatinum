@@ -29,6 +29,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
@@ -37,7 +38,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_02028124.h"
 #include "unk_0203D1B8.h"
 #include "unk_0206A780.h"
@@ -142,7 +142,7 @@ static void sub_02072C98(UnkStruct_02072334 *param0, u8 param1, u8 param2);
 static void sub_02072DA4(ListMenu *param0, u32 param1, u8 param2);
 static void sub_02072DB8(UnkStruct_02072334 *param0);
 static void sub_02072E4C(UnkStruct_02072334 *param0);
-static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *param1, int heapID);
+static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *saveData, int heapID);
 static void sub_02073020(UnkStruct_02072334 *param0, u8 param1);
 static BOOL sub_02073060(UnkStruct_02072334 *param0);
 static void sub_020730B8(UnkStruct_02072334 *param0, u8 param1, BOOL param2);
@@ -193,7 +193,7 @@ static const UnkStruct_020F0524 Unk_020F0524[] = {
 void sub_020722AC(void *param0, int *param1)
 {
     UnkStruct_02072334 *v0 = NULL;
-    SaveData *v1;
+    SaveData *saveData;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_43, 0x5000);
 
@@ -201,17 +201,17 @@ void sub_020722AC(void *param0, int *param1)
     MI_CpuClear8(v0, sizeof(UnkStruct_02072334));
     v0->unk_04 = param1;
 
-    v1 = FieldSystem_GetSaveData(param0);
+    saveData = FieldSystem_GetSaveData(param0);
 
     v0->fieldSystem = (FieldSystem *)param0;
     v0->heapID = HEAP_ID_43;
     v0->unk_19 = 0;
     v0->unk_1A = 0xFF;
-    v0->unk_16 = Options_TextFrameDelay(SaveData_GetOptions(v1));
-    v0->unk_14 = Options_Frame(SaveData_GetOptions(v1));
+    v0->unk_16 = Options_TextFrameDelay(SaveData_GetOptions(saveData));
+    v0->unk_14 = Options_Frame(SaveData_GetOptions(saveData));
 
     sub_02072ED0(v0->unk_1C, 20, v0->heapID);
-    sub_02072F30(v0, v1, v0->heapID);
+    sub_02072F30(v0, saveData, v0->heapID);
     sub_02073130(v0);
 
     v0->unk_08 = SysTask_Start(sub_02072370, v0, 0);
@@ -501,7 +501,7 @@ static void sub_020726B4(SysTask *param0, void *param1)
 static void sub_02072754(SysTask *param0, void *param1)
 {
     u8 v0;
-    PartyManagementData *v1;
+    PartyManagementData *partyMan;
     UnkStruct_02072334 *v2 = (UnkStruct_02072334 *)param1;
 
     switch (v2->unk_10) {
@@ -581,7 +581,7 @@ static void sub_02072878(SysTask *param0, void *param1)
 {
     int v0;
     u8 v1, v2;
-    PartyManagementData *v3;
+    PartyManagementData *partyMan;
     UnkStruct_02072334 *v4 = (UnkStruct_02072334 *)param1;
 
     switch (v4->unk_10) {
@@ -605,7 +605,7 @@ static void sub_02072878(SysTask *param0, void *param1)
         }
 
         v1 = v4->unk_1B4->selectedMonSlot;
-        v2 = v4->unk_1B4->unk_23;
+        v2 = v4->unk_1B4->menuSelectionResult;
 
         Heap_FreeToHeap(v4->unk_1B4);
 
@@ -895,7 +895,7 @@ static void sub_02072F04(UnkStruct_02072EB8 *param0, u8 param1)
     }
 }
 
-static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *param1, int heapID)
+static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *saveData, int heapID)
 {
     u8 v0 = 0, v1 = 0, v2 = 0xFF, v3 = 0;
     int v4;
@@ -903,10 +903,10 @@ static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *param1, int heapI
     Mail *v6;
     UnkStruct_02072EB8 *v7, *v8;
 
-    v5 = SaveData_GetMailBox(param1);
+    v5 = SaveData_GetMailBox(saveData);
 
     param0->unk_1AC = v5;
-    param0->bag = SaveData_GetBag(param1);
+    param0->bag = SaveData_GetBag(saveData);
 
     v6 = sub_0202818C(heapID);
 
@@ -1136,11 +1136,11 @@ static int sub_02073438(UnkStruct_02072334 *param0, int param1)
 {
     switch (param0->unk_12) {
     case 0:
-        StartScreenTransition(0, param1, param1, 0x0, 6, 1, param0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, param1, param1, 0x0, 6, 1, param0->heapID);
         param0->unk_12++;
         break;
     case 1:
-        if (!IsScreenTransitionDone()) {
+        if (!IsScreenFadeDone()) {
             break;
         }
 
@@ -1195,27 +1195,27 @@ static int sub_020734F4(UnkStruct_02072334 *param0, u8 param1)
 
 static int sub_02073524(UnkStruct_02072334 *param0, int param1)
 {
-    PartyManagementData *v0;
+    PartyManagementData *partyMan;
 
     switch (param0->unk_12) {
     case 0:
-        v0 = Heap_AllocFromHeap(param0->heapID, sizeof(PartyManagementData));
-        MI_CpuClear8(v0, sizeof(PartyManagementData));
+        partyMan = Heap_AllocFromHeap(param0->heapID, sizeof(PartyManagementData));
+        MI_CpuClear8(partyMan, sizeof(PartyManagementData));
 
-        v0->unk_00 = SaveData_GetParty(FieldSystem_GetSaveData(param0->fieldSystem));
-        v0->unk_04 = SaveData_GetBag(FieldSystem_GetSaveData(param0->fieldSystem));
-        v0->unk_0C = SaveData_GetOptions(FieldSystem_GetSaveData(param0->fieldSystem));
-        v0->unk_08 = SaveData_GetMailBox(param0->fieldSystem->saveData);
-        v0->unk_21 = 0;
-        v0->unk_20 = param1;
-        v0->unk_24 = param0->unk_1C[param0->unk_18].item;
+        partyMan->party = SaveData_GetParty(FieldSystem_GetSaveData(param0->fieldSystem));
+        partyMan->bag = SaveData_GetBag(FieldSystem_GetSaveData(param0->fieldSystem));
+        partyMan->options = SaveData_GetOptions(FieldSystem_GetSaveData(param0->fieldSystem));
+        partyMan->mailBox = SaveData_GetMailBox(param0->fieldSystem->saveData);
+        partyMan->unk_21 = 0;
+        partyMan->unk_20 = param1;
+        partyMan->usedItemID = param0->unk_1C[param0->unk_18].item;
 
         if (param1 == 11) {
-            v0->selectedMonSlot = param0->unk_17;
+            partyMan->selectedMonSlot = param0->unk_17;
         }
 
-        FieldSystem_StartChildProcess(param0->fieldSystem, &Unk_020F1E88, v0);
-        param0->unk_1B4 = v0;
+        FieldSystem_StartChildProcess(param0->fieldSystem, &Unk_020F1E88, partyMan);
+        param0->unk_1B4 = partyMan;
         param0->unk_12++;
         break;
     case 1:
@@ -1291,7 +1291,7 @@ static BOOL sub_02073694(FieldTask *param0)
 void sub_020736D8(FieldTask *param0)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_020736D8 *v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_020736D8));
+    UnkStruct_020736D8 *v1 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_020736D8));
 
     v1->unk_00 = 0;
     v1->unk_04 = 0;

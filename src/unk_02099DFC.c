@@ -13,12 +13,12 @@
 #include "overlay_manager.h"
 #include "render_window.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "strbuf.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 
 FS_EXTERN_OVERLAY(overlay77);
 
@@ -32,14 +32,14 @@ typedef struct {
     MessageLoader *unk_18;
     Window unk_1C;
     Menu *unk_2C;
-    SaveData *unk_30;
+    SaveData *saveData;
     void *unk_34;
 } UnkStruct_02099DFC;
 
-void EnqueueApplication(FSOverlayID param0, const OverlayManagerTemplate *param1);
-int sub_02099DFC(OverlayManager *param0, int *param1);
-int sub_02099E38(OverlayManager *param0, int *param1);
-int sub_02099F54(OverlayManager *param0, int *param1);
+void EnqueueApplication(FSOverlayID param0, const ApplicationManagerTemplate *param1);
+int sub_02099DFC(ApplicationManager *appMan, int *param1);
+int sub_02099E38(ApplicationManager *appMan, int *param1);
+int sub_02099F54(ApplicationManager *appMan, int *param1);
 static void sub_02099F74(void *param0);
 static void sub_02099F80(UnkStruct_02099DFC *param0);
 static void sub_0209A044(UnkStruct_02099DFC *param0);
@@ -48,9 +48,9 @@ static void sub_0209A0E0(UnkStruct_02099DFC *param0);
 static BOOL sub_0209A0F4(UnkStruct_02099DFC *param0);
 static BOOL sub_0209A200(UnkStruct_02099DFC *param0, u32 param1, int param2, int param3);
 
-extern const OverlayManagerTemplate gTitleScreenOverlayTemplate;
+extern const ApplicationManagerTemplate gTitleScreenAppTemplate;
 
-const OverlayManagerTemplate Unk_020F8A48 = {
+const ApplicationManagerTemplate Unk_020F8A48 = {
     sub_02099DFC,
     sub_02099E38,
     sub_02099F54,
@@ -77,26 +77,26 @@ static const WindowTemplate Unk_020F89EC = {
     0x155
 };
 
-int sub_02099DFC(OverlayManager *param0, int *param1)
+int sub_02099DFC(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_02099DFC *v0;
     int heapID = HEAP_ID_88;
 
     Heap_Create(HEAP_ID_APPLICATION, heapID, 0x20000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02099DFC), heapID);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_02099DFC), heapID);
     memset(v0, 0, sizeof(UnkStruct_02099DFC));
 
     v0->heapID = heapID;
     v0->unk_04 = 0;
-    v0->unk_30 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
+    v0->saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
 
     return 1;
 }
 
-int sub_02099E38(OverlayManager *param0, int *param1)
+int sub_02099E38(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_02099DFC *v0 = OverlayManager_Data(param0);
+    UnkStruct_02099DFC *v0 = ApplicationManager_Data(appMan);
     int v1 = 0;
 
     switch (*param1) {
@@ -104,8 +104,8 @@ int sub_02099E38(OverlayManager *param0, int *param1)
         Sound_StopBGM(SEQ_TITLE01, 0);
         Sound_ConfigureBGMChannelsAndReverb(SOUND_CHANNEL_CONFIG_DEFAULT);
         Sound_SetScene(SOUND_SCENE_NONE);
-        sub_0200F344(0, 0x0);
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
         SetVBlankCallback(NULL, NULL);
         SetHBlankCallback(NULL, NULL);
         GXLayers_DisableEngineALayers();
@@ -119,22 +119,22 @@ int sub_02099E38(OverlayManager *param0, int *param1)
         sub_0209A098(v0);
         SetVBlankCallback(sub_02099F74, (void *)v0);
         GXLayers_TurnBothDispOn();
-        StartScreenTransition(0, 1, 1, 0, 6, 1, v0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, v0->heapID);
         *param1 = 1;
         break;
     case 1:
-        if (IsScreenTransitionDone() == TRUE) {
+        if (IsScreenFadeDone() == TRUE) {
             *param1 = 2;
         }
         break;
     case 2:
         if (sub_0209A0F4(v0) == TRUE) {
-            StartScreenTransition(0, 0, 0, 0, 6, 1, v0->heapID);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, v0->heapID);
             *param1 = 3;
         }
         break;
     case 3:
-        if (IsScreenTransitionDone() == TRUE) {
+        if (IsScreenFadeDone() == TRUE) {
             sub_0209A0E0(v0);
             sub_0209A044(v0);
             SetVBlankCallback(NULL, NULL);
@@ -146,12 +146,12 @@ int sub_02099E38(OverlayManager *param0, int *param1)
     return v1;
 }
 
-int sub_02099F54(OverlayManager *param0, int *param1)
+int sub_02099F54(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_02099DFC *v0 = OverlayManager_Data(param0);
+    UnkStruct_02099DFC *v0 = ApplicationManager_Data(appMan);
     int heapID = v0->heapID;
 
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(heapID);
     OS_ResetSystem(0);
 
@@ -298,7 +298,7 @@ static BOOL sub_0209A0F4(UnkStruct_02099DFC *param0)
         }
         break;
     case 5:
-        SaveData_Erase(param0->unk_30);
+        SaveData_Erase(param0->saveData);
         DestroyWaitDial(param0->unk_34);
         param0->unk_04 = 6;
         break;

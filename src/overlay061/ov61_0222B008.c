@@ -83,7 +83,7 @@ int ov61_0222B008(UnkStruct_ov62_022349A8 *param0, const UnkStruct_ov62_02241130
     MI_CpuClear8(param0, sizeof(UnkStruct_ov62_022349A8));
 
     param0->heapID = param1->heapID;
-    param0->unk_00 = param1->unk_08;
+    param0->saveData = param1->saveData;
     param0->unk_150 = param1->unk_0C;
     param0->unk_08 = param1->unk_3C;
     param0->unk_04 = param1->unk_38;
@@ -169,8 +169,8 @@ int ov61_0222B1B4(UnkStruct_ov62_022349A8 *param0, UnkStruct_02030A80 *param1, U
         return 0;
     }
 
-    ov61_0222AFA4(param0->unk_00, param1, &param0->unk_190.unk_00_val1.unk_00);
-    ov61_0222AE60(param0->unk_00, param2, &param0->unk_190.unk_00_val1.unk_80);
+    ov61_0222AFA4(param0->saveData, param1, &param0->unk_190.unk_00_val1.unk_00);
+    ov61_0222AE60(param0->saveData, param2, &param0->unk_190.unk_00_val1.unk_80);
 
     param0->unk_40E = 60;
     param0->unk_3E8 = 20000;
@@ -199,9 +199,9 @@ int ov61_0222B224(UnkStruct_ov62_022349A8 *param0, int param1, UnkStruct_02030A8
     param0->unk_190.unk_21C.val1.unk_00 = param1;
     param0->unk_190.unk_21C.val1.unk_01 = param4;
 
-    ov61_0222AFA4(param0->unk_00, param2, &param0->unk_190.unk_00_val2.unk_00);
-    ov61_0222AE88(param0->unk_00, param3, param4, &param0->unk_190.unk_00_val2.unk_80, param0->heapID);
-    ov61_0222AF88(param0->unk_00, &param0->unk_190.unk_00_val2.unk_80, param1);
+    ov61_0222AFA4(param0->saveData, param2, &param0->unk_190.unk_00_val2.unk_00);
+    ov61_0222AE88(param0->saveData, param3, param4, &param0->unk_190.unk_00_val2.unk_80, param0->heapID);
+    ov61_0222AF88(param0->saveData, &param0->unk_190.unk_00_val2.unk_80, param1);
 
     param0->unk_40E = 60;
     param0->unk_3E8 = 21000;
@@ -240,9 +240,9 @@ int ov61_0222B2D8(UnkStruct_ov62_022349A8 *param0, UnkStruct_02030A80 *param1, U
         return 0;
     }
 
-    playTime = SaveData_GetPlayTime(param0->unk_00);
+    playTime = SaveData_GetPlayTime(param0->saveData);
     MI_CpuCopy8(playTime, &param0->unk_190.unk_00_val3.unk_08, sizeof(UnkStruct_ov62_0223D518_sub1_sub1));
-    ov61_0222AFCC(param0->unk_00, param1, &param0->unk_190.unk_00_val3.unk_00);
+    ov61_0222AFCC(param0->saveData, param1, &param0->unk_190.unk_00_val3.unk_00);
 
     for (v1 = 0; v1 < 3; v1++) {
         param0->unk_190.unk_00_val3.unk_0C[v1] = param2[v1];
@@ -265,7 +265,7 @@ int ov61_0222B338(UnkStruct_ov62_022349A8 *param0, UnkStruct_02030A80 *param1)
 
     param0->unk_190.unk_00_val4 = (UnkStruct_ov62_022349A8_sub3_sub3 *)sub_0202F27C();
 
-    ov62_02248624(param0->unk_00);
+    ov62_02248624(param0->saveData);
 
     v0 = sub_0202FDE8();
     MI_CpuCopy8(param1, v0, sizeof(UnkStruct_ov61_0222AFC0));
@@ -621,7 +621,7 @@ static BOOL ov61_0222B928(void *param0, void *param1)
 
     v2 = ov61_0222DE80();
     v3 = (UnkStruct_ov61_0222BDC8 *)(v2->unk_04);
-    v4 = ov62_02248658(v0->unk_00, v3->unk_00, &v1->unk_04, &v1->unk_06);
+    v4 = ov62_02248658(v0->saveData, v3->unk_00, &v1->unk_04, &v1->unk_06);
 
     if ((v4 == 2) || (v4 == 3)) {
         return 1;

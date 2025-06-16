@@ -18,3 +18,5 @@ otherpoke_index += {
     '180': files('forms/east_sea/normal.pal'),
     '181': files('forms/east_sea/shiny.pal'),
 }
+
+pokefoot_files += files('footprint.png')

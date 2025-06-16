@@ -6,6 +6,10 @@ import pathlib
 homedir = pathlib.Path(__file__).resolve().parent.parent.parent
 builddir = homedir / "build"
 
+cwsdkdir = homedir / "subprojects" / "metroskrew" / "lib" / "metroskrew" / "sdk" / "ds" / "2.0" / "sp2"
+cwlibcdir = cwsdkdir / "msl" / "MSL_C" / "MSL_Common" / "Include"
+cwextrasdir = cwsdkdir / "msl" / "MSL_Extras" / "MSL_Common" / "Include"
+
 arm7_c_flags = [
     "arm-none-eabi-gcc",
     "-c",
@@ -68,8 +72,8 @@ nitrosdk_c_commands = [
         "directory": builddir,
         "arguments": arm9_c_flags
         + [
-            f"-I{homedir}/tools/cw/include/MSL_C",
-            f"-I{homedir}/tools/cw/include/MSL_Extras",
+            f"-I{cwlibcdir}",
+            f"-I{cwextrasdir}",
             f"-I{homedir}/subprojects/NitroSDK-4.2.30001/include",
             f"-I{builddir}/subprojects/NitroSDK-4.2.30001/gen",
             "-o",
@@ -86,8 +90,8 @@ nitrosystem_c_commands = [
         "directory": builddir,
         "arguments": arm9_c_flags
         + [
-            f"-I{homedir}/tools/cw/include/MSL_C",
-            f"-I{homedir}/tools/cw/include/MSL_Extras",
+            f"-I{cwlibcdir}",
+            f"-I{cwextrasdir}",
             f"-I{homedir}/subprojects/NitroSDK-4.2.30001/include",
             f"-I{builddir}/subprojects/NitroSDK-4.2.30001/gen",
             f"-I{homedir}/subprojects/NitroSystem-071126.1/include",
@@ -105,8 +109,8 @@ nitrowifi_c_commands = [
         "directory": builddir,
         "arguments": arm9_c_flags
         + [
-            f"-I{homedir}/tools/cw/include/MSL_C",
-            f"-I{homedir}/tools/cw/include/MSL_Extras",
+            f"-I{cwlibcdir}",
+            f"-I{cwextrasdir}",
             f"-I{homedir}/subprojects/NitroSDK-4.2.30001/include",
             f"-I{builddir}/subprojects/NitroSDK-4.2.30001/gen",
             f"-I{homedir}/subprojects/NitroSystem-071126.1/include",
@@ -125,8 +129,8 @@ nitrodwc_c_commands = [
         "directory": builddir,
         "arguments": arm9_c_flags
         + [
-            f"-I{homedir}/tools/cw/include/MSL_C",
-            f"-I{homedir}/tools/cw/include/MSL_Extras",
+            f"-I{cwlibcdir}",
+            f"-I{cwextrasdir}",
             f"-I{homedir}/subprojects/NitroSDK-4.2.30001/include",
             f"-I{builddir}/subprojects/NitroSDK-4.2.30001/gen",
             f"-I{homedir}/subprojects/NitroSystem-071126.1/include",
@@ -146,8 +150,8 @@ libvct_c_commands = [
         "directory": builddir,
         "arguments": arm9_c_flags
         + [
-            f"-I{homedir}/tools/cw/include/MSL_C",
-            f"-I{homedir}/tools/cw/include/MSL_Extras",
+            f"-I{cwlibcdir}",
+            f"-I{cwextrasdir}",
             f"-I{homedir}/subprojects/NitroSDK-4.2.30001/include",
             f"-I{builddir}/subprojects/NitroSDK-4.2.30001/gen",
             f"-I{homedir}/subprojects/NitroSystem-071126.1/include",
@@ -168,8 +172,8 @@ libcrypto_c_commands = [
         "directory": builddir,
         "arguments": arm9_c_flags
         + [
-            f"-I{homedir}/tools/cw/include/MSL_C",
-            f"-I{homedir}/tools/cw/include/MSL_Extras",
+            f"-I{cwlibcdir}",
+            f"-I{cwextrasdir}",
             f"-I{homedir}/subprojects/NitroSDK-4.2.30001/include",
             f"-I{builddir}/subprojects/NitroSDK-4.2.30001/gen",
             f"-I{homedir}/subprojects/NitroSystem-071126.1/include",
@@ -191,8 +195,8 @@ ppwlobby_c_commands = [
         "directory": builddir,
         "arguments": arm9_c_flags
         + [
-            f"-I{homedir}/tools/cw/include/MSL_C",
-            f"-I{homedir}/tools/cw/include/MSL_Extras",
+            f"-I{cwlibcdir}",
+            f"-I{cwextrasdir}",
             f"-I{homedir}/subprojects/NitroSDK-4.2.30001/include",
             f"-I{builddir}/subprojects/NitroSDK-4.2.30001/gen",
             f"-I{homedir}/subprojects/NitroSystem-071126.1/include",
@@ -215,8 +219,8 @@ c_commands = [
         "directory": builddir,
         "arguments": arm9_c_flags
         + [
-            f"-I{homedir}/tools/cw/include/MSL_C",
-            f"-I{homedir}/tools/cw/include/MSL_Extras",
+            f"-I{cwlibcdir}",
+            f"-I{cwextrasdir}",
             f"-I{homedir}/subprojects/NitroSDK-4.2.30001/include",
             f"-I{builddir}/subprojects/NitroSDK-4.2.30001/gen",
             f"-I{homedir}/subprojects/NitroSystem-071126.1/include",

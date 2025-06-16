@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_NINETALES",
+    "moves": [
+        "MOVE_HEAT_WAVE",
+        "MOVE_OMINOUS_WIND",
+        "MOVE_DREAM_EATER",
+        "MOVE_HYPNOSIS"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": true,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_TIMID",
+    "item": "ITEM_WIDE_LENS",
+    "form": 0
+}

@@ -26,6 +26,7 @@
 #include "narc.h"
 #include "render_window.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "strbuf.h"
@@ -33,7 +34,6 @@
 #include "system.h"
 #include "system_data.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_0202D05C.h"
 #include "unk_02030CE8.h"
 #include "unk_020366A0.h"
@@ -177,7 +177,7 @@ static int (*Unk_ov96_0223DCE0[])(UnkStruct_ov96_0223BF40 *) = {
 int ov96_0223BCE0(UnkStruct_ov96_0223BF40 *param0, int param1)
 {
     ov96_0223C358(param0);
-    StartScreenTransition(0, 1, 1, 0x0, 8, 1, HEAP_ID_68);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 8, 1, HEAP_ID_68);
     ov96_0223BE38(param0->unk_04);
     ov96_0223BF40(param0);
     ov96_0223C1FC(param0);
@@ -185,7 +185,7 @@ int ov96_0223BCE0(UnkStruct_ov96_0223BF40 *param0, int param1)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
-    sub_02038438(param0->unk_00->unk_0C);
+    sub_02038438(param0->unk_00->saveData);
     ov96_0223D948(param0);
 
     param0->unk_8C = sub_0202D2C0(param0->unk_00->unk_00, 0);
@@ -697,7 +697,7 @@ static int ov96_0223C6DC(UnkStruct_ov96_0223BF40 *param0)
 
 static int ov96_0223C7B4(UnkStruct_ov96_0223BF40 *param0)
 {
-    sub_02030E78(param0->unk_00->unk_0C, &param0->unk_F84);
+    sub_02030E78(param0->unk_00->saveData, &param0->unk_F84);
     ov96_0223B574(&param0->unk_F84, &param0->unk_FE8);
 
     param0->unk_1C = 10;
@@ -1044,7 +1044,7 @@ static int ov96_0223CDD0(UnkStruct_ov96_0223BF40 *param0)
     int v1 = sub_0202D3A0(param0->unk_00->unk_00);
 
     sub_0202D628(param0->unk_00->unk_04, &v0);
-    sub_02073700(param0->unk_00->unk_0C, 1, (UnkStruct_ov96_0223B450_sub1 *)&param0->unk_AD4);
+    sub_02073700(param0->unk_00->saveData, 1, (UnkStruct_ov96_0223B450_sub1 *)&param0->unk_AD4);
     ov96_0223B4B0(v0.unk_00, v0.unk_04, v1, &param0->unk_AD4);
 
     param0->unk_1C = 27;
@@ -1330,7 +1330,7 @@ static int ov96_0223D398(UnkStruct_ov96_0223BF40 *param0)
 
 static int ov96_0223D3A0(UnkStruct_ov96_0223BF40 *param0)
 {
-    SaveData_SaveStateInit(param0->unk_00->unk_0C, 2);
+    SaveData_SaveStateInit(param0->unk_00->saveData, 2);
     param0->unk_1C = 40;
 
     return 3;
@@ -1338,7 +1338,7 @@ static int ov96_0223D3A0(UnkStruct_ov96_0223BF40 *param0)
 
 static int ov96_0223D3B8(UnkStruct_ov96_0223BF40 *param0)
 {
-    if (SaveData_SaveStateMain(param0->unk_00->unk_0C) == 2) {
+    if (SaveData_SaveStateMain(param0->unk_00->saveData) == 2) {
         param0->unk_1C = param0->unk_20;
         ov96_0223D99C(param0);
     }
@@ -1429,7 +1429,7 @@ static int ov96_0223D528(UnkStruct_ov96_0223BF40 *param0)
 {
     sub_02039794();
     sub_0203848C();
-    StartScreenTransition(0, 0, 0, 0x0, 8, 1, HEAP_ID_68);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 8, 1, HEAP_ID_68);
 
     param0->unk_1C = 0;
 

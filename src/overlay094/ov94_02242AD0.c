@@ -9,9 +9,9 @@
 #include "generated/trainer_score_events.h"
 
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_0202DA40_decl.h"
 #include "struct_defs/chatot_cry.h"
+#include "struct_defs/wi_fi_history.h"
 
 #include "overlay094/ov94_0223B140.h"
 #include "overlay094/ov94_0223BCB0.h"
@@ -37,11 +37,11 @@
 #include "pokemon.h"
 #include "render_window.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system_vars.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_0202CC64.h"
 #include "unk_0202DA40.h"
 #include "unk_0202F180.h"
@@ -61,7 +61,7 @@ static void ov94_02242D84(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_02242D98(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_02243E48(JournalEntry *param0, UnkStruct_ov94_0223BA88 *param1);
 static void ov94_0224362C(UnkStruct_ov94_0223FD4C *param0);
-static void ov94_02243E2C(UnkStruct_0202C878 *param0, UnkStruct_ov94_0223BA88 *param1);
+static void ov94_02243E2C(WiFiHistory *wiFiHistory, UnkStruct_ov94_0223BA88 *param1);
 static void ov94_02243CE4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int param2);
 static void ov94_02243DE8(GlobalTrade *param0, int param1);
 static int ov94_02243E84(UnkStruct_ov94_0223FD4C *param0, UnkStruct_ov94_0223BA88 *param1);
@@ -161,7 +161,7 @@ int ov94_02242AD0(UnkStruct_ov94_0223FD4C *param0, int param1)
     ov94_02242CAC(param0);
     ov94_02242D38(param0);
 
-    StartScreenTransition(3, 1, 1, 0x0, 6, 1, HEAP_ID_62);
+    StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
     ov94_02245934(param0);
 
     param0->unk_2C = 0;
@@ -653,7 +653,7 @@ static int ov94_022431F0(UnkStruct_ov94_0223FD4C *param0)
 
             ov94_02243B08(param0, 0);
             ov94_02243CE4(param0, (Pokemon *)param0->unk_A4C.unk_00.unk_00, param0->unk_110);
-            ov94_02243E2C(param0->unk_00->unk_18, &param0->unk_A4C);
+            ov94_02243E2C(param0->unk_00->wiFiHistory, &param0->unk_A4C);
             GameRecords_IncrementTrainerScore(param0->unk_00->records, TRAINER_SCORE_EVENT_UNK_25);
             ov94_02243E48(param0->unk_00->unk_2C, &param0->unk_A4C);
             GameRecords_IncrementRecordValue(param0->unk_00->records, RECORD_UNK_024);
@@ -661,7 +661,7 @@ static int ov94_022431F0(UnkStruct_ov94_0223FD4C *param0)
             {
                 TVBroadcast *v2;
 
-                v2 = SaveData_GetTVBroadcast(param0->unk_00->unk_20);
+                v2 = SaveData_GetTVBroadcast(param0->unk_00->saveData);
                 sub_0206D104(v2);
             }
             break;
@@ -931,7 +931,7 @@ static void ov94_0224362C(UnkStruct_ov94_0223FD4C *param0)
 static int ov94_02243658(UnkStruct_ov94_0223FD4C *param0)
 {
     ov94_02243BC4(param0, (Pokemon *)param0->unk_12C.unk_00.unk_00, sub_0202DAAC(param0->unk_00->unk_00), param0->unk_12C.unk_121);
-    ov94_02243E2C(param0->unk_00->unk_18, &param0->unk_12C);
+    ov94_02243E2C(param0->unk_00->wiFiHistory, &param0->unk_12C);
 
     GameRecords_IncrementTrainerScore(param0->unk_00->records, TRAINER_SCORE_EVENT_UNK_25);
     ov94_02243E48(param0->unk_00->unk_2C, &param0->unk_12C);
@@ -940,7 +940,7 @@ static int ov94_02243658(UnkStruct_ov94_0223FD4C *param0)
     {
         TVBroadcast *v0;
 
-        v0 = SaveData_GetTVBroadcast(param0->unk_00->unk_20);
+        v0 = SaveData_GetTVBroadcast(param0->unk_00->saveData);
         sub_0206D104(v0);
     }
 
@@ -1160,7 +1160,7 @@ static int ov94_02243974(UnkStruct_ov94_0223FD4C *param0)
 static int ov94_02243990(UnkStruct_ov94_0223FD4C *param0)
 {
     SaveData_SetFullSaveRequired();
-    SaveData_SaveStateInit(param0->unk_00->unk_20, 2);
+    SaveData_SaveStateInit(param0->unk_00->saveData, 2);
 
     param0->unk_2C = 31;
     param0->unk_10E0 = LCRNG_RandMod(60) + 2;
@@ -1181,7 +1181,7 @@ static int ov94_022439CC(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_022439E4(UnkStruct_ov94_0223FD4C *param0)
 {
-    if (SaveData_SaveStateMain(param0->unk_00->unk_20) == 1) {
+    if (SaveData_SaveStateMain(param0->unk_00->saveData) == 1) {
         param0->unk_2C = param0->unk_10E8;
     }
 
@@ -1190,7 +1190,7 @@ static int ov94_022439E4(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02243A04(UnkStruct_ov94_0223FD4C *param0)
 {
-    if (SaveData_SaveStateMain(param0->unk_00->unk_20) == 2) {
+    if (SaveData_SaveStateMain(param0->unk_00->saveData) == 2) {
         param0->unk_2C = param0->unk_10EA;
         ov94_0223C5F4(param0);
     }
@@ -1201,7 +1201,7 @@ static int ov94_02243A04(UnkStruct_ov94_0223FD4C *param0)
 static int ov94_02243A28(UnkStruct_ov94_0223FD4C *param0)
 {
     SaveData_SetFullSaveRequired();
-    SaveData_SaveStateInit(param0->unk_00->unk_20, 2);
+    SaveData_SaveStateInit(param0->unk_00->saveData, 2);
 
     param0->unk_2C = 35;
 
@@ -1210,7 +1210,7 @@ static int ov94_02243A28(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02243A44(UnkStruct_ov94_0223FD4C *param0)
 {
-    if (SaveData_SaveStateMain(param0->unk_00->unk_20) == 2) {
+    if (SaveData_SaveStateMain(param0->unk_00->saveData) == 2) {
         ov94_0223C4C0(param0, 1, 0);
         ov94_0223C5F4(param0);
         ov94_02245824(param0, param0->unk_B90, param0->unk_28, TEXT_SPEED_FAST, 0xf0f);
@@ -1226,9 +1226,9 @@ static int ov94_02243A90(UnkStruct_ov94_0223FD4C *param0)
     sub_02039794();
 
     if (param0->unk_1110 == 1) {
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_62);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
     } else {
-        StartScreenTransition(3, 0, 0, 0x0, 6, 1, HEAP_ID_62);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
     }
 
     param0->unk_2C = 0;
@@ -1262,7 +1262,7 @@ static void ov94_02243B08(UnkStruct_ov94_0223FD4C *param0, int param1)
         Party_RemovePokemonBySlotIndex(param0->unk_00->unk_08, param0->unk_112);
 
         if (Party_HasSpecies(param0->unk_00->unk_08, 441) == 0) {
-            ChatotCry *v2 = SaveData_GetChatotCry(param0->unk_00->unk_20);
+            ChatotCry *v2 = SaveData_GetChatotCry(param0->unk_00->saveData);
             ResetChatotCryDataStatus(v2);
         }
     }
@@ -1276,7 +1276,7 @@ static void ov94_02243BC4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
 {
     int v0 = Pokemon_GetValue(param1, MON_DATA_HELD_ITEM, NULL);
 
-    sub_0202F180(param0->unk_00->unk_20, param1);
+    sub_0202F180(param0->unk_00->saveData, param1);
     param2 = 18;
 
     if (Party_GetCurrentCount(param0->unk_00->unk_08) == 6) {
@@ -1288,7 +1288,7 @@ static void ov94_02243BC4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
 
         if (Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
             if (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(param1, MON_DATA_HATCH_LOCATION, NULL) == 86) && (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
-                VarsFlags *v2 = SaveData_GetVarsFlags(param0->unk_00->unk_20);
+                VarsFlags *v2 = SaveData_GetVarsFlags(param0->unk_00->saveData);
 
                 if (SystemVars_GetArceusEventState(v2) == 0) {
                     SystemVars_SetArceusEventState(v2, 1);
@@ -1325,7 +1325,7 @@ static void ov94_02243BC4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
 
 static void ov94_02243CE4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int param2)
 {
-    sub_0202F180(param0->unk_00->unk_20, param1);
+    sub_0202F180(param0->unk_00->saveData, param1);
 
     param2 = 18;
 
@@ -1335,7 +1335,7 @@ static void ov94_02243CE4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
 
     if (Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
         if (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(param1, MON_DATA_HATCH_LOCATION, NULL) == 86) && (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
-            VarsFlags *v0 = SaveData_GetVarsFlags(param0->unk_00->unk_20);
+            VarsFlags *v0 = SaveData_GetVarsFlags(param0->unk_00->saveData);
 
             if (SystemVars_GetArceusEventState(v0) == 0) {
                 SystemVars_SetArceusEventState(v0, 1);
@@ -1388,9 +1388,9 @@ static void ov94_02243DE8(GlobalTrade *param0, int param1)
     }
 }
 
-static void ov94_02243E2C(UnkStruct_0202C878 *param0, UnkStruct_ov94_0223BA88 *param1)
+static void ov94_02243E2C(WiFiHistory *wiFiHistory, UnkStruct_ov94_0223BA88 *param1)
 {
-    sub_02038FDC(param0, param1->unk_11E, param1->unk_11F, param1->unk_123);
+    sub_02038FDC(wiFiHistory, param1->unk_11E, param1->unk_11F, param1->unk_123);
 }
 
 static void ov94_02243E48(JournalEntry *journalEntry, UnkStruct_ov94_0223BA88 *param1)

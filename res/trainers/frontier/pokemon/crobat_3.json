@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_CROBAT",
+    "moves": [
+        "MOVE_AIR_SLASH",
+        "MOVE_SLUDGE_BOMB",
+        "MOVE_HEAT_WAVE",
+        "MOVE_DARK_PULSE"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": true,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_KINGS_ROCK",
+    "form": 0
+}

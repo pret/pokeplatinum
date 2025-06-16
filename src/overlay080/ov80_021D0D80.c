@@ -19,16 +19,16 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "strbuf.h"
 #include "system.h"
 #include "touch_pad.h"
-#include "unk_0200F174.h"
 #include "unk_0208C098.h"
 
-int ov80_021D0D80(OverlayManager *param0, int *param1);
-int ov80_021D0DD8(OverlayManager *param0, int *param1);
-int ov80_021D0E50(OverlayManager *param0, int *param1);
+int ov80_021D0D80(ApplicationManager *appMan, int *param1);
+int ov80_021D0DD8(ApplicationManager *appMan, int *param1);
+int ov80_021D0E50(ApplicationManager *appMan, int *param1);
 static void ov80_021D0E68(void *param0);
 static void ov80_021D0EA8(void);
 static int ov80_021D0EC8(UnkStruct_ov80_021D2A08 *param0);
@@ -93,14 +93,14 @@ const UnkStruct_ov80_021D2E94 Unk_ov80_021D2E94[3] = {
     },
 };
 
-int ov80_021D0D80(OverlayManager *param0, int *param1)
+int ov80_021D0D80(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov80_021D2A08 *v0 = NULL;
-    UnkStruct_0203D8AC *v1 = (UnkStruct_0203D8AC *)OverlayManager_Args(param0);
+    UnkStruct_0203D8AC *v1 = (UnkStruct_0203D8AC *)ApplicationManager_Args(appMan);
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_17, 0x20000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov80_021D2A08), HEAP_ID_17);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov80_021D2A08), HEAP_ID_17);
     memset(v0, 0, sizeof(UnkStruct_ov80_021D2A08));
     v0->unk_2C = v1;
 
@@ -118,9 +118,9 @@ int ov80_021D0D80(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov80_021D0DD8(OverlayManager *param0, int *param1)
+int ov80_021D0DD8(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov80_021D2A08 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov80_021D2A08 *v0 = ApplicationManager_Data(appMan);
 
     switch (v0->unk_08) {
     case 0:
@@ -151,12 +151,12 @@ int ov80_021D0DD8(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov80_021D0E50(OverlayManager *param0, int *param1)
+int ov80_021D0E50(ApplicationManager *appMan, int *param1)
 {
     int v0 = 0;
-    UnkStruct_ov80_021D2A08 *v1 = OverlayManager_Data(param0);
+    UnkStruct_ov80_021D2A08 *v1 = ApplicationManager_Data(appMan);
 
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_17);
 
     return 1;
@@ -496,7 +496,7 @@ static int ov80_021D1354(UnkStruct_ov80_021D2A08 *param0)
 
 static int ov80_021D138C(UnkStruct_ov80_021D2A08 *param0)
 {
-    if (!IsScreenTransitionDone()) {
+    if (!IsScreenFadeDone()) {
         return 3;
     }
 
@@ -516,12 +516,12 @@ static int ov80_021D13A0(UnkStruct_ov80_021D2A08 *param0)
 
 static int ov80_021D13DC(UnkStruct_ov80_021D2A08 *param0)
 {
-    if (IsScreenTransitionDone()) {
+    if (IsScreenFadeDone()) {
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_NONE, 31, 0);
-        sub_0200F344(0, 0x0);
-        sub_0200F344(1, 0x0);
-        sub_0200F32C(0);
-        sub_0200F32C(1);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+        ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
+        ResetVisibleHardwareWindows(DS_SCREEN_SUB);
         return 8;
     }
 

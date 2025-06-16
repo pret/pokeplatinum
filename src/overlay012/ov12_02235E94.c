@@ -368,7 +368,7 @@ UnkStruct_ov12_02235FE0 *ov12_02236004(int heapID, const UnkStruct_ov12_02236030
 void ov12_02236030(UnkStruct_ov12_02235FE0 *param0, const UnkStruct_ov12_02236030 *param1)
 {
     param0->unk_04 = *param1;
-    param0->unk_9C = Pokemon_GetValue(param0->unk_04.unk_08, MON_DATA_MAIL_ID, NULL);
+    param0->unk_9C = Pokemon_GetValue(param0->unk_04.unk_08, MON_DATA_BALL_CAPSULE_ID, NULL);
 
     GF_ASSERT(param0->unk_9C < 12 + 1);
 

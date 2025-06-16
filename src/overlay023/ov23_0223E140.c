@@ -46,6 +46,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite.h"
@@ -61,7 +62,6 @@
 #include "terrain_collision_manager.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_0202854C.h"
 #include "unk_020393C8.h"
 #include "unk_0206CCB0.h"
@@ -1411,11 +1411,11 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         break;
     case 1:
         ov23_0224942C(fieldSystem->unk_6C);
-        StartScreenTransition(2, 16, 18, 0x0, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_16, FADE_TYPE_UNK_18, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
         (v0->unk_00)++;
         break;
     case 2:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             if (fieldSystem->unk_6C == NULL) {
                 FieldSystem_FlagNotRunningFieldMap(fieldSystem);
                 (v0->unk_00)++;
@@ -1438,7 +1438,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         break;
     case 6:
         sub_02039734();
-        StartScreenTransition(3, 17, 17, 0x0, 6, 1, HEAP_ID_29);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_17, FADE_TYPE_UNK_17, FADE_TO_BLACK, 6, 1, HEAP_ID_29);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
@@ -1446,7 +1446,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         (v0->unk_00)++;
         break;
     case 7:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             v0->unk_08 = 0;
             Sound_PlayEffect(SEQ_SE_PL_UG_006);
             v0->unk_00 = 8;
@@ -1553,13 +1553,13 @@ static void ov23_0223F118(SysTask *param0, void *param1)
     case 18:
         SpriteList_Update(Unk_ov23_02257740->unk_20);
         ov23_02254044(ov23_0224219C());
-        StartScreenTransition(3, 16, 16, 0x0, 6, 1, HEAP_ID_29);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_16, FADE_TYPE_UNK_16, FADE_TO_BLACK, 6, 1, HEAP_ID_29);
         (v0->unk_00)++;
         break;
     case 19:
         SpriteList_Update(Unk_ov23_02257740->unk_20);
 
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             sub_02039794();
             ov23_0223F020(v0);
             FieldSystem_StartFieldMap(fieldSystem);
@@ -1572,15 +1572,15 @@ static void ov23_0223F118(SysTask *param0, void *param1)
             sub_02039734();
             sub_020594FC();
             HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
-            StartScreenTransition(1, 17, 19, 0x0, 6, 1, HEAP_ID_FIELD);
+            StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_17, FADE_TYPE_UNK_19, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
             (v0->unk_00)++;
             break;
         }
         break;
     case 21:
-        sub_0200F338(0);
+        ResetScreenMasterBrightness(DS_SCREEN_MAIN);
 
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
             HBlankSystem_Start(v0->fieldSystem->unk_04->hBlankSystem);
 
@@ -1616,12 +1616,12 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         break;
     case 23:
         SpriteList_Update(Unk_ov23_02257740->unk_20);
-        StartScreenTransition(3, 2, 2, 0x0, 15, 1, HEAP_ID_29);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_2, FADE_TYPE_UNK_2, FADE_TO_BLACK, 15, 1, HEAP_ID_29);
         Sound_PlayEffect(SEQ_SE_DP_UG_001);
         v0->unk_00 = 24;
         break;
     case 24:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             int v3;
 
             for (v3 = 0; v3 < 8; v3++) {
@@ -1639,8 +1639,8 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         v0->unk_00 = 26;
         break;
     case 26:
-        sub_0200F32C(0);
-        sub_0200F338(0);
+        ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
+        ResetScreenMasterBrightness(DS_SCREEN_MAIN);
         Unk_ov23_02257740->unk_A24 = ov23_02253F40(ov23_0224219C(), 63, 0, NULL);
         v0->unk_4C = 60;
         v0->unk_00 = 15;
@@ -2930,7 +2930,7 @@ void ov23_022412F0(void)
     GF_ASSERT(!Unk_ov23_02257740->unk_8D0);
     GF_ASSERT(!Unk_ov23_02257740->unk_8C4);
 
-    v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov23_022412CC));
+    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov23_022412CC));
 
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_022412CC));
     Link_Message(71);

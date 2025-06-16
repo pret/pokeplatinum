@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_LEDIAN",
+    "moves": [
+        "MOVE_SILVER_WIND",
+        "MOVE_AIR_CUTTER",
+        "MOVE_AGILITY",
+        "MOVE_BATON_PASS"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": true
+    },
+    "nature": "NATURE_TIMID",
+    "item": "ITEM_RAZOR_CLAW",
+    "form": 0
+}

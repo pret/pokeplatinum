@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_ARCANINE",
+    "moves": [
+        "MOVE_FLARE_BLITZ",
+        "MOVE_THUNDER_FANG",
+        "MOVE_REVERSAL",
+        "MOVE_ENDURE"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": true,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_JOLLY",
+    "item": "ITEM_SALAC_BERRY",
+    "form": 0
+}

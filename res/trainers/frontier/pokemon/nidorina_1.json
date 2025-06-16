@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_NIDORINA",
+    "moves": [
+        "MOVE_POISON_FANG",
+        "MOVE_DOUBLE_KICK",
+        "MOVE_BITE",
+        "MOVE_FLATTER"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_POISON_BARB",
+    "form": 0
+}

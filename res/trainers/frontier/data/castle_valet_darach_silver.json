@@ -1,0 +1,11 @@
+{
+    "class": "TRAINER_CLASS_CASTLE_VALET",
+    "availableSets": [
+        "empoleon_1",
+        "staraptor_1",
+        "houndoom_1",
+        "empoleon_2",
+        "staraptor_2",
+        "houndoom_2"
+    ]
+}
