@@ -246,7 +246,7 @@ res/prebuilt/graphic/winframe.narc,/graphic/winframe.narc
 res/prebuilt/graphic/worldtimer.narc,/graphic/worldtimer.narc
 res/prebuilt/graphic/worldtrade.narc,/graphic/worldtrade.narc
 res/prebuilt/itemtool/itemdata/item_data.narc,/itemtool/itemdata/item_data.narc
-res/items/item_icon.narc,/itemtool/itemdata/item_icon.narc
+res/items/item_icon/item_icon.narc,/itemtool/itemdata/item_icon.narc
 res/items/nuts_data.narc,/itemtool/itemdata/nuts_data.narc
 res/items/pl_item_data.narc,/itemtool/itemdata/pl_item_data.narc
 res/pokemon/pl_poke_icon.narc,/poketool/icongra/pl_poke_icon.narc

@@ -1,3 +1,5 @@
+subdir('item_icon')
+
 nuts_data_format_txt     = files('nuts_data_format.txt')
 nuts_data_csv            = files('nuts_data.csv')
 
@@ -44,21 +46,3 @@ pl_item_data_narc = custom_target('pl_item_data.narc',
 
 nitrofs_files += nuts_data_narc
 nitrofs_files += pl_item_data_narc
-
-
-subdir('item_icon')
-
-item_icon_order = files('item_icon/item_icon.order')
-
-item_icon_narc = custom_target('item_icon.narc',
-    output: 'item_icon.narc',
-    input: item_icon_files_targets,
-    command: [
-        narc_exe, 'create',
-        '--order', item_icon_order,
-        '--output', '@OUTPUT0@',
-        '@OUTDIR@/item_icon',
-    ]
-)
-
-nitrofs_files += item_icon_narc
