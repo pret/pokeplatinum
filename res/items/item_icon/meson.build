@@ -733,25 +733,7 @@ item_anim_json = files('item_icon_anim.json')
 item_ncer = ncer_gen.process(item_cell_json)
 item_nanr = nanr_gen.process(item_anim_json)
 
-raw_lines = files('../../../generated/item_icons_palettes.txt')[0].full_path().read().split('\n')
-
-processed_lines = []
-foreach line : raw_lines
-  line = line.strip().to_lower()
-  if line.startswith('icon_')
-    processed_lines += line + '.ncgr'
-  elif line.startswith('pltt_')
-    processed_lines += line + '.nclr'
-  else
-    processed_lines += line
-  endif
-endforeach
-
-item_icon_order = configure_file(
-  output: 'item_icon.order',
-  content: processed_lines.join('\n'),
-)
-
+item_icon_order = files('item_icon.order')
 item_icon_narc = custom_target('item_icon.narc',
     output: [
         'item_icon.narc',
