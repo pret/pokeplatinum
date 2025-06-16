@@ -6,41 +6,20 @@
 
 #include "bg_window.h"
 #include "heap.h"
-#include "palette.h"
 #include "sprite_system.h"
 
 #define BATTLE_BAG_POCKET_MENU_SCREEN_ALT_BUTTON_OFFSET 17
 
-#define MENU_POCKET_BUTTON_WIDTH  16
-#define MENU_POCKET_BUTTON_HEIGHT 9
-
-#define USE_ITEM_BUTTON_WIDTH         26
-#define USE_ITEM_BUTTON_HEIGHT        5
-#define USE_ITEM_BUTTON_DATA_Y_OFFSET 27
-
-#define CANCEL_BUTTON_WIDTH         5
-#define CANCEL_BUTTON_HEIGHT        5
-#define CANCEL_BUTTON_DATA_Y_OFFSET 57
-
-#define POCKET_ITEM_BUTTON_WIDTH         16
-#define POCKET_ITEM_BUTTON_HEIGHT        6
-#define POCKET_ITEM_BUTTON_DATA_X_OFFSET 16
-
-#define POCKET_MENU_PREV_PAGE_BUTTON_WIDTH         5
-#define POCKET_MENU_PREV_PAGE_BUTTON_HEIGHT        5
+#define USE_ITEM_BUTTON_DATA_Y_OFFSET              27
+#define CANCEL_BUTTON_DATA_Y_OFFSET                57
+#define POCKET_ITEM_BUTTON_DATA_X_OFFSET           16
 #define POCKET_MENU_PREV_PAGE_BUTTON_DATA_Y_OFFSET 47
-
-#define POCKET_MENU_NEXT_PAGE_BUTTON_WIDTH         5
-#define POCKET_MENU_NEXT_PAGE_BUTTON_HEIGHT        5
 #define POCKET_MENU_NEXT_PAGE_BUTTON_DATA_Y_OFFSET 52
+#define MENU_POCKET_ICON_DATA_X_OFFSET             20
+#define MENU_POCKET_ICON_DATA_Y_OFFSET             47
 
-#define MENU_POCKET_ICON_WIDTH         4
-#define MENU_POCKET_ICON_HEIGHT        4
-#define MENU_POCKET_ICON_DATA_X_OFFSET 20
-#define MENU_POCKET_ICON_DATA_Y_OFFSET 47
-
-#define SPRITE_Y_POSITION_DEFAULT   2
-#define SPRITE_Y_POSITION_DPRESSING -4
+#define SPRITE_Y_POSITION_DEFAULT  2
+#define SPRITE_Y_POSITION_PRESSING -4
 
 #define WINDOW_SCROLL_DEFAULT    2
 #define WINDOW_SCROLL_PRESSING   4
@@ -82,7 +61,7 @@ typedef struct ButtonDimensions {
 
 static void LoadButtonData(u16 *buttonData, u16 *screenData, u8 xOffset, u8 yOffset, u8 width, u8 height);
 
-static const ButtonDimensions buttonDimensions[] = {
+static const ButtonDimensions sButtonDimensions[] = {
     [BUTTON_MENU_SCREEN_RECOVER_HP_POCKET] = { .xCoord = 0, .yCoord = 1, .width = MENU_POCKET_BUTTON_WIDTH, .height = MENU_POCKET_BUTTON_HEIGHT },
     [BUTTON_MENU_SCREEN_RECOVER_STATUS_POCKET] = { .xCoord = 0, .yCoord = 10, .width = MENU_POCKET_BUTTON_WIDTH, .height = MENU_POCKET_BUTTON_HEIGHT },
     [BUTTON_MENU_SCREEN_POKE_BALLS_POCKET] = { .xCoord = 16, .yCoord = 1, .width = MENU_POCKET_BUTTON_WIDTH, .height = MENU_POCKET_BUTTON_HEIGHT },
@@ -95,139 +74,139 @@ static const ButtonDimensions buttonDimensions[] = {
     [BUTTON_POCKET_MENU_SCREEN_ITEM_4] = { .xCoord = 48, .yCoord = 7, .width = POCKET_ITEM_BUTTON_WIDTH, .height = POCKET_ITEM_BUTTON_HEIGHT },
     [BUTTON_POCKET_MENU_SCREEN_ITEM_5] = { .xCoord = 32, .yCoord = 13, .width = POCKET_ITEM_BUTTON_WIDTH, .height = POCKET_ITEM_BUTTON_HEIGHT },
     [BUTTON_POCKET_MENU_SCREEN_ITEM_6] = { .xCoord = 48, .yCoord = 13, .width = POCKET_ITEM_BUTTON_WIDTH, .height = POCKET_ITEM_BUTTON_HEIGHT },
-    [BUTTON_POCKET_MENU_SCREEN_PREV_PAGE] = { .xCoord = 32, .yCoord = 19, .width = POCKET_MENU_PREV_PAGE_BUTTON_WIDTH, .height = POCKET_MENU_PREV_PAGE_BUTTON_HEIGHT },
-    [BUTTON_POCKET_MENU_SCREEN_NEXT_PAGE] = { .xCoord = 37, .yCoord = 19, .width = POCKET_MENU_NEXT_PAGE_BUTTON_WIDTH, .height = POCKET_MENU_NEXT_PAGE_BUTTON_HEIGHT },
+    [BUTTON_POCKET_MENU_SCREEN_PREV_PAGE] = { .xCoord = 32, .yCoord = 19, .width = POCKET_MENU_PAGE_BUTTON_WIDTH, .height = POCKET_MENU_PAGE_BUTTON_HEIGHT },
+    [BUTTON_POCKET_MENU_SCREEN_NEXT_PAGE] = { .xCoord = 37, .yCoord = 19, .width = POCKET_MENU_PAGE_BUTTON_WIDTH, .height = POCKET_MENU_PAGE_BUTTON_HEIGHT },
     [BUTTON_POCKET_MENU_SCREEN_CANCEL] = { .xCoord = 59, .yCoord = 19, .width = CANCEL_BUTTON_WIDTH, .height = CANCEL_BUTTON_HEIGHT },
     [BUTTON_USE_ITEM_SCREEN_USE] = { .xCoord = 0, .yCoord = 51, .width = USE_ITEM_BUTTON_WIDTH, .height = USE_ITEM_BUTTON_HEIGHT },
     [BUTTON_USE_ITEM_SCREEN_CANCEL] = { .xCoord = 27, .yCoord = 51, .width = CANCEL_BUTTON_WIDTH, .height = CANCEL_BUTTON_HEIGHT }
 };
 
-static const u8 menuRecoverHPPocketButtonWindows[] = {
-    BATTLE_BAG_MENU_SCREEN_WINDOW_HP_PP_RESTORE,
+static const u8 sMenuRecoverHPPocketButtonWindows[] = {
+    BATTLE_BAG_MENU_WINDOW_HP_PP_RESTORE,
     WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 menuRecoverStatusPocketButtonWindows[] = {
-    BATTLE_BAG_MENU_SCREEN_WINDOW_STATUS_HEALERS,
+static const u8 sMenuRecoverStatusPocketButtonWindows[] = {
+    BATTLE_BAG_MENU_WINDOW_STATUS_HEALERS,
     WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 menuPokeBallsPocketButtonWindows[] = {
-    BATTLE_BAG_MENU_SCREEN_WINDOW_POKE_BALLS,
+static const u8 sMenuPokeBallsPocketButtonWindows[] = {
+    BATTLE_BAG_MENU_WINDOW_POKE_BALLS,
     WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 menuBattleItemsPocketButtonWindows[] = {
-    BATTLE_BAG_MENU_SCREEN_WINDOW_BATTLE_ITEMS,
+static const u8 sMenuBattleItemsPocketButtonWindows[] = {
+    BATTLE_BAG_MENU_WINDOW_BATTLE_ITEMS,
     WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 menuLastUsedItemButtonWindows[] = {
-    BATTLE_BAG_MENU_SCREEN_WINDOW_LAST_USED_ITEM,
+static const u8 sMenuLastUsedItemButtonWindows[] = {
+    BATTLE_BAG_MENU_WINDOW_LAST_USED_ITEM,
     WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 pocketMenuScreenItem1ButtonWindows[] = {
-    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_1_NAME,
-    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_1_AMOUNT,
+static const u8 sPocketMenuScreenItem1ButtonWindows[] = {
+    BATTLE_BAG_POCKET_MENU_WINDOW_ITEM_SLOT_1_NAME,
+    BATTLE_BAG_POCKET_MENU_WINDOW_ITEM_SLOT_1_AMOUNT,
     WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 pocketMenuScreenItem2ButtonWindows[] = {
-    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_2_NAME,
-    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_2_AMOUNT,
+static const u8 sPocketMenuScreenItem2ButtonWindows[] = {
+    BATTLE_BAG_POCKET_MENU_WINDOW_ITEM_SLOT_2_NAME,
+    BATTLE_BAG_POCKET_MENU_WINDOW_ITEM_SLOT_2_AMOUNT,
     WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 pocketMenuScreenItem3ButtonWindows[] = {
-    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_3_NAME,
-    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_3_AMOUNT,
+static const u8 sPocketMenuScreenItem3ButtonWindows[] = {
+    BATTLE_BAG_POCKET_MENU_WINDOW_ITEM_SLOT_3_NAME,
+    BATTLE_BAG_POCKET_MENU_WINDOW_ITEM_SLOT_3_AMOUNT,
     WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 pocketMenuScreenItem4ButtonWindows[] = {
-    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_4_NAME,
-    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_4_AMOUNT,
+static const u8 sPocketMenuScreenItem4ButtonWindows[] = {
+    BATTLE_BAG_POCKET_MENU_WINDOW_ITEM_SLOT_4_NAME,
+    BATTLE_BAG_POCKET_MENU_WINDOW_ITEM_SLOT_4_AMOUNT,
     WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 pocketMenuScreenItem5ButtonWindows[] = {
-    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_5_NAME,
-    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_5_AMOUNT,
+static const u8 sPocketMenuScreenItem5ButtonWindows[] = {
+    BATTLE_BAG_POCKET_MENU_WINDOW_ITEM_SLOT_5_NAME,
+    BATTLE_BAG_POCKET_MENU_WINDOW_ITEM_SLOT_5_AMOUNT,
     WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 pocketMenuScreenItem6ButtonWindows[] = {
-    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_6_NAME,
-    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ITEM_SLOT_6_AMOUNT,
+static const u8 sPocketMenuScreenItem6ButtonWindows[] = {
+    BATTLE_BAG_POCKET_MENU_WINDOW_ITEM_SLOT_6_NAME,
+    BATTLE_BAG_POCKET_MENU_WINDOW_ITEM_SLOT_6_AMOUNT,
     WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 pocketMenuScreenAltItem1ButtonWindows[] = {
-    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_1_NAME,
-    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_1_AMOUNT,
+static const u8 sPocketMenuScreenAltItem1ButtonWindows[] = {
+    BATTLE_BAG_POCKET_MENU_WINDOW_ALT_ITEM_SLOT_1_NAME,
+    BATTLE_BAG_POCKET_MENU_WINDOW_ALT_ITEM_SLOT_1_AMOUNT,
     WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 pocketMenuScreenAltItem2ButtonWindows[] = {
-    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_2_NAME,
-    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_2_AMOUNT,
+static const u8 sPocketMenuScreenAltItem2ButtonWindows[] = {
+    BATTLE_BAG_POCKET_MENU_WINDOW_ALT_ITEM_SLOT_2_NAME,
+    BATTLE_BAG_POCKET_MENU_WINDOW_ALT_ITEM_SLOT_2_AMOUNT,
     WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 pocketMenuScreenAltItem3ButtonWindows[] = {
-    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_3_NAME,
-    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_3_AMOUNT,
+static const u8 sPocketMenuScreenAltItem3ButtonWindows[] = {
+    BATTLE_BAG_POCKET_MENU_WINDOW_ALT_ITEM_SLOT_3_NAME,
+    BATTLE_BAG_POCKET_MENU_WINDOW_ALT_ITEM_SLOT_3_AMOUNT,
     WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 pocketMenuScreenAltItem4ButtonWindows[] = {
-    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_4_NAME,
-    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_4_AMOUNT,
+static const u8 sPocketMenuScreenAltItem4ButtonWindows[] = {
+    BATTLE_BAG_POCKET_MENU_WINDOW_ALT_ITEM_SLOT_4_NAME,
+    BATTLE_BAG_POCKET_MENU_WINDOW_ALT_ITEM_SLOT_4_AMOUNT,
     WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 pocketMenuScreenAltItem5ButtonWindows[] = {
-    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_5_NAME,
-    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_5_AMOUNT,
+static const u8 sPocketMenuScreenAltItem5ButtonWindows[] = {
+    BATTLE_BAG_POCKET_MENU_WINDOW_ALT_ITEM_SLOT_5_NAME,
+    BATTLE_BAG_POCKET_MENU_WINDOW_ALT_ITEM_SLOT_5_AMOUNT,
     WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 pocketMenuScreenAltItem6ButtonWindows[] = {
-    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_6_NAME,
-    BATTLE_BAG_POCKET_MENU_SCREEN_WINDOW_ALT_ITEM_SLOT_6_AMOUNT,
+static const u8 sPocketMenuScreenAltItem6ButtonWindows[] = {
+    BATTLE_BAG_POCKET_MENU_WINDOW_ALT_ITEM_SLOT_6_NAME,
+    BATTLE_BAG_POCKET_MENU_WINDOW_ALT_ITEM_SLOT_6_AMOUNT,
     WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 useItemScreenUseButtonWindows[] = {
-    BATTLE_BAG_USE_ITEM_SCREEM_WINDOW_ITEM_USE,
+static const u8 sUseItemScreenUseButtonWindows[] = {
+    BATTLE_BAG_USE_ITEM_MENU_WINDOW_ITEM_USE,
     WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 *const scrollableWindows[] = {
-    [BUTTON_MENU_SCREEN_RECOVER_HP_POCKET] = menuRecoverHPPocketButtonWindows,
-    [BUTTON_MENU_SCREEN_RECOVER_STATUS_POCKET] = menuRecoverStatusPocketButtonWindows,
-    [BUTTON_MENU_SCREEN_POKE_BALLS_POCKET] = menuPokeBallsPocketButtonWindows,
-    [BUTTON_MENU_SCREEN_BATTLE_ITEMS_POCKET] = menuBattleItemsPocketButtonWindows,
-    [BUTTON_MENU_SCREEN_LAST_USED_ITEM] = menuLastUsedItemButtonWindows,
+static const u8 *const sScrollableWindows[] = {
+    [BUTTON_MENU_SCREEN_RECOVER_HP_POCKET] = sMenuRecoverHPPocketButtonWindows,
+    [BUTTON_MENU_SCREEN_RECOVER_STATUS_POCKET] = sMenuRecoverStatusPocketButtonWindows,
+    [BUTTON_MENU_SCREEN_POKE_BALLS_POCKET] = sMenuPokeBallsPocketButtonWindows,
+    [BUTTON_MENU_SCREEN_BATTLE_ITEMS_POCKET] = sMenuBattleItemsPocketButtonWindows,
+    [BUTTON_MENU_SCREEN_LAST_USED_ITEM] = sMenuLastUsedItemButtonWindows,
     [BUTTON_MENU_SCREEN_CANCEL] = NULL,
-    [BUTTON_POCKET_MENU_SCREEN_ITEM_1] = pocketMenuScreenItem1ButtonWindows,
-    [BUTTON_POCKET_MENU_SCREEN_ITEM_2] = pocketMenuScreenItem2ButtonWindows,
-    [BUTTON_POCKET_MENU_SCREEN_ITEM_3] = pocketMenuScreenItem3ButtonWindows,
-    [BUTTON_POCKET_MENU_SCREEN_ITEM_4] = pocketMenuScreenItem4ButtonWindows,
-    [BUTTON_POCKET_MENU_SCREEN_ITEM_5] = pocketMenuScreenItem5ButtonWindows,
-    [BUTTON_POCKET_MENU_SCREEN_ITEM_6] = pocketMenuScreenItem6ButtonWindows,
+    [BUTTON_POCKET_MENU_SCREEN_ITEM_1] = sPocketMenuScreenItem1ButtonWindows,
+    [BUTTON_POCKET_MENU_SCREEN_ITEM_2] = sPocketMenuScreenItem2ButtonWindows,
+    [BUTTON_POCKET_MENU_SCREEN_ITEM_3] = sPocketMenuScreenItem3ButtonWindows,
+    [BUTTON_POCKET_MENU_SCREEN_ITEM_4] = sPocketMenuScreenItem4ButtonWindows,
+    [BUTTON_POCKET_MENU_SCREEN_ITEM_5] = sPocketMenuScreenItem5ButtonWindows,
+    [BUTTON_POCKET_MENU_SCREEN_ITEM_6] = sPocketMenuScreenItem6ButtonWindows,
     [BUTTON_POCKET_MENU_SCREEN_PREV_PAGE] = NULL,
     [BUTTON_POCKET_MENU_SCREEN_NEXT_PAGE] = NULL,
     [BUTTON_POCKET_MENU_SCREEN_CANCEL] = NULL,
-    [BUTTON_USE_ITEM_SCREEN_USE] = useItemScreenUseButtonWindows,
+    [BUTTON_USE_ITEM_SCREEN_USE] = sUseItemScreenUseButtonWindows,
     [BUTTON_USE_ITEM_SCREEN_CANCEL] = NULL,
-    [BUTTON_POCKET_MENU_SCREEN_ALT_ITEM_1] = pocketMenuScreenAltItem1ButtonWindows,
-    [BUTTON_POCKET_MENU_SCREEN_ALT_ITEM_2] = pocketMenuScreenAltItem2ButtonWindows,
-    [BUTTON_POCKET_MENU_SCREEN_ALT_ITEM_3] = pocketMenuScreenAltItem3ButtonWindows,
-    [BUTTON_POCKET_MENU_SCREEN_ALT_ITEM_4] = pocketMenuScreenAltItem4ButtonWindows,
-    [BUTTON_POCKET_MENU_SCREEN_ALT_ITEM_5] = pocketMenuScreenAltItem5ButtonWindows,
-    [BUTTON_POCKET_MENU_SCREEN_ALT_ITEM_6] = pocketMenuScreenAltItem6ButtonWindows
+    [BUTTON_POCKET_MENU_SCREEN_ALT_ITEM_1] = sPocketMenuScreenAltItem1ButtonWindows,
+    [BUTTON_POCKET_MENU_SCREEN_ALT_ITEM_2] = sPocketMenuScreenAltItem2ButtonWindows,
+    [BUTTON_POCKET_MENU_SCREEN_ALT_ITEM_3] = sPocketMenuScreenAltItem3ButtonWindows,
+    [BUTTON_POCKET_MENU_SCREEN_ALT_ITEM_4] = sPocketMenuScreenAltItem4ButtonWindows,
+    [BUTTON_POCKET_MENU_SCREEN_ALT_ITEM_5] = sPocketMenuScreenAltItem5ButtonWindows,
+    [BUTTON_POCKET_MENU_SCREEN_ALT_ITEM_6] = sPocketMenuScreenAltItem6ButtonWindows
 };
 
 void BattleBagButtons_InitializeButtonData(BattleBag *battleBag, u16 *screenData)
@@ -250,15 +229,15 @@ void BattleBagButtons_InitializeButtonData(BattleBag *battleBag, u16 *screenData
     LoadButtonData(battleBag->pocketItemButtonData[BUTTON_STATE_PRESSED], screenData, POCKET_ITEM_BUTTON_DATA_X_OFFSET, POCKET_ITEM_BUTTON_HEIGHT * 2, POCKET_ITEM_BUTTON_WIDTH, POCKET_ITEM_BUTTON_HEIGHT);
     LoadButtonData(battleBag->pocketItemButtonData[BUTTON_STATE_DISABLED], screenData, POCKET_ITEM_BUTTON_DATA_X_OFFSET, POCKET_ITEM_BUTTON_HEIGHT * 3, POCKET_ITEM_BUTTON_WIDTH, POCKET_ITEM_BUTTON_HEIGHT);
 
-    LoadButtonData(battleBag->pocketPrevPageButtonData[BUTTON_STATE_UNPRESSED], screenData, 0, POCKET_MENU_PREV_PAGE_BUTTON_DATA_Y_OFFSET, POCKET_MENU_PREV_PAGE_BUTTON_WIDTH, POCKET_MENU_PREV_PAGE_BUTTON_HEIGHT);
-    LoadButtonData(battleBag->pocketPrevPageButtonData[BUTTON_STATE_PRESSING], screenData, POCKET_MENU_PREV_PAGE_BUTTON_WIDTH, POCKET_MENU_PREV_PAGE_BUTTON_DATA_Y_OFFSET, POCKET_MENU_PREV_PAGE_BUTTON_WIDTH, POCKET_MENU_PREV_PAGE_BUTTON_HEIGHT);
-    LoadButtonData(battleBag->pocketPrevPageButtonData[BUTTON_STATE_PRESSED], screenData, POCKET_MENU_PREV_PAGE_BUTTON_WIDTH * 2, POCKET_MENU_PREV_PAGE_BUTTON_DATA_Y_OFFSET, POCKET_MENU_PREV_PAGE_BUTTON_WIDTH, POCKET_MENU_PREV_PAGE_BUTTON_HEIGHT);
-    LoadButtonData(battleBag->pocketPrevPageButtonData[BUTTON_STATE_DISABLED], screenData, POCKET_MENU_PREV_PAGE_BUTTON_WIDTH * 3, POCKET_MENU_PREV_PAGE_BUTTON_DATA_Y_OFFSET, POCKET_MENU_PREV_PAGE_BUTTON_WIDTH, POCKET_MENU_PREV_PAGE_BUTTON_HEIGHT);
+    LoadButtonData(battleBag->pocketPrevPageButtonData[BUTTON_STATE_UNPRESSED], screenData, 0, POCKET_MENU_PREV_PAGE_BUTTON_DATA_Y_OFFSET, POCKET_MENU_PAGE_BUTTON_WIDTH, POCKET_MENU_PAGE_BUTTON_HEIGHT);
+    LoadButtonData(battleBag->pocketPrevPageButtonData[BUTTON_STATE_PRESSING], screenData, POCKET_MENU_PAGE_BUTTON_WIDTH, POCKET_MENU_PREV_PAGE_BUTTON_DATA_Y_OFFSET, POCKET_MENU_PAGE_BUTTON_WIDTH, POCKET_MENU_PAGE_BUTTON_HEIGHT);
+    LoadButtonData(battleBag->pocketPrevPageButtonData[BUTTON_STATE_PRESSED], screenData, POCKET_MENU_PAGE_BUTTON_WIDTH * 2, POCKET_MENU_PREV_PAGE_BUTTON_DATA_Y_OFFSET, POCKET_MENU_PAGE_BUTTON_WIDTH, POCKET_MENU_PAGE_BUTTON_HEIGHT);
+    LoadButtonData(battleBag->pocketPrevPageButtonData[BUTTON_STATE_DISABLED], screenData, POCKET_MENU_PAGE_BUTTON_WIDTH * 3, POCKET_MENU_PREV_PAGE_BUTTON_DATA_Y_OFFSET, POCKET_MENU_PAGE_BUTTON_WIDTH, POCKET_MENU_PAGE_BUTTON_HEIGHT);
 
-    LoadButtonData(battleBag->pocketNextPageButtonData[BUTTON_STATE_UNPRESSED], screenData, 0, POCKET_MENU_NEXT_PAGE_BUTTON_DATA_Y_OFFSET, POCKET_MENU_NEXT_PAGE_BUTTON_WIDTH, POCKET_MENU_NEXT_PAGE_BUTTON_HEIGHT);
-    LoadButtonData(battleBag->pocketNextPageButtonData[BUTTON_STATE_PRESSING], screenData, POCKET_MENU_NEXT_PAGE_BUTTON_WIDTH, POCKET_MENU_NEXT_PAGE_BUTTON_DATA_Y_OFFSET, POCKET_MENU_NEXT_PAGE_BUTTON_WIDTH, POCKET_MENU_NEXT_PAGE_BUTTON_HEIGHT);
-    LoadButtonData(battleBag->pocketNextPageButtonData[BUTTON_STATE_PRESSED], screenData, POCKET_MENU_NEXT_PAGE_BUTTON_WIDTH * 2, POCKET_MENU_NEXT_PAGE_BUTTON_DATA_Y_OFFSET, POCKET_MENU_NEXT_PAGE_BUTTON_WIDTH, POCKET_MENU_NEXT_PAGE_BUTTON_HEIGHT);
-    LoadButtonData(battleBag->pocketNextPageButtonData[BUTTON_STATE_DISABLED], screenData, POCKET_MENU_NEXT_PAGE_BUTTON_WIDTH * 3, POCKET_MENU_NEXT_PAGE_BUTTON_DATA_Y_OFFSET, POCKET_MENU_NEXT_PAGE_BUTTON_WIDTH, POCKET_MENU_NEXT_PAGE_BUTTON_HEIGHT);
+    LoadButtonData(battleBag->pocketNextPageButtonData[BUTTON_STATE_UNPRESSED], screenData, 0, POCKET_MENU_NEXT_PAGE_BUTTON_DATA_Y_OFFSET, POCKET_MENU_PAGE_BUTTON_WIDTH, POCKET_MENU_PAGE_BUTTON_HEIGHT);
+    LoadButtonData(battleBag->pocketNextPageButtonData[BUTTON_STATE_PRESSING], screenData, POCKET_MENU_PAGE_BUTTON_WIDTH, POCKET_MENU_NEXT_PAGE_BUTTON_DATA_Y_OFFSET, POCKET_MENU_PAGE_BUTTON_WIDTH, POCKET_MENU_PAGE_BUTTON_HEIGHT);
+    LoadButtonData(battleBag->pocketNextPageButtonData[BUTTON_STATE_PRESSED], screenData, POCKET_MENU_PAGE_BUTTON_WIDTH * 2, POCKET_MENU_NEXT_PAGE_BUTTON_DATA_Y_OFFSET, POCKET_MENU_PAGE_BUTTON_WIDTH, POCKET_MENU_PAGE_BUTTON_HEIGHT);
+    LoadButtonData(battleBag->pocketNextPageButtonData[BUTTON_STATE_DISABLED], screenData, POCKET_MENU_PAGE_BUTTON_WIDTH * 3, POCKET_MENU_NEXT_PAGE_BUTTON_DATA_Y_OFFSET, POCKET_MENU_PAGE_BUTTON_WIDTH, POCKET_MENU_PAGE_BUTTON_HEIGHT);
 
     LoadButtonData(battleBag->menuScreenRecoverHPPocketIconData[BUTTON_STATE_UNPRESSED], screenData, MENU_POCKET_ICON_DATA_X_OFFSET, MENU_POCKET_ICON_DATA_Y_OFFSET, MENU_POCKET_ICON_WIDTH, MENU_POCKET_ICON_HEIGHT);
     LoadButtonData(battleBag->menuScreenRecoverHPPocketIconData[BUTTON_STATE_PRESSING], screenData, MENU_POCKET_ICON_DATA_X_OFFSET + MENU_POCKET_ICON_WIDTH, MENU_POCKET_ICON_DATA_Y_OFFSET, MENU_POCKET_ICON_WIDTH, MENU_POCKET_ICON_HEIGHT);
@@ -283,7 +262,7 @@ static void LoadButtonData(u16 *buttonData, u16 *screenData, u8 xOffset, u8 yOff
 
     for (i = 0; i < height; i++) {
         for (l = 0; l < width; l++) {
-            buttonData[i * width + l] = screenData[(yOffset + i) * PALETTE_SIZE_BYTES + xOffset + l];
+            buttonData[i * width + l] = screenData[(yOffset + i) * TILE_SIZE_4BPP + xOffset + l];
         }
     }
 }
@@ -388,7 +367,7 @@ static void RetrieveButtonData(BattleBag *battleBag, u16 *buttonData, u8 button,
     u16 *rawButtonData = RetrieveRawButtonData(battleBag, button, buttonState);
     u16 colorData = GetButtonColor(battleBag, button, buttonState, screen) << 12;
 
-    for (i = 0; i < buttonDimensions[button].width * buttonDimensions[button].height; i++) {
+    for (i = 0; i < sButtonDimensions[button].width * sButtonDimensions[button].height; i++) {
         buttonData[i] = colorData | (rawButtonData[i] & 0xfff);
     }
 
@@ -397,11 +376,11 @@ static void RetrieveButtonData(BattleBag *battleBag, u16 *buttonData, u8 button,
 
 static void DrawButton(BattleBag *battleBag, u8 button, u8 buttonState, u8 screen)
 {
-    u16 *buttonData = Heap_AllocFromHeap(battleBag->context->heapID, buttonDimensions[button].width * buttonDimensions[button].height * sizeof(u16));
+    u16 *buttonData = Heap_AllocFromHeap(battleBag->context->heapID, sButtonDimensions[button].width * sButtonDimensions[button].height * sizeof(u16));
 
     RetrieveButtonData(battleBag, buttonData, button, buttonState, screen);
 
-    Bg_LoadToTilemapRect(battleBag->background, BG_LAYER_SUB_2, buttonData, buttonDimensions[button].xCoord, buttonDimensions[button].yCoord, buttonDimensions[button].width, buttonDimensions[button].height);
+    Bg_LoadToTilemapRect(battleBag->background, BG_LAYER_SUB_2, buttonData, sButtonDimensions[button].xCoord, sButtonDimensions[button].yCoord, sButtonDimensions[button].width, sButtonDimensions[button].height);
     Bg_ScheduleTilemapTransfer(battleBag->background, BG_LAYER_SUB_2);
     Heap_FreeToHeap(buttonData);
 }
@@ -413,9 +392,9 @@ static void UpdateWindowScroll(BattleBag *battleBag, u8 button, u8 buttonState)
     u8 scrollDirection, scrollDistance;
 
     if (button >= BUTTON_POCKET_MENU_SCREEN_ITEM_1 && button <= BUTTON_POCKET_MENU_SCREEN_ITEM_6 && battleBag->useAltPocketMenuWindows == FALSE) {
-        windowsToScroll = scrollableWindows[BATTLE_BAG_POCKET_MENU_SCREEN_ALT_BUTTON_OFFSET + button - BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_OFFSET];
+        windowsToScroll = sScrollableWindows[BATTLE_BAG_POCKET_MENU_SCREEN_ALT_BUTTON_OFFSET + button - BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_OFFSET];
     } else {
-        windowsToScroll = scrollableWindows[button];
+        windowsToScroll = sScrollableWindows[button];
     }
 
     if (windowsToScroll == NULL) {
@@ -469,7 +448,7 @@ static void UpdateSpritePositions(BattleBag *battleBag, u8 button, u8 buttonStat
         ManagedSprite_OffsetPositionXY(sprite, 0, SPRITE_Y_POSITION_DEFAULT);
         break;
     case BUTTON_STATE_PRESSING:
-        ManagedSprite_OffsetPositionXY(sprite, 0, SPRITE_Y_POSITION_DPRESSING);
+        ManagedSprite_OffsetPositionXY(sprite, 0, SPRITE_Y_POSITION_PRESSING);
         break;
     }
 }

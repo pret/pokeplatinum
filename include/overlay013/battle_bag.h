@@ -51,8 +51,29 @@ enum ButtonState {
     BUTTON_STATE_UNPRESSED = 0,
     BUTTON_STATE_PRESSING,
     BUTTON_STATE_PRESSED,
-    BUTTON_STATE_DISABLED,
+    BUTTON_STATE_DISABLED, // WARN: This state MUST be the last in the sequence!
+
+    BUTTON_STATE_MAX,
+    BUTTON_STATE_MAX_CANNOT_DISABLE = BUTTON_STATE_DISABLED,
 };
+
+#define MENU_POCKET_BUTTON_WIDTH  16
+#define MENU_POCKET_BUTTON_HEIGHT 9
+
+#define USE_ITEM_BUTTON_WIDTH  26
+#define USE_ITEM_BUTTON_HEIGHT 5
+
+#define CANCEL_BUTTON_WIDTH  5
+#define CANCEL_BUTTON_HEIGHT 5
+
+#define POCKET_ITEM_BUTTON_WIDTH  16
+#define POCKET_ITEM_BUTTON_HEIGHT 6
+
+#define POCKET_MENU_PAGE_BUTTON_WIDTH  5
+#define POCKET_MENU_PAGE_BUTTON_HEIGHT 5
+
+#define MENU_POCKET_ICON_WIDTH  4
+#define MENU_POCKET_ICON_HEIGHT 4
 
 typedef struct BattleBag {
     BattleBagContext *context;
@@ -72,16 +93,16 @@ typedef struct BattleBag {
     BagItem items[BATTLE_POCKET_MAX][BATTLE_POCKET_SIZE];
     SpriteManager *spriteManager;
     ManagedSprite *pocketItemSprites[BATTLE_POCKET_ITEMS_PER_PAGE];
-    u16 menuPocketButtonData[3][144];
-    u16 useItemButtonData[4][130];
-    u16 cancelButtonData[3][25];
-    u16 pocketItemButtonData[4][96];
-    u16 pocketPrevPageButtonData[4][25];
-    u16 pocketNextPageButtonData[4][25];
-    u16 menuScreenRecoverHPPocketIconData[3][16];
-    u16 menuScreenRecoverStatusPocketIconData[3][16];
-    u16 menuScreenPokeBallsPocketIconData[3][16];
-    u16 menuScreenBattleItemsIconData[3][16];
+    u16 menuPocketButtonData[BUTTON_STATE_MAX_CANNOT_DISABLE][MENU_POCKET_BUTTON_WIDTH * MENU_POCKET_BUTTON_HEIGHT];
+    u16 useItemButtonData[BUTTON_STATE_MAX][USE_ITEM_BUTTON_WIDTH * USE_ITEM_BUTTON_HEIGHT];
+    u16 cancelButtonData[BUTTON_STATE_MAX_CANNOT_DISABLE][CANCEL_BUTTON_WIDTH * CANCEL_BUTTON_HEIGHT];
+    u16 pocketItemButtonData[BUTTON_STATE_MAX][POCKET_ITEM_BUTTON_WIDTH * POCKET_ITEM_BUTTON_HEIGHT];
+    u16 pocketPrevPageButtonData[BUTTON_STATE_MAX][POCKET_MENU_PAGE_BUTTON_WIDTH * POCKET_MENU_PAGE_BUTTON_HEIGHT];
+    u16 pocketNextPageButtonData[BUTTON_STATE_MAX][POCKET_MENU_PAGE_BUTTON_WIDTH * POCKET_MENU_PAGE_BUTTON_HEIGHT];
+    u16 menuScreenRecoverHPPocketIconData[BUTTON_STATE_MAX_CANNOT_DISABLE][MENU_POCKET_ICON_WIDTH * MENU_POCKET_ICON_HEIGHT];
+    u16 menuScreenRecoverStatusPocketIconData[BUTTON_STATE_MAX_CANNOT_DISABLE][MENU_POCKET_ICON_WIDTH * MENU_POCKET_ICON_HEIGHT];
+    u16 menuScreenPokeBallsPocketIconData[BUTTON_STATE_MAX_CANNOT_DISABLE][MENU_POCKET_ICON_WIDTH * MENU_POCKET_ICON_HEIGHT];
+    u16 menuScreenBattleItemsIconData[BUTTON_STATE_MAX_CANNOT_DISABLE][MENU_POCKET_ICON_WIDTH * MENU_POCKET_ICON_HEIGHT];
     u8 pressedButtonState;
     u8 Unused1;
     u8 pressedButton;

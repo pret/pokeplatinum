@@ -89,7 +89,7 @@ static void ChangeBattleBagScreen(BattleBag *battleBag, u8 screen);
 static int CheckTouchRectIsPressed(BattleBag *battleBag, const TouchScreenRect *rect);
 static void UseBagItem(BattleSystem *battleSys, u16 item, u16 category, u32 heapID);
 
-static const TouchScreenRect sMenuScreenTouchRects[] = {
+static const TouchScreenRect sMenuTouchRects[] = {
     [BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_HP_POCKET] = { 8, 79, 0, 127 },
     [BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_STATUS_POCKET] = { 80, 151, 0, 127 },
     [BATTLE_BAG_MENU_SCREEN_BUTTON_POKE_BALLS_POCKET] = { 8, 79, 128, 255 },
@@ -99,7 +99,7 @@ static const TouchScreenRect sMenuScreenTouchRects[] = {
     { TOUCHSCREEN_TABLE_TERMINATOR, 0, 0, 0 }
 };
 
-static const TouchScreenRect sPocketMenuScreenTouchRects[] = {
+static const TouchScreenRect sPocketMenuTouchRects[] = {
     [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_1] = { 8, 55, 0, 127 },
     [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_2] = { 8, 55, 128, 255 },
     [BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_ITEM_3] = { 56, 103, 0, 127 },
@@ -112,7 +112,7 @@ static const TouchScreenRect sPocketMenuScreenTouchRects[] = {
     { TOUCHSCREEN_TABLE_TERMINATOR, 0, 0, 0 }
 };
 
-static const TouchScreenRect sUseItemScreenTouchRects[] = {
+static const TouchScreenRect sUseItemMenuTouchRects[] = {
     [BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_USE] = { 152, 191, 0, 207 },
     [BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_CANCEL] = { 152, 191, 216, 255 },
     { TOUCHSCREEN_TABLE_TERMINATOR, 0, 0, 0 }
@@ -244,7 +244,7 @@ static u8 BattleBagTask_MenuScreen(BattleBag *battleBag)
         return TASK_STATE_MENU_SCREEN;
     }
 
-    enum BattleBagMenuScreenButton menuButtonPressed = CheckTouchRectIsPressed(battleBag, sMenuScreenTouchRects);
+    enum BattleBagMenuScreenButton menuButtonPressed = CheckTouchRectIsPressed(battleBag, sMenuTouchRects);
 
     if (menuButtonPressed == TOUCHSCREEN_INPUT_NONE) {
         menuButtonPressed = BattleSubMenuCursorTick(battleBag->cursor);
@@ -289,7 +289,7 @@ static u8 BattleBagTask_MenuScreen(BattleBag *battleBag)
 
 static u8 BattleBagTask_PocketMenuScreen(BattleBag *battleBag)
 {
-    enum BattleBagPocketMenuScreenButton pocketMenuScreenButtonPressed = CheckTouchRectIsPressed(battleBag, sPocketMenuScreenTouchRects);
+    enum BattleBagPocketMenuScreenButton pocketMenuScreenButtonPressed = CheckTouchRectIsPressed(battleBag, sPocketMenuTouchRects);
 
     if (pocketMenuScreenButtonPressed == TOUCHSCREEN_INPUT_NONE) {
         pocketMenuScreenButtonPressed = BattleSubMenuCursorTick(battleBag->cursor);
@@ -369,7 +369,7 @@ static u8 BattleBagTask_ChangePocketPage(BattleBag *battleBag)
 
 static u8 BattleBagTask_UseItemScreen(BattleBag *battleBag)
 {
-    enum BattleBagUseItemScreenButton useItemScreenButtonPressed = CheckTouchRectIsPressed(battleBag, sUseItemScreenTouchRects);
+    enum BattleBagUseItemScreenButton useItemScreenButtonPressed = CheckTouchRectIsPressed(battleBag, sUseItemMenuTouchRects);
 
     if (useItemScreenButtonPressed == TOUCHSCREEN_INPUT_NONE) {
         useItemScreenButtonPressed = BattleSubMenuCursorTick(battleBag->cursor);
