@@ -245,7 +245,7 @@ aa8f109bb43f94b0c8cf3cf5c27fb166da269823 *res/prebuilt/graphic/wifi2dchar.narc
 8c845e477096afff262c3890ec8490b5426064f2 *res/prebuilt/graphic/worldtimer.narc
 a2eca9df316b9cad191ace16d08a90603966e892 *res/prebuilt/graphic/worldtrade.narc
 2e02f8d5040f0fce4fe1033c3831689244fe9fe4 *res/prebuilt/itemtool/itemdata/item_data.narc
-4fcc3fbd829a7cbf34a1b32440f619b731f7a08f *res/items/item_icon/item_icon.narc
+4fcc3fbd829a7cbf34a1b32440f619b731f7a08f *res/items/item_icon.narc
 683a7691d685c153e738b136b8266deefb0b4552 *res/items/nuts_data.narc
 70d103831556bb58ae8e602adbcce99333a22889 *res/items/pl_item_data.narc
 6d861f9f35d1b267cd7b84368a1b7dc76b4e9669 *res/pokemon/pl_poke_icon.narc

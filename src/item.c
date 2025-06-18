@@ -13,7 +13,7 @@
 #include "narc.h"
 #include "strbuf.h"
 
-#include "res/items/item_icon/item_icon.naix.h"
+#include "res/items/item_icon.naix.h"
 
 typedef struct ItemArchiveIDs {
     u16 dataID; // Member file index in pl_item_data.narc; TODO: Use NAIX generated from pl_item_data
@@ -48,7 +48,7 @@ const ItemArchiveIDs sItemArchiveIDs[] = {
     [ITEM_BURN_HEAL]    = {  .dataID = 0x13,  .iconID = icon_status_heal_NCGR,   .paletteID = pltt_burn_heal_NCLR,      .gen3ID = GBA_ITEM_BURN_HEAL,     },
     [ITEM_ICE_HEAL]     = {  .dataID = 0x14,  .iconID = icon_status_heal_NCGR,   .paletteID = pltt_ice_heal_NCLR,       .gen3ID = GBA_ITEM_ICE_HEAL,      },
     [ITEM_AWAKENING]    = {  .dataID = 0x15,  .iconID = icon_status_heal_NCGR,   .paletteID = pltt_awakening_NCLR,      .gen3ID = GBA_ITEM_AWAKENING,     },
-    [ITEM_PARLYZ_HEAL]  = {  .dataID = 0x16,  .iconID = icon_status_heal_NCGR,   .paletteID = pltt_paralyz_heal_NCLR,   .gen3ID = GBA_ITEM_PARALYZE_HEAL, },
+    [ITEM_PARLYZ_HEAL]  = {  .dataID = 0x16,  .iconID = icon_status_heal_NCGR,   .paletteID = pltt_parlyz_heal_NCLR,    .gen3ID = GBA_ITEM_PARALYZE_HEAL, },
     [ITEM_FULL_RESTORE] = {  .dataID = 0x17,  .iconID = icon_full_restore_NCGR,  .paletteID = pltt_full_restore_NCLR,   .gen3ID = GBA_ITEM_FULL_RESTORE,  },
     [ITEM_MAX_POTION]   = {  .dataID = 0x18,  .iconID = icon_full_restore_NCGR,  .paletteID = pltt_max_potion_NCLR,     .gen3ID = GBA_ITEM_MAX_POTION,    },
     [ITEM_HYPER_POTION] = {  .dataID = 0x19,  .iconID = icon_potion_NCGR,        .paletteID = pltt_hyper_potion_NCLR,   .gen3ID = GBA_ITEM_HYPER_POTION,  },
@@ -81,7 +81,7 @@ const ItemArchiveIDs sItemArchiveIDs[] = {
     [ITEM_ZINC]         = {  .dataID = 0x34,  .iconID = icon_vitamin_NCGR,       .paletteID = pltt_zinc_NCLR,           .gen3ID = GBA_ITEM_ZINC,          },
     [ITEM_PP_MAX]       = {  .dataID = 0x35,  .iconID = icon_pp_max_NCGR,        .paletteID = pltt_pp_max_NCLR,         .gen3ID = GBA_ITEM_PP_MAX,        },
     [ITEM_OLD_GATEAU]   = {  .dataID = 0x36,  .iconID = icon_old_gateau_NCGR,    .paletteID = pltt_old_gateau_NCLR,     .gen3ID = GBA_ITEM_NONE,          },
-    [ITEM_GUARD_SPEC]   = {  .dataID = 0x37,  .iconID = icon_battle_item_NCGR,   .paletteID = pltt_guard_sped_NCLR,     .gen3ID = GBA_ITEM_GUARD_SPEC,    },
+    [ITEM_GUARD_SPEC]   = {  .dataID = 0x37,  .iconID = icon_battle_item_NCGR,   .paletteID = pltt_guard_spec_NCLR,     .gen3ID = GBA_ITEM_GUARD_SPEC,    },
     [ITEM_DIRE_HIT]     = {  .dataID = 0x38,  .iconID = icon_battle_item_NCGR,   .paletteID = pltt_dire_hit_NCLR,       .gen3ID = GBA_ITEM_DIRE_HIT,      },
     [ITEM_X_ATTACK]     = {  .dataID = 0x39,  .iconID = icon_battle_item_NCGR,   .paletteID = pltt_x_attack_NCLR,       .gen3ID = GBA_ITEM_X_ATTACK,      },
     [ITEM_X_DEFENSE]    = {  .dataID = 0x3A,  .iconID = icon_battle_item_NCGR,   .paletteID = pltt_x_defense_NCLR,      .gen3ID = GBA_ITEM_X_DEFEND,      },
@@ -274,7 +274,7 @@ const ItemArchiveIDs sItemArchiveIDs[] = {
     [ITEM_POISON_BARB]  = {  .dataID = 0xDF,  .iconID = icon_poison_barb_NCGR,   .paletteID = pltt_poison_barb_NCLR,    .gen3ID = GBA_ITEM_POISON_BARB,   },
     [ITEM_NEVERMELTICE] = {  .dataID = 0xE0,  .iconID = icon_nevermeltice_NCGR,  .paletteID = pltt_nevermeltice_NCLR,   .gen3ID = GBA_ITEM_NEVER_MELT_ICE,},
     [ITEM_SPELL_TAG]    = {  .dataID = 0xE1,  .iconID = icon_spell_tag_NCGR,     .paletteID = pltt_spell_tag_NCLR,      .gen3ID = GBA_ITEM_SPELL_TAG,     },
-    [ITEM_TWISTEDSPOON] = {  .dataID = 0xE2,  .iconID = icon_twisted_spoon_NCGR, .paletteID = pltt_twisted_spoon_NCLR,  .gen3ID = GBA_ITEM_TWISTED_SPOON, },
+    [ITEM_TWISTEDSPOON] = {  .dataID = 0xE2,  .iconID = icon_twistedspoon_NCGR,  .paletteID = pltt_twistedspoon_NCLR,   .gen3ID = GBA_ITEM_TWISTED_SPOON, },
     [ITEM_CHARCOAL]     = {  .dataID = 0xE3,  .iconID = icon_charcoal_NCGR,      .paletteID = pltt_charcoal_NCLR,       .gen3ID = GBA_ITEM_CHARCOAL,      },
     [ITEM_DRAGON_FANG]  = {  .dataID = 0xE4,  .iconID = icon_dragon_fang_NCGR,   .paletteID = pltt_dragon_fang_NCLR,    .gen3ID = GBA_ITEM_DRAGON_FANG,   },
     [ITEM_SILK_SCARF]   = {  .dataID = 0xE5,  .iconID = icon_silk_scarf_NCGR,    .paletteID = pltt_silk_scarf_NCLR,     .gen3ID = GBA_ITEM_SILK_SCARF,    },
@@ -463,7 +463,7 @@ const ItemArchiveIDs sItemArchiveIDs[] = {
     [ITEM_SEAL_CASE]    = {  .dataID = 0x19C, .iconID = icon_seal_case_NCGR,     .paletteID = pltt_seal_case_NCLR,      .gen3ID = GBA_ITEM_NONE,          },
     [ITEM_FASHION_CASE] = {  .dataID = 0x19D, .iconID = icon_fashion_case_NCGR,  .paletteID = pltt_fashion_case_NCLR,   .gen3ID = GBA_ITEM_NONE,          },
     [ITEM_SEAL_BAG]     = {  .dataID = 0x19E, .iconID = icon_seal_bag_NCGR,      .paletteID = pltt_seal_bag_NCLR,       .gen3ID = GBA_ITEM_NONE,          },
-    [ITEM_PAL_PAD]      = {  .dataID = 0x19F, .iconID = icon_seal_pad_NCGR,      .paletteID = pltt_seal_pad_NCLR,       .gen3ID = GBA_ITEM_NONE,          },
+    [ITEM_PAL_PAD]      = {  .dataID = 0x19F, .iconID = icon_pal_pad_NCGR,       .paletteID = pltt_pal_pad_NCLR,        .gen3ID = GBA_ITEM_NONE,          },
     [ITEM_WORKS_KEY]    = {  .dataID = 0x1A0, .iconID = icon_works_key_NCGR,     .paletteID = pltt_works_key_NCLR,      .gen3ID = GBA_ITEM_NONE,          },
     [ITEM_OLD_CHARM]    = {  .dataID = 0x1A1, .iconID = icon_old_charm_NCGR,     .paletteID = pltt_old_charm_NCLR,      .gen3ID = GBA_ITEM_NONE,          },
     [ITEM_GALACTIC_KEY] = {  .dataID = 0x1A2, .iconID = icon_galactic_key_NCGR,  .paletteID = pltt_galactic_key_NCLR,   .gen3ID = GBA_ITEM_NONE,          },
@@ -482,7 +482,7 @@ const ItemArchiveIDs sItemArchiveIDs[] = {
     [ITEM_LUNAR_WING]   = {  .dataID = 0x1AF, .iconID = icon_lunar_wing_NCGR,    .paletteID = pltt_lunar_wing_NCLR,     .gen3ID = GBA_ITEM_NONE,          },
     [ITEM_MEMBER_CARD]  = {  .dataID = 0x1B0, .iconID = icon_member_card_NCGR,   .paletteID = pltt_member_card_NCLR,    .gen3ID = GBA_ITEM_NONE,          },
     [ITEM_AZURE_FLUTE]  = {  .dataID = 0x1B1, .iconID = icon_azure_flute_NCGR,   .paletteID = pltt_azure_flute_NCLR,    .gen3ID = GBA_ITEM_NONE,          },
-    [ITEM_S_S_TICKET]   = {  .dataID = 0x1B2, .iconID = icon_ss_ticket_NCGR,     .paletteID = pltt_ss_ticket_NCLR,      .gen3ID = GBA_ITEM_SS_TICKET,     },
+    [ITEM_S_S_TICKET]   = {  .dataID = 0x1B2, .iconID = icon_s_s_ticket_NCGR,    .paletteID = pltt_s_s_ticket_NCLR,     .gen3ID = GBA_ITEM_SS_TICKET,     },
     [ITEM_CONTEST_PASS] = {  .dataID = 0x1B3, .iconID = icon_contest_pass_NCGR,  .paletteID = pltt_contest_pass_NCLR,   .gen3ID = GBA_ITEM_CONTEST_PASS,  },
     [ITEM_MAGMA_STONE]  = {  .dataID = 0x1B4, .iconID = icon_magma_stone_NCGR,   .paletteID = pltt_magma_stone_NCLR,    .gen3ID = GBA_ITEM_NONE,          },
     [ITEM_PARCEL]       = {  .dataID = 0x1B5, .iconID = icon_parcel_NCGR,        .paletteID = pltt_parcel_NCLR,         .gen3ID = GBA_ITEM_OAKS_PARCEL,   },
