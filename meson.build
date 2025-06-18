@@ -40,7 +40,7 @@ c_args = [
 if get_option('gdb_debugging')
     c_args += [
         '-O1,p',
-        '-inline', 'off'
+#        '-inline', 'off'
     ]
 else
     c_args += '-O4,p'
