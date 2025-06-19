@@ -20,10 +20,10 @@ void EmulatorVPrintf(const char *text, va_list ap)
     int res = vsnprintf(nocashbuf, LOG_MESSAGE_MAX_LENGTH, text, ap);
 
     int toprint = res >= LOG_MESSAGE_MAX_LENGTH - 1 ? LOG_MESSAGE_MAX_LENGTH - 1 : res;
-    char* cashbuf = nocashbuf;
+    char *cashbuf = nocashbuf;
     while (toprint > 0) {
         *noCashPrint = cashbuf;
-        toprint-= MELONDS_PRINT_MAX_LEN;
+        toprint -= MELONDS_PRINT_MAX_LEN;
         cashbuf += MELONDS_PRINT_MAX_LEN;
     }
     if (res >= LOG_MESSAGE_MAX_LENGTH - 1) {
@@ -127,7 +127,7 @@ void EmulatorPrintCharMapBuf(const charcode_t *buf, const u16 len)
             i--;
         } else {
             // continue appending
-            memcpy(&outbuf[outbuf_len], mapping,maplen);
+            memcpy(&outbuf[outbuf_len], mapping, maplen);
             outbuf_len += maplen;
             outbuf[outbuf_len] = '\0';
         }

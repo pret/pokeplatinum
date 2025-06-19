@@ -146,7 +146,7 @@ static void ov5_021DD648(UnkStruct_ov5_021DD648 *param0, const MessageLoader *pa
 {
     MessageLoader_GetStrbuf(param1, param2, param0->unk_04);
     StringTemplate_Format(param0->unk_08, param0->unk_00, param0->unk_04);
-    EmulatorLog("message","message id %d text is :",param2);
+    EmulatorLog("message", "message id %d text is :", param2);
     EmulatorPrintStrBuf(param0->unk_00);
 }
 

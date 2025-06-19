@@ -2150,7 +2150,7 @@ static BOOL ScrCmd_26D(ScriptContext *ctx)
 static BOOL ScrCmd_Message(ScriptContext *ctx)
 {
     u8 messageID = ScriptContext_ReadByte(ctx);
-    EmulatorLog("script.message","Writing message id: %d",messageID);
+    EmulatorLog("script.message", "Writing message id: %d", messageID);
     ov5_021DD444(ctx, ctx->loader, messageID, TRUE, NULL);
     ScriptContext_Pause(ctx, sub_02040014);
 
