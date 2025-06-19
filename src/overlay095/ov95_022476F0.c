@@ -8,11 +8,11 @@
 
 #include "camera.h"
 #include "easy3d.h"
+#include "gfx_box_test.h"
 #include "graphics.h"
 #include "heap.h"
 #include "inlines.h"
 #include "narc.h"
-#include "unk_0201CED8.h"
 
 struct UnkStruct_ov95_02247958_t {
     void *unk_00;
@@ -217,7 +217,7 @@ BOOL ov95_022479DC(UnkStruct_ov95_02247958 *param0)
     NNS_G3dGePushMtx();
 
     Camera_ComputeViewMatrix();
-    v1 = sub_0201CED8(param0->unk_5C, &param0->unk_68, &v0, &param0->unk_74);
+    v1 = GFXBoxTest_IsModelInView(param0->unk_5C, &param0->unk_68, &v0, &param0->unk_74);
 
     NNS_G3dGePopMtx(1);
 

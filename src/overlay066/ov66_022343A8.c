@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_02020C44_decl.h"
 #include "struct_decls/struct_020216E0_decl.h"
-#include "struct_defs/struct_0201CFEC.h"
 #include "struct_defs/struct_020217F4.h"
 #include "struct_defs/struct_02024184.h"
 
@@ -20,11 +19,11 @@
 
 #include "easy3d.h"
 #include "easy3d_object.h"
+#include "gfx_box_test.h"
 #include "graphics.h"
 #include "heap.h"
 #include "narc.h"
 #include "resource_collection.h"
-#include "unk_0201CED8.h"
 #include "unk_02020AEC.h"
 #include "unk_0202414C.h"
 
@@ -824,19 +823,19 @@ static BOOL ov66_02234D8C(UnkStruct_020216E0 *param0)
     VecFx32 v1;
     NNSG3dResMdlInfo *v2;
     NNSG3dResMdl *v3;
-    UnkStruct_0201CFEC v4;
+    GFXTestBox v4;
     MtxFx33 v5;
 
     v3 = sub_020213F4(param0);
     v2 = NNS_G3dGetMdlInfo(v3);
     v1 = *sub_020212C0(param0);
 
-    v4.unk_00 = v2->boxW;
-    v4.unk_02 = v2->boxH;
-    v4.unk_04 = v2->boxH;
-    v4.unk_08 = v2->boxPosScale >> FX32_SHIFT;
-    v4.unk_0C = v2->boxPosScale >> FX32_SHIFT;
-    v4.unk_10 = v2->boxPosScale >> FX32_SHIFT;
+    v4.width = v2->boxW;
+    v4.height = v2->boxH;
+    v4.depth = v2->boxH;
+    v4.xScale = v2->boxPosScale >> FX32_SHIFT;
+    v4.yScale = v2->boxPosScale >> FX32_SHIFT;
+    v4.zScale = v2->boxPosScale >> FX32_SHIFT;
 
     v1.x += FX_Mul(v2->boxX, v2->boxPosScale);
     v1.y += FX_Mul(v2->boxY, v2->boxPosScale);
@@ -847,7 +846,7 @@ static BOOL ov66_02234D8C(UnkStruct_020216E0 *param0)
     NNS_G3dGlbSetBaseRot(&v5);
     NNS_G3dGlbSetBaseScale(sub_020212EC(param0));
 
-    v0 = sub_0201CF7C(&v1, &v4);
+    v0 = GFXBoxTest_IsBoxAtPositionInView(&v1, &v4);
 
     if (v0 == 0) {
         return 0;
