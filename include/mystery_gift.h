@@ -27,7 +27,7 @@ typedef struct MysteryGiftPokemonData {
 
 typedef struct MysteryGiftItemData {
     enum Item item;
-    BOOL unk_04;
+    BOOL shouldPlayAnimation;
 } MysteryGiftItemData;
 
 enum MysteryGiftCosmeticsType {
@@ -57,23 +57,23 @@ typedef struct PGT {
     GiftData data;
 } PGT;
 
-typedef struct WonderCardMetadata {
+typedef struct MysteryGiftEventHeader {
     u16 title[WONDERCARD_TITLE_LENGTH];
-    u32 validGames; //!< A bit field of the games the WonderCard can be received on.
+    u32 validGames; //!< A bit field of the games the Mystery Gift can be received on.
     u16 id;
     u8 unique : 1;
     u8 unk_4E_1 : 1;
-    u8 saveWonderCard : 1; //!< If FALSE, savePgt is ignored and treated as TRUE.
+    u8 hasWonderCard : 1; //!< If FALSE, savePgt is ignored and treated as TRUE.
     u8 savePgt : 1;
     u8 shareable : 1;
-    u8 fromSharing : 1; //!< Whether or not the wonder card was obtained from another player sharing it
+    u8 fromSharing : 1; //!< Whether or not the Mystery Gift was obtained from another player sharing it
     u8 : 2;
     u8 padding_4F;
-} WonderCardMetadata;
+} MysteryGiftEventHeader;
 
 typedef struct WonderCard {
     PGT pgt;
-    WonderCardMetadata metadata;
+    MysteryGiftEventHeader eventHeader;
     u16 description[WONDERCARD_DESCRIPTION_LENGTH];
     u8 sharesLeft;
     u8 padding_349;

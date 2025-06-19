@@ -14,6 +14,11 @@ enum AffineTransformationMatrixMode {
     AFFINE_MODE_MAX_360,
 };
 
+typedef struct Vec2F32 {
+    f32 x;
+    f32 y;
+} Vec2F32;
+
 fx32 CalcSineDegrees(u16 degrees);
 fx32 CalcCosineDegrees(u16 degrees);
 fx32 CalcSineDegrees_Wraparound(u16 degrees);

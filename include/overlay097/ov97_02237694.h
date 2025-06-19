@@ -1,9 +1,9 @@
 #ifndef POKEPLATINUM_OV97_02237694_H
 #define POKEPLATINUM_OV97_02237694_H
 
+#include "overlay097/mystery_gift_app.h"
 #include "overlay097/struct_ov97_02237808.h"
 #include "overlay097/struct_ov97_02237AEC.h"
-#include "overlay097/struct_ov97_0223829C.h"
 
 #include "bg_window.h"
 #include "list_menu.h"
@@ -35,9 +35,9 @@ void ov97_02237CAC(int param0);
 Sprite *ov97_02237D14(int param0, Sprite *param1, int param2, int param3, int param4);
 void ov97_02237DA0(void);
 u32 ov97_02237E4C(int param0);
-void ov97_02238194(BgConfig *param0, PGT *param1);
-void ov97_0223829C(UnkStruct_ov97_0223829C *param0, WonderCard *param1, int heapID);
-void ov97_02238324(UnkStruct_ov97_0223829C *param0, WonderCard *param1, int heapID);
+void ov97_02238194(BgConfig *param0, WonderCard *param1);
+void ov97_0223829C(MysteryGiftEventData *param0, WonderCard *param1, int heapID);
+void ov97_02238324(MysteryGiftEventData *param0, WonderCard *param1, int heapID);
 void ov97_022383C4(ListMenu *param0, u32 param1, u8 param2);
 void ov97_02238400(BOOL param0);
 void ov97_02238440(void);
