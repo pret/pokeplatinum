@@ -7,16 +7,10 @@
 #include "charcode.h"
 #include "strbuf.h"
 
-#ifdef __JETBRAINS_IDE__
-[[jetbrains::format(printf, 1, 2)]] // so CLion validates templating
-#endif
-void EmulatorPrintf(const char *text, ...);
+__attribute__((format(printf, 1, 2))) void EmulatorPrintf(const char *text, ...);
 BOOL LogSubsystemAllowed(const char *subsystemName);
 
-#ifdef __JETBRAINS_IDE__
-[[jetbrains::format(printf, 2, 3)]]
-#endif
-void EmulatorLog(const char *subsystem, const char *text, ...);
+__attribute__((format(printf, 2, 3))) void EmulatorLog(const char *subsystem, const char *text, ...);
 void EmulatorPrintCharMapBuf(const charcode_t *buf, u16 len);
 void EmulatorPrintStrBuf(const Strbuf *buf);
 
