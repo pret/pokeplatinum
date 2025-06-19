@@ -138,10 +138,10 @@ update: meson skrewup
 	$(MESON) subprojects update || true
 
 setup_release: $(BUILD)/build.ninja
-	$(MESON) configure build -Dgdb_debugging=false
+	$(MESON) configure build -Dgdb_debugging=false -Dlogging_enabled=false
 
 setup_debug: $(BUILD)/build.ninja
-	$(MESON) configure build -Dgdb_debugging=true
+	$(MESON) configure build -Dgdb_debugging=true -Dlogging_enabled=true -Dlogging_subsystems=$(LOG_SUBSYSTEMS)
 
 configure: $(BUILD)/build.ninja
 
