@@ -4,9 +4,12 @@
 #include "generated/versions.h"
 #include "constants/pokemon.h"
 
+#define LOCALID_OAK 1
+#define LOCALID_RECEPCIONIST 7
+
     .data
 
-    ScriptEntry _0036
+    ScriptEntry PalParkLobby_OnTransition
     ScriptEntry PalParkLobby_Receptionist
     ScriptEntry PalParkLobby_Trigger_TallyScore
     ScriptEntry PalParkLobby_RecordUnused
@@ -21,15 +24,15 @@
     ScriptEntry PalParkLobby_GBASlotGiftLady
     ScriptEntryEnd
 
-_0036:
+PalParkLobby_OnTransition:
     ClearFlag FLAG_ALT_MUSIC_PAL_PARK
     SetFlag FLAG_FIRST_ARRIVAL_POKE_PARK_FRONT_GATE
-    GoToIfNe VAR_PAL_PARK_STATE, 0, _004D
+    GoToIfNe VAR_PAL_PARK_STATE, 0, PalParkLobby_SetRecepcionistPosAndDir
     End
 
-_004D:
-    SetObjectEventPos 7, 8, 9
-    SetObjectEventDir 7, DIR_WEST
+PalParkLobby_SetRecepcionistPosAndDir:
+    SetObjectEventPos LOCALID_RECEPCIONIST, 8, 9
+    SetObjectEventDir LOCALID_RECEPCIONIST, DIR_WEST
     End
 
 PalParkLobby_BufferRecord:
@@ -156,7 +159,7 @@ PalParkLobby_Receptionist_GiveParkBalls_PlayerFemale:
     GoTo PalParkLobby_WalkInAndWarp
 
 PalParkLobby_WalkInAndWarp:
-    ApplyMovement 7, _02B8
+    ApplyMovement LOCALID_RECEPCIONIST, _02B8
     WaitMovement
     ApplyMovement LOCALID_PLAYER, _02CC
     WaitMovement
@@ -206,7 +209,7 @@ _02D8:
     SetVar VAR_PAL_PARK_STATE, 0
     ApplyMovement LOCALID_PLAYER, _03E4
     WaitMovement
-    ApplyMovement 7, _03D8
+    ApplyMovement LOCALID_RECEPCIONIST, _03D8
     WaitMovement
     ReleaseAll
     End
@@ -263,7 +266,7 @@ PalParkLobby_Receptionist_StoreCaughtMon:
 PalParkLobby_Receptionist_End:
     ApplyMovement LOCALID_PLAYER, _03F8
     WaitMovement
-    ApplyMovement 7, _03D8
+    ApplyMovement LOCALID_RECEPCIONIST, _03D8
     WaitMovement
     ReleaseAll
     End
@@ -377,7 +380,7 @@ PalParkLobby_Oak:
     LockAll
     ClearFlag FLAG_ETERNA_CITY_SOUTH_HOUSE_HIDE_PROF_OAK
     SetVar VAR_CATCHING_SHOW_RECORD, 2000
-    ApplyMovement 1, _0548
+    ApplyMovement LOCALID_OAK, _0548
     WaitMovement
     GetPlayerGender VAR_MAP_LOCAL_0
     BufferPlayerName 0
@@ -395,7 +398,7 @@ PalParkLobby_Oak_ThisIsPalPark_PlayerFemale:
 PalParkLobby_Oak_PokemonFromAroundTheCountryCanBeBroughtHere:
     Message PalParkLobby_Text_Oak_PokemonFromAroundTheCountryCanBeBroughtHere
     CloseMessage
-    ApplyMovement 1, _0558
+    ApplyMovement LOCALID_OAK, _0558
     WaitMovement
     Message PalParkLobby_Text_Oak_LetMeMakeAGiftOfThisTrainerCounterApp
     SetVar VAR_0x8004, 19
@@ -405,7 +408,7 @@ PalParkLobby_Oak_PokemonFromAroundTheCountryCanBeBroughtHere:
     WaitTime 15, VAR_RESULT
     ApplyMovement LOCALID_PLAYER, _0570
     WaitMovement
-    ApplyMovement 1, _0564
+    ApplyMovement LOCALID_OAK, _0564
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 1
