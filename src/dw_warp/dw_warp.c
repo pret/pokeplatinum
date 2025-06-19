@@ -8,8 +8,6 @@
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay115/camera_angle.h"
-
 #include "camera.h"
 #include "easy3d_object.h"
 #include "gx_layers.h"

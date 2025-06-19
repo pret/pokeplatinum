@@ -18,7 +18,6 @@
 #include "overlay005/struct_ov5_02201C58.h"
 #include "overlay109/struct_ov109_021D1048.h"
 #include "overlay109/struct_ov109_021D17EC.h"
-#include "overlay115/camera_angle.h"
 
 #include "bag.h"
 #include "bg_window.h"
