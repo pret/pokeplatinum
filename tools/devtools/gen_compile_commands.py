@@ -5,9 +5,11 @@ import pathlib
 
 homedir = pathlib.Path(__file__).resolve().parent.parent.parent
 builddir = homedir / "build"
+meson_options_file = builddir / "meson-info" / "intro-buildoptions.json"
 
 cwsdkdir = homedir / "subprojects" / "metroskrew" / "lib" / "metroskrew" / "sdk" / "ds" / "2.0" / "sp2"
 cwlibcdir = cwsdkdir / "msl" / "MSL_C" / "MSL_Common" / "Include"
+cwlibcarmdir = cwsdkdir / "msl" / "MSL_C" / "MSL_ARM" / "Include"
 cwextrasdir = cwsdkdir / "msl" / "MSL_Extras" / "MSL_Common" / "Include"
 
 arm7_c_flags = [
@@ -19,6 +21,7 @@ arm7_c_flags = [
     "-mfloat-abi=soft",
     "-nostdinc",
     "-D_NITRO",
+    "-D__arm",
     "-DSDK_4M",
     "-DSDK_ARM7",
     "-DSDK_CODE_ARM",
@@ -37,6 +40,7 @@ arm9_c_flags = [
     "-mfloat-abi=soft",
     "-nostdinc",
     "-D_NITRO",
+    "-D__arm",
     "-DLINK_PPWLOBBY",
     "-DNNS_FINALROM",
     "-DSDK_4M",
@@ -51,6 +55,24 @@ arm9_c_flags = [
     "-DGAME_VERSION=VERSION_PLATINUM",
     "-DGAME_LANGUAGE=ENGLISH",
 ]
+
+with open(meson_options_file, 'r') as optf:
+    meson_options = json.load(optf)
+
+def find_option(opt: str):
+    return [o["value"] for o in meson_options if o["name"] == opt][0]
+gdb_debugging = find_option("gdb_debugging")
+logging_enabled = find_option("logging_enabled")
+logging_subsystems = find_option("logging_subsystems")
+
+if gdb_debugging:
+    arm9_c_flags.append("-DGDB_DEBUGGING")
+
+if logging_enabled:
+    arm9_c_flags.append("-DLOGGING_ENABLED")
+    arm9_c_flags.append(f"-DLOGGING_SUBSYSTEM_COUNT={len(logging_subsystems)}")
+    for i, logging_subsystem in enumerate(logging_subsystems):
+        arm9_c_flags.append(f"-DLOGGING_SUBSYSTEM_{i}={logging_subsystem}")
 
 asm_commands = [
     {
@@ -74,6 +96,7 @@ nitrosdk_c_commands = [
         + [
             f"-I{cwlibcdir}",
             f"-I{cwextrasdir}",
+            f"-I{cwlibcarmdir}",
             f"-I{homedir}/subprojects/NitroSDK-4.2.30001/include",
             f"-I{builddir}/subprojects/NitroSDK-4.2.30001/gen",
             "-o",
@@ -92,6 +115,7 @@ nitrosystem_c_commands = [
         + [
             f"-I{cwlibcdir}",
             f"-I{cwextrasdir}",
+            f"-I{cwlibcarmdir}",
             f"-I{homedir}/subprojects/NitroSDK-4.2.30001/include",
             f"-I{builddir}/subprojects/NitroSDK-4.2.30001/gen",
             f"-I{homedir}/subprojects/NitroSystem-071126.1/include",
@@ -111,6 +135,7 @@ nitrowifi_c_commands = [
         + [
             f"-I{cwlibcdir}",
             f"-I{cwextrasdir}",
+            f"-I{cwlibcarmdir}",
             f"-I{homedir}/subprojects/NitroSDK-4.2.30001/include",
             f"-I{builddir}/subprojects/NitroSDK-4.2.30001/gen",
             f"-I{homedir}/subprojects/NitroSystem-071126.1/include",
@@ -131,6 +156,7 @@ nitrodwc_c_commands = [
         + [
             f"-I{cwlibcdir}",
             f"-I{cwextrasdir}",
+            f"-I{cwlibcarmdir}",
             f"-I{homedir}/subprojects/NitroSDK-4.2.30001/include",
             f"-I{builddir}/subprojects/NitroSDK-4.2.30001/gen",
             f"-I{homedir}/subprojects/NitroSystem-071126.1/include",
@@ -152,6 +178,7 @@ libvct_c_commands = [
         + [
             f"-I{cwlibcdir}",
             f"-I{cwextrasdir}",
+            f"-I{cwlibcarmdir}",
             f"-I{homedir}/subprojects/NitroSDK-4.2.30001/include",
             f"-I{builddir}/subprojects/NitroSDK-4.2.30001/gen",
             f"-I{homedir}/subprojects/NitroSystem-071126.1/include",
@@ -174,6 +201,7 @@ libcrypto_c_commands = [
         + [
             f"-I{cwlibcdir}",
             f"-I{cwextrasdir}",
+            f"-I{cwlibcarmdir}",
             f"-I{homedir}/subprojects/NitroSDK-4.2.30001/include",
             f"-I{builddir}/subprojects/NitroSDK-4.2.30001/gen",
             f"-I{homedir}/subprojects/NitroSystem-071126.1/include",
@@ -197,6 +225,7 @@ ppwlobby_c_commands = [
         + [
             f"-I{cwlibcdir}",
             f"-I{cwextrasdir}",
+            f"-I{cwlibcarmdir}",
             f"-I{homedir}/subprojects/NitroSDK-4.2.30001/include",
             f"-I{builddir}/subprojects/NitroSDK-4.2.30001/gen",
             f"-I{homedir}/subprojects/NitroSystem-071126.1/include",
@@ -221,6 +250,7 @@ c_commands = [
         + [
             f"-I{cwlibcdir}",
             f"-I{cwextrasdir}",
+            f"-I{cwlibcarmdir}",
             f"-I{homedir}/subprojects/NitroSDK-4.2.30001/include",
             f"-I{builddir}/subprojects/NitroSDK-4.2.30001/gen",
             f"-I{homedir}/subprojects/NitroSystem-071126.1/include",
