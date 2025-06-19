@@ -7,7 +7,7 @@
 
 void sub_020852B8(GameWindowLayout *param0);
 int sub_02085348(void *param0);
-BOOL sub_020857A8(u16 param0);
+BOOL CheckItemSacredAsh(u16 param0);
 int sub_02085804(GameWindowLayout *param0);
 int sub_02085EF4(GameWindowLayout *param0);
 u8 sub_02086104(GameWindowLayout *param0, Pokemon *param1);

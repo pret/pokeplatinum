@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_LUXRAY",
+    "moves": [
+        "MOVE_THUNDER_FANG",
+        "MOVE_ICE_FANG",
+        "MOVE_SUPERPOWER",
+        "MOVE_THUNDER_WAVE"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_WHITE_HERB",
+    "form": 0
+}

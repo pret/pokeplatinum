@@ -1,10 +1,11 @@
+#include "overlay097/ov97_02238D74.h"
+
 #include <dwc.h>
 #include <nitro.h>
 #include <string.h>
 
 #include "overlay004/ov4_021D0D80.h"
-#include "overlay097/ov97_0222D30C.h"
-#include "overlay097/struct_ov97_0222D04C.h"
+#include "overlay097/mystery_gift_app.h"
 
 #include "heap.h"
 #include "overlay_manager.h"
@@ -21,7 +22,6 @@ static Unk_ov97_02240408;
 static DWCNdFileInfo Unk_ov97_02240414[10];
 
 static void ov97_02238E88(void);
-int ov97_02238EAC(OverlayManager *param0, int *param1);
 
 static void *ov97_02238D74(DWCAllocType param0, u32 param1, int param2)
 {
@@ -31,7 +31,7 @@ static void *ov97_02238D74(DWCAllocType param0, u32 param1, int param2)
 
     param1 = (((param1 + sizeof(void *)) + 32) & ~31) + 32;
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_86, param1);
+    v0 = Heap_AllocFromHeap(HEAP_ID_MYSTERY_GIFT_APP, param1);
     v1 = (u32 *)(((u32)v0 + 32) & ~31);
 
     v1--;
@@ -56,7 +56,7 @@ static void ov97_02238D94(DWCAllocType param0, void *param1, u32 param2)
 
 static volatile BOOL Unk_ov97_02240410;
 
-static int ov97_02238DA4(UnkStruct_ov97_0222D04C *param0)
+static int ov97_02238DA4(MysteryGiftAppData *param0)
 {
     DWCError v0;
     DWCErrorType v1;
@@ -64,19 +64,19 @@ static int ov97_02238DA4(UnkStruct_ov97_0222D04C *param0)
 
     v0 = DWC_GetLastErrorEx(&v2, &v1);
 
-    param0->unk_26CC = ov4_021D1F3C(-v2, v1);
-    param0->unk_26D0 = -v2;
-    param0->unk_26D4 = v1;
-    param0->unk_26C8 = 1;
+    param0->wifiCommErrorStringID = ov4_021D1F3C(-v2, v1);
+    param0->wifiCommErrorCode = -v2;
+    param0->wifiCommErrorType = v1;
+    param0->wifiCommErrored = 1;
 
     Unk_ov97_02240410 = 1;
-    param0->unk_26DC = NULL;
+    param0->dwcCallback = NULL;
 
-    ov97_0222D344(param0, 0);
+    MysteryGiftApp_ToggleWaitDial(param0, 0);
     return 4111;
 }
 
-static BOOL ov97_02238DF8(UnkStruct_ov97_0222D04C *param0)
+static BOOL ov97_02238DF8(MysteryGiftAppData *param0)
 {
     DWCApInfo v0;
     DWCError v1;
@@ -102,7 +102,7 @@ static BOOL ov97_02238DF8(UnkStruct_ov97_0222D04C *param0)
     return 0;
 }
 
-static void ov97_02238E20(UnkStruct_ov97_0222D04C *param0, int *param1, int param2)
+static void ov97_02238E20(MysteryGiftAppData *param0, int *param1, int param2)
 {
     Unk_ov97_02240400 = 0;
     Unk_ov97_0224040C = DWC_ND_ERROR_NONE;
@@ -110,7 +110,7 @@ static void ov97_02238E20(UnkStruct_ov97_0222D04C *param0, int *param1, int para
     *param1 = 4114;
 }
 
-static void ov97_02238E44(UnkStruct_ov97_0222D04C *param0, int param1, int *param2, int param3, int param4)
+static void ov97_02238E44(MysteryGiftAppData *param0, int param1, int *param2, int param3, int param4)
 {
     Unk_ov97_02240404 = 0;
     Unk_ov97_02240408 = param1;
@@ -182,14 +182,14 @@ static void ov97_02238E94(void)
     sub_020334CC();
 }
 
-int ov97_02238EAC(OverlayManager *param0, int *param1)
+int ov97_02238EAC(ApplicationManager *appMan, int *param1)
 {
     int v0;
     DWCNasLoginState v1;
-    UnkStruct_ov97_0222D04C *v2 = OverlayManager_Data(param0);
+    MysteryGiftAppData *v2 = ApplicationManager_Data(appMan);
 
-    if (v2->unk_26DC) {
-        if (v2->unk_26DC() == 1) {
+    if (v2->dwcCallback) {
+        if (v2->dwcCallback() == 1) {
             *param1 = ov97_02238DA4(v2);
         }
     }
@@ -214,7 +214,7 @@ int ov97_02238EAC(OverlayManager *param0, int *param1)
         DWC_ConnectInetAsync();
         sub_02039734();
         *param1 = 4099;
-        v2->unk_26D8 = 0;
+        v2->wifiExitRequested = 0;
         break;
     case 4099:
         DWC_ProcessInet();
@@ -223,7 +223,7 @@ int ov97_02238EAC(OverlayManager *param0, int *param1)
             (void)0;
         } else {
             if (ov97_02238DF8(v2) == 1) {
-                if (v2->unk_26D8 == 1) {
+                if (v2->wifiExitRequested == 1) {
                     Unk_ov97_02240408 = 3;
                     *param1 = 4109;
                 } else {
@@ -235,7 +235,7 @@ int ov97_02238EAC(OverlayManager *param0, int *param1)
         }
 
         if (gSystem.pressedKeys & PAD_BUTTON_B) {
-            v2->unk_26D8 = 1;
+            v2->wifiExitRequested = 1;
         }
         break;
     case 4100:
@@ -250,7 +250,7 @@ int ov97_02238EAC(OverlayManager *param0, int *param1)
 
         if (v1 == DWC_NASLOGIN_STATE_SUCCESS) {
             *param1 = 4102;
-            v2->unk_26DC = DWC_UpdateConnection;
+            v2->dwcCallback = DWC_UpdateConnection;
         } else if (v1 == DWC_NASLOGIN_STATE_ERROR) {
             *param1 = ov97_02238DA4(v2);
             DWC_CleanupInet();
@@ -272,7 +272,7 @@ int ov97_02238EAC(OverlayManager *param0, int *param1)
         ov97_02238E20(v2, param1, 4103);
         break;
     case 4103:
-        if (v2->unk_26D8 == 1) {
+        if (v2->wifiExitRequested == 1) {
             ov97_02238E44(v2, 3, param1, 4108, 4108);
             break;
         }
@@ -305,7 +305,7 @@ int ov97_02238EAC(OverlayManager *param0, int *param1)
         }
         break;
     case 4106:
-        if (DWC_NdGetFileAsync(&Unk_ov97_02240414[0], v2->unk_16B8, 4096) == 0) {
+        if (DWC_NdGetFileAsync(&Unk_ov97_02240414[0], v2->wifiDistributionBuffer, 4096) == 0) {
             *param1 = ov97_02238DA4(v2);
             break;
         }
@@ -325,7 +325,7 @@ int ov97_02238EAC(OverlayManager *param0, int *param1)
                 }
             }
         } else {
-            if (v2->unk_26D8 == 0) {
+            if (v2->wifiExitRequested == 0) {
                 ov97_02238E44(v2, 1, param1, 4109, 4109);
             } else {
                 ov97_02238E44(v2, 3, param1, 4109, 4109);
@@ -336,14 +336,14 @@ int ov97_02238EAC(OverlayManager *param0, int *param1)
         if (DWC_NdCancelAsync() == 0) {
             *param1 = 4109;
         } else {
-            v2->unk_26DC = NULL;
+            v2->dwcCallback = NULL;
             ov97_02238E94();
             return Unk_ov97_02240408;
         }
         break;
     case 4109:
         if (DWC_CleanupInetAsync() == 1) {
-            v2->unk_26DC = NULL;
+            v2->dwcCallback = NULL;
             ov97_02238E94();
             return Unk_ov97_02240408;
         }
@@ -352,9 +352,9 @@ int ov97_02238EAC(OverlayManager *param0, int *param1)
         break;
     case 4111:
         if (Unk_ov97_02240410 == 1) {
-            ov97_0222E13C(v2);
+            MysteryGiftApp_ShowWiFiCommError(v2);
 
-            if ((v2->unk_26D4 == DWC_ETYPE_SHUTDOWN_ND) || (v2->unk_26D4 == DWC_ETYPE_DISCONNECT)) {
+            if ((v2->wifiCommErrorType == DWC_ETYPE_SHUTDOWN_ND) || (v2->wifiCommErrorType == DWC_ETYPE_DISCONNECT)) {
                 ov97_02238E44(v2, 3, param1, 4113, 4112);
             } else {
                 *param1 = 4113;
@@ -367,7 +367,7 @@ int ov97_02238EAC(OverlayManager *param0, int *param1)
         break;
     case 4112:
         if (gSystem.pressedKeys & PAD_BUTTON_A) {
-            v2->unk_26DC = NULL;
+            v2->dwcCallback = NULL;
             DWC_ClearError();
             ov97_02238E94();
 
@@ -384,7 +384,7 @@ int ov97_02238EAC(OverlayManager *param0, int *param1)
                 *param1 = v2->unk_16B0;
             }
         } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
-            v2->unk_26D8 = 1;
+            v2->wifiExitRequested = 1;
         }
         break;
     case 4115:
@@ -392,7 +392,7 @@ int ov97_02238EAC(OverlayManager *param0, int *param1)
             Unk_ov97_02240404 = 0;
             *param1 = v2->unk_16B0;
         } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
-            v2->unk_26D8 = 1;
+            v2->wifiExitRequested = 1;
         }
 
         break;

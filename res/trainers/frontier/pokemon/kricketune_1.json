@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_KRICKETUNE",
+    "moves": [
+        "MOVE_FURY_CUTTER",
+        "MOVE_ROCK_SMASH",
+        "MOVE_KNOCK_OFF",
+        "MOVE_FOCUS_ENERGY"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_METRONOME",
+    "form": 0
+}

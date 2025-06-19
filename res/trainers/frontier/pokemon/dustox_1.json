@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_DUSTOX",
+    "moves": [
+        "MOVE_SILVER_WIND",
+        "MOVE_TOXIC",
+        "MOVE_PSYBEAM",
+        "MOVE_WHIRLWIND"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": true
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_SILVERPOWDER",
+    "form": 0
+}

@@ -10,12 +10,11 @@
 #include "struct_decls/struct_0202D060_decl.h"
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_decls/struct_0202D764_decl.h"
-#include "struct_decls/struct_0203068C_decl.h"
+#include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_02098C44.h"
 
 #include "field/field_system.h"
-#include "overlay104/struct_ov104_0223A348_sub2.h"
 #include "savedata/save_table.h"
 
 #include "field_overworld_state.h"
@@ -320,7 +319,7 @@ UnkStruct_0204AFC4 *sub_0204A124(SaveData *saveData, u16 param1, u16 param2)
     u8 v0;
     u16 v1, v2;
     UnkStruct_0204AFC4 *v3;
-    BattleFrontier *v4;
+    BattleFrontier *frontier;
     GameRecords *v5;
 
     v3 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0204AFC4));
@@ -372,7 +371,7 @@ UnkStruct_0204AFC4 *sub_0204A124(SaveData *saveData, u16 param1, u16 param2)
     v3->unk_11 = TrainerInfo_Gender(SaveData_GetTrainerInfo(saveData));
 
     if (v3->unk_0F != 5) {
-        v4 = SaveData_GetBattleFrontier(saveData);
+        frontier = SaveData_GetBattleFrontier(saveData);
         v5 = SaveData_GetGameRecords(saveData);
 
         if (v3->unk_0F == 6) {
@@ -384,10 +383,10 @@ UnkStruct_0204AFC4 *sub_0204A124(SaveData *saveData, u16 param1, u16 param2)
         if (v2) {
             if (v3->unk_0F == 6) {
                 v3->unk_1A = sub_02030698(
-                    v4, 113, sub_0205E6A8(113));
+                    frontier, 113, sub_0205E6A8(113));
             } else {
                 v3->unk_1A = sub_02030698(
-                    v4, 1 + v3->unk_0F * 2, 0xff);
+                    frontier, 1 + v3->unk_0F * 2, 0xff);
             }
 
             v3->unk_1C = sub_0202D3B4(v3->unk_74, v3->unk_0F, 0);
@@ -428,11 +427,11 @@ void sub_0204A358(UnkStruct_0204AFC4 *param0, FieldTask *param1, void **param2)
 BOOL sub_0204A378(UnkStruct_0204AFC4 *param0, void **param1, SaveData *saveData)
 {
     u16 v0 = 0;
-    PartyManagementData *v1 = *param1;
+    PartyManagementData *partyMan = *param1;
     Party *v2;
     Pokemon *v3;
 
-    if ((v1->unk_23 != 0) || (v1->selectedMonSlot == 7)) {
+    if ((partyMan->menuSelectionResult != 0) || (partyMan->selectedMonSlot == 7)) {
         Heap_FreeToHeap(*param1);
         *param1 = NULL;
         return 0;
@@ -441,7 +440,7 @@ BOOL sub_0204A378(UnkStruct_0204AFC4 *param0, void **param1, SaveData *saveData)
     v2 = SaveData_GetParty(saveData);
 
     for (v0 = 0; v0 < param0->unk_0E; v0++) {
-        param0->unk_2A[v0] = v1->unk_2C[v0] - 1;
+        param0->unk_2A[v0] = partyMan->unk_2C[v0] - 1;
         v3 = Party_GetPokemonBySlotIndex(v2, param0->unk_2A[v0]);
         param0->unk_2E[v0] = Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL);
         param0->unk_36[v0] = Pokemon_GetValue(v3, MON_DATA_HELD_ITEM, NULL);
@@ -597,7 +596,7 @@ void sub_0204A660(UnkStruct_0204AFC4 *param0, SaveData *saveData)
     int v1;
     u16 v2, v3, v4;
     GameRecords *v5 = SaveData_GetGameRecords(saveData);
-    BattleFrontier *v6 = SaveData_GetBattleFrontier(saveData);
+    BattleFrontier *frontier = SaveData_GetBattleFrontier(saveData);
 
     if (param0->unk_0F == 5) {
         return;
@@ -609,8 +608,8 @@ void sub_0204A660(UnkStruct_0204AFC4 *param0, SaveData *saveData)
         v1 = param0->unk_0F * 2 + 0;
     }
 
-    v2 = sub_02030698(v6, v1, sub_0205E6A8(v1));
-    v3 = sub_02030848(v6, v1, sub_0205E6A8(v1), param0->unk_1A + param0->unk_0D);
+    v2 = sub_02030698(frontier, v1, sub_0205E6A8(v1));
+    v3 = sub_02030848(frontier, v1, sub_0205E6A8(v1), param0->unk_1A + param0->unk_0D);
 
     if (v3 > 1) {
         if ((v2 < v3) || ((v2 == v3) && (v3 % 7 == 0))) {
@@ -624,7 +623,7 @@ void sub_0204A660(UnkStruct_0204AFC4 *param0, SaveData *saveData)
         v4 = sub_0202D414(param0->unk_74, 8 + param0->unk_0F, 0);
     }
 
-    v0 = sub_020306E4(v6, v1 + 1, sub_0205E6A8(v1 + 1), (param0->unk_1A + param0->unk_0D));
+    v0 = sub_020306E4(frontier, v1 + 1, sub_0205E6A8(v1 + 1), (param0->unk_1A + param0->unk_0D));
 
     if (param0->unk_0F == 6) {
         sub_020306E4(SaveData_GetBattleFrontier(saveData), 100, sub_0205E6A8(100), 0);
@@ -657,14 +656,14 @@ void sub_0204A7A4(UnkStruct_0204AFC4 *param0, SaveData *saveData, JournalEntry *
     void *journalEntryOnlineEvent;
     u16 v3, v4, v5;
     GameRecords *v6;
-    BattleFrontier *v7;
+    BattleFrontier *frontier;
 
     if (param0->unk_0F == 5) {
         return;
     }
 
     v6 = SaveData_GetGameRecords(saveData);
-    v7 = SaveData_GetBattleFrontier(saveData);
+    frontier = SaveData_GetBattleFrontier(saveData);
 
     if (param0->unk_0F == 6) {
         v1 = 112;
@@ -678,7 +677,7 @@ void sub_0204A7A4(UnkStruct_0204AFC4 *param0, SaveData *saveData, JournalEntry *
         v5 = sub_0202D414(param0->unk_74, 8 + param0->unk_0F, 0);
     }
 
-    v0 = sub_020306E4(v7, v1 + 1, sub_0205E6A8(v1 + 1), (param0->unk_1A + param0->unk_0D));
+    v0 = sub_020306E4(frontier, v1 + 1, sub_0205E6A8(v1 + 1), (param0->unk_1A + param0->unk_0D));
 
     if (param0->unk_0F == 6) {
         sub_020306E4(SaveData_GetBattleFrontier(saveData), 100, sub_0205E6A8(100), 1);
@@ -686,8 +685,8 @@ void sub_0204A7A4(UnkStruct_0204AFC4 *param0, SaveData *saveData, JournalEntry *
         sub_0202D414(param0->unk_74, 8 + param0->unk_0F, 1);
     }
 
-    v3 = sub_02030698(v7, v1, sub_0205E6A8(v1));
-    v4 = sub_02030848(v7, v1, sub_0205E6A8(v1), v0);
+    v3 = sub_02030698(frontier, v1, sub_0205E6A8(v1));
+    v4 = sub_02030848(frontier, v1, sub_0205E6A8(v1), v0);
 
     GameRecords_AddToRecordValue(v6, RECORD_UNK_029, 7);
     sub_0202D3B4(param0->unk_74, param0->unk_0F, 3);
@@ -745,7 +744,7 @@ void sub_0204A97C(UnkStruct_0204AFC4 *param0)
 
 u16 sub_0204A9E0(UnkStruct_0204AFC4 *param0, u16 param1)
 {
-    return sub_0204AF9C(param0->unk_78[param1].unk_00.unk_04);
+    return sub_0204AF9C(param0->unk_78[param1].unk_00.trainerType);
 }
 
 u16 sub_0204A9F8(UnkStruct_0204AFC4 *param0)
@@ -999,52 +998,46 @@ static u16 sub_0204ACC8(UnkStruct_0204AFC4 *param0)
     return 1;
 }
 
-static void sub_0204ACFC(UnkStruct_ov104_0223A348_sub2 *param0, Pokemon *param1)
+static void sub_0204ACFC(FrontierPokemonDataDTO *param0, Pokemon *mon)
 {
     int v0;
 
-    param0->unk_00_val1_0 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
-    param0->unk_00_val1_11 = Pokemon_GetValue(param1, MON_DATA_FORM, NULL);
-    param0->unk_02 = Pokemon_GetValue(param1, MON_DATA_HELD_ITEM, NULL);
+    param0->species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    param0->form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+    param0->item = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
 
     for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
-        param0->unk_04[v0] = Pokemon_GetValue(param1, MON_DATA_MOVE1 + v0, NULL);
-        param0->unk_1E_val2 |= ((Pokemon_GetValue(param1, MON_DATA_MOVE1_PP_UPS + v0, NULL)) << (v0 * 2));
+        param0->moves[v0] = Pokemon_GetValue(mon, MON_DATA_MOVE1 + v0, NULL);
+        param0->combinedPPUps |= ((Pokemon_GetValue(mon, MON_DATA_MOVE1_PP_UPS + v0, NULL)) << (v0 * 2));
     }
 
-    param0->unk_1F = Pokemon_GetValue(param1, MON_DATA_LANGUAGE, NULL);
-    param0->unk_0C = Pokemon_GetValue(param1, MON_DATA_OT_ID, NULL);
-    param0->unk_10 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
-    param0->unk_14_val2 = Pokemon_GetValue(param1, MON_DATA_COMBINED_IVS, NULL);
+    param0->language = Pokemon_GetValue(mon, MON_DATA_LANGUAGE, NULL);
+    param0->otID = Pokemon_GetValue(mon, MON_DATA_OT_ID, NULL);
+    param0->personality = Pokemon_GetValue(mon, MON_DATA_PERSONALITY, NULL);
+    param0->combinedIVs = Pokemon_GetValue(mon, MON_DATA_COMBINED_IVS, NULL);
 
     for (v0 = 0; v0 < 6; v0++) {
-        param0->unk_18_val2[v0] = Pokemon_GetValue(param1, MON_DATA_HP_EV + v0, NULL);
+        param0->evList[v0] = Pokemon_GetValue(mon, MON_DATA_HP_EV + v0, NULL);
     }
 
-    param0->unk_20 = Pokemon_GetValue(param1, MON_DATA_ABILITY, NULL);
-    param0->unk_21 = Pokemon_GetValue(param1, MON_DATA_FRIENDSHIP, NULL);
+    param0->ability = Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL);
+    param0->friendship = Pokemon_GetValue(mon, MON_DATA_FRIENDSHIP, NULL);
 
-    Pokemon_GetValue(param1, MON_DATA_NICKNAME, param0->unk_22);
+    Pokemon_GetValue(mon, MON_DATA_NICKNAME, param0->nickname);
 }
 
 static void sub_0204AE20(UnkStruct_0204AFC4 *param0, SaveData *saveData, int param2)
 {
-    int v0 = 0;
-    UnkStruct_ov104_0223A348_sub2 *v1;
-    Party *v2;
-    Pokemon *v3;
+    FrontierPokemonDataDTO *v1 = Heap_AllocFromHeapAtEnd(param0->heapID, sizeof(FrontierPokemonDataDTO) * 3);
+    MI_CpuClear8(v1, sizeof(FrontierPokemonDataDTO) * 3);
+    Party *party = SaveData_GetParty(saveData);
 
-    v1 = Heap_AllocFromHeapAtEnd(param0->heapID, sizeof(UnkStruct_ov104_0223A348_sub2) * 3);
-    MI_CpuClear8(v1, sizeof(UnkStruct_ov104_0223A348_sub2) * 3);
-    v2 = SaveData_GetParty(saveData);
-
-    for (v0 = 0; v0 < 3; v0++) {
-        v3 = Party_GetPokemonBySlotIndex(v2, param0->unk_2A[v0]);
-        sub_0204ACFC(&(v1[v0]), v3);
+    for (int i = 0; i < 3; i++) {
+        sub_0204ACFC(&(v1[i]), Party_GetPokemonBySlotIndex(party, param0->unk_2A[i]));
     }
 
     sub_0202D2F0(param0->unk_74, param2, v1);
-    MI_CpuClear8(v1, sizeof(UnkStruct_ov104_0223A348_sub2) * 3);
+    MI_CpuClear8(v1, sizeof(FrontierPokemonDataDTO) * 3);
     Heap_FreeToHeap(v1);
 }
 

@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_FROSLASS",
+    "moves": [
+        "MOVE_BLIZZARD",
+        "MOVE_SHADOW_BALL",
+        "MOVE_PSYCHIC",
+        "MOVE_HAIL"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": true,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_LAX_INCENSE",
+    "form": 0
+}

@@ -41,7 +41,7 @@ typedef struct {
     MessageLoader *unk_1FA4;
     StringTemplate *unk_1FA8;
     Strbuf *unk_1FAC;
-    SpriteManager *unk_1FB0;
+    SpriteManager *spriteMan;
     ManagedSprite *unk_1FB4[38];
     Window unk_204C[2];
     Window *unk_206C;

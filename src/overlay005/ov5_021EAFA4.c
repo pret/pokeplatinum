@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay115/camera_angle.h"
-
 #include "camera.h"
 #include "heap.h"
 

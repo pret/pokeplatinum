@@ -3,8 +3,6 @@
 
 #include <nitro/fx/fx.h>
 
-#include "overlay115/camera_angle.h"
-
 #include "camera.h"
 
 typedef struct {

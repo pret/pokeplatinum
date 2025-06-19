@@ -226,35 +226,35 @@ typedef struct {
 static void sub_0203DF68(FieldTask *taskMan);
 static u8 sub_0203E484(SaveData *saveData, u8 slotMachineID);
 
-static BOOL OverlayInit_Battle(OverlayManager *ovyManager, int *state)
+static BOOL ApplicationInit_Battle(ApplicationManager *appMan, int *state)
 {
     return TRUE;
 }
 
-static BOOL OverlayMain_Battle(OverlayManager *ovyManager, int *state)
+static BOOL ApplicationMain_Battle(ApplicationManager *appMan, int *state)
 {
-    if (Battle_Main(ovyManager, state)) {
+    if (Battle_Main(appMan, state)) {
         return TRUE;
     } else {
         return FALSE;
     }
 }
 
-static BOOL OverlayExit_Battle(OverlayManager *ovyManager, int *state)
+static BOOL ApplicationExit_Battle(ApplicationManager *appMan, int *state)
 {
     return TRUE;
 }
 
-const OverlayManagerTemplate gBattleOverlayTemplate = {
-    OverlayInit_Battle,
-    OverlayMain_Battle,
-    OverlayExit_Battle,
-    FS_OVERLAY_ID(battle)
+const ApplicationManagerTemplate gBattleApplicationTemplate = {
+    .init = ApplicationInit_Battle,
+    .main = ApplicationMain_Battle,
+    .exit = ApplicationExit_Battle,
+    .overlayID = FS_OVERLAY_ID(battle)
 };
 
 void FieldSystem_StartBattleProcess(FieldSystem *fieldSystem, FieldBattleDTO *dto)
 {
-    FieldSystem_StartChildProcess(fieldSystem, &gBattleOverlayTemplate, dto);
+    FieldSystem_StartChildProcess(fieldSystem, &gBattleApplicationTemplate, dto);
 }
 
 static const u8 Unk_020EA164[] = {
@@ -273,7 +273,7 @@ void sub_0203D1E4(FieldSystem *fieldSystem, void *param1)
 {
     FS_EXTERN_OVERLAY(overlay84);
 
-    const OverlayManagerTemplate Unk_ov84_02241130 = {
+    const ApplicationManagerTemplate Unk_ov84_02241130 = {
         ov84_0223B5A0,
         ov84_0223B76C,
         ov84_0223B900,
@@ -346,7 +346,7 @@ void sub_0203D2E4(FieldSystem *fieldSystem, void *param1)
 {
     FS_EXTERN_OVERLAY(overlay85);
 
-    const OverlayManagerTemplate v0 = {
+    const ApplicationManagerTemplate v0 = {
         ov85_02241440,
         ov85_0224154C,
         ov85_022415A0,
@@ -360,7 +360,7 @@ void sub_0203D30C(FieldSystem *fieldSystem, void *param1)
 {
     FS_EXTERN_OVERLAY(journal_display);
 
-    const OverlayManagerTemplate template = {
+    const ApplicationManagerTemplate template = {
         JournalController_Init,
         JournalController_Main,
         JournalController_Exit,
@@ -370,54 +370,54 @@ void sub_0203D30C(FieldSystem *fieldSystem, void *param1)
     FieldSystem_StartChildProcess(fieldSystem, &template, fieldSystem->saveData);
 }
 
-void FieldSystem_OpenSummaryScreen(FieldSystem *fieldSystem, void *overlayArgs)
+void FieldSystem_OpenSummaryScreen(FieldSystem *fieldSystem, void *appArgs)
 {
-    FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, overlayArgs);
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, appArgs);
 }
 
 static PartyManagementData *sub_0203D344(int heapID, FieldSystem *fieldSystem, int param2, int param3)
 {
-    PartyManagementData *v0 = Heap_AllocFromHeap(heapID, sizeof(PartyManagementData));
+    PartyManagementData *partyMan = Heap_AllocFromHeap(heapID, sizeof(PartyManagementData));
 
-    MI_CpuClearFast(v0, sizeof(PartyManagementData));
+    MI_CpuClearFast(partyMan, sizeof(PartyManagementData));
 
-    v0->unk_00 = SaveData_GetParty(fieldSystem->saveData);
-    v0->unk_04 = SaveData_GetBag(fieldSystem->saveData);
-    v0->unk_08 = SaveData_GetMailBox(fieldSystem->saveData);
-    v0->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
-    v0->unk_21 = param2;
-    v0->unk_20 = param3;
-    v0->unk_1C = fieldSystem;
+    partyMan->party = SaveData_GetParty(fieldSystem->saveData);
+    partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
+    partyMan->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+    partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
+    partyMan->unk_21 = param2;
+    partyMan->unk_20 = param3;
+    partyMan->fieldSystem = fieldSystem;
 
-    return v0;
+    return partyMan;
 }
 
 void *sub_0203D390(FieldSystem *fieldSystem, FieldMoveContext *param1, u8 param2)
 {
-    PartyManagementData *v0 = sub_0203D344(HEAP_ID_FIELDMAP, fieldSystem, 0, 0);
+    PartyManagementData *partyMan = sub_0203D344(HEAP_ID_FIELDMAP, fieldSystem, 0, 0);
 
-    v0->unk_18 = param1;
-    v0->selectedMonSlot = param2;
+    partyMan->fieldMoveContext = param1;
+    partyMan->selectedMonSlot = param2;
 
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
 
-    return v0;
+    return partyMan;
 }
 
 void *sub_0203D3C0(int param0, FieldSystem *fieldSystem)
 {
-    PartyManagementData *v0 = sub_0203D344(HEAP_ID_FIELDMAP, fieldSystem, 0, 3);
+    PartyManagementData *partyMan = sub_0203D344(HEAP_ID_FIELDMAP, fieldSystem, 0, 3);
 
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v0);
-    return v0;
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
+    return partyMan;
 }
 
 void *sub_0203D3E4(int param0, FieldSystem *fieldSystem)
 {
-    PartyManagementData *v0 = sub_0203D344(HEAP_ID_FIELDMAP, fieldSystem, 0, 19);
+    PartyManagementData *partyMan = sub_0203D344(HEAP_ID_FIELDMAP, fieldSystem, 0, 19);
 
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v0);
-    return v0;
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
+    return partyMan;
 }
 
 int PartyManagementData_GetSelectedSlot(PartyManagementData *partyMan)
@@ -437,8 +437,8 @@ void *sub_0203D410(int param0, FieldSystem *fieldSystem, int param2)
 
 int sub_0203D438(void *param0)
 {
-    PartyManagementData *v0 = param0;
-    return v0->unk_23;
+    PartyManagementData *partyMan = param0;
+    return partyMan->menuSelectionResult;
 }
 
 int sub_0203D440(void *param0)
@@ -501,40 +501,40 @@ static BOOL sub_0203D444(FieldTask *param0)
 void *sub_0203D50C(FieldTask *taskMan, int heapID)
 {
     UnkStruct_0203D444 *v0;
-    PartyManagementData *v1;
+    PartyManagementData *partyMan;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
     v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0203D444));
     v0->heapID = heapID;
-    v1 = sub_0203D344(heapID, fieldSystem, 0, 2);
-    v1->unk_32_0 = 2;
-    v1->unk_32_4 = 2;
-    v1->unk_33 = 30;
-    v1->unk_14 = NULL;
-    v0->unk_04 = v1;
+    partyMan = sub_0203D344(heapID, fieldSystem, 0, 2);
+    partyMan->unk_32_0 = 2;
+    partyMan->unk_32_4 = 2;
+    partyMan->unk_33 = 30;
+    partyMan->battleRegulation = NULL;
+    v0->unk_04 = partyMan;
 
     FieldTask_InitCall(taskMan, sub_0203D444, v0);
 
-    return v1;
+    return partyMan;
 }
 
 void *sub_0203D578(int param0, FieldSystem *fieldSystem, int param2, int param3, int param4, int param5)
 {
-    PartyManagementData *v0 = sub_0203D344(HEAP_ID_FIELDMAP, fieldSystem, 0, 13);
+    PartyManagementData *partyMan = sub_0203D344(HEAP_ID_FIELDMAP, fieldSystem, 0, 13);
 
-    v0->selectedMonSlot = param5;
-    v0->unk_29 = 2;
-    v0->unk_2A = param2;
+    partyMan->selectedMonSlot = param5;
+    partyMan->unk_29 = 2;
+    partyMan->unk_2A = param2;
 
     if (param4 == 0) {
-        v0->unk_2B = param3;
+        partyMan->unk_2B = param3;
     } else {
-        v0->unk_2B = 0;
+        partyMan->unk_2B = 0;
     }
 
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
 
-    return v0;
+    return partyMan;
 }
 
 void *sub_0203D5C8(int param0, FieldSystem *fieldSystem, int param2)
@@ -562,12 +562,12 @@ void *sub_0203D5C8(int param0, FieldSystem *fieldSystem, int param2)
 
 void *sub_0203D644(FieldSystem *fieldSystem, int param1)
 {
-    PartyManagementData *v0 = sub_0203D344(HEAP_ID_FIELDMAP, fieldSystem, 0, 21);
+    PartyManagementData *partyMan = sub_0203D344(HEAP_ID_FIELDMAP, fieldSystem, 0, 21);
 
-    v0->selectedMonSlot = param1;
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v0);
+    partyMan->selectedMonSlot = param1;
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
 
-    return v0;
+    return partyMan;
 }
 
 PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, int heapID, int mode)
@@ -638,7 +638,7 @@ void sub_0203D754(FieldSystem *fieldSystem, UnkStruct_02042434 *param1)
 {
     FS_EXTERN_OVERLAY(overlay19);
 
-    static const OverlayManagerTemplate v0 = {
+    static const ApplicationManagerTemplate v0 = {
         ov19_021D0D80,
         ov19_021D0DEC,
         ov19_021D0E58,
@@ -715,7 +715,7 @@ void sub_0203D874(FieldSystem *fieldSystem, UnkStruct_0209747C *param1)
 {
     FS_EXTERN_OVERLAY(overlay20);
 
-    static const OverlayManagerTemplate v0 = {
+    static const ApplicationManagerTemplate v0 = {
         ov20_021D0D80,
         ov20_021D0DF8,
         ov20_021D0EA8,
@@ -729,7 +729,7 @@ void sub_0203D884(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1)
 {
     FS_EXTERN_OVERLAY(overlay80);
 
-    const OverlayManagerTemplate v0 = {
+    const ApplicationManagerTemplate v0 = {
         ov80_021D0D80,
         ov80_021D0DD8,
         ov80_021D0E50,
@@ -758,7 +758,7 @@ static void OpenOptionsMenu(FieldSystem *fieldSystem, Options *options)
 {
     FS_EXTERN_OVERLAY(options_menu);
 
-    static const OverlayManagerTemplate template = {
+    static const ApplicationManagerTemplate template = {
         OptionsMenu_Init,
         OptionsMenu_Main,
         OptionsMenu_Exit,
@@ -777,7 +777,7 @@ void *FieldSystem_OpenOptionsMenu(FieldSystem *fieldSystem)
     return optionsMenu;
 }
 
-extern const OverlayManagerTemplate Unk_020F64B0;
+extern const ApplicationManagerTemplate Unk_020F64B0;
 
 static void sub_0203D910(FieldSystem *fieldSystem, UnkStruct_02097728 *param1)
 {
@@ -832,7 +832,7 @@ void sub_0203D9D8(FieldSystem *fieldSystem, UnkStruct_ov90_021D0D80 *param1)
 {
     FS_EXTERN_OVERLAY(overlay90);
 
-    const OverlayManagerTemplate v0 = {
+    const ApplicationManagerTemplate v0 = {
         ov90_021D0D80,
         ov90_021D0E04,
         ov90_021D0DE8,
@@ -916,7 +916,7 @@ BOOL sub_0203DB10(FieldSystem *fieldSystem, void *param1)
 {
     FS_EXTERN_OVERLAY(overlay22);
 
-    static OverlayManagerTemplate v0 = {
+    static ApplicationManagerTemplate v0 = {
         ov22_02255D44,
         ov22_02255E50,
         ov22_02256098,
@@ -932,7 +932,7 @@ BOOL sub_0203DB24(FieldSystem *fieldSystem, void *param1)
 {
     FS_EXTERN_OVERLAY(overlay22);
 
-    static OverlayManagerTemplate v0 = {
+    static ApplicationManagerTemplate v0 = {
         ov22_0225B660,
         ov22_0225B738,
         ov22_0225B7FC,
@@ -944,14 +944,14 @@ BOOL sub_0203DB24(FieldSystem *fieldSystem, void *param1)
     return 1;
 }
 
-static OverlayManagerTemplate Unk_02100AA4 = {
+static ApplicationManagerTemplate Unk_02100AA4 = {
     ov88_0223B140,
     ov88_0223B57C,
     ov88_0223C03C,
     FS_OVERLAY_ID(overlay88)
 };
 
-static const OverlayManagerTemplate Unk_020EA268 = {
+static const ApplicationManagerTemplate Unk_020EA268 = {
     ov95_02246C20,
     ov95_02246E7C,
     ov95_02246E1C,
@@ -963,7 +963,7 @@ static void sub_0203DB38(UnkStruct_ov88_0223C370 *param0, FieldSystem *fieldSyst
     param0->unk_04 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     param0->unk_08 = SaveData_GetParty(fieldSystem->saveData);
     param0->unk_0C = SaveData_SaveTable(fieldSystem->saveData, SAVE_TABLE_ENTRY_PAL_PAD);
-    param0->unk_14 = sub_0202C878(fieldSystem->saveData);
+    param0->wiFiHistory = SaveData_WiFiHistory(fieldSystem->saveData);
     param0->unk_18 = SaveData_GetOptions(fieldSystem->saveData);
     param0->unk_24 = SaveData_GetPokedex(fieldSystem->saveData);
     param0->unk_30 = SaveData_GetDexMode(fieldSystem->saveData);
@@ -1101,14 +1101,14 @@ void sub_0203DDDC(FieldTask *param0)
     FieldTask_InitCall(param0, sub_0203DBF0, v0);
 }
 
-const OverlayManagerTemplate Unk_020EA258 = {
+const ApplicationManagerTemplate Unk_020EA258 = {
     ov58_021D0D80,
     ov58_021D0F08,
     ov58_021D1018,
     FS_OVERLAY_ID(overlay58)
 };
 
-const OverlayManagerTemplate Unk_020EA248 = {
+const ApplicationManagerTemplate Unk_020EA248 = {
     ov59_021D0D80,
     ov59_021D0F00,
     ov59_021D0FF4,
@@ -1141,7 +1141,7 @@ void *sub_0203DE34(FieldSystem *fieldSystem)
     return v0;
 }
 
-const OverlayManagerTemplate Unk_020EA238 = {
+const ApplicationManagerTemplate Unk_020EA238 = {
     ov64_0222DCE0,
     ov64_0222DDAC,
     ov64_0222DEA4,
@@ -1278,7 +1278,7 @@ void sub_0203E09C(FieldSystem *fieldSystem, TrainerCard *param1)
 {
     FS_EXTERN_OVERLAY(overlay71);
 
-    static const OverlayManagerTemplate v0 = {
+    static const ApplicationManagerTemplate v0 = {
         ov71_0223B140,
         ov71_0223B388,
         ov71_0223B5B8,
@@ -1292,7 +1292,7 @@ BOOL sub_0203E0AC(FieldSystem *fieldSystem, void *param1)
 {
     FS_EXTERN_OVERLAY(pokedex);
 
-    static const OverlayManagerTemplate template = {
+    static const ApplicationManagerTemplate template = {
         PokedexMain_Init,
         PokedexMain_Main,
         PokedexMain_Exit,
@@ -1307,7 +1307,7 @@ void FieldSystem_LaunchChooseStarterApp(FieldSystem *fieldSystem, ChooseStarterD
 {
     FS_EXTERN_OVERLAY(choose_starter);
 
-    static const OverlayManagerTemplate template = {
+    static const ApplicationManagerTemplate template = {
         ChooseStarter_Init,
         ChooseStarter_Main,
         ChooseStarter_Exit,
@@ -1323,7 +1323,7 @@ void sub_0203E0D0(FieldSystem *fieldSystem)
 
     FS_EXTERN_OVERLAY(overlay72);
 
-    const OverlayManagerTemplate v1 = {
+    const ApplicationManagerTemplate v1 = {
         ov72_0223D7A0,
         ov72_0223D920,
         ov72_0223D984,
@@ -1339,7 +1339,7 @@ void sub_0203E0FC(FieldSystem *fieldSystem, int param1)
 
     FS_EXTERN_OVERLAY(overlay94);
 
-    const OverlayManagerTemplate v1 = {
+    const ApplicationManagerTemplate v1 = {
         ov94_0223BCB0,
         ov94_0223BE2C,
         ov94_0223BF54,
@@ -1354,7 +1354,7 @@ void sub_0203E0FC(FieldSystem *fieldSystem, int param1)
     v0->unk_0C = SaveData_GetPCBoxes(fieldSystem->saveData);
     v0->unk_10 = SaveData_GetPokedex(fieldSystem->saveData);
     v0->unk_14 = SaveData_GetWiFiList(fieldSystem->saveData);
-    v0->unk_18 = sub_0202C878(fieldSystem->saveData);
+    v0->wiFiHistory = SaveData_WiFiHistory(fieldSystem->saveData);
     v0->unk_1C = SaveData_GetTrainerInfo(fieldSystem->saveData);
     v0->unk_24 = SaveData_GetOptions(fieldSystem->saveData);
     v0->records = SaveData_GetGameRecords(fieldSystem->saveData);
@@ -1375,7 +1375,7 @@ void *sub_0203E1AC(FieldSystem *fieldSystem, int param1, int param2)
 
     FS_EXTERN_OVERLAY(overlay96);
 
-    const OverlayManagerTemplate v1 = {
+    const ApplicationManagerTemplate v1 = {
         ov96_0223B6A0,
         ov96_0223B7F8,
         ov96_0223B8CC,
@@ -1400,7 +1400,7 @@ void *sub_0203E1AC(FieldSystem *fieldSystem, int param1, int param2)
     return (void *)v0;
 }
 
-static const OverlayManagerTemplate Unk_020EA328 = {
+static const ApplicationManagerTemplate Unk_020EA328 = {
     ov92_021D0D80,
     ov92_021D0EB8,
     ov92_021D1478,
@@ -1416,7 +1416,7 @@ void sub_0203E234(FieldSystem *fieldSystem, UnkStruct_0203E234 *param1)
 {
     FS_EXTERN_OVERLAY(overlay86);
 
-    static const OverlayManagerTemplate v0 = {
+    static const ApplicationManagerTemplate v0 = {
         ov86_0223B140,
         ov86_0223B394,
         ov86_0223B2E4,
@@ -1428,7 +1428,7 @@ void sub_0203E234(FieldSystem *fieldSystem, UnkStruct_0203E234 *param1)
 
 void *sub_0203E244(FieldSystem *fieldSystem)
 {
-    static const OverlayManagerTemplate v0 = {
+    static const ApplicationManagerTemplate v0 = {
         ov87_021D0D80,
         ov87_021D0E2C,
         ov87_021D0DFC,
@@ -1452,7 +1452,7 @@ void sub_0203E274(FieldSystem *fieldSystem, UnkStruct_0203E274 *param1)
 {
     FS_EXTERN_OVERLAY(overlay99);
 
-    static const OverlayManagerTemplate v0 = {
+    static const ApplicationManagerTemplate v0 = {
         ov99_021D0D80,
         ov99_021D1028,
         ov99_021D11A8,
@@ -1466,7 +1466,7 @@ void sub_0203E284(FieldSystem *fieldSystem, UnkStruct_020997B8 *param1)
 {
     FS_EXTERN_OVERLAY(overlay91);
 
-    const OverlayManagerTemplate v0 = {
+    const ApplicationManagerTemplate v0 = {
         ov91_021D0D80,
         ov91_021D0E08,
         ov91_021D0EBC,
@@ -1480,7 +1480,7 @@ void sub_0203E2AC(FieldSystem *fieldSystem, void *param1)
 {
     FS_EXTERN_OVERLAY(overlay93);
 
-    const OverlayManagerTemplate v0 = {
+    const ApplicationManagerTemplate v0 = {
         ov93_021D0D80,
         ov93_021D0E70,
         ov93_021D0F58,
@@ -1494,7 +1494,7 @@ void sub_0203E2D4(FieldSystem *fieldSystem, void *param1)
 {
     FS_EXTERN_OVERLAY(overlay93);
 
-    const OverlayManagerTemplate v0 = {
+    const ApplicationManagerTemplate v0 = {
         ov93_021D111C, ov93_021D120C, ov93_021D12F0, FS_OVERLAY_ID(overlay93)
     };
 
@@ -1522,7 +1522,7 @@ BOOL sub_0203E348(FieldSystem *fieldSystem, UnkStruct_0203E348 *param1)
 {
     FS_EXTERN_OVERLAY(overlay101);
 
-    static const OverlayManagerTemplate v0 = {
+    static const ApplicationManagerTemplate v0 = {
         ov101_021D0D80,
         ov101_021D0E40,
         ov101_021D0EE4,
@@ -1667,7 +1667,7 @@ void *sub_0203E53C(FieldSystem *fieldSystem, int heapID, int param2)
 {
     FS_EXTERN_OVERLAY(overlay102);
 
-    static const OverlayManagerTemplate v0 = {
+    static const ApplicationManagerTemplate v0 = {
         ov102_021D0D80,
         ov102_021D0E2C,
         ov102_021D0F50,
@@ -1691,7 +1691,7 @@ void *sub_0203E564(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 param3, i
 
     FS_EXTERN_OVERLAY(overlay110);
 
-    static OverlayManagerTemplate v1 = {
+    static ApplicationManagerTemplate v1 = {
         ov110_021D0D80,
         ov110_021D0E9C,
         ov110_021D0EF0,
@@ -1712,24 +1712,24 @@ void *sub_0203E564(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 param3, i
 
 PartyManagementData *sub_0203E598(FieldSystem *fieldSystem, int heapID, int param2)
 {
-    PartyManagementData *v0 = Heap_AllocFromHeap(heapID, sizeof(PartyManagementData));
-    memset(v0, 0, sizeof(PartyManagementData));
+    PartyManagementData *partyMan = Heap_AllocFromHeap(heapID, sizeof(PartyManagementData));
+    memset(partyMan, 0, sizeof(PartyManagementData));
 
-    v0->unk_00 = SaveData_GetParty(fieldSystem->saveData);
-    v0->unk_04 = SaveData_GetBag(fieldSystem->saveData);
-    v0->unk_08 = SaveData_GetMailBox(fieldSystem->saveData);
-    v0->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
-    v0->unk_10 = SaveData_GetTVBroadcast(fieldSystem->saveData);
-    v0->unk_18 = NULL;
-    v0->unk_21 = 0;
-    v0->unk_20 = 5;
-    v0->unk_24 = param2;
-    v0->selectedMonSlot = 0;
-    v0->unk_1C = fieldSystem;
+    partyMan->party = SaveData_GetParty(fieldSystem->saveData);
+    partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
+    partyMan->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+    partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
+    partyMan->broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
+    partyMan->fieldMoveContext = NULL;
+    partyMan->unk_21 = 0;
+    partyMan->unk_20 = 5;
+    partyMan->usedItemID = param2;
+    partyMan->selectedMonSlot = 0;
+    partyMan->fieldSystem = fieldSystem;
 
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
 
-    return v0;
+    return partyMan;
 }
 
 void *sub_0203E608(FieldSystem *fieldSystem, int heapID)
@@ -1738,7 +1738,7 @@ void *sub_0203E608(FieldSystem *fieldSystem, int heapID)
 
     FS_EXTERN_OVERLAY(overlay111);
 
-    static OverlayManagerTemplate v1 = {
+    static ApplicationManagerTemplate v1 = {
         ov111_021D0D80,
         ov111_021D0E34,
         ov111_021D0F40,
@@ -1789,7 +1789,7 @@ void sub_0203E6C0(FieldSystem *fieldSystem, int param1, int param2)
 
     FS_EXTERN_OVERLAY(overlay61);
 
-    const OverlayManagerTemplate v1 = {
+    const ApplicationManagerTemplate v1 = {
         sub_02017498,
         sub_02017524,
         sub_02017658,
@@ -1809,7 +1809,7 @@ void sub_0203E6C0(FieldSystem *fieldSystem, int param1, int param2)
 
 FS_EXTERN_OVERLAY(library_tv);
 
-static const OverlayManagerTemplate LibraryTV_template = {
+static const ApplicationManagerTemplate LibraryTV_template = {
     LibraryTV_Init,
     LibraryTV_Main,
     LibraryTV_Exit,
@@ -1821,7 +1821,7 @@ void sub_0203E704(FieldSystem *fieldSystem)
     FieldSystem_StartChildProcess(fieldSystem, &LibraryTV_template, fieldSystem->saveData);
 }
 
-static const OverlayManagerTemplate Unk_020EA368 = {
+static const ApplicationManagerTemplate Unk_020EA368 = {
     DWWarp_Init,
     DWWarp_Main,
     DWWarp_Exit,

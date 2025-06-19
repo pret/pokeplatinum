@@ -88,28 +88,28 @@ _006A:
 
     .balign 4, 0
 _00F0:
-    MoveAction_063 9
-    MoveAction_035
+    Delay8 9
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _00FC:
-    MoveAction_038
-    MoveAction_075
-    MoveAction_063 2
-    MoveAction_014 2
+    WalkOnSpotFastWest
+    EmoteExclamationMark
+    Delay8 2
+    WalkNormalWest 2
     EndMovement
 
     .balign 4, 0
 _0110:
-    MoveAction_001
-    MoveAction_061
-    MoveAction_003
-    MoveAction_062
-    MoveAction_000
-    MoveAction_062
-    MoveAction_002
-    MoveAction_061
+    FaceSouth
+    Delay2
+    FaceEast
+    Delay4
+    FaceNorth
+    Delay4
+    FaceWest
+    Delay2
     EndMovement
 
 _0134:

@@ -577,8 +577,8 @@ static void ov21_021E95F8(UnkStruct_ov21_021E968C *param0, SpriteList *param1, S
     SpriteResourcesHeader v1;
     int type1 = SpeciesData_GetSpeciesValue(param4, SPECIES_DATA_TYPE_1);
     int type2 = SpeciesData_GetSpeciesValue(param4, SPECIES_DATA_TYPE_2);
-    type1 = ov21_021DF180(type1);
-    type2 = ov21_021DF180(type2);
+    type1 = PokedexGraphics_GetAnimIDfromType(type1);
+    type2 = PokedexGraphics_GetAnimIDfromType(type2);
 
     ov21_021E93F8(param0->unk_08, param2, &v1, 2);
 

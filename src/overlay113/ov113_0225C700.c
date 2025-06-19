@@ -28,7 +28,6 @@
 #include "overlay113/struct_ov113_0225EB20.h"
 #include "overlay113/struct_ov113_022607EC.h"
 #include "overlay113/struct_ov113_02260818.h"
-#include "overlay115/camera_angle.h"
 
 #include "bg_window.h"
 #include "camera.h"
@@ -50,6 +49,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
@@ -61,7 +61,6 @@
 #include "system.h"
 #include "text.h"
 #include "touch_pad.h"
-#include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02015920.h"
 #include "unk_0202419C.h"
@@ -329,7 +328,7 @@ static const SpriteTemplate Unk_ov113_022609D0 = {
     0x0
 };
 
-int ov113_0225C700(OverlayManager *param0, int *param1)
+int ov113_0225C700(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov113_0225DBCC *v0;
 
@@ -347,10 +346,10 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_118, 0x50000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov113_0225DBCC), HEAP_ID_118);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov113_0225DBCC), HEAP_ID_118);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov113_0225DBCC));
 
-    v0->unk_00 = OverlayManager_Args(param0);
+    v0->unk_00 = ApplicationManager_Args(appMan);
     v0->saveData = ov66_0222E0C4(v0->unk_00->unk_00);
     v0->unk_19E0 = ov66_0222E0C8(v0->unk_00->unk_00);
 
@@ -414,7 +413,7 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
 
     v0->unk_24 = sub_02015920(HEAP_ID_118);
 
-    StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_118);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_118);
 
     if (v0->unk_00->unk_00 != NULL) {
         ov66_0222E31C(v0->unk_00->unk_00, 1);
@@ -444,9 +443,9 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov113_0225CA04(OverlayManager *param0, int *param1)
+int ov113_0225CA04(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov113_0225DBCC *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov113_0225DBCC *v0 = ApplicationManager_Data(appMan);
 
     ov113_0225E3F0(&v0->unk_194, v0->camera, v0->unk_9BC, v0->unk_00->unk_04);
 
@@ -462,7 +461,7 @@ int ov113_0225CA04(OverlayManager *param0, int *param1)
         (*param1)++;
         break;
     case 1:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             v0->unk_9BC = 1;
             (*param1)++;
         }
@@ -565,15 +564,15 @@ int ov113_0225CA04(OverlayManager *param0, int *param1)
         }
         break;
     case 9:
-        if (IsScreenTransitionDone() == 0) {
-            sub_0200F2C0();
+        if (IsScreenFadeDone() == FALSE) {
+            FinishScreenFade();
         }
 
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_118);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_118);
         (*param1)++;
         break;
     case 10:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             (*param1)++;
         }
         break;
@@ -616,9 +615,9 @@ int ov113_0225CA04(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov113_0225CDFC(OverlayManager *param0, int *param1)
+int ov113_0225CDFC(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov113_0225DBCC *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov113_0225DBCC *v0 = ApplicationManager_Data(appMan);
 
     SysTask_Done(v0->unk_18);
     ov113_0225D5D8(v0);
@@ -658,7 +657,7 @@ int ov113_0225CDFC(OverlayManager *param0, int *param1)
     RenderControlFlags_SetAutoScrollFlags(0);
     RenderControlFlags_SetSpeedUpOnTouch(0);
     sub_02039794();
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_118);
 
     return 1;

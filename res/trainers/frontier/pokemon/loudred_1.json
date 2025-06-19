@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_LOUDRED",
+    "moves": [
+        "MOVE_STOMP",
+        "MOVE_BITE",
+        "MOVE_HOWL",
+        "MOVE_SUPERSONIC"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_PERSIM_BERRY",
+    "form": 0
+}

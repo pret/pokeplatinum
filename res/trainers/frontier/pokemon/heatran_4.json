@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_HEATRAN",
+    "moves": [
+        "MOVE_MAGMA_STORM",
+        "MOVE_FLASH_CANNON",
+        "MOVE_EARTH_POWER",
+        "MOVE_EXPLOSION"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_QUIET",
+    "item": "ITEM_FOCUS_SASH",
+    "form": 0
+}

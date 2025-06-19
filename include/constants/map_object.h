@@ -36,4 +36,16 @@
 #define MAP_OBJ_STATUS_28                   (1 << 28)
 #define MAP_OBJ_STATUS_29                   (1 << 29)
 
+#define MAP_OBJ_UNK_A0_00 0
+#define MAP_OBJ_UNK_A0_01 1
+#define MAP_OBJ_UNK_A0_02 2
+#define MAP_OBJ_UNK_A0_03 3
+#define MAP_OBJ_UNK_A0_04 4
+#define MAP_OBJ_UNK_A0_05 5
+#define MAP_OBJ_UNK_A0_06 6
+#define MAP_OBJ_UNK_A0_07 7
+#define MAP_OBJ_UNK_A0_08 8
+#define MAP_OBJ_UNK_A0_09 9
+#define MAP_OBJ_UNK_A0_10 10
+
 #endif

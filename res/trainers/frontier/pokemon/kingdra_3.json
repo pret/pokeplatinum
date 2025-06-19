@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_KINGDRA",
+    "moves": [
+        "MOVE_WATERFALL",
+        "MOVE_OUTRAGE",
+        "MOVE_IRON_HEAD",
+        "MOVE_DRAGON_DANCE"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_LUM_BERRY",
+    "form": 0
+}

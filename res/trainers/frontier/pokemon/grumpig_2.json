@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_GRUMPIG",
+    "moves": [
+        "MOVE_PSYCHIC",
+        "MOVE_POWER_GEM",
+        "MOVE_CHARGE_BEAM",
+        "MOVE_MIRROR_COAT"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": true
+    },
+    "nature": "NATURE_CALM",
+    "item": "ITEM_COLBUR_BERRY",
+    "form": 0
+}

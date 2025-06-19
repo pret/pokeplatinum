@@ -13,19 +13,19 @@
 #include "overlay095/struct_ov95_02247628_decl.h"
 #include "overlay095/struct_ov95_0224773C_decl.h"
 #include "overlay095/struct_ov95_02247958_decl.h"
-#include "overlay115/camera_angle.h"
 
 #include "bg_window.h"
+#include "camera.h"
 #include "enums.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "math_util.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0200F174.h"
 #include "unk_0202419C.h"
 
 enum {
@@ -300,7 +300,7 @@ static int ov95_022486AC(UnkStruct_ov95_02248688 *param0, int *param1)
     ov95_022488A4(param0);
     ov95_02248B84(param0);
     ov95_02248CA8(param0);
-    StartScreenTransition(0, 1, 1, 0x0, 8, 1, HEAP_ID_58);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 8, 1, HEAP_ID_58);
 
     return 1;
 }
@@ -311,7 +311,7 @@ static int ov95_022486E0(UnkStruct_ov95_02248688 *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             v0 = 0;
             (*param1)++;
         }
@@ -394,12 +394,12 @@ static int ov95_022487D4(UnkStruct_ov95_02248688 *param0, int *param1)
         }
 
         if (ov95_022494F4(param0->unk_160)) {
-            StartScreenTransition(0, 0, 0, 0x7fff, 4, 1, HEAP_ID_58);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_WHITE, 4, 1, HEAP_ID_58);
             (*param1)++;
         }
         break;
     case 4:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             return 1;
         }
     }

@@ -562,8 +562,8 @@ _08AA:
 
     .balign 4, 0
 _08AC:
-    MoveAction_033
-    MoveAction_075
+    WalkOnSpotNormalSouth
+    EmoteExclamationMark
     EndMovement
 
     .byte 34
@@ -597,27 +597,27 @@ _08AC:
 
     .balign 4, 0
 _08D4:
-    MoveAction_012 2
+    WalkNormalNorth 2
     EndMovement
 
     .balign 4, 0
 _08DC:
-    MoveAction_014 2
-    MoveAction_032
-    MoveAction_063 2
-    MoveAction_015 4
-    MoveAction_032
+    WalkNormalWest 2
+    WalkOnSpotNormalNorth
+    Delay8 2
+    WalkNormalEast 4
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _08F4:
-    MoveAction_014 2
-    MoveAction_032
+    WalkNormalWest 2
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0900:
-    MoveAction_013 2
+    WalkNormalSouth 2
     EndMovement
 
 RotomsRoom_OldNotebook:

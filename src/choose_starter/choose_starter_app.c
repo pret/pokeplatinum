@@ -20,7 +20,6 @@
 #include "overlay022/struct_ov22_022550D4.h"
 #include "overlay022/struct_ov22_022557A0.h"
 #include "overlay022/struct_ov22_02255800.h"
-#include "overlay115/camera_angle.h"
 
 #include "bg_window.h"
 #include "camera.h"
@@ -40,6 +39,7 @@
 #include "render_oam.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite.h"
@@ -52,7 +52,6 @@
 #include "system.h"
 #include "text.h"
 #include "touch_pad.h"
-#include "unk_0200F174.h"
 #include "unk_02015064.h"
 #include "unk_0202419C.h"
 #include "vram_transfer.h"
@@ -311,17 +310,17 @@ static void StartCursorMovement(ChooseStarterCursor *param0);
 static void ov78_021D23E8(SysTask *param0, void *param1);
 static void ov78_021D241C(ChooseStarterCursor *param0);
 
-BOOL ChooseStarter_Init(OverlayManager *param0, int *param1)
+BOOL ChooseStarter_Init(ApplicationManager *appMan, int *param1)
 {
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_CHOOSE_STARTER_APP, HEAP_SIZE_CHOOSE_STARTER_APP);
 
-    ChooseStarterApp *app = OverlayManager_NewData(param0, sizeof(ChooseStarterApp), HEAP_ID_CHOOSE_STARTER_APP);
+    ChooseStarterApp *app = ApplicationManager_NewData(appMan, sizeof(ChooseStarterApp), HEAP_ID_CHOOSE_STARTER_APP);
     GF_ASSERT(app);
     memset(app, 0, sizeof(ChooseStarterApp));
 
     Heap_FndInitAllocatorForExpHeap(&app->unk_2B4, HEAP_ID_CHOOSE_STARTER_APP, 32);
 
-    ChooseStarterData *data = OverlayManager_Args(param0);
+    ChooseStarterData *data = ApplicationManager_Args(appMan);
     app->messageFrame = Options_Frame(data->options);
     app->unk_704 = Options_TextFrameDelay(data->options);
 
@@ -379,9 +378,9 @@ enum ChooseStarterAppState {
     CHOOSE_STARTER_MAIN_WAIT_FADE_OUT,
 };
 
-BOOL ChooseStarter_Main(OverlayManager *ovyManager, int *state)
+BOOL ChooseStarter_Main(ApplicationManager *appMan, int *state)
 {
-    ChooseStarterApp *app = OverlayManager_Data(ovyManager);
+    ChooseStarterApp *app = ApplicationManager_Data(appMan);
     BOOL selectionMade;
     u16 palette = 0x08C3;
 
@@ -394,8 +393,8 @@ BOOL ChooseStarter_Main(OverlayManager *ovyManager, int *state)
 
     case CHOOSE_STARTER_MAIN_WAIT_FADE_IN:
         if (IsFadeDone(app)) {
-            sub_0200F32C(0);
-            sub_0200F32C(1);
+            ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
+            ResetVisibleHardwareWindows(DS_SCREEN_SUB);
             (*state)++;
         }
         break;
@@ -416,8 +415,8 @@ BOOL ChooseStarter_Main(OverlayManager *ovyManager, int *state)
 
     case CHOOSE_STARTER_MAIN_WAIT_FADE_OUT:
         if (IsFadeDone(app)) {
-            sub_0200F32C(0);
-            sub_0200F32C(1);
+            ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
+            ResetVisibleHardwareWindows(DS_SCREEN_SUB);
 
             return TRUE;
         }
@@ -428,10 +427,10 @@ BOOL ChooseStarter_Main(OverlayManager *ovyManager, int *state)
     return FALSE;
 }
 
-BOOL ChooseStarter_Exit(OverlayManager *param0, int *param1)
+BOOL ChooseStarter_Exit(ApplicationManager *appMan, int *param1)
 {
-    ChooseStarterApp *v0 = OverlayManager_Data(param0);
-    ChooseStarterData *v1 = OverlayManager_Args(param0);
+    ChooseStarterApp *v0 = ApplicationManager_Data(appMan);
+    ChooseStarterData *v1 = ApplicationManager_Args(appMan);
     BOOL v2;
 
     SetVBlankCallback(NULL, NULL);
@@ -459,7 +458,7 @@ BOOL ChooseStarter_Exit(OverlayManager *param0, int *param1)
     ov78_021D10DC();
 
     VramTransfer_Free();
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_CHOOSE_STARTER_APP);
 
     return TRUE;
@@ -477,17 +476,17 @@ static void ChooseStarterAppMainCallback(void *data)
 
 static void StartFadeIn(ChooseStarterApp *param0)
 {
-    StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_CHOOSE_STARTER_APP);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_CHOOSE_STARTER_APP);
 }
 
 static void StartFadeOut(ChooseStarterApp *param0)
 {
-    StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_CHOOSE_STARTER_APP);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_CHOOSE_STARTER_APP);
 }
 
 static BOOL IsFadeDone(ChooseStarterApp *param0)
 {
-    return IsScreenTransitionDone();
+    return IsScreenFadeDone();
 }
 
 static void SetupDrawing(ChooseStarterApp *app, enum HeapId heap)

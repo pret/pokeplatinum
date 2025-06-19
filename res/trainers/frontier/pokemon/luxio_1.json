@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_LUXIO",
+    "moves": [
+        "MOVE_THUNDER_FANG",
+        "MOVE_BITE",
+        "MOVE_FLASH",
+        "MOVE_SWAGGER"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_MAGNET",
+    "form": 0
+}

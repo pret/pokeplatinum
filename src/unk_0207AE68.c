@@ -40,6 +40,7 @@
 #include "poketch.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -47,7 +48,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_0201567C.h"
 #include "unk_02015F84.h"
 #include "unk_0202419C.h"
@@ -189,8 +189,8 @@ void sub_0207B0E0(UnkStruct_0207AE68 *param0)
 {
     int v0;
 
-    sub_0200F344(0, 0x0);
-    sub_0200F344(1, 0x0);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
     SetVBlankCallback(NULL, NULL);
     Windows_Delete(param0->unk_04, 1);
     PaletteData_FreeBuffer(param0->unk_14, 0);
@@ -253,8 +253,8 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         }
         break;
     case 1:
-        sub_0200F338(0);
-        sub_0200F338(1);
+        ResetScreenMasterBrightness(DS_SCREEN_MAIN);
+        ResetScreenMasterBrightness(DS_SCREEN_SUB);
         sub_02015738(param0->unk_58, 0);
 
         if (param0->unk_7C & 0x2) {
@@ -492,8 +492,8 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         break;
     case 22:
         if (PaletteData_GetSelectedBuffersMask(param0->unk_14) == 0) {
-            sub_0200F344(0, 0x0);
-            sub_0200F344(1, 0x0);
+            SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+            SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
             sub_0207C460(param0->unk_00);
             PokemonSprite_SetAttribute(param0->unk_1C[0], MON_SPRITE_HIDE, 1);
             PokemonSprite_SetAttribute(param0->unk_1C[1], MON_SPRITE_HIDE, 1);
@@ -511,8 +511,8 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         }
         break;
     case 23:
-        if (OverlayManager_Exec(param0->unk_38)) {
-            OverlayManager_Free(param0->unk_38);
+        if (ApplicationManager_Exec(param0->appMan)) {
+            ApplicationManager_Free(param0->appMan);
             sub_0207C1CC(param0, param0->unk_00);
             Window_DrawMessageBoxWithScrollCursor(param0->unk_04, 0, 1, 10);
             PokemonSprite_SetAttribute(param0->unk_1C[0], MON_SPRITE_HIDE, 0);
@@ -526,8 +526,8 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         }
         break;
     case 24:
-        sub_0200F338(0);
-        sub_0200F338(1);
+        ResetScreenMasterBrightness(DS_SCREEN_MAIN);
+        ResetScreenMasterBrightness(DS_SCREEN_SUB);
 
         if (PaletteData_GetSelectedBuffersMask(param0->unk_14) == 0) {
             if (param0->unk_3C->selectedMoveSlot == LEARNED_MOVES_MAX) {
@@ -1009,5 +1009,5 @@ static BOOL sub_0207C5CC(TextPrinterTemplate *param0, u16 param1)
 
 static void sub_0207C624(UnkStruct_0207AE68 *param0)
 {
-    param0->unk_38 = OverlayManager_New(&gPokemonSummaryScreenApp, param0->unk_3C, param0->heapID);
+    param0->appMan = ApplicationManager_New(&gPokemonSummaryScreenApp, param0->unk_3C, param0->heapID);
 }

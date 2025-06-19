@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_020304A0_decl.h"
 #include "struct_decls/struct_020305B8_decl.h"
-#include "struct_decls/struct_0203068C_decl.h"
+#include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay104/ov104_0223BCBC.h"
@@ -36,6 +36,7 @@
 #include "render_oam.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_util.h"
@@ -45,7 +46,6 @@
 #include "system.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_02030494.h"
 #include "unk_0203061C.h"
 #include "unk_020363E8.h"
@@ -149,8 +149,8 @@ static const u8 Unk_ov108_0224367C[] = {
 };
 
 struct UnkStruct_ov108_02241DB0_t {
-    OverlayManager *unk_00;
-    BattleFrontier *unk_04;
+    ApplicationManager *appMan;
+    BattleFrontier *frontier;
     u8 unk_08;
     u8 unk_09;
     u8 unk_0A;
@@ -219,9 +219,9 @@ struct UnkStruct_ov108_02241DB0_t {
     u32 unk_42C;
 };
 
-int ov108_02241AE0(OverlayManager *param0, int *param1);
-int ov108_02241C38(OverlayManager *param0, int *param1);
-int ov108_02241D70(OverlayManager *param0, int *param1);
+int ov108_02241AE0(ApplicationManager *appMan, int *param1);
+int ov108_02241C38(ApplicationManager *appMan, int *param1);
+int ov108_02241D70(ApplicationManager *appMan, int *param1);
 static BOOL ov108_02241DB0(UnkStruct_ov108_02241DB0 *param0);
 static BOOL ov108_02241F28(UnkStruct_ov108_02241DB0 *param0);
 static BOOL ov108_02242104(UnkStruct_ov108_02241DB0 *param0);
@@ -271,7 +271,7 @@ static const TouchScreenHitTable Unk_ov108_02243687[] = {
     { TOUCHSCREEN_TABLE_TERMINATOR, 0x0, 0x0, 0x0 }
 };
 
-int ov108_02241AE0(OverlayManager *param0, int *param1)
+int ov108_02241AE0(ApplicationManager *appMan, int *param1)
 {
     int v0;
     UnkStruct_ov108_02241DB0 *v1;
@@ -281,13 +281,13 @@ int ov108_02241AE0(OverlayManager *param0, int *param1)
     ov108_02242344();
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_103, 0x20000);
 
-    v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov108_02241DB0), HEAP_ID_103);
+    v1 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov108_02241DB0), HEAP_ID_103);
     memset(v1, 0, sizeof(UnkStruct_ov108_02241DB0));
 
     v1->unk_90 = BgConfig_New(HEAP_ID_103);
-    v1->unk_00 = param0;
+    v1->appMan = appMan;
 
-    v2 = (UnkStruct_ov104_02238240 *)OverlayManager_Args(param0);
+    v2 = (UnkStruct_ov104_02238240 *)ApplicationManager_Args(appMan);
 
     v1->saveData = v2->saveData;
     v1->unk_E0 = sub_020304A0(v1->saveData);
@@ -302,7 +302,7 @@ int ov108_02241AE0(OverlayManager *param0, int *param1)
     v1->unk_3C8 = v2->unk_30;
     v1->unk_3CC = v2->unk_34;
     v1->unk_0E = 0xff;
-    v1->unk_04 = SaveData_GetBattleFrontier(v1->saveData);
+    v1->frontier = SaveData_GetBattleFrontier(v1->saveData);
     v1->unk_3C0 = v2->unk_08;
     v1->unk_1C = v2->unk_0C;
     v1->unk_20 = v2->unk_10;
@@ -337,9 +337,9 @@ int ov108_02241AE0(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov108_02241C38(OverlayManager *param0, int *param1)
+int ov108_02241C38(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov108_02241DB0 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov108_02241DB0 *v0 = ApplicationManager_Data(appMan);
 
     if (v0->unk_0E != 0xff) {
         switch (*param1) {
@@ -399,16 +399,16 @@ int ov108_02241C38(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov108_02241D70(OverlayManager *param0, int *param1)
+int ov108_02241D70(ApplicationManager *appMan, int *param1)
 {
     int v0;
-    UnkStruct_ov108_02241DB0 *v1 = OverlayManager_Data(param0);
+    UnkStruct_ov108_02241DB0 *v1 = ApplicationManager_Data(appMan);
 
     *(v1->unk_3C4) = v1->unk_0D;
 
     VramTransfer_Free();
     ov108_02242238(v1);
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     SetVBlankCallback(NULL, NULL);
     Heap_Destroy(HEAP_ID_103);
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay104));
@@ -475,7 +475,7 @@ static BOOL ov108_02241DB0(UnkStruct_ov108_02241DB0 *param0)
                 param0->unk_08++;
             }
         } else {
-            StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, HEAP_ID_103);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1 * 3, HEAP_ID_103);
             param0->unk_08++;
         }
         break;
@@ -483,7 +483,7 @@ static BOOL ov108_02241DB0(UnkStruct_ov108_02241DB0 *param0)
         if (ov104_0223C000(param0->unk_09) == 1) {
             if (param0->unk_0F >= 2) {
                 param0->unk_0F = 0;
-                StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, HEAP_ID_103);
+                StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1 * 3, HEAP_ID_103);
                 param0->unk_08++;
             }
         } else {
@@ -491,7 +491,7 @@ static BOOL ov108_02241DB0(UnkStruct_ov108_02241DB0 *param0)
         }
         break;
     case 9:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             return 1;
         }
         break;
@@ -706,11 +706,11 @@ static BOOL ov108_022421F0(UnkStruct_ov108_02241DB0 *param0)
 
     switch (param0->unk_08) {
     case 0:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_103);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_103);
         param0->unk_08++;
         break;
     case 1:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             return 1;
         }
         break;

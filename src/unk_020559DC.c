@@ -123,7 +123,7 @@ static void sub_02055AC0(FieldSystem *fieldSystem, s32 param1)
     SystemVars_UpdateVillaVisitor(fieldSystem->saveData);
     FieldSystem_ClearDailyHiddenItemFlags(fieldSystem);
     sub_0206C008(fieldSystem->saveData);
-    sub_0202C9A0(sub_0202C878(fieldSystem->saveData));
+    sub_0202C9A0(SaveData_WiFiHistory(fieldSystem->saveData));
     sub_0206F2F0(fieldSystem->saveData);
 }
 

@@ -11,7 +11,6 @@
 
 #include "overlay004/ov4_021D0D80.h"
 #include "overlay114/ov114_0225C700.h"
-#include "overlay115/camera_angle.h"
 #include "overlay117/ov117_022626B0.h"
 #include "overlay117/ov117_02263AF0.h"
 #include "overlay117/ov117_022665FC.h"
@@ -38,6 +37,7 @@
 #include "particle_system.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
@@ -49,7 +49,6 @@
 #include "text.h"
 #include "touch_pad.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
@@ -177,7 +176,7 @@ static const struct {
     { 0x1F, 0x2B, 0x2C, 0x2D, 0x2E }
 };
 
-int ov117_02260668(OverlayManager *param0, int *param1)
+int ov117_02260668(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov117_02261280 *v0;
 
@@ -191,12 +190,12 @@ int ov117_02260668(OverlayManager *param0, int *param1)
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_ALL, 16, 16);
     G2S_SetBlendAlpha((GX_BLEND_PLANEMASK_BG3), (GX_BLEND_BGALL | GX_BLEND_PLANEMASK_OBJ), 13, 3);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov117_02261280), HEAP_ID_110);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov117_02261280), HEAP_ID_110);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov117_02261280));
     Heap_FndInitAllocatorForExpHeap(&v0->unk_A8, HEAP_ID_110, 32);
 
     v0->unk_98 = ov117_02260E14(HEAP_ID_110);
-    v0->unk_00 = OverlayManager_Args(param0);
+    v0->unk_00 = ApplicationManager_Args(appMan);
     ov117_022665FC(v0);
     v0->unk_8C = PaletteData_New(HEAP_ID_110);
 
@@ -256,7 +255,7 @@ int ov117_02260668(OverlayManager *param0, int *param1)
     sub_02039734();
 
     v0->unk_D4 = ov117_022626B0(v0);
-    StartScreenTransition(0, 27, 27, 0x0, 6, 1, HEAP_ID_110);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_27, FADE_TYPE_UNK_27, FADE_TO_BLACK, 6, 1, HEAP_ID_110);
     v0->unk_94 = SysTask_Start(ov117_02260F7C, v0, 60000);
 
     gSystem.whichScreenIs3D = DS_SCREEN_SUB;
@@ -290,19 +289,19 @@ int ov117_02260668(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov117_0226098C(OverlayManager *param0, int *param1)
+int ov117_0226098C(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov117_02261280 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov117_02261280 *v0 = ApplicationManager_Data(appMan);
     int v1;
 
     if (v0->unk_00->unk_3D == 1) {
         switch (v0->unk_00->unk_3E) {
         case 0:
-            if (IsScreenTransitionDone() == 1) {
-                sub_0200F2C0();
+            if (IsScreenFadeDone() == TRUE) {
+                FinishScreenFade();
             }
 
-            sub_0200F370(0x0);
+            SetColorBrightness(FADE_TO_BLACK);
             GX_SetVisibleWnd(GX_WNDMASK_NONE);
             v0->unk_00->unk_3E++;
             break;
@@ -320,7 +319,7 @@ int ov117_0226098C(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             (*param1)++;
         }
         break;
@@ -347,7 +346,7 @@ int ov117_0226098C(OverlayManager *param0, int *param1)
     case 5:
         if (v0->unk_2FC0 == 1) {
             ov117_02266150(v0);
-            StartScreenTransition(0, 26, 26, 0x0, 6, 1, HEAP_ID_110);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_26, FADE_TYPE_UNK_26, FADE_TO_BLACK, 6, 1, HEAP_ID_110);
             (*param1)++;
         }
 
@@ -411,7 +410,7 @@ int ov117_0226098C(OverlayManager *param0, int *param1)
         }
         break;
     case 6:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             return 1;
         }
         break;
@@ -423,9 +422,9 @@ int ov117_0226098C(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov117_02260C10(OverlayManager *param0, int *param1)
+int ov117_02260C10(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov117_02261280 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov117_02261280 *v0 = ApplicationManager_Data(appMan);
     int v1;
 
     v0->unk_00->unk_10.unk_14 = v0->unk_2FD0;
@@ -478,7 +477,7 @@ int ov117_02260C10(OverlayManager *param0, int *param1)
 
     ov117_02260EB8(v0->unk_98);
     DisableTouchPad();
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     RenderControlFlags_SetCanABSpeedUpPrint(0);
     RenderControlFlags_SetAutoScrollFlags(0);
     RenderControlFlags_SetSpeedUpOnTouch(0);

@@ -23,6 +23,7 @@
 #include "overlay_manager.h"
 #include "pltt_transfer.h"
 #include "render_oam.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sprite.h"
 #include "sprite_resource.h"
@@ -30,7 +31,6 @@
 #include "sprite_util.h"
 #include "string_template.h"
 #include "system.h"
-#include "unk_0200F174.h"
 #include "unk_02033200.h"
 #include "unk_020393C8.h"
 #include "unk_02099550.h"
@@ -38,7 +38,7 @@
 
 static void ov96_0223B940(void *param0);
 static void ov96_0223B960(void);
-static void ov96_0223B980(UnkStruct_ov96_0223BF40 *param0, OverlayManager *param1);
+static void ov96_0223B980(UnkStruct_ov96_0223BF40 *param0, ApplicationManager *appMan);
 static void ov96_0223B99C(UnkStruct_ov96_0223BF40 *param0);
 static void ov96_0223B9A0(void);
 static void ov96_0223B9D0(UnkStruct_ov96_0223BF40 *param0);
@@ -56,7 +56,7 @@ static int (*Unk_ov96_0223DCD4[][3])(UnkStruct_ov96_0223BF40 *, int) = {
 
 UnkStruct_ov96_0223BF40 *Unk_ov96_0223DEEC;
 
-int ov96_0223B6A0(OverlayManager *param0, int *param1)
+int ov96_0223B6A0(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov96_0223BF40 *v0;
 
@@ -72,7 +72,7 @@ int ov96_0223B6A0(OverlayManager *param0, int *param1)
 
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_68, 0x50000);
 
-        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov96_0223BF40), HEAP_ID_68);
+        v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov96_0223BF40), HEAP_ID_68);
         memset(v0, 0, sizeof(UnkStruct_ov96_0223BF40));
         v0->unk_04 = BgConfig_New(HEAP_ID_68);
         Unk_ov96_0223DEEC = v0;
@@ -94,7 +94,7 @@ int ov96_0223B6A0(OverlayManager *param0, int *param1)
         v0->unk_BD8 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0695, HEAP_ID_68);
 
         SetAutorepeat(4, 8);
-        ov96_0223B980(v0, param0);
+        ov96_0223B980(v0, appMan);
         ov96_0223BC64(v0);
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_52, SEQ_NONE, 0);
 
@@ -117,9 +117,9 @@ int ov96_0223B6A0(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov96_0223B7F8(OverlayManager *param0, int *param1)
+int ov96_0223B7F8(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov96_0223BF40 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov96_0223BF40 *v0 = ApplicationManager_Data(appMan);
     int v1;
 
     DWC_UpdateConnection();
@@ -138,7 +138,7 @@ int ov96_0223B7F8(OverlayManager *param0, int *param1)
         *param1 = (*Unk_ov96_0223DCD4[v0->unk_10][0])(v0, *param1);
         break;
     case 2:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             *param1 = 3;
         }
         break;
@@ -146,7 +146,7 @@ int ov96_0223B7F8(OverlayManager *param0, int *param1)
         *param1 = (*Unk_ov96_0223DCD4[v0->unk_10][1])(v0, *param1);
         break;
     case 4:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             *param1 = (*Unk_ov96_0223DCD4[v0->unk_10][2])(v0, *param1);
         }
         break;
@@ -162,9 +162,9 @@ int ov96_0223B7F8(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov96_0223B8CC(OverlayManager *param0, int *param1)
+int ov96_0223B8CC(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov96_0223BF40 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov96_0223BF40 *v0 = ApplicationManager_Data(appMan);
     int v1;
 
     Heap_FreeToHeap(v0->unk_24);
@@ -182,7 +182,7 @@ int ov96_0223B8CC(OverlayManager *param0, int *param1)
 
     sub_020334CC();
     Heap_FreeToHeap(v0->unk_04);
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     SetVBlankCallback(NULL, NULL);
     Heap_Destroy(HEAP_ID_68);
 
@@ -219,9 +219,9 @@ static void ov96_0223B960(void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov96_0223B980(UnkStruct_ov96_0223BF40 *param0, OverlayManager *param1)
+static void ov96_0223B980(UnkStruct_ov96_0223BF40 *param0, ApplicationManager *appMan)
 {
-    param0->unk_00 = (UnkStruct_0206BC70 *)OverlayManager_Args(param1);
+    param0->unk_00 = (UnkStruct_0206BC70 *)ApplicationManager_Args(appMan);
     param0->unk_10 = 0;
 
     ov96_0223BC5C(param0, 0, 0);

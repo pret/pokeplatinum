@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_SWABLU",
+    "moves": [
+        "MOVE_AIR_CUTTER",
+        "MOVE_SWIFT",
+        "MOVE_MIRROR_MOVE",
+        "MOVE_ATTRACT"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": true
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_MENTAL_HERB",
+    "form": 0
+}

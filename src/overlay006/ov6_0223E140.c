@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/species.h"
+#include "generated/movement_actions.h"
 
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -19,7 +20,6 @@
 #include "overlay006/funcptr_ov6_0223E6EC.h"
 #include "overlay006/struct_ov6_0223E6EC.h"
 #include "overlay006/struct_ov6_0223FDE4_decl.h"
-#include "overlay115/camera_angle.h"
 
 #include "bg_window.h"
 #include "camera.h"
@@ -1257,7 +1257,7 @@ static BOOL ov6_0223EE5C(UnkStruct_ov6_0223EA98 *param0)
     case 8:
         param0->unk_D0 = 0;
         MapObject_Face(param0->unk_10C, 2);
-        LocalMapObj_SetAnimationCode(param0->unk_110, 0x2);
+        LocalMapObj_SetAnimationCode(param0->unk_110, MOVEMENT_ACTION_FACE_WEST);
         Easy3DObject_GetPosition(&param0->unk_24, &v1, &v2, &param0->unk_D8);
         param0->unk_18++;
     case 9:
@@ -1420,17 +1420,17 @@ static BOOL ov6_0223EE5C(UnkStruct_ov6_0223EA98 *param0)
     if (param0->unk_1C != 0) {
         if (param0->unk_1C == 20) {
             MapObject_Face(param0->unk_10C, 1);
-            LocalMapObj_SetAnimationCode(param0->unk_110, 0x1);
+            LocalMapObj_SetAnimationCode(param0->unk_110, MOVEMENT_ACTION_FACE_SOUTH);
         }
 
         if (param0->unk_1C == 40) {
             MapObject_Face(param0->unk_10C, 2);
-            LocalMapObj_SetAnimationCode(param0->unk_110, 0x3);
+            LocalMapObj_SetAnimationCode(param0->unk_110, MOVEMENT_ACTION_FACE_EAST);
         }
 
         if (param0->unk_1C == 50) {
             MapObject_Face(param0->unk_10C, 0);
-            LocalMapObj_SetAnimationCode(param0->unk_110, 0x0);
+            LocalMapObj_SetAnimationCode(param0->unk_110, MOVEMENT_ACTION_FACE_NORTH);
         }
 
         param0->unk_1C++;

@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_HITMONLEE",
+    "moves": [
+        "MOVE_ROLLING_KICK",
+        "MOVE_FACADE",
+        "MOVE_FORESIGHT",
+        "MOVE_FOCUS_ENERGY"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_CAREFUL",
+    "item": "ITEM_BLACK_BELT",
+    "form": 0
+}

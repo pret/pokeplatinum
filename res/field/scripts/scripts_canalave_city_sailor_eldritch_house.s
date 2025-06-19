@@ -186,45 +186,45 @@ _026E:
 
     .balign 4, 0
 _0294:
-    MoveAction_002
+    FaceWest
     EndMovement
 
     .balign 4, 0
 _029C:
-    MoveAction_000
+    FaceNorth
     EndMovement
 
     .balign 4, 0
 _02A4:
-    MoveAction_001
+    FaceSouth
     EndMovement
 
     .balign 4, 0
 _02AC:
-    MoveAction_003
+    FaceEast
     EndMovement
 
     .balign 4, 0
 _02B4:
-    MoveAction_012 2
-    MoveAction_015 2
+    WalkNormalNorth 2
+    WalkNormalEast 2
     EndMovement
 
     .balign 4, 0
 _02C0:
-    MoveAction_000
-    MoveAction_071
-    MoveAction_013
-    MoveAction_072
+    FaceNorth
+    LockDir
+    WalkNormalSouth
+    UnlockDir
     EndMovement
 
     .balign 4, 0
 _02D4:
-    MoveAction_015
+    WalkNormalEast
     EndMovement
 
     .balign 4, 0
 _02DC:
-    MoveAction_014 3
-    MoveAction_013 2
+    WalkNormalWest 3
+    WalkNormalSouth 2
     EndMovement

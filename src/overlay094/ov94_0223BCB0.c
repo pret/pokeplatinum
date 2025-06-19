@@ -39,6 +39,7 @@
 #include "pokemon_icon.h"
 #include "render_oam.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sprite.h"
 #include "sprite_resource.h"
@@ -47,14 +48,13 @@
 #include "string_template.h"
 #include "system.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_02033200.h"
 #include "unk_02099550.h"
 #include "vram_transfer.h"
 
 static void ov94_0223BFE4(void *param0);
 static void ov94_0223C01C(void);
-static void ov94_0223C03C(UnkStruct_ov94_0223FD4C *param0, OverlayManager *param1);
+static void ov94_0223C03C(UnkStruct_ov94_0223FD4C *param0, ApplicationManager *appMan);
 static void ov94_0223C0A0(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_0223C0A4(void);
 static void ov94_0223C0D4(UnkStruct_ov94_0223FD4C *param0);
@@ -83,7 +83,7 @@ static int (*Unk_ov94_0224674C[][3])(UnkStruct_ov94_0223FD4C *, int) = {
 
 UnkStruct_ov94_0223FD4C *Unk_ov94_02246C08;
 
-int ov94_0223BCB0(OverlayManager *param0, int *param1)
+int ov94_0223BCB0(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov94_0223FD4C *v0;
 
@@ -99,7 +99,7 @@ int ov94_0223BCB0(OverlayManager *param0, int *param1)
 
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_62, 0x70000);
 
-        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov94_0223FD4C), HEAP_ID_62);
+        v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov94_0223FD4C), HEAP_ID_62);
         memset(v0, 0, sizeof(UnkStruct_ov94_0223FD4C));
         v0->unk_04 = BgConfig_New(HEAP_ID_62);
         Unk_ov94_02246C08 = v0;
@@ -124,7 +124,7 @@ int ov94_0223BCB0(OverlayManager *param0, int *param1)
 
         SetAutorepeat(4, 8);
 
-        ov94_0223C03C(v0, param0);
+        ov94_0223C03C(v0, appMan);
         ov94_0223C4E0(v0);
 
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, SEQ_WIFILOBBY, 1);
@@ -145,9 +145,9 @@ int ov94_0223BCB0(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov94_0223BE2C(OverlayManager *param0, int *param1)
+int ov94_0223BE2C(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov94_0223FD4C *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov94_0223FD4C *v0 = ApplicationManager_Data(appMan);
 
     DWC_UpdateConnection();
     ov94_0223B15C();
@@ -168,7 +168,7 @@ int ov94_0223BE2C(OverlayManager *param0, int *param1)
         }
         break;
     case 2:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             *param1 = 3;
         }
         break;
@@ -176,7 +176,7 @@ int ov94_0223BE2C(OverlayManager *param0, int *param1)
         *param1 = (*Unk_ov94_0224674C[v0->unk_14][1])(v0, *param1);
         break;
     case 4:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             if (v0->unk_104) {
                 ov94_0223C4E0(v0);
                 ov94_02243EF8(v0, TrainerInfo_Gender(v0->unk_00->unk_1C));
@@ -202,9 +202,9 @@ int ov94_0223BE2C(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov94_0223BF54(OverlayManager *param0, int *param1)
+int ov94_0223BF54(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov94_0223FD4C *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov94_0223FD4C *v0 = ApplicationManager_Data(appMan);
     int v1;
 
     Heap_FreeToHeap(v0->unk_4C);
@@ -225,7 +225,7 @@ int ov94_0223BF54(OverlayManager *param0, int *param1)
     sub_020334CC();
     Heap_FreeToHeap(v0->unk_04);
     Heap_FreeToHeap(v0->unk_00);
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     SetVBlankCallback(NULL, NULL);
     Heap_Destroy(HEAP_ID_62);
 
@@ -267,9 +267,9 @@ static void ov94_0223C01C(void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov94_0223C03C(UnkStruct_ov94_0223FD4C *param0, OverlayManager *param1)
+static void ov94_0223C03C(UnkStruct_ov94_0223FD4C *param0, ApplicationManager *appMan)
 {
-    param0->unk_00 = (UnkStruct_0203E0FC *)OverlayManager_Args(param1);
+    param0->unk_00 = (UnkStruct_0203E0FC *)ApplicationManager_Args(appMan);
     param0->unk_14 = 0;
 
     ov94_0223C4C0(param0, 0, 0);

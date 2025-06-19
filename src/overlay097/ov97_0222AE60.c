@@ -6,8 +6,8 @@
 
 #include "overlay077/const_ov77_021D742C.h"
 #include "overlay097/const_ov97_0223D674.h"
+#include "overlay097/distribution_cartridge.h"
 #include "overlay097/ov97_02235D18.h"
-#include "overlay097/ov97_02237520.h"
 #include "overlay097/ov97_02237694.h"
 #include "overlay097/struct_ov97_02237808.h"
 #include "savedata/save_table.h"
@@ -30,6 +30,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite.h"
@@ -39,7 +40,6 @@
 #include "system_data.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_020366A0.h"
 #include "unk_0209A74C.h"
 #include "vram_transfer.h"
@@ -656,9 +656,9 @@ static BOOL ov97_0222B7DC(void *param0, int param1, UnkStruct_ov97_02237808 *par
             v0->unk_34 = 1;
         }
 
-        ov97_02237520(81);
+        DistributionCartridge_UseHeap(HEAP_ID_81);
 
-        if (ov97_02237624()) {
+        if (DistributionCartridge_ReadLength()) {
             v0->unk_34 = 1;
             ov97_02238400(1);
         }
@@ -884,10 +884,10 @@ static void ov97_0222BC1C(UnkStruct_0222AE60 *param0)
     Sprite_SetDrawFlag(param0->unk_168[1], v2);
 }
 
-static void ov97_0222BC9C(OverlayManager *param0)
+static void ov97_0222BC9C(ApplicationManager *appMan)
 {
     int v0;
-    UnkStruct_0222AE60 *v1 = OverlayManager_Data(param0);
+    UnkStruct_0222AE60 *v1 = ApplicationManager_Data(appMan);
 
     if (v1->unk_168[0] || v1->unk_168[1]) {
         Sprite_Delete(v1->unk_168[0]);
@@ -963,20 +963,20 @@ static void ov97_0222BD48(void *param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static int ov97_0222BD70(OverlayManager *param0, int *param1)
+static int ov97_0222BD70(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_0222AE60 *v0;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_81, 0x40000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_0222AE60), HEAP_ID_81);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_0222AE60), HEAP_ID_81);
     memset(v0, 0, sizeof(UnkStruct_0222AE60));
     v0->unk_00 = BgConfig_New(HEAP_ID_81);
 
-    sub_0200F344(0, 0x0);
-    sub_0200F344(1, 0x0);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
 
-    v0->saveData = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
+    v0->saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
     v0->unk_14 = SaveData_GetMysteryGift(v0->saveData);
     v0->unk_11C = FX32_ONE * 0;
     v0->unk_120 = FX32_ONE * 0;
@@ -999,10 +999,10 @@ static int ov97_0222BD70(OverlayManager *param0, int *param1)
     return 1;
 }
 
-static int ov97_0222BE24(OverlayManager *param0, int *param1)
+static int ov97_0222BE24(ApplicationManager *appMan, int *param1)
 {
     int v0;
-    UnkStruct_0222AE60 *v1 = OverlayManager_Data(param0);
+    UnkStruct_0222AE60 *v1 = ApplicationManager_Data(appMan);
 
     v1->unk_18++;
     CTRDG_IsExisting();
@@ -1129,7 +1129,7 @@ static int ov97_0222BE24(OverlayManager *param0, int *param1)
         }
         break;
     case 7:
-        ov97_0222BC9C(param0);
+        ov97_0222BC9C(appMan);
         return 1;
         break;
     case 8:
@@ -1147,26 +1147,26 @@ static int ov97_0222BE24(OverlayManager *param0, int *param1)
     return 0;
 }
 
-extern const OverlayManagerTemplate Unk_ov97_0223D71C;
-extern const OverlayManagerTemplate gGBAMigratorOverlayTemplate;
-extern const OverlayManagerTemplate Unk_ov97_0223D6BC;
-extern const OverlayManagerTemplate Unk_020F6DF0;
-extern const OverlayManagerTemplate Unk_ov98_02249BAC;
+extern const ApplicationManagerTemplate gMysteryGiftAppTemplate;
+extern const ApplicationManagerTemplate gGBAMigratorAppTemplate;
+extern const ApplicationManagerTemplate Unk_ov97_0223D6BC;
+extern const ApplicationManagerTemplate Unk_020F6DF0;
+extern const ApplicationManagerTemplate Unk_ov98_02249BAC;
 
 static void ov97_0222C094(UnkStruct_0222AE60 *param0)
 {
     switch (param0->unk_58) {
     case 1:
-        EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartLoadSaveOverlayTemplate);
+        EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartLoadSaveAppTemplate);
         break;
     case 2:
-        EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartRowanIntroOverlayTemplate);
+        EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartRowanIntroAppTemplate);
         break;
     case 3:
-        EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D71C);
+        EnqueueApplication(FS_OVERLAY_ID(overlay97), &gMysteryGiftAppTemplate);
         break;
     case 5:
-        EnqueueApplication(FS_OVERLAY_ID(overlay97), &gGBAMigratorOverlayTemplate);
+        EnqueueApplication(FS_OVERLAY_ID(overlay97), &gGBAMigratorAppTemplate);
         break;
     case 4:
         EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D6BC);
@@ -1183,18 +1183,18 @@ static void ov97_0222C094(UnkStruct_0222AE60 *param0)
         EnqueueApplication(FS_OVERLAY_ID(overlay98), &Unk_ov98_02249BAC);
         break;
     case 0:
-        EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenOverlayTemplate);
+        EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenAppTemplate);
         break;
     }
 }
 
-static int ov97_0222C150(OverlayManager *param0, int *param1)
+static int ov97_0222C150(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_0222AE60 *v0 = OverlayManager_Data(param0);
+    UnkStruct_0222AE60 *v0 = ApplicationManager_Data(appMan);
 
     ov97_0222C094(v0);
 
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_81);
 
     ov97_02238400(0);
@@ -1202,7 +1202,7 @@ static int ov97_0222C150(OverlayManager *param0, int *param1)
     return 1;
 }
 
-const OverlayManagerTemplate Unk_ov97_0223D674 = {
+const ApplicationManagerTemplate Unk_ov97_0223D674 = {
     ov97_0222BD70,
     ov97_0222BE24,
     ov97_0222C150,

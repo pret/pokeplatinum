@@ -110,7 +110,7 @@ BOOL ov104_0223597C(UnkStruct_ov104_0222E930 *param0)
 
     FS_EXTERN_OVERLAY(overlay107);
 
-    static const OverlayManagerTemplate v4 = {
+    static const ApplicationManagerTemplate v4 = {
         ov107_02241AE0,
         ov107_02241BD4,
         ov107_02241D2C,
@@ -138,7 +138,7 @@ BOOL ov104_022359D0(UnkStruct_ov104_0222E930 *param0)
 
     FS_EXTERN_OVERLAY(overlay107);
 
-    static const OverlayManagerTemplate v4 = {
+    static const ApplicationManagerTemplate v4 = {
         NULL,
         NULL,
         NULL,
@@ -201,7 +201,7 @@ BOOL ov104_02235AAC(UnkStruct_ov104_0222E930 *param0)
 
     v1->unk_0C = v0;
 
-    sub_0209B988(param0->unk_00->unk_00, &gBattleOverlayTemplate, v0, 0, NULL);
+    sub_0209B988(param0->unk_00->unk_00, &gBattleApplicationTemplate, v0, 0, NULL);
     return 1;
 }
 
@@ -214,7 +214,7 @@ BOOL ov104_02235AE8(UnkStruct_ov104_0222E930 *param0)
 
     FS_EXTERN_OVERLAY(overlay107);
 
-    static const OverlayManagerTemplate v4 = {
+    static const ApplicationManagerTemplate v4 = {
         ov107_02245EB0,
         ov107_02245FD0,
         ov107_02246130,
@@ -329,10 +329,10 @@ BOOL ov104_02235BC0(UnkStruct_ov104_0222E930 *param0)
         *v17 = ov104_02236B48(v3);
         break;
     case 15:
-        *v17 = v3->unk_288[v15].unk_00_val1_0;
+        *v17 = v3->unk_288[v15].species;
         break;
     case 16:
-        *v17 = v3->unk_288[v15].unk_04[v16];
+        *v17 = v3->unk_288[v15].moves[v16];
         break;
     case 18:
         v2 = SaveData_GetParty(v11->saveData);

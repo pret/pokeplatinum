@@ -44,6 +44,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite.h"
@@ -56,7 +57,6 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_02015920.h"
 #include "unk_0202EEC0.h"
 #include "unk_0209A74C.h"
@@ -1313,7 +1313,7 @@ static void ov97_02234B0C(GBAMigrator *migrator, BoxPokemonGBA *boxMonGBA)
 
 static void ov97_02234CC4(GBAMigrator *migrator, int param1, int param2, int *state)
 {
-    StartScreenTransition(0, param1, param1, 0x0, 6, 1, HEAP_ID_MIGRATE_FROM_GBA);
+    StartScreenFade(FADE_BOTH_SCREENS, param1, param1, 0x0, 6, 1, HEAP_ID_MIGRATE_FROM_GBA);
 
     if (state != NULL) {
         *state = GBA_MIGRATOR_STATE_23;
@@ -1324,7 +1324,7 @@ static void ov97_02234CC4(GBAMigrator *migrator, int param1, int param2, int *st
 
 static void ov97_02234CF4(GBAMigrator *migrator, int param1, int param2, int *state)
 {
-    StartScreenTransition(0, param1, param1, 0x7fff, 6, 1, HEAP_ID_MIGRATE_FROM_GBA);
+    StartScreenFade(FADE_BOTH_SCREENS, param1, param1, 0x7fff, 6, 1, HEAP_ID_MIGRATE_FROM_GBA);
 
     if (state != NULL) {
         *state = GBA_MIGRATOR_STATE_23;
@@ -1815,22 +1815,22 @@ static BOOL ov97_02235590(GBAMigrator *migrator, int param1)
     return FALSE;
 }
 
-static int GBAMigrator_Init(OverlayManager *param0, int *state)
+static int GBAMigrator_Init(ApplicationManager *appMan, int *state)
 {
     GBAMigrator *migrator;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_MIGRATE_FROM_GBA, HEAP_SIZE_MIGRATE_FROM_GBA);
 
-    migrator = OverlayManager_NewData(param0, sizeof(GBAMigrator), HEAP_ID_MIGRATE_FROM_GBA);
+    migrator = ApplicationManager_NewData(appMan, sizeof(GBAMigrator), HEAP_ID_MIGRATE_FROM_GBA);
     memset(migrator, 0, sizeof(GBAMigrator));
 
     migrator->bgConfig = BgConfig_New(HEAP_ID_MIGRATE_FROM_GBA);
     migrator->unk_E8EC = sub_02015920(HEAP_ID_MIGRATE_FROM_GBA);
 
-    sub_0200F344(0, 0x0);
-    sub_0200F344(1, 0x0);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
 
-    migrator->saveData = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
+    migrator->saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
     migrator->unk_14 = SaveData_GetTrainerInfo(migrator->saveData);
     migrator->options = SaveData_GetOptions(migrator->saveData);
     migrator->messageBoxFrame = Options_Frame(migrator->options);
@@ -1851,10 +1851,10 @@ static int GBAMigrator_Init(OverlayManager *param0, int *state)
 
 extern int gIgnoreCartridgeForWake;
 
-static int GBAMigrator_Main(OverlayManager *ovyManager, int *state)
+static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
 {
     int boxPos, gbaMonValidity, v2;
-    GBAMigrator *migrator = OverlayManager_Data(ovyManager);
+    GBAMigrator *migrator = ApplicationManager_Data(appMan);
 
     CTRDG_IsExisting();
 
@@ -2164,7 +2164,7 @@ static int GBAMigrator_Main(OverlayManager *ovyManager, int *state)
         }
         break;
     case GBA_MIGRATOR_STATE_23:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             *state = migrator->unk_24;
         }
         break;
@@ -2181,17 +2181,17 @@ static int GBAMigrator_Main(OverlayManager *ovyManager, int *state)
     return 0;
 }
 
-static int GBAMigrator_Exit(OverlayManager *ovyManager, int *state)
+static int GBAMigrator_Exit(ApplicationManager *appMan, int *state)
 {
     FS_EXTERN_OVERLAY(overlay77);
 
-    GBAMigrator *migrator = OverlayManager_Data(ovyManager);
+    GBAMigrator *migrator = ApplicationManager_Data(appMan);
 
     Strbuf_Free(migrator->unk_12668);
     Strbuf_Free(migrator->unk_1266C);
     Heap_FreeToHeap(migrator->bgConfig);
-    EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenOverlayTemplate);
-    OverlayManager_FreeData(ovyManager);
+    EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenAppTemplate);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_MIGRATE_FROM_GBA);
 
     ov97_02238400(FALSE);
@@ -2199,7 +2199,7 @@ static int GBAMigrator_Exit(OverlayManager *ovyManager, int *state)
     return 1;
 }
 
-const OverlayManagerTemplate gGBAMigratorOverlayTemplate = {
+const ApplicationManagerTemplate gGBAMigratorAppTemplate = {
     GBAMigrator_Init,
     GBAMigrator_Main,
     GBAMigrator_Exit,

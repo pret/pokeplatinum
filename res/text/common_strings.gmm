@@ -147,7 +147,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Accessed {STRVAR_1 3, 0, 0}’s PC.\r</language>
 	</row>
-	<row id="pl_msg_00000213_00036" index="36">
+	<row id="CommonStrings_Text_CantDoThatRightNow" index="36">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Rowan’s words echoed...\n{STRVAR_1 3, 0, 0}! There’s a time and\fplace for everything! But not now.</language>
 	</row>

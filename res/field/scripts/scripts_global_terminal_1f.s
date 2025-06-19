@@ -68,7 +68,7 @@ _00CD:
 
     .balign 4, 0
 _00D8:
-    MoveAction_013
+    WalkNormalSouth
     EndMovement
 
     .byte 13
@@ -82,7 +82,7 @@ _00D8:
 
     .balign 4, 0
 _00E8:
-    MoveAction_013 2
+    WalkNormalSouth 2
     EndMovement
 
 _00F0:
@@ -241,23 +241,23 @@ _0338:
 
     .balign 4, 0
 _0344:
-    MoveAction_015
-    MoveAction_032
+    WalkNormalEast
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0350:
-    MoveAction_012
+    WalkNormalNorth
     EndMovement
 
     .balign 4, 0
 _0358:
-    MoveAction_012 2
+    WalkNormalNorth 2
     EndMovement
 
     .balign 4, 0
 _0360:
-    MoveAction_001
+    FaceSouth
     EndMovement
 
 _0368:

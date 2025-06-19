@@ -20,10 +20,10 @@
 #include "field_transition.h"
 #include "heap.h"
 #include "player_avatar.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "terrain_collision_manager.h"
-#include "unk_0200F174.h"
 #include "unk_0203D1B8.h"
 #include "unk_020553DC.h"
 
@@ -199,12 +199,12 @@ static BOOL sub_0206C964(FieldTask *taskMan)
         }
     } break;
     case 2:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_FIELDMAP);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELDMAP);
         Sound_FadeOutBGM(0, 6);
         v1->unk_00 = 3;
         break;
     case 3:
-        if (!IsScreenTransitionDone() || (Sound_IsFadeActive())) {
+        if (!IsScreenFadeDone() || (Sound_IsFadeActive())) {
             return 0;
         }
 

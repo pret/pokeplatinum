@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_NINJASK",
+    "moves": [
+        "MOVE_X_SCISSOR",
+        "MOVE_AERIAL_ACE",
+        "MOVE_NIGHT_SLASH",
+        "MOVE_BATON_PASS"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_RAZOR_FANG",
+    "form": 0
+}

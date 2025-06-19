@@ -366,7 +366,7 @@ typedef struct {
     int unk_164;
     int unk_168;
     u8 unk_16C[12288];
-    OverlayManager *unk_316C;
+    ApplicationManager *appMan;
     Sprite *unk_3170;
     MysteryGift *unk_3174;
     int unk_3178;
@@ -641,10 +641,10 @@ static void ov97_0222C578(UnkStruct_ov97_0222C388 *param0)
     StringTemplate_Free(v6);
 }
 
-static void ov97_0222C688(OverlayManager *param0)
+static void ov97_0222C688(ApplicationManager *appMan)
 {
     int v0;
-    UnkStruct_ov97_0222C388 *v1 = OverlayManager_Data(param0);
+    UnkStruct_ov97_0222C388 *v1 = ApplicationManager_Data(appMan);
 
     ov97_02237DA0();
 
@@ -664,13 +664,13 @@ static void ov97_0222C688(OverlayManager *param0)
     Heap_FreeToHeap(v1->unk_04);
 }
 
-static int ov97_0222C6F8(OverlayManager *param0, int *param1)
+static int ov97_0222C6F8(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov97_0222C388 *v0 = ov97_022376C4(param0, HEAP_ID_85, sizeof(UnkStruct_ov97_0222C388), 0x20000);
+    UnkStruct_ov97_0222C388 *v0 = ov97_022376C4(appMan, HEAP_ID_85, sizeof(UnkStruct_ov97_0222C388), 0x20000);
 
     v0->heapID = HEAP_ID_85;
     v0->unk_04 = BgConfig_New(v0->heapID);
-    v0->saveData = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
+    v0->saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
     v0->unk_10 = SaveData_GetTrainerInfo(v0->saveData);
     v0->unk_0C = SaveData_GetPokedex(v0->saveData);
     v0->unk_14 = SaveData_GetOptions(v0->saveData);
@@ -690,9 +690,9 @@ static int ov97_0222C6F8(OverlayManager *param0, int *param1)
     return 1;
 }
 
-static int ov97_0222C78C(OverlayManager *param0, int *param1)
+static int ov97_0222C78C(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov97_0222C388 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov97_0222C388 *v0 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
     case UnkEnum_ov97_0222C78C_00:
@@ -747,7 +747,7 @@ static int ov97_0222C78C(OverlayManager *param0, int *param1)
 
         WonderCardsApp_ShowWondercard(v0->unk_04, &v0->unk_3180, HEAP_ID_85);
         ov97_02237790(1, UnkEnum_ov97_0222C78C_06, param1, UnkEnum_ov97_0222C78C_13);
-        v0->unk_3180.metadata.saveWonderCard = 0;
+        v0->unk_3180.eventHeader.hasWonderCard = 0;
         break;
     case UnkEnum_ov97_0222C78C_06:
         if (gSystem.pressedKeys) {
@@ -758,7 +758,7 @@ static int ov97_0222C78C(OverlayManager *param0, int *param1)
         OS_ResetSystem(0);
         break;
     case UnkEnum_ov97_0222C78C_12:
-        ov97_0222C688(param0);
+        ov97_0222C688(appMan);
         return 1;
         break;
     case UnkEnum_ov97_0222C78C_13:
@@ -771,11 +771,11 @@ static int ov97_0222C78C(OverlayManager *param0, int *param1)
     return 0;
 }
 
-static int ov97_0222C948(OverlayManager *param0, int *param1)
+static int ov97_0222C948(ApplicationManager *appMan, int *param1)
 {
     Heap_Destroy(HEAP_ID_91);
-    EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenOverlayTemplate);
-    OverlayManager_FreeData(param0);
+    EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenAppTemplate);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_85);
 
     return 1;
@@ -797,16 +797,16 @@ static void ov97_0222C974(UnkStruct_ov97_0222C388 *param0)
     v4->pgt.type = 7;
     v1 = MessageUtil_ExpandedStrbuf(v2, v3, 76, param0->heapID);
 
-    Strbuf_ToChars((const Strbuf *)v1, v4->metadata.title, 36);
+    Strbuf_ToChars((const Strbuf *)v1, v4->eventHeader.title, 36);
     Strbuf_Free(v1);
 
-    v4->metadata.validGames = (ov97_02237E4C(10) | ov97_02237E4C(11) | ov97_02237E4C(12));
-    v4->metadata.id = 1;
-    v4->metadata.unique = 0;
-    v4->metadata.unk_4E_1 = 0;
-    v4->metadata.saveWonderCard = 1;
-    v4->metadata.savePgt = 1;
-    v4->metadata.fromSharing = 0;
+    v4->eventHeader.validGames = (ov97_02237E4C(10) | ov97_02237E4C(11) | ov97_02237E4C(12));
+    v4->eventHeader.id = 1;
+    v4->eventHeader.unique = 0;
+    v4->eventHeader.unk_4E_1 = 0;
+    v4->eventHeader.hasWonderCard = 1;
+    v4->eventHeader.savePgt = 1;
+    v4->eventHeader.fromSharing = 0;
 
     v1 = MessageUtil_ExpandedStrbuf(v2, v3, 75, param0->heapID);
 
@@ -826,7 +826,7 @@ static void ov97_0222C974(UnkStruct_ov97_0222C388 *param0)
     MysteryGift_TrySavePgt(param0->unk_3174, &v4->pgt, 3);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
 
-    ov97_02238194(param0->unk_04, (PGT *)v4);
+    ov97_02238194(param0->unk_04, v4);
 }
 
 static void ov97_0222CAAC(UnkStruct_ov97_0222C388 *param0, int param1)
@@ -1122,7 +1122,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
     return 0;
 }
 
-const OverlayManagerTemplate Unk_ov97_0223D6BC = {
+const ApplicationManagerTemplate Unk_ov97_0223D6BC = {
     ov97_0222C6F8,
     ov97_0222C78C,
     ov97_0222C948,

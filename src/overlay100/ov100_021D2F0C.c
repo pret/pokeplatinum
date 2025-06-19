@@ -10,7 +10,6 @@
 #include "overlay100/struct_ov100_021D37F4.h"
 #include "overlay100/struct_ov100_021D4DD8.h"
 #include "overlay100/struct_ov100_021D4EBC.h"
-#include "overlay115/camera_angle.h"
 
 #include "bg_window.h"
 #include "camera.h"
@@ -19,6 +18,7 @@
 #include "heap.h"
 #include "narc.h"
 #include "palette.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
@@ -26,7 +26,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_0202419C.h"
 
 static void ov100_021D3084(UnkStruct_ov100_021D3084 *param0);
@@ -411,7 +410,7 @@ BOOL ov100_021D39E4(void *param0)
 
     switch (v0->unk_00) {
     case 0:
-        if (IsScreenTransitionDone() == 0) {
+        if (IsScreenFadeDone() == FALSE) {
             break;
         }
 
@@ -646,12 +645,12 @@ BOOL ov100_021D39E4(void *param0)
             Easy3DObject_SetScale(&v0->unk_0C.unk_934[0].unk_00, v0->unk_0C.unk_934[0].unk_150, FX32_CONST(1.0), v0->unk_0C.unk_934[0].unk_150);
             Easy3DObject_SetScale(&v0->unk_0C.unk_934[1].unk_00, v0->unk_0C.unk_934[1].unk_150, FX32_CONST(1.0), v0->unk_0C.unk_934[1].unk_150);
         } else {
-            StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_111);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_111);
             v0->unk_00++;
         }
         break;
     case 16:
-        if (IsScreenTransitionDone() == 0) {
+        if (IsScreenFadeDone() == FALSE) {
             break;
         }
 

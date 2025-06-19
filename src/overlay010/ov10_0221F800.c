@@ -36,6 +36,7 @@
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
@@ -48,7 +49,6 @@
 #include "trainer_info.h"
 #include "unk_0200679C.h"
 #include "unk_0200C440.h"
-#include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
@@ -690,7 +690,7 @@ static u8 ov10_0221FD00(UnkStruct_ov10_0221FB28 *param0)
 
 static u8 ov10_0221FE10(UnkStruct_ov10_0221FB28 *param0)
 {
-    if (IsScreenTransitionDone() == 0) {
+    if (IsScreenFadeDone() == FALSE) {
         return 0;
     }
 
@@ -813,10 +813,10 @@ static u8 ov10_02220014(UnkStruct_ov10_0221FB28 *param0)
 static u8 ov10_02220228(UnkStruct_ov10_0221FB28 *param0)
 {
     if (param0->unk_B76 == 8) {
-        StartScreenTransition(0, 0, 0, 0x7fff, 6, 1, param0->unk_00->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_WHITE, 6, 1, param0->unk_00->heapID);
     }
 
-    if ((param0->unk_B76 >= 8) && (IsScreenTransitionDone() == 1)) {
+    if ((param0->unk_B76 >= 8) && (IsScreenFadeDone() == TRUE)) {
         param0->unk_B73 = 2;
         return 1;
     }
@@ -1131,7 +1131,7 @@ static u8 ov10_02220A34(UnkStruct_ov10_0221FB28 *param0)
 
 static u8 ov10_02220A50(SysTask *param0, UnkStruct_ov10_0221FB28 *param1)
 {
-    if (IsScreenTransitionDone() == 0) {
+    if (IsScreenFadeDone() == FALSE) {
         return 0;
     }
 

@@ -97,7 +97,7 @@ ValorCavern_CommanderSaturn:
 
     .balign 4, 0
 _013C:
-    MoveAction_075
+    EmoteExclamationMark
     EndMovement
 
 ValorCavern_LostBattleCommanderSaturn:

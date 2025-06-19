@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_SLOWBRO",
+    "moves": [
+        "MOVE_PSYCHIC",
+        "MOVE_SURF",
+        "MOVE_ICE_BEAM",
+        "MOVE_TRICK_ROOM"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_QUIET",
+    "item": "ITEM_LEFTOVERS",
+    "form": 0
+}

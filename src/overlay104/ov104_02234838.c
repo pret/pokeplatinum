@@ -98,7 +98,7 @@ BOOL ov104_022348BC(UnkStruct_ov104_0222E930 *param0)
 
     FS_EXTERN_OVERLAY(overlay106);
 
-    static const OverlayManagerTemplate v6 = {
+    static const ApplicationManagerTemplate v6 = {
         ov106_02241AE0,
         ov106_02241B9C,
         ov106_02241CF0,
@@ -163,7 +163,7 @@ BOOL ov104_022349B8(UnkStruct_ov104_0222E930 *param0)
     v1->unk_700 = v0;
 
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, SEQ_BATTLE_TRAINER, 1);
-    sub_0209B988(param0->unk_00->unk_00, &gBattleOverlayTemplate, v0, 0, NULL);
+    sub_0209B988(param0->unk_00->unk_00, &gBattleApplicationTemplate, v0, 0, NULL);
 
     return 1;
 }

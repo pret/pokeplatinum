@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/field/map_prop.h"
+#include "generated/movement_actions.h"
 
 #include "struct_decls/struct_02061AB4_decl.h"
 
@@ -18,9 +19,9 @@
 #include "heap.h"
 #include "map_object.h"
 #include "player_avatar.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "terrain_collision_manager.h"
-#include "unk_0200F174.h"
 #include "unk_02056B30.h"
 #include "unk_020655F4.h"
 
@@ -168,7 +169,7 @@ BOOL ov5_021D433C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
     } break;
     case 3:
         v0 = Player_MapObject(fieldSystem->playerAvatar);
-        LocalMapObj_SetAnimationCode(v0, 0xc);
+        LocalMapObj_SetAnimationCode(v0, MOVEMENT_ACTION_WALK_NORMAL_NORTH);
         (param1->unk_00)++;
         break;
     case 4:
@@ -339,7 +340,7 @@ BOOL ov5_021D453C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
     } break;
     case 3:
         v0 = Player_MapObject(fieldSystem->playerAvatar);
-        LocalMapObj_SetAnimationCode(v0, 0xd);
+        LocalMapObj_SetAnimationCode(v0, MOVEMENT_ACTION_WALK_NORMAL_SOUTH);
         (param1->unk_00)++;
         break;
     case 4:
@@ -382,13 +383,13 @@ BOOL ov5_021D453C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
 
         v16 = MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, 1);
 
-        if (v16 && IsScreenTransitionDone() && (param1->unk_24 == Camera_GetFOV(fieldSystem->camera))) {
+        if (v16 && IsScreenFadeDone() && (param1->unk_24 == Camera_GetFOV(fieldSystem->camera))) {
             MapPropOneShotAnimationManager_UnloadAnimation(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, 1);
             return 1;
         }
     } break;
     case 6:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             return 1;
         }
         break;
@@ -514,7 +515,7 @@ BOOL ov5_021D4858(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
         v0 = Player_MapObject(fieldSystem->playerAvatar);
 
         if (LocalMapObj_IsAnimationSet(v0) == 1) {
-            LocalMapObj_SetAnimationCode(v0, 0x49);
+            LocalMapObj_SetAnimationCode(v0, MOVEMENT_ACTION_PAUSE_ANIMATION);
         } else {
             GF_ASSERT(FALSE);
         }
@@ -547,7 +548,7 @@ BOOL ov5_021D4858(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
         v0 = Player_MapObject(fieldSystem->playerAvatar);
 
         if (LocalMapObj_IsAnimationSet(v0) == 1) {
-            LocalMapObj_SetAnimationCode(v0, 0x4a);
+            LocalMapObj_SetAnimationCode(v0, MOVEMENT_ACTION_RESUME_ANIMATION);
             (param1->unk_00)++;
         }
         break;
@@ -580,7 +581,7 @@ BOOL ov5_021D4858(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
 
         v10 = MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, 2);
 
-        if (v10 && IsScreenTransitionDone()) {
+        if (v10 && IsScreenFadeDone()) {
             MapPropOneShotAnimationManager_UnloadAnimation(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, 2);
             Sound_StopEffect(1557, 0);
             return 1;
@@ -631,7 +632,7 @@ BOOL ov5_021D4A24(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
         v0 = Player_MapObject(fieldSystem->playerAvatar);
 
         if (LocalMapObj_IsAnimationSet(v0) == 1) {
-            LocalMapObj_SetAnimationCode(v0, 0x49);
+            LocalMapObj_SetAnimationCode(v0, MOVEMENT_ACTION_PAUSE_ANIMATION);
         } else {
             GF_ASSERT(FALSE);
         }
@@ -662,7 +663,7 @@ BOOL ov5_021D4A24(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
         v0 = Player_MapObject(fieldSystem->playerAvatar);
 
         if (LocalMapObj_IsAnimationSet(v0) == 1) {
-            LocalMapObj_SetAnimationCode(v0, 0x4a);
+            LocalMapObj_SetAnimationCode(v0, MOVEMENT_ACTION_RESUME_ANIMATION);
 
             ov5_021D1744(0);
             (param1->unk_00)++;
@@ -681,7 +682,7 @@ BOOL ov5_021D4A24(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
 
         v9 = MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, 2);
 
-        if (v9 && IsScreenTransitionDone()) {
+        if (v9 && IsScreenFadeDone()) {
             MapPropOneShotAnimationManager_UnloadAnimation(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, 2);
 
             Sound_StopEffect(1557, 0);
@@ -896,13 +897,13 @@ BOOL ov5_021D4E10(FieldTask *param0)
             Camera_AdjustFOV(-96, fieldSystem->camera);
         }
 
-        StartScreenTransition(0, 1, 1, 0x7fff, 6, 1, HEAP_ID_FIELDMAP);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_WHITE, 6, 1, HEAP_ID_FIELDMAP);
         v2->unk_08 = 1;
         break;
     case 1:
         v0 = Player_MapObject(fieldSystem->playerAvatar);
         MapObject_SetHidden(v0, 0);
-        LocalMapObj_SetAnimationCode(v0, 0xd);
+        LocalMapObj_SetAnimationCode(v0, MOVEMENT_ACTION_WALK_NORMAL_SOUTH);
         (v2->unk_00)++;
         break;
     case 2:
@@ -914,7 +915,7 @@ BOOL ov5_021D4E10(FieldTask *param0)
         }
         break;
     case 3:
-        if (IsScreenTransitionDone() && (v2->unk_0C == Camera_GetFOV(fieldSystem->camera))) {
+        if (IsScreenFadeDone() && (v2->unk_0C == Camera_GetFOV(fieldSystem->camera))) {
             Heap_FreeToHeap(v2);
             return 1;
         }
@@ -945,13 +946,13 @@ BOOL ov5_021D4F14(FieldTask *param0)
         v1->unk_04 = 0;
 
         Sound_PlayEffect(SEQ_SE_DP_KAIDAN2);
-        StartScreenTransition(0, 0, 0, 0x7fff, 6, 1, HEAP_ID_FIELDMAP);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_WHITE, 6, 1, HEAP_ID_FIELDMAP);
 
         v1->unk_08 = 1;
         (v1->unk_00)++;
     } break;
     case 1:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             Heap_FreeToHeap(v1);
             return 1;
         }
@@ -982,7 +983,7 @@ BOOL ov5_021D4FA0(FieldTask *param0)
         (v1->unk_00)++;
     } break;
     case 1:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             Heap_FreeToHeap(v1);
             return 1;
         }
@@ -1049,7 +1050,7 @@ BOOL ov5_021D5020(FieldTask *param0)
     case 1:
         v0 = Player_MapObject(fieldSystem->playerAvatar);
         MapObject_SetHidden(v0, 0);
-        LocalMapObj_SetAnimationCode(v0, 0xd);
+        LocalMapObj_SetAnimationCode(v0, MOVEMENT_ACTION_WALK_NORMAL_SOUTH);
         (v2->unk_00)++;
         break;
     case 2:
@@ -1061,7 +1062,7 @@ BOOL ov5_021D5020(FieldTask *param0)
         }
         break;
     case 3:
-        if (IsScreenTransitionDone() && (v2->unk_0C == Camera_GetFOV(fieldSystem->camera))) {
+        if (IsScreenFadeDone() && (v2->unk_0C == Camera_GetFOV(fieldSystem->camera))) {
             Heap_FreeToHeap(v2);
             return 1;
         }
@@ -1102,7 +1103,7 @@ BOOL ov5_021D5150(FieldTask *param0)
     case 1:
         v0 = Player_MapObject(fieldSystem->playerAvatar);
         MapObject_SetHidden(v0, 0);
-        LocalMapObj_SetAnimationCode(v0, 0xd);
+        LocalMapObj_SetAnimationCode(v0, MOVEMENT_ACTION_WALK_NORMAL_SOUTH);
         (v2->unk_00)++;
         break;
     case 2:
@@ -1114,7 +1115,7 @@ BOOL ov5_021D5150(FieldTask *param0)
         }
         break;
     case 3:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             Heap_FreeToHeap(v2);
             return 1;
         }

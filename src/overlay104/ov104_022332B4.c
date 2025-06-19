@@ -100,7 +100,7 @@ BOOL ov104_02233324(UnkStruct_ov104_0222E930 *param0)
 
     FS_EXTERN_OVERLAY(overlay105);
 
-    static const OverlayManagerTemplate v4 = {
+    static const ApplicationManagerTemplate v4 = {
         ov105_02241AE0,
         ov105_02241BD8,
         ov105_02241F54,
@@ -148,7 +148,7 @@ BOOL ov104_022333B4(UnkStruct_ov104_0222E930 *param0)
     v0 = ov104_0223ABA0(v1, v2);
 
     v1->unk_4FC = v0;
-    sub_0209B988(param0->unk_00->unk_00, &gBattleOverlayTemplate, v0, 0, NULL);
+    sub_0209B988(param0->unk_00->unk_00, &gBattleApplicationTemplate, v0, 0, NULL);
 
     return 1;
 }
@@ -162,7 +162,7 @@ BOOL ov104_022333F8(UnkStruct_ov104_0222E930 *param0)
 
     FS_EXTERN_OVERLAY(overlay105);
 
-    static const OverlayManagerTemplate v4 = {
+    static const ApplicationManagerTemplate v4 = {
         ov105_02241AE0,
         ov105_02241BD8,
         ov105_02241F54,
@@ -285,10 +285,10 @@ BOOL ov104_022334DC(UnkStruct_ov104_0222E930 *param0)
         *v15 = ov104_02234430(v4);
         break;
     case 15:
-        *v15 = v4->unk_3F0[v13].unk_00_val1_0;
+        *v15 = v4->unk_3F0[v13].species;
         break;
     case 16:
-        *v15 = v4->unk_3F0[v13].unk_04[v14];
+        *v15 = v4->unk_3F0[v13].moves[v14];
         break;
     case 17:
         v3 = Pokemon_New(HEAP_ID_FIELDMAP);

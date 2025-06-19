@@ -26,6 +26,7 @@
 #include "narc.h"
 #include "render_window.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "strbuf.h"
@@ -33,7 +34,6 @@
 #include "system.h"
 #include "system_data.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_0202D05C.h"
 #include "unk_02030CE8.h"
 #include "unk_020366A0.h"
@@ -177,7 +177,7 @@ static int (*Unk_ov96_0223DCE0[])(UnkStruct_ov96_0223BF40 *) = {
 int ov96_0223BCE0(UnkStruct_ov96_0223BF40 *param0, int param1)
 {
     ov96_0223C358(param0);
-    StartScreenTransition(0, 1, 1, 0x0, 8, 1, HEAP_ID_68);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 8, 1, HEAP_ID_68);
     ov96_0223BE38(param0->unk_04);
     ov96_0223BF40(param0);
     ov96_0223C1FC(param0);
@@ -1429,7 +1429,7 @@ static int ov96_0223D528(UnkStruct_ov96_0223BF40 *param0)
 {
     sub_02039794();
     sub_0203848C();
-    StartScreenTransition(0, 0, 0, 0x0, 8, 1, HEAP_ID_68);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 8, 1, HEAP_ID_68);
 
     param0->unk_1C = 0;
 

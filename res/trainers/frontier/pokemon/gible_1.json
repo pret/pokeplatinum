@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_GIBLE",
+    "moves": [
+        "MOVE_DRAGON_RAGE",
+        "MOVE_SAND_TOMB",
+        "MOVE_METAL_CLAW",
+        "MOVE_SANDSTORM"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_SOFT_SAND",
+    "form": 0
+}

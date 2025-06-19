@@ -113,60 +113,60 @@ _0191:
 
     .balign 4, 0
 _0198:
-    MoveAction_018 3
-    MoveAction_017 9
+    WalkFastWest 3
+    WalkFastSouth 9
     EndMovement
 
     .balign 4, 0
 _01A4:
-    MoveAction_017 2
-    MoveAction_018 3
-    MoveAction_017 7
+    WalkFastSouth 2
+    WalkFastWest 3
+    WalkFastSouth 7
     EndMovement
 
     .balign 4, 0
 _01B4:
-    MoveAction_012 8
-    MoveAction_014 2
+    WalkNormalNorth 8
+    WalkNormalWest 2
     EndMovement
 
     .balign 4, 0
 _01C0:
-    MoveAction_012 8
-    MoveAction_014 2
-    MoveAction_032
+    WalkNormalNorth 8
+    WalkNormalWest 2
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _01D0:
-    MoveAction_012 8
-    MoveAction_014 4
-    MoveAction_032
+    WalkNormalNorth 8
+    WalkNormalWest 4
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _01E0:
-    MoveAction_034
-    MoveAction_063
-    MoveAction_033
+    WalkOnSpotNormalWest
+    Delay8
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _01F0:
-    MoveAction_063 3
-    MoveAction_033
+    Delay8 3
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _01FC:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0204:
-    MoveAction_063 8
-    MoveAction_062
-    MoveAction_035
+    Delay8 8
+    Delay4
+    WalkOnSpotNormalEast
     EndMovement
 
     .byte 63
@@ -212,12 +212,12 @@ _024A:
 
     .balign 4, 0
 _025C:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0264:
-    MoveAction_002
+    FaceWest
     EndMovement
 
 _026C:
@@ -259,23 +259,23 @@ _0294:
 
     .balign 4, 0
 _02E0:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _02E8:
-    MoveAction_075
-    MoveAction_014 2
+    EmoteExclamationMark
+    WalkNormalWest 2
     EndMovement
 
     .balign 4, 0
 _02F4:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _02FC:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
 _0304:

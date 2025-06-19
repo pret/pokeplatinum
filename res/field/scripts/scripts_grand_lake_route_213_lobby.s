@@ -66,5 +66,5 @@ _0081:
 
     .balign 4, 0
 _009C:
-    MoveAction_003
+    FaceEast
     EndMovement

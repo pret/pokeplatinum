@@ -39,9 +39,9 @@
 #include "move_table.h"
 #include "party.h"
 #include "pokemon.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 
 #include "res/battle/scripts/sub_seq.naix.h"
 
@@ -4033,7 +4033,7 @@ static void BattleController_HandleResult(BattleSystem *battleSys, BattleContext
 
 static void BattleController_ScreenWipe(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    if (IsScreenTransitionDone() == TRUE) {
+    if (IsScreenFadeDone() == TRUE) {
         battleCtx->command = BATTLE_CONTROL_FIGHT_END;
     }
 }

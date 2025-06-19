@@ -7,7 +7,6 @@
 
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/pokemon_summary_screen/sprites.h"
-#include "overlay115/camera_angle.h"
 
 #include "camera.h"
 #include "gx_layers.h"

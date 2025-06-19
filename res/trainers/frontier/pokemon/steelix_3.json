@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_STEELIX",
+    "moves": [
+        "MOVE_GYRO_BALL",
+        "MOVE_PAYBACK",
+        "MOVE_SWAGGER",
+        "MOVE_CURSE"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_RELAXED",
+    "item": "ITEM_IRON_BALL",
+    "form": 0
+}

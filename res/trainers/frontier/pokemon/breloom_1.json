@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_BRELOOM",
+    "moves": [
+        "MOVE_SEED_BOMB",
+        "MOVE_SKY_UPPERCUT",
+        "MOVE_ROCK_SLIDE",
+        "MOVE_COUNTER"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_IMPISH",
+    "item": "ITEM_FOCUS_SASH",
+    "form": 0
+}

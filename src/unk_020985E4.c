@@ -15,8 +15,8 @@
 #include "heap.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 
 FS_EXTERN_OVERLAY(overlay100);
 
@@ -51,12 +51,12 @@ BOOL sub_0209862C(FieldTask *param0)
         ov5_021D1744(0);
         v1->unk_00++;
     case 1:
-        if (IsScreenTransitionDone() == 0) {
+        if (IsScreenFadeDone() == FALSE) {
             break;
         }
 
         {
-            static const OverlayManagerTemplate v2 = {
+            static const ApplicationManagerTemplate v2 = {
                 ov100_021D0D80,
                 ov100_021D0EA8,
                 ov100_021D0F44,

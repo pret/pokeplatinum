@@ -3,10 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay025/ov25_02254560.h"
-#include "overlay025/ov25_02255090.h"
 #include "overlay039/struct_ov39_022563DC_1.h"
 #include "overlay039/struct_ov39_022563DC_decl.h"
+#include "poketch/poketch_graphics.h"
+#include "poketch/poketch_task.h"
 
 #include "bg_window.h"
 #include "graphics.h"
@@ -34,7 +34,7 @@ BOOL ov39_022563DC(UnkStruct_ov39_022563DC **param0, const UnkStruct_ov39_022563
         PoketchTask_InitActiveTaskList(v0->unk_08, 4);
 
         v0->unk_00 = param1;
-        v0->unk_04 = Poketch_GetBgConfig();
+        v0->unk_04 = PoketchGraphics_GetBgConfig();
 
         if (v0->unk_04 != NULL) {
             *param0 = v0;
@@ -112,7 +112,7 @@ static void ov39_02256468(SysTask *param0, void *param1)
     Graphics_LoadTilesToBgLayer(12, 59, v2->unk_04, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
     Graphics_LoadTilemapToBgLayer(12, 58, v2->unk_04, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
 
-    Poketch_LoadActivePalette(0, 0);
+    PoketchGraphics_LoadActivePalette(0, 0);
 
     for (v6 = 0; v6 < 6; v6++) {
         ov39_0225659C(v2, v6, v3->unk_04[v6], 0);

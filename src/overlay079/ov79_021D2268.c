@@ -26,6 +26,7 @@
 #include "pokemon_sprite.h"
 #include "render_oam.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
@@ -35,7 +36,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"
 #include "unk_020989DC.h"
@@ -106,9 +106,9 @@ typedef struct {
     UnkStruct_ov79_021D29B4 unk_80;
 } UnkStruct_ov79_021D2928;
 
-int ov79_021D22AC(OverlayManager *param0, int *param1);
-int ov79_021D22E4(OverlayManager *param0, int *param1);
-int ov79_021D2460(OverlayManager *param0, int *param1);
+int ov79_021D22AC(ApplicationManager *appMan, int *param1);
+int ov79_021D22E4(ApplicationManager *appMan, int *param1);
+int ov79_021D2460(ApplicationManager *appMan, int *param1);
 static int ov79_021D2928(UnkStruct_ov79_021D2928 *param0);
 static void ov79_021D252C(void *param0);
 static int ov79_021D247C(UnkStruct_ov79_021D2928 *param0);
@@ -162,14 +162,14 @@ static VecFx32 ov79_021D2268(VecFx32 *param0, VecFx32 *param1, fx32 param2)
     return v0;
 }
 
-int ov79_021D22AC(OverlayManager *param0, int *param1)
+int ov79_021D22AC(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_02098DE8 *v0 = OverlayManager_Args(param0);
+    UnkStruct_02098DE8 *v0 = ApplicationManager_Args(appMan);
     UnkStruct_ov79_021D2928 *v1;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_46, 0x10000);
 
-    v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov79_021D2928), HEAP_ID_46);
+    v1 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov79_021D2928), HEAP_ID_46);
     MI_CpuClear8(v1, sizeof(UnkStruct_ov79_021D2928));
 
     v1->heapID = HEAP_ID_46;
@@ -178,9 +178,9 @@ int ov79_021D22AC(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov79_021D22E4(OverlayManager *param0, int *param1)
+int ov79_021D22E4(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov79_021D2928 *v0 = (UnkStruct_ov79_021D2928 *)OverlayManager_Data(param0);
+    UnkStruct_ov79_021D2928 *v0 = (UnkStruct_ov79_021D2928 *)ApplicationManager_Data(appMan);
 
     if ((*param1 >= 2) && (*param1 <= 5)) {
         ov79_021D3820(&v0->unk_40);
@@ -198,10 +198,10 @@ int ov79_021D22E4(OverlayManager *param0, int *param1)
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
 
-        sub_0200F344(0, 0x0);
-        sub_0200F344(1, 0x0);
-        sub_0200F32C(0);
-        sub_0200F32C(1);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+        ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
+        ResetVisibleHardwareWindows(DS_SCREEN_SUB);
         break;
     case 1:
         if (!ov79_021D247C(v0)) {
@@ -216,10 +216,10 @@ int ov79_021D22E4(OverlayManager *param0, int *param1)
         }
 
         v0->unk_04 = 0;
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, v0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, v0->heapID);
         break;
     case 3:
-        if (!IsScreenTransitionDone()) {
+        if (!IsScreenFadeDone()) {
             return 0;
         }
 
@@ -229,10 +229,10 @@ int ov79_021D22E4(OverlayManager *param0, int *param1)
             return 0;
         }
 
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, v0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, v0->heapID);
         break;
     case 5:
-        if (!IsScreenTransitionDone()) {
+        if (!IsScreenFadeDone()) {
             return 0;
         }
 
@@ -244,8 +244,8 @@ int ov79_021D22E4(OverlayManager *param0, int *param1)
 
         break;
     case 7:
-        sub_0200F344(0, 0x0);
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
         SetVBlankCallback(NULL, NULL);
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
@@ -261,11 +261,11 @@ int ov79_021D22E4(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov79_021D2460(OverlayManager *param0, int *param1)
+int ov79_021D2460(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov79_021D2928 *v0 = (UnkStruct_ov79_021D2928 *)OverlayManager_Data(param0);
+    UnkStruct_ov79_021D2928 *v0 = (UnkStruct_ov79_021D2928 *)ApplicationManager_Data(appMan);
 
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
 
     Heap_Destroy(v0->heapID);
     return 1;

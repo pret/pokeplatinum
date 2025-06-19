@@ -16,7 +16,7 @@
 #include "strbuf.h"
 #include "text.h"
 #include "sound.h"
-#include "unk_0200F174.h"
+#include "screen_fade.h"
 #include "system.h"
 
 typedef struct {
@@ -29,10 +29,10 @@ typedef struct {
     int unk_24;
 } UnkStruct_ov73_021D342C;
 
-void EnqueueApplication(FSOverlayID param0, const OverlayManagerTemplate *param1);
-int ov73_021D3250(OverlayManager * param0, int * param1);
-int ov73_021D3280(OverlayManager * param0, int * param1);
-int ov73_021D3404(OverlayManager * param0, int * param1);
+void EnqueueApplication(FSOverlayID param0, const ApplicationManagerTemplate *param1);
+int ov73_021D3250(ApplicationManager *appMan, int * param1);
+int ov73_021D3280(ApplicationManager *appMan, int * param1);
+int ov73_021D3404(ApplicationManager *appMan, int * param1);
 static void ov73_021D3420(void * param0);
 static void ov73_021D342C(UnkStruct_ov73_021D342C * param0);
 static void ov73_021D35F4(UnkStruct_ov73_021D342C * param0);
@@ -41,14 +41,14 @@ static void ov73_021D368C(UnkStruct_ov73_021D342C * param0);
 static BOOL ov73_021D3698(UnkStruct_ov73_021D342C * param0, int param1, int param2, int param3);
 static void ov73_021D37AC(UnkStruct_ov73_021D342C * param0);
 
-int ov73_021D3250 (OverlayManager * param0, int * param1)
+int ov73_021D3250 (ApplicationManager *appMan, int * param1)
 {
     UnkStruct_ov73_021D342C * v0;
     int heapID = HEAP_ID_83;
 
     Heap_Create(HEAP_ID_APPLICATION, heapID, 0x40000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov73_021D342C), heapID);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov73_021D342C), heapID);
     memset(v0, 0, sizeof(UnkStruct_ov73_021D342C));
 
     v0->heapID = heapID;
@@ -57,15 +57,15 @@ int ov73_021D3250 (OverlayManager * param0, int * param1)
     return 1;
 }
 
-int ov73_021D3280 (OverlayManager * param0, int * param1)
+int ov73_021D3280 (ApplicationManager *appMan, int * param1)
 {
-    UnkStruct_ov73_021D342C * v0 = OverlayManager_Data(param0);
+    UnkStruct_ov73_021D342C * v0 = ApplicationManager_Data(appMan);
     int v1 = 0;
 
     switch (*param1) {
     case 0:
-        sub_0200F344(0, 0x0);
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
 
         SetVBlankCallback(NULL, NULL);
         SetHBlankCallback(NULL, NULL);
@@ -108,14 +108,14 @@ int ov73_021D3280 (OverlayManager * param0, int * param1)
             v0->unk_24--;
         } else {
             v0->unk_24 = 0;
-            StartScreenTransition(0, 1, 1, 0x0, 6, 1, v0->heapID);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, v0->heapID);
             *param1 = 3;
         }
         break;
     case 3:
         ov73_021D37AC(v0);
 
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             *param1 = 4;
         }
         break;
@@ -123,14 +123,14 @@ int ov73_021D3280 (OverlayManager * param0, int * param1)
         ov73_021D37AC(v0);
 
         if (ov73_021D3698(v0, 0, 5 * 8, 6 * 8) == 1) {
-            StartScreenTransition(0, 0, 0, 0x0, 6, 1, v0->heapID);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, v0->heapID);
             *param1 = 5;
         }
         break;
     case 5:
         ov73_021D37AC(v0);
 
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             ov73_021D368C(v0);
             ov73_021D35F4(v0);
             SetVBlankCallback(NULL, NULL);
@@ -143,12 +143,12 @@ int ov73_021D3280 (OverlayManager * param0, int * param1)
     return v1;
 }
 
-int ov73_021D3404 (OverlayManager * param0, int * param1)
+int ov73_021D3404 (ApplicationManager *appMan, int * param1)
 {
-    UnkStruct_ov73_021D342C * v0 = OverlayManager_Data(param0);
+    UnkStruct_ov73_021D342C * v0 = ApplicationManager_Data(appMan);
     int heapID = v0->heapID;
 
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(heapID);
 
     return 1;

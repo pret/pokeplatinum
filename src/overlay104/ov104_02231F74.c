@@ -40,6 +40,7 @@
 #include "render_text.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
@@ -50,7 +51,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02014A84.h"
 #include "unk_0207E0B8.h"
@@ -396,7 +396,7 @@ static void ov104_022324C8(SysTask *param0, void *param1)
         return;
     }
 
-    if (IsScreenTransitionDone() == 0) {
+    if (IsScreenFadeDone() == FALSE) {
         return;
     }
 
@@ -616,7 +616,7 @@ static void ov104_0223296C(SysTask *param0, void *param1)
         return;
     }
 
-    if (IsScreenTransitionDone() == 0) {
+    if (IsScreenFadeDone() == FALSE) {
         return;
     }
 

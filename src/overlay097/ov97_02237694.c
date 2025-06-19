@@ -6,9 +6,9 @@
 #include "constants/species.h"
 #include "generated/items.h"
 
+#include "overlay097/mystery_gift_app.h"
 #include "overlay097/struct_ov97_02237808.h"
 #include "overlay097/struct_ov97_02237AEC.h"
-#include "overlay097/struct_ov97_0223829C.h"
 
 #include "assert.h"
 #include "bg_window.h"
@@ -29,6 +29,7 @@
 #include "render_oam.h"
 #include "render_window.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
@@ -38,7 +39,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02033200.h"
 #include "vram_transfer.h"
@@ -77,17 +77,17 @@ void ov97_02237694(int heapID)
     v0->heapID = heapID;
 }
 
-void *ov97_022376C4(OverlayManager *param0, int heapID, int param2, int param3)
+void *ov97_022376C4(ApplicationManager *appMan, int heapID, int param2, int param3)
 {
     void *v0;
 
     Heap_Create(HEAP_ID_APPLICATION, heapID, param3);
-    v0 = OverlayManager_NewData(param0, param2, heapID);
+    v0 = ApplicationManager_NewData(appMan, param2, heapID);
 
     memset(v0, 0, param2);
 
-    sub_0200F344(0, 0x0);
-    sub_0200F344(1, 0x0);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
 
     return v0;
 }
@@ -145,9 +145,9 @@ void ov97_02237790(int param0, int param1, int *param2, int param3)
     UnkStruct_ov97_0223F550 *v0 = &Unk_ov97_0223F550;
 
     if (v0->unk_10 == 0) {
-        StartScreenTransition(0, param0, param0, 0x0, 6, 1, v0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, param0, param0, 0x0, 6, 1, v0->heapID);
     } else {
-        StartScreenTransition(0, param0, param0, 0x7fff, 6, 1, v0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, param0, param0, 0x7fff, 6, 1, v0->heapID);
     }
 
     if (param2) {
@@ -161,7 +161,7 @@ void ov97_022377F0(int *param0)
 {
     UnkStruct_ov97_0223F550 *v0 = &Unk_ov97_0223F550;
 
-    if (IsScreenTransitionDone()) {
+    if (IsScreenFadeDone()) {
         *param0 = v0->unk_0C;
     }
 }
@@ -592,7 +592,7 @@ static void ov97_02237EF8(Sprite *param0, Pokemon *param1, int param2, int param
     }
 }
 
-static void ov97_02237FB4(UnkStruct_ov97_0223F550 *param0, int param1, PGT *param2)
+static void ov97_02237FB4(UnkStruct_ov97_0223F550 *param0, int param1, WonderCard *param2)
 {
     ov97_02237B0C(116, 35, 32, 34, 33, 1);
     ov97_02237C80((0 * FX32_ONE), (256 * FX32_ONE));
@@ -600,7 +600,7 @@ static void ov97_02237FB4(UnkStruct_ov97_0223F550 *param0, int param1, PGT *para
     param0->unk_26C = ov97_02237D14(1, param0->unk_26C, HW_LCD_WIDTH / 2, 0, 0);
 }
 
-static void ov97_02237FF4(UnkStruct_ov97_0223F550 *param0, int param1, PGT *param2)
+static void ov97_02237FF4(UnkStruct_ov97_0223F550 *param0, int param1, WonderCard *param2)
 {
     Pokemon *v0;
 
@@ -608,7 +608,7 @@ static void ov97_02237FF4(UnkStruct_ov97_0223F550 *param0, int param1, PGT *para
     ov97_02237C80((0 * FX32_ONE), (256 * FX32_ONE));
 
     param0->unk_26C = ov97_02237D14(1, param0->unk_26C, HW_LCD_WIDTH / 2, 0, 1);
-    v0 = &param2->data.pokemonGiftData.pokemon;
+    v0 = &param2->pgt.data.pokemonGiftData.pokemon;
 
     switch (param1) {
     case 1:
@@ -624,13 +624,13 @@ static void ov97_02237FF4(UnkStruct_ov97_0223F550 *param0, int param1, PGT *para
     }
 }
 
-static void ov97_022380C8(UnkStruct_ov97_0223F550 *param0, int param1, PGT *param2)
+static void ov97_022380C8(UnkStruct_ov97_0223F550 *param0, int param1, WonderCard *param2)
 {
     int item;
 
     switch (param1) {
     case 3:
-        item = param2->data.itemGiftData.item;
+        item = param2->pgt.data.itemGiftData.item;
         break;
     case 8:
         item = ITEM_MEMBER_CARD;
@@ -658,12 +658,12 @@ static void ov97_02238174(void *param0)
     Graphics_LoadPalette(116, 29, 4, 16 * 2 * 8, 16 * 2 * 6, v0->heapID);
 }
 
-void ov97_02238194(BgConfig *param0, PGT *param1)
+void ov97_02238194(BgConfig *param0, WonderCard *param1)
 {
     int v0, v1;
     UnkStruct_ov97_0223F550 *v2 = &Unk_ov97_0223F550;
 
-    v1 = param1->type;
+    v1 = param1->pgt.type;
     v0 = ov97_02237EA8(v1);
 
     Graphics_LoadTilesToBgLayer(116, 30, param0, 5, 0, 10 * 16 * 0x20, 1, v2->heapID);
@@ -710,7 +710,7 @@ void ov97_02238194(BgConfig *param0, PGT *param1)
     Sprite_SetDrawFlag(v2->unk_26C, 0);
 }
 
-void ov97_0223829C(UnkStruct_ov97_0223829C *param0, WonderCard *param1, int heapID)
+void ov97_0223829C(MysteryGiftEventData *param0, WonderCard *param1, int heapID)
 {
     MATHCRC16Table *v0;
     CRYPTORC4Context *v1;
@@ -721,7 +721,7 @@ void ov97_0223829C(UnkStruct_ov97_0223829C *param0, WonderCard *param1, int heap
     v0 = Heap_AllocFromHeap(heapID, sizeof(MATHCRC16Table));
     MATH_CRC16InitTable(v0);
 
-    v3 = MATH_CalcCRC16(v0, &param0->unk_00, sizeof(WonderCardMetadata));
+    v3 = MATH_CalcCRC16(v0, &param0->header, sizeof(MysteryGiftEventHeader));
     Heap_FreeToHeap(v0);
 
     OS_GetMacAddress((u8 *)v2);
@@ -738,12 +738,12 @@ void ov97_0223829C(UnkStruct_ov97_0223829C *param0, WonderCard *param1, int heap
     v1 = Heap_AllocFromHeap(heapID, sizeof(CRYPTORC4Context));
 
     CRYPTO_RC4Init(v1, v2, 8);
-    CRYPTO_RC4Encrypt(v1, &param0->unk_50, sizeof(WonderCard), param1);
+    CRYPTO_RC4Encrypt(v1, &param0->wonderCard, sizeof(WonderCard), param1);
 
     Heap_FreeToHeap(v1);
 }
 
-void ov97_02238324(UnkStruct_ov97_0223829C *param0, WonderCard *param1, int heapID)
+void ov97_02238324(MysteryGiftEventData *param0, WonderCard *param1, int heapID)
 {
     MATHCRC16Table *v0;
     CRYPTORC4Context *v1;
@@ -755,7 +755,7 @@ void ov97_02238324(UnkStruct_ov97_0223829C *param0, WonderCard *param1, int heap
     v0 = Heap_AllocFromHeap(heapID, sizeof(MATHCRC16Table));
     MATH_CRC16InitTable(v0);
 
-    v4 = MATH_CalcCRC16(v0, &param0->unk_00, sizeof(WonderCardMetadata));
+    v4 = MATH_CalcCRC16(v0, &param0->header, sizeof(MysteryGiftEventHeader));
     Heap_FreeToHeap(v0);
 
     v2 = sub_02033F3C(0);
@@ -773,7 +773,7 @@ void ov97_02238324(UnkStruct_ov97_0223829C *param0, WonderCard *param1, int heap
     v1 = Heap_AllocFromHeap(heapID, sizeof(CRYPTORC4Context));
 
     CRYPTO_RC4Init(v1, v3, 8);
-    CRYPTO_RC4Encrypt(v1, &param0->unk_50, sizeof(WonderCard), param1);
+    CRYPTO_RC4Encrypt(v1, &param0->wonderCard, sizeof(WonderCard), param1);
 
     Heap_FreeToHeap(v1);
 }

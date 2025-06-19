@@ -5,7 +5,6 @@
 
 #include "overlay070/ov70_0225C9B4.h"
 #include "overlay070/struct_ov70_0225CC54_decl.h"
-#include "overlay115/camera_angle.h"
 
 #include "camera.h"
 #include "heap.h"

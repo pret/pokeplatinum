@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_CUBONE",
+    "moves": [
+        "MOVE_BONE_CLUB",
+        "MOVE_HEADBUTT",
+        "MOVE_BRICK_BREAK",
+        "MOVE_LEER"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_SOFT_SAND",
+    "form": 0
+}

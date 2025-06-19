@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_REGISTEEL",
+    "moves": [
+        "MOVE_IRON_HEAD",
+        "MOVE_HAMMER_ARM",
+        "MOVE_EARTHQUAKE",
+        "MOVE_CURSE"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_SHELL_BELL",
+    "form": 0
+}

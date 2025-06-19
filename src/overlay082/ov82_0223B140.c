@@ -16,12 +16,12 @@
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 
-BOOL ov82_0223B140(OverlayManager **param0)
+BOOL ov82_0223B140(ApplicationManager **appManPtr)
 {
-    if (*param0) {
-        if (OverlayManager_Exec(*param0)) {
-            OverlayManager_Free(*param0);
-            *param0 = NULL;
+    if (*appManPtr) {
+        if (ApplicationManager_Exec(*appManPtr)) {
+            ApplicationManager_Free(*appManPtr);
+            *appManPtr = NULL;
             return 1;
         }
     }
@@ -29,13 +29,13 @@ BOOL ov82_0223B140(OverlayManager **param0)
     return 0;
 }
 
-int ov82_0223B164(OverlayManager *param0, int *param1)
+int ov82_0223B164(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov83_0223C344 *v0 = NULL;
-    UnkStruct_ov82_0223B164 *v1 = (UnkStruct_ov82_0223B164 *)OverlayManager_Args(param0);
+    UnkStruct_ov82_0223B164 *v1 = (UnkStruct_ov82_0223B164 *)ApplicationManager_Args(appMan);
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_55, 0x20000);
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov83_0223C344), HEAP_ID_55);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov83_0223C344), HEAP_ID_55);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov83_0223C344));
 
     v0->heapID = HEAP_ID_55;
@@ -56,11 +56,11 @@ int ov82_0223B164(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov82_0223B1D4(OverlayManager *param0, int *param1)
+int ov82_0223B1D4(ApplicationManager *appMan, int *param1)
 {
     int v0;
-    UnkStruct_ov83_0223C344 *v1 = OverlayManager_Data(param0);
-    UnkStruct_ov82_0223B164 *v2 = (UnkStruct_ov82_0223B164 *)OverlayManager_Args(param0);
+    UnkStruct_ov83_0223C344 *v1 = ApplicationManager_Data(appMan);
+    UnkStruct_ov82_0223B164 *v2 = (UnkStruct_ov82_0223B164 *)ApplicationManager_Args(appMan);
 
     v0 = *param1;
 
@@ -88,11 +88,11 @@ int ov82_0223B1D4(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov82_0223B24C(OverlayManager *param0, int *param1)
+int ov82_0223B24C(ApplicationManager *appMan, int *param1)
 {
     int heapID = HEAP_ID_SYSTEM;
-    UnkStruct_ov83_0223C344 *v1 = OverlayManager_Data(param0);
-    UnkStruct_ov82_0223B164 *v2 = (UnkStruct_ov82_0223B164 *)OverlayManager_Args(param0);
+    UnkStruct_ov83_0223C344 *v1 = ApplicationManager_Data(appMan);
+    UnkStruct_ov82_0223B164 *v2 = (UnkStruct_ov82_0223B164 *)ApplicationManager_Args(appMan);
 
     switch (*param1) {
     case 0:
@@ -100,7 +100,7 @@ int ov82_0223B24C(OverlayManager *param0, int *param1)
 
         Heap_FreeToHeap(v1->unk_0C);
         MI_CpuClear8(v1, sizeof(UnkStruct_ov83_0223C344));
-        OverlayManager_FreeData(param0);
+        ApplicationManager_FreeData(appMan);
 
         if ((v2->unk_20) && (v2->unk_24)) {
             ov4_021D1F18();

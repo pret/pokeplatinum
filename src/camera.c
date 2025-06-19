@@ -4,14 +4,11 @@
 #include <nnsys.h>
 #include <string.h>
 
-#include "overlay115/camera_angle.h"
-
+#include "camera.h"
 #include "fx_util.h"
 #include "heap.h"
 
 #define CAMERA_DEFAULT_ASPECT_RATIO (FX32_ONE * 4 / 3)
-#define CAMERA_DEFAULT_NEAR_CLIP    (FX32_ONE * 150)
-#define CAMERA_DEFAULT_FAR_CLIP     (FX32_ONE * 900)
 
 GXBufferMode gBufferMode = GX_BUFFERMODE_W;
 

@@ -369,7 +369,7 @@ static void ov13_02221E50(UnkStruct_ov13_022213F0 *param0, u32 param1, u16 param
 {
     UnkStruct_ov13_02221ED0 *v0 = &param0->unk_04[param2];
 
-    sub_0200C5BC(param0->unk_1FA0, v0->unk_10, 3, 1, &param0->unk_206C[param1], param3, param4);
+    sub_0200C5BC(param0->unk_1FA0, v0->curHP, 3, 1, &param0->unk_206C[param1], param3, param4);
     sub_0200C578(param0->unk_1FA0, 0, &param0->unk_206C[param1], param3 + 8 * 3, param4);
     sub_0200C5BC(param0->unk_1FA0, v0->unk_12, 3, 0, &param0->unk_206C[param1], param3 + 8 * 3 + 8, param4);
     Window_ScheduleCopyToVRAM(&param0->unk_206C[param1]);
@@ -383,9 +383,9 @@ static void ov13_02221ED0(UnkStruct_ov13_022213F0 *param0, u32 param1, u16 param
 
     v0 = &param0->unk_04[param2];
     v1 = 1;
-    v2 = App_PixelCount(v0->unk_10, v0->unk_12, 48);
+    v2 = App_PixelCount(v0->curHP, v0->unk_12, 48);
 
-    switch (HealthBar_Color(v0->unk_10, v0->unk_12, 48)) {
+    switch (HealthBar_Color(v0->curHP, v0->unk_12, 48)) {
     case 0:
         Window_ScheduleCopyToVRAM(&param0->unk_206C[param1]);
         return;
@@ -753,7 +753,7 @@ static void ov13_0222295C(UnkStruct_ov13_022213F0 *param0, u32 param1)
     v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 29);
     v2 = Strbuf_Init((3 + 1) * 2, param0->unk_00->heapID);
 
-    StringTemplate_SetNumber(param0->unk_1FA8, 0, v0->unk_10, 3, 0, 1);
+    StringTemplate_SetNumber(param0->unk_1FA8, 0, v0->curHP, 3, 0, 1);
     StringTemplate_Format(param0->unk_1FA8, v2, v1);
 
     v4 = Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
@@ -1587,15 +1587,15 @@ void ov13_02224144(UnkStruct_ov13_022213F0 *param0)
         v5 |= 0x40;
     }
 
-    if ((param0->unk_04[v1->unk_11].unk_10 == 0) && (v4 != 0)) {
+    if ((param0->unk_04[v1->unk_11].curHP == 0) && (v4 != 0)) {
         v3 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 88);
         StringTemplate_SetNickname(param0->unk_1FA8, 0, Pokemon_GetBoxPokemon(v0));
         StringTemplate_Format(param0->unk_1FA8, param0->unk_1FAC, v3);
         Strbuf_Free(v3);
-    } else if (param0->unk_04[v1->unk_11].unk_10 != v4) {
+    } else if (param0->unk_04[v1->unk_11].curHP != v4) {
         v3 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 82);
         StringTemplate_SetNickname(param0->unk_1FA8, 0, Pokemon_GetBoxPokemon(v0));
-        StringTemplate_SetNumber(param0->unk_1FA8, 1, v4 - param0->unk_04[v1->unk_11].unk_10, 3, 0, 1);
+        StringTemplate_SetNumber(param0->unk_1FA8, 1, v4 - param0->unk_04[v1->unk_11].curHP, 3, 0, 1);
         StringTemplate_Format(param0->unk_1FA8, param0->unk_1FAC, v3);
         Strbuf_Free(v3);
     } else if ((Item_Get(v2, 36) != 0) || (Item_Get(v2, 37) != 0)) {
