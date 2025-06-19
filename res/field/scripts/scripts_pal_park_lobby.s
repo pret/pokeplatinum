@@ -9,7 +9,7 @@
 
     .data
 
-    ScriptEntry PalParkLobby_OnTransition
+    ScriptEntry PalParkLobby_OnLoad
     ScriptEntry PalParkLobby_Receptionist
     ScriptEntry PalParkLobby_Trigger_TallyScore
     ScriptEntry PalParkLobby_RecordUnused
@@ -24,7 +24,7 @@
     ScriptEntry PalParkLobby_GBASlotGiftLady
     ScriptEntryEnd
 
-PalParkLobby_OnTransition:
+PalParkLobby_OnLoad:
     ClearFlag FLAG_ALT_MUSIC_PAL_PARK
     SetFlag FLAG_FIRST_ARRIVAL_POKE_PARK_FRONT_GATE
     GoToIfNe VAR_PAL_PARK_STATE, 0, PalParkLobby_SetRecepcionistPosAndDir
