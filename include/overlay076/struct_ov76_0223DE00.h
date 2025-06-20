@@ -17,7 +17,7 @@
 typedef struct {
     UnkStruct_02097F18 *unk_00;
     UnkStruct_ov76_0223DD88_sub1 unk_04[12];
-    SealsObtained *unk_64;
+    SealCounts *unk_64;
     BallCapsule unk_68;
     u8 unk_80[81];
     u8 padding_D1[3];

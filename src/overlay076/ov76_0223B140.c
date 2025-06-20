@@ -80,10 +80,10 @@ void ov76_0223B208(UnkStruct_ov76_0223DE00 *param0)
     BallCapsule *v1 = param0->unk_04[param0->unk_3C4[0]].unk_04;
 
     for (i = 0; i < SEALS_PER_CAPSULE; i++) {
-        if (v1->seals[i].unk_00 != 0) {
-            param0->unk_324[i].unk_04 = v1->seals[i].unk_00;
-            param0->unk_324[i].unk_05 = v1->seals[i].unk_01;
-            param0->unk_324[i].unk_06 = v1->seals[i].unk_02;
+        if (v1->seals[i].type != SEAL_DUMMY) {
+            param0->unk_324[i].unk_04 = v1->seals[i].type;
+            param0->unk_324[i].unk_05 = v1->seals[i].x;
+            param0->unk_324[i].unk_06 = v1->seals[i].y;
 
             ov76_0223B52C(param0, i);
             ov76_0223B184(param0->unk_324[i].unk_0C, param0->unk_324[i].unk_08, 0);
@@ -227,9 +227,9 @@ void ov76_0223B400(UnkStruct_ov76_0223DE00 *param0)
     BallCapsule v8;
 
     for (i = 0; i < SEALS_PER_CAPSULE; i++) {
-        v7.seals[i].unk_00 = param0->unk_324[i].unk_04;
-        v7.seals[i].unk_01 = param0->unk_324[i].unk_05;
-        v7.seals[i].unk_02 = param0->unk_324[i].unk_06;
+        v7.seals[i].type = param0->unk_324[i].unk_04;
+        v7.seals[i].x = param0->unk_324[i].unk_05;
+        v7.seals[i].y = param0->unk_324[i].unk_06;
     }
 
     v8 = v7;
@@ -242,9 +242,9 @@ void ov76_0223B400(UnkStruct_ov76_0223DE00 *param0)
             continue;
         }
 
-        param0->unk_324[i].unk_04 = v8.seals[v4[i]].unk_00;
-        param0->unk_324[i].unk_05 = v8.seals[v4[i]].unk_01;
-        param0->unk_324[i].unk_06 = v8.seals[v4[i]].unk_02;
+        param0->unk_324[i].unk_04 = v8.seals[v4[i]].type;
+        param0->unk_324[i].unk_05 = v8.seals[v4[i]].x;
+        param0->unk_324[i].unk_06 = v8.seals[v4[i]].y;
 
         if (param0->unk_324[v4[i]].unk_08 == NULL) {
             continue;
@@ -433,7 +433,9 @@ BOOL ov76_0223B78C(UnkStruct_ov76_0223DE00 *param0)
     v2 = param0->unk_04[v1].unk_04;
 
     for (i = 0; i < SEALS_PER_CAPSULE; i++) {
-        if ((param0->unk_324[i].unk_04 != v2->seals[i].unk_00) || (param0->unk_324[i].unk_05 != v2->seals[i].unk_01) || (param0->unk_324[i].unk_06 != v2->seals[i].unk_02)) {
+        if ((param0->unk_324[i].unk_04 != v2->seals[i].type)
+            || (param0->unk_324[i].unk_05 != v2->seals[i].x)
+            || (param0->unk_324[i].unk_06 != v2->seals[i].y)) {
             return 1;
         }
     }
@@ -453,16 +455,16 @@ void ov76_0223B7D4(UnkStruct_ov76_0223DE00 *param0, int param1)
 
 void ov76_0223B808(UnkStruct_ov76_0223DE00 *param0)
 {
-    int v0;
-    BallCapsule v1;
+    int i;
+    BallCapsule capsule;
 
-    for (v0 = 0; v0 < SEALS_PER_CAPSULE; v0++) {
-        v1.seals[v0].unk_00 = param0->unk_324[v0].unk_04;
-        v1.seals[v0].unk_01 = param0->unk_324[v0].unk_05;
-        v1.seals[v0].unk_02 = param0->unk_324[v0].unk_06;
+    for (i = 0; i < SEALS_PER_CAPSULE; i++) {
+        capsule.seals[i].type = param0->unk_324[i].unk_04;
+        capsule.seals[i].x = param0->unk_324[i].unk_05;
+        capsule.seals[i].y = param0->unk_324[i].unk_06;
     }
 
-    SealCase_CopyCapsuleFromId(param0->unk_00->unk_20, &v1, param0->unk_3C4[0]);
+    SealCase_CopyCapsuleFromId(param0->unk_00->unk_20, &capsule, param0->unk_3C4[0]);
 }
 
 void ov76_0223B848(BallCapsule *param0, UnkStruct_ov76_0223DE00 *param1)
@@ -470,8 +472,8 @@ void ov76_0223B848(BallCapsule *param0, UnkStruct_ov76_0223DE00 *param1)
     int i;
 
     for (i = 0; i < SEALS_PER_CAPSULE; i++) {
-        param0->seals[i].unk_00 = param1->unk_324[i].unk_04;
-        param0->seals[i].unk_01 = param1->unk_324[i].unk_05;
-        param0->seals[i].unk_02 = param1->unk_324[i].unk_06;
+        param0->seals[i].type = param1->unk_324[i].unk_04;
+        param0->seals[i].x = param1->unk_324[i].unk_05;
+        param0->seals[i].y = param1->unk_324[i].unk_06;
     }
 }

@@ -107,8 +107,8 @@ static int sub_02097B18(ApplicationManager *appMan, int *param1)
         v0->unk_418.unk_04 = (sub_0202CBA8(v0->unk_00->unk_20) / 8) + v2;
     }
 
-    if (v0->unk_418.unk_04 > ((80 + 1) / 8)) {
-        v0->unk_418.unk_04 = ((80 + 1) / 8);
+    if (v0->unk_418.unk_04 > (SEAL_ID_MAX / 8)) {
+        v0->unk_418.unk_04 = (SEAL_ID_MAX / 8);
     }
 
     v0->unk_3C4[0] = sub_02097F18(v0->unk_00);
@@ -373,7 +373,7 @@ static BOOL sub_02097F38(FieldTask *param0)
         PartyManagementData *partyMan = v0->unk_0C;
         Pokemon *v8;
         BallCapsule *v9;
-        BallSealCoords *v10;
+        BallSeal *v10;
         TVBroadcast *v11;
         int v12;
         int v13;
@@ -387,8 +387,8 @@ static BOOL sub_02097F38(FieldTask *param0)
             Pokemon_SetValue(v8, MON_DATA_BALL_CAPSULE, SealCase_GetCapsuleById(v1->unk_20, v13 - 1));
 
             v9 = SealCase_GetCapsuleById(v1->unk_20, v13 - 1);
-            v10 = BallCapsule_GetBallSealCoords(v9, 0);
-            v12 = sub_0202CA7C(v10);
+            v10 = BallCapsule_GetBallSeals(v9, 0);
+            v12 = BallSeal_GetSealType(v10);
             v12 = sub_02098164(v12);
             v11 = SaveData_GetTVBroadcast(fieldSystem->saveData);
 
@@ -437,7 +437,7 @@ typedef struct {
     u8 unk_08;
 } UnkStruct_020F64D0;
 
-static const UnkStruct_020F64D0 Unk_020F64D0[(80 + 1)] = {
+static const UnkStruct_020F64D0 Unk_020F64D0[SEAL_ID_MAX] = {
     { 0xB8, 0x0, 0x125, 0x25, 0x0, 0x3E7, 0x0 },
     { 0xB9, 0x1, 0x125, 0x25, 0x0, 0x32, 0x0 },
     { 0xBA, 0x2, 0x125, 0x26, 0x0, 0x32, 0x1 },

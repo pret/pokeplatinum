@@ -1001,7 +1001,7 @@ void ov76_0223CC8C(UnkStruct_ov76_0223DE00 *param0)
         Window_FillTilemap(v5, 0x0);
 
         v4 = Strbuf_Init(100, HEAP_ID_53);
-        v3 = SealCase_GetSealsObtainedCount(param0->unk_64, v2 - 1);
+        v3 = SealCase_GetSealCount(param0->unk_64, v2 - 1);
 
         Strbuf_FormatInt(v4, v3, 3, 1, 1);
         Text_AddPrinterWithParamsAndColor(v5, FONT_SYSTEM, v4, (-1 + 8), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
@@ -1030,7 +1030,7 @@ void ov76_0223CD20(UnkStruct_ov76_0223DE00 *param0, int param1)
     Window_FillTilemap(v5, 0x0);
 
     v4 = Strbuf_Init(100, HEAP_ID_53);
-    v3 = SealCase_GetSealsObtainedCount(param0->unk_64, v2 - 1);
+    v3 = SealCase_GetSealCount(param0->unk_64, v2 - 1);
 
     Strbuf_FormatInt(v4, v3, 3, 1, 1);
     Text_AddPrinterWithParamsAndColor(v5, FONT_MESSAGE, v4, (-1 + 8), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);

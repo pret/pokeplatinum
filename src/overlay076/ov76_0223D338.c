@@ -75,7 +75,7 @@ void ov76_0223D368(UnkStruct_ov76_0223DE00 *param0)
     int v0;
 
     for (v0 = 0; v0 < (80 + 1); v0++) {
-        param0->unk_80[v0] = SealCase_GetSealsObtainedCount(param0->unk_64, v0);
+        param0->unk_80[v0] = SealCase_GetSealCount(param0->unk_64, v0);
     }
 }
 
@@ -125,14 +125,14 @@ int ov76_0223D430(BallCapsule *param0)
     int v0;
     int v1 = 0;
     int v2;
-    BallSealCoords *v3;
+    BallSeal *v3;
 
     v2 = 0;
 
     for (v0 = 0; v0 < 8; v0++) {
-        v3 = BallCapsule_GetBallSealCoords(param0, v0);
+        v3 = BallCapsule_GetBallSeals(param0, v0);
 
-        if (sub_0202CA7C(v3) != 0) {
+        if (BallSeal_GetSealType(v3) != 0) {
             v2++;
         }
     }
@@ -600,7 +600,7 @@ void ov76_0223DA34(u32 param0, enum TouchScreenButtonState param1, void *param2)
                 Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
                 ov76_0223CA30(&v0->unk_D4.unk_18[0], 15);
             } else {
-                if ((v0->unk_418.unk_08[param0] != 0) && (SealCase_GetSealsObtainedCount(v0->unk_64, v0->unk_418.unk_08[param0] - 1) != 0)) {
+                if ((v0->unk_418.unk_08[param0] != 0) && (SealCase_GetSealCount(v0->unk_64, v0->unk_418.unk_08[param0] - 1) != 0)) {
                     v0->unk_D4.unk_00 = ov76_0223B278(v0, param0);
                     v1 = sub_02098164(v0->unk_418.unk_08[param0]);
 

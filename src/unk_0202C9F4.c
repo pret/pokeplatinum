@@ -40,35 +40,35 @@ void SealCase_CopyCapsuleFromId(SealCase *sealCase, BallCapsule *dst, int capsul
     BallCapsule_Copy(dst, SealCase_GetCapsuleById(sealCase, capsuleId));
 }
 
-BallSealCoords *BallCapsule_GetBallSealCoords(BallCapsule *ballCapsule, int sealNum)
+BallSeal *BallCapsule_GetBallSeals(BallCapsule *ballCapsule, int sealNum)
 {
     GF_ASSERT(sealNum < SEALS_PER_CAPSULE);
     return &ballCapsule->seals[sealNum];
 }
 
-u8 sub_0202CA7C(const BallSealCoords *coords)
+u8 BallSeal_GetSealType(const BallSeal *seal)
 {
-    return coords->unk_00;
+    return seal->type;
 }
 
-u8 sub_0202CA80(const BallSealCoords *coords)
+u8 BallSeal_GetX(const BallSeal *seal)
 {
-    return coords->unk_01;
+    return seal->x;
 }
 
-u8 sub_0202CA84(const BallSealCoords *coords)
+u8 BallSeal_GetY(const BallSeal *seal)
 {
-    return coords->unk_02;
+    return seal->y;
 }
 
-SealsObtained *SealCase_GetSealsObtained(SealCase *sealCase)
+SealCounts *SealCase_GetSealsObtained(SealCase *sealCase)
 {
     return &sealCase->seals;
 }
 
-u8 SealCase_GetSealsObtainedCount(const SealsObtained *seals, int param1)
+u8 SealCase_GetSealCount(const SealCounts *seals, int sealNum)
 {
-    return seals->count[param1];
+    return seals->count[sealNum];
 }
 
 BOOL sub_0202CA94(const BallCapsule *ballCapsule, int param1)
@@ -76,7 +76,7 @@ BOOL sub_0202CA94(const BallCapsule *ballCapsule, int param1)
     int v0, i;
 
     for (i = 0; i < SEALS_PER_CAPSULE; i++) {
-        if (ballCapsule->seals[i].unk_00 == (param1 + 1)) {
+        if (ballCapsule->seals[i].type == (param1 + 1)) {
             return TRUE;
         }
     }
@@ -87,20 +87,20 @@ BOOL sub_0202CA94(const BallCapsule *ballCapsule, int param1)
 int sub_0202CAB0(const SealCase *sealCase, int param1)
 {
     int i, j;
-    int v2 = 0;
+    int count = 0;
 
     for (i = 0; i < TOTAL_CAPSULES; i++) {
         for (j = 0; j < SEALS_PER_CAPSULE; j++) {
-            if (sealCase->capsules[i].seals[j].unk_00 == (param1 + 1)) {
-                v2++;
+            if (sealCase->capsules[i].seals[j].type == (param1 + 1)) {
+                count++;
             }
         }
     }
 
-    return v2;
+    return count;
 }
 
-void sub_0202CADC(SealsObtained *seals, int param1, int param2)
+void sub_0202CADC(SealCounts *seals, int param1, int param2)
 {
     seals->count[param1] = param2;
 }
@@ -186,7 +186,7 @@ int sub_0202CBA8(const SealCase *sealCase)
     int i;
     int v1 = 0;
 
-    for (i = 1; i < (80 + 1); i++) {
+    for (i = 1; i < SEAL_ID_MAX; i++) {
         if (sub_0202CBC8(sealCase, i) != 0) {
             v1++;
         }
