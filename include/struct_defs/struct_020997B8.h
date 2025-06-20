@@ -8,7 +8,7 @@
 typedef struct {
     Pokemon *unk_00;
     TrainerInfo *unk_04;
-    Options *unk_08;
+    Options *options;
     u16 *unk_0C;
     u16 unk_10;
     u16 unk_12;

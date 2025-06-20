@@ -305,7 +305,7 @@ int ov88_0223B140(ApplicationManager *appMan, int *param1)
     ov88_0223C63C();
     ov88_0223C66C(v0, v1);
     ov88_0223CBA0(v0);
-    ov88_0223E9C4(v0->unk_174, v0->unk_49C, v0->unk_08->unk_18);
+    ov88_0223E9C4(v0->unk_174, v0->unk_49C, v0->unk_08->options);
 
     v0->fieldSystem = v0->unk_08->fieldSystem;
 
@@ -368,7 +368,7 @@ static void ov88_0223B3C0(UnkStruct_02095E80 *param0)
     ov88_0223B4F0(param0);
     ov88_0223B320(param0);
 
-    LoadMessageBoxGraphics(param0->unk_174, 0, (512 - (9 + (18 + 12))), 10, Options_Frame(param0->unk_08->unk_18), HEAP_ID_26);
+    LoadMessageBoxGraphics(param0->unk_174, 0, (512 - (9 + (18 + 12))), 10, Options_Frame(param0->unk_08->options), HEAP_ID_26);
     LoadStandardWindowGraphics(param0->unk_174, 0, (512 - 9), 11, 0, HEAP_ID_26);
 
     ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
@@ -1730,7 +1730,7 @@ static void ov88_0223D1EC(UnkStruct_02095E80 *param0, int param1)
     param0->unk_0C.move = 0;
     param0->unk_0C.showContest = PokemonSummaryScreen_ShowContestData(param0->unk_08->saveData);
     param0->unk_0C.dexMode = param0->unk_08->unk_30;
-    param0->unk_0C.options = param0->unk_08->unk_18;
+    param0->unk_0C.options = param0->unk_08->options;
     param0->unk_0C.specialRibbons = sub_0202D79C(param0->unk_08->saveData);
 
     PokemonSummaryScreen_FlagVisiblePages(&param0->unk_0C, Unk_ov88_0223F13C);

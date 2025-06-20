@@ -124,8 +124,8 @@ int ov75_021D0D80(ApplicationManager *appMan, int *param1)
     v1->unk_12 = v1->unk_1C->unk_03;
     v1->unk_17 = v1->unk_16 = v1->unk_11;
     v1->unk_1C->unk_00 = 0xFFFF;
-    v1->unk_10 = Options_TextFrameDelay(v1->unk_1C->unk_04);
-    v1->unk_0A = Options_Frame(v1->unk_1C->unk_04);
+    v1->unk_10 = Options_TextFrameDelay(v1->unk_1C->options);
+    v1->unk_0A = Options_Frame(v1->unk_1C->options);
 
     RenderControlFlags_SetCanABSpeedUpPrint(1);
     return 1;

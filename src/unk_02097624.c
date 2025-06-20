@@ -282,7 +282,7 @@ static int sub_02097944(ApplicationManager *appMan, int *param1)
 
     v0->heapID = HEAP_ID_40;
     v0->unk_10 = sub_02097834(v1->unk_14, v0->heapID);
-    v0->unk_10->unk_04 = SaveData_GetOptions(v1->saveData);
+    v0->unk_10->options = SaveData_GetOptions(v1->saveData);
 
     if (v1->unk_00 == 1) {
         v0->unk_10->unk_0F = v1->unk_0F;
