@@ -18,7 +18,6 @@
 #include "overlay005/struct_ov5_021DE5A4.h"
 #include "overlay005/struct_ov5_021E52A8_sub1.h"
 #include "overlay005/struct_ov5_021E52A8_sub2.h"
-#include "overlay115/camera_angle.h"
 
 #include "bg_window.h"
 #include "brightness_controller.h"

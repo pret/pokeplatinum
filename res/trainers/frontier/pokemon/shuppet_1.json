@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_SHUPPET",
+    "moves": [
+        "MOVE_SHADOW_SNEAK",
+        "MOVE_KNOCK_OFF",
+        "MOVE_WILL_O_WISP",
+        "MOVE_GRUDGE"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_SPELL_TAG",
+    "form": 0
+}

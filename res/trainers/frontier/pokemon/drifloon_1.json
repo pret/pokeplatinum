@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_DRIFLOON",
+    "moves": [
+        "MOVE_OMINOUS_WIND",
+        "MOVE_AIR_CUTTER",
+        "MOVE_ICY_WIND",
+        "MOVE_WILL_O_WISP"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_PETAYA_BERRY",
+    "form": 0
+}

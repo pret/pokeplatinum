@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_LICKITUNG",
+    "moves": [
+        "MOVE_SECRET_POWER",
+        "MOVE_ROCK_TOMB",
+        "MOVE_LICK",
+        "MOVE_SCREECH"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_CHESTO_BERRY",
+    "form": 0
+}

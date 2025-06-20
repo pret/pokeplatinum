@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_FERALIGATR",
+    "moves": [
+        "MOVE_WATERFALL",
+        "MOVE_ICE_FANG",
+        "MOVE_ROCK_SLIDE",
+        "MOVE_SCARY_FACE"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_KINGS_ROCK",
+    "form": 0
+}

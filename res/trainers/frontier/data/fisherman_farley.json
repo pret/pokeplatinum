@@ -1,0 +1,31 @@
+{
+    "class": "TRAINER_CLASS_FISHERMAN",
+    "availableSets": [
+        "blastoise_3",
+        "feraligatr_3",
+        "swampert_3",
+        "empoleon_3",
+        "quagsire_3",
+        "lanturn_3",
+        "whiscash_3",
+        "dewgong_3",
+        "gastrodon_3",
+        "ludicolo_3",
+        "slowbro_3",
+        "slowking_3",
+        "floatzel_3",
+        "golduck_3",
+        "poliwrath_3",
+        "politoed_3",
+        "wailord_3",
+        "tentacruel_3",
+        "starmie_3",
+        "vaporeon_3",
+        "walrein_3",
+        "lapras_3",
+        "gyarados_3",
+        "kingdra_3",
+        "milotic_3",
+        "none_1"
+    ]
+}

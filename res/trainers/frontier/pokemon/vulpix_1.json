@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_VULPIX",
+    "moves": [
+        "MOVE_EMBER",
+        "MOVE_SWIFT",
+        "MOVE_WILL_O_WISP",
+        "MOVE_CONFUSE_RAY"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": true
+    },
+    "nature": "NATURE_CALM",
+    "item": "ITEM_BRIGHTPOWDER",
+    "form": 0
+}

@@ -1,3 +1,5 @@
+#include "overlay097/wonder_cards_app.h"
+
 #include <nitro.h>
 #include <string.h>
 
@@ -5,10 +7,10 @@
 #include "constants/narc.h"
 #include "generated/string_padding_mode.h"
 
+#include "overlay097/mystery_gift_app.h"
 #include "overlay097/ov97_0222D04C.h"
 #include "overlay097/ov97_02232054.h"
 #include "overlay097/ov97_02237694.h"
-#include "overlay097/struct_ov97_0222D04C.h"
 #include "savedata/save_table.h"
 
 #include "bg_window.h"
@@ -219,7 +221,7 @@ typedef struct {
 
 struct WonderCardsAppData {
     int heapID;
-    UnkStruct_ov97_0222D04C unk_04;
+    MysteryGiftAppData mysteryGiftAppData;
     BgConfig *bgConfig;
     StringTemplate *strTemplate;
     MessageLoader *msgLoader;
@@ -816,7 +818,7 @@ static BOOL PrintWondercardTitle(WonderCardsAppData *appData, Window *windwow, T
 {
     Strbuf *strBuf = Strbuf_Init(WONDERCARD_TITLE_LENGTH + 1, appData->heapID);
 
-    Strbuf_CopyNumChars(strBuf, appData->wonderCards[appData->selectedWondercardSlot]->metadata.title, WONDERCARD_TITLE_LENGTH);
+    Strbuf_CopyNumChars(strBuf, appData->wonderCards[appData->selectedWondercardSlot]->eventHeader.title, WONDERCARD_TITLE_LENGTH);
     Text_AddPrinterWithParamsAndColor(windwow, FONT_MESSAGE, strBuf, 0, 0, TEXT_SPEED_NO_TRANSFER, color, NULL);
     Strbuf_Free(strBuf);
 
@@ -828,7 +830,7 @@ static BOOL DetermineGiftStatus(WonderCardsAppData *appData, Window *window, Tex
     WonderCard *wonderCard = appData->wonderCards[appData->selectedWondercardSlot];
     int stringEntryID;
 
-    if (wonderCard->metadata.savePgt == FALSE) {
+    if (wonderCard->eventHeader.savePgt == FALSE) {
         stringEntryID = MysteryGiftMenu_Text_NoGiftAttached;
     } else {
         if (appData->mysteryGift == NULL || MysteryGift_CheckWcHasPgtSaved(appData->mysteryGift, appData->selectedWondercardSlot) == TRUE) {
@@ -1541,7 +1543,7 @@ static int WonderCardsApp_Main(ApplicationManager *appMan, enum WonderCardsAppSt
         int connectedPlayersCount = 0;
 
         if (CommSys_IsPlayerConnected(0)) {
-            sub_02034150(&appData->unk_04.unk_8C.unk_00);
+            sub_02034150(&appData->mysteryGiftAppData.eventData.header);
 
             connectedPlayersCount = UpdateConnectedPlayers(appData, &appData->windows[WC_SHARING_PLAYER_INFO]);
 
@@ -1576,7 +1578,7 @@ static int WonderCardsApp_Main(ApplicationManager *appMan, enum WonderCardsAppSt
         break;
     case WC_APP_STATE_DISTRIBUTION_UNDERWAY:
         if (--appData->shouldSendWc == FALSE) {
-            ov97_0223829C(&appData->unk_04.unk_8C, &appData->currentWonderCard, appData->heapID);
+            ov97_0223829C(&appData->mysteryGiftAppData.eventData, &appData->currentWonderCard, appData->heapID);
             ov97_0222D1F0((const void *)&appData->currentWonderCard, sizeof(WonderCard));
             UpdateShareCount(appData);
             *state = WC_APP_STATE_START_COMM_SYNC;
@@ -1635,14 +1637,14 @@ static int PrepareSelectedWCForSharing(WonderCardsAppData *appData)
 {
     WonderCard *wonderCard = appData->wonderCards[appData->selectedWondercardSlot];
 
-    memcpy(&appData->unk_04.unk_8C.unk_50, wonderCard, sizeof(WonderCard));
-    memcpy(&appData->unk_04.unk_8C.unk_00, &wonderCard->metadata, sizeof(WonderCardMetadata));
+    memcpy(&appData->mysteryGiftAppData.eventData.wonderCard, wonderCard, sizeof(WonderCard));
+    memcpy(&appData->mysteryGiftAppData.eventData.header, &wonderCard->eventHeader, sizeof(MysteryGiftEventHeader));
 
-    appData->unk_04.unk_8C.unk_50.sharesLeft = 0;
-    appData->unk_04.unk_8C.unk_00.shareable = FALSE;
-    appData->unk_04.unk_8C.unk_00.fromSharing = TRUE;
+    appData->mysteryGiftAppData.eventData.wonderCard.sharesLeft = 0;
+    appData->mysteryGiftAppData.eventData.header.shareable = FALSE;
+    appData->mysteryGiftAppData.eventData.header.fromSharing = TRUE;
 
-    ov97_0222D1C4(&appData->unk_04, appData->saveData, 15);
+    ov97_0222D1C4(&appData->mysteryGiftAppData, appData->saveData, 15);
 
     return NULL;
 }
@@ -1796,7 +1798,7 @@ static void StopWirelessCommunication(WonderCardsAppData *appData, enum WonderCa
     *state = WC_APP_STATE_WAIT_FOR_COMM_MAN_EXIT;
 }
 
-extern const ApplicationManagerTemplate Unk_ov97_0223D71C;
+extern const ApplicationManagerTemplate gMysteryGiftAppTemplate;
 
 static BOOL WonderCardsApp_Exit(ApplicationManager *appMan, int *unused)
 {
@@ -1824,7 +1826,7 @@ static BOOL WonderCardsApp_Exit(ApplicationManager *appMan, int *unused)
     Bg_FreeTilemapBuffer(appData->bgConfig, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(appData->bgConfig, BG_LAYER_MAIN_3);
     Heap_FreeToHeap(appData->bgConfig);
-    EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D71C);
+    EnqueueApplication(FS_OVERLAY_ID(overlay97), &gMysteryGiftAppTemplate);
     Heap_Destroy(HEAP_ID_91);
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_WONDER_CARDS_APP);

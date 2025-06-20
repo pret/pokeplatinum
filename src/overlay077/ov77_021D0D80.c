@@ -8,7 +8,6 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay077/const_ov77_021D742C.h"
-#include "overlay115/camera_angle.h"
 
 #include "bg_window.h"
 #include "brightness_controller.h"

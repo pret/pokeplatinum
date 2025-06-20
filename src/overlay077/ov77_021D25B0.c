@@ -14,7 +14,6 @@
 #include "overlay077/struct_ov77_021D670C_decl.h"
 #include "overlay077/struct_ov77_021D6734_decl.h"
 #include "overlay077/struct_ov77_021D6CFC_decl.h"
-#include "overlay115/camera_angle.h"
 
 #include "bg_window.h"
 #include "brightness_controller.h"

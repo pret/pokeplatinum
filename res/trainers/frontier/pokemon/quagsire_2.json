@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_QUAGSIRE",
+    "moves": [
+        "MOVE_DIVE",
+        "MOVE_YAWN",
+        "MOVE_CURSE",
+        "MOVE_AMNESIA"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_CAREFUL",
+    "item": "ITEM_LEFTOVERS",
+    "form": 0
+}

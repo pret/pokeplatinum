@@ -7,8 +7,6 @@
 #include "struct_defs/struct_020972FC.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay115/camera_angle.h"
-
 #include "berry_data.h"
 #include "bg_window.h"
 #include "camera.h"

@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_VILEPLUME",
+    "moves": [
+        "MOVE_TOXIC",
+        "MOVE_GRASS_KNOT",
+        "MOVE_DOUBLE_TEAM",
+        "MOVE_ATTRACT"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_BOLD",
+    "item": "ITEM_BLACK_SLUDGE",
+    "form": 0
+}

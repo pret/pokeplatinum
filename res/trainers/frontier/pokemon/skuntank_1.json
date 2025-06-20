@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_SKUNTANK",
+    "moves": [
+        "MOVE_SUCKER_PUNCH",
+        "MOVE_POISON_JAB",
+        "MOVE_SLASH",
+        "MOVE_SCREECH"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_RAZOR_CLAW",
+    "form": 0
+}

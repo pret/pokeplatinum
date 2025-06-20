@@ -9,7 +9,6 @@
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
-#include "overlay115/camera_angle.h"
 
 #include "camera.h"
 #include "field_map_change.h"

@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_DRAGONITE",
+    "moves": [
+        "MOVE_DRAGON_CLAW",
+        "MOVE_AERIAL_ACE",
+        "MOVE_THUNDER_WAVE",
+        "MOVE_DRAGON_DANCE"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_LUM_BERRY",
+    "form": 0
+}

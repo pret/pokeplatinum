@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_PRINPLUP",
+    "moves": [
+        "MOVE_SURF",
+        "MOVE_DRILL_PECK",
+        "MOVE_METAL_CLAW",
+        "MOVE_RAIN_DANCE"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_BASHFUL",
+    "item": "ITEM_FOCUS_BAND",
+    "form": 0
+}

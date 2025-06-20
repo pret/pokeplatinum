@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_MR_MIME",
+    "moves": [
+        "MOVE_DREAM_EATER",
+        "MOVE_HYPNOSIS",
+        "MOVE_LIGHT_SCREEN",
+        "MOVE_REFLECT"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": true
+    },
+    "nature": "NATURE_CALM",
+    "item": "ITEM_LIGHT_CLAY",
+    "form": 0
+}

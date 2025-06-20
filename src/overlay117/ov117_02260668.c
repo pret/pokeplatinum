@@ -11,7 +11,6 @@
 
 #include "overlay004/ov4_021D0D80.h"
 #include "overlay114/ov114_0225C700.h"
-#include "overlay115/camera_angle.h"
 #include "overlay117/ov117_022626B0.h"
 #include "overlay117/ov117_02263AF0.h"
 #include "overlay117/ov117_022665FC.h"
