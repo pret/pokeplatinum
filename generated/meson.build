@@ -82,6 +82,7 @@ metang_generators = {
     'sdat': { 'type': 'enum', 'tag': 'SDATID' },
     'signpost_commands': { 'type': 'enum', 'tag': 'SignpostCommand' },
     'signpost_types': { 'type': 'enum', 'tag': 'SignpostType' },
+    'size_contest_results': { 'type': 'enum', 'tag': 'SizeContestResult' },
     'shadow_sizes': { 'type': 'enum', 'tag': 'ShadowSize' },
     'species': { 'type': 'enum', 'tag': 'Species' },
     'species_data_params': { 'type': 'enum', 'tag': 'SpeciesDataParam' },

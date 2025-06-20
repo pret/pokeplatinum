@@ -63,11 +63,11 @@
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/ov5_021EA874.h"
 #include "overlay005/ov5_021ECC20.h"
-#include "overlay005/ov5_021EE7D4.h"
 #include "overlay005/ov5_021F6454.h"
 #include "overlay005/save_info_window.h"
 #include "overlay005/scrcmd_move_tutor.h"
 #include "overlay005/signpost.h"
+#include "overlay005/size_contest.h"
 #include "overlay005/struct_ov5_021DD42C.h"
 #include "overlay005/vs_seeker.h"
 #include "overlay006/npc_trade.h"
@@ -5820,7 +5820,7 @@ static BOOL ScrCmd_1C1(ScriptContext *ctx)
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
     u16 v2 = ScriptContext_GetVar(ctx);
 
-    *v1 = ov5_021EE920(fieldSystem, v2);
+    *v1 = SizeContest_CalcResultForPartyMon(fieldSystem, v2);
 
     return FALSE;
 }
@@ -5830,7 +5830,7 @@ static BOOL ScrCmd_1C2(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 v2 = ScriptContext_GetVar(ctx);
 
-    ov5_021EE9BC(fieldSystem, v2);
+    SizeContest_UpdateRecordFromPartyMon(fieldSystem, v2);
 
     return FALSE;
 }
@@ -5842,7 +5842,7 @@ static BOOL ScrCmd_1C3(ScriptContext *ctx)
     u16 v2 = ScriptContext_GetVar(ctx);
     u16 v3 = ScriptContext_GetVar(ctx);
 
-    ov5_021EEA84(fieldSystem, v1, v2, v3);
+    SizeContest_SetPartyMonSizeStrParams(fieldSystem, v1, v2, v3);
     return FALSE;
 }
 
@@ -5853,7 +5853,7 @@ static BOOL ScrCmd_1C4(ScriptContext *ctx)
     u16 v2 = ScriptContext_GetVar(ctx);
     u16 v3 = ScriptContext_GetVar(ctx);
 
-    ov5_021EEA54(fieldSystem, v1, v2, v3);
+    SizeContest_SetRecordSizeStrParams(fieldSystem, v1, v2, v3);
     return FALSE;
 }
 
