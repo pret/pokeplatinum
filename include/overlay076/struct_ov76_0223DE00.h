@@ -1,8 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV76_0223DE00_H
 #define POKEPLATINUM_STRUCT_OV76_0223DE00_H
 
-#include "struct_decls/struct_0202CA88_decl.h"
-#include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_02097F18.h"
 
 #include "overlay076/struct_ov76_0223B52C.h"
@@ -19,8 +17,8 @@
 typedef struct {
     UnkStruct_02097F18 *unk_00;
     UnkStruct_ov76_0223DD88_sub1 unk_04[12];
-    UnkStruct_0202CA88 *unk_64;
-    UnkStruct_0202CA28 unk_68;
+    SealsObtained *unk_64;
+    BallCapsule unk_68;
     u8 unk_80[81];
     u8 padding_D1[3];
     UnkStruct_ov76_0223C398 unk_D4;

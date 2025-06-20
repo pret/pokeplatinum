@@ -5,8 +5,8 @@
 
 #include "constants/narc.h"
 
+#include "struct_defs/seal_case.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_0207C690.h"
 
 #include "overlay012/ov12_02225864.h"
@@ -631,7 +631,7 @@ void ov76_0223C354(UnkStruct_ov76_0223DE00 *param0)
     int v0;
     int v1;
     int v2 = 0;
-    UnkStruct_0202CA28 *v3;
+    BallCapsule *v3;
 
     for (v0 = 0; v0 < 12; v0++) {
         v3 = param0->unk_04[v0].unk_04;
@@ -859,7 +859,7 @@ void ov76_0223C80C(UnkStruct_ov76_0223DE00 *param0, int param1, int param2)
     int v2;
     int v3;
     int v4;
-    UnkStruct_0202CA28 v5;
+    BallCapsule v5;
 
     v1 = param0->unk_04[param1].unk_00;
     v2 = param0->unk_04[param2].unk_00;
@@ -878,9 +878,9 @@ void ov76_0223C80C(UnkStruct_ov76_0223DE00 *param0, int param1, int param2)
     param0->unk_04[param1].unk_00 = param0->unk_04[param2].unk_00;
     param0->unk_04[param2].unk_00 = v0;
 
-    sub_0202CA10(param0->unk_04[param1].unk_04, &v5);
-    sub_0202CA10(param0->unk_04[param2].unk_04, param0->unk_04[param1].unk_04);
-    sub_0202CA10(&v5, param0->unk_04[param2].unk_04);
+    BallCapsule_Copy(param0->unk_04[param1].unk_04, &v5);
+    BallCapsule_Copy(param0->unk_04[param2].unk_04, param0->unk_04[param1].unk_04);
+    BallCapsule_Copy(&v5, param0->unk_04[param2].unk_04);
     ov76_0223C7E0(param0);
 }
 
@@ -1001,7 +1001,7 @@ void ov76_0223CC8C(UnkStruct_ov76_0223DE00 *param0)
         Window_FillTilemap(v5, 0x0);
 
         v4 = Strbuf_Init(100, HEAP_ID_53);
-        v3 = sub_0202CA90(param0->unk_64, v2 - 1);
+        v3 = SealCase_GetSealsObtainedCount(param0->unk_64, v2 - 1);
 
         Strbuf_FormatInt(v4, v3, 3, 1, 1);
         Text_AddPrinterWithParamsAndColor(v5, FONT_SYSTEM, v4, (-1 + 8), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
@@ -1030,7 +1030,7 @@ void ov76_0223CD20(UnkStruct_ov76_0223DE00 *param0, int param1)
     Window_FillTilemap(v5, 0x0);
 
     v4 = Strbuf_Init(100, HEAP_ID_53);
-    v3 = sub_0202CA90(param0->unk_64, v2 - 1);
+    v3 = SealCase_GetSealsObtainedCount(param0->unk_64, v2 - 1);
 
     Strbuf_FormatInt(v4, v3, 3, 1, 1);
     Text_AddPrinterWithParamsAndColor(v5, FONT_MESSAGE, v4, (-1 + 8), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);

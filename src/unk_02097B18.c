@@ -4,8 +4,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_defs/struct_0202CA28.h"
-#include "struct_defs/struct_0202CA64.h"
+#include "struct_defs/seal_case.h"
 #include "struct_defs/struct_02097F18.h"
 #include "struct_defs/struct_02098C44.h"
 
@@ -116,27 +115,27 @@ static int sub_02097B18(ApplicationManager *appMan, int *param1)
     v0->unk_3C4[1] = sub_02097F18(v0->unk_00);
 
     {
-        int v4;
-        int v5;
-        UnkStruct_0202CA28 *v6;
+        int i;
+        int capsuleId;
+        BallCapsule *capsule;
 
-        v0->unk_64 = sub_0202CA88(v0->unk_00->unk_20);
+        v0->unk_64 = SealCase_GetSealsObtained(v0->unk_00->unk_20);
 
-        for (v4 = 0; v4 < 12; v4++) {
-            v6 = sub_0202CA28(v0->unk_00->unk_20, v4);
-            v0->unk_04[v4].unk_00 = 0xff;
-            v0->unk_04[v4].unk_04 = v6;
+        for (i = 0; i < TOTAL_CAPSULES; i++) {
+            capsule = SealCase_GetCapsuleById(v0->unk_00->unk_20, i);
+            v0->unk_04[i].unk_00 = 0xff;
+            v0->unk_04[i].unk_04 = capsule;
         }
 
-        for (v4 = 0; v4 < 6; v4++) {
-            if (v0->unk_00->unk_04[v4] == NULL) {
+        for (i = 0; i < 6; i++) {
+            if (v0->unk_00->unk_04[i] == NULL) {
                 continue;
             }
 
-            v5 = Pokemon_GetValue(v0->unk_00->unk_04[v4], MON_DATA_BALL_CAPSULE_ID, 0);
+            capsuleId = Pokemon_GetValue(v0->unk_00->unk_04[i], MON_DATA_BALL_CAPSULE_ID, 0);
 
-            if (v5 != 0) {
-                v0->unk_04[v5 - 1].unk_00 = v4;
+            if (capsuleId != 0) {
+                v0->unk_04[capsuleId - 1].unk_00 = i;
             }
         }
     }
@@ -314,7 +313,7 @@ static BOOL sub_02097F38(FieldTask *param0)
     case 0:
 
         FieldTransition_FinishMap(param0);
-        v1->unk_20 = SaveData_GetBallSeals(v0->saveData);
+        v1->unk_20 = SaveData_GetSealCase(v0->saveData);
         sub_02097F20(v1, 0);
 
         {
@@ -373,8 +372,8 @@ static BOOL sub_02097F38(FieldTask *param0)
     case 4: {
         PartyManagementData *partyMan = v0->unk_0C;
         Pokemon *v8;
-        UnkStruct_0202CA28 *v9;
-        UnkStruct_0202CA64 *v10;
+        BallCapsule *v9;
+        BallSealCoords *v10;
         TVBroadcast *v11;
         int v12;
         int v13;
@@ -385,10 +384,10 @@ static BOOL sub_02097F38(FieldTask *param0)
             v8 = sub_02097F00(v0->unk_08, partyMan->selectedMonSlot);
 
             Pokemon_SetValue(v8, MON_DATA_BALL_CAPSULE_ID, (u8 *)&v13);
-            Pokemon_SetValue(v8, MON_DATA_171, sub_0202CA28(v1->unk_20, v13 - 1));
+            Pokemon_SetValue(v8, MON_DATA_BALL_CAPSULE, SealCase_GetCapsuleById(v1->unk_20, v13 - 1));
 
-            v9 = sub_0202CA28(v1->unk_20, v13 - 1);
-            v10 = sub_0202CA64(v9, 0);
+            v9 = SealCase_GetCapsuleById(v1->unk_20, v13 - 1);
+            v10 = BallCapsule_GetBallSealCoords(v9, 0);
             v12 = sub_0202CA7C(v10);
             v12 = sub_02098164(v12);
             v11 = SaveData_GetTVBroadcast(fieldSystem->saveData);

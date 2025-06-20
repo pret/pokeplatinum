@@ -3,8 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0202CA28.h"
-#include "struct_defs/struct_0202CA64.h"
+#include "struct_defs/seal_case.h"
 
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_022237EC.h"
@@ -41,7 +40,7 @@ typedef struct {
     int unk_08;
     BOOL *unk_0C;
     ParticleSystem *unk_10;
-    UnkStruct_0202CA64 *unk_14;
+    BallSealCoords *unk_14;
     SPLEmitterCallback unk_18;
 } UnkStruct_02236430;
 
@@ -50,7 +49,7 @@ typedef struct UnkStruct_ov12_02235FE0_t {
     UnkStruct_ov12_02236030 unk_04;
     int unk_10;
     ParticleSystem *unk_14[9];
-    UnkStruct_0202CA64 *unk_38[9];
+    BallSealCoords *unk_38[9];
     BOOL unk_5C[9];
     SPLEmitter *unk_80;
     SysTask *unk_84;
@@ -60,7 +59,7 @@ typedef struct UnkStruct_ov12_02235FE0_t {
     int unk_94;
     int unk_98;
     int unk_9C;
-    UnkStruct_0202CA28 unk_A0;
+    BallCapsule unk_A0;
 } UnkStruct_ov12_02235FE0;
 
 typedef struct UnkStruct_ov12_02236648_t {
@@ -382,7 +381,7 @@ void ov12_02236030(UnkStruct_ov12_02235FE0 *param0, const UnkStruct_ov12_0223603
         }
     } else {
         param0->unk_94 = 1;
-        Pokemon_GetValue(param0->unk_04.unk_08, MON_DATA_171, &param0->unk_A0);
+        Pokemon_GetValue(param0->unk_04.unk_08, MON_DATA_BALL_CAPSULE, &param0->unk_A0);
     }
 }
 
@@ -393,14 +392,14 @@ static void ov12_022360A0(SysTask *param0, void *param1)
     int v2;
     int v3;
     int v4;
-    UnkStruct_0202CA64 *v5;
+    BallSealCoords *v5;
 
     switch (v0->unk_90) {
     case 0:
         v0->unk_8C = NARC_ctor(NARC_INDEX_WAZAEFFECT__EFFECTDATA__BALL_PARTICLE, v0->heapID);
 
         for (v1 = 0; v1 < 2; v1++) {
-            v5 = sub_0202CA64(&v0->unk_A0, v1);
+            v5 = BallCapsule_GetBallSealCoords(&v0->unk_A0, v1);
 
             if (v5 == NULL) {
                 continue;
@@ -434,7 +433,7 @@ static void ov12_022360A0(SysTask *param0, void *param1)
         break;
     case 1:
         for (v1 = 2; v1 < 4; v1++) {
-            v5 = sub_0202CA64(&v0->unk_A0, v1);
+            v5 = BallCapsule_GetBallSealCoords(&v0->unk_A0, v1);
 
             if (v5 == NULL) {
                 continue;
@@ -468,7 +467,7 @@ static void ov12_022360A0(SysTask *param0, void *param1)
         break;
     case 2:
         for (v1 = 4; v1 < 6; v1++) {
-            v5 = sub_0202CA64(&v0->unk_A0, v1);
+            v5 = BallCapsule_GetBallSealCoords(&v0->unk_A0, v1);
 
             if (v5 == NULL) {
                 continue;
@@ -502,7 +501,7 @@ static void ov12_022360A0(SysTask *param0, void *param1)
         break;
     case 3:
         for (v1 = 6; v1 < 8; v1++) {
-            v5 = sub_0202CA64(&v0->unk_A0, v1);
+            v5 = BallCapsule_GetBallSealCoords(&v0->unk_A0, v1);
 
             if (v5 == NULL) {
                 continue;
@@ -548,7 +547,7 @@ void ov12_02236320(UnkStruct_ov12_02235FE0 *param0)
     int v1;
     int v2;
     int v3;
-    UnkStruct_0202CA64 *v4;
+    BallSealCoords *v4;
 
     if (param0->unk_94 == 0) {
         v3 = ov12_02235F64(param0->unk_98);

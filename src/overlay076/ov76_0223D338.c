@@ -6,10 +6,9 @@
 #include "generated/trainer_score_events.h"
 
 #include "struct_decls/font_oam.h"
+#include "struct_defs/seal_case.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_02015958.h"
-#include "struct_defs/struct_0202CA28.h"
-#include "struct_defs/struct_0202CA64.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay012/ov12_02235E94.h"
@@ -63,12 +62,12 @@ static BOOL ov76_0223EB1C(UnkStruct_ov76_0223DE00 *param0);
 
 void ov76_0223D338(UnkStruct_ov76_0223DE00 *param0)
 {
-    sub_0202CA10(param0->unk_04[param0->unk_3C4[0]].unk_04, &param0->unk_68);
+    BallCapsule_Copy(param0->unk_04[param0->unk_3C4[0]].unk_04, &param0->unk_68);
 }
 
 void ov76_0223D350(UnkStruct_ov76_0223DE00 *param0)
 {
-    sub_0202CA10(&param0->unk_68, param0->unk_04[param0->unk_3C4[0]].unk_04);
+    BallCapsule_Copy(&param0->unk_68, param0->unk_04[param0->unk_3C4[0]].unk_04);
 }
 
 void ov76_0223D368(UnkStruct_ov76_0223DE00 *param0)
@@ -76,16 +75,16 @@ void ov76_0223D368(UnkStruct_ov76_0223DE00 *param0)
     int v0;
 
     for (v0 = 0; v0 < (80 + 1); v0++) {
-        param0->unk_80[v0] = sub_0202CA90(param0->unk_64, v0);
+        param0->unk_80[v0] = SealCase_GetSealsObtainedCount(param0->unk_64, v0);
     }
 }
 
 void ov76_0223D384(UnkStruct_ov76_0223DE00 *param0)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < (80 + 1); v0++) {
-        sub_0202CADC(param0->unk_64, v0, param0->unk_80[v0]);
+    for (i = 0; i < (80 + 1); i++) {
+        sub_0202CADC(param0->unk_64, i, param0->unk_80[i]);
     }
 }
 
@@ -121,17 +120,17 @@ void ov76_0223D3CC(UnkStruct_ov76_0223DE00 *param0)
     }
 }
 
-int ov76_0223D430(UnkStruct_0202CA28 *param0)
+int ov76_0223D430(BallCapsule *param0)
 {
     int v0;
     int v1 = 0;
     int v2;
-    UnkStruct_0202CA64 *v3;
+    BallSealCoords *v3;
 
     v2 = 0;
 
     for (v0 = 0; v0 < 8; v0++) {
-        v3 = sub_0202CA64(param0, v0);
+        v3 = BallCapsule_GetBallSealCoords(param0, v0);
 
         if (sub_0202CA7C(v3) != 0) {
             v2++;
@@ -601,7 +600,7 @@ void ov76_0223DA34(u32 param0, enum TouchScreenButtonState param1, void *param2)
                 Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
                 ov76_0223CA30(&v0->unk_D4.unk_18[0], 15);
             } else {
-                if ((v0->unk_418.unk_08[param0] != 0) && (sub_0202CA90(v0->unk_64, v0->unk_418.unk_08[param0] - 1) != 0)) {
+                if ((v0->unk_418.unk_08[param0] != 0) && (SealCase_GetSealsObtainedCount(v0->unk_64, v0->unk_418.unk_08[param0] - 1) != 0)) {
                     v0->unk_D4.unk_00 = ov76_0223B278(v0, param0);
                     v1 = sub_02098164(v0->unk_418.unk_08[param0]);
 
@@ -850,7 +849,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
             break;
         case 2: {
             int v1;
-            UnkStruct_0202CA28 v2;
+            BallCapsule v2;
             UnkStruct_ov12_02236030 v3 = { 0 };
 
             v3.unk_00 = 1;
@@ -859,7 +858,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
 
             ov76_0223B848(&v2, param0);
             Pokemon_SetValue(param0->unk_428, MON_DATA_BALL_CAPSULE_ID, (u8 *)&v1);
-            Pokemon_SetValue(param0->unk_428, MON_DATA_171, &v2);
+            Pokemon_SetValue(param0->unk_428, MON_DATA_BALL_CAPSULE, &v2);
 
             param0->unk_D4.unk_154 = ov12_02236004(HEAP_ID_53, &v3);
             ov12_02236320(param0->unk_D4.unk_154);
@@ -986,7 +985,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
             if (param0->unk_264[param0->unk_3C4[0]].unk_00 != 0xff) {
                 v8 = param0->unk_00->unk_04[param0->unk_264[param0->unk_3C4[0]].unk_00];
 
-                Pokemon_SetValue(v8, MON_DATA_171, sub_0202CA28(param0->unk_00->unk_20, param0->unk_3C4[0]));
+                Pokemon_SetValue(v8, MON_DATA_BALL_CAPSULE, SealCase_GetCapsuleById(param0->unk_00->unk_20, param0->unk_3C4[0]));
             }
         }
         param0->unk_3D4 = 8;
@@ -1206,7 +1205,7 @@ void ov76_0223E91C(UnkStruct_ov76_0223DE00 *param0, int param1)
     int v0;
     int v1;
     int v2 = 0;
-    UnkStruct_0202CA28 v3;
+    BallCapsule v3;
 
     v1 = param0->unk_04[param1].unk_00;
 

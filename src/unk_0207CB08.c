@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02029D04_decl.h"
-#include "struct_decls/struct_0202CA1C_decl.h"
+#include "struct_defs/seal_case.h"
 #include "struct_defs/struct_0207CB08.h"
 
 #include "bag.h"
@@ -103,10 +103,10 @@ static u32 sub_0207CBB4(SaveData *saveData)
 
 static u32 sub_0207CBC0(SaveData *saveData)
 {
-    BallSeals *v0;
+    SealCase *v0;
     u32 v1, v2;
 
-    v0 = SaveData_GetBallSeals(saveData);
+    v0 = SaveData_GetSealCase(saveData);
     v2 = 0;
 
     for (v1 = 1; v1 <= 80; v1++) {
