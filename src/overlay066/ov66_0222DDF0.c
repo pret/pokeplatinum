@@ -278,7 +278,7 @@ static void ov66_0222FBAC(const UnkStruct_ov66_0222FB64 *param0);
 static void ov66_0222FBC8(UnkStruct_ov66_0222FBC8 *param0);
 static BOOL ov66_0222FBD0(const UnkStruct_ov66_0222FBC8 *param0);
 static void ov66_0222FBE0(UnkStruct_ov66_0222FBC8 *param0);
-static void ov66_0222FBF0(UnkStruct_ov66_0222FBF0 *param0, u32 param1);
+static void ov66_0222FBF0(UnkStruct_ov66_0222FBF0 *param0, u32 heapID);
 static void ov66_0222FC00(UnkStruct_ov66_0222FBF0 *param0);
 static void ov66_0222FC0C(UnkStruct_ov66_0222FBF0 *param0, const UnkStruct_ov66_0222F6C4 *param1, u32 heapID);
 static void ov66_0222FC4C(UnkStruct_ov66_0222FBC8 *param0);
@@ -1724,9 +1724,9 @@ void ov66_0222EEF4(UnkStruct_ov66_0222DFF8 *param0, u32 param1)
     v0 = (UnkStruct_ov66_0222E71C *)ov66_0222E374(param0, param1);
 
     if (v0 != NULL) {
-        trainerInfo = TrainerInfo_New(112);
-        ov66_0222E640(v0, trainerInfo, 112);
-        journalEntryOnlineEvent = JournalEntry_CreateEventInteraction(TrainerInfo_Name(trainerInfo), v0->unk_38, 112, ONLINE_EVENT_CHATTED_IN_PLAZA);
+        trainerInfo = TrainerInfo_New(HEAP_ID_112);
+        ov66_0222E640(v0, trainerInfo, HEAP_ID_112);
+        journalEntryOnlineEvent = JournalEntry_CreateEventInteraction(TrainerInfo_Name(trainerInfo), v0->unk_38, HEAP_ID_112, ONLINE_EVENT_CHATTED_IN_PLAZA);
 
         JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
         Heap_FreeToHeap(trainerInfo);
@@ -1742,9 +1742,9 @@ void ov66_0222EF44(UnkStruct_ov66_0222DFF8 *param0, u32 param1)
     v0 = (UnkStruct_ov66_0222E71C *)ov66_0222E374(param0, param1);
 
     if (v0 != NULL) {
-        trainerInfo = TrainerInfo_New(112);
-        ov66_0222E640(v0, trainerInfo, 112);
-        journalEntryOnlineEvent = JournalEntry_CreateEventInteraction(TrainerInfo_Name(trainerInfo), v0->unk_38, 112, ONLINE_EVENT_GOT_TAP_TOY);
+        trainerInfo = TrainerInfo_New(HEAP_ID_112);
+        ov66_0222E640(v0, trainerInfo, HEAP_ID_112);
+        journalEntryOnlineEvent = JournalEntry_CreateEventInteraction(TrainerInfo_Name(trainerInfo), v0->unk_38, HEAP_ID_112, ONLINE_EVENT_GOT_TAP_TOY);
 
         JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
         Heap_FreeToHeap(trainerInfo);
@@ -2509,9 +2509,9 @@ static void ov66_0222FBE0(UnkStruct_ov66_0222FBC8 *param0)
     }
 }
 
-static void ov66_0222FBF0(UnkStruct_ov66_0222FBF0 *param0, u32 param1)
+static void ov66_0222FBF0(UnkStruct_ov66_0222FBF0 *param0, u32 heapID)
 {
-    param0->unk_00 = TrainerInfo_New(param1);
+    param0->unk_00 = TrainerInfo_New(heapID);
 }
 
 static void ov66_0222FC00(UnkStruct_ov66_0222FBF0 *param0)

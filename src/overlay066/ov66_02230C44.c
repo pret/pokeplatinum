@@ -272,12 +272,12 @@ static int ov66_02230D7C(UnkStruct_ov66_02230C90 *param0, u32 param1)
     return v0[param1](param0, &param0->unk_04[param1]);
 }
 
-static void ov66_02230DA0(UnkStruct_ov66_02230DBC *param0, u32 param1)
+static void ov66_02230DA0(UnkStruct_ov66_02230DBC *param0, u32 heapID)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_20[v0] = TrainerInfo_New(param1);
+    for (i = 0; i < 4; i++) {
+        param0->unk_20[i] = TrainerInfo_New(heapID);
     }
 }
 

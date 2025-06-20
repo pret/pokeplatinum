@@ -181,7 +181,7 @@ static void ov23_0224F294(UnkStruct_ov23_02250CD4 *param0, u8 *param1, u32 param
     u32 v1;
     NARC *v2 = NARC_ctor(NARC_INDEX_GRAPHIC__MENU_GRA, HEAP_ID_FIELDMAP);
 
-    ov5_021D3190(&param0->unk_74, &v0, (7 + 1), 11);
+    ov5_021D3190(&param0->unk_74, &v0, (7 + 1), HEAP_ID_FIELDMAP);
     ov5_021D32E8(&param0->unk_74, v2, 9, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 14528);
     ov5_021D3374(&param0->unk_74, v2, 1, 0, 14528);
     ov5_021D339C(&param0->unk_74, v2, 0, 0, 14528);

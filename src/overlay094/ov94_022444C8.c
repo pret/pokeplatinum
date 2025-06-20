@@ -161,7 +161,7 @@ int ov94_0224484C(UnkStruct_ov94_0223FD4C *param0, int param1)
 
 static TrainerInfo *ov94_02244870(UnkStruct_ov94_0223BA88 *param0)
 {
-    TrainerInfo *v0 = TrainerInfo_New(62);
+    TrainerInfo *v0 = TrainerInfo_New(HEAP_ID_62);
 
     TrainerInfo_Init(v0);
     TrainerInfo_SetName(v0, param0->unk_10C);

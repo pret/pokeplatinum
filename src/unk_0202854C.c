@@ -288,7 +288,7 @@ void sub_02028830(UndergroundData *param0, const TrainerInfo *param1)
     }
 }
 
-TrainerInfo *sub_020288C8(const UndergroundData *param0, int param1, int param2)
+TrainerInfo *sub_020288C8(const UndergroundData *param0, int heapID, int param2)
 {
     int v0 = (sizeof(u16) * (7 + 1));
     int v1;
@@ -300,7 +300,7 @@ TrainerInfo *sub_020288C8(const UndergroundData *param0, int param1, int param2)
     }
 
     if (param0->unk_B0[v3][0] != 0) {
-        v2 = TrainerInfo_New(param1);
+        v2 = TrainerInfo_New(heapID);
 
         TrainerInfo_SetName(v2, param0->unk_B0[v3]);
         TrainerInfo_SetGameCode(v2, param0->unk_105[v3]);

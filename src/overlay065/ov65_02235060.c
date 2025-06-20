@@ -59,7 +59,7 @@ static void ov65_022357E8(UnkStruct_ov65_02235130 *param0, u32 param1, u32 heapI
 static void ov65_0223581C(UnkStruct_ov65_02235130 *param0);
 static void ov65_0223582C(UnkStruct_ov65_02235130 *param0, u32 heapID, NARC *param2, u32 param3);
 static void ov65_0223586C(UnkStruct_ov65_02235130 *param0);
-static void ov65_0223587C(UnkStruct_ov65_022358CC *param0, u32 param1, NARC *param2);
+static void ov65_0223587C(UnkStruct_ov65_022358CC *param0, u32 heapID, NARC *param2);
 static void ov65_022358CC(UnkStruct_ov65_022358CC *param0);
 static void ov65_022358F8(UnkStruct_ov65_022358CC *param0, u32 param1, NARC *param2);
 static void ov65_02235900(UnkStruct_ov65_022358CC *param0);
@@ -568,19 +568,19 @@ static void ov65_0223586C(UnkStruct_ov65_02235130 *param0)
     ov63_0222D214(param0->unk_758);
 }
 
-static void ov65_0223587C(UnkStruct_ov65_022358CC *param0, u32 param1, NARC *param2)
+static void ov65_0223587C(UnkStruct_ov65_022358CC *param0, u32 heapID, NARC *param2)
 {
-    int v0;
+    int i;
 
-    param0->unk_00 = SpriteList_InitRendering(96, &param0->unk_04, param1);
+    param0->unk_00 = SpriteList_InitRendering(96, &param0->unk_04, heapID);
     SetSubScreenViewRect(&param0->unk_04, 0, (800 * FX32_ONE));
 
-    for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_190[v0] = SpriteResourceCollection_New(16, v0, param1);
+    for (i = 0; i < 4; i++) {
+        param0->unk_190[i] = SpriteResourceCollection_New(16, i, heapID);
     }
 
-    ov65_022358F8(param0, param1, param2);
-    ov65_02235908(param0, param1);
+    ov65_022358F8(param0, heapID, param2);
+    ov65_02235908(param0, heapID);
 }
 
 static void ov65_022358CC(UnkStruct_ov65_022358CC *param0)

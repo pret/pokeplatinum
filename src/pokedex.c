@@ -6,7 +6,6 @@
 #include "constants/forms.h"
 #include "generated/gender_ratios.h"
 
-#include "heap.h"
 #include "inlines.h"
 #include "pokedex_language.h"
 #include "pokemon.h"
@@ -60,7 +59,7 @@ int Pokedex_SaveSize(void)
     return sizeof(Pokedex);
 }
 
-Pokedex *Pokedex_New(u32 heapID)
+Pokedex *Pokedex_New(enum HeapId heapID)
 {
     Pokedex *pokedexData = Heap_AllocFromHeap(heapID, sizeof(Pokedex));
     Pokedex_Init(pokedexData);

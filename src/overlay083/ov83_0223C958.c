@@ -26,7 +26,7 @@
 #include "unk_02015064.h"
 #include "unk_0202419C.h"
 
-static void ov83_0223CC30(BgConfig **param0, int param1);
+static void ov83_0223CC30(BgConfig **param0, int heapID);
 static void ov83_0223CCCC(BgConfig **param0);
 static void ov83_0223CCF8(UnkStruct_ov83_0223B784 *param0);
 static void ov83_0223CD1C(UnkStruct_ov83_0223B784 *param0);
@@ -161,13 +161,13 @@ static void ov83_0223CC10(void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov83_0223CC30(BgConfig **param0, int param1)
+static void ov83_0223CC30(BgConfig **param0, int heapID)
 {
     int v0 = 0, v1;
 
     ov83_0223CC10();
 
-    *param0 = BgConfig_New(param1);
+    *param0 = BgConfig_New(heapID);
 
     {
         GraphicsModes v2 = {
@@ -252,7 +252,7 @@ static void ov83_0223CC30(BgConfig **param0, int param1)
 
             Bg_InitFromTemplate(*param0, v4[v0], &(v3[v0]), 0);
             Bg_ClearTilemap(*param0, v4[v0]);
-            Bg_ClearTilesRange(v4[v0], 32, 0, param1);
+            Bg_ClearTilesRange(v4[v0], 32, 0, heapID);
         }
     }
 }
