@@ -784,9 +784,9 @@ static void sub_0203D910(FieldSystem *fieldSystem, UnkStruct_02097728 *param1)
     FieldSystem_StartChildProcess(fieldSystem, &Unk_020F64B0, param1);
 }
 
-UnkStruct_02097728 *sub_0203D920(FieldSystem *fieldSystem, int param1, u8 param2, u8 param3, int param4)
+UnkStruct_02097728 *sub_0203D920(FieldSystem *fieldSystem, int param1, u8 param2, u8 mailType, int unusedHeapID)
 {
-    UnkStruct_02097728 *v0 = sub_02097624(FieldSystem_GetSaveData(fieldSystem), param1, param2, param3, HEAP_ID_FIELDMAP);
+    UnkStruct_02097728 *v0 = sub_02097624(FieldSystem_GetSaveData(fieldSystem), param1, param2, mailType, HEAP_ID_FIELDMAP);
     sub_0203D910(fieldSystem, v0);
 
     return v0;
