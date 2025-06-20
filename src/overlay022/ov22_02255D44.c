@@ -102,7 +102,7 @@ typedef struct {
     int unk_72C;
     int unk_730;
     UnkStruct_02095C60 *unk_734;
-    const Options *unk_738;
+    const Options *options;
     u32 unk_73C;
     Strbuf *unk_740;
     StringTemplate *unk_744;
@@ -147,8 +147,8 @@ static void ov22_02256B04(UnkStruct_ov22_02259C58 *param0, void *param1);
 static void ov22_02256B24(UnkStruct_ov22_02259C58 *param0, void *param1);
 static void ov22_02256B44(UnkStruct_ov22_02259C58 *param0, void *param1);
 static void ov22_02256B78(UnkStruct_ov22_02259C58 *param0, void *param1);
-static void ov22_02256BAC(UnkStruct_ov22_02255D44 *param0, const Options *param1);
-static void ov22_02256BF4(UnkStruct_ov22_02255D44 *param0, int param1, int param2, UnkStruct_02095C60 *param3, const Options *param4);
+static void ov22_02256BAC(UnkStruct_ov22_02255D44 *param0, const Options *options);
+static void ov22_02256BF4(UnkStruct_ov22_02255D44 *param0, int param1, int param2, UnkStruct_02095C60 *param3, const Options *options);
 static void ov22_02256C38(UnkStruct_ov22_02255D44 *param0);
 static void ov22_02256C48(UnkStruct_ov22_02255D44 *param0, BOOL *param1);
 static void ov22_02256C70(SysTask *param0, void *param1);
@@ -204,7 +204,7 @@ int ov22_02255D44(ApplicationManager *appMan, int *param1)
     DisableHBlank();
 
     v2 = ApplicationManager_Args(appMan);
-    v0->unk_738 = v2->unk_0C;
+    v0->options = v2->options;
     EnableTouchPad();
     v1 = InitializeTouchPad(4);
 
@@ -222,7 +222,7 @@ int ov22_02255D44(ApplicationManager *appMan, int *param1)
     ov22_022567FC(v0);
     ov22_02256948(v0, 0);
     ov22_0225699C(v0);
-    ov22_02256BAC(v0, v2->unk_0C);
+    ov22_02256BAC(v0, v2->options);
     ov22_022589E0(&v0->unk_4FC, &v0->unk_458, &v0->unk_3CC, &v0->unk_00, &v0->unk_5C4, 1);
 
     v0->unk_714 = sub_02015920(HEAP_ID_13);
@@ -444,7 +444,7 @@ int ov22_02256174(ApplicationManager *appMan, int *param1)
     ov22_02259484(&v0->unk_3C0, (700 + 1 + 18), HEAP_ID_13);
 
     v0->unk_3C8 = ov22_02254DE0(700, HEAP_ID_13);
-    v0->unk_738 = v2->unk_20;
+    v0->options = v2->options;
 
     if (v0->unk_734->unk_16 == 0) {
         v0->unk_720 = ov22_02257580(v2->unk_0C);
@@ -456,7 +456,7 @@ int ov22_02256174(ApplicationManager *appMan, int *param1)
     ov22_022567FC(v0);
     ov22_02256948(v0, 0);
     ov22_02256A28(v0);
-    ov22_02256BF4(v0, v0->unk_720, v2->unk_08, v2->unk_1C, v2->unk_20);
+    ov22_02256BF4(v0, v0->unk_720, v2->unk_08, v2->unk_1C, v2->options);
     ov22_022589E0(&v0->unk_4FC, &v0->unk_458, &v0->unk_3CC, &v0->unk_00, &v0->unk_5C4, 0);
 
     v0->unk_714 = sub_02015920(HEAP_ID_13);
@@ -921,7 +921,7 @@ static void ov22_02256B78(UnkStruct_ov22_02259C58 *param0, void *param1)
     }
 }
 
-static void ov22_02256BAC(UnkStruct_ov22_02255D44 *param0, const Options *param1)
+static void ov22_02256BAC(UnkStruct_ov22_02255D44 *param0, const Options *options)
 {
     UnkStruct_ov22_02256BAC v0;
 
@@ -931,13 +931,13 @@ static void ov22_02256BAC(UnkStruct_ov22_02255D44 *param0, const Options *param1
     v0.unk_04 = param0->unk_00.unk_44;
     v0.unk_08 = param0->unk_00.unk_48;
     v0.unk_10 = 10;
-    v0.unk_0C = param1;
+    v0.options = options;
     v0.unk_24 = param0->unk_00.unk_5C;
 
     ov22_0225A428(&param0->unk_5C4, &v0, (1 | 2 | 4 | 8));
 }
 
-static void ov22_02256BF4(UnkStruct_ov22_02255D44 *param0, int param1, int param2, UnkStruct_02095C60 *param3, const Options *param4)
+static void ov22_02256BF4(UnkStruct_ov22_02255D44 *param0, int param1, int param2, UnkStruct_02095C60 *param3, const Options *options)
 {
     UnkStruct_ov22_02256BAC v0;
     BOOL v1;
@@ -950,7 +950,7 @@ static void ov22_02256BF4(UnkStruct_ov22_02255D44 *param0, int param1, int param
     v0.unk_18 = 7 + param2;
     v0.unk_1C = 60;
     v0.unk_20 = param3;
-    v0.unk_0C = param4;
+    v0.options = options;
     v0.unk_24 = param0->unk_00.unk_5C;
 
     ov22_0225A428(&param0->unk_5C4, &v0, (1 | 2 | 4 | 8 | 16 | 32));
@@ -1328,7 +1328,7 @@ static void ov22_022572A0(UnkStruct_ov22_02255D44 *param0, u32 param1, u8 param2
 {
     MessageLoader *v0;
     Strbuf *v1;
-    int v2 = Options_Frame(param0->unk_738);
+    int v2 = Options_Frame(param0->options);
 
     Font_LoadScreenIndicatorsPalette(0, 7 * 32, HEAP_ID_14);
     Window_Add(param0->unk_00.unk_40, param0->unk_718, 3, param2, param3, param4, param5, 7, (0 + (29 * 4) + (18 + 12)));
@@ -1383,7 +1383,7 @@ static u32 ov22_022573EC(UnkStruct_ov22_02255D44 *param0, u32 param1)
     StringTemplate_Format(param0->unk_744, param0->unk_740, v3);
 
     if (param0->unk_734->unk_16 == 0) {
-        v2 = Options_TextFrameDelay(param0->unk_738);
+        v2 = Options_TextFrameDelay(param0->options);
     } else {
         v2 = TEXT_SPEED_FAST;
     }

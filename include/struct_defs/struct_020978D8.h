@@ -11,7 +11,7 @@ typedef struct {
     u16 unk_00;
     u8 unk_02;
     u8 unk_03;
-    Options *unk_04;
+    Options *options;
     u32 unk_08;
     u8 unk_0C;
     u8 unk_0D;

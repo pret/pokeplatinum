@@ -49,7 +49,7 @@ FS_EXTERN_OVERLAY(game_start);
 typedef struct {
     int heapID;
     SaveData *saveData;
-    Options *unk_08;
+    Options *options;
     int unk_0C;
     int unk_10;
     ApplicationManager *appMan;
@@ -136,12 +136,12 @@ int ov73_021D0D80(ApplicationManager *appMan, int *param1)
 
     v0->heapID = childHeapID;
     v0->saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
-    v0->unk_08 = SaveData_GetOptions(v0->saveData);
+    v0->options = SaveData_GetOptions(v0->saveData);
     v0->unk_0C = 0;
     v0->unk_10 = 0;
     v0->appMan = NULL;
-    v0->unk_70 = sub_0208712C(childHeapID, 0, 0, 7, v0->unk_08);
-    v0->unk_74 = sub_0208712C(childHeapID, 3, 0, 7, v0->unk_08);
+    v0->unk_70 = sub_0208712C(childHeapID, 0, 0, 7, v0->options);
+    v0->unk_74 = sub_0208712C(childHeapID, 3, 0, 7, v0->options);
     v0->unk_88 = 0;
     v0->unk_89 = 0;
     v0->unk_8A = 0;
@@ -712,7 +712,7 @@ static BOOL ov73_021D1510(UnkStruct_ov73_021D1058 *param0, u32 param1, int param
             Strbuf_Free(v1);
         }
 
-        param0->unk_58 = Text_AddPrinterWithParams(&param0->unk_1C, FONT_MESSAGE, param0->unk_5C, 0, 0, (Options_TextFrameDelay(param0->unk_08)), NULL);
+        param0->unk_58 = Text_AddPrinterWithParams(&param0->unk_1C, FONT_MESSAGE, param0->unk_5C, 0, 0, (Options_TextFrameDelay(param0->options)), NULL);
         param0->unk_50 = 1;
         break;
     case 1:

@@ -82,7 +82,7 @@ struct UnkStruct_ov111_021D0F7C_t {
     Window unk_5C[16];
     PaletteData *unk_15C;
     UnkStruct_0200C440 *unk_160;
-    Options *unk_164;
+    Options *options;
     SaveData *saveData;
     UnkStruct_ov111_021D2F80 unk_16C;
     UnkStruct_ov111_021D33F4 *unk_35C[4];
@@ -335,7 +335,7 @@ int ov111_021D0D80(ApplicationManager *appMan, int *param1)
     v1->saveData = v2->saveData;
     v1->unk_09 = v2->unk_04;
     v1->unk_3D8 = &v2->unk_14;
-    v1->unk_164 = SaveData_GetOptions(v1->saveData);
+    v1->options = SaveData_GetOptions(v1->saveData);
     v1->unk_3DC = &v2->unk_08[0];
     v1->unk_3E0 = &v2->unk_0E[0];
 
@@ -469,7 +469,7 @@ static BOOL ov111_021D0FC8(UnkStruct_ov111_021D0F7C *param0)
             ov111_021D3468(param0->unk_390[v0], (20 + v0));
         }
 
-        ov111_021D35C0(&param0->unk_5C[15], Options_Frame(param0->unk_164));
+        ov111_021D35C0(&param0->unk_5C[15], Options_Frame(param0->options));
         ov111_021D24D4(param0);
         GXLayers_EngineBToggleLayers((GX_PLANEMASK_BG0), 1);
         param0->unk_12 = (4 - 1);

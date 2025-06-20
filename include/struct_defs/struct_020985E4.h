@@ -6,7 +6,7 @@
 
 typedef struct {
     int unk_00;
-    Options *unk_04;
+    Options *options;
     const TrainerInfo *unk_08;
 } UnkStruct_020985E4;
 

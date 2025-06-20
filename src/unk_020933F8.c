@@ -418,7 +418,7 @@ UnkStruct_02095C48 *sub_02093800(const UnkStruct_02093800 *param0)
     v0->unk_00.unk_10D = v0->unk_00.unk_115;
     v0->unk_00.unk_10E = 1;
     v0->unk_1980 = param0->unk_14;
-    v0->unk_196C = param0->unk_18;
+    v0->options = param0->options;
     v0->saveData = param0->saveData;
     v0->unk_1974 = param0->unk_08;
     v0->unk_197C = param0->unk_05;
@@ -599,7 +599,7 @@ void sub_02093BBC(UnkStruct_02095C48 *param0)
     v0->unk_14 = param0->unk_00.unk_10F;
     v0->unk_18 = sub_02029D04(param0->unk_1980);
     v0->unk_1C = &param0->unk_1984;
-    v0->unk_20 = param0->unk_196C;
+    v0->options = param0->options;
     v0->unk_24 = param0->unk_1978;
 
     param0->unk_199C = v0;

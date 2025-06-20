@@ -22,7 +22,7 @@
 
 static inline void inline_ov62_02247CE0(UnkStruct_ov62_02246BF4 *param0, int param1, s16 param2, s16 param3);
 
-UnkStruct_ov62_02246B00 *ov62_02246B00(int heapID, int param1, int param2[], Options *param3)
+UnkStruct_ov62_02246B00 *ov62_02246B00(int heapID, int param1, int param2[], Options *options)
 {
     int v0;
     UnkStruct_ov62_02246B00 *v1 = NULL;
@@ -31,7 +31,7 @@ UnkStruct_ov62_02246B00 *ov62_02246B00(int heapID, int param1, int param2[], Opt
     MI_CpuFill8(v1, 0, sizeof(UnkStruct_ov62_02246B00));
     v1->unk_00 = param1;
     v1->unk_18 = Strbuf_Init(param1 + 1, heapID);
-    v1->unk_1C = param3;
+    v1->options = options;
 
     for (v0 = 0; v0 < 3; v0++) {
         v1->unk_04[v0] = param2[v0];

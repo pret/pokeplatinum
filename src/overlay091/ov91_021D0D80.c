@@ -596,7 +596,7 @@ static void ov91_021D10C8(UnkStruct_ov91_021D0ED8 *param0, NARC *param1)
     Graphics_LoadPaletteFromOpenNARC(param1, 12, 0, 0, 0, HEAP_ID_67);
     Font_LoadScreenIndicatorsPalette(0, 14 * 32, HEAP_ID_67);
     LoadStandardWindowGraphics(param0->unk_04, 0, 1, 12, 0, HEAP_ID_67);
-    LoadMessageBoxGraphics(param0->unk_04, 0, (1 + 9), 13, Options_Frame(param0->unk_00->unk_08), HEAP_ID_67);
+    LoadMessageBoxGraphics(param0->unk_04, 0, (1 + 9), 13, Options_Frame(param0->unk_00->options), HEAP_ID_67);
 }
 
 static void ov91_021D1154(UnkStruct_ov91_021D0ED8 *param0)
@@ -1139,7 +1139,7 @@ static void ov91_021D1DF8(UnkStruct_ov91_021D0ED8 *param0, u32 param1)
     RenderControlFlags_SetCanABSpeedUpPrint(1);
     RenderControlFlags_SetAutoScrollFlags(0);
 
-    param0->unk_185 = Text_AddPrinterWithParams(&param0->unk_08[12], FONT_MESSAGE, param0->unk_100, 0, 0, Options_TextFrameDelay(param0->unk_00->unk_08), ov91_021D1E50);
+    param0->unk_185 = Text_AddPrinterWithParams(&param0->unk_08[12], FONT_MESSAGE, param0->unk_100, 0, 0, Options_TextFrameDelay(param0->unk_00->options), ov91_021D1E50);
 }
 
 static BOOL ov91_021D1E50(TextPrinterTemplate *param0, u16 param1)
@@ -1496,7 +1496,7 @@ static int ov91_021D261C(UnkStruct_ov91_021D0ED8 *param0)
     ov91_021D0F6C(param0);
 
     param0->unk_14C.monData = param0->unk_00->unk_00;
-    param0->unk_14C.options = param0->unk_00->unk_08;
+    param0->unk_14C.options = param0->unk_00->options;
     param0->unk_14C.dataType = SUMMARY_DATA_MON;
     param0->unk_14C.monIndex = 0;
     param0->unk_14C.monMax = 1;

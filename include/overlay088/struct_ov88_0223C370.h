@@ -22,7 +22,7 @@ typedef struct {
     PalPad *unk_0C;
     SaveData *saveData;
     WiFiHistory *wiFiHistory;
-    Options *unk_18;
+    Options *options;
     JournalEntry *unk_1C;
     GameRecords *records;
     Pokedex *unk_24;

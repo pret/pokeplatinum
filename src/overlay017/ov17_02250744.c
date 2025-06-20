@@ -241,7 +241,7 @@ static void ov17_022508E4(UnkStruct_ov17_0224FCA0 *param0, MessageLoader *param1
     int v1;
 
     if (param0->unk_00->unk_155 == 0) {
-        v1 = Options_TextFrameDelay(param0->unk_00->unk_196C);
+        v1 = Options_TextFrameDelay(param0->unk_00->options);
     } else {
         v1 = TEXT_SPEED_FAST;
     }
@@ -285,7 +285,7 @@ void ov17_022509AC(UnkStruct_ov17_0224FCA0 *param0)
     PaletteData_LoadBufferFromFileStart(param0->unk_10.unk_C0, 45, 35, 24, 0, 0, 0);
     PaletteData_LoadBufferFromFileStart(param0->unk_10.unk_C0, 45, 36, 24, 0, 0x20, 13 * 16);
 
-    v0 = Options_Frame(param0->unk_00->unk_196C);
+    v0 = Options_Frame(param0->unk_00->options);
 
     LoadMessageBoxGraphics(param0->unk_10.unk_20, 1, 1, 15, v0, HEAP_ID_24);
     PaletteData_LoadBufferFromFileStart(param0->unk_10.unk_C0, 38, GetMessageBoxPaletteNARCMember(v0), 24, 0, 0x20, 14 * 16);
@@ -322,7 +322,7 @@ void ov17_02250B00(UnkStruct_ov17_0224FCA0 *param0)
     PaletteData_LoadBufferFromFileStart(param0->unk_10.unk_C0, 45, 39, 24, 0, 0, 0);
     PaletteData_LoadBufferFromFileStart(param0->unk_10.unk_C0, 45, 36, 24, 0, 0x20, 13 * 16);
 
-    v0 = Options_Frame(param0->unk_00->unk_196C);
+    v0 = Options_Frame(param0->unk_00->options);
 
     LoadMessageBoxGraphics(param0->unk_10.unk_20, 1, 1, 15, v0, HEAP_ID_24);
     PaletteData_LoadBufferFromFileStart(param0->unk_10.unk_C0, 38, GetMessageBoxPaletteNARCMember(v0), 24, 0, 0x20, 14 * 16);

@@ -151,40 +151,40 @@ static int sub_0208927C(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-UnkStruct_02089438 *sub_020893B4(int heapID, int param1, int param2[], Options *param3, u32 param4, u32 param5)
+static UnkStruct_02089438 *sub_020893B4(int heapID, int param1, int param2[], Options *options, u32 param4, u32 param5)
 {
-    int v0;
+    int i;
     UnkStruct_02089438 *v1 = NULL;
 
     v1 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02089438));
 
     v1->unk_00 = param1;
     v1->unk_1C = Strbuf_Init(param1 + 1, heapID);
-    v1->unk_20 = param3;
+    v1->options = options;
 
-    for (v0 = 0; v0 < 4; v0++) {
-        v1->unk_04[v0] = param2[v0];
+    for (i = 0; i < 4; i++) {
+        v1->unk_04[i] = param2[i];
     }
 
-    v1->unk_04[v0] = param2[v0 - 1];
+    v1->unk_04[i] = param2[i - 1];
     v1->unk_2C = param4;
     v1->unk_30 = param5;
 
     return v1;
 }
 
-UnkStruct_02089438 *sub_02089400(int heapID, int param1, int param2[], Options *param3, u32 param4, u32 param5)
+UnkStruct_02089438 *sub_02089400(int heapID, int param1, int param2[], Options *options, u32 param4, u32 param5)
 {
-    UnkStruct_02089438 *v0 = sub_020893B4(heapID, param1, param2, param3, param4, param5);
+    UnkStruct_02089438 *v0 = sub_020893B4(heapID, param1, param2, options, param4, param5);
 
     v0->unk_24 = 0;
     v0->unk_28 = 0;
     return v0;
 }
 
-UnkStruct_02089438 *sub_0208941C(int heapID, int param1, int param2[], Options *param3, u32 param4, u32 param5, u32 param6, u32 param7)
+UnkStruct_02089438 *sub_0208941C(int heapID, int param1, int param2[], Options *options, u32 param4, u32 param5, u32 param6, u32 param7)
 {
-    UnkStruct_02089438 *v0 = sub_020893B4(heapID, param1, param2, param3, param4, param5);
+    UnkStruct_02089438 *v0 = sub_020893B4(heapID, param1, param2, options, param4, param5);
 
     v0->unk_24 = param6;
     v0->unk_28 = param7;

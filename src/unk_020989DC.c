@@ -106,7 +106,7 @@ UnkStruct_0203D9B8 *sub_020989DC(SaveData *saveData, int heapID)
     v0->unk_0C = SaveData_GetTrainerInfo(saveData);
     v0->unk_10 = SaveData_GetParty(saveData);
     v0->unk_14 = SaveData_GetBag(saveData);
-    v0->unk_18 = SaveData_GetOptions(saveData);
+    v0->options = SaveData_GetOptions(saveData);
 
     v1 = Poffin_New(heapID);
     v3 = StringTemplate_New(1, 32, heapID);
@@ -289,7 +289,7 @@ static int sub_02098C44(UnkStruct_02098BE4 *param0)
     partyMan->bag = param0->unk_0C->unk_14;
     partyMan->unk_21 = 0;
     partyMan->unk_20 = 20;
-    partyMan->options = param0->unk_0C->unk_18;
+    partyMan->options = param0->unk_0C->options;
 
     param0->appMan = ApplicationManager_New(&Unk_020F1E88, partyMan, param0->heapID);
     param0->unk_10 = (void *)partyMan;
@@ -322,7 +322,7 @@ static int sub_02098CB0(UnkStruct_02098BE4 *param0)
     v2 = Heap_AllocFromHeap(param0->heapID, sizeof(PokemonSummary));
 
     v2->monData = param0->unk_0C->unk_10;
-    v2->options = param0->unk_0C->unk_18;
+    v2->options = param0->unk_0C->options;
     v2->dataType = SUMMARY_DATA_PARTY_MON;
     v2->monIndex = v0;
     v2->monMax = Party_GetCurrentCount(v2->monData);
@@ -381,8 +381,8 @@ static int sub_02098D7C(UnkStruct_02098BE4 *param0)
     v1->unk_08 = param0->unk_0C->unk_1C[param0->unk_0C->unk_01].unk_02;
     v1->unk_04 = PoffinCase_AllocateForSlot(param0->unk_0C->poffinCase, param0->unk_0C->unk_1C[param0->unk_0C->unk_01].unk_00, param0->heapID);
     v1->unk_00 = Party_GetPokemonBySlotIndex(param0->unk_0C->unk_10, param0->unk_08);
-    v1->unk_0A = Options_TextFrameDelay(param0->unk_0C->unk_18);
-    v1->unk_0B = Options_Frame(param0->unk_0C->unk_18);
+    v1->unk_0A = Options_TextFrameDelay(param0->unk_0C->options);
+    v1->unk_0B = Options_Frame(param0->unk_0C->options);
 
     param0->appMan = ApplicationManager_New(&v0, v1, param0->heapID);
     param0->unk_10 = v1;
@@ -419,7 +419,7 @@ static int sub_02098E0C(UnkStruct_02098BE4 *param0)
     v2 = PoffinCase_AllocateForSlot(param0->unk_0C->poffinCase, param0->unk_0C->unk_1C[param0->unk_0C->unk_01].unk_00, param0->heapID);
 
     v1->monData = param0->unk_0C->unk_10;
-    v1->options = param0->unk_0C->unk_18;
+    v1->options = param0->unk_0C->options;
     v1->dataType = SUMMARY_DATA_PARTY_MON;
     v1->monIndex = param0->unk_08;
     v1->monMax = Party_GetCurrentCount(v1->monData);

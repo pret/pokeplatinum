@@ -103,7 +103,7 @@ void sub_0208A490(UnkStruct_02089688 *param0)
     SpriteSystem_LoadAnimResObjFromOpenNarc(v2, v3, v0, 11, FALSE, 1002);
 
     {
-        int v5 = Options_Frame(param0->unk_38C.unk_20);
+        int v5 = Options_Frame(param0->unk_38C.options);
 
         LoadMessageBoxGraphics(v1, 4, 1, 10, v5, HEAP_ID_101);
         PaletteData_LoadBufferFromFileStart(v4, 38, GetMessageBoxPaletteNARCMember(v5), 101, 1, 0x20, 11 * 16);

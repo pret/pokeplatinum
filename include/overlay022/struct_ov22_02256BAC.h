@@ -13,7 +13,7 @@ typedef struct {
     BgConfig *unk_00;
     SpriteList *unk_04;
     SpriteResourceCollection **unk_08;
-    const Options *unk_0C;
+    const Options *options;
     int unk_10;
     int unk_14;
     int unk_18;

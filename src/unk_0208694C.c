@@ -64,7 +64,7 @@ struct UnkStruct_02087A10_t {
     int unk_0C;
     int unk_10;
     int unk_14;
-    Options *unk_18;
+    Options *options;
     UnkStruct_02087A10_sub1 unk_1C;
     u16 unk_38;
     u16 unk_3A[6][13];
@@ -1189,7 +1189,7 @@ static int sub_02086F3C(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-UnkStruct_0208737C *sub_0208712C(int heapID, int param1, int param2, int param3, Options *param4)
+UnkStruct_0208737C *sub_0208712C(int heapID, int param1, int param2, int param3, Options *options)
 {
     UnkStruct_0208737C *v0 = (UnkStruct_0208737C *)Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0208737C));
 
@@ -1202,7 +1202,7 @@ UnkStruct_0208737C *sub_0208712C(int heapID, int param1, int param2, int param3,
     v0->unk_44 = 0;
     v0->unk_48 = NULL;
     v0->unk_10 = 0;
-    v0->unk_4C = param4;
+    v0->options = options;
     v0->unk_08 = 0;
 
     return v0;
@@ -1232,7 +1232,7 @@ static void sub_020871B0(UnkStruct_02087A10 *param0, UnkStruct_0208737C *param1)
     param0->unk_08 = param1->unk_08;
     param0->unk_0C = param1->unk_0C;
     param0->unk_10 = param1->unk_10;
-    param0->unk_18 = param1->unk_4C;
+    param0->options = param1->options;
 }
 
 static void sub_020871CC(void)
@@ -1508,7 +1508,7 @@ static void sub_0208769C(UnkStruct_02087A10 *param0, NARC *param1)
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 6, v0, 1, 0, (32 * 14 * 2), 1, HEAP_ID_18);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 7, v0, 0, 0, (32 * 14 * 2), 1, HEAP_ID_18);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, HEAP_ID_18);
-    LoadMessageBoxGraphics(param0->unk_160, 4, (32 * 8), 10, Options_Frame(param0->unk_18), HEAP_ID_18);
+    LoadMessageBoxGraphics(param0->unk_160, 4, (32 * 8), 10, Options_Frame(param0->options), HEAP_ID_18);
     Font_LoadScreenIndicatorsPalette(4, 12 * 32, HEAP_ID_18);
 
     param0->unk_510 = Graphics_GetCharDataFromOpenNARC(param1, 16, 1, &param0->unk_514, HEAP_ID_18);

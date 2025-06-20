@@ -650,7 +650,7 @@ static void ov79_021D14A4(UnkStruct_ov79_021D0E1C *param0)
     };
 
     LoadStandardWindowGraphics(param0->unk_24, 1, 1 + 18 + 12, 15, 0, param0->heapID);
-    LoadMessageBoxGraphics(param0->unk_24, 1, 1, 14, Options_Frame(param0->unk_20->unk_18), param0->heapID);
+    LoadMessageBoxGraphics(param0->unk_24, 1, 1, 14, Options_Frame(param0->unk_20->options), param0->heapID);
     Font_LoadTextPalette(0, 13 * 32, param0->heapID);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, param0->heapID);
     Font_LoadTextPalette(4, 13 * 32, param0->heapID);
@@ -700,7 +700,7 @@ static void ov79_021D1568(UnkStruct_ov79_021D0E1C *param0)
         param0->unk_30.unk_38[v0] = MessageLoader_GetNewStrbuf(param0->unk_2C, 17 + v0);
     }
 
-    param0->unk_30.unk_4C = Options_TextFrameDelay(param0->unk_20->unk_18);
+    param0->unk_30.unk_4C = Options_TextFrameDelay(param0->unk_20->options);
 }
 
 static void ov79_021D1618(UnkStruct_ov79_021D0E1C *param0)

@@ -1277,11 +1277,8 @@ static void ov70_0225E4EC(UnkStruct_ov70_0225E4EC *param0, SaveData *saveData, u
     }
 
     {
-        Options *v1;
-        u8 v2;
-
-        v1 = SaveData_GetOptions(saveData);
-        v2 = Options_Frame(v1);
+        Options *options = SaveData_GetOptions(saveData);
+        u8 v2 = Options_Frame(options);
 
         Font_LoadTextPalette(0, 5 * 32, heapID);
         Font_LoadScreenIndicatorsPalette(0, 4 * 32, heapID);
@@ -1508,13 +1505,7 @@ static void ov70_0225E9C8(UnkStruct_ov70_0225E9C8 *param0, UnkStruct_ov70_0225E4
     Window_FillTilemap(&param0->unk_00, 15);
 
     param0->unk_18 = Strbuf_Init(384, heapID);
-
-    {
-        Options *v0;
-
-        v0 = SaveData_GetOptions(saveData);
-        param0->unk_14 = Options_TextFrameDelay(v0);
-    }
+    param0->unk_14 = Options_TextFrameDelay(SaveData_GetOptions(saveData));
 }
 
 static void ov70_0225EA14(UnkStruct_ov70_0225E9C8 *param0)

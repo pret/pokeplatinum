@@ -20,7 +20,7 @@ typedef struct {
     TrainerInfo *unk_0C;
     Party *unk_10;
     Bag *unk_14;
-    Options *unk_18;
+    Options *options;
     UnkStruct_020989DC unk_1C[100];
 } UnkStruct_0203D9B8;
 

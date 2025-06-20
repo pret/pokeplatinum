@@ -568,11 +568,8 @@ static void ov67_0225CE30(UnkStruct_ov67_0225D154 *param0, u32 heapID)
     }
 
     {
-        Options *v1;
-        u8 v2;
-
-        v1 = SaveData_GetOptions(param0->saveData);
-        v2 = Options_Frame(v1);
+        Options *options = SaveData_GetOptions(param0->saveData);
+        u8 v2 = Options_Frame(options);
 
         Font_LoadTextPalette(0, 12 * 32, heapID);
         Font_LoadScreenIndicatorsPalette(0, 11 * 32, heapID);

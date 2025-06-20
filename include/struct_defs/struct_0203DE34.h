@@ -11,7 +11,7 @@
 typedef struct {
     SaveData *saveData;
     UnkStruct_0205C22C *unk_04;
-    Options *unk_08;
+    Options *options;
     GameRecords *records;
     JournalEntry *unk_10;
 } UnkStruct_0203DE34;

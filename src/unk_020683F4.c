@@ -936,12 +936,10 @@ static BOOL sub_02068F48(FieldTask *task)
         MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
         FieldMessage_AddWindow(fieldSystem->bgConfig, &v1->unk_00, 3);
 
-        {
-            const Options *v2 = SaveData_GetOptions(fieldSystem->saveData);
+        const Options *options = SaveData_GetOptions(fieldSystem->saveData);
 
-            FieldMessage_DrawWindow(&v1->unk_00, v2);
-            v1->unk_14 = FieldMessage_Print(&v1->unk_00, v1->unk_10, v2, 1);
-        }
+        FieldMessage_DrawWindow(&v1->unk_00, options);
+        v1->unk_14 = FieldMessage_Print(&v1->unk_00, v1->unk_10, options, 1);
         v1->unk_16++;
         break;
     case 1:

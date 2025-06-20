@@ -266,14 +266,14 @@ static void sub_02052F28(FieldSystem *fieldSystem, UnkStruct_0205300C *param1)
 
 static void sub_02052FA8(FieldSystem *fieldSystem, UnkStruct_0205300C *param1)
 {
-    Options *v0 = SaveData_GetOptions(fieldSystem->saveData);
+    Options *options = SaveData_GetOptions(fieldSystem->saveData);
 
     param1->unk_2C = MessageBank_GetNewStrbufFromNARC(26, 213, 15, 32);
 
     FieldMessage_AddWindow(fieldSystem->bgConfig, &param1->unk_1C, 3);
-    FieldMessage_DrawWindow(&param1->unk_1C, v0);
+    FieldMessage_DrawWindow(&param1->unk_1C, options);
 
-    param1->unk_34 = FieldMessage_Print(&param1->unk_1C, param1->unk_2C, v0, 1);
+    param1->unk_34 = FieldMessage_Print(&param1->unk_1C, param1->unk_2C, options, 1);
     param1->unk_30 = Window_AddWaitDial(&param1->unk_1C, 1024 - (18 + 12));
 }
 

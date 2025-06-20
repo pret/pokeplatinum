@@ -52,7 +52,7 @@ typedef struct {
     Strbuf* unk_118;
     Strbuf* unk_11C;
     PaletteData *unk_120;
-    const Options * unk_124;
+    const Options *options;
     SaveData *saveData;
     BattleFrontier *frontier;
 } UnkStruct_ov110_021D0F78;
@@ -119,7 +119,7 @@ int ov110_021D0D80 (ApplicationManager *appMan, int * param1)
     v1->unk_05 = v2->unk_04;
     v1->unk_06 = v2->unk_05;
     v1->unk_08 = v2->unk_06;
-    v1->unk_124 = SaveData_GetOptions(v1->saveData);
+    v1->options = SaveData_GetOptions(v1->saveData);
 
     ov110_021D1180(v1);
 

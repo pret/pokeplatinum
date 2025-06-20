@@ -9,7 +9,7 @@ typedef struct {
     int unk_04[5];
     int unk_18;
     Strbuf *unk_1C;
-    Options *unk_20;
+    Options *options;
     int unk_24;
     u32 unk_28;
     u32 unk_2C;

@@ -18,7 +18,7 @@ typedef struct {
     int unk_14;
     const UnkStruct_02029D04 *unk_18;
     UnkStruct_02095C60 *unk_1C;
-    const Options *unk_20;
+    const Options *options;
     const TrainerInfo *unk_24;
 } UnkStruct_02093BBC;
 

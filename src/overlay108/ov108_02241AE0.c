@@ -194,7 +194,7 @@ struct UnkStruct_ov108_02241DB0_t {
     Menu *unk_C0;
     StringList unk_C4[2];
     PaletteData *unk_D4;
-    Options *unk_D8;
+    Options *options;
     SaveData *saveData;
     UnkStruct_020304A0 *unk_E0;
     UnkStruct_020305B8 *unk_E4;
@@ -298,7 +298,7 @@ int ov108_02241AE0(ApplicationManager *appMan, int *param1)
     v1->unk_426 = v2->unk_18;
     v1->unk_12 = v2->unk_07;
     v1->unk_3C4 = &v2->unk_38;
-    v1->unk_D8 = SaveData_GetOptions(v1->saveData);
+    v1->options = SaveData_GetOptions(v1->saveData);
     v1->unk_3C8 = v2->unk_30;
     v1->unk_3CC = v2->unk_34;
     v1->unk_0E = 0xff;

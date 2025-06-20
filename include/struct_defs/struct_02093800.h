@@ -21,7 +21,7 @@ typedef struct {
     const Strbuf *unk_0C;
     const TrainerInfo *unk_10;
     UnkStruct_0202A750 *unk_14;
-    const Options *unk_18;
+    const Options *options;
     SaveData *saveData;
     void *unk_20;
 } UnkStruct_02093800;

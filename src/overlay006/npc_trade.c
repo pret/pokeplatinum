@@ -89,7 +89,7 @@ void ov6_02246254(FieldSystem *fieldSystem, NpcTradeData *data, int slot, UnkStr
     param3->unk_04 = Pokemon_GetBoxPokemon(receivingMon);
     param3->unk_08 = data->trainerInfo;
     param3->unk_10 = 1;
-    param3->unk_14 = SaveData_GetOptions(fieldSystem->saveData);
+    param3->options = SaveData_GetOptions(fieldSystem->saveData);
 
     int timeOfDay = FieldSystem_GetTimeOfDay(fieldSystem);
     if (timeOfDay == TIMEOFDAY_MORNING || timeOfDay == TIMEOFDAY_DAY) {
