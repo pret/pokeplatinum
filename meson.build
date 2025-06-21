@@ -40,7 +40,7 @@ c_args = [
 if get_option('gdb_debugging')
     c_args += [
         '-O1,p',
-        '-inline', 'off'
+#        '-inline', 'off' todo: figure out why this makes the rom crash after the copyright screen
     ]
 else
     c_args += '-O4,p'
@@ -59,6 +59,12 @@ pokeplatinum_args = [
 
 if get_option('gdb_debugging')
     pokeplatinum_args += '-DGDB_DEBUGGING'
+endif
+
+if get_option('logging_enabled')
+    pokeplatinum_args += [
+        '-DLOGGING_ENABLED',
+    ]
 endif
 
 asm_args = [
