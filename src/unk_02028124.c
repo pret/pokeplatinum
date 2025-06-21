@@ -261,21 +261,21 @@ int Mail_GetEmptySlotInArray(Mailbox *mailbox, int param1)
     return 0xFFFFFFFF;
 }
 
-void sub_02028470(Mailbox *mailbox, int param1, int param2)
+void sub_02028470(Mailbox *mailbox, int param1, int slot)
 {
-    Mail *mail = Mailbox_GetMailFromSlot(mailbox, param1, param2);
+    Mail *mail = Mailbox_GetMailFromSlot(mailbox, param1, slot);
 
     if (mail != NULL) {
         Mail_Init(mail);
     }
 }
 
-void Mailbox_CopyMailFromSlot(Mailbox *mailbox, int param1, int slot, Mail *dst)
+void Mailbox_CopyMailToSlot(Mailbox *mailbox, int param1, int slot, Mail *src)
 {
-    Mail *src = Mailbox_GetMailFromSlot(mailbox, param1, slot);
+    Mail *dest = Mailbox_GetMailFromSlot(mailbox, param1, slot);
 
-    if (src != NULL) {
-        Mail_Copy(dst, src);
+    if (dest != NULL) {
+        Mail_Copy(src, dest);
     }
 }
 
