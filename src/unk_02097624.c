@@ -207,7 +207,7 @@ UnkStruct_020978D8 *sub_02097834(const Mail *mail, int heapID)
     v1->unk_08 = Mail_GetTrainerID(mail);
     v1->unk_10 = Strbuf_Init(8, heapID);
 
-    Strbuf_CopyChars(v1->unk_10, sub_0202830C((Mail *)mail));
+    Strbuf_CopyChars(v1->unk_10, Mail_GetTrainerName((Mail *)mail));
 
     v1->mailType = Mail_GetMailType(mail);
     v1->language = Mail_GetLanguage(mail);

@@ -11,7 +11,7 @@ Mail *Mail_New(int heapID);
 void Mail_Copy(Mail *src, Mail *dest);
 void sub_020281AC(Mail *mail, u8 mailType, u8 param2, SaveData *saveData);
 u32 Mail_GetTrainerID(const Mail *mail);
-u16 *sub_0202830C(Mail *param0);
+u16 *Mail_GetTrainerName(Mail *mail);
 u8 Mail_GetTrainerGender(const Mail *mail);
 u8 Mail_GetMailType(const Mail *mail);
 void Mail_SetMailType(Mail *mail, const u8 mailType);

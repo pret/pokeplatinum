@@ -51,7 +51,7 @@ void Mail_Init(Mail *mail)
     mail->gameVersion = gGameVersion;
     mail->mailType = 0xFFFF;
 
-    CharCode_FillWithEOS(mail->unk_08, 8);
+    CharCode_FillWithEOS(mail->trainerName, 8);
 
     for (i = 0; i < 3; i++) {
         mail->unk_18[i].val2 = 0xFFFF;
@@ -97,17 +97,17 @@ void sub_020281AC(Mail *mail, u8 mailType, u8 param2, SaveData *saveData)
     Mail_Init(mail);
 
     mail->mailType = mailType;
-    Party *v9 = SaveData_GetParty(saveData);
+    Party *party = SaveData_GetParty(saveData);
     trainerInfo = SaveData_GetTrainerInfo(saveData);
 
-    CharCode_Copy(mail->unk_08, TrainerInfo_Name(trainerInfo));
+    CharCode_Copy(mail->trainerName, TrainerInfo_Name(trainerInfo));
 
     mail->trainerGender = (u8)TrainerInfo_Gender(trainerInfo);
     mail->trainerID = TrainerInfo_ID(trainerInfo);
     mail->unk_1E = 0;
 
-    for (i = param2, v1 = 0; i < Party_GetCurrentCount(v9); i++) {
-        mon = Party_GetPokemonBySlotIndex(v9, i);
+    for (i = param2, v1 = 0; i < Party_GetCurrentCount(party); i++) {
+        mon = Party_GetPokemonBySlotIndex(party, i);
         species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
         isEgg = Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
         form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
@@ -139,9 +139,9 @@ u32 Mail_GetTrainerID(const Mail *mail)
     return mail->trainerID;
 }
 
-u16 *sub_0202830C(Mail *param0)
+u16 *Mail_GetTrainerName(Mail *mail)
 {
-    return &(param0->unk_08[0]);
+    return &(mail->trainerName[0]);
 }
 
 u8 Mail_GetTrainerGender(const Mail *mail)
