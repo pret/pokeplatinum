@@ -15,7 +15,7 @@
 typedef struct {
     Party *party;
     Bag *bag;
-    MailBox *mailBox;
+    Mailbox *mailbox;
     Options *options;
     TVBroadcast *broadcast;
     BattleRegulation *battleRegulation;

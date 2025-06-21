@@ -21,7 +21,7 @@
 
 static int Mail_GetEmptySlotInArray_(Mail *array, int arraySize);
 static int Mail_GetEmptySlotCountInArray(Mail *array, int arraySize);
-static Mail *MailBox_GetMailFromSlot(MailBox *mailBox, int param1, int slot);
+static Mail *Mailbox_GetMailFromSlot(Mailbox *mailbox, int param1, int slot);
 
 static const struct {
     u16 unk_00;
@@ -230,30 +230,30 @@ void sub_0202841C(Mail *param0, Sentence *param1, u8 param2)
     sub_02014CC0(&param0->unk_20[param2], param1);
 }
 
-MailBox *SaveData_GetMailBox(SaveData *saveData)
+Mailbox *SaveData_GetMailbox(SaveData *saveData)
 {
     return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_MAILBOX);
 }
 
-int MailBox_SaveSize(void)
+int Mailbox_SaveSize(void)
 {
-    return sizeof(MailBox);
+    return sizeof(Mailbox);
 }
 
-void MailBox_Init(MailBox *mailBox)
+void Mailbox_Init(Mailbox *mailbox)
 {
     int i = 0;
 
     for (i = 0; i < MAILBOX_SIZE; i++) {
-        Mail_Init(&mailBox->mail[i]);
+        Mail_Init(&mailbox->mail[i]);
     }
 }
 
-int Mail_GetEmptySlotInArray(MailBox *mailBox, int param1)
+int Mail_GetEmptySlotInArray(Mailbox *mailbox, int param1)
 {
     switch (param1) {
     case 0:
-        return Mail_GetEmptySlotInArray_(mailBox->mail, MAILBOX_SIZE);
+        return Mail_GetEmptySlotInArray_(mailbox->mail, MAILBOX_SIZE);
     default:
         return 0xFFFFFFFF;
     }
@@ -261,29 +261,29 @@ int Mail_GetEmptySlotInArray(MailBox *mailBox, int param1)
     return 0xFFFFFFFF;
 }
 
-void sub_02028470(MailBox *mailBox, int param1, int param2)
+void sub_02028470(Mailbox *mailbox, int param1, int param2)
 {
-    Mail *mail = MailBox_GetMailFromSlot(mailBox, param1, param2);
+    Mail *mail = Mailbox_GetMailFromSlot(mailbox, param1, param2);
 
     if (mail != NULL) {
         Mail_Init(mail);
     }
 }
 
-void MailBox_CopyMailFromSlot(MailBox *mailBox, int param1, int slot, Mail *dst)
+void Mailbox_CopyMailFromSlot(Mailbox *mailbox, int param1, int slot, Mail *dst)
 {
-    Mail *src = MailBox_GetMailFromSlot(mailBox, param1, slot);
+    Mail *src = Mailbox_GetMailFromSlot(mailbox, param1, slot);
 
     if (src != NULL) {
         Mail_Copy(dst, src);
     }
 }
 
-int sub_02028494(MailBox *mailBox, int param1)
+int sub_02028494(Mailbox *mailbox, int param1)
 {
     switch (param1) {
     case 0:
-        return Mail_GetEmptySlotCountInArray(mailBox->mail, MAILBOX_SIZE);
+        return Mail_GetEmptySlotCountInArray(mailbox->mail, MAILBOX_SIZE);
     default:
         return 0;
     }
@@ -291,9 +291,9 @@ int sub_02028494(MailBox *mailBox, int param1)
     return 0;
 }
 
-Mail *sub_020284A8(MailBox *mailBox, int param1, int slot, int heapID)
+Mail *sub_020284A8(Mailbox *mailbox, int param1, int slot, int heapID)
 {
-    Mail *v0 = MailBox_GetMailFromSlot(mailBox, param1, slot);
+    Mail *v0 = Mailbox_GetMailFromSlot(mailbox, param1, slot);
     Mail *v1 = Mail_New(heapID);
 
     if (v0 != NULL) {
@@ -303,9 +303,9 @@ Mail *sub_020284A8(MailBox *mailBox, int param1, int slot, int heapID)
     return v1;
 }
 
-void sub_020284CC(MailBox *mailBox, int param1, int param2, Mail *param3)
+void sub_020284CC(Mailbox *mailbox, int param1, int param2, Mail *param3)
 {
-    Mail *v0 = MailBox_GetMailFromSlot(mailBox, param1, param2);
+    Mail *v0 = Mailbox_GetMailFromSlot(mailbox, param1, param2);
 
     if (v0 == NULL) {
         Mail_Init(param3);
@@ -341,14 +341,14 @@ static int Mail_GetEmptySlotCountInArray(Mail *array, int arraySize)
     return count;
 }
 
-static Mail *MailBox_GetMailFromSlot(MailBox *mailBox, int param1, int slot)
+static Mail *Mailbox_GetMailFromSlot(Mailbox *mailbox, int param1, int slot)
 {
     Mail *mail = NULL;
 
     switch (param1) {
     case 0:
         if (slot < MAILBOX_SIZE) {
-            mail = &(mailBox->mail[slot]);
+            mail = &(mailbox->mail[slot]);
         }
 
         break;

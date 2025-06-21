@@ -104,7 +104,7 @@ typedef struct {
     Window unk_194;
     UnkStruct_0206A844 *unk_1A4;
     UnkStruct_02097728 *unk_1A8;
-    MailBox *mailBox;
+    Mailbox *mailbox;
     Bag *bag;
     PartyManagementData *unk_1B4;
 } UnkStruct_02072334;
@@ -898,19 +898,19 @@ static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *saveData, int hea
 {
     u8 i = 0, v1 = 0, v2 = 0xFF, v3 = 0;
     int v4;
-    MailBox *mailBox;
+    Mailbox *mailbox;
     Mail *mail;
     UnkStruct_02072EB8 *v7, *v8;
 
-    mailBox = SaveData_GetMailBox(saveData);
+    mailbox = SaveData_GetMailbox(saveData);
 
-    param0->mailBox = mailBox;
+    param0->mailbox = mailbox;
     param0->bag = SaveData_GetBag(saveData);
 
     mail = Mail_New(heapID);
 
     for (i = 0; i < MAILBOX_SIZE; i++) {
-        sub_020284CC(mailBox, 0, i, mail);
+        sub_020284CC(mailbox, 0, i, mail);
 
         v7 = &(param0->unk_1C[i]);
         v8 = &(param0->unk_1C[param0->unk_19]);
@@ -969,7 +969,7 @@ static BOOL sub_02073060(UnkStruct_02072334 *param0)
         Bag_TryAddItem(param0->bag, v0->item, 1, param0->heapID);
     }
 
-    sub_02028470(param0->mailBox, 0, param0->unk_18);
+    sub_02028470(param0->mailbox, 0, param0->unk_18);
     sub_02073020(param0, param0->unk_18);
     sub_02072EB8(v0, param0->unk_18);
 
@@ -991,7 +991,7 @@ static void sub_020730B8(UnkStruct_02072334 *param0, u8 param1, BOOL param2)
     v1 = SaveData_GetParty(FieldSystem_GetSaveData(param0->fieldSystem));
     v2 = Party_GetPokemonBySlotIndex(v1, param1);
 
-    sub_020977E4(param0->mailBox, param0->unk_18, v2, param0->heapID);
+    sub_020977E4(param0->mailbox, param0->unk_18, v2, param0->heapID);
 
     if (param2) {
         if (Bag_CanFitItem(param0->bag, v0->item, 1, param0->heapID)) {
@@ -1204,7 +1204,7 @@ static int sub_02073524(UnkStruct_02072334 *param0, int param1)
         partyMan->party = SaveData_GetParty(FieldSystem_GetSaveData(param0->fieldSystem));
         partyMan->bag = SaveData_GetBag(FieldSystem_GetSaveData(param0->fieldSystem));
         partyMan->options = SaveData_GetOptions(FieldSystem_GetSaveData(param0->fieldSystem));
-        partyMan->mailBox = SaveData_GetMailBox(param0->fieldSystem->saveData);
+        partyMan->mailbox = SaveData_GetMailbox(param0->fieldSystem->saveData);
         partyMan->unk_21 = 0;
         partyMan->unk_20 = param1;
         partyMan->usedItemID = param0->unk_1C[param0->unk_18].item;

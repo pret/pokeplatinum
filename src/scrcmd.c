@@ -5771,9 +5771,9 @@ static BOOL ScrCmd_1B4(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
-    MailBox *mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+    Mailbox *mailbox = SaveData_GetMailbox(fieldSystem->saveData);
 
-    *destVar = (u16)sub_02028494(mailBox, 0);
+    *destVar = (u16)sub_02028494(mailbox, 0);
     return FALSE;
 }
 

@@ -59,14 +59,14 @@ UnkStruct_02097728 *sub_02097624(SaveData *saveData, int param1, u8 param2, u8 p
     UnkStruct_02097728 *v0;
     int v2;
 
-    MailBox *mailBox = SaveData_GetMailBox(saveData);
+    Mailbox *mailbox = SaveData_GetMailbox(saveData);
     v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(UnkStruct_02097728));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_02097728));
 
     v0->unk_0F = param3;
     v0->unk_0E = param2;
-    v0->mailBox = mailBox;
+    v0->mailbox = mailbox;
     v0->unk_00 = 1;
     v0->unk_08 = param1;
     v0->unk_0C = 0;
@@ -89,10 +89,10 @@ UnkStruct_02097728 *sub_0209767C(SaveData *saveData, int param1, u16 param2, int
     v0->unk_0C = param2;
     v0->saveData = saveData;
 
-    MailBox *mailBox = SaveData_GetMailBox(saveData);
+    Mailbox *mailbox = SaveData_GetMailbox(saveData);
 
-    v0->mailBox = mailBox;
-    v0->unk_14 = sub_020284A8(mailBox, param1, param2, heapID);
+    v0->mailbox = mailbox;
+    v0->unk_14 = sub_020284A8(mailbox, param1, param2, heapID);
 
     return v0;
 }
@@ -134,7 +134,7 @@ int sub_0209772C(UnkStruct_02097728 *param0, int param1, u8 param2)
         return 0;
     }
 
-    MailBox_CopyMailFromSlot(param0->mailBox, param1, param2, param0->unk_14);
+    Mailbox_CopyMailFromSlot(param0->mailbox, param1, param2, param0->unk_14);
     return 1;
 }
 
@@ -157,10 +157,10 @@ void sub_02097770(UnkStruct_02097728 *param0)
     Heap_FreeToHeap(param0);
 }
 
-int sub_02097788(MailBox *mailBox, Pokemon *mon, int heapID)
+int sub_02097788(Mailbox *mailbox, Pokemon *mon, int heapID)
 {
     int item = ITEM_NONE;
-    int slot = Mail_GetEmptySlotInArray(mailBox, 0);
+    int slot = Mail_GetEmptySlotInArray(mailbox, 0);
 
     if (slot == 0xFFFFFFFF) {
         return 0xFFFFFFFF;
@@ -169,7 +169,7 @@ int sub_02097788(MailBox *mailBox, Pokemon *mon, int heapID)
     Mail *mail = Mail_New(heapID);
 
     Pokemon_GetValue(mon, MON_DATA_MAIL, mail);
-    MailBox_CopyMailFromSlot(mailBox, 0, slot, mail);
+    Mailbox_CopyMailFromSlot(mailbox, 0, slot, mail);
     Mail_Init(mail);
     Pokemon_SetValue(mon, MON_DATA_MAIL, mail);
     Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &item);
@@ -178,10 +178,10 @@ int sub_02097788(MailBox *mailBox, Pokemon *mon, int heapID)
     return slot;
 }
 
-int sub_020977E4(MailBox *mailBox, u16 param1, Pokemon *mon, int heapID)
+int sub_020977E4(Mailbox *mailbox, u16 param1, Pokemon *mon, int heapID)
 {
     int item = 0;
-    Mail *mail = sub_020284A8(mailBox, 0, param1, heapID);
+    Mail *mail = sub_020284A8(mailbox, 0, param1, heapID);
 
     if (mail == NULL) {
         return 0xFFFFFFFF;
@@ -191,7 +191,7 @@ int sub_020977E4(MailBox *mailBox, u16 param1, Pokemon *mon, int heapID)
 
     Pokemon_SetValue(mon, MON_DATA_MAIL, mail);
     Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &item);
-    sub_02028470(mailBox, 0, param1);
+    sub_02028470(mailbox, 0, param1);
     Heap_FreeToHeap(mail);
 
     return param1;

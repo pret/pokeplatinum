@@ -334,7 +334,7 @@ static int sub_0204F50C(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, in
 
     partyMan->party = SaveData_GetParty(fieldSystem->saveData);
     partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
-    partyMan->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+    partyMan->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
     partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
 
     partyMan->unk_21 = 0;

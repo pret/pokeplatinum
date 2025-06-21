@@ -20,6 +20,6 @@ typedef struct {
 
 typedef struct {
     Mail mail[MAILBOX_SIZE];
-} MailBox;
+} Mailbox;
 
 #endif // POKEPLATINUM_STRUCT_MAIL_H

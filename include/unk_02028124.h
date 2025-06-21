@@ -21,14 +21,14 @@ u16 sub_02028328(const Mail *param0, u8 param1, u8 param2, u16 param3);
 u16 sub_02028408(const Mail *param0);
 Sentence *sub_0202840C(Mail *param0, u8 param1);
 void sub_0202841C(Mail *param0, Sentence *param1, u8 param2);
-MailBox *SaveData_GetMailBox(SaveData *saveData);
-int MailBox_SaveSize(void);
-void MailBox_Init(MailBox *param0);
-int Mail_GetEmptySlotInArray(MailBox *mailBox, int param1);
-void sub_02028470(MailBox *param0, int param1, int param2);
-void MailBox_CopyMailFromSlot(MailBox *mailBox, int param1, int slot, Mail *param3);
-int sub_02028494(MailBox *mailBox, int param1);
-Mail *sub_020284A8(MailBox *mailBox, int param1, int slot, int heapID);
-void sub_020284CC(MailBox *param0, int param1, int param2, Mail *param3);
+Mailbox *SaveData_GetMailbox(SaveData *saveData);
+int Mailbox_SaveSize(void);
+void Mailbox_Init(Mailbox *mailbox);
+int Mail_GetEmptySlotInArray(Mailbox *mailbox, int param1);
+void sub_02028470(Mailbox *mailbox, int param1, int param2);
+void Mailbox_CopyMailFromSlot(Mailbox *mailbox, int param1, int slot, Mail *param3);
+int sub_02028494(Mailbox *mailbox, int param1);
+Mail *sub_020284A8(Mailbox *mailbox, int param1, int slot, int heapID);
+void sub_020284CC(Mailbox *mailbox, int param1, int param2, Mail *param3);
 
 #endif // POKEPLATINUM_UNK_02028124_H

@@ -341,7 +341,7 @@ static void sub_02068630(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 
     partyMan->party = SaveData_GetParty(fieldSystem->saveData);
     partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
-    partyMan->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+    partyMan->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
     partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
     partyMan->broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
     partyMan->fieldMoveContext = &menu->fieldMoveContext;
@@ -590,7 +590,7 @@ static void sub_02068A34(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 
     partyMan->party = SaveData_GetParty(fieldSystem->saveData);
     partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
-    partyMan->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+    partyMan->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
     partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
     partyMan->fieldMoveContext = &menu->fieldMoveContext;
     partyMan->unk_21 = 0;
@@ -978,7 +978,7 @@ static void sub_02068FEC(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 
     partyMan->party = SaveData_GetParty(fieldSystem->saveData);
     partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
-    partyMan->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+    partyMan->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
     partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
     partyMan->broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
     partyMan->fieldMoveContext = &menu->fieldMoveContext;

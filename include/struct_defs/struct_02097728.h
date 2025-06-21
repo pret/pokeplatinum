@@ -15,7 +15,7 @@ typedef struct {
     u8 unk_0F;
     SaveData *saveData;
     Mail *unk_14;
-    MailBox *mailBox;
+    Mailbox *mailbox;
 } UnkStruct_02097728;
 
 #endif // POKEPLATINUM_STRUCT_02097728_H

@@ -1269,7 +1269,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
 
         partyMan->party = SaveData_GetParty(fieldSystem->saveData);
         partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
-        partyMan->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+        partyMan->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
         partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
         partyMan->fieldMoveContext = &menu->fieldMoveContext;
         partyMan->unk_21 = 0;
@@ -1310,7 +1310,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
 
             partyMan->party = v7;
             partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
-            partyMan->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+            partyMan->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
             partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
             partyMan->fieldMoveContext = &menu->fieldMoveContext;
             partyMan->unk_21 = 0;
@@ -1591,7 +1591,7 @@ static BOOL sub_0203C1C8(FieldTask *taskMan)
 
         partyMan->party = SaveData_GetParty(fieldSystem->saveData);
         partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
-        partyMan->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+        partyMan->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
         partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
         partyMan->fieldMoveContext = &menu->fieldMoveContext;
         partyMan->unk_21 = 0;
@@ -1811,7 +1811,7 @@ static void sub_0203C668(FieldSystem *fieldSystem, StartMenu *menu, u8 param2)
     memset(partyMan, 0, sizeof(PartyManagementData));
     partyMan->party = SaveData_GetParty(fieldSystem->saveData);
     partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
-    partyMan->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+    partyMan->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
     partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
     partyMan->fieldMoveContext = &menu->fieldMoveContext;
     partyMan->unk_21 = 0;

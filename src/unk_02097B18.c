@@ -361,7 +361,7 @@ static BOOL sub_02097F38(FieldTask *param0)
 
         partyMan->party = v1->unk_1C;
         partyMan->bag = SaveData_GetBag(v0->saveData);
-        partyMan->mailBox = SaveData_GetMailBox(v0->saveData);
+        partyMan->mailbox = SaveData_GetMailbox(v0->saveData);
         partyMan->selectedMonSlot = 0;
         partyMan->unk_21 = 0;
         partyMan->unk_20 = 15;
