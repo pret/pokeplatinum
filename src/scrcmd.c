@@ -557,10 +557,10 @@ static BOOL ScrCmd_1B5(ScriptContext *ctx);
 static BOOL ScrCmd_GetTimeOfDay(ScriptContext *ctx);
 static BOOL ScrCmd_GetRandom(ScriptContext *ctx);
 static BOOL ScrCmd_GetRandom2(ScriptContext *ctx);
-static BOOL ScrCmd_1C1(ScriptContext *ctx);
-static BOOL ScrCmd_1C2(ScriptContext *ctx);
-static BOOL ScrCmd_1C3(ScriptContext *ctx);
-static BOOL ScrCmd_1C4(ScriptContext *ctx);
+static BOOL ScrCmd_CalcSizeContestResult(ScriptContext *ctx);
+static BOOL ScrCmd_UpdateSizeContestRecord(ScriptContext *ctx);
+static BOOL ScrCmd_BufferPartyPokemonSize(ScriptContext *ctx);
+static BOOL ScrCmd_BufferSizeContestRecord(ScriptContext *ctx);
 static BOOL ScrCmd_InitSizeContestRecord(ScriptContext *ctx);
 static BOOL ScrCmd_GiveJournal(ScriptContext *ctx);
 static BOOL ScrCmd_CreateJournalEvent(ScriptContext *ctx);
@@ -1218,10 +1218,10 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetDaycareCompatibilityLevel,
     ScrCmd_CheckDaycareHasEgg,
     ScrCmd_CheckPartyHasSpecies,
-    ScrCmd_1C1,
-    ScrCmd_1C2,
-    ScrCmd_1C3,
-    ScrCmd_1C4,
+    ScrCmd_CalcSizeContestResult,
+    ScrCmd_UpdateSizeContestRecord,
+    ScrCmd_BufferPartyPokemonSize,
+    ScrCmd_BufferSizeContestRecord,
     ScrCmd_InitSizeContestRecord,
     ScrCmd_SelectPartyMonMove,
     ScrCmd_GetSelectedPartyMonMove,
@@ -5814,46 +5814,46 @@ static BOOL ScrCmd_GetRandom2(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_1C1(ScriptContext *ctx)
+static BOOL ScrCmd_CalcSizeContestResult(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
-    u16 v2 = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    u16 partySlot = ScriptContext_GetVar(ctx);
 
-    *v1 = SizeContest_CalcResultForPartyMon(fieldSystem, v2);
+    *destVar = SizeContest_CalcResultForPartyMon(fieldSystem, partySlot);
 
     return FALSE;
 }
 
-static BOOL ScrCmd_1C2(ScriptContext *ctx)
+static BOOL ScrCmd_UpdateSizeContestRecord(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 v2 = ScriptContext_GetVar(ctx);
+    u16 partySlot = ScriptContext_GetVar(ctx);
 
-    SizeContest_UpdateRecordFromPartyMon(fieldSystem, v2);
+    SizeContest_UpdateRecordFromPartyMon(fieldSystem, partySlot);
 
     return FALSE;
 }
 
-static BOOL ScrCmd_1C3(ScriptContext *ctx)
+static BOOL ScrCmd_BufferPartyPokemonSize(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 v1 = ScriptContext_GetVar(ctx);
-    u16 v2 = ScriptContext_GetVar(ctx);
-    u16 v3 = ScriptContext_GetVar(ctx);
+    u16 intPartIdx = ScriptContext_GetVar(ctx);
+    u16 fracPartIdx = ScriptContext_GetVar(ctx);
+    u16 partySlot = ScriptContext_GetVar(ctx);
 
-    SizeContest_SetPartyMonSizeStrParams(fieldSystem, v1, v2, v3);
+    SizeContest_SetPartyMonSizeStrParams(fieldSystem, intPartIdx, fracPartIdx, partySlot);
     return FALSE;
 }
 
-static BOOL ScrCmd_1C4(ScriptContext *ctx)
+static BOOL ScrCmd_BufferSizeContestRecord(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 v1 = ScriptContext_GetVar(ctx);
-    u16 v2 = ScriptContext_GetVar(ctx);
-    u16 v3 = ScriptContext_GetVar(ctx);
+    u16 intPartIdx = ScriptContext_GetVar(ctx);
+    u16 fracPartIdx = ScriptContext_GetVar(ctx);
+    u16 species = ScriptContext_GetVar(ctx);
 
-    SizeContest_SetRecordSizeStrParams(fieldSystem, v1, v2, v3);
+    SizeContest_SetRecordSizeStrParams(fieldSystem, intPartIdx, fracPartIdx, species);
     return FALSE;
 }
 

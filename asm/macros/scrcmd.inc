@@ -2493,29 +2493,29 @@
     .short \species
     .endm
 
-    .macro ScrCmd_1C1 arg0, arg1
+    .macro CalcSizeContestResult destVar, partySlot
     .short 449
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \partySlot
     .endm
 
-    .macro ScrCmd_1C2 arg0
+    .macro UpdateSizeContestRecord partySlot
     .short 450
-    .short \arg0
+    .short \partySlot
     .endm
 
-    .macro ScrCmd_1C3 arg0, arg1, arg2
+    .macro BufferPartyPokemonSize intPartIdx, fracPartIdx, partySlot
     .short 451
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \intPartIdx
+    .short \fracPartIdx
+    .short \partySlot
     .endm
 
-    .macro ScrCmd_1C4 arg0, arg1, arg2
+    .macro BufferSizeContestRecord intPartIdx, fracPartIdx, species
     .short 452
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \intPartIdx
+    .short \fracPartIdx
+    .short \species
     .endm
 
     .macro InitSizeContestRecord
