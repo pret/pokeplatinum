@@ -1,14 +1,14 @@
-#include "poketch/poketch_system.h"
+#include "applications/poketch/base/poketch_system.h"
 
 #include <nitro.h>
 #include <string.h>
 
 #include "generated/genders.h"
 
+#include "applications/poketch/base/poketch_button.h"
+#include "applications/poketch/base/poketch_graphics.h"
+#include "applications/poketch/base/poketch_task.h"
 #include "field/field_system_decl.h"
-#include "poketch/poketch_button.h"
-#include "poketch/poketch_graphics.h"
-#include "poketch/poketch_task.h"
 
 #include "bg_window.h"
 #include "enums.h"
