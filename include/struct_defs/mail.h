@@ -1,11 +1,12 @@
 #ifndef POKEPLATINUM_STRUCT_MAIL_H
 #define POKEPLATINUM_STRUCT_MAIL_H
 
-#include "constants/mail.h"
 #include "constants/string.h"
 
 #include "struct_defs/sentence.h"
 #include "struct_defs/union_02028328.h"
+
+#define MAILBOX_SIZE 20
 
 typedef struct {
     u32 trainerID;
