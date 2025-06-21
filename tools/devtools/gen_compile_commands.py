@@ -61,18 +61,15 @@ with open(meson_options_file, 'r') as optf:
 
 def find_option(opt: str):
     return [o["value"] for o in meson_options if o["name"] == opt][0]
+
 gdb_debugging = find_option("gdb_debugging")
 logging_enabled = find_option("logging_enabled")
-logging_subsystems = find_option("logging_subsystems")
 
 if gdb_debugging:
     arm9_c_flags.append("-DGDB_DEBUGGING")
 
 if logging_enabled:
     arm9_c_flags.append("-DLOGGING_ENABLED")
-    arm9_c_flags.append(f"-DLOGGING_SUBSYSTEM_COUNT={len(logging_subsystems)}")
-    for i, logging_subsystem in enumerate(logging_subsystems):
-        arm9_c_flags.append(f"-DLOGGING_SUBSYSTEM_{i}={logging_subsystem}")
 
 asm_commands = [
     {

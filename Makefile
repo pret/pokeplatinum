@@ -141,7 +141,7 @@ setup_release: $(BUILD)/build.ninja
 	$(MESON) configure build -Dgdb_debugging=false -Dlogging_enabled=false
 
 setup_debug: $(BUILD)/build.ninja
-	$(MESON) configure build -Dgdb_debugging=true -Dlogging_enabled=true -Dlogging_subsystems=$(LOG_SUBSYSTEMS)
+	$(MESON) configure build -Dgdb_debugging=true -Dlogging_enabled=true
 
 configure: $(BUILD)/build.ninja
 

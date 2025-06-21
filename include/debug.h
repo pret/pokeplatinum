@@ -8,9 +8,8 @@
 #include "strbuf.h"
 
 __attribute__((format(printf, 1, 2))) void EmulatorPrintf(const char *text, ...);
-BOOL LogSubsystemAllowed(const char *subsystemName);
 
-__attribute__((format(printf, 2, 3))) void EmulatorLog(const char *subsystem, const char *text, ...);
+__attribute__((format(printf, 2, 3))) void EmulatorLog(const char *text, ...);
 void EmulatorPrintCharMapBuf(const charcode_t *buf, u16 len);
 void EmulatorPrintStrBuf(const Strbuf *buf);
 

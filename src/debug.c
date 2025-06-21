@@ -38,63 +38,9 @@ void EmulatorPrintf(const char *text, ...)
     va_end(args);
 }
 
-#define Q(X)     #X
-#define QUOTE(X) Q(X)
-
-#ifndef LOGGING_SUBSYSTEM_COUNT
-
-const int nb_subsystems = 0;
-const char *allowedSubsystems[] = {};
-
-#else
-const char *allowedSubsystems[LOGGING_SUBSYSTEM_COUNT] = {
-#ifdef LOGGING_SUBSYSTEM_0
-    QUOTE(LOGGING_SUBSYSTEM_0),
-#endif
-#ifdef LOGGING_SUBSYSTEM_1
-    QUOTE(LOGGING_SUBSYSTEM_1),
-#endif
-#ifdef LOGGING_SUBSYSTEM_2
-    QUOTE(LOGGING_SUBSYSTEM_2)
-#endif
-#ifdef LOGGING_SUBSYSTEM_3
-        QUOTE(LOGGING_SUBSYSTEM_3)
-#endif
-#ifdef LOGGING_SUBSYSTEM_4
-            QUOTE(LOGGING_SUBSYSTEM_4)
-#endif
-#ifdef LOGGING_SUBSYSTEM_5
-                QUOTE(LOGGING_SUBSYSTEM_5)
-#endif
-};
-
-const int nb_subsystems = LOGGING_SUBSYSTEM_COUNT;
-
-#endif
-
-BOOL LogSubsystemAllowed(const char *subsystemName)
+void EmulatorLog(const char *text, ...)
 {
-    if (nb_subsystems == 0) {
-        return TRUE;
-    }
-    BOOL allowed = FALSE;
-    for (int i = 0; i < nb_subsystems; ++i) {
-        const char *filter = allowedSubsystems[i];
-        const int difference = strncmp(subsystemName, filter, strlen(filter));
-        if (difference == 0) {
-            allowed = TRUE;
-            break;
-        }
-    }
-    return allowed;
-}
-
-void EmulatorLog(const char *subsystem, const char *text, ...)
-{
-    if (!LogSubsystemAllowed(subsystem)) {
-        return;
-    }
-    EmulatorPrintf("[GAME_LOG][%s] ", subsystem);
+    EmulatorPrintf("[GAME_LOG] ");
     va_list args;
     va_start(args, text);
     EmulatorVPrintf(text, args);

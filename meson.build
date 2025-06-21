@@ -65,15 +65,6 @@ if get_option('logging_enabled')
     pokeplatinum_args += [
         '-DLOGGING_ENABLED',
     ]
-    allowed_subsystems = get_option('logging_subsystems')
-    subsystem_count = allowed_subsystems.length()
-    if subsystem_count >= 6
-        print('Only 6 subsystem filters at most are supported')
-    endif
-    foreach i : range(subsystem_count)
-        pokeplatinum_args += '-DLOGGING_SUBSYSTEM_@0@=@1@'.format(i, allowed_subsystems[i])
-    endforeach
-    pokeplatinum_args += '-DLOGGING_SUBSYSTEM_COUNT=@0@'.format(subsystem_count)
 endif
 
 asm_args = [
