@@ -31,10 +31,10 @@ _0073:
 
 _007B:
     SetObjectEventPos 0, 8, 6
-    ScrCmd_189 0, 1
+    SetObjectEventDir 0, DIR_SOUTH
     ScrCmd_188 0, 0
     SetObjectEventPos 1, 9, 6
-    ScrCmd_189 1, 2
+    SetObjectEventDir 1, DIR_WEST
     Return
 
     .byte 30
