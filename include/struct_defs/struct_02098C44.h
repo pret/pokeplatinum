@@ -1,9 +1,9 @@
 #ifndef POKEPLATINUM_STRUCT_02098C44_H
 #define POKEPLATINUM_STRUCT_02098C44_H
 
+#include "struct_defs/mail.h"
 #include "struct_defs/struct_0202440C.h"
 #include "struct_defs/struct_0202610C.h"
-#include "struct_defs/struct_02028430.h"
 
 #include "field/field_system_decl.h"
 

@@ -53,7 +53,7 @@ void sub_0203D874(FieldSystem *fieldSystem, UnkStruct_0209747C *param1);
 void sub_0203D884(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1);
 void *sub_0203D8AC(FieldSystem *fieldSystem);
 void *FieldSystem_OpenOptionsMenu(FieldSystem *fieldSystem);
-UnkStruct_02097728 *sub_0203D920(FieldSystem *fieldSystem, int param1, u8 param2, u8 param3, int param4);
+UnkStruct_02097728 *sub_0203D920(FieldSystem *fieldSystem, int param1, u8 param2, u8 mailType, int unusedHeapID);
 UnkStruct_02097728 *sub_0203D94C(FieldSystem *fieldSystem, int param1, u8 param2, int heapID);
 UnkStruct_02097728 *sub_0203D984(FieldSystem *fieldSystem, Pokemon *param1, int heapID);
 UnkStruct_0203D9B8 *sub_0203D9B8(FieldSystem *fieldSystem, int heapID);

@@ -24,7 +24,6 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_02028430_decl.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
@@ -39,6 +38,7 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/choose_starter_data.h"
 #include "struct_defs/daycare.h"
+#include "struct_defs/mail.h"
 #include "struct_defs/special_encounter.h"
 #include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0203D8AC.h"
@@ -5770,10 +5770,10 @@ static BOOL ScrCmd_1B3(ScriptContext *ctx)
 static BOOL ScrCmd_1B4(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
-    MailBox *v2 = SaveData_GetMailBox(fieldSystem->saveData);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    MailBox *mailBox = SaveData_GetMailBox(fieldSystem->saveData);
 
-    *v1 = (u16)sub_02028494(v2, 0);
+    *destVar = (u16)sub_02028494(mailBox, 0);
     return FALSE;
 }
 

@@ -3,9 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/items.h"
+#include "generated/genders.h"
+
 #include "struct_defs/mail.h"
-#include "struct_defs/sentence.h"
-#include "struct_defs/struct_02028430.h"
 #include "struct_defs/union_02028328.h"
 
 #include "charcode_util.h"
@@ -18,9 +19,9 @@
 #include "trainer_info.h"
 #include "unk_02014A84.h"
 
-static int sub_020284E8(Mail *param0, int param1);
-static int sub_02028510(Mail *param0, int param1);
-static Mail *sub_02028538(MailBox *param0, int param1, int param2);
+static int Mail_GetEmptySlotInArray_(Mail *array, int arraySize);
+static int Mail_GetEmptySlotCountInArray(Mail *array, int arraySize);
+static Mail *MailBox_GetMailFromSlot(MailBox *mailBox, int param1, int slot);
 
 static const struct {
     u16 unk_00;
@@ -38,88 +39,87 @@ static const struct {
     { 0x1E6, 0x222, 0x1DF, 0x5 }
 };
 
-void sub_02028124(Mail *mail)
+void Mail_Init(Mail *mail)
 {
-    int v0;
+    int i;
 
-    mail->unk_00 = 0;
-    mail->unk_04 = 0;
-    mail->unk_05 = gGameLanguage;
-    mail->unk_06 = gGameVersion;
-    mail->unk_07 = 0xFFFF;
+    mail->trainerID = 0;
+    mail->trainerGender = GENDER_MALE;
+    mail->language = gGameLanguage;
+    mail->gameVersion = gGameVersion;
+    mail->mailType = 0xFFFF;
 
     CharCode_FillWithEOS(mail->unk_08, 8);
 
-    for (v0 = 0; v0 < 3; v0++) {
-        mail->unk_18[v0].val2 = 0xFFFF;
+    for (i = 0; i < 3; i++) {
+        mail->unk_18[i].val2 = 0xFFFF;
     }
 
     mail->unk_1E = 0;
 
-    for (v0 = 0; v0 < 3; v0++) {
-        sub_02014A84(&mail->unk_20[v0]);
+    for (i = 0; i < 3; i++) {
+        sub_02014A84(&mail->unk_20[i]);
     }
 }
 
-BOOL sub_0202817C(Mail *param0)
+BOOL Mail_IsEmpty(Mail *mail)
 {
-    if ((param0->unk_07 >= 0) && (param0->unk_07 <= 11)) {
-        return 1;
+    if ((mail->mailType >= 0) && (mail->mailType <= 11)) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-Mail *sub_0202818C(int heapID)
+Mail *Mail_New(int heapID)
 {
     Mail *mail = Heap_AllocFromHeapAtEnd(heapID, sizeof(Mail));
-    sub_02028124(mail);
+    Mail_Init(mail);
 
     return mail;
 }
 
-void sub_020281A0(Mail *param0, Mail *param1)
+void Mail_Copy(Mail *src, Mail *dest)
 {
-    MI_CpuCopy8(param0, param1, sizeof(Mail));
+    MI_CpuCopy8(src, dest, sizeof(Mail));
 }
 
-void sub_020281AC(Mail *param0, u8 param1, u8 param2, SaveData *saveData)
+void sub_020281AC(Mail *mail, u8 mailType, u8 param2, SaveData *saveData)
 {
-    u8 v0, v1, v2, v3;
-    u16 v4;
-    u32 v5, v6, v7;
-    TrainerInfo *v8;
-    Party *v9;
-    Pokemon *v10;
+    u8 i, v1, palIndex, j;
+    u16 species;
+    u32 spriteIndex, isEgg, form;
+    TrainerInfo *trainerInfo;
+    Pokemon *mon;
 
-    sub_02028124(param0);
+    Mail_Init(mail);
 
-    param0->unk_07 = param1;
-    v9 = SaveData_GetParty(saveData);
-    v8 = SaveData_GetTrainerInfo(saveData);
+    mail->mailType = mailType;
+    Party *v9 = SaveData_GetParty(saveData);
+    trainerInfo = SaveData_GetTrainerInfo(saveData);
 
-    CharCode_Copy(param0->unk_08, TrainerInfo_Name(v8));
+    CharCode_Copy(mail->unk_08, TrainerInfo_Name(trainerInfo));
 
-    param0->unk_04 = (u8)TrainerInfo_Gender(v8);
-    param0->unk_00 = TrainerInfo_ID(v8);
-    param0->unk_1E = 0;
+    mail->trainerGender = (u8)TrainerInfo_Gender(trainerInfo);
+    mail->trainerID = TrainerInfo_ID(trainerInfo);
+    mail->unk_1E = 0;
 
-    for (v0 = param2, v1 = 0; v0 < Party_GetCurrentCount(v9); v0++) {
-        v10 = Party_GetPokemonBySlotIndex(v9, v0);
-        v4 = Pokemon_GetValue(v10, MON_DATA_SPECIES, NULL);
-        v6 = Pokemon_GetValue(v10, MON_DATA_IS_EGG, NULL);
-        v7 = Pokemon_GetValue(v10, MON_DATA_FORM, NULL);
-        v5 = Pokemon_IconSpriteIndex(v10);
-        v2 = PokeIconPaletteIndex(v4, v7, v6);
+    for (i = param2, v1 = 0; i < Party_GetCurrentCount(v9); i++) {
+        mon = Party_GetPokemonBySlotIndex(v9, i);
+        species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+        isEgg = Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
+        form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+        spriteIndex = Pokemon_IconSpriteIndex(mon);
+        palIndex = PokeIconPaletteIndex(species, form, isEgg);
 
-        param0->unk_18[v1].val1_0 = (u16)v5;
-        param0->unk_18[v1].val1_12 = v2;
+        mail->unk_18[v1].val1_0 = (u16)spriteIndex;
+        mail->unk_18[v1].val1_12 = palIndex;
 
-        for (v3 = 0; v3 < NELEMS(Unk_020E5B0C); v3++) {
-            if ((Unk_020E5B0C[v3].unk_02 == param0->unk_18[v1].val1_0) && (Unk_020E5B0C[v3].unk_06 == v7)) {
-                param0->unk_18[v1].val1_0 = Unk_020E5B0C[v3].unk_00;
-                param0->unk_18[v1].val1_12 = PokeIconPaletteIndex(v4, 0, v6);
-                param0->unk_1E |= Unk_020E5B0C[v3].unk_06 << (v1 * 5);
+        for (j = 0; j < NELEMS(Unk_020E5B0C); j++) {
+            if ((Unk_020E5B0C[j].unk_02 == mail->unk_18[v1].val1_0) && (Unk_020E5B0C[j].unk_06 == form)) {
+                mail->unk_18[v1].val1_0 = Unk_020E5B0C[j].unk_00;
+                mail->unk_18[v1].val1_12 = PokeIconPaletteIndex(species, 0, isEgg);
+                mail->unk_1E |= Unk_020E5B0C[j].unk_06 << (v1 * 5);
                 break;
             }
         }
@@ -132,9 +132,9 @@ void sub_020281AC(Mail *param0, u8 param1, u8 param2, SaveData *saveData)
     }
 }
 
-u32 sub_02028308(const Mail *param0)
+u32 Mail_GetTrainerID(const Mail *mail)
 {
-    return param0->unk_00;
+    return mail->trainerID;
 }
 
 u16 *sub_0202830C(Mail *param0)
@@ -142,48 +142,48 @@ u16 *sub_0202830C(Mail *param0)
     return &(param0->unk_08[0]);
 }
 
-u8 sub_02028310(const Mail *param0)
+u8 Mail_GetTrainerGender(const Mail *mail)
 {
-    return param0->unk_04;
+    return mail->trainerGender;
 }
 
-u8 sub_02028314(const Mail *param0)
+u8 Mail_GetMailType(const Mail *mail)
 {
-    return param0->unk_07;
+    return mail->mailType;
 }
 
-void sub_02028318(Mail *param0, const u8 param1)
+void Mail_SetMailType(Mail *mail, const u8 mailType)
 {
-    if (param1 >= 12) {
+    if (mailType >= NUM_MAILS) {
         return;
     }
 
-    param0->unk_07 = param1;
+    mail->mailType = mailType;
 }
 
-u8 sub_02028320(const Mail *param0)
+u8 Mail_GetLanguage(const Mail *mail)
 {
-    return param0->unk_05;
+    return mail->language;
 }
 
-u8 sub_02028324(const Mail *param0)
+u8 Mail_GetGameVersion(const Mail *mail)
 {
-    return param0->unk_06;
+    return mail->gameVersion;
 }
 
-u16 sub_02028328(const Mail *param0, u8 param1, u8 param2, u16 param3)
+u16 sub_02028328(const Mail *mail, u8 param1, u8 param2, u16 param3)
 {
     UnkUnion_02028328 v0;
-    int v1;
+    int i;
 
     if (param1 < 3) {
-        v0 = param0->unk_18[param1];
+        v0 = mail->unk_18[param1];
 
-        for (v1 = 0; v1 < NELEMS(Unk_020E5B0C); v1++) {
-            if ((Unk_020E5B0C[v1].unk_00 == v0.val1_0) && (Unk_020E5B0C[v1].unk_06 == ((param3 >> (param1 * 5)) & 0x1f))) {
-                v0.val1_0 = Unk_020E5B0C[v1].unk_02;
+        for (i = 0; i < NELEMS(Unk_020E5B0C); i++) {
+            if ((Unk_020E5B0C[i].unk_00 == v0.val1_0) && (Unk_020E5B0C[i].unk_06 == ((param3 >> (param1 * 5)) & 0x1f))) {
+                v0.val1_0 = Unk_020E5B0C[i].unk_02;
                 v0.val1_12 = PokeIconPaletteIndex(
-                    Unk_020E5B0C[v1].unk_04, Unk_020E5B0C[v1].unk_06, 0);
+                    Unk_020E5B0C[i].unk_04, Unk_020E5B0C[i].unk_06, 0);
                 break;
             }
         }
@@ -237,23 +237,23 @@ MailBox *SaveData_GetMailBox(SaveData *saveData)
 
 int MailBox_SaveSize(void)
 {
-    return sizeof(Mail) * 20;
+    return sizeof(MailBox);
 }
 
-void MailBox_Init(MailBox *param0)
+void MailBox_Init(MailBox *mailBox)
 {
-    int v0 = 0;
+    int i = 0;
 
-    for (v0 = 0; v0 < 20; v0++) {
-        sub_02028124(&param0->unk_00[v0]);
+    for (i = 0; i < MAILBOX_SIZE; i++) {
+        Mail_Init(&mailBox->mail[i]);
     }
 }
 
-int sub_0202845C(MailBox *param0, int param1)
+int Mail_GetEmptySlotInArray(MailBox *mailBox, int param1)
 {
     switch (param1) {
     case 0:
-        return sub_020284E8(param0->unk_00, 20);
+        return Mail_GetEmptySlotInArray_(mailBox->mail, MAILBOX_SIZE);
     default:
         return 0xFFFFFFFF;
     }
@@ -261,33 +261,29 @@ int sub_0202845C(MailBox *param0, int param1)
     return 0xFFFFFFFF;
 }
 
-void sub_02028470(MailBox *param0, int param1, int param2)
+void sub_02028470(MailBox *mailBox, int param1, int param2)
 {
-    Mail *v0 = NULL;
+    Mail *mail = MailBox_GetMailFromSlot(mailBox, param1, param2);
 
-    v0 = sub_02028538(param0, param1, param2);
-
-    if (v0 != NULL) {
-        sub_02028124(v0);
+    if (mail != NULL) {
+        Mail_Init(mail);
     }
 }
 
-void sub_02028480(MailBox *param0, int param1, int param2, Mail *param3)
+void MailBox_CopyMailFromSlot(MailBox *mailBox, int param1, int slot, Mail *dst)
 {
-    Mail *v0 = NULL;
+    Mail *src = MailBox_GetMailFromSlot(mailBox, param1, slot);
 
-    v0 = sub_02028538(param0, param1, param2);
-
-    if (v0 != NULL) {
-        sub_020281A0(param3, v0);
+    if (src != NULL) {
+        Mail_Copy(dst, src);
     }
 }
 
-int sub_02028494(MailBox *param0, int param1)
+int sub_02028494(MailBox *mailBox, int param1)
 {
     switch (param1) {
     case 0:
-        return sub_02028510(param0->unk_00, 20);
+        return Mail_GetEmptySlotCountInArray(mailBox->mail, MAILBOX_SIZE);
     default:
         return 0;
     }
@@ -295,69 +291,64 @@ int sub_02028494(MailBox *param0, int param1)
     return 0;
 }
 
-Mail *sub_020284A8(MailBox *param0, int param1, int param2, int heapID)
+Mail *sub_020284A8(MailBox *mailBox, int param1, int slot, int heapID)
 {
-    Mail *v0 = NULL;
-    Mail *v1;
-
-    v0 = sub_02028538(param0, param1, param2);
-    v1 = sub_0202818C(heapID);
+    Mail *v0 = MailBox_GetMailFromSlot(mailBox, param1, slot);
+    Mail *v1 = Mail_New(heapID);
 
     if (v0 != NULL) {
-        sub_020281A0(v0, v1);
+        Mail_Copy(v0, v1);
     }
 
     return v1;
 }
 
-void sub_020284CC(MailBox *param0, int param1, int param2, Mail *param3)
+void sub_020284CC(MailBox *mailBox, int param1, int param2, Mail *param3)
 {
-    Mail *v0 = NULL;
-
-    v0 = sub_02028538(param0, param1, param2);
+    Mail *v0 = MailBox_GetMailFromSlot(mailBox, param1, param2);
 
     if (v0 == NULL) {
-        sub_02028124(param3);
+        Mail_Init(param3);
     } else {
-        sub_020281A0(v0, param3);
+        Mail_Copy(v0, param3);
     }
 }
 
-static int sub_020284E8(Mail *param0, int param1)
+static int Mail_GetEmptySlotInArray_(Mail *array, int arraySize)
 {
-    int v0 = 0;
+    int i = 0;
 
-    for (v0 = 0; v0 < param1; v0++) {
-        if (!sub_0202817C(&param0[v0])) {
-            return v0;
+    for (i = 0; i < arraySize; i++) {
+        if (!Mail_IsEmpty(&array[i])) {
+            return i;
         }
     }
 
     return 0xFFFFFFFF;
 }
 
-static int sub_02028510(Mail *param0, int param1)
+static int Mail_GetEmptySlotCountInArray(Mail *array, int arraySize)
 {
-    int v0 = 0;
-    int v1 = 0;
+    int i = 0;
+    int count = 0;
 
-    for (v0 = 0; v0 < param1; v0++) {
-        if (sub_0202817C(&param0[v0])) {
-            v1++;
+    for (i = 0; i < arraySize; i++) {
+        if (Mail_IsEmpty(&array[i])) {
+            count++;
         }
     }
 
-    return v1;
+    return count;
 }
 
-static Mail *sub_02028538(MailBox *param0, int param1, int param2)
+static Mail *MailBox_GetMailFromSlot(MailBox *mailBox, int param1, int slot)
 {
-    Mail *v0 = NULL;
+    Mail *mail = NULL;
 
     switch (param1) {
     case 0:
-        if (param2 < 20) {
-            v0 = &(param0->unk_00[param2]);
+        if (slot < MAILBOX_SIZE) {
+            mail = &(mailBox->mail[slot]);
         }
 
         break;
@@ -365,5 +356,5 @@ static Mail *sub_02028538(MailBox *param0, int param1, int param2)
         break;
     }
 
-    return v0;
+    return mail;
 }

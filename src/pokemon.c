@@ -231,10 +231,10 @@ void Pokemon_InitWith(Pokemon *mon, int monSpecies, int monLevel, int monIVs, BO
     Pokemon_EncryptData(&mon->party, sizeof(PartyPokemon), mon->box.personality);
     Pokemon_SetValue(mon, MON_DATA_LEVEL, &monLevel);
 
-    Mail *v1 = sub_0202818C(HEAP_ID_SYSTEM);
+    Mail *mail = Mail_New(HEAP_ID_SYSTEM);
 
-    Pokemon_SetValue(mon, MON_DATA_MAIL, v1);
-    Heap_FreeToHeap(v1);
+    Pokemon_SetValue(mon, MON_DATA_MAIL, mail);
+    Heap_FreeToHeap(mail);
 
     u32 zero = 0;
     Pokemon_SetValue(mon, MON_DATA_BALL_CAPSULE_ID, &zero);
@@ -564,7 +564,7 @@ static u32 Pokemon_GetDataInternal(Pokemon *mon, enum PokemonDataParam param, vo
         break;
 
     case MON_DATA_MAIL:
-        sub_020281A0(&mon->party.unk_14, dest);
+        Mail_Copy(&mon->party.unk_14, dest);
         result = TRUE;
         break;
 
@@ -1154,7 +1154,7 @@ static void Pokemon_SetDataInternal(Pokemon *mon, enum PokemonDataParam param, c
         break;
 
     case MON_DATA_MAIL:
-        sub_020281A0(value, &mon->party.unk_14);
+        Mail_Copy(value, &mon->party.unk_14);
         break;
 
     case MON_DATA_171:
@@ -3753,9 +3753,9 @@ void Pokemon_FromBoxPokemon(BoxPokemon *boxMon, Pokemon *mon)
     Pokemon_SetValue(mon, MON_DATA_CURRENT_HP, &zero);
     Pokemon_SetValue(mon, MON_DATA_MAX_HP, &zero);
 
-    Mail *v1 = sub_0202818C(HEAP_ID_SYSTEM);
-    Pokemon_SetValue(mon, MON_DATA_MAIL, v1);
-    Heap_FreeToHeap(v1);
+    Mail *mail = Mail_New(HEAP_ID_SYSTEM);
+    Pokemon_SetValue(mon, MON_DATA_MAIL, mail);
+    Heap_FreeToHeap(mail);
 
     Pokemon_SetValue(mon, MON_DATA_BALL_CAPSULE_ID, &zero);
 

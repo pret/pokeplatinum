@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02028430_decl.h"
 #include "struct_defs/mail.h"
 #include "struct_defs/struct_0206A844.h"
 #include "struct_defs/struct_02097728.h"
@@ -50,8 +49,8 @@ typedef struct {
     u8 unk_01;
     u8 unk_02;
     u8 unk_03;
-    u8 unk_04;
-    u8 unk_05;
+    u8 trainerGender;
+    u8 mailType;
     u16 item;
     Strbuf *unk_08;
 } UnkStruct_02072EB8;
@@ -105,7 +104,7 @@ typedef struct {
     Window unk_194;
     UnkStruct_0206A844 *unk_1A4;
     UnkStruct_02097728 *unk_1A8;
-    MailBox *unk_1AC;
+    MailBox *mailBox;
     Bag *bag;
     PartyManagementData *unk_1B4;
 } UnkStruct_02072334;
@@ -735,7 +734,7 @@ static void sub_02072BBC(ListMenu *param0, u32 param1, u8 param2)
     if (param1 == 0xFFFF) {
         ListMenu_SetAltTextColors(param0, 1, 15, 2);
     } else {
-        if (v0->unk_1C[param1].unk_04) {
+        if (v0->unk_1C[param1].trainerGender != GENDER_MALE) {
             ListMenu_SetAltTextColors(param0, 3, 15, 4);
         } else {
             ListMenu_SetAltTextColors(param0, 7, 15, 8);
@@ -897,39 +896,39 @@ static void sub_02072F04(UnkStruct_02072EB8 *param0, u8 param1)
 
 static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *saveData, int heapID)
 {
-    u8 v0 = 0, v1 = 0, v2 = 0xFF, v3 = 0;
+    u8 i = 0, v1 = 0, v2 = 0xFF, v3 = 0;
     int v4;
-    MailBox *v5;
-    Mail *v6;
+    MailBox *mailBox;
+    Mail *mail;
     UnkStruct_02072EB8 *v7, *v8;
 
-    v5 = SaveData_GetMailBox(saveData);
+    mailBox = SaveData_GetMailBox(saveData);
 
-    param0->unk_1AC = v5;
+    param0->mailBox = mailBox;
     param0->bag = SaveData_GetBag(saveData);
 
-    v6 = sub_0202818C(heapID);
+    mail = Mail_New(heapID);
 
-    for (v0 = 0; v0 < 20; v0++) {
-        sub_020284CC(v5, 0, v0, v6);
+    for (i = 0; i < MAILBOX_SIZE; i++) {
+        sub_020284CC(mailBox, 0, i, mail);
 
-        v7 = &(param0->unk_1C[v0]);
+        v7 = &(param0->unk_1C[i]);
         v8 = &(param0->unk_1C[param0->unk_19]);
 
-        sub_02072EB8(v7, v0);
+        sub_02072EB8(v7, i);
 
-        v7->unk_00 = v0;
+        v7->unk_00 = i;
 
-        if (!sub_0202817C(v6)) {
+        if (!Mail_IsEmpty(mail)) {
             continue;
         }
 
         v7->unk_01 = 1;
-        v7->unk_04 = sub_02028310(v6);
-        v7->unk_05 = sub_02028314(v6);
-        v7->item = Item_ForMailNumber(v7->unk_05);
+        v7->trainerGender = Mail_GetTrainerGender(mail);
+        v7->mailType = Mail_GetMailType(mail);
+        v7->item = Item_ForMailNumber(v7->mailType);
 
-        Strbuf_CopyChars(v7->unk_08, sub_0202830C(v6));
+        Strbuf_CopyChars(v7->unk_08, sub_0202830C(mail));
 
         v7->unk_02 = param0->unk_19;
         v8->unk_03 = v7->unk_00;
@@ -938,14 +937,14 @@ static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *saveData, int hea
         param0->unk_1B++;
 
         if (param0->unk_1A == 0xFF) {
-            param0->unk_1A = v0;
+            param0->unk_1A = i;
         }
     }
 
     param0->unk_1C[param0->unk_19].unk_03 = param0->unk_1A;
     param0->unk_1C[param0->unk_1A].unk_02 = param0->unk_19;
 
-    Heap_FreeToHeap(v6);
+    Heap_FreeToHeap(mail);
 }
 
 static void sub_02073020(UnkStruct_02072334 *param0, u8 param1)
@@ -970,7 +969,7 @@ static BOOL sub_02073060(UnkStruct_02072334 *param0)
         Bag_TryAddItem(param0->bag, v0->item, 1, param0->heapID);
     }
 
-    sub_02028470(param0->unk_1AC, 0, param0->unk_18);
+    sub_02028470(param0->mailBox, 0, param0->unk_18);
     sub_02073020(param0, param0->unk_18);
     sub_02072EB8(v0, param0->unk_18);
 
@@ -992,7 +991,7 @@ static void sub_020730B8(UnkStruct_02072334 *param0, u8 param1, BOOL param2)
     v1 = SaveData_GetParty(FieldSystem_GetSaveData(param0->fieldSystem));
     v2 = Party_GetPokemonBySlotIndex(v1, param1);
 
-    sub_020977E4(param0->unk_1AC, param0->unk_18, v2, param0->heapID);
+    sub_020977E4(param0->mailBox, param0->unk_18, v2, param0->heapID);
 
     if (param2) {
         if (Bag_CanFitItem(param0->bag, v0->item, 1, param0->heapID)) {
@@ -1239,7 +1238,7 @@ static int sub_020735E8(UnkStruct_02072334 *param0)
         if (param0->unk_1C[param0->unk_18].unk_01) {
             param0->unk_1A8 = sub_0203D94C(param0->fieldSystem, 0, param0->unk_18, param0->heapID);
         } else {
-            param0->unk_1A8 = sub_0203D920(param0->fieldSystem, 0, param0->unk_17, param0->unk_1C[param0->unk_18].unk_05, param0->heapID);
+            param0->unk_1A8 = sub_0203D920(param0->fieldSystem, 0, param0->unk_17, param0->unk_1C[param0->unk_18].mailType, param0->heapID);
         }
 
         param0->unk_12++;
