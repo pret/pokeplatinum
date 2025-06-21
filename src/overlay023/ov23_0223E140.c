@@ -5,9 +5,9 @@
 
 #include "generated/trainer_score_events.h"
 
-#include "struct_decls/struct_0202855C_decl.h"
-#include "struct_decls/struct_020298B0_decl.h"
 #include "struct_defs/struct_02099F80.h"
+#include "struct_defs/underground_data.h"
+#include "struct_defs/underground_record.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
@@ -606,7 +606,7 @@ static void ov23_0223E140(void)
 void ov23_0223E1E4(void *param0, FieldSystem *fieldSystem)
 {
     int v0, v1;
-    UndergroundData *v2;
+    UndergroundData *undergroundData;
 
     if (Unk_ov23_02257740) {
         return;
@@ -628,19 +628,19 @@ void ov23_0223E1E4(void *param0, FieldSystem *fieldSystem)
     ov23_0223E140();
 
     Unk_ov23_02257740->unk_A24 = -1;
-    v2 = SaveData_GetUndergroundData(Unk_ov23_02257740->fieldSystem->saveData);
+    undergroundData = SaveData_GetUndergroundData(Unk_ov23_02257740->fieldSystem->saveData);
 
-    if (sub_02029234(v2)) {
+    if (sub_02029234(undergroundData)) {
         MATHRandContext16 v3;
 
-        MATH_InitRand16(&v3, sub_02028930(v2));
+        MATH_InitRand16(&v3, UndergroundData_GetRandomSeed(undergroundData));
 
         for (v0 = 0; v0 < 255; v0++) {
-            sub_020291A4(v2, v0);
+            sub_020291A4(undergroundData, v0);
         }
 
         for (v0 = 0; v0 < (16 * 4); v0++) {
-            sub_02028EF8(v2, 0, v0, 0, 0);
+            sub_02028EF8(undergroundData, 0, v0, 0, 0);
         }
 
         v1 = ov23_02241DF8(&v3);
@@ -650,7 +650,7 @@ void ov23_0223E1E4(void *param0, FieldSystem *fieldSystem)
             ov23_0223E434(&v3, v0);
         }
 
-        sub_02029240(v2);
+        sub_02029240(undergroundData);
     } else {
         ov23_0223E834();
         ov23_02243CE8();
@@ -2490,7 +2490,7 @@ static int ov23_0224080C(int param0)
 static void ov23_022408A0(int param0, int param1)
 {
     int v0 = param0;
-    SecretBaseRecord *v1 = SaveData_SecretBaseRecord(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
+    UndergroundRecord *v1 = SaveData_UndergroundRecord(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
     UndergroundData *v2 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
 
     if (ov23_02241CF4(v0)) {
@@ -2583,7 +2583,7 @@ static BOOL ov23_022409F0(UnkStruct_ov23_0223EE80 *param0)
 static BOOL ov23_02240A90(UnkStruct_ov23_0223EE80 *param0)
 {
     int v0, v1, v2;
-    SecretBaseRecord *v3 = SaveData_SecretBaseRecord(Unk_ov23_02257740->fieldSystem->saveData);
+    UndergroundRecord *undergroundRecord = SaveData_UndergroundRecord(Unk_ov23_02257740->fieldSystem->saveData);
     UndergroundData *v4 = SaveData_GetUndergroundData(Unk_ov23_02257740->fieldSystem->saveData);
 
     for (v0 = 0; v0 < param0->unk_0C; v0++) {
@@ -2593,19 +2593,19 @@ static BOOL ov23_02240A90(UnkStruct_ov23_0223EE80 *param0)
             v2 = Unk_ov23_02257740->unk_874[v0].unk_04;
 
             if (ov23_02241CF4(v2)) {
-                sub_020295F8(v3, 1);
+                UndergroundRecord_AddNumSpheresDug(undergroundRecord, 1);
             } else {
                 sub_0206D6C8(Unk_ov23_02257740->fieldSystem, v2, 1);
 
                 if ((v2 >= 23) && ((28 + 1) > v2) || (v2 == 36) || (v2 == 37)) {
-                    sub_02029644(v3, 1);
+                    UndergroundRecord_AddNumFossilsDug(undergroundRecord, 1);
                     {
                         VarsFlags *v5 = SaveData_GetVarsFlags(Unk_ov23_02257740->fieldSystem->saveData);
 
                         SystemVars_SetUndergroundFossilsUnearthed(v5, SystemVars_GetUndergroundFossilsUnearthed(v5) + 1);
                     }
                 } else {
-                    sub_02029688(v3, 1);
+                    sub_02029688(undergroundRecord, 1);
                 }
             }
 
@@ -2730,7 +2730,7 @@ static BOOL ov23_02240CFC(UnkStruct_ov23_0223EE80 *param0)
 
     if (ov23_02240934(param0)) {
         sub_02029220(v2);
-        GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(Unk_ov23_02257740->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_30);
+        GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(Unk_ov23_02257740->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNDERGROUND_UNCOVER_FOSSIL);
         param0->unk_00 = 14;
         param0->unk_08 = 25;
         param0->unk_50 = 1;

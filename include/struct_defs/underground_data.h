@@ -1,11 +1,11 @@
-#ifndef POKEPLATINUM_STRUCT_020298B0_H
-#define POKEPLATINUM_STRUCT_020298B0_H
+#ifndef POKEPLATINUM_STRUCT_UNDERGROUND_DATA_H
+#define POKEPLATINUM_STRUCT_UNDERGROUND_DATA_H
 
 #include "struct_defs/struct_02029894.h"
 
-typedef struct UnkStruct_020298B0_t {
+typedef struct UndergroundData {
     UnkStruct_02029894 unk_00;
-    u32 unk_90;
+    u32 randomSeed;
     s32 unk_94;
     u8 unk_98;
     u8 unused; // Set but never read
@@ -33,9 +33,9 @@ typedef struct UnkStruct_020298B0_t {
     u8 unk_94C[40];
     u8 unk_974[40];
     u8 unk_99C[15];
-    u8 unk_9AB;
+    u8 stepCount;
     u8 unk_9AC_0 : 4;
     u8 unk_9AC_4 : 4;
 } UndergroundData;
 
-#endif // POKEPLATINUM_STRUCT_020298B0_H
+#endif // POKEPLATINUM_STRUCT_UNDERGROUND_DATA_H

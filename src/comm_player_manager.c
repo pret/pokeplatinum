@@ -10,12 +10,12 @@
 #include "generated/movement_actions.h"
 #include "generated/trainer_score_events.h"
 
-#include "struct_decls/struct_0202855C_decl.h"
-#include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_02057B48.h"
 #include "struct_defs/struct_020590C4.h"
+#include "struct_defs/underground_data.h"
+#include "struct_defs/underground_record.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021F55CC.h"
@@ -920,14 +920,14 @@ void CommPlayer_RecvLocationAndInit(int netId, int size, void *src, void *unused
 static void sub_02058644(int netId)
 {
     UndergroundData *underground = SaveData_GetUndergroundData(FieldSystem_GetSaveData(sCommPlayerManager->fieldSystem));
-    SaveData_SecretBaseRecord(FieldSystem_GetSaveData(sCommPlayerManager->fieldSystem));
+    SaveData_UndergroundRecord(FieldSystem_GetSaveData(sCommPlayerManager->fieldSystem));
 
     if (sCommPlayerManager->isUnderground) {
         if (netId == CommSys_CurNetId()) {
-            sub_0202929C(underground);
+            UndergroundData_IncrementStepCount(underground);
 
-            if (sub_020292B4(underground) == 50) {
-                GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(sCommPlayerManager->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_37);
+            if (UndergroundData_GetStepCount(underground) == 50) {
+                GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(sCommPlayerManager->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNDERGROUND_100_STEPS);
             }
         }
     }

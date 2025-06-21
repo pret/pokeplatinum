@@ -3,11 +3,13 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0202855C.h"
+#include "constants/items.h"
+
 #include "struct_defs/struct_02029894.h"
 #include "struct_defs/struct_02029894_sub1.h"
 #include "struct_defs/struct_02029894_sub2.h"
-#include "struct_defs/struct_020298B0.h"
+#include "struct_defs/underground_data.h"
+#include "struct_defs/underground_record.h"
 
 #include "heap.h"
 #include "math_util.h"
@@ -16,58 +18,64 @@
 #include "system.h"
 #include "trainer_info.h"
 
-static void sub_02028B48(UndergroundData *param0, int param1, int param2);
+#define FLAG_CAPTURED_COUNT_PLATINUM 50
+#define FLAG_CAPTURED_COUNT_GOLD     10
+#define FLAG_CAPTURED_COUNT_SILVER   3
+#define FLAG_CAPTURED_COUNT_BRONZE   1
+#define FLAG_CAPTURED_COUNT_NORMAL   0
 
-u16 Unk_02100920[] = {
-    0x6E,
-    0x6F,
-    0x50,
-    0x5B,
-    0x51,
-    0xEE,
-    0x53,
-    0xE5,
-    0x52,
-    0x54,
-    0x55,
-    0x5C,
-    0x65,
-    0x66,
-    0x64,
-    0x63,
-    0x67,
-    0x6A,
-    0x1C,
-    0x1D,
-    0x48,
-    0x49,
-    0x4A,
-    0x4B,
-    0x5D,
-    0x68,
-    0x69,
-    0x10D,
-    0x116,
-    0x11A,
-    0x11B,
-    0x11C,
-    0x11D,
-    0x12A,
-    0x12B,
-    0x12C,
-    0x12D,
-    0x12E,
-    0x12F,
-    0x130,
-    0x131,
-    0x132,
-    0x133,
-    0x134,
-    0x135,
-    0x136,
-    0x137,
-    0x138,
-    0x139
+static void sub_02028B48(UndergroundData *undergroundData, int param1, int param2);
+
+static u16 sMiningItems[] = {
+    [0] = ITEM_OVAL_STONE,
+    [1] = ITEM_ODD_KEYSTONE,
+    [2] = ITEM_SUN_STONE,
+    [3] = ITEM_STAR_PIECE,
+    [4] = ITEM_MOON_STONE,
+    [5] = ITEM_HARD_STONE,
+    [6] = ITEM_THUNDERSTONE,
+    [7] = ITEM_EVERSTONE,
+    [8] = ITEM_FIRE_STONE,
+    [9] = ITEM_WATER_STONE,
+    [10] = ITEM_LEAF_STONE,
+    [11] = ITEM_NUGGET,
+    [12] = ITEM_HELIX_FOSSIL,
+    [13] = ITEM_DOME_FOSSIL,
+    [14] = ITEM_CLAW_FOSSIL,
+    [15] = ITEM_ROOT_FOSSIL,
+    [16] = ITEM_OLD_AMBER,
+    [17] = ITEM_RARE_BONE,
+    [18] = ITEM_REVIVE,
+    [19] = ITEM_MAX_REVIVE,
+    [20] = ITEM_RED_SHARD,
+    [21] = ITEM_BLUE_SHARD,
+    [22] = ITEM_YELLOW_SHARD,
+    [23] = ITEM_GREEN_SHARD,
+    [24] = ITEM_HEART_SCALE,
+    [25] = ITEM_ARMOR_FOSSIL,
+    [26] = ITEM_SKULL_FOSSIL,
+    [27] = ITEM_LIGHT_CLAY,
+    [28] = ITEM_IRON_BALL,
+    [29] = ITEM_ICY_ROCK,
+    [30] = ITEM_SMOOTH_ROCK,
+    [31] = ITEM_HEAT_ROCK,
+    [32] = ITEM_DAMP_ROCK,
+    [33] = ITEM_FLAME_PLATE,
+    [34] = ITEM_SPLASH_PLATE,
+    [35] = ITEM_ZAP_PLATE,
+    [36] = ITEM_MEADOW_PLATE,
+    [37] = ITEM_ICICLE_PLATE,
+    [38] = ITEM_FIST_PLATE,
+    [39] = ITEM_TOXIC_PLATE,
+    [40] = ITEM_EARTH_PLATE,
+    [41] = ITEM_SKY_PLATE,
+    [42] = ITEM_MIND_PLATE,
+    [43] = ITEM_INSECT_PLATE,
+    [44] = ITEM_STONE_PLATE,
+    [45] = ITEM_SPOOKY_PLATE,
+    [46] = ITEM_DRACO_PLATE,
+    [47] = ITEM_DREAD_PLATE,
+    [48] = ITEM_IRON_PLATE
 };
 
 int Underground_SaveSize(void)
@@ -80,30 +88,30 @@ int sub_02028554(void)
     return sizeof(UnkStruct_02029894);
 }
 
-int sub_02028558(void)
+int UndergroundRecord_Size(void)
 {
-    return sizeof(SecretBaseRecord);
+    return sizeof(UndergroundRecord);
 }
 
-SecretBaseRecord *sub_0202855C(u32 heapID)
+UndergroundRecord *UndergroundRecord_Init(u32 heapID)
 {
-    SecretBaseRecord *v0 = Heap_AllocFromHeap(heapID, sizeof(SecretBaseRecord));
-    MI_CpuFill8(v0, 0, sizeof(SecretBaseRecord));
-    return v0;
+    UndergroundRecord *undergroundRecord = Heap_AllocFromHeap(heapID, sizeof(UndergroundRecord));
+    MI_CpuFill8(undergroundRecord, 0, sizeof(UndergroundRecord));
+    return undergroundRecord;
 }
 
 void Underground_Init(UndergroundData *param0)
 {
-    u32 v0 = 0;
-    RTCDate v1;
-    RTCTime v2;
+    u32 seed = 0;
+    RTCDate date;
+    RTCTime time;
 
-    GetCurrentDateTime(&v1, &v2);
-    v0 = (((((((u32)v1.year * 32ULL + v1.month) * 32ULL) + v1.day) * 32ULL + v2.hour) * 32ULL + v2.minute) * 32ULL + (v2.second + gSystem.vblankCounter));
+    GetCurrentDateTime(&date, &time);
+    seed = (((((((u32)date.year * 32ULL + date.month) * 32ULL) + date.day) * 32ULL + time.hour) * 32ULL + time.minute) * 32ULL + (time.second + gSystem.vblankCounter));
 
     MI_CpuFill8(param0, 0, sizeof(UndergroundData));
 
-    param0->unk_90 = v0;
+    param0->randomSeed = seed;
     param0->unk_9AC_0 = 1;
 }
 
@@ -177,7 +185,7 @@ void sub_02028658(SaveData *saveData, int param1)
         v5 = 99;
     }
 
-    MATH_InitRand16(&v1, v0->unk_90);
+    MATH_InitRand16(&v1, v0->randomSeed);
 
     for (v4 = 0; v4 < v5; v4++) {
         for (v8 = 0; v8 < 100; v8++) {
@@ -194,7 +202,7 @@ void sub_02028658(SaveData *saveData, int param1)
         }
     }
 
-    v0->unk_90 = ARNG_Next(v0->unk_90 + param1);
+    v0->randomSeed = ARNG_Next(v0->randomSeed + param1);
     v0->unk_9AC_0 = 1;
 }
 
@@ -313,18 +321,18 @@ TrainerInfo *sub_020288C8(const UndergroundData *param0, int heapID, int param2)
     return NULL;
 }
 
-u32 sub_02028930(UndergroundData *param0)
+u32 UndergroundData_GetRandomSeed(UndergroundData *param0)
 {
-    return param0->unk_90;
+    return param0->randomSeed;
 }
 
-int sub_02028938(int param0)
+int Underground_GetMiningItemID(int itemOptionID)
 {
-    GF_ASSERT(11 <= param0);
-    GF_ASSERT(param0 < 60);
+    GF_ASSERT(11 <= itemOptionID);
+    GF_ASSERT(itemOptionID < 60);
 
-    param0 -= 11;
-    return Unk_02100920[param0];
+    itemOptionID -= 11;
+    return sMiningItems[itemOptionID];
 }
 
 BOOL sub_0202895C(UndergroundData *param0, int param1)
@@ -980,18 +988,18 @@ BOOL sub_02029274(UndergroundData *param0, int param1)
     return 1;
 }
 
-void sub_0202929C(UndergroundData *param0)
+void UndergroundData_IncrementStepCount(UndergroundData *undergroundData)
 {
-    if (param0->unk_9AB >= (100 - 1)) {
-        param0->unk_9AB = 0;
+    if (undergroundData->stepCount >= (100 - 1)) {
+        undergroundData->stepCount = 0;
     } else {
-        param0->unk_9AB++;
+        undergroundData->stepCount++;
     }
 }
 
-int sub_020292B4(UndergroundData *param0)
+int UndergroundData_GetStepCount(UndergroundData *undergroundData)
 {
-    return param0->unk_9AB;
+    return undergroundData->stepCount;
 }
 
 void sub_020292C0(UnkStruct_02029894 *param0)
@@ -1040,17 +1048,18 @@ void sub_02029364(UnkStruct_02029894 *param0, int param1, int param2, int param3
     sub_02029308(param0, param1, v0, param2, param3);
 }
 
+// this is off-by-one compared to the actual flag type
 static int sub_02029384(const UnkStruct_02029894 *param0)
 {
-    int v0 = param0->unk_50.unk_38_0;
+    int numFlags = param0->unk_50.capturedFlagCount;
 
-    if (50 <= v0) {
+    if (FLAG_CAPTURED_COUNT_PLATINUM <= numFlags) {
         return 5;
-    } else if (10 <= v0) {
+    } else if (FLAG_CAPTURED_COUNT_GOLD <= numFlags) {
         return 4;
-    } else if (3 <= v0) {
+    } else if (FLAG_CAPTURED_COUNT_SILVER <= numFlags) {
         return 3;
-    } else if (1 <= v0) {
+    } else if (FLAG_CAPTURED_COUNT_BRONZE <= numFlags) {
         return 2;
     }
 
@@ -1098,144 +1107,140 @@ int sub_0202942C(const UnkStruct_02029894 *param0, int param1)
     return param0->unk_2D[param1 - 1 - 15].unk_01;
 }
 
-int sub_02029460(const UnkStruct_02029894 *param0)
+int sub_GetMaxRemovableRocks(const UnkStruct_02029894 *param0)
 {
-    if (param0->unk_50.unk_38_0 >= 50) {
+    if (param0->unk_50.capturedFlagCount >= FLAG_CAPTURED_COUNT_PLATINUM) {
         return 0;
-    } else if (param0->unk_50.unk_38_0 >= 10) {
+    } else if (param0->unk_50.capturedFlagCount >= FLAG_CAPTURED_COUNT_GOLD) {
         return 6;
-    } else if (param0->unk_50.unk_38_0 >= 3) {
+    } else if (param0->unk_50.capturedFlagCount >= FLAG_CAPTURED_COUNT_SILVER) {
         return 11;
-    } else if (param0->unk_50.unk_38_0 >= 1) {
+    } else if (param0->unk_50.capturedFlagCount >= FLAG_CAPTURED_COUNT_BRONZE) {
         return 15;
     }
 
     return 16;
 }
 
-int sub_0202948C(const UnkStruct_02029894 *param0)
+int sub_GetMaxDisplayItemsCount(const UnkStruct_02029894 *param0)
 {
-    if (param0->unk_50.unk_38_0 >= 50) {
+    if (param0->unk_50.capturedFlagCount >= FLAG_CAPTURED_COUNT_PLATINUM) {
         return 15;
-    } else if (param0->unk_50.unk_38_0 >= 10) {
+    } else if (param0->unk_50.capturedFlagCount >= FLAG_CAPTURED_COUNT_GOLD) {
         return 15;
-    } else if (param0->unk_50.unk_38_0 >= 3) {
+    } else if (param0->unk_50.capturedFlagCount >= FLAG_CAPTURED_COUNT_SILVER) {
         return 15;
-    } else if (param0->unk_50.unk_38_0 >= 1) {
+    } else if (param0->unk_50.capturedFlagCount >= FLAG_CAPTURED_COUNT_BRONZE) {
         return 12;
     }
 
     return 10;
 }
 
-int sub_020294B8(const SecretBaseRecord *param0)
+int UndergroundRecord_GetTrainerScore(const UndergroundRecord *undergroundRecord)
 {
-    return param0->unk_00_0;
+    return undergroundRecord->trainerScore;
 }
 
-int sub_020294C0(const SecretBaseRecord *param0)
+BOOL UndergroundRecord_HasPlatBaseFlag(const UndergroundRecord *undergroundRecord)
 {
-    if (4 == sub_0202958C(param0)) {
-        return 1;
-    }
-
-    return 0;
+    return BASE_FLAG_PLATINUM == UndergroundRecord_GetFlagRank(undergroundRecord);
 }
 
-void sub_020294D4(SecretBaseRecord *param0, int param1)
+void UndergroundRecord_SetTrainerScore(UndergroundRecord *undergroundRecord, int trainerScore)
 {
-    param0->unk_00_0 = param1;
+    undergroundRecord->trainerScore = trainerScore;
 }
 
-int sub_020294EC(const SecretBaseRecord *param0)
+int UndergroundRecord_GetPeopleMet(const UndergroundRecord *undergroundRecord)
 {
-    return param0->unk_04_0;
+    return undergroundRecord->peopleMet;
 }
 
-void sub_020294F4(SecretBaseRecord *param0, int param1)
+void UndergroundRecord_IncrementPeopleMet(UndergroundRecord *undergroundRecord, int param1)
 {
-    if (param0->unk_04_0 < 999999) {
-        param0->unk_04_0++;
+    if (undergroundRecord->peopleMet < 999999) {
+        undergroundRecord->peopleMet++;
     }
 }
 
-int sub_02029524(const SecretBaseRecord *param0)
+int UndergroundRecord_GetNumGiftsGiven(const UndergroundRecord *undergroundRecord)
 {
-    return param0->unk_08_0;
+    return undergroundRecord->numGiftsGiven;
 }
 
-void sub_0202952C(SecretBaseRecord *param0)
+void UndergroundRecord_IncrementGiftsGiven(UndergroundRecord *undergroundRecord)
 {
-    if (param0->unk_08_0 < 999999) {
-        param0->unk_08_0++;
+    if (undergroundRecord->numGiftsGiven < 999999) {
+        undergroundRecord->numGiftsGiven++;
     }
 }
 
-void sub_0202955C(SecretBaseRecord *param0)
+void sub_0202955C(UndergroundRecord *undergroundRecord)
 {
-    if (param0->unk_0C_0 < 999999) {
-        param0->unk_0C_0++;
+    if (undergroundRecord->unk_0C_0 < 999999) {
+        undergroundRecord->unk_0C_0++;
     }
 }
 
-int sub_0202958C(const SecretBaseRecord *param0)
+enum BaseFlagType UndergroundRecord_GetFlagRank(const UndergroundRecord *undergroundRecord)
 {
-    int v0 = param0->unk_38_0;
+    int capturedFlagCount = undergroundRecord->capturedFlagCount;
 
-    if (50 <= v0) {
-        return 4;
-    } else if (10 <= v0) {
-        return 3;
-    } else if (3 <= v0) {
-        return 2;
-    } else if (1 <= v0) {
-        return 1;
+    if (FLAG_CAPTURED_COUNT_PLATINUM <= capturedFlagCount) {
+        return BASE_FLAG_PLATINUM;
+    } else if (FLAG_CAPTURED_COUNT_GOLD <= capturedFlagCount) {
+        return BASE_FLAG_GOLD;
+    } else if (FLAG_CAPTURED_COUNT_SILVER <= capturedFlagCount) {
+        return BASE_FLAG_SILVER;
+    } else if (FLAG_CAPTURED_COUNT_BRONZE <= capturedFlagCount) {
+        return BASE_FLAG_BRONZE;
     }
 
-    return 0;
+    return BASE_FLAG_NORMAL;
 }
 
-int sub_020295B8(const SecretBaseRecord *param0)
+int UndergroundRecord_GetCapturedFlagCount(const UndergroundRecord *undergroundRecord)
 {
-    return param0->unk_38_0;
+    return undergroundRecord->capturedFlagCount;
 }
 
-void sub_020295C0(SecretBaseRecord *param0)
+void UndergroundRecord_IncrementCapturedFlagCount(UndergroundRecord *undergroundRecord)
 {
-    if (param0->unk_38_0 < 999999) {
-        param0->unk_38_0++;
+    if (undergroundRecord->capturedFlagCount < 999999) {
+        undergroundRecord->capturedFlagCount++;
     }
 }
 
-int sub_020295F0(const SecretBaseRecord *param0)
+int UndergroundRecord_GetNumSpheresDug(const UndergroundRecord *undergroundRecord)
 {
-    return param0->unk_10_0;
+    return undergroundRecord->numSpheresDug;
 }
 
-void sub_020295F8(SecretBaseRecord *param0, int param1)
+void UndergroundRecord_AddNumSpheresDug(UndergroundRecord *undergroundRecord, int amount)
 {
-    if ((param1 > 0) && (param0->unk_10_0 > (999999 - param1))) {
-        param0->unk_10_0 = 999999;
+    if ((amount > 0) && (undergroundRecord->numSpheresDug > (999999 - amount))) {
+        undergroundRecord->numSpheresDug = 999999;
     } else {
-        param0->unk_10_0 += param1;
+        undergroundRecord->numSpheresDug += amount;
     }
 }
 
-int sub_0202963C(const SecretBaseRecord *param0)
+int UndergroundRecord_GetNumFossilsDug(const UndergroundRecord *undergroundRecord)
 {
-    return param0->unk_14_0;
+    return undergroundRecord->numFossilsDug;
 }
 
-void sub_02029644(SecretBaseRecord *param0, int param1)
+void UndergroundRecord_AddNumFossilsDug(UndergroundRecord *undergroundRecord, int amount)
 {
-    if ((param1 > 0) && (param0->unk_14_0 > (999999 - param1))) {
-        param0->unk_14_0 = 999999;
+    if ((amount > 0) && (undergroundRecord->numFossilsDug > (999999 - amount))) {
+        undergroundRecord->numFossilsDug = 999999;
     } else {
-        param0->unk_14_0 += param1;
+        undergroundRecord->numFossilsDug += amount;
     }
 }
 
-void sub_02029688(SecretBaseRecord *param0, int param1)
+void sub_02029688(UndergroundRecord *param0, int param1)
 {
     if ((param1 > 0) && (param0->unk_18_0 > (999999 - param1))) {
         param0->unk_18_0 = 999999;
@@ -1244,84 +1249,84 @@ void sub_02029688(SecretBaseRecord *param0, int param1)
     }
 }
 
-int sub_020296CC(const SecretBaseRecord *param0)
+int UndergroundRecord_GetNumTrapsHit(const UndergroundRecord *undergroundRecord)
 {
-    return param0->unk_1C_0;
+    return undergroundRecord->numTrapsHit;
 }
 
-void sub_020296D4(SecretBaseRecord *param0)
+void UndergroundRecord_IncrementNumTrapsHit(UndergroundRecord *undergroundRecord)
 {
-    if (param0->unk_1C_0 < 999999) {
-        param0->unk_1C_0++;
+    if (undergroundRecord->numTrapsHit < 999999) {
+        undergroundRecord->numTrapsHit++;
     }
 }
 
-int sub_02029704(const SecretBaseRecord *param0)
+int sub_02029704(const UndergroundRecord *param0)
 {
     return param0->unk_20_0;
 }
 
-void sub_0202970C(SecretBaseRecord *param0)
+void sub_0202970C(UndergroundRecord *param0)
 {
     if (param0->unk_20_0 < 999999) {
         param0->unk_20_0++;
     }
 }
 
-int sub_0202973C(const SecretBaseRecord *param0)
+int sub_0202973C(const UndergroundRecord *param0)
 {
     return param0->unk_24_0;
 }
 
-void sub_02029744(SecretBaseRecord *param0)
+void sub_02029744(UndergroundRecord *param0)
 {
     if (param0->unk_24_0 < 999999) {
         param0->unk_24_0++;
     }
 }
 
-int sub_02029774(const SecretBaseRecord *param0)
+int sub_02029774(const UndergroundRecord *param0)
 {
     return param0->unk_28_0;
 }
 
-void sub_0202977C(SecretBaseRecord *param0)
+void sub_0202977C(UndergroundRecord *param0)
 {
     if (param0->unk_28_0 < 999999) {
         param0->unk_28_0++;
     }
 }
 
-int sub_020297AC(const SecretBaseRecord *param0)
+int sub_020297AC(const UndergroundRecord *param0)
 {
     return param0->unk_2C_0;
 }
 
-void sub_020297B4(SecretBaseRecord *param0)
+void sub_020297B4(UndergroundRecord *param0)
 {
     if (param0->unk_2C_0 < 999999) {
         param0->unk_2C_0++;
     }
 }
 
-int sub_020297E4(const SecretBaseRecord *param0)
+int sub_020297E4(const UndergroundRecord *param0)
 {
     return param0->unk_30_0;
 }
 
-void sub_020297EC(SecretBaseRecord *param0)
+void sub_020297EC(UndergroundRecord *param0)
 {
     if (param0->unk_30_0 < 999999) {
         param0->unk_30_0++;
     }
 }
 
-int sub_0202981C(const SecretBaseRecord *param0)
+int sub_0202981C(const UndergroundRecord *param0)
 {
     return param0->unk_34_0;
 }
 
-void sub_02029824(SecretBaseRecord *param0)
+void sub_02029824(UndergroundRecord *param0)
 {
     if (param0->unk_34_0 < 999999) {
         param0->unk_34_0++;
@@ -1362,13 +1367,13 @@ UnkStruct_02029894 *sub_02029894(SaveData *saveData)
     return &v0->unk_00;
 }
 
-SecretBaseRecord *SaveData_SecretBaseRecord(SaveData *saveData)
+UndergroundRecord *SaveData_UndergroundRecord(SaveData *saveData)
 {
     UndergroundData *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_UNDERGROUND);
     return &v0->unk_00.unk_50;
 }
 
-SecretBaseRecord *sub_020298AC(UnkStruct_02029894 *param0)
+UndergroundRecord *sub_020298AC(UnkStruct_02029894 *param0)
 {
     return &param0->unk_50;
 }

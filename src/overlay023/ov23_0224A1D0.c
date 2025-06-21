@@ -6,8 +6,8 @@
 
 #include "generated/trainer_score_events.h"
 
-#include "struct_decls/struct_0202855C_decl.h"
 #include "struct_defs/struct_02057B48.h"
+#include "struct_defs/underground_record.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021F50BC.h"
@@ -82,7 +82,7 @@ static void ov23_0224A204(int param0)
 
     if (param0 == CommSys_CurNetId()) {
         if (commPlayerMan->unk_290[param0] != NULL) {
-            GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(commPlayerMan->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_28);
+            GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(commPlayerMan->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNDERGROUND_CAPTURE_FLAG);
 
             if (commPlayerMan->unk_27C[5 - 1]) {
                 Heap_FreeToHeap(commPlayerMan->unk_27C[5 - 1]);
@@ -227,7 +227,7 @@ void ov23_0224A410(int param0, int param1, void *param2, void *param3)
         commPlayerMan->unk_58.unk_00_9 = 0;
 
         if (commPlayerMan->unk_5A[v1->unk_02] == 0) {
-            sub_020294F4(SaveData_SecretBaseRecord(FieldSystem_GetSaveData(commPlayerMan->fieldSystem)), v1->unk_02);
+            UndergroundRecord_IncrementPeopleMet(SaveData_UndergroundRecord(FieldSystem_GetSaveData(commPlayerMan->fieldSystem)), v1->unk_02);
             SystemVars_SetSpiritombCounter(v2, SystemVars_GetSpiritombCounter(v2) + 1);
             SystemVars_SetUndergroundTalkCounter(v2, SystemVars_GetUndergroundTalkCounter(v2) + 1);
 
@@ -365,7 +365,7 @@ BOOL ov23_0224A6B8(int param0)
     return 1;
 }
 
-static void ov23_0224A6E4(UnkStruct_ov23_0224A570 *param0, BOOL param1, SecretBaseRecord *param2)
+static void ov23_0224A6E4(UnkStruct_ov23_0224A570 *param0, BOOL param1, UndergroundRecord *param2)
 {
     CommPlayerManager *commPlayerMan = CommPlayerMan_Get();
 
@@ -395,7 +395,7 @@ void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
     UnkStruct_ov23_0224A570 *v1 = param2;
     BOOL v2;
     int v3 = 0;
-    SecretBaseRecord *v4 = SaveData_SecretBaseRecord(FieldSystem_GetSaveData(commPlayerMan->fieldSystem));
+    UndergroundRecord *v4 = SaveData_UndergroundRecord(FieldSystem_GetSaveData(commPlayerMan->fieldSystem));
 
     switch (v1->unk_00) {
     case 0:
@@ -469,10 +469,10 @@ void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
         ov23_0224B040(v1->unk_01);
 
         if (v1->unk_01 == CommSys_CurNetId()) {
-            SecretBaseRecord *v5 = SaveData_SecretBaseRecord(FieldSystem_GetSaveData(commPlayerMan->fieldSystem));
-            u8 v6 = sub_0202958C(v5);
+            UndergroundRecord *undergroundRecord = SaveData_UndergroundRecord(FieldSystem_GetSaveData(commPlayerMan->fieldSystem));
+            u8 flagRank = UndergroundRecord_GetFlagRank(undergroundRecord);
 
-            sub_020295C0(v5);
+            UndergroundRecord_IncrementCapturedFlagCount(undergroundRecord);
             SystemFlag_SetDeliveredStolenFlag(SaveData_GetVarsFlags(commPlayerMan->fieldSystem->saveData));
 
             if (commPlayerMan->unk_290[v1->unk_01]) {
@@ -486,10 +486,10 @@ void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
             sub_020594FC();
             Sound_PlayEffect(SEQ_SE_DP_UG_027);
 
-            if (v6 == sub_0202958C(v5)) {
+            if (flagRank == UndergroundRecord_GetFlagRank(undergroundRecord)) {
                 ov23_02253F40(ov23_022421AC(), 7, 1, ov23_0224A300);
             } else {
-                CommSys_SendDataFixedSize(96, &v6);
+                CommSys_SendDataFixedSize(96, &flagRank);
             }
 
             Sound_FadeOutAndPlayBGM(4, SEQ_TANKOU, 60, 0, 0xff, NULL);
@@ -805,7 +805,7 @@ BOOL ov23_0224AEC4(int param0, int param1)
             TrainerInfo_Copy(v1, (TrainerInfo *)&v0->unk_14A[param0].unk_00);
 
             if (param1 == CommSys_CurNetId()) {
-                SecretBaseRecord *v2 = SaveData_SecretBaseRecord(v0->fieldSystem->saveData);
+                UndergroundRecord *v2 = SaveData_UndergroundRecord(v0->fieldSystem->saveData);
                 sub_020297B4(v2);
             }
 

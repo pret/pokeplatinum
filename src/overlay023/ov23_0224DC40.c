@@ -459,7 +459,7 @@ static void ov23_0224E124(UnkStruct_ov23_0224E280 *param0)
     ov23_022540F4(ov23_0224219C(), param0->unk_28.unk_02);
     ov23_02253F40(ov23_0224219C(), 14, 0, NULL);
 
-    sub_0202952C(SaveData_SecretBaseRecord(FieldSystem_GetSaveData(param0->fieldSystem)));
+    UndergroundRecord_IncrementGiftsGiven(SaveData_UndergroundRecord(FieldSystem_GetSaveData(param0->fieldSystem)));
     ov23_0224F634(param0->unk_28.unk_02);
     Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
 }
@@ -631,7 +631,7 @@ static void ov23_0224E2D8(SysTask *param0, void *param1)
     case 10:
         break;
     case 11:
-        GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(v0->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_32);
+        GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(v0->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNDERGROUND_GREET_PLAYER);
         ov23_022539E8();
         ov23_0224DC68(v0, 9);
         v0->unk_37 = 12;
@@ -727,7 +727,7 @@ static void ov23_0224E2D8(SysTask *param0, void *param1)
             SystemVars_SetUndergroundItemsGivenAway(v2, SystemVars_GetUndergroundItemsGivenAway(v2) + 1);
         }
 
-        GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(v0->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_31);
+        GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(v0->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNDERGROUND_GIVE_PLAYER_GOODS);
         v0->unk_37 = 25;
         break;
     case 25:
@@ -795,7 +795,7 @@ static void ov23_0224E2D8(SysTask *param0, void *param1)
         break;
     case 36:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(v0->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_33);
+            GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(v0->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNDERGROUND_ASK_PLAYER_QUESTION);
             ov23_0224DC68(v0, 142);
             v0->unk_37 = 37;
         }
@@ -894,7 +894,7 @@ static void ov23_0224E93C(SysTask *param0, UnkStruct_ov23_022577B0 *param1)
 
     if (v0 == 0) {
         if (ov23_0224F744(param1->unk_24.unk_02)) {
-            sub_0202977C(SaveData_SecretBaseRecord(FieldSystem_GetSaveData(param1->fieldSystem)));
+            sub_0202977C(SaveData_UndergroundRecord(FieldSystem_GetSaveData(param1->fieldSystem)));
             Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
             ov23_0224DC40(param1, 22);
 

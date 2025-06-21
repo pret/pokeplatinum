@@ -6,9 +6,9 @@
 #include "generated/movement_actions.h"
 #include "generated/trainer_score_events.h"
 
-#include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_02029894_decl.h"
-#include "struct_decls/struct_020298B0_decl.h"
+#include "struct_defs/underground_data.h"
+#include "struct_defs/underground_record.h"
 
 #include "field/field_system.h"
 #include "overlay005/map_prop.h"
@@ -375,12 +375,12 @@ void ov23_0224B144(void *param0, FieldSystem *fieldSystem)
 void ov23_0224B2C8(FieldSystem *fieldSystem)
 {
     UnkStruct_02029894 *v0;
-    SecretBaseRecord *v1;
+    UndergroundRecord *undergroundRecord;
 
     v0 = sub_02029894(FieldSystem_GetSaveData(fieldSystem));
-    v1 = sub_020298AC(v0);
+    undergroundRecord = sub_020298AC(v0);
 
-    sub_020294D4(v1, GameRecords_GetTrainerScore(SaveData_GetGameRecords(fieldSystem->saveData)));
+    UndergroundRecord_SetTrainerScore(undergroundRecord, GameRecords_GetTrainerScore(SaveData_GetGameRecords(fieldSystem->saveData)));
 
     MI_CpuCopy8(v0, Unk_ov23_022577AC->unk_08[16].unk_02, 148);
     ov23_0224B39C(v0, Unk_ov23_022577AC->unk_A04[16]);
@@ -1977,7 +1977,7 @@ static void ov23_0224CEC8(void)
 void ov23_0224CF18(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_ov23_0224CF18 *v0 = param2;
-    SecretBaseRecord *v1 = SaveData_SecretBaseRecord(FieldSystem_GetSaveData(Unk_ov23_022577AC->fieldSystem));
+    UndergroundRecord *undergroundRecord = SaveData_UndergroundRecord(FieldSystem_GetSaveData(Unk_ov23_022577AC->fieldSystem));
 
     if (v0->unk_00 != CommSys_CurNetId()) {
         return;
@@ -2008,14 +2008,14 @@ void ov23_0224CF18(int param0, int param1, void *param2, void *param3)
         ov23_0224C1EC(v3, v4, v5, 16);
 
         if (v0->unk_01 == 3) {
-            sub_02029824(v1);
+            sub_02029824(undergroundRecord);
         }
 
         if (v0->unk_01 == 3 || v0->unk_01 == 4) {
             void *journalEntryLocationEvent = JournalEntry_CreateEventBuiltSecretBase(HEAP_ID_FIELDMAP);
 
             JournalEntry_SaveData(Unk_ov23_022577AC->fieldSystem->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
-            GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(Unk_ov23_022577AC->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_35);
+            GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(Unk_ov23_022577AC->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNDERGROUND_NEW_SECRET_BASE);
         }
     }
 }
@@ -2297,7 +2297,7 @@ void ov23_0224D4CC(int param0, int param1, void *param2, void *param3)
 {
     u8 *v0 = param2;
     UnkStruct_02029894 *v1 = (UnkStruct_02029894 *)Unk_ov23_022577AC->unk_A00->unk_02;
-    SecretBaseRecord *v2 = sub_020298AC(v1);
+    UndergroundRecord *v2 = sub_020298AC(v1);
 
     if (v0[0] == CommSys_CurNetId()) {
         ov23_02253A00(v2, v0[1]);

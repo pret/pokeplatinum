@@ -306,7 +306,7 @@ _0443:
     Return
 
 _0448:
-    ScrCmd_24A VAR_RESULT
+    GetCapturedFlagCount VAR_RESULT
     GoToIfLt VAR_RESULT, 3, _00A7
     CallIfSet FLAG_UNK_0x00FC, _057A
     CallIfUnset FLAG_UNK_0x00FC, _04A4
@@ -326,7 +326,7 @@ _04A4:
     Return
 
 _04A9:
-    ScrCmd_24A VAR_RESULT
+    GetCapturedFlagCount VAR_RESULT
     GoToIfLt VAR_RESULT, 10, _00A7
     CallIfSet FLAG_UNK_0x00FC, _057A
     CallIfUnset FLAG_UNK_0x00FC, _0505
@@ -346,7 +346,7 @@ _0505:
     Return
 
 _050A:
-    ScrCmd_24A VAR_RESULT
+    GetCapturedFlagCount VAR_RESULT
     GoToIfLt VAR_RESULT, 50, _00A7
     CallIfSet FLAG_UNK_0x00FC, _057A
     CallIfUnset FLAG_UNK_0x00FC, _0566

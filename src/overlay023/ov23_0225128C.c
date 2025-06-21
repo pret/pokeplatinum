@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020298B0_decl.h"
+#include "struct_defs/underground_data.h"
 
 #include "field/field_system.h"
 #include "overlay023/funcptr_ov23_022515D8.h"
@@ -343,7 +343,7 @@ static void ov23_022515D8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
     int v1 = param2 + 1;
     BOOL v2 = 1;
 
-    if (3 > sub_0202958C(SaveData_SecretBaseRecord(param0->fieldSystem->saveData))) {
+    if (BASE_FLAG_GOLD > UndergroundRecord_GetFlagRank(SaveData_UndergroundRecord(param0->fieldSystem->saveData))) {
         v2 = 0;
         v1 -= 1;
     }

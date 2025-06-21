@@ -5,7 +5,7 @@
 
 #include "generated/game_records.h"
 
-#include "struct_decls/struct_020298B0_decl.h"
+#include "struct_defs/underground_data.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021F575C.h"

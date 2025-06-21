@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV23_0224F294_H
 #define POKEPLATINUM_OV23_0224F294_H
 
-#include "struct_decls/struct_020298B0_decl.h"
+#include "struct_defs/underground_data.h"
 
 #include "field/field_system_decl.h"
 #include "overlay023/funcptr_ov23_0224F758.h"
