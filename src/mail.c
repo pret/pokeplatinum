@@ -1,4 +1,4 @@
-#include "unk_02028124.h"
+#include "mail.h"
 
 #include <nitro.h>
 #include <string.h>

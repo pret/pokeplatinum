@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_02028124_H
-#define POKEPLATINUM_UNK_02028124_H
+#ifndef POKEPLATINUM_MAIL_H
+#define POKEPLATINUM_MAIL_H
 
 #include "struct_defs/mail.h"
 
@@ -31,4 +31,4 @@ int sub_02028494(Mailbox *mailbox, int param1);
 Mail *sub_020284A8(Mailbox *mailbox, int param1, int slot, int heapID);
 void sub_020284CC(Mailbox *mailbox, int param1, int param2, Mail *param3);
 
-#endif // POKEPLATINUM_UNK_02028124_H
+#endif // POKEPLATINUM_MAIL_H

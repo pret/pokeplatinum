@@ -35,6 +35,7 @@
 #include "heap.h"
 #include "inlines.h"
 #include "item.h"
+#include "mail.h"
 #include "math_util.h"
 #include "message.h"
 #include "message_util.h"
@@ -53,7 +54,6 @@
 #include "trainer_info.h"
 #include "unk_02015F84.h"
 #include "unk_02017038.h"
-#include "unk_02028124.h"
 #include "unk_0202C9F4.h"
 #include "unk_02092494.h"
 

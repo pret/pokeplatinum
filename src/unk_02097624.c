@@ -15,13 +15,13 @@
 #include "game_records.h"
 #include "heap.h"
 #include "item.h"
+#include "mail.h"
 #include "overlay_manager.h"
 #include "pokemon.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
 #include "unk_02014A84.h"
-#include "unk_02028124.h"
 #include "unk_0209747C.h"
 
 FS_EXTERN_OVERLAY(overlay20);
