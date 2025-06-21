@@ -108,7 +108,6 @@
 #include "overlay012/struct_ov12_02237F38.h"
 #include "overlay012/struct_ov12_022380DC.h"
 #include "overlay013/battle_bag.h"
-#include "overlay013/battle_bag_context.h"
 #include "overlay013/battle_bag_utils.h"
 #include "overlay013/ov13_0221FC20.h"
 #include "overlay013/struct_ov13_0221FC20.h"
