@@ -364,7 +364,7 @@ static void ov23_02253A78(Window *param0, MessageLoader *param1, TrainerInfo *pa
     Text_AddPrinterWithParams(param0, FONT_SYSTEM, v1, v7, 1 + v8 * 3, TEXT_SPEED_NO_TRANSFER, NULL);
 
     for (v3 = 0; v3 < 5; v3++) {
-        TrainerInfo *v13 = sub_020288C8(param4, 4, v3);
+        TrainerInfo *v13 = sub_020288C8(param4, HEAP_ID_FIELD, v3);
 
         if (v13) {
             StringTemplate_SetPlayerName(v0, 0, v13);

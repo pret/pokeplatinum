@@ -16,7 +16,7 @@ int TrainerInfo_Size(void)
     return sizeof(TrainerInfo);
 }
 
-TrainerInfo *TrainerInfo_New(u32 heapID)
+TrainerInfo *TrainerInfo_New(enum HeapId heapID)
 {
     TrainerInfo *info = Heap_AllocFromHeap(heapID, sizeof(TrainerInfo));
     TrainerInfo_Init(info);

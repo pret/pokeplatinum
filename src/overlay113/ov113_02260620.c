@@ -82,10 +82,10 @@ void ov113_02260620(MessageLoader *param0, StringTemplate *param1, Window param2
         return;
     }
 
-    v1 = TrainerInfo_New(118);
-    ov66_0222E640(v0, v1, 118);
+    v1 = TrainerInfo_New(HEAP_ID_118);
+    ov66_0222E640(v0, v1, HEAP_ID_118);
 
-    v4 = TrainerInfo_NameNewStrbuf(v1, 118);
+    v4 = TrainerInfo_NameNewStrbuf(v1, HEAP_ID_118);
     v6 = TrainerInfo_Gender(v1);
 
     StringTemplate_SetStrbuf(param1, 0, v4, v6, 1, GAME_LANGUAGE);

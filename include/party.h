@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_PARTY_H
 #define POKEPLATINUM_PARTY_H
 
+#include "constants/heap.h"
+
 #include "struct_defs/pokemon.h"
 
 #include "savedata.h"
@@ -12,7 +14,7 @@ typedef struct Party {
 } Party;
 
 int Party_SaveSize(void);
-Party *Party_New(u32 heapID);
+Party *Party_New(enum HeapId heapID);
 void Party_Init(Party *party);
 void Party_InitWithCapacity(Party *party, int capacity);
 BOOL Party_AddPokemon(Party *party, Pokemon *pokemon);
