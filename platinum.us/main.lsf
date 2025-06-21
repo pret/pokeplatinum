@@ -668,7 +668,7 @@ Overlay overlay13
 	Object main.nef.p/src_overlay013_battle_bag_text.c.o
 	Object main.nef.p/src_overlay013_battle_bag_utils.c.o
 	Object main.nef.p/src_overlay013_battle_bag_sprites.c.o
-	Object main.nef.p/src_overlay013_ov13_02228128.c.o
+	Object main.nef.p/src_overlay013_battle_bag_buttons.c.o
 	Object main.nef.p/src_overlay013_battle_sub_menu_cursor.c.o
 }
 

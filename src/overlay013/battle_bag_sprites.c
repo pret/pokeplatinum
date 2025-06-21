@@ -219,7 +219,7 @@ static void DrawPocketItems(BattleBag *battleBag)
         }
 
         LoadItemIcon(battleBag, item, POCKET_SLOT_1_RESOURCE_ID + i);
-        LoadItemPaletteData(battleBag, item, (u16)i, POCKET_SLOT_1_RESOURCE_ID + i);
+        LoadItemPaletteData(battleBag, item, i, POCKET_SLOT_1_RESOURCE_ID + i);
         DrawSprite(battleBag->pocketItemSprites[i], sPocketItemSpritePositions[i].x, sPocketItemSpritePositions[i].y);
     }
 }
@@ -235,10 +235,9 @@ static void DrawSelectedItem(BattleBag *battleBag)
 
 static void InitializeCursor(BattleBag *battleBag)
 {
-    SpriteSystem *spriteSystem;
     UnkStruct_ov16_0226DC24 *cursorSprites;
 
-    spriteSystem = BattleSystem_GetSpriteSystem(battleBag->context->battleSystem);
+    SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(battleBag->context->battleSystem);
     ov16_0226DB7C(spriteSystem, battleBag->spriteManager, battleBag->palette, battleBag->context->heapID, CURSOR_IMAGE_RESOURCE_ID, CURSOR_IMAGE_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID);
     cursorSprites = ov16_0226DC24(spriteSystem, battleBag->spriteManager, battleBag->context->heapID, CURSOR_IMAGE_RESOURCE_ID, CURSOR_IMAGE_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID, 0, 1);
 
