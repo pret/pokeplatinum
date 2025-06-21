@@ -3,10 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "applications/poketch/pre_poketch_subscreen/pre_poketch_subscreen.h"
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "poketch/poketch_system.h"
-#include "pre_poketch_subscreen/pre_poketch_subscreen.h"
 
 #include "brightness_controller.h"
 #include "field_task.h"

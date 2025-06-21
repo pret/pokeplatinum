@@ -56,7 +56,7 @@ typedef struct PoketchGraphics_AppCounterAnimationData {
 
 struct PoketchGraphics_TaskData {
     const PoketchGraphics_ConstTaskData *constTaskData;
-    u32 taskList[BASE_IDX + NUM_TASK_SLOTS];
+    u32 activeTasks[BASE_IDX + NUM_TASK_SLOTS];
     u16 tilemapUpBtnPressed[BUTTON_TILEMAP_SIZE];
     u16 tilemapUpBtnHalfPressed[BUTTON_TILEMAP_SIZE];
     u16 tilemapUpBtn[BUTTON_TILEMAP_SIZE];
@@ -130,7 +130,7 @@ BOOL PoketchGraphics_Main(PoketchGraphics_TaskData **taskDataPtr, const PoketchG
 
         PoketchGraphics_InitPaletteData(newTaskData);
         PoketchGraphics_SetupAppCounterData(&newTaskData->appCounterAnim, newTaskData->animMan);
-        PoketchTask_InitActiveTaskList((*taskDataPtr)->taskList, NUM_TASK_SLOTS);
+        PoketchTask_InitActiveTaskList((*taskDataPtr)->activeTasks, NUM_TASK_SLOTS);
 
         GENERATE_UP_BUTTON_SPRITE((*taskDataPtr)->tilemapUpBtnPressed, 8);
         GENERATE_UP_BUTTON_SPRITE((*taskDataPtr)->tilemapUpBtnHalfPressed, 12);
@@ -277,23 +277,23 @@ static const PoketchTask poketchTasks[] = {
 
 void PoketchGraphics_StartTask(PoketchGraphics_TaskData *taskData, u32 taskId)
 {
-    PoketchTask_Start(poketchTasks, taskId, taskData, taskData->constTaskData, taskData->taskList, 2, HEAP_ID_POKETCH_MAIN);
+    PoketchTask_Start(poketchTasks, taskId, taskData, taskData->constTaskData, taskData->activeTasks, 2, HEAP_ID_POKETCH_MAIN);
 }
 
 BOOL PoketchGraphics_TaskIsNotActive(PoketchGraphics_TaskData *taskData, u32 taskId)
 {
-    return PoketchTask_TaskIsNotActive(taskData->taskList, taskId);
+    return PoketchTask_TaskIsNotActive(taskData->activeTasks, taskId);
 }
 
 BOOL PoketchGraphics_NoActiveTasks(PoketchGraphics_TaskData *taskData)
 {
-    return PoketchTask_NoActiveTasks(taskData->taskList);
+    return PoketchTask_NoActiveTasks(taskData->activeTasks);
 }
 
 static void PoketchGraphics_EndTask(PoketchTaskManager *taskMan)
 {
     PoketchGraphics_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
-    PoketchTask_EndTask(taskData->taskList, taskMan);
+    PoketchTask_EndTask(taskData->activeTasks, taskMan);
 }
 
 static void PoketchGraphics_SetupBackgroundTask(SysTask *task, void *taskMan)

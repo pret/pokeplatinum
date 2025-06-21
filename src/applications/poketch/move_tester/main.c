@@ -17,7 +17,7 @@
 #include "touch_screen.h"
 
 typedef struct PoketchMoveTester {
-    u8 sysTaskState;
+    u8 activeTask;
     u8 taskFuncState;
     u8 shouldExit;
     u32 appID;
@@ -111,7 +111,7 @@ static void InitData(MoveTesterData *moveTesterData);
 static void Free(PoketchMoveTester *appData);
 static void Exit(void *appData);
 
-static void SetTaskState(PoketchMoveTester *appData, u32 state);
+static void ChangeActiveTask(PoketchMoveTester *appData, enum MoveTesterTasks taskID);
 static void Task_Main(SysTask *task, void *appData);
 static BOOL Task_LoadApp(PoketchMoveTester *appData);
 static BOOL Task_UpdateApp(PoketchMoveTester *appData);
@@ -129,7 +129,7 @@ static void NitroStaticInit(void)
 
 static BOOL New(void **appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 appID)
 {
-    PoketchMoveTester *moveTester = (PoketchMoveTester *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(PoketchMoveTester));
+    PoketchMoveTester *moveTester = Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(PoketchMoveTester));
 
     if (moveTester != NULL) {
         if (Init(moveTester, poketchSys, bgConfig, appID)) {
@@ -154,7 +154,7 @@ static BOOL Init(PoketchMoveTester *appData, PoketchSystem *poketchSys, BgConfig
     }
 
     if (PoketchMoveTesterGraphics_New(&(appData->graphics), &(appData->moveTesterData), bgConfig)) {
-        appData->sysTaskState = TASK_LOAD_APP;
+        appData->activeTask = TASK_LOAD_APP;
         appData->taskFuncState = 0;
         appData->shouldExit = FALSE;
         appData->buttonManager = PoketchButtonManager_New(sHitTableMoveTester, NELEMS(sHitTableMoveTester), ButtonChanged, appData, HEAP_ID_POKETCH_APP);
@@ -194,10 +194,10 @@ static void Task_Main(SysTask *task, void *appData)
 
     PoketchMoveTester *moveTester = appData;
 
-    if (moveTester->sysTaskState < NELEMS(stateFuncs)) {
+    if (moveTester->activeTask < NELEMS(stateFuncs)) {
         PoketechSystem_UpdateButtonManager(moveTester->poketchSys, moveTester->buttonManager);
 
-        if (stateFuncs[moveTester->sysTaskState](moveTester)) {
+        if (stateFuncs[moveTester->activeTask](moveTester)) {
             Free(moveTester);
             SysTask_Done(task);
             PoketchSystem_NotifyAppUnloaded(moveTester->poketchSys);
@@ -219,12 +219,12 @@ static void Exit(void *appData)
     moveTester->shouldExit = TRUE;
 }
 
-static void SetTaskState(PoketchMoveTester *appData, u32 state)
+static void ChangeActiveTask(PoketchMoveTester *appData, enum MoveTesterTasks taskID)
 {
     if (appData->shouldExit == FALSE) {
-        appData->sysTaskState = state;
+        appData->activeTask = taskID;
     } else {
-        appData->sysTaskState = TASK_SHUTDOWN;
+        appData->activeTask = TASK_SHUTDOWN;
     }
 
     appData->taskFuncState = 0;
@@ -238,9 +238,9 @@ static BOOL Task_LoadApp(PoketchMoveTester *appData)
         appData->taskFuncState++;
         break;
     case 1:
-        if (PoketchMoveTesterGraphics_CheckTaskActive(appData->graphics, TASK_DRAW_APP_SCREEN)) {
+        if (PoketchMoveTesterGraphics_TaskIsNotActive(appData->graphics, TASK_DRAW_APP_SCREEN)) {
             PoketchSystem_NotifyAppLoaded(appData->poketchSys);
-            SetTaskState(appData, TASK_UPDATE_LOOP);
+            ChangeActiveTask(appData, TASK_UPDATE_LOOP);
         }
         break;
     }
@@ -252,7 +252,7 @@ static BOOL Task_UpdateApp(PoketchMoveTester *appData)
 {
     if (appData->shouldExit) {
         if (PoketchMoveTesterGraphics_NoActiveTasks(appData->graphics)) {
-            SetTaskState(appData, TASK_SHUTDOWN);
+            ChangeActiveTask(appData, TASK_SHUTDOWN);
         }
 
         return FALSE;

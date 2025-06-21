@@ -1,4 +1,4 @@
-#include "pre_poketch_subscreen/pre_poketch_subscreen.h"
+#include "applications/poketch/pre_poketch_subscreen/pre_poketch_subscreen.h"
 
 #include "constants/heap.h"
 

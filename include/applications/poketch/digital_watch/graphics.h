@@ -1,15 +1,9 @@
-#ifndef POKEPLATINUM_POKETCH_DIGITAL_WATCH_DISPLAY_H
-#define POKEPLATINUM_POKETCH_DIGITAL_WATCH_DISPLAY_H
+#ifndef POKEPLATINUM_POKETCH_digital_watch_graphics_H
+#define POKEPLATINUM_POKETCH_digital_watch_graphics_H
 
 #include "bg_window.h"
 
-// Display Tasks
 #define NUM_TASK_SLOTS 8
-
-#define DISPLAY_TASK_SETUP_BACKGROUND    0
-#define DISPLAY_TASK_UPDATE_WATCH_DIGITS 1
-#define DISPLAY_TASK_TOGGLE_BACKLIGHT    2
-#define DISPLAY_TASK_FREE_BACKGROUND     3
 
 // Graphics
 #define POKETCH_DIGITAL_WATCH_NARC_TILES_IDX   23
@@ -34,17 +28,24 @@ typedef struct {
     u32 backlightActive;
 } WatchData;
 
-typedef struct DisplayManager {
+typedef struct PoketchDigitalWatchGraphics {
     const WatchData *watchData;
     BgConfig *bgConfig;
-    u32 taskList[2 + NUM_TASK_SLOTS];
+    u32 activeTasks[2 + NUM_TASK_SLOTS];
     u16 digitsTilemap[POKETCH_DIGIT_TILEMAP_SIZE_BYTES];
-} DisplayManager;
+} PoketchDigitalWatchGraphics;
 
-BOOL PoketchDigitalWatch_SetupDisplayManager(DisplayManager **displayManager, const WatchData *watchData, BgConfig *bgConfig);
-void PoketchDigitalWatch_FreeDisplayManager(DisplayManager *displayManager);
-void PoketchDigitalWatch_StartDisplayTask(DisplayManager *displayManager, u32 taskID);
-BOOL PoketchDigitalWatch_DisplayTaskIsNotActive(DisplayManager *displayManager, u32 taskID);
-BOOL PoketchDigitalWatch_NoActiveDisplayTasks(DisplayManager *displayManager);
+enum DigitalWatchGraphicsTasks {
+    TASK_DRAW_APP_SCREEN = 0,
+    TASK_UPDATE_WATCH_DIGITS,
+    TASK_TOGGLE_BACKLIGHT,
+    TASK_FREE_GRAPHICS,
+};
 
-#endif // POKEPLATINUM_POKETCH_DIGITAL_WATCH_DISPLAY_H
+BOOL PoketchDigitalWatchGraphics_New(PoketchDigitalWatchGraphics **graphics, const WatchData *watchData, BgConfig *bgConfig);
+void PoketchDigitalWatchGraphics_Free(PoketchDigitalWatchGraphics *graphics);
+void PoketchDigitalWatchGraphics_StartTask(PoketchDigitalWatchGraphics *graphics, enum DigitalWatchGraphicsTasks taskID);
+BOOL PoketchDigitalWatchGraphics_TaskIsNotActive(PoketchDigitalWatchGraphics *graphics, enum DigitalWatchGraphicsTasks taskID);
+BOOL PoketchDigitalWatchGraphics_NoActiveTasks(PoketchDigitalWatchGraphics *graphics);
+
+#endif // POKEPLATINUM_POKETCH_digital_watch_graphics_H
