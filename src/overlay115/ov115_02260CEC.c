@@ -424,7 +424,7 @@ static void ov115_02263308(void);
 static void ov115_02263328(void);
 static void ov115_022633B4(UnkStruct_ov115_02261ADC *param0, u32 param1, u32 param2, u32 heapID);
 static void ov115_022633EC(UnkStruct_ov115_02261ADC *param0);
-static void ov115_0226376C(UnkStruct_ov115_02261ADC *param0, u32 param1);
+static void ov115_0226376C(UnkStruct_ov115_02261ADC *param0, u32 heapID);
 static void ov115_02263954(UnkStruct_ov115_02261ADC *param0);
 static void ov115_02263990(UnkStruct_ov115_02261ADC *param0, u32 heapID);
 static void ov115_02263A3C(UnkStruct_ov115_02261ADC *param0);
@@ -2973,9 +2973,9 @@ static void ov115_0226369C(const UnkStruct_ov115_02260D78 *param0, UnkStruct_ov1
     SpriteList_Update(param1->unk_1C);
 }
 
-static void ov115_0226376C(UnkStruct_ov115_02261ADC *param0, u32 param1)
+static void ov115_0226376C(UnkStruct_ov115_02261ADC *param0, u32 heapID)
 {
-    param0->unk_00 = BgConfig_New(param1);
+    param0->unk_00 = BgConfig_New(heapID);
 
     {
         GraphicsModes v0 = {
@@ -3006,7 +3006,7 @@ static void ov115_0226376C(UnkStruct_ov115_02261ADC *param0, u32 param1)
         };
 
         Bg_InitFromTemplate(param0->unk_00, 1, &v1, 0);
-        Bg_ClearTilesRange(1, 32, 0, param1);
+        Bg_ClearTilesRange(1, 32, 0, heapID);
         Bg_ClearTilemap(param0->unk_00, 1);
     }
 
@@ -3028,7 +3028,7 @@ static void ov115_0226376C(UnkStruct_ov115_02261ADC *param0, u32 param1)
         };
 
         Bg_InitFromTemplate(param0->unk_00, 2, &v2, 0);
-        Bg_ClearTilesRange(2, 32, 0, param1);
+        Bg_ClearTilesRange(2, 32, 0, heapID);
         Bg_ClearTilemap(param0->unk_00, 2);
     }
 
@@ -3050,7 +3050,7 @@ static void ov115_0226376C(UnkStruct_ov115_02261ADC *param0, u32 param1)
         };
 
         Bg_InitFromTemplate(param0->unk_00, 4, &v3, 0);
-        Bg_ClearTilesRange(4, 32, 0, param1);
+        Bg_ClearTilesRange(4, 32, 0, heapID);
         Bg_ClearTilemap(param0->unk_00, 4);
     }
 
@@ -3072,7 +3072,7 @@ static void ov115_0226376C(UnkStruct_ov115_02261ADC *param0, u32 param1)
         };
 
         Bg_InitFromTemplate(param0->unk_00, 5, &v4, 0);
-        Bg_ClearTilesRange(5, 32, 0, param1);
+        Bg_ClearTilesRange(5, 32, 0, heapID);
         Bg_ClearTilemap(param0->unk_00, 5);
     }
 
@@ -3094,7 +3094,7 @@ static void ov115_0226376C(UnkStruct_ov115_02261ADC *param0, u32 param1)
         };
 
         Bg_InitFromTemplate(param0->unk_00, 6, &v5, 0);
-        Bg_ClearTilesRange(6, 32, 0, param1);
+        Bg_ClearTilesRange(6, 32, 0, heapID);
         Bg_ClearTilemap(param0->unk_00, 6);
     }
 
@@ -3116,7 +3116,7 @@ static void ov115_0226376C(UnkStruct_ov115_02261ADC *param0, u32 param1)
         };
 
         Bg_InitFromTemplate(param0->unk_00, 7, &v6, 0);
-        Bg_ClearTilesRange(7, 32, 0, param1);
+        Bg_ClearTilesRange(7, 32, 0, heapID);
         Bg_ClearTilemap(param0->unk_00, 7);
     }
 
@@ -3130,8 +3130,8 @@ static void ov115_0226376C(UnkStruct_ov115_02261ADC *param0, u32 param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    Font_LoadScreenIndicatorsPalette(0, 5 * 0x20, param1);
-    LoadStandardWindowGraphics(param0->unk_00, 1, 1, 4, 0, param1);
+    Font_LoadScreenIndicatorsPalette(0, 5 * 0x20, heapID);
+    LoadStandardWindowGraphics(param0->unk_00, 1, 1, 4, 0, heapID);
 }
 
 static void ov115_02263954(UnkStruct_ov115_02261ADC *param0)

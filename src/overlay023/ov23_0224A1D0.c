@@ -531,7 +531,7 @@ void ov23_0224AAB0(void)
     if (commPlayerMan->unk_290[CommSys_CurNetId()]) {
         CommSys_SendDataFixedSize(91, commPlayerMan->unk_290[CommSys_CurNetId()]);
     } else {
-        TrainerInfo *v0 = TrainerInfo_New(15);
+        TrainerInfo *v0 = TrainerInfo_New(HEAP_ID_COMMUNICATION);
         Strbuf *v1 = Strbuf_Init(20, HEAP_ID_COMMUNICATION);
 
         GF_ASSERT(v0);
@@ -595,7 +595,7 @@ void ov23_0224ABC4(int param0, int param1, void *param2, void *param3)
             Heap_FreeToHeap(commPlayerMan->unk_290[v3]);
         }
 
-        commPlayerMan->unk_290[v3] = TrainerInfo_New(15);
+        commPlayerMan->unk_290[v3] = TrainerInfo_New(HEAP_ID_COMMUNICATION);
         TrainerInfo_Copy((TrainerInfo *)v1->unk_00, commPlayerMan->unk_290[v3]);
         commPlayerMan->unk_FA[v3] = 1;
     }
@@ -796,7 +796,7 @@ BOOL ov23_0224AEC4(int param0, int param1)
         TrainerInfo *v1 = CommInfo_TrainerInfo(param1);
 
         if (v1) {
-            v0->unk_290[param0] = TrainerInfo_New(15);
+            v0->unk_290[param0] = TrainerInfo_New(HEAP_ID_COMMUNICATION);
             TrainerInfo_Copy(v1, v0->unk_290[param0]);
 
             v0->unk_FA[param0] = 1;

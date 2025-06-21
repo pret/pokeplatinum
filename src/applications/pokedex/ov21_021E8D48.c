@@ -84,11 +84,11 @@ static void ov21_021E98F8(PaletteData *param0, PokemonSprite *param1, int param2
 static BOOL ov21_021E9948(PaletteData *param0, PokemonSprite *param1);
 static void ov21_021E8E0C(UnkStruct_ov21_021E8D48 *param0, const UnkStruct_ov21_021E8E0C *param1);
 static void ov21_021E900C(UnkStruct_ov21_021E8D48 *param0);
-static void ov21_021E90B0(BgConfig *param0, int param1);
+static void ov21_021E90B0(BgConfig *param0, int heapID);
 static void ov21_021E9194(BgConfig *param0);
 static Window *ov21_021E91B0(BgConfig *param0, int param1);
 static void ov21_021E91F0(Window *param0);
-static void ov21_021E9208(SpriteResourceCollection **param0, int param1);
+static void ov21_021E9208(SpriteResourceCollection **param0, int heapID);
 static void ov21_021E9228(SpriteResourceCollection **param0);
 static void ov21_021E9240(PokedexSpeciesLabel *param0, PokedexTextManager *textMan, int param2, int param3, int param4);
 static void ov21_021E92B0(PokedexSpeciesLabel *param0);
@@ -263,7 +263,7 @@ static void ov21_021E900C(UnkStruct_ov21_021E8D48 *param0)
     ov21_021E9A38();
 }
 
-static void ov21_021E90B0(BgConfig *param0, int param1)
+static void ov21_021E90B0(BgConfig *param0, int heapID)
 {
     {
         BgTemplate v0 = {
@@ -284,7 +284,7 @@ static void ov21_021E90B0(BgConfig *param0, int param1)
 
         Bg_FreeTilemapBuffer(param0, 1);
         Bg_InitFromTemplate(param0, 1, &v0, 0);
-        Bg_ClearTilesRange(1, 32, 0, param1);
+        Bg_ClearTilesRange(1, 32, 0, heapID);
         Bg_ClearTilemap(param0, 1);
     }
 
@@ -307,7 +307,7 @@ static void ov21_021E90B0(BgConfig *param0, int param1)
 
         Bg_FreeTilemapBuffer(param0, 2);
         Bg_InitFromTemplate(param0, 2, &v1, 0);
-        Bg_ClearTilesRange(2, 32, 0, param1);
+        Bg_ClearTilesRange(2, 32, 0, heapID);
         Bg_ClearTilemap(param0, 2);
     }
 
@@ -334,7 +334,7 @@ static void ov21_021E90B0(BgConfig *param0, int param1)
 
         Bg_FreeTilemapBuffer(param0, 3);
         Bg_InitFromTemplate(param0, 3, &v2, 0);
-        Bg_ClearTilesRange(3, 32, 0, param1);
+        Bg_ClearTilesRange(3, 32, 0, heapID);
         Bg_ClearTilemap(param0, 3);
     }
 }
@@ -364,12 +364,12 @@ static void ov21_021E91F0(Window *param0)
     Windows_Delete(param0, 1);
 }
 
-static void ov21_021E9208(SpriteResourceCollection **param0, int param1)
+static void ov21_021E9208(SpriteResourceCollection **param0, int heapID)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < 4; v0++) {
-        param0[v0] = SpriteResourceCollection_New(8, v0, param1);
+    for (i = 0; i < 4; i++) {
+        param0[i] = SpriteResourceCollection_New(8, i, heapID);
     }
 }
 

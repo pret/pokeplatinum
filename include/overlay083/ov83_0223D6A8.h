@@ -30,7 +30,7 @@
 #include "sprite.h"
 #include "sprite_resource.h"
 
-void ov83_0223D754(UnkStruct_ov83_0223D784 *param0, int param1, int param2, int param3);
+void ov83_0223D754(UnkStruct_ov83_0223D784 *param0, int param1, int param2, int heapID);
 void ov83_0223D784(UnkStruct_ov83_0223D784 *param0);
 void ov83_0223D7A8(UnkStruct_ov83_0223D784 *param0, UnkStruct_ov83_0223D95C *param1, NARC *param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, u32 param9);
 void ov83_0223D894(UnkStruct_ov83_0223D784 *param0, UnkStruct_ov83_0223D95C *param1, NARC *param2, SpriteResource *param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8);

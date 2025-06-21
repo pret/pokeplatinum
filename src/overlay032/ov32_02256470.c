@@ -98,9 +98,9 @@ void PartyStatus_StartTaskById(PoketchPartyStatusGraphics *appData, enum PartySt
     PoketchTask_Start(sPartyStatusTasks, taskId, appData, appData->playerParty, appData->activeTaskIds, 2, HEAP_ID_POKETCH_APP);
 }
 
-BOOL PartyStatus_TaskIsNotActive(PoketchPartyStatusGraphics *appData, u32 animId)
+BOOL PartyStatus_TaskIsNotActive(PoketchPartyStatusGraphics *appData, u32 animID)
 {
-    return PoketchTask_TaskIsNotActive(appData->activeTaskIds, animId);
+    return PoketchTask_TaskIsNotActive(appData->activeTaskIds, animID);
 }
 
 BOOL PartyStatus_AllTasksDone(PoketchPartyStatusGraphics *graphicsData)

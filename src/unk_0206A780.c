@@ -51,7 +51,7 @@ UnkStruct_0206A844 *sub_0206A780(int heapID)
     v2 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0206A844));
     MI_CpuClear8(v2, sizeof(UnkStruct_0206A844));
 
-    ov5_021D3190(&v2->unk_00, &v0, 2, 11);
+    ov5_021D3190(&v2->unk_00, &v0, 2, HEAP_ID_FIELDMAP);
 
     v3 = NARC_ctor(NARC_INDEX_GRAPHIC__FLD_COMACT, heapID);
 

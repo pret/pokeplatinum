@@ -1081,7 +1081,7 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *param1)
     battleSys->bag = Bag_New(HEAP_ID_BATTLE);
 
     Bag_Copy(param1->bag, battleSys->bag);
-    battleSys->pokedex = Pokedex_New(5);
+    battleSys->pokedex = Pokedex_New(HEAP_ID_BATTLE);
     Pokedex_Copy(param1->pokedex, battleSys->pokedex);
 
     battleSys->pcBoxes = param1->pcBoxes;

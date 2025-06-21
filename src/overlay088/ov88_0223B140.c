@@ -1862,13 +1862,11 @@ static int ov88_0223D5B8(UnkStruct_02095E80 *param0)
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->unk_36C8 = v0;
 
-        {
-            TrainerInfo *v2 = TrainerInfo_New(26);
+        TrainerInfo *v2 = TrainerInfo_New(HEAP_ID_26);
 
-            TrainerInfo_SetName(v2, sub_0202AEF0(param0->unk_36EC, v0));
-            StringTemplate_SetPlayerName(param0->unk_36CC, 0, v2);
-            Heap_FreeToHeap(v2);
-        }
+        TrainerInfo_SetName(v2, sub_0202AEF0(param0->unk_36EC, v0));
+        StringTemplate_SetPlayerName(param0->unk_36CC, 0, v2);
+        Heap_FreeToHeap(v2);
 
         ov88_0223D49C(param0, 60);
         param0->unk_226C = ov88_0223D514;

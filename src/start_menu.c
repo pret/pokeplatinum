@@ -775,7 +775,7 @@ static void sub_0203B318(StartMenu *menu, u8 *param1, u32 param2, u8 param3)
     u32 i;
     NARC *v2;
 
-    ov5_021D3190(&menu->unk_38, &v0, (7 + 1), 11);
+    ov5_021D3190(&menu->unk_38, &v0, (7 + 1), HEAP_ID_FIELDMAP);
 
     v2 = NARC_ctor(NARC_INDEX_GRAPHIC__MENU_GRA, HEAP_ID_FIELDMAP);
 

@@ -221,7 +221,7 @@ static void CommClubMan_Init(FieldSystem *fieldSystem)
     sCommClubMan->unk_97 = 0;
     sCommClubMan->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0353, HEAP_ID_FIELD);
     sCommClubMan->trainerInfoPersonal = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(sCommClubMan->fieldSystem));
-    sCommClubMan->unk_7C = TrainerInfo_New(4);
+    sCommClubMan->unk_7C = TrainerInfo_New(HEAP_ID_FIELD);
 
     Window_Init(&sCommClubMan->unk_20);
     Window_Init(&sCommClubMan->unk_30);
