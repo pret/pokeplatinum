@@ -3,11 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "applications/poketch/base/poketch_animation.h"
+#include "applications/poketch/base/poketch_graphics.h"
+#include "applications/poketch/base/poketch_task.h"
 #include "overlay050/struct_ov50_02256510_1.h"
 #include "overlay050/struct_ov50_02256510_decl.h"
-#include "poketch/poketch_animation.h"
-#include "poketch/poketch_graphics.h"
-#include "poketch/poketch_task.h"
 
 #include "bg_window.h"
 #include "graphics.h"

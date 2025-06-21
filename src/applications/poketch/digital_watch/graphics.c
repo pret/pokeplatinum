@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "poketch/poketch_graphics.h"
-#include "poketch/poketch_task.h"
+#include "applications/poketch/base/poketch_graphics.h"
+#include "applications/poketch/base/poketch_task.h"
 
 #include "bg_window.h"
 #include "graphics.h"

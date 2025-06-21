@@ -2,10 +2,10 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
+#include "applications/poketch/base/poketch_system.h"
 #include "overlay048/ov48_0225650C.h"
 #include "overlay048/struct_ov48_0225650C_1.h"
 #include "overlay048/struct_ov48_0225650C_decl.h"
-#include "poketch/poketch_system.h"
 
 #include "berry_patches.h"
 #include "bg_window.h"

@@ -4,10 +4,10 @@
 
 #include "struct_defs/struct_0203F478.h"
 
+#include "applications/poketch/base/poketch_system.h"
 #include "overlay034/ov34_02256540.h"
 #include "overlay034/struct_ov34_02256540_1.h"
 #include "overlay034/struct_ov34_02256540_decl.h"
-#include "poketch/poketch_system.h"
 
 #include "bg_window.h"
 #include "heap.h"

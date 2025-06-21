@@ -2,10 +2,10 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
+#include "applications/poketch/base/poketch_system.h"
 #include "overlay038/ov38_0225632C.h"
 #include "overlay038/struct_ov38_0225632C_1.h"
 #include "overlay038/struct_ov38_0225632C_decl.h"
-#include "poketch/poketch_system.h"
 
 #include "bg_window.h"
 #include "heap.h"
