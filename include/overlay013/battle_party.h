@@ -1,14 +1,15 @@
-#ifndef POKEPLATINUM_OV13_0221FC20_H
-#define POKEPLATINUM_OV13_0221FC20_H
+#ifndef POKEPLATINUM_BATTLE_PARTY_H
+#define POKEPLATINUM_BATTLE_PARTY_H
 
+#include "struct_decls/battle_system.h"
 #include "struct_decls/struct_0200C440_decl.h"
 
-#include "overlay013/battle_party_context.h"
 #include "overlay013/battle_sub_menu_cursor.h"
 
 #include "bg_window.h"
 #include "message.h"
 #include "palette.h"
+#include "party.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -72,8 +73,32 @@ typedef struct BattlePartyPokemon {
     u8 tough;
     u8 mail;
     u8 form;
-    BattlePartyPokemonMove moves[4];
+    BattlePartyPokemonMove moves[LEARNED_MOVES_MAX];
 } BattlePartyPokemon;
+
+typedef struct BattlePartyContext {
+    Party *party;
+    void *unk_04;
+    BattleSystem *battleSystem;
+    u32 heapID;
+    u8 unk_10;
+    u8 selectedPartyIndex;
+    u8 doubleBattleFirstSelectedPartySlot;
+    u8 unk_13;
+    u8 playerPokemonPartySlot;
+    u8 partnerPokemonPartySlot;
+    u32 embargoRemainingTurns[2];
+    u16 currentDamage;
+    u16 selectedBattleBagItem;
+    u16 moveToLearn;
+    s32 battler;
+    u8 pokemonPartySlots[6];
+    u8 isCursorEnabled;
+    u8 selectedBattleBagPocket;
+    u8 selectedMoveSlot;
+    u8 battlePartyMode;
+    u8 battlePartyExited;
+} BattlePartyContext;
 
 typedef struct BattleParty {
     BattlePartyContext *context;
@@ -135,4 +160,4 @@ BOOL BattlePartyTask_CheckIfPartnerBattle(BattleParty *battleParty);
 BOOL BattlePartyTask_CheckIf2V2Battle(BattleParty *battleParty);
 BOOL BattlePartyTask_CheckIfSwitchingWithPartnersPokemon(BattleParty *battleParty, u8 partySlot);
 
-#endif // POKEPLATINUM_OV13_0221FC20_H
+#endif // POKEPLATINUM_BATTLE_PARTY_H

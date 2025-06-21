@@ -452,7 +452,7 @@ static u8 BattlePartyTask_Initialize(BattleParty *battleParty)
     ov13_0222563C(battleParty, battleParty->currentScreen);
     DrawXPBar(battleParty, battleParty->currentScreen);
 
-    PaletteData_StartFade(battleParty->palette, (0x2 | 0x8), 0xffff, -8, 16, 0, 0);
+    PaletteData_StartFade(battleParty->palette, PLTTBUF_SUB_BG_F | PLTTBUF_SUB_OBJ_F, 0xffff, -8, 16, 0, 0);
 
     return nextState;
 }
@@ -499,7 +499,9 @@ static u8 PartyUseItemScreen(BattleParty *battleParty)
         return TASK_STATE_AWAITING_TEXT_FINISH;
     }
 
-    if (Item_LoadParam(context->selectedBattleBagItem, ITEM_PARAM_PP_RESTORE, context->heapID) != FALSE && Item_LoadParam(context->selectedBattleBagItem, ITEM_PARAM_PP_RESTORE_ALL, context->heapID) == FALSE && battleParty->partyPokemon[context->selectedPartyIndex].isEgg == FALSE) {
+    if (Item_LoadParam(context->selectedBattleBagItem, ITEM_PARAM_PP_RESTORE, context->heapID) != FALSE
+        && Item_LoadParam(context->selectedBattleBagItem, ITEM_PARAM_PP_RESTORE_ALL, context->heapID) == FALSE
+        && battleParty->partyPokemon[context->selectedPartyIndex].isEgg == FALSE) {
         battleParty->queuedState = TASK_STATE_SETUP_RESTORE_MOVE_PP_SCREEN;
         return TASK_STATE_SCREEN_TRANSITION;
     }

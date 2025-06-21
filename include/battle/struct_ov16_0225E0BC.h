@@ -1,9 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV16_0225E0BC_H
 #define POKEPLATINUM_STRUCT_OV16_0225E0BC_H
 
-#include "struct_decls/battle_system.h"
-
-#include "overlay013/battle_party_context.h"
+#include "overlay013/battle_party.h"
 
 typedef struct {
     BattleSystem *unk_00;
