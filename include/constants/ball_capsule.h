@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_CONSTANTS_BALL_CAPSULES_H
 #define POKEPLATINUM_CONSTANTS_BALL_CAPSULES_H
 
-#include "generated/seals.h"
+#include "constants/seals.h"
 
 #define TOTAL_CAPSULES     12
 #define SEALS_PER_CAPSULE  8
