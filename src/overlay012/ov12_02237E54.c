@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0202CA64.h"
+#include "struct_defs/seal_case.h"
 
 #include "unk_0202C9F4.h"
 #include "unk_02097B18.h"
@@ -19,17 +19,17 @@ int ov12_02237E54(s16 param0, s16 param1, s16 param2, s16 param3)
     return v0;
 }
 
-int ov12_02237E80(UnkStruct_0202CA64 *param0)
+int ov12_02237E80(BallSeal *param0)
 {
     int v0;
-    s16 v1 = sub_0202CA80(param0);
-    s16 v2 = sub_0202CA84(param0);
+    s16 v1 = BallSeal_GetX(param0);
+    s16 v2 = BallSeal_GetY(param0);
     v0 = ov12_02237E54(v1, v2, 190, 70);
 
     return v0;
 }
 
-int ov12_02237EA0(UnkStruct_0202CA64 *param0)
+int ov12_02237EA0(BallSeal *param0)
 {
     int v0;
     int v1;
@@ -46,7 +46,7 @@ int ov12_02237EA0(UnkStruct_0202CA64 *param0)
         16,
     };
 
-    v3 = sub_0202CA7C(param0);
+    v3 = BallSeal_GetSealType(param0);
     v0 = sub_020981AC(v3);
 
     if (v0 == 0) {

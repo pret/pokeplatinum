@@ -31,7 +31,6 @@
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
-#include "struct_decls/struct_0202CA1C_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_0205C22C_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
@@ -39,6 +38,7 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/choose_starter_data.h"
 #include "struct_defs/daycare.h"
+#include "struct_defs/seal_case.h"
 #include "struct_defs/special_encounter.h"
 #include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0203D8AC.h"
@@ -3389,10 +3389,10 @@ static BOOL ScrCmd_06E(ScriptContext *ctx)
 
 static BOOL ScrCmd_2AB(ScriptContext *ctx)
 {
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    BallSeals *v0 = SaveData_GetBallSeals(ctx->fieldSystem->saveData);
-    *v1 = sub_0202CBA8(v0);
+    SealCase *sealCase = SaveData_GetSealCase(ctx->fieldSystem->saveData);
+    *destVar = sub_0202CBA8(sealCase);
 
     return FALSE;
 }
@@ -3402,7 +3402,7 @@ static BOOL ScrCmd_093(ScriptContext *ctx)
     u16 v1 = ScriptContext_GetVar(ctx);
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
 
-    BallSeals *v0 = SaveData_GetBallSeals(ctx->fieldSystem->saveData);
+    SealCase *v0 = SaveData_GetSealCase(ctx->fieldSystem->saveData);
     *v2 = sub_0202CBC8(v0, v1);
 
     return FALSE;
@@ -3413,7 +3413,7 @@ static BOOL ScrCmd_094(ScriptContext *ctx)
     u16 v0 = ScriptContext_GetVar(ctx);
     u16 v1 = ScriptContext_GetVar(ctx);
 
-    sub_0202CAE0(SaveData_GetBallSeals(ctx->fieldSystem->saveData), v0, v1);
+    sub_0202CAE0(SaveData_GetSealCase(ctx->fieldSystem->saveData), v0, v1);
     return FALSE;
 }
 

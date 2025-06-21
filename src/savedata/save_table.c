@@ -67,7 +67,7 @@ const SaveTableEntry gSaveTable[] = {
     { SAVE_TABLE_ENTRY_JOURNAL, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Journal_SaveSize, (SaveEntryInitFunc)Journal_Init10 },
     { SAVE_TABLE_ENTRY_TRAINER_CARD, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)TrainerCard_SaveSize, (SaveEntryInitFunc)TrainerCard_Init },
     { SAVE_TABLE_ENTRY_GAME_RECORDS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)GameRecords_SaveSize, (SaveEntryInitFunc)GameRecords_Init },
-    { SAVE_TABLE_ENTRY_BALL_SEALS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)BallSeal_SaveSize, (SaveEntryInitFunc)BallSeal_Init },
+    { SAVE_TABLE_ENTRY_SEAL_CASE, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)SealCase_SaveSize, (SaveEntryInitFunc)SealCase_Init },
     { SAVE_TABLE_ENTRY_CHATOT, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)ChatotCry_SaveSize, (SaveEntryInitFunc)ChatotCry_Init },
     { SAVE_TABLE_ENTRY_FRONTIER, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)BattleFrontier_SaveSize, (SaveEntryInitFunc)BattleFrontier_Init },
     { SAVE_TABLE_ENTRY_RIBBONS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Ribbons_SaveSize, (SaveEntryInitFunc)Ribbons_Init },
