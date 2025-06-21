@@ -3,8 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/forms.h"
 #include "constants/items.h"
 #include "generated/genders.h"
+#include "generated/species.h"
 
 #include "struct_defs/mail.h"
 #include "struct_defs/union_02028328.h"
@@ -26,17 +28,17 @@ static Mail *Mailbox_GetMailFromSlot(Mailbox *mailbox, int param1, int slot);
 static const struct {
     u16 unk_00;
     u16 unk_02;
-    u16 unk_04;
-    u8 unk_06;
+    u16 species;
+    u8 form;
     u8 unk_07;
 } Unk_020E5B0C[] = {
-    { 0x1EE, 0x21C, 0x1E7, 0x1 },
-    { 0x1F3, 0x21D, 0x1EC, 0x1 },
-    { 0x1E6, 0x21E, 0x1DF, 0x1 },
-    { 0x1E6, 0x21F, 0x1DF, 0x2 },
-    { 0x1E6, 0x220, 0x1DF, 0x3 },
-    { 0x1E6, 0x221, 0x1DF, 0x4 },
-    { 0x1E6, 0x222, 0x1DF, 0x5 }
+    { 0x1EE, 0x21C, SPECIES_GIRATINA, GIRATINA_FORM_ORIGIN },
+    { 0x1F3, 0x21D, SPECIES_SHAYMIN, SHAYMIN_FORM_SKY },
+    { 0x1E6, 0x21E, SPECIES_ROTOM, ROTOM_FORM_HEAT },
+    { 0x1E6, 0x21F, SPECIES_ROTOM, ROTOM_FORM_WASH },
+    { 0x1E6, 0x220, SPECIES_ROTOM, ROTOM_FORM_FROST },
+    { 0x1E6, 0x221, SPECIES_ROTOM, ROTOM_FORM_FAN },
+    { 0x1E6, 0x222, SPECIES_ROTOM, ROTOM_FORM_MOW }
 };
 
 void Mail_Init(Mail *mail)
@@ -116,10 +118,10 @@ void sub_020281AC(Mail *mail, u8 mailType, u8 param2, SaveData *saveData)
         mail->unk_18[v1].val1_12 = palIndex;
 
         for (j = 0; j < NELEMS(Unk_020E5B0C); j++) {
-            if ((Unk_020E5B0C[j].unk_02 == mail->unk_18[v1].val1_0) && (Unk_020E5B0C[j].unk_06 == form)) {
+            if ((Unk_020E5B0C[j].unk_02 == mail->unk_18[v1].val1_0) && (Unk_020E5B0C[j].form == form)) {
                 mail->unk_18[v1].val1_0 = Unk_020E5B0C[j].unk_00;
                 mail->unk_18[v1].val1_12 = PokeIconPaletteIndex(species, 0, isEgg);
-                mail->unk_1E |= Unk_020E5B0C[j].unk_06 << (v1 * 5);
+                mail->unk_1E |= Unk_020E5B0C[j].form << (v1 * 5);
                 break;
             }
         }
@@ -180,10 +182,9 @@ u16 sub_02028328(const Mail *mail, u8 param1, u8 param2, u16 param3)
         v0 = mail->unk_18[param1];
 
         for (i = 0; i < NELEMS(Unk_020E5B0C); i++) {
-            if ((Unk_020E5B0C[i].unk_00 == v0.val1_0) && (Unk_020E5B0C[i].unk_06 == ((param3 >> (param1 * 5)) & 0x1f))) {
+            if ((Unk_020E5B0C[i].unk_00 == v0.val1_0) && (Unk_020E5B0C[i].form == ((param3 >> (param1 * 5)) & 0x1f))) {
                 v0.val1_0 = Unk_020E5B0C[i].unk_02;
-                v0.val1_12 = PokeIconPaletteIndex(
-                    Unk_020E5B0C[i].unk_04, Unk_020E5B0C[i].unk_06, 0);
+                v0.val1_12 = PokeIconPaletteIndex(Unk_020E5B0C[i].species, Unk_020E5B0C[i].form, FALSE);
                 break;
             }
         }
