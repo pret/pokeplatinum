@@ -185,7 +185,7 @@ pokeplatinum_c = files(
     'unk_0204AEE8.c',
     'unk_0204B64C.c',
     'scrcmd_mystery_gift.c',
-    'unk_0204C500.c',
+    'scrcmd_catching_show.c',
     'scrcmd_coins.c',
     'scrcmd_money.c',
     'scrcmd_daycare.c',

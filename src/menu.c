@@ -14,7 +14,7 @@
 #include "system.h"
 #include "text.h"
 
-#include "res/text/bank/common_strings_2.h"
+#include "res/text/bank/menu_entries.h"
 
 static BOOL TryMovingCursorAndPlaySound(Menu *menu, u8 direction, u16 sound);
 static u8 TryMovingCursor(Menu *menu, u8 direction);
@@ -357,7 +357,7 @@ Menu *Menu_MakeYesNoChoiceWithCursorAt(BgConfig *bgConfig, const WindowTemplate 
     MessageLoader *msgLoader;
     StringList *choices;
 
-    msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS_2, heapID);
+    msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, heapID);
     choices = StringList_New(2, heapID);
 
     StringList_AddFromMessageBank(choices, msgLoader, pl_msg_00000361_00041, 0);
