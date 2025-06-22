@@ -144,7 +144,8 @@ static inline BOOL PlayerTravellingWithPartner(const FieldMoveContext *fieldMove
 
 static inline BOOL PlayerInSafariZoneOrPalPark(const FieldMoveContext *fieldMoveContext)
 {
-    if ((SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldMoveContext->fieldSystem->saveData)) == TRUE) || (SystemFlag_CheckInPalPark(SaveData_GetVarsFlags(fieldMoveContext->fieldSystem->saveData)) == TRUE)) {
+    if ((SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldMoveContext->fieldSystem->saveData)) == TRUE)
+        || (SystemFlag_CheckInPalPark(SaveData_GetVarsFlags(fieldMoveContext->fieldSystem->saveData)) == TRUE)) {
         return TRUE;
     }
 

@@ -24,7 +24,7 @@ typedef struct {
     UnkStruct_ov5_021D30A8 unk_38;
     ManagedSprite *unk_200[8];
     u32 unk_220;
-    u32 unk_224;
+    u32 hideOptionFlags;
     u32 unk_228;
     FieldTaskFunc callback;
     UnkStruct_020684D0 unk_230;

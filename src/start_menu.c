@@ -6,6 +6,7 @@
 #include "constants/field/map_load.h"
 #include "generated/journal_location_events.h"
 #include "generated/species.h"
+#include "generated/text_banks.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
@@ -92,7 +93,7 @@
 
 #include "constdata/const_020EA02C.h"
 #include "constdata/const_020F1E88.h"
-#include "res/text/bank/unk_0367.h"
+#include "res/text/bank/start_menu.h"
 
 typedef enum StartMenuPos {
     MENU_POS_POKEDEX,
@@ -131,12 +132,12 @@ typedef struct {
 } SaveMenu;
 
 static StartMenu *StartMenu_Alloc(void);
-static u32 sub_0203ABD0(FieldSystem *fieldSystem);
-static u32 sub_0203AC24(FieldSystem *fieldSystem);
-static u32 sub_0203AC28(FieldSystem *fieldSystem);
-static u32 sub_0203AC2C(FieldSystem *fieldSystem);
-static u32 sub_0203AC34(FieldSystem *fieldSystem);
-static u32 sub_0203AC3C(FieldSystem *fieldSystem);
+static u32 GetHiddenOptionFlags_Main(FieldSystem *fieldSystem);
+static u32 GetHiddenOptionFlags_Safari(FieldSystem *fieldSystem);
+static u32 GetHiddenOptionFlags_PalPark(FieldSystem *fieldSystem);
+static u32 GetHiddenOptionFlags_BattleTowerSalon(FieldSystem *fieldSystem);
+static u32 GetHiddenOptionFlags_UnionRoom(FieldSystem *fieldSystem);
+static u32 GetHiddenOptionFlags_Colosseum(FieldSystem *fieldSystem);
 static void sub_0203B318(StartMenu *menu, u8 *param1, u32 param2, u8 param3);
 static void sub_0203B4E8(StartMenu *menu);
 static void sub_0203B520(StartMenu *menu);
@@ -183,15 +184,15 @@ static void StartMenu_Evolve(FieldTask *taskMan);
 static BOOL StartMenu_SelectRetire(FieldTask *taskMan);
 
 static const u32 Unk_020EA05C[][2] = {
-    { pl_msg_00000367_00000, (u32)StartMenu_SelectPokedex },
-    { pl_msg_00000367_00001, (u32)StartMenu_SelectPokemon },
-    { pl_msg_00000367_00002, (u32)StartMenu_SelectBag },
-    { pl_msg_00000367_00003, (u32)StartMenu_SelectTrainerCard },
-    { pl_msg_00000367_00004, (u32)StartMenu_SelectSave },
-    { pl_msg_00000367_00005, (u32)StartMenu_SelectOptions },
-    { pl_msg_00000367_00006, (u32)0xfffffffe }, // Exit
-    { pl_msg_00000367_00007, (u32)StartMenu_SelectChat },
-    { pl_msg_00000367_00008, (u32)StartMenu_SelectRetire }
+    { StartMenu_Text_Pokedex, (u32)StartMenu_SelectPokedex },
+    { StartMenu_Text_Pokemon, (u32)StartMenu_SelectPokemon },
+    { StartMenu_Text_Bag, (u32)StartMenu_SelectBag },
+    { StartMenu_Text_Player, (u32)StartMenu_SelectTrainerCard },
+    { StartMenu_Text_Save, (u32)StartMenu_SelectSave },
+    { StartMenu_Text_Options, (u32)StartMenu_SelectOptions },
+    { StartMenu_Text_Exit, (u32)0xfffffffe }, // Exit
+    { StartMenu_Text_Chat, (u32)StartMenu_SelectChat },
+    { StartMenu_Text_Retire, (u32)StartMenu_SelectRetire }
 };
 
 static const SpriteTemplate Unk_020EA0A4[] = {
@@ -260,18 +261,28 @@ BOOL sub_0203A9C8(FieldSystem *fieldSystem)
     return TRUE;
 }
 
+#define HIDE_OPTION_POKEDEX      (1 << 0)
+#define HIDE_OPTION_POKEMON      (1 << 1)
+#define HIDE_OPTION_BAG          (1 << 2)
+#define HIDE_OPTION_TRAINER_CARD (1 << 3)
+#define HIDE_OPTION_SAVE         (1 << 4)
+#define HIDE_OPTION_OPTIONS      (1 << 5)
+#define HIDE_OPTION_EXIT         (1 << 6)
+#define HIDE_OPTION_CHAT         (1 << 7)
+#define HIDE_OPTION_RETIRE       (1 << 8)
+
 void StartMenu_Init(FieldSystem *fieldSystem)
 {
     StartMenu *menu = StartMenu_Alloc();
 
-    if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
-        menu->unk_224 = sub_0203AC24(fieldSystem);
-    } else if (SystemFlag_CheckInPalPark(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
-        menu->unk_224 = sub_0203AC28(fieldSystem);
-    } else if (sub_0206C0D0(fieldSystem) == 1) {
-        menu->unk_224 = sub_0203AC2C(fieldSystem);
+    if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData)) == TRUE) {
+        menu->hideOptionFlags = GetHiddenOptionFlags_Safari(fieldSystem);
+    } else if (SystemFlag_CheckInPalPark(SaveData_GetVarsFlags(fieldSystem->saveData)) == TRUE) {
+        menu->hideOptionFlags = GetHiddenOptionFlags_PalPark(fieldSystem);
+    } else if (FieldSystem_IsInBattleTowerSalon(fieldSystem) == TRUE) {
+        menu->hideOptionFlags = GetHiddenOptionFlags_BattleTowerSalon(fieldSystem);
     } else {
-        menu->unk_224 = sub_0203ABD0(fieldSystem);
+        menu->hideOptionFlags = GetHiddenOptionFlags_Main(fieldSystem);
     }
 
     menu->unk_228 = 0;
@@ -287,7 +298,7 @@ void sub_0203AA78(FieldSystem *fieldSystem)
 {
     StartMenu *menu = StartMenu_Alloc();
 
-    menu->unk_224 = sub_0203AC34(fieldSystem);
+    menu->hideOptionFlags = GetHiddenOptionFlags_UnionRoom(fieldSystem);
     menu->unk_228 = 1;
 
     if (sub_0205F588(fieldSystem->playerAvatar) == 1) {
@@ -301,7 +312,7 @@ void sub_0203AABC(FieldSystem *fieldSystem)
 {
     StartMenu *menu = StartMenu_Alloc();
 
-    menu->unk_224 = sub_0203AC3C(fieldSystem);
+    menu->hideOptionFlags = GetHiddenOptionFlags_Colosseum(fieldSystem);
     menu->unk_228 = 0;
 
     if (sub_0205F588(fieldSystem->playerAvatar) == 1) {
@@ -320,19 +331,19 @@ void sub_0203AB00(FieldSystem *fieldSystem)
 
     menu->unk_228 = 0;
 
-    if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
-        menu->unk_224 = sub_0203AC24(fieldSystem);
-    } else if (SystemFlag_CheckInPalPark(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
-        menu->unk_224 = sub_0203AC28(fieldSystem);
-    } else if (sub_0206C0D0(fieldSystem) == 1) {
-        menu->unk_224 = sub_0203AC2C(fieldSystem);
+    if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData)) == TRUE) {
+        menu->hideOptionFlags = GetHiddenOptionFlags_Safari(fieldSystem);
+    } else if (SystemFlag_CheckInPalPark(SaveData_GetVarsFlags(fieldSystem->saveData)) == TRUE) {
+        menu->hideOptionFlags = GetHiddenOptionFlags_PalPark(fieldSystem);
+    } else if (FieldSystem_IsInBattleTowerSalon(fieldSystem) == TRUE) {
+        menu->hideOptionFlags = GetHiddenOptionFlags_BattleTowerSalon(fieldSystem);
     } else if (fieldSystem->mapLoadType == MAP_LOAD_TYPE_COLOSSEUM) {
-        menu->unk_224 = sub_0203AC3C(fieldSystem);
+        menu->hideOptionFlags = GetHiddenOptionFlags_Colosseum(fieldSystem);
     } else if (fieldSystem->mapLoadType == MAP_LOAD_TYPE_UNION) {
-        menu->unk_224 = sub_0203AC34(fieldSystem);
+        menu->hideOptionFlags = GetHiddenOptionFlags_UnionRoom(fieldSystem);
         menu->unk_228 = 1;
     } else {
-        menu->unk_224 = sub_0203ABD0(fieldSystem);
+        menu->hideOptionFlags = GetHiddenOptionFlags_Main(fieldSystem);
     }
 
     FieldTask_InitJump(fieldSystem->task, sub_0203AC44, menu);
@@ -349,56 +360,56 @@ static StartMenu *StartMenu_Alloc(void)
     return menu;
 }
 
-static u32 sub_0203ABD0(FieldSystem *fieldSystem)
+static u32 GetHiddenOptionFlags_Main(FieldSystem *fieldSystem)
 {
-    u32 v0 = 0;
+    u32 hideFlags = 0;
 
     if (Pokedex_IsObtained(SaveData_GetPokedex(fieldSystem->saveData)) == FALSE) {
-        v0 |= 0x1;
+        hideFlags |= HIDE_OPTION_POKEDEX;
     }
 
     if (SystemVars_GetPlayerStarter(SaveData_GetVarsFlags(fieldSystem->saveData)) == SPECIES_NONE) {
-        v0 |= 0x2;
+        hideFlags |= HIDE_OPTION_POKEMON;
     }
 
-    if (SystemFlag_CheckBagAcquired(SaveData_GetVarsFlags(fieldSystem->saveData)) == 0) {
-        v0 |= 0x4;
+    if (SystemFlag_CheckBagAcquired(SaveData_GetVarsFlags(fieldSystem->saveData)) == FALSE) {
+        hideFlags |= HIDE_OPTION_BAG;
     }
 
-    if (MapHeader_IsAmitySquare(fieldSystem->location->mapId) == 1) {
-        v0 |= 0x2;
-        v0 |= 0x4;
+    if (MapHeader_IsAmitySquare(fieldSystem->location->mapId) == TRUE) {
+        hideFlags |= HIDE_OPTION_POKEMON;
+        hideFlags |= HIDE_OPTION_BAG;
     }
 
-    v0 |= 0x80;
-    v0 |= 0x100;
+    hideFlags |= HIDE_OPTION_CHAT;
+    hideFlags |= HIDE_OPTION_RETIRE;
 
-    return v0;
+    return hideFlags;
 }
 
-static u32 sub_0203AC24(FieldSystem *fieldSystem)
+static u32 GetHiddenOptionFlags_Safari(FieldSystem *fieldSystem)
 {
-    return 0x10 | 0x80;
+    return HIDE_OPTION_SAVE | HIDE_OPTION_CHAT;
 }
 
-static u32 sub_0203AC28(FieldSystem *fieldSystem)
+static u32 GetHiddenOptionFlags_PalPark(FieldSystem *fieldSystem)
 {
-    return 0x10 | 0x80 | 0x4;
+    return HIDE_OPTION_SAVE | HIDE_OPTION_CHAT | HIDE_OPTION_BAG;
 }
 
-static u32 sub_0203AC2C(FieldSystem *fieldSystem)
+static u32 GetHiddenOptionFlags_BattleTowerSalon(FieldSystem *fieldSystem)
 {
-    return 0x1 | 0x4 | 0x10 | 0x80 | 0x100;
+    return HIDE_OPTION_POKEDEX | HIDE_OPTION_BAG | HIDE_OPTION_SAVE | HIDE_OPTION_CHAT | HIDE_OPTION_RETIRE;
 }
 
-static u32 sub_0203AC34(FieldSystem *fieldSystem)
+static u32 GetHiddenOptionFlags_UnionRoom(FieldSystem *fieldSystem)
 {
-    return 0x10 | 0x100;
+    return HIDE_OPTION_SAVE | HIDE_OPTION_RETIRE;
 }
 
-static u32 sub_0203AC3C(FieldSystem *fieldSystem)
+static u32 GetHiddenOptionFlags_Colosseum(FieldSystem *fieldSystem)
 {
-    return 0x10 | 0x1 | 0x80 | 0x100;
+    return HIDE_OPTION_SAVE | HIDE_OPTION_POKEDEX | HIDE_OPTION_CHAT | HIDE_OPTION_RETIRE;
 }
 
 static BOOL sub_0203AC44(FieldTask *taskMan)
@@ -522,7 +533,7 @@ static void sub_0203ADFC(FieldTask *taskMan)
     LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 1, HEAP_ID_FIELDMAP);
     Window_DrawStandardFrame(&menu->unk_00, 1, 1024 - (18 + 12) - 9, 11);
 
-    v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0367, HEAP_ID_FIELDMAP);
+    v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_START_MENU, HEAP_ID_FIELDMAP);
 
     menu->unk_24 = StringList_New(v5, 11);
     menu->unk_28 = 0;
@@ -579,54 +590,54 @@ static void sub_0203ADFC(FieldTask *taskMan)
 
 static u32 StartMenu_MakeList(StartMenu *menu, u8 *ret)
 {
-    u32 v0 = 0;
+    u32 optionCount = 0;
 
-    if ((menu->unk_224 & 0x100) == 0) {
-        ret[v0] = MENU_POS_RETIRE;
-        v0++;
+    if ((menu->hideOptionFlags & HIDE_OPTION_RETIRE) == FALSE) {
+        ret[optionCount] = MENU_POS_RETIRE;
+        optionCount++;
     }
 
-    if ((menu->unk_224 & 0x80) == 0) {
-        ret[v0] = MENU_POS_CHAT;
-        v0++;
+    if ((menu->hideOptionFlags & HIDE_OPTION_CHAT) == FALSE) {
+        ret[optionCount] = MENU_POS_CHAT;
+        optionCount++;
     }
 
-    if ((menu->unk_224 & 0x1) == 0) {
-        ret[v0] = MENU_POS_POKEDEX;
-        v0++;
+    if ((menu->hideOptionFlags & HIDE_OPTION_POKEDEX) == FALSE) {
+        ret[optionCount] = MENU_POS_POKEDEX;
+        optionCount++;
     }
 
-    if ((menu->unk_224 & 0x2) == 0) {
-        ret[v0] = MENU_POS_POKEMON;
-        v0++;
+    if ((menu->hideOptionFlags & HIDE_OPTION_POKEMON) == FALSE) {
+        ret[optionCount] = MENU_POS_POKEMON;
+        optionCount++;
     }
 
-    if ((menu->unk_224 & 0x4) == 0) {
-        ret[v0] = MENU_POS_BAG;
-        v0++;
+    if ((menu->hideOptionFlags & HIDE_OPTION_BAG) == FALSE) {
+        ret[optionCount] = MENU_POS_BAG;
+        optionCount++;
     }
 
-    if ((menu->unk_224 & 0x8) == 0) {
-        ret[v0] = MENU_POS_TRAINER_CARD;
-        v0++;
+    if ((menu->hideOptionFlags & HIDE_OPTION_TRAINER_CARD) == FALSE) {
+        ret[optionCount] = MENU_POS_TRAINER_CARD;
+        optionCount++;
     }
 
-    if ((menu->unk_224 & 0x10) == 0) {
-        ret[v0] = MENU_POS_SAVE;
-        v0++;
+    if ((menu->hideOptionFlags & HIDE_OPTION_SAVE) == FALSE) {
+        ret[optionCount] = MENU_POS_SAVE;
+        optionCount++;
     }
 
-    if ((menu->unk_224 & 0x20) == 0) {
-        ret[v0] = MENU_POS_OPTIONS;
-        v0++;
+    if ((menu->hideOptionFlags & HIDE_OPTION_OPTIONS) == FALSE) {
+        ret[optionCount] = MENU_POS_OPTIONS;
+        optionCount++;
     }
 
-    if ((menu->unk_224 & 0x40) == 0) {
-        ret[v0] = MENU_POS_EXIT;
-        v0++;
+    if ((menu->hideOptionFlags & HIDE_OPTION_EXIT) == FALSE) {
+        ret[optionCount] = MENU_POS_EXIT;
+        optionCount++;
     }
 
-    return v0;
+    return optionCount;
 }
 
 static void StartMenu_Close(StartMenu *menu)
@@ -651,9 +662,9 @@ static void sub_0203B094(FieldTask *taskMan)
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
     menu = FieldTask_GetEnv(taskMan);
 
-    if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
+    if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData)) == TRUE) {
         v6 = 0;
-    } else if (SystemFlag_CheckInPalPark(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
+    } else if (SystemFlag_CheckInPalPark(SaveData_GetVarsFlags(fieldSystem->saveData)) == TRUE) {
         v6 = 1;
     } else {
         return;
@@ -664,7 +675,7 @@ static void sub_0203B094(FieldTask *taskMan)
     Window_DrawStandardFrame(&menu->unk_10, 1, 1024 - (18 + 12) - 9, 11);
     Window_FillTilemap(&menu->unk_10, 15);
 
-    v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0367, HEAP_ID_FIELDMAP);
+    v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_START_MENU, HEAP_ID_FIELDMAP);
 
     if (v6 == 0) {
         v5 = MessageLoader_GetNewStrbuf(v2, 9);
@@ -707,7 +718,8 @@ static void sub_0203B200(FieldTask *taskMan)
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
     menu = FieldTask_GetEnv(taskMan);
 
-    if ((SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData)) == 0) && (SystemFlag_CheckInPalPark(SaveData_GetVarsFlags(fieldSystem->saveData)) == 0)) {
+    if ((SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData)) == FALSE)
+        && (SystemFlag_CheckInPalPark(SaveData_GetVarsFlags(fieldSystem->saveData)) == FALSE)) {
         return;
     }
 
@@ -1556,7 +1568,7 @@ static BOOL StartMenu_SelectRetire(FieldTask *taskMan)
     Window_Remove(&menu->unk_00);
     sub_0203B200(taskMan);
 
-    if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
+    if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData)) == TRUE) {
         ScriptManager_Change(taskMan, 8821, NULL);
     } else {
         ScriptManager_Change(taskMan, 4, NULL);

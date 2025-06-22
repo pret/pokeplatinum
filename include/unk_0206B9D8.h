@@ -16,6 +16,6 @@ u32 sub_0206BFFC(u32 param0);
 u32 sub_0206C008(SaveData *saveData);
 u32 sub_0206C02C(SaveData *saveData);
 u32 sub_0206C068(SaveData *saveData);
-BOOL sub_0206C0D0(FieldSystem *fieldSystem);
+BOOL FieldSystem_IsInBattleTowerSalon(FieldSystem *fieldSystem);
 
 #endif // POKEPLATINUM_UNK_0206B9D8_H

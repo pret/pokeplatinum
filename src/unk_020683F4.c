@@ -1,5 +1,6 @@
 #include "unk_020683F4.h"
 
+#include "nitro/types.h"
 #include <nitro.h>
 #include <string.h>
 
@@ -421,7 +422,8 @@ static u32 sub_0206877C(const UnkStruct_020684D0 *param0)
         return -1;
     }
 
-    if ((SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(param0->fieldSystem->saveData)) == 1) || (SystemFlag_CheckInPalPark(SaveData_GetVarsFlags(param0->fieldSystem->saveData)) == 1)) {
+    if ((SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(param0->fieldSystem->saveData)) == TRUE)
+        || (SystemFlag_CheckInPalPark(SaveData_GetVarsFlags(param0->fieldSystem->saveData)) == TRUE)) {
         return -1;
     }
 
@@ -429,7 +431,7 @@ static u32 sub_0206877C(const UnkStruct_020684D0 *param0)
         return -1;
     }
 
-    if (TileBehavior_IsBridge(param0->unk_0E) == 1) {
+    if (TileBehavior_IsBridge(param0->unk_0E) == TRUE) {
         return -1;
     }
 
@@ -899,7 +901,7 @@ static u32 sub_02068E94(const UnkStruct_020684D0 *param0)
     }
 
     if (TileBehavior_IsSurfable(param0->unk_0C) == 1) {
-        if ((TileBehavior_IsBridge(param0->unk_0E) == 1) || (TileBehavior_IsBridgeStart(param0->unk_0E) == 1)) {
+        if ((TileBehavior_IsBridge(param0->unk_0E) == TRUE) || (TileBehavior_IsBridgeStart(param0->unk_0E) == TRUE)) {
             MapObject *v0 = Player_MapObject(param0->playerAvatar);
 
             if (sub_02062F30(v0) == 1) {
@@ -1126,11 +1128,11 @@ BOOL sub_02069238(FieldSystem *fieldSystem)
     u16 v4;
     BOOL v5;
 
-    if (sub_0206C0D0(fieldSystem) == 1) {
+    if (FieldSystem_IsInBattleTowerSalon(fieldSystem) == 1) {
         return 0;
     }
 
-    if (SystemFlag_CheckInPalPark(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
+    if (SystemFlag_CheckInPalPark(SaveData_GetVarsFlags(fieldSystem->saveData)) == TRUE) {
         return 0;
     }
 

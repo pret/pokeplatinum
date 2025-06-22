@@ -516,11 +516,11 @@ u32 sub_0206C068(SaveData *saveData)
     return v2;
 }
 
-BOOL sub_0206C0D0(FieldSystem *fieldSystem)
+BOOL FieldSystem_IsInBattleTowerSalon(FieldSystem *fieldSystem)
 {
-    if (fieldSystem->location->mapId == SPECIES_ARCEUS) {
-        return 1;
+    if (fieldSystem->location->mapId == MAP_HEADER_BATTLE_TOWER_BATTLE_SALON) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
