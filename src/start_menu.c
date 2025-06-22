@@ -4,6 +4,8 @@
 #include <string.h>
 
 #include "constants/field/map_load.h"
+#include "constants/heap.h"
+#include "generated/genders.h"
 #include "generated/journal_location_events.h"
 #include "generated/species.h"
 #include "generated/text_banks.h"
@@ -138,7 +140,7 @@ static u32 GetHiddenOptionFlags_PalPark(FieldSystem *fieldSystem);
 static u32 GetHiddenOptionFlags_BattleTowerSalon(FieldSystem *fieldSystem);
 static u32 GetHiddenOptionFlags_UnionRoom(FieldSystem *fieldSystem);
 static u32 GetHiddenOptionFlags_Colosseum(FieldSystem *fieldSystem);
-static void sub_0203B318(StartMenu *menu, u8 *param1, u32 param2, u8 param3);
+static void sub_0203B318(StartMenu *menu, u8 *options, u32 optionCount, u8 gender);
 static void sub_0203B4E8(StartMenu *menu);
 static void sub_0203B520(StartMenu *menu);
 static void sub_0203B558(Sprite *graphicElement, u32 param1);
@@ -184,15 +186,15 @@ static void StartMenu_Evolve(FieldTask *taskMan);
 static BOOL StartMenu_SelectRetire(FieldTask *taskMan);
 
 static const u32 Unk_020EA05C[][2] = {
-    { StartMenu_Text_Pokedex, (u32)StartMenu_SelectPokedex },
-    { StartMenu_Text_Pokemon, (u32)StartMenu_SelectPokemon },
-    { StartMenu_Text_Bag, (u32)StartMenu_SelectBag },
-    { StartMenu_Text_Player, (u32)StartMenu_SelectTrainerCard },
-    { StartMenu_Text_Save, (u32)StartMenu_SelectSave },
-    { StartMenu_Text_Options, (u32)StartMenu_SelectOptions },
-    { StartMenu_Text_Exit, (u32)0xfffffffe }, // Exit
-    { StartMenu_Text_Chat, (u32)StartMenu_SelectChat },
-    { StartMenu_Text_Retire, (u32)StartMenu_SelectRetire }
+    [MENU_POS_POKEDEX] = { StartMenu_Text_Pokedex, (u32)StartMenu_SelectPokedex },
+    [MENU_POS_POKEMON] = { StartMenu_Text_Pokemon, (u32)StartMenu_SelectPokemon },
+    [MENU_POS_BAG] = { StartMenu_Text_Bag, (u32)StartMenu_SelectBag },
+    [MENU_POS_TRAINER_CARD] = { StartMenu_Text_Player, (u32)StartMenu_SelectTrainerCard },
+    [MENU_POS_SAVE] = { StartMenu_Text_Save, (u32)StartMenu_SelectSave },
+    [MENU_POS_OPTIONS] = { StartMenu_Text_Options, (u32)StartMenu_SelectOptions },
+    [MENU_POS_EXIT] = { StartMenu_Text_Exit, (u32)0xfffffffe }, // Exit
+    [MENU_POS_CHAT] = { StartMenu_Text_Chat, (u32)StartMenu_SelectChat },
+    [MENU_POS_RETIRE] = { StartMenu_Text_Retire, (u32)StartMenu_SelectRetire }
 };
 
 static const SpriteTemplate Unk_020EA0A4[] = {
@@ -523,69 +525,69 @@ static void sub_0203ADFC(FieldTask *taskMan)
     StartMenu *menu;
     MessageLoader *v2;
     MenuTemplate v3;
-    u32 v4, v5;
+    u32 i, optionCount;
 
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
     menu = FieldTask_GetEnv(taskMan);
-    v5 = StartMenu_MakeList(menu, menu->unk_30);
+    optionCount = StartMenu_MakeList(menu, menu->options);
 
-    Window_Add(fieldSystem->bgConfig, &menu->unk_00, 3, 20, 1, 11, v5 * 3, 12, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (11 * 22)));
+    Window_Add(fieldSystem->bgConfig, &menu->unk_00, 3, 20, 1, 11, optionCount * 3, 12, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (11 * 22)));
     LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 1, HEAP_ID_FIELDMAP);
     Window_DrawStandardFrame(&menu->unk_00, 1, 1024 - (18 + 12) - 9, 11);
 
     v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_START_MENU, HEAP_ID_FIELDMAP);
 
-    menu->unk_24 = StringList_New(v5, 11);
+    menu->unk_24 = StringList_New(optionCount, HEAP_ID_FIELDMAP);
     menu->unk_28 = 0;
 
-    for (v4 = 0; v4 < v5; v4++) {
-        if (menu->unk_30[v4] == 3) {
+    for (i = 0; i < optionCount; i++) {
+        if (menu->options[i] == MENU_POS_TRAINER_CARD) {
             StringTemplate *v6;
             Strbuf *v7;
             Strbuf *v8;
 
             v6 = StringTemplate_Default(HEAP_ID_FIELDMAP);
             v7 = Strbuf_Init(8, HEAP_ID_FIELDMAP);
-            v8 = MessageLoader_GetNewStrbuf(v2, Unk_020EA05C[menu->unk_30[v4]][0]);
+            v8 = MessageLoader_GetNewStrbuf(v2, Unk_020EA05C[menu->options[i]][0]);
 
             StringTemplate_SetPlayerName(v6, 0, SaveData_GetTrainerInfo(fieldSystem->saveData));
             StringTemplate_Format(v6, v7, v8);
-            StringList_AddFromStrbuf(menu->unk_24, v7, menu->unk_30[v4]);
+            StringList_AddFromStrbuf(menu->unk_24, v7, menu->options[i]);
 
             Strbuf_Free(v8);
             Strbuf_Free(v7);
             StringTemplate_Free(v6);
         } else {
             StringList_AddFromMessageBank(
-                menu->unk_24, v2, Unk_020EA05C[menu->unk_30[v4]][0], menu->unk_30[v4]);
+                menu->unk_24, v2, Unk_020EA05C[menu->options[i]][0], menu->options[i]);
         }
 
-        if (fieldSystem->unk_90 == menu->unk_30[v4]) {
-            menu->unk_28 = v4;
+        if (fieldSystem->unk_90 == menu->options[i]) {
+            menu->unk_28 = i;
         }
     }
 
-    fieldSystem->unk_90 = menu->unk_30[menu->unk_28];
+    fieldSystem->unk_90 = menu->options[menu->unk_28];
     MessageLoader_Free(v2);
 
     v3.choices = menu->unk_24;
     v3.window = &menu->unk_00;
     v3.fontID = FONT_MESSAGE;
     v3.xSize = 1;
-    v3.ySize = v5;
+    v3.ySize = optionCount;
     v3.lineSpacing = 8;
     v3.suppressCursor = TRUE;
 
-    if (v5 >= 4) {
+    if (optionCount >= 4) {
         v3.loopAround = TRUE;
     } else {
         v3.loopAround = FALSE;
     }
 
-    menu->unk_20 = Menu_New(&v3, 28, 4, menu->unk_28, 11, PAD_BUTTON_B | PAD_BUTTON_X);
+    menu->unk_20 = Menu_New(&v3, 28, 4, menu->unk_28, HEAP_ID_FIELDMAP, PAD_BUTTON_B | PAD_BUTTON_X);
 
     Window_ScheduleCopyToVRAM(&menu->unk_00);
-    sub_0203B318(menu, menu->unk_30, v5, TrainerInfo_Gender(SaveData_GetTrainerInfo(fieldSystem->saveData)));
+    sub_0203B318(menu, menu->options, optionCount, TrainerInfo_Gender(SaveData_GetTrainerInfo(fieldSystem->saveData)));
 }
 
 static u32 StartMenu_MakeList(StartMenu *menu, u8 *ret)
@@ -743,7 +745,7 @@ static BOOL StartMenu_Select(FieldTask *taskMan)
     if (v2 != menu->unk_28) {
         sub_0203B558(menu->unk_200[0]->sprite, menu->unk_28);
         sub_0203B5B4(menu, v2, menu->unk_28);
-        fieldSystem->unk_90 = menu->unk_30[menu->unk_28];
+        fieldSystem->unk_90 = menu->options[menu->unk_28];
     }
 
     sub_0203B5E8(menu->unk_200[1 + menu->unk_28]->sprite);
@@ -779,7 +781,7 @@ static void sub_0203B2EC(StartMenu *menu, FieldSystem *fieldSystem)
     }
 }
 
-static void sub_0203B318(StartMenu *menu, u8 *param1, u32 param2, u8 param3)
+static void sub_0203B318(StartMenu *menu, u8 *options, u32 optionCount, u8 gender)
 {
     SpriteResourceCapacities v0 = {
         8, 1, 2, 2, 0, 0
@@ -804,16 +806,16 @@ static void sub_0203B318(StartMenu *menu, u8 *param1, u32 param2, u8 param3)
     ov5_021D339C(&menu->unk_38, v2, 3, 0, 13529);
     ov5_021D3414(&menu->unk_38, v2, 6, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 13529);
 
-    for (i = 0; i < param2; i++) {
+    for (i = 0; i < optionCount; i++) {
         SpriteTemplate v3;
 
         v3 = Unk_020EA0A4[1];
         v3.y += 24 * i;
 
-        if ((param1[i] == 2) && (param3 == 1)) {
+        if ((options[i] == MENU_POS_BAG) && (gender == GENDER_FEMALE)) {
             v3.animIdx = 9 * 3;
         } else {
-            v3.animIdx = param1[i] * 3;
+            v3.animIdx = options[i] * 3;
         }
 
         menu->unk_200[1 + i] = ov5_021D3584(&menu->unk_38, &v3);
@@ -826,7 +828,7 @@ static void sub_0203B318(StartMenu *menu, u8 *param1, u32 param2, u8 param3)
 
     sub_0203B588(menu->unk_200[1 + menu->unk_28]->sprite, 2, 1);
 
-    menu->unk_220 = param2 + 1;
+    menu->unk_220 = optionCount + 1;
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     NARC_dtor(v2);
@@ -834,10 +836,10 @@ static void sub_0203B318(StartMenu *menu, u8 *param1, u32 param2, u8 param3)
 
 static void sub_0203B4E8(StartMenu *menu)
 {
-    u16 v0;
+    u16 i;
 
-    for (v0 = 0; v0 < menu->unk_220; v0++) {
-        Sprite_DeleteAndFreeResources(menu->unk_200[v0]);
+    for (i = 0; i < menu->unk_220; i++) {
+        Sprite_DeleteAndFreeResources(menu->unk_200[i]);
     }
 
     ov5_021D375C(&menu->unk_38);
@@ -845,10 +847,10 @@ static void sub_0203B4E8(StartMenu *menu)
 
 static void sub_0203B520(StartMenu *menu)
 {
-    u16 v0;
+    u16 i;
 
-    for (v0 = 0; v0 < menu->unk_220; v0++) {
-        Sprite_UpdateAnim(menu->unk_200[v0]->sprite, FX32_ONE);
+    for (i = 0; i < menu->unk_220; i++) {
+        Sprite_UpdateAnim(menu->unk_200[i]->sprite, FX32_ONE);
     }
 }
 
@@ -1266,7 +1268,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
         v4.unk_04 = sub_0207CB94(v2);
         v4.unk_06 = sub_0207CBA4(v2);
         v4.unk_00 = taskMan;
-        v5 = Item_LoadParam(v4.unk_04, 6, 11);
+        v5 = Item_LoadParam(v4.unk_04, 6, HEAP_ID_FIELDMAP);
         v3 = (UnkFuncPtr_0203BC5C)sub_020683F4(0, v5);
         v3(&v4, &menu->unk_230);
     } break;
@@ -1294,15 +1296,10 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
         sub_0203B674(menu, sub_0203B7C0);
     } break;
     case 4: {
-        Party *v7;
-        Pokemon *v8;
-        u32 v9;
-        u16 v10;
-
-        v7 = SaveData_GetParty(fieldSystem->saveData);
-        v9 = *(u32 *)menu->unk_260;
-        v10 = sub_0207CB94(v2);
-        v8 = Party_GetPokemonBySlotIndex(v7, v9);
+        Party *party = SaveData_GetParty(fieldSystem->saveData);
+        u32 v9 = *(u32 *)menu->unk_260;
+        u16 v10 = sub_0207CB94(v2);
+        Pokemon *v8 = Party_GetPokemonBySlotIndex(party, v9);
 
         Heap_FreeToHeap(menu->unk_260);
 
@@ -1320,7 +1317,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
             partyMan = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
             memset(partyMan, 0, sizeof(PartyManagementData));
 
-            partyMan->party = v7;
+            partyMan->party = party;
             partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
             partyMan->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
             partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
