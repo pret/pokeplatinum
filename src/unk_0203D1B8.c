@@ -1362,7 +1362,7 @@ void sub_0203E0FC(FieldSystem *fieldSystem, int param1)
     v0->unk_3C = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
     v0->saveData = fieldSystem->saveData;
     v0->unk_34 = SaveData_GetDexMode(fieldSystem->saveData);
-    v0->unk_38 = sub_02039058(v0->unk_14);
+    v0->unk_38 = WiFiList_GetUserGsProfileId(v0->unk_14);
     v0->unk_30 = SaveData_GetBag(fieldSystem->saveData);
     v0->unk_40 = param1;
 
@@ -1388,9 +1388,9 @@ void *sub_0203E1AC(FieldSystem *fieldSystem, int param1, int param2)
     v0->unk_04 = sub_0202D764(fieldSystem->saveData);
     v0->unk_08 = SaveData_GetSystemData(fieldSystem->saveData);
     v0->options = SaveData_GetOptions(fieldSystem->saveData);
-    v0->unk_14 = sub_0202AD28(SaveData_GetWiFiList(fieldSystem->saveData));
+    v0->unk_14 = WiFiList_GetUserData(SaveData_GetWiFiList(fieldSystem->saveData));
     v0->saveData = fieldSystem->saveData;
-    v0->unk_1C = sub_02039058(SaveData_GetWiFiList(fieldSystem->saveData));
+    v0->unk_1C = WiFiList_GetUserGsProfileId(SaveData_GetWiFiList(fieldSystem->saveData));
     v0->unk_18 = param1;
     v0->unk_24 = param2;
     v0->unk_20 = 1;

@@ -555,14 +555,14 @@ static int ov94_0224529C(UnkStruct_ov94_0223FD4C *param0)
     DWCUserData *v0;
     s32 v1;
 
-    v0 = sub_0202AD28(param0->unk_00->unk_14);
-    v1 = sub_02025D74(param0->unk_00->unk_04);
+    v0 = WiFiList_GetUserData(param0->unk_00->unk_14);
+    v1 = SystemData_GetDWCProfileId(param0->unk_00->unk_04);
 
     if (v1 == 0) {
-        sub_02025D78(param0->unk_00->unk_04, param0->unk_00->unk_38);
+        SystemData_SetDWCProfileId(param0->unk_00->unk_04, param0->unk_00->unk_38);
     }
 
-    v1 = sub_02025D74(param0->unk_00->unk_04);
+    v1 = SystemData_GetDWCProfileId(param0->unk_00->unk_04);
     ov94_0223B140(v1, DWC_CreateFriendKey(v0));
     param0->unk_2C = 7;
 

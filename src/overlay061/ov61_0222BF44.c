@@ -800,14 +800,14 @@ static int ov61_0222CBF0(UnkStruct_ov61_0222C664 *param0)
     SystemData *v2;
     WiFiList *v3 = SaveData_GetWiFiList(param0->unk_00->unk_00->saveData);
     v2 = SaveData_GetSystemData(param0->unk_00->unk_00->saveData);
-    v0 = sub_0202AD28(v3);
-    v1 = sub_02025D74(v2);
+    v0 = WiFiList_GetUserData(v3);
+    v1 = SystemData_GetDWCProfileId(v2);
 
     if (v1 == 0) {
-        sub_02025D78(v2, sub_02039058(v3));
+        SystemData_SetDWCProfileId(v2, WiFiList_GetUserGsProfileId(v3));
     }
 
-    v1 = sub_02025D74(v2);
+    v1 = SystemData_GetDWCProfileId(v2);
 
     param0->unk_08 = 9;
     param0->unk_00->unk_8C = 1;

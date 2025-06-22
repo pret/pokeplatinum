@@ -194,7 +194,7 @@ void sub_02052E58(FieldTask *param0)
     v5->unk_10.unk_08 = SaveData_GetPokedex(fieldSystem->saveData);
 
     if (SystemFlag_CheckGameCompleted(v3) == 0) {
-        sub_02055C2C(fieldSystem);
+        FieldSystem_RecordFirstCompletion(fieldSystem);
     }
 
     v7 = SaveData_GetParty(fieldSystem->saveData);

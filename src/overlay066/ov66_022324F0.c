@@ -301,7 +301,7 @@ BOOL ov66_02232720(const void *param0, u32 param1)
     {
         DWCUserData *v2;
 
-        v2 = sub_0202AD28(Unk_ov66_0225B6C0->unk_04);
+        v2 = WiFiList_GetUserData(Unk_ov66_0225B6C0->unk_04);
         Unk_ov66_0225B6C0->unk_984 = PPW_LobbyInitializeAsync(("pokemonplatds"), ("IIup73"), param1, &v0, v2, param0, Unk_ov66_0225B6C0->unk_28);
     }
 

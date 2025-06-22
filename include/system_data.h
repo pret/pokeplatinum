@@ -11,7 +11,7 @@ typedef struct GameTime {
     RTCTime time;
     u32 day;
     s64 startTimestamp;
-    s64 playTimestamp;
+    s64 firstCompletionTimestamp; // the first time the hall of fame was entered
     u32 penaltyInMinutes;
 } GameTime;
 
@@ -21,10 +21,10 @@ typedef struct SystemData {
     u8 ownerBirthMonth;
     u8 ownerBirthDayOfMonth;
     GameTime gameTime;
-    u8 unk_48;
-    u8 unk_49;
-    s32 unk_4C;
-    u32 unk_50[3];
+    u8 isMysteryGiftUnlocked;
+    u8 padding_49[3];
+    s32 dwcProfileId;
+    u32 unused_50[3];
 } SystemData;
 
 int SystemData_SaveSize(void);
@@ -36,10 +36,10 @@ BOOL SystemData_MatchesCurrentSystem(const SystemData *systemData);
 BOOL SystemData_MatchesCurrentRTCOffset(const SystemData *systemData);
 u8 SystemData_GetOwnerBirthMonth(const SystemData *systemData);
 u8 SystemData_GetOwnerBirthDayOfMonth(const SystemData *systemData);
-BOOL sub_02025D64(const SystemData *param0);
-void sub_02025D6C(SystemData *param0, BOOL param1);
-s32 sub_02025D74(const SystemData *param0);
-void sub_02025D78(SystemData *param0, s32 param1);
+BOOL SystemData_IsMysteryGiftUnlocked(const SystemData *systemData);
+void SystemData_SetMysteryGiftUnlocked(SystemData *systemData, BOOL isUnlocked);
+s32 SystemData_GetDWCProfileId(const SystemData *systemData);
+void SystemData_SetDWCProfileId(SystemData *systemData, s32 profileId);
 void GameTime_Clear(GameTime *gameTime);
 BOOL GameTime_HasPenalty(const GameTime *gameTime);
 void GameTime_DecrementPenalty(GameTime *gameTime, int val);
