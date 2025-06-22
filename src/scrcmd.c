@@ -2381,17 +2381,17 @@ static BOOL ScriptContext_ScrollBG3(ScriptContext *ctx)
 
     if (*distanceX != 0) {
         if (*directionX == 0) {
-            Bg_SetOffset(fieldSystem->bgConfig, 3, 1, *distanceX);
+            Bg_SetOffset(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1, *distanceX);
         } else {
-            Bg_SetOffset(fieldSystem->bgConfig, 3, 2, *distanceX);
+            Bg_SetOffset(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 2, *distanceX);
         }
     }
 
     if (*distanceY != 0) {
         if (*directionY == 0) {
-            Bg_SetOffset(fieldSystem->bgConfig, 3, 4, *distanceY);
+            Bg_SetOffset(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 4, *distanceY);
         } else {
-            Bg_SetOffset(fieldSystem->bgConfig, 3, 5, *distanceY);
+            Bg_SetOffset(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 5, *distanceY);
         }
     }
 

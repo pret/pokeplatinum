@@ -96,8 +96,8 @@ static void ov38_022563B8(SysTask *param0, void *param1)
     GXSDispCnt v1;
     UnkStruct_ov38_0225632C *v2 = PoketchTask_GetTaskData(param1);
 
-    Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 8, v2->unk_04, 6, 0, 0, 0, HEAP_ID_POKETCH_APP);
+    Bg_InitFromTemplate(v2->unk_04, BG_LAYER_SUB_2, &v0, 0);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 8, v2->unk_04, BG_LAYER_SUB_2, 0, 0, 0, HEAP_ID_POKETCH_APP);
     Bg_FillTilemapRect(v2->unk_04, 6, 0, 0, 0, 32, 24, 0);
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__POKETCH, 9, 4, 0 * 0x20, 0x20, HEAP_ID_POKETCH_APP);
 
@@ -114,6 +114,6 @@ static void ov38_02256458(SysTask *param0, void *param1)
 {
     UnkStruct_ov38_0225632C *v0 = PoketchTask_GetTaskData(param1);
 
-    Bg_FreeTilemapBuffer(v0->unk_04, 6);
+    Bg_FreeTilemapBuffer(v0->unk_04, BG_LAYER_SUB_2);
     ov38_022563A4(param1);
 }

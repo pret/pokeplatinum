@@ -232,9 +232,9 @@ static void ov44_02256794(SysTask *param0, void *param1)
     v2 = PoketchTask_GetTaskData(param1);
     v3 = PoketchTask_GetConstTaskData(param1);
 
-    Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 71, v2->unk_04, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 70, v2->unk_04, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
+    Bg_InitFromTemplate(v2->unk_04, BG_LAYER_SUB_2, &v0, 0);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 71, v2->unk_04, BG_LAYER_SUB_2, 0, 0, 1, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 70, v2->unk_04, BG_LAYER_SUB_2, 0, 0, 1, HEAP_ID_POKETCH_APP);
 
     PoketchGraphics_LoadActivePalette(0, 0);
     Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);
@@ -256,7 +256,7 @@ static void ov44_02256828(SysTask *param0, void *param1)
         break;
     case 1:
         if (ov44_02256768(v0, 6)) {
-            Bg_FreeTilemapBuffer(v0->unk_04, 6);
+            Bg_FreeTilemapBuffer(v0->unk_04, BG_LAYER_SUB_2);
             ov44_02256780(param1);
         }
         break;

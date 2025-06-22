@@ -164,8 +164,8 @@ static void ov29_02256804(SysTask *param0, void *param1)
 
     v3 = PoketchTask_GetTaskData(param1);
 
-    Bg_InitFromTemplate(v3->unk_04, 6, &v0, 0);
-    Bg_InitFromTemplate(v3->unk_04, 7, &v1, 0);
+    Bg_InitFromTemplate(v3->unk_04, BG_LAYER_SUB_2, &v0, 0);
+    Bg_InitFromTemplate(v3->unk_04, BG_LAYER_SUB_3, &v1, 0);
 
     GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_POKETCH_APP));
 
@@ -284,8 +284,8 @@ static void ov29_02256A94(SysTask *param0, void *param1)
     UnkStruct_ov29_022566C8 *v0 = PoketchTask_GetTaskData(param1);
 
     ov29_02256B18(v0);
-    Bg_FreeTilemapBuffer(v0->unk_04, 6);
-    Bg_FreeTilemapBuffer(v0->unk_04, 7);
+    Bg_FreeTilemapBuffer(v0->unk_04, BG_LAYER_SUB_2);
+    Bg_FreeTilemapBuffer(v0->unk_04, BG_LAYER_SUB_3);
     ov29_022567F0(param1);
 }
 

@@ -635,7 +635,7 @@ static BOOL ov105_02241FF4(UnkStruct_ov105_02241FF4 *param0)
             ov105_02245F5C(param0->unk_2F4[v0]);
         }
 
-        Bg_SetOffset(param0->unk_4C, 2, 0, (33 * 8));
+        Bg_SetOffset(param0->unk_4C, BG_LAYER_MAIN_2, 0, (33 * 8));
         PokemonSprite_SetAttribute(param0->unk_12C[0], MON_SPRITE_HIDE, 1);
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1 * 3, HEAP_ID_93);
         param0->unk_08++;
@@ -1888,7 +1888,7 @@ static BOOL ov105_0224400C(UnkStruct_ov105_02241FF4 *param0)
         ov105_02244A60(param0, 2);
         ov105_02244A18(param0, 3);
 
-        Bg_SetOffset(param0->unk_4C, 2, 0, param0->unk_0C);
+        Bg_SetOffset(param0->unk_4C, BG_LAYER_MAIN_2, 0, param0->unk_0C);
         Sound_PlayEffect(SEQ_SE_DP_ELEBETA2);
 
         param0->unk_19 = 0;
@@ -2180,9 +2180,9 @@ static void ov105_02244584(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 1, &v1, 0);
-        Bg_ClearTilesRange(1, 32, 0, HEAP_ID_93);
-        Bg_ClearTilemap(param0, 1);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v1, 0);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_93);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
     }
 
     {
@@ -2202,8 +2202,8 @@ static void ov105_02244584(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 2, &v2, 0);
-        Bg_ClearTilemap(param0, 2);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v2, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
     }
 
     {
@@ -2223,8 +2223,8 @@ static void ov105_02244584(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 3, &v3, 0);
-        Bg_ClearTilemap(param0, 3);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v3, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_3);
     }
 
     {
@@ -2244,8 +2244,8 @@ static void ov105_02244584(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 4, &v4, 0);
-        Bg_ClearTilemap(param0, 4);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v4, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
     }
 
     G2_SetBG0Priority(0);
@@ -2278,7 +2278,7 @@ static void ov105_02244678(UnkStruct_ov105_02241FF4 *param0)
         ov105_022449A4(param0, 3);
         ov105_02244A60(param0, 2);
 
-        Bg_SetOffset(param0->unk_4C, 2, 0, param0->unk_0C);
+        Bg_SetOffset(param0->unk_4C, BG_LAYER_MAIN_2, 0, param0->unk_0C);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
@@ -2299,10 +2299,10 @@ static void ov105_0224473C(BgConfig *param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
 
-    Bg_FreeTilemapBuffer(param0, 3);
-    Bg_FreeTilemapBuffer(param0, 2);
-    Bg_FreeTilemapBuffer(param0, 1);
-    Bg_FreeTilemapBuffer(param0, 4);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0);
     Heap_FreeToHeap(param0);
 
     return;
@@ -2322,7 +2322,7 @@ static BOOL ov105_02244780(UnkStruct_ov105_02241FF4 *param0)
 
     v3 = 0;
 
-    Bg_SetOffset(param0->unk_4C, 2, 1, 8);
+    Bg_SetOffset(param0->unk_4C, BG_LAYER_MAIN_2, 1, 8);
     param0->unk_0C = Bg_GetXOffset(param0->unk_4C, 2);
 
     for (v0 = 0; v0 < param0->unk_12; v0++) {
@@ -2354,7 +2354,7 @@ static BOOL ov105_02244830(UnkStruct_ov105_02241FF4 *param0)
 
     v3 = 0;
 
-    Bg_SetOffset(param0->unk_4C, 2, 1, 8);
+    Bg_SetOffset(param0->unk_4C, BG_LAYER_MAIN_2, 1, 8);
     param0->unk_0C = Bg_GetXOffset(param0->unk_4C, 2);
 
     for (v0 = 0; v0 < param0->unk_12; v0++) {
@@ -2464,7 +2464,7 @@ static void ov105_02244AA8(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 {
     Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_338, 4, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_93);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 9, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_93);
-    Bg_SetPriority(1, 2);
+    Bg_SetPriority(BG_LAYER_MAIN_1, 2);
 
     return;
 }
@@ -3300,9 +3300,9 @@ static void ov105_02245A30(UnkStruct_ov105_02241FF4 *param0)
 
 static void ov105_02245A64(UnkStruct_ov105_02241FF4 *param0)
 {
-    Bg_SetPriority(1, 1);
-    Bg_ClearTilesRange(1, 32, 0, HEAP_ID_93);
-    Bg_ClearTilemap(param0->unk_4C, 1);
+    Bg_SetPriority(BG_LAYER_MAIN_1, 1);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_93);
+    Bg_ClearTilemap(param0->unk_4C, BG_LAYER_MAIN_1);
     ov105_02246214(param0->unk_4C, param0->unk_50);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
 

@@ -1260,7 +1260,7 @@ static void ov70_0225E4EC(UnkStruct_ov70_0225E4EC *param0, SaveData *saveData, u
     GXLayers_SwapDisplay();
 
     {
-        Bg_MaskPalette(0, 0);
+        Bg_MaskPalette(BG_LAYER_MAIN_0, 0);
     }
 
     {
@@ -2047,7 +2047,7 @@ static void ov70_0225F350(UnkStruct_ov70_0225F350 *param0, const UnkStruct_ov70_
     if (param1->unk_06 == 0) {
         param0->unk_00 = 0;
 
-        Bg_MaskPalette(4, 0);
+        Bg_MaskPalette(BG_LAYER_SUB_0, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);

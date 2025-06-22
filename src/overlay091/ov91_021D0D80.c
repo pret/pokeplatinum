@@ -531,8 +531,8 @@ static void ov91_021D0FE4(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 0, &v1, 0);
-        Bg_ClearTilemap(param0, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_0, &v1, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_0);
     }
 
     {
@@ -552,8 +552,8 @@ static void ov91_021D0FE4(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 1, &v2, 0);
-        Bg_ClearTilemap(param0, 1);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v2, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
     }
 
     {
@@ -573,19 +573,19 @@ static void ov91_021D0FE4(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 2, &v3, 0);
-        Bg_ClearTilemap(param0, 2);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v3, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
     }
 
-    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_67);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_67);
 }
 
 static void ov91_021D1098(BgConfig *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_OBJ, 0);
-    Bg_FreeTilemapBuffer(param0, 2);
-    Bg_FreeTilemapBuffer(param0, 1);
-    Bg_FreeTilemapBuffer(param0, 0);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
     Heap_FreeToHeapExplicit(HEAP_ID_67, param0);
 }
 
@@ -595,8 +595,8 @@ static void ov91_021D10C8(UnkStruct_ov91_021D0ED8 *param0, NARC *param1)
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 11, param0->unk_04, 2, 0, 0, 0, HEAP_ID_67);
     Graphics_LoadPaletteFromOpenNARC(param1, 12, 0, 0, 0, HEAP_ID_67);
     Font_LoadScreenIndicatorsPalette(0, 14 * 32, HEAP_ID_67);
-    LoadStandardWindowGraphics(param0->unk_04, 0, 1, 12, 0, HEAP_ID_67);
-    LoadMessageBoxGraphics(param0->unk_04, 0, (1 + 9), 13, Options_Frame(param0->unk_00->options), HEAP_ID_67);
+    LoadStandardWindowGraphics(param0->unk_04, BG_LAYER_MAIN_0, 1, 12, 0, HEAP_ID_67);
+    LoadMessageBoxGraphics(param0->unk_04, BG_LAYER_MAIN_0, (1 + 9), 13, Options_Frame(param0->unk_00->options), HEAP_ID_67);
 }
 
 static void ov91_021D1154(UnkStruct_ov91_021D0ED8 *param0)

@@ -1154,7 +1154,7 @@ BOOL FieldTask_MapChangeToUnderground(FieldTask *task)
     case 1:
         if (FieldMessage_FinishedPrinting(mapChangeUndergroundData->unk_38) == 1) {
             Strbuf_Free(mapChangeUndergroundData->unk_34);
-            LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, HEAP_ID_FIELDMAP);
+            LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, 11, 0, HEAP_ID_FIELDMAP);
             mapChangeUndergroundData->unk_3C = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &Unk_020EC3A0, 1024 - (18 + 12) - 9, 11, 11);
             mapChangeUndergroundData->state = 2;
         }

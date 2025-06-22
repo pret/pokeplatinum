@@ -267,10 +267,10 @@ void ov56_02256468(UnkStruct_ov56_02256468 *param0)
 
 static void ov56_022564E4(BgConfig *param0)
 {
-    Bg_FreeTilemapBuffer(param0, 4);
-    Bg_FreeTilemapBuffer(param0, 5);
-    Bg_FreeTilemapBuffer(param0, 6);
-    Bg_FreeTilemapBuffer(param0, 7);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_2);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_3);
 }
 
 static void ov56_02256508(BgConfig *param0)
@@ -294,8 +294,8 @@ static void ov56_02256508(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 4, &v0, 0);
-        Bg_ClearTilemap(param0, 4);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v0, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
     }
 
@@ -316,8 +316,8 @@ static void ov56_02256508(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 5, &v1, 0);
-        Bg_ClearTilemap(param0, 5);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_1, &v1, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_1);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
     }
 
@@ -338,8 +338,8 @@ static void ov56_02256508(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 6, &v2, 0);
-        Bg_ClearTilemap(param0, 6);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_2, &v2, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_2);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
     }
 
@@ -360,7 +360,7 @@ static void ov56_02256508(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 7, &v3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_3, &v3, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
     }
 
@@ -746,7 +746,7 @@ static void ov56_02256D64(BgConfig *param0, NNSG2dScreenData *param1, UnkStruct_
         int v2 = param2[v0].unk_34 / 2;
 
         Bg_CopyToTilemapRect(param0, 7, 0, v0 * 8, 32, 8, param1->rawData, 0, 24 * param2[v0].unk_30 + 8 * v2, 32, 48);
-        Bg_SetOffset(param0, 4 + v0, 3, Unk_ov56_02257244[v2]);
+        Bg_SetOffset(param0, BG_LAYER_SUB_0 + v0, 3, Unk_ov56_02257244[v2]);
     }
 
     DC_FlushRange((void *)Bg_GetTilemapBuffer(param0, 7), 32 * 24 * 2);

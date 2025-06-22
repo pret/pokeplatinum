@@ -581,7 +581,7 @@ static void InitBackgrounds(BgConfig *bgConfig, enum HeapId heapID)
     Bg_ClearTilesRange(BG_LAYER_MAIN_2, 32, 0, heapID);
     Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_2);
 
-    Bg_SetPriority(0, 2);
+    Bg_SetPriority(BG_LAYER_MAIN_0, 2);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     BgTemplate bgT2 = {

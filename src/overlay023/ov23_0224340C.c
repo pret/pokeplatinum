@@ -2225,7 +2225,7 @@ static void ov23_02244FD0(int param0, BOOL param1)
                 v2[v1] = 0;
             }
 
-            Bg_SetPriority(2, 3);
+            Bg_SetPriority(BG_LAYER_MAIN_2, 3);
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
         }
 
@@ -2360,10 +2360,10 @@ static void ov23_022451C8(SysTask *param0, void *param1)
             Graphics_LoadTilemapToBgLayer(NARC_INDEX_DATA__UG_TRAP, v2[v3], v0->unk_10, 2, 0, 32 * 24 * 2, 0, HEAP_ID_FIELD);
         }
 
-        Bg_SetPriority(0, 3);
-        Bg_SetPriority(1, 2);
-        Bg_SetPriority(2, 1);
-        Bg_SetPriority(3, 0);
+        Bg_SetPriority(BG_LAYER_MAIN_0, 3);
+        Bg_SetPriority(BG_LAYER_MAIN_1, 2);
+        Bg_SetPriority(BG_LAYER_MAIN_2, 1);
+        Bg_SetPriority(BG_LAYER_MAIN_3, 0);
         v0->unk_00++;
         break;
     case 4:

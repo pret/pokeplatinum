@@ -191,12 +191,12 @@ void ov119_021D0EB8(BgConfig *param0)
             },
         };
 
-        Bg_InitFromTemplate(param0, 1, &v2[0], 0);
-        Bg_InitFromTemplate(param0, 2, &v2[1], 0);
-        Bg_InitFromTemplate(param0, 3, &v2[2], 0);
-        Bg_ClearTilemap(param0, 1);
-        Bg_ClearTilemap(param0, 2);
-        Bg_ClearTilemap(param0, 3);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v2[0], 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v2[1], 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v2[2], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_3);
 
         G2_SetBG0Priority(1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
@@ -224,8 +224,8 @@ void ov119_021D0EB8(BgConfig *param0)
             },
         };
 
-        Bg_InitFromTemplate(param0, 4, &v3[0], 0);
-        Bg_ClearTilemap(param0, 4);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v3[0], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
     }
 }
 
@@ -274,9 +274,9 @@ void ov119_021D1068(BgConfig *param0, PaletteData *param1, int param2)
 {
     int v0 = 71;
 
-    LoadMessageBoxGraphics(param0, 1, 20, 15, param2, v0);
+    LoadMessageBoxGraphics(param0, BG_LAYER_MAIN_1, 20, 15, param2, v0);
     PaletteData_LoadBufferFromFileStart(param1, 38, GetMessageBoxPaletteNARCMember(param2), v0, 0, 0x20, 12 * 16);
-    LoadStandardWindowGraphics(param0, 1, (20 + (18 + 12)), 13, 0, v0);
+    LoadStandardWindowGraphics(param0, BG_LAYER_MAIN_1, (20 + (18 + 12)), 13, 0, v0);
     PaletteData_LoadBufferFromFileStart(param1, 38, GetStandardWindowPaletteNARCMember(), v0, 0, 0x20, 13 * 16);
     PaletteData_LoadBufferFromFileStart(param1, 14, 7, v0, 0, 0x20, 14 * 16);
 }

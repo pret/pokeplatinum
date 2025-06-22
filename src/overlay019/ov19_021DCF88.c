@@ -425,7 +425,7 @@ void ov19_021DD114(UnkStruct_ov19_021DCF88 *param0, NARC *param1)
         Bg_FillTilesRange(param0->unk_08, 4, 0x0, 1, 0);
         Bg_FillTilemapRect(param0->unk_08, 4, 0x0, 0, 0, 32, 32, 17);
         Bg_CopyTilemapBufferToVRAM(param0->unk_08, 4);
-        Bg_SetOffset(param0->unk_08, 5, 0, Unk_ov19_021E0258[param0->unk_10]);
+        Bg_SetOffset(param0->unk_08, BG_LAYER_SUB_1, 0, Unk_ov19_021E0258[param0->unk_10]);
         Window_Add(param0->unk_08, &(param0->unk_88), 4, 0, 0, 32, 24, 2, 0);
         Window_FillTilemap(&(param0->unk_88), 0x0);
         Window_CopyToVRAM(&param0->unk_88);
@@ -575,16 +575,16 @@ static void ov19_021DD46C(SysTask *param0, void *param1)
     case 1:
         if (v0->unk_0C) {
             v0->unk_10 += v0->unk_14;
-            Bg_SetOffset(v1->unk_08, 5, 0, (v0->unk_10 >> FX32_SHIFT));
+            Bg_SetOffset(v1->unk_08, BG_LAYER_SUB_1, 0, (v0->unk_10 >> FX32_SHIFT));
             v0->unk_0C--;
         } else {
-            Bg_SetOffset(v1->unk_08, 5, 0, v0->unk_18);
+            Bg_SetOffset(v1->unk_08, BG_LAYER_SUB_1, 0, v0->unk_18);
             G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG3, 0, 16);
             v0->unk_04++;
         }
         break;
     case 2:
-        Bg_SetOffset(v1->unk_08, 6, 0, Unk_ov19_021E024C[v1->unk_10]);
+        Bg_SetOffset(v1->unk_08, BG_LAYER_SUB_2, 0, Unk_ov19_021E024C[v1->unk_10]);
         v0->unk_0E = 0;
         v0->unk_04++;
         break;
@@ -617,23 +617,23 @@ static void ov19_021DD544(SysTask *param0, void *param1)
         G2S_ChangeBlendAlpha(v1->unk_D4[v0->unk_0E], v1->unk_E4[v0->unk_0E]);
 
         if (v0->unk_0E == 0) {
-            Bg_SetOffset(v1->unk_08, 6, 0, Unk_ov19_021E024C[v1->unk_10]);
+            Bg_SetOffset(v1->unk_08, BG_LAYER_SUB_2, 0, Unk_ov19_021E024C[v1->unk_10]);
             v0->unk_04++;
         }
         break;
     case 2:
         if (v0->unk_0C) {
             v0->unk_10 += v0->unk_14;
-            Bg_SetOffset(v1->unk_08, 5, 0, (v0->unk_10 >> FX32_SHIFT));
+            Bg_SetOffset(v1->unk_08, BG_LAYER_SUB_1, 0, (v0->unk_10 >> FX32_SHIFT));
             v0->unk_0C--;
         } else {
-            Bg_SetOffset(v1->unk_08, 5, 0, v0->unk_18);
+            Bg_SetOffset(v1->unk_08, BG_LAYER_SUB_1, 0, v0->unk_18);
             G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG3, 0, 16);
             v0->unk_04++;
         }
         break;
     case 3:
-        Bg_SetOffset(v1->unk_08, 6, 0, Unk_ov19_021E024C[v1->unk_10]);
+        Bg_SetOffset(v1->unk_08, BG_LAYER_SUB_2, 0, Unk_ov19_021E024C[v1->unk_10]);
         v0->unk_0E = 0;
         v0->unk_04++;
         break;
@@ -662,17 +662,17 @@ static void ov19_021DD670(SysTask *param0, void *param1)
         G2S_ChangeBlendAlpha(v1->unk_D4[v0->unk_0E], v1->unk_E4[v0->unk_0E]);
 
         if (v0->unk_0E == 0) {
-            Bg_SetOffset(v1->unk_08, 6, 0, Unk_ov19_021E024C[0]);
+            Bg_SetOffset(v1->unk_08, BG_LAYER_SUB_2, 0, Unk_ov19_021E024C[0]);
             v0->unk_04++;
         }
         break;
     case 2:
         if (v0->unk_0C) {
             v0->unk_10 += v0->unk_14;
-            Bg_SetOffset(v1->unk_08, 5, 0, (v0->unk_10 >> FX32_SHIFT));
+            Bg_SetOffset(v1->unk_08, BG_LAYER_SUB_1, 0, (v0->unk_10 >> FX32_SHIFT));
             v0->unk_0C--;
         } else {
-            Bg_SetOffset(v1->unk_08, 5, 0, v0->unk_18);
+            Bg_SetOffset(v1->unk_08, BG_LAYER_SUB_1, 0, v0->unk_18);
             v0->unk_04++;
         }
         break;
@@ -1476,13 +1476,13 @@ void ov19_021DE2F4(UnkStruct_ov19_021DCF88 *param0)
 
 static void ov19_021DE324(UnkStruct_ov19_021DCF88 *param0)
 {
-    Bg_ToggleLayer(4, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_0, 0);
 }
 
 static void ov19_021DE330(UnkStruct_ov19_021DCF88 *param0)
 {
     G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_ALL, 14, 2);
-    Bg_ToggleLayer(4, 1);
+    Bg_ToggleLayer(BG_LAYER_SUB_0, 1);
 }
 
 static void ov19_021DE350(UnkStruct_ov19_021DCF88 *param0)

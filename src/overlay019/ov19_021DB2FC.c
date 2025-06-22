@@ -100,7 +100,7 @@ void ov19_021DB3C4(UnkStruct_ov19_021DB6F0 *param0)
 
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__PL_WINFRAME, 0, param0->unk_00, 1, 512, 0, 0, HEAP_ID_BOX_GRAPHICS);
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__PL_WINFRAME, 24, 0, 7 * 0x20, 0x20, HEAP_ID_BOX_GRAPHICS);
-    LoadMessageBoxGraphics(param0->unk_00, 1, 521, 8, param0->unk_20, HEAP_ID_BOX_GRAPHICS);
+    LoadMessageBoxGraphics(param0->unk_00, BG_LAYER_MAIN_1, 521, 8, param0->unk_20, HEAP_ID_BOX_GRAPHICS);
 }
 
 void ov19_021DB448(UnkStruct_ov19_021DB6F0 *param0, u32 boxMessageID)

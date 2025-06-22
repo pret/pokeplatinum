@@ -105,7 +105,7 @@ void sub_0208A490(UnkStruct_02089688 *param0)
     {
         int v5 = Options_Frame(param0->unk_38C.options);
 
-        LoadMessageBoxGraphics(v1, 4, 1, 10, v5, HEAP_ID_101);
+        LoadMessageBoxGraphics(v1, BG_LAYER_SUB_0, 1, 10, v5, HEAP_ID_101);
         PaletteData_LoadBufferFromFileStart(v4, 38, GetMessageBoxPaletteNARCMember(v5), 101, 1, 0x20, 11 * 16);
         PaletteData_LoadBufferFromFileStart(v4, 14, 7, 101, 1, 0x20, 12 * 16);
     }

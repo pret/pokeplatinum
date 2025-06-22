@@ -211,8 +211,8 @@ static void ov41_022568DC(SysTask *param0, void *param1)
     GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_POKETCH_APP));
     v3 = PoketchTask_GetTaskData(param1);
 
-    Bg_InitFromTemplate(v3->unk_04, 6, &v0, 0);
-    Bg_InitFromTemplate(v3->unk_04, 7, &v1, 0);
+    Bg_InitFromTemplate(v3->unk_04, BG_LAYER_SUB_2, &v0, 0);
+    Bg_InitFromTemplate(v3->unk_04, BG_LAYER_SUB_3, &v1, 0);
 
     GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_POKETCH_APP));
 
@@ -265,8 +265,8 @@ static void ov41_02256A1C(SysTask *param0, void *param1)
     case 1:
         PoketchMemory_WriteFast(v0->unk_00->unk_08, v0->unk_48.pixels, (20 * 19 * 0x20));
         Window_Remove(&v0->unk_48);
-        Bg_FreeTilemapBuffer(v0->unk_04, 6);
-        Bg_FreeTilemapBuffer(v0->unk_04, 7);
+        Bg_FreeTilemapBuffer(v0->unk_04, BG_LAYER_SUB_2);
+        Bg_FreeTilemapBuffer(v0->unk_04, BG_LAYER_SUB_3);
         ov41_022568C8(param1);
     }
 }

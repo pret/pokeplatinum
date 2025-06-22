@@ -1526,7 +1526,7 @@ static void ov5_021DF28C(SysTask *param0, void *param1)
         ov5_021D16F4(v0->fieldSystem, 0);
         ov5_021D1718(v0->fieldSystem, 0);
 
-        Bg_SetPriority(0, 0);
+        Bg_SetPriority(BG_LAYER_MAIN_0, 0);
 
         v0->unk_02 = 1;
         SysTask_Done(param0);
@@ -1575,7 +1575,7 @@ static void ov5_021DF30C(FieldSystem *fieldSystem)
         {
             G2_SetBG3ControlDCBmp(GX_BG_SCRSIZE_DCBMP_256x256, GX_BG_AREAOVER_XLU, GX_BG_BMPSCRBASE_0x20000);
 
-            Bg_SetPriority(3, 3);
+            Bg_SetPriority(BG_LAYER_MAIN_3, 3);
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
 
             {
@@ -1603,9 +1603,9 @@ static void ov5_021DF30C(FieldSystem *fieldSystem)
                 0
             };
 
-            Bg_InitFromTemplate(fieldSystem->bgConfig, 2, &v3, 0);
-            Bg_ClearTilesRange(2, 32, 0, HEAP_ID_FIELD);
-            Bg_ClearTilemap(fieldSystem->bgConfig, 2);
+            Bg_InitFromTemplate(fieldSystem->bgConfig, BG_LAYER_MAIN_2, &v3, 0);
+            Bg_ClearTilesRange(BG_LAYER_MAIN_2, 32, 0, HEAP_ID_FIELD);
+            Bg_ClearTilemap(fieldSystem->bgConfig, BG_LAYER_MAIN_2);
         }
     }
 
@@ -1614,7 +1614,7 @@ static void ov5_021DF30C(FieldSystem *fieldSystem)
 
 static void ov5_021DF3D4(FieldSystem *fieldSystem)
 {
-    Bg_FreeTilemapBuffer(fieldSystem->bgConfig, 2);
+    Bg_FreeTilemapBuffer(fieldSystem->bgConfig, BG_LAYER_MAIN_2);
     ov5_021D1434(fieldSystem->bgConfig);
 }
 

@@ -597,7 +597,7 @@ void ov19_021DC29C(UnkStruct_ov19_021DBA9C *param0)
     if (v0) {
         u32 v1 = ov19_GetCursorOrPreviewedItem(param0->unk_0C);
 
-        Bg_SetOffset(param0->unk_04, 1, 3, 0);
+        Bg_SetOffset(param0->unk_04, BG_LAYER_MAIN_1, 3, 0);
         Bg_LoadToTilemapRect(param0->unk_04, 1, param0->unk_38->rawData, 0, 24, 32, 7);
         Window_FillTilemap(&param0->unk_10[2], 4);
         MessageLoader_GetStrbuf(param0->unk_4BF8, v1, param0->unk_4BFC);
@@ -641,10 +641,10 @@ static void ov19_021DC37C(SysTask *param0, void *param1)
         if (v0->unk_14) {
             v0->unk_14--;
             v0->unk_08 += v0->unk_10;
-            Bg_SetOffset(v0->unk_04, 1, 3, (v0->unk_08 >> FX32_SHIFT));
+            Bg_SetOffset(v0->unk_04, BG_LAYER_MAIN_1, 3, (v0->unk_08 >> FX32_SHIFT));
             ov19_021DC5B8(v0->unk_00, (224 << FX32_SHIFT) - v0->unk_08);
         } else {
-            Bg_SetOffset(v0->unk_04, 1, 3, (v0->unk_0C >> FX32_SHIFT));
+            Bg_SetOffset(v0->unk_04, BG_LAYER_MAIN_1, 3, (v0->unk_0C >> FX32_SHIFT));
             ov19_021DC5B8(v0->unk_00, (224 << FX32_SHIFT) - v0->unk_0C);
             ov19_021D79B8(v0, ov19_021DC374, v0->unk_00);
             SysTask_Done(param0);
@@ -672,7 +672,7 @@ void ov19_021DC3F4(UnkStruct_ov19_021DBA9C *param0)
 BOOL ov19_021DC43C(UnkStruct_ov19_021DBA9C *param0)
 {
     if (param0->unk_DC == NULL) {
-        Bg_SetOffset(param0->unk_04, 1, 3, 0);
+        Bg_SetOffset(param0->unk_04, BG_LAYER_MAIN_1, 3, 0);
         ov19_021DC5E0(param0);
         return 1;
     }
@@ -693,10 +693,10 @@ static void ov19_021DC46C(SysTask *param0, void *param1)
     if (v0->unk_14) {
         v0->unk_14--;
         v0->unk_08 += v0->unk_10;
-        Bg_SetOffset(v0->unk_04, 1, 3, (v0->unk_08 >> FX32_SHIFT));
+        Bg_SetOffset(v0->unk_04, BG_LAYER_MAIN_1, 3, (v0->unk_08 >> FX32_SHIFT));
         ov19_021DC5B8(v0->unk_00, (224 << FX32_SHIFT) - v0->unk_08);
     } else {
-        Bg_SetOffset(v0->unk_04, 1, 3, (v0->unk_0C >> FX32_SHIFT));
+        Bg_SetOffset(v0->unk_04, BG_LAYER_MAIN_1, 3, (v0->unk_0C >> FX32_SHIFT));
         ov19_021DC5B8(v0->unk_00, (224 << FX32_SHIFT) - v0->unk_0C);
         Bg_FillTilemapRect(v0->unk_04, 1, 0x0, 0, 0, 32, 32, 17);
         Bg_CopyTilemapBufferToVRAM(v0->unk_04, 1);

@@ -2109,7 +2109,7 @@ static BOOL ov104_022311BC(UnkStruct_ov104_02231148 *param0)
             Windows_Delete(param0->unk_28, 1);
             SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
             SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
-            Bg_ClearTilesRange(1, 32, 0, HEAP_ID_FIELDMAP);
+            Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_FIELDMAP);
             Bg_ClearTilemap(param0->unk_00->unk_00, 1);
 
             return 0;
@@ -2166,7 +2166,7 @@ static BOOL ov104_022312D8(UnkStruct_ov104_02231148 *param0)
             SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
             SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
 
-            Bg_ClearTilesRange(1, 32, 0, HEAP_ID_FIELDMAP);
+            Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_FIELDMAP);
             Bg_ClearTilemap(param0->unk_00->unk_00, 1);
 
             return 0;
@@ -2367,7 +2367,7 @@ static BOOL ov104_02231720(UnkStruct_ov104_02231148 *param0)
 
         param0->unk_10 = 1;
 
-        Bg_ToggleLayer(3, 0);
+        Bg_ToggleLayer(BG_LAYER_MAIN_3, 0);
         Bg_SetOffset(param0->unk_00->unk_00, 3, 0, 0);
         Bg_SetOffset(param0->unk_00->unk_00, 3, 3, 0);
 
@@ -2437,7 +2437,7 @@ static BOOL ov104_02231864(UnkStruct_ov104_02231148 *param0)
 
         param0->unk_10 = 1;
 
-        Bg_ToggleLayer(3, 0);
+        Bg_ToggleLayer(BG_LAYER_MAIN_3, 0);
         Bg_SetOffset(param0->unk_00->unk_00, 3, 0, 0);
         Bg_SetOffset(param0->unk_00->unk_00, 3, 3, 0);
 

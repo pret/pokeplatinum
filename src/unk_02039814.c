@@ -135,13 +135,13 @@ void sub_02039834(int heapID, int param1, int param2)
     v0 = BgConfig_New(heapID);
 
     SetAllGraphicsModes(&Unk_020E5ED0);
-    Bg_InitFromTemplate(v0, 0, &Unk_020E5EE0, 0);
-    Bg_ClearTilemap(v0, 0);
-    LoadStandardWindowGraphics(v0, 0, (512 - 9), 2, 0, heapID);
+    Bg_InitFromTemplate(v0, BG_LAYER_MAIN_0, &Unk_020E5EE0, 0);
+    Bg_ClearTilemap(v0, BG_LAYER_MAIN_0);
+    LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_0, (512 - 9), 2, 0, heapID);
     Font_LoadTextPalette(0, 1 * (2 * 16), heapID);
-    Bg_ClearTilesRange(0, 32, 0, heapID);
-    Bg_MaskPalette(0, 0x6c21);
-    Bg_MaskPalette(4, 0x6c21);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, heapID);
+    Bg_MaskPalette(BG_LAYER_MAIN_0, 0x6c21);
+    Bg_MaskPalette(BG_LAYER_SUB_0, 0x6c21);
 
     v2 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0214, heapID);
     v3 = Strbuf_Init(0x180, heapID);

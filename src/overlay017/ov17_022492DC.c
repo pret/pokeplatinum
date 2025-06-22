@@ -283,10 +283,10 @@ void ov17_02249300(BgConfig *param0)
     int v0;
 
     for (v0 = 0; v0 < NELEMS(Unk_ov17_022545C0); v0++) {
-        Bg_InitFromTemplate(param0, 4 + v0, &Unk_ov17_022545C0[v0], 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0 + v0, &Unk_ov17_022545C0[v0], 0);
         Bg_FillTilemap(param0, 4 + v0, 0);
-        Bg_SetOffset(param0, 4 + v0, 0, 0);
-        Bg_SetOffset(param0, 4 + v0, 3, 0);
+        Bg_SetOffset(param0, BG_LAYER_SUB_0 + v0, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_SUB_0 + v0, 3, 0);
     }
 }
 
@@ -295,8 +295,8 @@ void ov17_02249358(BgConfig *param0)
     int v0;
 
     for (v0 = 0; v0 < NELEMS(Unk_ov17_022545C0); v0++) {
-        Bg_ToggleLayer(4 + v0, 0);
-        Bg_FreeTilemapBuffer(param0, 4 + v0);
+        Bg_ToggleLayer(BG_LAYER_SUB_0 + v0, 0);
+        Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0 + v0);
     }
 }
 
@@ -422,7 +422,7 @@ void ov17_02249640(UnkStruct_ov17_022492DC *param0, int param1, int param2, void
 
     {
         for (v2 = 0; v2 < 4; v2++) {
-            Bg_SetPriority(4 + v2, v0->unk_0C_val2[v2]);
+            Bg_SetPriority(BG_LAYER_SUB_0 + v2, v0->unk_0C_val2[v2]);
         }
     }
 
@@ -901,9 +901,9 @@ static void ov17_0224A038(SysTask *param0, void *param1)
 
     for (v2 = 0; v2 < 4; v2++) {
         if (v1->unk_04_val2[v2] == 0xffff) {
-            Bg_ToggleLayer(4 + v2, 0);
+            Bg_ToggleLayer(BG_LAYER_SUB_0 + v2, 0);
         } else {
-            Bg_ToggleLayer(4 + v2, 1);
+            Bg_ToggleLayer(BG_LAYER_SUB_0 + v2, 1);
         }
     }
 

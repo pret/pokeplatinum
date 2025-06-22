@@ -650,9 +650,9 @@ static void ov65_02236840(UnkStruct_ov65_02236840 *param0, u32 heapID)
             0
         };
 
-        Bg_InitFromTemplate(param0->unk_00, 0, &v2, 0);
-        Bg_ClearTilesRange(0, 32, 0, heapID);
-        Bg_ClearTilemap(param0->unk_00, 0);
+        Bg_InitFromTemplate(param0->unk_00, BG_LAYER_MAIN_0, &v2, 0);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, heapID);
+        Bg_ClearTilemap(param0->unk_00, BG_LAYER_MAIN_0);
     }
 
     {
@@ -672,9 +672,9 @@ static void ov65_02236840(UnkStruct_ov65_02236840 *param0, u32 heapID)
             0
         };
 
-        Bg_InitFromTemplate(param0->unk_00, 1, &v3, 0);
-        Bg_ClearTilesRange(1, 32, 0, heapID);
-        Bg_ClearTilemap(param0->unk_00, 1);
+        Bg_InitFromTemplate(param0->unk_00, BG_LAYER_MAIN_1, &v3, 0);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, heapID);
+        Bg_ClearTilemap(param0->unk_00, BG_LAYER_MAIN_1);
     }
 
     {
@@ -694,9 +694,9 @@ static void ov65_02236840(UnkStruct_ov65_02236840 *param0, u32 heapID)
             0
         };
 
-        Bg_InitFromTemplate(param0->unk_00, 2, &v4, 0);
-        Bg_ClearTilesRange(2, 32, 0, heapID);
-        Bg_ClearTilemap(param0->unk_00, 2);
+        Bg_InitFromTemplate(param0->unk_00, BG_LAYER_MAIN_2, &v4, 0);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_2, 32, 0, heapID);
+        Bg_ClearTilemap(param0->unk_00, BG_LAYER_MAIN_2);
     }
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
@@ -732,9 +732,9 @@ static void ov65_022369F0(UnkStruct_ov65_02236840 *param0)
 {
     Heap_FreeToHeap(param0->unk_244);
     Heap_FreeToHeap(param0->unk_250);
-    Bg_FreeTilemapBuffer(param0->unk_00, 2);
-    Bg_FreeTilemapBuffer(param0->unk_00, 1);
-    Bg_FreeTilemapBuffer(param0->unk_00, 0);
+    Bg_FreeTilemapBuffer(param0->unk_00, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0->unk_00, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(param0->unk_00, BG_LAYER_MAIN_0);
     Heap_FreeToHeap(param0->unk_00);
 }
 
@@ -746,9 +746,9 @@ static void ov65_02236A28(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207D
 
     v0 = Options_Frame(SaveData_GetOptions(param1->saveData));
 
-    LoadMessageBoxGraphics(param0->unk_00, 1, 1, 2, v0, param2);
-    LoadStandardWindowGraphics(param0->unk_00, 1, (1 + (18 + 12)), 3, 0, param2);
-    LoadStandardWindowGraphics(param0->unk_00, 2, (0 + (24 * 2)), 4, 0, param2);
+    LoadMessageBoxGraphics(param0->unk_00, BG_LAYER_MAIN_1, 1, 2, v0, param2);
+    LoadStandardWindowGraphics(param0->unk_00, BG_LAYER_MAIN_1, (1 + (18 + 12)), 3, 0, param2);
+    LoadStandardWindowGraphics(param0->unk_00, BG_LAYER_MAIN_2, (0 + (24 * 2)), 4, 0, param2);
     Window_Add(param0->unk_00, &param0->unk_1F0, 1, 2, 19, 27, 4, 1, ((1 + (18 + 12)) + 9));
     Window_FillTilemap(&param0->unk_1F0, 15);
     Window_DrawMessageBoxWithScrollCursor(&param0->unk_1F0, 1, 1, 2);
@@ -908,7 +908,7 @@ static void ov65_02236E50(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207D
 
     v1 = Options_Frame(SaveData_GetOptions(param1->saveData));
 
-    LoadMessageBoxGraphics(param0->unk_00, 1, 1, 2, v1, heapID);
+    LoadMessageBoxGraphics(param0->unk_00, BG_LAYER_MAIN_1, 1, 2, v1, heapID);
 
     param0->unk_15 = param3;
 }

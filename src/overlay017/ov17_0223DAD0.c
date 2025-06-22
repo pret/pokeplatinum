@@ -648,18 +648,18 @@ static void ov17_0223E250(BgConfig *param0)
             },
         };
 
-        Bg_InitFromTemplate(param0, 1, &v2[0], 0);
-        Bg_ClearTilemap(param0, 1);
-        Bg_SetOffset(param0, 1, 0, 0);
-        Bg_SetOffset(param0, 1, 3, 0);
-        Bg_InitFromTemplate(param0, 2, &v2[1], 0);
-        Bg_ClearTilemap(param0, 2);
-        Bg_SetOffset(param0, 2, 0, 0);
-        Bg_SetOffset(param0, 2, 3, 0);
-        Bg_InitFromTemplate(param0, 3, &v2[2], 0);
-        Bg_ClearTilemap(param0, 3);
-        Bg_SetOffset(param0, 3, 0, 0);
-        Bg_SetOffset(param0, 3, 3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v2[0], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_1, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_1, 3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v2[1], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_2, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_2, 3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v2[2], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_3);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_3, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_3, 3, 0);
 
         G2_SetBG0Priority(2);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);

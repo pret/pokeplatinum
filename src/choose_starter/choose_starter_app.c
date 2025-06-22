@@ -593,9 +593,9 @@ static void SetupBGL(BgConfig *bgl, enum HeapId heapID)
             0
         };
 
-        Bg_InitFromTemplate(bgl, 1, &header, 0);
-        Bg_ClearTilesRange(1, 32, 0, heapID);
-        Bg_ClearTilemap(bgl, 1);
+        Bg_InitFromTemplate(bgl, BG_LAYER_MAIN_1, &header, 0);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, heapID);
+        Bg_ClearTilemap(bgl, BG_LAYER_MAIN_1);
     }
 
     {
@@ -615,9 +615,9 @@ static void SetupBGL(BgConfig *bgl, enum HeapId heapID)
             0
         };
 
-        Bg_InitFromTemplate(bgl, 2, &header, 0);
-        Bg_ClearTilesRange(2, 32, 0, heapID);
-        Bg_ClearTilemap(bgl, 2);
+        Bg_InitFromTemplate(bgl, BG_LAYER_MAIN_2, &header, 0);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_2, 32, 0, heapID);
+        Bg_ClearTilemap(bgl, BG_LAYER_MAIN_2);
     }
 
     {
@@ -637,17 +637,17 @@ static void SetupBGL(BgConfig *bgl, enum HeapId heapID)
             0
         };
 
-        Bg_InitFromTemplate(bgl, 3, &header, 0);
-        Bg_ClearTilesRange(3, 32, 0, heapID);
-        Bg_ClearTilemap(bgl, 3);
+        Bg_InitFromTemplate(bgl, BG_LAYER_MAIN_3, &header, 0);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_3, 32, 0, heapID);
+        Bg_ClearTilemap(bgl, BG_LAYER_MAIN_3);
     }
 }
 
 static void ov78_021D12EC(BgConfig *param0)
 {
-    Bg_FreeTilemapBuffer(param0, 1);
-    Bg_FreeTilemapBuffer(param0, 2);
-    Bg_FreeTilemapBuffer(param0, 3);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_3);
 }
 
 static void MakeMessageWindow(ChooseStarterApp *app, enum HeapId heapID)
@@ -1332,7 +1332,7 @@ static void MakeConfirmationWindow(ChooseStarterApp *param0, int param1)
     param0->unk_B0.palette = 3;
     param0->unk_B0.baseTile = ((18 + 12) + 9 + 128);
 
-    LoadStandardWindowGraphics(param0->bgl, 1, (512 + (18 + 12) + 128), 1, 0, param1);
+    LoadStandardWindowGraphics(param0->bgl, BG_LAYER_MAIN_1, (512 + (18 + 12) + 128), 1, 0, param1);
     Font_LoadTextPalette(0, 3 * 32, param1);
 }
 

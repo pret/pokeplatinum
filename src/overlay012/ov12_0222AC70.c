@@ -1343,7 +1343,7 @@ static void ov12_0222C4A8(SysTask *param0, void *param1)
             PokemonSprite_SetAttribute(v1->unk_14[v0].unk_08, MON_SPRITE_X_CENTER, v1->unk_14[v0].unk_00.unk_00 + v1->unk_B4.unk_00);
         }
 
-        Bg_SetOffset(v1->unk_08, 3, 0, v1->unk_B4.unk_00);
+        Bg_SetOffset(v1->unk_08, BG_LAYER_MAIN_3, 0, v1->unk_B4.unk_00);
         break;
     default:
         ov12_02220220(v1->unk_0C, param0);

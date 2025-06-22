@@ -224,29 +224,29 @@ static void LibraryTV_SetVramBank(LibraryTV *ltv)
 
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__LIBRARY_TV, 3, 0, 0, 0, ltv->heapID);
     Font_LoadTextPalette(PAL_LOAD_MAIN_BG, 1 * (2 * 16), ltv->heapID);
-    Bg_MaskPalette(0, 0x0);
-    Bg_MaskPalette(4, 0x0);
+    Bg_MaskPalette(BG_LAYER_MAIN_0, 0x0);
+    Bg_MaskPalette(BG_LAYER_SUB_0, 0x0);
 
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, (GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3), 0x4, 0xc);
 }
 
 static void LibraryTV_ReleaseVramBank(LibraryTV *ltv)
 {
-    Bg_ToggleLayer(0, 0);
-    Bg_ToggleLayer(1, 0);
-    Bg_ToggleLayer(2, 0);
-    Bg_ToggleLayer(3, 0);
-    Bg_ToggleLayer(4, 0);
-    Bg_ToggleLayer(5, 0);
-    Bg_ToggleLayer(6, 0);
-    Bg_ToggleLayer(7, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_0, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_1, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_3, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_0, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_1, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_2, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
 
     G2_BlendNone();
 
-    Bg_FreeTilemapBuffer(ltv->bgl, 3);
-    Bg_FreeTilemapBuffer(ltv->bgl, 1);
-    Bg_FreeTilemapBuffer(ltv->bgl, 0);
-    Bg_FreeTilemapBuffer(ltv->bgl, 2);
+    Bg_FreeTilemapBuffer(ltv->bgl, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(ltv->bgl, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(ltv->bgl, BG_LAYER_MAIN_0);
+    Bg_FreeTilemapBuffer(ltv->bgl, BG_LAYER_MAIN_2);
 
     Heap_FreeToHeap(ltv->bgl);
 }
@@ -266,5 +266,5 @@ static void LibraryTV_ReleaseMsgLdr(LibraryTV *ltv)
 static void LibraryTV_UpdateScanLines(LibraryTV *ltv)
 {
     ltv->scanLinePos += 0x4;
-    Bg_SetOffset(ltv->bgl, 1, 3, ltv->scanLinePos >> 4);
+    Bg_SetOffset(ltv->bgl, BG_LAYER_MAIN_1, 3, ltv->scanLinePos >> 4);
 }

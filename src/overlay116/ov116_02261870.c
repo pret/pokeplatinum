@@ -831,5 +831,5 @@ void ov116_022628B8(UnkStruct_ov116_0226139C *param0)
     PaletteData_LoadBufferFromFileStart(v5, 164, 6, 106, 0, 0x20, 0);
     PaletteData_LoadBufferFromFileStart(v5, 14, 7, 106, 1, 0x20, 14 * 16);
     PaletteData_LoadBufferFromFileStart(v5, 38, GetStandardWindowPaletteNARCMember(), 106, 1, 0x20, 13 * 16);
-    LoadStandardWindowGraphics(v2, 7, 180, 13, 0, HEAP_ID_106);
+    LoadStandardWindowGraphics(v2, BG_LAYER_SUB_3, 180, 13, 0, HEAP_ID_106);
 }

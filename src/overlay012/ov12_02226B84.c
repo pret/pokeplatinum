@@ -510,7 +510,7 @@ static void ov12_02226D38(SysTask *param0, void *param1)
     switch (v0->unk_1C.unk_00) {
     case 0:
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BD | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG3, v0->unk_16, v0->unk_18);
-        Bg_ToggleLayer(2, 1);
+        Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
         v0->unk_1C.unk_00++;
     case 1: {
         int v1 = 0;
@@ -564,7 +564,7 @@ static void ov12_02226D38(SysTask *param0, void *param1)
         G2_ChangeBlendAlpha(v0->unk_16, v0->unk_18);
     } break;
     default:
-        Bg_ToggleLayer(2, 0);
+        Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
         ov12_02220220(v0->unk_1C.unk_04, param0);
         Heap_FreeToHeap(v0);
         return;
@@ -633,7 +633,7 @@ void ov12_02226EB0(UnkStruct_ov12_0221FCDC *param0)
     v0->unk_18 = 31;
     v0->unk_04 = 0;
 
-    Bg_ToggleLayer(2, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
 
     {
         int v2 = ov12_02220280(param0, 0);
@@ -668,7 +668,7 @@ static void ov12_02227064(SysTask *param0, void *param1)
     switch (v0->unk_1C.unk_00) {
     case 0:
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BD | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG3, v0->unk_16, v0->unk_18);
-        Bg_ToggleLayer(2, 1);
+        Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
         v0->unk_1C.unk_00++;
     case 1: {
         int v1 = 0;
@@ -722,7 +722,7 @@ static void ov12_02227064(SysTask *param0, void *param1)
         G2_ChangeBlendAlpha(v0->unk_16, v0->unk_18);
     } break;
     default:
-        Bg_ToggleLayer(2, 0);
+        Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
         ov12_02220220(v0->unk_1C.unk_04, param0);
         Heap_FreeToHeap(v0);
         return;
@@ -793,7 +793,7 @@ void ov12_022271D8(UnkStruct_ov12_0221FCDC *param0)
     v0->unk_18 = 16;
     v0->unk_04 = 0;
 
-    Bg_ToggleLayer(2, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
 
     {
         int v2 = ov12_02220280(param0, 0);

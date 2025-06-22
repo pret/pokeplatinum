@@ -308,10 +308,10 @@ void BoxGraphics_Free(UnkStruct_ov19_021D61B0 *param0)
     ov19_021DA384(&(param0->unk_1C8));
 
     SpriteList_Delete(param0->unk_18);
-    Bg_FreeTilemapBuffer(param0->unk_1C0, 3);
-    Bg_FreeTilemapBuffer(param0->unk_1C0, 2);
-    Bg_FreeTilemapBuffer(param0->unk_1C0, 1);
-    Bg_FreeTilemapBuffer(param0->unk_1C0, 4);
+    Bg_FreeTilemapBuffer(param0->unk_1C0, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(param0->unk_1C0, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0->unk_1C0, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(param0->unk_1C0, BG_LAYER_SUB_0);
     PokemonSpriteManager_Free(param0->unk_1BC);
     Font_UseLazyGlyphAccess(FONT_SYSTEM);
     Heap_FreeToHeap(param0->unk_1C0);
@@ -1718,20 +1718,20 @@ static void ov19_021D74B4(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_
     GX_SetGraphicsMode(GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_3D);
 
     SetAllGraphicsModes(&v1);
-    Bg_InitFromTemplate(param0->unk_1C0, 1, &v3, 0);
-    Bg_InitFromTemplate(param0->unk_1C0, 2, &v4, 0);
-    Bg_InitFromTemplate(param0->unk_1C0, 3, &v5, 0);
+    Bg_InitFromTemplate(param0->unk_1C0, BG_LAYER_MAIN_1, &v3, 0);
+    Bg_InitFromTemplate(param0->unk_1C0, BG_LAYER_MAIN_2, &v4, 0);
+    Bg_InitFromTemplate(param0->unk_1C0, BG_LAYER_MAIN_3, &v5, 0);
 
     if (ov19_GetBoxMode(param1) != PC_MODE_COMPARE) {
-        Bg_InitFromTemplate(param0->unk_1C0, 4, &v6, 0);
-        Bg_InitFromTemplate(param0->unk_1C0, 5, &v7, 0);
-        Bg_InitFromTemplate(param0->unk_1C0, 6, &v8, 0);
-        Bg_InitFromTemplate(param0->unk_1C0, 7, &v9, 0);
+        Bg_InitFromTemplate(param0->unk_1C0, BG_LAYER_SUB_0, &v6, 0);
+        Bg_InitFromTemplate(param0->unk_1C0, BG_LAYER_SUB_1, &v7, 0);
+        Bg_InitFromTemplate(param0->unk_1C0, BG_LAYER_SUB_2, &v8, 0);
+        Bg_InitFromTemplate(param0->unk_1C0, BG_LAYER_SUB_3, &v9, 0);
     } else {
-        Bg_InitFromTemplate(param0->unk_1C0, 4, &v6, 0);
-        Bg_InitFromTemplate(param0->unk_1C0, 5, &v10, 0);
-        Bg_InitFromTemplate(param0->unk_1C0, 6, &v11, 0);
-        Bg_InitFromTemplate(param0->unk_1C0, 7, &v9, 0);
+        Bg_InitFromTemplate(param0->unk_1C0, BG_LAYER_SUB_0, &v6, 0);
+        Bg_InitFromTemplate(param0->unk_1C0, BG_LAYER_SUB_1, &v10, 0);
+        Bg_InitFromTemplate(param0->unk_1C0, BG_LAYER_SUB_2, &v11, 0);
+        Bg_InitFromTemplate(param0->unk_1C0, BG_LAYER_SUB_3, &v9, 0);
     }
 
     ov19_021D76FC();

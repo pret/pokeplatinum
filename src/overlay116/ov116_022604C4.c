@@ -928,16 +928,16 @@ static void ov116_02261494(BgConfig *param0)
             },
         };
 
-        Bg_ClearTilesRange(1, 32, 0, HEAP_ID_106);
-        Bg_ClearTilesRange(2, 32, 0, HEAP_ID_106);
-        Bg_ClearTilesRange(3, 32, 0, HEAP_ID_106);
-        Bg_InitFromTemplate(param0, 1, &v2[1], 0);
-        Bg_InitFromTemplate(param0, 2, &v2[2], 0);
-        Bg_InitFromTemplate(param0, 3, &v2[3], 0);
-        Bg_ClearTilemap(param0, 0);
-        Bg_ClearTilemap(param0, 1);
-        Bg_ClearTilemap(param0, 2);
-        Bg_ClearTilemap(param0, 3);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_106);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_2, 32, 0, HEAP_ID_106);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_3, 32, 0, HEAP_ID_106);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v2[1], 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v2[2], 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v2[3], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_3);
     }
     {
         BgTemplate v3[] = {
@@ -1007,14 +1007,14 @@ static void ov116_02261494(BgConfig *param0)
         Bg_ClearTilesRange(5, 32, 0, HEAP_ID_106);
         Bg_ClearTilesRange(6, 32, 0, HEAP_ID_106);
         Bg_ClearTilesRange(7, 32, 0, HEAP_ID_106);
-        Bg_InitFromTemplate(param0, 4, &v3[0], 0);
-        Bg_InitFromTemplate(param0, 5, &v3[1], 0);
-        Bg_InitFromTemplate(param0, 6, &v3[2], 0);
-        Bg_InitFromTemplate(param0, 7, &v3[3], 0);
-        Bg_ClearTilemap(param0, 4);
-        Bg_ClearTilemap(param0, 5);
-        Bg_ClearTilemap(param0, 6);
-        Bg_ClearTilemap(param0, 7);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v3[0], 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_1, &v3[1], 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_2, &v3[2], 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_3, &v3[3], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_1);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_2);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_3);
     }
 
     Bg_ClearTilesRange(4, 32, 0, HEAP_ID_106);

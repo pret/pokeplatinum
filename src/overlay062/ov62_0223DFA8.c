@@ -982,14 +982,14 @@ static BOOL ov62_0223F218 (UnkStruct_0208C06C * param0)
         PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);
         break;
     case 1:
-        Bg_SetPriority(0, 1);
-        Bg_SetPriority(1, 3);
-        Bg_SetPriority(2, 0);
-        Bg_SetPriority(3, 1);
-        Bg_SetPriority(4, 1);
-        Bg_SetPriority(5, 3);
-        Bg_SetPriority(6, 0);
-        Bg_SetPriority(7, 2);
+        Bg_SetPriority(BG_LAYER_MAIN_0, 1);
+        Bg_SetPriority(BG_LAYER_MAIN_1, 3);
+        Bg_SetPriority(BG_LAYER_MAIN_2, 0);
+        Bg_SetPriority(BG_LAYER_MAIN_3, 1);
+        Bg_SetPriority(BG_LAYER_SUB_0, 1);
+        Bg_SetPriority(BG_LAYER_SUB_1, 3);
+        Bg_SetPriority(BG_LAYER_SUB_2, 0);
+        Bg_SetPriority(BG_LAYER_SUB_3, 2);
         ov62_0223376C(param0, 0);
         sub_0208B9E0(param0->unk_6F0, 0);
         param0->unk_08++;

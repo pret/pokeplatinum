@@ -59,8 +59,8 @@ void ov88_0223E9C4(BgConfig *param0, Window *param1, Options *options)
     Window_Add(param0, &param1[6], 1, 26, 21, 5, 2, 8, ((1 + (10 * 2)) + (10 * 2)));
     Window_FillTilemap(&param1[6], 0);
 
-    LoadMessageBoxGraphics(param0, 0, (512 - (9 + (18 + 12))), 10, Options_Frame(options), HEAP_ID_26);
-    LoadStandardWindowGraphics(param0, 0, (512 - 9), 11, 0, HEAP_ID_26);
+    LoadMessageBoxGraphics(param0, BG_LAYER_MAIN_0, (512 - (9 + (18 + 12))), 10, Options_Frame(options), HEAP_ID_26);
+    LoadStandardWindowGraphics(param0, BG_LAYER_MAIN_0, (512 - 9), 11, 0, HEAP_ID_26);
 
     Window_Add(param0, &param1[21], 0, 2, 21, 20, 2, 13, 1);
     Window_FillTilemap(&param1[21], 0);

@@ -65,7 +65,7 @@ static void ov5_021F007C(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
 
     ov5_021F02B8(&v0->unk_28, 0, 8, 19);
 
-    Bg_SetPriority(2, 0);
+    Bg_SetPriority(BG_LAYER_MAIN_2, 0);
     GXLayers_EngineAToggleLayers((GX_PLANEMASK_BG2), 1);
     Sound_PlayEffect(SEQ_SE_DP_FW230);
 }
@@ -118,7 +118,7 @@ static void ov5_021F013C(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
 
     G2_SetBlendAlpha((GX_PLANEMASK_BG2), GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD, 0, 16 - 0);
 
-    Bg_SetPriority(2, 0);
+    Bg_SetPriority(BG_LAYER_MAIN_2, 0);
     GXLayers_EngineAToggleLayers((GX_PLANEMASK_BG2), 1);
     Sound_PlayEffect(SEQ_SE_DP_FW230);
 }
@@ -278,12 +278,12 @@ static BOOL ov5_021F02C8(UnkStruct_ov5_021F02B8 *param0)
 
 static void ov5_021F02F4(FieldSystem *fieldSystem)
 {
-    Bg_MaskPalette(2, 0);
+    Bg_MaskPalette(BG_LAYER_MAIN_2, 0);
 }
 
 static void ov5_021F0300(FieldSystem *fieldSystem)
 {
-    Bg_MaskPalette(2, 0x7fff);
+    Bg_MaskPalette(BG_LAYER_MAIN_2, 0x7fff);
 }
 
 static void ov5_021F0310(FieldSystem *fieldSystem)
@@ -449,7 +449,7 @@ BOOL ov5_021F0488(FieldTask *param0)
 
         v1->unk_0C = 2;
 
-        Bg_SetPriority(2, 0);
+        Bg_SetPriority(BG_LAYER_MAIN_2, 0);
         GXLayers_EngineAToggleLayers((GX_PLANEMASK_BG2), 1);
         break;
     case 2:
@@ -510,11 +510,11 @@ BOOL ov5_021F0488(FieldTask *param0)
             if (v1->unk_08 == 0) {
                 GXLayers_EngineAToggleLayers((GX_PLANEMASK_BG2), 0);
                 G2_BlendNone();
-                Bg_SetPriority(2, 3);
+                Bg_SetPriority(BG_LAYER_MAIN_2, 3);
 
-                Bg_ClearTilemap(fieldSystem->bgConfig, 2);
+                Bg_ClearTilemap(fieldSystem->bgConfig, BG_LAYER_MAIN_2);
             } else {
-                Bg_SetPriority(2, 1);
+                Bg_SetPriority(BG_LAYER_MAIN_2, 1);
             }
 
             v1->unk_0C = 8;

@@ -14,7 +14,7 @@
 
 void ov97_02237694(int heapID);
 void *ov97_022376C4(ApplicationManager *appMan, int heapID, int param2, int param3);
-void ov97_022376FC(BgConfig *param0, int param1, u8 param2, u32 param3, u32 param4);
+void ov97_022376FC(BgConfig *bgConfig, int bgLayer, u8 param2, u32 param3, u32 param4);
 void ov97_02237784(int param0);
 void ov97_02237790(int param0, int param1, int *param2, int param3);
 void ov97_022377F0(int *param0);

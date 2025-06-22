@@ -97,7 +97,7 @@ static void sub_020528D0(BgConfig *param0)
 
     GXLayers_SetBanks(&v0);
     SetAllGraphicsModes(&v1);
-    Bg_InitFromTemplate(param0, 3, &v2, 0);
+    Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v2, 0);
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__PL_FONT, 6, 0, 13 * 0x20, 0x20, HEAP_ID_FIELDMAP);
 }
 
@@ -166,7 +166,7 @@ static BOOL sub_020529C4(FieldTask *task)
         Window_Remove(&v0->unk_0C);
         StringTemplate_Free(v0->unk_20);
         MessageLoader_Free(v0->unk_1C);
-        Bg_FreeTilemapBuffer(v0->unk_08, 3);
+        Bg_FreeTilemapBuffer(v0->unk_08, BG_LAYER_MAIN_3);
         Heap_FreeToHeap(v0->unk_08);
         Heap_FreeToHeap(v0);
 

@@ -263,8 +263,8 @@ static void ov99_021D32D8(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2E
 {
     param1->unk_04 += 0x60;
 
-    Bg_SetOffset(param0->unk_08, 2, 3, param1->unk_04 / FX32_ONE);
-    Bg_SetOffset(param0->unk_08, 7, 3, param1->unk_04 / FX32_ONE);
+    Bg_SetOffset(param0->unk_08, BG_LAYER_MAIN_2, 3, param1->unk_04 / FX32_ONE);
+    Bg_SetOffset(param0->unk_08, BG_LAYER_SUB_3, 3, param1->unk_04 / FX32_ONE);
 }
 
 static void ov99_021D330C(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2E28 *param1)

@@ -548,7 +548,7 @@ static u8 ov10_0221FB28(UnkStruct_ov10_0221FB28 *param0)
     param0->unk_08 = PaletteData_New(param0->unk_00->heapID);
 
     PaletteData_AllocBuffer(param0->unk_08, 0, 32 * 16, param0->unk_00->heapID);
-    Bg_MaskPalette(4, 0x0);
+    Bg_MaskPalette(BG_LAYER_SUB_0, 0x0);
 
     param0->unk_B76 = 0;
     param0->unk_B75 = 8;
@@ -1292,8 +1292,8 @@ static void ov10_02220C94(UnkStruct_ov10_0221FB28 *param0, GXBG0As param1, int p
             0
         };
 
-        Bg_InitFromTemplate(param0->unk_0C, 3, &v1, 0);
-        Bg_ClearTilemap(param0->unk_0C, 3);
+        Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_3, &v1, 0);
+        Bg_ClearTilemap(param0->unk_0C, BG_LAYER_MAIN_3);
         Bg_ScheduleScroll(param0->unk_0C, 3, 0, 256);
     }
 
@@ -1314,8 +1314,8 @@ static void ov10_02220C94(UnkStruct_ov10_0221FB28 *param0, GXBG0As param1, int p
             0
         };
 
-        Bg_InitFromTemplate(param0->unk_0C, 2, &v2, 0);
-        Bg_ClearTilemap(param0->unk_0C, 2);
+        Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_2, &v2, 0);
+        Bg_ClearTilemap(param0->unk_0C, BG_LAYER_MAIN_2);
         Bg_ScheduleScroll(param0->unk_0C, 2, 0, -256);
     }
 
@@ -1336,12 +1336,12 @@ static void ov10_02220C94(UnkStruct_ov10_0221FB28 *param0, GXBG0As param1, int p
             0
         };
 
-        Bg_InitFromTemplate(param0->unk_0C, 1, &v3, 0);
-        Bg_ClearTilemap(param0->unk_0C, 1);
+        Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_1, &v3, 0);
+        Bg_ClearTilemap(param0->unk_0C, BG_LAYER_MAIN_1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
 
         if (param2 == 1) {
-            Bg_SetOffset(param0->unk_0C, 1, 3, 24);
+            Bg_SetOffset(param0->unk_0C, BG_LAYER_MAIN_1, 3, 24);
         }
     }
 
@@ -1362,8 +1362,8 @@ static void ov10_02220C94(UnkStruct_ov10_0221FB28 *param0, GXBG0As param1, int p
             0
         };
 
-        Bg_InitFromTemplate(param0->unk_0C, 0, &v4, 0);
-        Bg_ClearTilemap(param0->unk_0C, 0);
+        Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_0, &v4, 0);
+        Bg_ClearTilemap(param0->unk_0C, BG_LAYER_MAIN_0);
 
         if (param0->unk_BBC == 1) {
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
@@ -1402,12 +1402,12 @@ static void ov10_02220DFC(UnkStruct_ov10_0221FB28 *param0)
 static void ov10_02220E30(UnkStruct_ov10_0221FB28 *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
-    Bg_FreeTilemapBuffer(param0->unk_0C, 3);
-    Bg_FreeTilemapBuffer(param0->unk_0C, 2);
-    Bg_FreeTilemapBuffer(param0->unk_0C, 1);
+    Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_1);
 
     if (param0->unk_B9C == GX_BG0_AS_2D) {
-        Bg_FreeTilemapBuffer(param0->unk_0C, 0);
+        Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_0);
     }
 
     Heap_FreeToHeap(param0->unk_0C);
@@ -1423,7 +1423,7 @@ static void ov10_02220E70(UnkStruct_ov10_0221FB28 *param0)
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 3, param0->unk_0C, 3, 0, 0, 0, param0->unk_00->heapID);
     Graphics_LoadPaletteFromOpenNARC(v0, 1, 0, 0, 0, param0->unk_00->heapID);
     PaletteData_LoadBufferFromHardware(param0->unk_08, 0, 0, 0x20 * 5);
-    Bg_MaskPalette(1, 0x18c6);
+    Bg_MaskPalette(BG_LAYER_MAIN_1, 0x18c6);
     NARC_dtor(v0);
 }
 
@@ -1434,9 +1434,9 @@ static void ov10_02220F1C(UnkStruct_ov10_0221FB28 *param0)
     GF_ASSERT(param0->unk_B9C == GX_BG0_AS_2D && param0->unk_00 != NULL && param0->unk_00->unk_00 != NULL && param0->unk_00->unk_00->options != NULL);
     v0 = Options_Frame(param0->unk_00->unk_00->options);
 
-    LoadMessageBoxGraphics(param0->unk_0C, 0, 1, 15, v0, param0->unk_00->heapID);
+    LoadMessageBoxGraphics(param0->unk_0C, BG_LAYER_MAIN_0, 1, 15, v0, param0->unk_00->heapID);
     PaletteData_LoadBufferFromHardware(param0->unk_08, 0, 15 * 16, 0x20 * 1);
-    LoadStandardWindowGraphics(param0->unk_0C, 0, (1 + (18 + 12)), 14, 0, param0->unk_00->heapID);
+    LoadStandardWindowGraphics(param0->unk_0C, BG_LAYER_MAIN_0, (1 + (18 + 12)), 14, 0, param0->unk_00->heapID);
     PaletteData_LoadBufferFromHardware(param0->unk_08, 0, 14 * 16, 0x20 * 1);
     Font_LoadTextPalette(0, 13 * 0x20, param0->unk_00->heapID);
     PaletteData_LoadBufferFromHardware(param0->unk_08, 0, 13 * 16, 0x20 * 1);
@@ -1841,8 +1841,8 @@ static void ov10_02221970(UnkStruct_ov10_0221FB28 *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0->unk_0C, 1, &v1, 0);
-        Bg_ClearTilemap(param0->unk_0C, 1);
+        Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_1, &v1, 0);
+        Bg_ClearTilemap(param0->unk_0C, BG_LAYER_MAIN_1);
     }
 
     {
@@ -1862,8 +1862,8 @@ static void ov10_02221970(UnkStruct_ov10_0221FB28 *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0->unk_0C, 2, &v2, 0);
-        Bg_ClearTilemap(param0->unk_0C, 2);
+        Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_2, &v2, 0);
+        Bg_ClearTilemap(param0->unk_0C, BG_LAYER_MAIN_2);
     }
 
     {
@@ -1883,16 +1883,16 @@ static void ov10_02221970(UnkStruct_ov10_0221FB28 *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0->unk_0C, 3, &v3, 0);
+        Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_3, &v3, 0);
     }
 }
 
 static void ov10_02221A10(UnkStruct_ov10_0221FB28 *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
-    Bg_FreeTilemapBuffer(param0->unk_0C, 3);
-    Bg_FreeTilemapBuffer(param0->unk_0C, 2);
-    Bg_FreeTilemapBuffer(param0->unk_0C, 1);
+    Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_1);
     Heap_FreeToHeap(param0->unk_0C);
 }
 

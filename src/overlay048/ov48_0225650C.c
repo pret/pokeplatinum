@@ -125,7 +125,7 @@ static void ov48_022565A8(SysTask *param0, void *param1)
     G2S_SetBGMosaicSize(0, 0);
     G2S_SetOBJMosaicSize(0, 0);
 
-    Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
+    Bg_InitFromTemplate(v2->unk_04, BG_LAYER_SUB_2, &v0, 0);
 
     v4 = Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 117, v2->unk_04, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
     v4 /= 0x20;
@@ -174,7 +174,7 @@ static void ov48_022566D0(SysTask *param0, void *param1)
             ov48_02256984(v0);
             G2S_SetBGMosaicSize(0, 0);
             G2S_SetOBJMosaicSize(0, 0);
-            Bg_FreeTilemapBuffer(v0->unk_04, 6);
+            Bg_FreeTilemapBuffer(v0->unk_04, BG_LAYER_SUB_2);
             ov48_02256594(param1);
         }
         break;

@@ -449,13 +449,13 @@ int ov117_02260C10(ApplicationManager *appMan, int *param1)
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
-    Bg_FreeTilemapBuffer(v0->unk_2C, 1);
-    Bg_FreeTilemapBuffer(v0->unk_2C, 2);
-    Bg_FreeTilemapBuffer(v0->unk_2C, 3);
-    Bg_FreeTilemapBuffer(v0->unk_2C, 4);
-    Bg_FreeTilemapBuffer(v0->unk_2C, 5);
-    Bg_FreeTilemapBuffer(v0->unk_2C, 6);
-    Bg_FreeTilemapBuffer(v0->unk_2C, 7);
+    Bg_FreeTilemapBuffer(v0->unk_2C, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(v0->unk_2C, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(v0->unk_2C, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(v0->unk_2C, BG_LAYER_SUB_0);
+    Bg_FreeTilemapBuffer(v0->unk_2C, BG_LAYER_SUB_1);
+    Bg_FreeTilemapBuffer(v0->unk_2C, BG_LAYER_SUB_2);
+    Bg_FreeTilemapBuffer(v0->unk_2C, BG_LAYER_SUB_3);
     sub_020127BC(v0->unk_90);
     SpriteSystem_FreeResourcesAndManager(v0->unk_24, v0->unk_28);
     SpriteSystem_Free(v0->unk_24);
@@ -497,10 +497,10 @@ static void ov117_02260DA0(void *param0)
     PaletteData_CommitFadedBuffers(v0->unk_8C);
 
     if (v0->unk_1428.unk_2C == 1) {
-        Bg_ToggleLayer(7, 1);
+        Bg_ToggleLayer(BG_LAYER_SUB_3, 1);
         v0->unk_1428.unk_2C = 0;
     } else if (v0->unk_1428.unk_2D == 1) {
-        Bg_ToggleLayer(7, 0);
+        Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
         v0->unk_1428.unk_2D = 0;
     }
 
@@ -709,18 +709,18 @@ static void ov117_022610D8(BgConfig *param0)
                 0 },
         };
 
-        Bg_InitFromTemplate(param0, 1, &v2[0], 0);
-        Bg_ClearTilemap(param0, 1);
-        Bg_SetOffset(param0, 1, 0, 0);
-        Bg_SetOffset(param0, 1, 3, 0);
-        Bg_InitFromTemplate(param0, 2, &v2[1], 0);
-        Bg_ClearTilemap(param0, 2);
-        Bg_SetOffset(param0, 2, 0, 0);
-        Bg_SetOffset(param0, 2, 3, 0);
-        Bg_InitFromTemplate(param0, 3, &v2[2], 0);
-        Bg_ClearTilemap(param0, 3);
-        Bg_SetOffset(param0, 3, 0, 0);
-        Bg_SetOffset(param0, 3, 3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v2[0], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_1, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_1, 3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v2[1], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_2, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_2, 3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v2[2], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_3);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_3, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_3, 3, 0);
 
         G2_SetBG0Priority(2);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
@@ -788,18 +788,18 @@ static void ov117_022610D8(BgConfig *param0)
 
         for (v3 = 0; v3 < NELEMS(v4); v3++) {
             if (v3 < 3) {
-                Bg_InitFromTemplate(param0, 4 + v3, &v4[v3], 0);
+                Bg_InitFromTemplate(param0, BG_LAYER_SUB_0 + v3, &v4[v3], 0);
             } else {
-                Bg_InitFromTemplate(param0, 4 + v3, &v4[v3], 1);
+                Bg_InitFromTemplate(param0, BG_LAYER_SUB_0 + v3, &v4[v3], 1);
             }
 
             Bg_ClearTilesRange(4 + v3, 0x20, 0, HEAP_ID_110);
-            Bg_ClearTilemap(param0, 4 + v3);
-            Bg_SetOffset(param0, 4 + v3, 0, 0);
-            Bg_SetOffset(param0, 4 + v3, 3, 0);
+            Bg_ClearTilemap(param0, BG_LAYER_SUB_0 + v3);
+            Bg_SetOffset(param0, BG_LAYER_SUB_0 + v3, 0, 0);
+            Bg_SetOffset(param0, BG_LAYER_SUB_0 + v3, 3, 0);
         }
 
-        Bg_ToggleLayer(7, 0);
+        Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
     }
 }
 
@@ -1078,7 +1078,7 @@ static void ov117_02261AC8(UnkStruct_ov117_02261280 *param0, NARC *param1)
     ov117_02264AF0(param0);
     ov117_02264AB0(param0);
 
-    LoadStandardWindowGraphics(param0->unk_2C, 4, ((((((0x8000 - 0x2000) / 32) + (10 * 2)) + (10 * 2)) + (10 * 2)) + (10 * 2)), 6, 0, HEAP_ID_110);
+    LoadStandardWindowGraphics(param0->unk_2C, BG_LAYER_SUB_0, ((((((0x8000 - 0x2000) / 32) + (10 * 2)) + (10 * 2)) + (10 * 2)) + (10 * 2)), 6, 0, HEAP_ID_110);
     PaletteData_LoadBufferFromHardware(param0->unk_8C, 1, 6 * 16, 0x20);
     PaletteData_FillBufferRange(param0->unk_8C, 1, 2, 0x0, 0, 1);
 }

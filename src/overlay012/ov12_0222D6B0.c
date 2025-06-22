@@ -761,7 +761,7 @@ void ov12_0222E1A8(UnkStruct_ov12_0221FCDC *param0)
     ov12_02226424(&v0->unk_2C, 16, 2, 2, 16, 16);
     ov12_02222590(v0->unk_04.unk_04, 2);
 
-    Bg_ToggleLayer(2, 1);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
     ov12_022201E8(v0->unk_04.unk_04, ov12_0222E080, v0);
 }
 

@@ -136,7 +136,7 @@ void ov19_021D7A9C(UnkStruct_ov19_021D8318 *param0)
     param0->unk_0C -= param0->unk_585C;
     param0->unk_0C &= (REG_G2_BG3HOFS_OFFSET_MASK);
 
-    Bg_SetOffset(param0->unk_58F4, 3, 0, param0->unk_0C);
+    Bg_SetOffset(param0->unk_58F4, BG_LAYER_MAIN_3, 0, param0->unk_0C);
     Bg_FillTilemapRect(param0->unk_58F4, 3, 0x18, 0, 0, 64, 32, 9);
 }
 
@@ -314,11 +314,11 @@ static void ov19_021D7E6C(SysTask *param0, void *param1)
             v0->unk_98++;
             v0->unk_0C = (v0->unk_08 >> FX32_SHIFT) & (REG_G2_BG3HOFS_OFFSET_MASK);
             v0->unk_08 += v0->unk_10;
-            Bg_SetOffset(v0->unk_58F4, 3, 0, v0->unk_0C);
+            Bg_SetOffset(v0->unk_58F4, BG_LAYER_MAIN_3, 0, v0->unk_0C);
             v0->unk_04--;
         }
     } else {
-        Bg_SetOffset(v0->unk_58F4, 3, 0, v0->unk_14);
+        Bg_SetOffset(v0->unk_58F4, BG_LAYER_MAIN_3, 0, v0->unk_14);
         ov19_021D870C(v0, v0->unk_A8[v2]);
         SysTask_Done(param0);
     }

@@ -788,7 +788,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
         PaletteData_StartFade(param0->unk_D4.unk_14, 0x4, 0xFFFF, 0, 0, 16, 0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
         GXLayers_EngineBToggleLayers((GX_PLANEMASK_BG2), 1);
-        Bg_SetPriority(7, 1);
+        Bg_SetPriority(BG_LAYER_SUB_3, 1);
         ov76_0223D2F4(param0, 1);
         ov76_0223C568(param0, 1);
         ov76_0223B96C(param0, 1);
@@ -798,7 +798,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
         if (PaletteData_GetSelectedBuffersMask(param0->unk_D4.unk_14) != 0) {
             break;
         }
-        Bg_SetPriority(3, 1);
+        Bg_SetPriority(BG_LAYER_MAIN_3, 1);
         PaletteData_StartFade(param0->unk_D4.unk_14, 0x1, (1 << 1), 0, 16, 0, 0);
         param0->unk_3D4++;
         break;
@@ -1098,8 +1098,8 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
 
         PaletteData_StartFade(param0->unk_D4.unk_14, 0x1, (1 << 0), 0, 16, 0, 0);
         PaletteData_StartFade(param0->unk_D4.unk_14, 0x4, 0xFFFF, 0, 16, 0, 0);
-        Bg_SetPriority(3, 3);
-        Bg_SetPriority(7, 3);
+        Bg_SetPriority(BG_LAYER_MAIN_3, 3);
+        Bg_SetPriority(BG_LAYER_SUB_3, 3);
         GXLayers_EngineBToggleLayers((GX_PLANEMASK_BG2), 0);
         ov76_0223D2F4(param0, 0);
         ov76_0223C568(param0, 0);
@@ -1402,12 +1402,12 @@ void ov76_0223EB64(BgConfig *param0)
             },
         };
 
-        Bg_InitFromTemplate(param0, 1, &v2[0], 0);
-        Bg_InitFromTemplate(param0, 2, &v2[1], 0);
-        Bg_InitFromTemplate(param0, 3, &v2[2], 0);
-        Bg_ClearTilemap(param0, 1);
-        Bg_ClearTilemap(param0, 2);
-        Bg_ClearTilemap(param0, 3);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v2[0], 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v2[1], 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v2[2], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_3);
 
         G2_SetBG0Priority(1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
@@ -1477,14 +1477,14 @@ void ov76_0223EB64(BgConfig *param0)
             },
         };
 
-        Bg_InitFromTemplate(param0, 4, &v3[0], 0);
-        Bg_InitFromTemplate(param0, 5, &v3[1], 0);
-        Bg_InitFromTemplate(param0, 6, &v3[2], 0);
-        Bg_InitFromTemplate(param0, 7, &v3[3], 0);
-        Bg_ClearTilemap(param0, 4);
-        Bg_ClearTilemap(param0, 5);
-        Bg_ClearTilemap(param0, 6);
-        Bg_ClearTilemap(param0, 7);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v3[0], 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_1, &v3[1], 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_2, &v3[2], 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_3, &v3[3], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_1);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_2);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_3);
         GXLayers_EngineBToggleLayers((GX_PLANEMASK_BG2), 0);
     }
 }
