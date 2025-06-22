@@ -8,7 +8,7 @@
 
 typedef struct PlayerSave {
     Options options; // u16 bitfield
-    u8 padding_02[2];
+    // u8 padding_02[2]; // implicit padding in vanilla
     TrainerInfo info;
     u16 coins;
     PlayTime playTime;
