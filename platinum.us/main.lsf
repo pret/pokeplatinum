@@ -660,7 +660,7 @@ Overlay overlay12
 Overlay overlay13
 {
 	After overlay11
-	Object main.nef.p/src_overlay013_ov13_0221FC20.c.o
+	Object main.nef.p/src_overlay013_battle_party.c.o
 	Object main.nef.p/src_overlay013_ov13_02221A88.c.o
 	Object main.nef.p/src_overlay013_ov13_02224500.c.o
 	Object main.nef.p/src_overlay013_ov13_02225710.c.o
