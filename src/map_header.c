@@ -110,7 +110,7 @@ u32 MapHeader_GetCameraType(u32 headerID)
     return sMapHeaders[headerID].cameraType;
 }
 
-u32 MapHeader_GetBattleBG(u32 headerID)
+enum BattleBackground MapHeader_GetBattleBG(u32 headerID)
 {
     headerID = MapHeader_IDBoundsCheck(headerID);
     return sMapHeaders[headerID].battleBG;

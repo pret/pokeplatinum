@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV16_0223DF00_H
 #define POKEPLATINUM_OV16_0223DF00_H
 
-#include "constants/time.h"
+#include "constants/rtc.h"
 
 #include "struct_decls/battle_system.h"
 #include "struct_decls/pc_boxes_decl.h"
@@ -188,7 +188,7 @@ u32 BattleSystem_BattleStatus(BattleSystem *battleSys);
  * @param battleSys
  * @return The time of day (e.g., morning, day, night)
  */
-enum Time BattleSystem_Time(BattleSystem *battleSys);
+enum TimeOfDay BattleSystem_Time(BattleSystem *battleSys);
 int ov16_0223EC04(BattleSystem *battleSys);
 u8 ov16_0223EC58(BattleSystem *battleSys, int param1, u8 param2);
 u16 Battle_FindEvolvingPartyMember(FieldBattleDTO *param0, int *param1, int *param2);

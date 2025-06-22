@@ -7,6 +7,7 @@
 #include "constants/game_options.h"
 #include "constants/heap.h"
 #include "constants/items.h"
+#include "constants/rtc.h"
 #include "generated/species.h"
 #include "generated/trainer_score_events.h"
 
@@ -118,7 +119,7 @@ int BattleSystem_Partner(BattleSystem *battleSys, int battler);
 int BattleSystem_EnemyInSlot(BattleSystem *battleSys, int attacker, int slot);
 BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot, int moveSlot, int item);
 u32 ov16_0223EBEC(BattleSystem *battleSystem);
-enum Time BattleSystem_Time(BattleSystem *battleSys);
+enum TimeOfDay BattleSystem_Time(BattleSystem *battleSys);
 int ov16_0223EC04(BattleSystem *battleSystem);
 u8 ov16_0223EC58(BattleSystem *battleSystem, int param1, u8 param2);
 u16 Battle_FindEvolvingPartyMember(FieldBattleDTO *param0, int *param1, int *param2);
@@ -891,7 +892,7 @@ u32 BattleSystem_BattleStatus(BattleSystem *battleSys)
     return battleSys->battleStatusMask;
 }
 
-enum Time BattleSystem_Time(BattleSystem *battleSys)
+enum TimeOfDay BattleSystem_Time(BattleSystem *battleSys)
 {
     return battleSys->time;
 }

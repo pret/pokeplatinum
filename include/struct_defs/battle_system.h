@@ -4,7 +4,7 @@
 #include <nnsys.h>
 
 #include "constants/battle.h"
-#include "constants/time.h"
+#include "constants/rtc.h"
 
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
@@ -79,7 +79,7 @@ struct BattleSystem {
     UnkStruct_0200C440 *unk_1A8;
     void *unk_1AC;
     Options *options;
-    PalPad *unk_1B4;
+    PalPad *palPad;
     WaitDial *waitDial;
     u8 *unk_1BC;
     UnkStruct_ov10_0221F800 *unk_1C0;
@@ -111,17 +111,17 @@ struct BattleSystem {
     u8 unk_23FB_3 : 2;
     u8 unk_23FB_5 : 3;
     enum BattleTerrain terrain;
-    int unk_2400;
+    enum BattleBackground background;
     int mapHeader;
     u32 battleStatusMask;
-    enum Time time;
+    enum TimeOfDay time;
     int safariBalls;
     u8 unk_2414[4];
     u32 unk_2418;
     u8 resultMask;
     u8 unk_241D;
     u16 unk_241E;
-    int unk_2420;
+    enum EvolutionMethod mapEvolutionMethod;
     int unk_2424;
     int fieldWeather;
     int unk_242C;
