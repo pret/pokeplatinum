@@ -534,49 +534,49 @@ BOOL sub_0202FAC0(void)
     return 1;
 }
 
-void sub_0202FAFC(FieldBattleDTO *param0, SaveData *saveData)
+void sub_0202FAFC(FieldBattleDTO *dto, SaveData *saveData)
 {
-    int v0;
+    int i;
     UnkStruct_0202F298 *v1 = &Unk_021C07A4->unk_E8;
 
-    param0->battleType = v1->unk_00.unk_00;
-    param0->background = v1->unk_00.unk_E8;
-    param0->terrain = v1->unk_00.unk_EC;
-    param0->mapLabelTextID = v1->unk_00.unk_F0;
-    param0->mapHeaderID = v1->unk_00.unk_F4;
-    param0->timeOfDay = v1->unk_00.unk_F8;
-    param0->mapEvolutionMethod = v1->unk_00.unk_FC;
-    param0->visitedContestHall = v1->unk_00.unk_100;
-    param0->metBebe = v1->unk_00.unk_104;
-    param0->caughtBattlerIdx = v1->unk_00.unk_108;
-    param0->fieldWeather = v1->unk_00.unk_10C;
-    param0->battleStatusMask = v1->unk_00.unk_124 | BATTLE_STATUS_RECORDING;
-    param0->countSafariBalls = v1->unk_00.unk_128;
-    param0->rulesetMask = v1->unk_00.unk_12C;
-    param0->seed = v1->unk_00.unk_130;
-    param0->networkID = v1->unk_00.unk_144;
-    param0->resultMask = BATTLE_IN_PROGRESS;
-    param0->leveledUpMonsMask = 0;
+    dto->battleType = v1->unk_00.unk_00;
+    dto->background = v1->unk_00.unk_E8;
+    dto->terrain = v1->unk_00.unk_EC;
+    dto->mapLabelTextID = v1->unk_00.unk_F0;
+    dto->mapHeaderID = v1->unk_00.unk_F4;
+    dto->timeOfDay = v1->unk_00.unk_F8;
+    dto->mapEvolutionMethod = v1->unk_00.unk_FC;
+    dto->visitedContestHall = v1->unk_00.unk_100;
+    dto->metBebe = v1->unk_00.unk_104;
+    dto->caughtBattlerIdx = v1->unk_00.unk_108;
+    dto->fieldWeather = v1->unk_00.unk_10C;
+    dto->battleStatusMask = v1->unk_00.unk_124 | BATTLE_STATUS_RECORDING;
+    dto->countSafariBalls = v1->unk_00.unk_128;
+    dto->rulesetMask = v1->unk_00.unk_12C;
+    dto->seed = v1->unk_00.unk_130;
+    dto->networkID = v1->unk_00.unk_144;
+    dto->resultMask = BATTLE_IN_PROGRESS;
+    dto->leveledUpMonsMask = 0;
 
-    Pokedex_Copy(SaveData_GetPokedex(saveData), param0->pokedex);
+    Pokedex_Copy(SaveData_GetPokedex(saveData), dto->pokedex);
 
-    for (v0 = 0; v0 < 4; v0++) {
-        param0->trainerIDs[v0] = v1->unk_00.unk_08[v0];
-        param0->trainer[v0] = v1->unk_00.unk_18[v0];
-        param0->systemVersion[v0] = v1->unk_00.unk_114[v0];
-        param0->unk_178[v0] = v1->unk_00.unk_134[v0];
+    for (i = 0; i < 4; i++) {
+        dto->trainerIDs[i] = v1->unk_00.unk_08[i];
+        dto->trainer[i] = v1->unk_00.unk_18[i];
+        dto->systemVersion[i] = v1->unk_00.unk_114[i];
+        dto->unk_178[i] = v1->unk_00.unk_134[i];
 
-        sub_0202FD30(&v1->unk_1150[v0], param0->parties[v0]);
-        TrainerInfo_Copy(&v1->unk_1B68[v0], param0->trainerInfo[v0]);
+        sub_0202FD30(&v1->unk_1150[i], dto->parties[i]);
+        TrainerInfo_Copy(&v1->unk_1B68[i], dto->trainerInfo[i]);
 
-        param0->unk_194[v0] = v1->unk_00.unk_14C[v0];
+        dto->unk_194[i] = v1->unk_00.unk_14C[i];
     }
 
-    Options_Copy(SaveData_GetOptions(saveData), param0->options);
-    param0->options->frame = v1->unk_1BE8.frame;
+    Options_Copy(SaveData_GetOptions(saveData), dto->options);
+    dto->options->frame = v1->unk_1BE8.frame;
 
-    if (param0->options->frame >= 20) {
-        param0->options->frame = 0;
+    if (dto->options->frame >= 20) {
+        dto->options->frame = 0;
     }
 }
 

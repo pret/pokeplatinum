@@ -275,7 +275,7 @@ void FieldBattleDTO_InitFromGameState(FieldBattleDTO *dto, const FieldSystem *fi
     dto->wiFiHistory = SaveData_WiFiHistory(saveData);
     dto->records = SaveData_GetGameRecords(saveData);
     dto->journalEntry = journalEntry;
-    dto->unk_124 = SaveData_GetPalPad(saveData);
+    dto->palPad = SaveData_GetPalPad(saveData);
     dto->mapHeaderID = mapHeaderID;
     dto->saveData = saveData;
 }
@@ -330,7 +330,7 @@ void FieldBattleDTO_InitWithNormalizedMonLevels(FieldBattleDTO *dto, const Field
     dto->wiFiHistory = SaveData_WiFiHistory(fieldSystem->saveData);
     dto->records = SaveData_GetGameRecords(fieldSystem->saveData);
     dto->journalEntry = fieldSystem->journalEntry;
-    dto->unk_124 = SaveData_GetPalPad(fieldSystem->saveData);
+    dto->palPad = SaveData_GetPalPad(fieldSystem->saveData);
     dto->mapHeaderID = fieldSystem->location->mapId;
     dto->saveData = fieldSystem->saveData;
 
@@ -396,7 +396,7 @@ void FieldBattleDTO_InitWithPartyOrder(FieldBattleDTO *dto, const FieldSystem *f
     dto->records = SaveData_GetGameRecords(fieldSystem->saveData);
     dto->journalEntry = fieldSystem->journalEntry;
     dto->mapHeaderID = fieldSystem->location->mapId;
-    dto->unk_124 = SaveData_GetPalPad(fieldSystem->saveData);
+    dto->palPad = SaveData_GetPalPad(fieldSystem->saveData);
     dto->saveData = fieldSystem->saveData;
 
     if (sub_020326C4(sub_0203895C())) {

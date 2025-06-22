@@ -6,6 +6,7 @@
 #include "constants/items.h"
 #include "constants/narc.h"
 #include "constants/pokemon.h"
+#include "constants/rtc.h"
 #include "constants/species.h"
 #include "constants/trainer.h"
 #include "generated/abilities.h"
@@ -11190,8 +11191,8 @@ static int BattleScript_CalcCatchShakes(BattleSystem *battleSys, BattleContext *
             break;
 
         case ITEM_DUSK_BALL:
-            if (BattleSystem_Time(battleSys) == TIME_NIGHT
-                || BattleSystem_Time(battleSys) == TIME_MIDNIGHT
+            if (BattleSystem_Time(battleSys) == TIMEOFDAY_NIGHT
+                || BattleSystem_Time(battleSys) == TIMEOFDAY_LATE_NIGHT
                 || BattleSystem_Terrain(battleSys) == TERRAIN_CAVE) {
                 ballMod = 35;
             }
