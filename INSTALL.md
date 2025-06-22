@@ -208,7 +208,7 @@ the repository](#2-downloading-the-repository).
 2. Install the following packages via `apt`:
 
     ```bash
-    sudo apt install bison flex g++ gcc-arm-none-eabi git make ninja-build pkg-config wget python3 xz-utils libc6:i386
+    sudo apt install bison flex g++ gcc-arm-none-eabi git make ninja-build pkg-config wget python3 xz-utils nasm libc6:i386
     ```
 
 #### Arch Linux (and derivatives, e.g., Manjaro, Endeavour)
