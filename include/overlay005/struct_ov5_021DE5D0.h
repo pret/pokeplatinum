@@ -1,8 +1,10 @@
 #ifndef POKEPLATINUM_STRUCT_OV5_021DE5D0_H
 #define POKEPLATINUM_STRUCT_OV5_021DE5D0_H
 
+#include "constants/narc.h"
+
 typedef struct {
-    int unk_00;
+    enum NarcID narcID;
     int unk_04;
     int unk_08;
     int unk_0C;

@@ -2341,23 +2341,23 @@ static void ov23_022451C8(SysTask *param0, void *param1)
         break;
     case 1:
         BrightnessController_StartTransition(1, 10, 0, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
-        Graphics_LoadTilesToBgLayer(50, 9, v0->unk_10, 2, 0, 8 * 6 * 6, 0, HEAP_ID_FIELD);
+        Graphics_LoadTilesToBgLayer(NARC_INDEX_DATA__UG_TRAP, 9, v0->unk_10, 2, 0, 8 * 6 * 6, 0, HEAP_ID_FIELD);
         v0->unk_00++;
         break;
     case 2:
-        Graphics_LoadPalette(50, 10, 0, 0, 32, HEAP_ID_FIELD);
+        Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, 10, 0, 0, 32, HEAP_ID_FIELD);
         v0->unk_00++;
         break;
     case 3:
         BrightnessController_StartTransition(1, 0, 10, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
 
         if (Unk_ov23_02257764->unk_B9F == 19) {
-            Graphics_LoadTilemapToBgLayer(50, 8, v0->unk_10, 2, 0, 32 * 24 * 2, 0, HEAP_ID_FIELD);
+            Graphics_LoadTilemapToBgLayer(NARC_INDEX_DATA__UG_TRAP, 8, v0->unk_10, 2, 0, 32 * 24 * 2, 0, HEAP_ID_FIELD);
         } else {
             u16 v2[] = { 11, 12, 13, 14 };
             u16 v3 = LCRNG_Next() % 4;
 
-            Graphics_LoadTilemapToBgLayer(50, v2[v3], v0->unk_10, 2, 0, 32 * 24 * 2, 0, HEAP_ID_FIELD);
+            Graphics_LoadTilemapToBgLayer(NARC_INDEX_DATA__UG_TRAP, v2[v3], v0->unk_10, 2, 0, 32 * 24 * 2, 0, HEAP_ID_FIELD);
         }
 
         Bg_SetPriority(0, 3);

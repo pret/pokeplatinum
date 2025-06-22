@@ -2044,9 +2044,9 @@ UnkStruct_ov6_022401B8 *ov6_02240104(u32 heapID, FieldSystem *fieldSystem)
     {
         BgConfig *v1 = FieldSystem_GetBgConfig(v0->fieldSystem);
 
-        Graphics_LoadTilesToBgLayer(172, 74, v1, 2, 0, 0, 0, heapID);
-        Graphics_LoadTilemapToBgLayer(172, 76, v1, 2, 0, 0, 0, heapID);
-        Graphics_LoadPalette(172, 75, 0, 0x20 * 6, 0x20, heapID);
+        Graphics_LoadTilesToBgLayer(NARC_INDEX_ARC__DEMO_TENGAN_GRA, 74, v1, 2, 0, 0, 0, heapID);
+        Graphics_LoadTilemapToBgLayer(NARC_INDEX_ARC__DEMO_TENGAN_GRA, 76, v1, 2, 0, 0, 0, heapID);
+        Graphics_LoadPalette(NARC_INDEX_ARC__DEMO_TENGAN_GRA, 75, 0, 0x20 * 6, 0x20, heapID);
         Bg_SetPriority(2, 1);
 
         v0->unk_34.unk_00 = 0;

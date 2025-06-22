@@ -490,9 +490,9 @@ static void ov68_0225C9A0(UnkStruct_ov68_0225C91C *param0, Options *param1, u32 
     LoadStandardWindowGraphics(param0->unk_00, 1, (1 + (18 + 12)), 6, 0, heapID);
 
     {
-        Graphics_LoadTilesToBgLayer(169, 2, param0->unk_00, 4, 0, 0, 0, heapID);
-        Graphics_LoadTilemapToBgLayer(169, 6, param0->unk_00, 4, 0, 0, 0, heapID);
-        Graphics_LoadPalette(169, 0, 4, 0, 0, heapID);
+        Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__LOBBY_NEWS, 2, param0->unk_00, 4, 0, 0, 0, heapID);
+        Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__LOBBY_NEWS, 6, param0->unk_00, 4, 0, 0, 0, heapID);
+        Graphics_LoadPalette(NARC_INDEX_GRAPHIC__LOBBY_NEWS, 0, 4, 0, 0, heapID);
     }
 }
 

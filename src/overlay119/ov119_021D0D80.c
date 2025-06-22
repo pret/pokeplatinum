@@ -2,6 +2,8 @@
 
 #include <nitro.h>
 #include <string.h>
+#include "constants/heap.h"
+#include "constants/narc.h"
 
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_0207C690.h"
@@ -370,30 +372,16 @@ void ov119_021D12F8(Window *param0)
 
 void ov119_021D1308(BgConfig *param0, PaletteData *param1)
 {
-    int v0 = 118;
-    int v1 = 0;
-    int v2 = 1;
-    int v3 = 8;
-    int v4 = 3;
-    int v5 = 71;
-
-    Graphics_LoadTilesToBgLayer(v0, v1, param0, v4, 0, 0, 1, v5);
-    Graphics_LoadTilemapToBgLayer(v0, v2, param0, v4, 0, 0, 1, v5);
-    PaletteData_LoadBufferFromFileStart(param1, v0, v3, v5, 0, 0x20 * 2, 0);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__EGG__DATA__EGG_DATA, 0, param0, 3, 0, 0, 1, HEAP_ID_71);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__EGG__DATA__EGG_DATA, 1, param0, 3, 0, 0, 1, HEAP_ID_71);
+    PaletteData_LoadBufferFromFileStart(param1, NARC_INDEX_DEMO__EGG__DATA__EGG_DATA, 8, HEAP_ID_71, 0, 0x20 * 2, 0);
 }
 
 void ov119_021D135C(BgConfig *param0, PaletteData *param1)
 {
-    int v0 = 12;
-    int v1 = 10;
-    int v2 = 11;
-    int v3 = 12;
-    int v4 = 4;
-    int v5 = 71;
-
-    Graphics_LoadTilesToBgLayer(v0, v1, param0, v4, 0, 0, 1, v5);
-    Graphics_LoadTilemapToBgLayer(v0, v2, param0, v4, 0, 0, 1, v5);
-    PaletteData_LoadBufferFromFileStart(param1, v0, v3, v5, 1, 0x20 * 1, 0);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 10, param0, 4, 0, 0, 1, HEAP_ID_71);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 11, param0, 4, 0, 0, 1, HEAP_ID_71);
+    PaletteData_LoadBufferFromFileStart(param1, NARC_INDEX_GRAPHIC__POKETCH, 12, HEAP_ID_71, 1, 0x20 * 1, 0);
 }
 
 static u32 ov119_021D13B4(u32 param0, BOOL param1)

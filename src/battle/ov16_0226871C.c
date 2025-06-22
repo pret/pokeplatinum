@@ -1149,7 +1149,7 @@ void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *battleSys, int par
             v15 = 267;
         }
 
-        v14 = Graphics_GetPlttData(7, v15, &v13, HEAP_ID_BATTLE);
+        v14 = Graphics_GetPlttData(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, v15, &v13, HEAP_ID_BATTLE);
 
         if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_FRONTIER) {
             MI_CpuCopy16(v13->pRawData, v0->unk_60, 0x40);
@@ -1216,7 +1216,7 @@ void ov16_02268A88(UnkStruct_ov16_02268A14 *param0)
             v5 = 28;
         }
 
-        Graphics_LoadTilesToBgLayer(7, v5, v0, 4, 0, 0x6000, 1, HEAP_ID_BATTLE);
+        Graphics_LoadTilesToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, v5, v0, 4, 0, 0x6000, 1, HEAP_ID_BATTLE);
     }
 
     TypeIcon_LoadAnim(spriteSys, spriteMan, 20017, 20017);

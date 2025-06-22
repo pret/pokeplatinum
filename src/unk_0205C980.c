@@ -102,7 +102,7 @@ u16 *sub_0205CA4C(int heapID)
     u16 *v4, *v5;
     int v6;
 
-    v0 = Graphics_GetPlttData(86, 7, &v2, heapID);
+    v0 = Graphics_GetPlttData(NARC_INDEX_GRAPHIC__RECORD, 7, &v2, heapID);
     v4 = Heap_AllocFromHeap(heapID, 16 * 18 * 2);
     v5 = (u16 *)v2->pRawData;
 

@@ -1252,7 +1252,7 @@ static void ov88_0223C66C(UnkStruct_02095E80 *param0, NARC *param1)
     SpriteTransfer_RequestChar(param0->unk_334[1][0]);
     SpriteTransfer_RequestPlttWholeRange(param0->unk_334[0][1]);
     SpriteTransfer_RequestPlttWholeRange(param0->unk_334[1][1]);
-    Graphics_LoadPalette(19, PokeIconPalettesFileIndex(), 1, 10 * 0x20, 0x20 * 4, HEAP_ID_26);
+    Graphics_LoadPalette(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), 1, 10 * 0x20, 0x20 * 4, HEAP_ID_26);
 }
 
 static int ov88_0223C800(int param0, Pokemon *param1, u8 *param2, PokemonSpriteTemplate *param3)

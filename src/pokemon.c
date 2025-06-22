@@ -3135,7 +3135,7 @@ ManagedSprite *sub_02076994(SpriteSystem *param0, SpriteManager *param1, Palette
         v4 = 2;
     }
 
-    narc = NARC_ctor(v3.unk_00, heapID);
+    narc = NARC_ctor(v3.narcID, heapID);
 
     SpriteSystem_LoadCharResObjFromOpenNarc(param0, param1, narc, v3.unk_04, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 20015 + param7);
     SpriteSystem_LoadPaletteBufferFromOpenNarc(param2, PLTTBUF_MAIN_OBJ, param0, param1, narc, v3.unk_08, FALSE, v4, NNS_G2D_VRAM_TYPE_2DMAIN, 20010 + param7);
@@ -3166,14 +3166,14 @@ void sub_02076AAC(int param0, int param1, UnkStruct_ov5_021DE5D0 *param2)
 {
     // TODO enum values?
     if (param1 == 2) {
-        param2->unk_00 = 60;
+        param2->narcID = NARC_INDEX_POKETOOL__TRGRA__TRFGRA;
         param2->unk_04 = 0 + param0 * 5;
         param2->unk_08 = 1 + param0 * 5;
         param2->unk_0C = 2 + param0 * 5;
         param2->unk_10 = 3 + param0 * 5;
         param2->unk_14 = 4 + param0 * 5;
     } else {
-        param2->unk_00 = 6;
+        param2->narcID = NARC_INDEX_POKETOOL__TRGRA__TRBGRA;
         param0 = sub_020788D0(param0);
         param2->unk_04 = 0 + param0 * 5;
         param2->unk_08 = 1 + param0 * 5;

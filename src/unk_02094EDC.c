@@ -415,7 +415,7 @@ void sub_02094F04(UnkStruct_02095C48 *param0, int heapID, int param2, int param3
         break;
     }
 
-    v9 = LoadMemberFromNARC(90, 0, 0, heapID, 1);
+    v9 = LoadMemberFromNARC(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, 0, 0, heapID, 1);
     v6 = NARC_GetMemberSizeByIndexPair(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, 0) / sizeof(UnkStruct_ov6_02248BE8);
     v2 = Heap_AllocFromHeapAtEnd(heapID, v6 + 1);
 
@@ -527,7 +527,7 @@ void sub_020951B0(UnkStruct_02095C48 *param0, int param1)
     int v4;
     int v5;
 
-    v2 = LoadMemberFromNARC(90, 2, 0, param1, 1);
+    v2 = LoadMemberFromNARC(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, 2, 0, param1, 1);
 
     switch (param0->unk_00.unk_111) {
     case 4:
@@ -689,7 +689,7 @@ void sub_020954F0(UnkStruct_02095C48 *param0, int heapID, int param2, int param3
     UnkStruct_020954F0 *v6;
     u8 *v7, *v8;
 
-    v6 = LoadMemberFromNARC(90, 1, 0, heapID, 1);
+    v6 = LoadMemberFromNARC(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, 1, 0, heapID, 1);
     v5 = NARC_GetMemberSizeByIndexPair(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, 1) / sizeof(UnkStruct_020954F0);
     v7 = Heap_AllocFromHeapAtEnd(heapID, v5 + 1);
     v8 = Heap_AllocFromHeapAtEnd(heapID, v5 + 1);

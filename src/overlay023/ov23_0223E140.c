@@ -1325,7 +1325,7 @@ static void ov23_0223EE80(UnkStruct_ov23_0223EE80 *param0)
         NARC_dtor(v6);
     }
 
-    Graphics_LoadPalette(50, 52, 0, 10 * 0x20, 4 * 0x20, HEAP_ID_29);
+    Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, 52, 0, 10 * 0x20, 4 * 0x20, HEAP_ID_29);
     ov23_0223FA3C(v1, v0, param0);
 }
 
@@ -1342,7 +1342,7 @@ static void ov23_0223EF98(void)
     Bg_CopyTilemapBufferToVRAM(Unk_ov23_02257740->unk_04, 1);
 
     ov23_0223FF8C(Unk_ov23_02257740->unk_04);
-    Graphics_LoadTilesToBgLayer(55, 9, Unk_ov23_02257740->unk_04, 2, 1, 0, 0, HEAP_ID_29);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_DATA__UG_PARTS, 9, Unk_ov23_02257740->unk_04, 2, 1, 0, 0, HEAP_ID_29);
 
     ov23_022401B0(Unk_ov23_02257740->unk_04);
 
@@ -1584,7 +1584,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
             HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
             HBlankSystem_Start(v0->fieldSystem->unk_04->hBlankSystem);
 
-            Graphics_LoadPalette(50, 52, 0, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD);
+            Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, 52, 0, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD);
             LoadStandardWindowGraphics(v0->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
             CommPlayerMan_Restart();
 

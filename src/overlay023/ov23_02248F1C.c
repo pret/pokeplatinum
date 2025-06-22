@@ -422,7 +422,7 @@ static void ov23_0224944C(BgConfig *param0, Window *param1)
     Bg_ClearTilesRange(7, 32, 0, HEAP_ID_FIELD);
     FieldMessage_AddWindow(param0, param1, 7);
     Window_FillTilemap(param1, 0);
-    Graphics_LoadPalette(50, 52, 4, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD);
+    Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, 52, 4, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD);
     ResetScreenMasterBrightness(DS_SCREEN_SUB);
 }
 

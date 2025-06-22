@@ -638,7 +638,7 @@ void ov12_02226EB0(UnkStruct_ov12_0221FCDC *param0)
     {
         int v2 = ov12_02220280(param0, 0);
 
-        Graphics_LoadTilesToBgLayer(7, ov12_022234E4(v2, HEAP_ID_SYSTEM), v0->unk_1C.unk_14, 2, 0, 0, 1, ov12_0221FDE4(param0));
+        Graphics_LoadTilesToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, ov12_022234E4(v2, HEAP_ID_SYSTEM), v0->unk_1C.unk_14, 2, 0, 0, 1, ov12_0221FDE4(param0));
         PaletteData_LoadBufferFromFileStart(v0->unk_1C.unk_18, 7, ov12_022234E4(v2, 1), ov12_0221FDE4(param0), 0, 0x20, (9 * 16));
         Bg_ClearTilemap(v0->unk_1C.unk_14, 2);
 
@@ -651,7 +651,7 @@ void ov12_02226EB0(UnkStruct_ov12_0221FCDC *param0)
                 v3 = 3;
             }
 
-            Graphics_LoadTilemapToBgLayer(7, ov12_022234E4(v2, v3), v0->unk_1C.unk_14, 2, 0, 0, 1, ov12_0221FDE4(param0));
+            Graphics_LoadTilemapToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, ov12_022234E4(v2, v3), v0->unk_1C.unk_14, 2, 0, 0, 1, ov12_0221FDE4(param0));
         }
     }
 
@@ -798,7 +798,7 @@ void ov12_022271D8(UnkStruct_ov12_0221FCDC *param0)
     {
         int v2 = ov12_02220280(param0, 0);
 
-        Graphics_LoadTilesToBgLayer(7, ov12_022234E4(v2, HEAP_ID_SYSTEM), v0->unk_1C.unk_14, 2, 0, 0, 1, ov12_0221FDE4(param0));
+        Graphics_LoadTilesToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, ov12_022234E4(v2, HEAP_ID_SYSTEM), v0->unk_1C.unk_14, 2, 0, 0, 1, ov12_0221FDE4(param0));
         PaletteData_LoadBufferFromFileStart(v0->unk_1C.unk_18, 7, ov12_022234E4(v2, 1), ov12_0221FDE4(param0), 0, 0x20, (9 * 16));
         Bg_ClearTilemap(v0->unk_1C.unk_14, 2);
 
@@ -811,7 +811,7 @@ void ov12_022271D8(UnkStruct_ov12_0221FCDC *param0)
                 v3 = 3;
             }
 
-            Graphics_LoadTilemapToBgLayer(7, ov12_022234E4(v2, v3), v0->unk_1C.unk_14, 2, 0, 0, 1, ov12_0221FDE4(param0));
+            Graphics_LoadTilemapToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, ov12_022234E4(v2, v3), v0->unk_1C.unk_14, 2, 0, 0, 1, ov12_0221FDE4(param0));
         }
     }
 

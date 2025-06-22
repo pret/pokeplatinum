@@ -274,7 +274,7 @@ UnkStruct_ov95_02247004 *ov95_02246F30(BOOL *param0, int param1)
         u32 v3;
         int v4;
 
-        v2 = Graphics_GetPlttData(93, 6, &v1, HEAP_ID_57);
+        v2 = Graphics_GetPlttData(NARC_INDEX_GRAPHIC__DEMO_TRADE, 6, &v1, HEAP_ID_57);
 
         if (v2) {
             MI_CpuFill16(v0->unk_00, 0x0, 96);

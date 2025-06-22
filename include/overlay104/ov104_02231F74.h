@@ -27,7 +27,7 @@ void ov104_02232624(UnkStruct_ov104_02232B5C *param0);
 void ov104_02232B5C(UnkStruct_ov104_02232B5C *param0);
 void ov104_02232B78(SysTask *param0, void *param1);
 void ov104_02232C80(UnkStruct_ov63_0222CCB8 *param0, UnkStruct_ov63_0222BEC0 *param1, int param2, int param3);
-void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, int heapID, int param3, int param4, int param5, int param6, int param7, int param8, u16 param9);
+void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, enum HeapId heapID, int param3, int param4, int param5, int param6, int param7, int param8, u16 param9);
 void ov104_02232E80(UnkStruct_ov104_0223C4CC *param0, int param1);
 void ov104_02232EC0(UnkStruct_ov104_0223C4CC *param0);
 void ov104_02232F28(UnkStruct_ov104_0223C4CC *param0);

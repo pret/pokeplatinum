@@ -96,7 +96,7 @@ typedef struct {
 
 typedef struct UnkStruct_ov12_0221FCDC_t {
     int heapID;
-    int unk_04;
+    enum NarcID narcID;
     BOOL unk_08;
     BOOL unk_0C;
     BOOL unk_10;
@@ -591,8 +591,8 @@ BOOL ov12_0221FE30(UnkStruct_ov12_0221FCDC *param0, UnkStruct_ov16_02265BBC *par
         v1 = 1;
     }
 
-    param0->unk_04 = param3->unk_50;
-    param0->unk_14 = NARC_AllocAndReadWholeMemberByIndexPair(param0->unk_04, v1, param0->heapID);
+    param0->narcID = param3->unk_50;
+    param0->unk_14 = NARC_AllocAndReadWholeMemberByIndexPair(param0->narcID, v1, param0->heapID);
 
     if (param0->unk_14 == NULL) {
         GF_ASSERT(param0->unk_14 != NULL);
@@ -2494,7 +2494,7 @@ static BOOL ov12_02221A54(UnkStruct_ov12_02221BBC *param0, UnkStruct_ov12_0221FC
 
 static void ov12_02221AA8(UnkStruct_ov12_02221BBC *param0, UnkStruct_ov12_0221FCDC *param1, int param2, int param3)
 {
-    Graphics_LoadTilesToBgLayer(7, ov12_022234E4(param3, HEAP_ID_SYSTEM), param1->unk_C0, param2, 0, 0, 1, param1->heapID);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, ov12_022234E4(param3, HEAP_ID_SYSTEM), param1->unk_C0, param2, 0, 0, 1, param1->heapID);
     PaletteData_LoadBufferFromFileStart(param1->unk_C4, 7, ov12_022234E4(param3, 1), param1->heapID, 0, 0x20, (9 * 16));
     Bg_ClearTilemap(param1->unk_C0, param2);
 
@@ -2507,7 +2507,7 @@ static void ov12_02221AA8(UnkStruct_ov12_02221BBC *param0, UnkStruct_ov12_0221FC
             v0 = 3;
         }
 
-        Graphics_LoadTilemapToBgLayer(7, ov12_022234E4(param3, v0), param1->unk_C0, param2, 0, 0, 1, param1->heapID);
+        Graphics_LoadTilemapToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, ov12_022234E4(param3, v0), param1->unk_C0, param2, 0, 0, 1, param1->heapID);
     }
 }
 
@@ -3201,9 +3201,9 @@ static void ov12_02222860(UnkStruct_ov12_0221FCDC *param0)
     v0 = inline_ov12_022204C4(param0->unk_18);
     param0->unk_18 += 1;
 
-    Graphics_LoadTilesToBgLayer(7, ov12_022234E4(v0, HEAP_ID_SYSTEM), param0->unk_C0, 3, 0, 0, 1, param0->heapID);
-    Graphics_LoadPalette(7, ov12_022234E4(v0, HEAP_ID_SAVE), 0, 0, 0, param0->heapID);
-    Graphics_LoadTilemapToBgLayer(7, ov12_022234E4(v0, HEAP_ID_DEBUG), param0->unk_C0, 3, 0, 0, 1, param0->heapID);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, ov12_022234E4(v0, HEAP_ID_SYSTEM), param0->unk_C0, 3, 0, 0, 1, param0->heapID);
+    Graphics_LoadPalette(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, ov12_022234E4(v0, HEAP_ID_SAVE), 0, 0, 0, param0->heapID);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, ov12_022234E4(v0, HEAP_ID_DEBUG), param0->unk_C0, 3, 0, 0, 1, param0->heapID);
 }
 
 static void ov12_022228DC(UnkStruct_ov12_0221FCDC *param0)

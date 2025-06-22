@@ -611,7 +611,7 @@ void ov94_0223D068(UnkStruct_ov94_0223FD4C *param0)
 {
     BgConfig *v0 = param0->unk_04;
 
-    Graphics_LoadPalette(104, 5, 4, 0, 16 * 16 * 2, HEAP_ID_62);
-    Graphics_LoadTilesToBgLayer(104, 15, v0, 5, 0, 32 * 21 * 0x40, 1, HEAP_ID_62);
-    Graphics_LoadTilemapToBgLayer(104, 31, v0, 5, 0, 32 * 24 * 2, 1, HEAP_ID_62);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__WORLDTRADE, 5, 4, 0, 16 * 16 * 2, HEAP_ID_62);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__WORLDTRADE, 15, v0, 5, 0, 32 * 21 * 0x40, 1, HEAP_ID_62);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__WORLDTRADE, 31, v0, 5, 0, 32 * 24 * 2, 1, HEAP_ID_62);
 }

@@ -257,20 +257,20 @@ static int ov95_02247CB4(UnkStruct_ov95_02247C6C *param0, int *param1)
     Window_Add(param0->unk_54, &(param0->unk_58), 1, 2, 19, 27, 4, 1, 1);
     Window_FillTilemap(&(param0->unk_58), 0xf);
 
-    Graphics_LoadPalette(14, 7, 0, 1 * 0x20, 0x20, HEAP_ID_58);
-    Graphics_LoadTilesToBgLayer(93, 22, param0->unk_54, 2, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(93, 21, param0->unk_54, 2, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadPalette(93, 23, 0, 0 * 0x20, 0x20, HEAP_ID_58);
-    Graphics_LoadTilesToBgLayer(93, 22, param0->unk_54, 6, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(93, 21, param0->unk_54, 6, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadPalette(93, 23, 4, 0 * 0x20, 0x20, HEAP_ID_58);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__PL_FONT, 7, 0, 1 * 0x20, 0x20, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 22, param0->unk_54, 2, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 21, param0->unk_54, 2, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 23, 0, 0 * 0x20, 0x20, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 22, param0->unk_54, 6, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 21, param0->unk_54, 6, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 23, 4, 0 * 0x20, 0x20, HEAP_ID_58);
 
     Bg_CopyTilemapBufferToVRAM(param0->unk_54, 1);
     ov95_02248174(param0);
 
     param0->unk_70 = ov95_022476F0(1, 0, 0, 0);
     param0->unk_10 = ov95_02248240(param0);
-    param0->unk_74 = ov95_022478B4(param0->unk_70, 0, 93, 27, 0, 147456 + 4294928384, 245760 + 227328, 0);
+    param0->unk_74 = ov95_022478B4(param0->unk_70, 0, NARC_INDEX_GRAPHIC__DEMO_TRADE, 27, 0, 147456 + 4294928384, 245760 + 227328, 0);
 
     {
         VecFx16 v4 = { 0x0, 0xf000, 0x0 };

@@ -1413,7 +1413,7 @@ static void ov107_022474F8 (void)
     void * v0;
     NNSG2dPaletteData * v1;
 
-    v0 = Graphics_GetPlttData(150, 138, &v1, HEAP_ID_100);
+    v0 = Graphics_GetPlttData(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 138, &v1, HEAP_ID_100);
 
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 4));
     GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 4));
@@ -1435,7 +1435,7 @@ static void ov107_02247574 (void)
     void * v0;
     NNSG2dPaletteData * v1;
 
-    v0 = Graphics_GetPlttData(150, 138, &v1, HEAP_ID_100);
+    v0 = Graphics_GetPlttData(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 138, &v1, HEAP_ID_100);
 
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 4));
     GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 4));

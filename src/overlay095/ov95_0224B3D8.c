@@ -285,12 +285,12 @@ static int ov95_0224B520(UnkStruct_ov95_0224B4D4 *param0, int *param1)
 
     Window_Add(param0->unk_58, &(param0->unk_5C), 1, 2, 19, 27, 4, 1, 1);
     Window_FillTilemap(&(param0->unk_5C), 0xf);
-    Graphics_LoadPalette(14, 7, 0, 1 * 0x20, 0x20, HEAP_ID_58);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__PL_FONT, 7, 0, 1 * 0x20, 0x20, HEAP_ID_58);
     Bg_CopyTilemapBufferToVRAM(param0->unk_58, 1);
 
-    Graphics_LoadTilesToBgLayer(93, 22, param0->unk_58, 2, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(93, 21, param0->unk_58, 2, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadPalette(93, 23, 0, 0 * 0x20, 0x20, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 22, param0->unk_58, 2, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 21, param0->unk_58, 2, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 23, 0, 0 * 0x20, 0x20, HEAP_ID_58);
 
     ov95_0224B9C0(param0);
 
@@ -299,7 +299,7 @@ static int ov95_0224B520(UnkStruct_ov95_0224B4D4 *param0, int *param1)
 
     PokemonSprite_SetAttribute(param0->unk_14, MON_SPRITE_HIDE, 1);
 
-    param0->unk_78 = ov95_022478B4(param0->unk_74, 0, 93, 27, 0, UnkEnum_ov95_0224B520_00, 491520, 0);
+    param0->unk_78 = ov95_022478B4(param0->unk_74, 0, NARC_INDEX_GRAPHIC__DEMO_TRADE, 27, 0, UnkEnum_ov95_0224B520_00, 491520, 0);
 
     {
         VecFx16 v4 = { 0x0, 0xf000, 0x0 };

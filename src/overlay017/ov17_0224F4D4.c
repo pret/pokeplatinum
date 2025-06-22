@@ -609,8 +609,8 @@ static void ov17_0224FE68(UnkStruct_ov17_0224FCA0 *param0)
 
 static void ov17_0224FE70(UnkStruct_ov17_0224FCA0 *param0)
 {
-    Graphics_LoadTilesToBgLayer(45, 19, param0->unk_10.unk_20, 4, 0, 0, 1, HEAP_ID_24);
-    Graphics_LoadTilemapToBgLayer(45, 20, param0->unk_10.unk_20, 4, 0, 0, 1, HEAP_ID_24);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 19, param0->unk_10.unk_20, 4, 0, 0, 1, HEAP_ID_24);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 20, param0->unk_10.unk_20, 4, 0, 0, 1, HEAP_ID_24);
     PaletteData_LoadBufferFromFileStart(param0->unk_10.unk_C0, 45, 34, 24, 1, 0, 0);
 }
 

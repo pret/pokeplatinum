@@ -878,7 +878,7 @@ static void sub_0207C1CC(UnkStruct_0207AE68 *param0, BgConfig *param1)
 
     {
         int v4;
-        int v5 = 118;
+        enum NarcID narcID = NARC_INDEX_DEMO__EGG__DATA__EGG_DATA;
         int v6 = 0;
         int v7 = 1;
         int v8 = 8;
@@ -887,9 +887,9 @@ static void sub_0207C1CC(UnkStruct_0207AE68 *param0, BgConfig *param1)
         v4 = Options_Frame(param0->unk_2C);
 
         ReplaceTransparentTiles(param1, 1, 1, 10, v4, param0->heapID);
-        Graphics_LoadTilesToBgLayer(v5, v6, param1, v9, 0, 0, 1, param0->heapID);
-        Graphics_LoadTilemapToBgLayer(v5, v7, param1, v9, 0, 0, 1, param0->heapID);
-        PaletteData_LoadBufferFromFileStart(param0->unk_14, v5, v8, param0->heapID, 0, 0x20 * 2, 0);
+        Graphics_LoadTilesToBgLayer(narcID, v6, param1, v9, 0, 0, 1, param0->heapID);
+        Graphics_LoadTilemapToBgLayer(narcID, v7, param1, v9, 0, 0, 1, param0->heapID);
+        PaletteData_LoadBufferFromFileStart(param0->unk_14, narcID, v8, param0->heapID, 0, 0x20 * 2, 0);
         PaletteData_LoadBufferFromFileStart(param0->unk_14, 38, GetMessageBoxPaletteNARCMember(v4), param0->heapID, 0, 0x20, 10 * 0x10);
         PaletteData_LoadBufferFromFileStart(param0->unk_14, 14, 7, param0->heapID, 0, 0x20, 0xb * 0x10);
         LoadStandardWindowTiles(param0->unk_00, 2, 1, 0, param0->heapID);
@@ -897,15 +897,15 @@ static void sub_0207C1CC(UnkStruct_0207AE68 *param0, BgConfig *param1)
     }
 
     {
-        int v10 = 12;
+        enum NarcID narcID = NARC_INDEX_GRAPHIC__POKETCH;
         int v11 = 10;
         int v12 = 11;
         int v13 = 12;
         int v14 = 4;
 
-        Graphics_LoadTilesToBgLayer(v10, v11, param1, v14, 0, 0, 1, param0->heapID);
-        Graphics_LoadTilemapToBgLayer(v10, v12, param1, v14, 0, 0, 1, param0->heapID);
-        PaletteData_LoadBufferFromFileStart(param0->unk_14, v10, v13, param0->heapID, 1, 0x20 * 1, 0);
+        Graphics_LoadTilesToBgLayer(narcID, v11, param1, v14, 0, 0, 1, param0->heapID);
+        Graphics_LoadTilemapToBgLayer(narcID, v12, param1, v14, 0, 0, 1, param0->heapID);
+        PaletteData_LoadBufferFromFileStart(param0->unk_14, narcID, v13, param0->heapID, 1, 0x20 * 1, 0);
     }
 
     GX_SetVisibleWnd(GX_WNDMASK_W0);

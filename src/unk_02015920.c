@@ -2,6 +2,8 @@
 
 #include <nitro.h>
 #include <string.h>
+#include "constants/heap.h"
+#include "constants/narc.h"
 
 #include "struct_defs/struct_02015958.h"
 
@@ -90,7 +92,7 @@ static void sub_02015D8C(UnkStruct_02015D8C *param0, const fx32 *param1, u32 par
 static void sub_02015D98(UnkStruct_02015D8C *param0, fx32 param1);
 static u32 sub_02015DA0(const UnkStruct_02015D8C *param0);
 static void sub_02015DCC(u32 param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 heapID);
-static void sub_02015E1C(u32 param0, u32 param1, int param2, u32 param3, u32 param4, u32 heapID);
+static void sub_02015E1C(enum NarcID narcID, u32 param1, int param2, u32 param3, u32 param4, u32 heapID);
 static void sub_02015E64(SysTask *param0, void *param1);
 static void sub_02015EA0(SysTask *param0, void *param1);
 static void sub_02015EE8(BgConfig *param0, int param1, const NNSG2dScreenData *param2, int param3, int param4);
@@ -374,12 +376,12 @@ static void sub_02015DCC(u32 param0, u32 param1, BgConfig *param2, u32 param3, u
     SysTask_ExecuteAfterVBlank(sub_02015E64, v0, 128);
 }
 
-static void sub_02015E1C(u32 param0, u32 param1, int param2, u32 param3, u32 param4, u32 heapID)
+static void sub_02015E1C(enum NarcID narcID, u32 param1, int param2, u32 param3, u32 param4, u32 heapID)
 {
     UnkStruct_02015E1C *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02015E1C));
     memset(v0, 0, sizeof(UnkStruct_02015E1C));
 
-    v0->unk_04 = Graphics_GetPlttData(param0, param1, &v0->unk_00, heapID);
+    v0->unk_04 = Graphics_GetPlttData(narcID, param1, &v0->unk_00, heapID);
     v0->unk_08 = param2;
     v0->unk_0C = param3;
     v0->unk_10 = param4;

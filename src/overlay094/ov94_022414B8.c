@@ -452,12 +452,12 @@ static void ov94_0224170C(UnkStruct_ov94_0223FD4C *param0)
 {
     BgConfig *v0 = param0->unk_04;
 
-    Graphics_LoadPalette(104, 1, 0, 0, 16 * 3 * 2, HEAP_ID_62);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__WORLDTRADE, 1, 0, 0, 16 * 3 * 2, HEAP_ID_62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_62);
     LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), HEAP_ID_62);
     LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, HEAP_ID_62);
-    Graphics_LoadTilesToBgLayer(104, 11, v0, 1, 0, 16 * 5 * 0x20, 1, HEAP_ID_62);
-    Graphics_LoadTilemapToBgLayer(104, 23, v0, 1, 0, 32 * 24 * 2, 1, HEAP_ID_62);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__WORLDTRADE, 11, v0, 1, 0, 16 * 5 * 0x20, 1, HEAP_ID_62);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__WORLDTRADE, 23, v0, 1, 0, 32 * 24 * 2, 1, HEAP_ID_62);
 }
 
 static void ov94_022417A0(UnkStruct_ov94_0223FD4C *param0)

@@ -47,7 +47,7 @@ static void ov22_022599A0(UnkStruct_ov22_022599A0 *param0, int *param1, int *par
 static void ov22_02259A4C(SysTask *param0, void *param1);
 static void ov22_02259ABC(BgConfig *param0, int param1, const NNSG2dScreenData *param2, int param3, int param4, int param5, int param6, int param7, int param8);
 static void ov22_02259B3C(u32 param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 heapID);
-static void ov22_02259B8C(u32 param0, u32 param1, int param2, u32 param3, u32 param4, u32 heapID);
+static void ov22_02259B8C(enum NarcID narcID, u32 param1, int param2, u32 param3, u32 param4, u32 heapID);
 static void ov22_02259BD4(SysTask *param0, void *param1);
 static void ov22_02259C10(SysTask *param0, void *param1);
 
@@ -234,12 +234,12 @@ static void ov22_02259B3C(u32 param0, u32 param1, BgConfig *param2, u32 param3, 
     SysTask_ExecuteAfterVBlank(ov22_02259BD4, v0, 128);
 }
 
-static void ov22_02259B8C(u32 param0, u32 param1, int param2, u32 param3, u32 param4, u32 heapID)
+static void ov22_02259B8C(enum NarcID narcID, u32 param1, int param2, u32 param3, u32 param4, u32 heapID)
 {
     UnkStruct_ov22_02259B8C *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov22_02259B8C));
     memset(v0, 0, sizeof(UnkStruct_ov22_02259B8C));
 
-    v0->unk_04 = Graphics_GetPlttData(param0, param1, &v0->unk_00, heapID);
+    v0->unk_04 = Graphics_GetPlttData(narcID, param1, &v0->unk_00, heapID);
     v0->unk_08 = param2;
     v0->unk_0C = param3;
     v0->unk_10 = param4;

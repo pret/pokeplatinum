@@ -205,23 +205,23 @@ static void ov19_021DAB44(UnkStruct_ov19_021DA9E0 *param0)
 {
     NNSG2dImageProxy v0;
     SpriteResourcesHeader v1;
-    enum NarcID v2;
-    u32 v3, v4;
+    enum NarcID narcID;
+    u32 v3, i;
 
-    v2 = TypeIcon_GetNARC();
+    narcID = TypeIcon_GetNARC();
     v3 = TypeIcon_GetChar(2);
 
-    Graphics_LoadPalette(v2, TypeIcon_GetPlttSrc(), 1, 10 * 0x20, 0x20 * 3, HEAP_ID_10);
+    Graphics_LoadPalette(narcID, TypeIcon_GetPlttSrc(), 1, 10 * 0x20, 0x20 * 3, HEAP_ID_10);
 
-    for (v4 = 0; v4 < 2; v4++) {
+    for (i = 0; i < 2; i++) {
         NNS_G2dInitImageProxy(&v0);
-        Graphics_LoadImageMappingAndSetVramMode(v2, v3, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, (1504 + (8 * v4)) * 0x20, 10, &v0);
+        Graphics_LoadImageMappingAndSetVramMode(narcID, v3, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, (1504 + (8 * i)) * 0x20, 10, &v0);
         ov19_021D783C(&v1, &v0, ov19_021D77D0(param0->unk_14), param0->unk_38, NULL, 3);
 
-        param0->unk_3C[v4] = ov19_021D785C(param0->unk_0C, &v1, 24 + 36 * v4, 176, 46, NNS_G2D_VRAM_TYPE_2DMAIN);
-        GF_ASSERT(param0->unk_3C[v4] != NULL);
+        param0->unk_3C[i] = ov19_021D785C(param0->unk_0C, &v1, 24 + 36 * i, 176, 46, NNS_G2D_VRAM_TYPE_2DMAIN);
+        GF_ASSERT(param0->unk_3C[i] != NULL);
 
-        Sprite_SetDrawFlag(param0->unk_3C[v4], 0);
+        Sprite_SetDrawFlag(param0->unk_3C[i], 0);
     }
 
     NNS_G2dInitImageProxy(&v0);
