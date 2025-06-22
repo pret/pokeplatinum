@@ -1312,7 +1312,7 @@ static void ov23_0223EE80(UnkStruct_ov23_0223EE80 *param0)
     Bg_ClearTilemap(v1, BG_LAYER_MAIN_0);
     Bg_ClearTilemap(v1, BG_LAYER_MAIN_1);
     Bg_ClearTilemap(v1, BG_LAYER_MAIN_2);
-    LoadMessageBoxGraphics(v1, 3, (512 - (18 + 12)), 10, 0, HEAP_ID_29);
+    LoadMessageBoxGraphics(v1, BG_LAYER_MAIN_3, (512 - (18 + 12)), 10, 0, HEAP_ID_29);
 
     {
         NARC *v6;

@@ -579,7 +579,7 @@ static void sub_0206FB38(UnkStruct_0206F7F8 *param0)
 
     Bg_SetPriority(BG_LAYER_MAIN_0, 2);
     Bg_SetPriority(BG_LAYER_MAIN_1, 1);
-    LoadMessageBoxGraphics(param0->unk_D0, 3, (1024 - (18 + 12)), 10, param0->unk_1C, param0->heapID);
+    LoadMessageBoxGraphics(param0->unk_D0, BG_LAYER_MAIN_3, (1024 - (18 + 12)), 10, param0->unk_1C, param0->heapID);
     LoadStandardWindowGraphics(param0->unk_D0, BG_LAYER_MAIN_3, (1024 - (18 + 12) - 9), 11, 0, param0->heapID);
     LoadStandardWindowGraphics(param0->unk_D0, BG_LAYER_MAIN_1, (1024 - (18 + 12) - 9), 11, 0, param0->heapID);
     Font_LoadTextPalette(0, 13 * 32, param0->heapID);

@@ -355,7 +355,7 @@ static void ov96_0223BF40(UnkStruct_ov96_0223BF40 *param0)
     Graphics_LoadPaletteFromOpenNARC(v1, 3, 4, 0, 0, HEAP_ID_68);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_68);
     Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, HEAP_ID_68);
-    LoadMessageBoxGraphics(v0, 0, 1, 14, Options_Frame(param0->unk_00->options), HEAP_ID_68);
+    LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, 1, 14, Options_Frame(param0->unk_00->options), HEAP_ID_68);
     LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_0, (1 + (18 + 12)), 11, 0, HEAP_ID_68);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 2, v0, 1, 0, 0, 0, HEAP_ID_68);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 5, v0, 1, 0, 32 * 24 * 2, 0, HEAP_ID_68);

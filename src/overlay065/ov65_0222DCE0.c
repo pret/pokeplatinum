@@ -1461,7 +1461,7 @@ static void ov65_0222ECA8(UnkStruct_ov65_0222EBE0 *param0, NARC *param1)
     {
         int v1 = Options_Frame(SaveData_GetOptions(param0->saveData));
 
-        LoadMessageBoxGraphics(v0, 2, (512 - (18 + 12)), 10, v1, HEAP_ID_54);
+        LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_2, (512 - (18 + 12)), 10, v1, HEAP_ID_54);
         LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_2, ((512 - (18 + 12)) - 9), 11, 0, HEAP_ID_54);
         LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_1, ((512 - (18 + 12)) - 9), 11, 0, HEAP_ID_54);
     }

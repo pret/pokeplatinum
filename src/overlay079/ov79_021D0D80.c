@@ -650,7 +650,7 @@ static void ov79_021D14A4(UnkStruct_ov79_021D0E1C *param0)
     };
 
     LoadStandardWindowGraphics(param0->unk_24, BG_LAYER_MAIN_1, 1 + 18 + 12, 15, 0, param0->heapID);
-    LoadMessageBoxGraphics(param0->unk_24, 1, 1, 14, Options_Frame(param0->unk_20->options), param0->heapID);
+    LoadMessageBoxGraphics(param0->unk_24, BG_LAYER_MAIN_1, 1, 14, Options_Frame(param0->unk_20->options), param0->heapID);
     Font_LoadTextPalette(0, 13 * 32, param0->heapID);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, param0->heapID);
     Font_LoadTextPalette(4, 13 * 32, param0->heapID);

@@ -1424,8 +1424,8 @@ static void ov69_0225D3A4(UnkStruct_ov69_0225D35C *param0, Options *options, u32
 
     u8 v1 = Options_Frame(options);
 
-    LoadMessageBoxGraphics(param0->unk_00, 4, 10, 10, v1, heapID);
-    LoadMessageBoxGraphics(param0->unk_00, 1, 1, 2, v1, heapID);
+    LoadMessageBoxGraphics(param0->unk_00, BG_LAYER_SUB_0, 10, 10, v1, heapID);
+    LoadMessageBoxGraphics(param0->unk_00, BG_LAYER_MAIN_1, 1, 2, v1, heapID);
 
     Bg_MaskPalette(BG_LAYER_MAIN_0, 0x72ca);
 }

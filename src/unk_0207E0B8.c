@@ -924,7 +924,7 @@ static void sub_0207EB6C(GameWindowLayout *param0, NARC *param1)
 
     Font_LoadScreenIndicatorsPalette(0, 13 * 32, HEAP_ID_12);
     LoadStandardWindowGraphics(param0->unk_00, BG_LAYER_MAIN_0, 1, 14, 0, HEAP_ID_12);
-    LoadMessageBoxGraphics(param0->unk_00, 0, (1 + 9), 15, Options_Frame(param0->partyManagementData->options), HEAP_ID_12);
+    LoadMessageBoxGraphics(param0->unk_00, BG_LAYER_MAIN_0, (1 + 9), 15, Options_Frame(param0->partyManagementData->options), HEAP_ID_12);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 3, param0->unk_00, 4, 0, 0, 0, HEAP_ID_12);
     Graphics_LoadPaletteFromOpenNARC(param1, 4, 4, 0x20, 0x20, HEAP_ID_12);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 12, param0->unk_00, 5, 0, 0, 0, HEAP_ID_12);

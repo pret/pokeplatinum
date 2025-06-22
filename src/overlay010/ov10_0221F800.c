@@ -1434,7 +1434,7 @@ static void ov10_02220F1C(UnkStruct_ov10_0221FB28 *param0)
     GF_ASSERT(param0->unk_B9C == GX_BG0_AS_2D && param0->unk_00 != NULL && param0->unk_00->unk_00 != NULL && param0->unk_00->unk_00->options != NULL);
     v0 = Options_Frame(param0->unk_00->unk_00->options);
 
-    LoadMessageBoxGraphics(param0->unk_0C, 0, 1, 15, v0, param0->unk_00->heapID);
+    LoadMessageBoxGraphics(param0->unk_0C, BG_LAYER_MAIN_0, 1, 15, v0, param0->unk_00->heapID);
     PaletteData_LoadBufferFromHardware(param0->unk_08, 0, 15 * 16, 0x20 * 1);
     LoadStandardWindowGraphics(param0->unk_0C, BG_LAYER_MAIN_0, (1 + (18 + 12)), 14, 0, param0->unk_00->heapID);
     PaletteData_LoadBufferFromHardware(param0->unk_08, 0, 14 * 16, 0x20 * 1);

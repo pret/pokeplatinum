@@ -357,7 +357,7 @@ static void ov73_021D1058(UnkStruct_ov73_021D1058 *param0)
         Bg_InitFromTemplate(param0->unk_18, BG_LAYER_MAIN_3, &v2, 0);
         Bg_ClearTilemap(param0->unk_18, BG_LAYER_MAIN_3);
 
-        LoadMessageBoxGraphics(param0->unk_18, 0, (0x400 - (18 + 12)), 4, 0, param0->heapID);
+        LoadMessageBoxGraphics(param0->unk_18, BG_LAYER_MAIN_0, (0x400 - (18 + 12)), 4, 0, param0->heapID);
         LoadStandardWindowGraphics(param0->unk_18, BG_LAYER_MAIN_0, ((0x400 - (18 + 12)) - 9), 3, 0, param0->heapID);
         Font_LoadTextPalette(0, 5 * (2 * 16), param0->heapID);
         Font_LoadScreenIndicatorsPalette(0, 6 * (2 * 16), param0->heapID);

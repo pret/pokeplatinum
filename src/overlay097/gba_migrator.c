@@ -1471,7 +1471,7 @@ static void ov97_02234ECC(GBAMigrator *migrator)
 {
     Font_LoadTextPalette(0, 14 * 32, HEAP_ID_MIGRATE_FROM_GBA);
     LoadStandardWindowGraphics(migrator->bgConfig, BG_LAYER_MAIN_0, 0x3F0, 14, 0, HEAP_ID_MIGRATE_FROM_GBA);
-    LoadMessageBoxGraphics(migrator->bgConfig, 0, (0x3F0 - (18 + 12)), 13, migrator->messageBoxFrame, HEAP_ID_MIGRATE_FROM_GBA);
+    LoadMessageBoxGraphics(migrator->bgConfig, BG_LAYER_MAIN_0, (0x3F0 - (18 + 12)), 13, migrator->messageBoxFrame, HEAP_ID_MIGRATE_FROM_GBA);
 
     memset(&migrator->unk_490, 0, sizeof(UnkStruct_ov97_02233DAC));
 
@@ -1535,7 +1535,7 @@ static void ov97_02234F88(GBAMigrator *migrator)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
     Font_LoadTextPalette(0, 14 * 32, HEAP_ID_MIGRATE_FROM_GBA);
     LoadStandardWindowGraphics(migrator->bgConfig, BG_LAYER_MAIN_0, 0x3F0, 14, 0, HEAP_ID_MIGRATE_FROM_GBA);
-    LoadMessageBoxGraphics(migrator->bgConfig, 0, (0x3F0 - (18 + 12)), 13, migrator->messageBoxFrame, HEAP_ID_MIGRATE_FROM_GBA);
+    LoadMessageBoxGraphics(migrator->bgConfig, BG_LAYER_MAIN_0, (0x3F0 - (18 + 12)), 13, migrator->messageBoxFrame, HEAP_ID_MIGRATE_FROM_GBA);
 
     ov97_02234ECC(migrator);
     migrator->unk_490.messageEntryID = MigrateFromGBA_Text_SixChosenWillMigrate;

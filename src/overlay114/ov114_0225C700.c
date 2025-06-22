@@ -1521,8 +1521,8 @@ static void ov114_0225D290(UnkStruct_ov114_0225D338 *param0, UnkStruct_ov114_022
     u8 v3;
 
     sub_020959F4(1);
-    LoadMessageBoxGraphics(param1->unk_00, 2, 1, 13, v0, heapID);
-    LoadMessageBoxGraphics(param1->unk_00, 4, 1, 13, v0, heapID);
+    LoadMessageBoxGraphics(param1->unk_00, BG_LAYER_MAIN_2, 1, 13, v0, heapID);
+    LoadMessageBoxGraphics(param1->unk_00, BG_LAYER_SUB_0, 1, 13, v0, heapID);
 
     for (v2 = 0; v2 < 2; v2++) {
         if (v2 == 0) {

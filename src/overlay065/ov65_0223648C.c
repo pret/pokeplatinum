@@ -746,7 +746,7 @@ static void ov65_02236A28(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207D
 
     v0 = Options_Frame(SaveData_GetOptions(param1->saveData));
 
-    LoadMessageBoxGraphics(param0->unk_00, 1, 1, 2, v0, param2);
+    LoadMessageBoxGraphics(param0->unk_00, BG_LAYER_MAIN_1, 1, 2, v0, param2);
     LoadStandardWindowGraphics(param0->unk_00, BG_LAYER_MAIN_1, (1 + (18 + 12)), 3, 0, param2);
     LoadStandardWindowGraphics(param0->unk_00, BG_LAYER_MAIN_2, (0 + (24 * 2)), 4, 0, param2);
     Window_Add(param0->unk_00, &param0->unk_1F0, 1, 2, 19, 27, 4, 1, ((1 + (18 + 12)) + 9));
@@ -908,7 +908,7 @@ static void ov65_02236E50(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207D
 
     v1 = Options_Frame(SaveData_GetOptions(param1->saveData));
 
-    LoadMessageBoxGraphics(param0->unk_00, 1, 1, 2, v1, heapID);
+    LoadMessageBoxGraphics(param0->unk_00, BG_LAYER_MAIN_1, 1, 2, v1, heapID);
 
     param0->unk_15 = param3;
 }

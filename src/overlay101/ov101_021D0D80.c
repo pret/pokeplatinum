@@ -430,7 +430,7 @@ void ov101_021D13C8(UnkStruct_ov101_021D13C8 *param0)
     UnkStruct_ov101_021D148C *v1 = &param0->unk_408;
 
     LoadStandardWindowGraphics(param0->unk_43C, BG_LAYER_MAIN_0, 1, 15, 0, HEAP_ID_79);
-    LoadMessageBoxGraphics(param0->unk_43C, 0, (1 + (18 + 12)), 14, param0->msgBoxFrame, HEAP_ID_79);
+    LoadMessageBoxGraphics(param0->unk_43C, BG_LAYER_MAIN_0, (1 + (18 + 12)), 14, param0->msgBoxFrame, HEAP_ID_79);
     Font_LoadScreenIndicatorsPalette(0, 15 * 32, HEAP_ID_79);
 
     v1->unk_00 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0544, HEAP_ID_79);

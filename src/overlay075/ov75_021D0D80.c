@@ -694,7 +694,7 @@ static void ov75_021D1598(UnkStruct_ov75_021D1184 *param0)
     v5 = NARC_ctor(NARC_INDEX_GRAPHIC__MAIL_GRA, param0->heapID);
 
     LoadStandardWindowGraphics(param0->unk_18, BG_LAYER_MAIN_0, 1, UnkEnum_ov75_021D1598_05, 0, param0->heapID);
-    LoadMessageBoxGraphics(param0->unk_18, 0, 1 + 9, UnkEnum_ov75_021D1598_06, param0->unk_0A, param0->heapID);
+    LoadMessageBoxGraphics(param0->unk_18, BG_LAYER_MAIN_0, 1 + 9, UnkEnum_ov75_021D1598_06, param0->unk_0A, param0->heapID);
 
     v1 = NARC_GetMemberSize(v5, v6);
     v2 = Heap_AllocFromHeapAtEnd(param0->heapID, v1);

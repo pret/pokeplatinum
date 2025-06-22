@@ -2000,7 +2000,7 @@ static void ov109_021D24F8(UnkStruct_ov109_021D0F70 *param0)
     UnkStruct_ov109_021D24F8 *v1 = &param0->unk_C9C;
 
     LoadStandardWindowGraphics(param0->unk_D84, BG_LAYER_MAIN_1, 1, 15, 0, HEAP_ID_95);
-    LoadMessageBoxGraphics(param0->unk_D84, 1, (1 + 9), 14, param0->unk_CC->unk_14.unk_04, HEAP_ID_95);
+    LoadMessageBoxGraphics(param0->unk_D84, BG_LAYER_MAIN_1, (1 + 9), 14, param0->unk_CC->unk_14.unk_04, HEAP_ID_95);
     PaletteData_LoadBufferFromFileStart(param0->unk_D9C, 38, GetMessageBoxPaletteNARCMember(param0->unk_CC->unk_14.unk_04), 95, 0, 0x20, 14 * 16);
     PaletteData_LoadBufferFromFileStart(param0->unk_D9C, 14, 7, 95, 0, 0x20, 15 * 16);
 
