@@ -211,6 +211,12 @@ the repository](#2-downloading-the-repository).
     sudo apt install bison flex g++ gcc-arm-none-eabi git make ninja-build pkg-config wget python3 xz-utils nasm libc6:i386
     ```
 
+3. Install `meson` via `pip3`:
+
+    ```bash
+    pip3 install --user meson --break-system-packages
+    ```
+
 #### Arch Linux (and derivatives, e.g., Manjaro, Endeavour)
 
 1. Enable the [multilib repository](https://wiki.archlinux.org/title/Multilib).
