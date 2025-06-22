@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_POKETCH_digital_watch_graphics_H
-#define POKEPLATINUM_POKETCH_digital_watch_graphics_H
+#ifndef POKEPLATINUM_POKETCH_DIGITAL_WATCH_GRAPHICS_H
+#define POKEPLATINUM_POKETCH_DIGITAL_WATCH_GRAPHICS_H
 
 #include "bg_window.h"
 
@@ -48,4 +48,4 @@ void PoketchDigitalWatchGraphics_StartTask(PoketchDigitalWatchGraphics *graphics
 BOOL PoketchDigitalWatchGraphics_TaskIsNotActive(PoketchDigitalWatchGraphics *graphics, enum DigitalWatchGraphicsTasks taskID);
 BOOL PoketchDigitalWatchGraphics_NoActiveTasks(PoketchDigitalWatchGraphics *graphics);
 
-#endif // POKEPLATINUM_POKETCH_digital_watch_graphics_H
+#endif // POKEPLATINUM_POKETCH_DIGITAL_WATCH_GRAPHICS_H
