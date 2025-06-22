@@ -8,6 +8,7 @@
 #include "constants/heap.h"
 #include "constants/items.h"
 #include "constants/rtc.h"
+#include "generated/battle_backgrounds.h"
 #include "generated/species.h"
 #include "generated/trainer_score_events.h"
 
@@ -113,7 +114,6 @@ u8 Battler_Side(BattleSystem *battleSystem, int param1);
 void *ov16_0223E220(BattleSystem *battleSystem);
 PCBoxes *ov16_0223E228(BattleSystem *battleSystem);
 enum BattleTerrain BattleSystem_Terrain(BattleSystem *battleSys);
-int ov16_0223E240(BattleSystem *battleSystem);
 int BattleSystem_MapHeader(BattleSystem *battleSystem);
 int BattleSystem_Partner(BattleSystem *battleSys, int battler);
 int BattleSystem_EnemyInSlot(BattleSystem *battleSys, int attacker, int slot);
@@ -511,9 +511,9 @@ enum BattleTerrain BattleSystem_Terrain(BattleSystem *battleSys)
     return battleSys->terrain;
 }
 
-int ov16_0223E240(BattleSystem *battleSystem)
+enum BattleBackground BattleSystem_Background(BattleSystem *battleSystem)
 {
-    return battleSystem->unk_2400;
+    return battleSystem->background;
 }
 
 int BattleSystem_MapHeader(BattleSystem *battleSystem)
@@ -901,23 +901,23 @@ int ov16_0223EC04(BattleSystem *battleSystem)
 {
     int v0;
 
-    switch (battleSystem->unk_2400) {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-    case 5:
+    switch (battleSystem->background) {
+    case BACKGROUND_PLAIN:
+    case BACKGROUND_WATER:
+    case BACKGROUND_CITY:
+    case BACKGROUND_FOREST:
+    case BACKGROUND_MOUNTAIN:
+    case BACKGROUND_SNOW:
         switch (battleSystem->time) {
-        case 0:
-        case 1:
+        case TIMEOFDAY_MORNING:
+        case TIMEOFDAY_DAY:
             v0 = 0;
             break;
-        case 2:
+        case TIMEOFDAY_TWILIGHT:
             v0 = 1;
             break;
-        case 3:
-        case 4:
+        case TIMEOFDAY_NIGHT:
+        case TIMEOFDAY_LATE_NIGHT:
             v0 = 2;
             break;
         }

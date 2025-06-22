@@ -151,7 +151,7 @@ PCBoxes *ov16_0223E228(BattleSystem *battleSys);
  * @return The battle's terrain.
  */
 enum BattleTerrain BattleSystem_Terrain(BattleSystem *battleSys);
-int ov16_0223E240(BattleSystem *battleSys);
+enum BattleBackground BattleSystem_Background(BattleSystem *battleSys);
 int BattleSystem_MapHeader(BattleSystem *battleSys);
 int BattleSystem_Partner(BattleSystem *battleSys, int param1);
 
