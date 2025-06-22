@@ -1723,7 +1723,7 @@ static u8 sub_020800B4(GameWindowLayout *param0, u8 *param1)
     param1[v4] = 1;
     v4++;
 
-    if (sub_0206C0D0(param0->partyManagementData->fieldSystem) == 0) {
+    if (FieldSystem_IsInBattleTowerSalon(param0->partyManagementData->fieldSystem) == FALSE) {
         if (param0->unk_704[param0->partySlot].unk_10 == 0) {
             for (v3 = 0; v3 < 4; v3++) {
                 v1 = (u16)Pokemon_GetValue(v0, MON_DATA_MOVE1 + v3, NULL);
@@ -2631,7 +2631,7 @@ static int ProcessItemApplication(GameWindowLayout *param0)
             StringTemplate_Format(param0->template, param0->unk_6A4, param0->unk_6A8);
             v2 = 11;
         } else if (fieldSystem != NULL) {
-            if (fieldSystem->location->mapId == 466) {
+            if (fieldSystem->location->mapId == MAP_HEADER_UNION_ROOM) {
                 MessageLoader_GetStrbuf(param0->messageLoader, 204, param0->unk_6A8);
                 StringTemplate_SetItemName(param0->template, 0, param0->partyManagementData->usedItemID);
                 StringTemplate_Format(param0->template, param0->unk_6A4, param0->unk_6A8);

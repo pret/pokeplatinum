@@ -3818,7 +3818,7 @@ static void ov8_0224C3B4(UnkStruct_ov8_0224C444 *param0)
 
         if (v3 == 1) {
             v2 = 91;
-        } else if (param0->fieldSystem->location->mapId == 90) {
+        } else if (param0->fieldSystem->location->mapId == MAP_HEADER_HEARTHOME_CITY_GYM_TRAINER_ROOM_2) {
             v2 = 119;
         }
 

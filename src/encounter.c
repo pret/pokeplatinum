@@ -344,7 +344,7 @@ static void FreeWildEncounter(WildEncounter *encounter)
 
 void Encounter_NewVsWild(FieldSystem *fieldSystem, FieldBattleDTO *dto)
 {
-    if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData))) {
+    if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData)) != FALSE) {
         Encounter *encounter = NewEncounter(dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), NULL);
         FieldSystem_CreateTask(fieldSystem, FieldTask_SafariEncounter, encounter);
     } else {
@@ -355,7 +355,7 @@ void Encounter_NewVsWild(FieldSystem *fieldSystem, FieldBattleDTO *dto)
 
 void Encounter_StartVsWild(FieldSystem *fieldSystem, FieldTask *task, FieldBattleDTO *dto)
 {
-    if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData))) {
+    if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData)) != FALSE) {
         Encounter *encounter = NewEncounter(dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), NULL);
         FieldTask_InitJump(task, FieldTask_SafariEncounter, encounter);
     } else {
