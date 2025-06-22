@@ -1088,7 +1088,7 @@ void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *battleSys, int par
                 v6 = Unk_ov16_02270264[i];
             }
 
-            v4 = Graphics_GetScrnData(7, v6, 1, &v3, 5);
+            v4 = Graphics_GetScrnData(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, v6, 1, &v3, 5);
 
             MI_CpuCopy32(v3->rawData, v0->unk_3C[i], 0x800);
             Heap_FreeToHeap(v4);
@@ -2013,7 +2013,7 @@ static void ov16_02269E94(UnkStruct_ov16_02268A14 *param0, int param1, int param
         NNSG2dScreenData *v3;
         void *v4;
 
-        v4 = Graphics_GetScrnData(7, 46, 1, &v3, 5);
+        v4 = Graphics_GetScrnData(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 46, 1, &v3, 5);
         MI_CpuCopy32(v3->rawData, param0->unk_3C[6], 0x800);
         Heap_FreeToHeap(v4);
 

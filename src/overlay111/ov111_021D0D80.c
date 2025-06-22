@@ -2108,7 +2108,7 @@ static void ov111_021D2E28(UnkStruct_ov111_021D0F7C *param0)
 
 static void ov111_021D2E4C(UnkStruct_ov111_021D0F7C *param0)
 {
-    param0->unk_3F0 = Graphics_GetCharData(184, 7, 0, &param0->unk_3F4, HEAP_ID_115);
+    param0->unk_3F0 = Graphics_GetCharData(NARC_INDEX_RESOURCE__ENG__SCRATCH__SCRATCH, 7, 0, &param0->unk_3F4, HEAP_ID_115);
 
     Bg_LoadTiles(param0->unk_58, 0, param0->unk_3F4->pRawData, param0->unk_3F4->szByte, 0);
     Bg_CopyTilemapBufferToVRAM(param0->unk_58, 0);

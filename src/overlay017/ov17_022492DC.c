@@ -347,37 +347,37 @@ static void ov17_022493DC(UnkStruct_ov17_022492DC *param0)
     param0->unk_E0[0] = Heap_AllocFromHeap(HEAP_ID_23, 0x200);
     param0->unk_E0[1] = Heap_AllocFromHeap(HEAP_ID_23, 0x200);
 
-    v2 = Graphics_GetCharData(45, 9, 1, &v0, HEAP_ID_23);
+    v2 = Graphics_GetCharData(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 9, 1, &v0, HEAP_ID_23);
     MI_CpuCopy32(v0->pRawData, param0->unk_C4[0], (0x8000 - (0x800 * 4)));
     Heap_FreeToHeap(v2);
 
-    v2 = Graphics_GetCharData(45, 18, 1, &v0, HEAP_ID_23);
+    v2 = Graphics_GetCharData(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 18, 1, &v0, HEAP_ID_23);
     MI_CpuCopy32(v0->pRawData, param0->unk_C4[1], (0x8000 - (0x800 * 4)));
     Heap_FreeToHeap(v2);
 
-    v2 = Graphics_GetCharData(45, 16, 1, &v0, HEAP_ID_23);
+    v2 = Graphics_GetCharData(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 16, 1, &v0, HEAP_ID_23);
     MI_CpuCopy32(v0->pRawData, param0->unk_C4[2], 6 * 12 * 0x20 * 3);
     Heap_FreeToHeap(v2);
 
-    v2 = Graphics_GetScrnData(45, 7, 1, &v1, 23);
+    v2 = Graphics_GetScrnData(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 7, 1, &v1, HEAP_ID_23);
     MI_CpuCopy32(v1->rawData, param0->unk_D0[0], 0x800);
     Heap_FreeToHeap(v2);
 
-    v2 = Graphics_GetScrnData(45, 8, 1, &v1, 23);
+    v2 = Graphics_GetScrnData(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 8, 1, &v1, HEAP_ID_23);
     MI_CpuCopy32(v1->rawData, param0->unk_D0[1], 0x800);
     Heap_FreeToHeap(v2);
 
-    v2 = Graphics_GetScrnData(45, 17, 1, &v1, 23);
+    v2 = Graphics_GetScrnData(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 17, 1, &v1, HEAP_ID_23);
     MI_CpuCopy32(v1->rawData, param0->unk_D0[2], 0x800);
     Heap_FreeToHeap(v2);
 
-    v2 = Graphics_GetScrnData(45, 28, 1, &v1, 23);
+    v2 = Graphics_GetScrnData(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 28, 1, &v1, HEAP_ID_23);
     MI_CpuCopy32(v1->rawData, param0->unk_D0[3], 0x800);
     Heap_FreeToHeap(v2);
 
-    LoadPaletteFromFile(45, 31, 23, 0x200, 0, param0->unk_E0[0]);
-    LoadPaletteFromFile(45, 38, 23, 32, 16 * param0->unk_04->unk_00->unk_10F, &param0->unk_E0[0][2 * 16]);
-    LoadPaletteFromFile(45, 33, 23, 0x200, 0, param0->unk_E0[1]);
+    LoadPaletteFromFile(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 31, HEAP_ID_23, 0x200, 0, param0->unk_E0[0]);
+    LoadPaletteFromFile(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 38, HEAP_ID_23, 32, 16 * param0->unk_04->unk_00->unk_10F, &param0->unk_E0[0][2 * 16]);
+    LoadPaletteFromFile(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 33, HEAP_ID_23, 0x200, 0, param0->unk_E0[1]);
 }
 
 static void ov17_022495F8(UnkStruct_ov17_022492DC *param0)

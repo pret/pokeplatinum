@@ -109,7 +109,7 @@ static void ov19_021DE450(UnkStruct_ov19_021DE3E8 *param0)
         int v4;
 
         ov19_021D783C(&v0, &v1, ov19_021D77D0(param0->unk_04), param0->unk_14->unk_1C, param0->unk_14->unk_20, 0);
-        v3 = Graphics_GetCharData(16, Item_FileID(1, 1), 0, &v2, HEAP_ID_10);
+        v3 = Graphics_GetCharData(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(1, 1), 0, &v2, HEAP_ID_10);
 
         if (v3) {
             int v5;

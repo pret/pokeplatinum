@@ -367,7 +367,7 @@ void ov22_02258354(UnkStruct_ov22_02257F50 *param0, int param1)
     UnkStruct_ov22_022599A0 v0;
 
     v0.unk_00 = param0->unk_44.unk_10;
-    v0.unk_04 = 25;
+    v0.narcID = NARC_INDEX_GRAPHIC__IMAGECLIP;
     v0.unk_08 = (param1) * 2 + 129;
     v0.unk_0C = 133;
     v0.unk_10 = (param1) * 2 + 129 + 1;
@@ -390,7 +390,7 @@ void ov22_022583A0(UnkStruct_ov22_02257F50 *param0, int param1, int param2, int 
     int v1, v2;
 
     v0.unk_00 = param0->unk_44.unk_10;
-    v0.unk_04 = 25;
+    v0.narcID = NARC_INDEX_GRAPHIC__IMAGECLIP;
     v0.unk_08 = (param1) * 2 + 129;
     v0.unk_0C = 133;
     v0.unk_10 = (param1) * 2 + 129 + 1;

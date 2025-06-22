@@ -183,7 +183,7 @@ static void ov56_02256294(UnkStruct_ov56_02256468 *param0)
     param0->unk_2D8.unk_06 = 0;
     param0->unk_18 = StringTemplate_Default(HEAP_ID_FIELD);
     param0->unk_1C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNION_ROOM, HEAP_ID_FIELD);
-    param0->unk_20 = Graphics_GetScrnData(74, 3, 1, &(param0->unk_24), 4);
+    param0->unk_20 = Graphics_GetScrnData(NARC_INDEX_GRAPHIC__UNIONROOM, 3, 1, &(param0->unk_24), 4);
 }
 
 static void ov56_022562EC(BgConfig *param0, UnkStruct_ov56_022562EC *param1)

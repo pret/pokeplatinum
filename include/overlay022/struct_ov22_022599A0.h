@@ -1,11 +1,12 @@
 #ifndef POKEPLATINUM_STRUCT_OV22_022599A0_H
 #define POKEPLATINUM_STRUCT_OV22_022599A0_H
 
+#include "constants/narc.h"
 #include "bg_window.h"
 
 typedef struct {
     BgConfig *unk_00;
-    int unk_04;
+    enum NarcID narcID;
     int unk_08;
     int unk_0C;
     int unk_10;

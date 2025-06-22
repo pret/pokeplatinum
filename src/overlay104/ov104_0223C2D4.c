@@ -656,7 +656,7 @@ static void ov104_0223CC74(UnkStruct_ov104_0223C4CC *param0, int param1, const T
         };
         int v1;
 
-        v0.unk_08 = ov104_0222EA90(param1, 5);
+        v0.narcID = ov104_0222EA90(param1, 5);
         v0.unk_09 = ov104_0222EA90(param1, 6);
         v1 = ov104_0222EA90(param1, 12);
 

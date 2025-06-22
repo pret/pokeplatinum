@@ -304,7 +304,7 @@ void ov22_02257C88(UnkStruct_ov22_02257964 *param0, int param1, int heapID)
     UnkStruct_ov22_022599A0 v0;
 
     v0.unk_00 = param0->unk_2C.unk_14;
-    v0.unk_04 = 25;
+    v0.narcID = NARC_INDEX_GRAPHIC__IMAGECLIP;
     v0.unk_08 = (param1) * 4 + 134;
     v0.unk_0C = (param1) * 4 + 134 + 1;
     v0.unk_10 = (param1) * 4 + 134 + 2;
