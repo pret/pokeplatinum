@@ -1,4 +1,4 @@
-#include "poketch/poketch_animation.h"
+#include "applications/poketch/poketch_animation.h"
 
 #include <nitro.h>
 #include <string.h>

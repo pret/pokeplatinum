@@ -22,12 +22,12 @@
 #include "struct_defs/struct_0202E828.h"
 #include "struct_defs/struct_0202E834.h"
 
+#include "applications/poketch/poketch_system.h"
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay006/ov6_02246444.h"
 #include "overlay006/struct_ov6_022465F4_decl.h"
 #include "overlay006/swarm.h"
-#include "poketch/poketch_system.h"
 #include "savedata/save_table.h"
 
 #include "bag.h"

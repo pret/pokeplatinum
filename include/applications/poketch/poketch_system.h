@@ -3,8 +3,8 @@
 
 #include <nnsys.h>
 
+#include "applications/poketch/poketch_button.h"
 #include "field/field_system_decl.h"
-#include "poketch/poketch_button.h"
 
 #include "bg_window.h"
 #include "poketch.h"

@@ -8,6 +8,7 @@
 #include "generated/map_headers.h"
 #include "generated/signpost_commands.h"
 
+#include "applications/poketch/poketch_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/field_control.h"
 #include "overlay005/fieldmap.h"
@@ -16,7 +17,6 @@
 #include "overlay005/ov5_021EA714.h"
 #include "overlay005/signpost.h"
 #include "overlay077/const_ov77_021D742C.h"
-#include "poketch/poketch_system.h"
 
 #include "bag.h"
 #include "bg_window.h"

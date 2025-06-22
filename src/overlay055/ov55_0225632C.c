@@ -4,9 +4,9 @@
 
 #include "constants/heap.h"
 
+#include "applications/poketch/poketch_task.h"
 #include "overlay055/struct_ov55_0225632C_1.h"
 #include "overlay055/struct_ov55_0225632C_decl.h"
-#include "poketch/poketch_task.h"
 
 #include "bg_window.h"
 #include "graphics.h"

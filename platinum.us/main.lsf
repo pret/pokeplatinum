@@ -860,28 +860,28 @@ Overlay overlay23
 	Object main.nef.p/src_overlay023_ov23_02254A14.c.o
 }
 
-Overlay pre_poketch_subscreen
+Overlay poketch_unavailable
 {
 	After overlay9
-	Object main.nef.p/src_pre_poketch_subscreen_pre_poketch_subscreen.c.o
+	Object main.nef.p/src_applications_poketch_unavailable_graphics.c.o
 }
 
 Overlay overlay25
 {
 	After overlay9
-	Object main.nef.p/src_poketch_poketch_system.c.o
-	Object main.nef.p/src_poketch_poketch_graphics.c.o
-	Object main.nef.p/src_poketch_poketch_task.c.o
-	Object main.nef.p/src_poketch_poketch_animation.c.o
-	Object main.nef.p/src_poketch_poketch_button.c.o
-	Object main.nef.p/src_poketch_ov25_02255DBC.c.o
+	Object main.nef.p/src_applications_poketch_poketch_system.c.o
+	Object main.nef.p/src_applications_poketch_poketch_graphics.c.o
+	Object main.nef.p/src_applications_poketch_poketch_task.c.o
+	Object main.nef.p/src_applications_poketch_poketch_animation.c.o
+	Object main.nef.p/src_applications_poketch_poketch_button.c.o
+	Object main.nef.p/src_applications_poketch_ov25_02255DBC.c.o
 }
 
 Overlay poketch_digital_watch
 {
 	After overlay25
-	Object main.nef.p/src_poketch_digital_watch_main.c.o
-	Object main.nef.p/src_poketch_digital_watch_display.c.o
+	Object main.nef.p/src_applications_poketch_digital_watch_main.c.o
+	Object main.nef.p/src_applications_poketch_digital_watch_graphics.c.o
 }
 
 Overlay overlay27

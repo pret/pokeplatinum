@@ -10,10 +10,10 @@
 #include "generated/pokemon_types.h"
 #include "generated/sdat.h"
 
-#include "poketch/poketch_animation.h"
-#include "poketch/poketch_graphics.h"
-#include "poketch/poketch_system.h"
-#include "poketch/poketch_task.h"
+#include "applications/poketch/poketch_animation.h"
+#include "applications/poketch/poketch_graphics.h"
+#include "applications/poketch/poketch_system.h"
+#include "applications/poketch/poketch_task.h"
 
 #include "bg_window.h"
 #include "font.h"
@@ -103,7 +103,7 @@ static const BgTemplate sMoveTesterBgTemplate = {
 
 static void SetupSprites(PoketchMoveTesterGraphics *graphics);
 static void UnloadSprites(PoketchMoveTesterGraphics *graphics);
-static void EndPoketchTask(PoketchTaskManager *taskMan);
+static void EndTask(PoketchTaskManager *taskMan);
 static void Task_DrawAppScreen(SysTask *task, void *param1);
 static void AddWindows(PoketchMoveTesterGraphics *graphics, const MoveTesterData *moveTesterData, u32 baseTile);
 static void RemoveWindows(PoketchMoveTesterGraphics *graphics);
@@ -121,7 +121,7 @@ BOOL PoketchMoveTesterGraphics_New(PoketchMoveTesterGraphics **graphics, const M
     PoketchMoveTesterGraphics *moveTesterGraphics = (PoketchMoveTesterGraphics *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(PoketchMoveTesterGraphics));
 
     if (moveTesterGraphics != NULL) {
-        PoketchTask_InitActiveTaskList(moveTesterGraphics->activeTasks, 8);
+        PoketchTask_InitActiveTaskList(moveTesterGraphics->activeTasks, NUM_TASK_SLOTS);
         moveTesterGraphics->moveTesterData = moveTesterData;
         moveTesterGraphics->bgConfig = PoketchGraphics_GetBgConfig();
         moveTesterGraphics->animMan = PoketchGraphics_GetAnimationManager();
@@ -198,7 +198,7 @@ void PoketchMoveTesterGraphics_StartTask(PoketchMoveTesterGraphics *graphics, en
     PoketchTask_Start(sMoveTesterTasks, taskID, graphics, graphics->moveTesterData, graphics->activeTasks, 2, HEAP_ID_POKETCH_APP);
 }
 
-BOOL PoketchMoveTesterGraphics_CheckTaskActive(PoketchMoveTesterGraphics *graphics, enum MoveTesterGraphicsTasks taskID)
+BOOL PoketchMoveTesterGraphics_TaskIsNotActive(PoketchMoveTesterGraphics *graphics, enum MoveTesterGraphicsTasks taskID)
 {
     return PoketchTask_TaskIsNotActive(graphics->activeTasks, taskID);
 }
@@ -208,7 +208,7 @@ BOOL PoketchMoveTesterGraphics_NoActiveTasks(PoketchMoveTesterGraphics *graphics
     return PoketchTask_NoActiveTasks(graphics->activeTasks);
 }
 
-static void EndPoketchTask(PoketchTaskManager *taskMan)
+static void EndTask(PoketchTaskManager *taskMan)
 {
     PoketchMoveTesterGraphics *graphics = PoketchTask_GetTaskData(taskMan);
     PoketchTask_EndTask(graphics->activeTasks, taskMan);
@@ -239,7 +239,7 @@ static void Task_DrawAppScreen(SysTask *task, void *taskMan)
     dispCnt = GXS_GetDispCnt();
     GXS_SetVisiblePlane(dispCnt.visiblePlane | GX_PLANEMASK_BG2);
 
-    EndPoketchTask(taskMan);
+    EndTask(taskMan);
 }
 
 static void AddWindows(PoketchMoveTesterGraphics *graphics, const MoveTesterData *moveTesterData, u32 baseTile)
@@ -277,7 +277,7 @@ static void Task_FreeWindowsAndBG(SysTask *task, void *taskMan)
 
     RemoveWindows(graphics);
     Bg_FreeTilemapBuffer(graphics->bgConfig, BG_LAYER_SUB_2);
-    EndPoketchTask(taskMan);
+    EndTask(taskMan);
 }
 
 static void Task_ButtonPressed(SysTask *task, void *taskMan)
@@ -288,7 +288,7 @@ static void Task_ButtonPressed(SysTask *task, void *taskMan)
 
     PoketchAnimation_UpdateAnimationIdx(graphics->animSpriteData[moveTesterData->lastButtonPressed], animIdx);
     PoketchSystem_PlaySoundEffect(SEQ_SE_DP_POKETCH_003);
-    EndPoketchTask(taskMan);
+    EndTask(taskMan);
 }
 
 static void Task_ButtonReleased(SysTask *task, void *taskMan)
@@ -298,7 +298,7 @@ static void Task_ButtonReleased(SysTask *task, void *taskMan)
     u32 animIdx = (moveTesterData->lastButtonPressed & 1) ? 2 : 0;
 
     PoketchAnimation_UpdateAnimationIdx(graphics->animSpriteData[moveTesterData->lastButtonPressed], animIdx);
-    EndPoketchTask(taskMan);
+    EndTask(taskMan);
 }
 
 static void Task_UpdateGraphics(SysTask *task, void *taskMan)
@@ -307,7 +307,7 @@ static void Task_UpdateGraphics(SysTask *task, void *taskMan)
     const MoveTesterData *moveTesterData = PoketchTask_GetConstTaskData(taskMan);
 
     UpdateGraphics(graphics, moveTesterData);
-    EndPoketchTask(taskMan);
+    EndTask(taskMan);
 }
 
 static void UpdateGraphics(PoketchMoveTesterGraphics *graphics, const MoveTesterData *moveTesterData)

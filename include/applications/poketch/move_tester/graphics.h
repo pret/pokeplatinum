@@ -1,14 +1,14 @@
 #ifndef POKEPLATINUM_POKETCH_MOVE_TESTER_GRAPHICS_H
 #define POKEPLATINUM_POKETCH_MOVE_TESTER_GRAPHICS_H
 
-#include "poketch/poketch_animation.h"
+#include "applications/poketch/poketch_animation.h"
 
 #include "bg_window.h"
 #include "message.h"
 
 #define MOVE_TESTER_NONE_SELECTED NUM_POKEMON_TYPES
 
-typedef struct PoketchMoveTesterGraphics PoketchMoveTesterGraphics;
+#define NUM_TASK_SLOTS 8
 
 typedef struct MoveTesterData {
     u32 lastButtonPressed;
@@ -18,10 +18,10 @@ typedef struct MoveTesterData {
     u16 defenderType2;
 } MoveTesterData;
 
-struct PoketchMoveTesterGraphics {
+typedef struct PoketchMoveTesterGraphics {
     const MoveTesterData *moveTesterData;
     BgConfig *bgConfig;
-    u32 activeTasks[10];
+    u32 activeTasks[2 + NUM_TASK_SLOTS];
     PoketchAnimation_AnimationManager *animMan;
     PoketchAnimation_AnimatedSpriteData *animSpriteData[6];
     PoketchAnimation_AnimatedSpriteData *exclamSprites[5];
@@ -33,7 +33,7 @@ struct PoketchMoveTesterGraphics {
     MessageLoader *msgLoaderTypes;
     MessageLoader *msgLoaderEffectiveness;
     Strbuf *strBuf;
-};
+} PoketchMoveTesterGraphics;
 
 enum MoveTesterGraphicsTasks {
     TASK_DRAW_APP_SCREEN = 0,
@@ -46,7 +46,7 @@ enum MoveTesterGraphicsTasks {
 BOOL PoketchMoveTesterGraphics_New(PoketchMoveTesterGraphics **graphics, const MoveTesterData *moveTesterData, BgConfig *bgConfig);
 void PoketchMoveTesterGraphics_Free(PoketchMoveTesterGraphics *graphics);
 void PoketchMoveTesterGraphics_StartTask(PoketchMoveTesterGraphics *graphics, enum MoveTesterGraphicsTasks taskID);
-BOOL PoketchMoveTesterGraphics_CheckTaskActive(PoketchMoveTesterGraphics *graphics, enum MoveTesterGraphicsTasks taskID);
+BOOL PoketchMoveTesterGraphics_TaskIsNotActive(PoketchMoveTesterGraphics *graphics, enum MoveTesterGraphicsTasks taskID);
 BOOL PoketchMoveTesterGraphics_NoActiveTasks(PoketchMoveTesterGraphics *graphics);
 
 #endif // POKEPLATINUM_POKETCH_MOVE_TESTER_GRAPHICS_H

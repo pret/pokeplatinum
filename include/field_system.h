@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_FIELD_SYSTEM_H
 #define POKEPLATINUM_FIELD_SYSTEM_H
 
+#include "applications/poketch/poketch_system.h"
 #include "field/field_system_decl.h"
-#include "poketch/poketch_system.h"
 
 #include "bg_window.h"
 #include "overlay_manager.h"

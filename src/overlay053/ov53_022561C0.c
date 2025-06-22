@@ -2,13 +2,13 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
+#include "applications/poketch/poketch_button.h"
+#include "applications/poketch/poketch_system.h"
 #include "field/field_system_decl.h"
 #include "overlay006/radar_chain_records.h"
 #include "overlay053/ov53_02256420.h"
 #include "overlay053/struct_ov53_02256420_1.h"
 #include "overlay053/struct_ov53_02256420_decl.h"
-#include "poketch/poketch_button.h"
-#include "poketch/poketch_system.h"
 
 #include "bg_window.h"
 #include "heap.h"

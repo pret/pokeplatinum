@@ -1,4 +1,4 @@
-#include "poketch/ov25_02255DBC.h"
+#include "applications/poketch/ov25_02255DBC.h"
 
 #include <nitro.h>
 #include <string.h>
