@@ -48,10 +48,10 @@ void sub_0205C980(u32 param0, int param1, StringTemplate *param2)
     }
 }
 
-int sub_0205C9BC(u32 param0, int param1, u32 param2)
+int TrainerInfo_GetAppearanceIndex(u32 trainerId, int trainerGender, u32 offset)
 {
-    int v0 = param0 % 8;
-    int v1 = Unk_020ED770[v0][param2] + 8 * param1;
+    int v0 = trainerId % 8;
+    int v1 = Unk_020ED770[v0][offset] + 8 * trainerGender;
 
     return Unk_020ED7F0[v1][0];
 }

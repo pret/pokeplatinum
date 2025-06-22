@@ -164,7 +164,7 @@ static void InitializeNewSave(enum HeapId heapID, SaveData *saveData, BOOL setTr
         TrainerInfo_SetID(trainerInfo, rnd);
     }
 
-    TrainerInfo_SetAppearance(trainerInfo, sub_0205C9BC(rnd, TrainerInfo_Gender(trainerInfo), 0));
+    TrainerInfo_SetAppearance(trainerInfo, TrainerInfo_GetAppearanceIndex(rnd, TrainerInfo_Gender(trainerInfo), 0));
 
     berryPatches = MiscSaveBlock_GetBerryPatches(saveData);
     BerryPatches_Init(berryPatches, heapID, (const u16 *)sBerryInitTable, NELEMS(sBerryInitTable));
