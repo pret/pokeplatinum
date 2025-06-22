@@ -11,7 +11,7 @@ typedef struct GameTime {
     RTCTime time;
     u32 day;
     s64 startTimestamp;
-    s64 playTimestamp;
+    s64 firstCompletionTimestamp; // the first time the hall of fame was entered
     u32 penaltyInMinutes;
 } GameTime;
 

@@ -95,7 +95,7 @@ void GameTime_Clear(GameTime *gameTime)
     GetCurrentDateTime(&gameTime->date, &gameTime->time);
     gameTime->day = RTC_ConvertDateToDay(&gameTime->date);
     gameTime->startTimestamp = RTC_ConvertDateTimeToSecond(&gameTime->date, &gameTime->time);
-    gameTime->playTimestamp = 0;
+    gameTime->firstCompletionTimestamp = 0;
     gameTime->penaltyInMinutes = 0;
 }
 

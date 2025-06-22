@@ -189,14 +189,14 @@ void sub_02055BF4(const FieldSystem *fieldSystem, RTCDate *param1, RTCTime *para
 void sub_02055C10(const FieldSystem *fieldSystem, RTCDate *param1, RTCTime *param2)
 {
     GameTime *v0 = SaveData_GetGameTime(fieldSystem->saveData);
-    RTC_ConvertSecondToDateTime(param1, param2, v0->playTimestamp);
+    RTC_ConvertSecondToDateTime(param1, param2, v0->firstCompletionTimestamp);
 }
 
-void sub_02055C2C(const FieldSystem *fieldSystem)
+void FieldSystem_RecordFirstCompletion(const FieldSystem *fieldSystem)
 {
     GameTime *v0 = SaveData_GetGameTime(fieldSystem->saveData);
 
-    v0->playTimestamp = GetTimestamp();
+    v0->firstCompletionTimestamp = GetTimestamp();
 }
 
 BOOL FieldSystem_HasPenalty(FieldSystem *fieldSystem)
