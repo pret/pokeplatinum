@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_02097728_H
 #define POKEPLATINUM_STRUCT_02097728_H
 
-#include "struct_decls/struct_02028430_decl.h"
 #include "struct_defs/mail.h"
 
 #include "savedata.h"
@@ -16,7 +15,7 @@ typedef struct {
     u8 unk_0F;
     SaveData *saveData;
     Mail *unk_14;
-    MailBox *unk_18;
+    Mailbox *mailbox;
 } UnkStruct_02097728;
 
 #endif // POKEPLATINUM_STRUCT_02097728_H

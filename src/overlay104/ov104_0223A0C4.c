@@ -939,10 +939,10 @@ FieldBattleDTO *ov104_0223A580(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_02230
     return v3;
 }
 
-static void ov104_0223A6AC(FieldBattleDTO *param0, UnkStruct_ov104_0223A348 *param1, int param2, int battlerId, int heapId)
+static void ov104_0223A6AC(FieldBattleDTO *param0, UnkStruct_ov104_0223A348 *param1, int param2, int battlerId, int heapID)
 {
-    ov104_0222E284(param0, &param1->unk_00, param2, battlerId, heapId);
-    Pokemon *mon = Pokemon_New(heapId);
+    ov104_0222E284(param0, &param1->unk_00, param2, battlerId, heapID);
+    Pokemon *mon = Pokemon_New(heapID);
 
     for (int v0 = 0; v0 < param2; v0++) {
         ov104_0222DF40(&param1->unk_30[v0], mon, 120);

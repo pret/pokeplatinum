@@ -28,6 +28,7 @@
 #include "gx_layers.h"
 #include "hardware_palette.h"
 #include "heap.h"
+#include "mail.h"
 #include "menu.h"
 #include "message.h"
 #include "narc.h"
@@ -52,14 +53,12 @@
 #include "unk_02015F84.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
-#include "unk_02028124.h"
 #include "unk_020393C8.h"
 #include "unk_0207C63C.h"
 #include "vram_transfer.h"
 
 #include "constdata/const_020F410C.h"
 
-UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Options *param3, int param4, Pokedex *param5, Bag *param6, GameRecords *records, Poketch *poketch, int param9, int param10, int heapID);
 static void sub_0207B0A0(SysTask *param0, void *param1);
 BOOL sub_0207B0D0(UnkStruct_0207AE68 *param0);
 void sub_0207B0E0(UnkStruct_0207AE68 *param0);
@@ -89,7 +88,7 @@ static const u8 Unk_020F0A2C[] = {
     0x8
 };
 
-UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Options *param3, int param4, Pokedex *param5, Bag *param6, GameRecords *records, Poketch *poketch, int param9, int param10, int heapID)
+UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Options *options, int param4, Pokedex *param5, Bag *param6, GameRecords *records, Poketch *poketch, int param9, int param10, int heapID)
 {
     UnkStruct_0207AE68 *v0;
     PokemonSpriteTemplate v1;
@@ -122,7 +121,7 @@ UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Opt
 
     v0->unk_00 = BgConfig_New(heapID);
     v0->unk_04 = Window_New(heapID, 1);
-    v0->unk_2C = param3;
+    v0->options = options;
     v0->unk_34 = sub_0207C690(heapID);
 
     sub_0207C63C();
@@ -498,7 +497,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
             PokemonSprite_SetAttribute(param0->unk_1C[0], MON_SPRITE_HIDE, 1);
             PokemonSprite_SetAttribute(param0->unk_1C[1], MON_SPRITE_HIDE, 1);
             param0->unk_3C->monData = param0->unk_28;
-            param0->unk_3C->options = param0->unk_2C;
+            param0->unk_3C->options = param0->options;
             param0->unk_3C->dataType = SUMMARY_DATA_MON;
             param0->unk_3C->monIndex = 0;
             param0->unk_3C->monMax = 1;
@@ -682,67 +681,66 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
 
 static void sub_0207C028(UnkStruct_0207AE68 *param0)
 {
-    int v0;
+    int i;
 
     switch (param0->unk_78) {
     case 13:
     case 14:
         if (Bag_GetItemQuantity(param0->unk_4C, ITEM_POKE_BALL, param0->heapID) && (Party_GetCurrentCount(param0->unk_24) < 6)) {
             {
-                Pokemon *v1;
-                int v2;
-                Mail *v3;
+                int value;
+                Mail *mail;
                 BallCapsule v4;
 
-                v1 = Pokemon_New(param0->heapID);
-                Pokemon_Copy(param0->unk_28, v1);
+                Pokemon *shedinja = Pokemon_New(param0->heapID);
+                Pokemon_Copy(param0->unk_28, shedinja);
 
-                v2 = SPECIES_SHEDINJA;
-                Pokemon_SetValue(v1, MON_DATA_SPECIES, &v2);
+                value = SPECIES_SHEDINJA;
+                Pokemon_SetValue(shedinja, MON_DATA_SPECIES, &value);
 
-                v2 = ITEM_POKE_BALL;
-                Pokemon_SetValue(v1, MON_DATA_POKEBALL, &v2);
+                value = ITEM_POKE_BALL;
+                Pokemon_SetValue(shedinja, MON_DATA_POKEBALL, &value);
 
-                v2 = 0;
-                Pokemon_SetValue(v1, MON_DATA_HELD_ITEM, &v2);
-                Pokemon_SetValue(v1, MON_DATA_MARKS, &v2);
+                value = 0;
+                Pokemon_SetValue(shedinja, MON_DATA_HELD_ITEM, &value);
+                Pokemon_SetValue(shedinja, MON_DATA_MARKS, &value);
 
-                for (v0 = MON_DATA_SINNOH_CHAMP_RIBBON; v0 < MON_DATA_SINNOH_RIBBON_DUMMY + 1; v0++) {
-                    Pokemon_SetValue(v1, v0, &v2);
+                for (i = MON_DATA_SINNOH_CHAMP_RIBBON; i < MON_DATA_SINNOH_RIBBON_DUMMY + 1; i++) {
+                    Pokemon_SetValue(shedinja, i, &value);
                 }
 
-                for (v0 = MON_DATA_HOENN_COOL_RIBBON; v0 < MON_DATA_HOENN_WORLD_RIBBON + 1; v0++) {
-                    Pokemon_SetValue(v1, v0, &v2);
+                for (i = MON_DATA_HOENN_COOL_RIBBON; i < MON_DATA_HOENN_WORLD_RIBBON + 1; i++) {
+                    Pokemon_SetValue(shedinja, i, &value);
                 }
 
-                for (v0 = MON_DATA_SINNOH_SUPER_COOL_RIBBON; v0 < MON_DATA_CONTEST_RIBBON_DUMMY + 1; v0++) {
-                    Pokemon_SetValue(v1, v0, &v2);
+                for (i = MON_DATA_SINNOH_SUPER_COOL_RIBBON; i < MON_DATA_CONTEST_RIBBON_DUMMY + 1; i++) {
+                    Pokemon_SetValue(shedinja, i, &value);
                 }
 
-                Pokemon_SetValue(v1, MON_DATA_SPECIES_NAME, NULL);
-                Pokemon_SetValue(v1, MON_DATA_HAS_NICKNAME, &v2);
-                Pokemon_SetValue(v1, MON_DATA_STATUS_CONDITION, &v2);
+                Pokemon_SetValue(shedinja, MON_DATA_SPECIES_NAME, NULL);
+                Pokemon_SetValue(shedinja, MON_DATA_HAS_NICKNAME, &value);
+                Pokemon_SetValue(shedinja, MON_DATA_STATUS_CONDITION, &value);
 
-                v3 = sub_0202818C(param0->heapID);
-                Pokemon_SetValue(v1, MON_DATA_MAIL, v3);
-                Heap_FreeToHeap(v3);
-                Pokemon_SetValue(v1, MON_DATA_BALL_CAPSULE_ID, &v2);
+                mail = Mail_New(param0->heapID);
+                Pokemon_SetValue(shedinja, MON_DATA_MAIL, mail);
+                Heap_FreeToHeap(mail);
+                Pokemon_SetValue(shedinja, MON_DATA_BALL_CAPSULE_ID, &value);
 
                 MI_CpuClearFast(&v4, sizeof(BallCapsule));
 
-                Pokemon_SetValue(v1, MON_DATA_BALL_CAPSULE, (BallCapsule *)&v4);
-                Pokemon_CalcAbility(v1);
+                Pokemon_SetValue(shedinja, MON_DATA_BALL_CAPSULE, (BallCapsule *)&v4);
+                Pokemon_CalcAbility(shedinja);
 
-                v0 = Pokemon_GetGender(v1);
-                Pokemon_SetValue(v1, MON_DATA_GENDER, &v0);
+                i = Pokemon_GetGender(shedinja);
+                Pokemon_SetValue(shedinja, MON_DATA_GENDER, &i);
 
-                Pokemon_CalcLevelAndStats(v1);
-                Party_AddPokemon(param0->unk_24, v1);
-                Pokedex_Capture(param0->unk_48, v1);
+                Pokemon_CalcLevelAndStats(shedinja);
+                Party_AddPokemon(param0->unk_24, shedinja);
+                Pokedex_Capture(param0->unk_48, shedinja);
                 GameRecords_IncrementRecordValue(param0->records, RECORD_UNK_012);
                 GameRecords_IncrementTrainerScore(param0->records, TRAINER_SCORE_EVENT_CAUGHT_SPECIES);
-                Poketch_PokemonHistoryEnqueue(param0->poketch, Pokemon_GetBoxPokemon(v1));
-                Heap_FreeToHeap(v1);
+                Poketch_PokemonHistoryEnqueue(param0->poketch, Pokemon_GetBoxPokemon(shedinja));
+                Heap_FreeToHeap(shedinja);
                 Bag_TryRemoveItem(param0->unk_4C, ITEM_POKE_BALL, 1, param0->heapID);
             }
         }
@@ -750,8 +748,8 @@ static void sub_0207C028(UnkStruct_0207AE68 *param0)
     case 6:
     case 18:
     case 19:
-        v0 = 0;
-        Pokemon_SetValue(param0->unk_28, MON_DATA_HELD_ITEM, &v0);
+        i = 0;
+        Pokemon_SetValue(param0->unk_28, MON_DATA_HELD_ITEM, &i);
         break;
     }
 }
@@ -884,7 +882,7 @@ static void sub_0207C1CC(UnkStruct_0207AE68 *param0, BgConfig *param1)
         int v8 = 8;
         int v9 = 3;
 
-        v4 = Options_Frame(param0->unk_2C);
+        v4 = Options_Frame(param0->options);
 
         ReplaceTransparentTiles(param1, 1, 1, 10, v4, param0->heapID);
         Graphics_LoadTilesToBgLayer(v5, v6, param1, v9, 0, 0, 1, param0->heapID);
@@ -977,7 +975,7 @@ static u8 sub_0207C584(UnkStruct_0207AE68 *param0, int param1)
     Heap_FreeToHeap(v0);
     Window_FillTilemap(param0->unk_04, 0xff);
 
-    return Text_AddPrinterWithParams(param0->unk_04, FONT_MESSAGE, param0->unk_10, 0, 0, Options_TextFrameDelay(param0->unk_2C), sub_0207C5CC);
+    return Text_AddPrinterWithParams(param0->unk_04, FONT_MESSAGE, param0->unk_10, 0, 0, Options_TextFrameDelay(param0->options), sub_0207C5CC);
 }
 
 static BOOL sub_0207C5CC(TextPrinterTemplate *param0, u16 param1)

@@ -13,7 +13,7 @@ typedef struct {
     Pokemon *unk_04[6];
     Party *unk_1C;
     SealCase *unk_20;
-    Options *unk_24;
+    Options *options;
     SaveData *saveData;
     u8 unk_2C;
     u8 unk_2D;

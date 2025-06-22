@@ -299,11 +299,11 @@ void PoketchAnimation_SetSpriteRotation(PoketchAnimation_AnimatedSpriteData *ani
     animatedSprite->rotZ = rotation;
 }
 
-BOOL PoketchAnimation_LoadSpriteFromNARC(PoketchAnimation_SpriteData *spriteData, enum NarcID narcId, u32 spriteId, u32 animId, enum HeapId heapId)
+BOOL PoketchAnimation_LoadSpriteFromNARC(PoketchAnimation_SpriteData *spriteData, enum NarcID narcID, u32 spriteID, u32 animID, enum HeapId heapID)
 {
-    spriteData->heapID = heapId;
-    spriteData->compressedSprite = LoadCompressedMemberFromNARC(narcId, spriteId, heapId);
-    spriteData->compressedAnim = LoadCompressedMemberFromNARC(narcId, animId, heapId);
+    spriteData->heapID = heapID;
+    spriteData->compressedSprite = LoadCompressedMemberFromNARC(narcID, spriteID, heapID);
+    spriteData->compressedAnim = LoadCompressedMemberFromNARC(narcID, animID, heapID);
 
     if ((spriteData->compressedSprite != NULL) && (spriteData->compressedAnim != NULL)) {
         if (!NNS_G2dGetUnpackedCellBank(spriteData->compressedSprite, &(spriteData->cell))) {

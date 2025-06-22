@@ -34,6 +34,7 @@
 #include "game_options.h"
 #include "heap.h"
 #include "item.h"
+#include "mail.h"
 #include "map_header.h"
 #include "map_header_data.h"
 #include "map_object.h"
@@ -53,7 +54,6 @@
 #include "system_flags.h"
 #include "system_vars.h"
 #include "terrain_collision_manager.h"
-#include "unk_02028124.h"
 #include "unk_0203C954.h"
 #include "unk_0203D1B8.h"
 #include "unk_020553DC.h"
@@ -341,7 +341,7 @@ static void sub_02068630(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 
     partyMan->party = SaveData_GetParty(fieldSystem->saveData);
     partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
-    partyMan->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+    partyMan->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
     partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
     partyMan->broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
     partyMan->fieldMoveContext = &menu->fieldMoveContext;
@@ -590,7 +590,7 @@ static void sub_02068A34(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 
     partyMan->party = SaveData_GetParty(fieldSystem->saveData);
     partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
-    partyMan->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+    partyMan->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
     partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
     partyMan->fieldMoveContext = &menu->fieldMoveContext;
     partyMan->unk_21 = 0;
@@ -936,12 +936,10 @@ static BOOL sub_02068F48(FieldTask *task)
         MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
         FieldMessage_AddWindow(fieldSystem->bgConfig, &v1->unk_00, 3);
 
-        {
-            const Options *v2 = SaveData_GetOptions(fieldSystem->saveData);
+        const Options *options = SaveData_GetOptions(fieldSystem->saveData);
 
-            FieldMessage_DrawWindow(&v1->unk_00, v2);
-            v1->unk_14 = FieldMessage_Print(&v1->unk_00, v1->unk_10, v2, 1);
-        }
+        FieldMessage_DrawWindow(&v1->unk_00, options);
+        v1->unk_14 = FieldMessage_Print(&v1->unk_00, v1->unk_10, options, 1);
         v1->unk_16++;
         break;
     case 1:
@@ -978,7 +976,7 @@ static void sub_02068FEC(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 
     partyMan->party = SaveData_GetParty(fieldSystem->saveData);
     partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
-    partyMan->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+    partyMan->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
     partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
     partyMan->broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
     partyMan->fieldMoveContext = &menu->fieldMoveContext;

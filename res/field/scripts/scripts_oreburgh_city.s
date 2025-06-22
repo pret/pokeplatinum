@@ -80,7 +80,7 @@ _00D7:
     LockAll
     ClearFlag FLAG_UNK_0x017C
     ScrCmd_188 3, 16
-    ScrCmd_189 3, 2
+    SetObjectEventDir 3, DIR_WEST
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 0x2EC, _011E
     GoToIfEq VAR_0x8005, 0x2ED, _0144

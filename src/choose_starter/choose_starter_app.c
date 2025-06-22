@@ -249,7 +249,7 @@ static void MakeSprite(ChooseStarterApp *app, enum HeapId heapID);
 static void ov78_021D14BC(ChooseStarterApp *param0);
 static void MakeSpriteDisplay(ChooseStarterApp *app, enum HeapId heapID);
 static void ov78_021D1518(ChooseStarterApp *param0);
-static void MakeCellActors(ChooseStarterApp *param0, int param1);
+static void MakeCellActors(ChooseStarterApp *param0, int heapID);
 static void ov78_021D1594(ChooseStarterApp *param0);
 static void MakeCamera(ChooseStarterApp *param0, int param1);
 static void ov78_021D1B3C(Camera *camera, VecFx32 *param1);
@@ -737,13 +737,13 @@ static void ov78_021D1518(ChooseStarterApp *param0)
     sub_020150A8(param0->spriteDisplay);
 }
 
-static void MakeCellActors(ChooseStarterApp *param0, int param1)
+static void MakeCellActors(ChooseStarterApp *param0, int heapID)
 {
-    param0->unk_248 = SpriteList_InitRendering(2, &param0->unk_BC, param1);
-    param0->unk_24C[0] = SpriteResourceCollection_New(2, 0, param1);
-    param0->unk_24C[1] = SpriteResourceCollection_New(2, 1, param1);
-    param0->unk_24C[2] = SpriteResourceCollection_New(2, 2, param1);
-    param0->unk_24C[3] = SpriteResourceCollection_New(2, 3, param1);
+    param0->unk_248 = SpriteList_InitRendering(2, &param0->unk_BC, heapID);
+    param0->unk_24C[0] = SpriteResourceCollection_New(2, 0, heapID);
+    param0->unk_24C[1] = SpriteResourceCollection_New(2, 1, heapID);
+    param0->unk_24C[2] = SpriteResourceCollection_New(2, 2, heapID);
+    param0->unk_24C[3] = SpriteResourceCollection_New(2, 3, heapID);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);

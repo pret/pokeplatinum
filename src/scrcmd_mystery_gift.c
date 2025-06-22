@@ -304,7 +304,7 @@ static void GivePokemon(FieldSystem *fieldSystem, GiftData *dummy)
     BOOL added = Party_AddPokemon(party, pokemon);
 
     if (added) {
-        sub_0202F180(fieldSystem->saveData, pokemon);
+        SaveData_UpdateCatchRecords(fieldSystem->saveData, pokemon);
     }
 
     if (tmpPoke) {

@@ -252,9 +252,9 @@ static void ov64_0222E21C(UnkStruct_ov64_0222E21C *param0);
 static void ov64_0222E228(UnkStruct_ov64_0222E21C *param0);
 static void ov64_0222E23C(UnkStruct_ov64_0222E21C *param0);
 static void ov64_0222E270(void);
-static void ov64_0222E290(UnkStruct_ov64_0222E21C *param0, u32 param1);
+static void ov64_0222E290(UnkStruct_ov64_0222E21C *param0, u32 heapID);
 static void ov64_0222E3AC(UnkStruct_ov64_0222E21C *param0);
-static void ov64_0222E3D8(UnkStruct_ov64_0222E21C *param0, u32 param1);
+static void ov64_0222E3D8(UnkStruct_ov64_0222E21C *param0, u32 heapID);
 static void ov64_0222E570(UnkStruct_ov64_0222E21C *param0);
 static void ov64_0222E5D8(UnkStruct_ov64_0222E21C *param0, u32 param1);
 static void ov64_0222E604(UnkStruct_ov64_0222E21C *param0);
@@ -336,13 +336,13 @@ static void ov64_02230804(UnkStruct_ov64_02230620 *param0, UnkStruct_ov64_0222E0
 static void ov64_0223081C(UnkStruct_ov64_02230620 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2);
 static void ov64_0223087C(UnkStruct_ov64_02230620 *param0, UnkStruct_ov64_0222E21C *param1);
 static void ov64_022308DC(UnkStruct_ov64_02230904 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2, u32 heapID);
-static int ov64_02230904(UnkStruct_ov64_02230904 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2, u32 param3);
+static int ov64_02230904(UnkStruct_ov64_02230904 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2, u32 heapID);
 static void ov64_02230A50(UnkStruct_ov64_02230904 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2);
 static void ov64_02230A58(UnkStruct_ov64_02230904 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2, u32 param3);
 static BOOL ov64_02230A9C(UnkStruct_ov64_02230904 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2, u32 param3);
 static void ov64_02230B1C(UnkStruct_ov64_02230904 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2, u32 heapID);
 static void ov64_02230BA0(UnkStruct_ov64_02230904 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2);
-static void ov64_02230BD8(UnkStruct_ov64_02230904 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2, u32 param3);
+static void ov64_02230BD8(UnkStruct_ov64_02230904 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2, u32 heapID);
 static void ov64_02230C1C(UnkStruct_ov64_02230904 *param0, UnkStruct_ov64_0222E21C *param1);
 static void ov64_02230C50(UnkStruct_ov64_02230904 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2, u32 param3, u32 param4, u32 param5);
 static void ov64_02230C8C(UnkStruct_ov64_02230904 *param0, UnkStruct_ov64_0222E21C *param1, u32 param2, u32 param3);
@@ -632,7 +632,7 @@ int ov64_0222DDAC(ApplicationManager *appMan, int *param1)
             v1 = ov64_02230628(&v0->unk_41C, &v0->unk_28C, &v0->unk_04);
             break;
         case 4:
-            v1 = ov64_02230904(&v0->unk_444, &v0->unk_28C, &v0->unk_04, 52);
+            v1 = ov64_02230904(&v0->unk_444, &v0->unk_28C, &v0->unk_04, HEAP_ID_52);
             break;
         case 5:
             return 1;
@@ -889,11 +889,11 @@ static void ov64_0222E270(void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov64_0222E290(UnkStruct_ov64_0222E21C *param0, u32 param1)
+static void ov64_0222E290(UnkStruct_ov64_0222E21C *param0, u32 heapID)
 {
     int v0;
 
-    param0->unk_00 = BgConfig_New(param1);
+    param0->unk_00 = BgConfig_New(heapID);
 
     {
         GraphicsModes v1 = {
@@ -908,19 +908,19 @@ static void ov64_0222E290(UnkStruct_ov64_0222E21C *param0, u32 param1)
 
     for (v0 = 0; v0 < 5; v0++) {
         Bg_InitFromTemplate(param0->unk_00, Unk_ov64_02232258[v0], &Unk_ov64_02232390[v0], 0);
-        Bg_ClearTilesRange(Unk_ov64_02232258[v0], 32, 0, param1);
+        Bg_ClearTilesRange(Unk_ov64_02232258[v0], 32, 0, heapID);
         Bg_ClearTilemap(param0->unk_00, Unk_ov64_02232258[v0]);
     }
 
-    Graphics_LoadPaletteFromOpenNARC(param0->unk_21C, 0, 0, 0, ((6 + 1) - 0) * 32, param1);
-    Graphics_LoadPaletteFromOpenNARC(param0->unk_21C, 0, 4, 0, ((4 + 1) - 0) * 32, param1);
+    Graphics_LoadPaletteFromOpenNARC(param0->unk_21C, 0, 0, 0, ((6 + 1) - 0) * 32, heapID);
+    Graphics_LoadPaletteFromOpenNARC(param0->unk_21C, 0, 4, 0, ((4 + 1) - 0) * 32, heapID);
 
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_21C, 18, param0->unk_00, Unk_ov64_02232258[0], 0, 0, 0, param1);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_21C, 18, param0->unk_00, Unk_ov64_02232258[2], 0, 0, 0, param1);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_21C, 13, param0->unk_00, Unk_ov64_02232258[4], 0, 0, 0, param1);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_21C, 18, param0->unk_00, Unk_ov64_02232258[0], 0, 0, 0, heapID);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_21C, 18, param0->unk_00, Unk_ov64_02232258[2], 0, 0, 0, heapID);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_21C, 13, param0->unk_00, Unk_ov64_02232258[4], 0, 0, 0, heapID);
 
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_21C, 12, param0->unk_00, Unk_ov64_02232258[0], 0, 0, 0, param1);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_21C, 14, param0->unk_00, Unk_ov64_02232258[4], 0, 0, 0, param1);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_21C, 12, param0->unk_00, Unk_ov64_02232258[0], 0, 0, 0, heapID);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_21C, 14, param0->unk_00, Unk_ov64_02232258[4], 0, 0, 0, heapID);
 }
 
 static void ov64_0222E3AC(UnkStruct_ov64_0222E21C *param0)
@@ -935,41 +935,41 @@ static void ov64_0222E3AC(UnkStruct_ov64_0222E21C *param0)
     param0->unk_00 = NULL;
 }
 
-static void ov64_0222E3D8(UnkStruct_ov64_0222E21C *param0, u32 param1)
+static void ov64_0222E3D8(UnkStruct_ov64_0222E21C *param0, u32 heapID)
 {
     int v0;
     BOOL v1;
 
     NNS_G2dInitOamManagerModule();
 
-    VramTransfer_New(16, param1);
-    RenderOam_Init(0, 126, 0, 30, 0, 126, 0, 30, param1);
+    VramTransfer_New(16, heapID);
+    RenderOam_Init(0, 126, 0, 30, 0, 126, 0, 30, heapID);
 
     {
         CharTransferTemplate v2 = {
             64, 0x14000, 0, 0
         };
 
-        v2.heapID = param1;
+        v2.heapID = heapID;
         CharTransfer_InitWithVramModes(&v2, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_128K);
     }
 
-    PlttTransfer_Init(64, param1);
+    PlttTransfer_Init(64, heapID);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
 
-    param0->unk_04 = SpriteList_InitRendering(64, &param0->unk_78, param1);
+    param0->unk_04 = SpriteList_InitRendering(64, &param0->unk_78, heapID);
 
     RenderOam_InitSurface(&param0->unk_08, &Unk_ov64_02232460, NNS_G2D_SURFACETYPE_MAIN2D, &param0->unk_78.renderer);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_204[v0] = SpriteResourceCollection_New(64, v0, param1);
+        param0->unk_204[v0] = SpriteResourceCollection_New(64, v0, heapID);
     }
 
-    param0->unk_260[0] = SpriteResourceCollection_AddTilesFrom(param0->unk_204[0], param0->unk_21C, 15, 0, 100, NNS_G2D_VRAM_TYPE_2DMAIN, param1);
-    param0->unk_260[1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_204[1], param0->unk_21C, 0, 0, 100, NNS_G2D_VRAM_TYPE_2DMAIN, 5, param1);
-    param0->unk_260[2] = SpriteResourceCollection_AddFrom(param0->unk_204[2], param0->unk_21C, 16, 0, 100, 2, param1);
-    param0->unk_260[3] = SpriteResourceCollection_AddFrom(param0->unk_204[3], param0->unk_21C, 17, 0, 100, 3, param1);
+    param0->unk_260[0] = SpriteResourceCollection_AddTilesFrom(param0->unk_204[0], param0->unk_21C, 15, 0, 100, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
+    param0->unk_260[1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_204[1], param0->unk_21C, 0, 0, 100, NNS_G2D_VRAM_TYPE_2DMAIN, 5, heapID);
+    param0->unk_260[2] = SpriteResourceCollection_AddFrom(param0->unk_204[2], param0->unk_21C, 16, 0, 100, 2, heapID);
+    param0->unk_260[3] = SpriteResourceCollection_AddFrom(param0->unk_204[3], param0->unk_21C, 17, 0, 100, 3, heapID);
 
     v1 = SpriteTransfer_RequestCharAtEnd(param0->unk_260[0]);
     GF_ASSERT(v1);
@@ -1097,22 +1097,19 @@ static void ov64_0222E7F8(UnkStruct_ov64_0222E21C *param0, u64 param1)
     StringTemplate_SetNumber(param0->unk_214, 3, v0, 4, 2, 1);
 }
 
-static void ov64_0222E880(UnkStruct_ov64_0222E21C *param0, SaveData *saveData, u32 param2, u32 param3)
+static void ov64_0222E880(UnkStruct_ov64_0222E21C *param0, SaveData *saveData, u32 param2, u32 heapID)
 {
-    WiFiList *v0;
-    TrainerInfo *v1;
-
-    v0 = SaveData_GetWiFiList(saveData);
-    v1 = TrainerInfo_New(param3);
+    WiFiList *v0 = SaveData_GetWiFiList(saveData);
+    TrainerInfo *v1 = TrainerInfo_New(heapID);
 
     TrainerInfo_SetName(v1, sub_0202AEF0(v0, param2));
     StringTemplate_SetPlayerName(param0->unk_214, 0, v1);
     Heap_FreeToHeap(v1);
 }
 
-static void ov64_0222E8C0(UnkStruct_ov64_0222E21C *param0, SaveData *saveData, u32 param2, u32 param3)
+static void ov64_0222E8C0(UnkStruct_ov64_0222E21C *param0, SaveData *saveData, u32 param2, u32 heapID)
 {
-    TrainerInfo *v0 = TrainerInfo_New(param3);
+    TrainerInfo *v0 = TrainerInfo_New(heapID);
     WiFiList *v1 = SaveData_GetWiFiList(saveData);
 
     TrainerInfo_SetName(v0, sub_0202AF34(v1, param2));
@@ -3117,7 +3114,7 @@ static void ov64_022308DC(UnkStruct_ov64_02230904 *param0, UnkStruct_ov64_0222E0
     ov64_02230B1C(param0, param1, param2, heapID);
 }
 
-static int ov64_02230904(UnkStruct_ov64_02230904 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2, u32 param3)
+static int ov64_02230904(UnkStruct_ov64_02230904 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2, u32 heapID)
 {
     BOOL v0;
 
@@ -3126,7 +3123,7 @@ static int ov64_02230904(UnkStruct_ov64_02230904 *param0, UnkStruct_ov64_0222E06
         param0->unk_0E = 0;
         param0->unk_00 = 0;
     case 1:
-        ov64_02230BD8(param0, param1, param2, param3);
+        ov64_02230BD8(param0, param1, param2, heapID);
         param1->unk_04 = 2;
         break;
     case 2:
@@ -3158,12 +3155,12 @@ static int ov64_02230904(UnkStruct_ov64_02230904 *param0, UnkStruct_ov64_0222E06
         }
         break;
     case 3:
-        ov64_02230A58(param0, param1, param2, param3);
-        ov64_02230A9C(param0, param1, param2, param3);
+        ov64_02230A58(param0, param1, param2, heapID);
+        ov64_02230A9C(param0, param1, param2, heapID);
         param1->unk_04 = 4;
         break;
     case 4:
-        v0 = ov64_02230A9C(param0, param1, param2, param3);
+        v0 = ov64_02230A9C(param0, param1, param2, heapID);
 
         if (v0 == 1) {
             param1->unk_04 = 2;
@@ -3307,11 +3304,11 @@ static void ov64_02230BA0(UnkStruct_ov64_02230904 *param0, UnkStruct_ov64_0222E0
     ov64_02230F60(&param0->unk_DC);
 }
 
-static void ov64_02230BD8(UnkStruct_ov64_02230904 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2, u32 param3)
+static void ov64_02230BD8(UnkStruct_ov64_02230904 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2, u32 heapID)
 {
-    ov64_0222E880(param2, param1->saveData, param1->unk_08.unk_04[param1->unk_07], param3);
+    ov64_0222E880(param2, param1->saveData, param1->unk_08.unk_04[param1->unk_07], heapID);
     ov64_0222E738(param2, 13);
-    ov64_02230C50(param0, param1, param2, 0, param0->unk_00, param3);
+    ov64_02230C50(param0, param1, param2, 0, param0->unk_00, heapID);
     ov64_0222EA28(param2, 1);
 }
 

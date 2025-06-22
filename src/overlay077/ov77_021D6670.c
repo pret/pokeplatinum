@@ -181,8 +181,8 @@ void ov77_021D67B0(UnkStruct_ov77_021D670C *param0)
 
 static void ov77_021D6800(UnkStruct_ov77_021D6800 *param0)
 {
-    int v0;
-    const int v1 = 76;
+    int i;
+    const int heapID = HEAP_ID_76;
 
     GX_SetOBJVRamModeChar(GX_OBJVRAMMODE_CHAR_1D_32K);
     GXS_SetOBJVRamModeChar(GX_OBJVRAMMODE_CHAR_1D_32K);
@@ -190,18 +190,18 @@ static void ov77_021D6800(UnkStruct_ov77_021D6800 *param0)
     ov77_021D6670();
 
     NNS_G2dInitOamManagerModule();
-    RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, v1);
+    RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, heapID);
 
-    param0->unk_00 = SpriteList_InitRendering(10, &param0->unk_04, v1);
+    param0->unk_00 = SpriteList_InitRendering(10, &param0->unk_04, heapID);
 
-    for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_190[v0] = SpriteResourceCollection_New(Unk_ov77_021D7930[v0], v0, v1);
+    for (i = 0; i < 4; i++) {
+        param0->unk_190[i] = SpriteResourceCollection_New(Unk_ov77_021D7930[i], i, heapID);
     }
 
-    param0->unk_1A0[0] = SpriteResourceCollection_AddTiles(param0->unk_190[0], 128, 4, 0, 0, NNS_G2D_VRAM_TYPE_MAX, v1);
-    param0->unk_1A0[1] = SpriteResourceCollection_AddPalette(param0->unk_190[1], 128, 3, 0, 0, NNS_G2D_VRAM_TYPE_MAX, 1, v1);
-    param0->unk_1A0[2] = SpriteResourceCollection_Add(param0->unk_190[2], 128, 5, 0, 0, 2, v1);
-    param0->unk_1A0[3] = SpriteResourceCollection_Add(param0->unk_190[3], 128, 6, 0, 0, 3, v1);
+    param0->unk_1A0[0] = SpriteResourceCollection_AddTiles(param0->unk_190[0], 128, 4, 0, 0, NNS_G2D_VRAM_TYPE_MAX, heapID);
+    param0->unk_1A0[1] = SpriteResourceCollection_AddPalette(param0->unk_190[1], 128, 3, 0, 0, NNS_G2D_VRAM_TYPE_MAX, 1, heapID);
+    param0->unk_1A0[2] = SpriteResourceCollection_Add(param0->unk_190[2], 128, 5, 0, 0, 2, heapID);
+    param0->unk_1A0[3] = SpriteResourceCollection_Add(param0->unk_190[3], 128, 6, 0, 0, 3, heapID);
 
     SpriteTransfer_RequestChar(param0->unk_1A0[0]);
     SpriteTransfer_RequestPlttWholeRange(param0->unk_1A0[1]);

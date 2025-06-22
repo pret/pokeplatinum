@@ -24,7 +24,6 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_02028430_decl.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
@@ -38,6 +37,7 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/choose_starter_data.h"
 #include "struct_defs/daycare.h"
+#include "struct_defs/mail.h"
 #include "struct_defs/seal_case.h"
 #include "struct_defs/special_encounter.h"
 #include "struct_defs/struct_0202DF8C.h"
@@ -63,11 +63,11 @@
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/ov5_021EA874.h"
 #include "overlay005/ov5_021ECC20.h"
-#include "overlay005/ov5_021EE7D4.h"
 #include "overlay005/ov5_021F6454.h"
 #include "overlay005/save_info_window.h"
 #include "overlay005/scrcmd_move_tutor.h"
 #include "overlay005/signpost.h"
+#include "overlay005/size_contest.h"
 #include "overlay005/struct_ov5_021DD42C.h"
 #include "overlay005/vs_seeker.h"
 #include "overlay006/npc_trade.h"
@@ -118,6 +118,7 @@
 #include "items.h"
 #include "journal.h"
 #include "location.h"
+#include "mail.h"
 #include "map_header_data.h"
 #include "map_object.h"
 #include "map_object_move.h"
@@ -141,6 +142,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "scrcmd_amity_square.h"
+#include "scrcmd_catching_show.h"
 #include "scrcmd_coins.h"
 #include "scrcmd_daycare.h"
 #include "scrcmd_dummy_23F_242.h"
@@ -168,7 +170,6 @@
 #include "trainer_data.h"
 #include "trainer_info.h"
 #include "unk_02014D38.h"
-#include "unk_02028124.h"
 #include "unk_0202854C.h"
 #include "unk_020298BC.h"
 #include "unk_0202ACE0.h"
@@ -188,7 +189,6 @@
 #include "unk_020494DC.h"
 #include "unk_0204AEE8.h"
 #include "unk_0204B64C.h"
-#include "unk_0204C500.h"
 #include "unk_0204CFFC.h"
 #include "unk_0204E240.h"
 #include "unk_0204E974.h"
@@ -501,7 +501,7 @@ static BOOL ScrCmd_152(ScriptContext *ctx);
 static BOOL ScrCmd_SetObjectEventPos(ScriptContext *ctx);
 static BOOL ScrCmd_187(ScriptContext *ctx);
 static BOOL ScrCmd_188(ScriptContext *ctx);
-static BOOL ScrCmd_189(ScriptContext *ctx);
+static BOOL ScrCmd_SetObjectEventDir(ScriptContext *ctx);
 static BOOL ScrCmd_SetWarpEventPos(ScriptContext *ctx);
 static BOOL ScrCmd_18B(ScriptContext *ctx);
 static BOOL ScrCmd_18C(ScriptContext *ctx);
@@ -557,10 +557,10 @@ static BOOL ScrCmd_1B5(ScriptContext *ctx);
 static BOOL ScrCmd_GetTimeOfDay(ScriptContext *ctx);
 static BOOL ScrCmd_GetRandom(ScriptContext *ctx);
 static BOOL ScrCmd_GetRandom2(ScriptContext *ctx);
-static BOOL ScrCmd_1C1(ScriptContext *ctx);
-static BOOL ScrCmd_1C2(ScriptContext *ctx);
-static BOOL ScrCmd_1C3(ScriptContext *ctx);
-static BOOL ScrCmd_1C4(ScriptContext *ctx);
+static BOOL ScrCmd_CalcSizeContestResult(ScriptContext *ctx);
+static BOOL ScrCmd_UpdateSizeContestRecord(ScriptContext *ctx);
+static BOOL ScrCmd_BufferPartyPokemonSize(ScriptContext *ctx);
+static BOOL ScrCmd_BufferSizeContestRecord(ScriptContext *ctx);
 static BOOL ScrCmd_InitSizeContestRecord(ScriptContext *ctx);
 static BOOL ScrCmd_GiveJournal(ScriptContext *ctx);
 static BOOL ScrCmd_CreateJournalEvent(ScriptContext *ctx);
@@ -569,7 +569,7 @@ static BOOL ScrCmd_1D2(ScriptContext *ctx);
 static BOOL ScrCmd_CanFitAccessory(ScriptContext *ctx);
 static BOOL ScrCmd_1D4(ScriptContext *ctx);
 static BOOL ScrCmd_1D5(ScriptContext *ctx);
-static BOOL ScrCmd_1D6(ScriptContext *ctx);
+static BOOL ScrCmd_CheckBackdrop(ScriptContext *ctx);
 static BOOL ScrCmd_192(ScriptContext *ctx);
 static BOOL ScrCmd_194(ScriptContext *ctx);
 static BOOL ScrCmd_195(ScriptContext *ctx);
@@ -631,7 +631,7 @@ static BOOL ScrCmd_24A(ScriptContext *ctx);
 static BOOL ScrCmd_24B(ScriptContext *ctx);
 static BOOL ScrCmd_24C(ScriptContext *ctx);
 static BOOL ScrCmd_24D(ScriptContext *ctx);
-static BOOL ScrCmd_252(ScriptContext *ctx);
+static BOOL ScrCmd_GetPCBoxesFreeSlotCount(ScriptContext *ctx);
 static BOOL ScrCmd_258(ScriptContext *ctx);
 static BOOL ScrCmd_259(ScriptContext *ctx);
 static BOOL ScrCmd_25A(ScriptContext *ctx);
@@ -1162,7 +1162,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_SetObjectEventPos,
     ScrCmd_187,
     ScrCmd_188,
-    ScrCmd_189,
+    ScrCmd_SetObjectEventDir,
     ScrCmd_SetWarpEventPos,
     ScrCmd_18B,
     ScrCmd_18C,
@@ -1218,10 +1218,10 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetDaycareCompatibilityLevel,
     ScrCmd_CheckDaycareHasEgg,
     ScrCmd_CheckPartyHasSpecies,
-    ScrCmd_1C1,
-    ScrCmd_1C2,
-    ScrCmd_1C3,
-    ScrCmd_1C4,
+    ScrCmd_CalcSizeContestResult,
+    ScrCmd_UpdateSizeContestRecord,
+    ScrCmd_BufferPartyPokemonSize,
+    ScrCmd_BufferSizeContestRecord,
     ScrCmd_InitSizeContestRecord,
     ScrCmd_SelectPartyMonMove,
     ScrCmd_GetSelectedPartyMonMove,
@@ -1239,7 +1239,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_CanFitAccessory,
     ScrCmd_1D4,
     ScrCmd_1D5,
-    ScrCmd_1D6,
+    ScrCmd_CheckBackdrop,
     ScrCmd_1D7,
     ScrCmd_1D8,
     ScrCmd_1D9,
@@ -1363,10 +1363,10 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_CheckForJubilifeLotteryWinner,
     ScrCmd_RandomizeJubilifeLottery,
     ScrCmd_251,
-    ScrCmd_252,
-    ScrCmd_253,
-    ScrCmd_254,
-    ScrCmd_255,
+    ScrCmd_GetPCBoxesFreeSlotCount,
+    ScrCmd_SetClearInCatchingShowFlag,
+    ScrCmd_CheckHasEnoughMonForCatchingShow,
+    ScrCmd_MoveCatchingShowMonsToPCBoxes,
     ScrCmd_CalcCatchingShowPoints,
     ScrCmd_ShowAccessoryShop,
     ScrCmd_258,
@@ -5452,12 +5452,12 @@ static BOOL ScrCmd_188(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_189(ScriptContext *ctx)
+static BOOL ScrCmd_SetObjectEventDir(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
-    u16 v1 = ScriptContext_GetVar(ctx);
+    u16 localID = ScriptContext_GetVar(ctx);
+    u16 dir = ScriptContext_GetVar(ctx);
 
-    MapHeaderData_SetObjectEventDir(ctx->fieldSystem, v0, v1);
+    MapHeaderData_SetObjectEventDir(ctx->fieldSystem, localID, dir);
     return FALSE;
 }
 
@@ -5770,10 +5770,10 @@ static BOOL ScrCmd_1B3(ScriptContext *ctx)
 static BOOL ScrCmd_1B4(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
-    MailBox *v2 = SaveData_GetMailBox(fieldSystem->saveData);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    Mailbox *mailbox = SaveData_GetMailbox(fieldSystem->saveData);
 
-    *v1 = (u16)sub_02028494(v2, 0);
+    *destVar = (u16)sub_02028494(mailbox, 0);
     return FALSE;
 }
 
@@ -5814,46 +5814,46 @@ static BOOL ScrCmd_GetRandom2(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_1C1(ScriptContext *ctx)
+static BOOL ScrCmd_CalcSizeContestResult(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
-    u16 v2 = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    u16 partySlot = ScriptContext_GetVar(ctx);
 
-    *v1 = ov5_021EE920(fieldSystem, v2);
+    *destVar = SizeContest_CalcResultForPartyMon(fieldSystem, partySlot);
 
     return FALSE;
 }
 
-static BOOL ScrCmd_1C2(ScriptContext *ctx)
+static BOOL ScrCmd_UpdateSizeContestRecord(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 v2 = ScriptContext_GetVar(ctx);
+    u16 partySlot = ScriptContext_GetVar(ctx);
 
-    ov5_021EE9BC(fieldSystem, v2);
+    SizeContest_UpdateRecordFromPartyMon(fieldSystem, partySlot);
 
     return FALSE;
 }
 
-static BOOL ScrCmd_1C3(ScriptContext *ctx)
+static BOOL ScrCmd_BufferPartyPokemonSize(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 v1 = ScriptContext_GetVar(ctx);
-    u16 v2 = ScriptContext_GetVar(ctx);
-    u16 v3 = ScriptContext_GetVar(ctx);
+    u16 intPartIdx = ScriptContext_GetVar(ctx);
+    u16 fracPartIdx = ScriptContext_GetVar(ctx);
+    u16 partySlot = ScriptContext_GetVar(ctx);
 
-    ov5_021EEA84(fieldSystem, v1, v2, v3);
+    SizeContest_SetPartyMonSizeStrParams(fieldSystem, intPartIdx, fracPartIdx, partySlot);
     return FALSE;
 }
 
-static BOOL ScrCmd_1C4(ScriptContext *ctx)
+static BOOL ScrCmd_BufferSizeContestRecord(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 v1 = ScriptContext_GetVar(ctx);
-    u16 v2 = ScriptContext_GetVar(ctx);
-    u16 v3 = ScriptContext_GetVar(ctx);
+    u16 intPartIdx = ScriptContext_GetVar(ctx);
+    u16 fracPartIdx = ScriptContext_GetVar(ctx);
+    u16 species = ScriptContext_GetVar(ctx);
 
-    ov5_021EEA54(fieldSystem, v1, v2, v3);
+    SizeContest_SetRecordSizeStrParams(fieldSystem, intPartIdx, fracPartIdx, species);
     return FALSE;
 }
 
@@ -5982,14 +5982,14 @@ static BOOL ScrCmd_1D5(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_1D6(ScriptContext *ctx)
+static BOOL ScrCmd_CheckBackdrop(ScriptContext *ctx)
 {
-    u16 v2 = ScriptContext_GetVar(ctx);
-    u16 *v3 = ScriptContext_GetVarPointer(ctx);
+    u16 backdrop = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
     UnkStruct_0202A750 *v0 = sub_0202A750(ctx->fieldSystem->saveData);
     UnkStruct_02029D04 *v1 = sub_02029D04(v0);
-    *v3 = sub_02029D80(v1, v2);
+    *destVar = sub_02029D80(v1, backdrop);
 
     return FALSE;
 }
@@ -6515,11 +6515,11 @@ static BOOL ScrCmd_WriteSpeciesSeen(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_252(ScriptContext *ctx)
+static BOOL ScrCmd_GetPCBoxesFreeSlotCount(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(ctx);
-    u16 v1 = PCBoxes_CountAllBoxMons(SaveData_GetPCBoxes(ctx->fieldSystem->saveData));
-    *v0 = 18 * (5 * 6) - v1;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    u16 boxMonCount = PCBoxes_CountAllBoxMons(SaveData_GetPCBoxes(ctx->fieldSystem->saveData));
+    *destVar = MAX_PC_BOXES * MAX_MONS_PER_BOX - boxMonCount;
 
     return FALSE;
 }

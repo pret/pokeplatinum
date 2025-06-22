@@ -580,7 +580,7 @@ u8 ov84_022400A0(UnkStruct_ov84_0223B5A0 *param0)
 
     RenderControlFlags_SetCanABSpeedUpPrint(1);
     RenderControlFlags_SetAutoScrollFlags(0);
-    v0 = Text_AddPrinterWithParams(&param0->unk_04[6], FONT_MESSAGE, param0->unk_3F8, 0, 0, Options_TextFrameDelay(param0->unk_D0), ov84_022400E0);
+    v0 = Text_AddPrinterWithParams(&param0->unk_04[6], FONT_MESSAGE, param0->unk_3F8, 0, 0, Options_TextFrameDelay(param0->options), ov84_022400E0);
 
     return v0;
 }

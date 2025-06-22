@@ -1913,7 +1913,7 @@ static void ov17_0224C244(UnkStruct_ov17_0224DF54 *param0, MessageLoader *param1
     int v1;
 
     if (param0->unk_00->unk_155 == 0) {
-        v1 = Options_TextFrameDelay(param0->unk_00->unk_196C);
+        v1 = Options_TextFrameDelay(param0->unk_00->options);
     } else {
         v1 = TEXT_SPEED_FAST;
     }
