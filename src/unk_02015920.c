@@ -2,6 +2,7 @@
 
 #include <nitro.h>
 #include <string.h>
+
 #include "constants/heap.h"
 #include "constants/narc.h"
 

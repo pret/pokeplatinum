@@ -2,6 +2,7 @@
 
 #include <nitro.h>
 #include <string.h>
+
 #include "constants/heap.h"
 
 #include "overlay063/ov63_0222BCE8.h"

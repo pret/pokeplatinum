@@ -2,6 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV22_022599A0_H
 
 #include "constants/narc.h"
+
 #include "bg_window.h"
 
 typedef struct {
