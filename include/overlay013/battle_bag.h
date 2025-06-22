@@ -1,10 +1,10 @@
 #ifndef POKEPLATINUM_BATTLE_BAG_H
 #define POKEPLATINUM_BATTLE_BAG_H
 
+#include "struct_decls/battle_system.h"
 #include "struct_decls/struct_0200C440_decl.h"
 
 #include "battle/struct_ov16_0226DEEC_decl.h"
-#include "overlay013/battle_bag_context.h"
 #include "overlay013/battle_sub_menu_cursor.h"
 
 #include "bag.h"
@@ -14,6 +14,7 @@
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "trainer_info.h"
 
 enum BattleBagScreen {
     BATTLE_BAG_SCREEN_MENU = 0,
@@ -80,6 +81,27 @@ enum ButtonState {
 #define MENU_POCKET_ICON_WIDTH  4
 #define MENU_POCKET_ICON_HEIGHT 4
 #define MENU_POCKET_ICON_SIZE   (MENU_POCKET_ICON_WIDTH * MENU_POCKET_ICON_HEIGHT)
+
+typedef struct BattleBagContext {
+    BattleSystem *battleSystem;
+    TrainerInfo *trainerInfo;
+    Bag *bag;
+    u32 heapID;
+    s32 battler;
+    BOOL isInCatchTutorial;
+    u32 embargoRemainingTurns;
+    u16 selectedBattleBagItem;
+    u8 selectedBattleBagPocket;
+    u8 lastUsedItemPocket;
+    u16 lastUsedItem;
+    u8 hasTwoOpponents;
+    u8 opponentHidden; // Has used fly, bounce, dig, etc
+    u8 opponentSubstituted;
+    u8 isCursorEnabled;
+    u8 battleBagExited;
+    u8 pocketCurrentPagePositions[BATTLE_POCKET_MAX];
+    u8 pocketCurrentPages[BATTLE_POCKET_MAX];
+} BattleBagContext;
 
 typedef struct BattleBag {
     BattleBagContext *context;
