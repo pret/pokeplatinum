@@ -36,7 +36,7 @@ UnkStruct_0200C440 *sub_0200C440(u32 param0, u32 param1, u32 param2, u32 heapID)
         u32 v1;
         u8 *v2;
 
-        v0->unk_00 = Graphics_GetCharData(14, 4, 1, &v0->unk_04, heapID);
+        v0->unk_00 = Graphics_GetCharData(NARC_INDEX_GRAPHIC__PL_FONT, 4, 1, &v0->unk_04, heapID);
         v2 = v0->unk_04->pRawData;
 
         for (v1 = 0; v1 < v0->unk_04->szByte; v1++) {

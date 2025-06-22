@@ -656,7 +656,7 @@ static void ov104_0223CC74(UnkStruct_ov104_0223C4CC *param0, int param1, const T
         };
         int v1;
 
-        v0.unk_08 = ov104_0222EA90(param1, 5);
+        v0.narcID = ov104_0222EA90(param1, 5);
         v0.unk_09 = ov104_0222EA90(param1, 6);
         v1 = ov104_0222EA90(param1, 12);
 
@@ -683,17 +683,17 @@ static void ov104_0223CC74(UnkStruct_ov104_0223C4CC *param0, int param1, const T
     ov63_0222BD50(param0->unk_18, Unk_ov104_022413D8);
 
     {
-        u32 v2;
+        u32 narcID;
         NARC *v3;
         int v4 = ov104_0222EA90(param1, 0);
 
-        v2 = ov104_0222EA90(param1, 5);
-        v3 = NARC_ctor(v2, HEAP_ID_94);
+        narcID = ov104_0222EA90(param1, 5);
+        v3 = NARC_ctor(narcID, HEAP_ID_94);
 
         Graphics_LoadTilesToBgLayerFromOpenNARC(v3, ov104_0222EA90(param1, 7), param0->unk_00, 3, 0, 0, 1, HEAP_ID_94);
 
         if (v4 == GX_BGMODE_0) {
-            PaletteData_LoadBufferFromFileStart(param0->unk_04, v2, ov104_0222EA90(param1, 8), 94, 0, ((10 - 0 + 1) * 0x20), 0 * 16);
+            PaletteData_LoadBufferFromFileStart(param0->unk_04, narcID, ov104_0222EA90(param1, 8), 94, 0, ((10 - 0 + 1) * 0x20), 0 * 16);
         } else {
             NNSG2dPaletteData *v5;
             void *v6;

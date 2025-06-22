@@ -1065,25 +1065,25 @@ static void ov77_021D2F0C(UnkStruct_ov77_021D2E9C *param0)
 
 static void ov77_021D2F38(UnkStruct_ov77_021D2F38 *param0)
 {
-    Graphics_LoadTilesToBgLayer(128, 16, param0->unk_0C, 2, 0, 0, 0, HEAP_ID_76);
-    Graphics_LoadTilesToBgLayer(128, 16, param0->unk_0C, 6, 0, 0, 0, HEAP_ID_76);
-    Graphics_LoadTilemapToBgLayer(128, 17, param0->unk_0C, 2, 0, 0, 0, HEAP_ID_76);
-    Graphics_LoadTilemapToBgLayer(128, 18, param0->unk_0C, 6, 0, 0, 0, HEAP_ID_76);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__TITLE__OP_DEMO, 16, param0->unk_0C, 2, 0, 0, 0, HEAP_ID_76);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__TITLE__OP_DEMO, 16, param0->unk_0C, 6, 0, 0, 0, HEAP_ID_76);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__TITLE__OP_DEMO, 17, param0->unk_0C, 2, 0, 0, 0, HEAP_ID_76);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__TITLE__OP_DEMO, 18, param0->unk_0C, 6, 0, 0, 0, HEAP_ID_76);
 
-    Graphics_LoadPalette(128, 15, 0, 0, 0, HEAP_ID_76);
-    Graphics_LoadPalette(128, 15, 4, 0, 0, HEAP_ID_76);
+    Graphics_LoadPalette(NARC_INDEX_DEMO__TITLE__OP_DEMO, 15, 0, 0, 0, HEAP_ID_76);
+    Graphics_LoadPalette(NARC_INDEX_DEMO__TITLE__OP_DEMO, 15, 4, 0, 0, HEAP_ID_76);
 
-    Graphics_LoadTilesToBgLayer(48, 15, param0->unk_0C, 1, 0, 0, 0, HEAP_ID_76);
-    Graphics_LoadTilemapToBgLayer(48, 13, param0->unk_0C, 1, 0, 0, 0, HEAP_ID_76);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, 15, param0->unk_0C, 1, 0, 0, 0, HEAP_ID_76);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, 13, param0->unk_0C, 1, 0, 0, 0, HEAP_ID_76);
 
-    Graphics_LoadPalette(48, 14, 0, 0, 2 * 16 * 1, HEAP_ID_76);
+    Graphics_LoadPalette(NARC_INDEX_DEMO__TITLE__TITLEDEMO, 14, 0, 0, 2 * 16 * 1, HEAP_ID_76);
 
-    Graphics_LoadTilemapToBgLayer(128, 19, param0->unk_0C, 3, 0, 0, 0, HEAP_ID_76);
-    Graphics_LoadTilemapToBgLayer(128, 19, param0->unk_0C, 7, 0, 0, 0, HEAP_ID_76);
-    Graphics_LoadTilesToBgLayer(128, 114, param0->unk_0C, 5, 0, 0, 0, HEAP_ID_76);
-    Graphics_LoadTilemapToBgLayer(128, 113, param0->unk_0C, 5, 0, 0, 0, HEAP_ID_76);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__TITLE__OP_DEMO, 19, param0->unk_0C, 3, 0, 0, 0, HEAP_ID_76);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__TITLE__OP_DEMO, 19, param0->unk_0C, 7, 0, 0, 0, HEAP_ID_76);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__TITLE__OP_DEMO, 114, param0->unk_0C, 5, 0, 0, 0, HEAP_ID_76);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__TITLE__OP_DEMO, 113, param0->unk_0C, 5, 0, 0, 0, HEAP_ID_76);
 
-    Graphics_LoadPalette(128, 115, 4, 0, 2 * 16 * 1, HEAP_ID_76);
+    Graphics_LoadPalette(NARC_INDEX_DEMO__TITLE__OP_DEMO, 115, 4, 0, 2 * 16 * 1, HEAP_ID_76);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
@@ -2528,9 +2528,9 @@ static void ov77_021D52C8(UnkStruct_ov77_021D2E9C *param0)
 
 static void ov77_021D5308(UnkStruct_ov77_021D5308 *param0)
 {
-    Graphics_LoadPalette(128, 99, 0, 0, 0, HEAP_ID_76);
-    Graphics_LoadTilesToBgLayer(128, 98, param0->unk_08, 2, 0, 0, 0, HEAP_ID_76);
-    Graphics_LoadTilemapToBgLayer(128, 97, param0->unk_08, 2, 0, 0, 0, HEAP_ID_76);
+    Graphics_LoadPalette(NARC_INDEX_DEMO__TITLE__OP_DEMO, 99, 0, 0, 0, HEAP_ID_76);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__TITLE__OP_DEMO, 98, param0->unk_08, 2, 0, 0, 0, HEAP_ID_76);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__TITLE__OP_DEMO, 97, param0->unk_08, 2, 0, 0, 0, HEAP_ID_76);
 
     GXLayers_DisableEngineALayers();
     GXLayers_EngineASetLayers(0);

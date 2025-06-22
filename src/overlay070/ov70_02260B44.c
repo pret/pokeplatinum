@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "overlay063/struct_ov63_0222CC3C.h"
 #include "overlay066/ov66_02231428.h"
 #include "overlay070/funcptr_ov70_02261C60.h"
@@ -87,7 +89,7 @@ typedef struct UnkStruct_ov70_02260BB8_t {
     NNSFndAllocator unk_494;
 } UnkStruct_ov70_02260BB8;
 
-static UnkStruct_ov70_02261418 *ov70_022613F4(int param0, int param1, u32 param2);
+static UnkStruct_ov70_02261418 *ov70_022613F4(int param0, int param1, enum HeapId heapID);
 static void ov70_02261418(UnkStruct_ov70_02261418 *param0);
 static void ov70_0226146C(Easy3DModel *param0);
 static void ov70_02261474(fx32 *param0, const Easy3DAnim *param1, fx32 param2);
@@ -554,12 +556,12 @@ void ov70_022613E8(UnkStruct_ov70_022610B8 *param0, fx32 param1, fx32 param2, fx
     Easy3DObject_SetScale(&param0->unk_04, param1, param2, param3);
 }
 
-static UnkStruct_ov70_02261418 *ov70_022613F4(int param0, int param1, u32 param2)
+static UnkStruct_ov70_02261418 *ov70_022613F4(int param0, int param1, enum HeapId heapID)
 {
     void *v0;
     u32 v1 = (param1 * 5) + param0;
     GF_ASSERT(v1 < (5 * 5));
-    v0 = LoadMemberFromNARC(174, 1 + v1, 0, param2, 1);
+    v0 = LoadMemberFromNARC(NARC_INDEX_APPLICATION__WIFI_LOBBY__MAP_CONV__WFLBY_MAP, 1 + v1, 0, heapID, 1);
 
     return v0;
 }

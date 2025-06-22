@@ -813,7 +813,7 @@ static void ov22_02256948(UnkStruct_ov22_02255D44 *param0, int param1)
     UnkStruct_ov22_022599A0 v0;
 
     v0.unk_00 = param0->unk_00.unk_40;
-    v0.unk_04 = 25;
+    v0.narcID = NARC_INDEX_GRAPHIC__IMAGECLIP;
     v0.unk_08 = (param1) * 2 + 121;
     v0.unk_0C = 133;
     v0.unk_10 = (param1) * 2 + 121 + 1;

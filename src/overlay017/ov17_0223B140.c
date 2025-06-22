@@ -634,8 +634,8 @@ static void ov17_0223BAD0(UnkStruct_ov17_02246F24 *param0)
 void ov17_0223BB14(UnkStruct_ov17_02246F24 *param0, int param1, int param2)
 {
     if (param1 == 0) {
-        Graphics_LoadTilesToBgLayer(45, 3, param0->unk_0C.unk_24, 2, 0, 0x4000, 1, HEAP_ID_21);
-        Graphics_LoadTilemapToBgLayer(45, 5, param0->unk_0C.unk_24, 2, 0, 0, 1, HEAP_ID_21);
+        Graphics_LoadTilesToBgLayer(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 3, param0->unk_0C.unk_24, 2, 0, 0x4000, 1, HEAP_ID_21);
+        Graphics_LoadTilemapToBgLayer(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 5, param0->unk_0C.unk_24, 2, 0, 0, 1, HEAP_ID_21);
         Bg_SetPriority(1, 1);
         Bg_SetPriority(2, 0);
 

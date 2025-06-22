@@ -209,9 +209,9 @@ static void ov22_0225B85C(UnkStruct_ov22_0225B85C *param0)
 
 static void ov22_0225B910(UnkStruct_ov22_0225B85C *param0)
 {
-    Graphics_LoadPalette(12, 12, 4, 0, 32, HEAP_ID_14);
-    Graphics_LoadTilemapToBgLayer(12, 11, param0->unk_14.unk_40, 4, 0, 0, 1, HEAP_ID_14);
-    Graphics_LoadTilesToBgLayer(12, 10, param0->unk_14.unk_40, 4, 0, 0, 1, HEAP_ID_14);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__POKETCH, 12, 4, 0, 32, HEAP_ID_14);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 11, param0->unk_14.unk_40, 4, 0, 0, 1, HEAP_ID_14);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 10, param0->unk_14.unk_40, 4, 0, 0, 1, HEAP_ID_14);
 }
 
 static void ov22_0225B964(UnkStruct_ov22_0225B85C *param0)

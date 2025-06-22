@@ -513,13 +513,13 @@ static void ov88_0223B748(Window *param0, StringTemplate *param1, MessageLoader 
 
 static void ov88_0223B7A0(Party *param0, int param1, UnkStruct_02095E80 *param2)
 {
-    int v0;
+    int i;
     int v1;
 
-    for (v0 = 0; v0 < Party_GetCurrentCount(param0); v0++) {
-        v1 = v0 + param1;
+    for (i = 0; i < Party_GetCurrentCount(param0); i++) {
+        v1 = i + param1;
 
-        param2->unk_7E8[v1] = Graphics_GetCharData(19, PokeIconSpriteIndex(param2->unk_6F4[v1].unk_00, param2->unk_6F4[v1].unk_05, param2->unk_6F4[v1].unk_06), 0, &param2->unk_818[v1], HEAP_ID_26);
+        param2->unk_7E8[v1] = Graphics_GetCharData(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconSpriteIndex(param2->unk_6F4[v1].unk_00, param2->unk_6F4[v1].unk_05, param2->unk_6F4[v1].unk_06), 0, &param2->unk_818[v1], HEAP_ID_26);
 
         DC_FlushRange(param2->unk_818[v1]->pRawData, 0x20 * 4 * 4);
 
@@ -541,10 +541,10 @@ static void ov88_0223B7A0(Party *param0, int param1, UnkStruct_02095E80 *param2)
         }
     }
 
-    for (; v0 < 6; v0++) {
-        Sprite_SetDrawFlag(param2->unk_3D4[v0 + param1], 0);
-        Sprite_SetDrawFlag(param2->unk_404[v0 + param1], 0);
-        Sprite_SetDrawFlag(param2->unk_434[v0 + param1], 0);
+    for (; i < 6; i++) {
+        Sprite_SetDrawFlag(param2->unk_3D4[i + param1], 0);
+        Sprite_SetDrawFlag(param2->unk_404[i + param1], 0);
+        Sprite_SetDrawFlag(param2->unk_434[i + param1], 0);
     }
 }
 
@@ -1252,7 +1252,7 @@ static void ov88_0223C66C(UnkStruct_02095E80 *param0, NARC *param1)
     SpriteTransfer_RequestChar(param0->unk_334[1][0]);
     SpriteTransfer_RequestPlttWholeRange(param0->unk_334[0][1]);
     SpriteTransfer_RequestPlttWholeRange(param0->unk_334[1][1]);
-    Graphics_LoadPalette(19, PokeIconPalettesFileIndex(), 1, 10 * 0x20, 0x20 * 4, HEAP_ID_26);
+    Graphics_LoadPalette(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), 1, 10 * 0x20, 0x20 * 4, HEAP_ID_26);
 }
 
 static int ov88_0223C800(int param0, Pokemon *param1, u8 *param2, PokemonSpriteTemplate *param3)

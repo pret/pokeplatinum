@@ -227,7 +227,7 @@ BOOL ov104_0223A918(const u16 param0[], const u16 param1[], int param2, int para
             v0 = v7->unk_06;
         }
 
-        ov104_0222DCF4(&v4[v1], v3, 179);
+        ov104_0222DCF4(&v4[v1], v3, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
 
         for (v5 = 0; v5 < v1; v5++) {
             if ((v4[v5].species == v4[v1].species) || (v4[v5].item == v4[v1].item)) {

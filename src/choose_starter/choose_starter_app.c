@@ -254,7 +254,7 @@ static void ov78_021D1594(ChooseStarterApp *param0);
 static void MakeCamera(ChooseStarterApp *param0, int param1);
 static void ov78_021D1B3C(Camera *camera, VecFx32 *param1);
 static void ov78_021D1B90(ChooseStarterApp *param0);
-static void Make3DObjects(ChooseStarterApp *param0, int param1);
+static void Make3DObjects(ChooseStarterApp *param0, enum HeapId heapID);
 static void ov78_021D1908(ChooseStarterApp *param0);
 static void ov78_021D192C(ChooseStarterApp *param0);
 static void MakeCursorOAM(ChooseStarterApp *param0, ChooseStarterCursor *param1, int param2);
@@ -270,8 +270,6 @@ static void ov78_021D1DF0(ChooseStarterApp *param0);
 static void ov78_021D1E28(ChooseStarterApp *param0);
 static void ov78_021D1E44(ChooseStarterApp *param0, int param1);
 static void MakePokemonSprite(PokemonSprite **sprite, ChooseStarterApp *app, int species);
-static void ov78_021D15CC(ChooseStarter3DGraphics *param0, int param1, int param2, int param3, NNSFndAllocator *param4);
-static void ov78_021D1604(ChooseStarter3DGraphics *param0, int param1, int param2);
 static void ov78_021D16D8(ChooseStarter3DGraphics *param0, NNSFndAllocator *param1);
 static void ov78_021D1708(ChooseStarter3DGraphics *param0);
 static void ov78_021D17A4(ChooseStarter3DGraphics *param0, BOOL param1);
@@ -281,8 +279,8 @@ static void ov78_021D17CC(ChooseStarter3DGraphics *param0, u16 param1, u16 param
 static BOOL ov78_021D17E4(ChooseStarter3DGraphics *param0);
 static void ov78_021D180C(ChooseStarter3DGraphics *param0);
 static void ov78_021D182C(ChooseStarter3DGraphics *param0, fx32 param1);
-static void ov78_021D1630(ChooseStarter3DGraphics *param0, int param1, int param2);
-static void ov78_021D1694(ChooseStarter3DGraphics *param0, int param1, int param2, NNSFndAllocator *param3);
+static void ov78_021D1630(ChooseStarter3DGraphics *param0, int param1, enum HeapId heapID);
+static void ov78_021D1694(ChooseStarter3DGraphics *param0, int param1, enum HeapId heapID, NNSFndAllocator *param3);
 static void MakePreviewWindow(StarterPreviewWindow *param0, ChooseStarterApp *param1, int param2);
 static void ov78_021D24E4(StarterPreviewWindow *param0);
 static void ov78_021D2508(StarterPreviewWindow *param0, BOOL param1);
@@ -758,26 +756,26 @@ static void ov78_021D1594(ChooseStarterApp *param0)
     SpriteResourceCollection_Delete(param0->unk_24C[3]);
 }
 
-static void ov78_021D15CC(ChooseStarter3DGraphics *param0, int param1, int param2, int param3, NNSFndAllocator *param4)
+static void ov78_021D15CC(ChooseStarter3DGraphics *param0, int param1, int param2, enum HeapId heapID, NNSFndAllocator *param4)
 {
     memset(param0, 0, sizeof(ChooseStarter3DGraphics));
 
-    ov78_021D1630(param0, param1, param3);
-    ov78_021D1694(param0, param2, param3, param4);
+    ov78_021D1630(param0, param1, heapID);
+    ov78_021D1694(param0, param2, heapID, param4);
     ov78_021D17B4(param0, FX32_ONE, FX32_ONE, FX32_ONE);
 }
 
-static void ov78_021D1604(ChooseStarter3DGraphics *param0, int param1, int param2)
+static void ov78_021D1604(ChooseStarter3DGraphics *param0, int param1, enum HeapId heapID)
 {
     memset(param0, 0, sizeof(ChooseStarter3DGraphics));
 
-    ov78_021D1630(param0, param1, param2);
+    ov78_021D1630(param0, param1, heapID);
     ov78_021D17B4(param0, FX32_ONE, FX32_ONE, FX32_ONE);
 }
 
-static void ov78_021D1630(ChooseStarter3DGraphics *param0, int param1, int param2)
+static void ov78_021D1630(ChooseStarter3DGraphics *param0, int param1, enum HeapId heapID)
 {
-    param0->unk_54 = LoadMemberFromNARC(82, param1, 0, param2, 0);
+    param0->unk_54 = LoadMemberFromNARC(NARC_INDEX_GRAPHIC__EV_POKESELECT, param1, 0, heapID, 0);
     param0->unk_58 = NNS_G3dGetMdlSet(param0->unk_54);
     param0->unk_5C = NNS_G3dGetMdlByIdx(param0->unk_58, 0);
     param0->unk_60 = NNS_G3dGetTex(param0->unk_54);
@@ -788,9 +786,9 @@ static void ov78_021D1630(ChooseStarter3DGraphics *param0, int param1, int param
     NNS_G3dRenderObjInit(&param0->unk_00, param0->unk_5C);
 }
 
-static void ov78_021D1694(ChooseStarter3DGraphics *param0, int param1, int param2, NNSFndAllocator *param3)
+static void ov78_021D1694(ChooseStarter3DGraphics *param0, int param1, enum HeapId heapID, NNSFndAllocator *param3)
 {
-    param0->unk_64 = LoadMemberFromNARC(82, param1, 0, param2, 0);
+    param0->unk_64 = LoadMemberFromNARC(NARC_INDEX_GRAPHIC__EV_POKESELECT, param1, 0, heapID, 0);
     param0->unk_68 = NNS_G3dGetAnmByIdx(param0->unk_64, 0);
     param0->unk_6C = NNS_G3dAllocAnmObj(param3, param0->unk_68, param0->unk_5C);
 
@@ -888,22 +886,22 @@ static void ov78_021D182C(ChooseStarter3DGraphics *param0, fx32 param1)
     NNS_G3dAnmObjSetFrame(param0->unk_6C, param1);
 }
 
-static void Make3DObjects(ChooseStarterApp *param0, int param1)
+static void Make3DObjects(ChooseStarterApp *param0, enum HeapId heapID)
 {
     int v0;
 
-    ov78_021D15CC(&param0->unk_2C4[0], 1, 0, param1, &param0->unk_2B4);
+    ov78_021D15CC(&param0->unk_2C4[0], 1, 0, heapID, &param0->unk_2B4);
     ov78_021D17A4(&param0->unk_2C4[0], 1);
 
-    ov78_021D1604(&param0->unk_2C4[1], 8, param1);
+    ov78_021D1604(&param0->unk_2C4[1], 8, heapID);
     ov78_021D17A4(&param0->unk_2C4[1], 0);
 
     for (v0 = 2; v0 <= 4; v0++) {
-        ov78_021D15CC(&param0->unk_2C4[v0], 3 + (v0 - 2) * 2, 2 + (v0 - 2) * 2, param1, &param0->unk_2B4);
+        ov78_021D15CC(&param0->unk_2C4[v0], 3 + (v0 - 2) * 2, 2 + (v0 - 2) * 2, heapID, &param0->unk_2B4);
         ov78_021D17A4(&param0->unk_2C4[v0], 0);
     }
 
-    ov78_021D1604(&param0->unk_2C4[5], 9, param1);
+    ov78_021D1604(&param0->unk_2C4[5], 9, heapID);
     ov78_021D17A4(&param0->unk_2C4[5], 1);
 
     ov78_021D17A8(&param0->unk_2C4[5], 0, (-28 * FX32_ONE), (40 * FX32_ONE));
@@ -1537,8 +1535,8 @@ static void MakePreviewWindow(StarterPreviewWindow *param0, ChooseStarterApp *pa
     UnkStruct_ov22_02255800 v1;
     UnkStruct_ov21_021E7F40 v2;
 
-    param0->unk_0C = Graphics_GetCharData(82, 14, 0, &param0->unk_14, param2);
-    param0->unk_10 = Graphics_GetPlttData(82, 15, &param0->unk_18, param2);
+    param0->unk_0C = Graphics_GetCharData(NARC_INDEX_GRAPHIC__EV_POKESELECT, 14, 0, &param0->unk_14, param2);
+    param0->unk_10 = Graphics_GetPlttData(NARC_INDEX_GRAPHIC__EV_POKESELECT, 15, &param0->unk_18, param2);
 
     v0.unk_00 = param1->spriteDisplay;
     v0.unk_04 = param0->unk_14;
@@ -1721,7 +1719,7 @@ static void MakeSubplaneWindow(ChooseStarterApp *param0, int param1)
     int v0;
     int v1, v2;
 
-    Graphics_LoadPalette(82, 17, 0, 5 * 32, 32, param1);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__EV_POKESELECT, 17, 0, 5 * 32, 32, param1);
 
     for (v0 = 0; v0 < 3; v0++) {
         param0->unk_9C[v0] = Window_New(param1, 1);

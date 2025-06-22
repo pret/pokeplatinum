@@ -798,7 +798,7 @@ static BOOL ov71_0223BC20(UnkStruct_ov71_0223B620 *param0)
     case 2:
         if (param0->unk_30C0 == 0) {
             param0->unk_30C0 = 1;
-            Graphics_LoadTilemapToBgLayer(51, 36, param0->unk_00, 6, 0, 0, 0, HEAP_ID_25);
+            Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__TRAINER_CASE, 36, param0->unk_00, 6, 0, 0, 0, HEAP_ID_25);
             ov71_0223CD44(param0->unk_04, 0, 6);
             ov71_0223C3E8(param0);
             Bg_ClearTilemap(param0->unk_00, 7);
@@ -806,7 +806,7 @@ static BOOL ov71_0223BC20(UnkStruct_ov71_0223B620 *param0)
             ov71_0223C530(param0->unk_00, 7, param0->unk_B8);
         } else {
             param0->unk_30C0 = 0;
-            Graphics_LoadTilemapToBgLayer(51, 35, param0->unk_00, 6, 0, 0, 0, HEAP_ID_25);
+            Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__TRAINER_CASE, 35, param0->unk_00, 6, 0, 0, 0, HEAP_ID_25);
             ov71_0223CD44(param0->unk_04, 7, 10);
             Bg_ClearTilemap(param0->unk_00, 7);
             ov71_0223C390(param0);

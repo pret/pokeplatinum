@@ -109,8 +109,8 @@ static void ov39_02256468(SysTask *param0, void *param1)
     v3 = PoketchTask_GetConstTaskData(param1);
 
     Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
-    Graphics_LoadTilesToBgLayer(12, 59, v2->unk_04, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
-    Graphics_LoadTilemapToBgLayer(12, 58, v2->unk_04, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 59, v2->unk_04, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 58, v2->unk_04, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
 
     PoketchGraphics_LoadActivePalette(0, 0);
 

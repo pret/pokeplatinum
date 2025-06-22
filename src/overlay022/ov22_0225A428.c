@@ -178,7 +178,7 @@ static void ov22_0225A6E0(UnkStruct_ov22_022597BC *param0, BgConfig *param1)
     UnkStruct_ov22_022599A0 v0;
 
     v0.unk_00 = param1;
-    v0.unk_04 = 25;
+    v0.narcID = NARC_INDEX_GRAPHIC__IMAGECLIP;
     v0.unk_08 = 224;
     v0.unk_0C = 225;
     v0.unk_10 = 226;

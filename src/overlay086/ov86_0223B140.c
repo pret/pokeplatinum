@@ -495,7 +495,7 @@ static BOOL ov86_0223B574(UnkStruct_ov86_0223B3C8 *param0)
 
     switch (param0->unk_00) {
     case 0:
-        Graphics_LoadTilemapToBgLayer(105, 1, param0->unk_10, 3, 0, 0, 1, HEAP_ID_63);
+        Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DENDOU_DEMO, 1, param0->unk_10, 3, 0, 0, 1, HEAP_ID_63);
         param0->unk_00++;
         break;
     case 1:
@@ -858,12 +858,12 @@ static void ov86_0223BAC8(UnkStruct_ov86_0223B3C8 *param0, NNSG2dCellDataBank *p
     NNS_G2dLoadPalette(v8, 192, NNS_G2D_VRAM_TYPE_2DMAIN, &v6);
 
     sub_02076AAC(((TrainerInfo_Gender(param0->unk_0C->unk_00) == 1) ? 1 : 0), 2, &v4);
-    sub_020135F0(v4.unk_00, v4.unk_14, HEAP_ID_63, &v0[0], param0->unk_310);
+    sub_020135F0(v4.narcID, v4.unk_14, HEAP_ID_63, &v0[0], param0->unk_310);
 
     DC_FlushRange(param0->unk_310, 3200);
     GX_LoadOBJ(param0->unk_310, 38400, 3200);
 
-    Graphics_LoadPalette(v4.unk_00, v4.unk_08, 1, 192, 0x20, HEAP_ID_63);
+    Graphics_LoadPalette(v4.narcID, v4.unk_08, 1, 192, 0x20, HEAP_ID_63);
 
     v3.priority = 0;
     param0->unk_1CC = SpriteList_Add(&v3);

@@ -183,7 +183,7 @@ static void ov56_02256294(UnkStruct_ov56_02256468 *param0)
     param0->unk_2D8.unk_06 = 0;
     param0->unk_18 = StringTemplate_Default(HEAP_ID_FIELD);
     param0->unk_1C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNION_ROOM, HEAP_ID_FIELD);
-    param0->unk_20 = Graphics_GetScrnData(74, 3, 1, &(param0->unk_24), 4);
+    param0->unk_20 = Graphics_GetScrnData(NARC_INDEX_GRAPHIC__UNIONROOM, 3, 1, &(param0->unk_24), 4);
 }
 
 static void ov56_022562EC(BgConfig *param0, UnkStruct_ov56_022562EC *param1)
@@ -364,9 +364,9 @@ static void ov56_02256508(BgConfig *param0)
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
     }
 
-    Graphics_LoadPalette(74, 0, 4, 0, 0x20 * 3, HEAP_ID_FIELD);
-    Graphics_LoadTilesToBgLayer(74, 2, param0, 7, 0, (32 * 5) * 0x20, 1, HEAP_ID_FIELD);
-    Graphics_LoadTilemapToBgLayer(74, 4, param0, 7, 0, 32 * 24 * 2, 1, HEAP_ID_FIELD);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__UNIONROOM, 0, 4, 0, 0x20 * 3, HEAP_ID_FIELD);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__UNIONROOM, 2, param0, 7, 0, (32 * 5) * 0x20, 1, HEAP_ID_FIELD);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__UNIONROOM, 4, param0, 7, 0, 32 * 24 * 2, 1, HEAP_ID_FIELD);
     FieldMessage_LoadTextPalettes(4, FALSE);
 }
 

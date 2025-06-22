@@ -444,11 +444,11 @@ void ov16_0223B578(BattleSystem *battleSys)
         v1 = ov16_0223EDE0(battleSys);
 
         ReplaceTransparentTiles(battleSys->unk_04, 1, 1, 10, v1, 5);
-        Graphics_LoadTilesToBgLayer(7, 3 + battleSys->background, battleSys->unk_04, 3, 0, 0, 1, HEAP_ID_BATTLE);
+        Graphics_LoadTilesToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 3 + battleSys->background, battleSys->unk_04, 3, 0, 0, 1, HEAP_ID_BATTLE);
         PaletteData_LoadBufferFromFileStart(battleSys->paletteSys, 7, 172 + (battleSys->background * 3) + ov16_0223EC04(battleSys), 5, 0, 0, 0);
         PaletteData_LoadBufferFromFileStart(battleSys->paletteSys, 38, GetMessageBoxPaletteNARCMember(v1), 5, 0, 0x20, 10 * 0x10);
         PaletteData_LoadBufferFromFileStart(battleSys->paletteSys, 14, 7, 5, 0, 0x20, 0xb * 0x10);
-        Graphics_LoadTilemapToBgLayer(7, 2, battleSys->unk_04, 3, 0, 0, 1, HEAP_ID_BATTLE);
+        Graphics_LoadTilemapToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 2, battleSys->unk_04, 3, 0, 0, 1, HEAP_ID_BATTLE);
     }
 
     {
@@ -930,11 +930,11 @@ static void ov16_0223C004(BattleSystem *battleSys, BgConfig *param1)
         v3 = ov16_0223EDE0(battleSys);
 
         ReplaceTransparentTiles(param1, 1, 1, 10, v3, 5);
-        Graphics_LoadTilesToBgLayer(7, 3 + battleSys->background, param1, 3, 0, 0, 1, HEAP_ID_BATTLE);
-        PaletteData_LoadBufferFromFileStart(battleSys->paletteSys, 7, 172 + (battleSys->background * 3) + ov16_0223EC04(battleSys), 5, 0, 0, 0);
-        PaletteData_LoadBufferFromFileStart(battleSys->paletteSys, 38, GetMessageBoxPaletteNARCMember(v3), 5, 0, 0x20, 10 * 0x10);
-        PaletteData_LoadBufferFromFileStart(battleSys->paletteSys, 14, 7, 5, 0, 0x20, 0xb * 0x10);
-        Graphics_LoadTilemapToBgLayer(7, 2, param1, 3, 0, 0, 1, HEAP_ID_BATTLE);
+        Graphics_LoadTilesToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 3 + battleSys->background, param1, 3, 0, 0, 1, HEAP_ID_BATTLE);
+        PaletteData_LoadBufferFromFileStart(battleSys->paletteSys, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 172 + (battleSys->background * 3) + ov16_0223EC04(battleSys), 5, 0, 0, 0);
+        PaletteData_LoadBufferFromFileStart(battleSys->paletteSys, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(v3), 5, 0, 0x20, 10 * 0x10);
+        PaletteData_LoadBufferFromFileStart(battleSys->paletteSys, NARC_INDEX_GRAPHIC__PL_FONT, 7, 5, 0, 0x20, 0xb * 0x10);
+        Graphics_LoadTilemapToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 2, param1, 3, 0, 0, 1, HEAP_ID_BATTLE);
     }
 
     {

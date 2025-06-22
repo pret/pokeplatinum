@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "overlay100/ov100_021D46C8.h"
 #include "overlay100/ov100_021D4E04.h"
 #include "overlay100/struct_ov100_021D3084.h"
@@ -39,16 +41,9 @@ BOOL ov100_021D3FD4(void *param0);
 
 static void ov100_021D2F0C(BgConfig *param0, PaletteData *param1)
 {
-    int v0 = 12;
-    int v1 = 10;
-    int v2 = 11;
-    int v3 = 12;
-    int v4 = 4;
-    int v5 = 111;
-
-    Graphics_LoadTilesToBgLayer(v0, v1, param0, v4, 0, 0, 1, v5);
-    Graphics_LoadTilemapToBgLayer(v0, v2, param0, v4, 0, 0, 1, v5);
-    PaletteData_LoadBufferFromFileStart(param1, v0, v3, v5, 1, 0x20 * 1, 0);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 10, param0, 4, 0, 0, 1, HEAP_ID_111);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 11, param0, 4, 0, 0, 1, HEAP_ID_111);
+    PaletteData_LoadBufferFromFileStart(param1, NARC_INDEX_GRAPHIC__POKETCH, 12, HEAP_ID_111, 1, 0x20 * 1, 0);
 }
 
 static void ov100_021D2F64(UnkStruct_ov100_021D3084 *param0)

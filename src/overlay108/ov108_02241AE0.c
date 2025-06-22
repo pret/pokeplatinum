@@ -1054,7 +1054,7 @@ static void ov108_022428C0(void)
     void *v0;
     NNSG2dPaletteData *v1;
 
-    v0 = Graphics_GetPlttData(150, 167, &v1, HEAP_ID_103);
+    v0 = Graphics_GetPlttData(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 167, &v1, HEAP_ID_103);
 
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 7));
     GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 7));

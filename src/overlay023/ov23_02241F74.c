@@ -144,7 +144,7 @@ static void CommManUnderground_Init(CommManUnderground *param0, FieldSystem *fie
     sCommManUnderground->unk_128 = ov23_02253D48(630, HEAP_ID_33, fieldSystem->bgConfig, v0, 0);
 
     LoadMessageBoxGraphics(sCommManUnderground->fieldSystem->bgConfig, 3, (1024 - (18 + 12)), 10, 0, HEAP_ID_FIELD);
-    Graphics_LoadPalette(50, 52, 0, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD);
+    Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, 52, 0, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD);
     LoadStandardWindowGraphics(sCommManUnderground->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
 
     for (v1 = 0; v1 < (7 + 1); v1++) {

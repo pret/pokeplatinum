@@ -21,7 +21,7 @@ typedef struct {
     u16 unk_0E;
     u16 unk_10;
     u16 unk_12;
-    u16 unk_14;
+    u16 narcID;
     u16 unk_16;
     u16 unk_18;
     u16 unk_1A;
@@ -59,7 +59,7 @@ static const UnkStruct_ov104_0223F394 Unk_ov104_0223F394[] = {
         0xCC,
         0x444,
         0x3,
-        0x96,
+        .narcID = NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG,
         0x1,
         0x0,
         0x81,
@@ -77,7 +77,7 @@ static const UnkStruct_ov104_0223F394 Unk_ov104_0223F394[] = {
         0xCC,
         0x444,
         0x3,
-        0x96,
+        .narcID = NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG,
         0x2,
         0x0,
         0x81,
@@ -95,7 +95,7 @@ static const UnkStruct_ov104_0223F394 Unk_ov104_0223F394[] = {
         0xCE,
         0x444,
         0x3,
-        0x96,
+        .narcID = NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG,
         0x1,
         0x0,
         0x81,
@@ -113,7 +113,7 @@ static const UnkStruct_ov104_0223F394 Unk_ov104_0223F394[] = {
         0x16D,
         0x4AB,
         0x4,
-        0x96,
+        .narcID = NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG,
         0x2,
         0x0,
         0x81,
@@ -131,7 +131,7 @@ static const UnkStruct_ov104_0223F394 Unk_ov104_0223F394[] = {
         0x16D,
         0x4AB,
         0x1,
-        0x96,
+        .narcID = NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG,
         0x1,
         0x0,
         0x81,
@@ -149,7 +149,7 @@ static const UnkStruct_ov104_0223F394 Unk_ov104_0223F394[] = {
         0x130,
         0x444,
         0x4,
-        0x96,
+        .narcID = NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG,
         0x32,
         0x2D,
         0x8D,
@@ -167,7 +167,7 @@ static const UnkStruct_ov104_0223F394 Unk_ov104_0223F394[] = {
         0x130,
         0x444,
         0x4,
-        0x96,
+        .narcID = NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG,
         0x2F,
         0x2D,
         0x8D,
@@ -185,7 +185,7 @@ static const UnkStruct_ov104_0223F394 Unk_ov104_0223F394[] = {
         0x131,
         0x444,
         0x1,
-        0x96,
+        .narcID = NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG,
         0x31,
         0x2D,
         0x8D,
@@ -203,7 +203,7 @@ static const UnkStruct_ov104_0223F394 Unk_ov104_0223F394[] = {
         0x132,
         0x444,
         0x1,
-        0x96,
+        .narcID = NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG,
         0x2E,
         0x2D,
         0x8D,
@@ -221,7 +221,7 @@ static const UnkStruct_ov104_0223F394 Unk_ov104_0223F394[] = {
         0x225,
         0x4A8,
         0x1,
-        0x96,
+        .narcID = NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG,
         0x11,
         0x10,
         0x84,
@@ -239,7 +239,7 @@ static const UnkStruct_ov104_0223F394 Unk_ov104_0223F394[] = {
         0x225,
         0x4A8,
         0x4,
-        0x96,
+        .narcID = NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG,
         0x14,
         0xE,
         0x83,
@@ -257,7 +257,7 @@ static const UnkStruct_ov104_0223F394 Unk_ov104_0223F394[] = {
         0xC8,
         0x4A9,
         0x4,
-        0x96,
+        .narcID = NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG,
         0x1A,
         0x19,
         0x87,
@@ -275,7 +275,7 @@ static const UnkStruct_ov104_0223F394 Unk_ov104_0223F394[] = {
         0xC8,
         0x4A9,
         0x1,
-        0x96,
+        .narcID = NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG,
         0x1E,
         0x1D,
         0x8C,
@@ -293,7 +293,7 @@ static const UnkStruct_ov104_0223F394 Unk_ov104_0223F394[] = {
         0xC8,
         0x4A9,
         0x1,
-        0x96,
+        .narcID = NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG,
         0x1C,
         0x1B,
         0x88,
@@ -311,7 +311,7 @@ static const UnkStruct_ov104_0223F394 Unk_ov104_0223F394[] = {
         0xF,
         0x444,
         0x1,
-        0x96,
+        .narcID = NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG,
         0x80,
         0x7F,
         0xAC,
@@ -329,7 +329,7 @@ static const UnkStruct_ov104_0223F394 Unk_ov104_0223F394[] = {
         0x219,
         0x4A7,
         0x1,
-        0x96,
+        .narcID = NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG,
         0x37,
         0x38,
         0x8F,
@@ -347,7 +347,7 @@ static const UnkStruct_ov104_0223F394 Unk_ov104_0223F394[] = {
         0x219,
         0x4A7,
         0x4,
-        0x96,
+        .narcID = NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG,
         0x34,
         0x36,
         0x8E,
@@ -373,7 +373,7 @@ int ov104_0222EA90(int param0, int param1)
     case 4:
         return Unk_ov104_0223F394[param0].unk_12;
     case 5:
-        return Unk_ov104_0223F394[param0].unk_14;
+        return Unk_ov104_0223F394[param0].narcID;
     case 6:
         return Unk_ov104_0223F394[param0].unk_16;
     case 7:

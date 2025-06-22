@@ -10,7 +10,7 @@ typedef struct {
     u8 unk_05;
     u8 unk_06;
     u8 unk_07;
-    u8 unk_08;
+    u8 narcID;
     u8 unk_09;
     u8 unk_0A;
 } UnkStruct_ov65_0223582C;

@@ -621,7 +621,7 @@ static void ov104_0223E5A8(UnkStruct_ov104_0223DD30 *param0, const UnkStruct_ov1
         void *v0;
         NNSG2dPaletteData *v1;
 
-        v0 = Graphics_GetPlttData(112, param1->unk_08, &v1, HEAP_ID_94);
+        v0 = Graphics_GetPlttData(NARC_INDEX_GRAPHIC__FIELD_ENCOUNTEFFECT, param1->unk_08, &v1, HEAP_ID_94);
 
         MI_CpuCopy16(v1->pRawData, param0->unk_40, 8 * 32);
         Heap_FreeToHeap(v0);

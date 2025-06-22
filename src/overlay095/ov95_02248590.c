@@ -481,22 +481,22 @@ static void ov95_022488A4(UnkStruct_ov95_02248688 *param0)
         OS_RestoreInterrupts(v6);
     }
 
-    Graphics_LoadTilesToBgLayer(93, 2, param0->unk_C0, 2, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilesToBgLayer(93, 2, param0->unk_C0, 6, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(93, 0, param0->unk_C0, 2, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(93, 0, param0->unk_C0, 6, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 2, param0->unk_C0, 2, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 2, param0->unk_C0, 6, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 0, param0->unk_C0, 2, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 0, param0->unk_C0, 6, 0, 0, 1, HEAP_ID_58);
 
     v5 = ov95_02247644(param0->unk_00);
 
-    Graphics_LoadPalette(93, 3, 0, 0, 0x20, HEAP_ID_58);
-    Graphics_LoadPalette(93, 3, 4, 0, 0x20, HEAP_ID_58);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 3, 0, 0, 0x20, HEAP_ID_58);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 3, 4, 0, 0x20, HEAP_ID_58);
     Graphics_LoadPaletteWithSrcOffset(93, 3, 0, v4[v5], 0x20, 0x40, HEAP_ID_58);
     Graphics_LoadPaletteWithSrcOffset(93, 3, 4, v4[v5], 0x20, 0x40, HEAP_ID_58);
 
-    Graphics_LoadTilesToBgLayer(93, 5, param0->unk_C0, 3, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilesToBgLayer(93, 5, param0->unk_C0, 7, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(93, 4, param0->unk_C0, 3, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(93, 4, param0->unk_C0, 7, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 5, param0->unk_C0, 3, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 5, param0->unk_C0, 7, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 4, param0->unk_C0, 3, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 4, param0->unk_C0, 7, 0, 0, 1, HEAP_ID_58);
 
     {
         u8 *v7 = Heap_AllocFromHeap(HEAP_ID_58, 96);
@@ -572,7 +572,7 @@ static void ov95_02248B84(UnkStruct_ov95_02248688 *param0)
     G2_SetBG0Priority(0);
 
     param0->unk_D4 = ov95_022476F0(1, 0, 0, 0);
-    param0->unk_D8 = ov95_022478B4(param0->unk_D4, 0, 93, 27, 0, -122880 + UnkEnum_ov95_02248B84_01, 0, 0);
+    param0->unk_D8 = ov95_022478B4(param0->unk_D4, 0, NARC_INDEX_GRAPHIC__DEMO_TRADE, 27, 0, -122880 + UnkEnum_ov95_02248B84_01, 0, 0);
 
     {
         static CameraAngle v2;

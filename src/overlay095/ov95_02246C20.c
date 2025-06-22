@@ -274,7 +274,7 @@ UnkStruct_ov95_02247004 *ov95_02246F30(BOOL *param0, int param1)
         u32 v3;
         int v4;
 
-        v2 = Graphics_GetPlttData(93, 6, &v1, HEAP_ID_57);
+        v2 = Graphics_GetPlttData(NARC_INDEX_GRAPHIC__DEMO_TRADE, 6, &v1, HEAP_ID_57);
 
         if (v2) {
             MI_CpuFill16(v0->unk_00, 0x0, 96);
@@ -601,7 +601,7 @@ void ov95_022474D4(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 
         v2 = (param0->unk_1AC) ? 263 : 262;
     }
 
-    v0 = Graphics_GetScrnData(7, v2, 0, &v1, 57);
+    v0 = Graphics_GetScrnData(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, v2, 0, &v1, 57);
 
     if (v0) {
         Bg_CopyToTilemapRect(param0->unk_08, param2, param4, param5, 10, 10, v1->rawData, 0, 0, 32, 32);

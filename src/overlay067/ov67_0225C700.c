@@ -578,12 +578,12 @@ static void ov67_0225CE30(UnkStruct_ov67_0225D154 *param0, u32 heapID)
     }
 
     {
-        Graphics_LoadPalette(92, 3, 0, 0, 11 * 32, heapID);
-        Graphics_LoadPalette(92, 3, 4, 0, 11 * 32, heapID);
-        Graphics_LoadTilesToBgLayer(92, 2, param0->unk_0C, Unk_ov67_0225D3F4[0], 0, 0, 0, heapID);
-        Graphics_LoadTilesToBgLayer(92, 10, param0->unk_0C, Unk_ov67_0225D3F4[2], 0, 0, 0, heapID);
-        Graphics_LoadTilemapToBgLayer(92, 5, param0->unk_0C, Unk_ov67_0225D3F4[0], 0, 0, 0, heapID);
-        Graphics_LoadTilemapToBgLayer(92, 11, param0->unk_0C, Unk_ov67_0225D3F4[2], 0, 0, 0, heapID);
+        Graphics_LoadPalette(NARC_INDEX_DATA__WIFIP2PMATCH, 3, 0, 0, 11 * 32, heapID);
+        Graphics_LoadPalette(NARC_INDEX_DATA__WIFIP2PMATCH, 3, 4, 0, 11 * 32, heapID);
+        Graphics_LoadTilesToBgLayer(NARC_INDEX_DATA__WIFIP2PMATCH, 2, param0->unk_0C, Unk_ov67_0225D3F4[0], 0, 0, 0, heapID);
+        Graphics_LoadTilesToBgLayer(NARC_INDEX_DATA__WIFIP2PMATCH, 10, param0->unk_0C, Unk_ov67_0225D3F4[2], 0, 0, 0, heapID);
+        Graphics_LoadTilemapToBgLayer(NARC_INDEX_DATA__WIFIP2PMATCH, 5, param0->unk_0C, Unk_ov67_0225D3F4[0], 0, 0, 0, heapID);
+        Graphics_LoadTilemapToBgLayer(NARC_INDEX_DATA__WIFIP2PMATCH, 11, param0->unk_0C, Unk_ov67_0225D3F4[2], 0, 0, 0, heapID);
     }
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);

@@ -28,5 +28,5 @@ u32 ov17_02252A70(const UnkStruct_02029C88 *param0, const u8 *param1)
 
 u8 *ov17_02252A9C(u32 param0, u32 param1)
 {
-    return LoadMemberFromNARC(90, 3 + param1, 0, param0, 0);
+    return LoadMemberFromNARC(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, 3 + param1, 0, param0, 0);
 }

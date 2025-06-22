@@ -226,13 +226,13 @@ static void ov95_0224A10C(UnkStruct_ov95_02249FF8 *param0)
     Bg_InitFromTemplate(param0->unk_0C, 3, &v4, 0);
     Bg_InitFromTemplate(param0->unk_0C, 7, &v4, 0);
 
-    Graphics_LoadTilesToBgLayer(93, 19, param0->unk_0C, 3, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilesToBgLayer(93, 19, param0->unk_0C, 7, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(93, 18, param0->unk_0C, 3, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(93, 18, param0->unk_0C, 7, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 19, param0->unk_0C, 3, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 19, param0->unk_0C, 7, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 18, param0->unk_0C, 3, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 18, param0->unk_0C, 7, 0, 0, 1, HEAP_ID_58);
 
-    Graphics_LoadPalette(93, 20, 0, 0, 0x20, HEAP_ID_58);
-    Graphics_LoadPalette(93, 20, 4, 0, 0x20, HEAP_ID_58);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 20, 0, 0, 0x20, HEAP_ID_58);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 20, 4, 0, 0x20, HEAP_ID_58);
 
     Bg_FillTilesRange(param0->unk_0C, 1, 0x0, 1, 200);
     Bg_FillTilesRange(param0->unk_0C, 5, 0x0, 1, 200);

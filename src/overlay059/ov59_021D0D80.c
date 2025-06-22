@@ -569,11 +569,11 @@ static void ov59_021D1388(UnkStruct_020961E8 *param0, NARC *param1)
     BgConfig *v0 = param0->unk_00;
 
     Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 16 * 2, HEAP_ID_51);
-    Graphics_LoadPalette(12, 12, 4, 0, 16 * 2, HEAP_ID_51);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__POKETCH, 12, 4, 0, 16 * 2, HEAP_ID_51);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_51);
     Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, HEAP_ID_51);
-    Graphics_LoadTilesToBgLayer(12, 10, v0, 6, 0, 0, 1, HEAP_ID_51);
-    Graphics_LoadTilemapToBgLayer(12, 11, v0, 6, 0, 0, 1, HEAP_ID_51);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 10, v0, 6, 0, 0, 1, HEAP_ID_51);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 11, v0, 6, 0, 0, 1, HEAP_ID_51);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 1, 0, 32 * 8 * 0x20, 1, HEAP_ID_51);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 3, v0, 1, 0, 32 * 24 * 2, 1, HEAP_ID_51);
     LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_08->options), HEAP_ID_51);
@@ -1642,9 +1642,9 @@ static void ov59_021D26E8(UnkStruct_020961E8 *param0)
 
 static void ov59_021D27FC(UnkStruct_020961E8 *param0, NARC *param1)
 {
-    param0->unk_398[0] = Graphics_GetPlttData(104, 8, &(param0->unk_3A0[0]), HEAP_ID_51);
+    param0->unk_398[0] = Graphics_GetPlttData(NARC_INDEX_GRAPHIC__WORLDTRADE, 8, &(param0->unk_3A0[0]), HEAP_ID_51);
     param0->unk_398[1] = Graphics_GetPlttDataFromOpenNARC(param1, 7, &(param0->unk_3A0[1]), HEAP_ID_51);
-    param0->unk_388[0] = Graphics_GetCharData(104, 32, 1, &(param0->unk_390[0]), HEAP_ID_51);
+    param0->unk_388[0] = Graphics_GetCharData(NARC_INDEX_GRAPHIC__WORLDTRADE, 32, 1, &(param0->unk_390[0]), HEAP_ID_51);
     param0->unk_388[1] = Graphics_GetCharDataFromOpenNARC(param1, 9, 1, &(param0->unk_390[1]), HEAP_ID_51);
 }
 

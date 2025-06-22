@@ -447,7 +447,7 @@ static void sub_0205D0D8(UnkStruct_0205D094 *param0, int param1, u32 param2)
     SpriteTransfer_RequestCharListAtEnd(param0->unk_18[0]);
     SpriteTransfer_RequestPlttFreeSpaceList(param0->unk_18[1]);
 
-    v1 = LoadMemberFromNARC(177, 4, 0, 4, 0);
+    v1 = LoadMemberFromNARC(NARC_INDEX_DATA__UGROUNDEFFECT, 4, 0, HEAP_ID_FIELD, 0);
     param0->unk_04 = SpriteResourcesHeaderList_NewFromResdat(v1, 4, param0->unk_08[0], param0->unk_08[1], param0->unk_08[2], param0->unk_08[3], NULL, NULL);
 
     Heap_FreeToHeap(v1);
@@ -461,7 +461,7 @@ static int sub_0205D1C4(SpriteResourceCollection *param0, SpriteResourceList **p
     void *v3;
 
     v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, SpriteResourceTable_Size());
-    v3 = LoadMemberFromNARC(177, param2, 0, 4, 0);
+    v3 = LoadMemberFromNARC(NARC_INDEX_DATA__UGROUNDEFFECT, param2, 0, HEAP_ID_FIELD, 0);
 
     SpriteResourceTable_LoadFromBinary(v3, v0, HEAP_ID_FIELD);
     Heap_FreeToHeap(v3);

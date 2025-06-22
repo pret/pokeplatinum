@@ -137,12 +137,12 @@ static void ov95_0224789C(UnkStruct_ov95_02247958 *param0)
     }
 }
 
-UnkStruct_ov95_02247958 *ov95_022478B4(UnkStruct_ov95_0224773C *param0, int param1, u32 param2, u32 param3, fx32 param4, fx32 param5, fx32 param6, BOOL param7)
+UnkStruct_ov95_02247958 *ov95_022478B4(UnkStruct_ov95_0224773C *param0, int param1, enum NarcID narcID, u32 param3, fx32 param4, fx32 param5, fx32 param6, BOOL param7)
 {
     UnkStruct_ov95_02247958 *v0 = &param0->unk_18[param1];
 
-    v0->unk_00 = LoadMemberFromNARC(param2, param3, 0, 58, 1);
-    DC_FlushRange(v0->unk_00, NARC_GetMemberSizeByIndexPair(param2, param3));
+    v0->unk_00 = LoadMemberFromNARC(narcID, param3, 0, HEAP_ID_58, 1);
+    DC_FlushRange(v0->unk_00, NARC_GetMemberSizeByIndexPair(narcID, param3));
 
     if (v0->unk_00) {
         v0->unk_58 = NNS_G3dGetMdlSet(v0->unk_00);

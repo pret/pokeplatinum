@@ -780,7 +780,7 @@ void ov5_021DE5D0(Sprite *param0, u32 heapID, u32 param2, u8 param3, u16 param4)
 
     sub_02076AAC(param2, 2, &v0);
     v3 = Heap_AllocFromHeap(heapID, 32);
-    v2 = Graphics_GetPlttData(v0.unk_00, v0.unk_08, &v1, heapID);
+    v2 = Graphics_GetPlttData(v0.narcID, v0.unk_08, &v1, heapID);
     BlendPalette(v1->pRawData, v3, 16, param3, param4);
 
     ov5_021DE67C(param0, v3, 32);
