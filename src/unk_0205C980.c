@@ -8,6 +8,7 @@
 #include "string_template.h"
 
 static const int Unk_020ED7F0[][3] = {
+    // male appearances
     { 0x3, 0x3C, 0x3C },
     { 0x5, 0x6, 0x6 },
     { 0xB, 0x18, 0x18 },
@@ -16,6 +17,8 @@ static const int Unk_020ED7F0[][3] = {
     { 0x33, 0xE, 0xE },
     { 0x3E, 0x20, 0x20 },
     { 0x46, 0x31, 0x31 },
+
+    // female appearances
     { 0x6, 0x3, 0x3 },
     { 0x7, 0xA, 0xA },
     { 0xD, 0x24, 0x24 },
@@ -48,10 +51,10 @@ void sub_0205C980(u32 param0, int param1, StringTemplate *param2)
     }
 }
 
-int TrainerInfo_GetAppearanceIndex(u32 trainerId, int trainerGender, u32 offset)
+int TrainerInfo_GetAppearanceIndex(u32 trainerId, int trainerGender, u32 variant)
 {
     int v0 = trainerId % 8;
-    int v1 = Unk_020ED770[v0][offset] + 8 * trainerGender;
+    int v1 = Unk_020ED770[v0][variant] + 8 * trainerGender;
 
     return Unk_020ED7F0[v1][0];
 }
