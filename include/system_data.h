@@ -22,9 +22,9 @@ typedef struct SystemData {
     u8 ownerBirthDayOfMonth;
     GameTime gameTime;
     u8 isMysteryGiftUnlocked;
-    u8 unused_49;
+    u8 padding_49[3];
     s32 dwcProfileId;
-    u32 unused_4E[3];
+    u32 unused_50[3];
 } SystemData;
 
 int SystemData_SaveSize(void);
