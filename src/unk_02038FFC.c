@@ -41,9 +41,9 @@ void sub_02039034(WiFiList *param0)
     }
 }
 
-int WiFiList_GetUserGsProfileId(WiFiList *param0)
+int WiFiList_GetUserGsProfileId(WiFiList *wifiList)
 {
-    DWCUserData *v0 = WiFiList_GetUserData(param0);
+    DWCUserData *v0 = WiFiList_GetUserData(wifiList);
     DWCFriendData v1;
 
     DWC_CreateExchangeToken(v0, &v1);

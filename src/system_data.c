@@ -67,25 +67,25 @@ u8 SystemData_GetOwnerBirthDayOfMonth(const SystemData *systemData)
     return systemData->ownerBirthDayOfMonth;
 }
 
-BOOL SystemData_IsMysteryGiftUnlocked(const SystemData *param0)
+BOOL SystemData_IsMysteryGiftUnlocked(const SystemData *systemData)
 {
-    return param0->isMysteryGiftUnlocked;
+    return systemData->isMysteryGiftUnlocked;
 }
 
-void SystemData_SetMysteryGiftUnlocked(SystemData *param0, BOOL param1)
+void SystemData_SetMysteryGiftUnlocked(SystemData *systemData, BOOL isUnlocked)
 {
-    param0->isMysteryGiftUnlocked = param1;
+    systemData->isMysteryGiftUnlocked = isUnlocked;
 }
 
-s32 SystemData_GetDWCProfileId(const SystemData *param0)
+s32 SystemData_GetDWCProfileId(const SystemData *systemData)
 {
-    return param0->dwcProfileId;
+    return systemData->dwcProfileId;
 }
 
-void SystemData_SetDWCProfileId(SystemData *param0, s32 param1)
+void SystemData_SetDWCProfileId(SystemData *systemData, s32 profileId)
 {
-    if (param0->dwcProfileId == 0) {
-        param0->dwcProfileId = param1;
+    if (systemData->dwcProfileId == 0) {
+        systemData->dwcProfileId = profileId;
     }
 }
 
