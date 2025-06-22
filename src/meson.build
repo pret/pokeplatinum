@@ -108,7 +108,7 @@ pokeplatinum_c = files(
     'berry_patches.c',
     'persisted_map_features.c',
     'unk_02027F84.c',
-    'unk_02028124.c',
+    'mail.c',
     'unk_0202854C.c',
     'unk_020298BC.c',
     'unk_0202ACE0.c',

@@ -95,6 +95,7 @@
 #include "game_options.h"
 #include "game_records.h"
 #include "heap.h"
+#include "mail.h"
 #include "math_util.h"
 #include "overlay_manager.h"
 #include "party.h"
@@ -113,7 +114,6 @@
 #include "system_vars.h"
 #include "trainer_info.h"
 #include "unk_02017498.h"
-#include "unk_02028124.h"
 #include "unk_020298BC.h"
 #include "unk_0202C7FC.h"
 #include "unk_0202C858.h"
@@ -383,7 +383,7 @@ static PartyManagementData *sub_0203D344(int heapID, FieldSystem *fieldSystem, i
 
     partyMan->party = SaveData_GetParty(fieldSystem->saveData);
     partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
-    partyMan->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+    partyMan->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
     partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
     partyMan->unk_21 = param2;
     partyMan->unk_20 = param3;
@@ -784,9 +784,9 @@ static void sub_0203D910(FieldSystem *fieldSystem, UnkStruct_02097728 *param1)
     FieldSystem_StartChildProcess(fieldSystem, &Unk_020F64B0, param1);
 }
 
-UnkStruct_02097728 *sub_0203D920(FieldSystem *fieldSystem, int param1, u8 param2, u8 param3, int param4)
+UnkStruct_02097728 *sub_0203D920(FieldSystem *fieldSystem, int param1, u8 param2, u8 mailType, int unusedHeapID)
 {
-    UnkStruct_02097728 *v0 = sub_02097624(FieldSystem_GetSaveData(fieldSystem), param1, param2, param3, HEAP_ID_FIELDMAP);
+    UnkStruct_02097728 *v0 = sub_02097624(FieldSystem_GetSaveData(fieldSystem), param1, param2, mailType, HEAP_ID_FIELDMAP);
     sub_0203D910(fieldSystem, v0);
 
     return v0;
@@ -1717,7 +1717,7 @@ PartyManagementData *sub_0203E598(FieldSystem *fieldSystem, int heapID, int para
 
     partyMan->party = SaveData_GetParty(fieldSystem->saveData);
     partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
-    partyMan->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+    partyMan->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
     partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
     partyMan->broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
     partyMan->fieldMoveContext = NULL;

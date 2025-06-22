@@ -116,7 +116,7 @@ Static main
 	Object main.nef.p/src_berry_patches.c.o
 	Object main.nef.p/src_persisted_map_features.c.o
 	Object main.nef.p/src_unk_02027F84.c.o
-	Object main.nef.p/src_unk_02028124.c.o
+	Object main.nef.p/src_mail.c.o
 	Object main.nef.p/src_unk_0202854C.c.o
 	Object main.nef.p/src_unk_020298BC.c.o
 	Object main.nef.p/src_poffin.c.o

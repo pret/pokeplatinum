@@ -28,6 +28,7 @@
 #include "gx_layers.h"
 #include "hardware_palette.h"
 #include "heap.h"
+#include "mail.h"
 #include "menu.h"
 #include "message.h"
 #include "narc.h"
@@ -52,7 +53,6 @@
 #include "unk_02015F84.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
-#include "unk_02028124.h"
 #include "unk_020393C8.h"
 #include "unk_0207C63C.h"
 #include "vram_transfer.h"
@@ -682,67 +682,66 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
 
 static void sub_0207C028(UnkStruct_0207AE68 *param0)
 {
-    int v0;
+    int i;
 
     switch (param0->unk_78) {
     case 13:
     case 14:
         if (Bag_GetItemQuantity(param0->unk_4C, ITEM_POKE_BALL, param0->heapID) && (Party_GetCurrentCount(param0->unk_24) < 6)) {
             {
-                Pokemon *v1;
-                int v2;
-                Mail *v3;
+                int value;
+                Mail *mail;
                 UnkStruct_0202CA28 v4;
 
-                v1 = Pokemon_New(param0->heapID);
-                Pokemon_Copy(param0->unk_28, v1);
+                Pokemon *shedinja = Pokemon_New(param0->heapID);
+                Pokemon_Copy(param0->unk_28, shedinja);
 
-                v2 = SPECIES_SHEDINJA;
-                Pokemon_SetValue(v1, MON_DATA_SPECIES, &v2);
+                value = SPECIES_SHEDINJA;
+                Pokemon_SetValue(shedinja, MON_DATA_SPECIES, &value);
 
-                v2 = ITEM_POKE_BALL;
-                Pokemon_SetValue(v1, MON_DATA_POKEBALL, &v2);
+                value = ITEM_POKE_BALL;
+                Pokemon_SetValue(shedinja, MON_DATA_POKEBALL, &value);
 
-                v2 = 0;
-                Pokemon_SetValue(v1, MON_DATA_HELD_ITEM, &v2);
-                Pokemon_SetValue(v1, MON_DATA_MARKS, &v2);
+                value = 0;
+                Pokemon_SetValue(shedinja, MON_DATA_HELD_ITEM, &value);
+                Pokemon_SetValue(shedinja, MON_DATA_MARKS, &value);
 
-                for (v0 = MON_DATA_SINNOH_CHAMP_RIBBON; v0 < MON_DATA_SINNOH_RIBBON_DUMMY + 1; v0++) {
-                    Pokemon_SetValue(v1, v0, &v2);
+                for (i = MON_DATA_SINNOH_CHAMP_RIBBON; i < MON_DATA_SINNOH_RIBBON_DUMMY + 1; i++) {
+                    Pokemon_SetValue(shedinja, i, &value);
                 }
 
-                for (v0 = MON_DATA_HOENN_COOL_RIBBON; v0 < MON_DATA_HOENN_WORLD_RIBBON + 1; v0++) {
-                    Pokemon_SetValue(v1, v0, &v2);
+                for (i = MON_DATA_HOENN_COOL_RIBBON; i < MON_DATA_HOENN_WORLD_RIBBON + 1; i++) {
+                    Pokemon_SetValue(shedinja, i, &value);
                 }
 
-                for (v0 = MON_DATA_SINNOH_SUPER_COOL_RIBBON; v0 < MON_DATA_CONTEST_RIBBON_DUMMY + 1; v0++) {
-                    Pokemon_SetValue(v1, v0, &v2);
+                for (i = MON_DATA_SINNOH_SUPER_COOL_RIBBON; i < MON_DATA_CONTEST_RIBBON_DUMMY + 1; i++) {
+                    Pokemon_SetValue(shedinja, i, &value);
                 }
 
-                Pokemon_SetValue(v1, MON_DATA_SPECIES_NAME, NULL);
-                Pokemon_SetValue(v1, MON_DATA_HAS_NICKNAME, &v2);
-                Pokemon_SetValue(v1, MON_DATA_STATUS_CONDITION, &v2);
+                Pokemon_SetValue(shedinja, MON_DATA_SPECIES_NAME, NULL);
+                Pokemon_SetValue(shedinja, MON_DATA_HAS_NICKNAME, &value);
+                Pokemon_SetValue(shedinja, MON_DATA_STATUS_CONDITION, &value);
 
-                v3 = sub_0202818C(param0->heapID);
-                Pokemon_SetValue(v1, MON_DATA_MAIL, v3);
-                Heap_FreeToHeap(v3);
-                Pokemon_SetValue(v1, MON_DATA_BALL_CAPSULE_ID, &v2);
+                mail = Mail_New(param0->heapID);
+                Pokemon_SetValue(shedinja, MON_DATA_MAIL, mail);
+                Heap_FreeToHeap(mail);
+                Pokemon_SetValue(shedinja, MON_DATA_BALL_CAPSULE_ID, &value);
 
                 MI_CpuClearFast(&v4, sizeof(UnkStruct_0202CA28));
 
-                Pokemon_SetValue(v1, MON_DATA_171, (UnkStruct_0202CA28 *)&v4);
-                Pokemon_CalcAbility(v1);
+                Pokemon_SetValue(shedinja, MON_DATA_171, (UnkStruct_0202CA28 *)&v4);
+                Pokemon_CalcAbility(shedinja);
 
-                v0 = Pokemon_GetGender(v1);
-                Pokemon_SetValue(v1, MON_DATA_GENDER, &v0);
+                i = Pokemon_GetGender(shedinja);
+                Pokemon_SetValue(shedinja, MON_DATA_GENDER, &i);
 
-                Pokemon_CalcLevelAndStats(v1);
-                Party_AddPokemon(param0->unk_24, v1);
-                Pokedex_Capture(param0->unk_48, v1);
+                Pokemon_CalcLevelAndStats(shedinja);
+                Party_AddPokemon(param0->unk_24, shedinja);
+                Pokedex_Capture(param0->unk_48, shedinja);
                 GameRecords_IncrementRecordValue(param0->records, RECORD_UNK_012);
                 GameRecords_IncrementTrainerScore(param0->records, TRAINER_SCORE_EVENT_CAUGHT_SPECIES);
-                Poketch_PokemonHistoryEnqueue(param0->poketch, Pokemon_GetBoxPokemon(v1));
-                Heap_FreeToHeap(v1);
+                Poketch_PokemonHistoryEnqueue(param0->poketch, Pokemon_GetBoxPokemon(shedinja));
+                Heap_FreeToHeap(shedinja);
                 Bag_TryRemoveItem(param0->unk_4C, ITEM_POKE_BALL, 1, param0->heapID);
             }
         }
@@ -750,8 +749,8 @@ static void sub_0207C028(UnkStruct_0207AE68 *param0)
     case 6:
     case 18:
     case 19:
-        v0 = 0;
-        Pokemon_SetValue(param0->unk_28, MON_DATA_HELD_ITEM, &v0);
+        i = 0;
+        Pokemon_SetValue(param0->unk_28, MON_DATA_HELD_ITEM, &i);
         break;
     }
 }
