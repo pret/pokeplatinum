@@ -12,8 +12,8 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_defs/mail.h"
+#include "struct_defs/seal_case.h"
 #include "struct_defs/sprite_animation_frame.h"
-#include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_0207AE68_t.h"
 #include "struct_defs/struct_0207C894.h"
 #include "struct_defs/struct_02099F80.h"
@@ -690,7 +690,7 @@ static void sub_0207C028(UnkStruct_0207AE68 *param0)
             {
                 int value;
                 Mail *mail;
-                UnkStruct_0202CA28 v4;
+                BallCapsule v4;
 
                 Pokemon *shedinja = Pokemon_New(param0->heapID);
                 Pokemon_Copy(param0->unk_28, shedinja);
@@ -726,9 +726,9 @@ static void sub_0207C028(UnkStruct_0207AE68 *param0)
                 Heap_FreeToHeap(mail);
                 Pokemon_SetValue(shedinja, MON_DATA_BALL_CAPSULE_ID, &value);
 
-                MI_CpuClearFast(&v4, sizeof(UnkStruct_0202CA28));
+                MI_CpuClearFast(&v4, sizeof(BallCapsule));
 
-                Pokemon_SetValue(shedinja, MON_DATA_171, (UnkStruct_0202CA28 *)&v4);
+                Pokemon_SetValue(shedinja, MON_DATA_BALL_CAPSULE, (BallCapsule *)&v4);
                 Pokemon_CalcAbility(shedinja);
 
                 i = Pokemon_GetGender(shedinja);
