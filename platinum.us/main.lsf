@@ -761,7 +761,7 @@ Overlay overlay19
 	Object main.nef.p/src_overlay019_ov19_021DCF88.c.o
 	Object main.nef.p/src_overlay019_ov19_021DE3E8.c.o
 	Object main.nef.p/src_overlay019_ov19_021DEC04.c.o
-	Object main.nef.p/src_overlay019_ov19_021DF964.c.o
+	Object main.nef.p/src_overlay019_box_menu.c.o
 }
 
 Overlay overlay20

@@ -8,7 +8,7 @@
 typedef struct {
     SaveData *saveData;
     enum BoxMode boxMode;
-    BOOL unk_08;
+    BOOL recordBoxUseInJournal;
 } UnkStruct_02042434;
 
 #endif // POKEPLATINUM_STRUCT_02042434_H
