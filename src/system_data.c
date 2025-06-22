@@ -77,15 +77,15 @@ void SystemData_SetMysteryGiftUnlocked(SystemData *param0, BOOL param1)
     param0->isMysteryGiftUnlocked = param1;
 }
 
-s32 sub_02025D74(const SystemData *param0)
+s32 SystemData_GetDWCProfileId(const SystemData *param0)
 {
-    return param0->unk_4C;
+    return param0->dwcProfileId;
 }
 
-void sub_02025D78(SystemData *param0, s32 param1)
+void SystemData_SetDWCProfileId(SystemData *param0, s32 param1)
 {
-    if (param0->unk_4C == 0) {
-        param0->unk_4C = param1;
+    if (param0->dwcProfileId == 0) {
+        param0->dwcProfileId = param1;
     }
 }
 

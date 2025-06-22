@@ -23,7 +23,7 @@ typedef struct SystemData {
     GameTime gameTime;
     u8 isMysteryGiftUnlocked;
     u8 unk_49;
-    s32 unk_4C;
+    s32 dwcProfileId;
     u32 unk_50[3];
 } SystemData;
 
@@ -38,8 +38,8 @@ u8 SystemData_GetOwnerBirthMonth(const SystemData *systemData);
 u8 SystemData_GetOwnerBirthDayOfMonth(const SystemData *systemData);
 BOOL SystemData_IsMysteryGiftUnlocked(const SystemData *param0);
 void SystemData_SetMysteryGiftUnlocked(SystemData *param0, BOOL param1);
-s32 sub_02025D74(const SystemData *param0);
-void sub_02025D78(SystemData *param0, s32 param1);
+s32 SystemData_GetDWCProfileId(const SystemData *param0);
+void SystemData_SetDWCProfileId(SystemData *param0, s32 param1);
 void GameTime_Clear(GameTime *gameTime);
 BOOL GameTime_HasPenalty(const GameTime *gameTime);
 void GameTime_DecrementPenalty(GameTime *gameTime, int val);

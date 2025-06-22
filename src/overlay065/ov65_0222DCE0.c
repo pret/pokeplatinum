@@ -1619,7 +1619,7 @@ static int ov65_0222F010(UnkStruct_ov65_0222EBE0 *param0, int param1)
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, SEQ_WIFILOBBY, 1);
         ov65_0222EE98(param0);
 
-        if (!DWC_CheckHasProfile(sub_0202AD28(param0->unk_00))) {
+        if (!DWC_CheckHasProfile(WiFiList_GetUserData(param0->unk_00))) {
             Bg_SetPriority(0, 3);
             Bg_SetPriority(1, 0);
             Bg_SetPriority(3, 0);
@@ -1629,7 +1629,7 @@ static int ov65_0222F010(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
             param0->unk_184 = Menu_MakeYesNoChoice(param0->unk_15C, &Unk_ov65_02238954, ((512 - (18 + 12)) - 9), 11, 54);
             param0->unk_3A8 = 6;
-        } else if (!DWC_CheckValidConsole(sub_0202AD28(param0->unk_00))) {
+        } else if (!DWC_CheckValidConsole(WiFiList_GetUserData(param0->unk_00))) {
             ov65_02232CA8(param0, 20);
             param0->unk_3A8 = 3;
         } else {

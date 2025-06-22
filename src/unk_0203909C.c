@@ -17,7 +17,7 @@
 int sub_0203909C(SaveData *saveData, DWCFriendData *param1, int *param2)
 {
     int v0;
-    DWCUserData *v1 = sub_0202AD28(SaveData_GetWiFiList(saveData));
+    DWCUserData *v1 = WiFiList_GetUserData(SaveData_GetWiFiList(saveData));
     DWCFriendData *v2 = sub_0202AED8(SaveData_GetWiFiList(saveData), 0);
 
     *param2 = -1;
@@ -44,7 +44,7 @@ int sub_0203909C(SaveData *saveData, DWCFriendData *param1, int *param2)
 int sub_02039140(SaveData *saveData, u64 param1, int *param2)
 {
     int v0;
-    DWCUserData *v1 = sub_0202AD28(SaveData_GetWiFiList(saveData));
+    DWCUserData *v1 = WiFiList_GetUserData(SaveData_GetWiFiList(saveData));
     DWCFriendData *v2 = sub_0202AED8(SaveData_GetWiFiList(saveData), 0);
     DWCFriendData v3;
 

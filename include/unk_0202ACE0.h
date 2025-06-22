@@ -10,7 +10,7 @@
 
 int WiFiList_SaveSize(void);
 void WiFiList_Init(WiFiList *param0);
-DWCUserData *sub_0202AD28(WiFiList *param0);
+DWCUserData *WiFiList_GetUserData(WiFiList *param0);
 u32 sub_0202AD2C(WiFiList *param0, int param1, int param2);
 void sub_0202AE2C(WiFiList *param0, int param1, int param2, u32 param3);
 DWCFriendData *sub_0202AED8(WiFiList *param0, int param1);
