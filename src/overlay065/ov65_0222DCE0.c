@@ -4789,7 +4789,7 @@ static void ov65_02232CA8(UnkStruct_ov65_0222EBE0 *param0, int param1)
 static void ov65_02232DC0(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
     if (param1 != -1) {
-        TrainerInfo *v0 = TrainerInfo_New(54);
+        TrainerInfo *v0 = TrainerInfo_New(HEAP_ID_54);
 
         TrainerInfo_SetName(v0, sub_0202AEF0(param0->unk_00, param1));
         StringTemplate_SetPlayerName(param0->unk_164, 0, v0);
@@ -6860,7 +6860,7 @@ static BOOL ov65_02234E8C(UnkStruct_ov65_02234E50 *param0, u32 param1, u32 param
 static void ov65_02234F68(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
     if (param1 != -1) {
-        TrainerInfo *v0 = TrainerInfo_New(54);
+        TrainerInfo *v0 = TrainerInfo_New(HEAP_ID_54);
 
         TrainerInfo_SetName(v0, sub_0202AEF0(param0->unk_00, param1));
         StringTemplate_SetPlayerName(param0->unk_BE0.unk_00, 0, v0);

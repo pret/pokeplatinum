@@ -139,7 +139,7 @@ int ov72_0223D7A0(ApplicationManager *appMan, int *param1)
 
             v0->unk_5BFC = (u8 *)sub_0202C840(sub_0202C834(saveData));
             v0->records = (GameRecords *)SaveData_GetGameRecords((SaveData *)ApplicationManager_Args(appMan));
-            v0->unk_0C = (Options *)SaveData_GetOptions((SaveData *)ApplicationManager_Args(appMan));
+            v0->options = SaveData_GetOptions((SaveData *)ApplicationManager_Args(appMan));
         }
 
         ov72_0223DCA8(v0, v1);
@@ -449,7 +449,7 @@ static void ov72_0223DCA8(UnkStruct_ov72_0223DB98 *param0, NARC *param1)
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 5, v0, 2, 0, 32 * 24 * 2, 1, HEAP_ID_39);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 4, v0, 5, 0, 32 * 8 * 0x20, 1, HEAP_ID_39);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 6, v0, 5, 0, 32 * 24 * 2, 1, HEAP_ID_39);
-    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_0C), HEAP_ID_39);
+    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->options), HEAP_ID_39);
     LoadStandardWindowGraphics(v0, 0, 1 + (18 + 12), 11, 0, HEAP_ID_39);
 }
 
@@ -1103,7 +1103,7 @@ static void ov72_0223E930(UnkStruct_ov72_0223DB98 *param0, int param1)
     Window_FillTilemap(&param0->unk_338, 0xf0f);
     Window_DrawMessageBoxWithScrollCursor(&param0->unk_338, 0, 1, 10);
 
-    param0->unk_38 = Text_AddPrinterWithParams(&param0->unk_338, FONT_MESSAGE, param0->unk_34, 0, 0, Options_TextFrameDelay(param0->unk_0C), NULL);
+    param0->unk_38 = Text_AddPrinterWithParams(&param0->unk_338, FONT_MESSAGE, param0->unk_34, 0, 0, Options_TextFrameDelay(param0->options), NULL);
 }
 
 static int ov72_0223E99C(int param0)

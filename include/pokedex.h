@@ -3,11 +3,12 @@
 
 #include "struct_decls/pokedexdata_decl.h"
 
+#include "heap.h"
 #include "pokemon.h"
 #include "savedata.h"
 
 int Pokedex_SaveSize(void);
-Pokedex *Pokedex_New(u32 heapID);
+Pokedex *Pokedex_New(enum HeapId heapID);
 void Pokedex_Copy(const Pokedex *src, Pokedex *dest);
 void Pokedex_Init(Pokedex *pokedex);
 u16 Pokedex_CountCaught_National(const Pokedex *pokedex);

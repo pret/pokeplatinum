@@ -26,7 +26,7 @@ typedef struct {
     WiFiHistory *wiFiHistory;
     TrainerInfo *unk_1C;
     SaveData *saveData;
-    Options *unk_24;
+    Options *options;
     GameRecords *records;
     JournalEntry *unk_2C;
     Bag *unk_30;

@@ -305,7 +305,7 @@ int ov88_0223B140(ApplicationManager *appMan, int *param1)
     ov88_0223C63C();
     ov88_0223C66C(v0, v1);
     ov88_0223CBA0(v0);
-    ov88_0223E9C4(v0->unk_174, v0->unk_49C, v0->unk_08->unk_18);
+    ov88_0223E9C4(v0->unk_174, v0->unk_49C, v0->unk_08->options);
 
     v0->fieldSystem = v0->unk_08->fieldSystem;
 
@@ -368,7 +368,7 @@ static void ov88_0223B3C0(UnkStruct_02095E80 *param0)
     ov88_0223B4F0(param0);
     ov88_0223B320(param0);
 
-    LoadMessageBoxGraphics(param0->unk_174, 0, (512 - (9 + (18 + 12))), 10, Options_Frame(param0->unk_08->unk_18), HEAP_ID_26);
+    LoadMessageBoxGraphics(param0->unk_174, 0, (512 - (9 + (18 + 12))), 10, Options_Frame(param0->unk_08->options), HEAP_ID_26);
     LoadStandardWindowGraphics(param0->unk_174, 0, (512 - 9), 11, 0, HEAP_ID_26);
 
     ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
@@ -1730,7 +1730,7 @@ static void ov88_0223D1EC(UnkStruct_02095E80 *param0, int param1)
     param0->unk_0C.move = 0;
     param0->unk_0C.showContest = PokemonSummaryScreen_ShowContestData(param0->unk_08->saveData);
     param0->unk_0C.dexMode = param0->unk_08->unk_30;
-    param0->unk_0C.options = param0->unk_08->unk_18;
+    param0->unk_0C.options = param0->unk_08->options;
     param0->unk_0C.specialRibbons = sub_0202D79C(param0->unk_08->saveData);
 
     PokemonSummaryScreen_FlagVisiblePages(&param0->unk_0C, Unk_ov88_0223F13C);
@@ -1862,13 +1862,11 @@ static int ov88_0223D5B8(UnkStruct_02095E80 *param0)
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->unk_36C8 = v0;
 
-        {
-            TrainerInfo *v2 = TrainerInfo_New(26);
+        TrainerInfo *v2 = TrainerInfo_New(HEAP_ID_26);
 
-            TrainerInfo_SetName(v2, sub_0202AEF0(param0->unk_36EC, v0));
-            StringTemplate_SetPlayerName(param0->unk_36CC, 0, v2);
-            Heap_FreeToHeap(v2);
-        }
+        TrainerInfo_SetName(v2, sub_0202AEF0(param0->unk_36EC, v0));
+        StringTemplate_SetPlayerName(param0->unk_36CC, 0, v2);
+        Heap_FreeToHeap(v2);
 
         ov88_0223D49C(param0, 60);
         param0->unk_226C = ov88_0223D514;
@@ -2502,7 +2500,7 @@ static void ov88_0223E694(Party *param0, Party *param1, int param2, int param3, 
         ResetChatotCryDataStatus(v4);
     }
 
-    sub_0202F180(param4->saveData, v1);
+    SaveData_UpdateCatchRecords(param4->saveData, v1);
     Pokemon_Copy(v1, Party_GetPokemonBySlotIndex(param0, param2));
     Pokemon_Copy(v0, Party_GetPokemonBySlotIndex(param1, param3));
     ov88_0223E7F0(param4->unk_1C, v1);

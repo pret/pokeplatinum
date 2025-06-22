@@ -23,7 +23,7 @@ void sub_020287F8(SaveData *saveData);
 BOOL sub_02028810(SaveData *saveData);
 void UndergroundData_SetUnusedField(UndergroundData *undergroundData);
 void sub_02028830(UndergroundData *param0, const TrainerInfo *param1);
-TrainerInfo *sub_020288C8(const UndergroundData *param0, int param1, int param2);
+TrainerInfo *sub_020288C8(const UndergroundData *param0, int heapID, int param2);
 u32 sub_02028930(UndergroundData *param0);
 int sub_02028938(int param0);
 BOOL sub_0202895C(UndergroundData *param0, int param1);

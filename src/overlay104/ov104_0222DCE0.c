@@ -410,7 +410,7 @@ void ov104_0222E278(UnkStruct_ov104_0223A348 *param0, u16 param1, int param2, in
     return;
 }
 
-void ov104_0222E284(FieldBattleDTO *param0, FrontierTrainerDataDTO *param1, int param2, int battlerId, int heapId)
+void ov104_0222E284(FieldBattleDTO *param0, FrontierTrainerDataDTO *param1, int param2, int battlerId, int heapID)
 {
     Sentence *v0;
 

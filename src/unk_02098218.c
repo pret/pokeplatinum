@@ -72,8 +72,8 @@ static int sub_02098218(ApplicationManager *appMan, int *param1)
     v0 = ApplicationManager_Args(appMan);
 
     v1->unk_00 = v0;
-    v1->unk_04.unk_0C = Options_TextFrameDelay(v1->unk_00->unk_0C.unk_04);
-    v1->unk_04.unk_10 = Options_Frame(v1->unk_00->unk_0C.unk_04);
+    v1->unk_04.unk_0C = Options_TextFrameDelay(v1->unk_00->unk_0C.options);
+    v1->unk_04.unk_10 = Options_Frame(v1->unk_00->unk_0C.options);
     v1->unk_04.unk_34 = ov119_021D0DD4();
     v1->unk_04.unk_38 = PokemonSpriteManager_New(HEAP_ID_71);
     v1->unk_04.unk_3C = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_71);
@@ -221,7 +221,7 @@ static BOOL sub_0209843C(FieldTask *param0)
         }
 
         {
-            sub_0202F180(FieldSystem_GetSaveData(fieldSystem), v0->unk_0C.unk_00);
+            SaveData_UpdateCatchRecords(FieldSystem_GetSaveData(fieldSystem), v0->unk_0C.unk_00);
         }
 
         if (v0->unk_04 == 1) {

@@ -87,22 +87,22 @@ typedef struct BattleBag {
     BagItem items[BATTLE_POCKET_MAX][BATTLE_POCKET_SIZE];
     SpriteManager *spriteManager;
     ManagedSprite *pocketItemSprites[BATTLE_POCKET_ITEMS_PER_PAGE];
-    u16 unk_328[3][144];
-    u16 unk_688[4][130];
-    u16 unk_A98[3][25];
-    u16 unk_B2E[4][96];
-    u16 unk_E2E[4][25];
-    u16 unk_EF6[4][25];
-    u16 unk_FBE[3][16];
-    u16 unk_101E[3][16];
-    u16 unk_107E[3][16];
-    u16 unk_10DE[3][16];
-    u8 unk_113E;
-    u8 unk_113F; // Seems unused
-    u8 unk_1140;
-    u8 unk_1141_0 : 4; // Seems unused
-    u8 unk_1141_4 : 4; // Seems unused
-    u8 unk_1142[8]; // Seems unused
+    u16 menuPocketButtonData[BUTTON_STATE_MAX_CANNOT_DISABLE][MENU_POCKET_BUTTON_SIZE];
+    u16 useItemButtonData[BUTTON_STATE_MAX][USE_ITEM_BUTTON_SIZE];
+    u16 cancelButtonData[BUTTON_STATE_MAX_CANNOT_DISABLE][CANCEL_BUTTON_SIZE];
+    u16 pocketItemButtonData[BUTTON_STATE_MAX][POCKET_ITEM_BUTTON_SIZE];
+    u16 pocketPrevPageButtonData[BUTTON_STATE_MAX][POCKET_MENU_PAGE_BUTTON_SIZE];
+    u16 pocketNextPageButtonData[BUTTON_STATE_MAX][POCKET_MENU_PAGE_BUTTON_SIZE];
+    u16 menuScreenRecoverHPPocketIconData[BUTTON_STATE_MAX_CANNOT_DISABLE][MENU_POCKET_ICON_SIZE];
+    u16 menuScreenRecoverStatusPocketIconData[BUTTON_STATE_MAX_CANNOT_DISABLE][MENU_POCKET_ICON_SIZE];
+    u16 menuScreenPokeBallsPocketIconData[BUTTON_STATE_MAX_CANNOT_DISABLE][MENU_POCKET_ICON_SIZE];
+    u16 menuScreenBattleItemsIconData[BUTTON_STATE_MAX_CANNOT_DISABLE][MENU_POCKET_ICON_SIZE];
+    u8 pressedButtonState;
+    u8 Unused1;
+    u8 pressedButton;
+    u8 isAButtonPressed : 4;
+    u8 Unused2 : 4;
+    u8 Unused3[8];
     u8 currentState;
     u8 queuedState;
     u8 currentScreen;
@@ -111,7 +111,7 @@ typedef struct BattleBag {
     u8 numBattlePocketItems[BATTLE_POCKET_MAX];
     u8 numBattlePocketPages[BATTLE_POCKET_MAX];
     u8 catchTutorialState;
-    u8 catchTutorialTickCount; // Seems unused
+    u8 catchTutorialTickCount; // Doesn't seem to be used for anything
 } BattleBag;
 
 void BattleBagTask_Start(BattleBagContext *context);

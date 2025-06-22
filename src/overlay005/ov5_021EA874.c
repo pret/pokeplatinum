@@ -311,14 +311,12 @@ static BOOL ov5_021EAC44(UnkStruct_ov5_021EAE78 *param0)
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->unk_90 = v1;
 
-        {
-            WiFiList *v2 = SaveData_GetWiFiList(param0->saveData);
-            TrainerInfo *v3 = TrainerInfo_New(4);
+        WiFiList *v2 = SaveData_GetWiFiList(param0->saveData);
+        TrainerInfo *v3 = TrainerInfo_New(HEAP_ID_FIELD);
 
-            TrainerInfo_SetName(v3, sub_0202AEF0(v2, v1));
-            StringTemplate_SetPlayerName(param0->unk_38, 0, v3);
-            Heap_FreeToHeap(v3);
-        }
+        TrainerInfo_SetName(v3, sub_0202AEF0(v2, v1));
+        StringTemplate_SetPlayerName(param0->unk_38, 0, v3);
+        Heap_FreeToHeap(v3);
 
         ov5_021EAE78(param0, 60);
         param0->unk_48 = 10;

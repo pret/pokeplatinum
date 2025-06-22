@@ -178,14 +178,14 @@ static UnkStruct_02015214 *ov83_0223D720(UnkStruct_02015064 *param0, UnkStruct_0
     return v1;
 }
 
-void ov83_0223D754(UnkStruct_ov83_0223D784 *param0, int param1, int param2, int param3)
+void ov83_0223D754(UnkStruct_ov83_0223D784 *param0, int param1, int param2, int heapID)
 {
-    int v0;
+    int i;
 
-    param0->unk_00 = SpriteList_InitRendering(param1, &param0->unk_04, param3);
+    param0->unk_00 = SpriteList_InitRendering(param1, &param0->unk_04, heapID);
 
-    for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_190[v0] = SpriteResourceCollection_New(param2, v0, param3);
+    for (i = 0; i < 4; i++) {
+        param0->unk_190[i] = SpriteResourceCollection_New(param2, i, heapID);
     }
 }
 

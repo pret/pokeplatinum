@@ -126,7 +126,6 @@ u8 ov16_0223ED60(BattleSystem *battleSystem);
 u8 ov16_0223ED6C(BattleSystem *battleSystem);
 int BattleSystem_NumSafariBalls(BattleSystem *battleSystem);
 void BattleSystem_SetSafariBalls(BattleSystem *battleSystem, int param1);
-Options *BattleSystem_GetOptions(BattleSystem *battleSystem);
 BOOL BattleSystem_AnimationsOn(BattleSystem *battleSys);
 int ov16_0223EDE0(BattleSystem *battleSystem);
 u8 BattleSystem_TextSpeed(BattleSystem *battleSystem);
