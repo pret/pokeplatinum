@@ -652,7 +652,7 @@ static BOOL ov97_0222B7DC(void *param0, int param1, UnkStruct_ov97_02237808 *par
             v0->unk_34 = 1;
         }
 
-        if (sub_02025D64(SaveData_GetSystemData(v0->saveData)) == 1) {
+        if (SystemData_IsMysteryGiftUnlocked(SaveData_GetSystemData(v0->saveData)) == 1) {
             v0->unk_34 = 1;
         }
 

@@ -3892,7 +3892,7 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_2AC
+    .macro ScrCmd_UnlockMysteryGift
     .short 684
     .endm
 

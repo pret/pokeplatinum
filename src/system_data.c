@@ -67,14 +67,14 @@ u8 SystemData_GetOwnerBirthDayOfMonth(const SystemData *systemData)
     return systemData->ownerBirthDayOfMonth;
 }
 
-BOOL sub_02025D64(const SystemData *param0)
+BOOL SystemData_IsMysteryGiftUnlocked(const SystemData *param0)
 {
-    return param0->unk_48;
+    return param0->isMysteryGiftUnlocked;
 }
 
-void sub_02025D6C(SystemData *param0, BOOL param1)
+void SystemData_SetMysteryGiftUnlocked(SystemData *param0, BOOL param1)
 {
-    param0->unk_48 = param1;
+    param0->isMysteryGiftUnlocked = param1;
 }
 
 s32 sub_02025D74(const SystemData *param0)

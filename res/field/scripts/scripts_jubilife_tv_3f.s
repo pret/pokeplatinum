@@ -117,7 +117,7 @@ _0166:
 _0171:
     Message 9
     WaitABXPadPress
-    ScrCmd_2AC
+    ScrCmd_UnlockMysteryGift
     CloseMessage
     ReleaseAll
     End
