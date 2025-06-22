@@ -5050,7 +5050,7 @@ static void ov16_02263014(SysTask *param0, void *param1)
     v1 = BattleSystem_BGL(v0->unk_00);
     v2 = BattleSystem_PaletteSys(v0->unk_00);
     v3 = BattleSystem_Terrain(v0->unk_00);
-    v4 = Unk_ov16_0226F1D0[ov16_0223E240(v0->unk_00)];
+    v4 = Unk_ov16_0226F1D0[BattleSystem_Background(v0->unk_00)];
 
     v0->unk_15++;
 
@@ -6124,8 +6124,8 @@ static void ov16_02264408(BattleSystem *battleSys, BattlerData *param1, UnkStruc
     v0.unk_70 = ov16_0223F1E8(battleSys);
     v0.unk_74 = ov16_0223F1F0(battleSys);
     v0.unk_54.unk_00 = 7;
-    v0.unk_54.unk_04 = 3 + ov16_0223E240(battleSys);
-    v0.unk_54.unk_08 = 172 + ov16_0223E240(battleSys) * 3 + ov16_0223EC04(battleSys);
+    v0.unk_54.unk_04 = 3 + BattleSystem_Background(battleSys);
+    v0.unk_54.unk_08 = 172 + BattleSystem_Background(battleSys) * 3 + ov16_0223EC04(battleSys);
     v0.unk_54.unk_0C = 2;
     v0.unk_54.unk_10 = 0;
     v0.unk_54.unk_14 = 8;

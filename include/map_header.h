@@ -1,6 +1,7 @@
 #ifndef POKEPLATINUM_MAP_HEADER_H
 #define POKEPLATINUM_MAP_HEADER_H
 
+#include "generated/battle_backgrounds.h"
 #include "generated/evolution_methods.h"
 
 typedef struct {
@@ -42,7 +43,7 @@ u32 MapHeader_GetMapLabelTextID(u32 headerID);
 u8 MapHeader_GetMapLabelWindowID(u32 headerID);
 u32 MapHeader_GetWeatherType(u32 headerID);
 u32 MapHeader_GetCameraType(u32 headerID);
-u32 MapHeader_GetBattleBG(u32 headerID);
+enum BattleBackground MapHeader_GetBattleBG(u32 headerID);
 BOOL MapHeader_IsEscapeRopeAllowed(u32 headerID);
 BOOL MapHeader_IsFlyAllowed(u32 headerID);
 BOOL MapHeader_IsBikeAllowed(u32 headerID);

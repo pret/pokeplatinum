@@ -455,7 +455,7 @@ BOOL sub_0207AAFC(UnkStruct_0207A778 *param0)
         v1 = param0->unk_00->trainerInfo[CommSys_CurNetId()];
     }
 
-    sub_0207ADD4(v1, param0->unk_00->unk_124, (PalPad *)param0->unk_20);
+    sub_0207ADD4(v1, param0->unk_00->palPad, (PalPad *)param0->unk_20);
 
     {
         int v2;
@@ -675,7 +675,7 @@ void sub_0207AE34(int param0, int param1, void *param2, void *param3)
     UnkStruct_0207A778 *v0 = (UnkStruct_0207A778 *)param3;
 
     if (CommSys_CurNetId() != param0) {
-        sub_02027FEC(v0->unk_00->unk_124, (PalPad *)param2, 1, HEAP_ID_BATTLE);
+        sub_02027FEC(v0->unk_00->palPad, (PalPad *)param2, 1, HEAP_ID_BATTLE);
     }
 
     v0->unk_1020++;

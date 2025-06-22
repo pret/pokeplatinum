@@ -1063,7 +1063,7 @@ void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *battleSys, int par
     }
 
     v1 = BattleSystem_PaletteSys(battleSys);
-    v2 = ov16_0223E240(battleSys);
+    v2 = BattleSystem_Background(battleSys);
 
     if (v2 >= NELEMS(Unk_ov16_022704E4)) {
         v2 = 0;
