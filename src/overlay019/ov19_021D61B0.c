@@ -74,7 +74,7 @@ struct UnkStruct_ov19_021D61B0_t {
     const UnkStruct_ov19_021D5DF8 *unk_B414;
 };
 
-typedef struct {
+typedef struct BoxTaskParams {
     enum BoxGraphicsFunctions function;
     u16 unk_04;
     u16 state;
