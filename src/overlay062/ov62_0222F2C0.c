@@ -260,25 +260,25 @@ static void ov62_0222F670(BgConfig *param0)
     }
 
     {
-        Bg_InitFromTemplate(param0, 0, &Unk_ov62_022487B0[0], 0);
-        Bg_InitFromTemplate(param0, 1, &Unk_ov62_022487B0[1], 0);
-        Bg_InitFromTemplate(param0, 2, &Unk_ov62_022487B0[2], 0);
-        Bg_InitFromTemplate(param0, 3, &Unk_ov62_022487B0[3], 0);
-        Bg_ClearTilemap(param0, 0);
-        Bg_ClearTilemap(param0, 1);
-        Bg_ClearTilemap(param0, 2);
-        Bg_ClearTilemap(param0, 3);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_0, &Unk_ov62_022487B0[0], 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &Unk_ov62_022487B0[1], 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &Unk_ov62_022487B0[2], 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &Unk_ov62_022487B0[3], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_3);
     }
 
     {
-        Bg_InitFromTemplate(param0, 4, &Unk_ov62_02248820[0], 0);
-        Bg_InitFromTemplate(param0, 5, &Unk_ov62_02248820[1], 0);
-        Bg_InitFromTemplate(param0, 6, &Unk_ov62_02248820[2], 0);
-        Bg_InitFromTemplate(param0, 7, &Unk_ov62_02248820[3], 0);
-        Bg_ClearTilemap(param0, 4);
-        Bg_ClearTilemap(param0, 5);
-        Bg_ClearTilemap(param0, 6);
-        Bg_ClearTilemap(param0, 7);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &Unk_ov62_02248820[0], 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_1, &Unk_ov62_02248820[1], 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_2, &Unk_ov62_02248820[2], 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_3, &Unk_ov62_02248820[3], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_1);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_2);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_3);
     }
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);

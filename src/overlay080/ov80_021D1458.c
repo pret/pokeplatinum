@@ -828,10 +828,10 @@ static void ov80_021D225C(UnkStruct_ov80_021D2A08 *param0)
 {
     UnkStruct_ov80_021D1478 *v0 = param0->unk_34;
 
-    Bg_SetOffset(param0->unk_28, 6, 3, 0);
-    Bg_SetOffset(param0->unk_28, 7, 3, 0);
-    Bg_SetOffset(param0->unk_28, 6, 0, 0);
-    Bg_SetOffset(param0->unk_28, 7, 0, 0);
+    Bg_SetOffset(param0->unk_28, BG_LAYER_SUB_2, 3, 0);
+    Bg_SetOffset(param0->unk_28, BG_LAYER_SUB_3, 3, 0);
+    Bg_SetOffset(param0->unk_28, BG_LAYER_SUB_2, 0, 0);
+    Bg_SetOffset(param0->unk_28, BG_LAYER_SUB_3, 0, 0);
 
     Bg_FillTilemapRect(param0->unk_28, 0, 0x0, 0, 0, 32, 32, 17);
     Bg_FillTilemapRect(param0->unk_28, 1, 0x0, 0, 0, 32, 32, 17);

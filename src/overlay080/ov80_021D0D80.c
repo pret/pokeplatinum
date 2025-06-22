@@ -422,10 +422,10 @@ static void ov80_021D1088(UnkStruct_ov80_021D2A08 *param0, BgConfig *param1)
         }
     }
 
-    Bg_ClearTilesRange(0, 32, 0, param0->heapID);
-    Bg_ClearTilesRange(1, 32, 0, param0->heapID);
-    Bg_ClearTilesRange(2, 32, 0, param0->heapID);
-    Bg_ClearTilesRange(3, 32, 0, param0->heapID);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, param0->heapID);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, param0->heapID);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_2, 32, 0, param0->heapID);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_3, 32, 0, param0->heapID);
     Bg_ClearTilesRange(4, 32, 0, param0->heapID);
     Bg_ClearTilesRange(5, 32, 0, param0->heapID);
     Bg_ClearTilesRange(6, 32, 0, param0->heapID);

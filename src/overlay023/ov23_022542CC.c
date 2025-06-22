@@ -105,7 +105,7 @@ void ov23_022542D8(UnkStruct_ov23_022542D8 *param0, FieldSystem *fieldSystem, u1
     param0->unk_34 = param3;
     param0->unk_40 = 0;
 
-    LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
+    LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
 }
 
 void ov23_0225430C(UnkStruct_ov23_022542D8 *param0)
@@ -275,7 +275,7 @@ void ov23_02254594(UnkStruct_ov23_02254594 *param0, FieldSystem *fieldSystem, u1
     param0->unk_38 = param2;
     param0->unk_3C = param3;
 
-    LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
+    LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
 }
 
 void ov23_022545C4(UnkStruct_ov23_02254594 *param0, const u8 param1, const u8 param2)

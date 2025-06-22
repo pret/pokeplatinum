@@ -216,7 +216,7 @@ void ov62_0223197C(UnkStruct_0208C06C *param0, int param1)
     ov62_022302A8(param0, 6, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
     G2S_BlendNone();
-    Bg_SetPriority(6, 0);
+    Bg_SetPriority(BG_LAYER_SUB_2, 0);
     Window_Init(v1);
     Window_Add(param0->unk_14.unk_10, v1, 6, 1, 19, 30, 4, 14, 32);
 
@@ -240,7 +240,7 @@ void ov62_02231A1C(UnkStruct_0208C06C *param0)
     Window_Remove(&param0->unk_8A4);
     Bg_ClearTilemap(param0->unk_14.unk_10, 6);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
-    Bg_SetPriority(6, 2);
+    Bg_SetPriority(BG_LAYER_SUB_2, 2);
 
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ, 7, 8);
     G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ, 7, 8);
@@ -326,7 +326,7 @@ void ov62_02231BC4(UnkStruct_0208C06C *param0, int param1)
 
     G2S_BlendNone();
 
-    Bg_SetPriority(6, 0);
+    Bg_SetPriority(BG_LAYER_SUB_2, 0);
     ov62_022302A8(param0, 6, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
     Window_Init(v1);
@@ -2658,14 +2658,14 @@ BOOL ov62_022342CC(UnkStruct_0208C06C *param0)
 
 void ov62_02234314(void)
 {
-    Bg_SetPriority(0, 1);
-    Bg_SetPriority(1, 3);
-    Bg_SetPriority(2, 0);
-    Bg_SetPriority(3, 1);
-    Bg_SetPriority(4, 1);
-    Bg_SetPriority(5, 3);
-    Bg_SetPriority(6, 0);
-    Bg_SetPriority(7, 1);
+    Bg_SetPriority(BG_LAYER_MAIN_0, 1);
+    Bg_SetPriority(BG_LAYER_MAIN_1, 3);
+    Bg_SetPriority(BG_LAYER_MAIN_2, 0);
+    Bg_SetPriority(BG_LAYER_MAIN_3, 1);
+    Bg_SetPriority(BG_LAYER_SUB_0, 1);
+    Bg_SetPriority(BG_LAYER_SUB_1, 3);
+    Bg_SetPriority(BG_LAYER_SUB_2, 0);
+    Bg_SetPriority(BG_LAYER_SUB_3, 1);
 }
 
 void ov62_02234358(UnkStruct_0208C06C *param0, UnkStruct_0208B878 *param1, s16 param2, s16 param3)

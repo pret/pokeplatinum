@@ -1955,8 +1955,8 @@ static void ov6_02244EB4(BgConfig *param0, NARC *param1, u32 param2, NNSG2dScree
 {
     void *v0;
 
-    Bg_SetOffset(param0, 3, 0, 0);
-    Bg_SetOffset(param0, 3, 3, 0);
+    Bg_SetOffset(param0, BG_LAYER_MAIN_3, 0, 0);
+    Bg_SetOffset(param0, BG_LAYER_MAIN_3, 3, 0);
 
     v0 = NARC_AllocAndReadWholeMember(param1, param2, 4);
     NNS_G2dGetUnpackedScreenData(v0, param3);
@@ -1969,7 +1969,7 @@ static void ov6_02244EB4(BgConfig *param0, NARC *param1, u32 param2, NNSG2dScree
 
 static void ov6_02244F20(BgConfig *param0)
 {
-    Bg_ClearTilemap(param0, 3);
+    Bg_ClearTilemap(param0, BG_LAYER_MAIN_3);
 }
 
 static void ov6_02244F2C(UnkStruct_ov6_02243FFC *param0)

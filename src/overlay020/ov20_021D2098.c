@@ -358,11 +358,11 @@ static void ov20_021D2414(SysTask *param0, void *param1)
                 }
             }
 
-            Bg_FreeTilemapBuffer(v1->unk_20, 0);
-            Bg_FreeTilemapBuffer(v1->unk_20, 1);
-            Bg_FreeTilemapBuffer(v1->unk_20, 2);
-            Bg_FreeTilemapBuffer(v1->unk_20, 3);
-            Bg_FreeTilemapBuffer(v1->unk_20, 4);
+            Bg_FreeTilemapBuffer(v1->unk_20, BG_LAYER_MAIN_0);
+            Bg_FreeTilemapBuffer(v1->unk_20, BG_LAYER_MAIN_1);
+            Bg_FreeTilemapBuffer(v1->unk_20, BG_LAYER_MAIN_2);
+            Bg_FreeTilemapBuffer(v1->unk_20, BG_LAYER_MAIN_3);
+            Bg_FreeTilemapBuffer(v1->unk_20, BG_LAYER_SUB_0);
 
             ov20_021D2238(v0);
         }
@@ -473,12 +473,12 @@ static void ov20_021D24EC(UnkStruct_ov20_021D2238 *param0)
     GXLayers_SetBanks(&v0);
     SetAllGraphicsModes(&v1);
 
-    Bg_InitFromTemplate(v7->unk_20, 0, &v2, 0);
-    Bg_InitFromTemplate(v7->unk_20, 1, &v3, 0);
-    Bg_InitFromTemplate(v7->unk_20, 2, &v4, 0);
-    Bg_InitFromTemplate(v7->unk_20, 3, &v5, 0);
+    Bg_InitFromTemplate(v7->unk_20, BG_LAYER_MAIN_0, &v2, 0);
+    Bg_InitFromTemplate(v7->unk_20, BG_LAYER_MAIN_1, &v3, 0);
+    Bg_InitFromTemplate(v7->unk_20, BG_LAYER_MAIN_2, &v4, 0);
+    Bg_InitFromTemplate(v7->unk_20, BG_LAYER_MAIN_3, &v5, 0);
 
-    Bg_InitFromTemplate(v7->unk_20, 4, &v6, 0);
+    Bg_InitFromTemplate(v7->unk_20, BG_LAYER_SUB_0, &v6, 0);
 }
 
 static void ov20_021D2570(SysTask *param0, void *param1)

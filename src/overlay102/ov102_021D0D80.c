@@ -101,17 +101,17 @@ int ov102_021D0E2C(ApplicationManager *appMan, int *param1)
         ov102_021D1274(v0);
         ov102_021D1420(v0);
 
-        Bg_ToggleLayer(0, 1);
+        Bg_ToggleLayer(BG_LAYER_MAIN_0, 1);
         ;
-        Bg_ToggleLayer(1, 1);
+        Bg_ToggleLayer(BG_LAYER_MAIN_1, 1);
         ;
-        Bg_ToggleLayer(3, 1);
+        Bg_ToggleLayer(BG_LAYER_MAIN_3, 1);
         ;
-        Bg_ToggleLayer(4, 1);
+        Bg_ToggleLayer(BG_LAYER_SUB_0, 1);
         ;
-        Bg_ToggleLayer(5, 1);
+        Bg_ToggleLayer(BG_LAYER_SUB_1, 1);
         ;
-        Bg_ToggleLayer(7, 1);
+        Bg_ToggleLayer(BG_LAYER_SUB_3, 1);
         ;
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, v0->heapID);
         *param1 = 1;
@@ -230,77 +230,77 @@ static void ov102_021D0F8C(UnkStruct_ov102_021D0F8C *param0)
         v2.bufferSize = 0x1000;
         v2.screenSize = 2;
 
-        Bg_InitFromTemplate(param0->unk_10, 0, &v2, 0);
-        Bg_ClearTilemap(param0->unk_10, 0);
+        Bg_InitFromTemplate(param0->unk_10, BG_LAYER_MAIN_0, &v2, 0);
+        Bg_ClearTilemap(param0->unk_10, BG_LAYER_MAIN_0);
 
         v2.screenBase = GX_BG_SCRBASE_0x1000;
         v2.charBase = GX_BG_CHARBASE_0x08000;
         v2.bufferSize = 0x1000;
         v2.screenSize = 2;
 
-        Bg_InitFromTemplate(param0->unk_10, 1, &v2, 0);
-        Bg_ClearTilemap(param0->unk_10, 1);
+        Bg_InitFromTemplate(param0->unk_10, BG_LAYER_MAIN_1, &v2, 0);
+        Bg_ClearTilemap(param0->unk_10, BG_LAYER_MAIN_1);
 
         v2.screenBase = GX_BG_SCRBASE_0x2000;
         v2.charBase = GX_BG_CHARBASE_0x04000;
         v2.bufferSize = 0x800;
         v2.screenSize = 1;
 
-        Bg_InitFromTemplate(param0->unk_10, 3, &v2, 0);
-        Bg_ClearTilemap(param0->unk_10, 3);
+        Bg_InitFromTemplate(param0->unk_10, BG_LAYER_MAIN_3, &v2, 0);
+        Bg_ClearTilemap(param0->unk_10, BG_LAYER_MAIN_3);
 
         v2.screenBase = GX_BG_SCRBASE_0x0000;
         v2.charBase = GX_BG_CHARBASE_0x10000;
         v2.bufferSize = 0x1000;
         v2.screenSize = 2;
 
-        Bg_InitFromTemplate(param0->unk_10, 4, &v2, 0);
-        Bg_ClearTilemap(param0->unk_10, 4);
+        Bg_InitFromTemplate(param0->unk_10, BG_LAYER_SUB_0, &v2, 0);
+        Bg_ClearTilemap(param0->unk_10, BG_LAYER_SUB_0);
 
         v2.screenBase = GX_BG_SCRBASE_0x1000;
         v2.charBase = GX_BG_CHARBASE_0x08000;
         v2.bufferSize = 0x1000;
         v2.screenSize = 2;
 
-        Bg_InitFromTemplate(param0->unk_10, 5, &v2, 0);
-        Bg_ClearTilemap(param0->unk_10, 5);
+        Bg_InitFromTemplate(param0->unk_10, BG_LAYER_SUB_1, &v2, 0);
+        Bg_ClearTilemap(param0->unk_10, BG_LAYER_SUB_1);
 
         v2.screenBase = GX_BG_SCRBASE_0x2000;
         v2.charBase = GX_BG_CHARBASE_0x04000;
         v2.bufferSize = 0x800;
         v2.screenSize = 1;
 
-        Bg_InitFromTemplate(param0->unk_10, 7, &v2, 0);
-        Bg_ClearTilemap(param0->unk_10, 7);
+        Bg_InitFromTemplate(param0->unk_10, BG_LAYER_SUB_3, &v2, 0);
+        Bg_ClearTilemap(param0->unk_10, BG_LAYER_SUB_3);
     }
 
-    Bg_ToggleLayer(0, 0);
-    Bg_ToggleLayer(1, 0);
-    Bg_ToggleLayer(2, 0);
-    Bg_ToggleLayer(3, 0);
-    Bg_ToggleLayer(4, 0);
-    Bg_ToggleLayer(5, 0);
-    Bg_ToggleLayer(6, 0);
-    Bg_ToggleLayer(7, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_0, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_1, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_3, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_0, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_1, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_2, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
 }
 
 static void ov102_021D10F8(UnkStruct_ov102_021D0F8C *param0)
 {
-    Bg_ToggleLayer(0, 0);
-    Bg_ToggleLayer(1, 0);
-    Bg_ToggleLayer(2, 0);
-    Bg_ToggleLayer(3, 0);
-    Bg_ToggleLayer(4, 0);
-    Bg_ToggleLayer(5, 0);
-    Bg_ToggleLayer(6, 0);
-    Bg_ToggleLayer(7, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_0, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_1, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_3, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_0, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_1, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_2, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
 
-    Bg_FreeTilemapBuffer(param0->unk_10, 0);
-    Bg_FreeTilemapBuffer(param0->unk_10, 1);
-    Bg_FreeTilemapBuffer(param0->unk_10, 3);
-    Bg_FreeTilemapBuffer(param0->unk_10, 4);
-    Bg_FreeTilemapBuffer(param0->unk_10, 5);
-    Bg_FreeTilemapBuffer(param0->unk_10, 7);
+    Bg_FreeTilemapBuffer(param0->unk_10, BG_LAYER_MAIN_0);
+    Bg_FreeTilemapBuffer(param0->unk_10, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(param0->unk_10, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(param0->unk_10, BG_LAYER_SUB_0);
+    Bg_FreeTilemapBuffer(param0->unk_10, BG_LAYER_SUB_1);
+    Bg_FreeTilemapBuffer(param0->unk_10, BG_LAYER_SUB_3);
     Heap_FreeToHeap(param0->unk_10);
 }
 
@@ -340,10 +340,10 @@ static void ov102_021D1224(UnkStruct_ov102_021D0F8C *param0)
 
 static void ov102_021D1230(UnkStruct_ov102_021D0F8C *param0)
 {
-    Bg_SetOffset(param0->unk_10, 1, 3, param0->unk_3C);
-    Bg_SetOffset(param0->unk_10, 5, 3, param0->unk_3C + (8 * 24));
-    Bg_SetOffset(param0->unk_10, 0, 3, param0->unk_3C);
-    Bg_SetOffset(param0->unk_10, 4, 3, param0->unk_3C + (8 * 24));
+    Bg_SetOffset(param0->unk_10, BG_LAYER_MAIN_1, 3, param0->unk_3C);
+    Bg_SetOffset(param0->unk_10, BG_LAYER_SUB_1, 3, param0->unk_3C + (8 * 24));
+    Bg_SetOffset(param0->unk_10, BG_LAYER_MAIN_0, 3, param0->unk_3C);
+    Bg_SetOffset(param0->unk_10, BG_LAYER_SUB_0, 3, param0->unk_3C + (8 * 24));
 }
 
 static void ov102_021D1274(UnkStruct_ov102_021D0F8C *param0)
@@ -385,7 +385,7 @@ static void ov102_021D1274(UnkStruct_ov102_021D0F8C *param0)
     Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, v4, param0->unk_10, 5, 0, 0, 0, param0->heapID);
     Graphics_LoadPalette(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, v5, 4, 1 * (2 * 16), (2 * 16), param0->heapID);
 
-    Bg_ClearTilesRange(0, 32, 0, param0->heapID);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, param0->heapID);
     Bg_ClearTilesRange(4, 32, 0, param0->heapID);
     Font_LoadTextPalette(0, 2 * (2 * 16), param0->heapID);
     Font_LoadTextPalette(4, 2 * (2 * 16), param0->heapID);

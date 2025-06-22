@@ -514,7 +514,7 @@ static void ov21_021D7C64(UnkStruct_ov21_021D7C64 *param0, PokedexGraphicData **
     ov21_021D7E80(param0, param1, param2, heapID);
     ov21_021D8018(param0, param1, param2, heapID);
 
-    Bg_SetPriority(7, 3);
+    Bg_SetPriority(BG_LAYER_SUB_3, 3);
 }
 
 static void ov21_021D7CAC(UnkStruct_ov21_021D7C64 *param0, PokedexGraphicData **param1, enum HeapId heapID)
@@ -524,7 +524,7 @@ static void ov21_021D7CAC(UnkStruct_ov21_021D7C64 *param0, PokedexGraphicData **
     ov21_021D7E3C(param0, param1);
     ov21_021D828C(param1, heapID);
 
-    Bg_SetPriority(7, 1);
+    Bg_SetPriority(BG_LAYER_SUB_3, 1);
 }
 
 static void ov21_021D7CD8(PokedexGraphicData **param0, const UnkStruct_ov21_021D77D4 *param1, enum HeapId heapID)
@@ -764,8 +764,8 @@ static void ov21_021D820C(PokedexGraphicData **param0, int heapID)
     Bg_LoadToTilemapRect(v2, 7, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
     Bg_ScheduleTilemapTransfer(v2, 7);
-    Bg_SetOffset(v2, 7, 0, -120);
-    Bg_SetOffset(v2, 7, 3, 0);
+    Bg_SetOffset(v2, BG_LAYER_SUB_3, 0, -120);
+    Bg_SetOffset(v2, BG_LAYER_SUB_3, 3, 0);
 }
 
 static void ov21_021D828C(PokedexGraphicData **param0, int heapID)
@@ -773,7 +773,7 @@ static void ov21_021D828C(PokedexGraphicData **param0, int heapID)
     BgConfig *v0 = (*param0)->bgConfig;
 
     Bg_ClearTilesRange(7, 64, 0, heapID);
-    Bg_ClearTilemap(v0, 7);
+    Bg_ClearTilemap(v0, BG_LAYER_SUB_3);
 }
 
 static void ov21_021D82A8(UnkStruct_ov21_021D7A64 *param0, UnkStruct_ov21_021D77D4 *param1)

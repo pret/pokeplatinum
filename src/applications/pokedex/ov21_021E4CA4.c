@@ -785,14 +785,14 @@ static void ov21_021E5538(PokedexGraphicData **param0, int heapID)
     Bg_ScheduleTilemapTransfer((*param0)->bgConfig, 7);
     Bg_SetOffset((*param0)->bgConfig, 7, 0, -48);
     Bg_SetOffset((*param0)->bgConfig, 7, 3, -16);
-    Bg_SetPriority(7, 3);
+    Bg_SetPriority(BG_LAYER_SUB_3, 3);
 }
 
 static void ov21_021E5620(PokedexGraphicData **param0)
 {
     Bg_ClearTilemap((*param0)->bgConfig, 6);
     Bg_ClearTilemap((*param0)->bgConfig, 7);
-    Bg_SetPriority(7, 1);
+    Bg_SetPriority(BG_LAYER_SUB_3, 1);
 }
 
 static void ov21_021E5644(UnkStruct_ov21_021E5004 *param0, PokedexGraphicData **param1, int param2)

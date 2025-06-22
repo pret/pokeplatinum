@@ -539,7 +539,7 @@ static void ov28_02256A08(SysTask *param0, void *param1)
     v2 = PoketchTask_GetConstTaskData(param1);
     v3 = PoketchTask_GetTaskData(param1);
 
-    Bg_InitFromTemplate(v3->unk_04, 6, &v0, 0);
+    Bg_InitFromTemplate(v3->unk_04, BG_LAYER_SUB_2, &v0, 0);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 16, v3->unk_04, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 17, v3->unk_04, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
 
@@ -730,7 +730,7 @@ static void ov28_02256DCC(BgConfig *param0)
 static void ov28_02256DF0(SysTask *param0, void *param1)
 {
     UnkStruct_ov28_0225697C *v0 = PoketchTask_GetTaskData(param1);
-    Bg_FreeTilemapBuffer(v0->unk_04, 6);
+    Bg_FreeTilemapBuffer(v0->unk_04, BG_LAYER_SUB_2);
     ov28_022569F4(param1);
 }
 

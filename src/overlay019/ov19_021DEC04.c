@@ -240,19 +240,19 @@ static void ov19_021DEF64(UnkStruct_ov19_021DEC04 *param0)
 {
     switch (ov19_021D5FA4(param0->unk_08)) {
     case 0:
-        Bg_ToggleLayer(5, 1);
-        Bg_ToggleLayer(6, 0);
-        Bg_ToggleLayer(7, 0);
+        Bg_ToggleLayer(BG_LAYER_SUB_1, 1);
+        Bg_ToggleLayer(BG_LAYER_SUB_2, 0);
+        Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
         break;
     case 1:
-        Bg_ToggleLayer(6, 1);
-        Bg_ToggleLayer(5, 0);
-        Bg_ToggleLayer(7, 0);
+        Bg_ToggleLayer(BG_LAYER_SUB_2, 1);
+        Bg_ToggleLayer(BG_LAYER_SUB_1, 0);
+        Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
         break;
     case 2:
-        Bg_ToggleLayer(7, 1);
-        Bg_ToggleLayer(5, 0);
-        Bg_ToggleLayer(6, 0);
+        Bg_ToggleLayer(BG_LAYER_SUB_3, 1);
+        Bg_ToggleLayer(BG_LAYER_SUB_1, 0);
+        Bg_ToggleLayer(BG_LAYER_SUB_2, 0);
         break;
     }
 }

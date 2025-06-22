@@ -533,8 +533,8 @@ static void DefaultDisplay(PokedexSearchDisplay *searchDisplay, PokedexGraphicDa
     FilterType2Message(param1, searchSettings->typeFilter2, heapID);
     FilterFormSilhouette(searchDisplay, searchSettings->filterForm);
 
-    Bg_SetPriority(1, 1);
-    Bg_SetPriority(2, 0);
+    Bg_SetPriority(BG_LAYER_MAIN_1, 1);
+    Bg_SetPriority(BG_LAYER_MAIN_2, 0);
 }
 
 static void ClearScreen(PokedexSearchDisplay *searchDisplay, PokedexGraphicData **param1)
@@ -546,8 +546,8 @@ static void ClearScreen(PokedexSearchDisplay *searchDisplay, PokedexGraphicData 
     Bg_ClearTilemap((*param1)->bgConfig, 1);
     Window_FillTilemap(&(*param1)->window, 0);
     Window_SetPalette(&(*param1)->window, 0);
-    Bg_SetPriority(1, 0);
-    Bg_SetPriority(2, 1);
+    Bg_SetPriority(BG_LAYER_MAIN_1, 0);
+    Bg_SetPriority(BG_LAYER_MAIN_2, 1);
 }
 
 static void ov21_021D8B8C(PokedexGraphicData **param0, const PokedexSearchSettings *searchSettings, enum HeapId heapID)
@@ -1044,14 +1044,14 @@ static void SearchingMessage(PokedexGraphicData **param0, enum HeapId heapID)
     Text_AddPrinterWithParamsAndColor(&v0->window, FONT_SYSTEM, searchingMessage, xOffset, 128, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
 
     Strbuf_Free(searchingMessage);
-    Bg_SetPriority(1, 0);
-    Bg_SetPriority(2, 1);
+    Bg_SetPriority(BG_LAYER_MAIN_1, 0);
+    Bg_SetPriority(BG_LAYER_MAIN_2, 1);
 }
 
 static void ReturnSearchDisplay(PokedexGraphicData **param0, PokedexSearchDisplay *searchDisplay, enum HeapId heapID)
 {
-    Bg_SetPriority(1, 1);
-    Bg_SetPriority(2, 0);
+    Bg_SetPriority(BG_LAYER_MAIN_1, 1);
+    Bg_SetPriority(BG_LAYER_MAIN_2, 0);
     Window_FillTilemap(&(*param0)->window, 0);
 
     FilterMethodMap(param0, searchDisplay->filterMethod, heapID);

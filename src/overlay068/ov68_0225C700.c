@@ -481,7 +481,7 @@ static void ov68_0225C9A0(UnkStruct_ov68_0225C91C *param0, Options *options, u32
     Font_LoadScreenIndicatorsPalette(0, 4 * 0x20, heapID);
 
     LoadMessageBoxGraphics(param0->unk_00, 1, 1, 5, Options_Frame(options), heapID);
-    LoadStandardWindowGraphics(param0->unk_00, 1, (1 + (18 + 12)), 6, 0, heapID);
+    LoadStandardWindowGraphics(param0->unk_00, BG_LAYER_MAIN_1, (1 + (18 + 12)), 6, 0, heapID);
 
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__LOBBY_NEWS, 2, param0->unk_00, 4, 0, 0, 0, heapID);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__LOBBY_NEWS, 6, param0->unk_00, 4, 0, 0, 0, heapID);

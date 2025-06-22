@@ -987,9 +987,9 @@ static void ov65_0222E638(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 0, &v1, 0);
-        Bg_ClearTilesRange(0, 32, 0, HEAP_ID_54);
-        Bg_ClearTilemap(param0, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_0, &v1, 0);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_54);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_0);
     }
 
     {
@@ -1009,9 +1009,9 @@ static void ov65_0222E638(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 1, &v2, 0);
-        Bg_ClearTilesRange(1, 32, 0, HEAP_ID_54);
-        Bg_ClearTilemap(param0, 1);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v2, 0);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_54);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
     }
 
     {
@@ -1031,9 +1031,9 @@ static void ov65_0222E638(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 2, &v3, 0);
-        Bg_ClearTilesRange(2, 32, 0, HEAP_ID_54);
-        Bg_ClearTilemap(param0, 2);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v3, 0);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_2, 32, 0, HEAP_ID_54);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
     }
 
     {
@@ -1053,9 +1053,9 @@ static void ov65_0222E638(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 3, &v4, 0);
-        Bg_ClearTilesRange(3, 32, 0, HEAP_ID_54);
-        Bg_ClearTilemap(param0, 3);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v4, 0);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_3, 32, 0, HEAP_ID_54);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_3);
     }
 
     {
@@ -1075,8 +1075,8 @@ static void ov65_0222E638(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 4, &v5, 0);
-        Bg_ClearTilemap(param0, 4);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v5, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
     }
 
     {
@@ -1096,8 +1096,8 @@ static void ov65_0222E638(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 5, &v6, 0);
-        Bg_ClearTilemap(param0, 5);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_1, &v6, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_1);
     }
 
     {
@@ -1117,8 +1117,8 @@ static void ov65_0222E638(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 6, &v7, 0);
-        Bg_ClearTilemap(param0, 6);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_2, &v7, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_2);
     }
 
     {
@@ -1138,23 +1138,23 @@ static void ov65_0222E638(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 7, &v8, 0);
-        Bg_ClearTilemap(param0, 7);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_3, &v8, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_3);
     }
 
-    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_54);
-    Bg_ClearTilesRange(1, 32, 0, HEAP_ID_54);
-    Bg_ClearTilesRange(2, 32, 0, HEAP_ID_54);
-    Bg_ClearTilesRange(3, 32, 0, HEAP_ID_54);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_54);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_54);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_2, 32, 0, HEAP_ID_54);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_3, 32, 0, HEAP_ID_54);
     Bg_ClearTilesRange(4, 32, 0, HEAP_ID_54);
     Bg_ClearTilesRange(5, 32, 0, HEAP_ID_54);
     Bg_ClearTilesRange(6, 32, 0, HEAP_ID_54);
     Bg_ClearTilesRange(7, 32, 0, HEAP_ID_54);
 
-    Bg_SetPriority(0, 3);
-    Bg_SetPriority(1, 1);
-    Bg_SetPriority(3, 0);
-    Bg_SetPriority(2, 0);
+    Bg_SetPriority(BG_LAYER_MAIN_0, 3);
+    Bg_SetPriority(BG_LAYER_MAIN_1, 1);
+    Bg_SetPriority(BG_LAYER_MAIN_3, 0);
+    Bg_SetPriority(BG_LAYER_MAIN_2, 0);
 
     G2_BlendNone();
     G2S_BlendNone();
@@ -1426,14 +1426,14 @@ static void ov65_0222EC2C(UnkStruct_ov65_0222EBE0 *param0)
 
 static void ov65_0222EC5C(BgConfig *param0)
 {
-    Bg_FreeTilemapBuffer(param0, 7);
-    Bg_FreeTilemapBuffer(param0, 6);
-    Bg_FreeTilemapBuffer(param0, 5);
-    Bg_FreeTilemapBuffer(param0, 4);
-    Bg_FreeTilemapBuffer(param0, 3);
-    Bg_FreeTilemapBuffer(param0, 2);
-    Bg_FreeTilemapBuffer(param0, 1);
-    Bg_FreeTilemapBuffer(param0, 0);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_3);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_2);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
     Heap_FreeToHeap(param0);
 }
 
@@ -1462,8 +1462,8 @@ static void ov65_0222ECA8(UnkStruct_ov65_0222EBE0 *param0, NARC *param1)
         int v1 = Options_Frame(SaveData_GetOptions(param0->saveData));
 
         LoadMessageBoxGraphics(v0, 2, (512 - (18 + 12)), 10, v1, HEAP_ID_54);
-        LoadStandardWindowGraphics(v0, 2, ((512 - (18 + 12)) - 9), 11, 0, HEAP_ID_54);
-        LoadStandardWindowGraphics(v0, 1, ((512 - (18 + 12)) - 9), 11, 0, HEAP_ID_54);
+        LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_2, ((512 - (18 + 12)) - 9), 11, 0, HEAP_ID_54);
+        LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_1, ((512 - (18 + 12)) - 9), 11, 0, HEAP_ID_54);
     }
 }
 
@@ -1620,10 +1620,10 @@ static int ov65_0222F010(UnkStruct_ov65_0222EBE0 *param0, int param1)
         ov65_0222EE98(param0);
 
         if (!DWC_CheckHasProfile(WiFiList_GetUserData(param0->unk_00))) {
-            Bg_SetPriority(0, 3);
-            Bg_SetPriority(1, 0);
-            Bg_SetPriority(3, 0);
-            Bg_SetPriority(2, 1);
+            Bg_SetPriority(BG_LAYER_MAIN_0, 3);
+            Bg_SetPriority(BG_LAYER_MAIN_1, 0);
+            Bg_SetPriority(BG_LAYER_MAIN_3, 0);
+            Bg_SetPriority(BG_LAYER_MAIN_2, 1);
 
             ov65_02232CA8(param0, 18);
 
@@ -1677,10 +1677,10 @@ static int ov65_0222F21C(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
     if (gSystem.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) {
         ov65_02232CA8(param0, 21);
-        Bg_SetPriority(3, 0);
-        Bg_SetPriority(2, 1);
-        Bg_SetPriority(1, 0);
-        Bg_SetPriority(0, 3);
+        Bg_SetPriority(BG_LAYER_MAIN_3, 0);
+        Bg_SetPriority(BG_LAYER_MAIN_2, 1);
+        Bg_SetPriority(BG_LAYER_MAIN_1, 0);
+        Bg_SetPriority(BG_LAYER_MAIN_0, 3);
 
         param0->unk_184 = Menu_MakeYesNoChoiceWithCursorAt(param0->unk_15C, &Unk_ov65_02238954, ((512 - (18 + 12)) - 9), 11, 1, 54);
         param0->unk_3A8 = 4;
@@ -1720,10 +1720,10 @@ static int ov65_0222F304(UnkStruct_ov65_0222EBE0 *param0, int param1)
     if (v1 == 0xffffffff) {
         return param1;
     } else {
-        Bg_SetPriority(3, 0);
-        Bg_SetPriority(2, 0);
-        Bg_SetPriority(1, 1);
-        Bg_SetPriority(0, 3);
+        Bg_SetPriority(BG_LAYER_MAIN_3, 0);
+        Bg_SetPriority(BG_LAYER_MAIN_2, 0);
+        Bg_SetPriority(BG_LAYER_MAIN_1, 1);
+        Bg_SetPriority(BG_LAYER_MAIN_0, 3);
         Window_EraseMessageBox(&param0->unk_360, 0);
         Window_Remove(&param0->unk_360);
 
@@ -1753,10 +1753,10 @@ static int ov65_0222F3DC(UnkStruct_ov65_0222EBE0 *param0, int param1)
     if (v1 == 0xffffffff) {
         return param1;
     } else {
-        Bg_SetPriority(0, 3);
-        Bg_SetPriority(1, 1);
-        Bg_SetPriority(3, 0);
-        Bg_SetPriority(2, 0);
+        Bg_SetPriority(BG_LAYER_MAIN_0, 3);
+        Bg_SetPriority(BG_LAYER_MAIN_1, 1);
+        Bg_SetPriority(BG_LAYER_MAIN_3, 0);
+        Bg_SetPriority(BG_LAYER_MAIN_2, 0);
         Window_EraseMessageBox(&param0->unk_360, 0);
         Window_Remove(&param0->unk_360);
 
@@ -1777,10 +1777,10 @@ static int ov65_0222F3DC(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
 static int ov65_0222F490(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
-    Bg_SetPriority(0, 3);
-    Bg_SetPriority(1, 1);
-    Bg_SetPriority(3, 0);
-    Bg_SetPriority(2, 0);
+    Bg_SetPriority(BG_LAYER_MAIN_0, 3);
+    Bg_SetPriority(BG_LAYER_MAIN_1, 1);
+    Bg_SetPriority(BG_LAYER_MAIN_3, 0);
+    Bg_SetPriority(BG_LAYER_MAIN_2, 0);
     param0->unk_3A8 = 15;
     return param1;
 }
@@ -2056,7 +2056,7 @@ static int ov65_0222F90C(UnkStruct_ov65_0222EBE0 *param0, int param1)
             Window_Remove(&param0->unk_340);
         }
 
-        Bg_ClearTilemap(param0->unk_15C, 3);
+        Bg_ClearTilemap(param0->unk_15C, BG_LAYER_MAIN_3);
 
         v1 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, HEAP_ID_54);
         ov65_0222ECA8(param0, v1);
@@ -2399,7 +2399,7 @@ static int ov65_0222FFAC(UnkStruct_ov65_0222EBE0 *param0, int param1)
     ov65_02232F30(param0);
     ov65_02232DFC(param0);
 
-    Bg_ClearTilemap(param0->unk_15C, 3);
+    Bg_ClearTilemap(param0->unk_15C, BG_LAYER_MAIN_3);
 
     if (param0->unk_14C) {
         Window_Remove(&param0->unk_370);
@@ -4384,7 +4384,7 @@ static int ov65_022323C0(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
 static int ov65_02232530(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
-    Bg_ClearTilemap(param0->unk_15C, 3);
+    Bg_ClearTilemap(param0->unk_15C, BG_LAYER_MAIN_3);
 
     param0->unk_3C4 = 0;
     param0->unk_3A8 = ov65_0222EBB8();
@@ -5126,7 +5126,7 @@ static void ov65_022332FC(UnkStruct_ov65_0222EBE0 *param0, NARC *param1, u32 hea
     int v0, v1;
     int v2, v3;
 
-    Bg_ClearTilemap(param0->unk_15C, 4);
+    Bg_ClearTilemap(param0->unk_15C, BG_LAYER_SUB_0);
     Graphics_LoadPaletteFromOpenNARC(param1, 16, 4, 0 * 32, 4 * 32, heapID);
     Graphics_LoadPaletteFromOpenNARC(param1, 19, 4, 4 * 32, 5 * 32, heapID);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 15, param0->unk_15C, 4, 0, 0, 0, heapID);
@@ -5354,7 +5354,7 @@ static void ov65_02233874(UnkStruct_ov65_0222EBE0 *param0, u32 heapID)
 
     Bg_LoadTilemapBuffer(param0->unk_15C, 6, param0->unk_BE0.unk_28[param0->unk_BE0.unk_74]->rawData, param0->unk_BE0.unk_28[param0->unk_BE0.unk_74]->szByte);
     Bg_ChangeTilemapRectPalette(param0->unk_15C, 6, 0, 0, 32, 24, v2);
-    Bg_ClearTilemap(param0->unk_15C, 7);
+    Bg_ClearTilemap(param0->unk_15C, BG_LAYER_SUB_3);
 
     if (ov65_0222DCE0(param0) == 0) {
         ov65_02234628(param0);

@@ -209,29 +209,29 @@ static void sub_02099F80(UnkStruct_02099DFC *param0)
             0x0,
             0x0
         };
-        Bg_InitFromTemplate(param0->unk_14, 0, &v2, 0);
-        Bg_ClearTilemap(param0->unk_14, 0);
+        Bg_InitFromTemplate(param0->unk_14, BG_LAYER_MAIN_0, &v2, 0);
+        Bg_ClearTilemap(param0->unk_14, BG_LAYER_MAIN_0);
     }
 
-    LoadMessageBoxGraphics(param0->unk_14, 0, (512 - (18 + 12)), 2, 0, param0->heapID);
-    LoadStandardWindowGraphics(param0->unk_14, 0, 512 - (18 + 12) - 9, 3, 0, param0->heapID);
+    LoadMessageBoxGraphics(param0->unk_14, BG_LAYER_MAIN_0, (512 - (18 + 12)), 2, 0, param0->heapID);
+    LoadStandardWindowGraphics(param0->unk_14, BG_LAYER_MAIN_0, 512 - (18 + 12) - 9, 3, 0, param0->heapID);
     Font_LoadTextPalette(0, 1 * (2 * 16), param0->heapID);
-    Bg_ClearTilesRange(0, 32, 0, param0->heapID);
-    Bg_MaskPalette(0, 0x6c21);
-    Bg_MaskPalette(4, 0x6c21);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, param0->heapID);
+    Bg_MaskPalette(BG_LAYER_MAIN_0, 0x6c21);
+    Bg_MaskPalette(BG_LAYER_SUB_0, 0x6c21);
 }
 
 static void sub_0209A044(UnkStruct_02099DFC *param0)
 {
-    Bg_ToggleLayer(0, 0);
-    Bg_ToggleLayer(1, 0);
-    Bg_ToggleLayer(2, 0);
-    Bg_ToggleLayer(3, 0);
-    Bg_ToggleLayer(4, 0);
-    Bg_ToggleLayer(5, 0);
-    Bg_ToggleLayer(6, 0);
-    Bg_ToggleLayer(7, 0);
-    Bg_FreeTilemapBuffer(param0->unk_14, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_0, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_1, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_3, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_0, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_1, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_2, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
+    Bg_FreeTilemapBuffer(param0->unk_14, BG_LAYER_MAIN_0);
     Heap_FreeToHeap(param0->unk_14);
 }
 
@@ -303,7 +303,7 @@ static BOOL sub_0209A0F4(UnkStruct_02099DFC *param0)
         param0->unk_04 = 6;
         break;
     case 6:
-        Bg_ClearTilemap(param0->unk_14, 0);
+        Bg_ClearTilemap(param0->unk_14, BG_LAYER_MAIN_0);
         v0 = 1;
         break;
     }

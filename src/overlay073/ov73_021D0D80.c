@@ -339,26 +339,26 @@ static void ov73_021D1058(UnkStruct_ov73_021D1058 *param0)
 
         v2.screenBase = GX_BG_SCRBASE_0x7800;
         v2.charBase = GX_BG_CHARBASE_0x18000;
-        Bg_InitFromTemplate(param0->unk_18, 0, &v2, 0);
-        Bg_ClearTilemap(param0->unk_18, 0);
+        Bg_InitFromTemplate(param0->unk_18, BG_LAYER_MAIN_0, &v2, 0);
+        Bg_ClearTilemap(param0->unk_18, BG_LAYER_MAIN_0);
 
         v2.screenBase = GX_BG_SCRBASE_0x7000;
         v2.charBase = GX_BG_CHARBASE_0x14000;
-        Bg_InitFromTemplate(param0->unk_18, 1, &v2, 0);
-        Bg_ClearTilemap(param0->unk_18, 1);
+        Bg_InitFromTemplate(param0->unk_18, BG_LAYER_MAIN_1, &v2, 0);
+        Bg_ClearTilemap(param0->unk_18, BG_LAYER_MAIN_1);
 
         v2.screenBase = GX_BG_SCRBASE_0x6800;
         v2.charBase = GX_BG_CHARBASE_0x10000;
-        Bg_InitFromTemplate(param0->unk_18, 2, &v2, 0);
-        Bg_ClearTilemap(param0->unk_18, 2);
+        Bg_InitFromTemplate(param0->unk_18, BG_LAYER_MAIN_2, &v2, 0);
+        Bg_ClearTilemap(param0->unk_18, BG_LAYER_MAIN_2);
 
         v2.screenBase = GX_BG_SCRBASE_0x6000;
         v2.charBase = GX_BG_CHARBASE_0x0c000;
-        Bg_InitFromTemplate(param0->unk_18, 3, &v2, 0);
-        Bg_ClearTilemap(param0->unk_18, 3);
+        Bg_InitFromTemplate(param0->unk_18, BG_LAYER_MAIN_3, &v2, 0);
+        Bg_ClearTilemap(param0->unk_18, BG_LAYER_MAIN_3);
 
         LoadMessageBoxGraphics(param0->unk_18, 0, (0x400 - (18 + 12)), 4, 0, param0->heapID);
-        LoadStandardWindowGraphics(param0->unk_18, 0, ((0x400 - (18 + 12)) - 9), 3, 0, param0->heapID);
+        LoadStandardWindowGraphics(param0->unk_18, BG_LAYER_MAIN_0, ((0x400 - (18 + 12)) - 9), 3, 0, param0->heapID);
         Font_LoadTextPalette(0, 5 * (2 * 16), param0->heapID);
         Font_LoadScreenIndicatorsPalette(0, 6 * (2 * 16), param0->heapID);
     }
@@ -381,33 +381,33 @@ static void ov73_021D1058(UnkStruct_ov73_021D1058 *param0)
 
         v2.screenBase = GX_BG_SCRBASE_0x7800;
         v2.charBase = GX_BG_CHARBASE_0x18000;
-        Bg_InitFromTemplate(param0->unk_18, 4, &v2, 0);
-        Bg_ClearTilemap(param0->unk_18, 4);
+        Bg_InitFromTemplate(param0->unk_18, BG_LAYER_SUB_0, &v2, 0);
+        Bg_ClearTilemap(param0->unk_18, BG_LAYER_SUB_0);
 
         v2.screenBase = GX_BG_SCRBASE_0x7000;
         v2.charBase = GX_BG_CHARBASE_0x14000;
-        Bg_InitFromTemplate(param0->unk_18, 5, &v2, 0);
-        Bg_ClearTilemap(param0->unk_18, 5);
+        Bg_InitFromTemplate(param0->unk_18, BG_LAYER_SUB_1, &v2, 0);
+        Bg_ClearTilemap(param0->unk_18, BG_LAYER_SUB_1);
 
         v2.screenBase = GX_BG_SCRBASE_0x6800;
         v2.charBase = GX_BG_CHARBASE_0x10000;
-        Bg_InitFromTemplate(param0->unk_18, 6, &v2, 0);
-        Bg_ClearTilemap(param0->unk_18, 6);
+        Bg_InitFromTemplate(param0->unk_18, BG_LAYER_SUB_2, &v2, 0);
+        Bg_ClearTilemap(param0->unk_18, BG_LAYER_SUB_2);
 
         v2.screenBase = GX_BG_SCRBASE_0x6000;
         v2.charBase = GX_BG_CHARBASE_0x0c000;
-        Bg_InitFromTemplate(param0->unk_18, 7, &v2, 0);
-        Bg_ClearTilemap(param0->unk_18, 7);
+        Bg_InitFromTemplate(param0->unk_18, BG_LAYER_SUB_3, &v2, 0);
+        Bg_ClearTilemap(param0->unk_18, BG_LAYER_SUB_3);
     }
 
-    Bg_ToggleLayer(0, 0);
-    Bg_ToggleLayer(1, 0);
-    Bg_ToggleLayer(2, 0);
-    Bg_ToggleLayer(3, 0);
-    Bg_ToggleLayer(4, 0);
-    Bg_ToggleLayer(5, 0);
-    Bg_ToggleLayer(6, 0);
-    Bg_ToggleLayer(7, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_0, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_1, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_3, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_0, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_1, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_2, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
 
     ov73_021D1930(param0);
 
@@ -416,25 +416,25 @@ static void ov73_021D1058(UnkStruct_ov73_021D1058 *param0)
 
 static void ov73_021D1238(UnkStruct_ov73_021D1058 *param0)
 {
-    Bg_ToggleLayer(0, 0);
-    Bg_ToggleLayer(1, 0);
-    Bg_ToggleLayer(2, 0);
-    Bg_ToggleLayer(3, 0);
-    Bg_ToggleLayer(4, 0);
-    Bg_ToggleLayer(5, 0);
-    Bg_ToggleLayer(6, 0);
-    Bg_ToggleLayer(7, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_0, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_1, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_3, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_0, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_1, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_2, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
 
-    Bg_FreeTilemapBuffer(param0->unk_18, 0);
+    Bg_FreeTilemapBuffer(param0->unk_18, BG_LAYER_MAIN_0);
 
-    Bg_FreeTilemapBuffer(param0->unk_18, 1);
-    Bg_FreeTilemapBuffer(param0->unk_18, 2);
-    Bg_FreeTilemapBuffer(param0->unk_18, 3);
+    Bg_FreeTilemapBuffer(param0->unk_18, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(param0->unk_18, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0->unk_18, BG_LAYER_MAIN_3);
 
-    Bg_FreeTilemapBuffer(param0->unk_18, 4);
-    Bg_FreeTilemapBuffer(param0->unk_18, 5);
-    Bg_FreeTilemapBuffer(param0->unk_18, 6);
-    Bg_FreeTilemapBuffer(param0->unk_18, 7);
+    Bg_FreeTilemapBuffer(param0->unk_18, BG_LAYER_SUB_0);
+    Bg_FreeTilemapBuffer(param0->unk_18, BG_LAYER_SUB_1);
+    Bg_FreeTilemapBuffer(param0->unk_18, BG_LAYER_SUB_2);
+    Bg_FreeTilemapBuffer(param0->unk_18, BG_LAYER_SUB_3);
 
     Heap_FreeToHeap(param0->unk_18);
 }
@@ -828,7 +828,7 @@ static BOOL ov73_021D1784(UnkStruct_ov73_021D1058 *param0, u32 param1, int param
 
     switch (param0->unk_54) {
     case 0:
-        Bg_ToggleLayer(0, 0);
+        Bg_ToggleLayer(BG_LAYER_MAIN_0, 0);
         param0->unk_5C = Strbuf_Init(0x400, param0->heapID);
         MessageLoader_GetStrbuf(param0->unk_4C, param1, param0->unk_5C);
 
@@ -888,7 +888,7 @@ static BOOL ov73_021D1784(UnkStruct_ov73_021D1058 *param0, u32 param1, int param
         break;
     case 5:
         Window_Remove(&param0->unk_1C);
-        Bg_ClearTilemap(param0->unk_18, 0);
+        Bg_ClearTilemap(param0->unk_18, BG_LAYER_MAIN_0);
         param0->unk_54 = 0;
         v0 = 1;
         break;
@@ -899,9 +899,9 @@ static BOOL ov73_021D1784(UnkStruct_ov73_021D1058 *param0, u32 param1, int param
 
 static void ov73_021D1930(UnkStruct_ov73_021D1058 *param0)
 {
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, 0, param0->unk_18, 3, 0, 0, 0, param0->heapID);
-    Bg_ClearTilesRange(0, 32, 0, param0->heapID);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, 24, param0->unk_18, 7, 0, 0, 0, param0->heapID);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, 0, param0->unk_18, BG_LAYER_MAIN_3, 0, 0, 0, param0->heapID);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, param0->heapID);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, 24, param0->unk_18, BG_LAYER_SUB_3, 0, 0, 0, param0->heapID);
 
     {
         int v0, v1;
@@ -925,8 +925,8 @@ static void ov73_021D1930(UnkStruct_ov73_021D1058 *param0)
     ov73_021D1A20(param0);
     ov73_021D1B14(param0);
 
-    Bg_MaskPalette(0, 0x0);
-    Bg_MaskPalette(4, 0x0);
+    Bg_MaskPalette(BG_LAYER_MAIN_0, 0x0);
+    Bg_MaskPalette(BG_LAYER_SUB_0, 0x0);
 }
 
 static void ov73_021D19DC(UnkStruct_ov73_021D1058 *param0)
@@ -1291,10 +1291,10 @@ static BOOL ov73_021D200C(UnkStruct_ov73_021D1058 *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        Bg_SetOffset(param0->unk_18, 2, 0, 0);
-        Bg_SetOffset(param0->unk_18, 2, 3, (-8 * 13));
-        Bg_SetPriority(2, 0);
-        Bg_ToggleLayer(5, 1);
+        Bg_SetOffset(param0->unk_18, BG_LAYER_MAIN_2, 0, 0);
+        Bg_SetOffset(param0->unk_18, BG_LAYER_MAIN_2, 3, (-8 * 13));
+        Bg_SetPriority(BG_LAYER_MAIN_2, 0);
+        Bg_ToggleLayer(BG_LAYER_SUB_1, 1);
 
         param0->unk_94[5] = 0;
         param0->unk_94[6] = 8;
@@ -1311,11 +1311,11 @@ static BOOL ov73_021D200C(UnkStruct_ov73_021D1058 *param0, int *param1)
 
         if (v2 < 8 * 11) {
             param0->unk_94[7]++;
-            Bg_SetOffset(param0->unk_18, 2, 1, 2);
-            Bg_SetOffset(param0->unk_18, 5, 1, 2);
-            Bg_SetOffset(param0->unk_18, 5, 3, v5);
+            Bg_SetOffset(param0->unk_18, BG_LAYER_MAIN_2, 1, 2);
+            Bg_SetOffset(param0->unk_18, BG_LAYER_SUB_1, 1, 2);
+            Bg_SetOffset(param0->unk_18, BG_LAYER_SUB_1, 3, v5);
         } else {
-            Bg_ToggleLayer(5, 0);
+            Bg_ToggleLayer(BG_LAYER_SUB_1, 0);
             param0->unk_94[7] = 0;
             *param1 = 2;
         }
@@ -1324,7 +1324,7 @@ static BOOL ov73_021D200C(UnkStruct_ov73_021D1058 *param0, int *param1)
         if (param0->unk_94[7]) {
             param0->unk_94[7]--;
         } else {
-            Bg_ToggleLayer(2, 1);
+            Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
             param0->unk_94[5] = 0;
             param0->unk_94[6] = 9;
             param0->unk_94[7] = 0;
@@ -1339,7 +1339,7 @@ static BOOL ov73_021D200C(UnkStruct_ov73_021D1058 *param0, int *param1)
         int v10 = (-8 * 13) + v8 - v9;
 
         if ((param0->unk_94[5] > 0) && (v10 <= 0)) {
-            Bg_SetOffset(param0->unk_18, 2, 3, 0);
+            Bg_SetOffset(param0->unk_18, BG_LAYER_MAIN_2, 3, 0);
             param0->unk_94[5] = 0;
             param0->unk_94[6] = 3;
             param0->unk_94[7] = 0;
@@ -1347,14 +1347,14 @@ static BOOL ov73_021D200C(UnkStruct_ov73_021D1058 *param0, int *param1)
         } else {
             param0->unk_94[7]++;
             param0->unk_94[5] = v10;
-            Bg_SetOffset(param0->unk_18, 2, 1, 1);
+            Bg_SetOffset(param0->unk_18, BG_LAYER_MAIN_2, 1, 1);
             v10 = v10 >> 1;
 
             if (v10 > 8 * 18) {
                 v10 = 8 * 18;
             }
 
-            Bg_SetOffset(param0->unk_18, 2, 3, v10);
+            Bg_SetOffset(param0->unk_18, BG_LAYER_MAIN_2, 3, v10);
         }
     } break;
     case 4: {
@@ -1365,15 +1365,15 @@ static BOOL ov73_021D200C(UnkStruct_ov73_021D1058 *param0, int *param1)
         int v15 = v13 - v14;
 
         if ((param0->unk_94[5] > 0) && (v15 <= 0)) {
-            Bg_SetOffset(param0->unk_18, 2, 3, 0);
+            Bg_SetOffset(param0->unk_18, BG_LAYER_MAIN_2, 3, 0);
             param0->unk_94[5] = 0;
             param0->unk_94[6] = 3;
             param0->unk_94[7] = 0;
             *param1 = 5;
         } else {
             param0->unk_94[7]++;
-            Bg_SetOffset(param0->unk_18, 2, 2, 2);
-            Bg_SetOffset(param0->unk_18, 2, 3, v15);
+            Bg_SetOffset(param0->unk_18, BG_LAYER_MAIN_2, 2, 2);
+            Bg_SetOffset(param0->unk_18, BG_LAYER_MAIN_2, 3, v15);
             param0->unk_94[5] = v15;
         }
     } break;
@@ -1385,12 +1385,12 @@ static BOOL ov73_021D200C(UnkStruct_ov73_021D1058 *param0, int *param1)
         int v20 = v18 - v19;
 
         if ((param0->unk_94[5] > 0) && (v20 <= 0)) {
-            Bg_SetOffset(param0->unk_18, 2, 3, 0);
+            Bg_SetOffset(param0->unk_18, BG_LAYER_MAIN_2, 3, 0);
             *param1 = 6;
         } else {
             param0->unk_94[7]++;
-            Bg_SetOffset(param0->unk_18, 2, 1, 4);
-            Bg_SetOffset(param0->unk_18, 2, 3, v20);
+            Bg_SetOffset(param0->unk_18, BG_LAYER_MAIN_2, 1, 4);
+            Bg_SetOffset(param0->unk_18, BG_LAYER_MAIN_2, 3, v20);
             param0->unk_94[5] = v20;
         }
     } break;
@@ -1407,7 +1407,7 @@ static BOOL ov73_021D200C(UnkStruct_ov73_021D1058 *param0, int *param1)
 
 static void ov73_021D230C(UnkStruct_ov73_021D1058 *param0)
 {
-    Bg_SetPriority(2, 1);
+    Bg_SetPriority(BG_LAYER_MAIN_2, 1);
 }
 
 static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
@@ -1418,8 +1418,8 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
     case 0:
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_2, SEQ_OPENING, 1);
         Sound_StopBGM(SEQ_OPENING, 0);
-        Bg_ToggleLayer(0, 1);
-        Bg_ToggleLayer(7, 1);
+        Bg_ToggleLayer(BG_LAYER_MAIN_0, 1);
+        Bg_ToggleLayer(BG_LAYER_SUB_3, 1);
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, param0->heapID);
         param0->unk_0C = 1;
         break;
@@ -1434,7 +1434,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
         if (ov73_021D1510(param0, 0, 1) == 1) {
             param0->unk_0C = 3;
             {
-                Bg_ClearTilemap(param0->unk_18, 0);
+                Bg_ClearTilemap(param0->unk_18, BG_LAYER_MAIN_0);
             }
         }
         break;
@@ -1443,8 +1443,8 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
         param0->unk_89 = 1;
         param0->unk_8A = 0;
         ov73_021D1A20(param0);
-        Bg_ToggleLayer(3, 1);
-        Bg_ToggleLayer(1, 1);
+        Bg_ToggleLayer(BG_LAYER_MAIN_3, 1);
+        Bg_ToggleLayer(BG_LAYER_MAIN_1, 1);
         StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 16, 4, param0->heapID);
         param0->unk_0C = 4;
         break;
@@ -1474,7 +1474,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
                 param0->unk_10 = 31;
                 param0->unk_0C = 8;
                 {
-                    Bg_ClearTilemap(param0->unk_18, 0);
+                    Bg_ClearTilemap(param0->unk_18, BG_LAYER_MAIN_0);
                 }
                 break;
             case 3:
@@ -1490,9 +1490,9 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
     case 9:
         if (IsScreenFadeDone() == TRUE) {
             {
-                Bg_ClearTilemap(param0->unk_18, 0);
+                Bg_ClearTilemap(param0->unk_18, BG_LAYER_MAIN_0);
             }
-            Bg_ToggleLayer(1, 0);
+            Bg_ToggleLayer(BG_LAYER_MAIN_1, 0);
             {
                 param0->unk_0C = param0->unk_10;
             }
@@ -1545,12 +1545,12 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
         if (ov73_021D1784(param0, 5, 2, 4, 10) == 1) {
             param0->unk_0C = 19;
             {
-                Bg_ClearTilemap(param0->unk_18, 0);
+                Bg_ClearTilemap(param0->unk_18, BG_LAYER_MAIN_0);
             }
         }
         break;
     case 19:
-        Bg_ToggleLayer(0, 1);
+        Bg_ToggleLayer(BG_LAYER_MAIN_0, 1);
         param0->unk_0C = 20;
         break;
     case 20:
@@ -1563,7 +1563,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
 
         v1.unk_00 = param0->unk_18;
         sub_02015958(param0->unk_68, &v1);
-        Bg_ToggleLayer(6, 1);
+        Bg_ToggleLayer(BG_LAYER_SUB_2, 1);
     }
         param0->unk_8B = 3;
         ov73_021D1B14(param0);
@@ -1603,7 +1603,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
     case 25:
         if (IsScreenFadeDone() == TRUE) {
             {
-                Bg_ClearTilemap(param0->unk_18, 0);
+                Bg_ClearTilemap(param0->unk_18, BG_LAYER_MAIN_0);
             }
             param0->unk_0C = 28;
         }
@@ -1611,7 +1611,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
     case 26:
         if (ov73_021D1334(param0, 6, 1) == 1) {
             {
-                Bg_ClearTilemap(param0->unk_18, 0);
+                Bg_ClearTilemap(param0->unk_18, BG_LAYER_MAIN_0);
             }
             sub_02015A54(param0->unk_68);
             param0->unk_88 = 1;
@@ -1631,8 +1631,8 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
         ov73_021D19DC(param0);
         param0->unk_8B = 0;
         ov73_021D1B14(param0);
-        Bg_ToggleLayer(1, 1);
-        Bg_SetOffset(param0->unk_18, 1, 0, 0);
+        Bg_ToggleLayer(BG_LAYER_MAIN_1, 1);
+        Bg_SetOffset(param0->unk_18, BG_LAYER_MAIN_1, 0, 0);
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, param0->heapID);
         param0->unk_0C = 29;
         break;
@@ -1696,9 +1696,9 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
     case 40:
         if (IsScreenFadeDone() == TRUE) {
             {
-                Bg_ClearTilemap(param0->unk_18, 0);
+                Bg_ClearTilemap(param0->unk_18, BG_LAYER_MAIN_0);
             }
-            Bg_ToggleLayer(0, 1);
+            Bg_ToggleLayer(BG_LAYER_MAIN_0, 1);
             param0->unk_0C = 28;
         }
         break;
@@ -1721,7 +1721,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
             ov73_021D1CE0(param0);
             param0->unk_8B = 4;
             ov73_021D1B14(param0);
-            Bg_ToggleLayer(6, 1);
+            Bg_ToggleLayer(BG_LAYER_SUB_2, 1);
             StartScreenFade(FADE_SUB_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, param0->heapID);
             param0->unk_0C = 45;
         }
@@ -1741,7 +1741,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
             param0->unk_94[0] = 0;
             param0->unk_94[1] = 0;
             {
-                Bg_ClearTilemap(param0->unk_18, 0);
+                Bg_ClearTilemap(param0->unk_18, BG_LAYER_MAIN_0);
             }
             param0->unk_0C = 48;
         } else if (gSystem.pressedKeys) {
@@ -1798,7 +1798,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
         break;
     case 54:
         ov73_021D1B80(param0);
-        Bg_ToggleLayer(6, 0);
+        Bg_ToggleLayer(BG_LAYER_SUB_2, 0);
         param0->unk_94[0] = 0;
         ov73_021D200C(param0, &param0->unk_94[0]);
         param0->unk_8B = 0;
@@ -1827,7 +1827,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
     case 58:
         if (ov73_021D1510(param0, 19, 1) == 1) {
             {
-                Bg_ClearTilemap(param0->unk_18, 0);
+                Bg_ClearTilemap(param0->unk_18, BG_LAYER_MAIN_0);
             }
             param0->unk_0C = 59;
         }
@@ -1858,8 +1858,8 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
         param0->unk_89 = 2;
         param0->unk_8A = 6;
         ov73_021D1A20(param0);
-        Bg_SetOffset(param0->unk_18, 1, 0, -8 * 6);
-        Bg_SetOffset(param0->unk_18, 2, 0, 8 * 6);
+        Bg_SetOffset(param0->unk_18, BG_LAYER_MAIN_1, 0, -8 * 6);
+        Bg_SetOffset(param0->unk_18, BG_LAYER_MAIN_2, 0, 8 * 6);
         param0->unk_0C = 64;
         break;
     case 64:
@@ -1947,7 +1947,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
                 break;
             case 2:
             case 0xfffffffe: {
-                Bg_ClearTilemap(param0->unk_18, 0);
+                Bg_ClearTilemap(param0->unk_18, BG_LAYER_MAIN_0);
             }
                 param0->unk_0C = 74;
                 break;
@@ -1978,16 +1978,16 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
         param0->unk_0C = 77;
         break;
     case 77:
-        Bg_ToggleLayer(0, 1);
-        Bg_ToggleLayer(3, 1);
-        Bg_ToggleLayer(7, 1);
+        Bg_ToggleLayer(BG_LAYER_MAIN_0, 1);
+        Bg_ToggleLayer(BG_LAYER_MAIN_3, 1);
+        Bg_ToggleLayer(BG_LAYER_SUB_3, 1);
 
         if (param0->unk_84 == 0) {
-            Bg_ToggleLayer(1, 1);
-            Bg_SetOffset(param0->unk_18, 1, 0, 0);
+            Bg_ToggleLayer(BG_LAYER_MAIN_1, 1);
+            Bg_SetOffset(param0->unk_18, BG_LAYER_MAIN_1, 0, 0);
         } else {
-            Bg_ToggleLayer(2, 1);
-            Bg_SetOffset(param0->unk_18, 2, 0, 0);
+            Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
+            Bg_SetOffset(param0->unk_18, BG_LAYER_MAIN_2, 0, 0);
         }
 
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, param0->heapID);
@@ -2015,7 +2015,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
     case 80:
         if (ov73_021D1648(param0, 0, 0) == 1) {
             {
-                Bg_ClearTilemap(param0->unk_18, 0);
+                Bg_ClearTilemap(param0->unk_18, BG_LAYER_MAIN_0);
             }
 
             switch (param0->unk_48) {
@@ -2129,11 +2129,11 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
         param0->unk_0C = 93;
         break;
     case 93:
-        Bg_ToggleLayer(0, 1);
-        Bg_ToggleLayer(3, 1);
-        Bg_ToggleLayer(7, 1);
-        Bg_ToggleLayer(1, 1);
-        Bg_SetOffset(param0->unk_18, 1, 0, 0);
+        Bg_ToggleLayer(BG_LAYER_MAIN_0, 1);
+        Bg_ToggleLayer(BG_LAYER_MAIN_3, 1);
+        Bg_ToggleLayer(BG_LAYER_SUB_3, 1);
+        Bg_ToggleLayer(BG_LAYER_MAIN_1, 1);
+        Bg_SetOffset(param0->unk_18, BG_LAYER_MAIN_1, 0, 0);
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, param0->heapID);
         param0->unk_0C = 94;
         break;
@@ -2151,7 +2151,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
         if (ov73_021D1648(param0, 0, 0) == 1) {
             switch (param0->unk_48) {
             case 1: {
-                Bg_ClearTilemap(param0->unk_18, 0);
+                Bg_ClearTilemap(param0->unk_18, BG_LAYER_MAIN_0);
             }
                 param0->unk_0C = 97;
                 break;
@@ -2193,7 +2193,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
     case 102:
         if (ov73_021D1334(param0, 1, 1) == 1) {
             {
-                Bg_ClearTilemap(param0->unk_18, 0);
+                Bg_ClearTilemap(param0->unk_18, BG_LAYER_MAIN_0);
             }
             param0->unk_0C = 103;
         }

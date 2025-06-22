@@ -291,9 +291,9 @@ static void ov101_021D10B8(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 0, &v1, 0);
-        Bg_ClearTilemap(param0, 0);
-        Bg_ClearTilesRange(0, 32, 0, HEAP_ID_79);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_0, &v1, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_0);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_79);
     }
 
     {
@@ -313,8 +313,8 @@ static void ov101_021D10B8(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 1, &v2, 0);
-        Bg_ClearTilemap(param0, 1);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v2, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
     }
 
     {
@@ -334,8 +334,8 @@ static void ov101_021D10B8(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 2, &v3, 0);
-        Bg_ClearTilemap(param0, 2);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v3, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
     }
 
     {
@@ -355,17 +355,17 @@ static void ov101_021D10B8(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 7, &v4, 0);
-        Bg_ClearTilemap(param0, 7);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_3, &v4, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_3);
     }
 }
 
 static void ov101_021D11A4(BgConfig *param0)
 {
-    Bg_FreeTilemapBuffer(param0, 0);
-    Bg_FreeTilemapBuffer(param0, 1);
-    Bg_FreeTilemapBuffer(param0, 2);
-    Bg_FreeTilemapBuffer(param0, 7);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_3);
     Heap_FreeToHeap(param0);
 }
 
@@ -429,7 +429,7 @@ void ov101_021D13C8(UnkStruct_ov101_021D13C8 *param0)
     int v0;
     UnkStruct_ov101_021D148C *v1 = &param0->unk_408;
 
-    LoadStandardWindowGraphics(param0->unk_43C, 0, 1, 15, 0, HEAP_ID_79);
+    LoadStandardWindowGraphics(param0->unk_43C, BG_LAYER_MAIN_0, 1, 15, 0, HEAP_ID_79);
     LoadMessageBoxGraphics(param0->unk_43C, 0, (1 + (18 + 12)), 14, param0->msgBoxFrame, HEAP_ID_79);
     Font_LoadScreenIndicatorsPalette(0, 15 * 32, HEAP_ID_79);
 

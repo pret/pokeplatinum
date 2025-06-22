@@ -247,14 +247,14 @@ static BOOL ov62_02237DB8(UnkStruct_0208C06C *param0)
         PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);
         break;
     case 1:
-        Bg_SetPriority(0, 0);
-        Bg_SetPriority(2, 0);
-        Bg_SetPriority(1, 3);
-        Bg_SetPriority(3, 2);
-        Bg_SetPriority(4, 0);
-        Bg_SetPriority(6, 1);
-        Bg_SetPriority(5, 3);
-        Bg_SetPriority(7, 2);
+        Bg_SetPriority(BG_LAYER_MAIN_0, 0);
+        Bg_SetPriority(BG_LAYER_MAIN_2, 0);
+        Bg_SetPriority(BG_LAYER_MAIN_1, 3);
+        Bg_SetPriority(BG_LAYER_MAIN_3, 2);
+        Bg_SetPriority(BG_LAYER_SUB_0, 0);
+        Bg_SetPriority(BG_LAYER_SUB_2, 1);
+        Bg_SetPriority(BG_LAYER_SUB_1, 3);
+        Bg_SetPriority(BG_LAYER_SUB_3, 2);
         sub_0208B9E0(param0->unk_6F0, 0);
         param0->unk_08++;
         break;
@@ -371,14 +371,14 @@ static BOOL ov62_022380B0(UnkStruct_0208C06C *param0)
 
     switch (param0->unk_08) {
     case 0:
-        Bg_SetPriority(0, 1);
-        Bg_SetPriority(1, 3);
-        Bg_SetPriority(2, 2);
-        Bg_SetPriority(3, 1);
-        Bg_SetPriority(4, 1);
-        Bg_SetPriority(5, 3);
-        Bg_SetPriority(6, 2);
-        Bg_SetPriority(7, 1);
+        Bg_SetPriority(BG_LAYER_MAIN_0, 1);
+        Bg_SetPriority(BG_LAYER_MAIN_1, 3);
+        Bg_SetPriority(BG_LAYER_MAIN_2, 2);
+        Bg_SetPriority(BG_LAYER_MAIN_3, 1);
+        Bg_SetPriority(BG_LAYER_SUB_0, 1);
+        Bg_SetPriority(BG_LAYER_SUB_1, 3);
+        Bg_SetPriority(BG_LAYER_SUB_2, 2);
+        Bg_SetPriority(BG_LAYER_SUB_3, 1);
 
         {
             Heap_FreeToHeap(v0->unk_230.unk_08);
@@ -400,7 +400,7 @@ static BOOL ov62_022380B0(UnkStruct_0208C06C *param0)
             Bg_ClearTilemap(param0->unk_14.unk_10, 3);
             Bg_ClearTilemap(param0->unk_14.unk_10, 7);
             Bg_SetOffset(param0->unk_14.unk_10, 2, 0, 0);
-            Bg_SetPriority(2, 0);
+            Bg_SetPriority(BG_LAYER_MAIN_2, 0);
             param0->unk_08++;
         }
 
@@ -463,7 +463,7 @@ static BOOL ov62_022380B0(UnkStruct_0208C06C *param0)
             if (v0->unk_228) {
                 ov22_0225B020(v0->unk_228);
                 ov62_0222F834(param0);
-                Bg_SetPriority(2, 0);
+                Bg_SetPriority(BG_LAYER_MAIN_2, 0);
                 ov62_0223956C();
             }
 
@@ -495,14 +495,14 @@ static BOOL ov62_022383E4(UnkStruct_0208C06C *param0)
 
     switch (param0->unk_08) {
     case 0:
-        Bg_SetPriority(0, 1);
-        Bg_SetPriority(1, 3);
-        Bg_SetPriority(2, 2);
-        Bg_SetPriority(3, 1);
-        Bg_SetPriority(4, 1);
-        Bg_SetPriority(5, 3);
-        Bg_SetPriority(6, 2);
-        Bg_SetPriority(7, 1);
+        Bg_SetPriority(BG_LAYER_MAIN_0, 1);
+        Bg_SetPriority(BG_LAYER_MAIN_1, 3);
+        Bg_SetPriority(BG_LAYER_MAIN_2, 2);
+        Bg_SetPriority(BG_LAYER_MAIN_3, 1);
+        Bg_SetPriority(BG_LAYER_SUB_0, 1);
+        Bg_SetPriority(BG_LAYER_SUB_1, 3);
+        Bg_SetPriority(BG_LAYER_SUB_2, 2);
+        Bg_SetPriority(BG_LAYER_SUB_3, 1);
 
         {
             Heap_FreeToHeap(v0->unk_230.unk_08);
@@ -551,7 +551,7 @@ static BOOL ov62_022383E4(UnkStruct_0208C06C *param0)
             if (v0->unk_228) {
                 ov22_0225B020(v0->unk_228);
                 ov62_0222F834(param0);
-                Bg_SetPriority(2, 0);
+                Bg_SetPriority(BG_LAYER_MAIN_2, 0);
                 ov62_0223956C();
             }
 
@@ -746,14 +746,14 @@ static BOOL ov62_0223896C(UnkStruct_0208C06C *param0)
 
     switch (param0->unk_08) {
     case 0:
-        Bg_SetPriority(0, 1);
-        Bg_SetPriority(1, 3);
-        Bg_SetPriority(2, 2);
-        Bg_SetPriority(3, 1);
-        Bg_SetPriority(4, 1);
-        Bg_SetPriority(5, 3);
-        Bg_SetPriority(6, 2);
-        Bg_SetPriority(7, 1);
+        Bg_SetPriority(BG_LAYER_MAIN_0, 1);
+        Bg_SetPriority(BG_LAYER_MAIN_1, 3);
+        Bg_SetPriority(BG_LAYER_MAIN_2, 2);
+        Bg_SetPriority(BG_LAYER_MAIN_3, 1);
+        Bg_SetPriority(BG_LAYER_SUB_0, 1);
+        Bg_SetPriority(BG_LAYER_SUB_1, 3);
+        Bg_SetPriority(BG_LAYER_SUB_2, 2);
+        Bg_SetPriority(BG_LAYER_SUB_3, 1);
 
         {
             Heap_FreeToHeap(v0->unk_230.unk_08);
@@ -801,7 +801,7 @@ static BOOL ov62_0223896C(UnkStruct_0208C06C *param0)
             if (v0->unk_228) {
                 ov22_0225B020(v0->unk_228);
                 ov62_0222F834(param0);
-                Bg_SetPriority(2, 0);
+                Bg_SetPriority(BG_LAYER_MAIN_2, 0);
                 ov62_0223956C();
             }
 
@@ -1021,7 +1021,7 @@ static BOOL ov62_02238F24(UnkStruct_0208C06C *param0)
             if (v0->unk_228) {
                 ov22_0225B020(v0->unk_228);
                 ov62_0222F834(param0);
-                Bg_SetPriority(2, 0);
+                Bg_SetPriority(BG_LAYER_MAIN_2, 0);
                 v0->unk_228 = NULL;
                 ov62_0223956C();
             }
@@ -1066,7 +1066,7 @@ static BOOL ov62_0223900C(UnkStruct_0208C06C *param0)
                 if (v0->unk_228) {
                     ov22_0225B020(v0->unk_228);
                     ov62_0222F834(param0);
-                    Bg_SetPriority(2, 0);
+                    Bg_SetPriority(BG_LAYER_MAIN_2, 0);
                     v0->unk_228 = NULL;
                     ov62_0223956C();
                 }
@@ -1158,7 +1158,7 @@ static BOOL ov62_0223921C(UnkStruct_0208C06C *param0)
                 if (v0->unk_228) {
                     ov22_0225B020(v0->unk_228);
                     ov62_0222F834(param0);
-                    Bg_SetPriority(2, 0);
+                    Bg_SetPriority(BG_LAYER_MAIN_2, 0);
                     v0->unk_228 = NULL;
                     ov62_0223956C();
                 }

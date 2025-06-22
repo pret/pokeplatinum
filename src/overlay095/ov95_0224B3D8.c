@@ -157,7 +157,7 @@ void ov95_0224B438(void *param0)
             ov95_0224773C(v0->unk_74);
         }
 
-        Bg_FreeTilemapBuffer(v0->unk_58, 1);
+        Bg_FreeTilemapBuffer(v0->unk_58, BG_LAYER_MAIN_1);
         Window_Remove(&(v0->unk_5C));
 
         if (v0->unk_14) {
@@ -273,8 +273,8 @@ static int ov95_0224B520(UnkStruct_ov95_0224B4D4 *param0, int *param1)
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
     SetAllGraphicsModes(&v1);
 
-    Bg_InitFromTemplate(param0->unk_58, 1, &v2, 0);
-    Bg_InitFromTemplate(param0->unk_58, 2, &v3, 0);
+    Bg_InitFromTemplate(param0->unk_58, BG_LAYER_MAIN_1, &v2, 0);
+    Bg_InitFromTemplate(param0->unk_58, BG_LAYER_MAIN_2, &v3, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     G2_SetBG0Priority(1);

@@ -624,7 +624,7 @@ static BOOL ov62_02237884(UnkStruct_0208C06C *param0)
         ov62_0223376C(param0, 0);
         sub_0208B9E0(param0->unk_6F0, 0);
         ov62_02234314();
-        Bg_SetPriority(6, 2);
+        Bg_SetPriority(BG_LAYER_SUB_2, 2);
         ov62_02236E14(param0);
         PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC | 0x10, v0->unk_00, param0->unk_14.unk_44);
         param0->unk_08++;

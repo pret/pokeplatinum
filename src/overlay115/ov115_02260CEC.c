@@ -3005,9 +3005,9 @@ static void ov115_0226376C(UnkStruct_ov115_02261ADC *param0, u32 heapID)
             0
         };
 
-        Bg_InitFromTemplate(param0->unk_00, 1, &v1, 0);
-        Bg_ClearTilesRange(1, 32, 0, heapID);
-        Bg_ClearTilemap(param0->unk_00, 1);
+        Bg_InitFromTemplate(param0->unk_00, BG_LAYER_MAIN_1, &v1, 0);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, heapID);
+        Bg_ClearTilemap(param0->unk_00, BG_LAYER_MAIN_1);
     }
 
     {
@@ -3027,9 +3027,9 @@ static void ov115_0226376C(UnkStruct_ov115_02261ADC *param0, u32 heapID)
             0
         };
 
-        Bg_InitFromTemplate(param0->unk_00, 2, &v2, 0);
-        Bg_ClearTilesRange(2, 32, 0, heapID);
-        Bg_ClearTilemap(param0->unk_00, 2);
+        Bg_InitFromTemplate(param0->unk_00, BG_LAYER_MAIN_2, &v2, 0);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_2, 32, 0, heapID);
+        Bg_ClearTilemap(param0->unk_00, BG_LAYER_MAIN_2);
     }
 
     {
@@ -3049,9 +3049,9 @@ static void ov115_0226376C(UnkStruct_ov115_02261ADC *param0, u32 heapID)
             0
         };
 
-        Bg_InitFromTemplate(param0->unk_00, 4, &v3, 0);
-        Bg_ClearTilesRange(4, 32, 0, heapID);
-        Bg_ClearTilemap(param0->unk_00, 4);
+        Bg_InitFromTemplate(param0->unk_00, BG_LAYER_SUB_0, &v3, 0);
+        Bg_ClearTilesRange(BG_LAYER_SUB_0, 32, 0, heapID);
+        Bg_ClearTilemap(param0->unk_00, BG_LAYER_SUB_0);
     }
 
     {
@@ -3071,9 +3071,9 @@ static void ov115_0226376C(UnkStruct_ov115_02261ADC *param0, u32 heapID)
             0
         };
 
-        Bg_InitFromTemplate(param0->unk_00, 5, &v4, 0);
-        Bg_ClearTilesRange(5, 32, 0, heapID);
-        Bg_ClearTilemap(param0->unk_00, 5);
+        Bg_InitFromTemplate(param0->unk_00, BG_LAYER_SUB_1, &v4, 0);
+        Bg_ClearTilesRange(BG_LAYER_SUB_1, 32, 0, heapID);
+        Bg_ClearTilemap(param0->unk_00, BG_LAYER_SUB_1);
     }
 
     {
@@ -3093,9 +3093,9 @@ static void ov115_0226376C(UnkStruct_ov115_02261ADC *param0, u32 heapID)
             0
         };
 
-        Bg_InitFromTemplate(param0->unk_00, 6, &v5, 0);
-        Bg_ClearTilesRange(6, 32, 0, heapID);
-        Bg_ClearTilemap(param0->unk_00, 6);
+        Bg_InitFromTemplate(param0->unk_00, BG_LAYER_SUB_2, &v5, 0);
+        Bg_ClearTilesRange(BG_LAYER_SUB_2, 32, 0, heapID);
+        Bg_ClearTilemap(param0->unk_00, BG_LAYER_SUB_2);
     }
 
     {
@@ -3115,9 +3115,9 @@ static void ov115_0226376C(UnkStruct_ov115_02261ADC *param0, u32 heapID)
             0
         };
 
-        Bg_InitFromTemplate(param0->unk_00, 7, &v6, 0);
-        Bg_ClearTilesRange(7, 32, 0, heapID);
-        Bg_ClearTilemap(param0->unk_00, 7);
+        Bg_InitFromTemplate(param0->unk_00, BG_LAYER_SUB_3, &v6, 0);
+        Bg_ClearTilesRange(BG_LAYER_SUB_3, 32, 0, heapID);
+        Bg_ClearTilemap(param0->unk_00, BG_LAYER_SUB_3);
     }
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
@@ -3131,17 +3131,17 @@ static void ov115_0226376C(UnkStruct_ov115_02261ADC *param0, u32 heapID)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     Font_LoadScreenIndicatorsPalette(0, 5 * 0x20, heapID);
-    LoadStandardWindowGraphics(param0->unk_00, 1, 1, 4, 0, heapID);
+    LoadStandardWindowGraphics(param0->unk_00, BG_LAYER_MAIN_1, 1, 4, 0, heapID);
 }
 
 static void ov115_02263954(UnkStruct_ov115_02261ADC *param0)
 {
-    Bg_FreeTilemapBuffer(param0->unk_00, 1);
-    Bg_FreeTilemapBuffer(param0->unk_00, 2);
-    Bg_FreeTilemapBuffer(param0->unk_00, 4);
-    Bg_FreeTilemapBuffer(param0->unk_00, 5);
-    Bg_FreeTilemapBuffer(param0->unk_00, 6);
-    Bg_FreeTilemapBuffer(param0->unk_00, 7);
+    Bg_FreeTilemapBuffer(param0->unk_00, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(param0->unk_00, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0->unk_00, BG_LAYER_SUB_0);
+    Bg_FreeTilemapBuffer(param0->unk_00, BG_LAYER_SUB_1);
+    Bg_FreeTilemapBuffer(param0->unk_00, BG_LAYER_SUB_2);
+    Bg_FreeTilemapBuffer(param0->unk_00, BG_LAYER_SUB_3);
     Heap_FreeToHeap(param0->unk_00);
 }
 

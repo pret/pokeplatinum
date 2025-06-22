@@ -1040,7 +1040,7 @@ static void sub_020731F4(UnkStruct_02072334 *param0)
     param0->unk_170 = FieldSystem_GetBgConfig(param0->fieldSystem);
 
     LoadMessageBoxGraphics(param0->unk_170, 3, (1024 - (18 + 12)), 10, param0->unk_14, param0->heapID);
-    LoadStandardWindowGraphics(param0->unk_170, 3, (1024 - (18 + 12) - 9), 11, 0, param0->heapID);
+    LoadStandardWindowGraphics(param0->unk_170, BG_LAYER_MAIN_3, (1024 - (18 + 12) - 9), 11, 0, param0->heapID);
 
     Font_LoadTextPalette(0, 13 * 32, param0->heapID);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, param0->heapID);

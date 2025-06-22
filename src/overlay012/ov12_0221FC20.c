@@ -600,10 +600,10 @@ BOOL ov12_0221FE30(UnkStruct_ov12_0221FCDC *param0, UnkStruct_ov16_02265BBC *par
     }
 
     param0->unk_18 = (u32 *)param0->unk_14;
-    param0->unk_19C[0] = Bg_GetPriority(param0->unk_C0, 0);
-    param0->unk_19C[1] = Bg_GetPriority(param0->unk_C0, 1);
-    param0->unk_19C[2] = Bg_GetPriority(param0->unk_C0, 2);
-    param0->unk_19C[3] = Bg_GetPriority(param0->unk_C0, 3);
+    param0->unk_19C[0] = Bg_GetPriority(param0->unk_C0, BG_LAYER_MAIN_0);
+    param0->unk_19C[1] = Bg_GetPriority(param0->unk_C0, BG_LAYER_MAIN_1);
+    param0->unk_19C[2] = Bg_GetPriority(param0->unk_C0, BG_LAYER_MAIN_2);
+    param0->unk_19C[3] = Bg_GetPriority(param0->unk_C0, BG_LAYER_MAIN_3);
 
     for (v0 = 0; v0 < 10; v0++) {
         param0->unk_D8[v0] = NULL;
@@ -1303,20 +1303,20 @@ static void ov12_02220798(UnkStruct_ov12_0221FCDC *param0)
 
         Bg_ClearTilesRange(ov12_022233B0(param0, 1), 0x4000, 0, ov12_0221FDE4(param0));
         Bg_ClearTilemap(ov12_02220278(param0), ov12_022233B0(param0, 1));
-        Bg_ToggleLayer(2, 1);
+        Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
     } else {
         ov17_022413D8();
     }
 
-    Bg_SetPriority(0, param0->unk_19C[0]);
-    Bg_SetPriority(1, param0->unk_19C[1]);
-    Bg_SetPriority(2, param0->unk_19C[2]);
-    Bg_SetPriority(3, param0->unk_19C[3]);
+    Bg_SetPriority(BG_LAYER_MAIN_0, param0->unk_19C[0]);
+    Bg_SetPriority(BG_LAYER_MAIN_1, param0->unk_19C[1]);
+    Bg_SetPriority(BG_LAYER_MAIN_2, param0->unk_19C[2]);
+    Bg_SetPriority(BG_LAYER_MAIN_3, param0->unk_19C[3]);
 
-    Bg_SetOffset(param0->unk_C0, 2, 0, 0);
-    Bg_SetOffset(param0->unk_C0, 2, 3, 0);
-    Bg_SetOffset(param0->unk_C0, 3, 0, 0);
-    Bg_SetOffset(param0->unk_C0, 3, 3, 0);
+    Bg_SetOffset(param0->unk_C0, BG_LAYER_MAIN_2, 0, 0);
+    Bg_SetOffset(param0->unk_C0, BG_LAYER_MAIN_2, 3, 0);
+    Bg_SetOffset(param0->unk_C0, BG_LAYER_MAIN_3, 0, 0);
+    Bg_SetOffset(param0->unk_C0, BG_LAYER_MAIN_3, 3, 0);
 
     param0->unk_10 = 0;
 }
@@ -1953,8 +1953,8 @@ static void ov12_022211D8(SysTask *param0, void *param1)
     v2 = PokemonSprite_GetAttribute(v0->unk_04.unk_04, MON_SPRITE_Y_CENTER);
     v2 -= PokemonSprite_GetAttribute(v0->unk_04.unk_04, MON_SPRITE_SHADOW_HEIGHT);
 
-    Bg_SetOffset(v0->unk_00, 2, 0, -(v1 - 40));
-    Bg_SetOffset(v0->unk_00, 2, 3, -(v2 - 40));
+    Bg_SetOffset(v0->unk_00, BG_LAYER_MAIN_2, 0, -(v1 - 40));
+    Bg_SetOffset(v0->unk_00, BG_LAYER_MAIN_2, 3, -(v2 - 40));
 }
 
 void ov12_02221238(UnkStruct_ov12_0221FCDC *param0, int param1)
@@ -2020,7 +2020,7 @@ static void ov12_0222128C(UnkStruct_ov12_0221FCDC *param0)
         MI_CpuFill8(v8, 0, 10 * 10 * 2 * 0x20);
     }
 
-    Bg_ToggleLayer(2, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
     Bg_LoadTiles(param0->unk_C0, 2, v0, (10 * 10 * ((8 / 2) * 8)), 0);
     PaletteData_LoadBufferFromFileStart(param0->unk_C4, v4, v5, param0->heapID, 0, 0, (8 * 16));
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_1A0[0], v6, param0->unk_C0, 2, 0, 0, 0, param0->heapID);
@@ -2047,12 +2047,12 @@ static void ov12_0222128C(UnkStruct_ov12_0221FCDC *param0)
         v11 = PokemonSprite_GetAttribute(ov12_022232FC(param0, v3), 1);
         v11 -= PokemonSprite_GetAttribute(ov12_022232FC(param0, v3), 41);
 
-        Bg_SetOffset(param0->unk_C0, 2, 0, -(v10 - 40));
-        Bg_SetOffset(param0->unk_C0, 2, 3, -(v11 - 40));
+        Bg_SetOffset(param0->unk_C0, BG_LAYER_MAIN_2, 0, -(v10 - 40));
+        Bg_SetOffset(param0->unk_C0, BG_LAYER_MAIN_2, 3, -(v11 - 40));
     }
 
-    Bg_ToggleLayer(2, 1);
-    Bg_SetPriority(2, ov12_0222339C(param0));
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
+    Bg_SetPriority(BG_LAYER_MAIN_2, ov12_0222339C(param0));
 }
 
 static void ov12_02221424(UnkStruct_ov12_0221FCDC *param0)
@@ -2613,10 +2613,10 @@ static BOOL ov12_02221C50(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
             int v0 = ov12_02223428(param1->unk_48, 2);
             int v1 = ov12_02223428(param1->unk_48, 1);
 
-            Bg_SetPriority(3, v0);
-            Bg_SetPriority(2, v0);
+            Bg_SetPriority(BG_LAYER_MAIN_3, v0);
+            Bg_SetPriority(BG_LAYER_MAIN_2, v0);
         }
-        Bg_ToggleLayer(2, 1);
+        Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
 
         param1->unk_05++;
         break;
@@ -2672,14 +2672,14 @@ static BOOL ov12_02221D50(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
 {
     switch (param1->unk_05) {
     case 0:
-        Bg_ToggleLayer(2, 1);
+        Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
         param1->unk_05++;
     case 1: {
         int v0 = ov12_02223428(param1->unk_48, 2);
         int v1 = ov12_02223428(param1->unk_48, 1);
 
-        Bg_SetPriority(3, v0);
-        Bg_SetPriority(2, v0);
+        Bg_SetPriority(BG_LAYER_MAIN_3, v0);
+        Bg_SetPriority(BG_LAYER_MAIN_2, v0);
 
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG3, param1->unk_09, param1->unk_0A);
         ov12_02221B64(param1);
@@ -2823,7 +2823,7 @@ static BOOL ov12_0222206C(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
             ov12_02222338(param1->unk_48);
         }
 
-        Bg_ToggleLayer(3, 0);
+        Bg_ToggleLayer(BG_LAYER_MAIN_3, 0);
 
         if (ov12_0221FDD4(param1->unk_48) == 0) {
             Bg_SetControlParam(param1->unk_48->unk_C0, 3, 0, GX_BG_COLORMODE_256);
@@ -2836,7 +2836,7 @@ static BOOL ov12_0222206C(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
         }
 
         Graphics_LoadTilemapToBgLayer(param1->unk_48->unk_180.unk_00, param1->unk_48->unk_180.unk_0C, param1->unk_48->unk_C0, 3, 0, 0, 1, param1->unk_48->heapID);
-        Bg_ToggleLayer(3, 1);
+        Bg_ToggleLayer(BG_LAYER_MAIN_3, 1);
 
         param1->unk_05++;
     case 3:

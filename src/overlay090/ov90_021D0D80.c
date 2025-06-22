@@ -505,10 +505,10 @@ static void ov90_021D11EC(UnkStruct_ov90_021D0ECC *param0)
             v1++;
         }
     }
-    Bg_ClearTilesRange(0, 32, 0, param0->heapID);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, param0->heapID);
 
     if (param0->unk_08) {
-        Bg_ClearTilesRange(2, 32, 0, param0->heapID);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_2, 32, 0, param0->heapID);
     }
 }
 

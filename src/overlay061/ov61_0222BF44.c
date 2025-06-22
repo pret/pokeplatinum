@@ -358,14 +358,14 @@ static void ov61_0222C224(BgConfig *param0)
             },
         };
 
-        Bg_InitFromTemplate(param0, 0, &v2[0], 0);
-        Bg_ClearTilemap(param0, 0);
-        Bg_SetOffset(param0, 0, 0, 0);
-        Bg_SetOffset(param0, 0, 3, 0);
-        Bg_InitFromTemplate(param0, 1, &v2[1], 0);
-        Bg_ClearTilemap(param0, 1);
-        Bg_SetOffset(param0, 1, 0, 0);
-        Bg_SetOffset(param0, 1, 3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_0, &v2[0], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_0);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_0, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_0, 3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v2[1], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_1, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_1, 3, 0);
     }
 
     {
@@ -402,26 +402,26 @@ static void ov61_0222C224(BgConfig *param0)
             },
         };
 
-        Bg_InitFromTemplate(param0, 4, &v3[0], 0);
-        Bg_ClearTilemap(param0, 4);
-        Bg_SetOffset(param0, 4, 0, 0);
-        Bg_SetOffset(param0, 4, 3, 0);
-        Bg_InitFromTemplate(param0, 5, &v3[1], 0);
-        Bg_ClearTilemap(param0, 5);
-        Bg_SetOffset(param0, 5, 0, 0);
-        Bg_SetOffset(param0, 5, 3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v3[0], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
+        Bg_SetOffset(param0, BG_LAYER_SUB_0, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_SUB_0, 3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_1, &v3[1], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_1);
+        Bg_SetOffset(param0, BG_LAYER_SUB_1, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_SUB_1, 3, 0);
     }
 
-    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_117);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_117);
     Bg_ClearTilesRange(4, 32, 0, HEAP_ID_117);
 }
 
 static void ov61_0222C38C(BgConfig *param0)
 {
-    Bg_FreeTilemapBuffer(param0, 5);
-    Bg_FreeTilemapBuffer(param0, 4);
-    Bg_FreeTilemapBuffer(param0, 1);
-    Bg_FreeTilemapBuffer(param0, 0);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
 }
 
 static void ov61_0222C3B0(UnkStruct_ov61_0222C664 *param0)
@@ -434,13 +434,13 @@ static void ov61_0222C3B0(UnkStruct_ov61_0222C664 *param0)
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_117);
     Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, HEAP_ID_117);
     LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(SaveData_GetOptions(param0->unk_00->unk_00->saveData)), HEAP_ID_117);
-    LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, HEAP_ID_117);
+    LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_0, (1 + (18 + 12)), 11, 0, HEAP_ID_117);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 2, v0, 1, 0, 0, 0, HEAP_ID_117);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 5, v0, 1, 0, 32 * 24 * 2, 0, HEAP_ID_117);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 10, v0, 5, 0, 0, 0, HEAP_ID_117);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 11, v0, 5, 0, 32 * 24 * 2, 0, HEAP_ID_117);
-    Bg_MaskPalette(0, 0);
-    Bg_MaskPalette(4, 0);
+    Bg_MaskPalette(BG_LAYER_MAIN_0, 0);
+    Bg_MaskPalette(BG_LAYER_SUB_0, 0);
 
     inline_ov61_0222C3B0(&param0->unk_A4, v1, 4, 117);
 

@@ -840,12 +840,12 @@ static void sub_0207C1CC(UnkStruct_0207AE68 *param0, BgConfig *param1)
             },
         };
 
-        Bg_InitFromTemplate(param1, 1, &v2[0], 0);
-        Bg_ClearTilemap(param1, 1);
-        Bg_InitFromTemplate(param1, 2, &v2[1], 0);
-        Bg_ClearTilemap(param1, 2);
-        Bg_InitFromTemplate(param1, 3, &v2[2], 0);
-        Bg_ClearTilemap(param1, 3);
+        Bg_InitFromTemplate(param1, BG_LAYER_MAIN_1, &v2[0], 0);
+        Bg_ClearTilemap(param1, BG_LAYER_MAIN_1);
+        Bg_InitFromTemplate(param1, BG_LAYER_MAIN_2, &v2[1], 0);
+        Bg_ClearTilemap(param1, BG_LAYER_MAIN_2);
+        Bg_InitFromTemplate(param1, BG_LAYER_MAIN_3, &v2[2], 0);
+        Bg_ClearTilemap(param1, BG_LAYER_MAIN_3);
 
         G2_SetBG0Priority(0x1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
@@ -870,8 +870,8 @@ static void sub_0207C1CC(UnkStruct_0207AE68 *param0, BgConfig *param1)
             },
         };
 
-        Bg_InitFromTemplate(param1, 4, &v3[0], 0);
-        Bg_ClearTilemap(param1, 4);
+        Bg_InitFromTemplate(param1, BG_LAYER_SUB_0, &v3[0], 0);
+        Bg_ClearTilemap(param1, BG_LAYER_SUB_0);
     }
 
     {
@@ -925,10 +925,10 @@ static void sub_0207C460(BgConfig *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
-    Bg_FreeTilemapBuffer(param0, 1);
-    Bg_FreeTilemapBuffer(param0, 2);
-    Bg_FreeTilemapBuffer(param0, 3);
-    Bg_FreeTilemapBuffer(param0, 4);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0);
 }
 
 static void sub_0207C498(UnkStruct_0207AE68 *param0)

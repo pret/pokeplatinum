@@ -110,7 +110,7 @@ static void ov54_022564BC(SysTask *param0, void *param1)
     v2 = PoketchTask_GetTaskData(param1);
     v3 = PoketchTask_GetConstTaskData(param1);
 
-    Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
+    Bg_InitFromTemplate(v2->unk_04, BG_LAYER_SUB_2, &v0, 0);
     Bg_FillTilesRange(v2->unk_04, 6, 4, 1, 0);
     Bg_FillTilemapRect(v2->unk_04, 6, 0, 0, 0, 32, 24, 0);
 
@@ -145,7 +145,7 @@ static void ov54_022565CC(SysTask *param0, void *param1)
     UnkStruct_ov54_0225642C *v0 = PoketchTask_GetTaskData(param1);
 
     ov54_022566A8(v0);
-    Bg_FreeTilemapBuffer(v0->unk_04, 6);
+    Bg_FreeTilemapBuffer(v0->unk_04, BG_LAYER_SUB_2);
     ov54_022564A8(param1);
 }
 

@@ -1170,9 +1170,9 @@ static void ov23_0223EC34(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 0, &v2, 0);
-        Bg_ClearTilesRange(0, 32, 0, HEAP_ID_29);
-        Bg_ClearTilemap(param0, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_0, &v2, 0);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_29);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_0);
     }
 
     {
@@ -1192,9 +1192,9 @@ static void ov23_0223EC34(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 1, &v3, 0);
-        Bg_ClearTilesRange(1, 32, 0, HEAP_ID_29);
-        Bg_ClearTilemap(param0, 1);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v3, 0);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_29);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
     }
     {
         BgTemplate v4 = {
@@ -1213,9 +1213,9 @@ static void ov23_0223EC34(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 2, &v4, 0);
-        Bg_ClearTilesRange(2, 32, 0, HEAP_ID_29);
-        Bg_ClearTilemap(param0, 2);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v4, 0);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_2, 32, 0, HEAP_ID_29);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
     }
     {
         BgTemplate v5 = {
@@ -1234,13 +1234,13 @@ static void ov23_0223EC34(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 3, &v5, 0);
-        Bg_ClearTilesRange(3, 32, 0, HEAP_ID_29);
-        Bg_ClearTilemap(param0, 3);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v5, 0);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_3, 32, 0, HEAP_ID_29);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_3);
     }
 
     Bg_ClearTilesRange(4, 32, 0, HEAP_ID_29);
-    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_29);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_29);
 }
 
 static void ov23_0223ED68(int param0, int param1, BOOL param2, BOOL param3, BOOL param4)
@@ -1309,9 +1309,9 @@ static void ov23_0223EE80(UnkStruct_ov23_0223EE80 *param0)
     ov23_02253E2C(ov23_0224219C(), v1, (512 - (18 + 12)), (((512 - (18 + 12)) - 73) - (27 * 4)));
     ov23_0223EC34(v1);
 
-    Bg_ClearTilemap(v1, 0);
-    Bg_ClearTilemap(v1, 1);
-    Bg_ClearTilemap(v1, 2);
+    Bg_ClearTilemap(v1, BG_LAYER_MAIN_0);
+    Bg_ClearTilemap(v1, BG_LAYER_MAIN_1);
+    Bg_ClearTilemap(v1, BG_LAYER_MAIN_2);
     LoadMessageBoxGraphics(v1, 3, (512 - (18 + 12)), 10, 0, HEAP_ID_29);
 
     {
@@ -1346,10 +1346,10 @@ static void ov23_0223EF98(void)
 
     ov23_022401B0(Unk_ov23_02257740->unk_04);
 
-    Bg_SetPriority(0, 3);
-    Bg_SetPriority(1, 2);
-    Bg_SetPriority(2, 1);
-    Bg_SetPriority(3, 0);
+    Bg_SetPriority(BG_LAYER_MAIN_0, 3);
+    Bg_SetPriority(BG_LAYER_MAIN_1, 2);
+    Bg_SetPriority(BG_LAYER_MAIN_2, 1);
+    Bg_SetPriority(BG_LAYER_MAIN_3, 0);
 
     ov23_02240E88();
     ov23_0224108C();
@@ -1361,10 +1361,10 @@ static void ov23_0223F020(UnkStruct_ov23_0223EE80 *param0)
     void *v0;
     int v1;
 
-    Bg_FreeTilemapBuffer(Unk_ov23_02257740->unk_04, 0);
-    Bg_FreeTilemapBuffer(Unk_ov23_02257740->unk_04, 1);
-    Bg_FreeTilemapBuffer(Unk_ov23_02257740->unk_04, 2);
-    Bg_FreeTilemapBuffer(Unk_ov23_02257740->unk_04, 3);
+    Bg_FreeTilemapBuffer(Unk_ov23_02257740->unk_04, BG_LAYER_MAIN_0);
+    Bg_FreeTilemapBuffer(Unk_ov23_02257740->unk_04, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(Unk_ov23_02257740->unk_04, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(Unk_ov23_02257740->unk_04, BG_LAYER_MAIN_3);
     SpriteTransfer_ResetCharTransfer(Unk_ov23_02257740->unk_1C0[0]);
     SpriteTransfer_ResetCharTransfer(Unk_ov23_02257740->unk_1C0[4]);
     SpriteTransfer_ResetPlttTransfer(Unk_ov23_02257740->unk_1C0[1]);

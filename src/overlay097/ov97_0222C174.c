@@ -536,7 +536,7 @@ static void ov97_0222C254(UnkStruct_ov97_0222C388 *param0)
 
     Text_ResetAllPrinters();
     Font_LoadTextPalette(0, 0 * 32, param0->heapID);
-    LoadStandardWindowGraphics(param0->unk_04, 0, 1, 1, 0, param0->heapID);
+    LoadStandardWindowGraphics(param0->unk_04, BG_LAYER_MAIN_0, 1, 1, 0, param0->heapID);
 
     v0 = Options_Frame(param0->options);
 
@@ -657,10 +657,10 @@ static void ov97_0222C688(ApplicationManager *appMan)
         Window_Remove(&v1->unk_38);
     }
 
-    Bg_FreeTilemapBuffer(v1->unk_04, 0);
-    Bg_FreeTilemapBuffer(v1->unk_04, 1);
-    Bg_FreeTilemapBuffer(v1->unk_04, 4);
-    Bg_FreeTilemapBuffer(v1->unk_04, 5);
+    Bg_FreeTilemapBuffer(v1->unk_04, BG_LAYER_MAIN_0);
+    Bg_FreeTilemapBuffer(v1->unk_04, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(v1->unk_04, BG_LAYER_SUB_0);
+    Bg_FreeTilemapBuffer(v1->unk_04, BG_LAYER_SUB_1);
     Heap_FreeToHeap(v1->unk_04);
 }
 

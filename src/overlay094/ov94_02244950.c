@@ -183,9 +183,9 @@ static void ov94_02244A7C(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 0, &v0, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_0, &v0, 0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
-        Bg_ClearTilemap(param0, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_0);
     }
 
     {
@@ -205,7 +205,7 @@ static void ov94_02244A7C(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 1, &v1, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v1, 0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
     }
 
@@ -226,9 +226,9 @@ static void ov94_02244A7C(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 4, &v2, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v2, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
-        Bg_ClearTilemap(param0, 4);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
     }
 
     {
@@ -248,21 +248,21 @@ static void ov94_02244A7C(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 5, &v3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_1, &v3, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
     }
 
-    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_62);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_62);
     Bg_ClearTilesRange(4, 32, 0, HEAP_ID_62);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 0);
 }
 
 static void ov94_02244B68(BgConfig *param0)
 {
-    Bg_FreeTilemapBuffer(param0, 5);
-    Bg_FreeTilemapBuffer(param0, 4);
-    Bg_FreeTilemapBuffer(param0, 1);
-    Bg_FreeTilemapBuffer(param0, 0);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
 }
 
 static void ov94_02244B8C(UnkStruct_ov94_0223FD4C *param0)
@@ -275,13 +275,13 @@ static void ov94_02244B8C(UnkStruct_ov94_0223FD4C *param0)
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_62);
     Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, HEAP_ID_62);
     LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_00->options), HEAP_ID_62);
-    LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, HEAP_ID_62);
+    LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_0, (1 + (18 + 12)), 11, 0, HEAP_ID_62);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 2, v0, 1, 0, 0, 0, HEAP_ID_62);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 5, v0, 1, 0, 32 * 24 * 2, 0, HEAP_ID_62);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 10, v0, 5, 0, 0, 0, HEAP_ID_62);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 11, v0, 5, 0, 32 * 24 * 2, 0, HEAP_ID_62);
-    Bg_MaskPalette(0, 0);
-    Bg_MaskPalette(4, 0);
+    Bg_MaskPalette(BG_LAYER_MAIN_0, 0);
+    Bg_MaskPalette(BG_LAYER_SUB_0, 0);
 
     inline_ov61_0222C3B0(&param0->unk_11B4, v1, 4, 62);
 

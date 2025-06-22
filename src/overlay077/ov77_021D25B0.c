@@ -318,7 +318,7 @@ static void ov77_021D2610(UnkStruct_ov77_021D2E9C *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0->unk_0C, 1, &v1, 0);
+        Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_1, &v1, 0);
     }
 
     {
@@ -338,7 +338,7 @@ static void ov77_021D2610(UnkStruct_ov77_021D2E9C *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0->unk_0C, 2, &v2, 0);
+        Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_2, &v2, 0);
     }
 
     {
@@ -358,7 +358,7 @@ static void ov77_021D2610(UnkStruct_ov77_021D2E9C *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0->unk_0C, 3, &v3, 0);
+        Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_3, &v3, 0);
     }
 
     {
@@ -378,7 +378,7 @@ static void ov77_021D2610(UnkStruct_ov77_021D2E9C *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0->unk_0C, 5, &v4, 0);
+        Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_SUB_1, &v4, 0);
     }
 
     {
@@ -398,7 +398,7 @@ static void ov77_021D2610(UnkStruct_ov77_021D2E9C *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0->unk_0C, 6, &v5, 0);
+        Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_SUB_2, &v5, 0);
     }
 
     {
@@ -418,11 +418,11 @@ static void ov77_021D2610(UnkStruct_ov77_021D2E9C *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0->unk_0C, 7, &v6, 0);
+        Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_SUB_3, &v6, 0);
     }
 
-    Bg_MaskPalette(0, 0x0);
-    Bg_MaskPalette(4, 0x0);
+    Bg_MaskPalette(BG_LAYER_MAIN_0, 0x0);
+    Bg_MaskPalette(BG_LAYER_SUB_0, 0x0);
 }
 
 static void ov77_021D2724(UnkStruct_ov77_021D2E9C *param0)
@@ -457,7 +457,7 @@ static void ov77_021D2724(UnkStruct_ov77_021D2E9C *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0->unk_0C, 1, &v1, 0);
+        Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_1, &v1, 0);
     }
 
     {
@@ -477,7 +477,7 @@ static void ov77_021D2724(UnkStruct_ov77_021D2E9C *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0->unk_0C, 2, &v2, 0);
+        Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_2, &v2, 0);
     }
 
     {
@@ -497,7 +497,7 @@ static void ov77_021D2724(UnkStruct_ov77_021D2E9C *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0->unk_0C, 3, &v3, 0);
+        Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_3, &v3, 0);
     }
 
     {
@@ -517,7 +517,7 @@ static void ov77_021D2724(UnkStruct_ov77_021D2E9C *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0->unk_0C, 4, &v4, 0);
+        Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_SUB_0, &v4, 0);
     }
 
     {
@@ -569,13 +569,13 @@ static void ov77_021D2724(UnkStruct_ov77_021D2E9C *param0)
             },
         };
 
-        Bg_InitFromTemplate(param0->unk_0C, 5, &v5[0], 0);
-        Bg_InitFromTemplate(param0->unk_0C, 6, &v5[1], 0);
-        Bg_InitFromTemplate(param0->unk_0C, 7, &v5[2], 0);
+        Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_SUB_1, &v5[0], 0);
+        Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_SUB_2, &v5[1], 0);
+        Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_SUB_3, &v5[2], 0);
     }
 
-    Bg_MaskPalette(1, 0x0);
-    Bg_MaskPalette(4, 0x0);
+    Bg_MaskPalette(BG_LAYER_MAIN_1, 0x0);
+    Bg_MaskPalette(BG_LAYER_SUB_0, 0x0);
 }
 
 static void ov77_021D2828(UnkStruct_ov77_021D2E9C *param0)
@@ -599,7 +599,7 @@ static void ov77_021D2828(UnkStruct_ov77_021D2E9C *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0->unk_0C, 3, &v0, 0);
+        Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_3, &v0, 0);
     }
 
     {
@@ -619,7 +619,7 @@ static void ov77_021D2828(UnkStruct_ov77_021D2E9C *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0->unk_0C, 1, &v1, 0);
+        Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_1, &v1, 0);
     }
 
     {
@@ -639,7 +639,7 @@ static void ov77_021D2828(UnkStruct_ov77_021D2E9C *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0->unk_0C, 2, &v2, 0);
+        Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_2, &v2, 0);
     }
 
     {
@@ -691,13 +691,13 @@ static void ov77_021D2828(UnkStruct_ov77_021D2E9C *param0)
             },
         };
 
-        Bg_InitFromTemplate(param0->unk_0C, 5, &v3[0], 0);
-        Bg_InitFromTemplate(param0->unk_0C, 6, &v3[1], 0);
-        Bg_InitFromTemplate(param0->unk_0C, 7, &v3[2], 0);
+        Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_SUB_1, &v3[0], 0);
+        Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_SUB_2, &v3[1], 0);
+        Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_SUB_3, &v3[2], 0);
     }
 
-    Bg_MaskPalette(1, 0x0);
-    Bg_MaskPalette(4, 0x0);
+    Bg_MaskPalette(BG_LAYER_MAIN_1, 0x0);
+    Bg_MaskPalette(BG_LAYER_SUB_0, 0x0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
 
     param0->unk_34.unk_25A = 1;
@@ -736,7 +736,7 @@ static void ov77_021D2900(UnkStruct_ov77_021D2E9C *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0->unk_0C, 0, &v1, 0);
+        Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_0, &v1, 0);
     }
 
     {
@@ -756,13 +756,13 @@ static void ov77_021D2900(UnkStruct_ov77_021D2E9C *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0->unk_0C, 4, &v2, 0);
+        Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_SUB_0, &v2, 0);
     }
 
-    Bg_SetOffset(param0->unk_0C, 0, 0, 0);
-    Bg_SetOffset(param0->unk_0C, 0, 3, 0);
-    Bg_SetOffset(param0->unk_0C, 4, 0, 0);
-    Bg_SetOffset(param0->unk_0C, 4, 3, 0);
+    Bg_SetOffset(param0->unk_0C, BG_LAYER_MAIN_0, 0, 0);
+    Bg_SetOffset(param0->unk_0C, BG_LAYER_MAIN_0, 3, 0);
+    Bg_SetOffset(param0->unk_0C, BG_LAYER_SUB_0, 0, 0);
+    Bg_SetOffset(param0->unk_0C, BG_LAYER_SUB_0, 3, 0);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
@@ -810,10 +810,10 @@ static void ov77_021D2A00(UnkStruct_ov77_021D2E9C *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0->unk_0C, 2, &v1, 0);
+        Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_2, &v1, 0);
     }
 
-    Bg_MaskPalette(2, 0x0);
+    Bg_MaskPalette(BG_LAYER_MAIN_2, 0x0);
 }
 
 static void ov77_021D2A58(UnkStruct_ov77_021D2E9C *param0)
@@ -1171,12 +1171,12 @@ static void ov77_021D3234(UnkStruct_ov77_021D2E9C *param0)
     if (param0->unk_18.unk_02) {
         ov77_021D67B0(param0->unk_18.unk_14);
 
-        Bg_FreeTilemapBuffer(param0->unk_0C, 1);
-        Bg_FreeTilemapBuffer(param0->unk_0C, 2);
-        Bg_FreeTilemapBuffer(param0->unk_0C, 6);
-        Bg_FreeTilemapBuffer(param0->unk_0C, 3);
-        Bg_FreeTilemapBuffer(param0->unk_0C, 7);
-        Bg_FreeTilemapBuffer(param0->unk_0C, 5);
+        Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_1);
+        Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_2);
+        Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_2);
+        Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_3);
+        Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_3);
+        Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_1);
         Heap_FreeToHeap(param0->unk_0C);
 
         param0->unk_18.unk_02 = 0;
@@ -1385,30 +1385,30 @@ static void ov77_021D361C(UnkStruct_ov77_021D2E9C *param0, BOOL param1)
 {
     if (param0->unk_34.unk_02 && (param0->unk_0C != NULL)) {
         if (param0->unk_34.unk_25A == 0) {
-            Bg_FreeTilemapBuffer(param0->unk_0C, 3);
-            Bg_FreeTilemapBuffer(param0->unk_0C, 1);
-            Bg_FreeTilemapBuffer(param0->unk_0C, 2);
-            Bg_FreeTilemapBuffer(param0->unk_0C, 4);
-            Bg_FreeTilemapBuffer(param0->unk_0C, 5);
-            Bg_FreeTilemapBuffer(param0->unk_0C, 6);
-            Bg_FreeTilemapBuffer(param0->unk_0C, 7);
+            Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_3);
+            Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_1);
+            Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_2);
+            Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_0);
+            Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_1);
+            Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_2);
+            Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_3);
         } else if (param0->unk_34.unk_25A == 1) {
-            Bg_FreeTilemapBuffer(param0->unk_0C, 3);
-            Bg_FreeTilemapBuffer(param0->unk_0C, 1);
-            Bg_FreeTilemapBuffer(param0->unk_0C, 2);
+            Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_3);
+            Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_1);
+            Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_2);
 
-            Bg_FreeTilemapBuffer(param0->unk_0C, 5);
-            Bg_FreeTilemapBuffer(param0->unk_0C, 6);
-            Bg_FreeTilemapBuffer(param0->unk_0C, 7);
+            Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_1);
+            Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_2);
+            Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_3);
         } else {
-            Bg_FreeTilemapBuffer(param0->unk_0C, 0);
-            Bg_FreeTilemapBuffer(param0->unk_0C, 3);
-            Bg_FreeTilemapBuffer(param0->unk_0C, 1);
-            Bg_FreeTilemapBuffer(param0->unk_0C, 2);
-            Bg_FreeTilemapBuffer(param0->unk_0C, 4);
-            Bg_FreeTilemapBuffer(param0->unk_0C, 5);
-            Bg_FreeTilemapBuffer(param0->unk_0C, 6);
-            Bg_FreeTilemapBuffer(param0->unk_0C, 7);
+            Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_0);
+            Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_3);
+            Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_1);
+            Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_2);
+            Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_0);
+            Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_1);
+            Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_2);
+            Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_3);
         }
 
         if (param1 == 1) {
@@ -1536,7 +1536,7 @@ static void ov77_021D3A10(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
     Bg_SetControlParam(param1->unk_10, 3, 0, GX_BG_COLORMODE_16);
 
     G2_SetBG0Priority(0);
-    Bg_SetPriority(1, 3);
+    Bg_SetPriority(BG_LAYER_MAIN_1, 3);
 
     v1 = NARC_ctor(NARC_INDEX_DEMO__TITLE__OP_DEMO, HEAP_ID_76);
 
@@ -1552,12 +1552,12 @@ static void ov77_021D3A10(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
     MI_CpuClear16((void *)HW_BG_PLTT, 2);
     MI_CpuClear16((void *)HW_DB_BG_PLTT, 2);
 
-    Bg_SetOffset(param1->unk_10, 1, 0, 0);
-    Bg_SetOffset(param1->unk_10, 2, 0, 0);
-    Bg_SetOffset(param1->unk_10, 3, 0, 0);
-    Bg_SetOffset(param1->unk_10, 5, 0, 0);
-    Bg_SetOffset(param1->unk_10, 6, 0, 0);
-    Bg_SetOffset(param1->unk_10, 7, 0, 0);
+    Bg_SetOffset(param1->unk_10, BG_LAYER_MAIN_1, 0, 0);
+    Bg_SetOffset(param1->unk_10, BG_LAYER_MAIN_2, 0, 0);
+    Bg_SetOffset(param1->unk_10, BG_LAYER_MAIN_3, 0, 0);
+    Bg_SetOffset(param1->unk_10, BG_LAYER_SUB_1, 0, 0);
+    Bg_SetOffset(param1->unk_10, BG_LAYER_SUB_2, 0, 0);
+    Bg_SetOffset(param1->unk_10, BG_LAYER_SUB_3, 0, 0);
 
     NARC_dtor(v1);
 }
@@ -1597,12 +1597,12 @@ static void ov77_021D3B5C(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
     MI_CpuClear16((void *)HW_BG_PLTT, 2);
     MI_CpuClear16((void *)HW_DB_BG_PLTT, 2);
 
-    Bg_SetOffset(param1->unk_10, 1, 0, -128);
-    Bg_SetOffset(param1->unk_10, 2, 0, -200);
-    Bg_SetOffset(param1->unk_10, 3, 0, -152);
-    Bg_SetOffset(param1->unk_10, 5, 0, 128);
-    Bg_SetOffset(param1->unk_10, 6, 0, 0x18 * 8);
-    Bg_SetOffset(param1->unk_10, 7, 0, 0x16 * 8);
+    Bg_SetOffset(param1->unk_10, BG_LAYER_MAIN_1, 0, -128);
+    Bg_SetOffset(param1->unk_10, BG_LAYER_MAIN_2, 0, -200);
+    Bg_SetOffset(param1->unk_10, BG_LAYER_MAIN_3, 0, -152);
+    Bg_SetOffset(param1->unk_10, BG_LAYER_SUB_1, 0, 128);
+    Bg_SetOffset(param1->unk_10, BG_LAYER_SUB_2, 0, 0x18 * 8);
+    Bg_SetOffset(param1->unk_10, BG_LAYER_SUB_3, 0, 0x16 * 8);
 
     NARC_dtor(v1);
 }
@@ -1627,33 +1627,33 @@ static void ov77_021D3D4C(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
 static void ov77_021D3DC4(UnkStruct_ov77_021D37C0 *param0)
 {
     if (gSystem.whichScreenIs3D == DS_SCREEN_MAIN) {
-        Bg_SetOffset(param0->unk_10, 1, 3, 0);
-        Bg_SetOffset(param0->unk_10, 2, 3, 0);
-        Bg_SetOffset(param0->unk_10, 3, 3, 0);
-        Bg_SetOffset(param0->unk_10, 5, 3, 256);
-        Bg_SetOffset(param0->unk_10, 6, 3, 256);
-        Bg_SetOffset(param0->unk_10, 7, 3, 256);
+        Bg_SetOffset(param0->unk_10, BG_LAYER_MAIN_1, 3, 0);
+        Bg_SetOffset(param0->unk_10, BG_LAYER_MAIN_2, 3, 0);
+        Bg_SetOffset(param0->unk_10, BG_LAYER_MAIN_3, 3, 0);
+        Bg_SetOffset(param0->unk_10, BG_LAYER_SUB_1, 3, 256);
+        Bg_SetOffset(param0->unk_10, BG_LAYER_SUB_2, 3, 256);
+        Bg_SetOffset(param0->unk_10, BG_LAYER_SUB_3, 3, 256);
 
-        Bg_SetPriority(1, 1);
-        Bg_SetPriority(2, 2);
-        Bg_SetPriority(3, 0);
-        Bg_SetPriority(5, 1);
-        Bg_SetPriority(6, 2);
-        Bg_SetPriority(7, 0);
+        Bg_SetPriority(BG_LAYER_MAIN_1, 1);
+        Bg_SetPriority(BG_LAYER_MAIN_2, 2);
+        Bg_SetPriority(BG_LAYER_MAIN_3, 0);
+        Bg_SetPriority(BG_LAYER_SUB_1, 1);
+        Bg_SetPriority(BG_LAYER_SUB_2, 2);
+        Bg_SetPriority(BG_LAYER_SUB_3, 0);
     } else {
-        Bg_SetOffset(param0->unk_10, 1, 3, 256);
-        Bg_SetOffset(param0->unk_10, 2, 3, 256);
-        Bg_SetOffset(param0->unk_10, 3, 3, 256);
-        Bg_SetOffset(param0->unk_10, 5, 3, 0);
-        Bg_SetOffset(param0->unk_10, 6, 3, 0);
-        Bg_SetOffset(param0->unk_10, 7, 3, 0);
+        Bg_SetOffset(param0->unk_10, BG_LAYER_MAIN_1, 3, 256);
+        Bg_SetOffset(param0->unk_10, BG_LAYER_MAIN_2, 3, 256);
+        Bg_SetOffset(param0->unk_10, BG_LAYER_MAIN_3, 3, 256);
+        Bg_SetOffset(param0->unk_10, BG_LAYER_SUB_1, 3, 0);
+        Bg_SetOffset(param0->unk_10, BG_LAYER_SUB_2, 3, 0);
+        Bg_SetOffset(param0->unk_10, BG_LAYER_SUB_3, 3, 0);
 
-        Bg_SetPriority(1, 1);
-        Bg_SetPriority(2, 2);
-        Bg_SetPriority(3, 0);
-        Bg_SetPriority(5, 1);
-        Bg_SetPriority(6, 2);
-        Bg_SetPriority(7, 0);
+        Bg_SetPriority(BG_LAYER_MAIN_1, 1);
+        Bg_SetPriority(BG_LAYER_MAIN_2, 2);
+        Bg_SetPriority(BG_LAYER_MAIN_3, 0);
+        Bg_SetPriority(BG_LAYER_SUB_1, 1);
+        Bg_SetPriority(BG_LAYER_SUB_2, 2);
+        Bg_SetPriority(BG_LAYER_SUB_3, 0);
     }
 
     ov77_021D636C(param0->unk_14, 0);
@@ -1848,14 +1848,14 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
         }
 
         if (param2 >= 640) {
-            Bg_ToggleLayer(3, 1);
+            Bg_ToggleLayer(BG_LAYER_MAIN_3, 1);
             BrightnessController_StartTransition(8, 0, -16, GX_BLEND_PLANEMASK_BG3, BRIGHTNESS_MAIN_SCREEN);
             (*v0)++;
         }
         break;
     case 1:
         if ((BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) && (param2 == 700)) {
-            Bg_ToggleLayer(0, 1);
+            Bg_ToggleLayer(BG_LAYER_MAIN_0, 1);
             ov77_021D6CD0(param1->unk_1C, 9);
             ov77_021D6CD0(param1->unk_1C, 10);
             ov77_021D6CD0(param1->unk_1C, 11);
@@ -1927,31 +1927,31 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
         ov77_021D61B8(param1->unk_14, param2);
 
         if (IsScreenFadeDone() && (param2 >= 1600)) {
-            Bg_ToggleLayer(4, 0);
+            Bg_ToggleLayer(BG_LAYER_SUB_0, 0);
             ov77_021D6000(param1->unk_14, param1->unk_18);
             param1->unk_244 = 1;
             ov77_021D3A10(param0, param1);
             ov77_021D603C(param1->unk_14, 1, 1);
             ov77_021D603C(param1->unk_14, 2, 1);
 
-            Bg_ToggleLayer(1, 1);
-            Bg_ToggleLayer(2, 1);
-            Bg_ToggleLayer(3, 1);
-            Bg_ToggleLayer(5, 1);
-            Bg_ToggleLayer(6, 1);
-            Bg_ToggleLayer(7, 1);
-            Bg_SetOffset(param1->unk_10, 1, 0, 256);
-            Bg_SetOffset(param1->unk_10, 1, 3, 0);
-            Bg_SetOffset(param1->unk_10, 2, 0, 0);
-            Bg_SetOffset(param1->unk_10, 2, 3, 256);
-            Bg_SetOffset(param1->unk_10, 3, 0, 0);
-            Bg_SetOffset(param1->unk_10, 3, 3, 0);
-            Bg_SetOffset(param1->unk_10, 5, 0, 256);
-            Bg_SetOffset(param1->unk_10, 5, 3, 0);
-            Bg_SetOffset(param1->unk_10, 6, 0, 0);
-            Bg_SetOffset(param1->unk_10, 6, 3, 256);
-            Bg_SetOffset(param1->unk_10, 7, 0, 0);
-            Bg_SetOffset(param1->unk_10, 7, 3, 0);
+            Bg_ToggleLayer(BG_LAYER_MAIN_1, 1);
+            Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
+            Bg_ToggleLayer(BG_LAYER_MAIN_3, 1);
+            Bg_ToggleLayer(BG_LAYER_SUB_1, 1);
+            Bg_ToggleLayer(BG_LAYER_SUB_2, 1);
+            Bg_ToggleLayer(BG_LAYER_SUB_3, 1);
+            Bg_SetOffset(param1->unk_10, BG_LAYER_MAIN_1, 0, 256);
+            Bg_SetOffset(param1->unk_10, BG_LAYER_MAIN_1, 3, 0);
+            Bg_SetOffset(param1->unk_10, BG_LAYER_MAIN_2, 0, 0);
+            Bg_SetOffset(param1->unk_10, BG_LAYER_MAIN_2, 3, 256);
+            Bg_SetOffset(param1->unk_10, BG_LAYER_MAIN_3, 0, 0);
+            Bg_SetOffset(param1->unk_10, BG_LAYER_MAIN_3, 3, 0);
+            Bg_SetOffset(param1->unk_10, BG_LAYER_SUB_1, 0, 256);
+            Bg_SetOffset(param1->unk_10, BG_LAYER_SUB_1, 3, 0);
+            Bg_SetOffset(param1->unk_10, BG_LAYER_SUB_2, 0, 0);
+            Bg_SetOffset(param1->unk_10, BG_LAYER_SUB_2, 3, 256);
+            Bg_SetOffset(param1->unk_10, BG_LAYER_SUB_3, 0, 0);
+            Bg_SetOffset(param1->unk_10, BG_LAYER_SUB_3, 3, 0);
 
             param1->unk_264 += 0;
             param1->unk_260 = 256 << FX32_SHIFT;
@@ -2190,11 +2190,11 @@ static void ov77_021D4B70(UnkStruct_ov77_021D37C0 *param0)
     param0->unk_260 += 0x280;
     param0->unk_264 += 0x110;
 
-    Bg_SetOffset(param0->unk_10, 1, 3, -(param0->unk_264 >> FX32_SHIFT));
-    Bg_SetOffset(param0->unk_10, 2, 3, -(param0->unk_260 >> FX32_SHIFT));
+    Bg_SetOffset(param0->unk_10, BG_LAYER_MAIN_1, 3, -(param0->unk_264 >> FX32_SHIFT));
+    Bg_SetOffset(param0->unk_10, BG_LAYER_MAIN_2, 3, -(param0->unk_260 >> FX32_SHIFT));
 
-    Bg_SetOffset(param0->unk_10, 5, 3, -(param0->unk_264 >> FX32_SHIFT));
-    Bg_SetOffset(param0->unk_10, 6, 3, -(param0->unk_260 >> FX32_SHIFT));
+    Bg_SetOffset(param0->unk_10, BG_LAYER_SUB_1, 3, -(param0->unk_264 >> FX32_SHIFT));
+    Bg_SetOffset(param0->unk_10, BG_LAYER_SUB_2, 3, -(param0->unk_260 >> FX32_SHIFT));
 
     param0->unk_0C = 0;
 }
@@ -2397,8 +2397,8 @@ static void ov77_021D4F38(UnkStruct_ov77_021D37C0 *param0, const int param1)
 
         {
             G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BD, 7, 16 - 7);
-            Bg_SetPriority(1, 0);
-            Bg_ToggleLayer(1, 1);
+            Bg_SetPriority(BG_LAYER_MAIN_1, 0);
+            Bg_ToggleLayer(BG_LAYER_MAIN_1, 1);
         }
     } else if (param1 < ((47 * 30 - 15) + 6)) {
         v0.x += FX32_ONE * 4;
@@ -2424,7 +2424,7 @@ static void ov77_021D4F38(UnkStruct_ov77_021D37C0 *param0, const int param1)
 
         {
             G2_BlendNone();
-            Bg_ToggleLayer(1, 0);
+            Bg_ToggleLayer(BG_LAYER_MAIN_1, 0);
         }
     } else {
         if (param1 >= 1560) {
@@ -2538,8 +2538,8 @@ static void ov77_021D5308(UnkStruct_ov77_021D5308 *param0)
 
     param0->unk_04 = -24 * FX32_ONE;
 
-    Bg_SetOffset(param0->unk_08, 2, 0, 0);
-    Bg_SetOffset(param0->unk_08, 2, 3, param0->unk_04 / FX32_ONE);
+    Bg_SetOffset(param0->unk_08, BG_LAYER_MAIN_2, 0, 0);
+    Bg_SetOffset(param0->unk_08, BG_LAYER_MAIN_2, 3, param0->unk_04 / FX32_ONE);
 
     param0->unk_03 = 1;
 }
@@ -2581,7 +2581,7 @@ static BOOL ov77_021D5390(UnkStruct_ov77_021D5308 *param0, const int param1)
     }
 
     param0->unk_04 += 0x400;
-    Bg_SetOffset(param0->unk_08, 2, 3, param0->unk_04 / FX32_ONE);
+    Bg_SetOffset(param0->unk_08, BG_LAYER_MAIN_2, 3, param0->unk_04 / FX32_ONE);
 
     return 0;
 }
@@ -2589,7 +2589,7 @@ static BOOL ov77_021D5390(UnkStruct_ov77_021D5308 *param0, const int param1)
 static void ov77_021D5478(UnkStruct_ov77_021D2E9C *param0)
 {
     if (param0->unk_298.unk_02) {
-        Bg_FreeTilemapBuffer(param0->unk_0C, 2);
+        Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_2);
         Heap_FreeToHeap(param0->unk_0C);
         param0->unk_298.unk_02 = 0;
     }

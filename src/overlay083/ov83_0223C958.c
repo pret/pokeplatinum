@@ -181,7 +181,7 @@ static void ov83_0223CC30(BgConfig **param0, int heapID)
     }
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
-    Bg_SetPriority(0, 2);
+    Bg_SetPriority(BG_LAYER_MAIN_0, 2);
 
     {
         BgTemplate v3[] = {
