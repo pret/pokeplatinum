@@ -576,7 +576,7 @@ static void ov59_021D1388(UnkStruct_020961E8 *param0, NARC *param1)
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 11, v0, 6, 0, 0, 1, HEAP_ID_51);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 1, 0, 32 * 8 * 0x20, 1, HEAP_ID_51);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 3, v0, 1, 0, 32 * 24 * 2, 1, HEAP_ID_51);
-    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_08->unk_08), HEAP_ID_51);
+    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_08->options), HEAP_ID_51);
     LoadStandardWindowGraphics(v0, 0, 1 + (18 + 12), 11, 0, HEAP_ID_51);
 }
 

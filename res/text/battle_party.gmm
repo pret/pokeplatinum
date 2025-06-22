@@ -310,27 +310,27 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 51, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000003_00076" index="76">
+	<row id="BattleParty_Text_CantSwitchWithPokemonAlreadyInBattle" index="76">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 1, 0, 0} is already\nin battle!</language>
 	</row>
-	<row id="pl_msg_00000003_00077" index="77">
+	<row id="BattleParty_Text_CantSwitchWithFaintedPokemon" index="77">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 1, 0, 0} has no energy\nleft to battle!</language>
 	</row>
-	<row id="pl_msg_00000003_00078" index="78">
+	<row id="BattleParty_Text_CantSwitchPokemon" index="78">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 1, 0, 0} can’t be switched\nout!</language>
 	</row>
-	<row id="pl_msg_00000003_00079" index="79">
+	<row id="BattleParty_Text_CantSwitchWithEgg" index="79">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">An Egg can’t battle!</language>
 	</row>
-	<row id="pl_msg_00000003_00080" index="80">
+	<row id="BattleParty_Text_CantSwitchWithPartnersPokemon" index="80">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">You can’t switch {STRVAR_1 3, 0, 0}’s\nPokémon with one of yours!</language>
 	</row>
-	<row id="pl_msg_00000003_00081" index="81">
+	<row id="BattleParty_Text_ItemWontHaveAnyEffect" index="81">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">It won’t have any effect.</language>
 	</row>
@@ -378,7 +378,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 1, 0, 0} woke up.</language>
 	</row>
-	<row id="pl_msg_00000003_00093" index="93">
+	<row id="BattleParty_Text_CantSwitchWithAlreadySelectedPokemon" index="93">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 1, 0, 0} has already been\nselected.</language>
 	</row>

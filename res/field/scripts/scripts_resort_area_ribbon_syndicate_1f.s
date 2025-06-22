@@ -20,7 +20,7 @@ _0022:
 
 _002F:
     SetObjectEventPos 0, 16, 14
-    ScrCmd_189 0, 1
+    SetObjectEventDir 0, DIR_SOUTH
     End
 
 _003F:

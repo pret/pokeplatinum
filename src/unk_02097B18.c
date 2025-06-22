@@ -4,8 +4,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_defs/struct_0202CA28.h"
-#include "struct_defs/struct_0202CA64.h"
+#include "struct_defs/seal_case.h"
 #include "struct_defs/struct_02097F18.h"
 #include "struct_defs/struct_02098C44.h"
 
@@ -24,6 +23,7 @@
 #include "game_overlay.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "mail.h"
 #include "narc.h"
 #include "overlay_manager.h"
 #include "palette.h"
@@ -39,7 +39,6 @@
 #include "touch_screen_actions.h"
 #include "unk_02015F84.h"
 #include "unk_02024220.h"
-#include "unk_02028124.h"
 #include "unk_0202C9F4.h"
 #include "unk_0206CCB0.h"
 #include "vram_transfer.h"
@@ -108,35 +107,35 @@ static int sub_02097B18(ApplicationManager *appMan, int *param1)
         v0->unk_418.unk_04 = (sub_0202CBA8(v0->unk_00->unk_20) / 8) + v2;
     }
 
-    if (v0->unk_418.unk_04 > ((80 + 1) / 8)) {
-        v0->unk_418.unk_04 = ((80 + 1) / 8);
+    if (v0->unk_418.unk_04 > (SEAL_ID_MAX / 8)) {
+        v0->unk_418.unk_04 = (SEAL_ID_MAX / 8);
     }
 
     v0->unk_3C4[0] = sub_02097F18(v0->unk_00);
     v0->unk_3C4[1] = sub_02097F18(v0->unk_00);
 
     {
-        int v4;
-        int v5;
-        UnkStruct_0202CA28 *v6;
+        int i;
+        int capsuleId;
+        BallCapsule *capsule;
 
-        v0->unk_64 = sub_0202CA88(v0->unk_00->unk_20);
+        v0->unk_64 = SealCase_GetSealsObtained(v0->unk_00->unk_20);
 
-        for (v4 = 0; v4 < 12; v4++) {
-            v6 = sub_0202CA28(v0->unk_00->unk_20, v4);
-            v0->unk_04[v4].unk_00 = 0xff;
-            v0->unk_04[v4].unk_04 = v6;
+        for (i = 0; i < TOTAL_CAPSULES; i++) {
+            capsule = SealCase_GetCapsuleById(v0->unk_00->unk_20, i);
+            v0->unk_04[i].unk_00 = 0xff;
+            v0->unk_04[i].unk_04 = capsule;
         }
 
-        for (v4 = 0; v4 < 6; v4++) {
-            if (v0->unk_00->unk_04[v4] == NULL) {
+        for (i = 0; i < 6; i++) {
+            if (v0->unk_00->unk_04[i] == NULL) {
                 continue;
             }
 
-            v5 = Pokemon_GetValue(v0->unk_00->unk_04[v4], MON_DATA_BALL_CAPSULE_ID, 0);
+            capsuleId = Pokemon_GetValue(v0->unk_00->unk_04[i], MON_DATA_BALL_CAPSULE_ID, 0);
 
-            if (v5 != 0) {
-                v0->unk_04[v5 - 1].unk_00 = v4;
+            if (capsuleId != 0) {
+                v0->unk_04[capsuleId - 1].unk_00 = i;
             }
         }
     }
@@ -156,13 +155,9 @@ static int sub_02097B18(ApplicationManager *appMan, int *param1)
     v0->unk_D4.unk_D0 = PokemonSpriteManager_New(HEAP_ID_53);
     v0->unk_D4.unk_188 = sub_02015F84(HEAP_ID_53, 1, 0);
 
-    {
-        int v7;
-
-        v7 = Options_Frame(v0->unk_00->unk_24);
-        ov76_0223C8EC(v0->unk_D4.unk_10, v0->unk_D4.unk_14, v7);
-        ov76_0223C974(v0->unk_D4.unk_10, v0->unk_D4.unk_14, v7);
-    }
+    int v7 = Options_Frame(v0->unk_00->options);
+    ov76_0223C8EC(v0->unk_D4.unk_10, v0->unk_D4.unk_14, v7);
+    ov76_0223C974(v0->unk_D4.unk_10, v0->unk_D4.unk_14, v7);
 
     ov76_0223C398(&v0->unk_D4);
 
@@ -314,7 +309,7 @@ static BOOL sub_02097F38(FieldTask *param0)
     case 0:
 
         FieldTransition_FinishMap(param0);
-        v1->unk_20 = SaveData_GetBallSeals(v0->saveData);
+        v1->unk_20 = SaveData_GetSealCase(v0->saveData);
         sub_02097F20(v1, 0);
 
         {
@@ -361,11 +356,11 @@ static BOOL sub_02097F38(FieldTask *param0)
 
         partyMan->party = v1->unk_1C;
         partyMan->bag = SaveData_GetBag(v0->saveData);
-        partyMan->mailBox = SaveData_GetMailBox(v0->saveData);
+        partyMan->mailbox = SaveData_GetMailbox(v0->saveData);
         partyMan->selectedMonSlot = 0;
         partyMan->unk_21 = 0;
         partyMan->unk_20 = 15;
-        partyMan->options = v1->unk_24;
+        partyMan->options = v1->options;
 
         FieldTask_RunApplication(param0, &Unk_020F1E88, partyMan);
         v0->unk_14 = 4;
@@ -373,8 +368,8 @@ static BOOL sub_02097F38(FieldTask *param0)
     case 4: {
         PartyManagementData *partyMan = v0->unk_0C;
         Pokemon *v8;
-        UnkStruct_0202CA28 *v9;
-        UnkStruct_0202CA64 *v10;
+        BallCapsule *v9;
+        BallSeal *v10;
         TVBroadcast *v11;
         int v12;
         int v13;
@@ -385,11 +380,11 @@ static BOOL sub_02097F38(FieldTask *param0)
             v8 = sub_02097F00(v0->unk_08, partyMan->selectedMonSlot);
 
             Pokemon_SetValue(v8, MON_DATA_BALL_CAPSULE_ID, (u8 *)&v13);
-            Pokemon_SetValue(v8, MON_DATA_171, sub_0202CA28(v1->unk_20, v13 - 1));
+            Pokemon_SetValue(v8, MON_DATA_BALL_CAPSULE, SealCase_GetCapsuleById(v1->unk_20, v13 - 1));
 
-            v9 = sub_0202CA28(v1->unk_20, v13 - 1);
-            v10 = sub_0202CA64(v9, 0);
-            v12 = sub_0202CA7C(v10);
+            v9 = SealCase_GetCapsuleById(v1->unk_20, v13 - 1);
+            v10 = BallCapsule_GetBallSeals(v9, 0);
+            v12 = BallSeal_GetSealType(v10);
             v12 = sub_02098164(v12);
             v11 = SaveData_GetTVBroadcast(fieldSystem->saveData);
 
@@ -420,7 +415,7 @@ void sub_020980DC(FieldTask *param0, SaveData *saveData)
     v0->saveData = saveData;
     v0->unk_08 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02097F18));
     memset(v0->unk_08, 0, sizeof(UnkStruct_02097F18));
-    v0->unk_08->unk_24 = SaveData_GetOptions(saveData);
+    v0->unk_08->options = SaveData_GetOptions(saveData);
     v0->unk_08->saveData = saveData;
     v0->unk_0C = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
     memset(v0->unk_0C, 0, sizeof(PartyManagementData));
@@ -438,7 +433,7 @@ typedef struct {
     u8 unk_08;
 } UnkStruct_020F64D0;
 
-static const UnkStruct_020F64D0 Unk_020F64D0[(80 + 1)] = {
+static const UnkStruct_020F64D0 Unk_020F64D0[SEAL_ID_MAX] = {
     { 0xB8, 0x0, 0x125, 0x25, 0x0, 0x3E7, 0x0 },
     { 0xB9, 0x1, 0x125, 0x25, 0x0, 0x32, 0x0 },
     { 0xBA, 0x2, 0x125, 0x26, 0x0, 0x32, 0x1 },

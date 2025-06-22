@@ -126,7 +126,7 @@ static void ov68_0225C91C(UnkStruct_ov68_0225C91C *param0, SaveData *saveData, u
 static void ov68_0225C960(UnkStruct_ov68_0225C91C *param0);
 static void ov68_0225C980(UnkStruct_ov68_0225C91C *param0);
 static void ov68_0225C98C(UnkStruct_ov68_0225C91C *param0);
-static void ov68_0225C9A0(UnkStruct_ov68_0225C91C *param0, Options *param1, u32 heapID);
+static void ov68_0225C9A0(UnkStruct_ov68_0225C91C *param0, Options *options, u32 heapID);
 static void ov68_0225CA8C(UnkStruct_ov68_0225C91C *param0);
 static void ov68_0225CAB4(UnkStruct_ov68_0225C91C *param0, u32 heapID);
 static void ov68_0225CB44(UnkStruct_ov68_0225C91C *param0);
@@ -431,12 +431,12 @@ static void ov68_0225C914(void *param0)
 
 static void ov68_0225C91C(UnkStruct_ov68_0225C91C *param0, SaveData *saveData, u32 heapID)
 {
-    Options *v0 = SaveData_GetOptions(saveData);
+    Options *options = SaveData_GetOptions(saveData);
     param0->unk_1A4 = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_LOBBY_OTHER, heapID);
 
     VramTransfer_New(32, heapID);
     GXLayers_SetBanks(&Unk_ov68_0225DDC0);
-    ov68_0225C9A0(param0, v0, heapID);
+    ov68_0225C9A0(param0, options, heapID);
     ov68_0225CAB4(param0, heapID);
 }
 
@@ -461,7 +461,7 @@ static void ov68_0225C98C(UnkStruct_ov68_0225C91C *param0)
     VramTransfer_Process();
 }
 
-static void ov68_0225C9A0(UnkStruct_ov68_0225C91C *param0, Options *param1, u32 heapID)
+static void ov68_0225C9A0(UnkStruct_ov68_0225C91C *param0, Options *options, u32 heapID)
 {
     SetAllGraphicsModes(&Unk_ov68_0225DD48);
 
@@ -470,30 +470,22 @@ static void ov68_0225C9A0(UnkStruct_ov68_0225C91C *param0, Options *param1, u32 
 
     GXLayers_SwapDisplay();
 
-    {
-        int v0;
+    int i;
 
-        for (v0 = 0; v0 < 4; v0++) {
-            Bg_InitFromTemplate(param0->unk_00, Unk_ov68_0225DD68[v0], &Unk_ov68_0225DE18[v0], 0);
-            Bg_ClearTilesRange(Unk_ov68_0225DD68[v0], 32, 0, heapID);
-            Bg_ClearTilemap(param0->unk_00, Unk_ov68_0225DD68[v0]);
-        }
+    for (i = 0; i < 4; i++) {
+        Bg_InitFromTemplate(param0->unk_00, Unk_ov68_0225DD68[i], &Unk_ov68_0225DE18[i], 0);
+        Bg_ClearTilesRange(Unk_ov68_0225DD68[i], 32, 0, heapID);
+        Bg_ClearTilemap(param0->unk_00, Unk_ov68_0225DD68[i]);
     }
 
     Font_LoadScreenIndicatorsPalette(0, 4 * 0x20, heapID);
 
-    {
-        u8 v1 = Options_Frame(param1);
-        LoadMessageBoxGraphics(param0->unk_00, 1, 1, 5, v1, heapID);
-    }
-
+    LoadMessageBoxGraphics(param0->unk_00, 1, 1, 5, Options_Frame(options), heapID);
     LoadStandardWindowGraphics(param0->unk_00, 1, (1 + (18 + 12)), 6, 0, heapID);
 
-    {
-        Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__LOBBY_NEWS, 2, param0->unk_00, 4, 0, 0, 0, heapID);
-        Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__LOBBY_NEWS, 6, param0->unk_00, 4, 0, 0, 0, heapID);
-        Graphics_LoadPalette(NARC_INDEX_GRAPHIC__LOBBY_NEWS, 0, 4, 0, 0, heapID);
-    }
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__LOBBY_NEWS, 2, param0->unk_00, 4, 0, 0, 0, heapID);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__LOBBY_NEWS, 6, param0->unk_00, 4, 0, 0, 0, heapID);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__LOBBY_NEWS, 0, 4, 0, 0, heapID);
 }
 
 static void ov68_0225CA8C(UnkStruct_ov68_0225C91C *param0)
@@ -896,13 +888,7 @@ static void ov68_0225D128(UnkStruct_ov68_0225D128 *param0, UnkStruct_ov68_0225C9
     Window_FillTilemap(&param0->unk_08, 15);
 
     param0->unk_18 = Strbuf_Init(256, heapID);
-
-    {
-        Options *v0;
-
-        v0 = SaveData_GetOptions(saveData);
-        param0->unk_04 = Options_TextFrameDelay(v0);
-    }
+    param0->unk_04 = Options_TextFrameDelay(SaveData_GetOptions(saveData));
 }
 
 static void ov68_0225D178(UnkStruct_ov68_0225D128 *param0, u32 param1)

@@ -329,7 +329,7 @@ static void ov94_02242CAC(UnkStruct_ov94_0223FD4C *param0)
 
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__WORLDTRADE, 0, 0, 0, 16 * 3 * 2, HEAP_ID_62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_62);
-    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), HEAP_ID_62);
+    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_00->options), HEAP_ID_62);
     LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, HEAP_ID_62);
 
     if (param0->unk_10F0 == 0) {
@@ -1276,7 +1276,7 @@ static void ov94_02243BC4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
 {
     int v0 = Pokemon_GetValue(param1, MON_DATA_HELD_ITEM, NULL);
 
-    sub_0202F180(param0->unk_00->saveData, param1);
+    SaveData_UpdateCatchRecords(param0->unk_00->saveData, param1);
     param2 = 18;
 
     if (Party_GetCurrentCount(param0->unk_00->unk_08) == 6) {
@@ -1325,7 +1325,7 @@ static void ov94_02243BC4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
 
 static void ov94_02243CE4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int param2)
 {
-    sub_0202F180(param0->unk_00->saveData, param1);
+    SaveData_UpdateCatchRecords(param0->unk_00->saveData, param1);
 
     param2 = 18;
 

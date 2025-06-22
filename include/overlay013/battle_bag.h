@@ -1,10 +1,10 @@
 #ifndef POKEPLATINUM_BATTLE_BAG_H
 #define POKEPLATINUM_BATTLE_BAG_H
 
+#include "struct_decls/battle_system.h"
 #include "struct_decls/struct_0200C440_decl.h"
 
 #include "battle/struct_ov16_0226DEEC_decl.h"
-#include "overlay013/battle_bag_context.h"
 #include "overlay013/battle_sub_menu_cursor.h"
 
 #include "bag.h"
@@ -14,6 +14,7 @@
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "trainer_info.h"
 
 enum BattleBagScreen {
     BATTLE_BAG_SCREEN_MENU = 0,
@@ -47,6 +48,61 @@ enum BattleBagUseItemScreenButton {
     BATTLE_BAG_USE_ITEM_SCREEN_BUTTON_CANCEL,
 };
 
+enum ButtonState {
+    BUTTON_STATE_UNPRESSED = 0,
+    BUTTON_STATE_PRESSING,
+    BUTTON_STATE_PRESSED,
+    BUTTON_STATE_DISABLED, // WARN: This state MUST be the last in the sequence!
+
+    BUTTON_STATE_MAX,
+    BUTTON_STATE_MAX_CANNOT_DISABLE = BUTTON_STATE_DISABLED,
+};
+
+#define MENU_POCKET_BUTTON_WIDTH  16
+#define MENU_POCKET_BUTTON_HEIGHT 9
+#define MENU_POCKET_BUTTON_SIZE   (MENU_POCKET_BUTTON_WIDTH * MENU_POCKET_BUTTON_HEIGHT)
+
+#define USE_ITEM_BUTTON_WIDTH  26
+#define USE_ITEM_BUTTON_HEIGHT 5
+#define USE_ITEM_BUTTON_SIZE   (USE_ITEM_BUTTON_WIDTH * USE_ITEM_BUTTON_HEIGHT)
+
+#define CANCEL_BUTTON_WIDTH  5
+#define CANCEL_BUTTON_HEIGHT 5
+#define CANCEL_BUTTON_SIZE   (CANCEL_BUTTON_WIDTH * CANCEL_BUTTON_HEIGHT)
+
+#define POCKET_ITEM_BUTTON_WIDTH  16
+#define POCKET_ITEM_BUTTON_HEIGHT 6
+#define POCKET_ITEM_BUTTON_SIZE   (POCKET_ITEM_BUTTON_WIDTH * POCKET_ITEM_BUTTON_HEIGHT)
+
+#define POCKET_MENU_PAGE_BUTTON_WIDTH  5
+#define POCKET_MENU_PAGE_BUTTON_HEIGHT 5
+#define POCKET_MENU_PAGE_BUTTON_SIZE   (POCKET_MENU_PAGE_BUTTON_WIDTH * POCKET_MENU_PAGE_BUTTON_HEIGHT)
+
+#define MENU_POCKET_ICON_WIDTH  4
+#define MENU_POCKET_ICON_HEIGHT 4
+#define MENU_POCKET_ICON_SIZE   (MENU_POCKET_ICON_WIDTH * MENU_POCKET_ICON_HEIGHT)
+
+typedef struct BattleBagContext {
+    BattleSystem *battleSystem;
+    TrainerInfo *trainerInfo;
+    Bag *bag;
+    u32 heapID;
+    s32 battler;
+    BOOL isInCatchTutorial;
+    u32 embargoRemainingTurns;
+    u16 selectedBattleBagItem;
+    u8 selectedBattleBagPocket;
+    u8 lastUsedItemPocket;
+    u16 lastUsedItem;
+    u8 hasTwoOpponents;
+    u8 opponentHidden; // Has used fly, bounce, dig, etc
+    u8 opponentSubstituted;
+    u8 isCursorEnabled;
+    u8 battleBagExited;
+    u8 pocketCurrentPagePositions[BATTLE_POCKET_MAX];
+    u8 pocketCurrentPages[BATTLE_POCKET_MAX];
+} BattleBagContext;
+
 typedef struct BattleBag {
     BattleBagContext *context;
     BgConfig *background;
@@ -65,22 +121,22 @@ typedef struct BattleBag {
     BagItem items[BATTLE_POCKET_MAX][BATTLE_POCKET_SIZE];
     SpriteManager *spriteManager;
     ManagedSprite *pocketItemSprites[BATTLE_POCKET_ITEMS_PER_PAGE];
-    u16 unk_328[3][144];
-    u16 unk_688[4][130];
-    u16 unk_A98[3][25];
-    u16 unk_B2E[4][96];
-    u16 unk_E2E[4][25];
-    u16 unk_EF6[4][25];
-    u16 unk_FBE[3][16];
-    u16 unk_101E[3][16];
-    u16 unk_107E[3][16];
-    u16 unk_10DE[3][16];
-    u8 unk_113E;
-    u8 unk_113F; // Seems unused
-    u8 unk_1140;
-    u8 unk_1141_0 : 4; // Seems unused
-    u8 unk_1141_4 : 4; // Seems unused
-    u8 unk_1142[8]; // Seems unused
+    u16 menuPocketButtonData[BUTTON_STATE_MAX_CANNOT_DISABLE][MENU_POCKET_BUTTON_SIZE];
+    u16 useItemButtonData[BUTTON_STATE_MAX][USE_ITEM_BUTTON_SIZE];
+    u16 cancelButtonData[BUTTON_STATE_MAX_CANNOT_DISABLE][CANCEL_BUTTON_SIZE];
+    u16 pocketItemButtonData[BUTTON_STATE_MAX][POCKET_ITEM_BUTTON_SIZE];
+    u16 pocketPrevPageButtonData[BUTTON_STATE_MAX][POCKET_MENU_PAGE_BUTTON_SIZE];
+    u16 pocketNextPageButtonData[BUTTON_STATE_MAX][POCKET_MENU_PAGE_BUTTON_SIZE];
+    u16 menuScreenRecoverHPPocketIconData[BUTTON_STATE_MAX_CANNOT_DISABLE][MENU_POCKET_ICON_SIZE];
+    u16 menuScreenRecoverStatusPocketIconData[BUTTON_STATE_MAX_CANNOT_DISABLE][MENU_POCKET_ICON_SIZE];
+    u16 menuScreenPokeBallsPocketIconData[BUTTON_STATE_MAX_CANNOT_DISABLE][MENU_POCKET_ICON_SIZE];
+    u16 menuScreenBattleItemsIconData[BUTTON_STATE_MAX_CANNOT_DISABLE][MENU_POCKET_ICON_SIZE];
+    u8 pressedButtonState;
+    u8 Unused1;
+    u8 pressedButton;
+    u8 isAButtonPressed : 4;
+    u8 Unused2 : 4;
+    u8 Unused3[8];
     u8 currentState;
     u8 queuedState;
     u8 currentScreen;
@@ -89,7 +145,7 @@ typedef struct BattleBag {
     u8 numBattlePocketItems[BATTLE_POCKET_MAX];
     u8 numBattlePocketPages[BATTLE_POCKET_MAX];
     u8 catchTutorialState;
-    u8 catchTutorialTickCount; // Seems unused
+    u8 catchTutorialTickCount; // Doesn't seem to be used for anything
 } BattleBag;
 
 void BattleBagTask_Start(BattleBagContext *context);

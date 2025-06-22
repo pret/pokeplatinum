@@ -96,7 +96,9 @@ enum Seal {
     // Unused
     LIQUID_SEAL,
     BURST_SEAL,
-    TWINKLE_SEAL
+    TWINKLE_SEAL,
+
+    SEAL_ID_MAX
 };
 
 #endif // POKEPLATINUM_CONSTANTS_SEALS_H

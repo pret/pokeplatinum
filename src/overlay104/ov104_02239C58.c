@@ -13,10 +13,10 @@
 #include "bag.h"
 #include "dexmode_checker.h"
 #include "heap.h"
+#include "mail.h"
 #include "party.h"
 #include "save_player.h"
 #include "savedata.h"
-#include "unk_02028124.h"
 #include "unk_0202D778.h"
 #include "unk_0209B6F8.h"
 #include "unk_0209BA80.h"
@@ -113,7 +113,7 @@ static void ov104_02239D1C(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
 
     param1->unk_A8->party = SaveData_GetParty(param1->saveData);
     param1->unk_A8->bag = SaveData_GetBag(param1->saveData);
-    param1->unk_A8->mailBox = SaveData_GetMailBox(param1->saveData);
+    param1->unk_A8->mailbox = SaveData_GetMailbox(param1->saveData);
     param1->unk_A8->options = SaveData_GetOptions(param1->saveData);
     param1->unk_A8->unk_21 = 0;
 

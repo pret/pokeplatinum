@@ -36,7 +36,7 @@
 #include "unk_02054884.h"
 
 #include "res/pokemon/species_learnsets_by_tutor.h"
-#include "res/text/bank/common_strings_2.h"
+#include "res/text/bank/menu_entries.h"
 
 typedef struct {
     FieldSystem *fieldSystem;
@@ -364,7 +364,7 @@ BOOL ScrCmd_ShowMoveTutorMoveSelectionMenu(ScriptContext *scriptContext)
         MoveTutorManager_AddMenuEntry(moveTutorManager, learnableMoves[i], 0xff, learnableMoves[i]);
     }
 
-    miscMessageLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS_2, HEAP_ID_FIELD_TASK);
+    miscMessageLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, HEAP_ID_FIELD_TASK);
 
     MoveTutorManager_SetMessageLoader(moveTutorManager, miscMessageLoader);
     MoveTutorManager_AddMenuEntry(moveTutorManager, pl_msg_00000361_00005, 0xff, (u16)LIST_CANCEL); // cast required to match
