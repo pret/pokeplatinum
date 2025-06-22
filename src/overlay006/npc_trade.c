@@ -71,7 +71,7 @@ u32 NpcTrade_GetRequestedSpecies(const NpcTradeData *data)
 void NpcTrade_ReceiveMon(FieldSystem *fieldSystem, NpcTradeData *data, int slot)
 {
     Party_AddPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), slot, data->mon);
-    sub_0202F180(fieldSystem->saveData, data->mon);
+    SaveData_UpdateCatchRecords(fieldSystem->saveData, data->mon);
 }
 
 void ov6_02246254(FieldSystem *fieldSystem, NpcTradeData *data, int slot, UnkStruct_ov6_02246254 *param3, Pokemon *givingMon, Pokemon *receivingMon)
@@ -89,7 +89,7 @@ void ov6_02246254(FieldSystem *fieldSystem, NpcTradeData *data, int slot, UnkStr
     param3->unk_04 = Pokemon_GetBoxPokemon(receivingMon);
     param3->unk_08 = data->trainerInfo;
     param3->unk_10 = 1;
-    param3->unk_14 = SaveData_GetOptions(fieldSystem->saveData);
+    param3->options = SaveData_GetOptions(fieldSystem->saveData);
 
     int timeOfDay = FieldSystem_GetTimeOfDay(fieldSystem);
     if (timeOfDay == TIMEOFDAY_MORNING || timeOfDay == TIMEOFDAY_DAY) {

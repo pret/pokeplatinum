@@ -348,7 +348,7 @@ typedef struct {
     SaveData *saveData;
     Pokedex *unk_0C;
     TrainerInfo *unk_10;
-    Options *unk_14;
+    Options *options;
     Window unk_18;
     Window unk_28;
     Window unk_38;
@@ -538,7 +538,7 @@ static void ov97_0222C254(UnkStruct_ov97_0222C388 *param0)
     Font_LoadTextPalette(0, 0 * 32, param0->heapID);
     LoadStandardWindowGraphics(param0->unk_04, 0, 1, 1, 0, param0->heapID);
 
-    v0 = Options_Frame(param0->unk_14);
+    v0 = Options_Frame(param0->options);
 
     LoadMessageBoxGraphics(param0->unk_04, 0, (1 + 9), 2, v0, param0->heapID);
     Graphics_LoadPalette(116, 0, 0, 16 * 2 * 8, 16 * 2, param0->heapID);
@@ -673,7 +673,7 @@ static int ov97_0222C6F8(ApplicationManager *appMan, int *param1)
     v0->saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
     v0->unk_10 = SaveData_GetTrainerInfo(v0->saveData);
     v0->unk_0C = SaveData_GetPokedex(v0->saveData);
-    v0->unk_14 = SaveData_GetOptions(v0->saveData);
+    v0->options = SaveData_GetOptions(v0->saveData);
 
     ov97_02237694(v0->heapID);
 

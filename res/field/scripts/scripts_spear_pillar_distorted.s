@@ -19,7 +19,7 @@ _0022:
     AddObject 1
     ScrCmd_1B2 1
     SetObjectEventPos 0, 32, 34
-    ScrCmd_189 0, 0
+    SetObjectEventDir 0, DIR_NORTH
     ScrCmd_188 0, 14
     ClearFlag FLAG_UNK_0x01CD
     AddObject 0

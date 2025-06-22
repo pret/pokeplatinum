@@ -41,6 +41,7 @@
 #include "heap.h"
 #include "item.h"
 #include "journal.h"
+#include "mail.h"
 #include "map_header.h"
 #include "map_object.h"
 #include "menu.h"
@@ -68,7 +69,6 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02014A84.h"
-#include "unk_02028124.h"
 #include "unk_0202D778.h"
 #include "unk_02033200.h"
 #include "unk_020366A0.h"
@@ -1092,7 +1092,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
     case 6: {
         UnkStruct_02097728 *v8;
 
-        v8 = sub_0203D920(fieldSystem, 2, partyMan->selectedMonSlot, Item_MailNumber(partyMan->usedItemID), 11);
+        v8 = sub_0203D920(fieldSystem, 2, partyMan->selectedMonSlot, Item_MailNumber(partyMan->usedItemID), HEAP_ID_FIELDMAP);
         menu->taskData = v8;
 
         if (partyMan->unk_20 == 10) {
@@ -1269,7 +1269,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
 
         partyMan->party = SaveData_GetParty(fieldSystem->saveData);
         partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
-        partyMan->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+        partyMan->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
         partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
         partyMan->fieldMoveContext = &menu->fieldMoveContext;
         partyMan->unk_21 = 0;
@@ -1285,22 +1285,22 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
         Party *v7;
         Pokemon *v8;
         u32 v9;
-        u16 v10;
+        u16 item;
 
         v7 = SaveData_GetParty(fieldSystem->saveData);
         v9 = *(u32 *)menu->unk_260;
-        v10 = sub_0207CB94(v2);
+        item = sub_0207CB94(v2);
         v8 = Party_GetPokemonBySlotIndex(v7, v9);
 
         Heap_FreeToHeap(menu->unk_260);
 
-        if ((Item_IsMail(v10) == 1) && (Pokemon_GetValue(v8, MON_DATA_HELD_ITEM, NULL) == 0)) {
+        if ((Item_IsMail(item) == TRUE) && (Pokemon_GetValue(v8, MON_DATA_HELD_ITEM, NULL) == 0)) {
             UnkStruct_02097728 *v11;
             UnkStruct_0203C540 *v12;
 
-            v11 = sub_0203D920(fieldSystem, 2, v9, Item_MailNumber(v10), 11);
+            v11 = sub_0203D920(fieldSystem, 2, v9, Item_MailNumber(item), HEAP_ID_FIELDMAP);
             menu->taskData = v11;
-            menu->unk_260 = sub_0203C540(v10, 0, (u8)v9);
+            menu->unk_260 = sub_0203C540(item, 0, (u8)v9);
             sub_0203B674(menu, sub_0203C558);
         } else {
             PartyManagementData *partyMan;
@@ -1310,7 +1310,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
 
             partyMan->party = v7;
             partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
-            partyMan->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+            partyMan->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
             partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
             partyMan->fieldMoveContext = &menu->fieldMoveContext;
             partyMan->unk_21 = 0;
@@ -1591,7 +1591,7 @@ static BOOL sub_0203C1C8(FieldTask *taskMan)
 
         partyMan->party = SaveData_GetParty(fieldSystem->saveData);
         partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
-        partyMan->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+        partyMan->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
         partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
         partyMan->fieldMoveContext = &menu->fieldMoveContext;
         partyMan->unk_21 = 0;
@@ -1811,7 +1811,7 @@ static void sub_0203C668(FieldSystem *fieldSystem, StartMenu *menu, u8 param2)
     memset(partyMan, 0, sizeof(PartyManagementData));
     partyMan->party = SaveData_GetParty(fieldSystem->saveData);
     partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
-    partyMan->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+    partyMan->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
     partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
     partyMan->fieldMoveContext = &menu->fieldMoveContext;
     partyMan->unk_21 = 0;

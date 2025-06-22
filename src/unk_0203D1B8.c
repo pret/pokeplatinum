@@ -95,6 +95,7 @@
 #include "game_options.h"
 #include "game_records.h"
 #include "heap.h"
+#include "mail.h"
 #include "math_util.h"
 #include "overlay_manager.h"
 #include "party.h"
@@ -113,7 +114,6 @@
 #include "system_vars.h"
 #include "trainer_info.h"
 #include "unk_02017498.h"
-#include "unk_02028124.h"
 #include "unk_020298BC.h"
 #include "unk_0202C7FC.h"
 #include "unk_0202C858.h"
@@ -383,7 +383,7 @@ static PartyManagementData *sub_0203D344(int heapID, FieldSystem *fieldSystem, i
 
     partyMan->party = SaveData_GetParty(fieldSystem->saveData);
     partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
-    partyMan->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+    partyMan->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
     partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
     partyMan->unk_21 = param2;
     partyMan->unk_20 = param3;
@@ -784,9 +784,9 @@ static void sub_0203D910(FieldSystem *fieldSystem, UnkStruct_02097728 *param1)
     FieldSystem_StartChildProcess(fieldSystem, &Unk_020F64B0, param1);
 }
 
-UnkStruct_02097728 *sub_0203D920(FieldSystem *fieldSystem, int param1, u8 param2, u8 param3, int param4)
+UnkStruct_02097728 *sub_0203D920(FieldSystem *fieldSystem, int param1, u8 param2, u8 mailType, int unusedHeapID)
 {
-    UnkStruct_02097728 *v0 = sub_02097624(FieldSystem_GetSaveData(fieldSystem), param1, param2, param3, HEAP_ID_FIELDMAP);
+    UnkStruct_02097728 *v0 = sub_02097624(FieldSystem_GetSaveData(fieldSystem), param1, param2, mailType, HEAP_ID_FIELDMAP);
     sub_0203D910(fieldSystem, v0);
 
     return v0;
@@ -863,7 +863,7 @@ static UnkStruct_0203DA00 *sub_0203DA00(int heapID, SaveData *saveData, int para
 
     v0->unk_04 = v4;
     v0->unk_08 = v5;
-    v0->unk_0C = SaveData_GetOptions(saveData);
+    v0->options = SaveData_GetOptions(saveData);
     v0->records = SaveData_GetGameRecords(saveData);
     v0->unk_14 = SaveData_GetTrainerInfo(saveData);
     v0->unk_18 = param3;
@@ -964,7 +964,7 @@ static void sub_0203DB38(UnkStruct_ov88_0223C370 *param0, FieldSystem *fieldSyst
     param0->unk_08 = SaveData_GetParty(fieldSystem->saveData);
     param0->unk_0C = SaveData_SaveTable(fieldSystem->saveData, SAVE_TABLE_ENTRY_PAL_PAD);
     param0->wiFiHistory = SaveData_WiFiHistory(fieldSystem->saveData);
-    param0->unk_18 = SaveData_GetOptions(fieldSystem->saveData);
+    param0->options = SaveData_GetOptions(fieldSystem->saveData);
     param0->unk_24 = SaveData_GetPokedex(fieldSystem->saveData);
     param0->unk_30 = SaveData_GetDexMode(fieldSystem->saveData);
     param0->saveData = fieldSystem->saveData;
@@ -1029,7 +1029,7 @@ BOOL sub_0203DBF0(FieldTask *param0)
         v2->unk_48.unk_08 = v2->unk_04.unk_38;
         v2->unk_48.unk_00 = Pokemon_GetBoxPokemon(v2->unk_04.unk_3C);
         v2->unk_48.unk_04 = Pokemon_GetBoxPokemon(v2->unk_04.unk_40);
-        v2->unk_48.unk_14 = SaveData_GetOptions(fieldSystem->saveData);
+        v2->unk_48.options = SaveData_GetOptions(fieldSystem->saveData);
         v2->unk_48.unk_10 = 1;
 
         switch (FieldSystem_GetTimeOfDay(fieldSystem)) {
@@ -1121,7 +1121,7 @@ void sub_0203DDFC(FieldSystem *fieldSystem)
 
     v0->unk_00 = fieldSystem->unk_80;
     v0->unk_04 = fieldSystem->journalEntry;
-    v0->unk_08 = SaveData_GetOptions(fieldSystem->saveData);
+    v0->options = SaveData_GetOptions(fieldSystem->saveData);
 
     FieldSystem_StartChildProcess(fieldSystem, &Unk_020EA258, v0);
 }
@@ -1132,7 +1132,7 @@ void *sub_0203DE34(FieldSystem *fieldSystem)
 
     v0->saveData = fieldSystem->saveData;
     v0->unk_04 = fieldSystem->unk_80;
-    v0->unk_08 = SaveData_GetOptions(fieldSystem->saveData);
+    v0->options = SaveData_GetOptions(fieldSystem->saveData);
     v0->records = SaveData_GetGameRecords(fieldSystem->saveData);
     v0->unk_10 = fieldSystem->journalEntry;
 
@@ -1356,7 +1356,7 @@ void sub_0203E0FC(FieldSystem *fieldSystem, int param1)
     v0->unk_14 = SaveData_GetWiFiList(fieldSystem->saveData);
     v0->wiFiHistory = SaveData_WiFiHistory(fieldSystem->saveData);
     v0->unk_1C = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    v0->unk_24 = SaveData_GetOptions(fieldSystem->saveData);
+    v0->options = SaveData_GetOptions(fieldSystem->saveData);
     v0->records = SaveData_GetGameRecords(fieldSystem->saveData);
     v0->unk_2C = fieldSystem->journalEntry;
     v0->unk_3C = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
@@ -1387,7 +1387,7 @@ void *sub_0203E1AC(FieldSystem *fieldSystem, int param1, int param2)
     v0->unk_00 = sub_0202D750(fieldSystem->saveData);
     v0->unk_04 = sub_0202D764(fieldSystem->saveData);
     v0->unk_08 = SaveData_GetSystemData(fieldSystem->saveData);
-    v0->unk_10 = SaveData_GetOptions(fieldSystem->saveData);
+    v0->options = SaveData_GetOptions(fieldSystem->saveData);
     v0->unk_14 = WiFiList_GetUserData(SaveData_GetWiFiList(fieldSystem->saveData));
     v0->saveData = fieldSystem->saveData;
     v0->unk_1C = WiFiList_GetUserGsProfileId(SaveData_GetWiFiList(fieldSystem->saveData));
@@ -1511,7 +1511,7 @@ void sub_0203E2FC(FieldSystem *fieldSystem)
     sub_0206D578(fieldSystem, v2);
 
     v0.unk_00 = v2;
-    v0.unk_04 = SaveData_GetOptions(fieldSystem->saveData);
+    v0.options = SaveData_GetOptions(fieldSystem->saveData);
     v0.unk_08 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     v0.unk_0C = Sound_GetOverrideBGM(fieldSystem, fieldSystem->location->mapId);
 
@@ -1717,7 +1717,7 @@ PartyManagementData *sub_0203E598(FieldSystem *fieldSystem, int heapID, int para
 
     partyMan->party = SaveData_GetParty(fieldSystem->saveData);
     partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
-    partyMan->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+    partyMan->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
     partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
     partyMan->broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
     partyMan->fieldMoveContext = NULL;

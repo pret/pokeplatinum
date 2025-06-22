@@ -73,7 +73,7 @@ int ov94_022444C8(UnkStruct_ov94_0223FD4C *param0, int param1)
         break;
     }
 
-    param0->unk_E8.unk_14 = param0->unk_00->unk_24;
+    param0->unk_E8.options = param0->unk_00->options;
     param0->appMan = ApplicationManager_New(&Unk_ov94_0224636C, &param0->unk_E8, 62);
     param0->unk_104 = 1;
 
@@ -98,7 +98,7 @@ int ov94_02244678(UnkStruct_ov94_0223FD4C *param0, int param1)
                 v3 = Pokemon_GetEvolutionTargetSpecies(NULL, v1, EVO_CLASS_BY_TRADE, v2, &v4);
 
                 if (v3 != 0) {
-                    param0->unk_100 = sub_0207AE68(NULL, v1, v3, param0->unk_00->unk_24, param0->unk_00->unk_3C, param0->unk_00->unk_10, param0->unk_00->unk_30, param0->unk_00->records, SaveData_GetPoketch(param0->unk_00->saveData), v4, 0x4, HEAP_ID_62);
+                    param0->unk_100 = sub_0207AE68(NULL, v1, v3, param0->unk_00->options, param0->unk_00->unk_3C, param0->unk_00->unk_10, param0->unk_00->unk_30, param0->unk_00->records, SaveData_GetPoketch(param0->unk_00->saveData), v4, 0x4, HEAP_ID_62);
                     param0->unk_2C = 1;
                 } else {
                     ov94_0223C4C0(param0, 1, 0);
@@ -118,7 +118,7 @@ int ov94_02244678(UnkStruct_ov94_0223FD4C *param0, int param1)
                     v7 = Pokemon_GetEvolutionTargetSpecies(NULL, v1, EVO_CLASS_BY_TRADE, v6, &v8);
 
                     if (v7 != 0) {
-                        param0->unk_100 = sub_0207AE68(NULL, v1, v7, param0->unk_00->unk_24, param0->unk_00->unk_3C, param0->unk_00->unk_10, param0->unk_00->unk_30, param0->unk_00->records, SaveData_GetPoketch(param0->unk_00->saveData), v8, 0x4, HEAP_ID_62);
+                        param0->unk_100 = sub_0207AE68(NULL, v1, v7, param0->unk_00->options, param0->unk_00->unk_3C, param0->unk_00->unk_10, param0->unk_00->unk_30, param0->unk_00->records, SaveData_GetPoketch(param0->unk_00->saveData), v8, 0x4, HEAP_ID_62);
                         param0->unk_2C = 1;
                     } else {
                         ov94_0223C4C0(param0, 1, 0);

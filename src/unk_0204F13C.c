@@ -26,13 +26,13 @@
 #include "game_records.h"
 #include "heap.h"
 #include "inlines.h"
+#include "mail.h"
 #include "party.h"
 #include "pokemon.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "script_manager.h"
 #include "string_template.h"
-#include "unk_02028124.h"
 #include "unk_0202D05C.h"
 #include "unk_0202D778.h"
 #include "unk_02030108.h"
@@ -334,7 +334,7 @@ static int sub_0204F50C(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, in
 
     partyMan->party = SaveData_GetParty(fieldSystem->saveData);
     partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
-    partyMan->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+    partyMan->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
     partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
 
     partyMan->unk_21 = 0;

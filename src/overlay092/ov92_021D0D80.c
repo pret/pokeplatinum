@@ -67,7 +67,7 @@ typedef struct {
 typedef struct {
     int heapID;
     WiFiHistory *wiFiHistory;
-    Options *unk_08;
+    Options *options;
     UnkStruct_ov92_021D1B24_sub1 unk_0C;
     BgConfig *unk_B810;
     Window unk_B814;
@@ -323,15 +323,13 @@ int ov92_021D0D80(ApplicationManager *appMan, int *param1)
         v0->unk_BAF0 = 0;
     }
 
-    {
-        SaveData *saveData = ApplicationManager_Args(appMan);
+    SaveData *saveData = ApplicationManager_Args(appMan);
 
-        v0->wiFiHistory = SaveData_WiFiHistory(saveData);
-        v0->unk_BB14 = WiFiHistory_GetCountry(v0->wiFiHistory);
-        v0->unk_BB18 = sub_0202C8C4(v0->wiFiHistory);
-        v0->unk_BB24 = sub_0202C990(v0->wiFiHistory);
-        v0->unk_08 = SaveData_GetOptions(saveData);
-    }
+    v0->wiFiHistory = SaveData_WiFiHistory(saveData);
+    v0->unk_BB14 = WiFiHistory_GetCountry(v0->wiFiHistory);
+    v0->unk_BB18 = sub_0202C8C4(v0->wiFiHistory);
+    v0->unk_BB24 = sub_0202C990(v0->wiFiHistory);
+    v0->options = SaveData_GetOptions(saveData);
 
     ov92_021D14F0();
     ov92_021D1510();
@@ -917,7 +915,7 @@ static void ov92_021D1888(UnkStruct_ov92_021D1B24 *param0, NARC *param1)
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 5, param0->unk_B810, 7, 0, 0, 0, param0->heapID);
     Graphics_LoadPaletteFromOpenNARC(param1, 6, 4, 0 * (2 * 16), (2 * 16) * 4, param0->heapID);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 7, param0->unk_B810, 7, 0, 0, 0, param0->heapID);
-    LoadMessageBoxGraphics(param0->unk_B810, 6, (512 - (18 + 12)), 6, Options_Frame(param0->unk_08), param0->heapID);
+    LoadMessageBoxGraphics(param0->unk_B810, 6, (512 - (18 + 12)), 6, Options_Frame(param0->options), param0->heapID);
     LoadStandardWindowGraphics(param0->unk_B810, 6, ((512 - (18 + 12)) - 9), 7, 0, param0->heapID);
     Font_LoadTextPalette(4, 4 * (2 * 16), param0->heapID);
     Bg_ClearTilesRange(6, 32, 0, param0->heapID);
@@ -990,7 +988,7 @@ static BOOL ov92_021D1B70(UnkStruct_ov92_021D1B24 *param0, u32 param1, int param
         Window_FillRectWithColor(&param0->unk_B814, 15, 0, 0, 27 * 8, 4 * 8);
         param0->unk_B86C = Strbuf_Init(0x400, param0->heapID);
         MessageLoader_GetStrbuf(param0->unk_B860, param1, param0->unk_B86C);
-        param0->unk_B868 = Text_AddPrinterWithParams(&param0->unk_B814, FONT_MESSAGE, param0->unk_B86C, 0, 0, Options_TextFrameDelay(param0->unk_08), NULL);
+        param0->unk_B868 = Text_AddPrinterWithParams(&param0->unk_B814, FONT_MESSAGE, param0->unk_B86C, 0, 0, Options_TextFrameDelay(param0->options), NULL);
         param0->unk_B864 = 1;
         break;
     case 1:

@@ -49,7 +49,7 @@ BOOL Pokemon_GiveMonFromScript(enum HeapId heapID, SaveData *saveData, u16 speci
     result = Party_AddPokemon(party, mon);
 
     if (result) {
-        sub_0202F180(saveData, mon);
+        SaveData_UpdateCatchRecords(saveData, mon);
     }
 
     Heap_FreeToHeap(mon);
