@@ -3342,9 +3342,9 @@
     .short \arg4
     .endm
 
-    .macro ScrCmd_24A arg0
+    .macro GetCapturedFlagCount destFlagCount
     .short 586
-    .short \arg0
+    .short \destFlagCount
     .endm
 
     .macro ScrCmd_24B arg0

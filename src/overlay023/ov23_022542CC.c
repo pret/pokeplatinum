@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020298B0_decl.h"
 #include "struct_defs/struct_0206A844.h"
+#include "struct_defs/underground_data.h"
 
 #include "field/field_system.h"
 #include "overlay023/ov23_02241F74.h"

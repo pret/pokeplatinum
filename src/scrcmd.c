@@ -24,8 +24,6 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_0202855C_decl.h"
-#include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
@@ -47,6 +45,8 @@
 #include "struct_defs/struct_02042434.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_02098C44.h"
+#include "struct_defs/underground_data.h"
+#include "struct_defs/underground_record.h"
 
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
@@ -627,7 +627,7 @@ static BOOL ScrCmd_244(ScriptContext *ctx);
 static BOOL ScrCmd_245(ScriptContext *ctx);
 static BOOL ScrCmd_246(ScriptContext *ctx);
 static BOOL ScrCmd_249(ScriptContext *ctx);
-static BOOL ScrCmd_24A(ScriptContext *ctx);
+static BOOL ScrCmd_GetCapturedFlagCount(ScriptContext *ctx);
 static BOOL ScrCmd_24B(ScriptContext *ctx);
 static BOOL ScrCmd_24C(ScriptContext *ctx);
 static BOOL ScrCmd_24D(ScriptContext *ctx);
@@ -1355,7 +1355,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetFirstNonEggInParty,
     ScrCmd_248,
     ScrCmd_249,
-    ScrCmd_24A,
+    ScrCmd_GetCapturedFlagCount,
     ScrCmd_24B,
     ScrCmd_24C,
     ScrCmd_24D,
@@ -6453,15 +6453,15 @@ static BOOL ScrCmd_249(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_24A(ScriptContext *ctx)
+static BOOL ScrCmd_GetCapturedFlagCount(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
-    SecretBaseRecord *v2;
-    u16 *v3 = ScriptContext_GetVarPointer(ctx);
+    UndergroundRecord *undergroundRecord;
+    u16 *destFlagCount = ScriptContext_GetVarPointer(ctx);
 
-    v2 = SaveData_SecretBaseRecord(saveData);
-    *v3 = sub_020295B8(v2);
+    undergroundRecord = SaveData_UndergroundRecord(saveData);
+    *destFlagCount = UndergroundRecord_GetCapturedFlagCount(undergroundRecord);
 
     return FALSE;
 }

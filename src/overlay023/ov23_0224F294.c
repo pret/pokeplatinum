@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020298B0_decl.h"
+#include "struct_defs/underground_data.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021D2F14.h"
@@ -1310,7 +1310,7 @@ static BOOL ov23_022507D8(SysTask *param0, void *param1)
         ov23_0224FCF4(v0);
 
         if (v1 == 3) {
-            int item = sub_02028938(Unk_ov23_022577B8->unk_05);
+            int item = Underground_GetMiningItemID(Unk_ov23_022577B8->unk_05);
             Bag *v4 = SaveData_GetBag(v0->fieldSystem->saveData);
 
             Sound_PlayEffect(SEQ_SE_CONFIRM);

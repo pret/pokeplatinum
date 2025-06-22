@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02029894_decl.h"
-#include "struct_decls/struct_020298B0_decl.h"
+#include "struct_defs/underground_data.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
@@ -106,8 +106,8 @@ typedef struct {
     u8 unk_51E;
     u8 unk_51F;
     u8 unk_520;
-    u8 unk_521;
-    u8 unk_522;
+    u8 secretBaseMaxRemovableRocks;
+    u8 secretBaseMaxDisplayItems;
 } UnkStruct_ov23_02256098;
 
 static BOOL ov23_02254C84(FieldTask *param0);
@@ -302,7 +302,7 @@ static BOOL ov23_02254C84(FieldTask *param0)
                 return 1;
             }
 
-            if (v2->unk_51F + 1 > v2->unk_522) {
+            if (v2->unk_51F + 1 > v2->secretBaseMaxDisplayItems) {
                 v2->unk_08 = ov23_0224D39C(20);
                 v2->unk_51E = 0;
                 ov23_02255EBC(8, v2);
@@ -310,7 +310,7 @@ static BOOL ov23_02254C84(FieldTask *param0)
             }
         }
 
-            ov23_022545C4(v2->unk_508, v2->unk_51F, v2->unk_522);
+            ov23_022545C4(v2->unk_508, v2->unk_51F, v2->secretBaseMaxDisplayItems);
             ov23_02255EBC(4, v2);
             return 1;
         case 1:
@@ -645,12 +645,12 @@ static BOOL ov23_02255100(FieldTask *param0)
                     ov23_0224D3BC(v7->unk_5C[v16].unk_04.unk_14);
 
                     if (v7->unk_5C[v16].unk_04.unk_14 == 6) {
-                        if (v7->unk_521 == 16) {
+                        if (v7->secretBaseMaxRemovableRocks == 16) {
                             v7->unk_08 = ov23_0224D39C(15);
                             v7->unk_51E = 0;
                             v7->unk_04 = 4;
                             break;
-                        } else if (v7->unk_520 - 1 < v7->unk_521) {
+                        } else if (v7->unk_520 - 1 < v7->secretBaseMaxRemovableRocks) {
                             v7->unk_08 = ov23_0224D39C(18);
                             v7->unk_51E = 0;
                             v7->unk_04 = 4;
@@ -699,7 +699,7 @@ static BOOL ov23_02255100(FieldTask *param0)
                 int v18;
 
                 ov23_0224D3B0();
-                v18 = v7->unk_520 - v7->unk_521;
+                v18 = v7->unk_520 - v7->secretBaseMaxRemovableRocks;
                 GF_ASSERT(v18 >= 0);
 
                 if (v18 == 0) {
@@ -733,7 +733,7 @@ static BOOL ov23_02255100(FieldTask *param0)
         if ((v7->unk_51E++) >= 10) {
             int v19;
 
-            v19 = v7->unk_520 - v7->unk_521;
+            v19 = v7->unk_520 - v7->secretBaseMaxRemovableRocks;
             ov23_0224D3D0(v19, 0);
 
             if (v19 == 1) {
@@ -1160,8 +1160,8 @@ static void ov23_02255C78(FieldSystem *fieldSystem, UnkStruct_ov23_02256098 *par
 
     param1->unk_51F = 0;
     param1->unk_520 = 0;
-    param1->unk_521 = sub_02029460(v4);
-    param1->unk_522 = sub_0202948C(v4);
+    param1->secretBaseMaxRemovableRocks = sub_GetMaxRemovableRocks(v4);
+    param1->secretBaseMaxDisplayItems = sub_GetMaxDisplayItemsCount(v4);
 
     for (v0 = 0; v0 < 32; v0++) {
         v1 = sub_020293B0(v4, v0);

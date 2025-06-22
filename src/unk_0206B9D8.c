@@ -5,12 +5,12 @@
 
 #include "constants/species.h"
 
-#include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_0202D060_decl.h"
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_0206BC70.h"
 #include "struct_defs/struct_02098C44.h"
+#include "struct_defs/underground_data.h"
 
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
