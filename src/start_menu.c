@@ -186,17 +186,29 @@ static void StartMenu_EvolveInit(FieldTask *taskMan);
 static void StartMenu_Evolve(FieldTask *taskMan);
 static BOOL StartMenu_SelectRetire(FieldTask *taskMan);
 
-static const u32 Unk_020EA05C[][2] = {
-    [MENU_POS_POKEDEX] = { StartMenu_Text_Pokedex, (u32)StartMenu_SelectPokedex },
-    [MENU_POS_POKEMON] = { StartMenu_Text_Pokemon, (u32)StartMenu_SelectPokemon },
-    [MENU_POS_BAG] = { StartMenu_Text_Bag, (u32)StartMenu_SelectBag },
-    [MENU_POS_TRAINER_CARD] = { StartMenu_Text_Player, (u32)StartMenu_SelectTrainerCard },
-    [MENU_POS_SAVE] = { StartMenu_Text_Save, (u32)StartMenu_SelectSave },
-    [MENU_POS_OPTIONS] = { StartMenu_Text_Options, (u32)StartMenu_SelectOptions },
-    [MENU_POS_EXIT] = { StartMenu_Text_Exit, (u32)0xfffffffe }, // Exit
-    [MENU_POS_CHAT] = { StartMenu_Text_Chat, (u32)StartMenu_SelectChat },
-    [MENU_POS_RETIRE] = { StartMenu_Text_Retire, (u32)StartMenu_SelectRetire }
+#define START_MENU_NO_ACTION   0xFFFFFFFF
+#define START_MENU_EXIT_ACTION 0xFFFFFFFE
+
+typedef struct StartMenuAction {
+    u32 text;
+    void *task;
+} StartMenuAction;
+
+// clang-format off
+// `void *` is used for the `task` here to clean up the semantics of providing task functions for
+// the table. As a bonus, it makes the exit action's special task-sentinel more visually prominent.
+static const StartMenuAction sStartMenuActions[] = {
+    [MENU_POS_POKEDEX]      = { StartMenu_Text_Pokedex, StartMenu_SelectPokedex        },
+    [MENU_POS_POKEMON]      = { StartMenu_Text_Pokemon, StartMenu_SelectPokemon        },
+    [MENU_POS_BAG]          = { StartMenu_Text_Bag,     StartMenu_SelectBag            },
+    [MENU_POS_TRAINER_CARD] = { StartMenu_Text_Player,  StartMenu_SelectTrainerCard    },
+    [MENU_POS_SAVE]         = { StartMenu_Text_Save,    StartMenu_SelectSave           },
+    [MENU_POS_OPTIONS]      = { StartMenu_Text_Options, StartMenu_SelectOptions        },
+    [MENU_POS_EXIT]         = { StartMenu_Text_Exit,    (void *)START_MENU_EXIT_ACTION },
+    [MENU_POS_CHAT]         = { StartMenu_Text_Chat,    StartMenu_SelectChat           },
+    [MENU_POS_RETIRE]       = { StartMenu_Text_Retire,  StartMenu_SelectRetire         },
 };
+// clang-format on
 
 static const SpriteTemplate Unk_020EA0A4[] = {
     {
@@ -549,7 +561,7 @@ static void sub_0203ADFC(FieldTask *taskMan)
 
             v6 = StringTemplate_Default(HEAP_ID_FIELDMAP);
             v7 = Strbuf_Init(8, HEAP_ID_FIELDMAP);
-            v8 = MessageLoader_GetNewStrbuf(v2, Unk_020EA05C[menu->options[i]][0]);
+            v8 = MessageLoader_GetNewStrbuf(v2, sStartMenuActions[menu->options[i]].text);
 
             StringTemplate_SetPlayerName(v6, 0, SaveData_GetTrainerInfo(fieldSystem->saveData));
             StringTemplate_Format(v6, v7, v8);
@@ -560,7 +572,7 @@ static void sub_0203ADFC(FieldTask *taskMan)
             StringTemplate_Free(v6);
         } else {
             StringList_AddFromMessageBank(
-                menu->unk_24, v2, Unk_020EA05C[menu->options[i]][0], menu->options[i]);
+                menu->unk_24, v2, sStartMenuActions[menu->options[i]].text, menu->options[i]);
         }
 
         if (fieldSystem->unk_90 == menu->options[i]) {
@@ -752,18 +764,17 @@ static BOOL StartMenu_Select(FieldTask *taskMan)
     sub_0203B5E8(menu->unk_200[1 + menu->unk_28]->sprite);
 
     switch (menu->unk_2C) {
-    case 0xffffffff:
+    case START_MENU_NO_ACTION:
         break;
-    case 0xfffffffe:
+    case START_MENU_EXIT_ACTION:
         menu->state = START_MENU_STATE_END;
         break;
     default:
-        if (Unk_020EA05C[menu->unk_2C][1] == 0xfffffffe) {
+        if ((u32)sStartMenuActions[menu->unk_2C].task == START_MENU_EXIT_ACTION) {
             menu->state = START_MENU_STATE_END;
-        } else if (Unk_020EA05C[menu->unk_2C][1] != 0xffffffff) {
-            FieldTaskFunc v3 = (FieldTaskFunc)Unk_020EA05C[menu->unk_2C][1];
-
-            return v3(taskMan);
+        } else if ((u32)sStartMenuActions[menu->unk_2C].task != START_MENU_NO_ACTION) {
+            FieldTaskFunc actionTask = sStartMenuActions[menu->unk_2C].task;
+            return actionTask(taskMan);
         }
     }
 
