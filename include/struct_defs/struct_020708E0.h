@@ -9,7 +9,6 @@
 #include "field_move_tasks.h"
 #include "field_task.h"
 #include "menu.h"
-#include "sprite_system.h"
 #include "string_list.h"
 
 typedef struct {
@@ -20,11 +19,11 @@ typedef struct {
     u16 unk_28;
     u16 state;
     u32 unk_2C;
-    u8 unk_30[7];
+    u8 options[7];
     UnkStruct_ov5_021D30A8 unk_38;
     ManagedSprite *unk_200[8];
     u32 unk_220;
-    u32 unk_224;
+    u32 hideOptionFlags;
     u32 unk_228;
     FieldTaskFunc callback;
     UnkStruct_020684D0 unk_230;

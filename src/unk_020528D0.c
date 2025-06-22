@@ -123,7 +123,7 @@ static void sub_02052914(FieldSystem *fieldSystem, FieldTask *task)
     Window_AddFromTemplate(v0->unk_08, &v0->unk_0C, &Unk_020EC2F0);
     StringTemplate_SetPlayerName(v0->unk_20, 0, SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem)));
 
-    if (fieldSystem->location->mapId == 414) {
+    if (fieldSystem->location->mapId == MAP_HEADER_TWINLEAF_TOWN_PLAYER_HOUSE_1F) {
         sub_02052AA4(v0, 4, 0, 0);
     } else {
         sub_02052AA4(v0, 3, 0, 0);

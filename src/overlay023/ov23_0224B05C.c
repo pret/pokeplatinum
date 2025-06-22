@@ -969,7 +969,7 @@ static UnkStruct_ov23_0224BA48 *ov23_0224BCC4(FieldSystem *fieldSystem, int para
         v0->unk_2B = param4;
         v0->unk_2C = param5;
 
-        GF_ASSERT(fieldSystem->location->mapId == 2);
+        GF_ASSERT(fieldSystem->location->mapId == MAP_HEADER_UNDERGROUND);
 
         v0->unk_14 = 2;
         v0->unk_24 = param3;

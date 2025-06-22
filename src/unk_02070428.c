@@ -44,7 +44,7 @@ void FieldSystem_InitFlagsOnMapChange(FieldSystem *fieldSystem)
 
     fieldSystem->wildBattleMetadata.encounterAttempts = 0;
 
-    if (!SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData))) {
+    if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData)) == FALSE) {
         SpecialEncounter *v0;
 
         v0 = SaveData_GetSpecialEncounters(fieldSystem->saveData);
