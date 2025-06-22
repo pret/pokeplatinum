@@ -24,8 +24,8 @@
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/mail.h"
 #include "struct_defs/poke_animation_settings.h"
+#include "struct_defs/seal_case.h"
 #include "struct_defs/sprite_animation_frame.h"
-#include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_02078B40.h"
 
 #include "overlay005/struct_ov5_021DE5D0.h"
@@ -35,6 +35,7 @@
 #include "heap.h"
 #include "inlines.h"
 #include "item.h"
+#include "mail.h"
 #include "math_util.h"
 #include "message.h"
 #include "message_util.h"
@@ -53,7 +54,6 @@
 #include "trainer_info.h"
 #include "unk_02015F84.h"
 #include "unk_02017038.h"
-#include "unk_02028124.h"
 #include "unk_0202C9F4.h"
 #include "unk_02092494.h"
 
@@ -231,18 +231,18 @@ void Pokemon_InitWith(Pokemon *mon, int monSpecies, int monLevel, int monIVs, BO
     Pokemon_EncryptData(&mon->party, sizeof(PartyPokemon), mon->box.personality);
     Pokemon_SetValue(mon, MON_DATA_LEVEL, &monLevel);
 
-    Mail *v1 = sub_0202818C(HEAP_ID_SYSTEM);
+    Mail *mail = Mail_New(HEAP_ID_SYSTEM);
 
-    Pokemon_SetValue(mon, MON_DATA_MAIL, v1);
-    Heap_FreeToHeap(v1);
+    Pokemon_SetValue(mon, MON_DATA_MAIL, mail);
+    Heap_FreeToHeap(mail);
 
     u32 zero = 0;
     Pokemon_SetValue(mon, MON_DATA_BALL_CAPSULE_ID, &zero);
 
-    UnkStruct_0202CA28 v2;
-    MI_CpuClearFast(&v2, sizeof(UnkStruct_0202CA28));
+    BallCapsule v2;
+    MI_CpuClearFast(&v2, sizeof(BallCapsule));
 
-    Pokemon_SetValue(mon, MON_DATA_171, &v2);
+    Pokemon_SetValue(mon, MON_DATA_BALL_CAPSULE, &v2);
     Pokemon_CalcLevelAndStats(mon);
 }
 
@@ -564,12 +564,12 @@ static u32 Pokemon_GetDataInternal(Pokemon *mon, enum PokemonDataParam param, vo
         break;
 
     case MON_DATA_MAIL:
-        sub_020281A0(&mon->party.unk_14, dest);
+        Mail_Copy(&mon->party.mail, dest);
         result = TRUE;
         break;
 
-    case MON_DATA_171:
-        sub_0202CA10(&mon->party.unk_4C, dest);
+    case MON_DATA_BALL_CAPSULE:
+        BallCapsule_Copy(&mon->party.ballCapsule, dest);
         result = TRUE;
         break;
 
@@ -1154,11 +1154,11 @@ static void Pokemon_SetDataInternal(Pokemon *mon, enum PokemonDataParam param, c
         break;
 
     case MON_DATA_MAIL:
-        sub_020281A0(value, &mon->party.unk_14);
+        Mail_Copy(value, &mon->party.mail);
         break;
 
-    case MON_DATA_171:
-        sub_0202CA10(value, &mon->party.unk_4C);
+    case MON_DATA_BALL_CAPSULE:
+        BallCapsule_Copy(value, &mon->party.ballCapsule);
         break;
 
     default:
@@ -3753,15 +3753,15 @@ void Pokemon_FromBoxPokemon(BoxPokemon *boxMon, Pokemon *mon)
     Pokemon_SetValue(mon, MON_DATA_CURRENT_HP, &zero);
     Pokemon_SetValue(mon, MON_DATA_MAX_HP, &zero);
 
-    Mail *v1 = sub_0202818C(HEAP_ID_SYSTEM);
-    Pokemon_SetValue(mon, MON_DATA_MAIL, v1);
-    Heap_FreeToHeap(v1);
+    Mail *mail = Mail_New(HEAP_ID_SYSTEM);
+    Pokemon_SetValue(mon, MON_DATA_MAIL, mail);
+    Heap_FreeToHeap(mail);
 
     Pokemon_SetValue(mon, MON_DATA_BALL_CAPSULE_ID, &zero);
 
-    UnkStruct_0202CA28 v2;
-    MI_CpuClearFast(&v2, sizeof(UnkStruct_0202CA28));
-    Pokemon_SetValue(mon, MON_DATA_171, &v2);
+    BallCapsule v2;
+    MI_CpuClearFast(&v2, sizeof(BallCapsule));
+    Pokemon_SetValue(mon, MON_DATA_BALL_CAPSULE, &v2);
 
     Pokemon_CalcLevelAndStats(mon);
 }
@@ -4826,11 +4826,11 @@ void sub_0207893C(Pokemon *mon)
 {
     u8 zero = 0;
 
-    UnkStruct_0202CA28 v1;
-    MI_CpuClearFast(&v1, sizeof(UnkStruct_0202CA28));
+    BallCapsule v1;
+    MI_CpuClearFast(&v1, sizeof(BallCapsule));
 
     Pokemon_SetValue(mon, MON_DATA_BALL_CAPSULE_ID, &zero);
-    Pokemon_SetValue(mon, MON_DATA_171, &v1);
+    Pokemon_SetValue(mon, MON_DATA_BALL_CAPSULE, &v1);
 }
 
 void BoxPokemon_RestorePP(BoxPokemon *boxMon)
@@ -4923,10 +4923,10 @@ BOOL Pokemon_SetBallSeal(int param0, Pokemon *mon, int heapID)
     v0 = v0 - 1;
     int one = 1;
 
-    UnkStruct_0202CA28 v2;
-    NARC_ReadFromMember(narc, 0, v0 * sizeof(UnkStruct_0202CA28), sizeof(UnkStruct_0202CA28), &v2);
+    BallCapsule v2;
+    NARC_ReadFromMember(narc, 0, v0 * sizeof(BallCapsule), sizeof(BallCapsule), &v2);
     Pokemon_SetValue(mon, MON_DATA_BALL_CAPSULE_ID, &one);
-    Pokemon_SetValue(mon, MON_DATA_171, &v2);
+    Pokemon_SetValue(mon, MON_DATA_BALL_CAPSULE, &v2);
     NARC_dtor(narc);
 
     return TRUE;

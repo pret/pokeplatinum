@@ -304,7 +304,7 @@ static void GivePokemon(FieldSystem *fieldSystem, GiftData *dummy)
     BOOL added = Party_AddPokemon(party, pokemon);
 
     if (added) {
-        sub_0202F180(fieldSystem->saveData, pokemon);
+        SaveData_UpdateCatchRecords(fieldSystem->saveData, pokemon);
     }
 
     if (tmpPoke) {
@@ -465,7 +465,7 @@ static BOOL CanReceiveCosmetic(FieldSystem *fieldSystem, GiftData *dummy)
 
     switch (type) {
     case MG_COSMETICS_SEAL:
-        return sub_0202CB70(SaveData_GetBallSeals(fieldSystem->saveData), id, 1);
+        return sub_0202CB70(SaveData_GetSealCase(fieldSystem->saveData), id, 1);
     case MG_COSMETICS_ACCESSORY:
         return TRUE;
     case MG_COSMETICS_BACKDROP:
@@ -483,7 +483,7 @@ static void GiveCosmetic(FieldSystem *fieldSystem, GiftData *dummy)
 
     switch (type) {
     case MG_COSMETICS_SEAL:
-        sub_0202CAE0(SaveData_GetBallSeals(fieldSystem->saveData), id, 1);
+        sub_0202CAE0(SaveData_GetSealCase(fieldSystem->saveData), id, 1);
         break;
     case MG_COSMETICS_ACCESSORY:
         sub_02029E2C(sub_02029D04(sub_0202A750(fieldSystem->saveData)), id, 1);
@@ -740,7 +740,7 @@ static const GiftHandler giftHandlers[MYST_GIFT_TYPE_MAX - 1] = {
     [MYST_GIFT_ITEM - 1] = { CanReceiveItem, GiveItem, PrepReceivedItemMsg, PrepCannotReceiveItemMsg },
     [MYST_GIFT_BATTLE_REG - 1] = { CanReceiveBattleReg, GiveBattleReg, PrepReceivedRulesMsg, PrepCannotReceiveRulesMsg },
     [MYST_GIFT_DECORATION_GOOD - 1] = { CanReceiveDecorationGood, GiveDecorationGood, PrepReceivedDecoGoodMsg, PrepCannotReceiveDecoGood },
-    [MYST_GIFT_COSMETICS - 1] = { CanReceiveCosmetic, GiveCosmetic, PrepReceivedCosmeticMsg, PrepCannotReceiveCosmeticMsg }, // Seal/Accessory/Backdrop
+    [MYST_GIFT_COSMETICS - 1] = { CanReceiveCosmetic, GiveCosmetic, PrepReceivedCosmeticMsg, PrepCannotReceiveCosmeticMsg }, // BallSeal/Accessory/Backdrop
     [MYST_GIFT_MANAPHY_EGG - 1] = { CanReceivePokemon, GenerateManaphyEgg, PrepReceivedManaphyEggMsg, PrepCannotReceivePokemonMsg },
     [MYST_GIFT_MEMBER_CARD - 1] = { CanReceiveMemberCard, InitDarkraiEvent, PrepReceivedMemberCardMsg, PrepCannotReceiveMemberCardMsg },
     [MYST_GIFT_OAKS_LETTER - 1] = { CanReceiveOaksLetter, InitShayminEvent, PrepReceivedOaksLetterMsg, PrepCannotReceivedOaksLetterMsg },

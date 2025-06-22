@@ -23,7 +23,7 @@ _002E:
 
 _0048:
     SetObjectEventPos 0, 2, 4
-    ScrCmd_189 0, 0
+    SetObjectEventDir 0, DIR_NORTH
     ScrCmd_188 0, 14
     Return
 

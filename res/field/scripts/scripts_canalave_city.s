@@ -53,7 +53,7 @@ _00F8:
 
 _0100:
     SetObjectEventPos 16, 55, 0x2CC
-    ScrCmd_189 16, 3
+    SetObjectEventDir 16, DIR_EAST
     ScrCmd_188 16, 17
     Return
 
@@ -63,13 +63,13 @@ _0116:
 
 _011C:
     SetObjectEventPos 11, 37, 0x2D1
-    ScrCmd_189 11, 1
+    SetObjectEventDir 11, DIR_SOUTH
     ScrCmd_188 11, 15
     Return
 
 _0132:
     SetObjectEventPos 11, 39, 0x2DD
-    ScrCmd_189 11, 0
+    SetObjectEventDir 11, DIR_NORTH
     ScrCmd_188 11, 14
     Return
 
@@ -674,7 +674,7 @@ _0959:
     WaitMovement
     RemoveObject 16
     SetObjectEventPos 16, 45, 0x2EE
-    ScrCmd_189 16, 2
+    SetObjectEventDir 16, DIR_WEST
     ScrCmd_188 16, 16
     AddObject 16
     SetVar VAR_UNK_0x40F8, 4

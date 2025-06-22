@@ -108,10 +108,8 @@
 #include "overlay012/struct_ov12_02237F38.h"
 #include "overlay012/struct_ov12_022380DC.h"
 #include "overlay013/battle_bag.h"
-#include "overlay013/battle_bag_context.h"
 #include "overlay013/battle_bag_utils.h"
-#include "overlay013/ov13_0221FC20.h"
-#include "overlay013/struct_ov13_0221FC20.h"
+#include "overlay013/battle_party.h"
 
 #include "assert.h"
 #include "bg_window.h"
@@ -744,8 +742,8 @@ void ov16_0225D794(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
     v0 = (UnkStruct_ov16_0225D794 *)Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(UnkStruct_ov16_0225D794));
 
     v0->unk_08 = (UnkStruct_ov16_0225D840 *)Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(UnkStruct_ov16_0225D840));
-    v0->unk_08->unk_04 = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(UnkStruct_ov13_0221FC20));
-    v0->unk_08->unk_04->unk_00 = Party_New(HEAP_ID_BATTLE);
+    v0->unk_08->unk_04 = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(BattlePartyContext));
+    v0->unk_08->unk_04->party = Party_New(HEAP_ID_BATTLE);
     v0->unk_0E = 0;
     v0->unk_00 = battleSys;
     v0->unk_0C = param2->unk_00;
@@ -3602,44 +3600,44 @@ static void ov16_022611DC(SysTask *param0, void *param1)
             v4 = v0->unk_0D;
         }
 
-        Party_InitWithCapacity(v0->unk_08->unk_04->unk_00, 6);
+        Party_InitWithCapacity(v0->unk_08->unk_04->party, 6);
 
         for (i = 0; i < Party_GetCurrentCount(v5); i++) {
             v6 = BattleSystem_PartyPokemon(v0->unk_00, v4, v0->unk_18[v4][i]);
-            Party_AddPokemon(v0->unk_08->unk_04->unk_00, v6);
-            v0->unk_08->unk_04->unk_2C[i] = v0->unk_18[v4][i];
+            Party_AddPokemon(v0->unk_08->unk_04->party, v6);
+            v0->unk_08->unk_04->pokemonPartySlots[i] = v0->unk_18[v4][i];
         }
 
-        v0->unk_08->unk_04->unk_08 = v0->unk_00;
+        v0->unk_08->unk_04->battleSystem = v0->unk_00;
         v0->unk_08->unk_04->heapID = HEAP_ID_BATTLE;
-        v0->unk_08->unk_04->unk_11 = 0;
-        v0->unk_08->unk_04->unk_36 = 0;
-        v0->unk_08->unk_04->unk_24 = 0;
-        v0->unk_08->unk_04->unk_35 = 2;
-        v0->unk_08->unk_04->unk_22 = v0->unk_04->selectedBattleBagItem;
-        v0->unk_08->unk_04->unk_33 = v0->unk_04->selectedBattleBagPocket;
-        v0->unk_08->unk_04->unk_28 = v0->unk_04->battler;
-        v0->unk_08->unk_04->unk_32 = v0->unk_10;
-        v0->unk_08->unk_04->unk_14 = v0->unk_08->unk_0C[v0->unk_0D];
-        v0->unk_08->unk_04->unk_15 = v0->unk_08->unk_0C[BattleSystem_Partner(v0->unk_00, v0->unk_0D)];
+        v0->unk_08->unk_04->selectedPartyIndex = 0;
+        v0->unk_08->unk_04->battlePartyExited = 0;
+        v0->unk_08->unk_04->moveToLearn = MOVE_NONE;
+        v0->unk_08->unk_04->battlePartyMode = BATTLE_PARTY_MODE_USE_ITEM;
+        v0->unk_08->unk_04->selectedBattleBagItem = v0->unk_04->selectedBattleBagItem;
+        v0->unk_08->unk_04->selectedBattleBagPocket = v0->unk_04->selectedBattleBagPocket;
+        v0->unk_08->unk_04->battler = v0->unk_04->battler;
+        v0->unk_08->unk_04->isCursorEnabled = v0->unk_10;
+        v0->unk_08->unk_04->playerPokemonPartySlot = v0->unk_08->unk_0C[v0->unk_0D];
+        v0->unk_08->unk_04->partnerPokemonPartySlot = v0->unk_08->unk_0C[BattleSystem_Partner(v0->unk_00, v0->unk_0D)];
 
         if (v0->unk_0F == 4) {
-            v0->unk_08->unk_04->unk_18[0] = v0->unk_30[BattleSystem_Partner(v0->unk_00, v0->unk_0D)];
-            v0->unk_08->unk_04->unk_18[1] = v0->unk_30[v0->unk_0D];
+            v0->unk_08->unk_04->embargoRemainingTurns[0] = v0->unk_30[BattleSystem_Partner(v0->unk_00, v0->unk_0D)];
+            v0->unk_08->unk_04->embargoRemainingTurns[1] = v0->unk_30[v0->unk_0D];
         } else {
-            v0->unk_08->unk_04->unk_18[0] = v0->unk_30[v0->unk_0D];
-            v0->unk_08->unk_04->unk_18[1] = v0->unk_30[BattleSystem_Partner(v0->unk_00, v0->unk_0D)];
+            v0->unk_08->unk_04->embargoRemainingTurns[0] = v0->unk_30[v0->unk_0D];
+            v0->unk_08->unk_04->embargoRemainingTurns[1] = v0->unk_30[BattleSystem_Partner(v0->unk_00, v0->unk_0D)];
         }
 
-        ov13_0221FC20(v0->unk_08->unk_04);
+        BattlePartyTask_Start(v0->unk_08->unk_04);
         v0->unk_0E++;
     } break;
     case 5:
-        if (v0->unk_08->unk_04->unk_36) {
-            v0->unk_10 = v0->unk_08->unk_04->unk_32;
-            v0->unk_08->unk_04->unk_36 = 0;
+        if (v0->unk_08->unk_04->battlePartyExited) {
+            v0->unk_10 = v0->unk_08->unk_04->isCursorEnabled;
+            v0->unk_08->unk_04->battlePartyExited = 0;
 
-            if (v0->unk_08->unk_04->unk_11 == 6) {
+            if (v0->unk_08->unk_04->selectedPartyIndex == 6) {
                 v0->unk_0E = 2;
             } else {
                 v0->unk_0E = 6;
@@ -3664,7 +3662,7 @@ static void ov16_022611DC(SysTask *param0, void *param1)
                 case BATTLE_POCKET_INDEX_RECOVER_STATUS:
                     if ((v0->unk_04->selectedBattleBagItem == ITEM_REVIVE) || (v0->unk_04->selectedBattleBagItem == ITEM_MAX_REVIVE)) {
                         v0->unk_0E = 8;
-                    } else if (((v0->unk_08->unk_04->unk_11 < 2) && ((BattleSystem_BattleType(v0->unk_00) == BATTLE_TYPE_TRAINER_DOUBLES) || (BattleSystem_BattleType(v0->unk_00) == BATTLE_TYPE_TAG_DOUBLES))) || (v0->unk_08->unk_04->unk_11 < 1)) {
+                    } else if (((v0->unk_08->unk_04->selectedPartyIndex < 2) && ((BattleSystem_BattleType(v0->unk_00) == BATTLE_TYPE_TRAINER_DOUBLES) || (BattleSystem_BattleType(v0->unk_00) == BATTLE_TYPE_TAG_DOUBLES))) || (v0->unk_08->unk_04->selectedPartyIndex < 1)) {
                         if (v0->unk_04->selectedBattleBagItem == ITEM_FULL_RESTORE) {
                             if (BattleSystem_AnimationsOn(v0->unk_00) == 1) {
                                 v0->unk_12 = 17;
@@ -3685,7 +3683,7 @@ static void ov16_022611DC(SysTask *param0, void *param1)
                     }
                     break;
                 case BATTLE_POCKET_INDEX_RECOVER_HP_PP:
-                    if ((((v0->unk_08->unk_04->unk_11 < 2) && ((BattleSystem_BattleType(v0->unk_00) == BATTLE_TYPE_TRAINER_DOUBLES) || (BattleSystem_BattleType(v0->unk_00) == BATTLE_TYPE_TAG_DOUBLES))) || (v0->unk_08->unk_04->unk_11 < 1)) && (Item_LoadParam(v0->unk_04->selectedBattleBagItem, ITEM_PARAM_HP_RESTORE, 5))) {
+                    if ((((v0->unk_08->unk_04->selectedPartyIndex < 2) && ((BattleSystem_BattleType(v0->unk_00) == BATTLE_TYPE_TRAINER_DOUBLES) || (BattleSystem_BattleType(v0->unk_00) == BATTLE_TYPE_TAG_DOUBLES))) || (v0->unk_08->unk_04->selectedPartyIndex < 1)) && (Item_LoadParam(v0->unk_04->selectedBattleBagItem, ITEM_PARAM_HP_RESTORE, 5))) {
                         if (BattleSystem_AnimationsOn(v0->unk_00) == 1) {
                             v0->unk_12 = 17;
                         } else {
@@ -3740,14 +3738,14 @@ static void ov16_022611DC(SysTask *param0, void *param1)
             v7.category = v0->unk_04->selectedBattleBagPocket;
 
             if ((v0->unk_04->selectedBattleBagPocket == BATTLE_POCKET_INDEX_RECOVER_STATUS) || (v0->unk_04->selectedBattleBagPocket == BATTLE_POCKET_INDEX_RECOVER_HP_PP)) {
-                v7.target = 1 + v0->unk_08->unk_04->unk_2C[v0->unk_08->unk_04->unk_11];
+                v7.target = 1 + v0->unk_08->unk_04->pokemonPartySlots[v0->unk_08->unk_04->selectedPartyIndex];
             }
         }
 
         ov16_02265A70(v0->unk_00, v0->unk_0D, v7);
         ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
-        Heap_FreeToHeap(v0->unk_08->unk_04->unk_00);
+        Heap_FreeToHeap(v0->unk_08->unk_04->party);
         Heap_FreeToHeap(v0->unk_08->unk_04);
         Heap_FreeToHeap(v0->unk_08);
         Heap_FreeToHeap(v0->unk_04);
@@ -3788,7 +3786,7 @@ static void ov16_022611DC(SysTask *param0, void *param1)
         UnkStruct_ov16_02265BBC v11;
         int v12;
 
-        v12 = v0->unk_08->unk_04->unk_11 * 2;
+        v12 = v0->unk_08->unk_04->selectedPartyIndex * 2;
         ov16_02266B78(v0->unk_00, NULL, &v11, 1, 9, v12, v12, NULL);
         ov16_02264408(v0->unk_00, BattleSystem_BattlerData(v0->unk_00, v12), ov16_0223E008(v0->unk_00), &v11);
     }
@@ -3858,7 +3856,7 @@ static void ov16_022611DC(SysTask *param0, void *param1)
         UnkStruct_ov16_02265BBC v16;
         int v17;
 
-        v17 = v0->unk_08->unk_04->unk_11 * 2;
+        v17 = v0->unk_08->unk_04->selectedPartyIndex * 2;
         ov16_02266B78(v0->unk_00, NULL, &v16, 1, 14, v17, v17, NULL);
         ov16_02264408(v0->unk_00, BattleSystem_BattlerData(v0->unk_00, v17), ov16_0223E008(v0->unk_00), &v16);
     }
@@ -3870,17 +3868,17 @@ static void ov16_022611DC(SysTask *param0, void *param1)
         int v20;
         int v21;
 
-        v20 = v0->unk_08->unk_04->unk_11 * 2;
-        v21 = v0->unk_08->unk_04->unk_2C[v0->unk_08->unk_04->unk_11];
+        v20 = v0->unk_08->unk_04->selectedPartyIndex * 2;
+        v21 = v0->unk_08->unk_04->pokemonPartySlots[v0->unk_08->unk_04->selectedPartyIndex];
 
         v18 = ov16_0223F35C(v0->unk_00, v20);
         MI_CpuClear8(&v18->state, sizeof(u8));
         v18->type = Healthbar_Type(BattleSystem_BattlerSlot(v0->unk_00, v20), BattleSystem_BattleType(v0->unk_00));
 
         v19 = BattleSystem_PartyPokemon(v0->unk_00, v20, v21);
-        v18->curHP = Pokemon_GetValue(v19, MON_DATA_CURRENT_HP, NULL) - v0->unk_08->unk_04->unk_20;
+        v18->curHP = Pokemon_GetValue(v19, MON_DATA_CURRENT_HP, NULL) - v0->unk_08->unk_04->currentDamage;
         v18->maxHP = Pokemon_GetValue(v19, MON_DATA_MAX_HP, NULL);
-        v18->damage = v0->unk_08->unk_04->unk_20;
+        v18->damage = v0->unk_08->unk_04->currentDamage;
 
         if (Pokemon_GetValue(v19, MON_DATA_STATUS_CONDITION, NULL) == 0) {
             v18->status = 0;
@@ -3894,7 +3892,7 @@ static void ov16_022611DC(SysTask *param0, void *param1)
         Healthbar *v22;
         int v23;
 
-        v23 = v0->unk_08->unk_04->unk_11 * 2;
+        v23 = v0->unk_08->unk_04->selectedPartyIndex * 2;
         v22 = ov16_0223F35C(v0->unk_00, v23);
 
         if (ov16_022674F8(v22) == -1) {
@@ -3908,13 +3906,13 @@ static void ov16_022611DC(SysTask *param0, void *param1)
         int v26;
 
         v24 = BattleSystem_MessageLoader(v0->unk_00);
-        v26 = v0->unk_08->unk_04->unk_11 * 2;
+        v26 = v0->unk_08->unk_04->selectedPartyIndex * 2;
 
-        if (v0->unk_08->unk_04->unk_20) {
+        if (v0->unk_08->unk_04->currentDamage) {
             v25.id = 1214;
             v25.tags = 17;
             v25.params[0] = v26 | (v0->unk_08->unk_0C[v26] << 8);
-            v25.params[1] = v0->unk_08->unk_04->unk_20;
+            v25.params[1] = v0->unk_08->unk_04->currentDamage;
         } else {
             v25.id = 1250;
             v25.tags = 2;
@@ -3936,9 +3934,9 @@ static void ov16_022611DC(SysTask *param0, void *param1)
         Pokemon *v33;
         int v34;
 
-        v28 = v0->unk_08->unk_04->unk_11 * 2;
+        v28 = v0->unk_08->unk_04->selectedPartyIndex * 2;
         v27 = ov16_0223F35C(v0->unk_00, v28);
-        v34 = v0->unk_08->unk_04->unk_2C[v0->unk_08->unk_04->unk_11];
+        v34 = v0->unk_08->unk_04->pokemonPartySlots[v0->unk_08->unk_04->selectedPartyIndex];
         v33 = BattleSystem_PartyPokemon(v0->unk_00, v28, v34);
 
         if (Pokemon_GetValue(v33, MON_DATA_STATUS_CONDITION, NULL) == 0) {
@@ -4056,7 +4054,7 @@ static void ov16_02261D50(SysTask *param0, void *param1)
     ov16_02265A70(v0->unk_00, v0->unk_0D, v1);
     ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
-    Heap_FreeToHeap(v0->unk_08->unk_04->unk_00);
+    Heap_FreeToHeap(v0->unk_08->unk_04->party);
     Heap_FreeToHeap(v0->unk_08->unk_04);
     Heap_FreeToHeap(v0->unk_08);
     Heap_FreeToHeap(param1);
@@ -4069,7 +4067,7 @@ static void ov16_02261DA8(SysTask *param0, void *param1)
 
     ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
-    Heap_FreeToHeap(v0->unk_08->unk_04->unk_00);
+    Heap_FreeToHeap(v0->unk_08->unk_04->party);
     Heap_FreeToHeap(v0->unk_08->unk_04);
     Heap_FreeToHeap(v0->unk_08);
     Heap_FreeToHeap(param1);
@@ -4104,7 +4102,7 @@ static void ov16_02261DE0(SysTask *param0, void *param1)
     ov16_02265A70(v0->unk_00, v0->unk_0D, v1);
     ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
-    Heap_FreeToHeap(v0->unk_08->unk_04->unk_00);
+    Heap_FreeToHeap(v0->unk_08->unk_04->party);
     Heap_FreeToHeap(v0->unk_08->unk_04);
     Heap_FreeToHeap(v0->unk_08);
     Heap_FreeToHeap(param1);
@@ -4144,8 +4142,8 @@ static void ov16_02261E8C(SysTask *param0, void *param1)
 
                 ov16_0223B384(v0->unk_00);
 
-                v0->unk_04 = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(UnkStruct_ov13_0221FC20));
-                v0->unk_04->unk_00 = Party_New(HEAP_ID_BATTLE);
+                v0->unk_04 = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(BattlePartyContext));
+                v0->unk_04->party = Party_New(HEAP_ID_BATTLE);
 
                 if (((BattleSystem_BattleType(v0->unk_00) & (BATTLE_TYPE_LINK | BATTLE_TYPE_2vs2)) == (BATTLE_TYPE_LINK | BATTLE_TYPE_2vs2)) || (BattleSystem_BattleType(v0->unk_00) == ((BATTLE_TYPE_TRAINER_DOUBLES | BATTLE_TYPE_2vs2 | BATTLE_TYPE_AI) | BATTLE_TYPE_FRONTIER))) {
                     if (BattleSystem_BattlerSlot(v0->unk_00, v0->unk_09) == 2) {
@@ -4159,29 +4157,29 @@ static void ov16_02261E8C(SysTask *param0, void *param1)
                     v9 = Pokemon_New(HEAP_ID_BATTLE);
 
                     for (i = 0; i < 6; i++) {
-                        Party_AddPokemon(v0->unk_04->unk_00, v9);
+                        Party_AddPokemon(v0->unk_04->party, v9);
                     }
 
                     Heap_FreeToHeap(v9);
 
                     for (i = 0; i < BattleSystem_PartyCount(v0->unk_00, v6); i++) {
                         v9 = BattleSystem_PartyPokemon(v0->unk_00, v6, v0->unk_1C[v6][i]);
-                        v10 = Party_GetPokemonBySlotIndex(v0->unk_04->unk_00, i * 2);
+                        v10 = Party_GetPokemonBySlotIndex(v0->unk_04->party, i * 2);
                         Pokemon_Copy(v9, v10);
-                        v0->unk_04->unk_2C[i * 2] = v0->unk_1C[v6][i];
+                        v0->unk_04->pokemonPartySlots[i * 2] = v0->unk_1C[v6][i];
                     }
 
                     for (i = 0; i < BattleSystem_PartyCount(v0->unk_00, v7); i++) {
                         v9 = BattleSystem_PartyPokemon(v0->unk_00, v7, v0->unk_1C[v7][i]);
-                        v10 = Party_GetPokemonBySlotIndex(v0->unk_04->unk_00, i * 2 + 1);
+                        v10 = Party_GetPokemonBySlotIndex(v0->unk_04->party, i * 2 + 1);
                         Pokemon_Copy(v9, v10);
-                        v0->unk_04->unk_2C[i * 2 + 1] = v0->unk_1C[v7][i];
+                        v0->unk_04->pokemonPartySlots[i * 2 + 1] = v0->unk_1C[v7][i];
                     }
 
                     if (BattleSystem_BattlerSlot(v0->unk_00, v0->unk_09) == 4) {
-                        v0->unk_04->unk_11 = 1;
+                        v0->unk_04->selectedPartyIndex = 1;
                     } else {
-                        v0->unk_04->unk_11 = 0;
+                        v0->unk_04->selectedPartyIndex = 0;
                     }
                 } else {
                     if ((BattleSystem_BattleType(v0->unk_00) & BATTLE_TYPE_DOUBLES) && ((BattleSystem_BattleType(v0->unk_00) & BATTLE_TYPE_2vs2) == FALSE)) {
@@ -4191,53 +4189,53 @@ static void ov16_02261E8C(SysTask *param0, void *param1)
                     }
 
                     if (BattleSystem_BattlerSlot(v0->unk_00, v0->unk_09) == 4) {
-                        v0->unk_04->unk_11 = 1;
+                        v0->unk_04->selectedPartyIndex = 1;
                     } else {
-                        v0->unk_04->unk_11 = 0;
+                        v0->unk_04->selectedPartyIndex = 0;
                     }
 
                     v8 = BattleSystem_Party(v0->unk_00, v0->unk_09);
 
                     for (i = 0; i < Party_GetCurrentCount(v8); i++) {
                         v9 = BattleSystem_PartyPokemon(v0->unk_00, v5, v0->unk_1C[v5][i]);
-                        Party_AddPokemon(v0->unk_04->unk_00, v9);
-                        v0->unk_04->unk_2C[i] = v0->unk_1C[v5][i];
+                        Party_AddPokemon(v0->unk_04->party, v9);
+                        v0->unk_04->pokemonPartySlots[i] = v0->unk_1C[v5][i];
                     }
                 }
 
-                v0->unk_04->unk_08 = v0->unk_00;
+                v0->unk_04->battleSystem = v0->unk_00;
                 v0->unk_04->heapID = HEAP_ID_BATTLE;
-                v0->unk_04->unk_36 = 0;
-                v0->unk_04->unk_24 = v0->unk_10;
-                v0->unk_04->unk_12 = v0->unk_16;
-                v0->unk_04->unk_35 = v0->unk_0B;
-                v0->unk_04->unk_22 = v0->unk_14;
-                v0->unk_04->unk_28 = v0->unk_09;
-                v0->unk_04->unk_32 = v0->unk_17;
+                v0->unk_04->battlePartyExited = 0;
+                v0->unk_04->moveToLearn = v0->unk_10;
+                v0->unk_04->doubleBattleFirstSelectedPartySlot = v0->unk_16;
+                v0->unk_04->battlePartyMode = v0->unk_0B;
+                v0->unk_04->selectedBattleBagItem = v0->unk_14;
+                v0->unk_04->battler = v0->unk_09;
+                v0->unk_04->isCursorEnabled = v0->unk_17;
 
                 if ((v0->unk_18 & FlagIndex(v0->unk_09)) == 0) {
-                    v0->unk_04->unk_14 = v0->unk_0C[v0->unk_09];
+                    v0->unk_04->playerPokemonPartySlot = v0->unk_0C[v0->unk_09];
                 } else {
-                    v0->unk_04->unk_14 = 6;
+                    v0->unk_04->playerPokemonPartySlot = 6;
                 }
 
                 if (BattleSystem_BattleType(v0->unk_00) & BATTLE_TYPE_2vs2) {
-                    v0->unk_04->unk_15 = 6;
+                    v0->unk_04->partnerPokemonPartySlot = 6;
                 } else if ((v0->unk_18 & FlagIndex(BattleSystem_Partner(v0->unk_00, v0->unk_09))) == 0) {
-                    v0->unk_04->unk_15 = v0->unk_0C[BattleSystem_Partner(v0->unk_00, v0->unk_09)];
+                    v0->unk_04->partnerPokemonPartySlot = v0->unk_0C[BattleSystem_Partner(v0->unk_00, v0->unk_09)];
                 } else {
-                    v0->unk_04->unk_15 = 6;
+                    v0->unk_04->partnerPokemonPartySlot = 6;
                 }
 
-                ov13_0221FC20(v0->unk_04);
+                BattlePartyTask_Start(v0->unk_04);
                 v0->unk_0A++;
             }
         }
         break;
     case 2:
-        if (v0->unk_04->unk_36) {
+        if (v0->unk_04->battlePartyExited) {
             ov16_0223B430(v0->unk_00);
-            ov16_0226CD10(ov16_0223E02C(v0->unk_00), v0->unk_04->unk_32);
+            ov16_0226CD10(ov16_0223E02C(v0->unk_00), v0->unk_04->isCursorEnabled);
             PaletteData_StartFade(v1, (0x1 | 0x4), 0xc00, -8, 7, 0, 0x0);
             PaletteData_StartFade(v1, (0x2 | 0x8), 0xffff, -8, 16, 0, 0x0);
             v0->unk_0A++;
@@ -4247,14 +4245,14 @@ static void ov16_02261E8C(SysTask *param0, void *param1)
         if (PaletteData_GetSelectedBuffersMask(v1) == 0) {
             sub_02015738(ov16_0223E220(v0->unk_00), 0);
 
-            if (v0->unk_04->unk_11 == 6) {
+            if (v0->unk_04->selectedPartyIndex == 6) {
                 ov16_02265B10(v0->unk_00, v0->unk_09, 0xff);
             } else {
-                ov16_02265B10(v0->unk_00, v0->unk_09, 1 + v0->unk_04->unk_2C[v0->unk_04->unk_11]);
+                ov16_02265B10(v0->unk_00, v0->unk_09, 1 + v0->unk_04->pokemonPartySlots[v0->unk_04->selectedPartyIndex]);
             }
 
             ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
-            Heap_FreeToHeap(v0->unk_04->unk_00);
+            Heap_FreeToHeap(v0->unk_04->party);
             Heap_FreeToHeap(v0->unk_04);
             Heap_FreeToHeap(param1);
             SysTask_Done(param0);
@@ -5184,25 +5182,25 @@ static void ov16_022633A4(SysTask *param0, void *param1)
         if (PaletteData_GetSelectedBuffersMask(v1) == 0) {
             ov16_0223B384(v0->unk_00);
 
-            v0->unk_04 = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(UnkStruct_ov13_0221FC20));
-            v0->unk_04->unk_00 = BattleSystem_Party(v0->unk_00, v0->unk_09);
-            v0->unk_04->unk_08 = v0->unk_00;
+            v0->unk_04 = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(BattlePartyContext));
+            v0->unk_04->party = BattleSystem_Party(v0->unk_00, v0->unk_09);
+            v0->unk_04->battleSystem = v0->unk_00;
             v0->unk_04->heapID = HEAP_ID_BATTLE;
-            v0->unk_04->unk_11 = v0->unk_0E;
-            v0->unk_04->unk_24 = v0->unk_0C;
-            v0->unk_04->unk_36 = 0;
-            v0->unk_04->unk_12 = 0;
-            v0->unk_04->unk_35 = 3;
-            v0->unk_04->unk_22 = 0;
-            v0->unk_04->unk_28 = v0->unk_09;
-            v0->unk_04->unk_32 = 0;
+            v0->unk_04->selectedPartyIndex = v0->unk_0E;
+            v0->unk_04->moveToLearn = v0->unk_0C;
+            v0->unk_04->battlePartyExited = 0;
+            v0->unk_04->doubleBattleFirstSelectedPartySlot = 0;
+            v0->unk_04->battlePartyMode = BATTLE_PARTY_MODE_LEARN_MOVE;
+            v0->unk_04->selectedBattleBagItem = 0;
+            v0->unk_04->battler = v0->unk_09;
+            v0->unk_04->isCursorEnabled = 0;
 
-            ov13_0221FC20(v0->unk_04);
+            BattlePartyTask_Start(v0->unk_04);
             v0->unk_0A++;
         }
         break;
     case 2:
-        if (v0->unk_04->unk_36) {
+        if (v0->unk_04->battlePartyExited) {
             ov16_0223B430(v0->unk_00);
             PaletteData_StartFade(v1, (0x2 | 0x8), 0xffff, -8, 16, 0, 0x0);
             v0->unk_0A++;
@@ -5210,10 +5208,10 @@ static void ov16_022633A4(SysTask *param0, void *param1)
         break;
     case 3:
         if (PaletteData_GetSelectedBuffersMask(v1) == 0) {
-            if (v0->unk_04->unk_34 == 4) {
+            if (v0->unk_04->selectedMoveSlot == 4) {
                 ov16_02265B10(v0->unk_00, v0->unk_09, 0xff);
             } else {
-                ov16_02265B10(v0->unk_00, v0->unk_09, v0->unk_04->unk_34 + 1);
+                ov16_02265B10(v0->unk_00, v0->unk_09, v0->unk_04->selectedMoveSlot + 1);
             }
 
             ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);

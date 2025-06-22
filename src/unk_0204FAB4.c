@@ -21,11 +21,11 @@
 #include "field_task.h"
 #include "heap.h"
 #include "inlines.h"
+#include "mail.h"
 #include "party.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "script_manager.h"
-#include "unk_02028124.h"
 #include "unk_0202D778.h"
 #include "unk_020302D0.h"
 #include "unk_0203061C.h"
@@ -256,7 +256,7 @@ static int sub_0204FE50(UnkStruct_0204FE50 *param0, FieldSystem *fieldSystem, in
 
     partyMan->party = SaveData_GetParty(fieldSystem->saveData);
     partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
-    partyMan->mailBox = SaveData_GetMailBox(fieldSystem->saveData);
+    partyMan->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
     partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
 
     partyMan->unk_21 = 0;

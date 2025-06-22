@@ -125,7 +125,7 @@ typedef struct BoxPokemon {
 } BoxPokemon;
 
 #include "struct_defs/mail.h"
-#include "struct_defs/struct_0202CA28.h"
+#include "struct_defs/seal_case.h"
 
 /**
  * @brief Party Pokemon data structure
@@ -143,8 +143,8 @@ typedef struct PartyPokemon {
     u16 speed; //!< The Pokemon's Speed stat.
     u16 spAtk; //!< The Pokemon's Special Attack stat.
     u16 spDef; //!< The Pokemon's Special Defense stat.
-    Mail unk_14;
-    UnkStruct_0202CA28 unk_4C;
+    Mail mail;
+    BallCapsule ballCapsule;
 } PartyPokemon;
 
 /**

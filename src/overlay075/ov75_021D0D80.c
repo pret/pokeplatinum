@@ -124,8 +124,8 @@ int ov75_021D0D80(ApplicationManager *appMan, int *param1)
     v1->unk_12 = v1->unk_1C->unk_03;
     v1->unk_17 = v1->unk_16 = v1->unk_11;
     v1->unk_1C->unk_00 = 0xFFFF;
-    v1->unk_10 = Options_TextFrameDelay(v1->unk_1C->unk_04);
-    v1->unk_0A = Options_Frame(v1->unk_1C->unk_04);
+    v1->unk_10 = Options_TextFrameDelay(v1->unk_1C->options);
+    v1->unk_0A = Options_Frame(v1->unk_1C->options);
 
     RenderControlFlags_SetCanABSpeedUpPrint(1);
     return 1;
@@ -159,15 +159,15 @@ int ov75_021D0E10(ApplicationManager *appMan, int *param1)
 
 static BOOL ov75_021D0E34(UnkStruct_ov75_021D1184 *param0)
 {
-    int v0 = 0;
+    int i = 0;
 
-    for (v0 = 0; v0 < 3; v0++) {
-        if (sub_02014BBC(&param0->unk_1C->unk_1A[v0])) {
-            return 0;
+    for (i = 0; i < 3; i++) {
+        if (sub_02014BBC(&param0->unk_1C->unk_1A[i])) {
+            return FALSE;
         }
     }
 
-    return 1;
+    return TRUE;
 }
 
 static int ov75_021D0E5C(UnkStruct_ov75_021D1184 *param0)
@@ -688,9 +688,9 @@ static void ov75_021D1598(UnkStruct_ov75_021D1184 *param0)
     NNSG2dCharacterData *v3;
     NNSG2dPaletteData *v4;
     NARC *v5;
-    int v6 = 12 + param0->unk_1C->unk_0F;
-    int v7 = 24 + param0->unk_1C->unk_0F;
-    int v8 = 0 + param0->unk_1C->unk_0F;
+    int v6 = 12 + param0->unk_1C->mailType;
+    int v7 = 24 + param0->unk_1C->mailType;
+    int v8 = 0 + param0->unk_1C->mailType;
     v5 = NARC_ctor(NARC_INDEX_GRAPHIC__MAIL_GRA, param0->heapID);
 
     LoadStandardWindowGraphics(param0->unk_18, 0, 1, UnkEnum_ov75_021D1598_05, 0, param0->heapID);

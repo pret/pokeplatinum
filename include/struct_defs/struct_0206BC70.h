@@ -15,7 +15,7 @@ typedef struct {
     UnkStruct_0202D764 *unk_04;
     SystemData *unk_08;
     SaveData *saveData;
-    Options *unk_10;
+    Options *options;
     DWCUserData *unk_14;
     int unk_18;
     int unk_1C;

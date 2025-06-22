@@ -27,7 +27,7 @@ typedef struct {
     UnkStruct_0207CB08 *unk_C4;
     Bag *unk_C8;
     TrainerInfo *unk_CC;
-    Options *unk_D0;
+    Options *options;
     NARC *unk_D4;
     SpriteSystem *unk_D8;
     SpriteManager *unk_DC;
