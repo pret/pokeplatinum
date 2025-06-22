@@ -21,7 +21,7 @@ struct UnkStruct_ov72_0223DB98_t {
     BgConfig *unk_00;
     BOOL unk_04;
     GameRecords *records;
-    Options *unk_0C;
+    Options *options;
     StringTemplate *unk_10;
     MessageLoader *unk_14;
     Strbuf *unk_18[5];

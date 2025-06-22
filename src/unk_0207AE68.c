@@ -59,7 +59,6 @@
 
 #include "constdata/const_020F410C.h"
 
-UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Options *param3, int param4, Pokedex *param5, Bag *param6, GameRecords *records, Poketch *poketch, int param9, int param10, int heapID);
 static void sub_0207B0A0(SysTask *param0, void *param1);
 BOOL sub_0207B0D0(UnkStruct_0207AE68 *param0);
 void sub_0207B0E0(UnkStruct_0207AE68 *param0);
@@ -89,7 +88,7 @@ static const u8 Unk_020F0A2C[] = {
     0x8
 };
 
-UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Options *param3, int param4, Pokedex *param5, Bag *param6, GameRecords *records, Poketch *poketch, int param9, int param10, int heapID)
+UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Options *options, int param4, Pokedex *param5, Bag *param6, GameRecords *records, Poketch *poketch, int param9, int param10, int heapID)
 {
     UnkStruct_0207AE68 *v0;
     PokemonSpriteTemplate v1;
@@ -122,7 +121,7 @@ UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Opt
 
     v0->unk_00 = BgConfig_New(heapID);
     v0->unk_04 = Window_New(heapID, 1);
-    v0->unk_2C = param3;
+    v0->options = options;
     v0->unk_34 = sub_0207C690(heapID);
 
     sub_0207C63C();
@@ -498,7 +497,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
             PokemonSprite_SetAttribute(param0->unk_1C[0], MON_SPRITE_HIDE, 1);
             PokemonSprite_SetAttribute(param0->unk_1C[1], MON_SPRITE_HIDE, 1);
             param0->unk_3C->monData = param0->unk_28;
-            param0->unk_3C->options = param0->unk_2C;
+            param0->unk_3C->options = param0->options;
             param0->unk_3C->dataType = SUMMARY_DATA_MON;
             param0->unk_3C->monIndex = 0;
             param0->unk_3C->monMax = 1;
@@ -883,7 +882,7 @@ static void sub_0207C1CC(UnkStruct_0207AE68 *param0, BgConfig *param1)
         int v8 = 8;
         int v9 = 3;
 
-        v4 = Options_Frame(param0->unk_2C);
+        v4 = Options_Frame(param0->options);
 
         ReplaceTransparentTiles(param1, 1, 1, 10, v4, param0->heapID);
         Graphics_LoadTilesToBgLayer(v5, v6, param1, v9, 0, 0, 1, param0->heapID);
@@ -976,7 +975,7 @@ static u8 sub_0207C584(UnkStruct_0207AE68 *param0, int param1)
     Heap_FreeToHeap(v0);
     Window_FillTilemap(param0->unk_04, 0xff);
 
-    return Text_AddPrinterWithParams(param0->unk_04, FONT_MESSAGE, param0->unk_10, 0, 0, Options_TextFrameDelay(param0->unk_2C), sub_0207C5CC);
+    return Text_AddPrinterWithParams(param0->unk_04, FONT_MESSAGE, param0->unk_10, 0, 0, Options_TextFrameDelay(param0->options), sub_0207C5CC);
 }
 
 static BOOL sub_0207C5CC(TextPrinterTemplate *param0, u16 param1)
