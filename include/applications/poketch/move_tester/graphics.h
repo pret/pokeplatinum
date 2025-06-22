@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_POKETCH_MOVE_TESTER_GRAPHICS_H
 #define POKEPLATINUM_POKETCH_MOVE_TESTER_GRAPHICS_H
 
-#include "applications/poketch/base/poketch_animation.h"
+#include "applications/poketch/poketch_animation.h"
 
 #include "bg_window.h"
 #include "message.h"

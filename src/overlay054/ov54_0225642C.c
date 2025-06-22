@@ -3,9 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "applications/poketch/base/poketch_animation.h"
-#include "applications/poketch/base/poketch_graphics.h"
-#include "applications/poketch/base/poketch_task.h"
+#include "applications/poketch/poketch_animation.h"
+#include "applications/poketch/poketch_graphics.h"
+#include "applications/poketch/poketch_task.h"
 #include "overlay054/struct_ov54_0225642C_1.h"
 #include "overlay054/struct_ov54_0225642C_decl.h"
 

@@ -2,8 +2,8 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
-#include "applications/poketch/base/poketch_button.h"
-#include "applications/poketch/base/poketch_system.h"
+#include "applications/poketch/poketch_button.h"
+#include "applications/poketch/poketch_system.h"
 #include "field/field_system_decl.h"
 #include "overlay006/radar_chain_records.h"
 #include "overlay053/ov53_02256420.h"

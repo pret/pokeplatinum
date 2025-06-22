@@ -1,4 +1,4 @@
-#include "applications/poketch/base/poketch_button.h"
+#include "applications/poketch/poketch_button.h"
 
 #include <nitro.h>
 #include <string.h>

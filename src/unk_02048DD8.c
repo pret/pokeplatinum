@@ -15,7 +15,7 @@
 #include "struct_defs/struct_0202E810.h"
 #include "struct_defs/struct_0202E81C.h"
 
-#include "applications/poketch/base/poketch_system.h"
+#include "applications/poketch/poketch_system.h"
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay006/ov6_022465FC.h"

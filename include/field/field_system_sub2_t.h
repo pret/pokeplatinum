@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02055CBC_decl.h"
 
-#include "applications/poketch/base/poketch_system.h"
+#include "applications/poketch/poketch_system.h"
 #include "overlay005/hblank_system.h"
 #include "overlay005/map_name_popup.h"
 #include "overlay005/struct_ov5_021D1A94_decl.h"

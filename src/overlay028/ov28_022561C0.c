@@ -6,8 +6,8 @@
 
 #include "struct_decls/pokedexdata_decl.h"
 
-#include "applications/poketch/base/poketch_button.h"
-#include "applications/poketch/base/poketch_system.h"
+#include "applications/poketch/poketch_button.h"
+#include "applications/poketch/poketch_system.h"
 #include "overlay028/ov28_0225697C.h"
 #include "overlay028/ov28_02256E9C.h"
 #include "overlay028/struct_ov28_0225697C_1.h"

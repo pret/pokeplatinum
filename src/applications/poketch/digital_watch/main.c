@@ -2,9 +2,9 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
-#include "applications/poketch/base/poketch_button.h"
-#include "applications/poketch/base/poketch_system.h"
 #include "applications/poketch/digital_watch/graphics.h"
+#include "applications/poketch/poketch_button.h"
+#include "applications/poketch/poketch_system.h"
 
 #include "bg_window.h"
 #include "heap.h"

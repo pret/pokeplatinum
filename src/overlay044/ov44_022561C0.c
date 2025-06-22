@@ -2,8 +2,8 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
-#include "applications/poketch/base/poketch_button.h"
-#include "applications/poketch/base/poketch_system.h"
+#include "applications/poketch/poketch_button.h"
+#include "applications/poketch/poketch_system.h"
 #include "overlay005/daycare.h"
 #include "overlay044/ov44_022565BC.h"
 #include "overlay044/struct_ov44_022565BC_1.h"

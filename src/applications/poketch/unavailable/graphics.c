@@ -1,4 +1,4 @@
-#include "applications/poketch/pre_poketch_subscreen/pre_poketch_subscreen.h"
+#include "applications/poketch/unavailable/graphics.h"
 
 #include "constants/heap.h"
 
@@ -7,11 +7,11 @@
 #include "heap.h"
 #include "narc.h"
 
-#define PRE_POKETCH_DISPLAY_NARC_TILES_IDX   10
-#define PRE_POKETCH_DISPLAY_NARC_TILEMAP_IDX 11
-#define PRE_POKETCH_DISPLAY_NARC_PALETTE_IDX 12
+#define POKETCH_UNAVAILABLE_SCREEN_NARC_TILES_IDX   10
+#define POKETCH_UNAVAILABLE_SCREEN_NARC_TILEMAP_IDX 11
+#define POKETCH_UNAVAILABLE_SCREEN_NARC_PALETTE_IDX 12
 
-void PrePoketchSubscreen_Init(BgConfig *bgConfig)
+void PoketchUnavailableScreen_Init(BgConfig *bgConfig)
 {
     static const BgTemplate template = {
         .x = 0,
@@ -39,22 +39,22 @@ void PrePoketchSubscreen_Init(BgConfig *bgConfig)
 
     NARC *narc = NARC_ctor(NARC_INDEX_GRAPHIC__POKETCH, HEAP_ID_POKETCH_APP);
 
-    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, PRE_POKETCH_DISPLAY_NARC_TILES_IDX, bgConfig, BG_LAYER_SUB_0, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, PRE_POKETCH_DISPLAY_NARC_TILEMAP_IDX, bgConfig, BG_LAYER_SUB_0, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
-    Graphics_LoadPaletteFromOpenNARC(narc, PRE_POKETCH_DISPLAY_NARC_PALETTE_IDX, PAL_LOAD_SUB_BG, 0, 0x20, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, POKETCH_UNAVAILABLE_SCREEN_NARC_TILES_IDX, bgConfig, BG_LAYER_SUB_0, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, POKETCH_UNAVAILABLE_SCREEN_NARC_TILEMAP_IDX, bgConfig, BG_LAYER_SUB_0, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadPaletteFromOpenNARC(narc, POKETCH_UNAVAILABLE_SCREEN_NARC_PALETTE_IDX, PAL_LOAD_SUB_BG, 0, 0x20, HEAP_ID_POKETCH_APP);
     NARC_dtor(narc);
 
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
     GXS_SetVisiblePlane(GX_PLANEMASK_BG0);
 }
 
-void PrePoketchSubscreen_Exit(BgConfig *bgConfig)
+void PoketchUnavailableScreen_Exit(BgConfig *bgConfig)
 {
     Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_SUB_0);
     Heap_Destroy(HEAP_ID_POKETCH_APP);
 }
 
-BOOL PrePoketchSubscreen_IsDone(BgConfig *bgConfig)
+BOOL PoketchUnavailableScreen_IsDone(BgConfig *bgConfig)
 {
     return TRUE;
 }

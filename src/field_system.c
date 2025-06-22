@@ -8,7 +8,7 @@
 #include "generated/map_headers.h"
 #include "generated/signpost_commands.h"
 
-#include "applications/poketch/base/poketch_system.h"
+#include "applications/poketch/poketch_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/field_control.h"
 #include "overlay005/fieldmap.h"

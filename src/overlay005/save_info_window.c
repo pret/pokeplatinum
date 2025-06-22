@@ -9,7 +9,7 @@
 
 #include "struct_decls/pokedexdata_decl.h"
 
-#include "applications/poketch/base/poketch_system.h"
+#include "applications/poketch/poketch_system.h"
 #include "overlay005/ov5_021EA714.h"
 #include "overlay005/save_info_window.h"
 

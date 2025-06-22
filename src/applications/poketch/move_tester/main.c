@@ -5,9 +5,9 @@
 #include "constants/heap.h"
 #include "generated/pokemon_types.h"
 
-#include "applications/poketch/base/poketch_button.h"
-#include "applications/poketch/base/poketch_system.h"
 #include "applications/poketch/move_tester/graphics.h"
+#include "applications/poketch/poketch_button.h"
+#include "applications/poketch/poketch_system.h"
 
 #include "bg_window.h"
 #include "heap.h"

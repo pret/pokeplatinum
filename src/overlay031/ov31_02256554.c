@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "applications/poketch/base/poketch_graphics.h"
-#include "applications/poketch/base/poketch_task.h"
+#include "applications/poketch/poketch_graphics.h"
+#include "applications/poketch/poketch_task.h"
 #include "overlay031/struct_ov31_02256554_1.h"
 #include "overlay031/struct_ov31_02256554_decl.h"
 

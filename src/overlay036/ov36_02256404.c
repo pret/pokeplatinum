@@ -1,10 +1,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "applications/poketch/base/poketch_animation.h"
-#include "applications/poketch/base/poketch_graphics.h"
-#include "applications/poketch/base/poketch_system.h"
-#include "applications/poketch/base/poketch_task.h"
+#include "applications/poketch/poketch_animation.h"
+#include "applications/poketch/poketch_graphics.h"
+#include "applications/poketch/poketch_system.h"
+#include "applications/poketch/poketch_task.h"
 #include "overlay036/poketch_app_pedometer.h"
 
 #include "bg_window.h"

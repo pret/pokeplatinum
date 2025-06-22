@@ -2,7 +2,7 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
-#include "applications/poketch/base/poketch_system.h"
+#include "applications/poketch/poketch_system.h"
 #include "overlay051/ov51_0225632C.h"
 #include "overlay051/struct_ov51_0225632C_1.h"
 #include "overlay051/struct_ov51_0225632C_decl.h"
