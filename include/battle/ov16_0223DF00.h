@@ -142,7 +142,7 @@ int BattleSystem_BattlerOfType(BattleSystem *battleSys, int type);
 u8 BattleSystem_BattlerSlot(BattleSystem *battleSys, int param1);
 u8 Battler_Side(BattleSystem *battleSys, int param1);
 void *ov16_0223E220(BattleSystem *battleSys);
-PCBoxes *ov16_0223E228(BattleSystem *battleSys);
+PCBoxes *BattleSystem_PCBoxes(BattleSystem *battleSys);
 
 /**
  * @brief Get the terrain type for the battle.

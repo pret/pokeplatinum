@@ -120,7 +120,7 @@ void BoxMenu_FillItemsMenu(UnkStruct_ov19_021D4DF0 *param0)
 void BoxMenu_FillHeaderMenu(UnkStruct_ov19_021D4DF0 *param0)
 {
     BoxMenu *menu = &(param0->boxMenu);
-    const PCBoxes *unused = ov19_GetPCBoxes(param0);
+    const PCBoxes *pcBoxes = ov19_GetPCBoxes(param0);
 
     BoxMenu_ClearMenuItems(menu);
     BoxMenu_AddMenuItem(menu, BOX_MENU_JUMP);

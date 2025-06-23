@@ -16,7 +16,7 @@ typedef struct {
     Strbuf *textInputStr;
     u16 unk_1C[20];
     int unk_44;
-    PCBoxes *unk_48;
+    PCBoxes *pcBoxes;
     Options *options;
 } UnkStruct_0208737C;
 

@@ -190,7 +190,7 @@ int ov61_0222B1FC(UnkStruct_ov62_022349A8 *param0, int param1)
     return 1;
 }
 
-int ov61_0222B224(UnkStruct_ov62_022349A8 *param0, int param1, UnkStruct_02030A80 *param2, const PCBoxes *param3, int param4)
+int ov61_0222B224(UnkStruct_ov62_022349A8 *param0, int param1, UnkStruct_02030A80 *param2, const PCBoxes *pcBoxes, int param4)
 {
     if (ov61_0222BBBC(param0) == 0) {
         return 0;
@@ -200,7 +200,7 @@ int ov61_0222B224(UnkStruct_ov62_022349A8 *param0, int param1, UnkStruct_02030A8
     param0->unk_190.unk_21C.val1.unk_01 = param4;
 
     ov61_0222AFA4(param0->saveData, param2, &param0->unk_190.unk_00_val2.unk_00);
-    ov61_0222AE88(param0->saveData, param3, param4, &param0->unk_190.unk_00_val2.unk_80, param0->heapID);
+    ov61_0222AE88(param0->saveData, pcBoxes, param4, &param0->unk_190.unk_00_val2.unk_80, param0->heapID);
     ov61_0222AF88(param0->saveData, &param0->unk_190.unk_00_val2.unk_80, param1);
 
     param0->unk_40E = 60;

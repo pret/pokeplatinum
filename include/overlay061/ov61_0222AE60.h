@@ -14,7 +14,7 @@
 
 void ov61_0222AE60(SaveData *saveData, const UnkStruct_02029C68 *param1, UnkStruct_ov61_0222AE80 *param2);
 void ov61_0222AE80(const UnkStruct_ov61_0222AE80 *param0, UnkStruct_02029C68 *param1);
-void ov61_0222AE88(SaveData *saveData, const PCBoxes *param1, int param2, UnkStruct_ov62_02239DA4 *param3, int heapID);
+void ov61_0222AE88(SaveData *saveData, const PCBoxes *pcBoxes, int boxID, UnkStruct_ov62_02239DA4 *param3, int heapID);
 void ov61_0222AF88(SaveData *saveData, UnkStruct_ov62_02239DA4 *param1, int param2);
 void ov61_0222AFA4(SaveData *saveData, const UnkStruct_02030A80 *param1, UnkStruct_ov61_0222AFC0 *param2);
 void ov61_0222AFC0(const UnkStruct_ov61_0222AFC0 *param0, UnkStruct_02030A80 *param1);

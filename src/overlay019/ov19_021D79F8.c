@@ -372,19 +372,19 @@ static void ov19_021D7F9C(UnkStruct_ov19_021D8318 *param0, fx32 param1)
 
 static void ov19_021D803C(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021DCD18 *param1, int param2, int param3)
 {
-    const PCBoxes *v0;
+    const PCBoxes *pcBoxes;
     BoxPokemon *v1;
     int v2, v3;
     u32 v4;
 
-    v0 = ov19_GetPCBoxes(param0->unk_58F8);
+    pcBoxes = ov19_GetPCBoxes(param0->unk_58F8);
     v4 = (88 + (param0->unk_34 * 480)) + param3 * (4 * 4);
     param1 += param3;
     v3 = param3;
 
     for (v2 = 0; v2 < 5; v2++) {
         if (param1->unk_00 == NULL) {
-            v1 = PCBoxes_GetBoxMonAt(v0, param0->unk_30, v3);
+            v1 = PCBoxes_GetBoxMonAt(pcBoxes, param0->unk_30, v3);
 
             if (BoxPokemon_GetValue(v1, MON_DATA_SPECIES_EXISTS, NULL)) {
                 ov19_021DA548(param0->unk_58F0, v1, param0->unk_5814[v3], param0->unk_57D8[v3], param0->unk_CD8[v3], param2, 40 + 24 * v2, 2, ov19_021D85B4(v3), v4, param1);
@@ -415,14 +415,14 @@ static void ov19_021D8114(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021DCD
 
 static void ov19_021D813C(UnkStruct_ov19_021D8318 *param0, u32 param1)
 {
-    const PCBoxes *v0;
+    const PCBoxes *pcBoxes;
     BoxPokemon *v1;
     u32 v2, v3;
 
-    v0 = ov19_GetPCBoxes(param0->unk_58F8);
+    pcBoxes = ov19_GetPCBoxes(param0->unk_58F8);
 
     for (v2 = 0; v2 < (5 * 6); v2++) {
-        v1 = PCBoxes_GetBoxMonAt(v0, param1, v2);
+        v1 = PCBoxes_GetBoxMonAt(pcBoxes, param1, v2);
         v3 = BoxPokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
 
         if (v3) {

@@ -422,14 +422,14 @@ static void ov19_021DBF18(UnkStruct_ov19_021DBA9C *param0)
 
 static void ov19_021DBF4C(UnkStruct_ov19_021DBA9C *param0)
 {
-    const PCBoxes *v0;
+    const PCBoxes *pcBoxes;
     Window *v1;
     u32 v2, v3;
 
-    v0 = ov19_GetPCBoxes(param0->unk_0C);
+    pcBoxes = ov19_GetPCBoxes(param0->unk_0C);
     v1 = &param0->unk_10[0];
 
-    PCBoxes_BufferBoxName(v0, param0->unk_E0, param0->unk_4BFC);
+    PCBoxes_BufferBoxName(pcBoxes, param0->unk_E0, param0->unk_4BFC);
 
     v2 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_4BFC, 0);
     v3 = 48 - (v2 / 2);

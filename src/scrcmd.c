@@ -6431,7 +6431,7 @@ static BOOL ScrCmd_249(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
     TrainerInfo *v1 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
-    PCBoxes *v3 = SaveData_GetPCBoxes(fieldSystem->saveData);
+    PCBoxes *pcBoxes = SaveData_GetPCBoxes(fieldSystem->saveData);
     u16 v4 = ScriptContext_GetVar(ctx);
     u16 v5 = ScriptContext_GetVar(ctx);
     u16 v6 = ScriptContext_GetVar(ctx);
@@ -6443,10 +6443,10 @@ static BOOL ScrCmd_249(ScriptContext *ctx)
         return FALSE;
     }
 
-    if (PCBoxes_CheckHasUnlockedWallpaper(v3, v8)) {
+    if (PCBoxes_CheckHasUnlockedWallpaper(pcBoxes, v8)) {
         *v2 = 0;
     } else {
-        PCBoxes_UnlockWallpaper(v3, v8);
+        PCBoxes_UnlockWallpaper(pcBoxes, v8);
         *v2 = v8 + 1;
     }
 

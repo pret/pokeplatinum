@@ -28,7 +28,7 @@ static const u8 Unk_ov94_02246360[] = {
 
 int ov94_022443E0(UnkStruct_ov94_0223FD4C *param0, int param1)
 {
-    param0->unk_B8.monData = ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->unk_0C, param0->unk_110, param0->unk_112);
+    param0->unk_B8.monData = ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->pcBoxes, param0->unk_110, param0->unk_112);
     param0->unk_B8.dataType = SUMMARY_DATA_BOX_MON;
     param0->unk_B8.monMax = 1;
     param0->unk_B8.monIndex = 0;

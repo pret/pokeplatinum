@@ -512,10 +512,10 @@ static BOOL FieldTask_SafariEncounter(FieldTask *task)
                 ScriptManager_Start(task, 8809, NULL, NULL);
             }
         } else {
-            PCBoxes *boxes = SaveData_GetPCBoxes(fieldSystem->saveData);
+            PCBoxes *pcBoxes = SaveData_GetPCBoxes(fieldSystem->saveData);
             Party *party = SaveData_GetParty(fieldSystem->saveData);
 
-            if (PCBoxes_FirstEmptyBox(boxes) == MAX_PC_BOXES && Party_GetCurrentCount(party) == MAX_PARTY_SIZE) {
+            if (PCBoxes_FirstEmptyBox(pcBoxes) == MAX_PC_BOXES && Party_GetCurrentCount(party) == MAX_PARTY_SIZE) {
                 ScriptManager_Start(task, 8822, NULL, NULL);
             }
         }

@@ -10871,7 +10871,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 }
 
                 v16->unk_08 = Pokemon_GetValue(v3, MON_DATA_FORM, NULL);
-                v16->unk_48 = ov16_0223E228(v2->battleSys);
+                v16->pcBoxes = BattleSystem_PCBoxes(v2->battleSys);
                 v16->unk_10 = Pokemon_GetValue(v3, MON_DATA_GENDER, NULL);
                 v2->tmpPtr[0] = ApplicationManager_New(&Unk_020F2DAC, v16, 5);
                 v2->seqNum = 21;
@@ -10946,18 +10946,18 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                     v2->seqNum = 32;
                 } else {
                     {
-                        PCBoxes *v24;
+                        PCBoxes *pcBoxes;
                         u32 v25;
                         u32 v26;
                         int v27;
                         int v28;
                         int v29;
 
-                        v24 = ov16_0223E228(v2->battleSys);
-                        v25 = PCBoxes_GetCurrentBoxID(v24);
-                        v26 = PCBoxes_FirstEmptyBox(v24);
+                        pcBoxes = BattleSystem_PCBoxes(v2->battleSys);
+                        v25 = PCBoxes_GetCurrentBoxID(pcBoxes);
+                        v26 = PCBoxes_FirstEmptyBox(pcBoxes);
 
-                        PCBoxes_SetCurrentBox(v24, v26);
+                        PCBoxes_SetCurrentBox(pcBoxes, v26);
 
                         for (v27 = 0; v27 < LEARNED_MOVES_MAX; v27++) {
                             v28 = Pokemon_GetValue(v3, MON_DATA_MOVE1_MAX_PP + v27, NULL);
@@ -10968,7 +10968,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                             ov16_0223F9A0(v2->battleSys, v1);
                         }
 
-                        PCBoxes_TryStoreBoxMonInBox(v24, v26, Pokemon_GetBoxPokemon(v3));
+                        PCBoxes_TryStoreBoxMonInBox(pcBoxes, v26, Pokemon_GetBoxPokemon(v3));
 
                         if (v2->seqNum == 22) {
                             if (v25 == v26) {

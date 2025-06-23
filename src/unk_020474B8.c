@@ -206,13 +206,13 @@ BOOL ScrCmd_251(ScriptContext *param0)
 {
     BoxPokemon *v0;
     FieldSystem *fieldSystem = param0->fieldSystem;
-    PCBoxes *v2 = SaveData_GetPCBoxes(fieldSystem->saveData);
+    PCBoxes *pcBoxes = SaveData_GetPCBoxes(fieldSystem->saveData);
     StringTemplate **v3 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v4 = ScriptContext_ReadByte(param0);
     u16 v5 = ScriptContext_GetVar(param0);
     u32 v6 = v5 % (5 * 6);
     u32 v7 = v5 / (5 * 6);
-    v0 = PCBoxes_GetBoxMonAt(v2, v7, v6);
+    v0 = PCBoxes_GetBoxMonAt(pcBoxes, v7, v6);
 
     StringTemplate_SetNickname(*v3, v4, v0);
     return 0;
