@@ -420,9 +420,9 @@ void StringTemplate_SetGenderMarker(StringTemplate *template, u32 idx, enum Gend
     MessageLoader_Free(loader);
 }
 
-void StringTemplate_SetPCBoxName(StringTemplate *template, u32 idx, const PCBoxes *boxes, u32 boxIdx)
+void StringTemplate_SetPCBoxName(StringTemplate *template, u32 idx, const PCBoxes *pcBoxes, u32 boxIdx)
 {
-    PCBoxes_BufferBoxName(boxes, boxIdx, template->templateBuf);
+    PCBoxes_BufferBoxName(pcBoxes, boxIdx, template->templateBuf);
     SetStringTemplateArg(template, idx, template->templateBuf, NULL);
 }
 

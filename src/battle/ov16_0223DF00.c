@@ -112,7 +112,6 @@ int BattleSystem_BattlerOfType(BattleSystem *battleSys, int type);
 u8 BattleSystem_BattlerSlot(BattleSystem *battleSys, int battler);
 u8 Battler_Side(BattleSystem *battleSystem, int param1);
 void *ov16_0223E220(BattleSystem *battleSystem);
-PCBoxes *ov16_0223E228(BattleSystem *battleSystem);
 enum BattleTerrain BattleSystem_Terrain(BattleSystem *battleSys);
 int BattleSystem_MapHeader(BattleSystem *battleSystem);
 int BattleSystem_Partner(BattleSystem *battleSys, int battler);
@@ -496,7 +495,7 @@ void *ov16_0223E220(BattleSystem *battleSystem)
     return battleSystem->unk_1AC;
 }
 
-PCBoxes *ov16_0223E228(BattleSystem *battleSystem)
+PCBoxes *BattleSystem_PCBoxes(BattleSystem *battleSystem)
 {
     return battleSystem->pcBoxes;
 }

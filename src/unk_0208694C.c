@@ -1200,7 +1200,7 @@ UnkStruct_0208737C *sub_0208712C(int heapID, int param1, int param2, int param3,
     v0->unk_1C[0] = 0xffff;
     v0->textInputStr = Strbuf_Init(32, heapID);
     v0->unk_44 = 0;
-    v0->unk_48 = NULL;
+    v0->pcBoxes = NULL;
     v0->unk_10 = 0;
     v0->options = options;
     v0->unk_08 = 0;
@@ -1449,16 +1449,16 @@ static void sub_02087544(UnkStruct_02087A10 *param0, ApplicationManager *appMan)
 
         v0 = Strbuf_Init(200, HEAP_ID_18);
         param0->unk_180 = NULL;
-        v2 = PCBoxes_GetCurrentBoxID(v1->unk_48);
-        v3 = PCBoxes_FirstEmptyBox(v1->unk_48);
+        v2 = PCBoxes_GetCurrentBoxID(v1->pcBoxes);
+        v3 = PCBoxes_FirstEmptyBox(v1->pcBoxes);
 
-        StringTemplate_SetPCBoxName(param0->unk_168, 1, v1->unk_48, v2);
+        StringTemplate_SetPCBoxName(param0->unk_168, 1, v1->pcBoxes, v2);
 
         if (v2 != v3) {
-            StringTemplate_SetPCBoxName(param0->unk_168, 2, v1->unk_48, v3);
+            StringTemplate_SetPCBoxName(param0->unk_168, 2, v1->pcBoxes, v3);
             v1->unk_44 += 2;
         } else {
-            StringTemplate_SetPCBoxName(param0->unk_168, 2, v1->unk_48, v2);
+            StringTemplate_SetPCBoxName(param0->unk_168, 2, v1->pcBoxes, v2);
         }
 
         if ((param0->unk_158 == 0) || sub_02086F14(param0->unk_D8)) {

@@ -1351,7 +1351,7 @@ void sub_0203E0FC(FieldSystem *fieldSystem, int param1)
     v0->unk_00 = SaveData_GetGlobalTrade(fieldSystem->saveData);
     v0->unk_04 = SaveData_GetSystemData(fieldSystem->saveData);
     v0->unk_08 = SaveData_SaveTable(fieldSystem->saveData, SAVE_TABLE_ENTRY_PARTY);
-    v0->unk_0C = SaveData_GetPCBoxes(fieldSystem->saveData);
+    v0->pcBoxes = SaveData_GetPCBoxes(fieldSystem->saveData);
     v0->unk_10 = SaveData_GetPokedex(fieldSystem->saveData);
     v0->unk_14 = SaveData_GetWiFiList(fieldSystem->saveData);
     v0->wiFiHistory = SaveData_WiFiHistory(fieldSystem->saveData);

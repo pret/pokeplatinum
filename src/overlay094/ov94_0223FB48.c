@@ -87,8 +87,8 @@ static void ov94_02240EAC(BoxPokemon *boxMon, Sprite *param1, Sprite *param2, u1
 void *ov94_02240DD0(NARC *param0, u32 param1, NNSG2dCharacterData **param2, u32 param3);
 static int ov94_02241328(UnkStruct_ov94_0223BA88_sub2 *param0, UnkStruct_ov94_0223BA88_sub3 *param1);
 static void ov94_02241464(UnkStruct_ov94_0223BA88_sub2 *param0, Sprite **param1, UnkStruct_ov94_0223BA88_sub3 *param2, UnkStruct_ov94_02240FA0 *param3);
-static int ov94_0224121C(Party *param0, PCBoxes *param1, int param2, int param3);
-static int ov94_022412F4(Party *param0, PCBoxes *param1, int param2, int param3);
+static int ov94_0224121C(Party *param0, PCBoxes *pcBoxes, int param2, int param3);
+static int ov94_022412F4(Party *param0, PCBoxes *pcBoxes, int param2, int param3);
 static int ov94_02240BB0(UnkStruct_ov94_0223FD4C *param0);
 static int BoxPokemon_HasUnusedRibbons(BoxPokemon *boxMon);
 static BOOL BoxPokemon_FormNotInDP(BoxPokemon *boxMon);
@@ -556,10 +556,10 @@ static int ov94_022402BC(UnkStruct_ov94_0223FD4C *param0)
                 if (param0->unk_112 != 31) {
                     Sound_PlayEffect(SEQ_SE_CONFIRM);
 
-                    switch (ov94_022412F4(param0->unk_00->unk_08, param0->unk_00->unk_0C, param0->unk_110, param0->unk_112)) {
+                    switch (ov94_022412F4(param0->unk_00->unk_08, param0->unk_00->pcBoxes, param0->unk_110, param0->unk_112)) {
                     case 1:
-                        if (ov94_0224121C(param0->unk_00->unk_08, param0->unk_00->unk_0C, param0->unk_110, param0->unk_112)) {
-                            StringTemplate_SetNickname(param0->unk_B8C, 0, ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->unk_0C, param0->unk_110, param0->unk_112));
+                        if (ov94_0224121C(param0->unk_00->unk_08, param0->unk_00->pcBoxes, param0->unk_110, param0->unk_112)) {
+                            StringTemplate_SetNickname(param0->unk_B8C, 0, ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->pcBoxes, param0->unk_110, param0->unk_112));
                             ov94_02240D58(param0, 22, TEXT_SPEED_FAST, 0, 0xf0f, 0);
                             ov94_0223C3F4(param0, 3, 7);
                         } else {
@@ -587,12 +587,12 @@ static int ov94_022402BC(UnkStruct_ov94_0223FD4C *param0)
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
             } else {
                 if (param0->unk_112 != 31) {
-                    switch (ov94_022412F4(param0->unk_00->unk_08, param0->unk_00->unk_0C, param0->unk_110, param0->unk_112)) {
+                    switch (ov94_022412F4(param0->unk_00->unk_08, param0->unk_00->pcBoxes, param0->unk_110, param0->unk_112)) {
                     case 1: {
-                        BoxPokemon *v0 = ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->unk_0C, param0->unk_110, param0->unk_112);
+                        BoxPokemon *v0 = ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->pcBoxes, param0->unk_110, param0->unk_112);
 
                         if (ov94_02241384(v0, &param0->unk_250[param0->unk_11C].unk_F0)) {
-                            if (ov94_0224121C(param0->unk_00->unk_08, param0->unk_00->unk_0C, param0->unk_110, param0->unk_112)) {
+                            if (ov94_0224121C(param0->unk_00->unk_08, param0->unk_00->pcBoxes, param0->unk_110, param0->unk_112)) {
                                 StringTemplate_SetNickname(param0->unk_B8C, 0, v0);
                                 ov94_02240D58(param0, 18, TEXT_SPEED_FAST, 0, 0xf0f, 0);
                                 ov94_0223C3F4(param0, 3, 9);
@@ -719,7 +719,7 @@ static int ov94_02240688(UnkStruct_ov94_0223FD4C *param0)
         StringList_Free(param0->unk_10CC);
         Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
 
-        v0 = ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->unk_0C, param0->unk_110, param0->unk_112);
+        v0 = ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->pcBoxes, param0->unk_110, param0->unk_112);
 
         if (BoxPokemon_HasUnusedRibbons(v0)) {
             ov94_02240D58(param0, 37, TEXT_SPEED_FAST, 0, 0xf0f, 1);
@@ -745,7 +745,7 @@ static int ov94_02240688(UnkStruct_ov94_0223FD4C *param0)
             }
 
             if (v1 == 0) {
-                param0->unk_114 = ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->unk_0C, param0->unk_110, param0->unk_112);
+                param0->unk_114 = ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->pcBoxes, param0->unk_110, param0->unk_112);
                 param0->unk_2C = 2;
 
                 ov94_0223C4C0(param0, 6, 0);
@@ -811,7 +811,7 @@ static int ov94_022408E8(UnkStruct_ov94_0223FD4C *param0)
         StringList_Free(param0->unk_10CC);
         Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
 
-        boxMon = ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->unk_0C, param0->unk_110, param0->unk_112);
+        boxMon = ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->pcBoxes, param0->unk_110, param0->unk_112);
 
         if (BoxPokemon_HasUnusedRibbons(boxMon)) {
             ov94_02240D58(param0, 37, TEXT_SPEED_FAST, 0, 0xf0f, 1);
@@ -936,7 +936,7 @@ static int ov94_02240BB0(UnkStruct_ov94_0223FD4C *param0)
         }
     }
 
-    param0->unk_114 = ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->unk_0C, param0->unk_110, param0->unk_112);
+    param0->unk_114 = ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->pcBoxes, param0->unk_110, param0->unk_112);
     param0->unk_2C = 2;
     param0->unk_1110 = 1;
 
@@ -973,7 +973,7 @@ static int ov94_02240CA8(UnkStruct_ov94_0223FD4C *param0)
             Window_EraseMessageBox(&param0->unk_109C, 0);
             param0->unk_2C = 1;
         } else {
-            param0->unk_114 = ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->unk_0C, param0->unk_110, param0->unk_112);
+            param0->unk_114 = ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->pcBoxes, param0->unk_110, param0->unk_112);
             param0->unk_2C = 2;
             ov94_0223C4C0(param0, 6, 0);
         }
@@ -1125,7 +1125,7 @@ static void ov94_02240FA0(UnkStruct_ov94_0223FD4C *param0, int param1)
     u16 v0[30], v1, v2;
     Pokemon *v3;
     BoxPokemon *v4;
-    PCBoxes *v5 = param0->unk_00->unk_0C;
+    PCBoxes *pcBoxes = param0->unk_00->pcBoxes;
     NARC *v6;
     UnkStruct_ov94_02240FA0 *v7;
 
@@ -1134,19 +1134,19 @@ static void ov94_02240FA0(UnkStruct_ov94_0223FD4C *param0, int param1)
 
     if ((param1 >= 0) && (param1 < 18)) {
         for (v1 = 0; v1 < 30; v1++) {
-            ov94_02240E50(PCBoxes_GetBoxMonAt(v5, param1, v1), &param0->unk_1108->unk_00[v1]);
+            ov94_02240E50(PCBoxes_GetBoxMonAt(pcBoxes, param1, v1), &param0->unk_1108->unk_00[v1]);
         }
 
         for (v1 = 0; v1 < 30; v1++) {
             param0->unk_1108->unk_00[v1].species = SPECIES_NONE;
-            ov94_02240EAC(PCBoxes_GetBoxMonAt(v5, param1, v1), param0->unk_E28[v1], param0->unk_EA0[v1], &v0[v1], v1, v6, &param0->unk_1108->unk_00[v1], &v7[v1]);
+            ov94_02240EAC(PCBoxes_GetBoxMonAt(pcBoxes, param1, v1), param0->unk_E28[v1], param0->unk_EA0[v1], &v0[v1], v1, v6, &param0->unk_1108->unk_00[v1], &v7[v1]);
 
             if (v1 < 6) {
                 Sprite_SetDrawFlag(param0->unk_F18[v1], 0);
             }
         }
 
-        PCBoxes_BufferBoxName(v5, param1, param0->unk_BA4);
+        PCBoxes_BufferBoxName(pcBoxes, param1, param0->unk_BA4);
     } else {
         int v8 = Party_GetCurrentCount(param0->unk_00->unk_08);
 
@@ -1199,7 +1199,7 @@ int ov94_022411D0(int param0)
     }
 }
 
-BoxPokemon *ov94_022411DC(Party *param0, PCBoxes *param1, int param2, int param3)
+BoxPokemon *ov94_022411DC(Party *param0, PCBoxes *pcBoxes, int param2, int param3)
 {
     if (ov94_022411D0(param2)) {
         if (param3 > (Party_GetCurrentCount(param0) - 1)) {
@@ -1209,10 +1209,10 @@ BoxPokemon *ov94_022411DC(Party *param0, PCBoxes *param1, int param2, int param3
         return Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0, param3));
     }
 
-    return PCBoxes_GetBoxMonAt(param1, param2, param3);
+    return PCBoxes_GetBoxMonAt(pcBoxes, param2, param3);
 }
 
-static int ov94_0224121C(Party *param0, PCBoxes *param1, int param2, int param3)
+static int ov94_0224121C(Party *param0, PCBoxes *pcBoxes, int param2, int param3)
 {
     if (ov94_022411D0(param2)) {
         if (Party_GetCurrentCount(param0) < 2) {
@@ -1291,9 +1291,9 @@ static BOOL BoxPokemon_HeldItemNotInDP(BoxPokemon *boxMon)
     return FALSE;
 }
 
-static int ov94_022412F4(Party *param0, PCBoxes *param1, int param2, int param3)
+static int ov94_022412F4(Party *param0, PCBoxes *pcBoxes, int param2, int param3)
 {
-    BoxPokemon *v0 = ov94_022411DC(param0, param1, param2, param3);
+    BoxPokemon *v0 = ov94_022411DC(param0, pcBoxes, param2, param3);
 
     if (v0 == NULL) {
         return 0;
