@@ -5,6 +5,7 @@
 
 #include "constants/field/dynamic_map_features.h"
 #include "generated/movement_actions.h"
+#include "generated/movement_types.h"
 
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
@@ -671,7 +672,7 @@ static int sub_02068308(UnkStruct_020EF6D0 *param0)
     sub_020656AC(param0->unk_24);
 
     if ((PersistedMapFeatures_IsCurrentDynamicMap(param0->fieldSystem, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) == 0) || (ov8_0224C5DC(param0->fieldSystem, param0->unk_24) == 0)) {
-        MapObject_SetMoveCode(param0->unk_24, 0x0);
+        MapObject_SetMoveCode(param0->unk_24, MOVEMENT_TYPE_NONE);
     }
 
     param0->unk_00 = 17;

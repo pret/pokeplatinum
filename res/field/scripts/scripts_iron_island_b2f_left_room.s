@@ -27,7 +27,7 @@ _0035:
 
 _004A:
     SetObjectEventPos 4, 19, 41
-    ScrCmd_188 4, 17
+    SetObjectEventMovType 4, MOVEMENT_TYPE_LOOK_RIGHT
     SetObjectEventDir 4, DIR_EAST
     End
 

@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "generated/movement_actions.h"
+#include "generated/movement_types.h"
 
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0205B43C_decl.h"
@@ -282,7 +283,7 @@ static void sub_0205C51C(UnkStruct_0205C22C *param0, MapObjectManager *param1)
                 sub_02062DB4(v0, 0);
 
                 if ((param0->unk_0C[v1].unk_00 == 1) && (param0->unk_0C[v1].unk_09 == 0)) {
-                    MapObject_SetMoveCode(v0, 0x3);
+                    MapObject_SetMoveCode(v0, MOVEMENT_TYPE_WANDER_AROUND);
                     MapObject_SetMovementRangeX(v0, 1);
                     MapObject_SetMovementRangeZ(v0, 1);
                     param0->unk_0C[v1].unk_09 = 1;
@@ -394,7 +395,7 @@ static void sub_0205C788(UnkStruct_0205C680 *param0, MapObject *param1)
 {
     LocalMapObj_SetAnimationCode(param1, MOVEMENT_ACTION_WARP_OUT);
     sub_02062DB4(param1, 1);
-    MapObject_SetMoveCode(param1, 0x0);
+    MapObject_SetMoveCode(param1, MOVEMENT_TYPE_NONE);
     sub_0205C680(param0, 1);
 
     param0->unk_04 = 0;

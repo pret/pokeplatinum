@@ -801,7 +801,7 @@ _0AF4:
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
     ClearFlag FLAG_UNK_0x02B0
     SetObjectEventPos 6, 11, 11
-    ScrCmd_188 6, 14
+    SetObjectEventMovType 6, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 6, DIR_NORTH
     AddObject 6
     WaitFanfare SEQ_SE_DP_DOOR_OPEN
@@ -832,7 +832,7 @@ _0B5C:
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
     ClearFlag FLAG_UNK_0x02B3
     SetObjectEventPos 9, 11, 11
-    ScrCmd_188 9, 14
+    SetObjectEventMovType 9, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 9, DIR_NORTH
     AddObject 9
     WaitFanfare SEQ_SE_DP_DOOR_OPEN
@@ -861,7 +861,7 @@ _0BBC:
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
     ClearFlag FLAG_UNK_0x02B6
     SetObjectEventPos 10, 11, 11
-    ScrCmd_188 10, 14
+    SetObjectEventMovType 10, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 10, DIR_NORTH
     AddObject 10
     WaitFanfare SEQ_SE_DP_DOOR_OPEN
@@ -892,7 +892,7 @@ _0C24:
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
     ClearFlag FLAG_UNK_0x02B8
     SetObjectEventPos 12, 11, 11
-    ScrCmd_188 12, 14
+    SetObjectEventMovType 12, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 12, DIR_NORTH
     AddObject 12
     WaitFanfare SEQ_SE_DP_DOOR_OPEN
@@ -1210,13 +1210,13 @@ _10DA:
     Call _2209
     GoToIfEq VAR_RESORT_VILLA_VISITOR, 0, _1103
     SetObjectEventPos 1, 11, 11
-    ScrCmd_188 1, 14
+    SetObjectEventMovType 1, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 1, DIR_NORTH
     Return
 
 _1103:
     SetObjectEventPos 1, 10, 8
-    ScrCmd_188 1, 14
+    SetObjectEventMovType 1, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 1, DIR_NORTH
     ClearFlag FLAG_UNK_0x02A7
     AddObject 1
@@ -1226,13 +1226,13 @@ _1121:
     Call _2209
     GoToIfEq VAR_RESORT_VILLA_VISITOR, 1, _114A
     SetObjectEventPos 0, 11, 11
-    ScrCmd_188 0, 14
+    SetObjectEventMovType 0, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 0, DIR_NORTH
     Return
 
 _114A:
     SetObjectEventPos 0, 10, 8
-    ScrCmd_188 0, 14
+    SetObjectEventMovType 0, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 0, DIR_NORTH
     ClearFlag FLAG_UNK_0x02A8
     AddObject 0
@@ -1246,14 +1246,14 @@ _1168:
 
 _1183:
     SetObjectEventPos 2, 11, 11
-    ScrCmd_188 2, 14
+    SetObjectEventMovType 2, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 2, DIR_NORTH
     Return
 
 _1199:
     GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, _1183
     SetObjectEventPos 2, 10, 8
-    ScrCmd_188 2, 14
+    SetObjectEventMovType 2, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 2, DIR_NORTH
     ClearFlag FLAG_UNK_0x02A9
     AddObject 2
@@ -1267,14 +1267,14 @@ _11C2:
 
 _11DD:
     SetObjectEventPos 5, 11, 11
-    ScrCmd_188 5, 14
+    SetObjectEventMovType 5, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 5, DIR_NORTH
     Return
 
 _11F3:
     GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, _11DD
     SetObjectEventPos 5, 10, 8
-    ScrCmd_188 5, 14
+    SetObjectEventMovType 5, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 5, DIR_NORTH
     ClearFlag FLAG_UNK_0x02AE
     AddObject 5
@@ -1284,13 +1284,13 @@ _121C:
     Call _2209
     GoToIfEq VAR_RESORT_VILLA_VISITOR, 12, _1245
     SetObjectEventPos 12, 11, 11
-    ScrCmd_188 12, 14
+    SetObjectEventMovType 12, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 12, DIR_NORTH
     Return
 
 _1245:
     SetObjectEventPos 12, 10, 8
-    ScrCmd_188 12, 14
+    SetObjectEventMovType 12, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 12, DIR_NORTH
     ClearFlag FLAG_UNK_0x02B8
     AddObject 12

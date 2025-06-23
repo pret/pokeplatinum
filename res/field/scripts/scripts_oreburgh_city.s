@@ -79,7 +79,7 @@ _00CC:
 _00D7:
     LockAll
     ClearFlag FLAG_UNK_0x017C
-    ScrCmd_188 3, 16
+    SetObjectEventMovType 3, MOVEMENT_TYPE_LOOK_LEFT
     SetObjectEventDir 3, DIR_WEST
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 0x2EC, _011E

@@ -500,7 +500,7 @@ static BOOL ScrCmd_151(ScriptContext *ctx);
 static BOOL ScrCmd_152(ScriptContext *ctx);
 static BOOL ScrCmd_SetObjectEventPos(ScriptContext *ctx);
 static BOOL ScrCmd_187(ScriptContext *ctx);
-static BOOL ScrCmd_188(ScriptContext *ctx);
+static BOOL ScrCmd_SetObjectEventMovType(ScriptContext *ctx);
 static BOOL ScrCmd_SetObjectEventDir(ScriptContext *ctx);
 static BOOL ScrCmd_SetWarpEventPos(ScriptContext *ctx);
 static BOOL ScrCmd_18B(ScriptContext *ctx);
@@ -1161,7 +1161,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_185,
     ScrCmd_SetObjectEventPos,
     ScrCmd_187,
-    ScrCmd_188,
+    ScrCmd_SetObjectEventMovType,
     ScrCmd_SetObjectEventDir,
     ScrCmd_SetWarpEventPos,
     ScrCmd_18B,
@@ -5443,12 +5443,12 @@ static BOOL ScrCmd_187(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_188(ScriptContext *ctx)
+static BOOL ScrCmd_SetObjectEventMovType(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
-    u16 v1 = ScriptContext_GetVar(ctx);
+    u16 localID = ScriptContext_GetVar(ctx);
+    u16 movementType = ScriptContext_GetVar(ctx);
 
-    MapHeaderData_SetObjectEventMovementType(ctx->fieldSystem, v0, v1);
+    MapHeaderData_SetObjectEventMovementType(ctx->fieldSystem, localID, movementType);
     return FALSE;
 }
 
