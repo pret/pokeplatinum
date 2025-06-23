@@ -32,7 +32,7 @@ _0073:
 _007B:
     SetObjectEventPos 0, 8, 6
     SetObjectEventDir 0, DIR_SOUTH
-    SetObjectEventMovType 0, MOVEMENT_TYPE_NONE
+    SetObjectEventMovementType 0, MOVEMENT_TYPE_NONE
     SetObjectEventPos 1, 9, 6
     SetObjectEventDir 1, DIR_WEST
     Return

@@ -37,7 +37,7 @@ _0077:
 
 _0083:
     SetObjectEventPos 18, 0x349, 0x316
-    SetObjectEventMovType 18, MOVEMENT_TYPE_LOOK_LEFT
+    SetObjectEventMovementType 18, MOVEMENT_TYPE_LOOK_LEFT
     SetObjectEventDir 18, DIR_WEST
     End
 
@@ -479,7 +479,7 @@ _05D7:
     RemoveObject 18
     WaitTime 1, VAR_RESULT
     SetObjectEventPos 18, 0x34D, 0x2EC
-    SetObjectEventMovType 18, MOVEMENT_TYPE_LOOK_SOUTH
+    SetObjectEventMovementType 18, MOVEMENT_TYPE_LOOK_SOUTH
     SetObjectEventDir 18, DIR_SOUTH
     ClearFlag FLAG_UNK_0x0239
     AddObject 18

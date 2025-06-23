@@ -267,7 +267,7 @@ _03DE:
     WaitABXPadPress
     CloseMessage
     CallCommonScript 0x7F9
-    SetObjectEventMovType 2, MOVEMENT_TYPE_LOOK_LEFT
+    SetObjectEventMovementType 2, MOVEMENT_TYPE_LOOK_LEFT
     SetVar VAR_FOLLOWER_RIVAL_STATE, 1
     ReleaseAll
     End

@@ -2178,7 +2178,7 @@
     .short \arg4
     .endm
 
-    .macro SetObjectEventMovType localID, movementType
+    .macro SetObjectEventMovementType localID, movementType
     .short 392
     .short \localID
     .short \movementType

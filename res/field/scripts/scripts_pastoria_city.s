@@ -40,7 +40,7 @@ _005E:
 _009C:
     SetObjectEventPos 21, 0x27D, 0x32C
     SetObjectEventDir 21, DIR_EAST
-    SetObjectEventMovType 21, MOVEMENT_TYPE_LOOK_RIGHT
+    SetObjectEventMovementType 21, MOVEMENT_TYPE_LOOK_RIGHT
     End
 
 _00B2:
@@ -545,7 +545,7 @@ _04C8:
     LockAll
     ClearFlag FLAG_UNK_0x01A9
     SetObjectEventPos 26, 0x253, 0x333
-    SetObjectEventMovType 26, MOVEMENT_TYPE_LOOK_LEFT
+    SetObjectEventMovementType 26, MOVEMENT_TYPE_LOOK_LEFT
     SetObjectEventDir 26, DIR_WEST
     AddObject 26
     ApplyMovement 26, _05B0
@@ -631,7 +631,7 @@ _05E0:
     LockAll
     ClearFlag FLAG_UNK_0x01A9
     SetObjectEventPos 26, 0x253, 0x333
-    SetObjectEventMovType 26, MOVEMENT_TYPE_LOOK_SOUTH
+    SetObjectEventMovementType 26, MOVEMENT_TYPE_LOOK_SOUTH
     SetObjectEventDir 26, DIR_SOUTH
     AddObject 26
     ScrCmd_062 26
@@ -650,7 +650,7 @@ _05E0:
     ClearFlag FLAG_UNK_0x01FB
     SetObjectEventPos 27, 0x24D, 0x33B
     SetObjectEventDir 27, DIR_NORTH
-    SetObjectEventMovType 27, MOVEMENT_TYPE_LOOK_NORTH
+    SetObjectEventMovementType 27, MOVEMENT_TYPE_LOOK_NORTH
     AddObject 27
     ScrCmd_062 27
     ApplyMovement 27, _0764
@@ -701,19 +701,19 @@ _05E0:
 _0721:
     SetObjectEventPos 26, 0x260, 0x32E
     SetObjectEventDir 26, DIR_SOUTH
-    SetObjectEventMovType 26, MOVEMENT_TYPE_LOOK_SOUTH
+    SetObjectEventMovementType 26, MOVEMENT_TYPE_LOOK_SOUTH
     Return
 
 _0737:
     SetObjectEventPos 27, 0x263, 0x32A
     SetObjectEventDir 27, DIR_NORTH
-    SetObjectEventMovType 27, MOVEMENT_TYPE_LOOK_NORTH
+    SetObjectEventMovementType 27, MOVEMENT_TYPE_LOOK_NORTH
     Return
 
 _074D:
     SetObjectEventPos 26, 0x263, 0x32A
     SetObjectEventDir 26, DIR_NORTH
-    SetObjectEventMovType 26, MOVEMENT_TYPE_LOOK_NORTH
+    SetObjectEventMovementType 26, MOVEMENT_TYPE_LOOK_NORTH
     Return
 
     .balign 4, 0
@@ -833,7 +833,7 @@ _086F:
     ClearFlag FLAG_UNK_0x020C
     SetObjectEventPos 21, 0x262, 0x328
     SetObjectEventDir 21, DIR_EAST
-    SetObjectEventMovType 21, MOVEMENT_TYPE_LOOK_RIGHT
+    SetObjectEventMovementType 21, MOVEMENT_TYPE_LOOK_RIGHT
     AddObject 21
     ScrCmd_062 21
     Return
@@ -853,7 +853,7 @@ _08FA:
     RemoveObject 21
     ClearFlag FLAG_UNK_0x020C
     SetObjectEventPos 21, 0x27D, 0x32C
-    SetObjectEventMovType 21, MOVEMENT_TYPE_LOOK_RIGHT
+    SetObjectEventMovementType 21, MOVEMENT_TYPE_LOOK_RIGHT
     SetObjectEventDir 21, DIR_EAST
     AddObject 21
     Return

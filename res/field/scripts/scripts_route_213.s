@@ -34,7 +34,7 @@ _0051:
 _0062:
     SetObjectEventPos 30, 0x28E, 0x32C
     SetObjectEventDir 30, DIR_EAST
-    SetObjectEventMovType 30, MOVEMENT_TYPE_LOOK_RIGHT
+    SetObjectEventMovementType 30, MOVEMENT_TYPE_LOOK_RIGHT
     Return
 
 _0078:
@@ -79,7 +79,7 @@ _010B:
     RemoveObject 30
     SetObjectEventPos 30, 0x2AB, 0x341
     SetObjectEventDir 30, DIR_EAST
-    SetObjectEventMovType 30, MOVEMENT_TYPE_LOOK_RIGHT
+    SetObjectEventMovementType 30, MOVEMENT_TYPE_LOOK_RIGHT
     ClearFlag FLAG_UNK_0x021A
     AddObject 30
     ReleaseAll

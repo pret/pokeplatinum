@@ -54,7 +54,7 @@ _00F8:
 _0100:
     SetObjectEventPos 16, 55, 0x2CC
     SetObjectEventDir 16, DIR_EAST
-    SetObjectEventMovType 16, MOVEMENT_TYPE_LOOK_RIGHT
+    SetObjectEventMovementType 16, MOVEMENT_TYPE_LOOK_RIGHT
     Return
 
 _0116:
@@ -64,13 +64,13 @@ _0116:
 _011C:
     SetObjectEventPos 11, 37, 0x2D1
     SetObjectEventDir 11, DIR_SOUTH
-    SetObjectEventMovType 11, MOVEMENT_TYPE_LOOK_SOUTH
+    SetObjectEventMovementType 11, MOVEMENT_TYPE_LOOK_SOUTH
     Return
 
 _0132:
     SetObjectEventPos 11, 39, 0x2DD
     SetObjectEventDir 11, DIR_NORTH
-    SetObjectEventMovType 11, MOVEMENT_TYPE_LOOK_NORTH
+    SetObjectEventMovementType 11, MOVEMENT_TYPE_LOOK_NORTH
     Return
 
 _0148:
@@ -145,7 +145,7 @@ _027C:
     GoTo _028A
 
 _028A:
-    SetObjectEventMovType 11, MOVEMENT_TYPE_LOOK_RIGHT
+    SetObjectEventMovementType 11, MOVEMENT_TYPE_LOOK_RIGHT
     ClearFlag FLAG_UNK_0x01B2
     AddObject 11
     ApplyMovement 11, _0340
@@ -675,7 +675,7 @@ _0959:
     RemoveObject 16
     SetObjectEventPos 16, 45, 0x2EE
     SetObjectEventDir 16, DIR_WEST
-    SetObjectEventMovType 16, MOVEMENT_TYPE_LOOK_LEFT
+    SetObjectEventMovementType 16, MOVEMENT_TYPE_LOOK_LEFT
     AddObject 16
     SetVar VAR_UNK_0x40F8, 4
     ReleaseAll

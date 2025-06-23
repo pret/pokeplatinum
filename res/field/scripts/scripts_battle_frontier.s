@@ -50,7 +50,7 @@ _009A:
     ScrCmd_329 VAR_MAP_LOCAL_1, VAR_MAP_LOCAL_2, VAR_MAP_LOCAL_3, VAR_MAP_LOCAL_4
     SetObjectEventPos 29, VAR_MAP_LOCAL_1, VAR_MAP_LOCAL_2
     SetObjectEventDir 29, VAR_MAP_LOCAL_3
-    SetObjectEventMovType 29, VAR_MAP_LOCAL_4
+    SetObjectEventMovementType 29, VAR_MAP_LOCAL_4
     ClearFlag FLAG_UNK_0x02C3
     End
 

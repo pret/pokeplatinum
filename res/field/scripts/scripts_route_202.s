@@ -30,7 +30,7 @@ _0053:
 _005B:
     SetObjectEventPos 3, 186, 0x331
     SetObjectEventDir 3, DIR_SOUTH
-    SetObjectEventMovType 3, MOVEMENT_TYPE_LOOK_SOUTH
+    SetObjectEventMovementType 3, MOVEMENT_TYPE_LOOK_SOUTH
     Return
 
 _0071:

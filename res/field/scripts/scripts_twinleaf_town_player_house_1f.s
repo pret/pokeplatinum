@@ -24,7 +24,7 @@ _002E:
 _0048:
     SetObjectEventPos 0, 2, 4
     SetObjectEventDir 0, DIR_NORTH
-    SetObjectEventMovType 0, MOVEMENT_TYPE_LOOK_NORTH
+    SetObjectEventMovementType 0, MOVEMENT_TYPE_LOOK_NORTH
     Return
 
 _005E:

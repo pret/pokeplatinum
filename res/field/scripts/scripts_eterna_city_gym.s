@@ -234,21 +234,21 @@ _02DA:
     Return
 
 _0314:
-    SetObjectEventMovType VAR_0x8007, MOVEMENT_TYPE_LOOK_SOUTH
+    SetObjectEventMovementType VAR_0x8007, MOVEMENT_TYPE_LOOK_SOUTH
     SetObjectEventDir VAR_0x8007, DIR_SOUTH
     Return
 
 _0322:
-    SetObjectEventMovType VAR_0x8007, MOVEMENT_TYPE_LOOK_NORTH
+    SetObjectEventMovementType VAR_0x8007, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir VAR_0x8007, DIR_NORTH
     Return
 
 _0330:
-    SetObjectEventMovType VAR_0x8007, MOVEMENT_TYPE_LOOK_RIGHT
+    SetObjectEventMovementType VAR_0x8007, MOVEMENT_TYPE_LOOK_RIGHT
     SetObjectEventDir VAR_0x8007, DIR_EAST
     Return
 
 _033E:
-    SetObjectEventMovType VAR_0x8007, MOVEMENT_TYPE_LOOK_LEFT
+    SetObjectEventMovementType VAR_0x8007, MOVEMENT_TYPE_LOOK_LEFT
     SetObjectEventDir VAR_0x8007, DIR_WEST
     Return

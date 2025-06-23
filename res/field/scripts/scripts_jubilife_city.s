@@ -44,13 +44,13 @@ _0072:
 _00AC:
     SetObjectEventPos 31, 177, 0x306
     SetObjectEventDir 31, DIR_SOUTH
-    SetObjectEventMovType 31, MOVEMENT_TYPE_LOOK_SOUTH
+    SetObjectEventMovementType 31, MOVEMENT_TYPE_LOOK_SOUTH
     Return
 
 _00C2:
     SetObjectEventPos 7, 176, 0x2E3
     SetObjectEventDir 7, DIR_WEST
-    SetObjectEventMovType 7, MOVEMENT_TYPE_LOOK_LEFT
+    SetObjectEventMovementType 7, MOVEMENT_TYPE_LOOK_LEFT
     Return
 
 _00D8:
@@ -967,7 +967,7 @@ _0C7C:
     RemoveObject 25
     RemoveObject 27
     SetObjectEventPos 30, 174, 0x2EE
-    SetObjectEventMovType 30, MOVEMENT_TYPE_LOOK_NORTH
+    SetObjectEventMovementType 30, MOVEMENT_TYPE_LOOK_NORTH
     ClearFlag FLAG_UNK_0x018B
     AddObject 30
     ScrCmd_062 30
@@ -1758,7 +1758,7 @@ _14CF:
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     SetObjectEventPos 31, 179, VAR_0x8005
     SetObjectEventDir 31, DIR_EAST
-    SetObjectEventMovType 31, MOVEMENT_TYPE_LOOK_RIGHT
+    SetObjectEventMovementType 31, MOVEMENT_TYPE_LOOK_RIGHT
     ClearFlag FLAG_UNK_0x0181
     AddObject 31
     ApplyMovement 31, _1538

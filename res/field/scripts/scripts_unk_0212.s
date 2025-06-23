@@ -150,7 +150,7 @@ _01B1:
 
 _01BE:
     SetObjectEventPos 9, 24, 6
-    SetObjectEventMovType 9, MOVEMENT_TYPE_LOOK_SOUTH
+    SetObjectEventMovementType 9, MOVEMENT_TYPE_LOOK_SOUTH
     SetObjectEventDir 9, DIR_SOUTH
     Return
 
