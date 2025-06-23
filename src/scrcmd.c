@@ -484,7 +484,7 @@ static BOOL sub_020439F4(ScriptContext *ctx);
 static BOOL ScrCmd_145(ScriptContext *ctx);
 static BOOL sub_02043A4C(ScriptContext *ctx);
 static BOOL ScrCmd_153(ScriptContext *ctx);
-static BOOL ScrCmd_154(ScriptContext *ctx);
+static BOOL ScrCmd_LoadTrainerAppearances(ScriptContext *ctx);
 static BOOL ScrCmd_155(ScriptContext *ctx);
 static BOOL ScrCmd_29C(ScriptContext *ctx);
 static BOOL ScrCmd_156(ScriptContext *ctx);
@@ -1109,7 +1109,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_151,
     ScrCmd_152,
     ScrCmd_153,
-    ScrCmd_154,
+    ScrCmd_LoadTrainerAppearances,
     ScrCmd_155,
     ScrCmd_156,
     ScrCmd_CheckPokedexAcquired,
@@ -5293,12 +5293,12 @@ static BOOL ScrCmd_153(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_154(ScriptContext *ctx)
+static BOOL ScrCmd_LoadTrainerAppearances(ScriptContext *ctx)
 {
     TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
     StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
 
-    sub_0205C980(TrainerInfo_ID(v0), TrainerInfo_Gender(v0), *v1);
+    TrainerInfo_LoadAppearanceVariants(TrainerInfo_ID(v0), TrainerInfo_Gender(v0), *v1);
     return FALSE;
 }
 
