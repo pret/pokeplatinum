@@ -5,7 +5,6 @@ typedef struct PlayTime {
     u16 hours;
     u8 minutes;
     u8 seconds;
-    u8 padding_04[2];
 } PlayTime;
 
 void PlayTime_Init(PlayTime *playTime);

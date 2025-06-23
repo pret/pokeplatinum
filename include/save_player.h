@@ -11,6 +11,7 @@ typedef struct PlayerSave {
     TrainerInfo info;
     u16 coins;
     PlayTime playTime;
+    u8 padding_2A[2];
 } PlayerSave;
 
 int Player_SaveSize(void);
