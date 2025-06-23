@@ -1088,7 +1088,7 @@ static BOOL ov83_0223C8B0(UnkStruct_ov83_0223C344 *param0, Poffin *param1, int p
     u16 v1;
     int v2;
     BOOL v3 = 1;
-    TVBroadcast *v4 = SaveData_GetTVBroadcast(param0->unk_10->saveData);
+    TVBroadcast *broadcast = SaveData_GetTVBroadcast(param0->unk_10->saveData);
 
     for (v0 = 0; v0 < param2; v0++) {
         v1 = PoffinCase_AddPoffin(param0->unk_10->poffinCase, param1);
@@ -1101,7 +1101,7 @@ static BOOL ov83_0223C8B0(UnkStruct_ov83_0223C344 *param0, Poffin *param1, int p
 
     if (param0->unk_26 == 0) {
         v2 = Poffin_GetAttribute(param1, 0);
-        sub_0206CFCC(v4, v2);
+        sub_0206CFCC(broadcast, v2);
     }
 
     return v3;
