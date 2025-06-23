@@ -44,7 +44,7 @@ static BOOL ov104_02239464(UnkStruct_ov104_0222E930 *param0, UnkStruct_0204AFC4 
 
 BOOL ov104_02239130(UnkStruct_ov104_0222E930 *param0)
 {
-    TVBroadcast *v0;
+    TVBroadcast *broadcast;
     Pokemon *v1;
     UnkStruct_0204AFC4 *v2;
     int v3, v4;
@@ -63,8 +63,8 @@ BOOL ov104_02239130(UnkStruct_ov104_0222E930 *param0)
         break;
     case (30 + 16):
         *v7 = sub_0204AA04(v2);
-        v0 = SaveData_GetTVBroadcast(v8->saveData);
-        sub_0206D0C8(v0, *v7);
+        broadcast = SaveData_GetTVBroadcast(v8->saveData);
+        sub_0206D0C8(broadcast, *v7);
         GameRecords_AddToRecordValue(SaveData_GetGameRecords(v8->saveData), RECORD_UNK_068, *v7);
         break;
     case (30 + 25):

@@ -133,15 +133,11 @@ static void sub_02055B64(FieldSystem *fieldSystem, s32 param1, const RTCTime *rt
     SpecialEncounter_DecrementHoneyTreeTimers(fieldSystem->saveData, param1);
     sub_02028758(fieldSystem->saveData, param1, FieldSystem_HasPenalty(fieldSystem));
 
-    {
-        TVBroadcast *v0 = SaveData_GetTVBroadcast(fieldSystem->saveData);
-        sub_0202E324(v0, param1, rtcTime->minute);
-    }
+    TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
+    sub_0202E324(broadcast, param1, rtcTime->minute);
 
-    {
-        Party *party = SaveData_GetParty(fieldSystem->saveData);
-        Party_SetShayminForm(party, param1, rtcTime);
-    }
+    Party *party = SaveData_GetParty(fieldSystem->saveData);
+    Party_SetShayminForm(party, param1, rtcTime);
 }
 
 enum TimeOfDay FieldSystem_GetTimeOfDay(const FieldSystem *fieldSystem)

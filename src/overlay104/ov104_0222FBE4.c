@@ -1869,13 +1869,13 @@ static BOOL ov104_02230EFC(UnkStruct_ov104_0222E930 *param0)
 
 static BOOL ov104_02230F28(UnkStruct_ov104_0222E930 *param0)
 {
-    TVBroadcast *v0;
+    TVBroadcast *broadcast;
     UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(param0->unk_00->unk_00);
     u16 v2 = ov104_0222FC00(param0);
 
-    v0 = SaveData_GetTVBroadcast(v1->saveData);
+    broadcast = SaveData_GetTVBroadcast(v1->saveData);
 
-    sub_0206D0C8(v0, v2);
+    sub_0206D0C8(broadcast, v2);
     GameRecords_AddToRecordValue(SaveData_GetGameRecords(v1->saveData), RECORD_UNK_068, v2);
     sub_0202D230(sub_0202D750(v1->saveData), v2, 5);
 
@@ -2803,14 +2803,14 @@ static BOOL ov104_02231ED8(UnkStruct_ov104_0222E930 *param0)
 static BOOL ov104_02231EFC(UnkStruct_ov104_0222E930 *param0)
 {
     u16 v0;
-    TVBroadcast *v1;
+    TVBroadcast *broadcast;
     TrainerInfo *v2;
     UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(param0->unk_00->unk_00);
-    v1 = SaveData_GetTVBroadcast(v3->saveData);
+    broadcast = SaveData_GetTVBroadcast(v3->saveData);
     v0 = ov104_0222FC00(param0);
     v2 = CommInfo_TrainerInfo(1 - CommSys_CurNetId());
 
-    sub_0206D088(v1, v0, v2);
+    sub_0206D088(broadcast, v0, v2);
     return 0;
 }
 

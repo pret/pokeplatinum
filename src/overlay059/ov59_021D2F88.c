@@ -92,20 +92,20 @@ static void ov59_021D300C(const UnkStruct_ov59_021D2FBC *param0)
 
 static void ov59_021D3028(const UnkStruct_ov59_021D2FBC *param0)
 {
-    TVBroadcast *v0 = SaveData_GetTVBroadcast(param0->saveData);
-    ov59_021D2F10(v0, param0->unk_08, param0->unk_0C, param0->unk_10, param0->unk_14);
+    TVBroadcast *broadcast = SaveData_GetTVBroadcast(param0->saveData);
+    ov59_021D2F10(broadcast, param0->unk_08, param0->unk_0C, param0->unk_10, param0->unk_14);
 }
 
 static void ov59_021D3048(const UnkStruct_ov59_021D2FBC *param0)
 {
-    TVBroadcast *v0 = SaveData_GetTVBroadcast(param0->saveData);
-    ov59_021D2F38(v0, param0->unk_08, param0->unk_0C, param0->unk_10, param0->unk_14);
+    TVBroadcast *broadcast = SaveData_GetTVBroadcast(param0->saveData);
+    ov59_021D2F38(broadcast, param0->unk_08, param0->unk_0C, param0->unk_10, param0->unk_14);
 }
 
 static void ov59_021D3068(const UnkStruct_ov59_021D2FBC *param0)
 {
-    TVBroadcast *v0 = SaveData_GetTVBroadcast(param0->saveData);
-    ov59_021D2F60(v0, param0->unk_08, param0->unk_0C, param0->unk_10, param0->unk_14);
+    TVBroadcast *broadcast = SaveData_GetTVBroadcast(param0->saveData);
+    ov59_021D2F60(broadcast, param0->unk_08, param0->unk_0C, param0->unk_10, param0->unk_14);
 }
 
 static void *ov59_021D3088(SaveData *saveData, int heapID, u32 param2)
@@ -178,7 +178,7 @@ void ov59_021D313C(SaveData *saveData, const UnkStruct_ov59_021D30E0 *param1)
     u32 v1;
     u32 v2 = 0;
     u32 v3 = 3000;
-    int v4, v5, v6;
+    int i, v5, v6;
     const void *v7[5];
     const void *v8[5];
     u32 v9[4 - 2 + 1];
@@ -194,20 +194,20 @@ void ov59_021D313C(SaveData *saveData, const UnkStruct_ov59_021D30E0 *param1)
     v9[3 - 2] = 0;
     v9[4 - 2] = 0;
 
-    for (v4 = 0; v4 < 2; v4++) {
-        v9[2 - 2] += Unk_ov59_021D33FC[v4].unk_00(saveData);
+    for (i = 0; i < 2; i++) {
+        v9[2 - 2] += Unk_ov59_021D33FC[i].unk_00(saveData);
     }
 
-    for (v4 = 0; v4 < 3; v4++) {
-        v9[3 - 2] += Unk_ov59_021D33FC[v4].unk_00(saveData);
+    for (i = 0; i < 3; i++) {
+        v9[3 - 2] += Unk_ov59_021D33FC[i].unk_00(saveData);
     }
 
-    for (v4 = 0; v4 < 4; v4++) {
-        v9[4 - 2] += Unk_ov59_021D33FC[v4].unk_00(saveData);
+    for (i = 0; i < 4; i++) {
+        v9[4 - 2] += Unk_ov59_021D33FC[i].unk_00(saveData);
     }
 
-    for (v4 = 0; v4 < NELEMS(Unk_ov59_021D33FC); v4++) {
-        v1 = Unk_ov59_021D33FC[v4].unk_00(saveData);
+    for (i = 0; i < NELEMS(Unk_ov59_021D33FC); i++) {
+        v1 = Unk_ov59_021D33FC[i].unk_00(saveData);
         GF_ASSERT(v3 > v1);
 
         for (v5 = 0; v5 < 5; v5++) {
@@ -218,13 +218,13 @@ void ov59_021D313C(SaveData *saveData, const UnkStruct_ov59_021D30E0 *param1)
             }
         }
 
-        switch (v4) {
+        switch (i) {
         case 7:
         case 8:
         case 9:
             for (v6 = 0; v6 < 5; v6++) {
                 if (CommInfo_TrainerInfo(v6) != NULL) {
-                    v0.unk_14[v6] = &(param1[v6].unk_00[v9[v4 - 7]]);
+                    v0.unk_14[v6] = &(param1[v6].unk_00[v9[i - 7]]);
                 } else {
                     v0.unk_14[v6] = NULL;
                 }
@@ -232,17 +232,15 @@ void ov59_021D313C(SaveData *saveData, const UnkStruct_ov59_021D30E0 *param1)
             break;
         }
 
-        if (Unk_ov59_021D33FC[v4].unk_08 != NULL) {
-            Unk_ov59_021D33FC[v4].unk_08(&v0);
+        if (Unk_ov59_021D33FC[i].unk_08 != NULL) {
+            Unk_ov59_021D33FC[i].unk_08(&v0);
         }
 
         v2 += v1;
         v3 -= v1;
     }
 
-    {
-        TVBroadcast *v10 = SaveData_GetTVBroadcast(saveData);
-        sub_0202E2EC(v10);
-        sub_0202E35C(v10);
-    }
+    TVBroadcast *broadcast = SaveData_GetTVBroadcast(saveData);
+    sub_0202E2EC(broadcast);
+    sub_0202E35C(broadcast);
 }

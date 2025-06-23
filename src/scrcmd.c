@@ -6132,7 +6132,7 @@ static BOOL ScrCmd_202(ScriptContext *ctx)
 {
     FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData);
     VarsFlags *v3 = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
-    TVBroadcast *v4 = SaveData_GetTVBroadcast(ctx->fieldSystem->saveData);
+    TVBroadcast *broadcast = SaveData_GetTVBroadcast(ctx->fieldSystem->saveData);
     int v5 = ScriptContext_ReadByte(ctx);
 
     u16 *v0 = FieldOverworldState_GetSafariBallCount(fieldState);
@@ -6141,7 +6141,7 @@ static BOOL ScrCmd_202(ScriptContext *ctx)
     switch (v5) {
     case 0:
         SystemFlag_SetSafariGameActive(v3);
-        sub_0206D000(v4);
+        sub_0206D000(broadcast);
         *v0 = 30;
         *v1 = 0;
         break;
