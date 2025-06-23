@@ -16,6 +16,7 @@ Static main
 	Library libcps.a (.version)
 	Library libssl.a (.version)
 	Object main.nef.p/src_main.c.o
+	Object main.nef.p/src_debug.c.o
 	Object main.nef.p/src_list_menu.c.o
 	Object main.nef.p/src_game_version.c.o
 	Object main.nef.p/src_menu.c.o

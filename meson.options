@@ -1,1 +1,2 @@
 option('gdb_debugging', type : 'boolean', value : false)
+option('logging_enabled', type: 'boolean', value: false)
