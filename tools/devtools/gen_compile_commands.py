@@ -5,6 +5,7 @@ import pathlib
 
 homedir = pathlib.Path(__file__).resolve().parent.parent.parent
 builddir = homedir / "build"
+generateddir = builddir / "generated"
 meson_options_file = builddir / "meson-info" / "intro-buildoptions.json"
 
 cwsdkdir = homedir / "subprojects" / "metroskrew" / "lib" / "metroskrew" / "sdk" / "ds" / "2.0" / "sp2"
@@ -248,6 +249,7 @@ c_commands = [
             f"-I{cwlibcdir}",
             f"-I{cwextrasdir}",
             f"-I{cwlibcarmdir}",
+            f"-I{generateddir}",
             f"-I{homedir}/subprojects/NitroSDK-4.2.30001/include",
             f"-I{builddir}/subprojects/NitroSDK-4.2.30001/gen",
             f"-I{homedir}/subprojects/NitroSystem-071126.1/include",

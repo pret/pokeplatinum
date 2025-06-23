@@ -1,8 +1,8 @@
 # Logging
 
-The repository includes a basic logger, that works with emulators such as MelonDS and No$GBA
+The repository includes a basic logger, that works with emulators such as MelonDS and No$GBA.
 
-To enable it, compile with `make debug` (or the `logging_enabled` meson option)
+To enable it, compile with `make debug` (or the `logging_enabled` meson option).
 
 ## Usage
 
@@ -22,8 +22,5 @@ void someFunction(){
 
 ## List of logging functions
 
-- EmulatorLog : Prints the message with printf formatting but adds `[GAME_LOG] ` to the front and a newline at the end
+- EmulatorLog : Prints the message with printf formatting but adds `[GAME_LOG] ` to the front and a newline at the end.
 - EmulatorPrintf : Just prints it's arguments to the emulator's output, with printf formatting.
-- EmulatorPrintCharMapBuf : Prints the contents of a buffer, by translating the charmap of the game to utf-8 before
-- EmulatorPrintStrBuf : Prints the contents of an Strbuf struct, by translating the charmap of the game to utf-8 before
-  printing

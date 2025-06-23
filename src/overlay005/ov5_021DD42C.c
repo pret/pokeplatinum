@@ -9,7 +9,6 @@
 #include "overlay005/struct_ov5_021DD42C.h"
 
 #include "bg_window.h"
-#include "debug.h"
 #include "field_message.h"
 #include "field_script_context.h"
 #include "game_options.h"

@@ -10,24 +10,29 @@
 
 #define MELONDS_PRINT_MAX_LEN 120
 
-volatile const char **noCashPrint = (volatile char **)NOCASHGBAPRINTADDR1;
+volatile const char **noCashPrint = (volatile const char **)NOCASHGBAPRINTADDR1;
 
-volatile char nocashbuf[LOG_MESSAGE_MAX_LENGTH];
+static void EmulatorRawPrint(const char *fmt)
+{
+    *noCashPrint = fmt;
+}
+
+char formattingBuffer[LOG_MESSAGE_MAX_LENGTH];
 
 void EmulatorVPrintf(const char *text, va_list ap)
 {
 
-    int res = vsnprintf(nocashbuf, LOG_MESSAGE_MAX_LENGTH, text, ap);
+    const int res = vsnprintf(formattingBuffer, LOG_MESSAGE_MAX_LENGTH, text, ap);
 
     int toprint = res >= LOG_MESSAGE_MAX_LENGTH - 1 ? LOG_MESSAGE_MAX_LENGTH - 1 : res;
-    char *cashbuf = nocashbuf;
+    const char *nextPrintStart = formattingBuffer;
     while (toprint > 0) {
-        *noCashPrint = cashbuf;
+        EmulatorRawPrint(nextPrintStart);
         toprint -= MELONDS_PRINT_MAX_LEN;
-        cashbuf += MELONDS_PRINT_MAX_LEN;
+        nextPrintStart += MELONDS_PRINT_MAX_LEN;
     }
     if (res >= LOG_MESSAGE_MAX_LENGTH - 1) {
-        *noCashPrint = "\nlog truncated\n";
+        EmulatorRawPrint("\nlog truncated\n");
     }
 }
 void EmulatorPrintf(const char *text, ...)
@@ -47,42 +52,4 @@ void EmulatorLog(const char *text, ...)
     va_end(args);
     EmulatorPrintf("\n");
 }
-
-void EmulatorPrintStrBuf(const Strbuf *buf)
-{
-    EmulatorPrintCharMapBuf(buf->data, buf->size);
-}
-
-void EmulatorPrintCharMapBuf(const charcode_t *buf, const u16 len)
-{
-    char outbuf[LOG_MESSAGE_MAX_LENGTH] = "";
-    size_t outbuf_len = 0;
-    for (int i = 0; i < len; ++i) {
-        charcode_t charcode = buf[i];
-        const char *mapping = resolve_charmap(charcode);
-        if (mapping == NULL) {
-            EmulatorPrintf("Mapping is null ptr, char code was 0x%X\n", charcode);
-            continue;
-        }
-        const size_t maplen = strlen(mapping);
-        if (outbuf_len + maplen + 1 > LOG_MESSAGE_MAX_LENGTH) {
-            // flush buffer before continuing
-            outbuf[outbuf_len] = '\0';
-            EmulatorPrintf(outbuf);
-            outbuf_len = 0;
-            i--;
-        } else {
-            // continue appending
-            memcpy(&outbuf[outbuf_len], mapping, maplen);
-            outbuf_len += maplen;
-            outbuf[outbuf_len] = '\0';
-        }
-    }
-    if (outbuf_len > 0) {
-        outbuf[outbuf_len] = '\0';
-        EmulatorPrintf(outbuf);
-    }
-    EmulatorPrintf("\n");
-}
-
 #endif

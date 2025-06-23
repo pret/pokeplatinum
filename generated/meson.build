@@ -138,18 +138,6 @@ foreach gen_key : metang_generators.keys()
     )
 endforeach
 
-charmap_gen_py = find_program('../tools/debug/charmap_gen.py', native: true)
-c_consts_generators += custom_target('charmap.[ch]',
-    output: ['charmap.c','charmap.h'],
-    input: '../tools/msgenc/charmap.txt',
-    command : [
-        charmap_gen_py,
-        '@INPUT@',
-        '@OUTPUT0@',
-        '@OUTPUT1@'
-    ]
-)[0]
-
 npc_trades_txt = files('npc_trades.txt')
 species_txt = files('species.txt')
 text_banks_txt = files('text_banks.txt')
