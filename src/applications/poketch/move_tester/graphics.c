@@ -216,7 +216,7 @@ static void EndTask(PoketchTaskManager *taskMan)
 
 static void Task_DrawAppScreen(SysTask *task, void *taskMan)
 {
-    GXSDispCnt dispCnt;
+    GXSDispCnt displayControler;
     PoketchMoveTesterGraphics *graphics;
     const MoveTesterData *moveTesterData;
     void *unused;
@@ -226,18 +226,18 @@ static void Task_DrawAppScreen(SysTask *task, void *taskMan)
     graphics = PoketchTask_GetTaskData(taskMan);
     moveTesterData = PoketchTask_GetConstTaskData(taskMan);
 
-    Bg_InitFromTemplate(graphics->bgConfig, BG_LAYER_SUB_2, &sMoveTesterBgTemplate, 0);
+    Bg_InitFromTemplate(graphics->bgConfig, BG_LAYER_SUB_2, &sMoveTesterBgTemplate, BG_TYPE_STATIC);
 
-    tileSize = Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 61, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, 1, HEAP_ID_POKETCH_APP);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 60, graphics->bgConfig, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
+    tileSize = Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 61, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 60, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
     PoketchGraphics_LoadActivePalette(0, 0);
 
     tileSize /= 0x20;
     AddWindows(graphics, moveTesterData, tileSize);
     Bg_CopyTilemapBufferToVRAM(graphics->bgConfig, BG_LAYER_SUB_2);
 
-    dispCnt = GXS_GetDispCnt();
-    GXS_SetVisiblePlane(dispCnt.visiblePlane | GX_PLANEMASK_BG2);
+    displayControler = GXS_GetDispCnt();
+    GXS_SetVisiblePlane(displayControler.visiblePlane | GX_PLANEMASK_BG2);
 
     EndTask(taskMan);
 }

@@ -7,7 +7,7 @@
 #include "bg_window.h"
 
 BOOL ov27_0225680C(PoketchStopwatchGraphics **param0, const PoketchStopwatchGraphics_1 *param1, BgConfig *param2);
-void ov27_02256890(PoketchStopwatchGraphics *param0);
+void PoketchStopwatchGraphics_Free(PoketchStopwatchGraphics *param0);
 void PoketchStopwatchGraphics_StartTask(PoketchStopwatchGraphics *param0, u32 param1);
 BOOL PoketchStopwatchGraphics_TaskIsNotActive(PoketchStopwatchGraphics *param0, u32 param1);
 BOOL PoketchStopwatchGraphics_NoActiveTasks(PoketchStopwatchGraphics *param0);

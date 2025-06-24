@@ -101,7 +101,7 @@ static void EndTask(PoketchTaskManager *taskMan)
 
 static void Task_DrawAppScreen(SysTask *sysTask, void *taskMan)
 {
-    static const BgTemplate template = {
+    static const BgTemplate bgTemplate = {
         .x = 0,
         .y = 0,
         .bufferSize = 0x800,
@@ -118,7 +118,7 @@ static void Task_DrawAppScreen(SysTask *sysTask, void *taskMan)
 
     PoketchDigitalWatchGraphics *graphics = PoketchTask_GetTaskData(taskMan);
 
-    Bg_InitFromTemplate(graphics->bgConfig, BG_LAYER_SUB_2, &template, BG_TYPE_STATIC);
+    Bg_InitFromTemplate(graphics->bgConfig, BG_LAYER_SUB_2, &bgTemplate, BG_TYPE_STATIC);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, POKETCH_DIGITAL_WATCH_NARC_TILES_IDX, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, POKETCH_DIGITAL_WATCH_NARC_TILEMAP_IDX, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
 

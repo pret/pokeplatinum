@@ -39,7 +39,7 @@ typedef struct PoketchStopwatch {
     PoketchStopwatchGraphics_1 unk_1C;
     StopwatchData stopwatchData;
     PoketchButtonManager *buttonManager;
-    PoketchStopwatchGraphics *unk_60;
+    PoketchStopwatchGraphics *graphics;
     PoketchSystem *poketchSys;
 } PoketchStopwatch;
 
@@ -51,12 +51,12 @@ static void ov27_022562AC(PoketchStopwatch *appData);
 static void Task_Main(SysTask *task, void *appData);
 static void Exit(void *appData);
 static void ChangeActiveTask(PoketchStopwatch *appData, u32 taskID);
-static BOOL ov27_0225637C(PoketchStopwatch *appData);
+static BOOL Task_LoadApp(PoketchStopwatch *appData);
 static BOOL ov27_022563CC(PoketchStopwatch *appData);
 static BOOL ov27_0225644C(PoketchStopwatch *appData);
 static BOOL ov27_022564D0(PoketchStopwatch *appData);
 static BOOL ov27_02256534(PoketchStopwatch *appData);
-static BOOL ov27_022565D0(PoketchStopwatch *appData);
+static BOOL Task_UnloadApp(PoketchStopwatch *appData);
 static BOOL ov27_02256608(PoketchStopwatch *appData);
 static void Free(PoketchStopwatch *appData);
 static void ButtonChanged(u32 buttonID, u32 buttonState, u32 touchState, void *appData);
@@ -114,7 +114,7 @@ static BOOL Init(PoketchStopwatch *appData, BgConfig *bgConfig, u32 appID)
         appData->unk_1C.unk_18 = 0;
     }
 
-    if (ov27_0225680C(&(appData->unk_60), &(appData->unk_1C), bgConfig)) {
+    if (ov27_0225680C(&(appData->graphics), &(appData->unk_1C), bgConfig)) {
         appData->activeTask = 0;
         appData->taskFuncState = 0;
         appData->lastActiveTask = appData->activeTask;
@@ -141,7 +141,7 @@ static void ov27_022562AC(PoketchStopwatch *appData)
     PoketchMemory_Write32(appData->appID, &(appData->stopwatchData), sizeof(appData->stopwatchData));
 
     Free(appData);
-    ov27_02256890(appData->unk_60);
+    PoketchStopwatchGraphics_Free(appData->graphics);
 
     Heap_FreeToHeap(appData);
 }
@@ -149,12 +149,12 @@ static void ov27_022562AC(PoketchStopwatch *appData)
 static void Task_Main(SysTask *task, void *appData)
 {
     static BOOL (*const funcArray[])(PoketchStopwatch *) = {
-        ov27_0225637C,
+        Task_LoadApp,
         ov27_022563CC,
         ov27_0225644C,
         ov27_022564D0,
         ov27_02256534,
-        ov27_022565D0
+        Task_UnloadApp
     };
 
     PoketchStopwatch *stopwatch = appData;
@@ -196,15 +196,15 @@ static void ChangeActiveTask(PoketchStopwatch *appData, u32 taskID)
     appData->taskFuncState = 0;
 }
 
-static BOOL ov27_0225637C(PoketchStopwatch *appData)
+static BOOL Task_LoadApp(PoketchStopwatch *appData)
 {
     switch (appData->taskFuncState) {
     case 0:
-        PoketchStopwatchGraphics_StartTask(appData->unk_60, 0);
+        PoketchStopwatchGraphics_StartTask(appData->graphics, 0);
         appData->taskFuncState++;
         break;
     case 1:
-        if (PoketchStopwatchGraphics_TaskIsNotActive(appData->unk_60, 0)) {
+        if (PoketchStopwatchGraphics_TaskIsNotActive(appData->graphics, 0)) {
             PoketchSystem_NotifyAppLoaded(appData->poketchSys);
 
             if (appData->unk_1C.unk_00) {
@@ -225,7 +225,7 @@ static BOOL ov27_022563CC(PoketchStopwatch *appData)
     case 0:
         if (appData->buttonState == 1) {
             appData->unk_1C.unk_18 = 1;
-            PoketchStopwatchGraphics_StartTask(appData->unk_60, 1);
+            PoketchStopwatchGraphics_StartTask(appData->graphics, 1);
             appData->taskFuncState++;
         }
         break;
@@ -233,18 +233,18 @@ static BOOL ov27_022563CC(PoketchStopwatch *appData)
         switch (appData->buttonState) {
         case 2:
             appData->unk_1C.unk_18 = 0;
-            PoketchStopwatchGraphics_StartTask(appData->unk_60, 1);
+            PoketchStopwatchGraphics_StartTask(appData->graphics, 1);
             appData->taskFuncState--;
             break;
         case 3:
             appData->unk_1C.unk_18 = 2;
-            PoketchStopwatchGraphics_StartTask(appData->unk_60, 1);
+            PoketchStopwatchGraphics_StartTask(appData->graphics, 1);
             ov27_02256680(appData);
             ChangeActiveTask(appData, 2);
             break;
         case 5:
             appData->unk_1C.unk_18 = 3;
-            PoketchStopwatchGraphics_StartTask(appData->unk_60, 1);
+            PoketchStopwatchGraphics_StartTask(appData->graphics, 1);
             ChangeActiveTask(appData, 3);
             break;
         }
@@ -261,7 +261,7 @@ static BOOL ov27_0225644C(PoketchStopwatch *appData)
         if (appData->buttonState == 1) {
             appData->unk_1C.unk_18 = 1;
             ov27_022566C4(appData);
-            PoketchStopwatchGraphics_StartTask(appData->unk_60, 1);
+            PoketchStopwatchGraphics_StartTask(appData->graphics, 1);
             appData->taskFuncState++;
         }
         break;
@@ -269,17 +269,17 @@ static BOOL ov27_0225644C(PoketchStopwatch *appData)
         switch (appData->buttonState) {
         case 2:
             appData->unk_1C.unk_18 = 0;
-            PoketchStopwatchGraphics_StartTask(appData->unk_60, 1);
+            PoketchStopwatchGraphics_StartTask(appData->graphics, 1);
             ChangeActiveTask(appData, 1);
             break;
         case 3:
             appData->unk_1C.unk_18 = 0;
-            PoketchStopwatchGraphics_StartTask(appData->unk_60, 1);
+            PoketchStopwatchGraphics_StartTask(appData->graphics, 1);
             ChangeActiveTask(appData, 1);
             break;
         case 5:
             appData->unk_1C.unk_18 = 3;
-            PoketchStopwatchGraphics_StartTask(appData->unk_60, 1);
+            PoketchStopwatchGraphics_StartTask(appData->graphics, 1);
             ChangeActiveTask(appData, 3);
             break;
         }
@@ -296,18 +296,18 @@ static BOOL ov27_022564D0(PoketchStopwatch *appData)
         if (appData->lastActiveTask == 1) {
             ov27_02256680(appData);
             appData->unk_1C.unk_18 = 2;
-            PoketchStopwatchGraphics_StartTask(appData->unk_60, 1);
+            PoketchStopwatchGraphics_StartTask(appData->graphics, 1);
             ChangeActiveTask(appData, 2);
             break;
         }
     case 2:
         appData->unk_1C.unk_18 = 0;
-        PoketchStopwatchGraphics_StartTask(appData->unk_60, 1);
+        PoketchStopwatchGraphics_StartTask(appData->graphics, 1);
         ChangeActiveTask(appData, 1);
         break;
     case 6:
         appData->unk_1C.unk_18 = 4;
-        PoketchStopwatchGraphics_StartTask(appData->unk_60, 1);
+        PoketchStopwatchGraphics_StartTask(appData->graphics, 1);
         ChangeActiveTask(appData, 4);
         break;
     }
@@ -324,7 +324,7 @@ static BOOL ov27_02256534(PoketchStopwatch *appData)
     case 1:
         if (++(appData->unk_06) >= 90) {
             appData->unk_1C.unk_18 = 5;
-            PoketchStopwatchGraphics_StartTask(appData->unk_60, 1);
+            PoketchStopwatchGraphics_StartTask(appData->graphics, 1);
             appData->unk_06 = 0;
             appData->taskFuncState++;
         }
@@ -332,16 +332,16 @@ static BOOL ov27_02256534(PoketchStopwatch *appData)
     case 2:
         if (++(appData->unk_06) >= 60) {
             appData->unk_1C.unk_18 = 6;
-            PoketchStopwatchGraphics_StartTask(appData->unk_60, 1);
+            PoketchStopwatchGraphics_StartTask(appData->graphics, 1);
             ov27_02256664(appData);
             appData->unk_06 = 0;
             appData->taskFuncState++;
         }
         break;
     case 3:
-        if (PoketchStopwatchGraphics_TaskIsNotActive(appData->unk_60, 1)) {
+        if (PoketchStopwatchGraphics_TaskIsNotActive(appData->graphics, 1)) {
             appData->unk_1C.unk_18 = 0;
-            PoketchStopwatchGraphics_StartTask(appData->unk_60, 1);
+            PoketchStopwatchGraphics_StartTask(appData->graphics, 1);
             ChangeActiveTask(appData, 1);
         }
         break;
@@ -350,17 +350,17 @@ static BOOL ov27_02256534(PoketchStopwatch *appData)
     return FALSE;
 }
 
-static BOOL ov27_022565D0(PoketchStopwatch *appData)
+static BOOL Task_UnloadApp(PoketchStopwatch *appData)
 {
     switch (appData->taskFuncState) {
     case 0:
         appData->unk_1C.unk_18 = 7;
-        PoketchStopwatchGraphics_StartTask(appData->unk_60, 3);
+        PoketchStopwatchGraphics_StartTask(appData->graphics, 3);
         appData->taskFuncState++;
         break;
     case 1:
-        if (PoketchStopwatchGraphics_NoActiveTasks(appData->unk_60)) {
-            return 1;
+        if (PoketchStopwatchGraphics_NoActiveTasks(appData->graphics)) {
+            return TRUE;
         }
         break;
     }
