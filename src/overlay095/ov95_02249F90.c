@@ -220,11 +220,11 @@ static void ov95_0224A10C(UnkStruct_ov95_02249FF8 *param0)
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
     SetAllGraphicsModes(&v1);
 
-    Bg_InitFromTemplate(param0->unk_0C, 1, &v2, 0);
-    Bg_InitFromTemplate(param0->unk_0C, 5, &v2, 0);
-    Bg_InitFromTemplate(param0->unk_0C, 2, &v3, 0);
-    Bg_InitFromTemplate(param0->unk_0C, 3, &v4, 0);
-    Bg_InitFromTemplate(param0->unk_0C, 7, &v4, 0);
+    Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_1, &v2, 0);
+    Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_SUB_1, &v2, 0);
+    Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_2, &v3, 0);
+    Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_3, &v4, 0);
+    Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_SUB_3, &v4, 0);
 
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 19, param0->unk_0C, 3, 0, 0, 1, HEAP_ID_58);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 19, param0->unk_0C, 7, 0, 0, 1, HEAP_ID_58);
@@ -262,12 +262,12 @@ static void ov95_0224A10C(UnkStruct_ov95_02249FF8 *param0)
 
 static void ov95_0224A320(UnkStruct_ov95_02249FF8 *param0)
 {
-    Bg_FreeTilemapBuffer(param0->unk_0C, 3);
-    Bg_FreeTilemapBuffer(param0->unk_0C, 7);
-    Bg_FreeTilemapBuffer(param0->unk_0C, 2);
-    Bg_FreeTilemapBuffer(param0->unk_0C, 6);
-    Bg_FreeTilemapBuffer(param0->unk_0C, 1);
-    Bg_FreeTilemapBuffer(param0->unk_0C, 5);
+    Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_3);
+    Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_2);
+    Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_1);
 }
 
 static void ov95_0224A358(BgConfig *param0, int param1, int param2)
@@ -275,7 +275,7 @@ static void ov95_0224A358(BgConfig *param0, int param1, int param2)
     param2 &= 0x1ff;
     param1 &= 0x1ff;
 
-    Bg_SetOffset(param0, 2, 3, param2);
-    Bg_SetOffset(param0, 1, 3, param1);
-    Bg_SetOffset(param0, 5, 3, param1 + 192);
+    Bg_SetOffset(param0, BG_LAYER_MAIN_2, 3, param2);
+    Bg_SetOffset(param0, BG_LAYER_MAIN_1, 3, param1);
+    Bg_SetOffset(param0, BG_LAYER_SUB_1, 3, param1 + 192);
 }

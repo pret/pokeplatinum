@@ -4,7 +4,107 @@
 #include <string.h>
 
 #include "overlay097/gba_save.h"
-#include "overlay097/struct_ov97_0223F450.h"
+
+typedef struct GBANameLengths {
+    u8 playerNameLength;
+    u8 trainerNameLength;
+    u8 pokemonNameLength1;
+    u8 pokemonNameLength2;
+    u8 unk_04;
+    u8 unk_05;
+    u8 unk_06;
+    u8 unk_07;
+    u8 unk_08;
+    u8 unk_09;
+    u8 unk_0A;
+    u8 unk_0B;
+    u8 unk_0C;
+    u8 unk_0D;
+    u8 unk_0E;
+    u8 unk_0F;
+    u8 unk_10;
+} GBANameLengths;
+
+typedef struct GBAPkmnGameHeader_sub2 {
+    u32 unk_00_0 : 1;
+    u32 unk_00_1 : 1;
+    u32 unk_00_2 : 30;
+} GBAPkmnGameHeader_sub2;
+
+typedef struct GBAPocketSizes {
+    u8 itemsPocketSize;
+    u8 keyItemsPocketSize;
+    u8 pokeballsPocketSize;
+    u8 tmhmPocketSize;
+    u8 berriesPocketSize;
+    u8 itemsPCSize;
+} GBAPocketSizes;
+
+/*
+ * Holds information about GBA Pokemon games (specifically Emerald and FR/LG)
+ * ROM and save structures, stored in bytes 0x100-0x1FB of the ROM.
+ *
+ * The offsets are relative to the save block that holds the information,
+ * as indicated after the member declaration for convenience.
+ *
+ * Member names mostly taken from pokeemerald.
+ */
+typedef struct GBAPkmnGameHeader {
+    u32 version;
+    u32 language;
+    u8 gameName[32];
+    const void *monFrontPics;
+    const void *monBackPics;
+    const void *monNormalPalettes;
+    const void *monShinyPalettes;
+    u8 *const *monIcons;
+    const u8 *monIconPaletteIds;
+    const void *monIconPalettes;
+    const u8 **speciesNames;
+    const u8 **moveNames;
+    const void *decorations;
+    u32 flagsOffset; // Save block 1
+    u32 varsOffset; // Save block 1
+    u32 pokedexOffset; // Save block 2
+    u32 seen1Offset; // Save block 1
+    u32 seen2Offset; // Save block 1
+    u32 pokedexVar;
+    u32 pokedexFlag;
+    u32 mysteryEventFlag;
+    u32 pokedexCount;
+    GBANameLengths nameLengths;
+    u32 saveBlock2Size;
+    u32 saveBlock1Size;
+    u32 partyCountOffset; // Save block 1
+    u32 partyOffset; // Save block 1
+    u32 warpFlagsOffset; // Save block 2
+    u32 trainerIDOffset; // Save block 2
+    u32 playerNameOffset; // Save block 2
+    u32 playerGenderOffset; // Save block 2
+    u32 frontierStatusOffset; // Save block 2
+    u32 frontierStatusOffset2; // Save block 2
+    u32 externalEventFlagsOffset; // Save block 1
+    u32 externalEventDataOffset; // Save block 1
+    GBAPkmnGameHeader_sub2 unk_B8;
+    const void *speciesInfo;
+    const u8 **abilityNames;
+    const u8 **abilityDescriptions;
+    const void *items;
+    const void *moves;
+    const void *ballGraphics;
+    const void *ballPalettes;
+    u32 gcnLinkFlagsOffset; // Save block 2
+    u32 gameClearFlag;
+    u32 ribbonFlag;
+    GBAPocketSizes pocketSizes;
+    u32 pcItemsOffset; // Save block 1
+    u32 giftRibbonsOffset; // Save block 1
+    u32 enigmaBerryOffset; // Save block 1
+    u32 enigmaBerrySize;
+    // The equivalent struct on the GBA games has eight extra bytes, which are never set to interesting values (and never read by Platinum):
+    // const u8 *moveDescriptions; // always NULL
+    // u32 unk_100; // 0x00000000 in Emerald, 0xFFFFFFFF in FR/LG
+} GBAPkmnGameHeader;
 
 typedef struct {
     u32 agbGameCodeReversed;
@@ -24,9 +124,9 @@ typedef struct {
 static int ov97_02235DC8(const GBAPokemonCartInfo *cartInfo, int param1);
 static u16 ov97_02235FFC(void *param0, int *param1, u32 *param2);
 static u32 ov97_02236244(struct CTRDGTaskInfo_tag *param0);
-static UnkStruct_ov97_0223F450 Unk_ov97_0223F450;
+static GBAPkmnGameHeader Unk_ov97_0223F450;
 
-static UnkStruct_ov97_0223F450 Unk_ov97_0223F450;
+static GBAPkmnGameHeader Unk_ov97_0223F450;
 static const GBAPokemonCartInfo sGBAPokemonCartInfo[30];
 static u8 Unk_ov97_0223EC04[0xa0 - 4];
 static const GBAPokemonCartInfo *sLoadedGBACartInfo = NULL;
@@ -62,12 +162,12 @@ int ov97_02235D2C(void *param0)
     }
 
     if (sLoadedGBACartInfo->gameSet == AGB_SET_RUBYSAPP) {
-        Unk_ov97_0223F450.unk_88 = 2192;
-        Unk_ov97_0223F450.unk_8C = 15040;
-        Unk_ov97_0223F450.unk_50 = 4640;
-        Unk_ov97_0223F450.unk_98 = 9;
+        Unk_ov97_0223F450.saveBlock2Size = 2192;
+        Unk_ov97_0223F450.saveBlock1Size = 15040;
+        Unk_ov97_0223F450.flagsOffset = 4640;
+        Unk_ov97_0223F450.warpFlagsOffset = 9;
     } else {
-        CTRDG_CpuCopy32((void *)0x8000100, (void *)&Unk_ov97_0223F450, sizeof(UnkStruct_ov97_0223F450));
+        CTRDG_CpuCopy32((void *)0x8000100, (void *)&Unk_ov97_0223F450, sizeof(GBAPkmnGameHeader));
     }
 
     if (!ov97_02235D18()) {
@@ -178,11 +278,11 @@ static void ov97_02235EAC(int param0, void *param1)
 static u16 ov97_02235EC0(int param0)
 {
     if (param0 == 0) {
-        return (u16)(Unk_ov97_0223F450.unk_88);
+        return (u16)(Unk_ov97_0223F450.saveBlock2Size);
     }
 
     if (param0 == 4) {
-        return (u16)(Unk_ov97_0223F450.unk_8C - 0xf80 * 3);
+        return (u16)(Unk_ov97_0223F450.saveBlock1Size - 0xf80 * 3);
     }
 
     if (param0 == 13) {

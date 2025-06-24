@@ -1363,8 +1363,8 @@ static void ov97_02234D28(BgConfig *bgConfig)
             .mosaic = 0,
         };
 
-        Bg_InitFromTemplate(bgConfig, 0, &v1, 0);
-        Bg_ClearTilemap(bgConfig, 0);
+        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_0, &v1, 0);
+        Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_0);
     }
 
     {
@@ -1384,8 +1384,8 @@ static void ov97_02234D28(BgConfig *bgConfig)
             .mosaic = 0,
         };
 
-        Bg_InitFromTemplate(bgConfig, 1, &v2, 0);
-        Bg_ClearTilemap(bgConfig, 1);
+        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_1, &v2, 0);
+        Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_1);
     }
 
     {
@@ -1405,8 +1405,8 @@ static void ov97_02234D28(BgConfig *bgConfig)
             .mosaic = 0,
         };
 
-        Bg_InitFromTemplate(bgConfig, 2, &v3, 0);
-        Bg_ClearTilemap(bgConfig, 2);
+        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_2, &v3, 0);
+        Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_2);
     }
 
     {
@@ -1426,8 +1426,8 @@ static void ov97_02234D28(BgConfig *bgConfig)
             .mosaic = 0,
         };
 
-        Bg_InitFromTemplate(bgConfig, 3, &v4, 0);
-        Bg_ClearTilemap(bgConfig, 3);
+        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_3, &v4, 0);
+        Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_3);
     }
 }
 
@@ -1470,8 +1470,8 @@ static void ov97_02234E7C(GBAMigrator *migrator)
 static void ov97_02234ECC(GBAMigrator *migrator)
 {
     Font_LoadTextPalette(0, 14 * 32, HEAP_ID_MIGRATE_FROM_GBA);
-    LoadStandardWindowGraphics(migrator->bgConfig, 0, 0x3F0, 14, 0, HEAP_ID_MIGRATE_FROM_GBA);
-    LoadMessageBoxGraphics(migrator->bgConfig, 0, (0x3F0 - (18 + 12)), 13, migrator->messageBoxFrame, HEAP_ID_MIGRATE_FROM_GBA);
+    LoadStandardWindowGraphics(migrator->bgConfig, BG_LAYER_MAIN_0, 0x3F0, 14, 0, HEAP_ID_MIGRATE_FROM_GBA);
+    LoadMessageBoxGraphics(migrator->bgConfig, BG_LAYER_MAIN_0, (0x3F0 - (18 + 12)), 13, migrator->messageBoxFrame, HEAP_ID_MIGRATE_FROM_GBA);
 
     memset(&migrator->unk_490, 0, sizeof(UnkStruct_ov97_02233DAC));
 
@@ -1534,8 +1534,8 @@ static void ov97_02234F88(GBAMigrator *migrator)
     Bg_CopyTilemapBufferToVRAM(migrator->bgConfig, 2);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
     Font_LoadTextPalette(0, 14 * 32, HEAP_ID_MIGRATE_FROM_GBA);
-    LoadStandardWindowGraphics(migrator->bgConfig, 0, 0x3F0, 14, 0, HEAP_ID_MIGRATE_FROM_GBA);
-    LoadMessageBoxGraphics(migrator->bgConfig, 0, (0x3F0 - (18 + 12)), 13, migrator->messageBoxFrame, HEAP_ID_MIGRATE_FROM_GBA);
+    LoadStandardWindowGraphics(migrator->bgConfig, BG_LAYER_MAIN_0, 0x3F0, 14, 0, HEAP_ID_MIGRATE_FROM_GBA);
+    LoadMessageBoxGraphics(migrator->bgConfig, BG_LAYER_MAIN_0, (0x3F0 - (18 + 12)), 13, migrator->messageBoxFrame, HEAP_ID_MIGRATE_FROM_GBA);
 
     ov97_02234ECC(migrator);
     migrator->unk_490.messageEntryID = MigrateFromGBA_Text_SixChosenWillMigrate;
@@ -1631,10 +1631,10 @@ static void ov97_022351F0(GBAMigrator *migrator)
     gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
     GXLayers_SwapDisplay();
 
-    Bg_FreeTilemapBuffer(migrator->bgConfig, 0);
-    Bg_FreeTilemapBuffer(migrator->bgConfig, 1);
-    Bg_FreeTilemapBuffer(migrator->bgConfig, 2);
-    Bg_FreeTilemapBuffer(migrator->bgConfig, 3);
+    Bg_FreeTilemapBuffer(migrator->bgConfig, BG_LAYER_MAIN_0);
+    Bg_FreeTilemapBuffer(migrator->bgConfig, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(migrator->bgConfig, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(migrator->bgConfig, BG_LAYER_MAIN_3);
 }
 
 static void ov97_02235310(GBAMigrator *migrator)

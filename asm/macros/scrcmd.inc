@@ -1918,7 +1918,7 @@
     .short 339
     .endm
 
-    .macro ScrCmd_154
+    .macro LoadTrainerAppearances
     .short 340
     .endm
 
@@ -3902,7 +3902,7 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_2AC
+    .macro UnlockMysteryGift
     .short 684
     .endm
 

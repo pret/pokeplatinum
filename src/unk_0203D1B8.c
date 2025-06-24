@@ -1179,11 +1179,11 @@ static BOOL sub_0203DE98(FieldTask *param0)
         break;
     case 3:
         if (v2->unk_0C->unk_00 == 1) {
-            if (Strbuf_Compare(v2->unk_0C->unk_18, v2->unk_10) == 0) {
+            if (Strbuf_Compare(v2->unk_0C->textInputStr, v2->unk_10) == 0) {
                 v2->unk_0C->unk_14 = 1;
             }
         } else if (v2->unk_0C->unk_00 == 5) {
-            const u16 *v3 = Strbuf_GetData(v2->unk_0C->unk_18);
+            const u16 *v3 = Strbuf_GetData(v2->unk_0C->textInputStr);
             RecordMixedRNG *v4 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
 
             if (RecordMixedRNG_DoesCollectionContainGroup(v4, v3)) {
@@ -1228,11 +1228,11 @@ static void sub_0203DF68(FieldTask *param0)
     } break;
     case 5: {
         RecordMixedRNG *v5 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
-        RecordMixedRNG_GetEntryNameAsStrbuf(v5, 0, 0, v1->unk_0C->unk_18);
+        RecordMixedRNG_GetEntryNameAsStrbuf(v5, 0, 0, v1->unk_0C->textInputStr);
     } break;
     case 6: {
         MiscSaveBlock *v6 = SaveData_MiscSaveBlock(fieldSystem->saveData);
-        MiscSaveBlock_SetTabletName(v6, v1->unk_0C->unk_18);
+        MiscSaveBlock_SetTabletName(v6, v1->unk_0C->textInputStr);
     } break;
     }
 
@@ -1266,7 +1266,7 @@ void sub_0203DFE8(FieldTask *param0, int param1, int param2, int param3, int par
         break;
     default:
         if (param5 != NULL) {
-            Strbuf_CopyChars(v2->unk_0C->unk_18, param5);
+            Strbuf_CopyChars(v2->unk_0C->textInputStr, param5);
         }
         break;
     }
@@ -1351,7 +1351,7 @@ void sub_0203E0FC(FieldSystem *fieldSystem, int param1)
     v0->unk_00 = SaveData_GetGlobalTrade(fieldSystem->saveData);
     v0->unk_04 = SaveData_GetSystemData(fieldSystem->saveData);
     v0->unk_08 = SaveData_SaveTable(fieldSystem->saveData, SAVE_TABLE_ENTRY_PARTY);
-    v0->unk_0C = SaveData_GetPCBoxes(fieldSystem->saveData);
+    v0->pcBoxes = SaveData_GetPCBoxes(fieldSystem->saveData);
     v0->unk_10 = SaveData_GetPokedex(fieldSystem->saveData);
     v0->unk_14 = SaveData_GetWiFiList(fieldSystem->saveData);
     v0->wiFiHistory = SaveData_WiFiHistory(fieldSystem->saveData);
@@ -1362,7 +1362,7 @@ void sub_0203E0FC(FieldSystem *fieldSystem, int param1)
     v0->unk_3C = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
     v0->saveData = fieldSystem->saveData;
     v0->unk_34 = SaveData_GetDexMode(fieldSystem->saveData);
-    v0->unk_38 = sub_02039058(v0->unk_14);
+    v0->unk_38 = WiFiList_GetUserGsProfileId(v0->unk_14);
     v0->unk_30 = SaveData_GetBag(fieldSystem->saveData);
     v0->unk_40 = param1;
 
@@ -1388,9 +1388,9 @@ void *sub_0203E1AC(FieldSystem *fieldSystem, int param1, int param2)
     v0->unk_04 = sub_0202D764(fieldSystem->saveData);
     v0->unk_08 = SaveData_GetSystemData(fieldSystem->saveData);
     v0->options = SaveData_GetOptions(fieldSystem->saveData);
-    v0->unk_14 = sub_0202AD28(SaveData_GetWiFiList(fieldSystem->saveData));
+    v0->unk_14 = WiFiList_GetUserData(SaveData_GetWiFiList(fieldSystem->saveData));
     v0->saveData = fieldSystem->saveData;
-    v0->unk_1C = sub_02039058(SaveData_GetWiFiList(fieldSystem->saveData));
+    v0->unk_1C = WiFiList_GetUserGsProfileId(SaveData_GetWiFiList(fieldSystem->saveData));
     v0->unk_18 = param1;
     v0->unk_24 = param2;
     v0->unk_20 = 1;

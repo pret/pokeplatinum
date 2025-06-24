@@ -759,7 +759,7 @@ static u32 ov64_0222E09C(UnkStruct_ov64_0222E060 *param0, Strbuf *param1, Strbuf
     int v9;
 
     v1 = SaveData_GetWiFiList(param0->saveData);
-    v5 = DWC_CreateFriendKey(sub_0202AD28(v1));
+    v5 = DWC_CreateFriendKey(WiFiList_GetUserData(v1));
 
     for (v0 = 0; v0 < 32; v0++) {
         v2 = sub_0202AF78(v1, v0);
@@ -768,7 +768,7 @@ static u32 ov64_0222E09C(UnkStruct_ov64_0222E060 *param0, Strbuf *param1, Strbuf
             v4 = Strbuf_AtoI(param1, &v3);
 
             if ((v3 == 1) && (v4 != v5)) {
-                v7 = sub_0202AD28(v1);
+                v7 = WiFiList_GetUserData(v1);
 
                 if (!DWC_CheckFriendKey(v7, v4)) {
                     return 1;
@@ -2794,7 +2794,7 @@ static int ov64_0223044C (UnkStruct_ov64_02230444 * param0, UnkStruct_ov64_0222D
         }
 
         ApplicationManager_Free(param0->appMan);
-        ov64_0222E07C(param2, param0->unk_04->unk_18, param0->unk_08->unk_1C);
+        ov64_0222E07C(param2, param0->unk_04->textInputStr, param0->unk_08->unk_1C);
         ov64_0222E074(param2, 0, 6);
         param2->unk_04 = 3;
         break;
@@ -2818,7 +2818,7 @@ static int ov64_0223044C (UnkStruct_ov64_02230444 * param0, UnkStruct_ov64_0222D
 
         if (param0->unk_04->unk_14 == 0) {
             ov64_0222E074(param2, 1, 12);
-            ov64_0222E07C(param2, param0->unk_04->unk_18, NULL);
+            ov64_0222E07C(param2, param0->unk_04->textInputStr, NULL);
             param2->unk_04 = 6;
         } else {
             ov64_0222E074(param2, 1, 13);
@@ -2858,9 +2858,9 @@ static UnkStruct_0208737C * ov64_022305DC (UnkStruct_ov64_02230444 * param0, Unk
     if (param1->unk_34.unk_04 == 1) {
         {
             if (IsFullWidthChar(*param1->unk_34.unk_00) == 0) {
-                Strbuf_CopyChars(v0->unk_18, param1->unk_34.unk_00);
+                Strbuf_CopyChars(v0->textInputStr, param1->unk_34.unk_00);
             } else {
-                Strbuf_Clear(v0->unk_18);
+                Strbuf_Clear(v0->textInputStr);
             }
         }
 
@@ -2962,7 +2962,7 @@ asm static void ov64_02230680 (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_
     ldr r0, [sp, #0x14]
     ldr r0, [r0, #0]
     bl SaveData_GetWiFiList
-    bl sub_0202AD28
+    bl WiFiList_GetUserData
     bl DWC_CreateFriendKey
     str r1, [sp, #0x1c]
     str r0, [sp, #0x24]

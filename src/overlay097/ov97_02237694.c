@@ -92,9 +92,9 @@ void *ov97_022376C4(ApplicationManager *appMan, int heapID, int param2, int para
     return v0;
 }
 
-void ov97_022376FC(BgConfig *param0, int param1, u8 param2, u32 param3, u32 param4)
+void ov97_022376FC(BgConfig *bgConfig, int bgLayer, u8 param2, u32 param3, u32 param4)
 {
-    BgTemplate v0 = {
+    BgTemplate bgTemplate = {
         0,
         0,
         0x800,
@@ -110,28 +110,28 @@ void ov97_022376FC(BgConfig *param0, int param1, u8 param2, u32 param3, u32 para
         0
     };
 
-    v0.screenSize = param2;
+    bgTemplate.screenSize = param2;
 
     switch (param2) {
     case 1:
-        v0.bufferSize = 0x800;
+        bgTemplate.bufferSize = 0x800;
         break;
     case 2:
-        v0.bufferSize = 0x1000;
+        bgTemplate.bufferSize = 0x1000;
         break;
     case 3:
-        v0.bufferSize = 0x1000;
+        bgTemplate.bufferSize = 0x1000;
         break;
     case 4:
-        v0.bufferSize = 0x2000;
+        bgTemplate.bufferSize = 0x2000;
         break;
     }
 
-    v0.screenBase = param3 / 0x800;
-    v0.charBase = param4 / 0x4000;
+    bgTemplate.screenBase = param3 / 0x800;
+    bgTemplate.charBase = param4 / 0x4000;
 
-    Bg_InitFromTemplate(param0, param1, &v0, 0);
-    Bg_ClearTilemap(param0, param1);
+    Bg_InitFromTemplate(bgConfig, bgLayer, &bgTemplate, 0);
+    Bg_ClearTilemap(bgConfig, bgLayer);
 }
 
 void ov97_02237784(int param0)

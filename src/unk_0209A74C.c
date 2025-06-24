@@ -97,13 +97,13 @@ void sub_0209A74C(int heapID)
     v0 = BgConfig_New(heapID);
 
     SetAllGraphicsModes(&Unk_020F8ACC);
-    Bg_InitFromTemplate(v0, 0, &Unk_020F8ADC, 0);
-    Bg_ClearTilemap(v0, 0);
-    LoadStandardWindowGraphics(v0, 0, 512 - 9, 2, 0, heapID);
+    Bg_InitFromTemplate(v0, BG_LAYER_MAIN_0, &Unk_020F8ADC, 0);
+    Bg_ClearTilemap(v0, BG_LAYER_MAIN_0);
+    LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_0, 512 - 9, 2, 0, heapID);
     Font_LoadTextPalette(0, 1 * (2 * 16), heapID);
-    Bg_ClearTilesRange(0, 32, 0, heapID);
-    Bg_MaskPalette(0, 27681);
-    Bg_MaskPalette(4, 27681);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, heapID);
+    Bg_MaskPalette(BG_LAYER_MAIN_0, 27681);
+    Bg_MaskPalette(BG_LAYER_SUB_0, 27681);
 
     v2 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0005, heapID);
     v3 = Strbuf_Init(384, heapID);
@@ -127,15 +127,15 @@ void sub_0209A74C(int heapID)
 
     Window_Remove(&v1);
     MessageLoader_Free(v2);
-    Bg_ToggleLayer(0, 0);
-    Bg_ToggleLayer(1, 0);
-    Bg_ToggleLayer(2, 0);
-    Bg_ToggleLayer(3, 0);
-    Bg_ToggleLayer(4, 0);
-    Bg_ToggleLayer(5, 0);
-    Bg_ToggleLayer(6, 0);
-    Bg_ToggleLayer(7, 0);
-    Bg_FreeTilemapBuffer(v0, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_0, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_1, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_3, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_0, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_1, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_2, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
+    Bg_FreeTilemapBuffer(v0, BG_LAYER_MAIN_0);
     Heap_FreeToHeap(v0);
 
     PM_ForceToPowerOff();
@@ -171,13 +171,13 @@ void sub_0209A8E0(int heapID)
     v0 = BgConfig_New(heapID);
 
     SetAllGraphicsModes(&Unk_020F8ACC);
-    Bg_InitFromTemplate(v0, 0, &Unk_020F8ADC, 0);
-    Bg_ClearTilemap(v0, 0);
-    LoadStandardWindowGraphics(v0, 0, 512 - 9, 2, 0, heapID);
+    Bg_InitFromTemplate(v0, BG_LAYER_MAIN_0, &Unk_020F8ADC, 0);
+    Bg_ClearTilemap(v0, BG_LAYER_MAIN_0);
+    LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_0, 512 - 9, 2, 0, heapID);
     Font_LoadTextPalette(0, 1 * (2 * 16), heapID);
-    Bg_ClearTilesRange(0, 32, 0, heapID);
-    Bg_MaskPalette(0, 0x6c21);
-    Bg_MaskPalette(4, 0x6c21);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, heapID);
+    Bg_MaskPalette(BG_LAYER_MAIN_0, 0x6c21);
+    Bg_MaskPalette(BG_LAYER_SUB_0, 0x6c21);
 
     v2 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0005, heapID);
     v3 = Strbuf_Init(0x180, heapID);
@@ -201,15 +201,15 @@ void sub_0209A8E0(int heapID)
 
     Window_Remove(&v1);
     MessageLoader_Free(v2);
-    Bg_ToggleLayer(0, 0);
-    Bg_ToggleLayer(1, 0);
-    Bg_ToggleLayer(2, 0);
-    Bg_ToggleLayer(3, 0);
-    Bg_ToggleLayer(4, 0);
-    Bg_ToggleLayer(5, 0);
-    Bg_ToggleLayer(6, 0);
-    Bg_ToggleLayer(7, 0);
-    Bg_FreeTilemapBuffer(v0, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_0, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_1, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_3, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_0, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_1, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_2, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
+    Bg_FreeTilemapBuffer(v0, BG_LAYER_MAIN_0);
     Heap_FreeToHeap(v0);
 
     PM_ForceToPowerOff();

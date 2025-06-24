@@ -398,7 +398,7 @@ BOOL ov104_02234D50(UnkStruct_ov104_0222E930 *param0)
 
 BOOL ov104_02234D6C(UnkStruct_ov104_0222E930 *param0)
 {
-    TVBroadcast *v0;
+    TVBroadcast *broadcast;
     u16 v1;
     Party *v2;
     Pokemon *v3;
@@ -411,8 +411,8 @@ BOOL ov104_02234D6C(UnkStruct_ov104_0222E930 *param0)
     v1 = Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL);
 
     if (v4->unk_04 == 0) {
-        v0 = SaveData_GetTVBroadcast(v5->saveData);
-        sub_0206D048(v0, v3);
+        broadcast = SaveData_GetTVBroadcast(v5->saveData);
+        sub_0206D048(broadcast, v3);
     }
 
     return 0;

@@ -139,7 +139,7 @@ void CommInfo_SendBattleRegulation(void)
     sCommInfo->playerInfo[netId].unk_65 = sub_02028810(sCommInfo->saveData);
     sCommInfo->playerInfo[netId].unk_65 = 1 - sCommInfo->playerInfo[netId].unk_65;
 
-    DWC_CreateExchangeToken(sub_0202AD28(v4), &sCommInfo->playerInfo[netId].friendData);
+    DWC_CreateExchangeToken(WiFiList_GetUserData(v4), &sCommInfo->playerInfo[netId].friendData);
     MI_CpuClear8(sCommInfo->playerInfo[netId].regulationBuffer, 32);
 
     if (sCommInfo->regulation) {

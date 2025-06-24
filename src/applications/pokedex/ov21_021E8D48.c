@@ -282,10 +282,10 @@ static void ov21_021E90B0(BgConfig *param0, int heapID)
             0
         };
 
-        Bg_FreeTilemapBuffer(param0, 1);
-        Bg_InitFromTemplate(param0, 1, &v0, 0);
-        Bg_ClearTilesRange(1, 32, 0, heapID);
-        Bg_ClearTilemap(param0, 1);
+        Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v0, 0);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, heapID);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
     }
 
     {
@@ -305,15 +305,15 @@ static void ov21_021E90B0(BgConfig *param0, int heapID)
             0
         };
 
-        Bg_FreeTilemapBuffer(param0, 2);
-        Bg_InitFromTemplate(param0, 2, &v1, 0);
-        Bg_ClearTilesRange(2, 32, 0, heapID);
-        Bg_ClearTilemap(param0, 2);
+        Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v1, 0);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_2, 32, 0, heapID);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
     }
 
-    Bg_SetPriority(0, 0);
+    Bg_SetPriority(BG_LAYER_MAIN_0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
-    Bg_FreeTilemapBuffer(param0, 0);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
 
     {
         BgTemplate v2 = {
@@ -332,18 +332,18 @@ static void ov21_021E90B0(BgConfig *param0, int heapID)
             0
         };
 
-        Bg_FreeTilemapBuffer(param0, 3);
-        Bg_InitFromTemplate(param0, 3, &v2, 0);
-        Bg_ClearTilesRange(3, 32, 0, heapID);
-        Bg_ClearTilemap(param0, 3);
+        Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_3);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v2, 0);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_3, 32, 0, heapID);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_3);
     }
 }
 
 static void ov21_021E9194(BgConfig *param0)
 {
-    Bg_FreeTilemapBuffer(param0, 1);
-    Bg_FreeTilemapBuffer(param0, 2);
-    Bg_FreeTilemapBuffer(param0, 3);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_3);
 }
 
 static Window *ov21_021E91B0(BgConfig *param0, int param1)

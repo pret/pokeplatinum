@@ -219,8 +219,8 @@ static void ov94_02242B54(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 0, &v1, 0);
-        Bg_ClearTilemap(param0, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_0, &v1, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_0);
     }
 
     {
@@ -240,8 +240,8 @@ static void ov94_02242B54(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 1, &v2, 0);
-        Bg_ClearTilemap(param0, 1);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v2, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
     }
 
     {
@@ -261,8 +261,8 @@ static void ov94_02242B54(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 2, &v3, 0);
-        Bg_ClearTilemap(param0, 2);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v3, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
     }
 
     {
@@ -282,8 +282,8 @@ static void ov94_02242B54(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 4, &v4, 0);
-        Bg_ClearTilemap(param0, 4);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v4, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
     }
 
     {
@@ -303,11 +303,11 @@ static void ov94_02242B54(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 5, &v5, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_1, &v5, 0);
     }
 
-    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_62);
-    Bg_ClearTilesRange(1, 32, 0, HEAP_ID_62);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_62);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_62);
     Bg_ClearTilesRange(4, 32, 0, HEAP_ID_62);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -316,11 +316,11 @@ static void ov94_02242B54(BgConfig *param0)
 
 static void ov94_02242C80(BgConfig *param0)
 {
-    Bg_FreeTilemapBuffer(param0, 5);
-    Bg_FreeTilemapBuffer(param0, 4);
-    Bg_FreeTilemapBuffer(param0, 2);
-    Bg_FreeTilemapBuffer(param0, 1);
-    Bg_FreeTilemapBuffer(param0, 0);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
 }
 
 static void ov94_02242CAC(UnkStruct_ov94_0223FD4C *param0)
@@ -329,12 +329,12 @@ static void ov94_02242CAC(UnkStruct_ov94_0223FD4C *param0)
 
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__WORLDTRADE, 0, 0, 0, 16 * 3 * 2, HEAP_ID_62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_62);
-    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_00->options), HEAP_ID_62);
-    LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, HEAP_ID_62);
+    LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, 1, 10, Options_Frame(param0->unk_00->options), HEAP_ID_62);
+    LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_0, (1 + (18 + 12)), 11, 0, HEAP_ID_62);
 
     if (param0->unk_10F0 == 0) {
-        Bg_ToggleLayer(4, 0);
-        Bg_ToggleLayer(5, 0);
+        Bg_ToggleLayer(BG_LAYER_SUB_0, 0);
+        Bg_ToggleLayer(BG_LAYER_SUB_1, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 0);
     }
 
@@ -657,13 +657,7 @@ static int ov94_022431F0(UnkStruct_ov94_0223FD4C *param0)
             GameRecords_IncrementTrainerScore(param0->unk_00->records, TRAINER_SCORE_EVENT_UNK_25);
             ov94_02243E48(param0->unk_00->unk_2C, &param0->unk_A4C);
             GameRecords_IncrementRecordValue(param0->unk_00->records, RECORD_UNK_024);
-
-            {
-                TVBroadcast *v2;
-
-                v2 = SaveData_GetTVBroadcast(param0->unk_00->saveData);
-                sub_0206D104(v2);
-            }
+            sub_0206D104(SaveData_GetTVBroadcast(param0->unk_00->saveData));
             break;
         case -5:
             param0->unk_3C = v1;
@@ -937,12 +931,8 @@ static int ov94_02243658(UnkStruct_ov94_0223FD4C *param0)
     ov94_02243E48(param0->unk_00->unk_2C, &param0->unk_12C);
     GameRecords_IncrementRecordValue(param0->unk_00->records, RECORD_UNK_024);
 
-    {
-        TVBroadcast *v0;
-
-        v0 = SaveData_GetTVBroadcast(param0->unk_00->saveData);
-        sub_0206D104(v0);
-    }
+    TVBroadcast *broadcast = SaveData_GetTVBroadcast(param0->unk_00->saveData);
+    sub_0206D104(broadcast);
 
     sub_0202DA68(param0->unk_00->unk_00, 0);
     param0->unk_2C = 30;
@@ -1250,9 +1240,9 @@ static void ov94_02243B08(UnkStruct_ov94_0223FD4C *param0, int param1)
     if (param0->unk_110 != 18) {
         Pokemon *v0 = Pokemon_New(HEAP_ID_62);
 
-        Pokemon_FromBoxPokemon(PCBoxes_GetBoxMonAt(param0->unk_00->unk_0C, param0->unk_110, param0->unk_112), v0);
+        Pokemon_FromBoxPokemon(PCBoxes_GetBoxMonAt(param0->unk_00->pcBoxes, param0->unk_110, param0->unk_112), v0);
         sub_0202DA7C(param0->unk_00->unk_00, v0, param0->unk_110);
-        PCBoxes_InitBoxMonAt(param0->unk_00->unk_0C, param0->unk_110, param0->unk_112);
+        PCBoxes_InitBoxMonAt(param0->unk_00->pcBoxes, param0->unk_110, param0->unk_112);
         Heap_FreeToHeap(v0);
     } else {
         Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->unk_00->unk_08, param0->unk_112);
@@ -1313,8 +1303,8 @@ static void ov94_02243BC4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
     } else {
         int v4 = 0;
 
-        PCBoxes_TryGetNextAvailableSpace(param0->unk_00->unk_0C, &param2, &v4);
-        PCBoxes_TryStoreBoxMonInBox(param0->unk_00->unk_0C, param2, Pokemon_GetBoxPokemon(param1));
+        PCBoxes_TryGetNextAvailableSpace(param0->unk_00->pcBoxes, &param2, &v4);
+        PCBoxes_TryStoreBoxMonInBox(param0->unk_00->pcBoxes, param2, Pokemon_GetBoxPokemon(param1));
 
         param0->unk_124.unk_00 = param2;
         param0->unk_124.unk_04 = v4;
@@ -1361,8 +1351,8 @@ static void ov94_02243CE4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
     } else {
         int v3 = 0;
 
-        PCBoxes_TryGetNextAvailableSpace(param0->unk_00->unk_0C, &param2, &v3);
-        PCBoxes_TryStoreBoxMonInBox(param0->unk_00->unk_0C, param2, Pokemon_GetBoxPokemon(param1));
+        PCBoxes_TryGetNextAvailableSpace(param0->unk_00->pcBoxes, &param2, &v3);
+        PCBoxes_TryStoreBoxMonInBox(param0->unk_00->pcBoxes, param2, Pokemon_GetBoxPokemon(param1));
 
         param0->unk_124.unk_00 = param2;
         param0->unk_124.unk_04 = v3;

@@ -190,20 +190,20 @@ BOOL ScrCmd_238(ScriptContext *param0)
 
 BOOL ScrCmd_27C(ScriptContext *param0)
 {
-    TVBroadcast *v0 = SaveData_GetTVBroadcast(param0->fieldSystem->saveData);
+    TVBroadcast *broadcast = SaveData_GetTVBroadcast(param0->fieldSystem->saveData);
 
     switch (ScriptContext_ReadHalfWord(param0)) {
     case 0: {
-        Party *v1 = SaveData_GetParty(param0->fieldSystem->saveData);
-        Pokemon *v2 = Party_GetPokemonBySlotIndex(v1, ScriptContext_GetVar(param0));
+        Party *party = SaveData_GetParty(param0->fieldSystem->saveData);
+        Pokemon *v2 = Party_GetPokemonBySlotIndex(party, ScriptContext_GetVar(param0));
 
-        sub_0206CF48(v0, v2, HEAP_ID_FIELD);
+        sub_0206CF48(broadcast, v2, HEAP_ID_FIELD);
     } break;
     case 1:
-        sub_0206CFB4(v0, ScriptContext_GetVar(param0));
+        sub_0206CFB4(broadcast, ScriptContext_GetVar(param0));
         break;
     case 2:
-        sub_0206CF9C(v0, ScriptContext_GetVar(param0));
+        sub_0206CF9C(broadcast, ScriptContext_GetVar(param0));
         break;
     }
 
@@ -237,9 +237,9 @@ static int sub_020491D0(int param0, FieldSystem *fieldSystem, StringTemplate *pa
 static BOOL sub_020491F4(FieldSystem *fieldSystem, int param1)
 {
     UnkFuncPtr_020EBB48_2 v0;
-    TVBroadcast *v1 = SaveData_GetTVBroadcast(fieldSystem->saveData);
+    TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
 
-    if (sub_0202E6B0(v1, 1, param1) == 0) {
+    if (sub_0202E6B0(broadcast, 1, param1) == 0) {
         return 0;
     }
 
@@ -278,8 +278,8 @@ static void sub_02049288(FieldSystem *fieldSystem, StringTemplate *param1)
 static void sub_020492A0(FieldSystem *fieldSystem, StringTemplate *param1)
 {
     u16 v0[10 + 1];
-    TVBroadcast *v1 = SaveData_GetTVBroadcast(fieldSystem->saveData);
-    UnkStruct_0202E7E4 *v2 = sub_0202E7E4(v1);
+    TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
+    UnkStruct_0202E7E4 *v2 = sub_0202E7E4(broadcast);
 
     MessageLoader_GetSpeciesName(v2->unk_02, 4, v0);
     sub_0204922C(param1, 0, v0, 0, GAME_LANGUAGE, 1);
@@ -288,8 +288,8 @@ static void sub_020492A0(FieldSystem *fieldSystem, StringTemplate *param1)
 static void sub_020492D4(FieldSystem *fieldSystem, StringTemplate *param1)
 {
     u16 v0[10 + 1];
-    TVBroadcast *v1 = SaveData_GetTVBroadcast(fieldSystem->saveData);
-    UnkStruct_0202E810 *v2 = sub_0202E810(v1);
+    TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
+    UnkStruct_0202E810 *v2 = sub_0202E810(broadcast);
 
     MessageLoader_GetSpeciesName(v2->unk_02, 4, v0);
     sub_0204922C(param1, 0, v0, 0, GAME_LANGUAGE, 1);
@@ -298,8 +298,8 @@ static void sub_020492D4(FieldSystem *fieldSystem, StringTemplate *param1)
 static void sub_02049308(FieldSystem *fieldSystem, StringTemplate *param1)
 {
     Strbuf *v0;
-    TVBroadcast *v1 = SaveData_GetTVBroadcast(fieldSystem->saveData);
-    UnkStruct_0202E81C *v2 = sub_0202E81C(v1);
+    TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
+    UnkStruct_0202E81C *v2 = sub_0202E81C(broadcast);
 
     v0 = Strbuf_Init(64, HEAP_ID_FIELD);
 
@@ -380,12 +380,12 @@ static const UnkStruct_020EBB48 Unk_020EBB48[19] = {
 
 BOOL ScrCmd_31B(ScriptContext *param0)
 {
-    TVBroadcast *v0;
+    TVBroadcast *broadcast;
     UnkStruct_0202E808 *v1;
     u16 *v2 = ScriptContext_GetVarPointer(param0);
 
-    v0 = SaveData_GetTVBroadcast(param0->fieldSystem->saveData);
-    v1 = sub_0202E808(v0);
+    broadcast = SaveData_GetTVBroadcast(param0->fieldSystem->saveData);
+    v1 = sub_0202E808(broadcast);
     *v2 = v1->unk_07;
 
     return 0;
@@ -393,15 +393,15 @@ BOOL ScrCmd_31B(ScriptContext *param0)
 
 BOOL ScrCmd_329(ScriptContext *param0)
 {
-    TVBroadcast *v0;
+    TVBroadcast *broadcast;
     UnkStruct_0202E81C *v1;
     u16 *v2 = ScriptContext_GetVarPointer(param0);
     u16 *v3 = ScriptContext_GetVarPointer(param0);
     u16 *v4 = ScriptContext_GetVarPointer(param0);
     u16 *v5 = ScriptContext_GetVarPointer(param0);
 
-    v0 = SaveData_GetTVBroadcast(param0->fieldSystem->saveData);
-    v1 = sub_0202E81C(v0);
+    broadcast = SaveData_GetTVBroadcast(param0->fieldSystem->saveData);
+    v1 = sub_0202E81C(broadcast);
 
     switch (v1->unk_01) {
     case 5:

@@ -436,7 +436,7 @@ static void ov79_021D260C(UnkStruct_ov79_021D2928 *param0)
         Bg_FreeTilemapBuffer(param0->unk_68, v0);
     }
 
-    Bg_FreeTilemapBuffer(param0->unk_68, 4);
+    Bg_FreeTilemapBuffer(param0->unk_68, BG_LAYER_SUB_0);
     Heap_FreeToHeap(param0->unk_68);
 }
 
@@ -467,7 +467,7 @@ static void ov79_021D270C(UnkStruct_ov79_021D2928 *param0)
 
     Window_AddFromTemplate(param0->unk_68, &(param0->unk_6C), &v0);
     Window_FillTilemap(&param0->unk_6C, ((0 << 4) | 0));
-    LoadMessageBoxGraphics(param0->unk_68, 1, 1, 14, param0->unk_10->unk_0B, param0->heapID);
+    LoadMessageBoxGraphics(param0->unk_68, BG_LAYER_MAIN_1, 1, 14, param0->unk_10->unk_0B, param0->heapID);
     Font_LoadScreenIndicatorsPalette(0, 15 * 32, param0->heapID);
 }
 

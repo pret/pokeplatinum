@@ -2633,14 +2633,14 @@ static BOOL ov62_02243E20 (UnkStruct_0208C06C * param0)
         ov62_02234540(param0, 1);
         ov62_02231454(param0);
         ov62_02234540(param0, 0);
-        Bg_SetPriority(0, 0);
-        Bg_SetPriority(1, 3);
-        Bg_SetPriority(2, 0);
-        Bg_SetPriority(3, 2);
-        Bg_SetPriority(4, 0);
-        Bg_SetPriority(5, 3);
-        Bg_SetPriority(6, 1);
-        Bg_SetPriority(7, 2);
+        Bg_SetPriority(BG_LAYER_MAIN_0, 0);
+        Bg_SetPriority(BG_LAYER_MAIN_1, 3);
+        Bg_SetPriority(BG_LAYER_MAIN_2, 0);
+        Bg_SetPriority(BG_LAYER_MAIN_3, 2);
+        Bg_SetPriority(BG_LAYER_SUB_0, 0);
+        Bg_SetPriority(BG_LAYER_SUB_1, 3);
+        Bg_SetPriority(BG_LAYER_SUB_2, 1);
+        Bg_SetPriority(BG_LAYER_SUB_3, 2);
         param0->unk_08++;
         break;
     default:
@@ -2948,14 +2948,14 @@ static BOOL ov62_022444BC (UnkStruct_0208C06C * param0)
 
         ov62_022343B8(param0, 6, 7);
 
-        Bg_SetPriority(0, 1);
-        Bg_SetPriority(1, 3);
-        Bg_SetPriority(2, 0);
-        Bg_SetPriority(3, 1);
-        Bg_SetPriority(4, 1);
-        Bg_SetPriority(5, 3);
-        Bg_SetPriority(6, 0);
-        Bg_SetPriority(7, 2);
+        Bg_SetPriority(BG_LAYER_MAIN_0, 1);
+        Bg_SetPriority(BG_LAYER_MAIN_1, 3);
+        Bg_SetPriority(BG_LAYER_MAIN_2, 0);
+        Bg_SetPriority(BG_LAYER_MAIN_3, 1);
+        Bg_SetPriority(BG_LAYER_SUB_0, 1);
+        Bg_SetPriority(BG_LAYER_SUB_1, 3);
+        Bg_SetPriority(BG_LAYER_SUB_2, 0);
+        Bg_SetPriority(BG_LAYER_SUB_3, 2);
 
         ov62_022443EC(param0);
         ov62_02245C64(param0);
@@ -3482,14 +3482,14 @@ static BOOL ov62_02245018 (UnkStruct_0208C06C * param0)
         }
 
         if (ov62_022315E0(&v0->unk_00, &v0->unk_04, 0, 1)) {
-            Bg_SetPriority(0, 1);
-            Bg_SetPriority(1, 3);
-            Bg_SetPriority(2, 0);
-            Bg_SetPriority(3, 1);
-            Bg_SetPriority(4, 1);
-            Bg_SetPriority(5, 3);
-            Bg_SetPriority(6, 0);
-            Bg_SetPriority(7, 2);
+            Bg_SetPriority(BG_LAYER_MAIN_0, 1);
+            Bg_SetPriority(BG_LAYER_MAIN_1, 3);
+            Bg_SetPriority(BG_LAYER_MAIN_2, 0);
+            Bg_SetPriority(BG_LAYER_MAIN_3, 1);
+            Bg_SetPriority(BG_LAYER_SUB_0, 1);
+            Bg_SetPriority(BG_LAYER_SUB_1, 3);
+            Bg_SetPriority(BG_LAYER_SUB_2, 0);
+            Bg_SetPriority(BG_LAYER_SUB_3, 2);
 
             v0->unk_608[0] = TouchScreenActions_RegisterHandler(Unk_ov62_0224919C, NELEMS(Unk_ov62_0224919C), ov62_022457A0, param0, HEAP_ID_102);
             v0->unk_608[1] = TouchScreenActions_RegisterHandler(Unk_ov62_0224915C, NELEMS(Unk_ov62_0224915C), ov62_02245800, param0, HEAP_ID_102);

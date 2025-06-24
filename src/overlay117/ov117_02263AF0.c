@@ -403,7 +403,7 @@ void ov117_02263AF0(BgConfig *param0, int param1, int param2, UnkStruct_ov117_02
 
 static void ov117_02263B8C(BgConfig *param0, UnkStruct_ov117_02263DAC *param1)
 {
-    Bg_ClearTilemap(param0, 7);
+    Bg_ClearTilemap(param0, BG_LAYER_SUB_3);
     param1->unk_00 = 0;
     param1->unk_2D = 1;
 }

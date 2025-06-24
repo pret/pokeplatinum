@@ -141,7 +141,7 @@ int ov4_021D0D80(SaveData *saveData, int heapID, int param2, int param3)
     Unk_ov4_0221A400->unk_10CA = 1;
 
     if (saveData != NULL) {
-        Unk_ov4_0221A400->unk_F08 = sub_0202AD28(SaveData_GetWiFiList(Unk_ov4_0221A400->saveData));
+        Unk_ov4_0221A400->unk_F08 = WiFiList_GetUserData(SaveData_GetWiFiList(Unk_ov4_0221A400->saveData));
         Unk_ov4_0221A400->unk_100 = (DWCFriendData *)sub_0202AED8(SaveData_GetWiFiList(Unk_ov4_0221A400->saveData), 0);
     }
 

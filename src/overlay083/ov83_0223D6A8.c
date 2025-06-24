@@ -570,7 +570,7 @@ void ov83_0223DF30(UnkStruct_ov83_0223E138 *param0, int param1)
 void ov83_0223DF70(UnkStruct_ov83_0223E138 *param0)
 {
     Window_ClearAndCopyToVRAM(param0->unk_08);
-    Bg_ClearTilemap(param0->unk_04, 4);
+    Bg_ClearTilemap(param0->unk_04, BG_LAYER_SUB_0);
 }
 
 void ov83_0223DF84(UnkStruct_ov83_0223E138 *param0)
@@ -627,7 +627,7 @@ static void ov83_0223E09C(UnkStruct_ov83_0223E138 *param0, u32 param1)
     Window_Add(param0->unk_04, param0->unk_0C, 4, 6, 13, 20, 8, 1, (18 + 12) + 1);
     Window_FillTilemap(param0->unk_08, 15);
     Window_FillTilemap(param0->unk_0C, 0);
-    LoadMessageBoxGraphics(param0->unk_04, 4, 1, 0, param0->unk_10, param1);
+    LoadMessageBoxGraphics(param0->unk_04, BG_LAYER_SUB_0, 1, 0, param0->unk_10, param1);
     Font_LoadScreenIndicatorsPalette(4, 1 * 32, param1);
     Window_DrawMessageBoxWithScrollCursor(param0->unk_08, 1, 1, 0);
 }
@@ -1054,9 +1054,9 @@ static void ov83_0223E77C(UnkStruct_ov83_0223E824 *param0, u32 param1)
         { 2, 2, 27, 5, 2, 40 }
     };
 
-    LoadMessageBoxGraphics(param0->unk_04, 2, 1, 0, param0->unk_18, param1);
+    LoadMessageBoxGraphics(param0->unk_04, BG_LAYER_MAIN_2, 1, 0, param0->unk_18, param1);
     Font_LoadScreenIndicatorsPalette(0, 2 * 32, param1);
-    LoadStandardWindowGraphics(param0->unk_04, 2, (1 + (18 + 12)), 1, 0, param1);
+    LoadStandardWindowGraphics(param0->unk_04, BG_LAYER_MAIN_2, (1 + (18 + 12)), 1, 0, param1);
     Font_LoadTextPalette(0, 3 * 32, param1);
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -1163,7 +1163,7 @@ void ov83_0223E9D0(UnkStruct_ov83_0223E824 *param0)
 
 static void ov83_0223E9E4(UnkStruct_ov83_0223E824 *param0)
 {
-    Bg_ClearTilemap(param0->unk_04, 2);
+    Bg_ClearTilemap(param0->unk_04, BG_LAYER_MAIN_2);
     Window_FillTilemap(param0->unk_08[1], 15);
 
     {
@@ -1235,7 +1235,7 @@ void ov83_0223EC4C(UnkStruct_ov83_0223E824 *param0, u32 param1)
 
 void ov83_0223EC70(UnkStruct_ov83_0223E824 *param0)
 {
-    Bg_ClearTilemap(param0->unk_04, 2);
+    Bg_ClearTilemap(param0->unk_04, BG_LAYER_MAIN_2);
     Window_ClearAndCopyToVRAM(param0->unk_08[1]);
     Window_ClearAndCopyToVRAM(param0->unk_08[2]);
 }

@@ -172,8 +172,8 @@ int ov99_021D0D80(ApplicationManager *appMan, int *param1)
     SetScreenMasterBrightness(DS_SCREEN_MAIN, 0);
     SetScreenMasterBrightness(1, 0);
 
-    Bg_ToggleLayer(1, 1);
-    Bg_ToggleLayer(5, 1);
+    Bg_ToggleLayer(BG_LAYER_MAIN_1, 1);
+    Bg_ToggleLayer(BG_LAYER_SUB_1, 1);
 
     return 1;
 }
@@ -310,14 +310,14 @@ static void ov99_021D1270(UnkStruct_ov99_021D2CB0 *param0)
     param0->unk_110C = NULL;
     param0->unk_1108 = NULL;
 
-    Bg_ToggleLayer(1, 0);
-    Bg_ToggleLayer(5, 0);
-    Bg_FreeTilemapBuffer(param0->unk_08, 7);
-    Bg_FreeTilemapBuffer(param0->unk_08, 5);
-    Bg_FreeTilemapBuffer(param0->unk_08, 6);
-    Bg_FreeTilemapBuffer(param0->unk_08, 3);
-    Bg_FreeTilemapBuffer(param0->unk_08, 2);
-    Bg_FreeTilemapBuffer(param0->unk_08, 1);
+    Bg_ToggleLayer(BG_LAYER_MAIN_1, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_1, 0);
+    Bg_FreeTilemapBuffer(param0->unk_08, BG_LAYER_SUB_3);
+    Bg_FreeTilemapBuffer(param0->unk_08, BG_LAYER_SUB_1);
+    Bg_FreeTilemapBuffer(param0->unk_08, BG_LAYER_SUB_2);
+    Bg_FreeTilemapBuffer(param0->unk_08, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(param0->unk_08, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0->unk_08, BG_LAYER_MAIN_1);
     Heap_FreeToHeap(param0->unk_08);
 
     ov99_021D1A4C(param0->unk_10);
@@ -339,10 +339,10 @@ static void ov99_021D1314(UnkStruct_ov99_021D2CB0 *param0)
 {
     GF_ASSERT(param0->unk_1108 == NULL);
 
-    Bg_FreeTilemapBuffer(param0->unk_08, 1);
-    Bg_FreeTilemapBuffer(param0->unk_08, 2);
-    Bg_FreeTilemapBuffer(param0->unk_08, 3);
-    Bg_FreeTilemapBuffer(param0->unk_08, 7);
+    Bg_FreeTilemapBuffer(param0->unk_08, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(param0->unk_08, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0->unk_08, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(param0->unk_08, BG_LAYER_SUB_3);
     Heap_FreeToHeap(param0->unk_08);
 }
 
@@ -445,19 +445,19 @@ static void ov99_021D1380(BgConfig *param0)
             },
         };
 
-        Bg_InitFromTemplate(param0, 1, &v2[0], 0);
-        Bg_ClearTilemap(param0, 1);
-        Bg_SetOffset(param0, 1, 0, 0);
-        Bg_SetOffset(param0, 1, 3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v2[0], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_1, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_1, 3, 0);
 
-        Bg_InitFromTemplate(param0, 2, &v2[1], 0);
-        Bg_ClearTilemap(param0, 2);
-        Bg_SetOffset(param0, 2, 0, 0);
-        Bg_SetOffset(param0, 2, 3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v2[1], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_2, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_2, 3, 0);
 
-        Bg_InitFromTemplate(param0, 3, &v2[2], 2);
-        Bg_SetOffset(param0, 3, 0, 0);
-        Bg_SetOffset(param0, 3, 3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v2[2], 2);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_3, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_3, 3, 0);
 
         G2_SetBG0Priority(1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
@@ -512,29 +512,29 @@ static void ov99_021D1380(BgConfig *param0)
             },
         };
 
-        Bg_InitFromTemplate(param0, 5, &v3[0], 0);
-        Bg_ClearTilemap(param0, 5);
-        Bg_SetOffset(param0, 5, 0, 0);
-        Bg_SetOffset(param0, 5, 3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_1, &v3[0], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_1);
+        Bg_SetOffset(param0, BG_LAYER_SUB_1, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_SUB_1, 3, 0);
 
-        Bg_InitFromTemplate(param0, 6, &v3[1], 0);
-        Bg_ClearTilemap(param0, 6);
-        Bg_SetOffset(param0, 6, 0, 0);
-        Bg_SetOffset(param0, 6, 3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_2, &v3[1], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_2);
+        Bg_SetOffset(param0, BG_LAYER_SUB_2, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_SUB_2, 3, 0);
 
-        Bg_InitFromTemplate(param0, 7, &v3[2], 0);
-        Bg_ClearTilemap(param0, 7);
-        Bg_SetOffset(param0, 7, 0, 0);
-        Bg_SetOffset(param0, 7, 3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_3, &v3[2], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_3);
+        Bg_SetOffset(param0, BG_LAYER_SUB_3, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_SUB_3, 3, 0);
     }
 
-    Bg_ClearTilesRange(1, 32, 0, HEAP_ID_75);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_75);
     Bg_ClearTilesRange(5, 32, 0, HEAP_ID_75);
     Bg_ClearTilesRange(6, 32, 0, HEAP_ID_75);
     Bg_ClearTilesRange(7, 32, 0, HEAP_ID_75);
 
-    Bg_ToggleLayer(3, 0);
-    Bg_ToggleLayer(6, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_3, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_2, 0);
 }
 
 static void ov99_021D1580(BgConfig *param0)
@@ -624,20 +624,20 @@ static void ov99_021D1580(BgConfig *param0)
             },
         };
 
-        Bg_InitFromTemplate(param0, 1, &v2[0], 0);
-        Bg_ClearTilemap(param0, 1);
-        Bg_SetOffset(param0, 1, 0, 0);
-        Bg_SetOffset(param0, 1, 3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v2[0], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_1, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_1, 3, 0);
 
-        Bg_InitFromTemplate(param0, 2, &v2[1], 2);
-        Bg_ClearTilemap(param0, 2);
-        Bg_SetOffset(param0, 2, 0, 0);
-        Bg_SetOffset(param0, 2, 3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v2[1], 2);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_2, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_2, 3, 0);
 
-        Bg_InitFromTemplate(param0, 3, &v2[2], 2);
-        Bg_ClearTilemap(param0, 3);
-        Bg_SetOffset(param0, 3, 0, 0);
-        Bg_SetOffset(param0, 3, 3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v2[2], 2);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_3);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_3, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_3, 3, 0);
     }
 
     {
@@ -659,10 +659,10 @@ static void ov99_021D1580(BgConfig *param0)
             },
         };
 
-        Bg_InitFromTemplate(param0, 7, &v3[0], 0);
-        Bg_ClearTilemap(param0, 7);
-        Bg_SetOffset(param0, 7, 0, 0);
-        Bg_SetOffset(param0, 7, 3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_3, &v3[0], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_3);
+        Bg_SetOffset(param0, BG_LAYER_SUB_3, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_SUB_3, 3, 0);
     }
 
     Bg_ClearTilesRange(7, 32, 0, HEAP_ID_75);

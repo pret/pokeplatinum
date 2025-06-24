@@ -206,11 +206,11 @@ static const GraphicsModes Unk_ov112_0225D834 = {
 };
 
 static const u32 Unk_ov112_0225D844[5] = {
-    0x0,
-    0x1,
-    0x2,
-    0x3,
-    0x4
+    BG_LAYER_MAIN_0,
+    BG_LAYER_MAIN_1,
+    BG_LAYER_MAIN_2,
+    BG_LAYER_MAIN_3,
+    BG_LAYER_SUB_0
 };
 
 static const BgTemplate Unk_ov112_0225D8C0[5] = {

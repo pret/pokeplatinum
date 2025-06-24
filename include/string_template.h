@@ -80,7 +80,7 @@ void StringTemplate_SetUndergroundAnswer(StringTemplate *template, u32 idx, u32 
 void StringTemplate_SetUndergroundGoodsName(StringTemplate *template, u32 idx, u32 goods);
 void StringTemplate_SetUndergroundGoodsNameWithArticle(StringTemplate *template, u32 idx, u32 goods);
 void StringTemplate_SetGenderMarker(StringTemplate *template, u32 idx, enum Gender gender);
-void StringTemplate_SetPCBoxName(StringTemplate *template, u32 idx, const PCBoxes *boxes, u32 boxIdx);
+void StringTemplate_SetPCBoxName(StringTemplate *template, u32 idx, const PCBoxes *pcBoxes, u32 boxIdx);
 void StringTemplate_SetGymName(StringTemplate *template, u32 idx, u32 gym);
 void StringTemplate_SetTimeOfDay(StringTemplate *template, u32 idx, u32 timeOfDay);
 void StringTemplate_SetCountryName(StringTemplate *template, u32 idx, u32 country);

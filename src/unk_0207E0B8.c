@@ -721,8 +721,8 @@ static void sub_0207E8E0(BgConfig *param0)
         0
     };
 
-    Bg_InitFromTemplate(param0, 0, &v0, 0);
-    Bg_ClearTilemap(param0, 0);
+    Bg_InitFromTemplate(param0, BG_LAYER_MAIN_0, &v0, 0);
+    Bg_ClearTilemap(param0, BG_LAYER_MAIN_0);
 }
 
 static void sub_0207E918(BgConfig *param0)
@@ -759,8 +759,8 @@ static void sub_0207E918(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 1, &v1, 0);
-        Bg_ClearTilemap(param0, 1);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v1, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
     }
 
     {
@@ -780,8 +780,8 @@ static void sub_0207E918(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 2, &v2, 0);
-        Bg_ClearTilemap(param0, 2);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v2, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
     }
 
     {
@@ -801,7 +801,7 @@ static void sub_0207E918(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 3, &v3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v3, 0);
     }
 
     {
@@ -821,8 +821,8 @@ static void sub_0207E918(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 4, &v4, 0);
-        Bg_ClearTilemap(param0, 4);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v4, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
     }
 
     {
@@ -842,10 +842,10 @@ static void sub_0207E918(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 5, &v5, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_1, &v5, 0);
     }
 
-    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_12);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_12);
     Bg_ClearTilesRange(4, 32, 0, HEAP_ID_12);
 }
 
@@ -853,20 +853,20 @@ static void sub_0207EA24(BgConfig *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_OBJ, 0);
-    Bg_FreeTilemapBuffer(param0, 5);
-    Bg_FreeTilemapBuffer(param0, 4);
-    Bg_FreeTilemapBuffer(param0, 3);
-    Bg_FreeTilemapBuffer(param0, 2);
-    Bg_FreeTilemapBuffer(param0, 1);
-    Bg_FreeTilemapBuffer(param0, 0);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
     Heap_FreeToHeapExplicit(HEAP_ID_12, param0);
 }
 
 void sub_0207EA74(GameWindowLayout *windowLayout, int param1)
 {
     if (param1 == 0) {
-        Bg_ToggleLayer(0, 0);
-        Bg_FreeTilemapBuffer(windowLayout->unk_00, 0);
+        Bg_ToggleLayer(BG_LAYER_MAIN_0, 0);
+        Bg_FreeTilemapBuffer(windowLayout->unk_00, BG_LAYER_MAIN_0);
 
         GX_SetGraphicsMode(GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_3D);
         windowLayout->unk_B28 = sub_0207EAD4(HEAP_ID_12);
@@ -877,7 +877,7 @@ void sub_0207EA74(GameWindowLayout *windowLayout, int param1)
         GX_SetGraphicsMode(GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_2D);
 
         sub_0207E8E0(windowLayout->unk_00);
-        Bg_ClearTilesRange(0, 32, 0, HEAP_ID_12);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_12);
     }
 }
 
@@ -923,16 +923,16 @@ static void sub_0207EB6C(GameWindowLayout *param0, NARC *param1)
     }
 
     Font_LoadScreenIndicatorsPalette(0, 13 * 32, HEAP_ID_12);
-    LoadStandardWindowGraphics(param0->unk_00, 0, 1, 14, 0, HEAP_ID_12);
-    LoadMessageBoxGraphics(param0->unk_00, 0, (1 + 9), 15, Options_Frame(param0->partyManagementData->options), HEAP_ID_12);
+    LoadStandardWindowGraphics(param0->unk_00, BG_LAYER_MAIN_0, 1, 14, 0, HEAP_ID_12);
+    LoadMessageBoxGraphics(param0->unk_00, BG_LAYER_MAIN_0, (1 + 9), 15, Options_Frame(param0->partyManagementData->options), HEAP_ID_12);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 3, param0->unk_00, 4, 0, 0, 0, HEAP_ID_12);
     Graphics_LoadPaletteFromOpenNARC(param1, 4, 4, 0x20, 0x20, HEAP_ID_12);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 12, param0->unk_00, 5, 0, 0, 0, HEAP_ID_12);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 14, param0->unk_00, 5, 0, 0, 0, HEAP_ID_12);
     Graphics_LoadPaletteFromOpenNARC(param1, 13, 4, 0, 0x20, HEAP_ID_12);
     LoadScreenDataFromNARC(12, param0->unk_264, param0->unk_324, param0->unk_3E4);
-    Bg_MaskPalette(0, 0);
-    Bg_MaskPalette(4, 0);
+    Bg_MaskPalette(BG_LAYER_MAIN_0, 0);
+    Bg_MaskPalette(BG_LAYER_SUB_0, 0);
 }
 
 static GameWindowLayout *sub_0207ECC0(ApplicationManager *appMan)
@@ -1723,7 +1723,7 @@ static u8 sub_020800B4(GameWindowLayout *param0, u8 *param1)
     param1[v4] = 1;
     v4++;
 
-    if (sub_0206C0D0(param0->partyManagementData->fieldSystem) == 0) {
+    if (FieldSystem_IsInBattleTowerSalon(param0->partyManagementData->fieldSystem) == FALSE) {
         if (param0->unk_704[param0->partySlot].unk_10 == 0) {
             for (v3 = 0; v3 < 4; v3++) {
                 v1 = (u16)Pokemon_GetValue(v0, MON_DATA_MOVE1 + v3, NULL);
@@ -2631,7 +2631,7 @@ static int ProcessItemApplication(GameWindowLayout *param0)
             StringTemplate_Format(param0->template, param0->unk_6A4, param0->unk_6A8);
             v2 = 11;
         } else if (fieldSystem != NULL) {
-            if (fieldSystem->location->mapId == 466) {
+            if (fieldSystem->location->mapId == MAP_HEADER_UNION_ROOM) {
                 MessageLoader_GetStrbuf(param0->messageLoader, 204, param0->unk_6A8);
                 StringTemplate_SetItemName(param0->template, 0, param0->partyManagementData->usedItemID);
                 StringTemplate_Format(param0->template, param0->unk_6A4, param0->unk_6A8);

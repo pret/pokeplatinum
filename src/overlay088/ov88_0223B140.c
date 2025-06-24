@@ -312,7 +312,7 @@ int ov88_0223B140(ApplicationManager *appMan, int *param1)
     sub_02095E60(v0->fieldSystem, v0);
     ov88_0223ECBC(&v0->unk_49C[23], 20, FONT_MESSAGE, v0->unk_184, v0->unk_178);
     sub_02095CD4(v0->fieldSystem);
-    Bg_ToggleLayer(0, 1);
+    Bg_ToggleLayer(BG_LAYER_MAIN_0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     sub_02038A1C(26, v0->unk_174);
     sub_02039734();
@@ -368,20 +368,20 @@ static void ov88_0223B3C0(UnkStruct_02095E80 *param0)
     ov88_0223B4F0(param0);
     ov88_0223B320(param0);
 
-    LoadMessageBoxGraphics(param0->unk_174, 0, (512 - (9 + (18 + 12))), 10, Options_Frame(param0->unk_08->options), HEAP_ID_26);
-    LoadStandardWindowGraphics(param0->unk_174, 0, (512 - 9), 11, 0, HEAP_ID_26);
+    LoadMessageBoxGraphics(param0->unk_174, BG_LAYER_MAIN_0, (512 - (9 + (18 + 12))), 10, Options_Frame(param0->unk_08->options), HEAP_ID_26);
+    LoadStandardWindowGraphics(param0->unk_174, BG_LAYER_MAIN_0, (512 - 9), 11, 0, HEAP_ID_26);
 
     ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
 
-    Bg_ToggleLayer(4, 1);
-    Bg_ToggleLayer(5, 1);
-    Bg_ToggleLayer(6, 1);
+    Bg_ToggleLayer(BG_LAYER_SUB_0, 1);
+    Bg_ToggleLayer(BG_LAYER_SUB_1, 1);
+    Bg_ToggleLayer(BG_LAYER_SUB_2, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 
-    Bg_ToggleLayer(0, 1);
-    Bg_ToggleLayer(1, 1);
-    Bg_ToggleLayer(2, 1);
-    Bg_ToggleLayer(3, 1);
+    Bg_ToggleLayer(BG_LAYER_MAIN_0, 1);
+    Bg_ToggleLayer(BG_LAYER_MAIN_1, 1);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
+    Bg_ToggleLayer(BG_LAYER_MAIN_3, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
     ov88_0223C63C();
@@ -697,9 +697,9 @@ static int ov88_0223B914(UnkStruct_02095E80 *param0)
         break;
     case 16:
         BrightnessController_StartTransition(8, 0, -16, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, BRIGHTNESS_MAIN_SCREEN);
-        Bg_ToggleLayer(1, 1);
-        Bg_ToggleLayer(2, 1);
-        Bg_ToggleLayer(3, 1);
+        Bg_ToggleLayer(BG_LAYER_MAIN_1, 1);
+        Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
+        Bg_ToggleLayer(BG_LAYER_MAIN_3, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         param0->unk_4C++;
@@ -715,9 +715,9 @@ static int ov88_0223B914(UnkStruct_02095E80 *param0)
         break;
     case 18:
         BrightnessController_StartTransition(8, 0, -16, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_OBJ, BRIGHTNESS_SUB_SCREEN);
-        Bg_ToggleLayer(4, 1);
-        Bg_ToggleLayer(5, 1);
-        Bg_ToggleLayer(6, 1);
+        Bg_ToggleLayer(BG_LAYER_SUB_0, 1);
+        Bg_ToggleLayer(BG_LAYER_SUB_1, 1);
+        Bg_ToggleLayer(BG_LAYER_SUB_2, 1);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         param0->unk_4C++;
@@ -956,8 +956,8 @@ static void ov88_0223C17C(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 0, &v1, 0);
-        Bg_ClearTilemap(param0, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_0, &v1, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_0);
     }
 
     {
@@ -977,8 +977,8 @@ static void ov88_0223C17C(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 1, &v2, 0);
-        Bg_ClearTilemap(param0, 1);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v2, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
     }
 
     {
@@ -998,8 +998,8 @@ static void ov88_0223C17C(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 2, &v3, 0);
-        Bg_ClearTilemap(param0, 2);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v3, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
     }
 
     {
@@ -1019,7 +1019,7 @@ static void ov88_0223C17C(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 3, &v4, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v4, 0);
     }
 
     {
@@ -1039,8 +1039,8 @@ static void ov88_0223C17C(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 4, &v5, 0);
-        Bg_ClearTilemap(param0, 4);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v5, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
     }
 
     {
@@ -1060,7 +1060,7 @@ static void ov88_0223C17C(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 5, &v6, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_1, &v6, 0);
     }
 
     {
@@ -1080,31 +1080,31 @@ static void ov88_0223C17C(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 6, &v7, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_2, &v7, 0);
     }
 
-    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_26);
-    Bg_ClearTilesRange(1, 32, 0, HEAP_ID_26);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_26);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_26);
     Bg_ClearTilesRange(4, 32, 0, HEAP_ID_26);
 
     {
         int v8;
 
         for (v8 = 0; v8 < 4; v8++) {
-            Bg_SetOffset(param0, 0 + v8, 0, 0);
-            Bg_SetOffset(param0, 0 + v8, 3, 0);
-            Bg_SetOffset(param0, 4 + v8, 0, 0);
-            Bg_SetOffset(param0, 4 + v8, 3, 0);
+            Bg_SetOffset(param0, BG_LAYER_MAIN_0 + v8, 0, 0);
+            Bg_SetOffset(param0, BG_LAYER_MAIN_0 + v8, 3, 0);
+            Bg_SetOffset(param0, BG_LAYER_SUB_0 + v8, 0, 0);
+            Bg_SetOffset(param0, BG_LAYER_SUB_0 + v8, 3, 0);
         }
     }
 
-    Bg_ToggleLayer(0, 0);
-    Bg_ToggleLayer(1, 0);
-    Bg_ToggleLayer(2, 0);
-    Bg_ToggleLayer(3, 0);
-    Bg_ToggleLayer(4, 0);
-    Bg_ToggleLayer(5, 0);
-    Bg_ToggleLayer(6, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_0, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_1, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_3, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_0, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_1, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_2, 0);
 
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
 }
@@ -1150,14 +1150,14 @@ static void ov88_0223C370(UnkStruct_02095E80 *param0, ApplicationManager *appMan
 
 static void ov88_0223C44C(BgConfig *param0)
 {
-    Bg_FreeTilemapBuffer(param0, 6);
-    Bg_FreeTilemapBuffer(param0, 5);
-    Bg_FreeTilemapBuffer(param0, 4);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_2);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0);
 
-    Bg_FreeTilemapBuffer(param0, 3);
-    Bg_FreeTilemapBuffer(param0, 2);
-    Bg_FreeTilemapBuffer(param0, 1);
-    Bg_FreeTilemapBuffer(param0, 0);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
 }
 
 static void ov88_0223C488(NARC *param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 heapID)
@@ -1193,8 +1193,8 @@ static void ov88_0223C504(UnkStruct_02095E80 *param0, NARC *param1)
 
     Graphics_LoadPaletteFromOpenNARC(param1, 0, 4, 0, 16 * 9 * 2, HEAP_ID_26);
     Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 9 * 2, HEAP_ID_26);
-    Bg_MaskPalette(0, 0);
-    Bg_MaskPalette(4, 0);
+    Bg_MaskPalette(BG_LAYER_MAIN_0, 0);
+    Bg_MaskPalette(BG_LAYER_SUB_0, 0);
     Font_LoadScreenIndicatorsPalette(0, 13 * 32, HEAP_ID_26);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 1, v0, 2, 0, 16 * 18 * 0x20, 1, HEAP_ID_26);
 
@@ -1208,7 +1208,7 @@ static void ov88_0223C504(UnkStruct_02095E80 *param0, NARC *param1)
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 6, v0, 6, 0, 32 * 24 * 2, 1, HEAP_ID_26);
     Font_LoadScreenIndicatorsPalette(4, 2 * 32, HEAP_ID_26);
     Font_LoadTextPalette(4, 3 * 32, HEAP_ID_26);
-    Bg_ClearTilemap(v0, 4);
+    Bg_ClearTilemap(v0, BG_LAYER_SUB_0);
 }
 
 static void ov88_0223C63C(void)
@@ -2523,8 +2523,8 @@ static void ov88_0223E7F0(JournalEntry *journalEntry, Pokemon *mon)
 static void ov88_0223E848(UnkStruct_02095E80 *param0)
 {
     param0->unk_2310 += 2;
-    Bg_SetOffset(param0->unk_174, 6, 0, param0->unk_2310);
-    Bg_SetOffset(param0->unk_174, 3, 0, param0->unk_2310);
+    Bg_SetOffset(param0->unk_174, BG_LAYER_SUB_2, 0, param0->unk_2310);
+    Bg_SetOffset(param0->unk_174, BG_LAYER_MAIN_3, 0, param0->unk_2310);
 }
 
 static void ov88_0223E87C(Sprite *param0, int param1, int param2)

@@ -146,7 +146,7 @@ void ov20_021D2F50(UnkStruct_ov20_021D30F8 *param0, NARC *param1)
     v1 += 9;
 
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__PL_WINFRAME, 24, 0, 14 * 0x20, 0x20, HEAP_ID_35);
-    LoadMessageBoxGraphics(v0, 0, v1, 15, ov20_021D2080(param0->unk_04), HEAP_ID_35);
+    LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, v1, 15, ov20_021D2080(param0->unk_04), HEAP_ID_35);
     Window_DrawMessageBox(&param0->unk_1C, v1, 15);
     Window_PutToTilemap(&param0->unk_0C);
     Window_PutToTilemap(&param0->unk_1C);

@@ -455,13 +455,13 @@ static void ov99_021D1D68(UnkStruct_ov99_021D2CB0 *param0)
     Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_10F8, 12, param0->unk_08, 7, 0, 0, 0, HEAP_ID_75);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_10F8, 6, param0->unk_08, 7, 0, 0, 0, HEAP_ID_75);
 
-    Bg_SetOffset(v0, 2, 0, 0);
-    Bg_SetOffset(v0, 2, 3, 0);
-    Bg_SetOffset(v0, 7, 0, 0);
-    Bg_SetOffset(v0, 7, 3, 0);
+    Bg_SetOffset(v0, BG_LAYER_MAIN_2, 0, 0);
+    Bg_SetOffset(v0, BG_LAYER_MAIN_2, 3, 0);
+    Bg_SetOffset(v0, BG_LAYER_SUB_3, 0, 0);
+    Bg_SetOffset(v0, BG_LAYER_SUB_3, 3, 0);
 
-    Bg_ToggleLayer(2, 1);
-    Bg_ToggleLayer(7, 1);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
+    Bg_ToggleLayer(BG_LAYER_SUB_3, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
@@ -471,8 +471,8 @@ static void ov99_021D1D68(UnkStruct_ov99_021D2CB0 *param0)
 
 static void ov99_021D1E6C(UnkStruct_ov99_021D2CB0 *param0)
 {
-    Bg_ToggleLayer(2, 0);
-    Bg_ToggleLayer(7, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
 }
@@ -593,13 +593,13 @@ static void ov99_021D211C(UnkStruct_ov99_021D2CB0 *param0)
     ov99_021D439C(param0, param0->unk_1105, 3, 0);
     param0->unk_1105++;
 
-    Bg_ToggleLayer(3, 1);
+    Bg_ToggleLayer(BG_LAYER_MAIN_3, 1);
     Bg_ScheduleTilemapTransfer(param0->unk_08, 2);
 }
 
 static void ov99_021D214C(UnkStruct_ov99_021D2CB0 *param0)
 {
-    Bg_ToggleLayer(3, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_3, 0);
 }
 
 static void ov99_021D2158(UnkStruct_ov99_021D2CB0 *param0)
@@ -673,13 +673,13 @@ static void ov99_021D2180(UnkStruct_ov99_021D2CB0 *param0)
         Heap_FreeToHeap(v2);
     }
 
-    Bg_SetOffset(v0, 2, 0, 0);
-    Bg_SetOffset(v0, 2, 3, 0);
-    Bg_SetOffset(v0, 7, 0, 0);
-    Bg_SetOffset(v0, 7, 3, 0);
+    Bg_SetOffset(v0, BG_LAYER_MAIN_2, 0, 0);
+    Bg_SetOffset(v0, BG_LAYER_MAIN_2, 3, 0);
+    Bg_SetOffset(v0, BG_LAYER_SUB_3, 0, 0);
+    Bg_SetOffset(v0, BG_LAYER_SUB_3, 3, 0);
 
-    Bg_ToggleLayer(2, 1);
-    Bg_ToggleLayer(7, 1);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
+    Bg_ToggleLayer(BG_LAYER_SUB_3, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
@@ -689,8 +689,8 @@ static void ov99_021D2180(UnkStruct_ov99_021D2CB0 *param0)
 
 static void ov99_021D22AC(UnkStruct_ov99_021D2CB0 *param0)
 {
-    Bg_ToggleLayer(2, 0);
-    Bg_ToggleLayer(7, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
 }
@@ -816,13 +816,13 @@ static void ov99_021D24F0(UnkStruct_ov99_021D2CB0 *param0)
         PaletteData_LoadBuffer(param0->unk_0C, param0->unk_FA4.unk_08_val3.unk_08, 1, 16 * 1, 0x20);
     }
 
-    Bg_SetOffset(v0, 2, 0, 0);
-    Bg_SetOffset(v0, 2, 3, 0);
-    Bg_SetOffset(v0, 7, 0, 0);
-    Bg_SetOffset(v0, 7, 3, 0);
+    Bg_SetOffset(v0, BG_LAYER_MAIN_2, 0, 0);
+    Bg_SetOffset(v0, BG_LAYER_MAIN_2, 3, 0);
+    Bg_SetOffset(v0, BG_LAYER_SUB_3, 0, 0);
+    Bg_SetOffset(v0, BG_LAYER_SUB_3, 3, 0);
 
-    Bg_ToggleLayer(2, 1);
-    Bg_ToggleLayer(7, 1);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
+    Bg_ToggleLayer(BG_LAYER_SUB_3, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
@@ -832,8 +832,8 @@ static void ov99_021D24F0(UnkStruct_ov99_021D2CB0 *param0)
 
 static void ov99_021D2640(UnkStruct_ov99_021D2CB0 *param0)
 {
-    Bg_ToggleLayer(2, 0);
-    Bg_ToggleLayer(7, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
 }
@@ -991,14 +991,14 @@ static void ov99_021D2A38(UnkStruct_ov99_021D2CB0 *param0)
     ov99_021D439C(param0, param0->unk_1105, 2, 1);
     param0->unk_1105++;
 
-    Bg_ToggleLayer(2, 1);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
     Bg_ScheduleTilemapTransfer(param0->unk_08, 2);
 }
 
 static void ov99_021D2A70(UnkStruct_ov99_021D2CB0 *param0)
 {
-    Bg_ToggleLayer(2, 0);
-    Bg_ToggleLayer(3, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_3, 0);
 }
 
 static void ov99_021D2A84(UnkStruct_ov99_021D2CB0 *param0)
@@ -1078,9 +1078,9 @@ static void ov99_021D2AAC(UnkStruct_ov99_021D2CB0 *param0)
         Strbuf_Free(v1);
     }
 
-    Bg_SetOffset(v0, 7, 0, 0);
-    Bg_SetOffset(v0, 7, 3, 0);
-    Bg_ToggleLayer(7, 1);
+    Bg_SetOffset(v0, BG_LAYER_SUB_3, 0, 0);
+    Bg_SetOffset(v0, BG_LAYER_SUB_3, 3, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_3, 1);
 
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
@@ -1093,7 +1093,7 @@ static void ov99_021D2AAC(UnkStruct_ov99_021D2CB0 *param0)
 
 static void ov99_021D2BBC(UnkStruct_ov99_021D2CB0 *param0)
 {
-    Bg_ToggleLayer(7, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
 
     if (param0->unk_24 != NULL) {
         Window_Remove(param0->unk_24);

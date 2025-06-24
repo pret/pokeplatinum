@@ -1028,10 +1028,10 @@ void ov16_02268744(BgConfig *param0)
     int i;
 
     for (i = 0; i < NELEMS(Unk_ov16_02270540); i++) {
-        Bg_InitFromTemplate(param0, 4 + i, &Unk_ov16_02270540[i], 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0 + i, &Unk_ov16_02270540[i], 0);
         Bg_FillTilemap(param0, 4 + i, (0x6000 / 0x20 - 1));
-        Bg_SetOffset(param0, 4 + i, 0, 0);
-        Bg_SetOffset(param0, 4 + i, 3, 0);
+        Bg_SetOffset(param0, BG_LAYER_SUB_0 + i, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_SUB_0 + i, 3, 0);
     }
 }
 
@@ -1040,8 +1040,8 @@ void ov16_022687A0(BgConfig *param0)
     int i;
 
     for (i = 0; i < NELEMS(Unk_ov16_02270540); i++) {
-        Bg_ToggleLayer(4 + i, 0);
-        Bg_FreeTilemapBuffer(param0, 4 + i);
+        Bg_ToggleLayer(BG_LAYER_SUB_0 + i, 0);
+        Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0 + i);
     }
 }
 
@@ -1677,13 +1677,13 @@ static void ov16_022694A8(SysTask *param0, void *param1)
         v1 = 1;
     }
 
-    Bg_SetOffset(v2, 6, 0, v0->unk_6AC / 0x100);
+    Bg_SetOffset(v2, BG_LAYER_SUB_2, 0, v0->unk_6AC / 0x100);
     ov16_0226940C(v0);
 
     if (v1 == 1) {
         Bg_FillTilemap(v2, 7, (0x6000 / 0x20 - 1));
-        Bg_ToggleLayer(7, 0);
-        Bg_SetPriority(7, 0);
+        Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
+        Bg_SetPriority(BG_LAYER_SUB_3, 0);
         GXS_SetVisibleWnd(GX_WNDMASK_NONE);
         SysTask_Done(param0);
         return;
@@ -2938,9 +2938,9 @@ static void ov16_0226B198(void)
 
     for (i = 0; i < 4; i++) {
         if (4 + i != 6) {
-            Bg_ToggleLayer(4 + i, 0);
+            Bg_ToggleLayer(BG_LAYER_SUB_0 + i, 0);
         } else {
-            Bg_ToggleLayer(4 + i, 1);
+            Bg_ToggleLayer(BG_LAYER_SUB_0 + i, 1);
         }
     }
 }
@@ -3503,10 +3503,10 @@ static void ov16_0226B988(SysTask *param0, void *param1)
             break;
         }
 
-        Bg_SetOffset(v1, 4, 0, 0);
-        Bg_SetOffset(v1, 4, 3, 0);
-        Bg_SetOffset(v1, 5, 0, 0);
-        Bg_SetOffset(v1, 5, 3, 0);
+        Bg_SetOffset(v1, BG_LAYER_SUB_0, 0, 0);
+        Bg_SetOffset(v1, BG_LAYER_SUB_0, 3, 0);
+        Bg_SetOffset(v1, BG_LAYER_SUB_1, 0, 0);
+        Bg_SetOffset(v1, BG_LAYER_SUB_1, 3, 0);
         BattleSystem_SetCommandSelectionFlags(v0->unk_00->battleSys, 1);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
@@ -3530,8 +3530,8 @@ static void ov16_0226BA88(SysTask *param0, void *param1)
             v4 = 0;
         }
 
-        Bg_SetOffset(v1, 4, 0, v4);
-        Bg_SetOffset(v1, 5, 0, 255 - v0->unk_0C);
+        Bg_SetOffset(v1, BG_LAYER_SUB_0, 0, v4);
+        Bg_SetOffset(v1, BG_LAYER_SUB_1, 0, 255 - v0->unk_0C);
         v2 = -v0->unk_08 / 100;
     } else {
         v4 = v0->unk_0C;
@@ -3540,14 +3540,14 @@ static void ov16_0226BA88(SysTask *param0, void *param1)
             v4 = 0;
         }
 
-        Bg_SetOffset(v1, 4, 0, v4);
-        Bg_SetOffset(v1, 5, 0, v0->unk_0C);
+        Bg_SetOffset(v1, BG_LAYER_SUB_0, 0, v4);
+        Bg_SetOffset(v1, BG_LAYER_SUB_1, 0, v0->unk_0C);
 
         v2 = 255 + v0->unk_08 / 100;
     }
 
-    Bg_SetOffset(v1, 4, 3, 0);
-    Bg_SetOffset(v1, 5, 3, 0);
+    Bg_SetOffset(v1, BG_LAYER_SUB_0, 3, 0);
+    Bg_SetOffset(v1, BG_LAYER_SUB_1, 3, 0);
 
     v3 = (18 * 8) + (v0->unk_0A) / 100;
 
@@ -3587,10 +3587,10 @@ static void ov16_0226BB94(void *param0)
     if (v1 == (18 * 8)) {
         BgConfig *v3 = BattleSystem_BGL(v0->unk_00->battleSys);
 
-        Bg_SetOffset(v3, 4, 0, 0);
-        Bg_SetOffset(v3, 4, 3, v0->unk_10);
-        Bg_SetOffset(v3, 5, 0, 0);
-        Bg_SetOffset(v3, 5, 3, v0->unk_10);
+        Bg_SetOffset(v3, BG_LAYER_SUB_0, 0, 0);
+        Bg_SetOffset(v3, BG_LAYER_SUB_0, 3, v0->unk_10);
+        Bg_SetOffset(v3, BG_LAYER_SUB_1, 0, 0);
+        Bg_SetOffset(v3, BG_LAYER_SUB_1, 3, v0->unk_10);
     } else if (v1 > 192) {
         BgConfig *v4 = BattleSystem_BGL(v0->unk_00->battleSys);
 
@@ -3601,8 +3601,8 @@ static void ov16_0226BB94(void *param0)
                 v2 = 0;
             }
 
-            Bg_SetOffset(v4, 4, 0, 255 - v0->unk_0C);
-            Bg_SetOffset(v4, 5, 0, 255 - v0->unk_0C);
+            Bg_SetOffset(v4, BG_LAYER_SUB_0, 0, 255 - v0->unk_0C);
+            Bg_SetOffset(v4, BG_LAYER_SUB_1, 0, 255 - v0->unk_0C);
         } else {
             v2 = v0->unk_0C;
 
@@ -3610,12 +3610,12 @@ static void ov16_0226BB94(void *param0)
                 v2 = 0;
             }
 
-            Bg_SetOffset(v4, 4, 0, v0->unk_0C);
-            Bg_SetOffset(v4, 5, 0, v0->unk_0C);
+            Bg_SetOffset(v4, BG_LAYER_SUB_0, 0, v0->unk_0C);
+            Bg_SetOffset(v4, BG_LAYER_SUB_1, 0, v0->unk_0C);
         }
 
-        Bg_SetOffset(v4, 4, 3, 0);
-        Bg_SetOffset(v4, 5, 3, 0);
+        Bg_SetOffset(v4, BG_LAYER_SUB_0, 3, 0);
+        Bg_SetOffset(v4, BG_LAYER_SUB_1, 3, 0);
     }
 }
 
@@ -3629,14 +3629,14 @@ static void ov16_0226BC50(SysTask *param0, void *param1)
 
     for (i = 0; i < 4; i++) {
         if (v1->unk_04_val2[i] == 0xffff) {
-            Bg_ToggleLayer(4 + i, 0);
+            Bg_ToggleLayer(BG_LAYER_SUB_0 + i, 0);
         } else {
-            Bg_ToggleLayer(4 + i, 1);
+            Bg_ToggleLayer(BG_LAYER_SUB_0 + i, 1);
         }
     }
 
     for (i = 0; i < 4; i++) {
-        Bg_SetPriority(4 + i, v1->unk_0C_val2[i]);
+        Bg_SetPriority(BG_LAYER_SUB_0 + i, v1->unk_0C_val2[i]);
     }
 
     SysTask_Done(param0);
@@ -4538,7 +4538,7 @@ void ov16_0226CEB0(UnkStruct_ov16_02268A14 *param0, int param1)
 
     GF_ASSERT(param0->unk_66B == 18);
 
-    LoadStandardWindowGraphics(v0, 5, 0x20, 1, 0, HEAP_ID_BATTLE);
+    LoadStandardWindowGraphics(v0, BG_LAYER_SUB_1, 0x20, 1, 0, HEAP_ID_BATTLE);
     PaletteData_LoadBufferFromHardware(v1, 1, 1 * 16, 0x20);
 
     {

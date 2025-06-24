@@ -1022,7 +1022,7 @@ static void ov12_0223025C(SysTask *param0, void *param1)
         ov12_0222669C(v0->unk_18);
 
         Bg_SetPriority(ov12_022233B0(v0->unk_00, 1), ov12_02223428(v0->unk_00, 1));
-        Bg_SetPriority(0, ov12_0222339C(v0->unk_00));
+        Bg_SetPriority(BG_LAYER_MAIN_0, ov12_0222339C(v0->unk_00));
 
         Bg_ClearTilesRange(ov12_022233B0(v0->unk_00, 1), 0x4000, 0, ov12_0221FDE4(v0->unk_00));
         Bg_ClearTilemap(ov12_02220278(v0->unk_00), ov12_022233B0(v0->unk_00, 1));
@@ -1079,7 +1079,7 @@ void ov12_022303D0(UnkStruct_ov12_0221FCDC *param0)
 
     if ((v3 == 3) || (v3 == 4)) {
         Bg_SetPriority(ov12_022233B0(v0->unk_00, 1), ov12_0222339C(v0->unk_00));
-        Bg_SetPriority(0, ov12_0222339C(v0->unk_00) + 1);
+        Bg_SetPriority(BG_LAYER_MAIN_0, ov12_0222339C(v0->unk_00) + 1);
     }
 
     ov12_0223025C(v2, v0);
@@ -1323,7 +1323,7 @@ static void ov12_02230994(SysTask *param0, void *param1)
         break;
     case 2:
         Bg_SetPriority(ov12_022233B0(v0->unk_00, 1), ov12_02223428(v0->unk_00, 1));
-        Bg_SetPriority(0, ov12_0222339C(v0->unk_00));
+        Bg_SetPriority(BG_LAYER_MAIN_0, ov12_0222339C(v0->unk_00));
 
         if (ov12_0222337C(v0->unk_00, ov12_02220248(v0->unk_00)) == 0) {
             PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_HIDE, 0);
@@ -1370,7 +1370,7 @@ void ov12_02230A8C(UnkStruct_ov12_0221FCDC *param0)
         ManagedSprite_SetExplicitPriority(v0->unk_48, 2);
     } else {
         Bg_SetPriority(ov12_022233B0(v0->unk_00, 1), ov12_0222339C(v0->unk_00));
-        Bg_SetPriority(0, ov12_0222339C(v0->unk_00) + 1);
+        Bg_SetPriority(BG_LAYER_MAIN_0, ov12_0222339C(v0->unk_00) + 1);
         ManagedSprite_SetDrawFlag(v0->unk_48, 0);
     }
 
@@ -3692,7 +3692,7 @@ static void ov12_02233BD8(SysTask *param0, void *param1)
         ov12_022265C0(v0->unk_04);
 
         Bg_SetPriority(ov12_022233B0(v0->unk_00, 1), ov12_02223428(v0->unk_00, 1));
-        Bg_SetPriority(0, ov12_0222339C(v0->unk_00));
+        Bg_SetPriority(BG_LAYER_MAIN_0, ov12_0222339C(v0->unk_00));
 
         Bg_ClearTilesRange(ov12_022233B0(v0->unk_00, 1), 0x4000, 0, ov12_0221FDE4(v0->unk_00));
         Bg_ClearTilemap(ov12_02220278(v0->unk_00), ov12_022233B0(v0->unk_00, 1));
@@ -3735,7 +3735,7 @@ void ov12_02233CD4(UnkStruct_ov12_0221FCDC *param0)
 
     if ((v4 == 3) || (v4 == 4)) {
         Bg_SetPriority(ov12_022233B0(v0->unk_00, 1), ov12_0222339C(v0->unk_00));
-        Bg_SetPriority(0, ov12_0222339C(v0->unk_00) + 1);
+        Bg_SetPriority(BG_LAYER_MAIN_0, ov12_0222339C(v0->unk_00) + 1);
     }
 
     ov12_022201E8(v0->unk_00, ov12_02233BD8, v0);

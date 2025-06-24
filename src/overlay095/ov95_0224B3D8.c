@@ -157,7 +157,7 @@ void ov95_0224B438(void *param0)
             ov95_0224773C(v0->unk_74);
         }
 
-        Bg_FreeTilemapBuffer(v0->unk_58, 1);
+        Bg_FreeTilemapBuffer(v0->unk_58, BG_LAYER_MAIN_1);
         Window_Remove(&(v0->unk_5C));
 
         if (v0->unk_14) {
@@ -273,15 +273,15 @@ static int ov95_0224B520(UnkStruct_ov95_0224B4D4 *param0, int *param1)
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
     SetAllGraphicsModes(&v1);
 
-    Bg_InitFromTemplate(param0->unk_58, 1, &v2, 0);
-    Bg_InitFromTemplate(param0->unk_58, 2, &v3, 0);
+    Bg_InitFromTemplate(param0->unk_58, BG_LAYER_MAIN_1, &v2, 0);
+    Bg_InitFromTemplate(param0->unk_58, BG_LAYER_MAIN_2, &v3, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     G2_SetBG0Priority(1);
 
     Bg_FillTilesRange(param0->unk_58, 1, 0x0, 1, 0);
     Bg_FillTilemapRect(param0->unk_58, 1, 0x0, 0, 0, 32, 32, 0);
-    LoadMessageBoxGraphics(param0->unk_58, 1, 109, 2, ov95_02247674(param0->unk_00), HEAP_ID_58);
+    LoadMessageBoxGraphics(param0->unk_58, BG_LAYER_MAIN_1, 109, 2, ov95_02247674(param0->unk_00), HEAP_ID_58);
 
     Window_Add(param0->unk_58, &(param0->unk_5C), 1, 2, 19, 27, 4, 1, 1);
     Window_FillTilemap(&(param0->unk_5C), 0xf);

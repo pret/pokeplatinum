@@ -569,19 +569,19 @@ static void sub_0206FAC0(UnkStruct_0206F7F8 *param0)
 
 static void sub_0206FB38(UnkStruct_0206F7F8 *param0)
 {
-    Bg_ClearTilesRange(1, 32 * (24 * (12 + 2) + 9 + 1), 0, param0->heapID);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32 * (24 * (12 + 2) + 9 + 1), 0, param0->heapID);
     Bg_FillTilemapRect(param0->unk_D0, 1, 0x0, 0, 0, 32, 32, 17);
     Bg_ScheduleTilemapTransfer(param0->unk_D0, 1);
-    Bg_ToggleLayer(1, 1);
+    Bg_ToggleLayer(BG_LAYER_MAIN_1, 1);
 
-    param0->unk_10 = Bg_GetPriority(param0->unk_D0, 0);
-    param0->unk_12 = Bg_GetPriority(param0->unk_D0, 1);
+    param0->unk_10 = Bg_GetPriority(param0->unk_D0, BG_LAYER_MAIN_0);
+    param0->unk_12 = Bg_GetPriority(param0->unk_D0, BG_LAYER_MAIN_1);
 
-    Bg_SetPriority(0, 2);
-    Bg_SetPriority(1, 1);
-    LoadMessageBoxGraphics(param0->unk_D0, 3, (1024 - (18 + 12)), 10, param0->unk_1C, param0->heapID);
-    LoadStandardWindowGraphics(param0->unk_D0, 3, (1024 - (18 + 12) - 9), 11, 0, param0->heapID);
-    LoadStandardWindowGraphics(param0->unk_D0, 1, (1024 - (18 + 12) - 9), 11, 0, param0->heapID);
+    Bg_SetPriority(BG_LAYER_MAIN_0, 2);
+    Bg_SetPriority(BG_LAYER_MAIN_1, 1);
+    LoadMessageBoxGraphics(param0->unk_D0, BG_LAYER_MAIN_3, (1024 - (18 + 12)), 10, param0->unk_1C, param0->heapID);
+    LoadStandardWindowGraphics(param0->unk_D0, BG_LAYER_MAIN_3, (1024 - (18 + 12) - 9), 11, 0, param0->heapID);
+    LoadStandardWindowGraphics(param0->unk_D0, BG_LAYER_MAIN_1, (1024 - (18 + 12) - 9), 11, 0, param0->heapID);
     Font_LoadTextPalette(0, 13 * 32, param0->heapID);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, param0->heapID);
     Window_Add(param0->unk_D0, &param0->unk_E4, 3, 2, 19, 27, 4, 12, ((1024 - (18 + 12) - 9) - 27 * 4));
@@ -593,12 +593,12 @@ static void sub_0206FC4C(UnkStruct_0206F7F8 *param0)
     Window_EraseMessageBox(&param0->unk_E4, 1);
     Window_ClearAndCopyToVRAM(&param0->unk_E4);
     Window_Remove(&param0->unk_E4);
-    Bg_ClearTilesRange(1, 32 * (24 * (12 + 2) + 9 + 1), 0, param0->heapID);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32 * (24 * (12 + 2) + 9 + 1), 0, param0->heapID);
     Bg_FillTilemapRect(param0->unk_D0, 1, 0x0, 0, 0, 32, 32, 17);
     Bg_ScheduleTilemapTransfer(param0->unk_D0, 1);
-    Bg_ToggleLayer(1, 0);
-    Bg_SetPriority(0, param0->unk_10);
-    Bg_SetPriority(1, param0->unk_12);
+    Bg_ToggleLayer(BG_LAYER_MAIN_1, 0);
+    Bg_SetPriority(BG_LAYER_MAIN_0, param0->unk_10);
+    Bg_SetPriority(BG_LAYER_MAIN_1, param0->unk_12);
 }
 
 static void sub_0206FCC4(UnkStruct_0206F7F8 *param0)

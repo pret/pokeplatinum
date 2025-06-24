@@ -95,7 +95,7 @@ void ov20_021D41A8(UnkStruct_ov20_021D4210 *param0)
 
     v0 = ov20_021D2E04(param0->unk_00);
 
-    Bg_ClearTilesRange(2, 0x20, 0 * 0x20, HEAP_ID_35);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_2, 0x20, 0 * 0x20, HEAP_ID_35);
     Bg_FillTilemapRect(v0, 2, 0, 0, 0, 32, 32, 12);
 
     Window_FillTilemap(&param0->unk_10, 0);
@@ -105,7 +105,7 @@ void ov20_021D41A8(UnkStruct_ov20_021D4210 *param0)
 
     ov20_021D4210(param0);
 
-    Bg_ToggleLayer(2, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
 }
 
 static void ov20_021D4210(UnkStruct_ov20_021D4210 *param0)
@@ -156,7 +156,7 @@ void ov20_021D4294(UnkStruct_ov20_021D4210 *param0)
 void ov20_021D42E4(UnkStruct_ov20_021D4210 *param0)
 {
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_ALL, 0, 16);
-    Bg_ToggleLayer(2, 1);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
     G2_SetWnd1InsidePlane(GX_WND_PLANEMASK_ALL, 1);
 
     param0->unk_84 = G2_GetWndOutsidePlane();
@@ -196,7 +196,7 @@ BOOL ov20_021D43D8(UnkStruct_ov20_021D4210 *param0)
     switch (param0->unk_80) {
     case 0:
         if (ov20_021D4F4C(&param0->unk_40)) {
-            Bg_ToggleLayer(2, 0);
+            Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
             G2_SetWndOutsidePlane(param0->unk_84.planeMask, param0->unk_84.effect);
             GX_SetVisibleWnd(param0->unk_88);
             return 1;
@@ -313,7 +313,7 @@ static void ov20_021D4638(UnkStruct_ov20_021D4210 *param0)
     param0->unk_8C = 48;
     param0->unk_90 = 0;
 
-    Bg_SetOffset(param0->unk_0C, 2, 3, 0);
+    Bg_SetOffset(param0->unk_0C, BG_LAYER_MAIN_2, 3, 0);
 }
 
 static void ov20_021D4658(UnkStruct_ov20_021D4210 *param0, u32 param1, u32 param2)

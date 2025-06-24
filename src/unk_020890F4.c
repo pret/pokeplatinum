@@ -275,12 +275,12 @@ static void sub_0208945C(BgConfig *param0)
             },
         };
 
-        Bg_InitFromTemplate(param0, 1, &v1[0], 0);
-        Bg_InitFromTemplate(param0, 2, &v1[1], 0);
-        Bg_InitFromTemplate(param0, 3, &v1[2], 0);
-        Bg_ClearTilemap(param0, 1);
-        Bg_ClearTilemap(param0, 2);
-        Bg_ClearTilemap(param0, 3);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v1[0], 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v1[1], 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v1[2], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_3);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
@@ -323,14 +323,14 @@ static void sub_0208945C(BgConfig *param0)
             { 0 },
         };
 
-        Bg_InitFromTemplate(param0, 4, &v2[0], 0);
-        Bg_InitFromTemplate(param0, 5, &v2[1], 0);
-        Bg_InitFromTemplate(param0, 6, &v2[2], 0);
-        Bg_InitFromTemplate(param0, 7, &v2[3], 0);
-        Bg_ClearTilemap(param0, 4);
-        Bg_ClearTilemap(param0, 5);
-        Bg_ClearTilemap(param0, 6);
-        Bg_ClearTilemap(param0, 7);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v2[0], 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_1, &v2[1], 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_2, &v2[2], 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_3, &v2[3], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_1);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_2);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_3);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);

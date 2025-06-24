@@ -673,9 +673,9 @@ static void ov86_0223B74C(UnkStruct_ov86_0223B3C8 *param0)
     GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);
 
     SetAllGraphicsModes(&v2);
-    Bg_InitFromTemplate(param0->unk_10, 1, &v3, 0);
-    Bg_InitFromTemplate(param0->unk_10, 2, &v4, 0);
-    Bg_InitFromTemplate(param0->unk_10, 3, &v5, 0);
+    Bg_InitFromTemplate(param0->unk_10, BG_LAYER_MAIN_1, &v3, 0);
+    Bg_InitFromTemplate(param0->unk_10, BG_LAYER_MAIN_2, &v4, 0);
+    Bg_InitFromTemplate(param0->unk_10, BG_LAYER_MAIN_3, &v5, 0);
     Bg_FillTilesRange(param0->unk_10, 1, 0x0, 1, 0);
     Bg_FillTilemapRect(param0->unk_10, 1, 0x0, 0, 0, 32, 32, 0);
     Window_Add(param0->unk_10, &(param0->unk_14), 1, 0, 0, 32, 24, 1, 1);
@@ -704,9 +704,9 @@ static void ov86_0223B8C4(UnkStruct_ov86_0223B3C8 *param0)
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
 
     Window_Remove(&(param0->unk_14));
-    Bg_FreeTilemapBuffer(param0->unk_10, 1);
-    Bg_FreeTilemapBuffer(param0->unk_10, 2);
-    Bg_FreeTilemapBuffer(param0->unk_10, 3);
+    Bg_FreeTilemapBuffer(param0->unk_10, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(param0->unk_10, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0->unk_10, BG_LAYER_MAIN_3);
     Heap_FreeToHeap(param0->unk_10);
 }
 

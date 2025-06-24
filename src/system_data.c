@@ -67,25 +67,25 @@ u8 SystemData_GetOwnerBirthDayOfMonth(const SystemData *systemData)
     return systemData->ownerBirthDayOfMonth;
 }
 
-BOOL sub_02025D64(const SystemData *param0)
+BOOL SystemData_IsMysteryGiftUnlocked(const SystemData *systemData)
 {
-    return param0->unk_48;
+    return systemData->isMysteryGiftUnlocked;
 }
 
-void sub_02025D6C(SystemData *param0, BOOL param1)
+void SystemData_SetMysteryGiftUnlocked(SystemData *systemData, BOOL isUnlocked)
 {
-    param0->unk_48 = param1;
+    systemData->isMysteryGiftUnlocked = isUnlocked;
 }
 
-s32 sub_02025D74(const SystemData *param0)
+s32 SystemData_GetDWCProfileId(const SystemData *systemData)
 {
-    return param0->unk_4C;
+    return systemData->dwcProfileId;
 }
 
-void sub_02025D78(SystemData *param0, s32 param1)
+void SystemData_SetDWCProfileId(SystemData *systemData, s32 profileId)
 {
-    if (param0->unk_4C == 0) {
-        param0->unk_4C = param1;
+    if (systemData->dwcProfileId == 0) {
+        systemData->dwcProfileId = profileId;
     }
 }
 
@@ -95,7 +95,7 @@ void GameTime_Clear(GameTime *gameTime)
     GetCurrentDateTime(&gameTime->date, &gameTime->time);
     gameTime->day = RTC_ConvertDateToDay(&gameTime->date);
     gameTime->startTimestamp = RTC_ConvertDateTimeToSecond(&gameTime->date, &gameTime->time);
-    gameTime->playTimestamp = 0;
+    gameTime->firstCompletionTimestamp = 0;
     gameTime->penaltyInMinutes = 0;
 }
 

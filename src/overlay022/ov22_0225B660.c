@@ -241,9 +241,9 @@ static void ov22_0225BA40(UnkStruct_ov22_0225B85C *param0)
 
     Window_Add(param0->unk_14.unk_40, param0->unk_200, 3, 0, 18, 32, 6, 5, 1);
     Font_LoadTextPalette(0, 5 * 32, HEAP_ID_14);
-    Bg_SetPriority(3, 0);
-    Bg_SetPriority(0, 2);
-    Bg_SetPriority(1, 1);
+    Bg_SetPriority(BG_LAYER_MAIN_3, 0);
+    Bg_SetPriority(BG_LAYER_MAIN_0, 2);
+    Bg_SetPriority(BG_LAYER_MAIN_1, 1);
     Bg_SetOffset(param0->unk_14.unk_40, 3, 3, 0);
 }
 

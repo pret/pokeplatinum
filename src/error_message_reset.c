@@ -131,13 +131,13 @@ void ErrorMessageReset_PrintErrorAndReset(void)
     bgConfig = BgConfig_New(heapID);
 
     SetAllGraphicsModes(&sErrorMessageBgModeSet);
-    Bg_InitFromTemplate(bgConfig, 0, &sErrorMessageBgTemplate, 0);
-    Bg_ClearTilemap(bgConfig, 0);
-    LoadStandardWindowGraphics(bgConfig, 0, (512 - 9), 2, 0, heapID);
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_0, &sErrorMessageBgTemplate, 0);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_0);
+    LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_0, (512 - 9), 2, 0, heapID);
     Font_LoadTextPalette(PAL_LOAD_MAIN_BG, 1 * (2 * 16), heapID);
-    Bg_ClearTilesRange(0, 32, 0, heapID);
-    Bg_MaskPalette(0, 0x6c21);
-    Bg_MaskPalette(4, 0x6c21);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, heapID);
+    Bg_MaskPalette(BG_LAYER_MAIN_0, 0x6c21);
+    Bg_MaskPalette(BG_LAYER_SUB_0, 0x6c21);
 
     errorMsgData = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0214, heapID);
     errorString = Strbuf_Init(0x180, heapID);

@@ -969,7 +969,7 @@ static UnkStruct_ov23_0224BA48 *ov23_0224BCC4(FieldSystem *fieldSystem, int para
         v0->unk_2B = param4;
         v0->unk_2C = param5;
 
-        GF_ASSERT(fieldSystem->location->mapId == 2);
+        GF_ASSERT(fieldSystem->location->mapId == MAP_HEADER_UNDERGROUND);
 
         v0->unk_14 = 2;
         v0->unk_24 = param3;
@@ -1634,7 +1634,7 @@ static BOOL ov23_0224C790(FieldTask *param0)
         sub_020594FC();
 
         Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, 52, 0, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD);
-        LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
+        LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
 
         if (v1->unk_2D) {
             sub_020594EC();

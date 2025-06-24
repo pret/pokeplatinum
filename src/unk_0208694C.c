@@ -1074,17 +1074,17 @@ static void sub_02086E6C(UnkStruct_02087A10 *param0, UnkStruct_0208737C *param1)
             v0 = MessageLoader_GetNewStrbuf(param0->unk_170, 18 + LCRNG_Next() % 18);
         }
 
-        Strbuf_Copy(param1->unk_18, v0);
+        Strbuf_Copy(param1->textInputStr, v0);
         Strbuf_Free(v0);
-        Strbuf_ToChars(param1->unk_18, param1->unk_1C, 10);
+        Strbuf_ToChars(param1->textInputStr, param1->unk_1C, 10);
     } else if (param0->unk_00 == 3) {
         Strbuf *v1;
 
         v1 = MessageLoader_GetNewStrbuf(param0->unk_170, 88 + (LCRNG_Next() % 2));
 
-        Strbuf_Copy(param1->unk_18, v1);
+        Strbuf_Copy(param1->textInputStr, v1);
         Strbuf_Free(v1);
-        Strbuf_ToChars(param1->unk_18, param1->unk_1C, 10);
+        Strbuf_ToChars(param1->textInputStr, param1->unk_1C, 10);
     } else {
         param1->unk_14 = 1;
     }
@@ -1130,7 +1130,7 @@ static int sub_02086F3C(ApplicationManager *appMan, int *param1)
     } else {
         CharCode_Copy(v0->unk_118, v0->unk_D8);
         CharCode_Copy(v1->unk_1C, v0->unk_D8);
-        Strbuf_CopyChars(v1->unk_18, v0->unk_D8);
+        Strbuf_CopyChars(v1->textInputStr, v0->unk_D8);
     }
 
     Strbuf_Free(v0->unk_184);
@@ -1157,7 +1157,7 @@ static int sub_02086F3C(ApplicationManager *appMan, int *param1)
         Heap_FreeToHeapExplicit(HEAP_ID_18, v0->unk_520);
     }
 
-    Bg_FreeTilemapBuffer(v0->unk_160, 7);
+    Bg_FreeTilemapBuffer(v0->unk_160, BG_LAYER_SUB_3);
     CharTransfer_Free();
     PlttTransfer_Free();
     sub_0208765C(v0->unk_160, v0->unk_41C);
@@ -1198,9 +1198,9 @@ UnkStruct_0208737C *sub_0208712C(int heapID, int param1, int param2, int param3,
     v0->unk_0C = param3;
     v0->unk_14 = 0;
     v0->unk_1C[0] = 0xffff;
-    v0->unk_18 = Strbuf_Init(32, heapID);
+    v0->textInputStr = Strbuf_Init(32, heapID);
     v0->unk_44 = 0;
-    v0->unk_48 = NULL;
+    v0->pcBoxes = NULL;
     v0->unk_10 = 0;
     v0->options = options;
     v0->unk_08 = 0;
@@ -1210,10 +1210,10 @@ UnkStruct_0208737C *sub_0208712C(int heapID, int param1, int param2, int param3,
 
 void sub_0208716C(UnkStruct_0208737C *param0)
 {
-    GF_ASSERT((param0->unk_18) != NULL);
+    GF_ASSERT((param0->textInputStr) != NULL);
     GF_ASSERT((param0) != NULL);
 
-    Strbuf_Free(param0->unk_18);
+    Strbuf_Free(param0->textInputStr);
     Heap_FreeToHeap(param0);
 }
 
@@ -1283,8 +1283,8 @@ static void sub_020871EC(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 0, &v1, 0);
-        Bg_ClearTilemap(param0, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_0, &v1, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_0);
     }
 
     {
@@ -1304,8 +1304,8 @@ static void sub_020871EC(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 1, &v2, 0);
-        Bg_ClearTilemap(param0, 1);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v2, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
     }
 
     {
@@ -1325,8 +1325,8 @@ static void sub_020871EC(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 2, &v3, 0);
-        Bg_ClearTilemap(param0, 2);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v3, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
     }
 
     {
@@ -1346,12 +1346,12 @@ static void sub_020871EC(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 4, &v4, 0);
-        Bg_ClearTilemap(param0, 4);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v4, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
     }
 
     sub_0208732C(0);
-    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_18);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_18);
     Bg_ClearTilesRange(4, 32, 0, HEAP_ID_18);
 
     GX_SetVisibleWnd(GX_WNDMASK_W0);
@@ -1380,15 +1380,15 @@ static void sub_0208737C(UnkStruct_02087A10 *param0, ApplicationManager *appMan)
     param0->unk_4C0 = 4;
 
     sub_02088260(param0->unk_4CC, 0);
-    Bg_SetOffset(param0->unk_160, 0 + param0->unk_4C8, 0, param0->unk_4CC[param0->unk_4C8].x);
-    Bg_SetOffset(param0->unk_160, 0 + param0->unk_4C8, 3, param0->unk_4CC[param0->unk_4C8].y);
-    Bg_SetOffset(param0->unk_160, 0 + ((param0->unk_4C8) ^ 1), 0, param0->unk_4CC[((param0->unk_4C8) ^ 1)].x);
-    Bg_SetOffset(param0->unk_160, 0 + ((param0->unk_4C8) ^ 1), 3, param0->unk_4CC[((param0->unk_4C8) ^ 1)].y);
+    Bg_SetOffset(param0->unk_160, BG_LAYER_MAIN_0 + param0->unk_4C8, 0, param0->unk_4CC[param0->unk_4C8].x);
+    Bg_SetOffset(param0->unk_160, BG_LAYER_MAIN_0 + param0->unk_4C8, 3, param0->unk_4CC[param0->unk_4C8].y);
+    Bg_SetOffset(param0->unk_160, BG_LAYER_MAIN_0 + ((param0->unk_4C8) ^ 1), 0, param0->unk_4CC[((param0->unk_4C8) ^ 1)].x);
+    Bg_SetOffset(param0->unk_160, BG_LAYER_MAIN_0 + ((param0->unk_4C8) ^ 1), 3, param0->unk_4CC[((param0->unk_4C8) ^ 1)].y);
 
     param0->unk_118[0] = 0xffff;
 
-    if (v0->unk_18) {
-        Strbuf_ToChars(v0->unk_18, param0->unk_118, 32);
+    if (v0->textInputStr) {
+        Strbuf_ToChars(v0->textInputStr, param0->unk_118, 32);
     }
 
     MI_CpuFill16(param0->unk_D8, 0x1, 32 * 2);
@@ -1449,16 +1449,16 @@ static void sub_02087544(UnkStruct_02087A10 *param0, ApplicationManager *appMan)
 
         v0 = Strbuf_Init(200, HEAP_ID_18);
         param0->unk_180 = NULL;
-        v2 = PCBoxes_GetCurrentBoxID(v1->unk_48);
-        v3 = PCBoxes_FirstEmptyBox(v1->unk_48);
+        v2 = PCBoxes_GetCurrentBoxID(v1->pcBoxes);
+        v3 = PCBoxes_FirstEmptyBox(v1->pcBoxes);
 
-        StringTemplate_SetPCBoxName(param0->unk_168, 1, v1->unk_48, v2);
+        StringTemplate_SetPCBoxName(param0->unk_168, 1, v1->pcBoxes, v2);
 
         if (v2 != v3) {
-            StringTemplate_SetPCBoxName(param0->unk_168, 2, v1->unk_48, v3);
+            StringTemplate_SetPCBoxName(param0->unk_168, 2, v1->pcBoxes, v3);
             v1->unk_44 += 2;
         } else {
-            StringTemplate_SetPCBoxName(param0->unk_168, 2, v1->unk_48, v2);
+            StringTemplate_SetPCBoxName(param0->unk_168, 2, v1->pcBoxes, v2);
         }
 
         if ((param0->unk_158 == 0) || sub_02086F14(param0->unk_D8)) {
@@ -1488,10 +1488,10 @@ static void sub_0208765C(BgConfig *param0, Window *param1)
         Window_Remove(&param1[v0]);
     }
 
-    Bg_FreeTilemapBuffer(param0, 4);
-    Bg_FreeTilemapBuffer(param0, 2);
-    Bg_FreeTilemapBuffer(param0, 1);
-    Bg_FreeTilemapBuffer(param0, 0);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
     Heap_FreeToHeapExplicit(HEAP_ID_18, param0);
 }
 
@@ -1501,14 +1501,14 @@ static void sub_0208769C(UnkStruct_02087A10 *param0, NARC *param1)
 
     Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 3 * 2, HEAP_ID_18);
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__POKETCH, 12, 4, 0, 16 * 2, HEAP_ID_18);
-    Bg_MaskPalette(4, 0);
+    Bg_MaskPalette(BG_LAYER_SUB_0, 0);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 2, 0, ((32 * 8) * 0x20), 1, HEAP_ID_18);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 4, v0, 2, 0, 32 * 24 * 2, 1, HEAP_ID_18);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 1, 0, 32 * 8 * 0x20, 1, HEAP_ID_18);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 6, v0, 1, 0, (32 * 14 * 2), 1, HEAP_ID_18);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 7, v0, 0, 0, (32 * 14 * 2), 1, HEAP_ID_18);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, HEAP_ID_18);
-    LoadMessageBoxGraphics(param0->unk_160, 4, (32 * 8), 10, Options_Frame(param0->options), HEAP_ID_18);
+    LoadMessageBoxGraphics(param0->unk_160, BG_LAYER_SUB_0, (32 * 8), 10, Options_Frame(param0->options), HEAP_ID_18);
     Font_LoadScreenIndicatorsPalette(4, 12 * 32, HEAP_ID_18);
 
     param0->unk_510 = Graphics_GetCharDataFromOpenNARC(param1, 16, 1, &param0->unk_514, HEAP_ID_18);
@@ -1745,8 +1745,8 @@ static void sub_02087D64(BgConfig *param0, Window *param1, int *param2, int para
         (*param2)++;
     } break;
     case 1:
-        Bg_SetOffset(param0, 0 + v0, 0, 238);
-        Bg_SetOffset(param0, 0 + v0, 3, -80);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_0 + v0, 0, 238);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_0 + v0, 3, -80);
         (*param2)++;
         break;
     case 2:
@@ -1773,8 +1773,8 @@ static void sub_02087D64(BgConfig *param0, Window *param1, int *param2, int para
             param5[v1].y = -196;
         }
 
-        Bg_SetOffset(param0, 0 + v0, 0, param5[v0].x);
-        Bg_SetOffset(param0, 0 + v1, 3, param5[v1].y);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_0 + v0, 0, param5[v0].x);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_0 + v1, 3, param5[v1].y);
         break;
     case 3:
         param5[v1].y -= 10;
@@ -1783,8 +1783,8 @@ static void sub_02087D64(BgConfig *param0, Window *param1, int *param2, int para
             param5[v1].y = -196;
         }
 
-        Bg_SetOffset(param0, 0 + v0, 0, param5[v0].x);
-        Bg_SetOffset(param0, 0 + v1, 3, param5[v1].y);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_0 + v0, 0, param5[v0].x);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_0 + v1, 3, param5[v1].y);
 
         if ((param5[v0].x == -11) && (param5[v1].y == -196)) {
             (*param2)++;
@@ -1879,8 +1879,8 @@ static void sub_02087FC0(UnkStruct_02087A10 *param0, ApplicationManager *appMan,
 
 static void sub_02088240(BgConfig *param0, int param1, VecFx32 param2[])
 {
-    Bg_SetPriority(0 + param1, 1);
-    Bg_SetPriority(0 + param1 ^ 1, 2);
+    Bg_SetPriority(BG_LAYER_MAIN_0 + param1, 1);
+    Bg_SetPriority(BG_LAYER_MAIN_0 + param1 ^ 1, 2);
 }
 
 static void sub_02088260(VecFx32 param0[], int param1)

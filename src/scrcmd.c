@@ -484,7 +484,7 @@ static BOOL sub_020439F4(ScriptContext *ctx);
 static BOOL ScrCmd_145(ScriptContext *ctx);
 static BOOL sub_02043A4C(ScriptContext *ctx);
 static BOOL ScrCmd_153(ScriptContext *ctx);
-static BOOL ScrCmd_154(ScriptContext *ctx);
+static BOOL ScrCmd_LoadTrainerAppearances(ScriptContext *ctx);
 static BOOL ScrCmd_155(ScriptContext *ctx);
 static BOOL ScrCmd_29C(ScriptContext *ctx);
 static BOOL ScrCmd_156(ScriptContext *ctx);
@@ -691,7 +691,7 @@ static BOOL ScrCmd_2A4(ScriptContext *ctx);
 static BOOL ScrCmd_2A7(ScriptContext *ctx);
 static BOOL ScrCmd_2AA(ScriptContext *ctx);
 static BOOL ScrCmd_2AB(ScriptContext *ctx);
-static BOOL ScrCmd_2AC(ScriptContext *ctx);
+static BOOL ScrCmd_UnlockMysteryGift(ScriptContext *ctx);
 static BOOL ScrCmd_2AF(ScriptContext *ctx);
 static BOOL ScrCmd_2B0(ScriptContext *ctx);
 static BOOL ScrCmd_2B1(ScriptContext *ctx);
@@ -1109,7 +1109,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_151,
     ScrCmd_152,
     ScrCmd_153,
-    ScrCmd_154,
+    ScrCmd_LoadTrainerAppearances,
     ScrCmd_155,
     ScrCmd_156,
     ScrCmd_CheckPokedexAcquired,
@@ -1453,7 +1453,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_HasCoinsFromVar,
     ScrCmd_2AA,
     ScrCmd_2AB,
-    ScrCmd_2AC,
+    ScrCmd_UnlockMysteryGift,
     ScrCmd_2AD,
     ScrCmd_IsSequencePlaying,
     ScrCmd_2AF,
@@ -2381,17 +2381,17 @@ static BOOL ScriptContext_ScrollBG3(ScriptContext *ctx)
 
     if (*distanceX != 0) {
         if (*directionX == 0) {
-            Bg_SetOffset(fieldSystem->bgConfig, 3, 1, *distanceX);
+            Bg_SetOffset(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1, *distanceX);
         } else {
-            Bg_SetOffset(fieldSystem->bgConfig, 3, 2, *distanceX);
+            Bg_SetOffset(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 2, *distanceX);
         }
     }
 
     if (*distanceY != 0) {
         if (*directionY == 0) {
-            Bg_SetOffset(fieldSystem->bgConfig, 3, 4, *distanceY);
+            Bg_SetOffset(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 4, *distanceY);
         } else {
-            Bg_SetOffset(fieldSystem->bgConfig, 3, 5, *distanceY);
+            Bg_SetOffset(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 5, *distanceY);
         }
     }
 
@@ -3735,7 +3735,7 @@ static BOOL sub_02041CF4(ScriptContext *ctx)
         return FALSE;
     }
 
-    if (v2->unk_08 == 1) {
+    if (v2->recordBoxUseInJournal == TRUE) {
         void *journalEntryLocationEvent;
 
         journalEntryLocationEvent = JournalEntry_CreateEventUsedPCBox(HEAP_ID_FIELDMAP);
@@ -5293,12 +5293,12 @@ static BOOL ScrCmd_153(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_154(ScriptContext *ctx)
+static BOOL ScrCmd_LoadTrainerAppearances(ScriptContext *ctx)
 {
     TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
     StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
 
-    sub_0205C980(TrainerInfo_ID(v0), TrainerInfo_Gender(v0), *v1);
+    TrainerInfo_LoadAppearanceVariants(TrainerInfo_ID(v0), TrainerInfo_Gender(v0), *v1);
     return FALSE;
 }
 
@@ -5308,7 +5308,7 @@ static BOOL ScrCmd_155(ScriptContext *ctx)
     u16 v1 = ScriptContext_GetVar(ctx);
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
 
-    *v2 = sub_0205C9BC(TrainerInfo_ID(v0), TrainerInfo_Gender(v0), v1);
+    *v2 = TrainerInfo_GetAppearanceIndex(TrainerInfo_ID(v0), TrainerInfo_Gender(v0), v1);
     *v2 = sub_0205CA14(TrainerInfo_Gender(v0), *v2, 2);
 
     return FALSE;
@@ -5320,7 +5320,7 @@ static BOOL ScrCmd_29C(ScriptContext *ctx)
     u16 v1 = ScriptContext_GetVar(ctx);
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
 
-    *v2 = sub_0205C9BC(TrainerInfo_ID(v0), TrainerInfo_Gender(v0), v1);
+    *v2 = TrainerInfo_GetAppearanceIndex(TrainerInfo_ID(v0), TrainerInfo_Gender(v0), v1);
 
     return FALSE;
 }
@@ -6132,7 +6132,7 @@ static BOOL ScrCmd_202(ScriptContext *ctx)
 {
     FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData);
     VarsFlags *v3 = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
-    TVBroadcast *v4 = SaveData_GetTVBroadcast(ctx->fieldSystem->saveData);
+    TVBroadcast *broadcast = SaveData_GetTVBroadcast(ctx->fieldSystem->saveData);
     int v5 = ScriptContext_ReadByte(ctx);
 
     u16 *v0 = FieldOverworldState_GetSafariBallCount(fieldState);
@@ -6141,7 +6141,7 @@ static BOOL ScrCmd_202(ScriptContext *ctx)
     switch (v5) {
     case 0:
         SystemFlag_SetSafariGameActive(v3);
-        sub_0206D000(v4);
+        sub_0206D000(broadcast);
         *v0 = 30;
         *v1 = 0;
         break;
@@ -6431,7 +6431,7 @@ static BOOL ScrCmd_249(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
     TrainerInfo *v1 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
-    PCBoxes *v3 = SaveData_GetPCBoxes(fieldSystem->saveData);
+    PCBoxes *pcBoxes = SaveData_GetPCBoxes(fieldSystem->saveData);
     u16 v4 = ScriptContext_GetVar(ctx);
     u16 v5 = ScriptContext_GetVar(ctx);
     u16 v6 = ScriptContext_GetVar(ctx);
@@ -6443,10 +6443,10 @@ static BOOL ScrCmd_249(ScriptContext *ctx)
         return FALSE;
     }
 
-    if (PCBoxes_CheckHasUnlockedWallpaper(v3, v8)) {
+    if (PCBoxes_CheckHasUnlockedWallpaper(pcBoxes, v8)) {
         *v2 = 0;
     } else {
-        PCBoxes_UnlockWallpaper(v3, v8);
+        PCBoxes_UnlockWallpaper(pcBoxes, v8);
         *v2 = v8 + 1;
     }
 
@@ -7313,12 +7313,12 @@ static BOOL ScrCmd_2AA(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_2AC(ScriptContext *ctx)
+static BOOL ScrCmd_UnlockMysteryGift(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     SystemData *v1 = SaveData_GetSystemData(ctx->fieldSystem->saveData);
 
-    sub_02025D6C(v1, TRUE);
+    SystemData_SetMysteryGiftUnlocked(v1, TRUE);
     return FALSE;
 }
 

@@ -1309,7 +1309,7 @@ void EncounterEffect_Trainer_Water_HigherLevel(SysTask *param0, void *param1)
         Window_Remove(v1->unk_270);
         Windows_Delete(v1->unk_270, 1);
 
-        Bg_ClearTilesRange(3, 32, 0, HEAP_ID_FIELD);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_3, 32, 0, HEAP_ID_FIELD);
         Bg_ClearTilemap(v0->fieldSystem->bgConfig, 3);
 
         EncounterEffect_Finish(v0, param0);
@@ -1656,7 +1656,7 @@ void EncounterEffect_Trainer_Cave_HigherLevel(SysTask *param0, void *param1)
         Window_Remove(v1->unk_264);
         Windows_Delete(v1->unk_264, 1);
 
-        Bg_ClearTilesRange(3, 32, 0, HEAP_ID_FIELD);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_3, 32, 0, HEAP_ID_FIELD);
         Bg_ClearTilemap(v0->fieldSystem->bgConfig, 3);
 
         EncounterEffect_Finish(v0, param0);
@@ -2233,7 +2233,7 @@ void EncounterEffect_GalacticBoss(SysTask *param0, void *param1)
         Window_Remove(v1->unk_00);
         Windows_Delete(v1->unk_00, 1);
 
-        Bg_ClearTilesRange(3, 32, 0, HEAP_ID_FIELD);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_3, 32, 0, HEAP_ID_FIELD);
         Bg_ClearTilemap(v0->fieldSystem->bgConfig, 3);
 
         G2_SetOBJMosaicSize(0, 0);
@@ -3030,7 +3030,7 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId he
 
             Bg_ScheduleScroll(encEffect->fieldSystem->bgConfig, 2, 0, -((v0->unk_00.currentValue >> FX32_SHIFT) + -92));
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
-            Bg_SetPriority(2, 0);
+            Bg_SetPriority(BG_LAYER_MAIN_2, 0);
             encEffect->state++;
         }
 
@@ -3425,7 +3425,7 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
         LinearInterpolationTaskS32_Init(&v0->unk_48, 16, 0, 6);
 
         ov5_021DF17C(4);
-        Bg_SetPriority(0, 1);
+        Bg_SetPriority(BG_LAYER_MAIN_0, 1);
 
         encEffect->state++;
         break;

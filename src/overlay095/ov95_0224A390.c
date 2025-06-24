@@ -257,8 +257,8 @@ static void ov95_0224A518(UnkStruct_ov95_0224A42C *param0)
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
     SetAllGraphicsModes(&v1);
 
-    Bg_InitFromTemplate(param0->unk_24, 3, &v2, 0);
-    Bg_InitFromTemplate(param0->unk_24, 7, &v2, 0);
+    Bg_InitFromTemplate(param0->unk_24, BG_LAYER_MAIN_3, &v2, 0);
+    Bg_InitFromTemplate(param0->unk_24, BG_LAYER_SUB_3, &v2, 0);
 
     switch (ov95_02247644(param0->unk_00)) {
     case 0:
@@ -297,8 +297,8 @@ static void ov95_0224A518(UnkStruct_ov95_0224A42C *param0)
     Graphics_LoadPaletteWithSrcOffset(93, v5, 0, v6, 0, 0x20, HEAP_ID_58);
     Graphics_LoadPaletteWithSrcOffset(93, v5, 4, v6, 0, 0x20, HEAP_ID_58);
 
-    Bg_SetOffset(param0->unk_24, 3, 3, 0);
-    Bg_SetOffset(param0->unk_24, 7, 3, 256);
+    Bg_SetOffset(param0->unk_24, BG_LAYER_MAIN_3, 3, 0);
+    Bg_SetOffset(param0->unk_24, BG_LAYER_SUB_3, 3, 256);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -309,8 +309,8 @@ static void ov95_0224A518(UnkStruct_ov95_0224A42C *param0)
 
 static void ov95_0224A678(UnkStruct_ov95_0224A42C *param0)
 {
-    Bg_FreeTilemapBuffer(param0->unk_24, 3);
-    Bg_FreeTilemapBuffer(param0->unk_24, 7);
+    Bg_FreeTilemapBuffer(param0->unk_24, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(param0->unk_24, BG_LAYER_SUB_3);
 }
 
 static void ov95_0224A690(UnkStruct_ov95_0224A42C *param0)
@@ -592,8 +592,8 @@ static void ov95_0224AB50(void *param0)
         v1.y = 0;
         v1.z = 0;
 
-        Bg_SetOffset(v0->unk_24, 3, 3, 256);
-        Bg_SetOffset(v0->unk_24, 7, 3, 0);
+        Bg_SetOffset(v0->unk_24, BG_LAYER_MAIN_3, 3, 256);
+        Bg_SetOffset(v0->unk_24, BG_LAYER_SUB_3, 3, 0);
 
         ov95_02247AC0(v0->unk_28, &v1);
         GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);

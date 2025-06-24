@@ -366,9 +366,9 @@ void ov16_0223B53C(BattleSystem *battleSys)
     Window_Remove(&battleSys->windows[0]);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
-    Bg_FreeTilemapBuffer(battleSys->unk_04, 1);
-    Bg_FreeTilemapBuffer(battleSys->unk_04, 2);
-    Bg_FreeTilemapBuffer(battleSys->unk_04, 3);
+    Bg_FreeTilemapBuffer(battleSys->unk_04, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(battleSys->unk_04, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(battleSys->unk_04, BG_LAYER_MAIN_3);
     ov16_0223F3EC(battleSys);
 }
 
@@ -427,12 +427,12 @@ void ov16_0223B578(BattleSystem *battleSys)
             },
         };
 
-        Bg_InitFromTemplate(battleSys->unk_04, 1, &v0[0], 0);
-        Bg_ClearTilemap(battleSys->unk_04, 1);
-        Bg_InitFromTemplate(battleSys->unk_04, 2, &v0[1], 0);
-        Bg_ClearTilemap(battleSys->unk_04, 2);
-        Bg_InitFromTemplate(battleSys->unk_04, 3, &v0[2], 0);
-        Bg_ClearTilemap(battleSys->unk_04, 3);
+        Bg_InitFromTemplate(battleSys->unk_04, BG_LAYER_MAIN_1, &v0[0], 0);
+        Bg_ClearTilemap(battleSys->unk_04, BG_LAYER_MAIN_1);
+        Bg_InitFromTemplate(battleSys->unk_04, BG_LAYER_MAIN_2, &v0[1], 0);
+        Bg_ClearTilemap(battleSys->unk_04, BG_LAYER_MAIN_2);
+        Bg_InitFromTemplate(battleSys->unk_04, BG_LAYER_MAIN_3, &v0[2], 0);
+        Bg_ClearTilemap(battleSys->unk_04, BG_LAYER_MAIN_3);
 
         G2_SetBG0Priority(1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
@@ -909,12 +909,12 @@ static void ov16_0223C004(BattleSystem *battleSys, BgConfig *param1)
             },
         };
 
-        Bg_InitFromTemplate(param1, 1, &v2[0], 0);
-        Bg_ClearTilemap(param1, 1);
-        Bg_InitFromTemplate(param1, 2, &v2[1], 0);
-        Bg_ClearTilemap(param1, 2);
-        Bg_InitFromTemplate(param1, 3, &v2[2], 0);
-        Bg_ClearTilemap(param1, 3);
+        Bg_InitFromTemplate(param1, BG_LAYER_MAIN_1, &v2[0], 0);
+        Bg_ClearTilemap(param1, BG_LAYER_MAIN_1);
+        Bg_InitFromTemplate(param1, BG_LAYER_MAIN_2, &v2[1], 0);
+        Bg_ClearTilemap(param1, BG_LAYER_MAIN_2);
+        Bg_InitFromTemplate(param1, BG_LAYER_MAIN_3, &v2[2], 0);
+        Bg_ClearTilemap(param1, BG_LAYER_MAIN_3);
 
         G2_SetBG0Priority(1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
@@ -978,9 +978,9 @@ static void ov16_0223C288(BgConfig *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
-    Bg_FreeTilemapBuffer(param0, 1);
-    Bg_FreeTilemapBuffer(param0, 2);
-    Bg_FreeTilemapBuffer(param0, 3);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_3);
 
     ov16_022687A0(param0);
 }
@@ -1624,7 +1624,7 @@ static void ov16_0223D0C4(SysTask *param0, void *param1)
     BattleSystem *v0 = param1;
 
     v0->unk_2434 += 3;
-    Bg_SetOffset(v0->unk_04, 1, 3, v0->unk_2434);
+    Bg_SetOffset(v0->unk_04, BG_LAYER_MAIN_1, 3, v0->unk_2434);
 
     if (v0->unk_2434 == 0) {
         SysTask_Done(param0);
@@ -1709,8 +1709,8 @@ static void ov16_0223D10C(ApplicationManager *appMan, FieldBattleDTO *param1)
             0
         };
 
-        Bg_InitFromTemplate(v0->unk_04, 1, &v3, 0);
-        Bg_ClearTilemap(v0->unk_04, 1);
+        Bg_InitFromTemplate(v0->unk_04, BG_LAYER_MAIN_1, &v3, 0);
+        Bg_ClearTilemap(v0->unk_04, BG_LAYER_MAIN_1);
     }
 
     {
@@ -1989,7 +1989,7 @@ static void ov16_0223D7B4(ApplicationManager *appMan)
     PaletteData_Free(v0->unk_0C);
     Windows_Delete(v0->unk_08, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
-    Bg_FreeTilemapBuffer(v0->unk_04, 1);
+    Bg_FreeTilemapBuffer(v0->unk_04, BG_LAYER_MAIN_1);
     Heap_FreeToHeap(v0->unk_04);
     Heap_FreeToHeap(v0);
 }

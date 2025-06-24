@@ -424,9 +424,9 @@ static void ov104_0222EBD8(UnkStruct_ov104_0223C4CC *param0, void **param1)
 {
     *param1 = ov104_0223D9E4(param0->unk_00, param0->unk_04);
 
-    Bg_SetPriority(0, 1);
-    Bg_SetPriority(2, 2);
-    Bg_SetPriority(3, 3);
+    Bg_SetPriority(BG_LAYER_MAIN_0, 1);
+    Bg_SetPriority(BG_LAYER_MAIN_2, 2);
+    Bg_SetPriority(BG_LAYER_MAIN_3, 3);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
 
     return;
@@ -450,9 +450,9 @@ static void ov104_0222EC1C(UnkStruct_ov104_0223C4CC *param0, void **param1)
 
 static void ov104_0222EC20(UnkStruct_ov104_0223C4CC *param0, void **param1)
 {
-    Bg_SetPriority(0, 1);
-    Bg_SetPriority(2, 2);
-    Bg_SetPriority(3, 3);
+    Bg_SetPriority(BG_LAYER_MAIN_0, 1);
+    Bg_SetPriority(BG_LAYER_MAIN_2, 2);
+    Bg_SetPriority(BG_LAYER_MAIN_3, 3);
 
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 20, 20);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
@@ -467,8 +467,8 @@ static void ov104_0222EC58(UnkStruct_ov104_0223C4CC *param0, void **param1)
 
 static void ov104_0222EC5C(UnkStruct_ov104_0223C4CC *param0, void **param1)
 {
-    Bg_SetPriority(2, 3);
-    Bg_SetPriority(3, 2);
+    Bg_SetPriority(BG_LAYER_MAIN_2, 3);
+    Bg_SetPriority(BG_LAYER_MAIN_3, 2);
     return;
 }
 
@@ -502,10 +502,10 @@ static void ov104_0222ECA0(UnkStruct_ov104_0223C4CC *param0, void **param1)
 
 static void ov104_0222ECAC(UnkStruct_ov104_0223C4CC *param0, void **param1)
 {
-    Bg_SetPriority(1, 0);
-    Bg_SetPriority(0, 2);
-    Bg_SetPriority(2, 2);
-    Bg_SetPriority(3, 3);
+    Bg_SetPriority(BG_LAYER_MAIN_1, 0);
+    Bg_SetPriority(BG_LAYER_MAIN_0, 2);
+    Bg_SetPriority(BG_LAYER_MAIN_2, 2);
+    Bg_SetPriority(BG_LAYER_MAIN_3, 3);
 
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 20, 20);
     return;

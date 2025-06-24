@@ -244,7 +244,7 @@ static BOOL sub_0209843C(FieldTask *param0)
     } break;
     case 4:
         if (v0->unk_08->unk_14 == 0) {
-            Pokemon_SetValue(v0->unk_0C.unk_00, MON_DATA_NICKNAME_STRBUF_AND_FLAG, v0->unk_08->unk_18);
+            Pokemon_SetValue(v0->unk_0C.unk_00, MON_DATA_NICKNAME_STRBUF_AND_FLAG, v0->unk_08->textInputStr);
 
             {
                 FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);

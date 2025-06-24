@@ -582,7 +582,7 @@ pokeplatinum_c = files(
     'overlay019/ov19_021DCF88.c',
     'overlay019/ov19_021DE3E8.c',
     'overlay019/ov19_021DEC04.c',
-    'overlay019/ov19_021DF964.c',
+    'overlay019/box_menu.c',
     'overlay020/ov20_021D0D80.c',
     'overlay020/ov20_021D2098.c',
     'overlay020/ov20_021D2EA4.c',
@@ -1017,5 +1017,6 @@ pokeplatinum_c = files(
     'overlay119/ov119_021D0D80.c',
     'overlay119/ov119_021D191C.c',
     'library_tv/library_tv.c',
-    'dw_warp/dw_warp.c'
+    'dw_warp/dw_warp.c',
+    'debug.c'
 )

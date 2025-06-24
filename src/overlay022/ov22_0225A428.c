@@ -197,7 +197,7 @@ static void ov22_0225A718(BgConfig *param0, const Options *options)
 {
     int frame = Options_Frame(options);
 
-    LoadMessageBoxGraphics(param0, 5, 1, 1, frame, HEAP_ID_14);
+    LoadMessageBoxGraphics(param0, BG_LAYER_SUB_1, 1, 1, frame, HEAP_ID_14);
     Font_LoadScreenIndicatorsPalette(4, 2 * 32, HEAP_ID_14);
 }
 

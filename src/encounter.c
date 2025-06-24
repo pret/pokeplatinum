@@ -344,7 +344,7 @@ static void FreeWildEncounter(WildEncounter *encounter)
 
 void Encounter_NewVsWild(FieldSystem *fieldSystem, FieldBattleDTO *dto)
 {
-    if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData))) {
+    if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData)) != FALSE) {
         Encounter *encounter = NewEncounter(dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), NULL);
         FieldSystem_CreateTask(fieldSystem, FieldTask_SafariEncounter, encounter);
     } else {
@@ -355,7 +355,7 @@ void Encounter_NewVsWild(FieldSystem *fieldSystem, FieldBattleDTO *dto)
 
 void Encounter_StartVsWild(FieldSystem *fieldSystem, FieldTask *task, FieldBattleDTO *dto)
 {
-    if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData))) {
+    if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData)) != FALSE) {
         Encounter *encounter = NewEncounter(dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), NULL);
         FieldTask_InitJump(task, FieldTask_SafariEncounter, encounter);
     } else {
@@ -512,10 +512,10 @@ static BOOL FieldTask_SafariEncounter(FieldTask *task)
                 ScriptManager_Start(task, 8809, NULL, NULL);
             }
         } else {
-            PCBoxes *boxes = SaveData_GetPCBoxes(fieldSystem->saveData);
+            PCBoxes *pcBoxes = SaveData_GetPCBoxes(fieldSystem->saveData);
             Party *party = SaveData_GetParty(fieldSystem->saveData);
 
-            if (PCBoxes_FirstEmptyBox(boxes) == MAX_PC_BOXES && Party_GetCurrentCount(party) == MAX_PARTY_SIZE) {
+            if (PCBoxes_FirstEmptyBox(pcBoxes) == MAX_PC_BOXES && Party_GetCurrentCount(party) == MAX_PARTY_SIZE) {
                 ScriptManager_Start(task, 8822, NULL, NULL);
             }
         }

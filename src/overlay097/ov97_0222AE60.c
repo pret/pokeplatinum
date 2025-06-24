@@ -330,8 +330,8 @@ static BOOL ov97_0222B07C(UnkStruct_0222AE60 *param0)
 
         return 1;
     case 16:
-        LoadStandardWindowGraphics(param0->unk_00, 1, 1, 2, 0, HEAP_ID_81);
-        Bg_ClearTilemap(param0->unk_00, 1);
+        LoadStandardWindowGraphics(param0->unk_00, BG_LAYER_MAIN_1, 1, 2, 0, HEAP_ID_81);
+        Bg_ClearTilemap(param0->unk_00, BG_LAYER_MAIN_1);
         *((u16 *)HW_BG_PLTT + 33) = ((26 & 31) << 10 | (26 & 31) << 5 | (26 & 31));
         param0->unk_12C = 17;
         break;
@@ -447,15 +447,15 @@ static void ov97_0222B2EC(UnkStruct_0222AE60 *param0)
 
     ov97_022376FC(param0->unk_00, 0, 2, 0xF000, 0x0);
     G2_SetBG0Priority(2);
-    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_81);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_81);
 
     ov97_022376FC(param0->unk_00, 1, 1, 0xD800, 0x8000);
     G2_SetBG1Priority(1);
-    Bg_ClearTilesRange(1, 32, 0, HEAP_ID_81);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_81);
 
     ov97_022376FC(param0->unk_00, 2, 2, 0xE000, 0x0);
     G2_SetBG2Priority(0);
-    Bg_ClearTilesRange(2, 32, 0, HEAP_ID_81);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_2, 32, 0, HEAP_ID_81);
 
     Text_ResetAllPrinters();
     Font_LoadTextPalette(0, 1 * 32, HEAP_ID_81);
@@ -464,8 +464,8 @@ static void ov97_0222B2EC(UnkStruct_0222AE60 *param0)
     *((u16 *)HW_BG_PLTT + 0) = ((0 & 31) << 10 | (0 & 31) << 5 | (0 & 31));
     *((u16 *)HW_BG_PLTT + 31) = ((26 & 31) << 10 | (26 & 31) << 5 | (26 & 31));
 
-    LoadStandardWindowGraphics(param0->unk_00, 0, 1, 2, 0, HEAP_ID_81);
-    LoadStandardWindowGraphics(param0->unk_00, 0, (1 + 9), 3, 1, HEAP_ID_81);
+    LoadStandardWindowGraphics(param0->unk_00, BG_LAYER_MAIN_0, 1, 2, 0, HEAP_ID_81);
+    LoadStandardWindowGraphics(param0->unk_00, BG_LAYER_MAIN_0, (1 + 9), 3, 1, HEAP_ID_81);
 
     *((u16 *)HW_BG_PLTT + 33) = ((26 & 31) << 10 | (26 & 31) << 5 | (26 & 31));
 }
@@ -652,7 +652,7 @@ static BOOL ov97_0222B7DC(void *param0, int param1, UnkStruct_ov97_02237808 *par
             v0->unk_34 = 1;
         }
 
-        if (sub_02025D64(SaveData_GetSystemData(v0->saveData)) == 1) {
+        if (SystemData_IsMysteryGiftUnlocked(SaveData_GetSystemData(v0->saveData)) == 1) {
             v0->unk_34 = 1;
         }
 
@@ -902,9 +902,9 @@ static void ov97_0222BC9C(ApplicationManager *appMan)
         }
     }
 
-    Bg_FreeTilemapBuffer(v1->unk_00, 0);
-    Bg_FreeTilemapBuffer(v1->unk_00, 1);
-    Bg_FreeTilemapBuffer(v1->unk_00, 2);
+    Bg_FreeTilemapBuffer(v1->unk_00, BG_LAYER_MAIN_0);
+    Bg_FreeTilemapBuffer(v1->unk_00, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(v1->unk_00, BG_LAYER_MAIN_2);
     Heap_FreeToHeap(v1->unk_00);
     SetVBlankCallback(NULL, NULL);
 }

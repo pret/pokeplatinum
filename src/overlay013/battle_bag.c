@@ -468,9 +468,9 @@ static u8 TryUseItem(BattleBag *battleBag)
         }
 
         Party *party = BattleSystem_Party(context->battleSystem, context->battler);
-        PCBoxes *boxes = ov16_0223E228(context->battleSystem);
+        PCBoxes *pcBoxes = BattleSystem_PCBoxes(context->battleSystem);
 
-        if (Party_GetCurrentCount(party) == MAX_PARTY_SIZE && PCBoxes_FirstEmptyBox(boxes) == MAX_PC_BOXES) {
+        if (Party_GetCurrentCount(party) == MAX_PARTY_SIZE && PCBoxes_FirstEmptyBox(pcBoxes) == MAX_PC_BOXES) {
             MessageLoader_GetStrbuf(battleBag->messageLoader, BattleBag_Text_CantUseBallNoRoomLeft, battleBag->strbuf);
             BattleBagText_DisplayMessage(battleBag);
             battleBag->queuedState = TASK_STATE_CLEAR_ERROR_MESSAGE;

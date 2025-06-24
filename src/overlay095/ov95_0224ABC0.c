@@ -346,14 +346,14 @@ static void ov95_0224AE1C(UnkStruct_ov95_0224AC64 *param0)
     GXLayers_SetBanks(&v0);
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
     SetAllGraphicsModes(&v1);
-    Bg_InitFromTemplate(param0->unk_0C, 2, &v2, 1);
-    Bg_InitFromTemplate(param0->unk_0C, 6, &v2, 1);
+    Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_2, &v2, 1);
+    Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_SUB_2, &v2, 1);
 
     {
         OSIntrMode v6 = OS_DisableInterrupts();
 
-        Bg_InitFromTemplate(param0->unk_0C, 3, &v3, 2);
-        Bg_InitFromTemplate(param0->unk_0C, 7, &v3, 2);
+        Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_3, &v3, 2);
+        Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_SUB_3, &v3, 2);
 
         OS_RestoreInterrupts(v6);
     }
@@ -393,11 +393,11 @@ static void ov95_0224AE1C(UnkStruct_ov95_0224AC64 *param0)
         }
     }
 
-    Bg_SetOffset(param0->unk_0C, 2, 3, UnkEnum_ov95_0224AE1C_00);
-    Bg_SetOffset(param0->unk_0C, 6, 3, UnkEnum_ov95_0224AE1C_01);
-    Bg_SetOffset(param0->unk_0C, 3, 3, 67);
+    Bg_SetOffset(param0->unk_0C, BG_LAYER_MAIN_2, 3, UnkEnum_ov95_0224AE1C_00);
+    Bg_SetOffset(param0->unk_0C, BG_LAYER_SUB_2, 3, UnkEnum_ov95_0224AE1C_01);
+    Bg_SetOffset(param0->unk_0C, BG_LAYER_MAIN_3, 3, 67);
 
-    Bg_ToggleLayer(7, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -409,10 +409,10 @@ static void ov95_0224B050(UnkStruct_ov95_0224AC64 *param0)
         ov95_02247018(param0->unk_10);
     }
 
-    Bg_FreeTilemapBuffer(param0->unk_0C, 2);
-    Bg_FreeTilemapBuffer(param0->unk_0C, 6);
-    Bg_FreeTilemapBuffer(param0->unk_0C, 3);
-    Bg_FreeTilemapBuffer(param0->unk_0C, 7);
+    Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_2);
+    Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_3);
 }
 
 static void ov95_0224B084(UnkStruct_ov95_0224AC64 *param0)
@@ -501,12 +501,12 @@ static void ov95_0224B1F8(SysTask *param0, void *param1)
     if (v0->unk_08) {
         v0->unk_0C += v0->unk_14;
         v0->unk_10 += v0->unk_14;
-        Bg_SetOffset(v0->unk_04, 2, 3, (v0->unk_0C >> 12));
-        Bg_SetOffset(v0->unk_04, 6, 3, (v0->unk_10 >> 12));
+        Bg_SetOffset(v0->unk_04, BG_LAYER_MAIN_2, 3, (v0->unk_0C >> 12));
+        Bg_SetOffset(v0->unk_04, BG_LAYER_SUB_2, 3, (v0->unk_10 >> 12));
         v0->unk_08--;
     } else {
-        Bg_SetOffset(v0->unk_04, 2, 3, UnkEnum_ov95_0224B1A8_00);
-        Bg_SetOffset(v0->unk_04, 6, 3, UnkEnum_ov95_0224B1F8_00);
+        Bg_SetOffset(v0->unk_04, BG_LAYER_MAIN_2, 3, UnkEnum_ov95_0224B1A8_00);
+        Bg_SetOffset(v0->unk_04, BG_LAYER_SUB_2, 3, UnkEnum_ov95_0224B1F8_00);
         ov95_0224B258(param0);
     }
 }

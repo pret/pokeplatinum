@@ -397,9 +397,9 @@ static void ov6_0223E1D0(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 3, &v1, 0);
-        Bg_ClearTilesRange(3, 32, 0, HEAP_ID_FIELD);
-        Bg_ClearTilemap(param0, 3);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v1, 0);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_3, 32, 0, HEAP_ID_FIELD);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_3);
     }
 }
 
@@ -2047,7 +2047,7 @@ UnkStruct_ov6_022401B8 *ov6_02240104(u32 heapID, FieldSystem *fieldSystem)
         Graphics_LoadTilesToBgLayer(NARC_INDEX_ARC__DEMO_TENGAN_GRA, 74, v1, 2, 0, 0, 0, heapID);
         Graphics_LoadTilemapToBgLayer(NARC_INDEX_ARC__DEMO_TENGAN_GRA, 76, v1, 2, 0, 0, 0, heapID);
         Graphics_LoadPalette(NARC_INDEX_ARC__DEMO_TENGAN_GRA, 75, 0, 0x20 * 6, 0x20, heapID);
-        Bg_SetPriority(2, 1);
+        Bg_SetPriority(BG_LAYER_MAIN_2, 1);
 
         v0->unk_34.unk_00 = 0;
         v0->unk_34.unk_04 = 31;

@@ -327,8 +327,8 @@ static void ov76_0223BCA0(SysTask *param0, void *param1)
 
         if (ov12_02225C14(&v0->unk_00[8]) == 1) {
             v1 = 1;
-            Bg_SetOffset(v0->unk_164, 5, 0, v0->unk_00[8].unk_00);
-            Bg_SetOffset(v0->unk_164, 5, 3, v0->unk_00[8].unk_02);
+            Bg_SetOffset(v0->unk_164, BG_LAYER_SUB_1, 0, v0->unk_00[8].unk_00);
+            Bg_SetOffset(v0->unk_164, BG_LAYER_SUB_1, 3, v0->unk_00[8].unk_02);
         }
     }
 
@@ -910,18 +910,18 @@ void ov76_0223C8BC(UnkStruct_ov76_0223DE00 *param0)
 
 void ov76_0223C8EC(BgConfig *param0, PaletteData *param1, int param2)
 {
-    LoadMessageBoxGraphics(param0, 1, 1, 15, param2, HEAP_ID_53);
+    LoadMessageBoxGraphics(param0, BG_LAYER_MAIN_1, 1, 15, param2, HEAP_ID_53);
     PaletteData_LoadBufferFromFileStart(param1, 38, GetMessageBoxPaletteNARCMember(param2), 53, 0, 0x20, 12 * 16);
-    LoadStandardWindowGraphics(param0, 1, (1 + (18 + 12)), 13, 0, HEAP_ID_53);
+    LoadStandardWindowGraphics(param0, BG_LAYER_MAIN_1, (1 + (18 + 12)), 13, 0, HEAP_ID_53);
     PaletteData_LoadBufferFromFileStart(param1, 38, GetStandardWindowPaletteNARCMember(), 53, 0, 0x20, 13 * 16);
     PaletteData_LoadBufferFromFileStart(param1, 14, 7, 53, 0, 0x20, 14 * 16);
 }
 
 void ov76_0223C974(BgConfig *param0, PaletteData *param1, int param2)
 {
-    LoadMessageBoxGraphics(param0, 4, 1, 15, param2, HEAP_ID_53);
+    LoadMessageBoxGraphics(param0, BG_LAYER_SUB_0, 1, 15, param2, HEAP_ID_53);
     PaletteData_LoadBufferFromFileStart(param1, 38, GetMessageBoxPaletteNARCMember(param2), 53, 1, 0x20, 12 * 16);
-    LoadStandardWindowGraphics(param0, 4, (1 + (18 + 12)), 13, 0, HEAP_ID_53);
+    LoadStandardWindowGraphics(param0, BG_LAYER_SUB_0, (1 + (18 + 12)), 13, 0, HEAP_ID_53);
     PaletteData_LoadBufferFromFileStart(param1, 38, GetStandardWindowPaletteNARCMember(), 53, 1, 0x20, 13 * 16);
     PaletteData_LoadBufferFromFileStart(param1, 14, 7, 53, 1, 0x20, 14 * 16);
     PaletteData_LoadBufferFromFileStart(param1, 14, 7, 53, 1, 0x20, 3 * 16);

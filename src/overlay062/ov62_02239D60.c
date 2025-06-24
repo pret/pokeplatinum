@@ -57,7 +57,7 @@ typedef struct {
 } UnkStruct_ov62_02239DBC_sub1;
 
 typedef struct {
-    PCBoxes *unk_00;
+    PCBoxes *pcBoxes;
     UnkStruct_ov62_02239DA4 unk_04;
     int unk_1A0;
     int unk_1A4;
@@ -94,7 +94,6 @@ static void ov62_02239F98(u32 param0, enum TouchScreenButtonState param1, void *
 static void ov62_0223A0AC(UnkStruct_0208C06C *param0);
 static void ov62_0223A110(UnkStruct_0208C06C *param0);
 static void ov62_0223A138(UnkStruct_ov62_02239DBC *param0);
-static void ov62_0223A154(SaveData *saveData, const PCBoxes *param1, int param2, UnkStruct_ov62_02239DA4 *param3);
 static BOOL ov62_0223A17C(UnkStruct_0208C06C *param0);
 static BOOL ov62_0223A2A8(UnkStruct_0208C06C *param0);
 static BOOL ov62_0223A394(UnkStruct_0208C06C *param0);
@@ -438,10 +437,10 @@ static void ov62_0223A138(UnkStruct_ov62_02239DBC *param0)
     }
 }
 
-static void ov62_0223A154(SaveData *saveData, const PCBoxes *param1, int param2, UnkStruct_ov62_02239DA4 *param3)
+static void ov62_0223A154(SaveData *saveData, const PCBoxes *pcBoxes, int boxID, UnkStruct_ov62_02239DA4 *param3)
 {
     memset(param3, 0, sizeof(UnkStruct_ov62_02239DA4));
-    ov61_0222AE88(saveData, param1, param2, param3, HEAP_ID_102);
+    ov61_0222AE88(saveData, pcBoxes, boxID, param3, HEAP_ID_102);
 }
 
 static BOOL ov62_0223A17C(UnkStruct_0208C06C *param0)
@@ -457,8 +456,8 @@ static BOOL ov62_0223A17C(UnkStruct_0208C06C *param0)
     Bg_ClearTilemap(param0->unk_14.unk_10, 6);
     Bg_ClearTilemap(param0->unk_14.unk_10, 7);
 
-    v0->unk_00 = SaveData_GetPCBoxes(param0->saveData);
-    ov62_0223A154(param0->saveData, v0->unk_00, v0->unk_1A0, &v0->unk_04);
+    v0->pcBoxes = SaveData_GetPCBoxes(param0->saveData);
+    ov62_0223A154(param0->saveData, v0->pcBoxes, v0->unk_1A0, &v0->unk_04);
     ov62_0223A138(v0);
     ov62_022315C8(&v0->unk_1A4, &v0->unk_1A8, 0);
 
@@ -532,7 +531,7 @@ static BOOL ov62_0223A394(UnkStruct_0208C06C *param0)
 
     case 1:
         if (ov62_022315E0(&v0->unk_1A4, &v0->unk_1A8, 1, 1)) {
-            ov62_0223A154(param0->saveData, v0->unk_00, v0->unk_1A0, &v0->unk_04);
+            ov62_0223A154(param0->saveData, v0->pcBoxes, v0->unk_1A0, &v0->unk_04);
             ov62_0223A138(v0);
             param0->unk_08++;
         }
@@ -673,7 +672,7 @@ static BOOL ov62_0223A64C(UnkStruct_0208C06C *param0)
         param0->unk_08++;
         break;
     case 5:
-        if (ov61_0222B224(ov62_0224112C(param0), v0->unk_380.unk_00, v0->unk_380.unk_04, v0->unk_00, v0->unk_1A0) == 1) {
+        if (ov61_0222B224(ov62_0224112C(param0), v0->unk_380.unk_00, v0->unk_380.unk_04, v0->pcBoxes, v0->unk_1A0) == 1) {
             param0->unk_08++;
         }
         break;
@@ -1227,13 +1226,13 @@ static void ov62_0223B158(UnkStruct_0208C06C *param0)
     UnkStruct_ov62_02239DBC *v0 = param0->unk_860;
 
     {
-        PCBoxes *v1 = SaveData_GetPCBoxes(param0->saveData);
+        PCBoxes *pcBoxes = SaveData_GetPCBoxes(param0->saveData);
 
         if ((v0->unk_04.unk_176 >= 16) && (v0->unk_04.unk_176 < (16 + 8))) {
             v0->unk_04.unk_176 = 0;
         }
         if ((v0->unk_04.unk_176 >= (16 + 8)) && (v0->unk_04.unk_176 < (16 + 8 + 8))) {
-            if (PCBoxes_CheckHasUnlockedWallpaper(v1, v0->unk_04.unk_176 - (16 + 8)) == 0) {
+            if (PCBoxes_CheckHasUnlockedWallpaper(pcBoxes, v0->unk_04.unk_176 - (16 + 8)) == 0) {
                 (void)0;
             }
         }
@@ -1259,14 +1258,14 @@ static void ov62_0223B230(UnkStruct_0208C06C *param0)
     UnkStruct_ov62_02239DBC *v0 = param0->unk_860;
 
     {
-        PCBoxes *v1 = SaveData_GetPCBoxes(param0->saveData);
+        PCBoxes *pcBoxes = SaveData_GetPCBoxes(param0->saveData);
 
         if ((v0->unk_04.unk_176 >= 16) && (v0->unk_04.unk_176 < (16 + 8))) {
             v0->unk_04.unk_176 = 0;
         }
 
         if ((v0->unk_04.unk_176 >= (16 + 8)) && (v0->unk_04.unk_176 < (16 + 8 + 8))) {
-            if (PCBoxes_CheckHasUnlockedWallpaper(v1, v0->unk_04.unk_176 - (16 + 8)) == 0) {
+            if (PCBoxes_CheckHasUnlockedWallpaper(pcBoxes, v0->unk_04.unk_176 - (16 + 8)) == 0) {
                 v0->unk_04.unk_176 = 0;
             }
         }

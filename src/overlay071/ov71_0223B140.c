@@ -563,8 +563,8 @@ static void ov71_0223B858(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 7, &v1, 2);
-        Bg_ClearTilemap(param0, 7);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_3, &v1, 2);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_3);
     }
 
     {
@@ -584,8 +584,8 @@ static void ov71_0223B858(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 5, &v2, 0);
-        Bg_ClearTilemap(param0, 5);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_1, &v2, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_1);
     }
 
     {
@@ -605,8 +605,8 @@ static void ov71_0223B858(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 6, &v3, 1);
-        Bg_ClearTilemap(param0, 6);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_2, &v3, 1);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_2);
     }
 
     {
@@ -626,8 +626,8 @@ static void ov71_0223B858(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 2, &v4, 0);
-        Bg_ClearTilemap(param0, 2);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v4, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
     }
 
     {
@@ -647,8 +647,8 @@ static void ov71_0223B858(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 3, &v5, 1);
-        Bg_ClearTilemap(param0, 3);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v5, 1);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_3);
     }
 }
 
@@ -753,11 +753,11 @@ static void ov71_0223BBDC(BgConfig *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_OBJ, 0);
-    Bg_FreeTilemapBuffer(param0, 7);
-    Bg_FreeTilemapBuffer(param0, 6);
-    Bg_FreeTilemapBuffer(param0, 5);
-    Bg_FreeTilemapBuffer(param0, 2);
-    Bg_FreeTilemapBuffer(param0, 3);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_3);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_2);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_3);
     Heap_FreeToHeap(param0);
 }
 
@@ -801,14 +801,14 @@ static BOOL ov71_0223BC20(UnkStruct_ov71_0223B620 *param0)
             Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__TRAINER_CASE, 36, param0->unk_00, 6, 0, 0, 0, HEAP_ID_25);
             ov71_0223CD44(param0->unk_04, 0, 6);
             ov71_0223C3E8(param0);
-            Bg_ClearTilemap(param0->unk_00, 7);
+            Bg_ClearTilemap(param0->unk_00, BG_LAYER_SUB_3);
             ov71_0223CA28(param0->unk_04, param0->unk_B4);
             ov71_0223C530(param0->unk_00, 7, param0->unk_B8);
         } else {
             param0->unk_30C0 = 0;
             Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__TRAINER_CASE, 35, param0->unk_00, 6, 0, 0, 0, HEAP_ID_25);
             ov71_0223CD44(param0->unk_04, 7, 10);
-            Bg_ClearTilemap(param0->unk_00, 7);
+            Bg_ClearTilemap(param0->unk_00, BG_LAYER_SUB_3);
             ov71_0223C390(param0);
             ov71_0223C6F0(param0->unk_04, param0->unk_B4);
         }

@@ -1596,8 +1596,8 @@ void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *saveData, u32 param2, Jo
             sub_0206DDB8(param0->saveData, param0->unk_1974, v2);
         }
 
-        TVBroadcast *v4 = SaveData_GetTVBroadcast(param0->saveData);
-        sub_0206CF14(v4, param0->unk_1974, param0->unk_00.unk_10F, param0->unk_00.unk_110, param0->unk_00.unk_118[param0->unk_00.unk_113].unk_08 + 1);
+        TVBroadcast *broadcast = SaveData_GetTVBroadcast(param0->saveData);
+        sub_0206CF14(broadcast, param0->unk_1974, param0->unk_00.unk_10F, param0->unk_00.unk_110, param0->unk_00.unk_118[param0->unk_00.unk_113].unk_08 + 1);
 
         GameRecords *v5 = SaveData_GetGameRecords(param0->saveData);
         GameRecords_IncrementRecordValue(v5, RECORD_UNK_090);
