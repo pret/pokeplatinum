@@ -6,6 +6,7 @@
 #include "constants/gba/pokemon.h"
 #include "constants/gba/species.h"
 #include "constants/items.h"
+#include "constants/narc.h"
 #include "constants/pokemon.h"
 #include "constants/screen.h"
 #include "constants/species.h"
@@ -36,6 +37,7 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "palette.h"
 #include "pltt_transfer.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
@@ -159,7 +161,7 @@ typedef struct {
 typedef struct {
     int unk_00;
     int unk_04;
-    Sprite *unk_08;
+    Sprite *iconSprite;
     u8 unk_0C[512];
 } UnkStruct_ov97_0223F434;
 
@@ -622,12 +624,12 @@ static void ov97_02234190(TouchScreenRect *rect, int param1, int param2, int par
     rect->rect.right = param1 + param3 / 2;
 }
 
-static void *ov97_022341B4(u32 param0, u32 param1, NNSG2dCharacterData **param2, u32 heapID)
+static void *ov97_022341B4(u32 narcID, u32 memberIndex, NNSG2dCharacterData **param2, u32 heapID)
 {
     void *v0 = Heap_AllocFromHeapAtEnd(heapID, 4096);
 
     if (v0 != NULL) {
-        NARC_ReadWholeMemberByIndexPair(v0, param0, param1);
+        NARC_ReadWholeMemberByIndexPair(v0, narcID, memberIndex);
 
         if (NNS_G2dGetUnpackedBGCharacterData(v0, param2) == 0) {
             Heap_FreeToHeap(v0);
@@ -694,7 +696,7 @@ static void ov97_02234278(int species, int isEgg, u32 personality, int gbaVersio
     species = ConvertGBASpeciesToDS(species);
 
     form = GetSpeciesGBAForm(species, personality, gbaVersion);
-    v0 = ov97_022341B4(19, PokeIconSpriteIndex(species, isEgg, form), &v2, HEAP_ID_MIGRATE_FROM_GBA);
+    v0 = ov97_022341B4(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconSpriteIndex(species, isEgg, form), &v2, HEAP_ID_MIGRATE_FROM_GBA);
 
     DC_FlushRange(v2->pRawData, ((4 * 4) * 0x20));
     GX_LoadOBJ(v2->pRawData, (0x64 + param4 * (4 * 4)) * 0x20, ((4 * 4) * 0x20));
@@ -704,13 +706,13 @@ static void ov97_02234278(int species, int isEgg, u32 personality, int gbaVersio
 }
 
 // speciesGBA is reused to store NDS species
-static void ov97_022342E4(int speciesGBA, int isEgg, int form, int param3, Sprite *param4, void *param5, NARC *param6)
+static void ov97_022342E4(int speciesGBA, int isEgg, int form, int param3, Sprite *monIconSprite, void *param5, NARC *param6)
 {
     u32 spriteIndex;
     NNSG2dCharacterData *v1;
     UnkStruct_ov97_0223F434 *v2 = Unk_ov97_0223F434 + param3;
 
-    if (param4) {
+    if (monIconSprite != NULL) {
         if (IsGBASpeciesInvalid(speciesGBA) == FALSE) {
             speciesGBA = ConvertGBASpeciesToDS(speciesGBA);
         } else {
@@ -723,10 +725,10 @@ static void ov97_022342E4(int speciesGBA, int isEgg, int form, int param3, Sprit
         MI_CpuCopyFast(v1->pRawData, v2->unk_0C, ((4 * 4) * 0x20));
 
         v2->unk_00 = (0x64 + param3 * (4 * 4)) * 0x20;
-        v2->unk_08 = param4;
+        v2->iconSprite = monIconSprite;
         v2->unk_04 = PokeIconPaletteIndex(speciesGBA, form, isEgg) + 8;
     } else {
-        v2->unk_08 = NULL;
+        v2->iconSprite = NULL;
     }
 }
 
@@ -736,17 +738,17 @@ static void ov97_02234364(void)
     UnkStruct_ov97_0223F434 *v1 = Unk_ov97_0223F434;
 
     for (i = 0; i < GBA_MAX_MONS_PER_BOX; i++, v1++) {
-        if (v1->unk_08) {
+        if (v1->iconSprite) {
             DC_FlushRange(v1->unk_0C, ((4 * 4) * 0x20));
             GX_LoadOBJ(v1->unk_0C, v1->unk_00, ((4 * 4) * 0x20));
-            Sprite_SetExplicitPalette(v1->unk_08, v1->unk_04);
+            Sprite_SetExplicitPalette(v1->iconSprite, v1->unk_04);
         }
     }
 }
 
 static void ov97_022343A8(GBAMigrator *migrator)
 {
-    int i, species, isEgg, gbaVersion, form;
+    int i, speciesGBA, isEgg, gbaVersion, form;
     u32 personality;
     void *v6;
     NARC *v7 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_MIGRATE_FROM_GBA);
@@ -754,13 +756,13 @@ static void ov97_022343A8(GBAMigrator *migrator)
 
     for (i = 0; i < GBA_MAX_MONS_PER_BOX; i++) {
         if (GetGBABoxMonData(&(migrator->pokemonStorage->boxes[migrator->currentBox][i]), GBA_MON_DATA_SANITY_HAS_SPECIES, NULL)) {
-            species = GetGBABoxMonSpeciesInBox(migrator, migrator->currentBox, i);
+            speciesGBA = GetGBABoxMonSpeciesInBox(migrator, migrator->currentBox, i);
             isEgg = IsGBABoxMonEggInBox(migrator, migrator->currentBox, i);
             personality = GetGBABoxMonPersonalityInBox(migrator, migrator->currentBox, i);
             gbaVersion = gSystem.gbaCartridgeVersion;
-            form = GetSpeciesGBAForm(ConvertGBASpeciesToDS(species), personality, gbaVersion);
+            form = GetSpeciesGBAForm(ConvertGBASpeciesToDS(speciesGBA), personality, gbaVersion);
 
-            ov97_022342E4(species, isEgg, form, i, migrator->unk_20C[i].monIconSprite, v6, v7);
+            ov97_022342E4(speciesGBA, isEgg, form, i, migrator->unk_20C[i].monIconSprite, v6, v7);
             Sprite_SetDrawFlag(migrator->unk_20C[i].monIconSprite, TRUE);
 
             if (GetGBABoxMonData(&(migrator->pokemonStorage->boxes[migrator->currentBox][i]), GBA_MON_DATA_HELD_ITEM, NULL)) {
@@ -769,7 +771,7 @@ static void ov97_022343A8(GBAMigrator *migrator)
                 Sprite_SetDrawFlag(migrator->unk_20C[i].heldItemSprite, FALSE);
             }
         } else {
-            ov97_022342E4(species, isEgg, form, i, NULL, v6, v7);
+            ov97_022342E4(speciesGBA, isEgg, form, i, NULL, v6, v7);
             Sprite_SetDrawFlag(migrator->unk_20C[i].monIconSprite, FALSE);
             Sprite_SetDrawFlag(migrator->unk_20C[i].heldItemSprite, FALSE);
         }
@@ -1188,27 +1190,27 @@ static void ov97_02234A2C(GBAMigrator *migrator, int boxNum)
 
 static void ov97_02234AB4(GBAMigrator *migrator, BoxPokemonGBA *boxMonGBA)
 {
-    u16 *v0 = Bg_GetTilemapBuffer(migrator->bgConfig, 2);
-    u8 v1;
+    u16 *v0 = Bg_GetTilemapBuffer(migrator->bgConfig, BG_LAYER_MAIN_2);
+    u8 markings;
     int i;
 
     if (boxMonGBA != NULL) {
-        v1 = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_MARKINGS, NULL);
+        markings = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_MARKINGS, NULL);
     } else {
-        v1 = 0;
+        markings = 0;
     }
 
     for (i = 0; i < 4; i++) {
-        if (v1 & 1) {
+        if (markings & 1) {
             v0[32 * 3 + 11 + i] = 0x80 + i;
         } else {
             v0[32 * 3 + 11 + i] = 0x60 + i;
         }
 
-        v1 >>= 1;
+        markings >>= 1;
     }
 
-    Bg_CopyTilemapBufferToVRAM(migrator->bgConfig, 2);
+    Bg_CopyTilemapBufferToVRAM(migrator->bgConfig, BG_LAYER_MAIN_2);
 }
 
 static void ov97_02234B0C(GBAMigrator *migrator, BoxPokemonGBA *boxMonGBA)
@@ -1322,9 +1324,9 @@ static void ov97_02234CC4(GBAMigrator *migrator, int param1, int param2, int *st
     migrator->unk_24 = param2;
 }
 
-static void ov97_02234CF4(GBAMigrator *migrator, int param1, int param2, int *state)
+static void ov97_02234CF4(GBAMigrator *migrator, enum FadeType fadeType, int param2, int *state)
 {
-    StartScreenFade(FADE_BOTH_SCREENS, param1, param1, 0x7fff, 6, 1, HEAP_ID_MIGRATE_FROM_GBA);
+    StartScreenFade(FADE_BOTH_SCREENS, fadeType, fadeType, RGB(31, 31, 31), 6, 1, HEAP_ID_MIGRATE_FROM_GBA);
 
     if (state != NULL) {
         *state = GBA_MIGRATOR_STATE_23;
@@ -1530,8 +1532,8 @@ static void ov97_02234F88(GBAMigrator *migrator)
     }
 
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 21, migrator->bgConfig, 2, 0, 32 * 24 * 2, 1, HEAP_ID_MIGRATE_FROM_GBA);
-    Bg_ChangeTilemapRectPalette(migrator->bgConfig, 2, 0, 0, 32, 24, sGBAGameRectPalettes[migrator->gbaVersion]);
-    Bg_CopyTilemapBufferToVRAM(migrator->bgConfig, 2);
+    Bg_ChangeTilemapRectPalette(migrator->bgConfig, BG_LAYER_MAIN_2, 0, 0, 32, 24, sGBAGameRectPalettes[migrator->gbaVersion]);
+    Bg_CopyTilemapBufferToVRAM(migrator->bgConfig, BG_LAYER_MAIN_2);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
     Font_LoadTextPalette(0, 14 * 32, HEAP_ID_MIGRATE_FROM_GBA);
     LoadStandardWindowGraphics(migrator->bgConfig, BG_LAYER_MAIN_0, 0x3F0, 14, 0, HEAP_ID_MIGRATE_FROM_GBA);
@@ -1923,7 +1925,7 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
             break;
         case 2:
             sub_02015A54(migrator->unk_E8EC);
-            ov97_02234CF4(migrator, 0, 24, state);
+            ov97_02234CF4(migrator, FADE_TYPE_UNK_0, 24, state);
             break;
         }
         break;
@@ -1956,7 +1958,7 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
             break;
         case 2:
             sub_02015A54(migrator->unk_E8EC);
-            ov97_02234CF4(migrator, 0, 24, state);
+            ov97_02234CF4(migrator, FADE_TYPE_UNK_0, 24, state);
             break;
         }
         break;
@@ -1989,7 +1991,7 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
             break;
         case 2:
             sub_02015A54(migrator->unk_E8EC);
-            ov97_02234CF4(migrator, 0, 24, state);
+            ov97_02234CF4(migrator, FADE_TYPE_UNK_0, 24, state);
             break;
         }
         break;
@@ -2067,7 +2069,7 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
                     Sound_PlayEffect(SEQ_SE_CONFIRM);
                     break;
                 case (GBA_MAX_MONS_PER_BOX + 0):
-                    ov97_02234CF4(migrator, 0, 24, state);
+                    ov97_02234CF4(migrator, FADE_TYPE_UNK_0, 24, state);
                     Sound_PlayEffect(SEQ_SE_CONFIRM);
                     break;
                 }
@@ -2159,7 +2161,7 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
         break;
     case GBA_MIGRATOR_STATE_22:
         if (gSystem.touchPressed || gSystem.pressedKeys) {
-            ov97_02234CF4(migrator, 0, 24, state);
+            ov97_02234CF4(migrator, FADE_TYPE_UNK_0, 24, state);
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         }
         break;
