@@ -14,7 +14,7 @@
 #include "vars_flags.h"
 
 FS_EXTERN_OVERLAY(poketch_unavailable);
-FS_EXTERN_OVERLAY(overlay25);
+FS_EXTERN_OVERLAY(poketch);
 
 void ov5_021EA714(FieldSystem *fieldSystem, enum PoketchEventID eventID, u32 dummy)
 {
@@ -30,7 +30,7 @@ void ov5_021EA728(FieldSystem *fieldSystem)
 
     if (Poketch_IsEnabled(poketch)
         && (SystemFlag_CheckPoketchHidden(varsFlags) == 0)) {
-        Overlay_LoadByID(FS_OVERLAY_ID(overlay25), 2);
+        Overlay_LoadByID(FS_OVERLAY_ID(poketch), 2);
         PoketchSystem_Create(fieldSystem, &fieldSystem->unk_04->poketchSys, fieldSystem->saveData, fieldSystem->bgConfig, RenderOam_GetScreenOam(1));
     } else {
         Overlay_LoadByID(FS_OVERLAY_ID(poketch_unavailable), 2);
@@ -60,7 +60,7 @@ u8 ov5_021EA7CC(FieldSystem *fieldSystem)
         && (SystemFlag_CheckPoketchHidden(varsFlags) == 0)) {
         if (PoketchSystem_IsSystemShutdown(fieldSystem->unk_04->poketchSys)) {
             fieldSystem->unk_04->poketchSys = NULL;
-            Overlay_UnloadByID(FS_OVERLAY_ID(overlay25));
+            Overlay_UnloadByID(FS_OVERLAY_ID(poketch));
             return 1;
         }
     } else {

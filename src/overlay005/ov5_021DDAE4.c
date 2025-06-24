@@ -16,7 +16,7 @@
 #include "render_oam.h"
 
 FS_EXTERN_OVERLAY(poketch_unavailable);
-FS_EXTERN_OVERLAY(overlay25);
+FS_EXTERN_OVERLAY(poketch);
 
 typedef struct {
     int unk_00;
@@ -43,7 +43,7 @@ static BOOL ov5_021DDAE4(FieldTask *param0)
             Poketch *poketch = SaveData_GetPoketch(fieldSystem->saveData);
 
             Overlay_UnloadByID(FS_OVERLAY_ID(poketch_unavailable));
-            Overlay_LoadByID(FS_OVERLAY_ID(overlay25), 2);
+            Overlay_LoadByID(FS_OVERLAY_ID(poketch), 2);
             Poketch_Enable(poketch);
             PoketchSystem_Create(fieldSystem, &fieldSystem->unk_04->poketchSys, fieldSystem->saveData, fieldSystem->bgConfig, RenderOam_GetScreenOam(1));
             v1->unk_00++;
