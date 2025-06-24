@@ -300,9 +300,8 @@ static int ov17_02243EF8(UnkStruct_ov17_0224F30C *param0, void *param1, int para
 static void ov17_02243F10(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3)
 {
     UnkStruct_ov17_02246F24 *v0 = param1;
-    UnkStruct_ov17_02243F10 *v1;
     UnkStruct_ov17_02246F24_sub1 *v2 = param3;
-    v1 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_02243F10));
+    UnkStruct_ov17_02243F10 *v1 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_02243F10));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_ov17_02243F10));
 

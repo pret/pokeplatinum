@@ -1235,11 +1235,8 @@ void ov16_02268A88(UnkStruct_ov16_02268A14 *param0)
 void ov16_02268B8C(UnkStruct_ov16_02268A14 *param0)
 {
     int i;
-    SpriteSystem *v1;
-    SpriteManager *v2;
-
-    v1 = BattleSystem_GetSpriteSystem(param0->battleSys);
-    v2 = BattleSystem_GetSpriteManager(param0->battleSys);
+    SpriteSystem *v1 = BattleSystem_GetSpriteSystem(param0->battleSys);
+    SpriteManager *v2 = BattleSystem_GetSpriteManager(param0->battleSys);
 
     for (i = 0; i < 4; i++) {
         TypeIcon_UnloadChar(v2, 20025 + i);
@@ -2866,11 +2863,8 @@ static void DrawMoveTypeIcons(UnkStruct_ov16_02268A14 *param0)
 static void ov16_0226AFF4(UnkStruct_ov16_02268A14 *param0)
 {
     int i;
-    SpriteSystem *v1;
-    SpriteManager *v2;
-
-    v1 = BattleSystem_GetSpriteSystem(param0->battleSys);
-    v2 = BattleSystem_GetSpriteManager(param0->battleSys);
+    SpriteSystem *v1 = BattleSystem_GetSpriteSystem(param0->battleSys);
+    SpriteManager *v2 = BattleSystem_GetSpriteManager(param0->battleSys);
 
     for (i = 0; i < 4; i++) {
         if (param0->moveSelectSprites[i] != NULL) {
@@ -2883,11 +2877,8 @@ static void ov16_0226AFF4(UnkStruct_ov16_02268A14 *param0)
 static void ov16_0226B028(UnkStruct_ov16_02268A14 *param0)
 {
     int i;
-    SpriteSystem *v1;
-    SpriteManager *v2;
-
-    v1 = BattleSystem_GetSpriteSystem(param0->battleSys);
-    v2 = BattleSystem_GetSpriteManager(param0->battleSys);
+    SpriteSystem *v1 = BattleSystem_GetSpriteSystem(param0->battleSys);
+    SpriteManager *v2 = BattleSystem_GetSpriteManager(param0->battleSys);
 
     for (i = 0; i < 4; i++) {
         if (param0->unk_5FC[i] != NULL) {

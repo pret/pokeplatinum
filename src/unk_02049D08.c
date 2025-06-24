@@ -275,11 +275,8 @@ u16 sub_0204A064(SaveData *saveData)
 {
     u8 v0;
     int v1;
-    UnkStruct_0202D060 *v2;
-    UnkStruct_0202D750 *v3;
-
-    v2 = sub_0202D740(saveData);
-    v3 = sub_0202D750(saveData);
+    UnkStruct_0202D060 *v2 = sub_0202D740(saveData);
+    UnkStruct_0202D750 *v3 = sub_0202D750(saveData);
     v0 = (u8)sub_0202D0BC(v2, 0, NULL);
 
     if (v0 == 5) {

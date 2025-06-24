@@ -144,11 +144,8 @@ static ParticleSystem *sub_0207C7CC(int heapID)
 
 static ParticleSystem *sub_0207C814(int heapID, int param1, int param2)
 {
-    ParticleSystem *v0;
-    void *v1;
-
-    v0 = sub_0207C7CC(heapID);
-    v1 = ParticleSystem_LoadResourceFromNARC(param1, param2, heapID);
+    ParticleSystem *v0 = sub_0207C7CC(heapID);
+    void *v1 = ParticleSystem_LoadResourceFromNARC(param1, param2, heapID);
 
     ParticleSystem_SetResource(v0, v1, (1 << 1) | (1 << 3), 1);
 

@@ -643,11 +643,8 @@ static BOOL ov104_0222FD6C(UnkStruct_ov104_0222E930 *param0)
 
 static BOOL ov104_0222FD84(UnkStruct_ov104_0222E930 *param0)
 {
-    u16 *v0;
-    u16 *v1;
-
-    v0 = ov104_0222FBE4(param0);
-    v1 = ov104_0222FBE4(param0);
+    u16 *v0 = ov104_0222FBE4(param0);
+    u16 *v1 = ov104_0222FBE4(param0);
 
     *v0 = *v1;
 
@@ -1450,9 +1447,8 @@ static BOOL ov104_02230900(UnkStruct_ov104_0222E930 *param0)
 
 static BOOL ov104_02230910(UnkStruct_ov104_0222E930 *param0)
 {
-    void *v0;
     UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(param0->unk_00->unk_00);
-    v0 = sub_0208712C(HEAP_ID_FIELDMAP, 0, 0, 8, (void *)v1->options);
+    void *v0 = sub_0208712C(HEAP_ID_FIELDMAP, 0, 0, 8, (void *)v1->options);
 
     sub_0209B988(param0->unk_00->unk_00, &Unk_020F2DAC, v0, 0, ov104_02230950);
 
@@ -1830,11 +1826,8 @@ BOOL ov104_02230E40(UnkStruct_ov104_0222E930 *param0)
 
 static Strbuf *ov104_02230E90(u16 param0, u32 param1)
 {
-    MessageLoader *v0;
-    Strbuf *v1;
-
-    v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, param1);
-    v1 = MessageLoader_GetNewStrbuf(v0, param0);
+    MessageLoader *v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, param1);
+    Strbuf *v1 = MessageLoader_GetNewStrbuf(v0, param0);
 
     MessageLoader_Free(v0);
     return v1;
@@ -2792,9 +2785,8 @@ static BOOL ov104_02231EC4(UnkStruct_ov104_0222E930 *param0)
 
 static BOOL ov104_02231ED8(UnkStruct_ov104_0222E930 *param0)
 {
-    WiFiList *v0;
     UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(param0->unk_00->unk_00);
-    v0 = SaveData_GetWiFiList(v1->saveData);
+    WiFiList *v0 = SaveData_GetWiFiList(v1->saveData);
 
     sub_0202B13C(v0, ov4_021D2388());
     return 0;

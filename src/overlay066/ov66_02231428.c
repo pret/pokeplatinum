@@ -161,11 +161,8 @@ BOOL ov66_0223164C(const UnkStruct_ov66_02231560 *param0, u8 param1)
 
 void ov66_02231668(void *param0)
 {
-    NNSG3dResMdlSet *v0;
-    NNSG3dResMdl *v1;
-
-    v0 = NNS_G3dGetMdlSet(param0);
-    v1 = NNS_G3dGetMdlByIdx(v0, 0);
+    NNSG3dResMdlSet *v0 = NNS_G3dGetMdlSet(param0);
+    NNSG3dResMdl *v1 = NNS_G3dGetMdlByIdx(v0, 0);
 
     NNS_G3dMdlUseGlbDiff(v1);
     NNS_G3dMdlUseGlbAmb(v1);

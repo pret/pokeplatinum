@@ -407,11 +407,8 @@ static void sub_020839FC(GameWindowLayout *param0, int *param1)
 
 int sub_02083A78(void *param0)
 {
-    GameWindowLayout *v0;
-    Pokemon *v1;
-
-    v0 = param0;
-    v1 = Party_GetPokemonBySlotIndex(v0->partyManagementData->party, v0->partySlot);
+    GameWindowLayout *v0 = param0;
+    Pokemon *v1 = Party_GetPokemonBySlotIndex(v0->partyManagementData->party, v0->partySlot);
 
     sub_0207893C(v1);
 

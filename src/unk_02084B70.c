@@ -854,11 +854,8 @@ int sub_02085EF4(GameWindowLayout *windowLayout)
 
 static int sub_02085FB4(void *windowLayoutPtr)
 {
-    GameWindowLayout *windowLayout;
-    Strbuf *strBuf;
-
-    windowLayout = windowLayoutPtr;
-    strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 59);
+    GameWindowLayout *windowLayout = windowLayoutPtr;
+    Strbuf *strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 59);
 
     StringTemplate_Format(windowLayout->template, windowLayout->unk_6A4, strBuf);
     Strbuf_Free(strBuf);
@@ -872,11 +869,8 @@ static int sub_02085FB4(void *windowLayoutPtr)
 
 static int sub_02086008(void *windowLayoutPtr)
 {
-    GameWindowLayout *windowLayout;
-    Strbuf *strBuf;
-
-    windowLayout = windowLayoutPtr;
-    strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 55);
+    GameWindowLayout *windowLayout = windowLayoutPtr;
+    Strbuf *strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 55);
 
     StringTemplate_Format(windowLayout->template, windowLayout->unk_6A4, strBuf);
     Strbuf_Free(strBuf);
@@ -891,11 +885,8 @@ static int sub_02086008(void *windowLayoutPtr)
 
 static int sub_02086060(void *windowLayoutPtr)
 {
-    GameWindowLayout *windowLayout;
-    Strbuf *strBuf;
-
-    windowLayout = windowLayoutPtr;
-    strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 58);
+    GameWindowLayout *windowLayout = windowLayoutPtr;
+    Strbuf *strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 58);
 
     StringTemplate_Format(windowLayout->template, windowLayout->unk_6A4, strBuf);
     Strbuf_Free(strBuf);
@@ -909,11 +900,8 @@ static int sub_02086060(void *windowLayoutPtr)
 
 static int sub_020860AC(void *windowLayoutPtr)
 {
-    GameWindowLayout *windowLayout;
-    Strbuf *strBuf;
-
-    windowLayout = windowLayoutPtr;
-    strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 52);
+    GameWindowLayout *windowLayout = windowLayoutPtr;
+    Strbuf *strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 52);
 
     StringTemplate_Format(windowLayout->template, windowLayout->unk_6A4, strBuf);
     Strbuf_Free(strBuf);
@@ -1060,11 +1048,8 @@ int sub_020863A0(GameWindowLayout *windowLayout)
 
 static int sub_02086438(void *windowLayoutPtr)
 {
-    GameWindowLayout *windowLayout;
-    Strbuf *strBuf;
-
-    windowLayout = windowLayoutPtr;
-    strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 59);
+    GameWindowLayout *windowLayout = windowLayoutPtr;
+    Strbuf *strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 59);
 
     StringTemplate_Format(windowLayout->template, windowLayout->unk_6A4, strBuf);
     Strbuf_Free(strBuf);
@@ -1078,11 +1063,8 @@ static int sub_02086438(void *windowLayoutPtr)
 
 static int sub_0208648C(void *windowLayoutPtr)
 {
-    GameWindowLayout *windowLayout;
-    Strbuf *strBuf;
-
-    windowLayout = windowLayoutPtr;
-    strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 55);
+    GameWindowLayout *windowLayout = windowLayoutPtr;
+    Strbuf *strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 55);
 
     StringTemplate_Format(windowLayout->template, windowLayout->unk_6A4, strBuf);
     Strbuf_Free(strBuf);
@@ -1097,11 +1079,8 @@ static int sub_0208648C(void *windowLayoutPtr)
 
 static int sub_020864E4(void *windowLayoutPtr)
 {
-    GameWindowLayout *windowLayout;
-    Strbuf *strBuf;
-
-    windowLayout = windowLayoutPtr;
-    strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 58);
+    GameWindowLayout *windowLayout = windowLayoutPtr;
+    Strbuf *strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 58);
 
     StringTemplate_Format(windowLayout->template, windowLayout->unk_6A4, strBuf);
     Strbuf_Free(strBuf);
@@ -1115,11 +1094,8 @@ static int sub_020864E4(void *windowLayoutPtr)
 
 static int sub_02086538(void *windowLayoutPtr)
 {
-    GameWindowLayout *windowLayout;
-    Strbuf *strBuf;
-
-    windowLayout = windowLayoutPtr;
-    strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 52);
+    GameWindowLayout *windowLayout = windowLayoutPtr;
+    Strbuf *strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 52);
 
     StringTemplate_Format(windowLayout->template, windowLayout->unk_6A4, strBuf);
     Strbuf_Free(strBuf);

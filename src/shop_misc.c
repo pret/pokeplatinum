@@ -16,11 +16,8 @@ static void ShopMisc_ReinitShop(FieldTask *task);
 
 BOOL FieldTask_ShopMisc(FieldTask *task)
 {
-    FieldSystem *fieldSystem;
-    ShopMenu *shopMenu;
-
-    fieldSystem = FieldTask_GetFieldSystem(task);
-    shopMenu = FieldTask_GetEnv(task);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    ShopMenu *shopMenu = FieldTask_GetEnv(task);
 
     switch (shopMenu->state) {
     case SHOP_STATE_REINIT_FIELD_MAP:
@@ -50,11 +47,8 @@ static u8 ShopMisc_FreeUnk04AndReinitFieldMap(FieldSystem *fieldSystem, ShopMenu
 
 static void ShopMisc_ReinitShop(FieldTask *task)
 {
-    FieldSystem *fieldSystem;
-    ShopMenu *shopMenu;
-
-    fieldSystem = FieldTask_GetFieldSystem(task);
-    shopMenu = FieldTask_GetEnv(task);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    ShopMenu *shopMenu = FieldTask_GetEnv(task);
 
     if (FieldSystem_IsRunningFieldMap(fieldSystem)) {
         ov5_021D1744(1);

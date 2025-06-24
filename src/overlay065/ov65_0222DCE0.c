@@ -3828,9 +3828,8 @@ static BOOL ov65_02231A54(void)
 
 static void ov65_02231A74(UnkStruct_ov65_0222EBE0 *param0, u32 unused)
 {
-    void *journalEntryOnlineEvent;
     JournalEntry *journalEntry = SaveData_GetJournal(param0->saveData);
-    journalEntryOnlineEvent = JournalEntry_CreateEventMisc(54, ONLINE_EVENT_WIFI_CLUB);
+    void *journalEntryOnlineEvent = JournalEntry_CreateEventMisc(54, ONLINE_EVENT_WIFI_CLUB);
 
     JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
 }

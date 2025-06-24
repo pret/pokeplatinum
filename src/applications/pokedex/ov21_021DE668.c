@@ -775,11 +775,8 @@ static void ov21_021DF214(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **
 
 Window *ov21_021DF30C(PokedexTextManager *textMan, int param1, int param2)
 {
-    Window *v0;
-    Strbuf *v1;
-
-    v0 = PokedexTextManager_NewWindow(textMan, 18, 2);
-    v1 = PokedexText_Category(param1, GAME_LANGUAGE, param2);
+    Window *v0 = PokedexTextManager_NewWindow(textMan, 18, 2);
+    Strbuf *v1 = PokedexText_Category(param1, GAME_LANGUAGE, param2);
 
     {
         u32 v2 = Font_CalcStrbufWidth(FONT_SUBSCREEN, v1, 0);

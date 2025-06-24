@@ -374,11 +374,8 @@ void ov23_0224B144(void *param0, FieldSystem *fieldSystem)
 
 void ov23_0224B2C8(FieldSystem *fieldSystem)
 {
-    UnkStruct_02029894 *v0;
-    UndergroundRecord *undergroundRecord;
-
-    v0 = sub_02029894(FieldSystem_GetSaveData(fieldSystem));
-    undergroundRecord = sub_020298AC(v0);
+    UnkStruct_02029894 *v0 = sub_02029894(FieldSystem_GetSaveData(fieldSystem));
+    UndergroundRecord *undergroundRecord = sub_020298AC(v0);
 
     UndergroundRecord_SetTrainerScore(undergroundRecord, GameRecords_GetTrainerScore(SaveData_GetGameRecords(fieldSystem->saveData)));
 

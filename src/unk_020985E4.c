@@ -37,11 +37,8 @@ void sub_020985E4(FieldTask *param0, SaveData *saveData)
 
 BOOL sub_0209862C(FieldTask *param0)
 {
-    FieldSystem *fieldSystem;
-    UnkStruct_0209862C *v1;
-
-    fieldSystem = FieldTask_GetFieldSystem(param0);
-    v1 = FieldTask_GetEnv(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_0209862C *v1 = FieldTask_GetEnv(param0);
 
     switch (v1->unk_00) {
     case 0:

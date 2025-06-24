@@ -864,11 +864,8 @@ static void sub_02021768(UnkStruct_020216E0 *param0)
 
 static NNSG3dResMdlSet *sub_02021788(const UnkStruct_ov5_021DF84C *param0, NNSG3dResMdl **param1, NNSG3dResTex **param2)
 {
-    void *v0;
-    NNSG3dResMdlSet *v1;
-
-    v0 = sub_0202189C(param0, 0);
-    v1 = NNS_G3dGetMdlSet(v0);
+    void *v0 = sub_0202189C(param0, 0);
+    NNSG3dResMdlSet *v1 = NNS_G3dGetMdlSet(v0);
 
     *param1 = NNS_G3dGetMdlByIdx(v1, 0);
 

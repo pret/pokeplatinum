@@ -414,11 +414,8 @@ int ov112_0225C7C4(ApplicationManager *appMan, int *param1)
 
 int ov112_0225C8FC(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov112_0225C970 *v0;
-    UnkStruct_ov66_02230FA0 *v1;
-
-    v0 = ApplicationManager_Data(appMan);
-    v1 = ApplicationManager_Args(appMan);
+    UnkStruct_ov112_0225C970 *v0 = ApplicationManager_Data(appMan);
+    UnkStruct_ov66_02230FA0 *v1 = ApplicationManager_Args(appMan);
 
     ov112_0225D6DC(&v0->unk_264);
     ov112_0225CDF8(&v0->unk_1B8);

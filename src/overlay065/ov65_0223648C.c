@@ -953,11 +953,8 @@ static void ov65_02236F38(UnkStruct_ov65_02236840 *param0)
 
 static void ov65_02236F70(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207DE04 *param1, int param2, u32 heapID)
 {
-    Strbuf *v0;
-    Strbuf *v1;
-
-    v0 = Strbuf_Init(256, heapID);
-    v1 = Strbuf_Init(256, heapID);
+    Strbuf *v0 = Strbuf_Init(256, heapID);
+    Strbuf *v1 = Strbuf_Init(256, heapID);
 
     ov65_0223726C(param0, param1, param2, 0, heapID);
     ov65_02237284(param0, param1, param2, 1, heapID);

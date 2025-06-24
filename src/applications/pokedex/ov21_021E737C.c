@@ -193,11 +193,8 @@ const static UnkStruct_ov21_021E9DB0 Unk_ov21_021E9DB0[17] = {
 
 void ov21_021E737C(UnkStruct_ov21_021E68F4 *param0, PokedexApp *param1, enum HeapId heapID)
 {
-    UnkStruct_ov21_021E7468 *v0;
-    UnkStruct_ov21_021E747C *v1;
-
-    v0 = ov21_021E73E8(heapID, param1);
-    v1 = ov21_021E7424(heapID, param1);
+    UnkStruct_ov21_021E7468 *v0 = ov21_021E73E8(heapID, param1);
+    UnkStruct_ov21_021E747C *v1 = ov21_021E7424(heapID, param1);
 
     param0->pageData = v0;
     param0->pageGraphics = v1;

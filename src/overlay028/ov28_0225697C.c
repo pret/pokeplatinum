@@ -608,11 +608,8 @@ static void ov28_02256B90(SysTask *param0, void *param1)
 
 static void ov28_02256BF0(SysTask *param0, void *param1)
 {
-    const UnkStruct_ov28_0225697C_1 *v0;
-    UnkStruct_ov28_0225697C *v1;
-
-    v0 = PoketchTask_GetConstTaskData(param1);
-    v1 = PoketchTask_GetTaskData(param1);
+    const UnkStruct_ov28_0225697C_1 *v0 = PoketchTask_GetConstTaskData(param1);
+    UnkStruct_ov28_0225697C *v1 = PoketchTask_GetTaskData(param1);
 
     ov28_0225726C(v0->unk_04, v1->unk_30);
     ov28_02256E0C(v1->unk_04, v1->unk_30);
@@ -622,11 +619,8 @@ static void ov28_02256BF0(SysTask *param0, void *param1)
 
 static void ov28_02256C28(SysTask *param0, void *param1)
 {
-    const UnkStruct_ov28_0225697C_1 *v0;
-    UnkStruct_ov28_0225697C *v1;
-
-    v0 = PoketchTask_GetConstTaskData(param1);
-    v1 = PoketchTask_GetTaskData(param1);
+    const UnkStruct_ov28_0225697C_1 *v0 = PoketchTask_GetConstTaskData(param1);
+    UnkStruct_ov28_0225697C *v1 = PoketchTask_GetTaskData(param1);
 
     ov28_0225726C(v0->unk_04, v1->unk_30);
     ov28_02256E0C(v1->unk_04, v1->unk_30);
@@ -637,11 +631,8 @@ static void ov28_02256C28(SysTask *param0, void *param1)
 
 static void ov28_02256C68(SysTask *param0, void *param1)
 {
-    const UnkStruct_ov28_0225697C_1 *v0;
-    UnkStruct_ov28_0225697C *v1;
-
-    v0 = PoketchTask_GetConstTaskData(param1);
-    v1 = PoketchTask_GetTaskData(param1);
+    const UnkStruct_ov28_0225697C_1 *v0 = PoketchTask_GetConstTaskData(param1);
+    UnkStruct_ov28_0225697C *v1 = PoketchTask_GetTaskData(param1);
 
     ov28_0225726C(v0->unk_08, v1->unk_30);
     ov28_02256E0C(v1->unk_04, v1->unk_30);
@@ -651,11 +642,8 @@ static void ov28_02256C68(SysTask *param0, void *param1)
 
 static void ov28_02256CA0(SysTask *param0, void *param1)
 {
-    const UnkStruct_ov28_0225697C_1 *v0;
-    UnkStruct_ov28_0225697C *v1;
-
-    v0 = PoketchTask_GetConstTaskData(param1);
-    v1 = PoketchTask_GetTaskData(param1);
+    const UnkStruct_ov28_0225697C_1 *v0 = PoketchTask_GetConstTaskData(param1);
+    UnkStruct_ov28_0225697C *v1 = PoketchTask_GetTaskData(param1);
 
     ov28_0225726C(v0->unk_0C, v1->unk_30);
     ov28_02256E0C(v1->unk_04, v1->unk_30);
@@ -666,11 +654,8 @@ static void ov28_02256CA0(SysTask *param0, void *param1)
 
 static void ov28_02256CE0(SysTask *param0, void *param1)
 {
-    const UnkStruct_ov28_0225697C_1 *v0;
-    UnkStruct_ov28_0225697C *v1;
-
-    v0 = PoketchTask_GetConstTaskData(param1);
-    v1 = PoketchTask_GetTaskData(param1);
+    const UnkStruct_ov28_0225697C_1 *v0 = PoketchTask_GetConstTaskData(param1);
+    UnkStruct_ov28_0225697C *v1 = PoketchTask_GetTaskData(param1);
 
     ov28_0225726C(v0->unk_0C, v1->unk_30);
     ov28_02256E0C(v1->unk_04, v1->unk_30);

@@ -219,9 +219,8 @@ UnkStruct_ov101_021D5D90 *ov5_021F4474(FieldSystem *fieldSystem, int param1, int
 void ov5_021F44A4(UnkStruct_ov101_021D5D90 *param0)
 {
     int v0;
-    UnkStruct_ov5_021F431C *v1;
     UnkStruct_ov5_021F44A4 *v2 = sub_02071598(param0);
-    v1 = v2->unk_60.unk_0C;
+    UnkStruct_ov5_021F431C *v1 = v2->unk_60.unk_0C;
 
     GF_ASSERT(v2->unk_74 == NULL);
 
@@ -345,9 +344,8 @@ UnkStruct_ov101_021D5D90 *ov5_021F4668(FieldSystem *fieldSystem, int param1, int
 void ov5_021F4698(UnkStruct_ov101_021D5D90 *param0, int param1, BOOL param2)
 {
     UnkStruct_02073974 *v0;
-    UnkStruct_ov5_021F431C *v1;
     UnkStruct_ov5_021F4698 *v2 = sub_02071598(param0);
-    v1 = v2->unk_84.unk_0C;
+    UnkStruct_ov5_021F431C *v1 = v2->unk_84.unk_0C;
 
     if (v2->unk_00_6 == 1) {
         sub_02073A90(&v2->unk_0C);

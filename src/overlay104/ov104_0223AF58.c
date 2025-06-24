@@ -1786,11 +1786,8 @@ u8 ov104_0223B5C0(UnkStruct_ov104_0223B5C0 *param0)
 {
     u32 v0;
     int v1;
-    Party *v2;
-    Pokemon *v3;
-
-    v2 = SaveData_GetParty(param0->saveData);
-    v3 = Party_GetPokemonBySlotIndex(v2, param0->unk_260[0]);
+    Party *v2 = SaveData_GetParty(param0->saveData);
+    Pokemon *v3 = Party_GetPokemonBySlotIndex(v2, param0->unk_260[0]);
     v1 = Pokemon_GetValue(v3, MON_DATA_LEVEL, NULL);
 
     return v1 / 10;

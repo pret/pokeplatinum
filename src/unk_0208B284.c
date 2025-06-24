@@ -169,13 +169,9 @@ static void sub_0208B3D4(SysTask *param0, void *param1)
 void sub_0208B63C(UnkStruct_0208B878 *param0, int param1)
 {
     NARC *v0;
-    SpriteSystem *v1;
-    SpriteManager *v2;
-    PaletteData *v3;
-
-    v1 = param0->unk_00.unk_04;
-    v2 = param0->unk_00.unk_08;
-    v3 = param0->unk_00.unk_0C;
+    SpriteSystem *v1 = param0->unk_00.unk_04;
+    SpriteManager *v2 = param0->unk_00.unk_08;
+    PaletteData *v3 = param0->unk_00.unk_0C;
     v0 = param0->unk_00.unk_00;
 
     SpriteManager_UnloadPlttObjById(v2, 22222 + 1);
@@ -223,13 +219,9 @@ void sub_0208B7B4(UnkStruct_0208B878 *param0)
 {
     int v0;
     SpriteTemplate v1;
-    SpriteSystem *v2;
-    SpriteManager *v3;
-    PaletteData *v4;
-
-    v2 = param0->unk_00.unk_04;
-    v3 = param0->unk_00.unk_08;
-    v4 = param0->unk_00.unk_0C;
+    SpriteSystem *v2 = param0->unk_00.unk_04;
+    SpriteManager *v3 = param0->unk_00.unk_08;
+    PaletteData *v4 = param0->unk_00.unk_0C;
 
     v1.x = 128;
     v1.y = 96;

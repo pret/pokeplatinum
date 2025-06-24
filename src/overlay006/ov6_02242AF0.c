@@ -111,13 +111,9 @@ void GreatMarsh_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 
 void ov6_02242B58(FieldSystem *fieldSystem, const u16 param1, const u16 param2)
 {
-    PersistedMapFeatures *v0;
-    UnkStruct_ov6_02242AF0 *v1;
-    UnkStruct_ov6_02242B58 *v2;
-
-    v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
-    v1 = (UnkStruct_ov6_02242AF0 *)PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_GREAT_MARSH);
-    v2 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov6_02242B58));
+    PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    UnkStruct_ov6_02242AF0 *v1 = (UnkStruct_ov6_02242AF0 *)PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_GREAT_MARSH);
+    UnkStruct_ov6_02242B58 *v2 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov6_02242B58));
 
     memset(v2, 0, sizeof(UnkStruct_ov6_02242B58));
 
@@ -181,11 +177,8 @@ void ov6_02242B58(FieldSystem *fieldSystem, const u16 param1, const u16 param2)
 
 u32 ov6_02242C3C(FieldSystem *fieldSystem, const u16 param1)
 {
-    PersistedMapFeatures *v0;
-    UnkStruct_ov6_02242AF0 *v1;
-
-    v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
-    v1 = (UnkStruct_ov6_02242AF0 *)PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_GREAT_MARSH);
+    PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    UnkStruct_ov6_02242AF0 *v1 = (UnkStruct_ov6_02242AF0 *)PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_GREAT_MARSH);
 
     if (v1->unk_00 == param1) {
         return 5;

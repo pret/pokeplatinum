@@ -1707,9 +1707,8 @@ static int ov98_02248BFC(UnkStruct_ov98_02247704 *param0)
 {
     DWCUserData *v0;
     s32 v1;
-    SystemData *v2;
     WiFiList *v3 = SaveData_GetWiFiList(param0->unk_00->saveData);
-    v2 = SaveData_GetSystemData(param0->unk_00->saveData);
+    SystemData *v2 = SaveData_GetSystemData(param0->unk_00->saveData);
     v0 = WiFiList_GetUserData(v3);
     v1 = SystemData_GetDWCProfileId(v2);
 

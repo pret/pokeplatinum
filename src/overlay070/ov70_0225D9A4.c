@@ -772,11 +772,8 @@ int ov70_0225DB90(ApplicationManager *appMan, int *param1)
 
 int ov70_0225DDF8(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov70_0225DEE8 *v0;
-    UnkStruct_ov66_02230E68 *v1;
-
-    v0 = ApplicationManager_Data(appMan);
-    v1 = ApplicationManager_Args(appMan);
+    UnkStruct_ov70_0225DEE8 *v0 = ApplicationManager_Data(appMan);
+    UnkStruct_ov66_02230E68 *v1 = ApplicationManager_Args(appMan);
 
     {
         v1->unk_18 = v0->unk_01;

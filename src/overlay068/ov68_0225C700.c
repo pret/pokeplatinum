@@ -401,11 +401,8 @@ int ov68_0225C798(ApplicationManager *appMan, int *param1)
 
 int ov68_0225C8A8(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov68_0225C700 *v0;
-    UnkStruct_ov66_02231374 *v1;
-
-    v0 = ApplicationManager_Data(appMan);
-    v1 = ApplicationManager_Args(appMan);
+    UnkStruct_ov68_0225C700 *v0 = ApplicationManager_Data(appMan);
+    UnkStruct_ov66_02231374 *v1 = ApplicationManager_Args(appMan);
 
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();

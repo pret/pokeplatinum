@@ -49,11 +49,8 @@ void ov17_02252CEC(int param0, int param1, void *param2, void *param3)
 void ov17_02252D7C(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_02095C48 *v0 = param3;
-    UnkStruct_ov17_0224DF54 *v1;
-    UnkStruct_ov17_0224EDE0 *v2;
-
-    v1 = v0->unk_150;
-    v2 = param2;
+    UnkStruct_ov17_0224DF54 *v1 = v0->unk_150;
+    UnkStruct_ov17_0224EDE0 *v2 = param2;
 
     ov17_0224B20C(v1, v2);
 }

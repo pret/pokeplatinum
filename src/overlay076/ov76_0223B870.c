@@ -226,13 +226,9 @@ void ov76_0223BB04(UnkStruct_ov76_0223DE00 *param0)
 {
     int v0;
     int v1;
-    SpriteSystem *v2;
-    SpriteManager *v3;
-    PaletteData *v4;
-
-    v2 = param0->unk_D4.unk_08;
-    v3 = param0->unk_D4.unk_0C;
-    v4 = param0->unk_D4.unk_14;
+    SpriteSystem *v2 = param0->unk_D4.unk_08;
+    SpriteManager *v3 = param0->unk_D4.unk_0C;
+    PaletteData *v4 = param0->unk_D4.unk_14;
 
     for (v0 = 0; v0 < 8; v0++) {
         v1 = sub_02098140(param0->unk_418.unk_08[v0]);
@@ -249,13 +245,9 @@ void ov76_0223BBAC(UnkStruct_ov76_0223DE00 *param0)
     int v0;
     UnkStruct_ov76_0223BBAC *v1;
     SpriteTemplate v2;
-    SpriteSystem *v3;
-    SpriteManager *v4;
-    PaletteData *v5;
-
-    v3 = param0->unk_D4.unk_08;
-    v4 = param0->unk_D4.unk_0C;
-    v5 = param0->unk_D4.unk_14;
+    SpriteSystem *v3 = param0->unk_D4.unk_08;
+    SpriteManager *v4 = param0->unk_D4.unk_0C;
+    PaletteData *v5 = param0->unk_D4.unk_14;
     v1 = &param0->unk_3E4;
 
     v2.x = 0;
@@ -522,13 +514,9 @@ void ov76_0223C0EC(int param0, s16 *param1, s16 *param2)
 
 void ov76_0223C110(UnkStruct_ov76_0223DE00 *param0)
 {
-    SpriteSystem *v0;
-    SpriteManager *v1;
-    PaletteData *v2;
-
-    v0 = param0->unk_D4.unk_08;
-    v1 = param0->unk_D4.unk_0C;
-    v2 = param0->unk_D4.unk_14;
+    SpriteSystem *v0 = param0->unk_D4.unk_08;
+    SpriteManager *v1 = param0->unk_D4.unk_0C;
+    PaletteData *v2 = param0->unk_D4.unk_14;
 
     SpriteSystem_LoadPaletteBuffer(v2, 2, v0, v1, 19, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 16000);
 
@@ -1134,13 +1122,9 @@ void ov76_0223CF88(UnkStruct_ov76_0223DE00 *param0, NARC *param1)
 
 void ov76_0223CFEC(UnkStruct_ov76_0223DE00 *param0, NARC *param1)
 {
-    SpriteSystem *v0;
-    SpriteManager *v1;
-    PaletteData *v2;
-
-    v0 = param0->unk_D4.unk_08;
-    v1 = param0->unk_D4.unk_0C;
-    v2 = param0->unk_D4.unk_14;
+    SpriteSystem *v0 = param0->unk_D4.unk_08;
+    SpriteManager *v1 = param0->unk_D4.unk_0C;
+    PaletteData *v2 = param0->unk_D4.unk_14;
 
     SpriteSystem_LoadPaletteBufferFromOpenNarc(v2, PLTTBUF_SUB_OBJ, v0, v1, param1, 290, FALSE, 3, NNS_G2D_VRAM_TYPE_2DSUB, 26000 + 290);
     SpriteSystem_LoadCharResObjFromOpenNarc(v0, v1, param1, 273, TRUE, NNS_G2D_VRAM_TYPE_2DSUB, 25000 + 273);
@@ -1162,13 +1146,9 @@ void ov76_0223D16C(UnkStruct_ov76_0223DE00 *param0)
     int v0;
     UnkStruct_ov76_0223BBAC *v1;
     SpriteTemplate v2;
-    SpriteSystem *v3;
-    SpriteManager *v4;
-    PaletteData *v5;
-
-    v3 = param0->unk_D4.unk_08;
-    v4 = param0->unk_D4.unk_0C;
-    v5 = param0->unk_D4.unk_14;
+    SpriteSystem *v3 = param0->unk_D4.unk_08;
+    SpriteManager *v4 = param0->unk_D4.unk_0C;
+    PaletteData *v5 = param0->unk_D4.unk_14;
     v1 = &param0->unk_3E4;
 
     v2.x = 0;
