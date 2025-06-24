@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/bank/unk_0541.h"
+#include "res/text/bank/scratch_off_cards.h"
 
     .data
 
