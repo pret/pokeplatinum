@@ -1,16 +1,17 @@
 #include "overlay005/ov5_021DD42C.h"
 
+#include "nitro/types.h"
 #include <nitro.h>
 #include <string.h>
 
 #include "struct_defs/sentence.h"
 
 #include "field/field_system.h"
-#include "overlay005/struct_ov5_021DD42C.h"
 
 #include "bg_window.h"
 #include "field_message.h"
 #include "field_script_context.h"
+#include "font.h"
 #include "game_options.h"
 #include "message.h"
 #include "save_player.h"
@@ -21,154 +22,154 @@
 #include "unk_02014A84.h"
 
 typedef struct {
-    Strbuf *unk_00;
-    Strbuf *unk_04;
-    StringTemplate *unk_08;
-    Window *unk_0C;
-    u8 *unk_10;
-    u8 *unk_14;
-} UnkStruct_ov5_021DD648;
+    Strbuf *msgBuf;
+    Strbuf *tempBuf;
+    StringTemplate *template;
+    Window *window;
+    u8 *isOpen;
+    u8 *messageID;
+} MessageData;
 
-static u8 ov5_021DD574(ScriptContext *param0);
-static void ov5_021DD588(FieldSystem *fieldSystem, UnkStruct_ov5_021DD648 *param1);
-static void ov5_021DD5D0(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov5_021DD648 *param2);
-static void ov5_021DD610(FieldSystem *fieldSystem, UnkStruct_ov5_021DD648 *param1);
-static void ov5_021DD648(UnkStruct_ov5_021DD648 *param0, const MessageLoader *param1, u32 param2);
-static void ov5_021DD664(UnkStruct_ov5_021DD648 *param0, u16 param1, u16 param2, u16 param3, u16 param4);
-static void ov5_021DD6B4(UnkStruct_ov5_021DD648 *param0, int param1, int param2, int param3, int param4);
-static void ov5_021DD6DC(UnkStruct_ov5_021DD648 *param0, int param1);
+static u8 GetTextFrameDelay(ScriptContext *ctx);
+static void Init(FieldSystem *fieldSystem, MessageData *msgData);
+static void Init_Template(FieldSystem *fieldSystem, StringTemplate *template, MessageData *msgData);
+static void OpenMessage(FieldSystem *fieldSystem, MessageData *msgData);
+static void LoadFromBuffer(MessageData *msgData, const MessageLoader *msgLoader, u32 bufferEntryID);
+static void GetStrBufFromSentence(MessageData *msgData, u16 sentenceType, u16 sentenceID, u16 word1, u16 word2);
+static void PrintFieldMessage(MessageData *msgData, int fontID, int renderDelay, int canSkipDelay, BOOL autoScroll);
+static void PrintTextMessage(MessageData *msgData, int fontID);
 
-void ov5_021DD42C(UnkStruct_ov5_021DD42C *param0, ScriptContext *param1)
+void MessageOptions_Init(MessageOptions *msgOptions, ScriptContext *ctx)
 {
-    param0->unk_00 = ov5_021DD574(param1);
-    param0->unk_01 = 0;
-    param0->unk_02 = 1;
+    msgOptions->renderDelay = GetTextFrameDelay(ctx);
+    msgOptions->autoScroll = FALSE;
+    msgOptions->fontID = FONT_MESSAGE;
 }
 
-void ov5_021DD444(ScriptContext *param0, const MessageLoader *param1, u16 param2, u8 param3, UnkStruct_ov5_021DD42C *param4)
+void Message_Show(ScriptContext *ctx, const MessageLoader *msgLoader, u16 messageID, u8 canSkipDelay, MessageOptions *msgOptions)
 {
-    UnkStruct_ov5_021DD648 v0;
-    u8 v1;
-    u8 v2;
-    u8 v3;
+    MessageData msgData;
+    u8 renderDelay;
+    u8 autoScroll;
+    u8 fontID;
 
-    ov5_021DD588(param0->fieldSystem, &v0);
-    ov5_021DD610(param0->fieldSystem, &v0);
-    ov5_021DD648(&v0, param1, param2);
+    Init(ctx->fieldSystem, &msgData);
+    OpenMessage(ctx->fieldSystem, &msgData);
+    LoadFromBuffer(&msgData, msgLoader, messageID);
 
-    if (param4 == NULL) {
-        v1 = ov5_021DD574(param0);
-        v2 = 0;
-        v3 = 1;
+    if (msgOptions == NULL) {
+        renderDelay = GetTextFrameDelay(ctx);
+        autoScroll = FALSE;
+        fontID = FONT_MESSAGE;
     } else {
-        v1 = param4->unk_00;
-        v2 = param4->unk_01;
-        v3 = param4->unk_02;
+        renderDelay = msgOptions->renderDelay;
+        autoScroll = msgOptions->autoScroll;
+        fontID = msgOptions->fontID;
     }
 
-    ov5_021DD6B4(&v0, v3, v1, param3, v2);
+    PrintFieldMessage(&msgData, fontID, renderDelay, canSkipDelay, autoScroll);
 }
 
-void ov5_021DD498(ScriptContext *param0, const MessageLoader *param1, int param2)
+void Message_ShowInstant(ScriptContext *ctx, const MessageLoader *msgLoader, int messageID)
 {
-    UnkStruct_ov5_021DD648 v0;
+    MessageData msgData;
 
-    ov5_021DD588(param0->fieldSystem, &v0);
-    ov5_021DD610(param0->fieldSystem, &v0);
-    ov5_021DD648(&v0, param1, param2);
-    ov5_021DD6DC(&v0, 1);
+    Init(ctx->fieldSystem, &msgData);
+    OpenMessage(ctx->fieldSystem, &msgData);
+    LoadFromBuffer(&msgData, msgLoader, messageID);
+    PrintTextMessage(&msgData, FONT_MESSAGE);
 }
 
-void ov5_021DD4CC(ScriptContext *param0, u16 param1, u16 param2, u16 param3, s16 param4, u8 param5)
+void Message_ShowSentence(ScriptContext *ctx, u16 sentenceType, u16 sentenceID, u16 word1, s16 word2, u8 canSkipDelay)
 {
-    UnkStruct_ov5_021DD648 v0;
-    Sentence v1;
+    MessageData msgData;
+    Sentence unused;
 
-    ov5_021DD588(param0->fieldSystem, &v0);
-    ov5_021DD610(param0->fieldSystem, &v0);
-    ov5_021DD664(&v0, param1, param2, param3, param4);
+    Init(ctx->fieldSystem, &msgData);
+    OpenMessage(ctx->fieldSystem, &msgData);
+    GetStrBufFromSentence(&msgData, sentenceType, sentenceID, word1, word2);
 
-    if (param5 != 0xFF) {
-        ov5_021DD6B4(&v0, 1, ov5_021DD574(param0), param5, 0);
+    if (canSkipDelay != 0xFF) {
+        PrintFieldMessage(&msgData, FONT_MESSAGE, GetTextFrameDelay(ctx), canSkipDelay, FALSE);
     } else {
-        ov5_021DD6DC(&v0, 1);
+        PrintTextMessage(&msgData, FONT_MESSAGE);
     }
 }
 
-void ov5_021DD530(ScriptContext *param0, StringTemplate *param1, u8 param2, u8 param3)
+void Message_ShowTemplate(ScriptContext *fieldSystem, StringTemplate *template, u8 bufferEntryID, u8 canSkipDelay)
 {
-    UnkStruct_ov5_021DD648 v0;
+    MessageData msgData;
 
-    ov5_021DD5D0(param0->fieldSystem, param1, &v0);
-    ov5_021DD610(param0->fieldSystem, &v0);
-    ov5_021DD648(&v0, param0->loader, param2);
-    ov5_021DD6B4(&v0, 1, ov5_021DD574(param0), param3, 0);
+    Init_Template(fieldSystem->fieldSystem, template, &msgData);
+    OpenMessage(fieldSystem->fieldSystem, &msgData);
+    LoadFromBuffer(&msgData, fieldSystem->loader, bufferEntryID);
+    PrintFieldMessage(&msgData, FONT_MESSAGE, GetTextFrameDelay(fieldSystem), canSkipDelay, FALSE);
 }
 
-static u8 ov5_021DD574(ScriptContext *param0)
+static u8 GetTextFrameDelay(ScriptContext *ctx)
 {
-    return Options_TextFrameDelay(SaveData_GetOptions(param0->fieldSystem->saveData));
+    return Options_TextFrameDelay(SaveData_GetOptions(ctx->fieldSystem->saveData));
 }
 
-static void ov5_021DD588(FieldSystem *fieldSystem, UnkStruct_ov5_021DD648 *param1)
+static void Init(FieldSystem *fieldSystem, MessageData *msgData)
 {
-    param1->unk_00 = *(Strbuf **)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
-    param1->unk_04 = *(Strbuf **)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TEMPORARY_BUF);
-    param1->unk_08 = *(StringTemplate **)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    param1->unk_0C = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW);
-    param1->unk_10 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_IS_MSG_BOX_OPEN);
-    param1->unk_14 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_ID);
+    msgData->msgBuf = *(Strbuf **)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
+    msgData->tempBuf = *(Strbuf **)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TEMPORARY_BUF);
+    msgData->template = *(StringTemplate **)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    msgData->window = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW);
+    msgData->isOpen = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_IS_MSG_BOX_OPEN);
+    msgData->messageID = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_ID);
 }
 
-static void ov5_021DD5D0(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov5_021DD648 *param2)
+static void Init_Template(FieldSystem *fieldSystem, StringTemplate *template, MessageData *msgData)
 {
-    param2->unk_00 = *(Strbuf **)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
-    param2->unk_04 = *(Strbuf **)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TEMPORARY_BUF);
-    param2->unk_08 = param1;
-    param2->unk_0C = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW);
-    param2->unk_10 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_IS_MSG_BOX_OPEN);
-    param2->unk_14 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_ID);
+    msgData->msgBuf = *(Strbuf **)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
+    msgData->tempBuf = *(Strbuf **)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TEMPORARY_BUF);
+    msgData->template = template;
+    msgData->window = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW);
+    msgData->isOpen = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_IS_MSG_BOX_OPEN);
+    msgData->messageID = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_ID);
 }
 
-static void ov5_021DD610(FieldSystem *fieldSystem, UnkStruct_ov5_021DD648 *param1)
+static void OpenMessage(FieldSystem *fieldSystem, MessageData *msgData)
 {
-    if (*(param1->unk_10) == 0) {
-        FieldMessage_AddWindow(fieldSystem->bgConfig, param1->unk_0C, 3);
-        FieldMessage_DrawWindow(param1->unk_0C, SaveData_GetOptions(fieldSystem->saveData));
-        *(param1->unk_10) = 1;
+    if (*(msgData->isOpen) == FALSE) {
+        FieldMessage_AddWindow(fieldSystem->bgConfig, msgData->window, BG_LAYER_MAIN_3);
+        FieldMessage_DrawWindow(msgData->window, SaveData_GetOptions(fieldSystem->saveData));
+        *(msgData->isOpen) = TRUE;
     }
 
-    Window_FillTilemap(param1->unk_0C, 15);
+    Window_FillTilemap(msgData->window, 15);
 }
 
-static void ov5_021DD648(UnkStruct_ov5_021DD648 *param0, const MessageLoader *param1, u32 param2)
+static void LoadFromBuffer(MessageData *msgData, const MessageLoader *msgLoader, u32 bufferEntryID)
 {
-    MessageLoader_GetStrbuf(param1, param2, param0->unk_04);
-    StringTemplate_Format(param0->unk_08, param0->unk_00, param0->unk_04);
+    MessageLoader_GetStrbuf(msgLoader, bufferEntryID, msgData->tempBuf);
+    StringTemplate_Format(msgData->template, msgData->msgBuf, msgData->tempBuf);
 }
 
-static void ov5_021DD664(UnkStruct_ov5_021DD648 *param0, u16 param1, u16 param2, u16 param3, u16 param4)
+static void GetStrBufFromSentence(MessageData *msgData, u16 sentenceType, u16 sentenceID, u16 word1, u16 word2)
 {
-    Sentence v0;
-    Strbuf *v1;
+    Sentence sentence;
+    Strbuf *strBuf;
 
-    sub_02014A84(&v0);
-    sub_02014CE0(&v0, param1, param2);
-    sub_02014CF8(&v0, 0, param3);
-    sub_02014CF8(&v0, 1, param4);
+    sub_02014A84(&sentence);
+    sub_02014CE0(&sentence, sentenceType, sentenceID);
+    sub_02014CF8(&sentence, 0, word1);
+    sub_02014CF8(&sentence, 1, word2);
 
-    v1 = sub_02014B34(&v0, HEAP_ID_FIELD_TASK);
+    strBuf = sub_02014B34(&sentence, HEAP_ID_FIELD_TASK);
 
-    Strbuf_Copy(param0->unk_00, v1);
-    Strbuf_Free(v1);
+    Strbuf_Copy(msgData->msgBuf, strBuf);
+    Strbuf_Free(strBuf);
 }
 
-static void ov5_021DD6B4(UnkStruct_ov5_021DD648 *param0, int param1, int param2, int param3, int param4)
+static void PrintFieldMessage(MessageData *msgData, int fontID, int renderDelay, int canSkipDelay, BOOL autoScroll)
 {
-    *(param0->unk_14) = FieldMessage_PrintWithParams(param0->unk_0C, param0->unk_00, param1, param2, param3, param4);
+    *(msgData->messageID) = FieldMessage_PrintWithParams(msgData->window, msgData->msgBuf, fontID, renderDelay, canSkipDelay, autoScroll);
 }
 
-static void ov5_021DD6DC(UnkStruct_ov5_021DD648 *param0, int param1)
+static void PrintTextMessage(MessageData *msgData, int fontID)
 {
-    *(param0->unk_14) = Text_AddPrinterWithParams(param0->unk_0C, param1, param0->unk_00, 0, 0, TEXT_SPEED_INSTANT, NULL);
+    *(msgData->messageID) = Text_AddPrinterWithParams(msgData->window, fontID, msgData->msgBuf, 0, 0, TEXT_SPEED_INSTANT, NULL);
 }

@@ -68,7 +68,6 @@
 #include "overlay005/scrcmd_move_tutor.h"
 #include "overlay005/signpost.h"
 #include "overlay005/size_contest.h"
-#include "overlay005/struct_ov5_021DD42C.h"
 #include "overlay005/vs_seeker.h"
 #include "overlay006/npc_trade.h"
 #include "overlay006/ov6_0223E140.h"
@@ -2035,7 +2034,7 @@ static BOOL ScrCmd_MessageInstant(ScriptContext *ctx)
 {
     u8 messageID = ScriptContext_ReadByte(ctx);
 
-    ov5_021DD498(ctx, ctx->loader, messageID);
+    Message_ShowInstant(ctx, ctx->loader, messageID);
     return FALSE;
 }
 
@@ -2046,7 +2045,7 @@ static BOOL ScrCmd_1FA(ScriptContext *ctx)
 
     MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, v1, HEAP_ID_FIELD_TASK);
 
-    ov5_021DD498(ctx, msgLoader, v2);
+    Message_ShowInstant(ctx, msgLoader, v2);
     MessageLoader_Free(msgLoader);
 
     return FALSE;
@@ -2058,7 +2057,7 @@ static BOOL ScrCmd_1FB(ScriptContext *ctx)
     u16 v2 = ScriptContext_GetVar(ctx);
 
     MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, v1, HEAP_ID_FIELD_TASK);
-    ov5_021DD444(ctx, msgLoader, v2, TRUE, NULL);
+    Message_Show(ctx, msgLoader, v2, TRUE, NULL);
 
     MessageLoader_Free(msgLoader);
     ScriptContext_Pause(ctx, sub_02040014);
@@ -2073,7 +2072,7 @@ static BOOL ScrCmd_1FC(ScriptContext *ctx)
     u16 v2 = ScriptContext_ReadHalfWord(ctx);
     u16 v3 = ScriptContext_ReadHalfWord(ctx);
 
-    ov5_021DD4CC(ctx, v0, v1, v2, v3, 0xFF);
+    Message_ShowSentence(ctx, v0, v1, v2, v3, 0xFF);
     return FALSE;
 }
 
@@ -2084,7 +2083,7 @@ static BOOL ScrCmd_1FD(ScriptContext *ctx)
     u16 v2 = ScriptContext_ReadHalfWord(ctx);
     u16 v3 = ScriptContext_ReadHalfWord(ctx);
 
-    ov5_021DD4CC(ctx, v0, v1, v2, v3, 1);
+    Message_ShowSentence(ctx, v0, v1, v2, v3, 1);
     ScriptContext_Pause(ctx, sub_02040014);
 
     return TRUE;
@@ -2104,10 +2103,10 @@ static BOOL ScrCmd_1FE(ScriptContext *ctx)
 
     if (v0[0] == 0xFFFF) {
         MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0613, HEAP_ID_FIELD_TASK);
-        ov5_021DD444(ctx, msgLoader, v0[1], TRUE, NULL);
+        Message_Show(ctx, msgLoader, v0[1], TRUE, NULL);
         MessageLoader_Free(msgLoader);
     } else {
-        ov5_021DD4CC(ctx, v0[0], v0[1], v0[2], v0[3], 1);
+        Message_ShowSentence(ctx, v0[0], v0[1], v0[2], v0[3], 1);
     }
 
     ScriptContext_Pause(ctx, sub_02040014);
@@ -2125,7 +2124,7 @@ static BOOL ScrCmd_1FF(ScriptContext *ctx)
 
     StringTemplate *v6 = sub_0204AEE8(fieldSystem->saveData, v2, v3, v4, &v5);
 
-    ov5_021DD530(ctx, v6, v1 + v5, TRUE);
+    Message_ShowTemplate(ctx, v6, v1 + v5, TRUE);
     StringTemplate_Free(v6);
     ScriptContext_Pause(ctx, sub_02040014);
 
@@ -2134,13 +2133,13 @@ static BOOL ScrCmd_1FF(ScriptContext *ctx)
 
 static BOOL ScrCmd_26D(ScriptContext *ctx)
 {
-    UnkStruct_ov5_021DD42C v0;
+    MessageOptions v0;
     u16 v1 = ScriptContext_ReadHalfWord(ctx);
 
-    ov5_021DD42C(&v0, ctx);
-    v0.unk_02 = 3;
+    MessageOptions_Init(&v0, ctx);
+    v0.fontID = 3;
 
-    ov5_021DD444(ctx, ctx->loader, v1, FALSE, &v0);
+    Message_Show(ctx, ctx->loader, v1, FALSE, &v0);
     ScriptContext_Pause(ctx, sub_02040014);
 
     return TRUE;
@@ -2150,7 +2149,7 @@ static BOOL ScrCmd_Message(ScriptContext *ctx)
 {
     u8 messageID = ScriptContext_ReadByte(ctx);
 
-    ov5_021DD444(ctx, ctx->loader, messageID, TRUE, NULL);
+    Message_Show(ctx, ctx->loader, messageID, TRUE, NULL);
     ScriptContext_Pause(ctx, sub_02040014);
 
     return TRUE;
@@ -2168,7 +2167,7 @@ static BOOL ScrCmd_MessageVar(ScriptContext *ctx)
 {
     u16 messageID = ScriptContext_GetVar(ctx);
 
-    ov5_021DD444(ctx, ctx->loader, (u8)messageID, TRUE, NULL);
+    Message_Show(ctx, ctx->loader, (u8)messageID, TRUE, NULL);
     ScriptContext_Pause(ctx, sub_02040014);
 
     return TRUE;
@@ -2177,13 +2176,13 @@ static BOOL ScrCmd_MessageVar(ScriptContext *ctx)
 static BOOL ScrCmd_2C0(ScriptContext *ctx)
 {
     u16 v0 = ScriptContext_GetVar(ctx);
-    UnkStruct_ov5_021DD42C v1;
+    MessageOptions v1;
 
-    ov5_021DD42C(&v1, ctx);
+    MessageOptions_Init(&v1, ctx);
 
-    v1.unk_01 = 1;
+    v1.autoScroll = 1;
 
-    ov5_021DD444(ctx, ctx->loader, (u8)v0, TRUE, &v1);
+    Message_Show(ctx, ctx->loader, (u8)v0, TRUE, &v1);
     ScriptContext_Pause(ctx, sub_02040014);
 
     return TRUE;
@@ -2193,7 +2192,7 @@ static BOOL ScrCmd_02E(ScriptContext *ctx)
 {
     u16 v0 = ScriptContext_GetVar(ctx);
 
-    ov5_021DD444(ctx, ctx->loader, (u8)v0, FALSE, NULL);
+    Message_Show(ctx, ctx->loader, (u8)v0, FALSE, NULL);
     ScriptContext_Pause(ctx, sub_02040014);
 
     return TRUE;
@@ -2204,7 +2203,7 @@ static BOOL ScrCmd_20C(ScriptContext *ctx)
     MapObject **mapObj = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_TARGET_OBJECT);
     u8 v1 = MapObject_GetTrainerType(*mapObj);
 
-    ov5_021DD444(ctx, ctx->loader, v1, TRUE, NULL);
+    Message_Show(ctx, ctx->loader, v1, TRUE, NULL);
     ScriptContext_Pause(ctx, sub_02040014);
 
     return TRUE;
@@ -2212,19 +2211,19 @@ static BOOL ScrCmd_20C(ScriptContext *ctx)
 
 static BOOL ScrCmd_02F(ScriptContext *ctx)
 {
-    u8 v0 = ScriptContext_ReadByte(ctx);
+    u8 messageID = ScriptContext_ReadByte(ctx);
 
     if (!CommSys_IsInitialized()) {
-        ov5_021DD444(ctx, ctx->loader, v0, TRUE, NULL);
+        Message_Show(ctx, ctx->loader, messageID, TRUE, NULL);
     } else {
-        UnkStruct_ov5_021DD42C v1;
+        MessageOptions msgOptions;
 
-        ov5_021DD42C(&v1, ctx);
+        MessageOptions_Init(&msgOptions, ctx);
 
-        v1.unk_00 = 1;
-        v1.unk_01 = 1;
+        msgOptions.renderDelay = TEXT_SPEED_FAST;
+        msgOptions.autoScroll = TRUE;
 
-        ov5_021DD444(ctx, ctx->loader, v0, FALSE, &v1);
+        Message_Show(ctx, ctx->loader, messageID, FALSE, &msgOptions);
     }
 
     ScriptContext_Pause(ctx, sub_02040014);
