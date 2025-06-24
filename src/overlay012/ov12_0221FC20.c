@@ -187,10 +187,10 @@ static void ov12_02221A50(BattleAnimSystem *param0);
 static void ov12_02222948(BattleAnimSystem *param0);
 static void ov12_0222294C(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_StopSoundEffect(BattleAnimSystem *param0);
-static void ov12_02220F5C(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_JumpIfBattlerSide(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_JumpIfWeather(BattleAnimSystem *param0);
-static void ov12_02220FFC(BattleAnimSystem *param0);
-static void ov12_02221024(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_JumpIfContest(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_JumpIfFriendlyFire(BattleAnimSystem *param0);
 static void ov12_022230D4(BattleAnimSystem *param0);
 static void ov12_02223134(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_CallFunc(BattleAnimSystem *param0);
@@ -841,15 +841,15 @@ static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
     ov12_02221A00,
     ov12_02221A14,
     ov12_02221A30,
-    ov12_02220F5C,
+    BattleAnimScriptCmd_JumpIfBattlerSide,
     ov12_022230D4,
     ov12_02223134,
     BattleAnimScriptCmd_ResetVar,
     ov12_022206A4,
     ov12_022206E8,
     BattleAnimScriptCmd_JumpIfWeather,
-    ov12_02220FFC,
-    ov12_02221024,
+    BattleAnimScriptCmd_JumpIfContest,
+    BattleAnimScriptCmd_JumpIfFriendlyFire,
     BattleAnimScriptCmd_InitSpriteManager,
     BattleAnimScriptCmd_LoadCharResObj,
     BattleAnimScriptCmd_LoadPlttRes,
@@ -1531,27 +1531,27 @@ static void ov12_02220F30(BattleAnimSystem *param0)
     param0->scriptPtr += (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
 }
 
-static void ov12_02220F5C(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_JumpIfBattlerSide(BattleAnimSystem *system)
 {
-    int v0;
-    int v1;
+    int battler;
+    enum Battler side;
 
-    param0->scriptPtr += 1;
+    BattleAnimScript_Next(system);
 
-    v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    battler = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    if (v0 == 0) {
-        v1 = ov12_0223525C(param0, param0->context->attacker);
+    if (battler == 0) {
+        side = ov12_0223525C(system, system->context->attacker);
     } else {
-        v1 = ov12_0223525C(param0, param0->context->defender);
+        side = ov12_0223525C(system, system->context->defender);
     }
 
-    if (v1 == 0x4) {
-        param0->scriptPtr += 1;
+    if (side == BTLSCR_ENEMY) {
+        BattleAnimScript_Next(system);
     }
 
-    param0->scriptPtr += (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
+    BattleAnimScript_JumpBy(system, (u32)BattleAnimScript_ReadWord(system->scriptPtr));
 }
 
 static void BattleAnimScriptCmd_JumpIfWeather(BattleAnimSystem *system)
@@ -1581,31 +1581,28 @@ static void BattleAnimScriptCmd_JumpIfWeather(BattleAnimSystem *system)
     BattleAnimScript_JumpBy(system, (u32)BattleAnimScript_ReadWord(system->scriptPtr));
 }
 
-static void ov12_02220FFC(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_JumpIfContest(BattleAnimSystem *system)
 {
-    param0->scriptPtr += 1;
+    BattleAnimScript_Next(system);
 
-    if (BattleAnimSystem_IsContest(param0) == 1) {
-        param0->scriptPtr += (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
+    if (BattleAnimSystem_IsContest(system) == TRUE) {
+        BattleAnimScript_JumpBy(system, (u32)BattleAnimScript_ReadWord(system->scriptPtr));
     } else {
-        param0->scriptPtr += 1;
+        BattleAnimScript_Next(system);
     }
 }
 
-static void ov12_02221024(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_JumpIfFriendlyFire(BattleAnimSystem *system)
 {
-    int v0;
-    int v1;
+    BattleAnimScript_Next(system);
 
-    param0->scriptPtr += 1;
+    enum Battler attackerSide = ov12_0223525C(system, system->context->attacker);
+    enum Battler defenderSide = ov12_0223525C(system, system->context->defender);
 
-    v0 = ov12_0223525C(param0, param0->context->attacker);
-    v1 = ov12_0223525C(param0, param0->context->defender);
-
-    if (v0 == v1) {
-        param0->scriptPtr += (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
+    if (attackerSide == defenderSide) {
+        BattleAnimScript_JumpBy(system, (u32)BattleAnimScript_ReadWord(system->scriptPtr));
     } else {
-        param0->scriptPtr += 1;
+        BattleAnimScript_Next(system);
     }
 }
 
