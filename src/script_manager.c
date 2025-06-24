@@ -195,7 +195,7 @@ static u16 ScriptContext_LoadAndOffsetID(FieldSystem *fieldSystem, ScriptContext
     u16 retScriptID = scriptID;
 
     if (retScriptID >= 10490) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0499, TEXT_BANK_UNK_0541);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0499, TEXT_BANK_SCRATCH_OFF_CARDS);
         retScriptID -= 10490;
     } else if (retScriptID >= 10450) {
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_0500, TEXT_BANK_UNK_0016);
@@ -276,7 +276,7 @@ static u16 ScriptContext_LoadAndOffsetID(FieldSystem *fieldSystem, ScriptContext
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_1114, TEXT_BANK_COMMON_STRINGS);
         retScriptID -= SCRIPT_ID_OFFSET_SINGLE_BATTLES;
     } else if (retScriptID >= 2800) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0413, TEXT_BANK_UNK_0397);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0413, TEXT_BANK_BERRY_TREES);
         retScriptID -= 2800;
     } else if (retScriptID >= 2500) {
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_0001, TEXT_BANK_UNK_0017);
