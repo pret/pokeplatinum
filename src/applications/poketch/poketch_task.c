@@ -128,12 +128,12 @@ void PoketchTask_Start(const PoketchTask *appTasks, u32 taskId, void *taskData, 
     GF_ASSERT(FALSE);
 }
 
-void PoketchTask_EndTask(u32 *activeList, PoketchTaskManager *taskData)
+void PoketchTask_EndTask(u32 *activeList, PoketchTaskManager *taskMan)
 {
-    RemoveTaskFromActiveList(activeList, taskData->taskId);
+    RemoveTaskFromActiveList(activeList, taskMan->taskId);
 
-    SysTask_Done(taskData->task);
-    Heap_FreeToHeap(taskData);
+    SysTask_Done(taskMan->task);
+    Heap_FreeToHeap(taskMan);
 }
 
 void *PoketchTask_GetTaskData(PoketchTaskManager *taskMan)

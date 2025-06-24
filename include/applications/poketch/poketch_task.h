@@ -31,7 +31,7 @@ void PoketchTask_InitActiveTaskList(u32 *activeList, u32 numTaskSlots);
 BOOL PoketchTask_TaskIsNotActive(u32 *activeList, u32 taskId);
 BOOL PoketchTask_NoActiveTasks(u32 *activeList);
 void PoketchTask_Start(const PoketchTask *appTasks, u32 taskId, void *taskData, const void *constTaskData, u32 *activeList, u32 taskPriority, u32 heapID);
-void PoketchTask_EndTask(u32 *activeList, PoketchTaskManager *task);
+void PoketchTask_EndTask(u32 *activeList, PoketchTaskManager *taskMan);
 void *PoketchTask_GetTaskData(PoketchTaskManager *taskMan);
 const void *PoketchTask_GetConstTaskData(PoketchTaskManager *taskMan);
 void *PoketchTask_GetExtraData(PoketchTaskManager *taskMan);

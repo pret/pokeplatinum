@@ -186,7 +186,7 @@ static void Free(PoketchMoveTester *appData)
 
 static void Task_Main(SysTask *task, void *appData)
 {
-    static BOOL (*const stateFuncs[])(PoketchMoveTester *) = {
+    static BOOL (*const funcArray[])(PoketchMoveTester *) = {
         Task_LoadApp,
         Task_UpdateApp,
         Task_UnloadApp
@@ -194,10 +194,10 @@ static void Task_Main(SysTask *task, void *appData)
 
     PoketchMoveTester *moveTester = appData;
 
-    if (moveTester->activeTask < NELEMS(stateFuncs)) {
+    if (moveTester->activeTask < NELEMS(funcArray)) {
         PoketechSystem_UpdateButtonManager(moveTester->poketchSys, moveTester->buttonManager);
 
-        if (stateFuncs[moveTester->activeTask](moveTester)) {
+        if (funcArray[moveTester->activeTask](moveTester)) {
             Free(moveTester);
             SysTask_Done(task);
             PoketchSystem_NotifyAppUnloaded(moveTester->poketchSys);

@@ -866,7 +866,7 @@ Overlay poketch_unavailable
 	Object main.nef.p/src_applications_poketch_unavailable_graphics.c.o
 }
 
-Overlay overlay25
+Overlay poketch
 {
 	After overlay9
 	Object main.nef.p/src_applications_poketch_poketch_system.c.o
@@ -879,21 +879,21 @@ Overlay overlay25
 
 Overlay poketch_digital_watch
 {
-	After overlay25
+	After poketch
 	Object main.nef.p/src_applications_poketch_digital_watch_main.c.o
 	Object main.nef.p/src_applications_poketch_digital_watch_graphics.c.o
 }
 
-Overlay overlay27
+Overlay poketch_stopwatch
 {
-	After overlay25
-	Object main.nef.p/src_overlay027_ov27_022561C0.c.o
-	Object main.nef.p/src_overlay027_ov27_0225680C.c.o
+	After poketch
+	Object main.nef.p/src_applications_poketch_stopwatch_main.c.o
+	Object main.nef.p/src_applications_poketch_stopwatch_graphics.c.o
 }
 
 Overlay overlay28
 {
-	After overlay25
+	After poketch
 	Object main.nef.p/src_overlay028_ov28_022561C0.c.o
 	Object main.nef.p/src_overlay028_ov28_0225697C.c.o
 	Object main.nef.p/src_overlay028_ov28_02256E9C.c.o
@@ -901,196 +901,196 @@ Overlay overlay28
 
 Overlay overlay29
 {
-	After overlay25
+	After poketch
 	Object main.nef.p/src_overlay029_ov29_022561C0.c.o
 	Object main.nef.p/src_overlay029_ov29_022566C8.c.o
 }
 
 Overlay overlay30
 {
-	After overlay25
+	After poketch
 	Object main.nef.p/src_overlay030_ov30_022561C0.c.o
 	Object main.nef.p/src_overlay030_ov30_022563EC.c.o
 }
 
 Overlay overlay31
 {
-	After overlay25
+	After poketch
 	Object main.nef.p/src_overlay031_ov31_022561C0.c.o
 	Object main.nef.p/src_overlay031_ov31_02256554.c.o
 }
 
 Overlay overlay32
 {
-	After overlay25
+	After poketch
 	Object main.nef.p/src_overlay032_ov32_022561C0.c.o
 	Object main.nef.p/src_overlay032_ov32_02256470.c.o
 }
 
 Overlay overlay33
 {
-	After overlay25
+	After poketch
 	Object main.nef.p/src_overlay033_ov33_022561C0.c.o
 	Object main.nef.p/src_overlay033_ov33_02256474.c.o
 }
 
 Overlay overlay34
 {
-	After overlay25
+	After poketch
 	Object main.nef.p/src_overlay034_ov34_022561C0.c.o
 	Object main.nef.p/src_overlay034_ov34_02256540.c.o
 }
 
 Overlay overlay35
 {
-	After overlay25
+	After poketch
 	Object main.nef.p/src_overlay035_ov35_022561C0.c.o
 	Object main.nef.p/src_overlay035_ov35_02256410.c.o
 }
 
 Overlay overlay36
 {
-	After overlay25
+	After poketch
 	Object main.nef.p/src_overlay036_ov36_022561C0.c.o
 	Object main.nef.p/src_overlay036_ov36_02256404.c.o
 }
 
 Overlay overlay37
 {
-	After overlay25
+	After poketch
 	Object main.nef.p/src_overlay037_ov37_022561C0.c.o
 	Object main.nef.p/src_overlay037_ov37_022563D4.c.o
 }
 
 Overlay overlay38
 {
-	After overlay25
+	After poketch
 	Object main.nef.p/src_overlay038_ov38_022561C0.c.o
 	Object main.nef.p/src_overlay038_ov38_0225632C.c.o
 }
 
 Overlay overlay39
 {
-	After overlay25
+	After poketch
 	Object main.nef.p/src_overlay039_ov39_022561C0.c.o
 	Object main.nef.p/src_overlay039_ov39_022563DC.c.o
 }
 
 Overlay overlay40
 {
-	After overlay25
+	After poketch
 	Object main.nef.p/src_overlay040_ov40_022561C0.c.o
 	Object main.nef.p/src_overlay040_ov40_0225645C.c.o
 }
 
 Overlay overlay41
 {
-	After overlay25
+	After poketch
 	Object main.nef.p/src_overlay041_ov41_022561C0.c.o
 	Object main.nef.p/src_overlay041_ov41_022567B0.c.o
 }
 
 Overlay overlay42
 {
-	After overlay25
+	After poketch
 	Object main.nef.p/src_overlay042_ov42_022561C0.c.o
 	Object main.nef.p/src_overlay042_ov42_022563D4.c.o
 }
 
 Overlay poketch_move_tester
 {
-	After overlay25
+	After poketch
 	Object main.nef.p/src_applications_poketch_move_tester_main.c.o
 	Object main.nef.p/src_applications_poketch_move_tester_graphics.c.o
 }
 
 Overlay overlay44
 {
-	After overlay25
+	After poketch
 	Object main.nef.p/src_overlay044_ov44_022561C0.c.o
 	Object main.nef.p/src_overlay044_ov44_022565BC.c.o
 }
 
 Overlay overlay45
 {
-	After overlay25
+	After poketch
 	Object main.nef.p/src_overlay045_ov45_022561C0.c.o
 	Object main.nef.p/src_overlay045_ov45_022566EC.c.o
 }
 
 Overlay overlay46
 {
-	After overlay25
+	After poketch
 	Object main.nef.p/src_overlay046_ov46_022561C0.c.o
 	Object main.nef.p/src_overlay046_ov46_02256BCC.c.o
 }
 
 Overlay overlay47
 {
-	After overlay25
+	After poketch
 	Object main.nef.p/src_overlay047_ov47_022561C0.c.o
 	Object main.nef.p/src_overlay047_ov47_02256634.c.o
 }
 
 Overlay overlay48
 {
-	After overlay25
+	After poketch
 	Object main.nef.p/src_overlay048_ov48_022561C0.c.o
 	Object main.nef.p/src_overlay048_ov48_0225650C.c.o
 }
 
 Overlay overlay49
 {
-	After overlay25
+	After poketch
 	Object main.nef.p/src_overlay049_ov49_022561C0.c.o
 	Object main.nef.p/src_overlay049_ov49_022563D4.c.o
 }
 
 Overlay overlay50
 {
-	After overlay25
+	After poketch
 	Object main.nef.p/src_overlay050_ov50_022561C0.c.o
 	Object main.nef.p/src_overlay050_ov50_02256510.c.o
 }
 
 Overlay overlay51
 {
-	After overlay25
+	After poketch
 	Object main.nef.p/src_overlay051_ov51_022561C0.c.o
 	Object main.nef.p/src_overlay051_ov51_0225632C.c.o
 }
 
 Overlay overlay52
 {
-	After overlay25
+	After poketch
 	Object main.nef.p/src_overlay052_ov52_022561C0.c.o
 	Object main.nef.p/src_overlay052_ov52_02256694.c.o
 }
 
 Overlay overlay53
 {
-	After overlay25
+	After poketch
 	Object main.nef.p/src_overlay053_ov53_022561C0.c.o
 	Object main.nef.p/src_overlay053_ov53_02256420.c.o
 }
 
 Overlay overlay54
 {
-	After overlay25
+	After poketch
 	Object main.nef.p/src_overlay054_ov54_022561C0.c.o
 	Object main.nef.p/src_overlay054_ov54_0225642C.c.o
 }
 
 Overlay overlay55
 {
-	After overlay25
+	After poketch
 	Object main.nef.p/src_overlay055_ov55_022561C0.c.o
 	Object main.nef.p/src_overlay055_ov55_0225632C.c.o
 }
 
 Overlay overlay56
 {
-	After overlay25
+	After poketch
 	Object main.nef.p/src_overlay056_ov56_022561C0.c.o
 }
 

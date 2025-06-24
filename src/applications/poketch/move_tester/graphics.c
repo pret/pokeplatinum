@@ -104,7 +104,7 @@ static const BgTemplate sMoveTesterBgTemplate = {
 static void SetupSprites(PoketchMoveTesterGraphics *graphics);
 static void UnloadSprites(PoketchMoveTesterGraphics *graphics);
 static void EndTask(PoketchTaskManager *taskMan);
-static void Task_DrawAppScreen(SysTask *task, void *param1);
+static void Task_DrawAppScreen(SysTask *task, void *taskMan);
 static void AddWindows(PoketchMoveTesterGraphics *graphics, const MoveTesterData *moveTesterData, u32 baseTile);
 static void RemoveWindows(PoketchMoveTesterGraphics *graphics);
 static void Task_FreeWindowsAndBG(SysTask *task, void *taskMan);

@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV27_0225680C_DECL_H
 #define POKEPLATINUM_STRUCT_OV27_0225680C_DECL_H
 
-typedef struct UnkStruct_ov27_0225680C_t UnkStruct_ov27_0225680C;
+typedef struct PoketchStopwatchGraphics PoketchStopwatchGraphics;
 
 #endif // POKEPLATINUM_STRUCT_OV27_0225680C_DECL_H

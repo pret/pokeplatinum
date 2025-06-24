@@ -49,12 +49,12 @@ static void Free(PoketchDigitalWatch *appData);
 static void Exit(void *appData);
 
 static void ChangeActiveTask(PoketchDigitalWatch *appData, enum DigitalWatchTasks taskID);
-static void Task_Main(SysTask *task, void *taskManager);
+static void Task_Main(SysTask *task, void *appData);
 static BOOL Task_LoadApp(PoketchDigitalWatch *appData);
 static BOOL Task_UpdateApp(PoketchDigitalWatch *appData);
 static BOOL Task_UnloadApp(PoketchDigitalWatch *appData);
 
-static void ToggleBacklight(u32 btnNumber, u32 buttonState, u32 touchState, void *appDataIn);
+static void ToggleBacklight(u32 buttonID, u32 buttonState, u32 touchState, void *appData);
 
 static const TouchScreenHitTable sButtonHitTable[] = {
     { BACKLIGHT_BUTTON_MIN_Y, BACKLIGHT_BUTTON_MAX_Y, BACKLIGHT_BUTTON_MIN_X, BACKLIGHT_BUTTON_MAX_X }
@@ -125,7 +125,7 @@ static void Free(PoketchDigitalWatch *appData)
     Heap_FreeToHeap(appData);
 }
 
-static void Task_Main(SysTask *task, void *callbackData)
+static void Task_Main(SysTask *task, void *appData)
 {
     static BOOL (*const funcArray[])(PoketchDigitalWatch *) = {
         Task_LoadApp,
@@ -133,15 +133,15 @@ static void Task_Main(SysTask *task, void *callbackData)
         Task_UnloadApp,
     };
 
-    PoketchDigitalWatch *appData = callbackData;
+    PoketchDigitalWatch *digitalWatch = appData;
 
-    if (appData->activeTask < NELEMS(funcArray)) {
-        PoketechSystem_UpdateButtonManager(appData->poketchSys, appData->buttonManager);
+    if (digitalWatch->activeTask < NELEMS(funcArray)) {
+        PoketechSystem_UpdateButtonManager(digitalWatch->poketchSys, digitalWatch->buttonManager);
 
-        if (funcArray[appData->activeTask](appData)) {
-            Free(appData);
+        if (funcArray[digitalWatch->activeTask](digitalWatch)) {
+            Free(digitalWatch);
             SysTask_Done(task);
-            PoketchSystem_NotifyAppUnloaded(appData->poketchSys);
+            PoketchSystem_NotifyAppUnloaded(digitalWatch->poketchSys);
         }
     }
 }
@@ -151,18 +151,18 @@ static void Exit(void *appData)
     ((PoketchDigitalWatch *)appData)->shouldExit = TRUE;
 }
 
-static void ToggleBacklight(u32 btnNumber, u32 buttonState, u32 touchState, void *appDataIn)
+static void ToggleBacklight(u32 buttonID, u32 buttonState, u32 touchState, void *appData)
 {
-    PoketchDigitalWatch *appData = appDataIn;
+    PoketchDigitalWatch *digitalWatch = appData;
 
     switch (touchState) {
     case TRUE:
-        appData->watchData.backlightActive = TRUE;
-        appData->backlightChange = TRUE;
+        digitalWatch->watchData.backlightActive = TRUE;
+        digitalWatch->backlightChange = TRUE;
         break;
     case FALSE:
-        appData->watchData.backlightActive = FALSE;
-        appData->backlightChange = TRUE;
+        digitalWatch->watchData.backlightActive = FALSE;
+        digitalWatch->backlightChange = TRUE;
         break;
     }
 }
