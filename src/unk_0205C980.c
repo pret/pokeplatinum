@@ -7,26 +7,29 @@
 #include "heap.h"
 #include "string_template.h"
 
-static const int Unk_020ED7F0[][3] = {
-    { 0x3, 0x3C, 0x3C },
-    { 0x5, 0x6, 0x6 },
-    { 0xB, 0x18, 0x18 },
-    { 0x1f, 0x39, 0x39 },
-    { 0x32, 0x30, 0x30 },
-    { 0x33, 0xE, 0xE },
-    { 0x3E, 0x20, 0x20 },
-    { 0x46, 0x31, 0x31 },
-    { 0x6, 0x3, 0x3 },
-    { 0x7, 0xA, 0xA },
-    { 0xD, 0x24, 0x24 },
-    { 0xE, 0x19, 0x19 },
-    { 0x23, 0x55, 0x55 },
-    { 0x25, 0x23, 0x23 },
-    { 0x2A, 0x12, 0x12 },
-    { 0x3f, 0x21, 0x21 }
+static const int TRAINER_APPEARANCES[][3] = {
+    // male appearances
+    { 0x3, 0x3C, 0x3C }, // school kid
+    { 0x5, 0x6, 0x6 }, // bug catcher
+    { 0xB, 0x18, 0x18 }, // ace trainer (male)
+    { 0x1f, 0x39, 0x39 }, // roughneck
+    { 0x32, 0x30, 0x30 }, // ruin maniac
+    { 0x33, 0xE, 0xE }, // black belt
+    { 0x3E, 0x20, 0x20 }, // rich boy
+    { 0x46, 0x31, 0x31 }, // psychic
+
+    // female appearances
+    { 0x6, 0x3, 0x3 }, // lass
+    { 0x7, 0xA, 0xA }, // battle girl
+    { 0xD, 0x24, 0x24 }, // beauty
+    { 0xE, 0x19, 0x19 }, // ace trainer (female)
+    { 0x23, 0x55, 0x55 }, // idol
+    { 0x25, 0x23, 0x23 }, // socialite
+    { 0x2A, 0x12, 0x12 }, // cowgirl
+    { 0x3f, 0x21, 0x21 } // lady
 };
 
-static const int Unk_020ED770[][4] = {
+static const int APPEARANCE_SHUFFLE_TABLE[][4] = {
     { 0x0, 0x1, 0x2, 0x3 },
     { 0x1, 0x6, 0x7, 0x0 },
     { 0x2, 0x3, 0x4, 0x5 },
@@ -37,23 +40,23 @@ static const int Unk_020ED770[][4] = {
     { 0x7, 0x4, 0x5, 0x6 }
 };
 
-void sub_0205C980(u32 param0, int param1, StringTemplate *param2)
+void TrainerInfo_LoadAppearanceVariants(u32 trainerId, int trainerGender, StringTemplate *stringTemplate)
 {
-    int v0 = param0 % 8;
-    int v1;
+    int v0 = trainerId % 8;
+    int variant;
 
-    for (v1 = 0; v1 < 4; v1++) {
-        int v2 = Unk_020ED770[v0][v1] + 8 * param1;
-        StringTemplate_SetTrainerClassName(param2, v1, Unk_020ED7F0[v2][1]);
+    for (variant = 0; variant < 4; variant++) {
+        int appearanceIndex = APPEARANCE_SHUFFLE_TABLE[v0][variant] + 8 * trainerGender;
+        StringTemplate_SetTrainerClassName(stringTemplate, variant, TRAINER_APPEARANCES[appearanceIndex][1]);
     }
 }
 
-int sub_0205C9BC(u32 param0, int param1, u32 param2)
+int TrainerInfo_GetAppearanceIndex(u32 trainerId, int trainerGender, u32 variant)
 {
-    int v0 = param0 % 8;
-    int v1 = Unk_020ED770[v0][param2] + 8 * param1;
+    int v0 = trainerId % 8;
+    int v1 = APPEARANCE_SHUFFLE_TABLE[v0][variant] + 8 * trainerGender;
 
-    return Unk_020ED7F0[v1][0];
+    return TRAINER_APPEARANCES[v1][0];
 }
 
 static int sub_0205C9E0(int param0, int param1)
@@ -61,7 +64,7 @@ static int sub_0205C9E0(int param0, int param1)
     int v0;
 
     for (v0 = 0; v0 < 16 / 2; v0++) {
-        if (Unk_020ED7F0[v0 + (param0 * (16 / 2))][0] == param1) {
+        if (TRAINER_APPEARANCES[v0 + (param0 * (16 / 2))][0] == param1) {
             return v0 + (param0 * (16 / 2));
         }
     }
@@ -83,10 +86,10 @@ int sub_0205CA14(int param0, int param1, int param2)
         return v0;
         break;
     case 2:
-        return Unk_020ED7F0[v0][1];
+        return TRAINER_APPEARANCES[v0][1];
         break;
     case 1:
-        return Unk_020ED7F0[v0][2];
+        return TRAINER_APPEARANCES[v0][2];
         break;
     default:
         GF_ASSERT(0);

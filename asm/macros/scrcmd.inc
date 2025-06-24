@@ -1918,7 +1918,7 @@
     .short 339
     .endm
 
-    .macro ScrCmd_154
+    .macro LoadTrainerAppearances
     .short 340
     .endm
 

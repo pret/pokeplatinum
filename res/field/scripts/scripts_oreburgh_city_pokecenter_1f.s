@@ -52,7 +52,7 @@ _006C:
 
 _0078:
     Message 3
-    ScrCmd_154
+    LoadTrainerAppearances
     InitGlobalTextMenu 1, 1, 0, VAR_RESULT
     AddMenuEntryImm 50, 0
     AddMenuEntryImm 51, 1
