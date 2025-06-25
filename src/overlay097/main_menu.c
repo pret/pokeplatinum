@@ -1,3 +1,5 @@
+#include "res/text/bank/main_menu.h"
+
 #include <nitro.h>
 #include <string.h>
 
@@ -51,7 +53,6 @@
 #include "unk_0209A74C.h"
 #include "vram_transfer.h"
 
-#include "res/text/bank/main_menu.h"
 #include "res/text/bank/unk_0014.h"
 #include "res/text/bank/unk_0695.h"
 
