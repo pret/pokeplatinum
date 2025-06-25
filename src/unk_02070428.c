@@ -98,10 +98,10 @@ void FieldSystem_InitFlagsWarp(FieldSystem *fieldSystem)
     }
 
     if (MapHeader_IsOnMainMatrix(fieldSystem->location->mapId)) {
-        UnkStruct_020556C4 *v3;
+        OverworldMapHistory *v3;
 
-        v3 = sub_0203A76C(SaveData_GetFieldOverworldState(fieldSystem->saveData));
-        sub_020556E8(v3, fieldSystem->location->x, fieldSystem->location->z);
+        v3 = FieldOverworldState_GetMapHistory(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+        OverworldMapHistory_PushViaWarp(v3, fieldSystem->location->x, fieldSystem->location->z);
     }
 }
 

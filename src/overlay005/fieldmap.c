@@ -512,19 +512,19 @@ static void ov5_021D134C(FieldSystem *fieldSystem, u8 param1)
 
 static void ov5_021D13B4(FieldSystem *fieldSystem)
 {
-    UnkStruct_020556C4 *v0;
+    OverworldMapHistory *v0;
     int v1, v2, v3;
 
     if (MapHeader_IsOnMainMatrix(fieldSystem->location->mapId) == 0) {
         return;
     }
 
-    v0 = sub_0203A76C(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+    v0 = FieldOverworldState_GetMapHistory(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     v1 = (Player_GetXPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileX(fieldSystem->landDataMan)) / MAP_TILES_COUNT_X;
     v2 = (Player_GetZPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileZ(fieldSystem->landDataMan)) / MAP_TILES_COUNT_Z;
     v3 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
-    sub_02055740(v0, v1, v2, v3);
+    OverworldMapHistory_Push(v0, v1, v2, v3);
 }
 
 static void ov5_021D1414(void)

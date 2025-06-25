@@ -77,7 +77,7 @@ void sub_0206B70C(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, int para
     TrainerInfo *v0;
     int v1 = 0, v2 = 0, v3 = 0;
     int x, z, v6;
-    UnkStruct_020556C4 *v7;
+    OverworldMapHistory *v7;
     VarsFlags *v8 = SaveData_GetVarsFlags(fieldSystem->saveData);
     FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
     Location *v10 = FieldOverworldState_GetExitLocation(fieldState);
@@ -114,18 +114,18 @@ void sub_0206B70C(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, int para
 
     v0 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem));
     param1->unk_0C = TrainerInfo_Gender(v0);
-    v7 = sub_0203A76C(SaveData_GetFieldOverworldState(fieldSystem->saveData));
-    v2 = (v7->unk_00 - 2 + 6) % 6;
+    v7 = FieldOverworldState_GetMapHistory(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+    v2 = (v7->historyPointer - 2 + 6) % 6;
 
     for (v1 = 0; v1 < 5; v1++) {
-        param1->unk_20[v1].unk_00 = v7->unk_06[v2].unk_00;
-        param1->unk_20[v1].unk_04 = v7->unk_06[v2].unk_01;
-        param1->unk_20[v1].unk_0A = v7->unk_06[v2].unk_03;
+        param1->unk_20[v1].unk_00 = v7->items[v2].mapX;
+        param1->unk_20[v1].unk_04 = v7->items[v2].mapZ;
+        param1->unk_20[v1].unk_0A = v7->items[v2].unused_03;
 
-        if (v7->unk_06[v2].unk_02 > 3) {
+        if (v7->items[v2].faceDirection > 3) {
             param1->unk_20[v1].unk_08 = 3 + 1;
         } else {
-            param1->unk_20[v1].unk_08 = v7->unk_06[v2].unk_02;
+            param1->unk_20[v1].unk_08 = v7->items[v2].faceDirection;
         }
 
         v2 = (v2 - 1 + 6) % 6;

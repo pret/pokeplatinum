@@ -744,7 +744,7 @@ void *sub_0203D8AC(FieldSystem *fieldSystem)
     UnkStruct_0203D8AC *v0;
     TrainerInfo *v1;
     int v2 = 0, v3 = 0;
-    sub_0203A76C(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+    FieldOverworldState_GetMapHistory(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203D8AC));
 

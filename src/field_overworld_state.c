@@ -25,7 +25,7 @@ typedef struct FieldOverworldState {
     u16 weather;
     u16 warpId;
     u8 cameraType;
-    UnkStruct_020556C4 unk_6C;
+    OverworldMapHistory mapHistory;
     PlayerData playerData;
     u16 poisonSteps;
     u16 safariSteps;
@@ -57,7 +57,7 @@ void FieldOverworldState_Init(FieldOverworldState *fieldState)
 {
     memset(fieldState, 0, sizeof(FieldOverworldState));
 
-    sub_020556C4(&fieldState->unk_6C);
+    OverworldMapHistory_Clear(&fieldState->mapHistory);
     PlayerData_Init(&fieldState->playerData);
 
     fieldState->warpId = sub_0203A7EC();
@@ -119,9 +119,9 @@ void FieldOverworldState_SetWarpId(FieldOverworldState *fieldState, u16 warpId)
     fieldState->warpId = warpId;
 }
 
-UnkStruct_020556C4 *sub_0203A76C(FieldOverworldState *fieldState)
+OverworldMapHistory *FieldOverworldState_GetMapHistory(FieldOverworldState *fieldState)
 {
-    return &fieldState->unk_6C;
+    return &fieldState->mapHistory;
 }
 
 int FieldOverworldState_GetCameraType(const FieldOverworldState *fieldState)
