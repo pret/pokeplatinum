@@ -51,8 +51,8 @@
 #include "unk_0209A74C.h"
 #include "vram_transfer.h"
 
+#include "res/text/bank/main_menu_alerts.h"
 #include "res/text/bank/main_menu_options.h"
-#include "res/text/bank/unk_0014.h"
 #include "res/text/bank/unk_0695.h"
 
 FS_EXTERN_OVERLAY(game_start);
@@ -320,11 +320,11 @@ static u32 sContinueOptionStringsIDs[] = {
 // clang-format off
 // Some of these have some extra seemingly random padding, might be an artifact from localization.
 MainMenuAlertTemplate sMainMenuAlerts[] = {
-    [MAIN_MENU_ALERT_MYSTERY_GIFT_OK]     = { .x = 4, .y = 2, .width = 24, .height = TEXT_LINES_TILES(8) + 4, pl_msg_00000014_00001 },
-    [MAIN_MENU_ALERT_MYSTERY_GIFT_NO_DEX] = { .x = 4, .y = 4, .width = 24, .height = TEXT_LINES_TILES(8),     pl_msg_00000014_00003 },
-    [MAIN_MENU_ALERT_RANGER_MSG_OK]       = { .x = 4, .y = 1, .width = 24, .height = TEXT_LINES_TILES(9) + 4, pl_msg_00000014_00000 },
-    [MAIN_MENU_ALERT_RANGER_MSG_NO_DEX]   = { .x = 4, .y = 3, .width = 24, .height = TEXT_LINES_TILES(8) + 2, pl_msg_00000014_00002 },
-    [MAIN_MENU_ALERT_NEW_GAME]            = { .x = 2, .y = 1, .width = 28, .height = TEXT_LINES_TILES(11),    pl_msg_00000014_00005 }
+    [MAIN_MENU_ALERT_MYSTERY_GIFT_OK]     = { .x = 4, .y = 2, .width = 24, .height = TEXT_LINES_TILES(8) + 4, MainMenuAlerts_Text_MysteryGiftOk },
+    [MAIN_MENU_ALERT_MYSTERY_GIFT_NO_DEX] = { .x = 4, .y = 4, .width = 24, .height = TEXT_LINES_TILES(8),     MainMenuAlerts_Text_MysteryGiftNoDex },
+    [MAIN_MENU_ALERT_RANGER_MSG_OK]       = { .x = 4, .y = 1, .width = 24, .height = TEXT_LINES_TILES(9) + 4, MainMenuAlerts_Text_RangerLinkOk },
+    [MAIN_MENU_ALERT_RANGER_MSG_NO_DEX]   = { .x = 4, .y = 3, .width = 24, .height = TEXT_LINES_TILES(8) + 2, MainMenuAlerts_Text_RangerLinkNoDex },
+    [MAIN_MENU_ALERT_NEW_GAME]            = { .x = 2, .y = 1, .width = 28, .height = TEXT_LINES_TILES(11),    MainMenuAlerts_Text_NewGameWarning }
 };
 // clang-format on
 
@@ -493,7 +493,7 @@ static BOOL ShowAlerts(MainMenuAppData *appData)
         break;
     case MAIN_MANU_ALERTS_STATE_SHOW_NEXT_ALERT: {
         UnkStruct_ov97_02237808 v0;
-        ov97_02237808(&v0, &appData->alertWindow, PLTT_0, TEXT_BANK_UNK_0014, 1, PLTT_2);
+        ov97_02237808(&v0, &appData->alertWindow, PLTT_0, TEXT_BANK_MAIN_MENU_ALERTS, 1, PLTT_2);
 
         int pendingAlerts = appData->pendingAlerts & ~appData->shownAlerts;
 
