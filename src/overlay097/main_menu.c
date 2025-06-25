@@ -1,5 +1,3 @@
-#include "res/text/bank/main_menu.h"
-
 #include <nitro.h>
 #include <string.h>
 
@@ -53,6 +51,7 @@
 #include "unk_0209A74C.h"
 #include "vram_transfer.h"
 
+#include "res/text/bank/main_menu_options.h"
 #include "res/text/bank/unk_0014.h"
 #include "res/text/bank/unk_0695.h"
 
@@ -263,25 +262,25 @@ MainMenuOptionTemplate sOptions[NUM_MAIN_MENU_OPTIONS] = {
     [MAIN_MENU_OPTION_CONTINUE] = {
         .appToLoad = NEXT_APP_LOAD_SAVE,
         .height = TEXT_LINES_TILES(5),
-        .textEntryID = MainMenu_Text_Continue,
+        .textEntryID = MainMenuOptions_Text_Continue,
         .renderFunc = RenderContinueOption,
     },
     [MAIN_MENU_OPTION_NEW_GAME] = {
         .appToLoad = NEXT_APP_GAME_INTRO,
         .height = TEXT_LINES_TILES(1),
-        .textEntryID = MainMenu_Text_NewGame,
+        .textEntryID = MainMenuOptions_Text_NewGame,
         .renderFunc = NULL,
     },
     [MAIN_MENU_OPTION_MYSTERY_GIFT] = {
         .appToLoad = NEXT_APP_MYSTERY_GIFT,
         .height = TEXT_LINES_TILES(1),
-        .textEntryID = MainMenu_Text_MysteryGift,
+        .textEntryID = MainMenuOptions_Text_MysteryGift,
         .renderFunc = RenderMysteryGiftOption,
     },
     [MAIN_MENU_OPTION_RANGER_LINK] = {
         .appToLoad = NEXT_APP_RANGER_LINK,
         .height = TEXT_LINES_TILES(1),
-        .textEntryID = MainMenu_Text_LinkWithPokemonRanger,
+        .textEntryID = MainMenuOptions_Text_LinkWithPokemonRanger,
         .renderFunc = RenderRangerLinkOption,
     },
     [MAIN_MENU_OPTION_GBA_MIGRATION] = {
@@ -293,29 +292,29 @@ MainMenuOptionTemplate sOptions[NUM_MAIN_MENU_OPTIONS] = {
     [MAIN_MENU_OPTION_CONNECT_TO_WII] = {
         .appToLoad = NEXT_APP_WII_CONNECTION,
         .height = TEXT_LINES_TILES(1),
-        .textEntryID = MainMenu_Text_ConnectToWii,
+        .textEntryID = MainMenuOptions_Text_ConnectToWii,
         .renderFunc = RenderWiiConnectionOption,
     },
     [MAIN_MENU_OPTION_WFC_SETTINGS] = {
         .appToLoad = NEXT_APP_WFC_SETTINGS,
         .height = TEXT_LINES_TILES(1),
-        .textEntryID = MainMenu_Text_NintendoWfcSettings,
+        .textEntryID = MainMenuOptions_Text_NintendoWfcSettings,
         .renderFunc = RenderWFCSettingsOption,
     },
     [MAIN_MENU_OPTION_WII_MSG_SETTINGS] = {
         .appToLoad = NEXT_APP_WII_MSG_SETTINGS,
         .height = TEXT_LINES_TILES(1),
-        .textEntryID = MainMenu_Text_WiiMessageSettings,
+        .textEntryID = MainMenuOptions_Text_WiiMessageSettings,
         .renderFunc = RenderWiiMsgSettingsOption,
     }
 };
 
 static u32 sContinueOptionStringsIDs[] = {
-    MainMenu_Text_Continue,
-    MainMenu_Text_Player,
-    MainMenu_Text_Time,
-    MainMenu_Text_Badges,
-    MainMenu_Text_Pokedex
+    MainMenuOptions_Text_Continue,
+    MainMenuOptions_Text_Player,
+    MainMenuOptions_Text_Time,
+    MainMenuOptions_Text_Badges,
+    MainMenuOptions_Text_Pokedex
 };
 
 // clang-format off
@@ -724,7 +723,7 @@ static BOOL RenderContinueOption(MainMenuAppData *appData, enum MainMenuOption o
 {
     StringTemplate *strTemplate; // Forward-declaration required to match.
 
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MAIN_MENU, HEAP_ID_MAIN_MENU);
+    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MAIN_MENU_OPTIONS, HEAP_ID_MAIN_MENU);
     strTemplate = StringTemplate_Default(HEAP_ID_MAIN_MENU);
 
     TextColor textColor;
@@ -748,18 +747,18 @@ static BOOL RenderContinueOption(MainMenuAppData *appData, enum MainMenuOption o
     }
 
     StringTemplate_SetPlayerName(strTemplate, 0, appData->trainerInfo);
-    PrintRightAlignedWithMargin(param2->unk_10, msgLoader, strTemplate, textColor, MainMenu_Text_PlayerName, TEXT_LINES(1));
+    PrintRightAlignedWithMargin(param2->unk_10, msgLoader, strTemplate, textColor, MainMenuOptions_Text_PlayerName, TEXT_LINES(1));
 
     SetTemplateNumberCustomFormatting(strTemplate, PlayTime_GetHours(appData->playTime));
     StringTemplate_SetNumber(strTemplate, 1, PlayTime_GetMinutes(appData->playTime), 2, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
-    PrintRightAlignedWithMargin(param2->unk_10, msgLoader, strTemplate, textColor, MainMenu_Text_PlayTime, TEXT_LINES(2));
+    PrintRightAlignedWithMargin(param2->unk_10, msgLoader, strTemplate, textColor, MainMenuOptions_Text_PlayTime, TEXT_LINES(2));
 
     StringTemplate_SetNumber(strTemplate, 0, appData->badgeCount, 1, PADDING_MODE_NONE, CHARSET_MODE_EN);
-    PrintRightAlignedWithMargin(param2->unk_10, msgLoader, strTemplate, textColor, MainMenu_Text_BadgeCount, TEXT_LINES(3));
+    PrintRightAlignedWithMargin(param2->unk_10, msgLoader, strTemplate, textColor, MainMenuOptions_Text_BadgeCount, TEXT_LINES(3));
 
     if (appData->pokedexObtained) {
         SetTemplateNumberCustomFormatting(strTemplate, Pokedex_CountSeen(appData->pokedex));
-        PrintRightAlignedWithMargin(param2->unk_10, msgLoader, strTemplate, textColor, MainMenu_Text_SeenSpeciesCount, TEXT_LINES(4));
+        PrintRightAlignedWithMargin(param2->unk_10, msgLoader, strTemplate, textColor, MainMenuOptions_Text_SeenSpeciesCount, TEXT_LINES(4));
     }
 
     Window_DrawStandardFrame(param2->unk_10, FALSE, param2->unk_38, param2->unk_3C);
@@ -781,19 +780,19 @@ static BOOL RenderGBAMigrationOption(MainMenuAppData *appData, enum MainMenuOpti
     int optionTextID;
     switch (appData->agbGameType - 1) {
     case AGB_TYPE_RUBY:
-        optionTextID = MainMenu_Text_MigrateFromRuby;
+        optionTextID = MainMenuOptions_Text_MigrateFromRuby;
         break;
     case AGB_TYPE_SAPPHIRE:
-        optionTextID = MainMenu_Text_MigrateFromSapphire;
+        optionTextID = MainMenuOptions_Text_MigrateFromSapphire;
         break;
     case AGB_TYPE_LEAFGREEN:
-        optionTextID = MainMenu_Text_MigrateFromLeafgreen;
+        optionTextID = MainMenuOptions_Text_MigrateFromLeafgreen;
         break;
     case AGB_TYPE_FIRERED:
-        optionTextID = MainMenu_Text_MigrateFromFirered;
+        optionTextID = MainMenuOptions_Text_MigrateFromFirered;
         break;
     case AGB_TYPE_EMERALD:
-        optionTextID = MainMenu_Text_MigrateFromEmerald;
+        optionTextID = MainMenuOptions_Text_MigrateFromEmerald;
         break;
     }
 
@@ -909,7 +908,7 @@ static BOOL RenderOptions(MainMenuAppData *appData)
         MainMenuOptionTemplate *option = &sOptions[i];
 
         UnkStruct_ov97_02237808 v1;
-        ov97_02237808(&v1, &appData->optionWindows[i], PLTT_1, TEXT_BANK_MAIN_MENU, 1, PLTT_2);
+        ov97_02237808(&v1, &appData->optionWindows[i], PLTT_1, TEXT_BANK_MAIN_MENU_OPTIONS, 1, PLTT_2);
         ov97_02237858(&v1, OPTION_WINDOW_WIDTH, option->height, appData->nextOptionBasetile);
 
         if (option->renderFunc) {
