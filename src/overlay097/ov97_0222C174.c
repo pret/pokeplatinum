@@ -1122,7 +1122,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
     return 0;
 }
 
-const ApplicationManagerTemplate Unk_ov97_0223D6BC = {
+const ApplicationManagerTemplate gRangerLinkAppTemplate = {
     ov97_0222C6F8,
     ov97_0222C78C,
     ov97_0222C948,

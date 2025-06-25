@@ -213,13 +213,13 @@ static void MysteryGift_FreePgtSlotForWc(MysteryGift *mysteryGift, int wondercar
 
 BOOL MysteryGift_GetWcIDReceived(MysteryGift *mysteryGift, int wondercardID)
 {
-    GF_ASSERT(wondercardID < WONDERCARD_ID_MAX);
+    GF_ASSERT(wondercardID < NUM_WONDERCARD_FLAGS);
     return !!(mysteryGift->received[wondercardID / 8] & (1 << (wondercardID & 7)));
 }
 
 void MysteryGift_SetWcIDReceived(MysteryGift *mysteryGift, int wonderCardID)
 {
-    GF_ASSERT(wonderCardID < WONDERCARD_ID_MAX);
+    GF_ASSERT(wonderCardID < NUM_WONDERCARD_FLAGS);
 
     mysteryGift->received[wonderCardID / 8] |= 1 << (wonderCardID & 7);
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_MYSTERY_GIFT);
@@ -229,20 +229,20 @@ static void MysteryGift_UnsetWcIDReceived(MysteryGift *mysteryGift, int wonderca
 {
     u8 mask = (u8) ~(1 << (wondercardID & 7));
 
-    GF_ASSERT(wondercardID < WONDERCARD_ID_MAX);
+    GF_ASSERT(wondercardID < NUM_WONDERCARD_FLAGS);
 
     mysteryGift->received[wondercardID / 8] &= mask;
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_MYSTERY_GIFT);
 }
 
-BOOL MysteryGift_GetLastWcIDReceived(MysteryGift *mysteryGift)
+BOOL MysteryGift_GetMysteryGiftUnlockedFlag(MysteryGift *mysteryGift)
 {
-    return MysteryGift_GetWcIDReceived(mysteryGift, WONDERCARD_ID_MAX - 1);
+    return MysteryGift_GetWcIDReceived(mysteryGift, NUM_WONDERCARD_FLAGS - 1);
 }
 
-void MysteryGift_SetLastWcIDReceived(MysteryGift *mysteryGift)
+void MysteryGift_SetMysteryGiftUnlockedFlag(MysteryGift *mysteryGift)
 {
-    MysteryGift_SetWcIDReceived(mysteryGift, WONDERCARD_ID_MAX - 1);
+    MysteryGift_SetWcIDReceived(mysteryGift, NUM_WONDERCARD_FLAGS - 1);
 }
 
 static MysteryGift *sMysteryGift = NULL;

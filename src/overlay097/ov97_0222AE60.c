@@ -1,6 +1,12 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/gx_colors.h"
+#include "constants/narc.h"
+#include "generated/genders.h"
+#include "generated/string_padding_mode.h"
+#include "generated/text_banks.h"
+
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -24,6 +30,7 @@
 #include "message_util.h"
 #include "mystery_gift.h"
 #include "overlay_manager.h"
+#include "palette.h"
 #include "play_time.h"
 #include "pokedex.h"
 #include "render_oam.h"
@@ -45,175 +52,326 @@
 #include "vram_transfer.h"
 
 #include "res/text/bank/main_menu.h"
+#include "res/text/bank/unk_0014.h"
+#include "res/text/bank/unk_0695.h"
 
 FS_EXTERN_OVERLAY(game_start);
 FS_EXTERN_OVERLAY(overlay77);
 FS_EXTERN_OVERLAY(overlay97);
 FS_EXTERN_OVERLAY(overlay98);
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    int unk_08;
+#define BACKGROUND_COLOR          GX_RGB(12, 12, 31)
+#define UNFOCUSED_OPTION_BG_COLOR GX_RGB(26, 26, 26)
 
-    // clang-format off
-    BOOL (* unk_0C)(void *, int, UnkStruct_ov97_02237808 *, int);
-    // clang-format on
-} UnkStruct_ov97_0223E014;
+#define COLORS_LIST_END 0
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    int unk_08;
-    int unk_0C;
-    u32 unk_10;
-    u32 unk_14;
-    void (*unk_18)(void *param0);
-} UnkStruct_ov97_0223DF54;
+#define UNFOCUSED_OPTION_FRAME_BASE_TILE 1
+#define FOCUSED_OPTION_FRAME_BASE_TILE   (UNFOCUSED_OPTION_FRAME_BASE_TILE + NUM_TILES_STANDARD_WINDOW_FRAME)
+#define OPTION_WINDOWS_BASE_TILE_START   (FOCUSED_OPTION_FRAME_BASE_TILE + NUM_TILES_STANDARD_WINDOW_FRAME)
+#define ALERT_WINDOW_FRAME_BASE_TILE     1
+#define ALERT_WINDOW_CONTENT_BASE_TILE   (ALERT_WINDOW_FRAME_BASE_TILE + 2 * NUM_TILES_STANDARD_WINDOW_FRAME)
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    int unk_08;
-    int unk_0C;
-    int unk_10;
-} UnkStruct_ov97_0223DFB0;
+#define WIRELESS_ICONS_TILES_OFFS     0x380
+#define WIRELESS_ICONS_TILES_ID_START ((4 << 12) + WIRELESS_ICONS_TILES_OFFS)
+#define WIRELESS_ICONS_TILESET_HEIGHT 8
+#define WIRELESS_ICONS_TILESET_WIDTH  8
+#define WIRELESS_ISONS_TILESET_SIZE   (WIRELESS_ICONS_TILESET_HEIGHT * WIRELESS_ICONS_TILESET_WIDTH)
 
-typedef struct {
-    BgConfig *unk_00;
+#define CONTINUE_WINDOW_MARGIN 32
+
+#define SCROLL_ARROWS_OFFSET 8
+
+#define OPTION_WINDOW_WIDTH 26
+
+#define MAX_SCROLL_SPEED (12 * FX32_ONE)
+
+#define DIRECTION_UP   (-1)
+#define DIRECTION_DOWN 1
+
+#define MYSTERY_GIFT   0b00000001
+#define RANGER_LINK    0b00000010
+#define WII_CONNECTION 0b00000100
+#define NEW_GAME_WARN  0b10000000
+
+enum MainMenuNextApp {
+    NEXT_APP_TITLE_SCREEN = 0,
+    NEXT_APP_LOAD_SAVE,
+    NEXT_APP_GAME_INTRO,
+    NEXT_APP_MYSTERY_GIFT,
+    NEXT_APP_RANGER_LINK,
+    NEXT_APP_GBA_MIGRATION,
+    NEXT_APP_WII_CONNECTION,
+    NEXT_APP_WFC_SETTINGS,
+    NEXT_APP_WII_MSG_SETTINGS
+};
+
+enum MainMenuOption {
+    MAIN_MENU_OPTION_CONTINUE = 0,
+    MAIN_MENU_OPTION_NEW_GAME,
+    MAIN_MENU_OPTION_MYSTERY_GIFT,
+    MAIN_MENU_OPTION_RANGER_LINK,
+    MAIN_MENU_OPTION_GBA_MIGRATION,
+    MAIN_MENU_OPTION_CONNECT_TO_WII,
+    MAIN_MENU_OPTION_WFC_SETTINGS,
+    MAIN_MENU_OPTION_WII_MSG_SETTINGS,
+    NUM_MAIN_MENU_OPTIONS,
+};
+
+enum MainMenuAppState {
+    MAIN_MENU_STATE_INIT_GRAPHICS = 0,
+    MAIN_MENU_STATE_CHECK_WFC_USER_INFO,
+    MAIN_MENU_STATE_WARM_WFC_USER_INFO_ERASED,
+    MAIN_MENU_STATE_CHECK_NEW_GAME_AND_GBA,
+    MAIN_MENU_STATE_LOAD_GRAPHICS,
+    MAIN_MENU_STATE_SELECT_OPTION,
+    MAIN_MENU_STATE_CONFIRM_NEW_GAME,
+    MAIN_MENU_STATE_EXIT,
+    MAIN_MENU_STATE_WAIT_SCREEN_TRANSITION,
+    MAIN_MENU_STATE_UNUSED_9,
+};
+
+enum MainMenuWirelessCheckState {
+    MAIN_MENU_WIRELESS_CHECK_START = 10,
+    MAIN_MENU_WIRELESS_CHECK_INIT_WIRELESS,
+    MAIN_MENU_WIRELESS_CHECK_IDLE,
+    MAIN_MENU_WIRELESS_CHECK_CHECK_RESULT,
+    MAIN_MENU_WIRELESS_CHECK_STOP,
+};
+
+enum MainMenuAlertsState {
+    MAIN_MANU_ALERTS_STATE_WAIT = 15,
+    MAIN_MANU_ALERTS_STATE_LOAD_GRAPHICS,
+    MAIN_MANU_ALERTS_STATE_SHOW_NEXT_ALERT,
+    MAIN_MANU_ALERTS_STATE_WAIT_DISMISS,
+    MAIN_MANU_ALERTS_STATE_HIDE_ALERT,
+};
+
+enum MainMenuAlertType {
+    MAIN_MENU_ALERT_MYSTERY_GIFT_OK = 0,
+    MAIN_MENU_ALERT_MYSTERY_GIFT_NO_DEX,
+    MAIN_MENU_ALERT_RANGER_MSG_OK,
+    MAIN_MENU_ALERT_RANGER_MSG_NO_DEX,
+    MAIN_MENU_ALERT_NEW_GAME,
+};
+
+enum WirelessIconType {
+    WIRELESS_ICON_NONE = 0,
+    WIRELESS_ICON_LOCAL,
+    WIRELESS_ICON_WIFI
+};
+
+typedef void (*UnusedFuncPtr)(void *);
+typedef struct WFCUserInfoErasedAlertTemplate {
+    int x;
+    int y;
+    int width;
+    int height;
+    enum TextBank bankID;
+    u32 entryID;
+    UnusedFuncPtr unused_18;
+} WFCUserInfoErasedAlertTemplate;
+
+typedef struct MainMenuAlertWindowTemplate {
+    int x;
+    int y;
+    int width;
+    int height;
+    int textEntryID;
+} MainMenuAlertTemplate;
+
+typedef struct MainMenuAppData {
+    BgConfig *bgConfig;
     SaveData *saveData;
-    Pokedex *unk_08;
-    TrainerInfo *unk_0C;
+    Pokedex *pokedex;
+    TrainerInfo *trainerInfo;
     PlayTime *playTime;
-    MysteryGift *unk_14;
-    int unk_18;
-    int unk_1C;
-    int unk_20;
+    MysteryGift *mysteryGift;
+    int framesCounter;
+    int unused_1C;
+    int nextOptionBasetile;
     int agbGameType; // Adds + 1, to track unset value
-    int unk_28;
-    int unk_2C;
-    int unk_30;
-    int unk_34;
-    int unk_38;
-    int unk_3C;
-    int unk_40;
-    int unk_44;
-    int unk_48;
-    int unk_4C;
-    int unk_50;
-    int unk_54;
-    int unk_58;
-    Window unk_5C[8];
-    int unk_DC[8];
-    int unk_FC[8];
-    fx32 unk_11C;
-    fx32 unk_120;
-    int unk_124;
-    int unk_128;
-    int unk_12C;
-    int unk_130;
-    int unk_134;
-    int unk_138;
-    Window unk_13C;
-    int unk_14C;
-    int unk_150;
-    BOOL unk_154[1];
-    Window unk_158;
-    Sprite *unk_168[2];
-    int unk_170;
-} UnkStruct_0222AE60;
+    int unused_28;
+    BOOL rangerLinkAvailable;
+    BOOL wiiConnectionAvailable;
+    BOOL mysteryGiftUnlocked;
+    int extraUnlockedOptions;
+    int unused_3C;
+    int pendingAlerts;
+    int shownAlerts;
+    BOOL shouldUpdateOptions;
+    BOOL pokedexObtained;
+    int badgeCount;
+    enum MainMenuOption focusedOption;
+    enum MainMenuNextApp nextApplication;
+    Window optionWindows[NUM_MAIN_MENU_OPTIONS];
+    enum MainMenuNextApp optionApps[NUM_MAIN_MENU_OPTIONS];
+    enum WirelessIconType optionWirelessIconTypes[NUM_MAIN_MENU_OPTIONS];
+    fx32 scrollPos;
+    fx32 scrollTarget;
+    int wirelessCheckState;
+    int wirelessCheckTimeout;
+    enum MainMenuAlertsState alertsState;
+    BOOL alertsPending;
+    int alertsDelay;
+    int alertDismissKeys;
+    Window alertWindow;
+    BOOL isNewGame;
+    BOOL newAlerts;
+    BOOL wfcUserInfoErasedMsgPending[1];
+    Window wfcUserInfoErasedWindow;
+    Sprite *scrollUpArrowSprite;
+    Sprite *scrollDownArrowSprite;
+    int focusedBorderCycleIndex;
+} MainMenuAppData;
 
-static BOOL ov97_0222B768(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3);
-static BOOL ov97_0222B7DC(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3);
-static BOOL ov97_0222B888(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3);
-static BOOL ov97_0222B8E4(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3);
-static BOOL ov97_0222B934(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3);
-static BOOL ov97_0222B978(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3);
-static BOOL ov97_0222B5C0(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3);
+/*
+ * Responsible for deciding whether the option should be shown and rendering
+ * the inside (not the border) of the option's window.
+ *
+ * Must set appData->optionApps[option] to the option's appToLoad and render
+ * the window if the option is available.
+ *
+ * Must not set appData->optionApps[option] nor render the option and return
+ * FALSE if it's not available.
+ */
+typedef BOOL (*MainMenuOptionRenderFuncPtr)(MainMenuAppData *appData, enum MainMenuOption optionIdx, UnkStruct_ov97_02237808 *, int yPos);
+
+typedef struct {
+    enum MainMenuNextApp appToLoad;
+    int height;
+    int textEntryID;
+    MainMenuOptionRenderFuncPtr renderFunc; // If NULL, the option is always always available and simply shows the string indicated by textEntryID in the main menu text bank.
+} MainMenuOptionTemplate;
+
+static BOOL RenderContinueOption(MainMenuAppData *appData, enum MainMenuOption option, UnkStruct_ov97_02237808 *param2, int yPos);
+static BOOL RenderMysteryGiftOption(MainMenuAppData *appData, enum MainMenuOption option, UnkStruct_ov97_02237808 *param2, int yPos);
+static BOOL RenderRangerLinkOption(MainMenuAppData *appData, enum MainMenuOption option, UnkStruct_ov97_02237808 *param2, int yPos);
+static BOOL RenderGBAMigrationOption(MainMenuAppData *appData, enum MainMenuOption option, UnkStruct_ov97_02237808 *param2, int yPos);
+static BOOL RenderWiiConnectionOption(MainMenuAppData *appData, enum MainMenuOption option, UnkStruct_ov97_02237808 *param2, int yPos);
+static BOOL RenderWFCSettingsOption(MainMenuAppData *appData, enum MainMenuOption option, UnkStruct_ov97_02237808 *param2, int yPos);
+static BOOL RenderWiiMsgSettingsOption(MainMenuAppData *appData, enum MainMenuOption option, UnkStruct_ov97_02237808 *param2, int yPos);
+
 MysteryGift *SaveData_GetMysteryGift(SaveData *saveData);
-int ov23_0224AC0C(void);
 int TrainerInfo_Size(void);
 
-static UnkStruct_ov97_0223DF54 Unk_ov97_0223DF54[] = {
-    { 0x5, 0x5, 0x16, 0xE, 0x2B7, 0x10, NULL }
+static WFCUserInfoErasedAlertTemplate sWFCUserInfoErasedMsgWindowTemplate[] = {
+    { .x = 5, .y = 5, .width = 22, .height = 14, TEXT_BANK_UNK_0695, pl_msg_00000695_00016, NULL }
 };
 
-UnkStruct_ov97_0223E014 Unk_ov97_0223E014[] = {
-    { 0x1, 0xA, 0x0, ov97_0222B5C0 },
-    { 0x2, 0x2, 0x1, NULL },
-    { 0x3, 0x2, 0x2, ov97_0222B7DC },
-    { 0x4, 0x2, 0x3, ov97_0222B888 },
-    { 0x5, 0x2, NULL, ov97_0222B768 },
-    { 0x6, 0x2, 0xA, ov97_0222B8E4 },
-    { 0x7, 0x2, 0xB, ov97_0222B934 },
-    { 0x8, 0x2, 0x14, ov97_0222B978 }
+MainMenuOptionTemplate sOptions[NUM_MAIN_MENU_OPTIONS] = {
+    [MAIN_MENU_OPTION_CONTINUE] = {
+        .appToLoad = NEXT_APP_LOAD_SAVE,
+        .height = TEXT_LINES_TILES(5),
+        .textEntryID = MainMenu_Text_Continue,
+        .renderFunc = RenderContinueOption,
+    },
+    [MAIN_MENU_OPTION_NEW_GAME] = {
+        .appToLoad = NEXT_APP_GAME_INTRO,
+        .height = TEXT_LINES_TILES(1),
+        .textEntryID = MainMenu_Text_NewGame,
+        .renderFunc = NULL,
+    },
+    [MAIN_MENU_OPTION_MYSTERY_GIFT] = {
+        .appToLoad = NEXT_APP_MYSTERY_GIFT,
+        .height = TEXT_LINES_TILES(1),
+        .textEntryID = MainMenu_Text_MysteryGift,
+        .renderFunc = RenderMysteryGiftOption,
+    },
+    [MAIN_MENU_OPTION_RANGER_LINK] = {
+        .appToLoad = NEXT_APP_RANGER_LINK,
+        .height = TEXT_LINES_TILES(1),
+        .textEntryID = MainMenu_Text_LinkWithPokemonRanger,
+        .renderFunc = RenderRangerLinkOption,
+    },
+    [MAIN_MENU_OPTION_GBA_MIGRATION] = {
+        .appToLoad = NEXT_APP_GBA_MIGRATION,
+        .height = TEXT_LINES_TILES(1),
+        .textEntryID = NULL,
+        .renderFunc = RenderGBAMigrationOption,
+    },
+    [MAIN_MENU_OPTION_CONNECT_TO_WII] = {
+        .appToLoad = NEXT_APP_WII_CONNECTION,
+        .height = TEXT_LINES_TILES(1),
+        .textEntryID = MainMenu_Text_ConnectToWii,
+        .renderFunc = RenderWiiConnectionOption,
+    },
+    [MAIN_MENU_OPTION_WFC_SETTINGS] = {
+        .appToLoad = NEXT_APP_WFC_SETTINGS,
+        .height = TEXT_LINES_TILES(1),
+        .textEntryID = MainMenu_Text_NintendoWfcSettings,
+        .renderFunc = RenderWFCSettingsOption,
+    },
+    [MAIN_MENU_OPTION_WII_MSG_SETTINGS] = {
+        .appToLoad = NEXT_APP_WII_MSG_SETTINGS,
+        .height = TEXT_LINES_TILES(1),
+        .textEntryID = MainMenu_Text_WiiMessageSettings,
+        .renderFunc = RenderWiiMsgSettingsOption,
+    }
 };
 
-static u32 Unk_ov97_0223DF40[] = {
-    0x0,
-    0xC,
-    0xD,
-    0xF,
-    0xE
+static u32 sContinueOptionStringsIDs[] = {
+    MainMenu_Text_Continue,
+    MainMenu_Text_Player,
+    MainMenu_Text_Time,
+    MainMenu_Text_Badges,
+    MainMenu_Text_Pokedex
 };
 
-UnkStruct_ov97_0223DFB0 Unk_ov97_0223DFB0[] = {
-    { 0x4, 0x2, 0x18, 0x14, 0x1 },
-    { 0x4, 0x4, 0x18, 0x10, 0x3 },
-    { 0x4, 0x1, 0x18, 0x16, 0x0 },
-    { 0x4, 0x3, 0x18, 0x12, 0x2 },
-    { 0x2, 0x1, 0x1C, 0x16, 0x5 }
+// clang-format off
+// Some of these have some extra seemingly random padding, might be an artifact from localization.
+MainMenuAlertTemplate sMainMenuAlerts[] = {
+    [MAIN_MENU_ALERT_MYSTERY_GIFT_OK]     = { .x = 4, .y = 2, .width = 24, .height = TEXT_LINES_TILES(8) + 4, pl_msg_00000014_00001 },
+    [MAIN_MENU_ALERT_MYSTERY_GIFT_NO_DEX] = { .x = 4, .y = 4, .width = 24, .height = TEXT_LINES_TILES(8),     pl_msg_00000014_00003 },
+    [MAIN_MENU_ALERT_RANGER_MSG_OK]       = { .x = 4, .y = 1, .width = 24, .height = TEXT_LINES_TILES(9) + 4, pl_msg_00000014_00000 },
+    [MAIN_MENU_ALERT_RANGER_MSG_NO_DEX]   = { .x = 4, .y = 3, .width = 24, .height = TEXT_LINES_TILES(8) + 2, pl_msg_00000014_00002 },
+    [MAIN_MENU_ALERT_NEW_GAME]            = { .x = 2, .y = 1, .width = 28, .height = TEXT_LINES_TILES(11),    pl_msg_00000014_00005 }
 };
+// clang-format on
 
-static int ov97_0222AE60(UnkStruct_0222AE60 *param0)
+static BOOL CheckWFCUserInfoErased(MainMenuAppData *appData)
 {
-    int v0 = 0, v1;
-    return v0;
+    return FALSE;
 }
 
-static BOOL ov97_0222AE64(UnkStruct_0222AE60 *param0)
+static BOOL ShowWFCUserInfoErasedMsg(MainMenuAppData *appData)
 {
-    int v0;
-    UnkStruct_ov97_0223DF54 *v1;
-    UnkStruct_ov97_02237808 v2;
+    if (Window_IsInUse(&appData->wfcUserInfoErasedWindow) == FALSE) {
+        for (int i = 0; i < 1; i++) {
+            if (appData->wfcUserInfoErasedMsgPending[i] == TRUE) {
+                appData->wfcUserInfoErasedMsgPending[i] = FALSE;
+                WFCUserInfoErasedAlertTemplate *alertTemplate = &sWFCUserInfoErasedMsgWindowTemplate[i];
 
-    if (Window_IsInUse(&param0->unk_158) == 0) {
-        for (v0 = 0; v0 < 1; v0++) {
-            if (param0->unk_154[v0] == 1) {
-                param0->unk_154[v0] = 0;
-                v1 = &Unk_ov97_0223DF54[v0];
-
-                ov97_02237808(&v2, &param0->unk_158, 0, v1->unk_10, 1, 2);
-                ov97_02237858(&v2, v1->unk_08, v1->unk_0C, ((1 + 9) + 9));
-                ov97_0223795C(param0->unk_00, &v2, v1->unk_00, v1->unk_04, v1->unk_14);
-                return 1;
+                UnkStruct_ov97_02237808 v2;
+                ov97_02237808(&v2, &appData->wfcUserInfoErasedWindow, PLTT_0, alertTemplate->bankID, 1, PLTT_2);
+                ov97_02237858(&v2, alertTemplate->width, alertTemplate->height, ALERT_WINDOW_CONTENT_BASE_TILE);
+                ov97_0223795C(appData->bgConfig, &v2, alertTemplate->x, alertTemplate->y, alertTemplate->entryID);
+                return TRUE;
             }
         }
     } else {
-        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            Window_EraseStandardFrame(&param0->unk_158, 0);
-            Window_Remove(&param0->unk_158);
+            Window_EraseStandardFrame(&appData->wfcUserInfoErasedWindow, FALSE);
+            Window_Remove(&appData->wfcUserInfoErasedWindow);
         }
 
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static void ov97_0222AF1C(UnkStruct_0222AE60 *param0)
+static void DetectGBAGame(MainMenuAppData *appData)
 {
-    int gbaVersion;
-    int v1 = ov97_02235D2C(NULL);
+    int gbaCartInfoLoadError = ov97_02235D2C(NULL);
 
-    param0->agbGameType = 0;
+    appData->agbGameType = 0;
 
-    if (v1 != 0) {
+    if (gbaCartInfoLoadError) {
         return;
     }
 
-    gbaVersion = VERSION_NONE;
+    int gbaVersion = VERSION_NONE;
 
     switch (GBACart_GetAGBGameType()) {
     case AGB_TYPE_RUBY:
@@ -235,7 +393,7 @@ static void ov97_0222AF1C(UnkStruct_0222AE60 *param0)
 
     SetGBACartridgeVersion(gbaVersion);
 
-    if (Pokedex_IsNationalDexObtained(param0->unk_08) == FALSE) {
+    if (Pokedex_IsNationalDexObtained(appData->pokedex) == FALSE) {
         return;
     }
 
@@ -243,187 +401,188 @@ static void ov97_0222AF1C(UnkStruct_0222AE60 *param0)
         return;
     }
 
-    param0->agbGameType = GBACart_GetAGBGameType() + 1;
+    appData->agbGameType = GBACart_GetAGBGameType() + 1;
 
     ov97_02238440();
 }
 
-static void ov97_0222AF8C(UnkStruct_0222AE60 *param0)
+/*
+ * Detects if wireless connection to a Ranger game, a Wii
+ * or a Mystery gift distribution is possible.
+ */
+static void DetectWirelessConnections(MainMenuAppData *appData)
 {
-    int v0;
-
-    switch (param0->unk_124) {
-    case 12:
+    switch (appData->wirelessCheckState) {
+    case MAIN_MENU_WIRELESS_CHECK_IDLE:
         break;
-    case 10:
-        param0->unk_124 = 11;
+    case MAIN_MENU_WIRELESS_CHECK_START:
+        appData->wirelessCheckState = MAIN_MENU_WIRELESS_CHECK_INIT_WIRELESS;
         break;
-    case 11:
-        sub_02037D48(param0->saveData);
+    case MAIN_MENU_WIRELESS_CHECK_INIT_WIRELESS:
+        sub_02037D48(appData->saveData);
 
-        param0->unk_128 = (2 * 60);
-        param0->unk_124 = 13;
-        param0->unk_40 = 0;
+        appData->wirelessCheckTimeout = (2 * 60);
+        appData->wirelessCheckState = MAIN_MENU_WIRELESS_CHECK_CHECK_RESULT;
+        appData->pendingAlerts = 0;
 
-        if (MysteryGift_GetLastWcIDReceived(param0->unk_14) == 1) {
-            param0->unk_40 |= 0x1;
-            param0->unk_44 |= 0x1;
+        if (MysteryGift_GetMysteryGiftUnlockedFlag(appData->mysteryGift) == TRUE) {
+            appData->pendingAlerts |= MYSTERY_GIFT;
+            appData->shownAlerts |= MYSTERY_GIFT;
         }
         break;
-    case 13:
-        if (param0->unk_130) {
+    case MAIN_MENU_WIRELESS_CHECK_CHECK_RESULT:
+        if (appData->alertsPending) {
             break;
         }
 
-        v0 = sub_02037DA0();
-        v0 = ~param0->unk_40 & v0;
+        int availableConnections = sub_02037DA0();
+        availableConnections = ~appData->pendingAlerts & availableConnections;
 
-        if (v0 && (param0->unk_12C == 15) && (param0->unk_130 == 0) && (param0->unk_40 != v0)) {
-            param0->unk_48 = 1;
+        if (availableConnections && (appData->alertsState == MAIN_MANU_ALERTS_STATE_WAIT) && (appData->alertsPending == FALSE) && (appData->pendingAlerts != availableConnections)) {
+            appData->shouldUpdateOptions = TRUE;
 
-            if (v0 & 0x1) {
-                param0->unk_34 = 1, v0 = 0x1;
+            if (availableConnections & MYSTERY_GIFT) {
+                appData->mysteryGiftUnlocked = TRUE, availableConnections = MYSTERY_GIFT;
             }
 
-            if (v0 & 0x2) {
-                param0->unk_2C = 1, v0 = 0x2;
+            if (availableConnections & RANGER_LINK) {
+                appData->rangerLinkAvailable = TRUE, availableConnections = RANGER_LINK;
             }
 
-            if (v0 & 0x4) {
-                param0->unk_30 = 1, v0 = 0x4;
+            if (availableConnections & WII_CONNECTION) {
+                appData->wiiConnectionAvailable = TRUE, availableConnections = WII_CONNECTION;
             }
 
-            if (v0 & (0x1 | 0x2)) {
-                param0->unk_150 = 1;
+            if (availableConnections & (MYSTERY_GIFT | RANGER_LINK)) {
+                appData->newAlerts = TRUE;
             }
 
-            param0->unk_40 |= v0;
+            appData->pendingAlerts |= availableConnections;
         }
 
-        if (--param0->unk_128 == 0) {
+        if (--appData->wirelessCheckTimeout == 0) {
             sub_02037D84();
-            param0->unk_124 = 12;
+            appData->wirelessCheckState = MAIN_MENU_WIRELESS_CHECK_IDLE;
         }
         break;
-    case 14:
+    case MAIN_MENU_WIRELESS_CHECK_STOP:
         sub_02037D84();
-        param0->unk_124 = 12;
+        appData->wirelessCheckState = MAIN_MENU_WIRELESS_CHECK_IDLE;
         break;
     }
 }
 
-static BOOL ov97_0222B07C(UnkStruct_0222AE60 *param0)
+static BOOL ShowAlerts(MainMenuAppData *appData)
 {
-    UnkStruct_ov97_02237808 v0;
-    UnkStruct_ov97_0223DFB0 *v1;
-    int v2, v3;
-
-    switch (param0->unk_12C) {
-    case 15:
-        if (param0->unk_130 == 0) {
-            return 0;
+    switch (appData->alertsState) {
+    case MAIN_MANU_ALERTS_STATE_WAIT:
+        if (appData->alertsPending == FALSE) {
+            return FALSE;
         }
 
-        if (--param0->unk_130 == 0) {
-            param0->unk_12C = 16;
+        if (--appData->alertsPending == FALSE) {
+            appData->alertsState = MAIN_MANU_ALERTS_STATE_LOAD_GRAPHICS;
         }
 
-        return 1;
-    case 16:
-        LoadStandardWindowGraphics(param0->unk_00, BG_LAYER_MAIN_1, 1, 2, 0, HEAP_ID_81);
-        Bg_ClearTilemap(param0->unk_00, BG_LAYER_MAIN_1);
-        *((u16 *)HW_BG_PLTT + 33) = ((26 & 31) << 10 | (26 & 31) << 5 | (26 & 31));
-        param0->unk_12C = 17;
+        return TRUE;
+    case MAIN_MANU_ALERTS_STATE_LOAD_GRAPHICS:
+        LoadStandardWindowGraphics(appData->bgConfig, BG_LAYER_MAIN_1, ALERT_WINDOW_FRAME_BASE_TILE, PLTT_2, STANDARD_WINDOW_SYSTEM, HEAP_ID_MAIN_MENU);
+        Bg_ClearTilemap(appData->bgConfig, BG_LAYER_MAIN_1);
+        *HW_BG_A_PLTT_COLOR(PLTT_2, 1) = UNFOCUSED_OPTION_BG_COLOR;
+        appData->alertsState = MAIN_MANU_ALERTS_STATE_SHOW_NEXT_ALERT;
         break;
-    case 17:
-        ov97_02237808(&v0, &param0->unk_13C, 0, 14, 1, 2);
+    case MAIN_MANU_ALERTS_STATE_SHOW_NEXT_ALERT: {
+        UnkStruct_ov97_02237808 v0;
+        ov97_02237808(&v0, &appData->alertWindow, PLTT_0, TEXT_BANK_UNK_0014, 1, PLTT_2);
 
-        v3 = param0->unk_40 & ~param0->unk_44;
+        int pendingAlerts = appData->pendingAlerts & ~appData->shownAlerts;
 
-        if (v3 & 0x1) {
-            if (param0->unk_38 & 0x1) {
-                v1 = &Unk_ov97_0223DFB0[0];
+        MainMenuAlertTemplate *alertTemplate;
+
+        if (pendingAlerts & MYSTERY_GIFT) {
+            if (appData->extraUnlockedOptions & MYSTERY_GIFT) {
+                alertTemplate = &sMainMenuAlerts[MAIN_MENU_ALERT_MYSTERY_GIFT_OK];
             } else {
-                v1 = &Unk_ov97_0223DFB0[1];
+                alertTemplate = &sMainMenuAlerts[MAIN_MENU_ALERT_MYSTERY_GIFT_NO_DEX];
             }
-        } else if (v3 & 0x2) {
-            if (param0->unk_38 & 0x2) {
-                v1 = &Unk_ov97_0223DFB0[2];
+        } else if (pendingAlerts & RANGER_LINK) {
+            if (appData->extraUnlockedOptions & RANGER_LINK) {
+                alertTemplate = &sMainMenuAlerts[MAIN_MENU_ALERT_RANGER_MSG_OK];
             } else {
-                v1 = &Unk_ov97_0223DFB0[3];
+                alertTemplate = &sMainMenuAlerts[MAIN_MENU_ALERT_RANGER_MSG_NO_DEX];
             }
-        } else if (v3 & 0x80) {
-            v1 = &Unk_ov97_0223DFB0[4];
-            v3 = 0;
+        } else if (pendingAlerts & NEW_GAME_WARN) {
+            alertTemplate = &sMainMenuAlerts[MAIN_MENU_ALERT_NEW_GAME];
+            pendingAlerts = 0;
         }
 
-        param0->unk_44 |= v3;
-        ov97_02237858(&v0, v1->unk_08, v1->unk_0C, ((1 + 9) + 9));
+        appData->shownAlerts |= pendingAlerts;
+        ov97_02237858(&v0, alertTemplate->width, alertTemplate->height, ALERT_WINDOW_CONTENT_BASE_TILE);
 
         v0.unk_2C = 1;
-        ov97_0223795C(param0->unk_00, &v0, v1->unk_00, v1->unk_04, v1->unk_10);
+        ov97_0223795C(appData->bgConfig, &v0, alertTemplate->x, alertTemplate->y, alertTemplate->textEntryID);
 
-        Bg_ChangeTilemapRectPalette(param0->unk_00, 1, Window_GetXPos(v0.unk_10), Window_GetYPos(v0.unk_10), Window_GetWidth(v0.unk_10), Window_GetHeight(v0.unk_10), 0);
-        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
-        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
-        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
+        Bg_ChangeTilemapRectPalette(appData->bgConfig, BG_LAYER_MAIN_1, Window_GetXPos(v0.unk_10), Window_GetYPos(v0.unk_10), Window_GetWidth(v0.unk_10), Window_GetHeight(v0.unk_10), PLTT_0);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, FALSE);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, FALSE);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, TRUE);
 
-        param0->unk_134 = 30;
-        param0->unk_12C = 18;
-        break;
-    case 18:
-        if (param0->unk_134) {
-            param0->unk_134--;
+        appData->alertsDelay = 30;
+        appData->alertsState = MAIN_MANU_ALERTS_STATE_WAIT_DISMISS;
+    } break;
+    case MAIN_MANU_ALERTS_STATE_WAIT_DISMISS:
+        if (appData->alertsDelay) {
+            appData->alertsDelay--;
         } else {
-            if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-                Window_Remove(&param0->unk_13C);
-                param0->unk_12C = 19;
-                param0->unk_138 = gSystem.pressedKeys;
+            if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
+                Window_Remove(&appData->alertWindow);
+                appData->alertsState = MAIN_MANU_ALERTS_STATE_HIDE_ALERT;
+                appData->alertDismissKeys = gSystem.pressedKeys;
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
             }
         }
         break;
-    case 19:
-        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
-        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
-        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
-        param0->unk_12C = 15;
+    case MAIN_MANU_ALERTS_STATE_HIDE_ALERT:
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, TRUE);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, TRUE);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, FALSE);
+        appData->alertsState = MAIN_MANU_ALERTS_STATE_WAIT;
         break;
     }
 
-    return 1;
+    return TRUE;
 }
 
-#define ABS(x) (((x) ^ ((x) >> 31)) - ((x) >> 31))
-static void ov97_0222B25C(UnkStruct_0222AE60 *param0)
+// Absolute value macro for 2's-complement 32-bit integers/fixed-point.
+// No idea why the original developer didn't use the SDK's MATH_ABS
+#define ABS_S32(x) (((x) ^ ((x) >> 31)) - ((x) >> 31))
+static void DoScrollStep(MainMenuAppData *appData)
 {
-    fx32 v0;
+    if (appData->scrollPos != appData->scrollTarget) {
+        fx32 scrollSpeed = (appData->scrollTarget - appData->scrollPos) / 4;
 
-    if (param0->unk_11C != param0->unk_120) {
-        v0 = (param0->unk_120 - param0->unk_11C) / 4;
-
-        if ((((v0) ^ ((v0) >> 31)) - ((v0) >> 31)) > (12 * FX32_ONE)) {
-            if (v0 > 0) {
-                v0 = (12 * FX32_ONE);
+        if (ABS_S32(scrollSpeed) > MAX_SCROLL_SPEED) {
+            if (scrollSpeed > 0) {
+                scrollSpeed = MAX_SCROLL_SPEED;
             } else {
-                v0 = -(12 * FX32_ONE);
+                scrollSpeed = -MAX_SCROLL_SPEED;
             }
         }
 
-        param0->unk_11C += v0;
+        appData->scrollPos += scrollSpeed;
 
-        if ((((param0->unk_120 - param0->unk_11C) ^ ((param0->unk_120 - param0->unk_11C) >> 31)) - ((param0->unk_120 - param0->unk_11C) >> 31)) < FX32_ONE / 8) {
-            param0->unk_11C = param0->unk_120;
+        if (ABS_S32(appData->scrollTarget - appData->scrollPos) < FX32_ONE / 8) {
+            appData->scrollPos = appData->scrollTarget;
         }
 
-        Bg_ScheduleScroll(param0->unk_00, 0, 3, param0->unk_11C / FX32_ONE);
-        Bg_ScheduleScroll(param0->unk_00, 2, 3, param0->unk_11C / FX32_ONE);
+        Bg_ScheduleScroll(appData->bgConfig, BG_LAYER_MAIN_0, BG_OFFSET_UPDATE_SET_Y, appData->scrollPos / FX32_ONE);
+        Bg_ScheduleScroll(appData->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_Y, appData->scrollPos / FX32_ONE);
     }
 }
 
-static void ov97_0222B2EC(UnkStruct_0222AE60 *param0)
+static void InitMainMenuGraphics(MainMenuAppData *appData)
 {
-    UnkStruct_02099F80 v0 = {
+    UnkStruct_02099F80 vramBanks = {
         GX_VRAM_BG_128_A,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,
@@ -435,562 +594,554 @@ static void ov97_0222B2EC(UnkStruct_0222AE60 *param0)
         GX_VRAM_TEX_0_B,
         GX_VRAM_TEXPLTT_01_FG
     };
-    GraphicsModes v1 = {
+    GraphicsModes graphicsModes = {
         GX_DISPMODE_GRAPHICS,
         GX_BGMODE_0,
         GX_BGMODE_0,
         GX_BG0_AS_2D
     };
 
-    GXLayers_SetBanks(&v0);
-    SetAllGraphicsModes(&v1);
+    GXLayers_SetBanks(&vramBanks);
+    SetAllGraphicsModes(&graphicsModes);
 
-    ov97_022376FC(param0->unk_00, 0, 2, 0xF000, 0x0);
+    ov97_022376FC(appData->bgConfig, 0, 2, 0xF000, 0x0);
     G2_SetBG0Priority(2);
-    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_81);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_MAIN_MENU);
 
-    ov97_022376FC(param0->unk_00, 1, 1, 0xD800, 0x8000);
+    ov97_022376FC(appData->bgConfig, 1, 1, 0xD800, 0x8000);
     G2_SetBG1Priority(1);
-    Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_81);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_MAIN_MENU);
 
-    ov97_022376FC(param0->unk_00, 2, 2, 0xE000, 0x0);
+    ov97_022376FC(appData->bgConfig, 2, 2, 0xE000, 0x0);
     G2_SetBG2Priority(0);
-    Bg_ClearTilesRange(BG_LAYER_MAIN_2, 32, 0, HEAP_ID_81);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_2, 32, 0, HEAP_ID_MAIN_MENU);
 
     Text_ResetAllPrinters();
-    Font_LoadTextPalette(0, 1 * 32, HEAP_ID_81);
-    Font_LoadTextPalette(0, 0 * 32, HEAP_ID_81);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_1), HEAP_ID_MAIN_MENU);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_0), HEAP_ID_MAIN_MENU);
 
-    *((u16 *)HW_BG_PLTT + 0) = ((0 & 31) << 10 | (0 & 31) << 5 | (0 & 31));
-    *((u16 *)HW_BG_PLTT + 31) = ((26 & 31) << 10 | (26 & 31) << 5 | (26 & 31));
+    *HW_BG_A_PLTT_COLOR(PLTT_0, 0) = COLOR_BLACK;
+    *HW_BG_A_PLTT_COLOR(PLTT_1, 15) = UNFOCUSED_OPTION_BG_COLOR;
 
-    LoadStandardWindowGraphics(param0->unk_00, BG_LAYER_MAIN_0, 1, 2, 0, HEAP_ID_81);
-    LoadStandardWindowGraphics(param0->unk_00, BG_LAYER_MAIN_0, (1 + 9), 3, 1, HEAP_ID_81);
+    LoadStandardWindowGraphics(appData->bgConfig, BG_LAYER_MAIN_0, UNFOCUSED_OPTION_FRAME_BASE_TILE, PLTT_2, STANDARD_WINDOW_SYSTEM, HEAP_ID_MAIN_MENU);
+    LoadStandardWindowGraphics(appData->bgConfig, BG_LAYER_MAIN_0, FOCUSED_OPTION_FRAME_BASE_TILE, PLTT_3, STANDARD_WINDOW_FIELD, HEAP_ID_MAIN_MENU);
 
-    *((u16 *)HW_BG_PLTT + 33) = ((26 & 31) << 10 | (26 & 31) << 5 | (26 & 31));
+    *HW_BG_A_PLTT_COLOR(PLTT_2, 1) = UNFOCUSED_OPTION_BG_COLOR;
 }
 
-static void ov97_0222B404(UnkStruct_0222AE60 *param0)
+static void LoadScrollArrowsSprites(MainMenuAppData *appData)
 {
     ov97_02237A20();
     ov97_02237A74();
-    ov97_02237B0C(116, 43, 40, 42, 41, 0);
+    ov97_02237B0C(NARC_INDEX_GRAPHIC__MYSTERY, 43, 40, 42, 41, 0);
 
-    param0->unk_168[0] = ov97_02237D14(0, param0->unk_168[0], HW_LCD_WIDTH / 2, 8, 0);
-    Sprite_SetDrawFlag(param0->unk_168[0], 0);
+    appData->scrollUpArrowSprite = ov97_02237D14(0, appData->scrollUpArrowSprite, HW_LCD_WIDTH / 2, SCROLL_ARROWS_OFFSET, 0);
+    Sprite_SetDrawFlag(appData->scrollUpArrowSprite, FALSE);
 
-    param0->unk_168[1] = ov97_02237D14(0, param0->unk_168[1], HW_LCD_WIDTH / 2, HW_LCD_HEIGHT - 8, 1);
-    Sprite_SetDrawFlag(param0->unk_168[1], 0);
+    appData->scrollDownArrowSprite = ov97_02237D14(0, appData->scrollDownArrowSprite, HW_LCD_WIDTH / 2, HW_LCD_HEIGHT - SCROLL_ARROWS_OFFSET, 1);
+    Sprite_SetDrawFlag(appData->scrollDownArrowSprite, FALSE);
 }
 
-static void ov97_0222B46C(UnkStruct_0222AE60 *param0)
+static void LoadWirelessIconsGraphics(MainMenuAppData *appData)
 {
-    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 45, 0, 4 * 32, 32 * 1, HEAP_ID_81);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 44, param0->unk_00, 2, 0x380, 2 * 32 * 0x20, 0, HEAP_ID_81);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 45, PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_4), PALETTE_SIZE_BYTES, HEAP_ID_MAIN_MENU);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 44, appData->bgConfig, BG_LAYER_MAIN_2, WIRELESS_ICONS_TILES_OFFS, WIRELESS_ISONS_TILESET_SIZE * TILE_SIZE_4BPP, FALSE, HEAP_ID_MAIN_MENU);
 }
 
-static void ov97_0222B4AC(UnkStruct_0222AE60 *param0, int param1, int param2, int param3)
+static void DrawWirelessIcon(MainMenuAppData *appData, int column, int row, int type)
 {
-    u16 *v0 = (u16 *)Bg_GetTilemapBuffer(param0->unk_00, 2);
-    int v1 = ((4 << 12) + 0x380 + 0);
+    u16 *tilemapBuffer = (u16 *)Bg_GetTilemapBuffer(appData->bgConfig, BG_LAYER_MAIN_2);
+    // Local wireless icon
+    int tilesIDStart = WIRELESS_ICONS_TILES_ID_START;
 
-    if (param3 == 2) {
-        v1 = ((4 << 12) + 0x380 + 0) + 2;
+    if (type == WIRELESS_ICON_WIFI) {
+        // Wi-Fi icon
+        tilesIDStart = WIRELESS_ICONS_TILES_ID_START + 2;
     }
 
-    v0[param2 * 32 + param1 + 0] = v1 + 0;
-    v0[param2 * 32 + param1 + 1] = v1 + 1;
+    // Top half
+    tilemapBuffer[row * (HW_LCD_WIDTH / 8) + column + 0] = tilesIDStart + 0;
+    tilemapBuffer[row * (HW_LCD_WIDTH / 8) + column + 1] = tilesIDStart + 1;
 
-    param2++;
+    row++;
 
-    v0[param2 * 32 + param1 + 0] = v1 + 8;
-    v0[param2 * 32 + param1 + 1] = v1 + 9;
+    // Bottom half
+    tilemapBuffer[row * (HW_LCD_WIDTH / 8) + column + 0] = tilesIDStart + 8;
+    tilemapBuffer[row * (HW_LCD_WIDTH / 8) + column + 1] = tilesIDStart + 9;
 
-    Bg_CopyTilemapBufferToVRAM(param0->unk_00, 2);
+    Bg_CopyTilemapBufferToVRAM(appData->bgConfig, BG_LAYER_MAIN_2);
 }
 
-static void ov97_0222B4FC(UnkStruct_0222AE60 *param0, int param1, int param2)
+static void ClearWirelessIcon(MainMenuAppData *appData, int column, int row)
 {
-    u16 *v0 = (u16 *)Bg_GetTilemapBuffer(param0->unk_00, 2);
+    u16 *tilemapBuffer = (u16 *)Bg_GetTilemapBuffer(appData->bgConfig, BG_LAYER_MAIN_2);
 
-    v0[param2 * 32 + param1 + 0] = ((4 << 12) + 0x380 + 0) + 4;
-    v0[param2 * 32 + param1 + 1] = ((4 << 12) + 0x380 + 0) + 4;
+    // Empty tile
+    int tileID = WIRELESS_ICONS_TILES_ID_START + 4;
 
-    param2++;
+    tilemapBuffer[row * (HW_LCD_WIDTH / 8) + column + 0] = tileID;
+    tilemapBuffer[row * (HW_LCD_WIDTH / 8) + column + 1] = tileID;
 
-    v0[param2 * 32 + param1 + 0] = ((4 << 12) + 0x380 + 0) + 4;
-    v0[param2 * 32 + param1 + 1] = ((4 << 12) + 0x380 + 0) + 4;
+    row++;
 
-    Bg_CopyTilemapBufferToVRAM(param0->unk_00, 2);
+    tilemapBuffer[row * (HW_LCD_WIDTH / 8) + column + 0] = tileID;
+    tilemapBuffer[row * (HW_LCD_WIDTH / 8) + column + 1] = tileID;
+
+    Bg_CopyTilemapBufferToVRAM(appData->bgConfig, BG_LAYER_MAIN_2);
 }
 
-static void ov97_0222B53C(Window *param0, MessageLoader *param1, StringTemplate *param2, TextColor param3, u32 param4, int param5)
+static void PrintRightAlignedWithMargin(Window *window, MessageLoader *msgLoader, StringTemplate *strTemplate, TextColor textColor, u32 entryID, u32 yOffset)
 {
-    int v0, v1;
-    Strbuf *v2 = MessageUtil_ExpandedStrbuf(param2, param1, param4, HEAP_ID_81);
-    v0 = Font_CalcStrbufWidth(FONT_SYSTEM, v2, Font_GetAttribute(FONT_SYSTEM, FONTATTR_LETTER_SPACING));
-    v1 = Window_GetWidth(param0) * 8 - (v0 + 32);
+    Strbuf *strBuf = MessageUtil_ExpandedStrbuf(strTemplate, msgLoader, entryID, HEAP_ID_MAIN_MENU);
+    u32 textWidth = Font_CalcStrbufWidth(FONT_SYSTEM, strBuf, Font_GetAttribute(FONT_SYSTEM, FONTATTR_LETTER_SPACING));
+    u32 xOffset = Window_GetWidth(window) * 8 - (textWidth + CONTINUE_WINDOW_MARGIN);
 
-    Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, v2, v1, param5, TEXT_SPEED_NO_TRANSFER, param3, NULL);
-    Strbuf_Free(v2);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strBuf, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, textColor, NULL);
+    Strbuf_Free(strBuf);
 }
 
-static void ov97_0222B590(StringTemplate *param0, int param1)
+static void SetTemplateNumberCustomFormatting(StringTemplate *strTemplate, int number)
 {
-    int v0, v1;
+    int maxDigits;
+    enum PaddingMode paddingMode;
 
-    if (param1 >= 100) {
-        v0 = 3;
-        v1 = 0;
-    } else if (param1 >= 10) {
-        v0 = 3;
-        v1 = 1;
+    if (number >= 100) {
+        maxDigits = 3;
+        paddingMode = PADDING_MODE_NONE;
+    } else if (number >= 10) {
+        maxDigits = 3;
+        paddingMode = PADDING_MODE_SPACES;
     } else {
-        v0 = 3 - 1;
-        v1 = 1;
+        maxDigits = 2;
+        paddingMode = PADDING_MODE_SPACES;
     }
 
-    StringTemplate_SetNumber(param0, 0, param1, v0, v1, 1);
+    StringTemplate_SetNumber(strTemplate, 0, number, maxDigits, paddingMode, CHARSET_MODE_EN);
 }
 
-static BOOL ov97_0222B5C0(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3)
+static BOOL RenderContinueOption(MainMenuAppData *appData, enum MainMenuOption option, UnkStruct_ov97_02237808 *param2, int yPos)
 {
-    int v0, v1, v2;
-    Strbuf *v3;
-    StringTemplate *v4;
-    MessageLoader *v5;
-    UnkStruct_0222AE60 *v6 = (UnkStruct_0222AE60 *)param0;
-    TextColor v7;
+    StringTemplate *strTemplate; // Forward-declaration required to match.
 
-    v5 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MAIN_MENU, HEAP_ID_81);
-    v4 = StringTemplate_Default(HEAP_ID_81);
+    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MAIN_MENU, HEAP_ID_MAIN_MENU);
+    strTemplate = StringTemplate_Default(HEAP_ID_MAIN_MENU);
 
-    if (TrainerInfo_Gender(v6->unk_0C) == 1) {
-        v7 = TEXT_COLOR(3, 4, 15);
+    TextColor textColor;
+    if (TrainerInfo_Gender(appData->trainerInfo) == GENDER_FEMALE) {
+        textColor = TEXT_COLOR(3, 4, 15);
     } else {
-        v7 = TEXT_COLOR(7, 8, 15);
+        textColor = TEXT_COLOR(7, 8, 15);
     }
 
-    ov97_0223795C(v6->unk_00, param2, 3, param3, Unk_ov97_0223E014[param1].unk_08);
+    ov97_0223795C(appData->bgConfig, param2, 3, yPos, sOptions[option].textEntryID);
 
-    for (v0 = 1; v0 < sizeof(Unk_ov97_0223DF40) / sizeof(u32); v0++) {
-        if ((v0 == 4) && (v6->unk_4C == 0)) {
+    // Index 0 has the "Continue" string, which is printed separately
+    for (int i = 1; i < NELEMS(sContinueOptionStringsIDs); i++) {
+        if ((i == 4) && (appData->pokedexObtained == FALSE)) {
             continue;
         }
 
-        v3 = MessageUtil_ExpandedStrbuf(v4, v5, Unk_ov97_0223DF40[v0], HEAP_ID_81);
-        Text_AddPrinterWithParamsAndColor(param2->unk_10, FONT_SYSTEM, v3, 32, v0 * 16, TEXT_SPEED_NO_TRANSFER, v7, NULL);
-        Strbuf_Free(v3);
+        Strbuf *strBuf = MessageUtil_ExpandedStrbuf(strTemplate, msgLoader, sContinueOptionStringsIDs[i], HEAP_ID_MAIN_MENU);
+        Text_AddPrinterWithParamsAndColor(param2->unk_10, FONT_SYSTEM, strBuf, CONTINUE_WINDOW_MARGIN, TEXT_LINES(i), TEXT_SPEED_NO_TRANSFER, textColor, NULL);
+        Strbuf_Free(strBuf);
     }
 
-    StringTemplate_SetPlayerName(v4, 0, v6->unk_0C);
-    ov97_0222B53C(param2->unk_10, v5, v4, v7, 16, 16 * 1);
-    ov97_0222B590(v4, PlayTime_GetHours(v6->playTime));
+    StringTemplate_SetPlayerName(strTemplate, 0, appData->trainerInfo);
+    PrintRightAlignedWithMargin(param2->unk_10, msgLoader, strTemplate, textColor, MainMenu_Text_PlayerName, TEXT_LINES(1));
 
-    StringTemplate_SetNumber(v4, 1, PlayTime_GetMinutes(v6->playTime), 2, 2, 1);
-    ov97_0222B53C(param2->unk_10, v5, v4, v7, 17, 16 * 2);
+    SetTemplateNumberCustomFormatting(strTemplate, PlayTime_GetHours(appData->playTime));
+    StringTemplate_SetNumber(strTemplate, 1, PlayTime_GetMinutes(appData->playTime), 2, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
+    PrintRightAlignedWithMargin(param2->unk_10, msgLoader, strTemplate, textColor, MainMenu_Text_PlayTime, TEXT_LINES(2));
 
-    StringTemplate_SetNumber(v4, 0, v6->unk_50, 1, 0, 1);
-    ov97_0222B53C(param2->unk_10, v5, v4, v7, 19, 16 * 3);
+    StringTemplate_SetNumber(strTemplate, 0, appData->badgeCount, 1, PADDING_MODE_NONE, CHARSET_MODE_EN);
+    PrintRightAlignedWithMargin(param2->unk_10, msgLoader, strTemplate, textColor, MainMenu_Text_BadgeCount, TEXT_LINES(3));
 
-    if (v6->unk_4C) {
-        ov97_0222B590(v4, Pokedex_CountSeen(v6->unk_08));
-        ov97_0222B53C(param2->unk_10, v5, v4, v7, 18, 16 * 4);
+    if (appData->pokedexObtained) {
+        SetTemplateNumberCustomFormatting(strTemplate, Pokedex_CountSeen(appData->pokedex));
+        PrintRightAlignedWithMargin(param2->unk_10, msgLoader, strTemplate, textColor, MainMenu_Text_SeenSpeciesCount, TEXT_LINES(4));
     }
 
-    Window_DrawStandardFrame(param2->unk_10, 0, param2->unk_38, param2->unk_3C);
+    Window_DrawStandardFrame(param2->unk_10, FALSE, param2->unk_38, param2->unk_3C);
 
-    v6->unk_DC[param1] = Unk_ov97_0223E014[param1].unk_00;
+    appData->optionApps[option] = sOptions[option].appToLoad;
 
-    StringTemplate_Free(v4);
-    MessageLoader_Free(v5);
-
-    return 1;
-}
-
-static BOOL ov97_0222B768(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3)
-{
-    int v0;
-    UnkStruct_0222AE60 *v1 = (UnkStruct_0222AE60 *)param0;
-
-    if (v1->agbGameType == 0) {
-        return FALSE;
-    }
-
-    switch (v1->agbGameType - 1) {
-    case AGB_TYPE_RUBY:
-        v0 = MainMenu_Text_MigrateFromRuby;
-        break;
-    case AGB_TYPE_SAPPHIRE:
-        v0 = MainMenu_Text_MigrateFromSapphire;
-        break;
-    case AGB_TYPE_LEAFGREEN:
-        v0 = MainMenu_Text_MigrateFromLeafgreen;
-        break;
-    case AGB_TYPE_FIRERED:
-        v0 = MainMenu_Text_MigrateFromFirered;
-        break;
-    case AGB_TYPE_EMERALD:
-        v0 = MainMenu_Text_MigrateFromEmerald;
-        break;
-    }
-
-    ov97_0223795C(v1->unk_00, param2, 3, param3, v0);
-    ov97_0222B4FC(v1, 26, param3);
-
-    v1->unk_DC[param1] = Unk_ov97_0223E014[param1].unk_00;
+    StringTemplate_Free(strTemplate);
+    MessageLoader_Free(msgLoader);
 
     return TRUE;
 }
 
-static BOOL ov97_0222B7DC(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3)
+static BOOL RenderGBAMigrationOption(MainMenuAppData *appData, enum MainMenuOption option, UnkStruct_ov97_02237808 *param2, int yPos)
 {
-    UnkStruct_0222AE60 *v0 = (UnkStruct_0222AE60 *)param0;
+    if (appData->agbGameType == 0) {
+        return FALSE;
+    }
 
-    if (v0->unk_34 == 0) {
-        if (MysteryGift_GetLastWcIDReceived(v0->unk_14) == 1) {
-            v0->unk_34 = 1;
+    int optionTextID;
+    switch (appData->agbGameType - 1) {
+    case AGB_TYPE_RUBY:
+        optionTextID = MainMenu_Text_MigrateFromRuby;
+        break;
+    case AGB_TYPE_SAPPHIRE:
+        optionTextID = MainMenu_Text_MigrateFromSapphire;
+        break;
+    case AGB_TYPE_LEAFGREEN:
+        optionTextID = MainMenu_Text_MigrateFromLeafgreen;
+        break;
+    case AGB_TYPE_FIRERED:
+        optionTextID = MainMenu_Text_MigrateFromFirered;
+        break;
+    case AGB_TYPE_EMERALD:
+        optionTextID = MainMenu_Text_MigrateFromEmerald;
+        break;
+    }
+
+    ov97_0223795C(appData->bgConfig, param2, 3, yPos, optionTextID);
+    ClearWirelessIcon(appData, OPTION_WINDOW_WIDTH, yPos);
+
+    appData->optionApps[option] = sOptions[option].appToLoad;
+
+    return TRUE;
+}
+
+static BOOL RenderMysteryGiftOption(MainMenuAppData *appData, enum MainMenuOption option, UnkStruct_ov97_02237808 *param2, int yPos)
+{
+    if (appData->mysteryGiftUnlocked == FALSE) {
+        if (MysteryGift_GetMysteryGiftUnlockedFlag(appData->mysteryGift) == TRUE) {
+            appData->mysteryGiftUnlocked = TRUE;
         }
 
-        if (SystemData_IsMysteryGiftUnlocked(SaveData_GetSystemData(v0->saveData)) == 1) {
-            v0->unk_34 = 1;
+        if (SystemData_IsMysteryGiftUnlocked(SaveData_GetSystemData(appData->saveData)) == TRUE) {
+            appData->mysteryGiftUnlocked = TRUE;
         }
 
-        DistributionCartridge_UseHeap(HEAP_ID_81);
+        DistributionCartridge_UseHeap(HEAP_ID_MAIN_MENU);
 
         if (DistributionCartridge_ReadLength()) {
-            v0->unk_34 = 1;
-            ov97_02238400(1);
+            appData->mysteryGiftUnlocked = TRUE;
+            ov97_02238400(TRUE);
         }
     }
 
-    if (v0->unk_34 == 1) {
-        if (v0->unk_4C == 0) {
-            v0->unk_34 = 0;
+    if (appData->mysteryGiftUnlocked == TRUE) {
+        if (appData->pokedexObtained == FALSE) {
+            appData->mysteryGiftUnlocked = FALSE;
         }
     }
 
-    if (v0->unk_34 == 1) {
-        ov97_0223795C(v0->unk_00, param2, 3, param3, Unk_ov97_0223E014[param1].unk_08);
-        ov97_0222B4FC(v0, 26, param3);
+    if (appData->mysteryGiftUnlocked == TRUE) {
+        ov97_0223795C(appData->bgConfig, param2, 3, yPos, sOptions[option].textEntryID);
+        ClearWirelessIcon(appData, OPTION_WINDOW_WIDTH, yPos);
 
-        v0->unk_DC[param1] = Unk_ov97_0223E014[param1].unk_00;
-        v0->unk_38 |= 0x1;
+        appData->optionApps[option] = sOptions[option].appToLoad;
+        appData->extraUnlockedOptions |= MYSTERY_GIFT;
 
-        MysteryGift_SetLastWcIDReceived(v0->unk_14);
-        return 1;
+        MysteryGift_SetMysteryGiftUnlockedFlag(appData->mysteryGift);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov97_0222B888(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3)
+static BOOL RenderRangerLinkOption(MainMenuAppData *appData, enum MainMenuOption option, UnkStruct_ov97_02237808 *param2, int yPos)
 {
-    UnkStruct_0222AE60 *v0 = (UnkStruct_0222AE60 *)param0;
+    if ((appData->rangerLinkAvailable == TRUE) && (appData->pokedexObtained == TRUE)) {
+        ov97_0223795C(appData->bgConfig, param2, 3, yPos, sOptions[option].textEntryID);
+        DrawWirelessIcon(appData, OPTION_WINDOW_WIDTH, yPos, WIRELESS_ICON_LOCAL);
 
-    if ((v0->unk_2C == 1) && (v0->unk_4C == 1)) {
-        ov97_0223795C(v0->unk_00, param2, 3, param3, Unk_ov97_0223E014[param1].unk_08);
-        ov97_0222B4AC(v0, 26, param3, 1);
+        appData->optionWirelessIconTypes[option] = WIRELESS_ICON_LOCAL;
+        appData->optionApps[option] = sOptions[option].appToLoad;
+        appData->extraUnlockedOptions |= RANGER_LINK;
 
-        v0->unk_FC[param1] = 1;
-        v0->unk_DC[param1] = Unk_ov97_0223E014[param1].unk_00;
-        v0->unk_38 |= 0x2;
-
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov97_0222B8E4(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3)
+static BOOL RenderWiiConnectionOption(MainMenuAppData *appData, enum MainMenuOption option, UnkStruct_ov97_02237808 *param2, int yPos)
 {
-    UnkStruct_0222AE60 *v0 = (UnkStruct_0222AE60 *)param0;
+    if (appData->wiiConnectionAvailable == TRUE) {
+        ov97_0223795C(appData->bgConfig, param2, 3, yPos, sOptions[option].textEntryID);
+        appData->optionWirelessIconTypes[option] = WIRELESS_ICON_LOCAL;
 
-    if (v0->unk_30 == 1) {
-        ov97_0223795C(v0->unk_00, param2, 3, param3, Unk_ov97_0223E014[param1].unk_08);
-        v0->unk_FC[param1] = 1;
-
-        ov97_0222B4AC(v0, 26, param3, 1);
-        v0->unk_DC[param1] = Unk_ov97_0223E014[param1].unk_00;
-        return 1;
+        DrawWirelessIcon(appData, OPTION_WINDOW_WIDTH, yPos, WIRELESS_ICON_LOCAL);
+        appData->optionApps[option] = sOptions[option].appToLoad;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov97_0222B934(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3)
+static BOOL RenderWFCSettingsOption(MainMenuAppData *appData, enum MainMenuOption option, UnkStruct_ov97_02237808 *param2, int yPos)
 {
-    UnkStruct_0222AE60 *v0 = (UnkStruct_0222AE60 *)param0;
+    ov97_0223795C(appData->bgConfig, param2, 3, yPos, sOptions[option].textEntryID);
+    appData->optionWirelessIconTypes[option] = WIRELESS_ICON_WIFI;
 
-    ov97_0223795C(v0->unk_00, param2, 3, param3, Unk_ov97_0223E014[param1].unk_08);
-    v0->unk_FC[param1] = 2;
+    DrawWirelessIcon(appData, OPTION_WINDOW_WIDTH, yPos, WIRELESS_ICON_WIFI);
+    appData->optionApps[option] = sOptions[option].appToLoad;
 
-    ov97_0222B4AC(v0, 26, param3, 2);
-    v0->unk_DC[param1] = Unk_ov97_0223E014[param1].unk_00;
+    return TRUE;
+}
+
+static BOOL RenderWiiMsgSettingsOption(MainMenuAppData *appData, enum MainMenuOption option, UnkStruct_ov97_02237808 *param2, int yPos)
+{
+    ov97_0223795C(appData->bgConfig, param2, 3, yPos, sOptions[option].textEntryID);
+    appData->optionWirelessIconTypes[option] = WIRELESS_ICON_NONE;
+
+    ClearWirelessIcon(appData, OPTION_WINDOW_WIDTH, yPos);
+    appData->optionApps[option] = sOptions[option].appToLoad;
 
     return 1;
 }
 
-static BOOL ov97_0222B978(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3)
+static BOOL RenderOptions(MainMenuAppData *appData)
 {
-    UnkStruct_0222AE60 *v0 = (UnkStruct_0222AE60 *)param0;
+    int i; // Forward declaration required to match.
 
-    ov97_0223795C(v0->unk_00, param2, 3, param3, Unk_ov97_0223E014[param1].unk_08);
-    v0->unk_FC[param1] = 0;
+    int renderedCustomRenderedOption = FALSE;
+    int nextOptionY = 1;
 
-    ov97_0222B4FC(v0, 26, param3);
-    v0->unk_DC[param1] = Unk_ov97_0223E014[param1].unk_00;
+    appData->nextOptionBasetile = OPTION_WINDOWS_BASE_TILE_START;
 
-    return 1;
-}
+    for (i = 0; i < (sizeof(sOptions) / sizeof(MainMenuOptionTemplate)); i++) {
+        MainMenuOptionTemplate *option = &sOptions[i];
 
-static BOOL ov97_0222B9BC(UnkStruct_0222AE60 *param0)
-{
-    UnkStruct_ov97_0223E014 *v0;
-    UnkStruct_ov97_02237808 v1;
-    int v2, v3, v4;
+        UnkStruct_ov97_02237808 v1;
+        ov97_02237808(&v1, &appData->optionWindows[i], PLTT_1, TEXT_BANK_MAIN_MENU, 1, PLTT_2);
+        ov97_02237858(&v1, OPTION_WINDOW_WIDTH, option->height, appData->nextOptionBasetile);
 
-    v4 = 0;
-    v3 = 1;
-
-    param0->unk_20 = ((1 + 9) + 9);
-
-    for (v2 = 0; v2 < (sizeof(Unk_ov97_0223E014) / sizeof(UnkStruct_ov97_0223E014)); v2++) {
-        v0 = &Unk_ov97_0223E014[v2];
-
-        ov97_02237808(&v1, &param0->unk_5C[v2], 1, 550, 1, 2);
-        ov97_02237858(&v1, 26, v0->unk_04, param0->unk_20);
-
-        if (v0->unk_0C) {
-            if (param0->unk_DC[v2]) {
+        if (option->renderFunc) {
+            if (appData->optionApps[i]) {
                 Window_SetXPos(v1.unk_10, 3);
-                Window_SetYPos(v1.unk_10, v3);
-                Window_DrawStandardFrame(v1.unk_10, 0, v1.unk_38, v1.unk_3C);
+                Window_SetYPos(v1.unk_10, nextOptionY);
+                Window_DrawStandardFrame(v1.unk_10, FALSE, v1.unk_38, v1.unk_3C);
 
-                if (param0->unk_FC[v2]) {
-                    ov97_0222B4AC(param0, 26, v3, param0->unk_FC[v2]);
+                if (appData->optionWirelessIconTypes[i]) {
+                    DrawWirelessIcon(appData, OPTION_WINDOW_WIDTH, nextOptionY, appData->optionWirelessIconTypes[i]);
                 } else {
-                    ov97_0222B4FC(param0, 26, v3);
+                    ClearWirelessIcon(appData, OPTION_WINDOW_WIDTH, nextOptionY);
                 }
 
-                v3 += v0->unk_04 + 2;
-                v4 = 1;
-            } else if (v0->unk_0C(param0, v2, &v1, v3) == 1) {
-                v3 += v0->unk_04 + 2;
-                v4 = 1;
+                nextOptionY += option->height + 2; // Add 2 to account for the window border
+                renderedCustomRenderedOption = TRUE;
+            } else if (option->renderFunc(appData, i, &v1, nextOptionY) == TRUE) {
+                nextOptionY += option->height + 2; // Add 2 to account for the window border
+                renderedCustomRenderedOption = TRUE;
             }
         } else {
-            ov97_0223795C(param0->unk_00, &v1, 3, v3, v0->unk_08);
-            param0->unk_DC[v2] = v0->unk_00;
-            v3 += v0->unk_04 + 2;
+            ov97_0223795C(appData->bgConfig, &v1, 3, nextOptionY, option->textEntryID);
+            appData->optionApps[i] = option->appToLoad;
+            nextOptionY += option->height + 2; // Add 2 to account for the window border
         }
 
-        param0->unk_20 += 26 * v0->unk_04;
+        appData->nextOptionBasetile += OPTION_WINDOW_WIDTH * option->height;
     }
 
-    return v4;
+    return renderedCustomRenderedOption;
 }
 
-static void ov97_0222BAD8(UnkStruct_0222AE60 *param0, int param1)
+static void RenderOptionsFrames(MainMenuAppData *appData, enum MainMenuOption focusedOption)
 {
-    int v0;
-
-    for (v0 = 0; v0 < sizeof(Unk_ov97_0223E014) / sizeof(UnkStruct_ov97_0223E014); v0++) {
-        if (Window_IsInUse(&param0->unk_5C[v0]) == 0) {
+    for (int i = 0; i < sizeof(sOptions) / sizeof(MainMenuOptionTemplate); i++) {
+        if (Window_IsInUse(&appData->optionWindows[i]) == FALSE) {
             continue;
         }
 
-        if (v0 == param1) {
-            Window_DrawStandardFrame(&param0->unk_5C[v0], 1, (1 + 9), 3);
-            Bg_ChangeTilemapRectPalette(param0->unk_00, 0, Window_GetXPos(&param0->unk_5C[v0]), Window_GetYPos(&param0->unk_5C[v0]), Window_GetWidth(&param0->unk_5C[v0]), Window_GetHeight(&param0->unk_5C[v0]), 0);
+        if (i == focusedOption) {
+            Window_DrawStandardFrame(&appData->optionWindows[i], TRUE, FOCUSED_OPTION_FRAME_BASE_TILE, PLTT_3);
+            Bg_ChangeTilemapRectPalette(appData->bgConfig, BG_LAYER_MAIN_0, Window_GetXPos(&appData->optionWindows[i]), Window_GetYPos(&appData->optionWindows[i]), Window_GetWidth(&appData->optionWindows[i]), Window_GetHeight(&appData->optionWindows[i]), PLTT_0);
         } else {
-            Window_DrawStandardFrame(&param0->unk_5C[v0], 1, 1, 2);
-            Bg_ChangeTilemapRectPalette(param0->unk_00, 0, Window_GetXPos(&param0->unk_5C[v0]), Window_GetYPos(&param0->unk_5C[v0]), Window_GetWidth(&param0->unk_5C[v0]), Window_GetHeight(&param0->unk_5C[v0]), 1);
+            Window_DrawStandardFrame(&appData->optionWindows[i], TRUE, UNFOCUSED_OPTION_FRAME_BASE_TILE, PLTT_2);
+            Bg_ChangeTilemapRectPalette(appData->bgConfig, BG_LAYER_MAIN_0, Window_GetXPos(&appData->optionWindows[i]), Window_GetYPos(&appData->optionWindows[i]), Window_GetWidth(&appData->optionWindows[i]), Window_GetHeight(&appData->optionWindows[i]), PLTT_1);
         }
     }
 
-    Bg_CopyTilemapBufferToVRAM(param0->unk_00, 0);
+    Bg_CopyTilemapBufferToVRAM(appData->bgConfig, BG_LAYER_MAIN_0);
 }
 
-static void ov97_0222BB88(UnkStruct_0222AE60 *param0, int param1)
+static void FocusNextOption(MainMenuAppData *appData, int direction)
 {
-    int v0 = param0->unk_54;
+    int nextFocused = appData->focusedOption;
 
     while (TRUE) {
-        v0 += param1;
+        nextFocused += direction;
 
-        if (v0 == -1) {
-            v0 = 0;
+        // Top of the list
+        if (nextFocused == -1) {
+            nextFocused = 0;
         }
 
-        if (v0 == (sizeof(Unk_ov97_0223E014) / sizeof(UnkStruct_ov97_0223E014))) {
-            v0 = (sizeof(Unk_ov97_0223E014) / sizeof(UnkStruct_ov97_0223E014)) - 1;
+        // Bottom of the list
+        if (nextFocused == NELEMS(sOptions)) {
+            nextFocused = NELEMS(sOptions) - 1;
         }
 
-        if (v0 == param0->unk_54) {
+        // Reached either the top or the bottom of the list
+        if (nextFocused == appData->focusedOption) {
             break;
         }
 
-        if (param0->unk_DC[v0]) {
+        // Found an available option
+        if (appData->optionApps[nextFocused]) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             break;
         }
     }
 
-    param0->unk_54 = v0;
+    appData->focusedOption = nextFocused;
 }
 
-static void ov97_0222BBC8(UnkStruct_0222AE60 *param0)
+static void TargetFocusedOptionForScroll(MainMenuAppData *appData)
 {
-    int v0 = (Window_GetYPos(&param0->unk_5C[param0->unk_54]) - 1) * 8;
-    int v1 = (Window_GetHeight(&param0->unk_5C[param0->unk_54]) + 2) * 8;
-    int v2 = param0->unk_120 / FX32_ONE;
+    int targetWindowY = (Window_GetYPos(&appData->optionWindows[appData->focusedOption]) - 1) * 8;
+    int targetWindowHeight = (Window_GetHeight(&appData->optionWindows[appData->focusedOption]) + 2) * 8;
+    int scrollTarget = appData->scrollTarget / FX32_ONE;
 
-    if (v2 > v0) {
-        param0->unk_120 = v0 * FX32_ONE;
+    if (scrollTarget > targetWindowY) {
+        appData->scrollTarget = targetWindowY * FX32_ONE;
     }
 
-    if (v2 + HW_LCD_HEIGHT <= v0) {
-        param0->unk_120 = ((v0 + v1) - HW_LCD_HEIGHT) * FX32_ONE;
+    if (scrollTarget + HW_LCD_HEIGHT <= targetWindowY) {
+        appData->scrollTarget = ((targetWindowY + targetWindowHeight) - HW_LCD_HEIGHT) * FX32_ONE;
     }
 }
 
-static void ov97_0222BC1C(UnkStruct_0222AE60 *param0)
+static void DrawScrollArrows(MainMenuAppData *appData)
 {
-    int v0, v1, v2;
-    int v3, v4, v5;
+    BOOL canScrollUp, canScrollDown;
+    canScrollUp = canScrollDown = FALSE;
 
-    v1 = v2 = 0;
-    v5 = param0->unk_120 / FX32_ONE;
+    int scrollTarget = appData->scrollTarget / FX32_ONE;
 
-    for (v0 = 0; v0 < (sizeof(Unk_ov97_0223E014) / sizeof(UnkStruct_ov97_0223E014)); v0++) {
-        if (Window_IsInUse(&param0->unk_5C[v0]) == 0) {
+    for (int i = 0; i < NELEMS(sOptions); i++) {
+        if (Window_IsInUse(&appData->optionWindows[i]) == FALSE) {
             continue;
         }
 
-        v3 = (Window_GetYPos(&param0->unk_5C[v0]) - 1) * 8;
-        v4 = (Window_GetHeight(&param0->unk_5C[v0]) + 2) * 8;
+        // -1 and +2 to account for the window frame, times 8 to convert from tiles to pixels
+        int windowPosition = (Window_GetYPos(&appData->optionWindows[i]) - 1) * 8;
+        int windowHeight = (Window_GetHeight(&appData->optionWindows[i]) + 2) * 8;
 
-        if (v5 > v3) {
-            v1 = 1;
+        if (scrollTarget > windowPosition) {
+            canScrollUp = TRUE;
         }
 
-        if (v5 + HW_LCD_HEIGHT <= v3) {
-            v2 = 1;
+        if (scrollTarget + HW_LCD_HEIGHT <= windowPosition) {
+            canScrollDown = TRUE;
         }
     }
 
-    Sprite_SetDrawFlag(param0->unk_168[0], v1);
-    Sprite_SetDrawFlag(param0->unk_168[1], v2);
+    Sprite_SetDrawFlag(appData->scrollUpArrowSprite, canScrollUp);
+    Sprite_SetDrawFlag(appData->scrollDownArrowSprite, canScrollDown);
 }
 
-static void ov97_0222BC9C(ApplicationManager *appMan)
+static void FreeApplicationResources(ApplicationManager *appMan)
 {
-    int v0;
-    UnkStruct_0222AE60 *v1 = ApplicationManager_Data(appMan);
+    MainMenuAppData *appData = ApplicationManager_Data(appMan);
 
-    if (v1->unk_168[0] || v1->unk_168[1]) {
-        Sprite_Delete(v1->unk_168[0]);
-        Sprite_Delete(v1->unk_168[1]);
+    if (appData->scrollUpArrowSprite || appData->scrollDownArrowSprite) {
+        Sprite_Delete(appData->scrollUpArrowSprite);
+        Sprite_Delete(appData->scrollDownArrowSprite);
         ov97_02237DA0();
     }
 
-    for (v0 = 0; v0 < (sizeof(Unk_ov97_0223E014) / sizeof(UnkStruct_ov97_0223E014)); v0++) {
-        if (v1->unk_5C[v0].bgConfig) {
-            Window_ClearAndCopyToVRAM(&v1->unk_5C[v0]);
-            Window_Remove(&v1->unk_5C[v0]);
+    for (int i = 0; i < NELEMS(sOptions); i++) {
+        if (appData->optionWindows[i].bgConfig) {
+            Window_ClearAndCopyToVRAM(&appData->optionWindows[i]);
+            Window_Remove(&appData->optionWindows[i]);
         }
     }
 
-    Bg_FreeTilemapBuffer(v1->unk_00, BG_LAYER_MAIN_0);
-    Bg_FreeTilemapBuffer(v1->unk_00, BG_LAYER_MAIN_1);
-    Bg_FreeTilemapBuffer(v1->unk_00, BG_LAYER_MAIN_2);
-    Heap_FreeToHeap(v1->unk_00);
+    Bg_FreeTilemapBuffer(appData->bgConfig, BG_LAYER_MAIN_0);
+    Bg_FreeTilemapBuffer(appData->bgConfig, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(appData->bgConfig, BG_LAYER_MAIN_2);
+    Heap_FreeToHeap(appData->bgConfig);
     SetVBlankCallback(NULL, NULL);
 }
 
-u16 Unk_ov97_0223DF70[] = {
-    0x5381,
-    0x5383,
-    0x5385,
-    0x5387,
-    0x5389,
-    0x538B,
-    0x538D,
-    0x538F,
-    0x5391,
-    0x5393,
-    0x5395,
-    0x5397,
-    0x5399,
-    0x539B,
-    0x539D,
-    0x539F,
-    0x539D,
-    0x539B,
-    0x5399,
-    0x5397,
-    0x5395,
-    0x5393,
-    0x5391,
-    0x538F,
-    0x538D,
-    0x538B,
-    0x5389,
-    0x5387,
-    0x5385,
-    0x5383,
-    0x0
+// clang-format off
+static GXRgb sFocusedOptionBorderColors[] = {
+    GX_RGB( 1, 28, 20),
+    GX_RGB( 3, 28, 20),
+    GX_RGB( 5, 28, 20),
+    GX_RGB( 7, 28, 20),
+    GX_RGB( 9, 28, 20),
+    GX_RGB(11, 28, 20),
+    GX_RGB(13, 28, 20),
+    GX_RGB(15, 28, 20),
+    GX_RGB(17, 28, 20),
+    GX_RGB(19, 28, 20),
+    GX_RGB(21, 28, 20),
+    GX_RGB(23, 28, 20),
+    GX_RGB(25, 28, 20),
+    GX_RGB(27, 28, 20),
+    GX_RGB(29, 28, 20),
+    GX_RGB(31, 28, 20),
+    GX_RGB(29, 28, 20),
+    GX_RGB(27, 28, 20),
+    GX_RGB(25, 28, 20),
+    GX_RGB(23, 28, 20),
+    GX_RGB(21, 28, 20),
+    GX_RGB(19, 28, 20),
+    GX_RGB(17, 28, 20),
+    GX_RGB(15, 28, 20),
+    GX_RGB(13, 28, 20),
+    GX_RGB(11, 28, 20),
+    GX_RGB( 9, 28, 20),
+    GX_RGB( 7, 28, 20),
+    GX_RGB( 5, 28, 20),
+    GX_RGB( 3, 28, 20),
+    COLORS_LIST_END
 };
+// clang-format on
 
-static void ov97_0222BD14(UnkStruct_0222AE60 *param0)
+static void DoColorCycleStep(MainMenuAppData *appData)
 {
-    u16 *v0 = (u16 *)0x500006C;
+    GXRgb *focusedOptionBorderColor = HW_BG_A_PLTT_COLOR(PLTT_3, 6);
 
-    if (Unk_ov97_0223DF70[param0->unk_170] == 0) {
-        param0->unk_170 = 0;
+    if (sFocusedOptionBorderColors[appData->focusedBorderCycleIndex] == COLORS_LIST_END) {
+        appData->focusedBorderCycleIndex = 0;
     }
 
-    *v0 = Unk_ov97_0223DF70[param0->unk_170++];
+    *focusedOptionBorderColor = sFocusedOptionBorderColors[appData->focusedBorderCycleIndex++];
 }
 
-static void ov97_0222BD48(void *param0)
+static void MainMenuVBlankCallback(void *data)
 {
     VramTransfer_Process();
     RenderOam_Transfer();
-    Bg_RunScheduledUpdates((BgConfig *)param0);
+    Bg_RunScheduledUpdates((BgConfig *)data);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static int ov97_0222BD70(ApplicationManager *appMan, int *param1)
+static int MainMenu_Init(ApplicationManager *appMan, int *unused)
 {
-    UnkStruct_0222AE60 *v0;
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_MAIN_MENU, HEAP_SIZE_MAIN_MENU);
 
-    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_81, 0x40000);
-
-    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_0222AE60), HEAP_ID_81);
-    memset(v0, 0, sizeof(UnkStruct_0222AE60));
-    v0->unk_00 = BgConfig_New(HEAP_ID_81);
+    MainMenuAppData *appData = ApplicationManager_NewData(appMan, sizeof(MainMenuAppData), HEAP_ID_MAIN_MENU);
+    memset(appData, 0, sizeof(MainMenuAppData));
+    appData->bgConfig = BgConfig_New(HEAP_ID_MAIN_MENU);
 
     SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
     SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
 
-    v0->saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
-    v0->unk_14 = SaveData_GetMysteryGift(v0->saveData);
-    v0->unk_11C = FX32_ONE * 0;
-    v0->unk_120 = FX32_ONE * 0;
-    v0->unk_0C = SaveData_GetTrainerInfo(v0->saveData);
-    v0->unk_08 = SaveData_GetPokedex(v0->saveData);
-    v0->playTime = SaveData_GetPlayTime(v0->saveData);
-    v0->unk_4C = Pokedex_IsObtained(v0->unk_08);
-    v0->unk_50 = TrainerInfo_BadgeCount(v0->unk_0C);
-    v0->unk_12C = 15;
+    appData->saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
+    appData->mysteryGift = SaveData_GetMysteryGift(appData->saveData);
+    appData->scrollPos = FX32_ONE * 0;
+    appData->scrollTarget = FX32_ONE * 0;
+    appData->trainerInfo = SaveData_GetTrainerInfo(appData->saveData);
+    appData->pokedex = SaveData_GetPokedex(appData->saveData);
+    appData->playTime = SaveData_GetPlayTime(appData->saveData);
+    appData->pokedexObtained = Pokedex_IsObtained(appData->pokedex);
+    appData->badgeCount = TrainerInfo_BadgeCount(appData->trainerInfo);
+    appData->alertsState = MAIN_MANU_ALERTS_STATE_WAIT;
 
-    ov97_02237694(HEAP_ID_81);
+    ov97_02237694(HEAP_ID_MAIN_MENU);
 
-    if (!SaveData_DataExists(v0->saveData)) {
-        v0->unk_14C = 1;
+    if (!SaveData_DataExists(appData->saveData)) {
+        appData->isNewGame = TRUE;
     }
 
     Sound_ConfigureBGMChannelsAndReverb(SOUND_CHANNEL_CONFIG_DEFAULT);
@@ -999,212 +1150,211 @@ static int ov97_0222BD70(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static int ov97_0222BE24(ApplicationManager *appMan, int *param1)
+static int MainMenu_Main(ApplicationManager *appMan, int *state)
 {
-    int v0;
-    UnkStruct_0222AE60 *v1 = ApplicationManager_Data(appMan);
+    MainMenuAppData *appData = ApplicationManager_Data(appMan);
 
-    v1->unk_18++;
+    appData->framesCounter++;
     CTRDG_IsExisting();
 
-    if (ov97_0222B07C(v1) == 1) {
-        ov97_0222AF8C(v1);
-        ov97_0222B25C(v1);
-        return 0;
+    if (ShowAlerts(appData) == TRUE) {
+        DetectWirelessConnections(appData);
+        DoScrollStep(appData);
+        return FALSE;
     }
 
-    ov97_0222BD14(v1);
+    DoColorCycleStep(appData);
 
-    switch (*param1) {
-    case 0:
-        ov97_0222B2EC(v1);
-        *param1 = 1;
+    switch (*state) {
+    case MAIN_MENU_STATE_INIT_GRAPHICS:
+        InitMainMenuGraphics(appData);
+        *state = MAIN_MENU_STATE_CHECK_WFC_USER_INFO;
         break;
-    case 1:
-        if (ov97_0222AE60(v1) == 0) {
-            *param1 = 3;
+    case MAIN_MENU_STATE_CHECK_WFC_USER_INFO:
+        if (CheckWFCUserInfoErased(appData) == FALSE) {
+            *state = MAIN_MENU_STATE_CHECK_NEW_GAME_AND_GBA;
         } else {
-            ov97_02237790(1, 2, param1, 8);
-            *((u16 *)HW_BG_PLTT + 0) = ((31 & 31) << 10 | (12 & 31) << 5 | (12 & 31));
+            ov97_02237790(FADE_TYPE_UNK_1, MAIN_MENU_STATE_WARM_WFC_USER_INFO_ERASED, state, MAIN_MENU_STATE_WAIT_SCREEN_TRANSITION);
+            *HW_BG_A_PLTT_COLOR(PLTT_0, 0) = BACKGROUND_COLOR;
         }
         break;
-    case 2:
-        if (ov97_0222AE64(v1) == 0) {
-            ov97_02237790(0, 3, param1, 8);
+    case MAIN_MENU_STATE_WARM_WFC_USER_INFO_ERASED:
+        if (ShowWFCUserInfoErasedMsg(appData) == FALSE) {
+            ov97_02237790(FADE_TYPE_UNK_0, MAIN_MENU_STATE_CHECK_NEW_GAME_AND_GBA, state, MAIN_MENU_STATE_WAIT_SCREEN_TRANSITION);
         }
         break;
-    case 3:
-        v1->unk_124 = 12;
+    case MAIN_MENU_STATE_CHECK_NEW_GAME_AND_GBA:
+        appData->wirelessCheckState = MAIN_MENU_WIRELESS_CHECK_IDLE;
 
-        if (v1->unk_14C == 1) {
-            v1->unk_58 = 2;
-            ov97_02237790(0, 7, param1, 8);
+        if (appData->isNewGame == TRUE) {
+            appData->nextApplication = NEXT_APP_GAME_INTRO;
+            ov97_02237790(FADE_TYPE_UNK_0, MAIN_MENU_STATE_EXIT, state, MAIN_MENU_STATE_WAIT_SCREEN_TRANSITION);
         } else {
-            ov97_0222AF1C(v1);
-            *param1 = 4;
+            DetectGBAGame(appData);
+            *state = MAIN_MENU_STATE_LOAD_GRAPHICS;
         }
         break;
-    case 4:
-        ov97_0222B404(v1);
-        ov97_0222B46C(v1);
+    case MAIN_MENU_STATE_LOAD_GRAPHICS:
+        LoadScrollArrowsSprites(appData);
+        LoadWirelessIconsGraphics(appData);
 
-        SetVBlankCallback(ov97_0222BD48, v1->unk_00);
+        SetVBlankCallback(MainMenuVBlankCallback, appData->bgConfig);
 
-        ov97_0222B9BC(v1);
-        ov97_0222BAD8(v1, v1->unk_54);
-        ov97_02237790(1, 5, param1, 8);
+        RenderOptions(appData);
+        RenderOptionsFrames(appData, appData->focusedOption);
+        ov97_02237790(FADE_TYPE_UNK_1, MAIN_MENU_STATE_SELECT_OPTION, state, MAIN_MENU_STATE_WAIT_SCREEN_TRANSITION);
 
-        *((u16 *)HW_BG_PLTT + 0) = ((31 & 31) << 10 | (12 & 31) << 5 | (12 & 31));
-        v1->unk_124 = 10;
+        *HW_BG_A_PLTT_COLOR(PLTT_0, 0) = BACKGROUND_COLOR;
+        appData->wirelessCheckState = MAIN_MENU_WIRELESS_CHECK_START;
         break;
-    case 5:
-        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            if (gSystem.pressedKeys & PAD_BUTTON_A) {
+    case MAIN_MENU_STATE_SELECT_OPTION:
+        if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (JOY_NEW(PAD_BUTTON_A)) {
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
-                v1->unk_58 = v1->unk_DC[v1->unk_54];
+                appData->nextApplication = appData->optionApps[appData->focusedOption];
 
-                if (v1->unk_58 == 5) {
+                if (appData->nextApplication == NEXT_APP_GBA_MIGRATION) {
                     if (CTRDG_IsPulledOut() == TRUE) {
-                        if (v1->unk_124 != 12) {
+                        if (appData->wirelessCheckState != MAIN_MENU_WIRELESS_CHECK_IDLE) {
                             sub_02037D84();
                         }
 
-                        sub_0209A8E0(HEAP_ID_81);
+                        sub_0209A8E0(HEAP_ID_MAIN_MENU);
                     }
                 }
             } else {
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
-                v1->unk_58 = 0;
-                ov97_02237784(1);
+                appData->nextApplication = NEXT_APP_TITLE_SCREEN;
+                ov97_02237784(TRUE);
             }
 
-            if (v1->unk_58 == 2) {
-                v1->unk_40 |= 0x80;
-                v1->unk_130 = 1;
-                *param1 = 6;
+            if (appData->nextApplication == NEXT_APP_GAME_INTRO) {
+                appData->pendingAlerts |= NEW_GAME_WARN;
+                appData->alertsPending = TRUE;
+                *state = MAIN_MENU_STATE_CONFIRM_NEW_GAME;
             } else {
-                if ((v1->unk_58 == 6) || (v1->unk_58 == 7)) {
-                    ov97_02237784(1);
+                if ((appData->nextApplication == NEXT_APP_WII_CONNECTION) || (appData->nextApplication == NEXT_APP_WFC_SETTINGS)) {
+                    ov97_02237784(TRUE);
                 }
 
-                ov97_02237790(0, 7, param1, 8);
+                ov97_02237790(FADE_TYPE_UNK_0, MAIN_MENU_STATE_EXIT, state, MAIN_MENU_STATE_WAIT_SCREEN_TRANSITION);
             }
 
-            if (v1->unk_124 == 13) {
-                v1->unk_124 = 14;
+            if (appData->wirelessCheckState == MAIN_MENU_WIRELESS_CHECK_CHECK_RESULT) {
+                appData->wirelessCheckState = MAIN_MENU_WIRELESS_CHECK_STOP;
             }
             break;
         }
 
-        if (v1->unk_48 == 1) {
-            ov97_0222B9BC(v1);
-            v1->unk_48 = 0;
+        if (appData->shouldUpdateOptions == TRUE) {
+            RenderOptions(appData);
+            appData->shouldUpdateOptions = FALSE;
             break;
         }
 
-        if (gSystem.pressedKeys & PAD_KEY_UP) {
-            ov97_0222BB88(v1, -1);
+        if (JOY_NEW(PAD_KEY_UP)) {
+            FocusNextOption(appData, DIRECTION_UP);
         }
 
-        if (gSystem.pressedKeys & PAD_KEY_DOWN) {
-            ov97_0222BB88(v1, 1);
+        if (JOY_NEW(PAD_KEY_DOWN)) {
+            FocusNextOption(appData, DIRECTION_DOWN);
         }
 
-        ov97_0222BAD8(v1, v1->unk_54);
-        ov97_0222BBC8(v1);
-        ov97_0222BC1C(v1);
+        RenderOptionsFrames(appData, appData->focusedOption);
+        TargetFocusedOptionForScroll(appData);
+        DrawScrollArrows(appData);
 
-        if ((*param1 == 5) && (v1->unk_150 == 1)) {
-            v1->unk_150 = 0;
-            v1->unk_130 = 1;
+        if (*state == MAIN_MENU_STATE_SELECT_OPTION && appData->newAlerts == TRUE) {
+            appData->newAlerts = FALSE;
+            appData->alertsPending = TRUE;
         }
         break;
-    case 6:
-        if (v1->unk_12C == 15) {
-            if (v1->unk_138 & PAD_BUTTON_B) {
-                *param1 = 5;
+    case MAIN_MENU_STATE_CONFIRM_NEW_GAME:
+        if (appData->alertsState == MAIN_MANU_ALERTS_STATE_WAIT) {
+            if (appData->alertDismissKeys & PAD_BUTTON_B) {
+                *state = MAIN_MENU_STATE_SELECT_OPTION;
             } else {
-                ov97_02237790(0, 7, param1, 8);
+                ov97_02237790(FADE_TYPE_UNK_0, MAIN_MENU_STATE_EXIT, state, MAIN_MENU_STATE_WAIT_SCREEN_TRANSITION);
             }
         }
         break;
-    case 7:
-        ov97_0222BC9C(appMan);
-        return 1;
+    case MAIN_MENU_STATE_EXIT:
+        FreeApplicationResources(appMan);
+        return TRUE;
         break;
-    case 8:
-        ov97_022377F0(param1);
+    case MAIN_MENU_STATE_WAIT_SCREEN_TRANSITION:
+        ov97_022377F0(state);
         break;
-    case 9:
-        return 1;
+    case MAIN_MENU_STATE_UNUSED_9:
+        return TRUE;
         break;
     }
 
-    ov97_0222AF8C(v1);
-    ov97_0222B25C(v1);
+    DetectWirelessConnections(appData);
+    DoScrollStep(appData);
     ov97_02237CA0();
 
-    return 0;
+    return FALSE;
 }
 
 extern const ApplicationManagerTemplate gMysteryGiftAppTemplate;
 extern const ApplicationManagerTemplate gGBAMigratorAppTemplate;
-extern const ApplicationManagerTemplate Unk_ov97_0223D6BC;
-extern const ApplicationManagerTemplate Unk_020F6DF0;
-extern const ApplicationManagerTemplate Unk_ov98_02249BAC;
+extern const ApplicationManagerTemplate gRangerLinkAppTemplate;
+extern const ApplicationManagerTemplate gRebootIntoWFCSettingsAppTemplate;
+extern const ApplicationManagerTemplate gWiiMessageAppTemplate;
 
-static void ov97_0222C094(UnkStruct_0222AE60 *param0)
+static void EnqueueNextApplication(MainMenuAppData *appData)
 {
-    switch (param0->unk_58) {
-    case 1:
+    switch (appData->nextApplication) {
+    case NEXT_APP_LOAD_SAVE:
         EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartLoadSaveAppTemplate);
         break;
-    case 2:
+    case NEXT_APP_GAME_INTRO:
         EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartRowanIntroAppTemplate);
         break;
-    case 3:
+    case NEXT_APP_MYSTERY_GIFT:
         EnqueueApplication(FS_OVERLAY_ID(overlay97), &gMysteryGiftAppTemplate);
         break;
-    case 5:
+    case NEXT_APP_GBA_MIGRATION:
         EnqueueApplication(FS_OVERLAY_ID(overlay97), &gGBAMigratorAppTemplate);
         break;
-    case 4:
-        EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D6BC);
+    case NEXT_APP_RANGER_LINK:
+        EnqueueApplication(FS_OVERLAY_ID(overlay97), &gRangerLinkAppTemplate);
         break;
-    case 6:
+    case NEXT_APP_WII_CONNECTION:
         RebootAndLoadROM("data/eoo.dat");
         break;
-    case 7:
+    case NEXT_APP_WFC_SETTINGS:
         Sound_StopWaveOutAndSequences();
-        EnqueueApplication(0xffffffff, &Unk_020F6DF0);
+        EnqueueApplication(FS_OVERLAY_ID_NONE, &gRebootIntoWFCSettingsAppTemplate);
         break;
-    case 8:
+    case NEXT_APP_WII_MSG_SETTINGS:
         Sound_StopWaveOutAndSequences();
-        EnqueueApplication(FS_OVERLAY_ID(overlay98), &Unk_ov98_02249BAC);
+        EnqueueApplication(FS_OVERLAY_ID(overlay98), &gWiiMessageAppTemplate);
         break;
-    case 0:
+    case NEXT_APP_TITLE_SCREEN:
         EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenAppTemplate);
         break;
     }
 }
 
-static int ov97_0222C150(ApplicationManager *appMan, int *param1)
+static BOOL MainMenu_Exit(ApplicationManager *appMan, int *unused)
 {
-    UnkStruct_0222AE60 *v0 = ApplicationManager_Data(appMan);
+    MainMenuAppData *appData = ApplicationManager_Data(appMan);
 
-    ov97_0222C094(v0);
+    EnqueueNextApplication(appData);
 
     ApplicationManager_FreeData(appMan);
-    Heap_Destroy(HEAP_ID_81);
+    Heap_Destroy(HEAP_ID_MAIN_MENU);
 
-    ov97_02238400(0);
+    ov97_02238400(FALSE);
 
-    return 1;
+    return TRUE;
 }
 
-const ApplicationManagerTemplate Unk_ov97_0223D674 = {
-    ov97_0222BD70,
-    ov97_0222BE24,
-    ov97_0222C150,
-    0xffffffff
+const ApplicationManagerTemplate gMainMenuAppTemplate = {
+    MainMenu_Init,
+    MainMenu_Main,
+    MainMenu_Exit,
+    FS_OVERLAY_ID_NONE
 };
