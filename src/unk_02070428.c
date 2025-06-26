@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_defs/special_encounter.h"
-#include "overworld_map_history.h"
 #include "struct_defs/struct_0205EC34.h"
 
 #include "field/field_system.h"
@@ -14,6 +13,7 @@
 #include "journal.h"
 #include "location.h"
 #include "map_header.h"
+#include "overworld_map_history.h"
 #include "player_avatar.h"
 #include "roaming_pokemon.h"
 #include "save_player.h"
@@ -21,7 +21,6 @@
 #include "system_flags.h"
 #include "system_vars.h"
 #include "unk_0203A7D8.h"
-#include "overworld_map_history.h"
 #include "vars_flags.h"
 
 static BOOL sub_020705DC(FieldSystem *fieldSystem);

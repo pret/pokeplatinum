@@ -7,7 +7,6 @@
 
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_defs/struct_0203D8AC.h"
-#include "overworld_map_history.h"
 #include "struct_defs/union_0206B878.h"
 
 #include "field/field_system.h"
@@ -19,6 +18,7 @@
 #include "location.h"
 #include "map_header.h"
 #include "map_matrix.h"
+#include "overworld_map_history.h"
 #include "player_avatar.h"
 #include "save_player.h"
 #include "script_manager.h"
