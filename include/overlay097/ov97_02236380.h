@@ -3,8 +3,8 @@
 
 #include "overlay097/gba_save.h"
 
-u32 GetGBABoxMonData(BoxPokemonGBA *boxMon, int field, u8 *data);
-void SetGBABoxMonData(BoxPokemonGBA *boxMon, int field, const u8 *dataArg);
+u32 GetGBABoxMonData(BoxPokemonGBA *boxMonGBA, int field, u8 *data);
+void SetGBABoxMonData(BoxPokemonGBA *boxMonGBA, int field, const u8 *dataArg);
 int ConvertGBASpeciesToDS(int species);
 u32 GetBoxMonGBALevel(BoxPokemonGBA *boxMonGBA);
 
