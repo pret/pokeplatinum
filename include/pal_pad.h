@@ -24,7 +24,7 @@ typedef struct PalPad {
 
 int PalPad_SaveSize(void);
 PalPad *SaveData_GetPalPad(SaveData *saveData);
-void PalPad_Init(PalPad *param0);
+void PalPad_Init(PalPad *palPad);
 
 /**
  * @brief Get the pointer to a friends' name

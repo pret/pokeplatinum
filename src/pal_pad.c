@@ -18,13 +18,13 @@ PalPad *SaveData_GetPalPad(SaveData *saveData)
     return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_PAL_PAD);
 }
 
-void PalPad_Init(PalPad *param0)
+void PalPad_Init(PalPad *palPad)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < PAL_PAD_ENTRIES; v0++) {
-        memset(&param0[v0], 0, sizeof(PalPad));
-        param0[v0].trainerName[0] = 0xffff;
+    for (i = 0; i < PAL_PAD_ENTRIES; i++) {
+        memset(&palPad[i], 0, sizeof(PalPad));
+        palPad[i].trainerName[0] = 0xffff;
     }
 }
 
@@ -97,18 +97,18 @@ void PalPad_PushEntries(PalPad *destination, PalPad *source, int numberToCopy, i
 
 int PalPad_TrainerIsFriend(PalPad *palPad, u32 trainerId)
 {
-    int v0, v1;
+    int i, j;
 
-    for (v0 = 0; v0 < PAL_PAD_ENTRIES; v0++) {
-        if (palPad[v0].trainerId == trainerId) {
+    for (i = 0; i < PAL_PAD_ENTRIES; i++) {
+        if (palPad[i].trainerId == trainerId) {
             return 1;
         }
     }
 
-    for (v0 = 0; v0 < PAL_PAD_ENTRIES; v0++) {
-        for (v1 = 0; v1 < PAL_PAD_ENTRIES; v1++) {
-            if (palPad[v0].trainerIdHistory[v1] == trainerId) {
-                return 2 + v0;
+    for (i = 0; i < PAL_PAD_ENTRIES; i++) {
+        for (j = 0; j < PAL_PAD_ENTRIES; j++) {
+            if (palPad[i].trainerIdHistory[j] == trainerId) {
+                return 2 + i;
             }
         }
     }
