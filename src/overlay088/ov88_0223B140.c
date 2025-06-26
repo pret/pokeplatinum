@@ -1647,20 +1647,21 @@ static void ov88_0223D0C0(SaveData *saveData)
 
 static void ov88_0223D0D4(TrainerInfo *param0, PalPad *param1, PalPad *param2)
 {
+    // this is the exact same as PalPad_CreateNetworkObject ?
     int v0;
 
-    CharCode_Copy(param2->unk_00, TrainerInfo_Name(param0));
+    CharCode_Copy(param2->trainerName, TrainerInfo_Name(param0));
 
-    param2->unk_10 = TrainerInfo_ID(param0);
-    param2->unk_14 = TrainerInfo_RegionCode(param0);
-    param2->unk_15 = TrainerInfo_GameCode(param0);
-    param2->unk_16 = TrainerInfo_Gender(param0);
+    param2->trainerId = TrainerInfo_ID(param0);
+    param2->regionCode = TrainerInfo_RegionCode(param0);
+    param2->gameCode = TrainerInfo_GameCode(param0);
+    param2->gender = TrainerInfo_Gender(param0);
 
     for (v0 = 0; v0 < 16; v0++) {
-        param2->unk_18[v0] = param1[v0].unk_10;
-        param2->unk_58[v0] = param1[v0].unk_15;
-        param2->unk_68[v0] = param1[v0].unk_14;
-        param2->unk_78[v0] = param1[v0].unk_16;
+        param2->trainerIdHistory[v0] = param1[v0].trainerId;
+        param2->gameCodeHistory[v0] = param1[v0].gameCode;
+        param2->regionCodeHistory[v0] = param1[v0].regionCode;
+        param2->genderHistory[v0] = param1[v0].gender;
     }
 
     CommSys_SendDataHuge(28, param2, sizeof(PalPad));

@@ -11,7 +11,7 @@
 
 int PalPad_SaveSize(void)
 {
-    return sizeof(PalPad) * 16;
+    return sizeof(PalPad) * PAL_PAD_ENTRIES;
 }
 
 PalPad *SaveData_GetPalPad(SaveData *saveData)
@@ -23,45 +23,45 @@ void PalPad_Init(PalPad *param0)
 {
     int v0;
 
-    for (v0 = 0; v0 < 16; v0++) {
+    for (v0 = 0; v0 < PAL_PAD_ENTRIES; v0++) {
         memset(&param0[v0], 0, sizeof(PalPad));
-        param0[v0].unk_00[0] = 0xffff;
+        param0[v0].trainerName[0] = 0xffff;
     }
 }
 
-const u16 *sub_02027FBC(const PalPad *param0, int param1)
+const u16 *PalPad_GetTrainerNamePointer(const PalPad *palPad, int trainerIndex)
 {
-    return param0[param1].unk_00;
+    return palPad[trainerIndex].trainerName;
 }
 
-u8 sub_02027FC4(const PalPad *param0, int param1)
+u8 PalPad_GetTrainerRegionCode(const PalPad *palPad, int trainerIndex)
 {
-    return param0->unk_68[param1];
+    return palPad->regionCodeHistory[trainerIndex];
 }
 
-BOOL sub_02027FCC(const PalPad *param0, const PalPad *param1)
+BOOL PalPad_TrainersEqual(const PalPad *first, const PalPad *second)
 {
-    if (0 == CharCode_Compare(param0->unk_00, param1->unk_00)) {
-        if (param0->unk_10 == param1->unk_10) {
-            return 1;
+    if (0 == CharCode_Compare(first->trainerName, second->trainerName)) {
+        if (first->trainerId == second->trainerId) {
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 void sub_02027FEC(PalPad *param0, PalPad *param1, int param2, int heapID)
 {
     int v0, v1, v2;
     int v3[5];
-    PalPad *v4 = Heap_AllocFromHeap(heapID, sizeof(PalPad) * 16);
+    PalPad *v4 = Heap_AllocFromHeap(heapID, sizeof(PalPad) * PAL_PAD_ENTRIES);
     PalPad_Init(v4);
 
     for (v0 = 0; v0 < param2; v0++) {
         v3[v0] = -1;
 
-        for (v1 = 0; v1 < 16; v1++) {
-            if (sub_02027FCC(&param0[v1], &param1[v0])) {
+        for (v1 = 0; v1 < PAL_PAD_ENTRIES; v1++) {
+            if (PalPad_TrainersEqual(&param0[v1], &param1[v0])) {
                 v3[v0] = v1;
             }
         }
@@ -73,24 +73,24 @@ void sub_02027FEC(PalPad *param0, PalPad *param1, int param2, int heapID)
         v4[v2] = param1[v0];
 
         if (v3[v0] >= 0) {
-            param0[v3[v0]].unk_00[0] = 0xffff;
+            param0[v3[v0]].trainerName[0] = 0xffff;
         }
 
         v2++;
     }
 
-    for (v0 = 0; v0 < 16; v0++) {
-        if (param0[v0].unk_00[0] != 0xffff) {
+    for (v0 = 0; v0 < PAL_PAD_ENTRIES; v0++) {
+        if (param0[v0].trainerName[0] != 0xffff) {
             v4[v2] = param0[v0];
             v2++;
 
-            if (v2 >= 16) {
+            if (v2 >= PAL_PAD_ENTRIES) {
                 break;
             }
         }
     }
 
-    memcpy(param0, v4, sizeof(PalPad) * 16);
+    memcpy(param0, v4, sizeof(PalPad) * PAL_PAD_ENTRIES);
     Heap_FreeToHeap(v4);
 }
 
@@ -98,15 +98,15 @@ int sub_020280E0(PalPad *param0, u32 param1)
 {
     int v0, v1;
 
-    for (v0 = 0; v0 < 16; v0++) {
-        if (param0[v0].unk_10 == param1) {
+    for (v0 = 0; v0 < PAL_PAD_ENTRIES; v0++) {
+        if (param0[v0].trainerId == param1) {
             return 1;
         }
     }
 
-    for (v0 = 0; v0 < 16; v0++) {
-        for (v1 = 0; v1 < 16; v1++) {
-            if (param0[v0].unk_18[v1] == param1) {
+    for (v0 = 0; v0 < PAL_PAD_ENTRIES; v0++) {
+        for (v1 = 0; v1 < PAL_PAD_ENTRIES; v1++) {
+            if (param0[v0].trainerIdHistory[v1] == param1) {
                 return 2 + v0;
             }
         }

@@ -75,7 +75,7 @@ static void sub_0207ADB4(int param0, int param1, void *param2, void *param3);
 static void sub_0207ACB4(SysTask *param0, void *param1);
 static void sub_0207AD40(SysTask *param0, void *param1);
 static void sub_0207AE34(int param0, int param1, void *param2, void *param3);
-static void sub_0207ADD4(TrainerInfo *param0, PalPad *param1, PalPad *param2);
+static void PalPad_CreateNetworkObject(TrainerInfo *param0, PalPad *param1, PalPad *param2);
 
 static const CommCmdTable Unk_020F099C[] = {
     { sub_0207ADB4, sub_02032944, NULL },
@@ -455,12 +455,12 @@ BOOL sub_0207AAFC(UnkStruct_0207A778 *param0)
         v1 = param0->unk_00->trainerInfo[CommSys_CurNetId()];
     }
 
-    sub_0207ADD4(v1, param0->unk_00->palPad, (PalPad *)param0->unk_20);
+    PalPad_CreateNetworkObject(v1, param0->unk_00->palPad, (PalPad *)param0->unk_20);
 
     {
         int v2;
 
-        for (v2 = 0; v2 < 4; v2++) {
+        for (v2 = 0; v2 < 4; v2++) { // 4 pal pads
             param0->unk_10[v2] = Heap_AllocFromHeap(HEAP_ID_BATTLE, 136);
         }
     }
@@ -468,7 +468,7 @@ BOOL sub_0207AAFC(UnkStruct_0207A778 *param0)
     return 1;
 }
 
-BOOL sub_0207AB58(UnkStruct_0207A778 *param0)
+BOOL sub_0207AB58(UnkStruct_0207A778 *param0) // SEND pal pad data?!
 {
     if (CommSys_SendRingRemainingSize() != 264) {
         return 0;
@@ -651,22 +651,22 @@ static void sub_0207ADB4(int param0, int param1, void *param2, void *param3)
     ov16_0223F350(v0, 1);
 }
 
-static void sub_0207ADD4(TrainerInfo *param0, PalPad *param1, PalPad *param2)
+static void PalPad_CreateNetworkObject(TrainerInfo *trainerInfo, PalPad *source, PalPad *destination)
 {
     int v0;
 
-    CharCode_Copy(param2->unk_00, TrainerInfo_Name(param0));
+    CharCode_Copy(destination->trainerName, TrainerInfo_Name(trainerInfo));
 
-    param2->unk_10 = TrainerInfo_ID(param0);
-    param2->unk_14 = TrainerInfo_RegionCode(param0);
-    param2->unk_15 = TrainerInfo_GameCode(param0);
-    param2->unk_16 = TrainerInfo_Gender(param0);
+    destination->trainerId = TrainerInfo_ID(trainerInfo);
+    destination->regionCode = TrainerInfo_RegionCode(trainerInfo);
+    destination->gameCode = TrainerInfo_GameCode(trainerInfo);
+    destination->gender = TrainerInfo_Gender(trainerInfo);
 
     for (v0 = 0; v0 < 16; v0++) {
-        param2->unk_18[v0] = param1[v0].unk_10;
-        param2->unk_58[v0] = param1[v0].unk_15;
-        param2->unk_68[v0] = param1[v0].unk_14;
-        param2->unk_78[v0] = param1[v0].unk_16;
+        destination->trainerIdHistory[v0] = source[v0].trainerId;
+        destination->gameCodeHistory[v0] = source[v0].gameCode;
+        destination->regionCodeHistory[v0] = source[v0].regionCode;
+        destination->genderHistory[v0] = source[v0].gender;
     }
 }
 
