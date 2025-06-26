@@ -758,7 +758,7 @@ static Strbuf *ov56_02256E5C(PalPad *param0, u32 param1, StringTemplate *param2,
     int v2 = 0;
 
     if (param1 != TrainerInfo_ID(param4)) {
-        v2 = sub_020280E0(param0, param1);
+        v2 = PalPad_TrainerIsFriend(param0, param1);
     }
 
     if (v2 > 0) {

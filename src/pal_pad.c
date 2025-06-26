@@ -49,63 +49,65 @@ BOOL PalPad_TrainersEqual(const PalPad *first, const PalPad *second)
     return FALSE;
 }
 
-void sub_02027FEC(PalPad *param0, PalPad *param1, int param2, int heapID)
+void PalPad_PushEntries(PalPad *destination, PalPad *source, int numberToCopy, int heapID)
 {
-    int v0, v1, v2;
-    int v3[5];
-    PalPad *v4 = Heap_AllocFromHeap(heapID, sizeof(PalPad) * PAL_PAD_ENTRIES);
-    PalPad_Init(v4);
+    int i, j, newIndex;
+    int diffs[5];
+    PalPad *newPad = Heap_AllocFromHeap(heapID, sizeof(PalPad) * PAL_PAD_ENTRIES);
+    PalPad_Init(newPad);
 
-    for (v0 = 0; v0 < param2; v0++) {
-        v3[v0] = -1;
+    for (i = 0; i < numberToCopy; i++) {
+        diffs[i] = -1;
 
-        for (v1 = 0; v1 < PAL_PAD_ENTRIES; v1++) {
-            if (PalPad_TrainersEqual(&param0[v1], &param1[v0])) {
-                v3[v0] = v1;
+        for (j = 0; j < PAL_PAD_ENTRIES; j++) {
+            if (PalPad_TrainersEqual(&destination[j], &source[i])) {
+                diffs[i] = j;
             }
         }
     }
 
-    v2 = 0;
+    newIndex = 0;
 
-    for (v0 = 0; v0 < param2; v0++) {
-        v4[v2] = param1[v0];
+    for (i = 0; i < numberToCopy; i++) {
+        newPad[newIndex] = source[i];
 
-        if (v3[v0] >= 0) {
-            param0[v3[v0]].trainerName[0] = 0xffff;
+        // this index is the same in both pads; unset name to skip later
+        if (diffs[i] >= 0) {
+            destination[diffs[i]].trainerName[0] = 0xffff;
         }
 
-        v2++;
+        newIndex++;
     }
 
-    for (v0 = 0; v0 < PAL_PAD_ENTRIES; v0++) {
-        if (param0[v0].trainerName[0] != 0xffff) {
-            v4[v2] = param0[v0];
-            v2++;
+    for (i = 0; i < PAL_PAD_ENTRIES; i++) {
+        // if the current index has a name, append it to the new list
+        if (destination[i].trainerName[0] != 0xffff) {
+            newPad[newIndex] = destination[i];
+            newIndex++;
 
-            if (v2 >= PAL_PAD_ENTRIES) {
+            if (newIndex >= PAL_PAD_ENTRIES) {
                 break;
             }
         }
     }
 
-    memcpy(param0, v4, sizeof(PalPad) * PAL_PAD_ENTRIES);
-    Heap_FreeToHeap(v4);
+    memcpy(destination, newPad, sizeof(PalPad) * PAL_PAD_ENTRIES);
+    Heap_FreeToHeap(newPad);
 }
 
-int sub_020280E0(PalPad *param0, u32 param1)
+int PalPad_TrainerIsFriend(PalPad *palPad, u32 trainerId)
 {
     int v0, v1;
 
     for (v0 = 0; v0 < PAL_PAD_ENTRIES; v0++) {
-        if (param0[v0].trainerId == param1) {
+        if (palPad[v0].trainerId == trainerId) {
             return 1;
         }
     }
 
     for (v0 = 0; v0 < PAL_PAD_ENTRIES; v0++) {
         for (v1 = 0; v1 < PAL_PAD_ENTRIES; v1++) {
-            if (param0[v0].trainerIdHistory[v1] == param1) {
+            if (palPad[v0].trainerIdHistory[v1] == trainerId) {
                 return 2 + v0;
             }
         }

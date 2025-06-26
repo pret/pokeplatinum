@@ -25,10 +25,51 @@ typedef struct PalPad {
 int PalPad_SaveSize(void);
 PalPad *SaveData_GetPalPad(SaveData *saveData);
 void PalPad_Init(PalPad *param0);
+
+/**
+ * @brief Get the pointer to a friends' name
+ *
+ * @param palPad
+ * @param trainerIndex
+ * @return A pointer to a trainer name for string buffers
+ */
 const u16 *PalPad_GetTrainerNamePointer(const PalPad *palPad, int trainerIndex);
+
+/**
+ * @brief Get the region code for a friend of friend
+ *
+ * @param palPad
+ * @param trainerIndex
+ * @return A region code value returned by TrainerInfo_RegionCode
+ */
 u8 PalPad_GetTrainerRegionCode(const PalPad *palPad, int trainerIndex);
+
+/**
+ * @brief Compare two Pal Pads by their trainer name & ID
+ *
+ * @param first
+ * @param second
+ * @return TRUE if trainer name & ID matches, FALSE otherwise
+ */
 BOOL PalPad_TrainersEqual(const PalPad *first, const PalPad *second);
-void sub_02027FEC(PalPad *param0, PalPad *param1, int param2, int heapID);
-int sub_020280E0(PalPad *param0, u32 param1);
+
+/**
+ * @brief Push {numberToCopy} entries from the beginning of {source} to the beginning of {destination}
+ *
+ * @param destination   The pad to push entries into
+ * @param source        The pad to push from
+ * @param numberToCopy  The number of elements to take from {source}
+ * @param heapId        Heap area for pointer operations
+ */
+void PalPad_PushEntries(PalPad *destination, PalPad *source, int numberToCopy, int heapID);
+
+/**
+ * @brief Determine whether a given trainer ID is a known friend or not
+ *
+ * @param palPad    The Pal Pad to reference
+ * @param trainerId The trainer ID to search for
+ * @return 0 if not a friend; 1 if a direct friend; 2+ if a friend of a friend
+ */
+int PalPad_TrainerIsFriend(PalPad *palPad, u32 trainerId);
 
 #endif // POKEPLATINUM_UNK_PAL_PAD_H

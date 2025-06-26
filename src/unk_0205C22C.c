@@ -155,7 +155,7 @@ static int sub_0205C340(UnkStruct_0205C22C *param0, int param1, WMBssDesc *param
             if (v4->unk_18[v0] != 0) {
                 param0->unk_0C[v1].unk_00 = 2;
                 param0->unk_0C[v1].unk_08 = (v4->unk_18[v0] & 0x7f);
-                param0->unk_0C[v1].unk_02 = sub_020280E0(param3, v4->unk_00[v0]);
+                param0->unk_0C[v1].unk_02 = PalPad_TrainerIsFriend(param3, v4->unk_00[v0]);
                 v2 = 1;
             }
             break;
@@ -209,7 +209,7 @@ static void sub_0205C44C(UnkStruct_0205C22C *param0, UnkStruct_0205B43C *param1,
         case 0:
             if (v0 != NULL) {
                 param0->unk_0C[v1].unk_08 = TrainerInfo_Appearance(v3);
-                param0->unk_0C[v1].unk_02 = sub_020280E0(param3, TrainerInfo_ID(v3));
+                param0->unk_0C[v1].unk_02 = PalPad_TrainerIsFriend(param3, TrainerInfo_ID(v3));
                 param0->unk_0C[v1].unk_0C = v2->unk_00;
 
                 if (sub_0205C340(param0, v1, v0, param3)) {
