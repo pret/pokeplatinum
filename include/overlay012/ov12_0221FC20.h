@@ -154,7 +154,7 @@ typedef struct BattleAnimSystem {
     BattleAnimScriptLoop loopStack[BATTLE_ANIM_SCRIPT_MAX_NESTED_LOOPS];
     UnkStruct_ov12_02221810 unk_48[2];
     u8 cameraProjections[MAX_PARTICLE_SYSTEMS]; // Projection setting for each particle system. See enum CameraProjection
-    u8 unk_78[MAX_PARTICLE_SYSTEMS];
+    u8 particleSystemCameraFlip[MAX_PARTICLE_SYSTEMS]; // Whether to flip the camera (Y axis) for each particle system
     s8 unk_88;
     u8 scriptDelay;
     u16 activeAnimTasks;
