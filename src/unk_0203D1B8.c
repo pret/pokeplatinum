@@ -285,11 +285,8 @@ void sub_0203D1E4(FieldSystem *fieldSystem, void *param1)
 
 void *sub_0203D20C(FieldSystem *fieldSystem, UnkStruct_020684D0 *param1)
 {
-    Bag *v0;
-    void *v1;
-
-    v0 = SaveData_GetBag(fieldSystem->saveData);
-    v1 = sub_0207D824(v0, Unk_020EA164, HEAP_ID_FIELDMAP);
+    Bag *v0 = SaveData_GetBag(fieldSystem->saveData);
+    void *v1 = sub_0207D824(v0, Unk_020EA164, HEAP_ID_FIELDMAP);
 
     sub_0207CB2C(v1, fieldSystem->saveData, 0, fieldSystem->bagCursor);
     sub_0207CB78(v1, fieldSystem->mapLoadType);
@@ -449,13 +446,9 @@ int sub_0203D440(void *param0)
 
 static BOOL sub_0203D444(FieldTask *param0)
 {
-    FieldSystem *fieldSystem;
-    UnkStruct_0203D444 *v1;
-    int *v2;
-
-    fieldSystem = FieldTask_GetFieldSystem(param0);
-    v1 = FieldTask_GetEnv(param0);
-    v2 = FieldTask_GetState(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_0203D444 *v1 = FieldTask_GetEnv(param0);
+    int *v2 = FieldTask_GetState(param0);
 
     switch (*v2) {
     case 0:

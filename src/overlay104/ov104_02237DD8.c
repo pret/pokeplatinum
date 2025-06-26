@@ -636,9 +636,8 @@ void ov104_02238658(void *param0, UnkStruct_ov104_0223C4CC *param1)
 
 void ov104_02238728(void *param0, UnkStruct_ov104_0223C4CC *param1)
 {
-    NARC *v0;
     UnkStruct_ov104_0223BFFC *v1 = (UnkStruct_ov104_0223BFFC *)param0;
-    v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, HEAP_ID_94);
+    NARC *v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, HEAP_ID_94);
 
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 53, param1->unk_00, 3, 0, 0, 1, HEAP_ID_94);
     Bg_ScheduleTilemapTransfer(param1->unk_00, 3);

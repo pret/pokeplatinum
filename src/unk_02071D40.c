@@ -241,11 +241,8 @@ static void sub_02072120(const u32 param0, const u32 param1, const u32 param2, c
 static void sub_0207216C(TrainerInfo *param0, FieldSystem *fieldSystem, TrainerCard *param2)
 {
     u8 v0;
-    UnkStruct_0202C834 *v1;
-    UnkStruct_0202C844 *v2;
-
-    v1 = sub_0202C834(fieldSystem->saveData);
-    v2 = sub_0202C844(v1);
+    UnkStruct_0202C834 *v1 = sub_0202C834(fieldSystem->saveData);
+    UnkStruct_0202C844 *v2 = sub_0202C844(v1);
 
     for (v0 = 0; v0 < 8; v0++) {
         if (TrainerInfo_HasBadge(param0, v0)) {
@@ -261,11 +258,8 @@ static void sub_0207216C(TrainerInfo *param0, FieldSystem *fieldSystem, TrainerC
 void sub_020721D4(FieldSystem *fieldSystem, const TrainerCard *param1)
 {
     u8 v0;
-    UnkStruct_0202C834 *v1;
-    UnkStruct_0202C844 *v2;
-
-    v1 = sub_0202C834(fieldSystem->saveData);
-    v2 = sub_0202C844(v1);
+    UnkStruct_0202C834 *v1 = sub_0202C834(fieldSystem->saveData);
+    UnkStruct_0202C844 *v2 = sub_0202C844(v1);
 
     for (v0 = 0; v0 < 8; v0++) {
         sub_0202C850(v0, param1->unk_48[v0].unk_00_1, v2);

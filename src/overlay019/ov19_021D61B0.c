@@ -999,9 +999,8 @@ static void BoxGraphics_ShowMenu(SysTask *param0, void *param1)
 
 static void BoxGraphics_CloseMessageBox(SysTask *param0, void *param1)
 {
-    UnkStruct_ov19_021D61B0 *v0;
     BoxTaskParams *v1 = (BoxTaskParams *)param1;
-    v0 = v1->unk_0C;
+    UnkStruct_ov19_021D61B0 *v0 = v1->unk_0C;
 
     ov19_021DB6F0(&(v0->unk_6658));
     BoxTaskParams_Free(v1);
@@ -1009,9 +1008,8 @@ static void BoxGraphics_CloseMessageBox(SysTask *param0, void *param1)
 
 static void ov19_021D6EC0(SysTask *param0, void *param1)
 {
-    UnkStruct_ov19_021D61B0 *v0;
     BoxTaskParams *v1 = (BoxTaskParams *)param1;
-    v0 = v1->unk_0C;
+    UnkStruct_ov19_021D61B0 *v0 = v1->unk_0C;
 
     ov19_021DB724(&(v0->unk_6658));
     BoxTaskParams_Free(v1);

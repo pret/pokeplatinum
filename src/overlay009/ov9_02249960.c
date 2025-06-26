@@ -1167,13 +1167,9 @@ const UnkStruct_ov9_02252EB4 Unk_ov9_02252EB4[];
 
 void DistortionWorld_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 {
-    PersistedMapFeatures *v0;
-    UnkStruct_02071C5C *v1;
-    UnkStruct_ov9_02249B04 *v2;
-
-    v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
-    v1 = PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD);
-    v2 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov9_02249B04));
+    PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    UnkStruct_02071C5C *v1 = PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD);
+    UnkStruct_ov9_02249B04 *v2 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov9_02249B04));
 
     memset(v2, 0, sizeof(UnkStruct_ov9_02249B04));
 
@@ -8770,9 +8766,8 @@ static int ov9_022507C4(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *
 
 static int ov9_022507FC(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
-    UnkStruct_020216E0 *v0;
     UnkStruct_ov9_0225074C *v1 = ov9_0224E39C(param0);
-    v0 = ov5_021EB1A0(v1->unk_18);
+    UnkStruct_020216E0 *v0 = ov5_021EB1A0(v1->unk_18);
 
     if (v0 != NULL) {
         v1->unk_00 = (FX32_ONE * 16);

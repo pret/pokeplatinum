@@ -403,11 +403,8 @@ static UnkStruct_ov5_021DF84C *ov5_021ED110(UnkStruct_ov5_021ED0A4 *param0, u32 
 int ov5_021ED150(const MapObjectManager *param0, u32 param1, UnkStruct_ov5_021DF84C *param2)
 {
     int v0;
-    const UnkStruct_ov5_021ED0A4 *v1;
-    UnkStruct_ov5_021ED110 *v2;
-
-    v1 = sub_0206285C(param0);
-    v2 = v1->unk_F4;
+    const UnkStruct_ov5_021ED0A4 *v1 = sub_0206285C(param0);
+    UnkStruct_ov5_021ED110 *v2 = v1->unk_F4;
     v0 = v1->unk_04;
 
     do {
@@ -771,9 +768,8 @@ static void ov5_021ED610(UnkStruct_ov5_021ED0A4 *param0, int param1)
 static void ov5_021ED63C(MapObjectManager *param0, UnkStruct_ov5_021ED0A4 *param1)
 {
     int v0;
-    int *v1;
     ResourceCollection *v2 = ov5_021EDC98(param1);
-    v1 = ov5_021EDCBC(param1);
+    int *v1 = ov5_021EDCBC(param1);
     v1 = &v1[ov5_021EDCC8(param1)];
     v0 = ov5_021EDCD0(param1);
 
@@ -853,9 +849,8 @@ static void ov5_021ED74C(UnkStruct_ov5_021ED0A4 *param0, int param1)
 static void ov5_021ED778(MapObjectManager *param0, UnkStruct_ov5_021ED0A4 *param1)
 {
     int v0;
-    int *v1;
     ResourceCollection *v2 = ov5_021EDCA0(param1);
-    v1 = ov5_021EDCC0(param1);
+    int *v1 = ov5_021EDCC0(param1);
     v1 = &v1[ov5_021EDCD8(param1)];
     v0 = ov5_021EDCE0(param1);
 
@@ -936,9 +931,8 @@ static void ov5_021ED88C(UnkStruct_ov5_021ED0A4 *param0, int param1)
 static void ov5_021ED8B8(MapObjectManager *param0, UnkStruct_ov5_021ED0A4 *param1)
 {
     int v0, v1;
-    int *v2;
     TextureResourceManager *v3 = ov5_021EDCB0(param1);
-    v2 = ov5_021EDCB8(param1);
+    int *v2 = ov5_021EDCB8(param1);
     v2 = &v2[ov5_021EDCE8(param1)];
     v0 = ov5_021EDCF0(param1);
 

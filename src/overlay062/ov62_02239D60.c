@@ -945,11 +945,8 @@ static void ov62_0223ABE4(UnkStruct_0208C06C *param0)
 static void ov62_0223AC0C(UnkStruct_0208C06C *param0, int param1)
 {
     UnkStruct_ov62_02239DBC *v0 = param0->unk_860;
-    Window *v1;
-    Strbuf *v2;
-
-    v1 = &v0->unk_1B4[2];
-    v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
+    Window *v1 = &v0->unk_1B4[2];
+    Strbuf *v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
 
     Window_FillTilemap(v1, Unk_ov62_02248D78[2]);
     Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, v2, 0, Unk_ov62_02248DA8[2], TEXT_SPEED_NO_TRANSFER, Unk_ov62_02248D90[2], NULL);

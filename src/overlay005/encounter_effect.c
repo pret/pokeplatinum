@@ -179,11 +179,8 @@ static UnkStruct_ov5_02202120 *Unk_ov5_02202120 = NULL;
 
 void EncounterEffect_Start(enum EncEffectCutIn effect, FieldSystem *fieldSystem, BOOL *done)
 {
-    SysTask *effectTask;
-    EncounterEffect *encEffect;
-
-    effectTask = SysTask_StartAndAllocateParam(sEncounterEffectTaskFuncs[effect], sizeof(EncounterEffect), 5, HEAP_ID_FIELD);
-    encEffect = SysTask_GetParam(effectTask);
+    SysTask *effectTask = SysTask_StartAndAllocateParam(sEncounterEffectTaskFuncs[effect], sizeof(EncounterEffect), 5, HEAP_ID_FIELD);
+    EncounterEffect *encEffect = SysTask_GetParam(effectTask);
     encEffect->fieldSystem = fieldSystem;
     encEffect->done = done;
     encEffect->narc = NARC_ctor(NARC_INDEX_GRAPHIC__FIELD_ENCOUNTEFFECT, HEAP_ID_FIELD);

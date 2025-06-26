@@ -2959,11 +2959,8 @@ static BOOL ov12_02222360(UnkStruct_ov12_02221BBC *param0)
 static BOOL ov12_0222240C(UnkStruct_ov12_02221BBC *param0)
 {
     int v0, v1;
-    UnkStruct_ov12_0221FCDC *v2;
-    UnkStruct_ov12_022222D4 *v3;
-
-    v2 = param0->unk_48;
-    v3 = Heap_AllocFromHeap(param0->unk_48->heapID, sizeof(UnkStruct_ov12_022222D4));
+    UnkStruct_ov12_0221FCDC *v2 = param0->unk_48;
+    UnkStruct_ov12_022222D4 *v3 = Heap_AllocFromHeap(param0->unk_48->heapID, sizeof(UnkStruct_ov12_022222D4));
 
     v3->unk_1C = Heap_AllocFromHeap(v2->heapID, sizeof(UnkStruct_ov12_022224F8));
     v2->unk_17C = v3;
@@ -2991,11 +2988,8 @@ static BOOL ov12_0222240C(UnkStruct_ov12_02221BBC *param0)
 
 static BOOL ov12_022224E4(UnkStruct_ov12_02221BBC *param0)
 {
-    UnkStruct_ov12_0221FCDC *v0;
-    UnkStruct_ov12_022222D4 *v1;
-
-    v0 = param0->unk_48;
-    v1 = param0->unk_48->unk_17C;
+    UnkStruct_ov12_0221FCDC *v0 = param0->unk_48;
+    UnkStruct_ov12_022222D4 *v1 = param0->unk_48->unk_17C;
 
     param0->unk_44_1 = 1;
     return 0;

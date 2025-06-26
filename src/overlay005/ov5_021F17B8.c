@@ -161,11 +161,8 @@ static void ov5_021F18D0(UnkStruct_ov101_021D5D90 *param0, void *param1)
 static void ov5_021F18E0(UnkStruct_ov101_021D5D90 *param0, void *param1)
 {
     int v0;
-    UnkStruct_ov5_021F1A24 *v1;
-    MapObject *v2;
-
-    v1 = param1;
-    v2 = v1->unk_14.unk_0C;
+    UnkStruct_ov5_021F1A24 *v1 = param1;
+    MapObject *v2 = v1->unk_14.unk_0C;
     v0 = MapObject_GetGraphicsID(v2);
 
     if (sub_020677F4(v0) == 1) {

@@ -2144,13 +2144,9 @@ void ov62_022339A0(UnkStruct_0208C06C *param0)
 
 void ov62_022339DC(UnkStruct_0208C06C *param0)
 {
-    SpriteSystem *v0;
-    SpriteManager *v1;
-    PaletteData *v2;
-
-    v0 = param0->unk_14.unk_04;
-    v1 = param0->unk_14.unk_08;
-    v2 = param0->unk_14.unk_14;
+    SpriteSystem *v0 = param0->unk_14.unk_04;
+    SpriteManager *v1 = param0->unk_14.unk_08;
+    PaletteData *v2 = param0->unk_14.unk_14;
 
     SpriteSystem_LoadPaletteBuffer(v2, 2, v0, v1, 19, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 100000);
     SpriteSystem_LoadCellResObj(v0, v1, 19, PokeIcon64KCellsFileIndex(), 0, 100000);

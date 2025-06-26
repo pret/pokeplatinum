@@ -1041,11 +1041,8 @@ u32 ov104_0223D3A4(UnkStruct_ov104_0223C4CC *param0, u16 param1)
 static void ov104_0223D3B0(UnkStruct_ov104_0223C4CC *param0)
 {
     int v0;
-    UnkStruct_ov104_0223D3B0 *v1;
-    UnkStruct_ov104_0223D3B0_1 *v2;
-
-    v1 = sub_0209B9E0(param0->unk_08);
-    v2 = &param0->unk_3C;
+    UnkStruct_ov104_0223D3B0 *v1 = sub_0209B9E0(param0->unk_08);
+    UnkStruct_ov104_0223D3B0_1 *v2 = &param0->unk_3C;
 
     for (v0 = 0; v0 < 8; v0++) {
         if (v2->unk_34[v0] != 0xffff) {

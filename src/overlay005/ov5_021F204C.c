@@ -157,11 +157,8 @@ static void ov5_021F2144(UnkStruct_ov101_021D5D90 *param0, void *param1)
 
 static void ov5_021F2148(UnkStruct_ov101_021D5D90 *param0, void *param1)
 {
-    UnkStruct_ov5_021F2118 *v0;
-    MapObject *v1;
-
-    v0 = param1;
-    v1 = v0->unk_10.unk_08;
+    UnkStruct_ov5_021F2118 *v0 = param1;
+    MapObject *v1 = v0->unk_10.unk_08;
 
     if (sub_02062764(v1, v0->unk_00, v0->unk_04) == 0) {
         ov5_021DF74C(param0);

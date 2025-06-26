@@ -1192,11 +1192,8 @@ static void ov12_022268DC(u16 *param0, u16 param1)
 
 void ov12_02226924(UnkStruct_ov12_0221FCDC *param0)
 {
-    PaletteData *v0;
-    u16 *v1;
-
-    v0 = ov12_0222332C(param0);
-    v1 = PaletteData_GetFadedBuffer(v0, 0);
+    PaletteData *v0 = ov12_0222332C(param0);
+    u16 *v1 = PaletteData_GetFadedBuffer(v0, 0);
 
     if (ov12_0221FDD4(param0) == 1) {
         ov12_022268DC(v1, 16 * 3);

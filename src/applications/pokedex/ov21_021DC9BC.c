@@ -175,11 +175,8 @@ static void ov21_021DDB68(EncounterCollection *encounterCollection);
 
 void ov21_021DC9BC(UnkStruct_ov21_021E68F4 *param0, PokedexApp *param1, enum HeapId heapID)
 {
-    UnkStruct_ov21_021DCACC *v0;
-    UnkStruct_ov21_021DCAE0 *v1;
-
-    v0 = ov21_021DCA5C(heapID, param1);
-    v1 = ov21_021DCAA0(heapID, param1);
+    UnkStruct_ov21_021DCACC *v0 = ov21_021DCA5C(heapID, param1);
+    UnkStruct_ov21_021DCAE0 *v1 = ov21_021DCAA0(heapID, param1);
 
     param0->pageData = v0;
     param0->pageGraphics = v1;

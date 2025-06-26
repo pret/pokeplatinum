@@ -841,13 +841,9 @@ static void ov16_0225C8A4(BattleSystem *battleSys, BattlerData *param1)
 
 static void ov16_0225C8E0(BattleSystem *battleSys, BattlerData *param1)
 {
-    SpriteSystem *v0;
-    SpriteManager *v1;
-    PaletteData *v2;
-
-    v0 = BattleSystem_GetSpriteSystem(battleSys);
-    v1 = BattleSystem_GetSpriteManager(battleSys);
-    v2 = BattleSystem_PaletteSys(battleSys);
+    SpriteSystem *v0 = BattleSystem_GetSpriteSystem(battleSys);
+    SpriteManager *v1 = BattleSystem_GetSpriteManager(battleSys);
+    PaletteData *v2 = BattleSystem_PaletteSys(battleSys);
 
     PartyGauge_LoadGraphics(v0, v1, v2);
     ClearCommand(battleSys, param1->battler, 52);

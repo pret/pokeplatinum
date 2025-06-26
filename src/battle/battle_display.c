@@ -4837,11 +4837,8 @@ static void ov16_02262A9C(SysTask *param0, void *param1)
 static void ov16_02262D28(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225DC7C *v0 = (UnkStruct_ov16_0225DC7C *)param1;
-    PaletteData *v1;
-    PokemonSpriteManager *v2;
-
-    v1 = BattleSystem_PaletteSys(v0->unk_00);
-    v2 = ov16_0223E000(v0->unk_00);
+    PaletteData *v1 = BattleSystem_PaletteSys(v0->unk_00);
+    PokemonSpriteManager *v2 = ov16_0223E000(v0->unk_00);
 
     switch (v0->unk_06) {
     case 0:
@@ -4865,11 +4862,8 @@ static void ov16_02262D28(SysTask *param0, void *param1)
 
 static void ov16_02262DC4(SysTask *param0, void *param1)
 {
-    UnkStruct_ov16_0225DCB0 *v0;
-    UnkStruct_ov12_0221FCDC *v1;
-
-    v0 = (UnkStruct_ov16_0225DCB0 *)param1;
-    v1 = ov16_0223E008(v0->unk_00);
+    UnkStruct_ov16_0225DCB0 *v0 = (UnkStruct_ov16_0225DCB0 *)param1;
+    UnkStruct_ov12_0221FCDC *v1 = ov16_0223E008(v0->unk_00);
 
     switch (v0->unk_62) {
     case 0:

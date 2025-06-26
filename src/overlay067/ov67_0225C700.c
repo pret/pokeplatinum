@@ -193,11 +193,8 @@ int ov67_0225C700(ApplicationManager *appMan, int *param1)
 
 int ov67_0225C820(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov67_0225D154 *v0;
-    UnkStruct_ov66_02231024 *v1;
-
-    v0 = ApplicationManager_Data(appMan);
-    v1 = ApplicationManager_Args(appMan);
+    UnkStruct_ov67_0225D154 *v0 = ApplicationManager_Data(appMan);
+    UnkStruct_ov66_02231024 *v1 = ApplicationManager_Args(appMan);
 
     switch (*param1) {
     case 0:
@@ -429,11 +426,8 @@ int ov67_0225CB8C(ApplicationManager *appMan, int *param1)
 
 int ov67_0225CC6C(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov67_0225D154 *v0;
-    UnkStruct_ov66_02231300 *v1;
-
-    v0 = ApplicationManager_Data(appMan);
-    v1 = ApplicationManager_Args(appMan);
+    UnkStruct_ov67_0225D154 *v0 = ApplicationManager_Data(appMan);
+    UnkStruct_ov66_02231300 *v1 = ApplicationManager_Args(appMan);
 
     switch (*param1) {
     case 0:

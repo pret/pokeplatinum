@@ -260,13 +260,9 @@ BOOL ov76_0223B52C(UnkStruct_ov76_0223DE00 *param0, u8 param1)
     int v1;
     UnkStruct_ov76_0223B52C *v2;
     SpriteTemplate v3;
-    SpriteSystem *v4;
-    SpriteManager *v5;
-    PaletteData *v6;
-
-    v4 = param0->unk_D4.unk_08;
-    v5 = param0->unk_D4.unk_0C;
-    v6 = param0->unk_D4.unk_14;
+    SpriteSystem *v4 = param0->unk_D4.unk_08;
+    SpriteManager *v5 = param0->unk_D4.unk_0C;
+    PaletteData *v6 = param0->unk_D4.unk_14;
     v2 = &param0->unk_324[param1];
 
     if (v2->unk_00 == 1) {

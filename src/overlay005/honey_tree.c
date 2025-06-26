@@ -448,11 +448,8 @@ int HoneyTree_GetSpecies(FieldSystem *fieldSystem)
 
     int *narcData;
     int species;
-    PlayerHoneyTreeStates *treeDat;
-    HoneyTree *tree;
-
-    treeDat = SpecialEncounter_GetPlayerHoneyTreeStates(SaveData_GetSpecialEncounters(fieldSystem->saveData));
-    tree = SpecialEncounter_GetHoneyTree(treeId, treeDat);
+    PlayerHoneyTreeStates *treeDat = SpecialEncounter_GetPlayerHoneyTreeStates(SaveData_GetSpecialEncounters(fieldSystem->saveData));
+    HoneyTree *tree = SpecialEncounter_GetHoneyTree(treeId, treeDat);
 
     if ((GAME_VERSION == VERSION_DIAMOND) || (GAME_VERSION == VERSION_PLATINUM)) {
         narcData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, sEncounterTableIndexes_DPt[tree->encounterTableIndex], HEAP_ID_FIELD);

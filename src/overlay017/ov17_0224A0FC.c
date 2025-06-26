@@ -1066,9 +1066,8 @@ void ov17_0224AFF8(SpriteManager *param0)
 
 BOOL ov17_0224B01C(UnkStruct_ov17_0224DF54 *param0)
 {
-    ManagedSprite *v0;
     UnkStruct_ov17_0224B058 *v1 = &param0->unk_14.unk_910;
-    v0 = SpriteSystem_NewSprite(param0->unk_14.unk_58, param0->unk_14.unk_5C, &Unk_ov17_0225472C);
+    ManagedSprite *v0 = SpriteSystem_NewSprite(param0->unk_14.unk_58, param0->unk_14.unk_5C, &Unk_ov17_0225472C);
 
     ManagedSprite_SetPositionXYWithSubscreenOffset(v0, -1, (0x16 * 8), (256 * FX32_ONE));
     Sprite_TickFrame(v0->sprite);
@@ -2364,11 +2363,8 @@ void ov17_0224CA90(UnkStruct_ov17_0224DF54 *param0, u32 param1, s32 param2, s32 
 
 static void ov17_0224CAC0(SPLEmitter *param0)
 {
-    UnkStruct_ov17_0224DF54 *v0;
-    UnkStruct_ov17_0224CAC0 *v1;
-
-    v0 = ParticleSystem_GetEmitterCallbackParam();
-    v1 = &v0->unk_1064;
+    UnkStruct_ov17_0224DF54 *v0 = ParticleSystem_GetEmitterCallbackParam();
+    UnkStruct_ov17_0224CAC0 *v1 = &v0->unk_1064;
 
     SPLEmitter_SetPosX(param0, v1->unk_00);
     SPLEmitter_SetPosY(param0, v1->unk_04);

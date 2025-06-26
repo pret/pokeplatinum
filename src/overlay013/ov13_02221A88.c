@@ -406,13 +406,9 @@ static void ov13_02221ED0(BattleParty *param0, u32 param1, u16 param2, u8 param3
 
 static void ov13_02221FA8(BattleParty *param0, u32 param1, u32 param2)
 {
-    BattlePartyPokemon *v0;
-    Strbuf *v1;
-    Strbuf *v2;
-
-    v0 = &param0->partyPokemon[param2];
-    v1 = Strbuf_Init(16, param0->context->heapID);
-    v2 = MessageLoader_GetNewStrbuf(param0->messageLoader, 8);
+    BattlePartyPokemon *v0 = &param0->partyPokemon[param2];
+    Strbuf *v1 = Strbuf_Init(16, param0->context->heapID);
+    Strbuf *v2 = MessageLoader_GetNewStrbuf(param0->messageLoader, 8);
 
     StringTemplate_SetAbilityName(param0->stringTemplate, 0, v0->ability);
     StringTemplate_Format(param0->stringTemplate, v1, v2);
@@ -791,11 +787,8 @@ static void ov13_02222AF4(BattleParty *param0, u32 param1)
 
 static void ov13_02222B6C(BattleParty *param0, u32 param1)
 {
-    Window *v0;
-    Strbuf *v1;
-
-    v0 = &param0->unk_206C[param1];
-    v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 51);
+    Window *v0 = &param0->unk_206C[param1];
+    Strbuf *v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 51);
 
     Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     Strbuf_Free(v1);
@@ -839,11 +832,8 @@ static void ov13_02222BB4(BattleParty *param0, u32 param1, u32 param2)
 
 static void ov13_02222C9C(BattleParty *param0, u32 param1)
 {
-    Window *v0;
-    Strbuf *v1;
-
-    v0 = &param0->unk_206C[param1];
-    v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 48);
+    Window *v0 = &param0->unk_206C[param1];
+    Strbuf *v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 48);
 
     Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     Strbuf_Free(v1);

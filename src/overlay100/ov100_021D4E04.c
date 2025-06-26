@@ -98,11 +98,8 @@ void ov100_021D4E70(UnkStruct_ov100_021D4E3C *param0, u8 param1, u8 param2, u16 
 
 UnkStruct_ov100_021D4F9C *ov100_021D4EBC(UnkStruct_ov100_021D4EBC *param0)
 {
-    SysTask *v0;
-    UnkStruct_ov100_021D4F9C *v1;
-
-    v0 = SysTask_StartAndAllocateParam(ov100_021D4F9C, sizeof(UnkStruct_ov100_021D4F9C), 5, param0->unk_28);
-    v1 = SysTask_GetParam(v0);
+    SysTask *v0 = SysTask_StartAndAllocateParam(ov100_021D4F9C, sizeof(UnkStruct_ov100_021D4F9C), 5, param0->unk_28);
+    UnkStruct_ov100_021D4F9C *v1 = SysTask_GetParam(v0);
 
     v1->unk_04 = *param0;
     v1->unk_34 = v0;

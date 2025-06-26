@@ -377,13 +377,9 @@ static void ov27_02256C2C(SysTask *param0, void *param1)
 
 static void ov27_02256C80(SysTask *param0, void *param1)
 {
-    const UnkStruct_ov27_0225680C_1 *v0;
-    UnkStruct_ov27_0225680C *v1;
-    UnkStruct_ov27_02256E90 *v2;
-
-    v0 = PoketchTask_GetConstTaskData(param1);
-    v1 = PoketchTask_GetTaskData(param1);
-    v2 = PoketchTask_GetExtraData(param1);
+    const UnkStruct_ov27_0225680C_1 *v0 = PoketchTask_GetConstTaskData(param1);
+    UnkStruct_ov27_0225680C *v1 = PoketchTask_GetTaskData(param1);
+    UnkStruct_ov27_02256E90 *v2 = PoketchTask_GetExtraData(param1);
 
     if (v0->unk_18 != 3) {
         ov27_02256A04(param1);
@@ -410,13 +406,9 @@ static void ov27_02256C80(SysTask *param0, void *param1)
 
 static void ov27_02256D00(SysTask *param0, void *param1)
 {
-    const UnkStruct_ov27_0225680C_1 *v0;
-    UnkStruct_ov27_0225680C *v1;
-    UnkStruct_ov27_02256E90 *v2;
-
-    v0 = PoketchTask_GetConstTaskData(param1);
-    v1 = PoketchTask_GetTaskData(param1);
-    v2 = PoketchTask_GetExtraData(param1);
+    const UnkStruct_ov27_0225680C_1 *v0 = PoketchTask_GetConstTaskData(param1);
+    UnkStruct_ov27_0225680C *v1 = PoketchTask_GetTaskData(param1);
+    UnkStruct_ov27_02256E90 *v2 = PoketchTask_GetExtraData(param1);
 
     if (v0->unk_18 != 4) {
         ov27_02256A04(param1);
@@ -443,13 +435,9 @@ static void ov27_02256D00(SysTask *param0, void *param1)
 
 static void ov27_02256D80(SysTask *param0, void *param1)
 {
-    const UnkStruct_ov27_0225680C_1 *v0;
-    UnkStruct_ov27_0225680C *v1;
-    UnkStruct_ov27_02256E90 *v2;
-
-    v0 = PoketchTask_GetConstTaskData(param1);
-    v1 = PoketchTask_GetTaskData(param1);
-    v2 = PoketchTask_GetExtraData(param1);
+    const UnkStruct_ov27_0225680C_1 *v0 = PoketchTask_GetConstTaskData(param1);
+    UnkStruct_ov27_0225680C *v1 = PoketchTask_GetTaskData(param1);
+    UnkStruct_ov27_02256E90 *v2 = PoketchTask_GetExtraData(param1);
 
     if (v0->unk_18 != 5) {
         ov27_02256A04(param1);
@@ -479,13 +467,9 @@ static void ov27_02256D80(SysTask *param0, void *param1)
 
 static void ov27_02256E1C(SysTask *param0, void *param1)
 {
-    const UnkStruct_ov27_0225680C_1 *v0;
-    UnkStruct_ov27_0225680C *v1;
-    UnkStruct_ov27_02256E90 *v2;
-
-    v0 = PoketchTask_GetConstTaskData(param1);
-    v1 = PoketchTask_GetTaskData(param1);
-    v2 = PoketchTask_GetExtraData(param1);
+    const UnkStruct_ov27_0225680C_1 *v0 = PoketchTask_GetConstTaskData(param1);
+    UnkStruct_ov27_0225680C *v1 = PoketchTask_GetTaskData(param1);
+    UnkStruct_ov27_02256E90 *v2 = PoketchTask_GetExtraData(param1);
 
     if (v0->unk_18 != 6) {
         ov27_02256A04(param1);

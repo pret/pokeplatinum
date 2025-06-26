@@ -315,9 +315,8 @@ static void ov23_0224937C(int param0[][4], Sprite *param1[])
 
 UnkStruct_ov23_0224942C *ov23_02249404(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov23_0224942C *v0;
     SysTask *v1 = SysTask_StartAndAllocateParam(ov23_02248F1C, sizeof(UnkStruct_ov23_0224942C), 4, 4);
-    v0 = SysTask_GetParam(v1);
+    UnkStruct_ov23_0224942C *v0 = SysTask_GetParam(v1);
 
     v0->fieldSystem = fieldSystem;
     v0->unk_1B8 = fieldSystem->bgConfig;

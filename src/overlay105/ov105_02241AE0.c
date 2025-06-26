@@ -2627,11 +2627,8 @@ static void ov105_02244F00(UnkStruct_ov105_02241FF4 *param0, u32 param1, BoxPoke
 static void ov105_02244F0C(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32 param2, u32 param3, u8 param4)
 {
     TextColor v0;
-    const TrainerInfo *v1;
-    Strbuf *v2;
-
-    v1 = SaveData_GetTrainerInfo(param0->saveData);
-    v2 = Strbuf_Init((7 + 1), HEAP_ID_93);
+    const TrainerInfo *v1 = SaveData_GetTrainerInfo(param0->saveData);
+    Strbuf *v2 = Strbuf_Init((7 + 1), HEAP_ID_93);
 
     Window_FillTilemap(param1, 0);
     Strbuf_CopyChars(v2, TrainerInfo_Name(v1));
@@ -2652,9 +2649,8 @@ static void ov105_02244F0C(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32
 static void ov105_02244F84(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32 param2, u32 param3, u8 param4)
 {
     TextColor v0;
-    Strbuf *v1;
     TrainerInfo *v2 = CommInfo_TrainerInfo(1 - CommSys_CurNetId());
-    v1 = Strbuf_Init((7 + 1), HEAP_ID_93);
+    Strbuf *v1 = Strbuf_Init((7 + 1), HEAP_ID_93);
 
     Window_FillTilemap(param1, 0);
     TrainerInfo_NameStrbuf(v2, v1);

@@ -126,11 +126,8 @@ BOOL ov104_02233324(UnkStruct_ov104_0222E930 *param0)
 
 BOOL ov104_0223338C(UnkStruct_ov104_0222E930 *param0)
 {
-    UnkStruct_ov104_0223ADA0 *v0;
-    FieldBattleDTO *v1;
-
-    v0 = sub_0209B978(param0->unk_00->unk_00);
-    v1 = v0->unk_4FC;
+    UnkStruct_ov104_0223ADA0 *v0 = sub_0209B978(param0->unk_00->unk_00);
+    FieldBattleDTO *v1 = v0->unk_4FC;
 
     v0->unk_14 = CheckPlayerWonBattle(v1->resultMask);
 

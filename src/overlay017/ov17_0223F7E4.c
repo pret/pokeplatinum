@@ -1064,11 +1064,8 @@ static void ov17_022402E8(UnkStruct_ov17_0223F7E4 *param0, u16 param1[])
 static void ov17_02240388(UnkStruct_ov17_0223F7E4 *param0)
 {
     int v0;
-    SpriteSystem *v1;
-    SpriteManager *v2;
-
-    v1 = param0->unk_04->unk_18;
-    v2 = param0->unk_04->unk_1C;
+    SpriteSystem *v1 = param0->unk_04->unk_18;
+    SpriteManager *v2 = param0->unk_04->unk_1C;
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param0->unk_118[v0] != NULL) {

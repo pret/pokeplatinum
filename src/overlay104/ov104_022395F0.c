@@ -47,9 +47,8 @@ BOOL ov104_02239C44(UnkStruct_ov104_0222E930 *param0);
 
 BOOL ov104_022395F0(UnkStruct_ov104_0222E930 *param0)
 {
-    UnkStruct_0209BBA4 *v0;
     UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(param0->unk_00->unk_00);
-    v0 = ov104_02239C58(v1->saveData);
+    UnkStruct_0209BBA4 *v0 = ov104_02239C58(v1->saveData);
 
     sub_0209B980(param0->unk_00->unk_00, v0);
     return 0;

@@ -219,9 +219,8 @@ static void ov56_022563E8(UnkStruct_ov56_022562EC *param0)
 
 UnkStruct_ov56_02256468 *ov56_02256410(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov56_02256468 *v0;
     SysTask *v1 = SysTask_StartAndAllocateParam(ov56_022561C0, sizeof(UnkStruct_ov56_02256468), 4, 4);
-    v0 = SysTask_GetParam(v1);
+    UnkStruct_ov56_02256468 *v0 = SysTask_GetParam(v1);
 
     v0->fieldSystem = fieldSystem;
     v0->unk_14 = fieldSystem->bgConfig;
