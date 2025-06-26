@@ -29,7 +29,7 @@
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_0203E6C0.h"
 #include "struct_defs/struct_02042434.h"
-#include "struct_defs/struct_020556C4.h"
+#include "overworld_map_history.h"
 #include "struct_defs/struct_020684D0.h"
 #include "struct_defs/struct_0206BC70.h"
 #include "struct_defs/struct_02072014.h"

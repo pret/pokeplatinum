@@ -10,7 +10,7 @@
 
 #include "struct_decls/struct_02020C44_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
-#include "struct_defs/struct_020556C4.h"
+#include "overworld_map_history.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "field/field_system.h"
@@ -82,7 +82,7 @@
 #include "unk_02020AEC.h"
 #include "unk_0202419C.h"
 #include "unk_020553DC.h"
-#include "unk_020556C4.h"
+#include "overworld_map_history.h"
 #include "unk_020559DC.h"
 #include "unk_02055C50.h"
 #include "vram_transfer.h"

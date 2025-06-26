@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_020556C4.h"
+#include "overworld_map_history.h"
 #include "struct_defs/struct_0205EC34.h"
 
 #include "field/field_system.h"
@@ -13,7 +13,7 @@
 #include "player_avatar.h"
 #include "savedata.h"
 #include "unk_0203A7D8.h"
-#include "unk_020556C4.h"
+#include "overworld_map_history.h"
 
 typedef struct FieldOverworldState {
     Location player;

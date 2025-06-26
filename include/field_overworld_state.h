@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_0203A79C_decl.h"
-#include "struct_defs/struct_020556C4.h"
+#include "overworld_map_history.h"
 #include "struct_defs/struct_0205EC34.h"
 
 #include "field/field_system_decl.h"

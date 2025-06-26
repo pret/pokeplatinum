@@ -7,7 +7,7 @@
 
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_defs/struct_0203D8AC.h"
-#include "struct_defs/struct_020556C4.h"
+#include "overworld_map_history.h"
 #include "struct_defs/union_0206B878.h"
 
 #include "field/field_system.h"
@@ -120,7 +120,7 @@ void sub_0206B70C(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, int para
     for (v1 = 0; v1 < 5; v1++) {
         param1->unk_20[v1].unk_00 = v7->items[v2].mapX;
         param1->unk_20[v1].unk_04 = v7->items[v2].mapZ;
-        param1->unk_20[v1].unk_0A = v7->items[v2].unused_03;
+        param1->unk_20[v1].unk_0A = v7->items[v2].dummy_03;
 
         if (v7->items[v2].faceDirection > 3) {
             param1->unk_20[v1].unk_08 = 3 + 1;

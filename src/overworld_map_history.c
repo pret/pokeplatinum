@@ -1,9 +1,7 @@
-#include "unk_020556C4.h"
+#include "overworld_map_history.h"
 
 #include <nitro.h>
 #include <string.h>
-
-#include "struct_defs/struct_020556C4.h"
 
 void OverworldMapHistory_Clear(OverworldMapHistory *mapHistory)
 {
@@ -13,7 +11,7 @@ void OverworldMapHistory_Clear(OverworldMapHistory *mapHistory)
         mapHistory->items[v0].mapX = 0;
         mapHistory->items[v0].mapZ = 0;
         mapHistory->items[v0].faceDirection = 0;
-        mapHistory->items[v0].unused_03 = 0;
+        mapHistory->items[v0].dummy_03 = 0;
     }
 
     mapHistory->historyPointer = 0;
@@ -30,7 +28,7 @@ void OverworldMapHistory_PushViaWarp(OverworldMapHistory *mapHistory, int x, int
         mapHistory->items[mapHistory->historyPointer].mapX = mapX;
         mapHistory->items[mapHistory->historyPointer].mapZ = mapZ;
         mapHistory->items[mapHistory->historyPointer].faceDirection = -1;
-        mapHistory->items[mapHistory->historyPointer].unused_03 = 1;
+        mapHistory->items[mapHistory->historyPointer].dummy_03 = 1;
         mapHistory->historyPointer = (mapHistory->historyPointer + 1) % 6;
     }
 }
@@ -44,7 +42,7 @@ void OverworldMapHistory_Push(OverworldMapHistory *mapHistory, int x, int z, int
         mapHistory->items[mapHistory->historyPointer].mapX = mapX;
         mapHistory->items[mapHistory->historyPointer].mapZ = mapZ;
         mapHistory->items[mapHistory->historyPointer].faceDirection = faceDirection;
-        mapHistory->items[mapHistory->historyPointer].unused_03 = 1;
+        mapHistory->items[mapHistory->historyPointer].dummy_03 = 1;
 
         mapHistory->currentMapX = mapX;
         mapHistory->currentMapZ = mapZ;
