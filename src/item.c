@@ -797,7 +797,7 @@ void Item_LoadName(Strbuf *dst, u16 item, u32 heapID)
 
 void Item_LoadDescription(Strbuf *dst, u16 item, u16 heapID)
 {
-    MessageLoader *msgData = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0391, heapID);
+    MessageLoader *msgData = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ITEM_DESCRIPTIONS, heapID);
 
     MessageLoader_GetStrbuf(msgData, item, dst);
     MessageLoader_Free(msgData);
