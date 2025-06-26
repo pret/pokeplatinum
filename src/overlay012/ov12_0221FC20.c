@@ -136,8 +136,8 @@ static void BattleAnimScriptCmd_BeginLoop(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_EndLoop(BattleAnimSystem *param0);
 static void ov12_02220798(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_PlaySoundEffect(BattleAnimSystem *param0);
-static void ov12_02221284(BattleAnimSystem *param0);
-static void ov12_02221288(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_Nop0(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_Nop1(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_SetBG0BG1AlphaBlending(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_SetDefaultAlphaBlending(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_Call(BattleAnimSystem *param0);
@@ -160,8 +160,8 @@ static void BattleAnimScriptCmd_PanSoundEffects(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_PlayMovingSoundEffectAtkDef(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_PlayLoopedSoundEffect(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_PlayDelayedSoundEffect(BattleAnimSystem *param0);
-static void ov12_02222CE4(BattleAnimSystem *param0);
-static void ov12_02222C50(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_Nop2(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_Nop3(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_WaitForSoundEffects(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_JumpIfEqual(BattleAnimSystem *param0);
 static void ov12_0222128C(BattleAnimSystem *param0);
@@ -172,19 +172,19 @@ static void ov12_022217B4(BattleAnimSystem *param0);
 static void ov12_022217E0(BattleAnimSystem *param0);
 static void ov12_02221A00(BattleAnimSystem *param0);
 static void ov12_02221A14(BattleAnimSystem *param0);
-static void ov12_02221A30(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_SetCameraFlip(BattleAnimSystem *param0);
 static void ov12_02221424(BattleAnimSystem *param0);
 static void ov12_02220EA8(BattleAnimSystem *param0);
 static void ov12_022228DC(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_PlayMovingSoundEffectNoCorrection(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_PlayMovingSoundEffectAtkDef2(BattleAnimSystem *param0);
-static void ov12_0222293C(BattleAnimSystem *param0);
-static void ov12_02222940(BattleAnimSystem *param0);
-static void ov12_02222944(BattleAnimSystem *param0);
-static void ov12_02221A4C(BattleAnimSystem *param0);
-static void ov12_02221A50(BattleAnimSystem *param0);
-static void ov12_02222948(BattleAnimSystem *param0);
-static void ov12_0222294C(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_Nop4(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_Nop5(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_Nop6(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_Nop7(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_Nop8(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_Nop9(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_Nop10(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_StopSoundEffect(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_JumpIfBattlerSide(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_JumpIfWeather(BattleAnimSystem *param0);
@@ -782,8 +782,8 @@ static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
     BattleAnimScriptCmd_EndLoop,
     ov12_02220798,
     BattleAnimScriptCmd_PlaySoundEffect,
-    ov12_02221284,
-    ov12_02221288,
+    BattleAnimScriptCmd_Nop0,
+    BattleAnimScriptCmd_Nop1,
     BattleAnimScriptCmd_SetBG0BG1AlphaBlending,
     BattleAnimScriptCmd_SetDefaultAlphaBlending,
     BattleAnimScriptCmd_Call,
@@ -803,8 +803,8 @@ static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
     BattleAnimScriptCmd_PlayMovingSoundEffectAtkDef,
     BattleAnimScriptCmd_PlayLoopedSoundEffect,
     BattleAnimScriptCmd_PlayDelayedSoundEffect,
-    ov12_02222CE4,
-    ov12_02222C50,
+    BattleAnimScriptCmd_Nop2,
+    BattleAnimScriptCmd_Nop3,
     BattleAnimScriptCmd_WaitForSoundEffects,
     BattleAnimScriptCmd_JumpIfEqual,
     ov12_0222128C,
@@ -813,13 +813,13 @@ static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
     ov12_022228DC,
     BattleAnimScriptCmd_PlayMovingSoundEffectNoCorrection,
     BattleAnimScriptCmd_PlayMovingSoundEffectAtkDef2,
-    ov12_0222293C,
-    ov12_02222940,
-    ov12_02222944,
-    ov12_02221A4C,
-    ov12_02221A50,
-    ov12_02222948,
-    ov12_0222294C,
+    BattleAnimScriptCmd_Nop4,
+    BattleAnimScriptCmd_Nop5,
+    BattleAnimScriptCmd_Nop6,
+    BattleAnimScriptCmd_Nop7,
+    BattleAnimScriptCmd_Nop8,
+    BattleAnimScriptCmd_Nop9,
+    BattleAnimScriptCmd_Nop10,
     BattleAnimScriptCmd_StopSoundEffect,
     BattleAnimScriptCmd_CallFunc,
     BattleAnimScriptCmd_CreateEmitter,
@@ -839,7 +839,7 @@ static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
     ov12_022217E0,
     ov12_02221A00,
     ov12_02221A14,
-    ov12_02221A30,
+    BattleAnimScriptCmd_SetCameraFlip,
     BattleAnimScriptCmd_JumpIfBattlerSide,
     BattleAnimScriptCmd_PlayPokemonCry,
     BattleAnimScriptCmd_WaitForPokemonCries,
@@ -1774,12 +1774,12 @@ void ov12_02221238(BattleAnimSystem *param0, int param1)
     }
 }
 
-static void ov12_02221284(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_Nop0(BattleAnimSystem *param0)
 {
     return;
 }
 
-static void ov12_02221288(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_Nop1(BattleAnimSystem *param0)
 {
     return;
 }
@@ -2251,27 +2251,24 @@ static void ov12_02221A14(BattleAnimSystem *system)
     system->cameraProjections[v0] = v1;
 }
 
-void ov12_02221A30(BattleAnimSystem *param0)
+void BattleAnimScriptCmd_SetCameraFlip(BattleAnimSystem *system)
 {
-    int v0;
-    int v1;
+    BattleAnimScript_Next(system);
 
-    param0->scriptPtr += 1;
+    int psIndex = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
-
-    v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
-    param0->particleSystemCameraFlip[v0] = v1;
+    int flip = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
+    system->particleSystemCameraFlip[psIndex] = flip;
 }
 
-static void ov12_02221A4C(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_Nop7(BattleAnimSystem *)
 {
     return;
 }
 
-static void ov12_02221A50(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_Nop8(BattleAnimSystem *)
 {
     return;
 }
@@ -3061,27 +3058,27 @@ static void ov12_022228DC(BattleAnimSystem *param0)
     SysTask_Start(ov12_022226F4, v0, 1100);
 }
 
-static void ov12_0222293C(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_Nop4(BattleAnimSystem *)
 {
     return;
 }
 
-static void ov12_02222940(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_Nop5(BattleAnimSystem *)
 {
     return;
 }
 
-static void ov12_02222944(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_Nop6(BattleAnimSystem *)
 {
     return;
 }
 
-static void ov12_02222948(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_Nop9(BattleAnimSystem *)
 {
     return;
 }
 
-static void ov12_0222294C(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_Nop10(BattleAnimSystem *)
 {
     return;
 }
@@ -3277,7 +3274,7 @@ static void BattleAnimScriptCmd_PlayDelayedSoundEffect(BattleAnimSystem *system)
     BattleAnimSystem_StartSoundTaskInternal(system, ctx);
 }
 
-static void ov12_02222C50(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_Nop3(BattleAnimSystem *param0)
 {
     (void)0;
 }
@@ -3324,7 +3321,7 @@ static void BattleAnimScriptCmd_SetDefaultAlphaBlending(BattleAnimSystem *system
     BattleAnimSystem_SetDefaultAlphaBlending();
 }
 
-static void ov12_02222CE4(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_Nop2(BattleAnimSystem *param0)
 {
     return;
 }
