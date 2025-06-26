@@ -30,8 +30,7 @@ typedef struct FieldOverworldState {
     u16 poisonSteps;
     u16 safariSteps;
     u16 safariBalls;
-    u16 padding_9A; // unused
-    u16 padding_9C; // unused
+    u8 padding_9A[6];
 } FieldOverworldState;
 
 typedef struct UnkStruct_0203A79C_t {
