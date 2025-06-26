@@ -615,7 +615,7 @@ void ov12_02226EB0(BattleAnimSystem *param0)
     v0->unk_12 = BattleAnimSystem_GetScriptVar(param0, 7);
     v0->unk_14 = 0;
 
-    if ((v0->unk_00 != 0) && (ov12_0223525C(param0, BattleAnimSystem_GetAttacker(param0)) == 0x4)) {
+    if ((v0->unk_00 != 0) && (BattleAnimUtil_GetBattlerSide(param0, BattleAnimSystem_GetAttacker(param0)) == 0x4)) {
         v0->unk_0A *= -1;
         v0->unk_0C *= -1;
         v0->unk_0E *= -1;
@@ -647,7 +647,7 @@ void ov12_02226EB0(BattleAnimSystem *param0)
 
             if (BattleAnimSystem_IsContest(param0) == 1) {
                 v3 = 4;
-            } else if (ov12_0223525C(param0, BattleAnimSystem_GetAttacker(param0)) == 0x4) {
+            } else if (BattleAnimUtil_GetBattlerSide(param0, BattleAnimSystem_GetAttacker(param0)) == 0x4) {
                 v3 = 3;
             }
 
@@ -773,7 +773,7 @@ void ov12_022271D8(BattleAnimSystem *param0)
     v0->unk_12 = BattleAnimSystem_GetScriptVar(param0, 7);
     v0->unk_14 = 0;
 
-    if ((v0->unk_00 != 0) && (ov12_0223525C(param0, BattleAnimSystem_GetAttacker(param0)) == 0x4)) {
+    if ((v0->unk_00 != 0) && (BattleAnimUtil_GetBattlerSide(param0, BattleAnimSystem_GetAttacker(param0)) == 0x4)) {
         v0->unk_0A *= -1;
         v0->unk_0C *= -1;
         v0->unk_0E *= -1;
@@ -807,7 +807,7 @@ void ov12_022271D8(BattleAnimSystem *param0)
 
             if (BattleAnimSystem_IsContest(param0) == 1) {
                 v3 = 4;
-            } else if (ov12_0223525C(param0, BattleAnimSystem_GetAttacker(param0)) == 0x4) {
+            } else if (BattleAnimUtil_GetBattlerSide(param0, BattleAnimSystem_GetAttacker(param0)) == 0x4) {
                 v3 = 3;
             }
 
@@ -918,14 +918,14 @@ void ov12_02227534(BattleAnimSystem *param0)
         v0->unk_04.unk_04[2] *= -1;
         break;
     case 0x4:
-        v0->unk_28 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, ov12_022352AC(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00)));
+        v0->unk_28 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimUtil_GetAlliedBattlerType(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00)));
         v0->unk_04.unk_04[2] *= -1;
         break;
     case 0x8:
         v0->unk_28 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetDefender(param0));
         break;
     case 0x10:
-        v0->unk_28 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, ov12_022352AC(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00)));
+        v0->unk_28 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimUtil_GetAlliedBattlerType(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00)));
         break;
     default:
         GF_ASSERT(0);
@@ -1142,7 +1142,7 @@ void ov12_0222797C(BattleAnimSystem *param0)
         break;
     case 0x4:
         if (BattleAnimSystem_IsDoubleBattle(param0) == 1) {
-            v0->unk_04 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, ov12_022352AC(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00)));
+            v0->unk_04 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimUtil_GetAlliedBattlerType(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00)));
         }
         break;
     case 0x8:
@@ -1150,7 +1150,7 @@ void ov12_0222797C(BattleAnimSystem *param0)
         break;
     case 0x10:
         if (BattleAnimSystem_IsDoubleBattle(param0) == 1) {
-            v0->unk_04 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, ov12_022352AC(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00)));
+            v0->unk_04 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimUtil_GetAlliedBattlerType(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00)));
         }
         break;
     case (0x2 | 0x800): {
@@ -1696,7 +1696,7 @@ void ov12_02228394(BattleAnimSystem *param0)
         break;
     case 0x4 | 0x100:
         if (BattleAnimSystem_IsDoubleBattle(param0) == 1) {
-            v2 = ov12_022352AC(param0, BattleAnimSystem_GetAttacker(param0));
+            v2 = BattleAnimUtil_GetAlliedBattlerType(param0, BattleAnimSystem_GetAttacker(param0));
         }
         break;
     case 0x8 | 0x100:
@@ -1704,7 +1704,7 @@ void ov12_02228394(BattleAnimSystem *param0)
         break;
     case 0x10 | 0x100:
         if (BattleAnimSystem_IsDoubleBattle(param0) == 1) {
-            v2 = ov12_022352AC(param0, BattleAnimSystem_GetDefender(param0));
+            v2 = BattleAnimUtil_GetAlliedBattlerType(param0, BattleAnimSystem_GetDefender(param0));
         }
         break;
     default:
@@ -1780,7 +1780,7 @@ void ov12_02228520(BattleAnimSystem *param0)
         break;
     case 0x4 | 0x100:
         if (BattleAnimSystem_IsDoubleBattle(param0) == 1) {
-            v2 = ov12_022352AC(param0, BattleAnimSystem_GetAttacker(param0));
+            v2 = BattleAnimUtil_GetAlliedBattlerType(param0, BattleAnimSystem_GetAttacker(param0));
         }
         break;
     case 0x8 | 0x100:
@@ -1788,7 +1788,7 @@ void ov12_02228520(BattleAnimSystem *param0)
         break;
     case 0x10 | 0x100:
         if (BattleAnimSystem_IsDoubleBattle(param0) == 1) {
-            v2 = ov12_022352AC(param0, BattleAnimSystem_GetDefender(param0));
+            v2 = BattleAnimUtil_GetAlliedBattlerType(param0, BattleAnimSystem_GetDefender(param0));
         }
         break;
     default:
@@ -2101,7 +2101,7 @@ void ov12_02228C6C(BattleAnimSystem *param0)
         break;
     case 0x4 | 0x100:
         if (BattleAnimSystem_IsDoubleBattle(param0) == 1) {
-            v2 = ov12_022352AC(param0, BattleAnimSystem_GetAttacker(param0));
+            v2 = BattleAnimUtil_GetAlliedBattlerType(param0, BattleAnimSystem_GetAttacker(param0));
         }
         break;
     case 0x8 | 0x100:
@@ -2109,7 +2109,7 @@ void ov12_02228C6C(BattleAnimSystem *param0)
         break;
     case 0x10 | 0x100:
         if (BattleAnimSystem_IsDoubleBattle(param0) == 1) {
-            v2 = ov12_022352AC(param0, BattleAnimSystem_GetDefender(param0));
+            v2 = BattleAnimUtil_GetAlliedBattlerType(param0, BattleAnimSystem_GetDefender(param0));
         }
         break;
     default:
@@ -2226,13 +2226,13 @@ void ov12_02228EC0(BattleAnimSystem *param0)
         v2 = BattleAnimSystem_GetAttacker(param0);
         break;
     case 0x4:
-        v2 = ov12_022352AC(param0, BattleAnimSystem_GetAttacker(param0));
+        v2 = BattleAnimUtil_GetAlliedBattlerType(param0, BattleAnimSystem_GetAttacker(param0));
         break;
     case 0x8:
         v2 = BattleAnimSystem_GetDefender(param0);
         break;
     case 0x10:
-        v2 = ov12_022352AC(param0, BattleAnimSystem_GetDefender(param0));
+        v2 = BattleAnimUtil_GetAlliedBattlerType(param0, BattleAnimSystem_GetDefender(param0));
         break;
     default:
         GF_ASSERT(0);
@@ -2245,7 +2245,7 @@ void ov12_02228EC0(BattleAnimSystem *param0)
     v5->unk_58.unk_00 = 0;
     v5->unk_58.unk_02 = 0;
 
-    if (ov12_0223525C(v5->unk_00.unk_04, v2) == 0x3) {
+    if (BattleAnimUtil_GetBattlerSide(v5->unk_00.unk_04, v2) == 0x3) {
         v5->unk_58.unk_00 = (0 - 80);
     } else {
         v5->unk_58.unk_00 = (256 + 80);
@@ -2276,13 +2276,13 @@ void ov12_02228FB4(BattleAnimSystem *param0)
         v2 = BattleAnimSystem_GetAttacker(param0);
         break;
     case 0x4:
-        v2 = ov12_022352AC(param0, BattleAnimSystem_GetAttacker(param0));
+        v2 = BattleAnimUtil_GetAlliedBattlerType(param0, BattleAnimSystem_GetAttacker(param0));
         break;
     case 0x8:
         v2 = BattleAnimSystem_GetDefender(param0);
         break;
     case 0x10:
-        v2 = ov12_022352AC(param0, BattleAnimSystem_GetDefender(param0));
+        v2 = BattleAnimUtil_GetAlliedBattlerType(param0, BattleAnimSystem_GetDefender(param0));
         break;
     default:
         GF_ASSERT(0);
@@ -2295,7 +2295,7 @@ void ov12_02228FB4(BattleAnimSystem *param0)
     v6->unk_58.unk_00 = 0;
     v6->unk_58.unk_02 = 0;
 
-    if (ov12_0223525C(v6->unk_00.unk_04, v2) == 0x3) {
+    if (BattleAnimUtil_GetBattlerSide(v6->unk_00.unk_04, v2) == 0x3) {
         v6->unk_58.unk_00 = (0 - 80);
     } else {
         v6->unk_58.unk_00 = (256 + 80);
@@ -2328,13 +2328,13 @@ void ov12_022290DC(BattleAnimSystem *param0)
         v1 = BattleAnimSystem_GetAttacker(param0);
         break;
     case 0x4:
-        v1 = ov12_022352AC(param0, BattleAnimSystem_GetAttacker(param0));
+        v1 = BattleAnimUtil_GetAlliedBattlerType(param0, BattleAnimSystem_GetAttacker(param0));
         break;
     case 0x8:
         v1 = BattleAnimSystem_GetDefender(param0);
         break;
     case 0x10:
-        v1 = ov12_022352AC(param0, BattleAnimSystem_GetDefender(param0));
+        v1 = BattleAnimUtil_GetAlliedBattlerType(param0, BattleAnimSystem_GetDefender(param0));
         break;
     default:
         GF_ASSERT(0);
@@ -2450,13 +2450,13 @@ void ov12_02229304(BattleAnimSystem *param0)
             v3 = BattleAnimSystem_GetAttacker(param0);
             break;
         case 0x4:
-            v3 = ov12_022352AC(param0, BattleAnimSystem_GetAttacker(param0));
+            v3 = BattleAnimUtil_GetAlliedBattlerType(param0, BattleAnimSystem_GetAttacker(param0));
             break;
         case 0x8:
             v3 = BattleAnimSystem_GetDefender(param0);
             break;
         case 0x10:
-            v3 = ov12_022352AC(param0, BattleAnimSystem_GetDefender(param0));
+            v3 = BattleAnimUtil_GetAlliedBattlerType(param0, BattleAnimSystem_GetDefender(param0));
             break;
         default:
             GF_ASSERT(0);
@@ -2500,13 +2500,13 @@ static int ov12_02229454(BattleAnimSystem *param0, int param1)
         v0 = BattleAnimSystem_GetAttacker(param0);
         break;
     case 0x4:
-        v0 = ov12_022352AC(param0, BattleAnimSystem_GetAttacker(param0));
+        v0 = BattleAnimUtil_GetAlliedBattlerType(param0, BattleAnimSystem_GetAttacker(param0));
         break;
     case 0x8:
         v0 = BattleAnimSystem_GetDefender(param0);
         break;
     case 0x10:
-        v0 = ov12_022352AC(param0, BattleAnimSystem_GetDefender(param0));
+        v0 = BattleAnimUtil_GetAlliedBattlerType(param0, BattleAnimSystem_GetDefender(param0));
         break;
     default:
         GF_ASSERT(0);
@@ -3318,7 +3318,7 @@ void ov12_0222A34C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
         ManagedSprite_SetPositionXY(v0->unk_1C, v2, v3);
     }
 
-    if (ov12_0223525C(param0, BattleAnimSystem_GetAttacker(param0)) == 0x4) {
+    if (BattleAnimUtil_GetBattlerSide(param0, BattleAnimSystem_GetAttacker(param0)) == 0x4) {
         ManagedSprite_SetAnim(v0->unk_1C, 1);
     } else {
         ManagedSprite_SetAnim(v0->unk_1C, 0);
@@ -3363,7 +3363,7 @@ void ov12_0222A410(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
             v4 = 32;
             v1 = 0;
         } else {
-            if (ov12_0223525C(v0->unk_00.unk_04, v2) == 0x3) {
+            if (BattleAnimUtil_GetBattlerSide(v0->unk_00.unk_04, v2) == 0x3) {
                 v4 = 190 - 32 - 32;
                 v1 = 1;
             } else {
@@ -3628,8 +3628,8 @@ void ov12_0222A8F4(BattleAnimSystem *param0)
         int v5, v6;
 
         if (v0->unk_2C != 0xFF) {
-            v5 = ov12_02235254(param0, v3);
-            v6 = ov12_02235254(param0, v4);
+            v5 = BattleAnimUtil_GetBattlerType(param0, v3);
+            v6 = BattleAnimUtil_GetBattlerType(param0, v4);
 
             switch (v2) {
             case 0:

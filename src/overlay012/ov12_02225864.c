@@ -118,7 +118,7 @@ void ov12_02225898(BattleAnimSystem *param0, int param1, s16 *param2, s16 *param
 s16 ov12_022258E0(BattleAnimSystem *param0, int param1, int param2)
 {
     int v1;
-    int battlerType = ov12_02235254(param0, param1);
+    int battlerType = BattleAnimUtil_GetBattlerType(param0, param1);
 
     if (BattleAnimSystem_IsDoubleBattle(param0) == 1) {
         v1 = 1;
@@ -153,7 +153,7 @@ int ov12_02225964(BattleAnimSystem *param0, int param1)
     int v0;
     int v1 = 1;
 
-    v0 = ov12_0223525C(param0, param1);
+    v0 = BattleAnimUtil_GetBattlerSide(param0, param1);
 
     if (BattleAnimSystem_IsContest(param0)) {
         if (v0 == 0x3) {
@@ -173,7 +173,7 @@ int ov12_0222598C(BattleAnimSystem *param0, int param1)
     int v0;
     int v1 = 1;
 
-    v0 = ov12_0223525C(param0, param1);
+    v0 = BattleAnimUtil_GetBattlerSide(param0, param1);
 
     if (v0 == 0x4) {
         v1 = -1;

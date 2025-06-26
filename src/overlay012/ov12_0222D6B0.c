@@ -215,8 +215,8 @@ void ov12_0222D7C0(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
         }
     }
 
-    if (ov12_0223525C(param0, BattleAnimSystem_GetDefender(param0)) == 0x3) {
-        if ((ov12_0223525C(param0, BattleAnimSystem_GetDefender(param0)) == 0x3) && (ov12_0223525C(param0, BattleAnimSystem_GetAttacker(param0)) == 0x3)) {
+    if (BattleAnimUtil_GetBattlerSide(param0, BattleAnimSystem_GetDefender(param0)) == 0x3) {
+        if ((BattleAnimUtil_GetBattlerSide(param0, BattleAnimSystem_GetDefender(param0)) == 0x3) && (BattleAnimUtil_GetBattlerSide(param0, BattleAnimSystem_GetAttacker(param0)) == 0x3)) {
             ManagedSprite_SetAnim(v1->unk_14[0], 0);
         } else {
             ManagedSprite_SetAnim(v1->unk_14[0], 1);
@@ -224,7 +224,7 @@ void ov12_0222D7C0(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
 
         ManagedSprite_SetPositionXY(v1->unk_14[0], 128, 80);
     } else {
-        if ((ov12_0223525C(param0, BattleAnimSystem_GetDefender(param0)) == 0x4) && (ov12_0223525C(param0, BattleAnimSystem_GetAttacker(param0)) == 0x4)) {
+        if ((BattleAnimUtil_GetBattlerSide(param0, BattleAnimSystem_GetDefender(param0)) == 0x4) && (BattleAnimUtil_GetBattlerSide(param0, BattleAnimSystem_GetAttacker(param0)) == 0x4)) {
             ManagedSprite_SetAnim(v1->unk_14[0], 1);
         } else {
             ManagedSprite_SetAnim(v1->unk_14[0], 0);
@@ -991,7 +991,7 @@ void ov12_0222E61C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
             v6 = PokemonSprite_GetAttribute(v8, MON_SPRITE_Y_CENTER);
             v6 += PokemonSprite_GetAttribute(v8, MON_SPRITE_SHADOW_HEIGHT);
 
-            if (ov12_0223525C(param0, BattleAnimSystem_GetAttacker(param0)) == 0x3) {
+            if (BattleAnimUtil_GetBattlerSide(param0, BattleAnimSystem_GetAttacker(param0)) == 0x3) {
                 v6 = 140;
             } else {
                 v6 = 84;
@@ -1002,7 +1002,7 @@ void ov12_0222E61C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
             }
         }
 
-        if (ov12_0223525C(param0, BattleAnimSystem_GetAttacker(param0)) == 0x3) {
+        if (BattleAnimUtil_GetBattlerSide(param0, BattleAnimSystem_GetAttacker(param0)) == 0x3) {
             v3 = 24;
             v2 = 16;
 

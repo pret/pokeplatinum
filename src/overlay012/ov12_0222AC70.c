@@ -400,7 +400,7 @@ void ov12_0222AE68(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
 
     {
         UnkStruct_ov12_02235350 v3;
-        int v4 = ov12_0223525C(param0, BattleAnimSystem_GetDefender(param0));
+        int v4 = BattleAnimUtil_GetBattlerSide(param0, BattleAnimSystem_GetDefender(param0));
 
         if (v4 == 0x3) {
             ov12_02235350(0, BattleAnimSystem_IsContest(param0), &v3);
@@ -713,7 +713,7 @@ void ov12_0222B68C(BattleAnimSystem *param0)
             ManagedSprite_SetExplicitOamMode(v0->unk_18[v1], GX_OAM_MODE_XLU);
         }
 
-        if (ov12_0223525C(v0->unk_0C, BattleAnimSystem_GetAttacker(v0->unk_0C)) == 0x3) {
+        if (BattleAnimUtil_GetBattlerSide(v0->unk_0C, BattleAnimSystem_GetAttacker(v0->unk_0C)) == 0x3) {
             ManagedSprite_SetPriority(v0->unk_18[0], 10);
             ManagedSprite_SetPriority(v0->unk_18[1], 10);
             ManagedSprite_SetPriority(v0->unk_18[2], 20);
@@ -1858,7 +1858,7 @@ void ov12_0222CFA0(BattleAnimSystem *param0)
         ManagedSprite_SetExplicitPriority(v0->unk_40, ov12_0222339C(param0) + 1);
         v0->unk_12 = -1;
     } else {
-        if (ov12_0223525C(param0, BattleAnimSystem_GetAttacker(param0)) == 0x4) {
+        if (BattleAnimUtil_GetBattlerSide(param0, BattleAnimSystem_GetAttacker(param0)) == 0x4) {
             v0->unk_40 = v0->unk_44[1];
             ManagedSprite_SetDrawFlag(v0->unk_44[0], 0);
             ManagedSprite_SetAnim(v0->unk_40, 1);
