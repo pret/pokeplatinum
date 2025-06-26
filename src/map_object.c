@@ -169,8 +169,8 @@ MapObjectManager *MapObjectMan_New(FieldSystem *fieldSystem, int maxObjs, int pa
 
 void MapObjectMan_Delete(MapObjectManager *mapObjMan)
 {
-    Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, MapObjectMan_GetMapObject(mapObjMan));
-    Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, mapObjMan);
+    Heap_FreeToHeapExplicit(HEAP_ID_FIELD2, MapObjectMan_GetMapObject(mapObjMan));
+    Heap_FreeToHeapExplicit(HEAP_ID_FIELD2, mapObjMan);
 }
 
 void sub_0206184C(MapObjectManager *mapObjMan, int mapID, int param2, int objEventCount, const ObjectEvent *objectEvent)
@@ -206,13 +206,13 @@ static MapObjectManager *MapObjectMan_Alloc(int maxObjs)
 {
     int size;
     MapObject *mapObj;
-    MapObjectManager *mapObjMan = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(MapObjectManager));
+    MapObjectManager *mapObjMan = Heap_AllocFromHeap(HEAP_ID_FIELD2, sizeof(MapObjectManager));
 
     GF_ASSERT(mapObjMan != NULL);
     memset(mapObjMan, 0, sizeof(MapObjectManager));
 
     size = sizeof(MapObject) * maxObjs;
-    mapObj = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, size);
+    mapObj = Heap_AllocFromHeap(HEAP_ID_FIELD2, size);
 
     GF_ASSERT(mapObj != NULL);
     memset(mapObj, 0, size);
@@ -596,12 +596,12 @@ void sub_02062068(const MapObjectManager *mapObjMan, int param1, int param2, con
     GF_ASSERT(param2);
 
     v0 = sizeof(ObjectEvent) * param2;
-    v1 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, v0);
+    v1 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD2, v0);
 
     GF_ASSERT(v1 != NULL);
     memcpy(v1, objectEvent, v0);
 
-    v2 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_020620C4));
+    v2 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_020620C4));
     GF_ASSERT(v2 != NULL);
 
     v2->unk_00 = param1;
@@ -632,8 +632,8 @@ static void sub_020620C4(UnkStruct_020620C4 *param0)
         param0->unk_08++;
     } while (param0->unk_08 < param0->unk_04);
 
-    Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, param0->objectEvent);
-    Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, param0);
+    Heap_FreeToHeapExplicit(HEAP_ID_FIELD2, param0->objectEvent);
+    Heap_FreeToHeapExplicit(HEAP_ID_FIELD2, param0);
 }
 
 static MapObject *sub_02062120(const MapObjectManager *mapObjMan)

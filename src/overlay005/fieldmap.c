@@ -181,24 +181,24 @@ static BOOL FieldMap_Init(ApplicationManager *appMan, int *param1)
             }
         }
 
-        Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELD, fieldSystem->mapLoadMode->unk_04);
+        Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELD1, fieldSystem->mapLoadMode->unk_04);
         GF_ASSERT(fieldSystem->unk_04 == NULL);
 
-        fieldSystem->unk_04 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(FieldSystem_sub2));
+        fieldSystem->unk_04 = Heap_AllocFromHeap(HEAP_ID_FIELD1, sizeof(FieldSystem_sub2));
         MI_CpuClear8(fieldSystem->unk_04, sizeof(FieldSystem_sub2));
-        fieldSystem->unk_04->unk_04 = ov5_021D1A94(fieldSystem, HEAP_ID_FIELD, 8);
+        fieldSystem->unk_04->unk_04 = ov5_021D1A94(fieldSystem, HEAP_ID_FIELD1, 8);
 
         ov5_021D1414();
 
-        VramTransfer_New(128, HEAP_ID_FIELD);
-        sub_02020B90(4, HEAP_ID_FIELD);
-        Easy3D_Init(HEAP_ID_FIELD);
+        VramTransfer_New(128, HEAP_ID_FIELD1);
+        sub_02020B90(4, HEAP_ID_FIELD1);
+        Easy3D_Init(HEAP_ID_FIELD1);
 
         ov5_021D15B4();
         ov5_021D154C();
 
         GXLayers_SwapDisplay();
-        fieldSystem->bgConfig = BgConfig_New(HEAP_ID_FIELD);
+        fieldSystem->bgConfig = BgConfig_New(HEAP_ID_FIELD1);
         ov5_021D1444(fieldSystem->bgConfig);
         FieldMessage_LoadTextPalettes(PAL_LOAD_MAIN_BG, TRUE);
         sub_0203F5C0(fieldSystem, 4);
@@ -207,7 +207,7 @@ static BOOL FieldMap_Init(ApplicationManager *appMan, int *param1)
         ov5_021D1790(fieldSystem);
         AreaDataManager_Load(fieldSystem->areaDataManager);
 
-        fieldSystem->mapPropManager = MapPropManager_New(HEAP_ID_FIELD);
+        fieldSystem->mapPropManager = MapPropManager_New(HEAP_ID_FIELD1);
 
         ov5_021F0824(fieldSystem);
         ov5_021D17EC(fieldSystem);
@@ -224,7 +224,7 @@ static BOOL FieldMap_Init(ApplicationManager *appMan, int *param1)
 
         fieldSystem->unk_04->hBlankSystem = HBlankSystem_New(4);
         HBlankSystem_Start(fieldSystem->unk_04->hBlankSystem);
-        fieldSystem->unk_04->unk_20 = ov5_021EF4BC(HEAP_ID_FIELD, fieldSystem->unk_04->hBlankSystem);
+        fieldSystem->unk_04->unk_20 = ov5_021EF4BC(HEAP_ID_FIELD1, fieldSystem->unk_04->hBlankSystem);
         break;
     case 2:
         ov5_021D5BD8(fieldSystem);
@@ -341,7 +341,7 @@ static BOOL FieldMap_Exit(ApplicationManager *appMan, int *param1)
 
             fieldSystem->unk_04 = NULL;
 
-            Heap_Destroy(HEAP_ID_FIELD);
+            Heap_Destroy(HEAP_ID_FIELD1);
 
             if (fieldSystem->mapLoadMode->unk_00_20) {
                 Overlay_UnloadByID(FS_OVERLAY_ID(overlay6));
@@ -586,7 +586,7 @@ static void ov5_021D1444(BgConfig *bgl)
         };
 
         Bg_InitFromTemplate(bgl, BG_LAYER_MAIN_1, &v1, 0);
-        Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_FIELD);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_FIELD1);
         Bg_ClearTilemap(bgl, BG_LAYER_MAIN_1);
     }
 
@@ -608,7 +608,7 @@ static void ov5_021D1444(BgConfig *bgl)
         };
 
         Bg_InitFromTemplate(bgl, BG_LAYER_MAIN_2, &v2, 0);
-        Bg_ClearTilesRange(BG_LAYER_MAIN_2, 32, 0, HEAP_ID_FIELD);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_2, 32, 0, HEAP_ID_FIELD1);
         Bg_ClearTilemap(bgl, BG_LAYER_MAIN_2);
     }
     {
@@ -629,7 +629,7 @@ static void ov5_021D1444(BgConfig *bgl)
         };
 
         Bg_InitFromTemplate(bgl, BG_LAYER_MAIN_3, &v3, 0);
-        Bg_ClearTilesRange(BG_LAYER_MAIN_3, 32, 0, HEAP_ID_FIELD);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_3, 32, 0, HEAP_ID_FIELD1);
         Bg_ClearTilemap(bgl, BG_LAYER_MAIN_3);
     }
 
@@ -679,7 +679,7 @@ void ov5_021D15B4(void)
         CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
     }
 
-    PlttTransfer_Init(20, HEAP_ID_FIELD);
+    PlttTransfer_Init(20, HEAP_ID_FIELD1);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
 }
@@ -769,9 +769,9 @@ static void ov5_021D173C(FieldSystem *fieldSystem)
 void ov5_021D1744(const u8 param0)
 {
     if (param0 == 1) {
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD1);
     } else if (param0 == 0) {
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD1);
     } else {
         GF_ASSERT(FALSE);
     }
@@ -811,7 +811,7 @@ static void ov5_021D17EC(FieldSystem *fieldSystem)
         LandDataManager_SetSkipMapProps(fieldSystem->landDataMan, TRUE);
     }
 
-    fieldSystem->dynamicTerrainHeightMan = DynamicTerrainHeightManager_New(8, HEAP_ID_FIELD);
+    fieldSystem->dynamicTerrainHeightMan = DynamicTerrainHeightManager_New(8, HEAP_ID_FIELD1);
     fieldSystem->unk_A8 = HoneyTree_ShakeDataInit();
 
     if (fieldSystem->mapLoadType == MAP_LOAD_TYPE_OVERWORLD) {
@@ -823,7 +823,7 @@ static void ov5_021D17EC(FieldSystem *fieldSystem)
 
 static void ov5_021D1878(FieldSystem *fieldSystem)
 {
-    fieldSystem->unk_40 = ov5_021DF440(fieldSystem, 34, HEAP_ID_FIELD);
+    fieldSystem->unk_40 = ov5_021DF440(fieldSystem, 34, HEAP_ID_FIELD1);
 
     {
         int v0 = 80;
@@ -835,7 +835,7 @@ static void ov5_021D1878(FieldSystem *fieldSystem)
         ov5_021DF47C(fieldSystem->unk_40, v0);
     }
 
-    ov5_021DF488(fieldSystem->unk_40, HEAP_ID_FIELD, 32, 32, 32, 32, (0x500 * (32 / 2)), (0x80 * (32 / 2)), (0x800 * 32));
+    ov5_021DF488(fieldSystem->unk_40, HEAP_ID_FIELD1, 32, 32, 32, 32, (0x500 * (32 / 2)), (0x80 * (32 / 2)), (0x800 * 32));
 
     if ((fieldSystem->mapLoadType == MAP_LOAD_TYPE_UNDERGROUND) || (fieldSystem->mapLoadType == MAP_LOAD_TYPE_UNION)) {
         MapObjectMan_SetEndMovement(fieldSystem->mapObjMan, 0);
@@ -906,7 +906,7 @@ static void ov5_021D1968(FieldSystem *fieldSystem)
     }
 
     fieldSystem->unk_04->unk_08 = MapNamePopUp_Create(fieldSystem->bgConfig);
-    fieldSystem->signpost = Signpost_Init(HEAP_ID_FIELD);
+    fieldSystem->signpost = Signpost_Init(HEAP_ID_FIELD1);
     fieldSystem->unk_04->unk_10 = ov5_021D5CB0();
 
     ov5_021D5CE4(fieldSystem->unk_04->unk_10, AreaDataManager_GetMapTexture(fieldSystem->areaDataManager));

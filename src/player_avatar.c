@@ -127,7 +127,7 @@ void Player_DeleteAll(PlayerAvatar *playerAvatar)
 
 static PlayerAvatar *PlayerAvatar_Alloc(void)
 {
-    PlayerAvatar *playerAvatar = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, (sizeof(PlayerAvatar)));
+    PlayerAvatar *playerAvatar = Heap_AllocFromHeap(HEAP_ID_FIELD2, (sizeof(PlayerAvatar)));
     GF_ASSERT(playerAvatar != NULL);
     memset(playerAvatar, 0, (sizeof(PlayerAvatar)));
 

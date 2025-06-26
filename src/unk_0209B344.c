@@ -35,11 +35,11 @@ static BOOL sub_0209B3C4(FieldTask *param0);
 void sub_0209B344(FieldTask *param0, u16 *param1)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_0209B3AC *v1 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0209B3AC));
+    UnkStruct_0209B3AC *v1 = Heap_AllocFromHeap(HEAP_ID_FIELD3, sizeof(UnkStruct_0209B3AC));
 
     v1->fieldSystem = fieldSystem;
-    v1->unk_04 = StringTemplate_Default(HEAP_ID_FIELD_TASK);
-    v1->unk_10 = sub_0209747C(2, 0, v1->fieldSystem->saveData, HEAP_ID_FIELD_TASK);
+    v1->unk_04 = StringTemplate_Default(HEAP_ID_FIELD3);
+    v1->unk_10 = sub_0209747C(2, 0, v1->fieldSystem->saveData, HEAP_ID_FIELD3);
     v1->unk_14 = SaveData_MiscSaveBlock(fieldSystem->saveData);
     v1->unk_20 = param1;
 

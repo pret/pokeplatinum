@@ -46,7 +46,7 @@ void ov6_02246C24(FieldSystem *fieldSystem, const u8 param1)
     v0 = FieldSystem_FindLoadedMapPropByModelID(fieldSystem, v3, &v1, &v2);
 
     if (v0) {
-        UnkStruct_ov6_02246C24 *v4 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov6_02246C24));
+        UnkStruct_ov6_02246C24 *v4 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD1, sizeof(UnkStruct_ov6_02246C24));
 
         v4->unk_0C = param1;
         v4->unk_0D = 0;

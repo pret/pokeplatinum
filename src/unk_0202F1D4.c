@@ -602,7 +602,7 @@ static void sub_0202FD30(UnkStruct_0202FD30 *param0, Party *party)
     Pokemon *v1;
     u8 v2 = 0;
 
-    v1 = Pokemon_New(HEAP_ID_FIELDMAP);
+    v1 = Pokemon_New(HEAP_ID_FIELD2);
 
     Party_InitWithCapacity(party, param0->unk_00);
 

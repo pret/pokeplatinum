@@ -338,13 +338,13 @@ static void ov5_021ED0A4(UnkStruct_ov5_021ED0A4 *param0, int param1)
     UnkStruct_ov5_021ED110 *v3;
 
     v0 = sizeof(UnkStruct_ov5_021DF84C) * param1;
-    v2 = Heap_AllocFromHeap(HEAP_ID_FIELD, v0);
+    v2 = Heap_AllocFromHeap(HEAP_ID_FIELD1, v0);
 
     param0->unk_E4 = v2;
     GF_ASSERT(v2 != NULL);
 
     v0 = (sizeof(UnkStruct_ov5_021ED110)) * param1;
-    v3 = Heap_AllocFromHeap(HEAP_ID_FIELD, v0);
+    v3 = Heap_AllocFromHeap(HEAP_ID_FIELD1, v0);
 
     param0->unk_F4 = v3;
     GF_ASSERT(v3 != NULL);
@@ -364,8 +364,8 @@ static void ov5_021ED0F0(UnkStruct_ov5_021ED0A4 *param0)
 {
     ov5_021ED1A4(param0);
 
-    Heap_FreeToHeapExplicit(HEAP_ID_FIELD, param0->unk_E4);
-    Heap_FreeToHeapExplicit(HEAP_ID_FIELD, param0->unk_F4);
+    Heap_FreeToHeapExplicit(HEAP_ID_FIELD1, param0->unk_E4);
+    Heap_FreeToHeapExplicit(HEAP_ID_FIELD1, param0->unk_F4);
 }
 
 static UnkStruct_ov5_021DF84C *ov5_021ED110(UnkStruct_ov5_021ED0A4 *param0, u32 param1)
@@ -487,14 +487,14 @@ static int ov5_021ED1C8(const MapObjectManager *param0, const MapObject *param1,
 static void ov5_021ED224(UnkStruct_ov5_021ED0A4 *param0, int param1, int param2, int param3, int param4, int param5, int param6)
 {
     {
-        param0->unk_F8 = ov5_021F067C(HEAP_ID_FIELD, HEAP_ID_64, 0x1000 * param1, param1);
+        param0->unk_F8 = ov5_021F067C(HEAP_ID_FIELD1, HEAP_ID_64, 0x1000 * param1, param1);
         ov5_021ED558(param0);
         ov5_021EDCC4(param0, param2);
         ov5_021EDCCC(param0, param1 - param2);
     }
 
     {
-        param0->unk_FC = ov5_021F067C(HEAP_ID_FIELD, HEAP_ID_65, 0x80 * param3, param3);
+        param0->unk_FC = ov5_021F067C(HEAP_ID_FIELD1, HEAP_ID_65, 0x80 * param3, param3);
         ov5_021ED694(param0);
         ov5_021EDCD4(param0, param4);
         ov5_021EDCDC(param0, param3 - param4);
@@ -503,7 +503,7 @@ static void ov5_021ED224(UnkStruct_ov5_021ED0A4 *param0, int param1, int param2,
     {
         TextureResourceManager *v0;
 
-        v0 = TextureResourceManager_New(param5, HEAP_ID_FIELD);
+        v0 = TextureResourceManager_New(param5, HEAP_ID_FIELD1);
 
         ov5_021EDCA8(param0, v0);
         ov5_021ED7D0(param0);
@@ -1365,7 +1365,7 @@ static void ov5_021EDDAC(UnkStruct_ov5_021ED0A4 *param0, int param1)
     UnkStruct_02020C44 *v1;
 
     v0.unk_00 = param1;
-    v0.heapID = HEAP_ID_FIELD;
+    v0.heapID = HEAP_ID_FIELD1;
 
     v1 = sub_02020C44(&v0);
     ov5_021EDC84(param0, v1);
@@ -1618,7 +1618,7 @@ static void ov5_021EE030(SysTask *param0, void *param1)
 
 static void ov5_021EE0E8(UnkStruct_ov5_021ED0A4 *param0, int param1, void *param2, int param3)
 {
-    TextureResource *v0 = TextureResourceManager_AddTextureAndAllocVRam(param0->unk_F0, param2, param1, 1, HEAP_ID_FIELD);
+    TextureResource *v0 = TextureResourceManager_AddTextureAndAllocVRam(param0->unk_F0, param2, param1, 1, HEAP_ID_FIELD1);
 
     GF_ASSERT(v0 != NULL);
     ov5_021EE134(param0, param1);
@@ -1818,7 +1818,7 @@ static void ov5_021EE320(UnkStruct_ov5_021ED0A4 *param0, int param1, int param2)
     v3 = (sizeof(UnkStruct_ov5_021EDFBC)) * param1;
     v2 = (sizeof(UnkStruct_ov5_021EE134)) * param1;
     v1 = (sizeof(UnkStruct_ov5_021EDF3C)) + v2 + v3 + v4;
-    v5 = Heap_AllocFromHeap(HEAP_ID_FIELD, v1);
+    v5 = Heap_AllocFromHeap(HEAP_ID_FIELD1, v1);
 
     GF_ASSERT(v5 != NULL);
     memset(v5, 0, v1);
@@ -1884,7 +1884,7 @@ static UnkStruct_020216E0 *ov5_021EE454(MapObject *param0, int param1, UnkFuncPt
     UnkStruct_ov5_021ED0A4 *v8 = ov5_021EDEA8(param0);
     UnkStruct_02020C44 *v9 = ov5_021EDC8C(v8);
     UnkStruct_020216E0 *v10 = ov5_021EB1A0(param0);
-    UnkStruct_ov5_021EE698 *v11 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021EE698));
+    UnkStruct_ov5_021EE698 *v11 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD1, sizeof(UnkStruct_ov5_021EE698));
 
     memset(v11, 0, sizeof(UnkStruct_ov5_021EE698));
 

@@ -112,7 +112,7 @@ static void ov23_02248F1C(SysTask *param0, void *param1)
             v3.affineZRotation = 0;
             v3.priority = 0;
             v3.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
-            v3.heapID = HEAP_ID_FIELD;
+            v3.heapID = HEAP_ID_FIELD1;
 
             for (v2 = 0; v2 < (7 + 1); v2++) {
                 v0->unk_390[v2] = SpriteList_AddAffine(&v3);
@@ -409,19 +409,19 @@ static void ov23_0224944C(BgConfig *param0, Window *param1)
     {
         NARC *v3;
 
-        v3 = NARC_ctor(NARC_INDEX_DATA__UNDERG_RADAR, HEAP_ID_FIELD);
+        v3 = NARC_ctor(NARC_INDEX_DATA__UNDERG_RADAR, HEAP_ID_FIELD1);
 
-        Graphics_LoadPaletteFromOpenNARC(v3, 0, 4, 0, 0x20 * 2, HEAP_ID_FIELD);
-        Graphics_LoadTilesToBgLayerFromOpenNARC(v3, 1, param0, 4, 0, 32 * 5 * 0x20, 0, HEAP_ID_FIELD);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(v3, 2, param0, 4, 0, 32 * 24 * 2, 0, HEAP_ID_FIELD);
+        Graphics_LoadPaletteFromOpenNARC(v3, 0, 4, 0, 0x20 * 2, HEAP_ID_FIELD1);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(v3, 1, param0, 4, 0, 32 * 5 * 0x20, 0, HEAP_ID_FIELD1);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v3, 2, param0, 4, 0, 32 * 24 * 2, 0, HEAP_ID_FIELD1);
         NARC_dtor(v3);
     }
 
     FieldMessage_LoadTextPalettes(4, FALSE);
-    Bg_ClearTilesRange(7, 32, 0, HEAP_ID_FIELD);
+    Bg_ClearTilesRange(7, 32, 0, HEAP_ID_FIELD1);
     FieldMessage_AddWindow(param0, param1, 7);
     Window_FillTilemap(param1, 0);
-    Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, 52, 4, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD);
+    Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, 52, 4, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD1);
     ResetScreenMasterBrightness(DS_SCREEN_SUB);
 }
 
@@ -429,21 +429,21 @@ static void ov23_02249584(UnkStruct_ov23_0224942C *param0)
 {
     int v0;
 
-    param0->unk_1BC = SpriteList_InitRendering(((7 + 1) + 16 + 1), &param0->unk_1C0, HEAP_ID_FIELD);
+    param0->unk_1BC = SpriteList_InitRendering(((7 + 1) + 16 + 1), &param0->unk_1C0, HEAP_ID_FIELD1);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_34C[v0] = SpriteResourceCollection_New(1, v0, HEAP_ID_FIELD);
+        param0->unk_34C[v0] = SpriteResourceCollection_New(1, v0, HEAP_ID_FIELD1);
     }
 
     {
         NARC *v1;
 
-        v1 = NARC_ctor(NARC_INDEX_DATA__UNDERG_RADAR, HEAP_ID_FIELD);
+        v1 = NARC_ctor(NARC_INDEX_DATA__UNDERG_RADAR, HEAP_ID_FIELD1);
 
-        param0->unk_35C[0] = SpriteResourceCollection_AddTilesFrom(param0->unk_34C[0], v1, 4, 0, 1000, NNS_G2D_VRAM_TYPE_2DSUB, HEAP_ID_FIELD);
-        param0->unk_35C[1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_34C[1], v1, 3, 0, 1000, NNS_G2D_VRAM_TYPE_2DSUB, 2, HEAP_ID_FIELD);
-        param0->unk_35C[2] = SpriteResourceCollection_AddFrom(param0->unk_34C[2], v1, 5, 0, 1000, 2, HEAP_ID_FIELD);
-        param0->unk_35C[3] = SpriteResourceCollection_AddFrom(param0->unk_34C[3], v1, 6, 0, 1000, 3, HEAP_ID_FIELD);
+        param0->unk_35C[0] = SpriteResourceCollection_AddTilesFrom(param0->unk_34C[0], v1, 4, 0, 1000, NNS_G2D_VRAM_TYPE_2DSUB, HEAP_ID_FIELD1);
+        param0->unk_35C[1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_34C[1], v1, 3, 0, 1000, NNS_G2D_VRAM_TYPE_2DSUB, 2, HEAP_ID_FIELD1);
+        param0->unk_35C[2] = SpriteResourceCollection_AddFrom(param0->unk_34C[2], v1, 5, 0, 1000, 2, HEAP_ID_FIELD1);
+        param0->unk_35C[3] = SpriteResourceCollection_AddFrom(param0->unk_34C[3], v1, 6, 0, 1000, 3, HEAP_ID_FIELD1);
 
         NARC_dtor(v1);
     }
@@ -493,15 +493,15 @@ static void ov23_02249724(UnkStruct_ov23_02249724 *param0)
     int v0;
 
     for (v0 = 0; v0 < 32; v0++) {
-        param0->unk_00[v0] = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
+        param0->unk_00[v0] = Strbuf_Init((50 * 2), HEAP_ID_FIELD1);
     }
 
     param0->unk_8C = 0;
     param0->unk_90 = 0;
-    param0->unk_80 = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
+    param0->unk_80 = Strbuf_Init((50 * 2), HEAP_ID_FIELD1);
 
     for (v0 = 0; v0 < 2; v0++) {
-        param0->unk_84[v0] = Strbuf_Init((20 * 2 * 2), HEAP_ID_FIELD);
+        param0->unk_84[v0] = Strbuf_Init((20 * 2 * 2), HEAP_ID_FIELD1);
     }
 }
 

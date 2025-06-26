@@ -192,7 +192,7 @@ FieldBattleDTO *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104
         v4 = 2;
     }
 
-    v6 = Pokemon_New(HEAP_ID_FIELDMAP);
+    v6 = Pokemon_New(HEAP_ID_FIELD2);
 
     for (v0 = 0; v0 < v2; v0++) {
         Pokemon_Copy(Party_GetPokemonBySlotIndex(v12, (v4 + v0)), v6);
@@ -202,7 +202,7 @@ FieldBattleDTO *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104
     Heap_FreeToHeap(v6);
     FieldBattleDTO_CopyPlayerInfoToTrainerData(v5);
 
-    BattleFrontierTrainerData *v8 = ov104_0222DD04(&v7, param0->unk_78[param0->unk_11], HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR);
+    BattleFrontierTrainerData *v8 = ov104_0222DD04(&v7, param0->unk_78[param0->unk_11], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR);
 
     Heap_FreeToHeap(v8);
     ov104_0222E284(v5, &v7, v3, 1, 11);
@@ -212,7 +212,7 @@ FieldBattleDTO *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104
         v5->trainer[v0].header.aiMask = ov104_0223C0D0(param0);
     }
 
-    v6 = Pokemon_New(HEAP_ID_FIELDMAP);
+    v6 = Pokemon_New(HEAP_ID_FIELD2);
 
     for (v0 = 0; v0 < v3; v0++) {
         Pokemon_Copy(Party_GetPokemonBySlotIndex(v13, v0), v6);
@@ -228,13 +228,13 @@ FieldBattleDTO *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104
 
         TrainerInfo_Copy(CommInfo_TrainerInfo(1 - CommSys_CurNetId()), v5->trainerInfo[2]);
 
-        v8 = ov104_0222DD04(&v7, param0->unk_78[param0->unk_11 + 7], HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR);
+        v8 = ov104_0222DD04(&v7, param0->unk_78[param0->unk_11 + 7], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR);
         Heap_FreeToHeap(v8);
 
         ov104_0222E284(v5, &v7, v3, 3, 11);
         Party_InitWithCapacity(v5->parties[3], ov104_0223BDA4(param0->unk_10, 0));
 
-        v6 = Pokemon_New(HEAP_ID_FIELDMAP);
+        v6 = Pokemon_New(HEAP_ID_FIELD2);
 
         for (v0 = 0; v0 < v3; v0++) {
             Pokemon_Copy(Party_GetPokemonBySlotIndex(v13, (v3 + v0)), v6);
@@ -308,7 +308,7 @@ void ov104_0223C04C(UnkStruct_ov104_0223BFFC *param0)
     Party_Init(param0->unk_74);
 
     v3 = ov104_0223BDA4(param0->unk_10, 1);
-    v5 = Pokemon_New(HEAP_ID_FIELDMAP);
+    v5 = Pokemon_New(HEAP_ID_FIELD2);
 
     for (v1 = 0; v1 < v3; v1++) {
         ov104_0222DF40(&param0->unk_330[v1], v5, ov104_0223BFFC(param0));

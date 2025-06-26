@@ -179,9 +179,9 @@ static void ov23_0224F294(UnkStruct_ov23_02250CD4 *param0, u8 *param1, u32 param
         8, 1, 2, 2, 0, 0
     };
     u32 v1;
-    NARC *v2 = NARC_ctor(NARC_INDEX_GRAPHIC__MENU_GRA, HEAP_ID_FIELDMAP);
+    NARC *v2 = NARC_ctor(NARC_INDEX_GRAPHIC__MENU_GRA, HEAP_ID_FIELD2);
 
-    ov5_021D3190(&param0->unk_74, &v0, (7 + 1), HEAP_ID_FIELDMAP);
+    ov5_021D3190(&param0->unk_74, &v0, (7 + 1), HEAP_ID_FIELD2);
     ov5_021D32E8(&param0->unk_74, v2, 9, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 14528);
     ov5_021D3374(&param0->unk_74, v2, 1, 0, 14528);
     ov5_021D339C(&param0->unk_74, v2, 0, 0, 14528);
@@ -421,16 +421,16 @@ void ov23_0224F758(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSystem)
     Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
     ov23_022430D0(2);
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02250CD4));
+    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD1, sizeof(UnkStruct_ov23_02250CD4));
 
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_02250CD4));
 
     v0->fieldSystem = fieldSystem;
     v0->unk_260 = param0;
     v0->unk_2AA = 0;
-    v0->unk_68 = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
-    v0->unk_6C = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
-    v0->unk_70 = StringTemplate_Default(HEAP_ID_FIELD);
+    v0->unk_68 = Strbuf_Init((50 * 2), HEAP_ID_FIELD1);
+    v0->unk_6C = Strbuf_Init((50 * 2), HEAP_ID_FIELD1);
+    v0->unk_70 = StringTemplate_Default(HEAP_ID_FIELD1);
     v0->unk_04 = SysTask_Start(ov23_0224F914, v0, 10000);
 
     ov23_022431EC(v0, v0->unk_04, ov23_02251270);
@@ -634,7 +634,7 @@ static BOOL ov23_0224FA58(SysTask *param0, void *param1)
         break;
     default:
         if ((v0->unk_2A0 == (u32)ov23_0224FDE0) || (v0->unk_2A0 == (u32)ov23_022501BC) || (v0->unk_2A0 == (u32)ov23_02250CD4) || (v0->unk_2A0 == (u32)ov23_02250598)) {
-            v0->unk_08 = sub_0206A780(HEAP_ID_FIELD);
+            v0->unk_08 = sub_0206A780(HEAP_ID_FIELD1);
             sub_0206A8A0(v0->unk_08, 200, 20, 122);
             sub_0206A8C4(v0->unk_08, 0, 0);
             sub_0206A8C4(v0->unk_08, 1, 0);
@@ -866,7 +866,7 @@ static void ov23_0224FE38(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
 
     ov23_02251238(param0, v4, v2.count);
 
-    param0->unk_4C = ov23_02248C08(&v2, param0->unk_294, param0->unk_290, HEAP_ID_FIELD, param1, Unk_ov23_022577B8->unk_00, 0);
+    param0->unk_4C = ov23_02248C08(&v2, param0->unk_294, param0->unk_290, HEAP_ID_FIELD1, param1, Unk_ov23_022577B8->unk_00, 0);
     param0->unk_2AA = 5;
 }
 
@@ -1060,7 +1060,7 @@ static void ov23_0225021C(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
 
     ov23_02251238(param0, v5, v3.count);
 
-    param0->unk_4C = ov23_02248C08(&v3, param0->unk_294, param0->unk_290, HEAP_ID_FIELD, param1, Unk_ov23_022577B8->unk_00, 0);
+    param0->unk_4C = ov23_02248C08(&v3, param0->unk_294, param0->unk_290, HEAP_ID_FIELD1, param1, Unk_ov23_022577B8->unk_00, 0);
     param0->unk_2AA = 6;
 }
 
@@ -1232,7 +1232,7 @@ static void ov23_022505EC(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
 
     ov23_02251238(param0, v4, v2.count);
 
-    param0->unk_4C = ov23_02248C08(&v2, param0->unk_294, param0->unk_290, HEAP_ID_FIELD, param1, Unk_ov23_022577B8->unk_00, 0);
+    param0->unk_4C = ov23_02248C08(&v2, param0->unk_294, param0->unk_290, HEAP_ID_FIELD1, param1, Unk_ov23_022577B8->unk_00, 0);
     param0->unk_2AA = 7;
 }
 
@@ -1315,7 +1315,7 @@ static BOOL ov23_022507D8(SysTask *param0, void *param1)
 
             Sound_PlayEffect(SEQ_SE_CONFIRM);
 
-            if (Bag_TryAddItem(v4, item, 1, HEAP_ID_FIELD)) {
+            if (Bag_TryAddItem(v4, item, 1, HEAP_ID_FIELD1)) {
                 sub_02028D80(Unk_ov23_022577B8->unk_00, Unk_ov23_022577B8->unk_04);
                 ov23_022541A0(ov23_0224219C(), 0, Unk_ov23_022577B8->unk_05);
 
@@ -1410,16 +1410,16 @@ void ov23_02250A50(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSystem)
     UnkStruct_ov23_02250CD4 *v0;
     ListMenuTemplate v1;
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02250CD4));
+    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD1, sizeof(UnkStruct_ov23_02250CD4));
 
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_02250CD4));
 
     v0->fieldSystem = fieldSystem;
     v0->unk_260 = param0;
     v0->unk_2AA = 0;
-    v0->unk_68 = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
-    v0->unk_6C = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
-    v0->unk_70 = StringTemplate_Default(HEAP_ID_FIELD);
+    v0->unk_68 = Strbuf_Init((50 * 2), HEAP_ID_FIELD1);
+    v0->unk_6C = Strbuf_Init((50 * 2), HEAP_ID_FIELD1);
+    v0->unk_70 = StringTemplate_Default(HEAP_ID_FIELD1);
 
     sub_020594FC();
 
@@ -1634,7 +1634,7 @@ static void ov23_02250D90(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
 
     ov23_02251238(param0, v4, v2.count);
 
-    param0->unk_4C = ov23_02248C08(&v2, param0->unk_294, param0->unk_290, HEAP_ID_FIELD, param1, Unk_ov23_022577B8->unk_00, 0);
+    param0->unk_4C = ov23_02248C08(&v2, param0->unk_294, param0->unk_290, HEAP_ID_FIELD1, param1, Unk_ov23_022577B8->unk_00, 0);
     param0->unk_2AA = 8;
 }
 
@@ -1832,7 +1832,7 @@ void *ov23_022511B0(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSystem)
     UnkStruct_ov23_02250CD4 *v0;
     ListMenuTemplate v1;
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02250CD4));
+    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD1, sizeof(UnkStruct_ov23_02250CD4));
 
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_02250CD4));
 
@@ -1842,9 +1842,9 @@ void *ov23_022511B0(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSystem)
     v0->unk_25C = 0;
     v0->unk_48 = NULL;
     v0->unk_60 = NULL;
-    v0->unk_68 = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
-    v0->unk_6C = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
-    v0->unk_70 = StringTemplate_Default(HEAP_ID_FIELD);
+    v0->unk_68 = Strbuf_Init((50 * 2), HEAP_ID_FIELD1);
+    v0->unk_6C = Strbuf_Init((50 * 2), HEAP_ID_FIELD1);
+    v0->unk_70 = StringTemplate_Default(HEAP_ID_FIELD1);
 
     ov23_02250CD4(v0);
 

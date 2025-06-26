@@ -473,7 +473,7 @@ static int (*const Unk_ov5_021FFA0C[])(UnkStruct_ov5_021F0D6C *, PlayerAvatar *,
 
 static void *ov5_021F0D1C(u32 param0)
 {
-    void *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, param0);
+    void *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD1, param0);
 
     GF_ASSERT(v0 != NULL);
     memset(v0, 0, param0);
@@ -501,10 +501,10 @@ static int ov5_021F0D54(void)
 
 static void ov5_021F0D6C(UnkStruct_ov5_021F0D6C *param0)
 {
-    param0->unk_48 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS, HEAP_ID_FIELD);
-    param0->unk_2C = Strbuf_Init(0x400, HEAP_ID_FIELD);
-    param0->unk_30 = Strbuf_Init(0x400, HEAP_ID_FIELD);
-    param0->unk_34 = StringTemplate_New(8, 64, HEAP_ID_FIELD);
+    param0->unk_48 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS, HEAP_ID_FIELD1);
+    param0->unk_2C = Strbuf_Init(0x400, HEAP_ID_FIELD1);
+    param0->unk_30 = Strbuf_Init(0x400, HEAP_ID_FIELD1);
+    param0->unk_34 = StringTemplate_New(8, 64, HEAP_ID_FIELD1);
 }
 
 static void ov5_021F0DA4(UnkStruct_ov5_021F0D6C *param0)

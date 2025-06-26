@@ -28,7 +28,7 @@ AreaLightManager *AreaLightManager_New(ModelAttributes *areaModelAttrs, const u8
 {
     GF_ASSERT(archiveID < AREA_LIGHT_FILE_COUNT);
 
-    AreaLightManager *areaLightMan = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(AreaLightManager));
+    AreaLightManager *areaLightMan = Heap_AllocFromHeap(HEAP_ID_FIELD1, sizeof(AreaLightManager));
 
     areaLightMan->areaModelAttrs = areaModelAttrs;
     areaLightMan->templateCount = AreaLightTemplate_New(archiveID, &areaLightMan->templates);
@@ -54,7 +54,7 @@ void AreaLightManager_Free(AreaLightManager **areaLightMan)
     GF_ASSERT(areaLightMan);
 
     AreaLightTemplate_Free(&(*areaLightMan)->templates);
-    Heap_FreeToHeapExplicit(HEAP_ID_FIELD, *areaLightMan);
+    Heap_FreeToHeapExplicit(HEAP_ID_FIELD1, *areaLightMan);
 
     *areaLightMan = NULL;
 }
@@ -126,7 +126,7 @@ static u32 AreaLightTemplate_New(u32 archiveID, AreaLightTemplate **templates)
     char lineBuffer[SCRATCH_BUFFER_SIZE];
     char endTimeBuffer[SCRATCH_BUFFER_SIZE];
 
-    void *fileBuffer = LoadMemberFromNARC(NARC_INDEX_DATA__AREALIGHT, archiveID, FALSE, HEAP_ID_FIELD, FALSE);
+    void *fileBuffer = LoadMemberFromNARC(NARC_INDEX_DATA__AREALIGHT, archiveID, FALSE, HEAP_ID_FIELD1, FALSE);
     void *fileIter = fileBuffer;
     int templateCount = 0;
 
@@ -147,7 +147,7 @@ static u32 AreaLightTemplate_New(u32 archiveID, AreaLightTemplate **templates)
         }
     } while (!(lineBuffer[0] == 'E' && lineBuffer[1] == 'O' && lineBuffer[2] == 'F'));
 
-    *templates = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(AreaLightTemplate) * templateCount);
+    *templates = Heap_AllocFromHeap(HEAP_ID_FIELD1, sizeof(AreaLightTemplate) * templateCount);
     MI_CpuClear8(*templates, sizeof(AreaLightTemplate) * templateCount);
     fileIter = fileBuffer;
 
@@ -175,14 +175,14 @@ static u32 AreaLightTemplate_New(u32 archiveID, AreaLightTemplate **templates)
         fileIter = Ascii_CopyToTerminator(fileIter, lineBuffer, '\r');
     }
 
-    Heap_FreeToHeapExplicit(HEAP_ID_FIELD, fileBuffer);
+    Heap_FreeToHeapExplicit(HEAP_ID_FIELD1, fileBuffer);
 
     return templateCount;
 }
 
 static void AreaLightTemplate_Free(AreaLightTemplate **template)
 {
-    Heap_FreeToHeapExplicit(HEAP_ID_FIELD, *template);
+    Heap_FreeToHeapExplicit(HEAP_ID_FIELD1, *template);
     *template = NULL;
 }
 

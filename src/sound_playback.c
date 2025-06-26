@@ -366,7 +366,7 @@ BOOL Sound_PlayPokemonCry(u16 species, u8 form)
 
 BOOL Sound_PlayDelayedPokemonCry(u16 species, u8 delay, u8 form)
 {
-    Sound_PlayDelayedPokemonCryEx(POKECRY_NORMAL, species, 0, SOUND_VOLUME_MAX, HEAP_ID_FIELDMAP, delay, form);
+    Sound_PlayDelayedPokemonCryEx(POKECRY_NORMAL, species, 0, SOUND_VOLUME_MAX, HEAP_ID_FIELD2, delay, form);
     return TRUE;
 }
 

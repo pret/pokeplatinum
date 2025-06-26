@@ -3464,7 +3464,7 @@ static void ov109_021D3B70(UnkStruct_ov109_021D0F70 *param0, int param1)
     v4 = Party_GetPokemonBySlotIndex(v2, v0);
     v5 = Party_GetPokemonBySlotIndex(v3, v1);
 
-    UpdateMonStatusAndTrainerInfo(v5, CommInfo_TrainerInfo(CommSys_CurNetId()), 5, 0, HEAP_ID_FIELDMAP);
+    UpdateMonStatusAndTrainerInfo(v5, CommInfo_TrainerInfo(CommSys_CurNetId()), 5, 0, HEAP_ID_FIELD2);
     Pokemon_Copy(v5, v4);
 }
 

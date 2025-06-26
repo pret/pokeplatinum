@@ -140,7 +140,7 @@ static BOOL sub_02056B70(FieldTask *taskMan)
 
 void sub_02056BDC(FieldSystem *fieldSystem, const int param1, const int param2, const int param3, const int param4, const int param5, const int param6)
 {
-    UnkStruct_02056BDC *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02056BDC));
+    UnkStruct_02056BDC *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_02056BDC));
 
     v0->unk_00 = 0;
     v0->unk_04 = 0;
@@ -156,7 +156,7 @@ void sub_02056C18(FieldSystem *fieldSystem, const int param1, const int param2, 
 {
     int v0;
     int v1;
-    UnkStruct_02056BDC *v2 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02056BDC));
+    UnkStruct_02056BDC *v2 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_02056BDC));
 
     v2->unk_00 = 0;
     v2->unk_04 = 0;

@@ -98,12 +98,12 @@ static void sub_020528D0(BgConfig *param0)
     GXLayers_SetBanks(&v0);
     SetAllGraphicsModes(&v1);
     Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v2, 0);
-    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__PL_FONT, 6, 0, 13 * 0x20, 0x20, HEAP_ID_FIELDMAP);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__PL_FONT, 6, 0, 13 * 0x20, 0x20, HEAP_ID_FIELD2);
 }
 
 static void sub_02052914(FieldSystem *fieldSystem, FieldTask *task)
 {
-    UnkStruct_02052AA4 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02052AA4));
+    UnkStruct_02052AA4 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD2, sizeof(UnkStruct_02052AA4));
 
     if (v0 == NULL) {
         GF_ASSERT(FALSE);
@@ -113,12 +113,12 @@ static void sub_02052914(FieldSystem *fieldSystem, FieldTask *task)
 
     v0->unk_00 = 0;
     v0->fieldSystem = fieldSystem;
-    v0->unk_08 = BgConfig_New(HEAP_ID_FIELDMAP);
+    v0->unk_08 = BgConfig_New(HEAP_ID_FIELD2);
 
     sub_020528D0(v0->unk_08);
 
-    v0->unk_1C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0373, HEAP_ID_FIELDMAP);
-    v0->unk_20 = StringTemplate_Default(HEAP_ID_FIELDMAP);
+    v0->unk_1C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0373, HEAP_ID_FIELD2);
+    v0->unk_20 = StringTemplate_Default(HEAP_ID_FIELD2);
 
     Window_AddFromTemplate(v0->unk_08, &v0->unk_0C, &Unk_020EC2F0);
     StringTemplate_SetPlayerName(v0->unk_20, 0, SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem)));
@@ -141,7 +141,7 @@ static BOOL sub_020529C4(FieldTask *task)
 
     switch (v0->unk_00) {
     case 0:
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_MAX, FADE_TO_BLACK, 8, 1, HEAP_ID_FIELD_TASK);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_MAX, FADE_TO_BLACK, 8, 1, HEAP_ID_FIELD3);
         v0->unk_00++;
         break;
     case 1:
@@ -151,7 +151,7 @@ static BOOL sub_020529C4(FieldTask *task)
         break;
     case 2:
         if ((gSystem.pressedKeys & PAD_BUTTON_A) || (gSystem.pressedKeys & PAD_BUTTON_B)) {
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 8, 1, HEAP_ID_FIELD_TASK);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 8, 1, HEAP_ID_FIELD3);
             v0->unk_00++;
         }
         break;
@@ -178,8 +178,8 @@ static BOOL sub_020529C4(FieldTask *task)
 
 static void sub_02052AA4(UnkStruct_02052AA4 *param0, u16 param1, u8 param2, u8 param3)
 {
-    Strbuf *v0 = Strbuf_Init(1024, HEAP_ID_FIELDMAP);
-    Strbuf *v1 = Strbuf_Init(1024, HEAP_ID_FIELDMAP);
+    Strbuf *v0 = Strbuf_Init(1024, HEAP_ID_FIELD2);
+    Strbuf *v1 = Strbuf_Init(1024, HEAP_ID_FIELD2);
 
     Window_FillTilemap(&param0->unk_0C, 0);
     MessageLoader_GetStrbuf(param0->unk_1C, param1, v0);

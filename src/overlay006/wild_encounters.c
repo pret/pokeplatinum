@@ -213,7 +213,7 @@ static void WildEncounters_ReplaceTrophyGardenEncounters(FieldSystem *fieldSyste
         SpecialEncounter_GetTrophyGardenMons(fieldSystem->saveData, &index1, &index2);
 
         if (nationalDexObtained) {
-            int *trophyGardenData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 8, HEAP_ID_FIELD);
+            int *trophyGardenData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 8, HEAP_ID_FIELD1);
 
             if (index1 != TROPHY_GARDEN_SLOT_NONE) {
                 *trophySlot1 = trophyGardenData[index1];
@@ -300,7 +300,7 @@ BOOL WildEncounters_TryWildEncounter(FieldSystem *fieldSystem)
 
         if (TryEncounterRoamer(fieldSystem, &roamer)) {
             if (!RepelPreventsEncounter(Roamer_GetData(roamer, ROAMER_DATA_LEVEL), &encounterFieldParams)) {
-                battleParams = FieldBattleDTO_New(HEAP_ID_FIELDMAP, BATTLE_TYPE_ROAMER);
+                battleParams = FieldBattleDTO_New(HEAP_ID_FIELD2, BATTLE_TYPE_ROAMER);
 
                 FieldBattleDTO_Init(battleParams, fieldSystem);
                 AddRoamerToEnemyParty(encounterFieldParams.trainerID, roamer, battleParams);
@@ -317,7 +317,7 @@ BOOL WildEncounters_TryWildEncounter(FieldSystem *fieldSystem)
         safariGameActive = SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData));
         CreateWildSingleBattle(fieldSystem, safariGameActive, &battleParams);
     } else {
-        battleParams = FieldBattleDTO_New(HEAP_ID_FIELDMAP, BATTLE_TYPE_AI_PARTNER);
+        battleParams = FieldBattleDTO_New(HEAP_ID_FIELD2, BATTLE_TYPE_AI_PARTNER);
     }
 
     FieldBattleDTO_Init(battleParams, fieldSystem);
@@ -342,7 +342,7 @@ BOOL WildEncounters_TryWildEncounter(FieldSystem *fieldSystem)
             encounterSuccess = TryGenerateGrassEncounter_WithRadar(fieldSystem, firstPartyMon, battleParams, encounterData, encounterTable, &encounterFieldParams, &radarData);
         } else {
             battleParams->trainerIDs[BATTLER_PLAYER_2] = SystemVars_GetPartnerTrainerID(SaveData_GetVarsFlags(fieldSystem->saveData));
-            Trainer_Encounter(battleParams, fieldSystem->saveData, HEAP_ID_FIELDMAP);
+            Trainer_Encounter(battleParams, fieldSystem->saveData, HEAP_ID_FIELD2);
             encounterSuccess = TryGenerateGrassEncounter_DoubleBattle(fieldSystem, firstPartyMon, battleParams, encounterTable, &encounterFieldParams);
         }
     } else if (encounterType == ENCOUNTER_TYPE_SURF) {
@@ -365,8 +365,8 @@ BOOL WildEncounters_TryWildEncounter(FieldSystem *fieldSystem)
         gettingEncounter = FALSE;
     }
 
-    GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_FIELD));
-    GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_FIELDMAP));
+    GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_FIELD1));
+    GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_FIELD2));
 
     if (!gettingEncounter) {
         FieldBattleDTO_Free(battleParams);
@@ -490,7 +490,7 @@ BOOL WildEncounters_TrySweetScentEncounter(FieldSystem *fieldSystem, FieldTask *
         Roamer *roamer;
 
         if (TryEncounterRoamer(fieldSystem, &roamer)) {
-            battleParams = FieldBattleDTO_New(HEAP_ID_FIELDMAP, BATTLE_TYPE_ROAMER);
+            battleParams = FieldBattleDTO_New(HEAP_ID_FIELD2, BATTLE_TYPE_ROAMER);
 
             FieldBattleDTO_Init(battleParams, fieldSystem);
             AddRoamerToEnemyParty(encounterFieldParams.trainerID, roamer, battleParams);
@@ -529,7 +529,7 @@ BOOL WildEncounters_TrySweetScentEncounter(FieldSystem *fieldSystem, FieldTask *
             encounterSuccess = TryGenerateGrassEncounter_WithRadar(fieldSystem, firstPartyMon, battleParams, encounterData, encounterTable, &encounterFieldParams, &radarData);
         } else {
             battleParams->trainerIDs[BATTLER_PLAYER_2] = SystemVars_GetPartnerTrainerID(SaveData_GetVarsFlags(fieldSystem->saveData));
-            Trainer_Encounter(battleParams, fieldSystem->saveData, HEAP_ID_FIELDMAP);
+            Trainer_Encounter(battleParams, fieldSystem->saveData, HEAP_ID_FIELD2);
             encounterSuccess = TryGenerateGrassEncounter_DoubleBattle(fieldSystem, firstPartyMon, battleParams, encounterTable, &encounterFieldParams);
         }
     } else if (encounterType == ENCOUNTER_TYPE_SURF) {
@@ -659,7 +659,7 @@ BOOL WildEncounters_TryMudEncounter(FieldSystem *fieldSystem, FieldBattleDTO **b
             encounterSuccess = TryGenerateGrassEncounter_WithRadar(fieldSystem, firstPartyMon, *battleParams, encounterData, encounterTable, &encounterFieldParams, &radarData);
         } else {
             (*battleParams)->trainerIDs[BATTLER_PLAYER_2] = SystemVars_GetPartnerTrainerID(SaveData_GetVarsFlags(fieldSystem->saveData));
-            Trainer_Encounter(*battleParams, fieldSystem->saveData, HEAP_ID_FIELDMAP);
+            Trainer_Encounter(*battleParams, fieldSystem->saveData, HEAP_ID_FIELD2);
             encounterSuccess = TryGenerateGrassEncounter_DoubleBattle(fieldSystem, firstPartyMon, *battleParams, encounterTable, &encounterFieldParams);
         }
     } else {
@@ -672,8 +672,8 @@ BOOL WildEncounters_TryMudEncounter(FieldSystem *fieldSystem, FieldBattleDTO **b
         gettingEncounter = FALSE;
     }
 
-    GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_FIELD));
-    GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_FIELDMAP));
+    GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_FIELD1));
+    GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_FIELD2));
 
     if (!gettingEncounter) {
         FieldBattleDTO_Free(*battleParams);
@@ -985,7 +985,7 @@ static void CreateWildMonShinyWithGenderOrNature(const u16 species, const u8 lev
     u8 firstMonGender;
     u8 firstMonNature;
 
-    Pokemon *newEncounter = Pokemon_New(HEAP_ID_FIELDMAP);
+    Pokemon *newEncounter = Pokemon_New(HEAP_ID_FIELD2);
     Pokemon_Init(newEncounter);
 
     BOOL abilityInEffect = FALSE;
@@ -1046,7 +1046,7 @@ static void CreateWildMonShinyWithGenderOrNature(const u16 species, const u8 lev
 
 static void CreateWildMon(u16 species, u8 level, const int partyDest, const WildEncounters_FieldParams *encounterFieldParams, Pokemon *firstPartyMon, FieldBattleDTO *battleParams)
 {
-    Pokemon *newEncounter = Pokemon_New(HEAP_ID_FIELDMAP);
+    Pokemon *newEncounter = Pokemon_New(HEAP_ID_FIELD2);
     Pokemon_Init(newEncounter);
     BOOL hasRandomGender = TRUE;
 
@@ -1380,10 +1380,10 @@ static BOOL FirstMonAbilityPreventsEncounter(const WildEncounters_FieldParams *e
 static void CreateWildSingleBattle(FieldSystem *fieldSystem, const BOOL safariGameActive, FieldBattleDTO **battleParams)
 {
     if (!safariGameActive) {
-        *battleParams = FieldBattleDTO_New(HEAP_ID_FIELDMAP, (0x0 | 0x0));
+        *battleParams = FieldBattleDTO_New(HEAP_ID_FIELD2, (0x0 | 0x0));
     } else {
         u16 *safariBallsCount = FieldOverworldState_GetSafariBallCount(SaveData_GetFieldOverworldState(fieldSystem->saveData));
-        *battleParams = FieldBattleDTO_NewSafari(HEAP_ID_FIELDMAP, *safariBallsCount);
+        *battleParams = FieldBattleDTO_NewSafari(HEAP_ID_FIELD2, *safariBallsCount);
     }
 }
 
@@ -1401,7 +1401,7 @@ static BOOL RepelPreventsEncounter(const u8 wildLevel, const WildEncounters_Fiel
 
 static void AddRoamerToEnemyParty(const u32 trainerID, Roamer *roamer, FieldBattleDTO *battle)
 {
-    Pokemon *mon = Pokemon_New(HEAP_ID_FIELD);
+    Pokemon *mon = Pokemon_New(HEAP_ID_FIELD1);
     int roamerSpecies = Roamer_GetData(roamer, ROAMER_DATA_SPECIES);
     u8 roamerLevel = Roamer_GetData(roamer, ROAMER_DATA_LEVEL);
     u32 roamerCombinedIVs = Roamer_GetData(roamer, ROAMER_DATA_IVS);

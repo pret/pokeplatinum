@@ -40,7 +40,7 @@ static void sub_0205075C(FieldSystem *fieldSystem);
 
 void sub_02050568(FieldSystem *fieldSystem)
 {
-    UnkStruct_02050568 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02050568));
+    UnkStruct_02050568 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_02050568));
 
     memset(v0, 0, sizeof(UnkStruct_02050568));
     FieldTask_InitCall(fieldSystem->task, sub_020505A0, v0);
@@ -82,7 +82,7 @@ static BOOL sub_020505A0(FieldTask *taskMan)
     case 4:
         sub_0205074C(fieldSystem->playerAvatar, 1);
         sub_0205075C(fieldSystem);
-        sub_02056B30(taskMan, 3, 17, 0xffff, 0x0, 6, 1, HEAP_ID_FIELDMAP);
+        sub_02056B30(taskMan, 3, 17, 0xffff, 0x0, 6, 1, HEAP_ID_FIELD2);
         Sound_PlayEffect(SEQ_SE_DP_KASYA);
         v1->unk_08++;
         break;
@@ -92,7 +92,7 @@ static BOOL sub_020505A0(FieldTask *taskMan)
         }
         break;
     case 6:
-        sub_02056B30(taskMan, 3, 16, 0xffff, 0x0, 6, 1, HEAP_ID_FIELDMAP);
+        sub_02056B30(taskMan, 3, 16, 0xffff, 0x0, 6, 1, HEAP_ID_FIELD2);
         Sound_PlayEffect(SEQ_SE_DP_KASYA);
         v1->unk_08++;
         break;

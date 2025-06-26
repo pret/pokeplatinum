@@ -114,7 +114,7 @@ void FieldSystem_StartFieldMapInner(FieldSystem *fieldSystem)
 
     fieldSystem->runningFieldMap = FALSE;
     fieldSystem->processManager->pause = FALSE;
-    fieldSystem->processManager->parent = ApplicationManager_New(&gFieldMapTemplate, fieldSystem, HEAP_ID_FIELDMAP);
+    fieldSystem->processManager->parent = ApplicationManager_New(&gFieldMapTemplate, fieldSystem, HEAP_ID_FIELD2);
 }
 
 void FieldSystem_FlagNotRunningFieldMap(FieldSystem *fieldSystem)
@@ -141,19 +141,19 @@ void FieldSystem_StartChildProcess(FieldSystem *fieldSystem, const ApplicationMa
 {
     GF_ASSERT(fieldSystem->processManager->child == NULL);
     FieldSystem_FlagNotRunningFieldMap(fieldSystem);
-    fieldSystem->processManager->child = ApplicationManager_New(appTemplate, appArgs, HEAP_ID_FIELDMAP);
+    fieldSystem->processManager->child = ApplicationManager_New(appTemplate, appArgs, HEAP_ID_FIELD2);
 }
 
 static FieldSystem *InitFieldSystem(ApplicationManager *appMan)
 {
-    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELDMAP, HEAP_SIZE_FIELDMAP);
-    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELD_TASK, HEAP_SIZE_FIELD_TASK);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELD2, HEAP_SIZE_FIELDMAP);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELD3, HEAP_SIZE_FIELD_TASK);
     Heap_Create(HEAP_ID_SYSTEM, HEAP_ID_91, 0x300);
 
-    FieldSystem *fieldSystem = ApplicationManager_NewData(appMan, sizeof(FieldSystem), HEAP_ID_FIELDMAP);
+    FieldSystem *fieldSystem = ApplicationManager_NewData(appMan, sizeof(FieldSystem), HEAP_ID_FIELD2);
     MI_CpuClear8(fieldSystem, sizeof(FieldSystem));
 
-    fieldSystem->processManager = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(FieldProcessManager));
+    fieldSystem->processManager = Heap_AllocFromHeap(HEAP_ID_FIELD2, sizeof(FieldProcessManager));
     fieldSystem->processManager->parent = NULL;
     fieldSystem->processManager->child = NULL;
     fieldSystem->processManager->pause = FALSE;
@@ -163,15 +163,15 @@ static FieldSystem *InitFieldSystem(ApplicationManager *appMan)
     fieldSystem->location = FieldOverworldState_GetPlayerLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     fieldSystem->mapMatrix = MapMatrix_New();
 
-    MapHeaderData_Init(fieldSystem, HEAP_ID_FIELDMAP);
+    MapHeaderData_Init(fieldSystem, HEAP_ID_FIELD2);
 
-    fieldSystem->bagCursor = BagCursor_New(HEAP_ID_FIELDMAP);
+    fieldSystem->bagCursor = BagCursor_New(HEAP_ID_FIELD2);
 
-    fieldSystem->chain = RadarChain_Init(HEAP_ID_FIELDMAP);
+    fieldSystem->chain = RadarChain_Init(HEAP_ID_FIELD2);
     RadarChain_Clear(fieldSystem->chain);
 
-    fieldSystem->pokedexMemory = PokedexMemory_New(HEAP_ID_FIELDMAP);
-    fieldSystem->battleSubscreenCursorOn = sub_0209C370(HEAP_ID_FIELDMAP);
+    fieldSystem->pokedexMemory = PokedexMemory_New(HEAP_ID_FIELD2);
+    fieldSystem->battleSubscreenCursorOn = sub_0209C370(HEAP_ID_FIELD2);
 
     return fieldSystem;
 }
@@ -190,8 +190,8 @@ static void TeardownFieldSystem(ApplicationManager *appMan)
     Heap_FreeToHeap(fieldSystem->processManager);
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_91);
-    Heap_Destroy(HEAP_ID_FIELDMAP);
-    Heap_Destroy(HEAP_ID_FIELD_TASK);
+    Heap_Destroy(HEAP_ID_FIELD2);
+    Heap_Destroy(HEAP_ID_FIELD3);
 }
 
 static void ExecuteAndCleanupIfDone(ApplicationManager **appManPtr)

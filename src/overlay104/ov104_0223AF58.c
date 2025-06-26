@@ -1582,7 +1582,7 @@ FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104
     v8->terrain = TERRAIN_BATTLE_HALL;
     Party_InitWithCapacity(v8->parties[0], v4);
 
-    v9 = Pokemon_New(HEAP_ID_FIELDMAP);
+    v9 = Pokemon_New(HEAP_ID_FIELD2);
 
     for (v1 = 0; v1 < v4; v1++) {
         Pokemon_Copy(Party_GetPokemonBySlotIndex(v13, param0->unk_260[v1]), v9);
@@ -1592,7 +1592,7 @@ FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104
     Heap_FreeToHeap(v9);
     FieldBattleDTO_CopyPlayerInfoToTrainerData(v8);
 
-    Heap_FreeToHeap(ov104_0222DD04(&v10, param0->unk_18[v6], HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+    Heap_FreeToHeap(ov104_0222DD04(&v10, param0->unk_18[v6], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
     ov104_0222E284(v8, &v10, v5, 1, 11);
     Party_InitWithCapacity(v8->parties[1], v5);
 
@@ -1608,9 +1608,9 @@ FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104
         v8->trainer[v1].header.aiMask = v2;
     }
 
-    ov104_0223B518(&param0->unk_290[v6], v7, param0->unk_18[v6], &param0->unk_268[v6], v5, HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_STAGE__PL_BSDPM);
+    ov104_0223B518(&param0->unk_290[v6], v7, param0->unk_18[v6], &param0->unk_268[v6], v5, HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_STAGE__PL_BSDPM);
 
-    v9 = Pokemon_New(HEAP_ID_FIELDMAP);
+    v9 = Pokemon_New(HEAP_ID_FIELD2);
 
     for (v1 = 0; v1 < v5; v1++) {
         while (TRUE) {
@@ -1634,12 +1634,12 @@ FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104
 
         TrainerInfo_Copy(CommInfo_TrainerInfo(1 - CommSys_CurNetId()), v8->trainerInfo[2]);
 
-        Heap_FreeToHeap(ov104_0222DD04(&v10, param0->unk_18[v6 + 1], HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+        Heap_FreeToHeap(ov104_0222DD04(&v10, param0->unk_18[v6 + 1], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
 
         ov104_0222E284(v8, &v10, v5, 3, 11);
         Party_InitWithCapacity(v8->parties[3], v5);
 
-        v9 = Pokemon_New(HEAP_ID_FIELDMAP);
+        v9 = Pokemon_New(HEAP_ID_FIELD2);
 
         while (TRUE) {
             if (ov104_0223B4A4(param0, v6) == 0) {

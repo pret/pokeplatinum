@@ -168,7 +168,7 @@ static void ov5_021E63E0(Pokemon *param0)
 
 static int Daycare_MoveToPartyFromDaycareMon(Party *party, DaycareMon *daycareMon, StringTemplate *template)
 {
-    Pokemon *mon = Pokemon_New(HEAP_ID_FIELD);
+    Pokemon *mon = Pokemon_New(HEAP_ID_FIELD1);
     BoxPokemon *boxMon = DaycareMon_GetBoxMon(daycareMon);
     DaycareMail *daycareMail = DaycareMon_GetDaycareMail(daycareMon);
     u32 experience;
@@ -210,7 +210,7 @@ u16 Daycare_MoveToPartyFromDaycareSlot(Party *party, StringTemplate *template, D
 
 int BoxPokemon_GiveExperience(BoxPokemon *boxMon, u32 givenExp)
 {
-    Pokemon *mon = Pokemon_New(HEAP_ID_FIELD);
+    Pokemon *mon = Pokemon_New(HEAP_ID_FIELD1);
     BoxPokemon *boxMonRef = Pokemon_GetBoxPokemon(mon);
     int level;
     u32 exp;
@@ -471,7 +471,7 @@ static u8 LoadSpeciesEggMoves(Pokemon *mon, u16 *eggMoves)
 static void Egg_BuildMoveset(Pokemon *egg, BoxPokemon *father, BoxPokemon *mother)
 {
     u16 i, j, v2, species, levelUpMoveCount, eggMoveCount, form;
-    EggMoveBuilder *builder = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(EggMoveBuilder));
+    EggMoveBuilder *builder = Heap_AllocFromHeap(HEAP_ID_FIELD1, sizeof(EggMoveBuilder));
 
     v2 = 0;
 
@@ -687,7 +687,7 @@ void Egg_CreateEgg(Pokemon *egg, u16 species, u8 param2, TrainerInfo *trainerInf
     isEgg = TRUE;
     Pokemon_SetValue(egg, MON_DATA_IS_EGG, &isEgg);
 
-    eggName = MessageUtil_SpeciesName(SPECIES_EGG, HEAP_ID_FIELD);
+    eggName = MessageUtil_SpeciesName(SPECIES_EGG, HEAP_ID_FIELD1);
     Pokemon_SetValue(egg, MON_DATA_NICKNAME_STRBUF, eggName);
     Strbuf_Free(eggName);
 
@@ -741,7 +741,7 @@ static void Egg_SetInitialData(Pokemon *mon, u16 species, Daycare *daycare, u32 
     Pokemon_SetValue(mon, MON_DATA_MET_LEVEL, &level);
     Pokemon_SetValue(mon, MON_DATA_FORM, &form);
 
-    strBuf = MessageUtil_SpeciesName(SPECIES_EGG, HEAP_ID_FIELD);
+    strBuf = MessageUtil_SpeciesName(SPECIES_EGG, HEAP_ID_FIELD1);
 
     Pokemon_SetValue(mon, MON_DATA_NICKNAME_STRBUF, strBuf);
     Strbuf_Free(strBuf);
@@ -751,7 +751,7 @@ void Daycare_GiveEggFromDaycare(Daycare *daycare, Party *party, TrainerInfo *tra
 {
     u16 species;
     u8 parentSlots[NUM_DAYCARE_MONS], isEgg;
-    Pokemon *mon = Pokemon_New(HEAP_ID_FIELD);
+    Pokemon *mon = Pokemon_New(HEAP_ID_FIELD1);
 
     species = Egg_DetermineEggSpeciesAndParentSlots(daycare, parentSlots);
     species = Daycare_AlterEggSpeciesWithIncenseItem(species, daycare);
@@ -765,7 +765,7 @@ void Daycare_GiveEggFromDaycare(Daycare *daycare, Party *party, TrainerInfo *tra
     Egg_InheritIVs(mon, daycare);
     Egg_BuildMoveset(mon, Daycare_GetBoxMon(daycare, parentSlots[1]), Daycare_GetBoxMon(daycare, parentSlots[0]));
 
-    UpdateMonStatusAndTrainerInfo(mon, trainerInfo, 3, SpecialMetLoc_GetId(1, 0), HEAP_ID_FIELD);
+    UpdateMonStatusAndTrainerInfo(mon, trainerInfo, 3, SpecialMetLoc_GetId(1, 0), HEAP_ID_FIELD1);
 
     if (species == SPECIES_PICHU) {
         Egg_TryGiveVoltTackle(mon, daycare);

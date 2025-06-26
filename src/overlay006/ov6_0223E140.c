@@ -398,7 +398,7 @@ static void ov6_0223E1D0(BgConfig *param0)
         };
 
         Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v1, 0);
-        Bg_ClearTilesRange(BG_LAYER_MAIN_3, 32, 0, HEAP_ID_FIELD);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_3, 32, 0, HEAP_ID_FIELD1);
         Bg_ClearTilemap(param0, BG_LAYER_MAIN_3);
     }
 }
@@ -522,10 +522,10 @@ static BOOL ov6_0223E33C(FieldTask *taskMan)
 void ov6_0223E384(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
-    UnkStruct_ov6_0223E33C *v1 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov6_0223E33C));
+    UnkStruct_ov6_0223E33C *v1 = Heap_AllocFromHeap(HEAP_ID_FIELD1, sizeof(UnkStruct_ov6_0223E33C));
 
     memset(v1, 0, sizeof(UnkStruct_ov6_0223E33C));
-    v1->unk_00 = ov6_0223FDE4(HEAP_ID_FIELD);
+    v1->unk_00 = ov6_0223FDE4(HEAP_ID_FIELD1);
 
     ov6_0223FE1C(v1->unk_00, (FX32_CONST(2.0f)), 0, 1, 16, fieldSystem->camera);
     FieldTask_InitCall(taskMan, ov6_0223E33C, v1);
@@ -609,10 +609,10 @@ static BOOL ov6_0223E408(FieldTask *param0)
 void ov6_0223E4EC(FieldTask *param0)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_ov6_0223E33C *v1 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov6_0223E33C));
+    UnkStruct_ov6_0223E33C *v1 = Heap_AllocFromHeap(HEAP_ID_FIELD1, sizeof(UnkStruct_ov6_0223E33C));
 
     memset(v1, 0, sizeof(UnkStruct_ov6_0223E33C));
-    v1->unk_00 = ov6_0223FDE4(HEAP_ID_FIELD);
+    v1->unk_00 = ov6_0223FDE4(HEAP_ID_FIELD1);
 
     ov6_0223FE1C(v1->unk_00, (FX32_CONST(4.0f)), 0, 1, 24, fieldSystem->camera);
 
@@ -626,7 +626,7 @@ static void ov6_0223E548(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
 
     memset(v0, 0, sizeof(UnkStruct_ov6_0223E548));
 
-    v0->unk_48 = ov6_02240104(HEAP_ID_FIELD, fieldSystem);
+    v0->unk_48 = ov6_02240104(HEAP_ID_FIELD1, fieldSystem);
     v0->unk_00 = 0;
 }
 
@@ -685,7 +685,7 @@ static void ov6_0223E574(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
 
         if (v0->unk_6C.unk_00 == 3) {
             if (ov6_02240060(v0->unk_6C.unk_08) == 13) {
-                v0->unk_54 = ov6_02240B9C(HEAP_ID_FIELD, fieldSystem);
+                v0->unk_54 = ov6_02240B9C(HEAP_ID_FIELD1, fieldSystem);
             }
         }
 
@@ -830,7 +830,7 @@ static void ov6_0223E7B4(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     v3 = 0;
     v4 = MapObject_GetZ(v1);
 
-    v0->unk_00 = ov6_02240768(HEAP_ID_FIELD);
+    v0->unk_00 = ov6_02240768(HEAP_ID_FIELD1);
     ov6_0224077C(v0->unk_00, v2, v3, v4);
 }
 
@@ -905,8 +905,8 @@ static void ov6_0223E830(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     Camera_SetClipping(14 * FX32_ONE, 2031 * FX32_ONE, fieldSystem->camera);
 #endif
 
-    v0->unk_04 = ov6_022409F4(HEAP_ID_FIELD);
-    v0->unk_08 = ov6_02240AC8(HEAP_ID_FIELD);
+    v0->unk_04 = ov6_022409F4(HEAP_ID_FIELD1);
+    v0->unk_08 = ov6_02240AC8(HEAP_ID_FIELD1);
 
     v1 = Camera_GetTarget(fieldSystem->camera);
 
@@ -939,8 +939,8 @@ static void ov6_0223E8D0(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
 
     fieldSystem->areaLightMan = AreaLightManager_New(fieldSystem->areaModelAttrs, 3);
 
-    v0->unk_04 = ov6_022409F4(HEAP_ID_FIELD);
-    v0->unk_08 = ov6_02240AC8(HEAP_ID_FIELD);
+    v0->unk_04 = ov6_022409F4(HEAP_ID_FIELD1);
+    v0->unk_08 = ov6_02240AC8(HEAP_ID_FIELD1);
 
     v1 = Camera_GetTarget(fieldSystem->camera);
 
@@ -973,8 +973,8 @@ static void ov6_0223E984(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
 
     fieldSystem->areaLightMan = AreaLightManager_New(fieldSystem->areaModelAttrs, 3);
 
-    v0->unk_04 = ov6_022409F4(HEAP_ID_FIELD);
-    v0->unk_08 = ov6_02240AC8(HEAP_ID_FIELD);
+    v0->unk_04 = ov6_022409F4(HEAP_ID_FIELD1);
+    v0->unk_08 = ov6_02240AC8(HEAP_ID_FIELD1);
 
     v1 = Camera_GetTarget(fieldSystem->camera);
 
@@ -1039,11 +1039,11 @@ static void ov6_0223EA98(UnkStruct_ov6_0223EA98 *param0)
         { 10, 9 }
     };
 
-    v2 = NARC_ctor(NARC_INDEX_ARC__DEMO_TENGAN_GRA, HEAP_ID_FIELD);
+    v2 = NARC_ctor(NARC_INDEX_ARC__DEMO_TENGAN_GRA, HEAP_ID_FIELD1);
     v0 = v3[param0->unk_10][0];
     v1 = v3[param0->unk_10][1];
 
-    Easy3DModel_LoadFrom(&param0->unk_9C, v2, v0, HEAP_ID_FIELD);
+    Easy3DModel_LoadFrom(&param0->unk_9C, v2, v0, HEAP_ID_FIELD1);
     Easy3DObject_Init(&param0->unk_24, &param0->unk_9C);
     Easy3DObject_SetPosition(&param0->unk_24, 0, 0, 0);
     Easy3DObject_SetScale(&param0->unk_24, FX32_CONST(1.00f), FX32_CONST(1.00f), FX32_CONST(1.00f));
@@ -1076,7 +1076,7 @@ static void ov6_0223EB4C(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     v0->unk_10C = MapObjMan_LocalMapObjByIndex(v0->fieldSystem->mapObjMan, 0);
     v0->unk_110 = Player_MapObject(sub_0205EF3C(v0->fieldSystem));
 
-    Heap_FndInitAllocatorForExpHeap(&v0->unk_C0, HEAP_ID_FIELD, 32);
+    Heap_FndInitAllocatorForExpHeap(&v0->unk_C0, HEAP_ID_FIELD1, 32);
     ov6_0223EA98(v0);
     GX_SetMasterBrightness(v0->unk_0C);
 
@@ -1118,7 +1118,7 @@ static BOOL ov6_0223EBDC(UnkStruct_ov6_0223EA98 *param0)
         Easy3DObject_SetPosition(&param0->unk_24, param0->unk_E4.unk_00, v2, param0->unk_F4.unk_00);
 
         if (v0[0] && v0[1]) {
-            Sound_PlayPokemonCryEx(POKECRY_NORMAL, SPECIES_UXIE, 0, 100, HEAP_ID_FIELD, 0);
+            Sound_PlayPokemonCryEx(POKECRY_NORMAL, SPECIES_UXIE, 0, 100, HEAP_ID_FIELD1, 0);
             param0->unk_18++;
         }
         break;
@@ -1341,7 +1341,7 @@ static BOOL ov6_0223EE5C(UnkStruct_ov6_0223EA98 *param0)
         }
 
         param0->unk_D0 = 0;
-        Sound_PlayPokemonCryEx(POKECRY_NORMAL, SPECIES_MESPRIT, 0, 100, HEAP_ID_FIELD, 0);
+        Sound_PlayPokemonCryEx(POKECRY_NORMAL, SPECIES_MESPRIT, 0, 100, HEAP_ID_FIELD1, 0);
         param0->unk_18++;
         break;
     case 16:
@@ -1482,7 +1482,7 @@ static BOOL ov6_0223F744(UnkStruct_ov6_0223EA98 *param0)
         Easy3DObject_SetPosition(&param0->unk_24, param0->unk_E4.unk_00, v2, param0->unk_F4.unk_00);
 
         if (v0[0] && v0[1]) {
-            Sound_PlayPokemonCryEx(POKECRY_NORMAL, SPECIES_AZELF, 0, 100, HEAP_ID_FIELD, 0);
+            Sound_PlayPokemonCryEx(POKECRY_NORMAL, SPECIES_AZELF, 0, 100, HEAP_ID_FIELD1, 0);
             param0->unk_18++;
         }
 
@@ -1998,12 +1998,12 @@ static void ov6_02240064(SysTask *param0, void *param1)
 
 UnkStruct_ov6_022400A8 *ov6_02240074(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov6_022400A8 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov6_022400A8));
+    UnkStruct_ov6_022400A8 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD1, sizeof(UnkStruct_ov6_022400A8));
     memset(v0, 0, sizeof(UnkStruct_ov6_022400A8));
     v0->fieldSystem = fieldSystem;
     v0->unk_12C = 5;
 
-    Heap_FndInitAllocatorForExpHeap(&v0->unk_11C, HEAP_ID_FIELD, 32);
+    Heap_FndInitAllocatorForExpHeap(&v0->unk_11C, HEAP_ID_FIELD1, 32);
 
     return v0;
 }

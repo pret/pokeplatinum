@@ -90,7 +90,7 @@ static const UnkStruct_ov6_022496F4 Unk_ov6_0224971C[][4] = {
 
 void ov6_02247A0C(FieldTask *param0)
 {
-    UnkStruct_ov6_02247A0C *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov6_02247A0C));
+    UnkStruct_ov6_02247A0C *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_ov6_02247A0C));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov6_02247A0C));
 
     FieldTask_InitCall(param0, ov6_02247A34, v0);
@@ -130,19 +130,19 @@ void *ov6_02247A90(void *param0)
 
     v1 = FieldSystem_GetBgConfig(param0);
     saveData = FieldSystem_GetSaveData(param0);
-    v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov6_02247A90));
+    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD2, sizeof(UnkStruct_ov6_02247A90));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov6_02247A90));
 
-    v0->unk_10 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0208, HEAP_ID_FIELDMAP);
-    v0->unk_14 = StringTemplate_Default(HEAP_ID_FIELDMAP);
+    v0->unk_10 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0208, HEAP_ID_FIELD2);
+    v0->unk_14 = StringTemplate_Default(HEAP_ID_FIELD2);
 
     Window_Add(v1, &v0->unk_00, 3, 1, 3, 30, 17, 12, (1 + 10));
-    LoadStandardWindowGraphics(v1, BG_LAYER_MAIN_3, 1, 11, 0, HEAP_ID_FIELDMAP);
+    LoadStandardWindowGraphics(v1, BG_LAYER_MAIN_3, 1, 11, 0, HEAP_ID_FIELD2);
     Window_DrawStandardFrame(&v0->unk_00, 1, 1, 11);
     Window_FillTilemap(&v0->unk_00, 15);
 
-    v3 = Strbuf_Init(100, HEAP_ID_FIELDMAP);
+    v3 = Strbuf_Init(100, HEAP_ID_FIELD2);
     v2 = MessageLoader_GetNewStrbuf(v0->unk_10, 0);
 
     StringTemplate_SetPlayerName(v0->unk_14, 0, SaveData_GetTrainerInfo(saveData));

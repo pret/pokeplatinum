@@ -41,7 +41,7 @@ static void *MapPropAnimation_LoadAnimationObj(NARC *animeNARC, const u32 animeA
     void *animation;
 
     GF_ASSERT(animeArchiveID != ANIME_ARCHIVE_ID_NONE);
-    void *animationFile = NARC_AllocAndReadWholeMember(animeNARC, animeArchiveID, HEAP_ID_FIELD);
+    void *animationFile = NARC_AllocAndReadWholeMember(animeNARC, animeArchiveID, HEAP_ID_FIELD1);
     GF_ASSERT(animationFile != NULL);
 
     animation = NNS_G3dGetAnmByIdx(animationFile, 0);
@@ -82,7 +82,7 @@ static void BicycleSlopeAnimation_ResetFinishedAnimations(BicycleSlopeAnimation 
 MapPropAnimationManager *MapPropAnimationManager_New(void)
 {
     int i;
-    MapPropAnimationManager *manager = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(MapPropAnimationManager));
+    MapPropAnimationManager *manager = Heap_AllocFromHeap(HEAP_ID_FIELD1, sizeof(MapPropAnimationManager));
 
     for (i = 0; i < MAP_PROP_ANIMATION_MANAGER_MAX_ANIMATIONS; i++) {
         manager->animations[i].loaded = FALSE;
@@ -104,10 +104,10 @@ MapPropAnimationManager *MapPropAnimationManager_New(void)
         manager->bicycleSlopeAnimations[i].animeArchiveID = 0;
     }
 
-    Heap_FndInitAllocatorForExpHeap(&manager->allocator, HEAP_ID_FIELD, 4);
+    Heap_FndInitAllocatorForExpHeap(&manager->allocator, HEAP_ID_FIELD1, 4);
 
-    manager->animeNARC = NARC_ctor(NARC_INDEX_ARC__BM_ANIME, HEAP_ID_FIELD);
-    manager->animeListNARC = NARC_ctor(NARC_INDEX_ARC__BM_ANIME_LIST, HEAP_ID_FIELD);
+    manager->animeNARC = NARC_ctor(NARC_INDEX_ARC__BM_ANIME, HEAP_ID_FIELD1);
+    manager->animeListNARC = NARC_ctor(NARC_INDEX_ARC__BM_ANIME_LIST, HEAP_ID_FIELD1);
 
     return manager;
 }
@@ -692,7 +692,7 @@ static void MapPropAnimationManager_UnloadOneShotAnimation(MapPropAnimationManag
 MapPropOneShotAnimationManager *MapPropOneShotAnimationManager_New(void)
 {
     int oneShotAnimationManagerSize = sizeof(MapPropOneShotAnimationManager);
-    MapPropOneShotAnimationManager *oneShotAnimMan = Heap_AllocFromHeap(HEAP_ID_FIELD, oneShotAnimationManagerSize);
+    MapPropOneShotAnimationManager *oneShotAnimMan = Heap_AllocFromHeap(HEAP_ID_FIELD1, oneShotAnimationManagerSize);
 
     MI_CpuClearFast(oneShotAnimMan, oneShotAnimationManagerSize);
 

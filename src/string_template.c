@@ -528,7 +528,7 @@ void StringTemplate_SetUnionGroupName(StringTemplate *template, SaveData *saveDa
 
     gender = RecordMixedRNG_GetEntryGender(group, groupID);
     countryCode = RecordMixedRNG_GetEntryCountryCode(group, groupID);
-    groupName = Strbuf_Init(64, HEAP_ID_FIELD);
+    groupName = Strbuf_Init(64, HEAP_ID_FIELD1);
 
     Strbuf_CopyChars(groupName, RecordMixedRNG_GetEntryName(group, groupID, nameType));
     StringTemplate_SetStrbuf(template, idx, groupName, gender, 1, countryCode);
