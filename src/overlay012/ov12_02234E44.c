@@ -169,7 +169,7 @@ static void ov12_0223507C(BattleAnimSystem *param0, UnkStruct_ov12_02234E44 *par
                 v3 = BattleAnimSystem_GetDefender(param0);
             }
 
-            v2 = ov12_02235254(param0, v3);
+            v2 = BattleAnimUtil_GetBattlerType(param0, v3);
 
             if (BattleAnimSystem_IsContest(param0) == 1) {
                 ManagedSprite_SetDrawFlag(v0->unk_3C, 0);

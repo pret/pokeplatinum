@@ -52,7 +52,6 @@
 
 #define BATTLE_ANIM_SCRIPT_RES_ID(MEMBER_IDX) (MEMBER_IDX + 5000)
 
-
 typedef struct BattleAnimSoundContext {
     u8 type;
 
@@ -191,8 +190,8 @@ static void BattleAnimScriptCmd_JumpIfBattlerSide(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_JumpIfWeather(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_JumpIfContest(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_JumpIfFriendlyFire(BattleAnimSystem *param0);
-static void ov12_022230D4(BattleAnimSystem *param0);
-static void ov12_02223134(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_PlayPokemonCry(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_WaitForPokemonCries(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_CallFunc(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_CreateEmitter(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_CreateEmitterEx(BattleAnimSystem *param0);
@@ -842,8 +841,8 @@ static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
     ov12_02221A14,
     ov12_02221A30,
     BattleAnimScriptCmd_JumpIfBattlerSide,
-    ov12_022230D4,
-    ov12_02223134,
+    BattleAnimScriptCmd_PlayPokemonCry,
+    BattleAnimScriptCmd_WaitForPokemonCries,
     BattleAnimScriptCmd_ResetVar,
     ov12_022206A4,
     ov12_022206E8,
@@ -1248,8 +1247,8 @@ static int ov12_02220ADC(BattleAnimSystem *param0)
 
     v3 = BattleAnimSystem_GetAttacker(param0);
     v4 = BattleAnimSystem_GetDefender(param0);
-    v1 = ov12_02235254(param0, v3);
-    v2 = ov12_02235254(param0, v4);
+    v1 = BattleAnimUtil_GetBattlerType(param0, v3);
+    v2 = BattleAnimUtil_GetBattlerType(param0, v4);
     v0 = v5[v1][v2];
 
     GF_ASSERT(v0 != 0xFF);
@@ -1273,8 +1272,8 @@ static int ov12_02220B34(BattleAnimSystem *param0)
 
     v3 = BattleAnimSystem_GetAttacker(param0);
     v4 = BattleAnimSystem_GetDefender(param0);
-    v1 = ov12_02235254(param0, v3);
-    v2 = ov12_02235254(param0, v4);
+    v1 = BattleAnimUtil_GetBattlerType(param0, v3);
+    v2 = BattleAnimUtil_GetBattlerType(param0, v4);
     v0 = v5[v1][v2];
 
     GF_ASSERT(v0 != 0xFF);
@@ -1542,9 +1541,9 @@ static void BattleAnimScriptCmd_JumpIfBattlerSide(BattleAnimSystem *system)
     BattleAnimScript_Next(system);
 
     if (battler == 0) {
-        side = ov12_0223525C(system, system->context->attacker);
+        side = BattleAnimUtil_GetBattlerSide(system, system->context->attacker);
     } else {
-        side = ov12_0223525C(system, system->context->defender);
+        side = BattleAnimUtil_GetBattlerSide(system, system->context->defender);
     }
 
     if (side == BTLSCR_ENEMY) {
@@ -1596,8 +1595,8 @@ static void BattleAnimScriptCmd_JumpIfFriendlyFire(BattleAnimSystem *system)
 {
     BattleAnimScript_Next(system);
 
-    enum Battler attackerSide = ov12_0223525C(system, system->context->attacker);
-    enum Battler defenderSide = ov12_0223525C(system, system->context->defender);
+    enum Battler attackerSide = BattleAnimUtil_GetBattlerSide(system, system->context->attacker);
+    enum Battler defenderSide = BattleAnimUtil_GetBattlerSide(system, system->context->defender);
 
     if (attackerSide == defenderSide) {
         BattleAnimScript_JumpBy(system, (u32)BattleAnimScript_ReadWord(system->scriptPtr));
@@ -1640,10 +1639,10 @@ static int ov12_022210A8(BattleAnimSystem *param0, int param1)
         v0 = param0->context->defender;
         break;
     case 2:
-        v0 = ov12_022352AC(param0, param0->context->attacker);
+        v0 = BattleAnimUtil_GetAlliedBattlerType(param0, param0->context->attacker);
         break;
     case 3:
-        v0 = ov12_022352AC(param0, param0->context->defender);
+        v0 = BattleAnimUtil_GetAlliedBattlerType(param0, param0->context->defender);
         break;
 
     case 4: {
@@ -2154,8 +2153,8 @@ static void ov12_02221834(BattleAnimSystem *param0)
     if (BattleAnimSystem_IsDoubleBattle(param0) == 1) {
         int v3, v4;
 
-        v3 = ov12_02235254(param0, BattleAnimSystem_GetAttacker(param0));
-        v4 = ov12_02235254(param0, BattleAnimSystem_GetDefender(param0));
+        v3 = BattleAnimUtil_GetBattlerType(param0, BattleAnimSystem_GetAttacker(param0));
+        v4 = BattleAnimUtil_GetBattlerType(param0, BattleAnimSystem_GetDefender(param0));
 
         {
             int v5;
@@ -2264,7 +2263,7 @@ static void ov12_02221A14(BattleAnimSystem *system)
 
     int v1 = BattleAnimScript_ReadWord(system->scriptPtr);
     BattleAnimScript_Next(system);
-    
+
     system->cameraProjections[v0] = v1;
 }
 
@@ -2317,8 +2316,8 @@ static BOOL ov12_02221A54(UnkStruct_ov12_02221BBC *param0, BattleAnimSystem *par
     int v0;
     int v1;
 
-    v0 = ov12_0223525C(param1, param1->context->attacker);
-    v1 = ov12_0223525C(param1, param1->context->defender);
+    v0 = BattleAnimUtil_GetBattlerSide(param1, param1->context->attacker);
+    v1 = BattleAnimUtil_GetBattlerSide(param1, param1->context->defender);
 
     if (param0->unk_1C[param2] == 2) {
         if (v0 == v1) {
@@ -3068,7 +3067,7 @@ static void ov12_022228DC(BattleAnimSystem *param0)
     if (BattleAnimSystem_IsContest(param0) == 1) {
         v0->unk_10 = v3;
     } else {
-        if (ov12_0223525C(param0, param0->context->defender) == 0x3) {
+        if (BattleAnimUtil_GetBattlerSide(param0, param0->context->defender) == 0x3) {
             v0->unk_10 = v2;
         } else {
             v0->unk_10 = v1;
@@ -3594,44 +3593,45 @@ static void ov12_022230CC(BattleAnimSystem *param0)
     GF_ASSERT(FALSE);
 }
 
-static void ov12_022230D4(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_PlayPokemonCry(BattleAnimSystem *system)
 {
-    enum PokemonCryMod cryMod;
-    s16 v1;
-    int v2;
-    int v3;
-    int v4;
+    BattleAnimScript_Next(system);
 
-    param0->scriptPtr += 1;
+    enum PokemonCryMod modulation = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    cryMod = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    s16 pan = (s16)BattleAnimScript_ReadWord(system->scriptPtr);
+    pan = BattleAnimSound_CorrectPanDirection(system, pan);
+    BattleAnimScript_Next(system);
 
-    v1 = (s16)BattleAnimScript_ReadWord(param0->scriptPtr);
-    v1 = BattleAnimSound_CorrectPanDirection(param0, v1);
-    param0->scriptPtr += 1;
+    int volume = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v2 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    int species = system->context->battlerSpecies[system->context->attacker];
+    int form = system->context->battlerForms[system->context->attacker];
 
-    v3 = param0->context->battlerSpecies[param0->context->attacker];
-    v4 = param0->context->battlerForms[param0->context->attacker];
-
-    Pokemon_PlayCry(param0->context->chatotCry, cryMod, v3, v4, v1, v2, param0->context->transformed, param0->heapID);
+    Pokemon_PlayCry(system->context->chatotCry,
+        modulation,
+        species,
+        form,
+        pan,
+        volume,
+        system->context->transformed,
+        system->heapID);
 }
 
-static void ov12_02223134(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_WaitForPokemonCries(BattleAnimSystem *system)
 {
-    int v0;
+    if (Sound_IsPokemonCryPlaying() == FALSE) {
+        BattleAnimScript_Next(system);
 
-    if (Sound_IsPokemonCryPlaying() == 0) {
-        param0->scriptPtr += 1;
-        v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
-        param0->scriptPtr += 1;
-        param0->scriptDelay = 0;
-        Sound_StopPokemonCries(v0);
+        int fadeOutFrames = BattleAnimScript_ReadWord(system->scriptPtr);
+        BattleAnimScript_Next(system);
+
+        system->scriptDelay = 0;
+        Sound_StopPokemonCries(fadeOutFrames);
     } else {
-        param0->scriptDelay = 1;
+        system->scriptDelay = 1;
     }
 }
 
@@ -3659,18 +3659,18 @@ s8 BattleAnimSound_CorrectPanDirection(BattleAnimSystem *system, s8 pan)
     int adjustedPan = pan;
     int attacker = BattleAnimSystem_GetAttacker(system);
     int defender = BattleAnimSystem_GetDefender(system);
-    UNUSED(ov12_0223525C(system, attacker));
-    UNUSED(ov12_0223525C(system, defender));
+    UNUSED(BattleAnimUtil_GetBattlerSide(system, attacker));
+    UNUSED(BattleAnimUtil_GetBattlerSide(system, defender));
 
-    if ((ov12_0223525C(system, attacker) == BTLSCR_PLAYER) && (ov12_0223525C(system, defender) == BTLSCR_ENEMY)) { // Player attacking Oponent
+    if ((BattleAnimUtil_GetBattlerSide(system, attacker) == BTLSCR_PLAYER) && (BattleAnimUtil_GetBattlerSide(system, defender) == BTLSCR_ENEMY)) { // Player attacking Oponent
         // Do nothing. Branch needed to match
-    } else if ((ov12_0223525C(system, attacker) == BTLSCR_ENEMY) && (ov12_0223525C(system, defender) == BTLSCR_PLAYER)) { // Opponent attacking Player
+    } else if ((BattleAnimUtil_GetBattlerSide(system, attacker) == BTLSCR_ENEMY) && (BattleAnimUtil_GetBattlerSide(system, defender) == BTLSCR_PLAYER)) { // Opponent attacking Player
         adjustedPan *= -1;
-    } else if ((ov12_0223525C(system, attacker) == BTLSCR_PLAYER) && (ov12_0223525C(system, defender) == BTLSCR_PLAYER)) { // Player attacking Player
+    } else if ((BattleAnimUtil_GetBattlerSide(system, attacker) == BTLSCR_PLAYER) && (BattleAnimUtil_GetBattlerSide(system, defender) == BTLSCR_PLAYER)) { // Player attacking Player
         if (adjustedPan > 0) {
             adjustedPan *= -1;
         }
-    } else if ((ov12_0223525C(system, attacker) == BTLSCR_ENEMY) && (ov12_0223525C(system, defender) == BTLSCR_ENEMY)) { // Opponent attacking Opponent
+    } else if ((BattleAnimUtil_GetBattlerSide(system, attacker) == BTLSCR_ENEMY) && (BattleAnimUtil_GetBattlerSide(system, defender) == BTLSCR_ENEMY)) { // Opponent attacking Opponent
         if (adjustedPan < 0) {
             adjustedPan *= -1;
         }

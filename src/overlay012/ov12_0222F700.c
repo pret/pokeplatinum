@@ -645,8 +645,8 @@ void ov12_0222F9E4(BattleAnimSystem *param0)
     v3 = ov12_02225964(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00));
 
     {
-        int v4 = ov12_0223525C(param0, BattleAnimSystem_GetAttacker(v0->unk_00));
-        int v5 = ov12_0223525C(param0, BattleAnimSystem_GetDefender(v0->unk_00));
+        int v4 = BattleAnimUtil_GetBattlerSide(param0, BattleAnimSystem_GetAttacker(v0->unk_00));
+        int v5 = BattleAnimUtil_GetBattlerSide(param0, BattleAnimSystem_GetDefender(v0->unk_00));
 
         if ((v4 == 0x3) && (v5 == 0x3)) {
             PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_X_PIVOT, (80 / 2) * -1);
@@ -1075,7 +1075,7 @@ void ov12_022303D0(BattleAnimSystem *param0)
     ov12_02225BC8(&v0->unk_1C, 0, 80, 0, 40, 24);
     v0->unk_1C.unk_04[1] *= v1;
 
-    v3 = ov12_02235254(v0->unk_00, BattleAnimSystem_GetAttacker(param0));
+    v3 = BattleAnimUtil_GetBattlerType(v0->unk_00, BattleAnimSystem_GetAttacker(param0));
 
     if ((v3 == 3) || (v3 == 4)) {
         Bg_SetPriority(ov12_022233B0(v0->unk_00, 1), ov12_0222339C(v0->unk_00));
@@ -1245,8 +1245,8 @@ void ov12_02230804(BattleAnimSystem *param0)
     PokemonSprite_StartFade(v0->unk_08, 0, 16, 0, 0);
 
     v0->unk_0C = ov12_022202C0(v0->unk_00, 1);
-    v2 = ov12_02235254(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
-    v3 = ov12_02235254(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00));
+    v2 = BattleAnimUtil_GetBattlerType(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
+    v3 = BattleAnimUtil_GetBattlerType(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00));
 
     if (((v2 == 2) && (v3 == 4)) || ((v2 == 5) && (v3 == 3))) {
         int v4;
@@ -1363,7 +1363,7 @@ void ov12_02230A8C(BattleAnimSystem *param0)
     v3 -= (80 / 2);
 
     v0->unk_48 = ov12_022202C0(v0->unk_00, 0);
-    v5 = ov12_02235254(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00));
+    v5 = BattleAnimUtil_GetBattlerType(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00));
 
     if ((v5 == 5) || (v5 == 2)) {
         ManagedSprite_SetDrawFlag(v0->unk_48, 1);
@@ -1477,7 +1477,7 @@ void ov12_02230CEC(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     ManagedSprite_SetExplicitPriority(v0->unk_10, 1);
     ManagedSprite_SetAffineTranslation(v0->unk_10, -12 * v2, 12);
 
-    if (ov12_0223525C(param0, BattleAnimSystem_GetAttacker(param0)) == 0x4) {
+    if (BattleAnimUtil_GetBattlerSide(param0, BattleAnimSystem_GetAttacker(param0)) == 0x4) {
         ManagedSprite_SetAnim(v0->unk_10, 1);
     } else {
         ManagedSprite_SetAnim(v0->unk_10, 0);
@@ -3012,7 +3012,7 @@ static void ov12_02232D64(UnkStruct_ov12_02232D38 *param0)
     param0->unk_94 = 0;
     param0->unk_98 = 6;
 
-    v0 = ov12_02235254(param0->unk_00, BattleAnimSystem_GetAttacker(param0->unk_00));
+    v0 = BattleAnimUtil_GetBattlerType(param0->unk_00, BattleAnimSystem_GetAttacker(param0->unk_00));
 
     ManagedSprite_SetDrawFlag(param0->unk_20, Unk_ov12_0223A1CC[v0]);
     ManagedSprite_SetDrawFlag(param0->unk_18, 1);
@@ -3103,7 +3103,7 @@ static void ov12_02232F30(UnkStruct_ov12_02232D38 *param0)
     param0->unk_94 = 0;
     param0->unk_98 = 6;
 
-    v4 = ov12_02235254(param0->unk_00, BattleAnimSystem_GetDefender(param0->unk_00));
+    v4 = BattleAnimUtil_GetBattlerType(param0->unk_00, BattleAnimSystem_GetDefender(param0->unk_00));
 
     ManagedSprite_SetDrawFlag(param0->unk_24, Unk_ov12_0223A1CC[v4]);
     ManagedSprite_SetDrawFlag(param0->unk_1C, 1);
@@ -3731,7 +3731,7 @@ void ov12_02233CD4(BattleAnimSystem *param0)
     v0->unk_04 = ov12_02226544(ov12_022266F0(ov12_022233EC(v0->unk_00, 1)), v0->unk_30, BattleAnimSystem_GetHeapID(v0->unk_00));
     v0->unk_20 = 1;
 
-    v4 = ov12_02235254(v0->unk_00, BattleAnimSystem_GetDefender(param0));
+    v4 = BattleAnimUtil_GetBattlerType(v0->unk_00, BattleAnimSystem_GetDefender(param0));
 
     if ((v4 == 3) || (v4 == 4)) {
         Bg_SetPriority(ov12_022233B0(v0->unk_00, 1), ov12_0222339C(v0->unk_00));
@@ -3953,7 +3953,7 @@ void ov12_022342C4(BattleAnimSystem *param0)
 
     v1 = BattleAnimSystem_GetAttacker(param0);
 
-    if (ov12_0223525C(param0, v1) == 0x3) {
+    if (BattleAnimUtil_GetBattlerSide(param0, v1) == 0x3) {
         v0->unk_2C = ov12_02220298(param0, 0);
         Sprite_DeleteAndFreeResources(ov12_02220298(param0, 1));
     } else {

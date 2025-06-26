@@ -65,7 +65,7 @@ static void ov12_02224260(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1, V
     v1 = BattleAnimSystem_GetCurrentParticleSystem(v0);
     v2 = ParticleSystem_GetCameraProjection(v1);
     v4 = BattleAnimSystem_GetDefender(v0);
-    v5 = ov12_0223525C(v0, v4);
+    v5 = BattleAnimUtil_GetBattlerSide(v0, v4);
 
     if (v5 == 0x3) {
         v3 = 0;
@@ -90,7 +90,7 @@ static void ov12_022242A0(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1, V
     v1 = BattleAnimSystem_GetCurrentParticleSystem(v0);
     v3 = ParticleSystem_GetCameraProjection(v1);
     v5 = BattleAnimSystem_GetAttacker(v0);
-    v6 = ov12_0223525C(v0, v5);
+    v6 = BattleAnimUtil_GetBattlerSide(v0, v5);
 
     if (v6 == 0x3) {
         v4 = 0;
@@ -233,7 +233,7 @@ static void ov12_022242E0(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
             { 6984, 2056 }
         };
 
-        v2 = ov12_02235254(param1->unk_00, param1->unk_24);
+        v2 = BattleAnimUtil_GetBattlerType(param1->unk_00, param1->unk_24);
         VEC_Set(&v0, v3[v2][0], v3[v2][1], 0);
     } break;
     case 30: {
@@ -251,7 +251,7 @@ static void ov12_022242E0(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
         if (BattleAnimSystem_IsContest(param1->unk_00) == 1) {
             v4 = 6;
         } else {
-            v4 = ov12_02235254(param1->unk_00, param1->unk_24);
+            v4 = BattleAnimUtil_GetBattlerType(param1->unk_00, param1->unk_24);
         }
 
         VEC_Set(&v0, v5[v4][0], v5[v4][1], 0);
@@ -271,7 +271,7 @@ static void ov12_022242E0(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
         if (BattleAnimSystem_IsContest(param1->unk_00) == 1) {
             v6 = 6;
         } else {
-            v6 = ov12_02235254(param1->unk_00, param1->unk_24);
+            v6 = BattleAnimUtil_GetBattlerType(param1->unk_00, param1->unk_24);
         }
 
         VEC_Set(&v0, v7[v6][0], v7[v6][1], 0);
@@ -300,8 +300,8 @@ static void ov12_02224614(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
     int v1;
     VecFx16 v2;
 
-    v0 = ov12_02235254(param1->unk_00, param1->unk_24);
-    v1 = ov12_02235254(param1->unk_00, param1->unk_28);
+    v0 = BattleAnimUtil_GetBattlerType(param1->unk_00, param1->unk_24);
+    v1 = BattleAnimUtil_GetBattlerType(param1->unk_00, param1->unk_28);
 
     switch (param1->unk_0C[3]) {
     case 0:
@@ -323,9 +323,9 @@ static void ov12_02224614(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
         if (BattleAnimSystem_IsContest(param1->unk_00) == 1) {
             VEC_Fx16Set(&v2, -Unk_ov12_022396AC[v0][v1].unk_00, Unk_ov12_022396AC[v0][v1].unk_04, Unk_ov12_022396AC[v0][v1].unk_08 / 2);
         } else {
-            if (ov12_0223525C(param1->unk_00, param1->unk_24) == ov12_0223525C(param1->unk_00, param1->unk_28)) {
+            if (BattleAnimUtil_GetBattlerSide(param1->unk_00, param1->unk_24) == BattleAnimUtil_GetBattlerSide(param1->unk_00, param1->unk_28)) {
                 VEC_Fx16Set(&v2, Unk_ov12_022396AC[v0][v1].unk_00, Unk_ov12_022396AC[v0][v1].unk_04, Unk_ov12_022396AC[v0][v1].unk_08 / 2);
-            } else if (ov12_0223525C(param1->unk_00, param1->unk_24) == 0x3) {
+            } else if (BattleAnimUtil_GetBattlerSide(param1->unk_00, param1->unk_24) == 0x3) {
                 VEC_Fx16Set(&v2, Unk_ov12_022396AC[0][1].unk_00, Unk_ov12_022396AC[0][1].unk_04, Unk_ov12_022396AC[0][1].unk_08 / 2);
             } else {
                 VEC_Fx16Set(&v2, Unk_ov12_022396AC[1][0].unk_00, Unk_ov12_022396AC[1][0].unk_04, Unk_ov12_022396AC[1][0].unk_08 / 2);
@@ -336,9 +336,9 @@ static void ov12_02224614(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
         if (BattleAnimSystem_IsContest(param1->unk_00) == 1) {
             VEC_Fx16Set(&v2, -Unk_ov12_022396AC[v0][v1].unk_00, Unk_ov12_022396AC[v0][v1].unk_04, Unk_ov12_022396AC[v0][v1].unk_08 / 2);
         } else {
-            if (ov12_0223525C(param1->unk_00, param1->unk_24) == ov12_0223525C(param1->unk_00, param1->unk_28)) {
+            if (BattleAnimUtil_GetBattlerSide(param1->unk_00, param1->unk_24) == BattleAnimUtil_GetBattlerSide(param1->unk_00, param1->unk_28)) {
                 VEC_Fx16Set(&v2, Unk_ov12_022396AC[v0][v1].unk_00, Unk_ov12_022396AC[v0][v1].unk_04, Unk_ov12_022396AC[v0][v1].unk_08 / 2);
-            } else if (ov12_0223525C(param1->unk_00, param1->unk_24) == 0x3) {
+            } else if (BattleAnimUtil_GetBattlerSide(param1->unk_00, param1->unk_24) == 0x3) {
                 VEC_Fx16Set(&v2, Unk_ov12_022396AC[0][1].unk_00, Unk_ov12_022396AC[0][1].unk_04, Unk_ov12_022396AC[0][1].unk_08 / 2);
             } else {
                 VEC_Fx16Set(&v2, Unk_ov12_022396AC[1][0].unk_00, Unk_ov12_022396AC[1][0].unk_04, Unk_ov12_022396AC[1][0].unk_08 / 2);
@@ -572,7 +572,7 @@ static void ov12_02224614(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
         VEC_Fx16Set(&v2, -3440, 1952, 0);
         break;
     case 26:
-        if (ov12_0223525C(param1->unk_00, param1->unk_24) == 0x3) {
+        if (BattleAnimUtil_GetBattlerSide(param1->unk_00, param1->unk_24) == 0x3) {
             VEC_Fx16Set(&v2, 3776, 2112, 0);
         } else {
             VEC_Fx16Set(&v2, -6000, -2200, 0);
@@ -589,7 +589,7 @@ static void ov12_02224614(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
             { -3312, -2776 },
         };
 
-        v13 = ov12_02235254(param1->unk_00, param1->unk_24);
+        v13 = BattleAnimUtil_GetBattlerType(param1->unk_00, param1->unk_24);
         VEC_Fx16Set(&v2, v14[v13][0], v14[v13][1], 0);
     } break;
     }
@@ -628,8 +628,8 @@ static void ov12_02224EB8(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
     int v2;
     int v3 = 0;
 
-    v1 = ov12_02235254(param1->unk_00, param1->unk_24);
-    v2 = ov12_02235254(param1->unk_00, param1->unk_28);
+    v1 = BattleAnimUtil_GetBattlerType(param1->unk_00, param1->unk_24);
+    v2 = BattleAnimUtil_GetBattlerType(param1->unk_00, param1->unk_28);
 
     switch (v2) {
     case 0:
@@ -711,8 +711,8 @@ void ov12_02224F14(SPLEmitter *param0)
 s8 ov12_02224FC4(UnkStruct_ov12_02225640 *param0)
 {
     s8 v0 = 1;
-    int v1 = ov12_02235254(param0->unk_00, param0->unk_24);
-    int v2 = ov12_02235254(param0->unk_00, param0->unk_28);
+    int v1 = BattleAnimUtil_GetBattlerType(param0->unk_00, param0->unk_24);
+    int v2 = BattleAnimUtil_GetBattlerType(param0->unk_00, param0->unk_28);
 
     switch (v1) {
     case 0:
@@ -744,7 +744,7 @@ static void ov12_02225008(UnkStruct_ov12_02225640 *param0, int param1, VecFx32 *
     int v3[4];
 
     for (v0 = 0; v0 < 6; v0++) {
-        if (v0 == ov12_02235254(param0->unk_00, param1)) {
+        if (v0 == BattleAnimUtil_GetBattlerType(param0->unk_00, param1)) {
             ov12_0222325C(param0->unk_00, v2, 3 + 1);
         } else {
             ov12_0222325C(param0->unk_00, v3, 3 + 1);

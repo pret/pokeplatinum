@@ -3,21 +3,21 @@
 
 #include <nitro/fx/fx.h>
 
+#include "generated/battle_script_battlers.h"
+
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 #include "overlay012/struct_ov12_02235350.h"
 #include "overlay012/struct_ov12_0223595C.h"
 #include "overlay012/struct_ov12_02235998.h"
 
-#include "generated/battle_script_battlers.h"
-
 #include "pokemon_sprite.h"
 #include "sprite.h"
 
-int ov12_02235254(BattleAnimSystem *param0, int param1);
-enum Battler ov12_0223525C(BattleAnimSystem *param0, int param1);
-int ov12_02235288(BattleAnimSystem *param0, int param1);
-int ov12_022352AC(BattleAnimSystem *param0, int param1);
-int ov12_02235310(int param0);
+int BattleAnimUtil_GetBattlerType(BattleAnimSystem *param0, int param1);
+enum Battler BattleAnimUtil_GetBattlerSide(BattleAnimSystem *param0, int param1);
+int BattleAnimUtil_GetBattlerOfType(BattleAnimSystem *param0, int param1);
+int BattleAnimUtil_GetAlliedBattlerType(BattleAnimSystem *param0, int param1);
+int BattleAnimUtil_GetOpposingBattlerType(int param0);
 void ov12_02235350(int param0, int param1, UnkStruct_ov12_02235350 *param2);
 void ov12_022353AC(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235350 *param2);
 void ov12_02235448(int param0, VecFx32 *param1, int param2, int param3);
