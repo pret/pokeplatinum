@@ -5,7 +5,6 @@
 
 #include "generated/movement_actions.h"
 
-#include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0205B43C_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -23,6 +22,7 @@
 #include "field_task.h"
 #include "heap.h"
 #include "map_object.h"
+#include "pal_pad.h"
 #include "player_avatar.h"
 #include "savedata.h"
 #include "sound_playback.h"
@@ -31,7 +31,6 @@
 #include "sys_task_manager.h"
 #include "trainer_info.h"
 #include "unk_02014A84.h"
-#include "unk_02027F84.h"
 #include "unk_020366A0.h"
 #include "unk_0205B33C.h"
 #include "unk_020655F4.h"

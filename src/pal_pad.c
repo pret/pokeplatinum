@@ -1,12 +1,11 @@
-#include "unk_02027F84.h"
+#include "pal_pad.h"
 
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02027F8C.h"
-
 #include "charcode_util.h"
 #include "heap.h"
+#include "pal_pad.h"
 #include "savedata.h"
 
 int PalPad_SaveSize(void)

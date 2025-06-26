@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0205B43C_decl.h"
 #include "struct_defs/sentence.h"
 #include "struct_defs/struct_0203330C.h"
@@ -23,6 +22,7 @@
 #include "heap.h"
 #include "message.h"
 #include "message_util.h"
+#include "pal_pad.h"
 #include "save_player.h"
 #include "sound_playback.h"
 #include "sprite.h"
@@ -38,7 +38,6 @@
 #include "trainer_info.h"
 #include "unk_0200679C.h"
 #include "unk_02014A84.h"
-#include "unk_02027F84.h"
 #include "unk_02033200.h"
 #include "unk_0205B33C.h"
 

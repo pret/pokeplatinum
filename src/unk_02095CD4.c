@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02095E80_decl.h"
-#include "struct_defs/struct_02027F8C.h"
 #include "struct_defs/struct_02039A58.h"
 #include "struct_defs/struct_02095E80_t.h"
 
@@ -12,8 +11,8 @@
 #include "overlay088/ov88_0223B140.h"
 
 #include "communication_system.h"
+#include "pal_pad.h"
 #include "party.h"
-#include "unk_02027F84.h"
 #include "unk_0202D778.h"
 #include "unk_02032798.h"
 

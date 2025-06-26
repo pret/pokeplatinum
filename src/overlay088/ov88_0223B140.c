@@ -9,7 +9,6 @@
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_02095E80_decl.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/struct_02027F8C.h"
 #include "struct_defs/struct_02095E80_t.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -41,6 +40,7 @@
 #include "message_util.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "pal_pad.h"
 #include "party.h"
 #include "pltt_transfer.h"
 #include "pokemon.h"
