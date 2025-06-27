@@ -652,8 +652,6 @@ static void sub_0207ADB4(int param0, int param1, void *param2, void *param3)
 
 static void PalPad_CreateNetworkObject(TrainerInfo *trainerInfo, PalPad *source, PalPad *destination)
 {
-    int v0;
-
     CharCode_Copy(destination->trainerName, TrainerInfo_Name(trainerInfo));
 
     destination->trainerId = TrainerInfo_ID(trainerInfo);
@@ -661,11 +659,11 @@ static void PalPad_CreateNetworkObject(TrainerInfo *trainerInfo, PalPad *source,
     destination->gameCode = TrainerInfo_GameCode(trainerInfo);
     destination->gender = TrainerInfo_Gender(trainerInfo);
 
-    for (v0 = 0; v0 < 16; v0++) {
-        destination->trainerIdHistory[v0] = source[v0].trainerId;
-        destination->gameCodeHistory[v0] = source[v0].gameCode;
-        destination->regionCodeHistory[v0] = source[v0].regionCode;
-        destination->genderHistory[v0] = source[v0].gender;
+    for (int i = 0; i < PAL_PAD_ENTRIES; i++) {
+        destination->trainerIdHistory[i] = source[i].trainerId;
+        destination->gameCodeHistory[i] = source[i].gameCode;
+        destination->regionCodeHistory[i] = source[i].regionCode;
+        destination->genderHistory[i] = source[i].gender;
     }
 }
 
