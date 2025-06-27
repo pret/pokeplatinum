@@ -1455,7 +1455,7 @@ Overlay overlay96
 Overlay overlay97
 {
 	After overlay60
-	Object main.nef.p/src_overlay097_ov97_0222AE60.c.o
+	Object main.nef.p/src_overlay097_main_menu.c.o
 	Object main.nef.p/src_overlay097_ov97_0222C174.c.o
 	Object main.nef.p/src_overlay097_ov97_0222D04C.c.o
 	Object main.nef.p/src_overlay097_ov97_0222D2F8.c.o

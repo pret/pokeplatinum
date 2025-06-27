@@ -3,6 +3,6 @@
 
 #include "overlay_manager.h"
 
-extern const ApplicationManagerTemplate Unk_ov97_0223D674;
+extern const ApplicationManagerTemplate gMainMenuAppTemplate;
 
 #endif // POKEPLATINUM_CONST_OV97_0223D674_H
