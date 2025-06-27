@@ -1,4 +1,4 @@
-#include "overlay097/ov97_02236380.h"
+#include "overlay097/gba_pokemon.h"
 
 #include <nitro.h>
 #include <string.h>

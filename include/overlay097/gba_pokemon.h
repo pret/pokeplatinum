@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV97_02236380_H
-#define POKEPLATINUM_OV97_02236380_H
+#ifndef POKEPLATINUM_OV97_GBA_POKEMON_H
+#define POKEPLATINUM_OV97_GBA_POKEMON_H
 
 #include "overlay097/gba_save.h"
 
@@ -8,4 +8,4 @@ void SetGBABoxMonData(BoxPokemonGBA *boxMonGBA, int field, const u8 *dataArg);
 int ConvertGBASpeciesToDS(int species);
 u32 GetBoxMonGBALevel(BoxPokemonGBA *boxMonGBA);
 
-#endif // POKEPLATINUM_OV97_02236380_H
+#endif // POKEPLATINUM_OV97_GBA_POKEMON_H

@@ -890,7 +890,7 @@ pokeplatinum_c = files(
     'overlay097/gba_migrator.c',
     'overlay097/ov97_02235D18.c',
     'overlay097/ov97_0223635C.c',
-    'overlay097/ov97_02236380.c',
+    'overlay097/gba_pokemon.c',
     'overlay097/distribution_cartridge.c',
     'overlay097/ov97_02237694.c',
     'overlay097/ov97_02238534.c',

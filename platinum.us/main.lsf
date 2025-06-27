@@ -1470,7 +1470,7 @@ Overlay overlay97
 	Object main.nef.p/src_overlay097_gba_migrator.c.o
 	Object main.nef.p/src_overlay097_ov97_02235D18.c.o
 	Object main.nef.p/src_overlay097_ov97_0223635C.c.o
-	Object main.nef.p/src_overlay097_ov97_02236380.c.o
+	Object main.nef.p/src_overlay097_gba_pokemon.c.o
 	Object main.nef.p/src_overlay097_distribution_cartridge.c.o
 	Object main.nef.p/src_overlay097_ov97_02237694.c.o
 	Object main.nef.p/src_overlay097_ov97_02238534.c.o
