@@ -52,7 +52,7 @@ typedef struct Pokedex {
     u32 rotomFormsSeen;
     u8 shayminFormsSeen;
     u8 giratinaFormsSeen;
-    u8 padding[2];
+    // u8 padding[2]; // implicit padding in vanilla
 } Pokedex;
 
 int Pokedex_SaveSize(void)
