@@ -3,15 +3,15 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/map.h"
+
 void OverworldMapHistory_Clear(OverworldMapHistory *mapHistory)
 {
-    u8 v0;
-
-    for (v0 = 0; v0 < 6; v0++) {
-        mapHistory->items[v0].mapX = 0;
-        mapHistory->items[v0].mapZ = 0;
-        mapHistory->items[v0].faceDirection = 0;
-        mapHistory->items[v0].dummy_03 = 0;
+    for (u8 i = 0; i < 6; i++) {
+        mapHistory->items[i].mapX = 0;
+        mapHistory->items[i].mapZ = 0;
+        mapHistory->items[i].faceDirection = 0;
+        mapHistory->items[i].dummy_03 = 0;
     }
 
     mapHistory->historyPointer = 0;
@@ -21,10 +21,10 @@ void OverworldMapHistory_Clear(OverworldMapHistory *mapHistory)
 
 void OverworldMapHistory_PushViaWarp(OverworldMapHistory *mapHistory, int x, int z)
 {
-    u8 mapX = x / 32;
-    u8 mapZ = z / 32;
+    u8 mapX = x / MAP_TILES_COUNT_X;
+    u8 mapZ = z / MAP_TILES_COUNT_Z;
 
-    if ((mapX != mapHistory->currentMapX) || (mapZ != mapHistory->currentMapZ)) {
+    if (mapX != mapHistory->currentMapX || mapZ != mapHistory->currentMapZ) {
         mapHistory->items[mapHistory->historyPointer].mapX = mapX;
         mapHistory->items[mapHistory->historyPointer].mapZ = mapZ;
         mapHistory->items[mapHistory->historyPointer].faceDirection = -1;
@@ -38,7 +38,7 @@ void OverworldMapHistory_Push(OverworldMapHistory *mapHistory, int x, int z, int
     u8 mapX = x, mapZ;
     mapZ = z;
 
-    if ((mapX != mapHistory->currentMapX) || (mapZ != mapHistory->currentMapZ)) {
+    if (mapX != mapHistory->currentMapX || mapZ != mapHistory->currentMapZ) {
         mapHistory->items[mapHistory->historyPointer].mapX = mapX;
         mapHistory->items[mapHistory->historyPointer].mapZ = mapZ;
         mapHistory->items[mapHistory->historyPointer].faceDirection = faceDirection;
