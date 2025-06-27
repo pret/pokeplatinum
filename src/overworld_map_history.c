@@ -35,8 +35,8 @@ void OverworldMapHistory_PushViaWarp(OverworldMapHistory *mapHistory, int x, int
 
 void OverworldMapHistory_Push(OverworldMapHistory *mapHistory, int x, int z, int faceDirection)
 {
-    u8 mapX = x, mapZ;
-    mapZ = z;
+    u8 mapX = x;
+    u8 mapZ = z;
 
     if (mapX != mapHistory->currentMapX || mapZ != mapHistory->currentMapZ) {
         mapHistory->items[mapHistory->historyPointer].mapX = mapX;
