@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/charcode.h"
+
 #include "charcode_util.h"
 #include "heap.h"
 #include "pal_pad.h"
@@ -24,7 +26,7 @@ void PalPad_Init(PalPad *palPad)
 
     for (i = 0; i < PAL_PAD_ENTRIES; i++) {
         memset(&palPad[i], 0, sizeof(PalPad));
-        palPad[i].trainerName[0] = 0xffff;
+        palPad[i].trainerName[0] = CHAR_EOS;
     }
 }
 
@@ -73,7 +75,7 @@ void PalPad_PushEntries(PalPad *destination, PalPad *source, int numberToCopy, i
 
         // this index is the same in both pads; unset name to skip later
         if (diffs[i] >= 0) {
-            destination[diffs[i]].trainerName[0] = 0xffff;
+            destination[diffs[i]].trainerName[0] = CHAR_EOS;
         }
 
         newIndex++;
@@ -81,7 +83,7 @@ void PalPad_PushEntries(PalPad *destination, PalPad *source, int numberToCopy, i
 
     for (i = 0; i < PAL_PAD_ENTRIES; i++) {
         // if the current index has a name, append it to the new list
-        if (destination[i].trainerName[0] != 0xffff) {
+        if (destination[i].trainerName[0] != CHAR_EOS) {
             newPad[newIndex] = destination[i];
             newIndex++;
 
