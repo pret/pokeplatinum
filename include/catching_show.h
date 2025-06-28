@@ -30,7 +30,7 @@ void CatchingShow_End(FieldSystem *fieldSystem);
 BOOL CatchingShow_CheckWildEncounter(FieldSystem *fieldSystem, int playerX, int playerY);
 FieldBattleDTO *CatchingShow_GetBattleDataTransfer(FieldSystem *fieldSystem);
 void CatchingShow_UpdateBattleResult(FieldSystem *fieldSystem, FieldBattleDTO *dto);
-int CatchingShow_GetParkBallCount(FieldSystem *fieldSystem);
+int FieldSystem_GetParkBallCount(FieldSystem *fieldSystem);
 int CatchingShow_CalcCatchingPoints(FieldSystem *fieldSystem);
 int CatchingShow_GetTimePoints(FieldSystem *fieldSystem);
 int CatchingShow_GetTypePoints(FieldSystem *fieldSystem);

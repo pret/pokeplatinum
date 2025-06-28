@@ -33,7 +33,7 @@
 #define MAX_TIME_SECONDS       1000
 
 static void InitSpeciesData(FieldSystem *fieldSystem, CatchingShow *catchingShow);
-static int NumMonsCaptured(CatchingShow *catchingShow);
+static int CatchingShow_NumMonsCaptured(CatchingShow *catchingShow);
 static void CatchingShow_ResetStepCount(CatchingShow *catchingShow);
 static BOOL IsStepCountZero(CatchingShow *catchingShow);
 static BOOL TryStartEncounter(FieldSystem *fieldSystem, CatchingShow *catchingShow, int playerX, int playerY);
@@ -86,9 +86,9 @@ void CatchingShow_UpdateBattleResult(FieldSystem *fieldSystem, FieldBattleDTO *d
     UpdateBattleResultInternal(fieldSystem, dto, &sCatchingShow);
 }
 
-int CatchingShow_GetParkBallCount(FieldSystem *fieldSystem)
+int FieldSystem_GetParkBallCount(FieldSystem *fieldSystem)
 {
-    return CATCHING_SHOW_MONS - NumMonsCaptured(&sCatchingShow);
+    return CATCHING_SHOW_MONS - CatchingShow_NumMonsCaptured(&sCatchingShow);
 }
 
 int CatchingShow_CalcCatchingPoints(FieldSystem *fieldSystem)
@@ -146,7 +146,7 @@ static void InitSpeciesData(FieldSystem *fieldSystem, CatchingShow *catchingShow
     Heap_FreeToHeap(mon);
 }
 
-static int NumMonsCaptured(CatchingShow *catchingShow)
+static int CatchingShow_NumMonsCaptured(CatchingShow *catchingShow)
 {
     int i;
     int numMonsCaptured = 0;
@@ -247,7 +247,7 @@ static void UpdateBattleResultInternal(FieldSystem *fieldSystem, FieldBattleDTO 
 {
     switch (dto->resultMask) {
     case BATTLE_RESULT_CAPTURED_MON:
-        catchingShow->caughtMonsOrder[catchingShow->currentEncounterIndex] = NumMonsCaptured(catchingShow) + 1;
+        catchingShow->caughtMonsOrder[catchingShow->currentEncounterIndex] = CatchingShow_NumMonsCaptured(catchingShow) + 1;
         break;
     case BATTLE_RESULT_PLAYER_FLED:
         break;
@@ -260,7 +260,7 @@ static FieldBattleDTO *FieldSystem_SetupCatchingShowEncounter(FieldSystem *field
 {
     Pokemon *mon = Pokemon_New(HEAP_ID_FIELD_TASK);
     MigratedPokemon *transferData = SaveData_GetPalParkTransfer(fieldSystem->saveData);
-    int parkBallCount = CatchingShow_GetParkBallCount(fieldSystem);
+    int parkBallCount = FieldSystem_GetParkBallCount(fieldSystem);
     FieldBattleDTO *dto = FieldBattleDTO_NewPalPark(HEAP_ID_FIELDMAP, parkBallCount);
 
     FieldBattleDTO_Init(dto, fieldSystem);
