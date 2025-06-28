@@ -2599,7 +2599,7 @@ static BOOL ov23_02240A90(UnkStruct_ov23_0223EE80 *param0)
             } else {
                 sub_0206D6C8(Unk_ov23_02257740->fieldSystem, itemID, 1);
 
-                //bug: rare bones count toward the fossil total
+                // bug: rare bones count toward the fossil total
                 if ((itemID >= MINING_TREASURE_HELIX_FOSSIL) && ((MINING_TREASURE_RARE_BONE + 1) > itemID) || (itemID == MINING_TREASURE_ARMOR_FOSSIL) || (itemID == MINING_TREASURE_SKULL_FOSSIL)) {
                     UndergroundRecord_AddNumFossilsDug(undergroundRecord, 1);
                     {
