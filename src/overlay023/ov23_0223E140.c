@@ -1004,7 +1004,7 @@ void ov23_0223E9D4(int param0, int param1, void *param2, void *param3)
     u8 *v0 = param2;
 
     if ((v0[0] == CommSys_CurNetId()) && CommSys_IsSendingMovementData()) {
-        Unk_ov23_02257740->unk_A24 = ov23_02253F40(ov23_0224219C(), pl_msg_00000634_00019, 0, NULL);
+        Unk_ov23_02257740->unk_A24 = ov23_02253F40(ov23_0224219C(), UndergroundCommon_Text_WallIsBulging, 0, NULL);
         Unk_ov23_02257740->unk_8C8 = SysTask_Start(ov23_0223EA38, Unk_ov23_02257740, 0);
 
         ov23_022431EC(NULL, Unk_ov23_02257740->unk_8C8, ov23_0223E99C);
@@ -1463,7 +1463,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         break;
     case 9:
         ov23_0225410C(ov23_0224219C(), 0, v0->itemCount);
-        Unk_ov23_02257740->unk_A24 = ov23_02253F60(ov23_0224219C(), pl_msg_00000634_00062, 0, NULL);
+        Unk_ov23_02257740->unk_A24 = ov23_02253F60(ov23_0224219C(), UndergroundCommon_Text_SomethingPingedInWall, 0, NULL);
         v0->unk_08 = 0;
         (v0->unk_00)++;
         break;
@@ -1483,7 +1483,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         }
         break;
     case 11:
-        Unk_ov23_02257740->unk_A24 = ov23_02253F40(ov23_0224219C(), pl_msg_00000634_00085, 0, NULL);
+        Unk_ov23_02257740->unk_A24 = ov23_02253F40(ov23_0224219C(), UndergroundCommon_Text_MiningTutorial, 0, NULL);
         v0->unk_08 = 0;
         (v0->unk_00)++;
         break;
@@ -1508,7 +1508,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         v0->unk_08--;
 
         if (v0->unk_08 == 0) {
-            Unk_ov23_02257740->unk_A24 = ov23_02253F40(ov23_0224219C(), pl_msg_00000634_00064, 0, NULL);
+            Unk_ov23_02257740->unk_A24 = ov23_02253F40(ov23_0224219C(), UndergroundCommon_Text_EverythingDugUp, 0, NULL);
             Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
             v0->unk_4C = 60;
             v0->unk_00 = 15;
@@ -1643,7 +1643,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
     case 26:
         ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
         ResetScreenMasterBrightness(DS_SCREEN_MAIN);
-        Unk_ov23_02257740->unk_A24 = ov23_02253F40(ov23_0224219C(), pl_msg_00000634_00063, 0, NULL);
+        Unk_ov23_02257740->unk_A24 = ov23_02253F40(ov23_0224219C(), UndergroundCommon_Text_WallCollapsed, 0, NULL);
         v0->unk_4C = 60;
         v0->unk_00 = 15;
         break;
@@ -1716,7 +1716,7 @@ static BOOL IsCoordinatePartOfObject(MiningObject *param0, int x, int y)
     int column, row, entriesPerRow;
 
     if (shape == NULL) {
-        return 1;
+        return TRUE;
     }
 
     row = y / 2;
@@ -1724,10 +1724,10 @@ static BOOL IsCoordinatePartOfObject(MiningObject *param0, int x, int y)
     entriesPerRow = param0->width / 2;
 
     if (shape[row * entriesPerRow + column] == 'o') {
-        return 0;
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
 static BOOL Mining_TryPlaceObject(int index, int x, int y)
@@ -1735,25 +1735,25 @@ static BOOL Mining_TryPlaceObject(int index, int x, int y)
     int i, j, endX, endY, v4;
 
     if (!ov23_0223F768()) {
-        return 0;
+        return FALSE;
     }
 
     endX = sMiningObjects[index].width / 2 + x;
     endY = sMiningObjects[index].height / 2 + y;
 
     if (endX > 13) {
-        return 0;
+        return FALSE;
     }
 
     if (endY > 10) {
-        return 0;
+        return FALSE;
     }
 
     for (i = x; i < endX; i++) {
         for (j = y; j < endY; j++) {
             if (IsCoordinatePartOfObject(&sMiningObjects[index], (i - x) * 2, (j - y) * 2)) {
                 if (Unk_ov23_02257740->unk_920[j][i] != 0) {
-                    return 0;
+                    return FALSE;
                 }
             }
         }
@@ -1769,7 +1769,7 @@ static BOOL Mining_TryPlaceObject(int index, int x, int y)
         }
     }
 
-    return 1;
+    return TRUE;
 }
 
 static int Mining_GetWeightOfItem(MiningObject *item)
@@ -1869,13 +1869,13 @@ static void Mining_GenerateGameLayout(BgConfig *param0, int param1, UnkStruct_ov
         }
 
         if ((MINING_TREASURE_FLAME_PLATE <= itemID) && (itemID <= MINING_TREASURE_IRON_PLATE)) {
-            BOOL isPlateSelectedTwice = 0;
+            BOOL isPlateSelectedTwice = FALSE;
 
             selectedPlates[objectsPlaced] = itemID;
 
             for (i = 0; i < objectsPlaced; i++) {
                 if (selectedPlates[i] == itemID) {
-                    isPlateSelectedTwice = 1;
+                    isPlateSelectedTwice = TRUE;
                 }
             }
 
@@ -2175,16 +2175,16 @@ static BOOL ov23_02240244(int param0, int param1)
     int v1 = Unk_ov23_02257740->unk_920[param1][param0];
 
     if (v1 == 0) {
-        return 0;
+        return FALSE;
     }
 
     v0 = Unk_ov23_02257740->unk_874[v1 - 1].itemID;
 
     if ((v0 != 0) && (v0 < MINING_ROCK_1)) {
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ov23_02240280(int param0, int param1)
@@ -2192,14 +2192,14 @@ static BOOL ov23_02240280(int param0, int param1)
     int v0 = Unk_ov23_02257740->unk_920[param1][param0];
 
     if (v0 == 0) {
-        return 0;
+        return FALSE;
     }
 
     if (Unk_ov23_02257740->unk_874[v0 - 1].itemID >= MINING_ROCK_1) {
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static void ov23_022402B8(int param0, int param1, BOOL param2, UnkStruct_ov23_0223EE80 *param3)
@@ -2509,16 +2509,16 @@ static BOOL Mining_IsRoomInBag(int itemID)
 
     if (IsMiningItemSphere(itemID)) {
         if (40 == UndergroundData_GetSphereCount(undergroundData)) {
-            return 0;
+            return FALSE;
         }
 
-        return 1;
+        return TRUE;
     } else {
         if (40 == UndergroundData_GetTreasureCount(undergroundData)) {
-            return 0;
+            return FALSE;
         }
 
-        return 1;
+        return TRUE;
     }
 }
 
@@ -2567,10 +2567,10 @@ static BOOL ov23_022409F0(UnkStruct_ov23_0223EE80 *param0)
             ov23_02254080(ov23_0224219C(), Unk_ov23_02257740->unk_874[v0].itemID);
 
             if (IsMiningItemSphere(Unk_ov23_02257740->unk_874[v0].itemID)) {
-                entryID = pl_msg_00000634_00069;
+                entryID = UndergroundCommon_Text_YouObtainedSphere;
                 ov23_02254154(ov23_0224219C(), 1, param0->unk_48);
             } else {
-                entryID = pl_msg_00000634_00017;
+                entryID = UndergroundCommon_Text_ItemWasObtained;
                 ov23_02254204(ov23_0224219C(), 2);
             }
 
@@ -2616,7 +2616,7 @@ static BOOL ov23_02240A90(UnkStruct_ov23_0223EE80 *param0)
                 ov23_022408A0(itemID, param0->unk_48);
                 break;
             } else {
-                Unk_ov23_02257740->unk_A24 = ov23_02253F40(ov23_0224219C(), pl_msg_00000634_00065, 0, NULL);
+                Unk_ov23_02257740->unk_A24 = ov23_02253F40(ov23_0224219C(), UndergroundCommon_Text_TooBadBagIsFull3, 0, NULL);
                 return 1;
             }
         }

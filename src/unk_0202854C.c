@@ -19,7 +19,6 @@
 #include "savedata.h"
 #include "system.h"
 #include "trainer_info.h"
-#include "constants/items.h"
 
 #define FLAG_CAPTURED_COUNT_PLATINUM 50
 #define FLAG_CAPTURED_COUNT_GOLD     10
@@ -951,12 +950,12 @@ int sub_020291EC(UndergroundData *param0, int param1)
 
 BOOL UndergroundData_HasNeverMined(UndergroundData *undergroundData)
 {
-    return undergroundData->hasMined == 0;
+    return undergroundData->hasMined == FALSE;
 }
 
 void UndergroundData_SetHasMined(UndergroundData *undergroundData)
 {
-    undergroundData->hasMined = 1;
+    undergroundData->hasMined = TRUE;
 }
 
 BOOL sub_02029234(UndergroundData *param0)
@@ -981,14 +980,14 @@ void UndergroundData_SetPlateMined(UndergroundData *undergroundData, int miningI
 BOOL UndergroundData_HasPlateNeverBeenMined(UndergroundData *undergroundData, int miningItemID)
 {
     if ((MINING_TREASURE_FLAME_PLATE > miningItemID) || (miningItemID > MINING_TREASURE_IRON_PLATE)) {
-        return 1;
+        return TRUE;
     }
 
     if (undergroundData->minedPlates & (0x1 << (miningItemID - MINING_TREASURE_FLAME_PLATE))) {
-        return 0;
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
 void UndergroundData_IncrementStepCount(UndergroundData *undergroundData)
