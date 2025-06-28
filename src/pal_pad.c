@@ -37,7 +37,7 @@ const u16 *PalPad_GetTrainerNamePointer(const PalPad *palPad, int trainerIndex)
 
 u8 PalPad_GetTrainerRegionCode(const PalPad *palPad, int trainerIndex)
 {
-    return palPad->regionCodeHistory[trainerIndex];
+    return palPad->associatedTrainerRegionCodes[trainerIndex];
 }
 
 BOOL PalPad_TrainersEqual(const PalPad *first, const PalPad *second)
@@ -109,7 +109,7 @@ int PalPad_TrainerIsFriend(PalPad *palPad, u32 trainerId)
 
     for (i = 0; i < PAL_PAD_ENTRIES; i++) {
         for (j = 0; j < PAL_PAD_ENTRIES; j++) {
-            if (palPad[i].trainerIdHistory[j] == trainerId) {
+            if (palPad[i].associatedTrainerIds[j] == trainerId) {
                 return 2 + i;
             }
         }

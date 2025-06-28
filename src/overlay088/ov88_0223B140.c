@@ -1658,10 +1658,10 @@ static void ov88_0223D0D4(TrainerInfo *param0, PalPad *param1, PalPad *param2)
     param2->gender = TrainerInfo_Gender(param0);
 
     for (v0 = 0; v0 < 16; v0++) {
-        param2->trainerIdHistory[v0] = param1[v0].trainerId;
-        param2->gameCodeHistory[v0] = param1[v0].gameCode;
-        param2->regionCodeHistory[v0] = param1[v0].regionCode;
-        param2->genderHistory[v0] = param1[v0].gender;
+        param2->associatedTrainerIds[v0] = param1[v0].trainerId;
+        param2->associatedTrainerGameCodes[v0] = param1[v0].gameCode;
+        param2->associatedTrainerRegionCodes[v0] = param1[v0].regionCode;
+        param2->associatedTrainerGenders[v0] = param1[v0].gender;
     }
 
     CommSys_SendDataHuge(28, param2, sizeof(PalPad));

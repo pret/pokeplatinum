@@ -660,10 +660,10 @@ static void PalPad_CreateNetworkObject(TrainerInfo *trainerInfo, PalPad *source,
     destination->gender = TrainerInfo_Gender(trainerInfo);
 
     for (int i = 0; i < PAL_PAD_ENTRIES; i++) {
-        destination->trainerIdHistory[i] = source[i].trainerId;
-        destination->gameCodeHistory[i] = source[i].gameCode;
-        destination->regionCodeHistory[i] = source[i].regionCode;
-        destination->genderHistory[i] = source[i].gender;
+        destination->associatedTrainerIds[i] = source[i].trainerId;
+        destination->associatedTrainerGameCodes[i] = source[i].gameCode;
+        destination->associatedTrainerRegionCodes[i] = source[i].regionCode;
+        destination->associatedTrainerGenders[i] = source[i].gender;
     }
 }
 

@@ -7,6 +7,8 @@
 
 #define PAL_PAD_ENTRIES 16
 
+// each PalPad represents a single trainer inside your pal pad. it also contains a reference to all 16 of that trainer's pal pad entries!
+// these associated trainers can be thought of as your friends of friends, even if you have no direct pal pad entry for them.
 typedef struct PalPad {
     u16 trainerName[TRAINER_NAME_LEN + 1];
     u32 trainerId;
@@ -16,10 +18,10 @@ typedef struct PalPad {
     u8 padding_17;
 
     // these are the 16 trainers inside the owners' pal pad
-    u32 trainerIdHistory[PAL_PAD_ENTRIES];
-    u8 gameCodeHistory[PAL_PAD_ENTRIES];
-    u8 regionCodeHistory[PAL_PAD_ENTRIES];
-    u8 genderHistory[PAL_PAD_ENTRIES];
+    u32 associatedTrainerIds[PAL_PAD_ENTRIES];
+    u8 associatedTrainerGameCodes[PAL_PAD_ENTRIES];
+    u8 associatedTrainerRegionCodes[PAL_PAD_ENTRIES];
+    u8 associatedTrainerGenders[PAL_PAD_ENTRIES];
 } PalPad;
 
 int PalPad_SaveSize(void);
