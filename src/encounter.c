@@ -617,7 +617,7 @@ static BOOL FieldTask_PalParkEncounter(FieldTask *task)
 
     case 3:
         UpdateFieldSystemFromDTO(encounter->dto, fieldSystem);
-        CatchingShow_UpdateBattleResult(fieldSystem, encounter->dto);
+        FieldSystem_UpdateCatchingShowResult(fieldSystem, encounter->dto);
         UpdateGameRecords(fieldSystem, encounter->dto);
         (*state)++;
         break;

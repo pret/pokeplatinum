@@ -81,7 +81,7 @@ FieldBattleDTO *CatchingShow_GetBattleDataTransfer(FieldSystem *fieldSystem)
     return FieldSystem_SetupCatchingShowEncounter(fieldSystem, &sCatchingShow);
 }
 
-void CatchingShow_UpdateBattleResult(FieldSystem *fieldSystem, FieldBattleDTO *dto)
+void FieldSystem_UpdateCatchingShowResult(FieldSystem *fieldSystem, FieldBattleDTO *dto)
 {
     UpdateBattleResultInternal(fieldSystem, dto, &sCatchingShow);
 }
