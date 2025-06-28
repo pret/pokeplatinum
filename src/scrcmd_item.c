@@ -2,6 +2,7 @@
 
 #include <nitro.h>
 #include <string.h>
+#include "constants/heap.h"
 
 #include "field/field_system.h"
 
@@ -81,7 +82,7 @@ BOOL ScrCmd_GetItemPocket(ScriptContext *ctx)
     u16 item = ScriptContext_GetVar(ctx);
     u16 *pocket = ScriptContext_GetVarPointer(ctx);
 
-    *pocket = (u16)Item_LoadParam(item, ITEM_PARAM_FIELD_POCKET, 11);
+    *pocket = (u16)Item_LoadParam(item, ITEM_PARAM_FIELD_POCKET, HEAP_ID_FIELDMAP);
     return FALSE;
 }
 
