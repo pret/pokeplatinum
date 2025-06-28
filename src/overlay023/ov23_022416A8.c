@@ -451,9 +451,9 @@ static void ov23_02241CAC(UnkStruct_ov23_02241974 *param0)
     ov23_02241778();
 }
 
-BOOL ov23_02241CF4(int param0)
+BOOL IsMiningItemSphere(int miningItemID)
 {
-    if ((param0 != 0) && (param0 < 11)) {
+    if ((miningItemID != 0) && (miningItemID < MINING_TREASURE_OVAL_STONE)) {
         return 1;
     }
 

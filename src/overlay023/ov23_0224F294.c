@@ -335,9 +335,9 @@ void ov23_0224F634(int param0)
 static int ov23_0224F658(void *param0)
 {
     UnkStruct_ov23_02250CD4 *v0 = param0;
-    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
+    UndergroundData *undergroundData = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
 
-    return sub_02028C3C(v1);
+    return UndergroundData_GetSphereCount(undergroundData);
 }
 
 int ov23_0224F66C(int param0, void *param1)
@@ -367,9 +367,9 @@ int ov23_0224F69C(int param0, void *param1)
 static int ov23_0224F6B4(void *param0)
 {
     UnkStruct_ov23_02250CD4 *v0 = param0;
-    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
+    UndergroundData *undergroundData = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
 
-    return sub_02028D58(v1);
+    return UndergroundData_GetTreasureCount(undergroundData);
 }
 
 int ov23_0224F6C8(int param0, void *param1)
@@ -380,21 +380,21 @@ int ov23_0224F6C8(int param0, void *param1)
     return sub_02028D74(v1, param0);
 }
 
-BOOL ov23_0224F6E0(int param0, int param1)
+BOOL ov23_0224F6E0(int sphereID, int sphereSize)
 {
-    int v0 = param0;
+    int v0 = sphereID;
 
-    GF_ASSERT(param0 < 11);
+    GF_ASSERT(sphereID < MINING_TREASURE_OVAL_STONE);
 
-    if (param0 >= 6) {
+    if (sphereID >= MINING_LARGE_PRISM_SPHERE) {
         v0 -= 5;
     }
 
-    if (param1 > 99) {
-        param1 = 99;
+    if (sphereSize > 99) {
+        sphereSize = 99;
     }
 
-    return sub_02028CB0(Unk_ov23_022577B8->unk_00, v0, param1);
+    return sub_02028CB0(Unk_ov23_022577B8->unk_00, v0, sphereSize);
 }
 
 BOOL ov23_0224F710(int param0)
@@ -1310,7 +1310,7 @@ static BOOL ov23_022507D8(SysTask *param0, void *param1)
         ov23_0224FCF4(v0);
 
         if (v1 == 3) {
-            int item = Underground_GetMiningItemID(Unk_ov23_022577B8->unk_05);
+            int item = Underground_ConvertTreasureToBagItem(Unk_ov23_022577B8->unk_05);
             Bag *v4 = SaveData_GetBag(v0->fieldSystem->saveData);
 
             Sound_PlayEffect(SEQ_SE_CONFIRM);
