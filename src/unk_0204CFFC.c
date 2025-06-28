@@ -307,7 +307,7 @@ BOOL ScrCmd_1BA(ScriptContext *param0)
     v4 = Pokemon_GetValue(v1, MON_DATA_FRIENDSHIP, NULL);
 
     if (v2 > 0) {
-        if (Item_LoadParam(Pokemon_GetValue(v1, MON_DATA_HELD_ITEM, NULL), 1, HEAP_ID_FIELDMAP) == 53) {
+        if (Item_LoadParam(Pokemon_GetValue(v1, MON_DATA_HELD_ITEM, NULL), ITEM_PARAM_HOLD_EFFECT, HEAP_ID_FIELDMAP) == 53) {
             v2 = v2 * 150 / 100;
         }
 

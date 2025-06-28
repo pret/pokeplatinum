@@ -2099,7 +2099,7 @@ static int ov84_0223D858(UnkStruct_ov84_0223B5A0 *param0)
 
     ov84_0223FD84(param0);
 
-    v1 = Item_LoadParam(param0->unk_C4->unk_66, 6, HEAP_ID_6);
+    v1 = Item_LoadParam(param0->unk_C4->unk_66, ITEM_PARAM_FIELD_USE_FUNC, HEAP_ID_6);
     v0 = (UnkFuncPtr_02069238)sub_020683F4(2, v1);
 
     if (v0 != NULL) {
@@ -2295,7 +2295,7 @@ static Strbuf *ov84_0223DC9C(UnkStruct_ov84_0223B5A0 *param0, u16 param1)
         return MessageLoader_GetNewStrbuf(param0->unk_114, 62);
     }
 
-    stepCount = Item_LoadParam(param1, 2, HEAP_ID_6);
+    stepCount = Item_LoadParam(param1, ITEM_PARAM_HOLD_EFFECT_PARAM, HEAP_ID_6);
     SetRepelSteps(param0, (u8)stepCount);
     param0->unk_488 = 1;
     Sound_PlayEffect(SEQ_SE_DP_CARD2);
@@ -2570,7 +2570,7 @@ static int ov84_0223E27C(UnkStruct_ov84_0223B5A0 *param0)
         u8 v0 = ov84_0223C5B8(param0);
 
         if (v0 == 1) {
-            if (Item_LoadParam(param0->unk_C4->unk_66, 3, HEAP_ID_6) != 0) {
+            if (Item_LoadParam(param0->unk_C4->unk_66, ITEM_PARAM_PREVENT_TOSS, HEAP_ID_6) != 0) {
                 Strbuf *v1;
 
                 Window_FillTilemap(&param0->unk_04[6], 15);
@@ -2641,9 +2641,9 @@ static int ov84_0223E3BC(UnkStruct_ov84_0223B5A0 *param0)
             StringTemplate_SetItemName(param0->unk_118, 0, param0->unk_C4->unk_66);
             ov84_02240B34(param0, 2);
 
-            param0->unk_48C = Item_LoadParam(param0->unk_C4->unk_66, 0, HEAP_ID_6);
+            param0->unk_48C = Item_LoadParam(param0->unk_C4->unk_66, ITEM_PARAM_PRICE, HEAP_ID_6);
 
-            if ((Item_LoadParam(param0->unk_C4->unk_66, 3, HEAP_ID_6) != 0) || (param0->unk_48C == 0)) {
+            if ((Item_LoadParam(param0->unk_C4->unk_66, ITEM_PARAM_PREVENT_TOSS, HEAP_ID_6) != 0) || (param0->unk_48C == 0)) {
                 v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 74);
                 StringTemplate_Format(param0->unk_118, param0->unk_3F8, v1);
                 Strbuf_Free(v1);
@@ -2894,7 +2894,7 @@ static int ov84_0223EA18(UnkStruct_ov84_0223B5A0 *param0)
 
         if (v0 == 1) {
             if (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08 == 0) {
-                if (Item_LoadParam(param0->unk_C4->unk_66, 6, HEAP_ID_6) != 13) {
+                if (Item_LoadParam(param0->unk_C4->unk_66, ITEM_PARAM_FIELD_USE_FUNC, HEAP_ID_6) != 13) {
                     sub_0207CD34(param0->unk_CC, param0->unk_3F8, param0->unk_C4->unk_66, -1, HEAP_ID_6);
                     Window_FillTilemap(&param0->unk_04[6], 15);
                     Window_DrawMessageBoxWithScrollCursor(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);
