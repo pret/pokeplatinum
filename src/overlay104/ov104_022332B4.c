@@ -1,5 +1,6 @@
 #include <nitro.h>
 #include <string.h>
+
 #include "constants/heap.h"
 
 #include "overlay104/ov104_0222DCE0.h"

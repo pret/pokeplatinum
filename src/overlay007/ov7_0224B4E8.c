@@ -2,6 +2,7 @@
 
 #include <nitro.h>
 #include <string.h>
+
 #include "constants/heap.h"
 
 #include "struct_decls/struct_02098700_decl.h"
