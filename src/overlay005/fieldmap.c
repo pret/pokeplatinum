@@ -10,7 +10,6 @@
 
 #include "struct_decls/struct_02020C44_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
-#include "struct_defs/struct_020556C4.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "field/field_system.h"
@@ -70,6 +69,7 @@
 #include "map_object.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "overworld_map_history.h"
 #include "persisted_map_features.h"
 #include "player_avatar.h"
 #include "pltt_transfer.h"
@@ -82,7 +82,6 @@
 #include "unk_02020AEC.h"
 #include "unk_0202419C.h"
 #include "unk_020553DC.h"
-#include "unk_020556C4.h"
 #include "unk_020559DC.h"
 #include "unk_02055C50.h"
 #include "vram_transfer.h"
@@ -512,19 +511,16 @@ static void ov5_021D134C(FieldSystem *fieldSystem, u8 param1)
 
 static void ov5_021D13B4(FieldSystem *fieldSystem)
 {
-    UnkStruct_020556C4 *v0;
-    int v1, v2, v3;
-
     if (MapHeader_IsOnMainMatrix(fieldSystem->location->mapId) == 0) {
         return;
     }
 
-    v0 = sub_0203A76C(SaveData_GetFieldOverworldState(fieldSystem->saveData));
-    v1 = (Player_GetXPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileX(fieldSystem->landDataMan)) / MAP_TILES_COUNT_X;
-    v2 = (Player_GetZPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileZ(fieldSystem->landDataMan)) / MAP_TILES_COUNT_Z;
-    v3 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+    OverworldMapHistory *mapHistory = FieldOverworldState_GetMapHistory(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+    int mapX = (Player_GetXPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileX(fieldSystem->landDataMan)) / MAP_TILES_COUNT_X;
+    int mapZ = (Player_GetZPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileZ(fieldSystem->landDataMan)) / MAP_TILES_COUNT_Z;
+    int faceDirection = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
-    sub_02055740(v0, v1, v2, v3);
+    OverworldMapHistory_Push(mapHistory, mapX, mapZ, faceDirection);
 }
 
 static void ov5_021D1414(void)

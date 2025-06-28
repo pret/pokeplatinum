@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_defs/special_encounter.h"
-#include "struct_defs/struct_020556C4.h"
 #include "struct_defs/struct_0205EC34.h"
 
 #include "field/field_system.h"
@@ -14,6 +13,7 @@
 #include "journal.h"
 #include "location.h"
 #include "map_header.h"
+#include "overworld_map_history.h"
 #include "player_avatar.h"
 #include "roaming_pokemon.h"
 #include "save_player.h"
@@ -21,7 +21,6 @@
 #include "system_flags.h"
 #include "system_vars.h"
 #include "unk_0203A7D8.h"
-#include "unk_020556C4.h"
 #include "vars_flags.h"
 
 static BOOL sub_020705DC(FieldSystem *fieldSystem);
@@ -98,10 +97,8 @@ void FieldSystem_InitFlagsWarp(FieldSystem *fieldSystem)
     }
 
     if (MapHeader_IsOnMainMatrix(fieldSystem->location->mapId)) {
-        UnkStruct_020556C4 *v3;
-
-        v3 = sub_0203A76C(SaveData_GetFieldOverworldState(fieldSystem->saveData));
-        sub_020556E8(v3, fieldSystem->location->x, fieldSystem->location->z);
+        OverworldMapHistory *mapHistory = FieldOverworldState_GetMapHistory(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+        OverworldMapHistory_PushViaWarp(mapHistory, fieldSystem->location->x, fieldSystem->location->z);
     }
 }
 
