@@ -22,9 +22,7 @@ PalPad *SaveData_GetPalPad(SaveData *saveData)
 
 void PalPad_Init(PalPad *palPad)
 {
-    int i;
-
-    for (i = 0; i < PAL_PAD_ENTRIES; i++) {
+    for (int i = 0; i < PAL_PAD_ENTRIES; i++) {
         memset(&palPad[i], 0, sizeof(PalPad));
         palPad[i].trainerName[0] = CHAR_EOS;
     }
@@ -40,7 +38,7 @@ u8 PalPad_GetTrainerRegionCode(const PalPad *palPad, int trainerIndex)
     return palPad->associatedTrainerRegionCodes[trainerIndex];
 }
 
-BOOL PalPad_TrainersEqual(const PalPad *first, const PalPad *second)
+BOOL PalPad_AreTrainersEqual(const PalPad *first, const PalPad *second)
 {
     if (0 == CharCode_Compare(first->trainerName, second->trainerName)) {
         if (first->trainerId == second->trainerId) {
@@ -53,7 +51,7 @@ BOOL PalPad_TrainersEqual(const PalPad *first, const PalPad *second)
 
 void PalPad_PushEntries(PalPad *destination, PalPad *source, int numberToCopy, int heapID)
 {
-    int i, j, newIndex;
+    int i;
     int diffs[5];
     PalPad *newPad = Heap_AllocFromHeap(heapID, sizeof(PalPad) * PAL_PAD_ENTRIES);
     PalPad_Init(newPad);
@@ -61,14 +59,14 @@ void PalPad_PushEntries(PalPad *destination, PalPad *source, int numberToCopy, i
     for (i = 0; i < numberToCopy; i++) {
         diffs[i] = -1;
 
-        for (j = 0; j < PAL_PAD_ENTRIES; j++) {
-            if (PalPad_TrainersEqual(&destination[j], &source[i])) {
+        for (int j = 0; j < PAL_PAD_ENTRIES; j++) {
+            if (PalPad_AreTrainersEqual(&destination[j], &source[i])) {
                 diffs[i] = j;
             }
         }
     }
 
-    newIndex = 0;
+    int newIndex = 0;
 
     for (i = 0; i < numberToCopy; i++) {
         newPad[newIndex] = source[i];

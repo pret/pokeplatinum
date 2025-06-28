@@ -53,7 +53,7 @@ u8 PalPad_GetTrainerRegionCode(const PalPad *palPad, int trainerIndex);
  * @param second
  * @return TRUE if trainer name & ID matches, FALSE otherwise
  */
-BOOL PalPad_TrainersEqual(const PalPad *first, const PalPad *second);
+BOOL PalPad_AreTrainersEqual(const PalPad *first, const PalPad *second);
 
 /**
  * @brief Push {numberToCopy} entries from the beginning of {source} to the beginning of {destination}
