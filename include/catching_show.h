@@ -28,7 +28,7 @@ typedef struct CatchingShow {
 void CatchingShow_Start(FieldSystem *fieldSystem);
 void CatchingShow_End(FieldSystem *fieldSystem);
 BOOL CatchingShow_CheckWildEncounter(FieldSystem *fieldSystem, int playerX, int playerY);
-FieldBattleDTO *CatchingShow_GetBattleDTO(FieldSystem *fieldSystem);
+FieldBattleDTO *CatchingShow_GetBattleDataTransfer(FieldSystem *fieldSystem);
 void CatchingShow_UpdateBattleResult(FieldSystem *fieldSystem, FieldBattleDTO *dto);
 int CatchingShow_GetParkBallCount(FieldSystem *fieldSystem);
 int CatchingShow_CalcCatchingPoints(FieldSystem *fieldSystem);

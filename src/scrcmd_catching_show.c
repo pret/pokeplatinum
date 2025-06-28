@@ -46,7 +46,7 @@ BOOL ScrCmd_SetClearInCatchingShowFlag(ScriptContext *ctx)
 
 BOOL ScrCmd_CheckHasEnoughMonForCatchingShow(ScriptContext *ctx)
 {
-    PalParkTransfer *transferData = SaveData_GetPalParkTransfer(ctx->fieldSystem->saveData);
+    MigratedPokemon *transferData = SaveData_GetPalParkTransfer(ctx->fieldSystem->saveData);
     Pokemon *dummy = Pokemon_New(HEAP_ID_FIELD_TASK);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
@@ -62,7 +62,7 @@ BOOL ScrCmd_CheckHasEnoughMonForCatchingShow(ScriptContext *ctx)
 
 BOOL ScrCmd_MoveCatchingShowMonsToPCBoxes(ScriptContext *ctx)
 {
-    PalParkTransfer *transferData = SaveData_GetPalParkTransfer(ctx->fieldSystem->saveData);
+    MigratedPokemon *transferData = SaveData_GetPalParkTransfer(ctx->fieldSystem->saveData);
     PCBoxes *pcBoxes = SaveData_GetPCBoxes(ctx->fieldSystem->saveData);
     Pokemon *mon = Pokemon_New(HEAP_ID_FIELD_TASK);
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(ctx->fieldSystem->saveData);
@@ -70,7 +70,7 @@ BOOL ScrCmd_MoveCatchingShowMonsToPCBoxes(ScriptContext *ctx)
     BOOL success;
 
     for (int i = 0; i < CATCHING_SHOW_MONS; i++) {
-        TransferDataToMon(transferData, i, mon);
+        MigratedPokemon_ToPokemon(transferData, i, mon);
         UpdateMonStatusAndTrainerInfo(mon, trainerInfo, 2, 0, HEAP_ID_FIELD_TASK);
         success = PCBoxes_TryStoreBoxMon(pcBoxes, Pokemon_GetBoxPokemon(mon));
         GF_ASSERT(success);

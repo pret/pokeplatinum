@@ -311,7 +311,7 @@ static int ov97_02233B8C(GBAMigrator *migrator)
     int v0;
     u8 v1[16];
     int saveResult;
-    PalParkTransfer *transferData;
+    MigratedPokemon *transferData;
     UnkStruct_ov97_02233B8C *v4 = &migrator->unk_E8F0;
 
     switch (v4->unk_00) {
@@ -409,7 +409,7 @@ static int ov97_02233B8C(GBAMigrator *migrator)
 static void ov97_02233CE4(GBAMigrator *migrator)
 {
     enum SaveResult result;
-    PalParkTransfer *transferData = SaveData_GetPalParkTransfer(migrator->saveData);
+    MigratedPokemon *transferData = SaveData_GetPalParkTransfer(migrator->saveData);
 
     PalParkTransfer_SaveTransferHistory(transferData, GetGBAPlayerTrainerId());
     ResetLock(RESET_LOCK_SOFT_RESET);
@@ -424,7 +424,7 @@ static void CopySelectedMonToPalParkTransfer(GBAMigrator *migrator)
     u16 species;
     BoxPokemonGBA *boxMonGBA;
     Pokemon mon;
-    PalParkTransfer *transfer = SaveData_GetPalParkTransfer(migrator->saveData);
+    MigratedPokemon *transfer = SaveData_GetPalParkTransfer(migrator->saveData);
     BoxPokemon *boxMon = Pokemon_GetBoxPokemon(&mon);
 
     for (i = 0; i < CATCHING_SHOW_MONS; i++) {
@@ -1701,7 +1701,7 @@ static int GetCanMigrateStatus(GBAMigrator *migrator)
 {
     int timeDiff;
     u32 gbaTrainerId;
-    PalParkTransfer *transferData = SaveData_GetPalParkTransfer(migrator->saveData);
+    MigratedPokemon *transferData = SaveData_GetPalParkTransfer(migrator->saveData);
 
     if (IsPalParkTransferMacAddressUnset(transferData) == FALSE) {
         if (MacAddressMatchesLastPalParkTransfer(transferData) == FALSE) {

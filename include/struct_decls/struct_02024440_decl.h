@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_02024440_DECL_H
 #define POKEPLATINUM_STRUCT_02024440_DECL_H
 
-typedef struct PalParkTransfer PalParkTransfer;
+typedef struct MigratedPokemon MigratedPokemon;
 
 #endif // POKEPLATINUM_STRUCT_02024440_DECL_H
