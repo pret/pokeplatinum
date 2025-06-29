@@ -60,8 +60,8 @@ _00C9:
     ApplyMovement 0, _0174
     ApplyMovement 1, _0174
     WaitMovement
-    ScrCmd_1B1 2
-    ScrCmd_1B1 3
+    ShowMapObj 2
+    ShowMapObj 3
     ApplyMovement 2, _0180
     ApplyMovement 3, _0180
     WaitMovement

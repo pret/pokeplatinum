@@ -44,7 +44,7 @@ _008E:
     ScrCmd_169 77
     ApplyMovement 0, _0140
     WaitMovement
-    ScrCmd_1B1 0xFF
+    ShowMapObj MAP_OBJ_PLAYER_AVATAR
     ApplyMovement LOCALID_PLAYER, _014C
     WaitMovement
     ScrCmd_16C 77

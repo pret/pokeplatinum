@@ -50,7 +50,7 @@ _008F:
     LockAll
     ScrCmd_168 0, 0, VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_2, 77
     Call _050B
-    ScrCmd_1B1 0xFF
+    ShowMapObj MAP_OBJ_PLAYER_AVATAR
     ApplyMovement LOCALID_PLAYER, _00F0
     WaitMovement
     Call _0513

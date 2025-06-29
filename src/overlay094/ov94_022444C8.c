@@ -4,9 +4,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "overlay094/gts_application_state.h"
 #include "overlay094/ov94_0223BCB0.h"
 #include "overlay094/struct_ov94_0223BA88.h"
-#include "overlay094/struct_ov94_0223FD4C.h"
 #include "overlay095/ov95_02246C20.h"
 
 #include "heap.h"
@@ -22,8 +22,8 @@
 FS_EXTERN_OVERLAY(overlay95);
 
 static TrainerInfo *ov94_02244870(UnkStruct_ov94_0223BA88 *param0);
-static Pokemon *ov94_022448AC(UnkStruct_ov94_0223FD4C *param0, int param1);
-static void ov94_022448E8(UnkStruct_ov94_0223FD4C *param0);
+static Pokemon *ov94_022448AC(GTSApplicationState *param0, int param1);
+static void ov94_022448E8(GTSApplicationState *param0);
 
 static const ApplicationManagerTemplate Unk_ov94_0224636C = {
     ov95_02246C20,
@@ -32,7 +32,7 @@ static const ApplicationManagerTemplate Unk_ov94_0224636C = {
     FS_OVERLAY_ID(overlay95)
 };
 
-int ov94_022444C8(UnkStruct_ov94_0223FD4C *param0, int param1)
+int ov94_022444C8(GTSApplicationState *param0, int param1)
 {
     param0->unk_1104 = Pokemon_New(HEAP_ID_62);
 
@@ -80,7 +80,7 @@ int ov94_022444C8(UnkStruct_ov94_0223FD4C *param0, int param1)
     return 2;
 }
 
-int ov94_02244678(UnkStruct_ov94_0223FD4C *param0, int param1)
+int ov94_02244678(GTSApplicationState *param0, int param1)
 {
     int v0 = 3;
 
@@ -150,7 +150,7 @@ int ov94_02244678(UnkStruct_ov94_0223FD4C *param0, int param1)
     return v0;
 }
 
-int ov94_0224484C(UnkStruct_ov94_0223FD4C *param0, int param1)
+int ov94_0224484C(GTSApplicationState *param0, int param1)
 {
     Heap_FreeToHeap(param0->unk_1104);
     Heap_FreeToHeap(param0->unk_120);
@@ -171,7 +171,7 @@ static TrainerInfo *ov94_02244870(UnkStruct_ov94_0223BA88 *param0)
     return v0;
 }
 
-static Pokemon *ov94_022448AC(UnkStruct_ov94_0223FD4C *param0, int param1)
+static Pokemon *ov94_022448AC(GTSApplicationState *param0, int param1)
 {
     if (param1 == 9) {
         return (Pokemon *)param0->unk_250[param0->unk_11C].unk_00.unk_00;
@@ -185,7 +185,7 @@ static Pokemon *ov94_022448AC(UnkStruct_ov94_0223FD4C *param0, int param1)
     return NULL;
 }
 
-static void ov94_022448E8(UnkStruct_ov94_0223FD4C *param0)
+static void ov94_022448E8(GTSApplicationState *param0)
 {
     Pokemon *v0 = ov94_022448AC(param0, param0->unk_24);
 

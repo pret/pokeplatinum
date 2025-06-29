@@ -1,12 +1,12 @@
-#ifndef POKEPLATINUM_STRUCT_OV94_0223FD4C_H
-#define POKEPLATINUM_STRUCT_OV94_0223FD4C_H
+#ifndef POKEPLATINUM_STRUCT_GTS_APPLICATION_STATE_H
+#define POKEPLATINUM_STRUCT_GTS_APPLICATION_STATE_H
 
 #include <dwc.h>
 #include <nnsys.h>
 
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
-#include "struct_defs/struct_0203E0FC.h"
+#include "struct_defs/gts_player_data.h"
 
 #include "applications/pokemon_summary_screen/main.h"
 #include "overlay006/struct_ov6_02246254.h"
@@ -36,8 +36,8 @@
 #include "sys_task_manager.h"
 #include "trainer_info.h"
 
-typedef struct UnkStruct_ov94_0223FD4C_t {
-    UnkStruct_0203E0FC *unk_00;
+typedef struct GTSApplicationState {
+    GTSPlayerData *unk_00;
     BgConfig *unk_04;
     WiFiList *unk_08;
     int unk_0C;
@@ -70,13 +70,13 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     u16 unk_10A;
     u16 unk_10C;
     u16 unk_10E;
-    u16 unk_110;
+    u16 selectedBoxId;
     u16 unk_112;
     BoxPokemon *unk_114;
     int unk_118;
     int unk_11C;
     TrainerInfo *unk_120;
-    UnkStruct_ov94_0223FD4C_sub1 unk_124;
+    GTSApplicationState_sub1 unk_124;
     UnkStruct_ov94_0223BA88 unk_12C;
     UnkStruct_ov94_0223BA88 unk_250[7];
     UnkStruct_ov94_0223BA88 unk_A4C;
@@ -129,7 +129,7 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     ListMenu *unk_10D8;
     void *unk_10DC;
     int unk_10E0;
-    UnkStruct_ov94_0223FD4C_sub3 *unk_10E4;
+    GTSApplicationState_sub3 *unk_10E4;
     u16 unk_10E8;
     u16 unk_10EA;
     SysTask *unk_10EC;
@@ -140,7 +140,7 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     void *unk_10FC;
     NNSG2dPaletteData *unk_1100;
     Pokemon *unk_1104;
-    UnkStruct_ov94_0223FD4C_sub2 *unk_1108;
+    GTSApplicationState_sub2 *unk_1108;
     u16 unk_110C;
     u16 unk_110E;
     u32 unk_1110;
@@ -154,6 +154,6 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     s16 unk_14E0;
     s16 unk_14E2;
     s32 unk_14E4;
-} UnkStruct_ov94_0223FD4C;
+} GTSApplicationState;
 
-#endif // POKEPLATINUM_STRUCT_OV94_0223FD4C_H
+#endif // POKEPLATINUM_STRUCT_GTS_APPLICATION_STATE_H

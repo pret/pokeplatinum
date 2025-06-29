@@ -38,14 +38,14 @@ _0065:
 
 _006B:
     LockAll
-    Call _0077
+    Call GlobalTerminal1f_GTS_WalkOut
     ReleaseAll
     End
 
-_0077:
+GlobalTerminal1f_GTS_WalkOut:
     ScrCmd_168 0, 0, 8, 2, 77
     Call _00C5
-    ScrCmd_1B1 0xFF
+    ShowMapObj MAP_OBJ_PLAYER_AVATAR
     ApplyMovement LOCALID_PLAYER, _00D8
     WaitMovement
     Call _00CD
@@ -114,8 +114,8 @@ GlobalTerminal1f_GTS_Clerk_Menu:
     SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, GlobalTerminal1f_CheckPartyCount
     GoToIfEq VAR_0x8008, 1, _0172
-    GoToIfEq VAR_0x8008, 2, _02EA
-    GoTo _02EA
+    GoToIfEq VAR_0x8008, 2, GlobalTerminal1f_GTS_Clerk_EndTalk
+    GoTo GlobalTerminal1f_GTS_Clerk_EndTalk
     End
 
 _0172:
@@ -167,7 +167,7 @@ GlobalTerminal1f_GTS_Exit_NotEnoughPokemon:
 GlobalTerminal1f_BeginTrade:
     CallCommonScript 0x7D6
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_RESULT, 0, _02EA
+    GoToIfEq VAR_RESULT, 0, GlobalTerminal1f_GTS_Clerk_EndTalk
     HealParty
     SetVar VAR_UNK_0x40D5, 6
     Message pl_msg_00000046_00007
@@ -197,7 +197,7 @@ GlobalTerminal1f_BeginTrade:
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    Call _0077
+    Call GlobalTerminal1f_GTS_WalkOut
     ReleaseAll
     End
 
@@ -205,11 +205,11 @@ GlobalTerminal1f_GTS_Exit:
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    Call _0077
-    GoTo _02EA
+    Call GlobalTerminal1f_GTS_WalkOut
+    GoTo GlobalTerminal1f_GTS_Clerk_EndTalk
     End
 
-_02EA:
+GlobalTerminal1f_GTS_Clerk_EndTalk:
     SetVar VAR_UNK_0x40D5, 0
     Message pl_msg_00000046_00006
     WaitABXPadPress

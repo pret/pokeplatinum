@@ -308,7 +308,7 @@ _04A6:
     Call _0488
     ApplyMovement 0, _06C8
     WaitMovement
-    ScrCmd_1B1 0xFF
+    ShowMapObj MAP_OBJ_PLAYER_AVATAR
     ApplyMovement LOCALID_PLAYER, _06B8
     WaitMovement
     Call _049B

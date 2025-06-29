@@ -18,6 +18,6 @@ typedef struct {
     int unk_24;
     int unk_28;
     int unk_2C;
-} UnkStruct_ov94_0223FD4C_sub3;
+} GTSApplicationState_sub3;
 
 #endif // POKEPLATINUM_STRUCT_OV94_0223FD4C_SUB3_H

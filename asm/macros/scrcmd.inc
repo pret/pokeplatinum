@@ -2397,7 +2397,7 @@
     .short \partySlot
     .endm
 
-    .macro ScrCmd_1B1 arg0
+    .macro ShowMapObj arg0
     .short 433
     .short \arg0
     .endm

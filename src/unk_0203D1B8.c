@@ -13,13 +13,13 @@
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/choose_starter_data.h"
+#include "struct_defs/gts_player_data.h"
 #include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_0203DA00.h"
 #include "struct_defs/struct_0203DDFC.h"
 #include "struct_defs/struct_0203DE34.h"
-#include "struct_defs/struct_0203E0FC.h"
 #include "struct_defs/struct_0203E234.h"
 #include "struct_defs/struct_0203E274.h"
 #include "struct_defs/struct_0203E2FC.h"
@@ -1328,7 +1328,7 @@ void sub_0203E0D0(FieldSystem *fieldSystem)
 
 void FieldSystem_LaunchGTSApp(FieldSystem *fieldSystem, int param1)
 {
-    UnkStruct_0203E0FC *v0;
+    GTSPlayerData *v0;
 
     FS_EXTERN_OVERLAY(overlay94);
 
@@ -1339,7 +1339,7 @@ void FieldSystem_LaunchGTSApp(FieldSystem *fieldSystem, int param1)
         FS_OVERLAY_ID(overlay94)
     };
 
-    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203E0FC));
+    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(GTSPlayerData));
 
     v0->unk_00 = SaveData_GetGlobalTrade(fieldSystem->saveData);
     v0->unk_04 = SaveData_GetSystemData(fieldSystem->saveData);
@@ -1351,7 +1351,7 @@ void FieldSystem_LaunchGTSApp(FieldSystem *fieldSystem, int param1)
     v0->unk_1C = SaveData_GetTrainerInfo(fieldSystem->saveData);
     v0->options = SaveData_GetOptions(fieldSystem->saveData);
     v0->records = SaveData_GetGameRecords(fieldSystem->saveData);
-    v0->unk_2C = fieldSystem->journalEntry;
+    v0->journalEntry = fieldSystem->journalEntry;
     v0->unk_3C = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
     v0->saveData = fieldSystem->saveData;
     v0->unk_34 = SaveData_GetDexMode(fieldSystem->saveData);

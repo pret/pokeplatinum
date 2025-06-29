@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_0203E0FC_H
-#define POKEPLATINUM_STRUCT_0203E0FC_H
+#ifndef POKEPLATINUM_STRUCT_GTS_PLAYER_DATA_H
+#define POKEPLATINUM_STRUCT_GTS_PLAYER_DATA_H
 
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
@@ -28,12 +28,12 @@ typedef struct {
     SaveData *saveData;
     Options *options;
     GameRecords *records;
-    JournalEntry *unk_2C;
+    JournalEntry *journalEntry;
     Bag *unk_30;
     int unk_34;
     int unk_38;
     int unk_3C;
     int unk_40;
-} UnkStruct_0203E0FC;
+} GTSPlayerData;
 
-#endif // POKEPLATINUM_STRUCT_0203E0FC_H
+#endif // POKEPLATINUM_STRUCT_GTS_PLAYER_DATA_H

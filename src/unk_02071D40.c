@@ -81,10 +81,10 @@ void sub_02071D40(const u8 param0, const u8 param1, const u8 param2, const u8 pa
         UnkStruct_0202C834 *v12;
 
         v12 = sub_0202C834(fieldSystem->saveData);
-        v8 = GameRecords_GetRecordValue(gameRecords, RECORD_UNK_091) + GameRecords_GetRecordValue(gameRecords, RECORD_UNK_019) + GameRecords_GetRecordValue(gameRecords, RECORD_UNK_024) + GameRecords_GetRecordValue(gameRecords, RECORD_UNK_020) + GameRecords_GetRecordValue(gameRecords, RECORD_UNK_025) + GameRecords_GetRecordValue(gameRecords, RECORD_UNK_032);
+        v8 = GameRecords_GetRecordValue(gameRecords, RECORD_UNK_091) + GameRecords_GetRecordValue(gameRecords, RECORD_UNK_019) + GameRecords_GetRecordValue(gameRecords, RECORD_GTS_TRADES) + GameRecords_GetRecordValue(gameRecords, RECORD_UNK_020) + GameRecords_GetRecordValue(gameRecords, RECORD_UNK_025) + GameRecords_GetRecordValue(gameRecords, RECORD_UNK_032);
         v9 = GameRecords_GetRecordValue(gameRecords, RECORD_UNK_021) + GameRecords_GetRecordValue(gameRecords, RECORD_UNK_026);
         v10 = GameRecords_GetRecordValue(gameRecords, RECORD_UNK_022) + GameRecords_GetRecordValue(gameRecords, RECORD_UNK_027);
-        v11 = GameRecords_GetRecordValue(gameRecords, RECORD_UNK_019) + GameRecords_GetRecordValue(gameRecords, RECORD_UNK_024);
+        v11 = GameRecords_GetRecordValue(gameRecords, RECORD_UNK_019) + GameRecords_GetRecordValue(gameRecords, RECORD_GTS_TRADES);
 
         sub_02072120(v8, v9, v10, v11, sub_0202C840(v12), param5);
     }

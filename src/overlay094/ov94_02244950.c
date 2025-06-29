@@ -5,9 +5,9 @@
 #include <string.h>
 
 #include "overlay004/ov4_021D0D80.h"
+#include "overlay094/gts_application_state.h"
 #include "overlay094/ov94_0223B140.h"
 #include "overlay094/ov94_0223BCB0.h"
-#include "overlay094/struct_ov94_0223FD4C.h"
 
 #include "bg_window.h"
 #include "font.h"
@@ -32,41 +32,41 @@
 
 static void ov94_02244A7C(BgConfig *param0);
 static void ov94_02244B68(BgConfig *param0);
-static void ov94_02244B8C(UnkStruct_ov94_0223FD4C *param0);
-static void ov94_02244E48(UnkStruct_ov94_0223FD4C *param0);
-static void ov94_02244F00(UnkStruct_ov94_0223FD4C *param0);
-static void ov94_02244F2C(UnkStruct_ov94_0223FD4C *param0);
-static void ov94_02244F64(UnkStruct_ov94_0223FD4C *param0);
-static void ov94_0224593C(UnkStruct_ov94_0223FD4C *param0, int param1);
-static void ov94_022459B4(UnkStruct_ov94_0223FD4C *param0, int param1, int param2);
-static int ov94_02244F8C(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_02244FC4(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_0224505C(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_02245138(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_02245158(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_0224529C(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_022452E4(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_022453B8(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_022453EC(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_02245594(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_022455D0(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_0224579C(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_022457F0(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_02245608(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_022456CC(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_02245300(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_0224502C(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_022450C0(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_022450EC(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_0224510C(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_022457BC(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_022451DC(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_022451EC(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_02245540(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_02245564(UnkStruct_ov94_0223FD4C *param0);
+static void ov94_02244B8C(GTSApplicationState *param0);
+static void ov94_02244E48(GTSApplicationState *param0);
+static void ov94_02244F00(GTSApplicationState *param0);
+static void ov94_02244F2C(GTSApplicationState *param0);
+static void ov94_02244F64(GTSApplicationState *param0);
+static void ov94_0224593C(GTSApplicationState *param0, int param1);
+static void ov94_022459B4(GTSApplicationState *param0, int param1, int param2);
+static int ov94_02244F8C(GTSApplicationState *param0);
+static int ov94_02244FC4(GTSApplicationState *param0);
+static int ov94_0224505C(GTSApplicationState *param0);
+static int ov94_02245138(GTSApplicationState *param0);
+static int ov94_02245158(GTSApplicationState *param0);
+static int ov94_0224529C(GTSApplicationState *param0);
+static int ov94_022452E4(GTSApplicationState *param0);
+static int ov94_022453B8(GTSApplicationState *param0);
+static int ov94_022453EC(GTSApplicationState *param0);
+static int ov94_02245594(GTSApplicationState *param0);
+static int ov94_022455D0(GTSApplicationState *param0);
+static int ov94_0224579C(GTSApplicationState *param0);
+static int ov94_022457F0(GTSApplicationState *param0);
+static int ov94_02245608(GTSApplicationState *param0);
+static int ov94_022456CC(GTSApplicationState *param0);
+static int ov94_02245300(GTSApplicationState *param0);
+static int ov94_0224502C(GTSApplicationState *param0);
+static int ov94_022450C0(GTSApplicationState *param0);
+static int ov94_022450EC(GTSApplicationState *param0);
+static int ov94_0224510C(GTSApplicationState *param0);
+static int ov94_022457BC(GTSApplicationState *param0);
+static int ov94_022451DC(GTSApplicationState *param0);
+static int ov94_022451EC(GTSApplicationState *param0);
+static int ov94_02245540(GTSApplicationState *param0);
+static int ov94_02245564(GTSApplicationState *param0);
 static int ov94_02245894(Window *param0, Strbuf *param1, int param2, int param3, u32 param4, int param5);
 
-static int (*Unk_ov94_02246A40[])(UnkStruct_ov94_0223FD4C *) = {
+static int (*Unk_ov94_02246A40[])(GTSApplicationState *) = {
     ov94_02244F8C,
     ov94_02244FC4,
     ov94_02245138,
@@ -94,7 +94,7 @@ static int (*Unk_ov94_02246A40[])(UnkStruct_ov94_0223FD4C *) = {
     ov94_02245564
 };
 
-int ov94_02244950(UnkStruct_ov94_0223FD4C *param0, int param1)
+int ov94_02244950(GTSApplicationState *param0, int param1)
 {
     ov94_02244F2C(param0);
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
@@ -126,7 +126,7 @@ int ov94_02244950(UnkStruct_ov94_0223FD4C *param0, int param1)
     return 2;
 }
 
-int ov94_022449FC(UnkStruct_ov94_0223FD4C *param0, int param1)
+int ov94_022449FC(GTSApplicationState *param0, int param1)
 {
     int v0, v1;
 
@@ -145,7 +145,7 @@ int ov94_022449FC(UnkStruct_ov94_0223FD4C *param0, int param1)
     return v0;
 }
 
-int ov94_02244A2C(UnkStruct_ov94_0223FD4C *param0, int param1)
+int ov94_02244A2C(GTSApplicationState *param0, int param1)
 {
     inline_ov61_0222C160(&param0->unk_11B4);
 
@@ -265,7 +265,7 @@ static void ov94_02244B68(BgConfig *param0)
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
 }
 
-static void ov94_02244B8C(UnkStruct_ov94_0223FD4C *param0)
+static void ov94_02244B8C(GTSApplicationState *param0)
 {
     BgConfig *v0 = param0->unk_04;
     NARC *v1 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, HEAP_ID_62);
@@ -288,7 +288,7 @@ static void ov94_02244B8C(UnkStruct_ov94_0223FD4C *param0)
     NARC_dtor(v1);
 }
 
-static void ov94_02244E48(UnkStruct_ov94_0223FD4C *param0)
+static void ov94_02244E48(GTSApplicationState *param0)
 {
     Window_Add(param0->unk_04, &param0->unk_F8C, 0, 4, 4, 23, 16, 13, (((1 + (18 + 12)) + 9) + 27 * 4));
     Window_FillTilemap(&param0->unk_F8C, 0x0);
@@ -301,28 +301,28 @@ static void ov94_02244E48(UnkStruct_ov94_0223FD4C *param0)
     Window_FillTilemap(&param0->bottomInstructionWindow, 0x0);
 }
 
-static void ov94_02244F00(UnkStruct_ov94_0223FD4C *param0)
+static void ov94_02244F00(GTSApplicationState *param0)
 {
     Window_Remove(&param0->bottomInstructionWindow);
     Window_Remove(&param0->unk_F7C);
     Window_Remove(&param0->unk_F8C);
 }
 
-static void ov94_02244F2C(UnkStruct_ov94_0223FD4C *param0)
+static void ov94_02244F2C(GTSApplicationState *param0)
 {
     param0->unk_BAC = Strbuf_Init((90 * 2), HEAP_ID_62);
     param0->unk_BDC = Strbuf_Init((16 * 8 * 2), HEAP_ID_62);
     param0->title = MessageLoader_GetNewStrbuf(param0->gtsMessageLoader, 31);
 }
 
-static void ov94_02244F64(UnkStruct_ov94_0223FD4C *param0)
+static void ov94_02244F64(GTSApplicationState *param0)
 {
     Strbuf_Free(param0->title);
     Strbuf_Free(param0->unk_BDC);
     Strbuf_Free(param0->unk_BAC);
 }
 
-static int ov94_02244F8C(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02244F8C(GTSApplicationState *param0)
 {
     ov94_02245824(param0, param0->unk_B9C, 17, TEXT_SPEED_FAST, 0xf0f);
     ov94_Setunk_2CAndunk_30(param0, 13, 1);
@@ -332,7 +332,7 @@ static int ov94_02244F8C(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_02244FC4(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02244FC4(GTSApplicationState *param0)
 {
     int v0 = Menu_ProcessInputAndHandleExit(param0->unk_10D0, 62);
 
@@ -351,7 +351,7 @@ static int ov94_02244FC4(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_0224502C(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_0224502C(GTSApplicationState *param0)
 {
     ov94_02245824(param0, param0->gtsMessageLoader, 7, TEXT_SPEED_FAST, 0xf0f);
     ov94_Setunk_2CAndunk_30(param0, 13, 16);
@@ -359,7 +359,7 @@ static int ov94_0224502C(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_0224505C(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_0224505C(GTSApplicationState *param0)
 {
     int v0 = Menu_ProcessInputAndHandleExit(param0->unk_10D0, 62);
 
@@ -386,7 +386,7 @@ static int ov94_0224505C(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_022450C0(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_022450C0(GTSApplicationState *param0)
 {
     ov94_02245824(param0, param0->unk_B9C, 26, TEXT_SPEED_FAST, 0xf0f);
     ov94_Setunk_2CAndunk_30(param0, 12, 18);
@@ -394,7 +394,7 @@ static int ov94_022450C0(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_022450EC(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_022450EC(GTSApplicationState *param0)
 {
     sub_0203848C();
 
@@ -405,7 +405,7 @@ static int ov94_022450EC(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_0224510C(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_0224510C(GTSApplicationState *param0)
 {
     ov94_02245824(param0, param0->unk_B9C, 27, TEXT_SPEED_FAST, 0xf0f);
     ov94_Setunk_2CAndunk_30(param0, 20, 11);
@@ -413,7 +413,7 @@ static int ov94_0224510C(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_02245138(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02245138(GTSApplicationState *param0)
 {
     DWC_InitInetEx(&param0->unk_54, 2, 1, 20);
     DWC_SetAuthServer(DWC_CONNECTINET_AUTH_RELEASE);
@@ -424,7 +424,7 @@ static int ov94_02245138(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_02245158(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02245158(GTSApplicationState *param0)
 {
     DWC_ProcessInet();
 
@@ -484,7 +484,7 @@ static int ov94_02245158(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_022451DC(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_022451DC(GTSApplicationState *param0)
 {
     DWC_NASLoginAsync();
     param0->unk_2C = 5;
@@ -492,7 +492,7 @@ static int ov94_022451DC(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_022451EC(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_022451EC(GTSApplicationState *param0)
 {
     switch (DWC_NASLoginProcess()) {
     case DWC_NASLOGIN_STATE_SUCCESS:
@@ -550,7 +550,7 @@ static int ov94_022451EC(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_0224529C(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_0224529C(GTSApplicationState *param0)
 {
     DWCUserData *v0;
     s32 v1;
@@ -569,7 +569,7 @@ static int ov94_0224529C(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_022452E4(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_022452E4(GTSApplicationState *param0)
 {
     ov94_0223BB40();
 
@@ -579,7 +579,7 @@ static int ov94_022452E4(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_02245300(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02245300(GTSApplicationState *param0)
 {
     if (ov94_0223B7B8()) {
         s32 v0 = ov94_0223B7D8();
@@ -630,7 +630,7 @@ static int ov94_02245300(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_022453B8(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_022453B8(GTSApplicationState *param0)
 {
     sub_02030E78(param0->unk_00->saveData, &param0->unk_1144);
     ov94_0223BB84(&param0->unk_1144, &param0->unk_11A8);
@@ -641,7 +641,7 @@ static int ov94_022453B8(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_022453EC(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_022453EC(GTSApplicationState *param0)
 {
     if (ov94_0223B7B8()) {
         s32 v0 = ov94_0223B7D8();
@@ -730,7 +730,7 @@ static int ov94_022453EC(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_02245540(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02245540(GTSApplicationState *param0)
 {
     int v0 = ov4_021D1F3C(-param0->unk_44, param0->unk_48);
     ov94_022459B4(param0, v0, -param0->unk_44);
@@ -739,7 +739,7 @@ static int ov94_02245540(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_02245564(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02245564(GTSApplicationState *param0)
 {
     if (gSystem.pressedKeys & PAD_BUTTON_A || gSystem.pressedKeys & PAD_BUTTON_B) {
         Window_EraseStandardFrame(&param0->unk_F8C, 0);
@@ -749,7 +749,7 @@ static int ov94_02245564(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_02245594(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02245594(GTSApplicationState *param0)
 {
     sub_02039794();
     ov94_0223C5F4(param0);
@@ -761,7 +761,7 @@ static int ov94_02245594(UnkStruct_ov94_0223FD4C *param0)
     return 4;
 }
 
-static int ov94_022455D0(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_022455D0(GTSApplicationState *param0)
 {
     int v0 = Menu_ProcessInputAndHandleExit(param0->unk_10D0, 62);
 
@@ -777,7 +777,7 @@ static int ov94_022455D0(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_02245608(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02245608(GTSApplicationState *param0)
 {
     int v0 = 0;
 
@@ -823,7 +823,7 @@ static int ov94_02245608(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_022456CC(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_022456CC(GTSApplicationState *param0)
 {
     switch (param0->unk_14E0) {
     case 0:
@@ -859,7 +859,7 @@ static int ov94_022456CC(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_0224579C(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_0224579C(GTSApplicationState *param0)
 {
     if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
         param0->unk_2C = param0->unk_30;
@@ -868,7 +868,7 @@ static int ov94_0224579C(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_022457BC(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_022457BC(GTSApplicationState *param0)
 {
     if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
         if (param0->unk_10E0 > 30) {
@@ -881,7 +881,7 @@ static int ov94_022457BC(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_022457F0(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_022457F0(GTSApplicationState *param0)
 {
     if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
         param0->unk_10D0 = ov94_0223C3C0(param0->unk_04, 13, (((((1 + (18 + 12)) + 9) + 27 * 4) + 23 * 16) + 24 * 2));
@@ -891,7 +891,7 @@ static int ov94_022457F0(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-void ov94_02245824(UnkStruct_ov94_0223FD4C *param0, MessageLoader *param1, int param2, int param3, u16 param4)
+void ov94_02245824(GTSApplicationState *param0, MessageLoader *param1, int param2, int param3, u16 param4)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param1, param2);
 
@@ -935,12 +935,12 @@ void ov94_02245900(Window *param0, Strbuf *param1, int param2, int param3, int p
     Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, param1, param2, param3, TEXT_SPEED_INSTANT, param5, NULL);
 }
 
-void ov94_02245934(UnkStruct_ov94_0223FD4C *param0)
+void ov94_02245934(GTSApplicationState *param0)
 {
     sub_02039734();
 }
 
-static void ov94_0224593C(UnkStruct_ov94_0223FD4C *param0, int param1)
+static void ov94_0224593C(GTSApplicationState *param0, int param1)
 {
     Strbuf *v0 = Strbuf_Init((16 * 8 * 2), HEAP_ID_62);
 
@@ -955,7 +955,7 @@ static void ov94_0224593C(UnkStruct_ov94_0223FD4C *param0, int param1)
     Strbuf_Free(v0);
 }
 
-static void ov94_022459B4(UnkStruct_ov94_0223FD4C *param0, int param1, int param2)
+static void ov94_022459B4(GTSApplicationState *param0, int param1, int param2)
 {
     int v0;
 

@@ -13,6 +13,7 @@
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/wi_fi_history.h"
 
+#include "overlay094/gts_application_state.h"
 #include "overlay094/ov94_0223B140.h"
 #include "overlay094/ov94_0223BCB0.h"
 #include "overlay094/ov94_0223C610.h"
@@ -20,7 +21,6 @@
 #include "overlay094/ov94_02243EF8.h"
 #include "overlay094/ov94_02244950.h"
 #include "overlay094/struct_ov94_0223BA88.h"
-#include "overlay094/struct_ov94_0223FD4C.h"
 #include "savedata/save_table.h"
 
 #include "bg_window.h"
@@ -54,64 +54,64 @@
 
 static void ov94_02242B54(BgConfig *param0);
 static void ov94_02242C80(BgConfig *param0);
-static void ov94_02242CAC(UnkStruct_ov94_0223FD4C *param0);
-static void ov94_02242D38(UnkStruct_ov94_0223FD4C *param0);
-static void ov94_02242D74(UnkStruct_ov94_0223FD4C *param0);
-static void ov94_02242D84(UnkStruct_ov94_0223FD4C *param0);
-static void ov94_02242D98(UnkStruct_ov94_0223FD4C *param0);
-static void ov94_02243E48(JournalEntry *param0, UnkStruct_ov94_0223BA88 *param1);
-static void ov94_0224362C(UnkStruct_ov94_0223FD4C *param0);
+static void ov94_02242CAC(GTSApplicationState *param0);
+static void ov94_02242D38(GTSApplicationState *param0);
+static void ov94_02242D74(GTSApplicationState *param0);
+static void ov94_02242D84(GTSApplicationState *param0);
+static void ov94_02242D98(GTSApplicationState *param0);
+static void GTS_LogTradeInJournal(JournalEntry *param0, UnkStruct_ov94_0223BA88 *param1);
+static void ov94_0224362C(GTSApplicationState *param0);
 static void ov94_02243E2C(WiFiHistory *wiFiHistory, UnkStruct_ov94_0223BA88 *param1);
-static void ov94_02243CE4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int param2);
+static void ov94_02243CE4(GTSApplicationState *param0, Pokemon *param1, int param2);
 static void ov94_02243DE8(GlobalTrade *param0, int param1);
-static int ov94_02243E84(UnkStruct_ov94_0223FD4C *param0, UnkStruct_ov94_0223BA88 *param1);
-static void ov94_022438C8(UnkStruct_ov94_0223FD4C *param0);
-static void ov94_02243EC8(UnkStruct_ov94_0223FD4C *param0, int param1, int param2);
-static int ov94_02242DA8(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_02242E9C(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_02242ED0(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_02242F78(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_02242F98(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_02243778(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_0224377C(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_02243794(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_02243920(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_02243948(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_02243A90(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_02243AE8(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_0224301C(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_02243048(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_02243104(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_02243120(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_022431A4(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_022431F0(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_022432D8(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_022432F4(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_022437AC(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_02243884(UnkStruct_ov94_0223FD4C *param0);
-static void ov94_02243B08(UnkStruct_ov94_0223FD4C *param0, int param1);
-static void ov94_02243BC4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int param2, int param3);
-static int ov94_02243990(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_02243974(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_02243A04(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_02243588(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_02243568(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_02243398(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_02243378(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_02243658(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_022436F0(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_022437C0(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_022439E4(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_022439CC(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_02243554(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_02243A28(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_02243A44(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_022436D4(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_022437D8(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_022437F4(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_02243ED8(UnkStruct_ov94_0223FD4C *param0);
+static int ov94_02243E84(GTSApplicationState *param0, UnkStruct_ov94_0223BA88 *param1);
+static void ov94_022438C8(GTSApplicationState *param0);
+static void ov94_02243EC8(GTSApplicationState *param0, int param1, int param2);
+static int ov94_02242DA8(GTSApplicationState *param0);
+static int ov94_02242E9C(GTSApplicationState *param0);
+static int ov94_02242ED0(GTSApplicationState *param0);
+static int ov94_02242F78(GTSApplicationState *param0);
+static int ov94_02242F98(GTSApplicationState *param0);
+static int ov94_02243778(GTSApplicationState *param0);
+static int ov94_0224377C(GTSApplicationState *param0);
+static int ov94_02243794(GTSApplicationState *param0);
+static int ov94_02243920(GTSApplicationState *param0);
+static int ov94_02243948(GTSApplicationState *param0);
+static int ov94_02243A90(GTSApplicationState *param0);
+static int ov94_02243AE8(GTSApplicationState *param0);
+static int ov94_0224301C(GTSApplicationState *param0);
+static int ov94_02243048(GTSApplicationState *param0);
+static int ov94_02243104(GTSApplicationState *param0);
+static int ov94_02243120(GTSApplicationState *param0);
+static int ov94_022431A4(GTSApplicationState *param0);
+static int ov94_022431F0(GTSApplicationState *param0);
+static int ov94_022432D8(GTSApplicationState *param0);
+static int ov94_022432F4(GTSApplicationState *param0);
+static int ov94_022437AC(GTSApplicationState *param0);
+static int ov94_02243884(GTSApplicationState *param0);
+static void ov94_02243B08(GTSApplicationState *param0, int param1);
+static void ov94_02243BC4(GTSApplicationState *param0, Pokemon *param1, int param2, int param3);
+static int ov94_02243990(GTSApplicationState *param0);
+static int ov94_02243974(GTSApplicationState *param0);
+static int ov94_02243A04(GTSApplicationState *param0);
+static int ov94_02243588(GTSApplicationState *param0);
+static int ov94_02243568(GTSApplicationState *param0);
+static int ov94_02243398(GTSApplicationState *param0);
+static int ov94_02243378(GTSApplicationState *param0);
+static int ov94_02243658(GTSApplicationState *param0);
+static int ov94_022436F0(GTSApplicationState *param0);
+static int ov94_022437C0(GTSApplicationState *param0);
+static int ov94_022439E4(GTSApplicationState *param0);
+static int ov94_022439CC(GTSApplicationState *param0);
+static int ov94_02243554(GTSApplicationState *param0);
+static int ov94_02243A28(GTSApplicationState *param0);
+static int ov94_02243A44(GTSApplicationState *param0);
+static int ov94_022436D4(GTSApplicationState *param0);
+static int ov94_022437D8(GTSApplicationState *param0);
+static int ov94_022437F4(GTSApplicationState *param0);
+static int ov94_02243ED8(GTSApplicationState *param0);
 
-static int (*Unk_ov94_022469A0[])(UnkStruct_ov94_0223FD4C *) = {
+static int (*Unk_ov94_022469A0[])(GTSApplicationState *) = {
     ov94_02242DA8,
     ov94_02243778,
     ov94_02242E9C,
@@ -154,7 +154,7 @@ static int (*Unk_ov94_022469A0[])(UnkStruct_ov94_0223FD4C *) = {
     ov94_02243948
 };
 
-int ov94_02242AD0(UnkStruct_ov94_0223FD4C *param0, int param1)
+int ov94_02242AD0(GTSApplicationState *param0, int param1)
 {
     ov94_02242D84(param0);
     ov94_02242B54(param0->unk_04);
@@ -169,7 +169,7 @@ int ov94_02242AD0(UnkStruct_ov94_0223FD4C *param0, int param1)
     return 2;
 }
 
-int ov94_02242B14(UnkStruct_ov94_0223FD4C *param0, int param1)
+int ov94_02242B14(GTSApplicationState *param0, int param1)
 {
     int v0;
 
@@ -179,7 +179,7 @@ int ov94_02242B14(UnkStruct_ov94_0223FD4C *param0, int param1)
     return v0;
 }
 
-int ov94_02242B34(UnkStruct_ov94_0223FD4C *param0, int param1)
+int ov94_02242B34(GTSApplicationState *param0, int param1)
 {
     ov94_02242D98(param0);
     ov94_02242D74(param0);
@@ -323,7 +323,7 @@ static void ov94_02242C80(BgConfig *param0)
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
 }
 
-static void ov94_02242CAC(UnkStruct_ov94_0223FD4C *param0)
+static void ov94_02242CAC(GTSApplicationState *param0)
 {
     BgConfig *v0 = param0->unk_04;
 
@@ -343,28 +343,28 @@ static void ov94_02242CAC(UnkStruct_ov94_0223FD4C *param0)
     }
 }
 
-static void ov94_02242D38(UnkStruct_ov94_0223FD4C *param0)
+static void ov94_02242D38(GTSApplicationState *param0)
 {
     Window_Add(param0->unk_04, &param0->bottomInstructionWindow, 0, 2, 19, 27, 4, 13, ((1 + (18 + 12)) + 9));
     Window_FillTilemap(&param0->bottomInstructionWindow, 0x0);
 }
 
-static void ov94_02242D74(UnkStruct_ov94_0223FD4C *param0)
+static void ov94_02242D74(GTSApplicationState *param0)
 {
     Window_Remove(&param0->bottomInstructionWindow);
 }
 
-static void ov94_02242D84(UnkStruct_ov94_0223FD4C *param0)
+static void ov94_02242D84(GTSApplicationState *param0)
 {
     param0->unk_BAC = Strbuf_Init((90 * 2), HEAP_ID_62);
 }
 
-static void ov94_02242D98(UnkStruct_ov94_0223FD4C *param0)
+static void ov94_02242D98(GTSApplicationState *param0)
 {
     Strbuf_Free(param0->unk_BAC);
 }
 
-static int ov94_02242DA8(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02242DA8(GTSApplicationState *param0)
 {
     switch (param0->unk_24) {
     case 7:
@@ -402,7 +402,7 @@ static int ov94_02242DA8(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_02242E9C(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02242E9C(GTSApplicationState *param0)
 {
     sub_0207893C((Pokemon *)param0->unk_12C.unk_00.unk_00);
     ov94_0223B7E4(&param0->unk_12C);
@@ -415,7 +415,7 @@ static int ov94_02242E9C(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_02242ED0(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02242ED0(GTSApplicationState *param0)
 {
     int v0;
 
@@ -470,7 +470,7 @@ static int ov94_02242ED0(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_02242F78(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02242F78(GTSApplicationState *param0)
 {
     ov94_0223B834();
 
@@ -481,7 +481,7 @@ static int ov94_02242F78(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_02242F98(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02242F98(GTSApplicationState *param0)
 {
     if (ov94_0223B7B8()) {
         s32 v0 = ov94_0223B7D8();
@@ -519,7 +519,7 @@ static int ov94_02242F98(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_0224301C(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_0224301C(GTSApplicationState *param0)
 {
     ov94_0223B888(&param0->unk_12C);
 
@@ -531,7 +531,7 @@ static int ov94_0224301C(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_02243048(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02243048(GTSApplicationState *param0)
 {
     if (ov94_0223B7B8()) {
         s32 v0 = ov94_0223B7D8();
@@ -578,7 +578,7 @@ static int ov94_02243048(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_02243104(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02243104(GTSApplicationState *param0)
 {
     ov94_0223B96C();
 
@@ -588,7 +588,7 @@ static int ov94_02243104(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_02243120(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02243120(GTSApplicationState *param0)
 {
     if (ov94_0223B7B8()) {
         s32 v0 = ov94_0223B7D8();
@@ -625,7 +625,7 @@ static int ov94_02243120(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_022431A4(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_022431A4(GTSApplicationState *param0)
 {
     sub_0207893C((Pokemon *)param0->unk_12C.unk_00.unk_00);
 
@@ -638,7 +638,7 @@ static int ov94_022431A4(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_022431F0(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_022431F0(GTSApplicationState *param0)
 {
     int v0;
 
@@ -652,11 +652,11 @@ static int ov94_022431F0(UnkStruct_ov94_0223FD4C *param0)
             param0->unk_2C = 30;
 
             ov94_02243B08(param0, 0);
-            ov94_02243CE4(param0, (Pokemon *)param0->unk_A4C.unk_00.unk_00, param0->unk_110);
+            ov94_02243CE4(param0, (Pokemon *)param0->unk_A4C.unk_00.unk_00, param0->selectedBoxId);
             ov94_02243E2C(param0->unk_00->wiFiHistory, &param0->unk_A4C);
-            GameRecords_IncrementTrainerScore(param0->unk_00->records, TRAINER_SCORE_EVENT_UNK_25);
-            ov94_02243E48(param0->unk_00->unk_2C, &param0->unk_A4C);
-            GameRecords_IncrementRecordValue(param0->unk_00->records, RECORD_UNK_024);
+            GameRecords_IncrementTrainerScore(param0->unk_00->records, TRAINER_SCORE_EVENT_GTS_TRADE_COMPLETE);
+            GTS_LogTradeInJournal(param0->unk_00->journalEntry, &param0->unk_A4C);
+            GameRecords_IncrementRecordValue(param0->unk_00->records, RECORD_GTS_TRADES);
             sub_0206D104(SaveData_GetTVBroadcast(param0->unk_00->saveData));
             break;
         case -5:
@@ -697,7 +697,7 @@ static int ov94_022431F0(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_022432D8(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_022432D8(GTSApplicationState *param0)
 {
     ov94_0223BAEC();
 
@@ -707,7 +707,7 @@ static int ov94_022432D8(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_022432F4(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_022432F4(GTSApplicationState *param0)
 {
     if (ov94_0223B7B8()) {
         s32 v0 = ov94_0223B7D8();
@@ -742,7 +742,7 @@ static int ov94_022432F4(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_02243378(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02243378(GTSApplicationState *param0)
 {
     ov94_0223B8D8(&param0->unk_12C);
 
@@ -752,7 +752,7 @@ static int ov94_02243378(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_02243398(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02243398(GTSApplicationState *param0)
 {
     if (ov94_0223B7B8()) {
         s32 v0 = ov94_0223B7D8();
@@ -840,7 +840,7 @@ static int ov94_02243398(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_02243554(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02243554(GTSApplicationState *param0)
 {
     ov94_Setunk_18Andunk_24(param0, 1, 0);
     param0->unk_2C = 36;
@@ -848,7 +848,7 @@ static int ov94_02243554(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_02243568(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02243568(GTSApplicationState *param0)
 {
     ov94_0223B888(&param0->unk_12C);
 
@@ -858,7 +858,7 @@ static int ov94_02243568(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_02243588(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02243588(GTSApplicationState *param0)
 {
     if (ov94_0223B7B8()) {
         s32 v0 = ov94_0223B7D8();
@@ -908,7 +908,7 @@ static int ov94_02243588(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static void ov94_0224362C(UnkStruct_ov94_0223FD4C *param0)
+static void ov94_0224362C(GTSApplicationState *param0)
 {
     switch (param0->unk_1C) {
     case 1:
@@ -922,14 +922,14 @@ static void ov94_0224362C(UnkStruct_ov94_0223FD4C *param0)
     }
 }
 
-static int ov94_02243658(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02243658(GTSApplicationState *param0)
 {
     ov94_02243BC4(param0, (Pokemon *)param0->unk_12C.unk_00.unk_00, sub_0202DAAC(param0->unk_00->unk_00), param0->unk_12C.unk_121);
     ov94_02243E2C(param0->unk_00->wiFiHistory, &param0->unk_12C);
 
-    GameRecords_IncrementTrainerScore(param0->unk_00->records, TRAINER_SCORE_EVENT_UNK_25);
-    ov94_02243E48(param0->unk_00->unk_2C, &param0->unk_12C);
-    GameRecords_IncrementRecordValue(param0->unk_00->records, RECORD_UNK_024);
+    GameRecords_IncrementTrainerScore(param0->unk_00->records, TRAINER_SCORE_EVENT_GTS_TRADE_COMPLETE);
+    GTS_LogTradeInJournal(param0->unk_00->journalEntry, &param0->unk_12C);
+    GameRecords_IncrementRecordValue(param0->unk_00->records, RECORD_GTS_TRADES);
 
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(param0->unk_00->saveData);
     sub_0206D104(broadcast);
@@ -941,7 +941,7 @@ static int ov94_02243658(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_022436D4(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_022436D4(GTSApplicationState *param0)
 {
     ov94_0223B928();
 
@@ -951,7 +951,7 @@ static int ov94_022436D4(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_022436F0(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_022436F0(GTSApplicationState *param0)
 {
     if (ov94_0223B7B8()) {
         s32 v0 = ov94_0223B7D8();
@@ -988,12 +988,12 @@ static int ov94_022436F0(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_02243778(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02243778(GTSApplicationState *param0)
 {
     return 3;
 }
 
-static int ov94_0224377C(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_0224377C(GTSApplicationState *param0)
 {
     param0->isPokemonListed = 1;
     ov94_Setunk_18Andunk_24(param0, 9, 7);
@@ -1002,7 +1002,7 @@ static int ov94_0224377C(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_02243794(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02243794(GTSApplicationState *param0)
 {
     param0->isPokemonListed = 0;
     ov94_Setunk_18Andunk_24(param0, 9, 8);
@@ -1011,7 +1011,7 @@ static int ov94_02243794(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_022437AC(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_022437AC(GTSApplicationState *param0)
 {
     ov94_Setunk_18Andunk_24(param0, 9, 9);
     param0->unk_2C = 36;
@@ -1019,7 +1019,7 @@ static int ov94_022437AC(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_022437C0(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_022437C0(GTSApplicationState *param0)
 {
     param0->isPokemonListed = 0;
     ov94_Setunk_18Andunk_24(param0, 9, 10);
@@ -1028,7 +1028,7 @@ static int ov94_022437C0(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_022437D8(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_022437D8(GTSApplicationState *param0)
 {
     ov94_0223B96C();
 
@@ -1038,7 +1038,7 @@ static int ov94_022437D8(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_022437F4(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_022437F4(GTSApplicationState *param0)
 {
     if (ov94_0223B7B8()) {
         s32 v0 = ov94_0223B7D8();
@@ -1076,7 +1076,7 @@ static int ov94_022437F4(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_02243884(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02243884(GTSApplicationState *param0)
 {
     ov94_02245824(param0, param0->gtsMessageLoader, 141, TEXT_SPEED_FAST, 0xf0f);
     ov94_Setunk_2CAndunk_30(param0, 37, 36);
@@ -1087,7 +1087,7 @@ static int ov94_02243884(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static void ov94_022438C8(UnkStruct_ov94_0223FD4C *param0)
+static void ov94_022438C8(GTSApplicationState *param0)
 {
     int v0 = 148;
 
@@ -1118,7 +1118,7 @@ static void ov94_022438C8(UnkStruct_ov94_0223FD4C *param0)
     ov94_02245824(param0, param0->gtsMessageLoader, v0, TEXT_SPEED_FAST, 0xf0f);
 }
 
-static int ov94_02243920(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02243920(GTSApplicationState *param0)
 {
     ov94_022438C8(param0);
     ov94_Setunk_2CAndunk_30(param0, 37, 36);
@@ -1128,7 +1128,7 @@ static int ov94_02243920(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_02243948(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02243948(GTSApplicationState *param0)
 {
     ov94_022438C8(param0);
     ov94_Setunk_2CAndunk_30(param0, 37, 36);
@@ -1139,7 +1139,7 @@ static int ov94_02243948(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_02243974(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02243974(GTSApplicationState *param0)
 {
     ov94_Setunk_2CAndunk_30(param0, 37, 30);
     ov94_02243EC8(param0, 33, 36);
@@ -1147,7 +1147,7 @@ static int ov94_02243974(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_02243990(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02243990(GTSApplicationState *param0)
 {
     SaveData_SetFullSaveRequired();
     SaveData_SaveStateInit(param0->unk_00->saveData, 2);
@@ -1158,7 +1158,7 @@ static int ov94_02243990(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_022439CC(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_022439CC(GTSApplicationState *param0)
 {
     param0->unk_10E0--;
 
@@ -1169,7 +1169,7 @@ static int ov94_022439CC(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_022439E4(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_022439E4(GTSApplicationState *param0)
 {
     if (SaveData_SaveStateMain(param0->unk_00->saveData) == 1) {
         param0->unk_2C = param0->unk_10E8;
@@ -1178,7 +1178,7 @@ static int ov94_022439E4(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_02243A04(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02243A04(GTSApplicationState *param0)
 {
     if (SaveData_SaveStateMain(param0->unk_00->saveData) == 2) {
         param0->unk_2C = param0->unk_10EA;
@@ -1188,7 +1188,7 @@ static int ov94_02243A04(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_02243A28(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02243A28(GTSApplicationState *param0)
 {
     SaveData_SetFullSaveRequired();
     SaveData_SaveStateInit(param0->unk_00->saveData, 2);
@@ -1198,7 +1198,7 @@ static int ov94_02243A28(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_02243A44(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02243A44(GTSApplicationState *param0)
 {
     if (SaveData_SaveStateMain(param0->unk_00->saveData) == 2) {
         ov94_Setunk_18Andunk_24(param0, 1, 0);
@@ -1210,7 +1210,7 @@ static int ov94_02243A44(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_02243A90(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02243A90(GTSApplicationState *param0)
 {
     ov94_0223C5F4(param0);
     sub_02039794();
@@ -1226,7 +1226,7 @@ static int ov94_02243A90(UnkStruct_ov94_0223FD4C *param0)
     return 4;
 }
 
-static int ov94_02243AE8(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02243AE8(GTSApplicationState *param0)
 {
     if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
         param0->unk_2C = param0->unk_30;
@@ -1235,23 +1235,23 @@ static int ov94_02243AE8(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static void ov94_02243B08(UnkStruct_ov94_0223FD4C *param0, int param1)
+static void ov94_02243B08(GTSApplicationState *param0, int param1)
 {
-    if (param0->unk_110 != 18) {
+    if (param0->selectedBoxId != MAX_PC_BOXES) {
         Pokemon *v0 = Pokemon_New(HEAP_ID_62);
 
-        Pokemon_FromBoxPokemon(PCBoxes_GetBoxMonAt(param0->unk_00->pcBoxes, param0->unk_110, param0->unk_112), v0);
-        sub_0202DA7C(param0->unk_00->unk_00, v0, param0->unk_110);
-        PCBoxes_InitBoxMonAt(param0->unk_00->pcBoxes, param0->unk_110, param0->unk_112);
+        Pokemon_FromBoxPokemon(PCBoxes_GetBoxMonAt(param0->unk_00->pcBoxes, param0->selectedBoxId, param0->unk_112), v0);
+        sub_0202DA7C(param0->unk_00->unk_00, v0, param0->selectedBoxId);
+        PCBoxes_InitBoxMonAt(param0->unk_00->pcBoxes, param0->selectedBoxId, param0->unk_112);
         Heap_FreeToHeap(v0);
     } else {
         Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->unk_00->unk_08, param0->unk_112);
 
         sub_0207893C(v1);
-        sub_0202DA7C(param0->unk_00->unk_00, v1, param0->unk_110);
+        sub_0202DA7C(param0->unk_00->unk_00, v1, param0->selectedBoxId);
         Party_RemovePokemonBySlotIndex(param0->unk_00->unk_08, param0->unk_112);
 
-        if (Party_HasSpecies(param0->unk_00->unk_08, 441) == 0) {
+        if (Party_HasSpecies(param0->unk_00->unk_08, SPECIES_CHATOT) == 0) {
             ChatotCry *v2 = SaveData_GetChatotCry(param0->unk_00->saveData);
             ResetChatotCryDataStatus(v2);
         }
@@ -1262,7 +1262,7 @@ static void ov94_02243B08(UnkStruct_ov94_0223FD4C *param0, int param1)
     }
 }
 
-static void ov94_02243BC4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int param2, int param3)
+static void ov94_02243BC4(GTSApplicationState *param0, Pokemon *param1, int param2, int param3)
 {
     int v0 = Pokemon_GetValue(param1, MON_DATA_HELD_ITEM, NULL);
 
@@ -1313,7 +1313,7 @@ static void ov94_02243BC4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
     sub_0202DA68(param0->unk_00->unk_00, 0);
 }
 
-static void ov94_02243CE4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int param2)
+static void ov94_02243CE4(GTSApplicationState *param0, Pokemon *param1, int param2)
 {
     SaveData_UpdateCatchRecords(param0->unk_00->saveData, param1);
 
@@ -1383,7 +1383,7 @@ static void ov94_02243E2C(WiFiHistory *wiFiHistory, UnkStruct_ov94_0223BA88 *par
     sub_02038FDC(wiFiHistory, param1->unk_11E, param1->unk_11F, param1->unk_123);
 }
 
-static void ov94_02243E48(JournalEntry *journalEntry, UnkStruct_ov94_0223BA88 *param1)
+static void GTS_LogTradeInJournal(JournalEntry *journalEntry, UnkStruct_ov94_0223BA88 *param1)
 {
     void *journalEntryOnlineEvent;
     u16 nickname[MON_NAME_LEN + 1];
@@ -1394,7 +1394,7 @@ static void ov94_02243E48(JournalEntry *journalEntry, UnkStruct_ov94_0223BA88 *p
     JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
 }
 
-static int ov94_02243E84(UnkStruct_ov94_0223FD4C *param0, UnkStruct_ov94_0223BA88 *param1)
+static int ov94_02243E84(GTSApplicationState *param0, UnkStruct_ov94_0223BA88 *param1)
 {
     if (ov94_02241498((Pokemon *)param1->unk_00.unk_00)
         && (Party_GetCurrentCount(param0->unk_00->unk_08) == 6)) {
@@ -1408,13 +1408,13 @@ static int ov94_02243E84(UnkStruct_ov94_0223FD4C *param0, UnkStruct_ov94_0223BA8
     return 0;
 }
 
-static void ov94_02243EC8(UnkStruct_ov94_0223FD4C *param0, int param1, int param2)
+static void ov94_02243EC8(GTSApplicationState *param0, int param1, int param2)
 {
     param0->unk_10E8 = param1;
     param0->unk_10EA = param2;
 }
 
-static int ov94_02243ED8(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_02243ED8(GTSApplicationState *param0)
 {
     Pokemon *v0 = (Pokemon *)param0->unk_12C.unk_00.unk_00;
 

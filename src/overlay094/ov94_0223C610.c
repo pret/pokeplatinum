@@ -4,10 +4,10 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "overlay094/gts_application_state.h"
 #include "overlay094/ov94_0223BCB0.h"
 #include "overlay094/ov94_02243EF8.h"
 #include "overlay094/ov94_02244950.h"
-#include "overlay094/struct_ov94_0223FD4C.h"
 
 #include "bg_window.h"
 #include "font.h"
@@ -32,33 +32,33 @@
 
 static void ov94_0223C720(BgConfig *param0);
 static void ov94_0223C830(BgConfig *param0);
-static void ov94_0223C888(UnkStruct_ov94_0223FD4C *param0);
-static void ov94_0223C950(UnkStruct_ov94_0223FD4C *param0);
-static void ov94_0223C9B0(UnkStruct_ov94_0223FD4C *param0);
-static void ov94_0223C9C0(UnkStruct_ov94_0223FD4C *param0);
-static void ov94_0223CAC8(UnkStruct_ov94_0223FD4C *param0);
-static void GTS_MainMenu_LoadTitle(UnkStruct_ov94_0223FD4C *param0);
-static void ov94_0223CB34(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_0223CB50(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_0223CB90(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_0223CBA0(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_0223CBC4(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_0223CBD8(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_0223CBEC(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_0223CC28(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_0223CE14(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_0223CE5C(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_0223CE7C(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_0223CEE8(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_0223CF08(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_0223CDD8(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_0223CE00(UnkStruct_ov94_0223FD4C *param0);
-static void ov94_0223CF3C(UnkStruct_ov94_0223FD4C *param0);
-static void ov94_0223CF80(UnkStruct_ov94_0223FD4C *param0, int param1, int param2, int param3, u16 param4);
-static void ov94_0223CFD8(UnkStruct_ov94_0223FD4C *param0, int param1, int param2, int param3, u16 param4);
-static void ov94_0223C85C(UnkStruct_ov94_0223FD4C *param0);
+static void ov94_0223C888(GTSApplicationState *param0);
+static void ov94_0223C950(GTSApplicationState *param0);
+static void ov94_0223C9B0(GTSApplicationState *param0);
+static void ov94_0223C9C0(GTSApplicationState *param0);
+static void ov94_0223CAC8(GTSApplicationState *param0);
+static void GTS_MainMenu_LoadTitle(GTSApplicationState *param0);
+static void ov94_0223CB34(GTSApplicationState *param0);
+static int ov94_0223CB50(GTSApplicationState *param0);
+static int ov94_0223CB90(GTSApplicationState *param0);
+static int ov94_0223CBA0(GTSApplicationState *param0);
+static int ov94_0223CBC4(GTSApplicationState *param0);
+static int ov94_0223CBD8(GTSApplicationState *param0);
+static int ov94_0223CBEC(GTSApplicationState *param0);
+static int ov94_0223CC28(GTSApplicationState *param0);
+static int ov94_0223CE14(GTSApplicationState *param0);
+static int ov94_0223CE5C(GTSApplicationState *param0);
+static int ov94_0223CE7C(GTSApplicationState *param0);
+static int ov94_0223CEE8(GTSApplicationState *param0);
+static int ov94_0223CF08(GTSApplicationState *param0);
+static int ov94_0223CDD8(GTSApplicationState *param0);
+static int ov94_0223CE00(GTSApplicationState *param0);
+static void ov94_0223CF3C(GTSApplicationState *param0);
+static void ov94_0223CF80(GTSApplicationState *param0, int param1, int param2, int param3, u16 param4);
+static void ov94_0223CFD8(GTSApplicationState *param0, int param1, int param2, int param3, u16 param4);
+static void ov94_0223C85C(GTSApplicationState *param0);
 
-static int (*Unk_ov94_022467C4[])(UnkStruct_ov94_0223FD4C *) = {
+static int (*Unk_ov94_022467C4[])(GTSApplicationState *) = {
     ov94_0223CB50,
     ov94_0223CB90, // set unk_2C to 10 and unk_30 to 2
     ov94_0223CBA0, // start screen fade, set unk_2C to 3
@@ -75,7 +75,7 @@ static int (*Unk_ov94_022467C4[])(UnkStruct_ov94_0223FD4C *) = {
     ov94_0223CE7C
 };
 
-int ov94_0223C610(UnkStruct_ov94_0223FD4C *param0, int param1)
+int ov94_0223C610(GTSApplicationState *param0, int param1)
 {
     GTS_MainMenu_LoadTitle(param0);
     ov94_0223C720(param0->unk_04);
@@ -109,7 +109,7 @@ int ov94_0223C610(UnkStruct_ov94_0223FD4C *param0, int param1)
     return 2;
 }
 
-int ov94_0223C6D4(UnkStruct_ov94_0223FD4C *param0, int param1)
+int ov94_0223C6D4(GTSApplicationState *param0, int param1)
 {
     int v0;
 
@@ -119,7 +119,7 @@ int ov94_0223C6D4(UnkStruct_ov94_0223FD4C *param0, int param1)
     return v0;
 }
 
-int ov94_0223C6F4(UnkStruct_ov94_0223FD4C *param0, int param1)
+int ov94_0223C6F4(GTSApplicationState *param0, int param1)
 {
     sub_02039794();
 
@@ -263,7 +263,7 @@ static void ov94_0223C830(BgConfig *param0)
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
 }
 
-static void ov94_0223C85C(UnkStruct_ov94_0223FD4C *param0)
+static void ov94_0223C85C(GTSApplicationState *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
@@ -271,7 +271,7 @@ static void ov94_0223C85C(UnkStruct_ov94_0223FD4C *param0)
     Sprite_SetDrawFlag(param0->unk_E20, 0);
 }
 
-static void ov94_0223C888(UnkStruct_ov94_0223FD4C *param0)
+static void ov94_0223C888(GTSApplicationState *param0)
 {
     BgConfig *v0 = param0->unk_04;
     NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, HEAP_ID_62);
@@ -295,7 +295,7 @@ static const u16 Unk_ov94_02245A48[][2] = {
     { 0x32, 0x88 }
 };
 
-static void ov94_0223C950(UnkStruct_ov94_0223FD4C *param0)
+static void ov94_0223C950(GTSApplicationState *param0)
 {
     AffineSpriteListTemplate v0;
 
@@ -310,12 +310,12 @@ static void ov94_0223C950(UnkStruct_ov94_0223FD4C *param0)
     Sprite_SetAnim(param0->unk_E20, 1);
 }
 
-static void ov94_0223C9B0(UnkStruct_ov94_0223FD4C *param0)
+static void ov94_0223C9B0(GTSApplicationState *param0)
 {
     Sprite_Delete(param0->unk_E20);
 }
 
-static void ov94_0223C9C0(UnkStruct_ov94_0223FD4C *param0)
+static void ov94_0223C9C0(GTSApplicationState *param0)
 {
     Window_Add(param0->unk_04, &param0->unk_F7C, 0, 1, 1, 28, 2, 13, ((1 + (18 + 12)) + 9));
     Window_FillTilemap(&param0->unk_F7C, 0x0);
@@ -336,7 +336,7 @@ static void ov94_0223C9C0(UnkStruct_ov94_0223FD4C *param0)
     Window_FillTilemap(&param0->unk_109C, 0xf0f);
 }
 
-static void ov94_0223CAC8(UnkStruct_ov94_0223FD4C *param0)
+static void ov94_0223CAC8(GTSApplicationState *param0)
 {
     int v0;
 
@@ -350,19 +350,19 @@ static void ov94_0223CAC8(UnkStruct_ov94_0223FD4C *param0)
     Window_Remove(&param0->unk_F7C);
 }
 
-static void GTS_MainMenu_LoadTitle(UnkStruct_ov94_0223FD4C *param0)
+static void GTS_MainMenu_LoadTitle(GTSApplicationState *param0)
 {
     param0->unk_BAC = Strbuf_Init((90 * 2), HEAP_ID_62);
     param0->title = MessageLoader_GetNewStrbuf(param0->gtsMessageLoader, GTS_Text_MainMenu_Title);
 }
 
-static void ov94_0223CB34(UnkStruct_ov94_0223FD4C *param0)
+static void ov94_0223CB34(GTSApplicationState *param0)
 {
     Strbuf_Free(param0->unk_BAC);
     Strbuf_Free(param0->title);
 }
 
-static int ov94_0223CB50(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_0223CB50(GTSApplicationState *param0)
 {
     if (param0->unk_10F0) {
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
@@ -378,13 +378,13 @@ static int ov94_0223CB50(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_0223CB90(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_0223CB90(GTSApplicationState *param0)
 {
     ov94_Setunk_2CAndunk_30(param0, 10, 2);
     return 3;
 }
 
-static int ov94_0223CBA0(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_0223CBA0(GTSApplicationState *param0)
 {
     StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
     param0->unk_2C = 3;
@@ -392,7 +392,7 @@ static int ov94_0223CBA0(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_0223CBC4(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_0223CBC4(GTSApplicationState *param0)
 {
     if (IsScreenFadeDone()) {
         param0->unk_2C = 5;
@@ -401,7 +401,7 @@ static int ov94_0223CBC4(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_0223CBD8(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_0223CBD8(GTSApplicationState *param0)
 {
     if (IsScreenFadeDone()) {
         param0->unk_2C = 5;
@@ -410,7 +410,7 @@ static int ov94_0223CBD8(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_0223CBEC(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_0223CBEC(GTSApplicationState *param0)
 {
     ov94_0223CF80(param0, GTS_Text_AreYouSeekingOrOfferingAPokemon, TEXT_SPEED_FAST, 0, 0xf0f);
     ov94_Setunk_2CAndunk_30(param0, 10, 6);
@@ -420,7 +420,7 @@ static int ov94_0223CBEC(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_0223CC28(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_0223CC28(GTSApplicationState *param0)
 {
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
         ov94_0223CFD8(param0, GTS_Text_IsItOKToDisconnect, ov94_0223C4D4(param0), 0, 0xf0f);
@@ -478,7 +478,7 @@ static int ov94_0223CC28(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_0223CDD8(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_0223CDD8(GTSApplicationState *param0)
 {
     ov94_022440B8(param0, TrainerInfo_Gender(param0->unk_00->unk_1C));
 
@@ -488,7 +488,7 @@ static int ov94_0223CDD8(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_0223CE00(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_0223CE00(GTSApplicationState *param0)
 {
     if (param0->unk_10F0) {
         param0->unk_2C = 9;
@@ -497,7 +497,7 @@ static int ov94_0223CE00(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_0223CE14(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_0223CE14(GTSApplicationState *param0)
 {
     if (param0->unk_18 == 0) {
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
@@ -510,7 +510,7 @@ static int ov94_0223CE14(UnkStruct_ov94_0223FD4C *param0)
     return 4;
 }
 
-static int ov94_0223CE5C(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_0223CE5C(GTSApplicationState *param0)
 {
     param0->unk_10D0 = ov94_0223C3C0(param0->unk_04, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 27 * 4));
     param0->unk_2C = 13;
@@ -518,7 +518,7 @@ static int ov94_0223CE5C(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_0223CE7C(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_0223CE7C(GTSApplicationState *param0)
 {
     int v0 = Menu_ProcessInputAndHandleExit(param0->unk_10D0, 62);
 
@@ -539,7 +539,7 @@ static int ov94_0223CE7C(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_0223CEE8(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_0223CEE8(GTSApplicationState *param0)
 {
     if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
         param0->unk_2C = param0->unk_30;
@@ -548,7 +548,7 @@ static int ov94_0223CEE8(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_0223CF08(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_0223CF08(GTSApplicationState *param0)
 {
     if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
         param0->unk_10E0++;
@@ -567,7 +567,7 @@ static const int GTS_MAIN_MENU_OPTIONS[][3] = {
     { GTS_Text_Summary, GTS_Text_SeekPokemon, GTS_Text_Exit }
 };
 
-static void ov94_0223CF3C(UnkStruct_ov94_0223FD4C *param0)
+static void ov94_0223CF3C(GTSApplicationState *param0)
 {
     int v0;
     int v1 = param0->isPokemonListed;
@@ -578,7 +578,7 @@ static void ov94_0223CF3C(UnkStruct_ov94_0223FD4C *param0)
     }
 }
 
-static void ov94_0223CF80(UnkStruct_ov94_0223FD4C *param0, int param1, int param2, int param3, u16 param4)
+static void ov94_0223CF80(GTSApplicationState *param0, int param1, int param2, int param3, u16 param4)
 {
     Strbuf *v0;
 
@@ -589,7 +589,7 @@ static void ov94_0223CF80(UnkStruct_ov94_0223FD4C *param0, int param1, int param
     param0->unk_BE0 = Text_AddPrinterWithParams(&param0->bottomInstructionWindow, FONT_MESSAGE, param0->unk_BAC, 0, 0, param2, NULL);
 }
 
-static void ov94_0223CFD8(UnkStruct_ov94_0223FD4C *param0, int param1, int param2, int param3, u16 param4)
+static void ov94_0223CFD8(GTSApplicationState *param0, int param1, int param2, int param3, u16 param4)
 {
     Strbuf *v0;
 
@@ -609,7 +609,7 @@ void ov94_GTS_MainMenu_RenderButton(Window *param0, MessageLoader *gtsMessageLoa
     Strbuf_Free(v0);
 }
 
-void ov94_0223D068(UnkStruct_ov94_0223FD4C *param0)
+void ov94_0223D068(GTSApplicationState *param0)
 {
     BgConfig *v0 = param0->unk_04;
 

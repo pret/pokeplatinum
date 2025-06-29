@@ -4,6 +4,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "overlay094/gts_application_state.h"
 #include "overlay094/ov94_0223BCB0.h"
 #include "overlay094/ov94_0223D0C4.h"
 #include "overlay094/ov94_022414B8.h"
@@ -11,7 +12,6 @@
 #include "overlay094/ov94_02244950.h"
 #include "overlay094/struct_ov94_0223BA88.h"
 #include "overlay094/struct_ov94_0223BA88_sub3.h"
-#include "overlay094/struct_ov94_0223FD4C.h"
 
 #include "bg_window.h"
 #include "font.h"
@@ -33,27 +33,27 @@
 
 static void ov94_0223DD1C(BgConfig *param0);
 static void ov94_0223DDE0(BgConfig *param0);
-static void ov94_0223DE04(UnkStruct_ov94_0223FD4C *param0);
-static void ov94_0223DED8(UnkStruct_ov94_0223FD4C *param0);
-static void ov94_0223DFA4(UnkStruct_ov94_0223FD4C *param0);
-static void ov94_0223DFDC(UnkStruct_ov94_0223FD4C *param0);
-static void ov94_0223E074(UnkStruct_ov94_0223FD4C *param0);
-static void ov94_0223DE7C(UnkStruct_ov94_0223FD4C *param0);
-static void ov94_0223DEC8(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_0223E09C(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_0223E0A4(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_0223E188(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_0223E2E0(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_0223E1B0(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_0223E1D0(UnkStruct_ov94_0223FD4C *param0);
-static int ov94_0223E2D0(UnkStruct_ov94_0223FD4C *param0);
-static void ov94_0223E240(UnkStruct_ov94_0223FD4C *param0);
+static void ov94_0223DE04(GTSApplicationState *param0);
+static void ov94_0223DED8(GTSApplicationState *param0);
+static void ov94_0223DFA4(GTSApplicationState *param0);
+static void ov94_0223DFDC(GTSApplicationState *param0);
+static void ov94_0223E074(GTSApplicationState *param0);
+static void ov94_0223DE7C(GTSApplicationState *param0);
+static void ov94_0223DEC8(GTSApplicationState *param0);
+static int ov94_0223E09C(GTSApplicationState *param0);
+static int ov94_0223E0A4(GTSApplicationState *param0);
+static int ov94_0223E188(GTSApplicationState *param0);
+static int ov94_0223E2E0(GTSApplicationState *param0);
+static int ov94_0223E1B0(GTSApplicationState *param0);
+static int ov94_0223E1D0(GTSApplicationState *param0);
+static int ov94_0223E2D0(GTSApplicationState *param0);
+static void ov94_0223E240(GTSApplicationState *param0);
 static void ov94_0223E358(MessageLoader *param0, Window param1[]);
-static void ov94_0223E300(UnkStruct_ov94_0223FD4C *param0, int param1, int param2, int param3, u16 param4);
+static void ov94_0223E300(GTSApplicationState *param0, int param1, int param2, int param3, u16 param4);
 static void ov94_0223E3B0(Window *param0, MessageLoader *gtsMessageLoader, MessageLoader *param2, UnkStruct_ov94_0223BA88_sub3 *param3);
 static void ov94_0223E424(Window *param0, Strbuf *param1, Strbuf *param2);
 
-static int (*Unk_ov94_0224682C[])(UnkStruct_ov94_0223FD4C *wk) = {
+static int (*Unk_ov94_0224682C[])(GTSApplicationState *wk) = {
     ov94_0223E09C,
     ov94_0223E0A4,
     ov94_0223E188,
@@ -63,7 +63,7 @@ static int (*Unk_ov94_0224682C[])(UnkStruct_ov94_0223FD4C *wk) = {
     ov94_0223E2D0
 };
 
-int ov94_0223DC04(UnkStruct_ov94_0223FD4C *param0, int param1)
+int ov94_0223DC04(GTSApplicationState *param0, int param1)
 {
     Pokemon *v0;
 
@@ -87,13 +87,13 @@ int ov94_0223DC04(UnkStruct_ov94_0223FD4C *param0, int param1)
     return 2;
 }
 
-int ov94_0223DCE4(UnkStruct_ov94_0223FD4C *param0, int param1)
+int ov94_0223DCE4(GTSApplicationState *param0, int param1)
 {
     int v0 = (*Unk_ov94_0224682C[param0->unk_2C])(param0);
     return v0;
 }
 
-int ov94_0223DCF8(UnkStruct_ov94_0223FD4C *param0, int param1)
+int ov94_0223DCF8(GTSApplicationState *param0, int param1)
 {
     ov94_0223DEC8(param0);
     ov94_0223E074(param0);
@@ -200,7 +200,7 @@ static void ov94_0223DDE0(BgConfig *param0)
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
 }
 
-static void ov94_0223DE04(UnkStruct_ov94_0223FD4C *param0)
+static void ov94_0223DE04(GTSApplicationState *param0)
 {
     BgConfig *v0 = param0->unk_04;
 
@@ -211,7 +211,7 @@ static void ov94_0223DE04(UnkStruct_ov94_0223FD4C *param0)
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__WORLDTRADE, 7, 0, 0, 16 * 3 * 2, HEAP_ID_62);
 }
 
-static void ov94_0223DE7C(UnkStruct_ov94_0223FD4C *param0)
+static void ov94_0223DE7C(GTSApplicationState *param0)
 {
     AffineSpriteListTemplate v0;
 
@@ -227,7 +227,7 @@ static void ov94_0223DE7C(UnkStruct_ov94_0223FD4C *param0)
     sub_02039734();
 }
 
-static void ov94_0223DEC8(UnkStruct_ov94_0223FD4C *param0)
+static void ov94_0223DEC8(GTSApplicationState *param0)
 {
     Sprite_Delete(param0->unk_F30);
 }
@@ -247,7 +247,7 @@ static const int Unk_ov94_02245CC4[][4] = {
     { 0x7, 0x5, 0x7, 0x2 }
 };
 
-static void ov94_0223DED8(UnkStruct_ov94_0223FD4C *param0)
+static void ov94_0223DED8(GTSApplicationState *param0)
 {
     Window_Add(param0->unk_04, &param0->bottomInstructionWindow, 0, 2, 21, 27, 2, 13, ((1 + (18 + 12)) + 9));
     Window_FillTilemap(&param0->bottomInstructionWindow, 0x0);
@@ -267,7 +267,7 @@ static void ov94_0223DED8(UnkStruct_ov94_0223FD4C *param0)
     }
 }
 
-static void ov94_0223DFA4(UnkStruct_ov94_0223FD4C *param0)
+static void ov94_0223DFA4(GTSApplicationState *param0)
 {
     Window_Remove(&param0->bottomInstructionWindow);
     Window_Remove(&param0->unk_F9C[0]);
@@ -281,7 +281,7 @@ static void ov94_0223DFA4(UnkStruct_ov94_0223FD4C *param0)
     }
 }
 
-static void ov94_0223DFDC(UnkStruct_ov94_0223FD4C *param0)
+static void ov94_0223DFDC(GTSApplicationState *param0)
 {
     int v0;
     MessageLoader *v1;
@@ -303,7 +303,7 @@ static void ov94_0223DFDC(UnkStruct_ov94_0223FD4C *param0)
     param0->unk_BB4[1] = MessageUtil_ExpandedStrbuf(param0->unk_B8C, param0->gtsMessageLoader, 80, HEAP_ID_62);
 }
 
-static void ov94_0223E074(UnkStruct_ov94_0223FD4C *param0)
+static void ov94_0223E074(GTSApplicationState *param0)
 {
     int v0;
 
@@ -312,13 +312,13 @@ static void ov94_0223E074(UnkStruct_ov94_0223FD4C *param0)
     Strbuf_Free(param0->unk_BAC);
 }
 
-static int ov94_0223E09C(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_0223E09C(GTSApplicationState *param0)
 {
     param0->unk_2C = 1;
     return 3;
 }
 
-static int ov94_0223E0A4(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_0223E0A4(GTSApplicationState *param0)
 {
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
         ov94_0223E300(param0, 16, TEXT_SPEED_FAST, 0, 0xf0f);
@@ -359,7 +359,7 @@ static int ov94_0223E0A4(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_0223E188(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_0223E188(GTSApplicationState *param0)
 {
     StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
 
@@ -367,7 +367,7 @@ static int ov94_0223E188(UnkStruct_ov94_0223FD4C *param0)
     return 4;
 }
 
-static int ov94_0223E1B0(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_0223E1B0(GTSApplicationState *param0)
 {
     param0->unk_10D0 = ov94_0223C3C0(param0->unk_04, 15, ((((1 + (18 + 12)) + 9) + 27 * 2) + (5 * 2) * 4 + 262 + 64 + 36));
     param0->unk_2C = 5;
@@ -375,7 +375,7 @@ static int ov94_0223E1B0(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_0223E1D0(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_0223E1D0(GTSApplicationState *param0)
 {
     int v0 = Menu_ProcessInputAndHandleExit(param0->unk_10D0, 62);
 
@@ -396,7 +396,7 @@ static int ov94_0223E1D0(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static void ov94_0223E240(UnkStruct_ov94_0223FD4C *param0)
+static void ov94_0223E240(GTSApplicationState *param0)
 {
     if (param0->unk_10E == 0) {
         Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__WORLDTRADE, 27, param0->unk_04, 1, 0, 32 * 24 * 2, 1, HEAP_ID_62);
@@ -407,7 +407,7 @@ static void ov94_0223E240(UnkStruct_ov94_0223FD4C *param0)
     }
 }
 
-static int ov94_0223E2D0(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_0223E2D0(GTSApplicationState *param0)
 {
     ov94_0223E240(param0);
     param0->unk_2C = 1;
@@ -415,7 +415,7 @@ static int ov94_0223E2D0(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static int ov94_0223E2E0(UnkStruct_ov94_0223FD4C *param0)
+static int ov94_0223E2E0(GTSApplicationState *param0)
 {
     if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
         param0->unk_2C = param0->unk_30;
@@ -424,7 +424,7 @@ static int ov94_0223E2E0(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-static void ov94_0223E300(UnkStruct_ov94_0223FD4C *param0, int param1, int param2, int param3, u16 param4)
+static void ov94_0223E300(GTSApplicationState *param0, int param1, int param2, int param3, u16 param4)
 {
     Strbuf *v0;
 
