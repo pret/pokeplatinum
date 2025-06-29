@@ -32,6 +32,24 @@
 #define DIFFERENT_TYPE_BONUS   200
 #define MAX_TIME_SECONDS       1000
 
+typedef struct CatchingShowPokemon {
+    u16 species;
+    u8 area;
+    u8 rarity;
+    u16 catchingPoints;
+    u8 type1;
+    u8 type2;
+} CatchingShowPokemon;
+
+typedef struct CatchingShow {
+    CatchingShowPokemon pokemon[CATCHING_SHOW_MONS];
+    u8 caughtMonsOrder[CATCHING_SHOW_MONS];
+    int steps;
+    int currentEncounterIndex;
+    s64 startTime;
+    int timePoints;
+} CatchingShow;
+
 static void InitSpeciesData(FieldSystem *fieldSystem, CatchingShow *catchingShow);
 static int CatchingShow_NumMonsCaptured(CatchingShow *catchingShow);
 static void CatchingShow_ResetStepCount(CatchingShow *catchingShow);
@@ -260,8 +278,7 @@ static FieldBattleDTO *FieldSystem_SetupCatchingShowEncounter(FieldSystem *field
 {
     Pokemon *mon = Pokemon_New(HEAP_ID_FIELD_TASK);
     MigratedPokemon *transferData = SaveData_GetPalParkTransfer(fieldSystem->saveData);
-    int parkBallCount = FieldSystem_GetParkBallCount(fieldSystem);
-    FieldBattleDTO *dto = FieldBattleDTO_NewPalPark(HEAP_ID_FIELDMAP, parkBallCount);
+    FieldBattleDTO *dto = FieldBattleDTO_NewPalPark(HEAP_ID_FIELDMAP, FieldSystem_GetParkBallCount(fieldSystem));
 
     FieldBattleDTO_Init(dto, fieldSystem);
     MigratedPokemon_ToPokemon(transferData, catchingShow->currentEncounterIndex, mon);
