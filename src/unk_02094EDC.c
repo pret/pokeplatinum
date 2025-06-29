@@ -617,7 +617,7 @@ void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, int hea
     int v0;
     u16 v1;
     u32 v2 = sub_02074128(param0->unk_14, param0->unk_20_12, 0);
-    Pokemon_InitWith(param1, param0->unk_14, 10, INIT_IVS_RANDOM, TRUE, v2, OTID_NOT_SHINY, 0xf0f0f0f);
+    Pokemon_Create(param1, param0->unk_14, 10, INIT_IVS_RANDOM, TRUE, v2, OTID_NOT_SHINY, 0xf0f0f0f);
 
     for (v0 = 0; v0 < 4; v0++) {
         v1 = param0->unk_0C[v0];
@@ -1021,23 +1021,23 @@ u32 sub_02095A3C(int param0, int param1)
 
     switch (param1) {
     case 0:
-        v0 = MON_DATA_SINNOH_SUPER_COOL_RIBBON + param0;
+        v0 = MON_DATA_COOL_RIBBON + param0;
         break;
     case 1:
-        v0 = MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON + param0;
+        v0 = MON_DATA_BEAUTY_RIBBON + param0;
         break;
     case 2:
-        v0 = MON_DATA_SINNOH_SUPER_CUTE_RIBBON + param0;
+        v0 = MON_DATA_CUTE_RIBBON + param0;
         break;
     case 3:
-        v0 = MON_DATA_SINNOH_SUPER_SMART_RIBBON + param0;
+        v0 = MON_DATA_SMART_RIBBON + param0;
         break;
     case 4:
-        v0 = MON_DATA_SINNOH_SUPER_TOUGH_RIBBON + param0;
+        v0 = MON_DATA_TOUGH_RIBBON + param0;
         break;
     default:
         GF_ASSERT(0);
-        return MON_DATA_SINNOH_SUPER_COOL_RIBBON;
+        return MON_DATA_COOL_RIBBON;
     }
 
     return v0;

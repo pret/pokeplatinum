@@ -213,7 +213,7 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, int heapID)
             rnd = (rnd << 8) + genderMod;
             ivs = trmon[i].dv * MAX_IVS_SINGLE_STAT / MAX_DV;
 
-            Pokemon_InitWith(mon, species, trmon[i].level, ivs, TRUE, rnd, OTID_NOT_SHINY, 0);
+            Pokemon_Create(mon, species, trmon[i].level, ivs, TRUE, rnd, OTID_NOT_SHINY, 0);
             Pokemon_SetBallSeal(trmon[i].cbSeal, mon, heapID);
             Pokemon_SetData(mon, MON_DATA_FORM, &form);
             Party_AddPokemon(dto->parties[battler], mon);
@@ -238,7 +238,7 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, int heapID)
             rnd = (rnd << 8) + genderMod;
             ivs = trmon[i].dv * MAX_IVS_SINGLE_STAT / MAX_DV;
 
-            Pokemon_InitWith(mon, species, trmon[i].level, ivs, TRUE, rnd, OTID_NOT_SHINY, 0);
+            Pokemon_Create(mon, species, trmon[i].level, ivs, TRUE, rnd, OTID_NOT_SHINY, 0);
 
             for (j = 0; j < 4; j++) {
                 Pokemon_SetMoveSlot(mon, trmon[i].moves[j], j);
@@ -268,7 +268,7 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, int heapID)
             rnd = (rnd << 8) + genderMod;
             ivs = trmon[i].dv * MAX_IVS_SINGLE_STAT / MAX_DV;
 
-            Pokemon_InitWith(mon, species, trmon[i].level, ivs, TRUE, rnd, OTID_NOT_SHINY, 0);
+            Pokemon_Create(mon, species, trmon[i].level, ivs, TRUE, rnd, OTID_NOT_SHINY, 0);
             Pokemon_SetData(mon, MON_DATA_HELD_ITEM, &trmon[i].item);
             Pokemon_SetBallSeal(trmon[i].cbSeal, mon, heapID);
             Pokemon_SetData(mon, MON_DATA_FORM, &form);
@@ -294,7 +294,7 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, int heapID)
             rnd = (rnd << 8) + genderMod;
             ivs = trmon[i].dv * MAX_IVS_SINGLE_STAT / MAX_DV;
 
-            Pokemon_InitWith(mon, species, trmon[i].level, ivs, TRUE, rnd, OTID_NOT_SHINY, 0);
+            Pokemon_Create(mon, species, trmon[i].level, ivs, TRUE, rnd, OTID_NOT_SHINY, 0);
             Pokemon_SetData(mon, MON_DATA_HELD_ITEM, &trmon[i].item);
 
             for (j = 0; j < 4; j++) {

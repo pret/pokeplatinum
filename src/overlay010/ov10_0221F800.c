@@ -2018,7 +2018,7 @@ static void ov10_02221D14(UnkStruct_ov10_0221FB28 *param0, Party *param1, u8 par
         }
 
         param0->unk_214[v1 + param2].unk_0F = (u16)Pokemon_GetData(v0, MON_DATA_IS_EGG, NULL);
-        param0->unk_214[v1 + param2].unk_06 = (u16)Pokemon_GetData(v0, MON_DATA_CURRENT_HP, NULL);
+        param0->unk_214[v1 + param2].unk_06 = (u16)Pokemon_GetData(v0, MON_DATA_HP, NULL);
         param0->unk_214[v1 + param2].unk_08 = (u16)Pokemon_GetData(v0, MON_DATA_MAX_HP, NULL);
         param0->unk_214[v1 + param2].unk_0C = (u16)Pokemon_GetData(v0, MON_DATA_LEVEL, NULL);
         param0->unk_214[v1 + param2].unk_0A = (u16)Pokemon_GetData(v0, MON_DATA_HELD_ITEM, NULL);

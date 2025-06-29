@@ -6499,7 +6499,7 @@ static void FieldSystem_WriteSpeciesSeen(FieldSystem *fieldSystem, u16 species)
     Pokemon *pokemon = Pokemon_New(HEAP_ID_FIELD_TASK);
 
     Pokemon_Init(pokemon);
-    Pokemon_InitWith(pokemon, species, 50, INIT_IVS_RANDOM, FALSE, 0, OTID_NOT_SET, 0);
+    Pokemon_Create(pokemon, species, 50, INIT_IVS_RANDOM, FALSE, 0, OTID_NOT_SET, 0);
     Pokedex_Encounter(pokedex, pokemon);
     Heap_FreeToHeap(pokemon);
 

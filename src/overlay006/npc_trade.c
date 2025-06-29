@@ -116,7 +116,7 @@ static Strbuf *NpcTrade_GetNickname(u32 heapID, u32 npcTradeID)
 
 static void NpcTrade_CreateMon(Pokemon *mon, NpcTradeMon *npcTradeMon, u32 level, u32 npcTradeID, u32 heapID, u32 mapID)
 {
-    Pokemon_InitWith(mon, npcTradeMon->species, level, INIT_IVS_RANDOM, TRUE, npcTradeMon->personality, OTID_SET, npcTradeMon->otID);
+    Pokemon_Create(mon, npcTradeMon->species, level, INIT_IVS_RANDOM, TRUE, npcTradeMon->personality, OTID_SET, npcTradeMon->otID);
 
     Strbuf *strbuf = NpcTrade_GetNickname(heapID, npcTradeID);
     Pokemon_SetData(mon, MON_DATA_NICKNAME_STRBUF, strbuf);

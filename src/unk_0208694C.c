@@ -1121,7 +1121,7 @@ static int sub_02086F3C(ApplicationManager *appMan, int *param1)
         Pokemon *v4;
 
         v4 = Pokemon_New(HEAP_ID_18);
-        Pokemon_InitWith(v4, v0->unk_04, 5, 10, 10, 10, 10, 10);
+        Pokemon_Create(v4, v0->unk_04, 5, 10, 10, 10, 10, 10);
         Heap_FreeToHeap(v4);
     }
 
@@ -1397,7 +1397,7 @@ static void sub_0208737C(UnkStruct_02087A10 *param0, ApplicationManager *appMan)
         Pokemon *v1;
 
         v1 = Pokemon_New(HEAP_ID_18);
-        Pokemon_InitWith(v1, param0->unk_04, 5, 10, 10, 10, 10, 10);
+        Pokemon_Create(v1, param0->unk_04, 5, 10, 10, 10, 10, 10);
         StringTemplate_SetSpeciesName(param0->unk_168, 0, Pokemon_GetBoxPokemon(v1));
         Heap_FreeToHeap(v1);
     }
@@ -1464,7 +1464,7 @@ static void sub_02087544(UnkStruct_02087A10 *param0, ApplicationManager *appMan)
         if ((param0->unk_158 == 0) || sub_02086F14(param0->unk_D8)) {
             Pokemon *v4 = Pokemon_New(HEAP_ID_18);
 
-            Pokemon_InitWith(v4, param0->unk_04, 1, 0, 0, 0, 0, 0);
+            Pokemon_Create(v4, param0->unk_04, 1, 0, 0, 0, 0, 0);
             StringTemplate_SetSpeciesName(param0->unk_168, 0, Pokemon_GetBoxPokemon(v4));
             Heap_FreeToHeap(v4);
         } else {

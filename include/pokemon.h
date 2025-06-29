@@ -103,8 +103,8 @@ BOOL BoxPokemon_EnterDecryptionContext(BoxPokemon *boxMon);
  */
 BOOL BoxPokemon_ExitDecryptionContext(BoxPokemon *boxMon, BOOL encrypt);
 
-void Pokemon_InitWith(Pokemon *mon, int monSpecies, int monLevel, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID);
-void sub_02074044(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 monNature);
+void Pokemon_Create(Pokemon *mon, int monSpecies, int monLevel, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID);
+void Pokemon_CreateWithNature(Pokemon *mon, u16 species, u8 level, u8 fixedIVs, u8 nature);
 void sub_02074088(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 param4, u8 param5, u8 param6);
 u32 sub_02074128(u16 monSpecies, u8 param1, u8 param2);
 void Pokemon_InitAndCalcStats(Pokemon *mon, u16 monSpecies, u8 monLevel, u32 monCombinedIVs, u32 monPersonality);
@@ -327,7 +327,7 @@ u8 Pokemon_GetNatureOf(u32 monPersonality);
  */
 s8 Pokemon_GetStatAffinityOf(u8 monNature, u8 statType);
 
-void Pokemon_UpdateFriendship(Pokemon *mon, u8 param1, u16 param2);
+void Pokemon_UpdateFriendship(Pokemon *mon, u8 kind, u16 location);
 
 /**
  * @brief Gets the gender of a Pokemon based on its species and personality value
@@ -348,11 +348,11 @@ u8 BoxPokemon_GetGender(BoxPokemon *boxMon);
 /**
  * @brief Gets the gender of a pokemon based on its species and personality value
  *
- * @param monSpecies
- * @param monPersonality
+ * @param species
+ * @param personality
  * @return The pokemons gender
  */
-u8 Pokemon_GetGenderOf(u16 monSpecies, u32 monPersonality);
+u8 Species_GetGender(u16 species, u32 personality);
 
 /**
  * @brief Gets the gender of a pokemon based on its SpeciesData and personality value

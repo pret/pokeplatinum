@@ -513,7 +513,7 @@ static u8 PartyUseItemScreen(BattleParty *battleParty)
             if (BattlePartyTask_CheckCanPartySlotBeSelected(battleParty, context->selectedPartyIndex) == PARTY_SLOT_SELECTABLE_IN_BATTLE && Item_LoadParam(context->selectedBattleBagItem, ITEM_PARAM_REVIVE, context->heapID) == FALSE) {
                 UseBagItem(context->battleSystem, context->selectedBattleBagItem, context->selectedBattleBagPocket, context->heapID);
                 battleParty->partyPokemon[context->selectedPartyIndex].pokemon = BattleSystem_PartyPokemon(context->battleSystem, context->battler, context->pokemonPartySlots[context->selectedPartyIndex]);
-                context->currentDamage = Pokemon_GetData(battleParty->partyPokemon[context->selectedPartyIndex].pokemon, MON_DATA_CURRENT_HP, NULL);
+                context->currentDamage = Pokemon_GetData(battleParty->partyPokemon[context->selectedPartyIndex].pokemon, MON_DATA_HP, NULL);
                 context->currentDamage -= battleParty->partyPokemon[context->selectedPartyIndex].curHP;
                 battleParty->queuedState = TASK_STATE_EXIT;
             } else {
@@ -1009,7 +1009,7 @@ static u8 BattlePartyTask_UseRestorationItem(BattleParty *battleParty)
                 ov13_022234A8(battleParty, context->selectedPartyIndex);
             }
 
-            battleParty->selectedPokemonCurrentHP = Pokemon_GetData(battleParty->partyPokemon[context->selectedPartyIndex].pokemon, MON_DATA_CURRENT_HP, NULL);
+            battleParty->selectedPokemonCurrentHP = Pokemon_GetData(battleParty->partyPokemon[context->selectedPartyIndex].pokemon, MON_DATA_HP, NULL);
             battleParty->useItemState = BATTLE_PARTY_USE_RESTORATION_ITEM_STATE_START_RESTORING_HP;
         }
 
@@ -1313,7 +1313,7 @@ static void InitialisePartyPokemon(BattleParty *battleParty)
         battleParty->partyPokemon[i].speed = Pokemon_GetData(battleParty->partyPokemon[i].pokemon, MON_DATA_SPEED, NULL);
         battleParty->partyPokemon[i].spAtk = Pokemon_GetData(battleParty->partyPokemon[i].pokemon, MON_DATA_SP_ATK, NULL);
         battleParty->partyPokemon[i].spDef = Pokemon_GetData(battleParty->partyPokemon[i].pokemon, MON_DATA_SP_DEF, NULL);
-        battleParty->partyPokemon[i].curHP = Pokemon_GetData(battleParty->partyPokemon[i].pokemon, MON_DATA_CURRENT_HP, NULL);
+        battleParty->partyPokemon[i].curHP = Pokemon_GetData(battleParty->partyPokemon[i].pokemon, MON_DATA_HP, NULL);
         battleParty->partyPokemon[i].maxHP = Pokemon_GetData(battleParty->partyPokemon[i].pokemon, MON_DATA_MAX_HP, NULL);
         battleParty->partyPokemon[i].type_1 = (u8)Pokemon_GetData(battleParty->partyPokemon[i].pokemon, MON_DATA_TYPE_1, NULL);
         battleParty->partyPokemon[i].type_2 = (u8)Pokemon_GetData(battleParty->partyPokemon[i].pokemon, MON_DATA_TYPE_2, NULL);

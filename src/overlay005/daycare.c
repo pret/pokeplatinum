@@ -671,7 +671,7 @@ void Egg_CreateEgg(Pokemon *egg, u16 species, u8 param2, TrainerInfo *trainerInf
     u8 hatchCycles = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_HATCH_CYCLES);
     Strbuf *eggName;
 
-    Pokemon_InitWith(egg, species, 1, INIT_IVS_RANDOM, FALSE, 0, OTID_NOT_SET, 0);
+    Pokemon_Create(egg, species, 1, INIT_IVS_RANDOM, FALSE, 0, OTID_NOT_SET, 0);
 
     metLvl = 0;
     ball = ITEM_POKE_BALL;
@@ -731,7 +731,7 @@ static void Egg_SetInitialData(Pokemon *mon, u16 species, Daycare *daycare, u32 
         }
     }
 
-    Pokemon_InitWith(mon, species, EGG_POKEMON_LEVEL, INIT_IVS_RANDOM, TRUE, personality, OTID_NOT_SET, 0);
+    Pokemon_Create(mon, species, EGG_POKEMON_LEVEL, INIT_IVS_RANDOM, TRUE, personality, OTID_NOT_SET, 0);
 
     level = 0;
     ball = ITEM_POKE_BALL;
@@ -823,7 +823,7 @@ static u8 BoxMon_GetPairDaycareCompatibilityScore(BoxPokemon **boxMonPair)
         species[i] = BoxPokemon_GetData(boxMonPair[i], MON_DATA_SPECIES, NULL);
         trainerIDs[i] = BoxPokemon_GetData(boxMonPair[i], MON_DATA_OT_ID, NULL);
         personality = BoxPokemon_GetData(boxMonPair[i], MON_DATA_PERSONALITY, NULL);
-        genders[i] = Pokemon_GetGenderOf(species[i], personality);
+        genders[i] = Species_GetGender(species[i], personality);
         eggGroups[i][0] = SpeciesData_GetSpeciesValue(species[i], SPECIES_DATA_EGG_GROUP_1);
         eggGroups[i][1] = SpeciesData_GetSpeciesValue(species[i], SPECIES_DATA_EGG_GROUP_2);
     }
@@ -1132,7 +1132,7 @@ static void Egg_CreateHatchedMonInternal(Pokemon *egg, int heapID)
         }
     }
 
-    Pokemon_InitWith(mon, species, 1, INIT_IVS_RANDOM, TRUE, personality, OTID_NOT_SET, 0);
+    Pokemon_Create(mon, species, 1, INIT_IVS_RANDOM, TRUE, personality, OTID_NOT_SET, 0);
 
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
         Pokemon_SetData(mon, MON_DATA_MOVE1 + i, &(moves[i]));

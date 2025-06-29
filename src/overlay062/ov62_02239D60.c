@@ -1190,7 +1190,7 @@ static void ov62_0223B050(UnkStruct_0208C06C *param0)
     }
 
     speciesData = SpeciesData_FromMonSpecies(species, HEAP_ID_102);
-    gender = Pokemon_GetGenderOf(species, personality);
+    gender = Species_GetGender(species, personality);
     isShiny = Pokemon_IsPersonalityShiny(otID, personality);
     v9 = LoadPokemonSpriteYOffset(species, gender, v10, form, personality);
     v9 = 0;

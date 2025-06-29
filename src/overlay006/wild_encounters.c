@@ -1018,7 +1018,7 @@ static void CreateWildMonShinyWithGenderOrNature(const u16 species, const u8 lev
     if (abilityInEffect) {
         do {
             if (encounterFieldParams->firstMonAbility == ABILITY_CUTE_CHARM) {
-                u8 newEncounterGender = Pokemon_GetGenderOf(species, newEncounterPersonality);
+                u8 newEncounterGender = Species_GetGender(species, newEncounterPersonality);
                 GF_ASSERT(newEncounterGender != GENDER_NONE);
 
                 if (newEncounterGender != firstMonGender) {
@@ -1038,7 +1038,7 @@ static void CreateWildMonShinyWithGenderOrNature(const u16 species, const u8 lev
         } while (TRUE);
     }
 
-    Pokemon_InitWith(newEncounter, species, level, INIT_IVS_RANDOM, TRUE, newEncounterPersonality, OTID_SET, encounterFieldParams->trainerID);
+    Pokemon_Create(newEncounter, species, level, INIT_IVS_RANDOM, TRUE, newEncounterPersonality, OTID_SET, encounterFieldParams->trainerID);
 
     GF_ASSERT(AddWildMonToParty(partySlot, encounterFieldParams, newEncounter, battleParams));
     Heap_FreeToHeap(newEncounter);
@@ -1079,7 +1079,7 @@ static void CreateWildMon(u16 species, u8 level, const int partyDest, const Wild
         return;
     }
 
-    sub_02074044(newEncounter, species, level, 32, GetNatureForWildMon(firstPartyMon, encounterFieldParams));
+    Pokemon_CreateWithNature(newEncounter, species, level, 32, GetNatureForWildMon(firstPartyMon, encounterFieldParams));
     Pokemon_SetData(newEncounter, MON_DATA_OT_ID, &encounterFieldParams->trainerID);
 
     GF_ASSERT(AddWildMonToParty(partyDest, encounterFieldParams, newEncounter, battleParams));
@@ -1411,8 +1411,8 @@ static void AddRoamerToEnemyParty(const u32 trainerID, Roamer *roamer, FieldBatt
 
     Pokemon_InitAndCalcStats(mon, roamerSpecies, roamerLevel, roamerCombinedIVs, roamerPersonality);
     Pokemon_SetData(mon, MON_DATA_OT_ID, &trainerID);
-    Pokemon_SetData(mon, MON_DATA_STATUS_CONDITION, &roamerStatusCondition);
-    Pokemon_SetData(mon, MON_DATA_CURRENT_HP, &roamerCurrentHP);
+    Pokemon_SetData(mon, MON_DATA_STATUS, &roamerStatusCondition);
+    Pokemon_SetData(mon, MON_DATA_HP, &roamerCurrentHP);
 
     GF_ASSERT(Party_AddPokemon(battle->parties[1], mon));
     Heap_FreeToHeap(mon);

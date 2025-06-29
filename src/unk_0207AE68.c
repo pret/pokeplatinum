@@ -705,7 +705,7 @@ static void sub_0207C028(UnkStruct_0207AE68 *param0)
                 Pokemon_SetData(shedinja, MON_DATA_HELD_ITEM, &value);
                 Pokemon_SetData(shedinja, MON_DATA_MARKS, &value);
 
-                for (i = MON_DATA_SINNOH_CHAMP_RIBBON; i < MON_DATA_SINNOH_RIBBON_DUMMY + 1; i++) {
+                for (i = MON_DATA_SINNOH_CHAMP_RIBBON; i < MON_DATA_RIBBON_DUMMY + 1; i++) {
                     Pokemon_SetData(shedinja, i, &value);
                 }
 
@@ -713,13 +713,13 @@ static void sub_0207C028(UnkStruct_0207AE68 *param0)
                     Pokemon_SetData(shedinja, i, &value);
                 }
 
-                for (i = MON_DATA_SINNOH_SUPER_COOL_RIBBON; i < MON_DATA_CONTEST_RIBBON_DUMMY + 1; i++) {
+                for (i = MON_DATA_COOL_RIBBON; i < MON_DATA_CONTEST_RIBBON_DUMMY + 1; i++) {
                     Pokemon_SetData(shedinja, i, &value);
                 }
 
                 Pokemon_SetData(shedinja, MON_DATA_SPECIES_NAME, NULL);
                 Pokemon_SetData(shedinja, MON_DATA_HAS_NICKNAME, &value);
-                Pokemon_SetData(shedinja, MON_DATA_STATUS_CONDITION, &value);
+                Pokemon_SetData(shedinja, MON_DATA_STATUS, &value);
 
                 mail = Mail_New(param0->heapID);
                 Pokemon_SetData(shedinja, MON_DATA_MAIL, mail);

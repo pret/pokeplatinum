@@ -118,7 +118,7 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
         battleCtx->battleMons[battler].heldItem = ITEM_NONE;
     } else {
         battleCtx->battleMons[battler].ability = Pokemon_GetData(mon, MON_DATA_ABILITY, NULL);
-        battleCtx->battleMons[battler].status = Pokemon_GetData(mon, MON_DATA_STATUS_CONDITION, NULL);
+        battleCtx->battleMons[battler].status = Pokemon_GetData(mon, MON_DATA_STATUS, NULL);
         battleCtx->battleMons[battler].heldItem = Pokemon_GetData(mon, MON_DATA_HELD_ITEM, NULL);
     }
 
@@ -130,7 +130,7 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
 
     battleCtx->battleMons[battler].level = Pokemon_GetData(mon, MON_DATA_LEVEL, NULL);
     battleCtx->battleMons[battler].friendship = Pokemon_GetData(mon, MON_DATA_FRIENDSHIP, NULL);
-    battleCtx->battleMons[battler].curHP = Pokemon_GetData(mon, MON_DATA_CURRENT_HP, NULL);
+    battleCtx->battleMons[battler].curHP = Pokemon_GetData(mon, MON_DATA_HP, NULL);
     battleCtx->battleMons[battler].maxHP = Pokemon_GetData(mon, MON_DATA_MAX_HP, NULL);
     battleCtx->battleMons[battler].exp = Pokemon_GetData(mon, MON_DATA_EXP, NULL);
     battleCtx->battleMons[battler].personality = Pokemon_GetData(mon, MON_DATA_PERSONALITY, NULL);
@@ -173,7 +173,7 @@ void BattleSystem_ReloadPokemon(BattleSystem *battleSys, BattleContext *battleCt
     battleCtx->battleMons[battler].spDefense = Pokemon_GetData(mon, MON_DATA_SP_DEF, NULL);
     battleCtx->battleMons[battler].level = Pokemon_GetData(mon, MON_DATA_LEVEL, NULL);
     battleCtx->battleMons[battler].friendship = Pokemon_GetData(mon, MON_DATA_FRIENDSHIP, NULL);
-    battleCtx->battleMons[battler].curHP = Pokemon_GetData(mon, MON_DATA_CURRENT_HP, NULL);
+    battleCtx->battleMons[battler].curHP = Pokemon_GetData(mon, MON_DATA_HP, NULL);
     battleCtx->battleMons[battler].maxHP = Pokemon_GetData(mon, MON_DATA_MAX_HP, NULL);
 
     if ((battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_TRANSFORM) == FALSE) {
@@ -1919,7 +1919,7 @@ BOOL BattleSystem_CheckTrainerMessage(BattleSystem *battleSys, BattleContext *ba
                 for (int i = 0; i < Party_GetCurrentCount(party); i++) {
                     Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
 
-                    if (Pokemon_GetData(mon, MON_DATA_CURRENT_HP, NULL)) {
+                    if (Pokemon_GetData(mon, MON_DATA_HP, NULL)) {
                         alive++;
                     }
                 }
@@ -1942,7 +1942,7 @@ BOOL BattleSystem_CheckTrainerMessage(BattleSystem *battleSys, BattleContext *ba
                 for (int i = 0; i < Party_GetCurrentCount(party); i++) {
                     Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
 
-                    if (Pokemon_GetData(mon, MON_DATA_CURRENT_HP, NULL)) {
+                    if (Pokemon_GetData(mon, MON_DATA_HP, NULL)) {
                         alive++;
                     }
                 }
@@ -3162,7 +3162,7 @@ BOOL BattleSystem_AnyReplacementMons(BattleSystem *battleSys, BattleContext *bat
         pokemon = Party_GetPokemonBySlotIndex(party, i);
         if (Pokemon_GetData(pokemon, MON_DATA_SPECIES, NULL)
             && Pokemon_GetData(pokemon, MON_DATA_IS_EGG, NULL) == FALSE
-            && Pokemon_GetData(pokemon, MON_DATA_CURRENT_HP, NULL)
+            && Pokemon_GetData(pokemon, MON_DATA_HP, NULL)
             && selectedSlot1 != i
             && selectedSlot2 != i) {
             aliveMons++;
@@ -7959,7 +7959,7 @@ int BattleAI_PostKOSwitchIn(BattleSystem *battleSys, int battler)
 
             if (monSpecies != SPECIES_NONE
                 && monSpecies != SPECIES_EGG
-                && Pokemon_GetData(mon, MON_DATA_CURRENT_HP, NULL)
+                && Pokemon_GetData(mon, MON_DATA_HP, NULL)
                 && (battlersDisregarded & FlagIndex(i)) == FALSE
                 && battleCtx->selectedPartySlot[slot1] != i
                 && battleCtx->selectedPartySlot[slot2] != i
@@ -8034,7 +8034,7 @@ int BattleAI_PostKOSwitchIn(BattleSystem *battleSys, int battler)
 
         if (monSpecies != SPECIES_NONE
             && monSpecies != SPECIES_EGG
-            && Pokemon_GetData(mon, MON_DATA_CURRENT_HP, NULL)
+            && Pokemon_GetData(mon, MON_DATA_HP, NULL)
             && battleCtx->selectedPartySlot[slot1] != i
             && battleCtx->selectedPartySlot[slot2] != i
             && i != battleCtx->aiSwitchedPartySlot[slot1]

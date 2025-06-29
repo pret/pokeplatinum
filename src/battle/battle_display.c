@@ -3876,11 +3876,11 @@ static void ov16_022611DC(SysTask *param0, void *param1)
         v18->type = Healthbar_Type(BattleSystem_BattlerSlot(v0->unk_00, v20), BattleSystem_BattleType(v0->unk_00));
 
         v19 = BattleSystem_PartyPokemon(v0->unk_00, v20, v21);
-        v18->curHP = Pokemon_GetData(v19, MON_DATA_CURRENT_HP, NULL) - v0->unk_08->unk_04->currentDamage;
+        v18->curHP = Pokemon_GetData(v19, MON_DATA_HP, NULL) - v0->unk_08->unk_04->currentDamage;
         v18->maxHP = Pokemon_GetData(v19, MON_DATA_MAX_HP, NULL);
         v18->damage = v0->unk_08->unk_04->currentDamage;
 
-        if (Pokemon_GetData(v19, MON_DATA_STATUS_CONDITION, NULL) == 0) {
+        if (Pokemon_GetData(v19, MON_DATA_STATUS, NULL) == 0) {
             v18->status = 0;
         }
 
@@ -3939,7 +3939,7 @@ static void ov16_022611DC(SysTask *param0, void *param1)
         v34 = v0->unk_08->unk_04->pokemonPartySlots[v0->unk_08->unk_04->selectedPartyIndex];
         v33 = BattleSystem_PartyPokemon(v0->unk_00, v28, v34);
 
-        if (Pokemon_GetData(v33, MON_DATA_STATUS_CONDITION, NULL) == 0) {
+        if (Pokemon_GetData(v33, MON_DATA_STATUS, NULL) == 0) {
             v27->status = 0;
         }
 
@@ -4288,7 +4288,7 @@ static void ov16_02262258(SysTask *param0, void *param1)
             for (v1 = 0; v1 < Party_GetCurrentCount(v2); v1++) {
                 v3 = BattleSystem_PartyPokemon(v0->unk_00, v0->unk_09, v1);
 
-                if ((Pokemon_GetData(v3, MON_DATA_CURRENT_HP, NULL)) && (v0->unk_0C[v4] != v1) && (v0->unk_0C[v5] != v1)) {
+                if ((Pokemon_GetData(v3, MON_DATA_HP, NULL)) && (v0->unk_0C[v4] != v1) && (v0->unk_0C[v5] != v1)) {
                     break;
                 }
             }
@@ -4338,7 +4338,7 @@ static void ov16_0226232C(SysTask *param0, void *param1)
             } else {
                 v3 = BattleSystem_PartyPokemon(v0->unk_00, v0->unk_09, v1 - 1);
 
-                if (Pokemon_GetData(v3, MON_DATA_CURRENT_HP, NULL) == 0) {
+                if (Pokemon_GetData(v3, MON_DATA_HP, NULL) == 0) {
                     ov16_02264730(v0->unk_00);
                 }
 

@@ -321,7 +321,7 @@ static u32 sub_0204B1E8(UnkStruct_0204AFC4 *param0, FrontierPokemonDataDTO *para
         param1->item = v4.item;
     }
 
-    u8 friendship = MAX_FRIENDSHIP_VALUE;
+    u8 friendship = FRIENDSHIP_MAX;
 
     for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
         param1->moves[v0] = v4.moves[v0];

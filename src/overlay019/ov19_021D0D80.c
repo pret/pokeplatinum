@@ -1908,7 +1908,7 @@ static BOOL ov19_CheckLastAliveMonReason(UnkStruct_ov19_021D5DF8 *param0, u32 *d
         }
 
         if (ov19_GetCursorMonIsPartyMon(&param0->unk_00)) {
-            if (ov19_GetPreviewedMonValue(&param0->unk_00, MON_DATA_CURRENT_HP, NULL) == 0) {
+            if (ov19_GetPreviewedMonValue(&param0->unk_00, MON_DATA_HP, NULL) == 0) {
                 *destMessageID = BoxText_LastMon;
                 return TRUE;
             }
@@ -2177,7 +2177,7 @@ static BOOL ov19_OnLastAliveMon(UnkStruct_ov19_021D5DF8 *param0)
         mon = Party_GetPokemonBySlotIndex(param0->party, i);
         reencrypt = Pokemon_EnterDecryptionContext(mon);
 
-        if (Pokemon_GetData(mon, MON_DATA_EGG_EXISTS, NULL) == FALSE && Pokemon_GetData(mon, MON_DATA_CURRENT_HP, NULL)) {
+        if (Pokemon_GetData(mon, MON_DATA_EGG_EXISTS, NULL) == FALSE && Pokemon_GetData(mon, MON_DATA_HP, NULL)) {
             count++;
         }
 
@@ -2192,7 +2192,7 @@ static BOOL ov19_OnLastAliveMon(UnkStruct_ov19_021D5DF8 *param0)
         return FALSE;
     }
 
-    if (ov19_GetPreviewedOrSelectedMonValue(&param0->unk_00, MON_DATA_CURRENT_HP, NULL) == 0) {
+    if (ov19_GetPreviewedOrSelectedMonValue(&param0->unk_00, MON_DATA_HP, NULL) == 0) {
         return FALSE;
     }
 

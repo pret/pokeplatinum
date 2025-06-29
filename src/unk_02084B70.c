@@ -486,7 +486,7 @@ static int sub_020855C4(void *windowLayoutPtr)
     Party_ApplyItemEffectsToMember(windowLayout->partyManagementData->party, windowLayout->partyManagementData->usedItemID, windowLayout->partySlot, 0, GetCurrentMapLabel(windowLayout), HEAP_ID_12);
 
     mon = Party_GetPokemonBySlotIndex(windowLayout->partyManagementData->party, windowLayout->partySlot);
-    curHP = Pokemon_GetData(mon, MON_DATA_CURRENT_HP, NULL);
+    curHP = Pokemon_GetData(mon, MON_DATA_HP, NULL);
 
     if (windowLayout->unk_704[windowLayout->partySlot].curHP == 0) {
         strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 70);
@@ -523,7 +523,7 @@ static int PokemonSummaryScreen_UpdateHPBar(GameWindowLayout *param0)
     u32 curHP;
 
     mon = Party_GetPokemonBySlotIndex(gameWindowLayout->partyManagementData->party, gameWindowLayout->partySlot);
-    curHP = Pokemon_GetData(mon, MON_DATA_CURRENT_HP, NULL);
+    curHP = Pokemon_GetData(mon, MON_DATA_HP, NULL);
 
     if (gameWindowLayout->unk_704[gameWindowLayout->partySlot].curHP != curHP) {
         gameWindowLayout->unk_704[gameWindowLayout->partySlot].curHP++;
@@ -597,7 +597,7 @@ int sub_02085804(GameWindowLayout *windowLayout)
         mon = Party_GetPokemonBySlotIndex(windowLayout->partyManagementData->party, windowLayout->partySlot);
         Pokemon_ApplyItemEffects(mon, windowLayout->partyManagementData->usedItemID, 0, GetCurrentMapLabel(windowLayout), HEAP_ID_12);
 
-        curHP = Pokemon_GetData(mon, MON_DATA_CURRENT_HP, NULL);
+        curHP = Pokemon_GetData(mon, MON_DATA_HP, NULL);
         strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 70);
 
         StringTemplate_SetNickname(windowLayout->template, 0, Pokemon_GetBoxPokemon(mon));
@@ -616,7 +616,7 @@ int sub_02085804(GameWindowLayout *windowLayout)
         break;
     case 2:
         mon = Party_GetPokemonBySlotIndex(windowLayout->partyManagementData->party, windowLayout->partySlot);
-        curHP = Pokemon_GetData(mon, MON_DATA_CURRENT_HP, NULL);
+        curHP = Pokemon_GetData(mon, MON_DATA_HP, NULL);
 
         windowLayout->unk_704[windowLayout->partySlot].curHP++;
 
@@ -678,7 +678,7 @@ static int sub_02085A70(void *windowLayoutPtr)
     Party_ApplyItemEffectsToMember(windowLayout->partyManagementData->party, windowLayout->partyManagementData->usedItemID, windowLayout->partySlot, 0, GetCurrentMapLabel(windowLayout), HEAP_ID_12);
 
     windowLayout->unk_704[windowLayout->partySlot].level = Pokemon_GetData(mon, MON_DATA_LEVEL, NULL);
-    windowLayout->unk_704[windowLayout->partySlot].curHP = Pokemon_GetData(mon, MON_DATA_CURRENT_HP, NULL);
+    windowLayout->unk_704[windowLayout->partySlot].curHP = Pokemon_GetData(mon, MON_DATA_HP, NULL);
     windowLayout->unk_704[windowLayout->partySlot].maxHP = Pokemon_GetData(mon, MON_DATA_MAX_HP, NULL);
 
     strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 193);

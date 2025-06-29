@@ -2624,7 +2624,7 @@ static int sub_0206EDAC(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
             v4 = Roamer_GetData(v0, ROAMER_DATA_SPECIES);
             v5 = Roamer_GetData(v0, ROAMER_DATA_PERSONALITY);
 
-            sub_0206CE74(param1, 1, v4, Pokemon_GetGenderOf(v4, v5), TrainerInfo_RegionCode(v7), TrainerInfo_GameCode(v7));
+            sub_0206CE74(param1, 1, v4, Species_GetGender(v4, v5), TrainerInfo_RegionCode(v7), TrainerInfo_GameCode(v7));
             break;
         }
     }

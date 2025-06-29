@@ -22,7 +22,7 @@
 BOOL Pokemon_CanBattle(Pokemon *mon)
 {
     // this can be simplified further, but it won't match
-    if (Pokemon_GetData(mon, MON_DATA_CURRENT_HP, NULL) == 0) {
+    if (Pokemon_GetData(mon, MON_DATA_HP, NULL) == 0) {
         return FALSE;
     }
 
@@ -41,7 +41,7 @@ BOOL Pokemon_GiveMonFromScript(enum HeapId heapID, SaveData *saveData, u16 speci
     mon = Pokemon_New(heapID);
 
     Pokemon_Init(mon);
-    Pokemon_InitWith(mon, species, level, INIT_IVS_RANDOM, FALSE, 0, OTID_NOT_SET, 0);
+    Pokemon_Create(mon, species, level, INIT_IVS_RANDOM, FALSE, 0, OTID_NOT_SET, 0);
     Pokemon_SetCatchData(mon, trainerInfo, ITEM_POKE_BALL, metLocation, metTerrain, heapID);
 
     item = heldItem;
@@ -185,14 +185,14 @@ int Pokemon_DoPoisonDamage(Party *party, u16 mapLabelTextID)
         mon = Party_GetPokemonBySlotIndex(party, i);
 
         if (Pokemon_CanBattle(mon)
-            && (Pokemon_GetData(mon, MON_DATA_STATUS_CONDITION, NULL) & (MON_CONDITION_TOXIC | MON_CONDITION_POISON))) {
-            u32 hp = Pokemon_GetData(mon, MON_DATA_CURRENT_HP, NULL);
+            && (Pokemon_GetData(mon, MON_DATA_STATUS, NULL) & (MON_CONDITION_TOXIC | MON_CONDITION_POISON))) {
+            u32 hp = Pokemon_GetData(mon, MON_DATA_HP, NULL);
 
             if (hp > 1) {
                 hp--;
             }
 
-            Pokemon_SetData(mon, MON_DATA_CURRENT_HP, &hp);
+            Pokemon_SetData(mon, MON_DATA_HP, &hp);
 
             if (hp == 1) {
                 numFainted++;
@@ -214,11 +214,11 @@ int Pokemon_DoPoisonDamage(Party *party, u16 mapLabelTextID)
 
 BOOL Pokemon_TrySurvivePoison(Pokemon *mon)
 {
-    if (Pokemon_GetData(mon, MON_DATA_STATUS_CONDITION, NULL) & (MON_CONDITION_TOXIC | MON_CONDITION_POISON)
-        && Pokemon_GetData(mon, MON_DATA_CURRENT_HP, NULL) == 1) {
+    if (Pokemon_GetData(mon, MON_DATA_STATUS, NULL) & (MON_CONDITION_TOXIC | MON_CONDITION_POISON)
+        && Pokemon_GetData(mon, MON_DATA_HP, NULL) == 1) {
         u32 condition = MON_CONDITION_NONE;
 
-        Pokemon_SetData(mon, MON_DATA_STATUS_CONDITION, &condition);
+        Pokemon_SetData(mon, MON_DATA_STATUS, &condition);
         return TRUE;
     }
 

@@ -1105,7 +1105,7 @@ static void SetMonDataFromMon(PokemonSummaryScreen *summaryScreen, Pokemon *mon,
         monData->nextLevelExp = Pokemon_GetSpeciesBaseExpAt(monData->species, monData->level + 1);
     }
 
-    monData->curHP = Pokemon_GetData(mon, MON_DATA_CURRENT_HP, NULL);
+    monData->curHP = Pokemon_GetData(mon, MON_DATA_HP, NULL);
     monData->maxHP = Pokemon_GetData(mon, MON_DATA_MAX_HP, NULL);
     monData->attack = Pokemon_GetData(mon, MON_DATA_ATK, NULL);
     monData->defense = Pokemon_GetData(mon, MON_DATA_DEF, NULL);
@@ -2212,9 +2212,9 @@ u32 PokemonSummaryScreen_StatusIconAnim(void)
 
 u32 PokemonSummaryScreen_StatusIconAnimIdx(Pokemon *mon)
 {
-    u32 statusCondition = Pokemon_GetData(mon, MON_DATA_STATUS_CONDITION, NULL);
+    u32 statusCondition = Pokemon_GetData(mon, MON_DATA_STATUS, NULL);
 
-    if (Pokemon_GetData(mon, MON_DATA_CURRENT_HP, NULL) == 0) {
+    if (Pokemon_GetData(mon, MON_DATA_HP, NULL) == 0) {
         return SUMMARY_CONDITION_FAINTED;
     } else if ((statusCondition & (MON_CONDITION_POISON | MON_CONDITION_TOXIC)) != MON_CONDITION_NONE) {
         return SUMMARY_CONDITION_POISON;

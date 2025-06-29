@@ -562,13 +562,13 @@ static int ov104_02238584(UnkStruct_ov104_0223BFFC *param0, Party *param1, Party
             continue;
         }
 
-        v0 = Pokemon_GetData(v5, MON_DATA_CURRENT_HP, NULL);
+        v0 = Pokemon_GetData(v5, MON_DATA_HP, NULL);
 
         if (v0 == 0) {
             v1++;
         }
 
-        if (Pokemon_GetData(v5, MON_DATA_STATUS_CONDITION, NULL) != 0) {
+        if (Pokemon_GetData(v5, MON_DATA_STATUS, NULL) != 0) {
             v2++;
         }
     }
@@ -581,13 +581,13 @@ static int ov104_02238584(UnkStruct_ov104_0223BFFC *param0, Party *param1, Party
                 continue;
             }
 
-            v0 = Pokemon_GetData(v5, MON_DATA_CURRENT_HP, NULL);
+            v0 = Pokemon_GetData(v5, MON_DATA_HP, NULL);
 
             if (v0 == 0) {
                 v1++;
             }
 
-            if (Pokemon_GetData(v5, MON_DATA_STATUS_CONDITION, NULL) != 0) {
+            if (Pokemon_GetData(v5, MON_DATA_STATUS, NULL) != 0) {
                 v2++;
             }
         }
@@ -1079,7 +1079,7 @@ static void ov104_02238BBC(UnkStruct_ov104_0223BFFC *param0, Party *param1, u8 p
         v2 -= v1;
         v2 = (v1 - v2);
 
-        Pokemon_SetData(v3, MON_DATA_CURRENT_HP, &v2);
+        Pokemon_SetData(v3, MON_DATA_HP, &v2);
     }
 
     return;
@@ -1103,7 +1103,7 @@ static void ov104_02238C18(UnkStruct_ov104_0223BFFC *param0, Party *param1, u8 p
             v1++;
         } else {
             v2 = MON_CONDITION_POISON;
-            Pokemon_SetData(v6, MON_DATA_STATUS_CONDITION, &v2);
+            Pokemon_SetData(v6, MON_DATA_STATUS, &v2);
         }
     }
 
@@ -1132,7 +1132,7 @@ static void ov104_02238C9C(UnkStruct_ov104_0223BFFC *param0, Party *param1, u8 p
             v1++;
         } else {
             v2 = MON_CONDITION_PARALYSIS;
-            Pokemon_SetData(v6, MON_DATA_STATUS_CONDITION, &v2);
+            Pokemon_SetData(v6, MON_DATA_STATUS, &v2);
         }
     }
 
@@ -1161,7 +1161,7 @@ static void ov104_02238D14(UnkStruct_ov104_0223BFFC *param0, Party *param1, u8 p
             v1++;
         } else {
             v2 = MON_CONDITION_BURN;
-            Pokemon_SetData(v6, MON_DATA_STATUS_CONDITION, &v2);
+            Pokemon_SetData(v6, MON_DATA_STATUS, &v2);
         }
     }
 
@@ -1195,7 +1195,7 @@ static void ov104_02238D8C(UnkStruct_ov104_0223BFFC *param0, Party *param1, u8 p
             }
         } else {
             v3 = (LCRNG_Next() % 4 + 2);
-            Pokemon_SetData(v5, MON_DATA_STATUS_CONDITION, &v3);
+            Pokemon_SetData(v5, MON_DATA_STATUS, &v3);
             break;
         }
     }
@@ -1232,7 +1232,7 @@ static void ov104_02238E08(UnkStruct_ov104_0223BFFC *param0, Party *param1, u8 p
             }
         } else {
             v3 = MON_CONDITION_FREEZE;
-            Pokemon_SetData(v7, MON_DATA_STATUS_CONDITION, &v3);
+            Pokemon_SetData(v7, MON_DATA_STATUS, &v3);
 
             break;
         }

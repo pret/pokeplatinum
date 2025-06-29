@@ -162,7 +162,7 @@ u32 ov104_0222DD6C(FrontierPokemonDataDTO *param0, u16 param1, u32 param2, u32 p
         param0->item = v4.item;
     }
 
-    u8 friendship = MAX_FRIENDSHIP_VALUE;
+    u8 friendship = FRIENDSHIP_MAX;
 
     for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
         param0->moves[v0] = v4.moves[v0];
@@ -253,7 +253,7 @@ void ov104_0222DF40(const FrontierPokemonDataDTO *param0, Pokemon *param1, u8 pa
 
     v1 = (param0->combinedIVs & 0x3FFFFFFF);
 
-    Pokemon_InitWith(param1, param0->species, v4, v1, TRUE, param0->personality, OTID_NOT_SHINY, 0);
+    Pokemon_Create(param1, param0->species, v4, v1, TRUE, param0->personality, OTID_NOT_SHINY, 0);
     Pokemon_SetData(param1, MON_DATA_COMBINED_IVS, &v1);
     Pokemon_CalcLevelAndStats(param1);
 

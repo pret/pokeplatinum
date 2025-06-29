@@ -192,7 +192,7 @@ BOOL ov104_02237460(UnkStruct_ov104_0222E930 *param0)
 
         v5 = v9->unk_94[v1];
         Pokemon_SetData(v11, MON_DATA_MAX_HP, &v5);
-        Pokemon_SetData(v11, MON_DATA_CURRENT_HP, &v5);
+        Pokemon_SetData(v11, MON_DATA_HP, &v5);
 
         v5 = v9->unk_A4[v1];
         Pokemon_SetData(v11, MON_DATA_ATK, &v5);
