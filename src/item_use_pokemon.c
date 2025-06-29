@@ -47,7 +47,7 @@
     do {                                              \
         if (Item_Get(item, __itemParam)               \
             && (vCheckStatus & (__condition)) != 0) { \
-            Heap_Free(item);                    \
+            Heap_Free(item);                          \
             return TRUE;                              \
         }                                             \
     } while (0)
@@ -58,16 +58,16 @@
             vCheckEVChange = Item_Get(item, __itemParamEVsGiven);                               \
             if (vCheckEVChange > 0) {                                                           \
                 if (__currentEV < MAX_EV_VITAMIN && CHECK_EFFECTS_EV_SUM < MAX_EVS_ALL_STATS) { \
-                    Heap_Free(item);                                                      \
+                    Heap_Free(item);                                                            \
                     return TRUE;                                                                \
                 }                                                                               \
             } else if (vCheckEVChange < 0) {                                                    \
                 if (__currentEV > 0) {                                                          \
-                    Heap_Free(item);                                                      \
+                    Heap_Free(item);                                                            \
                     return TRUE;                                                                \
                 }                                                                               \
                 if (CheckFriendshipItemEffect(mon, item) == TRUE) {                             \
-                    Heap_Free(item);                                                      \
+                    Heap_Free(item);                                                            \
                     return TRUE;                                                                \
                 }                                                                               \
             }                                                                                   \
