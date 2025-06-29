@@ -114,7 +114,7 @@
             vApplyUpdatedEV = CalculateEVUpdate(__currentEV, __otherEVsSum, vApplyEVChange);                  \
             if (vApplyUpdatedEV != EV_UNCHANGED) {                                                            \
                 __currentEV = vApplyUpdatedEV;                                                                \
-                Pokemon_SetData(mon, __monDataParam, &__currentEV);                                          \
+                Pokemon_SetData(mon, __monDataParam, &__currentEV);                                           \
                 Pokemon_CalcLevelAndStats(mon);                                                               \
                 effectApplied = TRUE;                                                                         \
             }                                                                                                 \
