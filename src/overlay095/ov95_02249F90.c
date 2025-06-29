@@ -27,7 +27,7 @@ enum {
 };
 
 typedef struct {
-    UnkStruct_ov95_02247628 *unk_00;
+    TradeSequenceData *unk_00;
     int unk_04;
     int unk_08;
     BgConfig *unk_0C;
@@ -45,7 +45,7 @@ static void ov95_0224A10C(UnkStruct_ov95_02249FF8 *param0);
 static void ov95_0224A320(UnkStruct_ov95_02249FF8 *param0);
 static void ov95_0224A358(BgConfig *param0, int param1, int param2);
 
-void *ov95_02249F90(UnkStruct_ov95_02247628 *param0)
+void *ov95_02249F90(TradeSequenceData *param0)
 {
     UnkStruct_ov95_02249FF8 *v0 = Heap_AllocFromHeap(HEAP_ID_58, sizeof(UnkStruct_ov95_02249FF8));
 

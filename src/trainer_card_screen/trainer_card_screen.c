@@ -292,7 +292,7 @@ BOOL TrainerCardScreen_Init(ApplicationManager *appMan, int *state)
     TrainerCard_ResetAffineTransforms();
 
     SetVBlankCallback(TrainerCard_TransferGraphicsOnVBlank, NULL);
-    DrawWifiConnectionIcon();
+    NetworkIcon_Init();
     Sound_SetPlayerVolume(PLAYER_FIELD, SOUND_VOLUME_MAX / 3);
     StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_DOWNWARD_IN, FADE_TYPE_DOWNWARD_IN, COLOR_BLACK, 6, 1, HEAP_ID_TRAINER_CARD_SCREEN);
     NARC_dtor(narc);

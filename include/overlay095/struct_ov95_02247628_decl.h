@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV95_02247628_DECL_H
 #define POKEPLATINUM_STRUCT_OV95_02247628_DECL_H
 
-typedef struct UnkStruct_ov95_02247628_t UnkStruct_ov95_02247628;
+typedef struct TradeSequenceData_t TradeSequenceData;
 
 #endif // POKEPLATINUM_STRUCT_OV95_02247628_DECL_H

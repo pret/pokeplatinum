@@ -1801,7 +1801,7 @@ static void UpdateConnectedPlayersCount(WonderCardsAppData *appData, Window *win
 static void StopWirelessCommunication(WonderCardsAppData *appData, enum WonderCardsAppState *state, enum WonderCardsAppState nextState)
 {
     ov97_0222D2DC();
-    sub_02039794();
+    NetworkIcon_Destroy();
     appData->queuedState = nextState;
     *state = WC_APP_STATE_WAIT_FOR_COMM_MAN_EXIT;
 }

@@ -1,8 +1,7 @@
-#include "unk_0207AE68.h"
-
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/evolution_methods.h"
 #include "generated/game_records.h"
 #include "generated/items.h"
 #include "generated/moves.h"
@@ -10,11 +9,9 @@
 #include "generated/trainer_score_events.h"
 
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_defs/mail.h"
 #include "struct_defs/seal_case.h"
 #include "struct_defs/sprite_animation_frame.h"
-#include "struct_defs/struct_0207AE68_t.h"
 #include "struct_defs/struct_0207C894.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -22,6 +19,7 @@
 
 #include "bag.h"
 #include "bg_window.h"
+#include "evolution.h"
 #include "g3d_pipeline.h"
 #include "game_options.h"
 #include "game_records.h"
@@ -57,19 +55,20 @@
 #include "vram_transfer.h"
 
 #include "constdata/const_020F410C.h"
+#include "res/text/bank/battle_strings.h"
 
 static void sub_0207B0A0(SysTask *param0, void *param1);
-BOOL sub_0207B0D0(UnkStruct_0207AE68 *param0);
-void sub_0207B0E0(UnkStruct_0207AE68 *param0);
-static void sub_0207B180(UnkStruct_0207AE68 *param0);
-static void sub_0207C028(UnkStruct_0207AE68 *param0);
-static void sub_0207C1CC(UnkStruct_0207AE68 *param0, BgConfig *param1);
+BOOL Evolution_IsComplete(EvolutionData *param0);
+void sub_0207B0E0(EvolutionData *param0);
+static void sub_0207B180(EvolutionData *param0);
+static void sub_0207C028(EvolutionData *param0);
+static void sub_0207C1CC(EvolutionData *param0, BgConfig *param1);
 static void sub_0207C460(BgConfig *param0);
-static void sub_0207C498(UnkStruct_0207AE68 *param0);
+static void sub_0207C498(EvolutionData *param0);
 static void sub_0207C520(void *param0);
-static u8 sub_0207C584(UnkStruct_0207AE68 *param0, int param1);
+static u8 sub_0207C584(EvolutionData *param0, int param1);
 static BOOL sub_0207C5CC(TextPrinterTemplate *param0, u16 param1);
-static void sub_0207C624(UnkStruct_0207AE68 *param0);
+static void sub_0207C624(EvolutionData *param0);
 
 static const WindowTemplate Unk_020F0A30 = {
     0x2,
@@ -87,15 +86,15 @@ static const u8 Unk_020F0A2C[] = {
     0x8
 };
 
-UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Options *options, int param4, Pokedex *param5, Bag *param6, GameRecords *records, Poketch *poketch, int param9, int param10, int heapID)
+EvolutionData *Evolution_Begin(Party *param0, Pokemon *param1, int param2, Options *options, int param4, Pokedex *param5, Bag *param6, GameRecords *records, Poketch *poketch, int param9, int param10, int heapID)
 {
-    UnkStruct_0207AE68 *v0;
+    EvolutionData *v0;
     PokemonSpriteTemplate v1;
     int v2;
 
-    v0 = (UnkStruct_0207AE68 *)Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0207AE68));
+    v0 = (EvolutionData *)Heap_AllocFromHeap(heapID, sizeof(EvolutionData));
 
-    MI_CpuClearFast(v0, sizeof(UnkStruct_0207AE68));
+    MI_CpuClearFast(v0, sizeof(EvolutionData));
     MI_CpuFill16((void *)GetHardwareMainBgPaletteAddress(), 0x0, GetHardwareMainBgPaletteSize());
     MI_CpuFill16((void *)GetHardwareSubBgPaletteAddress(), 0x0, GetHardwareSubBgPaletteSize());
 
@@ -166,7 +165,7 @@ UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Opt
 
 static void sub_0207B0A0(SysTask *param0, void *param1)
 {
-    UnkStruct_0207AE68 *v0 = (UnkStruct_0207AE68 *)param1;
+    EvolutionData *v0 = (EvolutionData *)param1;
 
     sub_0207B180(v0);
     PokemonSpriteManager_DrawSprites(v0->unk_18);
@@ -178,12 +177,12 @@ static void sub_0207B0A0(SysTask *param0, void *param1)
     }
 }
 
-BOOL sub_0207B0D0(UnkStruct_0207AE68 *param0)
+BOOL Evolution_IsComplete(EvolutionData *param0)
 {
     return param0->unk_67 == 1;
 }
 
-void sub_0207B0E0(UnkStruct_0207AE68 *param0)
+void sub_0207B0E0(EvolutionData *param0)
 {
     int v0;
 
@@ -211,7 +210,7 @@ void sub_0207B0E0(UnkStruct_0207AE68 *param0)
     RenderControlFlags_SetCanABSpeedUpPrint(0);
 }
 
-static void sub_0207B180(UnkStruct_0207AE68 *param0)
+static void sub_0207B180(EvolutionData *param0)
 {
     if (param0->unk_70) {
         if ((param0->unk_70 & 1) == 0) {
@@ -263,7 +262,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         break;
     case 2:
         if (PaletteData_GetSelectedBuffersMask(param0->unk_14) == 0) {
-            param0->unk_65 = sub_0207C584(param0, 916);
+            param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_00916);
             param0->unk_64++;
         }
         break;
@@ -287,9 +286,9 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
             StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
 
             if (param0->unk_7C & 0x2) {
-                param0->unk_65 = sub_0207C584(param0, 917);
+                param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_00917);
             } else {
-                param0->unk_65 = sub_0207C584(param0, 915);
+                param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_00915);
             }
 
             param0->unk_64 = 5;
@@ -398,7 +397,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
             Pokemon_CalcLevelAndStats(param0->unk_28);
             StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
             StringTemplate_SetSpeciesName(param0->unk_0C, 1, Pokemon_GetBoxPokemon(param0->unk_28));
-            param0->unk_65 = sub_0207C584(param0, 918);
+            param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_00918);
             param0->unk_66 = 40;
             param0->unk_64++;
         }
@@ -435,7 +434,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         default:
             StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
             StringTemplate_SetMoveName(param0->unk_0C, 1, v3);
-            param0->unk_65 = sub_0207C584(param0, 4);
+            param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_00004);
             param0->unk_66 = 30;
             param0->unk_64 = 37;
             break;
@@ -444,18 +443,18 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
     case 14:
         StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
         StringTemplate_SetMoveName(param0->unk_0C, 1, param0->unk_6C);
-        param0->unk_65 = sub_0207C584(param0, 1193);
+        param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_01193);
         param0->unk_66 = 30;
         param0->unk_64++;
         break;
     case 16:
         StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
-        param0->unk_65 = sub_0207C584(param0, 1194);
+        param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_01194);
         param0->unk_66 = 30;
         param0->unk_64++;
         break;
     case 18:
-        param0->unk_65 = sub_0207C584(param0, 1195);
+        param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_01195);
         param0->unk_66 = 1;
         param0->unk_64++;
         break;
@@ -538,7 +537,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         break;
     case 32:
         StringTemplate_SetMoveName(param0->unk_0C, 0, param0->unk_6C);
-        param0->unk_65 = sub_0207C584(param0, 1197);
+        param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_01197);
         param0->unk_66 = 1;
         param0->unk_64++;
         break;
@@ -551,7 +550,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         case 0:
             StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
             StringTemplate_SetMoveName(param0->unk_0C, 1, param0->unk_6C);
-            param0->unk_65 = sub_0207C584(param0, 1198);
+            param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_01198);
             param0->unk_66 = 30;
             param0->unk_64 = 36;
             break;
@@ -569,26 +568,26 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         }
         break;
     case 25:
-        param0->unk_65 = sub_0207C584(param0, 1199);
+        param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_01199);
         param0->unk_66 = 30;
         param0->unk_64++;
         break;
     case 27:
         StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
         StringTemplate_SetMoveName(param0->unk_0C, 1, Pokemon_GetValue(param0->unk_28, 54 + param0->unk_6E, NULL));
-        param0->unk_65 = sub_0207C584(param0, 1200);
+        param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_01200);
         param0->unk_66 = 30;
         param0->unk_64++;
         break;
     case 29:
-        param0->unk_65 = sub_0207C584(param0, 1201);
+        param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_01201);
         param0->unk_66 = 30;
         param0->unk_64++;
         break;
     case 31:
         StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
         StringTemplate_SetMoveName(param0->unk_0C, 1, param0->unk_6C);
-        param0->unk_65 = sub_0207C584(param0, 1202);
+        param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_01202);
         param0->unk_66 = 0;
         Pokemon_SetValue(param0->unk_28, 62 + param0->unk_6E, &param0->unk_66);
         Pokemon_SetMoveSlot(param0->unk_28, param0->unk_6C, param0->unk_6E);
@@ -656,7 +655,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
     case 43:
         if ((Sound_IsPokemonCryPlaying() == 0) && (sub_020160F4(param0->unk_44, 0) == 1) && (PokemonSprite_IsAnimActive(param0->unk_1C[0]) == 0)) {
             StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
-            param0->unk_65 = sub_0207C584(param0, 919);
+            param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_00919);
             param0->unk_66 = 20;
             param0->unk_64++;
         }
@@ -678,13 +677,13 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
     }
 }
 
-static void sub_0207C028(UnkStruct_0207AE68 *param0)
+static void sub_0207C028(EvolutionData *param0)
 {
     int i;
 
     switch (param0->unk_78) {
-    case 13:
-    case 14:
+    case EVO_LEVEL_NINJASK:
+    case EVO_LEVEL_SHEDINJA:
         if (Bag_GetItemQuantity(param0->unk_4C, ITEM_POKE_BALL, param0->heapID) && (Party_GetCurrentCount(param0->unk_24) < 6)) {
             {
                 int value;
@@ -744,16 +743,16 @@ static void sub_0207C028(UnkStruct_0207AE68 *param0)
             }
         }
         break;
-    case 6:
-    case 18:
-    case 19:
+    case EVO_TRADE_WITH_HELD_ITEM:
+    case EVO_LEVEL_WITH_HELD_ITEM_DAY:
+    case EVO_LEVEL_WITH_HELD_ITEM_NIGHT:
         i = 0;
         Pokemon_SetValue(param0->unk_28, MON_DATA_HELD_ITEM, &i);
         break;
     }
 }
 
-static void sub_0207C1CC(UnkStruct_0207AE68 *param0, BgConfig *param1)
+static void sub_0207C1CC(EvolutionData *param0, BgConfig *param1)
 {
     GXLayers_DisableEngineALayers();
 
@@ -926,7 +925,7 @@ static void sub_0207C460(BgConfig *param0)
     Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0);
 }
 
-static void sub_0207C498(UnkStruct_0207AE68 *param0)
+static void sub_0207C498(EvolutionData *param0)
 {
     PokemonSpriteTemplate v0;
     Pokemon *v1;
@@ -950,7 +949,7 @@ static void sub_0207C498(UnkStruct_0207AE68 *param0)
 
 static void sub_0207C520(void *param0)
 {
-    UnkStruct_0207AE68 *v0 = (UnkStruct_0207AE68 *)param0;
+    EvolutionData *v0 = (EvolutionData *)param0;
 
     G2_SetWnd0Position(v0->unk_72, v0->unk_73, v0->unk_74, v0->unk_75);
 
@@ -962,7 +961,7 @@ static void sub_0207C520(void *param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static u8 sub_0207C584(UnkStruct_0207AE68 *param0, int param1)
+static u8 sub_0207C584(EvolutionData *param0, int param1)
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_08, param1);
 
@@ -1000,7 +999,7 @@ static BOOL sub_0207C5CC(TextPrinterTemplate *param0, u16 param1)
     return v0;
 }
 
-static void sub_0207C624(UnkStruct_0207AE68 *param0)
+static void sub_0207C624(EvolutionData *param0)
 {
     param0->appMan = ApplicationManager_New(&gPokemonSummaryScreenApp, param0->unk_3C, param0->heapID);
 }

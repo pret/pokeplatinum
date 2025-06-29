@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_0207AE68_DECL_H
 #define POKEPLATINUM_STRUCT_0207AE68_DECL_H
 
-typedef struct UnkStruct_0207AE68_t UnkStruct_0207AE68;
+typedef struct EvolutionData_t EvolutionData;
 
 #endif // POKEPLATINUM_STRUCT_0207AE68_DECL_H

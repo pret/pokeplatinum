@@ -736,7 +736,7 @@ static void ov106_022423E8(UnkStruct_ov106_02243118 *param0)
         ov106_02243650(param0->unk_284);
     }
 
-    sub_02039794();
+    NetworkIcon_Destroy();
     PaletteData_FreeBuffer(param0->unk_AC, 2);
     PaletteData_FreeBuffer(param0->unk_AC, 0);
     PaletteData_Free(param0->unk_AC);
