@@ -30,7 +30,7 @@
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 
-#include "res/text/bank/unk_0671.h"
+#include "res/text/bank/gts.h"
 #include "res/text/bank/unk_0674.h"
 #include "res/text/bank/unk_0695.h"
 
