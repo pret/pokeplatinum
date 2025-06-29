@@ -97,7 +97,7 @@ static BOOL sub_0207DA28(FieldTask *task)
         v2->unk_04++;
 
         if (v2->unk_00->unk_04 == 1) {
-            if (sub_02039074(fieldSystem->saveData)) {
+            if (WiFiList_HasValidLogin(fieldSystem->saveData)) {
                 v2->unk_04 = 10;
                 *(v2->unk_08) = 0;
             }
@@ -108,7 +108,7 @@ static BOOL sub_0207DA28(FieldTask *task)
         v2->unk_04++;
         break;
     case 3:
-        if (sub_02039074(fieldSystem->saveData)) {
+        if (WiFiList_HasValidLogin(fieldSystem->saveData)) {
             SystemFlag_SetConnectedToWiFi(SaveData_GetVarsFlags(fieldSystem->saveData));
         }
 

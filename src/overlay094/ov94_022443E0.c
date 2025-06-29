@@ -54,7 +54,7 @@ int ov94_02244490(UnkStruct_ov94_0223FD4C *param0, int param1)
 
     if (ApplicationManager_Exec(param0->appMan)) {
         ApplicationManager_Free(param0->appMan);
-        ov94_0223C4C0(param0, 5, param0->unk_24);
+        ov94_Setunk_18Andunk_24(param0, 5, param0->unk_24);
 
         v0 = 4;
     }

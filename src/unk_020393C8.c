@@ -114,10 +114,10 @@ static inline void inline_02039440(GXOamAttr *param0)
     G2_SetOBJAttr(param0, 0, 0, 0, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NODISPLAY, GX_OAM_SHAPE_16x16, GX_OAM_COLORMODE_16, 0, 0, 0);
 }
 
-void sub_02039434(UnkStruct_020393C8 *param0, int param1)
+void GTS_UnsureYet_SetNetworkStrength(UnkStruct_020393C8 *param0, int networkStrength)
 {
-    if (param1 < 4) {
-        param0->unk_04 = param1;
+    if (networkStrength < 4) {
+        param0->unk_04 = networkStrength;
         param0->unk_08 = 0;
     }
 }
@@ -333,7 +333,7 @@ void sub_02039794(void)
 void sub_020397B0(int param0)
 {
     if (Unk_021C07D8) {
-        sub_02039434(Unk_021C07D8, param0);
+        GTS_UnsureYet_SetNetworkStrength(Unk_021C07D8, param0);
     }
 }
 

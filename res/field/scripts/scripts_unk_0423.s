@@ -115,7 +115,7 @@ _01A3:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_2B7 VAR_RESULT
+    PartyHasBadEgg VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0430
     GoTo _01C4
     End

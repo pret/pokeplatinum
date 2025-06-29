@@ -19,11 +19,11 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 1, 0, 0} appears to have\nfled...\r</language>
 	</row>
-	<row id="pl_msg_00000671_00004" index="4">
+	<row id="GTS_Text_AreYouSeekingOrOfferingAPokemon" index="4">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Are you seeking or offering a Pokémon?</language>
 	</row>
-	<row id="pl_msg_00000671_00005" index="5">
+	<row id="GTS_Text_Selection_DoWhat" index="5">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Do what with this {STRVAR_1 1, 0, 0}?</language>
 	</row>
@@ -31,7 +31,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Will you take this {STRVAR_1 1, 0, 0}?</language>
 	</row>
-	<row id="pl_msg_00000671_00007" index="7">
+	<row id="GTS_Text_IsItOKToDisconnect" index="7">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Is it OK to disconnect from\nNintendo Wi-Fi Connection?</language>
 	</row>
@@ -39,15 +39,15 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">What kind of Pokémon are you seeking?</language>
 	</row>
-	<row id="pl_msg_00000671_00009" index="9">
+	<row id="GTS_Text_PleaseChoosePokemon" index="9">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Please choose the Pokémon you want.</language>
 	</row>
-	<row id="pl_msg_00000671_00010" index="10">
+	<row id="GTS_Text_PleaseChooseGender" index="10">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Please choose its gender.</language>
 	</row>
-	<row id="pl_msg_00000671_00011" index="11">
+	<row id="GTS_Text_PleaseChooseLevel" index="11">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Please choose the level.</language>
 	</row>
@@ -71,7 +71,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Trade for this Pokémon?</language>
 	</row>
-	<row id="pl_msg_00000671_00017" index="17">
+	<row id="GTS_Text_ChooseYourListedPokemon" index="17">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Choose the Pokémon you are trading.</language>
 	</row>
@@ -89,7 +89,7 @@
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXXXXXXXXXXX</language>
 	</row>
-	<row id="pl_msg_00000671_00021" index="21">
+	<row id="GTS_Text_ChooseYourOfferPokemon" index="21">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Choose the Pokémon you want to offer.</language>
 	</row>
@@ -97,7 +97,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Offer {STRVAR_1 1, 0, 0}?</language>
 	</row>
-	<row id="pl_msg_00000671_00023" index="23">
+	<row id="GTS_Text_ConfirmCriteria" index="23">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Are these conditions OK?</language>
 	</row>
@@ -141,7 +141,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Please change your conditions.</language>
 	</row>
-	<row id="pl_msg_00000671_00034" index="34">
+	<row id="GTS_Text_PleaseWaitAWhile" index="34">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Please wait a while.</language>
 	</row>
@@ -161,19 +161,19 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">GTS check failed.</language>
 	</row>
-	<row id="pl_msg_00000671_00039" index="39">
+	<row id="GTS_Text_MainMenu_Title" index="39">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">GLOBAL TRADE SYSTEM</language>
 	</row>
-	<row id="pl_msg_00000671_00040" index="40">
+	<row id="GTS_Text_Summary" index="40">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">SUMMARY</language>
 	</row>
-	<row id="pl_msg_00000671_00041" index="41">
+	<row id="GTS_Text_SeekPokemon" index="41">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">SEEK POKéMON</language>
 	</row>
-	<row id="pl_msg_00000671_00042" index="42">
+	<row id="GTS_Text_Exit" index="42">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">EXIT</language>
 	</row>
@@ -241,7 +241,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">SEARCH FOR POKéMON</language>
 	</row>
-	<row id="pl_msg_00000671_00059" index="59">
+	<row id="GTS_Text_Criteria_Pokemon" index="59">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">POKéMON</language>
 	</row>
@@ -249,7 +249,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 0, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000671_00061" index="61">
+	<row id="GTS_Text_Criteria_Gender" index="61">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">GENDER</language>
 	</row>
@@ -258,7 +258,7 @@
 		<language name="English"></language>
 		<language name="日本語">XXXXX</language>
 	</row>
-	<row id="pl_msg_00000671_00063" index="63">
+	<row id="GTS_Text_Criteria_Level" index="63">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">LEVEL</language>
 	</row>
@@ -267,11 +267,11 @@
 		<language name="English"></language>
 		<language name="日本語">XXXXX</language>
 	</row>
-	<row id="pl_msg_00000671_00065" index="65">
+	<row id="GTS_Text_Criteria_Search" index="65">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">SEARCH</language>
 	</row>
-	<row id="pl_msg_00000671_00066" index="66">
+	<row id="GTS_Text_Criteria_Back" index="66">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">BACK</language>
 	</row>
@@ -290,7 +290,7 @@
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXX</language>
 	</row>
-	<row id="pl_msg_00000671_00070" index="70">
+	<row id="GTS_Text_Item" index="70">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">ITEM</language>
 	</row>
@@ -379,7 +379,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">IN PARTY</language>
 	</row>
-	<row id="pl_msg_00000671_00090" index="90">
+	<row id="GTS_Text_DepositPokemon" index="90">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">DEPOSIT POKéMON</language>
 	</row>
@@ -398,19 +398,19 @@
 		<language name="English"></language>
 		<language name="日本語">XXX</language>
 	</row>
-	<row id="pl_msg_00000671_00094" index="94">
+	<row id="GTS_Text_Option_Summary" index="94">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">SUMMARY</language>
 	</row>
-	<row id="pl_msg_00000671_00095" index="95">
+	<row id="GTS_Text_Option_Offer" index="95">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">OFFER</language>
 	</row>
-	<row id="pl_msg_00000671_00096" index="96">
+	<row id="GTS_Text_Option_Cancel" index="96">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">CANCEL</language>
 	</row>
-	<row id="pl_msg_00000671_00097" index="97">
+	<row id="GTS_Text_Setup_Wanted" index="97">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">WANTED</language>
 	</row>
@@ -433,15 +433,15 @@
 		<language name="English"></language>
 		<language name="日本語">XXXXX</language>
 	</row>
-	<row id="pl_msg_00000671_00102" index="102">
+	<row id="GTS_Text_LevelTemplate" index="102">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Lv. {STRVAR_1 52, 3, 0}</language>
 	</row>
-	<row id="pl_msg_00000671_00103" index="103">
+	<row id="GTS_Text_CancelPokemonSelection" index="103">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">CANCEL</language>
 	</row>
-	<row id="pl_msg_00000671_00104" index="104">
+	<row id="GTS_Text_CharPad_ABC" index="104">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">ABC</language>
 	</row>
@@ -502,71 +502,71 @@
 		<language name="English"></language>
 		<language name="日本語"></language>
 	</row>
-	<row id="pl_msg_00000671_00118" index="118">
+	<row id="GTS_Text_Either" index="118">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">EITHER</language>
 	</row>
-	<row id="pl_msg_00000671_00119" index="119">
+	<row id="GTS_Text_MaleIcon" index="119">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">♂</language>
 	</row>
-	<row id="pl_msg_00000671_00120" index="120">
+	<row id="GTS_Text_FemaleIcon" index="120">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">♀</language>
 	</row>
-	<row id="pl_msg_00000671_00121" index="121">
+	<row id="GTS_Text_Species_Cancel" index="121">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">CANCEL</language>
 	</row>
-	<row id="pl_msg_00000671_00122" index="122">
+	<row id="GTS_Text_LevelPreference_Any" index="122">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">ANY</language>
 	</row>
-	<row id="pl_msg_00000671_00123" index="123">
+	<row id="GTS_Text_LevelPreference_UnderLevel10" index="123">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Lv. 9 and under</language>
 	</row>
-	<row id="pl_msg_00000671_00124" index="124">
+	<row id="GTS_Text_LevelPreference_Level10AndUp" index="124">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Lv. 10 and up</language>
 	</row>
-	<row id="pl_msg_00000671_00125" index="125">
+	<row id="GTS_Text_LevelPreference_Level20AndUp" index="125">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Lv. 20 and up</language>
 	</row>
-	<row id="pl_msg_00000671_00126" index="126">
+	<row id="GTS_Text_LevelPreference_Level30AndUp" index="126">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Lv. 30 and up</language>
 	</row>
-	<row id="pl_msg_00000671_00127" index="127">
+	<row id="GTS_Text_LevelPreference_Level40AndUp" index="127">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Lv. 40 and up</language>
 	</row>
-	<row id="pl_msg_00000671_00128" index="128">
+	<row id="GTS_Text_LevelPreference_Level50AndUp" index="128">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Lv. 50 and up</language>
 	</row>
-	<row id="pl_msg_00000671_00129" index="129">
+	<row id="GTS_Text_LevelPreference_Level60AndUp" index="129">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Lv. 60 and up</language>
 	</row>
-	<row id="pl_msg_00000671_00130" index="130">
+	<row id="GTS_Text_LevelPreference_Level70AndUp" index="130">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Lv. 70 and up</language>
 	</row>
-	<row id="pl_msg_00000671_00131" index="131">
+	<row id="GTS_Text_LevelPreference_Level80AndUp" index="131">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Lv. 80 and up</language>
 	</row>
-	<row id="pl_msg_00000671_00132" index="132">
+	<row id="GTS_Text_LevelPreference_Level90AndUp" index="132">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Lv. 90 and up</language>
 	</row>
-	<row id="pl_msg_00000671_00133" index="133">
+	<row id="GTS_Text_LevelPreference_Level100" index="133">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Lv. 100</language>
 	</row>
-	<row id="pl_msg_00000671_00134" index="134">
+	<row id="GTS_Text_LevelPreference_Cancel" index="134">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">CANCEL</language>
 	</row>
@@ -649,55 +649,55 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Returning to the reception counter.</language>
 	</row>
-	<row id="pl_msg_00000671_00153" index="153">
+	<row id="GTS_Text_LevelRange_Any" index="153">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">ANY</language>
 	</row>
-	<row id="pl_msg_00000671_00154" index="154">
+	<row id="GTS_Text_LevelRange_1to10" index="154">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Lv. 1 to 10</language>
 	</row>
-	<row id="pl_msg_00000671_00155" index="155">
+	<row id="GTS_Text_LevelRange_11to20" index="155">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Lv. 11 to 20</language>
 	</row>
-	<row id="pl_msg_00000671_00156" index="156">
+	<row id="GTS_Text_LevelRange_21to30" index="156">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Lv. 21 to 30</language>
 	</row>
-	<row id="pl_msg_00000671_00157" index="157">
+	<row id="GTS_Text_LevelRange_31to40" index="157">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Lv. 31 to 40</language>
 	</row>
-	<row id="pl_msg_00000671_00158" index="158">
+	<row id="GTS_Text_LevelRange_41to50" index="158">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Lv. 41 to 50</language>
 	</row>
-	<row id="pl_msg_00000671_00159" index="159">
+	<row id="GTS_Text_LevelRange_51to60" index="159">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Lv. 51 to 60</language>
 	</row>
-	<row id="pl_msg_00000671_00160" index="160">
+	<row id="GTS_Text_LevelRange_61to70" index="160">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Lv. 61 to 70</language>
 	</row>
-	<row id="pl_msg_00000671_00161" index="161">
+	<row id="GTS_Text_LevelRange_71to80" index="161">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Lv. 71 to 80</language>
 	</row>
-	<row id="pl_msg_00000671_00162" index="162">
+	<row id="GTS_Text_LevelRange_81to90" index="162">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Lv. 81 to 90</language>
 	</row>
-	<row id="pl_msg_00000671_00163" index="163">
+	<row id="GTS_Text_LevelRange_91to100" index="163">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Lv. 91 to 100</language>
 	</row>
-	<row id="pl_msg_00000671_00164" index="164">
+	<row id="GTS_Text_LevelRange_Cancel" index="164">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">CANCEL</language>
 	</row>
-	<row id="pl_msg_00000671_00165" index="165">
+	<row id="GTS_Text_Criteria_Location" index="165">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">LOCATION</language>
 	</row>
@@ -705,7 +705,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 36, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000671_00167" index="167">
+	<row id="GTS_Text_Any" index="167">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">ANY</language>
 	</row>

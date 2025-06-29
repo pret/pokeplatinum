@@ -173,7 +173,7 @@ int ov94_02242B14(UnkStruct_ov94_0223FD4C *param0, int param1)
 {
     int v0;
 
-    sub_020397B0(ov94_0223C4B4());
+    sub_020397B0(ov94_GetNetworkStrength());
 
     v0 = (*Unk_ov94_022469A0[param0->unk_2C])(param0);
     return v0;
@@ -345,13 +345,13 @@ static void ov94_02242CAC(UnkStruct_ov94_0223FD4C *param0)
 
 static void ov94_02242D38(UnkStruct_ov94_0223FD4C *param0)
 {
-    Window_Add(param0->unk_04, &param0->unk_F5C, 0, 2, 19, 27, 4, 13, ((1 + (18 + 12)) + 9));
-    Window_FillTilemap(&param0->unk_F5C, 0x0);
+    Window_Add(param0->unk_04, &param0->bottomInstructionWindow, 0, 2, 19, 27, 4, 13, ((1 + (18 + 12)) + 9));
+    Window_FillTilemap(&param0->bottomInstructionWindow, 0x0);
 }
 
 static void ov94_02242D74(UnkStruct_ov94_0223FD4C *param0)
 {
-    Window_Remove(&param0->unk_F5C);
+    Window_Remove(&param0->bottomInstructionWindow);
 }
 
 static void ov94_02242D84(UnkStruct_ov94_0223FD4C *param0)
@@ -368,28 +368,28 @@ static int ov94_02242DA8(UnkStruct_ov94_0223FD4C *param0)
 {
     switch (param0->unk_24) {
     case 7:
-        ov94_02245824(param0, param0->unk_B90, 24, TEXT_SPEED_FAST, 0xf0f);
-        ov94_0223C3F4(param0, 37, 2);
+        ov94_02245824(param0, param0->gtsMessageLoader, 24, TEXT_SPEED_FAST, 0xf0f);
+        ov94_Setunk_2CAndunk_30(param0, 37, 2);
         break;
     case 8:
-        ov94_02245824(param0, param0->unk_B90, 24, TEXT_SPEED_FAST, 0xf0f);
-        ov94_0223C3F4(param0, 37, 7);
+        ov94_02245824(param0, param0->gtsMessageLoader, 24, TEXT_SPEED_FAST, 0xf0f);
+        ov94_Setunk_2CAndunk_30(param0, 37, 7);
         break;
     case 9:
-        ov94_02245824(param0, param0->unk_B90, 24, TEXT_SPEED_FAST, 0xf0f);
-        ov94_0223C3F4(param0, 37, 12);
+        ov94_02245824(param0, param0->gtsMessageLoader, 24, TEXT_SPEED_FAST, 0xf0f);
+        ov94_Setunk_2CAndunk_30(param0, 37, 12);
         break;
     case 10:
-        ov94_02245824(param0, param0->unk_B90, 24, TEXT_SPEED_FAST, 0xf0f);
-        ov94_0223C3F4(param0, 37, 18);
+        ov94_02245824(param0, param0->gtsMessageLoader, 24, TEXT_SPEED_FAST, 0xf0f);
+        ov94_Setunk_2CAndunk_30(param0, 37, 18);
         param0->unk_1110 = 1;
         break;
     case 11:
-        ov94_02245824(param0, param0->unk_B90, 24, TEXT_SPEED_INSTANT, 0xf0f);
+        ov94_02245824(param0, param0->gtsMessageLoader, 24, TEXT_SPEED_INSTANT, 0xf0f);
         param0->unk_2C = 24;
         break;
     case 12:
-        ov94_02245824(param0, param0->unk_B90, 142, TEXT_SPEED_FAST, 0xf0f);
+        ov94_02245824(param0, param0->gtsMessageLoader, 142, TEXT_SPEED_FAST, 0xf0f);
         param0->unk_18 = 1;
         param0->unk_2C = 29;
         break;
@@ -476,7 +476,7 @@ static int ov94_02242F78(UnkStruct_ov94_0223FD4C *param0)
 
     param0->unk_2C = 5;
     param0->unk_14E4 = 0;
-    param0->unk_36 = 1;
+    param0->isPokemonListed = 1;
 
     return 3;
 }
@@ -763,18 +763,18 @@ static int ov94_02243398(UnkStruct_ov94_0223FD4C *param0)
             param0->unk_2C = 26;
             break;
         case 1:
-            param0->unk_36 = 1;
+            param0->isPokemonListed = 1;
 
             switch (ov94_02243E84(param0, &param0->unk_12C)) {
             case 1:
                 ov94_0223C5F4(param0);
-                ov94_02245824(param0, param0->unk_B90, 29, TEXT_SPEED_FAST, 0xf0f);
-                ov94_0223C3F4(param0, 37, 28);
+                ov94_02245824(param0, param0->gtsMessageLoader, 29, TEXT_SPEED_FAST, 0xf0f);
+                ov94_Setunk_2CAndunk_30(param0, 37, 28);
                 break;
             case 2:
                 ov94_0223C5F4(param0);
-                ov94_02245824(param0, param0->unk_B90, 35, TEXT_SPEED_FAST, 0xf0f);
-                ov94_0223C3F4(param0, 37, 28);
+                ov94_02245824(param0, param0->gtsMessageLoader, 35, TEXT_SPEED_FAST, 0xf0f);
+                ov94_Setunk_2CAndunk_30(param0, 37, 28);
                 break;
             case 0:
                 param0->unk_2C = 18;
@@ -783,7 +783,7 @@ static int ov94_02243398(UnkStruct_ov94_0223FD4C *param0)
             }
             break;
         case -3:
-            param0->unk_36 = 0;
+            param0->isPokemonListed = 0;
 
             if (sub_0202DA60(param0->unk_00->unk_00)) {
                 Pokemon *v1 = Pokemon_New(HEAP_ID_62);
@@ -803,7 +803,7 @@ static int ov94_02243398(UnkStruct_ov94_0223FD4C *param0)
             }
             break;
         case -4:
-            param0->unk_36 = 0;
+            param0->isPokemonListed = 0;
 
             if (sub_0202DA60(param0->unk_00->unk_00)) {
                 Pokemon *v2 = Pokemon_New(HEAP_ID_62);
@@ -842,7 +842,7 @@ static int ov94_02243398(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02243554(UnkStruct_ov94_0223FD4C *param0)
 {
-    ov94_0223C4C0(param0, 1, 0);
+    ov94_Setunk_18Andunk_24(param0, 1, 0);
     param0->unk_2C = 36;
 
     return 3;
@@ -869,10 +869,10 @@ static int ov94_02243588(UnkStruct_ov94_0223FD4C *param0)
         case 0:
             if (ov94_02243ED8(param0)) {
                 param0->unk_2C = 22;
-                param0->unk_36 = 0;
+                param0->isPokemonListed = 0;
                 return 3;
             } else {
-                param0->unk_36 = 1;
+                param0->isPokemonListed = 1;
             }
 
             {
@@ -880,7 +880,7 @@ static int ov94_02243588(UnkStruct_ov94_0223FD4C *param0)
             }
             break;
         case -3:
-            param0->unk_36 = 0;
+            param0->isPokemonListed = 0;
             break;
         case -4:
             break;
@@ -912,11 +912,11 @@ static void ov94_0224362C(UnkStruct_ov94_0223FD4C *param0)
 {
     switch (param0->unk_1C) {
     case 1:
-        ov94_0223C4C0(param0, 1, 0);
+        ov94_Setunk_18Andunk_24(param0, 1, 0);
         param0->unk_2C = 36;
         break;
     case 2:
-        ov94_0223C4C0(param0, 2, 3);
+        ov94_Setunk_18Andunk_24(param0, 2, 3);
         param0->unk_2C = 36;
         break;
     }
@@ -995,8 +995,8 @@ static int ov94_02243778(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_0224377C(UnkStruct_ov94_0223FD4C *param0)
 {
-    param0->unk_36 = 1;
-    ov94_0223C4C0(param0, 9, 7);
+    param0->isPokemonListed = 1;
+    ov94_Setunk_18Andunk_24(param0, 9, 7);
     param0->unk_2C = 36;
 
     return 3;
@@ -1004,8 +1004,8 @@ static int ov94_0224377C(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02243794(UnkStruct_ov94_0223FD4C *param0)
 {
-    param0->unk_36 = 0;
-    ov94_0223C4C0(param0, 9, 8);
+    param0->isPokemonListed = 0;
+    ov94_Setunk_18Andunk_24(param0, 9, 8);
     param0->unk_2C = 36;
 
     return 3;
@@ -1013,7 +1013,7 @@ static int ov94_02243794(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_022437AC(UnkStruct_ov94_0223FD4C *param0)
 {
-    ov94_0223C4C0(param0, 9, 9);
+    ov94_Setunk_18Andunk_24(param0, 9, 9);
     param0->unk_2C = 36;
 
     return 3;
@@ -1021,8 +1021,8 @@ static int ov94_022437AC(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_022437C0(UnkStruct_ov94_0223FD4C *param0)
 {
-    param0->unk_36 = 0;
-    ov94_0223C4C0(param0, 9, 10);
+    param0->isPokemonListed = 0;
+    ov94_Setunk_18Andunk_24(param0, 9, 10);
     param0->unk_2C = 30;
 
     return 3;
@@ -1078,9 +1078,9 @@ static int ov94_022437F4(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02243884(UnkStruct_ov94_0223FD4C *param0)
 {
-    ov94_02245824(param0, param0->unk_B90, 141, TEXT_SPEED_FAST, 0xf0f);
-    ov94_0223C3F4(param0, 37, 36);
-    ov94_0223C4C0(param0, 1, 0);
+    ov94_02245824(param0, param0->gtsMessageLoader, 141, TEXT_SPEED_FAST, 0xf0f);
+    ov94_Setunk_2CAndunk_30(param0, 37, 36);
+    ov94_Setunk_18Andunk_24(param0, 1, 0);
     ov94_0223C5F4(param0);
     ov94_022442E4(param0);
 
@@ -1115,14 +1115,14 @@ static void ov94_022438C8(UnkStruct_ov94_0223FD4C *param0)
         break;
     }
 
-    ov94_02245824(param0, param0->unk_B90, v0, TEXT_SPEED_FAST, 0xf0f);
+    ov94_02245824(param0, param0->gtsMessageLoader, v0, TEXT_SPEED_FAST, 0xf0f);
 }
 
 static int ov94_02243920(UnkStruct_ov94_0223FD4C *param0)
 {
     ov94_022438C8(param0);
-    ov94_0223C3F4(param0, 37, 36);
-    ov94_0223C4C0(param0, 0, 0);
+    ov94_Setunk_2CAndunk_30(param0, 37, 36);
+    ov94_Setunk_18Andunk_24(param0, 0, 0);
     ov94_0223C5F4(param0);
 
     return 3;
@@ -1131,8 +1131,8 @@ static int ov94_02243920(UnkStruct_ov94_0223FD4C *param0)
 static int ov94_02243948(UnkStruct_ov94_0223FD4C *param0)
 {
     ov94_022438C8(param0);
-    ov94_0223C3F4(param0, 37, 36);
-    ov94_0223C4C0(param0, 1, 0);
+    ov94_Setunk_2CAndunk_30(param0, 37, 36);
+    ov94_Setunk_18Andunk_24(param0, 1, 0);
     ov94_0223C5F4(param0);
     ov94_022442E4(param0);
 
@@ -1141,7 +1141,7 @@ static int ov94_02243948(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02243974(UnkStruct_ov94_0223FD4C *param0)
 {
-    ov94_0223C3F4(param0, 37, 30);
+    ov94_Setunk_2CAndunk_30(param0, 37, 30);
     ov94_02243EC8(param0, 33, 36);
 
     return 3;
@@ -1201,10 +1201,10 @@ static int ov94_02243A28(UnkStruct_ov94_0223FD4C *param0)
 static int ov94_02243A44(UnkStruct_ov94_0223FD4C *param0)
 {
     if (SaveData_SaveStateMain(param0->unk_00->saveData) == 2) {
-        ov94_0223C4C0(param0, 1, 0);
+        ov94_Setunk_18Andunk_24(param0, 1, 0);
         ov94_0223C5F4(param0);
-        ov94_02245824(param0, param0->unk_B90, param0->unk_28, TEXT_SPEED_FAST, 0xf0f);
-        ov94_0223C3F4(param0, 37, 28);
+        ov94_02245824(param0, param0->gtsMessageLoader, param0->unk_28, TEXT_SPEED_FAST, 0xf0f);
+        ov94_Setunk_2CAndunk_30(param0, 37, 28);
     }
 
     return 3;
@@ -1419,7 +1419,7 @@ static int ov94_02243ED8(UnkStruct_ov94_0223FD4C *param0)
     Pokemon *v0 = (Pokemon *)param0->unk_12C.unk_00.unk_00;
 
     if (sub_0202DA60(param0->unk_00->unk_00) == 0) {
-        if (param0->unk_36) {
+        if (param0->isPokemonListed) {
             return 1;
         }
     }

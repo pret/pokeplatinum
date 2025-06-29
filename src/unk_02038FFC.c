@@ -50,7 +50,7 @@ int WiFiList_GetUserGsProfileId(WiFiList *wifiList)
     return DWC_GetGsProfileId(v0, &v1);
 }
 
-BOOL sub_02039074(SaveData *saveData)
+BOOL WiFiList_HasValidLogin(SaveData *saveData)
 {
     WiFiList *v0 = SaveData_GetWiFiList(saveData);
     DWCUserData *v1 = WiFiList_GetUserData(v0);

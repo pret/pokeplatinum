@@ -397,7 +397,7 @@ static BOOL ScrCmd_0AF(ScriptContext *ctx);
 static BOOL ScrCmd_0B0(ScriptContext *ctx);
 static BOOL ScrCmd_0B1(ScriptContext *ctx);
 static BOOL ScrCmd_336(ScriptContext *ctx);
-static BOOL ScrCmd_0B2(ScriptContext *ctx);
+static BOOL ScrCmd_TryStartGTSApp(ScriptContext *ctx);
 static BOOL ScrCmd_0B3(ScriptContext *ctx);
 static BOOL ScrCmd_StartChooseStarterScene(ScriptContext *ctx);
 static BOOL ScrCmd_SaveChosenStarter(ScriptContext *ctx);
@@ -946,7 +946,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_0AF,
     ScrCmd_0B0,
     ScrCmd_0B1,
-    ScrCmd_0B2,
+    ScrCmd_TryStartGTSApp,
     ScrCmd_0B3,
     ScrCmd_StartChooseStarterScene,
     ScrCmd_SaveChosenStarter,
@@ -1463,7 +1463,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_LockLastTalked,
     ScrCmd_2B5,
     ScrCmd_2B6,
-    ScrCmd_2B7,
+    ScrCmd_PartyHasBadEgg,
     ScrCmd_2B8,
     ScrCmd_ShowUnionRoomMenu,
     ScrCmd_2BA,
@@ -4214,14 +4214,14 @@ static BOOL ScrCmd_336(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_0B2(ScriptContext *ctx)
+static BOOL ScrCmd_TryStartGTSApp(ScriptContext *ctx)
 {
     u16 v0 = ScriptContext_GetVar(ctx);
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
 
-    if (sub_02039074(ctx->fieldSystem->saveData)) {
+    if (WiFiList_HasValidLogin(ctx->fieldSystem->saveData)) {
         *v1 = 1;
-        sub_0203E0FC(ctx->fieldSystem, v0);
+        FieldSystem_LaunchGTSApp(ctx->fieldSystem, v0);
         ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
     } else {
         *v1 = 0;
@@ -7246,7 +7246,7 @@ static BOOL ScrCmd_2A3(ScriptContext *ctx)
 {
     u16 *v0 = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = sub_02039074(ctx->fieldSystem->saveData);
+    *v0 = WiFiList_HasValidLogin(ctx->fieldSystem->saveData);
     return FALSE;
 }
 
@@ -7711,7 +7711,7 @@ static BOOL ScrCmd_2F6(ScriptContext *ctx)
     u16 v1 = ScriptContext_GetVar(ctx);
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
 
-    if (sub_02039074(ctx->fieldSystem->saveData)) {
+    if (WiFiList_HasValidLogin(ctx->fieldSystem->saveData)) {
         *v2 = 1;
         sub_0203E6C0(ctx->fieldSystem, v1, v0);
         ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
@@ -7727,7 +7727,7 @@ static BOOL ScrCmd_2F7(ScriptContext *ctx)
     u16 v0 = ScriptContext_ReadHalfWord(ctx);
     u16 *v1 = FieldSystem_GetVarPointer(ctx->fieldSystem, v0);
 
-    if (sub_02039074(ctx->fieldSystem->saveData)) {
+    if (WiFiList_HasValidLogin(ctx->fieldSystem->saveData)) {
         sub_0205749C(ctx->task, *v1);
     }
 

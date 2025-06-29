@@ -42,16 +42,16 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     WiFiList *unk_08;
     int unk_0C;
     int unk_10;
-    int unk_14;
+    int unk_14; // some kind of pointer
     int unk_18;
     int unk_1C;
     int unk_20;
     int unk_24;
     int unk_28;
-    int unk_2C;
+    int unk_2C; // some kind of instruction pointer
     int unk_30;
     u16 unk_34;
-    u16 unk_36;
+    u16 isPokemonListed;
     u16 unk_38;
     u16 unk_3A;
     int unk_3C;
@@ -86,7 +86,7 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     UnkStruct_ov94_0223BA88_sub3 unk_B80;
     int unk_B88;
     StringTemplate *unk_B8C;
-    MessageLoader *unk_B90;
+    MessageLoader *gtsMessageLoader;
     MessageLoader *unk_B94;
     MessageLoader *unk_B98;
     MessageLoader *unk_B9C;
@@ -94,7 +94,7 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     Strbuf *unk_BA4;
     Strbuf *unk_BA8;
     Strbuf *unk_BAC;
-    Strbuf *unk_BB0;
+    Strbuf *title;
     Strbuf *unk_BB4[10];
     Strbuf *unk_BDC;
     int unk_BE0;
@@ -113,7 +113,9 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     Sprite *unk_F30;
     Sprite *unk_F34[8];
     Sprite *unk_F54[2];
-    Window unk_F5C;
+    // this window provides a running instruction at the bottom of the screen
+    // ex. https://www.youtube.com/watch?v=vH8U16wV7-E&t=94
+    Window bottomInstructionWindow;
     Window unk_F6C;
     Window unk_F7C;
     Window unk_F8C;

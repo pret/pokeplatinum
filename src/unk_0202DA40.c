@@ -7,7 +7,7 @@
 #include "savedata.h"
 
 typedef struct GlobalTrade_t {
-    u8 unk_00[236];
+    u8 storedPokemon[236];
     u16 unk_EC;
     u16 unk_EE;
     u32 unk_F0;
@@ -41,12 +41,12 @@ void sub_0202DA68(GlobalTrade *param0, int param1)
 
 void sub_0202DA70(GlobalTrade *param0, Pokemon *param1)
 {
-    MI_CpuCopyFast(param0->unk_00, (void *)param1, 236);
+    MI_CpuCopyFast(param0->storedPokemon, (void *)param1, 236);
 }
 
 void sub_0202DA7C(GlobalTrade *param0, Pokemon *param1, int param2)
 {
-    MI_CpuCopyFast((void *)param1, param0->unk_00, 236);
+    MI_CpuCopyFast((void *)param1, param0->storedPokemon, 236);
 }
 
 u32 sub_0202DA8C(GlobalTrade *param0)

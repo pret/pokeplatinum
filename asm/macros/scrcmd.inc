@@ -1070,7 +1070,7 @@
     .short 177
     .endm
 
-    .macro ScrCmd_0B2 arg0, arg1
+    .macro TryStartGTSApp arg0, arg1
     .short 178
     .short \arg0
     .short \arg1
@@ -3959,7 +3959,7 @@
     .byte \arg1
     .endm
 
-    .macro ScrCmd_2B7 arg0
+    .macro PartyHasBadEgg arg0
     .short 695
     .short \arg0
     .endm

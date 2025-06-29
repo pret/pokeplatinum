@@ -114,7 +114,7 @@ int ov94_02244950(UnkStruct_ov94_0223FD4C *param0, int param1)
     if (!DWC_CheckInet()) {
         if (param0->unk_00->unk_40) {
             ov94_02245824(param0, param0->unk_B98, 1, TEXT_SPEED_FAST, 0xf0f);
-            ov94_0223C3F4(param0, 12, 2);
+            ov94_Setunk_2CAndunk_30(param0, 12, 2);
             ov94_0223C5D8(param0);
         } else {
             param0->unk_2C = 0;
@@ -130,7 +130,7 @@ int ov94_022449FC(UnkStruct_ov94_0223FD4C *param0, int param1)
 {
     int v0, v1;
 
-    sub_020397B0(ov94_0223C4B4());
+    sub_020397B0(ov94_GetNetworkStrength());
 
     v1 = param0->unk_2C;
     v0 = (*Unk_ov94_02246A40[param0->unk_2C])(param0);
@@ -295,15 +295,15 @@ static void ov94_02244E48(UnkStruct_ov94_0223FD4C *param0)
     Window_Add(param0->unk_04, &param0->unk_F7C, 0, 4, 1, 24, 2, 13, ((((1 + (18 + 12)) + 9) + 27 * 4) + 23 * 16));
     Window_FillTilemap(&param0->unk_F7C, 0x0);
 
-    ov94_022458CC(&param0->unk_F7C, param0->unk_BB0, 0, 1, 1, TEXT_COLOR(15, 14, 0));
+    ov94_022458CC(&param0->unk_F7C, param0->title, 0, 1, 1, TEXT_COLOR(15, 14, 0));
 
-    Window_Add(param0->unk_04, &param0->unk_F5C, 0, 2, 19, 27, 4, 13, ((1 + (18 + 12)) + 9));
-    Window_FillTilemap(&param0->unk_F5C, 0x0);
+    Window_Add(param0->unk_04, &param0->bottomInstructionWindow, 0, 2, 19, 27, 4, 13, ((1 + (18 + 12)) + 9));
+    Window_FillTilemap(&param0->bottomInstructionWindow, 0x0);
 }
 
 static void ov94_02244F00(UnkStruct_ov94_0223FD4C *param0)
 {
-    Window_Remove(&param0->unk_F5C);
+    Window_Remove(&param0->bottomInstructionWindow);
     Window_Remove(&param0->unk_F7C);
     Window_Remove(&param0->unk_F8C);
 }
@@ -312,12 +312,12 @@ static void ov94_02244F2C(UnkStruct_ov94_0223FD4C *param0)
 {
     param0->unk_BAC = Strbuf_Init((90 * 2), HEAP_ID_62);
     param0->unk_BDC = Strbuf_Init((16 * 8 * 2), HEAP_ID_62);
-    param0->unk_BB0 = MessageLoader_GetNewStrbuf(param0->unk_B90, 31);
+    param0->title = MessageLoader_GetNewStrbuf(param0->gtsMessageLoader, 31);
 }
 
 static void ov94_02244F64(UnkStruct_ov94_0223FD4C *param0)
 {
-    Strbuf_Free(param0->unk_BB0);
+    Strbuf_Free(param0->title);
     Strbuf_Free(param0->unk_BDC);
     Strbuf_Free(param0->unk_BAC);
 }
@@ -325,7 +325,7 @@ static void ov94_02244F64(UnkStruct_ov94_0223FD4C *param0)
 static int ov94_02244F8C(UnkStruct_ov94_0223FD4C *param0)
 {
     ov94_02245824(param0, param0->unk_B9C, 17, TEXT_SPEED_FAST, 0xf0f);
-    ov94_0223C3F4(param0, 13, 1);
+    ov94_Setunk_2CAndunk_30(param0, 13, 1);
 
     param0->unk_110E = 1;
 
@@ -339,11 +339,11 @@ static int ov94_02244FC4(UnkStruct_ov94_0223FD4C *param0)
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
             sub_0203848C();
-            ov94_0223C4C0(param0, 0, 0);
+            ov94_Setunk_18Andunk_24(param0, 0, 0);
             param0->unk_2C = 11;
         } else {
             ov94_02245824(param0, param0->unk_B98, 1, TEXT_SPEED_FAST, 0xf0f);
-            ov94_0223C3F4(param0, 12, 2);
+            ov94_Setunk_2CAndunk_30(param0, 12, 2);
             ov94_0223C5D8(param0);
         }
     }
@@ -353,8 +353,8 @@ static int ov94_02244FC4(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_0224502C(UnkStruct_ov94_0223FD4C *param0)
 {
-    ov94_02245824(param0, param0->unk_B90, 7, TEXT_SPEED_FAST, 0xf0f);
-    ov94_0223C3F4(param0, 13, 16);
+    ov94_02245824(param0, param0->gtsMessageLoader, 7, TEXT_SPEED_FAST, 0xf0f);
+    ov94_Setunk_2CAndunk_30(param0, 13, 16);
 
     return 3;
 }
@@ -368,7 +368,7 @@ static int ov94_0224505C(UnkStruct_ov94_0223FD4C *param0)
             if (!DWC_CheckInet()) {
                 param0->unk_2C = 0;
             } else {
-                ov94_0223C4C0(param0, 7, 11);
+                ov94_Setunk_18Andunk_24(param0, 7, 11);
                 param0->unk_1C = 1;
                 param0->unk_2C = 11;
             }
@@ -378,7 +378,7 @@ static int ov94_0224505C(UnkStruct_ov94_0223FD4C *param0)
             }
 
             sub_0203848C();
-            ov94_0223C4C0(param0, 0, 0);
+            ov94_Setunk_18Andunk_24(param0, 0, 0);
             param0->unk_2C = 11;
         }
     }
@@ -389,7 +389,7 @@ static int ov94_0224505C(UnkStruct_ov94_0223FD4C *param0)
 static int ov94_022450C0(UnkStruct_ov94_0223FD4C *param0)
 {
     ov94_02245824(param0, param0->unk_B9C, 26, TEXT_SPEED_FAST, 0xf0f);
-    ov94_0223C3F4(param0, 12, 18);
+    ov94_Setunk_2CAndunk_30(param0, 12, 18);
 
     return 3;
 }
@@ -399,7 +399,7 @@ static int ov94_022450EC(UnkStruct_ov94_0223FD4C *param0)
     sub_0203848C();
 
     DWC_CleanupInet();
-    ov94_0223C4C0(param0, 0, 0);
+    ov94_Setunk_18Andunk_24(param0, 0, 0);
     param0->unk_2C = 19;
 
     return 3;
@@ -408,7 +408,7 @@ static int ov94_022450EC(UnkStruct_ov94_0223FD4C *param0)
 static int ov94_0224510C(UnkStruct_ov94_0223FD4C *param0)
 {
     ov94_02245824(param0, param0->unk_B9C, 27, TEXT_SPEED_FAST, 0xf0f);
-    ov94_0223C3F4(param0, 20, 11);
+    ov94_Setunk_2CAndunk_30(param0, 20, 11);
 
     return 3;
 }
@@ -656,7 +656,7 @@ static int ov94_022453EC(UnkStruct_ov94_0223FD4C *param0)
             case 0:
                 switch (param0->unk_11A8.unk_04) {
                 case 0:
-                    ov94_0223C4C0(param0, 1, 0);
+                    ov94_Setunk_18Andunk_24(param0, 1, 0);
                     param0->unk_2C = 11;
                     break;
                 case 3:
@@ -769,7 +769,7 @@ static int ov94_022455D0(UnkStruct_ov94_0223FD4C *param0)
         if (v0 == 0xfffffffe) {
             param0->unk_2C = 0;
         } else {
-            ov94_0223C4C0(param0, 0, 0);
+            ov94_Setunk_18Andunk_24(param0, 0, 0);
             param0->unk_2C = 11;
         }
     }
@@ -817,8 +817,8 @@ static int ov94_02245608(UnkStruct_ov94_0223FD4C *param0)
         break;
     }
 
-    ov94_02245824(param0, param0->unk_B90, v0, TEXT_SPEED_FAST, 0xf0f);
-    ov94_0223C3F4(param0, 12, 22);
+    ov94_02245824(param0, param0->gtsMessageLoader, v0, TEXT_SPEED_FAST, 0xf0f);
+    ov94_Setunk_2CAndunk_30(param0, 12, 22);
 
     return 3;
 }
@@ -827,7 +827,7 @@ static int ov94_022456CC(UnkStruct_ov94_0223FD4C *param0)
 {
     switch (param0->unk_14E0) {
     case 0:
-        ov94_02245824(param0, param0->unk_B90, 178, TEXT_SPEED_FAST, 0xf0f);
+        ov94_02245824(param0, param0->gtsMessageLoader, 178, TEXT_SPEED_FAST, 0xf0f);
         param0->unk_14E0++;
         break;
     case 1:
@@ -838,7 +838,7 @@ static int ov94_022456CC(UnkStruct_ov94_0223FD4C *param0)
         }
         break;
     case 2:
-        ov94_02245824(param0, param0->unk_B90, 179, TEXT_SPEED_FAST, 0xf0f);
+        ov94_02245824(param0, param0->gtsMessageLoader, 179, TEXT_SPEED_FAST, 0xf0f);
         param0->unk_14E0++;
         break;
     case 3:
@@ -850,7 +850,7 @@ static int ov94_022456CC(UnkStruct_ov94_0223FD4C *param0)
         param0->unk_14E2++;
 
         if (param0->unk_14E2 > 30) {
-            ov94_0223C4C0(param0, 0, 0);
+            ov94_Setunk_18Andunk_24(param0, 0, 0);
             param0->unk_2C = 11;
         }
         break;
@@ -897,10 +897,10 @@ void ov94_02245824(UnkStruct_ov94_0223FD4C *param0, MessageLoader *param1, int p
 
     StringTemplate_Format(param0->unk_B8C, param0->unk_BAC, v0);
     Strbuf_Free(v0);
-    Window_FillTilemap(&param0->unk_F5C, 0xf0f);
-    Window_DrawMessageBoxWithScrollCursor(&param0->unk_F5C, 0, 1, 10);
+    Window_FillTilemap(&param0->bottomInstructionWindow, 0xf0f);
+    Window_DrawMessageBoxWithScrollCursor(&param0->bottomInstructionWindow, 0, 1, 10);
 
-    param0->unk_BE0 = Text_AddPrinterWithParams(&param0->unk_F5C, FONT_MESSAGE, param0->unk_BAC, 0, 0, param3, NULL);
+    param0->unk_BE0 = Text_AddPrinterWithParams(&param0->bottomInstructionWindow, FONT_MESSAGE, param0->unk_BAC, 0, 0, param3, NULL);
     param0->unk_10E0 = 0;
 }
 
@@ -966,7 +966,7 @@ static void ov94_022459B4(UnkStruct_ov94_0223FD4C *param0, int param1, int param
     }
 
     StringTemplate_SetNumber(param0->unk_B8C, 0, param2, 5, 2, 1);
-    Window_EraseMessageBox(&param0->unk_F5C, 1);
+    Window_EraseMessageBox(&param0->bottomInstructionWindow, 1);
 
     ov94_0224593C(param0, v0);
 }

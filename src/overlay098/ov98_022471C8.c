@@ -310,7 +310,7 @@ int ov98_022471C8(ApplicationManager *appMan, int *param1)
     InitializeTouchPad(4);
 
     v0->unk_20 = StringTemplate_New(11, 64, HEAP_ID_109);
-    v0->unk_24 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0671, HEAP_ID_109);
+    v0->unk_24 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_GTS, HEAP_ID_109);
     v0->unk_2C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0674, HEAP_ID_109);
     v0->unk_30 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0695, HEAP_ID_109);
     v0->unk_28 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_109);
@@ -324,7 +324,7 @@ int ov98_022471C8(ApplicationManager *appMan, int *param1)
 
     switch (ov98_02246EA4(v0->unk_00)) {
     case 12:
-        if (!DWC_CheckInet() && (sub_02039074(v0->unk_00->saveData) == 1)) {
+        if (!DWC_CheckInet() && (WiFiList_HasValidLogin(v0->unk_00->saveData) == 1)) {
             v0->unk_08 = 12;
             sub_02038548(v0->unk_00->saveData);
             sub_02039734();
@@ -1469,7 +1469,7 @@ static int ov98_02248804(UnkStruct_ov98_02247704 *param0)
         }
     } break;
     case 4:
-        if (sub_02039074(param0->unk_00->saveData) == 0) {
+        if (WiFiList_HasValidLogin(param0->unk_00->saveData) == 0) {
             ov98_02246E88(param0->unk_00, 5, 0);
             ov98_02246E9C(param0->unk_00, 12);
             param0->unk_08 = 29;

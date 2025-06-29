@@ -6,7 +6,7 @@
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXXXXXXXXXXXX</language>
 	</row>
-	<row id="pl_msg_00000214_00001" index="1">
+	<row id="NetworkError_Text_Generic" index="1">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">A communication error has occurred.\n\nIf you were in the Union Room, you\nwill be returned there.\nIn all other cases, you will be\nreturned to wherever you last\nsaved.\nPlease press the A Button.</language>
 	</row>
@@ -18,7 +18,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">A communication error has occurred.\n\nYou will be returned to the title\nscreen.\nPlease press the A Button.</language>
 	</row>
-	<row id="pl_msg_00000214_00004" index="4">
+	<row id="NetworkError_Text_GTSUnreachable" index="4">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Either the GTS is experiencing high\ntraffic volumes or the service is down.\nPlease wait a while and try again.\n\nYou have been disconnected from\nNintendo Wi-Fi Connection.\nPlease press the A Button.</language>
 	</row>

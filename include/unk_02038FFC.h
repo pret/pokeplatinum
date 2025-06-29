@@ -8,6 +8,6 @@
 int sub_02038FFC(int heapID);
 void sub_02039034(WiFiList *param0);
 int WiFiList_GetUserGsProfileId(WiFiList *wifiList);
-BOOL sub_02039074(SaveData *saveData);
+BOOL WiFiList_HasValidLogin(SaveData *saveData);
 
 #endif // POKEPLATINUM_UNK_02038FFC_H

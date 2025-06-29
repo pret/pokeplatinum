@@ -83,7 +83,7 @@ static int (*Unk_ov94_0224674C[][3])(UnkStruct_ov94_0223FD4C *, int) = {
 
 UnkStruct_ov94_0223FD4C *Unk_ov94_02246C08;
 
-int ov94_0223BCB0(ApplicationManager *appMan, int *param1)
+int GTSApplication_Init(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov94_0223FD4C *v0;
 
@@ -116,7 +116,7 @@ int ov94_0223BCB0(ApplicationManager *appMan, int *param1)
         }
 
         v0->unk_B8C = StringTemplate_New(11, 64, HEAP_ID_62);
-        v0->unk_B90 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0671, HEAP_ID_62);
+        v0->gtsMessageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_GTS, HEAP_ID_62);
         v0->unk_B98 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0674, HEAP_ID_62);
         v0->unk_B9C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0695, HEAP_ID_62);
         v0->unk_B94 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_62);
@@ -145,7 +145,7 @@ int ov94_0223BCB0(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-int ov94_0223BE2C(ApplicationManager *appMan, int *param1)
+int GTSApplication_Main(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov94_0223FD4C *v0 = ApplicationManager_Data(appMan);
 
@@ -202,7 +202,7 @@ int ov94_0223BE2C(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-int ov94_0223BF54(ApplicationManager *appMan, int *param1)
+int GTSApplication_Exit(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov94_0223FD4C *v0 = ApplicationManager_Data(appMan);
     int v1;
@@ -216,7 +216,7 @@ int ov94_0223BF54(ApplicationManager *appMan, int *param1)
     MessageLoader_Free(v0->unk_B94);
     MessageLoader_Free(v0->unk_B9C);
     MessageLoader_Free(v0->unk_B98);
-    MessageLoader_Free(v0->unk_B90);
+    MessageLoader_Free(v0->gtsMessageLoader);
     MessageLoader_Free(v0->unk_BA0);
     StringTemplate_Free(v0->unk_B8C);
 
@@ -272,7 +272,7 @@ static void ov94_0223C03C(UnkStruct_ov94_0223FD4C *param0, ApplicationManager *a
     param0->unk_00 = (UnkStruct_0203E0FC *)ApplicationManager_Args(appMan);
     param0->unk_14 = 0;
 
-    ov94_0223C4C0(param0, 0, 0);
+    ov94_Setunk_18Andunk_24(param0, 0, 0);
 
     param0->unk_10C = 0;
     param0->unk_B7A.species = SPECIES_NONE;
@@ -416,7 +416,7 @@ Menu *ov94_0223C3C0(BgConfig *param0, int param1, int param2)
     return Menu_MakeYesNoChoice(param0, &v0, (1 + (18 + 12)), 11, 62);
 }
 
-void ov94_0223C3F4(UnkStruct_ov94_0223FD4C *param0, int param1, int param2)
+void ov94_Setunk_2CAndunk_30(UnkStruct_ov94_0223FD4C *param0, int param1, int param2)
 {
     param0->unk_2C = param1;
     param0->unk_30 = param2;
@@ -466,12 +466,12 @@ static void ov94_0223C490(DWCAllocType param0, void *param1, u32 param2)
     OS_RestoreInterrupts(v0);
 }
 
-int ov94_0223C4B4(void)
+int ov94_GetNetworkStrength(void)
 {
     return WM_LINK_LEVEL_3 - DWC_GetLinkLevel();
 }
 
-void ov94_0223C4C0(UnkStruct_ov94_0223FD4C *param0, int param1, int param2)
+void ov94_Setunk_18Andunk_24(UnkStruct_ov94_0223FD4C *param0, int param1, int param2)
 {
     param0->unk_18 = param1;
     param0->unk_24 = param2;
@@ -548,7 +548,7 @@ static void ov94_0223C598(UnkStruct_ov94_0223FD4C *param0)
 
 void ov94_0223C5D8(UnkStruct_ov94_0223FD4C *param0)
 {
-    param0->unk_10DC = Window_AddWaitDial(&param0->unk_F5C, 1);
+    param0->unk_10DC = Window_AddWaitDial(&param0->bottomInstructionWindow, 1);
 }
 
 void ov94_0223C5F4(UnkStruct_ov94_0223FD4C *param0)

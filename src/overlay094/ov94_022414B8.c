@@ -47,11 +47,13 @@
 #include "unk_0202C858.h"
 #include "unk_020393C8.h"
 
+#include "res/text/bank/gts.h"
+
 typedef struct {
     int unk_00;
     s16 level;
     s16 level2;
-} UnkStruct_ov94_022460AC;
+} GTSLevelRangeMessage;
 
 static void ov94_0224158C(UnkStruct_ov94_0223FD4C *param0, int param1, int param2, int param3, u16 param4);
 static void ov94_022415F8(BgConfig *param0);
@@ -80,7 +82,7 @@ static int ov94_02242040(UnkStruct_ov94_0223FD4C *param0);
 static int ov94_02242068(UnkStruct_ov94_0223FD4C *param0);
 static int ov94_0224208C(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_02242668(UnkStruct_ov94_0223BA88 *param0, UnkStruct_ov94_0223FD4C *param1);
-static int ov94_02242718(StringList **param0, MessageLoader *param1, MessageLoader *param2, u16 *param3, u8 *param4, int param5, int param6, Pokedex *param7);
+static int ov94_02242718(StringList **param0, MessageLoader *param1, MessageLoader *gtsMessageLoader, u16 *param3, u8 *param4, int param5, int param6, Pokedex *param7);
 static TextColor ov94_022421E8(int param0, u32 param1);
 
 static int (*Unk_ov94_0224695C[])(UnkStruct_ov94_0223FD4C *) = {
@@ -112,35 +114,35 @@ static const u16 Unk_ov94_02245FE8[6][2] = {
     { 0x1, 0x11 }
 };
 
-static const UnkStruct_ov94_022460AC Unk_ov94_0224610C[] = {
-    { 0x7A, 0x0, 0x0 },
-    { 0x7B, 0x0, 0x9 },
-    { 0x7C, 0xA, 0x0 },
-    { 0x7D, 0x14, 0x0 },
-    { 0x7E, 0x1E, 0x0 },
-    { 0x7F, 0x28, 0x0 },
-    { 0x80, 0x32, 0x0 },
-    { 0x81, 0x3C, 0x0 },
-    { 0x82, 0x46, 0x0 },
-    { 0x83, 0x50, 0x0 },
-    { 0x84, 0x5A, 0x0 },
-    { 0x85, 0x64, 0x64 },
-    { 0x86, 0x0, 0x0 }
+static const GTSLevelRangeMessage GTS_LEVEL_PREFERENCE_MESSAGES[] = {
+    { GTS_Text_LevelPreference_Any, 0x0, 0x0 },
+    { GTS_Text_LevelPreference_UnderLevel10, 0x0, 0x9 },
+    { GTS_Text_LevelPreference_Level10AndUp, 0xA, 0x0 },
+    { GTS_Text_LevelPreference_Level20AndUp, 0x14, 0x0 },
+    { GTS_Text_LevelPreference_Level30AndUp, 0x1E, 0x0 },
+    { GTS_Text_LevelPreference_Level40AndUp, 0x28, 0x0 },
+    { GTS_Text_LevelPreference_Level50AndUp, 0x32, 0x0 },
+    { GTS_Text_LevelPreference_Level60AndUp, 0x3C, 0x0 },
+    { GTS_Text_LevelPreference_Level70AndUp, 0x46, 0x0 },
+    { GTS_Text_LevelPreference_Level80AndUp, 0x50, 0x0 },
+    { GTS_Text_LevelPreference_Level90AndUp, 0x5A, 0x0 },
+    { GTS_Text_LevelPreference_Level100, 0x64, 0x64 },
+    { GTS_Text_LevelPreference_Cancel, 0x0, 0x0 }
 };
 
-static const UnkStruct_ov94_022460AC Unk_ov94_022460AC[] = {
-    { 0x99, 0x0, 0x0 },
-    { 0x9A, 0x1, 0xA },
-    { 0x9B, 0xB, 0x14 },
-    { 0x9C, 0x15, 0x1E },
-    { 0x9D, 0x1F, 0x28 },
-    { 0x9E, 0x29, 0x32 },
-    { 0x9F, 0x33, 0x3C },
-    { 0xA0, 0x3D, 0x46 },
-    { 0xA1, 0x47, 0x50 },
-    { 0xA2, 0x51, 0x5A },
-    { 0xA3, 0x5B, 0x64 },
-    { 0xA4, 0x0, 0x0 }
+static const GTSLevelRangeMessage GTS_LEVEL_RANGE_MESSAGES[] = {
+    { GTS_Text_LevelRange_Any, 0x0, 0x0 },
+    { GTS_Text_LevelRange_1to10, 0x1, 0xA },
+    { GTS_Text_LevelRange_11to20, 0xB, 0x14 },
+    { GTS_Text_LevelRange_21to30, 0x15, 0x1E },
+    { GTS_Text_LevelRange_31to40, 0x1F, 0x28 },
+    { GTS_Text_LevelRange_41to50, 0x29, 0x32 },
+    { GTS_Text_LevelRange_51to60, 0x33, 0x3C },
+    { GTS_Text_LevelRange_61to70, 0x3D, 0x46 },
+    { GTS_Text_LevelRange_71to80, 0x47, 0x50 },
+    { GTS_Text_LevelRange_81to90, 0x51, 0x5A },
+    { GTS_Text_LevelRange_91to100, 0x5B, 0x64 },
+    { GTS_Text_LevelRange_Cancel, 0x0, 0x0 }
 };
 
 __attribute__((aligned(4))) static const u16 Unk_ov94_02246174[] = {
@@ -288,8 +290,8 @@ int ov94_022414B8(UnkStruct_ov94_0223FD4C *param0, int param1)
     StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
 
     ov94_02245934(param0);
-    ov94_022422D4(param0->unk_B90, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[0], 0, 3, -1);
-    ov94_022423FC(param0->unk_B90, param0->unk_B8C, &param0->unk_FCC[3], param0->unk_114, &param0->unk_B70);
+    ov94_022422D4(param0->gtsMessageLoader, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[0], 0, 3, -1);
+    ov94_022423FC(param0->gtsMessageLoader, param0->unk_B8C, &param0->unk_FCC[3], param0->unk_114, &param0->unk_B70);
 
     param0->unk_2C = 0;
 
@@ -300,7 +302,7 @@ int ov94_02241548(UnkStruct_ov94_0223FD4C *param0, int param1)
 {
     int v0;
 
-    sub_020397B0(ov94_0223C4B4());
+    sub_020397B0(ov94_GetNetworkStrength());
 
     v0 = (*Unk_ov94_0224695C[param0->unk_2C])(param0);
     return v0;
@@ -320,13 +322,13 @@ int ov94_02241568(UnkStruct_ov94_0223FD4C *param0, int param1)
 
 static void ov94_0224158C(UnkStruct_ov94_0223FD4C *param0, int param1, int param2, int param3, u16 param4)
 {
-    Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_B90, param1);
+    Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->gtsMessageLoader, param1);
 
     StringTemplate_Format(param0->unk_B8C, param0->unk_BAC, v0);
-    Window_FillTilemap(&param0->unk_F5C, 0xf0f);
-    Window_DrawMessageBoxWithScrollCursor(&param0->unk_F5C, 0, 1, 10);
+    Window_FillTilemap(&param0->bottomInstructionWindow, 0xf0f);
+    Window_DrawMessageBoxWithScrollCursor(&param0->bottomInstructionWindow, 0, 1, 10);
 
-    param0->unk_BE0 = Text_AddPrinterWithParams(&param0->unk_F5C, FONT_MESSAGE, param0->unk_BAC, 0, 0, param2, NULL);
+    param0->unk_BE0 = Text_AddPrinterWithParams(&param0->bottomInstructionWindow, FONT_MESSAGE, param0->unk_BAC, 0, 0, param2, NULL);
 
     Strbuf_Free(v0);
 }
@@ -467,10 +469,10 @@ static void ov94_022417A0(UnkStruct_ov94_0223FD4C *param0)
     Window_Add(param0->unk_04, &param0->unk_F7C, 0, 1, 1, 28, 2, 13, ((1 + (18 + 12)) + 9));
     Window_FillTilemap(&param0->unk_F7C, 0x0);
 
-    ov94_022458CC(&param0->unk_F7C, param0->unk_BB0, 0, 1, 0, TEXT_COLOR(15, 14, 0));
+    ov94_022458CC(&param0->unk_F7C, param0->title, 0, 1, 0, TEXT_COLOR(15, 14, 0));
 
-    Window_Add(param0->unk_04, &param0->unk_F5C, 0, 2, 21, 27, 2, 13, (((1 + (18 + 12)) + 9) + 28 * 2));
-    Window_FillTilemap(&param0->unk_F5C, 0x0);
+    Window_Add(param0->unk_04, &param0->bottomInstructionWindow, 0, 2, 21, 27, 2, 13, (((1 + (18 + 12)) + 9) + 28 * 2));
+    Window_FillTilemap(&param0->bottomInstructionWindow, 0x0);
 
     for (v0 = 0; v0 < 6; v0++) {
         Window_Add(param0->unk_04, &param0->unk_FCC[v0], 0, Unk_ov94_02245FE8[v0][0], Unk_ov94_02245FE8[v0][1], 11, 2, 13, ((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + (11 * 2) * v0);
@@ -487,14 +489,14 @@ static void ov94_02241880(UnkStruct_ov94_0223FD4C *param0)
         Window_Remove(&param0->unk_FCC[v0]);
     }
 
-    Window_Remove(&param0->unk_F5C);
+    Window_Remove(&param0->bottomInstructionWindow);
     Window_Remove(&param0->unk_F7C);
 }
 
 static void ov94_022418B8(UnkStruct_ov94_0223FD4C *param0)
 {
     param0->unk_BAC = Strbuf_Init((90 * 2), HEAP_ID_62);
-    param0->unk_BB0 = MessageLoader_GetNewStrbuf(param0->unk_B90, 90);
+    param0->title = MessageLoader_GetNewStrbuf(param0->gtsMessageLoader, GTS_Text_DepositPokemon);
     param0->unk_10E4 = Heap_AllocFromHeap(HEAP_ID_62, sizeof(UnkStruct_ov94_0223FD4C_sub3));
 
     MI_CpuClearFast(param0->unk_10E4, sizeof(UnkStruct_ov94_0223FD4C_sub3));
@@ -511,14 +513,14 @@ static void ov94_02241920(UnkStruct_ov94_0223FD4C *param0)
     Heap_FreeToHeap(param0->unk_10E4->unk_18);
     Heap_FreeToHeap(param0->unk_10E4);
     Strbuf_Free(param0->unk_BAC);
-    Strbuf_Free(param0->unk_BB0);
+    Strbuf_Free(param0->title);
 }
 
 static int ov94_0224195C(UnkStruct_ov94_0223FD4C *param0)
 {
     if (IsScreenFadeDone()) {
-        ov94_0224158C(param0, 9, TEXT_SPEED_FAST, 0, 0xf0f);
-        ov94_0223C3F4(param0, 16, 1);
+        ov94_0224158C(param0, GTS_Text_PleaseChoosePokemon, TEXT_SPEED_FAST, 0, 0xf0f);
+        ov94_Setunk_2CAndunk_30(param0, 16, 1);
     }
 
     return 3;
@@ -527,7 +529,7 @@ static int ov94_0224195C(UnkStruct_ov94_0223FD4C *param0)
 static int ov94_02241990(UnkStruct_ov94_0223FD4C *param0)
 {
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
-        ov94_0223C4C0(param0, 5, 5);
+        ov94_Setunk_18Andunk_24(param0, 5, 5);
         param0->unk_2C = 2;
     }
 
@@ -544,7 +546,7 @@ static int ov94_02241990(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02241A1C(UnkStruct_ov94_0223FD4C *param0)
 {
-    param0->unk_10D8 = ov94_022426A8(param0, &param0->unk_10CC, &param0->unk_F9C[0], param0->unk_B90);
+    param0->unk_10D8 = ov94_022426A8(param0, &param0->unk_10CC, &param0->unk_F9C[0], param0->gtsMessageLoader);
     param0->unk_108 = 0xffff;
     param0->unk_2C = 4;
 
@@ -572,10 +574,10 @@ static int ov94_02241A58(UnkStruct_ov94_0223FD4C *param0)
         ListMenu_Free(param0->unk_10D8, &param0->unk_10E4->unk_06, &param0->unk_10E4->unk_04);
         StringList_Free(param0->unk_10CC);
         Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
-        Window_EraseMessageBox(&param0->unk_F5C, 0);
+        Window_EraseMessageBox(&param0->bottomInstructionWindow, 0);
         Window_Remove(&param0->unk_F9C[0]);
         Window_Remove(&param0->unk_F9C[1]);
-        ov94_0223C4C0(param0, 5, 5);
+        ov94_Setunk_18Andunk_24(param0, 5, 5);
         param0->unk_2C = 2;
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         break;
@@ -586,7 +588,7 @@ static int ov94_02241A58(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02241B2C(UnkStruct_ov94_0223FD4C *param0)
 {
-    param0->unk_10D8 = ov94_022427C0(param0, &param0->unk_10CC, &param0->unk_F9C[1], param0->unk_B90, param0->unk_B94, param0->unk_10E4, param0->unk_00->unk_10);
+    param0->unk_10D8 = ov94_022427C0(param0, &param0->unk_10CC, &param0->unk_F9C[1], param0->gtsMessageLoader, param0->unk_B94, param0->unk_10E4, param0->unk_00->unk_10);
     param0->unk_108 = 0xffff;
     param0->unk_2C = 6;
 
@@ -647,7 +649,7 @@ static int ov94_02241BAC(UnkStruct_ov94_0223FD4C *param0)
             v1 = 3;
         }
 
-        ov94_022422D4(param0->unk_B90, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[0], param0->unk_B74.species, v1, -1);
+        ov94_022422D4(param0->gtsMessageLoader, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[0], param0->unk_B74.species, v1, -1);
         ov94_02242AC4(&param0->unk_111C, param0->unk_10E4->unk_06 + param0->unk_10E4->unk_04, param0->unk_10E4->unk_0A, param0->unk_10E4->unk_08);
         break;
     }
@@ -657,8 +659,8 @@ static int ov94_02241BAC(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02241D08(UnkStruct_ov94_0223FD4C *param0)
 {
-    ov94_0224158C(param0, 10, TEXT_SPEED_FAST, 0, 0xf0f);
-    ov94_0223C3F4(param0, 16, 8);
+    ov94_0224158C(param0, GTS_Text_PleaseChooseGender, TEXT_SPEED_FAST, 0, 0xf0f);
+    ov94_Setunk_2CAndunk_30(param0, 16, 8);
 
     Window_Add(param0->unk_04, &param0->unk_F9C[0], 0, 21, 10, 10, 8, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 11 * 2 * 6));
     Window_FillTilemap(&param0->unk_F9C[0], 0x0);
@@ -668,7 +670,7 @@ static int ov94_02241D08(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02241D64(UnkStruct_ov94_0223FD4C *param0)
 {
-    param0->unk_10D8 = ov94_02242840(&param0->unk_10CC, &param0->unk_F9C[0], param0->unk_B90);
+    param0->unk_10D8 = ov94_02242840(&param0->unk_10CC, &param0->unk_F9C[0], param0->gtsMessageLoader);
     param0->unk_108 = 0xffff;
     param0->unk_2C = 9;
 
@@ -684,7 +686,7 @@ static int ov94_02241DA0(UnkStruct_ov94_0223FD4C *param0)
         ListMenu_Free(param0->unk_10D8, NULL, NULL);
         StringList_Free(param0->unk_10CC);
         Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
-        Window_EraseMessageBox(&param0->unk_F5C, 0);
+        Window_EraseMessageBox(&param0->bottomInstructionWindow, 0);
         Window_Remove(&param0->unk_F9C[0]);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->unk_2C = 0;
@@ -700,7 +702,7 @@ static int ov94_02241DA0(UnkStruct_ov94_0223FD4C *param0)
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->unk_B74.gender = v0 + 1;
         param0->unk_2C = 10;
-        ov94_022422D4(param0->unk_B90, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[0], param0->unk_B74.species, param0->unk_B74.gender, -1);
+        ov94_022422D4(param0->gtsMessageLoader, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[0], param0->unk_B74.species, param0->unk_B74.gender, -1);
         break;
     }
 
@@ -709,8 +711,8 @@ static int ov94_02241DA0(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02241E8C(UnkStruct_ov94_0223FD4C *param0)
 {
-    ov94_0224158C(param0, 11, TEXT_SPEED_FAST, 0, 0xf0f);
-    ov94_0223C3F4(param0, 16, 11);
+    ov94_0224158C(param0, GTS_Text_PleaseChooseLevel, TEXT_SPEED_FAST, 0, 0xf0f);
+    ov94_Setunk_2CAndunk_30(param0, 16, 11);
 
     Window_Add(param0->unk_04, &param0->unk_F9C[0], 0, 15, 5, 16, 13, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 11 * 2 * 6));
     Window_FillTilemap(&param0->unk_F9C[0], 0x0);
@@ -720,7 +722,7 @@ static int ov94_02241E8C(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02241EE8(UnkStruct_ov94_0223FD4C *param0)
 {
-    param0->unk_10D8 = ov94_022428B0(&param0->unk_10CC, &param0->unk_F9C[0], param0->unk_B90, 0);
+    param0->unk_10D8 = ov94_022428B0(&param0->unk_10CC, &param0->unk_F9C[0], param0->gtsMessageLoader, 0);
     param0->unk_108 = 0xffff;
     param0->unk_2C = 12;
 
@@ -739,7 +741,7 @@ static int ov94_02241F28(UnkStruct_ov94_0223FD4C *param0)
         ListMenu_Free(param0->unk_10D8, NULL, NULL);
         StringList_Free(param0->unk_10CC);
         Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
-        Window_EraseMessageBox(&param0->unk_F5C, 0);
+        Window_EraseMessageBox(&param0->bottomInstructionWindow, 0);
         Window_Remove(&param0->unk_F9C[0]);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
 
@@ -757,7 +759,7 @@ static int ov94_02241F28(UnkStruct_ov94_0223FD4C *param0)
         Window_Remove(&param0->unk_F9C[0]);
         ov94_02242934(&param0->unk_B74, v0, 0);
         param0->unk_2C = 13;
-        ov94_022422D4(param0->unk_B90, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[0], param0->unk_B74.species, param0->unk_B74.gender, ov94_02242970(param0->unk_B74.level, param0->unk_B74.level2, 0));
+        ov94_022422D4(param0->gtsMessageLoader, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[0], param0->unk_B74.species, param0->unk_B74.gender, ov94_02242970(param0->unk_B74.level, param0->unk_B74.level2, 0));
         break;
     }
 
@@ -766,8 +768,8 @@ static int ov94_02241F28(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02242040(UnkStruct_ov94_0223FD4C *param0)
 {
-    ov94_0224158C(param0, 23, TEXT_SPEED_FAST, 0, 0xf0f);
-    ov94_0223C3F4(param0, 16, 14);
+    ov94_0224158C(param0, GTS_Text_ConfirmCriteria, TEXT_SPEED_FAST, 0, 0xf0f);
+    ov94_Setunk_2CAndunk_30(param0, 16, 14);
 
     return 3;
 }
@@ -786,10 +788,10 @@ static int ov94_0224208C(UnkStruct_ov94_0223FD4C *param0)
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
-            ov94_0223C4C0(param0, 5, 5);
+            ov94_Setunk_18Andunk_24(param0, 5, 5);
             param0->unk_2C = 2;
         } else {
-            ov94_0223C4C0(param0, 7, 7);
+            ov94_Setunk_18Andunk_24(param0, 7, 7);
             param0->unk_2C = 2;
             param0->unk_1110 = 1;
             ov94_02242668(&param0->unk_12C, param0);
@@ -838,7 +840,7 @@ void ov94_02242158(Window *param0, MessageLoader *param1, int param2, int param3
     }
 }
 
-void ov94_0224218C(Window *param0, MessageLoader *param1, MessageLoader *param2, int param3, int param4, int param5, TextColor param6)
+void ov94_0224218C(Window *param0, MessageLoader *param1, MessageLoader *gtsMessageLoader, int param3, int param4, int param5, TextColor param6)
 {
     Strbuf *v0;
 
@@ -847,7 +849,7 @@ void ov94_0224218C(Window *param0, MessageLoader *param1, MessageLoader *param2,
         ov94_02245900(param0, v0, 0, param5, param4, param6);
         Strbuf_Free(v0);
     } else {
-        v0 = MessageLoader_GetNewStrbuf(param2, 167);
+        v0 = MessageLoader_GetNewStrbuf(gtsMessageLoader, GTS_Text_Any);
         ov94_02245900(param0, v0, 0, param5, param4, param6);
         Strbuf_Free(v0);
     }
@@ -864,14 +866,14 @@ static TextColor ov94_022421E8(int param0, u32 param1)
     return param1;
 }
 
-const int Unk_ov94_02245FD8[] = {
-    0x76,
-    0x77,
-    0x78,
-    0x76
+const int GTS_GENDER_PREFERENCE_MESSAGES[] = {
+    GTS_Text_Either,
+    GTS_Text_MaleIcon,
+    GTS_Text_FemaleIcon,
+    GTS_Text_Either
 };
 
-void ov94_02242204(Window *param0, MessageLoader *param1, int param2, int param3, int param4, int param5, u32 param6)
+void ov94_02242204(Window *param0, MessageLoader *gtsMessageLoader, int param2, int param3, int param4, int param5, u32 param6)
 {
     Strbuf *v0;
 
@@ -879,7 +881,7 @@ void ov94_02242204(Window *param0, MessageLoader *param1, int param2, int param3
         return;
     }
 
-    v0 = MessageLoader_GetNewStrbuf(param1, Unk_ov94_02245FD8[param2]);
+    v0 = MessageLoader_GetNewStrbuf(gtsMessageLoader, GTS_GENDER_PREFERENCE_MESSAGES[param2]);
 
     if (param5 > 3) {
         ov94_02245900(param0, v0, param5, param4, 0, ov94_022421E8(param2, param6));
@@ -890,33 +892,33 @@ void ov94_02242204(Window *param0, MessageLoader *param1, int param2, int param3
     Strbuf_Free(v0);
 }
 
-void ov94_0224226C(Window *param0, MessageLoader *param1, int param2, int param3, int param4, u32 param5, int param6, int param7)
+void ov94_0224226C(Window *param0, MessageLoader *gtsMessageLoader, int param2, int param3, int param4, u32 param5, int param6, int param7)
 {
     Strbuf *v0;
     if (param2 != -1) {
-        const UnkStruct_ov94_022460AC *v1;
+        const GTSLevelRangeMessage *v1;
         if (param6 == 0) {
-            v1 = Unk_ov94_0224610C;
+            v1 = GTS_LEVEL_PREFERENCE_MESSAGES;
         } else {
-            v1 = Unk_ov94_022460AC;
+            v1 = GTS_LEVEL_RANGE_MESSAGES;
         }
-        v0 = MessageLoader_GetNewStrbuf(param1, v1[param2].unk_00);
+        v0 = MessageLoader_GetNewStrbuf(gtsMessageLoader, v1[param2].unk_00);
         ov94_02245900(param0, v0, param7, param4, param3, param5);
         Strbuf_Free(v0);
     }
 }
 
-void ov94_022422B8(Window *param0, MessageLoader *param1, int param2, int param3, int param4, u32 param5, int param6)
+void ov94_022422B8(Window *param0, MessageLoader *gtsMessageLoader, int param2, int param3, int param4, u32 param5, int param6)
 {
-    ov94_0224226C(param0, param1, param2, param3, param4, param5, param6, 0);
+    ov94_0224226C(param0, gtsMessageLoader, param2, param3, param4, param5, param6, 0);
 }
 
-void ov94_022422D4(MessageLoader *param0, MessageLoader *param1, StringTemplate *param2, Window param3[], int param4, int param5, int param6)
+void ov94_022422D4(MessageLoader *gtsMessageLoader, MessageLoader *param1, StringTemplate *param2, Window param3[], int param4, int param5, int param6)
 {
     Strbuf *v0;
     int v1;
 
-    v0 = MessageLoader_GetNewStrbuf(param0, 97);
+    v0 = MessageLoader_GetNewStrbuf(gtsMessageLoader, GTS_Text_Setup_Wanted);
     ov94_02245900(&param3[0], v0, 0, 0, 0, TEXT_COLOR(15, 2, 0));
 
     for (v1 = 1; v1 < 3; v1++) {
@@ -926,21 +928,21 @@ void ov94_022422D4(MessageLoader *param0, MessageLoader *param1, StringTemplate 
     ov94_02242158(&param3[1], param1, param4, 0, 0, TEXT_COLOR(15, 2, 0));
 
     if ((param5 == 1) || (param5 == 2)) {
-        ov94_02242204(&param3[1], param0, param5, 0, 0, 70, TEXT_COLOR(15, 2, 0));
+        ov94_02242204(&param3[1], gtsMessageLoader, param5, 0, 0, 70, TEXT_COLOR(15, 2, 0));
     } else {
         (void)0;
     }
 
-    ov94_022422B8(&param3[2], param0, param6, 2, 0, TEXT_COLOR(15, 2, 0), 0);
+    ov94_022422B8(&param3[2], gtsMessageLoader, param6, 2, 0, TEXT_COLOR(15, 2, 0), 0);
     Strbuf_Free(v0);
 }
 
-void ov94_02242368(MessageLoader *param0, MessageLoader *param1, StringTemplate *param2, Window param3[], int param4, int param5, int param6)
+void ov94_02242368(MessageLoader *gtsMessageLoader, MessageLoader *param1, StringTemplate *param2, Window param3[], int param4, int param5, int param6)
 {
     Strbuf *v0;
     int v1;
 
-    v0 = MessageLoader_GetNewStrbuf(param0, 97);
+    v0 = MessageLoader_GetNewStrbuf(gtsMessageLoader, GTS_Text_Setup_Wanted);
     ov94_02245900(&param3[0], v0, 0, 0, 0, TEXT_COLOR(15, 2, 0));
 
     for (v1 = 1; v1 < 3; v1++) {
@@ -950,12 +952,12 @@ void ov94_02242368(MessageLoader *param0, MessageLoader *param1, StringTemplate 
     ov94_02242158(&param3[1], param1, param4, 0, 0, TEXT_COLOR(15, 2, 0));
 
     if ((param5 == 1) || (param5 == 2)) {
-        ov94_02242204(&param3[1], param0, param5, 0, 0, 70, TEXT_COLOR(15, 2, 0));
+        ov94_02242204(&param3[1], gtsMessageLoader, param5, 0, 0, 70, TEXT_COLOR(15, 2, 0));
     } else {
         (void)0;
     }
 
-    ov94_022422B8(&param3[2], param0, param6, 2, 0, TEXT_COLOR(15, 2, 0), 0);
+    ov94_022422B8(&param3[2], gtsMessageLoader, param6, 2, 0, TEXT_COLOR(15, 2, 0), 0);
     Strbuf_Free(v0);
 }
 
@@ -976,7 +978,7 @@ static void ov94_022423FC(MessageLoader *param0, StringTemplate *param1, Window 
     v1 = MessageUtil_ExpandedStrbuf(param1, param0, 102, HEAP_ID_62);
 
     if (gender != GENDER_NONE + 1) {
-        MessageLoader_GetStrbuf(param0, Unk_ov94_02245FD8[gender], v3);
+        MessageLoader_GetStrbuf(param0, GTS_GENDER_PREFERENCE_MESSAGES[gender], v3);
     }
 
     for (v6 = 0; v6 < 3; v6++) {
@@ -1086,7 +1088,7 @@ static const ListMenuTemplate Unk_ov94_0224608C = {
     NULL
 };
 
-ListMenu *ov94_022426A8(UnkStruct_ov94_0223FD4C *param0, StringList **param1, Window *param2, MessageLoader *param3)
+ListMenu *ov94_022426A8(UnkStruct_ov94_0223FD4C *param0, StringList **param1, Window *param2, MessageLoader *gtsMessageLoader)
 {
     ListMenuTemplate v0;
     int v1;
@@ -1094,7 +1096,7 @@ ListMenu *ov94_022426A8(UnkStruct_ov94_0223FD4C *param0, StringList **param1, Wi
     *param1 = StringList_New(9, 62);
 
     for (v1 = 0; v1 < 9; v1++) {
-        StringList_AddFromMessageBank(*param1, param3, 104 + v1, v1 + 1);
+        StringList_AddFromMessageBank(*param1, gtsMessageLoader, GTS_Text_CharPad_ABC + v1, v1 + 1);
     }
 
     v0 = Unk_ov94_0224608C;
@@ -1119,7 +1121,7 @@ static u16 Unk_ov94_02246928[] = {
     0x1ED
 };
 
-static int ov94_02242718(StringList **param0, MessageLoader *param1, MessageLoader *param2, u16 *param3, u8 *param4, int param5, int param6, Pokedex *param7)
+static int ov94_02242718(StringList **param0, MessageLoader *param1, MessageLoader *gtsMessageLoader, u16 *param3, u8 *param4, int param5, int param6, Pokedex *param7)
 {
     int v0, v1, v2 = 0;
     int v3 = Unk_ov94_02246928[param6 + 1] - Unk_ov94_02246928[param6];
@@ -1157,12 +1159,12 @@ static int ov94_02242718(StringList **param0, MessageLoader *param1, MessageLoad
         }
     }
 
-    StringList_AddFromMessageBank(*param0, param2, 121, 0xfffffffe);
+    StringList_AddFromMessageBank(*param0, gtsMessageLoader, GTS_Text_Species_Cancel, 0xfffffffe);
 
     return v2 + 1;
 }
 
-ListMenu *ov94_022427C0(UnkStruct_ov94_0223FD4C *param0, StringList **param1, Window *param2, MessageLoader *param3, MessageLoader *param4, UnkStruct_ov94_0223FD4C_sub3 *param5, Pokedex *param6)
+ListMenu *ov94_022427C0(UnkStruct_ov94_0223FD4C *param0, StringList **param1, Window *param2, MessageLoader *gtsMessageLoader, MessageLoader *param4, UnkStruct_ov94_0223FD4C_sub3 *param5, Pokedex *param6)
 {
     ListMenuTemplate v0;
     int v1, v2, v3;
@@ -1170,7 +1172,7 @@ ListMenu *ov94_022427C0(UnkStruct_ov94_0223FD4C *param0, StringList **param1, Wi
     Window_FillTilemap(param2, 0xf0f);
 
     v3 = param5->unk_06 + param5->unk_04;
-    v2 = ov94_02242718(param1, param4, param3, param5->unk_18, param5->unk_14, param5->unk_1C, v3, param6);
+    v2 = ov94_02242718(param1, param4, gtsMessageLoader, param5->unk_18, param5->unk_14, param5->unk_1C, v3, param6);
 
     v0 = Unk_ov94_0224608C;
     v0.count = v2;
@@ -1214,15 +1216,15 @@ ListMenu *ov94_022428B0(StringList **param0, Window *param1, MessageLoader *para
 {
     ListMenuTemplate v0;
     int v1;
-    const UnkStruct_ov94_022460AC *v2;
+    const GTSLevelRangeMessage *v2;
     int v3;
 
     if (param3 == 0) {
-        v2 = Unk_ov94_0224610C;
+        v2 = GTS_LEVEL_PREFERENCE_MESSAGES;
         v3 = 13;
     } else {
-        v2 = Unk_ov94_022460AC;
-        v3 = (NELEMS(Unk_ov94_022460AC));
+        v2 = GTS_LEVEL_RANGE_MESSAGES;
+        v3 = (NELEMS(GTS_LEVEL_RANGE_MESSAGES));
     }
 
     *param0 = StringList_New(v3, 62);
@@ -1243,14 +1245,14 @@ ListMenu *ov94_022428B0(StringList **param0, Window *param1, MessageLoader *para
 
 void ov94_02242934(UnkStruct_ov94_0223BA88_sub3 *param0, int param1, int param2)
 {
-    const UnkStruct_ov94_022460AC *v0;
+    const GTSLevelRangeMessage *v0;
 
     if (param2 == 0) {
-        v0 = Unk_ov94_0224610C;
+        v0 = GTS_LEVEL_PREFERENCE_MESSAGES;
         GF_ASSERT(param1 < (13 - 1));
     } else {
-        v0 = Unk_ov94_022460AC;
-        GF_ASSERT(param1 < (NELEMS(Unk_ov94_022460AC) - 1));
+        v0 = GTS_LEVEL_RANGE_MESSAGES;
+        GF_ASSERT(param1 < (NELEMS(GTS_LEVEL_RANGE_MESSAGES) - 1));
     }
 
     param0->level = v0[param1].level;
@@ -1261,14 +1263,14 @@ int ov94_02242970(int param0, int param1, int param2)
 {
     int i;
     int v1;
-    const UnkStruct_ov94_022460AC *v2;
+    const GTSLevelRangeMessage *v2;
 
     if (param2 == 0) {
-        v2 = Unk_ov94_0224610C;
+        v2 = GTS_LEVEL_PREFERENCE_MESSAGES;
         v1 = 13;
     } else {
-        v2 = Unk_ov94_022460AC;
-        v1 = (NELEMS(Unk_ov94_022460AC));
+        v2 = GTS_LEVEL_RANGE_MESSAGES;
+        v1 = (NELEMS(GTS_LEVEL_RANGE_MESSAGES));
     }
 
     for (i = 0; i < v1; i++) {

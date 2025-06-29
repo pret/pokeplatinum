@@ -796,7 +796,7 @@ BOOL ScrCmd_SetPartyMonRibbon(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_2B7(ScriptContext *param0)
+BOOL ScrCmd_PartyHasBadEgg(ScriptContext *param0)
 {
     Pokemon *v0;
     Party *v1;
@@ -810,8 +810,8 @@ BOOL ScrCmd_2B7(ScriptContext *param0)
         for (v4 = 0; v4 < v5; v4++) {
             v0 = Party_GetPokemonBySlotIndex(v1, v4);
 
-            if (Pokemon_GetValue(v0, MON_DATA_IS_EGG, NULL) != 0) {
-                if (Pokemon_GetValue(v0, MON_DATA_IS_DATA_INVALID, NULL) != 0) {
+            if (Pokemon_GetValue(v0, MON_DATA_IS_EGG, NULL)) {
+                if (Pokemon_GetValue(v0, MON_DATA_IS_DATA_INVALID, NULL)) {
                     *v2 = 1;
                     return 0;
                 }

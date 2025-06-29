@@ -52,7 +52,7 @@ typedef struct {
     u8 unk_50;
     u8 unk_51;
     u8 unk_52;
-    u8 unk_53;
+    u8 unk_53; // network service
     u8 unk_54;
     u8 unk_55;
     u8 unk_56;

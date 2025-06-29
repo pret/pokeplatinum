@@ -436,7 +436,7 @@ static void ov98_02247198(UnkStruct_ov98_02246E88 *param0)
 {
     UnkStruct_ov98_02247168 *v0 = param0->unk_98;
 
-    if (sub_02039074(param0->saveData)) {
+    if (WiFiList_HasValidLogin(param0->saveData)) {
         SystemFlag_SetConnectedToWiFi(SaveData_GetVarsFlags(param0->saveData));
     }
 

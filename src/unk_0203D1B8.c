@@ -1326,16 +1326,16 @@ void sub_0203E0D0(FieldSystem *fieldSystem)
     FieldSystem_StartChildProcess(fieldSystem, &v1, fieldSystem->saveData);
 }
 
-void sub_0203E0FC(FieldSystem *fieldSystem, int param1)
+void FieldSystem_LaunchGTSApp(FieldSystem *fieldSystem, int param1)
 {
     UnkStruct_0203E0FC *v0;
 
     FS_EXTERN_OVERLAY(overlay94);
 
     const ApplicationManagerTemplate v1 = {
-        ov94_0223BCB0,
-        ov94_0223BE2C,
-        ov94_0223BF54,
+        GTSApplication_Init,
+        GTSApplication_Main,
+        GTSApplication_Exit,
         FS_OVERLAY_ID(overlay94)
     };
 

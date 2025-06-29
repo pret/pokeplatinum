@@ -36,6 +36,8 @@
 #include "unk_020131EC.h"
 #include "unk_020393C8.h"
 
+#include "res/text/bank/gts.h"
+
 static void ov94_0223D1D4(BgConfig *param0);
 static void ov94_0223D2BC(BgConfig *param0);
 static void ov94_0223D2E8(UnkStruct_ov94_0223FD4C *param0);
@@ -78,12 +80,12 @@ int ov94_0223D0C4(UnkStruct_ov94_0223FD4C *param0, int param1)
     ov94_0223D2E8(param0);
     ov94_0223D438(param0);
     ov94_0223D3DC(param0);
-    ov94_0223D910(param0->unk_B90, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[0], Pokemon_GetBoxPokemon((Pokemon *)param0->unk_12C.unk_00.unk_00), &param0->unk_12C.unk_EC);
+    ov94_0223D910(param0->gtsMessageLoader, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[0], Pokemon_GetBoxPokemon((Pokemon *)param0->unk_12C.unk_00.unk_00), &param0->unk_12C.unk_EC);
 
     v0 = (Pokemon *)param0->unk_12C.unk_00.unk_00;
 
-    ov94_0223DA78(param0->unk_B90, &param0->unk_FCC[5], param0->unk_12C.unk_10C, v0, &param0->unk_FCC[10]);
-    ov94_02242368(param0->unk_B90, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[7], param0->unk_12C.unk_F0.species, param0->unk_12C.unk_F0.gender, ov94_02242970(param0->unk_12C.unk_F0.level, param0->unk_12C.unk_F0.level2, 0));
+    ov94_0223DA78(param0->gtsMessageLoader, &param0->unk_FCC[5], param0->unk_12C.unk_10C, v0, &param0->unk_FCC[10]);
+    ov94_02242368(param0->gtsMessageLoader, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[7], param0->unk_12C.unk_F0.species, param0->unk_12C.unk_F0.gender, ov94_02242970(param0->unk_12C.unk_F0.level, param0->unk_12C.unk_F0.level2, 0));
     ov94_0223DB2C((Pokemon *)param0->unk_12C.unk_00.unk_00);
 
     StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
@@ -282,8 +284,8 @@ static const int Unk_ov94_02245B94[][4] = {
 
 static void ov94_0223D438(UnkStruct_ov94_0223FD4C *param0)
 {
-    Window_Add(param0->unk_04, &param0->unk_F5C, 0, 2, 21, 27, 2, 13, ((1 + (18 + 12)) + 9));
-    Window_FillTilemap(&param0->unk_F5C, 0x0);
+    Window_Add(param0->unk_04, &param0->bottomInstructionWindow, 0, 2, 21, 27, 2, 13, ((1 + (18 + 12)) + 9));
+    Window_FillTilemap(&param0->bottomInstructionWindow, 0x0);
     Window_Add(param0->unk_04, &param0->unk_F9C[0], 0, 21, 15, (5 * 2), 4, 13, (((1 + (18 + 12)) + 9) + 27 * 2));
 
     {
@@ -302,7 +304,7 @@ static void ov94_0223D438(UnkStruct_ov94_0223FD4C *param0)
 
 static void ov94_0223D504(UnkStruct_ov94_0223FD4C *param0)
 {
-    Window_Remove(&param0->unk_F5C);
+    Window_Remove(&param0->bottomInstructionWindow);
     Window_Remove(&param0->unk_F9C[0]);
 
     {
@@ -319,7 +321,7 @@ static void ov94_0223D53C(UnkStruct_ov94_0223FD4C *param0)
     int v0;
 
     param0->unk_BAC = Strbuf_Init((90 * 2), HEAP_ID_62);
-    param0->unk_BB0 = MessageLoader_GetNewStrbuf(param0->unk_B90, 39);
+    param0->title = MessageLoader_GetNewStrbuf(param0->gtsMessageLoader, GTS_Text_MainMenu_Title);
 
     for (v0 = 0; v0 < 10; v0++) {
         param0->unk_BB4[v0] = Strbuf_Init((10 * 2), HEAP_ID_62);
@@ -335,7 +337,7 @@ static void ov94_0223D57C(UnkStruct_ov94_0223FD4C *param0)
     }
 
     Strbuf_Free(param0->unk_BAC);
-    Strbuf_Free(param0->unk_BB0);
+    Strbuf_Free(param0->title);
 }
 
 static int ov94_0223D5B0(UnkStruct_ov94_0223FD4C *param0)
@@ -347,12 +349,12 @@ static int ov94_0223D5B0(UnkStruct_ov94_0223FD4C *param0)
 static int ov94_0223D5B8(UnkStruct_ov94_0223FD4C *param0)
 {
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
-        ov94_0223D88C(param0, 5, TEXT_SPEED_FAST, 0, 0xf0f, (Pokemon *)param0->unk_12C.unk_00.unk_00);
-        ov94_0223C3F4(param0, 3, 7);
+        ov94_0223D88C(param0, GTS_Text_Selection_DoWhat, TEXT_SPEED_FAST, 0, 0xf0f, (Pokemon *)param0->unk_12C.unk_00.unk_00);
+        ov94_Setunk_2CAndunk_30(param0, 3, 7);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
         param0->unk_2C = 2;
-        ov94_0223C4C0(param0, 1, 0);
+        ov94_Setunk_18Andunk_24(param0, 1, 0);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
@@ -382,11 +384,11 @@ static int ov94_0223D664(UnkStruct_ov94_0223FD4C *param0)
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
             param0->unk_2C = 0;
-            Window_EraseMessageBox(&param0->unk_F5C, 0);
+            Window_EraseMessageBox(&param0->bottomInstructionWindow, 0);
         } else {
             param0->unk_2C = 2;
             param0->unk_1110 = 1;
-            ov94_0223C4C0(param0, 7, 8);
+            ov94_Setunk_18Andunk_24(param0, 7, 8);
         }
 
         ov94_0223DBBC(param0);
@@ -408,8 +410,8 @@ static int ov94_0223D6B8(UnkStruct_ov94_0223FD4C *param0)
 
     param0->unk_10CC = StringList_New(2, 62);
 
-    StringList_AddFromMessageBank(param0->unk_10CC, param0->unk_B90, 54, 1);
-    StringList_AddFromMessageBank(param0->unk_10CC, param0->unk_B90, 55, 2);
+    StringList_AddFromMessageBank(param0->unk_10CC, param0->gtsMessageLoader, pl_msg_00000671_00054, 1);
+    StringList_AddFromMessageBank(param0->unk_10CC, param0->gtsMessageLoader, pl_msg_00000671_00055, 2);
 
     v0.choices = param0->unk_10CC;
     v0.window = &param0->unk_F9C[0];
@@ -435,14 +437,14 @@ static int ov94_0223D754(UnkStruct_ov94_0223FD4C *param0)
 
             if (ov94_02241498(v0)) {
                 if (Party_GetCurrentCount(param0->unk_00->unk_08) == 6) {
-                    ov94_0223D88C(param0, 36, TEXT_SPEED_FAST, 0, 0xf0f, v0);
-                    ov94_0223C3F4(param0, 3, 1);
+                    ov94_0223D88C(param0, pl_msg_00000671_00036, TEXT_SPEED_FAST, 0, 0xf0f, v0);
+                    ov94_Setunk_2CAndunk_30(param0, 3, 1);
                     return 3;
                 }
             }
 
-            ov94_0223D88C(param0, 6, TEXT_SPEED_FAST, 0, 0xf0f, v0);
-            ov94_0223C3F4(param0, 3, 5);
+            ov94_0223D88C(param0, pl_msg_00000671_00006, TEXT_SPEED_FAST, 0, 0xf0f, v0);
+            ov94_Setunk_2CAndunk_30(param0, 3, 5);
         }
 
         ov94_0223DBBC(param0);
@@ -455,7 +457,7 @@ static int ov94_0223D754(UnkStruct_ov94_0223FD4C *param0)
 
         param0->unk_2C = 2;
 
-        ov94_0223C4C0(param0, 1, 0);
+        ov94_Setunk_18Andunk_24(param0, 1, 0);
         ov94_0223DBBC(param0);
         break;
     }
@@ -491,12 +493,12 @@ static void ov94_0223D88C(UnkStruct_ov94_0223FD4C *param0, int param1, int param
     Strbuf *v0;
 
     StringTemplate_SetSpeciesName(param0->unk_B8C, 0, Pokemon_GetBoxPokemon(param5));
-    v0 = MessageLoader_GetNewStrbuf(param0->unk_B90, param1);
+    v0 = MessageLoader_GetNewStrbuf(param0->gtsMessageLoader, param1);
     StringTemplate_Format(param0->unk_B8C, param0->unk_BAC, v0);
-    Window_FillTilemap(&param0->unk_F5C, 0xf0f);
-    Window_DrawMessageBoxWithScrollCursor(&param0->unk_F5C, 0, 1, 10);
+    Window_FillTilemap(&param0->bottomInstructionWindow, 0xf0f);
+    Window_DrawMessageBoxWithScrollCursor(&param0->bottomInstructionWindow, 0, 1, 10);
 
-    param0->unk_BE0 = Text_AddPrinterWithParams(&param0->unk_F5C, FONT_MESSAGE, param0->unk_BAC, 0, 0, param2, NULL);
+    param0->unk_BE0 = Text_AddPrinterWithParams(&param0->bottomInstructionWindow, FONT_MESSAGE, param0->unk_BAC, 0, 0, param2, NULL);
 
     Strbuf_Free(v0);
 }
@@ -520,12 +522,12 @@ void ov94_0223D910(MessageLoader *param0, MessageLoader *param1, StringTemplate 
     gender = param5->gender;
     level = param5->level;
     v8 = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
-    v3 = MessageLoader_GetNewStrbuf(param0, 70);
-    v1 = MessageLoader_GetNewStrbuf(param0, Unk_ov94_02245FD8[gender]);
+    v3 = MessageLoader_GetNewStrbuf(param0, GTS_Text_Item);
+    v1 = MessageLoader_GetNewStrbuf(param0, GTS_GENDER_PREFERENCE_MESSAGES[gender]);
 
     StringTemplate_SetNumber(param2, 3, level, 3, 0, 1);
 
-    v2 = MessageUtil_ExpandedStrbuf(param2, param0, 102, HEAP_ID_62);
+    v2 = MessageUtil_ExpandedStrbuf(param2, param0, GTS_Text_LevelTemplate, HEAP_ID_62);
     v0 = MessageLoader_GetNewStrbuf(param1, species);
 
     Item_LoadName(v5, v8, 62);
@@ -601,5 +603,5 @@ void ov94_0223DB2C(Pokemon *param0)
 
 static void ov94_0223DBBC(UnkStruct_ov94_0223FD4C *param0)
 {
-    ov94_02242368(param0->unk_B90, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[7], param0->unk_12C.unk_F0.species, param0->unk_12C.unk_F0.gender, ov94_02242970(param0->unk_12C.unk_F0.level, param0->unk_12C.unk_F0.level2, 0));
+    ov94_02242368(param0->gtsMessageLoader, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[7], param0->unk_12C.unk_F0.species, param0->unk_12C.unk_F0.gender, ov94_02242970(param0->unk_12C.unk_F0.level, param0->unk_12C.unk_F0.level2, 0));
 }

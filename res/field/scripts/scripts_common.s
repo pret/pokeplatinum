@@ -11,7 +11,7 @@
     ScriptEntry _03E8
     ScriptEntry _043B
     ScriptEntry _0479
-    ScriptEntry _0494
+    ScriptEntry _0494 @ 0x7D6
     ScriptEntry _00EC
     ScriptEntry _05EA
     ScriptEntry _0719
@@ -93,7 +93,7 @@ _0141:
     End
 
 _0165:
-    Message 3
+    Message pl_msg_00000213_00003
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -113,11 +113,11 @@ _0172:
     GoTo _01E1
 
 _01B7:
-    Message 1
+    Message pl_msg_00000213_00001
     Return
 
 _01BC:
-    Message 7
+    Message pl_msg_00000213_00007
     Return
 
 _01C1:
@@ -132,14 +132,14 @@ _01C1:
 
 _01E1:
     GoToIfEq VAR_0x8004, 1, _0218
-    Message 2
+    Message pl_msg_00000213_00002
     ApplyMovement LOCALID_PLAYER, _02F4
     WaitMovement
     SetPlayerState 1
     ChangePlayerState
     ApplyMovement VAR_0x8007, _02E0
     WaitMovement
-    Message 3
+    Message pl_msg_00000213_00003
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -147,14 +147,14 @@ _01E1:
     End
 
 _0218:
-    Message 8
+    Message pl_msg_00000213_00008
     ApplyMovement LOCALID_PLAYER, _02F4
     WaitMovement
     SetPlayerState 1
     ChangePlayerState
     ApplyMovement VAR_0x8007, _02E0
     WaitMovement
-    Message 9
+    Message pl_msg_00000213_00009
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -172,7 +172,7 @@ _0259:
     WaitMovement
     SetPlayerState 1
     ChangePlayerState
-    Message 10
+    Message pl_msg_00000213_00010
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -182,12 +182,12 @@ _0259:
 _027A:
     GoToIfSet FLAG_UNK_0x0069, _02B0
     SetFlag FLAG_UNK_0x0069
-    Message 4
+    Message pl_msg_00000213_00004
     BufferPlayerName 0
-    Message 5
+    Message pl_msg_00000213_00005
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, _02D4
-    Message 9
+    Message pl_msg_00000213_00009
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -196,10 +196,10 @@ _027A:
 
 _02B0:
     BufferPlayerName 0
-    Message 6
+    Message pl_msg_00000213_00006
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, _02D4
-    Message 9
+    Message pl_msg_00000213_00009
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -296,7 +296,7 @@ _03F4:
     SurvivePoison VAR_RESULT, VAR_0x8005
     GoToIfEq VAR_RESULT, 0, _040F
     BufferPartyMonNickname 0, VAR_0x8005
-    Message 66
+    Message pl_msg_00000213_00066
 _040F:
     AddVar VAR_0x8005, 1
     GoToIfNe VAR_0x8004, VAR_0x8005, _03F4
@@ -316,7 +316,7 @@ _043B:
 
 _0457:
     BufferPlayerName 0
-    Message 11
+    Message pl_msg_00000213_00011
     WaitABPress
     CloseMessage
     FadeOutBGM 0, 10
@@ -334,7 +334,7 @@ _0479:
     End
 
 _048B:
-    Message 20
+    Message pl_msg_00000213_00020
     WaitABPress
     CloseMessage
     End
@@ -350,7 +350,7 @@ _04A8:
     CheckSaveType VAR_RESULT
     GoToIfEq VAR_RESULT, SAVE_TYPE_OVERWRITE, _04FC
     ScrCmd_2C1
-    Message 13
+    Message pl_msg_00000213_00013
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _05A0
     CheckSaveType VAR_RESULT
@@ -360,21 +360,21 @@ _04A8:
     End
 
 _04FC:
-    Message 20
+    Message pl_msg_00000213_00020
     WaitABPress
     SetVar VAR_RESULT, 0
     Return
 
 _0509:
-    Message 14
+    Message pl_msg_00000213_00014
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _05A0
 _051D:
-    Message 21
+    Message pl_msg_00000213_00021
     GoTo _0552
 
 _0526:
-    Message 14
+    Message pl_msg_00000213_00014
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _05A0
     GoToIfUnset FLAG_UNK_0x001F, _05C6
@@ -398,7 +398,7 @@ _0568:
 _057D:
     GoToIfEq VAR_RESULT, 0, _05AA
     BufferPlayerName 0
-    Message 16
+    Message pl_msg_00000213_00016
     PlayFanfare SEQ_SE_DP_SAVE
     WaitFanfare SEQ_SE_DP_SAVE
     WaitABPressTime 30
@@ -411,13 +411,13 @@ _05A0:
     Return
 
 _05AA:
-    Message 18
+    Message pl_msg_00000213_00018
     WaitABPress
     ScrCmd_2C2
     Return
 
 _05B3:
-    Message 21
+    Message pl_msg_00000213_00021
     GoTo _0552
     End
 
@@ -427,7 +427,7 @@ _05BE:
     Return
 
 _05C6:
-    Message 15
+    Message pl_msg_00000213_00015
     GoTo _0552
     End
 
@@ -456,25 +456,25 @@ _0632:
     End
 
 _065F:
-    Message 46
+    Message pl_msg_00000213_00046
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _066A:
-    Message 48
+    Message pl_msg_00000213_00048
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0675:
-    Message 47
+    Message pl_msg_00000213_00047
     GoTo _06BB
 
 _067E:
-    Message 49
+    Message pl_msg_00000213_00049
     GoTo _06BB
 
     .byte 126
@@ -512,7 +512,7 @@ _06A2:
     End
 
 _06BB:
-    Message 50
+    Message pl_msg_00000213_00050
     ShowYesNoMenu VAR_RESULT
     CloseMessage
     GoToIfEq VAR_RESULT, MENU_YES, _06D5
@@ -524,7 +524,7 @@ _06D5:
     ScrCmd_260 1
     SlatherHoneyTree
     WaitTime 10, VAR_RESULT
-    Message 51
+    Message pl_msg_00000213_00051
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -552,9 +552,9 @@ _0723:
     BufferPlayerName 0
     BufferPoketchAppName 1, VAR_0x8004
     PlaySound SEQ_POCKETCH
-    Message 24
+    Message pl_msg_00000213_00024
     WaitSound
-    Message 26
+    Message pl_msg_00000213_00026
     RegisterPoketchApp VAR_0x8004
     CallIfEq VAR_0x8004, 0, _0882
     CallIfEq VAR_0x8004, 1, _0887
@@ -584,103 +584,103 @@ _0723:
     Return
 
 _0882:
-    Message 83
+    Message pl_msg_00000213_00083
     Return
 
 _0887:
-    Message 84
+    Message pl_msg_00000213_00084
     Return
 
 _088C:
-    Message 85
+    Message pl_msg_00000213_00085
     Return
 
 _0891:
-    Message 86
+    Message pl_msg_00000213_00086
     Return
 
 _0896:
-    Message 87
+    Message pl_msg_00000213_00087
     Return
 
 _089B:
-    Message 88
+    Message pl_msg_00000213_00088
     Return
 
 _08A0:
-    Message 89
+    Message pl_msg_00000213_00089
     Return
 
 _08A5:
-    Message 90
+    Message pl_msg_00000213_00090
     Return
 
 _08AA:
-    Message 91
+    Message pl_msg_00000213_00091
     Return
 
 _08AF:
-    Message 92
+    Message pl_msg_00000213_00092
     Return
 
 _08B4:
-    Message 93
+    Message pl_msg_00000213_00093
     Return
 
 _08B9:
-    Message 94
+    Message pl_msg_00000213_00094
     Return
 
 _08BE:
-    Message 95
+    Message pl_msg_00000213_00095
     Return
 
 _08C3:
-    Message 96
+    Message pl_msg_00000213_00096
     Return
 
 _08C8:
-    Message 97
+    Message pl_msg_00000213_00097
     Return
 
 _08CD:
-    Message 98
+    Message pl_msg_00000213_00098
     Return
 
 _08D2:
-    Message 99
+    Message pl_msg_00000213_00099
     Return
 
 _08D7:
-    Message 100
+    Message pl_msg_00000213_00100
     Return
 
 _08DC:
-    Message 101
+    Message pl_msg_00000213_00101
     Return
 
 _08E1:
-    Message 102
+    Message pl_msg_00000213_00102
     Return
 
 _08E6:
-    Message 103
+    Message pl_msg_00000213_00103
     Return
 
 _08EB:
-    Message 104
+    Message pl_msg_00000213_00104
     Return
 
 _08F0:
-    Message 105
+    Message pl_msg_00000213_00105
     Return
 
 _08F5:
-    Message 106
+    Message pl_msg_00000213_00106
     Return
 
 _08FA:
-    Message 107
+    Message pl_msg_00000213_00107
     Return
 
 _08FF:
@@ -688,14 +688,14 @@ _08FF:
 
 _0901:
     Call _091D
-    Message 109
+    Message pl_msg_00000213_00109
     WaitABXPadPress
     ReturnCommonScript
     End
 
 _0910:
     Call _091D
-    Message 128
+    Message pl_msg_00000213_00128
     ReturnCommonScript
     End
 
@@ -703,7 +703,7 @@ _091D:
     PlaySound SEQ_FANFA4
     ScrCmd_083 VAR_0x8004, VAR_0x8005, VAR_RESULT
     ScrCmd_33E 0, VAR_0x8004
-    Message 108
+    Message pl_msg_00000213_00108
     BufferUndergroundGoodsName 0, VAR_0x8004
     WaitSound
     Return
@@ -717,7 +717,7 @@ _0944:
     PlaySound SEQ_FANFA4
     ScrCmd_087 VAR_0x8004, VAR_0x8005, VAR_RESULT
     BufferUndergroundTrapName 0, VAR_0x8004
-    Message 80
+    Message pl_msg_00000213_00080
     WaitSound
     Return
 
@@ -731,20 +731,20 @@ _0966:
     ScrCmd_08F VAR_0x8004, VAR_0x8005, VAR_RESULT
     BufferUndergroundItemName 0, VAR_0x8004
     BufferNumber 1, VAR_0x8005
-    Message 81
+    Message pl_msg_00000213_00081
     WaitSound
     Return
 
 _0983:
     Call _099F
-    Message 31
+    Message pl_msg_00000213_00031
     WaitABXPadPress
     ReturnCommonScript
     End
 
 _0992:
     Call _099F
-    Message 127
+    Message pl_msg_00000213_00127
     ReturnCommonScript
     End
 
@@ -752,7 +752,7 @@ _099F:
     PlaySound SEQ_ACCE
     ScrCmd_1D2 VAR_0x8004, VAR_0x8005
     BufferAccessoryName 0, VAR_0x8004
-    Message 25
+    Message pl_msg_00000213_00025
     WaitSound
     BufferPlayerName 0
     BufferAccessoryName 1, VAR_0x8004
@@ -760,14 +760,14 @@ _099F:
 
 _09BD:
     Call _09D9
-    Message 31
+    Message pl_msg_00000213_00031
     WaitABXPadPress
     ReturnCommonScript
     End
 
 _09CC:
     Call _09D9
-    Message 127
+    Message pl_msg_00000213_00127
     ReturnCommonScript
     End
 
@@ -775,7 +775,7 @@ _09D9:
     PlaySound SEQ_FANFA4
     ScrCmd_1D5 VAR_0x8004
     ScrCmd_273 0, VAR_0x8004
-    Message 25
+    Message pl_msg_00000213_00025
     WaitSound
     BufferPlayerName 0
     ScrCmd_273 1, VAR_0x8004
@@ -792,7 +792,7 @@ _09FF:
     GetItemPocket VAR_0x8004, VAR_RESULT
     CallIfEq VAR_RESULT, POCKET_KEY_ITEMS, _0A71
     CallIfNe VAR_RESULT, POCKET_KEY_ITEMS, _0A82
-    Message 30
+    Message pl_msg_00000213_00030
     WaitABXPadPress
     Return
 
@@ -807,13 +807,13 @@ _0A3E:
     GetItemPocket VAR_0x8004, VAR_RESULT
     CallIfEq VAR_RESULT, POCKET_KEY_ITEMS, _0A71
     CallIfNe VAR_RESULT, POCKET_KEY_ITEMS, _0A82
-    Message 126
+    Message pl_msg_00000213_00126
     Return
 
 _0A71:
     BufferPlayerName 0
     BufferItemName 1, VAR_0x8004
-    Message 28
+    Message pl_msg_00000213_00028
     GoTo _0AA8
 
 _0A82:
@@ -824,7 +824,7 @@ _0A82:
 _0A9A:
     BufferItemNamePlural 0, VAR_0x8004
 _0A9F:
-    Message 25
+    Message pl_msg_00000213_00025
     GoTo _0AA8
 
 _0AA8:
@@ -900,7 +900,7 @@ _0BDD:
     End
 
 _0BE7:
-    Message 27
+    Message pl_msg_00000213_00027
     WaitABXPadPress
     Return
 
@@ -909,7 +909,7 @@ _0BEE:
     PlayFanfare SEQ_SE_DP_PC_ON
     Call _0C06
     BufferPlayerName 0
-    Message 32
+    Message pl_msg_00000213_00032
     GoTo _0C1C
 
 _0C06:
@@ -926,7 +926,7 @@ _0C11:
 
 _0C1C:
     BufferPlayerName 0
-    Message 33
+    Message pl_msg_00000213_00033
     InitGlobalTextMenu 1, 1, 0, VAR_0x8006
     CallIfUnset FLAG_MET_BEBE, _0C7B
     CallIfSet FLAG_MET_BEBE, _0C81
@@ -977,7 +977,7 @@ _0CDD:
 _0D16:
     PlayFanfare SEQ_SE_DP_PC_LOGIN
     BufferPlayerName 0
-    Message 34
+    Message pl_msg_00000213_00034
     Call _0D2C
     GoTo _0D73
 
@@ -1052,7 +1052,7 @@ _0E21:
 _0E45:
     PlayFanfare SEQ_SE_DP_PC_LOGIN
     BufferPlayerName 0
-    Message 35
+    Message pl_msg_00000213_00035
     GoTo _0E55
 
 _0E55:
@@ -1081,7 +1081,7 @@ _0EAB:
     GoTo _0ECF
 
 _0EC6:
-    Message 52
+    Message pl_msg_00000213_00052
     GoTo _0E55
 
 _0ECF:
@@ -1099,7 +1099,7 @@ _0EE0:
     GoTo _0F0A
 
 _0F01:
-    Message 118
+    Message pl_msg_00000213_00118
     GoTo _0E55
 
 _0F0A:
@@ -1122,7 +1122,7 @@ _0F2C:
     GoTo _0C1C
 
 _0F59:
-    Message 131
+    Message pl_msg_00000213_00131
     GoTo _0C1C
 
 _0F62:
@@ -1161,7 +1161,7 @@ _0FA7:
     End
 
 _0FC3:
-    Message 37
+    Message pl_msg_00000213_00037
     ReturnCommonScript
     End
 
@@ -1173,7 +1173,7 @@ _0FCA:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     BufferPlayerName 0
-    Message 40
+    Message pl_msg_00000213_00040
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     CloseMessage
@@ -1190,11 +1190,11 @@ _0FCA:
     End
 
 _1030:
-    Message 41
+    Message pl_msg_00000213_00041
     Return
 
 _1035:
-    Message 42
+    Message pl_msg_00000213_00042
     Return
 
 _103A:
@@ -1205,19 +1205,19 @@ _103A:
     ChangePlayerState
     ApplyMovement LOCALID_PLAYER, _02EC
     WaitMovement
-    Message 43
+    Message pl_msg_00000213_00043
     Call _10C7
     Call _01C1
     CheckBadgeAcquired BADGE_ID_COAL, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _10A2
-    Message 44
+    Message pl_msg_00000213_00044
     ApplyMovement LOCALID_PLAYER, _02F4
     WaitMovement
     SetPlayerState 1
     ChangePlayerState
     ApplyMovement VAR_0x8007, _02E0
     WaitMovement
-    Message 45
+    Message pl_msg_00000213_00045
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -1230,7 +1230,7 @@ _10A2:
     ChangePlayerState
     ApplyMovement VAR_0x8007, _02E0
     WaitMovement
-    Message 39
+    Message pl_msg_00000213_00039
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -1397,7 +1397,7 @@ _12BA:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 67
+    Message pl_msg_00000213_00067
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -1407,7 +1407,7 @@ _12CD:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 70
+    Message pl_msg_00000213_00070
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -1417,7 +1417,7 @@ _12E0:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 71
+    Message pl_msg_00000213_00071
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -1430,7 +1430,7 @@ _12F3:
     PlayFanfare SEQ_SE_CONFIRM
     CheckPlayerOnBike VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, _133C
-    Message 73
+    Message pl_msg_00000213_00073
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _1359
     SetPlayerBike TRUE
@@ -1439,7 +1439,7 @@ _12F3:
     End
 
 _133C:
-    Message 74
+    Message pl_msg_00000213_00074
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _1359
     SetPlayerBike FALSE
@@ -1458,7 +1458,7 @@ _135F:
 _1361:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    Message 76
+    Message pl_msg_00000213_00076
     WaitABPress
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -1472,7 +1472,7 @@ _1361:
 _138C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    Message 79
+    Message pl_msg_00000213_00079
     WaitABPress
     CloseMessage
     ReleaseAll
@@ -1490,7 +1490,7 @@ _13AB:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 82
+    Message pl_msg_00000213_00082
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -1519,35 +1519,35 @@ _1445:
     Return
 
 _144D:
-    Message 110
+    Message pl_msg_00000213_00110
     Return
 
 _1452:
-    Message 111
+    Message pl_msg_00000213_00111
     Return
 
 _1457:
-    Message 112
+    Message pl_msg_00000213_00112
     Return
 
 _145C:
-    Message 113
+    Message pl_msg_00000213_00113
     Return
 
 _1461:
-    Message 114
+    Message pl_msg_00000213_00114
     Return
 
 _1466:
-    Message 115
+    Message pl_msg_00000213_00115
     Return
 
 _146B:
-    Message 116
+    Message pl_msg_00000213_00116
     Return
 
 _1470:
-    Message 117
+    Message pl_msg_00000213_00117
     Return
 
 _1475:
@@ -1574,11 +1574,11 @@ _14AC:
     GoToIfEq VAR_MAP_LOCAL_0, FALSE, _1570
     GoToIfSet FLAG_UNK_0x011E, _1570
     BufferPlayerName 0
-    Message 122
+    Message pl_msg_00000213_00122
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _157B
     BufferPlayerName 0
-    Message 123
+    Message pl_msg_00000213_00123
     CloseMessage
     WaitTime 30, VAR_RESULT
     PlayMusic SEQ_FUE
@@ -1589,14 +1589,14 @@ _14AC:
     Warp MAP_HEADER_HALL_OF_ORIGIN, 0, VAR_0x8004, VAR_0x8005, 0
     FadeScreen 6, 6, 1, 0x7FFF
     WaitFadeScreen
-    Message 124
+    Message pl_msg_00000213_00124
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _1570:
-    Message 125
+    Message pl_msg_00000213_00125
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -1690,7 +1690,7 @@ _165E:
     End
 
 _1672:
-    Message 129
+    Message pl_msg_00000213_00129
     ShowMoveTutorMoveSelectionMenu 0xFF, VAR_0x8004, VAR_RESULT
     SetVar VAR_0x8003, VAR_RESULT
     GoToIfEq VAR_0x8003, -2, _16A4
@@ -1722,7 +1722,7 @@ _1706:
     End
 
 _170A:
-    Message 130
+    Message pl_msg_00000213_00130
     WaitABXPadPress
     CloseMessage
     ReleaseAll
