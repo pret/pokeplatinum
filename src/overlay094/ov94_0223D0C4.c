@@ -350,7 +350,7 @@ static int ov94_0223D5B8(GTSApplicationState *param0)
 {
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
         ov94_0223D88C(param0, GTS_Text_Selection_DoWhat, TEXT_SPEED_FAST, 0, 0xf0f, (Pokemon *)param0->unk_12C.unk_00.unk_00);
-        ov94_Setunk_2CAndunk_30(param0, 3, 7);
+        ov94_Setunk_2CAndnextunk_30(param0, 3, 7);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
         param0->unk_2C = 2;
@@ -438,13 +438,13 @@ static int ov94_0223D754(GTSApplicationState *param0)
             if (ov94_02241498(v0)) {
                 if (Party_GetCurrentCount(param0->unk_00->unk_08) == 6) {
                     ov94_0223D88C(param0, pl_msg_00000671_00036, TEXT_SPEED_FAST, 0, 0xf0f, v0);
-                    ov94_Setunk_2CAndunk_30(param0, 3, 1);
+                    ov94_Setunk_2CAndnextunk_30(param0, 3, 1);
                     return 3;
                 }
             }
 
             ov94_0223D88C(param0, pl_msg_00000671_00006, TEXT_SPEED_FAST, 0, 0xf0f, v0);
-            ov94_Setunk_2CAndunk_30(param0, 3, 5);
+            ov94_Setunk_2CAndnextunk_30(param0, 3, 5);
         }
 
         ov94_0223DBBC(param0);
@@ -468,7 +468,7 @@ static int ov94_0223D754(GTSApplicationState *param0)
 static int ov94_0223D838(GTSApplicationState *param0)
 {
     if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
-        param0->unk_2C = param0->unk_30;
+        param0->unk_2C = param0->nextunk_2C;
     }
 
     return 3;
@@ -481,7 +481,7 @@ static int ov94_0223D858(GTSApplicationState *param0)
 
         if (param0->unk_10E0 > 45) {
             param0->unk_10E0 = 0;
-            param0->unk_2C = param0->unk_30;
+            param0->unk_2C = param0->nextunk_2C;
         }
     }
 

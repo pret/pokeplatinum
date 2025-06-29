@@ -173,7 +173,7 @@ int ov94_02242B14(GTSApplicationState *param0, int param1)
 {
     int v0;
 
-    sub_020397B0(ov94_GetNetworkStrength());
+    sub_020397B0(GTSApplication_GetNetworkStrength());
 
     v0 = (*Unk_ov94_022469A0[param0->unk_2C])(param0);
     return v0;
@@ -369,19 +369,19 @@ static int ov94_02242DA8(GTSApplicationState *param0)
     switch (param0->unk_24) {
     case 7:
         ov94_02245824(param0, param0->gtsMessageLoader, 24, TEXT_SPEED_FAST, 0xf0f);
-        ov94_Setunk_2CAndunk_30(param0, 37, 2);
+        ov94_Setunk_2CAndnextunk_30(param0, 37, 2);
         break;
     case 8:
         ov94_02245824(param0, param0->gtsMessageLoader, 24, TEXT_SPEED_FAST, 0xf0f);
-        ov94_Setunk_2CAndunk_30(param0, 37, 7);
+        ov94_Setunk_2CAndnextunk_30(param0, 37, 7);
         break;
     case 9:
         ov94_02245824(param0, param0->gtsMessageLoader, 24, TEXT_SPEED_FAST, 0xf0f);
-        ov94_Setunk_2CAndunk_30(param0, 37, 12);
+        ov94_Setunk_2CAndnextunk_30(param0, 37, 12);
         break;
     case 10:
         ov94_02245824(param0, param0->gtsMessageLoader, 24, TEXT_SPEED_FAST, 0xf0f);
-        ov94_Setunk_2CAndunk_30(param0, 37, 18);
+        ov94_Setunk_2CAndnextunk_30(param0, 37, 18);
         param0->unk_1110 = 1;
         break;
     case 11:
@@ -397,7 +397,7 @@ static int ov94_02242DA8(GTSApplicationState *param0)
         GF_ASSERT(0);
     }
 
-    ov94_0223C5D8(param0);
+    GTSApplicationState_AddWaitDial(param0);
 
     return 3;
 }
@@ -767,14 +767,14 @@ static int ov94_02243398(GTSApplicationState *param0)
 
             switch (ov94_02243E84(param0, &param0->unk_12C)) {
             case 1:
-                ov94_0223C5F4(param0);
+                GTSApplicationState_DestroyWaitDial(param0);
                 ov94_02245824(param0, param0->gtsMessageLoader, 29, TEXT_SPEED_FAST, 0xf0f);
-                ov94_Setunk_2CAndunk_30(param0, 37, 28);
+                ov94_Setunk_2CAndnextunk_30(param0, 37, 28);
                 break;
             case 2:
-                ov94_0223C5F4(param0);
+                GTSApplicationState_DestroyWaitDial(param0);
                 ov94_02245824(param0, param0->gtsMessageLoader, 35, TEXT_SPEED_FAST, 0xf0f);
-                ov94_Setunk_2CAndunk_30(param0, 37, 28);
+                ov94_Setunk_2CAndnextunk_30(param0, 37, 28);
                 break;
             case 0:
                 param0->unk_2C = 18;
@@ -1079,9 +1079,9 @@ static int ov94_022437F4(GTSApplicationState *param0)
 static int ov94_02243884(GTSApplicationState *param0)
 {
     ov94_02245824(param0, param0->gtsMessageLoader, 141, TEXT_SPEED_FAST, 0xf0f);
-    ov94_Setunk_2CAndunk_30(param0, 37, 36);
+    ov94_Setunk_2CAndnextunk_30(param0, 37, 36);
     ov94_Setunk_18Andunk_24(param0, 1, 0);
-    ov94_0223C5F4(param0);
+    GTSApplicationState_DestroyWaitDial(param0);
     ov94_022442E4(param0);
 
     return 3;
@@ -1121,9 +1121,9 @@ static void ov94_022438C8(GTSApplicationState *param0)
 static int ov94_02243920(GTSApplicationState *param0)
 {
     ov94_022438C8(param0);
-    ov94_Setunk_2CAndunk_30(param0, 37, 36);
+    ov94_Setunk_2CAndnextunk_30(param0, 37, 36);
     ov94_Setunk_18Andunk_24(param0, 0, 0);
-    ov94_0223C5F4(param0);
+    GTSApplicationState_DestroyWaitDial(param0);
 
     return 3;
 }
@@ -1131,9 +1131,9 @@ static int ov94_02243920(GTSApplicationState *param0)
 static int ov94_02243948(GTSApplicationState *param0)
 {
     ov94_022438C8(param0);
-    ov94_Setunk_2CAndunk_30(param0, 37, 36);
+    ov94_Setunk_2CAndnextunk_30(param0, 37, 36);
     ov94_Setunk_18Andunk_24(param0, 1, 0);
-    ov94_0223C5F4(param0);
+    GTSApplicationState_DestroyWaitDial(param0);
     ov94_022442E4(param0);
 
     return 3;
@@ -1141,7 +1141,7 @@ static int ov94_02243948(GTSApplicationState *param0)
 
 static int ov94_02243974(GTSApplicationState *param0)
 {
-    ov94_Setunk_2CAndunk_30(param0, 37, 30);
+    ov94_Setunk_2CAndnextunk_30(param0, 37, 30);
     ov94_02243EC8(param0, 33, 36);
 
     return 3;
@@ -1182,7 +1182,7 @@ static int ov94_02243A04(GTSApplicationState *param0)
 {
     if (SaveData_SaveStateMain(param0->unk_00->saveData) == 2) {
         param0->unk_2C = param0->unk_10EA;
-        ov94_0223C5F4(param0);
+        GTSApplicationState_DestroyWaitDial(param0);
     }
 
     return 3;
@@ -1202,9 +1202,9 @@ static int ov94_02243A44(GTSApplicationState *param0)
 {
     if (SaveData_SaveStateMain(param0->unk_00->saveData) == 2) {
         ov94_Setunk_18Andunk_24(param0, 1, 0);
-        ov94_0223C5F4(param0);
+        GTSApplicationState_DestroyWaitDial(param0);
         ov94_02245824(param0, param0->gtsMessageLoader, param0->unk_28, TEXT_SPEED_FAST, 0xf0f);
-        ov94_Setunk_2CAndunk_30(param0, 37, 28);
+        ov94_Setunk_2CAndnextunk_30(param0, 37, 28);
     }
 
     return 3;
@@ -1212,7 +1212,7 @@ static int ov94_02243A44(GTSApplicationState *param0)
 
 static int ov94_02243A90(GTSApplicationState *param0)
 {
-    ov94_0223C5F4(param0);
+    GTSApplicationState_DestroyWaitDial(param0);
     sub_02039794();
 
     if (param0->unk_1110 == 1) {
@@ -1229,7 +1229,7 @@ static int ov94_02243A90(GTSApplicationState *param0)
 static int ov94_02243AE8(GTSApplicationState *param0)
 {
     if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
-        param0->unk_2C = param0->unk_30;
+        param0->unk_2C = param0->nextunk_2C;
     }
 
     return 3;
@@ -1401,7 +1401,7 @@ static int ov94_02243E84(GTSApplicationState *param0, UnkStruct_ov94_0223BA88 *p
         return 2;
     }
 
-    if ((param0->unk_110C == (5 * 6 * 18)) && (Party_GetCurrentCount(param0->unk_00->unk_08) == 6)) {
+    if ((param0->deferredBoxPokemonCount == (MAX_MONS_PER_BOX * MAX_PC_BOXES)) && (Party_GetCurrentCount(param0->unk_00->unk_08) == MAX_PARTY_SIZE)) {
         return 1;
     }
 

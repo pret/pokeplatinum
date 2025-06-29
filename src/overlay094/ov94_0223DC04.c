@@ -322,7 +322,7 @@ static int ov94_0223E0A4(GTSApplicationState *param0)
 {
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
         ov94_0223E300(param0, 16, TEXT_SPEED_FAST, 0, 0xf0f);
-        ov94_Setunk_2CAndunk_30(param0, 3, 4);
+        ov94_Setunk_2CAndnextunk_30(param0, 3, 4);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
         param0->unk_2C = 2;
@@ -418,7 +418,7 @@ static int ov94_0223E2D0(GTSApplicationState *param0)
 static int ov94_0223E2E0(GTSApplicationState *param0)
 {
     if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
-        param0->unk_2C = param0->unk_30;
+        param0->unk_2C = param0->nextunk_2C;
     }
 
     return 3;

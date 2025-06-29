@@ -49,15 +49,15 @@ typedef struct GTSApplicationState {
     int unk_24;
     int unk_28;
     int unk_2C; // some kind of instruction pointer
-    int unk_30;
+    int nextunk_2C;
     u16 unk_34;
     u16 isPokemonListed;
     u16 unk_38;
-    u16 unk_3A;
+    u16 networkTimer;
     int unk_3C;
-    int unk_40;
-    int unk_44;
-    int unk_48;
+    int unk_40; // dwcError
+    int unk_44; // dwcErrorCode
+    int unk_48; // dwcErrorType
     void *unk_4C;
     NNSFndHeapHandle unk_50;
     DWCInetControl unk_54;
@@ -127,7 +127,7 @@ typedef struct GTSApplicationState {
     Menu *unk_10D0;
     Menu *unk_10D4;
     ListMenu *unk_10D8;
-    void *unk_10DC;
+    void *waitDial;
     int unk_10E0;
     GTSApplicationState_sub3 *unk_10E4;
     u16 unk_10E8;
@@ -141,8 +141,8 @@ typedef struct GTSApplicationState {
     NNSG2dPaletteData *unk_1100;
     Pokemon *unk_1104;
     GTSApplicationState_sub2 *unk_1108;
-    u16 unk_110C;
-    u16 unk_110E;
+    u16 deferredBoxPokemonCount;
+    u16 deferredBoxId;
     u32 unk_1110;
     void *unk_1114;
     void (*unk_1118)(void *param0);

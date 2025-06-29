@@ -30,28 +30,32 @@
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 
-static void ov94_02244A7C(BgConfig *param0);
+#include "res/text/bank/unk_0671.h"
+#include "res/text/bank/unk_0674.h"
+#include "res/text/bank/unk_0695.h"
+
+static void GTSApplication_InitWFCBackground(BgConfig *param0);
 static void ov94_02244B68(BgConfig *param0);
-static void ov94_02244B8C(GTSApplicationState *param0);
-static void ov94_02244E48(GTSApplicationState *param0);
+static void GTSApplication_InitWFCGraphics(GTSApplicationState *appState);
+static void GTSApplication_InitWFCText(GTSApplicationState *appState);
 static void ov94_02244F00(GTSApplicationState *param0);
-static void ov94_02244F2C(GTSApplicationState *param0);
+static void GTSApplication_InitWFCTitle(GTSApplicationState *appState);
 static void ov94_02244F64(GTSApplicationState *param0);
 static void ov94_0224593C(GTSApplicationState *param0, int param1);
 static void ov94_022459B4(GTSApplicationState *param0, int param1, int param2);
-static int ov94_02244F8C(GTSApplicationState *param0);
-static int ov94_02244FC4(GTSApplicationState *param0);
+static int GTSApplication_WFCInit_AskToSetupConnection(GTSApplicationState *appState);
+static int GTSApplication_WFCInit_ProcessSetupConfirmation(GTSApplicationState *appState);
 static int ov94_0224505C(GTSApplicationState *param0);
-static int ov94_02245138(GTSApplicationState *param0);
-static int ov94_02245158(GTSApplicationState *param0);
-static int ov94_0224529C(GTSApplicationState *param0);
+static int GTSApplication_WFCInit_Connect(GTSApplicationState *appState);
+static int GTSApplication_WFCInit_CheckConnection(GTSApplicationState *appState);
+static int GTSApplication_WFCInit_GetDWCKey(GTSApplicationState *appState);
 static int ov94_022452E4(GTSApplicationState *param0);
 static int ov94_022453B8(GTSApplicationState *param0);
 static int ov94_022453EC(GTSApplicationState *param0);
-static int ov94_02245594(GTSApplicationState *param0);
+static int GTSApplication_WFCInit_Exit(GTSApplicationState *appState);
 static int ov94_022455D0(GTSApplicationState *param0);
-static int ov94_0224579C(GTSApplicationState *param0);
-static int ov94_022457F0(GTSApplicationState *param0);
+static int GTSApplication_WFCInit_WaitForText(GTSApplicationState *appState);
+static int GTSApplication_WFCInit_SetupConnectionMenu(GTSApplicationState *appState);
 static int ov94_02245608(GTSApplicationState *param0);
 static int ov94_022456CC(GTSApplicationState *param0);
 static int ov94_02245300(GTSApplicationState *param0);
@@ -60,31 +64,31 @@ static int ov94_022450C0(GTSApplicationState *param0);
 static int ov94_022450EC(GTSApplicationState *param0);
 static int ov94_0224510C(GTSApplicationState *param0);
 static int ov94_022457BC(GTSApplicationState *param0);
-static int ov94_022451DC(GTSApplicationState *param0);
-static int ov94_022451EC(GTSApplicationState *param0);
+static int GTSApplication_WFCInit_Authenticate(GTSApplicationState *appState);
+static int GTSApplication_WFCInit_CheckAuthentication(GTSApplicationState *appState);
 static int ov94_02245540(GTSApplicationState *param0);
 static int ov94_02245564(GTSApplicationState *param0);
 static int ov94_02245894(Window *param0, Strbuf *param1, int param2, int param3, u32 param4, int param5);
 
 static int (*Unk_ov94_02246A40[])(GTSApplicationState *) = {
-    ov94_02244F8C,
-    ov94_02244FC4,
-    ov94_02245138,
-    ov94_02245158,
-    ov94_022451DC,
-    ov94_022451EC,
-    ov94_0224529C,
+    GTSApplication_WFCInit_AskToSetupConnection, // <
+    GTSApplication_WFCInit_ProcessSetupConfirmation, // 11 (exit) or 12 (continue)
+    GTSApplication_WFCInit_Connect, //
+    GTSApplication_WFCInit_CheckConnection, // returns 23 (connection error), 21 (fatal error), or 4
+    GTSApplication_WFCInit_Authenticate, // returns 5
+    GTSApplication_WFCInit_CheckAuthentication, // returns 6 (successful) or 23 (connection error)
+    GTSApplication_WFCInit_GetDWCKey, // returns 7
     ov94_022452E4,
     ov94_02245300,
     ov94_022453B8,
     ov94_022453EC,
-    ov94_02245594,
-    ov94_0224579C,
-    ov94_022457F0,
+    GTSApplication_WFCInit_Exit, // exit -> returns 4
+    GTSApplication_WFCInit_WaitForText, // continue
+    GTSApplication_WFCInit_SetupConnectionMenu, //
     ov94_022455D0,
     ov94_0224502C,
     ov94_0224505C,
-    ov94_022450C0,
+    ov94_022450C0, // < "disconnecting from Nintendo W-Fi Connection..."
     ov94_022450EC,
     ov94_0224510C,
     ov94_022457BC,
@@ -94,53 +98,53 @@ static int (*Unk_ov94_02246A40[])(GTSApplicationState *) = {
     ov94_02245564
 };
 
-int ov94_02244950(GTSApplicationState *param0, int param1)
+int GTSApplication_InitWFCScreen(GTSApplicationState *appState, int unused1)
 {
-    ov94_02244F2C(param0);
+    GTSApplication_InitWFCTitle(appState);
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
 
-    ov94_02244A7C(param0->unk_04);
-    ov94_02244B8C(param0);
-    ov94_02244E48(param0);
+    GTSApplication_InitWFCBackground(appState->unk_04);
+    GTSApplication_InitWFCGraphics(appState);
+    GTSApplication_InitWFCText(appState);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
-    sub_02038438(param0->unk_00->saveData);
+    sub_02038438(appState->unk_00->saveData);
 
-    ov94_02245934(param0);
+    ov94_02245934(appState);
 
     if (!DWC_CheckInet()) {
-        if (param0->unk_00->unk_40) {
-            ov94_02245824(param0, param0->unk_B98, 1, TEXT_SPEED_FAST, 0xf0f);
-            ov94_Setunk_2CAndunk_30(param0, 12, 2);
-            ov94_0223C5D8(param0);
+        if (appState->unk_00->unk_40) {
+            ov94_02245824(appState, appState->unk_B98, pl_msg_00000674_00001, TEXT_SPEED_FAST, 0xf0f);
+            ov94_Setunk_2CAndnextunk_30(appState, 12, 2);
+            GTSApplicationState_AddWaitDial(appState);
         } else {
-            param0->unk_2C = 0;
+            appState->unk_2C = 0;
         }
     } else {
-        param0->unk_2C = 17;
+        appState->unk_2C = 17;
     }
 
     return 2;
 }
 
-int ov94_022449FC(GTSApplicationState *param0, int param1)
+int ov94_022449FC(GTSApplicationState *param0, int param1) // wfc loop?
 {
     int v0, v1;
 
-    sub_020397B0(ov94_GetNetworkStrength());
+    sub_020397B0(GTSApplication_GetNetworkStrength());
 
     v1 = param0->unk_2C;
     v0 = (*Unk_ov94_02246A40[param0->unk_2C])(param0);
 
-    if (v1 != param0->unk_2C) {
+    if (v1 != param0->unk_2C) { // pointer changed
         param0->unk_14E0 = 0;
         param0->unk_14E2 = 0;
     }
 
-    inline_ov61_0222C0F8(&param0->unk_11B4);
+    inline_ov61_0222C0F8(&param0->unk_11B4); // draw network icon
 
     return v0;
 }
@@ -164,7 +168,7 @@ int ov94_02244A2C(GTSApplicationState *param0, int param1)
     return 1;
 }
 
-static void ov94_02244A7C(BgConfig *param0)
+static void GTSApplication_InitWFCBackground(BgConfig *param0)
 {
     {
         BgTemplate v0 = {
@@ -265,7 +269,7 @@ static void ov94_02244B68(BgConfig *param0)
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
 }
 
-static void ov94_02244B8C(GTSApplicationState *param0)
+static void GTSApplication_InitWFCGraphics(GTSApplicationState *param0)
 {
     BgConfig *v0 = param0->unk_04;
     NARC *v1 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, HEAP_ID_62);
@@ -288,7 +292,7 @@ static void ov94_02244B8C(GTSApplicationState *param0)
     NARC_dtor(v1);
 }
 
-static void ov94_02244E48(GTSApplicationState *param0)
+static void GTSApplication_InitWFCText(GTSApplicationState *param0)
 {
     Window_Add(param0->unk_04, &param0->unk_F8C, 0, 4, 4, 23, 16, 13, (((1 + (18 + 12)) + 9) + 27 * 4));
     Window_FillTilemap(&param0->unk_F8C, 0x0);
@@ -308,11 +312,11 @@ static void ov94_02244F00(GTSApplicationState *param0)
     Window_Remove(&param0->unk_F8C);
 }
 
-static void ov94_02244F2C(GTSApplicationState *param0)
+static void GTSApplication_InitWFCTitle(GTSApplicationState *param0)
 {
     param0->unk_BAC = Strbuf_Init((90 * 2), HEAP_ID_62);
     param0->unk_BDC = Strbuf_Init((16 * 8 * 2), HEAP_ID_62);
-    param0->title = MessageLoader_GetNewStrbuf(param0->gtsMessageLoader, 31);
+    param0->title = MessageLoader_GetNewStrbuf(param0->gtsMessageLoader, pl_msg_00000671_00031);
 }
 
 static void ov94_02244F64(GTSApplicationState *param0)
@@ -322,29 +326,30 @@ static void ov94_02244F64(GTSApplicationState *param0)
     Strbuf_Free(param0->unk_BAC);
 }
 
-static int ov94_02244F8C(GTSApplicationState *param0)
+static int GTSApplication_WFCInit_AskToSetupConnection(GTSApplicationState *appState)
 {
-    ov94_02245824(param0, param0->unk_B9C, 17, TEXT_SPEED_FAST, 0xf0f);
-    ov94_Setunk_2CAndunk_30(param0, 13, 1);
+    ov94_02245824(appState, appState->unk_B9C, pl_msg_00000695_00017, TEXT_SPEED_FAST, 0xf0f);
+    ov94_Setunk_2CAndnextunk_30(appState, 13, 1);
 
-    param0->unk_110E = 1;
+    // this starts us counting pokemon in the wfc loop
+    appState->deferredBoxId = 1;
 
     return 3;
 }
 
-static int ov94_02244FC4(GTSApplicationState *param0)
+static int GTSApplication_WFCInit_ProcessSetupConfirmation(GTSApplicationState *appState)
 {
-    int v0 = Menu_ProcessInputAndHandleExit(param0->unk_10D0, 62);
+    int menuInput = Menu_ProcessInputAndHandleExit(appState->unk_10D0, 62);
 
-    if (v0 != 0xffffffff) {
-        if (v0 == 0xfffffffe) {
-            sub_0203848C();
-            ov94_Setunk_18Andunk_24(param0, 0, 0);
-            param0->unk_2C = 11;
+    if (menuInput != 0xffffffff) { // BATTLE_SUB_MENU_CURSOR_NO_MOVEMENT_INDEX
+        if (menuInput == 0xfffffffe) { // BATTLE_SUB_MENU_CURSOR_BACK_INDEX
+            sub_0203848C(); // free the network lock?
+            ov94_Setunk_18Andunk_24(appState, 0, 0);
+            appState->unk_2C = 11;
         } else {
-            ov94_02245824(param0, param0->unk_B98, 1, TEXT_SPEED_FAST, 0xf0f);
-            ov94_Setunk_2CAndunk_30(param0, 12, 2);
-            ov94_0223C5D8(param0);
+            ov94_02245824(appState, appState->unk_B98, pl_msg_00000674_00001, TEXT_SPEED_FAST, 0xf0f);
+            ov94_Setunk_2CAndnextunk_30(appState, 12, 2);
+            GTSApplicationState_AddWaitDial(appState);
         }
     }
 
@@ -354,7 +359,7 @@ static int ov94_02244FC4(GTSApplicationState *param0)
 static int ov94_0224502C(GTSApplicationState *param0)
 {
     ov94_02245824(param0, param0->gtsMessageLoader, 7, TEXT_SPEED_FAST, 0xf0f);
-    ov94_Setunk_2CAndunk_30(param0, 13, 16);
+    ov94_Setunk_2CAndnextunk_30(param0, 13, 16);
 
     return 3;
 }
@@ -388,8 +393,8 @@ static int ov94_0224505C(GTSApplicationState *param0)
 
 static int ov94_022450C0(GTSApplicationState *param0)
 {
-    ov94_02245824(param0, param0->unk_B9C, 26, TEXT_SPEED_FAST, 0xf0f);
-    ov94_Setunk_2CAndunk_30(param0, 12, 18);
+    ov94_02245824(param0, param0->unk_B9C, pl_msg_00000695_00026, TEXT_SPEED_FAST, 0xf0f);
+    ov94_Setunk_2CAndnextunk_30(param0, 12, 18);
 
     return 3;
 }
@@ -407,13 +412,13 @@ static int ov94_022450EC(GTSApplicationState *param0)
 
 static int ov94_0224510C(GTSApplicationState *param0)
 {
-    ov94_02245824(param0, param0->unk_B9C, 27, TEXT_SPEED_FAST, 0xf0f);
-    ov94_Setunk_2CAndunk_30(param0, 20, 11);
+    ov94_02245824(param0, param0->unk_B9C, pl_msg_00000695_00027, TEXT_SPEED_FAST, 0xf0f);
+    ov94_Setunk_2CAndnextunk_30(param0, 20, 11);
 
     return 3;
 }
 
-static int ov94_02245138(GTSApplicationState *param0)
+static int GTSApplication_WFCInit_Connect(GTSApplicationState *param0)
 {
     DWC_InitInetEx(&param0->unk_54, 2, 1, 20);
     DWC_SetAuthServer(DWC_CONNECTINET_AUTH_RELEASE);
@@ -424,7 +429,7 @@ static int ov94_02245138(GTSApplicationState *param0)
     return 3;
 }
 
-static int ov94_02245158(GTSApplicationState *param0)
+static int GTSApplication_WFCInit_CheckConnection(GTSApplicationState *appState)
 {
     DWC_ProcessInet();
 
@@ -437,15 +442,15 @@ static int ov94_02245158(GTSApplicationState *param0)
 
             v0 = DWC_GetLastErrorEx(&v1, &v2);
 
-            param0->unk_40 = v0;
-            param0->unk_44 = v1;
-            param0->unk_48 = v2;
+            appState->unk_40 = v0;
+            appState->unk_44 = v1;
+            appState->unk_48 = v2;
         }
             DWC_ClearError();
             DWC_CleanupInet();
-            ov94_0223C5F4(param0);
+            GTSApplicationState_DestroyWaitDial(appState);
 
-            param0->unk_2C = 23;
+            appState->unk_2C = 23;
 
             break;
         case DWC_CONNECTINET_STATE_NOT_INITIALIZED:
@@ -460,10 +465,10 @@ static int ov94_02245158(GTSApplicationState *param0)
             int v4;
 
             v3 = DWC_GetLastError(&v4);
-            ov94_0223C5F4(param0);
+            GTSApplicationState_DestroyWaitDial(appState);
 
-            param0->unk_2C = 21;
-            param0->unk_3C = -2;
+            appState->unk_2C = 21;
+            appState->unk_3C = -2;
         } break;
 
         case DWC_CONNECTINET_STATE_CONNECTED: {
@@ -476,7 +481,7 @@ static int ov94_02245158(GTSApplicationState *param0)
             }
         }
 
-            param0->unk_2C = 4;
+            appState->unk_2C = 4;
             break;
         }
     }
@@ -484,24 +489,24 @@ static int ov94_02245158(GTSApplicationState *param0)
     return 3;
 }
 
-static int ov94_022451DC(GTSApplicationState *param0)
+static int GTSApplication_WFCInit_Authenticate(GTSApplicationState *appState)
 {
     DWC_NASLoginAsync();
-    param0->unk_2C = 5;
+    appState->unk_2C = 5;
 
     return 3;
 }
 
-static int ov94_022451EC(GTSApplicationState *param0)
+static int GTSApplication_WFCInit_CheckAuthentication(GTSApplicationState *appState)
 {
     switch (DWC_NASLoginProcess()) {
     case DWC_NASLOGIN_STATE_SUCCESS:
-        param0->unk_2C = 6;
+        appState->unk_2C = 6;
         break;
     case DWC_NASLOGIN_STATE_ERROR:
     case DWC_NASLOGIN_STATE_CANCELED:
     case DWC_NASLOGIN_STATE_DIRTY:
-        ov94_0223C5F4(param0);
+        GTSApplicationState_DestroyWaitDial(appState);
 
         {
             int v0;
@@ -510,29 +515,29 @@ static int ov94_022451EC(GTSApplicationState *param0)
 
             v2 = DWC_GetLastErrorEx(&v0, &v1);
 
-            param0->unk_40 = v2;
-            param0->unk_44 = v0;
+            appState->unk_40 = v2;
+            appState->unk_44 = v0;
 
             DWC_ClearError();
             DWC_CleanupInet();
 
-            param0->unk_2C = 23;
+            appState->unk_2C = 23;
 
             switch (v1) {
             case DWC_ETYPE_LIGHT:
             case DWC_ETYPE_SHOW_ERROR:
-                param0->unk_2C = 23;
+                appState->unk_2C = 23;
                 break;
             case DWC_ETYPE_SHUTDOWN_GHTTP:
                 DWC_ShutdownGHTTP();
-                param0->unk_2C = 23;
+                appState->unk_2C = 23;
                 break;
             case DWC_ETYPE_DISCONNECT:
-                param0->unk_2C = 23;
+                appState->unk_2C = 23;
                 break;
             case DWC_ETYPE_SHUTDOWN_FM:
                 DWC_ShutdownFriendsMatch();
-                param0->unk_2C = 23;
+                appState->unk_2C = 23;
                 break;
             case DWC_ETYPE_SHUTDOWN_ND:
             case DWC_ETYPE_FATAL:
@@ -541,7 +546,7 @@ static int ov94_022451EC(GTSApplicationState *param0)
             }
 
             if ((v0 < -20000) && (v0 >= -29999)) {
-                param0->unk_2C = 23;
+                appState->unk_2C = 23;
             }
         }
         break;
@@ -550,21 +555,21 @@ static int ov94_022451EC(GTSApplicationState *param0)
     return 3;
 }
 
-static int ov94_0224529C(GTSApplicationState *param0)
+static int GTSApplication_WFCInit_GetDWCKey(GTSApplicationState *appState)
 {
     DWCUserData *v0;
     s32 v1;
 
-    v0 = WiFiList_GetUserData(param0->unk_00->unk_14);
-    v1 = SystemData_GetDWCProfileId(param0->unk_00->unk_04);
+    v0 = WiFiList_GetUserData(appState->unk_00->unk_14);
+    v1 = SystemData_GetDWCProfileId(appState->unk_00->unk_04);
 
     if (v1 == 0) {
-        SystemData_SetDWCProfileId(param0->unk_00->unk_04, param0->unk_00->unk_38);
+        SystemData_SetDWCProfileId(appState->unk_00->unk_04, appState->unk_00->unk_38);
     }
 
-    v1 = SystemData_GetDWCProfileId(param0->unk_00->unk_04);
+    v1 = SystemData_GetDWCProfileId(appState->unk_00->unk_04);
     ov94_0223B140(v1, DWC_CreateFriendKey(v0));
-    param0->unk_2C = 7;
+    appState->unk_2C = 7;
 
     return 3;
 }
@@ -591,31 +596,31 @@ static int ov94_02245300(GTSApplicationState *param0)
             param0->unk_2C = 9;
             break;
         case 1:
-            ov94_0223C5F4(param0);
+            GTSApplicationState_DestroyWaitDial(param0);
             param0->unk_3C = v0;
             param0->unk_2C = 21;
             break;
         case 2:
         case -1:
-            ov94_0223C5F4(param0);
+            GTSApplicationState_DestroyWaitDial(param0);
             param0->unk_3C = v0;
             param0->unk_2C = 21;
             break;
         case -12:
         case -15:
-            ov94_0223C5F4(param0);
+            GTSApplicationState_DestroyWaitDial(param0);
             param0->unk_3C = v0;
             param0->unk_2C = 21;
             break;
         case -2:
         case -14:
-            ov94_0223C5F4(param0);
+            GTSApplicationState_DestroyWaitDial(param0);
             param0->unk_3C = v0;
             param0->unk_2C = 21;
             break;
         case -13:
         default:
-            ov94_0223C5F4(param0);
+            GTSApplicationState_DestroyWaitDial(param0);
             sub_02038A0C();
             break;
         }
@@ -650,7 +655,7 @@ static int ov94_022453EC(GTSApplicationState *param0)
 
         switch (v0) {
         case 0:
-            ov94_0223C5F4(param0);
+            GTSApplicationState_DestroyWaitDial(param0);
 
             switch (param0->unk_11A8.unk_00) {
             case 0:
@@ -685,37 +690,37 @@ static int ov94_022453EC(GTSApplicationState *param0)
                 param0->unk_2C = 21;
                 break;
             default:
-                ov94_0223C5F4(param0);
+                GTSApplicationState_DestroyWaitDial(param0);
                 sub_02038A0C();
                 break;
             }
             break;
         case 1:
-            ov94_0223C5F4(param0);
+            GTSApplicationState_DestroyWaitDial(param0);
             param0->unk_3C = v0;
             param0->unk_2C = 21;
             break;
         case 2:
         case -1:
-            ov94_0223C5F4(param0);
+            GTSApplicationState_DestroyWaitDial(param0);
             param0->unk_3C = v0;
             param0->unk_2C = 21;
             break;
         case -12:
         case -15:
-            ov94_0223C5F4(param0);
+            GTSApplicationState_DestroyWaitDial(param0);
             param0->unk_3C = v0;
             param0->unk_2C = 21;
             break;
         case -2:
         case -14:
-            ov94_0223C5F4(param0);
+            GTSApplicationState_DestroyWaitDial(param0);
             param0->unk_3C = v0;
             param0->unk_2C = 21;
             break;
         case -13:
         default:
-            ov94_0223C5F4(param0);
+            GTSApplicationState_DestroyWaitDial(param0);
             sub_02038A0C();
             break;
         }
@@ -732,7 +737,7 @@ static int ov94_022453EC(GTSApplicationState *param0)
 
 static int ov94_02245540(GTSApplicationState *param0)
 {
-    int v0 = ov4_021D1F3C(-param0->unk_44, param0->unk_48);
+    int v0 = ov4_021D1F3C(-param0->unk_44, param0->unk_48); // NintendoWFC_GetErrorCode ?
     ov94_022459B4(param0, v0, -param0->unk_44);
     param0->unk_2C = 24;
 
@@ -749,10 +754,10 @@ static int ov94_02245564(GTSApplicationState *param0)
     return 3;
 }
 
-static int ov94_02245594(GTSApplicationState *param0)
+static int GTSApplication_WFCInit_Exit(GTSApplicationState *param0)
 {
     sub_02039794();
-    ov94_0223C5F4(param0);
+    GTSApplicationState_DestroyWaitDial(param0);
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
 
     param0->unk_2C = 0;
@@ -818,7 +823,7 @@ static int ov94_02245608(GTSApplicationState *param0)
     }
 
     ov94_02245824(param0, param0->gtsMessageLoader, v0, TEXT_SPEED_FAST, 0xf0f);
-    ov94_Setunk_2CAndunk_30(param0, 12, 22);
+    ov94_Setunk_2CAndnextunk_30(param0, 12, 22);
 
     return 3;
 }
@@ -859,10 +864,10 @@ static int ov94_022456CC(GTSApplicationState *param0)
     return 3;
 }
 
-static int ov94_0224579C(GTSApplicationState *param0)
+static int GTSApplication_WFCInit_WaitForText(GTSApplicationState *param0)
 {
-    if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
-        param0->unk_2C = param0->unk_30;
+    if (Text_IsPrinterActive(param0->unk_BE0) == FALSE) {
+        param0->unk_2C = param0->nextunk_2C;
     }
 
     return 3;
@@ -870,9 +875,9 @@ static int ov94_0224579C(GTSApplicationState *param0)
 
 static int ov94_022457BC(GTSApplicationState *param0)
 {
-    if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
+    if (Text_IsPrinterActive(param0->unk_BE0) == FALSE) {
         if (param0->unk_10E0 > 30) {
-            param0->unk_2C = param0->unk_30;
+            param0->unk_2C = param0->nextunk_2C;
         }
 
         param0->unk_10E0++;
@@ -881,11 +886,11 @@ static int ov94_022457BC(GTSApplicationState *param0)
     return 3;
 }
 
-static int ov94_022457F0(GTSApplicationState *param0)
+static int GTSApplication_WFCInit_SetupConnectionMenu(GTSApplicationState *param0)
 {
-    if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
+    if (Text_IsPrinterActive(param0->unk_BE0) == FALSE) {
         param0->unk_10D0 = ov94_0223C3C0(param0->unk_04, 13, (((((1 + (18 + 12)) + 9) + 27 * 4) + 23 * 16) + 24 * 2));
-        param0->unk_2C = param0->unk_30;
+        param0->unk_2C = param0->nextunk_2C;
     }
 
     return 3;
@@ -962,7 +967,7 @@ static void ov94_022459B4(GTSApplicationState *param0, int param1, int param2)
     if (param1 != -1) {
         v0 = 0 + param1;
     } else {
-        v0 = 11;
+        v0 = pl_msg_00000695_00011;
     }
 
     StringTemplate_SetNumber(param0->unk_B8C, 0, param2, 5, 2, 1);

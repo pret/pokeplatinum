@@ -113,7 +113,7 @@ int ov94_0223C6D4(GTSApplicationState *param0, int param1)
 {
     int v0;
 
-    sub_020397B0(ov94_GetNetworkStrength());
+    sub_020397B0(GTSApplication_GetNetworkStrength());
 
     v0 = (*Unk_ov94_022467C4[param0->unk_2C])(param0);
     return v0;
@@ -380,7 +380,7 @@ static int ov94_0223CB50(GTSApplicationState *param0)
 
 static int ov94_0223CB90(GTSApplicationState *param0)
 {
-    ov94_Setunk_2CAndunk_30(param0, 10, 2);
+    ov94_Setunk_2CAndnextunk_30(param0, 10, 2);
     return 3;
 }
 
@@ -413,9 +413,9 @@ static int ov94_0223CBD8(GTSApplicationState *param0)
 static int ov94_0223CBEC(GTSApplicationState *param0)
 {
     ov94_0223CF80(param0, GTS_Text_AreYouSeekingOrOfferingAPokemon, TEXT_SPEED_FAST, 0, 0xf0f);
-    ov94_Setunk_2CAndunk_30(param0, 10, 6);
+    ov94_Setunk_2CAndnextunk_30(param0, 10, 6);
     Sprite_SetAnimateFlag(param0->unk_E20, 1);
-    ov94_0223C584(param0);
+    GTSApplicationState_StartCountingBoxPokemon(param0);
 
     return 3;
 }
@@ -424,39 +424,39 @@ static int ov94_0223CC28(GTSApplicationState *param0)
 {
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
         ov94_0223CFD8(param0, GTS_Text_IsItOKToDisconnect, ov94_0223C4D4(param0), 0, 0xf0f);
-        ov94_Setunk_2CAndunk_30(param0, 10, 12);
+        ov94_Setunk_2CAndnextunk_30(param0, 10, 12);
         Sprite_SetAnimateFlag(param0->unk_E20, 0);
     } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
         switch (param0->unk_10C) {
-        case 0:
+        case 0: // deposit pokemon
             if (param0->isPokemonListed == 0) {
                 ov94_Setunk_18Andunk_24(param0, 5, 5);
                 param0->unk_2C = 9;
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
             } else {
-                if (param0->unk_3A == 0) {
+                if (param0->networkTimer == 0) {
                     ov94_Setunk_18Andunk_24(param0, 7, 11);
                     param0->unk_1C = 2;
                     param0->unk_2C = 9;
-                    param0->unk_3A = (60 * 30);
+                    param0->networkTimer = (60 * 30);
                     Sound_PlayEffect(SEQ_SE_CONFIRM);
                 } else {
                     Sprite_SetAnimateFlag(param0->unk_E20, 0);
                     ov94_0223CF80(param0, GTS_Text_PleaseWaitAWhile, TEXT_SPEED_FAST, 0, 0xf0f);
-                    ov94_Setunk_2CAndunk_30(param0, 11, 5);
+                    ov94_Setunk_2CAndnextunk_30(param0, 11, 5);
                     Sound_PlayEffect(SEQ_SE_DP_BOX03);
                     param0->unk_10E0 = 0;
                 }
             }
             break;
-        case 1:
+        case 1: // seek pokemon
             ov94_Setunk_18Andunk_24(param0, 4, 0);
             param0->unk_2C = 9;
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             break;
-        case 2:
+        case 2: // exit
             ov94_0223CFD8(param0, GTS_Text_IsItOKToDisconnect, ov94_0223C4D4(param0), 0, 0xf0f);
-            ov94_Setunk_2CAndunk_30(param0, 10, 12);
+            ov94_Setunk_2CAndnextunk_30(param0, 10, 12);
             Sprite_SetAnimateFlag(param0->unk_E20, 0);
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             break;
@@ -542,7 +542,7 @@ static int ov94_0223CE7C(GTSApplicationState *param0)
 static int ov94_0223CEE8(GTSApplicationState *param0)
 {
     if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
-        param0->unk_2C = param0->unk_30;
+        param0->unk_2C = param0->nextunk_2C;
     }
 
     return 3;
@@ -555,7 +555,7 @@ static int ov94_0223CF08(GTSApplicationState *param0)
 
         if (param0->unk_10E0 > 45) {
             param0->unk_10E0 = 0;
-            param0->unk_2C = param0->unk_30;
+            param0->unk_2C = param0->nextunk_2C;
         }
     }
 

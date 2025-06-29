@@ -402,7 +402,7 @@ static void ov94_0223EA20(GTSApplicationState *param0)
 static int ov94_0223EA5C(GTSApplicationState *param0)
 {
     ov94_0223F9A4(param0, 8, TEXT_SPEED_FAST, 0, 0xf0f);
-    ov94_Setunk_2CAndunk_30(param0, 23, 1);
+    ov94_Setunk_2CAndnextunk_30(param0, 23, 1);
 
     return 3;
 }
@@ -444,13 +444,13 @@ static int ov94_0223EA84(GTSApplicationState *param0)
             break;
         case 5:
             ov94_0223F9A4(param0, 15, TEXT_SPEED_FAST, 0, 0xf0f);
-            ov94_Setunk_2CAndunk_30(param0, 23, 25);
+            ov94_Setunk_2CAndnextunk_30(param0, 23, 25);
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             break;
         }
     } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
         ov94_0223F9A4(param0, 15, TEXT_SPEED_FAST, 0, 0xf0f);
-        ov94_Setunk_2CAndunk_30(param0, 23, 25);
+        ov94_Setunk_2CAndnextunk_30(param0, 23, 25);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else {
         int v1 = ov94_02244214(param0->unk_118);
@@ -473,18 +473,18 @@ static int ov94_0223EBCC(GTSApplicationState *param0)
 {
     if (param0->unk_B7A.species == SPECIES_NONE) {
         ov94_0223F9A4(param0, 12, TEXT_SPEED_FAST, 0, 0xf0f);
-        ov94_Setunk_2CAndunk_30(param0, 23, 1);
+        ov94_Setunk_2CAndnextunk_30(param0, 23, 1);
         Sound_PlayEffect(SEQ_SE_DP_BOX03);
     } else {
         if (ov94_0223FB0C(&param0->unk_B7A, &param0->unk_B80, param0->unk_11B0, param0->unk_B88)) {
             ov94_0223F9A4(param0, 33, TEXT_SPEED_FAST, 0, 0xf0f);
-            ov94_Setunk_2CAndunk_30(param0, 23, 1);
+            ov94_Setunk_2CAndnextunk_30(param0, 23, 1);
             Sound_PlayEffect(SEQ_SE_DP_BOX03);
         } else {
             Sound_PlayEffect(SEQ_SE_DP_Z_SEARCH);
 
             ov94_0223F9A4(param0, 13, TEXT_SPEED_FAST, 0, 0xf0f);
-            ov94_Setunk_2CAndunk_30(param0, 23, 18);
+            ov94_Setunk_2CAndnextunk_30(param0, 23, 18);
             ov94_022442E4(param0);
         }
     }
@@ -609,11 +609,11 @@ static int ov94_0223EE40(GTSApplicationState *param0)
 {
     if (param0->unk_118 == 0) {
         ov94_0223F9A4(param0, 14, TEXT_SPEED_FAST, 0, 0xf0f);
-        ov94_Setunk_2CAndunk_30(param0, 23, 1);
+        ov94_Setunk_2CAndnextunk_30(param0, 23, 1);
         Sound_PlayEffect(SEQ_SE_DP_BOX03);
     } else {
         ov94_0223F9A4(param0, 30, TEXT_SPEED_FAST, 0, 0xf0f);
-        ov94_Setunk_2CAndunk_30(param0, 23, 21);
+        ov94_Setunk_2CAndnextunk_30(param0, 23, 21);
         param0->unk_10E0 = 0;
     }
 
@@ -626,7 +626,7 @@ static int ov94_0223EE9C(GTSApplicationState *param0)
 
     if (param0->unk_10E0 > 45) {
         ov94_0223F9A4(param0, 32, TEXT_SPEED_FAST, 0, 0xf0f);
-        ov94_Setunk_2CAndunk_30(param0, 23, 1);
+        ov94_Setunk_2CAndnextunk_30(param0, 23, 1);
         param0->unk_10F2 = 1;
     }
 
@@ -638,7 +638,7 @@ static int ov94_0223EEE0(GTSApplicationState *param0)
     param0->unk_B80.species = SPECIES_NONE;
 
     ov94_0223F9A4(param0, 38, TEXT_SPEED_FAST, 0, 0xf0f);
-    ov94_Setunk_2CAndunk_30(param0, 23, 1);
+    ov94_Setunk_2CAndnextunk_30(param0, 23, 1);
     Sound_PlayEffect(SEQ_SE_DP_BOX03);
 
     return 3;
@@ -647,7 +647,7 @@ static int ov94_0223EEE0(GTSApplicationState *param0)
 static int ov94_0223EF1C(GTSApplicationState *param0)
 {
     ov94_0223F9A4(param0, 147, TEXT_SPEED_NORMAL, 0, 0xf0f);
-    ov94_Setunk_2CAndunk_30(param0, 24, 30);
+    ov94_Setunk_2CAndnextunk_30(param0, 24, 30);
     param0->unk_10E0 = 0;
     Sound_PlayEffect(SEQ_SE_DP_BOX03);
 
@@ -657,7 +657,7 @@ static int ov94_0223EF1C(GTSApplicationState *param0)
 static int ov94_0223EF58(GTSApplicationState *param0)
 {
     ov94_0223F9A4(param0, 152, TEXT_SPEED_NORMAL, 0, 0xf0f);
-    ov94_Setunk_2CAndunk_30(param0, 24, 2);
+    ov94_Setunk_2CAndnextunk_30(param0, 24, 2);
     ov94_Setunk_18Andunk_24(param0, 0, 0);
     Sound_PlayEffect(SEQ_SE_DP_BOX03);
 
@@ -743,7 +743,7 @@ static int ov94_0223F0A8(GTSApplicationState *param0)
 static int ov94_0223F0D0(GTSApplicationState *param0)
 {
     ov94_0223F9A4(param0, 9, TEXT_SPEED_FAST, 0, 0xf0f);
-    ov94_Setunk_2CAndunk_30(param0, 23, 4);
+    ov94_Setunk_2CAndnextunk_30(param0, 23, 4);
 
     Window_Add(param0->unk_04, &param0->unk_F9C[0], 0, 15, 5, 4, 13, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 8 * 2 * 2));
     Window_FillTilemap(&param0->unk_F9C[0], 0x0);
@@ -850,7 +850,7 @@ static int ov94_0223F2B0(GTSApplicationState *param0)
 static int ov94_0223F41C(GTSApplicationState *param0)
 {
     ov94_0223F9A4(param0, 10, TEXT_SPEED_FAST, 0, 0xf0f);
-    ov94_Setunk_2CAndunk_30(param0, 23, 9);
+    ov94_Setunk_2CAndnextunk_30(param0, 23, 9);
 
     Window_Add(param0->unk_04, &param0->unk_F9C[0], 0, 21, 10, 10, 8, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 8 * 2 * 2));
     Window_FillTilemap(&param0->unk_F9C[0], 0x0);
@@ -904,7 +904,7 @@ static int ov94_0223F4B0(GTSApplicationState *param0)
 static int ov94_0223F5A0(GTSApplicationState *param0)
 {
     ov94_0223F9A4(param0, 11, TEXT_SPEED_FAST, 0, 0xf0f);
-    ov94_Setunk_2CAndunk_30(param0, 23, 12);
+    ov94_Setunk_2CAndnextunk_30(param0, 23, 12);
 
     Window_Add(param0->unk_04, &param0->unk_F9C[0], 0, 15, 5, 16, 13, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 8 * 2 * 2));
     Window_FillTilemap(&param0->unk_F9C[0], 0x0);
@@ -959,7 +959,7 @@ static int ov94_0223F638(GTSApplicationState *param0)
 static int ov94_0223F728(GTSApplicationState *param0)
 {
     ov94_0223F9A4(param0, 169, TEXT_SPEED_FAST, 0, 0xf0f);
-    ov94_Setunk_2CAndunk_30(param0, 23, 15);
+    ov94_Setunk_2CAndnextunk_30(param0, 23, 15);
 
     Window_Add(param0->unk_04, &param0->unk_F9C[0], 0, 2, 5, 28, 13, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 8 * 2 * 2));
     Window_FillTilemap(&param0->unk_F9C[0], 0x0);
@@ -1041,7 +1041,7 @@ static int ov94_0223F920(GTSApplicationState *param0)
 static int ov94_0223F928(GTSApplicationState *param0)
 {
     ov94_0223F9A4(param0, 146, TEXT_SPEED_FAST, 0, 0xf0f);
-    ov94_Setunk_2CAndunk_30(param0, 23, 1);
+    ov94_Setunk_2CAndnextunk_30(param0, 23, 1);
 
     return 3;
 }
@@ -1049,7 +1049,7 @@ static int ov94_0223F928(GTSApplicationState *param0)
 static int ov94_0223F950(GTSApplicationState *param0)
 {
     if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
-        param0->unk_2C = param0->unk_30;
+        param0->unk_2C = param0->nextunk_2C;
     }
 
     return 3;
@@ -1062,7 +1062,7 @@ static int ov94_0223F970(GTSApplicationState *param0)
 
         if (param0->unk_10E0 > 45) {
             param0->unk_10E0 = 0;
-            param0->unk_2C = param0->unk_30;
+            param0->unk_2C = param0->nextunk_2C;
         }
     }
 

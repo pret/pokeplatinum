@@ -15,12 +15,12 @@ void ov94_0223C300(AffineSpriteListTemplate *param0, GTSApplicationState *param1
 Menu *ov94_0223C3C0(BgConfig *param0, int param1, int param2);
 void ov94_0223C3F4(GTSApplicationState *param0, int param1, int param2);
 void ov94_0223C3FC(Sprite *param0, int param1, int param2);
-int ov94_GetNetworkStrength(void);
+int GTSApplication_GetNetworkStrength(void);
 void ov94_Setunk_18Andunk_24(GTSApplicationState *param0, int param1, int param2);
 void ov94_0223C4C8(GTSApplicationState *param0);
 int ov94_0223C4D4(GTSApplicationState *param0);
-void ov94_0223C584(GTSApplicationState *param0);
-void ov94_0223C5D8(GTSApplicationState *param0);
-void ov94_0223C5F4(GTSApplicationState *param0);
+void GTSApplicationState_StartCountingBoxPokemon(GTSApplicationState *param0);
+void GTSApplicationState_AddWaitDial(GTSApplicationState *param0);
+void GTSApplicationState_DestroyWaitDial(GTSApplicationState *param0);
 
 #endif // POKEPLATINUM_OV94_0223BCB0_H

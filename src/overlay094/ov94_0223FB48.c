@@ -142,7 +142,7 @@ int ov94_0223FBBC(GTSApplicationState *param0, int param1)
 {
     int v0;
 
-    sub_020397B0(ov94_GetNetworkStrength());
+    sub_020397B0(GTSApplication_GetNetworkStrength());
 
     v0 = (*Unk_ov94_022468DC[param0->unk_2C])(param0);
 
@@ -563,15 +563,15 @@ static int ov94_022402BC(GTSApplicationState *param0)
                         if (ov94_0224121C(param0->unk_00->unk_08, param0->unk_00->pcBoxes, param0->selectedBoxId, param0->unk_112)) {
                             StringTemplate_SetNickname(param0->unk_B8C, 0, ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->pcBoxes, param0->selectedBoxId, param0->unk_112));
                             ov94_02240D58(param0, 22, TEXT_SPEED_FAST, 0, 0xf0f, 0);
-                            ov94_Setunk_2CAndunk_30(param0, 3, 7);
+                            ov94_Setunk_2CAndnextunk_30(param0, 3, 7);
                         } else {
                             ov94_02240D58(param0, 26, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-                            ov94_Setunk_2CAndunk_30(param0, 4, 1);
+                            ov94_Setunk_2CAndnextunk_30(param0, 4, 1);
                         }
                         break;
                     case 2:
                         ov94_02240D58(param0, 27, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-                        ov94_Setunk_2CAndunk_30(param0, 4, 1);
+                        ov94_Setunk_2CAndnextunk_30(param0, 4, 1);
                         break;
                     }
                 }
@@ -597,11 +597,11 @@ static int ov94_022402BC(GTSApplicationState *param0)
                             if (ov94_0224121C(param0->unk_00->unk_08, param0->unk_00->pcBoxes, param0->selectedBoxId, param0->unk_112)) {
                                 StringTemplate_SetNickname(param0->unk_B8C, 0, v0);
                                 ov94_02240D58(param0, 18, TEXT_SPEED_FAST, 0, 0xf0f, 0);
-                                ov94_Setunk_2CAndunk_30(param0, 3, 9);
+                                ov94_Setunk_2CAndnextunk_30(param0, 3, 9);
                                 Sound_PlayEffect(SEQ_SE_CONFIRM);
                             } else {
                                 ov94_02240D58(param0, 26, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-                                ov94_Setunk_2CAndunk_30(param0, 4, 1);
+                                ov94_Setunk_2CAndnextunk_30(param0, 4, 1);
                             }
                         } else {
                             Sound_PlayEffect(SEQ_SE_CONFIRM);
@@ -725,13 +725,13 @@ static int ov94_02240688(GTSApplicationState *param0)
 
         if (BoxPokemon_HasUnusedRibbons(v0)) {
             ov94_02240D58(param0, 37, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-            ov94_Setunk_2CAndunk_30(param0, 4, 1);
+            ov94_Setunk_2CAndnextunk_30(param0, 4, 1);
         } else if (BoxPokemon_FormNotInDP(v0)) {
             ov94_02240D58(param0, 170, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-            ov94_Setunk_2CAndunk_30(param0, 4, 1);
+            ov94_Setunk_2CAndnextunk_30(param0, 4, 1);
         } else if (BoxPokemon_HeldItemNotInDP(v0)) {
             ov94_02240D58(param0, 171, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-            ov94_Setunk_2CAndunk_30(param0, 4, 1);
+            ov94_Setunk_2CAndnextunk_30(param0, 4, 1);
         } else {
             int v1 = 0;
 
@@ -817,13 +817,13 @@ static int ov94_022408E8(GTSApplicationState *param0)
 
         if (BoxPokemon_HasUnusedRibbons(boxMon)) {
             ov94_02240D58(param0, 37, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-            ov94_Setunk_2CAndunk_30(param0, 4, 1);
+            ov94_Setunk_2CAndnextunk_30(param0, 4, 1);
         } else if (BoxPokemon_FormNotInDP(boxMon)) {
             ov94_02240D58(param0, 170, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-            ov94_Setunk_2CAndunk_30(param0, 4, 1);
+            ov94_Setunk_2CAndnextunk_30(param0, 4, 1);
         } else if (BoxPokemon_HeldItemNotInDP(boxMon)) {
             ov94_02240D58(param0, 171, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-            ov94_Setunk_2CAndunk_30(param0, 4, 1);
+            ov94_Setunk_2CAndnextunk_30(param0, 4, 1);
         } else {
             int v1 = 0;
 
@@ -897,7 +897,7 @@ static int ov94_02240AE8(GTSApplicationState *param0)
 static int ov94_02240B20(GTSApplicationState *param0)
 {
     ov94_02240D58(param0, 25, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-    ov94_Setunk_2CAndunk_30(param0, 3, 12);
+    ov94_Setunk_2CAndnextunk_30(param0, 3, 12);
 
     return 3;
 }
@@ -933,7 +933,7 @@ static int ov94_02240BB0(GTSApplicationState *param0)
     if (ov94_02241498(v0) && (param0->selectedBoxId != MAX_PC_BOXES)) {
         if (Party_GetCurrentCount(param0->unk_00->unk_08) == 6) {
             ov94_02240D58(param0, 28, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-            ov94_Setunk_2CAndunk_30(param0, 4, 1);
+            ov94_Setunk_2CAndnextunk_30(param0, 4, 1);
             return 0;
         }
     }
@@ -953,7 +953,7 @@ static int ov94_02240BB0(GTSApplicationState *param0)
 static int ov94_02240C58(GTSApplicationState *param0)
 {
     ov94_02240D58(param0, 25, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-    ov94_Setunk_2CAndunk_30(param0, 3, 15);
+    ov94_Setunk_2CAndnextunk_30(param0, 3, 15);
 
     return 3;
 }
@@ -987,7 +987,7 @@ static int ov94_02240CA8(GTSApplicationState *param0)
 static int ov94_02240D08(GTSApplicationState *param0)
 {
     if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
-        param0->unk_2C = param0->unk_30;
+        param0->unk_2C = param0->nextunk_2C;
     }
 
     return 3;
@@ -997,7 +997,7 @@ static int ov94_02240D28(GTSApplicationState *param0)
 {
     if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
         Window_EraseMessageBox(&param0->unk_109C, 0);
-        param0->unk_2C = param0->unk_30;
+        param0->unk_2C = param0->nextunk_2C;
     }
 
     return 3;

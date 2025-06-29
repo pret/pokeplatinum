@@ -302,7 +302,7 @@ int ov94_02241548(GTSApplicationState *param0, int param1)
 {
     int v0;
 
-    sub_020397B0(ov94_GetNetworkStrength());
+    sub_020397B0(GTSApplication_GetNetworkStrength());
 
     v0 = (*Unk_ov94_0224695C[param0->unk_2C])(param0);
     return v0;
@@ -520,7 +520,7 @@ static int ov94_0224195C(GTSApplicationState *param0)
 {
     if (IsScreenFadeDone()) {
         ov94_0224158C(param0, GTS_Text_PleaseChoosePokemon, TEXT_SPEED_FAST, 0, 0xf0f);
-        ov94_Setunk_2CAndunk_30(param0, 16, 1);
+        ov94_Setunk_2CAndnextunk_30(param0, 16, 1);
     }
 
     return 3;
@@ -660,7 +660,7 @@ static int ov94_02241BAC(GTSApplicationState *param0)
 static int ov94_02241D08(GTSApplicationState *param0)
 {
     ov94_0224158C(param0, GTS_Text_PleaseChooseGender, TEXT_SPEED_FAST, 0, 0xf0f);
-    ov94_Setunk_2CAndunk_30(param0, 16, 8);
+    ov94_Setunk_2CAndnextunk_30(param0, 16, 8);
 
     Window_Add(param0->unk_04, &param0->unk_F9C[0], 0, 21, 10, 10, 8, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 11 * 2 * 6));
     Window_FillTilemap(&param0->unk_F9C[0], 0x0);
@@ -712,7 +712,7 @@ static int ov94_02241DA0(GTSApplicationState *param0)
 static int ov94_02241E8C(GTSApplicationState *param0)
 {
     ov94_0224158C(param0, GTS_Text_PleaseChooseLevel, TEXT_SPEED_FAST, 0, 0xf0f);
-    ov94_Setunk_2CAndunk_30(param0, 16, 11);
+    ov94_Setunk_2CAndnextunk_30(param0, 16, 11);
 
     Window_Add(param0->unk_04, &param0->unk_F9C[0], 0, 15, 5, 16, 13, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 11 * 2 * 6));
     Window_FillTilemap(&param0->unk_F9C[0], 0x0);
@@ -769,7 +769,7 @@ static int ov94_02241F28(GTSApplicationState *param0)
 static int ov94_02242040(GTSApplicationState *param0)
 {
     ov94_0224158C(param0, GTS_Text_ConfirmCriteria, TEXT_SPEED_FAST, 0, 0xf0f);
-    ov94_Setunk_2CAndunk_30(param0, 16, 14);
+    ov94_Setunk_2CAndnextunk_30(param0, 16, 14);
 
     return 3;
 }
@@ -818,7 +818,7 @@ static int ov94_022420E4(GTSApplicationState *param0)
 static int ov94_02242138(GTSApplicationState *param0)
 {
     if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
-        param0->unk_2C = param0->unk_30;
+        param0->unk_2C = param0->nextunk_2C;
     }
 
     return 3;
