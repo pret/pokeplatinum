@@ -152,7 +152,7 @@ __attribute__((aligned(4))) static const u8 Unk_020F55D0[][6] = {
 
 void sub_020933F8(FieldTask *param0, UnkStruct_02095C48 *param1)
 {
-    UnkStruct_020933F8 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_020933F8));
+    UnkStruct_020933F8 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_020933F8));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_020933F8));
     v0->unk_00 = param1;
@@ -402,7 +402,7 @@ UnkStruct_02095C48 *sub_02093800(const UnkStruct_02093800 *param0)
     int v1 = 4 - 1;
     int v2;
 
-    Heap_Create(HEAP_ID_FIELDMAP, HEAP_ID_20, (0x3000 + 0x1000));
+    Heap_Create(HEAP_ID_FIELD2, HEAP_ID_20, (0x3000 + 0x1000));
 
     v0 = sub_020937C4();
     v0->unk_19A4 = LCRNG_GetSeed();
@@ -430,7 +430,7 @@ UnkStruct_02095C48 *sub_02093800(const UnkStruct_02093800 *param0)
         v0->unk_00.unk_E8[v2] = sub_02029C88(HEAP_ID_20);
     }
 
-    sub_020954F0(v0, HEAP_ID_FIELDMAP, v0->unk_00.unk_10E, v0->unk_00.unk_10F, v0->unk_00.unk_110);
+    sub_020954F0(v0, HEAP_ID_FIELD2, v0->unk_00.unk_10E, v0->unk_00.unk_10F, v0->unk_00.unk_110);
     v0->unk_148 = Party_New(HEAP_ID_20);
 
     for (v2 = 0; v2 < 4; v2++) {
@@ -487,7 +487,7 @@ static void sub_020939E0(UnkStruct_02095C48 *param0, int param1, int param2)
     int v0 = 4 - 1;
     int v1;
 
-    sub_02094F04(param0, HEAP_ID_FIELDMAP, v0, param0->unk_00.unk_10F, param0->unk_00.unk_110, param0->unk_00.unk_111, param1, param2);
+    sub_02094F04(param0, HEAP_ID_FIELD2, v0, param0->unk_00.unk_10F, param0->unk_00.unk_110, param0->unk_00.unk_111, param1, param2);
 
     for (v1 = 1; v1 < 4; v1++) {
         sub_02095380(&param0->unk_00.unk_10[v1], param0->unk_00.unk_00[v1], 20);
@@ -1448,7 +1448,7 @@ void sub_02094A58(UnkStruct_02095C48 *param0, int param1)
 
     GF_ASSERT(param0->unk_19A0 == NULL);
 
-    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_02094A58));
+    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD1, sizeof(UnkStruct_02094A58));
     MI_CpuClear8(v0, sizeof(UnkStruct_02094A58));
     v0->unk_0C = sub_02095904(param1);
 

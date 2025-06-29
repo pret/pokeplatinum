@@ -1627,7 +1627,7 @@ static SysTask *ov5_021E0F54(FieldSystem *fieldSystem, u32 param1)
     {
         SysTask *v2;
         MapObject *v3 = Player_MapObject(playerAvatar);
-        UnkStruct_ov5_021E0FF0 *v4 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, (sizeof(UnkStruct_ov5_021E0FF0)));
+        UnkStruct_ov5_021E0FF0 *v4 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD1, (sizeof(UnkStruct_ov5_021E0FF0)));
 
         v4->unk_00 = 0;
         v4->fieldSystem = fieldSystem;
@@ -1753,7 +1753,7 @@ static MapObject *ov5_021E10D4(PlayerAvatar *playerAvatar, int param1)
 
 static void *ov5_021E1110(int param0)
 {
-    void *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, param0);
+    void *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD1, param0);
 
     GF_ASSERT(v0 != NULL);
     memset(v0, 0, param0);
@@ -1763,7 +1763,7 @@ static void *ov5_021E1110(int param0)
 
 static void ov5_021E1134(void *param0)
 {
-    Heap_FreeToHeapExplicit(HEAP_ID_FIELD, param0);
+    Heap_FreeToHeapExplicit(HEAP_ID_FIELD1, param0);
 }
 
 static Pokemon *ov5_021E1140(FieldSystem *fieldSystem, int param1)

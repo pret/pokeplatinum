@@ -50,7 +50,7 @@ static u8 ov5_021D481C(const int param0);
 
 UnkStruct_ov5_021D432C *ov5_021D431C(void)
 {
-    UnkStruct_ov5_021D432C *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021D432C));
+    UnkStruct_ov5_021D432C *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD1, sizeof(UnkStruct_ov5_021D432C));
     v0->unk_00 = 0;
 
     return v0;
@@ -293,7 +293,7 @@ BOOL ov5_021D453C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
         (param1->unk_00)++;
     } break;
     case 1:
-        sub_02056B30(fieldSystem->task, 0, 9, 1, 0x0, 6, 1, HEAP_ID_FIELDMAP);
+        sub_02056B30(fieldSystem->task, 0, 9, 1, 0x0, 6, 1, HEAP_ID_FIELD2);
         {
             int v9;
             int v10;
@@ -818,7 +818,7 @@ void ov5_021D4CEC(FieldSystem *fieldSystem, const u8 param1)
 
 void ov5_021D4D48(FieldSystem *fieldSystem, const u8 param1)
 {
-    u8 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(u8));
+    u8 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD1, sizeof(u8));
 
     *v0 = param1;
     FieldTask_InitCall(fieldSystem->task, ov5_021D4BC8, v0);
@@ -865,7 +865,7 @@ void ov5_021D4D78(const int param0, const int param1, const int param2, FieldSys
 
 UnkStruct_ov5_021D4E00 *ov5_021D4E00(void)
 {
-    UnkStruct_ov5_021D4E00 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021D4E00));
+    UnkStruct_ov5_021D4E00 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD1, sizeof(UnkStruct_ov5_021D4E00));
     v0->unk_00 = 0;
 
     return v0;
@@ -897,7 +897,7 @@ BOOL ov5_021D4E10(FieldTask *param0)
             Camera_AdjustFOV(-96, fieldSystem->camera);
         }
 
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_WHITE, 6, 1, HEAP_ID_FIELDMAP);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_WHITE, 6, 1, HEAP_ID_FIELD2);
         v2->unk_08 = 1;
         break;
     case 1:
@@ -946,7 +946,7 @@ BOOL ov5_021D4F14(FieldTask *param0)
         v1->unk_04 = 0;
 
         Sound_PlayEffect(SEQ_SE_DP_KAIDAN2);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_WHITE, 6, 1, HEAP_ID_FIELDMAP);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_WHITE, 6, 1, HEAP_ID_FIELD2);
 
         v1->unk_08 = 1;
         (v1->unk_00)++;
@@ -977,7 +977,7 @@ BOOL ov5_021D4FA0(FieldTask *param0)
         v1->unk_04 = 0;
 
         Sound_PlayEffect(SEQ_SE_DP_KAIDAN2);
-        sub_02056B30(param0, 0, 16, 0, 0x0, 6, 1, HEAP_ID_FIELDMAP);
+        sub_02056B30(param0, 0, 16, 0, 0x0, 6, 1, HEAP_ID_FIELD2);
 
         v1->unk_08 = 1;
         (v1->unk_00)++;
@@ -1044,7 +1044,7 @@ BOOL ov5_021D5020(FieldTask *param0)
             GF_ASSERT(0);
         }
 
-        sub_02056B30(param0, 0, v4, 1, 0x0, 6, 1, HEAP_ID_FIELDMAP);
+        sub_02056B30(param0, 0, v4, 1, 0x0, 6, 1, HEAP_ID_FIELD2);
         v2->unk_08 = 1;
     } break;
     case 1:
@@ -1098,7 +1098,7 @@ BOOL ov5_021D5150(FieldTask *param0)
             (v2->unk_00) = 3;
         }
 
-        sub_02056B30(param0, 0, 1, 1, 0x0, 6, 1, HEAP_ID_FIELDMAP);
+        sub_02056B30(param0, 0, 1, 1, 0x0, 6, 1, HEAP_ID_FIELD2);
     } break;
     case 1:
         v0 = Player_MapObject(fieldSystem->playerAvatar);

@@ -184,7 +184,7 @@ void sub_020656DC(MapObject *mapObj)
 
 SysTask *MapObject_StartAnimation(MapObject *mapObj, const MapObjectAnimCmd *animCmd)
 {
-    MoveAnimData *data = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(MoveAnimData));
+    MoveAnimData *data = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD1, sizeof(MoveAnimData));
     GF_ASSERT(data != NULL);
     memset(data, 0, sizeof(MoveAnimData));
 
@@ -211,7 +211,7 @@ void MapObject_FinishAnimation(SysTask *task)
     GF_ASSERT(LocalMapObj_CheckAnimationFinished(data->mapObj) == TRUE);
 
     sub_020656AC(data->mapObj);
-    Heap_FreeToHeapExplicit(HEAP_ID_FIELD, data);
+    Heap_FreeToHeapExplicit(HEAP_ID_FIELD1, data);
     SysTask_Done(task);
 }
 

@@ -53,14 +53,14 @@ UnkStruct_ov104_0223B5C0 *ov104_02234DB4(SaveData *saveData, u16 param1, u8 para
     Pokemon *v9;
     static UnkStruct_ov104_0223B5C0 *v10;
 
-    v10 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov104_0223B5C0));
+    v10 = Heap_AllocFromHeap(HEAP_ID_FIELD2, sizeof(UnkStruct_ov104_0223B5C0));
     MI_CpuClear8(v10, sizeof(UnkStruct_ov104_0223B5C0));
 
     v10->unk_6F8 = sub_02030114(saveData);
     v10->saveData = saveData;
     v10->unk_00 = 11;
-    v10->unk_264 = Party_New(HEAP_ID_FIELDMAP);
-    v10->unk_D8C = Pokemon_New(HEAP_ID_FIELDMAP);
+    v10->unk_264 = Party_New(HEAP_ID_FIELD2);
+    v10->unk_D8C = Pokemon_New(HEAP_ID_FIELD2);
 
     v0 = v10->unk_6F8;
     v1 = sub_0203026C(saveData);
@@ -329,7 +329,7 @@ u16 ov104_022354C0(UnkStruct_ov104_0223B5C0 *param0, u8 param1)
     FrontierTrainerDataDTO v0;
     u8 v2 = (param0->unk_05 * 2) + param1;
 
-    Heap_FreeToHeap(ov104_0222DD04(&v0, param0->unk_18[v2], HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+    Heap_FreeToHeap(ov104_0222DD04(&v0, param0->unk_18[v2], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
 
     return ov104_0222E10C(v0.trainerType);
 }

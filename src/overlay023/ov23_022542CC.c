@@ -92,7 +92,7 @@ static const ListMenuTemplate Unk_ov23_02256B3C = {
 
 UnkStruct_ov23_022542D8 *ov23_022542CC(void)
 {
-    UnkStruct_ov23_022542D8 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_022542D8));
+    UnkStruct_ov23_022542D8 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD1, sizeof(UnkStruct_ov23_022542D8));
 
     return v0;
 }
@@ -105,7 +105,7 @@ void ov23_022542D8(UnkStruct_ov23_022542D8 *param0, FieldSystem *fieldSystem, u1
     param0->unk_34 = param3;
     param0->unk_40 = 0;
 
-    LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
+    LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD1);
 }
 
 void ov23_0225430C(UnkStruct_ov23_022542D8 *param0)
@@ -176,7 +176,7 @@ static void ov23_0225437C(UnkStruct_ov23_022542D8 *param0)
             4,
         };
 
-        v5 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0637, HEAP_ID_FIELD);
+        v5 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0637, HEAP_ID_FIELD1);
 
         {
             Strbuf *v8;
@@ -263,7 +263,7 @@ static void ov23_02254564(ListMenu *param0, u32 param1, u8 param2)
 
 UnkStruct_ov23_02254594 *ov23_02254588(void)
 {
-    UnkStruct_ov23_02254594 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02254594));
+    UnkStruct_ov23_02254594 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD1, sizeof(UnkStruct_ov23_02254594));
     return v0;
 }
 
@@ -275,7 +275,7 @@ void ov23_02254594(UnkStruct_ov23_02254594 *param0, FieldSystem *fieldSystem, u1
     param0->unk_38 = param2;
     param0->unk_3C = param3;
 
-    LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
+    LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD1);
 }
 
 void ov23_022545C4(UnkStruct_ov23_02254594 *param0, const u8 param1, const u8 param2)
@@ -408,7 +408,7 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
         int v10;
         u8 v11;
 
-        v6 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_GOODS, HEAP_ID_FIELD);
+        v6 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_GOODS, HEAP_ID_FIELD1);
 
         {
             MessageLoader *v12;
@@ -417,16 +417,16 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
             Strbuf *v15;
             StringTemplate *v16;
 
-            v12 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0637, HEAP_ID_FIELD);
+            v12 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0637, HEAP_ID_FIELD1);
 
             Window_FillTilemap(&param0->unk_18, 15);
 
             v13 = MessageLoader_GetNewStrbuf(v12, 9);
             v14 = MessageLoader_GetNewStrbuf(v12, 10);
-            v15 = Strbuf_Init(6, HEAP_ID_FIELD);
+            v15 = Strbuf_Init(6, HEAP_ID_FIELD1);
 
             Text_AddPrinterWithParams(&param0->unk_18, FONT_SYSTEM, v13, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
-            v16 = StringTemplate_Default(HEAP_ID_FIELD);
+            v16 = StringTemplate_Default(HEAP_ID_FIELD1);
 
             StringTemplate_SetNumber(v16, 0, param0->unk_40, 2, 1, 1);
             StringTemplate_SetNumber(v16, 1, param0->unk_41, 2, 1, 1);
@@ -472,12 +472,12 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
     v1.cursorCallback = ov23_022546A0;
     v1.parent = v0;
 
-    param0->unk_2C = ov23_02248C08(&v1, *(param0->unk_38), *(param0->unk_3C), HEAP_ID_FIELD, sub_02028A10, v0, 1);
+    param0->unk_2C = ov23_02248C08(&v1, *(param0->unk_38), *(param0->unk_3C), HEAP_ID_FIELD1, sub_02028A10, v0, 1);
 
     Window_CopyToVRAM(&param0->unk_08);
     Window_CopyToVRAM(&param0->unk_18);
 
-    param0->unk_04 = sub_0206A780(HEAP_ID_FIELD);
+    param0->unk_04 = sub_0206A780(HEAP_ID_FIELD1);
 
     sub_0206A8A0(param0->unk_04, 200, 10 + 8 * 2, 118 + 8 * 2);
     sub_0206A8C4(param0->unk_04, 0, 0);

@@ -59,14 +59,14 @@ UnkStruct_ov104_0223ADA0 *ov104_022339B4(SaveData *saveData, u16 param1, u8 para
     u32 v6;
     static UnkStruct_ov104_0223ADA0 *v7;
 
-    v7 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov104_0223ADA0));
+    v7 = Heap_AllocFromHeap(HEAP_ID_FIELD2, sizeof(UnkStruct_ov104_0223ADA0));
     MI_CpuClear8(v7, sizeof(UnkStruct_ov104_0223ADA0));
 
     v7->unk_4F4 = sub_0202FF58(saveData);
     v7->saveData = saveData;
     v7->unk_00 = 11;
-    v7->unk_4D4 = Party_New(HEAP_ID_FIELDMAP);
-    v7->unk_4D8 = Party_New(HEAP_ID_FIELDMAP);
+    v7->unk_4D4 = Party_New(HEAP_ID_FIELD2);
+    v7->unk_4D8 = Party_New(HEAP_ID_FIELD2);
 
     v0 = v7->unk_4F4;
     v1 = sub_020300F4(saveData);
@@ -169,7 +169,7 @@ static void ov104_02233BAC(UnkStruct_ov104_0223ADA0 *param0)
     ov104_0223AB0C(ov104_0223AA74(param0->unk_04, 1), param0->unk_18[param0->unk_06], param0->unk_05, v2, param0->unk_3D2, param0->unk_3F0, param0->unk_3DA, param0->unk_3E0, v1);
 
     for (v0 = 0; v0 < 6; v0++) {
-        v4 = Pokemon_New(HEAP_ID_FIELDMAP);
+        v4 = Pokemon_New(HEAP_ID_FIELD2);
         ov104_0222DF40(&param0->unk_280[v0], v4, ov104_0223ADA0(param0));
         ov104_0222E1C0(param0->saveData, param0->unk_4D4, v4);
         Heap_FreeToHeap(v4);
@@ -249,9 +249,9 @@ static void ov104_02233F1C(UnkStruct_ov104_0223ADA0 *param0)
         param0->unk_4E8[v0] = v6[v0];
     }
 
-    ov104_0222E330(v4, v6, v5, v7, NULL, 4, HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
+    ov104_0222E330(v4, v6, v5, v7, NULL, 4, HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
 
-    Pokemon *v1 = Pokemon_New(HEAP_ID_FIELDMAP);
+    Pokemon *v1 = Pokemon_New(HEAP_ID_FIELD2);
 
     for (v0 = 0; v0 < 4; v0++) {
         ov104_0222DF40(&v4[v0], v1, ov104_0223ADA0(param0));
@@ -270,7 +270,7 @@ static void ov104_02233F1C(UnkStruct_ov104_0223ADA0 *param0)
 
     ov104_0222E330(v4, v6, v5, v7, NULL, 4, 11, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
 
-    v1 = Pokemon_New(HEAP_ID_FIELDMAP);
+    v1 = Pokemon_New(HEAP_ID_FIELD2);
 
     for (v0 = 0; v0 < 4; v0++) {
         ov104_0222DF40(&v4[v0], v1, ov104_0223ADA0(param0));
@@ -437,7 +437,7 @@ u16 ov104_02234440(UnkStruct_ov104_0223ADA0 *param0, u8 param1)
     FrontierTrainerDataDTO v0;
     u8 v2 = param0->unk_06 + (param1 * 7);
 
-    Heap_FreeToHeap(ov104_0222DD04(&v0, param0->unk_18[v2], HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+    Heap_FreeToHeap(ov104_0222DD04(&v0, param0->unk_18[v2], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
 
     return ov104_0222E10C(v0.trainerType);
 }
@@ -474,7 +474,7 @@ void ov104_0223449C(UnkStruct_ov104_0223ADA0 *param0)
 
     Party_Init(param0->unk_4D4);
 
-    v3 = Pokemon_New(HEAP_ID_FIELDMAP);
+    v3 = Pokemon_New(HEAP_ID_FIELD2);
 
     for (v0 = 0; v0 < v1; v0++) {
         ov104_0222DF40(&param0->unk_280[param0->unk_4DC[v0]], v3, ov104_0223ADA0(param0));
@@ -565,7 +565,7 @@ void ov104_0223470C(UnkStruct_ov104_0223ADA0 *param0)
 
     Party_Init(param0->unk_4D8);
 
-    v3 = Pokemon_New(HEAP_ID_FIELDMAP);
+    v3 = Pokemon_New(HEAP_ID_FIELD2);
 
     for (v0 = 0; v0 < v2; v0++) {
         ov104_0222DF40(&param0->unk_3F0[v0], v3, ov104_0223ADA0(param0));

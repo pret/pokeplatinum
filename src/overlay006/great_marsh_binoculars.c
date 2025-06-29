@@ -46,7 +46,7 @@ GreatMarshBinoculars *GreatMarshBinoculars_InitData(const int heapID, FieldSyste
     binocularsData->fieldSystem = fieldSystem;
 
     u8 randIndex;
-    BinocularCoords *coordData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 11, HEAP_ID_FIELD);
+    BinocularCoords *coordData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 11, HEAP_ID_FIELD1);
 
     for (i = 0; i < BINOCULARS_CYCLE_COUNT; i++) {
         randIndex = LCRNG_RandMod(36);

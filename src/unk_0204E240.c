@@ -27,7 +27,7 @@ BOOL ScrCmd_1F1(ScriptContext *param0)
     u16 *v4 = ScriptContext_GetVarPointer(param0);
 
     for (v1 = 0, v3 = 0; v1 < 7; v1++) {
-        v3 += Bag_GetItemQuantity(SaveData_GetBag(fieldSystem->saveData), Unk_020EBFFC[v1][0], HEAP_ID_FIELD);
+        v3 += Bag_GetItemQuantity(SaveData_GetBag(fieldSystem->saveData), Unk_020EBFFC[v1][0], HEAP_ID_FIELD1);
     }
 
     *v4 = v3;
@@ -66,7 +66,7 @@ BOOL ScrCmd_1F5(ScriptContext *param0)
     *v5 = 0;
 
     for (v1 = 0, v3 = 0; v1 < 7; v1++) {
-        v3 += Bag_GetItemQuantity(SaveData_GetBag(fieldSystem->saveData), Unk_020EBFFC[v1][0], HEAP_ID_FIELD);
+        v3 += Bag_GetItemQuantity(SaveData_GetBag(fieldSystem->saveData), Unk_020EBFFC[v1][0], HEAP_ID_FIELD1);
 
         if (v3 >= v6) {
             *v4 = Unk_020EBFFC[v1][0];

@@ -70,7 +70,7 @@ int sub_0209B6F8(ApplicationManager *appMan, int *param1)
 
     sub_0209B924();
 
-    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_0209B75C), HEAP_ID_FIELDMAP);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_0209B75C), HEAP_ID_FIELD2);
     MI_CpuClear8(v0, sizeof(UnkStruct_0209B75C));
 
     sub_0209B8E8(v0);
@@ -79,7 +79,7 @@ int sub_0209B6F8(ApplicationManager *appMan, int *param1)
     v0->unk_00 = ApplicationManager_Args(appMan);
     GF_ASSERT(v0->unk_00 != NULL);
 
-    v0->unk_14 = ov104_0222E63C(v0, HEAP_ID_FIELDMAP, v0->unk_00->unk_24);
+    v0->unk_14 = ov104_0222E63C(v0, HEAP_ID_FIELD2, v0->unk_00->unk_24);
     ov104_0222E748(v0->unk_14, v0->unk_00->unk_24, 0);
 
     sub_0209B8C8(v0);
@@ -164,10 +164,10 @@ int sub_0209B75C(ApplicationManager *appMan, int *param1)
         } else {
             UnkStruct_ov104_0222E8C8 *v2;
 
-            v2 = ov104_0222E8C8(v0->unk_14, HEAP_ID_FIELDMAP);
+            v2 = ov104_0222E8C8(v0->unk_14, HEAP_ID_FIELD2);
             ov104_0222E710(v0->unk_14);
 
-            v0->unk_14 = ov104_0222E63C(v0, HEAP_ID_FIELDMAP, v0->unk_00->unk_24);
+            v0->unk_14 = ov104_0222E63C(v0, HEAP_ID_FIELD2, v0->unk_00->unk_24);
             ov104_0222E748(v0->unk_14, v0->unk_00->unk_24, v0->unk_20);
             ov104_0222E8E8(v0->unk_14, v2);
         }

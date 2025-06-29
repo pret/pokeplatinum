@@ -36,7 +36,7 @@ UnkStruct_0209BBA4 *ov104_02239C58(SaveData *saveData)
 {
     static UnkStruct_0209BBA4 *v0;
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0209BBA4));
+    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD2, sizeof(UnkStruct_0209BBA4));
     MI_CpuClear8(v0, sizeof(UnkStruct_0209BBA4));
 
     v0->saveData = saveData;
@@ -92,7 +92,7 @@ void ov104_02239CD0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, u16 
         ov104_02239F38(param0, param1, fieldSystem, 11);
         break;
     case 2:
-        ov104_02239FB0(param0, param1, fieldSystem, HEAP_ID_FIELDMAP);
+        ov104_02239FB0(param0, param1, fieldSystem, HEAP_ID_FIELD2);
         break;
     case 3:
         ov104_0223A090(param0, param1, fieldSystem, 11);
@@ -108,7 +108,7 @@ static void ov104_02239D1C(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
 {
     u8 v0;
 
-    param1->unk_A8 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
+    param1->unk_A8 = Heap_AllocFromHeap(HEAP_ID_FIELD2, sizeof(PartyManagementData));
     MI_CpuClearFast(param1->unk_A8, sizeof(PartyManagementData));
 
     param1->unk_A8->party = SaveData_GetParty(param1->saveData);

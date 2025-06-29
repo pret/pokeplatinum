@@ -29,7 +29,7 @@ void ov6_02246F00(FieldSystem *fieldSystem, const u8 param1, const u8 param2)
     BOOL v0 = FieldSystem_FindLoadedMapPropByModelID(fieldSystem, MAP_PROP_MODEL_ELEVATOR_LIGHTS, NULL, NULL);
 
     if (v0) {
-        UnkStruct_ov6_02246F00 *v1 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov6_02246F00));
+        UnkStruct_ov6_02246F00 *v1 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD1, sizeof(UnkStruct_ov6_02246F00));
 
         v1->unk_00 = param2;
         v1->unk_01 = param1;

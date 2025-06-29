@@ -449,7 +449,7 @@ static void sub_0206CD7C(SaveData *saveData, int param1, int param2, const void 
 
 static void sub_0206CD94(StringTemplate *param0, int param1, const u16 *param2, int param3, int param4, int param5)
 {
-    Strbuf *v0 = Strbuf_Init(64, HEAP_ID_FIELD);
+    Strbuf *v0 = Strbuf_Init(64, HEAP_ID_FIELD1);
 
     Strbuf_CopyChars(v0, param2);
     StringTemplate_SetStrbuf(param0, param1, v0, param3, param5, param4);
@@ -606,7 +606,7 @@ void sub_0206D048(TVBroadcast *broadcast, Pokemon *mon)
     sub_0206CE38(mon, &v0->unk_02, &v0->unk_04, &v0->unk_05, &v0->unk_06);
     v0->unk_07 = Pokemon_GetValue(mon, MON_DATA_HAS_NICKNAME, NULL);
 
-    sub_0206CED0(HEAP_ID_FIELDMAP, mon, &v0->unk_07, v0->unk_08);
+    sub_0206CED0(HEAP_ID_FIELD2, mon, &v0->unk_07, v0->unk_08);
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
@@ -938,7 +938,7 @@ void sub_0206D60C(FieldSystem *fieldSystem, Pokemon *mon)
     UnkStruct_0206D644 *v1 = &v0.val8;
 
     sub_0206CE38(mon, &v1->unk_00, &v1->unk_02, &v1->unk_03, &v1->unk_04);
-    sub_0206CE08(HEAP_ID_FIELD, v1->unk_06, mon);
+    sub_0206CE08(HEAP_ID_FIELD1, v1->unk_06, mon);
     sub_0206CD70(fieldSystem, 2, 10, v1);
 }
 
@@ -1217,7 +1217,7 @@ static int sub_0206DAFC(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
 static BOOL sub_0206DB08(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
-    return Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), ITEM_EXPLORER_KIT, 1, HEAP_ID_FIELD_TASK);
+    return Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), ITEM_EXPLORER_KIT, 1, HEAP_ID_FIELD3);
 }
 
 void sub_0206DB20(FieldSystem *fieldSystem)
@@ -1387,7 +1387,7 @@ void sub_0206DDB8(SaveData *saveData, Pokemon *mon, u32 monDataParam)
         }
 
         sub_0206CE38(mon, &v3->unk_1C, &v3->unk_19, &v3->unk_1A, &v3->unk_1B);
-        sub_0206CED0(HEAP_ID_FIELD_TASK, mon, &v3->unk_18, v3->unk_00);
+        sub_0206CED0(HEAP_ID_FIELD3, mon, &v3->unk_18, v3->unk_00);
 
         v3->unk_16 = Ribbon_MonDataParamToNameID(monDataParam);
         v3->unk_17 = v1;
@@ -1539,7 +1539,7 @@ static int sub_0206DF88(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
 static BOOL sub_0206DFC8(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
-    return Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), ITEM_EXPLORER_KIT, 1, HEAP_ID_FIELD_TASK);
+    return Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), ITEM_EXPLORER_KIT, 1, HEAP_ID_FIELD3);
 }
 
 void sub_0206DFE0(SaveData *saveData)
@@ -1643,7 +1643,7 @@ void sub_0206E174(FieldSystem *fieldSystem, u16 param1)
     Pokemon *v2 = Party_FindFirstHatchedMon(SaveData_GetParty(fieldSystem->saveData));
 
     sub_0206CE38(v2, &v1->unk_00, &v1->unk_02, &v1->unk_03, &v1->unk_04);
-    sub_0206CED0(HEAP_ID_FIELD_TASK, v2, &v1->unk_05, v1->unk_06);
+    sub_0206CED0(HEAP_ID_FIELD3, v2, &v1->unk_05, v1->unk_06);
 
     v1->unk_1C = param1;
     sub_0206CD70(fieldSystem, 1, 4, v1);
@@ -1990,7 +1990,7 @@ static int sub_0206E7AC(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 {
     int v0;
     UnkStruct_0206E768 *v1 = ov6_02246498(param2);
-    Strbuf *v2 = Strbuf_Init(64, HEAP_ID_FIELD);
+    Strbuf *v2 = Strbuf_Init(64, HEAP_ID_FIELD1);
 
     sub_0206CDD0(param1, 0, param2);
     Strbuf_CopyChars(v2, v1->unk_00.unk_06);
@@ -2606,13 +2606,13 @@ static int sub_0206EDAC(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     SpecialEncounter *v1;
     u16 v2, v3;
     u32 v4, v5;
-    Strbuf *v6 = Strbuf_Init(22, HEAP_ID_FIELD);
+    Strbuf *v6 = Strbuf_Init(22, HEAP_ID_FIELD1);
     TrainerInfo *v7 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem));
 
     v1 = SaveData_GetSpecialEncounters(fieldSystem->saveData);
     v2 = (LCRNG_Next() % 29);
 
-    MapHeader_LoadName(RoamingPokemon_GetRouteFromId(v2), HEAP_ID_FIELD, v6);
+    MapHeader_LoadName(RoamingPokemon_GetRouteFromId(v2), HEAP_ID_FIELD1, v6);
     StringTemplate_SetStrbuf(param1, 0, v6, 0, 1, GAME_LANGUAGE);
     Strbuf_Free(v6);
 
@@ -2688,7 +2688,7 @@ static int sub_0206EEBC(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
     {
         u16 v6;
-        Strbuf *v7 = Strbuf_Init(7 + 1, HEAP_ID_FIELD);
+        Strbuf *v7 = Strbuf_Init(7 + 1, HEAP_ID_FIELD1);
         int v8 = sub_0202A1C0(v0);
 
         sub_0202A1A0(v0, v7);

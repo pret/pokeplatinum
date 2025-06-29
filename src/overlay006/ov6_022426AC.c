@@ -69,19 +69,19 @@ void GreatMarshLookout_CreateLookoutMonSprite(GreatMarshLookout_SpriteResources 
 
     BuildPokemonSpriteTemplate(&resources->unk_28, species, gender, 2, 0, NULL, NULL);
 
-    resources->unk_38 = SpriteList_InitRendering(1, &resources->unk_3C, HEAP_ID_FIELD);
-    v1 = NARC_ctor(NARC_INDEX_DATA__FIELD_CUTIN, HEAP_ID_FIELD);
+    resources->unk_38 = SpriteList_InitRendering(1, &resources->unk_3C, HEAP_ID_FIELD1);
+    v1 = NARC_ctor(NARC_INDEX_DATA__FIELD_CUTIN, HEAP_ID_FIELD1);
 
     for (i = 0; i < 4; i++) {
-        resources->unk_00[i] = SpriteResourceCollection_New(Unk_ov6_02249030[i], i, HEAP_ID_FIELD);
+        resources->unk_00[i] = SpriteResourceCollection_New(Unk_ov6_02249030[i], i, HEAP_ID_FIELD1);
     }
 
-    resources->unk_10[0] = SpriteResourceCollection_AddTilesFrom(resources->unk_00[0], v1, 5, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD);
-    resources->unk_10[1] = SpriteResourceCollection_AddPaletteFrom(resources->unk_00[1], v1, 3, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 1, HEAP_ID_FIELD);
-    resources->unk_10[2] = SpriteResourceCollection_AddFrom(resources->unk_00[2], v1, 6, 0, 2, 2, HEAP_ID_FIELD);
-    resources->unk_10[3] = SpriteResourceCollection_AddFrom(resources->unk_00[3], v1, 12, 0, 3, 3, HEAP_ID_FIELD);
-    resources->unk_20 = sub_0201363C(resources->unk_28.narcID, resources->unk_28.character, HEAP_ID_FIELD);
-    resources->unk_24 = sub_02013660(resources->unk_28.narcID, resources->unk_28.palette, HEAP_ID_FIELD);
+    resources->unk_10[0] = SpriteResourceCollection_AddTilesFrom(resources->unk_00[0], v1, 5, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD1);
+    resources->unk_10[1] = SpriteResourceCollection_AddPaletteFrom(resources->unk_00[1], v1, 3, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 1, HEAP_ID_FIELD1);
+    resources->unk_10[2] = SpriteResourceCollection_AddFrom(resources->unk_00[2], v1, 6, 0, 2, 2, HEAP_ID_FIELD1);
+    resources->unk_10[3] = SpriteResourceCollection_AddFrom(resources->unk_00[3], v1, 12, 0, 3, 3, HEAP_ID_FIELD1);
+    resources->unk_20 = sub_0201363C(resources->unk_28.narcID, resources->unk_28.character, HEAP_ID_FIELD1);
+    resources->unk_24 = sub_02013660(resources->unk_28.narcID, resources->unk_28.palette, HEAP_ID_FIELD1);
 
     ov6_02242880(resources->unk_00[0], resources->unk_00[1], resources->unk_20, resources->unk_24);
 
@@ -186,7 +186,7 @@ static void ov6_022428F8(GreatMarshLookout_SpriteResources *param0)
         v2.affineZRotation = 0;
         v2.priority = 0;
         v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v2.heapID = HEAP_ID_FIELD;
+        v2.heapID = HEAP_ID_FIELD1;
         v2.position.x = FX32_ONE * (256 / 2);
         v2.position.y = FX32_ONE * (192 / 2);
 

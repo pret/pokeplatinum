@@ -80,7 +80,7 @@ BOOL ov6_02247120(FieldTask *task)
 
 static int ov6_0224715C(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param2)
 {
-    param2->unk_14 = ov5_021F0EB0(fieldSystem, HEAP_ID_FIELD);
+    param2->unk_14 = ov5_021F0EB0(fieldSystem, HEAP_ID_FIELD1);
     ov5_021F0F10(param2->unk_14, 1, (FX32_ONE * -150), 15);
     param2->unk_0C = MapObject_StartAnimation(param2->unk_18, Unk_ov6_02249608);
     param2->unk_00++;
@@ -116,9 +116,9 @@ static int ov6_022471C0(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6
     }
 
     if (param2->unk_08 == 2) {
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD1);
     } else {
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_WHITE, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_WHITE, 6, 1, HEAP_ID_FIELD1);
     }
 
     param2->unk_00++;
@@ -205,7 +205,7 @@ static void ov6_0224732C(FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param
     void *journalEntryLocationEvent;
 
     if (param1->unk_08 == 2) {
-        journalEntryLocationEvent = JournalEntry_CreateEventUsedMove(LOCATION_EVENT_WARPED_TO_LOCATION - LOCATION_EVENT_USED_CUT, fieldSystem->location->mapId, HEAP_ID_FIELD);
+        journalEntryLocationEvent = JournalEntry_CreateEventUsedMove(LOCATION_EVENT_WARPED_TO_LOCATION - LOCATION_EVENT_USED_CUT, fieldSystem->location->mapId, HEAP_ID_FIELD1);
     } else {
         return;
     }
@@ -216,12 +216,12 @@ static void ov6_0224732C(FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param
 static int ov6_02247354(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param2)
 {
     if (param2->unk_08 == 2) {
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD1);
     } else {
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_WHITE, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_WHITE, 6, 1, HEAP_ID_FIELD1);
     }
 
-    param2->unk_14 = ov5_021F0EB0(fieldSystem, HEAP_ID_FIELD);
+    param2->unk_14 = ov5_021F0EB0(fieldSystem, HEAP_ID_FIELD1);
     ov5_021F0F10(param2->unk_14, 1, (FX32_ONE * -150), 1);
     param2->unk_0C = MapObject_StartAnimation(param2->unk_18, Unk_ov6_022495DC);
     param2->unk_00++;

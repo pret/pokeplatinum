@@ -240,7 +240,7 @@ static void ov23_0224DD2C(UnkStruct_ov23_0224E280 *param0)
         MessageLoader *v1;
         int v2;
 
-        v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0634, HEAP_ID_FIELD);
+        v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0634, HEAP_ID_FIELD1);
 
         for (v2 = 0; v2 < NELEMS(Unk_ov23_022568B4); v2++) {
             StringList_AddFromMessageBank(param0->unk_1C, v1, Unk_ov23_022568B4[v2].unk_00, Unk_ov23_022568B4[v2].unk_04);
@@ -302,7 +302,7 @@ static void ov23_0224DE3C(UnkStruct_ov23_0224E280 *param0)
         int v2, v3;
         u8 v4[4];
 
-        v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_QUESTIONS, HEAP_ID_FIELD);
+        v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_QUESTIONS, HEAP_ID_FIELD1);
 
         for (v2 = 0; v2 < 4; v2++) {
             u32 v5 = MTRNG_Next() % 12;
@@ -389,7 +389,7 @@ static void ov23_0224DFA0(UnkStruct_ov23_0224E280 *param0)
         MessageLoader *v1;
         int v2;
 
-        v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_ANSWERS, HEAP_ID_FIELD);
+        v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_ANSWERS, HEAP_ID_FIELD1);
 
         for (v2 = 0; v2 < 4; v2++) {
             u32 v3 = 4 * param0->unk_32 + v2;
@@ -974,7 +974,7 @@ static void ov23_0224EAA4(UnkStruct_ov23_022577B0 *param0)
         MessageLoader *v2;
         int v3;
 
-        v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_ANSWERS, HEAP_ID_FIELD);
+        v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_ANSWERS, HEAP_ID_FIELD1);
 
         for (v3 = 0; v3 < 4; v3++) {
             u32 v4 = 4 * param0->unk_2E + v3;

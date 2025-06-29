@@ -63,15 +63,15 @@ static int sub_0209B288(UnkStruct_0209AD84 *param0);
 void sub_0209ACF4(FieldTask *param0)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_0209AD84 *v1 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0209AD84));
+    UnkStruct_0209AD84 *v1 = Heap_AllocFromHeap(HEAP_ID_FIELD3, sizeof(UnkStruct_0209AD84));
 
     v1->fieldSystem = fieldSystem;
-    v1->unk_04 = Strbuf_Init(400, HEAP_ID_FIELD_TASK);
-    v1->unk_08 = Strbuf_Init(400, HEAP_ID_FIELD_TASK);
-    v1->unk_0C = StringTemplate_Default(HEAP_ID_FIELD_TASK);
-    v1->unk_10 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0420, HEAP_ID_FIELD_TASK);
-    v1->unk_14 = ColoredArrow_New(HEAP_ID_FIELD_TASK);
-    v1->unk_50 = sub_0209747C(2, 0, v1->fieldSystem->saveData, HEAP_ID_FIELD_TASK);
+    v1->unk_04 = Strbuf_Init(400, HEAP_ID_FIELD3);
+    v1->unk_08 = Strbuf_Init(400, HEAP_ID_FIELD3);
+    v1->unk_0C = StringTemplate_Default(HEAP_ID_FIELD3);
+    v1->unk_10 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0420, HEAP_ID_FIELD3);
+    v1->unk_14 = ColoredArrow_New(HEAP_ID_FIELD3);
+    v1->unk_50 = sub_0209747C(2, 0, v1->fieldSystem->saveData, HEAP_ID_FIELD3);
 
     sub_02097520(v1->unk_50);
     Window_Init(&(v1->unk_18));
@@ -296,7 +296,7 @@ static void sub_0209B12C(UnkStruct_0209AD84 *param0)
     if (Window_IsInUse(v0) == 0) {
         int v1;
 
-        LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 155, 11, 0, HEAP_ID_FIELD_TASK);
+        LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 155, 11, 0, HEAP_ID_FIELD3);
         Window_Add(param0->fieldSystem->bgConfig, v0, 3, 1, 1, 13, 10, 13, 1);
         Window_FillTilemap(v0, 15);
 
@@ -328,7 +328,7 @@ static void sub_0209B1D8(UnkStruct_0209AD84 *param0)
     if (Window_IsInUse(v0) == 0) {
         int v1;
 
-        LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 155, 11, 0, HEAP_ID_FIELD_TASK);
+        LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 155, 11, 0, HEAP_ID_FIELD3);
         Window_Add(param0->fieldSystem->bgConfig, v0, 3, 25, 13, 6, 4, 13, 131);
         Window_FillTilemap(v0, 15);
 
