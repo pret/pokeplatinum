@@ -454,7 +454,7 @@ static BOOL ScrCmd_StartHoneyTreeBattle(ScriptContext *ctx);
 static BOOL ScrCmd_12A(ScriptContext *ctx);
 static BOOL ScrCmd_12B(ScriptContext *ctx);
 static BOOL ScrCmd_CheckSaveType(ScriptContext *ctx);
-static BOOL ScrCmd_12D(ScriptContext *ctx);
+static BOOL ScrCmd_SaveGame(ScriptContext *ctx);
 static BOOL ScrCmd_131(ScriptContext *ctx);
 static BOOL ScrCmd_132(ScriptContext *ctx);
 static BOOL ScrCmd_RegisterPoketchApp(ScriptContext *ctx);
@@ -525,8 +525,8 @@ static BOOL ScrCmd_GetPlayer3DPos(ScriptContext *ctx);
 static BOOL ScrCmd_178(ScriptContext *ctx);
 static BOOL ScrCmd_179(ScriptContext *ctx);
 static BOOL ScrCmd_17A(ScriptContext *ctx);
-static BOOL ScrCmd_18D(ScriptContext *ctx);
-static BOOL ScrCmd_18E(ScriptContext *ctx);
+static BOOL ScrCmd_AddWaitDial(ScriptContext *ctx);
+static BOOL ScrCmd_RemoveWaitDial(ScriptContext *ctx);
 static BOOL ScrCmd_WaitABPressTime(ScriptContext *ctx);
 static BOOL ScriptContext_DecrementABPressTimer(ScriptContext *ctx);
 static BOOL ScrCmd_191(ScriptContext *ctx);
@@ -703,8 +703,8 @@ static BOOL ScrCmd_ShowUnionRoomMenu(ScriptContext *ctx);
 static BOOL ScrCmd_2BB(ScriptContext *ctx);
 static BOOL ScrCmd_2BE(ScriptContext *ctx);
 static BOOL ScrCmd_2BF(ScriptContext *ctx);
-static BOOL ScrCmd_2C1(ScriptContext *ctx);
-static BOOL ScrCmd_2C2(ScriptContext *ctx);
+static BOOL ScrCmd_OpenSaveInfo(ScriptContext *ctx);
+static BOOL ScrCmd_CloseSaveInfo(ScriptContext *ctx);
 static BOOL ScrCmd_2C3(ScriptContext *ctx);
 static BOOL ScrCmd_SetMenuXOriginSide(ScriptContext *ctx);
 static BOOL ScrCmd_SetMenuYOriginSide(ScriptContext *ctx);
@@ -714,8 +714,8 @@ static BOOL ScrCmd_2C7(ScriptContext *ctx);
 static BOOL ScrCmd_2CA(ScriptContext *ctx);
 static BOOL ScrCmd_2CD(ScriptContext *ctx);
 static BOOL ScrCmd_2CE(ScriptContext *ctx);
-static BOOL ScrCmd_2D6(ScriptContext *ctx);
-static BOOL ScrCmd_2D7(ScriptContext *ctx);
+static BOOL ScrCmd_SaveExtraData(ScriptContext *ctx);
+static BOOL ScrCmd_IsMiscSaveInit(ScriptContext *ctx);
 static BOOL ScrCmd_PokeMartFrontier(ScriptContext *ctx);
 BOOL ScrCmd_2C8(ScriptContext *ctx);
 BOOL ScrCmd_2E2(ScriptContext *ctx);
@@ -1069,7 +1069,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_12A,
     ScrCmd_12B,
     ScrCmd_CheckSaveType,
-    ScrCmd_12D,
+    ScrCmd_SaveGame,
     ScrCmd_12E,
     ScrCmd_12F,
     ScrCmd_130,
@@ -1165,8 +1165,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_SetWarpEventPos,
     ScrCmd_18B,
     ScrCmd_18C,
-    ScrCmd_18D,
-    ScrCmd_18E,
+    ScrCmd_AddWaitDial,
+    ScrCmd_RemoveWaitDial,
     ScrCmd_18F,
     ScrCmd_WaitABPressTime,
     ScrCmd_191,
@@ -1473,8 +1473,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2BE,
     ScrCmd_2BF,
     ScrCmd_2C0,
-    ScrCmd_2C1,
-    ScrCmd_2C2,
+    ScrCmd_OpenSaveInfo,
+    ScrCmd_CloseSaveInfo,
     ScrCmd_2C3,
     ScrCmd_2C4,
     ScrCmd_2C5,
@@ -1494,8 +1494,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2D3,
     ScrCmd_2D4,
     ScrCmd_2D5,
-    ScrCmd_2D6,
-    ScrCmd_2D7,
+    ScrCmd_SaveExtraData,
+    ScrCmd_IsMiscSaveInit,
     ScrCmd_PokeMartFrontier,
     ScrCmd_2D9,
     ScrCmd_2DA,
@@ -2629,7 +2629,7 @@ static BOOL ScriptContext_WaitForYesNoResult(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_18D(ScriptContext *ctx)
+static BOOL ScrCmd_AddWaitDial(ScriptContext *ctx)
 {
     Window *v1 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_WINDOW);
 
@@ -2639,7 +2639,7 @@ static BOOL ScrCmd_18D(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_18E(ScriptContext *ctx)
+static BOOL ScrCmd_RemoveWaitDial(ScriptContext *ctx)
 {
     void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_SAVING_ICON);
     DestroyWaitDial(*v0);
@@ -4962,7 +4962,7 @@ static BOOL ScrCmd_CheckSaveType(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_12D(ScriptContext *ctx)
+static BOOL ScrCmd_SaveGame(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 *destVarResult = ScriptContext_GetVarPointer(ctx);
@@ -4971,13 +4971,13 @@ static BOOL ScrCmd_12D(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_2D6(ScriptContext *ctx)
+static BOOL ScrCmd_SaveExtraData(ScriptContext *ctx)
 {
     SaveDataExtra_Init(ctx->fieldSystem->saveData);
     return FALSE;
 }
 
-static BOOL ScrCmd_2D7(ScriptContext *ctx)
+static BOOL ScrCmd_IsMiscSaveInit(ScriptContext *ctx)
 {
     u16 *v0 = ScriptContext_GetVarPointer(ctx);
 
@@ -7390,7 +7390,7 @@ static BOOL ScrCmd_2BE(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_2C1(ScriptContext *ctx)
+static BOOL ScrCmd_OpenSaveInfo(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     SaveInfoWindow **saveInfoWin = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_SAVE_INFO_WINDOW);
@@ -7403,7 +7403,7 @@ static BOOL ScrCmd_2C1(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_2C2(ScriptContext *ctx)
+static BOOL ScrCmd_CloseSaveInfo(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     SaveInfoWindow **saveInfoWin = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_SAVE_INFO_WINDOW);

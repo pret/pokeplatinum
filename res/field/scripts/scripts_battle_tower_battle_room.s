@@ -113,9 +113,9 @@ _01AC:
     ScrCmd_1DD 39, 0, 0
     ScrCmd_1DC
     Message 4
-    ScrCmd_18D
-    ScrCmd_12D VAR_RESULT
-    ScrCmd_18E
+    AddWaitDial
+    SaveGame VAR_RESULT
+    RemoveWaitDial
     PlayFanfare SEQ_SE_DP_SAVE
     WaitFanfare SEQ_SE_DP_SAVE
     FadeScreen 6, 1, 0, 0

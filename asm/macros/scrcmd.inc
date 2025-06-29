@@ -1730,7 +1730,7 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_12D arg0
+    .macro SaveGame arg0
     .short 301
     .short \arg0
     .endm
@@ -2209,11 +2209,11 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_18D
+    .macro AddWaitDial
     .short 397
     .endm
 
-    .macro ScrCmd_18E
+    .macro RemoveWaitDial
     .short 398
     .endm
 
@@ -4007,11 +4007,11 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_2C1
+    .macro OpenSaveInfo
     .short 705
     .endm
 
-    .macro ScrCmd_2C2
+    .macro CloseSaveInfo
     .short 706
     .endm
 
@@ -4119,11 +4119,11 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_2D6
+    .macro SaveExtraData
     .short 726
     .endm
 
-    .macro ScrCmd_2D7 arg0
+    .macro IsMiscSaveInit arg0
     .short 727
     .short \arg0
     .endm

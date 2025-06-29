@@ -11,7 +11,7 @@
     ScriptEntry _03E8
     ScriptEntry _043B
     ScriptEntry _0479
-    ScriptEntry _0494 @ 0x7D6
+    ScriptEntry CommonScript_SaveGame @ 0x7D6
     ScriptEntry _00EC
     ScriptEntry _05EA
     ScriptEntry _0719
@@ -327,8 +327,8 @@ _0457:
     End
 
 _0479:
-    ClearFlag FLAG_UNK_0x001F
-    Call _04A8
+    ClearFlag FLAG_SAVE_EXTRA_BLOCK
+    Call CommonScript_SaveGame_Dialog
     ScrCmd_18F VAR_RESULT
     CloseMessage
     End
@@ -339,102 +339,102 @@ _048B:
     CloseMessage
     End
 
-_0494:
-    SetFlag FLAG_UNK_0x001F
-    Call _04A8
+CommonScript_SaveGame:
+    SetFlag FLAG_SAVE_EXTRA_BLOCK
+    Call CommonScript_SaveGame_Dialog
     SetVar VAR_MAP_LOCAL_0, VAR_RESULT
     ReturnCommonScript
     End
 
-_04A8:
+CommonScript_SaveGame_Dialog:
     CheckSaveType VAR_RESULT
-    GoToIfEq VAR_RESULT, SAVE_TYPE_OVERWRITE, _04FC
-    ScrCmd_2C1
+    GoToIfEq VAR_RESULT, SAVE_TYPE_OVERWRITE, CommonScript_SaveGame_ImpossibleToSave
+    OpenSaveInfo
     Message pl_msg_00000213_00013
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _05A0
+    GoToIfEq VAR_RESULT, MENU_NO, CommonScript_SaveGame_Cancel
     CheckSaveType VAR_RESULT
-    GoToIfEq VAR_RESULT, SAVE_TYPE_NO_DATA_EXISTS, _051D
-    GoToIfEq VAR_RESULT, SAVE_TYPE_FULL_SAVE, _0509
-    GoToIfEq VAR_RESULT, SAVE_TYPE_QUICK_SAVE, _0526
+    GoToIfEq VAR_RESULT, SAVE_TYPE_NO_DATA_EXISTS, CommonScript_SaveGame_SavingALotOfData
+    GoToIfEq VAR_RESULT, SAVE_TYPE_FULL_SAVE, CommonScript_SaveGame_FullSave_OverwriteCheck
+    GoToIfEq VAR_RESULT, SAVE_TYPE_QUICK_SAVE, CommonScript_SaveGame_QuickSave_OverwriteCheck
     End
 
-_04FC:
+CommonScript_SaveGame_ImpossibleToSave:
     Message pl_msg_00000213_00020
     WaitABPress
     SetVar VAR_RESULT, 0
     Return
 
-_0509:
+CommonScript_SaveGame_FullSave_OverwriteCheck:
     Message pl_msg_00000213_00014
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _05A0
-_051D:
+    GoToIfEq VAR_RESULT, MENU_NO, CommonScript_SaveGame_Cancel
+CommonScript_SaveGame_SavingALotOfData:
     Message pl_msg_00000213_00021
-    GoTo _0552
+    GoTo CommonScript_SaveGame_StartSave
 
-_0526:
+CommonScript_SaveGame_QuickSave_OverwriteCheck:
     Message pl_msg_00000213_00014
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _05A0
-    GoToIfUnset FLAG_UNK_0x001F, _05C6
-    GoToIfSet FLAG_UNK_0x001F, _05D1
+    GoToIfEq VAR_RESULT, MENU_NO, CommonScript_SaveGame_Cancel
+    GoToIfUnset FLAG_SAVE_EXTRA_BLOCK, CommonScript_QuickSave_Save
+    GoToIfSet FLAG_SAVE_EXTRA_BLOCK, CommonScript_QuickSave_CheckMiscFlag
     End
 
-_0552:
+CommonScript_SaveGame_StartSave:
     ScrCmd_258
     WaitTime 2, VAR_RESULT
-    Call _0568
+    Call CommonScript_SaveGame_DoSave
     ScrCmd_259
-    GoTo _057D
+    GoTo CommonScript_SaveGame_SaveComplete
 
-_0568:
-    ScrCmd_18D
-    CallIfSet FLAG_UNK_0x001F, _05BE
-    ScrCmd_12D VAR_RESULT
-    ScrCmd_18E
+CommonScript_SaveGame_DoSave:
+    AddWaitDial
+    CallIfSet FLAG_SAVE_EXTRA_BLOCK, CommonScript_SaveGame_SaveExtraBlock
+    SaveGame VAR_RESULT
+    RemoveWaitDial
     Return
 
-_057D:
-    GoToIfEq VAR_RESULT, 0, _05AA
+CommonScript_SaveGame_SaveComplete:
+    GoToIfEq VAR_RESULT, 0, CommonScript_SaveGame_SaveError
     BufferPlayerName 0
     Message pl_msg_00000213_00016
     PlayFanfare SEQ_SE_DP_SAVE
     WaitFanfare SEQ_SE_DP_SAVE
     WaitABPressTime 30
-    ScrCmd_2C2
+    CloseSaveInfo
     Return
 
-_05A0:
-    ScrCmd_2C2
+CommonScript_SaveGame_Cancel:
+    CloseSaveInfo
     SetVar VAR_RESULT, 0
     Return
 
-_05AA:
+CommonScript_SaveGame_SaveError:
     Message pl_msg_00000213_00018
     WaitABPress
-    ScrCmd_2C2
+    CloseSaveInfo
     Return
 
-_05B3:
+CommonScript_QuickSave_DoFullSave:
     Message pl_msg_00000213_00021
-    GoTo _0552
+    GoTo CommonScript_SaveGame_StartSave
     End
 
-_05BE:
-    ScrCmd_2D6
-    ClearFlag FLAG_UNK_0x001F
+CommonScript_SaveGame_SaveExtraBlock:
+    SaveExtraData
+    ClearFlag FLAG_SAVE_EXTRA_BLOCK
     Return
 
-_05C6:
+CommonScript_QuickSave_Save:
     Message pl_msg_00000213_00015
-    GoTo _0552
+    GoTo CommonScript_SaveGame_StartSave
     End
 
-_05D1:
-    ScrCmd_2D7 VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _05B3
-    GoTo _05C6
+CommonScript_QuickSave_CheckMiscFlag:
+    IsMiscSaveInit VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, CommonScript_QuickSave_DoFullSave
+    GoTo CommonScript_QuickSave_Save
     End
 
 _05EA:

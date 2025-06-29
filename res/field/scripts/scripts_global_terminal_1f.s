@@ -6,7 +6,7 @@
 
     ScriptEntry _00F0
     ScriptEntry _00F2
-    ScriptEntry _00F4
+    ScriptEntry GlobalTerminal1f_GTS_Clerk_Talk
     ScriptEntry _0374
     ScriptEntry _0387
     ScriptEntry _039A
@@ -92,26 +92,26 @@ _00F0:
 _00F2:
     End
 
-_00F4:
+GlobalTerminal1f_GTS_Clerk_Talk:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     PartyHasBadEgg VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0368
-    GoToIfSet FLAG_UNK_0x00C3, _02FB
-    SetFlag FLAG_UNK_0x00C3
+    GoToIfSet FLAG_GTS_INTRO_COMPLETED, _02FB
+    SetFlag FLAG_GTS_INTRO_COMPLETED
     Message pl_msg_00000046_00000
-    GoTo _0127
+    GoTo GlobalTerminal1f_GTS_Clerk_Menu
     End
 
-_0127:
+GlobalTerminal1f_GTS_Clerk_Menu:
     InitGlobalTextMenu 1, 1, 0, VAR_RESULT
     AddMenuEntryImm pl_msg_00000361_00129, 0
     AddMenuEntryImm pl_msg_00000361_00128, 1
     AddMenuEntryImm pl_msg_00000361_00130, 2
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, _01E9
+    GoToIfEq VAR_0x8008, 0, GlobalTerminal1f_CheckPartyCount
     GoToIfEq VAR_0x8008, 1, _0172
     GoToIfEq VAR_0x8008, 2, _02EA
     GoTo _02EA
@@ -147,13 +147,13 @@ _01D3:
 
 _01DE:
     Message pl_msg_00000046_00005
-    GoTo _0127
+    GoTo GlobalTerminal1f_GTS_Clerk_Menu
     End
 
-_01E9:
+GlobalTerminal1f_CheckPartyCount:
     GetPartyCountHatched VAR_RESULT
     GoToIfLt VAR_RESULT, 2, GlobalTerminal1f_GTS_Exit_NotEnoughPokemon
-    GoTo _0306
+    GoTo GlobalTerminal1f_CheckFreePartySlot
     End
 
 GlobalTerminal1f_GTS_Exit_NotEnoughPokemon:
@@ -163,7 +163,7 @@ GlobalTerminal1f_GTS_Exit_NotEnoughPokemon:
     ReleaseAll
     End
 
-_020D:
+GlobalTerminal1f_BeginTrade:
     CallCommonScript 0x7D6
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 0, _02EA
@@ -218,19 +218,19 @@ _02EA:
 
 _02FB:
     Message pl_msg_00000046_00001
-    GoTo _0127
+    GoTo GlobalTerminal1f_GTS_Clerk_Menu
     End
 
-_0306:
+GlobalTerminal1f_CheckFreePartySlot:
     GetPartyCount VAR_RESULT
-    GoToIfEq VAR_RESULT, 6, GlobalTerminal1f_GTS_BoxCount_Guard
-    GoTo _020D
+    GoToIfEq VAR_RESULT, 6, GlobalTerminal1f_CheckFreeBoxSlot
+    GoTo GlobalTerminal1f_BeginTrade
     End
 
-GlobalTerminal1f_GTS_BoxCount_Guard:
+GlobalTerminal1f_CheckFreeBoxSlot:
     GetPCBoxesFreeSlotCount VAR_RESULT
     GoToIfEq VAR_RESULT, 0, GlobalTerminal1f_GTS_Exit_NoSpace
-    GoTo _020D
+    GoTo GlobalTerminal1f_BeginTrade
     End
 
 GlobalTerminal1f_GTS_Exit_NoSpace:

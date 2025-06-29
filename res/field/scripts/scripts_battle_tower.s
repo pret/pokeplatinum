@@ -437,9 +437,9 @@ _0724:
     Return
 
 _0734:
-    ScrCmd_18D
-    ScrCmd_12D VAR_RESULT
-    ScrCmd_18E
+    AddWaitDial
+    SaveGame VAR_RESULT
+    RemoveWaitDial
     PlayFanfare SEQ_SE_DP_SAVE
     WaitFanfare SEQ_SE_DP_SAVE
     Return
