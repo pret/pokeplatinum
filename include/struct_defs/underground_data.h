@@ -25,17 +25,17 @@ typedef struct UndergroundData {
     u8 unk_620[100];
     u8 unk_684[100][3];
     u8 unk_7B0[88];
-    u32 unk_808;
+    u32 minedPlates;
     u8 unk_80C[200];
     u8 unk_8D4[40];
     u8 unk_8FC[40];
-    u8 unk_924[40];
-    u8 unk_94C[40];
-    u8 unk_974[40];
+    u8 treasure[40];
+    u8 spheres[40];
+    u8 sphereSizes[40];
     u8 unk_99C[15];
     u8 stepCount;
     u8 unk_9AC_0 : 4;
-    u8 unk_9AC_4 : 4;
+    u8 hasMined : 4;
 } UndergroundData;
 
 #endif // POKEPLATINUM_STRUCT_UNDERGROUND_DATA_H
