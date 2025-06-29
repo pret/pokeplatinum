@@ -396,7 +396,7 @@ int ov66_02231C78(const UnkStruct_ov66_0223177C *param0)
     return param0->unk_5C.unk_188.unk_2C->unk_00;
 }
 
-BOOL ov66_02231C94(const UnkStruct_ov66_0223177C *param0, const UnkStruct_ov66_02232068 *param1, int param2, Strbuf *param3, u32 param4)
+BOOL ov66_02231C94(const UnkStruct_ov66_0223177C *param0, const UnkStruct_ov66_02232068 *param1, int param2, Strbuf *param3, u32 heapID)
 {
     StringTemplate *v0;
     MessageLoader *v1;
@@ -418,11 +418,11 @@ BOOL ov66_02231C94(const UnkStruct_ov66_0223177C *param0, const UnkStruct_ov66_0
     GF_ASSERT(ov66_02231C60(param0));
 
     v2 = param0->unk_5C.unk_188.unk_2C;
-    v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0653, param4);
-    v0 = StringTemplate_Default(param4);
+    v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0653, heapID);
+    v0 = StringTemplate_Default(heapID);
 
     if (v2->unk_00 < 9) {
-        v3 = v4[v2->unk_00](v2, param1, v0, v1, param3, param4);
+        v3 = v4[v2->unk_00](v2, param1, v0, v1, param3, heapID);
     } else {
         v3 = 0;
     }

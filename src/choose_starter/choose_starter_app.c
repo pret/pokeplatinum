@@ -225,7 +225,7 @@ static void StartFadeOut(ChooseStarterApp *param0);
 static BOOL IsFadeDone(ChooseStarterApp *param0);
 static u16 GetSelectedSpecies(u16 cursorPosition);
 static BOOL IsSelectionMade(ChooseStarterApp *param0, int param1);
-static void UpdateGraphics(ChooseStarterApp *param0, int param1);
+static void UpdateGraphics(ChooseStarterApp *param0, int heapID);
 static void DrawScene(ChooseStarterApp *param0);
 static void SetupDrawing(ChooseStarterApp *app, enum HeapId heapID);
 static void ov78_021D10DC(void);
@@ -237,12 +237,12 @@ static void SetupBGL(BgConfig *bgl, enum HeapId heapID);
 static void ov78_021D12EC(BgConfig *param0);
 static void MakeMessageWindow(ChooseStarterApp *app, enum HeapId heapID);
 static void ov78_021D13A0(ChooseStarterApp *param0);
-static u8 ov78_021D1FB4(Window *param0, int param1, int param2, int param3, TextColor param4, u32 param5);
-static u8 ov78_021D201C(Window *param0, int param1, int param2, int param3, u32 param4, u32 param5, Strbuf **param6);
+static u8 ov78_021D1FB4(Window *param0, int heapID, int param2, int param3, TextColor param4, u32 param5);
+static u8 ov78_021D201C(Window *param0, int heapID, int param2, int param3, u32 param4, u32 param5, Strbuf **param6);
 static void ov78_021D2090(ChooseStarterApp *param0);
-static void MakeSubplaneWindow(ChooseStarterApp *param0, int param1);
+static void MakeSubplaneWindow(ChooseStarterApp *param0, int heapID);
 static void ov78_021D2884(ChooseStarterApp *param0);
-static void ov78_021D28A8(Window *param0, int param1, int param2, int param3, TextColor param4);
+static void ov78_021D28A8(Window *param0, int heapID, int param2, int param3, TextColor param4);
 static void ov78_021D2904(ChooseStarterApp *param0);
 static void MakeConfirmationWindow(ChooseStarterApp *param0, int param1);
 static void MakeSprite(ChooseStarterApp *app, enum HeapId heapID);
@@ -265,10 +265,10 @@ static void ov78_021D2430(ChooseStarterCursor *param0, BOOL param1);
 static void ov78_021D243C(ChooseStarterCursor *param0, int param1, int param2);
 static void MakeSelectionMatrix(ChooseStarterApp *param0);
 static void SetSelectionMatrixObjects(ChooseStarterApp *param0);
-static void ov78_021D1CA8(ChooseStarterApp *param0, int param1);
+static void ov78_021D1CA8(ChooseStarterApp *param0, int heapID);
 static void ov78_021D1DF0(ChooseStarterApp *param0);
 static void ov78_021D1E28(ChooseStarterApp *param0);
-static void ov78_021D1E44(ChooseStarterApp *param0, int param1);
+static void ov78_021D1E44(ChooseStarterApp *param0, int heapID);
 static void MakePokemonSprite(PokemonSprite **sprite, ChooseStarterApp *app, int species);
 static void ov78_021D16D8(ChooseStarter3DGraphics *param0, NNSFndAllocator *param1);
 static void ov78_021D1708(ChooseStarter3DGraphics *param0);
@@ -965,7 +965,7 @@ static BOOL IsSelectionMade(ChooseStarterApp *param0, int param1)
     return 0;
 }
 
-static void UpdateGraphics(ChooseStarterApp *param0, int param1)
+static void UpdateGraphics(ChooseStarterApp *param0, int heapID)
 {
     switch (ov78_021D1CA4(param0)) {
     case 0:
@@ -994,10 +994,10 @@ static void UpdateGraphics(ChooseStarterApp *param0, int param1)
         }
         break;
     case 3:
-        ov78_021D1CA8(param0, param1);
+        ov78_021D1CA8(param0, heapID);
         break;
     case 4:
-        ov78_021D1E44(param0, param1);
+        ov78_021D1E44(param0, heapID);
         break;
     case 5:
         G2_BlendNone();
@@ -1148,7 +1148,7 @@ static int ov78_021D1CA4(ChooseStarterApp *param0)
     return param0->unk_00;
 }
 
-static void ov78_021D1CA8(ChooseStarterApp *param0, int param1)
+static void ov78_021D1CA8(ChooseStarterApp *param0, int heapID)
 {
     switch (param0->unk_04) {
     case 0:
@@ -1171,7 +1171,7 @@ static void ov78_021D1CA8(ChooseStarterApp *param0, int param1)
         }
         break;
     case 3:
-        param0->unk_708 = ov78_021D201C(param0->messageWindow, param1, 360, 0, TEXT_COLOR(1, 2, 15), param0->unk_704, &param0->unk_AC);
+        param0->unk_708 = ov78_021D201C(param0->messageWindow, heapID, 360, 0, TEXT_COLOR(1, 2, 15), param0->unk_704, &param0->unk_AC);
         param0->unk_04++;
         break;
     case 4:
@@ -1181,7 +1181,7 @@ static void ov78_021D1CA8(ChooseStarterApp *param0, int param1)
         }
         break;
     case 5:
-        param0->unk_708 = ov78_021D201C(param0->messageWindow, param1, 360, 7, TEXT_COLOR(1, 2, 15), param0->unk_704, &param0->unk_AC);
+        param0->unk_708 = ov78_021D201C(param0->messageWindow, heapID, 360, 7, TEXT_COLOR(1, 2, 15), param0->unk_704, &param0->unk_AC);
         param0->unk_04++;
         break;
     case 6:
@@ -1220,7 +1220,7 @@ static void ov78_021D1E28(ChooseStarterApp *param0)
     ov78_021D243C(&param0->unk_658, param0->unk_7C[param0->cursorPosition][0], param0->unk_7C[param0->cursorPosition][1]);
 }
 
-static void ov78_021D1E44(ChooseStarterApp *param0, int param1)
+static void ov78_021D1E44(ChooseStarterApp *param0, int heapID)
 {
     u32 v0;
 
@@ -1244,13 +1244,13 @@ static void ov78_021D1E44(ChooseStarterApp *param0, int param1)
         }
         break;
     case 2:
-        ov78_021D1FB4(param0->messageWindow, param1, 360, 1 + param0->cursorPosition, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
-        param0->unk_B8 = Menu_MakeYesNoChoice(param0->bgl, &param0->unk_B0, (512 + (18 + 12) + 128), 1, param1);
+        ov78_021D1FB4(param0->messageWindow, heapID, 360, 1 + param0->cursorPosition, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
+        param0->unk_B8 = Menu_MakeYesNoChoice(param0->bgl, &param0->unk_B0, (512 + (18 + 12) + 128), 1, heapID);
         param0->unk_08 = 0;
         param0->unk_04++;
         break;
     case 3:
-        v0 = Menu_ProcessInputAndHandleExit(param0->unk_B8, param1);
+        v0 = Menu_ProcessInputAndHandleExit(param0->unk_B8, heapID);
 
         switch (v0) {
         case 0xffffffff:
@@ -1270,19 +1270,19 @@ static void ov78_021D1E44(ChooseStarterApp *param0, int param1)
             param0->unk_04 = 7;
             ov78_021D2508(&param0->unk_6A8, 0);
             PokemonSprite_SetAttribute(param0->sprites[param0->cursorPosition], MON_SPRITE_HIDE, TRUE);
-            param0->unk_708 = ov78_021D1FB4(param0->messageWindow, param1, 360, 7, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
+            param0->unk_708 = ov78_021D1FB4(param0->messageWindow, heapID, 360, 7, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
         }
         break;
     }
 }
 
-static u8 ov78_021D1FB4(Window *param0, int param1, int param2, int param3, TextColor param4, u32 param5)
+static u8 ov78_021D1FB4(Window *param0, int heapID, int param2, int param3, TextColor param4, u32 param5)
 {
     MessageLoader *v0;
     Strbuf *v1;
     u8 v2;
 
-    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, param2, param1);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, param2, heapID);
     GF_ASSERT(v0);
     v1 = MessageLoader_GetNewStrbuf(v0, param3);
 
@@ -1296,14 +1296,14 @@ static u8 ov78_021D1FB4(Window *param0, int param1, int param2, int param3, Text
     return v2;
 }
 
-static u8 ov78_021D201C(Window *param0, int param1, int param2, int param3, u32 param4, u32 param5, Strbuf **param6)
+static u8 ov78_021D201C(Window *param0, int heapID, int param2, int param3, u32 param4, u32 param5, Strbuf **param6)
 {
     MessageLoader *v0;
     u8 v1;
 
     GF_ASSERT((*param6) == NULL);
 
-    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, param2, param1);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, param2, heapID);
     GF_ASSERT(v0);
 
     *param6 = MessageLoader_GetNewStrbuf(v0, param3);
@@ -1714,15 +1714,15 @@ static void ov78_021D2740(SysTask *param0, void *param1)
     v0->unk_04.unk_30 += v0->unk_04.unk_34;
 }
 
-static void MakeSubplaneWindow(ChooseStarterApp *param0, int param1)
+static void MakeSubplaneWindow(ChooseStarterApp *param0, int heapID)
 {
     int v0;
     int v1, v2;
 
-    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__EV_POKESELECT, 17, 0, 5 * 32, 32, param1);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__EV_POKESELECT, 17, 0, 5 * 32, 32, heapID);
 
     for (v0 = 0; v0 < 3; v0++) {
-        param0->unk_9C[v0] = Window_New(param1, 1);
+        param0->unk_9C[v0] = Window_New(heapID, 1);
         Window_Init(param0->unk_9C[v0]);
 
         switch (v0) {
@@ -1741,7 +1741,7 @@ static void MakeSubplaneWindow(ChooseStarterApp *param0, int param1)
         }
 
         Window_Add(param0->bgl, param0->unk_9C[v0], 3, v1, v2, 11, 4, 5, 1 + (64 * v0));
-        ov78_021D28A8(param0->unk_9C[v0], param1, 360, 4 + v0, TEXT_COLOR(1, 2, 10));
+        ov78_021D28A8(param0->unk_9C[v0], heapID, 360, 4 + v0, TEXT_COLOR(1, 2, 10));
     }
 }
 
@@ -1755,12 +1755,12 @@ static void ov78_021D2884(ChooseStarterApp *param0)
     }
 }
 
-static void ov78_021D28A8(Window *param0, int param1, int param2, int param3, TextColor param4)
+static void ov78_021D28A8(Window *param0, int heapID, int param2, int param3, TextColor param4)
 {
     MessageLoader *v0;
     Strbuf *v1;
 
-    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, param2, param1);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, param2, heapID);
     GF_ASSERT(v0);
     v1 = MessageLoader_GetNewStrbuf(v0, param3);
 

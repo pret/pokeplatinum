@@ -11,7 +11,7 @@ UnkStruct_ov104_022320B4 *ov104_0222E63C(UnkStruct_0209B75C *param0, int param1,
 BOOL ov104_0222E6A8(UnkStruct_ov104_022320B4 *param0);
 void ov104_0222E710(UnkStruct_ov104_022320B4 *param0);
 void ov104_0222E748(UnkStruct_ov104_022320B4 *param0, int param1, int param2);
-void ov104_0222E86C(UnkStruct_ov104_022320B4 *param0, int param1, int param2);
+void ov104_0222E86C(UnkStruct_ov104_022320B4 *param0, int param1, int heapID);
 UnkStruct_ov104_0222E8C8 *ov104_0222E8C8(UnkStruct_ov104_022320B4 *param0, int heapID);
 void ov104_0222E8E8(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0222E8C8 *param1);
 u16 *ov104_0222E91C(UnkStruct_ov104_022320B4 *param0, int param1);

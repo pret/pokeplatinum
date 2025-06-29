@@ -256,18 +256,18 @@ static void ov64_0222E290(UnkStruct_ov64_0222E21C *param0, u32 heapID);
 static void ov64_0222E3AC(UnkStruct_ov64_0222E21C *param0);
 static void ov64_0222E3D8(UnkStruct_ov64_0222E21C *param0, u32 heapID);
 static void ov64_0222E570(UnkStruct_ov64_0222E21C *param0);
-static void ov64_0222E5D8(UnkStruct_ov64_0222E21C *param0, u32 param1);
+static void ov64_0222E5D8(UnkStruct_ov64_0222E21C *param0, u32 heapID);
 static void ov64_0222E604(UnkStruct_ov64_0222E21C *param0);
 static void ov64_0222E620(UnkStruct_ov64_0222E21C *param0, const UnkStruct_ov64_0222E060 *param1, u32 heapID);
 static void ov64_0222E6B4(UnkStruct_ov64_0222E21C *param0);
-static void ov64_0222E6D8(UnkStruct_ov64_0222E21C *param0, u32 param1);
+static void ov64_0222E6D8(UnkStruct_ov64_0222E21C *param0, u32 heapID);
 static void ov64_0222E71C(UnkStruct_ov64_0222E21C *param0);
 static void ov64_0222E738(UnkStruct_ov64_0222E21C *param0, u32 param1);
 static void ov64_0222E7C8(UnkStruct_ov64_0222E21C *param0);
 static void ov64_0222E7F8(UnkStruct_ov64_0222E21C *param0, u64 param1);
 static void ov64_0222E970(UnkStruct_ov64_0222E21C *param0, u32 param1);
 static void ov64_0222E990(UnkStruct_ov64_0222E21C *param0, u32 param1);
-static void ov64_0222E9A4(UnkStruct_ov64_0222E21C *param0, u32 param1);
+static void ov64_0222E9A4(UnkStruct_ov64_0222E21C *param0, u32 heapID);
 static void ov64_0222EA0C(UnkStruct_ov64_0222E21C *param0);
 static void ov64_0222EA28(UnkStruct_ov64_0222E21C *param0, BOOL param1);
 static void ov64_0222EA48(UnkStruct_ov64_0222E21C *param0, BOOL param1);
@@ -1004,10 +1004,10 @@ static void ov64_0222E570(UnkStruct_ov64_0222E21C *param0)
     VramTransfer_Free();
 }
 
-static void ov64_0222E5D8(UnkStruct_ov64_0222E21C *param0, u32 param1)
+static void ov64_0222E5D8(UnkStruct_ov64_0222E21C *param0, u32 heapID)
 {
-    param0->unk_214 = StringTemplate_Default(param1);
-    param0->unk_218 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0675, param1);
+    param0->unk_214 = StringTemplate_Default(heapID);
+    param0->unk_218 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0675, heapID);
 }
 
 static void ov64_0222E604(UnkStruct_ov64_0222E21C *param0)
@@ -1037,7 +1037,7 @@ static void ov64_0222E6B4(UnkStruct_ov64_0222E21C *param0)
     Window_Remove(&param0->unk_220);
 }
 
-static void ov64_0222E6D8(UnkStruct_ov64_0222E21C *param0, u32 param1)
+static void ov64_0222E6D8(UnkStruct_ov64_0222E21C *param0, u32 heapID)
 {
     static const u8 v0[2] = {
         2,
@@ -1046,7 +1046,7 @@ static void ov64_0222E6D8(UnkStruct_ov64_0222E21C *param0, u32 param1)
     int v1;
 
     for (v1 = 0; v1 < 2; v1++) {
-        param0->unk_278.unk_00[v1] = Graphics_GetScrnDataFromOpenNARC(param0->unk_21C, v0[v1], 0, &param0->unk_278.unk_08[v1], param1);
+        param0->unk_278.unk_00[v1] = Graphics_GetScrnDataFromOpenNARC(param0->unk_21C, v0[v1], 0, &param0->unk_278.unk_08[v1], heapID);
     }
 }
 
@@ -1150,7 +1150,7 @@ static void ov64_0222E990(UnkStruct_ov64_0222E21C *param0, u32 param1)
     StringTemplate_SetPlazaMinigameName(param0->unk_214, 0, param1);
 }
 
-static void ov64_0222E9A4(UnkStruct_ov64_0222E21C *param0, u32 param1)
+static void ov64_0222E9A4(UnkStruct_ov64_0222E21C *param0, u32 heapID)
 {
     static AffineSpriteListTemplate v0[2] = {
         { NULL,
@@ -1175,7 +1175,7 @@ static void ov64_0222E9A4(UnkStruct_ov64_0222E21C *param0, u32 param1)
     for (v1 = 0; v1 < 2; v1++) {
         v0[v1].list = param0->unk_04;
         v0[v1].resourceData = &param0->unk_23C;
-        v0[v1].heapID = param1;
+        v0[v1].heapID = heapID;
 
         param0->unk_270[v1] = SpriteList_AddAffine(&v0[v1]);
 
