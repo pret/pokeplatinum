@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/unk_0217.h"
+#include "constants/map_object.h"
 
     .data
 
@@ -159,7 +160,7 @@ _01D4:
     End
 
 _01E3:
-    ScrCmd_1B2 0xFF
+    HideMapObj MAP_OBJ_PLAYER_AVATAR
     Return
 
 _01E9:

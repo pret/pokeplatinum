@@ -1,6 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/global_terminal_1f.h"
 #include "res/text/bank/menu_entries.h"
+#include "constants/map_object.h"
 
     .data
 
@@ -32,7 +33,7 @@ _0056:
     End
 
 _0065:
-    ScrCmd_1B2 0xFF
+    HideMapObj MAP_OBJ_PLAYER_AVATAR
     Return
 
 _006B:
@@ -97,8 +98,8 @@ GlobalTerminal1f_GTS_Clerk_Talk:
     LockAll
     FacePlayer
     PartyHasBadEgg VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0368
-    GoToIfSet FLAG_GTS_INTRO_COMPLETED, _02FB
+    GoToIfEq VAR_RESULT, 1, GlobalTerminal1f_GTS_Exit_BadEgg
+    GoToIfSet FLAG_GTS_INTRO_COMPLETED, GlobalTerminal1f_GTS_Clerk_ShortIntro
     SetFlag FLAG_GTS_INTRO_COMPLETED
     Message pl_msg_00000046_00000
     GoTo GlobalTerminal1f_GTS_Clerk_Menu
@@ -182,7 +183,7 @@ GlobalTerminal1f_BeginTrade:
     Call _00C5
     ApplyMovement LOCALID_PLAYER, _0350
     WaitMovement
-    ScrCmd_1B2 0xFF
+    HideMapObj MAP_OBJ_PLAYER_AVATAR
     ApplyMovement LOCALID_PLAYER, _0360
     WaitMovement
     Call _00CD
@@ -216,7 +217,7 @@ _02EA:
     ReleaseAll
     End
 
-_02FB:
+GlobalTerminal1f_GTS_Clerk_ShortIntro:
     Message pl_msg_00000046_00001
     GoTo GlobalTerminal1f_GTS_Clerk_Menu
     End
@@ -261,7 +262,7 @@ _0360:
     FaceSouth
     EndMovement
 
-_0368:
+GlobalTerminal1f_GTS_Exit_BadEgg:
     CallCommonScript 0x2338 @ CommonScript_HasBadEgg; outputs pl_msg_00000221_00127
     WaitABXPadPress
     CloseMessage

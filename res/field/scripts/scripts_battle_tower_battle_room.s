@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_tower_battle_room.h"
+#include "constants/map_object.h"
 
     .data
 
@@ -19,7 +20,7 @@ _0035:
     End
 
 _0037:
-    ScrCmd_1B2 0xFF
+    HideMapObj MAP_OBJ_PLAYER_AVATAR
     GoToIfEq VAR_UNK_0x40D9, 3, _004A
     End
 

@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "constants/map_object.h"
 
     .data
 
@@ -27,12 +28,12 @@ _004A:
 
 _0068:
     CallIfNe VAR_UNK_0x40DD, 0, _007F
-    ScrCmd_1B2 2
-    ScrCmd_1B2 3
+    HideMapObj 2
+    HideMapObj 3
     End
 
 _007F:
-    ScrCmd_1B2 0xFF
+    HideMapObj MAP_OBJ_PLAYER_AVATAR
     ScrCmd_06B 8, 0, 0
     Return
 

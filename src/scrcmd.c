@@ -549,7 +549,7 @@ static BOOL ScrCmd_1A2(ScriptContext *ctx);
 static BOOL ScrCmd_03F(ScriptContext *ctx);
 static BOOL ScrCmd_1AC(ScriptContext *ctx);
 static BOOL ScrCmd_1B1(ScriptContext *ctx);
-static BOOL ScrCmd_1B2(ScriptContext *ctx);
+static BOOL ScrCmd_HideMapObj(ScriptContext *ctx);
 static BOOL ScrCmd_1B3(ScriptContext *ctx);
 static BOOL ScrCmd_1B4(ScriptContext *ctx);
 static BOOL ScrCmd_1B5(ScriptContext *ctx);
@@ -1202,7 +1202,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_BufferPartyMonNicknameReturnSpecies,
     ScrCmd_StorePartyMonIntoDaycare,
     ScrCmd_1B1,
-    ScrCmd_1B2,
+    ScrCmd_HideMapObj,
     ScrCmd_1B3,
     ScrCmd_1B4,
     ScrCmd_1B5,
@@ -5746,7 +5746,7 @@ static BOOL ScrCmd_1B1(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_1B2(ScriptContext *ctx)
+static BOOL ScrCmd_HideMapObj(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 

@@ -2402,7 +2402,7 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_1B2 arg0
+    .macro HideMapObj arg0
     .short 434
     .short \arg0
     .endm
