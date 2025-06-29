@@ -243,7 +243,7 @@ u16 SaveData_GetFirstNonEggInParty(SaveData *saveData)
     for (i = 0; i < partyCount; i++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(saveData), i);
 
-        if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
+        if (Pokemon_GetData(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
             return i;
         }
     }
@@ -262,7 +262,7 @@ BOOL HasAllLegendaryTitansInParty(SaveData *saveData)
     v2 = Party_GetCurrentCount(v4);
 
     for (v0 = 0; v0 < v2; v0++) {
-        v6[v0] = Pokemon_GetValue(Party_GetPokemonBySlotIndex(v4, v0), MON_DATA_SPECIES, NULL);
+        v6[v0] = Pokemon_GetData(Party_GetPokemonBySlotIndex(v4, v0), MON_DATA_SPECIES, NULL);
     }
 
     for (v0 = 0; v0 < 3; v0++) {

@@ -386,7 +386,7 @@ static void ov19_021D803C(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021DCD
         if (param1->unk_00 == NULL) {
             v1 = PCBoxes_GetBoxMonAt(pcBoxes, param0->unk_30, v3);
 
-            if (BoxPokemon_GetValue(v1, MON_DATA_SPECIES_EXISTS, NULL)) {
+            if (BoxPokemon_GetData(v1, MON_DATA_SPECIES_EXISTS, NULL)) {
                 ov19_021DA548(param0->unk_58F0, v1, param0->unk_5814[v3], param0->unk_57D8[v3], param0->unk_CD8[v3], param2, 40 + 24 * v2, 2, ov19_021D85B4(v3), v4, param1);
             }
         }
@@ -423,7 +423,7 @@ static void ov19_021D813C(UnkStruct_ov19_021D8318 *param0, u32 param1)
 
     for (v2 = 0; v2 < (5 * 6); v2++) {
         v1 = PCBoxes_GetBoxMonAt(pcBoxes, param1, v2);
-        v3 = BoxPokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
+        v3 = BoxPokemon_GetData(v1, MON_DATA_SPECIES, NULL);
 
         if (v3) {
             param0->unk_5814[v2] = v3;
@@ -591,7 +591,7 @@ void ov19_021D84E0(UnkStruct_ov19_021D8318 *param0)
     for (v0 = 0; v0 < (5 * 6); v0++) {
         v2 = PCBoxes_GetBoxMonAt(param0->unk_58F8->pcBoxes, v1, v0);
 
-        if (BoxPokemon_GetValue(v2, MON_DATA_SPECIES_EXISTS, NULL)) {
+        if (BoxPokemon_GetData(v2, MON_DATA_SPECIES_EXISTS, NULL)) {
             if (param0->unk_A8[param0->unk_02][v0].unk_00 == NULL) {
                 int v3, v4, v5;
 
@@ -655,7 +655,7 @@ static void ov19_021D85C4(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021DA3
     for (v3 = 0; v3 < 5; v3++) {
         for (v2 = 0; v2 < 6; v2++) {
             v0 = PCBoxes_GetBoxMonAt(param1->unk_40->pcBoxes, param2, v4);
-            v1 = BoxPokemon_GetValue((BoxPokemon *)v0, MON_DATA_SPECIES, NULL);
+            v1 = BoxPokemon_GetData((BoxPokemon *)v0, MON_DATA_SPECIES, NULL);
 
             if (v1 != 0) {
                 ov19_021DA428(param1, v0, 112 + param0->unk_585C + 24 * v2 + param4, 40 + 24 * v3, 2, ov19_021D85B4(v4), v5, param5);

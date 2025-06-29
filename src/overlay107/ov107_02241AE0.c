@@ -853,7 +853,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
             }
 
             if (param0->unk_16 == 0) {
-                if (Pokemon_GetValue(v7, MON_DATA_CURRENT_HP, NULL) == Pokemon_GetValue(v7, MON_DATA_MAX_HP, NULL)) {
+                if (Pokemon_GetData(v7, MON_DATA_CURRENT_HP, NULL) == Pokemon_GetData(v7, MON_DATA_MAX_HP, NULL)) {
                     param0->unk_0A = ov107_02243918(param0, 37, FONT_MESSAGE);
                     param0->unk_08 = 7;
                     break;
@@ -865,7 +865,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
                     break;
                 }
             } else {
-                if ((Pokemon_GetValue(v7, MON_DATA_CURRENT_HP, NULL) == Pokemon_GetValue(v7, MON_DATA_MAX_HP, NULL)) && (ov107_02245210(v7) == 0)) {
+                if ((Pokemon_GetData(v7, MON_DATA_CURRENT_HP, NULL) == Pokemon_GetData(v7, MON_DATA_MAX_HP, NULL)) && (ov107_02245210(v7) == 0)) {
                     param0->unk_0A = ov107_02243918(param0, 37, FONT_MESSAGE);
                     param0->unk_08 = 7;
                     break;
@@ -1058,7 +1058,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
                 break;
             }
 
-            if (Pokemon_GetValue(v7, MON_DATA_HELD_ITEM, NULL) == 0) {
+            if (Pokemon_GetData(v7, MON_DATA_HELD_ITEM, NULL) == 0) {
                 if (ov104_0223BA14(param0->unk_09) == 0) {
                     ov107_02244120(param0);
                     ov107_02249DBC(&param0->unk_50[6], Options_Frame(param0->options));
@@ -1075,7 +1075,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
                 }
             } else {
                 ov107_02244A8C(param0, 0, Pokemon_GetBoxPokemon(v7));
-                StringTemplate_SetItemNameWithArticle(param0->unk_24, 1, Pokemon_GetValue(v7, MON_DATA_HELD_ITEM, NULL));
+                StringTemplate_SetItemNameWithArticle(param0->unk_24, 1, Pokemon_GetData(v7, MON_DATA_HELD_ITEM, NULL));
                 param0->unk_0A = ov107_02243918(param0, 60, FONT_MESSAGE);
                 param0->unk_08 = 16;
             }
@@ -1479,12 +1479,12 @@ static void ov107_02242F5C (UnkStruct_ov107_02241D6C * param0)
 
         v19 = Party_GetPokemonBySlotIndex(param0->unk_43C, v15);
 
-        if (Pokemon_GetValue(v19, MON_DATA_HELD_ITEM, NULL) == 0) {
+        if (Pokemon_GetData(v19, MON_DATA_HELD_ITEM, NULL) == 0) {
             ov107_02249BAC(param0->unk_404[v15], 0);
         }
 
-        v2 = Pokemon_GetValue(v19, MON_DATA_CURRENT_HP, NULL);
-        v3 = Pokemon_GetValue(v19, MON_DATA_MAX_HP, NULL);
+        v2 = Pokemon_GetData(v19, MON_DATA_CURRENT_HP, NULL);
+        v3 = Pokemon_GetData(v19, MON_DATA_MAX_HP, NULL);
         v4 = ov107_022450E8(param0, HealthBar_Color(v2, v3, 48));
         v5 = ov107_02245114(param0, HealthBar_Color(v2, v3, 48));
 
@@ -1877,7 +1877,7 @@ asm static void ov107_02243950 (UnkStruct_ov107_02241D6C * param0, Window * para
     add r0, r6, #0
     mov r1, #6
     mov r2, #0
-    bl Pokemon_GetValue
+    bl Pokemon_GetData
     add r2, r0, #0
     ldr r0, [r5, #0x24]
     mov r1, #0
@@ -1925,7 +1925,7 @@ asm static void ov107_02243950 (UnkStruct_ov107_02241D6C * param0, Window * para
     add r0, r6, #0
     mov r1, #0xa
     mov r2, #0
-    bl Pokemon_GetValue
+    bl Pokemon_GetData
     add r2, r0, #0
     ldr r0, [r5, #0x24]
     mov r1, #0
@@ -1950,7 +1950,7 @@ asm static void ov107_02243950 (UnkStruct_ov107_02241D6C * param0, Window * para
     add r0, r6, #0
     mov r1, #0xa5
     mov r2, #0
-    bl Pokemon_GetValue
+    bl Pokemon_GetData
     add r2, r0, #0
     mov r0, #1
     str r0, [sp]
@@ -1978,7 +1978,7 @@ asm static void ov107_02243950 (UnkStruct_ov107_02241D6C * param0, Window * para
     add r0, r6, #0
     mov r1, #0xa6
     mov r2, #0
-    bl Pokemon_GetValue
+    bl Pokemon_GetData
     add r2, r0, #0
     mov r0, #1
     str r0, [sp]
@@ -2007,7 +2007,7 @@ asm static void ov107_02243950 (UnkStruct_ov107_02241D6C * param0, Window * para
     add r0, r6, #0
     mov r1, #0xa8
     mov r2, #0
-    bl Pokemon_GetValue
+    bl Pokemon_GetData
     add r2, r0, #0
     mov r0, #1
     str r0, [sp]
@@ -2035,7 +2035,7 @@ asm static void ov107_02243950 (UnkStruct_ov107_02241D6C * param0, Window * para
     add r0, r6, #0
     mov r1, #0xa9
     mov r2, #0
-    bl Pokemon_GetValue
+    bl Pokemon_GetData
     add r2, r0, #0
     mov r0, #1
     str r0, [sp]
@@ -2064,7 +2064,7 @@ asm static void ov107_02243950 (UnkStruct_ov107_02241D6C * param0, Window * para
     add r0, r6, #0
     mov r1, #0xa7
     mov r2, #0
-    bl Pokemon_GetValue
+    bl Pokemon_GetData
     add r2, r0, #0
     mov r0, #1
     str r0, [sp]
@@ -2123,11 +2123,11 @@ static void ov107_02243C18 (UnkStruct_ov107_02241D6C * param0, Window * param1, 
     v2 = 137;
     v3 = 12 + (param2 * 24);
 
-    StringTemplate_SetMoveName(param0->unk_24, param2, Pokemon_GetValue(param5, param6, NULL));
+    StringTemplate_SetMoveName(param0->unk_24, param2, Pokemon_GetData(param5, param6, NULL));
     param0->unk_0A = ov107_02243860(param0, param1, param3, v0, v1, TEXT_SPEED_NO_TRANSFER, 1, 2, 0, FONT_SYSTEM);
 
-    ov107_02244A74(param0, 4, Pokemon_GetValue(param5, param7, NULL), MON_DATA_IS_DATA_INVALID, 0);
-    ov107_02244A74(param0, 5, Pokemon_GetValue(param5, param8, NULL), MON_DATA_IS_DATA_INVALID, 0);
+    ov107_02244A74(param0, 4, Pokemon_GetData(param5, param7, NULL), MON_DATA_IS_DATA_INVALID, 0);
+    ov107_02244A74(param0, 5, Pokemon_GetData(param5, param8, NULL), MON_DATA_IS_DATA_INVALID, 0);
     param0->unk_0A = ov107_02243890(param0, param1, param4, v2, v3, TEXT_SPEED_NO_TRANSFER, 1, 2, 0, FONT_SYSTEM, 1);
 
     return;
@@ -2179,9 +2179,9 @@ static void ov107_02243CFC (UnkStruct_ov107_02241D6C * param0, Window * param1, 
         v4 = 0;
     }
 
-    sub_0200C5BC(param0->unk_1C4, Pokemon_GetValue(v7, MON_DATA_CURRENT_HP, NULL), 3, 1, param1, v1, v2);
+    sub_0200C5BC(param0->unk_1C4, Pokemon_GetData(v7, MON_DATA_CURRENT_HP, NULL), 3, 1, param1, v1, v2);
     sub_0200C578(param0->unk_1C4, 0, param1, v5, v6);
-    sub_0200C5BC(param0->unk_1C4, Pokemon_GetValue(v7, MON_DATA_MAX_HP, NULL), 3, 0, param1, v3, v4);
+    sub_0200C5BC(param0->unk_1C4, Pokemon_GetData(v7, MON_DATA_MAX_HP, NULL), 3, 0, param1, v3, v4);
 
     return;
 }
@@ -2227,8 +2227,8 @@ static void ov107_02243DE4 (UnkStruct_ov107_02241D6C * param0, Window * param1, 
         v4 = 0;
     }
 
-    sub_0200C648(param0->unk_1C4, 1, Pokemon_GetValue(v7, MON_DATA_LEVEL, NULL), 3, 0, param1, v1, v2);
-    v0 = Pokemon_GetValue(v7, MON_DATA_GENDER, NULL);
+    sub_0200C648(param0->unk_1C4, 1, Pokemon_GetData(v7, MON_DATA_LEVEL, NULL), 3, 0, param1, v1, v2);
+    v0 = Pokemon_GetData(v7, MON_DATA_GENDER, NULL);
     ov107_02244B8C(param0, param1, v3, v4, FONT_SYSTEM, v0);
 
     return;
@@ -3117,8 +3117,8 @@ static BOOL ov107_02244E44 (UnkStruct_ov107_02241D6C * param0, u8 param1, u8 par
 
     v5 = ov107_02249C98(param0->unk_14, param1);
     v6 = Party_GetPokemonBySlotIndex(param0->unk_43C, v5);
-    v0 = Pokemon_GetValue(v6, MON_DATA_CURRENT_HP, NULL);
-    v1 = Pokemon_GetValue(v6, MON_DATA_MAX_HP, NULL);
+    v0 = Pokemon_GetData(v6, MON_DATA_CURRENT_HP, NULL);
+    v1 = Pokemon_GetData(v6, MON_DATA_MAX_HP, NULL);
     v2 = ov107_022450E8(param0, HealthBar_Color(v0, v1, 48));
     v3 = ov107_02245114(param0, HealthBar_Color(v0, v1, 48));
 
@@ -3151,7 +3151,7 @@ static BOOL ov107_02244E44 (UnkStruct_ov107_02241D6C * param0, u8 param1, u8 par
         }
 
         if (param0->unk_414 == NULL) {
-            ov107_02243F4C(param0, &param0->unk_50[3], v5, Pokemon_GetValue(v6, MON_DATA_CURRENT_HP, NULL));
+            ov107_02243F4C(param0, &param0->unk_50[3], v5, Pokemon_GetData(v6, MON_DATA_CURRENT_HP, NULL));
             ov107_02249BEC(param0->unk_420[v5], v3);
             ov107_02249C1C(param0->unk_3F4[v5], v2);
             param0->unk_0E_2 = 0;
@@ -3333,19 +3333,19 @@ static BOOL ov107_02245210 (Pokemon * param0)
 {
     u8 v0 = 0;
 
-    if (Pokemon_GetValue(param0, MON_DATA_MOVE1_CUR_PP, NULL) != Pokemon_GetValue(param0, MON_DATA_MOVE1_MAX_PP, NULL)) {
+    if (Pokemon_GetData(param0, MON_DATA_MOVE1_CUR_PP, NULL) != Pokemon_GetData(param0, MON_DATA_MOVE1_MAX_PP, NULL)) {
         v0 = 1;
     }
 
-    if (Pokemon_GetValue(param0, MON_DATA_MOVE2_CUR_PP, NULL) != Pokemon_GetValue(param0, MON_DATA_MOVE2_MAX_PP, NULL)) {
+    if (Pokemon_GetData(param0, MON_DATA_MOVE2_CUR_PP, NULL) != Pokemon_GetData(param0, MON_DATA_MOVE2_MAX_PP, NULL)) {
         v0 = 1;
     }
 
-    if (Pokemon_GetValue(param0, MON_DATA_MOVE3_CUR_PP, NULL) != Pokemon_GetValue(param0, MON_DATA_MOVE3_MAX_PP, NULL)) {
+    if (Pokemon_GetData(param0, MON_DATA_MOVE3_CUR_PP, NULL) != Pokemon_GetData(param0, MON_DATA_MOVE3_MAX_PP, NULL)) {
         v0 = 1;
     }
 
-    if (Pokemon_GetValue(param0, MON_DATA_MOVE4_CUR_PP, NULL) != Pokemon_GetValue(param0, MON_DATA_MOVE4_MAX_PP, NULL)) {
+    if (Pokemon_GetData(param0, MON_DATA_MOVE4_CUR_PP, NULL) != Pokemon_GetData(param0, MON_DATA_MOVE4_MAX_PP, NULL)) {
         v0 = 1;
     }
 
@@ -3615,7 +3615,7 @@ static void ov107_022455A0 (UnkStruct_ov107_02241D6C * param0, u8 param1, u16 pa
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_43C, ov107_02249C98(param0->unk_14, param1));
 
-    Pokemon_SetValue(v0, MON_DATA_HELD_ITEM, &param2);
+    Pokemon_SetData(v0, MON_DATA_HELD_ITEM, &param2);
 
     ov107_02249BAC(param0->unk_404[ov107_02249C98(param0->unk_14, param1)], 1);
     ov107_02244A8C(param0, 0, Pokemon_GetBoxPokemon(v0));
@@ -4101,7 +4101,7 @@ static void ov107_02245C00 (UnkStruct_ov107_02241D6C * param0)
 
     for (v0 = 0; v0 < v1; v0++) {
         v3 = Party_GetPokemonBySlotIndex(param0->unk_43C, v0);
-        v2 = ov104_0222E240(Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL), Pokemon_GetValue(v3, MON_DATA_MAX_HP, NULL));
+        v2 = ov104_0222E240(Pokemon_GetData(v3, MON_DATA_CURRENT_HP, NULL), Pokemon_GetData(v3, MON_DATA_MAX_HP, NULL));
 
         if (param0->unk_3F4[v0] != NULL) {
             ov107_02249C1C(param0->unk_3F4[v0], v2);

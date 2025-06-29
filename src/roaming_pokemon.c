@@ -324,9 +324,9 @@ void RoamingPokemon_ActivateSlot(SaveData *saveData, const u8 slot)
     Pokemon_InitWith(roamerMonData, species, level, INIT_IVS_RANDOM, FALSE, 0, OTID_SET, TrainerInfo_ID_LowHalf(trainer));
     Roamer_SetData(newRoamer, ROAMER_DATA_STATUS, 0);
     Roamer_SetData(newRoamer, ROAMER_DATA_ACTIVE, 1);
-    Roamer_SetData(newRoamer, ROAMER_DATA_IVS, Pokemon_GetValue(roamerMonData, MON_DATA_COMBINED_IVS, NULL));
-    Roamer_SetData(newRoamer, ROAMER_DATA_PERSONALITY, Pokemon_GetValue(roamerMonData, MON_DATA_PERSONALITY, NULL));
-    Roamer_SetData(newRoamer, ROAMER_DATA_CURRENT_HP, Pokemon_GetValue(roamerMonData, MON_DATA_MAX_HP, NULL));
+    Roamer_SetData(newRoamer, ROAMER_DATA_IVS, Pokemon_GetData(roamerMonData, MON_DATA_COMBINED_IVS, NULL));
+    Roamer_SetData(newRoamer, ROAMER_DATA_PERSONALITY, Pokemon_GetData(roamerMonData, MON_DATA_PERSONALITY, NULL));
+    Roamer_SetData(newRoamer, ROAMER_DATA_CURRENT_HP, Pokemon_GetData(roamerMonData, MON_DATA_MAX_HP, NULL));
     Heap_FreeToHeap(roamerMonData);
 
     previouslyVisitedMap = SpecialEncounter_GetPlayerPreviousMap(speEnc);

@@ -82,13 +82,13 @@ static BOOL ov44_0225621C(UnkStruct_ov44_0225621C *param0, PoketchSystem *poketc
     for (v2 = 0; v2 < param0->unk_04.unk_30; v2++) {
         v1 = Party_GetPokemonBySlotIndex(v0, v2);
 
-        if (Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL)) {
+        if (Pokemon_GetData(v1, MON_DATA_IS_EGG, NULL)) {
             continue;
         }
 
         param0->unk_04.unk_00[v3] = BoxPokemon_IconSpriteIndex((const BoxPokemon *)v1);
-        param0->unk_04.unk_18[v3] = Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
-        param0->unk_04.unk_24[v3] = Pokemon_GetValue(v1, MON_DATA_FORM, NULL);
+        param0->unk_04.unk_18[v3] = Pokemon_GetData(v1, MON_DATA_SPECIES, NULL);
+        param0->unk_04.unk_24[v3] = Pokemon_GetData(v1, MON_DATA_FORM, NULL);
         param0->unk_48[v3] = (BoxPokemon *)v1;
         v3++;
     }

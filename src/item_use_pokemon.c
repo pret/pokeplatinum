@@ -114,7 +114,7 @@
             vApplyUpdatedEV = CalculateEVUpdate(__currentEV, __otherEVsSum, vApplyEVChange);                  \
             if (vApplyUpdatedEV != EV_UNCHANGED) {                                                            \
                 __currentEV = vApplyUpdatedEV;                                                                \
-                Pokemon_SetValue(mon, __monDataParam, &__currentEV);                                          \
+                Pokemon_SetData(mon, __monDataParam, &__currentEV);                                          \
                 Pokemon_CalcLevelAndStats(mon);                                                               \
                 effectApplied = TRUE;                                                                         \
             }                                                                                                 \
@@ -146,7 +146,7 @@ u8 Pokemon_CheckItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, enum HeapId 
         return FALSE;
     }
 
-    vCheckStatus = Pokemon_GetValue(mon, MON_DATA_STATUS_CONDITION, NULL);
+    vCheckStatus = Pokemon_GetData(mon, MON_DATA_STATUS_CONDITION, NULL);
 
     CHECK_STATUS(ITEM_PARAM_HEAL_SLEEP, MON_CONDITION_SLEEP);
     CHECK_STATUS(ITEM_PARAM_HEAL_POISON, (MON_CONDITION_POISON | MON_CONDITION_TOXIC));
@@ -154,7 +154,7 @@ u8 Pokemon_CheckItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, enum HeapId 
     CHECK_STATUS(ITEM_PARAM_HEAL_FREEZE, MON_CONDITION_FREEZE);
     CHECK_STATUS(ITEM_PARAM_HEAL_PARALYSIS, MON_CONDITION_PARALYSIS);
 
-    vCheckCurrentHP = Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL);
+    vCheckCurrentHP = Pokemon_GetData(mon, MON_DATA_CURRENT_HP, NULL);
 
     if ((Item_Get(item, ITEM_PARAM_REVIVE) || Item_Get(item, ITEM_PARAM_REVIVE_ALL))
         && Item_Get(item, ITEM_PARAM_LEVEL_UP) == FALSE) {
@@ -163,14 +163,14 @@ u8 Pokemon_CheckItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, enum HeapId 
             return TRUE;
         }
     } else if (Item_Get(item, ITEM_PARAM_HP_RESTORE)) {
-        if (vCheckCurrentHP != 0 && vCheckCurrentHP < Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL)) {
+        if (vCheckCurrentHP != 0 && vCheckCurrentHP < Pokemon_GetData(mon, MON_DATA_MAX_HP, NULL)) {
             Heap_FreeToHeap(item);
             return TRUE;
         }
     }
 
     if (Item_Get(item, ITEM_PARAM_LEVEL_UP)) {
-        if (Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) < MAX_POKEMON_LEVEL) {
+        if (Pokemon_GetData(mon, MON_DATA_LEVEL, NULL) < MAX_POKEMON_LEVEL) {
             Heap_FreeToHeap(item);
             return TRUE;
         }
@@ -184,8 +184,8 @@ u8 Pokemon_CheckItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, enum HeapId 
     }
 
     if (Item_Get(item, ITEM_PARAM_PP_UP) || Item_Get(item, ITEM_PARAM_PP_MAX)) {
-        if (Pokemon_GetValue(mon, MON_DATA_MOVE1_PP_UPS + moveSlot, NULL) < MAX_PP_UP_BONUSES
-            && MoveTable_CalcMaxPP(Pokemon_GetValue(mon, MON_DATA_MOVE1 + moveSlot, NULL), 0) >= PP_UP_REQUIREMENT) {
+        if (Pokemon_GetData(mon, MON_DATA_MOVE1_PP_UPS + moveSlot, NULL) < MAX_PP_UP_BONUSES
+            && MoveTable_CalcMaxPP(Pokemon_GetData(mon, MON_DATA_MOVE1 + moveSlot, NULL), 0) >= PP_UP_REQUIREMENT) {
             Heap_FreeToHeap(item);
             return TRUE;
         }
@@ -207,14 +207,14 @@ u8 Pokemon_CheckItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, enum HeapId 
         }
     }
 
-    vCheckEVHP = Pokemon_GetValue(mon, MON_DATA_HP_EV, NULL);
-    vCheckEVAttack = Pokemon_GetValue(mon, MON_DATA_ATK_EV, NULL);
-    vCheckEVDefense = Pokemon_GetValue(mon, MON_DATA_DEF_EV, NULL);
-    vCheckEVSpeed = Pokemon_GetValue(mon, MON_DATA_SPEED_EV, NULL);
-    vCheckEVSpAttack = Pokemon_GetValue(mon, MON_DATA_SPATK_EV, NULL);
-    vCheckEVSpDefense = Pokemon_GetValue(mon, MON_DATA_SPDEF_EV, NULL);
+    vCheckEVHP = Pokemon_GetData(mon, MON_DATA_HP_EV, NULL);
+    vCheckEVAttack = Pokemon_GetData(mon, MON_DATA_ATK_EV, NULL);
+    vCheckEVDefense = Pokemon_GetData(mon, MON_DATA_DEF_EV, NULL);
+    vCheckEVSpeed = Pokemon_GetData(mon, MON_DATA_SPEED_EV, NULL);
+    vCheckEVSpAttack = Pokemon_GetData(mon, MON_DATA_SPATK_EV, NULL);
+    vCheckEVSpDefense = Pokemon_GetData(mon, MON_DATA_SPDEF_EV, NULL);
 
-    if (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) != SPECIES_SHEDINJA) {
+    if (Pokemon_GetData(mon, MON_DATA_SPECIES, NULL) != SPECIES_SHEDINJA) {
         CHECK_EV_ITEM_EFFECT(ITEM_PARAM_GIVE_HP_EVS, ITEM_PARAM_HP_EVS, vCheckEVHP);
     }
 
@@ -252,7 +252,7 @@ u8 Pokemon_ApplyItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, u16 location
     u8 effectApplied = FALSE;
     u8 effectFound = FALSE;
 
-    vApplyStatus = Pokemon_GetValue(mon, MON_DATA_STATUS_CONDITION, NULL);
+    vApplyStatus = Pokemon_GetData(mon, MON_DATA_STATUS_CONDITION, NULL);
     vApplyStatusTmp = vApplyStatus;
 
     APPLY_HEAL_STATUS(ITEM_PARAM_HEAL_SLEEP, MON_CONDITION_SLEEP);
@@ -262,12 +262,12 @@ u8 Pokemon_ApplyItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, u16 location
     APPLY_HEAL_STATUS(ITEM_PARAM_HEAL_PARALYSIS, MON_CONDITION_PARALYSIS);
 
     if (vApplyStatus != vApplyStatusTmp) {
-        Pokemon_SetValue(mon, MON_DATA_STATUS_CONDITION, &vApplyStatusTmp);
+        Pokemon_SetData(mon, MON_DATA_STATUS_CONDITION, &vApplyStatusTmp);
         effectApplied = TRUE;
     }
 
-    vApplyCurrentHP = Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL);
-    vApplyMaxHP = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
+    vApplyCurrentHP = Pokemon_GetData(mon, MON_DATA_CURRENT_HP, NULL);
+    vApplyMaxHP = Pokemon_GetData(mon, MON_DATA_MAX_HP, NULL);
 
     if ((Item_Get(item, ITEM_PARAM_REVIVE) || Item_Get(item, ITEM_PARAM_REVIVE_ALL))
         && Item_Get(item, ITEM_PARAM_LEVEL_UP)) {
@@ -287,7 +287,7 @@ u8 Pokemon_ApplyItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, u16 location
         effectFound = TRUE;
     }
 
-    vApplyLevel = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
+    vApplyLevel = Pokemon_GetData(mon, MON_DATA_LEVEL, NULL);
 
     if (Item_Get(item, ITEM_PARAM_LEVEL_UP)) {
         if (vApplyLevel < MAX_POKEMON_LEVEL) {
@@ -295,7 +295,7 @@ u8 Pokemon_ApplyItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, u16 location
             Pokemon_CalcLevelAndStats(mon);
 
             if (vApplyCurrentHP == 0) {
-                vApplyLevelUpMaxHP = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
+                vApplyLevelUpMaxHP = Pokemon_GetData(mon, MON_DATA_MAX_HP, NULL);
                 RestorePokemonHP(mon, vApplyCurrentHP, vApplyLevelUpMaxHP, vApplyLevelUpMaxHP - vApplyMaxHP);
             }
 
@@ -339,14 +339,14 @@ u8 Pokemon_ApplyItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, u16 location
         effectFound = TRUE;
     }
 
-    vApplyEVHP = Pokemon_GetValue(mon, MON_DATA_HP_EV, NULL);
-    vApplyEVAttack = Pokemon_GetValue(mon, MON_DATA_ATK_EV, NULL);
-    vApplyEVDefense = Pokemon_GetValue(mon, MON_DATA_DEF_EV, NULL);
-    vApplyEVSpeed = Pokemon_GetValue(mon, MON_DATA_SPEED_EV, NULL);
-    vApplyEVSpAttack = Pokemon_GetValue(mon, MON_DATA_SPATK_EV, NULL);
-    vApplyEVSpDefense = Pokemon_GetValue(mon, MON_DATA_SPDEF_EV, NULL);
+    vApplyEVHP = Pokemon_GetData(mon, MON_DATA_HP_EV, NULL);
+    vApplyEVAttack = Pokemon_GetData(mon, MON_DATA_ATK_EV, NULL);
+    vApplyEVDefense = Pokemon_GetData(mon, MON_DATA_DEF_EV, NULL);
+    vApplyEVSpeed = Pokemon_GetData(mon, MON_DATA_SPEED_EV, NULL);
+    vApplyEVSpAttack = Pokemon_GetData(mon, MON_DATA_SPATK_EV, NULL);
+    vApplyEVSpDefense = Pokemon_GetData(mon, MON_DATA_SPDEF_EV, NULL);
 
-    if (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) != SPECIES_SHEDINJA) {
+    if (Pokemon_GetData(mon, MON_DATA_SPECIES, NULL) != SPECIES_SHEDINJA) {
         APPLY_EV_EFFECT(ITEM_PARAM_GIVE_HP_EVS, ITEM_PARAM_HP_EVS, MON_DATA_HP_EV, vApplyEVHP, APPLY_EFFECTS_EV_SUM_EXCLUDE_HP);
     }
 
@@ -361,7 +361,7 @@ u8 Pokemon_ApplyItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, u16 location
         return 0;
     }
 
-    vApplyFriendship = Pokemon_GetValue(mon, MON_DATA_FRIENDSHIP, NULL);
+    vApplyFriendship = Pokemon_GetData(mon, MON_DATA_FRIENDSHIP, NULL);
 
     if (vApplyFriendship < LOW_FRIENDSHIP_LIMIT) {
         if (Item_Get(item, ITEM_PARAM_GIVE_FRIENDSHIP_LOW)) {
@@ -398,14 +398,14 @@ u8 Party_ApplyItemEffectsToMember(Party *party, u16 itemId, u8 partySlot, u8 mov
 
 static u8 IsMoveMissingPP(Pokemon *mon, u32 moveSlot)
 {
-    u16 move = Pokemon_GetValue(mon, MON_DATA_MOVE1 + moveSlot, NULL);
+    u16 move = Pokemon_GetData(mon, MON_DATA_MOVE1 + moveSlot, NULL);
 
     if (move == MOVE_NONE) {
         return FALSE;
     }
 
-    u8 currPP = Pokemon_GetValue(mon, MON_DATA_MOVE1_CUR_PP + moveSlot, NULL);
-    u8 ppUps = Pokemon_GetValue(mon, MON_DATA_MOVE1_PP_UPS + moveSlot, NULL);
+    u8 currPP = Pokemon_GetData(mon, MON_DATA_MOVE1_CUR_PP + moveSlot, NULL);
+    u8 ppUps = Pokemon_GetData(mon, MON_DATA_MOVE1_PP_UPS + moveSlot, NULL);
 
     if (currPP < MoveTable_CalcMaxPP(move, ppUps)) {
         return TRUE;
@@ -416,14 +416,14 @@ static u8 IsMoveMissingPP(Pokemon *mon, u32 moveSlot)
 
 static u8 RestorePokemonMovePP(Pokemon *mon, u32 moveSlot, u32 amount)
 {
-    u16 move = Pokemon_GetValue(mon, MON_DATA_MOVE1 + moveSlot, NULL);
+    u16 move = Pokemon_GetData(mon, MON_DATA_MOVE1 + moveSlot, NULL);
 
     if (move == MOVE_NONE) {
         return FALSE;
     }
 
-    u8 currPP = Pokemon_GetValue(mon, MON_DATA_MOVE1_CUR_PP + moveSlot, NULL);
-    u8 maxPP = MoveTable_CalcMaxPP(move, Pokemon_GetValue(mon, MON_DATA_MOVE1_PP_UPS + moveSlot, NULL));
+    u8 currPP = Pokemon_GetData(mon, MON_DATA_MOVE1_CUR_PP + moveSlot, NULL);
+    u8 maxPP = MoveTable_CalcMaxPP(move, Pokemon_GetData(mon, MON_DATA_MOVE1_PP_UPS + moveSlot, NULL));
 
     if (currPP < maxPP) {
         if (amount == HEAL_FULL_PP) {
@@ -436,7 +436,7 @@ static u8 RestorePokemonMovePP(Pokemon *mon, u32 moveSlot, u32 amount)
             }
         }
 
-        Pokemon_SetValue(mon, MON_DATA_MOVE1_CUR_PP + moveSlot, &currPP);
+        Pokemon_SetData(mon, MON_DATA_MOVE1_CUR_PP + moveSlot, &currPP);
         return TRUE;
     }
 
@@ -447,19 +447,19 @@ static u8 IncreaseMovePPUps(Pokemon *mon, u32 moveSlot, u32 amount)
 {
     u8 currPP; // forward declaration required to match
 
-    u8 currPPUps = Pokemon_GetValue(mon, MON_DATA_MOVE1_PP_UPS + moveSlot, NULL);
+    u8 currPPUps = Pokemon_GetData(mon, MON_DATA_MOVE1_PP_UPS + moveSlot, NULL);
 
     if (currPPUps == MAX_PP_UP_BONUSES) {
         return FALSE;
     }
 
-    u16 moveId = Pokemon_GetValue(mon, MON_DATA_MOVE1 + moveSlot, NULL);
+    u16 moveId = Pokemon_GetData(mon, MON_DATA_MOVE1 + moveSlot, NULL);
 
     if (MoveTable_CalcMaxPP(moveId, 0) < PP_UP_REQUIREMENT) {
         return FALSE;
     }
 
-    currPP = Pokemon_GetValue(mon, MON_DATA_MOVE1_CUR_PP + moveSlot, NULL);
+    currPP = Pokemon_GetData(mon, MON_DATA_MOVE1_CUR_PP + moveSlot, NULL);
     u8 maxPP = MoveTable_CalcMaxPP(moveId, currPPUps);
 
     if (currPPUps + amount > MAX_PP_UP_BONUSES) {
@@ -470,8 +470,8 @@ static u8 IncreaseMovePPUps(Pokemon *mon, u32 moveSlot, u32 amount)
 
     currPP = currPP + MoveTable_CalcMaxPP(moveId, currPPUps) - maxPP;
 
-    Pokemon_SetValue(mon, MON_DATA_MOVE1_PP_UPS + moveSlot, &currPPUps);
-    Pokemon_SetValue(mon, MON_DATA_MOVE1_CUR_PP + moveSlot, &currPP);
+    Pokemon_SetData(mon, MON_DATA_MOVE1_PP_UPS + moveSlot, &currPPUps);
+    Pokemon_SetData(mon, MON_DATA_MOVE1_CUR_PP + moveSlot, &currPP);
 
     return TRUE;
 }
@@ -494,7 +494,7 @@ static void RestorePokemonHP(Pokemon *mon, u32 currentHP, u32 maxHP, u32 amount)
         currentHP += amount;
     }
 
-    Pokemon_SetValue(mon, MON_DATA_CURRENT_HP, &currentHP);
+    Pokemon_SetData(mon, MON_DATA_CURRENT_HP, &currentHP);
 }
 
 static s32 CalculateEVUpdate(s32 current, s32 sumOthers, s32 change)
@@ -528,7 +528,7 @@ static s32 CalculateEVUpdate(s32 current, s32 sumOthers, s32 change)
 
 static u8 CheckFriendshipItemEffect(Pokemon *mon, ItemData *item)
 {
-    s32 friendship = Pokemon_GetValue(mon, MON_DATA_FRIENDSHIP, NULL);
+    s32 friendship = Pokemon_GetData(mon, MON_DATA_FRIENDSHIP, NULL);
 
     if (friendship >= MAX_FRIENDSHIP_VALUE) {
         return FALSE;
@@ -574,15 +574,15 @@ static u8 UpdatePokemonFriendship(Pokemon *mon, s32 current, s32 change, u16 loc
     }
 
     if (change > 0) {
-        if (Item_LoadParam(Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL), ITEM_PARAM_HOLD_EFFECT, heapID) == HOLD_EFFECT_FRIENDSHIP_UP) {
+        if (Item_LoadParam(Pokemon_GetData(mon, MON_DATA_HELD_ITEM, NULL), ITEM_PARAM_HOLD_EFFECT, heapID) == HOLD_EFFECT_FRIENDSHIP_UP) {
             change = change * HELD_ITEM_FRIENDSHIP_UP_MULTIPLIER;
         }
 
-        if (Pokemon_GetValue(mon, MON_DATA_POKEBALL, NULL) == ITEM_LUXURY_BALL) {
+        if (Pokemon_GetData(mon, MON_DATA_POKEBALL, NULL) == ITEM_LUXURY_BALL) {
             change++;
         }
 
-        if (Pokemon_GetValue(mon, MON_DATA_MET_LOCATION, NULL) == location) {
+        if (Pokemon_GetData(mon, MON_DATA_MET_LOCATION, NULL) == location) {
             change++;
         }
     }
@@ -597,7 +597,7 @@ static u8 UpdatePokemonFriendship(Pokemon *mon, s32 current, s32 change, u16 loc
         change = 0;
     }
 
-    Pokemon_SetValue(mon, MON_DATA_FRIENDSHIP, &change);
+    Pokemon_SetData(mon, MON_DATA_FRIENDSHIP, &change);
     return TRUE;
 }
 
@@ -610,15 +610,15 @@ void Party_HealAllMembers(Party *party)
     for (int i = 0; i < monCount; i++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
 
-        if (Pokemon_GetValue(mon, MON_DATA_SPECIES_EXISTS, NULL) == FALSE) {
+        if (Pokemon_GetData(mon, MON_DATA_SPECIES_EXISTS, NULL) == FALSE) {
             continue;
         }
 
-        u32 tmp = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
-        Pokemon_SetValue(mon, MON_DATA_CURRENT_HP, &tmp);
+        u32 tmp = Pokemon_GetData(mon, MON_DATA_MAX_HP, NULL);
+        Pokemon_SetData(mon, MON_DATA_CURRENT_HP, &tmp);
 
         tmp = MON_CONDITION_NONE;
-        Pokemon_SetValue(mon, MON_DATA_STATUS_CONDITION, &tmp);
+        Pokemon_SetData(mon, MON_DATA_STATUS_CONDITION, &tmp);
 
         for (j = 0; j < LEARNED_MOVES_MAX; j++) {
             if (IsMoveMissingPP(mon, j) == TRUE) {

@@ -1292,7 +1292,7 @@ static void ov19_MonItemMenuAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
     case MON_ITEM_MENU_SELECTED:
         switch (param0->menuItem) {
         case BOX_MENU_GIVE:
-            if (ov19_GetCursorItem(&param0->unk_00) == ITEM_GRISEOUS_ORB && BoxPokemon_GetValue(param0->unk_00.pcMonPreview.mon, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA) {
+            if (ov19_GetCursorItem(&param0->unk_00) == ITEM_GRISEOUS_ORB && BoxPokemon_GetData(param0->unk_00.pcMonPreview.mon, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA) {
                 StringTemplate_SetItemName(param0->MessageVariableBuffer, 0, ITEM_GRISEOUS_ORB);
                 ov19_SetBoxMessage(&param0->unk_00, BoxText_MonCantHoldItem);
                 ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
@@ -1332,7 +1332,7 @@ static void ov19_MonItemMenuAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
                 ov19_SetBoxMessage(&param0->unk_00, BoxText_CantTakeMail);
                 ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
                 *state = MON_ITEM_MENU_CONFIRM_MESSAGE;
-            } else if (param0->unk_00.cursorItem == ITEM_GRISEOUS_ORB && (BoxPokemon_GetValue(param0->unk_00.pcMonPreview.mon, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA)) {
+            } else if (param0->unk_00.cursorItem == ITEM_GRISEOUS_ORB && (BoxPokemon_GetData(param0->unk_00.pcMonPreview.mon, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA)) {
                 StringTemplate_SetItemName(param0->MessageVariableBuffer, ITEM_NONE, ITEM_GRISEOUS_ORB);
                 ov19_SetBoxMessage(&param0->unk_00, BoxText_MonCantHoldItem);
                 ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
@@ -1797,7 +1797,7 @@ static BOOL ov19_IsBoxUnderSelectedMonsEmpty(const UnkStruct_ov19_021D4DF0 *para
         posInBox = selectionTopLeftPos + (selection->selectedMonsOrigBoxPos[i] - origSelectionTopLeftPos);
         boxMon = PCBoxes_GetBoxMonAt(param0->pcBoxes, USE_CURRENT_BOX, posInBox);
 
-        if (BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES_EXISTS, NULL)) {
+        if (BoxPokemon_GetData(boxMon, MON_DATA_SPECIES_EXISTS, NULL)) {
             return FALSE;
         }
     }
@@ -2177,7 +2177,7 @@ static BOOL ov19_OnLastAliveMon(UnkStruct_ov19_021D5DF8 *param0)
         mon = Party_GetPokemonBySlotIndex(param0->party, i);
         reencrypt = Pokemon_EnterDecryptionContext(mon);
 
-        if (Pokemon_GetValue(mon, MON_DATA_EGG_EXISTS, NULL) == FALSE && Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL)) {
+        if (Pokemon_GetData(mon, MON_DATA_EGG_EXISTS, NULL) == FALSE && Pokemon_GetData(mon, MON_DATA_CURRENT_HP, NULL)) {
             count++;
         }
 
@@ -2440,7 +2440,7 @@ static void ov19_CheckLastMonWithReleaseBlockingMove(SysTask *task, void *releas
         for (monIndex = releaseMon->monPosInBox; monIndex < v4; monIndex++) {
             boxMon = PCBoxes_GetBoxMonAt(releaseMon->pcBoxes, releaseMon->boxID, monIndex);
 
-            if (BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES_EXISTS, NULL)) {
+            if (BoxPokemon_GetData(boxMon, MON_DATA_SPECIES_EXISTS, NULL)) {
                 for (i = 0; i < NELEMS(sReleaseBlockingMoves); i++) {
                     if (BoxPokemon_HasMove(boxMon, sReleaseBlockingMoves[i])) {
                         releaseMon->monsWithReleaseBlockingMoveCount[i]++;
@@ -2495,9 +2495,9 @@ static BOOL BoxPokemon_HasMove(BoxPokemon *boxMon, u16 move)
     BOOL hasMove = FALSE;
     BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
 
-    if (BoxPokemon_GetValue(boxMon, MON_DATA_EGG_EXISTS, NULL) == FALSE) {
+    if (BoxPokemon_GetData(boxMon, MON_DATA_EGG_EXISTS, NULL) == FALSE) {
         for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
-            if (BoxPokemon_GetValue(boxMon, MON_DATA_MOVE1 + i, NULL) == move) {
+            if (BoxPokemon_GetData(boxMon, MON_DATA_MOVE1 + i, NULL) == move) {
                 hasMove = TRUE;
                 break;
             }
@@ -2675,7 +2675,7 @@ static void ov19_GiveItemFromBagAction(UnkStruct_ov19_021D5DF8 *param0, u32 *sta
             Heap_FreeToHeap(param0->unk_214);
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay84));
 
-            if (item == ITEM_GRISEOUS_ORB && BoxPokemon_GetValue(param0->unk_00.pcMonPreview.mon, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA) {
+            if (item == ITEM_GRISEOUS_ORB && BoxPokemon_GetData(param0->unk_00.pcMonPreview.mon, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA) {
                 (void)0;
             } else if (item != ITEM_NONE) {
                 Bag_TryRemoveItem(SaveData_GetBag(param0->saveData), item, 1, HEAP_ID_BOX_DATA);
@@ -2699,7 +2699,7 @@ static void ov19_GiveItemFromBagAction(UnkStruct_ov19_021D5DF8 *param0, u32 *sta
         if (ov19_IsSysTaskDone(param0->unk_114, FUNC_BoxGraphics_ScreenFadeBothToBlack1)) {
             if (item == ITEM_NONE) {
                 ov19_ClearBoxApplicationAction(param0);
-            } else if (item == ITEM_GRISEOUS_ORB && BoxPokemon_GetValue(param0->unk_00.pcMonPreview.mon, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA) {
+            } else if (item == ITEM_GRISEOUS_ORB && BoxPokemon_GetData(param0->unk_00.pcMonPreview.mon, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA) {
                 StringTemplate_SetItemName(param0->MessageVariableBuffer, 0, item);
                 ov19_SetBoxMessage(&param0->unk_00, BoxText_MonCantHoldItem);
                 ov19_BoxTaskHandler(param0->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
@@ -3871,7 +3871,7 @@ static BOOL ov19_TryPreviewCursorMon(UnkStruct_ov19_021D5DF8 *param0)
     }
 
     if (cursor->mon) {
-        if (BoxPokemon_GetValue(cursor->mon, MON_DATA_SPECIES_EXISTS, NULL)) {
+        if (BoxPokemon_GetData(cursor->mon, MON_DATA_SPECIES_EXISTS, NULL)) {
             cursor->isMonUnderCursor = TRUE;
 
             if (!(ov19_GetPreviewMonSource(v0) & PREVIEW_MON_HELD)) {
@@ -3974,7 +3974,7 @@ static void ov19_PickUpMultiSelectedMons(UnkStruct_ov19_021D5DF8 *param0, UnkStr
         for (col = selectionLeftCol; col <= selectionRightCol; col++) {
             boxMon = PCBoxes_GetBoxMonAt(param0->pcBoxes, USE_CURRENT_BOX, monPosInBox);
 
-            if (BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES_EXISTS, NULL)) {
+            if (BoxPokemon_GetData(boxMon, MON_DATA_SPECIES_EXISTS, NULL)) {
                 MI_CpuCopy32(boxMon, cursorMonBuffer, boxMonSize);
                 PCBoxes_InitBoxMonAt(param0->pcBoxes, USE_CURRENT_BOX, monPosInBox);
                 cursorMonBuffer += boxMonSize;
@@ -4023,11 +4023,11 @@ static void ov19_PutDownCursorMon(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov1
     int monForm;
 
     if (ov19_GetCursorLocation(param1) == CURSOR_IN_BOX) {
-        monForm = BoxPokemon_GetValue(selection->boxMon, MON_DATA_FORM, NULL);
+        monForm = BoxPokemon_GetData(selection->boxMon, MON_DATA_FORM, NULL);
         PCBoxes_TryStoreBoxMonAt(param0->pcBoxes, USE_CURRENT_BOX, cursor->posInBox, selection->boxMon);
         boxMon = PCBoxes_GetBoxMonAt(param0->pcBoxes, USE_CURRENT_BOX, cursor->posInBox);
 
-        if (BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_SHAYMIN && monForm == 1) {
+        if (BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_SHAYMIN && monForm == 1) {
             shayminIsForm1 = TRUE;
         }
     } else {
@@ -4174,23 +4174,23 @@ static void ov19_LoadBoxMonIntoPreview(UnkStruct_ov19_021D4DF0 *param0, BoxPokem
     BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
 
     preview->mon = boxMon;
-    preview->species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
-    preview->heldItem = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
+    preview->species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
+    preview->heldItem = BoxPokemon_GetData(boxMon, MON_DATA_HELD_ITEM, NULL);
     preview->dexNum = GetDexNumber(SaveData_GetDexMode(param2->saveData), preview->species);
-    preview->isEgg = BoxPokemon_GetValue(boxMon, MON_DATA_EGG_EXISTS, NULL);
+    preview->isEgg = BoxPokemon_GetData(boxMon, MON_DATA_EGG_EXISTS, NULL);
     SpeciesData *speciesData = SpeciesData_FromMonSpecies(preview->species, HEAP_ID_BOX_DATA);
-    preview->level = SpeciesData_GetLevelAt(speciesData, preview->species, BoxPokemon_GetValue(boxMon, MON_DATA_EXP, NULL));
-    preview->markings = BoxPokemon_GetValue(boxMon, MON_DATA_MARKS, NULL);
-    preview->type1 = BoxPokemon_GetValue(boxMon, MON_DATA_TYPE_1, NULL);
-    preview->type2 = BoxPokemon_GetValue(boxMon, MON_DATA_TYPE_2, NULL);
+    preview->level = SpeciesData_GetLevelAt(speciesData, preview->species, BoxPokemon_GetData(boxMon, MON_DATA_EXP, NULL));
+    preview->markings = BoxPokemon_GetData(boxMon, MON_DATA_MARKS, NULL);
+    preview->type1 = BoxPokemon_GetData(boxMon, MON_DATA_TYPE_1, NULL);
+    preview->type2 = BoxPokemon_GetData(boxMon, MON_DATA_TYPE_2, NULL);
 
-    if ((preview->isEgg == FALSE) && BoxPokemon_GetValue(boxMon, MON_DATA_NIDORAN_HAS_NICKNAME, NULL)) {
-        preview->gender = SpeciesData_GetGenderOf(speciesData, preview->species, BoxPokemon_GetValue(boxMon, MON_DATA_PERSONALITY, NULL));
+    if ((preview->isEgg == FALSE) && BoxPokemon_GetData(boxMon, MON_DATA_NIDORAN_HAS_NICKNAME, NULL)) {
+        preview->gender = SpeciesData_GetGenderOf(speciesData, preview->species, BoxPokemon_GetData(boxMon, MON_DATA_PERSONALITY, NULL));
     } else {
         preview->gender = GENDER_INVALID;
     }
 
-    BoxPokemon_GetValue(boxMon, MON_DATA_NICKNAME_STRBUF, preview->nickname);
+    BoxPokemon_GetData(boxMon, MON_DATA_NICKNAME_STRBUF, preview->nickname);
 
     if (preview->isEgg == FALSE) {
         MessageLoader_GetStrbuf(param2->speciesNameLoader, preview->species, preview->speciesName);
@@ -4209,7 +4209,7 @@ static void ov19_LoadBoxMonIntoPreview(UnkStruct_ov19_021D4DF0 *param0, BoxPokem
         u32 value = BoxPokemon_GetNature(boxMon);
         MessageLoader_GetStrbuf(param2->natureNameLoader, value, preview->nature);
 
-        value = BoxPokemon_GetValue(boxMon, MON_DATA_ABILITY, NULL);
+        value = BoxPokemon_GetData(boxMon, MON_DATA_ABILITY, NULL);
         MessageLoader_GetStrbuf(param2->abilityNameLoader, value, preview->ability);
     }
 
@@ -4238,22 +4238,22 @@ static void ov19_LoadBoxMonIntoComparison(UnkStruct_ov19_021D4DF0 *param0, BoxPo
 
     BOOL reencrypt = Pokemon_EnterDecryptionContext(param2->mon);
 
-    compareMon->maxHP = Pokemon_GetValue(param2->mon, MON_DATA_MAX_HP, NULL);
-    compareMon->attack = Pokemon_GetValue(param2->mon, MON_DATA_ATK, NULL);
-    compareMon->defense = Pokemon_GetValue(param2->mon, MON_DATA_DEF, NULL);
-    compareMon->spAttack = Pokemon_GetValue(param2->mon, MON_DATA_SP_ATK, NULL);
-    compareMon->spDefense = Pokemon_GetValue(param2->mon, MON_DATA_SP_DEF, NULL);
-    compareMon->speed = Pokemon_GetValue(param2->mon, MON_DATA_SPEED, NULL);
-    compareMon->cool = Pokemon_GetValue(param2->mon, MON_DATA_COOL, NULL);
-    compareMon->beauty = Pokemon_GetValue(param2->mon, MON_DATA_BEAUTY, NULL);
-    compareMon->cute = Pokemon_GetValue(param2->mon, MON_DATA_CUTE, NULL);
-    compareMon->smart = Pokemon_GetValue(param2->mon, MON_DATA_SMART, NULL);
-    compareMon->tough = Pokemon_GetValue(param2->mon, MON_DATA_TOUGH, NULL);
-    compareMon->moves[0] = Pokemon_GetValue(param2->mon, MON_DATA_MOVE1, NULL);
-    compareMon->moves[1] = Pokemon_GetValue(param2->mon, MON_DATA_MOVE2, NULL);
-    compareMon->moves[2] = Pokemon_GetValue(param2->mon, MON_DATA_MOVE3, NULL);
-    compareMon->moves[3] = Pokemon_GetValue(param2->mon, MON_DATA_MOVE4, NULL);
-    compareMon->form = Pokemon_GetValue(param2->mon, MON_DATA_FORM, NULL);
+    compareMon->maxHP = Pokemon_GetData(param2->mon, MON_DATA_MAX_HP, NULL);
+    compareMon->attack = Pokemon_GetData(param2->mon, MON_DATA_ATK, NULL);
+    compareMon->defense = Pokemon_GetData(param2->mon, MON_DATA_DEF, NULL);
+    compareMon->spAttack = Pokemon_GetData(param2->mon, MON_DATA_SP_ATK, NULL);
+    compareMon->spDefense = Pokemon_GetData(param2->mon, MON_DATA_SP_DEF, NULL);
+    compareMon->speed = Pokemon_GetData(param2->mon, MON_DATA_SPEED, NULL);
+    compareMon->cool = Pokemon_GetData(param2->mon, MON_DATA_COOL, NULL);
+    compareMon->beauty = Pokemon_GetData(param2->mon, MON_DATA_BEAUTY, NULL);
+    compareMon->cute = Pokemon_GetData(param2->mon, MON_DATA_CUTE, NULL);
+    compareMon->smart = Pokemon_GetData(param2->mon, MON_DATA_SMART, NULL);
+    compareMon->tough = Pokemon_GetData(param2->mon, MON_DATA_TOUGH, NULL);
+    compareMon->moves[0] = Pokemon_GetData(param2->mon, MON_DATA_MOVE1, NULL);
+    compareMon->moves[1] = Pokemon_GetData(param2->mon, MON_DATA_MOVE2, NULL);
+    compareMon->moves[2] = Pokemon_GetData(param2->mon, MON_DATA_MOVE3, NULL);
+    compareMon->moves[3] = Pokemon_GetData(param2->mon, MON_DATA_MOVE4, NULL);
+    compareMon->form = Pokemon_GetData(param2->mon, MON_DATA_FORM, NULL);
 
     Pokemon_ExitDecryptionContext(param2->mon, reencrypt);
 
@@ -4287,7 +4287,7 @@ static void ov19_UpdatePreviewMonMarkings(UnkStruct_ov19_021D4DF0 *param0)
     u8 markings = param0->boxMenu.markings;
     preview->markings = markings;
 
-    BoxPokemon_SetValue(preview->mon, MON_DATA_MARKS, &(markings));
+    BoxPokemon_SetData(preview->mon, MON_DATA_MARKS, &(markings));
 
     if (ov19_GetCursorLocation(param0) == CURSOR_IN_BOX && ov19_GetPreviewMonSource(param0) == PREVIEW_MON_UNDER_CURSOR) {
         SaveData_SetFullSaveRequired();
@@ -4310,17 +4310,17 @@ static void ov19_GiveItemToSelectedMon(UnkStruct_ov19_021D4DF0 *param0, u16 item
         PCBoxes_SetBoxMonData(param2->pcBoxes, USE_CURRENT_BOX, posInBox, MON_DATA_HELD_ITEM, &item);
     }
 
-    BoxPokemon_SetValue(preview->mon, MON_DATA_HELD_ITEM, &item);
+    BoxPokemon_SetData(preview->mon, MON_DATA_HELD_ITEM, &item);
 
-    int species = BoxPokemon_GetValue(preview->mon, MON_DATA_SPECIES, NULL);
+    int species = BoxPokemon_GetData(preview->mon, MON_DATA_SPECIES, NULL);
 
     if (species == SPECIES_ARCEUS) {
         BoxPokemon_SetArceusForm(preview->mon);
-        preview->type1 = BoxPokemon_GetValue(preview->mon, MON_DATA_TYPE_1, NULL);
-        preview->type2 = BoxPokemon_GetValue(preview->mon, MON_DATA_TYPE_2, NULL);
+        preview->type1 = BoxPokemon_GetData(preview->mon, MON_DATA_TYPE_1, NULL);
+        preview->type2 = BoxPokemon_GetData(preview->mon, MON_DATA_TYPE_2, NULL);
     } else if (species == SPECIES_GIRATINA) {
         BoxPokemon_SetGiratinaForm(preview->mon);
-        int ability = BoxPokemon_GetValue(preview->mon, MON_DATA_ABILITY, NULL);
+        int ability = BoxPokemon_GetData(preview->mon, MON_DATA_ABILITY, NULL);
         MessageLoader_GetStrbuf(param2->abilityNameLoader, ability, preview->ability);
     }
 }
@@ -4693,24 +4693,24 @@ static u32 ov19_GetPreviewedMonValue(UnkStruct_ov19_021D4DF0 *param0, enum Pokem
 {
     if (ov19_GetPreviewMonSource(param0) == PREVIEW_MON_UNDER_CURSOR) {
         if (ov19_GetCursorLocation(param0) == CURSOR_IN_BOX) {
-            return BoxPokemon_GetValue(param0->pcMonPreview.mon, value, dest);
+            return BoxPokemon_GetData(param0->pcMonPreview.mon, value, dest);
         }
     } else {
         BoxMonSelection *selection = &param0->selection;
 
         if (selection->cursorMonIsPartyMon == FALSE) {
-            return BoxPokemon_GetValue(param0->pcMonPreview.mon, value, dest);
+            return BoxPokemon_GetData(param0->pcMonPreview.mon, value, dest);
         }
     }
 
-    return Pokemon_GetValue(param0->pcMonPreview.mon, value, dest);
+    return Pokemon_GetData(param0->pcMonPreview.mon, value, dest);
 }
 
 static u32 ov19_GetPreviewedOrSelectedMonValue(UnkStruct_ov19_021D4DF0 *param0, enum PokemonDataParam value, void *dest)
 {
     if (ov19_GetCursorLocation(param0) == CURSOR_IN_BOX) {
-        return BoxPokemon_GetValue(param0->pcMonPreview.mon, value, dest);
+        return BoxPokemon_GetData(param0->pcMonPreview.mon, value, dest);
     } else {
-        return Pokemon_GetValue(param0->cursor.mon, value, dest);
+        return Pokemon_GetData(param0->cursor.mon, value, dest);
     }
 }

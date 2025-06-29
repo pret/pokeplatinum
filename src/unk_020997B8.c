@@ -31,12 +31,12 @@ u16 *sub_020997D8(Pokemon *mon, u32 heapID)
     u8 v5;
     u8 v6, v7, v8;
 
-    v3 = (u16)Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
-    v5 = (u8)Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
-    v4 = (u8)Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
+    v3 = (u16)Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
+    v5 = (u8)Pokemon_GetData(mon, MON_DATA_FORM, NULL);
+    v4 = (u8)Pokemon_GetData(mon, MON_DATA_LEVEL, NULL);
 
     for (v7 = 0; v7 < LEARNED_MOVES_MAX; v7++) {
-        v2[v7] = (u16)Pokemon_GetValue(mon, MON_DATA_MOVE1 + v7, NULL);
+        v2[v7] = (u16)Pokemon_GetData(mon, MON_DATA_MOVE1 + v7, NULL);
     }
 
     v0 = Heap_AllocFromHeap(heapID, (44 / 2) * 2);

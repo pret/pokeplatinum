@@ -217,8 +217,8 @@ static void ov40_022563D0(UnkStruct_ov40_0225645C_1 *param0, Daycare *daycare)
         reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
 
         param0->unk_04[slot] = BoxPokemon_IconSpriteIndex(boxMon);
-        param0->species[slot] = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
-        param0->forms[slot] = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
+        param0->species[slot] = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
+        param0->forms[slot] = BoxPokemon_GetData(boxMon, MON_DATA_FORM, NULL);
         param0->unk_0C[slot] = DaycareMon_GiveExperience(daycareMon);
         param0->genders[slot] = BoxPokemon_GetGender(boxMon);
 

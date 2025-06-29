@@ -274,17 +274,17 @@ void ov104_0223BA24(Party *param0)
     for (v0 = 0; v0 < v2; v0++) {
         mon = Party_GetPokemonBySlotIndex(param0, v0);
 
-        if (Pokemon_GetValue(mon, MON_DATA_SPECIES_EXISTS, NULL) == 0) {
+        if (Pokemon_GetData(mon, MON_DATA_SPECIES_EXISTS, NULL) == 0) {
             continue;
         }
 
-        if (Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL) == 0) {
+        if (Pokemon_GetData(mon, MON_DATA_CURRENT_HP, NULL) == 0) {
             v3 = 1;
-            Pokemon_SetValue(mon, MON_DATA_CURRENT_HP, &v3);
+            Pokemon_SetData(mon, MON_DATA_CURRENT_HP, &v3);
         }
 
         v3 = 0;
-        Pokemon_SetValue(mon, MON_DATA_STATUS_CONDITION, &v3);
+        Pokemon_SetData(mon, MON_DATA_STATUS_CONDITION, &v3);
     }
 
     return;

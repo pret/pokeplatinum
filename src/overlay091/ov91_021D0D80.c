@@ -731,13 +731,13 @@ static int ov91_021D1394(UnkStruct_ov91_021D0ED8 *param0)
 static int ov91_021D13E4(UnkStruct_ov91_021D0ED8 *param0)
 {
     u32 v0 = ov91_021D1DD0(param0);
-    Pokemon_SetValue(param0->unk_00->unk_00, MON_DATA_MOVE1 + param0->unk_00->unk_17, &v0);
+    Pokemon_SetData(param0->unk_00->unk_00, MON_DATA_MOVE1 + param0->unk_00->unk_17, &v0);
 
     v0 = 0;
-    Pokemon_SetValue(param0->unk_00->unk_00, MON_DATA_MOVE1_PP_UPS + param0->unk_00->unk_17, &v0);
+    Pokemon_SetData(param0->unk_00->unk_00, MON_DATA_MOVE1_PP_UPS + param0->unk_00->unk_17, &v0);
 
     v0 = MoveTable_CalcMaxPP(ov91_021D1DD0(param0), 0);
-    Pokemon_SetValue(param0->unk_00->unk_00, MON_DATA_MOVE1_CUR_PP + param0->unk_00->unk_17, &v0);
+    Pokemon_SetData(param0->unk_00->unk_00, MON_DATA_MOVE1_CUR_PP + param0->unk_00->unk_17, &v0);
 
     param0->unk_00->unk_16 = 0;
 
@@ -1129,7 +1129,7 @@ static u16 ov91_021D1DD0(UnkStruct_ov91_021D0ED8 *param0)
 
 static u16 ov91_021D1DE0(UnkStruct_ov91_021D0ED8 *param0)
 {
-    return (u16)Pokemon_GetValue(param0->unk_00->unk_00, MON_DATA_MOVE1 + param0->unk_00->unk_17, NULL);
+    return (u16)Pokemon_GetData(param0->unk_00->unk_00, MON_DATA_MOVE1 + param0->unk_00->unk_17, NULL);
 }
 
 static void ov91_021D1DF8(UnkStruct_ov91_021D0ED8 *param0, u32 param1)
@@ -1167,7 +1167,7 @@ static u8 ov91_021D1EA0(UnkStruct_ov91_021D0ED8 *param0)
     u8 v0;
 
     for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
-        if (Pokemon_GetValue(param0->unk_00->unk_00, MON_DATA_MOVE1 + v0, NULL) == 0) {
+        if (Pokemon_GetData(param0->unk_00->unk_00, MON_DATA_MOVE1 + v0, NULL) == 0) {
             break;
         }
     }

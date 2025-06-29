@@ -648,17 +648,17 @@ static void ov17_022444BC(SysTask *param0, void *param1)
         MI_CpuClear8(&v3, sizeof(UnkStruct_ov16_02265BBC));
         MI_CpuClear8(&v4, sizeof(UnkStruct_ov16_02264408));
 
-        v6 = Pokemon_GetValue(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], MON_DATA_SPECIES, NULL);
-        v7 = Pokemon_GetValue(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], MON_DATA_GENDER, NULL);
+        v6 = Pokemon_GetData(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], MON_DATA_SPECIES, NULL);
+        v7 = Pokemon_GetData(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], MON_DATA_GENDER, NULL);
         v8 = Pokemon_IsShiny(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D]);
-        v9 = Pokemon_GetValue(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], MON_DATA_FORM, NULL);
-        v14 = Pokemon_GetValue(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], MON_DATA_PERSONALITY, NULL);
+        v9 = Pokemon_GetData(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], MON_DATA_FORM, NULL);
+        v14 = Pokemon_GetData(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], MON_DATA_PERSONALITY, NULL);
 
-        v10 = Pokemon_GetValue(v0->unk_00->unk_0C.unk_00->unk_00[v16], MON_DATA_SPECIES, NULL);
-        v11 = Pokemon_GetValue(v0->unk_00->unk_0C.unk_00->unk_00[v16], MON_DATA_GENDER, NULL);
+        v10 = Pokemon_GetData(v0->unk_00->unk_0C.unk_00->unk_00[v16], MON_DATA_SPECIES, NULL);
+        v11 = Pokemon_GetData(v0->unk_00->unk_0C.unk_00->unk_00[v16], MON_DATA_GENDER, NULL);
         v12 = Pokemon_IsShiny(v0->unk_00->unk_0C.unk_00->unk_00[v16]);
-        v13 = Pokemon_GetValue(v0->unk_00->unk_0C.unk_00->unk_00[v16], MON_DATA_FORM, NULL);
-        v15 = Pokemon_GetValue(v0->unk_00->unk_0C.unk_00->unk_00[v16], MON_DATA_PERSONALITY, NULL);
+        v13 = Pokemon_GetData(v0->unk_00->unk_0C.unk_00->unk_00[v16], MON_DATA_FORM, NULL);
+        v15 = Pokemon_GetData(v0->unk_00->unk_0C.unk_00->unk_00[v16], MON_DATA_PERSONALITY, NULL);
 
         v3.unk_00 = 0;
         v3.unk_01 = 0;
@@ -855,7 +855,7 @@ static void ov17_022449B8(SysTask *param0, void *param1)
         v1 = ov17_0223FAF8(v0->unk_00->unk_7E4);
 
         if (v1 != 0xffffffff) {
-            v0->unk_10.unk_00 = Pokemon_GetValue(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], MON_DATA_MOVE1 + v1, NULL);
+            v0->unk_10.unk_00 = Pokemon_GetData(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], MON_DATA_MOVE1 + v1, NULL);
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             v0->unk_0C++;
         }

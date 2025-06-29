@@ -91,7 +91,7 @@ int ov94_02244678(UnkStruct_ov94_0223FD4C *param0, int param1)
 
             if (param0->unk_24 == 9) {
                 Pokemon *v1 = ov94_022448AC(param0, param0->unk_24);
-                int v2 = Pokemon_GetValue(v1, MON_DATA_HELD_ITEM, NULL);
+                int v2 = Pokemon_GetData(v1, MON_DATA_HELD_ITEM, NULL);
                 int v3;
                 int v4;
 
@@ -110,8 +110,8 @@ int ov94_02244678(UnkStruct_ov94_0223FD4C *param0, int param1)
 
                 sub_0202DA70(param0->unk_00->unk_00, v5);
 
-                if ((Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL) != Pokemon_GetValue(v5, MON_DATA_SPECIES, NULL)) || (Pokemon_GetValue(v1, MON_DATA_PERSONALITY, NULL) != Pokemon_GetValue(v5, MON_DATA_PERSONALITY, NULL))) {
-                    int v6 = Pokemon_GetValue(v1, MON_DATA_HELD_ITEM, NULL);
+                if ((Pokemon_GetData(v1, MON_DATA_SPECIES, NULL) != Pokemon_GetData(v5, MON_DATA_SPECIES, NULL)) || (Pokemon_GetData(v1, MON_DATA_PERSONALITY, NULL) != Pokemon_GetData(v5, MON_DATA_PERSONALITY, NULL))) {
+                    int v6 = Pokemon_GetData(v1, MON_DATA_HELD_ITEM, NULL);
                     int v7;
                     int v8;
 

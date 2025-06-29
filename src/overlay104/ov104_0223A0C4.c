@@ -905,10 +905,10 @@ FieldBattleDTO *ov104_0223A580(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_02230
     for (v0 = 0; v0 < param0->unk_0E; v0++) {
         Pokemon_Copy(Party_GetPokemonBySlotIndex(party, param0->unk_2A[v0]), mon);
 
-        if (Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) > level) {
-            u32 v2 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), level);
+        if (Pokemon_GetData(mon, MON_DATA_LEVEL, NULL) > level) {
+            u32 v2 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetData(mon, MON_DATA_SPECIES, NULL), level);
 
-            Pokemon_SetValue(mon, MON_DATA_EXP, &v2);
+            Pokemon_SetData(mon, MON_DATA_EXP, &v2);
             Pokemon_CalcLevelAndStats(mon);
         }
 

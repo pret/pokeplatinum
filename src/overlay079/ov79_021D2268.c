@@ -506,13 +506,13 @@ static void ov79_021D27AC(UnkStruct_ov79_021D2928 *param0)
 static void ov79_021D27D8(UnkStruct_ov79_021D2928 *param0)
 {
     param0->unk_30.unk_00 = param0->unk_10->unk_00;
-    param0->unk_30.unk_04 = Pokemon_GetValue(param0->unk_10->unk_00, MON_DATA_SPECIES, NULL);
+    param0->unk_30.unk_04 = Pokemon_GetData(param0->unk_10->unk_00, MON_DATA_SPECIES, NULL);
     param0->unk_30.unk_07 = Pokemon_GetGender(param0->unk_10->unk_00);
     param0->unk_30.unk_06 = Pokemon_GetNature(param0->unk_10->unk_00);
-    param0->unk_30.unk_08 = SpeciesData_GetFormValue(param0->unk_30.unk_04, Pokemon_GetValue(param0->unk_10->unk_00, MON_DATA_FORM, NULL), 28) ^ 1;
+    param0->unk_30.unk_08 = SpeciesData_GetFormValue(param0->unk_30.unk_04, Pokemon_GetData(param0->unk_10->unk_00, MON_DATA_FORM, NULL), 28) ^ 1;
     param0->unk_30.unk_0C = Strbuf_Init(12, param0->heapID);
 
-    Pokemon_GetValue(param0->unk_10->unk_00, MON_DATA_NICKNAME_STRBUF, param0->unk_30.unk_0C);
+    Pokemon_GetData(param0->unk_10->unk_00, MON_DATA_NICKNAME_STRBUF, param0->unk_30.unk_0C);
 
     param0->unk_30.unk_09 = sub_02098EAC(param0->unk_10->unk_04, param0->unk_30.unk_06);
 }
@@ -678,7 +678,7 @@ static int ov79_021D2AE0(UnkStruct_ov79_021D2928 *param0, UnkStruct_ov79_021D29B
 
 static int ov79_021D2AF0(UnkStruct_ov79_021D2928 *param0, UnkStruct_ov79_021D29B4 *param1)
 {
-    u32 form = Pokemon_GetValue(param0->unk_30.unk_00, MON_DATA_FORM, NULL);
+    u32 form = Pokemon_GetData(param0->unk_30.unk_00, MON_DATA_FORM, NULL);
 
     switch (param0->unk_30.unk_09) {
     case 1:

@@ -946,41 +946,41 @@ static int SetupPoffinFeedConditionPage(PokemonSummaryScreen *summaryScreen)
         summaryScreen->pageState = STAT_INCREASE_NONE;
 
         u8 monValue = summaryScreen->monData.cool;
-        summaryScreen->monData.cool = Pokemon_GetValue(mon, MON_DATA_COOL, NULL);
+        summaryScreen->monData.cool = Pokemon_GetData(mon, MON_DATA_COOL, NULL);
 
         if (monValue != summaryScreen->monData.cool) {
             summaryScreen->pageState |= COOL_INCREASED;
         }
 
         monValue = summaryScreen->monData.beauty;
-        summaryScreen->monData.beauty = Pokemon_GetValue(mon, MON_DATA_BEAUTY, NULL);
+        summaryScreen->monData.beauty = Pokemon_GetData(mon, MON_DATA_BEAUTY, NULL);
 
         if (monValue != summaryScreen->monData.beauty) {
             summaryScreen->pageState |= BEAUTY_INCREASED;
         }
 
         monValue = summaryScreen->monData.cute;
-        summaryScreen->monData.cute = Pokemon_GetValue(mon, MON_DATA_CUTE, NULL);
+        summaryScreen->monData.cute = Pokemon_GetData(mon, MON_DATA_CUTE, NULL);
 
         if (monValue != summaryScreen->monData.cute) {
             summaryScreen->pageState |= CUTE_INCREASED;
         }
 
         monValue = summaryScreen->monData.smart;
-        summaryScreen->monData.smart = Pokemon_GetValue(mon, MON_DATA_SMART, NULL);
+        summaryScreen->monData.smart = Pokemon_GetData(mon, MON_DATA_SMART, NULL);
 
         if (monValue != summaryScreen->monData.smart) {
             summaryScreen->pageState |= SMART_INCREASED;
         }
 
         monValue = summaryScreen->monData.tough;
-        summaryScreen->monData.tough = Pokemon_GetValue(mon, MON_DATA_TOUGH, NULL);
+        summaryScreen->monData.tough = Pokemon_GetData(mon, MON_DATA_TOUGH, NULL);
 
         if (monValue != summaryScreen->monData.tough) {
             summaryScreen->pageState |= TOUGH_INCREASED;
         }
 
-        summaryScreen->monData.sheen = Pokemon_GetValue(mon, MON_DATA_SHEEN, NULL);
+        summaryScreen->monData.sheen = Pokemon_GetData(mon, MON_DATA_SHEEN, NULL);
 
         if (summaryScreen->data->dataType == SUMMARY_DATA_BOX_MON) {
             Heap_FreeToHeap(mon);
@@ -1065,7 +1065,7 @@ static void SetMonDataFromBoxMon(PokemonSummaryScreen *summaryScreen, BoxPokemon
 static void SetMonDataFromMon(PokemonSummaryScreen *summaryScreen, Pokemon *mon, PokemonSummaryMonData *monData)
 {
     BOOL reencrypt = Pokemon_EnterDecryptionContext(mon);
-    monData->species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    monData->species = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
     BoxPokemon *boxMon = Pokemon_GetBoxPokemon(mon);
 
     MessageLoader_GetStrbuf(summaryScreen->msgLoader, PokemonSummary_Text_SpeciesNameTemplate, summaryScreen->strbuf);
@@ -1080,23 +1080,23 @@ static void SetMonDataFromMon(PokemonSummaryScreen *summaryScreen, Pokemon *mon,
     StringTemplate_SetOTName(summaryScreen->strFormatter, 0, boxMon);
     StringTemplate_Format(summaryScreen->strFormatter, summaryScreen->monData.OTName, summaryScreen->strbuf);
 
-    monData->heldItem = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
-    monData->level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
-    monData->isEgg = Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
+    monData->heldItem = Pokemon_GetData(mon, MON_DATA_HELD_ITEM, NULL);
+    monData->level = Pokemon_GetData(mon, MON_DATA_LEVEL, NULL);
+    monData->isEgg = Pokemon_GetData(mon, MON_DATA_IS_EGG, NULL);
 
-    if (Pokemon_GetValue(mon, MON_DATA_NIDORAN_HAS_NICKNAME, NULL) == TRUE && monData->isEgg == FALSE) {
+    if (Pokemon_GetData(mon, MON_DATA_NIDORAN_HAS_NICKNAME, NULL) == TRUE && monData->isEgg == FALSE) {
         monData->hideGender = FALSE;
     } else {
         monData->hideGender = TRUE;
     }
 
     monData->gender = Pokemon_GetGender(mon);
-    monData->caughtBall = Pokemon_GetValue(mon, MON_DATA_POKEBALL, NULL);
-    monData->type1 = Pokemon_GetValue(mon, MON_DATA_TYPE_1, NULL);
-    monData->type2 = Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL);
-    monData->OTID = Pokemon_GetValue(mon, MON_DATA_OT_ID, NULL);
-    monData->curExp = Pokemon_GetValue(mon, MON_DATA_EXP, NULL);
-    monData->OTGender = Pokemon_GetValue(mon, MON_DATA_OT_GENDER, NULL);
+    monData->caughtBall = Pokemon_GetData(mon, MON_DATA_POKEBALL, NULL);
+    monData->type1 = Pokemon_GetData(mon, MON_DATA_TYPE_1, NULL);
+    monData->type2 = Pokemon_GetData(mon, MON_DATA_TYPE_2, NULL);
+    monData->OTID = Pokemon_GetData(mon, MON_DATA_OT_ID, NULL);
+    monData->curExp = Pokemon_GetData(mon, MON_DATA_EXP, NULL);
+    monData->OTGender = Pokemon_GetData(mon, MON_DATA_OT_GENDER, NULL);
     monData->curLevelExp = Pokemon_GetSpeciesBaseExpAt(monData->species, monData->level);
 
     if (monData->level == MAX_POKEMON_LEVEL) {
@@ -1105,31 +1105,31 @@ static void SetMonDataFromMon(PokemonSummaryScreen *summaryScreen, Pokemon *mon,
         monData->nextLevelExp = Pokemon_GetSpeciesBaseExpAt(monData->species, monData->level + 1);
     }
 
-    monData->curHP = Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL);
-    monData->maxHP = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
-    monData->attack = Pokemon_GetValue(mon, MON_DATA_ATK, NULL);
-    monData->defense = Pokemon_GetValue(mon, MON_DATA_DEF, NULL);
-    monData->spAttack = Pokemon_GetValue(mon, MON_DATA_SP_ATK, NULL);
-    monData->spDefense = Pokemon_GetValue(mon, MON_DATA_SP_DEF, NULL);
-    monData->speed = Pokemon_GetValue(mon, MON_DATA_SPEED, NULL);
-    monData->ability = Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL);
+    monData->curHP = Pokemon_GetData(mon, MON_DATA_CURRENT_HP, NULL);
+    monData->maxHP = Pokemon_GetData(mon, MON_DATA_MAX_HP, NULL);
+    monData->attack = Pokemon_GetData(mon, MON_DATA_ATK, NULL);
+    monData->defense = Pokemon_GetData(mon, MON_DATA_DEF, NULL);
+    monData->spAttack = Pokemon_GetData(mon, MON_DATA_SP_ATK, NULL);
+    monData->spDefense = Pokemon_GetData(mon, MON_DATA_SP_DEF, NULL);
+    monData->speed = Pokemon_GetData(mon, MON_DATA_SPEED, NULL);
+    monData->ability = Pokemon_GetData(mon, MON_DATA_ABILITY, NULL);
     monData->nature = Pokemon_GetNature(mon);
 
     u16 i;
     u8 maxPP;
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
-        monData->moves[i] = Pokemon_GetValue(mon, MON_DATA_MOVE1 + i, NULL);
-        monData->curPP[i] = Pokemon_GetValue(mon, MON_DATA_MOVE1_CUR_PP + i, NULL);
-        maxPP = Pokemon_GetValue(mon, MON_DATA_MOVE1_PP_UPS + i, NULL);
+        monData->moves[i] = Pokemon_GetData(mon, MON_DATA_MOVE1 + i, NULL);
+        monData->curPP[i] = Pokemon_GetData(mon, MON_DATA_MOVE1_CUR_PP + i, NULL);
+        maxPP = Pokemon_GetData(mon, MON_DATA_MOVE1_PP_UPS + i, NULL);
         monData->maxPP[i] = MoveTable_CalcMaxPP(monData->moves[i], maxPP);
     }
 
-    monData->cool = Pokemon_GetValue(mon, MON_DATA_COOL, NULL);
-    monData->beauty = Pokemon_GetValue(mon, MON_DATA_BEAUTY, NULL);
-    monData->cute = Pokemon_GetValue(mon, MON_DATA_CUTE, NULL);
-    monData->smart = Pokemon_GetValue(mon, MON_DATA_SMART, NULL);
-    monData->tough = Pokemon_GetValue(mon, MON_DATA_TOUGH, NULL);
-    monData->sheen = Pokemon_GetValue(mon, MON_DATA_SHEEN, NULL);
+    monData->cool = Pokemon_GetData(mon, MON_DATA_COOL, NULL);
+    monData->beauty = Pokemon_GetData(mon, MON_DATA_BEAUTY, NULL);
+    monData->cute = Pokemon_GetData(mon, MON_DATA_CUTE, NULL);
+    monData->smart = Pokemon_GetData(mon, MON_DATA_SMART, NULL);
+    monData->tough = Pokemon_GetData(mon, MON_DATA_TOUGH, NULL);
+    monData->sheen = Pokemon_GetData(mon, MON_DATA_SHEEN, NULL);
     monData->preferredFlavor = FLAVOR_MAX;
 
     for (i = 0; i < FLAVOR_MAX; i++) {
@@ -1139,8 +1139,8 @@ static void SetMonDataFromMon(PokemonSummaryScreen *summaryScreen, Pokemon *mon,
         }
     }
 
-    monData->markings = Pokemon_GetValue(mon, MON_DATA_MARKS, NULL);
-    monData->form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+    monData->markings = Pokemon_GetData(mon, MON_DATA_MARKS, NULL);
+    monData->form = Pokemon_GetData(mon, MON_DATA_FORM, NULL);
     monData->status = PokemonSummaryScreen_StatusIconAnimIdx(mon);
 
     if (Pokemon_HasCuredPokerus(mon) == TRUE) {
@@ -1168,7 +1168,7 @@ static void SetMonDataFromMon(PokemonSummaryScreen *summaryScreen, Pokemon *mon,
     summaryScreen->ribbonMax = 0;
 
     for (i = 0; i < RIBBON_MAX; i++) {
-        if (Pokemon_GetValue(mon, Ribbon_GetData(i, RIBBON_DATA_MON_DATA_PARAM), NULL) != 0) {
+        if (Pokemon_GetData(mon, Ribbon_GetData(i, RIBBON_DATA_MON_DATA_PARAM), NULL) != 0) {
             monData->ribbons[i / 32] |= (1 << (i & 0x1F));
             summaryScreen->ribbonMax++;
         }
@@ -1554,8 +1554,8 @@ static s8 TryAdvanceMonIndex(PokemonSummaryScreen *summaryScreen, s8 delta)
 
         mon = (Pokemon *)((u32)summaryScreen->data->monData + Pokemon_GetStructSize() * monIndex);
 
-        if (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) != SPECIES_NONE) {
-            if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) != FALSE) {
+        if (Pokemon_GetData(mon, MON_DATA_SPECIES, NULL) != SPECIES_NONE) {
+            if (Pokemon_GetData(mon, MON_DATA_IS_EGG, NULL) != FALSE) {
                 if (CanAdvanceToEgg(summaryScreen) == TRUE) {
                     break;
                 }
@@ -1581,8 +1581,8 @@ static s8 TryAdvancePartyMonIndex(PokemonSummaryScreen *summaryScreen, s8 delta)
 
         Pokemon *mon = Party_GetPokemonBySlotIndex(summaryScreen->data->monData, monIndex);
 
-        if (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) != SPECIES_NONE) {
-            if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) != FALSE) {
+        if (Pokemon_GetData(mon, MON_DATA_SPECIES, NULL) != SPECIES_NONE) {
+            if (Pokemon_GetData(mon, MON_DATA_IS_EGG, NULL) != FALSE) {
                 if (CanAdvanceToEgg(summaryScreen) == TRUE) {
                     break;
                 }
@@ -1609,8 +1609,8 @@ static s8 TryAdvanceBoxMonIndex(PokemonSummaryScreen *summaryScreen, s8 delta)
 
         boxMon = (BoxPokemon *)(summaryScreen->data->monData + BoxPokemon_GetStructSize() * monIndex);
 
-        if (BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL) != SPECIES_NONE
-            && (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == FALSE || CanAdvanceToEgg(summaryScreen) == TRUE)) {
+        if (BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL) != SPECIES_NONE
+            && (BoxPokemon_GetData(boxMon, MON_DATA_IS_EGG, NULL) == FALSE || CanAdvanceToEgg(summaryScreen) == TRUE)) {
             break;
         }
     }
@@ -2212,9 +2212,9 @@ u32 PokemonSummaryScreen_StatusIconAnim(void)
 
 u32 PokemonSummaryScreen_StatusIconAnimIdx(Pokemon *mon)
 {
-    u32 statusCondition = Pokemon_GetValue(mon, MON_DATA_STATUS_CONDITION, NULL);
+    u32 statusCondition = Pokemon_GetData(mon, MON_DATA_STATUS_CONDITION, NULL);
 
-    if (Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL) == 0) {
+    if (Pokemon_GetData(mon, MON_DATA_CURRENT_HP, NULL) == 0) {
         return SUMMARY_CONDITION_FAINTED;
     } else if ((statusCondition & (MON_CONDITION_POISON | MON_CONDITION_TOXIC)) != MON_CONDITION_NONE) {
         return SUMMARY_CONDITION_POISON;

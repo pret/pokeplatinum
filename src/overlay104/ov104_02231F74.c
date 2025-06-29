@@ -902,8 +902,8 @@ void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, enum Heap
         u32 v9, v10;
 
         v4 = Heap_AllocFromHeap(heapID, (10 * 10 * ((8 / 2) * 8)));
-        v9 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
-        v10 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
+        v9 = Pokemon_GetData(param1, MON_DATA_PERSONALITY, NULL);
+        v10 = Pokemon_GetData(param1, MON_DATA_SPECIES, NULL);
 
         Pokemon_BuildSpriteTemplate(&v3, param1, 2);
         sub_020136A4(v3.narcID, v3.character, heapID, 0, 0, 10, 10, v4, v9, 0, 2, v10);

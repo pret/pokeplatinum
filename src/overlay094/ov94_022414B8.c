@@ -966,9 +966,9 @@ static void ov94_022423FC(MessageLoader *param0, StringTemplate *param1, Window 
     Strbuf *v3 = Strbuf_Init(10 + 1, HEAP_ID_62);
     int gender, level, v6;
 
-    BoxPokemon_GetValue(boxMon, MON_DATA_NICKNAME_STRBUF, v2);
+    BoxPokemon_GetData(boxMon, MON_DATA_NICKNAME_STRBUF, v2);
 
-    gender = BoxPokemon_GetValue(boxMon, MON_DATA_GENDER, NULL) + 1;
+    gender = BoxPokemon_GetData(boxMon, MON_DATA_GENDER, NULL) + 1;
     level = BoxPokemon_GetLevel(boxMon);
     v0 = MessageLoader_GetNewStrbuf(param0, 100);
 
@@ -991,7 +991,7 @@ static void ov94_022423FC(MessageLoader *param0, StringTemplate *param1, Window 
         ov94_02245900(&param2[1], v3, 70, 0, 0, Unk_ov94_02246920[gender - 1]);
     }
 
-    param4->species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
+    param4->species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
     param4->gender = gender;
     param4->level = level;
 

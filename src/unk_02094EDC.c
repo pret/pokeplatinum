@@ -621,7 +621,7 @@ void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, int par
 
     for (v0 = 0; v0 < 4; v0++) {
         v1 = param0->unk_0C[v0];
-        Pokemon_SetValue(param1, MON_DATA_MOVE1 + v0, &v1);
+        Pokemon_SetData(param1, MON_DATA_MOVE1 + v0, &v1);
     }
 
     {
@@ -632,8 +632,8 @@ void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, int par
         v3 = MessageLoader_GetNewStrbuf(v5, param0->unk_16);
         v4 = MessageLoader_GetNewStrbuf(v5, param0->unk_18);
 
-        Pokemon_SetValue(param1, MON_DATA_NICKNAME_STRBUF, v3);
-        Pokemon_SetValue(param1, MON_DATA_OTNAME_STRBUF, v4);
+        Pokemon_SetData(param1, MON_DATA_NICKNAME_STRBUF, v3);
+        Pokemon_SetData(param1, MON_DATA_OTNAME_STRBUF, v4);
 
         Strbuf_Free(v3);
         Strbuf_Free(v4);
@@ -650,12 +650,12 @@ void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, int par
         v10 = param0->unk_1E;
         v11 = param0->unk_1F;
 
-        Pokemon_SetValue(param1, MON_DATA_COOL, &v6);
-        Pokemon_SetValue(param1, MON_DATA_BEAUTY, &v7);
-        Pokemon_SetValue(param1, MON_DATA_CUTE, &v8);
-        Pokemon_SetValue(param1, MON_DATA_SMART, &v9);
-        Pokemon_SetValue(param1, MON_DATA_TOUGH, &v10);
-        Pokemon_SetValue(param1, MON_DATA_SHEEN, &v11);
+        Pokemon_SetData(param1, MON_DATA_COOL, &v6);
+        Pokemon_SetData(param1, MON_DATA_BEAUTY, &v7);
+        Pokemon_SetData(param1, MON_DATA_CUTE, &v8);
+        Pokemon_SetData(param1, MON_DATA_SMART, &v9);
+        Pokemon_SetData(param1, MON_DATA_TOUGH, &v10);
+        Pokemon_SetData(param1, MON_DATA_SHEEN, &v11);
     }
 }
 

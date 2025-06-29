@@ -70,13 +70,13 @@ static inline u64 CalcMultFromSizeFactor(u16 sizeFactor)
 
 static int CalcSizeFactor(Pokemon *mon)
 {
-    u16 personnalityLow = Pokemon_GetValue(mon, MON_DATA_PERSONALITY, NULL) & 0xffff;
-    u16 hpIV = Pokemon_GetValue(mon, MON_DATA_HP_IV, NULL) & 0xf;
-    u16 atkIV = Pokemon_GetValue(mon, MON_DATA_ATK_IV, NULL) & 0xf;
-    u16 defIV = Pokemon_GetValue(mon, MON_DATA_DEF_IV, NULL) & 0xf;
-    u16 speedIV = Pokemon_GetValue(mon, MON_DATA_SPEED_IV, NULL) & 0xf;
-    u16 spAtkIV = Pokemon_GetValue(mon, MON_DATA_SPATK_IV, NULL) & 0xf;
-    u16 spDefIV = Pokemon_GetValue(mon, MON_DATA_SPDEF_IV, NULL) & 0xf;
+    u16 personnalityLow = Pokemon_GetData(mon, MON_DATA_PERSONALITY, NULL) & 0xffff;
+    u16 hpIV = Pokemon_GetData(mon, MON_DATA_HP_IV, NULL) & 0xf;
+    u16 atkIV = Pokemon_GetData(mon, MON_DATA_ATK_IV, NULL) & 0xf;
+    u16 defIV = Pokemon_GetData(mon, MON_DATA_DEF_IV, NULL) & 0xf;
+    u16 speedIV = Pokemon_GetData(mon, MON_DATA_SPEED_IV, NULL) & 0xf;
+    u16 spAtkIV = Pokemon_GetData(mon, MON_DATA_SPATK_IV, NULL) & 0xf;
+    u16 spDefIV = Pokemon_GetData(mon, MON_DATA_SPDEF_IV, NULL) & 0xf;
     u16 high = ((atkIV ^ defIV) * hpIV) ^ (personnalityLow & 0xff);
     u16 low = ((spAtkIV ^ spDefIV) * speedIV) ^ (personnalityLow >> 8);
 
@@ -113,7 +113,7 @@ static u32 CalcMillimeterSize(u16 species, u16 sizeFactor)
 u8 SizeContest_CalcResultForPartyMon(FieldSystem *fieldSystem, u16 partySlot)
 {
     Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), partySlot);
-    u16 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    u16 species = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
     vu16 sizeFactor = CalcSizeFactor(mon);
     u32 newSize = CalcMillimeterSize(species, sizeFactor);
     vu16 recordSizeFactor = SystemVars_GetSizeContestRecord(SaveData_GetVarsFlags(fieldSystem->saveData));
@@ -162,7 +162,7 @@ void SizeContest_SetRecordSizeStrParams(FieldSystem *fieldSystem, u8 intPartIdx,
 void SizeContest_SetPartyMonSizeStrParams(FieldSystem *fieldSystem, u8 intPartIdx, u8 fracPartIdx, u16 partySlot)
 {
     Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), partySlot);
-    u16 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    u16 species = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
     vu16 sizeFactor = CalcSizeFactor(mon);
 
     SetStrTemplateMonSizeParams(fieldSystem, intPartIdx, fracPartIdx, species, sizeFactor);

@@ -1038,8 +1038,8 @@ static void ov17_02248AA4(SysTask *param0, void *param1)
         ov22_0225B158(v0->unk_00->unk_F18[v0->unk_0E].unk_00, v0->unk_00->unk_F18[v0->unk_0E].unk_04, v0->unk_00->unk_F18[v0->unk_0E].unk_08, v1);
 
         if (v0->unk_04 >= FX32_ONE) {
-            v2 = Pokemon_GetValue(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0E], MON_DATA_SPECIES, NULL);
-            v3 = Pokemon_GetValue(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0E], MON_DATA_FORM, NULL);
+            v2 = Pokemon_GetData(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0E], MON_DATA_SPECIES, NULL);
+            v3 = Pokemon_GetData(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0E], MON_DATA_FORM, NULL);
             Pokemon_PlayCry(v0->unk_00->unk_00->unk_14C[v0->unk_0E], 0, v2, v3, 0, 127, NULL, 22);
             v0->unk_0C++;
         }

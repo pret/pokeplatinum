@@ -1128,7 +1128,7 @@ static void ov106_02242AC4(UnkStruct_ov106_02243118 *param0, Window *param1, u32
     u16 v6[(10 + 1)];
 
     v5 = Party_GetPokemonBySlotIndex(param0->unk_290, 0);
-    Pokemon_GetValue(v5, MON_DATA_SPECIES_NAME, v6);
+    Pokemon_GetData(v5, MON_DATA_SPECIES_NAME, v6);
     Window_FillTilemap(param1, param6);
 
     v4 = Strbuf_Init((10 + 1), HEAP_ID_98);
@@ -1539,7 +1539,7 @@ void ov106_0224313C(UnkStruct_ov106_02243118 *param0, u16 param1, u16 param2)
 
     param0->unk_2A0[2] = param0->unk_18;
     v2 = Party_GetPokemonBySlotIndex(param0->unk_290, 0);
-    param0->unk_2A0[3] = Pokemon_GetValue(v2, MON_DATA_LEVEL, NULL);
+    param0->unk_2A0[3] = Pokemon_GetData(v2, MON_DATA_LEVEL, NULL);
 
     return;
 }

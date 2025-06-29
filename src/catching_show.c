@@ -133,7 +133,7 @@ static void InitSpeciesData(FieldSystem *fieldSystem, CatchingShow *catchingShow
         catchingShow->caughtMonsOrder[i] = 0;
         TransferDataToMon(transferData, i, mon);
 
-        monSpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+        monSpecies = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
 
         catchingShow->pokemon[i].species = monSpecies;
         BufferSpeciesData(monSpecies, &speciesData);
@@ -146,8 +146,8 @@ static void InitSpeciesData(FieldSystem *fieldSystem, CatchingShow *catchingShow
 
         catchingShow->pokemon[i].rarity = speciesData.rarity;
         catchingShow->pokemon[i].catchingPoints = speciesData.catchingPoints;
-        catchingShow->pokemon[i].type1 = Pokemon_GetValue(mon, MON_DATA_TYPE_1, NULL);
-        catchingShow->pokemon[i].type2 = Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL);
+        catchingShow->pokemon[i].type1 = Pokemon_GetData(mon, MON_DATA_TYPE_1, NULL);
+        catchingShow->pokemon[i].type2 = Pokemon_GetData(mon, MON_DATA_TYPE_2, NULL);
     }
 
     Heap_FreeToHeap(mon);

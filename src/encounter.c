@@ -581,7 +581,7 @@ void Encounter_NewFatefulVsSpeciesAtLevel(FieldTask *taskMan, u16 species, u8 le
 
     BOOL tmp = TRUE;
     Pokemon *wildMon = Party_GetPokemonBySlotIndex(dto->parties[BATTLER_ENEMY_1], 0);
-    Pokemon_SetValue(wildMon, MON_DATA_FATEFUL_ENCOUNTER, &tmp);
+    Pokemon_SetData(wildMon, MON_DATA_FATEFUL_ENCOUNTER, &tmp);
 
     if (isLegendary) {
         dto->battleStatusMask |= BATTLE_STATUS_LEGENDARY;
@@ -901,7 +901,7 @@ static void UpdateGameRecords(FieldSystem *fieldSystem, FieldBattleDTO *dto)
             // rather than choosing the Pokemon that was actually captured.
             caughtMon = Party_GetPokemonBySlotIndex(dto->parties[BATTLER_ENEMY_1], 0);
 
-            if (GetDexNumber(0, Pokemon_GetValue(caughtMon, MON_DATA_SPECIES, NULL))) {
+            if (GetDexNumber(0, Pokemon_GetData(caughtMon, MON_DATA_SPECIES, NULL))) {
                 GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(fieldSystem->saveData), TRAINER_SCORE_EVENT_CAPTURED_REGIONAL_MON);
             } else {
                 GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(fieldSystem->saveData), TRAINER_SCORE_EVENT_CAPTURED_NATIONAL_MON);
@@ -915,7 +915,7 @@ static void UpdateGameRecords(FieldSystem *fieldSystem, FieldBattleDTO *dto)
         if (resultMask == BATTLE_RESULT_CAPTURED_MON) {
             caughtMon = Party_GetPokemonBySlotIndex(dto->parties[BATTLER_ENEMY_1], 0);
 
-            if (GetDexNumber(0, Pokemon_GetValue(caughtMon, MON_DATA_SPECIES, NULL))) {
+            if (GetDexNumber(0, Pokemon_GetData(caughtMon, MON_DATA_SPECIES, NULL))) {
                 GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(fieldSystem->saveData), TRAINER_SCORE_EVENT_CAPTURED_REGIONAL_MON);
             } else {
                 GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(fieldSystem->saveData), TRAINER_SCORE_EVENT_CAPTURED_NATIONAL_MON);
@@ -953,13 +953,13 @@ static void UpdateJournal(FieldSystem *fieldSystem, FieldBattleDTO *dto)
 
             if (fieldSystem->wildBattleMetadata.wildMonDefeated >= 5) {
                 caughtMon = Party_GetPokemonBySlotIndex(dto->parties[1], 0);
-                journalEntryMon = JournalEntry_CreateEventMonDefeated(SaveData_GetPlayTime(fieldSystem->saveData), Pokemon_GetValue(caughtMon, MON_DATA_SPECIES, 0), Pokemon_GetValue(caughtMon, MON_DATA_GENDER, 0), dto->timeOfDay, HEAP_ID_FIELDMAP);
+                journalEntryMon = JournalEntry_CreateEventMonDefeated(SaveData_GetPlayTime(fieldSystem->saveData), Pokemon_GetData(caughtMon, MON_DATA_SPECIES, 0), Pokemon_GetData(caughtMon, MON_DATA_GENDER, 0), dto->timeOfDay, HEAP_ID_FIELDMAP);
                 JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryMon, JOURNAL_MON);
             }
         } else if (resultMask == BATTLE_RESULT_CAPTURED_MON) {
             int caughtBattlerIdx = dto->caughtBattlerIdx;
             caughtMon = Party_GetPokemonBySlotIndex(dto->parties[caughtBattlerIdx], 0);
-            journalEntryMon = JournalEntry_CreateEventMonCaught(SaveData_GetPlayTime(fieldSystem->saveData), Pokemon_GetValue(caughtMon, MON_DATA_SPECIES, 0), Pokemon_GetValue(caughtMon, MON_DATA_GENDER, 0), dto->timeOfDay, HEAP_ID_FIELDMAP);
+            journalEntryMon = JournalEntry_CreateEventMonCaught(SaveData_GetPlayTime(fieldSystem->saveData), Pokemon_GetData(caughtMon, MON_DATA_SPECIES, 0), Pokemon_GetData(caughtMon, MON_DATA_GENDER, 0), dto->timeOfDay, HEAP_ID_FIELDMAP);
 
             JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryMon, JOURNAL_MON);
         }

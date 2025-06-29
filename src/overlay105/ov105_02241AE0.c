@@ -2678,7 +2678,7 @@ static void ov105_02244FF8(UnkStruct_ov105_02241FF4 *param0, Window *param1, u8 
     u16 v6[(10 + 1)];
 
     v5 = Party_GetPokemonBySlotIndex(param9, param2);
-    Pokemon_GetValue(v5, MON_DATA_SPECIES_NAME, v6);
+    Pokemon_GetData(v5, MON_DATA_SPECIES_NAME, v6);
     Window_FillTilemap(param1, param7);
 
     v4 = Strbuf_Init((10 + 1), HEAP_ID_93);
@@ -2686,7 +2686,7 @@ static void ov105_02244FF8(UnkStruct_ov105_02241FF4 *param0, Window *param1, u8 
     Text_AddPrinterWithParamsAndColor(param1, param8, v4, param3, param4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(param5, param6, param7), NULL);
 
     v0 = Window_GetWidth(param1) - 1;
-    v1 = Pokemon_GetValue(v5, MON_DATA_GENDER, NULL);
+    v1 = Pokemon_GetData(v5, MON_DATA_GENDER, NULL);
     v2 = (v1 == 0) ? 25 : 26;
     v3 = (v1 == 0) ? TEXT_COLOR(7, 8, 0) : TEXT_COLOR(3, 4, 0);
 
@@ -2995,8 +2995,8 @@ static void ov105_022455C4(UnkStruct_ov105_02241FF4 *param0, u8 param1, Pokemon 
 
     PokemonSprite_SetAttribute(param0->unk_12C[param1], MON_SPRITE_HIDE, 0);
 
-    v0 = Pokemon_GetValue(param2, MON_DATA_SPECIES, NULL);
-    v1 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
+    v0 = Pokemon_GetData(param2, MON_DATA_SPECIES, NULL);
+    v1 = Pokemon_GetData(param2, MON_DATA_FORM, NULL);
 
     if (SpeciesData_GetFormValue(v0, v1, 28) == 0) {
         ov105_02245DB8(param0->unk_12C[param1], param5);
@@ -3076,14 +3076,14 @@ void ov105_022456A8(UnkStruct_ov105_02241FF4 *param0, u16 param1, u16 param2)
 
     for (v0 = 0; v0 < param0->unk_11; v0++) {
         v2 = Party_GetPokemonBySlotIndex(param0->unk_31C, param0->unk_324[v0]);
-        param0->unk_33C[v0 + v1] = Pokemon_GetValue(v2, MON_DATA_SPECIES, NULL);
+        param0->unk_33C[v0 + v1] = Pokemon_GetData(v2, MON_DATA_SPECIES, NULL);
     }
 
     v1 += param0->unk_11;
 
     for (v0 = 0; v0 < param0->unk_11; v0++) {
         v2 = Party_GetPokemonBySlotIndex(param0->unk_31C, param0->unk_324[v0]);
-        param0->unk_33C[v0 + v1] = Pokemon_GetValue(v2, MON_DATA_GENDER, NULL);
+        param0->unk_33C[v0 + v1] = Pokemon_GetData(v2, MON_DATA_GENDER, NULL);
     }
 
     v1 += param0->unk_11;

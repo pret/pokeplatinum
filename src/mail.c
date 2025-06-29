@@ -108,9 +108,9 @@ void sub_020281AC(Mail *mail, u8 mailType, u8 param2, SaveData *saveData)
 
     for (i = param2, v1 = 0; i < Party_GetCurrentCount(party); i++) {
         mon = Party_GetPokemonBySlotIndex(party, i);
-        species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
-        isEgg = Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
-        form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+        species = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
+        isEgg = Pokemon_GetData(mon, MON_DATA_IS_EGG, NULL);
+        form = Pokemon_GetData(mon, MON_DATA_FORM, NULL);
         spriteIndex = Pokemon_IconSpriteIndex(mon);
         palIndex = PokeIconPaletteIndex(species, form, isEgg);
 
