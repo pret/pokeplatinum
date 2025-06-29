@@ -289,13 +289,13 @@ static UnkStruct_ov21_021D4660 *ov21_021D874C(enum HeapId heapID, PokedexApp *pa
 static void FreeSearchSettings(PokedexSearchSettings *searchSettings)
 {
     GF_ASSERT(searchSettings);
-    Heap_FreeToHeap(searchSettings);
+    Heap_Free(searchSettings);
 }
 
 static void ov21_021D879C(PokedexGraphicData **param0)
 {
     GF_ASSERT(param0);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov21_021D87B0(UnkStruct_ov21_021D4660 *param0)
@@ -303,7 +303,7 @@ static void ov21_021D87B0(UnkStruct_ov21_021D4660 *param0)
     GF_ASSERT(param0);
 
     ov21_021D4660(&param0[0]);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static int ov21_021D87C8(void)
@@ -423,7 +423,7 @@ static int ov21_021D8928(PokedexDataManager *dataMan, void *data)
 {
     int *v0 = dataMan->pageData;
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     dataMan->pageData = NULL;
 
     return 1;
@@ -501,7 +501,7 @@ static int ExitPokedexSearch(void *graphics, PokedexGraphicsManager *graphicsMan
         graphicsMan->state++;
         break;
     case 3:
-        Heap_FreeToHeap(graphicsMan->pageGraphics);
+        Heap_Free(graphicsMan->pageGraphics);
         graphicsMan->pageGraphics = NULL;
         graphicsMan->state++;
         break;
@@ -571,7 +571,7 @@ static void GetDisplayMap(PokedexSearchDisplay *searchDisplay, PokedexGraphicDat
 
 static void FreeDisplayMap(PokedexSearchDisplay *searchDisplay, PokedexGraphicData **param1)
 {
-    Heap_FreeToHeap(searchDisplay->tileMap);
+    Heap_Free(searchDisplay->tileMap);
     searchDisplay->tileMap = NULL;
     searchDisplay->screenData = NULL;
 }
@@ -763,7 +763,7 @@ static void FilterMethodMap(PokedexGraphicData **param0, int filterMethod, enum 
     v0 = PokedexGraphics_GetGraphicNarcScreenData(*param0, 43, 1, &v1, heapID);
 
     Bg_LoadToTilemapRect((*param0)->bgConfig, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     switch (filterMethod) {
     case FM_ORDER:
@@ -789,7 +789,7 @@ static void FilterMethodMap(PokedexGraphicData **param0, int filterMethod, enum 
     v0 = PokedexGraphics_GetGraphicNarcScreenData(*param0, mapIndex, 1, &v1, heapID);
 
     Bg_LoadToTilemapRect((*param0)->bgConfig, 3, v1->rawData, 6, y, v1->screenWidth / 8, v1->screenHeight / 8);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     Bg_ScheduleTilemapTransfer((*param0)->bgConfig, 3);
 }
 

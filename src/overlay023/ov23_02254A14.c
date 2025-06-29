@@ -262,7 +262,7 @@ static BOOL ov23_02254AD4(FieldTask *param0)
             ov23_022545D0(v1->unk_508);
             ov23_0225430C(v1->unk_504);
             ov5_021D1BEC(v1->unk_50C);
-            Heap_FreeToHeap(v1);
+            Heap_Free(v1);
             return 1;
         }
         break;
@@ -1312,7 +1312,7 @@ static void ov23_02255EC4(UnkStruct_ov23_02255EC4 *param0)
 
 static void ov23_02255EF0(UnkStruct_ov23_02255EC4 *param0)
 {
-    Heap_FreeToHeap(param0->unk_54);
+    Heap_Free(param0->unk_54);
 }
 
 static void ov23_02255EFC(UnkStruct_ov23_02255EC4 *param0)

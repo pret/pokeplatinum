@@ -139,7 +139,7 @@ static Encounter *NewEncounter(FieldBattleDTO *dto, int introEffectID, int battl
 static void FreeEncounter(Encounter *encounter)
 {
     FieldBattleDTO_Free(encounter->dto);
-    Heap_FreeToHeap(encounter);
+    Heap_Free(encounter);
 }
 
 static BOOL CheckPlayerWonEncounter(Encounter *encounter)
@@ -339,7 +339,7 @@ static WildEncounter *NewWildEncounter(FieldBattleDTO *dto, int introEffectID, i
 static void FreeWildEncounter(WildEncounter *encounter)
 {
     FieldBattleDTO_Free(encounter->dto);
-    Heap_FreeToHeap(encounter);
+    Heap_Free(encounter);
 }
 
 void Encounter_NewVsWild(FieldSystem *fieldSystem, FieldBattleDTO *dto)

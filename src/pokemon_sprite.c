@@ -453,7 +453,7 @@ void *PokemonSpriteManager_New(enum HeapId heapID)
         }
     }
 
-    Heap_FreeToHeap(shadowsNCGR);
+    Heap_Free(shadowsNCGR);
 
     monSpriteMan->needLoadChar = TRUE;
     monSpriteMan->needLoadPltt = TRUE;
@@ -578,10 +578,10 @@ void PokemonSpriteManager_DrawSprites(PokemonSpriteManager *monSpriteMan)
 
 void PokemonSpriteManager_Free(PokemonSpriteManager *monSpriteMan)
 {
-    Heap_FreeToHeap(monSpriteMan->charRawData);
-    Heap_FreeToHeap(monSpriteMan->plttRawData);
-    Heap_FreeToHeap(monSpriteMan->plttRawDataUnfaded);
-    Heap_FreeToHeap(monSpriteMan);
+    Heap_Free(monSpriteMan->charRawData);
+    Heap_Free(monSpriteMan->plttRawData);
+    Heap_Free(monSpriteMan->plttRawDataUnfaded);
+    Heap_Free(monSpriteMan);
 }
 
 void PokemonSprite_InitAnim(PokemonSprite *monSprite, int dummy)
@@ -1421,7 +1421,7 @@ static void BufferPokemonSpriteCharData(PokemonSpriteManager *monSpriteMan)
                 }
             }
 
-            Heap_FreeToHeap(ncgrFile);
+            Heap_Free(ncgrFile);
         }
     }
 
@@ -1453,7 +1453,7 @@ static void BufferPokemonSpritePlttData(PokemonSpriteManager *monSpriteMan)
                 monSpriteMan->plttRawDataUnfaded[j + PALETTE_SIZE * i] = rawPlttData[j];
             }
 
-            Heap_FreeToHeap(nclrFile);
+            Heap_Free(nclrFile);
 
             if (monSpriteMan->sprites[i].shadow.plttSlot) {
                 nclrFile = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE, pokemon_shadows_pal_NCLR, monSpriteMan->heapID);
@@ -1465,7 +1465,7 @@ static void BufferPokemonSpritePlttData(PokemonSpriteManager *monSpriteMan)
                     monSpriteMan->plttRawDataUnfaded[j + PALETTE_SIZE * (MON_SHADOW_BASE_PLTT_SLOT + monSpriteMan->sprites[i].shadow.plttSlot)] = rawPlttData[j];
                 }
 
-                Heap_FreeToHeap(nclrFile);
+                Heap_Free(nclrFile);
             }
         }
 

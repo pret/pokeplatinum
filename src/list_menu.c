@@ -133,7 +133,7 @@ void ListMenu_Free(ListMenu *menu, u16 *outListPos, u16 *outCursorPos)
     }
 
     ColoredArrow_Free(menu->cursor);
-    Heap_FreeToHeapExplicit(menu->heapID, menu);
+    Heap_FreeExplicit(menu->heapID, menu);
 }
 
 void ListMenu_Draw(ListMenu *menu)

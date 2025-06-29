@@ -859,7 +859,7 @@ static void sub_0207EA24(BgConfig *param0)
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
-    Heap_FreeToHeapExplicit(HEAP_ID_12, param0);
+    Heap_FreeExplicit(HEAP_ID_12, param0);
 }
 
 void sub_0207EA74(GameWindowLayout *windowLayout, int param1)
@@ -919,7 +919,7 @@ static void sub_0207EB6C(GameWindowLayout *param0, NARC *param1)
 
         v2 = (u16 *)v0->pRawData;
         memcpy(param0->unk_4A4, &v2[3 * 16], 32 * 8);
-        Heap_FreeToHeapExplicit(HEAP_ID_12, v1);
+        Heap_FreeExplicit(HEAP_ID_12, v1);
     }
 
     Font_LoadScreenIndicatorsPalette(0, 13 * 32, HEAP_ID_12);
@@ -1708,7 +1708,7 @@ static void sub_0207FFC8(GameWindowLayout *param0)
     }
 
     sub_02081CF4(param0, v0, v1);
-    Heap_FreeToHeapExplicit(HEAP_ID_12, v0);
+    Heap_FreeExplicit(HEAP_ID_12, v0);
     sub_02081E08(param0);
     sub_020826F4(param0, 0xffffffff, 1);
     Sprite_SetExplicitPalette2(param0->unk_5B0[6], 1);
@@ -2556,19 +2556,19 @@ static int ApplyItemEffectOnPokemon(GameWindowLayout *param0)
 
     if ((param0->partyManagementData->usedItemID == 466) && (Pokemon_CanShayminSkyForm(Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->partySlot)) == 1)) {
         param0->partyManagementData->evoTargetSpecies = 1;
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         LoadOverlay118(param0);
         return 31;
     }
 
     if ((Item_Get(v0, 34) != 0) || (Item_Get(v0, 35) != 0)) {
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         sub_020866A0(param0, 0);
         return 6;
     }
 
     if ((Item_Get(v0, 36) != 0) && (Item_Get(v0, 37) == 0)) {
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         sub_020866A0(param0, 1);
         return 6;
     }
@@ -2581,7 +2581,7 @@ static int ApplyItemEffectOnPokemon(GameWindowLayout *param0)
 
             param0->partyManagementData->evoTargetSpecies = Pokemon_GetEvolutionTargetSpecies(NULL, v1, EVO_CLASS_BY_ITEM, param0->partyManagementData->usedItemID, &param0->partyManagementData->evoType);
             param0->partyManagementData->menuSelectionResult = 8;
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             return 32;
         }
 
@@ -2597,7 +2597,7 @@ static int ApplyItemEffectOnPokemon(GameWindowLayout *param0)
         param0->unk_B00 = sub_02085348;
     }
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     return 5;
 }
 
@@ -2925,7 +2925,7 @@ void LoadScreenDataFromNARC(u32 param0, u16 *param1, u16 *param2, u16 *param3)
         memcpy(&param3[v3 * 16], &v2[((6 + 6) + v3) * 32], 16 * 2);
     }
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
 void LoadOverlay118(GameWindowLayout *windowLayout)

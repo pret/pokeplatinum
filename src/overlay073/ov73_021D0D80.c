@@ -232,8 +232,8 @@ int ov73_021D0F7C(ApplicationManager *appMan, int *param1)
     UnkStruct_ov73_021D1058 *v0 = ApplicationManager_Data(appMan);
     int heapID = v0->heapID;
 
-    Heap_FreeToHeap(v0->unk_B8);
-    Heap_FreeToHeap(v0->unk_BC);
+    Heap_Free(v0->unk_B8);
+    Heap_Free(v0->unk_BC);
 
     TrainerInfo_SetNameFromStrbuf(SaveData_GetTrainerInfo(v0->saveData), v0->unk_70->textInputStr);
     TrainerInfo_SetGender(SaveData_GetTrainerInfo(v0->saveData), v0->unk_70->unk_04);
@@ -436,7 +436,7 @@ static void ov73_021D1238(UnkStruct_ov73_021D1058 *param0)
     Bg_FreeTilemapBuffer(param0->unk_18, BG_LAYER_SUB_2);
     Bg_FreeTilemapBuffer(param0->unk_18, BG_LAYER_SUB_3);
 
-    Heap_FreeToHeap(param0->unk_18);
+    Heap_Free(param0->unk_18);
 }
 
 static void ov73_021D12C4(UnkStruct_ov73_021D1058 *param0)
@@ -1136,9 +1136,9 @@ static void ov73_021D1B80(UnkStruct_ov73_021D1058 *param0)
     Bg_ClearTilesRange(v5, 32, 0, param0->heapID);
     Bg_LoadTiles(param0->unk_18, v5, v2, (10 * 10) * 0x20, 1);
     Bg_LoadPalette(v5, v3, (2 * 16), (2 * 16) * v7);
-    Heap_FreeToHeap(v3);
-    Heap_FreeToHeap(v2);
-    Heap_FreeToHeap(v1);
+    Heap_Free(v3);
+    Heap_Free(v2);
+    Heap_Free(v1);
 }
 
 static void ov73_021D1CE0(UnkStruct_ov73_021D1058 *param0)

@@ -52,5 +52,5 @@ void FieldMotionBlur_Stop(FieldMotionBlur **fieldMotionBlur)
     MotionBlur_Delete(&(*fieldMotionBlur)->motionBlur, GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_3D);
     GX_SetBankForBG(GX_VRAM_BG_128_C);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3, 1);
-    Heap_FreeToHeapExplicit(HEAP_ID_FIELD, *fieldMotionBlur);
+    Heap_FreeExplicit(HEAP_ID_FIELD, *fieldMotionBlur);
 }

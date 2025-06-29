@@ -87,7 +87,7 @@ void PokedexGraphics_Free(PokedexGraphicData *pokedexGraphicData)
     FreeWindow(pokedexGraphicData);
     FreeBackgrounds(pokedexGraphicData->bgConfig);
 
-    Heap_FreeToHeap(pokedexGraphicData->bgConfig);
+    Heap_Free(pokedexGraphicData->bgConfig);
     SpriteList_Delete(pokedexGraphicData->spriteList);
     SpriteResourceCollection_Delete(pokedexGraphicData->spriteResourceCollection[SPRITE_RESOURCE_CHAR]);
     SpriteResourceCollection_Delete(pokedexGraphicData->spriteResourceCollection[SPRITE_RESOURCE_PLTT]);
@@ -435,7 +435,7 @@ static void *LoadGraphicsFile(PokedexGraphicData *pokedexGraphicData, u32 member
 
             if (uncompressedGraphicFile) {
                 MI_UncompressLZ8(graphicFile, uncompressedGraphicFile);
-                Heap_FreeToHeap(graphicFile);
+                Heap_Free(graphicFile);
             }
 
             graphicFile = uncompressedGraphicFile;
@@ -460,7 +460,7 @@ u32 PokedexGraphics_LoadGraphicNarcCharacterData(PokedexGraphicData *pokedexGrap
             Bg_LoadTiles(bgConfig, bgLayer, charData->pRawData, size, tileStart);
         }
 
-        Heap_FreeToHeap(graphicFile);
+        Heap_Free(graphicFile);
     }
 
     return size;
@@ -493,7 +493,7 @@ void PokedexGraphics_LoadGraphicNarcPaletteData(PokedexGraphicData *pokedexGraph
             sPaletteLoadFuncs[loadLocation](paletteData->pRawData, offset, szByte);
         }
 
-        Heap_FreeToHeap(graphicFile);
+        Heap_Free(graphicFile);
     }
 }
 
@@ -503,7 +503,7 @@ void *PokedexGraphics_GetGraphicNarcScreenData(PokedexGraphicData *pokedexGraphi
 
     if (graphicFile != NULL) {
         if (NNS_G2dGetUnpackedScreenData(graphicFile, screenData) == FALSE) {
-            Heap_FreeToHeap(graphicFile);
+            Heap_Free(graphicFile);
             return NULL;
         }
     }
@@ -517,7 +517,7 @@ void *PokedexGraphics_GetGraphicNarcPaletteData(PokedexGraphicData *pokedexGraph
 
     if (graphicFile != NULL) {
         if (NNS_G2dGetUnpackedPaletteData(graphicFile, paletteData) == FALSE) {
-            Heap_FreeToHeap(graphicFile);
+            Heap_Free(graphicFile);
             return NULL;
         }
     }
@@ -531,7 +531,7 @@ void *PokedexGraphics_GetGraphicNarcCharacterData(PokedexGraphicData *pokedexGra
 
     if (graphicFile != NULL) {
         if (NNS_G2dGetUnpackedBGCharacterData(graphicFile, characterData) == FALSE) {
-            Heap_FreeToHeap(graphicFile);
+            Heap_Free(graphicFile);
             return NULL;
         }
     }

@@ -275,7 +275,7 @@ static BOOL sub_0204F414(FieldTask *param0)
         break;
 
     case 2:
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return 1;
     };
 
@@ -318,7 +318,7 @@ static BOOL sub_0204F4A4(FieldTask *param0)
         break;
 
     case UnkEnum_0204F13C_5:
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return 1;
     }
 
@@ -391,7 +391,7 @@ static int sub_0204F5D8(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem)
 
     param0->unk_05 = partyMan->selectedMonSlot;
 
-    Heap_FreeToHeap(partyMan);
+    Heap_Free(partyMan);
     *(param0->unk_08) = NULL;
     return UnkEnum_0204F13C_3;
 }
@@ -450,7 +450,7 @@ static int sub_0204F6B0(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem)
 
     param0->unk_05 = v0->monIndex;
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     *(param0->unk_08) = NULL;
 
     return UnkEnum_0204F13C_1;
@@ -552,7 +552,7 @@ BOOL ScrCmd_324(ScriptContext *param0)
     ;
 
     if (v2 != NULL) {
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
     }
 
     StringTemplate_SetNumber(*v10, v11, v4, GetNumberDigitCount(v4), 1, 1);
@@ -640,7 +640,7 @@ BOOL ScrCmd_325(ScriptContext *param0)
     ;
 
     if (v1 != NULL) {
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
     }
 
     *v6 = v4;
@@ -680,7 +680,7 @@ BOOL ScrCmd_326(ScriptContext *param0)
     ;
 
     if (v2 != NULL) {
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
     }
 
     if (v4 > 10000) {

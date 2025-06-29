@@ -48,7 +48,7 @@ BOOL ov28_02256E9C(UnkStruct_ov28_02256E9C **param0, u32 param1)
 
 void ov28_02256EC0(UnkStruct_ov28_02256E9C *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov28_02256EC8(UnkStruct_ov28_02256E9C *param0)

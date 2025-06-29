@@ -107,15 +107,15 @@ void FieldCommMan_Delete(void)
 
     for (i = 0; i < 4; i++) {
         if (sFieldCommMan->trainerCard[i]) {
-            Heap_FreeToHeap(sFieldCommMan->trainerCard[i]);
+            Heap_Free(sFieldCommMan->trainerCard[i]);
         }
     }
 
     if (sFieldCommMan->party) {
-        Heap_FreeToHeap(sFieldCommMan->party);
+        Heap_Free(sFieldCommMan->party);
     }
 
-    Heap_FreeToHeap(sFieldCommMan);
+    Heap_Free(sFieldCommMan);
     sFieldCommMan = NULL;
 }
 
@@ -404,7 +404,7 @@ static void sub_02059B74(void)
                 if (sFieldCommMan->fieldSystem->task == NULL) {
                     for (j = 0; j < 4; j++) {
                         if (sFieldCommMan->trainerCard[j]) {
-                            Heap_FreeToHeap(sFieldCommMan->trainerCard[j]);
+                            Heap_Free(sFieldCommMan->trainerCard[j]);
                             sFieldCommMan->trainerCard[j] = NULL;
                         }
                     }
@@ -531,7 +531,7 @@ static void sub_02059D58(void)
         Encounter_NewVsLinkWithRecording(sFieldCommMan->fieldSystem, v2, v1);
     } else {
         Encounter_NewVsLinkWithRecordingAndParty(sFieldCommMan->fieldSystem, sFieldCommMan->party, v1);
-        Heap_FreeToHeap(sFieldCommMan->party);
+        Heap_Free(sFieldCommMan->party);
         sFieldCommMan->party = NULL;
     }
 

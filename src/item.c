@@ -807,7 +807,7 @@ s32 Item_LoadParam(u16 item, enum ItemDataParam param, u32 heapID)
 {
     ItemData *itemData = (ItemData *)Item_Load(item, 0, heapID);
     s32 val = Item_Get(itemData, param);
-    Heap_FreeToHeapExplicit(heapID, itemData);
+    Heap_FreeExplicit(heapID, itemData);
 
     return val;
 }

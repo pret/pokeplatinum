@@ -64,7 +64,7 @@ void Menu_Free(Menu *menu, u8 *outCursorPos)
     }
 
     ColoredArrow_Free(menu->cursor);
-    Heap_FreeToHeapExplicit(menu->heapID, menu);
+    Heap_FreeExplicit(menu->heapID, menu);
 }
 
 u32 Menu_ProcessInput(Menu *menu)
@@ -405,7 +405,7 @@ void Menu_DestroyForExit(Menu *menu, u32 heapID)
 {
     Window_EraseStandardFrame(menu->template.window, 0);
     Window_Remove(menu->template.window);
-    Heap_FreeToHeapExplicit(heapID, menu->template.window);
+    Heap_FreeExplicit(heapID, menu->template.window);
     StringList_Free(menu->template.choices);
     Menu_Free(menu, NULL);
 }

@@ -245,7 +245,7 @@ void ov116_02262AE4(UnkStruct_ov116_02262A8C *param0)
 
 void ov116_02262C64(UnkStruct_ov116_02262A8C *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 BOOL ov116_02262C6C(UnkStruct_ov116_02262A8C *param0, int *param1)
@@ -390,7 +390,7 @@ void ov116_02262E50(SysTask *param0, void *param1)
 
     if ((IsScreenFadeDone() == FALSE) || (v0->unk_78->unk_2C.unk_00 == 1)) {
         SysTask_Done(param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 
@@ -501,7 +501,7 @@ void ov116_02262E50(SysTask *param0, void *param1)
 
                 v0->unk_10->unk_1E0.z = (0 * FX32_ONE);
                 SysTask_Done(param0);
-                Heap_FreeToHeap(v0);
+                Heap_Free(v0);
             }
         }
         break;
@@ -515,7 +515,7 @@ void ov116_02263158(SysTask *param0, void *param1)
 
     if ((IsScreenFadeDone() == FALSE) || (v0->unk_2C->unk_2C.unk_00 == 1)) {
         SysTask_Done(param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 
@@ -557,7 +557,7 @@ void ov116_02263158(SysTask *param0, void *param1)
         } else {
             if ((++v0->unk_08) >= 10) {
                 SysTask_Done(param0);
-                Heap_FreeToHeap(v0);
+                Heap_Free(v0);
             }
         }
         break;

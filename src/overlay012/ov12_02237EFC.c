@@ -100,10 +100,10 @@ void ov12_02237F74(UnkStruct_ov12_02237F98 *param0)
             continue;
         }
 
-        Heap_FreeToHeap(param0->unk_08[v0]);
+        Heap_Free(param0->unk_08[v0]);
     }
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov12_02237F98(UnkStruct_ov12_02237F98 *param0)

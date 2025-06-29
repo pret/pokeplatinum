@@ -452,7 +452,7 @@ BOOL ChooseStarter_Exit(ApplicationManager *appMan, int *param1)
     ov78_021D2884(v0);
 
     ov78_021D12EC(v0->bgl);
-    Heap_FreeToHeap(v0->bgl);
+    Heap_Free(v0->bgl);
     ov78_021D10DC();
 
     VramTransfer_Free();
@@ -666,7 +666,7 @@ static void MakeMessageWindow(ChooseStarterApp *app, enum HeapId heapID)
 static void ov78_021D13A0(ChooseStarterApp *param0)
 {
     Window_Remove(param0->messageWindow);
-    Heap_FreeToHeap(param0->messageWindow);
+    Heap_Free(param0->messageWindow);
 }
 
 static void MakeSprite(ChooseStarterApp *app, enum HeapId heapID)
@@ -799,12 +799,12 @@ static void ov78_021D1694(ChooseStarter3DGraphics *param0, int param1, enum Heap
 static void ov78_021D16D8(ChooseStarter3DGraphics *param0, NNSFndAllocator *param1)
 {
     if (param0->unk_54) {
-        Heap_FreeToHeap(param0->unk_54);
+        Heap_Free(param0->unk_54);
     }
 
     if (param0->unk_64) {
         NNS_G3dFreeAnmObj(param1, param0->unk_6C);
-        Heap_FreeToHeap(param0->unk_64);
+        Heap_Free(param0->unk_64);
     }
 
     memset(param0, 0, sizeof(ChooseStarter3DGraphics));
@@ -1570,8 +1570,8 @@ static void ov78_021D24E4(StarterPreviewWindow *param0)
     sub_02015238(param0->unk_08);
     sub_02015164(param0->unk_00);
     sub_020151D4(param0->unk_04);
-    Heap_FreeToHeap(param0->unk_0C);
-    Heap_FreeToHeap(param0->unk_10);
+    Heap_Free(param0->unk_0C);
+    Heap_Free(param0->unk_10);
 }
 
 static void ov78_021D2508(StarterPreviewWindow *param0, BOOL param1)
@@ -1751,7 +1751,7 @@ static void ov78_021D2884(ChooseStarterApp *param0)
 
     for (v0 = 0; v0 < 3; v0++) {
         Window_Remove(param0->unk_9C[v0]);
-        Heap_FreeToHeap(param0->unk_9C[v0]);
+        Heap_Free(param0->unk_9C[v0]);
     }
 }
 

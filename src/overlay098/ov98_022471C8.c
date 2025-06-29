@@ -416,7 +416,7 @@ int ov98_02247440(ApplicationManager *appMan, int *param1)
     Strbuf_Free(v0->unk_40);
     Strbuf_Free(v0->unk_38);
     ov98_02247ACC(v0);
-    Heap_FreeToHeap(v0->unk_04);
+    Heap_Free(v0->unk_04);
     ov98_022476D0(v0->unk_04);
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();

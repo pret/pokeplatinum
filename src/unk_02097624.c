@@ -151,10 +151,10 @@ int sub_02097750(UnkStruct_02097728 *param0, Pokemon *param1)
 void sub_02097770(UnkStruct_02097728 *param0)
 {
     if (param0->unk_14 != NULL) {
-        Heap_FreeToHeap(param0->unk_14);
+        Heap_Free(param0->unk_14);
     }
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 int sub_02097788(Mailbox *mailbox, Pokemon *mon, int heapID)
@@ -173,7 +173,7 @@ int sub_02097788(Mailbox *mailbox, Pokemon *mon, int heapID)
     Mail_Init(mail);
     Pokemon_SetValue(mon, MON_DATA_MAIL, mail);
     Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &item);
-    Heap_FreeToHeap(mail);
+    Heap_Free(mail);
 
     return slot;
 }
@@ -192,7 +192,7 @@ int sub_020977E4(Mailbox *mailbox, u16 param1, Pokemon *mon, int heapID)
     Pokemon_SetValue(mon, MON_DATA_MAIL, mail);
     Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &item);
     sub_02028470(mailbox, 0, param1);
-    Heap_FreeToHeap(mail);
+    Heap_Free(mail);
 
     return param1;
 }
@@ -230,7 +230,7 @@ void sub_020978D8(UnkStruct_020978D8 *param0)
         Strbuf_Free(param0->unk_10);
     }
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void sub_020978F0(Mail *param0, UnkStruct_020978D8 *param1)

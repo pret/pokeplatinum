@@ -229,7 +229,7 @@ void JournalEntry_SaveData(JournalEntry *journalEntry, void *data, u8 dataType)
         }
     }
 
-    Heap_FreeToHeap(data);
+    Heap_Free(data);
 }
 
 static void JournalEntry_SaveTitle(JournalEntry *journalEntry, JournalEntryTitle *journalEntryTitle)

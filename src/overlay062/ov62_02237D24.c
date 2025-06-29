@@ -381,7 +381,7 @@ static BOOL ov62_022380B0(UnkStruct_0208C06C *param0)
         Bg_SetPriority(BG_LAYER_SUB_3, 1);
 
         {
-            Heap_FreeToHeap(v0->unk_230.unk_08);
+            Heap_Free(v0->unk_230.unk_08);
             sub_02030A98(v0->unk_250.unk_00);
         }
 
@@ -475,7 +475,7 @@ static BOOL ov62_022380B0(UnkStruct_0208C06C *param0)
             ov62_0222FB44(param0, 1, 1, param0->unk_10);
             ov62_0222FB60(param0, 5);
 
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay22));
             SetVBlankCallback(ov62_0222F8E4, param0);
         } else {
@@ -505,7 +505,7 @@ static BOOL ov62_022383E4(UnkStruct_0208C06C *param0)
         Bg_SetPriority(BG_LAYER_SUB_3, 1);
 
         {
-            Heap_FreeToHeap(v0->unk_230.unk_08);
+            Heap_Free(v0->unk_230.unk_08);
             sub_02030A98(v0->unk_250.unk_00);
         }
 
@@ -564,7 +564,7 @@ static BOOL ov62_022383E4(UnkStruct_0208C06C *param0)
             ov62_0222FB44(param0, 1, 1, param0->unk_10);
             ov62_0222FB60(param0, 5);
 
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay22));
             SetVBlankCallback(ov62_0222F8E4, param0);
         } else {
@@ -756,7 +756,7 @@ static BOOL ov62_0223896C(UnkStruct_0208C06C *param0)
         Bg_SetPriority(BG_LAYER_SUB_3, 1);
 
         {
-            Heap_FreeToHeap(v0->unk_230.unk_08);
+            Heap_Free(v0->unk_230.unk_08);
             sub_02030A98(v0->unk_250.unk_00);
         }
 
@@ -814,7 +814,7 @@ static BOOL ov62_0223896C(UnkStruct_0208C06C *param0)
             ov62_0222FB44(param0, 1, 1, param0->unk_10);
             ov62_0222FB60(param0, 5);
 
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay22));
             SetVBlankCallback(ov62_0222F8E4, param0);
         } else {
@@ -1490,7 +1490,7 @@ static BOOL ov62_02239984(UnkStruct_0208C06C *param0, int param1)
             }
         }
 
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
     }
 
     return v0;
@@ -1544,7 +1544,7 @@ static void ov62_02239A0C(UnkStruct_0208C06C *param0, int param1)
             v4->unk_1D4.unk_08[v5] = v0[v5];
         }
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
 
         v4->unk_1E8 = Heap_AllocFromHeap(HEAP_ID_102, sizeof(UnkStruct_ov62_02249380) * v4->unk_1D4.unk_00);
         MI_CpuFill8(v4->unk_1E8, 0, sizeof(UnkStruct_ov62_02249380) * v4->unk_1D4.unk_00);
@@ -1563,8 +1563,8 @@ static void ov62_02239B7C(UnkStruct_0208C06C *param0)
     UnkStruct_ov62_02237D24 *v0 = param0->unk_860;
 
     MessageLoader_Free(v0->unk_1D4.unk_0C);
-    Heap_FreeToHeap(v0->unk_1E8);
-    Heap_FreeToHeap(v0->unk_1D4.unk_08);
+    Heap_Free(v0->unk_1E8);
+    Heap_Free(v0->unk_1D4.unk_08);
 
     v0->unk_1D4.unk_10 = 0;
 }

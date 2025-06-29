@@ -39,7 +39,7 @@ void ov104_0223D5F0(UnkStruct_ov104_0223D5F0 *param0)
         }
     }
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 ParticleSystem *ov104_0223D614(UnkStruct_ov104_0223D5F0 *param0, int param1, int param2, int param3)
@@ -120,7 +120,7 @@ static void ov104_0223D708(ParticleSystem *param0)
     void *v0 = ParticleSystem_GetHeapStart(param0);
 
     ParticleSystem_Free(param0);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 static u32 ov104_0223D720(u32 param0, BOOL param1)

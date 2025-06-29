@@ -362,7 +362,7 @@ int ov17_0223B580(ApplicationManager *appMan, int *param1)
     MessageLoader_Free(v0->unk_0C.unk_40);
     MessageLoader_Free(v0->unk_0C.unk_44);
 
-    Heap_FreeToHeap(v0->unk_0C.unk_24);
+    Heap_Free(v0->unk_0C.unk_24);
     SysTask_Done(v0->unk_04);
 
     ov17_0223F1E0(v0->unk_08);
@@ -678,8 +678,8 @@ static void ov17_0223BBA8(UnkStruct_ov17_02246F24 *param0, NARC *param1)
         MI_CpuCopy16(v0, &v3[Unk_ov17_022536B4[param0->unk_00->unk_00.unk_113] * 16], 0x20);
         MI_CpuCopy16(v1, &v3[Unk_ov17_022536B4[0] * 16], 0x20);
 
-        Heap_FreeToHeap(v0);
-        Heap_FreeToHeap(v1);
+        Heap_Free(v0);
+        Heap_Free(v1);
     }
 }
 

@@ -52,9 +52,9 @@ void MapPropMaterialShape_Load(const char *path, MapPropMaterialShape *propMatSh
 
 void MapPropMaterialShape_Free(MapPropMaterialShape *propMatShp)
 {
-    Heap_FreeToHeap(propMatShp->ids);
-    Heap_FreeToHeap(propMatShp->idsLocators);
-    Heap_FreeToHeap(propMatShp);
+    Heap_Free(propMatShp->ids);
+    Heap_Free(propMatShp->idsLocators);
+    Heap_Free(propMatShp);
 }
 
 void MapProp_GetMaterialShapeIDsCount(const int modelID, const MapPropMaterialShape *propMatShp, u16 *idsCount)

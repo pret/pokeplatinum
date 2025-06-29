@@ -183,7 +183,7 @@ void ErrorMessageReset_PrintErrorAndReset(void)
 
     Window_Remove(&window);
     MessageLoader_Free(errorMsgData);
-    Heap_FreeToHeap(bgConfig);
+    Heap_Free(bgConfig);
 
     OS_ResetSystem(0);
 }

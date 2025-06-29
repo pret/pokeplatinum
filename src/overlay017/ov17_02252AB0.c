@@ -84,7 +84,7 @@ void ov17_02252BCC(UnkStruct_ov17_02252B48 *param0)
     }
 
     SysTask_Done(param0->unk_14);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov17_02252BF0(UnkStruct_ov17_02252B48 *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, fx32 param9)

@@ -166,7 +166,7 @@ void ov95_0224B438(void *param0)
 
         NARC_dtor(v0->unk_84);
         PokemonSpriteManager_Free(v0->unk_10);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 }
 
@@ -613,7 +613,7 @@ static void ov95_0224BC6C(UnkStruct_ov95_0224B4D4 *param0, SysTask **param1)
         *param1 = SysTask_Start(ov95_0224BD5C, v0, 0);
 
         if (*param1 == NULL) {
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
         }
     } else {
         *param1 = NULL;
@@ -626,7 +626,7 @@ static void ov95_0224BCE8(SysTask *param0)
         UnkStruct_ov95_0224BC6C *v0 = SysTask_GetParam(param0);
 
         *(v0->unk_00) = NULL;
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
     }
 }

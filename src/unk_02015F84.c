@@ -187,8 +187,8 @@ PokemonAnimationSys *sub_02015F84(const int heapID, const int param1, const u8 p
 
 void sub_02015FB8(PokemonAnimationSys *param0)
 {
-    Heap_FreeToHeap(param0->pokeAnimation);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0->pokeAnimation);
+    Heap_Free(param0);
 }
 
 void PokeAnimation_Init(PokemonAnimationSys *param0, PokemonSprite *param1, const PokeAnimationSettings *param2, const u8 param3)
@@ -253,7 +253,7 @@ void sub_02016114(PokemonAnimationSys *param0, const u8 param1)
         param0->pokeAnimation[param1].unk_20 = 1;
         param0->pokeAnimation[param1].unk_10 = 0;
 
-        Heap_FreeToHeap(param0->pokeAnimation[param1].unk_08);
+        Heap_Free(param0->pokeAnimation[param1].unk_08);
     }
 }
 
@@ -273,7 +273,7 @@ static void sub_02016150(SysTask *param0, void *param1)
 
         SysTask_Done(param0);
         v0->unk_04 = NULL;
-        Heap_FreeToHeap(v0->unk_08);
+        Heap_Free(v0->unk_08);
     }
 }
 

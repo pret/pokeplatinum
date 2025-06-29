@@ -87,7 +87,7 @@ void Villa_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
 {
     UnkStruct_ov5_021F8480 *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     fieldSystem->unk_04->dynamicMapFeaturesData = NULL;
 }
 

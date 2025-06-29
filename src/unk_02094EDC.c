@@ -515,8 +515,8 @@ void sub_02094F04(UnkStruct_02095C48 *param0, int heapID, int param2, int param3
         }
     }
 
-    Heap_FreeToHeap(v2);
-    Heap_FreeToHeap(v9);
+    Heap_Free(v2);
+    Heap_Free(v9);
 }
 
 void sub_020951B0(UnkStruct_02095C48 *param0, int param1)
@@ -597,7 +597,7 @@ void sub_020951B0(UnkStruct_02095C48 *param0, int param1)
         sub_0202A378(param0->unk_00.unk_E8[v0], param0->unk_00.unk_110);
     }
 
-    Heap_FreeToHeap(v2);
+    Heap_Free(v2);
 }
 
 void sub_02095338(UnkStruct_02095C48 *param0)
@@ -754,9 +754,9 @@ void sub_020954F0(UnkStruct_02095C48 *param0, int heapID, int param2, int param3
         param0->unk_00.unk_C0[2] = v9;
     }
 
-    Heap_FreeToHeap(v8);
-    Heap_FreeToHeap(v7);
-    Heap_FreeToHeap(v6);
+    Heap_Free(v8);
+    Heap_Free(v7);
+    Heap_Free(v6);
 }
 
 s8 sub_02095734(int param0)

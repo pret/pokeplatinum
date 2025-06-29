@@ -1122,7 +1122,7 @@ static int sub_02086F3C(ApplicationManager *appMan, int *param1)
 
         v4 = Pokemon_New(HEAP_ID_18);
         Pokemon_InitWith(v4, v0->unk_04, 5, 10, 10, 10, 10, 10);
-        Heap_FreeToHeap(v4);
+        Heap_Free(v4);
     }
 
     if ((v0->unk_158 == 0) || (CharCode_Compare(v0->unk_D8, v0->unk_118) == 0) || sub_02086F14(v0->unk_D8)) {
@@ -1150,11 +1150,11 @@ static int sub_02086F3C(ApplicationManager *appMan, int *param1)
 
     SpriteList_Delete(v0->unk_188);
     RenderOam_Free();
-    Heap_FreeToHeapExplicit(HEAP_ID_18, v0->unk_510);
+    Heap_FreeExplicit(HEAP_ID_18, v0->unk_510);
 
     if (v0->unk_00 == 1) {
-        Heap_FreeToHeapExplicit(HEAP_ID_18, v0->unk_518);
-        Heap_FreeToHeapExplicit(HEAP_ID_18, v0->unk_520);
+        Heap_FreeExplicit(HEAP_ID_18, v0->unk_518);
+        Heap_FreeExplicit(HEAP_ID_18, v0->unk_520);
     }
 
     Bg_FreeTilemapBuffer(v0->unk_160, BG_LAYER_SUB_3);
@@ -1214,7 +1214,7 @@ void sub_0208716C(UnkStruct_0208737C *param0)
     GF_ASSERT((param0) != NULL);
 
     Strbuf_Free(param0->textInputStr);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void sub_02087190(void *param0)
@@ -1399,7 +1399,7 @@ static void sub_0208737C(UnkStruct_02087A10 *param0, ApplicationManager *appMan)
         v1 = Pokemon_New(HEAP_ID_18);
         Pokemon_InitWith(v1, param0->unk_04, 5, 10, 10, 10, 10, 10);
         StringTemplate_SetSpeciesName(param0->unk_168, 0, Pokemon_GetBoxPokemon(v1));
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
     }
 
     if (v0->unk_44 != 0) {
@@ -1466,7 +1466,7 @@ static void sub_02087544(UnkStruct_02087A10 *param0, ApplicationManager *appMan)
 
             Pokemon_InitWith(v4, param0->unk_04, 1, 0, 0, 0, 0, 0);
             StringTemplate_SetSpeciesName(param0->unk_168, 0, Pokemon_GetBoxPokemon(v4));
-            Heap_FreeToHeap(v4);
+            Heap_Free(v4);
         } else {
             param0->unk_D8[param0->unk_158] = 0xffff;
             Strbuf_CopyChars(v0, param0->unk_D8);
@@ -1492,7 +1492,7 @@ static void sub_0208765C(BgConfig *param0, Window *param1)
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
-    Heap_FreeToHeapExplicit(HEAP_ID_18, param0);
+    Heap_FreeExplicit(HEAP_ID_18, param0);
 }
 
 static void sub_0208769C(UnkStruct_02087A10 *param0, NARC *param1)

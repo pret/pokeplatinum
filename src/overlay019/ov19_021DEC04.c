@@ -116,13 +116,13 @@ BOOL ov19_021DEC04(UnkStruct_ov19_021DEC04 **param0, UnkStruct_ov19_021D61B0 *pa
 void ov19_021DECAC(UnkStruct_ov19_021DEC04 *param0)
 {
     if (param0) {
-        Heap_FreeToHeap(param0->unk_370);
-        Heap_FreeToHeap(param0->unk_374);
+        Heap_Free(param0->unk_370);
+        Heap_Free(param0->unk_374);
         MessageLoader_Free(param0->unk_70);
         ov19_021DF7D0(param0);
         ov19_021DF03C(param0);
         Strbuf_Free(param0->boxDisplayText);
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0);
     }
 }
 
@@ -660,8 +660,8 @@ static void ov19_021DF7D0(UnkStruct_ov19_021DEC04 *param0)
     }
 
     Sprite_Delete(param0->unk_30);
-    Heap_FreeToHeap(param0->unk_5C);
-    Heap_FreeToHeap(param0->unk_64);
+    Heap_Free(param0->unk_5C);
+    Heap_Free(param0->unk_64);
 }
 
 static void ov19_021DF834(UnkStruct_ov19_021DEC04 *param0)

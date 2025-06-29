@@ -326,7 +326,7 @@ static void ov76_0223BCA0(SysTask *param0, void *param1)
 
     if (v1 == 0) {
         *(v0->unk_16C) = 0;
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
     }
 }

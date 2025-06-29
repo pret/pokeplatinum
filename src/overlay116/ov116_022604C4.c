@@ -73,7 +73,7 @@ static void ov116_022604C4(UnkStruct_ov116_0226139C *param0)
 
         NNS_G2dGetUnpackedPaletteData(v1, &v0);
         PaletteData_LoadBuffer(param0->unk_48.unk_14, v0->pRawData, 2, 14 * 16, 32);
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
     }
 
     {
@@ -813,7 +813,7 @@ void ov116_0226139C(UnkStruct_ov116_0226139C *param0)
     Bg_FreeTilemapBuffer(param0->unk_48.unk_10, 5);
     Bg_FreeTilemapBuffer(param0->unk_48.unk_10, 6);
     Bg_FreeTilemapBuffer(param0->unk_48.unk_10, 7);
-    Heap_FreeToHeap(param0->unk_48.unk_10);
+    Heap_Free(param0->unk_48.unk_10);
     PaletteData_FreeBuffer(param0->unk_48.unk_14, 0);
     PaletteData_FreeBuffer(param0->unk_48.unk_14, 1);
     PaletteData_FreeBuffer(param0->unk_48.unk_14, 2);

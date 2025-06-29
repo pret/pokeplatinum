@@ -98,7 +98,7 @@ int ov82_0223B24C(ApplicationManager *appMan, int *param1)
     case 0:
         heapID = v1->heapID;
 
-        Heap_FreeToHeap(v1->unk_0C);
+        Heap_Free(v1->unk_0C);
         MI_CpuClear8(v1, sizeof(UnkStruct_ov83_0223C344));
         ApplicationManager_FreeData(appMan);
 

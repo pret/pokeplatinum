@@ -70,7 +70,7 @@ RadarChain *RadarChain_Init(const int heapID)
 
 void RadarChain_Free(RadarChain *chain)
 {
-    Heap_FreeToHeap(chain);
+    Heap_Free(chain);
 }
 
 void RadarChain_Clear(RadarChain *chain)
@@ -453,7 +453,7 @@ BOOL RefreshRadarChain(FieldTask *taskMan)
         }
         break;
     case 4:
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         MapObjectMan_UnpauseAllMovement(fieldSystem->mapObjMan);
         return TRUE;
         break;

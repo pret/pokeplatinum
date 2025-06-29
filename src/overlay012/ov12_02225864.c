@@ -941,7 +941,7 @@ void ov12_022265C0(UnkStruct_ov12_02226504 *param0)
         BufferManager_Delete(param0->bufferManager);
     }
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void *ov12_022265E4(const UnkStruct_ov12_02226504 *param0)
@@ -1001,7 +1001,7 @@ void ov12_0222669C(UnkStruct_ov12_0222660C *param0)
         ScreenScrollManager_Delete(param0->screenScrollMgr);
     }
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void *ov12_022266C0(const UnkStruct_ov12_0222660C *param0)
@@ -1140,7 +1140,7 @@ void ov12_02226858(UnkStruct_ov12_022267D4 *param0)
     GF_ASSERT(param0 != NULL);
 
     SysTask_Done(param0->unk_04);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 UnkStruct_ov12_022267D4 *ov12_02226870(PaletteData *param0, int heapID, int param2, u16 param3, u16 param4, s8 param5, s8 param6, u8 param7, u8 param8, u16 param9, int param10)

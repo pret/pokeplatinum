@@ -211,7 +211,7 @@ void MapObject_FinishAnimation(SysTask *task)
     GF_ASSERT(LocalMapObj_CheckAnimationFinished(data->mapObj) == TRUE);
 
     sub_020656AC(data->mapObj);
-    Heap_FreeToHeapExplicit(HEAP_ID_FIELD, data);
+    Heap_FreeExplicit(HEAP_ID_FIELD, data);
     SysTask_Done(task);
 }
 

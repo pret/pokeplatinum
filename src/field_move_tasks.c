@@ -269,7 +269,7 @@ static FieldMoveTaskData *FieldMoves_AllocateTaskData(const FieldMovePokemon *fi
 static void FieldMoves_FreeTaskData(FieldMoveTaskData *taskData)
 {
     GF_ASSERT(taskData->magicNumber == 0x19740205);
-    Heap_FreeToHeap(taskData);
+    Heap_Free(taskData);
 }
 
 static enum FieldMoveError FieldMoves_CheckCut(const FieldMoveContext *fieldMoveContext)
@@ -694,7 +694,7 @@ static BOOL FieldMoves_TeleportTask(FieldTask *param0)
     UnkStruct_020711C8 *v1 = FieldTask_GetEnv(param0);
     void *v2 = ov6_02247530(fieldSystem, v1->unk_00, HEAP_ID_FIELD);
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
     FieldTask_InitJump(param0, ov6_02247554, v2);
 
     return 0;
@@ -740,7 +740,7 @@ static BOOL FieldMoves_DigTask(FieldTask *param0)
     void *journalEntryLocationEvent = JournalEntry_CreateEventUsedMove(LOCATION_EVENT_USED_DIG - LOCATION_EVENT_USED_CUT, fieldSystem->location->mapId, HEAP_ID_FIELD);
     JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
     FieldTask_InitJump(param0, ov6_022474AC, v2);
 
     return FALSE;

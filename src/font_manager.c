@@ -61,7 +61,7 @@ void FontManager_Delete(FontManager *fontManager)
 {
     FontManager_FreeGlyphs(fontManager);
     FontManager_FreeWidthsAndNARC(fontManager);
-    Heap_FreeToHeap(fontManager);
+    Heap_Free(fontManager);
 }
 
 void FontManager_SwitchGlyphAccessMode(FontManager *fontManager, enum GlyphAccessMode glyphAccessMode, u32 heapID)
@@ -107,7 +107,7 @@ static void FontManager_Init(FontManager *fontManager, enum NarcID narcID, u32 a
 static void FontManager_FreeWidthsAndNARC(FontManager *fontManager)
 {
     if (fontManager->glyphWidths) {
-        Heap_FreeToHeap(fontManager->glyphWidths);
+        Heap_Free(fontManager->glyphWidths);
     }
 
     if (fontManager->narc) {
@@ -143,7 +143,7 @@ static void FontManager_FreeGlyphs(FontManager *fontManager)
 
 static void FontManager_FreeGlyphImmediate(FontManager *fontManager)
 {
-    Heap_FreeToHeap(fontManager->narcBuf);
+    Heap_Free(fontManager->narcBuf);
     fontManager->narcBuf = NULL;
 }
 

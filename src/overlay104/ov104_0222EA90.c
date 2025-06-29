@@ -417,7 +417,7 @@ static void ov104_0222EBBC(UnkStruct_ov104_0223C4CC *param0, void **param1)
 
 static void ov104_0222EBCC(UnkStruct_ov104_0223C4CC *param0, void **param1)
 {
-    Heap_FreeToHeap(*param1);
+    Heap_Free(*param1);
 }
 
 static void ov104_0222EBD8(UnkStruct_ov104_0223C4CC *param0, void **param1)

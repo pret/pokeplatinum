@@ -308,7 +308,7 @@ static void GivePokemon(FieldSystem *fieldSystem, GiftData *dummy)
     }
 
     if (tmpPoke) {
-        Heap_FreeToHeap(tmpPoke);
+        Heap_Free(tmpPoke);
     }
 }
 

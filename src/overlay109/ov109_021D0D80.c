@@ -1796,53 +1796,53 @@ static void ov109_021D2004(UnkStruct_ov109_021D0F70 *param0)
     void *v0 = ov109_021D3A2C(param0, 17, 0);
     NNS_G2dGetUnpackedPaletteData(v0, &param0->unk_D90);
     PaletteData_LoadBuffer(param0->unk_D9C, param0->unk_D90->pRawData, 0, (32 * 0), (32 * 2));
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     v0 = ov109_021D3A2C(param0, 20, 0);
     NNS_G2dGetUnpackedPaletteData(v0, &param0->unk_D90);
     PaletteData_LoadBuffer(param0->unk_D9C, param0->unk_D90->pRawData, 1, (32 * 0), (32 * 2));
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     PaletteData_BlendMulti(param0->unk_D9C, 1, 0xffff, 8, 0);
 
     v0 = ov109_021D3A2C(param0, 16, 0);
     NNS_G2dGetUnpackedCharacterData(v0, &param0->unk_D8C);
     Bg_LoadTiles(param0->unk_D84, 3, param0->unk_D8C->pRawData, param0->unk_D8C->szByte, (32 * 0));
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     v0 = ov109_021D3A2C(param0, 22, 0);
     NNS_G2dGetUnpackedCharacterData(v0, &param0->unk_D8C);
     Bg_LoadTiles(param0->unk_D84, 6, param0->unk_D8C->pRawData, param0->unk_D8C->szByte, (32 * 0));
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     v0 = ov109_021D3A2C(param0, 21, 0);
     NNS_G2dGetUnpackedCharacterData(v0, &param0->unk_D8C);
     Bg_LoadTiles(param0->unk_D84, 7, param0->unk_D8C->pRawData, param0->unk_D8C->szByte, (32 * 0));
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     v0 = ov109_021D3A2C(param0, 19, 0);
     NNS_G2dGetUnpackedScreenData(v0, &param0->unk_D88);
     Bg_LoadTilemapBuffer(param0->unk_D84, 2, (void *)param0->unk_D88->rawData, param0->unk_D88->szByte);
     Bg_CopyTilemapBufferToVRAM(param0->unk_D84, 2);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     v0 = ov109_021D3A2C(param0, 18, 0);
     NNS_G2dGetUnpackedScreenData(v0, &param0->unk_D88);
     Bg_LoadTilemapBuffer(param0->unk_D84, 3, (void *)param0->unk_D88->rawData, param0->unk_D88->szByte);
     Bg_CopyTilemapBufferToVRAM(param0->unk_D84, 3);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     v0 = ov109_021D3A2C(param0, 24, 0);
     NNS_G2dGetUnpackedScreenData(v0, &param0->unk_D88);
     Bg_LoadTilemapBuffer(param0->unk_D84, 6, (void *)param0->unk_D88->rawData, param0->unk_D88->szByte);
     Bg_CopyTilemapBufferToVRAM(param0->unk_D84, 6);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     v0 = ov109_021D3A2C(param0, 23, 0);
     NNS_G2dGetUnpackedScreenData(v0, &param0->unk_D88);
     Bg_LoadTilemapBuffer(param0->unk_D84, 7, (void *)param0->unk_D88->rawData, param0->unk_D88->szByte);
     Bg_CopyTilemapBufferToVRAM(param0->unk_D84, 7);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 static void ov109_021D2204(UnkStruct_ov109_021D0F70 *param0)
@@ -1852,7 +1852,7 @@ static void ov109_021D2204(UnkStruct_ov109_021D0F70 *param0)
     Bg_FreeTilemapBuffer(param0->unk_D84, BG_LAYER_MAIN_3);
     Bg_FreeTilemapBuffer(param0->unk_D84, BG_LAYER_SUB_2);
     Bg_FreeTilemapBuffer(param0->unk_D84, BG_LAYER_SUB_3);
-    Heap_FreeToHeap(param0->unk_D84);
+    Heap_Free(param0->unk_D84);
 }
 
 static void ov109_021D2248(UnkStruct_ov109_021D0F70 *param0, u32 param1)
@@ -1862,7 +1862,7 @@ static void ov109_021D2248(UnkStruct_ov109_021D0F70 *param0, u32 param1)
 
     Bg_LoadTilemapBuffer(param0->unk_D84, 6, (void *)param0->unk_D88->rawData, param0->unk_D88->szByte);
     Bg_CopyTilemapBufferToVRAM(param0->unk_D84, 6);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 static void ov109_021D228C(UnkStruct_ov109_021D0F70 *param0)
@@ -1978,7 +1978,7 @@ static void ov109_021D2408(UnkStruct_ov109_021D0F70 *param0)
 
         NNS_G2dGetUnpackedPaletteData(v6, &v5);
         PaletteData_LoadBuffer(v2, v5->pRawData, 2, 14 * 16, 32);
-        Heap_FreeToHeap(v6);
+        Heap_Free(v6);
     }
 }
 
@@ -2607,7 +2607,7 @@ static void ov109_021D302C(SysTask *param0, void *param1)
 
     if (v0 == 2) {
         v1->unk_10->unk_08 = 1;
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         SysTask_Done(param0);
     }
 }
@@ -3071,7 +3071,7 @@ static void ov109_021D3600(SysTask *param0, void *param1)
         break;
     case 1:
         Sprite_DeleteAndFreeResources(v0->unk_14);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
     }
 }
@@ -3292,7 +3292,7 @@ static void ov109_021D3948(SysTask *param0, void *param1)
     ov109_021D2344(v1->unk_00, v1->unk_08);
 
     if (v0 == 1) {
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         SysTask_Done(param0);
     }
 }

@@ -91,8 +91,8 @@ void PlttTransfer_Free(void)
 {
     if (sTaskManager != NULL) {
         PlttTransfer_ResetAllTasks();
-        Heap_FreeToHeap(sTaskManager->tasks);
-        Heap_FreeToHeap(sTaskManager);
+        Heap_Free(sTaskManager->tasks);
+        Heap_Free(sTaskManager);
         sTaskManager = NULL;
     }
 }

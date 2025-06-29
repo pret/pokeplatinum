@@ -250,7 +250,7 @@ static UnkStruct_020711EC *sub_0207142C(int heapID)
 
 static void sub_02071450(UnkStruct_020711EC *param0)
 {
-    Heap_FreeToHeapExplicit(param0->heapID, param0);
+    Heap_FreeExplicit(param0->heapID, param0);
 }
 
 static UnkStruct_ov101_021D5D90 *sub_0207145C(int heapID, int param1)
@@ -268,7 +268,7 @@ static UnkStruct_ov101_021D5D90 *sub_0207145C(int heapID, int param1)
 
 static void sub_02071480(UnkStruct_020711EC *param0)
 {
-    Heap_FreeToHeapExplicit(param0->heapID, param0->unk_0C);
+    Heap_FreeExplicit(param0->heapID, param0->unk_0C);
 }
 
 static void sub_02071490(UnkStruct_ov101_021D5D90 *param0)

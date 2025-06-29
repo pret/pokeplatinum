@@ -261,7 +261,7 @@ static void ov80_021D0FF4(UnkStruct_ov80_021D2A08 *param0)
         Bg_FreeTilemapBuffer(param0->unk_28, v0);
     }
 
-    Heap_FreeToHeap(param0->unk_28);
+    Heap_Free(param0->unk_28);
     ov80_021D2E10(param0->unk_40);
     MainMapMatrixData_Free(param0->unk_30);
     Strbuf_Free(param0->unk_88);
@@ -464,14 +464,14 @@ static void ov80_021D1158(UnkStruct_ov80_021D2A08 *param0)
 
 static void ov80_021D12D8(UnkStruct_ov80_021D2A08 *param0)
 {
-    Heap_FreeToHeap(param0->unk_B4);
-    Heap_FreeToHeap(param0->unk_B0);
-    Heap_FreeToHeap(param0->unk_AC);
-    Heap_FreeToHeap(param0->unk_A8);
-    Heap_FreeToHeap(param0->unk_A4);
-    Heap_FreeToHeap(param0->unk_A0);
-    Heap_FreeToHeap(param0->unk_9C);
-    Heap_FreeToHeap(param0->unk_98);
+    Heap_Free(param0->unk_B4);
+    Heap_Free(param0->unk_B0);
+    Heap_Free(param0->unk_AC);
+    Heap_Free(param0->unk_A8);
+    Heap_Free(param0->unk_A4);
+    Heap_Free(param0->unk_A0);
+    Heap_Free(param0->unk_9C);
+    Heap_Free(param0->unk_98);
 }
 
 static int ov80_021D132C(UnkStruct_ov80_021D2A08 *param0)

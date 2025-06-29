@@ -247,7 +247,7 @@ static void CommClubMan_Delete(void)
         Strbuf_Free(sCommClubMan->strBuff[i]);
     }
 
-    Heap_FreeToHeap(sCommClubMan->unk_7C);
+    Heap_Free(sCommClubMan->unk_7C);
 
     if (sCommClubMan->unk_50) {
         StringTemplate_Free(sCommClubMan->unk_50);
@@ -270,7 +270,7 @@ static void CommClubMan_Delete(void)
         Window_Remove(&sCommClubMan->msgWindow);
     }
 
-    Heap_FreeToHeap(sCommClubMan);
+    Heap_Free(sCommClubMan);
     sCommClubMan = NULL;
 }
 

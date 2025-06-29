@@ -702,7 +702,7 @@ void ov83_0223FFD4(UnkStruct_ov83_0223FDB0 *param0, Poffin *param1, const UnkStr
 
         v5 += BerryData_GetAttribute(v0, 10);
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 
     if ((v9 >= 2) && (param3 > 1)) {

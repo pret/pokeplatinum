@@ -125,6 +125,6 @@ void ov5_021EB184(UnkStruct_ov5_021EB0E0 **param0)
 
     GF_ASSERT((*param0) != NULL);
 
-    Heap_FreeToHeap(*param0);
+    Heap_Free(*param0);
     (*param0) = NULL;
 }

@@ -50,7 +50,7 @@ BOOL ov30_022563EC(UnkStruct_ov30_022563EC **param0, const UnkStruct_ov30_022563
         v0->unk_48 = PoketchGraphics_GetAnimationManager();
 
         if (ov30_022565F4(v0) == 0) {
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             return 0;
         }
 
@@ -72,7 +72,7 @@ void ov30_02256444(UnkStruct_ov30_022563EC *param0)
             SysTask_Done(param0->unk_30);
         }
 
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0);
     }
 }
 

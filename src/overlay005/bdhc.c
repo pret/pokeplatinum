@@ -349,7 +349,7 @@ static void BDHC_LazyLoadTask(SysTask *sysTask, void *sysTaskParam)
     case BDHC_LOADER_SUBTASK_END_TASK:
         *ctx->loadTaskRunning = FALSE;
 
-        Heap_FreeToHeap((void *)sysTaskParam);
+        Heap_Free((void *)sysTaskParam);
         SysTask_Done(sysTask);
 
         return;
@@ -395,7 +395,7 @@ void BDHC_Load(NARC *narc, const int bdhcSize, BDHC *bdhc, u8 *buffer)
     BDHC_LoadStrips(narc, bdhc, bdhcHeader);
     BDHC_LoadAccessList(narc, bdhc, bdhcHeader);
 
-    Heap_FreeToHeap(bdhcHeader);
+    Heap_Free(bdhcHeader);
     bdhc->loaded = TRUE;
 }
 
@@ -405,7 +405,7 @@ void BDHC_Free(BDHC *bdhc)
         return;
     }
 
-    Heap_FreeToHeap(bdhc);
+    Heap_Free(bdhc);
     bdhc = NULL;
 }
 

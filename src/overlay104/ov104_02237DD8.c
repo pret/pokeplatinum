@@ -288,7 +288,7 @@ static void ov104_02238114(UnkStruct_ov104_0223BFFC *param0)
         ov104_0223C034(param0, param0->unk_74, v2);
     }
 
-    Heap_FreeToHeap(v2);
+    Heap_Free(v2);
 
     return;
 }
@@ -321,15 +321,15 @@ void ov104_02238210(UnkStruct_ov104_0223BFFC *param0)
     }
 
     if (param0->unk_70 != NULL) {
-        Heap_FreeToHeap(param0->unk_70);
+        Heap_Free(param0->unk_70);
     }
 
     if (param0->unk_74 != NULL) {
-        Heap_FreeToHeap(param0->unk_74);
+        Heap_Free(param0->unk_74);
     }
 
     MI_CpuClear8(param0, sizeof(UnkStruct_ov104_0223BFFC));
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 
     param0 = NULL;
 
@@ -444,7 +444,7 @@ u16 ov104_02238464(UnkStruct_ov104_0223BFFC *param0, u8 param1)
     FrontierTrainerDataDTO v0;
     u8 v2 = ov104_02238498(param0, param1);
 
-    Heap_FreeToHeap(ov104_0222DD04(&v0, param0->unk_78[v2], HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+    Heap_Free(ov104_0222DD04(&v0, param0->unk_78[v2], HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
 
     return ov104_0222E10C(v0.trainerType);
 }
@@ -621,7 +621,7 @@ void ov104_02238658(void *param0, UnkStruct_ov104_0223C4CC *param1)
             GX_LoadBGExtPltt(v2->pRawData, 0x4000, 0x2000);
             GX_EndLoadBGExtPltt();
 
-            Heap_FreeToHeap(v3);
+            Heap_Free(v3);
         }
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
@@ -874,8 +874,8 @@ void ov104_02238AB4(u8 param0, u8 param1)
     GX_EndLoadBGExtPltt();
 
     NARC_dtor(v4);
-    Heap_FreeToHeap(v5);
-    Heap_FreeToHeap(v3);
+    Heap_Free(v5);
+    Heap_Free(v3);
 
     return;
 }

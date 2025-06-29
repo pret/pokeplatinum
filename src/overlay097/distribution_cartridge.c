@@ -95,7 +95,7 @@ static BOOL CheckDistCartridgeGameCodeAndSignature(void)
             CTRDG_CpuCopy8(DIST_CTRDG_SIGNATURE_PTR, signature, DIST_CTRDG_SIGNATURE_LENGTH);
             CTRDG_Enable(FALSE);
 
-            CRYPTO_SetAllocator(DistributionCartridge_Alloc, Heap_FreeToHeap);
+            CRYPTO_SetAllocator(DistributionCartridge_Alloc, Heap_Free);
 
             if (CRYPTO_VerifySignature(cartridgeData, DIST_CTRDG_DATA_LENGTH, signature, sSignaturePubKey)) {
                 return TRUE;

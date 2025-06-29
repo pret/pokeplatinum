@@ -474,7 +474,7 @@ BOOL ov28_0225697C(UnkStruct_ov28_0225697C **param0, const UnkStruct_ov28_022569
 void ov28_022569AC(UnkStruct_ov28_0225697C *param0)
 {
     if (param0) {
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0);
     }
 }
 

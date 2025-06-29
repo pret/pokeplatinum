@@ -518,7 +518,7 @@ static void ov12_0222F700(SysTask *param0, void *param1)
     PokemonSprite_SetAttribute(v0->unk_08, MON_SPRITE_X_CENTER, v0->unk_E8);
     PokemonSprite_SetAttribute(v0->unk_08, MON_SPRITE_Y_CENTER, v0->unk_EA + ((-8 * FX32_ONE) >> FX32_SHIFT));
     ov12_02220220(v0->unk_00, param0);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 void ov12_0222F770(UnkStruct_ov12_0221FCDC *param0)
@@ -614,7 +614,7 @@ static void ov12_0222F888(SysTask *param0, void *param1)
         PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_Y_CENTER, v0->unk_4A);
         PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_ROTATION_Z, 0);
         ov12_02220220(v0->unk_00, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         break;
     }
 }
@@ -798,7 +798,7 @@ static void ov12_0222FC44(SysTask *param0, void *param1)
 
         Sprite_DeleteAndFreeResources(v0->unk_0C.unk_00);
         ov12_02220220(v0->unk_00, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
 
         return;
     }
@@ -908,7 +908,7 @@ static void ov12_02230018(SysTask *param0, void *param1)
         break;
     case 2:
         ov12_02220220(v0->unk_00, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 
@@ -1028,7 +1028,7 @@ static void ov12_0223025C(SysTask *param0, void *param1)
         Bg_ClearTilemap(ov12_02220278(v0->unk_00), ov12_022233B0(v0->unk_00, 1));
 
         ov12_02220220(v0->unk_00, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         break;
     default:
         break;
@@ -1125,7 +1125,7 @@ static void ov12_02230540(SysTask *param0, void *param1)
         break;
     case 3:
         ov12_02220220(v0->unk_00, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 
@@ -1184,7 +1184,7 @@ static void ov12_02230600(SysTask *param0, void *param1)
         break;
     case 2:
         ov12_02220220(v0->unk_00, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 }
@@ -1333,7 +1333,7 @@ static void ov12_02230994(SysTask *param0, void *param1)
         Bg_ClearTilemap(ov12_02220278(v0->unk_00), ov12_022233B0(v0->unk_00, 1));
 
         ov12_02220220(v0->unk_00, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         break;
     }
 }
@@ -1434,7 +1434,7 @@ static void ov12_02230BE0(SysTask *param0, void *param1)
     case 3:
         Sprite_DeleteAndFreeResources(v0->unk_10);
         ov12_02220220(v0->unk_00, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 
@@ -1605,7 +1605,7 @@ static void ov12_02230F3C(SysTask *param0, void *param1)
         }
 
         ov12_02220220(v0->unk_00, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 
@@ -1711,7 +1711,7 @@ static void ov12_022310D4(SysTask *param0, void *param1)
     case 6:
         Sprite_DeleteAndFreeResources(v0->unk_48);
         ov12_02220220(v0->unk_00, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 
@@ -1775,7 +1775,7 @@ static void ov12_02231390(SysTask *param0, void *param1)
         break;
     case 3:
         ov12_02220220(v0->unk_00, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 
@@ -1891,7 +1891,7 @@ static void ov12_02231608(SysTask *param0, void *param1)
     case 1:
         Sprite_DeleteAndFreeResources(v0->unk_3C);
         ov12_02220220(v0->unk_00, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 
@@ -2025,7 +2025,7 @@ static void ov12_0223181C(SysTask *param0, void *param1)
     case 4:
         Sprite_DeleteAndFreeResources(v0->unk_14);
         ov12_02220220(v0->unk_00, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 
@@ -2157,7 +2157,7 @@ static void ov12_02231A38(SysTask *param0, void *param1)
     case 6:
         Sprite_DeleteAndFreeResources(v0->unk_24);
         ov12_02220220(v0->unk_00, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 
@@ -2283,7 +2283,7 @@ static void ov12_02231E28(SysTask *param0, void *param1)
         break;
     case 1:
         ov12_02220220(v0->unk_04, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 }
@@ -2377,7 +2377,7 @@ static void ov12_02231FD8(SysTask *param0, void *param1)
         break;
     case 2:
         ov12_02220220(v0->unk_00, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 }
@@ -2536,7 +2536,7 @@ static void ov12_0223223C(SysTask *param0, void *param1)
     case 4:
         Sprite_DeleteAndFreeResources(v0->unk_14);
         ov12_02220220(v0->unk_00, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 
@@ -2607,7 +2607,7 @@ static void ov12_02232430(SysTask *param0, void *param1)
         break;
     case 2:
         ov12_02220220(v0->unk_04, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         break;
     }
 }
@@ -2684,7 +2684,7 @@ static void ov12_022324E0(SysTask *param0, void *param1)
         break;
     case 6:
         ov12_02220220(v0->unk_04, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         break;
     }
 }
@@ -2842,7 +2842,7 @@ static void ov12_022328B8(SysTask *param0, void *param1)
         }
 
         ov12_02220220(v0->unk_00, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 
@@ -2956,7 +2956,7 @@ static void ov12_02232B40(SysTask *param0, void *param1)
     case 5:
         Sprite_DeleteAndFreeResources(v0->unk_5C);
         ov12_02220220(v0->unk_00, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 
@@ -3194,7 +3194,7 @@ static void ov12_02233094(SysTask *param0, void *param1)
         break;
     case 6:
         ov12_02220220(v0->unk_00, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         break;
     }
 
@@ -3302,7 +3302,7 @@ static void ov12_02233394(SysTask *param0, void *param1)
             Sprite_DeleteAndFreeResources(v0->unk_3C[v1]);
         }
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         ov12_02220220(v0->unk_00, param0);
         return;
     }
@@ -3423,7 +3423,7 @@ static void ov12_02233644(SysTask *param0, void *param1)
             Sprite_DeleteAndFreeResources(v0->unk_18[v1]);
         }
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         ov12_02220220(v0->unk_00, param0);
         return;
     }
@@ -3542,7 +3542,7 @@ static void ov12_02233988(SysTask *param0, void *param1)
             Sprite_DeleteAndFreeResources(v0->unk_18[v1]);
         }
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         ov12_02220220(v0->unk_00, param0);
     } else {
         SpriteSystem_DrawSprites(v0->unk_08);
@@ -3697,7 +3697,7 @@ static void ov12_02233BD8(SysTask *param0, void *param1)
         Bg_ClearTilesRange(ov12_022233B0(v0->unk_00, 1), 0x4000, 0, ov12_0221FDE4(v0->unk_00));
         Bg_ClearTilemap(ov12_02220278(v0->unk_00), ov12_022233B0(v0->unk_00, 1));
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         ov12_02220220(v0->unk_00, param0);
         break;
     }
@@ -3782,7 +3782,7 @@ static void ov12_02233DCC(SysTask *param0, void *param1)
         }
         break;
     case 5:
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         ov12_02220220(v0->unk_00, param0);
         break;
     }
@@ -3825,7 +3825,7 @@ static void ov12_02233F4C(SysTask *param0, void *param1)
     case 4:
         Sprite_DeleteAndFreeResources(v0->unk_10);
         ov12_02220220(v0->unk_00, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 
@@ -3898,7 +3898,7 @@ static void ov12_02234044(SysTask *param0, void *param1)
         PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_SCALE_X, 0x100);
         PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_SCALE_Y, 0x100);
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         ov12_02220220(v0->unk_00, param0);
         return;
     }
@@ -3931,7 +3931,7 @@ static void ov12_02234290(SysTask *param0, void *param1)
 
     if (ov12_02225C50(&v0->unk_08, v0->unk_2C) == 0) {
         Sprite_DeleteAndFreeResources(v0->unk_2C);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         ov12_02220220(v0->unk_00, param0);
         return;
     }
@@ -4012,7 +4012,7 @@ static void ov12_022343A0(SysTask *param0, void *param1)
     case 5:
         PokemonSprite_SetAttribute(v0->unk_14, MON_SPRITE_X_CENTER, v0->unk_18);
         PokemonSprite_SetAttribute(v0->unk_14, MON_SPRITE_Y_CENTER, v0->unk_1A);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         ov12_02220220(v0->unk_00, param0);
         break;
     }
@@ -4070,7 +4070,7 @@ static void ov12_02234528(SysTask *param0, void *param1)
     case 4:
         PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_X_CENTER, v0->unk_14);
         PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_Y_CENTER, v0->unk_16);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         ov12_02220220(v0->unk_00, param0);
         break;
     }

@@ -149,7 +149,7 @@ u32 ov23_02248D20(UnkStruct_ov23_02248D20 *param0)
                     }
                 }
 
-                Heap_FreeToHeap(param0->unk_08);
+                Heap_Free(param0->unk_08);
                 param0->unk_08 = v7;
 
                 ListMenu_SetChoices(v0, v7);
@@ -208,8 +208,8 @@ void ov23_02248EF8(UnkStruct_ov23_02248D20 *param0, u16 *param1, u16 *param2)
 
     if (param0->unk_00) {
         ColoredArrow_Free(param0->unk_10);
-        Heap_FreeToHeap(param0->unk_08);
+        Heap_Free(param0->unk_08);
     }
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }

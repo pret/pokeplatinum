@@ -543,8 +543,8 @@ static void ov59_021D131C(UnkStruct_020961E8 *param0)
 
     ov59_021D28A4(param0);
 
-    Heap_FreeToHeap(param0->unk_0C.unk_0C);
-    Heap_FreeToHeap(param0->unk_40C);
+    Heap_Free(param0->unk_0C.unk_0C);
+    Heap_Free(param0->unk_40C);
 
     for (v0 = 0; v0 < 5; v0++) {
         Strbuf_Free(param0->unk_2C[v0]);
@@ -561,7 +561,7 @@ static void ov59_021D1354(BgConfig *param0)
     Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov59_021D1388(UnkStruct_020961E8 *param0, NARC *param1)
@@ -1672,11 +1672,11 @@ static void ov59_021D2860(NNSG2dCharacterData *param0[2], NNSG2dPaletteData *par
 
 static void ov59_021D28A4(UnkStruct_020961E8 *param0)
 {
-    Heap_FreeToHeap(param0->unk_398[0]);
-    Heap_FreeToHeap(param0->unk_398[1]);
+    Heap_Free(param0->unk_398[0]);
+    Heap_Free(param0->unk_398[1]);
 
-    Heap_FreeToHeap(param0->unk_388[0]);
-    Heap_FreeToHeap(param0->unk_388[1]);
+    Heap_Free(param0->unk_388[0]);
+    Heap_Free(param0->unk_388[1]);
 }
 
 static int ov59_021D28D4(UnkStruct_020961E8 *param0)

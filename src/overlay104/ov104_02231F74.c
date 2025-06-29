@@ -447,7 +447,7 @@ static void ov104_02232570(UnkStruct_ov104_02232B5C *param0)
     }
 
     SysTask_Done(param0->unk_04);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
     return;
 }
 
@@ -681,7 +681,7 @@ static void ov104_02232A58(UnkStruct_ov104_02232B5C *param0, u8 param1)
     }
 
     SysTask_Done(param0->unk_04);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
     return;
 }
 
@@ -832,7 +832,7 @@ void ov104_02232B78(SysTask *param0, void *param1)
         if (ov63_0222BF90(v0->unk_14->unk_00, 5) == 0) {
             (*(v0->unk_08))--;
             v0->unk_14->unk_38 = NULL;
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             SysTask_Done(param0);
             return;
         }
@@ -928,7 +928,7 @@ void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, enum Heap
         }
     }
 
-    Heap_FreeToHeap(v4);
+    Heap_Free(v4);
 
     GF_ASSERT(param0->unk_80[param3 - 50000] == NULL);
     param0->unk_80[param3 - 50000] = v5;

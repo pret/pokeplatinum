@@ -348,8 +348,8 @@ void ov63_0222AF14(UnkStruct_ov63_0222AE60 *param0)
         SpriteResourceCollection_Delete(param0->unk_2280[v0]);
     }
 
-    Heap_FreeToHeap(param0->unk_08);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0->unk_08);
+    Heap_Free(param0);
 }
 
 void ov63_0222AF94(UnkStruct_ov63_0222AE60 *param0, u32 param1, u32 param2, int param3, u32 param4)

@@ -99,18 +99,18 @@ PoketchAnimation_AnimationManager *PoketchAnimation_SetupAnimationManager(NNSG2d
     if (success == FALSE) {
         if (animMan != NULL) {
             if (animMan->oam != NULL) {
-                Heap_FreeToHeapExplicit(heapID, animMan->oam);
+                Heap_FreeExplicit(heapID, animMan->oam);
             }
 
             if (animMan->animatedSpritePool != NULL) {
-                Heap_FreeToHeapExplicit(heapID, animMan->animatedSpritePool);
+                Heap_FreeExplicit(heapID, animMan->animatedSpritePool);
             }
 
             if (animMan->animatedSpritePtrArray != NULL) {
-                Heap_FreeToHeapExplicit(heapID, animMan->animatedSpritePtrArray);
+                Heap_FreeExplicit(heapID, animMan->animatedSpritePtrArray);
             }
 
-            Heap_FreeToHeapExplicit(heapID, animMan);
+            Heap_FreeExplicit(heapID, animMan);
         }
 
         return NULL;
@@ -123,18 +123,18 @@ void PoketchAnimation_FreeAnimationManager(PoketchAnimation_AnimationManager *an
 {
     if (animMan) {
         if (animMan->oam) {
-            Heap_FreeToHeap(animMan->oam);
+            Heap_Free(animMan->oam);
         }
 
         if (animMan->animatedSpritePool) {
-            Heap_FreeToHeap(animMan->animatedSpritePool);
+            Heap_Free(animMan->animatedSpritePool);
         }
 
         if (animMan->animatedSpritePtrArray) {
-            Heap_FreeToHeap(animMan->animatedSpritePtrArray);
+            Heap_Free(animMan->animatedSpritePtrArray);
         }
 
-        Heap_FreeToHeap(animMan);
+        Heap_Free(animMan);
     }
 }
 
@@ -321,12 +321,12 @@ BOOL PoketchAnimation_LoadSpriteFromNARC(PoketchAnimation_SpriteData *spriteData
 void PoketchAnimation_FreeSpriteData(PoketchAnimation_SpriteData *spriteData)
 {
     if (spriteData->compressedSprite != NULL) {
-        Heap_FreeToHeapExplicit(spriteData->heapID, spriteData->compressedSprite);
+        Heap_FreeExplicit(spriteData->heapID, spriteData->compressedSprite);
         spriteData->compressedSprite = NULL;
     }
 
     if (spriteData->compressedAnim != NULL) {
-        Heap_FreeToHeapExplicit(spriteData->heapID, spriteData->compressedAnim);
+        Heap_FreeExplicit(spriteData->heapID, spriteData->compressedAnim);
         spriteData->compressedAnim = NULL;
     }
 }

@@ -43,7 +43,7 @@ void CommTool_Init(int netId)
 
 void CommTool_Delete(void)
 {
-    Heap_FreeToHeap(sCommTool);
+    Heap_Free(sCommTool);
     sCommTool = NULL;
 }
 

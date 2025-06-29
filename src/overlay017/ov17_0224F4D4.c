@@ -315,7 +315,7 @@ int ov17_0224F86C(ApplicationManager *appMan, int *param1)
     StringTemplate_Free(v0->unk_10.unk_B8);
     MessageLoader_Free(v0->unk_10.unk_B4);
 
-    Heap_FreeToHeap(v0->unk_10.unk_20);
+    Heap_Free(v0->unk_10.unk_20);
     SysTask_Done(v0->unk_04);
     SysTask_Done(v0->unk_08);
 

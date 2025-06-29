@@ -468,7 +468,7 @@ int ov117_02260C10(ApplicationManager *appMan, int *param1)
     Strbuf_Free(v0->unk_88);
     StringTemplate_Free(v0->unk_84);
     MessageLoader_Free(v0->unk_80);
-    Heap_FreeToHeap(v0->unk_2C);
+    Heap_Free(v0->unk_2C);
     ov117_02260F64(v0);
     SysTask_Done(v0->unk_94);
 
@@ -868,7 +868,7 @@ static void ov117_022613EC(UnkStruct_ov117_02261280 *param0)
             }
 
             Text_AddPrinterWithParamsAndColor(&param0->unk_30[Unk_ov117_02266968[param0->unk_00->unk_30][v1]], FONT_SYSTEM, v3, v7, 0, TEXT_SPEED_INSTANT, v5, NULL);
-            Heap_FreeToHeap(v3);
+            Heap_Free(v3);
         }
     }
 }
@@ -916,7 +916,7 @@ static void ov117_022615E0(UnkStruct_ov117_02261280 *param0)
     void *v0 = ParticleSystem_GetHeapStart(param0->unk_A4);
 
     ParticleSystem_Free(param0->unk_A4);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 void ov117_02261600(UnkStruct_ov117_02261280 *param0, int param1)

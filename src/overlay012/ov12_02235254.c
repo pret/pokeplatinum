@@ -922,5 +922,5 @@ void *ov12_02235E50(UnkStruct_ov12_0221FCDC *param0, int param1)
 void ov12_02235E80(void *param0)
 {
     GF_ASSERT(param0 != NULL);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }

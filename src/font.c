@@ -139,7 +139,7 @@ void Font_Free(enum Font font)
         }
 
         if (i == NELEMS(sFontArchiveData)) {
-            Heap_FreeToHeap(sFontWork->data[font]);
+            Heap_Free(sFontWork->data[font]);
             sFontWork->data[font] = NULL;
         }
     }

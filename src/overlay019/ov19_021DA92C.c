@@ -94,7 +94,7 @@ void ov19_021DA9E0(UnkStruct_ov19_021DA9E0 *param0)
             Window_Remove(&param0->unk_04[v0]);
         }
 
-        Heap_FreeToHeap(param0->unk_04);
+        Heap_Free(param0->unk_04);
         param0->unk_04 = NULL;
     }
 
@@ -120,7 +120,7 @@ void ov19_021DA9E0(UnkStruct_ov19_021DA9E0 *param0)
     }
 
     if (param0->unk_28) {
-        Heap_FreeToHeap(param0->unk_28);
+        Heap_Free(param0->unk_28);
     }
 
     if (param0->unk_30) {
@@ -128,7 +128,7 @@ void ov19_021DA9E0(UnkStruct_ov19_021DA9E0 *param0)
     }
 
     if (param0->unk_34) {
-        Heap_FreeToHeap(param0->unk_34);
+        Heap_Free(param0->unk_34);
     }
 
     for (v0 = 0; v0 < 2; v0++) {
@@ -252,7 +252,7 @@ static void ov19_021DAC4C(UnkStruct_ov19_021DA9E0 *param0)
 static void ov19_021DAC90(UnkStruct_ov19_021DA9E0 *param0)
 {
     if (param0->unk_4C) {
-        Heap_FreeToHeap(SysTask_GetParam(param0->unk_4C));
+        Heap_Free(SysTask_GetParam(param0->unk_4C));
         SysTask_Done(param0->unk_4C);
         param0->unk_4C = NULL;
     }

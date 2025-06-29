@@ -117,7 +117,7 @@ static BOOL FieldTask_RunScript(FieldTask *taskManager)
             Strbuf_Free(scriptManager->msgBuf);
             Strbuf_Free(scriptManager->tmpBuf);
             scriptManager->magic = 0;
-            Heap_FreeToHeap(scriptManager);
+            Heap_Free(scriptManager);
 
             if (scriptFunction != NULL) {
                 scriptFunction(fieldSystem);
@@ -146,8 +146,8 @@ static ScriptManager *ScriptManager_New()
 static void ScriptContext_Free(ScriptContext *ctx)
 {
     MessageLoader_Free(ctx->loader);
-    Heap_FreeToHeap(ctx->scripts);
-    Heap_FreeToHeap(ctx);
+    Heap_Free(ctx->scripts);
+    Heap_Free(ctx);
 }
 
 static void sub_0203EA68(FieldSystem *fieldSystem, ScriptManager *scriptManager, u16 scriptID, MapObject *object, void *saveType)

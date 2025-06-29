@@ -119,7 +119,7 @@ BOOL PoketchGraphics_Main(PoketchGraphics_TaskData **taskDataPtr, const PoketchG
         newTaskData->animMan = PoketchAnimation_SetupAnimationManager(newTaskData->oamMan, HEAP_ID_POKETCH_MAIN);
 
         if (newTaskData->animMan == NULL) {
-            Heap_FreeToHeap(*taskDataPtr);
+            Heap_Free(*taskDataPtr);
             *taskDataPtr = NULL;
             return FALSE;
         }
@@ -175,7 +175,7 @@ static void PoketchGraphics_InitPaletteData(PoketchGraphics_TaskData *taskData)
     if (poketchPalettes) {
         MI_CpuCopy32(paletteData->pRawData, taskData->poketchPalettes, NUM_PALETTES * PALETTE_SIZE_BYTES);
         DC_FlushRange(taskData->poketchPalettes, NUM_PALETTES * PALETTE_SIZE_BYTES);
-        Heap_FreeToHeap(poketchPalettes);
+        Heap_Free(poketchPalettes);
     }
 }
 
@@ -218,14 +218,14 @@ void PoketchGraphics_Close(PoketchGraphics_TaskData *taskData)
         }
 
         if (taskData->bgConfig) {
-            Heap_FreeToHeap(taskData->bgConfig);
+            Heap_Free(taskData->bgConfig);
         }
 
         if (taskData->task) {
             SysTask_Done(taskData->task);
         }
 
-        Heap_FreeToHeap(taskData);
+        Heap_Free(taskData);
     }
 }
 

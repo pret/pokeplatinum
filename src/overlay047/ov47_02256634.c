@@ -60,7 +60,7 @@ void ov47_02256670(UnkStruct_ov47_02256634 *param0)
 {
     if (param0 != NULL) {
         ov47_022567FC(param0);
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0);
     }
 }
 

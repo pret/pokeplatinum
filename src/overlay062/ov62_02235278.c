@@ -214,7 +214,7 @@ void ov62_022354A4(SysTask *param0, void *param1)
         *(v0->unk_2C) = 1;
     } break;
     default:
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         break;
     }
@@ -344,7 +344,7 @@ static BOOL ov62_02235580(UnkStruct_0208C06C *param0)
 
         ov62_0222FB90(param0);
         v0 = param0->unk_860;
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     } break;
     default:
         break;
@@ -459,7 +459,7 @@ static BOOL ov62_02235854(UnkStruct_0208C06C *param0)
         v5 = ov62_0222FBF8(param0);
         v0 = param0->unk_860;
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         ov62_0222FB60(param0, 5);
     } break;
     }

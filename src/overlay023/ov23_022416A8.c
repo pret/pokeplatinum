@@ -140,7 +140,7 @@ void ov23_022417E0(void)
 void ov23_022417F4(void)
 {
     if (Unk_ov23_02257744) {
-        Heap_FreeToHeap(Unk_ov23_02257744);
+        Heap_Free(Unk_ov23_02257744);
         Unk_ov23_02257744 = NULL;
     }
 }
@@ -572,7 +572,7 @@ void ov23_02241ED0(void)
 {
     if (Unk_ov23_02257744->unk_45C) {
         SysTask_Done(Unk_ov23_02257744->unk_45C);
-        Heap_FreeToHeap(Unk_ov23_02257744->unk_460);
+        Heap_Free(Unk_ov23_02257744->unk_460);
 
         Unk_ov23_02257744->unk_45C = NULL;
         Unk_ov23_02257744->unk_460 = NULL;

@@ -382,7 +382,7 @@ static void DrawButton(BattleBag *battleBag, u8 button, u8 buttonState, u8 scree
 
     Bg_LoadToTilemapRect(battleBag->background, BG_LAYER_SUB_2, buttonData, sButtonDimensions[button].xCoord, sButtonDimensions[button].yCoord, sButtonDimensions[button].width, sButtonDimensions[button].height);
     Bg_ScheduleTilemapTransfer(battleBag->background, BG_LAYER_SUB_2);
-    Heap_FreeToHeap(buttonData);
+    Heap_Free(buttonData);
 }
 
 static void UpdateWindowScroll(BattleBag *battleBag, u8 button, u8 buttonState)

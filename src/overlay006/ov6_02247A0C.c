@@ -113,7 +113,7 @@ static BOOL ov6_02247A34(FieldTask *param0)
         }
         break;
     case 2:
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return 1;
     }
 
@@ -200,7 +200,7 @@ void ov6_02247CC8(void *param0)
     Window_Remove(&v0->unk_00);
     MessageLoader_Free(v0->unk_10);
     StringTemplate_Free(v0->unk_14);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 static int ov6_02247CF4(const Strbuf *param0, int param1, int param2, int param3)

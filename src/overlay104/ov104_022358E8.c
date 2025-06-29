@@ -259,7 +259,7 @@ static void ov104_02235B84(void *param0)
     UnkStruct_ov104_0223597C *v1 = param0;
 
     ov104_022367DC(v1->unk_24, param0);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 
     return;
 }

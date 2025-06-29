@@ -167,8 +167,8 @@ static BOOL sub_020529C4(FieldTask *task)
         StringTemplate_Free(v0->unk_20);
         MessageLoader_Free(v0->unk_1C);
         Bg_FreeTilemapBuffer(v0->unk_08, BG_LAYER_MAIN_3);
-        Heap_FreeToHeap(v0->unk_08);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0->unk_08);
+        Heap_Free(v0);
 
         return 1;
     }

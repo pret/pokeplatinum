@@ -260,8 +260,8 @@ void ov66_02234548(UnkStruct_ov66_02234548 *param0)
     TextureResourceManager_Delete(param0->unk_08);
     ResourceCollection_Delete(param0->unk_00);
     ResourceCollection_Delete(param0->unk_04);
-    Heap_FreeToHeap(param0->unk_10);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0->unk_10);
+    Heap_Free(param0);
 }
 
 void ov66_02234590(UnkStruct_ov66_02234548 *param0)

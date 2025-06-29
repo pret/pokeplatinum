@@ -48,7 +48,7 @@ void ov62_02246B4C(UnkStruct_ov62_02246B00 *param0)
     GF_ASSERT(param0 != NULL);
 
     Strbuf_Free(param0->unk_18);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov62_02246B70(UnkStruct_ov62_02246BF4 *param0, int param1)

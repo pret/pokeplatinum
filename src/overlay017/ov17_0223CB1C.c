@@ -327,7 +327,7 @@ int ov17_0223CF8C(ApplicationManager *appMan, int *param1)
     StringTemplate_Free(v0->unk_0C.unk_3C);
     Strbuf_Free(v0->unk_0C.unk_40);
     MessageLoader_Free(v0->unk_0C.unk_38);
-    Heap_FreeToHeap(v0->unk_0C.unk_24);
+    Heap_Free(v0->unk_0C.unk_24);
     SysTask_Done(v0->unk_04);
 
     ov17_0223F1E0(v0->unk_08);

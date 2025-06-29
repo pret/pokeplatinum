@@ -77,7 +77,7 @@ static void MapNamePopUp_LoadAreaGfx(MapNamePopUp *mapPopUp, u8 bgLayer, u16 til
     ptr = Graphics_GetPlttData(NARC_INDEX_ARC__AREA_WIN_GRA, narcMemberIdx + 1, &paletteData, HEAP_ID_FIELD);
 
     MapNamePopUp_LoadPalette(paletteData->pRawData, 1, offset);
-    Heap_FreeToHeap(ptr);
+    Heap_Free(ptr);
 }
 
 static void MapNamePopUp_DrawWindowFrame(MapNamePopUp *mapPopUp, s32 strWidth)
@@ -130,7 +130,7 @@ static void MapNamePopUp_DrawWindowFrame(MapNamePopUp *mapPopUp, s32 strWidth)
         }
 
         Window_CopyToVRAM(&mapPopUp->window);
-        Heap_FreeToHeap(mapPopUp->tiles);
+        Heap_Free(mapPopUp->tiles);
     }
 }
 
@@ -242,7 +242,7 @@ void MapNamePopUp_Destroy(MapNamePopUp *mapPopUp)
     MessageLoader_Free(mapPopUp->msgLoader);
     Window_Remove(&mapPopUp->window);
     Strbuf_Free(mapPopUp->strbuf);
-    Heap_FreeToHeap(mapPopUp);
+    Heap_Free(mapPopUp);
 
     mapPopUp = NULL;
 }

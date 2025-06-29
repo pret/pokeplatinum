@@ -91,7 +91,7 @@ void sub_02027FEC(PalPad *param0, PalPad *param1, int param2, int heapID)
     }
 
     memcpy(param0, v4, sizeof(PalPad) * 16);
-    Heap_FreeToHeap(v4);
+    Heap_Free(v4);
 }
 
 int sub_020280E0(PalPad *param0, u32 param1)

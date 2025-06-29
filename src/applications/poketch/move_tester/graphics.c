@@ -180,7 +180,7 @@ void PoketchMoveTesterGraphics_Free(PoketchMoveTesterGraphics *graphics)
         MessageLoader_Free(graphics->msgLoaderTypes);
         MessageLoader_Free(graphics->msgLoaderEffectiveness);
         UnloadSprites(graphics);
-        Heap_FreeToHeap(graphics);
+        Heap_Free(graphics);
     }
 }
 

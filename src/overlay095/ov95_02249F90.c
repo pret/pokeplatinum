@@ -68,7 +68,7 @@ void ov95_02249FB4(void *param0)
         int v1;
 
         ov95_0224A320(v0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 }
 

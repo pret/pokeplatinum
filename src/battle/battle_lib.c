@@ -6439,7 +6439,7 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
                 battleCtx->battleStatusMask2 |= SYSCTL_FORM_CHANGE;
 
                 BattleIO_UpdatePartyMon(battleSys, battleCtx, battleCtx->msgBattlerTemp);
-                Heap_FreeToHeap(mon);
+                Heap_Free(mon);
 
                 *subscript = subscript_form_change;
                 result = TRUE;

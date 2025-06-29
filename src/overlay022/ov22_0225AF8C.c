@@ -133,8 +133,8 @@ void ov22_0225B020(UnkStruct_ov22_0225B1BC *param0)
     ov22_022594AC(&param0->unk_1E8);
     ov22_0225B35C(param0);
 
-    Heap_FreeToHeap(param0->unk_298);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0->unk_298);
+    Heap_Free(param0);
 }
 
 void ov22_0225B06C(UnkStruct_ov22_0225B1BC *param0)

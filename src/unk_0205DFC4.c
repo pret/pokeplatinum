@@ -305,7 +305,7 @@ static BOOL sub_0205E268(FieldTask *param0)
     if (v2->unk_0C == 0) {
         v0.x = v0.y = v0.z = 0;
         sub_020630AC(v2->unk_00, &v0);
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
         return 1;
     }
 
@@ -340,7 +340,7 @@ static BOOL sub_0205E3AC(FieldTask *param0)
         v1->unk_08 = 0;
 
         if (v1->unk_04-- == 0) {
-            Heap_FreeToHeap(v1);
+            Heap_Free(v1);
             return 1;
         }
     }

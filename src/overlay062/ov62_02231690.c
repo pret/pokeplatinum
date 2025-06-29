@@ -2131,12 +2131,12 @@ void ov62_022339A0(UnkStruct_0208C06C *param0)
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param0->unk_87C[v0] != NULL) {
-            Heap_FreeToHeap(param0->unk_87C[v0]);
+            Heap_Free(param0->unk_87C[v0]);
             param0->unk_87C[v0] = NULL;
         }
 
         if (param0->unk_88C[v0] != NULL) {
-            Heap_FreeToHeap(param0->unk_88C[v0]);
+            Heap_Free(param0->unk_88C[v0]);
             param0->unk_88C[v0] = NULL;
         }
     }

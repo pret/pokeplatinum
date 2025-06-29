@@ -30,7 +30,7 @@ void Signpost_Free(Signpost *signpost)
         Window_Remove(&signpost->window);
     }
 
-    Heap_FreeToHeap(signpost);
+    Heap_Free(signpost);
 }
 
 void Signpost_SetTypeAndNARCMemberIdx(Signpost *signpost, u16 type, u16 NARCMemberIdx)

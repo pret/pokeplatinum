@@ -161,7 +161,7 @@ UnkStruct_ov70_0226C914 *ov70_0226C8B4(const UnkStruct_ov66_0222DFF8 *param0, Un
 void ov70_0226C914(UnkStruct_ov70_0226C914 *param0)
 {
     ov70_0226CC58(param0);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov70_0226C924(UnkStruct_ov70_0226C914 *param0)

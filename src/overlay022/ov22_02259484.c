@@ -18,7 +18,7 @@ void ov22_02259484(UnkStruct_ov22_02259484 *param0, int param1, int heapID)
 
 void ov22_022594AC(UnkStruct_ov22_02259484 *param0)
 {
-    Heap_FreeToHeap(param0->unk_00);
+    Heap_Free(param0->unk_00);
     param0->unk_00 = NULL;
     param0->unk_04 = 0;
 }

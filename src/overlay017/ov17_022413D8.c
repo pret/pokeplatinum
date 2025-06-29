@@ -430,7 +430,7 @@ void ov17_02241494(UnkStruct_ov17_0224145C *param0)
     GF_ASSERT(param0->unk_0B == 0);
 
     SysTask_Done(param0->unk_04);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov17_022414B0(UnkStruct_ov17_0224145C *param0)
@@ -530,11 +530,11 @@ void ov17_022416E4(UnkStruct_ov17_0223F88C *param0)
 
     for (v0 = 0; v0 < 4; v0++) {
         PokemonSprite_Delete(param0->unk_08[v0]);
-        Heap_FreeToHeap(param0->unk_58[v0].unk_00);
+        Heap_Free(param0->unk_58[v0].unk_00);
         param0->unk_58[v0].unk_00 = NULL;
     }
 
-    Heap_FreeToHeap(param0->unk_98.unk_00);
+    Heap_Free(param0->unk_98.unk_00);
     param0->unk_98.unk_00 = NULL;
 }
 
@@ -812,7 +812,7 @@ static void ov17_02241C2C(SysTask *param0, void *param1)
         break;
     default:
         *(v0->unk_04) = 1;
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         return;
     }
@@ -849,7 +849,7 @@ static void ov17_02241CF0(SysTask *param0, void *param1)
         break;
     default:
         *(v0->unk_04) = 1;
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         return;
     }
@@ -1008,7 +1008,7 @@ static void ov17_0224207C(SysTask *param0, void *param1)
         break;
     default:
         ManagedSprite_SetAffineOverwriteMode(v0->unk_00, AFFINE_OVERWRITE_MODE_NONE);
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         return;
     }
@@ -1137,7 +1137,7 @@ static void ov17_022422B8(SysTask *param0, void *param1)
         Sprite_DeleteAndFreeResources(v0->unk_04);
         ManagedSprite_SetDrawFlag(v0->unk_08, 1);
         Sound_PlayEffect(SEQ_SE_DP_CON_002);
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         return;
     }
@@ -1303,7 +1303,7 @@ static void ov17_02242720(SysTask *param0, void *param1)
     default:
         ov17_022413D8();
         *(v0->unk_04) = 1;
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         return;
     }
@@ -1789,7 +1789,7 @@ static void ov17_022431E8(SysTask *param0, void *param1)
         }
 
         *(v0->unk_10) = 1;
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         return;
     }
@@ -1904,7 +1904,7 @@ static void ov17_022434E0(SysTask *param0, void *param1)
         ov17_022414B0(v0->unk_04);
 
         (*(v0->unk_0C))--;
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         return;
     }
@@ -1925,7 +1925,7 @@ UnkStruct_ov17_0224365C *ov17_0224365C(UnkStruct_ov17_02246F24 *param0, int para
 void ov17_02243690(UnkStruct_ov17_0224365C *param0)
 {
     SysTask_Done(param0->unk_04);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov17_022436A4(SysTask *param0, void *param1)
@@ -2046,7 +2046,7 @@ static void ov17_02243750(SysTask *param0, void *param1)
         ManagedSprite_SetDrawFlag(v0->unk_04, 0);
         Sound_PlayEffect(SEQ_SE_DP_SELECT5);
         (*(v0->unk_08))--;
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         return;
     }

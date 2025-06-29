@@ -642,7 +642,7 @@ static BOOL ov23_02251ACC(FieldTask *param0)
             ov23_0224B2C8(fieldSystem);
             SystemFlag_SetDecoratedSecretBase(SaveData_GetVarsFlags(fieldSystem->saveData));
             ov23_02251F94(fieldSystem);
-            Heap_FreeToHeap(v1);
+            Heap_Free(v1);
             return 1;
         }
         break;
@@ -670,7 +670,7 @@ static void ov23_02251BB4(SysTask *param0, UnkStruct_ov23_02250CD4 *param1)
     ov23_02254044(ov23_022421BC());
 
     SysTask_Done(param0);
-    Heap_FreeToHeap(param1);
+    Heap_Free(param1);
 }
 
 static void ov23_02251C04(SysTask *param0, void *param1)
@@ -885,7 +885,7 @@ static void ov23_02252038(SysTask *param0, void *param1)
         v0->unk_08 = NULL;
         break;
     case 2:
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         ov23_02243204();
         SysTask_Done(param0);
         break;
@@ -900,7 +900,7 @@ static void ov23_022520C8(SysTask *param0, void *param1)
         Menu_DestroyForExit(v0->unk_08, 4);
     }
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     SysTask_Done(param0);
 }
 

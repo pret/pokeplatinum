@@ -93,10 +93,10 @@ void ov104_0222E710(UnkStruct_ov104_022320B4 *param0)
     StringTemplate_Free(param0->unk_44);
     Strbuf_Free(param0->unk_48);
     Strbuf_Free(param0->unk_4C);
-    Heap_FreeToHeap(param0->unk_40);
+    Heap_Free(param0->unk_40);
     MessageLoader_Free(param0->unk_3C);
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov104_0222E748(UnkStruct_ov104_022320B4 *param0, int param1, int param2)
@@ -143,10 +143,10 @@ static void ov104_0222E7FC(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_022
     }
 
     if (param1->unk_84 != param0->unk_40) {
-        Heap_FreeToHeap(param1->unk_84);
+        Heap_Free(param1->unk_84);
     }
 
-    Heap_FreeToHeap(param1);
+    Heap_Free(param1);
 }
 
 static void ov104_0222E82C(UnkStruct_ov104_022320B4 *param0, u16 param1, u32 *param2, void *param3)
@@ -206,7 +206,7 @@ UnkStruct_ov104_0222E8C8 *ov104_0222E8C8(UnkStruct_ov104_022320B4 *param0, int h
 void ov104_0222E8E8(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0222E8C8 *param1)
 {
     param0->unk_24 = *param1;
-    Heap_FreeToHeap(param1);
+    Heap_Free(param1);
 }
 
 static void ov104_0222E904(UnkStruct_ov104_0222E930 *param0, int param1)

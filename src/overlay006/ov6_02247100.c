@@ -71,7 +71,7 @@ BOOL ov6_02247120(FieldTask *task)
         v0 = Unk_ov6_022495CC[v2->unk_00](task, fieldSystem, v2);
 
         if (v0 == 2) {
-            Heap_FreeToHeap(v2);
+            Heap_Free(v2);
         }
     } while (v0 == 1);
 
@@ -192,7 +192,7 @@ BOOL ov6_022472E8(FieldTask *task)
 
         if (v0 == 2) {
             ov6_0224732C(fieldSystem, v2);
-            Heap_FreeToHeap(v2);
+            Heap_Free(v2);
             return 1;
         }
     } while (v0 == 1);
@@ -311,7 +311,7 @@ BOOL ov6_022474AC(FieldTask *task)
         v0 = Unk_ov6_022495F0[v2->unk_00](task, fieldSystem, v2);
 
         if (v0 == 2) {
-            Heap_FreeToHeap(v2);
+            Heap_Free(v2);
         }
     } while (v0 == 1);
 
@@ -370,7 +370,7 @@ BOOL ov6_02247554(FieldTask *task)
         v0 = Unk_ov6_022495F0[v2->unk_00](task, fieldSystem, v2);
 
         if (v0 == 2) {
-            Heap_FreeToHeap(v2);
+            Heap_Free(v2);
         }
     } while (v0 == 1);
 

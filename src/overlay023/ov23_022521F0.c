@@ -506,7 +506,7 @@ static void ov23_02252C78(UnkStruct_ov23_02250CD4 *param0)
     Strbuf_Free(param0->unk_68);
     Strbuf_Free(param0->unk_6C);
     StringTemplate_Free(param0->unk_70);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void *ov23_02252C98(int param0, FieldSystem *fieldSystem, int param2)

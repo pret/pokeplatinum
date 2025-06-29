@@ -42,7 +42,7 @@ void ov5_021D2F14(UnkStruct_ov5_021D30A8 *param0, const SpriteResourceDataPaths 
         v2 = ReadFileToHeap(heapID, param1->asArray[v4]);
 
         SpriteResourceTable_LoadFromBinary(v2, v0, heapID);
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
     }
 
     for (v4 = 0; v4 < param0->unk_1C4; v4++) {
@@ -63,14 +63,14 @@ void ov5_021D2F14(UnkStruct_ov5_021D30A8 *param0, const SpriteResourceDataPaths 
         SpriteResourceTable_Clear(v0);
     }
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
     SpriteTransfer_RequestCharListAtEnd(param0->unk_1AC[0]);
     SpriteTransfer_RequestPlttFreeSpaceList(param0->unk_1AC[1]);
 
     v2 = ReadFileToHeap(heapID, param1->asStruct.spriteTable);
     param0->unk_190 = SpriteResourcesHeaderList_NewFromResdat(v2, heapID, param0->unk_194[0], param0->unk_194[1], param0->unk_194[2], param0->unk_194[3], param0->unk_194[4], param0->unk_194[5]);
 
-    Heap_FreeToHeap(v2);
+    Heap_Free(v2);
 }
 
 void ov5_021D30A8(UnkStruct_ov5_021D30A8 *param0)

@@ -37,7 +37,7 @@ void ColoredArrow_Free(ColoredArrow *arrow)
             Strbuf_Free(arrow->strbuf);
         }
 
-        Heap_FreeToHeap(arrow);
+        Heap_Free(arrow);
     }
 }
 

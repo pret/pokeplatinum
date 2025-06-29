@@ -46,7 +46,7 @@ void FieldTask_InitJump(FieldTask *task, FieldTaskFunc taskFunc, void *taskEnv)
     task->env = taskEnv;
 
     if (task->dummy14 != 0 || task->dummy14 != NULL) { // Double-comparison required to match
-        Heap_FreeToHeap(task->dummy14);
+        Heap_Free(task->dummy14);
         task->dummy10 = 0;
         task->dummy14 = NULL;
     }
@@ -72,11 +72,11 @@ BOOL FieldTask_Run(FieldSystem *fieldSys)
         FieldTask *prev = fieldSys->task->prev;
 
         if (fieldSys->task->dummy14) {
-            Heap_FreeToHeap(fieldSys->task->dummy14);
+            Heap_Free(fieldSys->task->dummy14);
         }
 
-        Heap_FreeToHeap(fieldSys->task->dummy1C);
-        Heap_FreeToHeap(fieldSys->task);
+        Heap_Free(fieldSys->task->dummy1C);
+        Heap_Free(fieldSys->task);
 
         fieldSys->task = prev;
         if (prev == NULL) {
@@ -128,7 +128,7 @@ static BOOL RunChildApplication(FieldTask *task)
             break;
         }
 
-        Heap_FreeToHeap(env);
+        Heap_Free(env);
         return TRUE;
     }
 

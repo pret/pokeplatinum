@@ -56,7 +56,7 @@ static BOOL ov33_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *pa
             }
         }
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 
     return 0;
@@ -150,7 +150,7 @@ static u32 ov33_0225630C(u32 param0)
 static void ov33_0225632C(UnkStruct_ov33_0225621C *param0)
 {
     ov33_022564F0(param0->unk_5C);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov33_02256340(SysTask *param0, void *param1)

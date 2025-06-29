@@ -116,7 +116,7 @@ void ov20_021D2EF0(UnkStruct_ov20_021D30F8 *param0)
     Window_Remove(&param0->unk_0C);
     Window_Remove(&param0->unk_1C);
     Window_Remove(&param0->unk_2C);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov20_021D2F50(UnkStruct_ov20_021D30F8 *param0, NARC *param1)
@@ -171,7 +171,7 @@ static void ov20_021D30A4(UnkStruct_ov20_021D30F8 *param0, NARC *param1)
     MI_CpuCopy16(v0->pRawData, param0->unk_70, sizeof(param0->unk_70));
     DC_FlushRange(param0->unk_70, sizeof(param0->unk_70));
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
 static void ov20_021D30F8(UnkStruct_ov20_021D30F8 *param0)

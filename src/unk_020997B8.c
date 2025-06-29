@@ -18,7 +18,7 @@ UnkStruct_020997B8 *sub_020997B8(u32 heapID)
 
 void sub_020997D0(UnkStruct_020997B8 *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 u16 *sub_020997D8(Pokemon *mon, u32 heapID)
@@ -76,7 +76,7 @@ u16 *sub_020997D8(Pokemon *mon, u32 heapID)
         }
     }
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     return v1;
 }

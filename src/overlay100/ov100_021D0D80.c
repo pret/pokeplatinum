@@ -250,7 +250,7 @@ static void ov100_021D111C(UnkStruct_ov100_021D46C8 *param0)
     Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_1);
     Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_2);
     Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_3);
-    Heap_FreeToHeap(param0->unk_0C);
+    Heap_Free(param0->unk_0C);
 
     PaletteData_FreeBuffer(param0->unk_10, 0);
     PaletteData_FreeBuffer(param0->unk_10, 1);

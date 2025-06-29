@@ -406,7 +406,7 @@ static void sub_0205B754(UnkStruct_0205B43C *param0)
     }
 
     SysTask_Done(param0->unk_0C);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
     Heap_Destroy(HEAP_ID_31);
 }
 
@@ -1332,7 +1332,7 @@ void sub_0205C040(StringTemplate *param0, int param1, int param2, TrainerInfo *p
     v1 = MessageLoader_GetNewStrbuf(v2, v4);
 
     StringTemplate_SetStrbuf(param0, 2, v1, 0, 1, v3);
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
     MessageLoader_Free(v2);
 }
 
@@ -1380,9 +1380,9 @@ void *sub_0205C17C(UnkStruct_0205B43C *param0)
 
 void sub_0205C1F0(UnkStruct_0205B43C *param0)
 {
-    Heap_FreeToHeap(param0->unk_188[0]);
-    Heap_FreeToHeap(param0->unk_188[1]);
-    Heap_FreeToHeap(param0->unk_184);
+    Heap_Free(param0->unk_188[0]);
+    Heap_Free(param0->unk_188[1]);
+    Heap_Free(param0->unk_184);
 }
 
 void sub_0205C214(UnkStruct_0205B43C *param0)

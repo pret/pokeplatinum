@@ -55,7 +55,7 @@ void ov11_0221F8D8(ParticleSystem *param0)
     void *v0 = ParticleSystem_GetHeapStart(param0);
 
     ParticleSystem_Free(param0);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 void ov11_0221F8F0(void)

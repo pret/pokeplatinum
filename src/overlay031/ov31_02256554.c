@@ -47,7 +47,7 @@ BOOL ov31_02256554(UnkStruct_ov31_02256554 **param0, const UnkStruct_ov31_022565
 void ov31_02256584(UnkStruct_ov31_02256554 *param0)
 {
     if (param0 != NULL) {
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0);
     }
 }
 
@@ -126,7 +126,7 @@ static void ov31_02256644(BgConfig *param0)
         }
 
         Bg_LoadTiles(param0, 6, v0, 0x20 * 16, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 }
 

@@ -90,10 +90,10 @@ void sub_020150A8(UnkStruct_02015064 *param0)
     GF_ASSERT(param0->unk_08);
     GF_ASSERT(param0->unk_10);
 
-    Heap_FreeToHeap(param0->unk_00);
-    Heap_FreeToHeap(param0->unk_08);
-    Heap_FreeToHeap(param0->unk_10);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0->unk_00);
+    Heap_Free(param0->unk_08);
+    Heap_Free(param0->unk_10);
+    Heap_Free(param0);
 
     param0 = NULL;
 }

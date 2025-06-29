@@ -134,7 +134,7 @@ static UnkStruct_02015128 *ov83_0223D6BC(UnkStruct_02015064 *param0, u32 param1,
     v0.unk_04 = v2;
     v3 = sub_02015128(&v0);
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 
     return v3;
 }
@@ -152,7 +152,7 @@ static UnkStruct_020151A4 *ov83_0223D6EC(UnkStruct_02015064 *param0, u32 param1,
     v0.unk_08 = 1;
     v3 = sub_020151A4(&v0);
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 
     return v3;
 }
@@ -665,8 +665,8 @@ static void ov83_0223E15C(UnkStruct_ov83_0223E138 *param0, u32 param1, NARC *par
 
 static void ov83_0223E208(UnkStruct_ov83_0223E138 *param0)
 {
-    Heap_FreeToHeap(param0->unk_20);
-    Heap_FreeToHeap(param0->unk_28);
+    Heap_Free(param0->unk_20);
+    Heap_Free(param0->unk_28);
 }
 
 static void ov83_0223E21C(Window *param0, Strbuf *param1, int param2, int param3)
@@ -1088,7 +1088,7 @@ static void ov83_0223E844(UnkStruct_ov83_0223E824 *param0, u32 param1, NARC *par
 
     Bg_LoadToTilemapRect(param0->unk_04, 1, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Bg_ChangeTilemapRectPalette(param0->unk_04, 1, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8, 4);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     Bg_ScheduleTilemapTransfer(param0->unk_04, 1);
 }
 

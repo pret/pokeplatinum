@@ -124,7 +124,7 @@ BOOL ov5_021F08F8(FieldTask *taskMan)
                 }
 
                 Encounter_StartVsWild(fieldSystem, taskMan, v1->unk_10);
-                Heap_FreeToHeap(v1);
+                Heap_Free(v1);
 
                 return 0;
             }
@@ -134,7 +134,7 @@ BOOL ov5_021F08F8(FieldTask *taskMan)
             }
 
             MapObjectMan_UnpauseAllMovement(fieldSystem->mapObjMan);
-            Heap_FreeToHeap(v1);
+            Heap_Free(v1);
 
             return 1;
         }
@@ -174,7 +174,7 @@ void ov5_021F09F0(SysTask *task)
 {
     UnkStruct_ov5_021F0D6C *v0 = SysTask_GetParam(task);
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     SysTask_Done(task);
 }
 

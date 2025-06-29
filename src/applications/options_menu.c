@@ -539,7 +539,7 @@ static void TeardownBgs(OptionsMenuData *menuData)
     Bg_FreeTilemapBuffer(menuData->bgConfig, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(menuData->bgConfig, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(menuData->bgConfig, BG_LAYER_MAIN_0);
-    Heap_FreeToHeap(menuData->bgConfig);
+    Heap_Free(menuData->bgConfig);
 }
 
 static void LoadBgTiles(OptionsMenuData *menuData)
@@ -555,7 +555,7 @@ static void LoadBgTiles(OptionsMenuData *menuData)
     NNS_G2dGetUnpackedCharacterData(memberBuffer, &cursorTiles);
     Bg_LoadTiles(menuData->bgConfig, BG_LAYER_MAIN_0, cursorTiles->pRawData, cursorTiles->szByte, 0);
     Bg_LoadTiles(menuData->bgConfig, BG_LAYER_SUB_0, cursorTiles->pRawData, cursorTiles->szByte, 0);
-    Heap_FreeToHeap(memberBuffer);
+    Heap_Free(memberBuffer);
 
     memberSize = NARC_GetMemberSize(narc, tiles_NCLR);
     memberBuffer = Heap_AllocFromHeapAtEnd(menuData->heapID, memberSize);
@@ -563,7 +563,7 @@ static void LoadBgTiles(OptionsMenuData *menuData)
     NNS_G2dGetUnpackedPaletteData(memberBuffer, &cursorPalette);
     Bg_LoadPalette(BG_LAYER_MAIN_0, cursorPalette->pRawData, PALETTE_SIZE_BYTES, 0);
     Bg_LoadPalette(BG_LAYER_SUB_0, cursorPalette->pRawData, PALETTE_SIZE_BYTES, 0);
-    Heap_FreeToHeap(memberBuffer);
+    Heap_Free(memberBuffer);
 
     memberSize = NARC_GetMemberSize(narc, tilemap_bin);
     menuData->nscrBuffer = Heap_AllocFromHeap(menuData->heapID, memberSize);
@@ -609,7 +609,7 @@ static void LoadBgTiles(OptionsMenuData *menuData)
 
 static void TeardownTilemaps(OptionsMenuData *menuData)
 {
-    Heap_FreeToHeap(menuData->nscrBuffer);
+    Heap_Free(menuData->nscrBuffer);
 }
 
 static void SetupWindows(OptionsMenuData *menuData)

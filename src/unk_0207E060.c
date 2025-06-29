@@ -32,5 +32,5 @@ UnkStruct_0207E060 *sub_0207E060(const TrainerInfo *info, u32 heapID)
 
 void sub_0207E0B0(UnkStruct_0207E060 *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }

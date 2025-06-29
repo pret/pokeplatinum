@@ -397,10 +397,10 @@ static void ov6_0224339C(UnkStruct_ov6_02243258 *param0)
     SpriteResourceCollection_Delete(param0->unk_19C);
     SpriteResourceCollection_Delete(param0->unk_1A0);
     SpriteResourceCollection_Delete(param0->unk_1A4);
-    Heap_FreeToHeap(param0->unk_1A8);
-    Heap_FreeToHeap(param0->unk_1AC);
-    Heap_FreeToHeap(param0->unk_1B0);
-    Heap_FreeToHeap(param0->unk_1B4);
+    Heap_Free(param0->unk_1A8);
+    Heap_Free(param0->unk_1AC);
+    Heap_Free(param0->unk_1B0);
+    Heap_Free(param0->unk_1B4);
     SpriteList_DeleteAll(param0->unk_08);
     SpriteList_Delete(param0->unk_08);
 }
@@ -1067,7 +1067,7 @@ static UnkStruct_ov6_02243FFC *ov6_02243FDC(FieldSystem *fieldSystem)
 
 static void ov6_02243FFC(UnkStruct_ov6_02243FFC *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov6_02244004(SysTask *param0, void *param1)
@@ -1638,12 +1638,12 @@ static void ov6_02244734(SysTask *param0, void *param1)
         }
 
         if (v1->unk_270 != NULL) {
-            Heap_FreeToHeap(v1->unk_270);
+            Heap_Free(v1->unk_270);
             v1->unk_270 = NULL;
         }
 
         if (v1->unk_274 != NULL) {
-            Heap_FreeToHeap(v1->unk_274);
+            Heap_Free(v1->unk_274);
             v1->unk_274 = NULL;
         }
 
@@ -1939,7 +1939,7 @@ static void ov6_02244E54(NARC *param0, u32 param1, NNSG2dPaletteData **param2)
     NNS_G2dGetUnpackedPaletteData(v0, param2);
 
     Bg_LoadPalette(3, (*param2)->pRawData, (32 * 1), (32 * 12));
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 static void ov6_02244E7C(BgConfig *param0, NARC *param1, u32 param2, NNSG2dCharacterData **param3)
@@ -1948,7 +1948,7 @@ static void ov6_02244E7C(BgConfig *param0, NARC *param1, u32 param2, NNSG2dChara
     NNS_G2dGetUnpackedCharacterData(v0, param3);
 
     Bg_LoadTiles(param0, 3, (*param3)->pRawData, (*param3)->szByte, 0);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 static void ov6_02244EB4(BgConfig *param0, NARC *param1, u32 param2, NNSG2dScreenData **param3)
@@ -1964,7 +1964,7 @@ static void ov6_02244EB4(BgConfig *param0, NARC *param1, u32 param2, NNSG2dScree
     Bg_LoadTilemapBuffer(param0, 3, (void *)(*param3)->rawData, (*param3)->szByte);
     Bg_ChangeTilemapRectPalette(param0, 3, 0, 0, 32, 32, 12);
     Bg_CopyTilemapBufferToVRAM(param0, 3);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 static void ov6_02244F20(BgConfig *param0)
@@ -2899,7 +2899,7 @@ void ov6_02245CFC(SysTask *param0)
 {
     UnkStruct_ov6_02249270 *v0 = SysTask_GetParam(param0);
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     SysTask_Done(param0);
 }
 

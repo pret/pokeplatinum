@@ -161,7 +161,7 @@ BOOL ov104_0223971C(UnkStruct_ov104_0222E930 *param0)
         }
     }
 
-    Heap_FreeToHeap(v1->unk_A8);
+    Heap_Free(v1->unk_A8);
     v1->unk_A8 = NULL;
 
     return 0;

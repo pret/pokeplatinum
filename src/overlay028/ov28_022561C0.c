@@ -174,7 +174,7 @@ static void ov28_022562CC(SysTask *param0, void *param1)
 
         if (v0[v1->unk_00](v1)) {
             ov28_02256298(v1);
-            Heap_FreeToHeap(v1);
+            Heap_Free(v1);
             SysTask_Done(param0);
             PoketchSystem_NotifyAppUnloaded(v1->poketchSys);
         }

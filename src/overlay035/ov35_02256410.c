@@ -59,7 +59,7 @@ void ov35_0225644C(UnkStruct_ov35_02256410 *param0)
 {
     if (param0 != NULL) {
         ov35_02256514(param0);
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0);
     }
 }
 

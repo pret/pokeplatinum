@@ -39,7 +39,7 @@ static u8 ShopMisc_FreeUnk04AndReinitFieldMap(FieldSystem *fieldSystem, ShopMenu
 
     shopMenu->itemSoldCount = sub_0207CBAC(shopMenu->unk_04);
 
-    Heap_FreeToHeap(shopMenu->unk_04);
+    Heap_Free(shopMenu->unk_04);
     FieldSystem_StartFieldMap(fieldSystem);
 
     return SHOP_STATE_REINIT_SHOP;

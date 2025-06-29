@@ -118,7 +118,7 @@ void ov34_02256604(UnkStruct_ov34_02256540 *param0)
         }
 
         PoketchAnimation_FreeSpriteData(&(param0->unk_58));
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0);
     }
 }
 

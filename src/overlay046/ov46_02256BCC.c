@@ -69,7 +69,7 @@ void ov46_02256C0C(UnkStruct_ov46_02256BCC *param0)
 {
     if (param0 != NULL) {
         ov46_02256CF4(param0);
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0);
     }
 }
 

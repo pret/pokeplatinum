@@ -58,7 +58,7 @@ static BOOL ov34_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *pa
             }
         }
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 
     return 0;
@@ -82,11 +82,11 @@ static BOOL ov34_0225621C(UnkStruct_ov34_0225621C *param0, PoketchSystem *poketc
 static void ov34_02256244(UnkStruct_ov34_0225621C *param0)
 {
     if (param0->unk_50) {
-        Heap_FreeToHeap(param0->unk_50);
+        Heap_Free(param0->unk_50);
     }
 
     ov34_02256604(param0->unk_48);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov34_02256260(SysTask *param0, void *param1)
@@ -250,7 +250,7 @@ static void ov34_02256428(UnkStruct_ov34_0225621C *param0, int param1, int param
             }
         }
 
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
     }
 }
 

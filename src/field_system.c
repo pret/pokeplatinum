@@ -182,12 +182,12 @@ static void TeardownFieldSystem(ApplicationManager *appMan)
 
     MapMatrix_Free(fieldSystem->mapMatrix);
     MapHeaderData_Free(fieldSystem);
-    Heap_FreeToHeap(fieldSystem->bagCursor);
+    Heap_Free(fieldSystem->bagCursor);
     RadarChain_Free(fieldSystem->chain);
     PokedexMemory_Free(fieldSystem->pokedexMemory);
     sub_0209C388(fieldSystem->battleSubscreenCursorOn);
 
-    Heap_FreeToHeap(fieldSystem->processManager);
+    Heap_Free(fieldSystem->processManager);
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_91);
     Heap_Destroy(HEAP_ID_FIELDMAP);

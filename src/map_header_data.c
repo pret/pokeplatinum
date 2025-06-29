@@ -26,7 +26,7 @@ void MapHeaderData_Init(FieldSystem *fieldSystem, enum HeapId heapID)
 void MapHeaderData_Free(FieldSystem *fieldSystem)
 {
     GF_ASSERT(fieldSystem->mapHeaderData != NULL);
-    Heap_FreeToHeap(fieldSystem->mapHeaderData);
+    Heap_Free(fieldSystem->mapHeaderData);
 }
 
 void MapHeaderData_Load(FieldSystem *fieldSystem, int headerID)

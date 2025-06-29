@@ -392,7 +392,7 @@ void ov5_021D5EF8(UnkStruct_ov5_021D5EF8 *param0)
 
     ov5_021D63A4(&param0->unk_00);
     memset(param0, 0, sizeof(UnkStruct_ov5_021D5EF8));
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 
     param0 = NULL;
 }
@@ -811,7 +811,7 @@ static void ov5_021D6290(SpriteResourceTable *param0, int param1, int param2)
     void *v1 = LoadMemberFromNARC(NARC_INDEX_DATA__WEATHER_SYS, param2, 0, HEAP_ID_FIELD, 1);
 
     SpriteResourceTable_LoadFromBinary(v1, v0, HEAP_ID_FIELD);
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
 static void ov5_021D62BC(UnkStruct_ov5_021D61D0 *param0)
@@ -826,7 +826,7 @@ static void ov5_021D62BC(UnkStruct_ov5_021D61D0 *param0)
         SpriteResourceCollection_Delete(param0->unk_00[v0]);
     }
 
-    Heap_FreeToHeap(param0->unk_10);
+    Heap_Free(param0->unk_10);
     param0->unk_10 = NULL;
 
     SpriteList_Delete(param0->unk_130);
@@ -888,7 +888,7 @@ void ov5_021D63A4(UnkStruct_ov5_021D6594 **param0)
         ov5_021D62BC(&(*param0)->unk_08);
 
         NARC_dtor((*param0)->unk_144);
-        Heap_FreeToHeapExplicit(HEAP_ID_FIELD, *param0);
+        Heap_FreeExplicit(HEAP_ID_FIELD, *param0);
 
         *param0 = NULL;
     }
@@ -1090,7 +1090,7 @@ static BOOL ov5_021D66D0(UnkStruct_ov5_021D6594 *param0, int param1)
         v1 = ov5_021D6A48(param0, v0);
 
         if (v1 == 0) {
-            Heap_FreeToHeap(v0->unk_08);
+            Heap_Free(v0->unk_08);
             v0->unk_08 = NULL;
             return 0;
         }
@@ -1212,7 +1212,7 @@ static void ov5_021D68B8(UnkStruct_ov5_021D6594 *param0, int param1)
 
     if (v0->unk_0C != NULL) {
         ov5_021D6690(param0, v0->unk_00, v0->unk_0C);
-        Heap_FreeToHeapExplicit(HEAP_ID_FIELD, v0->unk_0C);
+        Heap_FreeExplicit(HEAP_ID_FIELD, v0->unk_0C);
         v0->unk_0C = NULL;
 
         if (v0->unk_14 != NULL) {
@@ -1233,7 +1233,7 @@ static void ov5_021D68B8(UnkStruct_ov5_021D6594 *param0, int param1)
         }
 
         if (v0->unk_08->unk_B98 != NULL) {
-            Heap_FreeToHeapExplicit(HEAP_ID_FIELD, v0->unk_08->unk_B98);
+            Heap_FreeExplicit(HEAP_ID_FIELD, v0->unk_08->unk_B98);
             v0->unk_08->unk_B98 = NULL;
         }
 
@@ -1247,7 +1247,7 @@ static void ov5_021D68B8(UnkStruct_ov5_021D6594 *param0, int param1)
             }
         }
 
-        Heap_FreeToHeapExplicit(HEAP_ID_FIELD, v0->unk_08);
+        Heap_FreeExplicit(HEAP_ID_FIELD, v0->unk_08);
         v0->unk_08 = NULL;
     }
 
@@ -1486,7 +1486,7 @@ static void ov5_021D6D84(UnkStruct_ov5_021D6594 *param0, int param1)
         NNS_G2dGetUnpackedPaletteData(v0.unk_00, &v0.unk_14);
 
         Bg_LoadPalette(2, v0.unk_14->pRawData, 32, 32 * 6);
-        Heap_FreeToHeap(v0.unk_00);
+        Heap_Free(v0.unk_00);
 
         v0.unk_00 = NULL;
     }
@@ -1502,7 +1502,7 @@ static void ov5_021D6DCC(UnkStruct_ov5_021D6594 *param0, int param1)
         NNS_G2dGetUnpackedCharacterData(v0.unk_04, &v0.unk_10);
 
         Bg_LoadTiles(param0->fieldSystem->bgConfig, 2, v0.unk_10->pRawData, v0.unk_10->szByte, 0);
-        Heap_FreeToHeap(v0.unk_04);
+        Heap_Free(v0.unk_04);
 
         v0.unk_04 = NULL;
     }
@@ -1524,7 +1524,7 @@ static void ov5_021D6E20(UnkStruct_ov5_021D6594 *param0, int param1)
         Bg_LoadTilemapBuffer(param0->fieldSystem->bgConfig, 2, (void *)v0.unk_0C->rawData, v0.unk_0C->szByte);
         Bg_ChangeTilemapRectPalette(param0->fieldSystem->bgConfig, 2, 0, 0, 32, 32, 6);
         Bg_CopyTilemapBufferToVRAM(param0->fieldSystem->bgConfig, 2);
-        Heap_FreeToHeap(v0.unk_08);
+        Heap_Free(v0.unk_08);
 
         v0.unk_08 = NULL;
     }

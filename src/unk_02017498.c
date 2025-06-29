@@ -135,7 +135,7 @@ int sub_02017658(ApplicationManager *appMan, int *param1)
     UnkStruct_02017498 *v0 = ApplicationManager_Data(appMan);
 
     sub_020176B4(v0);
-    Heap_FreeToHeap(v0->unk_00);
+    Heap_Free(v0->unk_00);
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_116);
 
@@ -159,7 +159,7 @@ static void sub_020176B4(UnkStruct_02017498 *param0)
     if (param0->unk_88 == 1) {
         NNS_FndDestroyExpHeap(param0->unk_1C);
 
-        Heap_FreeToHeap(param0->unk_18);
+        Heap_Free(param0->unk_18);
         sub_020995C4();
         sub_02099560();
         sub_020334CC();

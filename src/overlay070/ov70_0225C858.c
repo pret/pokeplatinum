@@ -26,7 +26,7 @@ UnkStruct_ov70_0225C894 *ov70_0225C858(enum HeapId heapID)
     v1 = LoadMemberFromNARC(NARC_INDEX_APPLICATION__WIFI_LOBBY__MAP_CONV__WFLBY_MAP, 0, 0, heapID, 1);
 
     ov63_0222BD50(v0->unk_00, v1);
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 
     return v0;
 }
@@ -34,7 +34,7 @@ UnkStruct_ov70_0225C894 *ov70_0225C858(enum HeapId heapID)
 void ov70_0225C894(UnkStruct_ov70_0225C894 *param0)
 {
     ov63_0222BD30(param0->unk_00);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 u16 ov70_0225C8A8(const UnkStruct_ov70_0225C894 *param0)

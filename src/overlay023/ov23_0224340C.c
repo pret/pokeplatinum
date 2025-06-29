@@ -679,7 +679,7 @@ void ov23_02243520(void)
     }
 
     if (Unk_ov23_02257764->unk_300) {
-        Heap_FreeToHeap(Unk_ov23_02257764->unk_300);
+        Heap_Free(Unk_ov23_02257764->unk_300);
         Unk_ov23_02257764->unk_300 = NULL;
     }
 
@@ -722,10 +722,10 @@ void ov23_022435DC(void)
     }
 
     if (Unk_ov23_02257764->unk_300) {
-        Heap_FreeToHeap(Unk_ov23_02257764->unk_300);
+        Heap_Free(Unk_ov23_02257764->unk_300);
     }
 
-    Heap_FreeToHeap(Unk_ov23_02257764);
+    Heap_Free(Unk_ov23_02257764);
     Unk_ov23_02257764 = NULL;
 }
 
@@ -2064,7 +2064,7 @@ static void ov23_02244C70(SysTask *param0, void *param1)
         break;
     case 7:
         BrightnessController_SetScreenBrightness(0, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
 
         Unk_ov23_02257764->unk_2F0 = NULL;
@@ -2114,7 +2114,7 @@ static void ov23_02244E10(int param0, BOOL param1)
         UnkStruct_ov23_02244C70 *v0 = Unk_ov23_02257764->unk_300;
 
         BrightnessController_SetScreenBrightness(0, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(Unk_ov23_02257764->unk_2F0);
 
         Unk_ov23_02257764->unk_2F0 = NULL;
@@ -2231,7 +2231,7 @@ static void ov23_02244FD0(int param0, BOOL param1)
 
         sub_0205948C(0x10);
         SysTask_Done(Unk_ov23_02257764->unk_2F0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
 
         Unk_ov23_02257764->unk_2F0 = NULL;
         Unk_ov23_02257764->unk_300 = NULL;
@@ -2647,7 +2647,7 @@ void ov23_02245784(void)
         G2_BlendNone();
         GX_SetMasterBrightness(0);
         SysTask_Done(Unk_ov23_02257764->unk_2F8);
-        Heap_FreeToHeap(Unk_ov23_02257764->unk_2FC);
+        Heap_Free(Unk_ov23_02257764->unk_2FC);
         Unk_ov23_02257764->unk_2F8 = NULL;
         Unk_ov23_02257764->unk_2FC = NULL;
     }
@@ -2744,7 +2744,7 @@ static void ov23_02245938(int param0, BOOL param1)
 
         sub_0203568C();
         SysTask_Done(Unk_ov23_02257764->unk_2F0);
-        Heap_FreeToHeap(Unk_ov23_02257764->unk_300);
+        Heap_Free(Unk_ov23_02257764->unk_300);
 
         Unk_ov23_02257764->unk_2F0 = NULL;
         Unk_ov23_02257764->unk_300 = NULL;
@@ -2790,7 +2790,7 @@ static void ov23_0224599C(SysTask *param0, void *param1)
         GX_SetMasterBrightness(0);
 
         sub_0203568C();
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
 
         Unk_ov23_02257764->unk_2F0 = NULL;
@@ -2823,7 +2823,7 @@ static void ov23_02245AA4(int param0, BOOL param1)
 
             Player_SetYPos(Unk_ov23_02257764->fieldSystem->playerAvatar, 0);
             SysTask_Done(Unk_ov23_02257764->unk_2F0);
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
 
             Unk_ov23_02257764->unk_2F0 = NULL;
             Unk_ov23_02257764->unk_300 = NULL;
@@ -2852,7 +2852,7 @@ static void ov23_02245AF4(int param0, BOOL param1)
 
         Player_SetYPos(Unk_ov23_02257764->fieldSystem->playerAvatar, 0);
         SysTask_Done(Unk_ov23_02257764->unk_2F0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
 
         Unk_ov23_02257764->unk_2F0 = NULL;
         Unk_ov23_02257764->unk_300 = NULL;
@@ -2957,7 +2957,7 @@ static void ov23_02245BA8(SysTask *param0, void *param1)
         break;
     case 9:
         Player_SetYPos(Unk_ov23_02257764->fieldSystem->playerAvatar, 0);
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         Unk_ov23_02257764->unk_2F0 = NULL;
         Unk_ov23_02257764->unk_300 = NULL;
@@ -3208,7 +3208,7 @@ static void ov23_02246220(int param0, BOOL param1)
 
         sub_0205948C(0x10);
         SysTask_Done(Unk_ov23_02257764->unk_2F0);
-        Heap_FreeToHeap(Unk_ov23_02257764->unk_300);
+        Heap_Free(Unk_ov23_02257764->unk_300);
 
         Unk_ov23_02257764->unk_2F0 = NULL;
         Unk_ov23_02257764->unk_300 = NULL;
@@ -3807,7 +3807,7 @@ static void ov23_02247144(int param0, BOOL param1)
 
         sub_0205948C(0x10);
         SysTask_Done(Unk_ov23_02257764->unk_2F0);
-        Heap_FreeToHeap(Unk_ov23_02257764->unk_300);
+        Heap_Free(Unk_ov23_02257764->unk_300);
 
         Unk_ov23_02257764->unk_2F0 = NULL;
         Unk_ov23_02257764->unk_300 = NULL;
@@ -4279,7 +4279,7 @@ static void ov23_02247DB0(int param0, BOOL param1)
         BrightnessController_SetScreenBrightness(0, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
         sub_0205948C(0x10);
         SysTask_Done(Unk_ov23_02257764->unk_2F0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
 
         Unk_ov23_02257764->unk_2F0 = NULL;
         Unk_ov23_02257764->unk_300 = NULL;
@@ -4569,7 +4569,7 @@ static void ov23_0224839C(int param0, BOOL param1)
 
         sub_0205948C(0x10);
         SysTask_Done(Unk_ov23_02257764->unk_2F0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
 
         Unk_ov23_02257764->unk_2F0 = NULL;
         Unk_ov23_02257764->unk_300 = NULL;
@@ -4688,7 +4688,7 @@ static void ov23_022485A8(int param0, BOOL param1)
 
         sub_0205948C(0x10);
         SysTask_Done(Unk_ov23_02257764->unk_2F0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
 
         Unk_ov23_02257764->unk_2F0 = NULL;
         Unk_ov23_02257764->unk_300 = NULL;
@@ -4836,7 +4836,7 @@ static void ov23_02248884(SysTask *param0, void *param1)
 
         SpriteList_Delete(Unk_ov23_02257764->unk_44);
         SysTask_Done(param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
 
         Unk_ov23_02257764->unk_2F4 = NULL;
         sub_0205948C(0x80);
@@ -4882,7 +4882,7 @@ static void ov23_02248A6C(SysTask *param0, void *param1)
 
     if (!Unk_ov23_02257764) {
         SysTask_Done(param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 
@@ -4894,7 +4894,7 @@ static void ov23_02248A6C(SysTask *param0, void *param1)
         Unk_ov23_02257764->unk_20[v3] = NULL;
 
         SysTask_Done(param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         CommPlayer_StopBlowAnimation(v3);
 
         return;
@@ -4982,7 +4982,7 @@ static void ov23_02248BD0(void)
     for (v0 = 0; v0 < (7 + 1); v0++) {
         if (Unk_ov23_02257764->unk_20[v0]) {
             SysTask_Done(Unk_ov23_02257764->unk_20[v0]);
-            Heap_FreeToHeap(Unk_ov23_02257764->unk_00[v0]);
+            Heap_Free(Unk_ov23_02257764->unk_00[v0]);
 
             Unk_ov23_02257764->unk_20[v0] = NULL;
             Unk_ov23_02257764->unk_00[v0] = NULL;

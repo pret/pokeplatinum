@@ -89,7 +89,7 @@ HoneyTreeShakeList *HoneyTree_ShakeDataInit(void)
 
 void HoneyTree_FreeShakeData(HoneyTreeShakeList **data)
 {
-    Heap_FreeToHeap(*data);
+    Heap_Free(*data);
     *data = NULL;
 }
 
@@ -458,7 +458,7 @@ int HoneyTree_GetSpecies(FieldSystem *fieldSystem)
     }
 
     species = narcData[tree->encounterSlot];
-    Heap_FreeToHeap(narcData);
+    Heap_Free(narcData);
 
     return species;
 }

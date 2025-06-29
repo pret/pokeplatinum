@@ -633,7 +633,7 @@ static void ov6_0224889C(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     Easy3DModel_Release(&v0->unk_00);
 
     for (v1 = 0; v1 < 4; v1++) {
-        Heap_FreeToHeap(v0->unk_CD0[v1]);
+        Heap_Free(v0->unk_CD0[v1]);
     }
 }
 
