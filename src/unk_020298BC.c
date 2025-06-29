@@ -121,12 +121,12 @@ static void sub_020298D8(UnkStruct_020298D8 *param0, u8 *param1, u8 *param2, s8 
 
 static void sub_0202992C(UnkStruct_0202A138 *param0, Pokemon *param1, u8 param2, u8 param3, s8 param4)
 {
-    param0->unk_08 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
-    Pokemon_GetValue(param1, MON_DATA_NICKNAME, param0->unk_0A);
+    param0->unk_08 = Pokemon_GetData(param1, MON_DATA_SPECIES, NULL);
+    Pokemon_GetData(param1, MON_DATA_NICKNAME, param0->unk_0A);
 
-    param0->unk_00 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
-    param0->unk_04 = Pokemon_GetValue(param1, MON_DATA_OT_ID, NULL);
-    param0->unk_33 = Pokemon_GetValue(param1, MON_DATA_FORM, NULL);
+    param0->unk_00 = Pokemon_GetData(param1, MON_DATA_PERSONALITY, NULL);
+    param0->unk_04 = Pokemon_GetData(param1, MON_DATA_OT_ID, NULL);
+    param0->unk_33 = Pokemon_GetData(param1, MON_DATA_FORM, NULL);
 
     param0->unk_31 = param2;
     param0->unk_32 = param3;
@@ -151,8 +151,8 @@ static void sub_020299C0(UnkStruct_0202A138 *param0, const Strbuf *param1, int p
 static void sub_020299D8(const UnkStruct_0202A138 *param0, Pokemon *param1)
 {
     Pokemon_InitWith(param1, param0->unk_08, 0, 0, TRUE, param0->unk_00, OTID_SET, param0->unk_04);
-    Pokemon_SetValue(param1, MON_DATA_NICKNAME, param0->unk_0A);
-    Pokemon_SetValue(param1, MON_DATA_FORM, &param0->unk_33);
+    Pokemon_SetData(param1, MON_DATA_NICKNAME, param0->unk_0A);
+    Pokemon_SetData(param1, MON_DATA_FORM, &param0->unk_33);
 }
 
 static void sub_02029A18(UnkStruct_0202A150 *param0, u8 param1, u8 param2, u8 param3, u8 param4)

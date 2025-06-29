@@ -498,7 +498,7 @@ static void sub_020939E0(UnkStruct_02095C48 *param0, int param1, int param2)
             param0->unk_00.unk_D8[v1] = Strbuf_Init(8, HEAP_ID_20);
         }
 
-        Pokemon_GetValue(param0->unk_00.unk_00[v1], MON_DATA_OTNAME_STRBUF, param0->unk_00.unk_D8[v1]);
+        Pokemon_GetData(param0->unk_00.unk_00[v1], MON_DATA_OTNAME_STRBUF, param0->unk_00.unk_D8[v1]);
     }
 
     for (v1 = 1; v1 < 4; v1++) {
@@ -547,19 +547,19 @@ static int sub_02093B2C(Pokemon *param0, int param1)
     for (v1 = 0; v1 <= 3; v1++) {
         switch (param1) {
         case 0:
-            v2 = Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_COOL_RIBBON + v1, NULL);
+            v2 = Pokemon_GetData(param0, MON_DATA_SINNOH_SUPER_COOL_RIBBON + v1, NULL);
             break;
         case 1:
-            v2 = Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON + v1, NULL);
+            v2 = Pokemon_GetData(param0, MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON + v1, NULL);
             break;
         case 2:
-            v2 = Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_CUTE_RIBBON + v1, NULL);
+            v2 = Pokemon_GetData(param0, MON_DATA_SINNOH_SUPER_CUTE_RIBBON + v1, NULL);
             break;
         case 3:
-            v2 = Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_SMART_RIBBON + v1, NULL);
+            v2 = Pokemon_GetData(param0, MON_DATA_SINNOH_SUPER_SMART_RIBBON + v1, NULL);
             break;
         case 4:
-            v2 = Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_TOUGH_RIBBON + v1, NULL);
+            v2 = Pokemon_GetData(param0, MON_DATA_SINNOH_SUPER_TOUGH_RIBBON + v1, NULL);
             break;
         default:
             GF_ASSERT(0);
@@ -1298,7 +1298,7 @@ BOOL sub_02094868(UnkStruct_02095C48 *param0)
 {
     u32 v0 = sub_02095A3C(param0->unk_00.unk_110, param0->unk_00.unk_10F);
 
-    if (Pokemon_GetValue(param0->unk_1974, v0, NULL) == 0) {
+    if (Pokemon_GetData(param0->unk_1974, v0, NULL) == 0) {
         return 0;
     }
 
@@ -1588,11 +1588,11 @@ void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *saveData, u32 param2, Jo
             u8 v3 = 1;
             int v2 = sub_02095A3C(param0->unk_00.unk_110, param0->unk_00.unk_10F);
 
-            if (Pokemon_GetValue(param0->unk_1974, v2, NULL) == 0) {
+            if (Pokemon_GetData(param0->unk_1974, v2, NULL) == 0) {
                 v0 = 1;
             }
 
-            Pokemon_SetValue(param0->unk_1974, v2, &v3);
+            Pokemon_SetData(param0->unk_1974, v2, &v3);
             sub_0206DDB8(param0->saveData, param0->unk_1974, v2);
         }
 

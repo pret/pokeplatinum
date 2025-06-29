@@ -97,7 +97,7 @@ void Party_AddPokemonBySlotIndex(Party *party, int slot, Pokemon *pokemon)
 
     PARTY_ASSERT_SLOT(party, slot);
 
-    int addOrRemoveSlots = Pokemon_GetValue(&(party->pokemon[slot]), MON_DATA_SPECIES_EXISTS, NULL) - Pokemon_GetValue(pokemon, MON_DATA_SPECIES_EXISTS, NULL);
+    int addOrRemoveSlots = Pokemon_GetData(&(party->pokemon[slot]), MON_DATA_SPECIES_EXISTS, NULL) - Pokemon_GetData(pokemon, MON_DATA_SPECIES_EXISTS, NULL);
     party->pokemon[slot] = *pokemon;
     party->currentCount += addOrRemoveSlots;
 }
@@ -130,7 +130,7 @@ BOOL Party_HasSpecies(const Party *party, int species)
     int i;
 
     for (i = 0; i < party->currentCount; i++) {
-        if (Pokemon_GetValue((Pokemon *)&party->pokemon[i], MON_DATA_SPECIES, NULL) == species) {
+        if (Pokemon_GetData((Pokemon *)&party->pokemon[i], MON_DATA_SPECIES, NULL) == species) {
             break;
         }
     }

@@ -1264,7 +1264,7 @@ static void ov94_02243B08(UnkStruct_ov94_0223FD4C *param0, int param1)
 
 static void ov94_02243BC4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int param2, int param3)
 {
-    int v0 = Pokemon_GetValue(param1, MON_DATA_HELD_ITEM, NULL);
+    int v0 = Pokemon_GetData(param1, MON_DATA_HELD_ITEM, NULL);
 
     SaveData_UpdateCatchRecords(param0->unk_00->saveData, param1);
     param2 = 18;
@@ -1276,8 +1276,8 @@ static void ov94_02243BC4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
     if (param3) {
         u8 v1 = 70;
 
-        if (Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
-            if (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(param1, MON_DATA_HATCH_LOCATION, NULL) == 86) && (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
+        if (Pokemon_GetData(param1, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
+            if (Pokemon_GetData(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetData(param1, MON_DATA_HATCH_LOCATION, NULL) == 86) && (Pokemon_GetData(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
                 VarsFlags *v2 = SaveData_GetVarsFlags(param0->unk_00->saveData);
 
                 if (SystemVars_GetArceusEventState(v2) == 0) {
@@ -1286,8 +1286,8 @@ static void ov94_02243BC4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
             }
         }
 
-        Pokemon_SetValue(param1, MON_DATA_FRIENDSHIP, &v1);
-        Pokemon_SetValue(param1, MON_DATA_GENDER, NULL);
+        Pokemon_SetData(param1, MON_DATA_FRIENDSHIP, &v1);
+        Pokemon_SetData(param1, MON_DATA_GENDER, NULL);
 
         ov94_02243DE8(param0->unk_00->unk_00, 0);
     }
@@ -1323,8 +1323,8 @@ static void ov94_02243CE4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
         param2 = 0;
     }
 
-    if (Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
-        if (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(param1, MON_DATA_HATCH_LOCATION, NULL) == 86) && (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
+    if (Pokemon_GetData(param1, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
+        if (Pokemon_GetData(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetData(param1, MON_DATA_HATCH_LOCATION, NULL) == 86) && (Pokemon_GetData(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
             VarsFlags *v0 = SaveData_GetVarsFlags(param0->unk_00->saveData);
 
             if (SystemVars_GetArceusEventState(v0) == 0) {
@@ -1335,10 +1335,10 @@ static void ov94_02243CE4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
 
     {
         u8 v1 = 70;
-        Pokemon_SetValue(param1, MON_DATA_FRIENDSHIP, &v1);
+        Pokemon_SetData(param1, MON_DATA_FRIENDSHIP, &v1);
     }
 
-    Pokemon_SetValue(param1, MON_DATA_GENDER, NULL);
+    Pokemon_SetData(param1, MON_DATA_GENDER, NULL);
 
     if (param2 == 18) {
         int v2;
@@ -1389,7 +1389,7 @@ static void ov94_02243E48(JournalEntry *journalEntry, UnkStruct_ov94_0223BA88 *p
     u16 nickname[MON_NAME_LEN + 1];
     Pokemon *mon = (Pokemon *)param1->unk_00.unk_00;
 
-    Pokemon_GetValue(mon, MON_DATA_NICKNAME, nickname);
+    Pokemon_GetData(mon, MON_DATA_NICKNAME, nickname);
     journalEntryOnlineEvent = JournalEntry_CreateEventGotPokemonGTS(param1->unk_10C, param1->unk_F6, nickname, Pokemon_GetGender(mon), 62);
     JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
 }

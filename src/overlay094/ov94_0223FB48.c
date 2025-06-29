@@ -738,7 +738,7 @@ static int ov94_02240688(UnkStruct_ov94_0223FD4C *param0)
 
                 v2 = Party_GetPokemonBySlotIndex(param0->unk_00->unk_08, param0->unk_112);
 
-                if (Pokemon_GetValue(v2, MON_DATA_BALL_CAPSULE_ID, NULL)) {
+                if (Pokemon_GetData(v2, MON_DATA_BALL_CAPSULE_ID, NULL)) {
                     v1 = 1;
                     param0->unk_2C = 14;
                 }
@@ -830,7 +830,7 @@ static int ov94_022408E8(UnkStruct_ov94_0223FD4C *param0)
 
                 v2 = Party_GetPokemonBySlotIndex(param0->unk_00->unk_08, param0->unk_112);
 
-                if (Pokemon_GetValue(v2, MON_DATA_BALL_CAPSULE_ID, NULL)) {
+                if (Pokemon_GetData(v2, MON_DATA_BALL_CAPSULE_ID, NULL)) {
                     v1 = 1;
                     param0->unk_2C = 11;
                 }
@@ -1081,15 +1081,15 @@ static void ov94_02240EAC(BoxPokemon *boxMon, Sprite *param1, Sprite *param2, u1
 
     BoxPokemon_EnterDecryptionContext(boxMon);
 
-    v0 = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES_EXISTS, NULL);
-    *species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
+    v0 = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES_EXISTS, NULL);
+    *species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
 
-    form = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
-    isEgg = BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL);
-    item = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
+    form = BoxPokemon_GetData(boxMon, MON_DATA_FORM, NULL);
+    isEgg = BoxPokemon_GetData(boxMon, MON_DATA_IS_EGG, NULL);
+    item = BoxPokemon_GetData(boxMon, MON_DATA_HELD_ITEM, NULL);
 
     param6->species = *species;
-    param6->gender = BoxPokemon_GetValue(boxMon, MON_DATA_GENDER, NULL) + 1;
+    param6->gender = BoxPokemon_GetData(boxMon, MON_DATA_GENDER, NULL) + 1;
 
     if (isEgg) {
         param6->level = 0;
@@ -1157,7 +1157,7 @@ static void ov94_02240FA0(UnkStruct_ov94_0223FD4C *param0, int param1)
             ov94_02240E50(v4, &param0->unk_1108->unk_00[v1]);
             ov94_02240EAC(v4, param0->unk_E28[v1], param0->unk_EA0[v1], &v0[v1], v1, v6, &param0->unk_1108->unk_00[v1], &v7[v1]);
 
-            if (Pokemon_GetValue(v3, MON_DATA_BALL_CAPSULE_ID, NULL)) {
+            if (Pokemon_GetData(v3, MON_DATA_BALL_CAPSULE_ID, NULL)) {
                 Sprite_SetDrawFlag(param0->unk_F18[v1], 1);
             } else {
                 Sprite_SetDrawFlag(param0->unk_F18[v1], 0);
@@ -1244,7 +1244,7 @@ static int BoxPokemon_HasUnusedRibbons(BoxPokemon *boxMon)
 
     // Should be NELEMS(sUnusedRibbons), but compiler doesn't want to budge.
     for (i = 0; i < 10; i++) {
-        count += BoxPokemon_GetValue(boxMon, sUnusedRibbons[i], NULL);
+        count += BoxPokemon_GetData(boxMon, sUnusedRibbons[i], NULL);
     }
 
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
@@ -1259,8 +1259,8 @@ static int BoxPokemon_HasUnusedRibbons(BoxPokemon *boxMon)
 static BOOL BoxPokemon_FormNotInDP(BoxPokemon *boxMon)
 {
     int reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
-    int species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
-    int form = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
+    int species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
+    int form = BoxPokemon_GetData(boxMon, MON_DATA_FORM, NULL);
 
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
 
@@ -1279,7 +1279,7 @@ static BOOL BoxPokemon_FormNotInDP(BoxPokemon *boxMon)
 static BOOL BoxPokemon_HeldItemNotInDP(BoxPokemon *boxMon)
 {
     int reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
-    int item = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
+    int item = BoxPokemon_GetData(boxMon, MON_DATA_HELD_ITEM, NULL);
 
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
 
@@ -1299,11 +1299,11 @@ static int ov94_022412F4(Party *param0, PCBoxes *pcBoxes, int param2, int param3
         return 0;
     }
 
-    if (!BoxPokemon_GetValue(v0, MON_DATA_SPECIES_EXISTS, NULL)) {
+    if (!BoxPokemon_GetData(v0, MON_DATA_SPECIES_EXISTS, NULL)) {
         return 0;
     }
 
-    if (BoxPokemon_GetValue(v0, MON_DATA_EGG_EXISTS, NULL)) {
+    if (BoxPokemon_GetData(v0, MON_DATA_EGG_EXISTS, NULL)) {
         return 2;
     }
 
@@ -1345,8 +1345,8 @@ static int ov94_02241384(BoxPokemon *boxMon, UnkStruct_ov94_0223BA88_sub3 *param
 {
     UnkStruct_ov94_0223BA88_sub2 v0;
 
-    v0.species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
-    v0.gender = BoxPokemon_GetValue(boxMon, MON_DATA_GENDER, NULL) + 1;
+    v0.species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
+    v0.gender = BoxPokemon_GetData(boxMon, MON_DATA_GENDER, NULL) + 1;
     v0.level = BoxPokemon_GetLevel(boxMon);
 
     return ov94_02241328(&v0, param1);
@@ -1358,8 +1358,8 @@ static void ov94_022413BC(UnkStruct_ov94_0223BA88 *param0, UnkStruct_ov94_0223FD
     UnkStruct_ov94_0223BA88_sub3 v1;
     BoxPokemon *boxMon;
 
-    v0.species = BoxPokemon_GetValue(param1->unk_114, MON_DATA_SPECIES, NULL);
-    v0.gender = BoxPokemon_GetValue(param1->unk_114, MON_DATA_GENDER, NULL) + 1;
+    v0.species = BoxPokemon_GetData(param1->unk_114, MON_DATA_SPECIES, NULL);
+    v0.gender = BoxPokemon_GetData(param1->unk_114, MON_DATA_GENDER, NULL) + 1;
     v0.level = BoxPokemon_GetLevel(param1->unk_114);
 
     param0->unk_EC = v0;
@@ -1368,8 +1368,8 @@ static void ov94_022413BC(UnkStruct_ov94_0223BA88 *param0, UnkStruct_ov94_0223FD
 
     boxMon = Pokemon_GetBoxPokemon((Pokemon *)param1->unk_250[param1->unk_11C].unk_00.unk_00);
 
-    v1.species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
-    v1.gender = BoxPokemon_GetValue(boxMon, MON_DATA_GENDER, NULL) + 1;
+    v1.species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
+    v1.gender = BoxPokemon_GetData(boxMon, MON_DATA_GENDER, NULL) + 1;
     v1.level = 0;
     v1.level2 = 0;
 
@@ -1391,7 +1391,7 @@ static void ov94_02241464(UnkStruct_ov94_0223BA88_sub2 *param0, Sprite **param1,
 
 BOOL ov94_02241498(Pokemon *param0)
 {
-    int v0 = Pokemon_GetValue(param0, MON_DATA_HELD_ITEM, NULL);
+    int v0 = Pokemon_GetData(param0, MON_DATA_HELD_ITEM, NULL);
 
     if (Item_IsMail(v0)) {
         return 1;

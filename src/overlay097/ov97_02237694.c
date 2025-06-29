@@ -572,7 +572,7 @@ static void ov97_02237EF8(Sprite *param0, Pokemon *param1, int param2, int param
 
     BuildPokemonSpriteTemplate(param5, param2, v0, 2, v1, param3, 0);
 
-    v2 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
+    v2 = Pokemon_GetData(param1, MON_DATA_PERSONALITY, NULL);
     sub_020136A4(param5->narcID, param5->character, v3->heapID, 0, 0, 10, 10, param4, v2, 0, 2, param2);
 
     DC_FlushRange(param4, 0x20 * 10 * 10);
@@ -613,7 +613,7 @@ static void ov97_02237FF4(UnkStruct_ov97_0223F550 *param0, int param1, WonderCar
     switch (param1) {
     case 1:
     case 13:
-        ov97_02237EF8(param0->unk_26C, v0, Pokemon_GetValue(v0, MON_DATA_SPECIES, 0), Pokemon_GetValue(v0, MON_DATA_FORM, 0), param0->unk_278, &param0->unk_EF8);
+        ov97_02237EF8(param0->unk_26C, v0, Pokemon_GetData(v0, MON_DATA_SPECIES, 0), Pokemon_GetData(v0, MON_DATA_FORM, 0), param0->unk_278, &param0->unk_EF8);
         break;
     case 2:
         ov97_02237EF8(param0->unk_26C, v0, SPECIES_EGG, 0, param0->unk_278, &param0->unk_EF8);

@@ -465,17 +465,17 @@ static void sub_0206CE08(int heapID, u16 *param1, Pokemon *mon)
 {
     Strbuf *strBuf = Strbuf_Init(64, heapID);
 
-    Pokemon_GetValue(mon, MON_DATA_NICKNAME_STRBUF, strBuf);
+    Pokemon_GetData(mon, MON_DATA_NICKNAME_STRBUF, strBuf);
     Strbuf_ToChars(strBuf, param1, 10 + 1);
     Strbuf_Free(strBuf);
 }
 
 static void sub_0206CE38(Pokemon *param0, u16 *param1, u8 *param2, u8 *param3, u8 *param4)
 {
-    *param1 = Pokemon_GetValue(param0, MON_DATA_SPECIES, NULL);
-    *param2 = Pokemon_GetValue(param0, MON_DATA_GENDER, NULL);
-    *param3 = Pokemon_GetValue(param0, MON_DATA_LANGUAGE, NULL);
-    *param4 = Pokemon_GetValue(param0, MON_DATA_MET_GAME, NULL);
+    *param1 = Pokemon_GetData(param0, MON_DATA_SPECIES, NULL);
+    *param2 = Pokemon_GetData(param0, MON_DATA_GENDER, NULL);
+    *param3 = Pokemon_GetData(param0, MON_DATA_LANGUAGE, NULL);
+    *param4 = Pokemon_GetData(param0, MON_DATA_MET_GAME, NULL);
 }
 
 static void sub_0206CE74(StringTemplate *param0, int param1, u16 param2, u8 param3, u8 param4, u8 param5)
@@ -496,12 +496,12 @@ static void sub_0206CEA4(StringTemplate *param0, int param1, u16 param2)
 
 static void sub_0206CED0(int heapID, Pokemon *mon, u8 *param2, u16 *param3)
 {
-    *param2 = Pokemon_GetValue(mon, MON_DATA_HAS_NICKNAME, NULL);
+    *param2 = Pokemon_GetData(mon, MON_DATA_HAS_NICKNAME, NULL);
 
     if (*param2) {
         Strbuf *strBuf = Strbuf_Init(64, heapID);
 
-        Pokemon_GetValue(mon, MON_DATA_NICKNAME_STRBUF, strBuf);
+        Pokemon_GetData(mon, MON_DATA_NICKNAME_STRBUF, strBuf);
         Strbuf_ToChars(strBuf, param3, 10 + 1);
         Strbuf_Free(strBuf);
     }
@@ -529,7 +529,7 @@ void sub_0206CF48(TVBroadcast *broadcast, Pokemon *param1, int heapID)
     v0->unk_1E = Pokemon_GetNature(param1);
 
     sub_0206CE38(param1, &v0->unk_02, &v0->unk_04, &v0->unk_05, &v0->unk_06);
-    v0->unk_07 = Pokemon_GetValue(param1, MON_DATA_HAS_NICKNAME, NULL);
+    v0->unk_07 = Pokemon_GetData(param1, MON_DATA_HAS_NICKNAME, NULL);
 
     sub_0206CED0(heapID, param1, &v0->unk_07, v0->unk_08);
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
@@ -604,7 +604,7 @@ void sub_0206D048(TVBroadcast *broadcast, Pokemon *mon)
 
     v0->unk_00 = 1;
     sub_0206CE38(mon, &v0->unk_02, &v0->unk_04, &v0->unk_05, &v0->unk_06);
-    v0->unk_07 = Pokemon_GetValue(mon, MON_DATA_HAS_NICKNAME, NULL);
+    v0->unk_07 = Pokemon_GetData(mon, MON_DATA_HAS_NICKNAME, NULL);
 
     sub_0206CED0(HEAP_ID_FIELDMAP, mon, &v0->unk_07, v0->unk_08);
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
@@ -692,7 +692,7 @@ void sub_0206D160(UnkStruct_0206D140 *param0, Pokemon *param1, int param2, int p
 
     sub_0206CE38(param1, &param0->unk_06, &param0->unk_08, &param0->unk_09, &param0->unk_0A);
 
-    param0->unk_22 = Pokemon_GetValue(param1, MON_DATA_POKEBALL, NULL);
+    param0->unk_22 = Pokemon_GetData(param1, MON_DATA_POKEBALL, NULL);
     GF_ASSERT(param0->unk_22);
 
     sub_0206CED0(heapID, param1, &param0->unk_0B, param0->unk_0C);
@@ -1040,8 +1040,8 @@ void sub_0206D7C4(FieldSystem *fieldSystem)
     for (v5 = 0; v5 < v4; v5++) {
         pokemon = Party_GetPokemonBySlotIndex(v8, v5);
 
-        if (Pokemon_GetValue(pokemon, MON_DATA_IS_EGG, NULL) == 0) {
-            v3 = Pokemon_GetValue(pokemon, MON_DATA_GENDER, NULL);
+        if (Pokemon_GetData(pokemon, MON_DATA_IS_EGG, NULL) == 0) {
+            v3 = Pokemon_GetData(pokemon, MON_DATA_GENDER, NULL);
 
             if (v3 == 0) {
                 v0 = 1;
@@ -1444,7 +1444,7 @@ static u8 sub_0206DE4C(Pokemon *param0)
     u8 v0 = 0, v1;
 
     for (v1 = 0; v1 < (NELEMS(Unk_020EFDDC)); v1++) {
-        if (Pokemon_GetValue(param0, Unk_020EFDDC[v1], NULL) == 1) {
+        if (Pokemon_GetData(param0, Unk_020EFDDC[v1], NULL) == 1) {
             v0++;
         }
     }
@@ -2827,7 +2827,7 @@ static int sub_0206F160(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     party = SaveData_GetParty(fieldSystem->saveData);
     pokemon = Party_GetPokemonBySlotIndex(party, SaveData_GetFirstNonEggInParty(fieldSystem->saveData));
 
-    sub_0206CE74(param1, 0, Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL), Pokemon_GetValue(pokemon, MON_DATA_GENDER, NULL), TrainerInfo_RegionCode(trainerInfo), TrainerInfo_GameCode(trainerInfo));
+    sub_0206CE74(param1, 0, Pokemon_GetData(pokemon, MON_DATA_SPECIES, NULL), Pokemon_GetData(pokemon, MON_DATA_GENDER, NULL), TrainerInfo_RegionCode(trainerInfo), TrainerInfo_GameCode(trainerInfo));
     StringTemplate_SetContestAccessoryName(param1, 1, (LCRNG_Next() % 100));
 
     v1 = (LCRNG_Next() % (NATIONAL_DEX_COUNT - 2) + 1);

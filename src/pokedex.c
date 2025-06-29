@@ -463,7 +463,7 @@ static BOOL FormSeen_Deoxys(const Pokedex *pokedexData, u32 form)
 
 static void UpdateForms_Deoxys(Pokedex *pokedexData, u16 species, Pokemon *pokemon)
 {
-    u8 form = Pokemon_GetValue(pokemon, MON_DATA_FORM, NULL);
+    u8 form = Pokemon_GetData(pokemon, MON_DATA_FORM, NULL);
 
     if (species == SPECIES_DEOXYS) {
         if (FormSeen_Deoxys(pokedexData, form) == FALSE) {
@@ -567,34 +567,34 @@ static void UpdateForm(Pokedex *pokedexData, u16 species, Pokemon *pokemon)
         SetUnownForm(pokedexData, form);
         break;
     case SPECIES_BURMY:
-        form = Pokemon_GetValue(pokemon, MON_DATA_FORM, NULL);
+        form = Pokemon_GetData(pokemon, MON_DATA_FORM, NULL);
         UpdateForms_ThreeForms(pokedexData, species, form);
         break;
     case SPECIES_WORMADAM:
-        form = Pokemon_GetValue(pokemon, MON_DATA_FORM, NULL);
+        form = Pokemon_GetData(pokemon, MON_DATA_FORM, NULL);
         UpdateForms_ThreeForms(pokedexData, species, form);
         break;
     case SPECIES_SHELLOS:
-        form = Pokemon_GetValue(pokemon, MON_DATA_FORM, NULL);
+        form = Pokemon_GetData(pokemon, MON_DATA_FORM, NULL);
         UpdateForms_TwoForms(pokedexData, species, form);
         break;
     case SPECIES_GASTRODON:
-        form = Pokemon_GetValue(pokemon, MON_DATA_FORM, NULL);
+        form = Pokemon_GetData(pokemon, MON_DATA_FORM, NULL);
         UpdateForms_TwoForms(pokedexData, species, form);
         break;
     case SPECIES_DEOXYS:
         UpdateForms_Deoxys(pokedexData, species, pokemon);
         break;
     case SPECIES_SHAYMIN:
-        form = Pokemon_GetValue(pokemon, MON_DATA_FORM, NULL);
+        form = Pokemon_GetData(pokemon, MON_DATA_FORM, NULL);
         UpdateForms_TwoForms(pokedexData, species, form);
         break;
     case SPECIES_GIRATINA:
-        form = Pokemon_GetValue(pokemon, MON_DATA_FORM, NULL);
+        form = Pokemon_GetData(pokemon, MON_DATA_FORM, NULL);
         UpdateForms_TwoForms(pokedexData, species, form);
         break;
     case SPECIES_ROTOM:
-        form = Pokemon_GetValue(pokemon, MON_DATA_FORM, NULL);
+        form = Pokemon_GetData(pokemon, MON_DATA_FORM, NULL);
         UpdateForms_Rotom(pokedexData, species, form);
         break;
     }
@@ -1026,8 +1026,8 @@ u32 Pokedex_NumFormsSeen_Deoxys(const Pokedex *pokedexData)
 
 void Pokedex_Encounter(Pokedex *pokedexData, Pokemon *pokemon)
 {
-    u16 species = Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
-    u32 personality = Pokemon_GetValue(pokemon, MON_DATA_PERSONALITY, NULL);
+    u16 species = Pokemon_GetData(pokemon, MON_DATA_SPECIES, NULL);
+    u32 personality = Pokemon_GetData(pokemon, MON_DATA_PERSONALITY, NULL);
     u32 gender = Pokemon_GetGender(pokemon);
 
     CheckPokedexIntegrity(pokedexData);
@@ -1053,9 +1053,9 @@ void Pokedex_Encounter(Pokedex *pokedexData, Pokemon *pokemon)
 
 void Pokedex_Capture(Pokedex *pokedexData, Pokemon *pokemon)
 {
-    u16 species = Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
-    u32 language = Pokemon_GetValue(pokemon, MON_DATA_LANGUAGE, NULL);
-    u32 personality = Pokemon_GetValue(pokemon, MON_DATA_PERSONALITY, NULL);
+    u16 species = Pokemon_GetData(pokemon, MON_DATA_SPECIES, NULL);
+    u32 language = Pokemon_GetData(pokemon, MON_DATA_LANGUAGE, NULL);
+    u32 personality = Pokemon_GetData(pokemon, MON_DATA_PERSONALITY, NULL);
     u32 gender = Pokemon_GetGender(pokemon);
 
     CheckPokedexIntegrity(pokedexData);

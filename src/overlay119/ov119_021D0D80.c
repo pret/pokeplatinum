@@ -730,13 +730,13 @@ void ov119_021D1858(UnkStruct_ov119_021D0FD0 *param0)
     int v4;
 
     v2 = param0->unk_00->unk_0C.unk_00;
-    v3 = Pokemon_GetValue(v2, MON_DATA_SPECIES, NULL);
+    v3 = Pokemon_GetData(v2, MON_DATA_SPECIES, NULL);
     v4 = Pokemon_SpriteYOffset(v2, 2);
 
     {
         int v5 = 0;
 
-        Pokemon_SetValue(v2, MON_DATA_IS_EGG, &v5);
+        Pokemon_SetData(v2, MON_DATA_IS_EGG, &v5);
     }
 
     Pokemon_BuildSpriteTemplate(&v0, v2, 2);
@@ -750,7 +750,7 @@ void ov119_021D18C0(UnkStruct_ov119_021D0FD0 *param0)
     int v0;
     int v1;
 
-    v0 = Pokemon_GetValue(param0->unk_00->unk_0C.unk_00, MON_DATA_SPECIES, NULL);
+    v0 = Pokemon_GetData(param0->unk_00->unk_0C.unk_00, MON_DATA_SPECIES, NULL);
     v1 = Pokemon_GetNature(param0->unk_00->unk_0C.unk_00);
 
     PokemonSprite_InitAnim(param0->unk_70, 1);

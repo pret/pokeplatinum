@@ -30,8 +30,8 @@ u32 BoxPokemon_IconSpriteIndex(const BoxPokemon *boxMon)
 {
     BOOL reencrypt = BoxPokemon_EnterDecryptionContext((BoxPokemon *)boxMon);
 
-    u32 species = BoxPokemon_GetValue((BoxPokemon *)boxMon, MON_DATA_SPECIES, NULL);
-    BOOL isEgg = BoxPokemon_GetValue((BoxPokemon *)boxMon, MON_DATA_IS_EGG, NULL);
+    u32 species = BoxPokemon_GetData((BoxPokemon *)boxMon, MON_DATA_SPECIES, NULL);
+    BOOL isEgg = BoxPokemon_GetData((BoxPokemon *)boxMon, MON_DATA_IS_EGG, NULL);
     u32 form = BoxPokemon_IconFormOffset((BoxPokemon *)boxMon);
     u32 index = PokeIconSpriteIndex(species, isEgg, form);
 
@@ -103,7 +103,7 @@ u32 PokeIconSpriteIndex(u32 species, u32 isEgg, u32 form)
 
 u16 BoxPokemon_IconFormOffset(const BoxPokemon *boxMon)
 {
-    u32 speciesOrEgg = BoxPokemon_GetValue((BoxPokemon *)boxMon, MON_DATA_SPECIES_EGG, NULL);
+    u32 speciesOrEgg = BoxPokemon_GetData((BoxPokemon *)boxMon, MON_DATA_SPECIES_EGG, NULL);
 
     switch (speciesOrEgg) {
     case SPECIES_UNOWN:
@@ -116,7 +116,7 @@ u16 BoxPokemon_IconFormOffset(const BoxPokemon *boxMon)
     case SPECIES_GIRATINA:
     case SPECIES_SHAYMIN:
     case SPECIES_ROTOM:
-        return BoxPokemon_GetValue((BoxPokemon *)boxMon, MON_DATA_FORM, NULL);
+        return BoxPokemon_GetData((BoxPokemon *)boxMon, MON_DATA_FORM, NULL);
     }
 
     return 0;
@@ -162,8 +162,8 @@ const u8 BoxPokemon_IconPaletteIndex(const BoxPokemon *boxMon)
     BOOL reencrypt = BoxPokemon_EnterDecryptionContext((BoxPokemon *)boxMon);
 
     u32 form = BoxPokemon_IconFormOffset(boxMon);
-    u32 species = BoxPokemon_GetValue((BoxPokemon *)boxMon, MON_DATA_SPECIES, NULL);
-    u32 isEgg = BoxPokemon_GetValue((BoxPokemon *)boxMon, MON_DATA_IS_EGG, NULL);
+    u32 species = BoxPokemon_GetData((BoxPokemon *)boxMon, MON_DATA_SPECIES, NULL);
+    u32 isEgg = BoxPokemon_GetData((BoxPokemon *)boxMon, MON_DATA_IS_EGG, NULL);
 
     BoxPokemon_ExitDecryptionContext((BoxPokemon *)boxMon, reencrypt);
 

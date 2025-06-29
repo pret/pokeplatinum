@@ -1039,7 +1039,7 @@ u8 sub_0207EF14(GameWindowLayout *windowLayout, u8 partySlot)
     }
 
     mon = Party_GetPokemonBySlotIndex(windowLayout->partyManagementData->party, partySlot);
-    species = (u16)Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    species = (u16)Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
 
     if (species == 0) {
         return 0;
@@ -1048,15 +1048,15 @@ u8 sub_0207EF14(GameWindowLayout *windowLayout, u8 partySlot)
     sub_02081ED8(windowLayout, mon, partySlot);
 
     windowLayout->unk_704[partySlot].unk_04 = species;
-    windowLayout->unk_704[partySlot].curHP = (u16)Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL);
-    windowLayout->unk_704[partySlot].maxHP = (u16)Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
-    windowLayout->unk_704[partySlot].level = (u16)Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
-    windowLayout->unk_704[partySlot].unk_0C = (u16)Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
-    windowLayout->unk_704[partySlot].unk_12 = (u16)Pokemon_GetValue(mon, MON_DATA_BALL_CAPSULE_ID, NULL);
-    windowLayout->unk_704[partySlot].unk_10 = (u8)Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
-    windowLayout->unk_704[partySlot].unk_11 = (u8)Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+    windowLayout->unk_704[partySlot].curHP = (u16)Pokemon_GetData(mon, MON_DATA_CURRENT_HP, NULL);
+    windowLayout->unk_704[partySlot].maxHP = (u16)Pokemon_GetData(mon, MON_DATA_MAX_HP, NULL);
+    windowLayout->unk_704[partySlot].level = (u16)Pokemon_GetData(mon, MON_DATA_LEVEL, NULL);
+    windowLayout->unk_704[partySlot].unk_0C = (u16)Pokemon_GetData(mon, MON_DATA_HELD_ITEM, NULL);
+    windowLayout->unk_704[partySlot].unk_12 = (u16)Pokemon_GetData(mon, MON_DATA_BALL_CAPSULE_ID, NULL);
+    windowLayout->unk_704[partySlot].unk_10 = (u8)Pokemon_GetData(mon, MON_DATA_IS_EGG, NULL);
+    windowLayout->unk_704[partySlot].unk_11 = (u8)Pokemon_GetData(mon, MON_DATA_FORM, NULL);
 
-    if (Pokemon_GetValue(mon, MON_DATA_NIDORAN_HAS_NICKNAME, NULL) == 1) {
+    if (Pokemon_GetData(mon, MON_DATA_NIDORAN_HAS_NICKNAME, NULL) == 1) {
         windowLayout->unk_704[partySlot].unk_0E_12 = 0;
     } else {
         windowLayout->unk_704[partySlot].unk_0E_12 = 1;
@@ -1088,7 +1088,7 @@ static void sub_0207F094(GameWindowLayout *param0, Pokemon *param1, u8 param2)
     v0 = sub_0207F134(param1, param0->partyManagementData->unk_2A);
 
     for (v1 = 0; v1 < 4; v1++) {
-        if (Pokemon_GetValue(param1, MON_DATA_MOVE1 + v1, NULL) == 0) {
+        if (Pokemon_GetData(param1, MON_DATA_MOVE1 + v1, NULL) == 0) {
             break;
         }
     }
@@ -1106,34 +1106,34 @@ static u32 sub_0207F134(Pokemon *param0, u8 param1)
 
     switch (param1) {
     case 0:
-        v0 = Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_COOL_RIBBON, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_COOL_RIBBON_GREAT, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_COOL_RIBBON_ULTRA, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_COOL_RIBBON_MASTER, NULL);
+        v0 = Pokemon_GetData(param0, MON_DATA_SINNOH_SUPER_COOL_RIBBON, NULL);
+        v0 += Pokemon_GetData(param0, MON_DATA_SINNOH_SUPER_COOL_RIBBON_GREAT, NULL);
+        v0 += Pokemon_GetData(param0, MON_DATA_SINNOH_SUPER_COOL_RIBBON_ULTRA, NULL);
+        v0 += Pokemon_GetData(param0, MON_DATA_SINNOH_SUPER_COOL_RIBBON_MASTER, NULL);
         break;
     case 1:
-        v0 = Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON_GREAT, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON_ULTRA, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON_MASTER, NULL);
+        v0 = Pokemon_GetData(param0, MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON, NULL);
+        v0 += Pokemon_GetData(param0, MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON_GREAT, NULL);
+        v0 += Pokemon_GetData(param0, MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON_ULTRA, NULL);
+        v0 += Pokemon_GetData(param0, MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON_MASTER, NULL);
         break;
     case 2:
-        v0 = Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_CUTE_RIBBON, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_CUTE_RIBBON_GREAT, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_CUTE_RIBBON_ULTRA, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_CUTE_RIBBON_MASTER, NULL);
+        v0 = Pokemon_GetData(param0, MON_DATA_SINNOH_SUPER_CUTE_RIBBON, NULL);
+        v0 += Pokemon_GetData(param0, MON_DATA_SINNOH_SUPER_CUTE_RIBBON_GREAT, NULL);
+        v0 += Pokemon_GetData(param0, MON_DATA_SINNOH_SUPER_CUTE_RIBBON_ULTRA, NULL);
+        v0 += Pokemon_GetData(param0, MON_DATA_SINNOH_SUPER_CUTE_RIBBON_MASTER, NULL);
         break;
     case 3:
-        v0 = Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_SMART_RIBBON, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_SMART_RIBBON_GREAT, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_SMART_RIBBON_ULTRA, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_SMART_RIBBON_MASTER, NULL);
+        v0 = Pokemon_GetData(param0, MON_DATA_SINNOH_SUPER_SMART_RIBBON, NULL);
+        v0 += Pokemon_GetData(param0, MON_DATA_SINNOH_SUPER_SMART_RIBBON_GREAT, NULL);
+        v0 += Pokemon_GetData(param0, MON_DATA_SINNOH_SUPER_SMART_RIBBON_ULTRA, NULL);
+        v0 += Pokemon_GetData(param0, MON_DATA_SINNOH_SUPER_SMART_RIBBON_MASTER, NULL);
         break;
     case 4:
-        v0 = Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_TOUGH_RIBBON, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_TOUGH_RIBBON_GREAT, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_TOUGH_RIBBON_ULTRA, NULL);
-        v0 += Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_TOUGH_RIBBON_MASTER, NULL);
+        v0 = Pokemon_GetData(param0, MON_DATA_SINNOH_SUPER_TOUGH_RIBBON, NULL);
+        v0 += Pokemon_GetData(param0, MON_DATA_SINNOH_SUPER_TOUGH_RIBBON_GREAT, NULL);
+        v0 += Pokemon_GetData(param0, MON_DATA_SINNOH_SUPER_TOUGH_RIBBON_ULTRA, NULL);
+        v0 += Pokemon_GetData(param0, MON_DATA_SINNOH_SUPER_TOUGH_RIBBON_MASTER, NULL);
     }
 
     return v0;
@@ -1350,7 +1350,7 @@ void sub_0207F8F8(GameWindowLayout *windowLayout, u8 partySlot)
             v1 = 0;
         }
 
-        if (Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, 0) == 0) {
+        if (Pokemon_GetData(mon, MON_DATA_CURRENT_HP, 0) == 0) {
             v1 += 2;
         } else if (sub_0207F984(windowLayout, partySlot) == 1) {
             v1 += 1;
@@ -1726,7 +1726,7 @@ static u8 sub_020800B4(GameWindowLayout *param0, u8 *param1)
     if (FieldSystem_IsInBattleTowerSalon(param0->partyManagementData->fieldSystem) == FALSE) {
         if (param0->unk_704[param0->partySlot].unk_10 == 0) {
             for (v3 = 0; v3 < 4; v3++) {
-                v1 = (u16)Pokemon_GetValue(v0, MON_DATA_MOVE1 + v3, NULL);
+                v1 = (u16)Pokemon_GetData(v0, MON_DATA_MOVE1 + v3, NULL);
 
                 if (v1 == 0) {
                     break;
@@ -2499,7 +2499,7 @@ static BOOL UpdatePokemonStatus(GameWindowLayout *param0, u8 slot, s8 param2)
 
         mon = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, slot);
         v1 = param0->unk_704[slot].curHP;
-        Pokemon_SetValue(mon, MON_DATA_CURRENT_HP, &v1);
+        Pokemon_SetData(mon, MON_DATA_CURRENT_HP, &v1);
         return 1;
     }
 
@@ -2624,7 +2624,7 @@ static int ProcessItemApplication(GameWindowLayout *param0)
     fieldSystem = param0->partyManagementData->fieldSystem;
 
     if (param0->partyManagementData->usedItemID == 112) {
-        if (Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA) {
+        if (Pokemon_GetData(v0, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA) {
             MessageLoader_GetStrbuf(param0->messageLoader, 203, param0->unk_6A8);
             StringTemplate_SetNickname(param0->template, 0, Pokemon_GetBoxPokemon(v0));
             StringTemplate_SetItemNameWithArticle(param0->template, 1, param0->partyManagementData->usedItemID);
@@ -2682,7 +2682,7 @@ static int UpdatePokemonWithItem(GameWindowLayout *param0, Pokemon *mon, int *pa
     FieldSystem *fieldSystem = param0->partyManagementData->fieldSystem;
 
     Bag_TryRemoveItem(param0->partyManagementData->bag, param0->partyManagementData->usedItemID, 1, HEAP_ID_12);
-    Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &item);
+    Pokemon_SetData(mon, MON_DATA_HELD_ITEM, &item);
     Pokemon_SetArceusForm(mon);
 
     if ((fieldSystem == NULL) || (fieldSystem->location->mapId < 573) || (fieldSystem->location->mapId > 583)) {
@@ -2704,7 +2704,7 @@ static int UpdatePokemonWithItem(GameWindowLayout *param0, Pokemon *mon, int *pa
 static void SwapPokemonItem(GameWindowLayout *param0, Pokemon *mon, u32 param2, u32 param3)
 {
     Bag_TryAddItem(param0->partyManagementData->bag, (u16)param2, 1, HEAP_ID_12);
-    Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &param3);
+    Pokemon_SetData(mon, MON_DATA_HELD_ITEM, &param3);
     Pokemon_SetArceusForm(mon);
     Pokemon_SetGiratinaFormByHeldItem(mon);
     param0->unk_704[param0->partySlot].unk_0C = (u16)param3;

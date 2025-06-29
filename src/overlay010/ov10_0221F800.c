@@ -1514,7 +1514,7 @@ static void ov10_022211F0(UnkStruct_ov10_0221FB28 *param0, Party *param1, u16 pa
         if (v3 > v1) {
             v0 = Party_GetPokemonBySlotIndex(param1, v1);
 
-            if ((Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL) == 0) || (Pokemon_GetValue(v0, MON_DATA_IS_EGG, NULL) != 0)) {
+            if ((Pokemon_GetData(v0, MON_DATA_SPECIES, NULL) == 0) || (Pokemon_GetData(v0, MON_DATA_IS_EGG, NULL) != 0)) {
                 continue;
             }
 
@@ -2011,21 +2011,21 @@ static void ov10_02221D14(UnkStruct_ov10_0221FB28 *param0, Party *param1, u8 par
         v0 = Party_GetPokemonBySlotIndex(param1, v1);
 
         param0->unk_214[v1 + param2].unk_00 = Pokemon_IconSpriteIndex(v0);
-        param0->unk_214[v1 + param2].unk_04 = (u16)Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
+        param0->unk_214[v1 + param2].unk_04 = (u16)Pokemon_GetData(v0, MON_DATA_SPECIES, NULL);
 
         if (param0->unk_214[v1 + param2].unk_04 == 0) {
             continue;
         }
 
-        param0->unk_214[v1 + param2].unk_0F = (u16)Pokemon_GetValue(v0, MON_DATA_IS_EGG, NULL);
-        param0->unk_214[v1 + param2].unk_06 = (u16)Pokemon_GetValue(v0, MON_DATA_CURRENT_HP, NULL);
-        param0->unk_214[v1 + param2].unk_08 = (u16)Pokemon_GetValue(v0, MON_DATA_MAX_HP, NULL);
-        param0->unk_214[v1 + param2].unk_0C = (u16)Pokemon_GetValue(v0, MON_DATA_LEVEL, NULL);
-        param0->unk_214[v1 + param2].unk_0A = (u16)Pokemon_GetValue(v0, MON_DATA_HELD_ITEM, NULL);
-        param0->unk_214[v1 + param2].unk_10 = (u8)Pokemon_GetValue(v0, MON_DATA_BALL_CAPSULE_ID, NULL);
-        param0->unk_214[v1 + param2].unk_11 = (u8)Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
+        param0->unk_214[v1 + param2].unk_0F = (u16)Pokemon_GetData(v0, MON_DATA_IS_EGG, NULL);
+        param0->unk_214[v1 + param2].unk_06 = (u16)Pokemon_GetData(v0, MON_DATA_CURRENT_HP, NULL);
+        param0->unk_214[v1 + param2].unk_08 = (u16)Pokemon_GetData(v0, MON_DATA_MAX_HP, NULL);
+        param0->unk_214[v1 + param2].unk_0C = (u16)Pokemon_GetData(v0, MON_DATA_LEVEL, NULL);
+        param0->unk_214[v1 + param2].unk_0A = (u16)Pokemon_GetData(v0, MON_DATA_HELD_ITEM, NULL);
+        param0->unk_214[v1 + param2].unk_10 = (u8)Pokemon_GetData(v0, MON_DATA_BALL_CAPSULE_ID, NULL);
+        param0->unk_214[v1 + param2].unk_11 = (u8)Pokemon_GetData(v0, MON_DATA_FORM, NULL);
 
-        if (Pokemon_GetValue(v0, MON_DATA_NIDORAN_HAS_NICKNAME, NULL) == 1) {
+        if (Pokemon_GetData(v0, MON_DATA_NIDORAN_HAS_NICKNAME, NULL) == 1) {
             param0->unk_214[v1 + param2].unk_0E = 0;
         } else {
             param0->unk_214[v1 + param2].unk_0E = 1;

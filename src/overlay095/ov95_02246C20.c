@@ -165,10 +165,10 @@ int ov95_02246C20(ApplicationManager *appMan, int *param1)
             v0->unk_18 = SpriteList_InitRendering(64, &v0->unk_1C, HEAP_ID_57);
             SetSubScreenViewRect(&(v0->unk_1C), 0, (192 + 40 << FX32_SHIFT));
 
-            v0->unk_1B0 = BoxPokemon_GetValue((BoxPokemon *)(v0->unk_00->unk_00), MON_DATA_SPECIES, NULL);
-            v0->unk_1B2 = BoxPokemon_GetValue((BoxPokemon *)(v0->unk_00->unk_00), MON_DATA_FORM, NULL);
-            v0->unk_1B4 = BoxPokemon_GetValue((BoxPokemon *)(v0->unk_00->unk_04), MON_DATA_SPECIES, NULL);
-            v0->unk_1B6 = BoxPokemon_GetValue((BoxPokemon *)(v0->unk_00->unk_04), MON_DATA_FORM, NULL);
+            v0->unk_1B0 = BoxPokemon_GetData((BoxPokemon *)(v0->unk_00->unk_00), MON_DATA_SPECIES, NULL);
+            v0->unk_1B2 = BoxPokemon_GetData((BoxPokemon *)(v0->unk_00->unk_00), MON_DATA_FORM, NULL);
+            v0->unk_1B4 = BoxPokemon_GetData((BoxPokemon *)(v0->unk_00->unk_04), MON_DATA_SPECIES, NULL);
+            v0->unk_1B6 = BoxPokemon_GetData((BoxPokemon *)(v0->unk_00->unk_04), MON_DATA_FORM, NULL);
             v0->unk_1B8 = NULL;
 
             SetVBlankCallback(NULL, NULL);
@@ -191,8 +191,8 @@ int ov95_02246C20(ApplicationManager *appMan, int *param1)
 
 static BOOL DoesMonSpeciesFlipsSprite(BoxPokemon *boxMon)
 {
-    int species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
-    int form = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
+    int species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
+    int form = BoxPokemon_GetData(boxMon, MON_DATA_FORM, NULL);
 
     return SpeciesData_GetFormValue(species, form, SPECIES_DATA_FLIP_SPRITE) == FALSE;
 }
@@ -570,8 +570,8 @@ void ov95_022473E8(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 
 
         BoxPokemon_BuildSpriteTemplate(&v0, v5, 2, 0);
 
-        v7 = BoxPokemon_GetValue(v5, MON_DATA_PERSONALITY, NULL);
-        v8 = BoxPokemon_GetValue(v5, MON_DATA_SPECIES, NULL);
+        v7 = BoxPokemon_GetData(v5, MON_DATA_PERSONALITY, NULL);
+        v8 = BoxPokemon_GetData(v5, MON_DATA_SPECIES, NULL);
 
         if (param4) {
             v4.unk_08 *= 2;

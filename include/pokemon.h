@@ -131,7 +131,7 @@ void Pokemon_CalcStats(Pokemon *mon);
  * @param[out] dest Pointer for storing longer data
  * @return The requested value
  */
-u32 Pokemon_GetValue(Pokemon *mon, enum PokemonDataParam param, void *dest);
+u32 Pokemon_GetData(Pokemon *mon, enum PokemonDataParam param, void *dest);
 
 /**
  * @brief Gets a value from a Pokemon, storing it in dest if neccessary
@@ -141,7 +141,7 @@ u32 Pokemon_GetValue(Pokemon *mon, enum PokemonDataParam param, void *dest);
  * @param[out] dest Pointer for storing longer data
  * @return The requested value
  */
-u32 BoxPokemon_GetValue(BoxPokemon *boxMon, enum PokemonDataParam param, void *dest);
+u32 BoxPokemon_GetData(BoxPokemon *boxMon, enum PokemonDataParam param, void *dest);
 
 /**
  * @brief Sets a value in a Pokemon, reading it from value if neccessary
@@ -150,7 +150,7 @@ u32 BoxPokemon_GetValue(BoxPokemon *boxMon, enum PokemonDataParam param, void *d
  * @param param
  * @param value
  */
-void Pokemon_SetValue(Pokemon *mon, enum PokemonDataParam param, const void *value);
+void Pokemon_SetData(Pokemon *mon, enum PokemonDataParam param, const void *value);
 
 /**
  * @brief Sets a value in a BoxPokemon, reading it from value if neccessary
@@ -159,7 +159,7 @@ void Pokemon_SetValue(Pokemon *mon, enum PokemonDataParam param, const void *val
  * @param param
  * @param value
  */
-void BoxPokemon_SetValue(BoxPokemon *boxMon, enum PokemonDataParam param, const void *value);
+void BoxPokemon_SetData(BoxPokemon *boxMon, enum PokemonDataParam param, const void *value);
 
 /**
  * @brief Increases some numerical fields in a Pokemon by the given value. Does nothing if the field is not supported

@@ -427,7 +427,7 @@ BOOL ScrCmd_1CB(ScriptContext *param0)
     u16 v6;
 
     v1 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v4);
-    v6 = Pokemon_GetValue(v1, MON_DATA_MOVE1 + v5, NULL);
+    v6 = Pokemon_GetData(v1, MON_DATA_MOVE1 + v5, NULL);
 
     StringTemplate_SetMoveName(*v2, v3, v6);
     return 0;

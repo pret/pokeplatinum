@@ -1048,7 +1048,7 @@ BOOL sub_0203DBF0(FieldTask *param0)
         v2->unk_00 = 5;
         break;
     case 5: {
-        int v3 = Pokemon_GetValue(v2->unk_04.unk_40, MON_DATA_HELD_ITEM, NULL);
+        int v3 = Pokemon_GetData(v2->unk_04.unk_40, MON_DATA_HELD_ITEM, NULL);
         int v4;
         int v5;
 
@@ -1217,7 +1217,7 @@ static void sub_0203DF68(FieldTask *param0)
         int v4;
 
         v3 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v1->unk_04);
-        Pokemon_SetValue(v3, MON_DATA_NICKNAME_AND_FLAG, (u8 *)&v1->unk_0C->unk_1C);
+        Pokemon_SetData(v3, MON_DATA_NICKNAME_AND_FLAG, (u8 *)&v1->unk_0C->unk_1C);
     } break;
     case 5: {
         RecordMixedRNG *v5 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
@@ -1247,8 +1247,8 @@ void sub_0203DFE8(FieldTask *param0, int param1, int param2, int param3, int par
     switch (param1) {
     case 1:
         v0 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v2->unk_04);
-        v2->unk_0C->unk_10 = Pokemon_GetValue(v0, MON_DATA_GENDER, NULL);
-        v2->unk_0C->unk_08 = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
+        v2->unk_0C->unk_10 = Pokemon_GetData(v0, MON_DATA_GENDER, NULL);
+        v2->unk_0C->unk_08 = Pokemon_GetData(v0, MON_DATA_FORM, NULL);
 
         if (param5 != NULL) {
             Strbuf_CopyChars(v2->unk_10, param5);

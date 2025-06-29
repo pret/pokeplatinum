@@ -1306,8 +1306,8 @@ u32 CutInEffects_ForBattle(const FieldBattleDTO *param0)
 
     v3 = Party_FindFirstEligibleBattler(param0->parties[0]);
     v4 = Party_FindFirstEligibleBattler(param0->parties[1]);
-    v5 = Pokemon_GetValue(v3, MON_DATA_LEVEL, NULL);
-    v6 = Pokemon_GetValue(v4, MON_DATA_LEVEL, NULL);
+    v5 = Pokemon_GetData(v3, MON_DATA_LEVEL, NULL);
+    v6 = Pokemon_GetData(v4, MON_DATA_LEVEL, NULL);
     v0 = v6 - v5;
 
     switch (param0->terrain) {

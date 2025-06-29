@@ -171,7 +171,7 @@ void StringTemplate_SetCounterpartName(StringTemplate *template, u32 idx, const 
 void StringTemplate_SetSpeciesName(StringTemplate *template, u32 idx, BoxPokemon *boxMon)
 {
     MessageLoader *loader = InitMessageLoader(TEXT_BANK_SPECIES_NAME, template->heapID);
-    u32 species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
+    u32 species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
 
     MessageLoader_GetStrbuf(loader, species, template->templateBuf);
     SetStringTemplateArg(template, idx, template->templateBuf, NULL);
@@ -180,7 +180,7 @@ void StringTemplate_SetSpeciesName(StringTemplate *template, u32 idx, BoxPokemon
 
 void StringTemplate_SetSpeciesNameWithArticle(StringTemplate *template, u32 idx, BoxPokemon *boxMon)
 {
-    StringTemplate_SetSpeciesNameWithArticleByID(template, idx, BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL));
+    StringTemplate_SetSpeciesNameWithArticleByID(template, idx, BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL));
 }
 
 void StringTemplate_SetSpeciesNameWithArticleByID(StringTemplate *template, u32 idx, u32 species)
@@ -194,13 +194,13 @@ void StringTemplate_SetSpeciesNameWithArticleByID(StringTemplate *template, u32 
 
 void StringTemplate_SetNickname(StringTemplate *template, u32 idx, BoxPokemon *boxMon)
 {
-    BoxPokemon_GetValue(boxMon, MON_DATA_NICKNAME_STRBUF, template->templateBuf);
+    BoxPokemon_GetData(boxMon, MON_DATA_NICKNAME_STRBUF, template->templateBuf);
     SetStringTemplateArg(template, idx, template->templateBuf, NULL);
 }
 
 void StringTemplate_SetOTName(StringTemplate *template, u32 idx, BoxPokemon *boxMon)
 {
-    BoxPokemon_GetValue(boxMon, MON_DATA_OTNAME_STRBUF, template->templateBuf);
+    BoxPokemon_GetData(boxMon, MON_DATA_OTNAME_STRBUF, template->templateBuf);
     SetStringTemplateArg(template, idx, template->templateBuf, NULL);
 }
 

@@ -102,8 +102,8 @@ UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Opt
 
     v0->unk_24 = param0;
     v0->unk_28 = param1;
-    v0->unk_60 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
-    v0->unk_86 = Pokemon_GetValue(param1, MON_DATA_FORM, NULL);
+    v0->unk_60 = Pokemon_GetData(param1, MON_DATA_SPECIES, NULL);
+    v0->unk_86 = Pokemon_GetData(param1, MON_DATA_FORM, NULL);
     v0->unk_62 = param2;
     v0->heapID = heapID;
     v0->unk_80 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, heapID);
@@ -394,7 +394,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         break;
     case 11:
         if ((Sound_IsPokemonCryPlaying() == 0) && (sub_020160F4(param0->unk_44, 0) == 1) && (PokemonSprite_IsAnimActive(param0->unk_1C[1]) == 0)) {
-            Pokemon_SetValue(param0->unk_28, MON_DATA_SPECIES, (u8 *)&param0->unk_62);
+            Pokemon_SetData(param0->unk_28, MON_DATA_SPECIES, (u8 *)&param0->unk_62);
             Pokemon_CalcAbility(param0->unk_28);
             Pokemon_CalcLevelAndStats(param0->unk_28);
             StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
@@ -412,8 +412,8 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
                 GameRecords_IncrementTrainerScore(param0->records, TRAINER_SCORE_EVENT_CAUGHT_SPECIES);
                 Poketch_PokemonHistoryEnqueue(param0->poketch, Pokemon_GetBoxPokemon(param0->unk_28));
 
-                if (Pokemon_GetValue(param0->unk_28, MON_DATA_HAS_NICKNAME, NULL) == 0) {
-                    Pokemon_SetValue(param0->unk_28, MON_DATA_SPECIES_NAME, NULL);
+                if (Pokemon_GetData(param0->unk_28, MON_DATA_HAS_NICKNAME, NULL) == 0) {
+                    Pokemon_SetData(param0->unk_28, MON_DATA_SPECIES_NAME, NULL);
                 }
 
                 param0->unk_64++;
@@ -576,7 +576,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         break;
     case 27:
         StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
-        StringTemplate_SetMoveName(param0->unk_0C, 1, Pokemon_GetValue(param0->unk_28, 54 + param0->unk_6E, NULL));
+        StringTemplate_SetMoveName(param0->unk_0C, 1, Pokemon_GetData(param0->unk_28, 54 + param0->unk_6E, NULL));
         param0->unk_65 = sub_0207C584(param0, 1200);
         param0->unk_66 = 30;
         param0->unk_64++;
@@ -591,7 +591,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         StringTemplate_SetMoveName(param0->unk_0C, 1, param0->unk_6C);
         param0->unk_65 = sub_0207C584(param0, 1202);
         param0->unk_66 = 0;
-        Pokemon_SetValue(param0->unk_28, 62 + param0->unk_6E, &param0->unk_66);
+        Pokemon_SetData(param0->unk_28, 62 + param0->unk_6E, &param0->unk_66);
         Pokemon_SetMoveSlot(param0->unk_28, param0->unk_6C, param0->unk_6E);
         param0->unk_66 = 30;
         param0->unk_64 = 37;
@@ -696,43 +696,43 @@ static void sub_0207C028(UnkStruct_0207AE68 *param0)
                 Pokemon_Copy(param0->unk_28, shedinja);
 
                 value = SPECIES_SHEDINJA;
-                Pokemon_SetValue(shedinja, MON_DATA_SPECIES, &value);
+                Pokemon_SetData(shedinja, MON_DATA_SPECIES, &value);
 
                 value = ITEM_POKE_BALL;
-                Pokemon_SetValue(shedinja, MON_DATA_POKEBALL, &value);
+                Pokemon_SetData(shedinja, MON_DATA_POKEBALL, &value);
 
                 value = 0;
-                Pokemon_SetValue(shedinja, MON_DATA_HELD_ITEM, &value);
-                Pokemon_SetValue(shedinja, MON_DATA_MARKS, &value);
+                Pokemon_SetData(shedinja, MON_DATA_HELD_ITEM, &value);
+                Pokemon_SetData(shedinja, MON_DATA_MARKS, &value);
 
                 for (i = MON_DATA_SINNOH_CHAMP_RIBBON; i < MON_DATA_SINNOH_RIBBON_DUMMY + 1; i++) {
-                    Pokemon_SetValue(shedinja, i, &value);
+                    Pokemon_SetData(shedinja, i, &value);
                 }
 
                 for (i = MON_DATA_HOENN_COOL_RIBBON; i < MON_DATA_HOENN_WORLD_RIBBON + 1; i++) {
-                    Pokemon_SetValue(shedinja, i, &value);
+                    Pokemon_SetData(shedinja, i, &value);
                 }
 
                 for (i = MON_DATA_SINNOH_SUPER_COOL_RIBBON; i < MON_DATA_CONTEST_RIBBON_DUMMY + 1; i++) {
-                    Pokemon_SetValue(shedinja, i, &value);
+                    Pokemon_SetData(shedinja, i, &value);
                 }
 
-                Pokemon_SetValue(shedinja, MON_DATA_SPECIES_NAME, NULL);
-                Pokemon_SetValue(shedinja, MON_DATA_HAS_NICKNAME, &value);
-                Pokemon_SetValue(shedinja, MON_DATA_STATUS_CONDITION, &value);
+                Pokemon_SetData(shedinja, MON_DATA_SPECIES_NAME, NULL);
+                Pokemon_SetData(shedinja, MON_DATA_HAS_NICKNAME, &value);
+                Pokemon_SetData(shedinja, MON_DATA_STATUS_CONDITION, &value);
 
                 mail = Mail_New(param0->heapID);
-                Pokemon_SetValue(shedinja, MON_DATA_MAIL, mail);
+                Pokemon_SetData(shedinja, MON_DATA_MAIL, mail);
                 Heap_FreeToHeap(mail);
-                Pokemon_SetValue(shedinja, MON_DATA_BALL_CAPSULE_ID, &value);
+                Pokemon_SetData(shedinja, MON_DATA_BALL_CAPSULE_ID, &value);
 
                 MI_CpuClearFast(&v4, sizeof(BallCapsule));
 
-                Pokemon_SetValue(shedinja, MON_DATA_BALL_CAPSULE, (BallCapsule *)&v4);
+                Pokemon_SetData(shedinja, MON_DATA_BALL_CAPSULE, (BallCapsule *)&v4);
                 Pokemon_CalcAbility(shedinja);
 
                 i = Pokemon_GetGender(shedinja);
-                Pokemon_SetValue(shedinja, MON_DATA_GENDER, &i);
+                Pokemon_SetData(shedinja, MON_DATA_GENDER, &i);
 
                 Pokemon_CalcLevelAndStats(shedinja);
                 Party_AddPokemon(param0->unk_24, shedinja);
@@ -749,7 +749,7 @@ static void sub_0207C028(UnkStruct_0207AE68 *param0)
     case 18:
     case 19:
         i = 0;
-        Pokemon_SetValue(param0->unk_28, MON_DATA_HELD_ITEM, &i);
+        Pokemon_SetData(param0->unk_28, MON_DATA_HELD_ITEM, &i);
         break;
     }
 }
@@ -942,7 +942,7 @@ static void sub_0207C498(UnkStruct_0207AE68 *param0)
     v1 = Pokemon_New(param0->heapID);
 
     Pokemon_Copy(param0->unk_28, v1);
-    Pokemon_SetValue(v1, MON_DATA_SPECIES, (u8 *)&param0->unk_62);
+    Pokemon_SetData(v1, MON_DATA_SPECIES, (u8 *)&param0->unk_62);
     Pokemon_CalcLevelAndStats(v1);
     Pokemon_BuildSpriteTemplate(&v0, v1, 2);
     Heap_FreeToHeap(v1);

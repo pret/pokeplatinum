@@ -27,7 +27,7 @@ void sub_0207A2C0(HeightWeightData *param0)
 
 BOOL sub_0207A2D0(const BattleRegulation *param0, Pokemon *param1, const HeightWeightData *param2)
 {
-    u16 v0 = (u16)Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
+    u16 v0 = (u16)Pokemon_GetData(param1, MON_DATA_SPECIES, NULL);
     int v1, v2, v3;
 
     if (param0 == NULL) {
@@ -36,11 +36,11 @@ BOOL sub_0207A2D0(const BattleRegulation *param0, Pokemon *param1, const HeightW
 
     v1 = sub_02026074(param0, 2);
 
-    if (Pokemon_GetValue(param1, MON_DATA_LEVEL, NULL) > v1) {
+    if (Pokemon_GetData(param1, MON_DATA_LEVEL, NULL) > v1) {
         return 0;
     }
 
-    if (Pokemon_GetValue(param1, MON_DATA_IS_EGG, NULL) != 0) {
+    if (Pokemon_GetData(param1, MON_DATA_IS_EGG, NULL) != 0) {
         return 0;
     }
 
@@ -130,10 +130,10 @@ int sub_0207A3AC(const BattleRegulation *param0, Party *param1, const HeightWeig
                 return 5;
             }
 
-            v6[v4] = (u16)Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
-            v7[v4] = (u16)Pokemon_GetValue(v0, MON_DATA_HELD_ITEM, NULL);
+            v6[v4] = (u16)Pokemon_GetData(v0, MON_DATA_SPECIES, NULL);
+            v7[v4] = (u16)Pokemon_GetData(v0, MON_DATA_HELD_ITEM, NULL);
 
-            v5 += Pokemon_GetValue(v0, MON_DATA_LEVEL, NULL);
+            v5 += Pokemon_GetData(v0, MON_DATA_LEVEL, NULL);
         }
     }
 
@@ -216,8 +216,8 @@ int sub_0207A594(const BattleRegulation *param0, Party *param1, const HeightWeig
 
     for (v4 = 0; v4 < v2; v4++) {
         v0 = Party_GetPokemonBySlotIndex(param1, v4);
-        v6[v4] = (u16)Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
-        v7[v4] = Pokemon_GetValue(v0, MON_DATA_LEVEL, NULL);
+        v6[v4] = (u16)Pokemon_GetData(v0, MON_DATA_SPECIES, NULL);
+        v7[v4] = Pokemon_GetData(v0, MON_DATA_LEVEL, NULL);
 
         if (sub_0207A2D0(param0, v0, param2) == 0) {
             v6[v4] = 0;

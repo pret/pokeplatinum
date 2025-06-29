@@ -73,7 +73,7 @@ int ov118_021D0DBC(GameWindowLayout *param0)
 
     switch (v0->unk_00) {
     case 0: {
-        v0->unk_0C = Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
+        v0->unk_0C = Pokemon_GetData(v1, MON_DATA_SPECIES, NULL);
 
         switch (v0->unk_0C) {
         case SPECIES_GIRATINA:
