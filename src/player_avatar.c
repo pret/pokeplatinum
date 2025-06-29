@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/field/dynamic_map_features.h"
+#include "constants/map_object.h"
 
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -157,7 +158,7 @@ static void PlayerAvatar_AddMapObject(PlayerAvatar *playerAvatar, const MapObjec
     MapObject *mapObj = MapObjectMan_AddMapObject(mapObjMan, x, z, dir, param2, 0x1, 1);
     GF_ASSERT(mapObj != NULL);
 
-    MapObject_SetLocalID(mapObj, 0xff);
+    MapObject_SetLocalID(mapObj, MAP_OBJ_PLAYER_AVATAR);
     MapObject_SetTrainerType(mapObj, 0);
     MapObject_SetFlag(mapObj, 0);
     MapObject_SetScript(mapObj, 0);

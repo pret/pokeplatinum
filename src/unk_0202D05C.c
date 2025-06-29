@@ -403,7 +403,7 @@ void sub_0202D4B0(UnkStruct_0202D764 *param0, u8 param1, u8 param2, RTCDate *par
     v2 <<= v1;
 
     param0->unk_04[v0] |= v2;
-    param0->unk_00 = inline_0202D4B0(param3);
+    param0->unk_00 = Date_ConvertToInteger(param3);
 }
 
 void sub_0202D514(UnkStruct_0202D764 *param0)
@@ -440,7 +440,7 @@ BOOL sub_0202D558(UnkStruct_0202D764 *param0, u8 param1, u8 param2, RTCDate *par
         return 0;
     }
 
-    inline_0202D558(param0->unk_00, &v4);
+    Date_ConvertFromInteger(param0->unk_00, &v4);
 
     if (sub_0202D530(param3, &v4)) {
         sub_0202D514(param0);

@@ -393,7 +393,7 @@ int ov65_0223648C(ApplicationManager *appMan, int *param1)
 
     Overlay_LoadByID(FS_OVERLAY_ID(overlay63), 2);
 
-    v2 = sub_020389B8();
+    v2 = CommMan_IsConnectedToWifi();
     GF_ASSERT(v2 == 1);
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_96, 0x18000);

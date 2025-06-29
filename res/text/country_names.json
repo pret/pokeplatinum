@@ -2,7 +2,7 @@
   "key": 40631,
   "messages": [
     {
-      "id": "pl_msg_00000694_00000",
+      "id": "Text_Country_None",
       "en_US": "None"
     },
     {
@@ -414,7 +414,7 @@
       "en_US": "Jamaica"
     },
     {
-      "id": "pl_msg_00000694_00103",
+      "id": "Text_Country_Japan",
       "en_US": "Japan"
     },
     {

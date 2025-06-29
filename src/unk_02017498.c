@@ -69,7 +69,7 @@ int sub_02017524(ApplicationManager *appMan, int *param1)
         *param1 = 1;
         break;
     case 1:
-        if (sub_020334A4()) {
+        if (WirelessDriver_IsReady()) {
             Unk_021BF678 = v0->unk_1C;
 
             DWC_SetMemFunc(sub_020176DC, sub_02017704);
@@ -124,7 +124,7 @@ int sub_02017524(ApplicationManager *appMan, int *param1)
 
     if ((v0->unk_88 == 1) && (v0->unk_10 == 1) && (v0->unk_8C == 1)) {
         DWC_UpdateConnection();
-        sub_020397B0(WM_LINK_LEVEL_3 - DWC_GetLinkLevel());
+        NetworkIcon_SetStrength(WM_LINK_LEVEL_3 - DWC_GetLinkLevel());
     }
 
     return 0;
@@ -149,8 +149,8 @@ static void sub_0201767C(UnkStruct_02017498 *param0)
         param0->unk_1C = NNS_FndCreateExpHeap((void *)(((u32)param0->unk_18 + 31) / 32 * 32), 0x20000);
 
         sub_02099550();
-        sub_020995B4();
-        sub_02033478();
+        Overlay_LoadHttpOverlay();
+        WirelessDriver_Init();
     }
 }
 
@@ -160,9 +160,9 @@ static void sub_020176B4(UnkStruct_02017498 *param0)
         NNS_FndDestroyExpHeap(param0->unk_1C);
 
         Heap_Free(param0->unk_18);
-        sub_020995C4();
+        Overlay_UnloadHttpOverlay();
         sub_02099560();
-        sub_020334CC();
+        WirelessDriver_Shutdown();
 
         param0->unk_88 = 0;
     }

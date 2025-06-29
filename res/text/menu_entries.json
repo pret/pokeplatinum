@@ -26,27 +26,27 @@
       "en_US": "EXIT"
     },
     {
-      "id": "pl_msg_00000361_00006",
+      "id": "MenuEntries_Text_SingleBattle",
       "en_US": "SINGLE BATTLE"
     },
     {
-      "id": "pl_msg_00000361_00007",
+      "id": "MenuEntries_Text_DoubleBattle",
       "en_US": "DOUBLE BATTLE"
     },
     {
-      "id": "pl_msg_00000361_00008",
+      "id": "MenuEntries_Text_MixBattle",
       "en_US": "MIX BATTLE"
     },
     {
-      "id": "pl_msg_00000361_00009",
+      "id": "MenuEntries_Text_MultiBattle",
       "en_US": "MULTI BATTLE"
     },
     {
-      "id": "pl_msg_00000361_00010",
+      "id": "MenuEntries_Text_Battle_Info",
       "en_US": "INFO"
     },
     {
-      "id": "pl_msg_00000361_00011",
+      "id": "MenuEntries_Text_Battle_Exit",
       "en_US": "EXIT"
     },
     {
@@ -678,11 +678,11 @@
       "en_US": "SKULL FOSSIL"
     },
     {
-      "id": "pl_msg_00000361_00163",
+      "id": "MenuEntries_Text_BattlesForTwo",
       "en_US": "BATTLES FOR TWO"
     },
     {
-      "id": "pl_msg_00000361_00164",
+      "id": "MenuEntries_Text_BattlesForFour",
       "en_US": "BATTLES FOR FOUR"
     },
     {

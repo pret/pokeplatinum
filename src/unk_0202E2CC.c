@@ -146,7 +146,7 @@ static void sub_0202E3F4(UnkStruct_0202E4D4 *param0, int param1, const u8 *param
 
     GetCurrentDate(&v0);
 
-    param0->unk_04 = inline_0202D4B0(&v0);
+    param0->unk_04 = Date_ConvertToInteger(&v0);
     param0->unk_00 = param1;
     param0->unk_01 = 0;
 

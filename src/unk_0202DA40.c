@@ -7,11 +7,11 @@
 #include "savedata.h"
 
 typedef struct GlobalTrade_t {
-    u8 unk_00[236];
-    u16 unk_EC;
-    u16 unk_EE;
-    u32 unk_F0;
-    u32 unk_F4;
+    u8 storedPokemon[sizeof(Pokemon)];
+    u16 pokemonListed;
+    u16 neverSet_EE;
+    u32 depositTradeDatestamp;
+    u32 searchTradeDatestamp;
 } GlobalTrade;
 
 GlobalTrade *SaveData_GetGlobalTrade(SaveData *saveData)
@@ -29,47 +29,47 @@ void GlobalTrade_Init(GlobalTrade *param0)
     MI_CpuClearFast(param0, sizeof(GlobalTrade));
 }
 
-int sub_0202DA60(GlobalTrade *param0)
+int GlobalTrade_IsPokemonListed(GlobalTrade *param0)
 {
-    return param0->unk_EC;
+    return param0->pokemonListed;
 }
 
-void sub_0202DA68(GlobalTrade *param0, int param1)
+void GlobalTrade_SetPokemonListed(GlobalTrade *globalTrade, int listed)
 {
-    param0->unk_EC = param1;
+    globalTrade->pokemonListed = listed;
 }
 
-void sub_0202DA70(GlobalTrade *param0, Pokemon *param1)
+void GlobalTrade_CopyStoredPokemon(GlobalTrade *param0, Pokemon *param1)
 {
-    MI_CpuCopyFast(param0->unk_00, (void *)param1, 236);
+    MI_CpuCopyFast(param0->storedPokemon, (void *)param1, sizeof(Pokemon));
 }
 
 void sub_0202DA7C(GlobalTrade *param0, Pokemon *param1, int param2)
 {
-    MI_CpuCopyFast((void *)param1, param0->unk_00, 236);
+    MI_CpuCopyFast((void *)param1, param0->storedPokemon, sizeof(Pokemon));
 }
 
-u32 sub_0202DA8C(GlobalTrade *param0)
+u32 GlobalTrade_GetDepositTradeDatestamp(GlobalTrade *param0)
 {
-    return param0->unk_F0;
+    return param0->depositTradeDatestamp;
 }
 
-void sub_0202DA94(GlobalTrade *param0, u32 param1)
+void GlobalTrade_SetDepositTradeDatestamp(GlobalTrade *param0, u32 date)
 {
-    param0->unk_F0 = param1;
+    param0->depositTradeDatestamp = date;
 }
 
-u32 sub_0202DA9C(GlobalTrade *param0)
+u32 GlobalTrade_GetSearchTradeDatestamp(GlobalTrade *param0)
 {
-    return param0->unk_F4;
+    return param0->searchTradeDatestamp;
 }
 
-void sub_0202DAA4(GlobalTrade *param0, u32 param1)
+void GlobalTrade_SetSearchTradeDatestamp(GlobalTrade *param0, u32 date)
 {
-    param0->unk_F4 = param1;
+    param0->searchTradeDatestamp = date;
 }
 
-int sub_0202DAAC(GlobalTrade *param0)
+int GlobalTrade_GetUnusedInt(GlobalTrade *param0)
 {
-    return param0->unk_EE;
+    return param0->neverSet_EE;
 }

@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_020393C8_DECL_H
 #define POKEPLATINUM_STRUCT_020393C8_DECL_H
 
-typedef struct UnkStruct_020393C8_t UnkStruct_020393C8;
+typedef struct NetworkIcon_t NetworkIcon;
 
 #endif // POKEPLATINUM_STRUCT_020393C8_DECL_H
