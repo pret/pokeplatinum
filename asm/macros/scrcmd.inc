@@ -962,10 +962,10 @@
     .short \partySlot
     .endm
 
-    .macro ScrCmd_09A arg0, arg1
+    .macro GetSlotOfPartyMonWithMove destVar, move
     .short 154
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \move
     .endm
 
     .macro ScrCmd_09B arg0, arg1
