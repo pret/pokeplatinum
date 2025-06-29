@@ -30,7 +30,7 @@ _0053:
 _005B:
     SetObjectEventPos 3, 186, 0x331
     SetObjectEventDir 3, DIR_SOUTH
-    ScrCmd_188 3, 15
+    SetObjectEventMovementType 3, MOVEMENT_TYPE_LOOK_SOUTH
     Return
 
 _0071:
