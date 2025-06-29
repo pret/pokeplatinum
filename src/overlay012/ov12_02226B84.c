@@ -476,7 +476,7 @@ static void ov12_02226BA0(SysTask *param0, void *param1)
         break;
     default:
         ov12_02220220(v1->unk_04.unk_04, param0);
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         break;
     }
 }
@@ -566,7 +566,7 @@ static void ov12_02226D38(SysTask *param0, void *param1)
     default:
         Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
         ov12_02220220(v0->unk_1C.unk_04, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 
@@ -724,7 +724,7 @@ static void ov12_02227064(SysTask *param0, void *param1)
     default:
         Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
         ov12_02220220(v0->unk_1C.unk_04, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 
@@ -840,7 +840,7 @@ static void ov12_02227390(SysTask *param0, void *param1)
         PokemonSprite_SetAttribute(v0->unk_08, MON_SPRITE_Y_PIVOT, 0);
         PokemonSprite_SetAttribute(v0->unk_08, MON_SPRITE_ROTATION_Z, 0);
         ov12_02220220(v0->unk_04, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         break;
     }
 }
@@ -903,7 +903,7 @@ static void ov12_022274E4(SysTask *param0, void *param1)
         PokemonSprite_SetAttribute(v0->unk_28, MON_SPRITE_Y_CENTER, v0->unk_2E + ((-8 * FX32_ONE) >> FX32_SHIFT));
         PokemonSprite_SetAttribute(v0->unk_28, MON_SPRITE_ROTATION_Z, 0);
         ov12_02220220(v0->unk_00, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 }
 
@@ -1012,7 +1012,7 @@ static void ov12_02227738(SysTask *param0, void *param1)
     case 1:
         Sprite_DeleteAndFreeResources(v0->unk_14);
         ov12_02220220(v0->unk_00, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 
@@ -1052,7 +1052,7 @@ static void ov12_02227808(SysTask *param0, void *param1)
     UnkStruct_ov12_02227808 *v0 = param1;
 
     if (PaletteData_GetSelectedBuffersMask(v0->unk_04) == 0) {
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         ov12_02220220(v0->unk_00, param0);
     }
 }
@@ -1123,7 +1123,7 @@ static void ov12_022278D0(SysTask *param0, void *param1)
         }
         break;
     case 5:
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         ov12_02220220(v0->unk_00, param0);
         return;
     }
@@ -1245,7 +1245,7 @@ void ov12_0222797C(UnkStruct_ov12_0221FCDC *param0)
     }
 
     if (v0->unk_04 == NULL) {
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 
@@ -1319,7 +1319,7 @@ static void ov12_02227B4C(SysTask *param0, void *param1)
         }
         break;
     case 4:
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         ov12_02220220(v0->unk_00, param0);
         return;
     }
@@ -1421,7 +1421,7 @@ static void ov12_02227DE0(SysTask *param0, void *param1)
         break;
     case 5:
         ov12_02226B84(v0->unk_0C);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         ov12_02220220(v0->unk_00, param0);
         return;
     }
@@ -1538,7 +1538,7 @@ void ov12_02227F30(UnkStruct_ov12_0221FCDC *param0)
     }
 
     if (v0->unk_0C == NULL) {
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 
@@ -1564,7 +1564,7 @@ static void ov12_0222813C(SysTask *param0, void *param1)
     UnkStruct_ov12_0222813C *v0 = param1;
 
     if (ov12_02226454(&v0->unk_08)) {
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         ov12_02220220(v0->unk_00, param0);
     } else {
         SpriteSystem_DrawSprites(v0->unk_04);
@@ -1627,7 +1627,7 @@ static void ov12_02228268(SysTask *param0, void *param1)
     if (v0->unk_04 >= v0->unk_08) {
         if (v0->unk_00 == 0) {
             PokemonSprite_SetAttribute(v0->unk_0C.unk_08, MON_SPRITE_HIDE, 0);
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             ov12_02220220(v0->unk_3C, param0);
         } else {
             int v1;
@@ -1673,7 +1673,7 @@ static void ov12_0222830C(SysTask *param0, void *param1)
         break;
     default:
         ov12_02220220(v0->unk_64, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         break;
     }
 }
@@ -1715,7 +1715,7 @@ void ov12_02228394(UnkStruct_ov12_0221FCDC *param0)
     }
 
     if (v2 == 0xFF) {
-        Heap_FreeToHeap(v3);
+        Heap_Free(v3);
         return;
     }
 
@@ -1756,7 +1756,7 @@ static void ov12_02228488(SysTask *param0, void *param1)
         break;
     default:
         ov12_02220220(v0->unk_60, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         break;
     }
 }
@@ -1799,7 +1799,7 @@ void ov12_02228520(UnkStruct_ov12_0221FCDC *param0)
     }
 
     if (v2 == 0xFF) {
-        Heap_FreeToHeap(v3);
+        Heap_Free(v3);
         return;
     }
 
@@ -1883,7 +1883,7 @@ static void ov12_0222862C(SysTask *param0, void *param1)
         break;
     default:
         ov12_02220220(v0->unk_0C, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         break;
     }
 }
@@ -1976,7 +1976,7 @@ static void ov12_02228868(SysTask *param0, void *param1)
         break;
     default:
         ov12_02220220(v0->unk_18, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         break;
     }
 }
@@ -2026,7 +2026,7 @@ static void ov12_02228B10(SysTask *param0, void *param1)
         GX_SetVisibleWnd(GX_WNDMASK_NONE);
         ov12_02222664(v0->unk_04.unk_04, 2);
         ov12_02220220(v0->unk_04.unk_04, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 
@@ -2076,7 +2076,7 @@ static void ov12_02228BD0(SysTask *param0, void *param1)
         break;
     default:
         ov12_02220220(v0->unk_60, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         break;
     }
 }
@@ -2120,14 +2120,14 @@ void ov12_02228C6C(UnkStruct_ov12_0221FCDC *param0)
     }
 
     if (v2 == 0xFF) {
-        Heap_FreeToHeap(v3);
+        Heap_Free(v3);
         return;
     }
 
     v3->unk_0C.unk_08 = ov12_022232FC(param0, v2);
 
     if (v3->unk_0C.unk_08 == NULL) {
-        Heap_FreeToHeap(v3);
+        Heap_Free(v3);
         return;
     }
 
@@ -2165,7 +2165,7 @@ static void ov12_02228DB8(SysTask *param0, void *param1)
         PokemonSprite_SetAttribute(v1->unk_1C.unk_08, MON_SPRITE_X_CENTER, v1->unk_1C.unk_04.unk_00);
         PokemonSprite_SetAttribute(v1->unk_1C.unk_08, MON_SPRITE_Y_CENTER, v1->unk_1C.unk_04.unk_02 + ((-8 * FX32_ONE) >> FX32_SHIFT));
         ov12_02220220(v1->unk_00.unk_04, param0);
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
     }
 }
 
@@ -2204,7 +2204,7 @@ static void ov12_02228E78(SysTask *param0, void *param1)
         break;
     default:
         ov12_02220220(v0->unk_00.unk_04, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         break;
     }
 }
@@ -2361,7 +2361,7 @@ static void ov12_02229184(SysTask *param0, void *param1)
     if (ov12_02226848(v0->unk_30) == 0) {
         ov12_02226858(v0->unk_30);
         ov12_02220220(v0->unk_00.unk_04, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 }
 
@@ -2429,7 +2429,7 @@ static void ov12_02229278(SysTask *param0, void *param1)
     default:
         ov12_02226B84(v0->unk_1C.unk_08);
         ov12_02220220(v0->unk_00.unk_04, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         break;
     }
 }
@@ -2546,7 +2546,7 @@ static void ov12_022294AC(SysTask *param0, void *param1)
         PokemonSprite_SetAttribute(v0->unk_28.unk_08, MON_SPRITE_DRAW_HEIGHT, v0->unk_40);
         ov12_02226B84(v0->unk_28.unk_08);
         ov12_02220220(v0->unk_00.unk_04, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         break;
     }
 }
@@ -2579,7 +2579,7 @@ static void ov12_02229538(SysTask *param0, void *param1)
         PokemonSprite_SetAttribute(v0->unk_28.unk_08, MON_SPRITE_DRAW_HEIGHT, v0->unk_40);
         ov12_02226B84(v0->unk_28.unk_08);
         ov12_02220220(v0->unk_00.unk_04, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         break;
     }
 }
@@ -2609,7 +2609,7 @@ static void ov12_022295C4(SysTask *param0, void *param1)
         PokemonSprite_SetAttribute(v0->unk_28.unk_08, MON_SPRITE_PARTIAL_DRAW, 0);
         ov12_02226B84(v0->unk_28.unk_08);
         ov12_02220220(v0->unk_00.unk_04, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         break;
     }
 }
@@ -2703,7 +2703,7 @@ static void ov12_02229738(SysTask *param0, void *param1)
     } break;
     default:
         ov12_02220220(v1->unk_2C, param0);
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         break;
     }
 }
@@ -2739,7 +2739,7 @@ static void ov12_0222988C(SysTask *param0, void *param1)
 
     if ((v0->unk_24 == v0->unk_2C) || (v0->unk_28 == v0->unk_2C)) {
         ov12_02220220(v0->unk_00.unk_04, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 
@@ -3083,7 +3083,7 @@ static void ov12_02229F9C(SysTask *param0, void *param1)
     if ((ov12_02225AE0(&v0->unk_58) == 0) && (v1 == 0)) {
         ParticleSystem_DeleteEmitter(v0->unk_34, v0->unk_38);
         ov12_02220220(v0->unk_3C.unk_04, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     } else {
         VecFx32 v2;
 
@@ -3150,7 +3150,7 @@ static void ov12_0222A178(SysTask *param0, void *param1)
     if (v0 == 0) {
         Sprite_DeleteAndFreeResources(v1->unk_1C);
         ov12_02220220(v1->unk_00.unk_04, param0);
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return;
     }
 
@@ -3293,7 +3293,7 @@ static void ov12_0222A1F4(SysTask *param0, void *param1)
     default:
         Sprite_DeleteAndFreeResources(v0->unk_1C);
         ov12_02220220(v0->unk_00.unk_04, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 
@@ -3340,7 +3340,7 @@ static void ov12_0222A3DC(SysTask *param0, void *param1)
     if (v1 == 0) {
         Sprite_DeleteAndFreeResources(v0->unk_1C);
         ov12_02220220(v0->unk_00.unk_04, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 
@@ -3426,7 +3426,7 @@ static void ov12_0222A4A0(SysTask *param0, void *param1)
     default:
         Sprite_DeleteAndFreeResources(v0->unk_1C);
         ov12_02220220(v0->unk_00.unk_04, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 
@@ -3580,7 +3580,7 @@ static void ov12_0222A878(SysTask *param0, void *param1)
         SpriteSystem_DrawSprites(v0->unk_00.unk_0C);
 
         ov12_02220220(v0->unk_00.unk_04, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 
@@ -3618,7 +3618,7 @@ void ov12_0222A8F4(UnkStruct_ov12_0221FCDC *param0)
     if (ov12_02223364(param0) != 1) {
         if ((ov12_02220280(param0, 4) == 2) || (ov12_02220280(param0, 4) == 3)) {
             ManagedSprite_SetDrawFlag(v0->unk_1C, 0);
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             return;
         }
     }
@@ -3712,7 +3712,7 @@ static void ov12_0222AB10(SysTask *param0, void *param1)
 
     if (v1->unk_2C == 0) {
         ov12_02220220(v1->unk_00.unk_04, param0);
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return;
     }
 
@@ -3785,7 +3785,7 @@ static void ov12_0222ABBC(SysTask *param0, void *param1)
         v0->unk_08.unk_00++;
     default:
         ov12_02220220(v0->unk_08.unk_04, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 }

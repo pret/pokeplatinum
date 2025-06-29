@@ -398,7 +398,7 @@ BOOL sub_0204B3B8(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_0223A348 *param1, 
     BattleFrontierTrainerData *v1 = sub_0204B184(param1, param2, param7);
     v0 = sub_0204B470(param0, v1, param2, &param1->unk_30[0], param3, param4, param5, param6, param7);
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 
     return v0;
 }
@@ -413,7 +413,7 @@ void sub_0204B404(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_0223A348 *param1, 
         sub_0204B1E8(param0, &(param1->unk_30[v0]), param4->unk_04[v0], param4->unk_00, param4->unk_08[v0], v1, v0, param3, heapID);
     }
 
-    Heap_FreeToHeap(v2);
+    Heap_Free(v2);
 }
 
 static BOOL sub_0204B470(UnkStruct_0204AFC4 *param0, BattleFrontierTrainerData *param1, u16 param2, FrontierPokemonDataDTO *param3, u8 param4, u16 *param5, u16 *param6, UnkStruct_0204B404 *param7, int param8)

@@ -135,7 +135,7 @@ static BOOL ov6_02247DAC(FieldTask *param0)
         }
         break;
     case 5:
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return 1;
     }
 

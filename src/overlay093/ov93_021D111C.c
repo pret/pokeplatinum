@@ -186,10 +186,10 @@ int ov93_021D12F0(ApplicationManager *appMan, int *param1)
 
     for (v0 = 0; v0 < 3; v0++) {
         NNS_G3dFreeAnmObj(&v1->unk_6C, v1->unk_7C[v0]);
-        Heap_FreeToHeap(v1->unk_60[v0]);
+        Heap_Free(v1->unk_60[v0]);
     }
 
-    Heap_FreeToHeap(v1->unk_5C);
+    Heap_Free(v1->unk_5C);
     Camera_Delete(v1->camera);
     ApplicationManager_FreeData(appMan);
     Easy3D_Shutdown();

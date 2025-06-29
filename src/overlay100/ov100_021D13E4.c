@@ -198,7 +198,7 @@ BOOL ov100_021D16C4(void *param0)
         v0->unk_00++;
         break;
     default:
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return 0;
     }
 

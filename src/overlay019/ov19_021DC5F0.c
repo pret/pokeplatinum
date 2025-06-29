@@ -82,11 +82,11 @@ BOOL ov19_021DC5F0(UnkStruct_ov19_021DC680 *param0, UnkStruct_ov19_021D61B0 *par
 void ov19_021DC680(UnkStruct_ov19_021DC680 *param0)
 {
     if (param0->unk_14) {
-        Heap_FreeToHeap(param0->unk_14);
+        Heap_Free(param0->unk_14);
     }
 
     if (param0->unk_1C != NULL) {
-        Heap_FreeToHeap(param0->unk_1C);
+        Heap_Free(param0->unk_1C);
     }
 
     ov19_021DCF50(param0);

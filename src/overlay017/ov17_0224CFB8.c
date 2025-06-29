@@ -251,7 +251,7 @@ static void ov17_0224D078(SysTask *param0, void *param1)
         break;
     default:
         ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         return;
     }
@@ -355,7 +355,7 @@ static void ov17_0224D240(SysTask *param0, void *param1)
         break;
     default:
         ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         return;
     }
@@ -421,7 +421,7 @@ static void ov17_0224D41C(SysTask *param0, void *param1)
         break;
     default:
         ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         return;
     }
@@ -522,7 +522,7 @@ static UnkStruct_ov17_0224D69C *ov17_0224D668(UnkStruct_ov17_0224DF54 *param0, i
 static void ov17_0224D69C(UnkStruct_ov17_0224D69C *param0)
 {
     SysTask_Done(param0->unk_00);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov17_0224D6B0(UnkStruct_ov17_0224D69C *param0, const UnkStruct_ov17_0224EDE0 *param1)
@@ -753,7 +753,7 @@ static void ov17_0224D710(SysTask *param0, void *param1)
                 }
             }
 
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             SysTask_Done(param0);
             return;
         }
@@ -1109,7 +1109,7 @@ static void ov17_0224DFF8(SysTask *param0, void *param1)
         break;
     default:
         ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         return;
     }
@@ -1259,7 +1259,7 @@ static void ov17_0224E4A8(SysTask *param0, void *param1)
     default:
         ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         return;
     }
@@ -1329,7 +1329,7 @@ static void ov17_0224E584(SysTask *param0, void *param1)
         ov17_02249640(v0->unk_00->unk_1074, 0, 1, NULL);
         ov17_0224A0E0(v0->unk_00->unk_1074, 0x0, 0);
         ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
 
         return;
@@ -1396,7 +1396,7 @@ static void ov17_0224E6C8(SysTask *param0, void *param1)
         break;
     default:
         ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
 
         return;
@@ -1494,7 +1494,7 @@ static void ov17_0224E86C(SysTask *param0, void *param1)
         break;
     default:
         ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         return;
     }

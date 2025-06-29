@@ -632,7 +632,7 @@ static void *ov97_022341B4(u32 narcID, u32 memberIndex, NNSG2dCharacterData **pa
         NARC_ReadWholeMemberByIndexPair(v0, narcID, memberIndex);
 
         if (NNS_G2dGetUnpackedBGCharacterData(v0, param2) == 0) {
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             return NULL;
         }
     }
@@ -702,7 +702,7 @@ static void ov97_02234278(int species, int isEgg, u32 personality, int gbaVersio
     GX_LoadOBJ(v2->pRawData, (0x64 + param4 * (4 * 4)) * 0x20, ((4 * 4) * 0x20));
 
     Sprite_SetExplicitPalette(param5, PokeIconPaletteIndex(species, form, isEgg) + 8);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 // speciesGBA is reused to store NDS species
@@ -777,7 +777,7 @@ static void ov97_022343A8(GBAMigrator *migrator)
         }
     }
 
-    Heap_FreeToHeap(v6);
+    Heap_Free(v6);
     NARC_dtor(v7);
 
     migrator->unk_12664 = ov97_02234364;
@@ -2191,7 +2191,7 @@ static int GBAMigrator_Exit(ApplicationManager *appMan, int *state)
 
     Strbuf_Free(migrator->unk_12668);
     Strbuf_Free(migrator->unk_1266C);
-    Heap_FreeToHeap(migrator->bgConfig);
+    Heap_Free(migrator->bgConfig);
     EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenAppTemplate);
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_MIGRATE_FROM_GBA);

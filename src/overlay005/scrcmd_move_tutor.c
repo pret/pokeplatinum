@@ -567,7 +567,7 @@ static void MoveTutorManager_Delete(MoveTutorManager *moveTutorManager)
     }
 
     SysTask_Done(moveTutorManager->sysTask);
-    Heap_FreeToHeap(moveTutorManager);
+    Heap_Free(moveTutorManager);
 }
 
 BOOL ScrCmd_ShowShardsCost(ScriptContext *ctx)

@@ -198,7 +198,7 @@ static void sub_0209A490(UnkStruct_0209A3D0 *param0)
     Bg_ToggleLayer(BG_LAYER_SUB_2, 0);
     Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
     Bg_FreeTilemapBuffer(param0->unk_18, BG_LAYER_MAIN_0);
-    Heap_FreeToHeap(param0->unk_18);
+    Heap_Free(param0->unk_18);
 }
 
 static void sub_0209A4E4(UnkStruct_0209A3D0 *param0)

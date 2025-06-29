@@ -39,7 +39,7 @@ UnkStruct_ov115_02260BE4 *ov115_02260BBC(u32 heapID, u32 param1, u32 param2, con
 
 void ov115_02260BE4(UnkStruct_ov115_02260BE4 *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 BOOL ov115_02260BEC(UnkStruct_ov115_02260BE4 *param0)

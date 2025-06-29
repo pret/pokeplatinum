@@ -33,8 +33,8 @@ void VramTransfer_Free(void)
 {
     GF_ASSERT(sTransferTaskManager != NULL);
 
-    Heap_FreeToHeap(sTransferTaskManager->tasks);
-    Heap_FreeToHeap(sTransferTaskManager);
+    Heap_Free(sTransferTaskManager->tasks);
+    Heap_Free(sTransferTaskManager);
 
     sTransferTaskManager = NULL;
 }

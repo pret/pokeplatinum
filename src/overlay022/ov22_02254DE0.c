@@ -32,8 +32,8 @@ UnkStruct_ov22_02254DE0 *ov22_02254DE0(int param0, int heapID)
 
 void ov22_02254E0C(UnkStruct_ov22_02254DE0 *param0)
 {
-    Heap_FreeToHeap(param0->unk_00);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0->unk_00);
+    Heap_Free(param0);
     param0 = NULL;
 }
 

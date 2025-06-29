@@ -680,7 +680,7 @@ UnkStruct_0206D140 *sub_0206D140(int heapID)
 
 void sub_0206D158(UnkStruct_0206D140 *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void sub_0206D160(UnkStruct_0206D140 *param0, Pokemon *param1, int param2, int param3, u32 heapID)

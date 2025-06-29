@@ -316,7 +316,7 @@ static BOOL ov5_021EAC44(UnkStruct_ov5_021EAE78 *param0)
 
         TrainerInfo_SetName(v3, sub_0202AEF0(v2, v1));
         StringTemplate_SetPlayerName(param0->unk_38, 0, v3);
-        Heap_FreeToHeap(v3);
+        Heap_Free(v3);
 
         ov5_021EAE78(param0, 60);
         param0->unk_48 = 10;
@@ -414,7 +414,7 @@ static BOOL ov5_021EADB4(FieldTask *param0)
         break;
     case 12:
         ov5_021EAF1C(v0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         FieldSystem_ResumeProcessing();
         return 1;
     }

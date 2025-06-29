@@ -452,13 +452,13 @@ void CommSys_Delete(void)
         SysTask_Done(sCommunicationSystem->unk_57C);
         sCommunicationSystem->unk_57C = NULL;
 
-        Heap_FreeToHeap(sCommunicationSystem->recvBufferRing);
-        Heap_FreeToHeap(sCommunicationSystem->tempBuffer);
-        Heap_FreeToHeap(sCommunicationSystem->recvBufferRingServer);
-        Heap_FreeToHeap(sCommunicationSystem->unk_488);
+        Heap_Free(sCommunicationSystem->recvBufferRing);
+        Heap_Free(sCommunicationSystem->tempBuffer);
+        Heap_Free(sCommunicationSystem->recvBufferRingServer);
+        Heap_Free(sCommunicationSystem->unk_488);
         CommQueueMan_Delete(&sCommunicationSystem->commQueueManSendServer);
         CommQueueMan_Delete(&sCommunicationSystem->commQueueManSend);
-        Heap_FreeToHeap((void *)Unk_021C07C8);
+        Heap_Free((void *)Unk_021C07C8);
 
         sCommunicationSystem = NULL;
         Unk_021C07C8 = 0;

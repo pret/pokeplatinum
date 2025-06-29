@@ -440,7 +440,7 @@ void ov119_021D145C(ParticleSystem *param0)
 {
     void *v0 = ParticleSystem_GetHeapStart(param0);
     ParticleSystem_Free(param0);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 static void ov119_021D1474(SPLEmitter *param0)
@@ -493,7 +493,7 @@ BOOL ov119_021D14F8(UnkStruct_ov119_021D14DC *param0)
 
 void ov119_021D150C(UnkStruct_ov119_021D14DC *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov119_021D1514(UnkStruct_ov119_021D0FD0 *param0)

@@ -85,7 +85,7 @@ void ov71_0223CF0C(UnkStruct_ov71_0223D238 *param0, NARC *param1)
 
             if (param0->unk_224[v1] != NULL) {
                 if (NNS_G2dGetUnpackedPaletteData(param0->unk_224[v1], &param0->unk_244[v1]) == 0) {
-                    Heap_FreeToHeap(param0->unk_244[v1]);
+                    Heap_Free(param0->unk_244[v1]);
                     GF_ASSERT(0);
                 }
             } else {
@@ -178,7 +178,7 @@ void ov71_0223D238(UnkStruct_ov71_0223D238 *param0)
     u8 v0;
 
     for (v0 = 0; v0 < 8; v0++) {
-        Heap_FreeToHeap(param0->unk_224[v0]);
+        Heap_Free(param0->unk_224[v0]);
     }
 
     SpriteTransfer_ResetCharTransfer(param0->unk_1A0[0][0]);

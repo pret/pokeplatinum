@@ -458,7 +458,7 @@ static void Task_EnableScreenHBlank(SysTask *task, void *data)
     EnableHBlankTemplate *template = data;
     EnableScreenHBlank(template->hblanks, template->data, template->callback, template->screen);
     SysTask_Done(task);
-    Heap_FreeToHeap(data);
+    Heap_Free(data);
 }
 
 static void Task_DisableScreenHBlank(SysTask *task, void *data)
@@ -466,7 +466,7 @@ static void Task_DisableScreenHBlank(SysTask *task, void *data)
     DisableHBlankTemplate *template = data;
     DisableScreenHBlank(template->hblanks, template->screen);
     SysTask_Done(task);
-    Heap_FreeToHeap(data);
+    Heap_Free(data);
 }
 
 static void DummyHBlankCallback(void *data)

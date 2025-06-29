@@ -596,7 +596,7 @@ void ov94_0223DB2C(Pokemon *param0)
     GX_LoadOBJ(v1, ((18 * 32 + 16) * 32), (0x20 * 10 * 10));
 
     Graphics_LoadPalette(v0.narcID, v0.palette, 1, 0x20 * 13, 32, HEAP_ID_62);
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
 static void ov94_0223DBBC(UnkStruct_ov94_0223FD4C *param0)

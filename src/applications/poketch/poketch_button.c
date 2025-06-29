@@ -35,7 +35,7 @@ PoketchButtonManager *PoketchButtonManager_New(const TouchScreenHitTable *hitTab
                 PoketchButton_Init(&buttonManager->buttons[i]);
             }
         } else {
-            Heap_FreeToHeapExplicit(heapID, buttonManager);
+            Heap_FreeExplicit(heapID, buttonManager);
             buttonManager = NULL;
         }
     }
@@ -46,8 +46,8 @@ PoketchButtonManager *PoketchButtonManager_New(const TouchScreenHitTable *hitTab
 void PoketchButtonManager_Free(PoketchButtonManager *buttonManager)
 {
     GF_ASSERT(buttonManager);
-    Heap_FreeToHeapExplicit(buttonManager->heapID, buttonManager->buttons);
-    Heap_FreeToHeapExplicit(buttonManager->heapID, buttonManager);
+    Heap_FreeExplicit(buttonManager->heapID, buttonManager->buttons);
+    Heap_FreeExplicit(buttonManager->heapID, buttonManager);
 }
 
 // These functions all return ButtonManagerState values.

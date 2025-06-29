@@ -148,8 +148,8 @@ void ov77_021D6760(UnkStruct_ov77_021D6734 *param0)
         }
     }
 
-    Heap_FreeToHeap(param0->unk_04);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0->unk_04);
+    Heap_Free(param0);
 }
 
 Sprite **ov77_021D6794(UnkStruct_ov77_021D6734 *param0, const int param1)
@@ -176,7 +176,7 @@ void ov77_021D67B0(UnkStruct_ov77_021D670C *param0)
         }
     }
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov77_021D6800(UnkStruct_ov77_021D6800 *param0)

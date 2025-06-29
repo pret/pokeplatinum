@@ -1982,7 +1982,7 @@ void ov17_0224C3E4(UnkStruct_ov17_0224DF54 *param0)
 {
     SysTask_Done(param0->unk_14.unk_1FC->unk_00);
     Sprite_DeleteAndFreeResources(param0->unk_14.unk_1FC->unk_04);
-    Heap_FreeToHeap(param0->unk_14.unk_1FC);
+    Heap_Free(param0->unk_14.unk_1FC);
 
     param0->unk_14.unk_1FC = NULL;
 }
@@ -2175,7 +2175,7 @@ static void ov17_0224C718(SysTask *param0, void *param1)
     default:
         *(v0->unk_0C) = 1;
         ov17_0224AC78(v0->unk_08, 1, 1);
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         return;
     }
@@ -2212,7 +2212,7 @@ static void ov17_0224C7B8(SysTask *param0, void *param1)
         break;
     default:
         *(v0->unk_0C) = 1;
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         return;
     }
@@ -2558,7 +2558,7 @@ static void ov17_0224CF4C(SysTask *param0, void *param1)
             *(v0->unk_04) = 1;
         }
 
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         return;
     }

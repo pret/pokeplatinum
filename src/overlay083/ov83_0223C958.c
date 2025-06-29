@@ -263,7 +263,7 @@ static void ov83_0223CCCC(BgConfig **param0)
     Bg_FreeTilemapBuffer(*param0, 4);
     Bg_FreeTilemapBuffer(*param0, 2);
     Bg_FreeTilemapBuffer(*param0, 1);
-    Heap_FreeToHeap(*param0);
+    Heap_Free(*param0);
 }
 
 static void ov83_0223CCF8(UnkStruct_ov83_0223B784 *param0)

@@ -336,7 +336,7 @@ void MapPropAnimationManager_UnloadAllAnimations(MapPropAnimationManager *manage
             if (manager->animations[i].loaded == TRUE) {
                 NNS_G3dFreeAnmObj(&manager->allocator, manager->animations[i].animationObj);
                 manager->animations[i].animationObj = NULL;
-                Heap_FreeToHeap(manager->animations[i].animationFile);
+                Heap_Free(manager->animations[i].animationFile);
             }
 
             manager->animations[i].loaded = FALSE;
@@ -357,7 +357,7 @@ void MapPropAnimationManager_UnloadAnimation(MapPropAnimation *animation, MapPro
         if (animation->loaded == TRUE) {
             NNS_G3dFreeAnmObj(&manager->allocator, animation->animationObj);
             animation->animationObj = NULL;
-            Heap_FreeToHeap(animation->animationFile);
+            Heap_Free(animation->animationFile);
         }
 
         animation->loaded = FALSE;
@@ -390,7 +390,7 @@ void MapPropAnimationManager_Free(MapPropAnimationManager *manager)
 
     NARC_dtor(manager->animeNARC);
     NARC_dtor(manager->animeListNARC);
-    Heap_FreeToHeap(manager);
+    Heap_Free(manager);
 
     manager = NULL;
 }
@@ -705,7 +705,7 @@ void MapPropOneShotAnimationManager_Free(MapPropOneShotAnimationManager **oneSho
         return;
     }
 
-    Heap_FreeToHeap(*oneShotAnimMan);
+    Heap_Free(*oneShotAnimMan);
     *oneShotAnimMan = NULL;
 }
 

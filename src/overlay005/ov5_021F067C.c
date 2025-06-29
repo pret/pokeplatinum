@@ -78,7 +78,7 @@ void ov5_021F06D8(UnkStruct_ov5_021F06D8 *param0)
     {
         u32 heapID = param0->childHeapID;
 
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0);
         Heap_Destroy(heapID);
     }
 }
@@ -151,7 +151,7 @@ static void *ov5_021F07B4(UnkStruct_ov5_021F06D8 *param0, u32 param1, int param2
 
 static void ov5_021F07D4(void *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static UnkStruct_ov5_021F0814 *ov5_021F07DC(UnkStruct_ov5_021F06D8 *param0, u32 param1)

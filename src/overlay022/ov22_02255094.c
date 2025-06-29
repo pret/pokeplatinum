@@ -109,16 +109,16 @@ void ov22_02255134(UnkStruct_ov22_0225A0E4 *param0)
     ov22_02255784(param0);
     ov22_02255984(param0);
 
-    Heap_FreeToHeap(param0->unk_40);
+    Heap_Free(param0->unk_40);
 
     ov22_02255C90(param0);
     ov22_02255A98(param0);
     ov22_022559E0(param0);
 
     NARC_dtor(param0->unk_5C);
-    Heap_FreeToHeap(param0->unk_04);
+    Heap_Free(param0->unk_04);
     param0->unk_04 = NULL;
-    Heap_FreeToHeap(param0->unk_10);
+    Heap_Free(param0->unk_10);
     param0->unk_10 = NULL;
 }
 
@@ -336,10 +336,10 @@ void ov22_022554F8(UnkStruct_ov22_0225A0E4 *param0)
     ov22_02255784(param0);
     ov22_02255C90(param0);
 
-    Heap_FreeToHeap(param0->unk_04);
+    Heap_Free(param0->unk_04);
     param0->unk_04 = NULL;
 
-    Heap_FreeToHeap(param0->unk_10);
+    Heap_Free(param0->unk_10);
     param0->unk_10 = NULL;
 }
 
@@ -395,7 +395,7 @@ void ov22_022555D4(UnkStruct_ov22_0225A0E4 *param0, int param1)
 void ov22_022555FC(UnkStruct_ov22_0225A0E4 *param0)
 {
     ov22_02255984(param0);
-    Heap_FreeToHeap(param0->unk_40);
+    Heap_Free(param0->unk_40);
     NARC_dtor(param0->unk_5C);
     ov22_02255A98(param0);
 }
@@ -674,7 +674,7 @@ static void ov22_022559B4(UnkStruct_ov22_0225A0E4 *param0)
 
 static void ov22_022559E0(UnkStruct_ov22_0225A0E4 *param0)
 {
-    Heap_FreeToHeap(param0->unk_38);
+    Heap_Free(param0->unk_38);
     ResourceCollection_Delete(param0->unk_34);
     param0->unk_3C = 0;
 }
@@ -788,7 +788,7 @@ static void ov22_02255BF4(UnkStruct_ov22_0225A0E4 *param0, int heapID)
 
 static void ov22_02255C14(UnkStruct_ov22_0225A0E4 *param0)
 {
-    Heap_FreeToHeap(param0->unk_30);
+    Heap_Free(param0->unk_30);
     param0->unk_30 = NULL;
 }
 
@@ -839,8 +839,8 @@ static void ov22_02255D0C(UnkStruct_ov22_02255CB8 *param0)
         param0->unk_14 = NULL;
     }
 
-    Heap_FreeToHeap(param0->unk_00);
+    Heap_Free(param0->unk_00);
     param0->unk_00 = NULL;
-    Heap_FreeToHeap(param0->unk_08);
+    Heap_Free(param0->unk_08);
     param0->unk_08 = NULL;
 }

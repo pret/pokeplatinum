@@ -85,7 +85,7 @@ static void ov5_021F00BC(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
 static void ov5_021F00E4(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)
 {
     UnkStruct_ov5_021F007C *v0 = param2;
-    Heap_FreeToHeap(v0->unk_00);
+    Heap_Free(v0->unk_00);
 }
 
 static void ov5_021F00F0(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)
@@ -247,7 +247,7 @@ static void ov5_021F0260(BgConfig *param0)
     memset(v1, 0x11, sizeof(u8) * 32);
 
     Bg_LoadTiles(param0, 2, v1, sizeof(u8) * 32, 1);
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
     Bg_FillTilemap(param0, 2, (6 << 12) | 1);
 }
 
@@ -411,7 +411,7 @@ static void ov5_021F0468(UnkStruct_ov5_021F0468 *param0)
         param0->unk_00 = NULL;
     }
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 u32 ov5_021F0484(void)

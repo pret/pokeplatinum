@@ -1188,8 +1188,8 @@ static void Healthbar_DrawLevelNumber(Healthbar *param0)
         MI_CpuCopy16(v9, (void *)((u32)v7 + Unk_ov16_0226F3EC[param0->type][1].pos + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3EC[param0->type][1].size);
     }
 
-    Heap_FreeToHeap(v0);
-    Heap_FreeToHeap(v1);
+    Heap_Free(v0);
+    Heap_Free(v1);
 }
 
 static void Healthbar_DrawCurrentHP(Healthbar *param0, u32 param1)
@@ -1214,7 +1214,7 @@ static void Healthbar_DrawCurrentHP(Healthbar *param0, u32 param1)
         MI_CpuCopy16(&v3[Unk_ov16_0226F41C[param0->type][0].size], (void *)((u32)v2 + Unk_ov16_0226F41C[param0->type][1].pos + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F41C[param0->type][1].size);
     }
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 static void Healthbar_DrawMaxHP(Healthbar *param0)
@@ -1238,7 +1238,7 @@ static void Healthbar_DrawMaxHP(Healthbar *param0)
         MI_CpuCopy16(v3, (void *)((u32)v2 + Unk_ov16_0226F3BC[param0->type].pos + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3BC[param0->type].size);
     }
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 static void Healthbar_DrawCaughtIcon(Healthbar *param0)
@@ -1791,7 +1791,7 @@ static void ov16_02268380(SysTask *param0, void *param1)
 
         (*(v0->unk_04)) = 1;
 
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
 
         return;

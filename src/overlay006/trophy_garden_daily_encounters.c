@@ -41,7 +41,7 @@ void TrophyGarden_AddNewMon(SaveData *saveData)
         }
     }
 
-    Heap_FreeToHeap(encData);
+    Heap_Free(encData);
 }
 
 int TrophyGarden_GetSlot1Species(SaveData *saveData)
@@ -57,7 +57,7 @@ int TrophyGarden_GetSlot1Species(SaveData *saveData)
     encData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 8, HEAP_ID_FIELD);
     species = encData[slot1];
 
-    Heap_FreeToHeap(encData);
+    Heap_Free(encData);
 
     return species;
 }

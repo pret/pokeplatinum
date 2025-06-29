@@ -433,7 +433,7 @@ static void ov72_0223DC6C(BgConfig *param0)
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov72_0223DCA8(UnkStruct_ov72_0223DB98 *param0, NARC *param1)

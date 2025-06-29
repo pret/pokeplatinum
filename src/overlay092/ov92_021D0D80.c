@@ -676,7 +676,7 @@ int ov92_021D1478(ApplicationManager *appMan, int *param1)
     Camera_Delete(v0->camera);
     StringTemplate_Free(v0->unk_B870);
     Easy3D_Shutdown();
-    Heap_FreeToHeap(v0->unk_B810);
+    Heap_Free(v0->unk_B810);
     SetVBlankCallback(NULL, NULL);
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(heapID);
@@ -743,7 +743,7 @@ static void ov92_021D1530(UnkStruct_ov92_021D1B24 *param0)
             v2++;
         }
 
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
     }
     {
         void *v6;
@@ -768,7 +768,7 @@ static void ov92_021D1530(UnkStruct_ov92_021D1B24 *param0)
                 v7++;
             }
 
-            Heap_FreeToHeap(v6);
+            Heap_Free(v6);
             v12++;
         }
     }
@@ -1215,11 +1215,11 @@ static void ov92_021D2150(UnkStruct_ov92_021D1B24 *param0, NARC *param1)
 
 static void ov92_021D2210(UnkStruct_ov92_021D1B24 *param0)
 {
-    Heap_FreeToHeap(param0->unk_BA88[2]);
-    Heap_FreeToHeap(param0->unk_BA88[1]);
-    Heap_FreeToHeap(param0->unk_BA88[4]);
-    Heap_FreeToHeap(param0->unk_BA88[3]);
-    Heap_FreeToHeap(param0->unk_B8CC);
+    Heap_Free(param0->unk_BA88[2]);
+    Heap_Free(param0->unk_BA88[1]);
+    Heap_Free(param0->unk_BA88[4]);
+    Heap_Free(param0->unk_BA88[3]);
+    Heap_Free(param0->unk_B8CC);
 }
 
 static void ov92_021D2254(UnkStruct_ov92_021D1B24 *param0)

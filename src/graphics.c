@@ -126,7 +126,7 @@ void *LoadMemberFromNARC(enum NarcID narcID, u32 narcMemberIdx, BOOL compressed,
 
             if (uncompBuf) {
                 MI_UncompressLZ8(data, uncompBuf);
-                Heap_FreeToHeap(data);
+                Heap_Free(data);
             }
 
             data = uncompBuf;
@@ -162,7 +162,7 @@ void *LoadMemberFromNARC_OutFileSize(enum NarcID narcID, u32 narcMemberIdx, BOOL
 
             if (uncompBuf) {
                 MI_UncompressLZ8(data, uncompBuf);
-                Heap_FreeToHeap(data);
+                Heap_Free(data);
             }
 
             data = uncompBuf;
@@ -269,7 +269,7 @@ void *LoadMemberFromOpenNARC_OutFileSize(NARC *narc, u32 narcMemberIdx, BOOL com
 
             if (uncompBuf) {
                 MI_UncompressLZ8(data, uncompBuf);
-                Heap_FreeToHeap(data);
+                Heap_Free(data);
             }
 
             data = uncompBuf;
@@ -292,7 +292,7 @@ static u32 LoadTilesToBgLayer(void *ncgrBuffer, BgConfig *bgConfig, u32 bgLayer,
             Bg_LoadTiles(bgConfig, bgLayer, tiles->pRawData, size, offset);
         }
 
-        Heap_FreeToHeap(ncgrBuffer);
+        Heap_Free(ncgrBuffer);
     }
 
     return size;
@@ -315,7 +315,7 @@ static void LoadTilemapToBgLayer(void *nscrBuffer, BgConfig *bgConfig, u32 bgLay
             Bg_CopyTilemapBufferRangeToVRAM(bgConfig, bgLayer, tilemap->rawData, size, offset);
         }
 
-        Heap_FreeToHeap(nscrBuffer);
+        Heap_Free(nscrBuffer);
     }
 }
 
@@ -339,7 +339,7 @@ static u32 LoadObjectTiles(void *ncgrBuffer, enum DSScreen display, u32 offset, 
             sDisplayObjectLoadFunc[display](v1->pRawData, offset, size);
         }
 
-        Heap_FreeToHeap(ncgrBuffer);
+        Heap_Free(ncgrBuffer);
     }
 
     return size;
@@ -401,7 +401,7 @@ static void LoadPaletteWithSrcOffset(void *nclrBuffer, enum PaletteLoadLocation 
             }
         }
 
-        Heap_FreeToHeap(nclrBuffer);
+        Heap_Free(nclrBuffer);
     }
 }
 
@@ -420,7 +420,7 @@ static void LoadPartialPalette(void *nclrBuffer, NNS_G2D_VRAM_TYPE vramType, u32
             }
         }
 
-        Heap_FreeToHeap(nclrBuffer);
+        Heap_Free(nclrBuffer);
     }
 }
 
@@ -445,7 +445,7 @@ static u32 LoadImageMapping(void *ncgrBuffer, enum ImageMappingLayout layout, u3
             result = tiles->szByte;
         }
 
-        Heap_FreeToHeap(ncgrBuffer);
+        Heap_Free(ncgrBuffer);
     }
 
     return result;
@@ -478,7 +478,7 @@ static void LoadImageMappingAndSetVramMode(void *ncgrBuffer, enum ImageMappingLa
             sImageLayoutLoadFuncs2[layout](tiles, baseAddr, vramType, imageProxy);
         }
 
-        Heap_FreeToHeap(ncgrBuffer);
+        Heap_Free(ncgrBuffer);
     }
 }
 
@@ -486,7 +486,7 @@ static void *GetCharacterData(void *ncgrBuffer, NNSG2dCharacterData **outCharDat
 {
     if (ncgrBuffer != NULL) {
         if (NNS_G2dGetUnpackedBGCharacterData(ncgrBuffer, outCharData) == 0) {
-            Heap_FreeToHeap(ncgrBuffer);
+            Heap_Free(ncgrBuffer);
             return NULL;
         }
     }
@@ -498,7 +498,7 @@ static void *GetScreenData(void *nscrBuffer, NNSG2dScreenData **outScreenData)
 {
     if (nscrBuffer != NULL) {
         if (NNS_G2dGetUnpackedScreenData(nscrBuffer, outScreenData) == 0) {
-            Heap_FreeToHeap(nscrBuffer);
+            Heap_Free(nscrBuffer);
             return NULL;
         }
     }
@@ -510,7 +510,7 @@ static void *GetPaletteData(void *nclrBuffer, NNSG2dPaletteData **outPaletteData
 {
     if (nclrBuffer != NULL) {
         if (NNS_G2dGetUnpackedPaletteData(nclrBuffer, outPaletteData) == 0) {
-            Heap_FreeToHeap(nclrBuffer);
+            Heap_Free(nclrBuffer);
             return NULL;
         }
     }
@@ -522,7 +522,7 @@ static void *GetCellBank(void *ncerBuffer, NNSG2dCellDataBank **outCellBank)
 {
     if (ncerBuffer != NULL) {
         if (NNS_G2dGetUnpackedCellBank(ncerBuffer, outCellBank) == 0) {
-            Heap_FreeToHeap(ncerBuffer);
+            Heap_Free(ncerBuffer);
             return NULL;
         }
     }
@@ -534,7 +534,7 @@ static void *GetAnimBank(void *nanrBuffer, NNSG2dAnimBankData **outAnimBank)
 {
     if (nanrBuffer != NULL) {
         if (NNS_G2dGetUnpackedAnimBank(nanrBuffer, outAnimBank) == 0) {
-            Heap_FreeToHeap(nanrBuffer);
+            Heap_Free(nanrBuffer);
             return NULL;
         }
     }

@@ -487,7 +487,7 @@ static void ov94_022401E0(UnkStruct_ov94_0223FD4C *param0)
 
 static void ov94_02240268(UnkStruct_ov94_0223FD4C *param0)
 {
-    Heap_FreeToHeap(param0->unk_1108);
+    Heap_Free(param0->unk_1108);
     Strbuf_Free(param0->unk_BA4);
     Strbuf_Free(param0->unk_BAC);
     Strbuf_Free(param0->unk_BA8);
@@ -1027,7 +1027,7 @@ void *ov94_02240DD0(NARC *param0, u32 param1, NNSG2dCharacterData **param2, u32 
 
     if (v0 != NULL) {
         if (NNS_G2dGetUnpackedBGCharacterData(v0, param2) == 0) {
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             return NULL;
         }
     }
@@ -1049,7 +1049,7 @@ static void ov94_02240DF8(int param0, int param1, int param2, int param3, Sprite
     param6->unk_08 = param4;
     param6->unk_04 = PokeIconPaletteIndex(param0, param1, param2) + 3;
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
 static void ov94_02240E50(BoxPokemon *boxMon, UnkStruct_ov94_0223BA88_sub2 *param1)
@@ -1072,7 +1072,7 @@ static void ov94_02240E5C(void *param0)
         }
     }
 
-    Heap_FreeToHeap(v0->unk_1114);
+    Heap_Free(v0->unk_1114);
 }
 
 static void ov94_02240EAC(BoxPokemon *boxMon, Sprite *param1, Sprite *param2, u16 *species, int param4, NARC *param5, UnkStruct_ov94_0223BA88_sub2 *param6, UnkStruct_ov94_02240FA0 *param7)

@@ -661,7 +661,7 @@ static void ov97_0222C688(ApplicationManager *appMan)
     Bg_FreeTilemapBuffer(v1->unk_04, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(v1->unk_04, BG_LAYER_SUB_0);
     Bg_FreeTilemapBuffer(v1->unk_04, BG_LAYER_SUB_1);
-    Heap_FreeToHeap(v1->unk_04);
+    Heap_Free(v1->unk_04);
 }
 
 static int ov97_0222C6F8(ApplicationManager *appMan, int *param1)

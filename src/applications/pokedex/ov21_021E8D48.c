@@ -155,7 +155,7 @@ void ov21_021E8DD0(UnkStruct_ov21_021E8D48 *param0)
     ov21_021E900C(param0);
 
     SysTask_Done(param0->unk_224);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 BOOL ov21_021E8DEC(const UnkStruct_ov21_021E8D48 *param0)
@@ -626,22 +626,22 @@ static void ov21_021E96A8(BgConfig *param0, int param1, NARC *param2)
     v0 = Graphics_GetScrnDataFromOpenNARC(param2, 50, 1, &v1, param1);
 
     Bg_LoadToTilemapRect(param0, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     v0 = Graphics_GetScrnDataFromOpenNARC(param2, 51, 1, &v1, param1);
 
     Bg_LoadToTilemapRect(param0, 3, v1->rawData, 0, 3, v1->screenWidth / 8, v1->screenHeight / 8);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     v0 = Graphics_GetScrnDataFromOpenNARC(param2, 52, 1, &v1, param1);
 
     Bg_LoadToTilemapRect(param0, 3, v1->rawData, 12, 8, v1->screenWidth / 8, v1->screenHeight / 8);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     v0 = Graphics_GetScrnDataFromOpenNARC(param2, 54, 1, &v1, param1);
 
     Bg_LoadToTilemapRect(param0, 3, v1->rawData, 0, 16, v1->screenWidth / 8, v1->screenHeight / 8);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     Bg_ScheduleTilemapTransfer(param0, 3);
 }
 
@@ -655,7 +655,7 @@ static void ov21_021E97C4(BgConfig *param0, int param1, NARC *param2)
     v0 = Graphics_GetScrnDataFromOpenNARC(param2, 57, 1, &v1, param1);
 
     Bg_LoadToTilemapRect(param0, 2, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     Bg_ScheduleTilemapTransfer(param0, 2);
 }
 
@@ -807,7 +807,7 @@ static void ov21_021E9AC8(UnkStruct_ov21_021E9A9C *param0)
     int v0;
 
     for (v0 = 0; v0 < 2; v0++) {
-        Heap_FreeToHeap(param0->unk_00[0]);
+        Heap_Free(param0->unk_00[0]);
     }
 
     memset(param0, 0, sizeof(UnkStruct_ov21_021E9A9C));

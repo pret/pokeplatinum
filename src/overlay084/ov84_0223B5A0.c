@@ -804,7 +804,7 @@ static void ov84_0223BBC4(BgConfig *param0)
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
-    Heap_FreeToHeapExplicit(HEAP_ID_6, param0);
+    Heap_FreeExplicit(HEAP_ID_6, param0);
 }
 
 static void ov84_0223BC1C(UnkStruct_ov84_0223B5A0 *param0)
@@ -2025,7 +2025,7 @@ static void ov84_0223D5AC(UnkStruct_ov84_0223B5A0 *param0)
     v3[v1] = 11;
     v1++;
     ov84_0223FB70(param0, v3, v1);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 static int ov84_0223D730(UnkStruct_ov84_0223B5A0 *param0)

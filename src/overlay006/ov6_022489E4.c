@@ -108,7 +108,7 @@ BOOL ov6_02248AF0(UnkStruct_02095C48 *param0, int param1, const Pokemon *param2)
         v2 = 0;
     }
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     return v2;
 }
 
@@ -187,7 +187,7 @@ BOOL ov6_02248BE8(UnkStruct_02095C48 *param0, int param1, const UnkStruct_ov6_02
         v2 = 0;
     }
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     return v2;
 }
 
@@ -232,7 +232,7 @@ BOOL ov6_02248C68(UnkStruct_02095C48 *param0, int param1, const UnkStruct_020954
         v2 = 0;
     }
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     return v2;
 }
 
@@ -280,7 +280,7 @@ BOOL ov6_02248CE8(UnkStruct_02095C48 *param0, int param1, const Strbuf *param2)
         v3 = 0;
     }
 
-    Heap_FreeToHeap(v2);
+    Heap_Free(v2);
     return v3;
 }
 
@@ -361,6 +361,6 @@ BOOL ov6_02248DD8(UnkStruct_02095C48 *param0, int param1, const UnkStruct_ov6_02
         v2 = 0;
     }
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     return v2;
 }

@@ -193,12 +193,12 @@ static void ov19_021D8E00(UnkStruct_ov19_021D8E00 *param0)
 void ov19_021D8E84(UnkStruct_ov19_021D8E00 *param0)
 {
     if (param0->unk_14) {
-        Heap_FreeToHeap(param0->unk_14);
+        Heap_Free(param0->unk_14);
         param0->unk_14 = NULL;
     }
 
     if (param0->unk_18) {
-        Heap_FreeToHeap(param0->unk_18);
+        Heap_Free(param0->unk_18);
         param0->unk_18 = NULL;
     }
 
@@ -559,7 +559,7 @@ static void ov19_021D9554(UnkStruct_ov19_021D8E00 *param0, Sprite *param1, fx32 
             param0->unk_788 = 1;
             return;
         } else {
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
         }
     }
 }

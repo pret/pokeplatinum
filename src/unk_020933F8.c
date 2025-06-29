@@ -252,7 +252,7 @@ static BOOL sub_02093448(FieldTask *param0)
     default:
         GF_ASSERT(0);
     case 13:
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return 1;
     }
 
@@ -369,7 +369,7 @@ static BOOL sub_020935EC(FieldTask *param0)
     default:
         GF_ASSERT(0);
     case 9:
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return 1;
     }
 
@@ -393,7 +393,7 @@ static UnkStruct_02095C48 *sub_020937C4(void)
 
 static void sub_020937F8(UnkStruct_02095C48 *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 UnkStruct_02095C48 *sub_02093800(const UnkStruct_02093800 *param0)
@@ -524,13 +524,13 @@ void sub_02093AD4(UnkStruct_02095C48 *param0)
 {
     int v0;
 
-    Heap_FreeToHeap(param0->unk_148);
+    Heap_Free(param0->unk_148);
 
     for (v0 = 0; v0 < 4; v0++) {
-        Heap_FreeToHeap(param0->unk_00.unk_00[v0]);
+        Heap_Free(param0->unk_00.unk_00[v0]);
         Strbuf_Free(param0->unk_00.unk_D8[v0]);
-        Heap_FreeToHeap(param0->unk_00.unk_E8[v0]);
-        Heap_FreeToHeap(param0->unk_14C[v0]);
+        Heap_Free(param0->unk_00.unk_E8[v0]);
+        Heap_Free(param0->unk_14C[v0]);
     }
 
     LCRNG_SetSeed(param0->unk_19A4);
@@ -607,7 +607,7 @@ void sub_02093BBC(UnkStruct_02095C48 *param0)
 
 void sub_02093C54(UnkStruct_02095C48 *param0)
 {
-    Heap_FreeToHeap(param0->unk_199C);
+    Heap_Free(param0->unk_199C);
     param0->unk_199C = NULL;
 }
 
@@ -1516,7 +1516,7 @@ static void sub_02094B30(SysTask *param0, void *param1)
         }
         break;
     default:
-        Heap_FreeToHeap(v0->unk_19A0);
+        Heap_Free(v0->unk_19A0);
         v0->unk_19A0 = NULL;
         SysTask_Done(param0);
         return;

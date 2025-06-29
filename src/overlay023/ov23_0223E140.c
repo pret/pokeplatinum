@@ -687,7 +687,7 @@ void ov23_0223E2F8(void)
             sub_02059514();
         }
 
-        Heap_FreeToHeap(Unk_ov23_02257740);
+        Heap_Free(Unk_ov23_02257740);
         Unk_ov23_02257740 = NULL;
     }
 }
@@ -1376,7 +1376,7 @@ static void ov23_0223F020(UnkStruct_ov23_0223EE80 *param0)
 
     for (v1 = 0; v1 < 4; v1++) {
         if (param0->unk_18[v1] != NULL) {
-            Heap_FreeToHeap(param0->unk_18[v1]);
+            Heap_Free(param0->unk_18[v1]);
             param0->unk_18[v1] = NULL;
         }
     }
@@ -1388,7 +1388,7 @@ static void ov23_0223F020(UnkStruct_ov23_0223EE80 *param0)
     PlttTransfer_Free();
 
     SetVBlankCallback(NULL, NULL);
-    Heap_FreeToHeap(Unk_ov23_02257740->unk_04);
+    Heap_Free(Unk_ov23_02257740->unk_04);
 
     Unk_ov23_02257740->unk_04 = NULL;
 
@@ -1596,7 +1596,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
 
             Unk_ov23_02257740->unk_8CC = NULL;
 
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             SysTask_Done(param0);
 
             ov23_0224DBF4(1);
@@ -2945,7 +2945,7 @@ void ov23_02241364(void)
 {
     if (Unk_ov23_02257740->unk_8C4) {
         SysTask_Done(Unk_ov23_02257740->unk_8C4);
-        Heap_FreeToHeap(Unk_ov23_02257740->unk_8D0);
+        Heap_Free(Unk_ov23_02257740->unk_8D0);
         Unk_ov23_02257740->unk_8C4 = NULL;
         Unk_ov23_02257740->unk_8D0 = NULL;
     }

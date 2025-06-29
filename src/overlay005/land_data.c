@@ -473,7 +473,7 @@ static void LandDataHeader_Load(NARC *landDataNARC, const int landDataID, LandDa
     landDataHeader->mapModelSize = *(iter++);
     landDataHeader->bdhcSize = *iter;
 
-    Heap_FreeToHeap(buffer);
+    Heap_Free(buffer);
 }
 
 static void LandDataManager_LazyLoad(const u8 index, AreaDataManager *const areaDataMan, const MapMatrix *mapMatrix, const int mapMatrixWidth, const int mapMatrixHeight, LandDataManager *landDataMan, MapLazyLoader *loader)
@@ -1668,7 +1668,7 @@ void LandDataManager_End(LandDataManager *landDataMan)
             MapPropManager_Free(landDataMan->loadedMaps[i]->mapPropManager);
         }
 
-        Heap_FreeToHeap(landDataMan->loadedMaps[i]);
+        Heap_Free(landDataMan->loadedMaps[i]);
         landDataMan->loadedMaps[i] = NULL;
     }
 
@@ -1681,7 +1681,7 @@ void LandDataManager_FreeNARCAndLoadedMapBuffers(LandDataManager *landDataMan)
 {
     NARC_dtor(landDataMan->landDataNARC);
     LoadedMapBuffers_Free(landDataMan->loadedMapBufs);
-    Heap_FreeToHeap(&landDataMan->loadedMapBufs);
+    Heap_Free(&landDataMan->loadedMapBufs);
 }
 
 BOOL LandDataManager_HasEnded(const LandDataManager *landDataMan)
@@ -1946,7 +1946,7 @@ static void LandDataManager_LazyLoadMapModelTask(SysTask *sysTask, void *sysTask
 
     case MAP_MODEL_LOADER_SUBTASK_END_TASK: {
         *ctx->loadTaskRunning = FALSE;
-        Heap_FreeToHeap(sysTaskParam);
+        Heap_Free(sysTaskParam);
         SysTask_Done(sysTask);
 
         return;
@@ -2056,7 +2056,7 @@ void LandDataManager_DistortionWorldEnd(LandDataManager *landDataMan)
             MapPropManager_Free(landDataMan->loadedMaps[i]->mapPropManager);
         }
 
-        Heap_FreeToHeap(landDataMan->loadedMaps[i]);
+        Heap_Free(landDataMan->loadedMaps[i]);
         landDataMan->loadedMaps[i] = NULL;
     }
 
@@ -2077,7 +2077,7 @@ void LandDataManager_DistortionWorldInitLoadedMapPropManagers(LandDataManager *l
 void LandDataManager_DistortionWorldFreeLoadedMapBuffers(LandDataManager *landDataMan)
 {
     LoadedMapBuffers_Free(landDataMan->loadedMapBufs);
-    Heap_FreeToHeap(&landDataMan->loadedMapBufs);
+    Heap_Free(&landDataMan->loadedMapBufs);
 }
 
 void LandDataManager_DistortionWorldInitialLoad(LandDataManager *landDataMan, const int playerTileX, const int playerTileZ)

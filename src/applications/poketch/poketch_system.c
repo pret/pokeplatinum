@@ -247,7 +247,7 @@ static void PoketchSystem_MainTask(SysTask *task, void *system)
         *(poketchSys->poketchSysPtr) = NULL;
 
         PoketchSystem_Shutdown(poketchSys);
-        Heap_FreeToHeap(poketchSys);
+        Heap_Free(poketchSys);
         SysTask_Done(task);
         Heap_Destroy(HEAP_ID_POKETCH_MAIN);
         Heap_Destroy(HEAP_ID_POKETCH_APP);

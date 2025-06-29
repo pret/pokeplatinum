@@ -604,7 +604,7 @@ static void ov79_021D13A4(UnkStruct_ov79_021D0E1C *param0)
         Bg_FreeTilemapBuffer(param0->unk_24, v0);
     }
 
-    Heap_FreeToHeap(param0->unk_24);
+    Heap_Free(param0->unk_24);
 }
 
 static void ov79_021D13C4(UnkStruct_ov79_021D0E1C *param0)

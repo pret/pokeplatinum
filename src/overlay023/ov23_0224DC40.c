@@ -281,7 +281,7 @@ static void ov23_0224DDE4(SysTask *param0, UnkStruct_ov23_0224E280 *param1)
         param1->unk_2C(0);
     }
 
-    Heap_FreeToHeap(param1);
+    Heap_Free(param1);
     sub_02059514();
     SysTask_Done(param0);
 
@@ -928,7 +928,7 @@ static void ov23_0224E9C4(SysTask *param0, UnkStruct_ov23_022577B0 *param1)
 
     ov23_0224EA08(param0, param1);
 
-    Heap_FreeToHeap(param1);
+    Heap_Free(param1);
     sub_02059514();
     SysTask_Done(param0);
 

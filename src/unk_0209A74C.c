@@ -136,7 +136,7 @@ void sub_0209A74C(int heapID)
     Bg_ToggleLayer(BG_LAYER_SUB_2, 0);
     Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
     Bg_FreeTilemapBuffer(v0, BG_LAYER_MAIN_0);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     PM_ForceToPowerOff();
 }
@@ -210,7 +210,7 @@ void sub_0209A8E0(int heapID)
     Bg_ToggleLayer(BG_LAYER_SUB_2, 0);
     Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
     Bg_FreeTilemapBuffer(v0, BG_LAYER_MAIN_0);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     PM_ForceToPowerOff();
 }

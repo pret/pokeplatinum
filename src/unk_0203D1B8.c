@@ -479,12 +479,12 @@ static BOOL sub_0203D444(FieldTask *param0)
         break;
     case 3:
         if (!FieldSystem_IsRunningApplication(fieldSystem)) {
-            Heap_FreeToHeap(v1->unk_08);
+            Heap_Free(v1->unk_08);
             *v2 = 0;
         }
         break;
     case 4:
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return 1;
     }
 
@@ -675,7 +675,7 @@ static BOOL sub_0203D764(FieldTask *taskMan)
         }
 
         sub_020974EC(v1->unk_0C);
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return 1;
         break;
     }
@@ -883,8 +883,8 @@ static BOOL sub_0203DA64(FieldTask *param0)
                 *v1->unk_04 = 0;
             }
 
-            Heap_FreeToHeap(v1->unk_0C);
-            Heap_FreeToHeap(v1);
+            Heap_Free(v1->unk_0C);
+            Heap_Free(v1);
 
             return 1;
         }
@@ -973,17 +973,17 @@ static void sub_0203DB38(UnkStruct_ov88_0223C370 *param0, FieldSystem *fieldSyst
 static void sub_0203DBC0(UnkStruct_ov88_0223C370 *param0)
 {
     if (param0->unk_38) {
-        Heap_FreeToHeap(param0->unk_38);
+        Heap_Free(param0->unk_38);
         param0->unk_38 = NULL;
     }
 
     if (param0->unk_3C) {
-        Heap_FreeToHeap(param0->unk_3C);
+        Heap_Free(param0->unk_3C);
         param0->unk_3C = NULL;
     }
 
     if (param0->unk_40) {
-        Heap_FreeToHeap(param0->unk_40);
+        Heap_Free(param0->unk_40);
         param0->unk_40 = NULL;
     }
 }
@@ -1012,7 +1012,7 @@ BOOL sub_0203DBF0(FieldTask *param0)
     case 3:
         if (v2->unk_04.unk_28 == 0) {
             sub_0203DBC0(&(v2->unk_04));
-            Heap_FreeToHeap(v2);
+            Heap_Free(v2);
             return 1;
         }
 
@@ -1194,7 +1194,7 @@ static BOOL sub_0203DE98(FieldTask *param0)
 
         sub_0208716C(v2->unk_0C);
         Strbuf_Free(v2->unk_10);
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
 
         return 1;
     }
@@ -1433,7 +1433,7 @@ void *sub_0203E244(FieldSystem *fieldSystem)
     v1 = SaveData_HallOfFame(fieldSystem->saveData, 11, &v2);
 
     if (v2 == 2) {
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return NULL;
     } else {
         FieldSystem_StartChildProcess(fieldSystem, &v0, v1);
@@ -1553,7 +1553,7 @@ static BOOL sub_0203E35C(FieldTask *param0)
                 SystemVars_SetConsecutiveBonusRoundWins(v1, v2->unk_0C.unk_0C);
             }
 
-            Heap_FreeToHeap(v2);
+            Heap_Free(v2);
             return 1;
         }
         break;

@@ -207,7 +207,7 @@ int ov94_0223BF54(ApplicationManager *appMan, int *param1)
     UnkStruct_ov94_0223FD4C *v0 = ApplicationManager_Data(appMan);
     int v1;
 
-    Heap_FreeToHeap(v0->unk_4C);
+    Heap_Free(v0->unk_4C);
     sub_020995C4();
     sub_02099560();
 
@@ -223,8 +223,8 @@ int ov94_0223BF54(ApplicationManager *appMan, int *param1)
     ov94_0223C0A0(v0);
 
     sub_020334CC();
-    Heap_FreeToHeap(v0->unk_04);
-    Heap_FreeToHeap(v0->unk_00);
+    Heap_Free(v0->unk_04);
+    Heap_Free(v0->unk_00);
     ApplicationManager_FreeData(appMan);
     SetVBlankCallback(NULL, NULL);
     Heap_Destroy(HEAP_ID_62);
@@ -365,7 +365,7 @@ static void ov94_0223C0D4(UnkStruct_ov94_0223FD4C *param0)
         DC_FlushRange(v3->pRawData, (3 * 16) * 2);
         GX_LoadOBJPltt(v3->pRawData, (3 + 3) * 0x20, (3 * 16) * 2);
 
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
     }
 
     NARC_dtor(v1);

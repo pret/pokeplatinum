@@ -156,7 +156,7 @@ void ov33_022564F0(UnkStruct_ov33_02256474 *param0)
             SysTask_Done(param0->unk_B0);
         }
 
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0);
     }
 }
 
@@ -259,7 +259,7 @@ static void ov33_02256634(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
             NNS_G2dGetUnpackedCharacterData(v4, &v3);
             DC_FlushRange(v3->pRawData, ((4 * 4 * 2) * 0x20));
             GXS_LoadOBJ(v3->pRawData, ((4 * 4 * 2) * 0x20) * v5, ((4 * 4 * 2) * 0x20));
-            Heap_FreeToHeap(v4);
+            Heap_Free(v4);
 
             v2.translation.x = ((v0[v5].x) << FX32_SHIFT);
             v2.translation.y = ((v0[v5].y) << FX32_SHIFT);

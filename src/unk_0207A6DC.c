@@ -264,7 +264,7 @@ void sub_0207A81C(BattleSystem *battleSys, int param1, int param2, void *param3,
         v4[0]++;
     }
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
 static void sub_0207A8A8(int param0, int param1, void *param2, void *param3)
@@ -598,7 +598,7 @@ void sub_0207ACB4(SysTask *param0, void *param1)
         break;
     default:
     case 255:
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         break;
     }
@@ -636,7 +636,7 @@ void sub_0207AD40(SysTask *param0, void *param1)
         break;
     default:
     case 255:
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         break;
     }

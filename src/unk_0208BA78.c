@@ -210,7 +210,7 @@ static int sub_0208BC08(ApplicationManager *appMan, int *param1)
         sub_0202F22C();
     }
 
-    Heap_FreeToHeap(v0->unk_14);
+    Heap_Free(v0->unk_14);
     ApplicationManager_FreeData(appMan);
     Sound_SetPlayerVolume(1, 127);
     Heap_Destroy(HEAP_ID_119);
@@ -276,7 +276,7 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int heapID)
         param0->unk_14->unk_874 = 1;
 
         if (v0 != 1) {
-            Heap_FreeToHeap(param0->unk_10->bagCursor);
+            Heap_Free(param0->unk_10->bagCursor);
             FieldBattleDTO_Free(param0->unk_10);
             param0->unk_00 = 0;
             return 1;
@@ -310,7 +310,7 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int heapID)
             }
         }
 
-        Heap_FreeToHeap(param0->unk_10->bagCursor);
+        Heap_Free(param0->unk_10->bagCursor);
         FieldBattleDTO_Free(param0->unk_10);
         ApplicationManager_Free(param0->appMan);
 

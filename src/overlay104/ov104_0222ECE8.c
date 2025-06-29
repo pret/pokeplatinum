@@ -1094,7 +1094,7 @@ void ov104_0222F7BC(int param0, int param1, void *param2, void *param3)
         Party_AddPokemon(v5->unk_28, v4);
     }
 
-    Heap_FreeToHeap(v4);
+    Heap_Free(v4);
 
     if (CommSys_CurNetId() != 0) {
         Party_SwapSlots(v5->unk_28, 0, 2);
@@ -1387,7 +1387,7 @@ void ov104_0222FB34(int param0, int param1, void *param2, void *param3)
         Party_AddPokemon(v5->unk_70, v4);
     }
 
-    Heap_FreeToHeap(v4);
+    Heap_Free(v4);
 
     if (CommSys_CurNetId() != 0) {
         Party_SwapSlots(v5->unk_70, 0, 2);
