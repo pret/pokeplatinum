@@ -113,6 +113,17 @@ enum BattleAnimTaskKind {
     MOVE_EFFECT_TASK_KIND_SOUND,
 };
 
+enum BattleAnimBattlerType {
+    BATTLER_TYPE_ATTACKER = 0,
+    BATTLER_TYPE_DEFENDER,
+    BATTLER_TYPE_ATTACKER_PARTNER,
+    BATTLER_TYPE_DEFENDER_PARTNER,
+    BATTLER_TYPE_PLAYER_SLOT_1,
+    BATTLER_TYPE_ENEMY_SLOT_1,
+    BATTLER_TYPE_PLAYER_SLOT_2,
+    BATTLER_TYPE_ENEMY_SLOT_2,
+};
+
 static void ov12_022224F8(SysTask *param0, void *param1);
 static void BattleAnimSystem_Script_WaitForDelay(BattleAnimSystem *param0);
 static void BattleAnimSystem_Script_Execute(BattleAnimSystem *param0);
@@ -215,7 +226,7 @@ static void ov12_022230A8(BattleAnimSystem *param0);
 static void ov12_02221834(BattleAnimSystem *param0);
 static void ov12_022219E8(BattleAnimSystem *param0);
 static void ov12_0222048C(BattleAnimSystem *param0);
-static int ov12_022210A8(BattleAnimSystem *param0, int param1);
+static int BattleAnimSystem_GetBattlerOfType(BattleAnimSystem *param0, enum BattleAnimBattlerType param1);
 static BOOL ov12_02221A54(UnkStruct_ov12_02221BBC *param0, BattleAnimSystem *param1, int param2);
 static void ov12_02221AA8(UnkStruct_ov12_02221BBC *param0, BattleAnimSystem *param1, int param2, int param3);
 static int ov12_02221B54(int param0, int param1);
@@ -1611,103 +1622,87 @@ static void BattleAnimScriptCmd_Jump(BattleAnimSystem *system)
     BattleAnimScript_JumpBy(system, (u32)BattleAnimScript_ReadWord(system->scriptPtr));
 }
 
-static int ov12_022210A8(BattleAnimSystem *param0, int param1)
+static int BattleAnimSystem_GetBattlerOfType(BattleAnimSystem *system, enum BattleAnimBattlerType type)
 {
-    int v0;
+    int result;
 
-    switch (param1) {
-    case 0:
-        v0 = param0->context->attacker;
+    switch (type) {
+    case BATTLER_TYPE_ATTACKER:
+        result = system->context->attacker;
         break;
-    case 1:
-        v0 = param0->context->defender;
+    case BATTLER_TYPE_DEFENDER:
+        result = system->context->defender;
         break;
-    case 2:
-        v0 = BattleAnimUtil_GetAlliedBattlerType(param0, param0->context->attacker);
+    case BATTLER_TYPE_ATTACKER_PARTNER:
+        result = BattleAnimUtil_GetAlliedBattlerType(system, system->context->attacker);
         break;
-    case 3:
-        v0 = BattleAnimUtil_GetAlliedBattlerType(param0, param0->context->defender);
+    case BATTLER_TYPE_DEFENDER_PARTNER:
+        result = BattleAnimUtil_GetAlliedBattlerType(system, system->context->defender);
         break;
 
-    case 4: {
-        int v1;
-        int v2;
+    case BATTLER_TYPE_PLAYER_SLOT_1: {
+        result = BATTLER_NONE;
 
-        v0 = 0xFF;
-
-        for (v1 = 0; v1 < 4; v1++) {
-            v2 = BattleAnimSystem_GetBattlerType(param0, v1);
-
-            if ((v2 == 0) || (v2 == 2)) {
-                v0 = v1;
+        for (int battler = 0; battler < MAX_BATTLERS; battler++) {
+            int battlerType = BattleAnimSystem_GetBattlerType(system, battler);
+            if (battlerType == BATTLER_TYPE_SOLO_PLAYER || battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
+                result = battler;
                 break;
             }
         }
 
-        if (v0 == 0xFF) {
-            v0 = 0;
+        if (result == BATTLER_NONE) {
+            result = BATTLER_PLAYER_1;
         }
     } break;
-    case 5: {
-        int v3;
-        int v4;
+    case BATTLER_TYPE_ENEMY_SLOT_1: {
+        result = BATTLER_NONE;
 
-        v0 = 0xFF;
-
-        for (v3 = 0; v3 < 4; v3++) {
-            v4 = BattleAnimSystem_GetBattlerType(param0, v3);
-
-            if ((v4 == 1) || (v4 == 3)) {
-                v0 = v3;
+        for (int battler = 0; battler < MAX_BATTLERS; battler++) {
+            int battlerType = BattleAnimSystem_GetBattlerType(system, battler);
+            if (battlerType == BATTLER_TYPE_SOLO_ENEMY || battlerType == BATTLER_TYPE_ENEMY_SIDE_SLOT_1) {
+                result = battler;
                 break;
             }
         }
 
-        if (v0 == 0xFF) {
-            v0 = 0;
+        if (result == BATTLER_NONE) {
+            result = BATTLER_PLAYER_1;
         }
     } break;
-    case 6: {
-        int v5;
-        int v6;
+    case BATTLER_TYPE_PLAYER_SLOT_2: {
+        result = BATTLER_NONE;
 
-        v0 = 0xFF;
-
-        for (v5 = 0; v5 < 4; v5++) {
-            v6 = BattleAnimSystem_GetBattlerType(param0, v5);
-
-            if (v6 == 4) {
-                v0 = v5;
+        for (int battler = 0; battler < MAX_BATTLERS; battler++) {
+            int battlerType = BattleAnimSystem_GetBattlerType(system, battler);
+            if (battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_2) {
+                result = battler;
                 break;
             }
         }
 
-        if (v0 == 0xFF) {
-            v0 = 0;
+        if (result == BATTLER_NONE) {
+            result = BATTLER_PLAYER_1;
         }
     } break;
-    case 7: {
-        int v7;
-        int v8;
+    case BATTLER_TYPE_ENEMY_SLOT_2: {
+        result = BATTLER_NONE;
 
-        v0 = 0xFF;
-
-        for (v7 = 0; v7 < 4; v7++) {
-            v8 = BattleAnimSystem_GetBattlerType(param0, v7);
-
-            if (v8 == 5) {
-                v0 = v7;
+        for (int battler = 0; battler < MAX_BATTLERS; battler++) {
+            int battlerType = BattleAnimSystem_GetBattlerType(system, battler);
+            if (battlerType == BATTLER_TYPE_ENEMY_SIDE_SLOT_2) {
+                result = battler;
                 break;
             }
         }
 
-        if (v0 == 0xFF) {
-            v0 = 0;
+        if (result == BATTLER_NONE) {
+            result = BATTLER_PLAYER_1;
         }
     } break;
     }
 
-    return v0;
+    return result;
 }
 
 static void ov12_0222118C(SysTask *param0, void *param1)
@@ -1803,7 +1798,7 @@ static void ov12_0222128C(BattleAnimSystem *param0)
     v2 = BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    v3 = ov12_022210A8(param0, v1);
+    v3 = BattleAnimSystem_GetBattlerOfType(param0, v1);
     v4 = param0->context->unk_B0[v3]->unk_04;
     v5 = param0->context->unk_B0[v3]->unk_08;
     v0 = param0->context->unk_B0[v3]->unk_00;
@@ -1890,19 +1885,19 @@ static void ov12_0222144C(BattleAnimSystem *param0)
 
 static void ov12_022214C4(BattleAnimSystem *param0)
 {
-    int resourceIDs[6];
+    int resourceIDs[SPRITE_RESOURCE_MAX];
     int v1;
 
     param0->scriptPtr += 1;
     v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    resourceIDs[0] = 20001 + v1 + ((param0->context->attacker) * 5000);
-    resourceIDs[1] = 20001 + v1 + ((param0->context->attacker) * 5000);
-    resourceIDs[2] = 20001 + v1 + ((param0->context->attacker) * 5000);
-    resourceIDs[3] = 20001 + v1 + ((param0->context->attacker) * 5000);
-    resourceIDs[4] = 0;
-    resourceIDs[5] = 0;
+    resourceIDs[SPRITE_RESOURCE_CHAR] = 20001 + v1 + ((param0->context->attacker) * 5000);
+    resourceIDs[SPRITE_RESOURCE_PLTT] = 20001 + v1 + ((param0->context->attacker) * 5000);
+    resourceIDs[SPRITE_RESOURCE_CELL] = 20001 + v1 + ((param0->context->attacker) * 5000);
+    resourceIDs[SPRITE_RESOURCE_ANIM] = 20001 + v1 + ((param0->context->attacker) * 5000);
+    resourceIDs[SPRITE_RESOURCE_MULTI_CELL] = 0;
+    resourceIDs[SPRITE_RESOURCE_MULTI_ANIM] = 0;
 
     SpriteSystem_LoadCharResObjFromOpenNarc(
         param0->context->spriteSystem,
@@ -1977,7 +1972,7 @@ static void ov12_02221580(BattleAnimSystem *param0)
     v2[4] = 0;
     v2[5] = 0;
 
-    v7 = ov12_022210A8(param0, v3);
+    v7 = BattleAnimSystem_GetBattlerOfType(param0, v3);
     v8 = param0->context->unk_B0[v7]->unk_04;
     v9 = param0->context->unk_B0[v7]->unk_08;
     v0 = param0->context->unk_B0[v7]->unk_00;
@@ -2145,7 +2140,7 @@ static void ov12_02221834(BattleAnimSystem *param0)
             int v6;
             PokemonSprite *v7;
 
-            v6 = ov12_022210A8(param0, v0);
+            v6 = BattleAnimSystem_GetBattlerOfType(param0, v0);
             v7 = BattleAnimSystem_GetBattlerSprite(param0, v6);
 
             if (v7 != NULL) {
@@ -3853,7 +3848,7 @@ BOOL ov12_022234A8(BattleAnimSystem *param0, int param1)
     int v0;
     int v1;
 
-    v0 = ov12_022210A8(param0, param1);
+    v0 = BattleAnimSystem_GetBattlerOfType(param0, param1);
     v1 = param0->context->battlerForms[v0];
 
     if ((BattleAnimSystem_IsContest(param0) == 1) && (IsFormSymmetrical(BattleAnimSystem_GetBattlerSpecies(param0, v0), v1) == 1)) {
