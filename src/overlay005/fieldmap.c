@@ -694,7 +694,7 @@ static void ov5_021D15F4(FieldSystem *fieldSystem)
 
     if (fieldSystem->unk_20 == 1) {
         if (FieldMap_InDistortionWorld(fieldSystem) == TRUE) {
-            ov9_02249F9C(fieldSystem);
+            DistWorld_UpdateCameraAngle(fieldSystem);
         }
 
         Camera_ComputeViewMatrixWithRoll();

@@ -6,7 +6,7 @@
 #include "struct_defs/struct_0206C8D4.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay009/struct_ov9_02249FF4.h"
+#include "overlay009/camera_configuration.h"
 
 #include "camera.h"
 #include "easy3d.h"
@@ -42,7 +42,7 @@ static void ov93_021D0FA8(void);
 static void ov93_021D100C(void);
 static void ov93_021D102C(UnkStruct_ov93_021D102C *param0);
 
-static const UnkStruct_ov9_02249FF4 Unk_ov93_021D14B8 = {
+static const CameraConfiguration Unk_ov93_021D14B8 = {
     0x29AEC1,
     { -0x29fe, 0x0, 0x0 },
     0x0,
@@ -102,7 +102,7 @@ int ov93_021D0D80(ApplicationManager *appMan, int *param1)
     {
         VecFx32 v3 = { 0, 0, 0 };
 
-        Camera_InitWithTarget(&v3, Unk_ov93_021D14B8.unk_00, &Unk_ov93_021D14B8.cameraAngle, Unk_ov93_021D14B8.unk_0E, Unk_ov93_021D14B8.unk_0C, 0, v1->camera);
+        Camera_InitWithTarget(&v3, Unk_ov93_021D14B8.distance, &Unk_ov93_021D14B8.cameraAngle, Unk_ov93_021D14B8.fovY, Unk_ov93_021D14B8.projectionMtx, 0, v1->camera);
         Camera_SetAsActive(v1->camera);
     }
 

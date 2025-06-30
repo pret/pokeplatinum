@@ -4537,7 +4537,7 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_31F
+    .macro ResetDistortionWorldPersistedCameraAngles
     .short 799
     .endm
 
