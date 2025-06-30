@@ -283,15 +283,15 @@ const u32 Unk_ov94_02245FD4 = NELEMS(gtsAvailableCountries);
 int ov94_022414B8(GTSApplicationState *param0, int param1)
 {
     ov94_022418B8(param0);
-    ov94_022415F8(param0->unk_04);
+    ov94_022415F8(param0->bgConfig);
     ov94_0224170C(param0);
     ov94_022417A0(param0);
 
     StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
 
     ov94_02245934(param0);
-    ov94_022422D4(param0->gtsMessageLoader, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[0], 0, 3, -1);
-    ov94_022423FC(param0->gtsMessageLoader, param0->unk_B8C, &param0->unk_FCC[3], param0->unk_114, &param0->unk_B70);
+    ov94_022422D4(param0->gtsMessageLoader, param0->unk_B94, param0->stringTemplate, &param0->unk_FCC[0], 0, 3, -1);
+    ov94_022423FC(param0->gtsMessageLoader, param0->stringTemplate, &param0->unk_FCC[3], param0->unk_114, &param0->unk_B70);
 
     param0->currentScreenInstruction = 0;
 
@@ -314,7 +314,7 @@ int ov94_02241568(GTSApplicationState *param0, int param1)
 
     ov94_02241920(param0);
     ov94_02241880(param0);
-    ov94_022416E0(param0->unk_04);
+    ov94_022416E0(param0->bgConfig);
     GTSApplication_MoveToNextScreen(param0);
 
     return 1;
@@ -324,11 +324,11 @@ static void ov94_0224158C(GTSApplicationState *param0, int param1, int param2, i
 {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->gtsMessageLoader, param1);
 
-    StringTemplate_Format(param0->unk_B8C, param0->unk_BAC, v0);
+    StringTemplate_Format(param0->stringTemplate, param0->genericMessageBuffer, v0);
     Window_FillTilemap(&param0->bottomInstructionWindow, 0xf0f);
     Window_DrawMessageBoxWithScrollCursor(&param0->bottomInstructionWindow, 0, 1, 10);
 
-    param0->unk_BE0 = Text_AddPrinterWithParams(&param0->bottomInstructionWindow, FONT_MESSAGE, param0->unk_BAC, 0, 0, param2, NULL);
+    param0->textPrinter = Text_AddPrinterWithParams(&param0->bottomInstructionWindow, FONT_MESSAGE, param0->genericMessageBuffer, 0, 0, param2, NULL);
 
     Strbuf_Free(v0);
 }
@@ -452,7 +452,7 @@ static void ov94_022416E0(BgConfig *param0)
 
 static void ov94_0224170C(GTSApplicationState *param0)
 {
-    BgConfig *v0 = param0->unk_04;
+    BgConfig *v0 = param0->bgConfig;
 
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__WORLDTRADE, 1, 0, 0, 16 * 3 * 2, HEAP_ID_62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_62);
@@ -466,16 +466,16 @@ static void ov94_022417A0(GTSApplicationState *param0)
 {
     int v0;
 
-    Window_Add(param0->unk_04, &param0->unk_F7C, 0, 1, 1, 28, 2, 13, ((1 + (18 + 12)) + 9));
+    Window_Add(param0->bgConfig, &param0->unk_F7C, 0, 1, 1, 28, 2, 13, ((1 + (18 + 12)) + 9));
     Window_FillTilemap(&param0->unk_F7C, 0x0);
 
     ov94_022458CC(&param0->unk_F7C, param0->title, 0, 1, 0, TEXT_COLOR(15, 14, 0));
 
-    Window_Add(param0->unk_04, &param0->bottomInstructionWindow, 0, 2, 21, 27, 2, 13, (((1 + (18 + 12)) + 9) + 28 * 2));
+    Window_Add(param0->bgConfig, &param0->bottomInstructionWindow, 0, 2, 21, 27, 2, 13, (((1 + (18 + 12)) + 9) + 28 * 2));
     Window_FillTilemap(&param0->bottomInstructionWindow, 0x0);
 
     for (v0 = 0; v0 < 6; v0++) {
-        Window_Add(param0->unk_04, &param0->unk_FCC[v0], 0, Unk_ov94_02245FE8[v0][0], Unk_ov94_02245FE8[v0][1], 11, 2, 13, ((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + (11 * 2) * v0);
+        Window_Add(param0->bgConfig, &param0->unk_FCC[v0], 0, Unk_ov94_02245FE8[v0][0], Unk_ov94_02245FE8[v0][1], 11, 2, 13, ((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + (11 * 2) * v0);
         Window_FillTilemap(&param0->unk_FCC[v0], 0x0);
         Window_CopyToVRAM(&param0->unk_FCC[v0]);
     }
@@ -495,7 +495,7 @@ static void ov94_02241880(GTSApplicationState *param0)
 
 static void ov94_022418B8(GTSApplicationState *param0)
 {
-    param0->unk_BAC = Strbuf_Init((90 * 2), HEAP_ID_62);
+    param0->genericMessageBuffer = Strbuf_Init((90 * 2), HEAP_ID_62);
     param0->title = MessageLoader_GetNewStrbuf(param0->gtsMessageLoader, GTS_Text_DepositPokemon);
     param0->unk_10E4 = Heap_AllocFromHeap(HEAP_ID_62, sizeof(GTSApplicationState_sub3));
 
@@ -512,7 +512,7 @@ static void ov94_02241920(GTSApplicationState *param0)
     Heap_FreeToHeap(param0->unk_10E4->unk_14);
     Heap_FreeToHeap(param0->unk_10E4->unk_18);
     Heap_FreeToHeap(param0->unk_10E4);
-    Strbuf_Free(param0->unk_BAC);
+    Strbuf_Free(param0->genericMessageBuffer);
     Strbuf_Free(param0->title);
 }
 
@@ -520,7 +520,7 @@ static int ov94_0224195C(GTSApplicationState *param0)
 {
     if (IsScreenFadeDone()) {
         ov94_0224158C(param0, GTS_Text_PleaseChoosePokemon, TEXT_SPEED_FAST, 0, 0xf0f);
-        ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 16, 1);
+        GTSApplication_SetCurrentAndNextScreenInstruction(param0, 16, 1);
     }
 
     return 3;
@@ -533,10 +533,10 @@ static int ov94_02241990(GTSApplicationState *param0)
         param0->currentScreenInstruction = 2;
     }
 
-    Window_Add(param0->unk_04, &param0->unk_F9C[0], 0, 15, 5, 4, 13, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 11 * 2 * 6));
+    Window_Add(param0->bgConfig, &param0->unk_F9C[0], 0, 15, 5, 4, 13, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 11 * 2 * 6));
     Window_FillTilemap(&param0->unk_F9C[0], 0x0);
 
-    Window_Add(param0->unk_04, &param0->unk_F9C[1], 0, 21, 5, 10, 13, 13, ((((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 11 * 2 * 6) + 4 * 13));
+    Window_Add(param0->bgConfig, &param0->unk_F9C[1], 0, 21, 5, 10, 13, 13, ((((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 11 * 2 * 6) + 4 * 13));
     Window_FillTilemap(&param0->unk_F9C[1], 0x0);
 
     param0->currentScreenInstruction = 3;
@@ -649,7 +649,7 @@ static int ov94_02241BAC(GTSApplicationState *param0)
             v1 = 3;
         }
 
-        ov94_022422D4(param0->gtsMessageLoader, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[0], param0->unk_B74.species, v1, -1);
+        ov94_022422D4(param0->gtsMessageLoader, param0->unk_B94, param0->stringTemplate, &param0->unk_FCC[0], param0->unk_B74.species, v1, -1);
         ov94_02242AC4(&param0->unk_111C, param0->unk_10E4->unk_06 + param0->unk_10E4->unk_04, param0->unk_10E4->unk_0A, param0->unk_10E4->unk_08);
         break;
     }
@@ -660,9 +660,9 @@ static int ov94_02241BAC(GTSApplicationState *param0)
 static int ov94_02241D08(GTSApplicationState *param0)
 {
     ov94_0224158C(param0, GTS_Text_PleaseChooseGender, TEXT_SPEED_FAST, 0, 0xf0f);
-    ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 16, 8);
+    GTSApplication_SetCurrentAndNextScreenInstruction(param0, 16, 8);
 
-    Window_Add(param0->unk_04, &param0->unk_F9C[0], 0, 21, 10, 10, 8, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 11 * 2 * 6));
+    Window_Add(param0->bgConfig, &param0->unk_F9C[0], 0, 21, 10, 10, 8, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 11 * 2 * 6));
     Window_FillTilemap(&param0->unk_F9C[0], 0x0);
 
     return 3;
@@ -702,7 +702,7 @@ static int ov94_02241DA0(GTSApplicationState *param0)
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->unk_B74.gender = v0 + 1;
         param0->currentScreenInstruction = 10;
-        ov94_022422D4(param0->gtsMessageLoader, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[0], param0->unk_B74.species, param0->unk_B74.gender, -1);
+        ov94_022422D4(param0->gtsMessageLoader, param0->unk_B94, param0->stringTemplate, &param0->unk_FCC[0], param0->unk_B74.species, param0->unk_B74.gender, -1);
         break;
     }
 
@@ -712,9 +712,9 @@ static int ov94_02241DA0(GTSApplicationState *param0)
 static int ov94_02241E8C(GTSApplicationState *param0)
 {
     ov94_0224158C(param0, GTS_Text_PleaseChooseLevel, TEXT_SPEED_FAST, 0, 0xf0f);
-    ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 16, 11);
+    GTSApplication_SetCurrentAndNextScreenInstruction(param0, 16, 11);
 
-    Window_Add(param0->unk_04, &param0->unk_F9C[0], 0, 15, 5, 16, 13, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 11 * 2 * 6));
+    Window_Add(param0->bgConfig, &param0->unk_F9C[0], 0, 15, 5, 16, 13, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 11 * 2 * 6));
     Window_FillTilemap(&param0->unk_F9C[0], 0x0);
 
     return 3;
@@ -759,7 +759,7 @@ static int ov94_02241F28(GTSApplicationState *param0)
         Window_Remove(&param0->unk_F9C[0]);
         ov94_02242934(&param0->unk_B74, v0, 0);
         param0->currentScreenInstruction = 13;
-        ov94_022422D4(param0->gtsMessageLoader, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[0], param0->unk_B74.species, param0->unk_B74.gender, ov94_02242970(param0->unk_B74.level, param0->unk_B74.level2, 0));
+        ov94_022422D4(param0->gtsMessageLoader, param0->unk_B94, param0->stringTemplate, &param0->unk_FCC[0], param0->unk_B74.species, param0->unk_B74.gender, ov94_02242970(param0->unk_B74.level, param0->unk_B74.level2, 0));
         break;
     }
 
@@ -769,14 +769,14 @@ static int ov94_02241F28(GTSApplicationState *param0)
 static int ov94_02242040(GTSApplicationState *param0)
 {
     ov94_0224158C(param0, GTS_Text_ConfirmCriteria, TEXT_SPEED_FAST, 0, 0xf0f);
-    ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 16, 14);
+    GTSApplication_SetCurrentAndNextScreenInstruction(param0, 16, 14);
 
     return 3;
 }
 
 static int ov94_02242068(GTSApplicationState *param0)
 {
-    param0->unk_10D0 = ov94_0223C3C0(param0->unk_04, 15, ((((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 11 * 2 * 6) + 16 * 13));
+    param0->yesNoMenu = GTSApplication_CreateYesNoMenu(param0->bgConfig, 15, ((((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 11 * 2 * 6) + 16 * 13));
     param0->currentScreenInstruction = 15;
 
     return 3;
@@ -784,7 +784,7 @@ static int ov94_02242068(GTSApplicationState *param0)
 
 static int ov94_0224208C(GTSApplicationState *param0)
 {
-    int v0 = Menu_ProcessInputAndHandleExit(param0->unk_10D0, 62);
+    int v0 = Menu_ProcessInputAndHandleExit(param0->yesNoMenu, HEAP_ID_62);
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
@@ -817,7 +817,7 @@ static int ov94_022420E4(GTSApplicationState *param0)
 
 static int ov94_02242138(GTSApplicationState *param0)
 {
-    if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
+    if (Text_IsPrinterActive(param0->textPrinter) == 0) {
         param0->currentScreenInstruction = param0->nextScreenInstruction;
     }
 

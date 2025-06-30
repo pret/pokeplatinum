@@ -12,7 +12,7 @@ int GTSApplication_Init(ApplicationManager *appMan, int *param1);
 int GTSApplication_Main(ApplicationManager *appMan, int *param1);
 int GTSApplication_Exit(ApplicationManager *appMan, int *param1);
 void ov94_0223C300(AffineSpriteListTemplate *param0, GTSApplicationState *param1, SpriteResourcesHeader *param2, int param3);
-Menu *ov94_0223C3C0(BgConfig *param0, int param1, int param2);
+Menu *GTSApplication_CreateYesNoMenu(BgConfig *param0, int param1, int param2);
 void ov94_0223C3F4(GTSApplicationState *param0, int param1, int param2);
 void ov94_0223C3FC(Sprite *param0, int param1, int param2);
 int GTSApplication_GetNetworkStrength(void);

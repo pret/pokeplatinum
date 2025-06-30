@@ -1897,7 +1897,7 @@ static void ov65_0222F6EC(UnkStruct_ov65_0222EBE0 *param0)
 {
     UnkStruct_ov65_0222F6EC *v0 = sub_020382F8();
     int v1, v2 = v0->unk_00;
-    int v3 = ov4_021D1F3C(v0->unk_00, v0->unk_04);
+    int v3 = NintendoWFC_GetErrorCode(v0->unk_00, v0->unk_04);
 
     if ((v3 == 11) || (v2 == ((DWC_ERROR_NUM) + 5))) {
         v1 = 14;

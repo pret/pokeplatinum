@@ -14,6 +14,6 @@ void ov96_0223B400(s32 param0);
 void ov96_0223B450(s32 param0, s32 param1, UnkStruct_ov96_0223B450 *param2);
 void ov96_0223B4B0(s32 param0, s32 param1, s32 param2, const UnkStruct_ov96_0223B450_sub1 *param3);
 void ov96_0223B530(void);
-void ov96_0223B574(const UnkStruct_ov96_0223B574 *param0, UnkStruct_ov96_0223B574_1 *param1);
+void WorldExchange_SetProfile(const WorldExchangeTrainer *param0, WorldExchangeTrainerError *param1);
 
 #endif // POKEPLATINUM_OV96_0223B140_H

@@ -4,6 +4,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/dwc.h"
 #include "constants/screen.h"
 
 #include "struct_decls/struct_0202B370_decl.h"
@@ -585,7 +586,7 @@ static BOOL ov61_0222C928(int param0, int param1)
     int v0;
     BOOL v1;
 
-    v0 = ov4_021D1F3C(param0, param1);
+    v0 = NintendoWFC_GetErrorCode(param0, param1);
 
     switch (v0) {
     case 1:
@@ -663,7 +664,7 @@ static int ov61_0222CA20(UnkStruct_ov61_0222C664 *param0)
         }
         break;
     case 2:
-        DWC_InitInetEx(&param0->unk_00->unk_20, 2, 1, 20);
+        DWC_InitInetEx(&param0->unk_00->unk_20, DEFAULT_DWC_DMA_NUMBER, DEFAULT_DWC_POWER_MODE, DEFAULT_DWC_SSL_PRIORITY);
         DWC_SetAuthServer(DWC_CONNECTINET_AUTH_RELEASE);
         DWC_ConnectInetAsync();
         param0->unk_08 = 2;
@@ -780,7 +781,7 @@ static int ov61_0222CB3C(UnkStruct_ov61_0222C664 *param0)
                 break;
             case DWC_ETYPE_SHUTDOWN_ND:
             case DWC_ETYPE_FATAL:
-                sub_02038A0C();
+                NetworkError_DisplayGTSCriticalError();
                 break;
             }
             if ((v0 < -20000) && (v0 >= -29999)) {
@@ -816,7 +817,7 @@ static int ov61_0222CBF0(UnkStruct_ov61_0222C664 *param0)
 
 static int ov61_0222CC40(UnkStruct_ov61_0222C664 *param0)
 {
-    int v0 = ov4_021D1F3C(-param0->unk_18, param0->unk_1C);
+    int v0 = NintendoWFC_GetErrorCode(-param0->unk_18, param0->unk_1C);
     ov61_0222C7F8(param0, v0, -param0->unk_18);
     param0->unk_08 = 7;
 

@@ -118,7 +118,7 @@ static int (*Unk_ov94_022468DC[])(GTSApplicationState *) = {
 int ov94_0223FB48(GTSApplicationState *param0, int param1)
 {
     ov94_022401E0(param0);
-    ov94_0223FC08(param0->unk_04);
+    ov94_0223FC08(param0->bgConfig);
     ov94_0223FD4C(param0);
     ov94_02240028(param0);
     ov94_0223FE24(param0);
@@ -155,7 +155,7 @@ int ov94_0223FBDC(GTSApplicationState *param0, int param1)
     ov94_0223FFC8(param0);
     ov94_02240268(param0);
     ov94_02240190(param0);
-    ov94_0223FD20(param0->unk_04);
+    ov94_0223FD20(param0->bgConfig);
     GTSApplication_MoveToNextScreen(param0);
 
     return 1;
@@ -294,7 +294,7 @@ static void ov94_0223FD20(BgConfig *param0)
 
 static void ov94_0223FD4C(GTSApplicationState *param0)
 {
-    BgConfig *v0 = param0->unk_04;
+    BgConfig *v0 = param0->bgConfig;
     NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, HEAP_ID_62);
 
     Graphics_LoadPaletteFromOpenNARC(v1, 2, 0, 0, 16 * 3 * 2, HEAP_ID_62);
@@ -436,24 +436,24 @@ static void ov94_0223FFC8(GTSApplicationState *param0)
 
 static void ov94_02240028(GTSApplicationState *param0)
 {
-    Window_Add(param0->unk_04, &param0->unk_F7C, 0, 1, 1, 28, 2, 13, ((1 + (18 + 12)) + 9));
+    Window_Add(param0->bgConfig, &param0->unk_F7C, 0, 1, 1, 28, 2, 13, ((1 + (18 + 12)) + 9));
     Window_FillTilemap(&param0->unk_F7C, 0x0);
 
     ov94_02245900(&param0->unk_F7C, param0->title, 0, 1, 0, TEXT_COLOR(15, 14, 0));
 
-    Window_Add(param0->unk_04, &param0->unk_F8C, 0, 5, 3, 13, 3, 13, (((1 + (18 + 12)) + 9) + 28 * 2));
+    Window_Add(param0->bgConfig, &param0->unk_F8C, 0, 5, 3, 13, 3, 13, (((1 + (18 + 12)) + 9) + 28 * 2));
     Window_FillTilemap(&param0->unk_F8C, 0x0);
     Window_CopyToVRAM(&param0->unk_F8C);
-    Window_Add(param0->unk_04, &param0->bottomInstructionWindow, 0, 2, 21, 27, 2, 13, ((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13));
+    Window_Add(param0->bgConfig, &param0->bottomInstructionWindow, 0, 2, 21, 27, 2, 13, ((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13));
     Window_FillTilemap(&param0->bottomInstructionWindow, 0x0);
-    Window_Add(param0->unk_04, &param0->unk_109C, 0, 2, 19, 27, 4, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2));
+    Window_Add(param0->bgConfig, &param0->unk_109C, 0, 2, 19, 27, 4, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2));
     Window_FillTilemap(&param0->unk_109C, 0x0);
-    Window_Add(param0->unk_04, &param0->unk_F9C[1], 1, 25, 21, 6, 2, 0, ((((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2) + 2 * 19));
+    Window_Add(param0->bgConfig, &param0->unk_F9C[1], 1, 25, 21, 6, 2, 0, ((((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2) + 2 * 19));
     Window_FillTilemap(&param0->unk_F9C[1], 0x606);
 
     ov94_02245900(&param0->unk_F9C[1], param0->unk_BA8, 0, 1, 1, TEXT_COLOR(1, 3, 6));
 
-    Window_Add(param0->unk_04, &param0->unk_F9C[0], 0, 21, 13, (5 * 2), 6, 13, (((((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2) + 2 * 19) + 6 * 2));
+    Window_Add(param0->bgConfig, &param0->unk_F9C[0], 0, 21, 13, (5 * 2), 6, 13, (((((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2) + 2 * 19) + 6 * 2));
 }
 
 static void ov94_02240190(GTSApplicationState *param0)
@@ -469,7 +469,7 @@ static void ov94_02240190(GTSApplicationState *param0)
 static void ov94_022401E0(GTSApplicationState *param0)
 {
     param0->unk_BA4 = Strbuf_Init((9 * 2), HEAP_ID_62);
-    param0->unk_BAC = Strbuf_Init((90 * 2), HEAP_ID_62);
+    param0->genericMessageBuffer = Strbuf_Init((90 * 2), HEAP_ID_62);
 
     if (param0->unk_24 == 5) {
         param0->title = MessageLoader_GetNewStrbuf(param0->gtsMessageLoader, GTS_Text_ChooseYourOfferPokemon);
@@ -490,7 +490,7 @@ static void ov94_02240268(GTSApplicationState *param0)
 {
     Heap_FreeToHeap(param0->unk_1108);
     Strbuf_Free(param0->unk_BA4);
-    Strbuf_Free(param0->unk_BAC);
+    Strbuf_Free(param0->genericMessageBuffer);
     Strbuf_Free(param0->unk_BA8);
     Strbuf_Free(param0->title);
 }
@@ -560,17 +560,17 @@ static int ov94_022402BC(GTSApplicationState *param0)
                     switch (ov94_022412F4(param0->unk_00->unk_08, param0->unk_00->pcBoxes, param0->selectedBoxId, param0->unk_112)) {
                     case 1:
                         if (ov94_0224121C(param0->unk_00->unk_08, param0->unk_00->pcBoxes, param0->selectedBoxId, param0->unk_112)) {
-                            StringTemplate_SetNickname(param0->unk_B8C, 0, ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->pcBoxes, param0->selectedBoxId, param0->unk_112));
+                            StringTemplate_SetNickname(param0->stringTemplate, 0, ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->pcBoxes, param0->selectedBoxId, param0->unk_112));
                             ov94_02240D58(param0, 22, TEXT_SPEED_FAST, 0, 0xf0f, 0);
-                            ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 3, 7);
+                            GTSApplication_SetCurrentAndNextScreenInstruction(param0, 3, 7);
                         } else {
                             ov94_02240D58(param0, 26, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-                            ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 4, 1);
+                            GTSApplication_SetCurrentAndNextScreenInstruction(param0, 4, 1);
                         }
                         break;
                     case 2:
                         ov94_02240D58(param0, 27, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-                        ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 4, 1);
+                        GTSApplication_SetCurrentAndNextScreenInstruction(param0, 4, 1);
                         break;
                     }
                 }
@@ -594,13 +594,13 @@ static int ov94_022402BC(GTSApplicationState *param0)
 
                         if (ov94_02241384(v0, &param0->unk_250[param0->unk_11C].unk_F0)) {
                             if (ov94_0224121C(param0->unk_00->unk_08, param0->unk_00->pcBoxes, param0->selectedBoxId, param0->unk_112)) {
-                                StringTemplate_SetNickname(param0->unk_B8C, 0, v0);
+                                StringTemplate_SetNickname(param0->stringTemplate, 0, v0);
                                 ov94_02240D58(param0, 18, TEXT_SPEED_FAST, 0, 0xf0f, 0);
-                                ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 3, 9);
+                                GTSApplication_SetCurrentAndNextScreenInstruction(param0, 3, 9);
                                 Sound_PlayEffect(SEQ_SE_CONFIRM);
                             } else {
                                 ov94_02240D58(param0, 26, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-                                ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 4, 1);
+                                GTSApplication_SetCurrentAndNextScreenInstruction(param0, 4, 1);
                             }
                         } else {
                             Sound_PlayEffect(SEQ_SE_CONFIRM);
@@ -724,13 +724,13 @@ static int ov94_02240688(GTSApplicationState *param0)
 
         if (BoxPokemon_HasUnusedRibbons(v0)) {
             ov94_02240D58(param0, 37, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-            ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 4, 1);
+            GTSApplication_SetCurrentAndNextScreenInstruction(param0, 4, 1);
         } else if (BoxPokemon_FormNotInDP(v0)) {
             ov94_02240D58(param0, 170, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-            ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 4, 1);
+            GTSApplication_SetCurrentAndNextScreenInstruction(param0, 4, 1);
         } else if (BoxPokemon_HeldItemNotInDP(v0)) {
             ov94_02240D58(param0, 171, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-            ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 4, 1);
+            GTSApplication_SetCurrentAndNextScreenInstruction(param0, 4, 1);
         } else {
             int v1 = 0;
 
@@ -816,13 +816,13 @@ static int ov94_022408E8(GTSApplicationState *param0)
 
         if (BoxPokemon_HasUnusedRibbons(boxMon)) {
             ov94_02240D58(param0, 37, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-            ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 4, 1);
+            GTSApplication_SetCurrentAndNextScreenInstruction(param0, 4, 1);
         } else if (BoxPokemon_FormNotInDP(boxMon)) {
             ov94_02240D58(param0, 170, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-            ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 4, 1);
+            GTSApplication_SetCurrentAndNextScreenInstruction(param0, 4, 1);
         } else if (BoxPokemon_HeldItemNotInDP(boxMon)) {
             ov94_02240D58(param0, 171, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-            ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 4, 1);
+            GTSApplication_SetCurrentAndNextScreenInstruction(param0, 4, 1);
         } else {
             int v1 = 0;
 
@@ -871,7 +871,7 @@ static int ov94_02240A6C(GTSApplicationState *param0)
 
 static int ov94_02240AC4(GTSApplicationState *param0)
 {
-    param0->unk_10D0 = ov94_0223C3C0(param0->unk_04, 15, ((((((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2) + 2 * 19) + 6 * 2) + (5 * 2) * 6));
+    param0->yesNoMenu = GTSApplication_CreateYesNoMenu(param0->bgConfig, 15, ((((((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2) + 2 * 19) + 6 * 2) + (5 * 2) * 6));
     param0->currentScreenInstruction = 6;
 
     return 3;
@@ -879,7 +879,7 @@ static int ov94_02240AC4(GTSApplicationState *param0)
 
 static int ov94_02240AE8(GTSApplicationState *param0)
 {
-    int v0 = Menu_ProcessInputAndHandleExit(param0->unk_10D0, 62);
+    int v0 = Menu_ProcessInputAndHandleExit(param0->yesNoMenu, HEAP_ID_62);
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
@@ -896,14 +896,14 @@ static int ov94_02240AE8(GTSApplicationState *param0)
 static int ov94_02240B20(GTSApplicationState *param0)
 {
     ov94_02240D58(param0, 25, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-    ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 3, 12);
+    GTSApplication_SetCurrentAndNextScreenInstruction(param0, 3, 12);
 
     return 3;
 }
 
 static int ov94_02240B4C(GTSApplicationState *param0)
 {
-    param0->unk_10D0 = ov94_0223C3C0(param0->unk_04, 13, ((((((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2) + 2 * 19) + 6 * 2) + (5 * 2) * 6));
+    param0->yesNoMenu = GTSApplication_CreateYesNoMenu(param0->bgConfig, 13, ((((((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2) + 2 * 19) + 6 * 2) + (5 * 2) * 6));
     param0->currentScreenInstruction = 13;
 
     return 3;
@@ -911,7 +911,7 @@ static int ov94_02240B4C(GTSApplicationState *param0)
 
 static int ov94_02240B70(GTSApplicationState *param0)
 {
-    int v0 = Menu_ProcessInputAndHandleExit(param0->unk_10D0, 62);
+    int v0 = Menu_ProcessInputAndHandleExit(param0->yesNoMenu, HEAP_ID_62);
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
@@ -932,7 +932,7 @@ static int ov94_02240BB0(GTSApplicationState *param0)
     if (ov94_02241498(v0) && (param0->selectedBoxId != MAX_PC_BOXES)) {
         if (Party_GetCurrentCount(param0->unk_00->unk_08) == 6) {
             ov94_02240D58(param0, 28, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-            ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 4, 1);
+            GTSApplication_SetCurrentAndNextScreenInstruction(param0, 4, 1);
             return 0;
         }
     }
@@ -952,14 +952,14 @@ static int ov94_02240BB0(GTSApplicationState *param0)
 static int ov94_02240C58(GTSApplicationState *param0)
 {
     ov94_02240D58(param0, 25, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-    ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 3, 15);
+    GTSApplication_SetCurrentAndNextScreenInstruction(param0, 3, 15);
 
     return 3;
 }
 
 static int ov94_02240C84(GTSApplicationState *param0)
 {
-    param0->unk_10D0 = ov94_0223C3C0(param0->unk_04, 13, ((((((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2) + 2 * 19) + 6 * 2) + (5 * 2) * 6));
+    param0->yesNoMenu = GTSApplication_CreateYesNoMenu(param0->bgConfig, 13, ((((((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2) + 2 * 19) + 6 * 2) + (5 * 2) * 6));
     param0->currentScreenInstruction = 16;
 
     return 3;
@@ -967,7 +967,7 @@ static int ov94_02240C84(GTSApplicationState *param0)
 
 static int ov94_02240CA8(GTSApplicationState *param0)
 {
-    int v0 = Menu_ProcessInputAndHandleExit(param0->unk_10D0, 62);
+    int v0 = Menu_ProcessInputAndHandleExit(param0->yesNoMenu, HEAP_ID_62);
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
@@ -985,7 +985,7 @@ static int ov94_02240CA8(GTSApplicationState *param0)
 
 static int ov94_02240D08(GTSApplicationState *param0)
 {
-    if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
+    if (Text_IsPrinterActive(param0->textPrinter) == 0) {
         param0->currentScreenInstruction = param0->nextScreenInstruction;
     }
 
@@ -994,7 +994,7 @@ static int ov94_02240D08(GTSApplicationState *param0)
 
 static int ov94_02240D28(GTSApplicationState *param0)
 {
-    if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
+    if (Text_IsPrinterActive(param0->textPrinter) == 0) {
         Window_EraseMessageBox(&param0->unk_109C, 0);
         param0->currentScreenInstruction = param0->nextScreenInstruction;
     }
@@ -1006,7 +1006,7 @@ static void ov94_02240D58(GTSApplicationState *param0, int param1, int param2, i
 {
     Window *v0;
     Strbuf *v1 = MessageLoader_GetNewStrbuf(param0->gtsMessageLoader, param1);
-    StringTemplate_Format(param0->unk_B8C, param0->unk_BAC, v1);
+    StringTemplate_Format(param0->stringTemplate, param0->genericMessageBuffer, v1);
 
     if (param5 == 0) {
         v0 = &param0->bottomInstructionWindow;
@@ -1017,7 +1017,7 @@ static void ov94_02240D58(GTSApplicationState *param0, int param1, int param2, i
     Window_FillTilemap(v0, 0xf0f);
     Window_DrawMessageBoxWithScrollCursor(v0, 0, 1, 10);
 
-    param0->unk_BE0 = Text_AddPrinterWithParams(v0, FONT_MESSAGE, param0->unk_BAC, 0, 0, param2, NULL);
+    param0->textPrinter = Text_AddPrinterWithParams(v0, FONT_MESSAGE, param0->genericMessageBuffer, 0, 0, param2, NULL);
 
     Strbuf_Free(v1);
 }

@@ -67,7 +67,7 @@ typedef struct {
 // https://www.youtube.com/watch?v=aQpc0lr12vA
 typedef struct GTSApplicationState {
     GTSPlayerData *unk_00;
-    BgConfig *unk_04;
+    BgConfig *bgConfig;
     WiFiList *unk_08;
     int unk_0C;
     int unk_10;
@@ -89,7 +89,7 @@ typedef struct GTSApplicationState {
     int unk_48; // dwcErrorType
     void *unk_4C;
     NNSFndHeapHandle unk_50;
-    DWCInetControl unk_54;
+    DWCInetControl dwcInetControlObject;
     ApplicationManager *appMan;
     PokemonSummary unk_B8;
     UnkStruct_ov6_02246254 unk_E8;
@@ -114,7 +114,7 @@ typedef struct GTSApplicationState {
     UnkStruct_ov94_0223BA88_sub3 unk_B7A;
     UnkStruct_ov94_0223BA88_sub3 unk_B80;
     int unk_B88;
-    StringTemplate *unk_B8C;
+    StringTemplate *stringTemplate;
     MessageLoader *gtsMessageLoader;
     MessageLoader *unk_B94;
     MessageLoader *unk_B98;
@@ -122,11 +122,11 @@ typedef struct GTSApplicationState {
     MessageLoader *unk_BA0;
     Strbuf *unk_BA4;
     Strbuf *unk_BA8;
-    Strbuf *unk_BAC;
+    Strbuf *genericMessageBuffer;
     Strbuf *title;
     Strbuf *unk_BB4[10];
-    Strbuf *unk_BDC;
-    int unk_BE0;
+    Strbuf *shortErrorBuffer;
+    int textPrinter;
     SpriteList *unk_BE4;
     G2dRenderer unk_BE8;
     SpriteResourceCollection *unk_D74[4];
@@ -153,11 +153,11 @@ typedef struct GTSApplicationState {
     Window unk_109C;
     Window unk_10AC[2];
     StringList *unk_10CC;
-    Menu *unk_10D0;
+    Menu *yesNoMenu;
     Menu *unk_10D4;
     ListMenu *unk_10D8;
     void *waitDial;
-    int unk_10E0;
+    int frameDelay;
     GTSApplicationState_sub3 *unk_10E4;
     u16 unk_10E8;
     u16 unk_10EA;
@@ -176,13 +176,16 @@ typedef struct GTSApplicationState {
     void *unk_1114;
     void (*unk_1118)(void *param0);
     UnkStruct_ov94_02242AAC unk_111C;
-    UnkStruct_ov96_0223B574 unk_1144;
-    UnkStruct_ov96_0223B574_1 unk_11A8;
+    WorldExchangeTrainer worldExchangeTrainer;
+    WorldExchangeTrainerError worldExchangeTrainerError;
     int unk_11B0;
     UnkStruct_ov61_0222C3B0 unk_11B4;
-    s16 unk_14E0;
-    s16 unk_14E2;
-    s32 unk_14E4;
+
+    // these are only used in GTSApplication_WFCInit_FatalErrorDisconnectMessage
+    s16 wfcDisconnectMessageIndex;
+    s16 wfcDisconnectMessageFrameDelay;
+
+    s32 networkTimeoutCounter;
 } GTSApplicationState;
 
 #endif // POKEPLATINUM_STRUCT_GTS_APPLICATION_STATE_H

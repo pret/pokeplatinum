@@ -80,8 +80,8 @@ struct UnkStruct_ov96_0223BF40_t {
     int unk_F78;
     int unk_F7C;
     int unk_F80;
-    UnkStruct_ov96_0223B574 unk_F84;
-    UnkStruct_ov96_0223B574_1 unk_FE8;
+    WorldExchangeTrainer unk_F84;
+    WorldExchangeTrainerError unk_FE8;
     s16 unk_FF0;
     s16 unk_FF2;
     int unk_FF4;

@@ -372,7 +372,7 @@ void sub_020369EC(SaveData *saveData)
     }
 
     if (Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x7080) == 0) {
-        sub_02038A0C();
+        NetworkError_DisplayGTSCriticalError();
     }
 
     sub_020366A0(saveData, 9);
@@ -2429,18 +2429,18 @@ void sub_020389FC(int param0)
 {
     int v0 = 0;
 
-    sub_02039834(HEAP_ID_SYSTEM, 1, param0);
+    NetworkError_DisplayNetworkError(HEAP_ID_SYSTEM, 1, param0);
 
     while (TRUE) {
         v0++;
     }
 }
 
-void sub_02038A0C(void)
+void NetworkError_DisplayGTSCriticalError(void)
 {
     int v0 = 0;
 
-    sub_02039834(HEAP_ID_SYSTEM, 4, 0);
+    NetworkError_DisplayNetworkError(HEAP_ID_SYSTEM, 4, 0);
 
     while (TRUE) {
         v0++;

@@ -296,7 +296,7 @@ void ov98_02246F5C(UnkStruct_ov98_02246E88 *param0)
 
 void ov98_02246F74(UnkStruct_ov98_02246E88 *param0)
 {
-    ov98_022499C8(param0->unk_114, param0->unk_9C.unk_1C, HEAP_ID_108);
+    ov98_022499C8(param0->unk_114, param0->unk_9C.email, HEAP_ID_108);
 }
 
 void ov98_02246F88(UnkStruct_ov98_02246E88 *param0)

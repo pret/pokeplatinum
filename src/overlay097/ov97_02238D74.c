@@ -4,6 +4,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/dwc.h"
+
 #include "overlay004/ov4_021D0D80.h"
 #include "overlay097/mystery_gift_app.h"
 
@@ -64,7 +66,7 @@ static int ov97_02238DA4(MysteryGiftAppData *param0)
 
     v0 = DWC_GetLastErrorEx(&v2, &v1);
 
-    param0->wifiCommErrorStringID = ov4_021D1F3C(-v2, v1);
+    param0->wifiCommErrorStringID = NintendoWFC_GetErrorCode(-v2, v1);
     param0->wifiCommErrorCode = -v2;
     param0->wifiCommErrorType = v1;
     param0->wifiCommErrored = 1;
@@ -209,7 +211,7 @@ int ov97_02238EAC(ApplicationManager *appMan, int *param1)
         }
         break;
     case 4098:
-        DWC_InitInetEx(&v2->unk_164C, 2, 1, 20);
+        DWC_InitInetEx(&v2->unk_164C, DEFAULT_DWC_DMA_NUMBER, DEFAULT_DWC_POWER_MODE, DEFAULT_DWC_SSL_PRIORITY);
         DWC_SetAuthServer(DWC_CONNECTINET_AUTH_RELEASE);
         DWC_ConnectInetAsync();
         sub_02039734();

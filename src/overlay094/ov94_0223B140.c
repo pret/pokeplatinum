@@ -13,7 +13,7 @@
 
 #include "enums.h"
 
-typedef enum {
+typedef enum GTSNetworkStatus {
     UnkEnum_ov94_0223B15C_00,
     UnkEnum_ov94_0223B15C_01,
     UnkEnum_ov94_0223B15C_02,
@@ -34,15 +34,15 @@ typedef enum {
     UnkEnum_ov94_0223B15C_17,
     UnkEnum_ov94_0223B15C_18,
     UnkEnum_ov94_0223B15C_19,
-    UnkEnum_ov94_0223B15C_20, // connected?
+    NETWORK_STATUS_INIT_PENDING, // connected?
     UnkEnum_ov94_0223B15C_21,
-    UnkEnum_ov94_0223B15C_22,
+    NETWORK_STATUS_SET_PROFILE_PENDING,
     UnkEnum_ov94_0223B15C_23,
-    UnkEnum_ov94_0223B15C_24 // connection failed
-} UnkEnum_ov94_0223B15C;
+    NETWORK_STATUS_COMPLETE // connection failed
+} GTSNetworkStatus;
 
 typedef struct {
-    UnkEnum_ov94_0223B15C unk_00; // network status
+    GTSNetworkStatus unk_00; // network status
     s32 unk_04; // error code?
     s32 unk_08;
     u64 unk_0C;
@@ -51,8 +51,8 @@ typedef struct {
     u8 *unk_140;
 } UnkStruct_ov94_02246AC0;
 
-static BOOL ov94_0223BBE0(const u8 *param0, const void *param1, int param2, void *param3, int param4);
-static int ov94_0223BC18(int param0);
+static BOOL GTSNetworking_PrepareRequest(const u8 *param0, const void *param1, int param2, void *param3, int param4);
+static int GTSNetworking_GetPublicErrorCode(int param0);
 
 static UnkStruct_ov94_02246AC0 Unk_ov94_02246AC0;
 
@@ -72,14 +72,14 @@ void ov94_0223B15C(void)
     case UnkEnum_ov94_0223B15C_01:
         break;
     case UnkEnum_ov94_0223B15C_02:
-        switch (ov60_0221FD48()) {
+        switch (HTTP_GetRequestStatus()) {
         case 1:
-            Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_24;
-            Unk_ov94_02246AC0.unk_04 = ov94_0223BC18(ov60_0221FE14());
-            ov60_0221FDEC();
+            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
+            Unk_ov94_02246AC0.unk_04 = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
+            HTTP_Shutdown();
             break;
         case 7:
-            Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_24;
+            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
 
             switch (Unk_ov94_02246AC0.unk_13C[0]) {
             case 1:
@@ -121,20 +121,20 @@ void ov94_0223B15C(void)
                 break;
             }
 
-            ov60_0221FDEC();
+            HTTP_Shutdown();
             break;
         }
 
         break;
     case UnkEnum_ov94_0223B15C_04:
-        switch (ov60_0221FD48()) {
+        switch (HTTP_GetRequestStatus()) {
         case 1:
-            Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_24;
-            Unk_ov94_02246AC0.unk_04 = ov94_0223BC18(ov60_0221FE14());
-            ov60_0221FDEC();
+            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
+            Unk_ov94_02246AC0.unk_04 = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
+            HTTP_Shutdown();
             break;
         case 7:
-            Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_24;
+            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
 
             switch (Unk_ov94_02246AC0.unk_13C[0]) {
             case 1:
@@ -158,22 +158,22 @@ void ov94_0223B15C(void)
                 break;
             }
 
-            ov60_0221FDEC();
+            HTTP_Shutdown();
             break;
         }
 
         break;
     case UnkEnum_ov94_0223B15C_06:
-        switch (ov60_0221FD48()) {
+        switch (HTTP_GetRequestStatus()) {
         case 1:
-            Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_24;
-            Unk_ov94_02246AC0.unk_04 = ov94_0223BC18(ov60_0221FE14());
-            ov60_0221FDEC();
+            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
+            Unk_ov94_02246AC0.unk_04 = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
+            HTTP_Shutdown();
             break;
         case 7:
-            Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_24;
+            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
 
-            if (ov60_0221FE20() == sizeof(UnkStruct_ov94_0223BA88)) {
+            if (HTTP_GetResponseLength() == sizeof(UnkStruct_ov94_0223BA88)) {
                 Unk_ov94_02246AC0.unk_04 = 0;
             } else {
                 switch (Unk_ov94_02246AC0.unk_140[0]) {
@@ -193,22 +193,22 @@ void ov94_0223B15C(void)
                 }
             }
 
-            ov60_0221FDEC();
+            HTTP_Shutdown();
             break;
         }
 
         break;
     case UnkEnum_ov94_0223B15C_08:
-        switch (ov60_0221FD48()) {
+        switch (HTTP_GetRequestStatus()) {
         case 1:
-            Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_24;
-            Unk_ov94_02246AC0.unk_04 = ov94_0223BC18(ov60_0221FE14());
-            ov60_0221FDEC();
+            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
+            Unk_ov94_02246AC0.unk_04 = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
+            HTTP_Shutdown();
             break;
         case 7:
-            Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_24;
+            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
 
-            if (ov60_0221FE20() == sizeof(UnkStruct_ov94_0223BA88)) {
+            if (HTTP_GetResponseLength() == sizeof(UnkStruct_ov94_0223BA88)) {
                 Unk_ov94_02246AC0.unk_04 = 1;
             } else {
                 switch (Unk_ov94_02246AC0.unk_140[0]) {
@@ -231,20 +231,20 @@ void ov94_0223B15C(void)
                 }
             }
 
-            ov60_0221FDEC();
+            HTTP_Shutdown();
             break;
         }
 
         break;
     case UnkEnum_ov94_0223B15C_10:
-        switch (ov60_0221FD48()) {
+        switch (HTTP_GetRequestStatus()) {
         case 1:
-            Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_24;
-            Unk_ov94_02246AC0.unk_04 = ov94_0223BC18(ov60_0221FE14());
-            ov60_0221FDEC();
+            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
+            Unk_ov94_02246AC0.unk_04 = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
+            HTTP_Shutdown();
             break;
         case 7:
-            Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_24;
+            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
 
             switch (Unk_ov94_02246AC0.unk_13C[0]) {
             case 1:
@@ -265,20 +265,20 @@ void ov94_0223B15C(void)
                 break;
             }
 
-            ov60_0221FDEC();
+            HTTP_Shutdown();
             break;
         }
 
         break;
     case UnkEnum_ov94_0223B15C_12:
-        switch (ov60_0221FD48()) {
+        switch (HTTP_GetRequestStatus()) {
         case 1:
-            Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_24;
-            Unk_ov94_02246AC0.unk_04 = ov94_0223BC18(ov60_0221FE14());
-            ov60_0221FDEC();
+            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
+            Unk_ov94_02246AC0.unk_04 = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
+            HTTP_Shutdown();
             break;
         case 7:
-            Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_24;
+            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
 
             switch (Unk_ov94_02246AC0.unk_13C[0]) {
             case 1:
@@ -302,25 +302,25 @@ void ov94_0223B15C(void)
                 break;
             }
 
-            ov60_0221FDEC();
+            HTTP_Shutdown();
             break;
         }
 
         break;
     case UnkEnum_ov94_0223B15C_14:
-        switch (ov60_0221FD48()) {
+        switch (HTTP_GetRequestStatus()) {
         case 1:
-            Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_24;
-            Unk_ov94_02246AC0.unk_04 = ov94_0223BC18(ov60_0221FE14());
-            ov60_0221FDEC();
+            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
+            Unk_ov94_02246AC0.unk_04 = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
+            HTTP_Shutdown();
             break;
         case 7:
-            Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_24;
+            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
             {
-                int v0 = ov60_0221FE20();
+                int v0 = HTTP_GetResponseLength();
 
                 if (v0 >= sizeof(UnkStruct_ov94_0223BA88)) {
-                    Unk_ov94_02246AC0.unk_04 = (s32)(ov60_0221FE20() / sizeof(UnkStruct_ov94_0223BA88));
+                    Unk_ov94_02246AC0.unk_04 = (s32)(HTTP_GetResponseLength() / sizeof(UnkStruct_ov94_0223BA88));
                 } else if (v0 == 0) {
                     Unk_ov94_02246AC0.unk_04 = 0;
                 } else {
@@ -335,22 +335,22 @@ void ov94_0223B15C(void)
                     }
                 }
             }
-            ov60_0221FDEC();
+            HTTP_Shutdown();
             break;
         }
 
         break;
     case UnkEnum_ov94_0223B15C_16:
-        switch (ov60_0221FD48()) {
+        switch (HTTP_GetRequestStatus()) {
         case 1:
-            Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_24;
-            Unk_ov94_02246AC0.unk_04 = ov94_0223BC18(ov60_0221FE14());
-            ov60_0221FDEC();
+            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
+            Unk_ov94_02246AC0.unk_04 = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
+            HTTP_Shutdown();
             break;
         case 7:
-            Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_24;
+            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
 
-            if (ov60_0221FE20() == sizeof(UnkStruct_ov94_0223BA88)) {
+            if (HTTP_GetResponseLength() == sizeof(UnkStruct_ov94_0223BA88)) {
                 Unk_ov94_02246AC0.unk_04 = 0;
             } else {
                 switch (Unk_ov94_02246AC0.unk_140[0]) {
@@ -385,20 +385,20 @@ void ov94_0223B15C(void)
                 }
             }
 
-            ov60_0221FDEC();
+            HTTP_Shutdown();
             break;
         }
 
         break;
     case UnkEnum_ov94_0223B15C_18:
-        switch (ov60_0221FD48()) {
+        switch (HTTP_GetRequestStatus()) {
         case 1:
-            Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_24;
-            Unk_ov94_02246AC0.unk_04 = ov94_0223BC18(ov60_0221FE14());
-            ov60_0221FDEC();
+            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
+            Unk_ov94_02246AC0.unk_04 = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
+            HTTP_Shutdown();
             break;
         case 7:
-            Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_24;
+            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
 
             switch (Unk_ov94_02246AC0.unk_13C[0]) {
             case 1:
@@ -412,20 +412,20 @@ void ov94_0223B15C(void)
                 break;
             }
 
-            ov60_0221FDEC();
+            HTTP_Shutdown();
             break;
         }
 
         break;
-    case UnkEnum_ov94_0223B15C_20:
-        switch (ov60_0221FD48()) {
+    case NETWORK_STATUS_INIT_PENDING:
+        switch (HTTP_GetRequestStatus()) {
         case 1:
-            Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_24;
-            Unk_ov94_02246AC0.unk_04 = ov94_0223BC18(ov60_0221FE14());
-            ov60_0221FDEC();
+            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
+            Unk_ov94_02246AC0.unk_04 = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
+            HTTP_Shutdown();
             break;
         case 7:
-            Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_24;
+            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
 
             switch (Unk_ov94_02246AC0.unk_13C[0]) {
             case 1:
@@ -446,22 +446,22 @@ void ov94_0223B15C(void)
                 break;
             }
 
-            ov60_0221FDEC();
+            HTTP_Shutdown();
             break;
         }
 
         break;
-    case UnkEnum_ov94_0223B15C_22:
-        switch (ov60_0221FD48()) {
+    case NETWORK_STATUS_SET_PROFILE_PENDING:
+        switch (HTTP_GetRequestStatus()) {
         case 1:
-            Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_24;
-            Unk_ov94_02246AC0.unk_04 = ov94_0223BC18(ov60_0221FE14());
-            ov60_0221FDEC();
+            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
+            Unk_ov94_02246AC0.unk_04 = GTSNetworking_GetPublicErrorCode(HTTP_GetErrorCode());
+            HTTP_Shutdown();
             break;
         case 7:
-            Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_24;
+            Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
 
-            if (ov60_0221FE20() == sizeof(UnkStruct_ov96_0223B574_1)) {
+            if (HTTP_GetResponseLength() == sizeof(WorldExchangeTrainerError)) {
                 Unk_ov94_02246AC0.unk_04 = 0;
             } else {
                 switch (Unk_ov94_02246AC0.unk_13C[0]) {
@@ -484,7 +484,7 @@ void ov94_0223B15C(void)
                 }
             }
 
-            ov60_0221FDEC();
+            HTTP_Shutdown();
             break;
         }
 
@@ -500,11 +500,11 @@ void ov94_0223B15C(void)
     case UnkEnum_ov94_0223B15C_19:
     case UnkEnum_ov94_0223B15C_21:
     case UnkEnum_ov94_0223B15C_23:
-        Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_24;
+        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
         Unk_ov94_02246AC0.unk_04 = -12;
-        ov60_0221FDEC();
+        HTTP_Shutdown();
         break;
-    case UnkEnum_ov94_0223B15C_24:
+    case NETWORK_STATUS_COMPLETE:
         break;
     }
 }
@@ -514,24 +514,24 @@ void ov94_0223B7AC(void)
     Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_00;
 }
 
-BOOL ov94_0223B7B8(void)
+BOOL GTSNetworking_RequestComplete(void)
 {
     switch (Unk_ov94_02246AC0.unk_00) {
     case UnkEnum_ov94_0223B15C_01:
-        return 1;
+        return TRUE;
         break;
-    case UnkEnum_ov94_0223B15C_24:
+    case NETWORK_STATUS_COMPLETE:
         Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_01;
-        return 1;
+        return TRUE;
         break;
     default:
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-s32 ov94_0223B7D8(void)
+s32 GTSNetworking_GetErrorCode(void)
 {
     return Unk_ov94_02246AC0.unk_04;
 }
@@ -540,19 +540,19 @@ void ov94_0223B7E4(const UnkStruct_ov94_0223BA88 *param0)
 {
     memcpy(&Unk_ov94_02246AC0.unk_14[0], param0, sizeof(UnkStruct_ov94_0223BA88));
 
-    ov60_0221FC84();
+    HTTP_Init();
 
-    if (ov94_0223BBE0(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                              "worldexchange/post.asp"),
+    if (GTSNetworking_PrepareRequest(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
+                                                             "worldexchange/post.asp"),
             Unk_ov94_02246AC0.unk_14,
             sizeof(UnkStruct_ov94_0223BA88),
             Unk_ov94_02246AC0.unk_13C,
             2)) {
         Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_02;
     } else {
-        Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_24;
+        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
         Unk_ov94_02246AC0.unk_04 = -13;
-        ov60_0221FDEC();
+        HTTP_Shutdown();
     }
 }
 
@@ -560,19 +560,19 @@ void ov94_0223B834(void)
 {
     memcpy(&Unk_ov94_02246AC0.unk_14[0], &Unk_ov94_02246AC0.unk_0C, 8);
 
-    ov60_0221FC84();
+    HTTP_Init();
 
-    if (ov94_0223BBE0(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                              "worldexchange/post_finish.asp"),
+    if (GTSNetworking_PrepareRequest(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
+                                                             "worldexchange/post_finish.asp"),
             Unk_ov94_02246AC0.unk_14,
             8,
             Unk_ov94_02246AC0.unk_13C,
             2)) {
         Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_04;
     } else {
-        Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_24;
+        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
         Unk_ov94_02246AC0.unk_04 = -13;
-        ov60_0221FDEC();
+        HTTP_Shutdown();
     }
 }
 
@@ -580,19 +580,19 @@ void ov94_0223B888(UnkStruct_ov94_0223BA88 *param0)
 {
     Unk_ov94_02246AC0.unk_140 = (u8 *)param0;
 
-    ov60_0221FC84();
+    HTTP_Init();
 
-    if (ov94_0223BBE0(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                              "worldexchange/get.asp"),
+    if (GTSNetworking_PrepareRequest(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
+                                                             "worldexchange/get.asp"),
             Unk_ov94_02246AC0.unk_14,
             0,
             param0,
             sizeof(UnkStruct_ov94_0223BA88))) {
         Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_06;
     } else {
-        Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_24;
+        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
         Unk_ov94_02246AC0.unk_04 = -13;
-        ov60_0221FDEC();
+        HTTP_Shutdown();
     }
 }
 
@@ -600,55 +600,55 @@ void ov94_0223B8D8(UnkStruct_ov94_0223BA88 *param0)
 {
     Unk_ov94_02246AC0.unk_140 = (u8 *)param0;
 
-    ov60_0221FC84();
+    HTTP_Init();
 
-    if (ov94_0223BBE0(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                              "worldexchange/result.asp"),
+    if (GTSNetworking_PrepareRequest(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
+                                                             "worldexchange/result.asp"),
             Unk_ov94_02246AC0.unk_14,
             0,
             param0,
             sizeof(UnkStruct_ov94_0223BA88))) {
         Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_08;
     } else {
-        Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_24;
+        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
         Unk_ov94_02246AC0.unk_04 = -13;
-        ov60_0221FDEC();
+        HTTP_Shutdown();
     }
 }
 
 void ov94_0223B928(void)
 {
-    ov60_0221FC84();
+    HTTP_Init();
 
-    if (ov94_0223BBE0(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                              "worldexchange/delete.asp"),
+    if (GTSNetworking_PrepareRequest(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
+                                                             "worldexchange/delete.asp"),
             Unk_ov94_02246AC0.unk_14,
             0,
             Unk_ov94_02246AC0.unk_13C,
             2)) {
         Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_10;
     } else {
-        Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_24;
+        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
         Unk_ov94_02246AC0.unk_04 = -13;
-        ov60_0221FDEC();
+        HTTP_Shutdown();
     }
 }
 
 void ov94_0223B96C(void)
 {
-    ov60_0221FC84();
+    HTTP_Init();
 
-    if (ov94_0223BBE0(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                              "worldexchange/return.asp"),
+    if (GTSNetworking_PrepareRequest(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
+                                                             "worldexchange/return.asp"),
             Unk_ov94_02246AC0.unk_14,
             0,
             Unk_ov94_02246AC0.unk_13C,
             2)) {
         Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_12;
     } else {
-        Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_24;
+        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
         Unk_ov94_02246AC0.unk_04 = -13;
-        ov60_0221FDEC();
+        HTTP_Shutdown();
     }
 }
 
@@ -656,22 +656,22 @@ void ov94_0223B9B0(const UnkStruct_ov94_0223BA88_sub3 *param0, s32 param1, UnkSt
 {
     Unk_ov94_02246AC0.unk_140 = (u8 *)param2;
 
-    ov60_0221FC84();
+    HTTP_Init();
 
     memcpy(&Unk_ov94_02246AC0.unk_14[0], param0, sizeof(UnkStruct_ov94_0223BA88_sub3));
     Unk_ov94_02246AC0.unk_14[sizeof(UnkStruct_ov94_0223BA88_sub3)] = (u8)param1;
 
-    if (ov94_0223BBE0(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                              "worldexchange/search.asp"),
+    if (GTSNetworking_PrepareRequest(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
+                                                             "worldexchange/search.asp"),
             Unk_ov94_02246AC0.unk_14,
             sizeof(UnkStruct_ov94_0223BA88_sub3) + 1,
             param2,
             (int)sizeof(UnkStruct_ov94_0223BA88) * param1)) {
         Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_14;
     } else {
-        Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_24;
+        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
         Unk_ov94_02246AC0.unk_04 = -13;
-        ov60_0221FDEC();
+        HTTP_Shutdown();
     }
 }
 
@@ -679,21 +679,21 @@ void ov94_0223BA24(const UnkStruct_ov94_0223BA24 *param0, UnkStruct_ov94_0223BA8
 {
     Unk_ov94_02246AC0.unk_140 = (u8 *)param1;
 
-    ov60_0221FC84();
+    HTTP_Init();
 
     memcpy(&Unk_ov94_02246AC0.unk_14[0], param0, sizeof(UnkStruct_ov94_0223BA24));
 
-    if (ov94_0223BBE0(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                              "worldexchange/search.asp"),
+    if (GTSNetworking_PrepareRequest(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
+                                                             "worldexchange/search.asp"),
             Unk_ov94_02246AC0.unk_14,
             sizeof(UnkStruct_ov94_0223BA24),
             param1,
             (int)sizeof(UnkStruct_ov94_0223BA88) * param0->unk_06)) {
         Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_14;
     } else {
-        Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_24;
+        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
         Unk_ov94_02246AC0.unk_04 = -13;
-        ov60_0221FDEC();
+        HTTP_Shutdown();
     }
 }
 
@@ -701,23 +701,23 @@ void ov94_0223BA88(s32 param0, const UnkStruct_ov94_0223BA88 *param1, UnkStruct_
 {
     Unk_ov94_02246AC0.unk_140 = (u8 *)param2;
 
-    ov60_0221FC84();
+    HTTP_Init();
 
     memcpy(&Unk_ov94_02246AC0.unk_14[0], param1, sizeof(UnkStruct_ov94_0223BA88));
 
     *(s32 *)(&Unk_ov94_02246AC0.unk_14[sizeof(UnkStruct_ov94_0223BA88)]) = param0;
 
-    if (ov94_0223BBE0(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                              "worldexchange/exchange.asp"),
+    if (GTSNetworking_PrepareRequest(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
+                                                             "worldexchange/exchange.asp"),
             Unk_ov94_02246AC0.unk_14,
             sizeof(UnkStruct_ov94_0223BA88) + 4,
             param2,
             sizeof(UnkStruct_ov94_0223BA88))) {
         Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_16;
     } else {
-        Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_24;
+        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
         Unk_ov94_02246AC0.unk_04 = -13;
-        ov60_0221FDEC();
+        HTTP_Shutdown();
     }
 }
 
@@ -725,68 +725,68 @@ void ov94_0223BAEC(void)
 {
     memcpy(&Unk_ov94_02246AC0.unk_14[0], &Unk_ov94_02246AC0.unk_0C, 8);
 
-    ov60_0221FC84();
+    HTTP_Init();
 
-    if (ov94_0223BBE0(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                              "worldexchange/exchange_finish.asp"),
+    if (GTSNetworking_PrepareRequest(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
+                                                             "worldexchange/exchange_finish.asp"),
             Unk_ov94_02246AC0.unk_14,
             8,
             Unk_ov94_02246AC0.unk_13C,
             2)) {
         Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_18;
     } else {
-        Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_24;
+        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
         Unk_ov94_02246AC0.unk_04 = -13;
-        ov60_0221FDEC();
+        HTTP_Shutdown();
     }
 }
 
-void ov94_0223BB40(void)
+void GTSNetworking_InitConnection(void)
 {
-    ov60_0221FC84();
+    HTTP_Init();
 
-    if (ov94_0223BBE0(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                              "worldexchange/info.asp"),
+    if (GTSNetworking_PrepareRequest(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
+                                                             "worldexchange/info.asp"),
             Unk_ov94_02246AC0.unk_14,
             0,
             Unk_ov94_02246AC0.unk_13C,
             2)) {
-        Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_20;
+        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_INIT_PENDING;
     } else {
-        Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_24;
+        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
         Unk_ov94_02246AC0.unk_04 = -13;
-        ov60_0221FDEC();
+        HTTP_Shutdown();
     }
 }
 
-void ov94_0223BB84(const UnkStruct_ov96_0223B574 *param0, UnkStruct_ov96_0223B574_1 *param1)
+void GTSNetworking_SetProfile(const WorldExchangeTrainer *trainer, WorldExchangeTrainerError *param1)
 {
-    OS_GetMacAddress((u8 *)param0->unk_14);
+    OS_GetMacAddress((u8 *)trainer->macAddress);
 
-    memcpy(Unk_ov94_02246AC0.unk_14, param0, sizeof(UnkStruct_ov96_0223B574));
+    memcpy(Unk_ov94_02246AC0.unk_14, trainer, sizeof(WorldExchangeTrainer));
     Unk_ov94_02246AC0.unk_140 = (u8 *)param1;
 
-    ov60_0221FC84();
+    HTTP_Init();
 
-    if (ov94_0223BBE0(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                              "common/setProfile.asp"),
+    if (GTSNetworking_PrepareRequest(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
+                                                             "common/setProfile.asp"),
             Unk_ov94_02246AC0.unk_14,
-            sizeof(UnkStruct_ov96_0223B574),
+            sizeof(WorldExchangeTrainer),
             Unk_ov94_02246AC0.unk_140,
-            sizeof(UnkStruct_ov96_0223B574_1))) {
-        Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_22;
+            sizeof(WorldExchangeTrainerError))) {
+        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_SET_PROFILE_PENDING;
     } else {
-        Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_24;
+        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
         Unk_ov94_02246AC0.unk_04 = -13;
-        ov60_0221FDEC();
+        HTTP_Shutdown();
     }
 }
 
-static BOOL ov94_0223BBE0(const u8 *param0, const void *param1, int param2, void *param3, int param4)
+static BOOL GTSNetworking_PrepareRequest(const u8 *param0, const void *param1, int param2, void *param3, int param4)
 {
-    switch (ov60_0221FCA8(param0, Unk_ov94_02246AC0.unk_08, param1, param2, (u8 *)param3, param4)) {
+    switch (HTTP_PrepareRequest(param0, Unk_ov94_02246AC0.unk_08, param1, param2, (u8 *)param3, param4)) {
     case 0:
-        return 1;
+        return TRUE;
         break;
     case 1:
         break;
@@ -794,10 +794,10 @@ static BOOL ov94_0223BBE0(const u8 *param0, const void *param1, int param2, void
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static int ov94_0223BC18(int param0)
+static int GTSNetworking_GetPublicErrorCode(int param0)
 {
     int v0;
 

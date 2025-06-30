@@ -4,6 +4,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/dwc.h"
 #include "constants/screen.h"
 
 #include "struct_decls/struct_0202B370_decl.h"
@@ -1555,7 +1556,7 @@ static int ov98_022489DC(UnkStruct_ov98_02247704 *param0)
     case 2:
         SleepLock(4);
 
-        DWC_InitInetEx(&param0->unk_00->unk_14, 2, 1, 20);
+        DWC_InitInetEx(&param0->unk_00->unk_14, DEFAULT_DWC_DMA_NUMBER, DEFAULT_DWC_POWER_MODE, DEFAULT_DWC_SSL_PRIORITY);
         DWC_SetAuthServer(DWC_CONNECTINET_AUTH_RELEASE);
         DWC_ConnectInetAsync();
         param0->unk_08 = 13;
@@ -1689,7 +1690,7 @@ static int ov98_02248B24(UnkStruct_ov98_02247704 *param0)
                 break;
             case DWC_ETYPE_SHUTDOWN_ND:
             case DWC_ETYPE_FATAL:
-                sub_02038A0C();
+                NetworkError_DisplayGTSCriticalError();
                 break;
             }
 
@@ -1730,7 +1731,7 @@ static int ov98_02248C60(UnkStruct_ov98_02247704 *param0)
 {
     ov98_02246F5C(param0->unk_00);
     ov98_02246F74(param0->unk_00);
-    ov94_0223BB84(&param0->unk_00->unk_9C, &param0->unk_00->unk_100);
+    GTSNetworking_SetProfile(&param0->unk_00->unk_9C, &param0->unk_00->unk_100);
 
     param0->unk_08 = 18;
     param0->unk_E8 = 0;
@@ -1740,16 +1741,16 @@ static int ov98_02248C60(UnkStruct_ov98_02247704 *param0)
 
 static int ov98_02248C88(UnkStruct_ov98_02247704 *param0)
 {
-    if (ov94_0223B7B8()) {
-        s32 v0 = ov94_0223B7D8();
+    if (GTSNetworking_RequestComplete()) {
+        s32 v0 = GTSNetworking_GetErrorCode();
 
         param0->unk_E8 = 0;
 
         switch (v0) {
         case 0:
-            switch (param0->unk_00->unk_100.unk_00) {
+            switch (param0->unk_00->unk_100.validationError) {
             case 0:
-                switch (param0->unk_00->unk_100.unk_04) {
+                switch (param0->unk_00->unk_100.systemError) {
                 case 1:
                     param0->unk_08 = 19;
                     break;
@@ -1770,7 +1771,7 @@ static int ov98_02248C88(UnkStruct_ov98_02247704 *param0)
                     param0->unk_08 = 32;
                     break;
                 default:
-                    sub_02038A0C();
+                    NetworkError_DisplayGTSCriticalError();
                     break;
                 }
 
@@ -1787,7 +1788,7 @@ static int ov98_02248C88(UnkStruct_ov98_02247704 *param0)
                 break;
             default:
                 ov98_02247B0C(param0);
-                sub_02038A0C();
+                NetworkError_DisplayGTSCriticalError();
                 break;
             }
 
@@ -1818,14 +1819,14 @@ static int ov98_02248C88(UnkStruct_ov98_02247704 *param0)
         case -13:
         default:
             ov98_02247B0C(param0);
-            sub_02038A0C();
+            NetworkError_DisplayGTSCriticalError();
             break;
         }
     } else {
         param0->unk_E8++;
 
         if (param0->unk_E8 == (30 * 60 * 2)) {
-            sub_02038A0C();
+            NetworkError_DisplayGTSCriticalError();
         }
     }
 
@@ -1921,21 +1922,21 @@ static int ov98_02248F7C(UnkStruct_ov98_02247704 *param0)
         ov98_02249714(param0, param0->unk_34, 18, TEXT_SPEED_INSTANT, 0xf0f);
         ov98_02247AF0(param0);
         ov98_02246F88(param0->unk_00);
-        ov94_0223BB84(&param0->unk_00->unk_9C, &param0->unk_00->unk_100);
+        GTSNetworking_SetProfile(&param0->unk_00->unk_9C, &param0->unk_00->unk_100);
         param0->unk_94++;
         break;
     case 1:
-        if (ov94_0223B7B8()) {
-            s32 v0 = ov94_0223B7D8();
+        if (GTSNetworking_RequestComplete()) {
+            s32 v0 = GTSNetworking_GetErrorCode();
 
             param0->unk_E8 = 0;
             ov98_02247B0C(param0);
 
             switch (v0) {
             case 0:
-                switch (param0->unk_00->unk_100.unk_00) {
+                switch (param0->unk_00->unk_100.validationError) {
                 case 0:
-                    switch (param0->unk_00->unk_100.unk_04) {
+                    switch (param0->unk_00->unk_100.systemError) {
                     case 0:
                         param0->unk_94++;
                         break;
@@ -1952,7 +1953,7 @@ static int ov98_02248F7C(UnkStruct_ov98_02247704 *param0)
                         param0->unk_08 = 32;
                         break;
                     default:
-                        sub_02038A0C();
+                        NetworkError_DisplayGTSCriticalError();
                         break;
                     }
                     break;
@@ -1966,7 +1967,7 @@ static int ov98_02248F7C(UnkStruct_ov98_02247704 *param0)
                     break;
                 default:
                     GF_ASSERT(0);
-                    sub_02038A0C();
+                    NetworkError_DisplayGTSCriticalError();
                     break;
                 }
                 break;
@@ -1991,14 +1992,14 @@ static int ov98_02248F7C(UnkStruct_ov98_02247704 *param0)
                 break;
             case -13:
             default:
-                sub_02038A0C();
+                NetworkError_DisplayGTSCriticalError();
                 break;
             }
         } else {
             param0->unk_E8++;
 
             if (param0->unk_E8 == (30 * 60 * 2)) {
-                sub_02038A0C();
+                NetworkError_DisplayGTSCriticalError();
             }
         }
         break;
@@ -2152,7 +2153,7 @@ static int ov98_02249320(UnkStruct_ov98_02247704 *param0)
 
 static int ov98_02249414(UnkStruct_ov98_02247704 *param0)
 {
-    int v0 = ov4_021D1F3C(-param0->unk_18, param0->unk_1C);
+    int v0 = NintendoWFC_GetErrorCode(-param0->unk_18, param0->unk_1C);
 
     ov98_02249964(param0, v0, -param0->unk_18);
 
@@ -2404,7 +2405,7 @@ static int ov98_022497F8(UnkStruct_ov98_02247704 *param0)
     switch (param0->unk_94) {
     case 0:
         if (ov98_02246FA4(v0) == sub_02030D98(v0->saveData, 3)) {
-            ov98_02249ACC(sub_02030D50(v0->saveData), v2, 108);
+            ov98_02249ACC(Email_GetEmailString(v0->saveData), v2, 108);
             for (v3 = 0; v3 < 4; v3++) {
                 StringTemplate_SetNumber(param0->unk_20, v3, v2[v3], 4, 2, 1);
             }

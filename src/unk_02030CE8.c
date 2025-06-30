@@ -15,7 +15,7 @@
 #include "trainer_info.h"
 #include "unk_0202C858.h"
 
-static void sub_02030DD0(SaveData *saveData, UnkStruct_ov96_0223B574 *param1);
+static void sub_02030DD0(SaveData *saveData, WorldExchangeTrainer *param1);
 
 int Email_SaveSize(void)
 {
@@ -56,7 +56,7 @@ void sub_02030D38(SaveData *saveData, const char *param1)
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_EMAIL);
 }
 
-char *sub_02030D50(SaveData *saveData)
+char *Email_GetEmailString(SaveData *saveData)
 {
     UnkStruct_02030CEC *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_EMAIL);
     return v0->unk_00;
@@ -102,30 +102,30 @@ u32 sub_02030D98(SaveData *saveData, int param1)
     return 0;
 }
 
-static void sub_02030DD0(SaveData *saveData, UnkStruct_ov96_0223B574 *param1)
+static void sub_02030DD0(SaveData *saveData, WorldExchangeTrainer *param1)
 {
     WiFiHistory *wiFiHistory = SaveData_WiFiHistory(saveData);
     TrainerInfo *v1 = SaveData_GetTrainerInfo(saveData);
-    char *v2 = sub_02030D50(saveData);
+    char *v2 = Email_GetEmailString(saveData);
 
-    MI_CpuClear8(param1, sizeof(UnkStruct_ov96_0223B574));
+    MI_CpuClear8(param1, sizeof(WorldExchangeTrainer));
 
-    param1->unk_00 = GAME_VERSION;
-    param1->unk_01 = GAME_LANGUAGE;
-    param1->unk_02 = WiFiHistory_GetCountry(wiFiHistory);
+    param1->gameCode = GAME_VERSION;
+    param1->languageCode = GAME_LANGUAGE;
+    param1->country = WiFiHistory_GetCountry(wiFiHistory);
     param1->unk_03 = sub_0202C8C4(wiFiHistory);
-    param1->unk_04 = TrainerInfo_ID(v1);
+    param1->trainerId = TrainerInfo_ID(v1);
 
-    CharCode_Copy(param1->unk_08, TrainerInfo_Name(v1));
+    CharCode_Copy(param1->trainerName, TrainerInfo_Name(v1));
     param1->unk_10 = 0;
 
-    strcpy(param1->unk_1C, v2);
-    param1->unk_54 = sub_02030D98(saveData, 0);
+    strcpy(param1->email, v2);
+    param1->emailInitialised = sub_02030D98(saveData, 0);
 
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_EMAIL);
 }
 
-u32 sub_02030E48(SaveData *saveData, UnkStruct_ov96_0223B574 *param1)
+u32 sub_02030E48(SaveData *saveData, WorldExchangeTrainer *param1)
 {
     u32 v0;
 
@@ -133,7 +133,7 @@ u32 sub_02030E48(SaveData *saveData, UnkStruct_ov96_0223B574 *param1)
 
     v0 = LCRNG_Next() % 1000;
 
-    param1->unk_58 = v0;
+    param1->rngValue = v0;
     param1->unk_5A = 0xffff;
 
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_EMAIL);
@@ -141,13 +141,13 @@ u32 sub_02030E48(SaveData *saveData, UnkStruct_ov96_0223B574 *param1)
     return v0;
 }
 
-void sub_02030E78(SaveData *saveData, UnkStruct_ov96_0223B574 *param1)
+void WorldExchange_GetTrainerObject(SaveData *saveData, WorldExchangeTrainer *param1)
 {
     UnkStruct_02030CEC *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_EMAIL);
 
     sub_02030DD0(saveData, param1);
 
-    param1->unk_58 = v0->unk_38;
+    param1->rngValue = v0->unk_38;
     param1->unk_5A = v0->unk_3A;
 
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_EMAIL);

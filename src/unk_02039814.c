@@ -74,7 +74,7 @@ static void sub_02039814(void)
     MI_WaitDma(GX_DEFAULT_DMAID);
 }
 
-void sub_02039834(int heapID, int networkErrorId, int param2)
+void NetworkError_DisplayNetworkError(int heapID, int networkErrorId, int errorCode)
 {
     BgConfig *v0;
     Window v1;
@@ -90,22 +90,22 @@ void sub_02039834(int heapID, int networkErrorId, int param2)
         networkErrorMessageId = NetworkError_Text_Generic;
         break;
     case 1:
-        networkErrorMessageId = 2;
+        networkErrorMessageId = pl_msg_00000214_00002;
         break;
     case 2:
-        networkErrorMessageId = 3;
+        networkErrorMessageId = pl_msg_00000214_00003;
         break;
     case 3:
         networkErrorMessageId = NetworkError_Text_GTSUnreachable;
         break;
     case 4:
-        networkErrorMessageId = 5;
+        networkErrorMessageId = pl_msg_00000214_00005;
         break;
     case 5:
-        networkErrorMessageId = 6;
+        networkErrorMessageId = pl_msg_00000214_00006;
         break;
     case 6:
-        networkErrorMessageId = 7;
+        networkErrorMessageId = pl_msg_00000214_00007;
         break;
     }
 
@@ -155,7 +155,7 @@ void sub_02039834(int heapID, int networkErrorId, int param2)
     Window_FillRectWithColor(&v1, 15, 0, 0, 26 * 8, 18 * 8);
     Window_DrawStandardFrame(&v1, 0, (512 - 9), 2);
 
-    StringTemplate_SetNumber(v5, 0, param2, 5, 2, 1);
+    StringTemplate_SetNumber(v5, 0, errorCode, 5, 2, 1);
     MessageLoader_GetStrbuf(v2, networkErrorMessageId, v4);
     StringTemplate_Format(v5, v3, v4);
 

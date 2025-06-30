@@ -1427,7 +1427,7 @@ Overlay overlay94
 	Object main.nef.p/src_overlay094_ov94_02243EF8.c.o
 	Object main.nef.p/src_overlay094_ov94_022443E0.c.o
 	Object main.nef.p/src_overlay094_ov94_022444C8.c.o
-	Object main.nef.p/src_overlay094_ov94_02244950.c.o
+	Object main.nef.p/src_overlay094_screens_wfc_init.c.o
 }
 
 Overlay overlay95

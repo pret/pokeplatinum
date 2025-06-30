@@ -25,14 +25,14 @@
 static inline void inline_ov61_0222C3B0_sub_1(UnkStruct_ov61_0222C3B0 *);
 static inline void inline_ov61_0222C3B0_sub(SysTask *, void *);
 
-static inline void inline_ov61_0222C3B0(UnkStruct_ov61_0222C3B0 *param0, NARC *param1, int param2, int param3)
+static inline void inline_ov61_0222C3B0(UnkStruct_ov61_0222C3B0 *param0, NARC *param1, int param2, int heapID)
 {
     NNSG2dPaletteData *v0;
     void *v1;
 
     MI_CpuClear8(param0, sizeof(UnkStruct_ov61_0222C3B0));
 
-    v1 = Graphics_GetPlttDataFromOpenNARC(param1, param2, &v0, param3);
+    v1 = Graphics_GetPlttDataFromOpenNARC(param1, param2, &v0, heapID);
 
     MI_CpuCopy16(&((u16 *)(v0->pRawData))[0 * 16], param0->unk_08, 4 * 0x20);
     MI_CpuCopy16(&((u16 *)(v0->pRawData))[0 * 16], param0->unk_88, 4 * 0x20);

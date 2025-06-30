@@ -68,11 +68,11 @@ int ov94_0223DC04(GTSApplicationState *param0, int param1)
     Pokemon *v0;
 
     ov94_0223DFDC(param0);
-    ov94_0223DD1C(param0->unk_04);
+    ov94_0223DD1C(param0->bgConfig);
     ov94_0223DE04(param0);
     ov94_0223DED8(param0);
     ov94_0223DE7C(param0);
-    ov94_0223D910(param0->gtsMessageLoader, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[0], Pokemon_GetBoxPokemon((Pokemon *)param0->unk_250[param0->unk_11C].unk_00.unk_00), &param0->unk_250[param0->unk_11C].unk_EC);
+    ov94_0223D910(param0->gtsMessageLoader, param0->unk_B94, param0->stringTemplate, &param0->unk_FCC[0], Pokemon_GetBoxPokemon((Pokemon *)param0->unk_250[param0->unk_11C].unk_00.unk_00), &param0->unk_250[param0->unk_11C].unk_EC);
 
     v0 = (Pokemon *)param0->unk_250[param0->unk_11C].unk_00.unk_00;
 
@@ -98,7 +98,7 @@ int ov94_0223DCF8(GTSApplicationState *param0, int param1)
     ov94_0223DEC8(param0);
     ov94_0223E074(param0);
     ov94_0223DFA4(param0);
-    ov94_0223DDE0(param0->unk_04);
+    ov94_0223DDE0(param0->bgConfig);
     GTSApplication_MoveToNextScreen(param0);
 
     return 1;
@@ -202,7 +202,7 @@ static void ov94_0223DDE0(BgConfig *param0)
 
 static void ov94_0223DE04(GTSApplicationState *param0)
 {
-    BgConfig *v0 = param0->unk_04;
+    BgConfig *v0 = param0->bgConfig;
 
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_62);
     LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, 1, 10, Options_Frame(param0->unk_00->options), HEAP_ID_62);
@@ -249,9 +249,9 @@ static const int Unk_ov94_02245CC4[][4] = {
 
 static void ov94_0223DED8(GTSApplicationState *param0)
 {
-    Window_Add(param0->unk_04, &param0->bottomInstructionWindow, 0, 2, 21, 27, 2, 13, ((1 + (18 + 12)) + 9));
+    Window_Add(param0->bgConfig, &param0->bottomInstructionWindow, 0, 2, 21, 27, 2, 13, ((1 + (18 + 12)) + 9));
     Window_FillTilemap(&param0->bottomInstructionWindow, 0x0);
-    Window_Add(param0->unk_04, &param0->unk_F9C[0], 0, 21, 15, (5 * 2), 4, 13, (((1 + (18 + 12)) + 9) + 27 * 2));
+    Window_Add(param0->bgConfig, &param0->unk_F9C[0], 0, 21, 15, (5 * 2), 4, 13, (((1 + (18 + 12)) + 9) + 27 * 2));
 
     {
         int v0, v1;
@@ -259,7 +259,7 @@ static void ov94_0223DED8(GTSApplicationState *param0)
         v1 = ((((1 + (18 + 12)) + 9) + 27 * 2) + (5 * 2) * 4);
 
         for (v0 = 0; v0 < NELEMS(Unk_ov94_02245CC4); v0++) {
-            Window_Add(param0->unk_04, &param0->unk_FCC[v0], 0, Unk_ov94_02245CC4[v0][0], Unk_ov94_02245CC4[v0][1], Unk_ov94_02245CC4[v0][2], Unk_ov94_02245CC4[v0][3], 13, v1);
+            Window_Add(param0->bgConfig, &param0->unk_FCC[v0], 0, Unk_ov94_02245CC4[v0][0], Unk_ov94_02245CC4[v0][1], Unk_ov94_02245CC4[v0][2], Unk_ov94_02245CC4[v0][3], 13, v1);
             Window_FillTilemap(&param0->unk_FCC[v0], 0x0);
 
             v1 += Unk_ov94_02245CC4[v0][2] * Unk_ov94_02245CC4[v0][3];
@@ -287,20 +287,20 @@ static void ov94_0223DFDC(GTSApplicationState *param0)
     MessageLoader *v1;
     UnkStruct_ov94_0223BA88 *v2 = &param0->unk_250[param0->unk_11C];
 
-    param0->unk_BAC = Strbuf_Init((90 * 2), HEAP_ID_62);
+    param0->genericMessageBuffer = Strbuf_Init((90 * 2), HEAP_ID_62);
 
-    StringTemplate_ClearArgs(param0->unk_B8C);
+    StringTemplate_ClearArgs(param0->stringTemplate);
 
     if (v2->unk_11E != 0) {
-        StringTemplate_SetCountryName(param0->unk_B8C, 8, v2->unk_11E);
+        StringTemplate_SetCountryName(param0->stringTemplate, 8, v2->unk_11E);
     }
 
     if (v2->unk_11F != 0) {
-        StringTemplate_SetCityName(param0->unk_B8C, 9, v2->unk_11E, v2->unk_11F);
+        StringTemplate_SetCityName(param0->stringTemplate, 9, v2->unk_11E, v2->unk_11F);
     }
 
-    param0->unk_BB4[0] = MessageUtil_ExpandedStrbuf(param0->unk_B8C, param0->gtsMessageLoader, 79, HEAP_ID_62);
-    param0->unk_BB4[1] = MessageUtil_ExpandedStrbuf(param0->unk_B8C, param0->gtsMessageLoader, 80, HEAP_ID_62);
+    param0->unk_BB4[0] = MessageUtil_ExpandedStrbuf(param0->stringTemplate, param0->gtsMessageLoader, 79, HEAP_ID_62);
+    param0->unk_BB4[1] = MessageUtil_ExpandedStrbuf(param0->stringTemplate, param0->gtsMessageLoader, 80, HEAP_ID_62);
 }
 
 static void ov94_0223E074(GTSApplicationState *param0)
@@ -309,7 +309,7 @@ static void ov94_0223E074(GTSApplicationState *param0)
 
     Strbuf_Free(param0->unk_BB4[0]);
     Strbuf_Free(param0->unk_BB4[1]);
-    Strbuf_Free(param0->unk_BAC);
+    Strbuf_Free(param0->genericMessageBuffer);
 }
 
 static int ov94_0223E09C(GTSApplicationState *param0)
@@ -322,7 +322,7 @@ static int ov94_0223E0A4(GTSApplicationState *param0)
 {
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
         ov94_0223E300(param0, 16, TEXT_SPEED_FAST, 0, 0xf0f);
-        ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 3, 4);
+        GTSApplication_SetCurrentAndNextScreenInstruction(param0, 3, 4);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
         param0->currentScreenInstruction = 2;
@@ -369,7 +369,7 @@ static int ov94_0223E188(GTSApplicationState *param0)
 
 static int ov94_0223E1B0(GTSApplicationState *param0)
 {
-    param0->unk_10D0 = ov94_0223C3C0(param0->unk_04, 15, ((((1 + (18 + 12)) + 9) + 27 * 2) + (5 * 2) * 4 + 262 + 64 + 36));
+    param0->yesNoMenu = GTSApplication_CreateYesNoMenu(param0->bgConfig, 15, ((((1 + (18 + 12)) + 9) + 27 * 2) + (5 * 2) * 4 + 262 + 64 + 36));
     param0->currentScreenInstruction = 5;
 
     return 3;
@@ -377,7 +377,7 @@ static int ov94_0223E1B0(GTSApplicationState *param0)
 
 static int ov94_0223E1D0(GTSApplicationState *param0)
 {
-    int v0 = Menu_ProcessInputAndHandleExit(param0->unk_10D0, 62);
+    int v0 = Menu_ProcessInputAndHandleExit(param0->yesNoMenu, HEAP_ID_62);
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
@@ -399,10 +399,10 @@ static int ov94_0223E1D0(GTSApplicationState *param0)
 static void ov94_0223E240(GTSApplicationState *param0)
 {
     if (param0->unk_10E == 0) {
-        Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__WORLDTRADE, 27, param0->unk_04, 1, 0, 32 * 24 * 2, 1, HEAP_ID_62);
+        Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__WORLDTRADE, 27, param0->bgConfig, 1, 0, 32 * 24 * 2, 1, HEAP_ID_62);
         ov94_0223E3B0(&param0->unk_FCC[9], param0->gtsMessageLoader, param0->unk_B94, &param0->unk_250[param0->unk_11C].unk_F0);
     } else {
-        Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__WORLDTRADE, 28, param0->unk_04, 1, 0, 32 * 24 * 2, 1, HEAP_ID_62);
+        Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__WORLDTRADE, 28, param0->bgConfig, 1, 0, 32 * 24 * 2, 1, HEAP_ID_62);
         ov94_0223E424(&param0->unk_FCC[9], param0->unk_BB4[0], param0->unk_BB4[1]);
     }
 }
@@ -417,7 +417,7 @@ static int ov94_0223E2D0(GTSApplicationState *param0)
 
 static int ov94_0223E2E0(GTSApplicationState *param0)
 {
-    if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
+    if (Text_IsPrinterActive(param0->textPrinter) == 0) {
         param0->currentScreenInstruction = param0->nextScreenInstruction;
     }
 
@@ -428,11 +428,11 @@ static void ov94_0223E300(GTSApplicationState *param0, int param1, int param2, i
 {
     Strbuf *v0;
 
-    MessageLoader_GetStrbuf(param0->gtsMessageLoader, param1, param0->unk_BAC);
+    MessageLoader_GetStrbuf(param0->gtsMessageLoader, param1, param0->genericMessageBuffer);
     Window_FillTilemap(&param0->bottomInstructionWindow, 0xf0f);
     Window_DrawMessageBoxWithScrollCursor(&param0->bottomInstructionWindow, 0, 1, 10);
 
-    param0->unk_BE0 = Text_AddPrinterWithParams(&param0->bottomInstructionWindow, FONT_MESSAGE, param0->unk_BAC, 0, 0, param2, NULL);
+    param0->textPrinter = Text_AddPrinterWithParams(&param0->bottomInstructionWindow, FONT_MESSAGE, param0->genericMessageBuffer, 0, 0, param2, NULL);
 }
 
 static void ov94_0223E358(MessageLoader *param0, Window param1[])

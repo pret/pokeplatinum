@@ -27,7 +27,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Do what with this {STRVAR_1 1, 0, 0}?</language>
 	</row>
-	<row id="pl_msg_00000671_00006" index="6">
+	<row id="GTS_Text_WillYouTakeThis" index="6">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Will you take this {STRVAR_1 1, 0, 0}?</language>
 	</row>
@@ -101,7 +101,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Are these conditions OK?</language>
 	</row>
-	<row id="pl_msg_00000671_00024" index="24">
+	<row id="GTS_Text_CheckingStatus" index="24">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Checking GTS’s status...</language>
 	</row>
@@ -109,7 +109,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">The Ball Capsule will be detached.\nIs that OK?</language>
 	</row>
-	<row id="pl_msg_00000671_00026" index="26">
+	<row id="GTS_Text_Error_PokemonCannotBeOffered" index="26">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">That Pokémon may not be offered\nfor trade!\r</language>
 	</row>
@@ -121,7 +121,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Your party is full.\nYou can’t receive a Pokémon!\r</language>
 	</row>
-	<row id="pl_msg_00000671_00029" index="29">
+	<row id="GTS_Text_Error_StorageBoxesFull" index="29">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Your Storage Boxes are full.\nYou can’t receive a Pokémon!\r</language>
 	</row>
@@ -129,7 +129,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">A trade partner has been found!</language>
 	</row>
-	<row id="pl_msg_00000671_00031" index="31">
+	<row id="GTS_Text_NintendoWifiConnection" index="31">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Nintendo Wi-Fi Connection</language>
 	</row>
@@ -145,11 +145,11 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Please wait a while.</language>
 	</row>
-	<row id="pl_msg_00000671_00035" index="35">
+	<row id="GTS_Text_Error_PartyFullMail" index="35">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Your party is full.\rYou can’t receive a Pokémon that\nis holding Mail.\r</language>
 	</row>
-	<row id="pl_msg_00000671_00036" index="36">
+	<row id="GTS_Text_Error_NoRoomInParty" index="36">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">There is no room in your party.</language>
 	</row>
@@ -221,11 +221,11 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Any level</language>
 	</row>
-	<row id="pl_msg_00000671_00054" index="54">
+	<row id="GTS_Text_MenuOption_TakeBack" index="54">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">TAKE BACK</language>
 	</row>
-	<row id="pl_msg_00000671_00055" index="55">
+	<row id="GTS_Text_MenuOption_LeaveAsIs" index="55">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">LEAVE AS IS</language>
 	</row>
@@ -600,11 +600,11 @@
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXX</language>
 	</row>
-	<row id="pl_msg_00000671_00141" index="141">
+	<row id="GTS_Text_Error_TradedToSomeoneElse" index="141">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Unfortunately, it was traded to\nanother Trainer.\r</language>
 	</row>
-	<row id="pl_msg_00000671_00142" index="142">
+	<row id="GTS_Text_Saving" index="142">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Saving...\nDo not turn off the power.</language>
 	</row>
@@ -617,7 +617,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">The GTS is currently\nundergoing maintenance.\rPlease try again later.\r</language>
 	</row>
-	<row id="pl_msg_00000671_00145" index="145">
+	<row id="GTS_Text_Error_GTSCrowded" index="145">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">The GTS is very crowded now.\nPlease try again later.\r</language>
 	</row>
@@ -629,7 +629,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Communication error...</language>
 	</row>
-	<row id="pl_msg_00000671_00148" index="148">
+	<row id="GTS_Text_Error_CommsErrorPadded" index="148">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Communication error...\r</language>
 	</row>
@@ -637,7 +637,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Unable to connect to the GTS.\nReturning to the reception counter.\r</language>
 	</row>
-	<row id="pl_msg_00000671_00150" index="150">
+	<row id="GTS_Text_Error_DisconnectedFromGTSReturning" index="150">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">You were disconnected from the GTS.\nReturning to the reception counter.\r</language>
 	</row>

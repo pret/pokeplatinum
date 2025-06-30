@@ -5,240 +5,240 @@
 #include "overlay060/ov60_0221F800.h"
 
 struct {
-    int unk_00;
-    int unk_04;
-    int unk_08;
-    int unk_0C;
+    int readyState;
+    int requestHandle;
+    int errorCode;
+    int responseLength;
     int unk_10;
     void *unk_14;
     int unk_18;
     void *unk_1C;
-    int unk_20;
+    int maxResponseLength;
     char *unk_24;
     char *unk_28;
     char *unk_2C;
     int unk_30;
-} Unk_ov60_02228E40 = { 1, 0, 0, 0 };
+} sHttpData = { 1, 0, 0, 0 };
 
-static void ov60_0221F968(int param0)
+static void HTTP_SetErrorCode(int param0)
 {
     switch (param0) {
     case DWC_GHTTP_IN_ERROR:
-        Unk_ov60_02228E40.unk_08 = 0;
+        sHttpData.errorCode = 0;
         break;
     case DWC_GHTTP_INVALID_POST:
-        Unk_ov60_02228E40.unk_08 = 1;
+        sHttpData.errorCode = 1;
         break;
     case DWC_GHTTP_INSUFFICIENT_MEMORY:
-        Unk_ov60_02228E40.unk_08 = 2;
+        sHttpData.errorCode = 2;
         break;
     case DWC_GHTTP_INVALID_FILE_NAME:
-        Unk_ov60_02228E40.unk_08 = 3;
+        sHttpData.errorCode = 3;
         break;
     case DWC_GHTTP_INVALID_BUFFER_SIZE:
-        Unk_ov60_02228E40.unk_08 = 4;
+        sHttpData.errorCode = 4;
         break;
     case DWC_GHTTP_INVALID_URL:
-        Unk_ov60_02228E40.unk_08 = 5;
+        sHttpData.errorCode = 5;
         break;
     case DWC_GHTTP_UNSPECIFIED_ERROR:
-        Unk_ov60_02228E40.unk_08 = 6;
+        sHttpData.errorCode = 6;
         break;
     default:
-        Unk_ov60_02228E40.unk_08 = 0;
+        sHttpData.errorCode = 0;
     }
 }
 
-static void ov60_0221F9D0(const char *param0, int param1, DWCGHTTPResult param2, void *param3)
+static void HTTP_RequestCompletedCallback(const char *responseText, int length, DWCGHTTPResult result, void *param3)
 {
 #pragma unused(param3)
 
-    Unk_ov60_02228E40.unk_04 = -1;
+    sHttpData.requestHandle = -1;
 
-    if (Unk_ov60_02228E40.unk_00 == 1) {
+    if (sHttpData.readyState == 1) {
         return;
     }
 
-    if (param2 == DWC_GHTTP_SUCCESS) {
-        switch (Unk_ov60_02228E40.unk_00) {
+    if (result == DWC_GHTTP_SUCCESS) {
+        switch (sHttpData.readyState) {
         case 4:
 
-            if (param1 == 32) {
+            if (length == 32) {
                 int v0;
-                u8 *v1 = (u8 *)(Unk_ov60_02228E40.unk_28 + 20);
+                u8 *v1 = (u8 *)(sHttpData.unk_28 + 20);
                 char v2[(32 + 20 + 1)];
                 int v3;
                 const char v4[] = "0123456789abcdef";
 
                 strcpy(v2, "sAdeqWo3voLeC5r16DYv");
-                strncat(v2, param0, (u32)param1);
+                strncat(v2, responseText, (u32)length);
 
                 MATH_CalcSHA1((u8 *)v1, (const u8 *)v2, strlen(v2));
 
-                strcat(Unk_ov60_02228E40.unk_24, "&hash=");
+                strcat(sHttpData.unk_24, "&hash=");
 
                 for (v0 = 0; v0 < 20; v0++) {
-                    Unk_ov60_02228E40.unk_28[v0 * 2] = v4[v1[v0] >> 4];
-                    Unk_ov60_02228E40.unk_28[v0 * 2 + 1] = v4[v1[v0] & 0xf];
+                    sHttpData.unk_28[v0 * 2] = v4[v1[v0] >> 4];
+                    sHttpData.unk_28[v0 * 2 + 1] = v4[v1[v0] & 0xf];
                 }
 
-                Unk_ov60_02228E40.unk_28[40] = '\0';
-                strcat(Unk_ov60_02228E40.unk_24, "&data=");
-                v3 = ov60_0221F838((u32)Unk_ov60_02228E40.unk_10, (u8 *)Unk_ov60_02228E40.unk_14, Unk_ov60_02228E40.unk_18, (u8 *)Unk_ov60_02228E40.unk_2C, Unk_ov60_02228E40.unk_30);
+                sHttpData.unk_28[40] = '\0';
+                strcat(sHttpData.unk_24, "&data=");
+                v3 = ov60_0221F838((u32)sHttpData.unk_10, (u8 *)sHttpData.unk_14, sHttpData.unk_18, (u8 *)sHttpData.unk_2C, sHttpData.unk_30);
 
                 switch (v3) {
                 case 0:
                     break;
                 case 1:
                 case 2:
-                    Unk_ov60_02228E40.unk_00 = 1;
+                    sHttpData.readyState = 1;
                     return;
                 }
 
-                Unk_ov60_02228E40.unk_00 = 5;
+                sHttpData.readyState = 5;
             } else {
-                Unk_ov60_02228E40.unk_00 = 1;
+                sHttpData.readyState = 1;
             }
             break;
         case 6:
-            if (param1 == 22) {
-                if (strncmp(param0, "error: check sum      ", 22) == 0) {
-                    Unk_ov60_02228E40.unk_00 = 1;
-                    Unk_ov60_02228E40.unk_08 = 26;
+            if (length == 22) {
+                if (strncmp(responseText, "error: check sum      ", 22) == 0) {
+                    sHttpData.readyState = 1;
+                    sHttpData.errorCode = 26;
                     break;
-                } else if (strncmp(param0, "error: pid            ", 22) == 0) {
-                    Unk_ov60_02228E40.unk_00 = 1;
-                    Unk_ov60_02228E40.unk_08 = 27;
+                } else if (strncmp(responseText, "error: pid            ", 22) == 0) {
+                    sHttpData.readyState = 1;
+                    sHttpData.errorCode = 27;
                     break;
-                } else if (strncmp(param0, "error: data length    ", 22) == 0) {
-                    Unk_ov60_02228E40.unk_00 = 1;
-                    Unk_ov60_02228E40.unk_08 = 28;
+                } else if (strncmp(responseText, "error: data length    ", 22) == 0) {
+                    sHttpData.readyState = 1;
+                    sHttpData.errorCode = 28;
                     break;
-                } else if (strncmp(param0, "error: token not found", 22) == 0) {
-                    Unk_ov60_02228E40.unk_00 = 1;
-                    Unk_ov60_02228E40.unk_08 = 29;
+                } else if (strncmp(responseText, "error: token not found", 22) == 0) {
+                    sHttpData.readyState = 1;
+                    sHttpData.errorCode = 29;
                     break;
-                } else if (strncmp(param0, "error: token expired  ", 22) == 0) {
-                    Unk_ov60_02228E40.unk_00 = 1;
-                    Unk_ov60_02228E40.unk_08 = 30;
+                } else if (strncmp(responseText, "error: token expired  ", 22) == 0) {
+                    sHttpData.readyState = 1;
+                    sHttpData.errorCode = 30;
                     break;
-                } else if (strncmp(param0, "error: incorrect hash ", 22) == 0) {
-                    Unk_ov60_02228E40.unk_00 = 1;
-                    Unk_ov60_02228E40.unk_08 = 31;
+                } else if (strncmp(responseText, "error: incorrect hash ", 22) == 0) {
+                    sHttpData.readyState = 1;
+                    sHttpData.errorCode = 31;
                     break;
                 }
             }
 
-            if (param1 <= Unk_ov60_02228E40.unk_20) {
-                memcpy(Unk_ov60_02228E40.unk_1C, param0, (u32)param1);
-                Unk_ov60_02228E40.unk_00 = 7;
+            if (length <= sHttpData.maxResponseLength) {
+                memcpy(sHttpData.unk_1C, responseText, (u32)length);
+                sHttpData.readyState = 7;
             } else {
-                memcpy(Unk_ov60_02228E40.unk_1C, param0, (u32)Unk_ov60_02228E40.unk_20);
+                memcpy(sHttpData.unk_1C, responseText, (u32)sHttpData.maxResponseLength);
 
-                Unk_ov60_02228E40.unk_00 = 1;
-                Unk_ov60_02228E40.unk_08 = 32;
+                sHttpData.readyState = 1;
+                sHttpData.errorCode = 32;
             }
 
-            Unk_ov60_02228E40.unk_0C = param1;
+            sHttpData.responseLength = length;
             break;
         }
     } else {
-        Unk_ov60_02228E40.unk_00 = 1;
+        sHttpData.readyState = 1;
 
-        switch (param2) {
+        switch (result) {
         case DWC_GHTTP_OUT_OF_MEMORY:
-            Unk_ov60_02228E40.unk_08 = 8;
+            sHttpData.errorCode = 8;
             break;
         case DWC_GHTTP_BUFFER_OVERFLOW:
-            Unk_ov60_02228E40.unk_08 = 9;
+            sHttpData.errorCode = 9;
             break;
         case DWC_GHTTP_PARSE_URL_FAILED:
-            Unk_ov60_02228E40.unk_08 = 10;
+            sHttpData.errorCode = 10;
             break;
         case DWC_GHTTP_HOST_LOOKUP_FAILED:
-            Unk_ov60_02228E40.unk_08 = 11;
+            sHttpData.errorCode = 11;
             break;
         case DWC_GHTTP_SOCKET_FAILED:
-            Unk_ov60_02228E40.unk_08 = 12;
+            sHttpData.errorCode = 12;
             break;
         case DWC_GHTTP_CONNECT_FAILED:
-            Unk_ov60_02228E40.unk_08 = 13;
+            sHttpData.errorCode = 13;
             break;
         case DWC_GHTTP_BAD_RESPONSE:
-            Unk_ov60_02228E40.unk_08 = 14;
+            sHttpData.errorCode = 14;
             break;
         case DWC_GHTTP_REQUEST_REJECTED:
-            Unk_ov60_02228E40.unk_08 = 15;
+            sHttpData.errorCode = 15;
             break;
         case DWC_GHTTP_UNAUTHORIZED:
-            Unk_ov60_02228E40.unk_08 = 16;
+            sHttpData.errorCode = 16;
             break;
         case DWC_GHTTP_FORBIDDEN:
-            Unk_ov60_02228E40.unk_08 = 17;
+            sHttpData.errorCode = 17;
             break;
         case DWC_GHTTP_FILE_NOT_FOUND:
-            Unk_ov60_02228E40.unk_08 = 18;
+            sHttpData.errorCode = 18;
             break;
         case DWC_GHTTP_SERVER_ERROR:
-            Unk_ov60_02228E40.unk_08 = 19;
+            sHttpData.errorCode = 19;
             break;
         case DWC_GHTTP_FILE_INCOMPLETE:
-            Unk_ov60_02228E40.unk_08 = 22;
+            sHttpData.errorCode = 22;
             break;
         case DWC_GHTTP_FILE_TOO_BIG:
-            Unk_ov60_02228E40.unk_08 = 23;
+            sHttpData.errorCode = 23;
             break;
         case DWC_GHTTP_MEMORY_ERROR:
-            Unk_ov60_02228E40.unk_08 = 25;
+            sHttpData.errorCode = 25;
             break;
         }
     }
 }
 
-void ov60_0221FC84(void)
+void HTTP_Init(void)
 {
-    Unk_ov60_02228E40.unk_00 = 2;
-    Unk_ov60_02228E40.unk_04 = -1;
+    sHttpData.readyState = 2;
+    sHttpData.requestHandle = -1;
 
     if (!DWC_InitGHTTP(NULL)) {
-        Unk_ov60_02228E40.unk_00 = 1;
+        sHttpData.readyState = 1;
     }
 
     return;
 }
 
-int ov60_0221FCA8(const u8 *param0, int param1, const void *param2, int param3, u8 *param4, int param5)
+int HTTP_PrepareRequest(const u8 *param0, int param1, const void *param2, int param3, u8 *param4, int maxResponseLength)
 {
-    if (Unk_ov60_02228E40.unk_00 != 2) {
+    if (sHttpData.readyState != 2) {
         return 1;
     }
 
-    Unk_ov60_02228E40.unk_10 = param1;
-    Unk_ov60_02228E40.unk_14 = (void *)param2;
-    Unk_ov60_02228E40.unk_18 = param3;
-    Unk_ov60_02228E40.unk_1C = param4;
-    Unk_ov60_02228E40.unk_20 = param5;
-    Unk_ov60_02228E40.unk_24 = (char *)DWC_Alloc((DWCAllocType)10, strlen((const char *)param0) + 68 + ov60_0221F944(8 + (u32)param3) + 1);
+    sHttpData.unk_10 = param1;
+    sHttpData.unk_14 = (void *)param2;
+    sHttpData.unk_18 = param3;
+    sHttpData.unk_1C = param4;
+    sHttpData.maxResponseLength = maxResponseLength;
+    sHttpData.unk_24 = (char *)DWC_Alloc((DWCAllocType)10, strlen((const char *)param0) + 68 + ov60_0221F944(8 + (u32)param3) + 1);
 
-    if (Unk_ov60_02228E40.unk_24 == NULL) {
+    if (sHttpData.unk_24 == NULL) {
         return 2;
     }
 
-    sprintf(Unk_ov60_02228E40.unk_24, "%s?pid=%d", param0, param1);
+    sprintf(sHttpData.unk_24, "%s?pid=%d", param0, param1);
 
-    Unk_ov60_02228E40.unk_28 = Unk_ov60_02228E40.unk_24 + strlen(Unk_ov60_02228E40.unk_24) + strlen("&hash=");
-    Unk_ov60_02228E40.unk_2C = Unk_ov60_02228E40.unk_28 + 40 + strlen("&data=");
-    Unk_ov60_02228E40.unk_30 = (int)(ov60_0221F944(8 + (u32)param3) + 1);
-    Unk_ov60_02228E40.unk_00 = 3;
+    sHttpData.unk_28 = sHttpData.unk_24 + strlen(sHttpData.unk_24) + strlen("&hash=");
+    sHttpData.unk_2C = sHttpData.unk_28 + 40 + strlen("&data=");
+    sHttpData.unk_30 = (int)(ov60_0221F944(8 + (u32)param3) + 1);
+    sHttpData.readyState = 3;
 
     return 0;
 }
 
-int ov60_0221FD48(void)
+int HTTP_GetRequestStatus(void)
 {
     BOOL v0;
 
-    switch (Unk_ov60_02228E40.unk_00) {
+    switch (sHttpData.readyState) {
     case 0:
         break;
     case 1:
@@ -246,38 +246,38 @@ int ov60_0221FD48(void)
     case 2:
         break;
     case 3:
-        Unk_ov60_02228E40.unk_04 = DWC_GetGHTTPData(Unk_ov60_02228E40.unk_24, ov60_0221F9D0, &Unk_ov60_02228E40);
-        ov60_0221F968(Unk_ov60_02228E40.unk_04);
+        sHttpData.requestHandle = DWC_GetGHTTPData(sHttpData.unk_24, HTTP_RequestCompletedCallback, &sHttpData);
+        HTTP_SetErrorCode(sHttpData.requestHandle);
 
-        if (Unk_ov60_02228E40.unk_04 >= 0) {
-            Unk_ov60_02228E40.unk_00 = 4;
+        if (sHttpData.requestHandle >= 0) {
+            sHttpData.readyState = 4;
         } else {
-            Unk_ov60_02228E40.unk_00 = 1;
+            sHttpData.readyState = 1;
         }
         break;
     case 4:
         v0 = DWC_ProcessGHTTP();
 
         if (!v0) {
-            Unk_ov60_02228E40.unk_00 = 1;
+            sHttpData.readyState = 1;
             break;
         }
         break;
     case 5:
-        Unk_ov60_02228E40.unk_04 = DWC_GetGHTTPData(Unk_ov60_02228E40.unk_24, ov60_0221F9D0, &Unk_ov60_02228E40);
-        ov60_0221F968(Unk_ov60_02228E40.unk_04);
+        sHttpData.requestHandle = DWC_GetGHTTPData(sHttpData.unk_24, HTTP_RequestCompletedCallback, &sHttpData);
+        HTTP_SetErrorCode(sHttpData.requestHandle);
 
-        if (Unk_ov60_02228E40.unk_04 >= 0) {
-            Unk_ov60_02228E40.unk_00 = 6;
+        if (sHttpData.requestHandle >= 0) {
+            sHttpData.readyState = 6;
         } else {
-            Unk_ov60_02228E40.unk_00 = 1;
+            sHttpData.readyState = 1;
         }
         break;
     case 6:
         v0 = DWC_ProcessGHTTP();
 
         if (!v0) {
-            Unk_ov60_02228E40.unk_00 = 1;
+            sHttpData.readyState = 1;
             break;
         }
         break;
@@ -285,28 +285,28 @@ int ov60_0221FD48(void)
         break;
     }
 
-    return Unk_ov60_02228E40.unk_00;
+    return sHttpData.readyState;
 }
 
-void ov60_0221FDEC(void)
+void HTTP_Shutdown(void)
 {
-    if (Unk_ov60_02228E40.unk_24 != NULL) {
-        DWC_Free((DWCAllocType)10, Unk_ov60_02228E40.unk_24, (u32)0);
-        Unk_ov60_02228E40.unk_24 = NULL;
+    if (sHttpData.unk_24 != NULL) {
+        DWC_Free((DWCAllocType)10, sHttpData.unk_24, (u32)0);
+        sHttpData.unk_24 = NULL;
     }
 
     DWC_ShutdownGHTTP();
 
-    Unk_ov60_02228E40.unk_00 = 1;
+    sHttpData.readyState = 1;
     return;
 }
 
-int ov60_0221FE14(void)
+int HTTP_GetErrorCode(void)
 {
-    return (int)Unk_ov60_02228E40.unk_08;
+    return (int)sHttpData.errorCode;
 }
 
-int ov60_0221FE20(void)
+int HTTP_GetResponseLength(void)
 {
-    return Unk_ov60_02228E40.unk_0C;
+    return sHttpData.responseLength;
 }

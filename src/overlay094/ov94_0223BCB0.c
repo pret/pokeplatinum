@@ -71,7 +71,7 @@ static NNSFndHeapHandle Unk_ov94_02246C04;
 
 // gtsApplicationScreens { init, main, exit }
 static int (*gtsApplicationScreens[][3])(GTSApplicationState *, int) = {
-    { GTSApplication_InitWFCScreen, ov94_022449FC, ov94_02244A2C }, // wfc
+    { GTSApplication_InitWFCScreen, GTSApplication_WFCInit_Main, GTSApplication_WFCInit_Exit }, // wfc
     { ov94_0223C610, ov94_0223C6D4, ov94_0223C6F4 },
     { ov94_0223D0C4, ov94_0223D19C, ov94_0223D1B0 },
     { ov94_0223DC04, ov94_0223DCE4, ov94_0223DCF8 },
@@ -103,7 +103,7 @@ int GTSApplication_Init(ApplicationManager *appMan, int *param1)
 
         v0 = ApplicationManager_NewData(appMan, sizeof(GTSApplicationState), HEAP_ID_62);
         memset(v0, 0, sizeof(GTSApplicationState));
-        v0->unk_04 = BgConfig_New(HEAP_ID_62);
+        v0->bgConfig = BgConfig_New(HEAP_ID_62);
         unused_GTSApplicationState = v0;
 
         {
@@ -117,7 +117,7 @@ int GTSApplication_Init(ApplicationManager *appMan, int *param1)
             SetAllGraphicsModes(&v1);
         }
 
-        v0->unk_B8C = StringTemplate_New(11, 64, HEAP_ID_62);
+        v0->stringTemplate = StringTemplate_New(11, 64, HEAP_ID_62);
         v0->gtsMessageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_GTS, HEAP_ID_62);
         v0->unk_B98 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0674, HEAP_ID_62);
         v0->unk_B9C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0695, HEAP_ID_62);
@@ -179,7 +179,7 @@ int GTSApplication_Main(ApplicationManager *appMan, int *param1)
         break;
     case GTS_APPLICATION_LOOP_STATE_FINISH:
         if (IsScreenFadeDone()) {
-            if (appState->unk_104) {
+            if (appState->unk_104) { // pokemon received?
                 ov94_0223C4E0(appState);
                 ov94_02243EF8(appState, TrainerInfo_Gender(appState->unk_00->unk_1C));
                 ov94_02244234(appState, appState->unk_118, 0);
@@ -220,12 +220,12 @@ int GTSApplication_Exit(ApplicationManager *appMan, int *param1)
     MessageLoader_Free(v0->unk_B98);
     MessageLoader_Free(v0->gtsMessageLoader);
     MessageLoader_Free(v0->unk_BA0);
-    StringTemplate_Free(v0->unk_B8C);
+    StringTemplate_Free(v0->stringTemplate);
 
     ov94_0223C0A0(v0);
 
     WirelessDriver_Shutdown();
-    Heap_FreeToHeap(v0->unk_04);
+    Heap_FreeToHeap(v0->bgConfig);
     Heap_FreeToHeap(v0->unk_00);
     ApplicationManager_FreeData(appMan);
     SetVBlankCallback(NULL, NULL);
@@ -407,7 +407,7 @@ static const WindowTemplate Unk_ov94_022459F8 = {
     0x0
 };
 
-Menu *ov94_0223C3C0(BgConfig *param0, int param1, int param2)
+Menu *GTSApplication_CreateYesNoMenu(BgConfig *param0, int param1, int param2)
 {
     WindowTemplate v0;
 
@@ -415,10 +415,10 @@ Menu *ov94_0223C3C0(BgConfig *param0, int param1, int param2)
     v0.tilemapTop = param1;
     v0.baseTile = param2;
 
-    return Menu_MakeYesNoChoice(param0, &v0, (1 + (18 + 12)), 11, 62);
+    return Menu_MakeYesNoChoice(param0, &v0, (1 + (18 + 12)), 11, HEAP_ID_62);
 }
 
-void ov94_SetcurrentScreenInstructionAndnextunk_30(GTSApplicationState *param0, int param1, int param2)
+void GTSApplication_SetCurrentAndNextScreenInstruction(GTSApplicationState *param0, int param1, int param2)
 {
     param0->currentScreenInstruction = param1;
     param0->nextScreenInstruction = param2;
