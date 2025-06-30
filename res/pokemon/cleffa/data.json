@@ -95,7 +95,7 @@
         ]
     },
     "evolutions": [
-        [ "EVO_LEVEL_HAPPINESS", "SPECIES_CLEFAIRY" ]
+        [ "EVO_LEVEL_FRIENDSHIP", "SPECIES_CLEFAIRY" ]
     ],
     "offspring": "SPECIES_CLEFFA",
     "footprint": {

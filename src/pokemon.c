@@ -96,7 +96,7 @@ enum PokemonDataBlockID {
     DATA_BLOCK_D
 };
 
-static void BoxPokemon_Create(BoxPokemon *boxMon, int monSpecies, int monLevel, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID);
+static void BoxPokemon_Create(BoxPokemon *boxMon, int species, int level, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID);
 static u32 Pokemon_GetDataInternal(Pokemon *mon, enum PokemonDataParam param, void *dest);
 static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam param, void *dest);
 static void Pokemon_SetDataInternal(Pokemon *mon, enum PokemonDataParam param, const void *value);
@@ -123,14 +123,14 @@ static void InitializeBoxPokemonAfterCapture(BoxPokemon *boxMon, TrainerInfo *tr
 static void PostCaptureBoxPokemonProcessing(BoxPokemon *boxMon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
 static BOOL CanBoxPokemonLearnTM(BoxPokemon *boxMon, u8 tmID);
 static void BoxPokemon_CalcAbility(BoxPokemon *boxMon);
-static void SpeciesData_LoadSpecies(int monSpecies, SpeciesData *speciesData);
-static void SpeciesData_LoadForm(int monSpecies, int monForm, SpeciesData *speciesData);
+static void SpeciesData_LoadSpecies(int species, SpeciesData *speciesData);
+static void SpeciesData_LoadForm(int species, int form, SpeciesData *speciesData);
 static void LoadSpeciesEvolutions(int monSpecies, SpeciesEvolution speciesEvolution[MAX_EVOLUTIONS]);
 static void Pokemon_EncryptData(void *data, u32 bytes, u32 seed);
 static void Pokemon_DecryptData(void *data, u32 bytes, u32 seed);
 static u16 Pokemon_GetDataChecksum(void *data, u32 bytes);
 static void *BoxPokemon_GetDataBlock(BoxPokemon *boxMon, u32 personality, enum PokemonDataBlockID dataBlockID);
-static int Pokemon_GetFormNarcIndex(int monSpecies, int monForm);
+static int Pokemon_GetFormNarcIndex(int species, int form);
 static inline int Pokemon_Face(int num);
 
 void Pokemon_Init(Pokemon *mon)
@@ -245,53 +245,53 @@ void Pokemon_Create(Pokemon *mon, int species, int level, int fixedIVs, BOOL has
     Pokemon_CalcLevelAndStats(mon);
 }
 
-static void BoxPokemon_Create(BoxPokemon *boxMon, int monSpecies, int monLevel, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID)
+static void BoxPokemon_Create(BoxPokemon *boxMon, int species, int level, int fixedIVs, BOOL hasFixedPersonality, u32 fixedPersonality, int otIDType, u32 otID)
 {
     BoxPokemon_Init(boxMon);
 
     BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
 
-    if (!useMonPersonalityParam) {
-        monPersonality = (LCRNG_Next() | (LCRNG_Next() << 16));
+    if (!hasFixedPersonality) {
+        fixedPersonality = (LCRNG_Next() | (LCRNG_Next() << 16));
     }
 
-    BoxPokemon_SetData(boxMon, MON_DATA_PERSONALITY, &monPersonality);
+    BoxPokemon_SetData(boxMon, MON_DATA_PERSONALITY, &fixedPersonality);
 
     // TODO likely should be an enum
-    if (monOTIDSource == OTID_NOT_SHINY) {
+    if (otIDType == OTID_NOT_SHINY) {
         do {
-            monOTID = (LCRNG_Next() | (LCRNG_Next() << 16));
-        } while (Pokemon_InlineIsPersonalityShiny(monOTID, monPersonality));
-    } else if (monOTIDSource != OTID_SET) {
-        monOTID = 0;
+            otID = (LCRNG_Next() | (LCRNG_Next() << 16));
+        } while (Pokemon_InlineIsPersonalityShiny(otID, fixedPersonality));
+    } else if (otIDType != OTID_SET) {
+        otID = 0;
     }
 
-    BoxPokemon_SetData(boxMon, MON_DATA_OT_ID, &monOTID);
+    BoxPokemon_SetData(boxMon, MON_DATA_OT_ID, &otID);
     BoxPokemon_SetData(boxMon, MON_DATA_LANGUAGE, &gGameLanguage);
-    BoxPokemon_SetData(boxMon, MON_DATA_SPECIES, &monSpecies);
+    BoxPokemon_SetData(boxMon, MON_DATA_SPECIES, &species);
     BoxPokemon_SetData(boxMon, MON_DATA_SPECIES_NAME, NULL);
 
     u32 v1, v2; // TODO rename, these are used/reused as temp vars through the whole function.
 
-    v1 = Pokemon_GetSpeciesBaseExpAt(monSpecies, monLevel);
+    v1 = Pokemon_GetSpeciesBaseExpAt(species, level);
     BoxPokemon_SetData(boxMon, MON_DATA_EXP, &v1);
 
-    v1 = SpeciesData_GetSpeciesValue(monSpecies, SPECIES_DATA_BASE_FRIENDSHIP);
+    v1 = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_BASE_FRIENDSHIP);
     BoxPokemon_SetData(boxMon, MON_DATA_FRIENDSHIP, &v1);
 
-    BoxPokemon_SetData(boxMon, MON_DATA_MET_LEVEL, &monLevel);
+    BoxPokemon_SetData(boxMon, MON_DATA_MET_LEVEL, &level);
     BoxPokemon_SetData(boxMon, MON_DATA_MET_GAME, &gGameVersion);
 
     v1 = ITEM_POKE_BALL;
     BoxPokemon_SetData(boxMon, MON_DATA_POKEBALL, &v1);
 
-    if (monIVs < INIT_IVS_RANDOM) {
-        BoxPokemon_SetData(boxMon, MON_DATA_HP_IV, &monIVs);
-        BoxPokemon_SetData(boxMon, MON_DATA_ATK_IV, &monIVs);
-        BoxPokemon_SetData(boxMon, MON_DATA_DEF_IV, &monIVs);
-        BoxPokemon_SetData(boxMon, MON_DATA_SPEED_IV, &monIVs);
-        BoxPokemon_SetData(boxMon, MON_DATA_SPATK_IV, &monIVs);
-        BoxPokemon_SetData(boxMon, MON_DATA_SPDEF_IV, &monIVs);
+    if (fixedIVs < INIT_IVS_RANDOM) {
+        BoxPokemon_SetData(boxMon, MON_DATA_HP_IV, &fixedIVs);
+        BoxPokemon_SetData(boxMon, MON_DATA_ATK_IV, &fixedIVs);
+        BoxPokemon_SetData(boxMon, MON_DATA_DEF_IV, &fixedIVs);
+        BoxPokemon_SetData(boxMon, MON_DATA_SPEED_IV, &fixedIVs);
+        BoxPokemon_SetData(boxMon, MON_DATA_SPATK_IV, &fixedIVs);
+        BoxPokemon_SetData(boxMon, MON_DATA_SPDEF_IV, &fixedIVs);
     } else {
         v1 = LCRNG_Next();
         v2 = (v1 & (0x1f << 0)) >> 0;
@@ -314,11 +314,11 @@ static void BoxPokemon_Create(BoxPokemon *boxMon, int monSpecies, int monLevel, 
         BoxPokemon_SetData(boxMon, MON_DATA_SPDEF_IV, &v2);
     }
 
-    v1 = SpeciesData_GetSpeciesValue(monSpecies, SPECIES_DATA_ABILITY_1);
-    v2 = SpeciesData_GetSpeciesValue(monSpecies, SPECIES_DATA_ABILITY_2);
+    v1 = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_ABILITY_1);
+    v2 = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_ABILITY_2);
 
     if (v2 != ABILITY_NONE) {
-        if (monPersonality & 1) {
+        if (fixedPersonality & 1) {
             BoxPokemon_SetData(boxMon, MON_DATA_ABILITY, &v2);
         } else {
             BoxPokemon_SetData(boxMon, MON_DATA_ABILITY, &v1);
@@ -431,11 +431,11 @@ void Pokemon_CalcStats(Pokemon *mon)
     spDefIV = Pokemon_GetData(mon, MON_DATA_SPDEF_IV, NULL);
     spDefEV = Pokemon_GetData(mon, MON_DATA_SPDEF_EV, NULL);
 
-    int monForm = Pokemon_GetData(mon, MON_DATA_FORM, NULL);
+    int form = Pokemon_GetData(mon, MON_DATA_FORM, NULL);
     int species = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
     SpeciesData *speciesData = Heap_AllocFromHeap(HEAP_ID_SYSTEM, sizeof(SpeciesData));
 
-    SpeciesData_LoadForm(species, monForm, speciesData);
+    SpeciesData_LoadForm(species, form, speciesData);
     int newMaxHp;
     if (species == SPECIES_SHEDINJA) {
         newMaxHp = 1;
@@ -973,15 +973,12 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
     case MON_DATA_OT_GENDER:
         ret = blockD->otGender;
         break;
-
     case MON_DATA_MET_TERRAIN:
         ret = blockD->metTerrain;
         break;
-
     case MON_DATA_DUMMY_D_1:
         ret = blockD->dummy_1E;
         break;
-
     case MON_DATA_COMBINED_IVS:
         ret = (blockB->hpIV << 0)
             | (blockB->atkIV << 5)
@@ -990,7 +987,6 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
             | (blockB->spAtkIV << 20)
             | (blockB->spDefIV << 25);
         break;
-
     case MON_DATA_NIDORAN_HAS_NICKNAME:
         if ((blockA->species == SPECIES_NIDORAN_F || blockA->species == SPECIES_NIDORAN_M)
             && blockB->hasNickname == FALSE) {
@@ -999,7 +995,6 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
             ret = TRUE;
         }
         break;
-
     case MON_DATA_TYPE_1:
     case MON_DATA_TYPE_2:
         if (blockA->species == SPECIES_ARCEUS && blockA->ability == ABILITY_MULTITYPE) {
@@ -1038,6 +1033,8 @@ void Pokemon_SetData(Pokemon *mon, enum PokemonDataParam param, const void *valu
         Pokemon_EncryptData(&mon->box.dataBlocks, sizeof(PokemonDataBlock) * 4, mon->box.checksum);
     }
 }
+
+#define VALUE(type) (*(const type *)value)
 
 static void Pokemon_SetDataInternal(Pokemon *mon, enum PokemonDataParam param, const void *value)
 {
@@ -1318,7 +1315,6 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
     case MON_DATA_HOENN_EARTH_RIBBON:
     case MON_DATA_HOENN_WORLD_RIBBON: {
         u64 bit = 1 << (param - MON_DATA_HOENN_COOL_RIBBON);
-
         if (*u8Value) {
             blockB->hoennRibbons |= bit;
         } else {
@@ -1838,18 +1834,18 @@ static void BoxPokemon_IncreaseDataInternal(BoxPokemon *boxMon, enum PokemonData
     }
 }
 
-SpeciesData *SpeciesData_FromMonForm(int monSpecies, int monForm, int heapID)
+SpeciesData *SpeciesData_FromMonForm(int species, int form, int heapID)
 {
     SpeciesData *speciesData = Heap_AllocFromHeap(heapID, sizeof(SpeciesData));
-    SpeciesData_LoadForm(monSpecies, monForm, speciesData);
+    SpeciesData_LoadForm(species, form, speciesData);
 
     return speciesData;
 }
 
-SpeciesData *SpeciesData_FromMonSpecies(int monSpecies, int heapID)
+SpeciesData *SpeciesData_FromMonSpecies(int species, int heapID)
 {
     SpeciesData *speciesData = Heap_AllocFromHeap(heapID, sizeof(SpeciesData));
-    SpeciesData_LoadSpecies(monSpecies, speciesData);
+    SpeciesData_LoadSpecies(species, speciesData);
 
     return speciesData;
 }
@@ -1971,11 +1967,11 @@ void SpeciesData_Free(SpeciesData *speciesData)
     Heap_FreeToHeap(speciesData);
 }
 
-u32 SpeciesData_GetFormValue(int monSpecies, int monForm, enum SpeciesDataParam param)
+u32 SpeciesData_GetFormValue(int species, int form, enum SpeciesDataParam param)
 {
-    monSpecies = Pokemon_GetFormNarcIndex(monSpecies, monForm);
+    species = Pokemon_GetFormNarcIndex(species, form);
 
-    SpeciesData *speciesData = SpeciesData_FromMonSpecies(monSpecies, HEAP_ID_SYSTEM);
+    SpeciesData *speciesData = SpeciesData_FromMonSpecies(species, HEAP_ID_SYSTEM);
     u32 result = SpeciesData_GetValue(speciesData, param);
 
     SpeciesData_Free(speciesData);
@@ -1983,9 +1979,9 @@ u32 SpeciesData_GetFormValue(int monSpecies, int monForm, enum SpeciesDataParam 
     return result;
 }
 
-u32 SpeciesData_GetSpeciesValue(int monSpecies, enum SpeciesDataParam param)
+u32 SpeciesData_GetSpeciesValue(int species, enum SpeciesDataParam param)
 {
-    SpeciesData *speciesData = SpeciesData_FromMonSpecies(monSpecies, HEAP_ID_SYSTEM);
+    SpeciesData *speciesData = SpeciesData_FromMonSpecies(species, HEAP_ID_SYSTEM);
     u32 result = SpeciesData_GetValue(speciesData, param);
 
     SpeciesData_Free(speciesData);
@@ -2305,11 +2301,11 @@ u8 Pokemon_IsPersonalityShiny(u32 otID, u32 personality)
     return Pokemon_InlineIsPersonalityShiny(otID, personality);
 }
 
-u32 Pokemon_FindShinyPersonality(u32 monOTID)
+u32 Pokemon_FindShinyPersonality(u32 otID)
 {
     // 1. Pre-compute the XOR of the two halves of the trainer ID. We only
     // care about the most-significant 13 bits, so truncate the last 3.
-    monOTID = (((monOTID & 0xFFFF0000) >> 16) ^ (monOTID & 0xFFFF)) >> 3;
+    otID = (((otID & 0xFFFF0000) >> 16) ^ (otID & 0xFFFF)) >> 3;
 
     int i;
 
@@ -2322,7 +2318,7 @@ u32 Pokemon_FindShinyPersonality(u32 monOTID)
     // across both halves to be set to 1 such that the XOR of their bits
     // will XOR with the monOTID to 0.
     for (i = 0; i < 13; i++) {
-        if (monOTID & FlagIndex(i)) {
+        if (otID & FlagIndex(i)) {
             // Trainer ID XORs to 1; set one of the two personality bits to 1
             if (LCRNG_Next() & 1) {
                 rndLow |= FlagIndex(i + 3);
@@ -3097,10 +3093,10 @@ u16 Pokemon_GetEvolutionTargetSpecies(Party *party, Pokemon *mon, u8 evoClass, u
 
         for (i = 0; i < MAX_EVOLUTIONS; i++) {
             switch (speciesEvolutions[i].method) {
-            case EVO_LEVEL_HAPPINESS:
+            case EVO_LEVEL_FRIENDSHIP:
                 if (EVOLVE_FRIENDSHIP_THRESHOLD <= monFriendship) {
                     targetSpecies = speciesEvolutions[i].targetSpecies;
-                    *evoTypeResult = EVO_LEVEL_HAPPINESS;
+                    *evoTypeResult = EVO_LEVEL_FRIENDSHIP;
                 }
                 break;
             case EVO_LEVEL_HAPPINESS_DAY:
@@ -3740,20 +3736,20 @@ void Party_UpdatePokerusStatus(Party *party, s32 param1)
         Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
 
         if (Pokemon_GetData(mon, MON_DATA_SPECIES, NULL)) {
-            u8 monPokerus = Pokemon_GetData(mon, MON_DATA_POKERUS, NULL);
+            u8 pokerus = Pokemon_GetData(mon, MON_DATA_POKERUS, NULL);
 
-            if (monPokerus & 0xf) {
-                if (((monPokerus & 0xf) < param1) || (param1 > 4)) {
-                    monPokerus &= 0xf0;
+            if (pokerus & 0xf) {
+                if (((pokerus & 0xf) < param1) || (param1 > 4)) {
+                    pokerus &= 0xf0;
                 } else {
-                    monPokerus -= param1;
+                    pokerus -= param1;
                 }
 
-                if (monPokerus == 0) {
-                    monPokerus = 0x10;
+                if (pokerus == 0) {
+                    pokerus = 0x10;
                 }
 
-                Pokemon_SetData(mon, MON_DATA_POKERUS, &monPokerus);
+                Pokemon_SetData(mon, MON_DATA_POKERUS, &pokerus);
             }
         }
     }
@@ -4327,15 +4323,15 @@ void sub_020780C4(Pokemon *mon, u32 monPersonality)
     Heap_FreeToHeap(newMon);
 }
 
-static void SpeciesData_LoadSpecies(int monSpecies, SpeciesData *speciesData)
+static void SpeciesData_LoadSpecies(int species, SpeciesData *speciesData)
 {
-    NARC_ReadWholeMemberByIndexPair(speciesData, NARC_INDEX_POKETOOL__PERSONAL__PL_PERSONAL, monSpecies);
+    NARC_ReadWholeMemberByIndexPair(speciesData, NARC_INDEX_POKETOOL__PERSONAL__PL_PERSONAL, species);
 }
 
-static void SpeciesData_LoadForm(int monSpecies, int monForm, SpeciesData *speciesData)
+static void SpeciesData_LoadForm(int species, int form, SpeciesData *speciesData)
 {
-    monSpecies = Pokemon_GetFormNarcIndex(monSpecies, monForm);
-    NARC_ReadWholeMemberByIndexPair(speciesData, NARC_INDEX_POKETOOL__PERSONAL__PL_PERSONAL, monSpecies);
+    species = Pokemon_GetFormNarcIndex(species, form);
+    NARC_ReadWholeMemberByIndexPair(speciesData, NARC_INDEX_POKETOOL__PERSONAL__PL_PERSONAL, species);
 }
 
 static void LoadSpeciesEvolutions(int monSpecies, SpeciesEvolution speciesEvolutions[MAX_EVOLUTIONS])
@@ -4455,40 +4451,40 @@ static void *BoxPokemon_GetDataBlock(BoxPokemon *boxMon, u32 personality, enum P
     return result;
 }
 
-static int Pokemon_GetFormNarcIndex(int monSpecies, int monForm)
+static int Pokemon_GetFormNarcIndex(int species, int form)
 {
     // TODO enum values?
-    switch (monSpecies) {
+    switch (species) {
     case SPECIES_DEOXYS:
-        if (monForm && monForm <= DEOXYS_FORM_COUNT - 1) {
-            monSpecies = (496 - 1) + monForm;
+        if (form && form <= DEOXYS_FORM_COUNT - 1) {
+            species = (496 - 1) + form;
         }
         break;
     case SPECIES_WORMADAM:
-        if (monForm && monForm <= WORMADAM_FORM_COUNT - 1) {
-            monSpecies = (499 - 1) + monForm;
+        if (form && form <= WORMADAM_FORM_COUNT - 1) {
+            species = (499 - 1) + form;
         }
         break;
     case SPECIES_GIRATINA:
-        if (monForm && monForm <= GIRATINA_FORM_COUNT - 1) {
-            monSpecies = (501 - 1) + monForm;
+        if (form && form <= GIRATINA_FORM_COUNT - 1) {
+            species = (501 - 1) + form;
         }
         break;
     case SPECIES_SHAYMIN:
-        if (monForm && monForm <= SHAYMIN_FORM_COUNT - 1) {
-            monSpecies = (502 - 1) + monForm;
+        if (form && form <= SHAYMIN_FORM_COUNT - 1) {
+            species = (502 - 1) + form;
         }
         break;
     case SPECIES_ROTOM:
-        if (monForm && monForm <= ROTOM_FORM_COUNT - 1) {
-            monSpecies = (503 - 1) + monForm;
+        if (form && form <= ROTOM_FORM_COUNT - 1) {
+            species = (503 - 1) + form;
         }
         break;
     default:
         break;
     }
 
-    return monSpecies;
+    return species;
 }
 
 u32 FlagIndex(int num)

@@ -96,7 +96,7 @@
         ]
     },
     "evolutions": [
-        [ "EVO_LEVEL_HAPPINESS", "SPECIES_LOPUNNY" ]
+        [ "EVO_LEVEL_FRIENDSHIP", "SPECIES_LOPUNNY" ]
     ],
     "offspring": "SPECIES_BUNEARY",
     "footprint": {

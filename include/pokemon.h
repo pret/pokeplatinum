@@ -175,21 +175,21 @@ void Pokemon_IncreaseValue(Pokemon *mon, enum PokemonDataParam param, int value)
 /**
  * @brief Gets a SpeciesData based on a pokemon species and form
  *
- * @param monSpecies
- * @param monForm
+ * @param species
+ * @param form
  * @param heapID The index of the heap that the SpeciesData should be loaded into
  * @return SpeciesData*
  */
-SpeciesData *SpeciesData_FromMonForm(int monSpecies, int monForm, int heapID);
+SpeciesData *SpeciesData_FromMonForm(int species, int form, int heapID);
 
 /**
  * @brief Gets a SpeciesData based on a pokemon species
  *
- * @param monSpecies
+ * @param species
  * @param heapID The index of the heap that the SpeciesData should be loaded into
  * @return SpeciesData*
  */
-SpeciesData *SpeciesData_FromMonSpecies(int monSpecies, int heapID);
+SpeciesData *SpeciesData_FromMonSpecies(int species, int heapID);
 
 /**
  * @brief Gets a value from a SpeciesData structure
@@ -210,21 +210,21 @@ void SpeciesData_Free(SpeciesData *speciesData);
 /**
  * @brief Loads a SpeciesData based on its species and form and gets a value from it
  *
- * @param monSpecies
- * @param monForm
+ * @param species
+ * @param form
  * @param param What value to get
  * @return The requested value
  */
-u32 SpeciesData_GetFormValue(int monSpecies, int monForm, enum SpeciesDataParam param);
+u32 SpeciesData_GetFormValue(int species, int form, enum SpeciesDataParam param);
 
 /**
  * @brief Loads a SpeciesData based on its species and gets a value from it
  *
- * @param monSpecies
+ * @param species
  * @param param What value to get
  * @return The requested value
  */
-u32 SpeciesData_GetSpeciesValue(int monSpecies, enum SpeciesDataParam param);
+u32 SpeciesData_GetSpeciesValue(int species, enum SpeciesDataParam param);
 
 /**
  * @brief Gets how much progress a Pokemon has made towards its next level as a percentage

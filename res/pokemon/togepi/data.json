@@ -99,7 +99,7 @@
         ]
     },
     "evolutions": [
-        [ "EVO_LEVEL_HAPPINESS", "SPECIES_TOGETIC" ]
+        [ "EVO_LEVEL_FRIENDSHIP", "SPECIES_TOGETIC" ]
     ],
     "offspring": "SPECIES_TOGEPI",
     "footprint": {

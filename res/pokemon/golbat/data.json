@@ -97,7 +97,7 @@
         ]
     },
     "evolutions": [
-        [ "EVO_LEVEL_HAPPINESS", "SPECIES_CROBAT" ]
+        [ "EVO_LEVEL_FRIENDSHIP", "SPECIES_CROBAT" ]
     ],
     "offspring": "SPECIES_ZUBAT",
     "footprint": {
