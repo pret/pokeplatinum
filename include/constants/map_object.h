@@ -53,6 +53,6 @@
 #define MAP_OBJ_UNK_A0_09 9
 #define MAP_OBJ_UNK_A0_10 10
 
-#define MAP_OBJ_PLAYER_AVATAR 0xff
+#define MAP_OBJ_PLAYER_AVATAR 0xFF
 
 #endif

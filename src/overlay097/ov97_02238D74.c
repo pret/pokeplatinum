@@ -179,7 +179,7 @@ static void ov97_02238E94(void)
     sub_02038514();
     sub_020995C4();
     sub_02099560();
-    sub_020334CC();
+    WirelessDriver_Shutdown();
 }
 
 int ov97_02238EAC(ApplicationManager *appMan, int *param1)
@@ -196,13 +196,13 @@ int ov97_02238EAC(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 4096:
-        sub_02033478();
+        WirelessDriver_Init();
         sub_02099550();
         sub_020995B4();
         *param1 = 4097;
         break;
     case 4097:
-        if (sub_020334A4()) {
+        if (WirelessDriver_IsReady()) {
             DWC_SetMemFunc(ov97_02238D74, ov97_02238D94);
             sub_020384C0(v2->saveData);
             *param1 = 4098;

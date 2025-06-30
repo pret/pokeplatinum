@@ -83,13 +83,13 @@ int ov94_0223DC04(GTSApplicationState *param0, int param1)
 
     StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
 
-    param0->unk_2C = 0;
+    param0->currentScreenInstruction = 0;
     return 2;
 }
 
 int ov94_0223DCE4(GTSApplicationState *param0, int param1)
 {
-    int v0 = (*Unk_ov94_0224682C[param0->unk_2C])(param0);
+    int v0 = (*Unk_ov94_0224682C[param0->currentScreenInstruction])(param0);
     return v0;
 }
 
@@ -99,7 +99,7 @@ int ov94_0223DCF8(GTSApplicationState *param0, int param1)
     ov94_0223E074(param0);
     ov94_0223DFA4(param0);
     ov94_0223DDE0(param0->unk_04);
-    ov94_0223C4C8(param0);
+    GTSApplication_MoveToNextScreen(param0);
 
     return 1;
 }
@@ -314,7 +314,7 @@ static void ov94_0223E074(GTSApplicationState *param0)
 
 static int ov94_0223E09C(GTSApplicationState *param0)
 {
-    param0->unk_2C = 1;
+    param0->currentScreenInstruction = 1;
     return 3;
 }
 
@@ -322,23 +322,23 @@ static int ov94_0223E0A4(GTSApplicationState *param0)
 {
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
         ov94_0223E300(param0, 16, TEXT_SPEED_FAST, 0, 0xf0f);
-        ov94_Setunk_2CAndnextunk_30(param0, 3, 4);
+        ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 3, 4);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
-        param0->unk_2C = 2;
+        param0->currentScreenInstruction = 2;
         ov94_Setunk_18Andunk_24(param0, 4, 0);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
         if (param0->unk_10E == 0) {
             param0->unk_10E = 1;
-            param0->unk_2C = 6;
+            param0->currentScreenInstruction = 6;
 
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         }
     } else if (gSystem.pressedKeys & PAD_KEY_LEFT) {
         if (param0->unk_10E != 0) {
             param0->unk_10E = 0;
-            param0->unk_2C = 6;
+            param0->currentScreenInstruction = 6;
 
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         }
@@ -348,7 +348,7 @@ static int ov94_0223E0A4(GTSApplicationState *param0)
         if (1) {
             if ((v0 != param0->unk_11C) && (v0 >= 0)) {
                 Sprite_SetAnim(param0->unk_F34[v0 + 1], 16 + v0 * 4);
-                param0->unk_2C = 2;
+                param0->currentScreenInstruction = 2;
                 ov94_Setunk_18Andunk_24(param0, 3, 0);
                 param0->unk_11C = v0;
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
@@ -363,14 +363,14 @@ static int ov94_0223E188(GTSApplicationState *param0)
 {
     StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
 
-    param0->unk_2C = 0;
+    param0->currentScreenInstruction = 0;
     return 4;
 }
 
 static int ov94_0223E1B0(GTSApplicationState *param0)
 {
     param0->unk_10D0 = ov94_0223C3C0(param0->unk_04, 15, ((((1 + (18 + 12)) + 9) + 27 * 2) + (5 * 2) * 4 + 262 + 64 + 36));
-    param0->unk_2C = 5;
+    param0->currentScreenInstruction = 5;
 
     return 3;
 }
@@ -381,12 +381,12 @@ static int ov94_0223E1D0(GTSApplicationState *param0)
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
-            param0->unk_2C = 2;
+            param0->currentScreenInstruction = 2;
             ov94_Setunk_18Andunk_24(param0, 4, 0);
             ov94_0223E358(param0->gtsMessageLoader, &param0->unk_FCC[7]);
             ov94_0223E240(param0);
         } else {
-            param0->unk_2C = 2;
+            param0->currentScreenInstruction = 2;
             ov94_Setunk_18Andunk_24(param0, 5, 6);
             ov94_0223E358(param0->gtsMessageLoader, &param0->unk_FCC[7]);
             ov94_0223E240(param0);
@@ -410,7 +410,7 @@ static void ov94_0223E240(GTSApplicationState *param0)
 static int ov94_0223E2D0(GTSApplicationState *param0)
 {
     ov94_0223E240(param0);
-    param0->unk_2C = 1;
+    param0->currentScreenInstruction = 1;
 
     return 3;
 }
@@ -418,7 +418,7 @@ static int ov94_0223E2D0(GTSApplicationState *param0)
 static int ov94_0223E2E0(GTSApplicationState *param0)
 {
     if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
-        param0->unk_2C = param0->nextunk_2C;
+        param0->currentScreenInstruction = param0->nextScreenInstruction;
     }
 
     return 3;

@@ -64,6 +64,6 @@ int ov94_02244490(GTSApplicationState *param0, int param1)
 
 int ov94_022444BC(GTSApplicationState *param0, int param1)
 {
-    ov94_0223C4C8(param0);
+    GTSApplication_MoveToNextScreen(param0);
     return 1;
 }

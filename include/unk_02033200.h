@@ -10,10 +10,10 @@
 
 void CommServerClient_Init(TrainerInfo *param0, BOOL param1);
 BOOL sub_020332D0(void);
-void sub_02033478(void);
-BOOL sub_020334A4(void);
-BOOL sub_020334B8(void);
-void sub_020334CC(void);
+void WirelessDriver_Init(void);
+BOOL WirelessDriver_IsReady(void);
+BOOL WirelessDriver_Initialised(void);
+void WirelessDriver_Shutdown(void);
 void sub_02033518(void);
 BOOL CommServerClient_InitServer(BOOL param0, BOOL param1, BOOL param2);
 BOOL CommServerClient_InitClient(BOOL param0, BOOL param1);

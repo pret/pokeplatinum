@@ -153,7 +153,7 @@ static void sub_020366A0(SaveData *saveData, int param1)
     }
 
     GF_ASSERT(saveData);
-    sub_02033478();
+    WirelessDriver_Init();
 
     Unk_021C07D4 = (UnkStruct_021C07D4 *)Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sizeof(UnkStruct_021C07D4));
     MI_CpuFill8(Unk_021C07D4, 0, sizeof(UnkStruct_021C07D4));
@@ -192,7 +192,7 @@ static void sub_02036734(void)
     }
 
     sub_02039794();
-    sub_020334CC();
+    WirelessDriver_Shutdown();
     Heap_FreeToHeap(Unk_021C07D4);
     Heap_Destroy(HEAP_ID_COMMUNICATION);
 
@@ -282,7 +282,7 @@ void sub_02036894(void)
 
 void sub_020368A4(void)
 {
-    sub_02033478();
+    WirelessDriver_Init();
     sub_02036C94(sub_02037108, 0);
 }
 
@@ -565,7 +565,7 @@ static void sub_02036CA4(void)
         return;
     }
 
-    if (!sub_020334A4()) {
+    if (!WirelessDriver_IsReady()) {
         return;
     }
 
@@ -819,7 +819,7 @@ static void sub_020370EC(void)
 
 static void sub_02037108(void)
 {
-    if (!sub_020334A4()) {
+    if (!WirelessDriver_IsReady()) {
         return;
     }
 
@@ -841,7 +841,7 @@ static void sub_02037144(void)
 {
     TrainerInfo *v0;
 
-    if (!sub_020334A4()) {
+    if (!WirelessDriver_IsReady()) {
         return;
     }
 
@@ -872,7 +872,7 @@ static void sub_020371A8(void)
 
 static void sub_020371C0(void)
 {
-    if (!sub_020334A4()) {
+    if (!WirelessDriver_IsReady()) {
         return;
     }
 
@@ -1036,7 +1036,7 @@ static void sub_020373F0(void)
 {
     void *v0;
 
-    if (!sub_020334A4()) {
+    if (!WirelessDriver_IsReady()) {
         return;
     }
 
@@ -1509,7 +1509,7 @@ static void sub_02037B70(void)
 
 static void sub_02037B78(void)
 {
-    if (!sub_020334A4()) {
+    if (!WirelessDriver_IsReady()) {
         return;
     }
 
@@ -1596,7 +1596,7 @@ static void sub_02037CE4(void)
 
 static void sub_02037D08(void)
 {
-    if (!sub_020334A4()) {
+    if (!WirelessDriver_IsReady()) {
         return;
     }
 
@@ -1660,7 +1660,7 @@ static void sub_02037E20(void)
 {
     TrainerInfo *v0;
 
-    if (!sub_020334A4()) {
+    if (!WirelessDriver_IsReady()) {
         return;
     }
 
@@ -1675,7 +1675,7 @@ static void sub_02037E20(void)
 
 static void sub_02037E68(void)
 {
-    if (!sub_020334A4()) {
+    if (!WirelessDriver_IsReady()) {
         return;
     }
 
@@ -2204,7 +2204,7 @@ static void sub_020386B4(void)
 {
     TrainerInfo *v0;
 
-    if (!sub_020334A4()) {
+    if (!WirelessDriver_IsReady()) {
         return;
     }
 
@@ -2532,7 +2532,7 @@ void sub_02038B84(void)
 
 static void sub_02038BA8(void)
 {
-    if (!sub_020334A4()) {
+    if (!WirelessDriver_IsReady()) {
         return;
     }
 

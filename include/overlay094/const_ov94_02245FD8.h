@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_CONST_OV94_02245FD8_H
 #define POKEPLATINUM_CONST_OV94_02245FD8_H
 
-extern const int GTS_GENDER_PREFERENCE_MESSAGES[];
+extern const int gGTSGenderPreferenceMessages[];
 
 #endif // POKEPLATINUM_CONST_OV94_02245FD8_H

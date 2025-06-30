@@ -2029,7 +2029,7 @@ static int ov65_0222F90C(UnkStruct_ov65_0222EBE0 *param0, int param1)
     int v0;
     NARC *v1;
 
-    if (!sub_020334A4()) {
+    if (!WirelessDriver_IsReady()) {
         if (ov65_02235194(&param0->unk_3EC) == 1) {
             SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
             SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);

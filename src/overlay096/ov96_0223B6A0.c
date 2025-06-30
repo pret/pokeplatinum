@@ -108,7 +108,7 @@ int ov96_0223B6A0(ApplicationManager *appMan, int *param1)
     case 1:
         sub_02099550();
         sub_020995B4();
-        sub_02033478();
+        WirelessDriver_Init();
         (*param1) = 0;
         return 1;
         break;
@@ -128,7 +128,7 @@ int ov96_0223B7F8(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        if (sub_020334A4()) {
+        if (WirelessDriver_IsReady()) {
             Unk_ov96_0223DEF0 = v0->unk_28;
             DWC_SetMemFunc(ov96_0223BC04, ov96_0223BC2C);
             *param1 = 1;
@@ -180,7 +180,7 @@ int ov96_0223B8CC(ApplicationManager *appMan, int *param1)
 
     ov96_0223B99C(v0);
 
-    sub_020334CC();
+    WirelessDriver_Shutdown();
     Heap_FreeToHeap(v0->unk_04);
     ApplicationManager_FreeData(appMan);
     SetVBlankCallback(NULL, NULL);

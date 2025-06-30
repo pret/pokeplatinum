@@ -34,16 +34,16 @@ typedef enum {
     UnkEnum_ov94_0223B15C_17,
     UnkEnum_ov94_0223B15C_18,
     UnkEnum_ov94_0223B15C_19,
-    UnkEnum_ov94_0223B15C_20,
+    UnkEnum_ov94_0223B15C_20, // connected?
     UnkEnum_ov94_0223B15C_21,
     UnkEnum_ov94_0223B15C_22,
     UnkEnum_ov94_0223B15C_23,
-    UnkEnum_ov94_0223B15C_24
+    UnkEnum_ov94_0223B15C_24 // connection failed
 } UnkEnum_ov94_0223B15C;
 
 typedef struct {
-    UnkEnum_ov94_0223B15C unk_00;
-    s32 unk_04;
+    UnkEnum_ov94_0223B15C unk_00; // network status
+    s32 unk_04; // error code?
     s32 unk_08;
     u64 unk_0C;
     u8 unk_14[296];

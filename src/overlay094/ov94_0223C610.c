@@ -60,10 +60,10 @@ static void ov94_0223C85C(GTSApplicationState *param0);
 
 static int (*Unk_ov94_022467C4[])(GTSApplicationState *) = {
     ov94_0223CB50,
-    ov94_0223CB90, // set unk_2C to 10 and unk_30 to 2
-    ov94_0223CBA0, // start screen fade, set unk_2C to 3
-    ov94_0223CBC4, // set unk_2C to 5 when screen fade is done, return 3
-    ov94_0223CBD8, // set unk_2C to 5 when screen fade is done, return 3
+    ov94_0223CB90, // set currentScreenInstruction to 10 and unk_30 to 2
+    ov94_0223CBA0, // start screen fade, set currentScreenInstruction to 3
+    ov94_0223CBC4, // set currentScreenInstruction to 5 when screen fade is done, return 3
+    ov94_0223CBD8, // set currentScreenInstruction to 5 when screen fade is done, return 3
     ov94_0223CBEC, // are you seeking or offering a pokemon?
     ov94_0223CC28,
     ov94_0223CDD8,
@@ -91,7 +91,7 @@ int ov94_0223C610(GTSApplicationState *param0, int param1)
         ov94_0223C85C(param0);
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
 
-        param0->unk_2C = 0;
+        param0->currentScreenInstruction = 0;
         param0->unk_34 = 1;
 
         ov94_02243FA8(param0, TrainerInfo_Gender(param0->unk_00->unk_1C));
@@ -102,7 +102,7 @@ int ov94_0223C610(GTSApplicationState *param0, int param1)
             StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
         }
 
-        param0->unk_2C = 5;
+        param0->currentScreenInstruction = 5;
     }
 
     param0->unk_1110 = 0;
@@ -115,7 +115,7 @@ int ov94_0223C6D4(GTSApplicationState *param0, int param1)
 
     sub_020397B0(GTSApplication_GetNetworkStrength());
 
-    v0 = (*Unk_ov94_022467C4[param0->unk_2C])(param0);
+    v0 = (*Unk_ov94_022467C4[param0->currentScreenInstruction])(param0);
     return v0;
 }
 
@@ -127,7 +127,7 @@ int ov94_0223C6F4(GTSApplicationState *param0, int param1)
     ov94_0223CB34(param0);
     ov94_0223CAC8(param0);
     ov94_0223C830(param0->unk_04);
-    ov94_0223C4C8(param0);
+    GTSApplication_MoveToNextScreen(param0);
 
     return 1;
 }
@@ -372,7 +372,7 @@ static int ov94_0223CB50(GTSApplicationState *param0)
         ov94_Setunk_18Andunk_24(param0, 7, 11);
 
         param0->unk_1C = 1;
-        param0->unk_2C = 9;
+        param0->currentScreenInstruction = 9;
     }
 
     return 3;
@@ -380,14 +380,14 @@ static int ov94_0223CB50(GTSApplicationState *param0)
 
 static int ov94_0223CB90(GTSApplicationState *param0)
 {
-    ov94_Setunk_2CAndnextunk_30(param0, 10, 2);
+    ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 10, 2);
     return 3;
 }
 
 static int ov94_0223CBA0(GTSApplicationState *param0)
 {
     StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
-    param0->unk_2C = 3;
+    param0->currentScreenInstruction = 3;
 
     return 3;
 }
@@ -395,7 +395,7 @@ static int ov94_0223CBA0(GTSApplicationState *param0)
 static int ov94_0223CBC4(GTSApplicationState *param0)
 {
     if (IsScreenFadeDone()) {
-        param0->unk_2C = 5;
+        param0->currentScreenInstruction = 5;
     }
 
     return 3;
@@ -404,7 +404,7 @@ static int ov94_0223CBC4(GTSApplicationState *param0)
 static int ov94_0223CBD8(GTSApplicationState *param0)
 {
     if (IsScreenFadeDone()) {
-        param0->unk_2C = 5;
+        param0->currentScreenInstruction = 5;
     }
 
     return 3;
@@ -413,7 +413,7 @@ static int ov94_0223CBD8(GTSApplicationState *param0)
 static int ov94_0223CBEC(GTSApplicationState *param0)
 {
     ov94_0223CF80(param0, GTS_Text_AreYouSeekingOrOfferingAPokemon, TEXT_SPEED_FAST, 0, 0xf0f);
-    ov94_Setunk_2CAndnextunk_30(param0, 10, 6);
+    ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 10, 6);
     Sprite_SetAnimateFlag(param0->unk_E20, 1);
     GTSApplicationState_StartCountingBoxPokemon(param0);
 
@@ -424,26 +424,26 @@ static int ov94_0223CC28(GTSApplicationState *param0)
 {
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
         ov94_0223CFD8(param0, GTS_Text_IsItOKToDisconnect, ov94_0223C4D4(param0), 0, 0xf0f);
-        ov94_Setunk_2CAndnextunk_30(param0, 10, 12);
+        ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 10, 12);
         Sprite_SetAnimateFlag(param0->unk_E20, 0);
     } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
         switch (param0->unk_10C) {
         case 0: // deposit pokemon
             if (param0->isPokemonListed == 0) {
                 ov94_Setunk_18Andunk_24(param0, 5, 5);
-                param0->unk_2C = 9;
+                param0->currentScreenInstruction = 9;
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
             } else {
                 if (param0->networkTimer == 0) {
                     ov94_Setunk_18Andunk_24(param0, 7, 11);
                     param0->unk_1C = 2;
-                    param0->unk_2C = 9;
+                    param0->currentScreenInstruction = 9;
                     param0->networkTimer = (60 * 30);
                     Sound_PlayEffect(SEQ_SE_CONFIRM);
                 } else {
                     Sprite_SetAnimateFlag(param0->unk_E20, 0);
                     ov94_0223CF80(param0, GTS_Text_PleaseWaitAWhile, TEXT_SPEED_FAST, 0, 0xf0f);
-                    ov94_Setunk_2CAndnextunk_30(param0, 11, 5);
+                    ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 11, 5);
                     Sound_PlayEffect(SEQ_SE_DP_BOX03);
                     param0->unk_10E0 = 0;
                 }
@@ -451,12 +451,12 @@ static int ov94_0223CC28(GTSApplicationState *param0)
             break;
         case 1: // seek pokemon
             ov94_Setunk_18Andunk_24(param0, 4, 0);
-            param0->unk_2C = 9;
+            param0->currentScreenInstruction = 9;
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             break;
         case 2: // exit
             ov94_0223CFD8(param0, GTS_Text_IsItOKToDisconnect, ov94_0223C4D4(param0), 0, 0xf0f);
-            ov94_Setunk_2CAndnextunk_30(param0, 10, 12);
+            ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 10, 12);
             Sprite_SetAnimateFlag(param0->unk_E20, 0);
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             break;
@@ -482,7 +482,7 @@ static int ov94_0223CDD8(GTSApplicationState *param0)
 {
     ov94_022440B8(param0, TrainerInfo_Gender(param0->unk_00->unk_1C));
 
-    param0->unk_2C = 8;
+    param0->currentScreenInstruction = 8;
     param0->unk_10F0 = 0;
 
     return 3;
@@ -491,7 +491,7 @@ static int ov94_0223CDD8(GTSApplicationState *param0)
 static int ov94_0223CE00(GTSApplicationState *param0)
 {
     if (param0->unk_10F0) {
-        param0->unk_2C = 9;
+        param0->currentScreenInstruction = 9;
     }
 
     return 3;
@@ -505,7 +505,7 @@ static int ov94_0223CE14(GTSApplicationState *param0)
         StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
     }
 
-    param0->unk_2C = 0;
+    param0->currentScreenInstruction = 0;
 
     return 4;
 }
@@ -513,7 +513,7 @@ static int ov94_0223CE14(GTSApplicationState *param0)
 static int ov94_0223CE5C(GTSApplicationState *param0)
 {
     param0->unk_10D0 = ov94_0223C3C0(param0->unk_04, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 27 * 4));
-    param0->unk_2C = 13;
+    param0->currentScreenInstruction = 13;
 
     return 3;
 }
@@ -527,12 +527,12 @@ static int ov94_0223CE7C(GTSApplicationState *param0)
             Window_EraseMessageBox(&param0->unk_109C, 1);
             Window_ClearAndCopyToVRAM(&param0->unk_109C);
             Sprite_SetAnimateFlag(param0->unk_E20, 1);
-            param0->unk_2C = 5;
+            param0->currentScreenInstruction = 5;
         } else {
             Window_EraseMessageBox(&param0->unk_109C, 1);
             Window_ClearAndCopyToVRAM(&param0->unk_109C);
             ov94_Setunk_18Andunk_24(param0, 0, 0);
-            param0->unk_2C = 7;
+            param0->currentScreenInstruction = 7;
         }
     }
 
@@ -542,7 +542,7 @@ static int ov94_0223CE7C(GTSApplicationState *param0)
 static int ov94_0223CEE8(GTSApplicationState *param0)
 {
     if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
-        param0->unk_2C = param0->nextunk_2C;
+        param0->currentScreenInstruction = param0->nextScreenInstruction;
     }
 
     return 3;
@@ -555,7 +555,7 @@ static int ov94_0223CF08(GTSApplicationState *param0)
 
         if (param0->unk_10E0 > 45) {
             param0->unk_10E0 = 0;
-            param0->unk_2C = param0->nextunk_2C;
+            param0->currentScreenInstruction = param0->nextScreenInstruction;
         }
     }
 

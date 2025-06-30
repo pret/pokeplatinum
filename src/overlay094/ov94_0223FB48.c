@@ -16,7 +16,6 @@
 #include "overlay094/struct_ov94_0223BA88.h"
 #include "overlay094/struct_ov94_0223BA88_sub2.h"
 #include "overlay094/struct_ov94_0223BA88_sub3.h"
-#include "overlay094/struct_ov94_0223FD4C_sub2.h"
 
 #include "bg_window.h"
 #include "font.h"
@@ -133,7 +132,7 @@ int ov94_0223FB48(GTSApplicationState *param0, int param1)
     ov94_02240FA0(param0, param0->selectedBoxId);
     ov94_02245934(param0);
 
-    param0->unk_2C = 0;
+    param0->currentScreenInstruction = 0;
 
     return 2;
 }
@@ -144,7 +143,7 @@ int ov94_0223FBBC(GTSApplicationState *param0, int param1)
 
     sub_020397B0(GTSApplication_GetNetworkStrength());
 
-    v0 = (*Unk_ov94_022468DC[param0->unk_2C])(param0);
+    v0 = (*Unk_ov94_022468DC[param0->currentScreenInstruction])(param0);
 
     return v0;
 }
@@ -157,7 +156,7 @@ int ov94_0223FBDC(GTSApplicationState *param0, int param1)
     ov94_02240268(param0);
     ov94_02240190(param0);
     ov94_0223FD20(param0->unk_04);
-    ov94_0223C4C8(param0);
+    GTSApplication_MoveToNextScreen(param0);
 
     return 1;
 }
@@ -499,7 +498,7 @@ static void ov94_02240268(GTSApplicationState *param0)
 static int ov94_022402A8(GTSApplicationState *param0)
 {
     if (IsScreenFadeDone()) {
-        param0->unk_2C = 1;
+        param0->currentScreenInstruction = 1;
     }
 
     return 3;
@@ -547,12 +546,12 @@ static int ov94_022402BC(GTSApplicationState *param0)
     if (param0->unk_24 == 5) {
         if (gSystem.pressedKeys & PAD_BUTTON_B) {
             ov94_Setunk_18Andunk_24(param0, 1, 0);
-            param0->unk_2C = 2;
+            param0->currentScreenInstruction = 2;
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
             if (param0->unk_112 == 30) {
                 ov94_Setunk_18Andunk_24(param0, 1, 0);
-                param0->unk_2C = 2;
+                param0->currentScreenInstruction = 2;
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
             } else {
                 if (param0->unk_112 != 31) {
@@ -563,15 +562,15 @@ static int ov94_022402BC(GTSApplicationState *param0)
                         if (ov94_0224121C(param0->unk_00->unk_08, param0->unk_00->pcBoxes, param0->selectedBoxId, param0->unk_112)) {
                             StringTemplate_SetNickname(param0->unk_B8C, 0, ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->pcBoxes, param0->selectedBoxId, param0->unk_112));
                             ov94_02240D58(param0, 22, TEXT_SPEED_FAST, 0, 0xf0f, 0);
-                            ov94_Setunk_2CAndnextunk_30(param0, 3, 7);
+                            ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 3, 7);
                         } else {
                             ov94_02240D58(param0, 26, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-                            ov94_Setunk_2CAndnextunk_30(param0, 4, 1);
+                            ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 4, 1);
                         }
                         break;
                     case 2:
                         ov94_02240D58(param0, 27, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-                        ov94_Setunk_2CAndnextunk_30(param0, 4, 1);
+                        ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 4, 1);
                         break;
                     }
                 }
@@ -580,12 +579,12 @@ static int ov94_022402BC(GTSApplicationState *param0)
     } else if (param0->unk_24 == 6) {
         if (gSystem.pressedKeys & PAD_BUTTON_B) {
             ov94_Setunk_18Andunk_24(param0, 3, 0);
-            param0->unk_2C = 2;
+            param0->currentScreenInstruction = 2;
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
             if (param0->unk_112 == 30) {
                 ov94_Setunk_18Andunk_24(param0, 3, 0);
-                param0->unk_2C = 2;
+                param0->currentScreenInstruction = 2;
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
             } else {
                 if (param0->unk_112 != 31) {
@@ -597,11 +596,11 @@ static int ov94_022402BC(GTSApplicationState *param0)
                             if (ov94_0224121C(param0->unk_00->unk_08, param0->unk_00->pcBoxes, param0->selectedBoxId, param0->unk_112)) {
                                 StringTemplate_SetNickname(param0->unk_B8C, 0, v0);
                                 ov94_02240D58(param0, 18, TEXT_SPEED_FAST, 0, 0xf0f, 0);
-                                ov94_Setunk_2CAndnextunk_30(param0, 3, 9);
+                                ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 3, 9);
                                 Sound_PlayEffect(SEQ_SE_CONFIRM);
                             } else {
                                 ov94_02240D58(param0, 26, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-                                ov94_Setunk_2CAndnextunk_30(param0, 4, 1);
+                                ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 4, 1);
                             }
                         } else {
                             Sound_PlayEffect(SEQ_SE_CONFIRM);
@@ -699,7 +698,7 @@ static int ov94_022405DC(GTSApplicationState *param0)
     Window_DrawStandardFrame(&param0->unk_F9C[0], 1, (1 + (18 + 12)), 11);
 
     param0->unk_10D4 = Menu_NewAndCopyToVRAM(&v0, 9, 0, 0, 62, PAD_BUTTON_B);
-    param0->unk_2C = 8;
+    param0->currentScreenInstruction = 8;
 
     return 3;
 }
@@ -713,7 +712,7 @@ static int ov94_02240688(GTSApplicationState *param0)
         Menu_Free(param0->unk_10D4, NULL);
         StringList_Free(param0->unk_10CC);
         Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
-        param0->unk_2C = 2;
+        param0->currentScreenInstruction = 2;
         ov94_Setunk_18Andunk_24(param0, 8, 5);
         break;
     case 2:
@@ -725,13 +724,13 @@ static int ov94_02240688(GTSApplicationState *param0)
 
         if (BoxPokemon_HasUnusedRibbons(v0)) {
             ov94_02240D58(param0, 37, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-            ov94_Setunk_2CAndnextunk_30(param0, 4, 1);
+            ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 4, 1);
         } else if (BoxPokemon_FormNotInDP(v0)) {
             ov94_02240D58(param0, 170, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-            ov94_Setunk_2CAndnextunk_30(param0, 4, 1);
+            ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 4, 1);
         } else if (BoxPokemon_HeldItemNotInDP(v0)) {
             ov94_02240D58(param0, 171, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-            ov94_Setunk_2CAndnextunk_30(param0, 4, 1);
+            ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 4, 1);
         } else {
             int v1 = 0;
 
@@ -742,13 +741,13 @@ static int ov94_02240688(GTSApplicationState *param0)
 
                 if (Pokemon_GetValue(v2, MON_DATA_BALL_CAPSULE_ID, NULL)) {
                     v1 = 1;
-                    param0->unk_2C = 14;
+                    param0->currentScreenInstruction = 14;
                 }
             }
 
             if (v1 == 0) {
                 param0->unk_114 = ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->pcBoxes, param0->selectedBoxId, param0->unk_112);
-                param0->unk_2C = 2;
+                param0->currentScreenInstruction = 2;
 
                 ov94_Setunk_18Andunk_24(param0, 6, 0);
             }
@@ -760,7 +759,7 @@ static int ov94_02240688(GTSApplicationState *param0)
         StringList_Free(param0->unk_10CC);
         Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
         Window_EraseMessageBox(&param0->bottomInstructionWindow, 0);
-        param0->unk_2C = 1;
+        param0->currentScreenInstruction = 1;
         break;
     }
 
@@ -791,7 +790,7 @@ static int ov94_02240830(GTSApplicationState *param0)
     Window_DrawStandardFrame(&param0->unk_F9C[0], 1, (1 + (18 + 12)), 11);
 
     param0->unk_10D4 = Menu_NewAndCopyToVRAM(&v0, 9, 0, 0, 62, PAD_BUTTON_B);
-    param0->unk_2C = 10;
+    param0->currentScreenInstruction = 10;
 
     return 3;
 }
@@ -805,7 +804,7 @@ static int ov94_022408E8(GTSApplicationState *param0)
         Menu_Free(param0->unk_10D4, NULL);
         StringList_Free(param0->unk_10CC);
         Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
-        param0->unk_2C = 2;
+        param0->currentScreenInstruction = 2;
         ov94_Setunk_18Andunk_24(param0, 8, 6);
         break;
     case 2:
@@ -817,13 +816,13 @@ static int ov94_022408E8(GTSApplicationState *param0)
 
         if (BoxPokemon_HasUnusedRibbons(boxMon)) {
             ov94_02240D58(param0, 37, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-            ov94_Setunk_2CAndnextunk_30(param0, 4, 1);
+            ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 4, 1);
         } else if (BoxPokemon_FormNotInDP(boxMon)) {
             ov94_02240D58(param0, 170, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-            ov94_Setunk_2CAndnextunk_30(param0, 4, 1);
+            ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 4, 1);
         } else if (BoxPokemon_HeldItemNotInDP(boxMon)) {
             ov94_02240D58(param0, 171, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-            ov94_Setunk_2CAndnextunk_30(param0, 4, 1);
+            ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 4, 1);
         } else {
             int v1 = 0;
 
@@ -834,7 +833,7 @@ static int ov94_022408E8(GTSApplicationState *param0)
 
                 if (Pokemon_GetValue(v2, MON_DATA_BALL_CAPSULE_ID, NULL)) {
                     v1 = 1;
-                    param0->unk_2C = 11;
+                    param0->currentScreenInstruction = 11;
                 }
             }
 
@@ -849,7 +848,7 @@ static int ov94_022408E8(GTSApplicationState *param0)
         StringList_Free(param0->unk_10CC);
         Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
         Window_EraseMessageBox(&param0->bottomInstructionWindow, 0);
-        param0->unk_2C = 1;
+        param0->currentScreenInstruction = 1;
         break;
     }
 
@@ -865,7 +864,7 @@ static int ov94_02240A6C(GTSApplicationState *param0)
         StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
     }
 
-    param0->unk_2C = 0;
+    param0->currentScreenInstruction = 0;
 
     return 4;
 }
@@ -873,7 +872,7 @@ static int ov94_02240A6C(GTSApplicationState *param0)
 static int ov94_02240AC4(GTSApplicationState *param0)
 {
     param0->unk_10D0 = ov94_0223C3C0(param0->unk_04, 15, ((((((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2) + 2 * 19) + 6 * 2) + (5 * 2) * 6));
-    param0->unk_2C = 6;
+    param0->currentScreenInstruction = 6;
 
     return 3;
 }
@@ -884,9 +883,9 @@ static int ov94_02240AE8(GTSApplicationState *param0)
 
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
-            param0->unk_2C = 0;
+            param0->currentScreenInstruction = 0;
         } else {
-            param0->unk_2C = 2;
+            param0->currentScreenInstruction = 2;
             ov94_Setunk_18Andunk_24(param0, 0, 0);
         }
     }
@@ -897,7 +896,7 @@ static int ov94_02240AE8(GTSApplicationState *param0)
 static int ov94_02240B20(GTSApplicationState *param0)
 {
     ov94_02240D58(param0, 25, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-    ov94_Setunk_2CAndnextunk_30(param0, 3, 12);
+    ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 3, 12);
 
     return 3;
 }
@@ -905,7 +904,7 @@ static int ov94_02240B20(GTSApplicationState *param0)
 static int ov94_02240B4C(GTSApplicationState *param0)
 {
     param0->unk_10D0 = ov94_0223C3C0(param0->unk_04, 13, ((((((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2) + 2 * 19) + 6 * 2) + (5 * 2) * 6));
-    param0->unk_2C = 13;
+    param0->currentScreenInstruction = 13;
 
     return 3;
 }
@@ -917,7 +916,7 @@ static int ov94_02240B70(GTSApplicationState *param0)
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
             Window_EraseMessageBox(&param0->unk_109C, 0);
-            param0->unk_2C = 1;
+            param0->currentScreenInstruction = 1;
         } else {
             ov94_02240BB0(param0);
         }
@@ -933,13 +932,13 @@ static int ov94_02240BB0(GTSApplicationState *param0)
     if (ov94_02241498(v0) && (param0->selectedBoxId != MAX_PC_BOXES)) {
         if (Party_GetCurrentCount(param0->unk_00->unk_08) == 6) {
             ov94_02240D58(param0, 28, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-            ov94_Setunk_2CAndnextunk_30(param0, 4, 1);
+            ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 4, 1);
             return 0;
         }
     }
 
     param0->unk_114 = ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->pcBoxes, param0->selectedBoxId, param0->unk_112);
-    param0->unk_2C = 2;
+    param0->currentScreenInstruction = 2;
     param0->unk_1110 = 1;
 
     ov94_Setunk_18Andunk_24(param0, 7, 9);
@@ -953,7 +952,7 @@ static int ov94_02240BB0(GTSApplicationState *param0)
 static int ov94_02240C58(GTSApplicationState *param0)
 {
     ov94_02240D58(param0, 25, TEXT_SPEED_FAST, 0, 0xf0f, 1);
-    ov94_Setunk_2CAndnextunk_30(param0, 3, 15);
+    ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 3, 15);
 
     return 3;
 }
@@ -961,7 +960,7 @@ static int ov94_02240C58(GTSApplicationState *param0)
 static int ov94_02240C84(GTSApplicationState *param0)
 {
     param0->unk_10D0 = ov94_0223C3C0(param0->unk_04, 13, ((((((((1 + (18 + 12)) + 9) + 28 * 2) + 13 * 13) + 27 * 2) + 2 * 19) + 6 * 2) + (5 * 2) * 6));
-    param0->unk_2C = 16;
+    param0->currentScreenInstruction = 16;
 
     return 3;
 }
@@ -973,10 +972,10 @@ static int ov94_02240CA8(GTSApplicationState *param0)
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
             Window_EraseMessageBox(&param0->unk_109C, 0);
-            param0->unk_2C = 1;
+            param0->currentScreenInstruction = 1;
         } else {
             param0->unk_114 = ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->pcBoxes, param0->selectedBoxId, param0->unk_112);
-            param0->unk_2C = 2;
+            param0->currentScreenInstruction = 2;
             ov94_Setunk_18Andunk_24(param0, 6, 0);
         }
     }
@@ -987,7 +986,7 @@ static int ov94_02240CA8(GTSApplicationState *param0)
 static int ov94_02240D08(GTSApplicationState *param0)
 {
     if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
-        param0->unk_2C = param0->nextunk_2C;
+        param0->currentScreenInstruction = param0->nextScreenInstruction;
     }
 
     return 3;
@@ -997,7 +996,7 @@ static int ov94_02240D28(GTSApplicationState *param0)
 {
     if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
         Window_EraseMessageBox(&param0->unk_109C, 0);
-        param0->unk_2C = param0->nextunk_2C;
+        param0->currentScreenInstruction = param0->nextScreenInstruction;
     }
 
     return 3;

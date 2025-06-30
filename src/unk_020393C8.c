@@ -311,7 +311,7 @@ void sub_02039734(void)
 
 void sub_02039750(int param0, int param1, BOOL param2, int param3)
 {
-    if (!sub_020334B8()) {
+    if (!WirelessDriver_Initialised()) {
         return;
     }
 

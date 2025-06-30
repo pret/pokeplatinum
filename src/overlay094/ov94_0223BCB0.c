@@ -4,6 +4,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/gts.h"
 #include "constants/species.h"
 
 #include "struct_defs/gts_player_data.h"
@@ -68,8 +69,9 @@ static void GTSApplicationState_CountBoxPokemon(GTSApplicationState *appState);
 
 static NNSFndHeapHandle Unk_ov94_02246C04;
 
-static int (*Unk_ov94_0224674C[][3])(GTSApplicationState *, int) = {
-    { GTSApplication_InitWFCScreen, ov94_022449FC, ov94_02244A2C },
+// gtsApplicationScreens { init, main, exit }
+static int (*gtsApplicationScreens[][3])(GTSApplicationState *, int) = {
+    { GTSApplication_InitWFCScreen, ov94_022449FC, ov94_02244A2C }, // wfc
     { ov94_0223C610, ov94_0223C6D4, ov94_0223C6F4 },
     { ov94_0223D0C4, ov94_0223D19C, ov94_0223D1B0 },
     { ov94_0223DC04, ov94_0223DCE4, ov94_0223DCF8 },
@@ -81,7 +83,7 @@ static int (*Unk_ov94_0224674C[][3])(GTSApplicationState *, int) = {
     { ov94_022444C8, ov94_02244678, ov94_0224484C },
 };
 
-GTSApplicationState *Unk_ov94_02246C08;
+GTSApplicationState *unused_GTSApplicationState;
 
 int GTSApplication_Init(ApplicationManager *appMan, int *param1)
 {
@@ -102,7 +104,7 @@ int GTSApplication_Init(ApplicationManager *appMan, int *param1)
         v0 = ApplicationManager_NewData(appMan, sizeof(GTSApplicationState), HEAP_ID_62);
         memset(v0, 0, sizeof(GTSApplicationState));
         v0->unk_04 = BgConfig_New(HEAP_ID_62);
-        Unk_ov94_02246C08 = v0;
+        unused_GTSApplicationState = v0;
 
         {
             GraphicsModes v1 = {
@@ -136,7 +138,7 @@ int GTSApplication_Init(ApplicationManager *appMan, int *param1)
     case 1:
         sub_02099550(); // load overlay4
         sub_020995B4(); // load overlay60
-        sub_02033478(); // some network lock?
+        WirelessDriver_Init(); // some network lock?
         (*param1) = 0;
         return 1; // pass through to main
         break;
@@ -153,29 +155,29 @@ int GTSApplication_Main(ApplicationManager *appMan, int *param1)
     ov94_0223B15C();
 
     switch (*param1) {
-    case 0:
-        if (sub_020334A4()) { // set some network lock?
+    case GTS_APPLICATION_LOOP_STATE_WAIT_FOR_WIRELESS_DRIVER:
+        if (WirelessDriver_IsReady()) {
             Unk_ov94_02246C04 = appState->unk_50;
             DWC_SetMemFunc(ov94_0223C468, ov94_0223C490);
             *param1 = 1;
         }
         break;
-    case 1: // GTS_WFC_INIT_SCREEN
-        *param1 = (*Unk_ov94_0224674C[appState->unk_14][0])(appState, *param1);
+    case GTS_APPLICATION_LOOP_STATE_INIT: // GTS_WFC_INIT_SCREEN
+        *param1 = (*gtsApplicationScreens[appState->screenId][0])(appState, *param1);
 
         if (appState->unk_104) {
             ov94_0223C508(appState);
         }
         break;
-    case 2: // GTS_WFC_VISIBLE
+    case GTS_APPLICATION_LOOP_STATE_WAIT_FADE: // GTS_WFC_VISIBLE
         if (IsScreenFadeDone()) {
             *param1 = 3;
         }
         break;
-    case 3: // GTS_WFC_CONNECTING
-        *param1 = (*Unk_ov94_0224674C[appState->unk_14][1])(appState, *param1);
+    case GTS_APPLICATION_LOOP_STATE_MAIN: // GTS_WFC_CONNECTING
+        *param1 = (*gtsApplicationScreens[appState->screenId][1])(appState, *param1);
         break;
-    case 4:
+    case GTS_APPLICATION_LOOP_STATE_FINISH:
         if (IsScreenFadeDone()) {
             if (appState->unk_104) {
                 ov94_0223C4E0(appState);
@@ -184,10 +186,10 @@ int GTSApplication_Main(ApplicationManager *appMan, int *param1)
                 ov94_0223D068(appState);
                 appState->unk_104 = 0;
             }
-            *param1 = (*Unk_ov94_0224674C[appState->unk_14][2])(appState, *param1);
+            *param1 = (*gtsApplicationScreens[appState->screenId][2])(appState, *param1);
         }
         break;
-    case 5:
+    case GTS_APPLICATION_LOOP_STATE_EXIT:
         return 1;
         break;
     }
@@ -222,7 +224,7 @@ int GTSApplication_Exit(ApplicationManager *appMan, int *param1)
 
     ov94_0223C0A0(v0);
 
-    sub_020334CC();
+    WirelessDriver_Shutdown();
     Heap_FreeToHeap(v0->unk_04);
     Heap_FreeToHeap(v0->unk_00);
     ApplicationManager_FreeData(appMan);
@@ -270,7 +272,7 @@ static void ov94_0223C01C(void)
 static void GTSApplicationState_InitPlayerData(GTSApplicationState *param0, ApplicationManager *appMan)
 {
     param0->unk_00 = (GTSPlayerData *)ApplicationManager_Args(appMan);
-    param0->unk_14 = 0;
+    param0->screenId = 0;
 
     ov94_Setunk_18Andunk_24(param0, 0, 0);
 
@@ -416,10 +418,10 @@ Menu *ov94_0223C3C0(BgConfig *param0, int param1, int param2)
     return Menu_MakeYesNoChoice(param0, &v0, (1 + (18 + 12)), 11, 62);
 }
 
-void ov94_Setunk_2CAndnextunk_30(GTSApplicationState *param0, int param1, int param2)
+void ov94_SetcurrentScreenInstructionAndnextunk_30(GTSApplicationState *param0, int param1, int param2)
 {
-    param0->unk_2C = param1;
-    param0->nextunk_2C = param2;
+    param0->currentScreenInstruction = param1;
+    param0->nextScreenInstruction = param2;
 }
 
 void ov94_0223C3FC(Sprite *param0, int param1, int param2)
@@ -477,10 +479,10 @@ void ov94_Setunk_18Andunk_24(GTSApplicationState *param0, int param1, int param2
     param0->unk_24 = param2;
 }
 
-void ov94_0223C4C8(GTSApplicationState *param0)
+void GTSApplication_MoveToNextScreen(GTSApplicationState *param0)
 {
-    param0->unk_20 = param0->unk_14;
-    param0->unk_14 = param0->unk_18;
+    param0->unk_20 = param0->screenId;
+    param0->screenId = param0->unk_18;
 }
 
 int ov94_0223C4D4(GTSApplicationState *param0)

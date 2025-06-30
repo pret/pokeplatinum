@@ -130,7 +130,7 @@ int ov98_02246C98(ApplicationManager *appMan, int *param1)
         *param1 = 1;
         break;
     case 1:
-        if (sub_020334A4()) {
+        if (WirelessDriver_IsReady()) {
             Unk_ov98_02249E20 = v0->unk_10;
             DWC_SetMemFunc(ov98_02246EAC, ov98_02246ED4);
             v0->unk_80 = 1;
@@ -195,7 +195,7 @@ static void ov98_02246E08(UnkStruct_ov98_02246E88 *param0)
 
         sub_02099550();
         sub_020995B4();
-        sub_02033478();
+        WirelessDriver_Init();
         SleepUnlock(4);
     }
 }
@@ -208,7 +208,7 @@ static void ov98_02246E54(UnkStruct_ov98_02246E88 *param0)
         Heap_FreeToHeap(param0->unk_0C);
         sub_020995C4();
         sub_02099560();
-        sub_020334CC();
+        WirelessDriver_Shutdown();
         Overlay_UnloadByID(FS_OVERLAY_ID(overlay94));
 
         param0->unk_80 = 0;

@@ -14,9 +14,6 @@
 #include "overlay094/struct_ov94_0223BA88.h"
 #include "overlay094/struct_ov94_0223BA88_sub2.h"
 #include "overlay094/struct_ov94_0223BA88_sub3.h"
-#include "overlay094/struct_ov94_0223FD4C_sub1.h"
-#include "overlay094/struct_ov94_0223FD4C_sub2.h"
-#include "overlay094/struct_ov94_0223FD4C_sub3.h"
 #include "overlay094/struct_ov94_02242AAC.h"
 #include "overlay096/struct_ov96_0223B574.h"
 #include "overlay096/struct_ov96_0223B574_1.h"
@@ -36,20 +33,52 @@
 #include "sys_task_manager.h"
 #include "trainer_info.h"
 
+typedef struct {
+    int unk_00;
+    int unk_04;
+} GTSApplicationState_sub1;
+
+typedef struct {
+    UnkStruct_ov94_0223BA88_sub2 unk_00[30];
+} GTSApplicationState_sub2;
+
+typedef struct {
+    Strbuf **unk_00;
+    u16 unk_04;
+    u16 unk_06;
+    u16 unk_08;
+    u16 unk_0A;
+    int unk_0C;
+    int unk_10;
+    u8 *unk_14;
+    u16 *unk_18; // ov94_Pokedex_Alphabetical
+    int unk_1C;
+    int unk_20;
+    int unk_24;
+    int unk_28;
+    int unk_2C;
+} GTSApplicationState_sub3;
+
+// video sources:
+// https://www.youtube.com/watch?v=18h1r5AQ5ZQ
+// https://www.youtube.com/watch?v=-MEPpSTuYEM
+// https://www.youtube.com/watch?v=TrOswIZsocc
+// https://www.youtube.com/watch?v=vH8U16wV7-E
+// https://www.youtube.com/watch?v=aQpc0lr12vA
 typedef struct GTSApplicationState {
     GTSPlayerData *unk_00;
     BgConfig *unk_04;
     WiFiList *unk_08;
     int unk_0C;
     int unk_10;
-    int unk_14; // some kind of pointer
+    int screenId; // some kind of pointer
     int unk_18;
     int unk_1C;
     int unk_20;
     int unk_24;
     int unk_28;
-    int unk_2C; // some kind of instruction pointer
-    int nextunk_2C;
+    int currentScreenInstruction; // some kind of instruction pointer
+    int nextScreenInstruction;
     u16 unk_34;
     u16 isPokemonListed;
     u16 unk_38;

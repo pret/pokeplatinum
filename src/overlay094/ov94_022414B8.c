@@ -19,7 +19,6 @@
 #include "overlay094/struct_ov94_0223BA88.h"
 #include "overlay094/struct_ov94_0223BA88_sub2.h"
 #include "overlay094/struct_ov94_0223BA88_sub3.h"
-#include "overlay094/struct_ov94_0223FD4C_sub3.h"
 #include "overlay094/struct_ov94_02242AAC.h"
 
 #include "bg_window.h"
@@ -47,6 +46,7 @@
 #include "unk_0202C858.h"
 #include "unk_020393C8.h"
 
+#include "res/text/bank/country_names.h"
 #include "res/text/bank/gts.h"
 
 typedef struct {
@@ -114,7 +114,7 @@ static const u16 Unk_ov94_02245FE8[6][2] = {
     { 0x1, 0x11 }
 };
 
-static const GTSLevelRangeMessage GTS_LEVEL_PREFERENCE_MESSAGES[] = {
+static const GTSLevelRangeMessage gtsLevelPreferenceMessages[] = {
     { GTS_Text_LevelPreference_Any, 0x0, 0x0 },
     { GTS_Text_LevelPreference_UnderLevel10, 0x0, 0x9 },
     { GTS_Text_LevelPreference_Level10AndUp, 0xA, 0x0 },
@@ -130,7 +130,7 @@ static const GTSLevelRangeMessage GTS_LEVEL_PREFERENCE_MESSAGES[] = {
     { GTS_Text_LevelPreference_Cancel, 0x0, 0x0 }
 };
 
-static const GTSLevelRangeMessage GTS_LEVEL_RANGE_MESSAGES[] = {
+static const GTSLevelRangeMessage gtsLevelRangeMessages[] = {
     { GTS_Text_LevelRange_Any, 0x0, 0x0 },
     { GTS_Text_LevelRange_1to10, 0x1, 0xA },
     { GTS_Text_LevelRange_11to20, 0xB, 0x14 },
@@ -145,140 +145,140 @@ static const GTSLevelRangeMessage GTS_LEVEL_RANGE_MESSAGES[] = {
     { GTS_Text_LevelRange_Cancel, 0x0, 0x0 }
 };
 
-__attribute__((aligned(4))) static const u16 Unk_ov94_02246174[] = {
-    0x1,
-    0x2,
-    0x3,
-    0x6,
-    0x8,
-    0x9,
-    0xC,
-    0xD,
-    0xF,
-    0x10,
-    0x11,
-    0x12,
-    0x14,
-    0x15,
-    0x16,
-    0x17,
-    0x19,
-    0x1B,
-    0x1C,
-    0x1D,
-    0x1F,
-    0x21,
-    0x22,
-    0x23,
-    0x24,
-    0x28,
-    0x2A,
-    0x2B,
-    0x2D,
-    0x30,
-    0x31,
-    0x32,
-    0x34,
-    0x36,
-    0x37,
-    0x38,
-    0x3A,
-    0x3B,
-    0x3C,
-    0x3D,
-    0x3E,
-    0x45,
-    0x46,
-    0x47,
-    0x48,
-    0x4A,
-    0x4D,
-    0x4E,
-    0x4F,
-    0x50,
-    0x51,
-    0x52,
-    0x53,
-    0x55,
-    0x56,
-    0x58,
-    0x59,
-    0x5A,
-    0x5B,
-    0x5C,
-    0x5D,
-    0x5E,
-    0x5F,
-    0x61,
-    0x62,
-    0x64,
-    0x65,
-    0x66,
-    0x67,
-    0x68,
-    0x6B,
-    0x6F,
-    0x73,
-    0x75,
-    0x76,
-    0x79,
-    0x7A,
-    0x7E,
-    0x81,
-    0x83,
-    0x85,
-    0x87,
-    0x8C,
-    0x8E,
-    0x92,
-    0x94,
-    0x95,
-    0x96,
-    0x97,
-    0x98,
-    0x9C,
-    0x9D,
-    0x9E,
-    0xA0,
-    0xA1,
-    0xA3,
-    0xA4,
-    0xA6,
-    0xA7,
-    0x6E,
-    0xAB,
-    0xAC,
-    0xB3,
-    0xB7,
-    0xBA,
-    0xBB,
-    0xBC,
-    0xBD,
-    0xC0,
-    0xC1,
-    0xC2,
-    0xC4,
-    0xC6,
-    0xC7,
-    0xC8,
-    0xCA,
-    0xCD,
-    0xCF,
-    0xD3,
-    0xD4,
-    0xD8,
-    0xDA,
-    0xDB,
-    0xCC,
-    0xDD,
-    0xDC,
-    0xDE,
-    0xE0,
-    0xE2,
-    0xE3
+__attribute__((aligned(4))) static const u16 gtsAvailableCountries[] = {
+    pl_msg_00000694_00001,
+    pl_msg_00000694_00002,
+    pl_msg_00000694_00003,
+    pl_msg_00000694_00006,
+    pl_msg_00000694_00008,
+    pl_msg_00000694_00009,
+    pl_msg_00000694_00012,
+    pl_msg_00000694_00013,
+    pl_msg_00000694_00015,
+    pl_msg_00000694_00016,
+    pl_msg_00000694_00017,
+    pl_msg_00000694_00018,
+    pl_msg_00000694_00020,
+    pl_msg_00000694_00021,
+    pl_msg_00000694_00022,
+    pl_msg_00000694_00023,
+    pl_msg_00000694_00025,
+    pl_msg_00000694_00027,
+    pl_msg_00000694_00028,
+    pl_msg_00000694_00029,
+    pl_msg_00000694_00031,
+    pl_msg_00000694_00033,
+    pl_msg_00000694_00034,
+    pl_msg_00000694_00035,
+    pl_msg_00000694_00036,
+    pl_msg_00000694_00040,
+    pl_msg_00000694_00042,
+    pl_msg_00000694_00043,
+    pl_msg_00000694_00045,
+    pl_msg_00000694_00048,
+    pl_msg_00000694_00049,
+    pl_msg_00000694_00050,
+    pl_msg_00000694_00052,
+    pl_msg_00000694_00054,
+    pl_msg_00000694_00055,
+    pl_msg_00000694_00056,
+    pl_msg_00000694_00058,
+    pl_msg_00000694_00059,
+    pl_msg_00000694_00060,
+    pl_msg_00000694_00061,
+    pl_msg_00000694_00062,
+    pl_msg_00000694_00069,
+    pl_msg_00000694_00070,
+    pl_msg_00000694_00071,
+    pl_msg_00000694_00072,
+    pl_msg_00000694_00074,
+    pl_msg_00000694_00077,
+    pl_msg_00000694_00078,
+    pl_msg_00000694_00079,
+    pl_msg_00000694_00080,
+    pl_msg_00000694_00081,
+    pl_msg_00000694_00082,
+    pl_msg_00000694_00083,
+    pl_msg_00000694_00085,
+    pl_msg_00000694_00086,
+    pl_msg_00000694_00088,
+    pl_msg_00000694_00089,
+    pl_msg_00000694_00090,
+    pl_msg_00000694_00091,
+    pl_msg_00000694_00092,
+    pl_msg_00000694_00093,
+    pl_msg_00000694_00094,
+    pl_msg_00000694_00095,
+    pl_msg_00000694_00097,
+    pl_msg_00000694_00098,
+    pl_msg_00000694_00100,
+    pl_msg_00000694_00101,
+    pl_msg_00000694_00102,
+    pl_msg_00000694_00103,
+    pl_msg_00000694_00104,
+    pl_msg_00000694_00107,
+    pl_msg_00000694_00111,
+    pl_msg_00000694_00115,
+    pl_msg_00000694_00117,
+    pl_msg_00000694_00118,
+    pl_msg_00000694_00121,
+    pl_msg_00000694_00122,
+    pl_msg_00000694_00126,
+    pl_msg_00000694_00129,
+    pl_msg_00000694_00131,
+    pl_msg_00000694_00133,
+    pl_msg_00000694_00135,
+    pl_msg_00000694_00140,
+    pl_msg_00000694_00142,
+    pl_msg_00000694_00146,
+    pl_msg_00000694_00148,
+    pl_msg_00000694_00149,
+    pl_msg_00000694_00150,
+    pl_msg_00000694_00151,
+    pl_msg_00000694_00152,
+    pl_msg_00000694_00156,
+    pl_msg_00000694_00157,
+    pl_msg_00000694_00158,
+    pl_msg_00000694_00160,
+    pl_msg_00000694_00161,
+    pl_msg_00000694_00163,
+    pl_msg_00000694_00164,
+    pl_msg_00000694_00166,
+    pl_msg_00000694_00167,
+    pl_msg_00000694_00110,
+    pl_msg_00000694_00171,
+    pl_msg_00000694_00172,
+    pl_msg_00000694_00179,
+    pl_msg_00000694_00183,
+    pl_msg_00000694_00186,
+    pl_msg_00000694_00187,
+    pl_msg_00000694_00188,
+    pl_msg_00000694_00189,
+    pl_msg_00000694_00192,
+    pl_msg_00000694_00193,
+    pl_msg_00000694_00194,
+    pl_msg_00000694_00196,
+    pl_msg_00000694_00198,
+    pl_msg_00000694_00199,
+    pl_msg_00000694_00200,
+    pl_msg_00000694_00202,
+    pl_msg_00000694_00205,
+    pl_msg_00000694_00207,
+    pl_msg_00000694_00211,
+    pl_msg_00000694_00212,
+    pl_msg_00000694_00216,
+    pl_msg_00000694_00218,
+    pl_msg_00000694_00219,
+    pl_msg_00000694_00204,
+    pl_msg_00000694_00221,
+    pl_msg_00000694_00220,
+    pl_msg_00000694_00222,
+    pl_msg_00000694_00224,
+    pl_msg_00000694_00226,
+    pl_msg_00000694_00227
 };
 
-const u32 Unk_ov94_02245FD4 = NELEMS(Unk_ov94_02246174);
+const u32 Unk_ov94_02245FD4 = NELEMS(gtsAvailableCountries);
 
 int ov94_022414B8(GTSApplicationState *param0, int param1)
 {
@@ -293,7 +293,7 @@ int ov94_022414B8(GTSApplicationState *param0, int param1)
     ov94_022422D4(param0->gtsMessageLoader, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[0], 0, 3, -1);
     ov94_022423FC(param0->gtsMessageLoader, param0->unk_B8C, &param0->unk_FCC[3], param0->unk_114, &param0->unk_B70);
 
-    param0->unk_2C = 0;
+    param0->currentScreenInstruction = 0;
 
     return 2;
 }
@@ -304,7 +304,7 @@ int ov94_02241548(GTSApplicationState *param0, int param1)
 
     sub_020397B0(GTSApplication_GetNetworkStrength());
 
-    v0 = (*Unk_ov94_0224695C[param0->unk_2C])(param0);
+    v0 = (*Unk_ov94_0224695C[param0->currentScreenInstruction])(param0);
     return v0;
 }
 
@@ -315,7 +315,7 @@ int ov94_02241568(GTSApplicationState *param0, int param1)
     ov94_02241920(param0);
     ov94_02241880(param0);
     ov94_022416E0(param0->unk_04);
-    ov94_0223C4C8(param0);
+    GTSApplication_MoveToNextScreen(param0);
 
     return 1;
 }
@@ -520,7 +520,7 @@ static int ov94_0224195C(GTSApplicationState *param0)
 {
     if (IsScreenFadeDone()) {
         ov94_0224158C(param0, GTS_Text_PleaseChoosePokemon, TEXT_SPEED_FAST, 0, 0xf0f);
-        ov94_Setunk_2CAndnextunk_30(param0, 16, 1);
+        ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 16, 1);
     }
 
     return 3;
@@ -530,7 +530,7 @@ static int ov94_02241990(GTSApplicationState *param0)
 {
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
         ov94_Setunk_18Andunk_24(param0, 5, 5);
-        param0->unk_2C = 2;
+        param0->currentScreenInstruction = 2;
     }
 
     Window_Add(param0->unk_04, &param0->unk_F9C[0], 0, 15, 5, 4, 13, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 11 * 2 * 6));
@@ -539,7 +539,7 @@ static int ov94_02241990(GTSApplicationState *param0)
     Window_Add(param0->unk_04, &param0->unk_F9C[1], 0, 21, 5, 10, 13, 13, ((((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 11 * 2 * 6) + 4 * 13));
     Window_FillTilemap(&param0->unk_F9C[1], 0x0);
 
-    param0->unk_2C = 3;
+    param0->currentScreenInstruction = 3;
 
     return 3;
 }
@@ -548,7 +548,7 @@ static int ov94_02241A1C(GTSApplicationState *param0)
 {
     param0->unk_10D8 = ov94_022426A8(param0, &param0->unk_10CC, &param0->unk_F9C[0], param0->gtsMessageLoader);
     param0->unk_108 = 0xffff;
-    param0->unk_2C = 4;
+    param0->currentScreenInstruction = 4;
 
     return 3;
 }
@@ -567,7 +567,7 @@ static int ov94_02241A58(GTSApplicationState *param0)
     case 9:
         ListMenu_Free(param0->unk_10D8, &param0->unk_10E4->unk_06, &param0->unk_10E4->unk_04);
         StringList_Free(param0->unk_10CC);
-        param0->unk_2C = 5;
+        param0->currentScreenInstruction = 5;
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         break;
     case 0xfffffffe:
@@ -578,7 +578,7 @@ static int ov94_02241A58(GTSApplicationState *param0)
         Window_Remove(&param0->unk_F9C[0]);
         Window_Remove(&param0->unk_F9C[1]);
         ov94_Setunk_18Andunk_24(param0, 5, 5);
-        param0->unk_2C = 2;
+        param0->currentScreenInstruction = 2;
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         break;
     }
@@ -590,7 +590,7 @@ static int ov94_02241B2C(GTSApplicationState *param0)
 {
     param0->unk_10D8 = ov94_022427C0(param0, &param0->unk_10CC, &param0->unk_F9C[1], param0->gtsMessageLoader, param0->unk_B94, param0->unk_10E4, param0->unk_00->unk_10);
     param0->unk_108 = 0xffff;
-    param0->unk_2C = 6;
+    param0->currentScreenInstruction = 6;
 
     return 3;
 }
@@ -626,7 +626,7 @@ static int ov94_02241BAC(GTSApplicationState *param0)
         Window_EraseStandardFrame(&param0->unk_F9C[1], 0);
         Window_Remove(&param0->unk_F9C[0]);
         Window_Remove(&param0->unk_F9C[1]);
-        param0->unk_2C = 0;
+        param0->currentScreenInstruction = 0;
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov94_02242AC4(&param0->unk_111C, param0->unk_10E4->unk_06 + param0->unk_10E4->unk_04, param0->unk_10E4->unk_0A, param0->unk_10E4->unk_08);
         break;
@@ -642,10 +642,10 @@ static int ov94_02241BAC(GTSApplicationState *param0)
         param0->unk_10E4->unk_20 = SpeciesData_GetSpeciesValue(v0, SPECIES_DATA_GENDER_RATIO);
 
         if (ov94_02241B80(&param0->unk_B74, param0->unk_10E4->unk_20)) {
-            param0->unk_2C = 10;
+            param0->currentScreenInstruction = 10;
             v1 = param0->unk_B74.gender;
         } else {
-            param0->unk_2C = 7;
+            param0->currentScreenInstruction = 7;
             v1 = 3;
         }
 
@@ -660,7 +660,7 @@ static int ov94_02241BAC(GTSApplicationState *param0)
 static int ov94_02241D08(GTSApplicationState *param0)
 {
     ov94_0224158C(param0, GTS_Text_PleaseChooseGender, TEXT_SPEED_FAST, 0, 0xf0f);
-    ov94_Setunk_2CAndnextunk_30(param0, 16, 8);
+    ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 16, 8);
 
     Window_Add(param0->unk_04, &param0->unk_F9C[0], 0, 21, 10, 10, 8, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 11 * 2 * 6));
     Window_FillTilemap(&param0->unk_F9C[0], 0x0);
@@ -672,7 +672,7 @@ static int ov94_02241D64(GTSApplicationState *param0)
 {
     param0->unk_10D8 = ov94_02242840(&param0->unk_10CC, &param0->unk_F9C[0], param0->gtsMessageLoader);
     param0->unk_108 = 0xffff;
-    param0->unk_2C = 9;
+    param0->currentScreenInstruction = 9;
 
     return 3;
 }
@@ -689,7 +689,7 @@ static int ov94_02241DA0(GTSApplicationState *param0)
         Window_EraseMessageBox(&param0->bottomInstructionWindow, 0);
         Window_Remove(&param0->unk_F9C[0]);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        param0->unk_2C = 0;
+        param0->currentScreenInstruction = 0;
         break;
 
     case 0:
@@ -701,7 +701,7 @@ static int ov94_02241DA0(GTSApplicationState *param0)
         Window_Remove(&param0->unk_F9C[0]);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->unk_B74.gender = v0 + 1;
-        param0->unk_2C = 10;
+        param0->currentScreenInstruction = 10;
         ov94_022422D4(param0->gtsMessageLoader, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[0], param0->unk_B74.species, param0->unk_B74.gender, -1);
         break;
     }
@@ -712,7 +712,7 @@ static int ov94_02241DA0(GTSApplicationState *param0)
 static int ov94_02241E8C(GTSApplicationState *param0)
 {
     ov94_0224158C(param0, GTS_Text_PleaseChooseLevel, TEXT_SPEED_FAST, 0, 0xf0f);
-    ov94_Setunk_2CAndnextunk_30(param0, 16, 11);
+    ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 16, 11);
 
     Window_Add(param0->unk_04, &param0->unk_F9C[0], 0, 15, 5, 16, 13, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 11 * 2 * 6));
     Window_FillTilemap(&param0->unk_F9C[0], 0x0);
@@ -724,7 +724,7 @@ static int ov94_02241EE8(GTSApplicationState *param0)
 {
     param0->unk_10D8 = ov94_022428B0(&param0->unk_10CC, &param0->unk_F9C[0], param0->gtsMessageLoader, 0);
     param0->unk_108 = 0xffff;
-    param0->unk_2C = 12;
+    param0->currentScreenInstruction = 12;
 
     return 3;
 }
@@ -746,9 +746,9 @@ static int ov94_02241F28(GTSApplicationState *param0)
         Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         if (ov94_02241B80(&param0->unk_B74, param0->unk_10E4->unk_20)) {
-            param0->unk_2C = 0;
+            param0->currentScreenInstruction = 0;
         } else {
-            param0->unk_2C = 7;
+            param0->currentScreenInstruction = 7;
         }
         break;
     default:
@@ -758,7 +758,7 @@ static int ov94_02241F28(GTSApplicationState *param0)
         Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
         Window_Remove(&param0->unk_F9C[0]);
         ov94_02242934(&param0->unk_B74, v0, 0);
-        param0->unk_2C = 13;
+        param0->currentScreenInstruction = 13;
         ov94_022422D4(param0->gtsMessageLoader, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[0], param0->unk_B74.species, param0->unk_B74.gender, ov94_02242970(param0->unk_B74.level, param0->unk_B74.level2, 0));
         break;
     }
@@ -769,7 +769,7 @@ static int ov94_02241F28(GTSApplicationState *param0)
 static int ov94_02242040(GTSApplicationState *param0)
 {
     ov94_0224158C(param0, GTS_Text_ConfirmCriteria, TEXT_SPEED_FAST, 0, 0xf0f);
-    ov94_Setunk_2CAndnextunk_30(param0, 16, 14);
+    ov94_SetcurrentScreenInstructionAndnextunk_30(param0, 16, 14);
 
     return 3;
 }
@@ -777,7 +777,7 @@ static int ov94_02242040(GTSApplicationState *param0)
 static int ov94_02242068(GTSApplicationState *param0)
 {
     param0->unk_10D0 = ov94_0223C3C0(param0->unk_04, 15, ((((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 11 * 2 * 6) + 16 * 13));
-    param0->unk_2C = 15;
+    param0->currentScreenInstruction = 15;
 
     return 3;
 }
@@ -789,10 +789,10 @@ static int ov94_0224208C(GTSApplicationState *param0)
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
             ov94_Setunk_18Andunk_24(param0, 5, 5);
-            param0->unk_2C = 2;
+            param0->currentScreenInstruction = 2;
         } else {
             ov94_Setunk_18Andunk_24(param0, 7, 7);
-            param0->unk_2C = 2;
+            param0->currentScreenInstruction = 2;
             param0->unk_1110 = 1;
             ov94_02242668(&param0->unk_12C, param0);
         }
@@ -810,7 +810,7 @@ static int ov94_022420E4(GTSApplicationState *param0)
         StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
     }
 
-    param0->unk_2C = 0;
+    param0->currentScreenInstruction = 0;
 
     return 4;
 }
@@ -818,7 +818,7 @@ static int ov94_022420E4(GTSApplicationState *param0)
 static int ov94_02242138(GTSApplicationState *param0)
 {
     if (Text_IsPrinterActive(param0->unk_BE0) == 0) {
-        param0->unk_2C = param0->nextunk_2C;
+        param0->currentScreenInstruction = param0->nextScreenInstruction;
     }
 
     return 3;
@@ -866,7 +866,7 @@ static TextColor ov94_022421E8(int param0, u32 param1)
     return param1;
 }
 
-const int GTS_GENDER_PREFERENCE_MESSAGES[] = {
+const int gGTSGenderPreferenceMessages[] = {
     GTS_Text_Either,
     GTS_Text_MaleIcon,
     GTS_Text_FemaleIcon,
@@ -881,7 +881,7 @@ void ov94_02242204(Window *param0, MessageLoader *gtsMessageLoader, int param2, 
         return;
     }
 
-    v0 = MessageLoader_GetNewStrbuf(gtsMessageLoader, GTS_GENDER_PREFERENCE_MESSAGES[param2]);
+    v0 = MessageLoader_GetNewStrbuf(gtsMessageLoader, gGTSGenderPreferenceMessages[param2]);
 
     if (param5 > 3) {
         ov94_02245900(param0, v0, param5, param4, 0, ov94_022421E8(param2, param6));
@@ -898,9 +898,9 @@ void ov94_0224226C(Window *param0, MessageLoader *gtsMessageLoader, int param2, 
     if (param2 != -1) {
         const GTSLevelRangeMessage *v1;
         if (param6 == 0) {
-            v1 = GTS_LEVEL_PREFERENCE_MESSAGES;
+            v1 = gtsLevelPreferenceMessages;
         } else {
-            v1 = GTS_LEVEL_RANGE_MESSAGES;
+            v1 = gtsLevelRangeMessages;
         }
         v0 = MessageLoader_GetNewStrbuf(gtsMessageLoader, v1[param2].unk_00);
         ov94_02245900(param0, v0, param7, param4, param3, param5);
@@ -978,7 +978,7 @@ static void ov94_022423FC(MessageLoader *param0, StringTemplate *param1, Window 
     v1 = MessageUtil_ExpandedStrbuf(param1, param0, 102, HEAP_ID_62);
 
     if (gender != GENDER_NONE + 1) {
-        MessageLoader_GetStrbuf(param0, GTS_GENDER_PREFERENCE_MESSAGES[gender], v3);
+        MessageLoader_GetStrbuf(param0, gGTSGenderPreferenceMessages[gender], v3);
     }
 
     for (v6 = 0; v6 < 3; v6++) {
@@ -1220,11 +1220,11 @@ ListMenu *ov94_022428B0(StringList **param0, Window *param1, MessageLoader *para
     int v3;
 
     if (param3 == 0) {
-        v2 = GTS_LEVEL_PREFERENCE_MESSAGES;
+        v2 = gtsLevelPreferenceMessages;
         v3 = 13;
     } else {
-        v2 = GTS_LEVEL_RANGE_MESSAGES;
-        v3 = (NELEMS(GTS_LEVEL_RANGE_MESSAGES));
+        v2 = gtsLevelRangeMessages;
+        v3 = (NELEMS(gtsLevelRangeMessages));
     }
 
     *param0 = StringList_New(v3, 62);
@@ -1248,11 +1248,11 @@ void ov94_02242934(UnkStruct_ov94_0223BA88_sub3 *param0, int param1, int param2)
     const GTSLevelRangeMessage *v0;
 
     if (param2 == 0) {
-        v0 = GTS_LEVEL_PREFERENCE_MESSAGES;
+        v0 = gtsLevelPreferenceMessages;
         GF_ASSERT(param1 < (13 - 1));
     } else {
-        v0 = GTS_LEVEL_RANGE_MESSAGES;
-        GF_ASSERT(param1 < (NELEMS(GTS_LEVEL_RANGE_MESSAGES) - 1));
+        v0 = gtsLevelRangeMessages;
+        GF_ASSERT(param1 < (NELEMS(gtsLevelRangeMessages) - 1));
     }
 
     param0->level = v0[param1].level;
@@ -1266,11 +1266,11 @@ int ov94_02242970(int param0, int param1, int param2)
     const GTSLevelRangeMessage *v2;
 
     if (param2 == 0) {
-        v2 = GTS_LEVEL_PREFERENCE_MESSAGES;
+        v2 = gtsLevelPreferenceMessages;
         v1 = 13;
     } else {
-        v2 = GTS_LEVEL_RANGE_MESSAGES;
-        v1 = (NELEMS(GTS_LEVEL_RANGE_MESSAGES));
+        v2 = gtsLevelRangeMessages;
+        v1 = (NELEMS(gtsLevelRangeMessages));
     }
 
     for (i = 0; i < v1; i++) {
@@ -1282,21 +1282,21 @@ int ov94_02242970(int param0, int param1, int param2)
     return 0;
 }
 
-ListMenu *ov94_022429B4(StringList **param0, Window *param1, MessageLoader *param2, MessageLoader *param3)
-{
+ListMenu *ov94_022429B4(StringList **param0, Window *param1, MessageLoader *param2, MessageLoader *gtsMessageLoader)
+{ // @todo: this is for country!
     ListMenuTemplate v0;
     int v1;
-    int v2 = NELEMS(Unk_ov94_02246174) + 2;
+    int v2 = NELEMS(gtsAvailableCountries) + 2;
 
     *param0 = StringList_New(v2, 62);
 
-    StringList_AddFromMessageBank(*param0, param3, 167, 0);
+    StringList_AddFromMessageBank(*param0, gtsMessageLoader, GTS_Text_Any, 0);
 
     for (v1 = 1; v1 < v2 - 1; v1++) {
-        StringList_AddFromMessageBank(*param0, param2, Unk_ov94_02246174[v1 - 1], v1);
+        StringList_AddFromMessageBank(*param0, param2, gtsAvailableCountries[v1 - 1], v1);
     }
 
-    StringList_AddFromMessageBank(*param0, param3, 168, v2 - 1);
+    StringList_AddFromMessageBank(*param0, gtsMessageLoader, pl_msg_00000671_00168, v2 - 1);
 
     v0 = Unk_ov94_0224608C;
     v0.count = v2;
@@ -1312,8 +1312,8 @@ void ov94_02242A44(GTSApplicationState *param0, int param1)
 {
     if (param1 == 0) {
         param0->unk_11B0 = 0;
-    } else if (param1 - 1 < NELEMS(Unk_ov94_02246174)) {
-        param0->unk_11B0 = Unk_ov94_02246174[param1 - 1];
+    } else if (param1 - 1 < NELEMS(gtsAvailableCountries)) {
+        param0->unk_11B0 = gtsAvailableCountries[param1 - 1];
     }
 }
 

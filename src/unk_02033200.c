@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "constants/heap.h"
+#include "constants/wireless_driver.h"
 
 #include "struct_defs/sentence.h"
 #include "struct_defs/struct_0202610C.h"
@@ -60,12 +61,12 @@ static void sub_02033AA8(void);
 static BOOL sub_02034014(u8 *param0);
 static u16 sub_02033F0C(u16 param0);
 static void sub_0203330C(WMBssDesc *param0);
-static void sub_0203344C(void *param0, WVRResult param1);
+static void WirelessDriver_InitCallback(void *param0, WVRResult param1);
 static int sub_02033DDC(void);
 
 static CommServerClient *sCommServerClient = NULL;
 static u16 Unk_021C07B8 = 0;
-static volatile int Unk_021C07BC;
+static volatile int sWirelessDriverStatus;
 
 void CommServerClient_Init(TrainerInfo *trainerInfo, BOOL param1)
 {
@@ -186,7 +187,7 @@ static void sub_02033380(void)
     sCommServerClient->unk_14F8 = 1;
 }
 
-static void sub_0203344C(void *param0, WVRResult param1)
+static void WirelessDriver_InitCallback(void *param0, WVRResult param1)
 {
     if (param1 != WVR_RESULT_SUCCESS) {
         OS_Terminate();
@@ -194,41 +195,41 @@ static void sub_0203344C(void *param0, WVRResult param1)
         (void)0;
     }
 
-    Unk_021C07BC = 2;
+    sWirelessDriverStatus = WIRELESS_DRIVER_STATUS_CONNECTED;
 }
 
-static void sub_02033464(void *param0, WVRResult param1)
+static void WirelessDriver_ShutdownCallback(void *param0, WVRResult param1)
 {
-    Unk_021C07BC = 0;
+    sWirelessDriverStatus = WIRELESS_DRIVER_STATUS_DISCONNECTED;
     SleepUnlock(4);
 }
 
-void sub_02033478(void)
+void WirelessDriver_Init(void)
 {
     SleepLock(4);
 
-    Unk_021C07BC = 1;
+    sWirelessDriverStatus = WIRELESS_DRIVER_STATUS_CONNECTING;
 
-    if (WVR_RESULT_OPERATING != WVR_StartUpAsync(GX_VRAM_ARM7_128_D, sub_0203344C, NULL)) {
+    if (WVR_RESULT_OPERATING != WVR_StartUpAsync(GX_VRAM_ARM7_128_D, WirelessDriver_InitCallback, NULL)) {
         OS_Terminate();
     } else {
         (void)0;
     }
 }
 
-BOOL sub_020334A4(void)
+BOOL WirelessDriver_IsReady(void)
 {
-    return Unk_021C07BC == 2;
+    return sWirelessDriverStatus == WIRELESS_DRIVER_STATUS_CONNECTED;
 }
 
-BOOL sub_020334B8(void)
+BOOL WirelessDriver_Initialised(void)
 {
-    return Unk_021C07BC != 0;
+    return sWirelessDriverStatus != WIRELESS_DRIVER_STATUS_DISCONNECTED;
 }
 
-void sub_020334CC(void)
+void WirelessDriver_Shutdown(void)
 {
-    WVR_TerminateAsync(sub_02033464, NULL);
+    WVR_TerminateAsync(WirelessDriver_ShutdownCallback, NULL);
 }
 
 static void sub_020334DC(BOOL param0)

@@ -84,7 +84,7 @@ int ov94_02244678(GTSApplicationState *param0, int param1)
 {
     int v0 = 3;
 
-    switch (param0->unk_2C) {
+    switch (param0->currentScreenInstruction) {
     case 0:
         if (ApplicationManager_Exec(param0->appMan)) {
             ApplicationManager_Free(param0->appMan);
@@ -99,7 +99,7 @@ int ov94_02244678(GTSApplicationState *param0, int param1)
 
                 if (v3 != 0) {
                     param0->unk_100 = sub_0207AE68(NULL, v1, v3, param0->unk_00->options, param0->unk_00->unk_3C, param0->unk_00->unk_10, param0->unk_00->unk_30, param0->unk_00->records, SaveData_GetPoketch(param0->unk_00->saveData), v4, 0x4, HEAP_ID_62);
-                    param0->unk_2C = 1;
+                    param0->currentScreenInstruction = 1;
                 } else {
                     ov94_Setunk_18Andunk_24(param0, 1, 0);
                     v0 = 4;
@@ -119,7 +119,7 @@ int ov94_02244678(GTSApplicationState *param0, int param1)
 
                     if (v7 != 0) {
                         param0->unk_100 = sub_0207AE68(NULL, v1, v7, param0->unk_00->options, param0->unk_00->unk_3C, param0->unk_00->unk_10, param0->unk_00->unk_30, param0->unk_00->records, SaveData_GetPoketch(param0->unk_00->saveData), v8, 0x4, HEAP_ID_62);
-                        param0->unk_2C = 1;
+                        param0->currentScreenInstruction = 1;
                     } else {
                         ov94_Setunk_18Andunk_24(param0, 1, 0);
                         v0 = 4;
@@ -154,7 +154,7 @@ int ov94_0224484C(GTSApplicationState *param0, int param1)
 {
     Heap_FreeToHeap(param0->unk_1104);
     Heap_FreeToHeap(param0->unk_120);
-    ov94_0223C4C8(param0);
+    GTSApplication_MoveToNextScreen(param0);
 
     return 1;
 }

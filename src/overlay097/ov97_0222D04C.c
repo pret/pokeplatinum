@@ -106,7 +106,7 @@ static void ov97_0222D0F0(void)
 
 static void ov97_0222D128(void)
 {
-    if (!sub_020334A4()) {
+    if (!WirelessDriver_IsReady()) {
         return;
     }
 

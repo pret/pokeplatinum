@@ -2529,7 +2529,7 @@ static void ov97_02230280(int param0)
 
 static void ov97_022302D4(void)
 {
-    sub_020334CC();
+    WirelessDriver_Shutdown();
     Heap_FreeToHeap(Unk_ov97_0223F1AC);
     sub_02039794();
 
@@ -2559,11 +2559,11 @@ static void UpdateLocalWirelessDistributionState(MysteryGiftAppData *appData)
 
     switch (sWirelessDistribState) {
     case WIRELESS_DISTRIBUTION_STATE_INIT:
-        sub_02033478();
+        WirelessDriver_Init();
         sWirelessDistribState = WIRELESS_DISTRIBUTION_STATE_38;
         break;
     case WIRELESS_DISTRIBUTION_STATE_38:
-        if (sub_020334A4() == 1) {
+        if (WirelessDriver_IsReady() == 1) {
             Unk_ov97_0223F1B4 = 0;
             Unk_ov97_0223F1AC = Heap_AllocFromHeap(HEAP_ID_MYSTERY_GIFT_APP, ov97_02238D4C());
             ov97_02238A4C(appData->wirelessDistributionBuffer, ov97_02230280, Unk_ov97_0223F1AC);
