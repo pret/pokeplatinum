@@ -84,8 +84,8 @@ void ov12_022346A4(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v1->unk_10 = ov12_02225964(param0, v3);
 
     v0 = ov12_0222329C(v1->unk_00);
-    v0.x = ov12_022258E0(param0, v3, 0);
-    v0.y = ov12_022258E0(param0, v3, 1);
+    v0.x = BattleAnimUtil_GetBattlerPos(param0, v3, 0);
+    v0.y = BattleAnimUtil_GetBattlerPos(param0, v3, 1);
 
     for (v2 = 0; v2 < 2; v2++) {
         if (v2 == 0) {
@@ -261,8 +261,8 @@ void ov12_02234A10(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v4 = ov12_02225964(param0, v2);
     v0 = ov12_0222329C(v1->unk_00);
 
-    v0.x = ov12_022258E0(param0, v2, 0);
-    v0.y = ov12_022258E0(param0, v2, 1);
+    v0.x = BattleAnimUtil_GetBattlerPos(param0, v2, 0);
+    v0.y = BattleAnimUtil_GetBattlerPos(param0, v2, 1);
 
     for (v3 = 6 - 1; v3 >= 0; v3--) {
         if (v3 == 6 - 1) {

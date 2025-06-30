@@ -208,9 +208,9 @@ static void BattleAnimScriptCmd_LoadCharResObj(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_LoadPlttRes(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_LoadCellResObj(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_LoadAnimResObj(BattleAnimSystem *param0);
-static void ov12_02222EBC(BattleAnimSystem *param0);
-static void ov12_02222FC8(BattleAnimSystem *param0);
-static void ov12_0222307C(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_AddSpriteWithFunc(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_AddSprite(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_FreeSpriteManager(BattleAnimSystem *param0);
 static void ov12_022230A8(BattleAnimSystem *param0);
 static void ov12_02221834(BattleAnimSystem *param0);
 static void ov12_022219E8(BattleAnimSystem *param0);
@@ -496,7 +496,7 @@ BOOL BattleAnimSystem_StartMove(BattleAnimSystem *system, UnkStruct_ov16_02265BB
     system->bgLayerPriorities[BG_LAYER_MAIN_3] = Bg_GetPriority(system->bgConfig, BG_LAYER_MAIN_3);
 
     for (i = 0; i < 10; i++) {
-        system->unk_D8[i] = NULL;
+        system->sprites[i] = NULL;
     }
 
     for (i = 0; i < (4 + 1); i++) {
@@ -619,9 +619,9 @@ ManagedSprite *ov12_02220298(BattleAnimSystem *param0, int param1)
 {
     GF_ASSERT(param1 < 10);
     GF_ASSERT(param0 != NULL);
-    GF_ASSERT(param0->unk_D8[param1] != NULL);
+    GF_ASSERT(param0->sprites[param1] != NULL);
 
-    return param0->unk_D8[param1];
+    return param0->sprites[param1];
 }
 
 ManagedSprite *ov12_022202C0(BattleAnimSystem *param0, int param1)
@@ -854,9 +854,9 @@ static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
     BattleAnimScriptCmd_LoadPlttRes,
     BattleAnimScriptCmd_LoadCellResObj,
     BattleAnimScriptCmd_LoadAnimResObj,
-    ov12_02222EBC,
-    ov12_02222FC8,
-    ov12_0222307C,
+    BattleAnimScriptCmd_AddSpriteWithFunc,
+    BattleAnimScriptCmd_AddSprite,
+    BattleAnimScriptCmd_FreeSpriteManager,
     ov12_022230A8,
     ov12_02221834,
     ov12_022219E8,
@@ -1820,7 +1820,7 @@ static void ov12_0222128C(BattleAnimSystem *param0)
         MI_CpuFill8(v8, 0, 10 * 10 * 2 * 0x20);
     }
 
-    Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, FALSE);
     Bg_LoadTiles(param0->bgConfig, 2, v0, (10 * 10 * ((8 / 2) * 8)), 0);
     PaletteData_LoadBufferFromFileStart(param0->paletteData, v4, v5, param0->heapID, 0, 0, (8 * 16));
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->arcs[0], v6, param0->bgConfig, 2, 0, 0, 0, param0->heapID);
@@ -3437,28 +3437,21 @@ static void BattleAnimScriptCmd_LoadAnimResObj(BattleAnimSystem *system)
         BATTLE_ANIM_SCRIPT_RES_ID(memberIndex));
 }
 
-static void ov12_02222EBC(BattleAnimSystem *system)
+static void BattleAnimScriptCmd_AddSpriteWithFunc(BattleAnimSystem *system)
 {
-    int i;
-    int v1;
-    int v2;
-    int v3;
-    ManagedSprite *v4;
-    UnkFuncPtr_ov12_02239E68 v5;
-
     BattleAnimScript_Next(system);
 
-    v2 = BattleAnimScript_ReadWord(system->scriptPtr);
+    int id = BattleAnimScript_ReadWord(system->scriptPtr);
     BattleAnimScript_Next(system);
 
-    v1 = BattleAnimScript_ReadWord(system->scriptPtr);
+    int funcID = BattleAnimScript_ReadWord(system->scriptPtr);
     BattleAnimScript_Next(system);
 
     SpriteTemplate template;
     int defender = BattleAnimSystem_GetDefender(system);
 
-    template.x = ov12_022258E0(system, defender, 0);
-    template.y = ov12_022258E0(system, defender, 1);
+    template.x = BattleAnimUtil_GetBattlerPos(system, defender, BATTLE_ANIM_POSITION_MON_X);
+    template.y = BattleAnimUtil_GetBattlerPos(system, defender, BATTLE_ANIM_POSITION_MON_Y);
     template.z = 0;
     template.animIdx = 0;
     template.priority = 100;
@@ -3467,19 +3460,20 @@ static void ov12_02222EBC(BattleAnimSystem *system)
     template.bgPriority = 1;
     template.vramTransfer = FALSE;
 
+    int i;
     for (i = 0; i < SPRITE_RESOURCE_MAX; i++) {
         template.resources[i] = BATTLE_ANIM_SCRIPT_RES_ID(BattleAnimScript_ReadWord(system->scriptPtr));
         BattleAnimScript_Next(system);
     }
 
-    system->unk_100 = template;
+    system->lastSpriteTemplate = template;
 
-    v4 = SpriteSystem_NewSprite(system->context->spriteSystem, system->spriteManagers[v2], &template);
+    ManagedSprite *sprite = SpriteSystem_NewSprite(system->context->spriteSystem, system->spriteManagers[id], &template);
 
-    v3 = BattleAnimScript_ReadWord(system->scriptPtr);
+    int argCount = BattleAnimScript_ReadWord(system->scriptPtr);
     BattleAnimScript_Next(system);
 
-    for (i = 0; i < v3; i++) {
+    for (i = 0; i < argCount; i++) {
         system->scriptVars[i] = BattleAnimScript_ReadWord(system->scriptPtr);
         BattleAnimScript_Next(system);
     }
@@ -3488,69 +3482,58 @@ static void ov12_02222EBC(BattleAnimSystem *system)
         system->scriptVars[i] = 0;
     }
 
-    v5 = ov12_022269AC(v1);
-    v5(system, system->context->spriteSystem, system->spriteManagers[v2], v4);
+    BattleAnimScriptSpriteFunc func = BattleAnimScript_GetSpriteFunc(funcID);
+    func(system, system->context->spriteSystem, system->spriteManagers[id], sprite);
 }
 
-static void ov12_02222FC8(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_AddSprite(BattleAnimSystem *system)
 {
-    int v0;
-    int v1;
-    int v2;
-    ManagedSprite *v3;
-    UnkFuncPtr_ov12_02239E68 v4;
+    BattleAnimScript_Next(system);
 
-    param0->scriptPtr += 1;
+    int id = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    int spriteID = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v2 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    SpriteTemplate template;
+    int defender = BattleAnimSystem_GetDefender(system);
 
-    {
-        SpriteTemplate v5;
-        int v6;
+    template.x = BattleAnimUtil_GetBattlerPos(system, defender, BATTLE_ANIM_POSITION_MON_X);
+    template.y = BattleAnimUtil_GetBattlerPos(system, defender, BATTLE_ANIM_POSITION_MON_Y);
+    template.z = 0;
+    template.animIdx = 0;
+    template.priority = 100;
+    template.plttIdx = 0;
+    template.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    template.bgPriority = 1;
+    template.vramTransfer = FALSE;
 
-        v6 = BattleAnimSystem_GetDefender(param0);
-
-        v5.x = ov12_022258E0(param0, v6, 0);
-        v5.y = ov12_022258E0(param0, v6, 1);
-        v5.z = 0;
-        v5.animIdx = 0;
-        v5.priority = 100;
-        v5.plttIdx = 0;
-        v5.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v5.bgPriority = 1;
-        v5.vramTransfer = FALSE;
-
-        for (v0 = 0; v0 < 6; v0++) {
-            v5.resources[v0] = BattleAnimScript_ReadWord(param0->scriptPtr) + 5000;
-            param0->scriptPtr += 1;
-        }
-
-        param0->unk_100 = v5;
-
-        v3 = SpriteSystem_NewSprite(param0->context->spriteSystem, param0->spriteManagers[v1], &v5);
-        GF_ASSERT(param0->unk_D8[v2] == NULL);
-        param0->unk_D8[v2] = v3;
+    for (int i = 0; i < SPRITE_RESOURCE_MAX; i++) {
+        template.resources[i] = BATTLE_ANIM_SCRIPT_RES_ID(BattleAnimScript_ReadWord(system->scriptPtr));
+        BattleAnimScript_Next(system);
     }
+
+    system->lastSpriteTemplate = template;
+
+    ManagedSprite *sprite = SpriteSystem_NewSprite(system->context->spriteSystem, system->spriteManagers[id], &template);
+
+    GF_ASSERT(system->sprites[spriteID] == NULL);
+    system->sprites[spriteID] = sprite;
 }
 
-static void ov12_0222307C(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_FreeSpriteManager(BattleAnimSystem *system)
 {
-    int v0;
+    BattleAnimScript_Next(system);
 
-    param0->scriptPtr += 1;
+    int id = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
-
-    if (param0->spriteManagers[v0] != NULL) {
-        SpriteSystem_FreeResourcesAndManager(param0->context->spriteSystem, param0->spriteManagers[v0]);
+    if (system->spriteManagers[id] != NULL) {
+        SpriteSystem_FreeResourcesAndManager(system->context->spriteSystem, system->spriteManagers[id]);
     }
 
-    param0->spriteManagers[v0] = NULL;
+    system->spriteManagers[id] = NULL;
 }
 
 static void ov12_022230A8(BattleAnimSystem *param0)
@@ -3703,7 +3686,7 @@ BOOL ov12_0222325C(BattleAnimSystem *param0, int param1[], int param2)
 
 SpriteTemplate ov12_0222329C(BattleAnimSystem *param0)
 {
-    return param0->unk_100;
+    return param0->lastSpriteTemplate;
 }
 
 int BattleAnimSystem_GetBattlerType(BattleAnimSystem *system, int battler)

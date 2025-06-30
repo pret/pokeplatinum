@@ -15,9 +15,16 @@
 #include "pokemon_sprite.h"
 #include "sprite.h"
 
+enum BattleAnimPositionType {
+    BATTLE_ANIM_POSITION_MON_X = 0,
+    BATTLE_ANIM_POSITION_MON_Y,
+    BATTLE_ANIM_POSITION_PARTICLE_X,
+    BATTLE_ANIM_POSITION_PARTICLE_Y,
+};
+
 void ov12_02225864(int param0, int param1, s16 *param2, s16 *param3);
 void ov12_02225898(BattleAnimSystem *param0, int param1, s16 *param2, s16 *param3);
-s16 ov12_022258E0(BattleAnimSystem *param0, int param1, int param2);
+s16 BattleAnimUtil_GetBattlerPos(BattleAnimSystem *param0, int param1, enum BattleAnimPositionType param2);
 u8 ov12_02225950(ManagedSprite *param0);
 int ov12_02225964(BattleAnimSystem *param0, int param1);
 int ov12_0222598C(BattleAnimSystem *param0, int param1);

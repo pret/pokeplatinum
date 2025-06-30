@@ -835,8 +835,8 @@ void ov12_0222FE30(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
 
     v0->unk_0C.unk_3C = v0->unk_0C.unk_04.unk_04[5];
     v0->unk_0C.unk_48 = 1;
-    v0->unk_0C.unk_3E = ov12_022258E0(param0, v3, 0);
-    v0->unk_0C.unk_40 = ov12_022258E0(param0, v3, 1);
+    v0->unk_0C.unk_3E = BattleAnimUtil_GetBattlerPos(param0, v3, 0);
+    v0->unk_0C.unk_40 = BattleAnimUtil_GetBattlerPos(param0, v3, 1);
 
     ManagedSprite_SetPositionXY(v0->unk_0C.unk_00, v0->unk_0C.unk_3E, v0->unk_0C.unk_40);
     ManagedSprite_SetPriority(v0->unk_0C.unk_00, 100);
@@ -1464,8 +1464,8 @@ void ov12_02230CEC(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
         v2 = v1;
     }
 
-    v3 = ov12_022258E0(param0, BattleAnimSystem_GetAttacker(v0->unk_00), 0);
-    v4 = ov12_022258E0(param0, BattleAnimSystem_GetAttacker(v0->unk_00), 1);
+    v3 = BattleAnimUtil_GetBattlerPos(param0, BattleAnimSystem_GetAttacker(v0->unk_00), 0);
+    v4 = BattleAnimUtil_GetBattlerPos(param0, BattleAnimSystem_GetAttacker(v0->unk_00), 1);
 
     v0->unk_10 = param3;
 
@@ -2976,8 +2976,8 @@ void ov12_02232CA8(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
 
     PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_HIDE, 0);
 
-    v0->unk_88 = ov12_022258E0(param0, BattleAnimSystem_GetAttacker(param0), 0);
-    v0->unk_8A = ov12_022258E0(param0, BattleAnimSystem_GetAttacker(param0), 1);
+    v0->unk_88 = BattleAnimUtil_GetBattlerPos(param0, BattleAnimSystem_GetAttacker(param0), 0);
+    v0->unk_8A = BattleAnimUtil_GetBattlerPos(param0, BattleAnimSystem_GetAttacker(param0), 1);
     v0->unk_5C = param3;
 
     ManagedSprite_SetPriority(v0->unk_5C, 100);
@@ -3963,8 +3963,8 @@ void ov12_022342C4(BattleAnimSystem *param0)
 
     v2 = ov12_02225964(param0, v1);
     v3 = ov12_0222598C(param0, v1);
-    v4 = ov12_022258E0(param0, v1, 0);
-    v5 = ov12_022258E0(param0, v1, 1);
+    v4 = BattleAnimUtil_GetBattlerPos(param0, v1, 0);
+    v5 = BattleAnimUtil_GetBattlerPos(param0, v1, 1);
 
     v4 += 64 * v2;
     v5 += -16 * v3;
