@@ -1071,7 +1071,7 @@ static void CreateWildMon(u16 species, u8 level, const int partyDest, const Wild
             GF_ASSERT(FALSE);
         }
 
-        sub_02074088(newEncounter, species, level, 32, gender, GetNatureForWildMon(firstPartyMon, encounterFieldParams), 0);
+        Pokemon_CreateWithGenderNatureLetter(newEncounter, species, level, 32, gender, GetNatureForWildMon(firstPartyMon, encounterFieldParams), 0);
         Pokemon_SetData(newEncounter, MON_DATA_OT_ID, &encounterFieldParams->trainerID);
 
         GF_ASSERT(AddWildMonToParty(partyDest, encounterFieldParams, newEncounter, battleParams));

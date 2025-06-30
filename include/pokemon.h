@@ -62,7 +62,7 @@ void BoxPokemon_Init(BoxPokemon *boxMon);
 int Pokemon_StructSize(void);
 
 /**
- * @brief Allocates a Pokemon struct on the given heap, then calls ZeroMonData() on it
+ * @brief Allocates a Pokemon struct on the given heap, then calls Pokemon_Init() on it
  *
  * @param heapID
  * @return A new empty but encrypted Pokemon struct
@@ -105,7 +105,7 @@ BOOL BoxPokemon_ExitDecryptionContext(BoxPokemon *boxMon, BOOL encrypt);
 
 void Pokemon_Create(Pokemon *mon, int monSpecies, int monLevel, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID);
 void Pokemon_CreateWithNature(Pokemon *mon, u16 species, u8 level, u8 fixedIVs, u8 nature);
-void sub_02074088(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 param4, u8 param5, u8 param6);
+void Pokemon_CreateWithGenderNatureLetter(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 param4, u8 param5, u8 param6);
 u32 sub_02074128(u16 monSpecies, u8 param1, u8 param2);
 void Pokemon_InitAndCalcStats(Pokemon *mon, u16 monSpecies, u8 monLevel, u32 monCombinedIVs, u32 monPersonality);
 
@@ -436,11 +436,11 @@ void BuildPokemonSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 speci
 /**
  * @brief Sanitizes a pokemon form. If the given form is greater than the max for the given species, returns zero, else returns the form unchanged
  *
- * @param monSpecies
- * @param monForm
+ * @param species
+ * @param form
  * @return The sanitized pokemon form
  */
-u8 Pokemon_SanitizeFormId(u16 monSpecies, u8 monForm);
+u8 Pokemon_SanitizeFormId(u16 species, u8 form);
 
 /**
  * @brief Load the Y-offset applied to a Pokemon's sprite-face on display.
@@ -532,18 +532,18 @@ u16 sub_02076FD4(const u16 monSpecies);
  * @brief Adds a move to the moveset of a Pokemon
  *
  * @param mon
- * @param moveID
+ * @param move
  * @return The given moveID if successful, 0xfffe if already known, 0xffff if there is no room for the move
  */
-u16 Pokemon_AddMove(Pokemon *mon, u16 moveID);
+u16 Pokemon_AddMove(Pokemon *mon, u16 move);
 
 /**
  * @brief Deletes the first move of a Pokemon and adds the given move to the end of its moveset
  *
  * @param mon
- * @param moveID
+ * @param move
  */
-void Pokemon_ReplaceMove(Pokemon *mon, u16 moveID);
+void Pokemon_ReplaceMove(Pokemon *mon, u16 move);
 
 /**
  * @brief Sets the given moveSlot of a Pokemon, removing its PP Ups
@@ -578,10 +578,10 @@ void Pokemon_SwapMoveSlots(Pokemon *mon, int moveSlot1, int moveSlot2);
  * @brief Swaps the places of two moves on a BoxPokemon
  *
  * @param boxMon
- * @param moveSlot1
- * @param moveSlot2
+ * @param slot1
+ * @param slot2
  */
-void BoxPokemon_SwapMoveSlots(BoxPokemon *boxMon, int moveSlot1, int moveSlot2);
+void BoxPokemon_SwapMoveSlots(BoxPokemon *boxMon, int slot1, int slot2);
 
 /**
  * @brief Deletes the given moveSlot of a Pokemon, shifting the ones above it down
