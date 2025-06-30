@@ -24,10 +24,10 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
-typedef struct {
-    s16 unk_00;
-    s16 unk_02;
-} UnkStruct_ov12_02239E34;
+typedef struct BattleAnimPosition {
+    s16 x;
+    s16 y;
+} BattleAnimPosition;
 
 typedef void (*UnkFuncPtr_ov12_02226490)(void *);
 
@@ -72,33 +72,36 @@ typedef struct UnkStruct_ov12_022267D4_t {
 
 static void ov12_022268DC(u16 *param0, u16 param1);
 
-static const UnkStruct_ov12_02239E34 Unk_ov12_02239E34[][6] = {
+static const BattleAnimPosition sBattleAnimBattlerPositions[][6] = {
+    // Single Battle
     {
-        { 0x40, 0x70 },
-        { 0xC0, 0x30 },
-        { 0xD8, 0x70 },
-        { 0x50, 0x2A },
-        { 0x0, 0x0 },
-        { 0x0, 0x0 },
+        [BATTLER_TYPE_SOLO_PLAYER]        = {  64, 112 },
+        [BATTLER_TYPE_SOLO_ENEMY]         = { 192,  48 },
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = { 216, 112 },
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1]  = {  80,  42 },
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = {   0,   0 },
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2]  = {   0,   0 },
     },
+
+    // Double Battle
     {
-        { 0x40, 0x70 },
-        { 0xC0, 0x30 },
-        { 0x28, 0x70 },
-        { 0xD8, 0x32 },
-        { 0x50, 0x78 },
-        { 0xB0, 0x2A },
+        [BATTLER_TYPE_SOLO_PLAYER]        = {  64, 112 },
+        [BATTLER_TYPE_SOLO_ENEMY]         = { 192,  48 },
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = {  40, 112 },
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1]  = { 216,  50 },
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = {  80, 120 },
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2]  = { 176,  42 },
     },
 };
 
 void ov12_02225864(int param0, int param1, s16 *param2, s16 *param3)
 {
     if (param2 != NULL) {
-        *param2 = Unk_ov12_02239E34[param0][param1].unk_00;
+        *param2 = sBattleAnimBattlerPositions[param0][param1].x;
     }
 
     if (param3 != NULL) {
-        *param3 = Unk_ov12_02239E34[param0][param1].unk_02;
+        *param3 = sBattleAnimBattlerPositions[param0][param1].y;
     }
 }
 
@@ -115,31 +118,31 @@ void ov12_02225898(BattleAnimSystem *param0, int param1, s16 *param2, s16 *param
     }
 }
 
-s16 ov12_022258E0(BattleAnimSystem *param0, int param1, int param2)
+s16 BattleAnimUtil_GetBattlerPos(BattleAnimSystem *system, int battler, enum BattleAnimPositionType posType)
 {
-    int v1;
-    int battlerType = BattleAnimUtil_GetBattlerType(param0, param1);
+    int isDoubles;
+    int battlerType = BattleAnimUtil_GetBattlerType(system, battler);
 
-    if (BattleAnimSystem_IsDoubleBattle(param0) == 1) {
-        v1 = 1;
+    if (BattleAnimSystem_IsDoubleBattle(system) == TRUE) {
+        isDoubles = TRUE;
     } else {
-        v1 = 0;
+        isDoubles = FALSE;
     }
 
-    if (BattleAnimSystem_IsContest(param0) == 1) {
+    if (BattleAnimSystem_IsContest(system) == TRUE) {
         battlerType += 2;
     }
 
-    switch (param2) {
-    case 0:
-    case 2:
-        return Unk_ov12_02239E34[v1][battlerType].unk_00;
-    case 1:
-    case 3:
-        return Unk_ov12_02239E34[v1][battlerType].unk_02;
+    switch (posType) {
+    case BATTLE_ANIM_POSITION_MON_X:
+    case BATTLE_ANIM_POSITION_PARTICLE_X:
+        return sBattleAnimBattlerPositions[isDoubles][battlerType].x;
+    case BATTLE_ANIM_POSITION_MON_Y:
+    case BATTLE_ANIM_POSITION_PARTICLE_Y:
+        return sBattleAnimBattlerPositions[isDoubles][battlerType].y;
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return 0;
 }
 

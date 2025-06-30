@@ -105,7 +105,7 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     ov12_02235228
 };
 
-static const UnkFuncPtr_ov12_02239E68 Unk_ov12_02239E68[] = {
+static const BattleAnimScriptSpriteFunc sBattleAnimScriptSpriteFuncs[] = {
     ov12_02226B1C,
     ov12_0222AE68,
     ov12_0222FE30,
@@ -159,14 +159,11 @@ BattleAnimScriptFunc BattleAnimScript_GetFunc(enum BattleAnimScriptFuncID id)
     return sBattleAnimScriptFuncs[id];
 }
 
-UnkFuncPtr_ov12_02239E68 ov12_022269AC(u32 param0)
+BattleAnimScriptSpriteFunc BattleAnimScript_GetSpriteFunc(u32 id)
 {
-    UnkFuncPtr_ov12_02239E68 v0;
-
-    if (param0 >= (NELEMS(Unk_ov12_02239E68))) {
+    if (id >= (NELEMS(sBattleAnimScriptSpriteFuncs))) {
         return NULL;
     }
 
-    v0 = Unk_ov12_02239E68[param0];
-    return v0;
+    return sBattleAnimScriptSpriteFuncs[id];
 }

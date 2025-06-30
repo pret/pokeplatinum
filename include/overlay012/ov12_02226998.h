@@ -11,6 +11,6 @@ enum BattleAnimScriptFuncID {
 };
 
 BattleAnimScriptFunc BattleAnimScript_GetFunc(enum BattleAnimScriptFuncID param0);
-UnkFuncPtr_ov12_02239E68 ov12_022269AC(u32 param0);
+BattleAnimScriptSpriteFunc BattleAnimScript_GetSpriteFunc(u32 param0);
 
 #endif // POKEPLATINUM_OV12_02226998_H

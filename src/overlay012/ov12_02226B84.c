@@ -2306,7 +2306,7 @@ void ov12_02228FB4(BattleAnimSystem *param0)
     } else {
         s16 v7;
 
-        v7 = ov12_022258E0(param0, v2, 0);
+        v7 = BattleAnimUtil_GetBattlerPos(param0, v2, 0);
         ov12_02225BC8(&v6->unk_30, v6->unk_58.unk_00, v7, v6->unk_1C.unk_04.unk_02, v6->unk_1C.unk_04.unk_02, v4);
     }
 
@@ -3312,8 +3312,8 @@ void ov12_0222A34C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
 
     {
         int v1 = BattleAnimSystem_GetDefender(param0);
-        s16 v2 = ov12_022258E0(param0, v1, 0);
-        s16 v3 = ov12_022258E0(param0, v1, 1);
+        s16 v2 = BattleAnimUtil_GetBattlerPos(param0, v1, 0);
+        s16 v3 = BattleAnimUtil_GetBattlerPos(param0, v1, 1);
 
         ManagedSprite_SetPositionXY(v0->unk_1C, v2, v3);
     }
@@ -3355,8 +3355,8 @@ void ov12_0222A410(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     {
         int v1 = 0;
         int v2 = BattleAnimSystem_GetDefender(param0);
-        s16 v3 = ov12_022258E0(param0, v2, 0);
-        s16 v4 = ov12_022258E0(param0, v2, 1);
+        s16 v3 = BattleAnimUtil_GetBattlerPos(param0, v2, 0);
+        s16 v4 = BattleAnimUtil_GetBattlerPos(param0, v2, 1);
 
         if (BattleAnimSystem_IsContest(param0) == 1) {
             v3 = 72;

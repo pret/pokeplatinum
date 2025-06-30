@@ -165,8 +165,8 @@ typedef struct BattleAnimSystem {
     BgConfig *bgConfig;
     PaletteData *paletteData;
     SpriteManager *spriteManagers[4];
-    ManagedSprite *unk_D8[10];
-    SpriteTemplate unk_100;
+    ManagedSprite *sprites[10];
+    SpriteTemplate lastSpriteTemplate;
     SpriteManager *unk_134;
     ManagedSprite *unk_138[5];
     BOOL unk_14C[5];
