@@ -962,7 +962,7 @@
     .short \partySlot
     .endm
 
-    .macro GetSlotOfPartyMonWithMove destVar, move
+    .macro FindPartySlotWithMove destVar, move
     .short 154
     .short \destVar
     .short \move

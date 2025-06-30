@@ -151,7 +151,7 @@ BOOL ScrCmd_CheckPartyMonHasMove(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_GetSlotOfPartyMonWithMove(ScriptContext *ctx)
+BOOL ScrCmd_FindPartySlotWithMove(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     Pokemon *mon;

@@ -25,7 +25,7 @@ _0042:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetSlotOfPartyMonWithMove VAR_RESULT, MOVE_CUT
+    FindPartySlotWithMove VAR_RESULT, MOVE_CUT
     GoToIfEq VAR_RESULT, 6, _008E
     CheckBadgeAcquired BADGE_ID_FOREST, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _008E
@@ -46,7 +46,7 @@ _008E:
     End
 
 _00AE:
-    GetSlotOfPartyMonWithMove VAR_RESULT, MOVE_CUT
+    FindPartySlotWithMove VAR_RESULT, MOVE_CUT
     SetVar VAR_0x8004, VAR_RESULT
     BufferPartyMonNickname 0, VAR_RESULT
     Message 1
@@ -129,7 +129,7 @@ _0223:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetSlotOfPartyMonWithMove VAR_RESULT, MOVE_ROCK_SMASH
+    FindPartySlotWithMove VAR_RESULT, MOVE_ROCK_SMASH
     SetVar VAR_0x8004, VAR_RESULT
     GoToIfEq VAR_RESULT, 6, _0275
     CheckBadgeAcquired BADGE_ID_COAL, VAR_RESULT
@@ -187,7 +187,7 @@ _0314:
     FacePlayer
     Strength 2, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _03BD
-    GetSlotOfPartyMonWithMove VAR_RESULT, MOVE_STRENGTH
+    FindPartySlotWithMove VAR_RESULT, MOVE_STRENGTH
     GoToIfEq VAR_RESULT, 6, _0372
     CheckBadgeAcquired BADGE_ID_MINE, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0372
@@ -207,7 +207,7 @@ _0372:
 
 _0381:
     Strength 1
-    GetSlotOfPartyMonWithMove VAR_RESULT, MOVE_STRENGTH
+    FindPartySlotWithMove VAR_RESULT, MOVE_STRENGTH
     SetVar VAR_0x8004, VAR_RESULT
     BufferPartyMonNickname 0, VAR_RESULT
     Message 10
@@ -247,7 +247,7 @@ _03CC:
 _040E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GetSlotOfPartyMonWithMove VAR_RESULT, MOVE_ROCK_CLIMB
+    FindPartySlotWithMove VAR_RESULT, MOVE_ROCK_CLIMB
     GoToIfEq VAR_RESULT, 6, _0469
     CheckBadgeAcquired BADGE_ID_ICICLE, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0469
@@ -275,7 +275,7 @@ _0478:
     End
 
 _0487:
-    GetSlotOfPartyMonWithMove VAR_RESULT, MOVE_ROCK_CLIMB
+    FindPartySlotWithMove VAR_RESULT, MOVE_ROCK_CLIMB
     SetVar VAR_0x8004, VAR_RESULT
     BufferPartyMonNickname 0, VAR_RESULT
     Message 19
@@ -316,7 +316,7 @@ _0512:
     GoTo _0671
 
 _051F:
-    GetSlotOfPartyMonWithMove VAR_RESULT, MOVE_SURF
+    FindPartySlotWithMove VAR_RESULT, MOVE_SURF
     SetVar VAR_0x8004, VAR_RESULT
     BufferPartyMonNickname 0, VAR_RESULT
     Message 13
@@ -343,7 +343,7 @@ _0551:
 _057D:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GetSlotOfPartyMonWithMove VAR_RESULT, MOVE_DEFOG
+    FindPartySlotWithMove VAR_RESULT, MOVE_DEFOG
     GoToIfEq VAR_RESULT, 6, _05B4
     Message 15
     ShowYesNoMenu VAR_RESULT
@@ -360,7 +360,7 @@ _05B4:
     End
 
 _05C3:
-    GetSlotOfPartyMonWithMove VAR_RESULT, MOVE_DEFOG
+    FindPartySlotWithMove VAR_RESULT, MOVE_DEFOG
     SetVar VAR_0x8004, VAR_RESULT
     BufferPartyMonNickname 0, VAR_RESULT
     Message 16
@@ -418,7 +418,7 @@ _0675:
 _0679:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GetSlotOfPartyMonWithMove VAR_RESULT, MOVE_WATERFALL
+    FindPartySlotWithMove VAR_RESULT, MOVE_WATERFALL
     GoToIfEq VAR_RESULT, 6, _06C3
     CheckBadgeAcquired BADGE_ID_BEACON, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06C3
@@ -437,7 +437,7 @@ _06C3:
     End
 
 _06D2:
-    GetSlotOfPartyMonWithMove VAR_RESULT, MOVE_WATERFALL
+    FindPartySlotWithMove VAR_RESULT, MOVE_WATERFALL
     SetVar VAR_0x8004, VAR_RESULT
     BufferPartyMonNickname 0, VAR_RESULT
     Message 23
