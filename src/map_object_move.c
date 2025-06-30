@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/movement_types.h"
+
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
@@ -987,7 +989,10 @@ void sub_02064464(MapObject *mapObj)
 {
     int movementType = MapObject_GetMovementType(mapObj);
 
-    if (movementType == 0x33 || movementType == 0x34 || movementType == 0x35 || movementType == 0x36) {
+    if (movementType == MOVEMENT_TYPE_DISGUISE_SNOW
+        || movementType == MOVEMENT_TYPE_DISGUISE_SAND
+        || movementType == MOVEMENT_TYPE_DISGUISE_ROCK
+        || movementType == MOVEMENT_TYPE_DISGUISE_GRASS) {
         sub_02062B14(mapObj);
     }
 }

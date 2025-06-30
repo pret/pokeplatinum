@@ -1,10 +1,9 @@
 #ifndef POKEPLATINUM_STRUCT_0207A778_H
 #define POKEPLATINUM_STRUCT_0207A778_H
 
-#include "struct_decls/struct_02027F8C_decl.h"
-
 #include "bg_window.h"
 #include "field_battle_data_transfer.h"
+#include "pal_pad.h"
 #include "palette.h"
 
 typedef struct {

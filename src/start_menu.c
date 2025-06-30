@@ -1257,7 +1257,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
         v4.unk_04 = sub_0207CB94(v2);
         v4.unk_06 = sub_0207CBA4(v2);
         v4.unk_00 = taskMan;
-        v5 = Item_LoadParam(v4.unk_04, 6, HEAP_ID_FIELDMAP);
+        v5 = Item_LoadParam(v4.unk_04, ITEM_PARAM_FIELD_USE_FUNC, HEAP_ID_FIELDMAP);
         v3 = (UnkFuncPtr_0203BC5C)sub_020683F4(0, v5);
         v3(&v4, &menu->unk_230);
     } break;

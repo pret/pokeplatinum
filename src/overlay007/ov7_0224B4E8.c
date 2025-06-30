@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "struct_decls/struct_02098700_decl.h"
 #include "struct_defs/struct_0202610C.h"
 
@@ -109,7 +111,7 @@ static void ov7_0224B558(UnkStruct_ov7_0224B4E8 *param0, BOOL param1)
 
 static void ov7_0224B57C(UnkStruct_ov7_0224B4E8 *param0, int param1)
 {
-    sub_0202616C(param0->fieldSystem->saveData, param1, param0->unk_1C, 4);
+    sub_0202616C(param0->fieldSystem->saveData, param1, param0->unk_1C, HEAP_ID_FIELD);
     StringTemplate_SetStrbuf(param0->unk_64, 0, param0->unk_1C, 0, 1, GAME_LANGUAGE);
 }
 

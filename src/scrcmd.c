@@ -499,7 +499,7 @@ static BOOL ScrCmd_151(ScriptContext *ctx);
 static BOOL ScrCmd_152(ScriptContext *ctx);
 static BOOL ScrCmd_SetObjectEventPos(ScriptContext *ctx);
 static BOOL ScrCmd_187(ScriptContext *ctx);
-static BOOL ScrCmd_188(ScriptContext *ctx);
+static BOOL ScrCmd_SetObjectEventMovementType(ScriptContext *ctx);
 static BOOL ScrCmd_SetObjectEventDir(ScriptContext *ctx);
 static BOOL ScrCmd_SetWarpEventPos(ScriptContext *ctx);
 static BOOL ScrCmd_18B(ScriptContext *ctx);
@@ -732,7 +732,7 @@ static BOOL ScrCmd_GetRotomFormsInSave(ScriptContext *ctx);
 static BOOL ScrCmd_IncrementTrainerScore(ScriptContext *ctx);
 static BOOL ScrCmd_311(ScriptContext *ctx);
 static BOOL ScrCmd_312(ScriptContext *ctx);
-static BOOL ScrCmd_31F(ScriptContext *ctx);
+static BOOL ScrCmd_ResetDistortionWorldPersistedCameraAngles(ScriptContext *ctx);
 static BOOL ScrCmd_313(ScriptContext *ctx);
 static BOOL ScrCmd_StartGiratinaOriginBattle(ScriptContext *ctx);
 static BOOL ScrCmd_WriteSpeciesSeen(ScriptContext *ctx);
@@ -1160,7 +1160,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_185,
     ScrCmd_SetObjectEventPos,
     ScrCmd_187,
-    ScrCmd_188,
+    ScrCmd_SetObjectEventMovementType,
     ScrCmd_SetObjectEventDir,
     ScrCmd_SetWarpEventPos,
     ScrCmd_18B,
@@ -1567,7 +1567,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_CheckPartyHasFatefulEncounter,
     ScrCmd_31D,
     ScrCmd_31E,
-    ScrCmd_31F,
+    ScrCmd_ResetDistortionWorldPersistedCameraAngles,
     ScrCmd_320,
     ScrCmd_321,
     ScrCmd_322,
@@ -5442,12 +5442,12 @@ static BOOL ScrCmd_187(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_188(ScriptContext *ctx)
+static BOOL ScrCmd_SetObjectEventMovementType(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
-    u16 v1 = ScriptContext_GetVar(ctx);
+    u16 localID = ScriptContext_GetVar(ctx);
+    u16 movementType = ScriptContext_GetVar(ctx);
 
-    MapHeaderData_SetObjectEventMovementType(ctx->fieldSystem, v0, v1);
+    MapHeaderData_SetObjectEventMovementType(ctx->fieldSystem, localID, movementType);
     return FALSE;
 }
 
@@ -7869,11 +7869,11 @@ static BOOL ScrCmd_312(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_31F(ScriptContext *ctx)
+static BOOL ScrCmd_ResetDistortionWorldPersistedCameraAngles(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    ov9_02249FD0(fieldSystem);
+    DistWorld_ResetPersistedCameraAngles(fieldSystem);
     return FALSE;
 }
 

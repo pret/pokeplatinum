@@ -84,12 +84,12 @@ _00CA:
 
 _015B:
     SetObjectEventPos 20, 0x230, 0x254
-    ScrCmd_188 20, 14
+    SetObjectEventMovementType 20, MOVEMENT_TYPE_LOOK_NORTH
     GoTo _0183
 
 _016F:
     SetObjectEventPos 20, 0x231, 0x254
-    ScrCmd_188 20, 14
+    SetObjectEventMovementType 20, MOVEMENT_TYPE_LOOK_NORTH
     GoTo _0183
 
 _0183:

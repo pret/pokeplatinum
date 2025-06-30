@@ -2353,7 +2353,7 @@ void Pokemon_UpdateFriendship(Pokemon *mon, u8 param1, u16 param2)
     }
 
     u16 monHeldItem = Pokemon_GetData(mon, MON_DATA_HELD_ITEM, NULL);
-    u8 itemHoldEffect = Item_LoadParam(monHeldItem, ITEM_PARAM_HOLD_EFFECT, 0);
+    u8 itemHoldEffect = Item_LoadParam(monHeldItem, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_SYSTEM);
     u8 v4 = 0;
     s16 monFriendship = Pokemon_GetData(mon, MON_DATA_FRIENDSHIP, NULL);
 
@@ -4029,7 +4029,7 @@ void BoxPokemon_SetArceusForm(BoxPokemon *boxMon)
     int monHeldItem = BoxPokemon_GetData(boxMon, MON_DATA_HELD_ITEM, NULL);
 
     if (monSpecies == SPECIES_ARCEUS && monAbility == ABILITY_MULTITYPE) {
-        int monForm = Pokemon_GetArceusTypeOf(Item_LoadParam(monHeldItem, ITEM_PARAM_HOLD_EFFECT, 0));
+        int monForm = Pokemon_GetArceusTypeOf(Item_LoadParam(monHeldItem, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_SYSTEM));
         BoxPokemon_SetData(boxMon, MON_DATA_FORM, &monForm);
     }
 }

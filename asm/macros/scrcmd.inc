@@ -12,6 +12,7 @@
 #include "generated/mart_frontier_id.h"
 #include "generated/mart_seal_id.h"
 #include "generated/mart_specialties_id.h"
+#include "generated/movement_types.h"
 #include "generated/moves.h"
 #include "generated/mystery_gift_delivery_stages.h"
 #include "generated/npc_trades.h"
@@ -2177,10 +2178,10 @@
     .short \arg4
     .endm
 
-    .macro ScrCmd_188 arg0, arg1
+    .macro SetObjectEventMovementType localID, movementType
     .short 392
-    .short \arg0
-    .short \arg1
+    .short \localID
+    .short \movementType
     .endm
 
     .macro SetObjectEventDir localID, dir
@@ -4536,7 +4537,7 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_31F
+    .macro ResetDistortionWorldPersistedCameraAngles
     .short 799
     .endm
 

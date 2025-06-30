@@ -47,7 +47,7 @@ _0082:
 
 _00BA:
     SetObjectEventPos 6, 0x2B8, 0x254
-    ScrCmd_188 6, 17
+    SetObjectEventMovementType 6, MOVEMENT_TYPE_LOOK_RIGHT
     SetObjectEventDir 6, DIR_EAST
     Return
 
@@ -61,7 +61,7 @@ _00D8:
 
 _00E0:
     SetObjectEventPos 26, 0x2CD, 0x251
-    ScrCmd_188 26, 14
+    SetObjectEventMovementType 26, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 26, DIR_NORTH
     Return
 
@@ -1219,7 +1219,7 @@ _0DBE:
     CloseMessage
     SetFlag FLAG_UNK_0x0155
     SetObjectEventPos 26, 0x2D3, 0x259
-    ScrCmd_188 26, 14
+    SetObjectEventMovementType 26, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 26, DIR_NORTH
     ClearFlag FLAG_UNK_0x028A
     AddObject 26

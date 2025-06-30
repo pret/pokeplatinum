@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02095E80_decl.h"
-#include "struct_defs/struct_02027F8C.h"
 #include "struct_defs/struct_02039A58.h"
 #include "struct_defs/struct_02095E80_t.h"
 
@@ -12,8 +11,8 @@
 #include "overlay088/ov88_0223B140.h"
 
 #include "communication_system.h"
+#include "pal_pad.h"
 #include "party.h"
-#include "unk_02027F84.h"
 #include "unk_0202D778.h"
 #include "unk_02032798.h"
 
@@ -156,7 +155,7 @@ void sub_02095DFC(int param0, int param1, void *param2, void *param3)
     UnkStruct_02095E80 *v0 = ((FieldSystem *)param3)->unk_88;
 
     if (CommSys_CurNetId() != param0) {
-        sub_02027FEC(v0->unk_227C, (PalPad *)param2, 1, HEAP_ID_26);
+        PalPad_PushEntries(v0->unk_227C, (PalPad *)param2, 1, HEAP_ID_26);
         v0->unk_54 = 3;
     }
 }

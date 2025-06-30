@@ -121,7 +121,6 @@ typedef struct {
     u32 unk_04;
 } UnkStruct_ov92_021D2958;
 
-BOOL ov92_021D27E8(int param0, int param1, Strbuf *param2, Strbuf *param3, int param4);
 BOOL ov92_021D2854(int param0);
 int ov92_021D0D80(ApplicationManager *appMan, int *param1);
 int ov92_021D0EB8(ApplicationManager *appMan, int *param1);
@@ -1478,13 +1477,13 @@ static void ov92_021D26D0(UnkStruct_ov92_021D1B24 *param0)
     }
 }
 
-BOOL ov92_021D27E8(int param0, int param1, Strbuf *param2, Strbuf *param3, int param4)
+BOOL ov92_021D27E8(int param0, int param1, Strbuf *param2, Strbuf *param3, int heapID)
 {
     MessageLoader *v0;
     int v1 = ov92_021D16F8(param0);
     BOOL v2;
 
-    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COUNTRY_NAMES, param4);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COUNTRY_NAMES, heapID);
 
     MessageLoader_GetStrbuf(v0, param0, param2);
     MessageLoader_Free(v0);
@@ -1497,7 +1496,7 @@ BOOL ov92_021D27E8(int param0, int param1, Strbuf *param2, Strbuf *param3, int p
         v2 = 1;
     }
 
-    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, sub_0209972C(v1), param4);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, sub_0209972C(v1), heapID);
 
     MessageLoader_GetStrbuf(v0, param1, param3);
     MessageLoader_Free(v0);
