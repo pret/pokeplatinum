@@ -150,7 +150,7 @@ static void ov5_021E63E0(Pokemon *param0)
     u16 v4;
 
     for (v0 = 0; v0 < 100; v0++) {
-        if (Pokemon_ShouldLevelUp(param0)) {
+        if (Pokemon_TryLevelUp(param0)) {
             v1 = 0;
 
             while ((v4 = Pokemon_LevelUpMove(param0, &v1, &v3)) != 0) {
@@ -178,7 +178,7 @@ static int Daycare_MoveToPartyFromDaycareMon(Party *party, DaycareMon *daycareMo
     species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
     Pokemon_FromBoxPokemon(boxMon, mon);
 
-    if (Pokemon_GetData(mon, MON_DATA_LEVEL, NULL) != MAX_POKEMON_LEVEL) {
+    if (Pokemon_GetData(mon, MON_DATA_LEVEL, NULL) != MAX_MON_LEVEL) {
         experience = Pokemon_GetData(mon, MON_DATA_EXP, NULL);
         experience += DaycareMon_GetSteps(daycareMon);
         Pokemon_SetData(mon, MON_DATA_EXP, (u8 *)&experience);

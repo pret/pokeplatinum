@@ -6392,7 +6392,7 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
         if (battleCtx->battleMons[battleCtx->msgBattlerTemp].species == SPECIES_ARCEUS
             && battleCtx->battleMons[battleCtx->msgBattlerTemp].curHP
             && Battler_Ability(battleCtx, battleCtx->msgBattlerTemp) == ABILITY_MULTITYPE) {
-            arceusForm = Pokemon_GetArceusTypeOf(Item_LoadParam(battleCtx->battleMons[battleCtx->msgBattlerTemp].heldItem, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_BATTLE));
+            arceusForm = HoldEffect_GetArceusType(Item_LoadParam(battleCtx->battleMons[battleCtx->msgBattlerTemp].heldItem, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_BATTLE));
 
             if (battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum != arceusForm) {
                 battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = arceusForm;

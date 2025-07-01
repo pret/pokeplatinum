@@ -47,7 +47,7 @@ BOOL sub_0207A2D0(const BattleRegulation *param0, Pokemon *param1, const HeightW
     v1 = sub_02026074(param0, 4);
 
     if (v1 == 0) {
-        if (v0 != sub_02076FD4(v0)) {
+        if (v0 != GetEggSpecies(v0)) {
             return 0;
         }
     }

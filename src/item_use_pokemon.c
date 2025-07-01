@@ -170,7 +170,7 @@ u8 Pokemon_CheckItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, enum HeapId 
     }
 
     if (Item_Get(item, ITEM_PARAM_LEVEL_UP)) {
-        if (Pokemon_GetData(mon, MON_DATA_LEVEL, NULL) < MAX_POKEMON_LEVEL) {
+        if (Pokemon_GetData(mon, MON_DATA_LEVEL, NULL) < MAX_MON_LEVEL) {
             Heap_FreeToHeap(item);
             return TRUE;
         }
@@ -290,7 +290,7 @@ u8 Pokemon_ApplyItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, u16 location
     vApplyLevel = Pokemon_GetData(mon, MON_DATA_LEVEL, NULL);
 
     if (Item_Get(item, ITEM_PARAM_LEVEL_UP)) {
-        if (vApplyLevel < MAX_POKEMON_LEVEL) {
+        if (vApplyLevel < MAX_MON_LEVEL) {
             Pokemon_IncreaseValue(mon, MON_DATA_EXP, Pokemon_GetExpToNextLevel(mon));
             Pokemon_CalcLevelAndStats(mon);
 

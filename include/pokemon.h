@@ -4,6 +4,7 @@
 #include <nitro/rtc.h>
 
 #include "constants/forms.h"
+#include "constants/heap.h"
 #include "constants/pokemon.h"
 #include "constants/sound.h"
 
@@ -67,7 +68,7 @@ int Pokemon_StructSize(void);
  * @param heapID
  * @return A new empty but encrypted Pokemon struct
  */
-Pokemon *Pokemon_New(u32 heapID);
+Pokemon *Pokemon_New(enum HeapId heapID);
 
 /**
  * @brief Decrypts a Pokemon data structure. PartyPokemon data is encrypted using the pokemons personality value, BoxPokemon data using a checksum value
@@ -523,10 +524,10 @@ u8 BoxPokemon_GetForm(BoxPokemon *boxMon);
  */
 BoxPokemon *Pokemon_GetBoxPokemon(Pokemon *mon);
 
-BOOL Pokemon_ShouldLevelUp(Pokemon *mon);
+BOOL Pokemon_TryLevelUp(Pokemon *mon);
 u16 Pokemon_GetEvolutionTargetSpecies(Party *party, Pokemon *mon, u8 evoClass, u16 evoParam, int *evoTypeResult);
 u16 sub_02076F84(const u16 monSpecies);
-u16 sub_02076FD4(const u16 monSpecies);
+u16 GetEggSpecies(const u16 species);
 
 /**
  * @brief Adds a move to the moveset of a Pokemon
@@ -558,10 +559,10 @@ void Pokemon_ResetMoveSlot(Pokemon *mon, u16 moveID, u8 moveSlot);
  * @brief Sets the given moveSlot of a Pokemon, retaining the PP Ups for that slot
  *
  * @param mon
- * @param moveID
- * @param moveSlot
+ * @param move
+ * @param slot
  */
-void Pokemon_SetMoveSlot(Pokemon *mon, u16 moveID, u8 moveSlot);
+void Pokemon_SetMoveSlot(Pokemon *mon, u16 move, u8 slot);
 
 u16 Pokemon_LevelUpMove(Pokemon *mon, int *index, u16 *moveID);
 
@@ -677,7 +678,7 @@ void BoxPokemon_SetArceusForm(BoxPokemon *boxMon);
  * @param itemHoldEffect
  * @return The form arceus should be in
  */
-u8 Pokemon_GetArceusTypeOf(u16 itemHoldEffect);
+u8 HoldEffect_GetArceusType(u16 itemHoldEffect);
 
 /**
  * @brief Sets Giratina's form based on its held item. Has no effect if the given Pokemon is not a Giratina

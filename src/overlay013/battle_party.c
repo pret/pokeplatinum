@@ -1333,7 +1333,7 @@ static void InitialisePartyPokemon(BattleParty *battleParty)
         battleParty->partyPokemon[i].exp = Pokemon_GetData(battleParty->partyPokemon[i].pokemon, MON_DATA_EXP, NULL);
         battleParty->partyPokemon[i].currentLevelBaseExp = Pokemon_GetSpeciesBaseExpAt(battleParty->partyPokemon[i].species, battleParty->partyPokemon[i].level);
 
-        if (battleParty->partyPokemon[i].level == MAX_POKEMON_LEVEL) {
+        if (battleParty->partyPokemon[i].level == MAX_MON_LEVEL) {
             battleParty->partyPokemon[i].nextLevelExp = battleParty->partyPokemon[i].currentLevelBaseExp;
         } else {
             battleParty->partyPokemon[i].nextLevelExp = Pokemon_GetSpeciesBaseExpAt(battleParty->partyPokemon[i].species, battleParty->partyPokemon[i].level + 1);
@@ -1562,7 +1562,7 @@ static void DrawXPBar(BattleParty *battleParty, u8 screen)
 
     pokemon = &battleParty->partyPokemon[battleParty->context->selectedPartyIndex];
 
-    if (pokemon->level < MAX_POKEMON_LEVEL) {
+    if (pokemon->level < MAX_MON_LEVEL) {
         expFromCurrentToNextLevel = pokemon->nextLevelExp - pokemon->currentLevelBaseExp;
         expTowardsNextLevel = pokemon->exp - pokemon->currentLevelBaseExp;
     } else {
