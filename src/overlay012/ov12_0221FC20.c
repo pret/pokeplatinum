@@ -50,7 +50,8 @@
 #include "system.h"
 #include "vram_transfer.h"
 
-#define BATTLE_ANIM_SCRIPT_RES_ID(MEMBER_IDX) (MEMBER_IDX + 5000)
+#define BATTLE_ANIM_SCRIPT_RES_ID(MEMBER_IDX)   (MEMBER_IDX + 5000)
+#define BATTLE_ANIM_SCRIPT_MAX_SFX_WAIT_FRAMES    90 // 3s
 
 typedef struct BattleAnimSoundContext {
     u8 type;
@@ -145,7 +146,7 @@ static void BattleAnimScriptCmd_Delay(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_WaitForAnimTasks(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_BeginLoop(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_EndLoop(BattleAnimSystem *param0);
-static void ov12_02220798(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_End(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_PlaySoundEffect(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_Nop0(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_Nop1(BattleAnimSystem *param0);
@@ -165,7 +166,7 @@ static void ov12_02222774(BattleAnimSystem *param0);
 static void ov12_022227CC(BattleAnimSystem *param0);
 static void ov12_02222820(BattleAnimSystem *param0);
 static void ov12_02222840(BattleAnimSystem *param0);
-static void ov12_02222860(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_SetBg(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_PlayPannedSoundEffect(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_PanSoundEffects(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_PlayMovingSoundEffectAtkDef(BattleAnimSystem *param0);
@@ -176,12 +177,12 @@ static void BattleAnimScriptCmd_Nop3(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_WaitForSoundEffects(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_JumpIfEqual(BattleAnimSystem *param0);
 static void ov12_0222128C(BattleAnimSystem *param0);
-static void ov12_0222144C(BattleAnimSystem *param0);
-static void ov12_022214C4(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_InitPokemonSpriteManager(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_LoadPokemonSpriteDummyResources(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_AddPokemonSprite(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_FreePokemonSpriteManager(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_RemovePokemonSprite(BattleAnimSystem *param0);
-static void ov12_02221A00(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_CancelTrackingTask(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_SetCameraProjection(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_SetCameraFlip(BattleAnimSystem *param0);
 static void ov12_02221424(BattleAnimSystem *param0);
@@ -222,7 +223,7 @@ static void BattleAnimScriptCmd_LoadAnimResObj(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_AddSpriteWithFunc(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_AddSprite(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_FreeSpriteManager(BattleAnimSystem *param0);
-static void ov12_022230A8(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_SetPokemonSpriteVisible(BattleAnimSystem *param0);
 static void ov12_02221834(BattleAnimSystem *param0);
 static void ov12_022219E8(BattleAnimSystem *param0);
 static void ov12_0222048C(BattleAnimSystem *param0);
@@ -271,7 +272,6 @@ static const s16 Unk_ov12_02238660[] = {
 static void BattleAnimSystem_Script_WaitForDelay(BattleAnimSystem *system)
 {
     if (system->scriptDelay == 0) {
-        system->scriptDelay == 0;
         system->executeAnimScriptFunc = BattleAnimSystem_Script_Execute;
     } else {
         system->scriptDelay--;
@@ -791,7 +791,7 @@ static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
     BattleAnimScriptCmd_WaitForAnimTasks,
     BattleAnimScriptCmd_BeginLoop,
     BattleAnimScriptCmd_EndLoop,
-    ov12_02220798,
+    BattleAnimScriptCmd_End,
     BattleAnimScriptCmd_PlaySoundEffect,
     BattleAnimScriptCmd_Nop0,
     BattleAnimScriptCmd_Nop1,
@@ -808,7 +808,7 @@ static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
     ov12_022227CC,
     ov12_02222820,
     ov12_02222840,
-    ov12_02222860,
+    BattleAnimScriptCmd_SetBg,
     BattleAnimScriptCmd_PlayPannedSoundEffect,
     BattleAnimScriptCmd_PanSoundEffects,
     BattleAnimScriptCmd_PlayMovingSoundEffectAtkDef,
@@ -843,12 +843,12 @@ static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
     BattleAnimScriptCmd_UnloadParticleSystem,
     ov12_02223160,
     ov12_022230CC,
-    ov12_0222144C,
-    ov12_022214C4,
+    BattleAnimScriptCmd_InitPokemonSpriteManager,
+    BattleAnimScriptCmd_LoadPokemonSpriteDummyResources,
     BattleAnimScriptCmd_AddPokemonSprite,
     BattleAnimScriptCmd_FreePokemonSpriteManager,
     BattleAnimScriptCmd_RemovePokemonSprite,
-    ov12_02221A00,
+    BattleAnimScriptCmd_CancelTrackingTask,
     BattleAnimScriptCmd_SetCameraProjection,
     BattleAnimScriptCmd_SetCameraFlip,
     BattleAnimScriptCmd_JumpIfBattlerSide,
@@ -868,7 +868,7 @@ static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
     BattleAnimScriptCmd_AddSpriteWithFunc,
     BattleAnimScriptCmd_AddSprite,
     BattleAnimScriptCmd_FreeSpriteManager,
-    ov12_022230A8,
+    BattleAnimScriptCmd_SetPokemonSpriteVisible,
     ov12_02221834,
     ov12_022219E8,
     ov12_0222048C
@@ -1088,10 +1088,10 @@ static void BattleAnimScriptCmd_EndLoop(BattleAnimSystem *system)
     }
 }
 
-static void ov12_02220798(BattleAnimSystem *system)
+static void BattleAnimScriptCmd_End(BattleAnimSystem *system)
 {
     int i;
-    int v1 = 0;
+    int totalEmitters = 0;
 
     if (system->unk_17A < 1) {
         system->scriptDelay = 1;
@@ -1101,21 +1101,22 @@ static void ov12_02220798(BattleAnimSystem *system)
 
     for (i = 0; i < MAX_PARTICLE_SYSTEMS; i++) {
         if (system->context->particleSystems[i]) {
-            v1 += ParticleSystem_GetActiveEmitterCount(system->context->particleSystems[i]);
+            totalEmitters += ParticleSystem_GetActiveEmitterCount(system->context->particleSystems[i]);
         }
     }
 
-    if ((v1 != 0) || (system->activeAnimTasks != 0) || (system->activeSoundTasks != 0)) {
+    if (totalEmitters != 0 || system->activeAnimTasks != 0 || system->activeSoundTasks != 0) {
         system->scriptDelay = 1;
-        system->unk_179 = 0;
+        system->soundEffectWaitTimer = 0;
         return;
     }
 
     if (Sound_IsAnyEffectPlaying()) {
-        system->unk_179++;
+        system->soundEffectWaitTimer++;
 
-        if (system->unk_179 > 90) {
-            system->unk_179 = 0;
+        // If sound effects are still playing after 3 seconds, continue anyway
+        if (system->soundEffectWaitTimer > BATTLE_ANIM_SCRIPT_MAX_SFX_WAIT_FRAMES) {
+            system->soundEffectWaitTimer = 0;
             system->scriptDelay = 0;
         } else {
             system->scriptDelay = 1;
@@ -1123,10 +1124,10 @@ static void ov12_02220798(BattleAnimSystem *system)
         }
     }
 
-    system->unk_179 = 0;
+    system->soundEffectWaitTimer = 0;
     system->unk_17A = 0;
 
-    for (i = 0; i < 3; i++) {
+    for (i = 0; i < BATTLE_ANIM_SCRIPT_MAX_CALL_STACK_DEPTH; i++) {
         system->callStack[i] = NULL;
     }
 
@@ -1137,7 +1138,7 @@ static void ov12_02220798(BattleAnimSystem *system)
         system->loopStack[i].isActive = FALSE;
     }
 
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < BATTLE_ANIM_SCRIPT_MAX_SPRITE_MANAGERS; i++) {
         if (system->spriteManagers[i] != NULL) {
             SpriteSystem_FreeResourcesAndManager(system->context->spriteSystem, system->spriteManagers[i]);
         }
@@ -1145,8 +1146,8 @@ static void ov12_02220798(BattleAnimSystem *system)
         system->spriteManagers[i] = NULL;
     }
 
-    for (i = 0; i < 5; i++) {
-        ov12_02221238(system, i);
+    for (i = 0; i < BATTLE_ANIM_TRACKING_TASK_COUNT; i++) {
+        BattleAnimSystem_CancelTrackingTask(system, i);
     }
 
     for (i = 0; i < MAX_PARTICLE_SYSTEMS; i++) {
@@ -1160,7 +1161,7 @@ static void ov12_02220798(BattleAnimSystem *system)
         system->unk_17C = NULL;
     }
 
-    if (BattleAnimSystem_IsContest(system) == 0) {
+    if (BattleAnimSystem_IsContest(system) == FALSE) {
         Battle_SetDefaultBlend();
 
         Bg_ClearTilesRange(ov12_022233B0(system, 1), 0x4000, 0, BattleAnimSystem_GetHeapID(system));
@@ -1748,19 +1749,19 @@ static void BattleAnimSystem_BgTrackingTaskFunc(SysTask *task, void *param)
     Bg_SetOffset(trackingTask->bg, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_Y, -(y - 40));
 }
 
-void ov12_02221238(BattleAnimSystem *param0, int param1)
+void BattleAnimSystem_CancelTrackingTask(BattleAnimSystem *system, enum BattleAnimTrackingTask task)
 {
-    if (param1 == 4) {
-        if (param0->bgTrackingTask != NULL) {
-            SysTask_Done(param0->bgTrackingTask->task);
-            Heap_Free(param0->bgTrackingTask);
-            param0->bgTrackingTask = NULL;
+    if (task == BATTLE_ANIM_TRACKING_TASK_BG) {
+        if (system->bgTrackingTask != NULL) {
+            SysTask_Done(system->bgTrackingTask->task);
+            Heap_Free(system->bgTrackingTask);
+            system->bgTrackingTask = NULL;
         }
     } else {
-        if (param0->spriteTrackingTasks[param1] != NULL) {
-            SysTask_Done(param0->spriteTrackingTasks[param1]->task);
-            Heap_Free(param0->spriteTrackingTasks[param1]);
-            param0->spriteTrackingTasks[param1] = NULL;
+        if (system->spriteTrackingTasks[task] != NULL) {
+            SysTask_Done(system->spriteTrackingTasks[task]->task);
+            Heap_Free(system->spriteTrackingTasks[task]);
+            system->spriteTrackingTasks[task] = NULL;
         }
     }
 }
@@ -1775,7 +1776,7 @@ static void BattleAnimScriptCmd_Nop1(BattleAnimSystem *param0)
     return;
 }
 
-static void ov12_0222128C(BattleAnimSystem *param0)
+static void ov12_0222128C(BattleAnimSystem *system)
 {
     void *v0 = NULL;
     int v1;
@@ -1786,21 +1787,21 @@ static void ov12_0222128C(BattleAnimSystem *param0)
     int v6;
     int v7;
 
-    param0->scriptPtr += 1;
+    system->scriptPtr += 1;
 
-    v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    v1 = BattleAnimScript_ReadWord(system->scriptPtr);
+    system->scriptPtr += 1;
 
-    v2 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    v2 = BattleAnimScript_ReadWord(system->scriptPtr);
+    system->scriptPtr += 1;
 
-    v3 = BattleAnimSystem_GetBattlerOfType(param0, v1);
-    v4 = param0->context->pokemonSpriteData[v3]->unk_04;
-    v5 = param0->context->pokemonSpriteData[v3]->unk_08;
-    v0 = param0->context->pokemonSpriteData[v3]->unk_00;
-    v7 = param0->context->battlerForms[v3];
+    v3 = BattleAnimSystem_GetBattlerOfType(system, v1);
+    v4 = system->context->pokemonSpriteData[v3]->unk_04;
+    v5 = system->context->pokemonSpriteData[v3]->unk_08;
+    v0 = system->context->pokemonSpriteData[v3]->unk_00;
+    v7 = system->context->battlerForms[v3];
 
-    if ((BattleAnimSystem_IsContest(param0) == 1) && (IsFormSymmetrical(BattleAnimSystem_GetBattlerSpecies(param0, v3), v7) == 1)) {
+    if ((BattleAnimSystem_IsContest(system) == 1) && (IsFormSymmetrical(BattleAnimSystem_GetBattlerSpecies(system, v3), v7) == 1)) {
         v6 = 265;
     } else {
         v6 = 264;
@@ -1812,104 +1813,99 @@ static void ov12_0222128C(BattleAnimSystem *param0)
     }
 
     Bg_ToggleLayer(BG_LAYER_MAIN_2, FALSE);
-    Bg_LoadTiles(param0->bgConfig, 2, v0, (10 * 10 * ((8 / 2) * 8)), 0);
-    PaletteData_LoadBufferFromFileStart(param0->paletteData, v4, v5, param0->heapID, 0, 0, (8 * 16));
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->arcs[0], v6, param0->bgConfig, 2, 0, 0, 0, param0->heapID);
+    Bg_LoadTiles(system->bgConfig, BG_LAYER_MAIN_2, v0, (10 * 10 * ((8 / 2) * 8)), 0);
+    PaletteData_LoadBufferFromFileStart(system->paletteData, v4, v5, system->heapID, 0, 0, (8 * 16));
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(system->arcs[BATTLE_ANIM_SYSTEM_ARC_BATT_BG], v6, system->bgConfig, BG_LAYER_MAIN_2, 0, 0, FALSE, system->heapID);
 
     if (v2 == 1) {
         SysTask *v9;
 
-        param0->bgTrackingTask = Heap_AllocFromHeap(param0->heapID, sizeof(SpriteTrackingTask));
-        param0->bgTrackingTask->bg = param0->bgConfig;
-        param0->bgTrackingTask->data.sprite = BattleAnimSystem_GetBattlerSprite(param0, v3);
-        param0->bgTrackingTask->data.frameCount = 0;
-        param0->bgTrackingTask->data.interval = 0;
+        system->bgTrackingTask = Heap_AllocFromHeap(system->heapID, sizeof(SpriteTrackingTask));
+        system->bgTrackingTask->bg = system->bgConfig;
+        system->bgTrackingTask->data.sprite = BattleAnimSystem_GetBattlerSprite(system, v3);
+        system->bgTrackingTask->data.frameCount = 0;
+        system->bgTrackingTask->data.interval = 0;
 
-        v9 = SysTask_Start(BattleAnimSystem_BgTrackingTaskFunc, param0->bgTrackingTask, 0x1001);
+        v9 = SysTask_Start(BattleAnimSystem_BgTrackingTaskFunc, system->bgTrackingTask, 0x1001);
 
-        param0->bgTrackingTask->task = v9;
+        system->bgTrackingTask->task = v9;
     }
 
     {
         s16 v10;
         s16 v11;
 
-        v10 = PokemonSprite_GetAttribute(BattleAnimSystem_GetBattlerSprite(param0, v3), 0);
-        v11 = PokemonSprite_GetAttribute(BattleAnimSystem_GetBattlerSprite(param0, v3), 1);
-        v11 -= PokemonSprite_GetAttribute(BattleAnimSystem_GetBattlerSprite(param0, v3), 41);
+        v10 = PokemonSprite_GetAttribute(BattleAnimSystem_GetBattlerSprite(system, v3), 0);
+        v11 = PokemonSprite_GetAttribute(BattleAnimSystem_GetBattlerSprite(system, v3), 1);
+        v11 -= PokemonSprite_GetAttribute(BattleAnimSystem_GetBattlerSprite(system, v3), 41);
 
-        Bg_SetOffset(param0->bgConfig, BG_LAYER_MAIN_2, 0, -(v10 - 40));
-        Bg_SetOffset(param0->bgConfig, BG_LAYER_MAIN_2, 3, -(v11 - 40));
+        Bg_SetOffset(system->bgConfig, BG_LAYER_MAIN_2, 0, -(v10 - 40));
+        Bg_SetOffset(system->bgConfig, BG_LAYER_MAIN_2, 3, -(v11 - 40));
     }
 
     Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
-    Bg_SetPriority(BG_LAYER_MAIN_2, ov12_0222339C(param0));
+    Bg_SetPriority(BG_LAYER_MAIN_2, ov12_0222339C(system));
 }
 
-static void ov12_02221424(BattleAnimSystem *param0)
+static void ov12_02221424(BattleAnimSystem *system)
 {
-    param0->scriptPtr += 1;
-    param0->scriptPtr += 1;
+    BattleAnimScript_Next(system);
+    BattleAnimScript_Next(system);
 
-    {
-        u8 *v0 = Bg_GetCharPtr(2);
-        MI_CpuFill8(v0, 0, 10 * 10 * 2 * 0x20);
-    }
+    u8 *v0 = Bg_GetCharPtr(BG_LAYER_MAIN_2);
+    MI_CpuFill8(v0, 0, 10 * 10 * 2 * 0x20);
 
-    ov12_02221238(param0, 4);
+    BattleAnimSystem_CancelTrackingTask(system, BATTLE_ANIM_TRACKING_TASK_BG);
 }
 
-static void ov12_0222144C(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_InitPokemonSpriteManager(BattleAnimSystem *system)
 {
-    int v0 = (4 + 1);
-    SpriteResourceCapacities v1 = {
-        0x5,
-        0x5,
-        0x5,
-        0x5,
-        0x0,
-        0x0
+    SpriteResourceCapacities caps = {
+        BATTLE_ANIM_SCRIPT_MAX_POKEMON_SPRITES,
+        BATTLE_ANIM_SCRIPT_MAX_POKEMON_SPRITES,
+        BATTLE_ANIM_SCRIPT_MAX_POKEMON_SPRITES,
+        BATTLE_ANIM_SCRIPT_MAX_POKEMON_SPRITES,
+        0,
+        0
     };
 
-    param0->scriptPtr += 1;
-    param0->pokemonSpriteManager = SpriteManager_New(param0->context->spriteSystem);
+    BattleAnimScript_Next(system);
+    system->pokemonSpriteManager = SpriteManager_New(system->context->spriteSystem);
 
-    SpriteSystem_InitSprites(param0->context->spriteSystem, param0->pokemonSpriteManager, v0);
-    SetSubScreenViewRect(SpriteSystem_GetRenderer(param0->context->spriteSystem), 0, ((192 + 80) << FX32_SHIFT));
-    SpriteSystem_InitManagerWithCapacities(param0->context->spriteSystem, param0->pokemonSpriteManager, &v1);
+    SpriteSystem_InitSprites(system->context->spriteSystem, system->pokemonSpriteManager, BATTLE_ANIM_SCRIPT_MAX_POKEMON_SPRITES);
+    SetSubScreenViewRect(SpriteSystem_GetRenderer(system->context->spriteSystem), 0, ((192 + 80) << FX32_SHIFT));
+    SpriteSystem_InitManagerWithCapacities(system->context->spriteSystem, system->pokemonSpriteManager, &caps);
 }
 
-static void ov12_022214C4(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_LoadPokemonSpriteDummyResources(BattleAnimSystem *system)
 {
+    BattleAnimScript_Next(system);
+    int resID = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
+    
     int resourceIDs[SPRITE_RESOURCE_MAX];
-    int v1;
-
-    param0->scriptPtr += 1;
-    v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
-
-    resourceIDs[SPRITE_RESOURCE_CHAR] = 20001 + v1 + ((param0->context->attacker) * 5000);
-    resourceIDs[SPRITE_RESOURCE_PLTT] = 20001 + v1 + ((param0->context->attacker) * 5000);
-    resourceIDs[SPRITE_RESOURCE_CELL] = 20001 + v1 + ((param0->context->attacker) * 5000);
-    resourceIDs[SPRITE_RESOURCE_ANIM] = 20001 + v1 + ((param0->context->attacker) * 5000);
+    resourceIDs[SPRITE_RESOURCE_CHAR] = 20001 + resID + (system->context->attacker * 5000);
+    resourceIDs[SPRITE_RESOURCE_PLTT] = 20001 + resID + (system->context->attacker * 5000);
+    resourceIDs[SPRITE_RESOURCE_CELL] = 20001 + resID + (system->context->attacker * 5000);
+    resourceIDs[SPRITE_RESOURCE_ANIM] = 20001 + resID + (system->context->attacker * 5000);
     resourceIDs[SPRITE_RESOURCE_MULTI_CELL] = 0;
     resourceIDs[SPRITE_RESOURCE_MULTI_ANIM] = 0;
 
     SpriteSystem_LoadCharResObjFromOpenNarc(
-        param0->context->spriteSystem,
-        param0->pokemonSpriteManager,
-        param0->arcs[BATTLE_ANIM_SYSTEM_ARC_BATT_OBJ],
+        system->context->spriteSystem,
+        system->pokemonSpriteManager,
+        system->arcs[BATTLE_ANIM_SYSTEM_ARC_BATT_OBJ],
         76,
         FALSE,
         NNS_G2D_VRAM_TYPE_2DMAIN,
         resourceIDs[SPRITE_RESOURCE_PLTT]);
 
     SpriteSystem_LoadPaletteBufferFromOpenNarc(
-        param0->paletteData,
+        system->paletteData,
         PLTTBUF_MAIN_OBJ,
-        param0->context->spriteSystem,
-        param0->pokemonSpriteManager,
-        param0->arcs[BATTLE_ANIM_SYSTEM_ARC_BATT_OBJ],
+        system->context->spriteSystem,
+        system->pokemonSpriteManager,
+        system->arcs[BATTLE_ANIM_SYSTEM_ARC_BATT_OBJ],
         75,
         FALSE,
         1,
@@ -1917,17 +1913,17 @@ static void ov12_022214C4(BattleAnimSystem *param0)
         resourceIDs[SPRITE_RESOURCE_PLTT]);
 
     SpriteSystem_LoadCellResObjFromOpenNarc(
-        param0->context->spriteSystem,
-        param0->pokemonSpriteManager,
-        param0->arcs[BATTLE_ANIM_SYSTEM_ARC_BATT_OBJ],
+        system->context->spriteSystem,
+        system->pokemonSpriteManager,
+        system->arcs[BATTLE_ANIM_SYSTEM_ARC_BATT_OBJ],
         77,
         FALSE,
         resourceIDs[SPRITE_RESOURCE_CELL]);
 
     SpriteSystem_LoadAnimResObjFromOpenNarc(
-        param0->context->spriteSystem,
-        param0->pokemonSpriteManager,
-        param0->arcs[BATTLE_ANIM_SYSTEM_ARC_BATT_OBJ],
+        system->context->spriteSystem,
+        system->pokemonSpriteManager,
+        system->arcs[BATTLE_ANIM_SYSTEM_ARC_BATT_OBJ],
         78,
         FALSE,
         resourceIDs[SPRITE_RESOURCE_ANIM]);
@@ -2206,15 +2202,13 @@ static void ov12_022219E8(BattleAnimSystem *param0)
     param0->unk_48[v0].unk_0C = 0;
 }
 
-static void ov12_02221A00(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_CancelTrackingTask(BattleAnimSystem *system)
 {
-    int v0;
+    BattleAnimScript_Next(system);
+    int taskID = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    param0->scriptPtr += 1;
-    v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
-
-    ov12_02221238(param0, v0);
+    BattleAnimSystem_CancelTrackingTask(system, taskID);
 }
 
 static void BattleAnimScriptCmd_SetCameraProjection(BattleAnimSystem *system)
@@ -2300,8 +2294,8 @@ static BOOL ov12_02221A54(UnkStruct_ov12_02221BBC *param0, BattleAnimSystem *par
 
 static void ov12_02221AA8(UnkStruct_ov12_02221BBC *param0, BattleAnimSystem *param1, int param2, int param3)
 {
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, ov12_022234E4(param3, HEAP_ID_SYSTEM), param1->bgConfig, param2, 0, 0, 1, param1->heapID);
-    PaletteData_LoadBufferFromFileStart(param1->paletteData, 7, ov12_022234E4(param3, 1), param1->heapID, 0, 0x20, (9 * 16));
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, BattleAnimSystem_GetBgNarcMemberIndex(param3, HEAP_ID_SYSTEM), param1->bgConfig, param2, 0, 0, 1, param1->heapID);
+    PaletteData_LoadBufferFromFileStart(param1->paletteData, 7, BattleAnimSystem_GetBgNarcMemberIndex(param3, 1), param1->heapID, 0, 0x20, (9 * 16));
     Bg_ClearTilemap(param1->bgConfig, param2);
 
     {
@@ -2313,7 +2307,7 @@ static void ov12_02221AA8(UnkStruct_ov12_02221BBC *param0, BattleAnimSystem *par
             v0 = 3;
         }
 
-        Graphics_LoadTilemapToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, ov12_022234E4(param3, v0), param1->bgConfig, param2, 0, 0, 1, param1->heapID);
+        Graphics_LoadTilemapToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, BattleAnimSystem_GetBgNarcMemberIndex(param3, v0), param1->bgConfig, param2, 0, 0, 1, param1->heapID);
     }
 }
 
@@ -2993,17 +2987,39 @@ static void ov12_02222840(BattleAnimSystem *param0)
     }
 }
 
-static void ov12_02222860(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_SetBg(BattleAnimSystem *system)
 {
-    int v0;
+    BattleAnimScript_Next(system);
+    int bgID = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    param0->scriptPtr += 1;
-    v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
-
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, ov12_022234E4(v0, HEAP_ID_SYSTEM), param0->bgConfig, 3, 0, 0, 1, param0->heapID);
-    Graphics_LoadPalette(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, ov12_022234E4(v0, HEAP_ID_SAVE), 0, 0, 0, param0->heapID);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, ov12_022234E4(v0, HEAP_ID_DEBUG), param0->bgConfig, 3, 0, 0, 1, param0->heapID);
+    Graphics_LoadTilesToBgLayer(
+        NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG,
+        BattleAnimSystem_GetBgNarcMemberIndex(bgID, BG_NARC_MEMBER_NCGR),
+        system->bgConfig,
+        BG_LAYER_MAIN_3,
+        0,
+        0,
+        TRUE,
+        system->heapID);
+    
+    Graphics_LoadPalette(
+        NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG,
+        BattleAnimSystem_GetBgNarcMemberIndex(bgID, BG_NARC_MEMBER_NCLR),
+        PAL_LOAD_MAIN_BG,
+        0,
+        0,
+        system->heapID);
+    
+    Graphics_LoadTilemapToBgLayer(
+        NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG,
+        BattleAnimSystem_GetBgNarcMemberIndex(bgID, BG_NARC_MEMBER_NSCR1),
+        system->bgConfig,
+        BG_LAYER_MAIN_3,
+        0,
+        0,
+        TRUE,
+        system->heapID);
 }
 
 static void ov12_022228DC(BattleAnimSystem *param0)
@@ -3262,22 +3278,22 @@ static void BattleAnimScriptCmd_WaitForSoundEffects(BattleAnimSystem *system)
 {
     if (system->activeSoundTasks) {
         system->scriptDelay = 1;
-        system->unk_179 = 0;
+        system->soundEffectWaitTimer = 0;
         return;
     }
 
     if (Sound_IsAnyEffectPlaying()) {
-        system->unk_179++;
+        system->soundEffectWaitTimer++;
 
-        if (system->unk_179 > 90) {
-            system->unk_179 = 0;
+        if (system->soundEffectWaitTimer > 90) {
+            system->soundEffectWaitTimer = 0;
         } else {
             system->scriptDelay = 1;
             return;
         }
     } else {
         system->scriptDelay = 0;
-        system->unk_179 = 0;
+        system->soundEffectWaitTimer = 0;
         BattleAnimScript_Next(system);
     }
 }
@@ -3515,20 +3531,17 @@ static void BattleAnimScriptCmd_FreeSpriteManager(BattleAnimSystem *system)
     system->spriteManagers[id] = NULL;
 }
 
-static void ov12_022230A8(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_SetPokemonSpriteVisible(BattleAnimSystem *system)
 {
-    int v0;
-    int v1;
+    BattleAnimScript_Next(system);
 
-    param0->scriptPtr += 1;
+    int spriteID = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    int flag = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
-
-    ManagedSprite_SetDrawFlag(param0->pokemonSprites[v0], v1);
+    ManagedSprite_SetDrawFlag(system->pokemonSprites[spriteID], flag);
 }
 
 static void ov12_022230CC(BattleAnimSystem *param0)
@@ -3842,7 +3855,7 @@ BOOL ov12_022234A8(BattleAnimSystem *param0, int param1)
     return 0;
 }
 
-static const int Unk_ov12_02238928[][5] = {
+static const int sBgNarcIndices[][BG_NARC_MEMBER_COUNT] = {
     { 0x41, 0x123, 0x3E, 0x3F, 0x40 },
     { 0x41, 0x123, 0x3E, 0x3F, 0x40 },
     { 0x41, 0x123, 0x3E, 0x3F, 0x40 },
@@ -3903,9 +3916,9 @@ static const int Unk_ov12_02238928[][5] = {
     { 0x86, 0x142, 0x87, 0x87, 0x87 }
 };
 
-int ov12_022234E4(int param0, int param1)
+int BattleAnimSystem_GetBgNarcMemberIndex(int bgID, enum BgNarcMemberType type)
 {
-    return Unk_ov12_02238928[param0][param1];
+    return sBgNarcIndices[bgID][type];
 }
 
 UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, int heapID, int param2)
