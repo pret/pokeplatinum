@@ -178,11 +178,11 @@ static void BattleAnimScriptCmd_JumpIfEqual(BattleAnimSystem *param0);
 static void ov12_0222128C(BattleAnimSystem *param0);
 static void ov12_0222144C(BattleAnimSystem *param0);
 static void ov12_022214C4(BattleAnimSystem *param0);
-static void ov12_02221580(BattleAnimSystem *param0);
-static void ov12_022217B4(BattleAnimSystem *param0);
-static void ov12_022217E0(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_AddPokemonSprite(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_FreePokemonSpriteManager(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_RemovePokemonSprite(BattleAnimSystem *param0);
 static void ov12_02221A00(BattleAnimSystem *param0);
-static void ov12_02221A14(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_SetCameraProjection(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_SetCameraFlip(BattleAnimSystem *param0);
 static void ov12_02221424(BattleAnimSystem *param0);
 static void ov12_02220EA8(BattleAnimSystem *param0);
@@ -357,10 +357,10 @@ BattleAnimSystem *BattleAnimSystem_New(enum HeapId heapID)
     }
 
     for (i = 0; i < (4 + 1); i++) {
-        system->unk_160[i] = NULL;
+        system->spriteTrackingTasks[i] = NULL;
     }
 
-    system->unk_174 = NULL;
+    system->bgTrackingTask = NULL;
     system->isActive = TRUE;
 
     return system;
@@ -447,7 +447,7 @@ BOOL BattleAnimSystem_StartMove(BattleAnimSystem *system, UnkStruct_ov16_02265BB
     system->context->battleType = param3->battleType;
 
     for (i = 0; i < MAX_BATTLERS; i++) {
-        system->context->unk_B0[i] = param3->unk_0C[i];
+        system->context->pokemonSpriteData[i] = param3->unk_0C[i];
         system->context->battlerTypes[i] = param3->unk_1C[i];
         system->context->battlerSprites[i] = param3->unk_20[i];
         system->context->battlerSpecies[i] = param3->unk_34[i];
@@ -506,13 +506,13 @@ BOOL BattleAnimSystem_StartMove(BattleAnimSystem *system, UnkStruct_ov16_02265BB
     system->bgLayerPriorities[BG_LAYER_MAIN_2] = Bg_GetPriority(system->bgConfig, BG_LAYER_MAIN_2);
     system->bgLayerPriorities[BG_LAYER_MAIN_3] = Bg_GetPriority(system->bgConfig, BG_LAYER_MAIN_3);
 
-    for (i = 0; i < 10; i++) {
+    for (i = 0; i < BATTLE_ANIM_SCRIPT_MAX_SPRITES; i++) {
         system->sprites[i] = NULL;
     }
 
-    for (i = 0; i < (4 + 1); i++) {
-        system->unk_138[i] = NULL;
-        system->unk_14C[i] = 0;
+    for (i = 0; i < BATTLE_ANIM_SCRIPT_MAX_POKEMON_SPRITES; i++) {
+        system->pokemonSprites[i] = NULL;
+        system->usedPokemonSprites[i] = FALSE;
     }
 
     system->unk_17C = NULL;
@@ -626,28 +626,28 @@ s32 BattleAnimSystem_GetScriptVar(BattleAnimSystem *system, int id)
     return system->scriptVars[id];
 }
 
-ManagedSprite *ov12_02220298(BattleAnimSystem *param0, int param1)
+ManagedSprite *BattleAnimSystem_GetSprite(BattleAnimSystem *system, int index)
 {
-    GF_ASSERT(param1 < 10);
-    GF_ASSERT(param0 != NULL);
-    GF_ASSERT(param0->sprites[param1] != NULL);
+    GF_ASSERT(index < BATTLE_ANIM_SCRIPT_MAX_SPRITES);
+    GF_ASSERT(system != NULL);
+    GF_ASSERT(system->sprites[index] != NULL);
 
-    return param0->sprites[param1];
+    return system->sprites[index];
 }
 
-ManagedSprite *ov12_022202C0(BattleAnimSystem *param0, int param1)
+ManagedSprite *BattleAnimSystem_GetPokemonSprite(BattleAnimSystem *system, int index)
 {
-    GF_ASSERT(param1 < (4 + 1));
-    GF_ASSERT(param0 != NULL);
-    GF_ASSERT(param0->unk_138[param1] != NULL);
+    GF_ASSERT(index < BATTLE_ANIM_SCRIPT_MAX_POKEMON_SPRITES);
+    GF_ASSERT(system != NULL);
+    GF_ASSERT(system->pokemonSprites[index] != NULL);
 
-    return param0->unk_138[param1];
+    return system->pokemonSprites[index];
 }
 
-SpriteManager *ov12_022202EC(BattleAnimSystem *param0)
+SpriteManager *BattleAnimSystem_GetPokemonSpriteManager(BattleAnimSystem *system)
 {
-    GF_ASSERT(param0 != NULL);
-    return param0->unk_134;
+    GF_ASSERT(system != NULL);
+    return system->pokemonSpriteManager;
 }
 
 SpriteManager *ov12_02220300(BattleAnimSystem *param0)
@@ -845,11 +845,11 @@ static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
     ov12_022230CC,
     ov12_0222144C,
     ov12_022214C4,
-    ov12_02221580,
-    ov12_022217B4,
-    ov12_022217E0,
+    BattleAnimScriptCmd_AddPokemonSprite,
+    BattleAnimScriptCmd_FreePokemonSpriteManager,
+    BattleAnimScriptCmd_RemovePokemonSprite,
     ov12_02221A00,
-    ov12_02221A14,
+    BattleAnimScriptCmd_SetCameraProjection,
     BattleAnimScriptCmd_SetCameraFlip,
     BattleAnimScriptCmd_JumpIfBattlerSide,
     BattleAnimScriptCmd_PlayPokemonCry,
@@ -982,7 +982,7 @@ void ov12_02220590(BattleAnimSystem *param0, UnkStruct_ov12_022380DC *param1, in
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        param1->unk_08[v0] = param0->context->unk_B0[v0];
+        param1->unk_08[v0] = param0->context->pokemonSpriteData[v0];
         param1->unk_18[v0] = param0->context->battlerSprites[v0];
         param1->unk_28[v0] = param0->context->battlerSpecies[v0];
         param1->unk_30[v0] = param0->context->battlerGenders[v0];
@@ -1705,66 +1705,62 @@ static int BattleAnimSystem_GetBattlerOfType(BattleAnimSystem *system, enum Batt
     return result;
 }
 
-static void ov12_0222118C(SysTask *param0, void *param1)
+static void BattleAnimSystem_SpriteTrackingTaskFunc(SysTask *task, void *param)
 {
-    UnkStruct_ov12_0222118C *v0 = (UnkStruct_ov12_0222118C *)param1;
-    s16 v1;
-    s16 v2;
+    SpriteTrackingTask *trackingTask = param;
 
-    if (v0->unk_04.unk_01 != 0) {
-        v0->unk_04.unk_00++;
+    if (trackingTask->data.interval != 0) {
+        trackingTask->data.frameCount++;
 
-        if (v0->unk_04.unk_00 != v0->unk_04.unk_01) {
+        if (trackingTask->data.frameCount != trackingTask->data.interval) {
             return;
         }
 
-        v0->unk_04.unk_00 = 0;
+        trackingTask->data.frameCount = 0;
     }
 
-    v1 = PokemonSprite_GetAttribute(v0->unk_04.unk_04, MON_SPRITE_X_CENTER);
-    v2 = PokemonSprite_GetAttribute(v0->unk_04.unk_04, MON_SPRITE_Y_CENTER);
-    v2 -= PokemonSprite_GetAttribute(v0->unk_04.unk_04, MON_SPRITE_SHADOW_HEIGHT);
+    s16 x = PokemonSprite_GetAttribute(trackingTask->data.sprite, MON_SPRITE_X_CENTER);
+    s16 y = PokemonSprite_GetAttribute(trackingTask->data.sprite, MON_SPRITE_Y_CENTER);
+    y -= PokemonSprite_GetAttribute(trackingTask->data.sprite, MON_SPRITE_SHADOW_HEIGHT);
 
-    ManagedSprite_SetPositionXY(v0->unk_00, v1, v2);
+    ManagedSprite_SetPositionXY(trackingTask->sprite, x, y);
 }
 
-static void ov12_022211D8(SysTask *param0, void *param1)
+static void BattleAnimSystem_BgTrackingTaskFunc(SysTask *task, void *param)
 {
-    UnkStruct_ov12_022211D8 *v0 = (UnkStruct_ov12_022211D8 *)param1;
-    s16 v1;
-    s16 v2;
+    BgTrackingTask *trackingTask = param;
 
-    if (v0->unk_04.unk_01 != 0) {
-        v0->unk_04.unk_00++;
+    if (trackingTask->data.interval != 0) {
+        trackingTask->data.frameCount++;
 
-        if (v0->unk_04.unk_00 != v0->unk_04.unk_01) {
+        if (trackingTask->data.frameCount != trackingTask->data.interval) {
             return;
         }
 
-        v0->unk_04.unk_00 = 0;
+        trackingTask->data.frameCount = 0;
     }
 
-    v1 = PokemonSprite_GetAttribute(v0->unk_04.unk_04, MON_SPRITE_X_CENTER);
-    v2 = PokemonSprite_GetAttribute(v0->unk_04.unk_04, MON_SPRITE_Y_CENTER);
-    v2 -= PokemonSprite_GetAttribute(v0->unk_04.unk_04, MON_SPRITE_SHADOW_HEIGHT);
+    s16 x = PokemonSprite_GetAttribute(trackingTask->data.sprite, MON_SPRITE_X_CENTER);
+    s16 y = PokemonSprite_GetAttribute(trackingTask->data.sprite, MON_SPRITE_Y_CENTER);
+    y -= PokemonSprite_GetAttribute(trackingTask->data.sprite, MON_SPRITE_SHADOW_HEIGHT);
 
-    Bg_SetOffset(v0->unk_00, BG_LAYER_MAIN_2, 0, -(v1 - 40));
-    Bg_SetOffset(v0->unk_00, BG_LAYER_MAIN_2, 3, -(v2 - 40));
+    Bg_SetOffset(trackingTask->bg, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_X, -(x - 40));
+    Bg_SetOffset(trackingTask->bg, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_Y, -(y - 40));
 }
 
 void ov12_02221238(BattleAnimSystem *param0, int param1)
 {
     if (param1 == 4) {
-        if (param0->unk_174 != NULL) {
-            SysTask_Done(param0->unk_174->unk_04.unk_08);
-            Heap_Free(param0->unk_174);
-            param0->unk_174 = NULL;
+        if (param0->bgTrackingTask != NULL) {
+            SysTask_Done(param0->bgTrackingTask->task);
+            Heap_Free(param0->bgTrackingTask);
+            param0->bgTrackingTask = NULL;
         }
     } else {
-        if (param0->unk_160[param1] != NULL) {
-            SysTask_Done(param0->unk_160[param1]->unk_04.unk_08);
-            Heap_Free(param0->unk_160[param1]);
-            param0->unk_160[param1] = NULL;
+        if (param0->spriteTrackingTasks[param1] != NULL) {
+            SysTask_Done(param0->spriteTrackingTasks[param1]->task);
+            Heap_Free(param0->spriteTrackingTasks[param1]);
+            param0->spriteTrackingTasks[param1] = NULL;
         }
     }
 }
@@ -1799,9 +1795,9 @@ static void ov12_0222128C(BattleAnimSystem *param0)
     param0->scriptPtr += 1;
 
     v3 = BattleAnimSystem_GetBattlerOfType(param0, v1);
-    v4 = param0->context->unk_B0[v3]->unk_04;
-    v5 = param0->context->unk_B0[v3]->unk_08;
-    v0 = param0->context->unk_B0[v3]->unk_00;
+    v4 = param0->context->pokemonSpriteData[v3]->unk_04;
+    v5 = param0->context->pokemonSpriteData[v3]->unk_08;
+    v0 = param0->context->pokemonSpriteData[v3]->unk_00;
     v7 = param0->context->battlerForms[v3];
 
     if ((BattleAnimSystem_IsContest(param0) == 1) && (IsFormSymmetrical(BattleAnimSystem_GetBattlerSpecies(param0, v3), v7) == 1)) {
@@ -1823,15 +1819,15 @@ static void ov12_0222128C(BattleAnimSystem *param0)
     if (v2 == 1) {
         SysTask *v9;
 
-        param0->unk_174 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov12_0222118C));
-        param0->unk_174->unk_00 = param0->bgConfig;
-        param0->unk_174->unk_04.unk_04 = BattleAnimSystem_GetBattlerSprite(param0, v3);
-        param0->unk_174->unk_04.unk_00 = 0;
-        param0->unk_174->unk_04.unk_01 = 0;
+        param0->bgTrackingTask = Heap_AllocFromHeap(param0->heapID, sizeof(SpriteTrackingTask));
+        param0->bgTrackingTask->bg = param0->bgConfig;
+        param0->bgTrackingTask->data.sprite = BattleAnimSystem_GetBattlerSprite(param0, v3);
+        param0->bgTrackingTask->data.frameCount = 0;
+        param0->bgTrackingTask->data.interval = 0;
 
-        v9 = SysTask_Start(ov12_022211D8, param0->unk_174, 0x1001);
+        v9 = SysTask_Start(BattleAnimSystem_BgTrackingTaskFunc, param0->bgTrackingTask, 0x1001);
 
-        param0->unk_174->unk_04.unk_08 = v9;
+        param0->bgTrackingTask->task = v9;
     }
 
     {
@@ -1876,11 +1872,11 @@ static void ov12_0222144C(BattleAnimSystem *param0)
     };
 
     param0->scriptPtr += 1;
-    param0->unk_134 = SpriteManager_New(param0->context->spriteSystem);
+    param0->pokemonSpriteManager = SpriteManager_New(param0->context->spriteSystem);
 
-    SpriteSystem_InitSprites(param0->context->spriteSystem, param0->unk_134, v0);
+    SpriteSystem_InitSprites(param0->context->spriteSystem, param0->pokemonSpriteManager, v0);
     SetSubScreenViewRect(SpriteSystem_GetRenderer(param0->context->spriteSystem), 0, ((192 + 80) << FX32_SHIFT));
-    SpriteSystem_InitManagerWithCapacities(param0->context->spriteSystem, param0->unk_134, &v1);
+    SpriteSystem_InitManagerWithCapacities(param0->context->spriteSystem, param0->pokemonSpriteManager, &v1);
 }
 
 static void ov12_022214C4(BattleAnimSystem *param0)
@@ -1901,7 +1897,7 @@ static void ov12_022214C4(BattleAnimSystem *param0)
 
     SpriteSystem_LoadCharResObjFromOpenNarc(
         param0->context->spriteSystem,
-        param0->unk_134,
+        param0->pokemonSpriteManager,
         param0->arcs[BATTLE_ANIM_SYSTEM_ARC_BATT_OBJ],
         76,
         FALSE,
@@ -1912,7 +1908,7 @@ static void ov12_022214C4(BattleAnimSystem *param0)
         param0->paletteData,
         PLTTBUF_MAIN_OBJ,
         param0->context->spriteSystem,
-        param0->unk_134,
+        param0->pokemonSpriteManager,
         param0->arcs[BATTLE_ANIM_SYSTEM_ARC_BATT_OBJ],
         75,
         FALSE,
@@ -1922,7 +1918,7 @@ static void ov12_022214C4(BattleAnimSystem *param0)
 
     SpriteSystem_LoadCellResObjFromOpenNarc(
         param0->context->spriteSystem,
-        param0->unk_134,
+        param0->pokemonSpriteManager,
         param0->arcs[BATTLE_ANIM_SYSTEM_ARC_BATT_OBJ],
         77,
         FALSE,
@@ -1930,160 +1926,153 @@ static void ov12_022214C4(BattleAnimSystem *param0)
 
     SpriteSystem_LoadAnimResObjFromOpenNarc(
         param0->context->spriteSystem,
-        param0->unk_134,
+        param0->pokemonSpriteManager,
         param0->arcs[BATTLE_ANIM_SYSTEM_ARC_BATT_OBJ],
         78,
         FALSE,
         resourceIDs[SPRITE_RESOURCE_ANIM]);
 }
 
-static void ov12_02221580(BattleAnimSystem *system)
+static void BattleAnimScriptCmd_AddPokemonSprite(BattleAnimSystem *system)
 {
-    u8 *v0 = NULL;
+    u8 *charData = NULL;
     ManagedSprite *sprite = NULL;
-    int v2[6];
-    int v3;
-    int v4;
-    int v5;
-    int v6;
-    int battler;
-    int v8;
-    int v9;
-    int battlerForm;
 
-    system->scriptPtr += 1;
+    BattleAnimScript_Next(system);
 
-    v3 = BattleAnimScript_ReadWord(system->scriptPtr);
-    system->scriptPtr += 1;
+    enum BattleAnimBattlerType battlerType = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v4 = BattleAnimScript_ReadWord(system->scriptPtr);
-    system->scriptPtr += 1;
+    int trackBattler = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v5 = BattleAnimScript_ReadWord(system->scriptPtr);
-    system->scriptPtr += 1;
+    int spriteID = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v6 = BattleAnimScript_ReadWord(system->scriptPtr);
-    system->scriptPtr += 1;
+    int resID = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v2[0] = 20001 + v6 + ((system->context->attacker) * 5000);
-    v2[1] = 20001 + v6 + ((system->context->attacker) * 5000);
-    v2[2] = 20001 + v6 + ((system->context->attacker) * 5000);
-    v2[3] = 20001 + v6 + ((system->context->attacker) * 5000);
-    v2[4] = 0;
-    v2[5] = 0;
+    int resourceIDs[SPRITE_RESOURCE_MAX];
+    resourceIDs[SPRITE_RESOURCE_CHAR] = 20001 + resID + (system->context->attacker * 5000);
+    resourceIDs[SPRITE_RESOURCE_PLTT] = 20001 + resID + (system->context->attacker * 5000);
+    resourceIDs[SPRITE_RESOURCE_CELL] = 20001 + resID + (system->context->attacker * 5000);
+    resourceIDs[SPRITE_RESOURCE_ANIM] = 20001 + resID + (system->context->attacker * 5000);
+    resourceIDs[SPRITE_RESOURCE_MULTI_CELL] = 0;
+    resourceIDs[SPRITE_RESOURCE_MULTI_ANIM] = 0;
 
-    battler = BattleAnimSystem_GetBattlerOfType(system, v3);
-    v8 = system->context->unk_B0[battler]->unk_04;
-    v9 = system->context->unk_B0[battler]->unk_08;
-    v0 = system->context->unk_B0[battler]->unk_00;
-    battlerForm = system->context->battlerForms[battler];
-    {
-        SpriteTemplate template;
-        PokemonSprite *battlerSprite = BattleAnimSystem_GetBattlerSprite(system, battler);
-        int v13;
-        int i;
-        s16 battlerX;
-        s16 battlerY;
+    int battler = BattleAnimSystem_GetBattlerOfType(system, battlerType);
+    enum NarcID narcID = system->context->pokemonSpriteData[battler]->unk_04;
+    int paletteIndex = system->context->pokemonSpriteData[battler]->unk_08;
+    charData = system->context->pokemonSpriteData[battler]->unk_00;
+    int battlerForm = system->context->battlerForms[battler];
 
-        if (battlerSprite != NULL) {
-            battlerX = PokemonSprite_GetAttribute(battlerSprite, MON_SPRITE_X_CENTER);
-            battlerY = PokemonSprite_GetAttribute(battlerSprite, MON_SPRITE_Y_CENTER);
-            battlerY -= PokemonSprite_GetAttribute(battlerSprite, MON_SPRITE_SHADOW_HEIGHT);
-        }
+    PokemonSprite *battlerSprite = BattleAnimSystem_GetBattlerSprite(system, battler);
+    s16 battlerX;
+    s16 battlerY;
+    
+    if (battlerSprite != NULL) {
+        battlerX = PokemonSprite_GetAttribute(battlerSprite, MON_SPRITE_X_CENTER);
+        battlerY = PokemonSprite_GetAttribute(battlerSprite, MON_SPRITE_Y_CENTER);
+        battlerY -= PokemonSprite_GetAttribute(battlerSprite, MON_SPRITE_SHADOW_HEIGHT);
+    }
+    
+    SpriteTemplate template;
+    template.x = battlerX;
+    template.y = battlerY;
+    template.z = 0;
+    template.animIdx = 0;
+    template.priority = 100;
+    template.plttIdx = 0;
+    template.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    template.bgPriority = 1;
+    template.vramTransfer = FALSE;
 
-        template.x = battlerX;
-        template.y = battlerY;
-        template.z = 0;
-        template.animIdx = 0;
-        template.priority = 100;
-        template.plttIdx = 0;
-        template.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        template.bgPriority = 1;
-        template.vramTransfer = FALSE;
+    for (int i = 0; i < SPRITE_RESOURCE_MAX; i++) {
+        template.resources[i] = resourceIDs[i];
+    }
 
-        for (i = 0; i < SPRITE_RESOURCE_MAX; i++) {
-            template.resources[i] = v2[i];
-        }
+    sprite = SpriteSystem_NewSprite(system->context->spriteSystem, system->pokemonSpriteManager, &template);
 
-        sprite = SpriteSystem_NewSprite(system->context->spriteSystem, system->unk_134, &template);
-
-        if (battlerSprite == NULL) {
+    if (battlerSprite == NULL) {
+        ManagedSprite_SetDrawFlag(sprite, FALSE);
+    } else {
+        int hidden = PokemonSprite_GetAttribute(battlerSprite, MON_SPRITE_HIDE);
+        if (hidden == TRUE) {
             ManagedSprite_SetDrawFlag(sprite, FALSE);
-        } else {
-            int hidden = PokemonSprite_GetAttribute(battlerSprite, MON_SPRITE_HIDE);
-            if (hidden == TRUE) {
-                ManagedSprite_SetDrawFlag(sprite, FALSE);
-            }
         }
+    }
 
-        if (BattleAnimSystem_IsContest(system) == TRUE &&
-            IsFormSymmetrical(BattleAnimSystem_GetBattlerSpecies(system, battler), battlerForm) == TRUE) {
-            ManagedSprite_SetFlipMode(sprite, TRUE);
-        }
+    if (BattleAnimSystem_IsContest(system) == TRUE &&
+        IsFormSymmetrical(BattleAnimSystem_GetBattlerSpecies(system, battler), battlerForm) == TRUE) {
+        ManagedSprite_SetFlipMode(sprite, TRUE);
     }
 
     if (BattleAnimSystem_GetBattlerSprite(system, battler) != NULL) {
         NNSG2dImageProxy *proxy = Sprite_GetImageProxy(sprite->sprite);
-        VramTransfer_Request(NNS_GFD_DST_2D_OBJ_CHAR_MAIN, proxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN], v0, (10 * 10 * ((8 / 2) * 8)));
+        VramTransfer_Request(
+            NNS_GFD_DST_2D_OBJ_CHAR_MAIN,
+            proxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN],
+            charData,
+            (10 * 10 * ((8 / 2) * 8)));
     }
 
     if (BattleAnimSystem_GetBattlerSprite(system, battler) != NULL) {
         NNSG2dImagePaletteProxy *proxy = Sprite_GetPaletteProxy(sprite->sprite);
         int offset = PlttTransfer_GetPlttOffset(proxy, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-        PaletteData_LoadBufferFromFileStart(system->paletteData, v8, v9, system->heapID, 2, 0x20, offset * 16);
+        PaletteData_LoadBufferFromFileStart(
+            system->paletteData,
+            narcID,
+            paletteIndex,
+            system->heapID,
+            PLTTBUF_MAIN_OBJ,
+            PALETTE_SIZE_BYTES,
+            offset * SLOTS_PER_PALETTE);
     }
 
-    GF_ASSERT(system->unk_138[v5] == NULL);
+    GF_ASSERT(system->pokemonSprites[spriteID] == NULL);
 
-    system->unk_138[v5] = sprite;
-    system->unk_14C[v5] = 1;
+    system->pokemonSprites[spriteID] = sprite;
+    system->usedPokemonSprites[spriteID] = TRUE;
 
-    if (v4 == 1) {
-        SysTask *v21;
-
+    if (trackBattler == TRUE) {
         if (BattleAnimSystem_GetBattlerSprite(system, battler) == NULL) {
             return;
         }
 
-        system->unk_160[v5] = Heap_AllocFromHeap(system->heapID, sizeof(UnkStruct_ov12_0222118C));
-        system->unk_160[v5]->unk_00 = sprite;
-        system->unk_160[v5]->unk_04.unk_04 = BattleAnimSystem_GetBattlerSprite(system, battler);
-        system->unk_160[v5]->unk_04.unk_00 = 0;
-        system->unk_160[v5]->unk_04.unk_01 = 0;
-
-        v21 = SysTask_Start(ov12_0222118C, system->unk_160[v5], 0x1001);
-
-        system->unk_160[v5]->unk_04.unk_08 = v21;
+        system->spriteTrackingTasks[spriteID] = Heap_AllocFromHeap(system->heapID, sizeof(SpriteTrackingTask));
+        system->spriteTrackingTasks[spriteID]->sprite = sprite;
+        system->spriteTrackingTasks[spriteID]->data.sprite = BattleAnimSystem_GetBattlerSprite(system, battler);
+        system->spriteTrackingTasks[spriteID]->data.frameCount = 0;
+        system->spriteTrackingTasks[spriteID]->data.interval = 0;
+        system->spriteTrackingTasks[spriteID]->task = SysTask_Start(BattleAnimSystem_SpriteTrackingTaskFunc, system->spriteTrackingTasks[spriteID], 0x1001);
     }
 }
 
-static void ov12_022217B4(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_FreePokemonSpriteManager(BattleAnimSystem *system)
 {
-    param0->scriptPtr += 1;
+    BattleAnimScript_Next(system);
 
-    if (param0->unk_134 != NULL) {
-        SpriteSystem_FreeResourcesAndManager(param0->context->spriteSystem, param0->unk_134);
+    if (system->pokemonSpriteManager != NULL) {
+        SpriteSystem_FreeResourcesAndManager(system->context->spriteSystem, system->pokemonSpriteManager);
     }
 
-    param0->unk_134 = NULL;
+    system->pokemonSpriteManager = NULL;
 }
 
-static void ov12_022217E0(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_RemovePokemonSprite(BattleAnimSystem *system)
 {
-    int v0;
+    BattleAnimScript_Next(system);
 
-    param0->scriptPtr += 1;
+    int spriteID = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
-
-    if (param0->unk_138[v0] != NULL) {
-        Sprite_DeleteAndFreeResources(param0->unk_138[v0]);
+    if (system->pokemonSprites[spriteID] != NULL) {
+        Sprite_DeleteAndFreeResources(system->pokemonSprites[spriteID]);
     }
 
-    param0->unk_14C[v0] = 0;
-    param0->unk_138[v0] = NULL;
+    system->usedPokemonSprites[spriteID] = FALSE;
+    system->pokemonSprites[spriteID] = NULL;
 }
 
 static void ov12_02221810(SysTask *param0, void *param1)
@@ -2095,7 +2084,7 @@ static void ov12_02221810(SysTask *param0, void *param1)
         return;
     }
 
-    if (v0->unk_00->unk_134 != NULL) {
+    if (v0->unk_00->pokemonSpriteManager != NULL) {
         SpriteSystem_DrawSprites(v0->unk_04);
     }
 }
@@ -2118,8 +2107,8 @@ static void ov12_02221834(BattleAnimSystem *param0)
     param0->scriptPtr += 1;
 
     param0->unk_48[v1].unk_00 = param0;
-    param0->unk_48[v1].unk_04 = param0->unk_134;
-    param0->unk_48[v1].unk_08 = param0->unk_138[v2];
+    param0->unk_48[v1].unk_04 = param0->pokemonSpriteManager;
+    param0->unk_48[v1].unk_08 = param0->pokemonSprites[v2];
     param0->unk_48[v1].unk_0C = 1;
 
     ManagedSprite_SetDrawFlag(param0->unk_48[v1].unk_08, 0);
@@ -2228,17 +2217,17 @@ static void ov12_02221A00(BattleAnimSystem *param0)
     ov12_02221238(param0, v0);
 }
 
-static void ov12_02221A14(BattleAnimSystem *system)
+static void BattleAnimScriptCmd_SetCameraProjection(BattleAnimSystem *system)
 {
     BattleAnimScript_Next(system);
 
-    int v0 = BattleAnimScript_ReadWord(system->scriptPtr);
+    int psIndex = BattleAnimScript_ReadWord(system->scriptPtr);
     BattleAnimScript_Next(system);
 
-    int v1 = BattleAnimScript_ReadWord(system->scriptPtr);
+    int projection = BattleAnimScript_ReadWord(system->scriptPtr);
     BattleAnimScript_Next(system);
 
-    system->cameraProjections[v0] = v1;
+    system->cameraProjections[psIndex] = projection;
 }
 
 void BattleAnimScriptCmd_SetCameraFlip(BattleAnimSystem *system)
@@ -3539,7 +3528,7 @@ static void ov12_022230A8(BattleAnimSystem *param0)
     v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    ManagedSprite_SetDrawFlag(param0->unk_138[v0], v1);
+    ManagedSprite_SetDrawFlag(param0->pokemonSprites[v0], v1);
 }
 
 static void ov12_022230CC(BattleAnimSystem *param0)
@@ -3724,17 +3713,17 @@ PaletteData *ov12_0222332C(BattleAnimSystem *param0)
 
 int ov12_02223334(BattleAnimSystem *param0, int param1)
 {
-    return param0->context->unk_B0[param1]->unk_08;
+    return param0->context->pokemonSpriteData[param1]->unk_08;
 }
 
 int ov12_02223344(BattleAnimSystem *param0, int param1)
 {
-    return param0->context->unk_B0[param1]->unk_04;
+    return param0->context->pokemonSpriteData[param1]->unk_04;
 }
 
 int ov12_02223354(BattleAnimSystem *param0, int param1)
 {
-    return param0->context->unk_B0[param1]->unk_0C;
+    return param0->context->pokemonSpriteData[param1]->unk_0C;
 }
 
 BOOL BattleAnimSystem_IsDoubleBattle(BattleAnimSystem *system)

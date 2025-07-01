@@ -716,7 +716,7 @@ void ov12_0223595C(BattleAnimSystem *param0, UnkStruct_ov12_0223595C *param1)
     param1->unk_03 = 0;
     param1->unk_04 = param0;
     param1->unk_08 = BattleAnimSystem_GetSpriteSystem(param0);
-    param1->unk_0C = ov12_022202EC(param0);
+    param1->unk_0C = BattleAnimSystem_GetPokemonSpriteManager(param0);
     param1->unk_10 = ov12_02220300(param0);
     param1->unk_14 = BattleAnimSystem_GetBgConfig(param0);
     param1->unk_18 = ov12_0222332C(param0);
@@ -868,25 +868,25 @@ void ov12_02235D74(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235998
     *param3 = 0;
 
     if (inline_ov12_02235998(param1, 0x2) == 1) {
-        param2[*param3].unk_0C = ov12_022202C0(param0, *param3);
+        param2[*param3].unk_0C = BattleAnimSystem_GetPokemonSprite(param0, *param3);
         ov12_02235950(param2[*param3].unk_0C, &param2[*param3].unk_04);
         (*param3)++;
     }
 
     if (inline_ov12_02235998(param1, 0x4) == 1) {
-        param2[*param3].unk_0C = ov12_022202C0(param0, *param3);
+        param2[*param3].unk_0C = BattleAnimSystem_GetPokemonSprite(param0, *param3);
         ov12_02235950(param2[*param3].unk_0C, &param2[*param3].unk_04);
         (*param3)++;
     }
 
     if (inline_ov12_02235998(param1, 0x8) == 1) {
-        param2[*param3].unk_0C = ov12_022202C0(param0, *param3);
+        param2[*param3].unk_0C = BattleAnimSystem_GetPokemonSprite(param0, *param3);
         ov12_02235950(param2[*param3].unk_0C, &param2[*param3].unk_04);
         (*param3)++;
     }
 
     if (inline_ov12_02235998(param1, 0x10) == 1) {
-        param2[*param3].unk_0C = ov12_022202C0(param0, *param3);
+        param2[*param3].unk_0C = BattleAnimSystem_GetPokemonSprite(param0, *param3);
         ov12_02235950(param2[*param3].unk_0C, &param2[*param3].unk_04);
         (*param3)++;
     }

@@ -24,6 +24,8 @@
 #define BATTLE_ANIM_SCRIPT_VAR_COUNT            10
 #define BATTLE_ANIM_SCRIPT_MAX_NESTED_LOOPS     3
 #define BATTLE_ANIM_SCRIPT_MAX_CALL_STACK_DEPTH 3
+#define BATTLE_ANIM_SCRIPT_MAX_POKEMON_SPRITES  5
+#define BATTLE_ANIM_SCRIPT_MAX_SPRITES          10
 
 enum BattleAnimSystemArc {
     BATTLE_ANIM_SYSTEM_ARC_BATT_BG = 0,
@@ -69,7 +71,7 @@ typedef struct BattleAnimContext {
     SpriteSystem *spriteSystem;
 
     // Battler info
-    UnkStruct_ov16_0223E0C8 *unk_B0[4];
+    UnkStruct_ov16_0223E0C8 *pokemonSpriteData[4];
     u8 battlerTypes[MAX_BATTLERS];
     PokemonSprite *battlerSprites[MAX_BATTLERS];
     u32 battleType;
@@ -125,22 +127,23 @@ typedef struct UnkStruct_ov12_022222D4_t {
     UnkStruct_ov12_022224F8 *unk_1C;
 } UnkStruct_ov12_022222D4;
 
-typedef struct {
-    u8 unk_00;
-    u8 unk_01;
-    PokemonSprite *unk_04;
-    SysTask *unk_08;
-} UnkStruct_ov12_0222118C_sub1;
+typedef struct PokemonSpriteTrackingTask {
+    u8 frameCount; // Frame counter for the interval below, set to 0
+    u8 interval; // Interval, in frames, at which to update the position (0 means every frame)
+    PokemonSprite *sprite; // Pokemon sprite to be tracked
+} PokemonSpriteTrackingData;
 
-typedef struct UnkStruct_ov12_0222118C_t {
-    ManagedSprite *unk_00;
-    UnkStruct_ov12_0222118C_sub1 unk_04;
-} UnkStruct_ov12_0222118C;
+typedef struct SpriteTrackingTask {
+    ManagedSprite *sprite;
+    PokemonSpriteTrackingData data;
+    SysTask *task;
+} SpriteTrackingTask;
 
-typedef struct UnkStruct_ov12_022211D8_t {
-    BgConfig *unk_00;
-    UnkStruct_ov12_0222118C_sub1 unk_04;
-} UnkStruct_ov12_022211D8;
+typedef struct BgTrackingTask {
+    BgConfig *bg;
+    PokemonSpriteTrackingData data;
+    SysTask *task;
+} BgTrackingTask;
 
 typedef struct BattleAnimSystem {
     enum HeapId heapID;
@@ -165,13 +168,13 @@ typedef struct BattleAnimSystem {
     BgConfig *bgConfig;
     PaletteData *paletteData;
     SpriteManager *spriteManagers[4];
-    ManagedSprite *sprites[10];
+    ManagedSprite *sprites[BATTLE_ANIM_SCRIPT_MAX_SPRITES];
     SpriteTemplate lastSpriteTemplate;
-    SpriteManager *unk_134;
-    ManagedSprite *unk_138[5];
-    BOOL unk_14C[5];
-    UnkStruct_ov12_0222118C *unk_160[5];
-    UnkStruct_ov12_022211D8 *unk_174;
+    SpriteManager *pokemonSpriteManager;
+    ManagedSprite *pokemonSprites[BATTLE_ANIM_SCRIPT_MAX_POKEMON_SPRITES];
+    BOOL usedPokemonSprites[BATTLE_ANIM_SCRIPT_MAX_POKEMON_SPRITES];
+    SpriteTrackingTask *spriteTrackingTasks[BATTLE_ANIM_SCRIPT_MAX_POKEMON_SPRITES];
+    BgTrackingTask *bgTrackingTask;
     u8 unk_178;
     u8 unk_179;
     u8 unk_17A;
@@ -205,9 +208,9 @@ ParticleSystem *BattleAnimSystem_GetParticleSystem(BattleAnimSystem *param0, int
 SPLEmitter *BattleAnimSystem_GetEmitter(BattleAnimSystem *param0, int param1);
 BgConfig *BattleAnimSystem_GetBgConfig(BattleAnimSystem *param0);
 s32 BattleAnimSystem_GetScriptVar(BattleAnimSystem *param0, int param1);
-ManagedSprite *ov12_02220298(BattleAnimSystem *param0, int param1);
-ManagedSprite *ov12_022202C0(BattleAnimSystem *param0, int param1);
-SpriteManager *ov12_022202EC(BattleAnimSystem *param0);
+ManagedSprite *BattleAnimSystem_GetSprite(BattleAnimSystem *param0, int param1);
+ManagedSprite *BattleAnimSystem_GetPokemonSprite(BattleAnimSystem *param0, int param1);
+SpriteManager *BattleAnimSystem_GetPokemonSpriteManager(BattleAnimSystem *param0);
 SpriteManager *ov12_02220300(BattleAnimSystem *param0);
 SpriteSystem *BattleAnimSystem_GetSpriteSystem(BattleAnimSystem *param0);
 void BattleAnimSystem_SetDefaultAlphaBlending(void);

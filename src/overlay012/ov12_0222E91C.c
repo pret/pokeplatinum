@@ -156,8 +156,8 @@ void ov12_0222EAA0(BattleAnimSystem *param0)
     v0->unk_1C.unk_08 = BattleAnimSystem_GetBattlerSprite(v0->unk_00.unk_04, BattleAnimSystem_GetAttacker(v0->unk_00.unk_04));
     v0->unk_1C.unk_04.unk_00 = PokemonSprite_GetAttribute(v0->unk_1C.unk_08, MON_SPRITE_X_CENTER);
     v0->unk_1C.unk_04.unk_02 = PokemonSprite_GetAttribute(v0->unk_1C.unk_08, MON_SPRITE_Y_CENTER);
-    v0->unk_1C.unk_0C = ov12_022202C0(v0->unk_00.unk_04, 0);
-    v0->unk_30 = ov12_022202C0(v0->unk_00.unk_04, 1);
+    v0->unk_1C.unk_0C = BattleAnimSystem_GetPokemonSprite(v0->unk_00.unk_04, 0);
+    v0->unk_30 = BattleAnimSystem_GetPokemonSprite(v0->unk_00.unk_04, 1);
     v0->unk_A4 = -PokemonSprite_GetAttribute(v0->unk_1C.unk_08, MON_SPRITE_SHADOW_HEIGHT);
 
     {
@@ -390,9 +390,9 @@ void ov12_0222EFB0(BattleAnimSystem *param0)
     v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222EE50));
     ov12_0223595C(param0, &v0->unk_00);
 
-    v0->unk_1C[0] = ov12_022202C0(v0->unk_00.unk_04, 0);
-    v0->unk_1C[1] = ov12_022202C0(v0->unk_00.unk_04, 1);
-    v0->unk_1C[2] = ov12_022202C0(v0->unk_00.unk_04, 2);
+    v0->unk_1C[0] = BattleAnimSystem_GetPokemonSprite(v0->unk_00.unk_04, 0);
+    v0->unk_1C[1] = BattleAnimSystem_GetPokemonSprite(v0->unk_00.unk_04, 1);
+    v0->unk_1C[2] = BattleAnimSystem_GetPokemonSprite(v0->unk_00.unk_04, 2);
     v0->unk_28 = 0;
 
     {

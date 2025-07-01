@@ -748,14 +748,14 @@ void ov12_0222E1A8(BattleAnimSystem *param0)
     v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222E080));
     ov12_0223595C(param0, &v0->unk_04);
 
-    v0->unk_20 = ov12_022202C0(v0->unk_04.unk_04, 0);
+    v0->unk_20 = BattleAnimSystem_GetPokemonSprite(v0->unk_04.unk_04, 0);
     ManagedSprite_SetExplicitOamMode(v0->unk_20, GX_OAM_MODE_OBJWND);
 
     GX_SetVisibleWnd(GX_WNDMASK_OW);
     G2_SetWndOutsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 0);
     G2_SetWndOBJInsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_OBJ, 0);
 
-    v0->unk_24 = ov12_022202C0(v0->unk_04.unk_04, 1);
+    v0->unk_24 = BattleAnimSystem_GetPokemonSprite(v0->unk_04.unk_04, 1);
     ManagedSprite_SetExplicitOamMode(v0->unk_24, GX_OAM_MODE_XLU);
 
     ov12_02226424(&v0->unk_2C, 16, 2, 2, 16, 16);

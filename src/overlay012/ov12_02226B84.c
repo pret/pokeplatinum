@@ -1334,7 +1334,7 @@ void ov12_02227CBC(BattleAnimSystem *param0)
     v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_02227B4C));
 
     v0->unk_00 = param0;
-    v0->unk_04 = ov12_022202EC(v0->unk_00);
+    v0->unk_04 = BattleAnimSystem_GetPokemonSpriteManager(v0->unk_00);
 
     if (BattleAnimSystem_GetScriptVar(param0, 0) == 0) {
         v1 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetAttacker(param0));
@@ -1352,7 +1352,7 @@ void ov12_02227CBC(BattleAnimSystem *param0)
     v0->unk_44 = BattleAnimSystem_GetScriptVar(param0, 4);
     v0->unk_48 = BattleAnimSystem_GetScriptVar(param0, 5);
     v0->unk_4C = BattleAnimSystem_GetScriptVar(param0, 6);
-    v0->unk_10 = ov12_022202C0(v0->unk_00, BattleAnimSystem_GetScriptVar(param0, 7));
+    v0->unk_10 = BattleAnimSystem_GetPokemonSprite(v0->unk_00, BattleAnimSystem_GetScriptVar(param0, 7));
 
     ManagedSprite_SetPriority(v0->unk_10, 100);
     ManagedSprite_SetExplicitPriority(v0->unk_10, 1);
@@ -1581,13 +1581,13 @@ void ov12_02228168(BattleAnimSystem *param0)
     v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222813C));
 
     v0->unk_00 = param0;
-    v0->unk_04 = ov12_022202EC(v0->unk_00);
+    v0->unk_04 = BattleAnimSystem_GetPokemonSpriteManager(v0->unk_00);
 
     v1 = BattleAnimSystem_GetScriptVar(param0, 0);
 
     for (v2 = 0; v2 < 4; v2++) {
         if (v1 & (1 << v2)) {
-            v3 = ov12_022202C0(v0->unk_00, v2);
+            v3 = BattleAnimSystem_GetPokemonSprite(v0->unk_00, v2);
             ManagedSprite_SetExplicitOamMode(v3, GX_OAM_MODE_XLU);
         }
     }
@@ -2043,7 +2043,7 @@ void ov12_02228B40(BattleAnimSystem *param0)
     ov12_0223595C(param0, &v1->unk_04);
     ov12_02222590(v1->unk_04.unk_04, 2);
 
-    v1->unk_24 = ov12_022202C0(v1->unk_04.unk_04, 0);
+    v1->unk_24 = BattleAnimSystem_GetPokemonSprite(v1->unk_04.unk_04, 0);
 
     ManagedSprite_SetExplicitOamMode(v1->unk_24, GX_OAM_MODE_OBJWND);
     ManagedSprite_SetAffineOverwriteMode(v1->unk_24, AFFINE_OVERWRITE_MODE_DOUBLE);
@@ -2714,7 +2714,7 @@ void ov12_02229810(BattleAnimSystem *param0)
     v1->unk_00 = 0;
     v1->unk_01 = 0;
     v1->unk_2C = param0;
-    v1->unk_30 = ov12_022202EC(v1->unk_2C);
+    v1->unk_30 = BattleAnimSystem_GetPokemonSpriteManager(v1->unk_2C);
     v1->unk_28 = BattleAnimSystem_GetBgConfig(v1->unk_2C);
     v1->unk_04 = BattleAnimSystem_GetScriptVar(param0, 0);
     v1->unk_08 = BattleAnimSystem_GetScriptVar(param0, 1);
@@ -2776,7 +2776,7 @@ void ov12_02229908(BattleAnimSystem *param0)
     v0->unk_20 = BattleAnimSystem_GetScriptVar(v0->unk_00.unk_04, 1);
     v0->unk_24 = BattleAnimSystem_GetScriptVar(v0->unk_00.unk_04, 2);
     v0->unk_28 = BattleAnimSystem_GetScriptVar(v0->unk_00.unk_04, 3);
-    v0->unk_1C = ov12_022202C0(v0->unk_00.unk_04, BattleAnimSystem_GetScriptVar(v0->unk_00.unk_04, 0));
+    v0->unk_1C = BattleAnimSystem_GetPokemonSprite(v0->unk_00.unk_04, BattleAnimSystem_GetScriptVar(v0->unk_00.unk_04, 0));
 
     ManagedSprite_SetDrawFlag(v0->unk_1C, 1);
 
@@ -3597,7 +3597,7 @@ void ov12_0222A8F4(BattleAnimSystem *param0)
     v0->unk_2C = BattleAnimSystem_GetScriptVar(param0, 3);
     v0->unk_30 = BattleAnimSystem_GetScriptVar(param0, 5);
     v0->unk_34 = BattleAnimSystem_GetScriptVar(param0, 6);
-    v0->unk_1C = ov12_022202C0(v0->unk_00.unk_04, v0->unk_20);
+    v0->unk_1C = BattleAnimSystem_GetPokemonSprite(v0->unk_00.unk_04, v0->unk_20);
     v0->unk_38 = 0;
 
     {
@@ -3748,7 +3748,7 @@ void ov12_0222AB50(BattleAnimSystem *param0)
         };
 
         for (v1 = 0; v1 < 4; v1++) {
-            v0->unk_1C[v1] = ov12_022202C0(v0->unk_00.unk_04, v1);
+            v0->unk_1C[v1] = BattleAnimSystem_GetPokemonSprite(v0->unk_00.unk_04, v1);
 
             if (v0->unk_1C[v1] != NULL) {
                 ManagedSprite_SetPriority(v0->unk_1C[v1], v2[v1]);
