@@ -1937,129 +1937,124 @@ static void ov12_022214C4(BattleAnimSystem *param0)
         resourceIDs[SPRITE_RESOURCE_ANIM]);
 }
 
-static void ov12_02221580(BattleAnimSystem *param0)
+static void ov12_02221580(BattleAnimSystem *system)
 {
     u8 *v0 = NULL;
-    ManagedSprite *v1 = NULL;
+    ManagedSprite *sprite = NULL;
     int v2[6];
     int v3;
     int v4;
     int v5;
     int v6;
-    int v7;
+    int battler;
     int v8;
     int v9;
-    int v10;
+    int battlerForm;
 
-    param0->scriptPtr += 1;
+    system->scriptPtr += 1;
 
-    v3 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    v3 = BattleAnimScript_ReadWord(system->scriptPtr);
+    system->scriptPtr += 1;
 
-    v4 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    v4 = BattleAnimScript_ReadWord(system->scriptPtr);
+    system->scriptPtr += 1;
 
-    v5 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    v5 = BattleAnimScript_ReadWord(system->scriptPtr);
+    system->scriptPtr += 1;
 
-    v6 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    v6 = BattleAnimScript_ReadWord(system->scriptPtr);
+    system->scriptPtr += 1;
 
-    v2[0] = 20001 + v6 + ((param0->context->attacker) * 5000);
-    v2[1] = 20001 + v6 + ((param0->context->attacker) * 5000);
-    v2[2] = 20001 + v6 + ((param0->context->attacker) * 5000);
-    v2[3] = 20001 + v6 + ((param0->context->attacker) * 5000);
+    v2[0] = 20001 + v6 + ((system->context->attacker) * 5000);
+    v2[1] = 20001 + v6 + ((system->context->attacker) * 5000);
+    v2[2] = 20001 + v6 + ((system->context->attacker) * 5000);
+    v2[3] = 20001 + v6 + ((system->context->attacker) * 5000);
     v2[4] = 0;
     v2[5] = 0;
 
-    v7 = BattleAnimSystem_GetBattlerOfType(param0, v3);
-    v8 = param0->context->unk_B0[v7]->unk_04;
-    v9 = param0->context->unk_B0[v7]->unk_08;
-    v0 = param0->context->unk_B0[v7]->unk_00;
-    v10 = param0->context->battlerForms[v7];
+    battler = BattleAnimSystem_GetBattlerOfType(system, v3);
+    v8 = system->context->unk_B0[battler]->unk_04;
+    v9 = system->context->unk_B0[battler]->unk_08;
+    v0 = system->context->unk_B0[battler]->unk_00;
+    battlerForm = system->context->battlerForms[battler];
     {
-        SpriteTemplate v11;
-        PokemonSprite *v12 = BattleAnimSystem_GetBattlerSprite(param0, v7);
+        SpriteTemplate template;
+        PokemonSprite *battlerSprite = BattleAnimSystem_GetBattlerSprite(system, battler);
         int v13;
-        int v14;
-        s16 v15;
-        s16 v16;
+        int i;
+        s16 battlerX;
+        s16 battlerY;
 
-        if (v12 != NULL) {
-            v15 = PokemonSprite_GetAttribute(v12, MON_SPRITE_X_CENTER);
-            v16 = PokemonSprite_GetAttribute(v12, MON_SPRITE_Y_CENTER);
-            v16 -= PokemonSprite_GetAttribute(v12, MON_SPRITE_SHADOW_HEIGHT);
+        if (battlerSprite != NULL) {
+            battlerX = PokemonSprite_GetAttribute(battlerSprite, MON_SPRITE_X_CENTER);
+            battlerY = PokemonSprite_GetAttribute(battlerSprite, MON_SPRITE_Y_CENTER);
+            battlerY -= PokemonSprite_GetAttribute(battlerSprite, MON_SPRITE_SHADOW_HEIGHT);
         }
 
-        v11.x = v15;
-        v11.y = v16;
-        v11.z = 0;
-        v11.animIdx = 0;
-        v11.priority = 100;
-        v11.plttIdx = 0;
-        v11.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v11.bgPriority = 1;
-        v11.vramTransfer = FALSE;
+        template.x = battlerX;
+        template.y = battlerY;
+        template.z = 0;
+        template.animIdx = 0;
+        template.priority = 100;
+        template.plttIdx = 0;
+        template.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+        template.bgPriority = 1;
+        template.vramTransfer = FALSE;
 
-        for (v14 = 0; v14 < 6; v14++) {
-            v11.resources[v14] = v2[v14];
+        for (i = 0; i < SPRITE_RESOURCE_MAX; i++) {
+            template.resources[i] = v2[i];
         }
 
-        v1 = SpriteSystem_NewSprite(param0->context->spriteSystem, param0->unk_134, &v11);
+        sprite = SpriteSystem_NewSprite(system->context->spriteSystem, system->unk_134, &template);
 
-        if (v12 == NULL) {
-            ManagedSprite_SetDrawFlag(v1, 0);
+        if (battlerSprite == NULL) {
+            ManagedSprite_SetDrawFlag(sprite, FALSE);
         } else {
-            int v17 = PokemonSprite_GetAttribute(v12, MON_SPRITE_HIDE);
-
-            if (v17 == 1) {
-                ManagedSprite_SetDrawFlag(v1, 0);
+            int hidden = PokemonSprite_GetAttribute(battlerSprite, MON_SPRITE_HIDE);
+            if (hidden == TRUE) {
+                ManagedSprite_SetDrawFlag(sprite, FALSE);
             }
         }
 
-        if ((BattleAnimSystem_IsContest(param0) == 1) && (IsFormSymmetrical(BattleAnimSystem_GetBattlerSpecies(param0, v7), v10) == 1)) {
-            ManagedSprite_SetFlipMode(v1, 1);
+        if (BattleAnimSystem_IsContest(system) == TRUE &&
+            IsFormSymmetrical(BattleAnimSystem_GetBattlerSpecies(system, battler), battlerForm) == TRUE) {
+            ManagedSprite_SetFlipMode(sprite, TRUE);
         }
     }
 
-    if (BattleAnimSystem_GetBattlerSprite(param0, v7) != NULL) {
-        NNSG2dImageProxy *v18;
-
-        v18 = Sprite_GetImageProxy(v1->sprite);
-        VramTransfer_Request(NNS_GFD_DST_2D_OBJ_CHAR_MAIN, v18->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN], v0, (10 * 10 * ((8 / 2) * 8)));
+    if (BattleAnimSystem_GetBattlerSprite(system, battler) != NULL) {
+        NNSG2dImageProxy *proxy = Sprite_GetImageProxy(sprite->sprite);
+        VramTransfer_Request(NNS_GFD_DST_2D_OBJ_CHAR_MAIN, proxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN], v0, (10 * 10 * ((8 / 2) * 8)));
     }
 
-    if (BattleAnimSystem_GetBattlerSprite(param0, v7) != NULL) {
-        NNSG2dImagePaletteProxy *v19;
-        int v20;
+    if (BattleAnimSystem_GetBattlerSprite(system, battler) != NULL) {
+        NNSG2dImagePaletteProxy *proxy = Sprite_GetPaletteProxy(sprite->sprite);
+        int offset = PlttTransfer_GetPlttOffset(proxy, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-        v19 = Sprite_GetPaletteProxy(v1->sprite);
-        v20 = PlttTransfer_GetPlttOffset(v19, NNS_G2D_VRAM_TYPE_2DMAIN);
-
-        PaletteData_LoadBufferFromFileStart(param0->paletteData, v8, v9, param0->heapID, 2, 0x20, v20 * 16);
+        PaletteData_LoadBufferFromFileStart(system->paletteData, v8, v9, system->heapID, 2, 0x20, offset * 16);
     }
 
-    GF_ASSERT(param0->unk_138[v5] == NULL);
+    GF_ASSERT(system->unk_138[v5] == NULL);
 
-    param0->unk_138[v5] = v1;
-    param0->unk_14C[v5] = 1;
+    system->unk_138[v5] = sprite;
+    system->unk_14C[v5] = 1;
 
     if (v4 == 1) {
         SysTask *v21;
 
-        if (BattleAnimSystem_GetBattlerSprite(param0, v7) == NULL) {
+        if (BattleAnimSystem_GetBattlerSprite(system, battler) == NULL) {
             return;
         }
 
-        param0->unk_160[v5] = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov12_0222118C));
-        param0->unk_160[v5]->unk_00 = v1;
-        param0->unk_160[v5]->unk_04.unk_04 = BattleAnimSystem_GetBattlerSprite(param0, v7);
-        param0->unk_160[v5]->unk_04.unk_00 = 0;
-        param0->unk_160[v5]->unk_04.unk_01 = 0;
+        system->unk_160[v5] = Heap_AllocFromHeap(system->heapID, sizeof(UnkStruct_ov12_0222118C));
+        system->unk_160[v5]->unk_00 = sprite;
+        system->unk_160[v5]->unk_04.unk_04 = BattleAnimSystem_GetBattlerSprite(system, battler);
+        system->unk_160[v5]->unk_04.unk_00 = 0;
+        system->unk_160[v5]->unk_04.unk_01 = 0;
 
-        v21 = SysTask_Start(ov12_0222118C, param0->unk_160[v5], 0x1001);
+        v21 = SysTask_Start(ov12_0222118C, system->unk_160[v5], 0x1001);
 
-        param0->unk_160[v5]->unk_04.unk_08 = v21;
+        system->unk_160[v5]->unk_04.unk_08 = v21;
     }
 }
 
