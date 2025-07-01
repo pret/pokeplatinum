@@ -59,34 +59,34 @@ static void AccessoryShop_ClearInterface(AccessoryShop *shop);
 static void AccessoryShop_InitSpriteList(AccessoryShop *shop);
 static void AccessoryShop_DeleteSpriteList(AccessoryShop *shop);
 static void AccessoryShop_LoadOptions(AccessoryShop *shop);
-static void AccessoryShop_ShowMsgBox(AccessoryShopMessageBox *msgbox, BgConfig *bgConfig, enum HeapId heapID, u32 renderDelay);
+static void AccessoryShop_ShowMsgBox(AccessoryShopMessageBox *msgbox, BgConfig *bgConfig, enum HeapID heapID, u32 renderDelay);
 static void AccessoryShop_DeleteMsgBox(AccessoryShopMessageBox *msgbox);
-static void AccessoryShop_PrintStrbufToMsgBox(AccessoryShopMessageBox *msgbox, Strbuf *strbuf, enum HeapId heapID);
+static void AccessoryShop_PrintStrbufToMsgBox(AccessoryShopMessageBox *msgbox, Strbuf *strbuf, enum HeapID heapID);
 static BOOL AccessoryShop_HasMsgBoxFinishedPrinting(AccessoryShopMessageBox *msgbox);
-static void AccessoryShop_LoadConfirmPurchaseMsg(AccessoryShopMessageBox *msgbox, MessageLoader *msgLoader, enum HeapId heapID, const AccessoryShopItem *items, u32 idx);
-static void AccessoryShop_LoadSuccessfulPurchaseMsg(AccessoryShopMessageBox *msgbox, MessageLoader *msgLoader, enum HeapId heapID, const AccessoryShopItem *items, u32 idx);
-static void AccessoryShop_ShowDescBox(AccessoryShopDescBox *descBox, BgConfig *bgConfig, MessageLoader *msgLoader, enum HeapId heapID);
+static void AccessoryShop_LoadConfirmPurchaseMsg(AccessoryShopMessageBox *msgbox, MessageLoader *msgLoader, enum HeapID heapID, const AccessoryShopItem *items, u32 idx);
+static void AccessoryShop_LoadSuccessfulPurchaseMsg(AccessoryShopMessageBox *msgbox, MessageLoader *msgLoader, enum HeapID heapID, const AccessoryShopItem *items, u32 idx);
+static void AccessoryShop_ShowDescBox(AccessoryShopDescBox *descBox, BgConfig *bgConfig, MessageLoader *msgLoader, enum HeapID heapID);
 static void AccessoryShop_DeleteDescBox(AccessoryShopDescBox *descBox);
 static void AccessoryShop_UpdateDescBox(AccessoryShopDescBox *descBox, u32 berryId, u32 totalAmount, u32 inBagAmount);
-static void AccessoryShop_ShowItemList(AccessoryShopItemList *itemList, BgConfig *bgConfig, enum HeapId heapID, const AccessoryShopItem *items, u32 maxItems, MessageLoader *msgLoader, void *param6, AccessoryShopUpdateFunc updateFunc, SpriteList *spriteList);
+static void AccessoryShop_ShowItemList(AccessoryShopItemList *itemList, BgConfig *bgConfig, enum HeapID heapID, const AccessoryShopItem *items, u32 maxItems, MessageLoader *msgLoader, void *param6, AccessoryShopUpdateFunc updateFunc, SpriteList *spriteList);
 static void AccessoryShop_DeleteItemList(AccessoryShopItemList *itemList);
 static u32 AccessoryShop_SelectItemListMenu(AccessoryShopItemList *itemList);
 static void AccessoryShop_UpdateItemListMenu(AccessoryShopItemList *itemList);
 static void AccessoryShop_HideScrollArrows(AccessoryShopItemList *itemList);
-static void AccessoryShop_LoadScrollArrowGfx(SpriteResourcesHeader *scrollArrowResource, AccessoryShopItemList *itemList, enum HeapId heapID);
+static void AccessoryShop_LoadScrollArrowGfx(SpriteResourcesHeader *scrollArrowResource, AccessoryShopItemList *itemList, enum HeapID heapID);
 static void AccessoryShop_UnloadScrollArrowGfx(AccessoryShopItemList *itemList);
 static void AccessoryShop_UpdateScrollArrowsVisibility(AccessoryShopItemList *itemList);
-static void AccessoryShop_ShowYesNoChoice(AccessoryShopYesNoChoice *yesNoChoice, BgConfig *bgConfig, enum HeapId heapID);
+static void AccessoryShop_ShowYesNoChoice(AccessoryShopYesNoChoice *yesNoChoice, BgConfig *bgConfig, enum HeapID heapID);
 static void AccessoryShop_DeleteYesNoChoice(AccessoryShopYesNoChoice *yesNoChoice);
 static u32 AccessoryShop_SelectYesNoChoice(AccessoryShopYesNoChoice *yesNoChoice);
-static void AccessoryShop_SetDataPointers(AccessoryShopDataPtrs *dataPtr, AccessoryShopDescBox *descBox, const AccessoryShopItem *items, Bag *bag, enum HeapId heapID, BgConfig *bgConfig);
+static void AccessoryShop_SetDataPointers(AccessoryShopDataPtrs *dataPtr, AccessoryShopDescBox *descBox, const AccessoryShopItem *items, Bag *bag, enum HeapID heapID, BgConfig *bgConfig);
 static void AccessoryShop_Update(void *ptr, u32 cursorPos);
 static BOOL AccessoryShop_HasAllAccessories(const UnkStruct_02029D04 *param0, const AccessoryShopItem *items, u32 maxItems);
-static BOOL AccessoryShop_HasEnoughBerries(Bag *bag, const AccessoryShopItem *items, u32 idx, enum HeapId heapID);
+static BOOL AccessoryShop_HasEnoughBerries(Bag *bag, const AccessoryShopItem *items, u32 idx, enum HeapID heapID);
 static BOOL ov7_0224CCE4(const UnkStruct_02029D04 *param0, const AccessoryShopItem *items, u32 idx);
-static void AccessoryShop_DoPurchase(UnkStruct_02029D04 *param0, Bag *bag, const AccessoryShopItem *items, u32 idx, enum HeapId heapID);
+static void AccessoryShop_DoPurchase(UnkStruct_02029D04 *param0, Bag *bag, const AccessoryShopItem *items, u32 idx, enum HeapID heapID);
 
-AccessoryShop *AccessoryShop_New(enum HeapId heapID, SaveData *saveData, BgConfig *bgConfig)
+AccessoryShop *AccessoryShop_New(enum HeapID heapID, SaveData *saveData, BgConfig *bgConfig)
 {
     AccessoryShop *shop = Heap_AllocFromHeap(heapID, sizeof(AccessoryShop));
 
@@ -301,7 +301,7 @@ static void AccessoryShop_DeleteSpriteList(AccessoryShop *shop)
     SpriteList_Delete(shop->spriteList);
 }
 
-static void AccessoryShop_ShowMsgBox(AccessoryShopMessageBox *msgbox, BgConfig *bgConfig, enum HeapId heapID, u32 renderDelay)
+static void AccessoryShop_ShowMsgBox(AccessoryShopMessageBox *msgbox, BgConfig *bgConfig, enum HeapID heapID, u32 renderDelay)
 {
     if (msgbox->active == TRUE) {
         return;
@@ -330,7 +330,7 @@ static void AccessoryShop_DeleteMsgBox(AccessoryShopMessageBox *msgbox)
     msgbox->active = FALSE;
 }
 
-static void AccessoryShop_PrintStrbufToMsgBox(AccessoryShopMessageBox *msgbox, Strbuf *strbuf, enum HeapId heapID)
+static void AccessoryShop_PrintStrbufToMsgBox(AccessoryShopMessageBox *msgbox, Strbuf *strbuf, enum HeapID heapID)
 {
     GF_ASSERT(msgbox->strbuf == NULL);
 
@@ -356,7 +356,7 @@ static BOOL AccessoryShop_HasMsgBoxFinishedPrinting(AccessoryShopMessageBox *msg
     return FALSE;
 }
 
-static void AccessoryShop_LoadConfirmPurchaseMsg(AccessoryShopMessageBox *msgbox, MessageLoader *msgLoader, enum HeapId heapID, const AccessoryShopItem *items, u32 idx)
+static void AccessoryShop_LoadConfirmPurchaseMsg(AccessoryShopMessageBox *msgbox, MessageLoader *msgLoader, enum HeapID heapID, const AccessoryShopItem *items, u32 idx)
 {
     Strbuf *fmtString, *strbuf;
     StringTemplate *strTemplate = StringTemplate_Default(heapID);
@@ -380,7 +380,7 @@ static void AccessoryShop_LoadConfirmPurchaseMsg(AccessoryShopMessageBox *msgbox
     Strbuf_Free(fmtString);
 }
 
-static void AccessoryShop_LoadSuccessfulPurchaseMsg(AccessoryShopMessageBox *msgbox, MessageLoader *msgLoader, enum HeapId heapID, const AccessoryShopItem *items, u32 idx)
+static void AccessoryShop_LoadSuccessfulPurchaseMsg(AccessoryShopMessageBox *msgbox, MessageLoader *msgLoader, enum HeapID heapID, const AccessoryShopItem *items, u32 idx)
 {
     Strbuf *fmtString, *strbuf;
     StringTemplate *strTemplate = StringTemplate_Default(heapID);
@@ -404,7 +404,7 @@ static void AccessoryShop_LoadSuccessfulPurchaseMsg(AccessoryShopMessageBox *msg
     Strbuf_Free(fmtString);
 }
 
-static void AccessoryShop_ShowDescBox(AccessoryShopDescBox *descBox, BgConfig *bgConfig, MessageLoader *msgLoader, enum HeapId heapID)
+static void AccessoryShop_ShowDescBox(AccessoryShopDescBox *descBox, BgConfig *bgConfig, MessageLoader *msgLoader, enum HeapID heapID)
 {
     if (descBox->active == TRUE) {
         return;
@@ -457,7 +457,7 @@ static void AccessoryShop_UpdateDescBox(AccessoryShopDescBox *descBox, u32 berry
     Window_DrawStandardFrame(descBox->window, FALSE, (1 + (18 + 12)), FIELD_WINDOW_PALETTE_INDEX);
 }
 
-static void AccessoryShop_ShowItemList(AccessoryShopItemList *itemList, BgConfig *bgConfig, enum HeapId heapID, const AccessoryShopItem *items, u32 maxItems, MessageLoader *msgLoader, void *param6, AccessoryShopUpdateFunc updateFunc, SpriteList *spriteList)
+static void AccessoryShop_ShowItemList(AccessoryShopItemList *itemList, BgConfig *bgConfig, enum HeapID heapID, const AccessoryShopItem *items, u32 maxItems, MessageLoader *msgLoader, void *param6, AccessoryShopUpdateFunc updateFunc, SpriteList *spriteList)
 {
     int i;
     Strbuf *fmtString;
@@ -616,7 +616,7 @@ static void AccessoryShop_HideScrollArrows(AccessoryShopItemList *itemList)
     Sprite_SetDrawFlag(itemList->sprites[ACCESSORY_SHOP_SPRITE_SCROLL_ARROW_BOTTOM], FALSE);
 }
 
-static void AccessoryShop_LoadScrollArrowGfx(SpriteResourcesHeader *scrollArrowResource, AccessoryShopItemList *itemList, enum HeapId heapID)
+static void AccessoryShop_LoadScrollArrowGfx(SpriteResourcesHeader *scrollArrowResource, AccessoryShopItemList *itemList, enum HeapID heapID)
 {
     NARC *narc = NARC_ctor(NARC_INDEX_GRAPHIC__SHOP_GRA, heapID);
 
@@ -660,7 +660,7 @@ static void AccessoryShop_UpdateScrollArrowsVisibility(AccessoryShopItemList *it
     }
 }
 
-static void AccessoryShop_SetDataPointers(AccessoryShopDataPtrs *dataPtr, AccessoryShopDescBox *descBox, const AccessoryShopItem *items, Bag *bag, enum HeapId heapID, BgConfig *bgConfig)
+static void AccessoryShop_SetDataPointers(AccessoryShopDataPtrs *dataPtr, AccessoryShopDescBox *descBox, const AccessoryShopItem *items, Bag *bag, enum HeapID heapID, BgConfig *bgConfig)
 {
     dataPtr->bgConfig = bgConfig;
     dataPtr->descBox = descBox;
@@ -683,7 +683,7 @@ static void AccessoryShop_Update(void *ptr, u32 cursorPos)
     }
 }
 
-static void AccessoryShop_ShowYesNoChoice(AccessoryShopYesNoChoice *yesNoChoice, BgConfig *bgConfig, enum HeapId heapID)
+static void AccessoryShop_ShowYesNoChoice(AccessoryShopYesNoChoice *yesNoChoice, BgConfig *bgConfig, enum HeapID heapID)
 {
     static const WindowTemplate winTemplate = {
         .bgLayer = BG_LAYER_MAIN_3,
@@ -729,7 +729,7 @@ static BOOL AccessoryShop_HasAllAccessories(const UnkStruct_02029D04 *param0, co
     return TRUE;
 }
 
-static BOOL AccessoryShop_HasEnoughBerries(Bag *bag, const AccessoryShopItem *items, u32 idx, enum HeapId heapID)
+static BOOL AccessoryShop_HasEnoughBerries(Bag *bag, const AccessoryShopItem *items, u32 idx, enum HeapID heapID)
 {
     u32 inBagAmount = Bag_GetItemQuantity(bag, items[idx].itemBerryID + FIRST_BERRY_IDX, heapID);
 
@@ -745,7 +745,7 @@ static BOOL ov7_0224CCE4(const UnkStruct_02029D04 *param0, const AccessoryShopIt
     return sub_02029D50(param0, items[idx].accessoryID, 1);
 }
 
-static void AccessoryShop_DoPurchase(UnkStruct_02029D04 *param0, Bag *bag, const AccessoryShopItem *items, u32 idx, enum HeapId heapID)
+static void AccessoryShop_DoPurchase(UnkStruct_02029D04 *param0, Bag *bag, const AccessoryShopItem *items, u32 idx, enum HeapID heapID)
 {
     u32 accessoryID = items[idx].accessoryID;
     u32 itemId = items[idx].itemBerryID + FIRST_BERRY_IDX;

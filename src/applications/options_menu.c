@@ -77,7 +77,7 @@ typedef struct OptionsMenuEntry {
 } OptionsMenuEntry;
 
 typedef struct OptionsMenuData {
-    enum HeapId heapID;
+    enum HeapID heapID;
     int state;
     int subState;
     int dummy0C;

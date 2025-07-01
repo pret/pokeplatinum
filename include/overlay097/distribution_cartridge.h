@@ -3,7 +3,7 @@
 
 #include "constants/heap.h"
 
-void DistributionCartridge_UseHeap(enum HeapId heapID);
+void DistributionCartridge_UseHeap(enum HeapID heapID);
 int DistributionCartridge_ReadLength(void);
 BOOL DistributionCartridge_ReadData(void *dest, int size);
 

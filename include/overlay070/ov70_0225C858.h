@@ -6,7 +6,7 @@
 #include "overlay063/struct_ov63_0222BCE8_decl.h"
 #include "overlay070/struct_ov70_0225C894_decl.h"
 
-UnkStruct_ov70_0225C894 *ov70_0225C858(enum HeapId heapID);
+UnkStruct_ov70_0225C894 *ov70_0225C858(enum HeapID heapID);
 void ov70_0225C894(UnkStruct_ov70_0225C894 *param0);
 u16 ov70_0225C8A8(const UnkStruct_ov70_0225C894 *param0);
 BOOL ov70_0225C8AC(const UnkStruct_ov70_0225C894 *param0, u16 param1, u16 param2);

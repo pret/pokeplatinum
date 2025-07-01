@@ -100,7 +100,7 @@ typedef struct CaveEncounterEffect {
 
 static SysTask *ScreenShakeEffect_CreateDMATransferTask(ScreenShakeEffect *screenShake);
 static void ScreenShakeEffect_DMATransfer(SysTask *task, void *param);
-static void ScreenShakeEffect_Init(ScreenShakeEffect *screenShake, enum HeapId heapID);
+static void ScreenShakeEffect_Init(ScreenShakeEffect *screenShake, enum HeapID heapID);
 static void ScreenShakeEffect_Finish(ScreenShakeEffect *screenShake);
 static void ScreenShakeEffect_Start(ScreenShakeEffect *screenShake, u8 startX, u8 endX, u16 angleIncrement, fx32 amplitude, s16 shakeSpeed, u32 bg, u32 defaultValue, u32 priority);
 static void ScreenShakeEffect_InvertBuffer(ScreenShakeEffect *screenShake, u32 interval);
@@ -425,7 +425,7 @@ static void ScreenShakeEffect_DMATransfer(SysTask *task, void *param)
     screenShakeEfx->dmaCounter++;
 }
 
-static void ScreenShakeEffect_Init(ScreenShakeEffect *screenShake, enum HeapId heapID)
+static void ScreenShakeEffect_Init(ScreenShakeEffect *screenShake, enum HeapID heapID)
 {
     screenShake->screenScrollMgr = ScreenScrollManager_New(heapID);
     screenShake->dmaCounter = 0;
@@ -2879,7 +2879,7 @@ static Strbuf *EncounterEffect_GetGymLeaderName(u32 trainerClass, u32 heapID)
     return result;
 }
 
-static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId heapID, const GymLeaderEncounterParam *param)
+static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapID heapID, const GymLeaderEncounterParam *param)
 {
     UnkStruct_ov5_021E52A8 *v0 = encEffect->param;
     BOOL v1;
@@ -3197,7 +3197,7 @@ static u32 FieldSystem_GetTrainerGender(FieldSystem *fieldSystem)
     return TrainerInfo_Gender(SaveData_GetTrainerInfo(fieldSystem->saveData));
 }
 
-static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum HeapId heapID, const EliterFourChampionEncounterParam *param)
+static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum HeapID heapID, const EliterFourChampionEncounterParam *param)
 {
     UnkStruct_ov5_021E5890 *v0 = encEffect->param;
     BOOL v1, v2;

@@ -12,19 +12,19 @@
 #include "unk_02012744.h"
 #include "unk_02015064.h"
 
-static void InitBackgrounds(BgConfig *bgConfig, enum HeapId heapID);
+static void InitBackgrounds(BgConfig *bgConfig, enum HeapID heapID);
 static void FreeBackgrounds(BgConfig *bgConfig);
-static void InitWindow(PokedexGraphicData *pokedexGraphicData, enum HeapId heapID);
+static void InitWindow(PokedexGraphicData *pokedexGraphicData, enum HeapID heapID);
 static void FreeWindow(PokedexGraphicData *pokedexGraphicData);
-static void NewPokemonSprite(PokedexGraphicData *pokedexGraphicData, enum HeapId heapID);
+static void NewPokemonSprite(PokedexGraphicData *pokedexGraphicData, enum HeapID heapID);
 static void FreePokemonSprite(PokedexGraphicData *pokedexGraphicData);
-static void InitSpeciesLabelGraphics(PokedexGraphicData *pokedexGraphicData, enum HeapId heapID);
+static void InitSpeciesLabelGraphics(PokedexGraphicData *pokedexGraphicData, enum HeapID heapID);
 static void FreeSpeciesLabelGraphics(PokedexGraphicData *pokedexGraphicData);
-static void InitSpeciesLabel(PokedexGraphicData *pokedexGraphicData, enum HeapId heapID);
+static void InitSpeciesLabel(PokedexGraphicData *pokedexGraphicData, enum HeapID heapID);
 static void FreeSpeciesLabel(PokedexGraphicData *pokedexGraphicData);
-static void InitCursorGraphics(PokedexGraphicData *pokedexGraphicData, enum HeapId heapID);
+static void InitCursorGraphics(PokedexGraphicData *pokedexGraphicData, enum HeapID heapID);
 static void FreeCursorGraphics(PokedexGraphicData *pokedexGraphicData);
-static void InitCursor(PokedexGraphicData *pokedexGraphicData, enum HeapId heapID);
+static void InitCursor(PokedexGraphicData *pokedexGraphicData, enum HeapID heapID);
 static void FreeCursor(PokedexGraphicData *pokedexGraphicData);
 static void StartCursorPulse(PokedexGraphicData *pokedexGraphicData);
 static void EndCursorPulse(PokedexGraphicData *pokedexGraphicData);
@@ -35,7 +35,7 @@ static void EndCursorTransform(PokedexGraphicData *pokedexGraphicData);
 static void InsitigateCursorTransformation(PokedexGraphicData *pokedexGraphicData, int x, int y, int width, int height);
 static void TransformCursor(SysTask *sysTask, void *data);
 
-void PokedexGraphics_Init(PokedexGraphicData *pokedexGraphicData, enum HeapId heapID)
+void PokedexGraphics_Init(PokedexGraphicData *pokedexGraphicData, enum HeapID heapID)
 {
     GraphicsModes graphicsModes;
     PokedexTextManagerTemplate textManTemplate;
@@ -425,7 +425,7 @@ NARC *PokedexGraphics_GetNARC(PokedexGraphicData *pokedexGraphicData)
     return pokedexGraphicData->pokedexGraphics;
 }
 
-static void *LoadGraphicsFile(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, BOOL isCompressed, enum HeapId heapID)
+static void *LoadGraphicsFile(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, BOOL isCompressed, enum HeapID heapID)
 {
     void *graphicFile = NARC_AllocAndReadWholeMember(pokedexGraphicData->pokedexGraphics, memberIndex, heapID);
 
@@ -445,7 +445,7 @@ static void *LoadGraphicsFile(PokedexGraphicData *pokedexGraphicData, u32 member
     return graphicFile;
 }
 
-u32 PokedexGraphics_LoadGraphicNarcCharacterData(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, BgConfig *bgConfig, u32 bgLayer, u32 tileStart, u32 size, BOOL isCompressed, enum HeapId heapID)
+u32 PokedexGraphics_LoadGraphicNarcCharacterData(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, BgConfig *bgConfig, u32 bgLayer, u32 tileStart, u32 size, BOOL isCompressed, enum HeapID heapID)
 {
     void *graphicFile = LoadGraphicsFile(pokedexGraphicData, memberIndex, isCompressed, heapID);
 
@@ -466,7 +466,7 @@ u32 PokedexGraphics_LoadGraphicNarcCharacterData(PokedexGraphicData *pokedexGrap
     return size;
 }
 
-void PokedexGraphics_LoadGraphicNarcPaletteData(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, enum PaletteLoadLocation loadLocation, u32 offset, u32 szByte, enum HeapId heapID)
+void PokedexGraphics_LoadGraphicNarcPaletteData(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, enum PaletteLoadLocation loadLocation, u32 offset, u32 szByte, enum HeapID heapID)
 {
     static void (*const sPaletteLoadFuncs[])(const void *, u32, u32) = {
         GX_LoadBGPltt,
@@ -497,7 +497,7 @@ void PokedexGraphics_LoadGraphicNarcPaletteData(PokedexGraphicData *pokedexGraph
     }
 }
 
-void *PokedexGraphics_GetGraphicNarcScreenData(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, BOOL isCompressed, NNSG2dScreenData **screenData, enum HeapId heapID)
+void *PokedexGraphics_GetGraphicNarcScreenData(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, BOOL isCompressed, NNSG2dScreenData **screenData, enum HeapID heapID)
 {
     void *graphicFile = LoadGraphicsFile(pokedexGraphicData, memberIndex, isCompressed, heapID);
 
@@ -511,7 +511,7 @@ void *PokedexGraphics_GetGraphicNarcScreenData(PokedexGraphicData *pokedexGraphi
     return graphicFile;
 }
 
-void *PokedexGraphics_GetGraphicNarcPaletteData(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, NNSG2dPaletteData **paletteData, enum HeapId heapID)
+void *PokedexGraphics_GetGraphicNarcPaletteData(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, NNSG2dPaletteData **paletteData, enum HeapID heapID)
 {
     void *graphicFile = LoadGraphicsFile(pokedexGraphicData, memberIndex, FALSE, heapID);
 
@@ -525,7 +525,7 @@ void *PokedexGraphics_GetGraphicNarcPaletteData(PokedexGraphicData *pokedexGraph
     return graphicFile;
 }
 
-void *PokedexGraphics_GetGraphicNarcCharacterData(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, BOOL isCompressed, NNSG2dCharacterData **characterData, enum HeapId heapID)
+void *PokedexGraphics_GetGraphicNarcCharacterData(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, BOOL isCompressed, NNSG2dCharacterData **characterData, enum HeapID heapID)
 {
     void *graphicFile = LoadGraphicsFile(pokedexGraphicData, memberIndex, isCompressed, heapID);
 
@@ -539,7 +539,7 @@ void *PokedexGraphics_GetGraphicNarcCharacterData(PokedexGraphicData *pokedexGra
     return graphicFile;
 }
 
-static void InitBackgrounds(BgConfig *bgConfig, enum HeapId heapID)
+static void InitBackgrounds(BgConfig *bgConfig, enum HeapID heapID)
 {
     BgTemplate bgT0 = {
         .x = 0,
@@ -675,7 +675,7 @@ static void FreeBackgrounds(BgConfig *bgConfig)
     Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_SUB_2);
 }
 
-static void InitWindow(PokedexGraphicData *pokedexGraphicData, enum HeapId heapID)
+static void InitWindow(PokedexGraphicData *pokedexGraphicData, enum HeapID heapID)
 {
     Window_Add(pokedexGraphicData->bgConfig, &pokedexGraphicData->window, 1, 0, 0, 32, 32, 0, 0);
     Window_FillTilemap(&pokedexGraphicData->window, 0);
@@ -687,7 +687,7 @@ static void FreeWindow(PokedexGraphicData *pokedexGraphicData)
     Window_Remove(&pokedexGraphicData->window);
 }
 
-static void NewPokemonSprite(PokedexGraphicData *pokedexGraphicData, enum HeapId heapID)
+static void NewPokemonSprite(PokedexGraphicData *pokedexGraphicData, enum HeapID heapID)
 {
     pokedexGraphicData->spriteMan = PokemonSpriteManager_New(heapID);
 
@@ -726,7 +726,7 @@ static void FreePokemonSprite(PokedexGraphicData *pokedexGraphicData)
     sub_020150A8(pokedexGraphicData->unk_164);
 }
 
-static void InitSpeciesLabelGraphics(PokedexGraphicData *pokedexGraphicData, enum HeapId heapID)
+static void InitSpeciesLabelGraphics(PokedexGraphicData *pokedexGraphicData, enum HeapID heapID)
 {
     PokedexSpeciesLabel *pokedexSpeciesLabel = &pokedexGraphicData->pokedexSpeciesLabel;
     NARC *pokedexGraphicsNARC = PokedexGraphics_GetNARC(pokedexGraphicData);
@@ -745,7 +745,7 @@ static void InitSpeciesLabelGraphics(PokedexGraphicData *pokedexGraphicData, enu
     pokedexSpeciesLabel->spriteResource[SPRITE_RESOURCE_ANIM] = SpriteResourceCollection_AddFrom(pokedexGraphicData->spriteResourceCollection[SPRITE_RESOURCE_ANIM], pokedexGraphicsNARC, 77, 1, 3000, 3, heapID);
 }
 
-void PokedexGraphics_InitSpeciesLabelGraphics(PokedexSpeciesLabel *pokedexSpeciesLabel, SpriteResourceCollection **spriteResourceCollection, enum HeapId heapID, NARC *narc)
+void PokedexGraphics_InitSpeciesLabelGraphics(PokedexSpeciesLabel *pokedexSpeciesLabel, SpriteResourceCollection **spriteResourceCollection, enum HeapID heapID, NARC *narc)
 {
     pokedexSpeciesLabel->spriteResource[SPRITE_RESOURCE_CHAR] = SpriteResourceCollection_AddTilesFrom(spriteResourceCollection[SPRITE_RESOURCE_CHAR], narc, 78, 1, 3000, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
 
@@ -785,7 +785,7 @@ void PokedexGraphics_FreeSpeciesLabelGraphics(PokedexSpeciesLabel *pokedexSpecie
     SpriteResourceCollection_Remove(spriteResourceCollection[SPRITE_RESOURCE_ANIM], pokedexSpeciesLabel->spriteResource[SPRITE_RESOURCE_ANIM]);
 }
 
-static void InitSpeciesLabel(PokedexGraphicData *pokedexGraphicData, enum HeapId heapID)
+static void InitSpeciesLabel(PokedexGraphicData *pokedexGraphicData, enum HeapID heapID)
 {
     SpriteResourcesHeader spriteResourcesHeader;
     SpriteListTemplate spriteListTemplate;
@@ -832,7 +832,7 @@ static void FreeSpeciesLabel(PokedexGraphicData *pokedexGraphicData)
     }
 }
 
-void PokedexGraphics_NewSpeciesLabel(PokedexSpeciesLabel *pokedexSpeciesLabel, SpriteList *spriteList, SpriteResourceCollection **spriteResourceCollection, enum HeapId heapID, int headerPriority)
+void PokedexGraphics_NewSpeciesLabel(PokedexSpeciesLabel *pokedexSpeciesLabel, SpriteList *spriteList, SpriteResourceCollection **spriteResourceCollection, enum HeapID heapID, int headerPriority)
 {
     SpriteResourcesHeader spriteResourcesHeader;
     SpriteListTemplate spriteListTemplate;
@@ -894,7 +894,7 @@ void PokedexGraphics_SetSpeciesLabelDraw(PokedexSpeciesLabel *pokedexSpeciesLabe
     }
 }
 
-static void InitCursorGraphics(PokedexGraphicData *pokedexGraphicData, enum HeapId heapID)
+static void InitCursorGraphics(PokedexGraphicData *pokedexGraphicData, enum HeapID heapID)
 {
     PokedexCursorGraphics *pokedexCursorGraphics = &pokedexGraphicData->cursorGraphics;
     NARC *pokedexGraphicsNARC = PokedexGraphics_GetNARC(pokedexGraphicData);
@@ -926,7 +926,7 @@ static void FreeCursorGraphics(PokedexGraphicData *pokedexGraphicData)
     SpriteResourceCollection_Remove(pokedexGraphicData->spriteResourceCollection[SPRITE_RESOURCE_ANIM], pokedexCursorGraphics->spriteResource[SPRITE_RESOURCE_ANIM]);
 }
 
-static void InitCursor(PokedexGraphicData *pokedexGraphicData, enum HeapId heapID)
+static void InitCursor(PokedexGraphicData *pokedexGraphicData, enum HeapID heapID)
 {
     SpriteResourcesHeader resourceData;
     SpriteListTemplate spriteListTemplate;

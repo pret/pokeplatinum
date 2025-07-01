@@ -21,7 +21,7 @@ enum PokedexEncFileIndex {
     PEFI_FIELDSPECIALNATDEX = (4 + MAX_SPECIES * 9),
 };
 
-void PokedexEncData_PopulateEncounterLocations(EncounterLocations *encounterLocations, int species, int encounterCategory, enum HeapId heapID)
+void PokedexEncData_PopulateEncounterLocations(EncounterLocations *encounterLocations, int species, int encounterCategory, enum HeapID heapID)
 {
     int fileIndex;
     u32 fileSize;
@@ -74,7 +74,7 @@ void PokedexEncData_FreeEncounterLocations(EncounterLocations *encounterLocation
     encounterLocations->numLocations = 0;
 }
 
-DungeonCoordinates *PokedexEncData_GetDungeonCoordinates(enum HeapId heapID, int *numDungeons)
+DungeonCoordinates *PokedexEncData_GetDungeonCoordinates(enum HeapID heapID, int *numDungeons)
 {
     u32 fileSize;
 
@@ -87,7 +87,7 @@ DungeonCoordinates *PokedexEncData_GetDungeonCoordinates(enum HeapId heapID, int
     return dungeonCoordinatesArray;
 }
 
-FieldCoordinates *PokedexEncData_GetFieldCoordinates(enum HeapId heapID, int *numFields)
+FieldCoordinates *PokedexEncData_GetFieldCoordinates(enum HeapID heapID, int *numFields)
 {
     u32 fileSize;
 

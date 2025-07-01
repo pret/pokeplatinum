@@ -65,7 +65,7 @@ typedef struct MapHeaderData {
     WildEncounters wildEncounters;
 } MapHeaderData;
 
-void MapHeaderData_Init(FieldSystem *fieldSystem, enum HeapId heapID);
+void MapHeaderData_Init(FieldSystem *fieldSystem, enum HeapID heapID);
 void MapHeaderData_Free(FieldSystem *fieldSystem);
 void MapHeaderData_Load(FieldSystem *fieldSystem, int headerID);
 void sub_0203A418(FieldSystem *fieldSystem);

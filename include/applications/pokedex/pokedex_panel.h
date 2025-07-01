@@ -43,7 +43,7 @@ typedef struct PokedexPanelData {
     int row;
 } PokedexPanelData;
 
-PokedexPanelData *PokedexPanel_Alloc(enum HeapId heapID);
+PokedexPanelData *PokedexPanel_Alloc(enum HeapID heapID);
 void PokedexPanel_Free(PokedexPanelData *pokedexPanelData);
 void PokedexPanel_New(PokedexPanelData *pokedexPanelData, const PokedexCursorData *pokedexCursorData, int numCols, int numRows);
 void PokedexPanel_Move(PokedexPanelData *pokedexPanelData, enum PanelMovementType movementType, int val);

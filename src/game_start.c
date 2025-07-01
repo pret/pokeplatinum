@@ -38,7 +38,7 @@ static int GameStartLoadSave_Init(ApplicationManager *appMan, int *state);
 static int GameStartLoadSave_Main(ApplicationManager *appMan, int *state);
 static int GameStartLoadSave_Exit(ApplicationManager *appMan, int *state);
 
-static void InitializeNewSave(enum HeapId heapID, SaveData *saveData, BOOL setTrainerID);
+static void InitializeNewSave(enum HeapID heapID, SaveData *saveData, BOOL setTrainerID);
 static void TryLoadingSave(int unused, SaveData *saveData);
 static void StartNewSave(int unused, SaveData *saveData);
 
@@ -140,7 +140,7 @@ static int GameStartLoadSave_Exit(ApplicationManager *appMan, int *state)
 
 #include "data/berry_init.h"
 
-static void InitializeNewSave(enum HeapId heapID, SaveData *saveData, BOOL setTrainerID)
+static void InitializeNewSave(enum HeapID heapID, SaveData *saveData, BOOL setTrainerID)
 {
     u32 rnd;
     BerryPatch *berryPatches;

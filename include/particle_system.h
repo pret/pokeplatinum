@@ -56,10 +56,10 @@ void ParticleSystem_ZeroAll(void);
 // When using a custom texture/palette allocator function, be sure to use
 // ParticleSystem_RegisterTextureKey or ParticleSystem_RegisterPaletteKey to register
 // allocated textures in the particle system.
-ParticleSystem *ParticleSystem_New(SPLTexVRAMAllocFunc texAllocFunc, SPLPalVRAMAllocFunc palAllocFunc, void *heap, int heapSize, BOOL hasCamera, enum HeapId heapID);
+ParticleSystem *ParticleSystem_New(SPLTexVRAMAllocFunc texAllocFunc, SPLPalVRAMAllocFunc palAllocFunc, void *heap, int heapSize, BOOL hasCamera, enum HeapID heapID);
 void ParticleSystem_Free(ParticleSystem *particleSystem);
 void ParticleSystem_FreeAll(void);
-void *ParticleSystem_LoadResourceFromNARC(enum NarcID narcID, int memberIndex, enum HeapId heapID);
+void *ParticleSystem_LoadResourceFromNARC(enum NarcID narcID, int memberIndex, enum HeapID heapID);
 void ParticleSystem_SetResource(ParticleSystem *particleSystem, void *resource, enum VRAMAutoRelease autoRelease, BOOL uploadImmediately);
 void ParticleSystem_RegisterTextureKey(NNSGfdTexKey key);
 void ParticleSystem_RegisterPaletteKey(NNSGfdPlttKey key);

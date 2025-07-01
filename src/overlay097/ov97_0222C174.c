@@ -431,7 +431,7 @@ enum {
 static void ov97_0222C388(UnkStruct_ov97_0222C388 *param0);
 int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0);
 MysteryGift *SaveData_GetMysteryGift(SaveData *saveData);
-void WonderCardsApp_ShowWondercard(BgConfig *bgConfig, WonderCard *wonderCard, enum HeapId heapID);
+void WonderCardsApp_ShowWondercard(BgConfig *bgConfig, WonderCard *wonderCard, enum HeapID heapID);
 
 static u16 ov97_0222C174(u16 param0)
 {

@@ -408,7 +408,7 @@ static void PokemonSprite_TickAnim(PokemonSprite *monSprite);
 static u8 SwapNybbles(u8 value);
 static void TryDrawSpindaSpots(PokemonSprite *monSprite, u8 *rawCharData);
 
-void *PokemonSpriteManager_New(enum HeapId heapID)
+void *PokemonSpriteManager_New(enum HeapID heapID)
 {
     PokemonSpriteManager *monSpriteMan = Heap_AllocFromHeap(heapID, sizeof(PokemonSpriteManager));
 

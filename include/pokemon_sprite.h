@@ -159,7 +159,7 @@ typedef struct PokemonSpriteManager {
     PokemonSprite sprites[MAX_MON_SPRITES];
     NNSG2dImageProxy imageProxy;
     NNSG2dImagePaletteProxy plttProxy;
-    enum HeapId heapID;
+    enum HeapID heapID;
     u32 charBaseAddr;
     u32 charSize;
     u32 plttBaseAddr;
@@ -188,7 +188,7 @@ typedef struct {
     const SpriteAnimationFrame *animFrames;
 } PokemonSpriteTaskAnim;
 
-void *PokemonSpriteManager_New(enum HeapId heapID);
+void *PokemonSpriteManager_New(enum HeapID heapID);
 void PokemonSpriteManager_DrawSprites(PokemonSpriteManager *monSpriteMan);
 void PokemonSpriteManager_Free(PokemonSpriteManager *monSpriteMan);
 void PokemonSprite_InitAnim(PokemonSprite *monSprite, int dummy);

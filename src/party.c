@@ -19,7 +19,7 @@ int Party_SaveSize(void)
     return sizeof(Party);
 }
 
-Party *Party_New(enum HeapId heapID)
+Party *Party_New(enum HeapID heapID)
 {
     Party *party = Heap_AllocFromHeap(heapID, sizeof(Party));
     Party_Init(party);

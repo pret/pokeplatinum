@@ -12,7 +12,7 @@ typedef struct PlttTransferTaskTemplate {
     u32 resourceID;
 } PlttTransferTaskTemplate;
 
-void PlttTransfer_Init(int capacity, enum HeapId heapID);
+void PlttTransfer_Init(int capacity, enum HeapID heapID);
 void PlttTransfer_MarkReservedSlots(u16 reservedMask, NNS_G2D_VRAM_TYPE vramType);
 void PlttTransfer_Free(void);
 void PlttTransfer_Clear(void);

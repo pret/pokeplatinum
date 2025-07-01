@@ -94,7 +94,7 @@ struct SpriteList {
 typedef struct SpriteListParams {
     int maxElements;
     NNSG2dRendererInstance *renderer;
-    enum HeapId heapID;
+    enum HeapID heapID;
 } SpriteListParams;
 
 typedef struct SpriteResourcesHeader {
@@ -128,7 +128,7 @@ typedef struct SpriteListTemplate {
     VecFx32 position;
     u32 priority;
     enum NNS_G2D_VRAM_TYPE vramType;
-    enum HeapId heapID;
+    enum HeapID heapID;
 } SpriteListTemplate;
 
 typedef struct AffineSpriteListTemplate {
@@ -139,7 +139,7 @@ typedef struct AffineSpriteListTemplate {
     u16 affineZRotation;
     u32 priority;
     enum NNS_G2D_VRAM_TYPE vramType;
-    enum HeapId heapID;
+    enum HeapID heapID;
 } AffineSpriteListTemplate;
 
 SpriteList *SpriteList_New(const SpriteListParams *params);
@@ -192,8 +192,8 @@ void Sprite_SetMosaicFlag(Sprite *sprite, BOOL mosaic);
 enum NNS_G2D_VRAM_TYPE Sprite_GetVRamType(const Sprite *sprite);
 BOOL Sprite_IsAnimated(Sprite *sprite);
 void Sprite_SetExplicitOAMMode(Sprite *sprite, GXOamMode mode);
-void Utility_Clear2DMainOAM(enum HeapId heapID);
-void Utility_Clear2DSubOAM(enum HeapId heapID);
+void Utility_Clear2DMainOAM(enum HeapID heapID);
+void Utility_Clear2DSubOAM(enum HeapID heapID);
 u32 Sprite_GetUserAttrForAnimFrame(const Sprite *sprite, u32 animID, u32 frame);
 u32 Sprite_GetUserAttrForCurrentAnimFrame(const Sprite *sprite);
 

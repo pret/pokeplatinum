@@ -63,7 +63,7 @@ static void ResetBothTransferRanges(PlttTransferTaskManager *task);
 
 static PlttTransferTaskManager *sTaskManager = NULL;
 
-void PlttTransfer_Init(int capacity, enum HeapId heapID)
+void PlttTransfer_Init(int capacity, enum HeapID heapID)
 {
     if (sTaskManager == NULL) {
         sTaskManager = Heap_AllocFromHeap(heapID, sizeof(PlttTransferTaskManager));

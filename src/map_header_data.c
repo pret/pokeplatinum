@@ -17,7 +17,7 @@ static void MapHeaderData_LoadEvents(MapHeaderData *data, int headerID);
 static void MapHeaderData_ParseEvents(MapHeaderData *data);
 static void MapHeaderData_LoadInitScripts(MapHeaderData *data, int headerID);
 
-void MapHeaderData_Init(FieldSystem *fieldSystem, enum HeapId heapID)
+void MapHeaderData_Init(FieldSystem *fieldSystem, enum HeapID heapID)
 {
     GF_ASSERT(fieldSystem->mapHeaderData == NULL);
     fieldSystem->mapHeaderData = Heap_AllocFromHeap(heapID, sizeof(MapHeaderData));

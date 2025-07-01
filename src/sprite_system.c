@@ -43,7 +43,7 @@ static void GetSpriteAffineScale(Sprite *sprite, f32 *outXScale, f32 *outYOffset
 static void SetSpriteAffineZRotation(Sprite *sprite, u16 angle);
 static void OffsetSpriteAffineZRotation(Sprite *sprite, s32 offset);
 
-SpriteSystem *SpriteSystem_Alloc(enum HeapId heapID)
+SpriteSystem *SpriteSystem_Alloc(enum HeapID heapID)
 {
     SpriteSystem *spriteSys = Heap_AllocFromHeap(heapID, sizeof(SpriteSystem));
     if (spriteSys == NULL) {

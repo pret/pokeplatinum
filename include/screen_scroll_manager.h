@@ -27,7 +27,7 @@ typedef struct ScreenScrollManager {
     s16 scrollSpeed;
 } ScreenScrollManager;
 
-ScreenScrollManager *ScreenScrollManager_New(enum HeapId heapID);
+ScreenScrollManager *ScreenScrollManager_New(enum HeapID heapID);
 void ScreenScrollManager_ScrollX(ScreenScrollManager *screenScrollMgr, u8 start, u8 end, u16 angleIncrement, fx32 amplitude, s16 speed, u32 bg, u32 initValue, u32 priority);
 void ScreenScrollManager_ScrollY(ScreenScrollManager *screenScrollMgr, u8 start, u8 end, u16 angleIncrement, fx32 amplitude, s16 speed, u32 bg, u32 initValue, u32 priority);
 void ScreenScrollManager_Stop(ScreenScrollManager *screenScrollMgr);

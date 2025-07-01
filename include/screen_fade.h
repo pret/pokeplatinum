@@ -98,7 +98,7 @@ typedef struct ScreenFade {
     void *data;
     HardwareWindowSettings *hwSettings;
     ScreenFadeHBlanks *hblanks;
-    enum HeapId heapID;
+    enum HeapID heapID;
     u16 color;
     // u8 padding_26[2];
 
@@ -106,7 +106,7 @@ typedef struct ScreenFade {
     enum FadeMethod method;
 } ScreenFade;
 
-void StartScreenFade(enum FadeMode mode, enum FadeType typeMain, enum FadeType typeSub, u16 color, int steps, int framesPerStep, enum HeapId heapID);
+void StartScreenFade(enum FadeMode mode, enum FadeType typeMain, enum FadeType typeSub, u16 color, int steps, int framesPerStep, enum HeapID heapID);
 void ExecScreenFade(void);
 BOOL IsScreenFadeDone(void);
 void FinishScreenFade(void);
@@ -117,7 +117,7 @@ void SetColorBrightness(u16 color);
 void SetupScreenFadeRegisters(enum DSScreen screen, u16 color);
 void SetScreenBackgroundColor(u16 color);
 void SetScreenMasterBrightness(enum DSScreen screen, int brightness);
-void RequestEnableScreenHBlank(ScreenFadeHBlanks *hblanks, void *data, Callback callback, enum DSScreen screen, enum HeapId heapID);
-void RequestDisableScreenHBlank(ScreenFadeHBlanks *hblanks, enum DSScreen screen, enum HeapId heapID);
+void RequestEnableScreenHBlank(ScreenFadeHBlanks *hblanks, void *data, Callback callback, enum DSScreen screen, enum HeapID heapID);
+void RequestDisableScreenHBlank(ScreenFadeHBlanks *hblanks, enum DSScreen screen, enum HeapID heapID);
 
 #endif // POKEPLATINUM_SCREEN_FADE_H
