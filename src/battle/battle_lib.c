@@ -148,7 +148,7 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
     Pokedex_HeightWeightData_Release(heightWeightData);
     Pokedex_HeightWeightData_Free(heightWeightData);
     Pokemon_GetData(mon, MON_DATA_NICKNAME, battleCtx->battleMons[battler].nickname);
-    Pokemon_GetData(mon, MON_DATA_OTNAME, battleCtx->battleMons[battler].OTName);
+    Pokemon_GetData(mon, MON_DATA_OT_NAME, battleCtx->battleMons[battler].OTName);
 
     battleCtx->battleMons[battler].timesDamaged = 0;
     battleCtx->battleMons[battler].trainerMessageFlags = 0;
@@ -6284,7 +6284,7 @@ BOOL BattleSystem_PokemonIsOT(BattleSystem *battleSys, Pokemon *mon)
     const charcode_t *trName = TrainerInfo_Name(trInfo);
 
     charcode_t monOTName[TRAINER_NAME_LEN + 1];
-    Pokemon_GetData(mon, MON_DATA_OTNAME, monOTName);
+    Pokemon_GetData(mon, MON_DATA_OT_NAME, monOTName);
 
     if (trID == Pokemon_GetData(mon, MON_DATA_OT_ID, NULL)
         && trGender == Pokemon_GetData(mon, MON_DATA_OT_GENDER, NULL)

@@ -113,7 +113,7 @@ static void BuildPokemonSpriteTemplateDP(PokemonSpriteTemplate *spriteTemplate, 
 static u8 LoadPokemonDPSpriteHeight(u16 monSpecies, u8 monGender, u8 param2, u8 monForm, u32 monPersonality);
 static void BoxPokemon_SetDefaultMoves(BoxPokemon *boxMon);
 static u16 BoxPokemon_AddMove(BoxPokemon *boxMon, u16 moveID);
-static void BoxPokemon_ReplaceMove(BoxPokemon *boxMon, u16 move);
+static void BoxPokemon_AppendMove(BoxPokemon *boxMon, u16 move);
 static void BoxPokemon_SetMoveSlot(BoxPokemon *boxMon, u16 move, u8 slot);
 static BOOL Pokemon_HasMove(Pokemon *mon, u16 moveID);
 static s8 BoxPokemon_GetFlavorAffinity(BoxPokemon *boxMon, int flavor);
@@ -872,7 +872,7 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
         ret = GetRibbon(blockC->contestRibbons, param, MON_DATA_COOL_RIBBON);
         break;
 
-    case MON_DATA_OTNAME:
+    case MON_DATA_OT_NAME:
         u16 *otName = dest;
 
         for (ret = 0; ret < TRAINER_NAME_LEN; ret++) {
@@ -897,19 +897,15 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
     case MON_DATA_MET_DAY:
         ret = blockD->metDay;
         break;
-
     case MON_DATA_HATCH_YEAR:
         ret = blockD->hatchYear;
         break;
-
     case MON_DATA_HATCH_MONTH:
         ret = blockD->hatchMonth;
         break;
-
     case MON_DATA_HATCH_DAY:
         ret = blockD->hatchDay;
         break;
-
     case MON_DATA_MET_LOCATION:
     case MON_DATA_FATEFUL_MET_LOCATION:
         // TODO enum value?
@@ -919,7 +915,6 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
             ret = blockD->metLocation;
         }
         break;
-
     case MON_DATA_HATCH_LOCATION:
     case MON_DATA_FATEFUL_HATCH_LOCATION:
         // TODO enum value?
@@ -1359,7 +1354,7 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
 
         break;
     }
-    case MON_DATA_OTNAME:
+    case MON_DATA_OT_NAME:
         for (int i = 0; i < NELEMS(blockD->otName); i++) {
             blockD->otName[i] = ((u16 *)value)[i];
         }
@@ -1766,7 +1761,7 @@ static void BoxPokemon_IncreaseDataInternal(BoxPokemon *boxMon, enum PokemonData
     case MON_DATA_TOUGH_RIBBON_ULTRA:
     case MON_DATA_TOUGH_RIBBON_MASTER:
     case MON_DATA_CONTEST_RIBBON_DUMMY:
-    case MON_DATA_OTNAME:
+    case MON_DATA_OT_NAME:
     case MON_DATA_OTNAME_STRBUF:
     case MON_DATA_MET_YEAR:
     case MON_DATA_MET_MONTH:
@@ -3297,7 +3292,7 @@ static void BoxPokemon_SetDefaultMoves(BoxPokemon *boxMon)
         if ((levelUpLearnset[i] & 0xFE00) <= level << 9) {
             u16 monLevelUpMoveID = levelUpLearnset[i] & 0x1FF;
             if (BoxPokemon_AddMove(boxMon, monLevelUpMoveID) == LEARNSET_ALL_SLOTS_FILLED) {
-                BoxPokemon_ReplaceMove(boxMon, monLevelUpMoveID);
+                BoxPokemon_AppendMove(boxMon, monLevelUpMoveID);
             }
         } else {
             break;
@@ -3336,13 +3331,12 @@ static u16 BoxPokemon_AddMove(BoxPokemon *boxMon, u16 move)
     return result;
 }
 
-void Pokemon_ReplaceMove(Pokemon *mon, u16 moveID)
+void Pokemon_AppendMove(Pokemon *mon, u16 move)
 {
-    BoxPokemon *boxMon = Pokemon_GetBoxPokemon(mon);
-    BoxPokemon_ReplaceMove(boxMon, moveID);
+    BoxPokemon_AppendMove(Pokemon_GetBoxPokemon(mon), move);
 }
 
-static void BoxPokemon_ReplaceMove(BoxPokemon *boxMon, u16 moveID)
+static void BoxPokemon_AppendMove(BoxPokemon *boxMon, u16 moveID)
 {
     BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
 
@@ -3390,10 +3384,10 @@ static void BoxPokemon_SetMoveSlot(BoxPokemon *boxMon, u16 move, u8 slot)
 {
     BoxPokemon_SetData(boxMon, MON_DATA_MOVE1 + slot, &move);
 
-    u8 movePPUps = BoxPokemon_GetData(boxMon, MON_DATA_MOVE1_PP_UPS + slot, NULL);
-    u8 moveMaxPP = MoveTable_CalcMaxPP(move, movePPUps);
+    u8 ppUp = BoxPokemon_GetData(boxMon, MON_DATA_MOVE1_PP_UPS + slot, NULL);
+    u8 maxPP = MoveTable_CalcMaxPP(move, ppUp);
 
-    BoxPokemon_SetData(boxMon, MON_DATA_MOVE1_CUR_PP + slot, &moveMaxPP);
+    BoxPokemon_SetData(boxMon, MON_DATA_MOVE1_CUR_PP + slot, &maxPP);
 }
 
 u16 Pokemon_LevelUpMove(Pokemon *mon, int *index, u16 *moveID)
@@ -3593,18 +3587,18 @@ s8 Pokemon_GetFlavorAffinityOf(u32 monPersonality, int flavor)
 
 int Pokemon_LoadLevelUpMoveIdsOf(int monSpecies, int monForm, u16 *monLevelUpMoveIDs)
 {
-    u16 *monLevelUpMoves = Heap_AllocFromHeap(HEAP_ID_SYSTEM, sizeof(SpeciesLearnset));
+    u16 *levelUpLearnset = Heap_AllocFromHeap(HEAP_ID_SYSTEM, sizeof(SpeciesLearnset));
 
-    Pokemon_LoadLevelUpMovesOf(monSpecies, monForm, monLevelUpMoves);
+    Pokemon_LoadLevelUpMovesOf(monSpecies, monForm, levelUpLearnset);
 
     int result = 0;
 
-    while (monLevelUpMoves[result] != LEARNSET_ALL_SLOTS_FILLED) {
-        monLevelUpMoveIDs[result] = monLevelUpMoves[result] & 0x1FF;
+    while (levelUpLearnset[result] != LEARNSET_ALL_SLOTS_FILLED) {
+        monLevelUpMoveIDs[result] = levelUpLearnset[result] & 0x1FF;
         result++;
     }
 
-    Heap_FreeToHeap(monLevelUpMoves);
+    Heap_FreeToHeap(levelUpLearnset);
     return result;
 }
 
@@ -3627,45 +3621,45 @@ void Pokemon_ApplyPokerus(Party *party)
             }
         } while (partySlot == currentPartyCount);
 
-        if (Pokemon_HasPokerus(party, FlagIndex(partySlot)) == 0) {
-            u8 monPokerus;
+        if (Party_MaskMonsWithPokerus(party, FlagIndex(partySlot)) == 0) {
+            u8 pokerus;
             do {
-                monPokerus = LCRNG_Next() & 0xff;
-            } while ((monPokerus & 0x7) == 0);
+                pokerus = LCRNG_Next() & 0xff;
+            } while ((pokerus & 0x7) == 0);
 
-            if (monPokerus & 0xf0) {
-                monPokerus &= 0x7;
+            if (pokerus & 0xF0) {
+                pokerus &= 0x7;
             }
 
-            monPokerus |= (monPokerus << 4);
-            monPokerus &= 0xf3;
-            monPokerus++;
+            pokerus |= (pokerus << 4);
+            pokerus &= 0xF3;
+            pokerus++;
 
-            Pokemon_SetData(mon, MON_DATA_POKERUS, &monPokerus);
+            Pokemon_SetData(mon, MON_DATA_POKERUS, &pokerus);
         }
     }
 }
 
-u8 Pokemon_HasPokerus(Party *party, u8 param1)
+u8 Party_MaskMonsWithPokerus(Party *party, u8 mask)
 {
     int partySlot = 0;
-    int v1 = 1;
+    int flag = 1;
 
     u8 result = 0;
-    if (param1) {
+    if (mask) {
         do {
-            if (param1 & 1) {
+            if (mask & 1) {
                 Pokemon *mon = Party_GetPokemonBySlotIndex(party, partySlot);
 
                 if (Pokemon_GetData(mon, MON_DATA_POKERUS, NULL)) {
-                    result |= v1;
+                    result |= flag;
                 }
             }
 
             partySlot++;
-            v1 = v1 << 1;
-            param1 = param1 >> 1;
-        } while (param1 != 0);
+            flag = flag << 1;
+            mask = mask >> 1;
+        } while (mask != 0);
     } else {
         Pokemon *mon = Party_GetPokemonBySlotIndex(party, partySlot);
 

@@ -1025,7 +1025,7 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
 
     GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_OT_NAME, gbaNickname);
     GBAStringToDSString(gbaNickname, dsNickName, GBA_PLAYER_NAME_LEN + 1, language);
-    BoxPokemon_SetData(boxMon, MON_DATA_OTNAME, dsNickName);
+    BoxPokemon_SetData(boxMon, MON_DATA_OT_NAME, dsNickName);
 
     value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_MET_LOCATION, NULL);
     BoxPokemon_SetData(boxMon, MON_DATA_HATCH_LOCATION, &value);

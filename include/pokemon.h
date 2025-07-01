@@ -544,7 +544,7 @@ u16 Pokemon_AddMove(Pokemon *mon, u16 move);
  * @param mon
  * @param move
  */
-void Pokemon_ReplaceMove(Pokemon *mon, u16 move);
+void Pokemon_AppendMove(Pokemon *mon, u16 move);
 
 /**
  * @brief Sets the given moveSlot of a Pokemon, removing its PP Ups
@@ -652,7 +652,7 @@ s8 Pokemon_GetFlavorAffinityOf(u32 monPersonality, int flavor);
 int Pokemon_LoadLevelUpMoveIdsOf(int monSpecies, int monForm, u16 *monLevelUpMoveIDs);
 
 void Pokemon_ApplyPokerus(Party *party);
-u8 Pokemon_HasPokerus(Party *party, u8 param1);
+u8 Party_MaskMonsWithPokerus(Party *party, u8 mask);
 void Party_UpdatePokerusStatus(Party *party, s32 param1);
 void Pokemon_ValidatePokerus(Party *party);
 BOOL Pokemon_InfectedWithPokerus(Pokemon *mon);

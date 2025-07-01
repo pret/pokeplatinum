@@ -1382,7 +1382,7 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *dto)
 
     if (battleSys->battleType & BATTLE_TYPE_PAL_PARK) {
         v3 = Party_GetPokemonBySlotIndex(battleSys->parties[1], 0);
-        Pokemon_GetData(v3, MON_DATA_OTNAME, (u8 *)&battleSys->trainers[1].name);
+        Pokemon_GetData(v3, MON_DATA_OT_NAME, (u8 *)&battleSys->trainers[1].name);
     }
 
     if (battleSys->battleType & BATTLE_TYPE_TRAINER) {
