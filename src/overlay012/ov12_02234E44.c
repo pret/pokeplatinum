@@ -146,9 +146,9 @@ static void ov12_0223507C(BattleAnimSystem *param0, UnkStruct_ov12_02234E44 *par
     ov12_0223595C(param0, &v0->unk_18);
 
     v0->unk_00 = (*param1);
-    v0->unk_34 = ov12_022202C0(v0->unk_18.unk_04, 0);
-    v0->unk_38 = ov12_022202C0(v0->unk_18.unk_04, 1);
-    v0->unk_3C = ov12_022202C0(v0->unk_18.unk_04, 2);
+    v0->unk_34 = BattleAnimSystem_GetPokemonSprite(v0->unk_18.unk_04, 0);
+    v0->unk_38 = BattleAnimSystem_GetPokemonSprite(v0->unk_18.unk_04, 1);
+    v0->unk_3C = BattleAnimSystem_GetPokemonSprite(v0->unk_18.unk_04, 2);
 
     {
         int v1;

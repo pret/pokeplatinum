@@ -531,7 +531,7 @@ void ov12_0222F770(BattleAnimSystem *param0)
     v0 = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222F700));
 
     v0->unk_00 = param0;
-    v0->unk_04 = ov12_022202EC(v0->unk_00);
+    v0->unk_04 = BattleAnimSystem_GetPokemonSpriteManager(v0->unk_00);
     v0->unk_08 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
     v0->unk_E8 = PokemonSprite_GetAttribute(v0->unk_08, MON_SPRITE_X_CENTER);
     v0->unk_EA = PokemonSprite_GetAttribute(v0->unk_08, MON_SPRITE_Y_CENTER);
@@ -547,7 +547,7 @@ void ov12_0222F770(BattleAnimSystem *param0)
     v3.unk_04[2] *= v2;
 
     for (v1 = 0; v1 < 2; v1++) {
-        v0->unk_30[v1] = ov12_022202C0(v0->unk_00, v1);
+        v0->unk_30[v1] = BattleAnimSystem_GetPokemonSprite(v0->unk_00, v1);
         ManagedSprite_SetPriority(v0->unk_30[v1], 100);
         ManagedSprite_SetExplicitPriority(v0->unk_30[v1], 1);
         ManagedSprite_SetExplicitOamMode(v0->unk_30[v1], GX_OAM_MODE_XLU);
@@ -920,7 +920,7 @@ void ov12_022300C4(BattleAnimSystem *param0)
     UnkStruct_ov12_0222FF80 *v0 = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222FF80));
 
     v0->unk_00 = param0;
-    v0->unk_04 = ov12_022202EC(v0->unk_00);
+    v0->unk_04 = BattleAnimSystem_GetPokemonSpriteManager(v0->unk_00);
     v0->unk_08 = 0;
     v0->unk_0C = 0;
     v0->unk_5C = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00));
@@ -929,7 +929,7 @@ void ov12_022300C4(BattleAnimSystem *param0)
     v0->unk_66 = PokemonSprite_GetAttribute(v0->unk_5C, MON_SPRITE_SHADOW_HEIGHT);
 
     ov12_02226108(&v0->unk_10, 2, 0, 1, 6);
-    v0->unk_58 = ov12_022202C0(v0->unk_00, 0);
+    v0->unk_58 = BattleAnimSystem_GetPokemonSprite(v0->unk_00, 0);
 
     ManagedSprite_SetExplicitOamMode(v0->unk_58, GX_OAM_MODE_XLU);
     ManagedSprite_SetAffineOverwriteMode(v0->unk_58, AFFINE_OVERWRITE_MODE_DOUBLE);
@@ -1198,9 +1198,9 @@ void ov12_02230754(BattleAnimSystem *param0)
     memset(v0, 0, sizeof(UnkStruct_ov12_02230540));
 
     v0->unk_00 = param0;
-    v0->unk_04 = ov12_022202EC(v0->unk_00);
+    v0->unk_04 = BattleAnimSystem_GetPokemonSpriteManager(v0->unk_00);
     v0->unk_4C = BattleAnimSystem_IsContest(param0);
-    v0->unk_10 = ov12_022202C0(v0->unk_00, 0);
+    v0->unk_10 = BattleAnimSystem_GetPokemonSprite(v0->unk_00, 0);
 
     ov12_02225E68(&v0->unk_14, 14, 10, 10, 8);
     ov12_02225D78(&v0->unk_38, 0, 16, 8);
@@ -1244,7 +1244,7 @@ void ov12_02230804(BattleAnimSystem *param0)
 
     PokemonSprite_StartFade(v0->unk_08, 0, 16, 0, 0);
 
-    v0->unk_0C = ov12_022202C0(v0->unk_00, 1);
+    v0->unk_0C = BattleAnimSystem_GetPokemonSprite(v0->unk_00, 1);
     v2 = BattleAnimUtil_GetBattlerType(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
     v3 = BattleAnimUtil_GetBattlerType(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00));
 
@@ -1362,7 +1362,7 @@ void ov12_02230A8C(BattleAnimSystem *param0)
     v2 -= (80 / 2);
     v3 -= (80 / 2);
 
-    v0->unk_48 = ov12_022202C0(v0->unk_00, 0);
+    v0->unk_48 = BattleAnimSystem_GetPokemonSprite(v0->unk_00, 0);
     v5 = BattleAnimUtil_GetBattlerType(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00));
 
     if ((v5 == 5) || (v5 == 2)) {
@@ -1790,7 +1790,7 @@ void ov12_02231444(BattleAnimSystem *param0)
     v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_02231390));
 
     v0->unk_00 = param0;
-    v0->unk_04 = ov12_022202EC(v0->unk_00);
+    v0->unk_04 = BattleAnimSystem_GetPokemonSpriteManager(v0->unk_00);
 
     v1 = ov12_02225964(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
 
@@ -1799,7 +1799,7 @@ void ov12_02231444(BattleAnimSystem *param0)
     v0->unk_1A = PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_Y_CENTER);
     v0->unk_68 = PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_SHADOW_HEIGHT);
     v0->unk_1A -= -8;
-    v0->unk_14 = ov12_022202C0(v0->unk_00, 0);
+    v0->unk_14 = BattleAnimSystem_GetPokemonSprite(v0->unk_00, 0);
 
     ManagedSprite_SetExplicitOamMode(v0->unk_14, GX_OAM_MODE_XLU);
     PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_HIDE, 1);
@@ -3211,7 +3211,7 @@ void ov12_02233178(BattleAnimSystem *param0)
     v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_02232D38));
 
     v0->unk_00 = param0;
-    v0->unk_04 = ov12_022202EC(v0->unk_00);
+    v0->unk_04 = BattleAnimSystem_GetPokemonSpriteManager(v0->unk_00);
     v0->unk_C4 = ov12_0222332C(v0->unk_00);
 
     v1 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetAttacker(param0));
@@ -3226,7 +3226,7 @@ void ov12_02233178(BattleAnimSystem *param0)
 
     v0->unk_14 = v3;
     v0->unk_10 = ov12_02223354(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
-    v0->unk_18 = ov12_022202C0(v0->unk_00, 0);
+    v0->unk_18 = BattleAnimSystem_GetPokemonSprite(v0->unk_00, 0);
 
     ManagedSprite_SetPriority(v0->unk_18, 100);
     ManagedSprite_SetExplicitPriority(v0->unk_18, 1);
@@ -3235,7 +3235,7 @@ void ov12_02233178(BattleAnimSystem *param0)
     ManagedSprite_SetExplicitOamMode(v0->unk_18, GX_OAM_MODE_XLU);
     ManagedSprite_SetAffineOverwriteMode(v0->unk_18, AFFINE_OVERWRITE_MODE_DOUBLE);
 
-    v0->unk_1C = ov12_022202C0(v0->unk_00, 1);
+    v0->unk_1C = BattleAnimSystem_GetPokemonSprite(v0->unk_00, 1);
 
     ManagedSprite_SetPriority(v0->unk_1C, 100);
     ManagedSprite_SetExplicitPriority(v0->unk_1C, 1);
@@ -3247,8 +3247,8 @@ void ov12_02233178(BattleAnimSystem *param0)
 
     v0->unk_C8 = ov12_022234A8(v0->unk_00, 0);
     v0->unk_CC = ov12_022234A8(v0->unk_00, 1);
-    v0->unk_20 = ov12_022202C0(v0->unk_00, 2);
-    v0->unk_24 = ov12_022202C0(v0->unk_00, 3);
+    v0->unk_20 = BattleAnimSystem_GetPokemonSprite(v0->unk_00, 2);
+    v0->unk_24 = BattleAnimSystem_GetPokemonSprite(v0->unk_00, 3);
 
     ManagedSprite_SetDrawFlag(v0->unk_20, 0);
     ManagedSprite_SetDrawFlag(v0->unk_24, 0);
@@ -3954,11 +3954,11 @@ void ov12_022342C4(BattleAnimSystem *param0)
     v1 = BattleAnimSystem_GetAttacker(param0);
 
     if (BattleAnimUtil_GetBattlerSide(param0, v1) == 0x3) {
-        v0->unk_2C = ov12_02220298(param0, 0);
-        Sprite_DeleteAndFreeResources(ov12_02220298(param0, 1));
+        v0->unk_2C = BattleAnimSystem_GetSprite(param0, 0);
+        Sprite_DeleteAndFreeResources(BattleAnimSystem_GetSprite(param0, 1));
     } else {
-        v0->unk_2C = ov12_02220298(param0, 1);
-        Sprite_DeleteAndFreeResources(ov12_02220298(param0, 0));
+        v0->unk_2C = BattleAnimSystem_GetSprite(param0, 1);
+        Sprite_DeleteAndFreeResources(BattleAnimSystem_GetSprite(param0, 0));
     }
 
     v2 = ov12_02225964(param0, v1);
