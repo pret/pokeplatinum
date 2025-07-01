@@ -638,8 +638,8 @@ void ov12_02226EB0(BattleAnimSystem *param0)
     {
         int v2 = BattleAnimSystem_GetScriptVar(param0, 0);
 
-        Graphics_LoadTilesToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, ov12_022234E4(v2, HEAP_ID_SYSTEM), v0->unk_1C.unk_14, 2, 0, 0, 1, BattleAnimSystem_GetHeapID(param0));
-        PaletteData_LoadBufferFromFileStart(v0->unk_1C.unk_18, 7, ov12_022234E4(v2, 1), BattleAnimSystem_GetHeapID(param0), 0, 0x20, (9 * 16));
+        Graphics_LoadTilesToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, BattleAnimSystem_GetBgNarcMemberIndex(v2, HEAP_ID_SYSTEM), v0->unk_1C.unk_14, 2, 0, 0, 1, BattleAnimSystem_GetHeapID(param0));
+        PaletteData_LoadBufferFromFileStart(v0->unk_1C.unk_18, 7, BattleAnimSystem_GetBgNarcMemberIndex(v2, 1), BattleAnimSystem_GetHeapID(param0), 0, 0x20, (9 * 16));
         Bg_ClearTilemap(v0->unk_1C.unk_14, 2);
 
         {
@@ -651,7 +651,7 @@ void ov12_02226EB0(BattleAnimSystem *param0)
                 v3 = 3;
             }
 
-            Graphics_LoadTilemapToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, ov12_022234E4(v2, v3), v0->unk_1C.unk_14, 2, 0, 0, 1, BattleAnimSystem_GetHeapID(param0));
+            Graphics_LoadTilemapToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, BattleAnimSystem_GetBgNarcMemberIndex(v2, v3), v0->unk_1C.unk_14, 2, 0, 0, 1, BattleAnimSystem_GetHeapID(param0));
         }
     }
 
@@ -798,8 +798,8 @@ void ov12_022271D8(BattleAnimSystem *param0)
     {
         int v2 = BattleAnimSystem_GetScriptVar(param0, 0);
 
-        Graphics_LoadTilesToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, ov12_022234E4(v2, HEAP_ID_SYSTEM), v0->unk_1C.unk_14, 2, 0, 0, 1, BattleAnimSystem_GetHeapID(param0));
-        PaletteData_LoadBufferFromFileStart(v0->unk_1C.unk_18, 7, ov12_022234E4(v2, 1), BattleAnimSystem_GetHeapID(param0), 0, 0x20, (9 * 16));
+        Graphics_LoadTilesToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, BattleAnimSystem_GetBgNarcMemberIndex(v2, HEAP_ID_SYSTEM), v0->unk_1C.unk_14, 2, 0, 0, 1, BattleAnimSystem_GetHeapID(param0));
+        PaletteData_LoadBufferFromFileStart(v0->unk_1C.unk_18, 7, BattleAnimSystem_GetBgNarcMemberIndex(v2, 1), BattleAnimSystem_GetHeapID(param0), 0, 0x20, (9 * 16));
         Bg_ClearTilemap(v0->unk_1C.unk_14, 2);
 
         {
@@ -811,7 +811,7 @@ void ov12_022271D8(BattleAnimSystem *param0)
                 v3 = 3;
             }
 
-            Graphics_LoadTilemapToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, ov12_022234E4(v2, v3), v0->unk_1C.unk_14, 2, 0, 0, 1, BattleAnimSystem_GetHeapID(param0));
+            Graphics_LoadTilemapToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, BattleAnimSystem_GetBgNarcMemberIndex(v2, v3), v0->unk_1C.unk_14, 2, 0, 0, 1, BattleAnimSystem_GetHeapID(param0));
         }
     }
 

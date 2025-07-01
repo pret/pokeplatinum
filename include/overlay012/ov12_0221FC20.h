@@ -26,6 +26,7 @@
 #define BATTLE_ANIM_SCRIPT_MAX_CALL_STACK_DEPTH 3
 #define BATTLE_ANIM_SCRIPT_MAX_POKEMON_SPRITES  5
 #define BATTLE_ANIM_SCRIPT_MAX_SPRITES          10
+#define BATTLE_ANIM_SCRIPT_MAX_SPRITE_MANAGERS  4
 
 enum BattleAnimSystemArc {
     BATTLE_ANIM_SYSTEM_ARC_BATT_BG = 0,
@@ -47,6 +48,26 @@ enum BattleAnimMoveInfoType {
     BATTLE_ANIM_MOVE_INFO_TERRAIN = 5,
 
     BATTLE_ANIM_MOVE_INFO_COUNT
+};
+
+enum BgNarcMemberType {
+    BG_NARC_MEMBER_NCGR = 0,
+    BG_NARC_MEMBER_NCLR,
+    BG_NARC_MEMBER_NSCR1,
+    BG_NARC_MEMBER_NSCR2,
+    BG_NARC_MEMBER_NSCR3,
+
+    BG_NARC_MEMBER_COUNT,
+};
+
+enum BattleAnimTrackingTask {
+    BATTLE_ANIM_TRACKING_TASK_SPRITE_0 = 0,
+    BATTLE_ANIM_TRACKING_TASK_SPRITE_1,
+    BATTLE_ANIM_TRACKING_TASK_SPRITE_2,
+    BATTLE_ANIM_TRACKING_TASK_SPRITE_3,
+    BATTLE_ANIM_TRACKING_TASK_BG,
+    
+    BATTLE_ANIM_TRACKING_TASK_COUNT,
 };
 
 // Holds context information for the current move animation
@@ -167,7 +188,7 @@ typedef struct BattleAnimSystem {
     BattleAnimContext *context;
     BgConfig *bgConfig;
     PaletteData *paletteData;
-    SpriteManager *spriteManagers[4];
+    SpriteManager *spriteManagers[BATTLE_ANIM_SCRIPT_MAX_SPRITE_MANAGERS];
     ManagedSprite *sprites[BATTLE_ANIM_SCRIPT_MAX_SPRITES];
     SpriteTemplate lastSpriteTemplate;
     SpriteManager *pokemonSpriteManager;
@@ -176,7 +197,7 @@ typedef struct BattleAnimSystem {
     SpriteTrackingTask *spriteTrackingTasks[BATTLE_ANIM_SCRIPT_MAX_POKEMON_SPRITES];
     BgTrackingTask *bgTrackingTask;
     u8 unk_178;
-    u8 unk_179;
+    u8 soundEffectWaitTimer;
     u8 unk_17A;
     u8 unk_17B;
     UnkStruct_ov12_022222D4 *unk_17C;
@@ -216,7 +237,7 @@ SpriteSystem *BattleAnimSystem_GetSpriteSystem(BattleAnimSystem *param0);
 void BattleAnimSystem_SetDefaultAlphaBlending(void);
 int BattleAnimSystem_GetMoveInfo(BattleAnimSystem *param0, enum BattleAnimMoveInfoType param1);
 void ov12_02220590(BattleAnimSystem *param0, UnkStruct_ov12_022380DC *param1, int param2);
-void ov12_02221238(BattleAnimSystem *param0, int param1);
+void BattleAnimSystem_CancelTrackingTask(BattleAnimSystem *param0, enum BattleAnimTrackingTask param1);
 void ov12_02222338(BattleAnimSystem *param0);
 int ov12_02222354(BattleAnimSystem *param0);
 void ov12_02222590(BattleAnimSystem *param0, int param1);
@@ -246,7 +267,7 @@ int ov12_02223428(BattleAnimSystem *param0, int param1);
 void ov12_02223460(BattleAnimSystem *param0, int param1);
 void ov12_02223488(BattleAnimSystem *param0);
 BOOL ov12_022234A8(BattleAnimSystem *param0, int param1);
-int ov12_022234E4(int param0, int param1);
+int BattleAnimSystem_GetBgNarcMemberIndex(int bgID, enum BgNarcMemberType type);
 UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, int heapID, int param2);
 UnkStruct_ov12_02223764 *ov12_02223764(BattleSystem *battleSys, int heapID);
 void ov12_02223770(UnkStruct_ov12_02223764 *param0);
