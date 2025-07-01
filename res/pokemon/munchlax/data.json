@@ -109,7 +109,7 @@
         ]
     },
     "evolutions": [
-        [ "EVO_LEVEL_HAPPINESS", "SPECIES_SNORLAX" ]
+        [ "EVO_LEVEL_FRIENDSHIP", "SPECIES_SNORLAX" ]
     ],
     "offspring": "SPECIES_MUNCHLAX",
     "footprint": {

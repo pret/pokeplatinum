@@ -874,7 +874,7 @@ static void sub_0205ADF8(UnkStruct_0205A0D8 *param0, int param1)
         Window_FillTilemap(v0, 15);
 
         for (v1 = 0; v1 < 3; v1++) {
-            v2 = Pokemon_GetValue((Pokemon *)(&param0->unk_48[v1 * v3]), MON_DATA_SPECIES, NULL);
+            v2 = Pokemon_GetData((Pokemon *)(&param0->unk_48[v1 * v3]), MON_DATA_SPECIES, NULL);
 
             MessageLoader_GetStrbuf(v4, v2, param0->unk_0C);
             Text_AddPrinterWithParams(v0, FONT_SYSTEM, param0->unk_0C, 16, v1 * 16, TEXT_SPEED_NO_TRANSFER, NULL);

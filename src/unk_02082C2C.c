@@ -83,7 +83,7 @@ void sub_02082CEC(GameWindowLayout *param0, u8 param1, u16 param2, u16 param3, N
 
     SpriteSystem_ReplaceCharResObjFromOpenNarc(param0->unk_5A8, param0->unk_5AC, param4, Pokemon_IconSpriteIndex(v0), 0, 4 + param1);
 
-    v2 = Pokemon_GetValue(v0, MON_DATA_IS_EGG, NULL);
+    v2 = Pokemon_GetData(v0, MON_DATA_IS_EGG, NULL);
 
     v1.resourceHeaderID = 4 + param1;
     v1.x = param2;
@@ -112,8 +112,8 @@ void sub_02082DA8(GameWindowLayout *param0, u8 param1)
     BOOL v7;
 
     v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param1);
-    v2 = Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
-    v3 = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
+    v2 = Pokemon_GetData(v0, MON_DATA_SPECIES, NULL);
+    v3 = Pokemon_GetData(v0, MON_DATA_FORM, NULL);
     v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_12);
     v4 = NNS_G2dGetImageLocation(Sprite_GetImageProxy(param0->unk_704[param1].unk_24), NNS_G2D_VRAM_TYPE_2DMAIN);
     v5 = LoadMemberFromOpenNARC(v1, Pokemon_IconSpriteIndex(v0), 0, HEAP_ID_12, 1);

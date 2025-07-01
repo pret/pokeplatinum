@@ -173,7 +173,7 @@ static SpeciesEvolutionList ParseEvolutions(rapidjson::Document &root)
         int speciesIdx = 2;
         switch (method) {
         case EVO_NONE:
-        case EVO_LEVEL_HAPPINESS:
+        case EVO_LEVEL_FRIENDSHIP:
         case EVO_LEVEL_HAPPINESS_DAY:
         case EVO_LEVEL_HAPPINESS_NIGHT:
         case EVO_TRADE:

@@ -109,7 +109,7 @@ void ov76_0223D3CC(UnkStruct_ov76_0223DE00 *param0)
 
     for (v0 = 0; v0 < param0->unk_00->unk_00; v0++) {
         v2 = param0->unk_00->unk_04[v0];
-        v1 = Pokemon_GetValue(v2, MON_DATA_IS_EGG, NULL);
+        v1 = Pokemon_GetData(v2, MON_DATA_IS_EGG, NULL);
 
         if (v1 != 0) {
             continue;
@@ -695,7 +695,7 @@ void ov76_0223DD88(UnkStruct_ov76_0223DE00 *param0)
 
     Pokemon_BuildSpriteTemplate(&v0, param0->unk_428, 2);
 
-    v2 = Pokemon_GetValue(param0->unk_428, MON_DATA_SPECIES, NULL);
+    v2 = Pokemon_GetData(param0->unk_428, MON_DATA_SPECIES, NULL);
     v3 = Pokemon_SpriteYOffset(param0->unk_428, 2);
 
     param0->unk_D4.unk_D8 = v3;
@@ -708,7 +708,7 @@ static void ov76_0223DE00(UnkStruct_ov76_0223DE00 *param0)
     int v0;
     int v1;
 
-    v0 = Pokemon_GetValue(param0->unk_428, MON_DATA_SPECIES, NULL);
+    v0 = Pokemon_GetData(param0->unk_428, MON_DATA_SPECIES, NULL);
     v1 = Pokemon_GetNature(param0->unk_428);
 
     PokemonSprite_InitAnim(param0->unk_D4.unk_D4, 1);
@@ -841,7 +841,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
                 v0.surface = 1;
                 v0.cellActorSys = param0->unk_D4.unk_08;
                 v0.paletteSys = param0->unk_D4.unk_14;
-                v0.ballID = Pokemon_GetValue(param0->unk_428, MON_DATA_POKEBALL, NULL);
+                v0.ballID = Pokemon_GetData(param0->unk_428, MON_DATA_POKEBALL, NULL);
 
                 param0->unk_D4.unk_158 = ov12_02237728(&v0);
                 param0->unk_3DC++;
@@ -857,8 +857,8 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
             v1 = param0->unk_3C4[0] + 1;
 
             ov76_0223B848(&v2, param0);
-            Pokemon_SetValue(param0->unk_428, MON_DATA_BALL_CAPSULE_ID, (u8 *)&v1);
-            Pokemon_SetValue(param0->unk_428, MON_DATA_BALL_CAPSULE, &v2);
+            Pokemon_SetData(param0->unk_428, MON_DATA_BALL_CAPSULE_ID, (u8 *)&v1);
+            Pokemon_SetData(param0->unk_428, MON_DATA_BALL_CAPSULE, &v2);
 
             param0->unk_D4.unk_154 = ov12_02236004(HEAP_ID_53, &v3);
             ov12_02236320(param0->unk_D4.unk_154);
@@ -928,7 +928,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
                 v5.surface = 1;
                 v5.cellActorSys = param0->unk_D4.unk_08;
                 v5.paletteSys = param0->unk_D4.unk_14;
-                v5.ballID = Pokemon_GetValue(param0->unk_428, MON_DATA_POKEBALL, NULL);
+                v5.ballID = Pokemon_GetData(param0->unk_428, MON_DATA_POKEBALL, NULL);
 
                 param0->unk_D4.unk_158 = ov12_02237728(&v5);
 
@@ -985,7 +985,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
             if (param0->unk_264[param0->unk_3C4[0]].unk_00 != 0xff) {
                 v8 = param0->unk_00->unk_04[param0->unk_264[param0->unk_3C4[0]].unk_00];
 
-                Pokemon_SetValue(v8, MON_DATA_BALL_CAPSULE, SealCase_GetCapsuleById(param0->unk_00->unk_20, param0->unk_3C4[0]));
+                Pokemon_SetData(v8, MON_DATA_BALL_CAPSULE, SealCase_GetCapsuleById(param0->unk_00->unk_20, param0->unk_3C4[0]));
             }
         }
         param0->unk_3D4 = 8;
@@ -1210,7 +1210,7 @@ void ov76_0223E91C(UnkStruct_ov76_0223DE00 *param0, int param1)
     v1 = param0->unk_04[param1].unk_00;
 
     if (v1 != 0xff) {
-        Pokemon_SetValue(param0->unk_00->unk_04[v1], MON_DATA_BALL_CAPSULE_ID, (u8 *)&v2);
+        Pokemon_SetData(param0->unk_00->unk_04[v1], MON_DATA_BALL_CAPSULE_ID, (u8 *)&v2);
     }
 
     param0->unk_04[param1].unk_00 = 0xff;

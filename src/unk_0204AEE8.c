@@ -205,7 +205,7 @@ void sub_0204B060(UnkStruct_0204AFC4 *param0, SaveData *saveData)
     v1 = SaveData_GetParty(saveData);
 
     for (v0 = 0; v0 < 2; v0++) {
-        param0->unk_83E[1 + v0] = Pokemon_GetValue(Party_GetPokemonBySlotIndex(v1, param0->unk_2A[v0]), MON_DATA_SPECIES, NULL);
+        param0->unk_83E[1 + v0] = Pokemon_GetData(Party_GetPokemonBySlotIndex(v1, param0->unk_2A[v0]), MON_DATA_SPECIES, NULL);
     }
 
     param0->unk_83E[3] = sub_0202D3B4(param0->unk_74, 3, 0);
@@ -321,7 +321,7 @@ static u32 sub_0204B1E8(UnkStruct_0204AFC4 *param0, FrontierPokemonDataDTO *para
         param1->item = v4.item;
     }
 
-    u8 friendship = MAX_FRIENDSHIP_VALUE;
+    u8 friendship = FRIENDSHIP_MAX;
 
     for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
         param1->moves[v0] = v4.moves[v0];

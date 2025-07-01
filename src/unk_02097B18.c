@@ -132,7 +132,7 @@ static int sub_02097B18(ApplicationManager *appMan, int *param1)
                 continue;
             }
 
-            capsuleId = Pokemon_GetValue(v0->unk_00->unk_04[i], MON_DATA_BALL_CAPSULE_ID, 0);
+            capsuleId = Pokemon_GetData(v0->unk_00->unk_04[i], MON_DATA_BALL_CAPSULE_ID, 0);
 
             if (capsuleId != 0) {
                 v0->unk_04[capsuleId - 1].unk_00 = i;
@@ -379,8 +379,8 @@ static BOOL sub_02097F38(FieldTask *param0)
         if (partyMan->selectedMonSlot != 7) {
             v8 = sub_02097F00(v0->unk_08, partyMan->selectedMonSlot);
 
-            Pokemon_SetValue(v8, MON_DATA_BALL_CAPSULE_ID, (u8 *)&v13);
-            Pokemon_SetValue(v8, MON_DATA_BALL_CAPSULE, SealCase_GetCapsuleById(v1->unk_20, v13 - 1));
+            Pokemon_SetData(v8, MON_DATA_BALL_CAPSULE_ID, (u8 *)&v13);
+            Pokemon_SetData(v8, MON_DATA_BALL_CAPSULE, SealCase_GetCapsuleById(v1->unk_20, v13 - 1));
 
             v9 = SealCase_GetCapsuleById(v1->unk_20, v13 - 1);
             v10 = BallCapsule_GetBallSeals(v9, 0);

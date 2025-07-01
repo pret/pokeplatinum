@@ -766,7 +766,7 @@ static void ov17_0223FCAC(UnkStruct_ov17_0223F7E4 *param0, int param1, int param
     param0->unk_2C9 = 0xff;
 
     for (v2 = 0; v2 < LEARNED_MOVES_MAX; v2++) {
-        v0[v2] = Pokemon_GetValue(param0->unk_04->unk_00->unk_00[param0->unk_04->unk_00->unk_113], MON_DATA_MOVE1 + v2, NULL);
+        v0[v2] = Pokemon_GetData(param0->unk_04->unk_00->unk_00[param0->unk_04->unk_00->unk_113], MON_DATA_MOVE1 + v2, NULL);
 
         if (v0[v2] != 0) {
             v1[v2] = v8->unk_12C[v2];
@@ -868,7 +868,7 @@ static int ov17_0223FFF4(UnkStruct_ov17_0223F7E4 *param0, int param1, int param2
     case 1:
     case 2:
     case 3:
-        v1 = Pokemon_GetValue(param0->unk_04->unk_00->unk_00[param0->unk_04->unk_00->unk_113], MON_DATA_MOVE1 + param1, NULL);
+        v1 = Pokemon_GetData(param0->unk_04->unk_00->unk_00[param0->unk_04->unk_00->unk_113], MON_DATA_MOVE1 + param1, NULL);
 
         if ((v1 == 0) || (param0->unk_2C9 == (param1 - 0))) {
             return 0xffffffff;
@@ -1219,7 +1219,7 @@ static void ov17_02240658(SysTask *param0, void *param1)
     v1 = v0->unk_04->unk_24;
 
     for (v10 = 0; v10 < LEARNED_MOVES_MAX; v10++) {
-        v9[v10] = Pokemon_GetValue(v0->unk_04->unk_00->unk_00[v0->unk_04->unk_00->unk_113], MON_DATA_MOVE1 + v10, NULL);
+        v9[v10] = Pokemon_GetData(v0->unk_04->unk_00->unk_00[v0->unk_04->unk_00->unk_113], MON_DATA_MOVE1 + v10, NULL);
     }
 
     switch (v0->unk_2CC.unk_04_val1.unk_14) {
@@ -1550,7 +1550,7 @@ static int ov17_02240D04(UnkStruct_ov17_0223F7E4 *param0, int param1)
     v2 = &Unk_ov17_02253558[param0->unk_2C8];
 
     for (v4 = 0; v4 < LEARNED_MOVES_MAX; v4++) {
-        v7[v4] = Pokemon_GetValue(param0->unk_04->unk_00->unk_00[param0->unk_04->unk_00->unk_113], MON_DATA_MOVE1 + v4, NULL);
+        v7[v4] = Pokemon_GetData(param0->unk_04->unk_00->unk_00[param0->unk_04->unk_00->unk_113], MON_DATA_MOVE1 + v4, NULL);
     }
 
     if (param1 == 1) {

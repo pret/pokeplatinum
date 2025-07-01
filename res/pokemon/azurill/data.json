@@ -78,7 +78,7 @@
         ]
     },
     "evolutions": [
-        [ "EVO_LEVEL_HAPPINESS", "SPECIES_MARILL" ]
+        [ "EVO_LEVEL_FRIENDSHIP", "SPECIES_MARILL" ]
     ],
     "offspring": "SPECIES_AZURILL",
     "footprint": {

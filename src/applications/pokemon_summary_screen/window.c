@@ -1079,7 +1079,7 @@ static void DrawInfoPageWindows(PokemonSummaryScreen *summaryScreen)
     SetAndFormatNumberBuf(summaryScreen, PokemonSummary_Text_TemplateExp, summaryScreen->monData.curExp, 7, PADDING_MODE_SPACES);
     PrintStrbufToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_EXP], SUMMARY_TEXT_BLACK, ALIGN_CENTER);
 
-    if (summaryScreen->monData.level < MAX_POKEMON_LEVEL) {
+    if (summaryScreen->monData.level < MAX_MON_LEVEL) {
         SetAndFormatNumberBuf(summaryScreen, PokemonSummary_Text_TemplateExpNextLv, summaryScreen->monData.nextLevelExp - summaryScreen->monData.curExp, 7, PADDING_MODE_SPACES);
     } else {
         SetAndFormatNumberBuf(summaryScreen, PokemonSummary_Text_TemplateExpNextLv, 0, 7, PADDING_MODE_SPACES);

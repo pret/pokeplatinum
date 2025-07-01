@@ -617,11 +617,11 @@ void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, int hea
     int v0;
     u16 v1;
     u32 v2 = sub_02074128(param0->unk_14, param0->unk_20_12, 0);
-    Pokemon_InitWith(param1, param0->unk_14, 10, INIT_IVS_RANDOM, TRUE, v2, OTID_NOT_SHINY, 0xf0f0f0f);
+    Pokemon_Create(param1, param0->unk_14, 10, INIT_IVS_RANDOM, TRUE, v2, OTID_NOT_SHINY, 0xf0f0f0f);
 
     for (v0 = 0; v0 < 4; v0++) {
         v1 = param0->unk_0C[v0];
-        Pokemon_SetValue(param1, MON_DATA_MOVE1 + v0, &v1);
+        Pokemon_SetData(param1, MON_DATA_MOVE1 + v0, &v1);
     }
 
     {
@@ -632,8 +632,8 @@ void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, int hea
         v3 = MessageLoader_GetNewStrbuf(v5, param0->unk_16);
         v4 = MessageLoader_GetNewStrbuf(v5, param0->unk_18);
 
-        Pokemon_SetValue(param1, MON_DATA_NICKNAME_STRBUF, v3);
-        Pokemon_SetValue(param1, MON_DATA_OTNAME_STRBUF, v4);
+        Pokemon_SetData(param1, MON_DATA_NICKNAME_STRBUF, v3);
+        Pokemon_SetData(param1, MON_DATA_OTNAME_STRBUF, v4);
 
         Strbuf_Free(v3);
         Strbuf_Free(v4);
@@ -650,12 +650,12 @@ void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, int hea
         v10 = param0->unk_1E;
         v11 = param0->unk_1F;
 
-        Pokemon_SetValue(param1, MON_DATA_COOL, &v6);
-        Pokemon_SetValue(param1, MON_DATA_BEAUTY, &v7);
-        Pokemon_SetValue(param1, MON_DATA_CUTE, &v8);
-        Pokemon_SetValue(param1, MON_DATA_SMART, &v9);
-        Pokemon_SetValue(param1, MON_DATA_TOUGH, &v10);
-        Pokemon_SetValue(param1, MON_DATA_SHEEN, &v11);
+        Pokemon_SetData(param1, MON_DATA_COOL, &v6);
+        Pokemon_SetData(param1, MON_DATA_BEAUTY, &v7);
+        Pokemon_SetData(param1, MON_DATA_CUTE, &v8);
+        Pokemon_SetData(param1, MON_DATA_SMART, &v9);
+        Pokemon_SetData(param1, MON_DATA_TOUGH, &v10);
+        Pokemon_SetData(param1, MON_DATA_SHEEN, &v11);
     }
 }
 
@@ -1021,23 +1021,23 @@ u32 sub_02095A3C(int param0, int param1)
 
     switch (param1) {
     case 0:
-        v0 = MON_DATA_SINNOH_SUPER_COOL_RIBBON + param0;
+        v0 = MON_DATA_COOL_RIBBON + param0;
         break;
     case 1:
-        v0 = MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON + param0;
+        v0 = MON_DATA_BEAUTY_RIBBON + param0;
         break;
     case 2:
-        v0 = MON_DATA_SINNOH_SUPER_CUTE_RIBBON + param0;
+        v0 = MON_DATA_CUTE_RIBBON + param0;
         break;
     case 3:
-        v0 = MON_DATA_SINNOH_SUPER_SMART_RIBBON + param0;
+        v0 = MON_DATA_SMART_RIBBON + param0;
         break;
     case 4:
-        v0 = MON_DATA_SINNOH_SUPER_TOUGH_RIBBON + param0;
+        v0 = MON_DATA_TOUGH_RIBBON + param0;
         break;
     default:
         GF_ASSERT(0);
-        return MON_DATA_SINNOH_SUPER_COOL_RIBBON;
+        return MON_DATA_COOL_RIBBON;
     }
 
     return v0;

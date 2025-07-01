@@ -738,12 +738,12 @@ void sub_020829DC(GameWindowLayout *param0)
 
     v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->partySlot);
 
-    v3[0] = (u16)Pokemon_GetValue(v0, MON_DATA_MAX_HP, NULL);
-    v3[1] = (u16)Pokemon_GetValue(v0, MON_DATA_ATK, NULL);
-    v3[2] = (u16)Pokemon_GetValue(v0, MON_DATA_DEF, NULL);
-    v3[3] = (u16)Pokemon_GetValue(v0, MON_DATA_SP_ATK, NULL);
-    v3[4] = (u16)Pokemon_GetValue(v0, MON_DATA_SP_DEF, NULL);
-    v3[5] = (u16)Pokemon_GetValue(v0, MON_DATA_SPEED, NULL);
+    v3[0] = (u16)Pokemon_GetData(v0, MON_DATA_MAX_HP, NULL);
+    v3[1] = (u16)Pokemon_GetData(v0, MON_DATA_ATK, NULL);
+    v3[2] = (u16)Pokemon_GetData(v0, MON_DATA_DEF, NULL);
+    v3[3] = (u16)Pokemon_GetData(v0, MON_DATA_SP_ATK, NULL);
+    v3[4] = (u16)Pokemon_GetData(v0, MON_DATA_SP_DEF, NULL);
+    v3[5] = (u16)Pokemon_GetData(v0, MON_DATA_SPEED, NULL);
 
     Window_Add(param0->unk_00, &param0->unk_254[0], 0, 1, 1, 14, 12, 0, 576);
     Window_DrawStandardFrame(&param0->unk_254[0], 1, 1, 14);

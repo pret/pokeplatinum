@@ -27,7 +27,7 @@ void PalParkTransfer_Init(PalParkTransfer *transferData)
 
     for (i = 0; i < CATCHING_SHOW_MONS; i++) {
         Pokemon_Init(&transferData->mons[i]);
-        GF_ASSERT(Pokemon_GetValue(&transferData->mons[i], MON_DATA_SPECIES_EXISTS, NULL) == FALSE);
+        GF_ASSERT(Pokemon_GetData(&transferData->mons[i], MON_DATA_SPECIES_EXISTS, NULL) == FALSE);
     }
 }
 
@@ -39,7 +39,7 @@ void ClearPalParkTransferPokemonData(PalParkTransfer *transferData)
 
     for (i = 0; i < CATCHING_SHOW_MONS; i++) {
         Pokemon_Init(&transferData->mons[i]);
-        GF_ASSERT(Pokemon_GetValue(&transferData->mons[i], MON_DATA_SPECIES_EXISTS, NULL) == FALSE);
+        GF_ASSERT(Pokemon_GetData(&transferData->mons[i], MON_DATA_SPECIES_EXISTS, NULL) == FALSE);
     }
 }
 
@@ -100,7 +100,7 @@ int GetPalParkTransferMonCount(const PalParkTransfer *transferData)
     int i, count;
 
     for (count = 0, i = 0; i < CATCHING_SHOW_MONS; i++) {
-        if (Pokemon_GetValue((Pokemon *)&transferData->mons[i], MON_DATA_SPECIES_EXISTS, NULL)) {
+        if (Pokemon_GetData((Pokemon *)&transferData->mons[i], MON_DATA_SPECIES_EXISTS, NULL)) {
             count++;
         }
     }

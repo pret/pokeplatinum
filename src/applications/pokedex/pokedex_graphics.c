@@ -143,7 +143,7 @@ void PokedexGraphics_LoadPokemonSprite(PokedexGraphicData *pokedexGraphicData, e
     }
 
     if (gender == -1) {
-        gender = Pokemon_GetGenderOf(species, 0);
+        gender = Species_GetGender(species, 0);
     }
 
     BuildPokemonSpriteTemplate(&spriteTemplate, species, gender, face, shiny, form, personality);

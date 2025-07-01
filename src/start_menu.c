@@ -1292,7 +1292,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
 
         Heap_FreeToHeap(menu->unk_260);
 
-        if ((Item_IsMail(item) == TRUE) && (Pokemon_GetValue(v8, MON_DATA_HELD_ITEM, NULL) == 0)) {
+        if ((Item_IsMail(item) == TRUE) && (Pokemon_GetData(v8, MON_DATA_HELD_ITEM, NULL) == 0)) {
             UnkStruct_02097728 *v11;
             UnkStruct_0203C540 *v12;
 

@@ -514,12 +514,12 @@ void ov94_0223D910(MessageLoader *param0, MessageLoader *param1, StringTemplate 
     Strbuf *v5 = Strbuf_Init((8 + 1) * 2, HEAP_ID_62);
     int gender, level, v8, v9, species;
 
-    BoxPokemon_GetValue(boxMon, MON_DATA_NICKNAME_STRBUF, v4);
+    BoxPokemon_GetData(boxMon, MON_DATA_NICKNAME_STRBUF, v4);
 
     species = param5->species;
     gender = param5->gender;
     level = param5->level;
-    v8 = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
+    v8 = BoxPokemon_GetData(boxMon, MON_DATA_HELD_ITEM, NULL);
     v3 = MessageLoader_GetNewStrbuf(param0, 70);
     v1 = MessageLoader_GetNewStrbuf(param0, Unk_ov94_02245FD8[gender]);
 
@@ -565,7 +565,7 @@ void ov94_0223DA78(MessageLoader *param0, Window param1[], u16 *param2, Pokemon 
     Strbuf_CopyChars(v0, param2);
 
     v2 = MessageLoader_GetNewStrbuf(param0, 172);
-    Pokemon_GetValue(param3, MON_DATA_OTNAME_STRBUF, v3);
+    Pokemon_GetData(param3, MON_DATA_OTNAME_STRBUF, v3);
 
     ov94_02245900(&param1[0], v1, 0, 0, 0, TEXT_COLOR(15, 2, 0));
     ov94_02245900(&param1[1], v0, 0, 0, 0, TEXT_COLOR(15, 2, 0));
@@ -586,8 +586,8 @@ void ov94_0223DB2C(Pokemon *param0)
     Pokemon_BuildSpriteTemplate(&v0, param0, 2);
 
     {
-        int v2 = Pokemon_GetValue(param0, MON_DATA_PERSONALITY, NULL);
-        int v3 = Pokemon_GetValue(param0, MON_DATA_SPECIES, NULL);
+        int v2 = Pokemon_GetData(param0, MON_DATA_PERSONALITY, NULL);
+        int v3 = Pokemon_GetData(param0, MON_DATA_SPECIES, NULL);
 
         sub_020136A4(v0.narcID, v0.character, HEAP_ID_62, 0, 0, 10, 10, v1, v2, 0, 2, v3);
     }

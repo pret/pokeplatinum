@@ -1788,7 +1788,7 @@ u8 ov104_0223B5C0(UnkStruct_ov104_0223B5C0 *param0)
     int v1;
     Party *v2 = SaveData_GetParty(param0->saveData);
     Pokemon *v3 = Party_GetPokemonBySlotIndex(v2, param0->unk_260[0]);
-    v1 = Pokemon_GetValue(v3, MON_DATA_LEVEL, NULL);
+    v1 = Pokemon_GetData(v3, MON_DATA_LEVEL, NULL);
 
     return v1 / 10;
 }
@@ -1845,11 +1845,11 @@ u16 ov104_0223B64C(UnkStruct_ov104_0223B5C0 *param0)
 
     v0 = SaveData_GetParty(param0->saveData);
     v1 = Party_GetPokemonBySlotIndex(v0, param0->unk_260[0]);
-    v2 = Pokemon_GetValue(v1, MON_DATA_LEVEL, NULL);
+    v2 = Pokemon_GetData(v1, MON_DATA_LEVEL, NULL);
 
     if (ov104_0223B500(param0->unk_04) == 2) {
         v1 = Party_GetPokemonBySlotIndex(v0, param0->unk_260[1]);
-        v3 = Pokemon_GetValue(v1, MON_DATA_LEVEL, NULL);
+        v3 = Pokemon_GetData(v1, MON_DATA_LEVEL, NULL);
 
         if (v2 > v3) {
             return v2;

@@ -564,9 +564,9 @@ void ov76_0223C188(UnkStruct_ov76_0223DE00 *param0)
 
         param0->unk_2FC[v0] = SpriteSystem_NewSprite(param0->unk_D4.unk_08, param0->unk_D4.unk_0C, &v6);
 
-        v2 = Pokemon_GetValue(v5, MON_DATA_SPECIES, NULL);
-        v1 = Pokemon_GetValue(v5, MON_DATA_IS_EGG, NULL);
-        v4 = Pokemon_GetValue(v5, MON_DATA_FORM, NULL);
+        v2 = Pokemon_GetData(v5, MON_DATA_SPECIES, NULL);
+        v1 = Pokemon_GetData(v5, MON_DATA_IS_EGG, NULL);
+        v4 = Pokemon_GetData(v5, MON_DATA_FORM, NULL);
         v3 = PokeIconPaletteIndex(v2, v4, v1);
 
         Sprite_SetExplicitPaletteOffsetAutoAdjust(param0->unk_2FC[v0]->sprite, v3);
@@ -854,12 +854,12 @@ void ov76_0223C80C(UnkStruct_ov76_0223DE00 *param0, int param1, int param2)
 
     if (v1 != 0xff) {
         v3 = param2 + 1;
-        Pokemon_SetValue(param0->unk_00->unk_04[v1], MON_DATA_BALL_CAPSULE_ID, (u8 *)&v3);
+        Pokemon_SetData(param0->unk_00->unk_04[v1], MON_DATA_BALL_CAPSULE_ID, (u8 *)&v3);
     }
 
     if (v2 != 0xff) {
         v4 = param1 + 1;
-        Pokemon_SetValue(param0->unk_00->unk_04[v2], MON_DATA_BALL_CAPSULE_ID, (u8 *)&v4);
+        Pokemon_SetData(param0->unk_00->unk_04[v2], MON_DATA_BALL_CAPSULE_ID, (u8 *)&v4);
     }
 
     v0 = param0->unk_04[param1].unk_00;

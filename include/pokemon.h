@@ -4,6 +4,7 @@
 #include <nitro/rtc.h>
 
 #include "constants/forms.h"
+#include "constants/heap.h"
 #include "constants/pokemon.h"
 #include "constants/sound.h"
 
@@ -62,12 +63,12 @@ void BoxPokemon_Init(BoxPokemon *boxMon);
 int Pokemon_StructSize(void);
 
 /**
- * @brief Allocates a Pokemon struct on the given heap, then calls ZeroMonData() on it
+ * @brief Allocates a Pokemon struct on the given heap, then calls Pokemon_Init() on it
  *
  * @param heapID
  * @return A new empty but encrypted Pokemon struct
  */
-Pokemon *Pokemon_New(u32 heapID);
+Pokemon *Pokemon_New(enum HeapId heapID);
 
 /**
  * @brief Decrypts a Pokemon data structure. PartyPokemon data is encrypted using the pokemons personality value, BoxPokemon data using a checksum value
@@ -103,9 +104,9 @@ BOOL BoxPokemon_EnterDecryptionContext(BoxPokemon *boxMon);
  */
 BOOL BoxPokemon_ExitDecryptionContext(BoxPokemon *boxMon, BOOL encrypt);
 
-void Pokemon_InitWith(Pokemon *mon, int monSpecies, int monLevel, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID);
-void sub_02074044(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 monNature);
-void sub_02074088(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 param4, u8 param5, u8 param6);
+void Pokemon_Create(Pokemon *mon, int monSpecies, int monLevel, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID);
+void Pokemon_CreateWithNature(Pokemon *mon, u16 species, u8 level, u8 fixedIVs, u8 nature);
+void Pokemon_CreateWithGenderNatureLetter(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 param4, u8 param5, u8 param6);
 u32 sub_02074128(u16 monSpecies, u8 param1, u8 param2);
 void Pokemon_InitAndCalcStats(Pokemon *mon, u16 monSpecies, u8 monLevel, u32 monCombinedIVs, u32 monPersonality);
 
@@ -131,7 +132,7 @@ void Pokemon_CalcStats(Pokemon *mon);
  * @param[out] dest Pointer for storing longer data
  * @return The requested value
  */
-u32 Pokemon_GetValue(Pokemon *mon, enum PokemonDataParam param, void *dest);
+u32 Pokemon_GetData(Pokemon *mon, enum PokemonDataParam param, void *dest);
 
 /**
  * @brief Gets a value from a Pokemon, storing it in dest if neccessary
@@ -141,7 +142,7 @@ u32 Pokemon_GetValue(Pokemon *mon, enum PokemonDataParam param, void *dest);
  * @param[out] dest Pointer for storing longer data
  * @return The requested value
  */
-u32 BoxPokemon_GetValue(BoxPokemon *boxMon, enum PokemonDataParam param, void *dest);
+u32 BoxPokemon_GetData(BoxPokemon *boxMon, enum PokemonDataParam param, void *dest);
 
 /**
  * @brief Sets a value in a Pokemon, reading it from value if neccessary
@@ -150,7 +151,7 @@ u32 BoxPokemon_GetValue(BoxPokemon *boxMon, enum PokemonDataParam param, void *d
  * @param param
  * @param value
  */
-void Pokemon_SetValue(Pokemon *mon, enum PokemonDataParam param, const void *value);
+void Pokemon_SetData(Pokemon *mon, enum PokemonDataParam param, const void *value);
 
 /**
  * @brief Sets a value in a BoxPokemon, reading it from value if neccessary
@@ -159,7 +160,7 @@ void Pokemon_SetValue(Pokemon *mon, enum PokemonDataParam param, const void *val
  * @param param
  * @param value
  */
-void BoxPokemon_SetValue(BoxPokemon *boxMon, enum PokemonDataParam param, const void *value);
+void BoxPokemon_SetData(BoxPokemon *boxMon, enum PokemonDataParam param, const void *value);
 
 /**
  * @brief Increases some numerical fields in a Pokemon by the given value. Does nothing if the field is not supported
@@ -175,21 +176,21 @@ void Pokemon_IncreaseValue(Pokemon *mon, enum PokemonDataParam param, int value)
 /**
  * @brief Gets a SpeciesData based on a pokemon species and form
  *
- * @param monSpecies
- * @param monForm
+ * @param species
+ * @param form
  * @param heapID The index of the heap that the SpeciesData should be loaded into
  * @return SpeciesData*
  */
-SpeciesData *SpeciesData_FromMonForm(int monSpecies, int monForm, int heapID);
+SpeciesData *SpeciesData_FromMonForm(int species, int form, int heapID);
 
 /**
  * @brief Gets a SpeciesData based on a pokemon species
  *
- * @param monSpecies
+ * @param species
  * @param heapID The index of the heap that the SpeciesData should be loaded into
  * @return SpeciesData*
  */
-SpeciesData *SpeciesData_FromMonSpecies(int monSpecies, int heapID);
+SpeciesData *SpeciesData_FromMonSpecies(int species, int heapID);
 
 /**
  * @brief Gets a value from a SpeciesData structure
@@ -210,21 +211,21 @@ void SpeciesData_Free(SpeciesData *speciesData);
 /**
  * @brief Loads a SpeciesData based on its species and form and gets a value from it
  *
- * @param monSpecies
- * @param monForm
+ * @param species
+ * @param form
  * @param param What value to get
  * @return The requested value
  */
-u32 SpeciesData_GetFormValue(int monSpecies, int monForm, enum SpeciesDataParam param);
+u32 SpeciesData_GetFormValue(int species, int form, enum SpeciesDataParam param);
 
 /**
  * @brief Loads a SpeciesData based on its species and gets a value from it
  *
- * @param monSpecies
+ * @param species
  * @param param What value to get
  * @return The requested value
  */
-u32 SpeciesData_GetSpeciesValue(int monSpecies, enum SpeciesDataParam param);
+u32 SpeciesData_GetSpeciesValue(int species, enum SpeciesDataParam param);
 
 /**
  * @brief Gets how much progress a Pokemon has made towards its next level as a percentage
@@ -327,7 +328,7 @@ u8 Pokemon_GetNatureOf(u32 monPersonality);
  */
 s8 Pokemon_GetStatAffinityOf(u8 monNature, u8 statType);
 
-void Pokemon_UpdateFriendship(Pokemon *mon, u8 param1, u16 param2);
+void Pokemon_UpdateFriendship(Pokemon *mon, u8 kind, u16 location);
 
 /**
  * @brief Gets the gender of a Pokemon based on its species and personality value
@@ -348,11 +349,11 @@ u8 BoxPokemon_GetGender(BoxPokemon *boxMon);
 /**
  * @brief Gets the gender of a pokemon based on its species and personality value
  *
- * @param monSpecies
- * @param monPersonality
+ * @param species
+ * @param personality
  * @return The pokemons gender
  */
-u8 Pokemon_GetGenderOf(u16 monSpecies, u32 monPersonality);
+u8 Species_GetGender(u16 species, u32 personality);
 
 /**
  * @brief Gets the gender of a pokemon based on its SpeciesData and personality value
@@ -436,11 +437,11 @@ void BuildPokemonSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 speci
 /**
  * @brief Sanitizes a pokemon form. If the given form is greater than the max for the given species, returns zero, else returns the form unchanged
  *
- * @param monSpecies
- * @param monForm
+ * @param species
+ * @param form
  * @return The sanitized pokemon form
  */
-u8 Pokemon_SanitizeFormId(u16 monSpecies, u8 monForm);
+u8 Pokemon_SanitizeFormId(u16 species, u8 form);
 
 /**
  * @brief Load the Y-offset applied to a Pokemon's sprite-face on display.
@@ -523,27 +524,27 @@ u8 BoxPokemon_GetForm(BoxPokemon *boxMon);
  */
 BoxPokemon *Pokemon_GetBoxPokemon(Pokemon *mon);
 
-BOOL Pokemon_ShouldLevelUp(Pokemon *mon);
+BOOL Pokemon_TryLevelUp(Pokemon *mon);
 u16 Pokemon_GetEvolutionTargetSpecies(Party *party, Pokemon *mon, u8 evoClass, u16 evoParam, int *evoTypeResult);
 u16 sub_02076F84(const u16 monSpecies);
-u16 sub_02076FD4(const u16 monSpecies);
+u16 GetEggSpecies(const u16 species);
 
 /**
  * @brief Adds a move to the moveset of a Pokemon
  *
  * @param mon
- * @param moveID
+ * @param move
  * @return The given moveID if successful, 0xfffe if already known, 0xffff if there is no room for the move
  */
-u16 Pokemon_AddMove(Pokemon *mon, u16 moveID);
+u16 Pokemon_AddMove(Pokemon *mon, u16 move);
 
 /**
  * @brief Deletes the first move of a Pokemon and adds the given move to the end of its moveset
  *
  * @param mon
- * @param moveID
+ * @param move
  */
-void Pokemon_ReplaceMove(Pokemon *mon, u16 moveID);
+void Pokemon_AppendMove(Pokemon *mon, u16 move);
 
 /**
  * @brief Sets the given moveSlot of a Pokemon, removing its PP Ups
@@ -558,10 +559,10 @@ void Pokemon_ResetMoveSlot(Pokemon *mon, u16 moveID, u8 moveSlot);
  * @brief Sets the given moveSlot of a Pokemon, retaining the PP Ups for that slot
  *
  * @param mon
- * @param moveID
- * @param moveSlot
+ * @param move
+ * @param slot
  */
-void Pokemon_SetMoveSlot(Pokemon *mon, u16 moveID, u8 moveSlot);
+void Pokemon_SetMoveSlot(Pokemon *mon, u16 move, u8 slot);
 
 u16 Pokemon_LevelUpMove(Pokemon *mon, int *index, u16 *moveID);
 
@@ -578,10 +579,10 @@ void Pokemon_SwapMoveSlots(Pokemon *mon, int moveSlot1, int moveSlot2);
  * @brief Swaps the places of two moves on a BoxPokemon
  *
  * @param boxMon
- * @param moveSlot1
- * @param moveSlot2
+ * @param slot1
+ * @param slot2
  */
-void BoxPokemon_SwapMoveSlots(BoxPokemon *boxMon, int moveSlot1, int moveSlot2);
+void BoxPokemon_SwapMoveSlots(BoxPokemon *boxMon, int slot1, int slot2);
 
 /**
  * @brief Deletes the given moveSlot of a Pokemon, shifting the ones above it down
@@ -651,7 +652,7 @@ s8 Pokemon_GetFlavorAffinityOf(u32 monPersonality, int flavor);
 int Pokemon_LoadLevelUpMoveIdsOf(int monSpecies, int monForm, u16 *monLevelUpMoveIDs);
 
 void Pokemon_ApplyPokerus(Party *party);
-u8 Pokemon_HasPokerus(Party *party, u8 param1);
+u8 Party_MaskMonsWithPokerus(Party *party, u8 mask);
 void Party_UpdatePokerusStatus(Party *party, s32 param1);
 void Pokemon_ValidatePokerus(Party *party);
 BOOL Pokemon_InfectedWithPokerus(Pokemon *mon);
@@ -677,7 +678,7 @@ void BoxPokemon_SetArceusForm(BoxPokemon *boxMon);
  * @param itemHoldEffect
  * @return The form arceus should be in
  */
-u8 Pokemon_GetArceusTypeOf(u16 itemHoldEffect);
+u8 HoldEffect_GetArceusType(u16 itemHoldEffect);
 
 /**
  * @brief Sets Giratina's form based on its held item. Has no effect if the given Pokemon is not a Giratina

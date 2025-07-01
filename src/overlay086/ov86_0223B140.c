@@ -305,7 +305,7 @@ int ov86_0223B140(ApplicationManager *appMan, int *param1)
         v2 = Party_GetCurrentCount(v0->unk_0C->unk_04);
 
         for (v1 = 0; v1 < v2; v1++) {
-            if (Pokemon_GetValue(Party_GetPokemonBySlotIndex(v0->unk_0C->unk_04, v1), MON_DATA_IS_EGG, NULL) == 0) {
+            if (Pokemon_GetData(Party_GetPokemonBySlotIndex(v0->unk_0C->unk_04, v1), MON_DATA_IS_EGG, NULL) == 0) {
                 v0->unk_2C8[v0->unk_04] = v1;
                 v0->unk_04++;
             }
@@ -835,15 +835,15 @@ static void ov86_0223BAC8(UnkStruct_ov86_0223B3C8 *param0, NNSG2dCellDataBank *p
         v11 = Party_GetPokemonBySlotIndex(param0->unk_0C->unk_04, param0->unk_2C8[v12]);
         Pokemon_BuildSpriteTemplate(&v1, (Pokemon *)v11, 2);
 
-        param0->unk_2E0[v12] = Pokemon_GetValue((Pokemon *)v11, MON_DATA_SPECIES, NULL);
-        param0->unk_2F8[v12] = Pokemon_GetValue((Pokemon *)v11, MON_DATA_FORM, NULL);
+        param0->unk_2E0[v12] = Pokemon_GetData((Pokemon *)v11, MON_DATA_SPECIES, NULL);
+        param0->unk_2F8[v12] = Pokemon_GetData((Pokemon *)v11, MON_DATA_FORM, NULL);
 
-        sub_02013720(v1.narcID, v1.character, HEAP_ID_63, &v0[0], param0->unk_310, Pokemon_GetValue((Pokemon *)v11, MON_DATA_PERSONALITY, NULL), 1, 2, param0->unk_2E0[v12]);
+        sub_02013720(v1.narcID, v1.character, HEAP_ID_63, &v0[0], param0->unk_310, Pokemon_GetData((Pokemon *)v11, MON_DATA_PERSONALITY, NULL), 1, 2, param0->unk_2E0[v12]);
 
         DC_FlushRange(param0->unk_310, 3200);
         GX_LoadOBJ(param0->unk_310, v12 * 2 * 3200, 3200);
 
-        sub_02013720(v1.narcID, v1.character, HEAP_ID_63, &v0[1], param0->unk_310, Pokemon_GetValue((Pokemon *)v11, MON_DATA_PERSONALITY, NULL), 1, 2, param0->unk_2E0[v12]);
+        sub_02013720(v1.narcID, v1.character, HEAP_ID_63, &v0[1], param0->unk_310, Pokemon_GetData((Pokemon *)v11, MON_DATA_PERSONALITY, NULL), 1, 2, param0->unk_2E0[v12]);
 
         DC_FlushRange(param0->unk_310, 3200);
         GX_LoadOBJ(param0->unk_310, v12 * 2 * 3200 + 3200, 3200);
@@ -1288,7 +1288,7 @@ static void ov86_0223C54C(UnkStruct_ov86_0223C3E4 *param0)
     switch (v0) {
     case 0:
     case 1:
-        StringTemplate_SetLocationName(param0->unk_14, 0, Pokemon_GetValue(param0->unk_24, MON_DATA_HATCH_LOCATION, NULL));
+        StringTemplate_SetLocationName(param0->unk_14, 0, Pokemon_GetData(param0->unk_24, MON_DATA_HATCH_LOCATION, NULL));
         break;
     }
 
@@ -1314,7 +1314,7 @@ static void ov86_0223C58C(SysTask *param0, void *param1)
         v0->unk_34++;
         break;
     case 1:
-        Pokemon_GetValue(v0->unk_24, MON_DATA_NICKNAME_STRBUF, v0->unk_1C);
+        Pokemon_GetData(v0->unk_24, MON_DATA_NICKNAME_STRBUF, v0->unk_1C);
         ov86_0223C47C(v0, 48);
         ov86_0223C4DC(v0);
         ov86_0223C47C(v0, 64);
@@ -1882,7 +1882,7 @@ static int ov86_0223D2A8(UnkStruct_ov86_0223B3C8 *param0, Pokemon *param1, const
 
     do {
         {
-            int v2 = Pokemon_GetValue(param1, MON_DATA_MET_GAME, NULL);
+            int v2 = Pokemon_GetData(param1, MON_DATA_MET_GAME, NULL);
 
             if ((v2 == 1) || (v2 == 2) || (v2 == 3)) {
                 v1 = 4;
@@ -1900,7 +1900,7 @@ static int ov86_0223D2A8(UnkStruct_ov86_0223B3C8 *param0, Pokemon *param1, const
             }
         }
 
-        if (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL)) {
+        if (Pokemon_GetData(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL)) {
             v1 = 6;
             break;
         }
@@ -1909,7 +1909,7 @@ static int ov86_0223D2A8(UnkStruct_ov86_0223B3C8 *param0, Pokemon *param1, const
             u32 v3, v4;
 
             v3 = TrainerInfo_ID(param2);
-            v4 = Pokemon_GetValue(param1, MON_DATA_OT_ID, NULL);
+            v4 = Pokemon_GetData(param1, MON_DATA_OT_ID, NULL);
 
             if (v3 != v4) {
                 v1 = 2;
@@ -1917,7 +1917,7 @@ static int ov86_0223D2A8(UnkStruct_ov86_0223B3C8 *param0, Pokemon *param1, const
             }
 
             TrainerInfo_NameStrbuf(param2, param0->unk_1C48);
-            Pokemon_GetValue(param1, MON_DATA_OTNAME_STRBUF, param0->unk_1C4C);
+            Pokemon_GetData(param1, MON_DATA_OTNAME_STRBUF, param0->unk_1C4C);
 
             if (Strbuf_Compare(param0->unk_1C48, param0->unk_1C4C)) {
                 v1 = 2;
@@ -1925,10 +1925,10 @@ static int ov86_0223D2A8(UnkStruct_ov86_0223B3C8 *param0, Pokemon *param1, const
             }
         }
 
-        if (Pokemon_GetValue(param1, MON_DATA_HATCH_LOCATION, NULL) >= 2000) {
+        if (Pokemon_GetData(param1, MON_DATA_HATCH_LOCATION, NULL) >= 2000) {
             v1 = 6;
         } else {
-            if (Pokemon_GetValue(param1, MON_DATA_MET_MONTH, NULL) == 0) {
+            if (Pokemon_GetData(param1, MON_DATA_MET_MONTH, NULL) == 0) {
                 v1 = 0;
             } else {
                 v1 = 1;

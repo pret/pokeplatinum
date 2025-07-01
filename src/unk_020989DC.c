@@ -500,7 +500,7 @@ void sub_02098EF8(Poffin *param0, Pokemon *param1)
     Poffin_StoreAttributesToArray(param0, v8);
 
     for (v0 = 0; v0 < 6; v0++) {
-        v7[v0] = Pokemon_GetValue(param1, MON_DATA_COOL + v0, NULL);
+        v7[v0] = Pokemon_GetData(param1, MON_DATA_COOL + v0, NULL);
     }
 
     v1 = 0;
@@ -523,13 +523,13 @@ void sub_02098EF8(Poffin *param0, Pokemon *param1)
             v7[v0] = 255;
         }
 
-        Pokemon_SetValue(param1, 19 + v0, &v7[v0]);
+        Pokemon_SetData(param1, 19 + v0, &v7[v0]);
     }
 
-    v3 = Pokemon_GetValue(param1, MON_DATA_FRIENDSHIP, NULL);
+    v3 = Pokemon_GetData(param1, MON_DATA_FRIENDSHIP, NULL);
 
     if (v3 < 255) {
         ++v3;
-        Pokemon_SetValue(param1, MON_DATA_FRIENDSHIP, &v3);
+        Pokemon_SetData(param1, MON_DATA_FRIENDSHIP, &v3);
     }
 }

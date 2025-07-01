@@ -91,7 +91,7 @@
         ]
     },
     "evolutions": [
-        [ "EVO_LEVEL_HAPPINESS", "SPECIES_JIGGLYPUFF" ]
+        [ "EVO_LEVEL_FRIENDSHIP", "SPECIES_JIGGLYPUFF" ]
     ],
     "offspring": "SPECIES_IGGLYBUFF",
     "footprint": {

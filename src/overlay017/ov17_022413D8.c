@@ -481,8 +481,8 @@ void ov17_02241524(UnkStruct_ov17_0223F88C *param0, int param1)
     {
         u32 v0, v1;
 
-        v0 = Pokemon_GetValue(param0->unk_00->unk_00[param1], MON_DATA_SPECIES, NULL);
-        v1 = Pokemon_GetValue(param0->unk_00->unk_00[param1], MON_DATA_FORM, NULL);
+        v0 = Pokemon_GetData(param0->unk_00->unk_00[param1], MON_DATA_SPECIES, NULL);
+        v1 = Pokemon_GetData(param0->unk_00->unk_00[param1], MON_DATA_FORM, NULL);
 
         if (IsFormSymmetrical(v0, v1) == 1) {
             PokemonSprite_SetAttribute(param0->unk_08[param1], MON_SPRITE_FLIP_H, 1);
@@ -506,8 +506,8 @@ void ov17_022415E4(UnkStruct_ov17_0223F88C *param0)
         {
             u32 v1, v2;
 
-            v1 = Pokemon_GetValue(param0->unk_00->unk_00[v0], MON_DATA_SPECIES, NULL);
-            v2 = Pokemon_GetValue(param0->unk_00->unk_00[v0], MON_DATA_FORM, NULL);
+            v1 = Pokemon_GetData(param0->unk_00->unk_00[v0], MON_DATA_SPECIES, NULL);
+            v2 = Pokemon_GetData(param0->unk_00->unk_00[v0], MON_DATA_FORM, NULL);
 
             if (IsFormSymmetrical(v1, v2) == 1) {
                 PokemonSprite_SetAttribute(param0->unk_08[v0], MON_SPRITE_FLIP_H, 1);
@@ -1560,7 +1560,7 @@ void ov17_02242EE4(UnkStruct_ov17_02246F24 *param0, int param1)
 
     v0 = Strbuf_Init(12, HEAP_ID_21);
 
-    Pokemon_GetValue(param0->unk_0C.unk_00->unk_00[param1], MON_DATA_NICKNAME_STRBUF, v0);
+    Pokemon_GetData(param0->unk_0C.unk_00->unk_00[param1], MON_DATA_NICKNAME_STRBUF, v0);
 
     if (param1 == param0->unk_00->unk_00.unk_113) {
         v1 = TEXT_COLOR(1, 2, 0);
@@ -2113,8 +2113,8 @@ void ov17_022439C8(UnkStruct_02095C48 *param0, int param1, int param2, UnkStruct
     case 174: {
         int v0, v1;
 
-        v0 = Pokemon_GetValue(param0->unk_00.unk_00[param1], MON_DATA_TYPE_1, NULL);
-        v1 = Pokemon_GetValue(param0->unk_00.unk_00[param1], MON_DATA_TYPE_2, NULL);
+        v0 = Pokemon_GetData(param0->unk_00.unk_00[param1], MON_DATA_TYPE_1, NULL);
+        v1 = Pokemon_GetData(param0->unk_00.unk_00[param1], MON_DATA_TYPE_2, NULL);
 
         if ((v0 == TYPE_GHOST) || (v1 == TYPE_GHOST)) {
             param3->unk_07 = 1;

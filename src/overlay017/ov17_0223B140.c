@@ -234,7 +234,7 @@ int ov17_0223B140(ApplicationManager *appMan, int *param1)
         int v4;
 
         for (v4 = 0; v4 < LEARNED_MOVES_MAX; v4++) {
-            v3[v4] = Pokemon_GetValue(v0->unk_00->unk_00.unk_00[v0->unk_00->unk_00.unk_113], MON_DATA_MOVE1 + v4, NULL);
+            v3[v4] = Pokemon_GetData(v0->unk_00->unk_00.unk_00[v0->unk_00->unk_00.unk_113], MON_DATA_MOVE1 + v4, NULL);
         }
 
         ov17_02240A80(v0->unk_7E4, v3);
@@ -601,7 +601,7 @@ static void ov17_0223BA10(UnkStruct_ov17_02246F24 *param0, NARC *param1)
         int v0, v1, v2;
 
         for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
-            v2 = Pokemon_GetValue(param0->unk_00->unk_00.unk_00[param0->unk_00->unk_00.unk_113], MON_DATA_MOVE1 + v0, NULL);
+            v2 = Pokemon_GetData(param0->unk_00->unk_00.unk_00[param0->unk_00->unk_00.unk_113], MON_DATA_MOVE1 + v0, NULL);
 
             if (v2 != 0) {
                 v1 = MoveTable_LoadParam(v2, MOVEATTRIBUTE_CONTEST_TYPE);
