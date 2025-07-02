@@ -216,7 +216,7 @@ static u16 ScriptContext_LoadAndOffsetID(FieldSystem *fieldSystem, ScriptContext
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_1115, TEXT_BANK_UNK_0622);
         retScriptID -= 10100;
     } else if (retScriptID >= 10000) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0409, TEXT_BANK_UNK_0381);
+        ScriptContext_Load(fieldSystem, ctx, scripts_field_moves, TEXT_BANK_FIELD_MOVES);
         retScriptID -= 10000;
     } else if (retScriptID >= 9950) {
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_0411, TEXT_BANK_UNK_0383);
