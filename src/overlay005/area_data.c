@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/gx_colors.h"
+#include "constants/graphics.h"
 #include "constants/heap.h"
 
 #include "overlay005/map_prop_animation.h"

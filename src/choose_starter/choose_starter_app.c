@@ -4,7 +4,7 @@
 #include <nnsys.h>
 #include <string.h>
 
-#include "constants/gx_colors.h"
+#include "constants/graphics.h"
 #include "constants/heap.h"
 #include "constants/narc.h"
 #include "constants/species.h"

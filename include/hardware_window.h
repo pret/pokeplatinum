@@ -3,7 +3,7 @@
 
 #include <nitro/gx/gx.h>
 
-#include "constants/screen.h"
+#include "constants/graphics.h"
 
 enum HardwareWindow {
     HW_WINDOW_WND0 = 0,
