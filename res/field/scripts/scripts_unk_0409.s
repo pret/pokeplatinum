@@ -280,7 +280,7 @@ _0487:
     BufferPartyMonNickname 0, VAR_RESULT
     Message 19
     CloseMessage
-    ScrCmd_0BF VAR_0x8004
+    ScrCmd_UseRockClimb VAR_0x8004
     GetCurrentMapID VAR_0x8004
     CreateJournalEvent LOCATION_EVENT_USED_ROCK_CLIMB, VAR_0x8004, 0, 0, 0
     GoTo _0671
@@ -291,7 +291,7 @@ _04B9:
     BufferPartyMonNickname 0, VAR_0x8000
     Message 19
     CloseMessage
-    ScrCmd_0BF VAR_0x8000
+    ScrCmd_UseRockClimb VAR_0x8000
     GetCurrentMapID VAR_0x8004
     CreateJournalEvent LOCATION_EVENT_USED_ROCK_CLIMB, VAR_0x8004, 0, 0, 0
     ReleaseAll
@@ -321,7 +321,7 @@ _051F:
     BufferPartyMonNickname 0, VAR_RESULT
     Message 13
     CloseMessage
-    ScrCmd_0C0 VAR_0x8004
+    ScrCmd_UseSurf VAR_0x8004
     GetCurrentMapID VAR_0x8004
     CreateJournalEvent LOCATION_EVENT_USED_SURF, VAR_0x8004, 0, 0, 0
     GoTo _0671
@@ -333,7 +333,7 @@ _0551:
     Message 13
     CloseMessage
     ScrCmd_063 0xFF
-    ScrCmd_0C0 VAR_0x8000
+    ScrCmd_UseSurf VAR_0x8000
     ScrCmd_062 0xFF
     GetCurrentMapID VAR_0x8004
     CreateJournalEvent LOCATION_EVENT_USED_SURF, VAR_0x8004, 0, 0, 0
@@ -442,7 +442,7 @@ _06D2:
     BufferPartyMonNickname 0, VAR_RESULT
     Message 23
     CloseMessage
-    ScrCmd_0C1 VAR_0x8004
+    ScrCmd_UseWaterfall VAR_0x8004
     GetCurrentMapID VAR_0x8004
     CreateJournalEvent LOCATION_EVENT_USED_WATERFALL, VAR_0x8004, 0, 0, 0
     GoTo _0671
@@ -454,7 +454,7 @@ _0704:
     Message 23
     CloseMessage
     ScrCmd_063 0xFF
-    ScrCmd_0C1 VAR_0x8000
+    ScrCmd_UseWaterfall VAR_0x8000
     ScrCmd_062 0xFF
     GetCurrentMapID VAR_0x8004
     CreateJournalEvent LOCATION_EVENT_USED_WATERFALL, VAR_0x8004, 0, 0, 0

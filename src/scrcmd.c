@@ -408,9 +408,9 @@ static BOOL ScrCmd_FadeScreen(ScriptContext *ctx);
 static BOOL ScrCmd_WaitFadeScreen(ScriptContext *ctx);
 static BOOL ScriptContext_ScreenWipeDone(ScriptContext *ctx);
 static BOOL ScrCmd_Warp(ScriptContext *ctx);
-static BOOL ScrCmd_0BF(ScriptContext *ctx);
-static BOOL ScrCmd_0C0(ScriptContext *ctx);
-static BOOL ScrCmd_0C1(ScriptContext *ctx);
+static BOOL ScrCmd_UseRockClimb(ScriptContext *ctx);
+static BOOL ScrCmd_UseSurf(ScriptContext *ctx);
+static BOOL ScrCmd_UseWaterfall(ScriptContext *ctx);
 static BOOL ScrCmd_0C2(ScriptContext *ctx);
 static BOOL ScrCmd_0C3(ScriptContext *ctx);
 static BOOL ScrCmd_0C4(ScriptContext *ctx);
@@ -959,9 +959,9 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_FadeScreen,
     ScrCmd_WaitFadeScreen,
     ScrCmd_Warp,
-    ScrCmd_0BF,
-    ScrCmd_0C0,
-    ScrCmd_0C1,
+    ScrCmd_UseRockClimb,
+    ScrCmd_UseSurf,
+    ScrCmd_UseWaterfall,
     ScrCmd_0C2,
     ScrCmd_0C3,
     ScrCmd_0C4,
@@ -4466,34 +4466,34 @@ static BOOL ScrCmd_GetCurrentMapID(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_0BF(ScriptContext *ctx)
+static BOOL ScrCmd_UseRockClimb(ScriptContext *ctx)
 {
-    ov5_021E0734(ctx->task, PlayerAvatar_GetDir(ctx->fieldSystem->playerAvatar), ScriptContext_GetVar(ctx));
+    FieldTask_StartUseRockClimb(ctx->task, PlayerAvatar_GetDir(ctx->fieldSystem->playerAvatar), ScriptContext_GetVar(ctx));
     return TRUE;
 }
 
-static BOOL ScrCmd_0C0(ScriptContext *ctx)
+static BOOL ScrCmd_UseSurf(ScriptContext *ctx)
 {
     RadarChain_Clear(ctx->fieldSystem->chain);
 
     {
-        int v0;
+        int direction;
 
         if (PlayerAvatar_DistortionStateOnFloor(ctx->fieldSystem->playerAvatar) == TRUE) {
-            v0 = PlayerAvatar_GetDir(ctx->fieldSystem->playerAvatar);
+            direction = PlayerAvatar_GetDir(ctx->fieldSystem->playerAvatar);
         } else {
-            v0 = PlayerAvatar_GetMoveDir(ctx->fieldSystem->playerAvatar);
+            direction = PlayerAvatar_GetMoveDir(ctx->fieldSystem->playerAvatar);
         }
 
-        ov5_021E00EC(ctx->task, v0, ScriptContext_GetVar(ctx));
+        FieldTask_StartUseSurf(ctx->task, direction, ScriptContext_GetVar(ctx));
     }
 
     return TRUE;
 }
 
-static BOOL ScrCmd_0C1(ScriptContext *ctx)
+static BOOL ScrCmd_UseWaterfall(ScriptContext *ctx)
 {
-    ov5_021E0998(ctx->task, PlayerAvatar_GetDir(ctx->fieldSystem->playerAvatar), ScriptContext_GetVar(ctx));
+    FieldTask_StartUseWaterfall(ctx->task, PlayerAvatar_GetDir(ctx->fieldSystem->playerAvatar), ScriptContext_GetVar(ctx));
     return TRUE;
 }
 
