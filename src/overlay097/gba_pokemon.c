@@ -266,30 +266,30 @@ static u16 sSpeciesWithNewAbilities[] = {
 
 #define SUBSTRUCT_CASE(n, v1, v2, v3, v4)                                       \
     case n: {                                                                   \
-        union PokemonGBASubstruct *substructs0 = boxMonGBA->secure.substructs;  \
-        union PokemonGBASubstruct *substructs1 = boxMonGBA->secure.substructs;  \
-        union PokemonGBASubstruct *substructs2 = boxMonGBA->secure.substructs;  \
-        union PokemonGBASubstruct *substructs3 = boxMonGBA->secure.substructs;  \
-        union PokemonGBASubstruct *substructs4 = boxMonGBA->secure.substructs;  \
-        union PokemonGBASubstruct *substructs5 = boxMonGBA->secure.substructs;  \
-        union PokemonGBASubstruct *substructs6 = boxMonGBA->secure.substructs;  \
-        union PokemonGBASubstruct *substructs7 = boxMonGBA->secure.substructs;  \
-        union PokemonGBASubstruct *substructs8 = boxMonGBA->secure.substructs;  \
-        union PokemonGBASubstruct *substructs9 = boxMonGBA->secure.substructs;  \
-        union PokemonGBASubstruct *substructs10 = boxMonGBA->secure.substructs; \
-        union PokemonGBASubstruct *substructs11 = boxMonGBA->secure.substructs; \
-        union PokemonGBASubstruct *substructs12 = boxMonGBA->secure.substructs; \
-        union PokemonGBASubstruct *substructs13 = boxMonGBA->secure.substructs; \
-        union PokemonGBASubstruct *substructs14 = boxMonGBA->secure.substructs; \
-        union PokemonGBASubstruct *substructs15 = boxMonGBA->secure.substructs; \
-        union PokemonGBASubstruct *substructs16 = boxMonGBA->secure.substructs; \
-        union PokemonGBASubstruct *substructs17 = boxMonGBA->secure.substructs; \
-        union PokemonGBASubstruct *substructs18 = boxMonGBA->secure.substructs; \
-        union PokemonGBASubstruct *substructs19 = boxMonGBA->secure.substructs; \
-        union PokemonGBASubstruct *substructs20 = boxMonGBA->secure.substructs; \
-        union PokemonGBASubstruct *substructs21 = boxMonGBA->secure.substructs; \
-        union PokemonGBASubstruct *substructs22 = boxMonGBA->secure.substructs; \
-        union PokemonGBASubstruct *substructs23 = boxMonGBA->secure.substructs; \
+        union GBAPokemonSubstruct *substructs0 = gbaBoxMon->secure.substructs;  \
+        union GBAPokemonSubstruct *substructs1 = gbaBoxMon->secure.substructs;  \
+        union GBAPokemonSubstruct *substructs2 = gbaBoxMon->secure.substructs;  \
+        union GBAPokemonSubstruct *substructs3 = gbaBoxMon->secure.substructs;  \
+        union GBAPokemonSubstruct *substructs4 = gbaBoxMon->secure.substructs;  \
+        union GBAPokemonSubstruct *substructs5 = gbaBoxMon->secure.substructs;  \
+        union GBAPokemonSubstruct *substructs6 = gbaBoxMon->secure.substructs;  \
+        union GBAPokemonSubstruct *substructs7 = gbaBoxMon->secure.substructs;  \
+        union GBAPokemonSubstruct *substructs8 = gbaBoxMon->secure.substructs;  \
+        union GBAPokemonSubstruct *substructs9 = gbaBoxMon->secure.substructs;  \
+        union GBAPokemonSubstruct *substructs10 = gbaBoxMon->secure.substructs; \
+        union GBAPokemonSubstruct *substructs11 = gbaBoxMon->secure.substructs; \
+        union GBAPokemonSubstruct *substructs12 = gbaBoxMon->secure.substructs; \
+        union GBAPokemonSubstruct *substructs13 = gbaBoxMon->secure.substructs; \
+        union GBAPokemonSubstruct *substructs14 = gbaBoxMon->secure.substructs; \
+        union GBAPokemonSubstruct *substructs15 = gbaBoxMon->secure.substructs; \
+        union GBAPokemonSubstruct *substructs16 = gbaBoxMon->secure.substructs; \
+        union GBAPokemonSubstruct *substructs17 = gbaBoxMon->secure.substructs; \
+        union GBAPokemonSubstruct *substructs18 = gbaBoxMon->secure.substructs; \
+        union GBAPokemonSubstruct *substructs19 = gbaBoxMon->secure.substructs; \
+        union GBAPokemonSubstruct *substructs20 = gbaBoxMon->secure.substructs; \
+        union GBAPokemonSubstruct *substructs21 = gbaBoxMon->secure.substructs; \
+        union GBAPokemonSubstruct *substructs22 = gbaBoxMon->secure.substructs; \
+        union GBAPokemonSubstruct *substructs23 = gbaBoxMon->secure.substructs; \
                                                                                 \
         switch (substructType) {                                                \
         case 0:                                                                 \
@@ -308,9 +308,9 @@ static u16 sSpeciesWithNewAbilities[] = {
         break;                                                                  \
     }
 
-static u32 GetGBASubstruct(BoxPokemonGBA *boxMonGBA, u32 personality, u8 substructType)
+static union GBAPokemonSubstruct *GetGBASubstruct(GBABoxPokemon *gbaBoxMon, u32 personality, u8 substructType)
 {
-    union PokemonGBASubstruct *substruct = NULL;
+    union GBAPokemonSubstruct *substruct = NULL;
 
     switch (personality % 24) {
         SUBSTRUCT_CASE(0, 0, 1, 2, 3)
@@ -342,35 +342,35 @@ static u32 GetGBASubstruct(BoxPokemonGBA *boxMonGBA, u32 personality, u8 substru
     return substruct;
 }
 
-static void GBADecryptBoxMon(BoxPokemonGBA *boxMonGBA)
+static void GBADecryptBoxMon(GBABoxPokemon *gbaBoxMon)
 {
     int v0;
-    u32 *v1 = (u32 *)&boxMonGBA->secure;
+    u32 *v1 = (u32 *)&gbaBoxMon->secure;
 
-    for (v0 = 0; v0 < (sizeof(PokemonGBASubstruct0) + sizeof(PokemonGBASubstruct1) + sizeof(PokemonGBASubstruct2) + sizeof(PokemonGBASubstruct3)) / 4; v0++) {
-        v1[v0] ^= boxMonGBA->otId;
-        v1[v0] ^= boxMonGBA->personality;
+    for (v0 = 0; v0 < (sizeof(GBAPokemonSubstruct0) + sizeof(GBAPokemonSubstruct1) + sizeof(GBAPokemonSubstruct2) + sizeof(GBAPokemonSubstruct3)) / 4; v0++) {
+        v1[v0] ^= gbaBoxMon->otId;
+        v1[v0] ^= gbaBoxMon->personality;
     }
 }
 
-static void GBAEncryptBoxMon(BoxPokemonGBA *boxMonGBA)
+static void GBAEncryptBoxMon(GBABoxPokemon *gbaBoxMon)
 {
     int v0;
-    u32 *v1 = (u32 *)&boxMonGBA->secure;
+    u32 *v1 = (u32 *)&gbaBoxMon->secure;
 
-    for (v0 = 0; v0 < (sizeof(PokemonGBASubstruct0) + sizeof(PokemonGBASubstruct1) + sizeof(PokemonGBASubstruct2) + sizeof(PokemonGBASubstruct3)) / 4; v0++) {
-        v1[v0] ^= boxMonGBA->personality;
-        v1[v0] ^= boxMonGBA->otId;
+    for (v0 = 0; v0 < (sizeof(GBAPokemonSubstruct0) + sizeof(GBAPokemonSubstruct1) + sizeof(GBAPokemonSubstruct2) + sizeof(GBAPokemonSubstruct3)) / 4; v0++) {
+        v1[v0] ^= gbaBoxMon->personality;
+        v1[v0] ^= gbaBoxMon->otId;
     }
 }
 
-static u16 CalculateGBABoxMonChecksum(BoxPokemonGBA *boxMonGBA)
+static u16 CalculateGBABoxMonChecksum(GBABoxPokemon *gbaBoxMon)
 {
     u16 checksum = 0;
-    union PokemonGBASubstruct *substruct0 = GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 0);
-    union PokemonGBASubstruct *substruct1 = GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 1);
-    union PokemonGBASubstruct *substruct2 = GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 2);
-    union PokemonGBASubstruct *substruct3 = GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 3);
+    union GBAPokemonSubstruct *substruct0 = GetGBASubstruct(gbaBoxMon, gbaBoxMon->personality, 0);
+    union GBAPokemonSubstruct *substruct1 = GetGBASubstruct(gbaBoxMon, gbaBoxMon->personality, 1);
+    union GBAPokemonSubstruct *substruct2 = GetGBASubstruct(gbaBoxMon, gbaBoxMon->personality, 2);
+    union GBAPokemonSubstruct *substruct3 = GetGBASubstruct(gbaBoxMon, gbaBoxMon->personality, 3);
     s32 i;
 
     for (i = 0; i < (s32)NELEMS(substruct0->raw); i++) {
@@ -392,79 +392,79 @@ static u16 CalculateGBABoxMonChecksum(BoxPokemonGBA *boxMonGBA)
     return checksum;
 }
 
-u32 GetGBABoxMonData(BoxPokemonGBA *boxMonGBA, int field, u8 *param2)
+u32 GBABoxPokemon_GetData(GBABoxPokemon *gbaBoxMon, int field, u8 *param2)
 {
     u32 retVal = 0;
-    PokemonGBASubstruct0 *substruct0 = 0;
-    PokemonGBASubstruct1 *substruct1 = 0;
-    PokemonGBASubstruct2 *substruct2 = 0;
-    PokemonGBASubstruct3 *substruct3 = 0;
+    GBAPokemonSubstruct0 *substruct0 = 0;
+    GBAPokemonSubstruct1 *substruct1 = 0;
+    GBAPokemonSubstruct2 *substruct2 = 0;
+    GBAPokemonSubstruct3 *substruct3 = 0;
     u16 checksum;
 
     if (field > GBA_MON_DATA_ENCRYPT_SEPARATOR) {
-        substruct0 = (PokemonGBASubstruct0 *)GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 0);
-        substruct1 = (PokemonGBASubstruct1 *)GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 1);
-        substruct2 = (PokemonGBASubstruct2 *)GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 2);
-        substruct3 = (PokemonGBASubstruct3 *)GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 3);
+        substruct0 = (GBAPokemonSubstruct0 *)GetGBASubstruct(gbaBoxMon, gbaBoxMon->personality, 0);
+        substruct1 = (GBAPokemonSubstruct1 *)GetGBASubstruct(gbaBoxMon, gbaBoxMon->personality, 1);
+        substruct2 = (GBAPokemonSubstruct2 *)GetGBASubstruct(gbaBoxMon, gbaBoxMon->personality, 2);
+        substruct3 = (GBAPokemonSubstruct3 *)GetGBASubstruct(gbaBoxMon, gbaBoxMon->personality, 3);
 
-        GBADecryptBoxMon(boxMonGBA);
-        checksum = CalculateGBABoxMonChecksum(boxMonGBA);
+        GBADecryptBoxMon(gbaBoxMon);
+        checksum = CalculateGBABoxMonChecksum(gbaBoxMon);
 
-        if (checksum != boxMonGBA->checksum) {
-            boxMonGBA->isBadEgg = TRUE;
-            boxMonGBA->isEgg = TRUE;
+        if (checksum != gbaBoxMon->checksum) {
+            gbaBoxMon->isBadEgg = TRUE;
+            gbaBoxMon->isEgg = TRUE;
             substruct3->isEgg = TRUE;
         }
     }
 
     switch (field) {
     case GBA_MON_DATA_PERSONALITY:
-        retVal = boxMonGBA->personality;
+        retVal = gbaBoxMon->personality;
         break;
     case GBA_MON_DATA_OT_ID:
-        retVal = boxMonGBA->otId;
+        retVal = gbaBoxMon->otId;
         break;
     case GBA_MON_DATA_NICKNAME:
-        if (boxMonGBA->isBadEgg) {
+        if (gbaBoxMon->isBadEgg) {
             retVal = 0;
         } else {
             for (retVal = 0; retVal < 10; retVal++) {
-                param2[retVal] = boxMonGBA->nickname[retVal];
+                param2[retVal] = gbaBoxMon->nickname[retVal];
             }
         }
 
         param2[retVal] = 0xff;
         break;
     case GBA_MON_DATA_LANGUAGE:
-        retVal = boxMonGBA->language;
+        retVal = gbaBoxMon->language;
         break;
     case GBA_MON_DATA_SANITY_IS_BAD_EGG:
-        retVal = boxMonGBA->isBadEgg;
+        retVal = gbaBoxMon->isBadEgg;
         break;
     case GBA_MON_DATA_SANITY_HAS_SPECIES:
-        retVal = boxMonGBA->hasSpecies;
+        retVal = gbaBoxMon->hasSpecies;
         break;
     case GBA_MON_DATA_SANITY_IS_EGG:
-        retVal = boxMonGBA->isEgg;
+        retVal = gbaBoxMon->isEgg;
         break;
     case GBA_MON_DATA_OT_NAME:
         for (retVal = 0; retVal < 7; retVal++) {
-            param2[retVal] = boxMonGBA->otName[retVal];
+            param2[retVal] = gbaBoxMon->otName[retVal];
         }
 
         param2[retVal] = 0xffff;
         break;
     case GBA_MON_DATA_MARKINGS:
-        retVal = boxMonGBA->markings;
+        retVal = gbaBoxMon->markings;
         break;
     case GBA_MON_DATA_CHECKSUM:
-        retVal = boxMonGBA->checksum;
+        retVal = gbaBoxMon->checksum;
         break;
     case GBA_MON_DATA_ENCRYPT_SEPARATOR:
-        retVal = boxMonGBA->unknown;
+        retVal = gbaBoxMon->unknown;
         break;
     case GBA_MON_DATA_SPECIES:
-        if (boxMonGBA->isBadEgg) {
+        if (gbaBoxMon->isBadEgg) {
             retVal = GBA_SPECIES_EGG;
         } else {
             retVal = substruct0->species;
@@ -636,7 +636,7 @@ u32 GetGBABoxMonData(BoxPokemonGBA *boxMonGBA, int field, u8 *param2)
             break;
         }
 
-        if (substruct3->isEgg || boxMonGBA->isBadEgg) {
+        if (substruct3->isEgg || gbaBoxMon->isBadEgg) {
             retVal = GBA_SPECIES_EGG;
         }
 
@@ -652,7 +652,7 @@ u32 GetGBABoxMonData(BoxPokemonGBA *boxMonGBA, int field, u8 *param2)
     }
 
     if (field > GBA_MON_DATA_ENCRYPT_SEPARATOR) {
-        GBAEncryptBoxMon(boxMonGBA);
+        GBAEncryptBoxMon(gbaBoxMon);
     }
 
     return retVal;
@@ -662,28 +662,28 @@ u32 GetGBABoxMonData(BoxPokemonGBA *boxMonGBA, int field, u8 *param2)
 #define SET16(lhs) (lhs) = dataArg[0] + (dataArg[1] << 8)
 #define SET32(lhs) (lhs) = dataArg[0] + (dataArg[1] << 8) + (dataArg[2] << 16) + (dataArg[3] << 24)
 
-void SetGBABoxMonData(BoxPokemonGBA *boxMonGBA, int field, const u8 *dataArg)
+void GBABoxPokemon_SetData(GBABoxPokemon *gbaBoxMon, int field, const u8 *dataArg)
 {
-    PokemonGBASubstruct0 *substruct0 = 0;
-    PokemonGBASubstruct1 *substruct1 = 0;
-    PokemonGBASubstruct2 *substruct2 = 0;
-    PokemonGBASubstruct3 *substruct3 = 0;
+    GBAPokemonSubstruct0 *substruct0 = 0;
+    GBAPokemonSubstruct1 *substruct1 = 0;
+    GBAPokemonSubstruct2 *substruct2 = 0;
+    GBAPokemonSubstruct3 *substruct3 = 0;
     u16 checksum;
 
     if (field > GBA_MON_DATA_ENCRYPT_SEPARATOR) {
-        substruct0 = (PokemonGBASubstruct0 *)GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 0);
-        substruct1 = (PokemonGBASubstruct1 *)GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 1);
-        substruct2 = (PokemonGBASubstruct2 *)GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 2);
-        substruct3 = (PokemonGBASubstruct3 *)GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 3);
+        substruct0 = (GBAPokemonSubstruct0 *)GetGBASubstruct(gbaBoxMon, gbaBoxMon->personality, 0);
+        substruct1 = (GBAPokemonSubstruct1 *)GetGBASubstruct(gbaBoxMon, gbaBoxMon->personality, 1);
+        substruct2 = (GBAPokemonSubstruct2 *)GetGBASubstruct(gbaBoxMon, gbaBoxMon->personality, 2);
+        substruct3 = (GBAPokemonSubstruct3 *)GetGBASubstruct(gbaBoxMon, gbaBoxMon->personality, 3);
 
-        GBADecryptBoxMon(boxMonGBA);
-        checksum = CalculateGBABoxMonChecksum(boxMonGBA);
+        GBADecryptBoxMon(gbaBoxMon);
+        checksum = CalculateGBABoxMonChecksum(gbaBoxMon);
 
-        if (checksum != boxMonGBA->checksum) {
-            boxMonGBA->isBadEgg = TRUE;
-            boxMonGBA->isEgg = TRUE;
+        if (checksum != gbaBoxMon->checksum) {
+            gbaBoxMon->isBadEgg = TRUE;
+            gbaBoxMon->isEgg = TRUE;
             substruct3->isEgg = TRUE;
-            GBAEncryptBoxMon(boxMonGBA);
+            GBAEncryptBoxMon(gbaBoxMon);
             return;
         }
     }
@@ -692,47 +692,47 @@ void SetGBABoxMonData(BoxPokemonGBA *boxMonGBA, int field, const u8 *dataArg)
     case GBA_MON_DATA_NICKNAME: {
         s32 i;
         for (i = 0; i < MON_NAME_LEN; i++) {
-            boxMonGBA->nickname[i] = dataArg[i];
+            gbaBoxMon->nickname[i] = dataArg[i];
         }
         break;
     }
     case GBA_MON_DATA_LANGUAGE:
-        SET8(boxMonGBA->language);
+        SET8(gbaBoxMon->language);
         break;
     case GBA_MON_DATA_SANITY_IS_BAD_EGG:
-        SET8(boxMonGBA->isBadEgg);
+        SET8(gbaBoxMon->isBadEgg);
         break;
     case GBA_MON_DATA_SANITY_HAS_SPECIES:
-        SET8(boxMonGBA->hasSpecies);
+        SET8(gbaBoxMon->hasSpecies);
         break;
     case GBA_MON_DATA_SANITY_IS_EGG:
-        SET8(boxMonGBA->isEgg);
+        SET8(gbaBoxMon->isEgg);
         break;
     case GBA_MON_DATA_OT_NAME: {
         s32 i;
         for (i = 0; i < TRAINER_NAME_LEN; i++) {
-            boxMonGBA->otName[i] = dataArg[i];
+            gbaBoxMon->otName[i] = dataArg[i];
         }
         break;
     }
     case GBA_MON_DATA_SPECIES: {
         SET16(substruct0->species);
         if (substruct0->species) {
-            boxMonGBA->hasSpecies = TRUE;
+            gbaBoxMon->hasSpecies = TRUE;
         } else {
-            boxMonGBA->hasSpecies = FALSE;
+            gbaBoxMon->hasSpecies = FALSE;
         }
         break;
     }
     }
 
     if (field > GBA_MON_DATA_ENCRYPT_SEPARATOR) {
-        boxMonGBA->checksum = CalculateGBABoxMonChecksum(boxMonGBA);
-        GBAEncryptBoxMon(boxMonGBA);
+        gbaBoxMon->checksum = CalculateGBABoxMonChecksum(gbaBoxMon);
+        GBAEncryptBoxMon(gbaBoxMon);
     }
 }
 
-int ConvertGBASpeciesToDS(int species)
+int GBAPokemon_ConvertSpeciesToDS(int species)
 {
     int i;
 
@@ -749,15 +749,15 @@ int ConvertGBASpeciesToDS(int species)
     return species;
 }
 
-u32 GetBoxMonGBALevel(BoxPokemonGBA *boxMonGBA)
+u32 GBABoxPokemon_GetLevel(GBABoxPokemon *gbaBoxMon)
 {
-    int species = ConvertGBASpeciesToDS(GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SPECIES, NULL));
-    u32 exp = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_EXP, NULL);
+    int species = GBAPokemon_ConvertSpeciesToDS(GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_SPECIES, NULL));
+    u32 exp = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_EXP, NULL);
 
     return Pokemon_GetSpeciesLevelAt(species, exp);
 }
 
-static int ConvertBoxMonGBAtoDSAbility(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
+static int ConvertBoxMonGBAtoDSAbility(GBABoxPokemon *gbaBoxMon, BoxPokemon *boxMon)
 {
     int i;
     int ability;
@@ -765,7 +765,7 @@ static int ConvertBoxMonGBAtoDSAbility(BoxPokemonGBA *boxMonGBA, BoxPokemon *box
     int abilityNum;
 
     species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
-    abilityNum = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_ABILITY_NUM, NULL);
+    abilityNum = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_ABILITY_NUM, NULL);
     ability = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_ABILITY_2);
 
     if (ability != ABILITY_NONE) {
@@ -786,7 +786,7 @@ static int ConvertBoxMonGBAtoDSAbility(BoxPokemonGBA *boxMonGBA, BoxPokemon *box
     return ability;
 }
 
-void BoxMonGBAToBoxMon(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
+void BoxMonGBAToBoxMon(GBABoxPokemon *gbaBoxMon, BoxPokemon *boxMon)
 {
     BOOL reencrypt;
     u32 value;
@@ -798,81 +798,81 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
     BoxPokemon_Init(boxMon);
     reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_PERSONALITY, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_PERSONALITY, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_PERSONALITY, (u8 *)&value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SPECIES, NULL);
-    value = ConvertGBASpeciesToDS(value);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_SPECIES, NULL);
+    value = GBAPokemon_ConvertSpeciesToDS(value);
     BoxPokemon_SetValue(boxMon, MON_DATA_SPECIES, (u8 *)&value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_HELD_ITEM, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_HELD_ITEM, NULL);
     if (value) {
         value = Item_FromGBAID(value);
     }
     BoxPokemon_SetValue(boxMon, MON_DATA_HELD_ITEM, (u8 *)&value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_OT_ID, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_OT_ID, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_OT_ID, (u8 *)&value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_EXP, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_EXP, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_EXP, (u8 *)&value);
 
     value = BASE_FRIENDSHIP_VALUE;
     BoxPokemon_SetValue(boxMon, MON_DATA_FRIENDSHIP, (u8 *)&value);
 
-    value = ConvertBoxMonGBAtoDSAbility(boxMonGBA, boxMon);
+    value = ConvertBoxMonGBAtoDSAbility(gbaBoxMon, boxMon);
     BoxPokemon_SetValue(boxMon, MON_DATA_ABILITY, (u8 *)&value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_MARKINGS, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_MARKINGS, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_MARKS, (u8 *)&value);
 
-    language = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_LANGUAGE, NULL);
+    language = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_LANGUAGE, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_LANGUAGE, (u8 *)&language);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_HP_EV, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_HP_EV, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_HP_EV, (u8 *)&value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_ATK_EV, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_ATK_EV, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_ATK_EV, (u8 *)&value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_DEF_EV, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_DEF_EV, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_DEF_EV, (u8 *)&value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SPEED_EV, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_SPEED_EV, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_SPEED_EV, (u8 *)&value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SPATK_EV, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_SPATK_EV, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_SPATK_EV, (u8 *)&value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SPDEF_EV, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_SPDEF_EV, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_SPDEF_EV, (u8 *)&value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_COOL, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_COOL, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_COOL, (u8 *)&value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_BEAUTY, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_BEAUTY, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_BEAUTY, (u8 *)&value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_CUTE, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_CUTE, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_CUTE, (u8 *)&value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SMART, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_SMART, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_SMART, (u8 *)&value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_TOUGH, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_TOUGH, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_TOUGH, (u8 *)&value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SHEEN, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_SHEEN, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_SHEEN, (u8 *)&value);
 
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
-        value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_MOVE1 + i, NULL);
+        value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_MOVE1 + i, NULL);
         if (value > GBA_NUM_MOVES) {
             (void)0;
         }
         BoxPokemon_SetValue(boxMon, MON_DATA_MOVE1 + i, (u8 *)&value);
 
-        value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_PP_BONUSES, NULL);
+        value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_PP_BONUSES, NULL);
         value = (value & (0x3 << (i * 2))) >> (i * 2);
         BoxPokemon_SetValue(boxMon, MON_DATA_MOVE1_PP_UPS + i, (u8 *)&value);
 
@@ -880,28 +880,28 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
         BoxPokemon_SetValue(boxMon, MON_DATA_MOVE1_CUR_PP + i, (u8 *)&value);
     }
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_HP_IV, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_HP_IV, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_HP_IV, (u8 *)&value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_ATK_IV, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_ATK_IV, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_ATK_IV, (u8 *)&value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_DEF_IV, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_DEF_IV, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_DEF_IV, (u8 *)&value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SPEED_IV, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_SPEED_IV, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_SPEED_IV, (u8 *)&value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SPATK_IV, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_SPATK_IV, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_SPATK_IV, (u8 *)&value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SPDEF_IV, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_SPDEF_IV, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_SPDEF_IV, (u8 *)&value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_IS_EGG, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_IS_EGG, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_IS_EGG, (u8 *)&value);
 
-    v3 = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_COOL_RIBBON, NULL);
+    v3 = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_COOL_RIBBON, NULL);
     if (v3 <= 4) {
         for (i = 0; i < v3; i++) {
             value = 1;
@@ -909,7 +909,7 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
         }
     }
 
-    v3 = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_BEAUTY_RIBBON, NULL);
+    v3 = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_BEAUTY_RIBBON, NULL);
     if (v3 <= 4) {
         for (i = 0; i < v3; i++) {
             value = 1;
@@ -917,7 +917,7 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
         }
     }
 
-    v3 = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_CUTE_RIBBON, NULL);
+    v3 = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_CUTE_RIBBON, NULL);
     if (v3 <= 4) {
         for (i = 0; i < v3; i++) {
             value = 1;
@@ -925,7 +925,7 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
         }
     }
 
-    v3 = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SMART_RIBBON, NULL);
+    v3 = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_SMART_RIBBON, NULL);
     if (v3 <= 4) {
         for (i = 0; i < v3; i++) {
             value = 1;
@@ -933,7 +933,7 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
         }
     }
 
-    v3 = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_TOUGH_RIBBON, NULL);
+    v3 = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_TOUGH_RIBBON, NULL);
     if (v3 <= 4) {
         for (i = 0; i < v3; i++) {
             value = 1;
@@ -941,50 +941,50 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
         }
     }
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_CHAMPION_RIBBON, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_CHAMPION_RIBBON, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_CHAMPION_RIBBON, (u8 *)&value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_WINNING_RIBBON, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_WINNING_RIBBON, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_WINNING_RIBBON, (u8 *)&value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_VICTORY_RIBBON, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_VICTORY_RIBBON, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_VICTORY_RIBBON, (u8 *)&value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_ARTIST_RIBBON, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_ARTIST_RIBBON, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_ARTIST_RIBBON, (u8 *)&value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_EFFORT_RIBBON, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_EFFORT_RIBBON, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_EFFORT_RIBBON, (u8 *)&value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_MARINE_RIBBON, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_MARINE_RIBBON, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_MARINE_RIBBON, (u8 *)&value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_LAND_RIBBON, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_LAND_RIBBON, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_LAND_RIBBON, (u8 *)&value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SKY_RIBBON, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_SKY_RIBBON, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_SKY_RIBBON, (u8 *)&value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_COUNTRY_RIBBON, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_COUNTRY_RIBBON, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_COUNTRY_RIBBON, (u8 *)&value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_NATIONAL_RIBBON, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_NATIONAL_RIBBON, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_NATIONAL_RIBBON, (u8 *)&value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_EARTH_RIBBON, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_EARTH_RIBBON, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_EARTH_RIBBON, (u8 *)&value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_WORLD_RIBBON, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_WORLD_RIBBON, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_WORLD_RIBBON, (u8 *)&value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_MODERN_FATEFUL_ENCOUNTER, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_MODERN_FATEFUL_ENCOUNTER, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_FATEFUL_ENCOUNTER, (u8 *)&value);
 
     value = BoxPokemon_GetGender(boxMon);
     BoxPokemon_SetValue(boxMon, MON_DATA_GENDER, (u8 *)&value);
 
     if (BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_UNOWN) {
-        value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_PERSONALITY, NULL);
+        value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_PERSONALITY, NULL);
         value = (((value & 0x3000000) >> 18) | ((value & 0x30000) >> 12) | ((value & 0x300) >> 6) | (value & 0x3)) % 28;
 
         BoxPokemon_SetValue(boxMon, MON_DATA_FORM, (u8 *)&value);
@@ -1011,35 +1011,35 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
         BoxPokemon_SetValue(boxMon, MON_DATA_FORM, (u8 *)&value);
     }
 
-    GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_NICKNAME, gbaNickname);
+    GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_NICKNAME, gbaNickname);
     GBAStringToDSString(gbaNickname, dsNickName, MON_NAME_LEN + 2, language);
     BoxPokemon_SetValue(boxMon, MON_DATA_NICKNAME_AND_FLAG, dsNickName);
 
-    if (GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_LANGUAGE, NULL) != gGameLanguage) {
+    if (GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_LANGUAGE, NULL) != gGameLanguage) {
         value = 1;
         BoxPokemon_SetValue(boxMon, MON_DATA_HAS_NICKNAME, &value);
     }
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_MET_GAME, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_MET_GAME, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_MET_GAME, &value);
 
-    GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_OT_NAME, gbaNickname);
+    GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_OT_NAME, gbaNickname);
     GBAStringToDSString(gbaNickname, dsNickName, GBA_PLAYER_NAME_LEN + 1, language);
     BoxPokemon_SetValue(boxMon, MON_DATA_OTNAME, dsNickName);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_MET_LOCATION, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_MET_LOCATION, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_HATCH_LOCATION, &value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_POKERUS, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_POKERUS, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_POKERUS, &value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_POKEBALL, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_POKEBALL, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_POKEBALL, &value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_MET_LEVEL, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_MET_LEVEL, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_MET_LEVEL, &value);
 
-    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_OT_GENDER, NULL);
+    value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_OT_GENDER, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_OT_GENDER, &value);
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
 }
