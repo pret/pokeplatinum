@@ -77,12 +77,18 @@ typedef struct GBAPokemonSubstruct3 {
     u32 modernFatefulEncounter : 1;
 } GBAPokemonSubstruct3;
 
+#define NUM_SUBSTRUCT_BYTES (max(      \
+    max(sizeof(GBAPokemonSubstruct0),  \
+        sizeof(GBAPokemonSubstruct1)), \
+    max(sizeof(GBAPokemonSubstruct2),  \
+        sizeof(GBAPokemonSubstruct3))))
+
 union GBAPokemonSubstruct {
     GBAPokemonSubstruct0 type0;
     GBAPokemonSubstruct1 type1;
     GBAPokemonSubstruct2 type2;
     GBAPokemonSubstruct3 type3;
-    u16 raw[6];
+    u16 raw[NUM_SUBSTRUCT_BYTES / sizeof(u16)];
 };
 
 typedef struct GBABoxPokemon {
