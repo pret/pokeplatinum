@@ -96,7 +96,7 @@
         ]
     },
     "evolutions": [
-        [ "EVO_LEVEL_HAPPINESS_DAY", "SPECIES_LUCARIO" ]
+        [ "EVO_LEVEL_FRIENDSHIP_DAY", "SPECIES_LUCARIO" ]
     ],
     "offspring": "SPECIES_RIOLU",
     "footprint": {

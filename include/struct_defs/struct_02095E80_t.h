@@ -100,7 +100,7 @@ struct UnkStruct_02095E80_t {
     void *unk_7E8[12];
     NNSG2dCharacterData *unk_818[12];
     u8 unk_848[2][3200];
-    PokemonSpriteTemplate unk_2148[2];
+    PokePicTemplate unk_2148[2];
     int unk_2168;
     u8 unk_216C[256];
     int (*unk_226C)(UnkStruct_02095E80 *);

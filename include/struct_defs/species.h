@@ -57,11 +57,11 @@ typedef struct SpeciesData {
     u32 tmLearnsetMasks[4]; // Bitflags for whether this pokemon can learn a TM
 } SpeciesData;
 
-typedef struct SpeciesEvolution {
+typedef struct Evolution {
     u16 method;
     u16 param;
     u16 targetSpecies;
-} SpeciesEvolution;
+} Evolution;
 
 typedef struct SpeciesLearnsetEntry {
     u16 move : 9;

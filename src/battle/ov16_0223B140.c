@@ -520,7 +520,7 @@ static void ov16_0223B790(ApplicationManager *appMan)
 {
     BattleSystem *battleSys = ApplicationManager_Data(appMan);
     FieldBattleDTO *v1 = ApplicationManager_Args(appMan);
-    PokemonSpriteTemplate v2;
+    PokePicTemplate v2;
     int v3;
     RTCDate v4;
     RTCTime v5;

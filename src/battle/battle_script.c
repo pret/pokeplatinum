@@ -6378,8 +6378,8 @@ static inline BOOL BeatUpEligibleMon(BattleContext *battleCtx, Pokemon *mon)
 {
     return battleCtx->beatUpCounter == battleCtx->selectedPartySlot[battleCtx->attacker]
         || (Pokemon_GetData(mon, MON_DATA_HP, NULL) != 0
-            && Pokemon_GetData(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_NONE
-            && Pokemon_GetData(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_EGG
+            && Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
+            && Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG
             && Pokemon_GetData(mon, MON_DATA_STATUS, NULL) == MON_CONDITION_NONE);
 }
 
@@ -6643,8 +6643,8 @@ static BOOL BtlCmd_TryAssist(BattleSystem *battleSys, BattleContext *battleCtx)
         }
 
         mon = BattleSystem_PartyPokemon(battleSys, battleCtx->attacker, i);
-        if (Pokemon_GetData(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_NONE
-            && Pokemon_GetData(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_EGG) {
+        if (Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
+            && Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG) {
             for (j = 0; j < LEARNED_MOVES_MAX; j++) {
                 move = Pokemon_GetData(mon, MON_DATA_MOVE1 + j, NULL);
                 if (Move_IsInvoker(move) == FALSE && Move_CanBeMetronomed(battleSys, battleCtx, battleCtx->attacker, move) == TRUE) {
@@ -8010,7 +8010,7 @@ static BOOL BtlCmd_GenerateEndOfBattleItem(BattleSystem *battleSys, BattleContex
 
     for (i = 0; i < BattleSystem_PartyCount(battleSys, BATTLER_US); i++) {
         mon = BattleSystem_PartyPokemon(battleSys, BATTLER_US, i);
-        species = Pokemon_GetData(mon, MON_DATA_SPECIES_EGG, NULL);
+        species = Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL);
         item = Pokemon_GetData(mon, MON_DATA_HELD_ITEM, NULL);
         ability = Pokemon_GetData(mon, MON_DATA_ABILITY, NULL);
 
@@ -9091,8 +9091,8 @@ static BOOL BtlCmd_CheckBlackOut(BattleSystem *battleSys, BattleContext *battleC
         for (i = 0; i < Party_GetCurrentCount(party1); i++) {
             mon = Party_GetPokemonBySlotIndex(party1, i);
 
-            if (Pokemon_GetData(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_NONE
-                && Pokemon_GetData(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_EGG) {
+            if (Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
+                && Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG) {
                 aliveMons += Pokemon_GetData(mon, MON_DATA_HP, NULL);
             }
         }
@@ -9105,8 +9105,8 @@ static BOOL BtlCmd_CheckBlackOut(BattleSystem *battleSys, BattleContext *battleC
             for (i = 0; i < Party_GetCurrentCount(party2); i++) {
                 mon = Party_GetPokemonBySlotIndex(party2, i);
 
-                if (Pokemon_GetData(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_NONE
-                    && Pokemon_GetData(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_EGG) {
+                if (Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
+                    && Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG) {
                     aliveMons += Pokemon_GetData(mon, MON_DATA_HP, NULL);
                 }
             }
@@ -9122,8 +9122,8 @@ static BOOL BtlCmd_CheckBlackOut(BattleSystem *battleSys, BattleContext *battleC
         for (i = 0; i < Party_GetCurrentCount(party); i++) {
             mon = Party_GetPokemonBySlotIndex(party, i);
 
-            if (Pokemon_GetData(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_NONE
-                && Pokemon_GetData(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_EGG) {
+            if (Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
+                && Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG) {
                 aliveMons += Pokemon_GetData(mon, MON_DATA_HP, NULL);
             }
         }
@@ -10804,7 +10804,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
     case 16:
         if (PaletteData_GetSelectedBuffersMask(v4) == 0) {
             {
-                PokemonSpriteTemplate v14;
+                PokePicTemplate v14;
 
                 v3 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
 

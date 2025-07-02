@@ -1164,7 +1164,7 @@ static void ov62_0223B050(UnkStruct_0208C06C *param0)
 {
     UnkStruct_ov62_02239DBC *v0 = param0->unk_860;
     SpeciesData *speciesData;
-    PokemonSpriteTemplate v2;
+    PokePicTemplate v2;
     u8 gender;
     u8 isShiny;
     u32 otID = v0->unk_04.unk_DC[v0->unk_1B0];

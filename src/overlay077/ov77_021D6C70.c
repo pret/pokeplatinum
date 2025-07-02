@@ -105,7 +105,7 @@ SPLEmitter *ov77_021D6CD0(UnkStruct_ov77_021D6CFC *param0, int param1)
 void ov77_021D6CFC(UnkStruct_ov77_021D6CFC *param0)
 {
     u8 v0;
-    PokemonSpriteTemplate v1;
+    PokePicTemplate v1;
     Camera *camera;
     void *v3;
     int v4[3] = { 389, 392, 395 };

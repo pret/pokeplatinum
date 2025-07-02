@@ -7,7 +7,7 @@
 typedef struct {
     Camera *camera;
     void *unk_04;
-    PokemonSpriteTemplate unk_08;
+    PokePicTemplate unk_08;
     PokemonSprite *unk_18;
 } UnkStruct_ov79_021D3820;
 

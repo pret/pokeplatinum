@@ -580,7 +580,7 @@ void ov94_0223DA78(MessageLoader *param0, Window param1[], u16 *param2, Pokemon 
 
 void ov94_0223DB2C(Pokemon *param0)
 {
-    PokemonSpriteTemplate v0;
+    PokePicTemplate v0;
     u8 *v1 = Heap_AllocFromHeap(HEAP_ID_62, (0x20 * 10 * 10));
 
     Pokemon_BuildSpriteTemplate(&v0, param0, 2);

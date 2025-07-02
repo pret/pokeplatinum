@@ -788,7 +788,7 @@ static void ov86_0223BAC8(UnkStruct_ov86_0223B3C8 *param0, NNSG2dCellDataBank *p
         { 0, 0, 10, 10 },
         { 0 + 10, 0, 10, 10 }
     };
-    PokemonSpriteTemplate v1;
+    PokePicTemplate v1;
     SpriteResourcesHeader v2;
     SpriteListTemplate v3;
     UnkStruct_ov5_021DE5D0 v4;

@@ -135,7 +135,7 @@ void PokedexGraphics_SetPokemonCharHide(const PokedexGraphicData *pokedexGraphic
 
 void PokedexGraphics_LoadPokemonSprite(PokedexGraphicData *pokedexGraphicData, enum Species species, int gender, int face, int shiny, u8 form, u32 personality, int x, int y, enum SpriteResourceType spriteResourceType)
 {
-    PokemonSpriteTemplate spriteTemplate;
+    PokePicTemplate spriteTemplate;
     s16 yOffset;
 
     if (pokedexGraphicData->pokemonSprite[spriteResourceType]) {

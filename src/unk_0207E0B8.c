@@ -2554,7 +2554,7 @@ static int ApplyItemEffectOnPokemon(GameWindowLayout *param0)
 {
     ItemData *v0 = Item_Load(param0->partyManagementData->usedItemID, 0, 12);
 
-    if ((param0->partyManagementData->usedItemID == 466) && (Pokemon_CanShayminSkyForm(Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->partySlot)) == 1)) {
+    if ((param0->partyManagementData->usedItemID == 466) && (Pokemon_CanUseGracidea(Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->partySlot)) == 1)) {
         param0->partyManagementData->evoTargetSpecies = 1;
         Heap_FreeToHeap(v0);
         LoadOverlay118(param0);
@@ -2683,7 +2683,7 @@ static int UpdatePokemonWithItem(GameWindowLayout *param0, Pokemon *mon, int *pa
 
     Bag_TryRemoveItem(param0->partyManagementData->bag, param0->partyManagementData->usedItemID, 1, HEAP_ID_12);
     Pokemon_SetData(mon, MON_DATA_HELD_ITEM, &item);
-    Pokemon_SetArceusForm(mon);
+    Pokemon_UpdateArceusForm(mon);
 
     if ((fieldSystem == NULL) || (fieldSystem->location->mapId < 573) || (fieldSystem->location->mapId > 583)) {
         *param2 = Pokemon_SetGiratinaFormByHeldItem(mon);
@@ -2705,7 +2705,7 @@ static void SwapPokemonItem(GameWindowLayout *param0, Pokemon *mon, u32 param2, 
 {
     Bag_TryAddItem(param0->partyManagementData->bag, (u16)param2, 1, HEAP_ID_12);
     Pokemon_SetData(mon, MON_DATA_HELD_ITEM, &param3);
-    Pokemon_SetArceusForm(mon);
+    Pokemon_UpdateArceusForm(mon);
     Pokemon_SetGiratinaFormByHeldItem(mon);
     param0->unk_704[param0->partySlot].unk_0C = (u16)param3;
     sub_02083040(param0, param0->partySlot, param0->unk_704[param0->partySlot].unk_0C);

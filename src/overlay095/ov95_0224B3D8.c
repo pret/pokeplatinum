@@ -493,7 +493,7 @@ static void ov95_0224B9C0(UnkStruct_ov95_0224B4D4 *param0)
 
 static PokemonSprite *ov95_0224BA8C(UnkStruct_ov95_0224B4D4 *param0)
 {
-    PokemonSpriteTemplate v0;
+    PokePicTemplate v0;
     BoxPokemon *v1;
     int v2;
 

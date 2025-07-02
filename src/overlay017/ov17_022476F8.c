@@ -158,7 +158,7 @@ static void ov17_02247840(SysTask *param0, void *param1)
 
 void ov17_022478D0(UnkStruct_ov17_02247A48 *param0, int param1)
 {
-    PokemonSpriteTemplate v0;
+    PokePicTemplate v0;
 
     GF_ASSERT(param0->unk_0C.unk_18 == NULL);
 

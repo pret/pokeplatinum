@@ -1255,8 +1255,8 @@ static void AICmd_CountAlivePartyBattlers(BattleSystem *battleSys, BattleContext
         if (i != battlerSlot
             && i != partnerSlot
             && Pokemon_GetData(mon, MON_DATA_HP, NULL) != 0
-            && Pokemon_GetData(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_NONE
-            && Pokemon_GetData(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_EGG) {
+            && Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
+            && Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG) {
             AI_CONTEXT.calcTemp++;
         }
     }
@@ -1476,8 +1476,8 @@ static void AICmd_IfPartyMemberStatus(BattleSystem *battleSys, BattleContext *ba
 
         if (i != slot1 && i != slot2
             && Pokemon_GetData(mon, MON_DATA_HP, NULL) != 0
-            && Pokemon_GetData(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_NONE
-            && Pokemon_GetData(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_EGG
+            && Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
+            && Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG
             && (Pokemon_GetData(mon, MON_DATA_STATUS, NULL) & statusMask)) {
             AIScript_Iter(battleCtx, jump);
             return;
@@ -1509,8 +1509,8 @@ static void AICmd_IfPartyMemberNotStatus(BattleSystem *battleSys, BattleContext 
 
         if (i != slot1 && i != slot2
             && Pokemon_GetData(mon, MON_DATA_HP, NULL) != 0
-            && Pokemon_GetData(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_NONE
-            && Pokemon_GetData(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_EGG
+            && Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
+            && Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG
             && (Pokemon_GetData(mon, MON_DATA_STATUS, NULL) & statusMask) == FALSE) {
             AIScript_Iter(battleCtx, jump);
             return;
@@ -2250,8 +2250,8 @@ static void AICmd_IfPartyMemberDealsMoreDamage(BattleSystem *battleSys, BattleCo
             partyMon = BattleSystem_PartyPokemon(battleSys, battler, i);
 
             if (Pokemon_GetData(partyMon, MON_DATA_HP, NULL) != 0
-                && Pokemon_GetData(partyMon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_NONE
-                && Pokemon_GetData(partyMon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_EGG) {
+                && Pokemon_GetData(partyMon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
+                && Pokemon_GetData(partyMon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG) {
                 for (j = 0; j < LEARNED_MOVES_MAX; j++) {
                     partyMonMoves[j] = Pokemon_GetData(partyMon, MON_DATA_MOVE1 + j, NULL);
                 }
@@ -3423,8 +3423,8 @@ static BOOL AI_CannotDamageWonderGuard(BattleSystem *battleSys, BattleContext *b
             mon = BattleSystem_PartyPokemon(battleSys, battler, i);
 
             if (Pokemon_GetData(mon, MON_DATA_HP, NULL) != 0
-                && Pokemon_GetData(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_NONE
-                && Pokemon_GetData(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_EGG
+                && Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
+                && Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG
                 && i != battleCtx->selectedPartySlot[battler]) {
                 for (j = 0; j < LEARNED_MOVES_MAX; j++) {
                     move = Pokemon_GetData(mon, MON_DATA_MOVE1 + j, NULL);
@@ -3539,8 +3539,8 @@ static BOOL AI_OnlyIneffectiveMoves(BattleSystem *battleSys, BattleContext *batt
         mon = BattleSystem_PartyPokemon(battleSys, battler, i);
 
         if (Pokemon_GetData(mon, MON_DATA_HP, NULL) != 0
-            && Pokemon_GetData(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_NONE
-            && Pokemon_GetData(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_EGG
+            && Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
+            && Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG
             && i != battleCtx->selectedPartySlot[aiSlot1]
             && i != battleCtx->selectedPartySlot[aiSlot2]
             && i != battleCtx->aiSwitchedPartySlot[aiSlot1]
@@ -3598,8 +3598,8 @@ static BOOL AI_OnlyIneffectiveMoves(BattleSystem *battleSys, BattleContext *batt
         mon = BattleSystem_PartyPokemon(battleSys, battler, i);
 
         if (Pokemon_GetData(mon, MON_DATA_HP, NULL) != 0
-            && Pokemon_GetData(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_NONE
-            && Pokemon_GetData(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_EGG
+            && Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
+            && Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG
             && i != battleCtx->selectedPartySlot[aiSlot1]
             && i != battleCtx->selectedPartySlot[aiSlot2]
             && i != battleCtx->aiSwitchedPartySlot[aiSlot1]
@@ -3801,8 +3801,8 @@ static BOOL AI_HasAbsorbAbilityInParty(BattleSystem *battleSys, BattleContext *b
         mon = BattleSystem_PartyPokemon(battleSys, battler, i);
 
         if (Pokemon_GetData(mon, MON_DATA_HP, NULL) != 0
-            && Pokemon_GetData(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_NONE
-            && Pokemon_GetData(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_EGG
+            && Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
+            && Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG
             && i != battleCtx->selectedPartySlot[aiSlot1]
             && i != battleCtx->selectedPartySlot[aiSlot2]
             && i != battleCtx->aiSwitchedPartySlot[aiSlot1]
@@ -3864,8 +3864,8 @@ static BOOL AI_HasPartyMemberWithSuperEffectiveMove(BattleSystem *battleSys, Bat
         mon = BattleSystem_PartyPokemon(battleSys, battler, i);
 
         if (Pokemon_GetData(mon, MON_DATA_HP, NULL) != 0
-            && Pokemon_GetData(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_NONE
-            && Pokemon_GetData(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_EGG
+            && Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
+            && Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG
             && i != battleCtx->selectedPartySlot[aiSlot1]
             && i != battleCtx->selectedPartySlot[aiSlot2]
             && i != battleCtx->aiSwitchedPartySlot[aiSlot1]
@@ -4034,8 +4034,8 @@ static BOOL TrainerAI_ShouldSwitch(BattleSystem *battleSys, BattleContext *battl
         mon = BattleSystem_PartyPokemon(battleSys, battler, i);
 
         if (Pokemon_GetData(mon, MON_DATA_HP, NULL) != 0
-            && Pokemon_GetData(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_NONE
-            && Pokemon_GetData(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_EGG
+            && Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
+            && Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG
             && i != battleCtx->selectedPartySlot[aiSlot1]
             && i != battleCtx->selectedPartySlot[aiSlot2]
             && i != battleCtx->aiSwitchedPartySlot[aiSlot1]
@@ -4189,8 +4189,8 @@ static BOOL TrainerAI_ShouldUseItem(BattleSystem *battleSys, int battler)
         mon = Party_GetPokemonBySlotIndex(party, i);
 
         if (Pokemon_GetData(mon, MON_DATA_HP, NULL) != 0
-            && Pokemon_GetData(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_NONE
-            && Pokemon_GetData(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_EGG) {
+            && Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
+            && Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG) {
             aliveMons++;
         }
     }

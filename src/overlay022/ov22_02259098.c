@@ -20,7 +20,7 @@ static int ov22_0225936C(char *param0, int param1);
 static void ov22_02259448(TouchScreenRect *rect, int param1, int param2, int param3, int param4);
 static void ov22_022593B8(char *param0, int param1, int param2, UnkStruct_ov22_022596B0 *param3);
 
-void ov22_02259098(UnkStruct_ov22_0225A0E4 *param0, PokemonSpriteTemplate *param1)
+void ov22_02259098(UnkStruct_ov22_0225A0E4 *param0, PokePicTemplate *param1)
 {
     void *v0 = LoadMemberFromNARC(param1->narcID, param1->character, 0, 14, 0);
     NNSG2dCharacterData *v1 = ov22_02255340(param0, v0, (100 + 18));
@@ -28,12 +28,12 @@ void ov22_02259098(UnkStruct_ov22_0225A0E4 *param0, PokemonSpriteTemplate *param
     PokemonSprite_Decrypt((u8 *)v1->pRawData, param1->narcID);
 }
 
-void ov22_022590C0(UnkStruct_020298D8 *param0, PokemonSpriteManager *param1, Pokemon *param2, PokemonSpriteTemplate *param3, int param4)
+void ov22_022590C0(UnkStruct_020298D8 *param0, PokemonSpriteManager *param1, Pokemon *param2, PokePicTemplate *param3, int param4)
 {
     ov22_022590D4(param0, param1, param2, param3, param4, 0);
 }
 
-void ov22_022590D4(UnkStruct_020298D8 *param0, PokemonSpriteManager *param1, Pokemon *param2, PokemonSpriteTemplate *param3, int param4, BOOL param5)
+void ov22_022590D4(UnkStruct_020298D8 *param0, PokemonSpriteManager *param1, Pokemon *param2, PokePicTemplate *param3, int param4, BOOL param5)
 {
     int v0 = Pokemon_GetData(param2, MON_DATA_SPECIES, NULL);
 

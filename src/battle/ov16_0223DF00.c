@@ -1063,7 +1063,7 @@ void BattleSystem_SetBurmyForm(BattleSystem *battleSys)
 
     for (i = 0; i < BattleSystem_PartyCount(battleSys, 0); i++) {
         Pokemon *mon = BattleSystem_PartyPokemon(battleSys, 0, i);
-        u16 species = Pokemon_GetData(mon, MON_DATA_SPECIES_EGG, NULL);
+        u16 species = Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL);
 
         if (species == SPECIES_BURMY && (battleSys->unk_2414[0] & FlagIndex(i))) {
             switch (BattleSystem_Terrain(battleSys)) {
@@ -1685,7 +1685,7 @@ void BattleSystem_DexFlagSeen(BattleSystem *battleSystem, int param1)
     }
 
     if (((battlerType & BATTLER_THEM) == FALSE)
-        && (Pokemon_GetData(mon, MON_DATA_SPECIES_EGG, NULL) == SPECIES_BURMY)) {
+        && (Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) == SPECIES_BURMY)) {
         Pokedex_Capture(battleSystem->pokedex, mon);
     }
 }

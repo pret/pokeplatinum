@@ -261,7 +261,7 @@ u32 Pokemon_GetCurrentLevelBaseExp(Pokemon *mon);
 u32 Pokemon_GetSpeciesBaseExpAt(int monSpecies, int monLevel);
 
 /**
- * @copybrief GetMonSpeciesLevel()
+ * @copybrief Pokemon_GetLevel()
  *
  * @param mon
  * @return The pokemons level
@@ -392,36 +392,36 @@ u8 Pokemon_IsPersonalityShiny(u32 monOTID, u32 monPersonality);
 u32 Pokemon_FindShinyPersonality(u32 monOTID);
 
 /**
- * @brief Build a PokemonSpriteTemplate for a Pokemon.
+ * @brief Build a PokePicTemplate for a Pokemon.
  *
  * @param spriteTemplate Pointer to the sprite template to be populated
  * @param mon            The Pokemon whose data will be used to build the sprite
  * @param face           Which face of the Pokemon the player sees
  */
-void Pokemon_BuildSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, Pokemon *mon, u8 face);
+void Pokemon_BuildSpriteTemplate(PokePicTemplate *spriteTemplate, Pokemon *mon, u8 face);
 
 /**
- * @brief Build a PokemonSpriteTemplate for a Pokemon, preferring sprites from
+ * @brief Build a PokePicTemplate for a Pokemon, preferring sprites from
  * Diamond/Pearl where possible.
  *
  * @param spriteTemplate Pointer to the sprite template to be populated
  * @param mon            The Pokemon whose data will be used to build the sprite
  * @param face           Which face of the Pokemon the player sees
  */
-void Pokemon_BuildSpriteTemplateDP(PokemonSpriteTemplate *spriteTemplate, Pokemon *mon, u8 face);
+void Pokemon_BuildSpriteTemplateDP(PokePicTemplate *spriteTemplate, Pokemon *mon, u8 face);
 
 /**
- * @brief Build a PokemonSpriteTemplate for a BoxPokemon.
+ * @brief Build a PokePicTemplate for a BoxPokemon.
  *
  * @param spriteTemplate Pointer to the sprite template to be populated
  * @param mon            The Pokemon whose data will be used to build the sprite
  * @param face           Which face of the Pokemon the player sees
  * @param preferDP       If TRUE, prefer sprites from Diamond/Pearl over Platinum
  */
-void BoxPokemon_BuildSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, BoxPokemon *boxMon, u8 face, BOOL preferDP);
+void BoxPokemon_BuildSpriteTemplate(PokePicTemplate *spriteTemplate, BoxPokemon *boxMon, u8 face, BOOL preferDP);
 
 /**
- * @brief Build a PokemonSpriteTemplate for a Pokemon sprite according to the input
+ * @brief Build a PokePicTemplate for a Pokemon sprite according to the input
  * species, form, and gender.
  *
  * @param spriteTemplate Pointer to the sprite template to be populated
@@ -432,7 +432,7 @@ void BoxPokemon_BuildSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, BoxPo
  * @param form           The Pokemon's form
  * @param personality    The Pokemon's personality value
  */
-void BuildPokemonSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 species, u8 gender, u8 face, u8 shiny, u8 form, u32 personality);
+void BuildPokemonSpriteTemplate(PokePicTemplate *spriteTemplate, u16 species, u8 gender, u8 face, u8 shiny, u8 form, u32 personality);
 
 /**
  * @brief Sanitizes a pokemon form. If the given form is greater than the max for the given species, returns zero, else returns the form unchanged
@@ -482,7 +482,7 @@ u8 BoxPokemon_SpriteYOffset(BoxPokemon *boxMon, u8 face, BOOL preferDP);
  * @return Y-offset applied to the sprite-face on display
  */
 u8 LoadPokemonSpriteYOffset(u16 species, u8 gender, u8 face, u8 form, u32 personality);
-void sub_0207697C(PokemonSpriteTemplate *param0, u16 param1);
+void sub_0207697C(PokePicTemplate *param0, u16 param1);
 ManagedSprite *sub_02076994(SpriteSystem *param0, SpriteManager *param1, PaletteData *param2, int param3, int param4, int param5, int param6, int param7, int heapID);
 void sub_02076AAC(int param0, int param1, UnkStruct_ov5_021DE5D0 *param2);
 
@@ -663,14 +663,14 @@ BOOL Pokemon_HasCuredPokerus(Pokemon *mon);
  *
  * @param mon
  */
-void Pokemon_SetArceusForm(Pokemon *mon);
+void Pokemon_UpdateArceusForm(Pokemon *mon);
 
 /**
  * @brief Sets Arceus' form based on its held item. Has no effect if the given Pokemon is not an Arceus
  *
  * @param boxMon
  */
-void BoxPokemon_SetArceusForm(BoxPokemon *boxMon);
+void BoxPokemon_UpdateArceusForm(BoxPokemon *boxMon);
 
 /**
  * @brief Get Arceus' form given an items hold effect
@@ -734,7 +734,7 @@ void BoxPokemon_SetShayminForm(BoxPokemon *boxMon, int form);
  * @param mon
  * @return Whether Shaymin is allowed to change into Sky Form
  */
-BOOL Pokemon_CanShayminSkyForm(Pokemon *mon);
+BOOL Pokemon_CanUseGracidea(Pokemon *mon);
 
 /**
  * @brief Iterates over all the Pokemon in Party, setting the form of any Shaymin to land form.

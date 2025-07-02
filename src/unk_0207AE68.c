@@ -91,7 +91,7 @@ static const u8 Unk_020F0A2C[] = {
 UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Options *options, int param4, Pokedex *param5, Bag *param6, GameRecords *records, Poketch *poketch, int param9, int param10, int heapID)
 {
     UnkStruct_0207AE68 *v0;
-    PokemonSpriteTemplate v1;
+    PokePicTemplate v1;
     int v2;
 
     v0 = (UnkStruct_0207AE68 *)Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0207AE68));
@@ -933,7 +933,7 @@ static void sub_0207C460(BgConfig *param0)
 
 static void sub_0207C498(UnkStruct_0207AE68 *param0)
 {
-    PokemonSpriteTemplate v0;
+    PokePicTemplate v0;
     Pokemon *v1;
 
     Pokemon_BuildSpriteTemplate(&v0, param0->unk_28, 2);

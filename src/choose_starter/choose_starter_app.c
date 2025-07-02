@@ -691,7 +691,7 @@ static void MakePokemonSprite(PokemonSprite **sprite, ChooseStarterApp *app, int
 {
     int gender = Species_GetGender(species, 0);
 
-    PokemonSpriteTemplate spriteTemplate;
+    PokePicTemplate spriteTemplate;
     BuildPokemonSpriteTemplate(&spriteTemplate, species, gender, FACE_FRONT, FALSE, NULL, NULL);
 
     *sprite = PokemonSpriteManager_CreateSprite(app->spriteManager,

@@ -65,7 +65,7 @@ typedef struct PokemonSpriteTransforms PokemonSpriteTransforms;
 
 typedef void(PokemonSpriteCallback)(PokemonSprite *, PokemonSpriteTransforms *);
 
-typedef struct PokemonSpriteTemplate {
+typedef struct PokePicTemplate {
     u16 narcID; //< ID of the sprite archive
     u16 character; //< File index to pull from the archive for the character data (tiles)
     u16 palette; //< File index to pull from the archive for the palette data
@@ -74,7 +74,7 @@ typedef struct PokemonSpriteTemplate {
     u8 dummy; //< Dummy value; never used or set to anything other than 0.
 
     u32 personality; //< Cached personality value for Pokemon front-sprites. Specifically used for Spinda spots.
-} PokemonSpriteTemplate;
+} PokePicTemplate;
 
 struct PokemonSpriteTransforms {
     s16 xCenter;
@@ -140,8 +140,8 @@ struct PokemonSprite {
     u32 needReloadChar : 1;
     u32 needReloadPltt : 1;
     u32 padding_00_9 : 23;
-    PokemonSpriteTemplate template;
-    PokemonSpriteTemplate templateBackup;
+    PokePicTemplate template;
+    PokePicTemplate templateBackup;
     PokemonSpriteTransforms transforms;
     u8 animActive;
     u8 currAnimFrame;
@@ -194,8 +194,8 @@ void PokemonSpriteManager_Free(PokemonSpriteManager *monSpriteMan);
 void PokemonSprite_InitAnim(PokemonSprite *monSprite, int dummy);
 void PokemonSprite_SetAnim(PokemonSprite *monSprite, SpriteAnimationFrame *animFrames);
 BOOL PokemonSprite_IsAnimActive(PokemonSprite *monSprite);
-PokemonSprite *PokemonSpriteManager_CreateSprite(PokemonSpriteManager *monSpriteMan, PokemonSpriteTemplate *spriteTemplate, int x, int y, int z, int polygonID, SpriteAnimationFrame *animFrames, PokemonSpriteCallback *callback);
-PokemonSprite *PokemonSpriteManager_CreateSpriteAtIndex(PokemonSpriteManager *monSpriteMan, PokemonSpriteTemplate *spriteTemplate, int x, int y, int z, int polygonID, int index, SpriteAnimationFrame *animFrames, PokemonSpriteCallback *callback);
+PokemonSprite *PokemonSpriteManager_CreateSprite(PokemonSpriteManager *monSpriteMan, PokePicTemplate *spriteTemplate, int x, int y, int z, int polygonID, SpriteAnimationFrame *animFrames, PokemonSpriteCallback *callback);
+PokemonSprite *PokemonSpriteManager_CreateSpriteAtIndex(PokemonSpriteManager *monSpriteMan, PokePicTemplate *spriteTemplate, int x, int y, int z, int polygonID, int index, SpriteAnimationFrame *animFrames, PokemonSpriteCallback *callback);
 void PokemonSprite_Delete(PokemonSprite *monSprite);
 void PokemonSpriteManager_DeleteAll(PokemonSpriteManager *monSpriteMan);
 void PokemonSprite_SetAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttribute attribute, int value);
@@ -214,7 +214,7 @@ void PokemonSprite_Push(PokemonSprite *monSprite);
 void PokemonSprite_Pop(PokemonSprite *monSprite);
 void PokemonSpriteManager_SetCharBaseAddrAndSize(PokemonSpriteManager *monSpriteMan, u32 addr, u32 size);
 void PokemonSpriteManager_SetPlttBaseAddrAndSize(PokemonSpriteManager *monSpriteMan, u32 addr, u32 size);
-PokemonSpriteTemplate *PokemonSprite_GetTemplate(PokemonSprite *monSprite);
+PokePicTemplate *PokemonSprite_GetTemplate(PokemonSprite *monSprite);
 void PokemonSpriteManager_UpdateCharAndPltt(PokemonSpriteManager *monSpriteMan);
 void PokemonSpriteManager_SetExcludeIdentity(PokemonSpriteManager *monSpriteMan, int value);
 BOOL PokemonSprite_IsActive(PokemonSprite *monSprite);

@@ -48,7 +48,7 @@ void ov61_0222AE88(SaveData *saveData, const PCBoxes *pcBoxes, int boxID, UnkStr
         param3->unk_64[v1] = PCBoxes_GetBoxMonData(pcBoxes, boxID, v1, MON_DATA_PERSONALITY, NULL);
         param3->unk_DC[v1] = PCBoxes_GetBoxMonData(pcBoxes, boxID, v1, MON_DATA_OT_ID, NULL);
 
-        if (PCBoxes_GetBoxMonData(pcBoxes, boxID, v1, MON_DATA_SPECIES_EGG, NULL) == SPECIES_EGG) {
+        if (PCBoxes_GetBoxMonData(pcBoxes, boxID, v1, MON_DATA_SPECIES_OR_EGG, NULL) == SPECIES_EGG) {
             param3->unk_154 |= 1 << v1;
         }
 

@@ -7955,7 +7955,7 @@ int BattleAI_PostKOSwitchIn(BattleSystem *battleSys, int battler)
 
         for (i = 0; i < partySize; i++) {
             mon = BattleSystem_PartyPokemon(battleSys, battler, i);
-            monSpecies = Pokemon_GetData(mon, MON_DATA_SPECIES_EGG, NULL);
+            monSpecies = Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL);
 
             if (monSpecies != SPECIES_NONE
                 && monSpecies != SPECIES_EGG
@@ -8030,7 +8030,7 @@ int BattleAI_PostKOSwitchIn(BattleSystem *battleSys, int battler)
     // party-order.
     for (i = 0; i < partySize; i++) {
         mon = BattleSystem_PartyPokemon(battleSys, battler, i);
-        monSpecies = Pokemon_GetData(mon, MON_DATA_SPECIES_EGG, NULL);
+        monSpecies = Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL);
 
         if (monSpecies != SPECIES_NONE
             && monSpecies != SPECIES_EGG

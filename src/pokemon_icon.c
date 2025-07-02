@@ -103,7 +103,7 @@ u32 PokeIconSpriteIndex(u32 species, u32 isEgg, u32 form)
 
 u16 BoxPokemon_IconFormOffset(const BoxPokemon *boxMon)
 {
-    u32 speciesOrEgg = BoxPokemon_GetData((BoxPokemon *)boxMon, MON_DATA_SPECIES_EGG, NULL);
+    u32 speciesOrEgg = BoxPokemon_GetData((BoxPokemon *)boxMon, MON_DATA_SPECIES_OR_EGG, NULL);
 
     switch (speciesOrEgg) {
     case SPECIES_UNOWN:

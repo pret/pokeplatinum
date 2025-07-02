@@ -858,7 +858,7 @@ void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, enum Heap
     SpriteSystem *v0 = param0->unk_34.unk_00;
     SpriteManager *v1 = param0->unk_34.unk_04;
     PaletteData *v2 = param0->unk_04;
-    PokemonSpriteTemplate v3;
+    PokePicTemplate v3;
     void *v4;
     ManagedSprite *v5;
 

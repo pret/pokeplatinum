@@ -723,7 +723,7 @@ void ov119_021D1844(UnkStruct_ov119_021D17B8 *param0)
 
 void ov119_021D1858(UnkStruct_ov119_021D0FD0 *param0)
 {
-    PokemonSpriteTemplate v0;
+    PokePicTemplate v0;
     SpriteAnimationFrame v1[10];
     Pokemon *v2;
     int v3;

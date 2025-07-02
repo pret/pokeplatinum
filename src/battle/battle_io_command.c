@@ -721,8 +721,8 @@ static void ov16_0225C670(BattleSystem *battleSys, BattlerData *param1)
 static void ov16_0225C684(BattleSystem *battleSys, BattlerData *param1)
 {
     UnkStruct_ov16_0225C684 *v0 = (UnkStruct_ov16_0225C684 *)&param1->data[0];
-    PokemonSpriteTemplate v1;
-    PokemonSpriteTemplate *v2;
+    PokePicTemplate v1;
+    PokePicTemplate *v2;
     int v3;
     int v4;
 

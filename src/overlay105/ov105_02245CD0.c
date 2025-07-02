@@ -48,7 +48,7 @@ void ov105_02245D50(PokemonSpriteManager *param0)
 
 PokemonSprite *ov105_02245D88(PokemonSpriteManager *param0, int param1, Pokemon *param2, int param3, int param4, int param5)
 {
-    PokemonSpriteTemplate v0;
+    PokePicTemplate v0;
     PokemonSprite *v1;
     int v2;
     u32 v3;

@@ -11,7 +11,7 @@ typedef struct GreatMarshLookout_SpriteResources {
     SpriteResource *unk_10[4];
     void *unk_20;
     void *unk_24;
-    PokemonSpriteTemplate unk_28;
+    PokePicTemplate unk_28;
     SpriteList *unk_38;
     G2dRenderer unk_3C;
     Sprite *unk_1C8;

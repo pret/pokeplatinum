@@ -103,7 +103,7 @@ static void LoadPokemonPreviewResources(PokemonPreview *preview);
 static void CreatePokemonPreviewSprite(PokemonPreview *preview, u8 x, u8 y);
 static void LoadAndDrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, u16 species, u8 gender);
 static void LoadAndDrawPokemonPreviewSpriteFromStruct(UnkStruct_ov5_021D30A8 *param0, Pokemon *mon);
-static void DrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, PokemonSpriteTemplate *spriteTemplate);
+static void DrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, PokePicTemplate *spriteTemplate);
 static void DrawPokemonPreviewWindow(PokemonPreview *preview, u8 palette, u16 tile);
 static void ErasePokemonPreviewWindow(PokemonPreview *preview);
 
@@ -856,7 +856,7 @@ static void LoadAndDrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, u16 
 {
     void *buf = PokemonSpriteManager_New(param0->heapID);
 
-    PokemonSpriteTemplate sprite;
+    PokePicTemplate sprite;
     BuildPokemonSpriteTemplate(&sprite, species, gender, FACE_FRONT, FALSE, NULL, NULL);
     DrawPokemonPreviewSprite(param0, &sprite);
     PokemonSpriteManager_Free(buf);
@@ -866,7 +866,7 @@ static void LoadAndDrawPokemonPreviewSpriteFromStruct(UnkStruct_ov5_021D30A8 *pa
 {
     void *buf = PokemonSpriteManager_New(param0->heapID);
 
-    PokemonSpriteTemplate sprite;
+    PokePicTemplate sprite;
     Pokemon_BuildSpriteTemplate(&sprite, mon, FACE_FRONT);
     DrawPokemonPreviewSprite(param0, &sprite);
     PokemonSpriteManager_Free(buf);
@@ -878,7 +878,7 @@ static void LoadAndDrawPokemonPreviewSpriteFromStruct(UnkStruct_ov5_021D30A8 *pa
 #define POKEMON_SPRITE_FRAME_SIZE_BYTES   (TILE_SIZE_4BPP * POKEMON_SPRITE_FRAME_SIZE_TILES)
 #define POKEMON_SPRITE_WHOLE_SIZE_BYTES   (POKEMON_SPRITE_FRAME_SIZE_BYTES * 2)
 
-static void DrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, PokemonSpriteTemplate *spriteTemplate)
+static void DrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, PokePicTemplate *spriteTemplate)
 {
     u8 *buf;
     u32 offset;

@@ -545,7 +545,7 @@ static void ov95_022473A0(UnkStruct_ov95_022472C4 *param0)
 
 void ov95_022473E8(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 param3, BOOL param4)
 {
-    PokemonSpriteTemplate v0;
+    PokePicTemplate v0;
     u32 v1;
     u32 v2;
     void *v3;

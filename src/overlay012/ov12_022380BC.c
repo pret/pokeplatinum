@@ -54,8 +54,8 @@ void ov12_022380CC(UnkStruct_ov12_022380DC *param0, int heapID)
 
 static void ov12_022380DC(UnkStruct_ov12_022380DC *param0, int param1, int param2, int heapID)
 {
-    PokemonSpriteTemplate v0;
-    PokemonSpriteTemplate *v1;
+    PokePicTemplate v0;
+    PokePicTemplate *v1;
     int v2;
     int v3;
     int v4;
@@ -124,7 +124,7 @@ static void ov12_022380DC(UnkStruct_ov12_022380DC *param0, int param1, int param
 
 void ov12_022382BC(UnkStruct_ov12_022380DC *param0, int heapID)
 {
-    PokemonSpriteTemplate *v0;
+    PokePicTemplate *v0;
     int v1;
     int v2;
     int v3;
@@ -159,8 +159,8 @@ void ov12_022382BC(UnkStruct_ov12_022380DC *param0, int heapID)
 
 void ov12_02238390(UnkStruct_ov12_022380DC *param0, int heapID)
 {
-    PokemonSpriteTemplate v0;
-    PokemonSpriteTemplate *v1;
+    PokePicTemplate v0;
+    PokePicTemplate *v1;
     int v2;
     int v3;
     u8 v4;

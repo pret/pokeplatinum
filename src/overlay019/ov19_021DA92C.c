@@ -149,7 +149,7 @@ void ov19_021DAA80(UnkStruct_ov19_021DA9E0 *param0)
 
 void ov19_021DAA90(UnkStruct_ov19_021DA9E0 *param0)
 {
-    PokemonSpriteTemplate v0;
+    PokePicTemplate v0;
 
     BuildPokemonSpriteTemplate(&v0, 1, 0, 0, 0, 0, 0);
     param0->unk_24 = PokemonSpriteManager_CreateSprite(param0->unk_20, &v0, 44, 84, 0, 0, NULL, NULL);
@@ -513,7 +513,7 @@ void ov19_021DB078(UnkStruct_ov19_021DA9E0 *param0)
 
 static void ov19_021DB0E4(UnkStruct_ov19_021DA9E0 *param0)
 {
-    PokemonSpriteTemplate v0;
+    PokePicTemplate v0;
     const PCMonPreview *preview = ov19_GetPCMonPreview(param0->unk_10);
 
     Text_AddPrinterWithParamsAndColor(&param0->unk_04[0], FONT_SYSTEM, preview->speciesName, 2, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(9, 6, 15), NULL);

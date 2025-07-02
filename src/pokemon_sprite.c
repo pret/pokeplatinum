@@ -613,7 +613,7 @@ BOOL PokemonSprite_IsAnimActive(PokemonSprite *monSprite)
     return monSprite->animActive != FALSE;
 }
 
-PokemonSprite *PokemonSpriteManager_CreateSprite(PokemonSpriteManager *monSpriteMan, PokemonSpriteTemplate *spriteTemplate, int x, int y, int z, int polygonID, SpriteAnimationFrame *animFrames, PokemonSpriteCallback *callback)
+PokemonSprite *PokemonSpriteManager_CreateSprite(PokemonSpriteManager *monSpriteMan, PokePicTemplate *spriteTemplate, int x, int y, int z, int polygonID, SpriteAnimationFrame *animFrames, PokemonSpriteCallback *callback)
 {
     int i;
     for (i = 0; i < MAX_MON_SPRITES; i++) {
@@ -627,7 +627,7 @@ PokemonSprite *PokemonSpriteManager_CreateSprite(PokemonSpriteManager *monSprite
     return PokemonSpriteManager_CreateSpriteAtIndex(monSpriteMan, spriteTemplate, x, y, z, polygonID, i, animFrames, callback);
 }
 
-PokemonSprite *PokemonSpriteManager_CreateSpriteAtIndex(PokemonSpriteManager *monSpriteMan, PokemonSpriteTemplate *spriteTemplate, int x, int y, int z, int polygonID, int index, SpriteAnimationFrame *animFrames, PokemonSpriteCallback *callback)
+PokemonSprite *PokemonSpriteManager_CreateSpriteAtIndex(PokemonSpriteManager *monSpriteMan, PokePicTemplate *spriteTemplate, int x, int y, int z, int polygonID, int index, SpriteAnimationFrame *animFrames, PokemonSpriteCallback *callback)
 {
     GF_ASSERT(monSpriteMan->sprites[index].active == FALSE);
 
@@ -1262,7 +1262,7 @@ void PokemonSpriteManager_SetPlttBaseAddrAndSize(PokemonSpriteManager *monSprite
     monSpriteMan->plttSize = size;
 }
 
-PokemonSpriteTemplate *PokemonSprite_GetTemplate(PokemonSprite *monSprite)
+PokePicTemplate *PokemonSprite_GetTemplate(PokemonSprite *monSprite)
 {
     return &monSprite->template;
 }

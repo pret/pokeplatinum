@@ -12,9 +12,9 @@
 
 void ov22_022578F4(UnkStruct_ov22_02257964 *param0, UnkStruct_ov22_0225B388 *param1);
 void ov22_02257948(UnkStruct_ov22_02257964 *param0);
-void ov22_02257964(UnkStruct_ov22_02257964 *param0, Pokemon *param1, PokemonSpriteTemplate *param2, int param3, int param4, int param5, int param6);
-void ov22_02257998(UnkStruct_ov22_02257964 *param0, Pokemon *param1, PokemonSpriteTemplate *param2, int param3);
-void ov22_022579B4(UnkStruct_ov22_02257964 *param0, Pokemon *param1, PokemonSpriteTemplate *param2, int param3);
+void ov22_02257964(UnkStruct_ov22_02257964 *param0, Pokemon *param1, PokePicTemplate *param2, int param3, int param4, int param5, int param6);
+void ov22_02257998(UnkStruct_ov22_02257964 *param0, Pokemon *param1, PokePicTemplate *param2, int param3);
+void ov22_022579B4(UnkStruct_ov22_02257964 *param0, Pokemon *param1, PokePicTemplate *param2, int param3);
 void ov22_022579D8(UnkStruct_ov22_02257964 *param0, UnkStruct_ov22_02259560 *param1);
 void ov22_022579E8(UnkStruct_ov22_02259560 *param0);
 void ov22_022579F0(UnkStruct_ov22_02257964 *param0);

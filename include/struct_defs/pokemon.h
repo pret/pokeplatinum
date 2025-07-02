@@ -43,7 +43,7 @@ typedef struct PokemonDataBlockA {
  */
 typedef struct PokemonDataBlockB {
     u16 moves[LEARNED_MOVES_MAX]; //!< List of moves currently known by the Pokemon.
-    u8 moveCurrentPPs[LEARNED_MOVES_MAX]; //!< The current PP of each of the Pokemon's moves.
+    u8 movePP[LEARNED_MOVES_MAX]; //!< The current PP of each of the Pokemon's moves.
     u8 movePPUps[LEARNED_MOVES_MAX]; //!< The number of PP Ups applied to each of the Pokemon's moves.
 
     u32 hpIV : 5; //!< The Pokemon's HP IV.

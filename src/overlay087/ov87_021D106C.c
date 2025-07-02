@@ -531,7 +531,7 @@ static void ov87_021D1970(UnkStruct_ov87_021D106C *param0)
         10,
         10,
     };
-    PokemonSpriteTemplate v1;
+    PokePicTemplate v1;
     const UnkStruct_ov87_021D12C0 *v2;
     int v3;
 

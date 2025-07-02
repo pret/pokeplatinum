@@ -185,7 +185,7 @@ static void sub_020834B0(GameWindowLayout *param0, int *param1)
         v4 = 0;
 
         Pokemon_SetData(mon, MON_DATA_HELD_ITEM, &v4);
-        Pokemon_SetArceusForm(mon);
+        Pokemon_UpdateArceusForm(mon);
 
         if ((fieldSystem == NULL) || (fieldSystem->location->mapId < 573) || (fieldSystem->location->mapId > 583)) {
             v1 = Pokemon_SetGiratinaFormByHeldItem(mon);
@@ -347,7 +347,7 @@ static int sub_020838F4(void *param0)
         item = 0;
 
         Pokemon_SetData(mon, MON_DATA_HELD_ITEM, &item);
-        Pokemon_SetArceusForm(mon);
+        Pokemon_UpdateArceusForm(mon);
         Pokemon_SetGiratinaFormByHeldItem(mon);
 
         v0->unk_704[v0->partySlot].unk_0C = 0;
