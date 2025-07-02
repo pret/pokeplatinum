@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/screen.h"
+#include "constants/graphics.h"
 
 #include "overlay077/ov77_021D6670.h"
 #include "overlay077/struct_ov77_021D6734_decl.h"

@@ -5,7 +5,7 @@
 #include <ppwlobby/ppw_lobby.h>
 #include <string.h>
 
-#include "constants/screen.h"
+#include "constants/graphics.h"
 
 #include "struct_decls/struct_02030EC4_decl.h"
 #include "struct_defs/struct_02099F80.h"

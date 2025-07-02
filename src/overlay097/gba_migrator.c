@@ -5,10 +5,10 @@
 #include "constants/gba/items.h"
 #include "constants/gba/pokemon.h"
 #include "constants/gba/species.h"
+#include "constants/graphics.h"
 #include "constants/items.h"
 #include "constants/narc.h"
 #include "constants/pokemon.h"
-#include "constants/screen.h"
 #include "constants/species.h"
 
 #include "struct_decls/struct_02015920_decl.h"

@@ -3,8 +3,8 @@
 
 #include <nnsys.h>
 
+#include "constants/graphics.h"
 #include "constants/heap.h"
-#include "constants/screen.h"
 
 typedef struct RenderOamTemplate {
     int mainOamStart;
