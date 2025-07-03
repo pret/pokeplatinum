@@ -347,7 +347,7 @@ static int ov94_0223E0A4(GTSApplicationState *param0)
 
         if (1) {
             if ((v0 != param0->unk_11C) && (v0 >= 0)) {
-                Sprite_SetAnim(param0->unk_F34[v0 + 1], 16 + v0 * 4);
+                Sprite_SetAnim(param0->avatarSprites[v0 + 1], 16 + v0 * 4);
                 param0->currentScreenInstruction = 2;
                 ov94_Setunk_18Andunk_24(param0, 3, 0);
                 param0->unk_11C = v0;

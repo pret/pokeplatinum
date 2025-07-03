@@ -6,7 +6,7 @@ typedef struct {
     s8 gender;
     s8 level;
     s8 level2;
-    s8 unk_05;
+    s8 unk_05; // maybe chungus
 } UnkStruct_ov94_0223BA88_sub3;
 
 #endif // POKEPLATINUM_STRUCT_OV94_0223BA88_SUB3_H

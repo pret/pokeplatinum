@@ -129,18 +129,18 @@ typedef struct GTSApplicationState {
     int textPrinter;
     SpriteList *unk_BE4;
     G2dRenderer unk_BE8;
-    SpriteResourceCollection *unk_D74[4];
-    SpriteResource *unk_D84[3][4];
+    SpriteResourceCollection *spriteResourceCollection[4];
+    SpriteResource *spriteResource[3][4];
     SpriteResourcesHeader unk_DB4;
     SpriteResourcesHeader unk_DD8;
     SpriteResourcesHeader unk_DFC;
-    Sprite *unk_E20;
+    Sprite *cursorSprite;
     Sprite *unk_E24;
     Sprite *unk_E28[30];
     Sprite *unk_EA0[30];
     Sprite *unk_F18[6];
     Sprite *unk_F30;
-    Sprite *unk_F34[8];
+    Sprite *avatarSprites[8];
     Sprite *unk_F54[2];
     // this window provides a running instruction at the bottom of the screen
     // ex. https://www.youtube.com/watch?v=vH8U16wV7-E&t=94
@@ -161,7 +161,7 @@ typedef struct GTSApplicationState {
     GTSApplicationState_sub3 *unk_10E4;
     u16 unk_10E8;
     u16 unk_10EA;
-    SysTask *unk_10EC;
+    SysTask *playerAvatarAnimationTask;
     u16 unk_10F0;
     u16 unk_10F2;
     void *unk_10F4;

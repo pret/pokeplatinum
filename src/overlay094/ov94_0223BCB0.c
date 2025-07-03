@@ -72,7 +72,7 @@ static NNSFndHeapHandle Unk_ov94_02246C04;
 // gtsApplicationScreens { init, main, exit }
 static int (*gtsApplicationScreens[][3])(GTSApplicationState *, int) = {
     { GTSApplication_InitWFCScreen, GTSApplication_WFCInit_Main, GTSApplication_WFCInit_Exit }, // wfc
-    { ov94_0223C610, ov94_0223C6D4, ov94_0223C6F4 },
+    { GTSApplication_MainMenu_Init, ov94_0223C6D4, ov94_0223C6F4 },
     { ov94_0223D0C4, ov94_0223D19C, ov94_0223D1B0 },
     { ov94_0223DC04, ov94_0223DCE4, ov94_0223DCF8 },
     { ov94_0223E46C, ov94_0223E560, ov94_0223E574 },
@@ -311,7 +311,7 @@ static void ov94_0223C0A4(void)
     PlttTransfer_Clear();
 }
 
-static void ov94_0223C0D4(GTSApplicationState *param0)
+static void ov94_0223C0D4(GTSApplicationState *param0) // set up gui?
 {
     int v0;
     NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, HEAP_ID_62);
@@ -324,22 +324,23 @@ static void ov94_0223C0D4(GTSApplicationState *param0)
     SetSubScreenViewRect(&param0->unk_BE8, 0, (256 * FX32_ONE));
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_D74[v0] = SpriteResourceCollection_New(3, v0, HEAP_ID_62);
+        param0->spriteResourceCollection[v0] = SpriteResourceCollection_New(3, v0, HEAP_ID_62);
     }
 
-    param0->unk_D84[0][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_D74[0], v1, 18, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_62);
-    param0->unk_D84[0][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_D74[1], v1, 9, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 3, HEAP_ID_62);
-    param0->unk_D84[0][2] = SpriteResourceCollection_AddFrom(param0->unk_D74[2], v1, 19, 1, 0, 2, HEAP_ID_62);
-    param0->unk_D84[0][3] = SpriteResourceCollection_AddFrom(param0->unk_D74[3], v1, 20, 1, 0, 3, HEAP_ID_62);
-    param0->unk_D84[1][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_D74[0], v1, 32, 1, 1, NNS_G2D_VRAM_TYPE_2DSUB, HEAP_ID_62);
-    param0->unk_D84[1][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_D74[1], v1, 8, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 9, HEAP_ID_62);
-    param0->unk_D84[1][2] = SpriteResourceCollection_AddFrom(param0->unk_D74[2], v1, 33, 1, 1, 2, HEAP_ID_62);
-    param0->unk_D84[1][3] = SpriteResourceCollection_AddFrom(param0->unk_D74[3], v1, 34, 1, 1, 3, HEAP_ID_62);
+    param0->spriteResource[0][0] = SpriteResourceCollection_AddTilesFrom(param0->spriteResourceCollection[0], v1, 18, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_62);
+    param0->spriteResource[0][1] = SpriteResourceCollection_AddPaletteFrom(param0->spriteResourceCollection[1], v1, 9, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 3, HEAP_ID_62);
+    param0->spriteResource[0][2] = SpriteResourceCollection_AddFrom(param0->spriteResourceCollection[2], v1, 19, 1, 0, 2, HEAP_ID_62);
+    param0->spriteResource[0][3] = SpriteResourceCollection_AddFrom(param0->spriteResourceCollection[3], v1, 20, 1, 0, 3, HEAP_ID_62);
 
-    SpriteTransfer_RequestChar(param0->unk_D84[0][0]);
-    SpriteTransfer_RequestChar(param0->unk_D84[1][0]);
-    SpriteTransfer_RequestPlttWholeRange(param0->unk_D84[0][1]);
-    SpriteTransfer_RequestPlttWholeRange(param0->unk_D84[1][1]);
+    param0->spriteResource[1][0] = SpriteResourceCollection_AddTilesFrom(param0->spriteResourceCollection[0], v1, 32, 1, 1, NNS_G2D_VRAM_TYPE_2DSUB, HEAP_ID_62);
+    param0->spriteResource[1][1] = SpriteResourceCollection_AddPaletteFrom(param0->spriteResourceCollection[1], v1, 8, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 9, HEAP_ID_62);
+    param0->spriteResource[1][2] = SpriteResourceCollection_AddFrom(param0->spriteResourceCollection[2], v1, 33, 1, 1, 2, HEAP_ID_62);
+    param0->spriteResource[1][3] = SpriteResourceCollection_AddFrom(param0->spriteResourceCollection[3], v1, 34, 1, 1, 3, HEAP_ID_62);
+
+    SpriteTransfer_RequestChar(param0->spriteResource[0][0]);
+    SpriteTransfer_RequestChar(param0->spriteResource[1][0]);
+    SpriteTransfer_RequestPlttWholeRange(param0->spriteResource[0][1]);
+    SpriteTransfer_RequestPlttWholeRange(param0->spriteResource[1][1]);
 
     {
         void *v2;
@@ -391,8 +392,8 @@ static void ov94_0223C32C(GTSApplicationState *param0)
 {
     int v0;
 
-    SpriteResourcesHeader_Init(&param0->unk_DB4, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, param0->unk_D74[0], param0->unk_D74[1], param0->unk_D74[2], param0->unk_D74[3], NULL, NULL);
-    SpriteResourcesHeader_Init(&param0->unk_DD8, 1, 1, 1, 1, 0xffffffff, 0xffffffff, 0, 0, param0->unk_D74[0], param0->unk_D74[1], param0->unk_D74[2], param0->unk_D74[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&param0->unk_DB4, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, param0->spriteResourceCollection[0], param0->spriteResourceCollection[1], param0->spriteResourceCollection[2], param0->spriteResourceCollection[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&param0->unk_DD8, 1, 1, 1, 1, 0xffffffff, 0xffffffff, 0, 0, param0->spriteResourceCollection[0], param0->spriteResourceCollection[1], param0->spriteResourceCollection[2], param0->spriteResourceCollection[3], NULL, NULL);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
@@ -506,13 +507,13 @@ static void ov94_0223C508(GTSApplicationState *param0)
 
     ov94_022443B8(param0);
 
-    SpriteTransfer_ResetCharTransfer(param0->unk_D84[0][0]);
-    SpriteTransfer_ResetCharTransfer(param0->unk_D84[1][0]);
-    SpriteTransfer_ResetPlttTransfer(param0->unk_D84[0][1]);
-    SpriteTransfer_ResetPlttTransfer(param0->unk_D84[1][1]);
+    SpriteTransfer_ResetCharTransfer(param0->spriteResource[0][0]);
+    SpriteTransfer_ResetCharTransfer(param0->spriteResource[1][0]);
+    SpriteTransfer_ResetPlttTransfer(param0->spriteResource[0][1]);
+    SpriteTransfer_ResetPlttTransfer(param0->spriteResource[1][1]);
 
     for (v0 = 0; v0 < 4; v0++) {
-        SpriteResourceCollection_Delete(param0->unk_D74[v0]);
+        SpriteResourceCollection_Delete(param0->spriteResourceCollection[v0]);
     }
 
     SpriteList_Delete(param0->unk_BE4);

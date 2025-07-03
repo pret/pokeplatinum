@@ -6,7 +6,7 @@
 #include "bg_window.h"
 #include "message.h"
 
-int ov94_0223C610(GTSApplicationState *param0, int param1);
+int GTSApplication_MainMenu_Init(GTSApplicationState *param0, int param1);
 int ov94_0223C6D4(GTSApplicationState *param0, int param1);
 int ov94_0223C6F4(GTSApplicationState *param0, int param1);
 void ov94_GTS_MainMenu_RenderButton(Window *param0, MessageLoader *gtsMessageLoader, int param2, u16 param3);

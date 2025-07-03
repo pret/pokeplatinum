@@ -358,15 +358,15 @@ static void ov94_0223FE24(GTSApplicationState *param0)
     v1.position.x = FX32_ONE * Unk_ov94_02245ED4[param0->unk_112][0];
     v1.position.y = FX32_ONE * Unk_ov94_02245ED4[param0->unk_112][1];
 
-    param0->unk_E20 = SpriteList_AddAffine(&v1);
+    param0->cursorSprite = SpriteList_AddAffine(&v1);
 
-    Sprite_SetAnimateFlag(param0->unk_E20, 1);
-    Sprite_SetAnim(param0->unk_E20, 4);
+    Sprite_SetAnimateFlag(param0->cursorSprite, 1);
+    Sprite_SetAnim(param0->cursorSprite, 4);
 
     if ((param0->unk_112 == 31) || ((param0->unk_112 >= 0) && (param0->unk_112 <= 5))) {
-        Sprite_SetExplicitPriority(param0->unk_E20, 0);
+        Sprite_SetExplicitPriority(param0->cursorSprite, 0);
     } else {
-        Sprite_SetExplicitPriority(param0->unk_E20, 1);
+        Sprite_SetExplicitPriority(param0->cursorSprite, 1);
     }
 
     for (v0 = 0; v0 < 30; v0++) {
@@ -422,7 +422,7 @@ static void ov94_0223FFC8(GTSApplicationState *param0)
         Sprite_Delete(param0->unk_F54[v0]);
     }
 
-    Sprite_Delete(param0->unk_E20);
+    Sprite_Delete(param0->cursorSprite);
 
     for (v0 = 0; v0 < 30; v0++) {
         Sprite_Delete(param0->unk_E28[v0]);
@@ -650,13 +650,13 @@ static void ov94_022404F0(GTSApplicationState *param0)
 
     if (v0) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        ov94_0223C3FC(param0->unk_E20, Unk_ov94_02245ED4[param0->unk_112][0], Unk_ov94_02245ED4[param0->unk_112][1]);
+        ov94_0223C3FC(param0->cursorSprite, Unk_ov94_02245ED4[param0->unk_112][0], Unk_ov94_02245ED4[param0->unk_112][1]);
     }
 
     if ((param0->unk_112 == 31) || ((param0->unk_112 >= 0) && (param0->unk_112 <= 5))) {
-        Sprite_SetExplicitPriority(param0->unk_E20, 0);
+        Sprite_SetExplicitPriority(param0->cursorSprite, 0);
     } else {
-        Sprite_SetExplicitPriority(param0->unk_E20, 1);
+        Sprite_SetExplicitPriority(param0->cursorSprite, 1);
     }
 }
 

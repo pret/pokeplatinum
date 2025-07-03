@@ -293,17 +293,17 @@ static void ov94_0223E770(GTSApplicationState *param0)
     v0.position.x = FX32_ONE;
     v0.position.y = FX32_ONE;
 
-    param0->unk_E20 = SpriteList_AddAffine(&v0);
+    param0->cursorSprite = SpriteList_AddAffine(&v0);
 
-    Sprite_SetAnimateFlag(param0->unk_E20, 1);
-    Sprite_SetAnim(param0->unk_E20, 0);
-    Sprite_SetExplicitPriority(param0->unk_E20, 1);
+    Sprite_SetAnimateFlag(param0->cursorSprite, 1);
+    Sprite_SetAnim(param0->cursorSprite, 0);
+    Sprite_SetExplicitPriority(param0->cursorSprite, 1);
     sub_02039734();
 }
 
 static void ov94_0223E7C4(GTSApplicationState *param0)
 {
-    Sprite_Delete(param0->unk_E20);
+    Sprite_Delete(param0->cursorSprite);
 }
 
 static const u16 Unk_ov94_02245D94[6][2] = {
@@ -456,7 +456,7 @@ static int ov94_0223EA84(GTSApplicationState *param0)
 
         if (param0->unk_10F2) {
             if (v1 >= 0) {
-                Sprite_SetAnim(param0->unk_F34[v1 + 1], 16 + v1 * 4);
+                Sprite_SetAnim(param0->avatarSprites[v1 + 1], 16 + v1 * 4);
                 param0->currentScreenInstruction = 2;
                 ov94_Setunk_18Andunk_24(param0, 3, 0);
                 param0->unk_11C = v1;
@@ -726,7 +726,7 @@ static void ov94_0223EFAC(GTSApplicationState *param0)
         v1.x = FX32_ONE * Unk_ov94_02246848[ov94_0223EF94(param0)][0];
         v1.y = FX32_ONE * Unk_ov94_02246848[ov94_0223EF94(param0)][1];
 
-        Sprite_SetPosition(param0->unk_E20, &v1);
+        Sprite_SetPosition(param0->cursorSprite, &v1);
     }
 }
 
