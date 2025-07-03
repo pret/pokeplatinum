@@ -12,7 +12,6 @@
 
 #include "overlay094/gts_application_state.h"
 #include "overlay094/ov94_0223B140.h"
-#include "overlay094/ov94_0223C610.h"
 #include "overlay094/ov94_0223D0C4.h"
 #include "overlay094/ov94_0223DC04.h"
 #include "overlay094/ov94_0223E46C.h"
@@ -23,6 +22,7 @@
 #include "overlay094/ov94_022443E0.h"
 #include "overlay094/ov94_022444C8.h"
 #include "overlay094/ov94_02244950.h"
+#include "overlay094/screens/main_menu.h"
 
 #include "bg_window.h"
 #include "char_transfer.h"
@@ -72,13 +72,13 @@ static NNSFndHeapHandle Unk_ov94_02246C04;
 // gtsApplicationScreens { init, main, exit }
 static int (*gtsApplicationScreens[][3])(GTSApplicationState *, int) = {
     { GTSApplication_InitWFCScreen, GTSApplication_WFCInit_Main, GTSApplication_WFCInit_Exit }, // wfc
-    { GTSApplication_MainMenu_Init, ov94_0223C6D4, ov94_0223C6F4 },
+    { GTSApplication_MainMenu_Init, GTSApplication_MainMenu_Main, GTSApplication_MainMenu_Exit },
     { ov94_0223D0C4, ov94_0223D19C, ov94_0223D1B0 },
     { ov94_0223DC04, ov94_0223DCE4, ov94_0223DCF8 },
     { ov94_0223E46C, ov94_0223E560, ov94_0223E574 },
     { ov94_0223FB48, ov94_0223FBBC, ov94_0223FBDC },
     { ov94_022414B8, ov94_02241548, ov94_02241568 },
-    { ov94_02242AD0, ov94_02242B14, ov94_02242B34 },
+    { GTSApplication_NetworkHandler_Init, ov94_02242B14, ov94_02242B34 },
     { ov94_022443E0, ov94_02244490, ov94_022444BC },
     { ov94_022444C8, ov94_02244678, ov94_0224484C },
 };
@@ -282,7 +282,7 @@ static void GTSApplicationState_InitPlayerData(GTSApplicationState *param0, Appl
     param0->unk_B7A.level = 0;
     param0->unk_B7A.level2 = 0;
     param0->unk_B80.species = SPECIES_NONE;
-    param0->unk_10F0 = 0;
+    param0->hasAvatarFinishedMoving = FALSE;
     param0->selectedBoxId = MAX_PC_BOXES;
     param0->deferredBoxPokemonCount = 0;
     param0->deferredBoxId = 0;

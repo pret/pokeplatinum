@@ -132,7 +132,7 @@ static void ov94_0224400C(SysTask *param0, void *param1)
         break;
     case 3:
         Sound_PlayEffect(SEQ_SE_DP_PC_LOGIN);
-        v1->unk_0C->unk_10F0 = 1;
+        v1->unk_0C->hasAvatarFinishedMoving = TRUE;
         SysTask_FinishAndFreeParam(param0);
         break;
     }
@@ -192,7 +192,7 @@ static void ov94_022440FC(SysTask *param0, void *param1)
         ov94_022441A0(v2->avatarSprites[0], 128, v1->y);
         break;
     case 3:
-        v1->unk_0C->unk_10F0 = 1;
+        v1->unk_0C->hasAvatarFinishedMoving = TRUE;
         SysTask_FinishAndFreeParam(param0);
         break;
     }
@@ -312,7 +312,7 @@ static void ov94_02244378(NNSG2dCharacterData *param0, NNSG2dPaletteData *param1
 
 void ov94_022443B8(GTSApplicationState *param0)
 {
-    if (param0->unk_10F0) {
+    if (param0->hasAvatarFinishedMoving) {
         Heap_FreeToHeap(param0->unk_10FC);
         Heap_FreeToHeap(param0->unk_10F4);
     }

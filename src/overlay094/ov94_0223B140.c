@@ -22,7 +22,7 @@ typedef enum GTSNetworkStatus {
     UnkEnum_ov94_0223B15C_05,
     UnkEnum_ov94_0223B15C_06,
     UnkEnum_ov94_0223B15C_07,
-    UnkEnum_ov94_0223B15C_08,
+    NETWORK_STATUS_GET_LISTED_POKEMON_PENDING,
     UnkEnum_ov94_0223B15C_09,
     UnkEnum_ov94_0223B15C_10,
     UnkEnum_ov94_0223B15C_11,
@@ -198,7 +198,7 @@ void ov94_0223B15C(void)
         }
 
         break;
-    case UnkEnum_ov94_0223B15C_08:
+    case NETWORK_STATUS_GET_LISTED_POKEMON_PENDING:
         switch (HTTP_GetRequestStatus()) {
         case 1:
             Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
@@ -596,7 +596,7 @@ void ov94_0223B888(UnkStruct_ov94_0223BA88 *param0)
     }
 }
 
-void ov94_0223B8D8(UnkStruct_ov94_0223BA88 *param0)
+void GTSNetworking_GetListedPokemon(UnkStruct_ov94_0223BA88 *param0)
 {
     Unk_ov94_02246AC0.unk_140 = (u8 *)param0;
 
@@ -608,7 +608,7 @@ void ov94_0223B8D8(UnkStruct_ov94_0223BA88 *param0)
             0,
             param0,
             sizeof(UnkStruct_ov94_0223BA88))) {
-        Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_08;
+        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_GET_LISTED_POKEMON_PENDING;
     } else {
         Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
         Unk_ov94_02246AC0.unk_04 = -13;

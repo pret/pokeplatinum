@@ -16,10 +16,10 @@
 #include "overlay094/gts_application_state.h"
 #include "overlay094/ov94_0223B140.h"
 #include "overlay094/ov94_0223BCB0.h"
-#include "overlay094/ov94_0223C610.h"
 #include "overlay094/ov94_0223FB48.h"
 #include "overlay094/ov94_02243EF8.h"
 #include "overlay094/ov94_02244950.h"
+#include "overlay094/screens/main_menu.h"
 #include "overlay094/struct_ov94_0223BA88.h"
 #include "savedata/save_table.h"
 
@@ -98,8 +98,8 @@ static int ov94_02243974(GTSApplicationState *param0);
 static int ov94_02243A04(GTSApplicationState *param0);
 static int ov94_02243588(GTSApplicationState *param0);
 static int ov94_02243568(GTSApplicationState *param0);
-static int ov94_02243398(GTSApplicationState *param0);
-static int ov94_02243378(GTSApplicationState *param0);
+static int GTSApplication_NetworkHandler_GetListedPokemonResponse(GTSApplicationState *param0);
+static int GTSApplication_NetworkHandler_GetListedPokemonRequest(GTSApplicationState *param0);
 static int ov94_02243658(GTSApplicationState *param0);
 static int ov94_022436F0(GTSApplicationState *param0);
 static int ov94_022437C0(GTSApplicationState *param0);
@@ -132,15 +132,15 @@ static int (*Unk_ov94_022469A0[])(GTSApplicationState *) = {
     ov94_022432F4,
     ov94_022437AC,
     ov94_02243884,
-    ov94_02243658,
+    ov94_02243658, // retrieved pokemon from status call
     ov94_022436D4,
     ov94_022436F0,
     ov94_022437C0,
     ov94_022437D8,
     ov94_022437F4,
-    ov94_02243378,
-    ov94_02243398,
-    ov94_02243568,
+    GTSApplication_NetworkHandler_GetListedPokemonRequest, // get pokemon status
+    GTSApplication_NetworkHandler_GetListedPokemonResponse, // generic network handler?
+    ov94_02243568, // get pokemon, go 27
     ov94_02243588,
     ov94_02243554,
     ov94_02243974,
@@ -150,23 +150,23 @@ static int (*Unk_ov94_022469A0[])(GTSApplicationState *) = {
     ov94_02243A04,
     ov94_02243A28,
     ov94_02243A44,
-    ov94_02243A90,
-    ov94_02243AE8,
-    ov94_02243920,
+    ov94_02243A90, // exit
+    ov94_02243AE8, // wait for text
+    ov94_02243920, // comms error
     ov94_02243948
 };
 
-int ov94_02242AD0(GTSApplicationState *param0, int param1)
+int GTSApplication_NetworkHandler_Init(GTSApplicationState *appState, int unused1)
 {
-    ov94_02242D84(param0);
-    ov94_02242B54(param0->bgConfig);
-    ov94_02242CAC(param0);
-    ov94_02242D38(param0);
+    ov94_02242D84(appState);
+    ov94_02242B54(appState->bgConfig);
+    ov94_02242CAC(appState);
+    ov94_02242D38(appState);
 
     StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
-    ov94_02245934(param0);
+    ov94_02245934(appState);
 
-    param0->currentScreenInstruction = 0;
+    appState->currentScreenInstruction = 0;
 
     return 2;
 }
@@ -334,7 +334,7 @@ static void ov94_02242CAC(GTSApplicationState *param0)
     LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, 1, 10, Options_Frame(param0->unk_00->options), HEAP_ID_62);
     LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_0, (1 + (18 + 12)), 11, 0, HEAP_ID_62);
 
-    if (param0->unk_10F0 == 0) {
+    if (param0->hasAvatarFinishedMoving == FALSE) {
         Bg_ToggleLayer(BG_LAYER_SUB_0, 0);
         Bg_ToggleLayer(BG_LAYER_SUB_1, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 0);
@@ -744,9 +744,9 @@ static int ov94_022432F4(GTSApplicationState *param0)
     return 3;
 }
 
-static int ov94_02243378(GTSApplicationState *param0)
+static int GTSApplication_NetworkHandler_GetListedPokemonRequest(GTSApplicationState *param0)
 {
-    ov94_0223B8D8(&param0->unk_12C);
+    GTSNetworking_GetListedPokemon(&param0->unk_12C);
 
     param0->currentScreenInstruction = 25;
     param0->networkTimeoutCounter = 0;
@@ -754,17 +754,17 @@ static int ov94_02243378(GTSApplicationState *param0)
     return 3;
 }
 
-static int ov94_02243398(GTSApplicationState *param0)
+static int GTSApplication_NetworkHandler_GetListedPokemonResponse(GTSApplicationState *param0)
 {
     if (GTSNetworking_RequestComplete()) {
-        s32 v0 = GTSNetworking_GetErrorCode();
+        s32 v0 = GTSNetworking_GetErrorCode(); // this is 1 (if pokemon returned), otherwise a value based off of the first byte returned
         param0->networkTimeoutCounter = 0;
 
         switch (v0) {
-        case 0:
+        case 0: // first byte = 4
             param0->currentScreenInstruction = 26;
             break;
-        case 1:
+        case 1: // get pokemon
             param0->isPokemonListed = 1;
 
             switch (ov94_02243E84(param0, &param0->unk_12C)) {
@@ -784,7 +784,7 @@ static int ov94_02243398(GTSApplicationState *param0)
                 break;
             }
             break;
-        case -3:
+        case -3: // first byte = 5
             param0->isPokemonListed = 0;
 
             if (sub_0202DA60(param0->unk_00->unk_00)) {
@@ -793,7 +793,7 @@ static int ov94_02243398(GTSApplicationState *param0)
                 sub_0202DA70(param0->unk_00->unk_00, v1);
                 StringTemplate_SetNickname(param0->stringTemplate, 0, Pokemon_GetBoxPokemon(v1));
 
-                param0->unk_28 = 2;
+                param0->unk_28 = pl_msg_00000671_00002;
                 param0->currentScreenInstruction = 34;
 
                 ov94_02243BC4(param0, v1, sub_0202DAAC(param0->unk_00->unk_00), 0);
@@ -804,7 +804,7 @@ static int ov94_02243398(GTSApplicationState *param0)
                 ov94_0224362C(param0);
             }
             break;
-        case -4:
+        case -4: // first byte = 3
             param0->isPokemonListed = 0;
 
             if (sub_0202DA60(param0->unk_00->unk_00)) {
@@ -813,7 +813,7 @@ static int ov94_02243398(GTSApplicationState *param0)
                 sub_0202DA70(param0->unk_00->unk_00, v2);
                 StringTemplate_SetNickname(param0->stringTemplate, 0, Pokemon_GetBoxPokemon(v2));
 
-                param0->unk_28 = 3;
+                param0->unk_28 = pl_msg_00000671_00003;
                 param0->currentScreenInstruction = 34;
 
                 sub_0202DA68(param0->unk_00->unk_00, 0);
@@ -822,12 +822,12 @@ static int ov94_02243398(GTSApplicationState *param0)
             break;
         case -12:
         case -15:
-        case -2:
+        case -2: // first byte = 14
         case -14:
             param0->unk_3C = v0;
             param0->currentScreenInstruction = 38;
             break;
-        case -13:
+        case -13: // catch-all
             NetworkError_DisplayNetworkError(HEAP_ID_APPLICATION, 1, 0);
             break;
         }

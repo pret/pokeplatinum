@@ -15,7 +15,7 @@ s32 GTSNetworking_GetErrorCode(void);
 void ov94_0223B7E4(const UnkStruct_ov94_0223BA88 *param0);
 void ov94_0223B834(void);
 void ov94_0223B888(UnkStruct_ov94_0223BA88 *param0);
-void ov94_0223B8D8(UnkStruct_ov94_0223BA88 *param0);
+void GTSNetworking_GetListedPokemon(UnkStruct_ov94_0223BA88 *param0);
 void ov94_0223B928(void);
 void ov94_0223B96C(void);
 void ov94_0223B9B0(const UnkStruct_ov94_0223BA88_sub3 *param0, s32 param1, UnkStruct_ov94_0223BA88 *param2);

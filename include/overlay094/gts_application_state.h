@@ -79,7 +79,7 @@ typedef struct GTSApplicationState {
     int unk_28;
     int currentScreenInstruction; // some kind of instruction pointer
     int nextScreenInstruction;
-    u16 unk_34;
+    u16 hasPlayerDescended;
     u16 isPokemonListed;
     u16 unk_38;
     u16 networkTimer;
@@ -162,7 +162,7 @@ typedef struct GTSApplicationState {
     u16 unk_10E8;
     u16 unk_10EA;
     SysTask *playerAvatarAnimationTask;
-    u16 unk_10F0;
+    u16 hasAvatarFinishedMoving;
     u16 unk_10F2;
     void *unk_10F4;
     NNSG2dCharacterData *unk_10F8;
