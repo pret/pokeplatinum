@@ -114,7 +114,7 @@ void BlendPalette(const u16 *src, u16 *dest, u16 size, u8 fraction, u16 target);
 void BlendPalettes(const u16 *sources, u16 *dests, u16 toBlend, u8 fraction, u16 target);
 void TintPalette(u16 *palette, int numColorsToTint, int tintR, int tintG, int tintB);
 
-PaletteData *PaletteData_New(enum HeapId heapID);
+PaletteData *PaletteData_New(enum HeapID heapID);
 void PaletteData_Free(PaletteData *paletteData);
 void PaletteData_InitBuffer(PaletteData *paletteData, enum PaletteBufferID bufferID, void *unfaded, void *faded, u32 size);
 void PaletteData_AllocBuffer(PaletteData *paletteData, enum PaletteBufferID bufferID, u32 size, u32 heapID);

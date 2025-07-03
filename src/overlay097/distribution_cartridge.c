@@ -64,7 +64,7 @@ static const u8 sSignaturePubKey[] = {
 
 static u32 sHeapID;
 
-void DistributionCartridge_UseHeap(enum HeapId heapID)
+void DistributionCartridge_UseHeap(enum HeapID heapID)
 {
     sHeapID = heapID;
 }

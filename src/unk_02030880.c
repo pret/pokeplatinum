@@ -117,7 +117,7 @@ static u16 sub_02030954(SaveData *saveData, BattleFrontierStage *param1, int par
     }
 }
 
-BOOL sub_020309A0(SaveData *saveData, int param1, int param2, int param3, int param4, enum HeapId heapID, int *param6, int *param7)
+BOOL sub_020309A0(SaveData *saveData, int param1, int param2, int param3, int param4, enum HeapID heapID, int *param6, int *param7)
 {
     BattleFrontier *frontier;
     BattleFrontierStage *v1;

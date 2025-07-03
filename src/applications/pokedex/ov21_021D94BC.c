@@ -89,9 +89,9 @@ typedef struct {
     BOOL *unk_134;
 } UnkStruct_ov21_021DC96C;
 
-static UnkStruct_ov21_021D95B8 *ov21_021D9534(enum HeapId heapID, PokedexApp *param1);
-static UnkStruct_ov21_021D95CC *ov21_021D957C(enum HeapId heapID, PokedexApp *param1);
-static UnkStruct_ov21_021D4660 *ov21_021D95B4(enum HeapId heapID, PokedexApp *param1);
+static UnkStruct_ov21_021D95B8 *ov21_021D9534(enum HeapID heapID, PokedexApp *param1);
+static UnkStruct_ov21_021D95CC *ov21_021D957C(enum HeapID heapID, PokedexApp *param1);
+static UnkStruct_ov21_021D4660 *ov21_021D95B4(enum HeapID heapID, PokedexApp *param1);
 static void ov21_021D95B8(UnkStruct_ov21_021D95B8 *param0);
 static void ov21_021D95CC(UnkStruct_ov21_021D95CC *param0);
 static void ov21_021D95E0(UnkStruct_ov21_021D4660 *param0);
@@ -141,14 +141,14 @@ static void ov21_021DC088(UnkStruct_ov21_021DC96C *param0, PokedexDisplayBox *di
 static void ov21_021DC12C(UnkStruct_ov21_021DC96C *param0, PokedexDisplayBox *displayBox, PokedexTextManager *textMan);
 static void ov21_021DC1E8(UnkStruct_ov21_021DC96C *param0, PokedexDisplayBox *displayBox, PokedexTextManager *textMan);
 static void ov21_021DC2A4(UnkStruct_ov21_021DC96C *param0, PokedexDisplayBox *displayBox, PokedexTextManager *textMan);
-static void ov21_021D9ADC(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapId heapID);
+static void ov21_021D9ADC(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapID heapID);
 static void ov21_021D9B24(UnkStruct_ov21_021D9B24 *param0);
-static void ov21_021D9B34(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapId heapID);
-static void ov21_021D9B58(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapId heapID, int param3, int param4);
+static void ov21_021D9B34(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapID heapID);
+static void ov21_021D9B58(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapID heapID, int param3, int param4);
 static void ov21_021D9B98(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1);
 static void ov21_021D9BB0(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, int param2, int param3);
 static void ov21_021D9B04(UnkStruct_ov21_021D9B24 *param0);
-static void ov21_021D9BEC(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapId heapID);
+static void ov21_021D9BEC(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapID heapID);
 static void ov21_021D9C90(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1);
 static void ov21_021D9D00(UnkStruct_ov21_021D9B24 *param0);
 static void ov21_021D9D18(u32 param0, enum TouchScreenButtonState param1, void *param2);
@@ -156,41 +156,41 @@ static void ov21_021D9CA8(UnkStruct_ov21_021D9B24 *param0);
 static void ov21_021D9CB8(UnkStruct_ov21_021D9B24 *param0, int param1);
 static void ov21_021D9D50(UnkStruct_ov21_021D9B24 *param0);
 static void ov21_021D9D68(UnkStruct_ov21_021D9B24 *param0);
-static void ov21_021D9D78(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapId heapID);
+static void ov21_021D9D78(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapID heapID);
 static void ov21_021D9E08(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1);
 static void ov21_021D9E90(u32 param0, enum TouchScreenButtonState param1, void *param2);
-static void ov21_021D9EB4(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapId heapID);
+static void ov21_021D9EB4(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapID heapID);
 static void ov21_021D9F44(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1);
 static void ov21_021D9FF8(u32 param0, enum TouchScreenButtonState param1, void *param2);
-static void ov21_021DA018(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapId heapID);
+static void ov21_021DA018(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapID heapID);
 static void ov21_021DA0BC(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1);
 static void ov21_021DA18C(u32 param0, enum TouchScreenButtonState param1, void *param2);
 static void ov21_021DA0FC(UnkStruct_ov21_021D9B24 *param0, int param1);
-static void ov21_021DA1C8(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapId heapID);
+static void ov21_021DA1C8(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapID heapID);
 static void ov21_021DA280(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1);
 static void ov21_021DA2C0(u32 param0, enum TouchScreenButtonState param1, void *param2);
 static void ov21_021DA308(UnkStruct_ov21_021D9B24 *param0, int param1);
-static void ov21_021DA38C(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapId heapID);
+static void ov21_021DA38C(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapID heapID);
 static void ov21_021DA41C(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1);
 static void ov21_021DA514(u32 param0, enum TouchScreenButtonState param1, void *param2);
 static void ov21_021DB3C8(UnkStruct_ov21_021D9B24 *param0);
-static void ov21_021DB3E0(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID);
-static void ov21_021DB3EC(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID, int param2, int param3);
+static void ov21_021DB3E0(UnkStruct_ov21_021D9B24 *param0, enum HeapID heapID);
+static void ov21_021DB3EC(UnkStruct_ov21_021D9B24 *param0, enum HeapID heapID, int param2, int param3);
 static void ov21_021DB428(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1);
 static void ov21_021DB2FC(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1);
 static void ov21_021DB38C(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, int param2, int param3);
-static void ov21_021DB468(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID);
+static void ov21_021DB468(UnkStruct_ov21_021D9B24 *param0, enum HeapID heapID);
 static void ov21_021DA534(PokedexCursorData *param0, int param1);
 static void ov21_021DA5A8(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1);
-static void ov21_021DA6B0(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID);
+static void ov21_021DA6B0(UnkStruct_ov21_021D9B24 *param0, enum HeapID heapID);
 static void ov21_021DA7B0(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1);
-static void ov21_021DA888(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID);
+static void ov21_021DA888(UnkStruct_ov21_021D9B24 *param0, enum HeapID heapID);
 static void ov21_021DA988(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1);
-static void ov21_021DAAD4(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID);
+static void ov21_021DAAD4(UnkStruct_ov21_021D9B24 *param0, enum HeapID heapID);
 static void ov21_021DAC08(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1);
-static void ov21_021DAD74(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID);
+static void ov21_021DAD74(UnkStruct_ov21_021D9B24 *param0, enum HeapID heapID);
 static void ov21_021DAED8(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1);
-static void ov21_021DB02C(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID);
+static void ov21_021DB02C(UnkStruct_ov21_021D9B24 *param0, enum HeapID heapID);
 static void ov21_021DB12C(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1);
 static void ov21_021DB480(UnkStruct_ov21_021D95CC *param0, const UnkStruct_ov21_021D9B24 *param1, const UnkStruct_ov21_021D95B8 *param2);
 static void ov21_021DB49C(UnkStruct_ov21_021D95CC *param0, const UnkStruct_ov21_021D9B24 *param1, const UnkStruct_ov21_021D95B8 *param2);
@@ -207,7 +207,7 @@ static void ov21_021DC600(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
 static void ov21_021DC67C(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, int param2);
 static void ov21_021DC720(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1);
 
-void ov21_021D94BC(UnkStruct_ov21_021E68F4 *param0, PokedexApp *param1, enum HeapId heapID)
+void ov21_021D94BC(UnkStruct_ov21_021E68F4 *param0, PokedexApp *param1, enum HeapID heapID)
 {
     UnkStruct_ov21_021D95B8 *v0 = ov21_021D9534(heapID, param1);
     UnkStruct_ov21_021D95CC *v1 = ov21_021D957C(heapID, param1);
@@ -232,7 +232,7 @@ void ov21_021D951C(UnkStruct_ov21_021E68F4 *param0)
     ov21_021D95E0(param0->unk_20);
 }
 
-static UnkStruct_ov21_021D95B8 *ov21_021D9534(enum HeapId heapID, PokedexApp *param1)
+static UnkStruct_ov21_021D95B8 *ov21_021D9534(enum HeapID heapID, PokedexApp *param1)
 {
     UnkStruct_ov21_021D95B8 *v0;
     UnkStruct_ov21_021E68F4 *v1;
@@ -250,7 +250,7 @@ static UnkStruct_ov21_021D95B8 *ov21_021D9534(enum HeapId heapID, PokedexApp *pa
     return v0;
 }
 
-static UnkStruct_ov21_021D95CC *ov21_021D957C(enum HeapId heapID, PokedexApp *param1)
+static UnkStruct_ov21_021D95CC *ov21_021D957C(enum HeapID heapID, PokedexApp *param1)
 {
     UnkStruct_ov21_021D95CC *v0;
     UnkStruct_ov21_021E68F4 *v1;
@@ -265,7 +265,7 @@ static UnkStruct_ov21_021D95CC *ov21_021D957C(enum HeapId heapID, PokedexApp *pa
     return v0;
 }
 
-static UnkStruct_ov21_021D4660 *ov21_021D95B4(enum HeapId heapID, PokedexApp *param1)
+static UnkStruct_ov21_021D4660 *ov21_021D95B4(enum HeapID heapID, PokedexApp *param1)
 {
     return NULL;
 }
@@ -591,7 +591,7 @@ static void ov21_021D9A74(UnkStruct_ov21_021D95CC *param0, const UnkStruct_ov21_
     Bg_ScheduleTilemapTransfer(param0->unk_00->bgConfig, 6);
 }
 
-static void ov21_021D9ADC(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapId heapID)
+static void ov21_021D9ADC(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapID heapID)
 {
     ov21_021D9BEC(param0, param1, heapID);
     ov21_021D9B58(param0, param1, heapID, param0->unk_24, param0->unk_28);
@@ -617,13 +617,13 @@ static void ov21_021D9B24(UnkStruct_ov21_021D9B24 *param0)
     ov21_021D9D50(param0);
 }
 
-static void ov21_021D9B34(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapId heapID)
+static void ov21_021D9B34(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapID heapID)
 {
     ov21_021D9D50(param0);
     ov21_021D9B58(param0, param1, heapID, param0->unk_24, param0->unk_28);
 }
 
-static void ov21_021D9B58(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapId heapID, int param3, int param4)
+static void ov21_021D9B58(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapID heapID, int param3, int param4)
 {
     switch (param3) {
     case 0:
@@ -677,7 +677,7 @@ static void ov21_021D9BB0(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
     }
 }
 
-static void ov21_021D9BEC(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapId heapID)
+static void ov21_021D9BEC(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapID heapID)
 {
     param0->unk_04 = Heap_AllocFromHeap(heapID, sizeof(TouchScreenHitTable) * 6);
 
@@ -781,7 +781,7 @@ static void ov21_021D9D68(UnkStruct_ov21_021D9B24 *param0)
     }
 }
 
-static void ov21_021D9D78(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapId heapID)
+static void ov21_021D9D78(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapID heapID)
 {
     int v0, v1;
     int v2, v3;
@@ -864,7 +864,7 @@ static void ov21_021D9E90(u32 param0, enum TouchScreenButtonState param1, void *
     }
 }
 
-static void ov21_021D9EB4(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapId heapID)
+static void ov21_021D9EB4(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapID heapID)
 {
     int v0, v1;
     int v2, v3;
@@ -964,7 +964,7 @@ static void ov21_021D9FF8(u32 param0, enum TouchScreenButtonState param1, void *
     }
 }
 
-static void ov21_021DA018(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapId heapID)
+static void ov21_021DA018(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapID heapID)
 {
     int v0, v1;
     int v2, v3;
@@ -1078,7 +1078,7 @@ static void ov21_021DA18C(u32 param0, enum TouchScreenButtonState param1, void *
     }
 }
 
-static void ov21_021DA1C8(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapId heapID)
+static void ov21_021DA1C8(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapID heapID)
 {
     int v0, v1;
     int v2, v3;
@@ -1197,7 +1197,7 @@ static void ov21_021DA308(UnkStruct_ov21_021D9B24 *param0, int param1)
     }
 }
 
-static void ov21_021DA38C(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapId heapID)
+static void ov21_021DA38C(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapID heapID)
 {
     int v0, v1;
     int v2, v3;
@@ -1416,7 +1416,7 @@ static void ov21_021DA5A8(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
     }
 }
 
-static void ov21_021DA6B0(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID)
+static void ov21_021DA6B0(UnkStruct_ov21_021D9B24 *param0, enum HeapID heapID)
 {
     int v0, v1;
     int v2, v3;
@@ -1527,7 +1527,7 @@ static void ov21_021DA7B0(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
     }
 }
 
-static void ov21_021DA888(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID)
+static void ov21_021DA888(UnkStruct_ov21_021D9B24 *param0, enum HeapID heapID)
 {
     int v0, v1;
     int v2, v3;
@@ -1654,7 +1654,7 @@ static void ov21_021DA988(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
     }
 }
 
-static void ov21_021DAAD4(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID)
+static void ov21_021DAAD4(UnkStruct_ov21_021D9B24 *param0, enum HeapID heapID)
 {
     int v0, v1;
     int v2, v3;
@@ -1806,7 +1806,7 @@ static void ov21_021DAC08(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
     }
 }
 
-static void ov21_021DAD74(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID)
+static void ov21_021DAD74(UnkStruct_ov21_021D9B24 *param0, enum HeapID heapID)
 {
     int v0, v1;
     int v2, v3;
@@ -1968,7 +1968,7 @@ static void ov21_021DAED8(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
     }
 }
 
-static void ov21_021DB02C(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID)
+static void ov21_021DB02C(UnkStruct_ov21_021D9B24 *param0, enum HeapID heapID)
 {
     int v0, v1;
     int v2, v3;
@@ -2173,12 +2173,12 @@ static void ov21_021DB3C8(UnkStruct_ov21_021D9B24 *param0)
     param0->unk_1C = NULL;
 }
 
-static void ov21_021DB3E0(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID)
+static void ov21_021DB3E0(UnkStruct_ov21_021D9B24 *param0, enum HeapID heapID)
 {
     ov21_021DB3EC(param0, heapID, param0->unk_24, param0->unk_28);
 }
 
-static void ov21_021DB3EC(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID, int param2, int param3)
+static void ov21_021DB3EC(UnkStruct_ov21_021D9B24 *param0, enum HeapID heapID, int param2, int param3)
 {
     switch (param2) {
     case 0:
@@ -2227,7 +2227,7 @@ static void ov21_021DB428(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
     PokedexPanel_Move(param0->unk_18, 4, v0);
 }
 
-static void ov21_021DB468(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID)
+static void ov21_021DB468(UnkStruct_ov21_021D9B24 *param0, enum HeapID heapID)
 {
     ov21_021DB3C8(param0);
     ov21_021DB3EC(param0, heapID, param0->unk_24, param0->unk_28);

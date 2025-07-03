@@ -29,7 +29,7 @@ static const u8 messageBankLanguageOrder[NUM_LANGUAGES] = {
 
 static inline int LanguageIndex_Guarded(int languageIndex);
 static inline BOOL ValidLanguage(int species, int languageIndex);
-static Strbuf *LoadMessage(int bankID, int entryID, enum HeapId heapID);
+static Strbuf *LoadMessage(int bankID, int entryID, enum HeapID heapID);
 static void GetLanguageIndex(int species, int language, int *dexNum, int *languageIndexUnguarded, int *languageIndex);
 
 void PokedexText_Free(Strbuf *strbuf)
@@ -42,7 +42,7 @@ int PokedexText_ForeignLanguage(int languageIndex)
     return PokedexLanguage_IndexToLanguage(messageBankLanguageOrder[languageIndex + 1]);
 }
 
-Strbuf *PokedexText_NameNumber(int species, int language, enum HeapId heapID)
+Strbuf *PokedexText_NameNumber(int species, int language, enum HeapID heapID)
 {
     int dexNum;
     int languageIndex_unguarded;
@@ -69,7 +69,7 @@ Strbuf *PokedexText_NameNumber(int species, int language, enum HeapId heapID)
     return LoadMessage(bankID, index, heapID);
 }
 
-Strbuf *PokedexText_Category(int species, int language, enum HeapId heapID)
+Strbuf *PokedexText_Category(int species, int language, enum HeapID heapID)
 {
     int dexNum;
     int languageIndex_unguarded;
@@ -97,7 +97,7 @@ Strbuf *PokedexText_Category(int species, int language, enum HeapId heapID)
     return LoadMessage(bankID, index, heapID);
 }
 
-Strbuf *PokedexText_DexEntry(int species, int language, int entryOffset, enum HeapId heapID)
+Strbuf *PokedexText_DexEntry(int species, int language, int entryOffset, enum HeapID heapID)
 {
     int dexNum;
     int languageIndex_unguarded;
@@ -136,7 +136,7 @@ static inline BOOL ValidLanguage(int species, int languageIndex)
     return TRUE;
 }
 
-static Strbuf *LoadMessage(int bankID, int entryID, enum HeapId heapID)
+static Strbuf *LoadMessage(int bankID, int entryID, enum HeapID heapID)
 {
     MessageLoader *messageLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, bankID, heapID);
 

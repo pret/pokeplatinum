@@ -6,6 +6,6 @@
 
 #include "heap.h"
 
-typedef void (*UnkFuncPtr_ov21_021E9B74)(UnkStruct_ov21_021E68F4 *param0, PokedexApp *param1, enum HeapId heapID);
+typedef void (*UnkFuncPtr_ov21_021E9B74)(UnkStruct_ov21_021E68F4 *param0, PokedexApp *param1, enum HeapID heapID);
 
 #endif // POKEPLATINUM_FUNCPTR_OV21_021E9B74_H

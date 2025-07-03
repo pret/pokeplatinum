@@ -15,7 +15,7 @@ typedef struct UnkStruct_ov70_0225C894_t {
     UnkStruct_ov63_0222BCE8 *unk_00;
 } UnkStruct_ov70_0225C894;
 
-UnkStruct_ov70_0225C894 *ov70_0225C858(enum HeapId heapID)
+UnkStruct_ov70_0225C894 *ov70_0225C858(enum HeapID heapID)
 {
     UnkStruct_ov70_0225C894 *v0;
     void *v1;

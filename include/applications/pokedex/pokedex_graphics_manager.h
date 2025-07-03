@@ -5,7 +5,7 @@
 
 typedef struct PokedexGraphicsManager {
     int state;
-    enum HeapId heapID;
+    enum HeapID heapID;
     void *pageGraphics;
 } PokedexGraphicsManager;
 

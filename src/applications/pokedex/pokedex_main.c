@@ -77,7 +77,7 @@ static void ExitTransition(PokedexApp **appPtr);
 static BOOL TransitionComplete(PokedexApp **appPtr);
 static void FreePokedexApp(PokedexApp *pokedexApp);
 static void SetGXBanks(void);
-static void InitG2(enum HeapId heapID);
+static void InitG2(enum HeapID heapID);
 static void InitG3(void);
 static void ResetFrm(void);
 static void ov21_021D1EEC(PokedexApp *pokedexApp);
@@ -249,7 +249,7 @@ const static UnkFuncPtr_ov21_021E9B9C Unk_ov21_021E9B54[8] = {
     ov21_021E84E4
 };
 
-PokedexApp *PokedexMain_NewPokedexApp(enum HeapId heapID, const PokedexOverlayArgs *pokedexOverlayArgs)
+PokedexApp *PokedexMain_NewPokedexApp(enum HeapID heapID, const PokedexOverlayArgs *pokedexOverlayArgs)
 {
     int i;
     PokedexDefaultSortParams sortParams;
@@ -363,7 +363,7 @@ BOOL ov21_021D10B8(PokedexApp *pokedexApp)
     return 0;
 }
 
-void PokedexMain_InitGX(enum HeapId heapID)
+void PokedexMain_InitGX(enum HeapID heapID)
 {
     SetGXBanks();
     InitG2(heapID);
@@ -890,7 +890,7 @@ u32 PokedexMain_DisplayRotomSprite(PokedexGraphicData *pokedexGraphicData, const
     return form;
 }
 
-Strbuf *PokedexMain_GetMessage(int entryID, enum HeapId heapID)
+Strbuf *PokedexMain_GetMessage(int entryID, enum HeapID heapID)
 {
     MessageLoader *pokedexMessageBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
 
@@ -973,7 +973,7 @@ static void SetGXBanks(void)
     GXLayers_SetBanks(&banks);
 }
 
-static void InitG2(enum HeapId heapID)
+static void InitG2(enum HeapID heapID)
 {
     NNS_G2dInitOamManagerModule();
     RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, heapID);

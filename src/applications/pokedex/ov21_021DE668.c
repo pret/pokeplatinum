@@ -47,8 +47,8 @@ typedef struct {
     CursorTransformation unk_54;
 } UnkStruct_ov21_021DF374;
 
-static UnkStruct_ov21_021DE6D4 *ov21_021DE6E8(enum HeapId heapID, PokedexApp *param1);
-static PokedexGraphicData **ov21_021DE724(enum HeapId heapID, PokedexApp *param1);
+static UnkStruct_ov21_021DE6D4 *ov21_021DE6E8(enum HeapID heapID, PokedexApp *param1);
+static PokedexGraphicData **ov21_021DE724(enum HeapID heapID, PokedexApp *param1);
 static void ov21_021DE74C(UnkStruct_ov21_021DE6D4 *param0);
 static void ov21_021DE760(PokedexGraphicData **param0);
 static int ov21_021DE774(void);
@@ -95,7 +95,7 @@ static void ov21_021DEF3C(PokedexGraphicData **param0);
 static void ov21_021DEF54(PokedexGraphicData **param0, const UnkStruct_ov21_021DE6D4 *param1);
 static void ov21_021DEF8C(PokedexGraphicData **param0);
 
-void ov21_021DE668(UnkStruct_ov21_021E68F4 *param0, PokedexApp *param1, enum HeapId heapID)
+void ov21_021DE668(UnkStruct_ov21_021E68F4 *param0, PokedexApp *param1, enum HeapID heapID)
 {
     UnkStruct_ov21_021DE6D4 *v0;
     PokedexGraphicData **v1;
@@ -139,7 +139,7 @@ BOOL ov21_021DE6D8(UnkStruct_ov21_021DE6D4 *param0, int param1)
     return v0;
 }
 
-static UnkStruct_ov21_021DE6D4 *ov21_021DE6E8(enum HeapId heapID, PokedexApp *param1)
+static UnkStruct_ov21_021DE6D4 *ov21_021DE6E8(enum HeapID heapID, PokedexApp *param1)
 {
     UnkStruct_ov21_021DE6D4 *v0;
     UnkStruct_ov21_021E68F4 *v1;
@@ -157,7 +157,7 @@ static UnkStruct_ov21_021DE6D4 *ov21_021DE6E8(enum HeapId heapID, PokedexApp *pa
     return v0;
 }
 
-static PokedexGraphicData **ov21_021DE724(enum HeapId heapID, PokedexApp *param1)
+static PokedexGraphicData **ov21_021DE724(enum HeapID heapID, PokedexApp *param1)
 {
     PokedexGraphicData **v0;
     UnkStruct_ov21_021E68F4 *v1;
@@ -416,7 +416,7 @@ static void ov21_021DEB58(PokedexGraphicData **param0, const UnkStruct_ov21_021D
     ov21_021DEB8C(&(*param0)->window, species, param2, param1->unk_18, TEXT_COLOR(2, 1, 0));
 }
 
-void ov21_021DEB8C(Window *param0, int param1, enum HeapId heapID, int param3, u32 param4)
+void ov21_021DEB8C(Window *param0, int param1, enum HeapID heapID, int param3, u32 param4)
 {
     Strbuf *v0 = Strbuf_Init(64, heapID);
     MessageLoader *pokedexMessageBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);

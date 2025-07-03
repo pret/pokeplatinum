@@ -44,6 +44,6 @@ u32 SumBytes(const void *data, u32 size);
 void EncodeData(void *data, u32 size, u32 seed);
 void DecodeData(void *data, u32 size, u32 seed);
 u16 CalcCRC16Checksum(const void *data, u32 dataLen);
-void InitCRC16Table(enum HeapId heapID);
+void InitCRC16Table(enum HeapID heapID);
 
 #endif // POKEPLATINUM_MATH_UTIL_H

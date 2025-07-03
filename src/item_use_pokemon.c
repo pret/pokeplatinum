@@ -130,9 +130,9 @@ static u8 IncreaseMovePPUps(Pokemon *mon, u32 moveSlot, u32 amount);
 static void RestorePokemonHP(Pokemon *mon, u32 currentHp, u32 maxHp, u32 amount);
 static s32 CalculateEVUpdate(s32 current, s32 sumOthers, s32 change);
 static u8 CheckFriendshipItemEffect(Pokemon *mon, ItemData *item);
-static u8 UpdatePokemonFriendship(Pokemon *mon, s32 current, s32 change, u16 location, enum HeapId heapID);
+static u8 UpdatePokemonFriendship(Pokemon *mon, s32 current, s32 change, u16 location, enum HeapID heapID);
 
-u8 Pokemon_CheckItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, enum HeapId heapID)
+u8 Pokemon_CheckItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, enum HeapID heapID)
 {
     // For some reason, the original developer decided to use an array to store what should have been individual variables
     // For more clarity on what each slot is used for, and to make them look more like individual variables,
@@ -229,13 +229,13 @@ u8 Pokemon_CheckItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, enum HeapId 
     return FALSE;
 }
 
-u8 Party_CheckItemEffectsOnMember(Party *party, u16 itemId, u8 partySlot, u8 moveSlot, enum HeapId heapID)
+u8 Party_CheckItemEffectsOnMember(Party *party, u16 itemId, u8 partySlot, u8 moveSlot, enum HeapID heapID)
 {
     Pokemon *mon = Party_GetPokemonBySlotIndex(party, partySlot);
     return Pokemon_CheckItemEffects(mon, itemId, moveSlot, heapID);
 }
 
-u8 Pokemon_ApplyItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, u16 location, enum HeapId heapID)
+u8 Pokemon_ApplyItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, u16 location, enum HeapID heapID)
 {
     // For some reason, the original developer decided to use an array to store what should have been individual variables
     // For more clarity on what each slot is used for, and to make them look more like individual variables,
@@ -390,7 +390,7 @@ u8 Pokemon_ApplyItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, u16 location
     return effectApplied;
 }
 
-u8 Party_ApplyItemEffectsToMember(Party *party, u16 itemId, u8 partySlot, u8 moveSlot, u16 location, enum HeapId heapID)
+u8 Party_ApplyItemEffectsToMember(Party *party, u16 itemId, u8 partySlot, u8 moveSlot, u16 location, enum HeapID heapID)
 {
     Pokemon *mon = Party_GetPokemonBySlotIndex(party, partySlot);
     return Pokemon_ApplyItemEffects(mon, itemId, moveSlot, location, heapID);
@@ -563,7 +563,7 @@ static u8 CheckFriendshipItemEffect(Pokemon *mon, ItemData *item)
     return FALSE;
 }
 
-static u8 UpdatePokemonFriendship(Pokemon *mon, s32 current, s32 change, u16 location, enum HeapId heapID)
+static u8 UpdatePokemonFriendship(Pokemon *mon, s32 current, s32 change, u16 location, enum HeapID heapID)
 {
     if (current == MAX_FRIENDSHIP_VALUE && change > 0) {
         return FALSE;

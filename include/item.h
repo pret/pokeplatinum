@@ -328,7 +328,7 @@ u8 Item_IsHerbalMedicine(u16 item);
  * @param heapID    The heap which will own the item table's allocation.
  * @return The full table of item data.
  */
-void *ItemTable_Load(enum HeapId heapID);
+void *ItemTable_Load(enum HeapID heapID);
 
 /**
  * @brief Get the ItemData value at a given index from within a loaded table.

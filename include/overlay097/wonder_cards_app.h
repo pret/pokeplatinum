@@ -6,6 +6,6 @@
 #include "bg_window.h"
 #include "mystery_gift.h"
 
-void WonderCardsApp_ShowWondercard(BgConfig *bgConfig, WonderCard *wonderCard, enum HeapId heapID);
+void WonderCardsApp_ShowWondercard(BgConfig *bgConfig, WonderCard *wonderCard, enum HeapID heapID);
 
 #endif // POKEPLATINUM_WONDER_CARDS_APP_H

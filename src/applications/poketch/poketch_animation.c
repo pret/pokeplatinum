@@ -299,7 +299,7 @@ void PoketchAnimation_SetSpriteRotation(PoketchAnimation_AnimatedSpriteData *ani
     animatedSprite->rotZ = rotation;
 }
 
-BOOL PoketchAnimation_LoadSpriteFromNARC(PoketchAnimation_SpriteData *spriteData, enum NarcID narcID, u32 spriteID, u32 animID, enum HeapId heapID)
+BOOL PoketchAnimation_LoadSpriteFromNARC(PoketchAnimation_SpriteData *spriteData, enum NarcID narcID, u32 spriteID, u32 animID, enum HeapID heapID)
 {
     spriteData->heapID = heapID;
     spriteData->compressedSprite = LoadCompressedMemberFromNARC(narcID, spriteID, heapID);
