@@ -157,8 +157,8 @@ typedef struct {
     u8 unk_8FC[8];
     void *unk_904;
     u8 unk_908[8];
-    u8 connectedPlayersTouchX[MAX_CONNECTED_PLAYERS];
-    u8 connectedPlayersTouchY[MAX_CONNECTED_PLAYERS];
+    u8 linkTouchX[MAX_CONNECTED_PLAYERS];
+    u8 linkTouchY[MAX_CONNECTED_PLAYERS];
     u8 buriedObjectGrid[MINING_GAME_HEIGHT][MINING_GAME_WIDTH];
     u8 dirtCover[MINING_GAME_HEIGHT][MINING_GAME_WIDTH];
     int unk_A24;
@@ -483,91 +483,91 @@ static u8 sDampRockShape[3][4] = {
 };
 
 static MiningObject sMiningObjects[] = {
-    { NULL, 0x1E, 0x16, 0x1B, 0x14, 0x4, 0x4, MINING_SMALL_PRISM_SPHERE, UG_PARTS_SMALL_PRISM_SPHERE_SPRITE, UG_PARTS_PRISM_SPHERE_PALETTE },
-    { NULL, 0x16, 0x1E, 0x14, 0x1B, 0x4, 0x4, MINING_SMALL_PALE_SPHERE, UG_PARTS_SMALL_PALE_SPHERE_SPRITE, UG_PARTS_PALE_SPHERE_PALETTE },
-    { NULL, 0xA7, 0xC2, 0x6E, 0xA4, 0x4, 0x4, MINING_SMALL_RED_SPHERE, UG_PARTS_SMALL_RED_SPHERE_SPRITE, UG_PARTS_RED_SPHERE_PALETTE },
-    { NULL, 0xC2, 0xA7, 0x96, 0x7C, 0x4, 0x4, MINING_SMALL_BLUE_SPHERE, UG_PARTS_SMALL_BLUE_SPHERE_SPRITE, UG_PARTS_BLUE_SPHERE_PALETTE },
-    { NULL, 0x96, 0x96, 0x6B, 0x6B, 0x4, 0x4, MINING_SMALL_GREEN_SPHERE, UG_PARTS_SMALL_GREEN_SPHERE_SPRITE, UG_PARTS_GREEN_SPHERE_PALETTE },
-    { NULL, 0xF, 0xD, 0xD, 0xA, 0x6, 0x6, MINING_LARGE_PRISM_SPHERE, UG_PARTS_LARGE_PRISM_SPHERE_SPRITE, UG_PARTS_PRISM_SPHERE_PALETTE },
-    { NULL, 0xD, 0xF, 0xA, 0xD, 0x6, 0x6, MINING_LARGE_PALE_SPHERE, UG_PARTS_LARGE_PALE_SPHERE_SPRITE, UG_PARTS_PALE_SPHERE_PALETTE },
-    { NULL, 0x53, 0x60, 0x3D, 0x4B, 0x6, 0x6, MINING_LARGE_RED_SPHERE, UG_PARTS_LARGE_RED_SPHERE_SPRITE, UG_PARTS_RED_SPHERE_PALETTE },
-    { NULL, 0x60, 0x53, 0x4B, 0x3D, 0x6, 0x6, MINING_LARGE_BLUE_SPHERE, UG_PARTS_LARGE_BLUE_SPHERE_SPRITE, UG_PARTS_BLUE_SPHERE_PALETTE },
-    { NULL, 0x4B, 0x4B, 0x35, 0x35, 0x6, 0x6, MINING_LARGE_GREEN_SPHERE, UG_PARTS_LARGE_GREEN_SPHERE_SPRITE, UG_PARTS_GREEN_SPHERE_PALETTE },
-    { NULL, 0x0, 0x0, 0x0, 0x0, 0x6, 0x6, MINING_TREASURE_OVAL_STONE, UG_PARTS_OVAL_STONE_SPRITE, UG_PARTS_OVAL_STONE_PALETTE },
-    { NULL, 0x0, 0x0, 0x2, 0x2, 0x8, 0x8, MINING_TREASURE_ODD_KEYSTONE, UG_PARTS_ODD_KEYSTONE_SPRITE, UG_PARTS_ODD_KEYSTONE_PALETTE },
-    { sSunStoneShape, 0x4, 0x1, 0xF, 0x3, 0x6, 0x6, MINING_TREASURE_SUN_STONE, UG_PARTS_SUN_STONE_SPRITE, UG_PARTS_SUN_STONE_PALETTE },
-    { sStarPieceReviveShape, 0x2, 0x2, 0xA, 0xA, 0x6, 0x6, MINING_TREASURE_STAR_PIECE, UG_PARTS_STAR_PIECE_SPRITE, UG_PARTS_STAR_PIECE_PALETTE },
-    { sMoonStoneShape, 0x1, 0x2, 0x1, 0x8, 0x8, 0x4, MINING_TREASURE_MOON_STONE, UG_PARTS_MOON_STONE_SPRITE, UG_PARTS_MOON_STONE_PALETTE },
-    { sMoonStoneShape90deg, 0x1, 0x2, 0x2, 0x7, 0x4, 0x8, MINING_TREASURE_MOON_STONE, UG_PARTS_MOON_STONE_90DEG_SPRITE, UG_PARTS_MOON_STONE_PALETTE },
-    { NULL, 0x4, 0x4, 0x14, 0x14, 0x4, 0x4, MINING_TREASURE_HARD_STONE, UG_PARTS_HARD_STONE_SPRITE, UG_PARTS_HARD_STONE_PALETTE },
-    { sThunderstoneShape, 0x4, 0x1, 0x1E, 0x5, 0x6, 0x6, MINING_TREASURE_THUNDERSTONE, UG_PARTS_THUNDERSTONE_SPRITE, UG_PARTS_THUNDERSTONE_PALETTE },
-    { NULL, 0x4, 0x4, 0x14, 0x14, 0x8, 0x4, MINING_TREASURE_EVERSTONE, UG_PARTS_EVERSTONE_SPRITE, UG_PARTS_EVERSTONE_PALETTE },
-    { NULL, 0x4, 0x1, 0x1E, 0x5, 0x6, 0x6, MINING_TREASURE_FIRE_STONE, UG_PARTS_FIRE_STONE_SPRITE, UG_PARTS_FIRE_STONE_PALETTE },
-    { sWaterStoneShape, 0x1, 0x4, 0x5, 0x1E, 0x6, 0x6, MINING_TREASURE_WATER_STONE, UG_PARTS_WATER_STONE_SPRITE, UG_PARTS_WATER_STONE_PALETTE },
-    { sLeafStoneShape, 0x1, 0x2, 0x3, 0xF, 0x6, 0x8, MINING_TREASURE_LEAF_STONE, UG_PARTS_LEAF_STONE_SPRITE, UG_PARTS_LEAF_STONE_PALETTE },
-    { sLeafStoneShape90deg, 0x1, 0x2, 0x2, 0xF, 0x8, 0x6, MINING_TREASURE_LEAF_STONE, UG_PARTS_LEAF_STONE_90DEG_SPRITE, UG_PARTS_LEAF_STONE_PALETTE },
-    { sHelixFossilShape, 0x0, 0x0, 0x3, 0x1, 0x8, 0x8, MINING_TREASURE_HELIX_FOSSIL, UG_PARTS_HELIX_FOSSIL_SPRITE, UG_PARTS_FOSSIL_PALETTE },
-    { sHelixFossilShape90deg, 0x0, 0x0, 0x3, 0x1, 0x8, 0x8, MINING_TREASURE_HELIX_FOSSIL, UG_PARTS_HELIX_FOSSIL_90DEG_SPRITE, UG_PARTS_FOSSIL_PALETTE },
-    { sHelixFossilShape, 0x0, 0x0, 0x3, 0x1, 0x8, 0x8, MINING_TREASURE_HELIX_FOSSIL, UG_PARTS_HELIX_FOSSIL_180DEG_SPRITE, UG_PARTS_FOSSIL_PALETTE },
-    { sHelixFossilShape90deg, 0x0, 0x0, 0x3, 0x1, 0x8, 0x8, MINING_TREASURE_HELIX_FOSSIL, UG_PARTS_HELIX_FOSSIL_270DEG_SPRITE, UG_PARTS_FOSSIL_PALETTE },
-    { sDomeFossilShape, 0x0, 0x0, 0x1, 0xD, 0xA, 0x8, MINING_TREASURE_DOME_FOSSIL, UG_PARTS_DOME_FOSSIL_SPRITE, UG_PARTS_FOSSIL_PALETTE },
-    { sClawFossilShape, 0x0, 0x0, 0x3, 0x1, 0x8, 0xA, MINING_TREASURE_CLAW_FOSSIL, UG_PARTS_CLAW_FOSSIL_SPRITE, UG_PARTS_FOSSIL_PALETTE },
-    { sClawFossilShape90deg, 0x0, 0x0, 0x3, 0x1, 0xA, 0x8, MINING_TREASURE_CLAW_FOSSIL, UG_PARTS_CLAW_FOSSIL_90DEG_SPRITE, UG_PARTS_FOSSIL_PALETTE },
-    { sClawFossilShape180deg, 0x0, 0x0, 0x3, 0x1, 0x8, 0xA, MINING_TREASURE_CLAW_FOSSIL, UG_PARTS_CLAW_FOSSIL_180DEG_SPRITE, UG_PARTS_FOSSIL_PALETTE },
-    { sClawFossilShape270deg, 0x0, 0x0, 0x3, 0x1, 0xA, 0x8, MINING_TREASURE_CLAW_FOSSIL, UG_PARTS_CLAW_FOSSIL_270DEG_SPRITE, UG_PARTS_FOSSIL_PALETTE },
-    { sRootFossilShape, 0x0, 0x0, 0x1, 0x3, 0xA, 0xA, MINING_TREASURE_ROOT_FOSSIL, UG_PARTS_ROOT_FOSSIL_SPRITE, UG_PARTS_FOSSIL_PALETTE },
-    { sRootFossilShape90deg, 0x0, 0x0, 0x1, 0x3, 0xA, 0xA, MINING_TREASURE_ROOT_FOSSIL, UG_PARTS_ROOT_FOSSIL_90DEG_SPRITE, UG_PARTS_FOSSIL_PALETTE },
-    { sRootFossilShape180deg, 0x0, 0x0, 0x1, 0x3, 0xA, 0xA, MINING_TREASURE_ROOT_FOSSIL, UG_PARTS_ROOT_FOSSIL_180DEG_SPRITE, UG_PARTS_FOSSIL_PALETTE },
-    { sRootFossilShape270deg, 0x0, 0x0, 0x1, 0x3, 0xA, 0xA, MINING_TREASURE_ROOT_FOSSIL, UG_PARTS_ROOT_FOSSIL_270DEG_SPRITE, UG_PARTS_FOSSIL_PALETTE },
-    { sOldAmberShape, 0x0, 0x0, 0x2, 0x2, 0x8, 0x8, MINING_TREASURE_OLD_AMBER, UG_PARTS_OLD_AMBER_SPRITE, UG_PARTS_OLD_AMBER_PALETTE },
-    { sOldAmberShape90deg, 0x0, 0x0, 0x3, 0x3, 0x8, 0x8, MINING_TREASURE_OLD_AMBER, UG_PARTS_OLD_AMBER_90DEG_SPRITE, UG_PARTS_OLD_AMBER_PALETTE },
-    { sRareBoneShape, 0x1, 0x1, 0x5, 0x5, 0x6, 0xC, MINING_TREASURE_RARE_BONE, UG_PARTS_RARE_BONE_SPRITE, UG_PARTS_RARE_BONE_PALETTE },
-    { sRareBoneShape90deg, 0x1, 0x1, 0x5, 0x5, 0xC, 0x6, MINING_TREASURE_RARE_BONE, UG_PARTS_RARE_BONE_90DEG_SPRITE, UG_PARTS_RARE_BONE_PALETTE },
-    { sStarPieceReviveShape, 0x8, 0x8, 0xA, 0xA, 0x6, 0x6, MINING_TREASURE_REVIVE, UG_PARTS_REVIVE_SPRITE, UG_PARTS_REVIVE_PALETTE },
-    { NULL, 0x1, 0x1, 0x2, 0x2, 0x6, 0x6, MINING_TREASURE_MAX_REVIVE, UG_PARTS_MAX_REVIVE_SPRITE, UG_PARTS_REVIVE_PALETTE },
-    { sRedShardShape, 0xD, 0xD, 0x11, 0x11, 0x6, 0x6, MINING_TREASURE_RED_SHARD, UG_PARTS_RED_SHARD_SPRITE, UG_PARTS_FLAME_PLATE_PALETTE },
-    { sBlueShardShape, 0xD, 0xD, 0x11, 0x11, 0x6, 0x6, MINING_TREASURE_BLUE_SHARD, UG_PARTS_BLUE_SHARD_SPRITE, UG_PARTS_SPLASH_PLATE_PALETTE },
-    { sYellowShardShape, 0xD, 0xD, 0x11, 0x11, 0x8, 0x6, MINING_TREASURE_YELLOW_SHARD, UG_PARTS_YELLOW_SHARD_SPRITE, UG_PARTS_ZAP_PLATE_PALETTE },
-    { sGreenShardShape, 0xD, 0xD, 0x11, 0x11, 0x8, 0x6, MINING_TREASURE_GREEN_SHARD, UG_PARTS_GREEN_SHARD_SPRITE, UG_PARTS_MEADOW_PLATE_PALETTE },
-    { sHeartScaleShape, 0x21, 0x21, 0x1E, 0x1E, 0x4, 0x4, MINING_TREASURE_HEART_SCALE, UG_PARTS_HEART_SCALE_SPRITE, UG_PARTS_HEART_SCALE_PALETTE },
-    { sArmorFossilShape, 0x0, 0x19, 0x0, 0xC, 0xA, 0x8, MINING_TREASURE_ARMOR_FOSSIL, UG_PARTS_ARMOR_FOSSIL_SPRITE, UG_PARTS_FOSSIL_PALETTE },
-    { sSkullFossilShape, 0x19, 0x0, 0xC, 0x0, 0x8, 0x8, MINING_TREASURE_SKULL_FOSSIL, UG_PARTS_SKULL_FOSSIL_SPRITE, UG_PARTS_FOSSIL_PALETTE },
-    { sLightClayShape, 0x1, 0x1, 0x5, 0x2, 0x8, 0x8, MINING_TREASURE_LIGHT_CLAY, UG_PARTS_LIGHT_CLAY_SPRITE, UG_PARTS_LIGHT_CLAY_PALETTE },
-    { NULL, 0x1, 0x1, 0x2, 0x5, 0x6, 0x6, MINING_TREASURE_IRON_BALL, UG_PARTS_IRON_BALL_SPRITE, UG_PARTS_IRON_BALL_PALETTE },
-    { sIcyRockShape, 0x2, 0x1, 0xB, 0x5, 0x8, 0x8, MINING_TREASURE_ICY_ROCK, UG_PARTS_ICY_ROCK_SPRITE, UG_PARTS_ICY_ROCK_PALETTE },
-    { sSmoothRockShape, 0x1, 0x2, 0x5, 0xB, 0x8, 0x8, MINING_TREASURE_SMOOTH_ROCK, UG_PARTS_SMOOTH_ROCK_SPRITE, UG_PARTS_SMOOTH_ROCK_PALETTE },
-    { sHeatRockShape, 0x2, 0x1, 0xB, 0x5, 0x8, 0x6, MINING_TREASURE_HEAT_ROCK, UG_PARTS_HEAT_ROCK_SPRITE, UG_PARTS_HEAT_ROCK_PALETTE },
-    { sDampRockShape, 0x1, 0x2, 0x5, 0xB, 0x6, 0x6, MINING_TREASURE_DAMP_ROCK, UG_PARTS_DAMP_ROCK_SPRITE, UG_PARTS_DAMP_ROCK_PALETTE },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, MINING_TREASURE_FLAME_PLATE, UG_PARTS_PLATE_SPRITE, UG_PARTS_FLAME_PLATE_PALETTE },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, MINING_TREASURE_SPLASH_PLATE, UG_PARTS_PLATE_SPRITE, UG_PARTS_SPLASH_PLATE_PALETTE },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, MINING_TREASURE_ZAP_PLATE, UG_PARTS_PLATE_SPRITE, UG_PARTS_ZAP_PLATE_PALETTE },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, MINING_TREASURE_MEADOW_PLATE, UG_PARTS_PLATE_SPRITE, UG_PARTS_MEADOW_PLATE_PALETTE },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, MINING_TREASURE_ICICLE_PLATE, UG_PARTS_PLATE_SPRITE, UG_PARTS_ICICLE_PLATE_PALETTE },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, MINING_TREASURE_FIST_PLATE, UG_PARTS_PLATE_SPRITE, UG_PARTS_FIST_PLATE_PALETTE },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, MINING_TREASURE_TOXIC_PLATE, UG_PARTS_PLATE_SPRITE, UG_PARTS_TOXIC_PLATE_PALETTE },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, MINING_TREASURE_EARTH_PLATE, UG_PARTS_PLATE_SPRITE, UG_PARTS_EARTH_PLATE_PALETTE },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, MINING_TREASURE_SKY_PLATE, UG_PARTS_PLATE_SPRITE, UG_PARTS_SKY_PLATE_PALETTE },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, MINING_TREASURE_MIND_PLATE, UG_PARTS_PLATE_SPRITE, UG_PARTS_MIND_PLATE_PALETTE },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, MINING_TREASURE_INSECT_PLATE, UG_PARTS_PLATE_SPRITE, UG_PARTS_INSECT_PLATE_PALETTE },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, MINING_TREASURE_STONE_PLATE, UG_PARTS_PLATE_SPRITE, UG_PARTS_STONE_PLATE_PALETTE },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, MINING_TREASURE_SPOOKY_PLATE, UG_PARTS_PLATE_SPRITE, UG_PARTS_SPOOKY_PLATE_PALETTE },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, MINING_TREASURE_DRACO_PLATE, UG_PARTS_PLATE_SPRITE, UG_PARTS_DRACO_PLATE_PALETTE },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, MINING_TREASURE_DREAD_PLATE, UG_PARTS_PLATE_SPRITE, UG_PARTS_DREAD_PLATE_PALETTE },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, MINING_TREASURE_IRON_PLATE, UG_PARTS_PLATE_SPRITE, UG_PARTS_IRON_PLATE_PALETTE },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x2, MINING_ROCK_1, UG_PARTS_ROCK_HORIZONTAL_LINE_SPRITE, UG_PARTS_ROCK_PALETTE },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x2, 0x8, MINING_ROCK_1, UG_PARTS_ROCK_VERTICAL_LINE_SPRITE, UG_PARTS_ROCK_PALETTE },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x4, 0x4, MINING_ROCK_2, UG_PARTS_ROCK_SQUARE_SPRITE, UG_PARTS_ROCK_PALETTE },
-    { sRockTShape, 0x1, 0x1, 0x1, 0x1, 0x6, 0x4, MINING_ROCK_3, UG_PARTS_ROCK_T_SPRITE, UG_PARTS_ROCK_PALETTE },
-    { sRockTShape90deg, 0x1, 0x1, 0x1, 0x1, 0x4, 0x6, MINING_ROCK_3, UG_PARTS_ROCK_T_90DEG_SPRITE, UG_PARTS_ROCK_PALETTE },
-    { sRockTShape180deg, 0x1, 0x1, 0x1, 0x1, 0x6, 0x4, MINING_ROCK_3, UG_PARTS_ROCK_T_180DEG_SPRITE, UG_PARTS_ROCK_PALETTE },
-    { sRockTShape270deg, 0x1, 0x1, 0x1, 0x1, 0x4, 0x6, MINING_ROCK_3, UG_PARTS_ROCK_T_270DEG_SPRITE, UG_PARTS_ROCK_PALETTE },
-    { sRockZShape, 0x1, 0x1, 0x1, 0x1, 0x6, 0x4, MINING_ROCK_4, UG_PARTS_ROCK_Z_SPRITE, UG_PARTS_ROCK_PALETTE },
-    { sRockZShape90deg, 0x1, 0x1, 0x1, 0x1, 0x4, 0x6, MINING_ROCK_4, UG_PARTS_ROCK_Z_90DEG_SPRITE, UG_PARTS_ROCK_PALETTE },
-    { sRockSShape, 0x1, 0x1, 0x1, 0x1, 0x6, 0x4, MINING_ROCK_5, UG_PARTS_ROCK_S_SPRITE, UG_PARTS_ROCK_PALETTE },
-    { sRockSShape90deg, 0x1, 0x1, 0x1, 0x1, 0x4, 0x6, MINING_ROCK_5, UG_PARTS_ROCK_S_90DEG_SPRITE, UG_PARTS_ROCK_PALETTE },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x6, 0x6, MINING_ROCK_6, UG_PARTS_ROCK_BIG_SQUARE_SPRITE, UG_PARTS_ROCK_PALETTE },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x4, 0x8, MINING_ROCK_7, UG_PARTS_ROCK_VERTICAL_RECTANGLE_SPRITE, UG_PARTS_ROCK_PALETTE },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x4, MINING_ROCK_7, UG_PARTS_ROCK_HORIZONTAL_RECTANGLE_SPRITE, UG_PARTS_ROCK_PALETTE }
+    { .itemID = MINING_SMALL_PRISM_SPHERE, .oddTIDWeight = 30, .evenTIDWeight = 22, .oddTIDNatDexWeight = 27, .evenTIDNatDexWeight = 20, .width = 2 * 2, .height = 2 * 2, .shape = NULL, .spriteNARCIndex = 57, .paletteNARCIndex = 55 },
+    { .itemID = MINING_SMALL_PALE_SPHERE, .oddTIDWeight = 22, .evenTIDWeight = 30, .oddTIDNatDexWeight = 20, .evenTIDNatDexWeight = 27, .width = 2 * 2, .height = 2 * 2, .shape = NULL, .spriteNARCIndex = 103, .paletteNARCIndex = 101 },
+    { .itemID = MINING_SMALL_RED_SPHERE, .oddTIDWeight = 167, .evenTIDWeight = 194, .oddTIDNatDexWeight = 110, .evenTIDNatDexWeight = 164, .width = 2 * 2, .height = 2 * 2, .shape = NULL, .spriteNARCIndex = 2, .paletteNARCIndex = 0 },
+    { .itemID = MINING_SMALL_BLUE_SPHERE, .oddTIDWeight = 194, .evenTIDWeight = 167, .oddTIDNatDexWeight = 150, .evenTIDNatDexWeight = 124, .width = 2 * 2, .height = 2 * 2, .shape = NULL, .spriteNARCIndex = 5, .paletteNARCIndex = 3 },
+    { .itemID = MINING_SMALL_GREEN_SPHERE, .oddTIDWeight = 150, .evenTIDWeight = 150, .oddTIDNatDexWeight = 107, .evenTIDNatDexWeight = 107, .width = 2 * 2, .height = 2 * 2, .shape = NULL, .spriteNARCIndex = 63, .paletteNARCIndex = 61 },
+    { .itemID = MINING_LARGE_PRISM_SPHERE, .oddTIDWeight = 15, .evenTIDWeight = 13, .oddTIDNatDexWeight = 13, .evenTIDNatDexWeight = 10, .width = 3 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 56, .paletteNARCIndex = 55 },
+    { .itemID = MINING_LARGE_PALE_SPHERE, .oddTIDWeight = 13, .evenTIDWeight = 15, .oddTIDNatDexWeight = 10, .evenTIDNatDexWeight = 13, .width = 3 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 102, .paletteNARCIndex = 101 },
+    { .itemID = MINING_LARGE_RED_SPHERE, .oddTIDWeight = 83, .evenTIDWeight = 96, .oddTIDNatDexWeight = 61, .evenTIDNatDexWeight = 75, .width = 3 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 1, .paletteNARCIndex = 0 },
+    { .itemID = MINING_LARGE_BLUE_SPHERE, .oddTIDWeight = 96, .evenTIDWeight = 83, .oddTIDNatDexWeight = 75, .evenTIDNatDexWeight = 61, .width = 3 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 4, .paletteNARCIndex = 3 },
+    { .itemID = MINING_LARGE_GREEN_SPHERE, .oddTIDWeight = 75, .evenTIDWeight = 75, .oddTIDNatDexWeight = 53, .evenTIDNatDexWeight = 53, .width = 3 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 62, .paletteNARCIndex = 61 },
+    { .itemID = MINING_TREASURE_OVAL_STONE, .oddTIDWeight = 0, .evenTIDWeight = 0, .oddTIDNatDexWeight = 0, .evenTIDNatDexWeight = 0, .width = 3 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 59, .paletteNARCIndex = 60 },
+    { .itemID = MINING_TREASURE_ODD_KEYSTONE, .oddTIDWeight = 0, .evenTIDWeight = 0, .oddTIDNatDexWeight = 2, .evenTIDNatDexWeight = 2, .width = 4 * 2, .height = 4 * 2, .shape = NULL, .spriteNARCIndex = 47, .paletteNARCIndex = 48 },
+    { .itemID = MINING_TREASURE_SUN_STONE, .oddTIDWeight = 4, .evenTIDWeight = 1, .oddTIDNatDexWeight = 15, .evenTIDNatDexWeight = 3, .width = 3 * 2, .height = 3 * 2, .shape = sSunStoneShape, .spriteNARCIndex = 106, .paletteNARCIndex = 107 },
+    { .itemID = MINING_TREASURE_STAR_PIECE, .oddTIDWeight = 2, .evenTIDWeight = 2, .oddTIDNatDexWeight = 10, .evenTIDNatDexWeight = 10, .width = 3 * 2, .height = 3 * 2, .shape = sStarPieceReviveShape, .spriteNARCIndex = 104, .paletteNARCIndex = 105 },
+    { .itemID = MINING_TREASURE_MOON_STONE, .oddTIDWeight = 1, .evenTIDWeight = 2, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 8, .width = 4 * 2, .height = 2 * 2, .shape = sMoonStoneShape, .spriteNARCIndex = 66, .paletteNARCIndex = 67 },
+    { .itemID = MINING_TREASURE_MOON_STONE, .oddTIDWeight = 1, .evenTIDWeight = 2, .oddTIDNatDexWeight = 2, .evenTIDNatDexWeight = 7, .width = 2 * 2, .height = 4 * 2, .shape = sMoonStoneShape90deg, .spriteNARCIndex = 68, .paletteNARCIndex = 67 },
+    { .itemID = MINING_TREASURE_HARD_STONE, .oddTIDWeight = 4, .evenTIDWeight = 4, .oddTIDNatDexWeight = 20, .evenTIDNatDexWeight = 20, .width = 2 * 2, .height = 2 * 2, .shape = NULL, .spriteNARCIndex = 18, .paletteNARCIndex = 19 },
+    { .itemID = MINING_TREASURE_THUNDERSTONE, .oddTIDWeight = 4, .evenTIDWeight = 1, .oddTIDNatDexWeight = 30, .evenTIDNatDexWeight = 5, .width = 3 * 2, .height = 3 * 2, .shape = sThunderstoneShape, .spriteNARCIndex = 45, .paletteNARCIndex = 46 },
+    { .itemID = MINING_TREASURE_EVERSTONE, .oddTIDWeight = 4, .evenTIDWeight = 4, .oddTIDNatDexWeight = 20, .evenTIDNatDexWeight = 20, .width = 4 * 2, .height = 2 * 2, .shape = NULL, .spriteNARCIndex = 50, .paletteNARCIndex = 51 },
+    { .itemID = MINING_TREASURE_FIRE_STONE, .oddTIDWeight = 4, .evenTIDWeight = 1, .oddTIDNatDexWeight = 30, .evenTIDNatDexWeight = 5, .width = 3 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 24, .paletteNARCIndex = 25 },
+    { .itemID = MINING_TREASURE_WATER_STONE, .oddTIDWeight = 1, .evenTIDWeight = 4, .oddTIDNatDexWeight = 5, .evenTIDNatDexWeight = 30, .width = 3 * 2, .height = 3 * 2, .shape = sWaterStoneShape, .spriteNARCIndex = 64, .paletteNARCIndex = 65 },
+    { .itemID = MINING_TREASURE_LEAF_STONE, .oddTIDWeight = 1, .evenTIDWeight = 2, .oddTIDNatDexWeight = 3, .evenTIDNatDexWeight = 15, .width = 3 * 2, .height = 4 * 2, .shape = sLeafStoneShape, .spriteNARCIndex = 96, .paletteNARCIndex = 97 },
+    { .itemID = MINING_TREASURE_LEAF_STONE, .oddTIDWeight = 1, .evenTIDWeight = 2, .oddTIDNatDexWeight = 2, .evenTIDNatDexWeight = 15, .width = 4 * 2, .height = 3 * 2, .shape = sLeafStoneShape90deg, .spriteNARCIndex = 98, .paletteNARCIndex = 97 },
+    { .itemID = MINING_TREASURE_HELIX_FOSSIL, .oddTIDWeight = 0, .evenTIDWeight = 0, .oddTIDNatDexWeight = 3, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 4 * 2, .shape = sHelixFossilShape, .spriteNARCIndex = 41, .paletteNARCIndex = 49 },
+    { .itemID = MINING_TREASURE_HELIX_FOSSIL, .oddTIDWeight = 0, .evenTIDWeight = 0, .oddTIDNatDexWeight = 3, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 4 * 2, .shape = sHelixFossilShape90deg, .spriteNARCIndex = 44, .paletteNARCIndex = 49 },
+    { .itemID = MINING_TREASURE_HELIX_FOSSIL, .oddTIDWeight = 0, .evenTIDWeight = 0, .oddTIDNatDexWeight = 3, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 4 * 2, .shape = sHelixFossilShape, .spriteNARCIndex = 42, .paletteNARCIndex = 49 },
+    { .itemID = MINING_TREASURE_HELIX_FOSSIL, .oddTIDWeight = 0, .evenTIDWeight = 0, .oddTIDNatDexWeight = 3, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 4 * 2, .shape = sHelixFossilShape90deg, .spriteNARCIndex = 43, .paletteNARCIndex = 49 },
+    { .itemID = MINING_TREASURE_DOME_FOSSIL, .oddTIDWeight = 0, .evenTIDWeight = 0, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 13, .width = 5 * 2, .height = 4 * 2, .shape = sDomeFossilShape, .spriteNARCIndex = 58, .paletteNARCIndex = 49 },
+    { .itemID = MINING_TREASURE_CLAW_FOSSIL, .oddTIDWeight = 0, .evenTIDWeight = 0, .oddTIDNatDexWeight = 3, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 5 * 2, .shape = sClawFossilShape, .spriteNARCIndex = 109, .paletteNARCIndex = 49 },
+    { .itemID = MINING_TREASURE_CLAW_FOSSIL, .oddTIDWeight = 0, .evenTIDWeight = 0, .oddTIDNatDexWeight = 3, .evenTIDNatDexWeight = 1, .width = 5 * 2, .height = 4 * 2, .shape = sClawFossilShape90deg, .spriteNARCIndex = 112, .paletteNARCIndex = 49 },
+    { .itemID = MINING_TREASURE_CLAW_FOSSIL, .oddTIDWeight = 0, .evenTIDWeight = 0, .oddTIDNatDexWeight = 3, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 5 * 2, .shape = sClawFossilShape180deg, .spriteNARCIndex = 110, .paletteNARCIndex = 49 },
+    { .itemID = MINING_TREASURE_CLAW_FOSSIL, .oddTIDWeight = 0, .evenTIDWeight = 0, .oddTIDNatDexWeight = 3, .evenTIDNatDexWeight = 1, .width = 5 * 2, .height = 4 * 2, .shape = sClawFossilShape270deg, .spriteNARCIndex = 111, .paletteNARCIndex = 49 },
+    { .itemID = MINING_TREASURE_ROOT_FOSSIL, .oddTIDWeight = 0, .evenTIDWeight = 0, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 3, .width = 5 * 2, .height = 5 * 2, .shape = sRootFossilShape, .spriteNARCIndex = 69, .paletteNARCIndex = 49 },
+    { .itemID = MINING_TREASURE_ROOT_FOSSIL, .oddTIDWeight = 0, .evenTIDWeight = 0, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 3, .width = 5 * 2, .height = 5 * 2, .shape = sRootFossilShape90deg, .spriteNARCIndex = 72, .paletteNARCIndex = 49 },
+    { .itemID = MINING_TREASURE_ROOT_FOSSIL, .oddTIDWeight = 0, .evenTIDWeight = 0, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 3, .width = 5 * 2, .height = 5 * 2, .shape = sRootFossilShape180deg, .spriteNARCIndex = 70, .paletteNARCIndex = 49 },
+    { .itemID = MINING_TREASURE_ROOT_FOSSIL, .oddTIDWeight = 0, .evenTIDWeight = 0, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 3, .width = 5 * 2, .height = 5 * 2, .shape = sRootFossilShape270deg, .spriteNARCIndex = 71, .paletteNARCIndex = 49 },
+    { .itemID = MINING_TREASURE_OLD_AMBER, .oddTIDWeight = 0, .evenTIDWeight = 0, .oddTIDNatDexWeight = 2, .evenTIDNatDexWeight = 2, .width = 4 * 2, .height = 4 * 2, .shape = sOldAmberShape, .spriteNARCIndex = 52, .paletteNARCIndex = 53 },
+    { .itemID = MINING_TREASURE_OLD_AMBER, .oddTIDWeight = 0, .evenTIDWeight = 0, .oddTIDNatDexWeight = 3, .evenTIDNatDexWeight = 3, .width = 4 * 2, .height = 4 * 2, .shape = sOldAmberShape90deg, .spriteNARCIndex = 54, .paletteNARCIndex = 53 },
+    { .itemID = MINING_TREASURE_RARE_BONE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 5, .evenTIDNatDexWeight = 5, .width = 3 * 2, .height = 6 * 2, .shape = sRareBoneShape, .spriteNARCIndex = 10, .paletteNARCIndex = 11 },
+    { .itemID = MINING_TREASURE_RARE_BONE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 5, .evenTIDNatDexWeight = 5, .width = 6 * 2, .height = 3 * 2, .shape = sRareBoneShape90deg, .spriteNARCIndex = 12, .paletteNARCIndex = 11 },
+    { .itemID = MINING_TREASURE_REVIVE, .oddTIDWeight = 8, .evenTIDWeight = 8, .oddTIDNatDexWeight = 10, .evenTIDNatDexWeight = 10, .width = 3 * 2, .height = 3 * 2, .shape = sStarPieceReviveShape, .spriteNARCIndex = 17, .paletteNARCIndex = 15 },
+    { .itemID = MINING_TREASURE_MAX_REVIVE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 2, .evenTIDNatDexWeight = 2, .width = 3 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 16, .paletteNARCIndex = 15 },
+    { .itemID = MINING_TREASURE_RED_SHARD, .oddTIDWeight = 13, .evenTIDWeight = 13, .oddTIDNatDexWeight = 17, .evenTIDNatDexWeight = 17, .width = 3 * 2, .height = 3 * 2, .shape = sRedShardShape, .spriteNARCIndex = 88, .paletteNARCIndex = 79 },
+    { .itemID = MINING_TREASURE_BLUE_SHARD, .oddTIDWeight = 13, .evenTIDWeight = 13, .oddTIDNatDexWeight = 17, .evenTIDNatDexWeight = 17, .width = 3 * 2, .height = 3 * 2, .shape = sBlueShardShape, .spriteNARCIndex = 75, .paletteNARCIndex = 93 },
+    { .itemID = MINING_TREASURE_YELLOW_SHARD, .oddTIDWeight = 13, .evenTIDWeight = 13, .oddTIDNatDexWeight = 17, .evenTIDNatDexWeight = 17, .width = 4 * 2, .height = 3 * 2, .shape = sYellowShardShape, .spriteNARCIndex = 95, .paletteNARCIndex = 92 },
+    { .itemID = MINING_TREASURE_GREEN_SHARD, .oddTIDWeight = 13, .evenTIDWeight = 13, .oddTIDNatDexWeight = 17, .evenTIDNatDexWeight = 17, .width = 4 * 2, .height = 3 * 2, .shape = sGreenShardShape, .spriteNARCIndex = 81, .paletteNARCIndex = 89 },
+    { .itemID = MINING_TREASURE_HEART_SCALE, .oddTIDWeight = 33, .evenTIDWeight = 33, .oddTIDNatDexWeight = 30, .evenTIDNatDexWeight = 30, .width = 2 * 2, .height = 2 * 2, .shape = sHeartScaleShape, .spriteNARCIndex = 20, .paletteNARCIndex = 21 },
+    { .itemID = MINING_TREASURE_ARMOR_FOSSIL, .oddTIDWeight = 0, .evenTIDWeight = 25, .oddTIDNatDexWeight = 0, .evenTIDNatDexWeight = 12, .width = 5 * 2, .height = 4 * 2, .shape = sArmorFossilShape, .spriteNARCIndex = 108, .paletteNARCIndex = 49 },
+    { .itemID = MINING_TREASURE_SKULL_FOSSIL, .oddTIDWeight = 25, .evenTIDWeight = 0, .oddTIDNatDexWeight = 12, .evenTIDNatDexWeight = 0, .width = 4 * 2, .height = 4 * 2, .shape = sSkullFossilShape, .spriteNARCIndex = 115, .paletteNARCIndex = 49 },
+    { .itemID = MINING_TREASURE_LIGHT_CLAY, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 5, .evenTIDNatDexWeight = 2, .width = 4 * 2, .height = 4 * 2, .shape = sLightClayShape, .spriteNARCIndex = 73, .paletteNARCIndex = 74 },
+    { .itemID = MINING_TREASURE_IRON_BALL, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 2, .evenTIDNatDexWeight = 5, .width = 3 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 6, .paletteNARCIndex = 7 },
+    { .itemID = MINING_TREASURE_ICY_ROCK, .oddTIDWeight = 2, .evenTIDWeight = 1, .oddTIDNatDexWeight = 11, .evenTIDNatDexWeight = 5, .width = 4 * 2, .height = 4 * 2, .shape = sIcyRockShape, .spriteNARCIndex = 13, .paletteNARCIndex = 14 },
+    { .itemID = MINING_TREASURE_SMOOTH_ROCK, .oddTIDWeight = 1, .evenTIDWeight = 2, .oddTIDNatDexWeight = 5, .evenTIDNatDexWeight = 11, .width = 4 * 2, .height = 4 * 2, .shape = sSmoothRockShape, .spriteNARCIndex = 99, .paletteNARCIndex = 100 },
+    { .itemID = MINING_TREASURE_HEAT_ROCK, .oddTIDWeight = 2, .evenTIDWeight = 1, .oddTIDNatDexWeight = 11, .evenTIDNatDexWeight = 5, .width = 4 * 2, .height = 3 * 2, .shape = sHeatRockShape, .spriteNARCIndex = 22, .paletteNARCIndex = 23 },
+    { .itemID = MINING_TREASURE_DAMP_ROCK, .oddTIDWeight = 1, .evenTIDWeight = 2, .oddTIDNatDexWeight = 5, .evenTIDNatDexWeight = 11, .width = 3 * 2, .height = 3 * 2, .shape = sDampRockShape, .spriteNARCIndex = 113, .paletteNARCIndex = 114 },
+    { .itemID = MINING_TREASURE_FLAME_PLATE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 86, .paletteNARCIndex = 79 },
+    { .itemID = MINING_TREASURE_SPLASH_PLATE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 86, .paletteNARCIndex = 93 },
+    { .itemID = MINING_TREASURE_ZAP_PLATE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 86, .paletteNARCIndex = 92 },
+    { .itemID = MINING_TREASURE_MEADOW_PLATE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 86, .paletteNARCIndex = 89 },
+    { .itemID = MINING_TREASURE_ICICLE_PLATE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 86, .paletteNARCIndex = 84 },
+    { .itemID = MINING_TREASURE_FIST_PLATE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 86, .paletteNARCIndex = 80 },
+    { .itemID = MINING_TREASURE_TOXIC_PLATE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 86, .paletteNARCIndex = 87 },
+    { .itemID = MINING_TREASURE_EARTH_PLATE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 86, .paletteNARCIndex = 83 },
+    { .itemID = MINING_TREASURE_SKY_PLATE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 86, .paletteNARCIndex = 91 },
+    { .itemID = MINING_TREASURE_MIND_PLATE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 86, .paletteNARCIndex = 94 },
+    { .itemID = MINING_TREASURE_INSECT_PLATE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 86, .paletteNARCIndex = 76 },
+    { .itemID = MINING_TREASURE_STONE_PLATE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 86, .paletteNARCIndex = 90 },
+    { .itemID = MINING_TREASURE_SPOOKY_PLATE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 86, .paletteNARCIndex = 82 },
+    { .itemID = MINING_TREASURE_DRACO_PLATE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 86, .paletteNARCIndex = 78 },
+    { .itemID = MINING_TREASURE_DREAD_PLATE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 86, .paletteNARCIndex = 77 },
+    { .itemID = MINING_TREASURE_IRON_PLATE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 86, .paletteNARCIndex = 85 },
+    { .itemID = MINING_ROCK_1, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 1 * 2, .shape = NULL, .spriteNARCIndex = 27, .paletteNARCIndex = 26 },
+    { .itemID = MINING_ROCK_1, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 1 * 2, .height = 4 * 2, .shape = NULL, .spriteNARCIndex = 28, .paletteNARCIndex = 26 },
+    { .itemID = MINING_ROCK_2, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 2 * 2, .height = 2 * 2, .shape = NULL, .spriteNARCIndex = 29, .paletteNARCIndex = 26 },
+    { .itemID = MINING_ROCK_3, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 3 * 2, .height = 2 * 2, .shape = sRockTShape, .spriteNARCIndex = 30, .paletteNARCIndex = 26 },
+    { .itemID = MINING_ROCK_3, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 2 * 2, .height = 3 * 2, .shape = sRockTShape90deg, .spriteNARCIndex = 33, .paletteNARCIndex = 26 },
+    { .itemID = MINING_ROCK_3, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 3 * 2, .height = 2 * 2, .shape = sRockTShape180deg, .spriteNARCIndex = 31, .paletteNARCIndex = 26 },
+    { .itemID = MINING_ROCK_3, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 2 * 2, .height = 3 * 2, .shape = sRockTShape270deg, .spriteNARCIndex = 32, .paletteNARCIndex = 26 },
+    { .itemID = MINING_ROCK_4, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 3 * 2, .height = 2 * 2, .shape = sRockZShape, .spriteNARCIndex = 34, .paletteNARCIndex = 26 },
+    { .itemID = MINING_ROCK_4, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 2 * 2, .height = 3 * 2, .shape = sRockZShape90deg, .spriteNARCIndex = 35, .paletteNARCIndex = 26 },
+    { .itemID = MINING_ROCK_5, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 3 * 2, .height = 2 * 2, .shape = sRockSShape, .spriteNARCIndex = 36, .paletteNARCIndex = 26 },
+    { .itemID = MINING_ROCK_5, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 2 * 2, .height = 3 * 2, .shape = sRockSShape90deg, .spriteNARCIndex = 37, .paletteNARCIndex = 26 },
+    { .itemID = MINING_ROCK_6, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 3 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 38, .paletteNARCIndex = 26 },
+    { .itemID = MINING_ROCK_7, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 2 * 2, .height = 4 * 2, .shape = NULL, .spriteNARCIndex = 39, .paletteNARCIndex = 26 },
+    { .itemID = MINING_ROCK_7, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 2 * 2, .shape = NULL, .spriteNARCIndex = 40, .paletteNARCIndex = 26 }
 };
 
 static const WindowTemplate Unk_ov23_0225630E = {
@@ -585,8 +585,8 @@ static void Mining_InitGameState(void)
     int i;
 
     for (i = 0; i < MAX_CONNECTED_PLAYERS; i++) {
-        Unk_ov23_02257740->connectedPlayersTouchX[i] = TOUCHSCREEN_INPUT_NONE;
-        Unk_ov23_02257740->connectedPlayersTouchY[i] = TOUCHSCREEN_INPUT_NONE;
+        Unk_ov23_02257740->linkTouchX[i] = TOUCHSCREEN_INPUT_NONE;
+        Unk_ov23_02257740->linkTouchY[i] = TOUCHSCREEN_INPUT_NONE;
     }
 
     Unk_ov23_02257740->pickaxeSelected = TRUE;
@@ -1103,7 +1103,7 @@ int ov23_0223EBFC(void)
     return 2;
 }
 
-void Mining_ReceiveTouchScreenInputFromConnectedPlayer(int param0, int param1, void *src, void *param3)
+void Mining_TakeLinkInput(int param0, int param1, void *src, void *param3)
 {
     u8 *buffer = src;
 
@@ -1111,8 +1111,8 @@ void Mining_ReceiveTouchScreenInputFromConnectedPlayer(int param0, int param1, v
         return;
     }
 
-    Unk_ov23_02257740->connectedPlayersTouchX[buffer[0]] = buffer[1];
-    Unk_ov23_02257740->connectedPlayersTouchY[buffer[0]] = buffer[2];
+    Unk_ov23_02257740->linkTouchX[buffer[0]] = buffer[1];
+    Unk_ov23_02257740->linkTouchY[buffer[0]] = buffer[2];
 }
 
 int ov23_0223EC30(void)
@@ -1324,7 +1324,7 @@ static void ov23_0223EF98(void)
     Bg_CopyTilemapBufferToVRAM(Unk_ov23_02257740->bgConfig, BG_LAYER_MAIN_1);
 
     Mining_RandomizeDirtCover(Unk_ov23_02257740->bgConfig);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_DATA__UG_PARTS, UG_PARTS_DIRT_TILES, Unk_ov23_02257740->bgConfig, BG_LAYER_MAIN_2, 1, 0, FALSE, HEAP_ID_MINING);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_DATA__UG_PARTS, 9, Unk_ov23_02257740->bgConfig, BG_LAYER_MAIN_2, 1, 0, FALSE, HEAP_ID_MINING);
 
     Mining_DrawDirt(Unk_ov23_02257740->bgConfig);
 
@@ -2414,25 +2414,25 @@ static void Mining_DrawWallCrack(BgConfig *bgConfig)
     Bg_CopyTilemapBufferToVRAM(bgConfig, BG_LAYER_MAIN_0);
 }
 
-static void Mining_NearbyConnectedPlayersRemoveDirt(UnkStruct_ov23_0223EE80 *param0)
+static void Mining_NearbyLinksRemoveDirt(UnkStruct_ov23_0223EE80 *param0)
 {
     BOOL dirtRemoved = FALSE;
     int netID;
 
     for (netID = 0; netID < MAX_CONNECTED_PLAYERS; netID++) {
-        if ((Unk_ov23_02257740->connectedPlayersTouchX[netID] != (u8)TOUCHSCREEN_INPUT_NONE) && (Unk_ov23_02257740->connectedPlayersTouchY[netID] != (u8)TOUCHSCREEN_INPUT_NONE)) {
+        if ((Unk_ov23_02257740->linkTouchX[netID] != (u8)TOUCHSCREEN_INPUT_NONE) && (Unk_ov23_02257740->linkTouchY[netID] != (u8)TOUCHSCREEN_INPUT_NONE)) {
             int playerXPos = CommPlayer_XPos(CommSys_CurNetId());
             int playerZPos = CommPlayer_ZPos(CommSys_CurNetId());
-            int connectedPlayerXPos = Underground_GetConnectedPlayerXPos(netID);
-            int connectedPlayerZPos = Underground_GetConnectedPlayerZPos(netID);
+            int linkXPos = Underground_GetLinkXPos(netID);
+            int linkZPos = Underground_GetLinkZPos(netID);
 
-            if ((connectedPlayerXPos > (playerXPos - 10)) && (connectedPlayerXPos < (playerXPos + 10))) {
-                if ((connectedPlayerZPos > (playerZPos - 10)) && (connectedPlayerZPos < (playerZPos + 10))) {
-                    Mining_RemoveDirt(Unk_ov23_02257740->connectedPlayersTouchX[netID], Unk_ov23_02257740->connectedPlayersTouchY[netID], TRUE, param0);
+            if ((linkXPos > (playerXPos - 10)) && (linkXPos < (playerXPos + 10))) {
+                if ((linkZPos > (playerZPos - 10)) && (linkZPos < (playerZPos + 10))) {
+                    Mining_RemoveDirt(Unk_ov23_02257740->linkTouchX[netID], Unk_ov23_02257740->linkTouchY[netID], TRUE, param0);
                     dirtRemoved = TRUE;
 
-                    Unk_ov23_02257740->connectedPlayersTouchX[netID] = TOUCHSCREEN_INPUT_NONE;
-                    Unk_ov23_02257740->connectedPlayersTouchY[netID] = TOUCHSCREEN_INPUT_NONE;
+                    Unk_ov23_02257740->linkTouchX[netID] = TOUCHSCREEN_INPUT_NONE;
+                    Unk_ov23_02257740->linkTouchY[netID] = TOUCHSCREEN_INPUT_NONE;
                 }
             }
         }
@@ -2709,7 +2709,7 @@ static BOOL Mining_MainGameLoop(UnkStruct_ov23_0223EE80 *param0)
         Unk_ov23_02257740->unk_A29++;
     }
 
-    Mining_NearbyConnectedPlayersRemoveDirt(param0);
+    Mining_NearbyLinksRemoveDirt(param0);
 
     if (Mining_AreAllItemsDugUp(param0)) {
         UndergroundData_SetHasMined(undergroundData);

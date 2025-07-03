@@ -93,7 +93,7 @@ static const CommCmdTable Unk_020F68A4[] = {
     { ov23_0223EB8C, CommPacketSizeOf_NetId, NULL },
     { ov23_0223EBC0, CommPacketSizeOf_NetId, NULL },
     { ov23_0223EBE4, ov23_0223EBFC, NULL },
-    { Mining_ReceiveTouchScreenInputFromConnectedPlayer, ov23_0223EC30, NULL },
+    { Mining_TakeLinkInput, ov23_0223EC30, NULL },
     { ov23_02243390, ov23_022433B8, NULL },
     { ov23_022413A0, sub_0203294C, NULL },
     { ov23_0224142C, ov23_022414D0, NULL },

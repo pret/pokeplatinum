@@ -676,7 +676,7 @@ void ov23_0224ACF8(int param0, int param1, void *param2, void *param3)
     ov23_02243020(v0[0]);
 }
 
-int Underground_GetConnectedPlayerXPos(int netID)
+int Underground_GetLinkXPos(int netID)
 {
     CommPlayerManager *v0 = CommPlayerMan_Get();
 
@@ -691,7 +691,7 @@ int Underground_GetConnectedPlayerXPos(int netID)
     return v0->playerLocation[netID].x;
 }
 
-int Underground_GetConnectedPlayerZPos(int netID)
+int Underground_GetLinkZPos(int netID)
 {
     CommPlayerManager *v0 = CommPlayerMan_Get();
 
