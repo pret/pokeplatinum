@@ -676,34 +676,34 @@ void ov23_0224ACF8(int param0, int param1, void *param2, void *param3)
     ov23_02243020(v0[0]);
 }
 
-int ov23_0224AD04(int param0)
+int Underground_GetConnectedPlayerXPos(int netID)
 {
     CommPlayerManager *v0 = CommPlayerMan_Get();
 
     if (!v0) {
         return 0xffff;
-    } else if (CommSys_CurNetId() == param0) {
-        return v0->playerLocation[param0].x;
+    } else if (CommSys_CurNetId() == netID) {
+        return v0->playerLocation[netID].x;
     } else if (!sub_02058C40()) {
         return 0xffff;
     }
 
-    return v0->playerLocation[param0].x;
+    return v0->playerLocation[netID].x;
 }
 
-int ov23_0224AD40(int param0)
+int Underground_GetConnectedPlayerZPos(int netID)
 {
     CommPlayerManager *v0 = CommPlayerMan_Get();
 
     if (!v0) {
         return 0xffff;
-    } else if (CommSys_CurNetId() == param0) {
-        return v0->playerLocation[param0].z;
+    } else if (CommSys_CurNetId() == netID) {
+        return v0->playerLocation[netID].z;
     } else if (!sub_02058C40()) {
         return 0xffff;
     }
 
-    return v0->playerLocation[param0].z;
+    return v0->playerLocation[netID].z;
 }
 
 void ov23_0224AD7C(int param0, int param1)

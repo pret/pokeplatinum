@@ -380,27 +380,27 @@ int ov23_0224F6C8(int param0, void *param1)
     return sub_02028D74(v1, param0);
 }
 
-BOOL ov23_0224F6E0(int sphereID, int sphereSize)
+BOOL Underground_TryAddSphere(int sphereID, int sphereSize)
 {
-    int v0 = sphereID;
+    int sphereType = sphereID;
 
     GF_ASSERT(sphereID < MINING_TREASURE_OVAL_STONE);
 
     if (sphereID >= MINING_LARGE_PRISM_SPHERE) {
-        v0 -= 5;
+        sphereType -= (MINING_LARGE_PRISM_SPHERE - 1);
     }
 
     if (sphereSize > 99) {
         sphereSize = 99;
     }
 
-    return sub_02028CB0(Unk_ov23_022577B8->unk_00, v0, sphereSize);
+    return UndergroundData_TryAddSphere(Unk_ov23_022577B8->unk_00, sphereType, sphereSize);
 }
 
-BOOL ov23_0224F710(int param0)
+BOOL Underground_TryAddTreasure(int treasureID)
 {
-    GF_ASSERT(param0 < 60);
-    return sub_02028DB4(Unk_ov23_022577B8->unk_00, param0);
+    GF_ASSERT(treasureID < MINING_ROCK_1);
+    return UndergroundData_TryAddTreasure(Unk_ov23_022577B8->unk_00, treasureID);
 }
 
 BOOL ov23_0224F730(int param0)
