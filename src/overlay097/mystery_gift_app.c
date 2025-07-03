@@ -3,9 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/graphics.h"
 #include "constants/narc.h"
 #include "constants/savedata/savedata.h"
-#include "constants/screen.h"
 #include "generated/string_padding_mode.h"
 #include "generated/text_banks.h"
 

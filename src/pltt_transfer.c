@@ -4,10 +4,10 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/graphics.h"
 #include "constants/heap.h"
 
 #include "heap.h"
-#include "palette.h"
 #include "vram_transfer.h"
 
 #define NUM_VRAM_PALETTES     16

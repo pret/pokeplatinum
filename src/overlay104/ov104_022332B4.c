@@ -1,6 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0222E63C.h"
 #include "overlay104/ov104_0222E930.h"
@@ -379,8 +381,8 @@ BOOL ov104_022334DC(UnkStruct_ov104_0222E930 *param0)
         }
         break;
     case 33:
-        ov104_0222E278(&(v4->unk_34[0]), v4->unk_18[v4->unk_06], 11, 178);
-        ov104_0222E278(&(v4->unk_34[1]), v4->unk_18[v4->unk_06 + 7], 11, 178);
+        ov104_0222E278(&(v4->unk_34[0]), v4->unk_18[v4->unk_06], HEAP_ID_FIELDMAP, 178);
+        ov104_0222E278(&(v4->unk_34[1]), v4->unk_18[v4->unk_06 + 7], HEAP_ID_FIELDMAP, 178);
         break;
     case 34:
         v6 = ov104_0223AA50(v4->unk_04);

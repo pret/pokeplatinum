@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/movement_types.h"
+
 #include "struct_decls/struct_02061830_sub1_decl.h"
 #include "struct_defs/struct_020EDF0C.h"
 
@@ -676,7 +678,8 @@ static void MapObjectMan_AddMoveTask(const MapObjectManager *mapObjMan, MapObjec
     int movementType = MapObject_GetMovementType(mapObj);
     SysTask *task;
 
-    if (movementType == 48 || movementType == 50) {
+    if (movementType == MOVEMENT_TYPE_048
+        || movementType == MOVEMENT_TYPE_FOLLOW_PARTNER_TRAINER) {
         v0 += 2;
     }
 
@@ -2476,10 +2479,10 @@ void MapObject_SetPosDirFromCoords(MapObject *mapObj, int x, int y, int z, int d
     sub_020656DC(mapObj);
 }
 
-void MapObject_SetMoveCode(MapObject *mapObj, u32 param1)
+void MapObject_SetMoveCode(MapObject *mapObj, u32 movementType)
 {
     sub_02062B28(mapObj);
-    MapObject_SetMovementType(mapObj, param1);
+    MapObject_SetMovementType(mapObj, movementType);
     sub_0206239C(mapObj);
     MapObject_InitMove(mapObj);
 }

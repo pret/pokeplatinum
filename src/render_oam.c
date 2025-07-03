@@ -2,8 +2,8 @@
 
 #include <nnsys.h>
 
+#include "constants/graphics.h"
 #include "constants/heap.h"
-#include "constants/screen.h"
 
 #include "heap.h"
 #include "render_view.h"

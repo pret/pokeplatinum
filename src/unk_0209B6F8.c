@@ -160,7 +160,7 @@ int sub_0209B75C(ApplicationManager *appMan, int *param1)
         sub_0209B8C8(v0);
 
         if (v0->unk_20 == 0xffff) {
-            ov104_0222E86C(v0->unk_14, v0->unk_00->unk_24, 11);
+            ov104_0222E86C(v0->unk_14, v0->unk_00->unk_24, HEAP_ID_FIELDMAP);
         } else {
             UnkStruct_ov104_0222E8C8 *v2;
 

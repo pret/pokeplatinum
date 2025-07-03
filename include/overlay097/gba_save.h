@@ -5,21 +5,21 @@
 #include "constants/gba/pokemon.h"
 #include "constants/gba/save.h"
 
-typedef struct {
+typedef struct GBAPokemonSubstruct0 {
     u16 species;
     u16 heldItem;
     u32 experience;
     u8 ppBonuses;
     u8 friendship;
     u16 padding;
-} PokemonGBASubstruct0;
+} GBAPokemonSubstruct0;
 
-typedef struct {
+typedef struct GBAPokemonSubstruct1 {
     u16 moves[GBA_LEARNED_MOVES_MAX];
     u8 pp[GBA_LEARNED_MOVES_MAX];
-} PokemonGBASubstruct1;
+} GBAPokemonSubstruct1;
 
-typedef struct {
+typedef struct GBAPokemonSubstruct2 {
     u8 hpEV;
     u8 attackEV;
     u8 defenseEV;
@@ -32,9 +32,9 @@ typedef struct {
     u8 smart;
     u8 tough;
     u8 sheen;
-} PokemonGBASubstruct2;
+} GBAPokemonSubstruct2;
 
-typedef struct {
+typedef struct GBAPokemonSubstruct3 {
     u32 pokerus : 8;
     u32 metLocation : 8;
     u32 metLevel : 7;
@@ -75,17 +75,23 @@ typedef struct {
     // Set for in-game event island legendaries, events distributed after a certain date, & Pokémon from XD: Gale of Darkness.
     // Not to be confused with METLOC_FATEFUL_ENCOUNTER.
     u32 modernFatefulEncounter : 1;
-} PokemonGBASubstruct3;
+} GBAPokemonSubstruct3;
 
-union PokemonGBASubstruct {
-    PokemonGBASubstruct0 type0;
-    PokemonGBASubstruct1 type1;
-    PokemonGBASubstruct2 type2;
-    PokemonGBASubstruct3 type3;
-    u16 raw[6];
+#define NUM_SUBSTRUCT_BYTES (max(      \
+    max(sizeof(GBAPokemonSubstruct0),  \
+        sizeof(GBAPokemonSubstruct1)), \
+    max(sizeof(GBAPokemonSubstruct2),  \
+        sizeof(GBAPokemonSubstruct3))))
+
+union GBAPokemonSubstruct {
+    GBAPokemonSubstruct0 type0;
+    GBAPokemonSubstruct1 type1;
+    GBAPokemonSubstruct2 type2;
+    GBAPokemonSubstruct3 type3;
+    u16 raw[NUM_SUBSTRUCT_BYTES / sizeof(u16)];
 };
 
-typedef struct BoxPokemonGBA {
+typedef struct GBABoxPokemon {
     u32 personality;
     u32 otId;
     u8 nickname[GBA_MON_NAME_LEN];
@@ -100,22 +106,22 @@ typedef struct BoxPokemonGBA {
     u16 unknown;
     union {
         u32 raw[12];
-        union PokemonGBASubstruct substructs[4];
+        union GBAPokemonSubstruct substructs[4];
     } secure;
-} BoxPokemonGBA;
+} GBABoxPokemon;
 
 typedef struct {
     u8 currentBox;
-    BoxPokemonGBA boxes[GBA_MAX_PC_BOXES][GBA_MAX_MONS_PER_BOX];
+    GBABoxPokemon boxes[GBA_MAX_PC_BOXES][GBA_MAX_MONS_PER_BOX];
     u8 boxNames[GBA_MAX_PC_BOXES][GBA_BOX_NAME_LEN + 1];
     u8 boxWallpapers[GBA_MAX_PC_BOXES];
-} PokemonStorageGBA;
+} GBAPokemonStorage;
 
 typedef struct {
     u32 unk_00[1024];
     u8 saveBlock2[GBA_SECTOR_SIZE * 1];
     u8 saveBlock1[GBA_SECTOR_SIZE * 4];
-    PokemonStorageGBA pokemonStorage;
+    GBAPokemonStorage pokemonStorage;
 } GBASaveSlot;
 
 #endif // POKEPLATINUM_GBA_SAVE_H

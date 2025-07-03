@@ -3683,7 +3683,7 @@ static void ov16_022611DC(SysTask *param0, void *param1)
                     }
                     break;
                 case BATTLE_POCKET_INDEX_RECOVER_HP_PP:
-                    if ((((v0->unk_08->unk_04->selectedPartyIndex < 2) && ((BattleSystem_BattleType(v0->unk_00) == BATTLE_TYPE_TRAINER_DOUBLES) || (BattleSystem_BattleType(v0->unk_00) == BATTLE_TYPE_TAG_DOUBLES))) || (v0->unk_08->unk_04->selectedPartyIndex < 1)) && (Item_LoadParam(v0->unk_04->selectedBattleBagItem, ITEM_PARAM_HP_RESTORE, 5))) {
+                    if ((((v0->unk_08->unk_04->selectedPartyIndex < 2) && ((BattleSystem_BattleType(v0->unk_00) == BATTLE_TYPE_TRAINER_DOUBLES) || (BattleSystem_BattleType(v0->unk_00) == BATTLE_TYPE_TAG_DOUBLES))) || (v0->unk_08->unk_04->selectedPartyIndex < 1)) && (Item_LoadParam(v0->unk_04->selectedBattleBagItem, ITEM_PARAM_HP_RESTORE, HEAP_ID_BATTLE))) {
                         if (BattleSystem_AnimationsOn(v0->unk_00) == 1) {
                             v0->unk_12 = 17;
                         } else {
@@ -3948,37 +3948,37 @@ static void ov16_022611DC(SysTask *param0, void *param1)
         v30.tags = 2;
         v30.params[0] = v28 | (v0->unk_08->unk_0C[v28] << 8);
 
-        if (Item_LoadParam(v0->unk_04->selectedBattleBagItem, ITEM_PARAM_HEAL_SLEEP, 5)) {
+        if (Item_LoadParam(v0->unk_04->selectedBattleBagItem, ITEM_PARAM_HEAL_SLEEP, HEAP_ID_BATTLE)) {
             v31 = 0;
             v32++;
         }
 
-        if (Item_LoadParam(v0->unk_04->selectedBattleBagItem, ITEM_PARAM_HEAL_POISON, 5)) {
+        if (Item_LoadParam(v0->unk_04->selectedBattleBagItem, ITEM_PARAM_HEAL_POISON, HEAP_ID_BATTLE)) {
             v31 = 1;
             v32++;
         }
 
-        if (Item_LoadParam(v0->unk_04->selectedBattleBagItem, ITEM_PARAM_HEAL_BURN, 5)) {
+        if (Item_LoadParam(v0->unk_04->selectedBattleBagItem, ITEM_PARAM_HEAL_BURN, HEAP_ID_BATTLE)) {
             v31 = 2;
             v32++;
         }
 
-        if (Item_LoadParam(v0->unk_04->selectedBattleBagItem, ITEM_PARAM_HEAL_FREEZE, 5)) {
+        if (Item_LoadParam(v0->unk_04->selectedBattleBagItem, ITEM_PARAM_HEAL_FREEZE, HEAP_ID_BATTLE)) {
             v31 = 3;
             v32++;
         }
 
-        if (Item_LoadParam(v0->unk_04->selectedBattleBagItem, ITEM_PARAM_HEAL_PARALYSIS, 5)) {
+        if (Item_LoadParam(v0->unk_04->selectedBattleBagItem, ITEM_PARAM_HEAL_PARALYSIS, HEAP_ID_BATTLE)) {
             v31 = 4;
             v32++;
         }
 
-        if (Item_LoadParam(v0->unk_04->selectedBattleBagItem, ITEM_PARAM_HEAL_CONFUSION, 5)) {
+        if (Item_LoadParam(v0->unk_04->selectedBattleBagItem, ITEM_PARAM_HEAL_CONFUSION, HEAP_ID_BATTLE)) {
             v31 = 5;
             v32++;
         }
 
-        if (Item_LoadParam(v0->unk_04->selectedBattleBagItem, ITEM_PARAM_HEAL_ATTRACT, 5)) {
+        if (Item_LoadParam(v0->unk_04->selectedBattleBagItem, ITEM_PARAM_HEAL_ATTRACT, HEAP_ID_BATTLE)) {
             v31 = 6;
             v32++;
         }

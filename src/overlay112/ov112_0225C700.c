@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/screen.h"
+#include "constants/graphics.h"
 
 #include "struct_defs/struct_02099F80.h"
 
@@ -161,7 +161,7 @@ static void ov112_0225D180(UnkStruct_ov112_0225D180 *param0, const UnkStruct_ov6
 static void ov112_0225D1B8(const UnkStruct_ov112_0225D180 *param0, const NNSG2dPaletteData *param1, u32 param2);
 static void ov112_0225D1EC(UnkStruct_ov112_0225D2D0 *param0, UnkStruct_ov112_0225C9BC *param1, u32 param2);
 static void ov112_0225D2D0(UnkStruct_ov112_0225D2D0 *param0);
-static BOOL ov112_0225D304(UnkStruct_ov112_0225D2D0 *param0, UnkStruct_ov66_0223177C *param1, const UnkStruct_ov66_0222DFF8 *param2, u32 param3);
+static BOOL ov112_0225D304(UnkStruct_ov112_0225D2D0 *param0, UnkStruct_ov66_0223177C *param1, const UnkStruct_ov66_0222DFF8 *param2, u32 heapID);
 static void ov112_0225D3E0(UnkStruct_ov112_0225D2D0 *param0);
 static void ov112_0225D408(UnkStruct_ov112_0225D44C *param0, UnkStruct_ov112_0225C9BC *param1, u32 param2, u32 param3);
 static void ov112_0225D44C(UnkStruct_ov112_0225D44C *param0);
@@ -387,7 +387,7 @@ int ov112_0225C7C4(ApplicationManager *appMan, int *param1)
                 ov112_0225D718(&v0->unk_264, 2);
             }
 
-            v2 = ov112_0225D304(&v0->unk_1C8, v0->unk_00, v1->unk_08, 107);
+            v2 = ov112_0225D304(&v0->unk_1C8, v0->unk_00, v1->unk_08, HEAP_ID_107);
 
             if (v2 == 1) {
                 ov112_0225D718(&v0->unk_264, 3);
@@ -965,7 +965,7 @@ static void ov112_0225D2D0(UnkStruct_ov112_0225D2D0 *param0)
     }
 }
 
-static BOOL ov112_0225D304(UnkStruct_ov112_0225D2D0 *param0, UnkStruct_ov66_0223177C *param1, const UnkStruct_ov66_0222DFF8 *param2, u32 param3)
+static BOOL ov112_0225D304(UnkStruct_ov112_0225D2D0 *param0, UnkStruct_ov66_0223177C *param1, const UnkStruct_ov66_0222DFF8 *param2, u32 heapID)
 {
     int v0;
     BOOL v1;
@@ -992,7 +992,7 @@ static BOOL ov112_0225D304(UnkStruct_ov112_0225D2D0 *param0, UnkStruct_ov66_0223
     if (param0->unk_00[0].unk_00 == 0) {
         while (ov66_02231C60(param1) == 1) {
             v2 = ov66_02231C78(param1);
-            v1 = ov66_02231C94(param1, &v4, v2, param0->unk_90, param3);
+            v1 = ov66_02231C94(param1, &v4, v2, param0->unk_90, heapID);
 
             if (v1 == 1) {
                 ov112_0225D180(&v3, param1, v2, param2);

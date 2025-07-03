@@ -1,12 +1,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/screen.h"
+#include "constants/graphics.h"
 
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay009/struct_ov9_02249FF4.h"
+#include "overlay009/camera_configuration.h"
 #include "overlay077/ov77_021D54B0.h"
 #include "overlay077/ov77_021D6670.h"
 #include "overlay077/ov77_021D6C70.h"
@@ -199,7 +199,7 @@ const int Unk_ov77_021D779C[][6] = {
     { 0x6E, 0x6F, 0x0, 0x0, 0x0, 0x0 }
 };
 
-static const UnkStruct_ov9_02249FF4 Unk_ov77_021D74FC = {
+static const CameraConfiguration Unk_ov77_021D74FC = {
     0x29AEC1,
     { -0x29fe, 0x0, 0x0 },
     0x0,
@@ -1734,7 +1734,7 @@ static void ov77_021D4044(UnkStruct_ov77_021D37C0 *param0, int param1)
     {
         VecFx32 v0 = { 0, 0, FX32_ONE * 16 * 6 };
 
-        Camera_InitWithTarget(&v0, Unk_ov77_021D74FC.unk_00, &Unk_ov77_021D74FC.cameraAngle, Unk_ov77_021D74FC.unk_0E, Unk_ov77_021D74FC.unk_0C, 0, param0->unk_20.camera);
+        Camera_InitWithTarget(&v0, Unk_ov77_021D74FC.distance, &Unk_ov77_021D74FC.cameraAngle, Unk_ov77_021D74FC.fovY, Unk_ov77_021D74FC.projectionMtx, 0, param0->unk_20.camera);
         Camera_SetFOV(0x981, param0->unk_20.camera);
 
         {
@@ -2370,7 +2370,7 @@ static void ov77_021D4F38(UnkStruct_ov77_021D37C0 *param0, const int param1)
         Camera_Move(&v0, param0->unk_20.camera);
     } else if (param1 == ((40 * 30 - 15) + 6)) {
         VecFx32 v2 = { -(FX32_ONE * 16 * 4), 0, -FX32_ONE * 16 * 3 };
-        Camera_InitWithTarget(&v2, Unk_ov77_021D74FC.unk_00, &Unk_ov77_021D74FC.cameraAngle, Unk_ov77_021D74FC.unk_0E, Unk_ov77_021D74FC.unk_0C, 0, param0->unk_20.camera);
+        Camera_InitWithTarget(&v2, Unk_ov77_021D74FC.distance, &Unk_ov77_021D74FC.cameraAngle, Unk_ov77_021D74FC.fovY, Unk_ov77_021D74FC.projectionMtx, 0, param0->unk_20.camera);
 
         {
             VecFx32 v3 = { 0, (FX32_ONE * 16 * 5), 0 };
@@ -2406,7 +2406,7 @@ static void ov77_021D4F38(UnkStruct_ov77_021D37C0 *param0, const int param1)
         Bg_ScheduleScroll(param0->unk_10, 1, 1, 4);
     } else if (param1 == ((47 * 30 - 15) + 6)) {
         VecFx32 v6 = { FX32_ONE * 16 * 30, 0, FX32_ONE * 0 - 0x70000 };
-        Camera_InitWithTarget(&v6, Unk_ov77_021D74FC.unk_00, &Unk_ov77_021D74FC.cameraAngle, Unk_ov77_021D74FC.unk_0E, Unk_ov77_021D74FC.unk_0C, 0, param0->unk_20.camera);
+        Camera_InitWithTarget(&v6, Unk_ov77_021D74FC.distance, &Unk_ov77_021D74FC.cameraAngle, Unk_ov77_021D74FC.fovY, Unk_ov77_021D74FC.projectionMtx, 0, param0->unk_20.camera);
         {
             VecFx32 v7 = { 0, (FX32_ONE * 16 * 5), 0 };
             Camera_Move(&v7, param0->unk_20.camera);

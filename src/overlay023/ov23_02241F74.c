@@ -137,11 +137,11 @@ static void CommManUnderground_Init(CommManUnderground *param0, FieldSystem *fie
     sCommManUnderground->unk_1C.unk_02 = 0;
     sCommManUnderground->unk_14B = 0;
     sCommManUnderground->unk_147 = 1;
-    sCommManUnderground->unk_118 = ov23_02253D48(634, HEAP_ID_33, fieldSystem->bgConfig, v0, 500);
-    sCommManUnderground->unk_11C = ov23_02253D48(638, HEAP_ID_33, fieldSystem->bgConfig, v0, 0);
-    sCommManUnderground->unk_120 = ov23_02253D48(636, HEAP_ID_33, fieldSystem->bgConfig, v0, 1000);
-    sCommManUnderground->unk_124 = ov23_02253D48(637, HEAP_ID_33, fieldSystem->bgConfig, v0, 0);
-    sCommManUnderground->unk_128 = ov23_02253D48(630, HEAP_ID_33, fieldSystem->bgConfig, v0, 0);
+    sCommManUnderground->unk_118 = ov23_02253D48(TEXT_BANK_UNDERGROUND_COMMON, HEAP_ID_33, fieldSystem->bgConfig, v0, 500);
+    sCommManUnderground->unk_11C = ov23_02253D48(TEXT_BANK_UNDERGROUND_CAPTURE_FLAG, HEAP_ID_33, fieldSystem->bgConfig, v0, 0);
+    sCommManUnderground->unk_120 = ov23_02253D48(TEXT_BANK_UNDERGROUND_NPCS, HEAP_ID_33, fieldSystem->bgConfig, v0, 1000);
+    sCommManUnderground->unk_124 = ov23_02253D48(TEXT_BANK_UNDERGROUND_DECORATE_BASE, HEAP_ID_33, fieldSystem->bgConfig, v0, 0);
+    sCommManUnderground->unk_128 = ov23_02253D48(TEXT_BANK_UNDERGROUND_TRAP_NAMES, HEAP_ID_33, fieldSystem->bgConfig, v0, 0);
 
     LoadMessageBoxGraphics(sCommManUnderground->fieldSystem->bgConfig, 3, (1024 - (18 + 12)), 10, 0, HEAP_ID_FIELD);
     Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, 52, 0, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD);

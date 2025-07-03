@@ -1464,7 +1464,7 @@ void ov17_02240A80(UnkStruct_ov17_0223F7E4 *param0, u16 param1[])
     }
 
     for (v1 = 0; v1 < (1 + 2); v1++) {
-        v5 = ov17_0223F310(param0->unk_04->unk_00->unk_C0[v1].unk_00, 21);
+        v5 = ov17_0223F310(param0->unk_04->unk_00->unk_C0[v1].unk_00, HEAP_ID_21);
         ov17_02240BF4(param0, v5, FONT_SUBSCREEN, &v0->unk_F0[v1], TEXT_COLOR(1, 9, 0xa));
         Strbuf_Free(v5);
     }
