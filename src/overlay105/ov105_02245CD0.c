@@ -53,7 +53,7 @@ PokemonSprite *ov105_02245D88(PokemonSpriteManager *param0, int param1, Pokemon 
     int v2;
     u32 v3;
 
-    Pokemon_BuildSpriteTemplate(&v0, param2, 2);
+    Pokemon_BuildPicTemplate(&v0, param2, 2);
 
     v2 = 0;
     v1 = PokemonSpriteManager_CreateSprite(param0, &v0, param3, (param4 + v2), param5, param1, NULL, NULL);

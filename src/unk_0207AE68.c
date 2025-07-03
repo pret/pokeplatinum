@@ -936,7 +936,7 @@ static void sub_0207C498(UnkStruct_0207AE68 *param0)
     PokePicTemplate v0;
     Pokemon *v1;
 
-    Pokemon_BuildSpriteTemplate(&v0, param0->unk_28, 2);
+    Pokemon_BuildPicTemplate(&v0, param0->unk_28, 2);
 
     param0->unk_1C[0] = PokemonSpriteManager_CreateSprite(param0->unk_18, &v0, 128, 80, 0, 0, NULL, NULL);
     v1 = Pokemon_New(param0->heapID);
@@ -944,7 +944,7 @@ static void sub_0207C498(UnkStruct_0207AE68 *param0)
     Pokemon_Copy(param0->unk_28, v1);
     Pokemon_SetData(v1, MON_DATA_SPECIES, (u8 *)&param0->unk_62);
     Pokemon_CalcLevelAndStats(v1);
-    Pokemon_BuildSpriteTemplate(&v0, v1, 2);
+    Pokemon_BuildPicTemplate(&v0, v1, 2);
     Heap_FreeToHeap(v1);
 
     param0->unk_1C[1] = PokemonSpriteManager_CreateSprite(param0->unk_18, &v0, 128, 80, 0, 0, NULL, NULL);

@@ -394,31 +394,31 @@ u32 Pokemon_FindShinyPersonality(u32 monOTID);
 /**
  * @brief Build a PokePicTemplate for a Pokemon.
  *
- * @param spriteTemplate Pointer to the sprite template to be populated
- * @param mon            The Pokemon whose data will be used to build the sprite
- * @param face           Which face of the Pokemon the player sees
+ * @param pokepicTemplate Pointer to the sprite template to be populated
+ * @param mon             The Pokemon whose data will be used to build the sprite
+ * @param face            Which face of the Pokemon the player sees
  */
-void Pokemon_BuildSpriteTemplate(PokePicTemplate *spriteTemplate, Pokemon *mon, u8 face);
+void Pokemon_BuildPicTemplate(PokePicTemplate *pokepicTemplate, Pokemon *mon, u8 face);
 
 /**
  * @brief Build a PokePicTemplate for a Pokemon, preferring sprites from
  * Diamond/Pearl where possible.
  *
- * @param spriteTemplate Pointer to the sprite template to be populated
- * @param mon            The Pokemon whose data will be used to build the sprite
- * @param face           Which face of the Pokemon the player sees
+ * @param pokepicTemplate Pointer to the sprite template to be populated
+ * @param mon             The Pokemon whose data will be used to build the sprite
+ * @param face            Which face of the Pokemon the player sees
  */
-void Pokemon_BuildSpriteTemplateDP(PokePicTemplate *spriteTemplate, Pokemon *mon, u8 face);
+void Pokemon_BuildPicTemplateDP(PokePicTemplate *pokepicTemplate, Pokemon *mon, u8 face);
 
 /**
  * @brief Build a PokePicTemplate for a BoxPokemon.
  *
- * @param spriteTemplate Pointer to the sprite template to be populated
- * @param mon            The Pokemon whose data will be used to build the sprite
- * @param face           Which face of the Pokemon the player sees
- * @param preferDP       If TRUE, prefer sprites from Diamond/Pearl over Platinum
+ * @param pokepicTemplate Pointer to the sprite template to be populated
+ * @param mon             The Pokemon whose data will be used to build the sprite
+ * @param face            Which face of the Pokemon the player sees
+ * @param preferDP        If TRUE, prefer sprites from Diamond/Pearl over Platinum
  */
-void BoxPokemon_BuildSpriteTemplate(PokePicTemplate *spriteTemplate, BoxPokemon *boxMon, u8 face, BOOL preferDP);
+void BoxPokemon_BuildPicTemplate(PokePicTemplate *pokepicTemplate, BoxPokemon *boxMon, u8 face, BOOL preferDP);
 
 /**
  * @brief Build a PokePicTemplate for a Pokemon sprite according to the input

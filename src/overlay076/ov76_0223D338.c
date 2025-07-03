@@ -693,7 +693,7 @@ void ov76_0223DD88(UnkStruct_ov76_0223DE00 *param0)
     int v2;
     int v3;
 
-    Pokemon_BuildSpriteTemplate(&v0, param0->unk_428, 2);
+    Pokemon_BuildPicTemplate(&v0, param0->unk_428, 2);
 
     v2 = Pokemon_GetData(param0->unk_428, MON_DATA_SPECIES, NULL);
     v3 = Pokemon_SpriteYOffset(param0->unk_428, 2);

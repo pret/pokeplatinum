@@ -2046,7 +2046,7 @@ static void ov6_02244FE4(SysTask *param0, void *param1)
 
 static void ov6_0224508C(UnkStruct_ov6_02243FFC *param0, PokePicTemplate *param1)
 {
-    Pokemon_BuildSpriteTemplate(param1, param0->unk_5C, 2);
+    Pokemon_BuildPicTemplate(param1, param0->unk_5C, 2);
 }
 
 static void *ov6_0224509C(Pokemon *param0, PokePicTemplate *param1, u32 heapID)

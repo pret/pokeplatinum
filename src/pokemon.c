@@ -2289,17 +2289,17 @@ u32 Pokemon_FindShinyPersonality(u32 otID)
     return rndLow | (rndHigh << 16);
 }
 
-void Pokemon_BuildSpriteTemplate(PokePicTemplate *spriteTemplate, Pokemon *mon, u8 face)
+void Pokemon_BuildPicTemplate(PokePicTemplate *pokepicTemplate, Pokemon *mon, u8 face)
 {
-    BoxPokemon_BuildSpriteTemplate(spriteTemplate, &mon->box, face, FALSE);
+    BoxPokemon_BuildPicTemplate(pokepicTemplate, &mon->box, face, FALSE);
 }
 
-void Pokemon_BuildSpriteTemplateDP(PokePicTemplate *spriteTemplate, Pokemon *mon, u8 face)
+void Pokemon_BuildPicTemplateDP(PokePicTemplate *pokepicTemplate, Pokemon *mon, u8 face)
 {
-    BoxPokemon_BuildSpriteTemplate(spriteTemplate, &mon->box, face, TRUE);
+    BoxPokemon_BuildPicTemplate(pokepicTemplate, &mon->box, face, TRUE);
 }
 
-void BoxPokemon_BuildSpriteTemplate(PokePicTemplate *spriteTemplate, BoxPokemon *boxMon, u8 face, BOOL preferDP)
+void BoxPokemon_BuildPicTemplate(PokePicTemplate *pokepicTemplate, BoxPokemon *boxMon, u8 face, BOOL preferDP)
 {
     BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
 
@@ -2308,21 +2308,21 @@ void BoxPokemon_BuildSpriteTemplate(PokePicTemplate *spriteTemplate, BoxPokemon 
     u8 isShiny = BoxPokemon_IsShiny(boxMon);
     u32 personality = BoxPokemon_GetData(boxMon, MON_DATA_PERSONALITY, NULL);
 
-    u8 monForm;
+    u8 form;
     if (species == SPECIES_EGG) {
         if (BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_MANAPHY) {
-            monForm = 1;
+            form = 1;
         } else {
-            monForm = 0;
+            form = 0;
         }
     } else {
-        monForm = BoxPokemon_GetData(boxMon, MON_DATA_FORM, NULL);
+        form = BoxPokemon_GetData(boxMon, MON_DATA_FORM, NULL);
     }
 
     if (preferDP == TRUE) {
-        BuildPokemonSpriteTemplateDP(spriteTemplate, species, gender, face, isShiny, monForm, personality);
+        BuildPokemonSpriteTemplateDP(pokepicTemplate, species, gender, face, isShiny, form, personality);
     } else {
-        BuildPokemonSpriteTemplate(spriteTemplate, species, gender, face, isShiny, monForm, personality);
+        BuildPokemonSpriteTemplate(pokepicTemplate, species, gender, face, isShiny, form, personality);
     }
 
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);

@@ -37,7 +37,7 @@ void ov22_022590D4(UnkStruct_020298D8 *param0, PokemonSpriteManager *param1, Pok
 {
     int v0 = Pokemon_GetData(param2, MON_DATA_SPECIES, NULL);
 
-    Pokemon_BuildSpriteTemplateDP(param3, param2, 2);
+    Pokemon_BuildPicTemplateDP(param3, param2, 2);
     param0->unk_00 = PokemonSpriteManager_CreateSprite(param1, param3, 192, 56, 0, 0, NULL, NULL);
 
     {

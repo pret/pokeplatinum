@@ -348,9 +348,9 @@ void PokemonSummaryScreen_LoadMonSprite(PokemonSummaryScreen *summaryScreen)
     PokePicTemplate spriteTemplate;
 
     if (summaryScreen->data->dataType == SUMMARY_DATA_BOX_MON) {
-        BoxPokemon_BuildSpriteTemplate(&spriteTemplate, monData, 2, 0);
+        BoxPokemon_BuildPicTemplate(&spriteTemplate, monData, 2, 0);
     } else {
-        Pokemon_BuildSpriteTemplate(&spriteTemplate, monData, 2);
+        Pokemon_BuildPicTemplate(&spriteTemplate, monData, 2);
     }
 
     PokeSprite_LoadAnimationFrames(summaryScreen->narcPlPokeData, summaryScreen->monSprite.frames, summaryScreen->monData.species, 1);

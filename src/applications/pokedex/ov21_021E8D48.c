@@ -746,7 +746,7 @@ static PokemonSprite *ov21_021E99E0(PokemonSpriteManager *param0, Pokemon *param
 {
     PokePicTemplate v0;
 
-    Pokemon_BuildSpriteTemplate(&v0, param1, 2);
+    Pokemon_BuildPicTemplate(&v0, param1, 2);
     return PokemonSpriteManager_CreateSprite(param0, &v0, param2, param3, 0, 0, NULL, NULL);
 }
 

@@ -867,7 +867,7 @@ static void LoadAndDrawPokemonPreviewSpriteFromStruct(UnkStruct_ov5_021D30A8 *pa
     void *buf = PokemonSpriteManager_New(param0->heapID);
 
     PokePicTemplate sprite;
-    Pokemon_BuildSpriteTemplate(&sprite, mon, FACE_FRONT);
+    Pokemon_BuildPicTemplate(&sprite, mon, FACE_FRONT);
     DrawPokemonPreviewSprite(param0, &sprite);
     PokemonSpriteManager_Free(buf);
 }

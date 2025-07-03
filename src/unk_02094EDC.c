@@ -665,7 +665,7 @@ PokemonSprite *sub_02095484(PokemonSpriteManager *param0, int param1, Pokemon *p
     PokemonSprite *v1;
     int v2, v3, v4;
 
-    Pokemon_BuildSpriteTemplate(&v0, param2, param3);
+    Pokemon_BuildPicTemplate(&v0, param2, param3);
 
     v2 = Pokemon_SpriteYOffset(param2, param3);
 

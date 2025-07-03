@@ -84,7 +84,7 @@ static void ov79_021D38D0(UnkStruct_ov79_021D3820 *param0, UnkStruct_ov79_021D38
 
     param0->unk_04 = PokemonSpriteManager_New(heapID);
 
-    Pokemon_BuildSpriteTemplate(&v0, param1->unk_00, 2);
+    Pokemon_BuildPicTemplate(&v0, param1->unk_00, 2);
 
     v1 = PokemonSpriteManager_CreateSprite(param0->unk_04, &v0, 128, 96, 0, 0, NULL, NULL);
     PokemonSprite_SetAttribute(v1, MON_SPRITE_FLIP_H, param1->unk_08);
