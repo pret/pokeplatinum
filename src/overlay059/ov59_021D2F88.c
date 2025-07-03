@@ -165,7 +165,7 @@ void ov59_021D30E0(SaveData *saveData, UnkStruct_ov59_021D30E0 *param1)
         GF_ASSERT(v4 > v0);
 
         MI_CpuCopyFast(v1, v5, v0);
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
 
         v5 += v0;
         v4 -= v0;

@@ -705,7 +705,7 @@ void ov12_02224F14(SPLEmitter *param0)
     }
 
     ov12_0222421C(param0, v1);
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
 s8 ov12_02224FC4(UnkStruct_ov12_02225640 *param0)

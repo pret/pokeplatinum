@@ -392,7 +392,7 @@ int ov67_0225CB1C(ApplicationManager *appMan, int *param1)
 
     inline_ov96_0223BDEC(&v0->unk_D4, 0);
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     Heap_Destroy(HEAP_ID_112);
 
     return 1;
@@ -523,7 +523,7 @@ int ov67_0225CDC0(ApplicationManager *appMan, int *param1)
 
     inline_ov96_0223BDEC(&v0->unk_D4, 0);
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     Heap_Destroy(HEAP_ID_112);
 
     return 1;
@@ -602,7 +602,7 @@ static void ov67_0225D154(UnkStruct_ov67_0225D154 *param0)
             Bg_FreeTilemapBuffer(param0->unk_0C, Unk_ov67_0225D3F4[v0]);
         }
 
-        Heap_FreeToHeap(param0->unk_0C);
+        Heap_Free(param0->unk_0C);
     }
 }
 

@@ -357,7 +357,7 @@ BOOL ov62_02235008(UnkStruct_0208C06C *param0)
             sub_0208B8B8(param0->unk_6F0, v9 + (15 + 1), v10);
             sub_0208B9E0(param0->unk_6F0, 0);
             ov62_0222FF7C(param0);
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
         }
         return 1;
     }

@@ -677,7 +677,7 @@ static void ov75_021D1564(UnkStruct_ov75_021D1184 *param0)
     Bg_FreeTilemapBuffer(param0->unk_18, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(param0->unk_18, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(param0->unk_18, BG_LAYER_MAIN_0);
-    Heap_FreeToHeap(param0->unk_18);
+    Heap_Free(param0->unk_18);
 }
 
 static void ov75_021D1598(UnkStruct_ov75_021D1184 *param0)
@@ -703,7 +703,7 @@ static void ov75_021D1598(UnkStruct_ov75_021D1184 *param0)
     NNS_G2dGetUnpackedCharacterData(v2, &v3);
     Bg_LoadTiles(param0->unk_18, 1, v3->pRawData, v3->szByte, 0);
     Bg_LoadTiles(param0->unk_18, 4, v3->pRawData, v3->szByte, 0);
-    Heap_FreeToHeap(v2);
+    Heap_Free(v2);
 
     v1 = NARC_GetMemberSize(v5, v8);
     v2 = Heap_AllocFromHeapAtEnd(param0->heapID, v1);
@@ -731,7 +731,7 @@ static void ov75_021D1598(UnkStruct_ov75_021D1184 *param0)
     PaletteData_Blend(param0->unk_30, 2, 0, 16 * 3, 16, 0x0);
     PaletteData_SetAutoTransparent(param0->unk_30, 1);
     PaletteData_CommitFadedBuffers(param0->unk_30);
-    Heap_FreeToHeap(v2);
+    Heap_Free(v2);
 
     v1 = NARC_GetMemberSize(v5, v7);
     param0->unk_34 = Heap_AllocFromHeap(param0->heapID, v1);
@@ -762,8 +762,8 @@ static void ov75_021D1598(UnkStruct_ov75_021D1184 *param0)
 
 static void ov75_021D1868(UnkStruct_ov75_021D1184 *param0)
 {
-    Heap_FreeToHeap(param0->unk_38);
-    Heap_FreeToHeap(param0->unk_34);
+    Heap_Free(param0->unk_38);
+    Heap_Free(param0->unk_34);
     PaletteData_FreeBuffer(param0->unk_30, 2);
     PaletteData_FreeBuffer(param0->unk_30, 0);
     PaletteData_Free(param0->unk_30);

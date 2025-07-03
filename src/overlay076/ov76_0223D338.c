@@ -486,7 +486,7 @@ static void ov76_0223D9AC(SysTask *param0, void *param1)
         ov76_0223D984(v0->unk_08, 0, +2);
         ManagedSprite_SetAnimationFrame(v0->unk_04, 0);
         SysTask_Done(param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         break;
     default:
         v0->unk_00++;

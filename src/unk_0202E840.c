@@ -207,7 +207,7 @@ void *sub_0202E9FC(SaveData *saveData, int heapID)
         v3->unk_00[v0].unk_04 = v6[v0];
     }
 
-    Heap_FreeToHeap(v6);
+    Heap_Free(v6);
     Strbuf_Free(v4);
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_RANKINGS);
 
@@ -343,7 +343,7 @@ static void sub_0202ECB0(UnkStruct_0202E8C0 *param0, u32 param1, u8 param2, UnkS
         sub_0202EAEC(param0, v2, param1, param2, 1, param3, param4, heapID);
     }
 
-    Heap_FreeToHeap(v2);
+    Heap_Free(v2);
 }
 
 void sub_0202ED0C(SaveData *saveData, int param1, u8 param2, const void **param3, int heapID)
@@ -405,7 +405,7 @@ UnkStruct_0202EE10 *sub_0202ED8C(SaveData *saveData, int param1, int heapID)
         v3->unk_04[v0].unk_08 = TrainerInfo_NameNewStrbuf(v5, heapID);
     }
 
-    Heap_FreeToHeap(v4);
+    Heap_Free(v4);
     return v3;
 }
 
@@ -446,7 +446,7 @@ void sub_0202EE8C(UnkStruct_0202EE10 *param0)
 
     MI_CpuClear8(param0, sizeof(UnkStruct_0202EE10));
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
     param0 = NULL;
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_RANKINGS);
 }

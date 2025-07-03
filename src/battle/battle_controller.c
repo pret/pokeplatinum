@@ -210,8 +210,8 @@ BOOL BattleController_Main(BattleSystem *battleSys, BattleContext *battleCtx)
 
 void BattleContext_Free(BattleContext *battleCtx)
 {
-    Heap_FreeToHeap(battleCtx->aiContext.itemTable);
-    Heap_FreeToHeap(battleCtx);
+    Heap_Free(battleCtx->aiContext.itemTable);
+    Heap_Free(battleCtx);
 }
 
 void BattleController_CheckMoveHit(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int move)

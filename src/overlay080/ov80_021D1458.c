@@ -152,7 +152,7 @@ int ov80_021D1478(UnkStruct_ov80_021D2A08 *param0)
 
     ov80_021D2C1C(v0->unk_9C);
     ov80_021D1F14(param0);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     return 1;
 }

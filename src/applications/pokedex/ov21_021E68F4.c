@@ -178,13 +178,13 @@ static UnkStruct_ov21_021D4660 *ov21_021E69D8(enum HeapId heapID, PokedexApp *pa
 static void ov21_021E6A20(UnkStruct_ov21_021E6A20 *param0)
 {
     GF_ASSERT(param0);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov21_021E6A34(PokedexGraphicData **param0)
 {
     GF_ASSERT(param0);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov21_021E6A48(UnkStruct_ov21_021D4660 *param0)
@@ -194,7 +194,7 @@ static void ov21_021E6A48(UnkStruct_ov21_021D4660 *param0)
     ov21_021D4660(&param0[0]);
     ov21_021D4660(&param0[1]);
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static int ov21_021E6A68(void)
@@ -257,7 +257,7 @@ static int ov21_021E6B0C(PokedexDataManager *dataMan, void *data)
     UnkStruct_ov21_021E6DAC *v1 = dataMan->pageData;
 
     ov21_021E6DEC(v1);
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 
     return 1;
 }
@@ -333,7 +333,7 @@ static int ov21_021E6BD8(void *graphics, PokedexGraphicsManager *graphicsMan, co
         graphicsMan->state++;
         break;
     case 3:
-        Heap_FreeToHeap(graphicsMan->pageGraphics);
+        Heap_Free(graphicsMan->pageGraphics);
         graphicsMan->state++;
         break;
     case 4:
@@ -443,7 +443,7 @@ static void ov21_021E6DBC(UnkStruct_ov21_021E6DAC *param0, UnkStruct_ov21_021E6A
 static void ov21_021E6DEC(UnkStruct_ov21_021E6DAC *param0)
 {
     TouchScreenActions_Free(param0->unk_00);
-    Heap_FreeToHeap(param0->unk_04);
+    Heap_Free(param0->unk_04);
 
     param0->unk_04 = NULL;
 }
@@ -504,7 +504,7 @@ static void ov21_021E6E94(UnkStruct_ov21_021E6C60 *param0, PokedexGraphicData **
 
     for (v0 = 0; v0 < 2; v0++) {
         if (param0->unk_38[v0]) {
-            Heap_FreeToHeap(param0->unk_38[v0]);
+            Heap_Free(param0->unk_38[v0]);
         }
     }
 }
@@ -519,7 +519,7 @@ static void ov21_021E6EF0(PokedexGraphicData **param0, int heapID)
     v0 = PokedexGraphics_GetGraphicNarcScreenData(*param0, 61, 1, &v1, heapID);
 
     Bg_LoadToTilemapRect((*param0)->bgConfig, 6, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     Bg_ScheduleTilemapTransfer((*param0)->bgConfig, 6);
 }
 
@@ -684,7 +684,7 @@ static void ov21_021E71D0(PokedexGraphicData **param0, Sprite *param1, PokedexTe
 
     if (v3) {
         if (*param10) {
-            Heap_FreeToHeap(*param10);
+            Heap_Free(*param10);
         }
 
         *param10 = PokedexGraphics_GetGraphicNarcPaletteData(*param0, v4, &v1, heapID);

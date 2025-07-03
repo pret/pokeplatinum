@@ -139,7 +139,7 @@ static BOOL New(void **appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u
             }
         }
 
-        Heap_FreeToHeap(moveTester);
+        Heap_Free(moveTester);
     }
 
     return FALSE;
@@ -181,7 +181,7 @@ static void Free(PoketchMoveTester *appData)
     PoketchMemory_Write32(appData->appID, &(appData->moveTesterData), sizeof(appData->moveTesterData));
     PoketchButtonManager_Free(appData->buttonManager);
     PoketchMoveTesterGraphics_Free(appData->graphics);
-    Heap_FreeToHeap(appData);
+    Heap_Free(appData);
 }
 
 static void Task_Main(SysTask *task, void *appData)

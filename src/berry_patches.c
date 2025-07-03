@@ -46,7 +46,7 @@ void BerryPatches_Init(BerryPatch *patches, enum HeapId heapID, const u16 *initP
         patches[i].yieldRating = 3;
     }
 
-    Heap_FreeToHeap(growthData);
+    Heap_Free(growthData);
 }
 
 BerryGrowthData *BerryGrowthData_Init(enum HeapId heapID)
@@ -63,7 +63,7 @@ BerryGrowthData *BerryGrowthData_Init(enum HeapId heapID)
         growthData[i].moistureDrainRate = BerryData_GetAttribute(berryData, BERRYATTR_MOISTURE_DRAIN_RATE);
         growthData[i].yieldCategory = BerryData_GetAttribute(berryData, BERRYATTR_YIELD_CATEGORY);
 
-        Heap_FreeToHeap(berryData);
+        Heap_Free(berryData);
     }
 
     BerryData_NARC_dtor(narc);

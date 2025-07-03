@@ -512,7 +512,7 @@ static BOOL ov6_0223E33C(FieldTask *taskMan)
         break;
     case 1:
         ov6_0223FE08(v1->unk_00);
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return 1;
     }
 
@@ -599,7 +599,7 @@ static BOOL ov6_0223E408(FieldTask *param0)
         break;
     case 7:
         ov6_0223FE08(v1->unk_00);
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return 1;
     }
 
@@ -1831,7 +1831,7 @@ UnkStruct_ov6_0223FDE4 *ov6_0223FDE4(u32 heapID)
 void ov6_0223FE08(UnkStruct_ov6_0223FDE4 *param0)
 {
     Camera_Delete(param0->camera1);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov6_0223FE1C(UnkStruct_ov6_0223FDE4 *param0, fx32 param1, fx32 param2, u32 param3, u32 param4, Camera *camera)
@@ -2011,7 +2011,7 @@ UnkStruct_ov6_022400A8 *ov6_02240074(FieldSystem *fieldSystem)
 void ov6_022400A8(UnkStruct_ov6_022400A8 *param0)
 {
     GF_ASSERT(param0->unk_12C == 5);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov6_022400C4(UnkStruct_ov6_022400A8 *param0)
@@ -2061,7 +2061,7 @@ UnkStruct_ov6_022401B8 *ov6_02240104(u32 heapID, FieldSystem *fieldSystem)
 void ov6_022401B8(UnkStruct_ov6_022401B8 *param0)
 {
     ov6_02240340(&param0->unk_34, &param0->unk_10C);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov6_022401D0(UnkStruct_ov6_022401B8 *param0, u32 param1)
@@ -2409,7 +2409,7 @@ static void ov6_02240654(UnkStruct_ov6_02240774 *param0)
     }
 
     ov6_0223FD68(&param0->unk_00);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov6_0224067C(UnkStruct_ov6_02240774 *param0, fx32 param1, fx32 param2, fx32 param3, s32 param4, u16 param5, u16 param6, u16 param7)
@@ -2588,7 +2588,7 @@ static void ov6_02240968(UnkStruct_ov6_02240A00 *param0)
         ov6_0223FD84(&param0->unk_88[v0], &param0->unk_C4);
     }
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov6_02240994(UnkStruct_ov6_02240A00 *param0, fx32 param1, fx32 param2, fx32 param3, u16 param4, u16 param5, u16 param6)

@@ -112,7 +112,7 @@ void ov87_021D1140(UnkStruct_ov87_021D106C *param0)
 {
     if (param0) {
         SetVBlankCallback(NULL, NULL);
-        Heap_FreeToHeap(param0->unk_1FC);
+        Heap_Free(param0->unk_1FC);
         Strbuf_Free(param0->unk_1F8);
         Strbuf_Free(param0->unk_1F4);
         StringTemplate_Free(param0->unk_1F0);
@@ -121,8 +121,8 @@ void ov87_021D1140(UnkStruct_ov87_021D106C *param0)
         MessageLoader_Free(param0->unk_1E4);
         SpriteList_Delete(param0->unk_34);
         RenderOam_Free();
-        Heap_FreeToHeap(param0->unk_10);
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0->unk_10);
+        Heap_Free(param0);
     }
 }
 
@@ -460,8 +460,8 @@ static void ov87_021D186C(UnkStruct_ov87_021D106C *param0)
         }
     }
 
-    Heap_FreeToHeap(param0->unk_1DC);
-    Heap_FreeToHeap(param0->unk_1E0);
+    Heap_Free(param0->unk_1DC);
+    Heap_Free(param0->unk_1E0);
 }
 
 static void ov87_021D18A0(UnkStruct_ov87_021D106C *param0, NNSG2dCellDataBank *param1, NNSG2dAnimBankData *param2)
@@ -519,8 +519,8 @@ static void ov87_021D18A0(UnkStruct_ov87_021D106C *param0, NNSG2dCellDataBank *p
         Sprite_SetDrawFlag(param0->unk_1C4[v9], 0);
     }
 
-    Heap_FreeToHeap(v8);
-    Heap_FreeToHeap(v7);
+    Heap_Free(v8);
+    Heap_Free(v7);
 }
 
 static void ov87_021D1970(UnkStruct_ov87_021D106C *param0)

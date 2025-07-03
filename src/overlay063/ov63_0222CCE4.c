@@ -69,8 +69,8 @@ void ov63_0222CD9C(UnkStruct_ov63_0222CD2C *param0)
     ov63_0222CE24(param0);
     ov63_0222AF14(param0->unk_00);
 
-    Heap_FreeToHeap(param0->unk_04);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0->unk_04);
+    Heap_Free(param0);
 }
 
 void ov63_0222CDE8(UnkStruct_ov63_0222CD2C *param0, u32 param1, int param2, u32 param3)

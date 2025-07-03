@@ -62,7 +62,7 @@ void ov5_021F0EFC(SysTask *param0)
 {
     UnkStruct_ov5_021F0FB8 *v0 = SysTask_GetParam(param0);
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     SysTask_Done(param0);
 }
 

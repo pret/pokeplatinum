@@ -105,7 +105,7 @@ void sub_0205C2E0(UnkStruct_0205C22C *param0)
     SysTask_Done(param0->unk_04);
     sub_0205C970(param0->unk_478);
     Heap_Destroy(HEAP_ID_89);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void sub_0205C304(SysTask *task, void *param1)
@@ -512,7 +512,7 @@ static void sub_0205C900(UnkStruct_0205C95C *param0)
 
 static void sub_0205C924(UnkStruct_0205C924 *param0)
 {
-    Heap_FreeToHeap(param0->unk_00);
+    Heap_Free(param0->unk_00);
 
     if (param0->unk_04 != NULL) {
         Strbuf_Free(param0->unk_04);
@@ -543,5 +543,5 @@ UnkStruct_0205C95C *sub_0205C95C(int heapID)
 void sub_0205C970(UnkStruct_0205C95C *param0)
 {
     sub_0205C944(param0);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }

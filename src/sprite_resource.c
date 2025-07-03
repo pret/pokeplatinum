@@ -92,10 +92,10 @@ void SpriteResourceCollection_Delete(SpriteResourceCollection *spriteResources)
     ResourceCollection_Delete(spriteResources->collection);
     spriteResources->collection = NULL;
 
-    Heap_FreeToHeap(spriteResources->resources);
+    Heap_Free(spriteResources->resources);
     spriteResources->resources = NULL;
 
-    Heap_FreeToHeap(spriteResources);
+    Heap_Free(spriteResources);
     spriteResources = NULL;
 }
 
@@ -429,8 +429,8 @@ SpriteResourceList *SpriteResourceList_New(int capacity, enum HeapId heapID)
 
 void SpriteResourceList_Delete(SpriteResourceList *list)
 {
-    Heap_FreeToHeap(list->resources);
-    Heap_FreeToHeap(list);
+    Heap_Free(list->resources);
+    Heap_Free(list);
     list = NULL;
 }
 
@@ -623,7 +623,7 @@ void SpriteResourceTable_LoadFromBinary(const void *data, SpriteResourceTable *t
 void SpriteResourceTable_Clear(SpriteResourceTable *table)
 {
     if (table->entries) {
-        Heap_FreeToHeap(table->entries);
+        Heap_Free(table->entries);
     }
 
     table->entries = NULL;
@@ -800,7 +800,7 @@ static MultiSpriteAnimResourceData *SpriteUtil_UnpackMultiSpriteAnimResource(voi
 static void SpriteResource_FreeData(SpriteResource *spriteRes)
 {
     if (spriteRes->data) {
-        Heap_FreeToHeap(spriteRes->data);
+        Heap_Free(spriteRes->data);
     }
 
     spriteRes->data = NULL;
@@ -868,7 +868,7 @@ static void *SpriteUtil_ReadNARCMember(NARC *narc, u32 memberIdx, BOOL compresse
 
             if (decompressed) {
                 MI_UncompressLZ8(data, decompressed);
-                Heap_FreeToHeap(data);
+                Heap_Free(data);
             }
 
             data = decompressed;

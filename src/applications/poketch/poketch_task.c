@@ -114,7 +114,7 @@ void PoketchTask_Start(const PoketchTask *appTasks, u32 taskId, void *taskData, 
                         appTasks[slot].taskFunc(poketchTaskMan->task, poketchTaskMan);
                     }
                 } else {
-                    Heap_FreeToHeap(poketchTaskMan);
+                    Heap_Free(poketchTaskMan);
                 }
 
                 return;
@@ -133,7 +133,7 @@ void PoketchTask_EndTask(u32 *activeList, PoketchTaskManager *taskData)
     RemoveTaskFromActiveList(activeList, taskData->taskId);
 
     SysTask_Done(taskData->task);
-    Heap_FreeToHeap(taskData);
+    Heap_Free(taskData);
 }
 
 void *PoketchTask_GetTaskData(PoketchTaskManager *taskMan)
@@ -203,7 +203,7 @@ void PoketchTask_MapToActivePaletteFromLuminance(u16 *rawData, u32 numPaletteEnt
             rawData[activePaletteEntrie] = activePalette[paletteEntries[luminance]];
         }
 
-        Heap_FreeToHeap(activePalette);
+        Heap_Free(activePalette);
     }
 }
 
@@ -225,10 +225,10 @@ void PoketchTask_FillPaletteFromActivePaletteSlot(u32 slot, u32 offset)
 
             DC_FlushRange(newPalette, PALETTE_SIZE_BYTES);
             GXS_LoadOBJPltt(newPalette, PLTT_OFFSET(offset), PALETTE_SIZE_BYTES);
-            Heap_FreeToHeap(newPalette);
+            Heap_Free(newPalette);
         }
 
-        Heap_FreeToHeap(activePalette);
+        Heap_Free(activePalette);
     }
 }
 
@@ -243,7 +243,7 @@ void PoketchTask_LoadPokemonIconLuminancePalette(u32 offset)
         PoketchTask_MapToActivePaletteFromLuminance(palette->pRawData, 4 * SLOTS_PER_PALETTE);
         DC_FlushRange(palette->pRawData, 4 * PALETTE_SIZE_BYTES);
         GXS_LoadOBJPltt(palette->pRawData, PLTT_OFFSET(offset), 4 * PALETTE_SIZE_BYTES);
-        Heap_FreeToHeap(nclrBuffer);
+        Heap_Free(nclrBuffer);
     }
 }
 
@@ -269,7 +269,7 @@ void PoketchTask_LoadPokemonIcons(u32 offset, const u32 *iconIdxList, u32 numIco
             NARC_dtor(iconNARC);
         }
 
-        Heap_FreeToHeap(ncgrFile);
+        Heap_Free(ncgrFile);
     }
 }
 

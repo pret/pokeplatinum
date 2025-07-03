@@ -358,7 +358,7 @@ BOOL sub_0208B988(UnkStruct_0208B878 *param0)
     default:
         sub_0208B830(param0);
         NARC_dtor(param0->unk_00.unk_00);
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0);
 
         return 0;
     }

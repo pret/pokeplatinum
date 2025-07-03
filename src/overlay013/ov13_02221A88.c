@@ -1629,7 +1629,7 @@ void ov13_02224144(BattleParty *param0)
         Strbuf_Free(v3);
     }
 
-    Heap_FreeToHeap(v2);
+    Heap_Free(v2);
 }
 
 void ov13_0222449C(BattleParty *param0)

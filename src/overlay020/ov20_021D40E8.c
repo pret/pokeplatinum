@@ -85,7 +85,7 @@ void ov20_021D4164(UnkStruct_ov20_021D4210 *param0)
 
     Window_Remove(&(param0->unk_20));
     Window_Remove(&(param0->unk_10));
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov20_021D41A8(UnkStruct_ov20_021D4210 *param0)

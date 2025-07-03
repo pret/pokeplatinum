@@ -160,7 +160,7 @@ void ov77_021D6CFC(UnkStruct_ov77_021D6CFC *param0)
 void ov77_021D6E28(UnkStruct_ov77_021D6CFC *param0)
 {
     ParticleSystem_Free(param0->unk_18);
-    Heap_FreeToHeap(param0->unk_14);
+    Heap_Free(param0->unk_14);
     PokemonSpriteManager_Free(param0->unk_00);
 }
 

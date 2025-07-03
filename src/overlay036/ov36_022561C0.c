@@ -55,7 +55,7 @@ static BOOL ov36_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *pa
             }
         }
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 
     return 0;
@@ -102,7 +102,7 @@ static void ov36_02256280(UnkStruct_ov36_0225621C *param0)
     PoketchButtonManager_Free(param0->buttonManager);
     ov36_02256440(param0->unk_0C);
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov36_02256298(SysTask *param0, void *param1)

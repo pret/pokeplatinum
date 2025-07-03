@@ -178,7 +178,7 @@ static void ov23_02242108(void)
     ov23_02253DD8(sCommManUnderground->unk_128);
 
     sCommManUnderground->fieldSystem->unk_90 = 0;
-    Heap_FreeToHeap(sCommManUnderground);
+    Heap_Free(sCommManUnderground);
     sCommManUnderground = NULL;
 }
 

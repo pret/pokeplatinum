@@ -202,5 +202,5 @@ static void sub_0206B878(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, c
     }
 
     (void)FS_CloseFile(&v0);
-    Heap_FreeToHeap(v4);
+    Heap_Free(v4);
 }

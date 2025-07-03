@@ -730,12 +730,12 @@ static void ov65_02236840(UnkStruct_ov65_02236840 *param0, u32 heapID)
 
 static void ov65_022369F0(UnkStruct_ov65_02236840 *param0)
 {
-    Heap_FreeToHeap(param0->unk_244);
-    Heap_FreeToHeap(param0->unk_250);
+    Heap_Free(param0->unk_244);
+    Heap_Free(param0->unk_250);
     Bg_FreeTilemapBuffer(param0->unk_00, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(param0->unk_00, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(param0->unk_00, BG_LAYER_MAIN_0);
-    Heap_FreeToHeap(param0->unk_00);
+    Heap_Free(param0->unk_00);
 }
 
 static void ov65_02236A28(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207DE04 *param1, u32 param2)

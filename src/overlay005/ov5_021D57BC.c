@@ -25,7 +25,7 @@ UnkStruct_ov5_021D57D8 *ov5_021D57BC(void)
 
 void ov5_021D57D8(UnkStruct_ov5_021D57D8 **param0)
 {
-    Heap_FreeToHeapExplicit(HEAP_ID_FIELD, *param0);
+    Heap_FreeExplicit(HEAP_ID_FIELD, *param0);
     *param0 = NULL;
 }
 

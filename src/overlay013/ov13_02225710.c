@@ -441,7 +441,7 @@ static void ov13_02225D8C(BattleParty *param0, u8 param1, u8 param2, u8 param3)
 
     Bg_LoadToTilemapRect(param0->background, 6, v0, Unk_ov13_02229924[param1].unk_00, Unk_ov13_02229924[param1].unk_01, Unk_ov13_02229924[param1].unk_02, Unk_ov13_02229924[param1].unk_03);
     Bg_ScheduleTilemapTransfer(param0->background, 6);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 static void ov13_02225E08(BattleParty *param0, u8 param1, u8 param2)

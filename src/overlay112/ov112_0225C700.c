@@ -525,7 +525,7 @@ static void ov112_0225CB60(UnkStruct_ov112_0225C9BC *param0)
         }
     }
 
-    Heap_FreeToHeap(param0->unk_00);
+    Heap_Free(param0->unk_00);
     gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
     GXLayers_SwapDisplay();
 }
@@ -579,7 +579,7 @@ static void ov112_0225CC64(UnkStruct_ov112_0225CC84 *param0, UnkStruct_ov112_022
 
 static void ov112_0225CC84(UnkStruct_ov112_0225CC84 *param0)
 {
-    Heap_FreeToHeap(param0->unk_00);
+    Heap_Free(param0->unk_00);
 }
 
 static void ov112_0225CC90(UnkStruct_ov112_0225CC84 *param0, UnkStruct_ov112_0225C9BC *param1, u32 param2, u8 param3, u8 param4)
@@ -956,7 +956,7 @@ static void ov112_0225D2D0(UnkStruct_ov112_0225D2D0 *param0)
 {
     int v0;
 
-    Heap_FreeToHeap(param0->unk_94);
+    Heap_Free(param0->unk_94);
     Strbuf_Free(param0->unk_90);
 
     for (v0 = 0; v0 < 3; v0++) {

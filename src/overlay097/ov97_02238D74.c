@@ -51,7 +51,7 @@ static void ov97_02238D94(DWCAllocType param0, void *param1, u32 param2)
     }
 
     v0 = (u32 *)((u32)param1 - 4);
-    Heap_FreeToHeap((void *)*v0);
+    Heap_Free((void *)*v0);
 }
 
 static volatile BOOL Unk_ov97_02240410;

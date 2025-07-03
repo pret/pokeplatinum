@@ -92,7 +92,7 @@ static void sub_0209AD84(UnkStruct_0209AD84 *param0)
     StringTemplate_Free(param0->unk_0C);
     MessageLoader_Free(param0->unk_10);
     sub_0209ADBC(param0);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void sub_0209ADBC(UnkStruct_0209AD84 *param0)

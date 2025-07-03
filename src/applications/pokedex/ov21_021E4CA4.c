@@ -246,13 +246,13 @@ static UnkStruct_ov21_021D4660 *ov21_021E4D8C(enum HeapId heapID, PokedexApp *pa
 static void ov21_021E4D90(UnkStruct_ov21_021E4D90 *param0)
 {
     GF_ASSERT(param0);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov21_021E4DA4(PokedexGraphicData **param0)
 {
     GF_ASSERT(param0);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov21_021E4DB8(UnkStruct_ov21_021D4660 *param0)
@@ -329,7 +329,7 @@ static int ov21_021E4E84(PokedexDataManager *dataMan, void *data)
     UnkStruct_ov21_021E51DC *v1 = dataMan->pageData;
 
     ov21_021E5200(v1);
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 
     return 1;
 }
@@ -412,7 +412,7 @@ static int ov21_021E4F78(void *graphics, PokedexGraphicsManager *graphicsMan, co
         graphicsMan->state++;
         break;
     case 3:
-        Heap_FreeToHeap(graphicsMan->pageGraphics);
+        Heap_Free(graphicsMan->pageGraphics);
         graphicsMan->state++;
         break;
     case 4:
@@ -523,10 +523,10 @@ static void ov21_021E5200(UnkStruct_ov21_021E51DC *param0)
 {
     TouchScreenActions_Free(param0->unk_00);
     TouchScreenActions_Free(param0->unk_14);
-    Heap_FreeToHeap(param0->unk_04);
+    Heap_Free(param0->unk_04);
 
     param0->unk_04 = NULL;
-    Heap_FreeToHeap(param0->unk_10);
+    Heap_Free(param0->unk_10);
     param0->unk_10 = NULL;
 }
 
@@ -774,14 +774,14 @@ static void ov21_021E5538(PokedexGraphicData **param0, int heapID)
     v0 = PokedexGraphics_GetGraphicNarcScreenData(*param0, 71, 1, &v1, heapID);
 
     Bg_LoadToTilemapRect((*param0)->bgConfig, 6, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     Bg_ScheduleTilemapTransfer((*param0)->bgConfig, 6);
 
     PokedexGraphics_LoadGraphicNarcCharacterData(*param0, 35, (*param0)->bgConfig, 7, 0, 0, 1, heapID);
     v0 = PokedexGraphics_GetGraphicNarcScreenData(*param0, 72, 1, &v1, heapID);
 
     Bg_LoadToTilemapRect((*param0)->bgConfig, 7, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     Bg_ScheduleTilemapTransfer((*param0)->bgConfig, 7);
     Bg_SetOffset((*param0)->bgConfig, 7, 0, -48);
     Bg_SetOffset((*param0)->bgConfig, 7, 3, -16);
@@ -1298,7 +1298,7 @@ static void ov21_021E5E80(UnkStruct_ov21_021E5004 *param0, PokedexGraphicData **
 
 static void ov21_021E5E98(UnkStruct_ov21_021E5004 *param0)
 {
-    Heap_FreeToHeap(param0->unk_68);
+    Heap_Free(param0->unk_68);
     param0->unk_68 = NULL;
     param0->unk_6C = NULL;
 }

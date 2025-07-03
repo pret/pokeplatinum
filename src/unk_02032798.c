@@ -77,7 +77,7 @@ void CommCmd_Init(const CommCmdTable *cmdTable, int param1, void *param2)
 void sub_020327E0(void)
 {
     if (sCommCmdManager) {
-        Heap_FreeToHeap(sCommCmdManager);
+        Heap_Free(sCommCmdManager);
         sCommCmdManager = NULL;
     }
 }

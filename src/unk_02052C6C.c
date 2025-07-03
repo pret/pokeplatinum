@@ -79,7 +79,7 @@ static void sub_02052C6C(FieldSystem *fieldSystem, BOOL param1)
     GetCurrentDate(&v2);
     sub_0202DFA8(v0, v1, &v2);
     SaveData_SaveHallOfFame(fieldSystem->saveData, v0);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 static BOOL sub_02052CBC(FieldTask *param0)
@@ -157,7 +157,7 @@ static BOOL sub_02052CBC(FieldTask *param0)
         break;
     case 9:
         if (!FieldSystem_IsRunningApplication(fieldSystem)) {
-            Heap_FreeToHeap(v3);
+            Heap_Free(v3);
             Heap_Destroy(HEAP_ID_FIELD);
             OS_ResetSystem(0);
             return 1;

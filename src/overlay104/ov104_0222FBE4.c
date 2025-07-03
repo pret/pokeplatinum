@@ -1428,7 +1428,7 @@ static void ov104_0223088C(UnkStruct_ov104_0222E930 *param0, int param1, int par
     }
 
     ov104_0223D860(v0->unk_00, v2, 1, v1, 3);
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
 static BOOL ov104_022308E0(UnkStruct_ov104_0222E930 *param0)
@@ -2249,7 +2249,7 @@ static void ov104_022313FC(SysTask *param0, void *param1)
 
         ov104_0223F258(v4->unk_600);
 
-        Heap_FreeToHeap(v4);
+        Heap_Free(v4);
         SysTask_Done(param0);
 
         return;
@@ -2495,7 +2495,7 @@ static BOOL ov104_02231AA8(UnkStruct_ov104_0222E930 *param0)
         SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
         SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
         sub_0209B980(param0->unk_00->unk_00, v1->unk_14);
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
     }
 
     return !v0;

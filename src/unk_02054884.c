@@ -52,7 +52,7 @@ BOOL Pokemon_GiveMonFromScript(enum HeapId heapID, SaveData *saveData, u16 speci
         SaveData_UpdateCatchRecords(saveData, mon);
     }
 
-    Heap_FreeToHeap(mon);
+    Heap_Free(mon);
 
     return result;
 }
@@ -71,7 +71,7 @@ BOOL sub_02054930(int unused, SaveData *saveData, u16 param2, u8 param3, int par
     Egg_CreateEgg(mon, param2, param3, trainerInfo, 4, v0);
 
     result = Party_AddPokemon(party, mon);
-    Heap_FreeToHeap(mon);
+    Heap_Free(mon);
 
     return result;
 }

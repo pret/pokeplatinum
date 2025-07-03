@@ -176,14 +176,14 @@ void ov4_021D0F68()
 
         if (Unk_ov4_0221A400->unk_F8C != NULL) {
             NNS_FndDestroyExpHeap(Unk_ov4_0221A400->unk_F90);
-            Heap_FreeToHeap(Unk_ov4_0221A400->unk_F8C);
+            Heap_Free(Unk_ov4_0221A400->unk_F8C);
             Unk_ov4_0221A400->unk_F8C = NULL;
         }
 
         NNS_FndDestroyExpHeap(Unk_ov4_0221A400->unk_F88);
 
-        Heap_FreeToHeapExplicit(Unk_ov4_0221A400->unk_1078, Unk_ov4_0221A400->unk_F84);
-        Heap_FreeToHeapExplicit(Unk_ov4_0221A400->unk_1078, Unk_ov4_0221A400->unk_F70);
+        Heap_FreeExplicit(Unk_ov4_0221A400->unk_1078, Unk_ov4_0221A400->unk_F84);
+        Heap_FreeExplicit(Unk_ov4_0221A400->unk_1078, Unk_ov4_0221A400->unk_F70);
 
         Unk_ov4_0221A400 = NULL;
     }
@@ -1550,7 +1550,7 @@ void ov4_021D2618(BOOL param0, int heapID)
             }
 
             NNS_FndDestroyExpHeap(Unk_ov4_0221A400->unk_F90);
-            Heap_FreeToHeap(Unk_ov4_0221A400->unk_F8C);
+            Heap_Free(Unk_ov4_0221A400->unk_F8C);
 
             Unk_ov4_0221A400->unk_F8C = NULL;
         }
@@ -1566,7 +1566,7 @@ void ov4_021D2700(int param0)
 {
     if (Unk_ov4_0221A400->unk_F74[param0] != NULL) {
         if (Unk_ov4_0221A400->unk_10D5[param0] == 1) {
-            Heap_FreeToHeap(Unk_ov4_0221A400->unk_F74[param0]);
+            Heap_Free(Unk_ov4_0221A400->unk_F74[param0]);
         } else {
             ov4_021D1B04(0, Unk_ov4_0221A400->unk_F74[param0], 0);
         }

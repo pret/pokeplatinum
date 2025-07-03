@@ -931,7 +931,7 @@ static void ov64_0222E3AC(UnkStruct_ov64_0222E21C *param0)
         Bg_FreeTilemapBuffer(param0->unk_00, Unk_ov64_02232258[v0]);
     }
 
-    Heap_FreeToHeap(param0->unk_00);
+    Heap_Free(param0->unk_00);
     param0->unk_00 = NULL;
 }
 
@@ -1055,7 +1055,7 @@ static void ov64_0222E71C(UnkStruct_ov64_0222E21C *param0)
     int v0;
 
     for (v0 = 0; v0 < 2; v0++) {
-        Heap_FreeToHeap(param0->unk_278.unk_00[v0]);
+        Heap_Free(param0->unk_278.unk_00[v0]);
     }
 }
 
@@ -1104,7 +1104,7 @@ static void ov64_0222E880(UnkStruct_ov64_0222E21C *param0, SaveData *saveData, u
 
     TrainerInfo_SetName(v1, sub_0202AEF0(v0, param2));
     StringTemplate_SetPlayerName(param0->unk_214, 0, v1);
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
 static void ov64_0222E8C0(UnkStruct_ov64_0222E21C *param0, SaveData *saveData, u32 param2, u32 heapID)
@@ -1114,7 +1114,7 @@ static void ov64_0222E8C0(UnkStruct_ov64_0222E21C *param0, SaveData *saveData, u
 
     TrainerInfo_SetName(v0, sub_0202AF34(v1, param2));
     StringTemplate_SetPlayerName(param0->unk_214, 0, v0);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 static BOOL ov64_0222E8FC(UnkStruct_ov64_0222E21C *param0, SaveData *saveData, u32 param2)
@@ -1280,7 +1280,7 @@ static int ov64_0222EA70(UnkStruct_ov64_0222F038 *param0, UnkStruct_ov64_0222E06
 
             TrainerInfo_SetName(v2, Strbuf_GetData(param1->unk_2C.unk_00));
             StringTemplate_SetPlayerName(param2->unk_214, 0, v2);
-            Heap_FreeToHeap(v2);
+            Heap_Free(v2);
 
             v1 = Strbuf_AtoI(param1->unk_2C.unk_04, &v0);
 
@@ -1541,7 +1541,7 @@ static void ov64_0222EE00(UnkStruct_ov64_0222F038 *param0, UnkStruct_ov64_0222E0
     Strbuf_Free(param0->unk_38);
     Window_Remove(&param0->unk_04);
     Window_Remove(&param0->unk_1C);
-    Heap_FreeToHeap(param0->unk_14);
+    Heap_Free(param0->unk_14);
 }
 
 static void ov64_0222EE20(UnkStruct_ov64_0222F038 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2)
@@ -3079,7 +3079,7 @@ static void ov64_02230804(UnkStruct_ov64_02230620 *param0, UnkStruct_ov64_0222E0
 {
     Window_Remove(&param0->unk_00);
     Window_Remove(&param0->unk_10);
-    Heap_FreeToHeap(param0->unk_20);
+    Heap_Free(param0->unk_20);
 }
 
 static void ov64_0223081C(UnkStruct_ov64_02230620 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2)
@@ -3445,7 +3445,7 @@ static void ov64_02230F60(UnkStruct_ov64_02230F60 *param0)
     int v0;
 
     for (v0 = 0; v0 < 7; v0++) {
-        Heap_FreeToHeap(param0->unk_00[v0]);
+        Heap_Free(param0->unk_00[v0]);
     }
 }
 
@@ -3899,7 +3899,7 @@ asm static void ov64_02231164 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     add r0, #0x40
     bl Window_BlitBitmapRect
     ldr r0, [sp, #0x34]
-    bl Heap_FreeToHeap
+    bl Heap_Free
     mov r0, #0x20
     str r0, [sp]
     ldr r0, [sp, #0x24]

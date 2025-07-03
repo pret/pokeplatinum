@@ -54,7 +54,7 @@ static void ov6_02248948(SysTask *param0, void *param1)
     case 1:
         Unk_ov6_02249834[v0->unk_0C](v0->unk_00);
         *v0->unk_04 = 1;
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         break;
     }

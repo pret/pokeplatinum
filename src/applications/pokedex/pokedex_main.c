@@ -907,28 +907,28 @@ static void FreePokedexApp(PokedexApp *pokedexApp)
     ov21_021D4660(&pokedexApp->unk_1A80);
 
     GF_ASSERT(pokedexApp->unk_1A70);
-    Heap_FreeToHeap(pokedexApp->unk_1A70);
+    Heap_Free(pokedexApp->unk_1A70);
 
     GF_ASSERT(pokedexApp->unk_1A74);
-    Heap_FreeToHeap(pokedexApp->unk_1A74);
+    Heap_Free(pokedexApp->unk_1A74);
 
     GF_ASSERT(pokedexApp->unk_1A78);
-    Heap_FreeToHeap(pokedexApp->unk_1A78);
+    Heap_Free(pokedexApp->unk_1A78);
 
     GF_ASSERT(pokedexApp->unk_1A7C);
-    Heap_FreeToHeap(pokedexApp->unk_1A7C);
+    Heap_Free(pokedexApp->unk_1A7C);
 
     GF_ASSERT(pokedexApp->unk_1D64);
-    Heap_FreeToHeap(pokedexApp->unk_1D64);
+    Heap_Free(pokedexApp->unk_1D64);
 
     GF_ASSERT(pokedexApp->unk_1D68);
-    Heap_FreeToHeap(pokedexApp->unk_1D68);
+    Heap_Free(pokedexApp->unk_1D68);
 
     GF_ASSERT(pokedexApp->unk_1D6C);
-    Heap_FreeToHeap(pokedexApp->unk_1D6C);
+    Heap_Free(pokedexApp->unk_1D6C);
 
     GF_ASSERT(pokedexApp->unk_1D70);
-    Heap_FreeToHeap(pokedexApp->unk_1D70);
+    Heap_Free(pokedexApp->unk_1D70);
 
     for (i = 0; i < 10; i++) {
         if (Unk_ov21_021E9B9C[i]) {
@@ -952,7 +952,7 @@ static void FreePokedexApp(PokedexApp *pokedexApp)
 
     PokedexSort_PokedexStatusFreeHWData(&pokedexApp->sortData);
     PokedexGraphics_Free(&pokedexApp->graphicData);
-    Heap_FreeToHeap(pokedexApp);
+    Heap_Free(pokedexApp);
 }
 
 static void SetGXBanks(void)

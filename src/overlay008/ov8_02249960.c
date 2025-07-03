@@ -453,7 +453,7 @@ static BOOL ov8_02249A94(FieldTask *taskMan)
         (v2->unk_00)++;
         break;
     case 3:
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
         return 1;
     }
 
@@ -490,7 +490,7 @@ static BOOL ov8_02249B74(FieldTask *taskMan)
                 if (v6.y == (FX32_ONE * 0)) {
                     (v2->unk_00) = 2;
                 } else if (v6.y == (FX32_ONE * 16 * 2)) {
-                    Heap_FreeToHeap(v2);
+                    Heap_Free(v2);
                     return 1;
                 } else if (v6.y == (FX32_ONE * 16 * 4)) {
                     (v2->unk_00) = 3;
@@ -540,7 +540,7 @@ static BOOL ov8_02249B74(FieldTask *taskMan)
         (v2->unk_00)++;
         break;
     case 5:
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
         return 1;
     }
 
@@ -591,7 +591,7 @@ static BOOL ov8_02249CD8(FieldTask *taskMan)
         (v2->unk_00)++;
         break;
     case 3:
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
         return 1;
     }
 
@@ -805,7 +805,7 @@ static BOOL ov8_0224A018(FieldTask *taskMan)
         (v2->unk_00)++;
         break;
     case 3:
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
         return 1;
     }
 
@@ -850,7 +850,7 @@ static BOOL ov8_0224A0E8(FieldTask *taskMan)
         (v2->unk_00)++;
         break;
     case 3:
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
         return 1;
     }
 
@@ -1376,7 +1376,7 @@ static BOOL ov8_0224A4FC(FieldTask *taskMan)
         (v2->unk_00)++;
         break;
     case 3:
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
         return 1;
     }
 
@@ -1456,7 +1456,7 @@ static BOOL ov8_0224A620(FieldTask *taskMan)
         }
         break;
     case 4:
-        Heap_FreeToHeap(v3);
+        Heap_Free(v3);
         return 1;
     }
 
@@ -1541,7 +1541,7 @@ static BOOL ov8_0224A770(FieldTask *taskMan)
         }
     } break;
     case 4:
-        Heap_FreeToHeap(v3);
+        Heap_Free(v3);
         return 1;
     }
 
@@ -1661,7 +1661,7 @@ BOOL ov8_0224AAA8(FieldSystem *fieldSystem)
 void CanalaveGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
 {
     UnkStruct_ov8_0224A1E4 *v0 = (UnkStruct_ov8_0224A1E4 *)fieldSystem->unk_04->dynamicMapFeaturesData;
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     fieldSystem->unk_04->dynamicMapFeaturesData = NULL;
 }
 
@@ -2105,7 +2105,7 @@ void SunyshoreGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 void SunyshoreGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
 {
     UnkStruct_ov8_0224ABD4 *v0 = (UnkStruct_ov8_0224ABD4 *)fieldSystem->unk_04->dynamicMapFeaturesData;
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     fieldSystem->unk_04->dynamicMapFeaturesData = NULL;
 }
 
@@ -2251,7 +2251,7 @@ static BOOL ov8_0224ADE8(FieldTask *param0)
         }
     } break;
     case 1:
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
         return 1;
     }
 
@@ -2441,7 +2441,7 @@ void EternaGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
 {
     UnkStruct_ov8_0224AF00 *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     fieldSystem->unk_04->dynamicMapFeaturesData = NULL;
 }
 
@@ -2750,7 +2750,7 @@ static BOOL ov8_0224B3D4(FieldTask *param0)
         break;
     case 6:
         ov8_0224B2C4(fieldSystem, &v2->unk_1C);
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
         return 1;
     case 7:
         if (ov8_0224B2E8(&v2->unk_1C) == 1) {
@@ -2948,7 +2948,7 @@ void VeilstoneGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
 {
     UnkStruct_ov8_0224B8D0 *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     fieldSystem->unk_04->dynamicMapFeaturesData = NULL;
 }
 
@@ -3179,7 +3179,7 @@ static BOOL ov8_0224BAF4(FieldTask *taskMan)
     case 1:
         if ((LocalMapObj_CheckAnimationFinished(v0) == 1) && (ov5_021F4720(v2->unk_34->unk_08.unk_0C) == 1)) {
             sub_020656AC(v0);
-            Heap_FreeToHeap(v2);
+            Heap_Free(v2);
             return 1;
         }
     }
@@ -3411,7 +3411,7 @@ static int ov8_0224BEA4(UnkStruct_ov8_0224C098 *param0)
 
 static int ov8_0224BECC(UnkStruct_ov8_0224C098 *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
     return 2;
 }
 
@@ -3754,7 +3754,7 @@ void HearthomeGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
 
     SysTask_Done(v0->unk_1F4);
     ov8_0224C4F8(v0);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     fieldSystem->unk_04->dynamicMapFeaturesData = NULL;
 }

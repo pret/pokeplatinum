@@ -287,7 +287,7 @@ int ov85_022415A0(ApplicationManager *appMan, int *param1)
     ov85_0224181C(v0);
     ov85_0224202C(v0);
 
-    Heap_FreeToHeap(v0->unk_1FC);
+    Heap_Free(v0->unk_1FC);
     ApplicationManager_FreeData(appMan);
     SetVBlankCallback(NULL, NULL);
     Heap_Destroy(HEAP_ID_36);
@@ -410,7 +410,7 @@ static void ov85_022416E8(BgConfig *param0)
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_3);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
-    Heap_FreeToHeapExplicit(HEAP_ID_36, param0);
+    Heap_FreeExplicit(HEAP_ID_36, param0);
 }
 
 static void ov85_02241718(UnkStruct_ov85_022417E4 *param0, NARC *param1)
@@ -431,7 +431,7 @@ static void ov85_02241718(UnkStruct_ov85_022417E4 *param0, NARC *param1)
         }
 
         Bg_LoadToTilemapRect(param0->unk_00, 1, v0, 2, 5, 8, 8);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         Bg_CopyTilemapBufferToVRAM(param0->unk_00, 1);
     }
 
@@ -849,7 +849,7 @@ static void ov85_02241F0C(UnkStruct_ov85_022417E4 *param0)
 {
     NARC *v0;
 
-    Heap_FreeToHeap(param0->unk_1FC);
+    Heap_Free(param0->unk_1FC);
     param0->unk_1FC = BerryData_Load(param0->unk_1F8->unk_08, 36);
     ov85_02241CD0(param0);
 

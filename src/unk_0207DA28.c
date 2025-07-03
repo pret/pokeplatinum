@@ -196,8 +196,8 @@ static BOOL sub_0207DA28(FieldTask *task)
     case 9:
     case 11:
     case 10:
-        Heap_FreeToHeap(v2->unk_00);
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2->unk_00);
+        Heap_Free(v2);
         v2->unk_04++;
         return 1;
     case 12:
@@ -215,7 +215,7 @@ static BOOL sub_0207DA28(FieldTask *task)
         break;
     case 15:
         if (!FieldSystem_IsRunningApplication(fieldSystem)) {
-            Heap_FreeToHeap(v2->unk_10);
+            Heap_Free(v2->unk_10);
             v2->unk_04 = 2;
         }
         break;
@@ -226,7 +226,7 @@ static BOOL sub_0207DA28(FieldTask *task)
         break;
     case 17:
         if (!FieldSystem_IsRunningApplication(fieldSystem)) {
-            Heap_FreeToHeap(v2->unk_10);
+            Heap_Free(v2->unk_10);
             v2->unk_04 = 2;
         }
         break;
@@ -365,7 +365,7 @@ static u32 sub_0207DE40(UnkStruct_0207DE40 *param0)
     }
 
     param0->unk_14 = v0->unk_04;
-    Heap_FreeToHeap(param0->unk_10);
+    Heap_Free(param0->unk_10);
 
     return param0->unk_04;
 }
@@ -402,7 +402,7 @@ static void sub_0207DED8(UnkStruct_ov115_02260440 *param0)
 {
     FS_EXTERN_OVERLAY(overlay114);
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay114));
 }
 
@@ -436,7 +436,7 @@ static void sub_0207DF2C(UnkStruct_ov66_02231134 *param0)
 {
     FS_EXTERN_OVERLAY(overlay114);
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay114));
 }
 
@@ -473,7 +473,7 @@ static void sub_0207DF88(UnkStruct_ov115_02260440 *param0)
 {
     FS_EXTERN_OVERLAY(overlay114);
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay114));
 }
 

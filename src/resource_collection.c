@@ -46,8 +46,8 @@ void ResourceCollection_Delete(ResourceCollection *collection)
     GF_ASSERT(collection);
 
     ResourceCollection_Clear(collection);
-    Heap_FreeToHeap(collection->resources);
-    Heap_FreeToHeap(collection);
+    Heap_Free(collection->resources);
+    Heap_Free(collection);
 }
 
 BOOL ResourceCollection_IsIDUnused(ResourceCollection *collection, int id)
@@ -97,7 +97,7 @@ void ResourceCollection_Remove(ResourceCollection *collection, Resource *resourc
     GF_ASSERT(resource);
 
     if (resource->data) {
-        Heap_FreeToHeap(resource->data);
+        Heap_Free(resource->data);
         resource->data = NULL;
     }
 
@@ -141,7 +141,7 @@ void Resource_SetData(Resource *resource, void *data)
     GF_ASSERT(resource);
 
     if (resource->data) {
-        Heap_FreeToHeap(resource->data);
+        Heap_Free(resource->data);
     }
 
     resource->data = data;
@@ -194,8 +194,8 @@ void TextureResourceManager_Delete(TextureResourceManager *texMgr)
 
     TextureResourceManager_Clear(texMgr);
     ResourceCollection_Delete(texMgr->resources);
-    Heap_FreeToHeap(texMgr->textures);
-    Heap_FreeToHeap(texMgr);
+    Heap_Free(texMgr->textures);
+    Heap_Free(texMgr);
 }
 
 BOOL TextureResourceManager_IsIDUnused(const TextureResourceManager *texMgr, int id)
@@ -241,7 +241,7 @@ void TextureResourceManager_RemoveTexture(TextureResourceManager *texMgr, Textur
     GF_ASSERT(texResource);
 
     if (texResource->mode == TEX_RESOURCE_MODE_SEPARATED && (texResource->texDataDiscarded == 0)) {
-        Heap_FreeToHeap(texResource->textureData);
+        Heap_Free(texResource->textureData);
         texResource->mode = NULL;
     }
 
@@ -354,7 +354,7 @@ void TextureResource_DiscardTextureData(TextureResource *texResource)
         texResource->texKey,
         texResource->tex4x4Key,
         texResource->paletteKey);
-    Heap_FreeToHeap(texResource->textureData);
+    Heap_Free(texResource->textureData);
 
     texResource->textureData = NULL;
     texResource->texDataDiscarded = TRUE;

@@ -513,7 +513,7 @@ static void TeardownBgs(BgConfig *bgConfig)
     Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_1);
 
-    Heap_FreeToHeapExplicit(HEAP_ID_POKEMON_SUMMARY_SCREEN, bgConfig);
+    Heap_FreeExplicit(HEAP_ID_POKEMON_SUMMARY_SCREEN, bgConfig);
 }
 
 static void LoadBgGraphics(PokemonSummaryScreen *summaryScreen, NARC *narc)
@@ -983,7 +983,7 @@ static int SetupPoffinFeedConditionPage(PokemonSummaryScreen *summaryScreen)
         summaryScreen->monData.sheen = Pokemon_GetValue(mon, MON_DATA_SHEEN, NULL);
 
         if (summaryScreen->data->dataType == SUMMARY_DATA_BOX_MON) {
-            Heap_FreeToHeap(mon);
+            Heap_Free(mon);
         }
 
         Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(14), HEAP_ID_POKEMON_SUMMARY_SCREEN);
@@ -1059,7 +1059,7 @@ static void SetMonDataFromBoxMon(PokemonSummaryScreen *summaryScreen, BoxPokemon
 
     Pokemon_FromBoxPokemon(boxMon, mon);
     SetMonDataFromMon(summaryScreen, mon, monData);
-    Heap_FreeToHeap(mon);
+    Heap_Free(mon);
 }
 
 static void SetMonDataFromMon(PokemonSummaryScreen *summaryScreen, Pokemon *mon, PokemonSummaryMonData *monData)
@@ -1390,7 +1390,7 @@ static void LoadCurrentPageTilemap(PokemonSummaryScreen *summaryScreen)
 
     Bg_LoadToTilemapRect(summaryScreen->bgConfig, BG_LAYER_MAIN_3, tilemap->rawData, 0, 0, 32, 32);
     Bg_ScheduleTilemapTransfer(summaryScreen->bgConfig, BG_LAYER_MAIN_3);
-    Heap_FreeToHeap(memberBuffer);
+    Heap_Free(memberBuffer);
 
     if (summaryScreen->page == SUMMARY_PAGE_INFO) {
         DrawExperienceProgressBar(summaryScreen);

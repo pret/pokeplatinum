@@ -31,8 +31,8 @@ UnkStruct_ov63_0222BCE8 *ov63_0222BCE8(u16 param0, u16 param1, u32 heapID)
 void ov63_0222BD30(UnkStruct_ov63_0222BCE8 *param0)
 {
     GF_ASSERT(param0);
-    Heap_FreeToHeap(param0->unk_04);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0->unk_04);
+    Heap_Free(param0);
 }
 
 u16 ov63_0222BD48(const UnkStruct_ov63_0222BCE8 *param0)

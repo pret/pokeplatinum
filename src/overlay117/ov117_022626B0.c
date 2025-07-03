@@ -198,10 +198,10 @@ void ov117_02262760(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_022626B0 *
     ov117_02263AE4(param1->unk_234);
     ov117_022639BC(param0);
 
-    Heap_FreeToHeap(param1->unk_00);
-    Heap_FreeToHeap(param1->unk_24C);
-    Heap_FreeToHeap(param1->unk_250);
-    Heap_FreeToHeap(param1);
+    Heap_Free(param1->unk_00);
+    Heap_Free(param1->unk_24C);
+    Heap_Free(param1->unk_250);
+    Heap_Free(param1);
 }
 
 void ov117_02262798(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_022626B0 *param1)

@@ -39,7 +39,7 @@ static void sub_0201322C(enum NarcID narcID, int param1, int param2, NNSG2dChara
     GF_ASSERT(param3 != NULL);
     GF_ASSERT(v0 != 0);
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
 static void sub_02013260(int param0, int param1, int param2, int param3, NNSG2dCharacterData *param4, void *param5)
@@ -170,7 +170,7 @@ void sub_020133D4(enum NarcID narcID, int param1, int param2, int param3, int pa
         }
     }
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 static void *sub_020134A8(enum NarcID narcID, int param1, enum HeapId heapID, int param3, int param4, int param5, int param6)
@@ -235,7 +235,7 @@ void sub_02013584(enum NarcID narcID, int param1, int heapID, int param3, int pa
         sub_02013560(param5, param6, &v4[v0], &v2, v3, param7);
     }
 
-    Heap_FreeToHeap(v3);
+    Heap_Free(v3);
 }
 
 void sub_020135F0(enum NarcID narcID, int param1, enum HeapId heapID, const UnkStruct_02013610 *param3, void *param4)
@@ -281,7 +281,7 @@ void *sub_02013660(enum NarcID narcID, int param1, enum HeapId heapID)
     GF_ASSERT(v4 == 1);
     MI_CpuCopy16(v0->pRawData, v2, 0x20);
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 
     return v2;
 }
@@ -310,7 +310,7 @@ void sub_020136A4(enum NarcID narcID, int param1, enum HeapId heapID, int param3
         sub_02013560(param5, param6, &v4[v0], &v2, v3, param7);
     }
 
-    Heap_FreeToHeap(v3);
+    Heap_Free(v3);
 }
 
 void sub_02013720(enum NarcID narcID, int param1, enum HeapId heapID, const UnkStruct_02013610 *param3, void *param4, u32 param5, BOOL param6, int param7, int param8)

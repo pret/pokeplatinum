@@ -35,7 +35,7 @@ TouchScreenActions *TouchScreenActions_RegisterHandler(const TouchScreenHitTable
                 ButtonActionState_InternalInit(&buttonAction->actionStates[i]);
             }
         } else {
-            Heap_FreeToHeap(buttonAction);
+            Heap_Free(buttonAction);
             buttonAction = NULL;
         }
     }
@@ -54,8 +54,8 @@ void TouchScreenActions_Free(TouchScreenActions *buttonAction)
 {
     GF_ASSERT(buttonAction);
 
-    Heap_FreeToHeap(buttonAction->actionStates);
-    Heap_FreeToHeap(buttonAction);
+    Heap_Free(buttonAction->actionStates);
+    Heap_Free(buttonAction);
 }
 
 void TouchScreenActions_HandleAction(TouchScreenActions *buttonAction)

@@ -195,7 +195,7 @@ static void ov104_02233478(void *param0)
     UnkStruct_ov104_02234130 *v1 = param0;
 
     ov104_0223410C(v1->unk_1C, param0);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 
     return;
 }
@@ -293,7 +293,7 @@ BOOL ov104_022334DC(UnkStruct_ov104_0222E930 *param0)
         v3 = Pokemon_New(HEAP_ID_FIELDMAP);
         ov104_0222DF40(&v4->unk_3F0[v13], v3, ov104_0223ADA0(v4));
         *v15 = Pokemon_GetValue(v3, MON_DATA_TYPE_1, NULL);
-        Heap_FreeToHeap(v3);
+        Heap_Free(v3);
         break;
     case 18:
         v5 = ov104_0223AA74(v4->unk_04, 1);
@@ -321,7 +321,7 @@ BOOL ov104_022334DC(UnkStruct_ov104_0222E930 *param0)
             }
         }
 
-        Heap_FreeToHeap(v3);
+        Heap_Free(v3);
 
         v9 = 0;
 

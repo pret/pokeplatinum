@@ -117,7 +117,7 @@ UnkStruct_ov70_0226CF38 *ov70_0226CE54(UnkStruct_ov70_0225DEE8 *param0, u32 heap
 
 void ov70_0226CF38(UnkStruct_ov70_0226CF38 *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov70_0226CF40(UnkStruct_ov70_0226CF38 *param0)

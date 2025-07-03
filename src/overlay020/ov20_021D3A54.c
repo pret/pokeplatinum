@@ -66,7 +66,7 @@ void ov20_021D3A80(UnkStruct_ov20_021D3E0C *param0)
         Sprite_Delete(param0->unk_5C);
     }
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov20_021D3A98(UnkStruct_ov20_021D3E0C *param0, NARC *param1)

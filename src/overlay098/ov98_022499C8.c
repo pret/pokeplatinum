@@ -62,7 +62,7 @@ void ov98_022499C8(Strbuf *param0, char *param1, int heapID)
         param1[v2] = Unk_ov98_02249D20[v0++];
     }
     param1[v2] = '\0';
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
 int ov98_02249A80(Strbuf *param0, int heapID)
@@ -81,7 +81,7 @@ int ov98_02249A80(Strbuf *param0, int heapID)
         }
     }
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     return v1;
 }
 

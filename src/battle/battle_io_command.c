@@ -290,7 +290,7 @@ void ov16_0225C104(BattleSystem *battleSys, BattlerData *param1, int param2)
     ov16_022647D8(param1);
 
     NARC_dtor(param1->unk_1A0);
-    Heap_FreeToHeap(param1);
+    Heap_Free(param1);
 }
 
 static void ov16_0225C138(BattleSystem *battleSys, BattlerData *param1)

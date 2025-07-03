@@ -361,7 +361,7 @@ static void ov12_0222AC70(SysTask *param0, void *param1)
         }
 
         ov12_02220220(v1->unk_08, param0);
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return;
     }
 
@@ -499,7 +499,7 @@ static void ov12_0222AFA0(SysTask *param0, void *param1)
         break;
     default:
         ov12_02220220(v0->unk_0C, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         break;
     }
 }
@@ -594,7 +594,7 @@ static void ov12_0222B220(SysTask *param0, void *param1)
         break;
     default:
         ov12_02220220(v0->unk_08, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         break;
     }
 }
@@ -676,7 +676,7 @@ static void ov12_0222B4C8(SysTask *param0, void *param1)
         break;
     default:
         ov12_02220220(v2->unk_0C, param0);
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
         return;
     }
 
@@ -790,7 +790,7 @@ static void ov12_0222B914(SysTask *param0, void *param1)
         break;
     default:
         ov12_02220220(v0->unk_04, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         break;
     }
 }
@@ -843,7 +843,7 @@ static void ov12_0222BA18(SysTask *param0, void *param1)
         break;
     default:
         ov12_02220220(v0->unk_08, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         break;
     }
 }
@@ -917,7 +917,7 @@ static void ov12_0222BB30(SysTask *param0, void *param1)
         PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_SCALE_X, 0x100);
         PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_SCALE_Y, 0x100);
         ov12_02220220(v0->unk_08, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         break;
     }
 }
@@ -969,7 +969,7 @@ static void ov12_0222BD48(SysTask *param0, void *param1)
         break;
     default:
         ov12_02220220(v0->unk_08, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         break;
     }
 }
@@ -1038,7 +1038,7 @@ static void ov12_0222BE80(SysTask *param0, void *param1)
     } break;
     default:
         ov12_02220220(v0->unk_08, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         break;
     }
 }
@@ -1087,7 +1087,7 @@ static void ov12_0222BFF4(SysTask *param0, void *param1)
     default:
         GX_SetVisibleWnd(GX_WNDMASK_NONE);
         ov12_02220220(v0->unk_04, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 
@@ -1224,7 +1224,7 @@ static void ov12_0222C1A4(SysTask *param0, void *param1)
     default:
         PokemonSprite_SetAttribute(v2->unk_0C, MON_SPRITE_PARTIAL_DRAW, 0);
         ov12_02220220(v2->unk_10, param0);
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
         return;
     }
 
@@ -1347,7 +1347,7 @@ static void ov12_0222C4A8(SysTask *param0, void *param1)
         break;
     default:
         ov12_02220220(v1->unk_0C, param0);
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         break;
     }
 }
@@ -1405,7 +1405,7 @@ static void ov12_0222C678(SysTask *param0, void *param1)
         break;
     default:
         ov12_02220220(v0->unk_0C, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         break;
     }
 }
@@ -1496,7 +1496,7 @@ static void ov12_0222C7E0(SysTask *param0, void *param1)
     default:
         PokemonSprite_SetAttribute(v0->unk_28[0], MON_SPRITE_ROTATION_Z, 0);
         ov12_02220220(v0->unk_00.unk_04, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         break;
     }
 }
@@ -1521,7 +1521,7 @@ static void ov12_0222C884(SysTask *param0, void *param1)
     } break;
     default:
         ov12_02220220(v0->unk_00.unk_04, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         break;
     }
 }
@@ -1582,7 +1582,7 @@ static void ov12_0222C994(SysTask *param0, void *param1)
         break;
     default:
         ov12_02220220(v1->unk_00.unk_04, param0);
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         break;
     }
 }
@@ -1660,7 +1660,7 @@ static void ov12_0222CACC(SysTask *param0, void *param1)
         break;
     default:
         ov12_02220220(v1->unk_00.unk_04, param0);
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         break;
     }
 }
@@ -2060,7 +2060,7 @@ static void ov12_0222D128(SysTask *param0, void *param1)
         }
 
         ov12_02220220(v1->unk_10, param0);
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return;
     }
 

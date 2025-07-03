@@ -154,7 +154,7 @@ void CommPlayerMan_Delete(BOOL deletePlayerData)
     if (sCommPlayerManager != NULL) {
         for (netJd = 0; netJd < 5; netJd++) {
             if (sCommPlayerManager->unk_27C[netJd]) {
-                Heap_FreeToHeap(sCommPlayerManager->unk_27C[netJd]);
+                Heap_Free(sCommPlayerManager->unk_27C[netJd]);
                 sCommPlayerManager->unk_27C[netJd] = NULL;
             }
         }
@@ -171,10 +171,10 @@ void CommPlayerMan_Delete(BOOL deletePlayerData)
 
         if (sCommPlayerManager->unk_04) {
             ov23_02249938(sCommPlayerManager->unk_04);
-            Heap_FreeToHeap(sCommPlayerManager->unk_04);
+            Heap_Free(sCommPlayerManager->unk_04);
         }
 
-        Heap_FreeToHeap(sCommPlayerManager);
+        Heap_Free(sCommPlayerManager);
         sCommPlayerManager = NULL;
     }
 }

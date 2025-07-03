@@ -290,28 +290,28 @@ PokemonInfoDisplayStruct *sub_02092494(Pokemon *param0, BOOL param1, int heapID)
 void sub_0209282C(PokemonInfoDisplayStruct *param0)
 {
     if (param0->unk_14.unk_04 != NULL) {
-        Heap_FreeToHeap(param0->unk_14.unk_04);
+        Heap_Free(param0->unk_14.unk_04);
     }
 
     if (param0->unk_1C.unk_04 != NULL) {
-        Heap_FreeToHeap(param0->unk_1C.unk_04);
+        Heap_Free(param0->unk_1C.unk_04);
     }
 
     if (param0->unk_24.unk_04 != NULL) {
-        Heap_FreeToHeap(param0->unk_24.unk_04);
+        Heap_Free(param0->unk_24.unk_04);
     }
 
     if (param0->unk_2C.unk_04 != NULL) {
-        Heap_FreeToHeap(param0->unk_2C.unk_04);
+        Heap_Free(param0->unk_2C.unk_04);
     }
 
     if (param0->unk_34.unk_04 != NULL) {
-        Heap_FreeToHeap(param0->unk_34.unk_04);
+        Heap_Free(param0->unk_34.unk_04);
     }
 
     StringTemplate_Free(param0->unk_08);
     MessageLoader_Free(param0->unk_04);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void InitializeNatureRelatedStrBuf(PokemonInfoDisplayStruct *param0)

@@ -392,7 +392,7 @@ static void ov99_021D1BC4(UnkStruct_ov99_021D2CB0 *param0, ManagedSprite **param
         v3 = Graphics_GetCharDataFromOpenNARC(param0->unk_10F8, v5, 0, &v4, HEAP_ID_75);
 
         MI_CpuCopy32(v4->pRawData, param0->unk_10F4, (0x20 * 8));
-        Heap_FreeToHeap(v3);
+        Heap_Free(v3);
         DC_FlushRange(param0->unk_10F4, (0x20 * 8));
     }
 }
@@ -403,7 +403,7 @@ static void ov99_021D1C9C(UnkStruct_ov99_021D2CB0 *param0, ManagedSprite *param1
     Sprite_DeleteAndFreeResources(param2);
 
     if (param0->unk_10F4 != NULL) {
-        Heap_FreeToHeap(param0->unk_10F4);
+        Heap_Free(param0->unk_10F4);
         param0->unk_10F4 = NULL;
     }
 }
@@ -670,7 +670,7 @@ static void ov99_021D2180(UnkStruct_ov99_021D2CB0 *param0)
 
         v2 = Graphics_GetPlttDataFromOpenNARC(param0->unk_10F8, 16, &v1, HEAP_ID_75);
         MI_CpuCopy16(v1->pRawData, param0->unk_FA4.unk_08_val2.unk_08, 0x20 * 4);
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
     }
 
     Bg_SetOffset(v0, BG_LAYER_MAIN_2, 0, 0);
@@ -810,7 +810,7 @@ static void ov99_021D24F0(UnkStruct_ov99_021D2CB0 *param0)
 
         v2 = Graphics_GetPlttDataFromOpenNARC(param0->unk_10F8, 17, &v1, HEAP_ID_75);
         MI_CpuCopy16(v1->pRawData, param0->unk_FA4.unk_08_val3.unk_08, 0x20 * 8);
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
 
         PaletteData_LoadBuffer(param0->unk_0C, param0->unk_FA4.unk_08_val3.unk_08, 0, 16 * 1, 0x20);
         PaletteData_LoadBuffer(param0->unk_0C, param0->unk_FA4.unk_08_val3.unk_08, 1, 16 * 1, 0x20);
@@ -1097,7 +1097,7 @@ static void ov99_021D2BBC(UnkStruct_ov99_021D2CB0 *param0)
 
     if (param0->unk_24 != NULL) {
         Window_Remove(param0->unk_24);
-        Heap_FreeToHeap(param0->unk_24);
+        Heap_Free(param0->unk_24);
         param0->unk_24 = NULL;
     }
 }

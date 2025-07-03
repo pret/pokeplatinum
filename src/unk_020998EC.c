@@ -3183,7 +3183,7 @@ void sub_0209992C(UnkStruct_020998EC *param0)
 {
     if (param0) {
         sub_02014D70(param0->unk_04);
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0);
     }
 }
 

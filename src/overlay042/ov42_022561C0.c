@@ -54,7 +54,7 @@ static BOOL ov42_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *pa
             }
         }
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 
     return 0;
@@ -83,7 +83,7 @@ static void ov42_02256260(UnkStruct_ov42_0225621C *param0)
 {
     PoketchMemory_Write32(param0->unk_04, &(param0->unk_08), sizeof(param0->unk_08));
     ov42_0225648C(param0->unk_0C);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov42_02256280(SysTask *param0, void *param1)

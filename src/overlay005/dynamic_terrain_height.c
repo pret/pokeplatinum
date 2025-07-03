@@ -46,8 +46,8 @@ void DynamicTerrainHeightManager_SetPlate(const u8 index, const int startTileX, 
 
 void DynamicTerrainHeightManager_Free(DynamicTerrainHeightManager *dynamicTerrainHeightMan)
 {
-    Heap_FreeToHeap(dynamicTerrainHeightMan->plates);
-    Heap_FreeToHeap(dynamicTerrainHeightMan);
+    Heap_Free(dynamicTerrainHeightMan->plates);
+    Heap_Free(dynamicTerrainHeightMan);
 }
 
 BOOL DynamicTerrainHeightManager_GetPlateIndexOfTile(const int tileX, const int tileZ, const DynamicTerrainHeightManager *dynamicTerrainHeightMan, u8 *index)

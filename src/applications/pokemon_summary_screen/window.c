@@ -1134,7 +1134,7 @@ static void DrawMemoPageWindows(PokemonSummaryScreen *summaryScreen)
 
         Pokemon_FromBoxPokemon(monData, mon);
         PrintTrainerMemo(&summaryScreen->extraWindows[SUMMARY_WINDOW_MEMO], mon, monOTMatches);
-        Heap_FreeToHeap(mon);
+        Heap_Free(mon);
     } else {
         PrintTrainerMemo(&summaryScreen->extraWindows[SUMMARY_WINDOW_MEMO], monData, monOTMatches);
     }

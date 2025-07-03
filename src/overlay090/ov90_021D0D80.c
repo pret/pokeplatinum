@@ -520,7 +520,7 @@ static void ov90_021D1280(UnkStruct_ov90_021D0ECC *param0)
         Bg_FreeTilemapBuffer(param0->unk_10, v1++);
     }
 
-    Heap_FreeToHeap(param0->unk_10);
+    Heap_Free(param0->unk_10);
 }
 
 static void ov90_021D12B0(UnkStruct_ov90_021D0ECC *param0)
@@ -730,7 +730,7 @@ static void ov90_021D1750(UnkStruct_ov90_021D0ECC *param0)
         }
     }
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
 static void ov90_021D17DC(UnkStruct_ov90_021D0ECC *param0)

@@ -91,7 +91,7 @@ BOOL PlayerAvatar_IsFacingFeebasTile(FieldSystem *fieldSystem)
         }
     }
 
-    Heap_FreeToHeap(narcData);
+    Heap_Free(narcData);
 
     return isFeebasTile;
 }
@@ -108,5 +108,5 @@ void LoadFeebasFromNARC(int *species)
     int *narcData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 0, HEAP_ID_FIELD);
     (*species) = (*narcData);
 
-    Heap_FreeToHeap(narcData);
+    Heap_Free(narcData);
 }

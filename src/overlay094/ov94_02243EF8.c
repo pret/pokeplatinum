@@ -313,7 +313,7 @@ static void ov94_02244378(NNSG2dCharacterData *param0, NNSG2dPaletteData *param1
 void ov94_022443B8(UnkStruct_ov94_0223FD4C *param0)
 {
     if (param0->unk_10F0) {
-        Heap_FreeToHeap(param0->unk_10FC);
-        Heap_FreeToHeap(param0->unk_10F4);
+        Heap_Free(param0->unk_10FC);
+        Heap_Free(param0->unk_10F4);
     }
 }

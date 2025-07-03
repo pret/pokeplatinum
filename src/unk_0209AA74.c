@@ -144,7 +144,7 @@ void sub_0209AA74(int heapID, int param1)
     Bg_ToggleLayer(BG_LAYER_SUB_2, 0);
     Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
     Bg_FreeTilemapBuffer(v0, BG_LAYER_MAIN_0);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     PM_ForceToPowerOff();
 }

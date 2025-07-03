@@ -172,7 +172,7 @@ FieldBattleDTO *FieldBattleDTO_NewCatchingTutorial(enum HeapId heapID, const Fie
     Party_AddPokemon(dto->parties[BATTLER_PLAYER_1], mon);
     Pokemon_InitWith(mon, SPECIES_BIDOOF, 2, INIT_IVS_RANDOM, FALSE, 0, OTID_NOT_SHINY, 0);
     Party_AddPokemon(dto->parties[BATTLER_ENEMY_1], mon);
-    Heap_FreeToHeap(mon);
+    Heap_Free(mon);
 
     dto->pcBoxes = SaveData_GetPCBoxes(fieldSystem->saveData);
     dto->bagCursor = fieldSystem->bagCursor;
@@ -191,24 +191,24 @@ void FieldBattleDTO_Free(FieldBattleDTO *dto)
     int i;
     for (i = 0; i < 4; i++) {
         GF_ASSERT(dto->parties[i] != NULL);
-        Heap_FreeToHeap(dto->parties[i]);
+        Heap_Free(dto->parties[i]);
     }
 
     for (i = 0; i < 4; i++) {
         GF_ASSERT(dto->trainerInfo[i] != NULL);
-        Heap_FreeToHeap(dto->trainerInfo[i]);
+        Heap_Free(dto->trainerInfo[i]);
     }
 
     for (i = 0; i < 4; i++) {
         GF_ASSERT(dto->chatotCries[i] != NULL);
-        Heap_FreeToHeap(dto->chatotCries[i]);
+        Heap_Free(dto->chatotCries[i]);
     }
 
-    Heap_FreeToHeap(dto->bag);
-    Heap_FreeToHeap(dto->pokedex);
-    Heap_FreeToHeap(dto->options);
+    Heap_Free(dto->bag);
+    Heap_Free(dto->pokedex);
+    Heap_Free(dto->options);
     sub_0206D158(dto->unk_10C);
-    Heap_FreeToHeap(dto);
+    Heap_Free(dto);
 }
 
 void FieldBattleDTO_AddPokemonToBattler(FieldBattleDTO *dto, Pokemon *src, int battler)
@@ -315,7 +315,7 @@ void FieldBattleDTO_InitWithNormalizedMonLevels(FieldBattleDTO *dto, const Field
 
         FieldBattleDTO_AddPokemonToBattler(dto, mon, BATTLER_PLAYER_1);
     }
-    Heap_FreeToHeap(mon);
+    Heap_Free(mon);
 
     Bag_Copy(bag, dto->bag);
     Pokedex_Copy(pokedex, dto->pokedex);
@@ -373,7 +373,7 @@ void FieldBattleDTO_InitWithPartyOrder(FieldBattleDTO *dto, const FieldSystem *f
                 FieldBattleDTO_AddPokemonToBattler(dto, mon, BATTLER_PLAYER_1);
             }
 
-            Heap_FreeToHeap(mon);
+            Heap_Free(mon);
         }
     }
 

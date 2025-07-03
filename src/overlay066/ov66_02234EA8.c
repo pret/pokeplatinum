@@ -68,7 +68,7 @@ static void ov66_02234F2C(NARC *param0, u32 param1, u16 param2, u8 param3, fx32 
             v0 = 1;
         }
 
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
     }
 
     if (v0 == 0) {
@@ -90,6 +90,6 @@ static void ov66_02234F2C(NARC *param0, u32 param1, u16 param2, u8 param3, fx32 
             *param4 = v6[0].unk_02;
         }
 
-        Heap_FreeToHeap(v5);
+        Heap_Free(v5);
     }
 }

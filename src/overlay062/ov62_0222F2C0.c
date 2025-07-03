@@ -96,7 +96,7 @@ void ov62_0222F2C0(UnkStruct_0208C06C *param0)
             NNS_G2dGetUnpackedPaletteData(v1, &v0);
             PaletteData_LoadBuffer(param0->unk_14.unk_14, v0->pRawData, 2, 14 * 16, 32);
             PaletteData_LoadBuffer(param0->unk_14.unk_14, v0->pRawData, 3, 14 * 16, 32);
-            Heap_FreeToHeap(v1);
+            Heap_Free(v1);
         }
     }
 
@@ -153,7 +153,7 @@ void ov62_0222F514(UnkStruct_0208C06C *param0)
     Bg_FreeTilemapBuffer(param0->unk_14.unk_10, 5);
     Bg_FreeTilemapBuffer(param0->unk_14.unk_10, 6);
     Bg_FreeTilemapBuffer(param0->unk_14.unk_10, 7);
-    Heap_FreeToHeap(param0->unk_14.unk_10);
+    Heap_Free(param0->unk_14.unk_10);
     PaletteData_FreeBuffer(param0->unk_14.unk_14, 0);
     PaletteData_FreeBuffer(param0->unk_14.unk_14, 1);
     PaletteData_FreeBuffer(param0->unk_14.unk_14, 2);
@@ -184,11 +184,11 @@ void ov62_0222F514(UnkStruct_0208C06C *param0)
 
         for (v2 = 0; v2 < 4; v2++) {
             if (param0->unk_87C[v2] != NULL) {
-                Heap_FreeToHeap(param0->unk_87C[v2]);
+                Heap_Free(param0->unk_87C[v2]);
             }
 
             if (param0->unk_88C[v2] != NULL) {
-                Heap_FreeToHeap(param0->unk_88C[v2]);
+                Heap_Free(param0->unk_88C[v2]);
             }
         }
     }

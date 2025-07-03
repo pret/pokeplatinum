@@ -318,7 +318,7 @@ static void ov99_021D1270(UnkStruct_ov99_021D2CB0 *param0)
     Bg_FreeTilemapBuffer(param0->unk_08, BG_LAYER_MAIN_3);
     Bg_FreeTilemapBuffer(param0->unk_08, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(param0->unk_08, BG_LAYER_MAIN_1);
-    Heap_FreeToHeap(param0->unk_08);
+    Heap_Free(param0->unk_08);
 
     ov99_021D1A4C(param0->unk_10);
 }
@@ -343,7 +343,7 @@ static void ov99_021D1314(UnkStruct_ov99_021D2CB0 *param0)
     Bg_FreeTilemapBuffer(param0->unk_08, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(param0->unk_08, BG_LAYER_MAIN_3);
     Bg_FreeTilemapBuffer(param0->unk_08, BG_LAYER_SUB_3);
-    Heap_FreeToHeap(param0->unk_08);
+    Heap_Free(param0->unk_08);
 }
 
 static void ov99_021D1350(void *param0)

@@ -129,7 +129,7 @@ static int sub_0208927C(ApplicationManager *appMan, int *param1)
     Bg_FreeTilemapBuffer(v0->unk_2C0.unk_0C, 5);
     Bg_FreeTilemapBuffer(v0->unk_2C0.unk_0C, 6);
     Bg_FreeTilemapBuffer(v0->unk_2C0.unk_0C, 7);
-    Heap_FreeToHeap(v0->unk_2C0.unk_0C);
+    Heap_Free(v0->unk_2C0.unk_0C);
     PaletteData_FreeBuffer(v0->unk_2C0.unk_10, 0);
     PaletteData_FreeBuffer(v0->unk_2C0.unk_10, 1);
     PaletteData_FreeBuffer(v0->unk_2C0.unk_10, 2);
@@ -197,7 +197,7 @@ void sub_02089438(UnkStruct_02089438 *param0)
     GF_ASSERT(param0 != NULL);
 
     Strbuf_Free(param0->unk_1C);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void sub_0208945C(BgConfig *param0)

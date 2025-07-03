@@ -213,7 +213,7 @@ static void ov12_0222EC18(SysTask *param0, void *param1)
             }
 
             ov12_02220220(v0->unk_00.unk_04, param0);
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             return;
         }
     }
@@ -367,7 +367,7 @@ static void ov12_0222EE50(SysTask *param0, void *param1)
             ManagedSprite_TickFrame(v0->unk_1C[1]);
             ov12_02226858(v0->unk_38[1]);
             ov12_02220220(v0->unk_00.unk_04, param0);
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             return;
         }
         break;
@@ -518,7 +518,7 @@ static void ov12_0222F208(SysTask *param0, void *param1)
     default:
         PokemonSprite_SetAttribute(v0->unk_1C.unk_08, MON_SPRITE_SHADOW_SHOULD_FOLLOW_Y, 0);
         ov12_02220220(v0->unk_00.unk_04, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         break;
     }
 }
@@ -641,7 +641,7 @@ static void ov12_0222F464(SysTask *param0, void *param1)
         G2_SetWnd0Position(0, 0, 0, 0);
         ov12_02220220(v0->unk_20.unk_04, param0);
         PokemonSprite_SetAttribute(v0->unk_1C, MON_SPRITE_ALPHA, v0->unk_18);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         break;
     }
 }

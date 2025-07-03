@@ -1380,7 +1380,7 @@ static BOOL ov62_0223B424(UnkStruct_0208C06C *param0)
             ov62_0222FB60(param0, 5);
 
             sub_02030A98(v0->unk_380.unk_04);
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
         } else {
             PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0x2, v0->unk_1AC, param0->unk_14.unk_44);
             PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_1AC, param0->unk_14.unk_44);
@@ -2216,7 +2216,7 @@ static BOOL ov62_0223C948(UnkStruct_0208C06C *param0)
             ov62_0222FB60(param0, 5);
 
             sub_02030A98(v0->unk_380.unk_04);
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
         } else {
             PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0x2, v0->unk_1AC, param0->unk_14.unk_44);
             PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_1AC, param0->unk_14.unk_44);

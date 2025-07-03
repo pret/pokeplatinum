@@ -55,7 +55,7 @@ static BOOL ov5_021DDAE4(FieldTask *param0)
         break;
     case 4:
         if (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN)) {
-            Heap_FreeToHeap(v1);
+            Heap_Free(v1);
             return 1;
         }
         break;

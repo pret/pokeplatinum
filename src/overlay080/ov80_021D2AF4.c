@@ -94,8 +94,8 @@ void ov80_021D2C1C(UnkStruct_ov80_021D2C1C *param0)
         Sprite_Delete(v0->unk_18);
     }
 
-    Heap_FreeToHeap(param0->unk_08);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0->unk_08);
+    Heap_Free(param0);
 }
 
 UnkStruct_ov80_021D2C5C *ov80_021D2C5C(UnkStruct_ov80_021D2C1C *param0, int param1, int param2, int param3)
@@ -229,8 +229,8 @@ UnkStruct_ov80_021D2E10 *ov80_021D2D70(const char *param0, int heapID)
 
 void ov80_021D2E10(UnkStruct_ov80_021D2E10 *param0)
 {
-    Heap_FreeToHeap(param0->unk_04);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0->unk_04);
+    Heap_Free(param0);
 }
 
 UnkStruct_ov80_021D2AF4 *ov80_021D2E24(UnkStruct_ov80_021D2E10 *param0, int param1, int param2, u16 param3)

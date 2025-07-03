@@ -418,7 +418,7 @@ NARC *NARC_ctor(enum NarcID narcID, u32 heapID)
 void NARC_dtor(NARC *param0)
 {
     FS_CloseFile(&(param0->file));
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void *NARC_AllocAndReadWholeMember(NARC *narc, u32 memberIndex, u32 heapID)

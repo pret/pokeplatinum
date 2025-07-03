@@ -51,7 +51,7 @@ static BOOL ov55_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *pa
             }
         }
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 
     return 0;
@@ -74,7 +74,7 @@ static BOOL ov55_0225621C(UnkStruct_ov55_0225621C *param0, PoketchSystem *poketc
 static void ov55_02256240(UnkStruct_ov55_0225621C *param0)
 {
     ov55_02256360(param0->unk_08);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov55_02256254(SysTask *param0, void *param1)

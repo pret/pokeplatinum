@@ -171,8 +171,8 @@ MapObjectManager *MapObjectMan_New(FieldSystem *fieldSystem, int maxObjs, int pa
 
 void MapObjectMan_Delete(MapObjectManager *mapObjMan)
 {
-    Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, MapObjectMan_GetMapObject(mapObjMan));
-    Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, mapObjMan);
+    Heap_FreeExplicit(HEAP_ID_FIELDMAP, MapObjectMan_GetMapObject(mapObjMan));
+    Heap_FreeExplicit(HEAP_ID_FIELDMAP, mapObjMan);
 }
 
 void sub_0206184C(MapObjectManager *mapObjMan, int mapID, int param2, int objEventCount, const ObjectEvent *objectEvent)
@@ -634,8 +634,8 @@ static void sub_020620C4(UnkStruct_020620C4 *param0)
         param0->unk_08++;
     } while (param0->unk_08 < param0->unk_04);
 
-    Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, param0->objectEvent);
-    Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, param0);
+    Heap_FreeExplicit(HEAP_ID_FIELDMAP, param0->objectEvent);
+    Heap_FreeExplicit(HEAP_ID_FIELDMAP, param0);
 }
 
 static MapObject *sub_02062120(const MapObjectManager *mapObjMan)

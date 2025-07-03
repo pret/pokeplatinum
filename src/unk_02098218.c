@@ -173,7 +173,7 @@ static int sub_02098388(ApplicationManager *appMan, int *param1)
     Bg_FreeTilemapBuffer(v0->unk_04.unk_00, 3);
     Bg_FreeTilemapBuffer(v0->unk_04.unk_00, 4);
 
-    Heap_FreeToHeap(v0->unk_04.unk_00);
+    Heap_Free(v0->unk_04.unk_00);
     VramTransfer_Free();
     PokemonSpriteManager_Free(v0->unk_04.unk_38);
     sub_02015FB8(v0->unk_04.unk_54);
@@ -262,7 +262,7 @@ static BOOL sub_0209843C(FieldTask *param0)
         v0->unk_00++;
         break;
     case 6:
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return 1;
     }
 

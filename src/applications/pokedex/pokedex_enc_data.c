@@ -68,7 +68,7 @@ void PokedexEncData_FreeEncounterLocations(EncounterLocations *encounterLocation
     GF_ASSERT(encounterLocations);
     GF_ASSERT(encounterLocations->locations);
 
-    Heap_FreeToHeap(encounterLocations->locations);
+    Heap_Free(encounterLocations->locations);
 
     encounterLocations->locations = NULL;
     encounterLocations->numLocations = 0;

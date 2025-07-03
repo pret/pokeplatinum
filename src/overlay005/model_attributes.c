@@ -18,7 +18,7 @@ ModelAttributes *ModelAttributes_New(void)
 
 void ModelAttributes_Free(ModelAttributes **modelAttrs)
 {
-    Heap_FreeToHeapExplicit(HEAP_ID_FIELD, *modelAttrs);
+    Heap_FreeExplicit(HEAP_ID_FIELD, *modelAttrs);
     *modelAttrs = NULL;
 }
 

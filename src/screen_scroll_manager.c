@@ -30,7 +30,7 @@ BufferManager *BufferManager_New(enum HeapId heapID, void *buffer1, void *buffer
 void BufferManager_Delete(BufferManager *bufferManager)
 {
     GF_ASSERT(bufferManager);
-    Heap_FreeToHeap(bufferManager);
+    Heap_Free(bufferManager);
 }
 
 void *BufferManager_GetWriteBuffer(const BufferManager *bufferManager)
@@ -147,7 +147,7 @@ void ScreenScrollManager_Delete(ScreenScrollManager *screenScrollMgr)
     ScreenScrollManager_Stop(screenScrollMgr);
     ScreenScrollManager_StopDMA();
     BufferManager_Delete(screenScrollMgr->bufferManager);
-    Heap_FreeToHeap(screenScrollMgr);
+    Heap_Free(screenScrollMgr);
 }
 
 void *ScreenScrollManager_GetWriteBuffer(ScreenScrollManager *screenScrollMgr)

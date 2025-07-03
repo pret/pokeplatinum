@@ -227,7 +227,7 @@ static PartyGauge *NewPartyGauge()
 static void FreePartyGauge(PartyGauge *gauge)
 {
     GF_ASSERT(gauge->arrow.task == NULL);
-    Heap_FreeToHeap(gauge);
+    Heap_Free(gauge);
 }
 
 PartyGauge *PartyGauge_Show(u8 ballStatus[], enum PartyGaugeSide side, enum ShowPartyGaugeType showType, enum PartyGaugePosition pos, SpriteSystem *spriteSys, SpriteManager *spriteMan)

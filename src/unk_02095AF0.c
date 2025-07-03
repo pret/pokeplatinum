@@ -108,7 +108,7 @@ BOOL sub_02095B5C(UnkStruct_02095C48 *param0, int param1, const UnkStruct_02029C
         v2 = 0;
     }
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     return v2;
 }
 

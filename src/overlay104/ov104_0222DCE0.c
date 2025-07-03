@@ -407,7 +407,7 @@ u8 ov104_0222E240(u16 param0, u16 param1)
 
 void ov104_0222E278(UnkStruct_ov104_0223A348 *param0, u16 param1, int heapID, int param3)
 {
-    Heap_FreeToHeap(ov104_0222DD04(&param0->unk_00, param1, heapID, param3));
+    Heap_Free(ov104_0222DD04(&param0->unk_00, param1, heapID, param3));
 
     return;
 }
@@ -564,7 +564,7 @@ void ov104_0222E4BC(u8 param0, u16 param1, u16 param2, u16 *param3, FrontierPoke
             v3[v0] = v6.item;
         }
 
-        Heap_FreeToHeap(v5);
+        Heap_Free(v5);
         v5 = ov104_0222DD04(&v4, param2, HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR);
         ov104_0222E3E4(v5, v2, v3, (param0 / 2), (param0 / 2), &param3[param0 / 2], 11);
 
@@ -573,7 +573,7 @@ void ov104_0222E4BC(u8 param0, u16 param1, u16 param2, u16 *param3, FrontierPoke
         }
     }
 
-    Heap_FreeToHeap(v5);
+    Heap_Free(v5);
     ov104_0222E330(param4, param3, param5, NULL, param6, param0, 11, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
 
     return;

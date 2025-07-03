@@ -675,7 +675,7 @@ void ov97_02238194(BgConfig *param0, WonderCard *param1)
         NNS_G2dGetUnpackedScreenData(v4, &v3);
 
         Bg_LoadTilemapBuffer(param0, 5, v3->rawData, 32 * 24 * 2);
-        Heap_FreeToHeap(v4);
+        Heap_Free(v4);
     }
 
     Bg_ChangeTilemapRectPalette(param0, 5, 0, 0, 32, 24, 8 + v0);
@@ -722,7 +722,7 @@ void ov97_0223829C(MysteryGiftEventData *param0, WonderCard *param1, int heapID)
     MATH_CRC16InitTable(v0);
 
     v3 = MATH_CalcCRC16(v0, &param0->header, sizeof(MysteryGiftEventHeader));
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     OS_GetMacAddress((u8 *)v2);
 
@@ -740,7 +740,7 @@ void ov97_0223829C(MysteryGiftEventData *param0, WonderCard *param1, int heapID)
     CRYPTO_RC4Init(v1, v2, 8);
     CRYPTO_RC4Encrypt(v1, &param0->wonderCard, sizeof(WonderCard), param1);
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
 void ov97_02238324(MysteryGiftEventData *param0, WonderCard *param1, int heapID)
@@ -756,7 +756,7 @@ void ov97_02238324(MysteryGiftEventData *param0, WonderCard *param1, int heapID)
     MATH_CRC16InitTable(v0);
 
     v4 = MATH_CalcCRC16(v0, &param0->header, sizeof(MysteryGiftEventHeader));
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     v2 = sub_02033F3C(0);
     memcpy(v3, v2->bssid, WM_SIZE_BSSID);
@@ -775,7 +775,7 @@ void ov97_02238324(MysteryGiftEventData *param0, WonderCard *param1, int heapID)
     CRYPTO_RC4Init(v1, v3, 8);
     CRYPTO_RC4Encrypt(v1, &param0->wonderCard, sizeof(WonderCard), param1);
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
 void ov97_022383C4(ListMenu *param0, u32 param1, u8 param2)

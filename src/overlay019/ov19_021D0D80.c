@@ -2672,7 +2672,7 @@ static void ov19_GiveItemFromBagAction(UnkStruct_ov19_021D5DF8 *param0, u32 *sta
             item = sub_0207CB94((UnkStruct_0207CB08 *)(param0->unk_214));
 
             ApplicationManager_Free(param0->ApplicationManager);
-            Heap_FreeToHeap(param0->unk_214);
+            Heap_Free(param0->unk_214);
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay84));
 
             if (item == ITEM_GRISEOUS_ORB && BoxPokemon_GetValue(param0->unk_00.pcMonPreview.mon, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA) {
@@ -3410,7 +3410,7 @@ static void ov19_021D4D58(UnkStruct_ov19_021D5DF8 *param0)
     TouchScreenActions_Free(param0->mainBoxAndCompareButtonsAction);
 
     if (param0->mon) {
-        Heap_FreeToHeap(param0->mon);
+        Heap_Free(param0->mon);
     }
 
     StringTemplate_Free(param0->MessageVariableBuffer);
@@ -3425,7 +3425,7 @@ static void ov19_021D4D58(UnkStruct_ov19_021D5DF8 *param0)
     Customization_Free(&(param0->unk_00.customization));
     ov19_PCCompareMonsFree(&(param0->unk_00.unk_A4));
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void BoxSettings_Init(BoxSettings *boxSettings, enum BoxMode boxMode)
@@ -3469,7 +3469,7 @@ static void ov19_InitMonSelection(BoxMonSelection *selection)
 
 static void ov19_MonSelectionFree(BoxMonSelection *selection)
 {
-    Heap_FreeToHeap(selection->boxMon);
+    Heap_Free(selection->boxMon);
 }
 
 static void PCBoxes_InitCustomization(PCBoxes *pcBoxes, BoxCustomization *customization)

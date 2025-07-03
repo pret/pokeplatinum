@@ -74,7 +74,7 @@ void ov52_022566EC(UnkStruct_ov52_02256694 *param0)
         Strbuf_Free(param0->unk_5C);
         MessageLoader_Free(param0->unk_58);
         ov52_0225677C(param0);
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0);
     }
 }
 

@@ -97,7 +97,7 @@ static void ov104_0223C250(UnkStruct_ov104_0223C188 *param0);
 void ov104_0223C23C(UnkStruct_ov104_0223C23C *param0)
 {
     ov104_0223C250(param0->unk_04);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 
     return;
 }
@@ -105,7 +105,7 @@ void ov104_0223C23C(UnkStruct_ov104_0223C23C *param0)
 static void ov104_0223C250(UnkStruct_ov104_0223C188 *param0)
 {
     SysTask_Done(param0->unk_00);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 
     return;
 }

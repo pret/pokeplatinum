@@ -301,7 +301,7 @@ void CommQueueMan_Reset(CommQueueMan *param0)
 
 void CommQueueMan_Delete(CommQueueMan *param0)
 {
-    Heap_FreeToHeap(param0->unk_18);
+    Heap_Free(param0->unk_18);
 }
 
 BOOL CommQueue_CompareCmd(CommQueueMan *param0, int param1)

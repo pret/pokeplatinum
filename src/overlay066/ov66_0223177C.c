@@ -111,7 +111,7 @@ UnkStruct_ov66_0223177C *ov66_0223177C(u32 heapID)
 void ov66_022317AC(UnkStruct_ov66_0223177C *param0)
 {
     ov66_02231EEC(&param0->unk_5C);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov66_022317C0(UnkStruct_ov66_0223177C *param0)

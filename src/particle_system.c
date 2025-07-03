@@ -185,7 +185,7 @@ void ParticleSystem_Free(ParticleSystem *particleSystem)
     particleSystem->lastAddedEmitter = NULL;
 
     if (particleSystem->resource != NULL) {
-        Heap_FreeToHeap(particleSystem->resource);
+        Heap_Free(particleSystem->resource);
         particleSystem->resource = NULL;
     }
 
@@ -200,7 +200,7 @@ void ParticleSystem_Free(ParticleSystem *particleSystem)
         Camera_Delete(particleSystem->camera);
     }
 
-    Heap_FreeToHeap(particleSystem);
+    Heap_Free(particleSystem);
 }
 
 void ParticleSystem_FreeAll(void)

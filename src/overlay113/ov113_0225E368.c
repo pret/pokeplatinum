@@ -596,7 +596,7 @@ static BOOL ov113_0225E774(UnkStruct_ov113_0225EB20 *param0, Easy3DModel *param1
                 }
 
                 if (param1->data) {
-                    Heap_FreeToHeap(param1->data);
+                    Heap_Free(param1->data);
                 }
 
                 memset(param1, 0, sizeof(Easy3DModel));
@@ -765,7 +765,7 @@ static void ov113_0225E920(NNSG3dResTex *param0, NARC *param1, NARC *param2, con
     v0 = (u16 *)((u8 *)param0 + param0->plttInfo.ofsPlttData);
     v0[1] = param3->unk_00;
 
-    Heap_FreeToHeap(v2);
+    Heap_Free(v2);
 }
 
 static void ov113_0225EA60(NNSG3dResTex *param0, int param1)
@@ -813,13 +813,13 @@ static void ov113_0225EA60(NNSG3dResTex *param0, int param1)
         break;
     }
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
 static void ov113_0225EB0C(UnkStruct_ov113_0225E6B8 *param0)
 {
     Easy3DModel_Release(&param0->unk_0C);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov113_0225EB20(UnkStruct_ov113_0225EB20 *param0, UnkStruct_ov113_0225E6B8 *param1, int param2)

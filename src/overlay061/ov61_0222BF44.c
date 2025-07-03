@@ -257,7 +257,7 @@ int ov61_0222C160(ApplicationManager *appMan, int *param1)
     Strbuf_Free(v0->unk_3C);
     Strbuf_Free(v0->unk_34);
     ov61_0222C70C(v0);
-    Heap_FreeToHeap(v0->unk_04);
+    Heap_Free(v0->unk_04);
     ov61_0222C38C(v0->unk_04);
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();

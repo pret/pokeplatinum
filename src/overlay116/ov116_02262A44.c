@@ -23,7 +23,7 @@ UnkStruct_ov116_02262A44 *ov116_02262A44(int param0, UnkStruct_ov116_022649E4 *p
 
 void ov116_02262A6C(UnkStruct_ov116_02262A44 *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 BOOL ov116_02262A74(UnkStruct_ov116_02262A44 *param0)

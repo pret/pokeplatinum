@@ -60,9 +60,9 @@ void ov5_021D1AE4(UnkStruct_ov5_021D1A94 *param0)
         ov5_021D1BEC(&param0->unk_0C[v0]);
     }
 
-    Heap_FreeToHeap(param0->unk_0C);
-    Heap_FreeToHeap(param0->unk_10);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0->unk_0C);
+    Heap_Free(param0->unk_10);
+    Heap_Free(param0);
 }
 
 void ov5_021D1B18(UnkStruct_ov5_021D1A94 *param0)
@@ -134,7 +134,7 @@ void ov5_021D1BEC(UnkStruct_ov5_021D1BEC *param0)
     }
 
     if (param0->unk_0C->unk_04 != 0) {
-        Heap_FreeToHeap(param0->unk_10);
+        Heap_Free(param0->unk_10);
     }
 
     SysTask_Done(param0->unk_04);

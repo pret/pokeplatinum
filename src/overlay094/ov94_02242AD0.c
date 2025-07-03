@@ -797,7 +797,7 @@ static int ov94_02243398(UnkStruct_ov94_0223FD4C *param0)
                 ov94_02243BC4(param0, v1, sub_0202DAAC(param0->unk_00->unk_00), 0);
 
                 sub_0202DA68(param0->unk_00->unk_00, 0);
-                Heap_FreeToHeap(v1);
+                Heap_Free(v1);
             } else {
                 ov94_0224362C(param0);
             }
@@ -815,7 +815,7 @@ static int ov94_02243398(UnkStruct_ov94_0223FD4C *param0)
                 param0->unk_2C = 34;
 
                 sub_0202DA68(param0->unk_00->unk_00, 0);
-                Heap_FreeToHeap(v2);
+                Heap_Free(v2);
             }
             break;
         case -12:
@@ -1243,7 +1243,7 @@ static void ov94_02243B08(UnkStruct_ov94_0223FD4C *param0, int param1)
         Pokemon_FromBoxPokemon(PCBoxes_GetBoxMonAt(param0->unk_00->pcBoxes, param0->unk_110, param0->unk_112), v0);
         sub_0202DA7C(param0->unk_00->unk_00, v0, param0->unk_110);
         PCBoxes_InitBoxMonAt(param0->unk_00->pcBoxes, param0->unk_110, param0->unk_112);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     } else {
         Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->unk_00->unk_08, param0->unk_112);
 

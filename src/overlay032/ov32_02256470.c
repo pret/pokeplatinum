@@ -82,7 +82,7 @@ void PartyStatusGraphics_UnloadAndFree(PoketchPartyStatusGraphics *graphicsData)
             SysTask_Done(graphicsData->bounceAnimTask);
         }
 
-        Heap_FreeToHeap(graphicsData);
+        Heap_Free(graphicsData);
     }
 }
 

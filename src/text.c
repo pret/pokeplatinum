@@ -66,7 +66,7 @@ static void Text_DestroyPrinterTask(u8 printerID)
 
         if (printer) {
             Text_FreePrinterIconGfx(printer);
-            Heap_FreeToHeap(printer);
+            Heap_Free(printer);
         }
 
         SysTask_Done(sTextPrinterTasks[printerID]);
@@ -220,7 +220,7 @@ u8 Text_AddPrinter(const TextPrinterTemplate *template, u32 renderDelay, TextPri
     }
 
     Text_FreePrinterIconGfx(printer);
-    Heap_FreeToHeap(printer);
+    Heap_Free(printer);
 
     return MAX_TEXT_PRINTERS;
 }
@@ -329,7 +329,7 @@ static u8 *Text_LoadScreenIndicatorGfx(void)
     void *ncgr = Graphics_GetCharData(NARC_INDEX_GRAPHIC__PL_FONT, screen_indicators_NCGR, FALSE, &g2dCharData, HEAP_ID_SYSTEM);
 
     MI_CpuCopy32(g2dCharData->pRawData, gfx, 24 * 64);
-    Heap_FreeToHeap(ncgr);
+    Heap_Free(ncgr);
 
     return gfx;
 }
@@ -352,7 +352,7 @@ void Text_RenderScreenIndicator(TextPrinter *printer, u16 unusedX, u16 unusedY, 
 static void Text_FreePrinterIconGfx(TextPrinter *printer)
 {
     if (printer->iconGfx) {
-        Heap_FreeToHeap(printer->iconGfx);
+        Heap_Free(printer->iconGfx);
         printer->iconGfx = NULL;
     }
 }

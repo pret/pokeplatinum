@@ -115,7 +115,7 @@ TrainerCard *sub_02071F04(const u16 heapID)
 
 void sub_02071F20(TrainerCard *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 u8 sub_02071F28(FieldSystem *fieldSystem)
@@ -297,7 +297,7 @@ static BOOL sub_02072230(FieldTask *param0)
     case 11:
         if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             sub_0205C1F0(fieldSystem->unk_7C);
-            Heap_FreeToHeap(v1);
+            Heap_Free(v1);
             return 1;
         }
         break;

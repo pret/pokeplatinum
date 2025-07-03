@@ -750,7 +750,7 @@ static BOOL ov62_02237B00(UnkStruct_0208C06C *param0)
         if (ov62_02231664(&v0->unk_00, 0)) {
             G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ, 7, 8);
             G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ, 7, 8);
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             ov62_022318E8(param0);
             ov62_02231688(&v0->unk_00);
             PaletteData_BlendMulti(param0->unk_14.unk_14, 2, 0xC, 16, param0->unk_14.unk_44);

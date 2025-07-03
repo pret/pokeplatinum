@@ -301,7 +301,7 @@ static void ov102_021D10F8(UnkStruct_ov102_021D0F8C *param0)
     Bg_FreeTilemapBuffer(param0->unk_10, BG_LAYER_SUB_0);
     Bg_FreeTilemapBuffer(param0->unk_10, BG_LAYER_SUB_1);
     Bg_FreeTilemapBuffer(param0->unk_10, BG_LAYER_SUB_3);
-    Heap_FreeToHeap(param0->unk_10);
+    Heap_Free(param0->unk_10);
 }
 
 static void ov102_021D1174(UnkStruct_ov102_021D0F8C *param0)

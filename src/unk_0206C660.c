@@ -78,9 +78,9 @@ static BOOL sub_0206C680(FieldTask *param0)
         v1->unk_04++;
         break;
     case 6:
-        Heap_FreeToHeap(v1->unk_24);
-        Heap_FreeToHeap(v1->unk_28);
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1->unk_24);
+        Heap_Free(v1->unk_28);
+        Heap_Free(v1);
         return 1;
     }
 

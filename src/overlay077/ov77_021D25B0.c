@@ -1177,7 +1177,7 @@ static void ov77_021D3234(UnkStruct_ov77_021D2E9C *param0)
         Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_3);
         Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_3);
         Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_1);
-        Heap_FreeToHeap(param0->unk_0C);
+        Heap_Free(param0->unk_0C);
 
         param0->unk_18.unk_02 = 0;
     }
@@ -1369,12 +1369,12 @@ static void ov77_021D35B8(UnkStruct_ov77_021D2E9C *param0)
         Camera_Delete(param0->unk_34.unk_20.camera);
 
         for (v0 = 0; v0 < param0->unk_34.unk_20.unk_21C; v0++) {
-            Heap_FreeToHeap(param0->unk_34.unk_20.unk_0C[v0].unk_54);
+            Heap_Free(param0->unk_34.unk_20.unk_0C[v0].unk_54);
         }
 
         param0->unk_34.unk_20.unk_21C = 0;
 
-        Heap_FreeToHeap(param0->unk_34.unk_20.unk_00);
+        Heap_Free(param0->unk_34.unk_20.unk_00);
 
         param0->unk_34.unk_04 = 0;
         param0->unk_34.unk_05 = 0;
@@ -1412,7 +1412,7 @@ static void ov77_021D361C(UnkStruct_ov77_021D2E9C *param0, BOOL param1)
         }
 
         if (param1 == 1) {
-            Heap_FreeToHeap(param0->unk_0C);
+            Heap_Free(param0->unk_0C);
             param0->unk_0C = NULL;
         }
     }
@@ -1437,20 +1437,20 @@ static void ov77_021D36F8(UnkStruct_ov77_021D2E9C *param0)
         }
 
         if (param0->unk_34.unk_14 != NULL) {
-            Heap_FreeToHeap(param0->unk_34.unk_14);
+            Heap_Free(param0->unk_34.unk_14);
             param0->unk_34.unk_14 = NULL;
         }
 
         if (param0->unk_34.unk_1C != NULL) {
             ov77_021D6E28(param0->unk_34.unk_1C);
-            Heap_FreeToHeap(param0->unk_34.unk_1C);
+            Heap_Free(param0->unk_34.unk_1C);
             param0->unk_34.unk_1C = NULL;
         }
 
         ov77_021D361C(param0, 1);
 
         if (param0->unk_34.unk_240 != NULL) {
-            Heap_FreeToHeap(param0->unk_34.unk_240);
+            Heap_Free(param0->unk_34.unk_240);
             param0->unk_34.unk_240 = NULL;
         }
 
@@ -2590,7 +2590,7 @@ static void ov77_021D5478(UnkStruct_ov77_021D2E9C *param0)
 {
     if (param0->unk_298.unk_02) {
         Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_2);
-        Heap_FreeToHeap(param0->unk_0C);
+        Heap_Free(param0->unk_0C);
         param0->unk_298.unk_02 = 0;
     }
 

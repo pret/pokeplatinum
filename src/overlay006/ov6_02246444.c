@@ -153,5 +153,5 @@ UnkStruct_ov6_022465F4 *ov6_022465A0(FieldSystem *fieldSystem, int param1, int p
 
 void ov6_022465F4(UnkStruct_ov6_022465F4 *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }

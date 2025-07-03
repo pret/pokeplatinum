@@ -962,7 +962,7 @@ static BOOL ov62_02241ECC (UnkStruct_0208C06C * param0)
             Bg_ClearTilemap(param0->unk_14.unk_10, 6);
             Bg_ClearTilemap(param0->unk_14.unk_10, 3);
             Bg_ClearTilemap(param0->unk_14.unk_10, 7);
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
         } else {
             PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);
             PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
@@ -1534,7 +1534,7 @@ static BOOL ov62_02242748 (UnkStruct_0208C06C * param0, int param1)
             }
         }
 
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
     }
 
     return v0;
@@ -1588,7 +1588,7 @@ static void ov62_022427D0 (UnkStruct_0208C06C * param0, int param1)
             v4->unk_4C8.unk_08[v5] = v0[v5];
         }
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
 
         v4->unk_4DC = Heap_AllocFromHeap(HEAP_ID_102, sizeof(UnkStruct_ov62_02249380) * v4->unk_4C8.unk_00);
         MI_CpuFill8(v4->unk_4DC, 0, sizeof(UnkStruct_ov62_02249380) * v4->unk_4C8.unk_00);
@@ -1608,8 +1608,8 @@ static void ov62_02242938 (UnkStruct_0208C06C * param0)
     UnkStruct_ov62_02241204 * v0 = param0->unk_860;
 
     MessageLoader_Free(v0->unk_4C8.unk_0C);
-    Heap_FreeToHeap(v0->unk_4DC);
-    Heap_FreeToHeap(v0->unk_4C8.unk_08);
+    Heap_Free(v0->unk_4DC);
+    Heap_Free(v0->unk_4C8.unk_08);
 
     v0->unk_4C8.unk_10 = 0;
 }
@@ -2107,7 +2107,7 @@ static BOOL ov62_022433F0 (UnkStruct_0208C06C * param0)
     UnkStruct_ov62_02241204 * v0 = param0->unk_860;
 
     if (ov62_02246850(param0)) {
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return 1;
     }
 
@@ -2810,7 +2810,7 @@ static BOOL ov62_02244180 (UnkStruct_0208C06C * param0)
             Bg_ClearTilemap(param0->unk_14.unk_10, 6);
             Bg_ClearTilemap(param0->unk_14.unk_10, 3);
             Bg_ClearTilemap(param0->unk_14.unk_10, 7);
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
         } else {
             PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
             PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);
@@ -3025,7 +3025,7 @@ static BOOL ov62_02244700 (UnkStruct_0208C06C * param0)
     UnkStruct_ov62_02241204 * v0 = param0->unk_860;
 
     if (ov62_02246850(param0)) {
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return 1;
     }
 
@@ -3088,7 +3088,7 @@ static BOOL ov62_02244720 (UnkStruct_0208C06C * param0)
             ov62_0222FB44(param0, 1, 1, param0->unk_10);
             ov62_0222FB60(param0, 5);
 
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             Bg_ClearTilemap(param0->unk_14.unk_10, 2);
             Bg_ClearTilemap(param0->unk_14.unk_10, 6);
             Bg_ClearTilemap(param0->unk_14.unk_10, 3);
@@ -3353,7 +3353,7 @@ static BOOL ov62_02244CD4 (UnkStruct_0208C06C * param0)
                 ov62_0222FB44(param0, 1, 1, param0->unk_10);
                 ov62_0222FB60(param0, 5);
 
-                Heap_FreeToHeap(v0);
+                Heap_Free(v0);
                 Bg_ClearTilemap(param0->unk_14.unk_10, 2);
                 Bg_ClearTilemap(param0->unk_14.unk_10, 6);
                 Bg_ClearTilemap(param0->unk_14.unk_10, 3);
@@ -3668,7 +3668,7 @@ static BOOL ov62_022454D8 (UnkStruct_0208C06C * param0)
             ov62_0222FB44(param0, 1, 1, param0->unk_10);
             ov62_0222FB60(param0, 5);
 
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             Bg_ClearTilemap(param0->unk_14.unk_10, 2);
             Bg_ClearTilemap(param0->unk_14.unk_10, 6);
             Bg_ClearTilemap(param0->unk_14.unk_10, 3);
@@ -4424,7 +4424,7 @@ static BOOL ov62_0224613C (UnkStruct_0208C06C * param0)
             ov62_0222FB44(param0, 1, 1, param0->unk_10);
             ov62_0222FB60(param0, 5);
 
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             Bg_ClearTilemap(param0->unk_14.unk_10, 2);
             Bg_ClearTilemap(param0->unk_14.unk_10, 6);
             Bg_ClearTilemap(param0->unk_14.unk_10, 3);

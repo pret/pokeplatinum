@@ -248,7 +248,7 @@ static void ov17_02251EAC(SysTask *param0, void *param1)
         break;
     default:
         ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         return;
     }
@@ -351,7 +351,7 @@ static void ov17_02252060(SysTask *param0, void *param1)
         break;
     default:
         ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         return;
     }
@@ -435,7 +435,7 @@ static void ov17_0225228C(SysTask *param0, void *param1)
         break;
     default:
         ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         return;
     }
@@ -528,7 +528,7 @@ static void ov17_022523AC(SysTask *param0, void *param1)
         break;
     default:
         ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         return;
     }
@@ -593,7 +593,7 @@ static void ov17_02252580(SysTask *param0, void *param1)
     case 4:
     default:
         ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         return;
     }
@@ -671,7 +671,7 @@ static void ov17_0225266C(SysTask *param0, void *param1)
         break;
     default:
         ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         return;
     }
@@ -789,7 +789,7 @@ static void ov17_02252858(SysTask *param0, void *param1)
     case 5:
     default:
         ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         return;
     }
@@ -843,7 +843,7 @@ static void ov17_022529C8(SysTask *param0, void *param1)
         break;
     default:
         ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         return;
     }

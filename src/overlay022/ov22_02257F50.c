@@ -510,7 +510,7 @@ static void ov22_022584F0(UnkStruct_ov22_02257F50_sub1_sub1 *param0, int param1)
 
 static void ov22_02258534(UnkStruct_ov22_02257F50_sub1_sub1 *param0)
 {
-    Heap_FreeToHeap(param0->unk_00);
+    Heap_Free(param0->unk_00);
     param0->unk_00 = NULL;
     memset(param0, 0, sizeof(UnkStruct_ov22_02257F50_sub1_sub1));
 }
@@ -684,7 +684,7 @@ static void ov22_022586C4(SysTask *param0, void *param1)
 
         v0->unk_00->unk_00.unk_3C = 0;
 
-        Heap_FreeToHeap(v0->unk_28);
+        Heap_Free(v0->unk_28);
         SysTask_FinishAndFreeParam(param0);
 
         return;

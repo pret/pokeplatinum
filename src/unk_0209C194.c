@@ -53,7 +53,7 @@ void sub_0209C1D0(UnkStruct_0209C194 *param0)
 {
     sub_0209BE64(param0->unk_34);
     sub_0209BE38(param0->unk_34);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 BOOL sub_0209C1E8(UnkStruct_0209C194 *param0)
@@ -83,7 +83,7 @@ BOOL sub_0209C238(void *param0)
     UnkStruct_0209C1EC *v0 = param0;
 
     if (Unk_020F951C[v0->unk_00](v0) == 1) {
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return 1;
     }
 
@@ -120,7 +120,7 @@ static BOOL sub_0209C2C0(UnkStruct_0209C1EC *param0)
     if (FieldSystem_IsRunningApplication(param0->fieldSystem) == 0) {
         int v0 = param0->unk_30->selectedMonSlot;
 
-        Heap_FreeToHeap(param0->unk_30);
+        Heap_Free(param0->unk_30);
 
         if (param0->unk_30->menuSelectionResult == 1) {
             param0->unk_34 = sub_0203D670(param0->fieldSystem, HEAP_ID_APPLICATION, SUMMARY_MODE_NORMAL);
@@ -142,7 +142,7 @@ static BOOL sub_0209C2C0(UnkStruct_0209C1EC *param0)
 static BOOL sub_0209C324(UnkStruct_0209C1EC *param0)
 {
     if (FieldSystem_IsRunningApplication(param0->fieldSystem) == 0) {
-        Heap_FreeToHeap(param0->unk_34);
+        Heap_Free(param0->unk_34);
         param0->unk_30 = sub_0203D644(param0->fieldSystem, param0->unk_04);
         param0->unk_00 = 2;
     }

@@ -34,12 +34,12 @@ BOOL PoketchDigitalWatchGraphics_New(PoketchDigitalWatchGraphics **graphics, con
         void *nscrBuffer = Graphics_GetScrnData(NARC_INDEX_GRAPHIC__POKETCH, POKETCH_CLOCK_DIGITS_TILEMAP_IDX, TRUE, &screenData, HEAP_ID_POKETCH_APP);
 
         if (nscrBuffer == NULL) {
-            Heap_FreeToHeap(digitalWatchGraphics);
+            Heap_Free(digitalWatchGraphics);
             return FALSE;
         }
 
         CopyDigitTilemap((const u16 *)(screenData->rawData), digitalWatchGraphics->digitsTilemap);
-        Heap_FreeToHeap(nscrBuffer);
+        Heap_Free(nscrBuffer);
 
         *graphics = digitalWatchGraphics;
         return TRUE;
@@ -66,7 +66,7 @@ static void CopyDigitTilemap(const u16 *rawScreenData, u16 *dst)
 void PoketchDigitalWatchGraphics_Free(PoketchDigitalWatchGraphics *graphics)
 {
     if (graphics != NULL) {
-        Heap_FreeToHeap(graphics);
+        Heap_Free(graphics);
     }
 }
 

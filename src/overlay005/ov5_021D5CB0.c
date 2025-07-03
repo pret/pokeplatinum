@@ -151,7 +151,7 @@ void ov5_021D5E5C(UnkStruct_ov5_021D5CB0 *param0, int param1)
     }
 
     if (param0->unk_08[param1].unk_0C) {
-        Heap_FreeToHeap(param0->unk_08[param1].unk_0C);
+        Heap_Free(param0->unk_08[param1].unk_0C);
     }
 
     if (param0->unk_08[param1].unk_10 != NULL) {
@@ -174,13 +174,13 @@ void ov5_021D5E8C(UnkStruct_ov5_021D5CB0 *param0)
         ov5_021D5E5C(param0, v0);
     }
 
-    Heap_FreeToHeap(param0->unk_00);
+    Heap_Free(param0->unk_00);
 }
 
 void ov5_021D5EAC(UnkStruct_ov5_021D5CB0 *param0)
 {
     if (param0 != NULL) {
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0);
         param0 = NULL;
     }
 }

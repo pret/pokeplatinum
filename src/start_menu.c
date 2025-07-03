@@ -482,7 +482,7 @@ static BOOL sub_0203AC44(FieldTask *taskMan)
     case START_MENU_STATE_9:
         if (IsScreenFadeDone()) {
             sub_0203B2EC(menu, fieldSystem);
-            Heap_FreeToHeap(menu);
+            Heap_Free(menu);
             MapObjectMan_UnpauseAllMovement(fieldSystem->mapObjMan);
             return TRUE;
         }
@@ -497,11 +497,11 @@ static BOOL sub_0203AC44(FieldTask *taskMan)
     case START_MENU_STATE_11:
         if (IsScreenFadeDone()) {
             FieldTask_InitJump(taskMan, menu->callback, menu->taskData);
-            Heap_FreeToHeap(menu);
+            Heap_Free(menu);
         }
         break;
     case START_MENU_STATE_15:
-        Heap_FreeToHeap(menu);
+        Heap_Free(menu);
         MapObjectMan_UnpauseAllMovement(fieldSystem->mapObjMan);
         return TRUE;
     case START_MENU_STATE_END:
@@ -511,7 +511,7 @@ static BOOL sub_0203AC44(FieldTask *taskMan)
         Window_Remove(&menu->unk_00);
         sub_0203B200(taskMan);
         Bg_ScheduleTilemapTransfer(fieldSystem->bgConfig, 3);
-        Heap_FreeToHeap(menu);
+        Heap_Free(menu);
         MapObjectMan_UnpauseAllMovement(fieldSystem->mapObjMan);
         return TRUE;
     case START_MENU_STATE_14:
@@ -979,7 +979,7 @@ static BOOL StartMenu_PokedexEnd(FieldTask *taskMan)
     FieldSystem_StartFieldMap(fieldSystem);
 
     if (menu->taskData != NULL) {
-        Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, menu->taskData);
+        Heap_FreeExplicit(HEAP_ID_FIELDMAP, menu->taskData);
     }
 
     menu->state = START_MENU_STATE_12;
@@ -1017,7 +1017,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
     PartyManagementData *partyMan = (PartyManagementData *)Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
 
     memcpy(partyMan, menu->taskData, sizeof(PartyManagementData));
-    Heap_FreeToHeap(menu->taskData);
+    Heap_Free(menu->taskData);
 
     switch (partyMan->menuSelectionResult) {
     case 1: {
@@ -1208,7 +1208,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         }
     }
 
-    Heap_FreeToHeap(partyMan);
+    Heap_Free(partyMan);
 
     return 0;
 }
@@ -1246,7 +1246,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
     UnkStruct_0207CB08 *v2 = sub_0207CB08(HEAP_ID_FIELDMAP);
 
     memcpy(v2, menu->taskData, sub_0207CB20());
-    Heap_FreeToHeap(menu->taskData);
+    Heap_Free(menu->taskData);
 
     switch (sub_0207CB9C(v2)) {
     case 0: {
@@ -1290,7 +1290,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
         u16 item = sub_0207CB94(v2);
         Pokemon *v8 = Party_GetPokemonBySlotIndex(party, v9);
 
-        Heap_FreeToHeap(menu->unk_260);
+        Heap_Free(menu->unk_260);
 
         if ((Item_IsMail(item) == TRUE) && (Pokemon_GetValue(v8, MON_DATA_HELD_ITEM, NULL) == 0)) {
             UnkStruct_02097728 *v11;
@@ -1333,7 +1333,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
         menu->state = START_MENU_STATE_12;
     }
 
-    Heap_FreeToHeap(v2);
+    Heap_Free(v2);
 
     return 0;
 }
@@ -1427,7 +1427,7 @@ static void StartMenu_SaveWait(FieldTask *taskMan)
             menu->state = START_MENU_STATE_15;
         }
 
-        Heap_FreeToHeap(saveMenu);
+        Heap_Free(saveMenu);
     }
 }
 
@@ -1459,7 +1459,7 @@ static BOOL sub_0203C050(FieldTask *taskMan)
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     StartMenu *menu = FieldTask_GetEnv(taskMan);
 
-    Heap_FreeToHeap(menu->taskData);
+    Heap_Free(menu->taskData);
     FieldSystem_StartFieldMap(fieldSystem);
 
     menu->state = START_MENU_STATE_12;
@@ -1542,7 +1542,7 @@ static BOOL StartMenu_SelectRetire(FieldTask *taskMan)
         ScriptManager_Change(taskMan, 4, NULL);
     }
 
-    Heap_FreeToHeap(menu);
+    Heap_Free(menu);
     return 0;
 }
 
@@ -1553,7 +1553,7 @@ static BOOL sub_0203C1C8(FieldTask *taskMan)
     PokemonSummary *v2 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PokemonSummary));
 
     memcpy(v2, menu->taskData, sizeof(PokemonSummary));
-    Heap_FreeToHeap(menu->taskData);
+    Heap_Free(menu->taskData);
 
     switch (v2->mode) {
     case SUMMARY_MODE_SELECT_MOVE: {
@@ -1587,7 +1587,7 @@ static BOOL sub_0203C1C8(FieldTask *taskMan)
         partyMan->selectedMoveSlot = v2->selectedMoveSlot;
 
         FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
-        Heap_FreeToHeap(menu->unk_260);
+        Heap_Free(menu->unk_260);
         menu->taskData = partyMan;
         sub_0203B674(menu, sub_0203B7C0);
     } break;
@@ -1596,7 +1596,7 @@ static BOOL sub_0203C1C8(FieldTask *taskMan)
         sub_0203B674(menu, sub_0203B7C0);
     }
 
-    Heap_FreeToHeap(v2);
+    Heap_Free(v2);
 
     return 0;
 }
@@ -1641,7 +1641,7 @@ static BOOL sub_0203C390(FieldTask *taskMan)
 
     sub_02097390(menu->taskData, &v2, &v3);
     BagCursor_SetFieldPocketPosition(fieldSystem->bagCursor, 4, v3, v2);
-    Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, menu->taskData);
+    Heap_FreeExplicit(HEAP_ID_FIELDMAP, menu->taskData);
 
     menu->taskData = sub_0203D20C(fieldSystem, &menu->unk_230);
     sub_0203B674(menu, sub_0203BC5C);
@@ -1654,7 +1654,7 @@ BOOL sub_0203C3F4(FieldTask *taskMan)
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     StartMenu *menu = FieldTask_GetEnv(taskMan);
 
-    Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, menu->taskData);
+    Heap_FreeExplicit(HEAP_ID_FIELDMAP, menu->taskData);
     menu->taskData = sub_0203D20C(fieldSystem, &menu->unk_230);
     sub_0203B674(menu, sub_0203BC5C);
 
@@ -1672,12 +1672,12 @@ BOOL sub_0203C434(FieldTask *taskMan)
     menu = FieldTask_GetEnv(taskMan);
     v3 = *((u32 *)menu->unk_260);
 
-    Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, menu->unk_260);
+    Heap_FreeExplicit(HEAP_ID_FIELDMAP, menu->unk_260);
 
     v2 = (UnkStruct_0203D8AC *)menu->taskData;
 
     if (!(v2->unk_10)) {
-        Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, menu->taskData);
+        Heap_FreeExplicit(HEAP_ID_FIELDMAP, menu->taskData);
         menu->taskData = sub_0203D390(fieldSystem, &menu->fieldMoveContext, v3);
         sub_0203B674(menu, sub_0203B7C0);
     } else {
@@ -1690,7 +1690,7 @@ BOOL sub_0203C434(FieldTask *taskMan)
         journalEntryLocationEvent = JournalEntry_CreateEventUsedMove(LOCATION_EVENT_FLEW_TO_LOCATION - LOCATION_EVENT_USED_CUT, v2->unk_1C, HEAP_ID_FIELDMAP);
 
         JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
-        Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, menu->taskData);
+        Heap_FreeExplicit(HEAP_ID_FIELDMAP, menu->taskData);
         FieldSystem_StartFieldMap(fieldSystem);
 
         menu->callback = sub_02070680;
@@ -1762,7 +1762,7 @@ BOOL sub_0203C558(FieldTask *taskMan)
         break;
     }
 
-    Heap_FreeToHeap(menu->unk_260);
+    Heap_Free(menu->unk_260);
     return 0;
 }
 
@@ -1858,7 +1858,7 @@ static void StartMenu_EvolveInit(FieldTask *taskMan)
         menu->unk_260 = v6;
     }
 
-    Heap_FreeToHeap(menu->taskData);
+    Heap_Free(menu->taskData);
 
     menu->taskData = v5;
     menu->state = START_MENU_STATE_EVOLVE;
@@ -1882,7 +1882,7 @@ static void StartMenu_Evolve(FieldTask *taskMan)
             u32 v2 = *((u32 *)menu->unk_260);
 
             sub_0207CB70(menu->taskData, (u8)v2);
-            Heap_FreeToHeap(menu->unk_260);
+            Heap_Free(menu->unk_260);
         }
 
         sub_0203B674(menu, sub_0203BC5C);

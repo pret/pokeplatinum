@@ -190,7 +190,7 @@ static BOOL sub_02050264(FieldTask *param0)
         }
         break;
     case 2:
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return 1;
     }
 
@@ -230,7 +230,7 @@ static BOOL sub_02050314(FieldTask *param0)
         v1->unk_00 = sub_02050520(v1, fieldSystem);
         break;
     case 4:
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return 1;
     }
 
@@ -294,7 +294,7 @@ static int sub_02050448(UnkStruct_0205037C *param0, FieldSystem *fieldSystem)
 
     MI_CpuCopy8(partyMan->unk_2C, param0->unk_06, 3);
     param0->unk_05 = partyMan->selectedMonSlot;
-    Heap_FreeToHeap(partyMan);
+    Heap_Free(partyMan);
     *(param0->unk_0C) = NULL;
 
     return 2;
@@ -342,7 +342,7 @@ static int sub_02050520(UnkStruct_0205037C *param0, FieldSystem *fieldSystem)
 
     v0 = *(param0->unk_0C);
     param0->unk_05 = v0->monIndex;
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     *(param0->unk_0C) = NULL;
 
     return 0;

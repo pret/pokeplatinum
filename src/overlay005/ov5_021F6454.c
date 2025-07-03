@@ -160,11 +160,11 @@ BOOL ScrCmd_2DE(ScriptContext *ctx)
             }
         }
 
-        Heap_FreeToHeap(v3);
+        Heap_Free(v3);
     }
 
     if (v1 != NULL) {
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
     }
 
     v7 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, HEAP_ID_FIELD_TASK);
@@ -427,7 +427,7 @@ static void ov5_021F6AD4(UnkStruct_ov5_021F6704 *param0)
     }
 
     SysTask_Done(param0->unk_04);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 
     return;
 }

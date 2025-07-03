@@ -319,7 +319,7 @@ static void ov73_021D35F4 (UnkStruct_ov73_021D342C * param0)
     Bg_FreeTilemapBuffer(param0->unk_04, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(param0->unk_04, BG_LAYER_MAIN_0);
     Bg_FreeTilemapBuffer(param0->unk_04, BG_LAYER_MAIN_2);
-    Heap_FreeToHeap(param0->unk_04);
+    Heap_Free(param0->unk_04);
 }
 
 static void ov73_021D366C (UnkStruct_ov73_021D342C * param0)

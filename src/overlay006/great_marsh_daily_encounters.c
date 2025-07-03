@@ -28,7 +28,7 @@ void ReplaceGreatMarshDailyEncounters(const int dailyMon, const BOOL nationalDex
     (*encounterSlot1) = narc[encounterIndex];
     (*encounterSlot2) = narc[encounterIndex];
 
-    Heap_FreeToHeap(narc);
+    Heap_Free(narc);
 }
 
 static u8 GreatMarsh_GetAreaNumFromMapId(const int mapId)

@@ -254,7 +254,7 @@ void ov21_021D4660(UnkStruct_ov21_021D4660 *param0)
 {
     GF_ASSERT(param0->unk_08.unk_08);
 
-    Heap_FreeToHeap(param0->unk_08.unk_08);
+    Heap_Free(param0->unk_08.unk_08);
     param0->unk_08.unk_08 = NULL;
 }
 

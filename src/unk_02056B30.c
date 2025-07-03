@@ -130,7 +130,7 @@ static BOOL sub_02056B70(FieldTask *taskMan)
     case 1:
         if (IsScreenFadeDone()) {
             HBlankSystem_Start(fieldSystem->unk_04->hBlankSystem);
-            Heap_FreeToHeap(v1);
+            Heap_Free(v1);
             return 1;
         }
     }
@@ -248,7 +248,7 @@ static BOOL sub_02056CFC(FieldTask *taskMan)
         (v1->unk_00)++;
         break;
     case 6:
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return 1;
     }
 

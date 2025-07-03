@@ -91,11 +91,11 @@ void ov5_021F42A8(void *param0)
     UnkStruct_ov5_021F431C *v0 = param0;
 
     if (v0->unk_1F8 != NULL) {
-        Heap_FreeToHeap(v0->unk_1F8);
+        Heap_Free(v0->unk_1F8);
     }
 
     if (v0->unk_1FC != NULL) {
-        Heap_FreeToHeap(v0->unk_1FC);
+        Heap_Free(v0->unk_1FC);
     }
 
     ov5_021F4370(v0);
@@ -280,7 +280,7 @@ static void ov5_021F45D0(UnkStruct_ov101_021D5D90 *param0, void *param1)
             sub_02073AA8(&v0->unk_74->unk_04[v1]);
         }
 
-        Heap_FreeToHeap(v0->unk_74);
+        Heap_Free(v0->unk_74);
     }
 }
 

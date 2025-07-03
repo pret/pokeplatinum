@@ -49,7 +49,7 @@ MessageBank *MessageBank_Load(enum NarcID narcID, u32 bankID, u32 heapID)
 
 void MessageBank_Free(MessageBank *bank)
 {
-    Heap_FreeToHeap(bank);
+    Heap_Free(bank);
 }
 
 void MessageBank_Get(const MessageBank *bank, u32 entryID, charcode_t *dst)
@@ -108,7 +108,7 @@ void MessageBank_GetStrbuf(const MessageBank *bank, u32 entryID, Strbuf *strbuf)
 
             Strbuf_CopyNumChars(strbuf, cstr, entry.length);
 
-            Heap_FreeToHeap(cstr);
+            Heap_Free(cstr);
         }
 
         return;
@@ -135,7 +135,7 @@ Strbuf *MessageBank_GetNewStrbuf(const MessageBank *bank, u32 entryID, u32 heapI
                 Strbuf_CopyNumChars(strbuf, cstr, entry.length);
             }
 
-            Heap_FreeToHeap(cstr);
+            Heap_Free(cstr);
             return strbuf;
         }
 
@@ -174,7 +174,7 @@ void MessageBank_GetStrbufFromHandle(NARC *narc, u32 bankID, u32 entryID, u32 he
 
             Strbuf_CopyNumChars(strbuf, cstr, entry.length);
 
-            Heap_FreeToHeap(cstr);
+            Heap_Free(cstr);
         }
 
         return;
@@ -220,7 +220,7 @@ Strbuf *MessageBank_GetNewStrbufFromHandle(NARC *narc, u32 bankID, u32 entryID, 
 
                 Strbuf_CopyNumChars(strbuf, cstr, entry.length);
 
-                Heap_FreeToHeap(cstr);
+                Heap_Free(cstr);
             }
         }
 
@@ -253,7 +253,7 @@ MessageLoader *MessageLoader_Init(enum MessageLoaderType type, enum NarcID narcI
             loader->bank = MessageBank_Load(narcID, bankID, heapID);
 
             if (loader->bank == NULL) {
-                Heap_FreeToHeap(loader);
+                Heap_Free(loader);
                 return NULL;
             }
         } else {
@@ -281,7 +281,7 @@ void MessageLoader_Free(MessageLoader *loader)
             break;
         }
 
-        Heap_FreeToHeap(loader);
+        Heap_Free(loader);
     }
 }
 
