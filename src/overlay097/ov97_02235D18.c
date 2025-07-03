@@ -286,7 +286,7 @@ static u16 ov97_02235EC0(int param0)
     }
 
     if (param0 == 13) {
-        return sizeof(PokemonStorageGBA) - 0xf80 * 8;
+        return sizeof(GBAPokemonStorage) - 0xf80 * 8;
     }
 
     return 0xf80;
@@ -569,7 +569,7 @@ int ov97_02236308(void)
     }
 }
 
-PokemonStorageGBA *GetGBAPokemonStorage(void)
+GBAPokemonStorage *GetGBAPokemonStorage(void)
 {
     return &(sGBASaveSlot->pokemonStorage);
 }
