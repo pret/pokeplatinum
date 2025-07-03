@@ -29,7 +29,7 @@ FieldMoves_CutTree:
     GoToIfEq VAR_RESULT, 6, _008E
     CheckBadgeAcquired BADGE_ID_FOREST, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _008E
-    Message FieldMoves_WouldYouLikeToUseCut
+    Message FieldMoves_Text_WouldYouLikeToUseCut
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, _00AE
     CloseMessage
@@ -37,7 +37,7 @@ FieldMoves_CutTree:
     End
 
 _008E:
-    Message FieldMoves_TreeLooksLikeCanBeCut
+    Message FieldMoves_Text_TreeLooksLikeCanBeCut
     GetCurrentMapID VAR_0x8004
     CallIfEq VAR_0x8004, 203, _014A
     WaitABXPadPress
@@ -49,7 +49,7 @@ _00AE:
     FindPartySlotWithMove VAR_RESULT, MOVE_CUT
     SetVar VAR_0x8004, VAR_RESULT
     BufferPartyMonNickname 0, VAR_RESULT
-    Message FieldMoves_PokemonUsedCut
+    Message FieldMoves_Text_PokemonUsedCut
     CloseMessage
     ScrCmd_0C5 VAR_0x8004
     ScrCmd_29E 0, VAR_0x8005
@@ -66,7 +66,7 @@ _00E8:
 FieldMoves_UseCutFromMenu:
     LockAll
     BufferPartyMonNickname 0, VAR_0x8000
-    Message FieldMoves_PokemonUsedCut
+    Message FieldMoves_Text_PokemonUsedCut
     CloseMessage
     ScrCmd_0C5 VAR_0x8000
     ScrCmd_29E 0, VAR_0x8005
@@ -134,7 +134,7 @@ FieldMoves_Rock:
     GoToIfEq VAR_RESULT, 6, _0275
     CheckBadgeAcquired BADGE_ID_COAL, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0275
-    Message FieldMoves_WouldYouLikeToUseRockSmash
+    Message FieldMoves_Text_WouldYouLikeToUseRockSmash
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, _0284
     CloseMessage
@@ -142,7 +142,7 @@ FieldMoves_Rock:
     End
 
 _0275:
-    Message FieldMoves_PokemonMayBeAbleToSmashRock
+    Message FieldMoves_Text_PokemonMayBeAbleToSmashRock
     WaitABXPadPress
     CloseMessage
     GoTo _066D
@@ -150,7 +150,7 @@ _0275:
 
 _0284:
     BufferPartyMonNickname 0, VAR_0x8004
-    Message FieldMoves_PokemonUsedRockSmash
+    Message FieldMoves_Text_PokemonUsedRockSmash
     CloseMessage
     ScrCmd_0C5 VAR_0x8004
     ScrCmd_29E 1, VAR_0x8005
@@ -167,7 +167,7 @@ _02B2:
 FieldMoves_UseRockSmashFromMenu:
     LockAll
     BufferPartyMonNickname 0, VAR_0x8000
-    Message FieldMoves_PokemonUsedRockSmash
+    Message FieldMoves_Text_PokemonUsedRockSmash
     CloseMessage
     ScrCmd_0C5 VAR_0x8000
     ScrCmd_29E 1, VAR_0x8005
@@ -191,7 +191,7 @@ FieldMoves_Boulder:
     GoToIfEq VAR_RESULT, 6, _0372
     CheckBadgeAcquired BADGE_ID_MINE, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0372
-    Message FieldMoves_WouldYouLikeToUseStrength
+    Message FieldMoves_Text_WouldYouLikeToUseStrength
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, _0381
     CloseMessage
@@ -199,7 +199,7 @@ FieldMoves_Boulder:
     End
 
 _0372:
-    Message FieldMoves_BoulderMayBeAbleToPush
+    Message FieldMoves_Text_BoulderMayBeAbleToPush
     WaitABXPadPress
     CloseMessage
     GoTo _066D
@@ -210,10 +210,10 @@ _0381:
     FindPartySlotWithMove VAR_RESULT, MOVE_STRENGTH
     SetVar VAR_0x8004, VAR_RESULT
     BufferPartyMonNickname 0, VAR_RESULT
-    Message FieldMoves_PokemonUsedStrength
+    Message FieldMoves_Text_PokemonUsedStrength
     ScrCmd_0C5 VAR_0x8004
     CloseMessage
-    Message FieldMoves_PokemonStrengthMadePossibleToMove
+    Message FieldMoves_Text_PokemonStrengthMadePossibleToMove
     WaitABXPadPress
     CloseMessage
     GetCurrentMapID VAR_0x8004
@@ -222,7 +222,7 @@ _0381:
     End
 
 _03BD:
-    Message FieldMoves_StrengthMadePossibleToMove
+    Message FieldMoves_Text_StrengthMadePossibleToMove
     WaitABXPadPress
     CloseMessage
     GoTo _066D
@@ -234,10 +234,10 @@ FieldMoves_UseStrengthFromMenu:
     GoToIfEq VAR_RESULT, 1, _03BD
     Strength 1
     BufferPartyMonNickname 0, VAR_0x8000
-    Message FieldMoves_PokemonUsedStrength
+    Message FieldMoves_Text_PokemonUsedStrength
     CloseMessage
     ScrCmd_0C5 VAR_0x8000
-    Message FieldMoves_PokemonStrengthMadePossibleToMove
+    Message FieldMoves_Text_PokemonStrengthMadePossibleToMove
     WaitABXPadPress
     CloseMessage
     GetCurrentMapID VAR_0x8004
@@ -253,7 +253,7 @@ FieldMoves_RockyWall:
     GoToIfEq VAR_RESULT, 0, _0469
     CheckHasPartner VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0478
-    Message FieldMoves_WouldYouLikeToUseRockClimb
+    Message FieldMoves_Text_WouldYouLikeToUseRockClimb
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, _0487
     CloseMessage
@@ -261,14 +261,14 @@ FieldMoves_RockyWall:
     End
 
 _0469:
-    Message FieldMoves_RockyWallWillMoveScale
+    Message FieldMoves_Text_RockyWallWillMoveScale
     WaitABXPadPress
     CloseMessage
     GoTo _0671
     End
 
 _0478:
-    Message FieldMoves_NoRockClimbingWithPartner
+    Message FieldMoves_Text_NoRockClimbingWithPartner
     WaitABXPadPress
     CloseMessage
     GoTo _0671
@@ -278,7 +278,7 @@ _0487:
     FindPartySlotWithMove VAR_RESULT, MOVE_ROCK_CLIMB
     SetVar VAR_0x8004, VAR_RESULT
     BufferPartyMonNickname 0, VAR_RESULT
-    Message FieldMoves_PokemonUsedRockClimb
+    Message FieldMoves_Text_PokemonUsedRockClimb
     CloseMessage
     UseRockClimb VAR_0x8004
     GetCurrentMapID VAR_0x8004
@@ -289,7 +289,7 @@ _0487:
 FieldMoves_UseRockClimbFromMenu:
     LockAll
     BufferPartyMonNickname 0, VAR_0x8000
-    Message FieldMoves_PokemonUsedRockClimb
+    Message FieldMoves_Text_PokemonUsedRockClimb
     CloseMessage
     UseRockClimb VAR_0x8000
     GetCurrentMapID VAR_0x8004
@@ -302,7 +302,7 @@ FieldMoves_Water:
     LockAll
     CheckHasPartner VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0512
-    Message FieldMoves_WouldYouLikeToUseSurf
+    Message FieldMoves_Text_WouldYouLikeToUseSurf
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, _051F
     CloseMessage
@@ -310,7 +310,7 @@ FieldMoves_Water:
     End
 
 _0512:
-    Message FieldMoves_NoSurfingWithPartner
+    Message FieldMoves_Text_NoSurfingWithPartner
     WaitABXPadPress
     CloseMessage
     GoTo _0671
@@ -319,7 +319,7 @@ _051F:
     FindPartySlotWithMove VAR_RESULT, MOVE_SURF
     SetVar VAR_0x8004, VAR_RESULT
     BufferPartyMonNickname 0, VAR_RESULT
-    Message FieldMoves_PokemonUsedSurf
+    Message FieldMoves_Text_PokemonUsedSurf
     CloseMessage
     UseSurf VAR_0x8004
     GetCurrentMapID VAR_0x8004
@@ -330,7 +330,7 @@ _051F:
 FieldMoves_UseSurfFromMenu:
     LockAll
     BufferPartyMonNickname 0, VAR_0x8000
-    Message FieldMoves_PokemonUsedSurf
+    Message FieldMoves_Text_PokemonUsedSurf
     CloseMessage
     ScrCmd_063 0xFF
     UseSurf VAR_0x8000
@@ -345,7 +345,7 @@ FieldMoves_Fog_Unused:
     LockAll
     FindPartySlotWithMove VAR_RESULT, MOVE_DEFOG
     GoToIfEq VAR_RESULT, 6, _05B4
-    Message FieldMoves_WouldYouLikeToUseDefog_Unused
+    Message FieldMoves_Text_WouldYouLikeToUseDefog_Unused
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, _05C3
     CloseMessage
@@ -353,7 +353,7 @@ FieldMoves_Fog_Unused:
     End
 
 _05B4:
-    Message FieldMoves_DeepFogDrapesArea_Unused
+    Message FieldMoves_Text_DeepFogDrapesArea_Unused
     WaitABXPadPress
     CloseMessage
     GoTo _0671
@@ -363,7 +363,7 @@ _05C3:
     FindPartySlotWithMove VAR_RESULT, MOVE_DEFOG
     SetVar VAR_0x8004, VAR_RESULT
     BufferPartyMonNickname 0, VAR_RESULT
-    Message FieldMoves_PokemonUsedDefog
+    Message FieldMoves_Text_PokemonUsedDefog
     CloseMessage
     ScrCmd_0C5 VAR_0x8004
     GetCurrentMapID VAR_0x8004
@@ -380,7 +380,7 @@ _0606:
 FieldMoves_UseDefogFromMenu:
     LockAll
     BufferPartyMonNickname 0, VAR_0x8000
-    Message FieldMoves_PokemonUsedDefog
+    Message FieldMoves_Text_PokemonUsedDefog
     CloseMessage
     ScrCmd_0C5 VAR_0x8000
     Defog 1
@@ -395,7 +395,7 @@ FieldMoves_UseDefogFromMenu:
 FieldMoves_UseFlashFromMenu:
     LockAll
     BufferPartyMonNickname 0, VAR_0x8000
-    Message FieldMoves_PokemonUsedFlash
+    Message FieldMoves_Text_PokemonUsedFlash
     CloseMessage
     ScrCmd_0C5 VAR_0x8000
     Flash 1
@@ -422,7 +422,7 @@ FieldMoves_Waterfall:
     GoToIfEq VAR_RESULT, 6, _06C3
     CheckBadgeAcquired BADGE_ID_BEACON, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06C3
-    Message FieldMoves_WouldYouLikeToUseWaterfall
+    Message FieldMoves_Text_WouldYouLikeToUseWaterfall
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, _06D2
     CloseMessage
@@ -430,7 +430,7 @@ FieldMoves_Waterfall:
     End
 
 _06C3:
-    Message FieldMoves_WallOfWater
+    Message FieldMoves_Text_WallOfWater
     WaitABXPadPress
     CloseMessage
     GoTo _0671
@@ -440,7 +440,7 @@ _06D2:
     FindPartySlotWithMove VAR_RESULT, MOVE_WATERFALL
     SetVar VAR_0x8004, VAR_RESULT
     BufferPartyMonNickname 0, VAR_RESULT
-    Message FieldMoves_PokemonUsedWaterfall
+    Message FieldMoves_Text_PokemonUsedWaterfall
     CloseMessage
     UseWaterfall VAR_0x8004
     GetCurrentMapID VAR_0x8004
@@ -451,7 +451,7 @@ _06D2:
 FieldMoves_UseWaterfallFromMenu:
     LockAll
     BufferPartyMonNickname 0, VAR_0x8000
-    Message FieldMoves_PokemonUsedWaterfall
+    Message FieldMoves_Text_PokemonUsedWaterfall
     CloseMessage
     ScrCmd_063 0xFF
     UseWaterfall VAR_0x8000
