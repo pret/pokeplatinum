@@ -952,7 +952,7 @@ static void ov84_0223BFBC(UnkStruct_ov84_0223B5A0 *param0)
     u32 v1;
 
     v0 = &param0->unk_C4->unk_04[param0->unk_C4->unk_64];
-    param0->unk_160 = StringList_New(Unk_ov84_02241118[v0->unk_08] + 3, 6);
+    param0->unk_160 = StringList_New(Unk_ov84_02241118[v0->unk_08] + 3, HEAP_ID_6);
 
     StringList_AddFromMessageBank(param0->unk_160, param0->unk_114, 32, 0xfffffffd);
 
@@ -1079,7 +1079,7 @@ static void ov84_0223C224(UnkStruct_ov84_0223B5A0 *param0, u16 param1, u16 param
         v0.textXOffset = 0;
     }
 
-    param0->unk_15C = ListMenu_New(&v0, param1, param2, 6);
+    param0->unk_15C = ListMenu_New(&v0, param1, param2, HEAP_ID_6);
     Window_ScheduleCopyToVRAM(&param0->unk_04[0]);
 }
 

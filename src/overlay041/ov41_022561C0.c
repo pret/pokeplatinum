@@ -88,7 +88,7 @@ static BOOL ov41_02256220(UnkStruct_ov41_02256220 *param0, PoketchSystem *poketc
 
         ov41_02256790(&param0->unk_04);
 
-        param0->buttonManager = PoketchButtonManager_New(v0, NELEMS(v0), ov41_02256300, param0, 8);
+        param0->buttonManager = PoketchButtonManager_New(v0, NELEMS(v0), ov41_02256300, param0, HEAP_ID_POKETCH_APP);
         param0->unk_5B88 = 0;
         param0->poketchSys = poketchSys;
 
