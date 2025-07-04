@@ -414,7 +414,7 @@ scr_seq_files = files(
     'scripts_unk_0406.s',
     'scripts_unk_0407.s',
     'scripts_unk_0408.s',
-    'scripts_unk_0409.s',
+    'scripts_field_moves.s',
     'scripts_wifi_plaza_entrance.s',
     'scripts_unk_0411.s',
     'scripts_init_new_game.s',
