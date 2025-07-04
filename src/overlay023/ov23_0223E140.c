@@ -104,7 +104,7 @@ typedef struct {
     u8 unk_05;
 } UnkStruct_ov23_0223E6F8;
 
-typedef struct {
+typedef struct MiningObject {
     void *shape;
     u16 oddTIDWeight;
     u16 evenTIDWeight;
@@ -117,7 +117,7 @@ typedef struct {
     u16 paletteNARCIndex;
 } MiningObject;
 
-typedef struct {
+typedef struct BuriedObject {
     MiningObject *miningObject;
     u8 itemID;
     u8 x;
