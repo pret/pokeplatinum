@@ -129,7 +129,7 @@ static void ov7_0224B5A8(UnkStruct_ov7_0224B4E8 *param0)
     if (Window_IsInUse(v1) == 0) {
         int v4;
 
-        param0->unk_08 = StringList_New(v3 + 2, 4);
+        param0->unk_08 = StringList_New(v3 + 2, HEAP_ID_FIELD);
 
         Window_Add(param0->fieldSystem->bgConfig, v1, 3, 1, 1, 16, (v3 + 2) * 2, 13, 1);
         Window_DrawStandardFrame(&param0->unk_34, 1, 1024 - (18 + 12) - 9, 11);
@@ -153,7 +153,7 @@ static void ov7_0224B5A8(UnkStruct_ov7_0224B4E8 *param0)
     v0.window = &param0->unk_34;
     v0.parent = param0;
 
-    param0->unk_00 = ListMenu_New(&v0, 0, param0->unk_78, 4);
+    param0->unk_00 = ListMenu_New(&v0, 0, param0->unk_78, HEAP_ID_FIELD);
     Window_CopyToVRAM(&param0->unk_34);
 }
 
@@ -222,7 +222,7 @@ static void ov7_0224B788(UnkStruct_ov7_0224B4E8 *param0)
     int v5 = 22;
     UnkStruct_ov7_0224F4D8 *v6 = Unk_ov7_0224F4D8;
 
-    param0->unk_0C = StringList_New(v1, 4);
+    param0->unk_0C = StringList_New(v1, HEAP_ID_FIELD);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_44, 3, v5, v3, v4, v1 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - v4 * v1 * 2);
     Window_DrawStandardFrame(&param0->unk_44, 1, 1024 - (18 + 12) - 9, 11);
@@ -243,7 +243,7 @@ static void ov7_0224B788(UnkStruct_ov7_0224B4E8 *param0)
     v0.window = &param0->unk_44;
     v0.parent = param0;
 
-    param0->unk_04 = ListMenu_New(&v0, 0, param0->unk_7A, 4);
+    param0->unk_04 = ListMenu_New(&v0, 0, param0->unk_7A, HEAP_ID_FIELD);
     Window_CopyToVRAM(&param0->unk_44);
 }
 

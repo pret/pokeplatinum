@@ -406,7 +406,7 @@ void ov84_0223FB70(UnkStruct_ov84_0223B5A0 *param0, u8 *param1, u8 param2)
         v5 = 3;
     }
 
-    param0->unk_154 = StringList_New(param2, 6);
+    param0->unk_154 = StringList_New(param2, HEAP_ID_6);
 
     for (v4 = 0; v4 < param2; v4++) {
         StringList_AddFromStrbuf(param0->unk_154, param0->unk_124[param1[v4]], ov84_0223D84C(param1[v4]));
@@ -426,7 +426,7 @@ void ov84_0223FB70(UnkStruct_ov84_0223B5A0 *param0, u8 *param1, u8 param2)
         v0.loopAround = FALSE;
     }
 
-    param0->unk_158 = Menu_New(&v0, 8, 0, 0, 6, PAD_BUTTON_B);
+    param0->unk_158 = Menu_New(&v0, 8, 0, 0, HEAP_ID_6, PAD_BUTTON_B);
 
     if (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08 == 3) {
         Window_FillTilemap(&param0->unk_04[1], 0);

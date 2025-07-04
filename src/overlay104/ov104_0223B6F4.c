@@ -163,7 +163,7 @@ FieldBattleDTO *ov104_0223B810(UnkStruct_ov104_0223BA10 *param0, UnkStruct_ov104
     u8 v3 = ov104_0223B7DC(param0->unk_10, 0);
 
     Party_HealAllMembers(param0->unk_2C);
-    FieldBattleDTO *v5 = FieldBattleDTO_New(11, ov104_0223B9E4(param0->unk_10));
+    FieldBattleDTO *v5 = FieldBattleDTO_New(HEAP_ID_FIELDMAP, ov104_0223B9E4(param0->unk_10));
     FieldBattleDTO_InitFromGameState(v5, NULL, param1->saveData, param1->unk_1C, param1->journalEntry, param1->bagCursor, param1->unk_20);
 
     v5->background = BACKGROUND_BATTLE_CASTLE;

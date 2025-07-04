@@ -82,7 +82,7 @@ UnkStruct_ov20_021D30F8 *ov20_021D2EA4(UnkStruct_ov20_021D2128 *param0, const Un
     v0->unk_44 = NULL;
     v0->unk_4C = Strbuf_Init(128, HEAP_ID_35);
     v0->unk_48 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0437, HEAP_ID_35);
-    v0->unk_50 = ColoredArrow_New(35);
+    v0->unk_50 = ColoredArrow_New(HEAP_ID_35);
 
     return v0;
 }

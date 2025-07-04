@@ -61,7 +61,7 @@ int ov117_02260474(ApplicationManager *appMan, int *param1)
     switch (*param1) {
     case 0:
         v0->unk_31 = 0;
-        v0->appMan = ApplicationManager_New(&Unk_ov117_02266908, v0, 110);
+        v0->appMan = ApplicationManager_New(&Unk_ov117_02266908, v0, HEAP_ID_110);
         (*param1)++;
         break;
     case 1:
@@ -73,7 +73,7 @@ int ov117_02260474(ApplicationManager *appMan, int *param1)
         break;
     case 2:
         v0->unk_31 = 1;
-        v0->appMan = ApplicationManager_New(&Unk_ov117_022668F8, v0, 110);
+        v0->appMan = ApplicationManager_New(&Unk_ov117_022668F8, v0, HEAP_ID_110);
         (*param1)++;
         break;
     case 3:
@@ -89,7 +89,7 @@ int ov117_02260474(ApplicationManager *appMan, int *param1)
         }
 
         v0->unk_31 = 2;
-        v0->appMan = ApplicationManager_New(&Unk_ov117_02266908, v0, 110);
+        v0->appMan = ApplicationManager_New(&Unk_ov117_02266908, v0, HEAP_ID_110);
         (*param1)++;
         break;
     case 5:

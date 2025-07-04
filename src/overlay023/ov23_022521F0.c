@@ -214,7 +214,7 @@ static void *ov23_022524B8(UnkStruct_ov23_02250CD4 *param0)
 
     ov23_0224FB7C(param0);
 
-    param0->unk_40 = StringList_New(v1, 4);
+    param0->unk_40 = StringList_New(v1, HEAP_ID_FIELD);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, 3, 19, 3, 12, v1 * 2, 13, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - 12 * 6));
     Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
@@ -253,7 +253,7 @@ static void *ov23_022524B8(UnkStruct_ov23_02250CD4 *param0)
 
     ov23_02251238(param0, v0.maxDisplay, v0.count);
 
-    param0->unk_48 = ListMenu_New(&v0, param0->unk_294, param0->unk_290, 4);
+    param0->unk_48 = ListMenu_New(&v0, param0->unk_294, param0->unk_290, HEAP_ID_FIELD);
     param0->unk_2AE = param0->unk_290;
 
     Window_CopyToVRAM(&param0->unk_10);
@@ -396,7 +396,7 @@ static void ov23_02252A18(UnkStruct_ov23_02250CD4 *param0)
     const int v1 = 5 + 1;
 
     ov23_0224FB7C(param0);
-    param0->unk_40 = StringList_New(v1, 4);
+    param0->unk_40 = StringList_New(v1, HEAP_ID_FIELD);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, 3, 19, 3, 12, v1 * 2, 13, (((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - 12 * 6) - 12 * 12));
     Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
@@ -439,7 +439,7 @@ static void ov23_02252A18(UnkStruct_ov23_02250CD4 *param0)
     param0->unk_2AE = param0->unk_290;
 
     ov23_02251238(param0, v0.maxDisplay, v0.count);
-    param0->unk_48 = ListMenu_New(&v0, param0->unk_294, param0->unk_290, 4);
+    param0->unk_48 = ListMenu_New(&v0, param0->unk_294, param0->unk_290, HEAP_ID_FIELD);
     Window_CopyToVRAM(&param0->unk_10);
 }
 

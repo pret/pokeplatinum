@@ -1065,7 +1065,7 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *dto)
     battleSys->battleType = dto->battleType;
 
     for (i = 0; i < 4; i++) {
-        battleSys->trainerInfo[i] = TrainerInfo_New(5);
+        battleSys->trainerInfo[i] = TrainerInfo_New(HEAP_ID_BATTLE);
         TrainerInfo_Copy(dto->trainerInfo[i], battleSys->trainerInfo[i]);
         battleSys->unk_78[i] = dto->chatotCries[i];
     }

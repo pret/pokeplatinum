@@ -74,7 +74,7 @@ int ov94_022444C8(UnkStruct_ov94_0223FD4C *param0, int param1)
     }
 
     param0->unk_E8.options = param0->unk_00->options;
-    param0->appMan = ApplicationManager_New(&Unk_ov94_0224636C, &param0->unk_E8, 62);
+    param0->appMan = ApplicationManager_New(&Unk_ov94_0224636C, &param0->unk_E8, HEAP_ID_62);
     param0->unk_104 = 1;
 
     return 2;
