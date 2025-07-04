@@ -79,7 +79,7 @@ typedef struct RockClimbTaskEnv {
     UnkStruct_ov5_021D1BEC *unk_2C;
 } RockClimbTaskEnv;
 
-typedef struct WaterFallTaskEnv {
+typedef struct WaterfallTaskEnv {
     int state;
     int direction;
     int movementCounter;
@@ -94,7 +94,7 @@ typedef struct WaterFallTaskEnv {
     MapObject *surfBlob;
     MonRideTask monRideTask;
     UnkStruct_ov5_021D1BEC *unk_50;
-} WaterFallTaskEnv;
+} WaterfallTaskEnv;
 
 typedef struct {
     int unk_00;
@@ -155,7 +155,7 @@ static int ov5_021E067C(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, in
 static int ov5_021E06A8(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar);
 static void RockClimbTask_Start(FieldSystem *fieldSystem, int param1, const MonRideTask *param2);
 static BOOL FieldTask_UseRockClimb(FieldTask *param0);
-static WaterFallTaskEnv *WaterFallTaskEnv_New(FieldSystem *fieldSystem, int param1, const MonRideTask *monRideTask);
+static WaterfallTaskEnv *WaterfallTaskEnv_New(FieldSystem *fieldSystem, int param1, const MonRideTask *monRideTask);
 static BOOL FieldTask_UseWaterfall(FieldTask *param0);
 static SysTask *ov5_021E0F54(FieldSystem *fieldSystem, u32 param1);
 static void ov5_021E0FC0(SysTask *param0);
@@ -171,55 +171,55 @@ static void MonRideTaskEnv_Free(void *taskEnv);
 static Pokemon *GetPokemonByIndex(FieldSystem *fieldSystem, int partySlot);
 static void ov5_021E0DE0(FieldSystem *fieldSystem);
 static BOOL ov5_021E0E10(FieldTask *param0);
-static int RockClimb_PlayCutIn(RockClimbTaskEnv *taskEnv);
-static int RockClimb_WaitCutIn(RockClimbTaskEnv *taskEnv);
-static int RockClimb_CreateBlob(RockClimbTaskEnv *taskEnv);
-static int RockClimb_HopOn(RockClimbTaskEnv *taskEnv);
-static int RockClimb_WaitHop(RockClimbTaskEnv *taskEnv);
-static int RockClimb_Move(RockClimbTaskEnv *taskEnv);
-static int RockClimb_LoopOrHopOff(RockClimbTaskEnv *taskEnv);
-static int RockClimb_WaitFinished(RockClimbTaskEnv *taskEnv);
-static int WaterFall_PlayCutInAsc(WaterFallTaskEnv *taskEnv);
-static int WaterFall_WaitCutInPlaySoundAsc(WaterFallTaskEnv *taskEnv);
-static int WaterFall_InitAsc(WaterFallTaskEnv *taskEnv);
-static int WaterFall_GoUp(WaterFallTaskEnv *taskEnv);
-static int WaterFall_GoUpNorth(WaterFallTaskEnv *taskEnv);
-static int WaterFall_PlayCutInDesc(WaterFallTaskEnv *taskEnv);
-static int WaterFall_WaitCutInPlaySoundDesc(WaterFallTaskEnv *taskEnv);
-static int WaterFall_InitDesc(WaterFallTaskEnv *taskEnv);
-static int WaterFall_GoDown(WaterFallTaskEnv *taskEnv);
-static int WaterFall_GoDownSouth(WaterFallTaskEnv *taskEnv);
+static int SubTask_RockClimb_PlayCutIn(RockClimbTaskEnv *taskEnv);
+static int SubTask_RockClimb_WaitCutIn(RockClimbTaskEnv *taskEnv);
+static int SubTask_RockClimb_CreateBlob(RockClimbTaskEnv *taskEnv);
+static int SubTask_RockClimb_HopOn(RockClimbTaskEnv *taskEnv);
+static int SubTask_RockClimb_WaitHop(RockClimbTaskEnv *taskEnv);
+static int SubTask_RockClimb_Move(RockClimbTaskEnv *taskEnv);
+static int SubTask_RockClimb_LoopOrHopOff(RockClimbTaskEnv *taskEnv);
+static int SubTask_RockClimb_WaitFinished(RockClimbTaskEnv *taskEnv);
+static int SubTask_Waterfall_PlayAscentCutIn(WaterfallTaskEnv *taskEnv);
+static int SubTask_Waterfall_WaitForAscentCutIn(WaterfallTaskEnv *taskEnv);
+static int SubTask_Waterfall_InitAscent(WaterfallTaskEnv *taskEnv);
+static int SubTask_Waterfall_Ascend(WaterfallTaskEnv *taskEnv);
+static int SubTask_Waterfall_FinishAscent(WaterfallTaskEnv *taskEnv);
+static int SubTask_Waterfall_PlayDescentCutIn(WaterfallTaskEnv *taskEnv);
+static int SubTask_Waterfall_WaitForDescentCutIn(WaterfallTaskEnv *taskEnv);
+static int SubTask_Waterfall_InitDescent(WaterfallTaskEnv *taskEnv);
+static int SubTask_Waterfall_Descend(WaterfallTaskEnv *taskEnv);
+static int SubTask_Waterfall_FinishDescent(WaterfallTaskEnv *taskEnv);
 
 static void (*const sPlayerAvatarRequestStateTbl[10])(PlayerAvatar *);
 
 typedef int (*RockClimbTaskFunc)(RockClimbTaskEnv *);
-typedef int (*WaterFallTaskFunc)(WaterFallTaskEnv *);
+typedef int (*WaterfallTaskFunc)(WaterfallTaskEnv *);
 
 static const RockClimbTaskFunc sRockClimbTasks[] = {
-    RockClimb_PlayCutIn,
-    RockClimb_WaitCutIn,
-    RockClimb_CreateBlob,
-    RockClimb_HopOn,
-    RockClimb_WaitHop,
-    RockClimb_Move,
-    RockClimb_LoopOrHopOff,
-    RockClimb_WaitFinished
+    SubTask_RockClimb_PlayCutIn,
+    SubTask_RockClimb_WaitCutIn,
+    SubTask_RockClimb_CreateBlob,
+    SubTask_RockClimb_HopOn,
+    SubTask_RockClimb_WaitHop,
+    SubTask_RockClimb_Move,
+    SubTask_RockClimb_LoopOrHopOff,
+    SubTask_RockClimb_WaitFinished
 };
 
-static const WaterFallTaskFunc sWaterFallTasksAscend[] = {
-    WaterFall_PlayCutInAsc,
-    WaterFall_WaitCutInPlaySoundAsc,
-    WaterFall_InitAsc,
-    WaterFall_GoUp,
-    WaterFall_GoUpNorth
+static const WaterfallTaskFunc sWaterfallTasksAscend[] = {
+    SubTask_Waterfall_PlayAscentCutIn,
+    SubTask_Waterfall_WaitForAscentCutIn,
+    SubTask_Waterfall_InitAscent,
+    SubTask_Waterfall_Ascend,
+    SubTask_Waterfall_FinishAscent
 };
 
-static const WaterFallTaskFunc sWaterFallTasksDescend[] = {
-    WaterFall_PlayCutInDesc,
-    WaterFall_WaitCutInPlaySoundDesc,
-    WaterFall_InitDesc,
-    WaterFall_GoDown,
-    WaterFall_GoDownSouth
+static const WaterfallTaskFunc sWaterfallTasksDescend[] = {
+    SubTask_Waterfall_PlayDescentCutIn,
+    SubTask_Waterfall_WaitForDescentCutIn,
+    SubTask_Waterfall_InitDescent,
+    SubTask_Waterfall_Descend,
+    SubTask_Waterfall_FinishDescent
 };
 
 void PlayerAvatar_SetRequestStateBit(PlayerAvatar *playerAvatar, u32 bit)
@@ -1062,7 +1062,7 @@ static BOOL FieldTask_UseRockClimb(FieldTask *task)
     return ret;
 }
 
-static int RockClimb_PlayCutIn(RockClimbTaskEnv *taskEnv)
+static int SubTask_RockClimb_PlayCutIn(RockClimbTaskEnv *taskEnv)
 {
     NewMonRideCutIn(taskEnv->fieldSystem, &taskEnv->monRideTask);
 
@@ -1070,7 +1070,7 @@ static int RockClimb_PlayCutIn(RockClimbTaskEnv *taskEnv)
     return 0;
 }
 
-static int RockClimb_WaitCutIn(RockClimbTaskEnv *taskEnv)
+static int SubTask_RockClimb_WaitCutIn(RockClimbTaskEnv *taskEnv)
 {
     if (CheckCutInFinished(&taskEnv->monRideTask) == TRUE) {
         taskEnv->state++;
@@ -1079,7 +1079,7 @@ static int RockClimb_WaitCutIn(RockClimbTaskEnv *taskEnv)
     return 0;
 }
 
-static int RockClimb_CreateBlob(RockClimbTaskEnv *taskEnv)
+static int SubTask_RockClimb_CreateBlob(RockClimbTaskEnv *taskEnv)
 {
     int xPos = Player_GetXPos(taskEnv->playerAvatar) + MapObject_GetDxFromDir(taskEnv->direction);
     int zPos = Player_GetZPos(taskEnv->playerAvatar) + MapObject_GetDzFromDir(taskEnv->direction);
@@ -1093,7 +1093,7 @@ static int RockClimb_CreateBlob(RockClimbTaskEnv *taskEnv)
     return 0;
 }
 
-static int RockClimb_HopOn(RockClimbTaskEnv *taskEnv)
+static int SubTask_RockClimb_HopOn(RockClimbTaskEnv *taskEnv)
 {
     if (LocalMapObj_IsAnimationSet(taskEnv->surfBlob) == TRUE) {
         int movementAction = MovementAction_TurnActionTowardsDir(taskEnv->direction, MOVEMENT_ACTION_JUMP_NEAR_FAST_NORTH);
@@ -1105,7 +1105,7 @@ static int RockClimb_HopOn(RockClimbTaskEnv *taskEnv)
     return 0;
 }
 
-static int RockClimb_WaitHop(RockClimbTaskEnv *taskEnv)
+static int SubTask_RockClimb_WaitHop(RockClimbTaskEnv *taskEnv)
 {
     if (LocalMapObj_CheckAnimationFinished(taskEnv->surfBlob) == TRUE) {
         taskEnv->state++;
@@ -1115,7 +1115,7 @@ static int RockClimb_WaitHop(RockClimbTaskEnv *taskEnv)
     return 0;
 }
 
-static int RockClimb_Move(RockClimbTaskEnv *taskEnv)
+static int SubTask_RockClimb_Move(RockClimbTaskEnv *taskEnv)
 {
     if (LocalMapObj_IsAnimationSet(taskEnv->surfBlob) == TRUE) {
         int movementAction = MovementAction_TurnActionTowardsDir(taskEnv->direction, MOVEMENT_ACTION_WALK_FAST_NORTH);
@@ -1127,7 +1127,7 @@ static int RockClimb_Move(RockClimbTaskEnv *taskEnv)
     return 0;
 }
 
-static int RockClimb_LoopOrHopOff(RockClimbTaskEnv *taskEnv)
+static int SubTask_RockClimb_LoopOrHopOff(RockClimbTaskEnv *taskEnv)
 {
     if (LocalMapObj_CheckAnimationFinished(taskEnv->surfBlob) == FALSE) {
         return 0;
@@ -1154,7 +1154,7 @@ static int RockClimb_LoopOrHopOff(RockClimbTaskEnv *taskEnv)
     return 0;
 }
 
-static int RockClimb_WaitFinished(RockClimbTaskEnv *taskEnv)
+static int SubTask_RockClimb_WaitFinished(RockClimbTaskEnv *taskEnv)
 {
     if (LocalMapObj_CheckAnimationFinished(taskEnv->surfBlob) == FALSE) {
         return 0;
@@ -1165,9 +1165,9 @@ static int RockClimb_WaitFinished(RockClimbTaskEnv *taskEnv)
     return 1;
 }
 
-static WaterFallTaskEnv *WaterFallTaskEnv_New(FieldSystem *fieldSystem, int direction, const MonRideTask *monRideTask)
+static WaterfallTaskEnv *WaterfallTaskEnv_New(FieldSystem *fieldSystem, int direction, const MonRideTask *monRideTask)
 {
-    WaterFallTaskEnv *taskEnv = MonRideTaskEnv_New(sizeof(WaterFallTaskEnv));
+    WaterfallTaskEnv *taskEnv = MonRideTaskEnv_New(sizeof(WaterfallTaskEnv));
 
     taskEnv->direction = direction;
     taskEnv->fieldSystem = fieldSystem;
@@ -1183,7 +1183,7 @@ static WaterFallTaskEnv *WaterFallTaskEnv_New(FieldSystem *fieldSystem, int dire
 
 void ov5_021E097C(FieldSystem *fieldSystem, int param1)
 {
-    WaterFallTaskEnv *taskEnv = WaterFallTaskEnv_New(fieldSystem, param1, NULL);
+    WaterfallTaskEnv *taskEnv = WaterfallTaskEnv_New(fieldSystem, param1, NULL);
     FieldSystem_CreateTask(fieldSystem, FieldTask_UseWaterfall, taskEnv);
 }
 
@@ -1196,7 +1196,7 @@ void FieldTask_StartUseWaterfall(FieldTask *task, int direction, int partySlot)
     MonRideTask_Init(fieldSystem, partyMon, &monRideTask);
 
     {
-        WaterFallTaskEnv *taskEnv = WaterFallTaskEnv_New(fieldSystem, direction, &monRideTask);
+        WaterfallTaskEnv *taskEnv = WaterfallTaskEnv_New(fieldSystem, direction, &monRideTask);
         FieldTask_InitCall(task, FieldTask_UseWaterfall, taskEnv);
     }
 }
@@ -1204,13 +1204,13 @@ void FieldTask_StartUseWaterfall(FieldTask *task, int direction, int partySlot)
 static BOOL FieldTask_UseWaterfall(FieldTask *param0)
 {
     int v0;
-    WaterFallTaskEnv *taskEnv = FieldTask_GetEnv(param0);
+    WaterfallTaskEnv *taskEnv = FieldTask_GetEnv(param0);
 
     do {
         if (taskEnv->direction == DIR_NORTH) {
-            v0 = sWaterFallTasksAscend[taskEnv->state](taskEnv);
+            v0 = sWaterfallTasksAscend[taskEnv->state](taskEnv);
         } else {
-            v0 = sWaterFallTasksDescend[taskEnv->state](taskEnv);
+            v0 = sWaterfallTasksDescend[taskEnv->state](taskEnv);
         }
     } while (v0 == 2);
 
@@ -1222,7 +1222,7 @@ static BOOL FieldTask_UseWaterfall(FieldTask *param0)
     return FALSE;
 }
 
-static int WaterFall_PlayCutInAsc(WaterFallTaskEnv *taskEnv)
+static int SubTask_Waterfall_PlayAscentCutIn(WaterfallTaskEnv *taskEnv)
 {
     if (taskEnv->monRideTask.playCutIn == TRUE) {
         NewMonRideCutIn(taskEnv->fieldSystem, &taskEnv->monRideTask);
@@ -1231,10 +1231,10 @@ static int WaterFall_PlayCutInAsc(WaterFallTaskEnv *taskEnv)
     }
 
     taskEnv->state = 2;
-    return 1; // Returning 1 here exits the task early, it's highly unlikely this is intended
+    return 1; // WARN: This prematurely terminates the parent task. If modifying the code to skip the cut-in, this must be changed to 2.
 }
 
-static int WaterFall_WaitCutInPlaySoundAsc(WaterFallTaskEnv *taskEnv)
+static int SubTask_Waterfall_WaitForAscentCutIn(WaterfallTaskEnv *taskEnv)
 {
     if (CheckCutInFinished(&taskEnv->monRideTask) == TRUE) {
         Sound_PlayEffect(SEQ_SE_DP_FW463);
@@ -1244,7 +1244,7 @@ static int WaterFall_WaitCutInPlaySoundAsc(WaterFallTaskEnv *taskEnv)
     return 0;
 }
 
-static int WaterFall_InitAsc(WaterFallTaskEnv *taskEnv)
+static int SubTask_Waterfall_InitAscent(WaterfallTaskEnv *taskEnv)
 {
     int targetX, targetZ;
     VecFx32 surfBlobPos, deltaPos;
@@ -1277,7 +1277,7 @@ static int WaterFall_InitAsc(WaterFallTaskEnv *taskEnv)
     return 0;
 }
 
-static int WaterFall_GoUp(WaterFallTaskEnv *taskEnv)
+static int SubTask_Waterfall_Ascend(WaterfallTaskEnv *taskEnv)
 {
     VecFx32 newPos;
 
@@ -1301,7 +1301,7 @@ static int WaterFall_GoUp(WaterFallTaskEnv *taskEnv)
     return 0;
 }
 
-static int WaterFall_GoUpNorth(WaterFallTaskEnv *taskEnv)
+static int SubTask_Waterfall_FinishAscent(WaterfallTaskEnv *taskEnv)
 {
     VecFx32 newPos;
 
@@ -1339,7 +1339,7 @@ static int WaterFall_GoUpNorth(WaterFallTaskEnv *taskEnv)
     return 1;
 }
 
-static int WaterFall_PlayCutInDesc(WaterFallTaskEnv *taskEnv)
+static int SubTask_Waterfall_PlayDescentCutIn(WaterfallTaskEnv *taskEnv)
 {
     if (taskEnv->monRideTask.playCutIn == TRUE) {
         NewMonRideCutIn(taskEnv->fieldSystem, &taskEnv->monRideTask);
@@ -1351,7 +1351,7 @@ static int WaterFall_PlayCutInDesc(WaterFallTaskEnv *taskEnv)
     return 2;
 }
 
-static int WaterFall_WaitCutInPlaySoundDesc(WaterFallTaskEnv *taskEnv)
+static int SubTask_Waterfall_WaitForDescentCutIn(WaterfallTaskEnv *taskEnv)
 {
     if (CheckCutInFinished(&taskEnv->monRideTask) == TRUE) {
         Sound_PlayEffect(SEQ_SE_DP_FW463);
@@ -1361,7 +1361,7 @@ static int WaterFall_WaitCutInPlaySoundDesc(WaterFallTaskEnv *taskEnv)
     return 0;
 }
 
-static int WaterFall_InitDesc(WaterFallTaskEnv *taskEnv)
+static int SubTask_Waterfall_InitDescent(WaterfallTaskEnv *taskEnv)
 {
     int targetX, targetZ;
     VecFx32 surfBlobPos, deltaPos;
@@ -1395,7 +1395,7 @@ static int WaterFall_InitDesc(WaterFallTaskEnv *taskEnv)
     return 0;
 }
 
-static int WaterFall_GoDown(WaterFallTaskEnv *taskEnv)
+static int SubTask_Waterfall_Descend(WaterfallTaskEnv *taskEnv)
 {
     VecFx32 newPos;
 
@@ -1421,7 +1421,7 @@ static int WaterFall_GoDown(WaterFallTaskEnv *taskEnv)
     return 0;
 }
 
-static int WaterFall_GoDownSouth(WaterFallTaskEnv *taskEnv)
+static int SubTask_Waterfall_FinishDescent(WaterfallTaskEnv *taskEnv)
 {
     VecFx32 newPos;
 
