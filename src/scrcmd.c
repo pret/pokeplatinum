@@ -4474,19 +4474,17 @@ static BOOL ScrCmd_UseRockClimb(ScriptContext *ctx)
 
 static BOOL ScrCmd_UseSurf(ScriptContext *ctx)
 {
+    int direction;
+
     RadarChain_Clear(ctx->fieldSystem->chain);
 
-    {
-        int direction;
-
-        if (PlayerAvatar_DistortionStateOnFloor(ctx->fieldSystem->playerAvatar) == TRUE) {
-            direction = PlayerAvatar_GetDir(ctx->fieldSystem->playerAvatar);
-        } else {
-            direction = PlayerAvatar_GetMoveDir(ctx->fieldSystem->playerAvatar);
-        }
-
-        FieldTask_StartUseSurf(ctx->task, direction, ScriptContext_GetVar(ctx));
+    if (PlayerAvatar_DistortionStateOnFloor(ctx->fieldSystem->playerAvatar) == TRUE) {
+        direction = PlayerAvatar_GetDir(ctx->fieldSystem->playerAvatar);
+    } else {
+        direction = PlayerAvatar_GetMoveDir(ctx->fieldSystem->playerAvatar);
     }
+
+    FieldTask_StartUseSurf(ctx->task, direction, ScriptContext_GetVar(ctx));
 
     return TRUE;
 }

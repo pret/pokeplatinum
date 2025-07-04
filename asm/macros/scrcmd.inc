@@ -1144,17 +1144,17 @@
     .short \direction
     .endm
 
-    .macro ScrCmd_UseRockClimb partySlot
+    .macro UseRockClimb partySlot
     .short 191
     .short \partySlot
     .endm
 
-    .macro ScrCmd_UseSurf partySlot
+    .macro UseSurf partySlot
     .short 192
     .short \partySlot
     .endm
 
-    .macro ScrCmd_UseWaterfall partySlot
+    .macro UseWaterfall partySlot
     .short 193
     .short \partySlot
     .endm
