@@ -74,7 +74,7 @@ BOOL ScrCmd_SubstractCoinsFromValue(ScriptContext *ctx)
     u16 *coins = SaveData_GetCoins(saveData);
     u16 value = ScriptContext_GetVar(ctx);
 
-    Coins_Subtract(coins, value);
+    Coins_Remove(coins, value);
 
     return FALSE;
 }
@@ -87,7 +87,7 @@ BOOL ScrCmd_SubstractCoinsFromVar(ScriptContext *ctx)
     u16 *valueVar = ScriptContext_GetVarPointer(ctx);
     u16 value = *valueVar;
 
-    Coins_Subtract(coins, value);
+    Coins_Remove(coins, value);
 
     return FALSE;
 }
@@ -139,6 +139,6 @@ BOOL ScrCmd_CanAddCoins(ScriptContext *ctx)
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
     u16 value = ScriptContext_GetVar(ctx);
 
-    *destVar = Coins_CanAddAmount(coins, value);
+    *destVar = Coins_CanAdd(coins, value);
     return FALSE;
 }
