@@ -63,7 +63,7 @@ BOOL sub_0209C1E8(UnkStruct_0209C194 *param0)
 
 void *sub_0209C1EC(FieldSystem *fieldSystem)
 {
-    UnkStruct_0209C1EC *v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0209C1EC));
+    UnkStruct_0209C1EC *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD2, sizeof(UnkStruct_0209C1EC));
     memset(v0, 0, sizeof(UnkStruct_0209C1EC));
 
     v0->fieldSystem = fieldSystem;
@@ -92,7 +92,7 @@ BOOL sub_0209C238(void *param0)
 
 static BOOL sub_0209C25C(UnkStruct_0209C1EC *param0)
 {
-    param0->unk_28 = sub_0209C194(&param0->unk_08, HEAP_ID_FIELDMAP);
+    param0->unk_28 = sub_0209C194(&param0->unk_08, HEAP_ID_FIELD2);
     param0->unk_00 = 1;
     FieldSystem_StartChildProcess(param0->fieldSystem, &Unk_020F94FC, param0->unk_28);
     return 0;

@@ -48,23 +48,23 @@ NNSFndAllocator allocator; // Needed for Animations
 Next we load all of the data:
 ```c
 // Open the title NARC
-NARC *narc = NARC_ctor(NARC_INDEX_DEMO__TITLE__TITLEDEMO, HEAP_ID_FIELD);
+NARC *narc = NARC_ctor(NARC_INDEX_DEMO__TITLE__TITLEDEMO, HEAP_ID_FIELD1);
 
 // Load the model from the title screen NARC. Member index 1 is the model data.
 // There is also Easy3DModel_Load which takes a NARC index and a member index.
-Easy3DModel_LoadFrom(&giratinaModel, narc, 1, HEAP_ID_FIELD);
+Easy3DModel_LoadFrom(&giratinaModel, narc, 1, HEAP_ID_FIELD1);
 Easy3DObject_Init(&giratinaObj, &giratinaModel);
 
 // Initialize the Allocator used by the animations
-Heap_FndInitAllocatorForExpHeap(&allocator, HEAP_ID_FIELD, 4);
+Heap_FndInitAllocatorForExpHeap(&allocator, HEAP_ID_FIELD1, 4);
 
 // Load the model animation with member index 2.
-Easy3DAnim_LoadFrom(&giratinaModelAnim, &giratinaModel, narc, 2, HEAP_ID_FIELD, &allocator);
+Easy3DAnim_LoadFrom(&giratinaModelAnim, &giratinaModel, narc, 2, HEAP_ID_FIELD1, &allocator);
 // Bind the animation to the object
 Easy3DObject_AddAnim(&giratinaObj, &giratinaModelAnim);
 
 // Do the same for the texture animation
-Easy3DAnim_LoadFrom(&giratinaTexAnim, &giratinaModel, narc, 0, HEAP_ID_FIELD, &allocator);
+Easy3DAnim_LoadFrom(&giratinaTexAnim, &giratinaModel, narc, 0, HEAP_ID_FIELD1, &allocator);
 Easy3DObject_AddAnim(&giratinaObj, &giratinaTexAnim);
 
 NARC_dtor(narc);

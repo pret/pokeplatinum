@@ -221,7 +221,7 @@ static void ov104_022320FC(Strbuf *param0, u16 param1, u16 param2, u16 param3, u
     sub_02014CF8(&v0, 0, param3);
     sub_02014CF8(&v0, 1, param4);
 
-    v1 = sub_02014B34(&v0, HEAP_ID_FIELD_TASK);
+    v1 = sub_02014B34(&v0, HEAP_ID_FIELD3);
     Strbuf_Copy(param0, v1);
     Strbuf_Free(v1);
 }
@@ -1071,7 +1071,7 @@ void ov104_0223310C(UnkStruct_ov104_0222E930 *param0, u16 *param1, u32 param2)
     UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(param0->unk_00->unk_00);
 
     if (param1[0] == 0xFFFF) {
-        v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, param2, HEAP_ID_FIELD_TASK);
+        v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, param2, HEAP_ID_FIELD3);
 
         ov104_02231F74(param0->unk_00, v1, param1[1], 1, NULL);
         MessageLoader_Free(v1);

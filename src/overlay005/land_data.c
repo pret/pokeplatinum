@@ -385,7 +385,7 @@ static void LandData_CalculateLoadedMapMatrixIndexes(const BOOL inDistortionWorl
 static void LandDataManager_NewLoadedMaps(LandDataManager *landDataMan)
 {
     for (u8 i = 0; i < QUADRANT_COUNT; i++) {
-        LoadedMap *loadedMap = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(LoadedMap));
+        LoadedMap *loadedMap = Heap_AllocFromHeap(HEAP_ID_FIELD1, sizeof(LoadedMap));
         landDataMan->loadedMaps[i] = loadedMap;
         landDataMan->loadedMaps[i]->valid = FALSE;
 
@@ -393,7 +393,7 @@ static void LandDataManager_NewLoadedMaps(LandDataManager *landDataMan)
         LoadedMapBuffers_GetBDHCFileBufPtr(i, landDataMan->loadedMapBufs, (void **)&landDataMan->loadedMaps[i]->bdhcFile);
 
         if (landDataMan->skipMapProps == FALSE) {
-            landDataMan->loadedMaps[i]->mapPropManager = MapPropManager_New(HEAP_ID_FIELD);
+            landDataMan->loadedMaps[i]->mapPropManager = MapPropManager_New(HEAP_ID_FIELD1);
         } else {
             landDataMan->loadedMaps[i]->mapPropManager = NULL;
         }
@@ -406,12 +406,12 @@ static void LandDataManager_NewLoadedMaps(LandDataManager *landDataMan)
 void LandDataManager_DistortionWorldNewLoadedMapsWithoutAttributesAndModel(LandDataManager *landDataMan)
 {
     for (u8 i = 0; i < QUADRANT_COUNT; i++) {
-        LoadedMap *loadedMap = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(LoadedMap));
+        LoadedMap *loadedMap = Heap_AllocFromHeap(HEAP_ID_FIELD1, sizeof(LoadedMap));
         landDataMan->loadedMaps[i] = loadedMap;
         landDataMan->loadedMaps[i]->valid = FALSE;
 
         if (landDataMan->skipMapProps == FALSE) {
-            landDataMan->loadedMaps[i]->mapPropManager = MapPropManager_New(HEAP_ID_FIELD);
+            landDataMan->loadedMaps[i]->mapPropManager = MapPropManager_New(HEAP_ID_FIELD1);
         } else {
             landDataMan->loadedMaps[i]->mapPropManager = NULL;
         }
@@ -423,14 +423,14 @@ void LandDataManager_DistortionWorldNewLoadedMapsWithoutAttributesAndModel(LandD
 static void LandDataManager_NewLoadedMapsWithoutAttributes(LandDataManager *landDataMan)
 {
     for (u8 i = 0; i < QUADRANT_COUNT; i++) {
-        LoadedMap *loadedMap = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(LoadedMap));
+        LoadedMap *loadedMap = Heap_AllocFromHeap(HEAP_ID_FIELD1, sizeof(LoadedMap));
         landDataMan->loadedMaps[i] = loadedMap;
         landDataMan->loadedMaps[i]->valid = FALSE;
 
         LoadedMapBuffers_GetMapModelFileBufPtr(i, landDataMan->loadedMapBufs, (void **)&landDataMan->loadedMaps[i]->mapModelFile);
 
         if (landDataMan->skipMapProps == FALSE) {
-            landDataMan->loadedMaps[i]->mapPropManager = MapPropManager_New(HEAP_ID_FIELD);
+            landDataMan->loadedMaps[i]->mapPropManager = MapPropManager_New(HEAP_ID_FIELD1);
         } else {
             landDataMan->loadedMaps[i]->mapPropManager = NULL;
         }
@@ -459,11 +459,11 @@ static void LandDataHeader_Load(NARC *landDataNARC, const int landDataID, LandDa
     int bufferSize = sizeof(LandDataHeader);
 
     if (landDataNARC != NULL) {
-        buffer = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, bufferSize);
+        buffer = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD1, bufferSize);
         NARC_ReadFromMember(landDataNARC, landDataID, 0, bufferSize, buffer);
     } else {
         GF_ASSERT(FALSE);
-        buffer = NARC_AllocAtEndAndReadFromMemberByIndexPair(NARC_INDEX_FIELDDATA__LAND_DATA__LAND_DATA, landDataID, HEAP_ID_FIELD, 0, bufferSize);
+        buffer = NARC_AllocAtEndAndReadFromMemberByIndexPair(NARC_INDEX_FIELDDATA__LAND_DATA__LAND_DATA, landDataID, HEAP_ID_FIELD1, 0, bufferSize);
     }
 
     int *iter = (int *)buffer;
@@ -1577,7 +1577,7 @@ LandDataManager *LandDataManager_New(MapMatrix *mapMatrix, AreaDataManager *area
 {
     BOOL allocBDHCFiles;
 
-    LandDataManager *landDataMan = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(LandDataManager));
+    LandDataManager *landDataMan = Heap_AllocFromHeap(HEAP_ID_FIELD1, sizeof(LandDataManager));
     MI_CpuClear8(landDataMan, sizeof(LandDataManager));
 
     if (skipAttributes == FALSE) {
@@ -1603,7 +1603,7 @@ LandDataManager *LandDataManager_New(MapMatrix *mapMatrix, AreaDataManager *area
 
     landDataMan->ending = FALSE;
     landDataMan->lazyLoaderSubTask = LAZY_LOADER_SUBTASK_IDLE;
-    landDataMan->landDataNARC = NARC_ctor(NARC_INDEX_FIELDDATA__LAND_DATA__LAND_DATA, HEAP_ID_FIELD);
+    landDataMan->landDataNARC = NARC_ctor(NARC_INDEX_FIELDDATA__LAND_DATA__LAND_DATA, HEAP_ID_FIELD1);
     landDataMan->mapLoadedCb = NULL;
 
     return landDataMan;
@@ -1956,7 +1956,7 @@ static void LandDataManager_LazyLoadMapModelTask(SysTask *sysTask, void *sysTask
 
 SysTask *LandDataManager_LazyLoadMapModel(NARC *landDataNARC, const int mapModelDataSize, NNSG3dRenderObj *mapRenderObj, NNSG3dResFileHeader **mapModelFile, NNSG3dResTex *mapTexture, BOOL *loadedMapValid, BOOL *loadTaskRunning)
 {
-    MapModelLoaderTaskContext *ctx = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(MapModelLoaderTaskContext));
+    MapModelLoaderTaskContext *ctx = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD1, sizeof(MapModelLoaderTaskContext));
 
     ctx->landDataNARC = landDataNARC;
     ctx->mapModelDataSize = mapModelDataSize;
@@ -2001,7 +2001,7 @@ NARC *LandDataManager_GetLandDataNARC(LandDataManager *landDataMan)
 
 LandDataManager *LandDataManager_DistortionWorldNew(MapMatrix *mapMatrix, AreaDataManager *areaDataMan, NARC *landDataNARC)
 {
-    LandDataManager *landDataMan = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(LandDataManager));
+    LandDataManager *landDataMan = Heap_AllocFromHeap(HEAP_ID_FIELD1, sizeof(LandDataManager));
     MI_CpuClear8(landDataMan, sizeof(LandDataManager));
 
     landDataMan->loadedMapBufs = LoadedMapBuffers_NewWithHeapMapModelFiles(FALSE);
@@ -2021,7 +2021,7 @@ LandDataManager *LandDataManager_DistortionWorldNew(MapMatrix *mapMatrix, AreaDa
     landDataMan->landDataNARC = landDataNARC;
 
     if (landDataNARC == NULL) {
-        landDataMan->landDataNARC = NARC_ctor(NARC_INDEX_FIELDDATA__LAND_DATA__LAND_DATA, HEAP_ID_FIELD);
+        landDataMan->landDataNARC = NARC_ctor(NARC_INDEX_FIELDDATA__LAND_DATA__LAND_DATA, HEAP_ID_FIELD1);
     }
 
     return landDataMan;
@@ -2043,7 +2043,7 @@ void LandDataManager_DistortionWorldInit(LandDataManager *landDataMan, MapMatrix
     landDataMan->landDataNARC = landDataNARC;
 
     if (landDataNARC == NULL) {
-        landDataMan->landDataNARC = NARC_ctor(NARC_INDEX_FIELDDATA__LAND_DATA__LAND_DATA, HEAP_ID_FIELD);
+        landDataMan->landDataNARC = NARC_ctor(NARC_INDEX_FIELDDATA__LAND_DATA__LAND_DATA, HEAP_ID_FIELD1);
     }
 }
 

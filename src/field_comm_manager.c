@@ -311,7 +311,7 @@ static void sub_020599E4(void)
     }
 
     if (CommTiming_IsSyncState(92)) {
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD1);
         ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
         ResetVisibleHardwareWindows(DS_SCREEN_SUB);
         CommPlayerMan_Restart();
@@ -387,7 +387,7 @@ static void sub_02059B10(void)
         u8 v0 = 1;
         CommSys_SendDataFixedSize(94, &v0);
 
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD1);
         ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
         ResetVisibleHardwareWindows(DS_SCREEN_SUB);
         FieldCommMan_SetTask(sub_02059CD8, 0);
@@ -435,7 +435,7 @@ static void sub_02059BF4(void)
 static void sub_02059C2C(BOOL param0, const Party *party)
 {
     if (party) {
-        sFieldCommMan->party = Party_New(HEAP_ID_FIELDMAP);
+        sFieldCommMan->party = Party_New(HEAP_ID_FIELD2);
         Party_Copy(party, sFieldCommMan->party);
     }
 
