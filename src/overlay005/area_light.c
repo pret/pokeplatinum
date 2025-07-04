@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/gx.h"
+#include "constants/graphics.h"
 #include "constants/heap.h"
 #include "constants/narc.h"
 

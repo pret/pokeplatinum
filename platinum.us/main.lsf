@@ -116,7 +116,7 @@ Static main
 	Object main.nef.p/src_game_options.c.o
 	Object main.nef.p/src_berry_patches.c.o
 	Object main.nef.p/src_persisted_map_features.c.o
-	Object main.nef.p/src_unk_02027F84.c.o
+	Object main.nef.p/src_pal_pad.c.o
 	Object main.nef.p/src_mail.c.o
 	Object main.nef.p/src_unk_0202854C.c.o
 	Object main.nef.p/src_unk_020298BC.c.o
@@ -230,7 +230,7 @@ Static main
 	Object main.nef.p/src_terrain_attributes.c.o
 	Object main.nef.p/src_terrain_collision_manager.c.o
 	Object main.nef.p/src_unk_020553DC.c.o
-	Object main.nef.p/src_unk_020556C4.c.o
+	Object main.nef.p/src_overworld_map_history.c.o
 	Object main.nef.p/src_field_transition.c.o
 	Object main.nef.p/src_unk_020559DC.c.o
 	Object main.nef.p/src_unk_02055C50.c.o
@@ -1455,7 +1455,7 @@ Overlay overlay96
 Overlay overlay97
 {
 	After overlay60
-	Object main.nef.p/src_overlay097_ov97_0222AE60.c.o
+	Object main.nef.p/src_overlay097_main_menu.c.o
 	Object main.nef.p/src_overlay097_ov97_0222C174.c.o
 	Object main.nef.p/src_overlay097_ov97_0222D04C.c.o
 	Object main.nef.p/src_overlay097_ov97_0222D2F8.c.o
@@ -1470,7 +1470,7 @@ Overlay overlay97
 	Object main.nef.p/src_overlay097_gba_migrator.c.o
 	Object main.nef.p/src_overlay097_ov97_02235D18.c.o
 	Object main.nef.p/src_overlay097_ov97_0223635C.c.o
-	Object main.nef.p/src_overlay097_ov97_02236380.c.o
+	Object main.nef.p/src_overlay097_gba_pokemon.c.o
 	Object main.nef.p/src_overlay097_distribution_cartridge.c.o
 	Object main.nef.p/src_overlay097_ov97_02237694.c.o
 	Object main.nef.p/src_overlay097_ov97_02238534.c.o

@@ -3,8 +3,8 @@
 #include "nitro/pad/common/pad.h"
 #include <string.h>
 
+#include "constants/graphics.h"
 #include "constants/heap.h"
-#include "constants/screen.h"
 
 #include "boot.h"
 #include "heap.h"

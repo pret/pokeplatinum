@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/graphics.h"
 #include "constants/heap.h"
-#include "constants/screen.h"
 
 #include "struct_decls/struct_02029894_decl.h"
 #include "struct_defs/struct_0205964C.h"

@@ -70,7 +70,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Sorry!\nSomething’s come up!</language>
 	</row>
-	<row id="pl_msg_00000634_00017" index="17">
+	<row id="UndergroundCommon_Text_ItemWasObtained" index="17">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 25, 2, 0}\nwas obtained.</language>
 	</row>
@@ -78,15 +78,15 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 25, 3, 0} was\nfound in the ground!\r{STRVAR_1 3, 1, 0} disengaged\nthe {STRVAR_1 25, 3, 0}!</language>
 	</row>
-	<row id="pl_msg_00000634_00019" index="19">
+	<row id="UndergroundCommon_Text_WallIsBulging" index="19">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">The wall is bulging slightly.\nTry digging into it?</language>
 	</row>
-	<row id="pl_msg_00000634_00020" index="20">
+	<row id="UndergroundCommon_Text_TooBadBagIsFull1" index="20">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Too bad!\nYour Bag is full!</language>
 	</row>
-	<row id="pl_msg_00000634_00021" index="21">
+	<row id="UndergroundCommon_Text_TooBadBagIsFull2" index="21">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Too bad!\nYour Bag is full!</language>
 	</row>
@@ -258,19 +258,19 @@
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXXXXXXXX</language>
 	</row>
-	<row id="pl_msg_00000634_00062" index="62">
+	<row id="UndergroundCommon_Text_SomethingPingedInWall" index="62">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Something pinged in the wall!\n{STRVAR_1 50, 0, 0} confirmed!</language>
 	</row>
-	<row id="pl_msg_00000634_00063" index="63">
+	<row id="UndergroundCommon_Text_WallCollapsed" index="63">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">The wall collapsed!</language>
 	</row>
-	<row id="pl_msg_00000634_00064" index="64">
+	<row id="UndergroundCommon_Text_EverythingDugUp" index="64">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Everything was dug up!</language>
 	</row>
-	<row id="pl_msg_00000634_00065" index="65">
+	<row id="UndergroundCommon_Text_TooBadBagIsFull3" index="65">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Too bad!\nYour Bag is full!</language>
 	</row>
@@ -286,7 +286,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Blocked the entrance to decorate\nthe Secret Base.</language>
 	</row>
-	<row id="pl_msg_00000634_00069" index="69">
+	<row id="UndergroundCommon_Text_YouObtainedSphere" index="69">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">You obtained {STRVAR_1 25, 2, 0}, size {STRVAR_1 51, 1, 0}!</language>
 	</row>
@@ -351,7 +351,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">You can’t bury a Sphere inside\na Secret Base.</language>
 	</row>
-	<row id="pl_msg_00000634_00085" index="85">
+	<row id="UndergroundCommon_Text_MiningTutorial" index="85">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">...\rOh? There is a note tucked inside\nthe Explorer Kit.\r“Digging for Treasure and Spheres!”\rI’ve put a sledgehammer and pickax\nin your Explorer Kit!\rUse them, and you’ll be able to touch\nwalls to dig out all sorts of stuff!\rI’m sure you can dig them out before\nthe wall comes tumbling down!\rYou can do it!\nGood luck, youngster!</language>
 	</row>

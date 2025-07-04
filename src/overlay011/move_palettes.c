@@ -1,13 +1,7 @@
 #include "overlay011/move_palettes.h"
 
-#include <nitro.h>
-#include <string.h>
-
+#include "constants/graphics.h"
 #include "generated/pokemon_types.h"
-
-#include "pch/global_pch.h"
-
-#include "palette.h"
 
 ALIGN_4 static const u16 sMovePaletteNormal[] = {
     RGB(13, 14, 29),

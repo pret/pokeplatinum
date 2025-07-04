@@ -31,22 +31,22 @@ _0069:
 
 _0071:
     SetObjectEventPos 5, 46, 50
-    ScrCmd_188 5, 14
+    SetObjectEventMovementType 5, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 5, DIR_NORTH
     Return
 
 _0087:
     SetObjectEventPos 5, 46, 51
-    ScrCmd_188 5, 15
+    SetObjectEventMovementType 5, MOVEMENT_TYPE_LOOK_SOUTH
     SetObjectEventDir 5, DIR_SOUTH
     Return
 
 _009D:
     SetObjectEventPos 5, 50, 37
-    ScrCmd_188 5, 16
+    SetObjectEventMovementType 5, MOVEMENT_TYPE_LOOK_LEFT
     SetObjectEventDir 5, DIR_WEST
     SetObjectEventPos 6, 50, 39
-    ScrCmd_188 6, 16
+    SetObjectEventMovementType 6, MOVEMENT_TYPE_LOOK_LEFT
     SetObjectEventDir 6, DIR_WEST
     Return
 

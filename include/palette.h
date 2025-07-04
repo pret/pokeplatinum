@@ -4,14 +4,6 @@
 #include "constants/heap.h"
 #include "constants/narc.h"
 
-#define SLOTS_PER_PALETTE      16
-#define PALETTE_SIZE           (SLOTS_PER_PALETTE)
-#define PALETTE_SIZE_EXT       (SLOTS_PER_PALETTE * 16)
-#define PALETTE_SIZE_BYTES     (PALETTE_SIZE * sizeof(u16))
-#define PALETTE_SIZE_EXT_BYTES (PALETTE_SIZE_EXT * sizeof(u16))
-#define PLTT_OFFSET(i)         ((i) * PALETTE_SIZE_BYTES)
-#define PLTT_DEST(i)           ((i) * PALETTE_SIZE)
-
 #define BlendColor(source, target, fraction) ((source) + (((target) - (source)) * (fraction) >> 4))
 
 #define ColorR(source) ((source) & 0x1F)

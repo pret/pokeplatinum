@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
 #include "generated/game_records.h"
 #include "generated/trainer_score_events.h"
 
@@ -490,7 +491,7 @@ static void sub_020939E0(UnkStruct_02095C48 *param0, int param1, int param2)
     sub_02094F04(param0, HEAP_ID_FIELD2, v0, param0->unk_00.unk_10F, param0->unk_00.unk_110, param0->unk_00.unk_111, param1, param2);
 
     for (v1 = 1; v1 < 4; v1++) {
-        sub_02095380(&param0->unk_00.unk_10[v1], param0->unk_00.unk_00[v1], 20);
+        sub_02095380(&param0->unk_00.unk_10[v1], param0->unk_00.unk_00[v1], HEAP_ID_20);
     }
 
     for (v1 = 1; v1 < 4; v1++) {

@@ -176,7 +176,7 @@ static void ov23_0225437C(UnkStruct_ov23_022542D8 *param0)
             4,
         };
 
-        v5 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0637, HEAP_ID_FIELD1);
+        v5 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_DECORATE_BASE, HEAP_ID_FIELD1);
 
         {
             Strbuf *v8;
@@ -417,7 +417,7 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
             Strbuf *v15;
             StringTemplate *v16;
 
-            v12 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0637, HEAP_ID_FIELD1);
+            v12 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_DECORATE_BASE, HEAP_ID_FIELD1);
 
             Window_FillTilemap(&param0->unk_18, 15);
 

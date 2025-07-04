@@ -37,7 +37,7 @@ _0066:
 
 _0082:
     SetObjectEventPos 7, 0x28F, 0x1AA
-    ScrCmd_188 7, 14
+    SetObjectEventMovementType 7, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 7, DIR_NORTH
     End
 

@@ -4,7 +4,7 @@
 #include <nitro/gx.h>
 #include <nnsys.h>
 
-#include "constants/gx.h"
+#include "constants/graphics.h"
 
 typedef struct ModelAttributes {
     VecFx16 lightVectors[GX_LIGHTS_COUNT];

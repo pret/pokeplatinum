@@ -3,12 +3,12 @@
 
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_0203A79C_decl.h"
-#include "struct_defs/struct_020556C4.h"
 #include "struct_defs/struct_0205EC34.h"
 
 #include "field/field_system_decl.h"
 
 #include "location.h"
+#include "overworld_map_history.h"
 #include "savedata.h"
 
 int FieldOverworldState_Size(void);
@@ -26,7 +26,7 @@ u16 FieldOverworldState_GetWeather(const FieldOverworldState *fieldState);
 void FieldOverworldState_SetWeather(FieldOverworldState *fieldState, u16 weather);
 u16 FieldOverworldState_GetWarpId(const FieldOverworldState *fieldState);
 void FieldOverworldState_SetWarpId(FieldOverworldState *fieldState, u16 warpId);
-UnkStruct_020556C4 *sub_0203A76C(FieldOverworldState *fieldState);
+OverworldMapHistory *FieldOverworldState_GetMapHistory(FieldOverworldState *fieldState);
 int FieldOverworldState_GetCameraType(const FieldOverworldState *fieldState);
 void FieldOverworldState_SetCameraType(FieldOverworldState *fieldState, int type);
 PlayerData *FieldOverworldState_GetPlayerData(FieldOverworldState *fieldState);

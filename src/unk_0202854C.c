@@ -11,6 +11,8 @@
 #include "struct_defs/underground_data.h"
 #include "struct_defs/underground_record.h"
 
+#include "overlay023/ov23_0223E140.h"
+
 #include "heap.h"
 #include "math_util.h"
 #include "rtc.h"
@@ -133,7 +135,7 @@ static int sub_020285F8(UndergroundData *param0)
     int v0;
 
     for (v0 = 0; v0 < 40; v0++) {
-        if (param0->unk_94C[v0] == 0) {
+        if (param0->spheres[v0] == 0) {
             return v0;
         }
     }
@@ -146,7 +148,7 @@ static int sub_02028618(UndergroundData *param0)
     int v0;
 
     for (v0 = 0; v0 < 40; v0++) {
-        if (param0->unk_924[v0] == 0) {
+        if (param0->treasure[v0] == 0) {
             return v0;
         }
     }
@@ -326,13 +328,13 @@ u32 UndergroundData_GetRandomSeed(UndergroundData *param0)
     return param0->randomSeed;
 }
 
-int Underground_GetMiningItemID(int itemOptionID)
+int Underground_ConvertTreasureToBagItem(int treasureID)
 {
-    GF_ASSERT(11 <= itemOptionID);
-    GF_ASSERT(itemOptionID < 60);
+    GF_ASSERT(MINING_TREASURE_OVAL_STONE <= treasureID);
+    GF_ASSERT(treasureID < MINING_ROCK_1);
 
-    itemOptionID -= 11;
-    return sMiningItems[itemOptionID];
+    treasureID -= MINING_TREASURE_OVAL_STONE;
+    return sMiningItems[treasureID];
 }
 
 BOOL sub_0202895C(UndergroundData *param0, int param1)
@@ -556,12 +558,12 @@ void sub_02028BE8(UndergroundData *param0, int param1, int param2)
     }
 }
 
-int sub_02028C3C(UndergroundData *param0)
+int UndergroundData_GetSphereCount(UndergroundData *undergroundData)
 {
     int v0;
 
     for (v0 = 0; v0 < 40; v0++) {
-        if (param0->unk_94C[v0] == 0) {
+        if (undergroundData->spheres[v0] == 0) {
             break;
         }
     }
@@ -571,12 +573,12 @@ int sub_02028C3C(UndergroundData *param0)
 
 int sub_02028C54(UndergroundData *param0, int param1)
 {
-    return param0->unk_94C[param1];
+    return param0->spheres[param1];
 }
 
 int sub_02028C60(UndergroundData *param0, int param1)
 {
-    return param0->unk_974[param1];
+    return param0->sphereSizes[param1];
 }
 
 int sub_02028C6C(UndergroundData *param0, int param1)
@@ -584,28 +586,28 @@ int sub_02028C6C(UndergroundData *param0, int param1)
     int v0, v1, v2;
 
     v1 = param1;
-    v2 = param0->unk_94C[v1];
+    v2 = param0->spheres[v1];
 
     for (v0 = v1; v0 < 40 - 1; v0++) {
-        param0->unk_94C[v0] = param0->unk_94C[v0 + 1];
-        param0->unk_974[v0] = param0->unk_974[v0 + 1];
+        param0->spheres[v0] = param0->spheres[v0 + 1];
+        param0->sphereSizes[v0] = param0->sphereSizes[v0 + 1];
     }
 
-    param0->unk_94C[40 - 1] = 0;
+    param0->spheres[40 - 1] = 0;
 
     return v2;
 }
 
-BOOL sub_02028CB0(UndergroundData *param0, int param1, int param2)
+BOOL sub_02028CB0(UndergroundData *undergroundData, int sphereID, int sphereSize)
 {
     int v0;
     BOOL v1 = 0;
 
-    v0 = sub_020285F8(param0);
+    v0 = sub_020285F8(undergroundData);
 
     if (v0 != -1) {
-        param0->unk_94C[v0] = param1;
-        param0->unk_974[v0] = param2;
+        undergroundData->spheres[v0] = sphereID;
+        undergroundData->sphereSizes[v0] = sphereSize;
         v1 = 1;
     }
 
@@ -618,30 +620,30 @@ void sub_02028CD8(UndergroundData *param0, int param1, int param2)
     u8 v3[40];
     u8 v4[40];
 
-    MI_CpuCopy8(param0->unk_94C, v3, 40);
-    MI_CpuCopy8(param0->unk_974, v4, 40);
+    MI_CpuCopy8(param0->spheres, v3, 40);
+    MI_CpuCopy8(param0->sphereSizes, v4, 40);
 
     for (v0 = 0; v0 < 40; v0++) {
         if (v0 != param1) {
-            param0->unk_94C[v1] = v3[v0];
-            param0->unk_974[v1] = v4[v0];
+            param0->spheres[v1] = v3[v0];
+            param0->sphereSizes[v1] = v4[v0];
             v1++;
         }
 
         if (v0 == param2) {
-            param0->unk_94C[v1] = v3[param1];
-            param0->unk_974[v1] = v4[param1];
+            param0->spheres[v1] = v3[param1];
+            param0->sphereSizes[v1] = v4[param1];
             v1++;
         }
     }
 }
 
-int sub_02028D58(UndergroundData *param0)
+int UndergroundData_GetTreasureCount(UndergroundData *undergroundData)
 {
     int v0;
 
     for (v0 = 0; v0 < 40; v0++) {
-        if (param0->unk_924[v0] == 0) {
+        if (undergroundData->treasure[v0] == 0) {
             break;
         }
     }
@@ -651,7 +653,7 @@ int sub_02028D58(UndergroundData *param0)
 
 int sub_02028D74(UndergroundData *param0, int param1)
 {
-    return param0->unk_924[param1];
+    return param0->treasure[param1];
 }
 
 int sub_02028D80(UndergroundData *param0, int param1)
@@ -659,13 +661,13 @@ int sub_02028D80(UndergroundData *param0, int param1)
     int v0, v1, v2;
 
     v1 = param1;
-    v2 = param0->unk_924[v1];
+    v2 = param0->treasure[v1];
 
     for (v0 = v1; v0 < 40 - 1; v0++) {
-        param0->unk_924[v0] = param0->unk_924[v0 + 1];
+        param0->treasure[v0] = param0->treasure[v0 + 1];
     }
 
-    param0->unk_924[40 - 1] = 0;
+    param0->treasure[40 - 1] = 0;
 
     return v2;
 }
@@ -678,7 +680,7 @@ BOOL sub_02028DB4(UndergroundData *param0, int param1)
     v0 = sub_02028618(param0);
 
     if (v0 != -1) {
-        param0->unk_924[v0] = param1;
+        param0->treasure[v0] = param1;
         v1 = 1;
     }
 
@@ -690,16 +692,16 @@ void sub_02028DD8(UndergroundData *param0, int param1, int param2)
     int v0, v1 = 0, v2 = 0;
     u8 v3[40];
 
-    MI_CpuCopy8(param0->unk_924, v3, 40);
+    MI_CpuCopy8(param0->treasure, v3, 40);
 
     for (v0 = 0; v0 < 40; v0++) {
         if (v0 != param1) {
-            param0->unk_924[v1] = v3[v0];
+            param0->treasure[v1] = v3[v0];
             v1++;
         }
 
         if (v0 == param2) {
-            param0->unk_924[v1] = v3[param1];
+            param0->treasure[v1] = v3[param1];
             v1++;
         }
     }
@@ -946,14 +948,14 @@ int sub_020291EC(UndergroundData *param0, int param1)
     return v0;
 }
 
-BOOL sub_0202920C(UndergroundData *param0)
+BOOL UndergroundData_HasNeverMined(UndergroundData *undergroundData)
 {
-    return param0->unk_9AC_4 == 0;
+    return undergroundData->hasMined == FALSE;
 }
 
-void sub_02029220(UndergroundData *param0)
+void UndergroundData_SetHasMined(UndergroundData *undergroundData)
 {
-    param0->unk_9AC_4 = 1;
+    undergroundData->hasMined = TRUE;
 }
 
 BOOL sub_02029234(UndergroundData *param0)
@@ -966,26 +968,26 @@ void sub_02029240(UndergroundData *param0)
     param0->unk_9AC_0 = 0;
 }
 
-void sub_02029250(UndergroundData *param0, int param1)
+void UndergroundData_SetPlateMined(UndergroundData *undergroundData, int miningItemID)
 {
-    if ((44 > param1) || (param1 > 59)) {
+    if ((MINING_TREASURE_FLAME_PLATE > miningItemID) || (miningItemID > MINING_TREASURE_IRON_PLATE)) {
         return;
     }
 
-    param0->unk_808 |= (0x1 << (param1 - 44));
+    undergroundData->minedPlates |= (0x1 << (miningItemID - MINING_TREASURE_FLAME_PLATE));
 }
 
-BOOL sub_02029274(UndergroundData *param0, int param1)
+BOOL UndergroundData_HasPlateNeverBeenMined(UndergroundData *undergroundData, int miningItemID)
 {
-    if ((44 > param1) || (param1 > 59)) {
-        return 1;
+    if ((MINING_TREASURE_FLAME_PLATE > miningItemID) || (miningItemID > MINING_TREASURE_IRON_PLATE)) {
+        return TRUE;
     }
 
-    if (param0->unk_808 & (0x1 << (param1 - 44))) {
-        return 0;
+    if (undergroundData->minedPlates & (0x1 << (miningItemID - MINING_TREASURE_FLAME_PLATE))) {
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
 void UndergroundData_IncrementStepCount(UndergroundData *undergroundData)

@@ -3,7 +3,7 @@
 
 #include <nnsys.h>
 
-#include "constants/screen.h"
+#include "constants/graphics.h"
 
 #include "bg_window.h"
 #include "narc.h"

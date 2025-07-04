@@ -151,31 +151,30 @@ BOOL ScrCmd_CheckPartyMonHasMove(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_09A(ScriptContext *param0)
+BOOL ScrCmd_FindPartySlotWithMove(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    Pokemon *v1;
-    u16 *v2 = ScriptContext_GetVarPointer(param0);
-    u16 v3 = ScriptContext_GetVar(param0);
-    u16 v4;
-    u8 v5, v6;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    Pokemon *mon;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    u16 move = ScriptContext_GetVar(ctx);
+    u8 i, partyCount;
 
-    v6 = Party_GetCurrentCount(SaveData_GetParty(fieldSystem->saveData));
+    partyCount = Party_GetCurrentCount(SaveData_GetParty(fieldSystem->saveData));
 
-    for (v5 = 0, *v2 = 6; v5 < v6; v5++) {
-        v1 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v5);
+    for (i = 0, *destVar = 6; i < partyCount; i++) {
+        mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), i);
 
-        if (Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL) != 0) {
+        if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) != FALSE) {
             continue;
         }
 
-        if ((Pokemon_GetValue(v1, MON_DATA_MOVE1, NULL) == v3) || (Pokemon_GetValue(v1, MON_DATA_MOVE2, NULL) == v3) || (Pokemon_GetValue(v1, MON_DATA_MOVE3, NULL) == v3) || (Pokemon_GetValue(v1, MON_DATA_MOVE4, NULL) == v3)) {
-            *v2 = v5;
+        if ((Pokemon_GetValue(mon, MON_DATA_MOVE1, NULL) == move) || (Pokemon_GetValue(mon, MON_DATA_MOVE2, NULL) == move) || (Pokemon_GetValue(mon, MON_DATA_MOVE3, NULL) == move) || (Pokemon_GetValue(mon, MON_DATA_MOVE4, NULL) == move)) {
+            *destVar = i;
             break;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_SurvivePoison(ScriptContext *ctx)
@@ -307,7 +306,7 @@ BOOL ScrCmd_1BA(ScriptContext *param0)
     v4 = Pokemon_GetValue(v1, MON_DATA_FRIENDSHIP, NULL);
 
     if (v2 > 0) {
-        if (Item_LoadParam(Pokemon_GetValue(v1, MON_DATA_HELD_ITEM, NULL), 1, 11) == 53) {
+        if (Item_LoadParam(Pokemon_GetValue(v1, MON_DATA_HELD_ITEM, NULL), ITEM_PARAM_HOLD_EFFECT, HEAP_ID_FIELD2) == 53) {
             v2 = v2 * 150 / 100;
         }
 

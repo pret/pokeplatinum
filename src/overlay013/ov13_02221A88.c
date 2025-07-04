@@ -1457,7 +1457,7 @@ static void ov13_02223E68(BattleParty *param0)
         ov13_0222317C(param0, v0, 1 + v1);
     }
 
-    if (Item_LoadParam(param0->context->selectedBattleBagItem, 37, param0->context->heapID) == 0) {
+    if (Item_LoadParam(param0->context->selectedBattleBagItem, ITEM_PARAM_PP_RESTORE_ALL, param0->context->heapID) == 0) {
         ov13_022221C8(param0, 94);
     }
 

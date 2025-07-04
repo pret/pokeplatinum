@@ -453,7 +453,7 @@ void sub_0205EC20(PlayerAvatar *playerAvatar, u32 param1, int param2)
 
 void PlayerData_Init(PlayerData *playerData)
 {
-    playerData->unk_00 = 0;
+    playerData->cyclingGear = 0;
     playerData->runningShoes = FALSE;
     playerData->form = 0x0;
 }
@@ -484,13 +484,13 @@ int PlayerData_CyclingGear(PlayerData *playerData)
         return 0;
     }
 
-    return playerData->unk_00;
+    return playerData->cyclingGear;
 }
 
 void PlayerData_SetCyclingGear(PlayerData *playerData, int gear)
 {
     if (playerData != NULL) {
-        playerData->unk_00 = gear;
+        playerData->cyclingGear = gear;
     }
 }
 

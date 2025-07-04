@@ -133,14 +133,14 @@ static u32 sub_0207CC00(SaveData *saveData)
     return (u32)sub_0202D230(sub_0202D750(saveData), 0, 0);
 }
 
-BOOL sub_0207CC10(SaveData *saveData, Strbuf *param1, u16 param2, u32 param3)
+BOOL sub_0207CC10(SaveData *saveData, Strbuf *param1, u16 param2, u32 heapID)
 {
     MessageLoader *v0;
     StringTemplate *v1;
     Strbuf *v2;
 
-    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0007, param3);
-    v1 = StringTemplate_Default(param3);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0007, heapID);
+    v1 = StringTemplate_Default(heapID);
 
     if (param2 == 0) {
         v2 = MessageLoader_GetNewStrbuf(v0, 99);
@@ -171,7 +171,7 @@ BOOL sub_0207CC10(SaveData *saveData, Strbuf *param1, u16 param2, u32 param3)
     return 1;
 }
 
-void sub_0207CD34(void *param0, Strbuf *param1, u16 param2, u32 param3, u32 param4)
+void sub_0207CD34(void *param0, Strbuf *param1, u16 param2, u32 param3, u32 heapID)
 {
     MessageLoader *v0;
     StringTemplate *v1;
@@ -179,23 +179,23 @@ void sub_0207CD34(void *param0, Strbuf *param1, u16 param2, u32 param3, u32 para
 
     switch (param3) {
     case 1:
-        v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0007, param4);
+        v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0007, heapID);
         MessageLoader_GetStrbuf(v0, 56, param1);
         MessageLoader_Free(v0);
         break;
     case 2:
-        v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0007, param4);
+        v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0007, heapID);
         MessageLoader_GetStrbuf(v0, 111, param1);
         MessageLoader_Free(v0);
         break;
     case 3:
-        v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0007, param4);
+        v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0007, heapID);
         MessageLoader_GetStrbuf(v0, 112, param1);
         MessageLoader_Free(v0);
         break;
     default:
-        v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS, param4);
-        v1 = StringTemplate_Default(param4);
+        v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS, heapID);
+        v1 = StringTemplate_Default(heapID);
         v2 = MessageLoader_GetNewStrbuf(v0, 36);
         StringTemplate_SetPlayerName(v1, 0, param0);
         StringTemplate_Format(v1, param1, v2);

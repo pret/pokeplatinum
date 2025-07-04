@@ -69,7 +69,7 @@ static int sub_020995D4(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-const ApplicationManagerTemplate Unk_020F6DF0 = {
+const ApplicationManagerTemplate gRebootIntoWFCSettingsAppTemplate = {
     sub_020995D4,
     NULL,
     NULL,

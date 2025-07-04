@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
 #include "constants/overworld_weather.h"
 #include "constants/species.h"
 #include "generated/first_arrival_to_zones.h"
@@ -65,7 +66,7 @@
 static void sub_0206CD70(FieldSystem *fieldSystem, int param1, int param2, const void *param3);
 static void sub_0206CD7C(SaveData *saveData, int param1, int param2, const void *param3);
 static u8 sub_0206DE4C(Pokemon *param0);
-static Strbuf *sub_0206F0D8(u16 param0, u32 param1);
+static Strbuf *sub_0206F0D8(u16 param0, u32 heapID);
 
 typedef struct {
     u8 unk_00[40];
@@ -2751,7 +2752,7 @@ static int sub_0206F01C(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
         }
     }
 
-    v0 = sub_0206F0D8(v3, 4);
+    v0 = sub_0206F0D8(v3, HEAP_ID_FIELD1);
 
     StringTemplate_SetStrbuf(param1, 0, v0, 0, 1, GAME_LANGUAGE);
     Strbuf_Free(v0);
@@ -2769,9 +2770,9 @@ static int sub_0206F01C(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     }
 }
 
-static Strbuf *sub_0206F0D8(u16 param0, u32 param1)
+static Strbuf *sub_0206F0D8(u16 param0, u32 heapID)
 {
-    MessageLoader *v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, param1);
+    MessageLoader *v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, heapID);
     Strbuf *v1 = MessageLoader_GetNewStrbuf(v0, param0);
 
     MessageLoader_Free(v0);
@@ -2834,7 +2835,7 @@ static int sub_0206F160(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
     for (v2 = 1; v2 <= NATIONAL_DEX_COUNT; v2++) {
         if (Pokedex_HasSeenSpecies(pokedex, v1) == TRUE) {
-            v0 = sub_0206F0D8(v1, 4);
+            v0 = sub_0206F0D8(v1, HEAP_ID_FIELD1);
             StringTemplate_SetStrbuf(param1, 2, v0, 0, 1, GAME_LANGUAGE);
             Strbuf_Free(v0);
             break;

@@ -234,21 +234,21 @@ _02DA:
     Return
 
 _0314:
-    ScrCmd_188 VAR_0x8007, 15
+    SetObjectEventMovementType VAR_0x8007, MOVEMENT_TYPE_LOOK_SOUTH
     SetObjectEventDir VAR_0x8007, DIR_SOUTH
     Return
 
 _0322:
-    ScrCmd_188 VAR_0x8007, 14
+    SetObjectEventMovementType VAR_0x8007, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir VAR_0x8007, DIR_NORTH
     Return
 
 _0330:
-    ScrCmd_188 VAR_0x8007, 17
+    SetObjectEventMovementType VAR_0x8007, MOVEMENT_TYPE_LOOK_RIGHT
     SetObjectEventDir VAR_0x8007, DIR_EAST
     Return
 
 _033E:
-    ScrCmd_188 VAR_0x8007, 16
+    SetObjectEventMovementType VAR_0x8007, MOVEMENT_TYPE_LOOK_LEFT
     SetObjectEventDir VAR_0x8007, DIR_WEST
     Return

@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0205B43C_decl.h"
 #include "struct_defs/sentence.h"
 #include "struct_defs/struct_0203330C.h"
@@ -23,6 +22,7 @@
 #include "heap.h"
 #include "message.h"
 #include "message_util.h"
+#include "pal_pad.h"
 #include "save_player.h"
 #include "sound_playback.h"
 #include "sprite.h"
@@ -38,7 +38,6 @@
 #include "trainer_info.h"
 #include "unk_0200679C.h"
 #include "unk_02014A84.h"
-#include "unk_02027F84.h"
 #include "unk_02033200.h"
 #include "unk_0205B33C.h"
 
@@ -759,7 +758,7 @@ static Strbuf *ov56_02256E5C(PalPad *param0, u32 param1, StringTemplate *param2,
     int v2 = 0;
 
     if (param1 != TrainerInfo_ID(param4)) {
-        v2 = sub_020280E0(param0, param1);
+        v2 = PalPad_TrainerIsFriend(param0, param1);
     }
 
     if (v2 > 0) {
@@ -770,8 +769,8 @@ static Strbuf *ov56_02256E5C(PalPad *param0, u32 param1, StringTemplate *param2,
 
             v1 = Strbuf_Init(10, HEAP_ID_89);
 
-            Strbuf_CopyChars(v1, sub_02027FBC(param0, v3));
-            StringTemplate_SetStrbuf(param2, 0, v1, 0, 0, sub_02027FC4(param0, v3));
+            Strbuf_CopyChars(v1, PalPad_GetTrainerNamePointer(param0, v3));
+            StringTemplate_SetStrbuf(param2, 0, v1, 0, 0, PalPad_GetTrainerRegionCode(param0, v3));
             Strbuf_Free(v1);
         }
 

@@ -436,8 +436,8 @@ BOOL ov104_02235BC0(UnkStruct_ov104_0222E930 *param0)
         ov104_0223BB84(v12->unk_00, v3, 3);
         break;
     case 37:
-        ov104_0222E278(&(v3->unk_4C[0]), v3->unk_30[v3->unk_11], 11, 178);
-        ov104_0222E278(&(v3->unk_4C[1]), v3->unk_30[v3->unk_11 + 7], 11, 178);
+        ov104_0222E278(&(v3->unk_4C[0]), v3->unk_30[v3->unk_11], HEAP_ID_FIELD2, 178);
+        ov104_0222E278(&(v3->unk_4C[1]), v3->unk_30[v3->unk_11 + 7], HEAP_ID_FIELD2, 178);
         break;
     case 38:
         *v17 = ov104_02237338(v3);

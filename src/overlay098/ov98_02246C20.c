@@ -59,7 +59,7 @@ static void ov98_02247134(UnkStruct_ov98_02246E88 *param0);
 
 static NNSFndHeapHandle Unk_ov98_02249E20;
 
-const ApplicationManagerTemplate Unk_ov98_02249BAC = {
+const ApplicationManagerTemplate gWiiMessageAppTemplate = {
     ov98_02246C20,
     ov98_02246C98,
     ov98_02246DC0,
