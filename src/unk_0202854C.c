@@ -130,26 +130,26 @@ static int sub_020285D8(UndergroundData *param0)
     return -1;
 }
 
-static int sub_020285F8(UndergroundData *param0)
+static int UndergroundData_FindEmptySphereSlot(UndergroundData *undergroundData)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < 40; v0++) {
-        if (param0->spheres[v0] == 0) {
-            return v0;
+    for (i = 0; i < 40; i++) {
+        if (undergroundData->spheres[i] == 0) {
+            return i;
         }
     }
 
     return -1;
 }
 
-static int sub_02028618(UndergroundData *param0)
+static int UndergroundData_FindEmptyTreasureSlot(UndergroundData *undergroundData)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < 40; v0++) {
-        if (param0->treasure[v0] == 0) {
-            return v0;
+    for (i = 0; i < 40; i++) {
+        if (undergroundData->treasure[i] == 0) {
+            return i;
         }
     }
 
@@ -598,20 +598,20 @@ int sub_02028C6C(UndergroundData *param0, int param1)
     return v2;
 }
 
-BOOL sub_02028CB0(UndergroundData *undergroundData, int sphereID, int sphereSize)
+BOOL UndergroundData_TryAddSphere(UndergroundData *undergroundData, int sphereType, int sphereSize)
 {
-    int v0;
-    BOOL v1 = 0;
+    int slot;
+    BOOL added = FALSE;
 
-    v0 = sub_020285F8(undergroundData);
+    slot = UndergroundData_FindEmptySphereSlot(undergroundData);
 
-    if (v0 != -1) {
-        undergroundData->spheres[v0] = sphereID;
-        undergroundData->sphereSizes[v0] = sphereSize;
-        v1 = 1;
+    if (slot != -1) {
+        undergroundData->spheres[slot] = sphereType;
+        undergroundData->sphereSizes[slot] = sphereSize;
+        added = TRUE;
     }
 
-    return v1;
+    return added;
 }
 
 void sub_02028CD8(UndergroundData *param0, int param1, int param2)
@@ -672,19 +672,19 @@ int sub_02028D80(UndergroundData *param0, int param1)
     return v2;
 }
 
-BOOL sub_02028DB4(UndergroundData *param0, int param1)
+BOOL UndergroundData_TryAddTreasure(UndergroundData *undergroundData, int treasureID)
 {
-    int v0;
-    BOOL v1 = 0;
+    int slot;
+    BOOL added = FALSE;
 
-    v0 = sub_02028618(param0);
+    slot = UndergroundData_FindEmptyTreasureSlot(undergroundData);
 
-    if (v0 != -1) {
-        param0->treasure[v0] = param1;
-        v1 = 1;
+    if (slot != -1) {
+        undergroundData->treasure[slot] = treasureID;
+        added = TRUE;
     }
 
-    return v1;
+    return added;
 }
 
 void sub_02028DD8(UndergroundData *param0, int param1, int param2)

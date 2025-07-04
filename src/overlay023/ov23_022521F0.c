@@ -191,7 +191,7 @@ static int ov23_02252404(UnkStruct_ov23_02250CD4 *param0, int param1, int param2
     } else if (param0->unk_2AC == 0) {
         v0 = sub_02028BC8(v1, param0->unk_274[param1]);
     } else if (param0->unk_2AC == 2) {
-        v0 = sub_02028DB4(v1, param0->unk_274[param1]);
+        v0 = UndergroundData_TryAddTreasure(v1, param0->unk_274[param1]);
     }
 
     if (v0) {
@@ -476,7 +476,7 @@ static u32 ov23_02252C08(UnkStruct_ov23_02250CD4 *param0)
 {
     UndergroundData *v0 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(param0->fieldSystem));
 
-    if (ov23_0224F6E0(param0->unk_279[0], param0->unk_27E[0])) {
+    if (Underground_TryAddSphere(param0->unk_279[0], param0->unk_27E[0])) {
         if (param0->unk_2AC == 1) {
             sub_02028E50(v0, param0->unk_2A8);
         } else if (param0->unk_2AC == 0) {
