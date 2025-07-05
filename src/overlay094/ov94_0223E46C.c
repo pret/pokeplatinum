@@ -6,10 +6,10 @@
 
 #include "constants/species.h"
 
+#include "overlay094/application.h"
 #include "overlay094/const_ov94_02245FD4.h"
 #include "overlay094/gts_application_state.h"
 #include "overlay094/ov94_0223B140.h"
-#include "overlay094/ov94_0223BCB0.h"
 #include "overlay094/ov94_022414B8.h"
 #include "overlay094/ov94_02243EF8.h"
 #include "overlay094/ov94_02244950.h"
@@ -84,8 +84,8 @@ static int ov94_0223EEE0(GTSApplicationState *param0);
 static int ov94_0223EF1C(GTSApplicationState *param0);
 static int ov94_0223EF58(GTSApplicationState *param0);
 static void ov94_0223F9FC(Window *param0, Window *param1, MessageLoader *gtsMessageLoader);
-static int ov94_0223EC74(GTSApplicationState *param0, int param1);
-static int ov94_0223FB0C(const UnkStruct_ov94_0223BA88_sub3 *param0, const UnkStruct_ov94_0223BA88_sub3 *param1, int param2, int param3);
+static int GTS_IsTradeTimestampRecent(GTSApplicationState *param0, int param1);
+static int ov94_0223FB0C(const GTSPokemonListing_sub3 *param0, const GTSPokemonListing_sub3 *param1, int param2, int param3);
 static int ov94_0223F970(GTSApplicationState *param0);
 
 static int (*Unk_ov94_02246860[])(GTSApplicationState *) = {
@@ -458,7 +458,7 @@ static int ov94_0223EA84(GTSApplicationState *param0)
             if (v1 >= 0) {
                 Sprite_SetAnim(param0->avatarSprites[v1 + 1], 16 + v1 * 4);
                 param0->currentScreenInstruction = 2;
-                ov94_Setunk_18Andunk_24(param0, 3, 0);
+                GTSApplication_SetNextScreenWithArgument(param0, 3, 0);
                 param0->unk_11C = v1;
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
             }
@@ -491,46 +491,45 @@ static int ov94_0223EBCC(GTSApplicationState *param0)
     return 3;
 }
 
-static int ov94_0223EC74(GTSApplicationState *param0, int param1)
+static int GTS_IsTradeTimestampRecent(GTSApplicationState *appState, int bySearching)
 {
-    u32 v0;
-    RTCDate v1, v2;
+    u32 datestamp;
+    RTCDate date, currentDate;
     RTCTime v3;
-    int v4;
 
-    if (param1 == 1) {
-        v0 = sub_0202DA9C(param0->unk_00->unk_00);
+    if (bySearching == 1) {
+        datestamp = GlobalTrade_GetSearchTradeDatestamp(appState->unk_00->unk_00);
     } else {
-        v0 = sub_0202DA8C(param0->unk_00->unk_00);
+        datestamp = GlobalTrade_GetDepositTradeDatestamp(appState->unk_00->unk_00);
     }
 
-    inline_0202D558(v0, &v1);
-    DWC_GetDateTime(&v2, &v3);
+    Date_ConvertFromInteger(datestamp, &date);
+    DWC_GetDateTime(&currentDate, &v3);
 
-    v4 = RTC_ConvertDateToDay(&v2) - RTC_ConvertDateToDay(&v1);
+    int diff = RTC_ConvertDateToDay(&currentDate) - RTC_ConvertDateToDay(&date);
 
-    if ((v4 >= 0) && (v4 < 3)) {
-        return 1;
+    if ((diff >= 0) && (diff < 3)) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static int ov94_0223ECD4(GTSApplicationState *param0)
 {
-    UnkStruct_ov94_0223BA88_sub3 v0;
+    GTSPokemonListing_sub3 v0;
     int v1 = 3;
 
-    if (ov94_0223EC74(param0, 1)) {
+    if (GTS_IsTradeTimestampRecent(param0, 1)) {
         v1 += 2;
     }
 
-    if (ov94_0223EC74(param0, 0)) {
+    if (GTS_IsTradeTimestampRecent(param0, 0)) {
         v1 += 2;
     }
 
     if (param0->unk_11B0 == 0) {
-        ov94_0223B9B0(&param0->unk_B7A, v1, param0->unk_250);
+        GTSNetworking_Search(&param0->unk_B7A, v1, param0->unk_250);
     } else {
         UnkStruct_ov94_0223BA24 v2;
 
@@ -657,7 +656,7 @@ static int ov94_0223EF58(GTSApplicationState *param0)
 {
     ov94_0223F9A4(param0, 152, TEXT_SPEED_NORMAL, 0, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(param0, 24, 2);
-    ov94_Setunk_18Andunk_24(param0, 0, 0);
+    GTSApplication_SetNextScreenWithArgument(param0, 0, 0);
     Sound_PlayEffect(SEQ_SE_DP_BOX03);
 
     return 3;
@@ -1022,7 +1021,7 @@ static int ov94_0223F8D8(GTSApplicationState *param0)
             param0->currentScreenInstruction = 0;
         } else {
             param0->currentScreenInstruction = 2;
-            ov94_Setunk_18Andunk_24(param0, 1, 0);
+            GTSApplication_SetNextScreenWithArgument(param0, 1, 0);
             ov94_022442E4(param0);
             param0->unk_118 = 0;
         }
@@ -1118,7 +1117,7 @@ static void ov94_0223F9FC(Window *param0, Window *param1, MessageLoader *gtsMess
     Strbuf_Free(v0);
 }
 
-static int ov94_0223FB0C(const UnkStruct_ov94_0223BA88_sub3 *param0, const UnkStruct_ov94_0223BA88_sub3 *param1, int param2, int param3)
+static int ov94_0223FB0C(const GTSPokemonListing_sub3 *param0, const GTSPokemonListing_sub3 *param1, int param2, int param3)
 {
     return (param0->species == param1->species)
         && (param0->gender == param1->gender)

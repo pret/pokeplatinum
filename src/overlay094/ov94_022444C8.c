@@ -4,8 +4,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "overlay094/application.h"
 #include "overlay094/gts_application_state.h"
-#include "overlay094/ov94_0223BCB0.h"
 #include "overlay094/struct_ov94_0223BA88.h"
 #include "overlay095/ov95_02246C20.h"
 
@@ -21,7 +21,7 @@
 
 FS_EXTERN_OVERLAY(overlay95);
 
-static TrainerInfo *ov94_02244870(UnkStruct_ov94_0223BA88 *param0);
+static TrainerInfo *ov94_02244870(GTSPokemonListing *param0);
 static Pokemon *ov94_022448AC(GTSApplicationState *param0, int param1);
 static void ov94_022448E8(GTSApplicationState *param0);
 
@@ -36,36 +36,36 @@ int ov94_022444C8(GTSApplicationState *param0, int param1)
 {
     param0->unk_1104 = Pokemon_New(HEAP_ID_62);
 
-    switch (param0->unk_24) {
+    switch (param0->screenArgument) {
     case 7:
-        param0->unk_E8.unk_00 = (BoxPokemon *)Pokemon_GetBoxPokemon((Pokemon *)param0->unk_12C.unk_00.unk_00);
+        param0->unk_E8.unk_00 = (BoxPokemon *)Pokemon_GetBoxPokemon((Pokemon *)param0->receivedListing.pokemon.bytes);
         param0->unk_E8.unk_04 = param0->unk_E8.unk_00;
-        param0->unk_120 = ov94_02244870(&param0->unk_12C);
+        param0->unk_120 = ov94_02244870(&param0->receivedListing);
         param0->unk_E8.unk_08 = param0->unk_120;
         param0->unk_E8.unk_0C = 3;
         param0->unk_E8.unk_10 = 2;
         break;
     case 8:
-        param0->unk_E8.unk_04 = (BoxPokemon *)Pokemon_GetBoxPokemon((Pokemon *)param0->unk_12C.unk_00.unk_00);
+        param0->unk_E8.unk_04 = (BoxPokemon *)Pokemon_GetBoxPokemon((Pokemon *)param0->receivedListing.pokemon.bytes);
         param0->unk_E8.unk_00 = param0->unk_E8.unk_04;
-        param0->unk_120 = ov94_02244870(&param0->unk_12C);
+        param0->unk_120 = ov94_02244870(&param0->receivedListing);
         param0->unk_E8.unk_08 = param0->unk_120;
         param0->unk_E8.unk_0C = 3;
         param0->unk_E8.unk_10 = 4;
         break;
     case 10:
-        param0->unk_E8.unk_04 = Pokemon_GetBoxPokemon((Pokemon *)param0->unk_12C.unk_00.unk_00);
-        sub_0202DA70(param0->unk_00->unk_00, param0->unk_1104);
+        param0->unk_E8.unk_04 = Pokemon_GetBoxPokemon((Pokemon *)param0->receivedListing.pokemon.bytes);
+        GlobalTrade_CopyStoredPokemon(param0->unk_00->unk_00, param0->unk_1104);
         param0->unk_E8.unk_00 = Pokemon_GetBoxPokemon(param0->unk_1104);
-        param0->unk_120 = ov94_02244870(&param0->unk_12C);
+        param0->unk_120 = ov94_02244870(&param0->receivedListing);
         param0->unk_E8.unk_08 = param0->unk_120;
         param0->unk_E8.unk_0C = 3;
         param0->unk_E8.unk_10 = 1;
         break;
     case 9:
-        sub_0202DA70(param0->unk_00->unk_00, param0->unk_1104);
+        GlobalTrade_CopyStoredPokemon(param0->unk_00->unk_00, param0->unk_1104);
         param0->unk_E8.unk_00 = Pokemon_GetBoxPokemon(param0->unk_1104);
-        param0->unk_E8.unk_04 = (BoxPokemon *)Pokemon_GetBoxPokemon((Pokemon *)param0->unk_250[param0->unk_11C].unk_00.unk_00);
+        param0->unk_E8.unk_04 = (BoxPokemon *)Pokemon_GetBoxPokemon((Pokemon *)param0->unk_250[param0->unk_11C].pokemon.bytes);
         param0->unk_120 = ov94_02244870(&param0->unk_250[param0->unk_11C]);
         param0->unk_E8.unk_08 = param0->unk_120;
         param0->unk_E8.unk_0C = 3;
@@ -89,8 +89,8 @@ int ov94_02244678(GTSApplicationState *param0, int param1)
         if (ApplicationManager_Exec(param0->appMan)) {
             ApplicationManager_Free(param0->appMan);
 
-            if (param0->unk_24 == 9) {
-                Pokemon *v1 = ov94_022448AC(param0, param0->unk_24);
+            if (param0->screenArgument == 9) {
+                Pokemon *v1 = ov94_022448AC(param0, param0->screenArgument);
                 int v2 = Pokemon_GetValue(v1, MON_DATA_HELD_ITEM, NULL);
                 int v3;
                 int v4;
@@ -101,14 +101,14 @@ int ov94_02244678(GTSApplicationState *param0, int param1)
                     param0->unk_100 = sub_0207AE68(NULL, v1, v3, param0->unk_00->options, param0->unk_00->unk_3C, param0->unk_00->unk_10, param0->unk_00->unk_30, param0->unk_00->records, SaveData_GetPoketch(param0->unk_00->saveData), v4, 0x4, HEAP_ID_62);
                     param0->currentScreenInstruction = 1;
                 } else {
-                    ov94_Setunk_18Andunk_24(param0, 1, 0);
+                    GTSApplication_SetNextScreenWithArgument(param0, 1, 0);
                     v0 = 4;
                 }
-            } else if ((param0->unk_24 == 8) || (param0->unk_24 == 10)) {
-                Pokemon *v1 = ov94_022448AC(param0, param0->unk_24);
+            } else if ((param0->screenArgument == 8) || (param0->screenArgument == 10)) {
+                Pokemon *v1 = ov94_022448AC(param0, param0->screenArgument);
                 Pokemon *v5 = Pokemon_New(HEAP_ID_62);
 
-                sub_0202DA70(param0->unk_00->unk_00, v5);
+                GlobalTrade_CopyStoredPokemon(param0->unk_00->unk_00, v5);
 
                 if ((Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL) != Pokemon_GetValue(v5, MON_DATA_SPECIES, NULL)) || (Pokemon_GetValue(v1, MON_DATA_PERSONALITY, NULL) != Pokemon_GetValue(v5, MON_DATA_PERSONALITY, NULL))) {
                     int v6 = Pokemon_GetValue(v1, MON_DATA_HELD_ITEM, NULL);
@@ -121,17 +121,17 @@ int ov94_02244678(GTSApplicationState *param0, int param1)
                         param0->unk_100 = sub_0207AE68(NULL, v1, v7, param0->unk_00->options, param0->unk_00->unk_3C, param0->unk_00->unk_10, param0->unk_00->unk_30, param0->unk_00->records, SaveData_GetPoketch(param0->unk_00->saveData), v8, 0x4, HEAP_ID_62);
                         param0->currentScreenInstruction = 1;
                     } else {
-                        ov94_Setunk_18Andunk_24(param0, 1, 0);
+                        GTSApplication_SetNextScreenWithArgument(param0, 1, 0);
                         v0 = 4;
                     }
                 } else {
-                    ov94_Setunk_18Andunk_24(param0, 1, 0);
+                    GTSApplication_SetNextScreenWithArgument(param0, 1, 0);
                     v0 = 4;
                 }
 
                 Heap_FreeToHeap(v5);
             } else {
-                ov94_Setunk_18Andunk_24(param0, 1, 0);
+                GTSApplication_SetNextScreenWithArgument(param0, 1, 0);
                 v0 = 4;
             }
         }
@@ -141,7 +141,7 @@ int ov94_02244678(GTSApplicationState *param0, int param1)
             sub_0207B0E0(param0->unk_100);
             ov94_022448E8(param0);
             GX_SetVisibleWnd(GX_WNDMASK_NONE);
-            ov94_Setunk_18Andunk_24(param0, 7, 12);
+            GTSApplication_SetNextScreenWithArgument(param0, 7, 12);
             v0 = 4;
         }
         break;
@@ -159,14 +159,14 @@ int ov94_0224484C(GTSApplicationState *param0, int param1)
     return 1;
 }
 
-static TrainerInfo *ov94_02244870(UnkStruct_ov94_0223BA88 *param0)
+static TrainerInfo *ov94_02244870(GTSPokemonListing *param0)
 {
     TrainerInfo *v0 = TrainerInfo_New(HEAP_ID_62);
 
     TrainerInfo_Init(v0);
     TrainerInfo_SetName(v0, param0->unk_10C);
     TrainerInfo_SetGameCode(v0, param0->unk_122);
-    TrainerInfo_SetRegionCode(v0, param0->unk_123);
+    TrainerInfo_SetRegionCode(v0, param0->trainerLanguage);
 
     return v0;
 }
@@ -174,11 +174,11 @@ static TrainerInfo *ov94_02244870(UnkStruct_ov94_0223BA88 *param0)
 static Pokemon *ov94_022448AC(GTSApplicationState *param0, int param1)
 {
     if (param1 == 9) {
-        return (Pokemon *)param0->unk_250[param0->unk_11C].unk_00.unk_00;
+        return (Pokemon *)param0->unk_250[param0->unk_11C].pokemon.bytes;
     } else if (param1 == 10) {
-        return (Pokemon *)param0->unk_12C.unk_00.unk_00;
+        return (Pokemon *)param0->receivedListing.pokemon.bytes;
     } else if (param1 == 8) {
-        return (Pokemon *)param0->unk_12C.unk_00.unk_00;
+        return (Pokemon *)param0->receivedListing.pokemon.bytes;
     }
 
     GF_ASSERT(0);
@@ -187,14 +187,14 @@ static Pokemon *ov94_022448AC(GTSApplicationState *param0, int param1)
 
 static void ov94_022448E8(GTSApplicationState *param0)
 {
-    Pokemon *v0 = ov94_022448AC(param0, param0->unk_24);
+    Pokemon *v0 = ov94_022448AC(param0, param0->screenArgument);
 
-    if (param0->unk_124.unk_00 == 18) {
-        Pokemon_Copy(v0, Party_GetPokemonBySlotIndex(param0->unk_00->unk_08, param0->unk_124.unk_04));
+    if (param0->tradedPokemonLocation.boxIndex == 18) {
+        Pokemon_Copy(v0, Party_GetPokemonBySlotIndex(param0->unk_00->unk_08, param0->tradedPokemonLocation.index));
     } else {
         int v1 = 0, v2 = 0;
 
-        PCBoxes_InitBoxMonAt(param0->unk_00->pcBoxes, param0->unk_124.unk_00, param0->unk_124.unk_04);
+        PCBoxes_InitBoxMonAt(param0->unk_00->pcBoxes, param0->tradedPokemonLocation.boxIndex, param0->tradedPokemonLocation.index);
         PCBoxes_TryGetNextAvailableSpace(param0->unk_00->pcBoxes, &v1, &v2);
         PCBoxes_TryStoreBoxMonInBox(param0->unk_00->pcBoxes, v1, Pokemon_GetBoxPokemon(v0));
     }

@@ -4,8 +4,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "overlay094/application.h"
 #include "overlay094/gts_application_state.h"
-#include "overlay094/ov94_0223BCB0.h"
 #include "overlay094/ov94_0223D0C4.h"
 #include "overlay094/ov94_022414B8.h"
 #include "overlay094/ov94_02243EF8.h"
@@ -50,7 +50,7 @@ static int ov94_0223E2D0(GTSApplicationState *param0);
 static void ov94_0223E240(GTSApplicationState *param0);
 static void ov94_0223E358(MessageLoader *param0, Window param1[]);
 static void ov94_0223E300(GTSApplicationState *param0, int param1, int param2, int param3, u16 param4);
-static void ov94_0223E3B0(Window *param0, MessageLoader *gtsMessageLoader, MessageLoader *param2, UnkStruct_ov94_0223BA88_sub3 *param3);
+static void ov94_0223E3B0(Window *param0, MessageLoader *gtsMessageLoader, MessageLoader *param2, GTSPokemonListing_sub3 *param3);
 static void ov94_0223E424(Window *param0, Strbuf *param1, Strbuf *param2);
 
 static int (*Unk_ov94_0224682C[])(GTSApplicationState *wk) = {
@@ -72,12 +72,12 @@ int ov94_0223DC04(GTSApplicationState *param0, int param1)
     ov94_0223DE04(param0);
     ov94_0223DED8(param0);
     ov94_0223DE7C(param0);
-    ov94_0223D910(param0->gtsMessageLoader, param0->unk_B94, param0->stringTemplate, &param0->unk_FCC[0], Pokemon_GetBoxPokemon((Pokemon *)param0->unk_250[param0->unk_11C].unk_00.unk_00), &param0->unk_250[param0->unk_11C].unk_EC);
+    ov94_0223D910(param0->gtsMessageLoader, param0->unk_B94, param0->stringTemplate, &param0->unk_FCC[0], Pokemon_GetBoxPokemon((Pokemon *)param0->unk_250[param0->unk_11C].pokemon.bytes), &param0->unk_250[param0->unk_11C].unk_EC);
 
-    v0 = (Pokemon *)param0->unk_250[param0->unk_11C].unk_00.unk_00;
+    v0 = (Pokemon *)param0->unk_250[param0->unk_11C].pokemon.bytes;
 
     ov94_0223DA78(param0->gtsMessageLoader, &param0->unk_FCC[5], param0->unk_250[param0->unk_11C].unk_10C, v0, &param0->unk_FCC[10]);
-    ov94_0223DB2C((Pokemon *)param0->unk_250[param0->unk_11C].unk_00.unk_00);
+    ov94_0223DB2C((Pokemon *)param0->unk_250[param0->unk_11C].pokemon.bytes);
     ov94_0223E358(param0->gtsMessageLoader, &param0->unk_FCC[7]);
     ov94_0223E240(param0);
 
@@ -285,18 +285,18 @@ static void ov94_0223DFDC(GTSApplicationState *param0)
 {
     int v0;
     MessageLoader *v1;
-    UnkStruct_ov94_0223BA88 *v2 = &param0->unk_250[param0->unk_11C];
+    GTSPokemonListing *v2 = &param0->unk_250[param0->unk_11C];
 
     param0->genericMessageBuffer = Strbuf_Init((90 * 2), HEAP_ID_62);
 
     StringTemplate_ClearArgs(param0->stringTemplate);
 
-    if (v2->unk_11E != 0) {
-        StringTemplate_SetCountryName(param0->stringTemplate, 8, v2->unk_11E);
+    if (v2->trainerCountry != 0) {
+        StringTemplate_SetCountryName(param0->stringTemplate, 8, v2->trainerCountry);
     }
 
-    if (v2->unk_11F != 0) {
-        StringTemplate_SetCityName(param0->stringTemplate, 9, v2->unk_11E, v2->unk_11F);
+    if (v2->trainerRegion != 0) {
+        StringTemplate_SetCityName(param0->stringTemplate, 9, v2->trainerCountry, v2->trainerRegion);
     }
 
     param0->unk_BB4[0] = MessageUtil_ExpandedStrbuf(param0->stringTemplate, param0->gtsMessageLoader, 79, HEAP_ID_62);
@@ -326,7 +326,7 @@ static int ov94_0223E0A4(GTSApplicationState *param0)
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
         param0->currentScreenInstruction = 2;
-        ov94_Setunk_18Andunk_24(param0, 4, 0);
+        GTSApplication_SetNextScreenWithArgument(param0, 4, 0);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
         if (param0->unk_10E == 0) {
@@ -349,7 +349,7 @@ static int ov94_0223E0A4(GTSApplicationState *param0)
             if ((v0 != param0->unk_11C) && (v0 >= 0)) {
                 Sprite_SetAnim(param0->avatarSprites[v0 + 1], 16 + v0 * 4);
                 param0->currentScreenInstruction = 2;
-                ov94_Setunk_18Andunk_24(param0, 3, 0);
+                GTSApplication_SetNextScreenWithArgument(param0, 3, 0);
                 param0->unk_11C = v0;
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
             }
@@ -382,12 +382,12 @@ static int ov94_0223E1D0(GTSApplicationState *param0)
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
             param0->currentScreenInstruction = 2;
-            ov94_Setunk_18Andunk_24(param0, 4, 0);
+            GTSApplication_SetNextScreenWithArgument(param0, 4, 0);
             ov94_0223E358(param0->gtsMessageLoader, &param0->unk_FCC[7]);
             ov94_0223E240(param0);
         } else {
             param0->currentScreenInstruction = 2;
-            ov94_Setunk_18Andunk_24(param0, 5, 6);
+            GTSApplication_SetNextScreenWithArgument(param0, 5, 6);
             ov94_0223E358(param0->gtsMessageLoader, &param0->unk_FCC[7]);
             ov94_0223E240(param0);
         }
@@ -449,7 +449,7 @@ static void ov94_0223E358(MessageLoader *param0, Window param1[])
     Strbuf_Free(v1);
 }
 
-static void ov94_0223E3B0(Window *param0, MessageLoader *gtsMessageLoader, MessageLoader *param2, UnkStruct_ov94_0223BA88_sub3 *param3)
+static void ov94_0223E3B0(Window *param0, MessageLoader *gtsMessageLoader, MessageLoader *param2, GTSPokemonListing_sub3 *param3)
 {
     Window_FillTilemap(param0, 0x0);
 

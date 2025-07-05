@@ -34,12 +34,12 @@
 #include "trainer_info.h"
 
 typedef struct {
-    int unk_00;
-    int unk_04;
-} GTSApplicationState_sub1;
+    int boxIndex;
+    int index;
+} GTSTradedPokemonLocation;
 
 typedef struct {
-    UnkStruct_ov94_0223BA88_sub2 unk_00[30];
+    GTSPokemonListing_sub2 unk_00[30];
 } GTSApplicationState_sub2;
 
 typedef struct {
@@ -72,10 +72,10 @@ typedef struct GTSApplicationState {
     int unk_0C;
     int unk_10;
     int screenId; // some kind of pointer
-    int unk_18;
-    int unk_1C;
+    int nextScreen;
+    int previousScreen;
     int unk_20;
-    int unk_24;
+    int screenArgument;
     int unk_28;
     int currentScreenInstruction; // some kind of instruction pointer
     int nextScreenInstruction;
@@ -105,14 +105,14 @@ typedef struct GTSApplicationState {
     int unk_118;
     int unk_11C;
     TrainerInfo *unk_120;
-    GTSApplicationState_sub1 unk_124;
-    UnkStruct_ov94_0223BA88 unk_12C;
-    UnkStruct_ov94_0223BA88 unk_250[7];
-    UnkStruct_ov94_0223BA88 unk_A4C;
-    UnkStruct_ov94_0223BA88_sub2 unk_B70;
-    UnkStruct_ov94_0223BA88_sub3 unk_B74;
-    UnkStruct_ov94_0223BA88_sub3 unk_B7A;
-    UnkStruct_ov94_0223BA88_sub3 unk_B80;
+    GTSTradedPokemonLocation tradedPokemonLocation;
+    GTSPokemonListing receivedListing;
+    GTSPokemonListing unk_250[7];
+    GTSPokemonListing selectedListing;
+    GTSPokemonListing_sub2 unk_B70;
+    GTSPokemonListing_sub3 unk_B74;
+    GTSPokemonListing_sub3 unk_B7A;
+    GTSPokemonListing_sub3 unk_B80;
     int unk_B88;
     StringTemplate *stringTemplate;
     MessageLoader *gtsMessageLoader;

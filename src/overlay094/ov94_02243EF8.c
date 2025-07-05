@@ -4,8 +4,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "overlay094/application.h"
 #include "overlay094/gts_application_state.h"
-#include "overlay094/ov94_0223BCB0.h"
 
 #include "graphics.h"
 #include "heap.h"

@@ -1416,14 +1416,14 @@ Overlay overlay94
 {
 	After overlay12
 	Object main.nef.p/src_overlay094_ov94_0223B140.c.o
-	Object main.nef.p/src_overlay094_ov94_0223BCB0.c.o
+	Object main.nef.p/src_overlay094_application.c.o
 	Object main.nef.p/src_overlay094_screens_main_menu.c.o
 	Object main.nef.p/src_overlay094_ov94_0223D0C4.c.o
 	Object main.nef.p/src_overlay094_ov94_0223DC04.c.o
 	Object main.nef.p/src_overlay094_ov94_0223E46C.c.o
 	Object main.nef.p/src_overlay094_ov94_0223FB48.c.o
 	Object main.nef.p/src_overlay094_ov94_022414B8.c.o
-	Object main.nef.p/src_overlay094_ov94_02242AD0.c.o
+	Object main.nef.p/src_overlay094_screens_network_handler.c.o
 	Object main.nef.p/src_overlay094_ov94_02243EF8.c.o
 	Object main.nef.p/src_overlay094_ov94_022443E0.c.o
 	Object main.nef.p/src_overlay094_ov94_022444C8.c.o

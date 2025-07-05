@@ -1,4 +1,4 @@
-#include "overlay094/ov94_0223BCB0.h"
+#include "overlay094/application.h"
 
 #include <dwc.h>
 #include <nitro.h>
@@ -17,12 +17,12 @@
 #include "overlay094/ov94_0223E46C.h"
 #include "overlay094/ov94_0223FB48.h"
 #include "overlay094/ov94_022414B8.h"
-#include "overlay094/ov94_02242AD0.h"
 #include "overlay094/ov94_02243EF8.h"
 #include "overlay094/ov94_022443E0.h"
 #include "overlay094/ov94_022444C8.h"
 #include "overlay094/ov94_02244950.h"
 #include "overlay094/screens/main_menu.h"
+#include "overlay094/screens/network_handler.h"
 
 #include "bg_window.h"
 #include "char_transfer.h"
@@ -274,7 +274,7 @@ static void GTSApplicationState_InitPlayerData(GTSApplicationState *param0, Appl
     param0->unk_00 = (GTSPlayerData *)ApplicationManager_Args(appMan);
     param0->screenId = 0;
 
-    ov94_Setunk_18Andunk_24(param0, 0, 0);
+    GTSApplication_SetNextScreenWithArgument(param0, 0, 0);
 
     param0->unk_10C = 0;
     param0->unk_B7A.species = SPECIES_NONE;
@@ -474,16 +474,16 @@ int GTSApplication_GetNetworkStrength(void)
     return WM_LINK_LEVEL_3 - DWC_GetLinkLevel();
 }
 
-void ov94_Setunk_18Andunk_24(GTSApplicationState *param0, int param1, int param2)
+void GTSApplication_SetNextScreenWithArgument(GTSApplicationState *appState, int nextScreen, int screenArgument)
 {
-    param0->unk_18 = param1;
-    param0->unk_24 = param2;
+    appState->nextScreen = nextScreen;
+    appState->screenArgument = screenArgument;
 }
 
 void GTSApplication_MoveToNextScreen(GTSApplicationState *param0)
 {
     param0->unk_20 = param0->screenId;
-    param0->screenId = param0->unk_18;
+    param0->screenId = param0->nextScreen;
 }
 
 int ov94_0223C4D4(GTSApplicationState *param0)

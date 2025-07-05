@@ -6,9 +6,9 @@
 #include "constants/gts.h"
 
 #include "overlay004/ov4_021D0D80.h"
+#include "overlay094/application.h"
 #include "overlay094/gts_application_state.h"
 #include "overlay094/ov94_0223B140.h"
-#include "overlay094/ov94_0223BCB0.h"
 #include "overlay094/ov94_02244950.h"
 
 #include "bg_window.h"
@@ -163,7 +163,7 @@ int GTSApplication_WFCInit_Exit(GTSApplicationState *appState, int param1)
 
     GTSApplication_MoveToNextScreen(appState);
 
-    // this line of code is triggered when unk_18 has been set to 0
+    // this line of code is triggered when nextScreen has been set to 0
     if (appState->screenId == 0) {
         return GTS_APPLICATION_LOOP_STATE_EXIT;
     }
@@ -347,7 +347,7 @@ static int GTSApplication_WFCInit_ProcessSetupConfirmation(GTSApplicationState *
     if (menuInput != 0xffffffff) { // BATTLE_SUB_MENU_CURSOR_NO_MOVEMENT_INDEX
         if (menuInput == 0xfffffffe) { // BATTLE_SUB_MENU_CURSOR_BACK_INDEX
             sub_0203848C(); // free the network lock?
-            ov94_Setunk_18Andunk_24(appState, 0, 0);
+            GTSApplication_SetNextScreenWithArgument(appState, 0, 0);
             appState->currentScreenInstruction = 11;
         } else {
             GTSApplication_DisplayStatusMessage(appState, appState->unk_B98, pl_msg_00000674_00001, TEXT_SPEED_FAST, 0xf0f);
@@ -376,8 +376,8 @@ static int GTSApplication_WFCInit_RestartOrExit(GTSApplicationState *appState)
             if (!DWC_CheckInet()) {
                 appState->currentScreenInstruction = 0;
             } else {
-                ov94_Setunk_18Andunk_24(appState, 7, 11);
-                appState->unk_1C = 1;
+                GTSApplication_SetNextScreenWithArgument(appState, 7, 11);
+                appState->previousScreen = 1;
                 appState->currentScreenInstruction = 11;
             }
         } else {
@@ -386,7 +386,7 @@ static int GTSApplication_WFCInit_RestartOrExit(GTSApplicationState *appState)
             }
 
             sub_0203848C();
-            ov94_Setunk_18Andunk_24(appState, 0, 0);
+            GTSApplication_SetNextScreenWithArgument(appState, 0, 0);
             appState->currentScreenInstruction = 11;
         }
     }
@@ -407,7 +407,7 @@ static int GTSApplication_WFCInit_CleanupNetworking(GTSApplicationState *appStat
     sub_0203848C();
 
     DWC_CleanupInet();
-    ov94_Setunk_18Andunk_24(appState, 0, 0);
+    GTSApplication_SetNextScreenWithArgument(appState, 0, 0);
     appState->currentScreenInstruction = 19;
 
     return GTS_APPLICATION_LOOP_STATE_MAIN;
@@ -598,12 +598,12 @@ static int GTSApplication_WFCInit_WaitForServerResponse(GTSApplicationState *par
         case 0: // success
             param0->currentScreenInstruction = 9;
             break;
-        case 1:
+        case 1: // first byte = 6
             GTSApplicationState_DestroyWaitDial(param0);
             param0->unk_3C = v0;
             param0->currentScreenInstruction = 21;
             break;
-        case 2:
+        case 2: // first byte = 7
         case -1:
             GTSApplicationState_DestroyWaitDial(param0);
             param0->unk_3C = v0;
@@ -664,7 +664,7 @@ static int GTSApplication_WFCInit_SetProfileResponse(GTSApplicationState *appSta
             case 0:
                 switch (appState->worldExchangeTrainerError.systemError) {
                 case 0:
-                    ov94_Setunk_18Andunk_24(appState, 1, 0);
+                    GTSApplication_SetNextScreenWithArgument(appState, 1, 0);
                     appState->currentScreenInstruction = 11;
                     break;
                 case 3: // pl_msg_00000671_00177
@@ -777,7 +777,7 @@ static int ov94_022455D0(GTSApplicationState *param0)
         if (v0 == 0xfffffffe) {
             param0->currentScreenInstruction = 0;
         } else {
-            ov94_Setunk_18Andunk_24(param0, 0, 0);
+            GTSApplication_SetNextScreenWithArgument(param0, 0, 0);
             param0->currentScreenInstruction = 11;
         }
     }
@@ -858,7 +858,7 @@ static int GTSApplication_WFCInit_FatalErrorDisconnectMessage(GTSApplicationStat
         appState->wfcDisconnectMessageFrameDelay++;
 
         if (appState->wfcDisconnectMessageFrameDelay > 30) {
-            ov94_Setunk_18Andunk_24(appState, 0, 0);
+            GTSApplication_SetNextScreenWithArgument(appState, 0, 0);
             appState->currentScreenInstruction = 11;
         }
         break;

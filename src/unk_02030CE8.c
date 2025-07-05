@@ -113,7 +113,7 @@ static void sub_02030DD0(SaveData *saveData, WorldExchangeTrainer *param1)
     param1->gameCode = GAME_VERSION;
     param1->languageCode = GAME_LANGUAGE;
     param1->country = WiFiHistory_GetCountry(wiFiHistory);
-    param1->unk_03 = sub_0202C8C4(wiFiHistory);
+    param1->unk_03 = WiFiHistory_GetRegion(wiFiHistory);
     param1->trainerId = TrainerInfo_ID(v1);
 
     CharCode_Copy(param1->trainerName, TrainerInfo_Name(v1));

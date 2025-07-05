@@ -16,7 +16,7 @@ Menu *GTSApplication_CreateYesNoMenu(BgConfig *param0, int param1, int param2);
 void ov94_0223C3F4(GTSApplicationState *param0, int param1, int param2);
 void ov94_0223C3FC(Sprite *param0, int param1, int param2);
 int GTSApplication_GetNetworkStrength(void);
-void ov94_Setunk_18Andunk_24(GTSApplicationState *param0, int param1, int param2);
+void GTSApplication_SetNextScreenWithArgument(GTSApplicationState *param0, int param1, int param2);
 void ov94_0223C4C8(GTSApplicationState *param0);
 int ov94_0223C4D4(GTSApplicationState *param0);
 void GTSApplicationState_StartCountingBoxPokemon(GTSApplicationState *param0);

@@ -174,42 +174,42 @@ inline u16 LCRNG_RandMod(const u16 param)
     }
 }
 
-static inline u32 inline_0202D4B0_sub1(u32 param0, u32 param1, u32 param2, int param3)
+static inline u32 Date_ConvertParamsToInteger(u32 year, u32 month, u32 day, int week)
 {
-    return (param0 << 24) | ((param1 & 0xff) << 16) | ((param2 & 0xff) << 8) | param3;
+    return (year << 24) | ((month & 0xff) << 16) | ((day & 0xff) << 8) | week;
 }
 
-static inline u32 inline_0202D4B0(RTCDate *param0)
+static inline u32 Date_ConvertToInteger(RTCDate *rtcDate)
 {
-    return inline_0202D4B0_sub1(param0->year, param0->month, param0->day, param0->week);
+    return Date_ConvertParamsToInteger(rtcDate->year, rtcDate->month, rtcDate->day, rtcDate->week);
 }
 
-static inline u8 inline_0202D558_sub1(u32 param0)
+static inline u8 Date_GetYearFromInteger(u32 date)
 {
-    return param0 >> 24;
+    return date >> 24;
 }
 
-static inline u8 inline_0202D558_sub2(u32 param0)
+static inline u8 Date_GetMonthFromInteger(u32 date)
 {
-    return (param0 >> 16) & 0xff;
+    return (date >> 16) & 0xff;
 }
 
-static inline u8 inline_0202D558_sub3(u32 param0)
+static inline u8 Date_GetDayFromInteger(u32 date)
 {
-    return (param0 >> 8) & 0xff;
+    return (date >> 8) & 0xff;
 }
 
-static inline u8 inline_0202D558_sub4(u32 param0)
+static inline u8 Date_GetWeekFromInteger(u32 date)
 {
-    return param0 & 0xff;
+    return date & 0xff;
 }
 
-static inline void inline_0202D558(u32 param0, RTCDate *param1)
+static inline void Date_ConvertFromInteger(u32 date, RTCDate *rtcDate)
 {
-    param1->year = inline_0202D558_sub1(param0);
-    param1->month = inline_0202D558_sub2(param0);
-    param1->day = inline_0202D558_sub3(param0);
-    param1->week = inline_0202D558_sub4(param0);
+    rtcDate->year = Date_GetYearFromInteger(date);
+    rtcDate->month = Date_GetMonthFromInteger(date);
+    rtcDate->day = Date_GetDayFromInteger(date);
+    rtcDate->week = Date_GetWeekFromInteger(date);
 }
 
 static inline BOOL inline_ov12_02235998(int param0, int param1)

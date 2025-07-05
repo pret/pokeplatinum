@@ -6,8 +6,8 @@
 
 #include "constants/gts.h"
 
+#include "overlay094/application.h"
 #include "overlay094/gts_application_state.h"
-#include "overlay094/ov94_0223BCB0.h"
 #include "overlay094/ov94_02243EF8.h"
 #include "overlay094/ov94_02244950.h"
 
@@ -61,7 +61,7 @@ static void ov94_0223CFD8(GTSApplicationState *param0, int param1, int param2, i
 static void ov94_0223C85C(GTSApplicationState *param0);
 
 static int (*sGTSMainMenuScreenStates[])(GTSApplicationState *) = {
-    GTSApplication_MainMenu_WaitUntilFinishedMoving, // ov94_Setunk_18Andunk_24(appState, 7, 11);
+    GTSApplication_MainMenu_WaitUntilFinishedMoving, // GTSApplication_SetNextScreenWithArgument(appState, 7, 11);
     ov94_0223CB90, // set currentScreenInstruction to 10 and unk_30 to 2
     ov94_0223CBA0, // start screen fade, set currentScreenInstruction to 3
     ov94_0223CBC4, // set currentScreenInstruction to 5 when screen fade is done, return 3
@@ -364,9 +364,10 @@ static int GTSApplication_MainMenu_WaitUntilFinishedMoving(GTSApplicationState *
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
 
-        ov94_Setunk_18Andunk_24(appState, 7, 11);
+        // this jumps us to screen #7 (network handler) with argument 11
+        GTSApplication_SetNextScreenWithArgument(appState, 7, 11);
 
-        appState->unk_1C = 1;
+        appState->previousScreen = 1;
         appState->currentScreenInstruction = 9;
     }
 
@@ -425,13 +426,13 @@ static int ov94_0223CC28(GTSApplicationState *param0)
         switch (param0->unk_10C) {
         case 0: // deposit pokemon
             if (param0->isPokemonListed == 0) {
-                ov94_Setunk_18Andunk_24(param0, 5, 5);
+                GTSApplication_SetNextScreenWithArgument(param0, 5, 5);
                 param0->currentScreenInstruction = 9;
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
             } else {
                 if (param0->networkTimer == 0) {
-                    ov94_Setunk_18Andunk_24(param0, 7, 11);
-                    param0->unk_1C = 2;
+                    GTSApplication_SetNextScreenWithArgument(param0, 7, 11);
+                    param0->previousScreen = 2;
                     param0->currentScreenInstruction = 9;
                     param0->networkTimer = (60 * 30);
                     Sound_PlayEffect(SEQ_SE_CONFIRM);
@@ -445,7 +446,7 @@ static int ov94_0223CC28(GTSApplicationState *param0)
             }
             break;
         case 1: // seek pokemon
-            ov94_Setunk_18Andunk_24(param0, 4, 0);
+            GTSApplication_SetNextScreenWithArgument(param0, 4, 0);
             param0->currentScreenInstruction = 9;
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             break;
@@ -494,7 +495,7 @@ static int ov94_0223CE00(GTSApplicationState *param0)
 
 static int GTSApplication_MainMenu_FadeAndExit(GTSApplicationState *appState)
 {
-    if (appState->unk_18 == 0) {
+    if (appState->nextScreen == 0) {
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
     } else {
         StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
@@ -526,7 +527,7 @@ static int ov94_0223CE7C(GTSApplicationState *param0)
         } else {
             Window_EraseMessageBox(&param0->unk_109C, 1);
             Window_ClearAndCopyToVRAM(&param0->unk_109C);
-            ov94_Setunk_18Andunk_24(param0, 0, 0);
+            GTSApplication_SetNextScreenWithArgument(param0, 0, 0);
             param0->currentScreenInstruction = 7;
         }
     }

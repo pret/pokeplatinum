@@ -1815,7 +1815,7 @@ static void ov65_0222F4C4(UnkStruct_ov65_0222EBE0 *param0, int param1)
     param0->unk_04->unk_00.unk_1D = TrainerInfo_Appearance(v0);
     param0->unk_04->unk_00.unk_1E = TrainerInfo_Gender(v0);
     param0->unk_04->unk_00.unk_1F = WiFiHistory_GetCountry(wiFiHistory);
-    param0->unk_04->unk_00.unk_20 = sub_0202C8C4(wiFiHistory);
+    param0->unk_04->unk_00.unk_20 = WiFiHistory_GetRegion(wiFiHistory);
     param0->unk_04->unk_00.unk_21 = 1;
     param0->unk_04->unk_00.unk_22 = 1;
 

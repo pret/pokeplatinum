@@ -72,7 +72,7 @@
 #include "overlay092/ov92_021D0D80.h"
 #include "overlay093/ov93_021D0D80.h"
 #include "overlay093/ov93_021D111C.h"
-#include "overlay094/ov94_0223BCB0.h"
+#include "overlay094/application.h"
 #include "overlay095/ov95_02246C20.h"
 #include "overlay096/ov96_0223B6A0.h"
 #include "overlay099/ov99_021D0D80.h"

@@ -7,7 +7,7 @@ typedef struct {
     s8 level;
     s8 level2;
     s8 unk_05;
-    s8 unk_06;
+    s8 unk_06; // wtfrick are you..
     u8 unk_07;
 } UnkStruct_ov94_0223BA24;
 

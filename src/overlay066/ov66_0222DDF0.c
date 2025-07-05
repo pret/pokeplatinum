@@ -2326,7 +2326,7 @@ static void ov66_0222F7C8(UnkStruct_ov66_0222F6C4 *param0, SaveData *saveData, u
     param0->unk_20.unk_3A = TrainerInfo_Appearance(v0);
     param0->unk_20.unk_3A = ov66_02230C0C(param0->unk_20.unk_3A);
     param0->unk_20.unk_3C = WiFiHistory_GetCountry(wiFiHistory);
-    param0->unk_20.unk_3E = sub_0202C8C4(wiFiHistory);
+    param0->unk_20.unk_3E = WiFiHistory_GetRegion(wiFiHistory);
     param0->unk_20.unk_3F = Pokedex_IsNationalDexObtained(v3);
     param0->unk_20.unk_40 = TrainerInfo_IsMainStoryCleared(v0);
     param0->unk_20.unk_41 = 0xff;

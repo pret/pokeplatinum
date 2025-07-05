@@ -327,8 +327,8 @@ int ov92_021D0D80(ApplicationManager *appMan, int *param1)
 
     v0->wiFiHistory = SaveData_WiFiHistory(saveData);
     v0->unk_BB14 = WiFiHistory_GetCountry(v0->wiFiHistory);
-    v0->unk_BB18 = sub_0202C8C4(v0->wiFiHistory);
-    v0->unk_BB24 = sub_0202C990(v0->wiFiHistory);
+    v0->unk_BB18 = WiFiHistory_GetRegion(v0->wiFiHistory);
+    v0->unk_BB24 = WiFiHistory_HasInteractedOutsideJapan(v0->wiFiHistory);
     v0->options = SaveData_GetOptions(saveData);
 
     ov92_021D14F0();
@@ -542,7 +542,7 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
         switch (v9) {
         case 0:
             ov92_021D1F74(v0);
-            sub_0202C88C(v0->wiFiHistory, v0->unk_BB1C, v0->unk_BB20);
+            WiFiHistory_SetCountryAndRegion(v0->wiFiHistory, v0->unk_BB1C, v0->unk_BB20);
 
             v0->unk_BB14 = v0->unk_BB1C;
             v0->unk_BB18 = v0->unk_BB20;
@@ -791,7 +791,7 @@ static void ov92_021D1634(UnkStruct_ov92_021D1B24 *param0, u32 param1, s16 param
     ov92_021D23E8(&v0, &v1);
 
     param0->unk_0C.unk_04[param1].unk_04 = v0;
-    param0->unk_0C.unk_04[param1].unk_28 = sub_0202C8C8(param0->wiFiHistory, param4, param5);
+    param0->unk_0C.unk_04[param1].unk_28 = WiFiHistory_GetGeonetCommunicatedWith(param0->wiFiHistory, param4, param5);
     param0->unk_0C.unk_04[param1].unk_2A = param4;
     param0->unk_0C.unk_04[param1].unk_2C = param5;
 }

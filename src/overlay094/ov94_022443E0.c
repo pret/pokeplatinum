@@ -5,8 +5,8 @@
 #include <string.h>
 
 #include "applications/pokemon_summary_screen/main.h"
+#include "overlay094/application.h"
 #include "overlay094/gts_application_state.h"
-#include "overlay094/ov94_0223BCB0.h"
 #include "overlay094/ov94_0223FB48.h"
 
 #include "overlay_manager.h"
@@ -54,7 +54,7 @@ int ov94_02244490(GTSApplicationState *param0, int param1)
 
     if (ApplicationManager_Exec(param0->appMan)) {
         ApplicationManager_Free(param0->appMan);
-        ov94_Setunk_18Andunk_24(param0, 5, param0->unk_24);
+        GTSApplication_SetNextScreenWithArgument(param0, 5, param0->screenArgument);
 
         v0 = 4;
     }
