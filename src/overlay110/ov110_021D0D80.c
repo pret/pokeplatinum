@@ -577,161 +577,25 @@ static void ov110_021D1468 (UnkStruct_ov110_021D0F78 * param0)
     Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
 }
 
-// clang-format off
-asm static void ov110_021D1650 (UnkStruct_ov110_021D0F78 * param0)
-{
-    push {r3, r4, lr}
-    sub sp, #0x1c
-    add r4, r0, #0
-    add r1, r4, #0
-    add r1, #0x50
-    mov r2, #0x23
-    mov r3, #1
-    bl ov110_021D13CC
-    add r0, r4, #0
-    add r0, #0x50
-    bl Window_ScheduleCopyToVRAM
-    add r0, r4, #0
-    mov r1, #1
-    bl ov110_021D17AC
-    add r1, r4, #0
-    add r2, r0, #0
-    add r0, r4, #0
-    add r1, #0x60
-    mov r3, #1
-    bl ov110_021D13CC
-    ldrb r1, [r4, #5]
-    mov r0, #1
-    bl sub_0205E430
-    add r1, r0, #0
-    mov r0, #0x4b
-    lsl r0, r0, #2
-    ldr r0, [r4, r0]
-    mov r2, #0xff
-    bl sub_02030698
-    add r2, r0, #0
-    add r0, r4, #0
-    mov r1, #0
-    bl ov110_021D13F0
-    mov r2, #0
-    str r2, [sp]
-    mov r1, #1
-    str r1, [sp, #4]
-    mov r0, #2
-    str r0, [sp, #8]
-    str r2, [sp, #0xc]
-    str r2, [sp, #0x10]
-    str r2, [sp, #0x14]
-    str r1, [sp, #0x18]
-    add r1, r4, #0
-    add r0, r4, #0
-    add r1, #0x60
-    mov r2, #0x26
-    mov r3, #0x70
-    bl ov110_021D1324
-    ldrb r1, [r4, #5]
-    mov r0, #1
-    bl sub_0205E488
-    add r1, r0, #0
-    mov r0, #0x4b
-    lsl r0, r0, #2
-    ldr r0, [r4, r0]
-    mov r2, #0xff
-    bl sub_02030698
-    add r2, r0, #0
-    add r0, r4, #0
-    mov r1, #0
-    bl ov110_021D13F0
-    mov r1, #0
-    str r1, [sp]
-    mov r0, #1
-    str r0, [sp, #4]
-    mov r0, #2
-    str r0, [sp, #8]
-    str r1, [sp, #0xc]
-    str r1, [sp, #0x10]
-    str r1, [sp, #0x14]
-    add r1, r4, #0
-    str r0, [sp, #0x18]
-    add r0, r4, #0
-    add r1, #0x60
-    mov r2, #0x28
-    mov r3, #0xe0
-    bl ov110_021D1324
-    add r0, r4, #0
-    add r0, #0x60
-    bl Window_ScheduleCopyToVRAM
-    add r1, r4, #0
-    add r0, r4, #0
-    add r1, #0x70
-    mov r2, #0x1f
-    mov r3, #1
-    bl ov110_021D13CC
-    ldrb r1, [r4, #5]
-    mov r0, #1
-    bl sub_0205E45C
-    add r1, r0, #0
-    mov r0, #0x4b
-    lsl r0, r0, #2
-    ldr r0, [r4, r0]
-    mov r2, #0xff
-    bl sub_02030698
-    add r2, r0, #0
-    add r0, r4, #0
-    mov r1, #0
-    bl ov110_021D13F0
-    mov r2, #0
-    str r2, [sp]
-    mov r1, #1
-    str r1, [sp, #4]
-    mov r0, #2
-    str r0, [sp, #8]
-    str r2, [sp, #0xc]
-    str r2, [sp, #0x10]
-    str r2, [sp, #0x14]
-    str r1, [sp, #0x18]
-    add r1, r4, #0
-    add r0, r4, #0
-    add r1, #0x70
-    mov r2, #0x26
-    mov r3, #0x70
-    bl ov110_021D1324
-    ldrb r1, [r4, #5]
-    mov r0, #1
-    bl sub_0205E4B4
-    add r1, r0, #0
-    mov r0, #0x4b
-    lsl r0, r0, #2
-    ldr r0, [r4, r0]
-    mov r2, #0xff
-    bl sub_02030698
-    add r2, r0, #0
-    add r0, r4, #0
-    mov r1, #0
-    bl ov110_021D13F0
-    mov r1, #0
-    str r1, [sp]
-    mov r0, #1
-    str r0, [sp, #4]
-    mov r0, #2
-    str r0, [sp, #8]
-    str r1, [sp, #0xc]
-    str r1, [sp, #0x10]
-    str r1, [sp, #0x14]
-    add r1, r4, #0
-    str r0, [sp, #0x18]
-    add r0, r4, #0
-    add r1, #0x70
-    mov r2, #0x28
-    mov r3, #0xe0
-    bl ov110_021D1324
-    add r4, #0x70
-    add r0, r4, #0
-    bl Window_ScheduleCopyToVRAM
-    add sp, #0x1c
-    pop {r3, r4, pc}
+static void ov110_021D1650 (UnkStruct_ov110_021D0F78 * param0) {
+    u8 v0 = 4;
+    ov110_021D13CC(param0, &param0->unk_10[v0], 35, 1);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
+    v0 = 5;
+    ov110_021D13CC(param0, &param0->unk_10[v0], ov110_021D17AC(param0, 1), 1);
+    ov110_021D13F0(param0, 0, sub_02030698(param0->frontier, sub_0205E430(1, param0->unk_05), 0xFF));
+    ov110_021D1324(param0, &param0->unk_10[v0], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
+    ov110_021D13F0(param0, 0, sub_02030698(param0->frontier, sub_0205E488(1, param0->unk_05), 0xFF));
+    ov110_021D1324(param0, &param0->unk_10[v0], 40, 28 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
+    v0 = 6;
+    ov110_021D13CC(param0, &param0->unk_10[v0], 31, 1);
+    ov110_021D13F0(param0, 0, sub_02030698(param0->frontier, sub_0205E45C(1, param0->unk_05), 0xFF));
+    ov110_021D1324(param0, &param0->unk_10[v0], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
+    ov110_021D13F0(param0, 0, sub_02030698(param0->frontier, sub_0205E4B4(1, param0->unk_05), 0xFF));
+    ov110_021D1324(param0, &param0->unk_10[v0], 40, 28 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
 }
-// clang-format on
 
 static u32 ov110_021D17AC (UnkStruct_ov110_021D0F78 * param0, u8 param1)
 {
