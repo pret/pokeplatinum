@@ -621,205 +621,66 @@ static u32 ov110_021D17AC (UnkStruct_ov110_021D0F78 * param0, u8 param1)
     return 29;
 }
 
-// clang-format off
-asm static void ov110_021D1808 (UnkStruct_ov110_021D0F78 * param0)
+static void ov110_021D1808 (UnkStruct_ov110_021D0F78 * param0)
 {
-    push {r4, r5, r6, lr}
-    sub sp, #0x20
-    add r5, r0, #0
-    add r0, #0x10
-    mov r1, #0
-    bl Window_FillTilemap
-    mov r1, #0
-    str r1, [sp]
-    mov r0, #1
-    str r0, [sp, #4]
-    mov r0, #2
-    str r0, [sp, #8]
-    str r1, [sp, #0xc]
-    str r1, [sp, #0x10]
-    str r1, [sp, #0x14]
-    str r1, [sp, #0x18]
-    add r1, r5, #0
-    add r0, r5, #0
-    add r1, #0x10
-    mov r2, #0x18
-    mov r3, #8
-    bl ov110_021D1324
-    ldrb r0, [r5, #5]
-    cmp r0, #0
-    bne _021D1844
-    mov r2, #0x1a
-    mov r3, #0xd8
-    b _021D1852
- _021D1844:
-    cmp r0, #1
-    bne _021D184E
-    mov r2, #0x1b
-    mov r3, #0xd8
-    b _021D1852
- _021D184E:
-    mov r2, #0x1c
-    mov r3, #0xd8
- _021D1852:
-    mov r1, #0
-    str r1, [sp]
-    mov r0, #1
-    str r0, [sp, #4]
-    mov r0, #2
-    str r0, [sp, #8]
-    str r1, [sp, #0xc]
-    str r1, [sp, #0x10]
-    str r1, [sp, #0x14]
-    add r1, r5, #0
-    str r0, [sp, #0x18]
-    add r0, r5, #0
-    add r1, #0x10
-    bl ov110_021D1324
-    add r0, r5, #0
-    add r0, #0x10
-    bl Window_ScheduleCopyToVRAM
-    add r0, r5, #0
-    bl ov110_021D19B0
-    mov r3, #0
-    add r1, r5, #0
-    str r3, [sp]
-    mov r0, #1
-    str r0, [sp, #4]
-    mov r0, #2
-    str r0, [sp, #8]
-    str r3, [sp, #0xc]
-    str r3, [sp, #0x10]
-    str r3, [sp, #0x14]
-    add r0, r5, #0
-    add r1, #0x20
-    mov r2, #0x27
-    str r3, [sp, #0x18]
-    bl ov110_021D1324
-    add r0, r5, #0
-    add r0, #0x20
-    bl Window_ScheduleCopyToVRAM
-    add r1, r5, #0
-    add r0, r5, #0
-    add r1, #0x30
-    mov r2, #0x1d
-    mov r3, #1
-    bl ov110_021D13CC
-    mov r0, #0x4a
-    lsl r0, r0, #2
-    ldr r0, [r5, r0]
-    bl SaveData_GetBattleFrontier
-    add r4, r0, #0
-    ldrb r0, [r5, #5]
-    bl sub_0205E55C
-    add r6, r0, #0
-    ldrb r0, [r5, #5]
-    bl sub_0205E55C
-    bl sub_0205E6A8
-    add r2, r0, #0
-    add r0, r4, #0
-    add r1, r6, #0
-    bl sub_02030698
-    ldrh r1, [r5, #8]
-    cmp r1, r0
-    beq _021D18E6
-    mov r2, #0
-    b _021D18FC
- _021D18E6:
-    ldrb r0, [r5, #5]
-    bl sub_0205E50C
-    add r1, r0, #0
-    mov r0, #0x4b
-    lsl r0, r0, #2
-    ldr r0, [r5, r0]
-    mov r2, #0xff
-    bl sub_02030698
-    add r2, r0, #0
- _021D18FC:
-    add r0, r5, #0
-    mov r1, #0
-    bl ov110_021D13F0
-    mov r2, #0
-    str r2, [sp]
-    mov r1, #1
-    str r1, [sp, #4]
-    mov r0, #2
-    str r0, [sp, #8]
-    str r2, [sp, #0xc]
-    str r2, [sp, #0x10]
-    str r2, [sp, #0x14]
-    str r1, [sp, #0x18]
-    add r1, r5, #0
-    add r0, r5, #0
-    add r1, #0x30
-    mov r2, #0x26
-    mov r3, #0x70
-    bl ov110_021D1324
-    add r0, r5, #0
-    add r0, #0x30
-    bl Window_ScheduleCopyToVRAM
-    add r1, r5, #0
-    add r0, r5, #0
-    add r1, #0x40
-    mov r2, #0x1f
-    mov r3, #1
-    bl ov110_021D13CC
-    mov r0, #0x4a
-    lsl r0, r0, #2
-    ldr r0, [r5, r0]
-    mov r1, #0xb
-    add r2, sp, #0x1c
-    bl sub_020308A0
-    add r4, r0, #0
-    ldr r0, [sp, #0x1c]
-    cmp r0, #1
-    beq _021D1956
-    mov r6, #0
-    b _021D196E
- _021D1956:
-    ldrb r0, [r5, #5]
-    bl sub_0205E584
-    add r2, r0, #0
-    mov r0, #0x4a
-    lsl r0, r0, #2
-    ldrh r3, [r5, #8]
-    ldr r0, [r5, r0]
-    add r1, r4, #0
-    bl sub_020308BC
-    add r6, r0, #0
- _021D196E:
-    cmp r4, #0
-    beq _021D1978
-    add r0, r4, #0
-    bl Heap_FreeToHeap
- _021D1978:
-    add r0, r5, #0
-    mov r1, #0
-    add r2, r6, #0
-    bl ov110_021D13F0
-    mov r2, #0
-    str r2, [sp]
-    mov r1, #1
-    str r1, [sp, #4]
-    mov r0, #2
-    str r0, [sp, #8]
-    str r2, [sp, #0xc]
-    str r2, [sp, #0x10]
-    str r2, [sp, #0x14]
-    str r1, [sp, #0x18]
-    add r1, r5, #0
-    add r0, r5, #0
-    add r1, #0x40
-    mov r2, #0x26
-    mov r3, #0x70
-    bl ov110_021D1324
-    add r5, #0x40
-    add r0, r5, #0
-    bl Window_ScheduleCopyToVRAM
-    add sp, #0x20
-    pop {r4, r5, r6, pc}
+    u8 v0;
+    int v1;
+    u32 v2;
+    u16 v3;
+    int v4;
+    BattleFrontierStage *frontierStage;
+    
+    v0 = 0;
+    Window_FillTilemap(&param0->unk_10[v0], 0);
+    ov110_021D1324(param0, &param0->unk_10[v0], 24, 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 0);
+
+    if (param0->unk_05 == 0) {
+        v1 = 26;
+        v2 = 216;
+    } else if (param0->unk_05 == 1) {
+        v1 = 27;
+        v2 = 216;
+    } else {
+        v1 = 28;
+        v2 = 216;
+    }
+
+    ov110_021D1324(param0, &param0->unk_10[v0], v1, v2, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
+    v0 = 1;
+    ov110_021D19B0(param0);
+    ov110_021D1324(param0, &param0->unk_10[v0], 39, 0, 0, 1, 2, 0, FONT_SYSTEM, 0, 0);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
+    v0 = 2;
+    ov110_021D13CC(param0, &param0->unk_10[v0], 29, 1);
+
+    if (param0->unk_08 != sub_02030698(SaveData_GetBattleFrontier(param0->saveData), sub_0205E55C(param0->unk_05), sub_0205E6A8(sub_0205E55C(param0->unk_05)))) {
+        v3 = 0;
+    } else {
+        v3 = sub_02030698(param0->frontier, sub_0205E50C(param0->unk_05), 0xFF);
+    }
+
+    ov110_021D13F0(param0, 0, v3);
+    ov110_021D1324(param0, &param0->unk_10[v0], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
+    v0 = 3;
+    ov110_021D13CC(param0, &param0->unk_10[v0], 31, 1);
+    frontierStage = sub_020308A0(param0->saveData, 11, &v4);
+    
+    if (v4 != 1) {
+        v3 = 0;
+    } else {
+        v3 = sub_020308BC(param0->saveData, frontierStage, sub_0205E584(param0->unk_05), param0->unk_08);
+    }
+
+    if (frontierStage != NULL) {
+        Heap_FreeToHeap(frontierStage);
+    }
+    
+    ov110_021D13F0(param0, 0, v3);
+    ov110_021D1324(param0, &param0->unk_10[v0], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
 }
-// clang-format on
 
 static void ov110_021D19B0 (UnkStruct_ov110_021D0F78 * param0)
 {
