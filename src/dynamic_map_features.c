@@ -27,7 +27,7 @@ const static DynamicMapFeaturesInitFunc sInitFuncs[DYNAMIC_MAP_FEATURES_COUNT] =
     GreatMarsh_DynamicMapFeaturesInit,
     PlatformLift_DynamicMapFeaturesInit,
     EternaGym_DynamicMapFeaturesInit,
-    DistortionWorld_DynamicMapFeaturesInit,
+    DistWorld_DynamicMapFeaturesInit,
     Villa_DynamicMapFeaturesInit
 };
 
@@ -41,7 +41,7 @@ const static DynamicMapFeaturesFreeFunc sFreeFuncs[DYNAMIC_MAP_FEATURES_COUNT] =
     NULL,
     NULL,
     EternaGym_DynamicMapFeaturesFree,
-    DistortionWorld_DynamicMapFeaturesFree,
+    DistWorld_DynamicMapFeaturesFree,
     Villa_DynamicMapFeaturesFree
 };
 
@@ -55,7 +55,7 @@ const static DynamicMapFeaturesCheckCollisionFunc sCheckCollisionFuncs[DYNAMIC_M
     NULL,
     NULL,
     EternaGym_DynamicMapFeaturesCheckCollision,
-    DistortionWorld_DynamicMapFeaturesCheckCollision,
+    DistWorld_DynamicMapFeaturesCheckCollision,
     Villa_DynamicMapFeaturesCheckCollision
 };
 

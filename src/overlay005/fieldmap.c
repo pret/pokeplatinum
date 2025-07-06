@@ -221,7 +221,7 @@ static BOOL FieldMap_Init(ApplicationManager *appMan, int *param1)
         sub_020556A0(fieldSystem, fieldSystem->location->mapId);
         sub_0203F5C0(fieldSystem, 3);
 
-        fieldSystem->unk_04->hBlankSystem = HBlankSystem_New(4);
+        fieldSystem->unk_04->hBlankSystem = HBlankSystem_New(HEAP_ID_FIELD);
         HBlankSystem_Start(fieldSystem->unk_04->hBlankSystem);
         fieldSystem->unk_04->unk_20 = ov5_021EF4BC(HEAP_ID_FIELD, fieldSystem->unk_04->hBlankSystem);
         break;
@@ -694,7 +694,7 @@ static void ov5_021D15F4(FieldSystem *fieldSystem)
 
     if (fieldSystem->unk_20 == 1) {
         if (FieldMap_InDistortionWorld(fieldSystem) == TRUE) {
-            ov9_02249F9C(fieldSystem);
+            DistWorld_UpdateCameraAngle(fieldSystem);
         }
 
         Camera_ComputeViewMatrixWithRoll();

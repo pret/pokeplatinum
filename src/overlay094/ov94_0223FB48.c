@@ -686,7 +686,7 @@ static int ov94_022405DC(GTSApplicationState *param0)
     v0.suppressCursor = FALSE;
     v0.loopAround = FALSE;
 
-    param0->unk_10CC = StringList_New(3, 62);
+    param0->unk_10CC = StringList_New(3, HEAP_ID_62);
 
     StringList_AddFromMessageBank(param0->unk_10CC, param0->gtsMessageLoader, GTS_Text_Option_Summary, 1);
     StringList_AddFromMessageBank(param0->unk_10CC, param0->gtsMessageLoader, GTS_Text_Option_Offer, 2);
@@ -777,7 +777,7 @@ static int ov94_02240830(GTSApplicationState *param0)
     v0.suppressCursor = FALSE;
     v0.loopAround = FALSE;
 
-    param0->unk_10CC = StringList_New(3, 62);
+    param0->unk_10CC = StringList_New(3, HEAP_ID_62);
 
     StringList_AddFromMessageBank(param0->unk_10CC, param0->gtsMessageLoader, 84, 1);
     StringList_AddFromMessageBank(param0->unk_10CC, param0->gtsMessageLoader, 85, 2);

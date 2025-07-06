@@ -19,7 +19,7 @@ void ov23_022419B4(int param0, int param1, void *param2, void *param3);
 void ov23_02241A80(UnkStruct_ov23_02241A80 *param0, int param1);
 BOOL ov23_02241A88(UnkStruct_ov23_02241A80 *param0, UnkStruct_ov23_02241A88 *param1);
 void ov23_02241AE8(int param0, int param1, int param2, int param3);
-BOOL ov23_02241CF4(int param0);
+BOOL IsMiningItemSphere(int miningItemID);
 BOOL ov23_02241D04(int param0, int param1);
 int ov23_02241D18(int param0);
 int ov23_02241D38(int param0);

@@ -231,7 +231,7 @@ static void ov23_0224DD2C(UnkStruct_ov23_0224E280 *param0)
 {
     ListMenuTemplate v0;
 
-    param0->unk_1C = StringList_New(NELEMS(Unk_ov23_022568B4), 4);
+    param0->unk_1C = StringList_New(NELEMS(Unk_ov23_022568B4), HEAP_ID_FIELD);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_0C, 3, 1, 1, 10, NELEMS(Unk_ov23_022568B4) * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (10 * NELEMS(Unk_ov23_022568B4) * 2));
     Window_DrawStandardFrame(&param0->unk_0C, 1, 1024 - (18 + 12) - 9, 11);
@@ -240,7 +240,7 @@ static void ov23_0224DD2C(UnkStruct_ov23_0224E280 *param0)
         MessageLoader *v1;
         int v2;
 
-        v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0634, HEAP_ID_FIELD);
+        v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_COMMON, HEAP_ID_FIELD);
 
         for (v2 = 0; v2 < NELEMS(Unk_ov23_022568B4); v2++) {
             StringList_AddFromMessageBank(param0->unk_1C, v1, Unk_ov23_022568B4[v2].unk_00, Unk_ov23_022568B4[v2].unk_04);
@@ -257,7 +257,7 @@ static void ov23_0224DD2C(UnkStruct_ov23_0224E280 *param0)
     v0.maxDisplay = NELEMS(Unk_ov23_022568B4);
 
     param0->unk_3A = 0;
-    param0->unk_20 = ListMenu_New(&v0, 0, 0, 4);
+    param0->unk_20 = ListMenu_New(&v0, 0, 0, HEAP_ID_FIELD);
 
     Window_CopyToVRAM(&param0->unk_0C);
     sub_020594FC();
@@ -292,7 +292,7 @@ static void ov23_0224DE3C(UnkStruct_ov23_0224E280 *param0)
 {
     ListMenuTemplate v0;
 
-    param0->unk_1C = StringList_New(4, 4);
+    param0->unk_1C = StringList_New(4, HEAP_ID_FIELD);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_0C, 3, 1, 1, 16, 4 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (16 * 4 * 2));
     Window_DrawStandardFrame(&param0->unk_0C, 1, 1024 - (18 + 12) - 9, 11);
@@ -329,7 +329,7 @@ static void ov23_0224DE3C(UnkStruct_ov23_0224E280 *param0)
     v0.window = &param0->unk_0C;
 
     param0->unk_3A = 0;
-    param0->unk_20 = ListMenu_New(&v0, 0, 0, 4);
+    param0->unk_20 = ListMenu_New(&v0, 0, 0, HEAP_ID_FIELD);
 
     Window_CopyToVRAM(&param0->unk_0C);
 }
@@ -380,7 +380,7 @@ static void ov23_0224DFA0(UnkStruct_ov23_0224E280 *param0)
 {
     ListMenuTemplate v0;
 
-    param0->unk_1C = StringList_New(4, 4);
+    param0->unk_1C = StringList_New(4, HEAP_ID_FIELD);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_0C, 3, 1, 1, 16, 4 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (16 * 4 * 2));
     Window_DrawStandardFrame(&param0->unk_0C, 1, 1024 - (18 + 12) - 9, 11);
@@ -405,7 +405,7 @@ static void ov23_0224DFA0(UnkStruct_ov23_0224E280 *param0)
     v0.window = &param0->unk_0C;
 
     param0->unk_3A = 0;
-    param0->unk_20 = ListMenu_New(&v0, 0, 0, 4);
+    param0->unk_20 = ListMenu_New(&v0, 0, 0, HEAP_ID_FIELD);
 
     Window_CopyToVRAM(&param0->unk_0C);
 }
@@ -966,7 +966,7 @@ static void ov23_0224EAA4(UnkStruct_ov23_022577B0 *param0)
     ListMenuTemplate v0;
     const int v1 = 4 + 1;
 
-    param0->unk_18 = StringList_New(v1, 4);
+    param0->unk_18 = StringList_New(v1, HEAP_ID_FIELD);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_08, 3, 1, 1, 16, v1 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (16 * v1 * 2));
     Window_DrawStandardFrame(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
@@ -993,7 +993,7 @@ static void ov23_0224EAA4(UnkStruct_ov23_022577B0 *param0)
     v0.maxDisplay = v1;
 
     param0->unk_36 = 0;
-    param0->unk_1C = ListMenu_New(&v0, 0, 0, 4);
+    param0->unk_1C = ListMenu_New(&v0, 0, 0, HEAP_ID_FIELD);
 
     Window_CopyToVRAM(&param0->unk_08);
 }

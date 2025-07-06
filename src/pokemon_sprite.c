@@ -1,15 +1,12 @@
 #include "pokemon_sprite.h"
 
-#include <nitro.h>
-#include <string.h>
-
+#include "constants/graphics.h"
 #include "generated/shadow_sizes.h"
 
 #include "struct_defs/sprite_animation_frame.h"
 
-#include "bg_window.h"
 #include "heap.h"
-#include "inlines.h"
+#include "math_util.h"
 #include "narc.h"
 #include "palette.h"
 #include "pokemon_sprite.h"
@@ -37,11 +34,6 @@
 #define MAN_LAST_SPRITE_CHAR_OFFSET_2 0x2828
 
 #define MAN_SHADOW_CHAR_OFFSET 0x5050
-
-#define MON_SPRITE_FRAME_WIDTH     80
-#define MON_SPRITE_FRAME_HEIGHT    80
-#define SHADOW_SPRITE_FRAME_WIDTH  64
-#define SHADOW_SPRITE_FRAME_HEIGHT 16
 
 #define NUM_MON_SPRITE_FRAMES_H 2
 #define NUM_MON_SPRITE_FRAMES_V 1
@@ -421,9 +413,9 @@ void *PokemonSpriteManager_New(enum HeapId heapID)
     monSpriteMan->charRawData = Heap_AllocFromHeap(heapID, MON_SPRITE_CHAR_BUF_SIZE);
     monSpriteMan->plttRawData = Heap_AllocFromHeap(heapID, MON_SPRITE_PLTT_BUF_SIZE);
 
-    MI_CpuClearFast(monSpriteMan->plttRawData, sizeof(MON_SPRITE_PLTT_BUF_SIZE));
+    MI_CpuClearFast(monSpriteMan->plttRawData, sizeof(u32));
     monSpriteMan->plttRawDataUnfaded = Heap_AllocFromHeap(heapID, MON_SPRITE_PLTT_BUF_SIZE);
-    MI_CpuClearFast(monSpriteMan->plttRawDataUnfaded, sizeof(MON_SPRITE_PLTT_BUF_SIZE));
+    MI_CpuClearFast(monSpriteMan->plttRawDataUnfaded, sizeof(u32));
 
     for (int i = 0; i < MAX_MON_SPRITES; i++) {
         MI_CpuClearFast(&monSpriteMan->sprites[i], sizeof(PokemonSprite));
@@ -826,6 +818,8 @@ void PokemonSprite_SetAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttr
     case MON_SPRITE_SHADOW_SIZE:
         monSprite->shadow.size = value;
         break;
+    default:
+        break;
     }
 }
 
@@ -924,6 +918,8 @@ int PokemonSprite_GetAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttri
         return monSprite->shadow.isAffine;
     case MON_SPRITE_SHADOW_SIZE:
         return monSprite->shadow.size;
+    default:
+        break;
     }
 
     GF_ASSERT(FALSE);
@@ -1079,6 +1075,8 @@ void PokemonSprite_AddAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttr
     case MON_SPRITE_SHADOW_SIZE:
         monSprite->shadow.size += delta;
         break;
+    default:
+        break;
     }
 }
 
@@ -1147,7 +1145,7 @@ static inline void TickPokemonSpriteTaskAnim(u8 *active, u8 *currSpriteFrame, u8
 
                 if (animFrames[*currAnimFrame].frameDelay == loopTimers[*currAnimFrame] || animFrames[*currAnimFrame].frameDelay == 0) {
                     loopTimers[*currAnimFrame] = 0;
-                    *currAnimFrame++;
+                    (void)*currAnimFrame++;
                 } else {
                     *currAnimFrame = animFrames[*currAnimFrame].spriteFrame * -1 - 2;
                 }

@@ -4,21 +4,6 @@
 #include "constants/heap.h"
 #include "constants/narc.h"
 
-#define SLOTS_PER_PALETTE      16
-#define PALETTE_SIZE           (SLOTS_PER_PALETTE)
-#define PALETTE_SIZE_EXT       (SLOTS_PER_PALETTE * 16)
-#define PALETTE_SIZE_BYTES     (PALETTE_SIZE * sizeof(u16))
-#define PALETTE_SIZE_EXT_BYTES (PALETTE_SIZE_EXT * sizeof(u16))
-#define PLTT_OFFSET(i)         ((i) * PALETTE_SIZE_BYTES)
-#define PLTT_DEST(i)           ((i) * PALETTE_SIZE)
-
-// Graphics engine A
-#define HW_BG_A_PLTT_COLOR(palette, colorIdx)  ((GXRgb *)(HW_BG_PLTT + PLTT_OFFSET(palette) + colorIdx * sizeof(GXRgb)))
-#define HW_OBJ_A_PLTT_COLOR(palette, colorIdx) ((GXRgb *)(HW_OBJ_PLTT + PLTT_OFFSET(palette) + colorIdx * sizeof(GXRgb)))
-// Graphics engine B
-#define HW_BG_B_PLTT_COLOR(palette, colorIdx)  ((GXRgb *)(HW_DB_BG_PLTT + PLTT_OFFSET(palette) + colorIdx * sizeof(GXRgb)))
-#define HW_OBJ_B_PLTT_COLOR(palette, colorIdx) ((GXRgb *)(HW_DB_OBJ_PLTT + PLTT_OFFSET(palette) + colorIdx * sizeof(GXRgb)))
-
 #define BlendColor(source, target, fraction) ((source) + (((target) - (source)) * (fraction) >> 4))
 
 #define ColorR(source) ((source) & 0x1F)

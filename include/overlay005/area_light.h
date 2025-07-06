@@ -5,7 +5,7 @@
 #include <nitro/gx.h>
 #include <nnsys.h>
 
-#include "constants/gx.h"
+#include "constants/graphics.h"
 
 #include "overlay005/model_attributes.h"
 

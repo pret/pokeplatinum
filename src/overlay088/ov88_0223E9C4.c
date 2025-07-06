@@ -216,7 +216,7 @@ ListMenu *ov88_0223ED94(StringList *param0, int param1, Window *param2, BgConfig
     v1.choices = param0;
     v1.window = param2;
     v1.cursorCallback = ov88_0223EE14;
-    v0 = ListMenu_New(&v1, 0, 0, 26);
+    v0 = ListMenu_New(&v1, 0, 0, HEAP_ID_26);
 
     return v0;
 }

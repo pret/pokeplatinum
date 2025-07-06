@@ -7,7 +7,6 @@
 
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0206D140_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/trainer.h"
@@ -19,6 +18,7 @@
 #include "game_options.h"
 #include "game_records.h"
 #include "journal.h"
+#include "pal_pad.h"
 #include "party.h"
 #include "poketch.h"
 #include "rtc.h"

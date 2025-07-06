@@ -12,6 +12,7 @@
 #include "generated/mart_frontier_id.h"
 #include "generated/mart_seal_id.h"
 #include "generated/mart_specialties_id.h"
+#include "generated/movement_types.h"
 #include "generated/moves.h"
 #include "generated/mystery_gift_delivery_stages.h"
 #include "generated/npc_trades.h"
@@ -961,10 +962,10 @@
     .short \partySlot
     .endm
 
-    .macro ScrCmd_09A arg0, arg1
+    .macro FindPartySlotWithMove destVar, move
     .short 154
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \move
     .endm
 
     .macro ScrCmd_09B arg0, arg1
@@ -1143,19 +1144,19 @@
     .short \direction
     .endm
 
-    .macro ScrCmd_0BF arg0
+    .macro UseRockClimb partySlot
     .short 191
-    .short \arg0
+    .short \partySlot
     .endm
 
-    .macro ScrCmd_0C0 arg0
+    .macro UseSurf partySlot
     .short 192
-    .short \arg0
+    .short \partySlot
     .endm
 
-    .macro ScrCmd_0C1 arg0
+    .macro UseWaterfall partySlot
     .short 193
-    .short \arg0
+    .short \partySlot
     .endm
 
     .macro ScrCmd_0C2 arg0, arg1, arg2
@@ -2177,10 +2178,10 @@
     .short \arg4
     .endm
 
-    .macro ScrCmd_188 arg0, arg1
+    .macro SetObjectEventMovementType localID, movementType
     .short 392
-    .short \arg0
-    .short \arg1
+    .short \localID
+    .short \movementType
     .endm
 
     .macro SetObjectEventDir localID, dir
@@ -4536,7 +4537,7 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_31F
+    .macro ResetDistortionWorldPersistedCameraAngles
     .short 799
     .endm
 

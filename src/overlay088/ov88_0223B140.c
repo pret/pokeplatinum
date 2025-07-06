@@ -9,7 +9,6 @@
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_02095E80_decl.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/struct_02027F8C.h"
 #include "struct_defs/struct_02095E80_t.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -41,6 +40,7 @@
 #include "message_util.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "pal_pad.h"
 #include "party.h"
 #include "pltt_transfer.h"
 #include "pokemon.h"
@@ -1647,20 +1647,21 @@ static void ov88_0223D0C0(SaveData *saveData)
 
 static void ov88_0223D0D4(TrainerInfo *param0, PalPad *param1, PalPad *param2)
 {
+    // this is the exact same as PalPad_CreateNetworkObject ?
     int v0;
 
-    CharCode_Copy(param2->unk_00, TrainerInfo_Name(param0));
+    CharCode_Copy(param2->trainerName, TrainerInfo_Name(param0));
 
-    param2->unk_10 = TrainerInfo_ID(param0);
-    param2->unk_14 = TrainerInfo_RegionCode(param0);
-    param2->unk_15 = TrainerInfo_GameCode(param0);
-    param2->unk_16 = TrainerInfo_Gender(param0);
+    param2->trainerId = TrainerInfo_ID(param0);
+    param2->regionCode = TrainerInfo_RegionCode(param0);
+    param2->gameCode = TrainerInfo_GameCode(param0);
+    param2->gender = TrainerInfo_Gender(param0);
 
     for (v0 = 0; v0 < 16; v0++) {
-        param2->unk_18[v0] = param1[v0].unk_10;
-        param2->unk_58[v0] = param1[v0].unk_15;
-        param2->unk_68[v0] = param1[v0].unk_14;
-        param2->unk_78[v0] = param1[v0].unk_16;
+        param2->associatedTrainerIds[v0] = param1[v0].trainerId;
+        param2->associatedTrainerGameCodes[v0] = param1[v0].gameCode;
+        param2->associatedTrainerRegionCodes[v0] = param1[v0].regionCode;
+        param2->associatedTrainerGenders[v0] = param1[v0].gender;
     }
 
     CommSys_SendDataHuge(28, param2, sizeof(PalPad));
@@ -1735,7 +1736,7 @@ static void ov88_0223D1EC(UnkStruct_02095E80 *param0, int param1)
 
     PokemonSummaryScreen_FlagVisiblePages(&param0->unk_0C, Unk_ov88_0223F13C);
 
-    param0->appMan = ApplicationManager_New(&gPokemonSummaryScreenApp, &param0->unk_0C, 26);
+    param0->appMan = ApplicationManager_New(&gPokemonSummaryScreenApp, &param0->unk_0C, HEAP_ID_26);
     param0->unk_3C = param1;
 }
 
@@ -1887,7 +1888,7 @@ static int ov88_0223D69C(UnkStruct_02095E80 *param0)
     int v1 = sub_0202AF94(param0->unk_36EC);
     int v2 = 5;
 
-    param0->unk_36D4 = StringList_New(v1 + 1, 26);
+    param0->unk_36D4 = StringList_New(v1 + 1, HEAP_ID_26);
 
     {
         MessageLoader *v3;
@@ -2070,7 +2071,7 @@ static int ov88_0223DA3C(UnkStruct_02095E80 *param0)
     Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
     ov88_0223ECBC(&param0->unk_49C[22], 16, FONT_MESSAGE, param0->unk_184, param0->unk_17C);
 
-    param0->unk_6C0 = StringList_New(3, 26);
+    param0->unk_6C0 = StringList_New(3, HEAP_ID_26);
 
     StringList_AddFromMessageBank(param0->unk_6C0, param0->unk_184, 17, 0);
     StringList_AddFromMessageBank(param0->unk_6C0, param0->unk_184, 18, 1);
@@ -2419,7 +2420,7 @@ static int ov88_0223E4BC(UnkStruct_02095E80 *param0)
     Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
     ov88_0223ECBC(&param0->unk_49C[22], 16, FONT_MESSAGE, param0->unk_184, param0->unk_17C);
 
-    param0->unk_6C0 = StringList_New(2, 26);
+    param0->unk_6C0 = StringList_New(2, HEAP_ID_26);
 
     StringList_AddFromMessageBank(param0->unk_6C0, param0->unk_184, 17, 0);
     StringList_AddFromMessageBank(param0->unk_6C0, param0->unk_184, 19, 1);

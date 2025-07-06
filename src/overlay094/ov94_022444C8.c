@@ -74,7 +74,6 @@ int ov94_022444C8(GTSApplicationState *appState, int param1) // init
         appState->tradeAnimationConfig.tradeType = 1;
         break;
     }
-
     appState->tradeAnimationConfig.options = appState->unk_00->options;
     appState->appMan = ApplicationManager_New(&sTradeSequenceConfig, &appState->tradeAnimationConfig, HEAP_ID_62);
     appState->unk_104 = 1;

@@ -1093,7 +1093,7 @@ ListMenu *ov94_022426A8(GTSApplicationState *param0, StringList **param1, Window
     ListMenuTemplate v0;
     int v1;
 
-    *param1 = StringList_New(9, 62);
+    *param1 = StringList_New(9, HEAP_ID_62);
 
     for (v1 = 0; v1 < 9; v1++) {
         StringList_AddFromMessageBank(*param1, gtsMessageLoader, GTS_Text_CharPad_ABC + v1, v1 + 1);
@@ -1105,7 +1105,7 @@ ListMenu *ov94_022426A8(GTSApplicationState *param0, StringList **param1, Window
 
     Window_DrawStandardFrame(param2, 0, (1 + (18 + 12)), 11);
 
-    return ListMenu_New(&v0, param0->unk_10E4->unk_06, param0->unk_10E4->unk_04, 62);
+    return ListMenu_New(&v0, param0->unk_10E4->unk_06, param0->unk_10E4->unk_04, HEAP_ID_62);
 }
 
 static u16 Unk_ov94_02246928[] = {
@@ -1143,7 +1143,7 @@ static int ov94_02242718(StringList **param0, MessageLoader *param1, MessageLoad
         }
     }
 
-    *param0 = StringList_New(v2 + 1, 62);
+    *param0 = StringList_New(v2 + 1, HEAP_ID_62);
 
     for (v0 = 0; v0 < v3; v0++) {
         if (v4) {
@@ -1181,7 +1181,7 @@ ListMenu *ov94_022427C0(GTSApplicationState *param0, StringList **param1, Window
 
     Window_DrawStandardFrame(param2, 0, (1 + (18 + 12)), 11);
 
-    return ListMenu_New(&v0, param0->unk_111C.unk_04[v3], param0->unk_111C.unk_16[v3], 62);
+    return ListMenu_New(&v0, param0->unk_111C.unk_04[v3], param0->unk_111C.unk_16[v3], HEAP_ID_62);
 }
 
 static Unk_ov94_0224693C[][2] = {
@@ -1196,7 +1196,7 @@ ListMenu *ov94_02242840(StringList **param0, Window *param1, MessageLoader *para
     ListMenuTemplate v0;
     int v1;
 
-    *param0 = StringList_New(4, 62);
+    *param0 = StringList_New(4, HEAP_ID_62);
 
     for (v1 = 0; v1 < 4; v1++) {
         StringList_AddFromMessageBank(*param0, param2, Unk_ov94_0224693C[v1][0], Unk_ov94_0224693C[v1][1]);
@@ -1209,7 +1209,7 @@ ListMenu *ov94_02242840(StringList **param0, Window *param1, MessageLoader *para
 
     Window_DrawStandardFrame(param1, 0, (1 + (18 + 12)), 11);
 
-    return ListMenu_New(&v0, 0, 0, 62);
+    return ListMenu_New(&v0, 0, 0, HEAP_ID_62);
 }
 
 ListMenu *ov94_022428B0(StringList **param0, Window *param1, MessageLoader *param2, int param3)
@@ -1227,7 +1227,7 @@ ListMenu *ov94_022428B0(StringList **param0, Window *param1, MessageLoader *para
         v3 = (NELEMS(gtsLevelRangeMessages));
     }
 
-    *param0 = StringList_New(v3, 62);
+    *param0 = StringList_New(v3, HEAP_ID_62);
 
     for (v1 = 0; v1 < v3; v1++) {
         StringList_AddFromMessageBank(*param0, param2, v2[v1].unk_00, v1);
@@ -1240,7 +1240,7 @@ ListMenu *ov94_022428B0(StringList **param0, Window *param1, MessageLoader *para
 
     Window_DrawStandardFrame(param1, 0, (1 + (18 + 12)), 11);
 
-    return ListMenu_New(&v0, 0, 0, 62);
+    return ListMenu_New(&v0, 0, 0, HEAP_ID_62);
 }
 
 void ov94_02242934(GTSPokemonListing_sub3 *param0, int param1, int param2)
@@ -1288,7 +1288,7 @@ ListMenu *ov94_022429B4(StringList **param0, Window *param1, MessageLoader *para
     int v1;
     int v2 = NELEMS(gtsAvailableCountries) + 2;
 
-    *param0 = StringList_New(v2, 62);
+    *param0 = StringList_New(v2, HEAP_ID_62);
 
     StringList_AddFromMessageBank(*param0, gtsMessageLoader, GTS_Text_Any, 0);
 
@@ -1305,7 +1305,7 @@ ListMenu *ov94_022429B4(StringList **param0, Window *param1, MessageLoader *para
 
     Window_DrawStandardFrame(param1, 1, (1 + (18 + 12)), 11);
 
-    return ListMenu_New(&v0, 0, 0, 62);
+    return ListMenu_New(&v0, 0, 0, HEAP_ID_62);
 }
 
 void ov94_02242A44(GTSApplicationState *param0, int param1)

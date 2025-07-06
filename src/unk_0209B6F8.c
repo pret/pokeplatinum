@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "functypes/funcptr_0209B988.h"
 #include "overlay104/ov104_0222E63C.h"
 #include "overlay104/ov104_0223C2D4.h"
@@ -160,7 +162,7 @@ int sub_0209B75C(ApplicationManager *appMan, int *param1)
         sub_0209B8C8(v0);
 
         if (v0->unk_20 == 0xffff) {
-            ov104_0222E86C(v0->unk_14, v0->unk_00->unk_24, 11);
+            ov104_0222E86C(v0->unk_14, v0->unk_00->unk_24, HEAP_ID_FIELDMAP);
         } else {
             UnkStruct_ov104_0222E8C8 *v2;
 
@@ -257,7 +259,7 @@ void sub_0209B980(UnkStruct_0209B75C *param0, void *param1)
 void sub_0209B988(UnkStruct_0209B75C *param0, const ApplicationManagerTemplate *param1, void *param2, int param3, UnkFuncPtr_0209B988 param4)
 {
     GF_ASSERT(param0->appMan == NULL);
-    param0->appMan = ApplicationManager_New(param1, param2, 11);
+    param0->appMan = ApplicationManager_New(param1, param2, HEAP_ID_FIELDMAP);
     param0->unk_08 = param2;
     param0->unk_10 = param3;
     param0->unk_0C = param4;

@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/graphics.h"
 #include "constants/narc.h"
-#include "constants/screen.h"
 
 #include "struct_decls/struct_0202F298_decl.h"
 #include "struct_decls/struct_0202F41C_decl.h"
@@ -59,7 +59,7 @@
 #include "unk_020393C8.h"
 #include "unk_0208B284.h"
 
-static void ov62_022349E4(Strbuf *param0, int param1);
+static void ov62_022349E4(Strbuf *param0, int heapID);
 
 StringTemplate *ov62_02231690(u32 heapID)
 {
@@ -3183,12 +3183,12 @@ void ov62_022349A8(UnkStruct_0208C06C *param0, Strbuf *param1)
     Strbuf_Free(v1);
 }
 
-static void ov62_022349E4(Strbuf *param0, int param1)
+static void ov62_022349E4(Strbuf *param0, int heapID)
 {
     MessageLoader *v0;
 
     Strbuf_Clear(param0);
-    v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0010, param1);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0010, heapID);
 
     MessageLoader_GetStrbuf(v0, 332, param0);
     MessageLoader_Free(v0);

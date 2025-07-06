@@ -4,7 +4,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/screen.h"
+#include "constants/graphics.h"
 
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
@@ -251,12 +251,12 @@ static void ov70_0225EBBC(UnkStruct_ov70_0225E9C8 *param0);
 static void ov70_0225EBC4(UnkStruct_ov70_0225E9C8 *param0, const Strbuf *param1);
 static void ov70_0225EC20(UnkStruct_ov70_0225EC20 *param0, UnkStruct_ov70_0225E4EC *param1, u32 heapID);
 static void ov70_0225ED4C(UnkStruct_ov70_0225EC20 *param0, UnkStruct_ov70_0225E4EC *param1);
-static void ov70_0225EDA8(UnkStruct_ov70_0225EC20 *param0, u32 param1, u32 param2, u32 param3);
+static void ov70_0225EDA8(UnkStruct_ov70_0225EC20 *param0, u32 param1, u32 heapID, u32 param3);
 static void ov70_0225EDE0(UnkStruct_ov70_0225EC20 *param0);
 static void ov70_0225EDF8(UnkStruct_ov70_0225EC20 *param0, const Strbuf *param1, u32 param2);
 static const StringList *ov70_0225EE04(const UnkStruct_ov70_0225EC20 *param0);
 static BOOL ov70_0225EE08(const UnkStruct_ov70_0225EC20 *param0, u32 param1);
-static void ov70_0225EE30(UnkStruct_ov70_0225EC20 *param0, const ListMenuTemplate *param1, UnkStruct_ov70_0225E4EC *param2, u16 param3, u16 param4, u32 param5, u8 param6, u8 param7, u8 param8);
+static void ov70_0225EE30(UnkStruct_ov70_0225EC20 *param0, const ListMenuTemplate *param1, UnkStruct_ov70_0225E4EC *param2, u16 param3, u16 param4, u32 heapID, u8 param6, u8 param7, u8 param8);
 static u32 ov70_0225EED8(UnkStruct_ov70_0225EC20 *param0);
 static void ov70_0225EF14(UnkStruct_ov70_0225EC20 *param0, u16 *param1, u16 *param2);
 static void ov70_0225EF58(ListMenu *param0, u32 param1, u8 param2);
@@ -947,12 +947,12 @@ void ov70_0225DFFC(UnkStruct_ov70_0225DEE8 *param0, const Strbuf *param1)
 
 void ov70_0225E00C(UnkStruct_ov70_0225DEE8 *param0, u32 param1)
 {
-    ov70_0225EDA8(&param0->unk_39C, param1, 113, 0);
+    ov70_0225EDA8(&param0->unk_39C, param1, HEAP_ID_113, 0);
 }
 
 void ov70_0225E020(UnkStruct_ov70_0225DEE8 *param0, u32 param1, u32 param2)
 {
-    ov70_0225EDA8(&param0->unk_39C, param1, 113, param2);
+    ov70_0225EDA8(&param0->unk_39C, param1, HEAP_ID_113, param2);
 }
 
 void ov70_0225E034(UnkStruct_ov70_0225DEE8 *param0)
@@ -977,12 +977,12 @@ BOOL ov70_0225E064(const UnkStruct_ov70_0225DEE8 *param0, u32 param1)
 
 void ov70_0225E074(UnkStruct_ov70_0225DEE8 *param0, const ListMenuTemplate *param1, u16 param2, u16 param3)
 {
-    ov70_0225EE30(&param0->unk_39C, param1, &param0->unk_3C, param2, param3, 112, 16, 3, 15);
+    ov70_0225EE30(&param0->unk_39C, param1, &param0->unk_3C, param2, param3, HEAP_ID_112, 16, 3, 15);
 }
 
 extern void ov70_0225E0A4(UnkStruct_ov70_0225DEE8 *param0, const ListMenuTemplate *param1, u16 param2, u16 param3, u8 param4, u8 param5, u8 param6)
 {
-    ov70_0225EE30(&param0->unk_39C, param1, &param0->unk_3C, param2, param3, 112, param4, param5, param6);
+    ov70_0225EE30(&param0->unk_39C, param1, &param0->unk_3C, param2, param3, HEAP_ID_112, param4, param5, param6);
 }
 
 u32 ov70_0225E0D4(UnkStruct_ov70_0225DEE8 *param0)
@@ -1022,12 +1022,12 @@ void ov70_0225E14C(UnkStruct_ov70_0225DEE8 *param0, u16 param1, u16 param2, u16 
 
 void ov70_0225E164(UnkStruct_ov70_0225DEE8 *param0)
 {
-    ov70_0225EE30(&param0->unk_39C, &param0->unk_404.unk_04, &param0->unk_3C, 0, 0, 112, 25, 13, 6);
+    ov70_0225EE30(&param0->unk_39C, &param0->unk_404.unk_04, &param0->unk_3C, 0, 0, HEAP_ID_112, 25, 13, 6);
 }
 
 void ov70_0225E194(UnkStruct_ov70_0225DEE8 *param0)
 {
-    ov70_0225EE30(&param0->unk_39C, &param0->unk_404.unk_04, &param0->unk_3C, 0, 1, 112, 25, 13, 6);
+    ov70_0225EE30(&param0->unk_39C, &param0->unk_404.unk_04, &param0->unk_3C, 0, 1, HEAP_ID_112, 25, 13, 6);
 }
 
 int ov70_0225E1C4(UnkStruct_ov70_0225DEE8 *param0)
@@ -1682,11 +1682,11 @@ static void ov70_0225ED4C(UnkStruct_ov70_0225EC20 *param0, UnkStruct_ov70_0225E4
     }
 }
 
-static void ov70_0225EDA8(UnkStruct_ov70_0225EC20 *param0, u32 param1, u32 param2, u32 param3)
+static void ov70_0225EDA8(UnkStruct_ov70_0225EC20 *param0, u32 param1, u32 heapID, u32 param3)
 {
     int v0;
     GF_ASSERT(param0->unk_34 == NULL);
-    param0->unk_34 = StringList_New(param1, param2);
+    param0->unk_34 = StringList_New(param1, heapID);
     param0->unk_38 = param1;
 
     for (v0 = 0; v0 < param1; v0++) {
@@ -1726,7 +1726,7 @@ static BOOL ov70_0225EE08(const UnkStruct_ov70_0225EC20 *param0, u32 param1)
     return 0;
 }
 
-static void ov70_0225EE30(UnkStruct_ov70_0225EC20 *param0, const ListMenuTemplate *param1, UnkStruct_ov70_0225E4EC *param2, u16 param3, u16 param4, u32 param5, u8 param6, u8 param7, u8 param8)
+static void ov70_0225EE30(UnkStruct_ov70_0225EC20 *param0, const ListMenuTemplate *param1, UnkStruct_ov70_0225E4EC *param2, u16 param3, u16 param4, u32 heapID, u8 param6, u8 param7, u8 param8)
 {
     GF_ASSERT(param0->unk_30 == NULL);
     GF_ASSERT((param1->maxDisplay * 2) < 18);
@@ -1740,7 +1740,7 @@ static void ov70_0225EE30(UnkStruct_ov70_0225EC20 *param0, const ListMenuTemplat
     Window_FillTilemap(&param0->unk_20, 15);
     Window_DrawStandardFrame(&param0->unk_20, 1, ((1 + (18 + 12)) + ((18 + 12) + 24)), 3);
 
-    param0->unk_30 = ListMenu_New(&param0->unk_00, param3, param4, param5);
+    param0->unk_30 = ListMenu_New(&param0->unk_00, param3, param4, heapID);
 
     Window_ScheduleCopyToVRAM(&param0->unk_20);
 }

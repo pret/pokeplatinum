@@ -1963,7 +1963,7 @@ static void ov107_02247E5C (UnkStruct_ov107_02246170 * param0)
     ov107_02249D84(param0->unk_4C, &param0->unk_50[5]);
     Window_FillTilemap(&param0->unk_50[5], 15);
 
-    param0->unk_13C = StringList_New((NELEMS(Unk_ov107_0224A1BC)), 100);
+    param0->unk_13C = StringList_New((NELEMS(Unk_ov107_0224A1BC)), HEAP_ID_100);
 
     for (v0 = 0; v0 < (NELEMS(Unk_ov107_0224A1BC)); v0++) {
         StringList_AddFromMessageBank(param0->unk_13C, param0->unk_20, Unk_ov107_0224A1BC[v0][0], Unk_ov107_0224A1BC[v0][1]);
@@ -1980,7 +1980,7 @@ static void ov107_02247E5C (UnkStruct_ov107_02246170 * param0)
     v1.textColorBg = 15;
     v1.maxDisplay = 4;
 
-    param0->unk_138 = ListMenu_New(&v1, param0->unk_1C, param0->unk_1E, 100);
+    param0->unk_138 = ListMenu_New(&v1, param0->unk_1C, param0->unk_1E, HEAP_ID_100);
     param0->unk_0F_1 = 1;
 
     Window_ScheduleCopyToVRAM(&param0->unk_50[5]);
@@ -2025,7 +2025,7 @@ static void ov107_02247F6C (UnkStruct_ov107_02246170 * param0)
     ov107_02249D84(param0->unk_4C, &param0->unk_50[6]);
     Window_FillTilemap(&param0->unk_50[6], 15);
 
-    param0->unk_13C = StringList_New((NELEMS(Unk_ov107_0224A19C)), 100);
+    param0->unk_13C = StringList_New((NELEMS(Unk_ov107_0224A19C)), HEAP_ID_100);
 
     for (v0 = 0; v0 < (NELEMS(Unk_ov107_0224A19C)); v0++) {
         StringList_AddFromMessageBank(param0->unk_13C, param0->unk_20, Unk_ov107_0224A19C[v0][0], Unk_ov107_0224A19C[v0][1]);
@@ -2042,7 +2042,7 @@ static void ov107_02247F6C (UnkStruct_ov107_02246170 * param0)
     v1.textColorBg = 15;
     v1.maxDisplay = 4;
 
-    param0->unk_138 = ListMenu_New(&v1, 0, 0, 100);
+    param0->unk_138 = ListMenu_New(&v1, 0, 0, HEAP_ID_100);
     param0->unk_0F_1 = 1;
 
     Window_ScheduleCopyToVRAM(&param0->unk_50[6]);

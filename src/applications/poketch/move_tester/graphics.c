@@ -4,9 +4,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/graphics.h"
 #include "constants/heap.h"
 #include "constants/narc.h"
-#include "constants/screen.h"
 #include "generated/pokemon_types.h"
 #include "generated/sdat.h"
 

@@ -408,9 +408,9 @@ static BOOL ScrCmd_FadeScreen(ScriptContext *ctx);
 static BOOL ScrCmd_WaitFadeScreen(ScriptContext *ctx);
 static BOOL ScriptContext_ScreenWipeDone(ScriptContext *ctx);
 static BOOL ScrCmd_Warp(ScriptContext *ctx);
-static BOOL ScrCmd_0BF(ScriptContext *ctx);
-static BOOL ScrCmd_0C0(ScriptContext *ctx);
-static BOOL ScrCmd_0C1(ScriptContext *ctx);
+static BOOL ScrCmd_UseRockClimb(ScriptContext *ctx);
+static BOOL ScrCmd_UseSurf(ScriptContext *ctx);
+static BOOL ScrCmd_UseWaterfall(ScriptContext *ctx);
 static BOOL ScrCmd_0C2(ScriptContext *ctx);
 static BOOL ScrCmd_0C3(ScriptContext *ctx);
 static BOOL ScrCmd_0C4(ScriptContext *ctx);
@@ -499,7 +499,7 @@ static BOOL ScrCmd_151(ScriptContext *ctx);
 static BOOL ScrCmd_152(ScriptContext *ctx);
 static BOOL ScrCmd_SetObjectEventPos(ScriptContext *ctx);
 static BOOL ScrCmd_187(ScriptContext *ctx);
-static BOOL ScrCmd_188(ScriptContext *ctx);
+static BOOL ScrCmd_SetObjectEventMovementType(ScriptContext *ctx);
 static BOOL ScrCmd_SetObjectEventDir(ScriptContext *ctx);
 static BOOL ScrCmd_SetWarpEventPos(ScriptContext *ctx);
 static BOOL ScrCmd_18B(ScriptContext *ctx);
@@ -732,7 +732,7 @@ static BOOL ScrCmd_GetRotomFormsInSave(ScriptContext *ctx);
 static BOOL ScrCmd_IncrementTrainerScore(ScriptContext *ctx);
 static BOOL ScrCmd_311(ScriptContext *ctx);
 static BOOL ScrCmd_312(ScriptContext *ctx);
-static BOOL ScrCmd_31F(ScriptContext *ctx);
+static BOOL ScrCmd_ResetDistortionWorldPersistedCameraAngles(ScriptContext *ctx);
 static BOOL ScrCmd_313(ScriptContext *ctx);
 static BOOL ScrCmd_StartGiratinaOriginBattle(ScriptContext *ctx);
 static BOOL ScrCmd_WriteSpeciesSeen(ScriptContext *ctx);
@@ -922,7 +922,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GiveEgg,
     ScrCmd_098,
     ScrCmd_CheckPartyMonHasMove,
-    ScrCmd_09A,
+    ScrCmd_FindPartySlotWithMove,
     ScrCmd_09B,
     ScrCmd_09C,
     ScrCmd_09D,
@@ -959,9 +959,9 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_FadeScreen,
     ScrCmd_WaitFadeScreen,
     ScrCmd_Warp,
-    ScrCmd_0BF,
-    ScrCmd_0C0,
-    ScrCmd_0C1,
+    ScrCmd_UseRockClimb,
+    ScrCmd_UseSurf,
+    ScrCmd_UseWaterfall,
     ScrCmd_0C2,
     ScrCmd_0C3,
     ScrCmd_0C4,
@@ -1160,7 +1160,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_185,
     ScrCmd_SetObjectEventPos,
     ScrCmd_187,
-    ScrCmd_188,
+    ScrCmd_SetObjectEventMovementType,
     ScrCmd_SetObjectEventDir,
     ScrCmd_SetWarpEventPos,
     ScrCmd_18B,
@@ -1567,7 +1567,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_CheckPartyHasFatefulEncounter,
     ScrCmd_31D,
     ScrCmd_31E,
-    ScrCmd_31F,
+    ScrCmd_ResetDistortionWorldPersistedCameraAngles,
     ScrCmd_320,
     ScrCmd_321,
     ScrCmd_322,
@@ -4466,34 +4466,32 @@ static BOOL ScrCmd_GetCurrentMapID(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_0BF(ScriptContext *ctx)
+static BOOL ScrCmd_UseRockClimb(ScriptContext *ctx)
 {
-    ov5_021E0734(ctx->task, PlayerAvatar_GetDir(ctx->fieldSystem->playerAvatar), ScriptContext_GetVar(ctx));
+    FieldTask_StartUseRockClimb(ctx->task, PlayerAvatar_GetDir(ctx->fieldSystem->playerAvatar), ScriptContext_GetVar(ctx));
     return TRUE;
 }
 
-static BOOL ScrCmd_0C0(ScriptContext *ctx)
+static BOOL ScrCmd_UseSurf(ScriptContext *ctx)
 {
+    int direction;
+
     RadarChain_Clear(ctx->fieldSystem->chain);
 
-    {
-        int v0;
-
-        if (PlayerAvatar_DistortionStateOnFloor(ctx->fieldSystem->playerAvatar) == TRUE) {
-            v0 = PlayerAvatar_GetDir(ctx->fieldSystem->playerAvatar);
-        } else {
-            v0 = PlayerAvatar_GetMoveDir(ctx->fieldSystem->playerAvatar);
-        }
-
-        ov5_021E00EC(ctx->task, v0, ScriptContext_GetVar(ctx));
+    if (PlayerAvatar_DistortionStateOnFloor(ctx->fieldSystem->playerAvatar) == TRUE) {
+        direction = PlayerAvatar_GetDir(ctx->fieldSystem->playerAvatar);
+    } else {
+        direction = PlayerAvatar_GetMoveDir(ctx->fieldSystem->playerAvatar);
     }
+
+    FieldTask_StartUseSurf(ctx->task, direction, ScriptContext_GetVar(ctx));
 
     return TRUE;
 }
 
-static BOOL ScrCmd_0C1(ScriptContext *ctx)
+static BOOL ScrCmd_UseWaterfall(ScriptContext *ctx)
 {
-    ov5_021E0998(ctx->task, PlayerAvatar_GetDir(ctx->fieldSystem->playerAvatar), ScriptContext_GetVar(ctx));
+    FieldTask_StartUseWaterfall(ctx->task, PlayerAvatar_GetDir(ctx->fieldSystem->playerAvatar), ScriptContext_GetVar(ctx));
     return TRUE;
 }
 
@@ -5442,12 +5440,12 @@ static BOOL ScrCmd_187(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_188(ScriptContext *ctx)
+static BOOL ScrCmd_SetObjectEventMovementType(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
-    u16 v1 = ScriptContext_GetVar(ctx);
+    u16 localID = ScriptContext_GetVar(ctx);
+    u16 movementType = ScriptContext_GetVar(ctx);
 
-    MapHeaderData_SetObjectEventMovementType(ctx->fieldSystem, v0, v1);
+    MapHeaderData_SetObjectEventMovementType(ctx->fieldSystem, localID, movementType);
     return FALSE;
 }
 
@@ -7869,11 +7867,11 @@ static BOOL ScrCmd_312(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_31F(ScriptContext *ctx)
+static BOOL ScrCmd_ResetDistortionWorldPersistedCameraAngles(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    ov9_02249FD0(fieldSystem);
+    DistWorld_ResetPersistedCameraAngles(fieldSystem);
     return FALSE;
 }
 

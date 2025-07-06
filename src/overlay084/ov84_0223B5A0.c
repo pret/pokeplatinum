@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/field/map_load.h"
+#include "constants/heap.h"
 
 #include "struct_defs/special_encounter.h"
 #include "struct_defs/struct_0207CB08.h"
@@ -951,7 +952,7 @@ static void ov84_0223BFBC(UnkStruct_ov84_0223B5A0 *param0)
     u32 v1;
 
     v0 = &param0->unk_C4->unk_04[param0->unk_C4->unk_64];
-    param0->unk_160 = StringList_New(Unk_ov84_02241118[v0->unk_08] + 3, 6);
+    param0->unk_160 = StringList_New(Unk_ov84_02241118[v0->unk_08] + 3, HEAP_ID_6);
 
     StringList_AddFromMessageBank(param0->unk_160, param0->unk_114, 32, 0xfffffffd);
 
@@ -1078,7 +1079,7 @@ static void ov84_0223C224(UnkStruct_ov84_0223B5A0 *param0, u16 param1, u16 param
         v0.textXOffset = 0;
     }
 
-    param0->unk_15C = ListMenu_New(&v0, param1, param2, 6);
+    param0->unk_15C = ListMenu_New(&v0, param1, param2, HEAP_ID_6);
     Window_ScheduleCopyToVRAM(&param0->unk_04[0]);
 }
 
@@ -2098,14 +2099,14 @@ static int ov84_0223D858(UnkStruct_ov84_0223B5A0 *param0)
 
     ov84_0223FD84(param0);
 
-    v1 = Item_LoadParam(param0->unk_C4->unk_66, 6, 6);
+    v1 = Item_LoadParam(param0->unk_C4->unk_66, ITEM_PARAM_FIELD_USE_FUNC, HEAP_ID_6);
     v0 = (UnkFuncPtr_02069238)sub_020683F4(2, v1);
 
     if (v0 != NULL) {
         u32 v2 = v0(param0->unk_C4->unk_70);
 
         if (v2 != 0) {
-            sub_0207CD34(param0->unk_CC, param0->unk_3F8, param0->unk_C4->unk_66, v2, 6);
+            sub_0207CD34(param0->unk_CC, param0->unk_3F8, param0->unk_C4->unk_66, v2, HEAP_ID_6);
             Window_FillTilemap(&param0->unk_04[6], 15);
             Window_DrawMessageBoxWithScrollCursor(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);
             param0->unk_426 = ov84_022400A0(param0);
@@ -2294,7 +2295,7 @@ static Strbuf *ov84_0223DC9C(UnkStruct_ov84_0223B5A0 *param0, u16 param1)
         return MessageLoader_GetNewStrbuf(param0->unk_114, 62);
     }
 
-    stepCount = Item_LoadParam(param1, 2, 6);
+    stepCount = Item_LoadParam(param1, ITEM_PARAM_HOLD_EFFECT_PARAM, HEAP_ID_6);
     SetRepelSteps(param0, (u8)stepCount);
     param0->unk_488 = 1;
     Sound_PlayEffect(SEQ_SE_DP_CARD2);
@@ -2569,7 +2570,7 @@ static int ov84_0223E27C(UnkStruct_ov84_0223B5A0 *param0)
         u8 v0 = ov84_0223C5B8(param0);
 
         if (v0 == 1) {
-            if (Item_LoadParam(param0->unk_C4->unk_66, 3, 6) != 0) {
+            if (Item_LoadParam(param0->unk_C4->unk_66, ITEM_PARAM_PREVENT_TOSS, HEAP_ID_6) != 0) {
                 Strbuf *v1;
 
                 Window_FillTilemap(&param0->unk_04[6], 15);
@@ -2640,9 +2641,9 @@ static int ov84_0223E3BC(UnkStruct_ov84_0223B5A0 *param0)
             StringTemplate_SetItemName(param0->unk_118, 0, param0->unk_C4->unk_66);
             ov84_02240B34(param0, 2);
 
-            param0->unk_48C = Item_LoadParam(param0->unk_C4->unk_66, 0, 6);
+            param0->unk_48C = Item_LoadParam(param0->unk_C4->unk_66, ITEM_PARAM_PRICE, HEAP_ID_6);
 
-            if ((Item_LoadParam(param0->unk_C4->unk_66, 3, 6) != 0) || (param0->unk_48C == 0)) {
+            if ((Item_LoadParam(param0->unk_C4->unk_66, ITEM_PARAM_PREVENT_TOSS, HEAP_ID_6) != 0) || (param0->unk_48C == 0)) {
                 v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 74);
                 StringTemplate_Format(param0->unk_118, param0->unk_3F8, v1);
                 Strbuf_Free(v1);
@@ -2893,8 +2894,8 @@ static int ov84_0223EA18(UnkStruct_ov84_0223B5A0 *param0)
 
         if (v0 == 1) {
             if (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08 == 0) {
-                if (Item_LoadParam(param0->unk_C4->unk_66, 6, 6) != 13) {
-                    sub_0207CD34(param0->unk_CC, param0->unk_3F8, param0->unk_C4->unk_66, -1, 6);
+                if (Item_LoadParam(param0->unk_C4->unk_66, ITEM_PARAM_FIELD_USE_FUNC, HEAP_ID_6) != 13) {
+                    sub_0207CD34(param0->unk_CC, param0->unk_3F8, param0->unk_C4->unk_66, -1, HEAP_ID_6);
                     Window_FillTilemap(&param0->unk_04[6], 15);
                     Window_DrawMessageBoxWithScrollCursor(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);
 

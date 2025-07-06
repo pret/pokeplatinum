@@ -2456,7 +2456,7 @@ static void ov107_02244240 (UnkStruct_ov107_02241D6C * param0, u8 param1)
         v1 = Unk_ov107_02249E06[v0 - 1];
     }
 
-    param0->unk_19C = StringList_New((v1 + 1), 100);
+    param0->unk_19C = StringList_New((v1 + 1), HEAP_ID_100);
 
     for (v4 = 0; v4 < v1; v4++) {
         if (param1 == 6) {
@@ -2481,7 +2481,7 @@ static void ov107_02244240 (UnkStruct_ov107_02241D6C * param0, u8 param1)
     param0->unk_1A0.maxDisplay = 6;
     param0->unk_1A0.textXOffset = 0;
     param0->unk_1A0.cursorType = 1;
-    param0->unk_198 = ListMenu_New(&param0->unk_1A0, 0, 0, 100);
+    param0->unk_198 = ListMenu_New(&param0->unk_1A0, 0, 0, HEAP_ID_100);
 
     ov107_02245650(param0, &param0->unk_50[5]);
     MessageLoader_Free(v5);
@@ -2558,7 +2558,7 @@ static void ov107_022445C4 (UnkStruct_ov107_02241D6C * param0)
     ov107_02249D84(param0->unk_4C, &param0->unk_50[10]);
     Window_FillTilemap(&param0->unk_50[10], 15);
 
-    param0->unk_19C = StringList_New((NELEMS(Unk_ov107_02249FF0)), 100);
+    param0->unk_19C = StringList_New((NELEMS(Unk_ov107_02249FF0)), HEAP_ID_100);
 
     for (v3 = 0; v3 < (NELEMS(Unk_ov107_02249FF0)); v3++) {
         StringList_AddFromMessageBank(param0->unk_19C, param0->unk_20, Unk_ov107_02249FF0[v3][1], Unk_ov107_02249FF0[v3][2]);
@@ -2573,7 +2573,7 @@ static void ov107_022445C4 (UnkStruct_ov107_02241D6C * param0)
     param0->unk_1A0.count = (NELEMS(Unk_ov107_02249FF0));
     param0->unk_1A0.maxDisplay = (NELEMS(Unk_ov107_02249FF0));
     param0->unk_1A0.textColorBg = 15;
-    param0->unk_198 = ListMenu_New(&param0->unk_1A0, 0, 0, 100);
+    param0->unk_198 = ListMenu_New(&param0->unk_1A0, 0, 0, HEAP_ID_100);
 
     ov107_02245650(param0, &param0->unk_50[10]);
 
@@ -2666,7 +2666,7 @@ static void ov107_02244780 (UnkStruct_ov107_02241D6C * param0)
     ov107_02249D84(param0->unk_4C, &param0->unk_50[11]);
     Window_FillTilemap(&param0->unk_50[11], 15);
 
-    param0->unk_19C = StringList_New((NELEMS(Unk_ov107_02249F54)), 100);
+    param0->unk_19C = StringList_New((NELEMS(Unk_ov107_02249F54)), HEAP_ID_100);
 
     for (v3 = 0; v3 < (NELEMS(Unk_ov107_02249F54)); v3++) {
         StringList_AddFromMessageBank(param0->unk_19C, param0->unk_20, Unk_ov107_02249F54[v3][1], Unk_ov107_02249F54[v3][2]);
@@ -2681,7 +2681,7 @@ static void ov107_02244780 (UnkStruct_ov107_02241D6C * param0)
     param0->unk_1A0.count = (NELEMS(Unk_ov107_02249F54));
     param0->unk_1A0.maxDisplay = (NELEMS(Unk_ov107_02249F54));
     param0->unk_1A0.textColorBg = 15;
-    param0->unk_198 = ListMenu_New(&param0->unk_1A0, 0, 0, 100);
+    param0->unk_198 = ListMenu_New(&param0->unk_1A0, 0, 0, HEAP_ID_100);
 
     ov107_02245650(param0, &param0->unk_50[11]);
 
@@ -2782,7 +2782,7 @@ static void ov107_02244944 (UnkStruct_ov107_02241D6C * param0)
     ov107_02249D84(param0->unk_4C, &param0->unk_50[9]);
     Window_FillTilemap(&param0->unk_50[9], 15);
 
-    param0->unk_19C = StringList_New(5, 100);
+    param0->unk_19C = StringList_New(5, HEAP_ID_100);
 
     for (v0 = 0; v0 < 5; v0++) {
         StringList_AddFromMessageBank(param0->unk_19C, param0->unk_20, Unk_ov107_02249F2C[v0][0], Unk_ov107_02249F2C[v0][1]);
@@ -2798,7 +2798,7 @@ static void ov107_02244944 (UnkStruct_ov107_02241D6C * param0)
     param0->unk_1A0.maxDisplay = 5;
     param0->unk_1A0.textColorBg = 15;
     param0->unk_1A0.parent = param0;
-    param0->unk_198 = ListMenu_New(&param0->unk_1A0, param0->unk_18, param0->unk_1A, 100);
+    param0->unk_198 = ListMenu_New(&param0->unk_1A0, param0->unk_18, param0->unk_1A, HEAP_ID_100);
 
     ov107_02245650(param0, &param0->unk_50[9]);
     Window_ScheduleCopyToVRAM(&param0->unk_50[9]);

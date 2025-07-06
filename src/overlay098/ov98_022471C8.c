@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "constants/dwc.h"
+#include "constants/graphics.h"
 #include "constants/screen.h"
 
 #include "struct_decls/struct_0202B370_decl.h"
@@ -741,7 +742,7 @@ static int ov98_02247B98(UnkStruct_ov98_02247704 *param0)
 
         Window_Add(param0->unk_04, &param0->unk_78, 0, v3[0], v3[1], v3[2], v3[3], 13, (((1 + (18 + 12)) + 9) + 27 * 4));
 
-        param0->unk_A0 = StringList_New(v5, 109);
+        param0->unk_A0 = StringList_New(v5, HEAP_ID_109);
 
         for (v1 = 0; v1 < v5; v1++) {
             StringList_AddFromMessageBank(param0->unk_A0, param0->unk_34, v4[v1].unk_00, v4[v1].unk_04);
@@ -749,7 +750,7 @@ static int ov98_02247B98(UnkStruct_ov98_02247704 *param0)
 
         v2.window = &param0->unk_78;
         v2.choices = param0->unk_A0;
-        param0->unk_A4 = ListMenu_New(&v2, 0, 0, 109);
+        param0->unk_A4 = ListMenu_New(&v2, 0, 0, HEAP_ID_109);
 
         Window_DrawStandardFrame(&param0->unk_78, 1, (1 + (18 + 12)), 11);
         Window_EraseMessageBox(&param0->unk_48, 1);

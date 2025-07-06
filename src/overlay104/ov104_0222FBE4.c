@@ -198,7 +198,7 @@ static BOOL ov104_02230E20(UnkStruct_ov104_0222E930 *param0);
 static BOOL ov104_02230E40(UnkStruct_ov104_0222E930 *param0);
 static BOOL ov104_02230EB8(UnkStruct_ov104_0222E930 *param0);
 static BOOL ov104_02230ED8(UnkStruct_ov104_0222E930 *param0);
-static Strbuf *ov104_02230E90(u16 param0, u32 param1);
+static Strbuf *ov104_02230E90(u16 param0, u32 heapID);
 static BOOL ov104_02230EFC(UnkStruct_ov104_0222E930 *param0);
 static BOOL ov104_02230F28(UnkStruct_ov104_0222E930 *param0);
 static BOOL ov104_02230F6C(UnkStruct_ov104_0222E930 *param0);
@@ -1816,7 +1816,7 @@ BOOL ov104_02230E40(UnkStruct_ov104_0222E930 *param0)
     u16 v1 = ov104_0222FC00(param0);
     u16 v2 = ov104_0222EA48(param0);
     u8 v3 = (*((param0)->unk_1C++));
-    Strbuf *v4 = ov104_02230E90(v1, 11);
+    Strbuf *v4 = ov104_02230E90(v1, HEAP_ID_FIELDMAP);
 
     StringTemplate_SetStrbuf(param0->unk_00->unk_44, v0, v4, v2, v3, GAME_LANGUAGE);
     Strbuf_Free(v4);
@@ -1824,9 +1824,9 @@ BOOL ov104_02230E40(UnkStruct_ov104_0222E930 *param0)
     return 0;
 }
 
-static Strbuf *ov104_02230E90(u16 param0, u32 param1)
+static Strbuf *ov104_02230E90(u16 param0, u32 heapID)
 {
-    MessageLoader *v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, param1);
+    MessageLoader *v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, heapID);
     Strbuf *v1 = MessageLoader_GetNewStrbuf(v0, param0);
 
     MessageLoader_Free(v0);
@@ -2447,7 +2447,7 @@ static BOOL ov104_022319CC(UnkStruct_ov104_02231148 *param0)
 {
     switch (param0->unk_04) {
     case 0:
-        ov104_0223F094(&param0->unk_18, 94);
+        ov104_0223F094(&param0->unk_18, HEAP_ID_94);
         param0->unk_04++;
         break;
     case 1:

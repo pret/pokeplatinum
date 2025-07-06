@@ -374,7 +374,7 @@ static BOOL ov27_02256608(UnkStruct_ov27_0225621C *param0)
         { TOUCHSCREEN_USE_CIRCLE, 112, 112, 39 },
     };
 
-    param0->buttonManager = PoketchButtonManager_New(v0, NELEMS(v0), ov27_02256660, param0, 8);
+    param0->buttonManager = PoketchButtonManager_New(v0, NELEMS(v0), ov27_02256660, param0, HEAP_ID_POKETCH_APP);
 
     if (param0->buttonManager != NULL) {
         PoketchButtonManager_SetButtonTimer(param0->buttonManager, 0, 0, 15);

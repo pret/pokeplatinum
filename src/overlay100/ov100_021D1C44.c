@@ -263,7 +263,7 @@ void *ov100_021D2340(UnkStruct_ov100_021D4DD8 *param0)
     ov100_021D2250(v0);
 
     {
-        ov100_021D4E3C(&v0->unk_08.unk_00, 111);
+        ov100_021D4E3C(&v0->unk_08.unk_00, HEAP_ID_111);
         ov100_021D4E70(&v0->unk_08.unk_00, 0, 191, ((0xffff / 192) * 2), FX32_CONST(4), (1 * 100), REG_DB_BG1HOFS_ADDR, 0, 0x1000, 1);
     }
 

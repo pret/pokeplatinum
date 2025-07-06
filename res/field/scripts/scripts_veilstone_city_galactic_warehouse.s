@@ -16,7 +16,7 @@ _0016:
 
 _0025:
     SetObjectEventPos 4, 8, 10
-    ScrCmd_188 4, 14
+    SetObjectEventMovementType 4, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 4, DIR_NORTH
     Return
 
@@ -144,7 +144,7 @@ _0184:
 _0197:
     LockAll
     SetObjectEventPos 4, 8, 11
-    ScrCmd_188 4, 14
+    SetObjectEventMovementType 4, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 4, DIR_NORTH
     ClearFlag FLAG_UNK_0x020D
     AddObject 4

@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/bank/unk_0381.h"
+#include "res/text/bank/unk_0383.h"
 
     .data
 

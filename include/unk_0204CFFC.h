@@ -9,7 +9,7 @@ BOOL ScrCmd_199(ScriptContext *param0);
 BOOL ScrCmd_GiveEgg(ScriptContext *ctx);
 BOOL ScrCmd_098(ScriptContext *param0);
 BOOL ScrCmd_CheckPartyMonHasMove(ScriptContext *ctx);
-BOOL ScrCmd_09A(ScriptContext *param0);
+BOOL ScrCmd_FindPartySlotWithMove(ScriptContext *ctx);
 BOOL ScrCmd_SurvivePoison(ScriptContext *ctx);
 BOOL ScrCmd_1F6(ScriptContext *param0);
 BOOL ScrCmd_278(ScriptContext *param0);

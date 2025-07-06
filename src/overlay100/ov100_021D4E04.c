@@ -73,9 +73,9 @@ static void ov100_021D4E18(SysTask *param0, void *param1)
     v0->unk_08++;
 }
 
-void ov100_021D4E3C(UnkStruct_ov100_021D4E3C *param0, u32 param1)
+void ov100_021D4E3C(UnkStruct_ov100_021D4E3C *param0, u32 heapID)
 {
-    param0->screenScrollMgr = ScreenScrollManager_New(param1);
+    param0->screenScrollMgr = ScreenScrollManager_New(heapID);
     param0->unk_08 = 0;
     param0->unk_04 = ov100_021D4E04(param0);
 }
