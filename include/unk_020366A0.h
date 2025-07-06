@@ -92,7 +92,7 @@ int sub_0203895C(void);
 int sub_02038974(void);
 void sub_0203898C(u8 *param0);
 void sub_020389A0(u8 *param0);
-BOOL sub_020389B8(void);
+BOOL CommMan_IsConnectedToWifi(void);
 void sub_020389C4(u8 param0);
 u8 sub_020389D8(void);
 void sub_020389FC(int param0);

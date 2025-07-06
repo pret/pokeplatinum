@@ -187,7 +187,7 @@ static void sub_02036734(void)
         Heap_FreeToHeap(Unk_021C07D4->unk_00);
     }
 
-    if (sub_020389B8()) {
+    if (CommMan_IsConnectedToWifi()) {
         Heap_Destroy(HEAP_ID_49);
     }
 
@@ -543,7 +543,7 @@ void sub_02036C50(void)
         }
     }
 
-    if (sub_020389B8()) {
+    if (CommMan_IsConnectedToWifi()) {
         sub_020397B0(WM_LINK_LEVEL_3 - DWC_GetLinkLevel());
     } else if (CommServerClient_IsInitialized()) {
         sub_020397B0(WM_LINK_LEVEL_3 - WM_GetLinkLevel());
@@ -792,7 +792,7 @@ static void sub_020370B8(void)
 
 static void sub_020370BC(void)
 {
-    if (!sub_020389B8()) {
+    if (!CommMan_IsConnectedToWifi()) {
         if (!sub_02033E30()) {
             return;
         }
@@ -1643,7 +1643,7 @@ BOOL sub_02037DB0(void)
     if ((Unk_021C07D4->unk_4A == 24) || (Unk_021C07D4->unk_4A == 25) || (Unk_021C07D4->unk_4A == 36)) {
         ov4_021D2184();
         return 1;
-    } else if (sub_020389B8()) {
+    } else if (CommMan_IsConnectedToWifi()) {
         if (Unk_021C07D4->unk_4A == 33) {
             sub_02036C94(sub_02038D80, 0);
         } else {
@@ -2400,7 +2400,7 @@ void sub_020389A0(u8 *param0)
     MI_CpuCopy8(Unk_021C07D4->unk_04, param0, NELEMS(Unk_021C07D4->unk_04));
 }
 
-BOOL sub_020389B8(void)
+BOOL CommMan_IsConnectedToWifi(void)
 {
     return CommLocal_IsWifiGroup(sub_0203895C());
 }

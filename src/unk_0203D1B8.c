@@ -204,7 +204,7 @@ typedef struct {
 typedef struct {
     int unk_00;
     UnkStruct_ov88_0223C370 unk_04;
-    UnkStruct_ov6_02246254 unk_48;
+    NpcTradeAnimationConfig unk_48;
     UnkStruct_0207AE68 *unk_60;
     int unk_64;
 } UnkStruct_0203DBF0;
@@ -945,9 +945,9 @@ static ApplicationManagerTemplate Unk_02100AA4 = {
 };
 
 static const ApplicationManagerTemplate Unk_020EA268 = {
-    ov95_02246C20,
-    ov95_02246E7C,
-    ov95_02246E1C,
+    TradeSequence_Init,
+    TradeSequence_Main,
+    TradeSequence_Exit,
     FS_OVERLAY_ID(overlay95)
 };
 
@@ -996,7 +996,7 @@ BOOL sub_0203DBF0(FieldTask *param0)
 
     switch (v2->unk_00) {
     case 0:
-        if (!sub_020389B8()) {
+        if (!CommMan_IsConnectedToWifi()) {
             FieldTransition_FinishMap(param0);
         }
 
@@ -1019,29 +1019,29 @@ BOOL sub_0203DBF0(FieldTask *param0)
         v2->unk_00++;
         break;
     case 4:
-        v2->unk_48.unk_08 = v2->unk_04.unk_38;
-        v2->unk_48.unk_00 = Pokemon_GetBoxPokemon(v2->unk_04.unk_3C);
-        v2->unk_48.unk_04 = Pokemon_GetBoxPokemon(v2->unk_04.unk_40);
+        v2->unk_48.otherTrainer = v2->unk_04.unk_38;
+        v2->unk_48.sendingPokemon = Pokemon_GetBoxPokemon(v2->unk_04.unk_3C);
+        v2->unk_48.receivingPokemon = Pokemon_GetBoxPokemon(v2->unk_04.unk_40);
         v2->unk_48.options = SaveData_GetOptions(fieldSystem->saveData);
-        v2->unk_48.unk_10 = 1;
+        v2->unk_48.tradeType = 1;
 
         switch (FieldSystem_GetTimeOfDay(fieldSystem)) {
-        case 0:
-        case 1:
+        case TIMEOFDAY_MORNING:
+        case TIMEOFDAY_DAY:
         default:
-            v2->unk_48.unk_0C = 0;
+            v2->unk_48.backgroundColour = 0;
             break;
-        case 2:
-            v2->unk_48.unk_0C = 1;
+        case TIMEOFDAY_TWILIGHT:
+            v2->unk_48.backgroundColour = 1;
             break;
-        case 3:
-        case 4:
-            v2->unk_48.unk_0C = 2;
+        case TIMEOFDAY_NIGHT:
+        case TIMEOFDAY_LATE_NIGHT:
+            v2->unk_48.backgroundColour = 2;
             break;
         }
 
-        if (sub_020389B8()) {
-            v2->unk_48.unk_0C = 3;
+        if (CommMan_IsConnectedToWifi()) {
+            v2->unk_48.backgroundColour = 3;
         }
 
         FieldTask_RunApplication(param0, &Unk_020EA268, &v2->unk_48);
@@ -1076,7 +1076,7 @@ BOOL sub_0203DBF0(FieldTask *param0)
             GameRecords *v6 = SaveData_GetGameRecords(fieldSystem->saveData);
             GameRecords_IncrementTrainerScore(v6, TRAINER_SCORE_EVENT_UNK_16);
 
-            if (sub_020389B8()) {
+            if (CommMan_IsConnectedToWifi()) {
                 GameRecords_IncrementRecordValue(v6, RECORD_UNK_113);
             }
         }

@@ -302,7 +302,7 @@ void sub_02039734(void)
 {
     BOOL v0 = 0;
 
-    if (sub_020389B8()) {
+    if (CommMan_IsConnectedToWifi()) {
         v0 = 1;
     }
 
@@ -347,10 +347,10 @@ void sub_020397C8(BOOL param0, u32 heapID)
 void DrawWifiConnectionIcon(void)
 {
     if (CommSys_IsInitialized()) {
-        if ((CommSys_ConnectedCount() > 1) || sub_020389B8()) {
+        if ((CommSys_ConnectedCount() > 1) || CommMan_IsConnectedToWifi()) {
             sub_02039734();
         }
-    } else if (sub_020389B8()) {
+    } else if (CommMan_IsConnectedToWifi()) {
         sub_02039734();
     }
 }

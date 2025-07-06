@@ -33,6 +33,8 @@
 #include "text.h"
 #include "unk_0202419C.h"
 
+#include "res/text/bank/trade.h"
+
 enum {
     UnkEnum_ov95_0224BD5C_00 = -0x780,
     UnkEnum_ov95_0224BD5C_01 = 0x180,
@@ -49,7 +51,7 @@ enum {
 };
 
 typedef struct {
-    UnkStruct_ov95_02247628 *unk_00;
+    TradeSequenceData *unk_00;
     int unk_04;
     int unk_08;
     BOOL unk_0C;
@@ -116,7 +118,7 @@ static void ov95_0224BD04(void *param0);
 static void ov95_0224BD40(void *param0, fx32 param1, int param2);
 static void ov95_0224BD5C(SysTask *param0, void *param1);
 
-void *ov95_0224B3D8(UnkStruct_ov95_02247628 *param0)
+void *ov95_0224B3D8(TradeSequenceData *param0)
 {
     UnkStruct_ov95_0224B4D4 *v0 = Heap_AllocFromHeap(HEAP_ID_58, sizeof(UnkStruct_ov95_0224B4D4));
 
@@ -356,7 +358,7 @@ static int ov95_0224B71C(UnkStruct_ov95_0224B4D4 *param0, int *param1)
         break;
     case 3:
         if (ov95_0224BC00(param0)) {
-            const BoxPokemon *v0 = ov95_0224763C(param0->unk_00);
+            const BoxPokemon *v0 = TradeSequence_GetReceivingPokemon(param0->unk_00);
 
             if (BoxPokemon_GetValue((BoxPokemon *)v0, MON_DATA_IS_EGG, NULL) == 0) {
                 u8 delay;
@@ -392,11 +394,11 @@ static int ov95_0224B81C(UnkStruct_ov95_0224B4D4 *param0, int *param1)
             StringTemplate *v1 = ov95_0224762C(param0->unk_00);
             int v2, v3;
 
-            if (ov95_02247680(param0->unk_00) == 1) {
-                v2 = 2;
+            if (TradeSequence_GetTradeType(param0->unk_00) == 1) {
+                v2 = pl_msg_00000350_00002;
                 v3 = 2;
             } else {
-                v2 = 5;
+                v2 = pl_msg_00000350_00005;
                 v3 = 3;
             }
 
@@ -418,7 +420,7 @@ static int ov95_0224B81C(UnkStruct_ov95_0224B4D4 *param0, int *param1)
             MessageLoader *v4 = ov95_02247630(param0->unk_00);
             StringTemplate *v5 = ov95_0224762C(param0->unk_00);
 
-            MessageLoader_GetStrbuf(v4, 3, param0->unk_6C);
+            MessageLoader_GetStrbuf(v4, pl_msg_00000350_00003, param0->unk_6C);
             StringTemplate_Format(v5, param0->unk_70, param0->unk_6C);
             Window_FillTilemap(&(param0->unk_5C), 0xf);
             Text_AddPrinterWithParams(&(param0->unk_5C), FONT_MESSAGE, param0->unk_70, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
@@ -497,7 +499,7 @@ static PokemonSprite *ov95_0224BA8C(UnkStruct_ov95_0224B4D4 *param0)
     BoxPokemon *v1;
     int v2;
 
-    v1 = (BoxPokemon *)ov95_0224763C(param0->unk_00);
+    v1 = (BoxPokemon *)TradeSequence_GetReceivingPokemon(param0->unk_00);
 
     BoxPokemon_BuildSpriteTemplate(&v0, v1, 2, 0);
     PokeSprite_LoadAnimationFrames(param0->unk_84, param0->unk_18, ov95_02247660(param0->unk_00), 1);

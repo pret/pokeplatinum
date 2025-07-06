@@ -387,7 +387,7 @@ static int ov94_0223D664(GTSApplicationState *param0)
             Window_EraseMessageBox(&param0->bottomInstructionWindow, 0);
         } else {
             param0->currentScreenInstruction = 2;
-            param0->unk_1110 = 1;
+            param0->fadeBothScreens = 1;
             GTSApplication_SetNextScreenWithArgument(param0, 7, 8);
         }
 

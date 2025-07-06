@@ -83,7 +83,7 @@ typedef struct {
 } UnkStruct_ov95_02249C28;
 
 typedef struct {
-    UnkStruct_ov95_02247628 *unk_00;
+    TradeSequenceData *unk_00;
     int unk_04;
     int unk_08;
     BOOL unk_0C;
@@ -115,7 +115,7 @@ static void ov95_02249E04(SysTask *param0, void *param1);
 static void ov95_02249F30(UnkStruct_ov95_022497D8 *param0);
 static void ov95_02249F38(SysTask *param0, void *param1);
 
-void *ov95_02249740(UnkStruct_ov95_02247628 *param0)
+void *ov95_02249740(TradeSequenceData *param0)
 {
     UnkStruct_ov95_022497D8 *v0 = Heap_AllocFromHeap(HEAP_ID_58, sizeof(UnkStruct_ov95_022497D8));
 
@@ -281,7 +281,7 @@ static void ov95_02249910(UnkStruct_ov95_022497D8 *param0)
     Bg_InitFromTemplate(param0->unk_24, BG_LAYER_MAIN_3, &v2, 0);
     Bg_InitFromTemplate(param0->unk_24, BG_LAYER_SUB_3, &v2, 0);
 
-    switch (ov95_02247644(param0->unk_00)) {
+    switch (TradeSequence_GetBackgroundColour(param0->unk_00)) {
     case 0:
     default:
         v3 = 15;

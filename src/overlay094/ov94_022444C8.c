@@ -4,6 +4,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/gts.h"
+
 #include "overlay094/application.h"
 #include "overlay094/gts_application_state.h"
 #include "overlay094/struct_ov94_0223BA88.h"
@@ -22,65 +24,65 @@
 FS_EXTERN_OVERLAY(overlay95);
 
 static TrainerInfo *ov94_02244870(GTSPokemonListing *param0);
-static Pokemon *ov94_022448AC(GTSApplicationState *param0, int param1);
+static Pokemon *GTSApplication_Screen9_GetTradedPokemon(GTSApplicationState *param0, int param1);
 static void ov94_022448E8(GTSApplicationState *param0);
 
-static const ApplicationManagerTemplate Unk_ov94_0224636C = {
-    ov95_02246C20,
-    ov95_02246E7C,
-    ov95_02246E1C,
+static const ApplicationManagerTemplate sTradeSequenceConfig = {
+    TradeSequence_Init, // init
+    TradeSequence_Main, // main
+    TradeSequence_Exit, // exit
     FS_OVERLAY_ID(overlay95)
 };
 
-int ov94_022444C8(GTSApplicationState *param0, int param1)
+int ov94_022444C8(GTSApplicationState *appState, int param1) // init
 {
-    param0->unk_1104 = Pokemon_New(HEAP_ID_62);
+    appState->unk_1104 = Pokemon_New(HEAP_ID_62);
 
-    switch (param0->screenArgument) {
+    switch (appState->screenArgument) {
     case 7:
-        param0->unk_E8.unk_00 = (BoxPokemon *)Pokemon_GetBoxPokemon((Pokemon *)param0->receivedListing.pokemon.bytes);
-        param0->unk_E8.unk_04 = param0->unk_E8.unk_00;
-        param0->unk_120 = ov94_02244870(&param0->receivedListing);
-        param0->unk_E8.unk_08 = param0->unk_120;
-        param0->unk_E8.unk_0C = 3;
-        param0->unk_E8.unk_10 = 2;
+        appState->tradeAnimationConfig.sendingPokemon = (BoxPokemon *)Pokemon_GetBoxPokemon((Pokemon *)appState->receivedListing.pokemon.bytes);
+        appState->tradeAnimationConfig.receivingPokemon = appState->tradeAnimationConfig.sendingPokemon;
+        appState->receivingPokemonTrainer = ov94_02244870(&appState->receivedListing);
+        appState->tradeAnimationConfig.otherTrainer = appState->receivingPokemonTrainer;
+        appState->tradeAnimationConfig.backgroundColour = 3;
+        appState->tradeAnimationConfig.tradeType = 2;
         break;
-    case 8:
-        param0->unk_E8.unk_04 = (BoxPokemon *)Pokemon_GetBoxPokemon((Pokemon *)param0->receivedListing.pokemon.bytes);
-        param0->unk_E8.unk_00 = param0->unk_E8.unk_04;
-        param0->unk_120 = ov94_02244870(&param0->receivedListing);
-        param0->unk_E8.unk_08 = param0->unk_120;
-        param0->unk_E8.unk_0C = 3;
-        param0->unk_E8.unk_10 = 4;
+    case 8: // from network handler receiving flow
+        appState->tradeAnimationConfig.receivingPokemon = (BoxPokemon *)Pokemon_GetBoxPokemon((Pokemon *)appState->receivedListing.pokemon.bytes);
+        appState->tradeAnimationConfig.sendingPokemon = appState->tradeAnimationConfig.receivingPokemon;
+        appState->receivingPokemonTrainer = ov94_02244870(&appState->receivedListing);
+        appState->tradeAnimationConfig.otherTrainer = appState->receivingPokemonTrainer;
+        appState->tradeAnimationConfig.backgroundColour = 3;
+        appState->tradeAnimationConfig.tradeType = 4;
         break;
     case 10:
-        param0->unk_E8.unk_04 = Pokemon_GetBoxPokemon((Pokemon *)param0->receivedListing.pokemon.bytes);
-        GlobalTrade_CopyStoredPokemon(param0->unk_00->unk_00, param0->unk_1104);
-        param0->unk_E8.unk_00 = Pokemon_GetBoxPokemon(param0->unk_1104);
-        param0->unk_120 = ov94_02244870(&param0->receivedListing);
-        param0->unk_E8.unk_08 = param0->unk_120;
-        param0->unk_E8.unk_0C = 3;
-        param0->unk_E8.unk_10 = 1;
+        appState->tradeAnimationConfig.receivingPokemon = Pokemon_GetBoxPokemon((Pokemon *)appState->receivedListing.pokemon.bytes);
+        GlobalTrade_CopyStoredPokemon(appState->unk_00->unk_00, appState->unk_1104);
+        appState->tradeAnimationConfig.sendingPokemon = Pokemon_GetBoxPokemon(appState->unk_1104);
+        appState->receivingPokemonTrainer = ov94_02244870(&appState->receivedListing);
+        appState->tradeAnimationConfig.otherTrainer = appState->receivingPokemonTrainer;
+        appState->tradeAnimationConfig.backgroundColour = 3;
+        appState->tradeAnimationConfig.tradeType = 1;
         break;
     case 9:
-        GlobalTrade_CopyStoredPokemon(param0->unk_00->unk_00, param0->unk_1104);
-        param0->unk_E8.unk_00 = Pokemon_GetBoxPokemon(param0->unk_1104);
-        param0->unk_E8.unk_04 = (BoxPokemon *)Pokemon_GetBoxPokemon((Pokemon *)param0->unk_250[param0->unk_11C].pokemon.bytes);
-        param0->unk_120 = ov94_02244870(&param0->unk_250[param0->unk_11C]);
-        param0->unk_E8.unk_08 = param0->unk_120;
-        param0->unk_E8.unk_0C = 3;
-        param0->unk_E8.unk_10 = 1;
+        GlobalTrade_CopyStoredPokemon(appState->unk_00->unk_00, appState->unk_1104);
+        appState->tradeAnimationConfig.sendingPokemon = Pokemon_GetBoxPokemon(appState->unk_1104);
+        appState->tradeAnimationConfig.receivingPokemon = (BoxPokemon *)Pokemon_GetBoxPokemon((Pokemon *)appState->unk_250[appState->unk_11C].pokemon.bytes);
+        appState->receivingPokemonTrainer = ov94_02244870(&appState->unk_250[appState->unk_11C]);
+        appState->tradeAnimationConfig.otherTrainer = appState->receivingPokemonTrainer;
+        appState->tradeAnimationConfig.backgroundColour = 3;
+        appState->tradeAnimationConfig.tradeType = 1;
         break;
     }
 
-    param0->unk_E8.options = param0->unk_00->options;
-    param0->appMan = ApplicationManager_New(&Unk_ov94_0224636C, &param0->unk_E8, 62);
-    param0->unk_104 = 1;
+    appState->tradeAnimationConfig.options = appState->unk_00->options;
+    appState->appMan = ApplicationManager_New(&sTradeSequenceConfig, &appState->tradeAnimationConfig, HEAP_ID_62);
+    appState->unk_104 = 1;
 
-    return 2;
+    return GTS_APPLICATION_LOOP_STATE_WAIT_FADE;
 }
 
-int ov94_02244678(GTSApplicationState *param0, int param1)
+int GTSApplication_Screen9_Main(GTSApplicationState *param0, int param1)
 {
     int v0 = 3;
 
@@ -90,7 +92,7 @@ int ov94_02244678(GTSApplicationState *param0, int param1)
             ApplicationManager_Free(param0->appMan);
 
             if (param0->screenArgument == 9) {
-                Pokemon *v1 = ov94_022448AC(param0, param0->screenArgument);
+                Pokemon *v1 = GTSApplication_Screen9_GetTradedPokemon(param0, param0->screenArgument);
                 int v2 = Pokemon_GetValue(v1, MON_DATA_HELD_ITEM, NULL);
                 int v3;
                 int v4;
@@ -104,8 +106,8 @@ int ov94_02244678(GTSApplicationState *param0, int param1)
                     GTSApplication_SetNextScreenWithArgument(param0, 1, 0);
                     v0 = 4;
                 }
-            } else if ((param0->screenArgument == 8) || (param0->screenArgument == 10)) {
-                Pokemon *v1 = ov94_022448AC(param0, param0->screenArgument);
+            } else if ((param0->screenArgument == 8) || (param0->screenArgument == 10)) { // receiving flow
+                Pokemon *v1 = GTSApplication_Screen9_GetTradedPokemon(param0, param0->screenArgument);
                 Pokemon *v5 = Pokemon_New(HEAP_ID_62);
 
                 GlobalTrade_CopyStoredPokemon(param0->unk_00->unk_00, v5);
@@ -153,7 +155,7 @@ int ov94_02244678(GTSApplicationState *param0, int param1)
 int ov94_0224484C(GTSApplicationState *param0, int param1)
 {
     Heap_FreeToHeap(param0->unk_1104);
-    Heap_FreeToHeap(param0->unk_120);
+    Heap_FreeToHeap(param0->receivingPokemonTrainer);
     GTSApplication_MoveToNextScreen(param0);
 
     return 1;
@@ -171,14 +173,14 @@ static TrainerInfo *ov94_02244870(GTSPokemonListing *param0)
     return v0;
 }
 
-static Pokemon *ov94_022448AC(GTSApplicationState *param0, int param1)
+static Pokemon *GTSApplication_Screen9_GetTradedPokemon(GTSApplicationState *appState, int screenArgument)
 {
-    if (param1 == 9) {
-        return (Pokemon *)param0->unk_250[param0->unk_11C].pokemon.bytes;
-    } else if (param1 == 10) {
-        return (Pokemon *)param0->receivedListing.pokemon.bytes;
-    } else if (param1 == 8) {
-        return (Pokemon *)param0->receivedListing.pokemon.bytes;
+    if (screenArgument == 9) {
+        return (Pokemon *)appState->unk_250[appState->unk_11C].pokemon.bytes;
+    } else if (screenArgument == 10) {
+        return (Pokemon *)appState->receivedListing.pokemon.bytes;
+    } else if (screenArgument == 8) {
+        return (Pokemon *)appState->receivedListing.pokemon.bytes;
     }
 
     GF_ASSERT(0);
@@ -187,7 +189,7 @@ static Pokemon *ov94_022448AC(GTSApplicationState *param0, int param1)
 
 static void ov94_022448E8(GTSApplicationState *param0)
 {
-    Pokemon *v0 = ov94_022448AC(param0, param0->screenArgument);
+    Pokemon *v0 = GTSApplication_Screen9_GetTradedPokemon(param0, param0->screenArgument);
 
     if (param0->tradedPokemonLocation.boxIndex == 18) {
         Pokemon_Copy(v0, Party_GetPokemonBySlotIndex(param0->unk_00->unk_08, param0->tradedPokemonLocation.index));

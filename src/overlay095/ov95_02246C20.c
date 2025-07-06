@@ -40,8 +40,8 @@
 #include "unk_020131EC.h"
 #include "unk_020393C8.h"
 
-struct UnkStruct_ov95_02247628_t {
-    const UnkStruct_ov6_02246254 *unk_00;
+struct TradeSequenceData_t {
+    const NpcTradeAnimationConfig *animationConfig;
     int unk_04;
     BgConfig *unk_08;
     StringTemplate *unk_0C;
@@ -92,7 +92,7 @@ struct UnkStruct_ov95_022472C4_t {
     SysTask *unk_20;
 };
 
-typedef void *(*UnkFuncPtr_ov95_0224BE8C)(UnkStruct_ov95_02247628 *);
+typedef void *(*UnkFuncPtr_ov95_0224BE8C)(TradeSequenceData *);
 typedef BOOL (*UnkFuncPtr_ov95_0224BE8C_1)(void *, int *);
 typedef void (*UnkFuncPtr_ov95_0224BE8C_2)(void *);
 
@@ -123,53 +123,53 @@ static const struct {
     { ov95_0224B3D8, ov95_0224B49C, ov95_0224B438, 1 | 4 },
 };
 
-int ov95_02246C20(ApplicationManager *appMan, int *param1)
+int TradeSequence_Init(ApplicationManager *appMan, int *param1)
 {
     if (IsScreenFadeDone()) {
-        UnkStruct_ov95_02247628 *v0;
+        TradeSequenceData *tradeData;
 
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_57, 98304);
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_58, 98304);
         ov95_02247688();
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_3, SEQ_KOUKAN, 1);
 
-        v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov95_02247628), HEAP_ID_57);
+        tradeData = ApplicationManager_NewData(appMan, sizeof(TradeSequenceData), HEAP_ID_57);
 
-        if (v0) {
-            v0->unk_00 = ApplicationManager_Args(appMan);
-            v0->unk_04 = 0;
-            v0->unk_08 = BgConfig_New(HEAP_ID_57);
-            v0->unk_14 = Strbuf_Init(400, HEAP_ID_57);
-            v0->unk_10 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0350, HEAP_ID_57);
-            v0->unk_0C = StringTemplate_Default(HEAP_ID_57);
+        if (tradeData) {
+            tradeData->animationConfig = ApplicationManager_Args(appMan); // this is overlay094's unk_E8
+            tradeData->unk_04 = 0;
+            tradeData->unk_08 = BgConfig_New(HEAP_ID_57);
+            tradeData->unk_14 = Strbuf_Init(400, HEAP_ID_57);
+            tradeData->unk_10 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_TRADE, HEAP_ID_57);
+            tradeData->unk_0C = StringTemplate_Default(HEAP_ID_57);
 
-            switch (v0->unk_00->unk_10) {
+            switch (tradeData->animationConfig->tradeType) {
             case 1:
-                StringTemplate_SetNickname(v0->unk_0C, 0, (BoxPokemon *)(v0->unk_00->unk_00));
-                StringTemplate_SetNickname(v0->unk_0C, 1, (BoxPokemon *)(v0->unk_00->unk_04));
-                StringTemplate_SetPlayerName(v0->unk_0C, 2, v0->unk_00->unk_08);
-                v0->unk_1AC = DoesMonSpeciesFlipsSprite((BoxPokemon *)(v0->unk_00->unk_04));
+                StringTemplate_SetNickname(tradeData->unk_0C, 0, (BoxPokemon *)(tradeData->animationConfig->sendingPokemon));
+                StringTemplate_SetNickname(tradeData->unk_0C, 1, (BoxPokemon *)(tradeData->animationConfig->receivingPokemon));
+                StringTemplate_SetPlayerName(tradeData->unk_0C, 2, tradeData->animationConfig->otherTrainer);
+                tradeData->unk_1AC = DoesMonSpeciesFlipsSprite((BoxPokemon *)(tradeData->animationConfig->receivingPokemon));
                 break;
             case 2:
-                StringTemplate_SetNickname(v0->unk_0C, 0, (BoxPokemon *)(v0->unk_00->unk_00));
+                StringTemplate_SetNickname(tradeData->unk_0C, 0, (BoxPokemon *)(tradeData->animationConfig->sendingPokemon));
                 break;
             case 4:
-                StringTemplate_SetNickname(v0->unk_0C, 1, (BoxPokemon *)(v0->unk_00->unk_04));
-                v0->unk_1AC = DoesMonSpeciesFlipsSprite((BoxPokemon *)(v0->unk_00->unk_04));
+                StringTemplate_SetNickname(tradeData->unk_0C, 1, (BoxPokemon *)(tradeData->animationConfig->receivingPokemon));
+                tradeData->unk_1AC = DoesMonSpeciesFlipsSprite((BoxPokemon *)(tradeData->animationConfig->receivingPokemon));
                 break;
             }
 
             NNS_G2dInitOamManagerModule();
 
             RenderOam_Init(0, 128, 0, 32, 1, 127, 0, 32, 57);
-            v0->unk_18 = SpriteList_InitRendering(64, &v0->unk_1C, HEAP_ID_57);
-            SetSubScreenViewRect(&(v0->unk_1C), 0, (192 + 40 << FX32_SHIFT));
+            tradeData->unk_18 = SpriteList_InitRendering(64, &tradeData->unk_1C, HEAP_ID_57);
+            SetSubScreenViewRect(&(tradeData->unk_1C), 0, (192 + 40 << FX32_SHIFT));
 
-            v0->unk_1B0 = BoxPokemon_GetValue((BoxPokemon *)(v0->unk_00->unk_00), MON_DATA_SPECIES, NULL);
-            v0->unk_1B2 = BoxPokemon_GetValue((BoxPokemon *)(v0->unk_00->unk_00), MON_DATA_FORM, NULL);
-            v0->unk_1B4 = BoxPokemon_GetValue((BoxPokemon *)(v0->unk_00->unk_04), MON_DATA_SPECIES, NULL);
-            v0->unk_1B6 = BoxPokemon_GetValue((BoxPokemon *)(v0->unk_00->unk_04), MON_DATA_FORM, NULL);
-            v0->unk_1B8 = NULL;
+            tradeData->unk_1B0 = BoxPokemon_GetValue((BoxPokemon *)(tradeData->animationConfig->sendingPokemon), MON_DATA_SPECIES, NULL);
+            tradeData->unk_1B2 = BoxPokemon_GetValue((BoxPokemon *)(tradeData->animationConfig->sendingPokemon), MON_DATA_FORM, NULL);
+            tradeData->unk_1B4 = BoxPokemon_GetValue((BoxPokemon *)(tradeData->animationConfig->receivingPokemon), MON_DATA_SPECIES, NULL);
+            tradeData->unk_1B6 = BoxPokemon_GetValue((BoxPokemon *)(tradeData->animationConfig->receivingPokemon), MON_DATA_FORM, NULL);
+            tradeData->unk_1B8 = NULL;
 
             SetVBlankCallback(NULL, NULL);
             DisableHBlank();
@@ -179,8 +179,8 @@ int ov95_02246C20(ApplicationManager *appMan, int *param1)
             GX_SetVisiblePlane(0);
             GXS_SetVisiblePlane(0);
 
-            v0->unk_1A8 = SysTask_CreateOnPrintQueue(ov95_02246F0C, v0, 1);
-            v0->unk_1B8 = NULL;
+            tradeData->unk_1A8 = SysTask_CreateOnPrintQueue(ov95_02246F0C, tradeData, 1);
+            tradeData->unk_1B8 = NULL;
         }
 
         return 1;
@@ -197,10 +197,10 @@ static BOOL DoesMonSpeciesFlipsSprite(BoxPokemon *boxMon)
     return SpeciesData_GetFormValue(species, form, SPECIES_DATA_FLIP_SPRITE) == FALSE;
 }
 
-int ov95_02246E1C(ApplicationManager *appMan, int *param1)
+int TradeSequence_Exit(ApplicationManager *appMan, int *param1)
 {
     OSIntrMode v0;
-    UnkStruct_ov95_02247628 *v1;
+    TradeSequenceData *v1;
 
     v0 = OS_DisableInterrupts();
     v1 = ApplicationManager_Data(appMan);
@@ -222,12 +222,12 @@ int ov95_02246E1C(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-int ov95_02246E7C(ApplicationManager *appMan, int *param1)
+int TradeSequence_Main(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov95_02247628 *v0 = ApplicationManager_Data(appMan);
+    TradeSequenceData *v0 = ApplicationManager_Data(appMan);
 
     if (v0->unk_04 < NELEMS(Unk_ov95_0224BE8C)) {
-        if (Unk_ov95_0224BE8C[v0->unk_04].unk_0C & v0->unk_00->unk_10) {
+        if (Unk_ov95_0224BE8C[v0->unk_04].unk_0C & v0->animationConfig->tradeType) {
             if (v0->unk_1B8 == NULL) {
                 v0->unk_1B8 = Unk_ov95_0224BE8C[v0->unk_04].unk_00(v0);
             }
@@ -254,7 +254,7 @@ int ov95_02246E7C(ApplicationManager *appMan, int *param1)
 
 static void ov95_02246F0C(SysTask *param0, void *param1)
 {
-    UnkStruct_ov95_02247628 *v0 = param1;
+    TradeSequenceData *v0 = param1;
 
     SpriteList_Update(v0->unk_18);
     RenderOam_Transfer();
@@ -543,7 +543,7 @@ static void ov95_022473A0(UnkStruct_ov95_022472C4 *param0)
     Bg_SetAffineParams(param0->unk_00, 6, &v1, 128, v0[param0->unk_1C]);
 }
 
-void ov95_022473E8(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 param3, BOOL param4)
+void ov95_022473E8(TradeSequenceData *param0, int param1, u32 param2, u32 param3, BOOL param4)
 {
     PokemonSpriteTemplate v0;
     u32 v1;
@@ -565,7 +565,7 @@ void ov95_022473E8(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 
         u32 v7;
         u16 v8;
 
-        v5 = (BoxPokemon *)((param1 == 0) ? param0->unk_00->unk_00 : param0->unk_00->unk_04);
+        v5 = (BoxPokemon *)((param1 == 0) ? param0->animationConfig->sendingPokemon : param0->animationConfig->receivingPokemon);
         v6 = BoxPokemon_EnterDecryptionContext(v5);
 
         BoxPokemon_BuildSpriteTemplate(&v0, v5, 2, 0);
@@ -589,7 +589,7 @@ void ov95_022473E8(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 
     Graphics_LoadPalette(v0.narcID, v0.palette, v1, param3 * 0x20, 0x20, HEAP_ID_57);
 }
 
-void ov95_022474D4(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 param3, u32 param4, u32 param5)
+void ov95_022474D4(TradeSequenceData *param0, int param1, u32 param2, u32 param3, u32 param4, u32 param5)
 {
     void *v0;
     NNSG2dScreenData *v1;
@@ -642,7 +642,7 @@ void ov95_022475C4(SpriteResourcesHeader *param0, UnkStruct_ov95_02247568 *param
     param0->isVRamTransfer = 0;
 }
 
-Sprite *ov95_022475E4(UnkStruct_ov95_02247628 *param0, SpriteResourcesHeader *param1, u32 param2, u32 param3, u32 param4, int param5)
+Sprite *ov95_022475E4(TradeSequenceData *param0, SpriteResourcesHeader *param1, u32 param2, u32 param3, u32 param4, int param5)
 {
     Sprite *v0;
     SpriteListTemplate v1;
@@ -666,64 +666,64 @@ Sprite *ov95_022475E4(UnkStruct_ov95_02247628 *param0, SpriteResourcesHeader *pa
     return v0;
 }
 
-BgConfig *ov95_02247628(UnkStruct_ov95_02247628 *param0)
+BgConfig *ov95_02247628(TradeSequenceData *param0)
 {
     return param0->unk_08;
 }
 
-StringTemplate *ov95_0224762C(UnkStruct_ov95_02247628 *param0)
+StringTemplate *ov95_0224762C(TradeSequenceData *param0)
 {
     return param0->unk_0C;
 }
 
-MessageLoader *ov95_02247630(UnkStruct_ov95_02247628 *param0)
+MessageLoader *ov95_02247630(TradeSequenceData *param0)
 {
     return param0->unk_10;
 }
 
-const BoxPokemon *ov95_02247634(UnkStruct_ov95_02247628 *param0)
+const BoxPokemon *TradeSequence_GetSendingPokemon(TradeSequenceData *tradeSequence)
 {
-    return param0->unk_00->unk_00;
+    return tradeSequence->animationConfig->sendingPokemon;
 }
 
-const BoxPokemon *ov95_0224763C(UnkStruct_ov95_02247628 *param0)
+const BoxPokemon *TradeSequence_GetReceivingPokemon(TradeSequenceData *tradeSequence)
 {
-    return param0->unk_00->unk_04;
+    return tradeSequence->animationConfig->receivingPokemon;
 }
 
-u32 ov95_02247644(UnkStruct_ov95_02247628 *param0)
+u32 TradeSequence_GetBackgroundColour(TradeSequenceData *tradeSequence)
 {
-    return param0->unk_00->unk_0C;
+    return tradeSequence->animationConfig->backgroundColour;
 }
 
-u16 ov95_0224764C(UnkStruct_ov95_02247628 *param0)
+u16 ov95_0224764C(TradeSequenceData *param0)
 {
     return param0->unk_1B0;
 }
 
-u16 ov95_02247654(UnkStruct_ov95_02247628 *param0)
+u16 ov95_02247654(TradeSequenceData *param0)
 {
     return param0->unk_1B2;
 }
 
-u16 ov95_02247660(UnkStruct_ov95_02247628 *param0)
+u16 ov95_02247660(TradeSequenceData *param0)
 {
     return param0->unk_1B4;
 }
 
-u16 ov95_02247668(UnkStruct_ov95_02247628 *param0)
+u16 ov95_02247668(TradeSequenceData *param0)
 {
     return param0->unk_1B6;
 }
 
-int ov95_02247674(UnkStruct_ov95_02247628 *param0)
+int ov95_02247674(TradeSequenceData *param0)
 {
-    return Options_Frame(param0->unk_00->options);
+    return Options_Frame(param0->animationConfig->options);
 }
 
-int ov95_02247680(UnkStruct_ov95_02247628 *param0)
+int TradeSequence_GetTradeType(TradeSequenceData *param0)
 {
-    return param0->unk_00->unk_10;
+    return param0->animationConfig->tradeType;
 }
 
 static int Unk_ov95_0224C2E0 = 0;

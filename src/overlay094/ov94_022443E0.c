@@ -42,7 +42,7 @@ int ov94_022443E0(GTSApplicationState *param0, int param1)
     PokemonSummaryScreen_FlagVisiblePages(&param0->unk_B8, Unk_ov94_02246360);
     PokemonSummaryScreen_SetPlayerProfile(&param0->unk_B8, param0->unk_00->unk_1C);
 
-    param0->appMan = ApplicationManager_New(&gPokemonSummaryScreenApp, &param0->unk_B8, 62);
+    param0->appMan = ApplicationManager_New(&gPokemonSummaryScreenApp, &param0->unk_B8, HEAP_ID_62);
     param0->unk_104 = 1;
 
     return 2;

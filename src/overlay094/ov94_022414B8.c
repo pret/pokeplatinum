@@ -793,7 +793,7 @@ static int ov94_0224208C(GTSApplicationState *param0)
         } else {
             GTSApplication_SetNextScreenWithArgument(param0, 7, 7);
             param0->currentScreenInstruction = 2;
-            param0->unk_1110 = 1;
+            param0->fadeBothScreens = 1;
             ov94_02242668(&param0->receivedListing, param0);
         }
     }
@@ -805,7 +805,7 @@ static int ov94_022420E4(GTSApplicationState *param0)
 {
     if (param0->nextScreen == 0) {
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
-        param0->unk_1110 = 1;
+        param0->fadeBothScreens = 1;
     } else {
         StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
     }

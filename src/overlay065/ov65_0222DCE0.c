@@ -725,7 +725,7 @@ int ov65_0222E2A8(ApplicationManager *appMan, int *param1)
     case 0:
         v1 = ApplicationManager_Args(appMan);
 
-        if (sub_020389B8()) {
+        if (CommMan_IsConnectedToWifi()) {
             switch (v1->unk_04) {
             case 8:
             case 9:
@@ -775,7 +775,7 @@ int ov65_0222E2A8(ApplicationManager *appMan, int *param1)
 
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_54);
 
-        if (sub_020389B8()) {
+        if (CommMan_IsConnectedToWifi()) {
             sub_02039734();
         } else {
             sub_02099550();
@@ -1593,7 +1593,7 @@ static int ov65_0222F010(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
     u32 v0;
 
-    if (sub_020389B8()) {
+    if (CommMan_IsConnectedToWifi()) {
         ov65_02232DC0(param0, ov4_021D2388());
         param0->unk_04 = sub_020388E8();
         param0->unk_04->unk_00.unk_21 = param0->unk_04->unk_00.unk_22;

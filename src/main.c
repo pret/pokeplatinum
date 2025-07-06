@@ -270,13 +270,13 @@ static void HeapCanaryFailed(int resetParam, int param1)
     if (param1 == 3) {
         NetworkError_DisplayNetworkError(HEAP_ID_SYSTEM, 3, 0);
     } else if (resetParam == RESET_CLEAN) {
-        if (sub_020389B8() == TRUE) {
+        if (CommMan_IsConnectedToWifi() == TRUE) {
             NetworkError_DisplayNetworkError(HEAP_ID_SYSTEM, 6, 0);
         } else {
             NetworkError_DisplayNetworkError(HEAP_ID_SYSTEM, 2, 0);
         }
     } else {
-        if (sub_020389B8() == TRUE) {
+        if (CommMan_IsConnectedToWifi() == TRUE) {
             NetworkError_DisplayNetworkError(HEAP_ID_SYSTEM, 5, 0);
         } else {
             NetworkError_DisplayNetworkError(HEAP_ID_SYSTEM, 0, 0);

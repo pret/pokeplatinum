@@ -181,7 +181,7 @@ BOOL Battle_Main(ApplicationManager *appMan, int *param1)
         ov16_0223D10C(appMan, v0);
         sub_02038F8C(v0->wiFiHistory);
 
-        if (!sub_020389B8()) {
+        if (!CommMan_IsConnectedToWifi()) {
             GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_020);
         } else {
             GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_025);
@@ -812,7 +812,7 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay11));
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay12));
 
-    if (!sub_020389B8()) {
+    if (!CommMan_IsConnectedToWifi()) {
         Overlay_UnloadByID(FS_OVERLAY_ID(pokedex));
     }
 }
@@ -1633,7 +1633,7 @@ static void ov16_0223D0C4(SysTask *param0, void *param1)
 
 static void NitroStaticInit(void)
 {
-    if (!sub_020389B8()) {
+    if (!CommMan_IsConnectedToWifi()) {
         Overlay_LoadByID(FS_OVERLAY_ID(pokedex), 2);
     }
 }
@@ -2152,14 +2152,14 @@ static BOOL ov16_0223DB1C(ApplicationManager *appMan)
 
     switch (v0->resultMask) {
     case BATTLE_RESULT_WIN:
-        if (!sub_020389B8()) {
+        if (!CommMan_IsConnectedToWifi()) {
             GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_021);
         } else {
             GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_026);
         }
         break;
     case BATTLE_RESULT_LOSE:
-        if (!sub_020389B8()) {
+        if (!CommMan_IsConnectedToWifi()) {
             GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_022);
         } else {
             GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_027);
@@ -2167,7 +2167,7 @@ static BOOL ov16_0223DB1C(ApplicationManager *appMan)
         break;
     case BATTLE_RESULT_DRAW:
     case BATTLE_RESULT_PLAYER_FLED:
-        if (!sub_020389B8()) {
+        if (!CommMan_IsConnectedToWifi()) {
             GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_023);
         } else {
             GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_028);
@@ -2311,7 +2311,7 @@ static void ov16_0223DECC(void)
 {
     sub_02039734();
 
-    if (sub_020389B8()) {
+    if (CommMan_IsConnectedToWifi()) {
         sub_020397B0(WM_LINK_LEVEL_3 - DWC_GetLinkLevel());
     } else if (CommServerClient_IsInitialized()) {
         sub_020397B0(WM_LINK_LEVEL_3 - WM_GetLinkLevel());

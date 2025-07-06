@@ -6,12 +6,12 @@
 #include "trainer_info.h"
 
 typedef struct {
-    const BoxPokemon *unk_00;
-    const BoxPokemon *unk_04;
-    const TrainerInfo *unk_08;
-    int unk_0C;
-    int unk_10;
+    const BoxPokemon *sendingPokemon;
+    const BoxPokemon *receivingPokemon;
+    const TrainerInfo *otherTrainer;
+    int backgroundColour; // background colour; 0 = morning, 1 = evening, 2 = night, 3 = green
+    int tradeType; // 1 = player/npc trade; anything else = one-sided trade
     const Options *options;
-} UnkStruct_ov6_02246254;
+} NpcTradeAnimationConfig;
 
 #endif // POKEPLATINUM_STRUCT_OV6_02246254_H

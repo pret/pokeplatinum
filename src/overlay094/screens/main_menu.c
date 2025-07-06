@@ -98,7 +98,7 @@ int GTSApplication_MainMenu_Init(GTSApplicationState *appState, int unused1)
 
         ov94_02243FA8(appState, TrainerInfo_Gender(appState->unk_00->unk_1C));
     } else {
-        if (appState->unk_1110 == 1) {
+        if (appState->fadeBothScreens == 1) {
             StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
         } else {
             StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
@@ -107,7 +107,7 @@ int GTSApplication_MainMenu_Init(GTSApplicationState *appState, int unused1)
         appState->currentScreenInstruction = 5;
     }
 
-    appState->unk_1110 = 0;
+    appState->fadeBothScreens = 0;
     return GTS_APPLICATION_LOOP_STATE_WAIT_FADE;
 }
 

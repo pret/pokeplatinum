@@ -76,7 +76,7 @@ typedef struct GTSApplicationState {
     int previousScreen;
     int unk_20;
     int screenArgument;
-    int unk_28;
+    int depositReturnError;
     int currentScreenInstruction; // some kind of instruction pointer
     int nextScreenInstruction;
     u16 hasPlayerDescended;
@@ -92,7 +92,7 @@ typedef struct GTSApplicationState {
     DWCInetControl dwcInetControlObject;
     ApplicationManager *appMan;
     PokemonSummary unk_B8;
-    UnkStruct_ov6_02246254 unk_E8;
+    NpcTradeAnimationConfig tradeAnimationConfig;
     UnkStruct_0207AE68 *unk_100;
     int unk_104;
     u16 unk_108;
@@ -104,7 +104,7 @@ typedef struct GTSApplicationState {
     BoxPokemon *unk_114;
     int unk_118;
     int unk_11C;
-    TrainerInfo *unk_120;
+    TrainerInfo *receivingPokemonTrainer;
     GTSTradedPokemonLocation tradedPokemonLocation;
     GTSPokemonListing receivedListing;
     GTSPokemonListing unk_250[7];
@@ -172,7 +172,7 @@ typedef struct GTSApplicationState {
     GTSApplicationState_sub2 *unk_1108;
     u16 deferredBoxPokemonCount;
     u16 deferredBoxId;
-    u32 unk_1110;
+    u32 fadeBothScreens;
     void *unk_1114;
     void (*unk_1118)(void *param0);
     UnkStruct_ov94_02242AAC unk_111C;

@@ -764,7 +764,7 @@ static int GTSApplication_WFCInit_ExitScreen(GTSApplicationState *param0)
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
 
     param0->currentScreenInstruction = 0;
-    param0->unk_1110 = 1;
+    param0->fadeBothScreens = 1;
 
     return GTS_APPLICATION_LOOP_STATE_FINISH;
 }

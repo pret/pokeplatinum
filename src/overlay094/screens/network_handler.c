@@ -57,13 +57,13 @@
 
 #include "res/text/bank/gts.h"
 
-static void ov94_02242B54(BgConfig *param0);
-static void ov94_02242C80(BgConfig *param0);
-static void ov94_02242CAC(GTSApplicationState *param0);
-static void ov94_02242D38(GTSApplicationState *param0);
-static void ov94_02242D74(GTSApplicationState *param0);
-static void ov94_02242D84(GTSApplicationState *param0);
-static void ov94_02242D98(GTSApplicationState *param0);
+static void GTSApplication_NetworkHandler_InitBackground(BgConfig *param0);
+static void GTSApplication_NetworkHandler_CleanupBackground(BgConfig *param0);
+static void GTSApplication_NetworkHandler_InitGraphics(GTSApplicationState *param0);
+static void GTSApplication_NetworkHandler_CreateWindow(GTSApplicationState *param0);
+static void GTSApplication_NetworkHandler_CleanupWindows(GTSApplicationState *param0);
+static void GTSApplication_NetworkHandler_InitStrings(GTSApplicationState *param0);
+static void GTSApplication_NetworkHandler_CleanupStrings(GTSApplicationState *param0);
 static void GTS_LogTradeInJournal(JournalEntry *param0, GTSPokemonListing *param1);
 static void GTSApplication_NetworkHandler_ReturnToPreviousScreen(GTSApplicationState *param0);
 static void GTSApplication_NetworkHandler_FlagGeonetCommunicatedWith(WiFiHistory *wiFiHistory, GTSPokemonListing *param1);
@@ -82,7 +82,7 @@ static int ov94_0224377C(GTSApplicationState *param0);
 static int ov94_02243794(GTSApplicationState *param0);
 static int ov94_02243920(GTSApplicationState *param0);
 static int ov94_02243948(GTSApplicationState *param0);
-static int ov94_02243A90(GTSApplicationState *param0);
+static int GTSApplication_NetworkHandler_FadeAndExit(GTSApplicationState *param0);
 static int ov94_02243AE8(GTSApplicationState *param0);
 static int GTSApplication_NetworkHandler_GetListedPokemonRequest(GTSApplicationState *param0);
 static int GTSApplication_NetworkHandler_GetListedPokemonResponse(GTSApplicationState *param0);
@@ -96,27 +96,27 @@ static int ov94_022437AC(GTSApplicationState *param0);
 static int ov94_02243884(GTSApplicationState *param0);
 static void ov94_02243B08(GTSApplicationState *param0, int param1);
 static void GTSApplication_NetworkHandler_StorePokemonFromDepositing(GTSApplicationState *param0, Pokemon *param1, int param2, int param3);
-static int ov94_02243990(GTSApplicationState *param0);
+static int GTSApplication_NetworkHandler_PrepareFullSave(GTSApplicationState *param0);
 static int ov94_02243974(GTSApplicationState *param0);
-static int ov94_02243A04(GTSApplicationState *param0);
+static int GTSApplication_NetworkHandler_WaitForSaveComplete(GTSApplicationState *param0);
 static int ov94_02243588(GTSApplicationState *param0);
 static int ov94_02243568(GTSApplicationState *param0);
 static int GTSApplication_NetworkHandler_GetListingStatusResponse(GTSApplicationState *param0);
 static int GTSApplication_NetworkHandler_GetListingStatusRequest(GTSApplicationState *param0);
 static int GTSApplication_NetworkHandler_PerformDepositTrade(GTSApplicationState *param0);
-static int ov94_022436F0(GTSApplicationState *param0);
+static int GTSApplication_NetworkHandler_DeleteReceivedPokemonResponse(GTSApplicationState *param0);
 static int ov94_022437C0(GTSApplicationState *param0);
-static int ov94_022439E4(GTSApplicationState *param0);
-static int ov94_022439CC(GTSApplicationState *param0);
+static int GTSApplication_NetworkHandler_WaitForSaveProceed(GTSApplicationState *param0);
+static int GTSApplication_NetworkHandler_WaitForFrameDelay(GTSApplicationState *param0);
 static int ov94_02243554(GTSApplicationState *param0);
 static int GTSApplication_NetworkHandler_FullSave(GTSApplicationState *param0);
 static int GTSApplication_NetworkHandler_WaitForSuccessfulSave(GTSApplicationState *param0);
-static int ov94_022436D4(GTSApplicationState *param0);
+static int GTSApplication_NetworkHandler_DeleteReceivedPokemonRequest(GTSApplicationState *param0);
 static int ov94_022437D8(GTSApplicationState *param0);
 static int ov94_022437F4(GTSApplicationState *param0);
 static BOOL GTSApplication_NetworkHandler_IsListingDesynced(GTSApplicationState *param0);
 
-static int (*Unk_ov94_022469A0[])(GTSApplicationState *) = {
+static int (*sGTSNetworkHandlerScreenStates[])(GTSApplicationState *) = {
     GTSApplication_NetworkHandler_ParseScreenArgument,
     ov94_02243778, // noop
     ov94_02242E9C,
@@ -128,7 +128,7 @@ static int (*Unk_ov94_022469A0[])(GTSApplicationState *) = {
     GTSApplication_NetworkHandler_GetListedPokemonResponse,
     ov94_02243104,
     ov94_02243120, // #10
-    ov94_02243794,
+    ov94_02243794, // go to screen #9, called after saving and receiving a pokemon
     ov94_022431A4,
     ov94_022431F0, //
     ov94_022432D8,
@@ -136,8 +136,8 @@ static int (*Unk_ov94_022469A0[])(GTSApplicationState *) = {
     ov94_022437AC,
     ov94_02243884,
     GTSApplication_NetworkHandler_PerformDepositTrade, // retrieved pokemon from status call
-    ov94_022436D4,
-    ov94_022436F0, // #20
+    GTSApplication_NetworkHandler_DeleteReceivedPokemonRequest,
+    GTSApplication_NetworkHandler_DeleteReceivedPokemonResponse, // #20
     ov94_022437C0,
     ov94_022437D8,
     ov94_022437F4,
@@ -147,13 +147,13 @@ static int (*Unk_ov94_022469A0[])(GTSApplicationState *) = {
     ov94_02243588,
     ov94_02243554,
     ov94_02243974,
-    ov94_02243990, // #30
-    ov94_022439CC,
-    ov94_022439E4,
-    ov94_02243A04,
+    GTSApplication_NetworkHandler_PrepareFullSave, // #30
+    GTSApplication_NetworkHandler_WaitForFrameDelay,
+    GTSApplication_NetworkHandler_WaitForSaveProceed,
+    GTSApplication_NetworkHandler_WaitForSaveComplete,
     GTSApplication_NetworkHandler_FullSave,
     GTSApplication_NetworkHandler_WaitForSuccessfulSave,
-    ov94_02243A90, // exit
+    GTSApplication_NetworkHandler_FadeAndExit, // exit
     ov94_02243AE8, // wait for text
     ov94_02243920, // comms error
     ov94_02243948
@@ -161,10 +161,10 @@ static int (*Unk_ov94_022469A0[])(GTSApplicationState *) = {
 
 int GTSApplication_NetworkHandler_Init(GTSApplicationState *appState, int unused1)
 {
-    ov94_02242D84(appState);
-    ov94_02242B54(appState->bgConfig);
-    ov94_02242CAC(appState);
-    ov94_02242D38(appState);
+    GTSApplication_NetworkHandler_InitStrings(appState);
+    GTSApplication_NetworkHandler_InitBackground(appState->bgConfig);
+    GTSApplication_NetworkHandler_InitGraphics(appState);
+    GTSApplication_NetworkHandler_CreateWindow(appState);
 
     StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
     ov94_02245934(appState);
@@ -177,20 +177,20 @@ int GTSApplication_NetworkHandler_Init(GTSApplicationState *appState, int unused
 int GTSApplication_NetworkHandler_Main(GTSApplicationState *appState, int unused1)
 {
     sub_020397B0(GTSApplication_GetNetworkStrength());
-    return (*Unk_ov94_022469A0[appState->currentScreenInstruction])(appState);
+    return (*sGTSNetworkHandlerScreenStates[appState->currentScreenInstruction])(appState);
 }
 
 int GTSApplication_NetworkHandler_Exit(GTSApplicationState *appState, int unused1)
 {
-    ov94_02242D98(appState);
-    ov94_02242D74(appState);
-    ov94_02242C80(appState->bgConfig);
+    GTSApplication_NetworkHandler_CleanupStrings(appState);
+    GTSApplication_NetworkHandler_CleanupWindows(appState);
+    GTSApplication_NetworkHandler_CleanupBackground(appState->bgConfig);
     GTSApplication_MoveToNextScreen(appState);
 
     return GTS_APPLICATION_LOOP_STATE_INIT;
 }
 
-static void ov94_02242B54(BgConfig *param0)
+static void GTSApplication_NetworkHandler_InitBackground(BgConfig *bgConfig)
 {
     {
         GraphicsModes v0 = {
@@ -220,8 +220,8 @@ static void ov94_02242B54(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_0, &v1, 0);
-        Bg_ClearTilemap(param0, BG_LAYER_MAIN_0);
+        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_0, &v1, 0);
+        Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_0);
     }
 
     {
@@ -241,8 +241,8 @@ static void ov94_02242B54(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v2, 0);
-        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
+        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_1, &v2, 0);
+        Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_1);
     }
 
     {
@@ -262,8 +262,8 @@ static void ov94_02242B54(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v3, 0);
-        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
+        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_2, &v3, 0);
+        Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_2);
     }
 
     {
@@ -283,8 +283,8 @@ static void ov94_02242B54(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v4, 0);
-        Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
+        Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_0, &v4, 0);
+        Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_0);
     }
 
     {
@@ -304,7 +304,7 @@ static void ov94_02242B54(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_SUB_1, &v5, 0);
+        Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_1, &v5, 0);
     }
 
     Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_62);
@@ -315,23 +315,23 @@ static void ov94_02242B54(BgConfig *param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov94_02242C80(BgConfig *param0)
+static void GTSApplication_NetworkHandler_CleanupBackground(BgConfig *appState)
 {
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_1);
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0);
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
+    Bg_FreeTilemapBuffer(appState, BG_LAYER_SUB_1);
+    Bg_FreeTilemapBuffer(appState, BG_LAYER_SUB_0);
+    Bg_FreeTilemapBuffer(appState, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(appState, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(appState, BG_LAYER_MAIN_0);
 }
 
-static void ov94_02242CAC(GTSApplicationState *appState)
+static void GTSApplication_NetworkHandler_InitGraphics(GTSApplicationState *appState)
 {
-    BgConfig *v0 = appState->bgConfig;
+    BgConfig *bgConfig = appState->bgConfig;
 
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__WORLDTRADE, 0, 0, 0, 16 * 3 * 2, HEAP_ID_62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_62);
-    LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, 1, 10, Options_Frame(appState->unk_00->options), HEAP_ID_62);
-    LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_0, (1 + (18 + 12)), 11, 0, HEAP_ID_62);
+    LoadMessageBoxGraphics(bgConfig, BG_LAYER_MAIN_0, 1, 10, Options_Frame(appState->unk_00->options), HEAP_ID_62);
+    LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_0, (1 + (18 + 12)), 11, 0, HEAP_ID_62);
 
     if (appState->hasAvatarFinishedMoving == FALSE) {
         Bg_ToggleLayer(BG_LAYER_SUB_0, 0);
@@ -344,23 +344,23 @@ static void ov94_02242CAC(GTSApplicationState *appState)
     }
 }
 
-static void ov94_02242D38(GTSApplicationState *appState)
+static void GTSApplication_NetworkHandler_CreateWindow(GTSApplicationState *appState)
 {
     Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, 0, 2, 19, 27, 4, 13, ((1 + (18 + 12)) + 9));
     Window_FillTilemap(&appState->bottomInstructionWindow, 0x0);
 }
 
-static void ov94_02242D74(GTSApplicationState *appState)
+static void GTSApplication_NetworkHandler_CleanupWindows(GTSApplicationState *appState)
 {
     Window_Remove(&appState->bottomInstructionWindow);
 }
 
-static void ov94_02242D84(GTSApplicationState *appState)
+static void GTSApplication_NetworkHandler_InitStrings(GTSApplicationState *appState)
 {
     appState->genericMessageBuffer = Strbuf_Init((90 * 2), HEAP_ID_62);
 }
 
-static void ov94_02242D98(GTSApplicationState *appState)
+static void GTSApplication_NetworkHandler_CleanupStrings(GTSApplicationState *appState)
 {
     Strbuf_Free(appState->genericMessageBuffer);
 }
@@ -383,7 +383,7 @@ static int GTSApplication_NetworkHandler_ParseScreenArgument(GTSApplicationState
     case 10:
         GTSApplication_DisplayStatusMessage(appState, appState->gtsMessageLoader, GTS_Text_CheckingStatus, TEXT_SPEED_FAST, 0xf0f);
         GTSApplication_SetCurrentAndNextScreenInstruction(appState, 37, 18);
-        appState->unk_1110 = 1;
+        appState->fadeBothScreens = 1;
         break;
     case 11: // this is called when logging in, to potentially process someone trading you
         GTSApplication_DisplayStatusMessage(appState, appState->gtsMessageLoader, GTS_Text_CheckingStatus, TEXT_SPEED_INSTANT, 0xf0f);
@@ -779,7 +779,7 @@ static int GTSApplication_NetworkHandler_GetListingStatusResponse(GTSApplication
                 break;
             case 0: // all OK, store the traded pokemon
                 appState->currentScreenInstruction = 18;
-                appState->unk_1110 = 1;
+                appState->fadeBothScreens = 1;
                 break;
             }
             break;
@@ -792,7 +792,7 @@ static int GTSApplication_NetworkHandler_GetListingStatusResponse(GTSApplication
                 GlobalTrade_CopyStoredPokemon(appState->unk_00->unk_00, tempPokemon);
                 StringTemplate_SetNickname(appState->stringTemplate, 0, Pokemon_GetBoxPokemon(tempPokemon));
 
-                appState->unk_28 = pl_msg_00000671_00002;
+                appState->depositReturnError = pl_msg_00000671_00002;
                 appState->currentScreenInstruction = 34;
 
                 GTSApplication_NetworkHandler_StorePokemonFromDepositing(appState, tempPokemon, GlobalTrade_GetUnusedInt(appState->unk_00->unk_00), 0);
@@ -812,7 +812,7 @@ static int GTSApplication_NetworkHandler_GetListingStatusResponse(GTSApplication
                 GlobalTrade_CopyStoredPokemon(appState->unk_00->unk_00, tempPokemon);
                 StringTemplate_SetNickname(appState->stringTemplate, 0, Pokemon_GetBoxPokemon(tempPokemon));
 
-                appState->unk_28 = pl_msg_00000671_00003;
+                appState->depositReturnError = pl_msg_00000671_00003;
                 appState->currentScreenInstruction = 34;
 
                 GlobalTrade_SetPokemonListed(appState->unk_00->unk_00, 0);
@@ -942,17 +942,17 @@ static int GTSApplication_NetworkHandler_PerformDepositTrade(GTSApplicationState
     return GTS_APPLICATION_LOOP_STATE_MAIN;
 }
 
-static int ov94_022436D4(GTSApplicationState *param0)
+static int GTSApplication_NetworkHandler_DeleteReceivedPokemonRequest(GTSApplicationState *appState)
 {
     GTSNetworking_Delete();
 
-    param0->currentScreenInstruction = 20;
-    param0->networkTimeoutCounter = 0;
+    appState->currentScreenInstruction = 20;
+    appState->networkTimeoutCounter = 0;
 
-    return 3;
+    return GTS_APPLICATION_LOOP_STATE_MAIN;
 }
 
-static int ov94_022436F0(GTSApplicationState *appState)
+static int GTSApplication_NetworkHandler_DeleteReceivedPokemonResponse(GTSApplicationState *appState)
 {
     if (GTSNetworking_RequestComplete()) {
         s32 errorCode = GTSNetworking_GetErrorCode();
@@ -1003,13 +1003,13 @@ static int ov94_0224377C(GTSApplicationState *param0)
     return 3;
 }
 
-static int ov94_02243794(GTSApplicationState *param0)
+static int ov94_02243794(GTSApplicationState *appState)
 {
-    param0->isPokemonListed = 0;
-    GTSApplication_SetNextScreenWithArgument(param0, 9, 8);
-    param0->currentScreenInstruction = 36;
+    appState->isPokemonListed = 0;
+    GTSApplication_SetNextScreenWithArgument(appState, 9, 8);
+    appState->currentScreenInstruction = 36;
 
-    return 3;
+    return GTS_APPLICATION_LOOP_STATE_MAIN;
 }
 
 static int ov94_022437AC(GTSApplicationState *param0)
@@ -1148,42 +1148,42 @@ static int ov94_02243974(GTSApplicationState *param0)
     return GTS_APPLICATION_LOOP_STATE_MAIN;
 }
 
-static int ov94_02243990(GTSApplicationState *param0)
+static int GTSApplication_NetworkHandler_PrepareFullSave(GTSApplicationState *appState)
 {
     SaveData_SetFullSaveRequired();
-    SaveData_SaveStateInit(param0->unk_00->saveData, 2);
+    SaveData_SaveStateInit(appState->unk_00->saveData, 2);
 
-    param0->currentScreenInstruction = 31;
-    param0->frameDelay = LCRNG_RandMod(60) + 2;
+    appState->currentScreenInstruction = 31;
+    appState->frameDelay = LCRNG_RandMod(60) + 2;
 
     return GTS_APPLICATION_LOOP_STATE_MAIN;
 }
 
-static int ov94_022439CC(GTSApplicationState *param0)
+static int GTSApplication_NetworkHandler_WaitForFrameDelay(GTSApplicationState *appState)
 {
-    param0->frameDelay--;
+    appState->frameDelay--;
 
-    if (param0->frameDelay == 0) {
-        param0->currentScreenInstruction = 32;
+    if (appState->frameDelay == 0) {
+        appState->currentScreenInstruction = 32;
     }
 
     return GTS_APPLICATION_LOOP_STATE_MAIN;
 }
 
-static int ov94_022439E4(GTSApplicationState *param0)
+static int GTSApplication_NetworkHandler_WaitForSaveProceed(GTSApplicationState *appState)
 {
-    if (SaveData_SaveStateMain(param0->unk_00->saveData) == SAVE_RESULT_PROCEED_FINAL) {
-        param0->currentScreenInstruction = param0->duringSaveInstruction;
+    if (SaveData_SaveStateMain(appState->unk_00->saveData) == SAVE_RESULT_PROCEED_FINAL) {
+        appState->currentScreenInstruction = appState->duringSaveInstruction;
     }
 
     return GTS_APPLICATION_LOOP_STATE_MAIN;
 }
 
-static int ov94_02243A04(GTSApplicationState *param0)
+static int GTSApplication_NetworkHandler_WaitForSaveComplete(GTSApplicationState *appState)
 {
-    if (SaveData_SaveStateMain(param0->unk_00->saveData) == SAVE_RESULT_OK) {
-        param0->currentScreenInstruction = param0->successfulSaveInstruction;
-        GTSApplicationState_DestroyWaitDial(param0);
+    if (SaveData_SaveStateMain(appState->unk_00->saveData) == SAVE_RESULT_OK) {
+        appState->currentScreenInstruction = appState->successfulSaveInstruction;
+        GTSApplicationState_DestroyWaitDial(appState);
     }
 
     return GTS_APPLICATION_LOOP_STATE_MAIN;
@@ -1204,25 +1204,25 @@ static int GTSApplication_NetworkHandler_WaitForSuccessfulSave(GTSApplicationSta
     if (SaveData_SaveStateMain(appState->unk_00->saveData) == SAVE_RESULT_OK) {
         GTSApplication_SetNextScreenWithArgument(appState, 1, 0);
         GTSApplicationState_DestroyWaitDial(appState);
-        GTSApplication_DisplayStatusMessage(appState, appState->gtsMessageLoader, appState->unk_28, TEXT_SPEED_FAST, 0xf0f);
+        GTSApplication_DisplayStatusMessage(appState, appState->gtsMessageLoader, appState->depositReturnError, TEXT_SPEED_FAST, 0xf0f);
         GTSApplication_SetCurrentAndNextScreenInstruction(appState, 37, 28);
     }
 
     return GTS_APPLICATION_LOOP_STATE_MAIN;
 }
 
-static int ov94_02243A90(GTSApplicationState *param0)
+static int GTSApplication_NetworkHandler_FadeAndExit(GTSApplicationState *appState)
 {
-    GTSApplicationState_DestroyWaitDial(param0);
+    GTSApplicationState_DestroyWaitDial(appState);
     sub_02039794();
 
-    if (param0->unk_1110 == 1) {
+    if (appState->fadeBothScreens == 1) {
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
     } else {
         StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
     }
 
-    param0->currentScreenInstruction = 0;
+    appState->currentScreenInstruction = 0;
 
     return GTS_APPLICATION_LOOP_STATE_FINISH;
 }
