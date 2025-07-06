@@ -536,13 +536,12 @@ static void ov110_021D140C(UnkStruct_ov110_021D0F78 *param0)
 
 static void ov110_021D1468(UnkStruct_ov110_021D0F78 *param0)
 {
-    u8 v0, v1;
+    u8 v1;
     int v2;
     u32 v3;
 
-    v0 = 0;
-    Window_FillTilemap(&param0->unk_10[v0], 0);
-    ov110_021D1324(param0, &param0->unk_10[v0], 22, 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 0);
+    Window_FillTilemap(&param0->unk_10[0], 0);
+    ov110_021D1324(param0, &param0->unk_10[0], 22, 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 0);
 
     if (param0->unk_05 == 0) {
         v2 = 26;
@@ -555,47 +554,46 @@ static void ov110_021D1468(UnkStruct_ov110_021D0F78 *param0)
         v3 = 27 * 8;
     }
 
-    ov110_021D1324(param0, &param0->unk_10[v0], v2, v3, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
-    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
-    v0 = 1;
-    ov110_021D13CC(param0, &param0->unk_10[v0], 34, 1);
-    ov110_021D1324(param0, &param0->unk_10[v0], 36, 28 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
-    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
-    v0 = 2;
-    ov110_021D13CC(param0, &param0->unk_10[v0], ov110_021D17AC(param0, 0), 1);
+    ov110_021D1324(param0, &param0->unk_10[0], v2, v3, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[0]);
+
+    ov110_021D13CC(param0, &param0->unk_10[1], 34, 1);
+    ov110_021D1324(param0, &param0->unk_10[1], 36, 28 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[1]);
+
+    ov110_021D13CC(param0, &param0->unk_10[2], ov110_021D17AC(param0, 0), 1);
     ov110_021D13F0(param0, 0, sub_02030698(param0->frontier, sub_0205E430(0, param0->unk_05), 0xFF));
-    ov110_021D1324(param0, &param0->unk_10[v0], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
+    ov110_021D1324(param0, &param0->unk_10[2], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
     ov110_021D13F0(param0, 0, sub_02030698(param0->frontier, sub_0205E488(0, param0->unk_05), 0xFF));
-    ov110_021D1324(param0, &param0->unk_10[v0], 40, 28 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
-    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
-    v0 = 3;
-    ov110_021D13CC(param0, &param0->unk_10[v0], 31, 1);
+    ov110_021D1324(param0, &param0->unk_10[2], 40, 28 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[2]);
+
+    ov110_021D13CC(param0, &param0->unk_10[3], 31, 1);
     ov110_021D13F0(param0, 0, sub_02030698(param0->frontier, sub_0205E45C(0, param0->unk_05), 0xFF));
-    ov110_021D1324(param0, &param0->unk_10[v0], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
+    ov110_021D1324(param0, &param0->unk_10[3], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
     ov110_021D13F0(param0, 0, sub_02030698(param0->frontier, sub_0205E4B4(0, param0->unk_05), 0xFF));
-    ov110_021D1324(param0, &param0->unk_10[v0], 40, 28 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
-    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
+    ov110_021D1324(param0, &param0->unk_10[3], 40, 28 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[3]);
 }
 
 static void ov110_021D1650(UnkStruct_ov110_021D0F78 *param0)
 {
-    u8 v0 = 4;
-    ov110_021D13CC(param0, &param0->unk_10[v0], 35, 1);
-    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
-    v0 = 5;
-    ov110_021D13CC(param0, &param0->unk_10[v0], ov110_021D17AC(param0, 1), 1);
+    ov110_021D13CC(param0, &param0->unk_10[4], 35, 1);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[4]);
+
+    ov110_021D13CC(param0, &param0->unk_10[5], ov110_021D17AC(param0, 1), 1);
     ov110_021D13F0(param0, 0, sub_02030698(param0->frontier, sub_0205E430(1, param0->unk_05), 0xFF));
-    ov110_021D1324(param0, &param0->unk_10[v0], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
+    ov110_021D1324(param0, &param0->unk_10[5], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
     ov110_021D13F0(param0, 0, sub_02030698(param0->frontier, sub_0205E488(1, param0->unk_05), 0xFF));
-    ov110_021D1324(param0, &param0->unk_10[v0], 40, 28 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
-    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
-    v0 = 6;
-    ov110_021D13CC(param0, &param0->unk_10[v0], 31, 1);
+    ov110_021D1324(param0, &param0->unk_10[5], 40, 28 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[5]);
+
+    ov110_021D13CC(param0, &param0->unk_10[6], 31, 1);
     ov110_021D13F0(param0, 0, sub_02030698(param0->frontier, sub_0205E45C(1, param0->unk_05), 0xFF));
-    ov110_021D1324(param0, &param0->unk_10[v0], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
+    ov110_021D1324(param0, &param0->unk_10[6], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
     ov110_021D13F0(param0, 0, sub_02030698(param0->frontier, sub_0205E4B4(1, param0->unk_05), 0xFF));
-    ov110_021D1324(param0, &param0->unk_10[v0], 40, 28 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
-    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
+    ov110_021D1324(param0, &param0->unk_10[6], 40, 28 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[6]);
 }
 
 static u32 ov110_021D17AC(UnkStruct_ov110_021D0F78 *param0, u8 param1)
@@ -624,16 +622,14 @@ static u32 ov110_021D17AC(UnkStruct_ov110_021D0F78 *param0, u8 param1)
 
 static void ov110_021D1808(UnkStruct_ov110_021D0F78 *param0)
 {
-    u8 v0;
     int v1;
     u32 v2;
     u16 v3;
     int v4;
     BattleFrontierStage *frontierStage;
 
-    v0 = 0;
-    Window_FillTilemap(&param0->unk_10[v0], 0);
-    ov110_021D1324(param0, &param0->unk_10[v0], 24, 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 0);
+    Window_FillTilemap(&param0->unk_10[0], 0);
+    ov110_021D1324(param0, &param0->unk_10[0], 24, 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 0);
 
     if (param0->unk_05 == 0) {
         v1 = 26;
@@ -646,14 +642,14 @@ static void ov110_021D1808(UnkStruct_ov110_021D0F78 *param0)
         v2 = 27 * 8;
     }
 
-    ov110_021D1324(param0, &param0->unk_10[v0], v1, v2, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
-    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
-    v0 = 1;
+    ov110_021D1324(param0, &param0->unk_10[0], v1, v2, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[0]);
+
     ov110_021D19B0(param0);
-    ov110_021D1324(param0, &param0->unk_10[v0], 39, 0, 0, 1, 2, 0, FONT_SYSTEM, 0, 0);
-    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
-    v0 = 2;
-    ov110_021D13CC(param0, &param0->unk_10[v0], 29, 1);
+    ov110_021D1324(param0, &param0->unk_10[1], 39, 0, 0, 1, 2, 0, FONT_SYSTEM, 0, 0);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[1]);
+
+    ov110_021D13CC(param0, &param0->unk_10[2], 29, 1);
 
     if (param0->unk_08 != sub_02030698(SaveData_GetBattleFrontier(param0->saveData), sub_0205E55C(param0->unk_05), sub_0205E6A8(sub_0205E55C(param0->unk_05)))) {
         v3 = 0;
@@ -662,10 +658,10 @@ static void ov110_021D1808(UnkStruct_ov110_021D0F78 *param0)
     }
 
     ov110_021D13F0(param0, 0, v3);
-    ov110_021D1324(param0, &param0->unk_10[v0], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
-    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
-    v0 = 3;
-    ov110_021D13CC(param0, &param0->unk_10[v0], 31, 1);
+    ov110_021D1324(param0, &param0->unk_10[2], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[2]);
+
+    ov110_021D13CC(param0, &param0->unk_10[3], 31, 1);
     frontierStage = sub_020308A0(param0->saveData, 11, &v4);
 
     if (v4 != 1) {
@@ -679,8 +675,8 @@ static void ov110_021D1808(UnkStruct_ov110_021D0F78 *param0)
     }
 
     ov110_021D13F0(param0, 0, v3);
-    ov110_021D1324(param0, &param0->unk_10[v0], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
-    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
+    ov110_021D1324(param0, &param0->unk_10[3], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[3]);
 }
 
 static void ov110_021D19B0(UnkStruct_ov110_021D0F78 *param0)
@@ -700,13 +696,11 @@ static void ov110_021D19B0(UnkStruct_ov110_021D0F78 *param0)
 
 static void ov110_021D19F4(UnkStruct_ov110_021D0F78 *param0)
 {
-    u8 v0;
     int v1;
     u32 v2;
 
-    v0 = 0;
-    Window_FillTilemap(&param0->unk_10[v0], 0);
-    ov110_021D1324(param0, &param0->unk_10[v0], 23, 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 0);
+    Window_FillTilemap(&param0->unk_10[0], 0);
+    ov110_021D1324(param0, &param0->unk_10[0], 23, 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 0);
 
     if (param0->unk_05 == 0) {
         v1 = 26;
@@ -719,25 +713,25 @@ static void ov110_021D19F4(UnkStruct_ov110_021D0F78 *param0)
         v2 = 27 * 8;
     }
 
-    ov110_021D1324(param0, &param0->unk_10[v0], v1, v2, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
-    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
-    v0 = 1;
-    ov110_021D1324(param0, &param0->unk_10[v0], 37, 12 * 8, 0, 1, 2, 0, FONT_SYSTEM, 1, 2);
-    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
-    v0 = 2;
-    ov110_021D13CC(param0, &param0->unk_10[v0], ov110_021D1BEC(param0), 1);
+    ov110_021D1324(param0, &param0->unk_10[0], v1, v2, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[0]);
+
+    ov110_021D1324(param0, &param0->unk_10[1], 37, 12 * 8, 0, 1, 2, 0, FONT_SYSTEM, 1, 2);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[1]);
+
+    ov110_021D13CC(param0, &param0->unk_10[2], ov110_021D1BEC(param0), 1);
     ov110_021D13F0(param0, 0, sub_02030698(param0->frontier, sub_0205E5E0(param0->unk_05), 0xFF));
-    ov110_021D1324(param0, &param0->unk_10[v0], 42, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
+    ov110_021D1324(param0, &param0->unk_10[2], 42, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
     ov110_021D13F0(param0, 0, sub_02030698(SaveData_GetBattleFrontier(param0->saveData), sub_0205E630(param0->unk_05), sub_0205E6A8(sub_0205E630(param0->unk_05))));
-    ov110_021D1324(param0, &param0->unk_10[v0], 41, 28 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
-    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
-    v0 = 3;
-    ov110_021D13CC(param0, &param0->unk_10[v0], 31, 1);
+    ov110_021D1324(param0, &param0->unk_10[2], 41, 28 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[2]);
+
+    ov110_021D13CC(param0, &param0->unk_10[3], 31, 1);
     ov110_021D13F0(param0, 0, sub_02030698(param0->frontier, sub_0205E608(param0->unk_05), 0xFF));
-    ov110_021D1324(param0, &param0->unk_10[v0], 42, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
+    ov110_021D1324(param0, &param0->unk_10[3], 42, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
     ov110_021D13F0(param0, 0, sub_02030698(SaveData_GetBattleFrontier(param0->saveData), sub_0205E680(param0->unk_05), sub_0205E6A8(sub_0205E680(param0->unk_05))));
-    ov110_021D1324(param0, &param0->unk_10[v0], 41, 28 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
-    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
+    ov110_021D1324(param0, &param0->unk_10[3], 41, 28 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[3]);
 }
 
 static u32 ov110_021D1BEC(UnkStruct_ov110_021D0F78 *param0)
@@ -759,13 +753,11 @@ static u32 ov110_021D1BEC(UnkStruct_ov110_021D0F78 *param0)
 
 static void ov110_021D1C40(UnkStruct_ov110_021D0F78 *param0)
 {
-    u8 v0;
     int v1;
     u32 v2;
 
-    v0 = 0;
-    Window_FillTilemap(&param0->unk_10[v0], 0);
-    ov110_021D1324(param0, &param0->unk_10[v0], 25, 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 0);
+    Window_FillTilemap(&param0->unk_10[0], 0);
+    ov110_021D1324(param0, &param0->unk_10[0], 25, 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 0);
 
     if (param0->unk_05 == 0) {
         v1 = 26;
@@ -778,18 +770,18 @@ static void ov110_021D1C40(UnkStruct_ov110_021D0F78 *param0)
         v2 = 27 * 8;
     }
 
-    ov110_021D1324(param0, &param0->unk_10[v0], v1, v2, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
-    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
-    v0 = 1;
-    ov110_021D13CC(param0, &param0->unk_10[v0], ov110_021D1D68(param0), 1);
+    ov110_021D1324(param0, &param0->unk_10[0], v1, v2, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[0]);
+
+    ov110_021D13CC(param0, &param0->unk_10[1], ov110_021D1D68(param0), 1);
     ov110_021D13F0(param0, 0, sub_02030698(param0->frontier, sub_0205E700(param0->unk_05), 0xFF));
-    ov110_021D1324(param0, &param0->unk_10[v0], 43, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
-    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
-    v0 = 2;
-    ov110_021D13CC(param0, &param0->unk_10[v0], 31, 1);
+    ov110_021D1324(param0, &param0->unk_10[1], 43, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[1]);
+
+    ov110_021D13CC(param0, &param0->unk_10[2], 31, 1);
     ov110_021D13F0(param0, 0, sub_02030698(param0->frontier, sub_0205E728(param0->unk_05), 0xFF));
-    ov110_021D1324(param0, &param0->unk_10[v0], 43, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
-    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
+    ov110_021D1324(param0, &param0->unk_10[2], 43, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[2]);
 }
 
 static u32 ov110_021D1D68(UnkStruct_ov110_021D0F78 *param0)
@@ -811,13 +803,11 @@ static u32 ov110_021D1D68(UnkStruct_ov110_021D0F78 *param0)
 
 static void ov110_021D1DBC(UnkStruct_ov110_021D0F78 *param0)
 {
-    u8 v0;
     int v1;
     u32 v2;
 
-    v0 = 0;
-    Window_FillTilemap(&param0->unk_10[v0], 0);
-    ov110_021D1324(param0, &param0->unk_10[v0], 21, 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 0);
+    Window_FillTilemap(&param0->unk_10[0], 0);
+    ov110_021D1324(param0, &param0->unk_10[0], 21, 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 0);
 
     if (param0->unk_05 == 0) {
         v1 = 26;
@@ -827,55 +817,52 @@ static void ov110_021D1DBC(UnkStruct_ov110_021D0F78 *param0)
         v2 = 27 * 8;
     }
 
-    ov110_021D1324(param0, &param0->unk_10[v0], v1, v2, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
-    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
-    v0 = 2;
-    ov110_021D13CC(param0, &param0->unk_10[v0], ov110_021D20CC(param0, param0->unk_05), 1);
+    ov110_021D1324(param0, &param0->unk_10[0], v1, v2, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[0]);
+
+    ov110_021D13CC(param0, &param0->unk_10[2], ov110_021D20CC(param0, param0->unk_05), 1);
     ov110_021D13F0(param0, 0, sub_02030698(param0->frontier, sub_0205E750(param0->unk_05), 0xFF));
-    ov110_021D1324(param0, &param0->unk_10[v0], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
-    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
-    v0 = 3;
-    ov110_021D13CC(param0, &param0->unk_10[v0], 31, 1);
+    ov110_021D1324(param0, &param0->unk_10[2], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[2]);
+
+    ov110_021D13CC(param0, &param0->unk_10[3], 31, 1);
     ov110_021D13F0(param0, 0, sub_02030698(param0->frontier, sub_0205E790(param0->unk_05), 0xFF));
-    ov110_021D1324(param0, &param0->unk_10[v0], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
-    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
+    ov110_021D1324(param0, &param0->unk_10[3], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[3]);
 }
 
 static void ov110_021D1ED8(UnkStruct_ov110_021D0F78 *param0)
 {
-    u8 v0;
+    Window_FillTilemap(&param0->unk_10[0], 0);
+    ov110_021D1324(param0, &param0->unk_10[0], 21, 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 0);
+    ov110_021D1324(param0, &param0->unk_10[0], 28, 27 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[0]);
 
-    v0 = 0;
-    Window_FillTilemap(&param0->unk_10[v0], 0);
-    ov110_021D1324(param0, &param0->unk_10[v0], 21, 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 0);
-    ov110_021D1324(param0, &param0->unk_10[v0], 28, 27 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 2);
-    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
-    v0 = 1;
-    ov110_021D13CC(param0, &param0->unk_10[v0], 32, 1);
-    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
-    v0 = 4;
-    ov110_021D13CC(param0, &param0->unk_10[v0], ov110_021D20CC(param0, param0->unk_05), 1);
+    ov110_021D13CC(param0, &param0->unk_10[1], 32, 1);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[1]);
+
+    ov110_021D13CC(param0, &param0->unk_10[4], ov110_021D20CC(param0, param0->unk_05), 1);
     ov110_021D13F0(param0, 0, sub_02030698(param0->frontier, sub_0205E750(param0->unk_05), 0xFF));
-    ov110_021D1324(param0, &param0->unk_10[v0], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
-    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
-    v0 = 5;
-    ov110_021D13CC(param0, &param0->unk_10[v0], 31, 1);
+    ov110_021D1324(param0, &param0->unk_10[4], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[4]);
+
+    ov110_021D13CC(param0, &param0->unk_10[5], 31, 1);
     ov110_021D13F0(param0, 0, sub_02030698(param0->frontier, sub_0205E790(param0->unk_05), 0xFF));
-    ov110_021D1324(param0, &param0->unk_10[v0], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
-    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
-    v0 = 6;
-    ov110_021D13CC(param0, &param0->unk_10[v0], 33, 1);
-    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
-    v0 = 7;
-    ov110_021D13CC(param0, &param0->unk_10[v0], ov110_021D20CC(param0, 3), 1);
+    ov110_021D1324(param0, &param0->unk_10[5], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[5]);
+
+    ov110_021D13CC(param0, &param0->unk_10[6], 33, 1);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[6]);
+
+    ov110_021D13CC(param0, &param0->unk_10[7], ov110_021D20CC(param0, 3), 1);
     ov110_021D13F0(param0, 0, sub_02030698(param0->frontier, sub_0205E750(3), 0xFF));
-    ov110_021D1324(param0, &param0->unk_10[v0], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
-    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
-    v0 = 8;
-    ov110_021D13CC(param0, &param0->unk_10[v0], 31, 1);
+    ov110_021D1324(param0, &param0->unk_10[7], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[7]);
+
+    ov110_021D13CC(param0, &param0->unk_10[8], 31, 1);
     ov110_021D13F0(param0, 0, sub_02030698(param0->frontier, sub_0205E790(3), 0xFF));
-    ov110_021D1324(param0, &param0->unk_10[v0], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
-    Window_ScheduleCopyToVRAM(&param0->unk_10[v0]);
+    ov110_021D1324(param0, &param0->unk_10[8], 38, 14 * 8, 0, 1, 2, 0, FONT_SYSTEM, 0, 1);
+    Window_ScheduleCopyToVRAM(&param0->unk_10[8]);
 }
 
 static u32 ov110_021D20CC(UnkStruct_ov110_021D0F78 *param0, u8 param1)
