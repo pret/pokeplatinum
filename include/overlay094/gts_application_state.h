@@ -83,7 +83,7 @@ typedef struct GTSApplicationState {
     u16 isPokemonListed;
     u16 unk_38;
     u16 networkTimer;
-    int unk_3C;
+    int commsErrorMessage;
     int unk_40; // dwcError
     int unk_44; // dwcErrorCode
     int unk_48; // dwcErrorType
@@ -159,8 +159,8 @@ typedef struct GTSApplicationState {
     void *waitDial;
     int frameDelay;
     GTSApplicationState_sub3 *unk_10E4;
-    u16 unk_10E8;
-    u16 unk_10EA;
+    u16 duringSaveInstruction;
+    u16 successfulSaveInstruction;
     SysTask *playerAvatarAnimationTask;
     u16 hasAvatarFinishedMoving;
     u16 unk_10F2;

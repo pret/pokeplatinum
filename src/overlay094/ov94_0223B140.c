@@ -16,15 +16,15 @@
 typedef enum GTSNetworkStatus {
     UnkEnum_ov94_0223B15C_00,
     UnkEnum_ov94_0223B15C_01,
-    UnkEnum_ov94_0223B15C_02,
+    NETWORK_STATUS_POST_PENDING,
     UnkEnum_ov94_0223B15C_03,
     UnkEnum_ov94_0223B15C_04,
     UnkEnum_ov94_0223B15C_05,
-    UnkEnum_ov94_0223B15C_06,
-    UnkEnum_ov94_0223B15C_07,
     NETWORK_STATUS_GET_LISTED_POKEMON_PENDING,
+    UnkEnum_ov94_0223B15C_07,
+    NETWORK_STATUS_GET_LISTING_STATUS_PENDING,
     UnkEnum_ov94_0223B15C_09,
-    UnkEnum_ov94_0223B15C_10,
+    NETWORK_STATUS_DELETE_PENDING,
     UnkEnum_ov94_0223B15C_11,
     UnkEnum_ov94_0223B15C_12,
     UnkEnum_ov94_0223B15C_13,
@@ -71,7 +71,7 @@ void ov94_0223B15C(void)
         break;
     case UnkEnum_ov94_0223B15C_01:
         break;
-    case UnkEnum_ov94_0223B15C_02:
+    case NETWORK_STATUS_POST_PENDING:
         switch (HTTP_GetRequestStatus()) {
         case 1:
             Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
@@ -163,7 +163,7 @@ void ov94_0223B15C(void)
         }
 
         break;
-    case UnkEnum_ov94_0223B15C_06:
+    case NETWORK_STATUS_GET_LISTED_POKEMON_PENDING:
         switch (HTTP_GetRequestStatus()) {
         case 1:
             Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
@@ -198,7 +198,7 @@ void ov94_0223B15C(void)
         }
 
         break;
-    case NETWORK_STATUS_GET_LISTED_POKEMON_PENDING:
+    case NETWORK_STATUS_GET_LISTING_STATUS_PENDING:
         switch (HTTP_GetRequestStatus()) {
         case 1:
             Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
@@ -236,7 +236,7 @@ void ov94_0223B15C(void)
         }
 
         break;
-    case UnkEnum_ov94_0223B15C_10:
+    case NETWORK_STATUS_DELETE_PENDING:
         switch (HTTP_GetRequestStatus()) {
         case 1:
             Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
@@ -536,7 +536,7 @@ s32 GTSNetworking_GetErrorCode(void)
     return Unk_ov94_02246AC0.unk_04;
 }
 
-void ov94_0223B7E4(const GTSPokemonListing *param0)
+void GTSNetworking_Post(const GTSPokemonListing *param0)
 {
     memcpy(&Unk_ov94_02246AC0.unk_14[0], param0, sizeof(GTSPokemonListing));
 
@@ -548,7 +548,7 @@ void ov94_0223B7E4(const GTSPokemonListing *param0)
             sizeof(GTSPokemonListing),
             Unk_ov94_02246AC0.unk_13C,
             2)) {
-        Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_02;
+        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_POST_PENDING;
     } else {
         Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
         Unk_ov94_02246AC0.unk_04 = -13;
@@ -576,26 +576,6 @@ void ov94_0223B834(void)
     }
 }
 
-void ov94_0223B888(GTSPokemonListing *param0)
-{
-    Unk_ov94_02246AC0.unk_140 = (u8 *)param0;
-
-    HTTP_Init();
-
-    if (GTSNetworking_PrepareRequest(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                                             "worldexchange/get.asp"),
-            Unk_ov94_02246AC0.unk_14,
-            0,
-            param0,
-            sizeof(GTSPokemonListing))) {
-        Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_06;
-    } else {
-        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
-        Unk_ov94_02246AC0.unk_04 = -13;
-        HTTP_Shutdown();
-    }
-}
-
 void GTSNetworking_GetListedPokemon(GTSPokemonListing *param0)
 {
     Unk_ov94_02246AC0.unk_140 = (u8 *)param0;
@@ -603,7 +583,7 @@ void GTSNetworking_GetListedPokemon(GTSPokemonListing *param0)
     HTTP_Init();
 
     if (GTSNetworking_PrepareRequest(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                                             "worldexchange/result.asp"),
+                                                             "worldexchange/get.asp"),
             Unk_ov94_02246AC0.unk_14,
             0,
             param0,
@@ -616,7 +596,27 @@ void GTSNetworking_GetListedPokemon(GTSPokemonListing *param0)
     }
 }
 
-void ov94_0223B928(void)
+void GTSNetworking_GetListingStatus(GTSPokemonListing *param0)
+{
+    Unk_ov94_02246AC0.unk_140 = (u8 *)param0;
+
+    HTTP_Init();
+
+    if (GTSNetworking_PrepareRequest(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
+                                                             "worldexchange/result.asp"),
+            Unk_ov94_02246AC0.unk_14,
+            0,
+            param0,
+            sizeof(GTSPokemonListing))) {
+        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_GET_LISTING_STATUS_PENDING;
+    } else {
+        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
+        Unk_ov94_02246AC0.unk_04 = -13;
+        HTTP_Shutdown();
+    }
+}
+
+void GTSNetworking_Delete(void)
 {
     HTTP_Init();
 
@@ -626,7 +626,7 @@ void ov94_0223B928(void)
             0,
             Unk_ov94_02246AC0.unk_13C,
             2)) {
-        Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_10;
+        Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_DELETE_PENDING;
     } else {
         Unk_ov94_02246AC0.unk_00 = NETWORK_STATUS_COMPLETE;
         Unk_ov94_02246AC0.unk_04 = -13;
@@ -634,7 +634,7 @@ void ov94_0223B928(void)
     }
 }
 
-void ov94_0223B96C(void)
+void GTSNetworking_Return(void)
 {
     HTTP_Init();
 

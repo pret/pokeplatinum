@@ -78,7 +78,7 @@ static int (*gtsApplicationScreens[][3])(GTSApplicationState *, int) = {
     { ov94_0223E46C, ov94_0223E560, ov94_0223E574 },
     { ov94_0223FB48, ov94_0223FBBC, ov94_0223FBDC },
     { ov94_022414B8, ov94_02241548, ov94_02241568 },
-    { GTSApplication_NetworkHandler_Init, ov94_02242B14, ov94_02242B34 },
+    { GTSApplication_NetworkHandler_Init, GTSApplication_NetworkHandler_Main, GTSApplication_NetworkHandler_Exit },
     { ov94_022443E0, ov94_02244490, ov94_022444BC },
     { ov94_022444C8, ov94_02244678, ov94_0224484C },
 };

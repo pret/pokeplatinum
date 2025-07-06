@@ -471,7 +471,7 @@ static int GTSApplication_WFCInit_CheckConnection(GTSApplicationState *appState)
             GTSApplicationState_DestroyWaitDial(appState);
 
             appState->currentScreenInstruction = 21;
-            appState->unk_3C = -2;
+            appState->commsErrorMessage = -2;
         } break;
 
         case DWC_CONNECTINET_STATE_CONNECTED: {
@@ -600,25 +600,25 @@ static int GTSApplication_WFCInit_WaitForServerResponse(GTSApplicationState *par
             break;
         case 1: // first byte = 6
             GTSApplicationState_DestroyWaitDial(param0);
-            param0->unk_3C = v0;
+            param0->commsErrorMessage = v0;
             param0->currentScreenInstruction = 21;
             break;
         case 2: // first byte = 7
         case -1:
             GTSApplicationState_DestroyWaitDial(param0);
-            param0->unk_3C = v0;
+            param0->commsErrorMessage = v0;
             param0->currentScreenInstruction = 21;
             break;
         case -12:
         case -15:
             GTSApplicationState_DestroyWaitDial(param0);
-            param0->unk_3C = v0;
+            param0->commsErrorMessage = v0;
             param0->currentScreenInstruction = 21;
             break;
         case -2:
         case -14:
             GTSApplicationState_DestroyWaitDial(param0);
-            param0->unk_3C = v0;
+            param0->commsErrorMessage = v0;
             param0->currentScreenInstruction = 21;
             break;
         case -13:
@@ -668,15 +668,15 @@ static int GTSApplication_WFCInit_SetProfileResponse(GTSApplicationState *appSta
                     appState->currentScreenInstruction = 11;
                     break;
                 case 3: // pl_msg_00000671_00177
-                    appState->unk_3C = -5003;
+                    appState->commsErrorMessage = -5003;
                     appState->currentScreenInstruction = 21;
                     break;
                 case 1: // pl_msg_00000671_00174
-                    appState->unk_3C = -5000;
+                    appState->commsErrorMessage = -5000;
                     appState->currentScreenInstruction = 21;
                     break;
                 case 2: // pl_msg_00000671_00174
-                    appState->unk_3C = -5001;
+                    appState->commsErrorMessage = -5001;
                     appState->currentScreenInstruction = 21;
                     break;
                 default:
@@ -685,11 +685,11 @@ static int GTSApplication_WFCInit_SetProfileResponse(GTSApplicationState *appSta
                 }
                 break;
             case 1: // pl_msg_00000671_00175
-                appState->unk_3C = -5004;
+                appState->commsErrorMessage = -5004;
                 appState->currentScreenInstruction = 21;
                 break;
             case 2: // pl_msg_00000671_00176
-                appState->unk_3C = -5005;
+                appState->commsErrorMessage = -5005;
                 appState->currentScreenInstruction = 21;
                 break;
             default:
@@ -700,25 +700,25 @@ static int GTSApplication_WFCInit_SetProfileResponse(GTSApplicationState *appSta
             break;
         case 1:
             GTSApplicationState_DestroyWaitDial(appState);
-            appState->unk_3C = errorCode;
+            appState->commsErrorMessage = errorCode;
             appState->currentScreenInstruction = 21;
             break;
         case 2:
         case -1:
             GTSApplicationState_DestroyWaitDial(appState);
-            appState->unk_3C = errorCode;
+            appState->commsErrorMessage = errorCode;
             appState->currentScreenInstruction = 21;
             break;
         case -12:
         case -15:
             GTSApplicationState_DestroyWaitDial(appState);
-            appState->unk_3C = errorCode;
+            appState->commsErrorMessage = errorCode;
             appState->currentScreenInstruction = 21;
             break;
         case -2:
         case -14:
             GTSApplicationState_DestroyWaitDial(appState);
-            appState->unk_3C = errorCode;
+            appState->commsErrorMessage = errorCode;
             appState->currentScreenInstruction = 21;
             break;
         case -13:
@@ -789,7 +789,7 @@ static int GTSApplication_WFCInit_FatalError(GTSApplicationState *appState)
 {
     int errorMessage = 0;
 
-    switch (appState->unk_3C) {
+    switch (appState->commsErrorMessage) {
     case 1:
         errorMessage = pl_msg_00000671_00144;
         break;
