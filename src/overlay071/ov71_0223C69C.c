@@ -15,8 +15,8 @@
 #include "string_template.h"
 #include "text.h"
 
-static void ov71_0223CD64(Window * param0, const u32 param1, const u32 param2, const u32 param3, Strbuf *param4, const u32 param5, const u8 param6, const int param7);
-static void ov71_0223CDB0(Window * param0, const u32 param1, const u32 param2, const u32 param3, const Strbuf *param4);
+static void ov71_0223CD64(Window *param0, const u32 param1, const u32 param2, const u32 param3, Strbuf *param4, const u32 param5, const u8 param6, const int param7);
+static void ov71_0223CDB0(Window *param0, const u32 param1, const u32 param2, const u32 param3, const Strbuf *param4);
 
 static const WindowTemplate Unk_ov71_0223D670[] = {
     { 0x7, 0x2, 0x4, 0x11, 0x2, 0xF, 0x6F },
@@ -44,7 +44,7 @@ void ov71_0223C69C(BgConfig *param0, Window *param1)
     Bg_FillTilesRange(param0, 7, 0, 1, 0);
 }
 
-void ov71_0223C6D4 (Window * param0)
+void ov71_0223C6D4(Window *param0)
 {
     u16 v0;
 
@@ -67,11 +67,11 @@ static const int Unk_ov71_0223D644[] = {
     0xA
 };
 
-void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
+void ov71_0223C6F0(Window *param0, const TrainerCard *param1)
 {
     u8 v0;
-    MessageLoader * v1;
-    Strbuf* v2;
+    MessageLoader *v1;
+    Strbuf *v2;
 
     Window_FillRectWithColor(&param0[0], 0, 0, 0, 17 * 8, 2 * 8);
     Window_FillRectWithColor(&param0[1], 0, 0, 0, 17 * 8, 2 * 8);
@@ -92,8 +92,8 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
     }
 
     {
-        Strbuf* v3 = Strbuf_Init(32, HEAP_ID_25);
-        StringTemplate * v4 = StringTemplate_New(6, 32, HEAP_ID_25);
+        Strbuf *v3 = Strbuf_Init(32, HEAP_ID_25);
+        StringTemplate *v4 = StringTemplate_New(6, 32, HEAP_ID_25);
 
         ov71_0223CD64(&param0[0], (8 * 17), 0, 0, v2, param1->unk_28, 5, 2);
         Strbuf_CopyChars(v2, param1->unk_08);
@@ -165,7 +165,7 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
     MessageLoader_Free(v1);
 }
 
-void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
+void ov71_0223CA28(Window *param0, const TrainerCard *param1)
 {
     u8 i;
     MessageLoader *messageLoader;
@@ -232,7 +232,7 @@ void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
     MessageLoader_Free(messageLoader);
 }
 
-void ov71_0223CD44 (Window * param0, const u8 param1, const u8 param2)
+void ov71_0223CD44(Window *param0, const u8 param1, const u8 param2)
 {
     u8 v0;
 
@@ -241,7 +241,7 @@ void ov71_0223CD44 (Window * param0, const u8 param1, const u8 param2)
     }
 }
 
-static void ov71_0223CD64 (Window * param0, const u32 param1, const u32 param2, const u32 param3, Strbuf *param4, const u32 param5, const u8 param6, const int param7)
+static void ov71_0223CD64(Window *param0, const u32 param1, const u32 param2, const u32 param3, Strbuf *param4, const u32 param5, const u8 param6, const int param7)
 {
     u32 v0;
 
@@ -250,13 +250,13 @@ static void ov71_0223CD64 (Window * param0, const u32 param1, const u32 param2, 
     Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, param4, param1 - (v0 + param2), param3, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
 }
 
-static void ov71_0223CDB0 (Window * param0, const u32 param1, const u32 param2, const u32 param3, const Strbuf *param4)
+static void ov71_0223CDB0(Window *param0, const u32 param1, const u32 param2, const u32 param3, const Strbuf *param4)
 {
     u32 v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param4, 0);
     Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, param4, param1 - (v0 + param2), param3, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
 }
 
-void ov71_0223CDE8 (Window * param0, const TrainerCard * param1, Strbuf *param2)
+void ov71_0223CDE8(Window *param0, const TrainerCard *param1, Strbuf *param2)
 {
     int v0;
 
@@ -272,10 +272,10 @@ void ov71_0223CDE8 (Window * param0, const TrainerCard * param1, Strbuf *param2)
 
     {
         u32 v1;
-        MessageLoader * v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0616, HEAP_ID_25);
-        Strbuf* v3 = Strbuf_Init(32, HEAP_ID_25);
-        Strbuf* v4 = Strbuf_Init(32, HEAP_ID_25);
-        StringTemplate * v5 = StringTemplate_New((1 + 1), 32, HEAP_ID_25);
+        MessageLoader *v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0616, HEAP_ID_25);
+        Strbuf *v3 = Strbuf_Init(32, HEAP_ID_25);
+        Strbuf *v4 = Strbuf_Init(32, HEAP_ID_25);
+        StringTemplate *v5 = StringTemplate_New((1 + 1), 32, HEAP_ID_25);
 
         StringTemplate_SetNumber(v5, 0, PlayTime_GetHours(param1->playTime), 3, 1, 1);
         StringTemplate_SetNumber(v5, 1, PlayTime_GetMinutes(param1->playTime), 2, 2, 1);
@@ -291,7 +291,7 @@ void ov71_0223CDE8 (Window * param0, const TrainerCard * param1, Strbuf *param2)
     }
 }
 
-void ov71_0223CECC (Window * param0, const BOOL param1, Strbuf *param2)
+void ov71_0223CECC(Window *param0, const BOOL param1, Strbuf *param2)
 {
     if (param1) {
         Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, param2, (207 - 2), 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
