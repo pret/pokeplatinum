@@ -569,7 +569,7 @@ pokeplatinum_c = files(
     'overlay017/ov17_02252CEC.c',
     'overlay018/ov18_0221F800.c',
     'overlay019/ov19_021D0D80.c',
-    'overlay019/ov19_021D603C.c',
+    'overlay019/touch_dial.c',
     'overlay019/ov19_021D61B0.c',
     'overlay019/ov19_021D79F8.c',
     'overlay019/ov19_021D8B54.c',

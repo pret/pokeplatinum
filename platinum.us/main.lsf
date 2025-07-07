@@ -749,7 +749,7 @@ Overlay overlay19
 {
 	After main
 	Object main.nef.p/src_overlay019_ov19_021D0D80.c.o
-	Object main.nef.p/src_overlay019_ov19_021D603C.c.o
+	Object main.nef.p/src_overlay019_touch_dial.c.o
 	Object main.nef.p/src_overlay019_ov19_021D61B0.c.o
 	Object main.nef.p/src_overlay019_ov19_021D79F8.c.o
 	Object main.nef.p/src_overlay019_ov19_021D8B54.c.o
