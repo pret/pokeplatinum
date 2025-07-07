@@ -165,361 +165,72 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
     MessageLoader_Free(v1);
 }
 
-// clang-format off
-asm void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
+void ov71_0223CA28 (Window * param0, const TrainerCard * param1)
 {
-    push {r3, r4, r5, r6, r7, lr}
-    sub sp, #0x18
-    add r6, r0, #0
-    mov r0, #0xe0
-    str r0, [sp]
-    mov r0, #0x20
-    str r1, [sp, #0x10]
-    mov r1, #0
-    str r0, [sp, #4]
-    add r0, r6, #0
-    add r0, #0x70
-    add r2, r1, #0
-    add r3, r1, #0
-    bl Window_FillRectWithColor
-    mov r1, #0
-    mov r0, #0xe0
-    str r0, [sp]
-    mov r0, #0x10
-    str r0, [sp, #4]
-    add r0, r6, #0
-    add r0, #0x80
-    add r2, r1, #0
-    add r3, r1, #0
-    bl Window_FillRectWithColor
-    mov r1, #0
-    mov r0, #0xe0
-    str r0, [sp]
-    mov r0, #0x10
-    str r0, [sp, #4]
-    add r0, r6, #0
-    add r0, #0x90
-    add r2, r1, #0
-    add r3, r1, #0
-    bl Window_FillRectWithColor
-    mov r1, #0
-    mov r0, #0xe0
-    str r0, [sp]
-    mov r0, #0x10
-    str r0, [sp, #4]
-    add r0, r6, #0
-    add r0, #0xa0
-    add r2, r1, #0
-    add r3, r1, #0
-    bl Window_FillRectWithColor
-    mov r2, #0x9a
-    mov r0, #0
-    mov r1, #0x1a
-    lsl r2, r2, #2
-    mov r3, #0x19
-    bl MessageLoader_Init
-    add r7, r0, #0
-    mov r0, #0x20
-    mov r1, #0x19
-    bl Strbuf_Init
-    add r5, r0, #0
-    mov r4, #7
- _0223CAA4:
-    ldr r1, = Unk_ov71_0223D644
-    lsl r2, r4, #2
-    ldr r1, [r1, r2]
-    add r0, r7, #0
-    add r2, r5, #0
-    bl MessageLoader_GetStrbuf
-    mov r0, #0
-    str r0, [sp]
-    str r0, [sp, #4]
-    ldr r0, = 0x10200
-    mov r1, #0
-    str r0, [sp, #8]
-    mov r0, #0
-    str r0, [sp, #0xc]
-    lsl r0, r4, #4
-    add r0, r6, r0
-    add r2, r5, #0
-    add r3, r1, #0
-    bl Text_AddPrinterWithParamsAndColor
-    add r0, r4, #1
-    lsl r0, r0, #0x18
-    lsr r4, r0, #0x18
-    cmp r4, #0xb
-    blo _0223CAA4
-    mov r0, #0x20
-    mov r1, #0x19
-    bl Strbuf_Init
-    str r0, [sp, #0x14]
-    mov r0, #6
-    mov r1, #0x20
-    mov r2, #0x19
-    bl StringTemplate_New
-    ldr r1, [sp, #0x10]
-    add r4, r0, #0
-    add r1, #0x33
-    ldrb r1, [r1]
-    cmp r1, #0
-    beq _0223CB6E
-    mov r1, #2
-    str r1, [sp]
-    mov r2, #1
-    str r2, [sp, #4]
-    ldr r2, [sp, #0x10]
-    add r3, r1, #0
-    add r2, #0x32
-    ldrb r2, [r2]
-    bl StringTemplate_SetNumber
-    ldr r2, [sp, #0x10]
-    add r0, r4, #0
-    add r2, #0x33
-    ldrb r2, [r2]
-    mov r1, #3
-    bl StringTemplate_SetMonthName
-    mov r3, #2
-    ldr r2, [sp, #0x10]
-    str r3, [sp]
-    mov r0, #1
-    str r0, [sp, #4]
-    add r2, #0x34
-    ldrb r2, [r2]
-    add r0, r4, #0
-    mov r1, #4
-    bl StringTemplate_SetNumber
-    mov r0, #1
-    str r0, [sp]
-    str r0, [sp, #4]
-    ldr r2, [sp, #0x10]
-    add r0, r4, #0
-    ldrh r2, [r2, #0x2c]
-    mov r1, #0
-    mov r3, #3
-    bl StringTemplate_SetNumber
-    mov r3, #2
-    ldr r2, [sp, #0x10]
-    str r3, [sp]
-    mov r1, #1
-    str r1, [sp, #4]
-    add r2, #0x35
-    ldrb r2, [r2]
-    add r0, r4, #0
-    bl StringTemplate_SetNumber
-    ldr r2, [sp, #0x14]
-    add r0, r7, #0
-    mov r1, #0x11
-    bl MessageLoader_GetStrbuf
-    ldr r2, [sp, #0x14]
-    add r0, r4, #0
-    add r1, r5, #0
-    bl StringTemplate_Format
-    b _0223CBA6
- _0223CB6E:
-    ldr r2, [sp, #0x14]
-    add r0, r7, #0
-    mov r1, #0xc
-    bl MessageLoader_GetStrbuf
-    mov r1, #0
-    str r1, [sp]
-    mov r0, #2
-    str r0, [sp, #4]
-    ldr r2, [sp, #0x14]
-    add r0, r4, #0
-    add r3, r1, #0
-    bl StringTemplate_SetStrbuf
-    mov r3, #0
-    str r3, [sp]
-    mov r0, #2
-    str r0, [sp, #4]
-    ldr r2, [sp, #0x14]
-    add r0, r4, #0
-    mov r1, #1
-    bl StringTemplate_SetStrbuf
-    add r0, r7, #0
-    mov r1, #0x14
-    add r2, r5, #0
-    bl MessageLoader_GetStrbuf
- _0223CBA6:
-    mov r0, #0
-    add r1, r5, #0
-    add r2, r0, #0
-    bl Font_CalcStrbufWidth
-    mov r1, #0xe0
-    sub r3, r1, r0
-    mov r1, #0
-    str r1, [sp]
-    ldr r0, = 0x10200
-    str r1, [sp, #4]
-    str r0, [sp, #8]
-    add r0, r6, #0
-    add r0, #0x70
-    add r2, r5, #0
-    str r1, [sp, #0xc]
-    bl Text_AddPrinterWithParamsAndColor
-    ldr r2, [sp, #0x14]
-    add r0, r7, #0
-    mov r1, #0xf
-    bl MessageLoader_GetStrbuf
-    ldr r2, [sp, #0x14]
-    add r0, r4, #0
-    add r1, r5, #0
-    bl StringTemplate_Format
-    mov r0, #0
-    add r1, r5, #0
-    add r2, r0, #0
-    bl Font_CalcStrbufWidth
-    mov r1, #0xe0
-    sub r3, r1, r0
-    mov r0, #0x10
-    str r0, [sp]
-    mov r1, #0
-    ldr r0, = 0x10200
-    str r1, [sp, #4]
-    str r0, [sp, #8]
-    add r0, r6, #0
-    add r0, #0x70
-    add r2, r5, #0
-    str r1, [sp, #0xc]
-    bl Text_AddPrinterWithParamsAndColor
-    mov r0, #0
-    str r0, [sp]
-    mov r0, #1
-    str r0, [sp, #4]
-    ldr r2, [sp, #0x10]
-    add r0, r4, #0
-    ldr r2, [r2, #0x38]
-    mov r1, #5
-    mov r3, #6
-    bl StringTemplate_SetNumber
-    ldr r2, [sp, #0x14]
-    add r0, r7, #0
-    mov r1, #0x16
-    bl MessageLoader_GetStrbuf
-    ldr r2, [sp, #0x14]
-    add r0, r4, #0
-    add r1, r5, #0
-    bl StringTemplate_Format
-    mov r0, #0
-    add r1, r5, #0
-    add r2, r0, #0
-    bl Font_CalcStrbufWidth
-    mov r1, #0xe0
-    sub r3, r1, r0
-    mov r1, #0
-    str r1, [sp]
-    ldr r0, = 0x10200
-    str r1, [sp, #4]
-    str r0, [sp, #8]
-    add r0, r6, #0
-    add r0, #0x80
-    add r2, r5, #0
-    str r1, [sp, #0xc]
-    bl Text_AddPrinterWithParamsAndColor
-    add r0, r7, #0
-    mov r1, #0x12
-    add r2, r5, #0
-    bl MessageLoader_GetStrbuf
-    mov r1, #0
-    str r1, [sp]
-    ldr r0, = 0x10200
-    str r1, [sp, #4]
-    str r0, [sp, #8]
-    add r0, r6, #0
-    add r0, #0x90
-    add r2, r5, #0
-    mov r3, #0x70
-    str r1, [sp, #0xc]
-    bl Text_AddPrinterWithParamsAndColor
-    mov r2, #0
-    ldr r0, [sp, #0x10]
-    str r5, [sp]
-    ldr r0, [r0, #0x40]
-    mov r1, #0xe0
-    str r0, [sp, #4]
-    mov r0, #4
-    str r0, [sp, #8]
-    mov r0, #1
-    str r0, [sp, #0xc]
-    add r0, r6, #0
-    add r0, #0x90
-    add r3, r2, #0
-    bl ov71_0223CD64
-    add r0, r7, #0
-    mov r1, #0x13
-    add r2, r5, #0
-    bl MessageLoader_GetStrbuf
-    mov r1, #0
-    str r1, [sp]
-    ldr r0, = 0x10200
-    str r1, [sp, #4]
-    str r0, [sp, #8]
-    add r0, r6, #0
-    add r0, #0x90
-    add r2, r5, #0
-    mov r3, #0xb0
-    str r1, [sp, #0xc]
-    bl Text_AddPrinterWithParamsAndColor
-    ldr r0, [sp, #0x10]
-    str r5, [sp]
-    ldr r0, [r0, #0x3c]
-    mov r1, #0xe0
-    str r0, [sp, #4]
-    mov r0, #4
-    str r0, [sp, #8]
-    mov r0, #1
-    str r0, [sp, #0xc]
-    add r0, r6, #0
-    add r0, #0x90
-    mov r2, #0x40
-    mov r3, #0
-    bl ov71_0223CD64
-    mov r0, #0
-    str r0, [sp]
-    mov r0, #1
-    str r0, [sp, #4]
-    ldr r2, [sp, #0x10]
-    add r0, r4, #0
-    ldr r2, [r2, #0x44]
-    mov r1, #5
-    mov r3, #6
-    bl StringTemplate_SetNumber
-    ldr r2, [sp, #0x14]
-    add r0, r7, #0
-    mov r1, #0x16
-    bl MessageLoader_GetStrbuf
-    ldr r2, [sp, #0x14]
-    add r0, r4, #0
-    add r1, r5, #0
-    bl StringTemplate_Format
-    mov r0, #0
-    add r1, r5, #0
-    add r2, r0, #0
-    bl Font_CalcStrbufWidth
-    mov r1, #0xe0
-    sub r3, r1, r0
-    mov r1, #0
-    str r1, [sp]
-    ldr r0, = 0x10200
-    str r1, [sp, #4]
-    str r0, [sp, #8]
-    add r6, #0xa0
-    add r0, r6, #0
-    add r2, r5, #0
-    str r1, [sp, #0xc]
-    bl Text_AddPrinterWithParamsAndColor
-    ldr r0, [sp, #0x14]
-    bl Strbuf_Free
-    add r0, r4, #0
-    bl StringTemplate_Free
-    add r0, r5, #0
-    bl Strbuf_Free
-    add r0, r7, #0
-    bl MessageLoader_Free
-    add sp, #0x18
-    pop {r3, r4, r5, r6, r7, pc}
+    u8 i;
+    MessageLoader *messageLoader;
+    Strbuf *strbuf, *strbuf2;
+    StringTemplate *template;
+    u32 xOffset;
+
+    Window_FillRectWithColor(&param0[7], 0, 0, 0, 28 * 8, 4 * 8);
+    Window_FillRectWithColor(&param0[8], 0, 0, 0, 28 * 8, 2 * 8);
+    Window_FillRectWithColor(&param0[9], 0, 0, 0, 28 * 8, 2 * 8);
+    Window_FillRectWithColor(&param0[10], 0, 0, 0, 28 * 8, 2 * 8);
+    messageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0616, HEAP_ID_25);
+    strbuf = Strbuf_Init(32, HEAP_ID_25);
+
+    for (i = 7; i < 11; i++) {
+        MessageLoader_GetStrbuf(messageLoader, Unk_ov71_0223D644[i], strbuf);
+        Text_AddPrinterWithParamsAndColor(&param0[i], FONT_SYSTEM, strbuf, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+    }
+
+    strbuf2 = Strbuf_Init(32, HEAP_ID_25);
+    template = StringTemplate_New(6, 32, HEAP_ID_25);
+
+    if (param1->unk_33 != 0) {
+        StringTemplate_SetNumber(template, 2, param1->unk_32, 2, 2, 1);
+        StringTemplate_SetMonthName(template, 3, param1->unk_33);
+        StringTemplate_SetNumber(template, 4, param1->unk_34, 2, 2, 1);
+        StringTemplate_SetNumber(template, 0, param1->unk_2C, 3, 1, 1);
+        StringTemplate_SetNumber(template, 1, param1->unk_35, 2, 2, 1);
+        MessageLoader_GetStrbuf(messageLoader, 17, strbuf2);
+        StringTemplate_Format(template, strbuf, strbuf2);
+    } else {
+        MessageLoader_GetStrbuf(messageLoader, 12, strbuf2);
+        StringTemplate_SetStrbuf(template, 0, strbuf2, 0, FALSE, GAME_LANGUAGE);
+        StringTemplate_SetStrbuf(template, 1, strbuf2, 0, FALSE, GAME_LANGUAGE);
+        MessageLoader_GetStrbuf(messageLoader, 20, strbuf);
+    }
+
+    xOffset = 28 * 8 - Font_CalcStrbufWidth(0, strbuf, 0);
+    Text_AddPrinterWithParamsAndColor(&param0[7], FONT_SYSTEM, strbuf, xOffset, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+    MessageLoader_GetStrbuf(messageLoader, 15, strbuf2);
+    StringTemplate_Format(template, strbuf, strbuf2);
+    xOffset = 28 * 8 - Font_CalcStrbufWidth(0, strbuf, 0);
+    Text_AddPrinterWithParamsAndColor(&param0[7], FONT_SYSTEM, strbuf, xOffset, 16, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+    StringTemplate_SetNumber(template, 5, param1->unk_38, 6, 0, 1);
+    MessageLoader_GetStrbuf(messageLoader, 22, strbuf2);
+    StringTemplate_Format(template, strbuf, strbuf2);
+    xOffset = 28 * 8 - Font_CalcStrbufWidth(0, strbuf, 0);
+    Text_AddPrinterWithParamsAndColor(&param0[8], FONT_SYSTEM, strbuf, xOffset, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+    MessageLoader_GetStrbuf(messageLoader, 18, strbuf);
+    Text_AddPrinterWithParamsAndColor(&param0[9], FONT_SYSTEM, strbuf, 14 * 8, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+    ov71_0223CD64(&param0[9], 28 * 8, 0, 0, strbuf, param1->unk_40, 4, 1);
+    MessageLoader_GetStrbuf(messageLoader, 19, strbuf);
+    Text_AddPrinterWithParamsAndColor(&param0[9], FONT_SYSTEM, strbuf, 22 * 8, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+    ov71_0223CD64(&param0[9], 28 * 8, 8 * 8, 0, strbuf, param1->unk_3C, 4, 1);
+    StringTemplate_SetNumber(template, 5, param1->unk_44, 6, 0, 1);
+    MessageLoader_GetStrbuf(messageLoader, 22, strbuf2);
+    StringTemplate_Format(template, strbuf, strbuf2);
+    xOffset = 28 * 8 - Font_CalcStrbufWidth(0, strbuf, 0);
+    Text_AddPrinterWithParamsAndColor(&param0[10], FONT_SYSTEM, strbuf, xOffset, 0, 0, TEXT_COLOR(1, 2, 0), NULL);
+
+    Strbuf_Free(strbuf2);
+    StringTemplate_Free(template);
+    Strbuf_Free(strbuf);
+    MessageLoader_Free(messageLoader);
 }
-// clang-format on
 
 void ov71_0223CD44 (Window * param0, const u8 param1, const u8 param2)
 {
