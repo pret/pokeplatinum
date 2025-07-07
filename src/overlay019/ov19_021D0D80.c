@@ -18,15 +18,14 @@
 #include "overlay019/box_menu.h"
 #include "overlay019/box_mon_selection.h"
 #include "overlay019/box_settings.h"
-#include "overlay019/ov19_021D603C.h"
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/pc_compare_mon.h"
 #include "overlay019/pc_mon_preview.h"
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D4EE4.h"
 #include "overlay019/struct_ov19_021D4F34.h"
-#include "overlay019/struct_ov19_021D6104.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
+#include "overlay019/touch_scroll_circle.h"
 #include "overlay084/const_ov84_02241130.h"
 #include "savedata/save_table.h"
 
@@ -157,7 +156,7 @@ typedef struct UnkStruct_ov19_021D5DF8_t {
     };
     BoxSelectorPopup boxSelector;
     u32 unk_1C4;
-    UnkStruct_ov19_021D6104 unk_1C8;
+    TouchScrollCircle scrollCircle;
     int unk_1FC;
     u32 unk_200;
     BOOL unk_204;
@@ -3084,7 +3083,7 @@ static void ov19_021D4640(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         ov19_021D5D94(&param0->unk_00, 1);
         ov19_021D5D9C(&(param0->unk_00), ov19_GetCurrentBox(&param0->unk_00));
         ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D7278);
-        ov19_021D603C(&(param0->unk_1C8), 0, 192, 56, 88);
+        TouchScrollCircle_Init(&(param0->scrollCircle), 0, 192, 56, 88);
         param0->unk_204 = 0;
         param0->unk_208 = 1;
         (*param1) = 1;
@@ -3136,17 +3135,17 @@ static void ov19_021D4640(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             }
         }
 
-        switch (ov19_021D60A8(&param0->unk_1C8)) {
-        case 1:
+        switch (TouchScrollCircle_HandleAction(&param0->scrollCircle)) {
+        case SCROLL_CIRCLE_INITIAL_TOUCH:
             param0->unk_1FC = ov19_021D5EB8(&param0->unk_00);
             param0->unk_204 = 0;
             param0->unk_20C = 0;
             param0->unk_208 = 0;
             break;
-        case 2: {
+        case SCROLL_CIRCLE_SCROLLING: {
             int v1;
 
-            v1 = ov19_021D614C(&param0->unk_1C8);
+            v1 = TouchScrollCircle_CalcScrollAmount(&param0->scrollCircle);
 
             if (v1 != param0->unk_20C) {
                 int v2, v3;
@@ -3168,7 +3167,7 @@ static void ov19_021D4640(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
                 (*param1) = 2;
             }
         } break;
-        case 3: {
+        case SCROLL_CIRCLE_END_SCROLL: {
             int v4, v5;
 
             v4 = ov19_GetCurrentBox(&param0->unk_00);
@@ -3182,7 +3181,7 @@ static void ov19_021D4640(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         break;
     case 2:
         if (param0->unk_208 == 0) {
-            if (ov19_021D60A8(&param0->unk_1C8) == 3) {
+            if (TouchScrollCircle_HandleAction(&param0->scrollCircle) == SCROLL_CIRCLE_END_SCROLL) {
                 int v6, v7;
 
                 v6 = ov19_GetCurrentBox(&param0->unk_00);
@@ -3230,7 +3229,7 @@ static void ov19_021D4938(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         ov19_SetMarkingsButtonsScrollOffset(&(param0->unk_00), 0);
         ov19_021D5D9C(&(param0->unk_00), 0);
         ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D7278);
-        ov19_021D603C(&(param0->unk_1C8), 255, 192, 56, 88);
+        TouchScrollCircle_Init(&(param0->scrollCircle), 255, 192, 56, 88);
         param0->unk_204 = 0;
         param0->unk_208 = 1;
         (*param1) = 1;
@@ -3261,17 +3260,17 @@ static void ov19_021D4938(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             break;
         }
 
-        switch (ov19_021D60A8(&param0->unk_1C8)) {
-        case 1:
+        switch (TouchScrollCircle_HandleAction(&param0->scrollCircle)) {
+        case SCROLL_CIRCLE_INITIAL_TOUCH:
             param0->unk_1FC = ov19_021D5EB8(&param0->unk_00);
             param0->unk_204 = 0;
             param0->unk_20C = 0;
             param0->unk_208 = 0;
             break;
-        case 2: {
+        case SCROLL_CIRCLE_SCROLLING: {
             int v0;
 
-            v0 = ov19_021D614C(&param0->unk_1C8);
+            v0 = TouchScrollCircle_CalcScrollAmount(&param0->scrollCircle);
 
             if (v0 != param0->unk_20C) {
                 int v1, offset;
@@ -3295,7 +3294,7 @@ static void ov19_021D4938(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
                 (*param1) = 2;
             }
         } break;
-        case 3: {
+        case SCROLL_CIRCLE_END_SCROLL: {
             int v3, v4;
 
             v3 = ov19_GetCurrentBox(&param0->unk_00);
@@ -3309,7 +3308,7 @@ static void ov19_021D4938(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         break;
     case 2:
         if (param0->unk_208 == 0) {
-            if (ov19_021D60A8(&param0->unk_1C8) == 3) {
+            if (TouchScrollCircle_HandleAction(&param0->scrollCircle) == SCROLL_CIRCLE_END_SCROLL) {
                 int v5, v6;
 
                 v5 = ov19_GetCurrentBox(&param0->unk_00);
