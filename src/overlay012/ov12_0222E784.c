@@ -76,9 +76,9 @@ void ov12_0222E810(BattleAnimSystem *param0)
     v0->unk_30[1].unk_0C = BattleAnimSystem_GetPokemonSprite(param0, 2);
 
     ManagedSprite_SetAffineOverwriteMode(v0->unk_1C.unk_0C, AFFINE_OVERWRITE_MODE_DOUBLE);
-    ManagedSprite_SetExplicitPriority(v0->unk_1C.unk_0C, ov12_0222339C(param0));
-    ManagedSprite_SetExplicitPriority(v0->unk_30[0].unk_0C, ov12_0222339C(param0));
-    ManagedSprite_SetExplicitPriority(v0->unk_30[1].unk_0C, ov12_0222339C(param0));
+    ManagedSprite_SetExplicitPriority(v0->unk_1C.unk_0C, BattleAnimSystem_GetPokemonSpritePriority(param0));
+    ManagedSprite_SetExplicitPriority(v0->unk_30[0].unk_0C, BattleAnimSystem_GetPokemonSpritePriority(param0));
+    ManagedSprite_SetExplicitPriority(v0->unk_30[1].unk_0C, BattleAnimSystem_GetPokemonSpritePriority(param0));
 
     {
         int v1;
