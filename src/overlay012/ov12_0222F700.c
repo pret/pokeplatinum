@@ -1021,7 +1021,7 @@ static void ov12_0223025C(SysTask *param0, void *param1)
     case 4:
         ov12_0222669C(v0->unk_18);
 
-        Bg_SetPriority(ov12_022233B0(v0->unk_00, 1), ov12_02223428(v0->unk_00, 1));
+        Bg_SetPriority(ov12_022233B0(v0->unk_00, 1), BattleAnimSystem_GetBgPriority(v0->unk_00, 1));
         Bg_SetPriority(BG_LAYER_MAIN_0, BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00));
 
         Bg_ClearTilesRange(ov12_022233B0(v0->unk_00, 1), 0x4000, 0, BattleAnimSystem_GetHeapID(v0->unk_00));
@@ -1322,7 +1322,7 @@ static void ov12_02230994(SysTask *param0, void *param1)
         }
         break;
     case 2:
-        Bg_SetPriority(ov12_022233B0(v0->unk_00, 1), ov12_02223428(v0->unk_00, 1));
+        Bg_SetPriority(ov12_022233B0(v0->unk_00, 1), BattleAnimSystem_GetBgPriority(v0->unk_00, 1));
         Bg_SetPriority(BG_LAYER_MAIN_0, BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00));
 
         if (BattleAnimSystem_IsBattlerSemiInvulnerable(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00)) == 0) {
@@ -3691,7 +3691,7 @@ static void ov12_02233BD8(SysTask *param0, void *param1)
         ov12_022265F8(v0->unk_04);
         ov12_022265C0(v0->unk_04);
 
-        Bg_SetPriority(ov12_022233B0(v0->unk_00, 1), ov12_02223428(v0->unk_00, 1));
+        Bg_SetPriority(ov12_022233B0(v0->unk_00, 1), BattleAnimSystem_GetBgPriority(v0->unk_00, 1));
         Bg_SetPriority(BG_LAYER_MAIN_0, BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00));
 
         Bg_ClearTilesRange(ov12_022233B0(v0->unk_00, 1), 0x4000, 0, BattleAnimSystem_GetHeapID(v0->unk_00));

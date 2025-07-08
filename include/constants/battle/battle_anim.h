@@ -1,0 +1,43 @@
+#ifndef POKEPLATINUM_CONSTANTS_BATTLE_ANIM_H
+#define POKEPLATINUM_CONSTANTS_BATTLE_ANIM_H
+
+#define BATTLE_ANIM_VAR_BG_MOVE_STEP_X  0
+#define BATTLE_ANIM_VAR_BG_MOVE_STEP_Y  1
+#define BATTLE_ANIM_VAR_BG_MOVE_START_X 2
+#define BATTLE_ANIM_VAR_BG_MOVE_START_Y 3
+#define BATTLE_ANIM_VAR_BG_FADE_TYPE    4
+#define BATTLE_ANIM_VAR_BG_BLEND_TYPE   5
+#define BATTLE_ANIM_VAR_BG_ANIM_REVERSE 6
+
+#define BATTLE_BG_FADE_TO_BLACK         0
+#define BATTLE_BG_FADE_TO_WHITE         1
+
+#define BATTLE_BG_BLEND_TYPE_FULL_B_TO_A        0
+#define BATTLE_BG_BLEND_TYPE_PARTIAL            1
+#define BATTLE_BG_BLEND_TYPE_INVERSE_PARTIAL    2
+
+#define BATTLE_BG_SWITCH_FLAGS_SHIFT    16
+
+#define BATTLE_BG_SWITCH_MODE(VAR)      (((VAR) & 0x0000FFFF))
+#define BATTLE_BG_SWITCH_FLAGS(VAR)     (((VAR) & 0xFFFF0000) >> BATTLE_BG_SWITCH_FLAGS_SHIFT)
+
+#define BATTLE_BG_SWITCH_MODE_BLEND     0
+#define BATTLE_BG_SWITCH_MODE_FADE      1
+#define BATTLE_BG_SWITCH_MODE_NONE      2
+#define BATTLE_BG_SWITCH_MODE_COUNT     3
+
+#define BATTLE_BG_ID_WINDOW             1
+#define BATTLE_BG_ID_BASE               2
+#define BATTLE_BG_ID_EFFECT             3
+
+#define BATTLE_BG_PRIORITY_WINDOW       0
+#define BATTLE_BG_PRIORITY_BASE         1
+#define BATTLE_BG_PRIORITY_EFFECT       3
+
+#define BATTLE_BG_PALETTE_EFFECT        0x200
+
+#define BATTLE_BG_ANIM_REVERSE_NEVER        0 //< Don't reverse BG anims
+#define BATTLE_BG_ANIM_REVERSE_ENEMY_ONLY   1 //< Reverse BG anims only for enemy attacking player
+#define BATTLE_BG_ANIM_REVERSE_DEFAULT      2 //< Reverse BG anims for enemy attacking player OR enemy attacking enemy
+
+#endif // POKEPLATINUM_CONSTANTS_BATTLE_ANIM_H

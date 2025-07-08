@@ -70,6 +70,13 @@ enum BattleAnimTrackingTask {
     BATTLE_ANIM_TRACKING_TASK_COUNT,
 };
 
+enum BattleAnimBg {
+    BATTLE_ANIM_BG_WINDOW = 0,  // BG for windows
+    BATTLE_ANIM_BG_BASE,        // BG for base battle BG
+    BATTLE_ANIM_BG_EFFECT,      // BG for move anim BG switching
+    BATTLE_ANIM_BG_POKEMON,     // BG for Pokemon sprites
+};
+
 // Holds context information for the current move animation
 typedef struct BattleAnimContext {
     u8 unk_00;
@@ -103,7 +110,7 @@ typedef struct BattleAnimContext {
     u32 battlerPersonalities[MAX_BATTLERS];
     u32 battlerMoveEffects[MAX_BATTLERS];
     ChatotCry *chatotCry;
-    u8 *unk_110;
+    u8 *bgTiles;
     u16 *unk_114;
     int transformed; // Flag for if transform is currently active
 } BattleAnimContext;
@@ -136,17 +143,17 @@ typedef struct {
 } UnkStruct_ov12_022224F8;
 
 typedef struct UnkStruct_ov12_022222D4_t {
-    BgConfig *unk_00;
-    s16 unk_04;
-    s16 unk_06;
-    s16 unk_08;
-    s16 unk_0A;
-    int unk_0C;
-    int unk_10;
-    BOOL unk_14;
-    BOOL unk_18;
+    BgConfig *bgConfig;
+    s16 offsetX;
+    s16 offsetY;
+    s16 stepX;
+    s16 stepY;
+    int bg;
+    int unusedBg;
+    BOOL unused;
+    BOOL cancel;
     UnkStruct_ov12_022224F8 *unk_1C;
-} UnkStruct_ov12_022222D4;
+} BattleBgAnim;
 
 typedef struct PokemonSpriteTrackingTask {
     u8 frameCount; // Frame counter for the interval below, set to 0
@@ -200,7 +207,7 @@ typedef struct BattleAnimSystem {
     u8 soundEffectWaitTimer;
     u8 unk_17A;
     u8 unk_17B;
-    UnkStruct_ov12_022222D4 *unk_17C;
+    BattleBgAnim *bgAnim;
     UnkStruct_ov16_02264408_sub1 unk_180;
     int bgPalettes;
     u8 bgLayerPriorities[4];
@@ -238,10 +245,10 @@ void BattleAnimSystem_SetDefaultAlphaBlending(void);
 int BattleAnimSystem_GetMoveInfo(BattleAnimSystem *param0, enum BattleAnimMoveInfoType param1);
 void ov12_02220590(BattleAnimSystem *param0, UnkStruct_ov12_022380DC *param1, int param2);
 void BattleAnimSystem_CancelTrackingTask(BattleAnimSystem *param0, enum BattleAnimTrackingTask param1);
-void ov12_02222338(BattleAnimSystem *param0);
+void BattleAnimSystem_CancelBgAnim(BattleAnimSystem *param0);
 int ov12_02222354(BattleAnimSystem *param0);
-void ov12_02222590(BattleAnimSystem *param0, enum BgLayer param1);
-void ov12_02222664(BattleAnimSystem *param0, int param1);
+void BattleAnimSystem_LoadBaseBg(BattleAnimSystem *param0, enum BgLayer param1);
+void BattleAnimSystem_UnloadBaseBg(BattleAnimSystem *param0, enum BgLayer param1);
 BattleAnimScriptCmd BattleAnimSystem_GetScriptCmd(u32 param0);
 int ov12_02223178(BattleAnimContext *param0);
 s8 BattleAnimSound_CorrectPanDirection(BattleAnimSystem *param0, s8 param1);
@@ -263,8 +270,8 @@ BOOL BattleAnimSystem_IsBattlerSemiInvulnerable(BattleAnimSystem *param0, int pa
 int BattleAnimSystem_GetPokemonSpritePriority(BattleAnimSystem *param0);
 int ov12_022233B0(BattleAnimSystem *param0, int param1);
 int ov12_022233EC(BattleAnimSystem *param0, int param1);
-int ov12_02223428(BattleAnimSystem *param0, int param1);
-void ov12_02223460(BattleAnimSystem *param0, enum BgLayer param1);
+int BattleAnimSystem_GetBgPriority(BattleAnimSystem *param0, enum BattleAnimBg param1);
+void BattleAnimSystem_LoadBattleBgTiles(BattleAnimSystem *param0, enum BgLayer param1);
 void ov12_02223488(BattleAnimSystem *param0);
 BOOL ov12_022234A8(BattleAnimSystem *param0, int param1);
 int BattleAnimSystem_GetBgNarcMemberIndex(int bgID, enum BgNarcMemberType type);

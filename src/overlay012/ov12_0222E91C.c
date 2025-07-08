@@ -292,8 +292,8 @@ void ov12_0222EC90(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
         }
 
         {
-            int v14 = ov12_02223428(v0->unk_00.unk_04, 1);
-            int v15 = ov12_02223428(v0->unk_00.unk_04, 2);
+            int v14 = BattleAnimSystem_GetBgPriority(v0->unk_00.unk_04, 1);
+            int v15 = BattleAnimSystem_GetBgPriority(v0->unk_00.unk_04, 2);
 
             for (v1 = 0; v1 < 8; v1++) {
                 v0->unk_1E[v1] = (8 - v1) * 4;
