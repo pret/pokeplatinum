@@ -60,7 +60,7 @@ static void ov12_02234E54(UnkStruct_ov12_02234E54 *param0, int param1)
     int v1;
 
     v0 = BattleAnimSystem_GetHeapID(param0->unk_18.unk_04);
-    v1 = ov12_02223428(param0->unk_18.unk_04, 3);
+    v1 = BattleAnimSystem_GetBgPriority(param0->unk_18.unk_04, 3);
 
     Bg_SetPriority(param1, v1);
     Graphics_LoadTilesToBgLayer(param0->unk_00.unk_00, Unk_ov12_0223A1D8[param0->unk_00.unk_04][0], param0->unk_18.unk_14, param1, 0, 0, 1, v0);
@@ -153,7 +153,7 @@ static void ov12_0223507C(BattleAnimSystem *param0, UnkStruct_ov12_02234E44 *par
     {
         int v1;
 
-        v1 = ov12_02223428(v0->unk_18.unk_04, 2);
+        v1 = BattleAnimSystem_GetBgPriority(v0->unk_18.unk_04, 2);
         v1 = 2;
 
         ManagedSprite_SetExplicitPriority(v0->unk_34, v1);
@@ -173,7 +173,7 @@ static void ov12_0223507C(BattleAnimSystem *param0, UnkStruct_ov12_02234E44 *par
 
             if (BattleAnimSystem_IsContest(param0) == 1) {
                 ManagedSprite_SetDrawFlag(v0->unk_3C, 0);
-                v1 = ov12_02223428(v0->unk_18.unk_04, 2);
+                v1 = BattleAnimSystem_GetBgPriority(v0->unk_18.unk_04, 2);
                 ManagedSprite_SetExplicitPriority(v0->unk_34, v1);
                 ManagedSprite_SetExplicitPriority(v0->unk_38, v1);
             } else {

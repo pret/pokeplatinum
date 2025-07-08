@@ -2022,7 +2022,7 @@ static void ov12_02228B10(SysTask *param0, void *param1)
     switch (v0->unk_04.unk_00) {
     default:
         GX_SetVisibleWnd(GX_WNDMASK_NONE);
-        ov12_02222664(v0->unk_04.unk_04, 2);
+        BattleAnimSystem_UnloadBaseBg(v0->unk_04.unk_04, 2);
         BattleAnimSystem_EndAnimTask(v0->unk_04.unk_04, param0);
         Heap_Free(v0);
         return;
@@ -2041,7 +2041,7 @@ void ov12_02228B40(BattleAnimSystem *param0)
     v0 = BattleAnimSystem_GetScriptVar(param0, 0);
 
     ov12_0223595C(param0, &v1->unk_04);
-    ov12_02222590(v1->unk_04.unk_04, 2);
+    BattleAnimSystem_LoadBaseBg(v1->unk_04.unk_04, 2);
 
     v1->unk_24 = BattleAnimSystem_GetPokemonSprite(v1->unk_04.unk_04, 0);
 
@@ -3242,7 +3242,7 @@ static void ov12_0222A1F4(SysTask *param0, void *param1)
                 v2 = ManagedSprite_GetExplicitPriority(v0->unk_1C);
 
                 if (v2 == BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00.unk_04)) {
-                    v3 = ov12_02223428(v0->unk_00.unk_04, 2);
+                    v3 = BattleAnimSystem_GetBgPriority(v0->unk_00.unk_04, 2);
                     ManagedSprite_SetExplicitPriority(v0->unk_1C, v3);
                 } else {
                     v3 = BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00.unk_04);
@@ -3376,7 +3376,7 @@ void ov12_0222A410(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
         ManagedSprite_SetAnim(v0->unk_1C, v1);
     }
 
-    ManagedSprite_SetExplicitPriority(v0->unk_1C, ov12_02223428(v0->unk_00.unk_04, 2));
+    ManagedSprite_SetExplicitPriority(v0->unk_1C, BattleAnimSystem_GetBgPriority(v0->unk_00.unk_04, 2));
     BattleAnimSystem_StartAnimTask(v0->unk_00.unk_04, ov12_0222A3DC, v0);
 }
 
@@ -3439,7 +3439,7 @@ void ov12_0222A5C0(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v0->unk_1C = param3;
 
     ManagedSprite_SetPositionXY(v0->unk_1C, -30, 160);
-    ManagedSprite_SetExplicitPriority(v0->unk_1C, ov12_02223428(v0->unk_00.unk_04, 2));
+    ManagedSprite_SetExplicitPriority(v0->unk_1C, BattleAnimSystem_GetBgPriority(v0->unk_00.unk_04, 2));
 
     BattleAnimSystem_StartAnimTask(v0->unk_00.unk_04, ov12_0222A4A0, v0);
 }
@@ -3604,7 +3604,7 @@ void ov12_0222A8F4(BattleAnimSystem *param0)
         int v1;
 
         if (v0->unk_28 != 0xFF) {
-            v1 = ov12_02223428(param0, v0->unk_28);
+            v1 = BattleAnimSystem_GetBgPriority(param0, v0->unk_28);
             ManagedSprite_SetExplicitPriority(v0->unk_1C, v1);
         }
 

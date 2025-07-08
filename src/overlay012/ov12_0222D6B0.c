@@ -730,7 +730,7 @@ static void ov12_0222E080(SysTask *param0, void *param1)
         break;
     default:
         GX_SetVisibleWnd(GX_WNDMASK_NONE);
-        ov12_02222664(v0->unk_04.unk_04, 2);
+        BattleAnimSystem_UnloadBaseBg(v0->unk_04.unk_04, 2);
         BattleAnimSystem_EndAnimTask(v0->unk_04.unk_04, param0);
         Heap_Free(v0);
         return;
@@ -759,7 +759,7 @@ void ov12_0222E1A8(BattleAnimSystem *param0)
     ManagedSprite_SetExplicitOamMode(v0->unk_24, GX_OAM_MODE_XLU);
 
     ov12_02226424(&v0->unk_2C, 16, 2, 2, 16, 16);
-    ov12_02222590(v0->unk_04.unk_04, 2);
+    BattleAnimSystem_LoadBaseBg(v0->unk_04.unk_04, 2);
 
     Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
     BattleAnimSystem_StartAnimTask(v0->unk_04.unk_04, ov12_0222E080, v0);

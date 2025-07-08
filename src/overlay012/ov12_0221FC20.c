@@ -49,9 +49,18 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "vram_transfer.h"
+#include "constants/battle/battle_anim.h"
 
 #define BATTLE_ANIM_SCRIPT_RES_ID(MEMBER_IDX)   (MEMBER_IDX + 5000)
 #define BATTLE_ANIM_SCRIPT_MAX_SFX_WAIT_FRAMES    90 // 3s
+
+#define BATTLE_BG_WINDOW                BG_LAYER_MAIN_1
+#define BATTLE_BG_BASE                  BG_LAYER_MAIN_2
+#define BATTLE_BG_EFFECT                BG_LAYER_MAIN_3
+
+#define BATTLE_BG_BLENDMASK_WINDOW      GX_BLEND_PLANEMASK_BG1
+#define BATTLE_BG_BLENDMASK_BASE        GX_BLEND_PLANEMASK_BG2
+#define BATTLE_BG_BLENDMASK_EFFECT      GX_BLEND_PLANEMASK_BG3
 
 typedef struct BattleAnimSoundContext {
     u8 type;
@@ -98,16 +107,16 @@ typedef struct UnkStruct_ov12_02221BBC_t {
     u8 blendCoeffB;
     u8 targetBlendCoeffA;
     u8 targetBlendCoeffB;
-    u8 unk_0D;
+    u8 fadeType;
     int bgID;
-    int unk_14;
-    int unk_18;
-    int unk_1C[10];
-    u16 unk_44_0 : 1;
+    int mode;
+    int flags;
+    int scriptVars[BATTLE_ANIM_SCRIPT_VAR_COUNT];
+    u16 bgMoveAnimActive : 1;
     u16 unk_44_1 : 1;
     u16 unk_44_2 : 14;
     BattleAnimSystem *battleAnimSystem;
-} UnkStruct_ov12_02221BBC;
+} BattleBgSwitch;
 
 enum BattleAnimTaskKind {
     MOVE_EFFECT_TASK_KIND_EFFECT = 1,
@@ -161,7 +170,7 @@ static void ov12_022206E8(BattleAnimSystem *param0);
 static void ov12_02220F30(BattleAnimSystem *param0);
 static void ov12_02221064(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_Jump(BattleAnimSystem *param0);
-static void ov12_02222724(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_SwitchBg(BattleAnimSystem *param0);
 static void ov12_02222774(BattleAnimSystem *param0);
 static void ov12_022227CC(BattleAnimSystem *param0);
 static void ov12_02222820(BattleAnimSystem *param0);
@@ -228,22 +237,22 @@ static void ov12_02221834(BattleAnimSystem *param0);
 static void ov12_022219E8(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_WaitForLRX(BattleAnimSystem *param0);
 static int BattleAnimSystem_GetBattlerOfType(BattleAnimSystem *param0, enum BattleAnimBattlerType param1);
-static BOOL ov12_02221A54(UnkStruct_ov12_02221BBC *param0, BattleAnimSystem *param1, int param2);
-static void ov12_02221AA8(UnkStruct_ov12_02221BBC *param0, BattleAnimSystem *param1, enum BgLayer param2, int param3);
-static int ov12_02221B54(int param0, int param1);
-static void ov12_02221B64(UnkStruct_ov12_02221BBC *param0);
-static BOOL ov12_02221C50(SysTask *param0, UnkStruct_ov12_02221BBC *param1);
-static BOOL ov12_02221F44(SysTask *param0, UnkStruct_ov12_02221BBC *param1);
-static BOOL ov12_022222A4(SysTask *param0, UnkStruct_ov12_02221BBC *param1);
-static BOOL ov12_02221D50(SysTask *param0, UnkStruct_ov12_02221BBC *param1);
-static BOOL ov12_0222206C(SysTask *param0, UnkStruct_ov12_02221BBC *param1);
-static BOOL ov12_022222B0(SysTask *param0, UnkStruct_ov12_02221BBC *param1);
-static BOOL ov12_0222235C(UnkStruct_ov12_02221BBC *param0);
-static BOOL ov12_02222360(UnkStruct_ov12_02221BBC *param0);
-static BOOL ov12_022226D0(UnkStruct_ov12_02221BBC *param0);
-static BOOL ov12_022226E8(UnkStruct_ov12_02221BBC *param0);
-static BOOL ov12_0222240C(UnkStruct_ov12_02221BBC *param0);
-static BOOL ov12_022224E4(UnkStruct_ov12_02221BBC *param0);
+static BOOL BattleBgSwitch_ShouldAnimBeReversed(BattleBgSwitch *param0, BattleAnimSystem *param1, int param2);
+static void BattleBgSwitch_SetBg(BattleBgSwitch *param0, BattleAnimSystem *param1, enum BgLayer param2, int param3);
+static BOOL BattleBgSwitch_IsFlagSet(int param0, int param1);
+static void ov12_02221B64(BattleBgSwitch *param0);
+static BOOL BattleBgSwitch_Blend(SysTask *param0, BattleBgSwitch *param1);
+static BOOL BattleBgSwitch_Fade(SysTask *param0, BattleBgSwitch *param1);
+static BOOL ov12_022222A4(SysTask *param0, BattleBgSwitch *param1);
+static BOOL BattleBgRestore_Blend(SysTask *param0, BattleBgSwitch *param1);
+static BOOL BattleBgRestore_Fade(SysTask *param0, BattleBgSwitch *param1);
+static BOOL ov12_022222B0(SysTask *param0, BattleBgSwitch *param1);
+static BOOL BattleBgSwitch_AnimNone(BattleBgSwitch *param0);
+static BOOL BattleBgSwitch_AnimMoveStart(BattleBgSwitch *param0);
+static BOOL ov12_022226D0(BattleBgSwitch *param0);
+static BOOL ov12_022226E8(BattleBgSwitch *param0);
+static BOOL ov12_0222240C(BattleBgSwitch *param0);
+static BOOL ov12_022224E4(BattleBgSwitch *param0);
 
 static inline void BattleAnimScript_Next(BattleAnimSystem *system);
 static inline void BattleAnimScript_JumpTo(BattleAnimSystem *system, u32 *dst);
@@ -461,7 +470,7 @@ BOOL BattleAnimSystem_StartMove(BattleAnimSystem *system, UnkStruct_ov16_02265BB
     system->unk_180 = param3->unk_54;
     system->context->chatotCry = param3->unk_6C;
     system->context->unk_114 = param3->unk_74;
-    system->context->unk_110 = param3->unk_70;
+    system->context->bgTiles = param3->unk_70;
 
     int moveID = move;
     if (moveID == MOVE_SECRET_POWER) {
@@ -515,7 +524,7 @@ BOOL BattleAnimSystem_StartMove(BattleAnimSystem *system, UnkStruct_ov16_02265BB
         system->usedPokemonSprites[i] = FALSE;
     }
 
-    system->unk_17C = NULL;
+    system->bgAnim = NULL;
     system->executeAnimScriptFunc = BattleAnimScript_Execute;
     system->scriptDelay = 0;
 
@@ -803,7 +812,7 @@ static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
     ov12_02220F30,
     ov12_02221064,
     BattleAnimScriptCmd_Jump,
-    ov12_02222724,
+    BattleAnimScriptCmd_SwitchBg,
     ov12_02222774,
     ov12_022227CC,
     ov12_02222820,
@@ -1157,8 +1166,8 @@ static void BattleAnimScriptCmd_End(BattleAnimSystem *system)
         }
     }
 
-    if (system->unk_17C != NULL) {
-        system->unk_17C = NULL;
+    if (system->bgAnim != NULL) {
+        system->bgAnim = NULL;
     }
 
     if (BattleAnimSystem_IsContest(system) == FALSE) {
@@ -2245,53 +2254,50 @@ static void BattleAnimScriptCmd_Nop8(BattleAnimSystem *)
     return;
 }
 
-static BOOL (*const Unk_ov12_022385CC[])(SysTask *, UnkStruct_ov12_02221BBC *) = {
-    ov12_02221C50,
-    ov12_02221F44,
+static BOOL (*const sBattleBgSwitchFuncs[])(SysTask *, BattleBgSwitch *) = {
+    BattleBgSwitch_Blend,
+    BattleBgSwitch_Fade,
     ov12_022222A4,
-    ov12_02221D50,
-    ov12_0222206C,
+    BattleBgRestore_Blend,
+    BattleBgRestore_Fade,
     ov12_022222B0
 };
 
-static BOOL (*const Unk_ov12_02238644[])(UnkStruct_ov12_02221BBC *) = {
-    ov12_0222235C,
-    ov12_02222360,
+static BOOL (*const sBattleBgAnimFuncs[])(BattleBgSwitch *) = {
+    BattleBgSwitch_AnimNone,
+    BattleBgSwitch_AnimMoveStart,
     ov12_022226D0,
     ov12_022226E8,
-    ov12_0222235C,
+    BattleBgSwitch_AnimNone,
     ov12_0222240C,
     ov12_022224E4
 };
 
-static BOOL ov12_02221A54(UnkStruct_ov12_02221BBC *param0, BattleAnimSystem *param1, int param2)
+static BOOL BattleBgSwitch_ShouldAnimBeReversed(BattleBgSwitch *bgSwitch, BattleAnimSystem *system, int var)
 {
-    int v0;
-    int v1;
+    enum Battler attackerSide = BattleAnimUtil_GetBattlerSide(system, system->context->attacker);
+    enum Battler defenderSide = BattleAnimUtil_GetBattlerSide(system, system->context->defender);
 
-    v0 = BattleAnimUtil_GetBattlerSide(param1, param1->context->attacker);
-    v1 = BattleAnimUtil_GetBattlerSide(param1, param1->context->defender);
-
-    if (param0->unk_1C[param2] == 2) {
-        if (v0 == v1) {
-            if (v1 == 0x3) {
-                return 0;
+    if (bgSwitch->scriptVars[var] == BATTLE_BG_ANIM_REVERSE_DEFAULT) {
+        if (attackerSide == defenderSide) {
+            if (defenderSide == BTLSCR_PLAYER) {
+                return FALSE;
             } else {
-                return 1;
+                return TRUE;
             }
-        } else if (v1 == 0x3) {
-            return 1;
+        } else if (defenderSide == BTLSCR_PLAYER) {
+            return TRUE;
         }
-    } else if (param0->unk_1C[param2] != 0) {
-        if (v1 == 0x3) {
-            return 1;
+    } else if (bgSwitch->scriptVars[var] != BATTLE_BG_ANIM_REVERSE_NEVER) {
+        if (defenderSide == BTLSCR_PLAYER) {
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-static void ov12_02221AA8(UnkStruct_ov12_02221BBC *param0, BattleAnimSystem *system, enum BgLayer bgLayer, int bgID)
+static void BattleBgSwitch_SetBg(BattleBgSwitch *bgSwitch, BattleAnimSystem *system, enum BgLayer bgLayer, int bgID)
 {
     Graphics_LoadTilesToBgLayer(
         NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG,
@@ -2317,7 +2323,7 @@ static void ov12_02221AA8(UnkStruct_ov12_02221BBC *param0, BattleAnimSystem *sys
     enum BgNarcMemberType memberType = BG_NARC_MEMBER_NSCR1;
     if (BattleAnimSystem_IsContest(system) == TRUE) {
         memberType = BG_NARC_MEMBER_NSCR3;
-    } else if (ov12_02221A54(param0, system, 7) == TRUE) {
+    } else if (BattleBgSwitch_ShouldAnimBeReversed(bgSwitch, system, 7) == TRUE) {
         memberType = BG_NARC_MEMBER_NSCR2;
     }
 
@@ -2332,25 +2338,13 @@ static void ov12_02221AA8(UnkStruct_ov12_02221BBC *param0, BattleAnimSystem *sys
         system->heapID);
 }
 
-static int ov12_02221B54(int param0, int param1)
+static BOOL BattleBgSwitch_IsFlagSet(int flags, int flag)
 {
-    int v0;
-    int v1;
-
-    if (((param0 << 16) & param1) == param1) {
-        v0 = 1;
-    } else {
-        v0 = 0;
-    }
-
-    return v0;
+    return ((flags << 16) & flag) == flag;
 }
 
-static void ov12_02221B64(UnkStruct_ov12_02221BBC *param0)
+static void ov12_02221B64(BattleBgSwitch *bgSwitch)
 {
-    int v0;
-    int v1;
-    int v2;
     const u32 v3[] = {
         0x20000,
         0x40000,
@@ -2358,327 +2352,282 @@ static void ov12_02221B64(UnkStruct_ov12_02221BBC *param0)
         0x400000
     };
 
-    for (v0 = 0; v0 < NELEMS(v3); v0++) {
-        if (ov12_02221B54(param0->unk_18, v3[v0]) == 0) {
+    for (int i = 0; i < NELEMS(v3); i++) {
+        if (!BattleBgSwitch_IsFlagSet(bgSwitch->flags, v3[i])) {
             continue;
         }
 
-        v1 = 0;
-        v2 = ((v3[v0] >> 1) >> 16);
-        v2 = v3[v0] >> 16;
+        int id = 0;
+        int v2 = v3[i] >> 16;
 
         while (v2 >= 2) {
             v2 /= 2;
-            v1++;
+            id++;
         }
 
-        Unk_ov12_02238644[v1](param0);
+        sBattleBgAnimFuncs[id](bgSwitch);
     }
 }
 
-static UnkStruct_ov12_02221BBC *ov12_02221BBC(BattleAnimSystem *param0)
+static BattleBgSwitch *BattleAnimSystem_CreateBgSwitch(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_02221BBC *v0 = NULL;
-
-    v0 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov12_02221BBC));
-
-    if (v0 == NULL) {
+    BattleBgSwitch *bgSwitch = Heap_AllocFromHeap(system->heapID, sizeof(BattleBgSwitch));
+    if (bgSwitch == NULL) {
         GF_ASSERT(FALSE);
         return NULL;
     }
 
-    memset(v0, 0, sizeof(UnkStruct_ov12_02221BBC));
+    memset(bgSwitch, 0, sizeof(BattleBgSwitch));
 
-    v0->unk_00 = 0;
-    v0->state = 0;
-    v0->battleAnimSystem = param0;
-    v0->blendCoeffA = 0;
-    v0->blendCoeffB = 31;
-    v0->targetBlendCoeffA = 31 - 2;
-    v0->targetBlendCoeffB = 0 + 2;
+    bgSwitch->unk_00 = 0;
+    bgSwitch->state = 0;
+    bgSwitch->battleAnimSystem = system;
 
-    if (BattleAnimSystem_GetScriptVar(param0, 5) == 1) {
-        v0->blendCoeffA = 0;
-        v0->blendCoeffB = 31;
-        v0->targetBlendCoeffA = 15;
-        v0->targetBlendCoeffB = 7;
+    // A: 0% -> 100%
+    // B: 100% -> 0%
+    bgSwitch->blendCoeffA = 0;
+    bgSwitch->blendCoeffB = 31;
+    bgSwitch->targetBlendCoeffA = 31 - 2;
+    bgSwitch->targetBlendCoeffB = 0 + 2;
+
+    if (BattleAnimSystem_GetScriptVar(system, BATTLE_ANIM_VAR_BG_BLEND_TYPE) == BATTLE_BG_BLEND_TYPE_PARTIAL) {
+        // A: 0% -> 100%
+        // B: 100% -> 50%
+        bgSwitch->blendCoeffA = 0;
+        bgSwitch->blendCoeffB = 31;
+        bgSwitch->targetBlendCoeffA = 15;
+        bgSwitch->targetBlendCoeffB = 7;
     }
 
-    if (BattleAnimSystem_GetScriptVar(param0, 5) == 2) {
-        v0->blendCoeffA = 7;
-        v0->blendCoeffB = 15;
-        v0->targetBlendCoeffA = 31 - 2;
-        v0->targetBlendCoeffB = 0 + 2;
+    if (BattleAnimSystem_GetScriptVar(system, BATTLE_ANIM_VAR_BG_BLEND_TYPE) == BATTLE_BG_BLEND_TYPE_INVERSE_PARTIAL) {
+        // A: 50% -> 100%
+        // B: 100% -> 0%
+        bgSwitch->blendCoeffA = 7;
+        bgSwitch->blendCoeffB = 15;
+        bgSwitch->targetBlendCoeffA = 31 - 2;
+        bgSwitch->targetBlendCoeffB = 0 + 2;
     }
 
-    {
-        int v1;
-
-        for (v1 = 0; v1 < (8 + 2); v1++) {
-            v0->unk_1C[v1] = param0->scriptVars[v1];
-        }
+    for (int i = 0; i < BATTLE_ANIM_SCRIPT_VAR_COUNT; i++) {
+        bgSwitch->scriptVars[i] = system->scriptVars[i];
     }
 
-    param0->unk_178 = 1;
+    system->unk_178 = 1;
 
-    return v0;
+    return bgSwitch;
 }
 
-static BOOL ov12_02221C50(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
+static BOOL BattleBgSwitch_Blend(SysTask *task, BattleBgSwitch *bgSwitch)
 {
-    switch (param1->state) {
+    switch (bgSwitch->state) {
     case 0:
+        // Load normal battle/contest BG BG_BASE
+        BattleAnimSystem_LoadBaseBg(bgSwitch->battleAnimSystem, BATTLE_BG_BASE);
+        
+        int effectPrio = BattleAnimSystem_GetBgPriority(bgSwitch->battleAnimSystem, BATTLE_ANIM_BG_EFFECT);
+        int basePrio = BattleAnimSystem_GetBgPriority(bgSwitch->battleAnimSystem, BATTLE_ANIM_BG_BASE);
 
-        ov12_02222590(param1->battleAnimSystem, 2);
-        {
-            int v0 = ov12_02223428(param1->battleAnimSystem, 2);
-            int v1 = ov12_02223428(param1->battleAnimSystem, 1);
+        Bg_SetPriority(BATTLE_BG_EFFECT, effectPrio);
+        Bg_SetPriority(BATTLE_BG_BASE, effectPrio);
+        Bg_ToggleLayer(BATTLE_BG_BASE, TRUE);
 
-            Bg_SetPriority(BG_LAYER_MAIN_3, v0);
-            Bg_SetPriority(BG_LAYER_MAIN_2, v0);
-        }
-        Bg_ToggleLayer(BG_LAYER_MAIN_2, TRUE);
-
-        param1->state++;
+        bgSwitch->state++;
         break;
 
-    case 1: {
-        Bg_SetControlParam(param1->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, BG_CONTROL_PARAM_CHAR_BASE, GX_BG_CHARBASE_0x0c000);
+    case 1:
+        Bg_SetControlParam(bgSwitch->battleAnimSystem->bgConfig, BATTLE_BG_EFFECT, BG_CONTROL_PARAM_CHAR_BASE, GX_BG_CHARBASE_0x0c000);
 
-        if (BattleAnimSystem_IsContest(param1->battleAnimSystem) != TRUE) {
-            Bg_SetControlParam(param1->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, BG_CONTROL_PARAM_COLOR_MODE, GX_BG_COLORMODE_16);
+        if (BattleAnimSystem_IsContest(bgSwitch->battleAnimSystem) != TRUE) {
+            Bg_SetControlParam(bgSwitch->battleAnimSystem->bgConfig, BATTLE_BG_EFFECT, BG_CONTROL_PARAM_COLOR_MODE, GX_BG_COLORMODE_16);
         }
 
-        ov12_02221AA8(param1, param1->battleAnimSystem, BG_LAYER_MAIN_3, param1->bgID);
-        G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG3, param1->blendCoeffB, param1->blendCoeffA);
-        ov12_02221B64(param1);
-    }
-        param1->state++;
+        // Load new BG into effect BG
+        BattleBgSwitch_SetBg(bgSwitch, bgSwitch->battleAnimSystem, BATTLE_BG_EFFECT, bgSwitch->bgID);
 
+        // Set BG blending
+        // blendCoeffB will, in all cases, have the higher value, thus BG2 (normal battle/contest BG) will be more visible
+        G2_SetBlendAlpha(BATTLE_BG_BLENDMASK_BASE, BATTLE_BG_BLENDMASK_EFFECT, bgSwitch->blendCoeffB, bgSwitch->blendCoeffA);
+        ov12_02221B64(bgSwitch);
+
+        bgSwitch->state++;
+
+        // fallthrough
     case 2: {
-        int v2 = 0;
+        // Do blending
+        int blendCoeffsDone = 0;
 
-        if (param1->blendCoeffA < param1->targetBlendCoeffA) {
-            param1->blendCoeffA += 2;
+        if (bgSwitch->blendCoeffA < bgSwitch->targetBlendCoeffA) {
+            bgSwitch->blendCoeffA += 2;
         } else {
-            v2++;
+            blendCoeffsDone++;
         }
 
-        if (param1->blendCoeffB > param1->targetBlendCoeffB) {
-            param1->blendCoeffB -= 2;
+        if (bgSwitch->blendCoeffB > bgSwitch->targetBlendCoeffB) {
+            bgSwitch->blendCoeffB -= 2;
         } else {
-            v2++;
+            blendCoeffsDone++;
         }
 
-        if (v2 == 2) {
-            param1->blendCoeffA = param1->targetBlendCoeffA;
-            param1->blendCoeffB = param1->targetBlendCoeffB;
-            param1->state++;
+        if (blendCoeffsDone == 2) {
+            bgSwitch->blendCoeffA = bgSwitch->targetBlendCoeffA;
+            bgSwitch->blendCoeffB = bgSwitch->targetBlendCoeffB;
+            bgSwitch->state++;
         }
 
-        G2_ChangeBlendAlpha(param1->blendCoeffB, param1->blendCoeffA);
+        G2_ChangeBlendAlpha(bgSwitch->blendCoeffB, bgSwitch->blendCoeffA);
 
-        if (param1->state != 2) {
-            return 0;
+        if (bgSwitch->state != 2) {
+            return FALSE;
         }
     } break;
+
     default:
-        return 0;
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL ov12_02221D50(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
+static BOOL BattleBgRestore_Blend(SysTask *task, BattleBgSwitch *bgSwitch)
 {
-    switch (param1->state) {
+    switch (bgSwitch->state) {
     case 0:
-        Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
-        param1->state++;
+        // When this is called, BG2 would be at either 0% or 50% blending factor depending
+        // on which blend type was used to initially switch the BG
+        Bg_ToggleLayer(BATTLE_BG_BASE, TRUE);
+        bgSwitch->state++;
+        
+        // fallthrough
     case 1: {
-        int v0 = ov12_02223428(param1->battleAnimSystem, 2);
-        int v1 = ov12_02223428(param1->battleAnimSystem, 1);
+        int effectPrio = BattleAnimSystem_GetBgPriority(bgSwitch->battleAnimSystem, BATTLE_ANIM_BG_EFFECT);
+        int basePrio = BattleAnimSystem_GetBgPriority(bgSwitch->battleAnimSystem, BATTLE_ANIM_BG_BASE);
 
-        Bg_SetPriority(BG_LAYER_MAIN_3, v0);
-        Bg_SetPriority(BG_LAYER_MAIN_2, v0);
+        Bg_SetPriority(BATTLE_BG_EFFECT, effectPrio);
+        Bg_SetPriority(BATTLE_BG_BASE, effectPrio);
 
-        G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG3, param1->blendCoeffA, param1->blendCoeffB);
-        ov12_02221B64(param1);
+        G2_SetBlendAlpha(BATTLE_BG_BLENDMASK_BASE, BATTLE_BG_BLENDMASK_EFFECT, bgSwitch->blendCoeffA, bgSwitch->blendCoeffB);
+        ov12_02221B64(bgSwitch);
+
+        bgSwitch->state++;
     }
-        param1->state++;
 
+        // fallthrough
     case 2: {
-        int v2 = 0;
+        // Do blending
+        int blendCoeffsDone = 0;
 
-        if (param1->blendCoeffA < param1->targetBlendCoeffA) {
-            param1->blendCoeffA += 2;
+        if (bgSwitch->blendCoeffA < bgSwitch->targetBlendCoeffA) {
+            bgSwitch->blendCoeffA += 2;
         } else {
-            v2++;
+            blendCoeffsDone++;
         }
 
-        if (param1->blendCoeffB > param1->targetBlendCoeffB) {
-            param1->blendCoeffB -= 2;
+        if (bgSwitch->blendCoeffB > bgSwitch->targetBlendCoeffB) {
+            bgSwitch->blendCoeffB -= 2;
         } else {
-            v2++;
+            blendCoeffsDone++;
         }
 
-        if (v2 == 2) {
-            param1->blendCoeffA = param1->targetBlendCoeffA + 2;
-            param1->blendCoeffB = param1->targetBlendCoeffB - 2;
-            param1->state++;
+        if (blendCoeffsDone == 2) {
+            bgSwitch->blendCoeffA = bgSwitch->targetBlendCoeffA + 2;
+            bgSwitch->blendCoeffB = bgSwitch->targetBlendCoeffB - 2;
+            bgSwitch->state++;
         }
 
-        G2_ChangeBlendAlpha(param1->blendCoeffA, param1->blendCoeffB);
+        G2_ChangeBlendAlpha(bgSwitch->blendCoeffA, bgSwitch->blendCoeffB);
     } break;
+
     case 3:
-        if (param1->unk_44_0 == 1) {
-            ov12_02222338(param1->battleAnimSystem);
+        if (bgSwitch->bgMoveAnimActive == TRUE) {
+            BattleAnimSystem_CancelBgAnim(bgSwitch->battleAnimSystem);
         }
 
-        if (param1->unk_44_1 == 1) {
-            ov12_02222338(param1->battleAnimSystem);
+        if (bgSwitch->unk_44_1 == 1) {
+            BattleAnimSystem_CancelBgAnim(bgSwitch->battleAnimSystem);
         }
 
-        Bg_SetOffset(param1->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, BG_OFFSET_UPDATE_SET_X, 0);
-        Bg_SetOffset(param1->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, BG_OFFSET_UPDATE_SET_Y, 0);
-        Bg_SetControlParam(param1->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, BG_CONTROL_PARAM_CHAR_BASE, GX_BG_CHARBASE_0x10000);
+        // Restore Effect BG and load regular battle/contest BG into it
+        Bg_SetOffset(bgSwitch->battleAnimSystem->bgConfig, BATTLE_BG_EFFECT, BG_OFFSET_UPDATE_SET_X, 0);
+        Bg_SetOffset(bgSwitch->battleAnimSystem->bgConfig, BATTLE_BG_EFFECT, BG_OFFSET_UPDATE_SET_Y, 0);
+        Bg_SetControlParam(bgSwitch->battleAnimSystem->bgConfig, BATTLE_BG_EFFECT, BG_CONTROL_PARAM_CHAR_BASE, GX_BG_CHARBASE_0x10000);
 
-        if (BattleAnimSystem_IsContest(param1->battleAnimSystem) == FALSE) {
-            Bg_SetControlParam(param1->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, BG_CONTROL_PARAM_COLOR_MODE, GX_BG_COLORMODE_256);
-            ov12_02223460(param1->battleAnimSystem, BG_LAYER_MAIN_3);
-            ov12_02223488(param1->battleAnimSystem);
+        if (!BattleAnimSystem_IsContest(bgSwitch->battleAnimSystem)) {
+            Bg_SetControlParam(bgSwitch->battleAnimSystem->bgConfig, BATTLE_BG_EFFECT, BG_CONTROL_PARAM_COLOR_MODE, GX_BG_COLORMODE_256);
+            BattleAnimSystem_LoadBattleBgTiles(bgSwitch->battleAnimSystem, BATTLE_BG_EFFECT);
+            ov12_02223488(bgSwitch->battleAnimSystem);
         } else {
-            Graphics_LoadTilesToBgLayer(param1->battleAnimSystem->unk_180.unk_00, param1->battleAnimSystem->unk_180.unk_04, param1->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, param1->battleAnimSystem->heapID);
-            PaletteData_LoadBufferFromFileStart(param1->battleAnimSystem->paletteData, param1->battleAnimSystem->unk_180.unk_00, param1->battleAnimSystem->unk_180.unk_08, param1->battleAnimSystem->heapID, 0, param1->battleAnimSystem->unk_180.unk_14 * 0x20, param1->battleAnimSystem->unk_180.unk_10);
+            Graphics_LoadTilesToBgLayer(bgSwitch->battleAnimSystem->unk_180.unk_00, bgSwitch->battleAnimSystem->unk_180.unk_04, bgSwitch->battleAnimSystem->bgConfig, BATTLE_BG_EFFECT, 0, 0, TRUE, bgSwitch->battleAnimSystem->heapID);
+            PaletteData_LoadBufferFromFileStart(bgSwitch->battleAnimSystem->paletteData, bgSwitch->battleAnimSystem->unk_180.unk_00, bgSwitch->battleAnimSystem->unk_180.unk_08, bgSwitch->battleAnimSystem->heapID, 0, bgSwitch->battleAnimSystem->unk_180.unk_14 * 0x20, bgSwitch->battleAnimSystem->unk_180.unk_10);
         }
 
-        Graphics_LoadTilemapToBgLayer(param1->battleAnimSystem->unk_180.unk_00, param1->battleAnimSystem->unk_180.unk_0C, param1->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, param1->battleAnimSystem->heapID);
-        param1->state++;
+        Graphics_LoadTilemapToBgLayer(bgSwitch->battleAnimSystem->unk_180.unk_00, bgSwitch->battleAnimSystem->unk_180.unk_0C, bgSwitch->battleAnimSystem->bgConfig, BATTLE_BG_EFFECT, 0, 0, TRUE, bgSwitch->battleAnimSystem->heapID);
+        bgSwitch->state++;
         break;
+
     case 4:
-        if (BattleAnimSystem_IsContest(param1->battleAnimSystem) == FALSE) {
+        // Restore blending and base BG
+        if (!BattleAnimSystem_IsContest(bgSwitch->battleAnimSystem)) {
             Battle_SetDefaultBlend();
         } else {
             ov17_022413D8();
         }
 
-        ov12_02222664(param1->battleAnimSystem, 2);
-        param1->state++;
+        BattleAnimSystem_UnloadBaseBg(bgSwitch->battleAnimSystem, BATTLE_BG_BASE);
+        bgSwitch->state++;
         break;
+
     default:
-        return 0;
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL ov12_02221F44(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
+static BOOL BattleBgSwitch_Fade(SysTask *task, BattleBgSwitch *bgSwitch)
 {
-    switch (param1->state) {
+    switch (bgSwitch->state) {
     case 0:
-        if (param1->unk_0D == 0) {
-            PaletteData_StartFade(param1->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG_F, param1->battleAnimSystem->bgPalettes, 0, 0, 16, GX_RGBA(0, 0, 0, 0));
-            PaletteData_BlendMulti(param1->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG, 0x200, 16, GX_RGBA(0, 0, 0, 0));
+        // Fade normal battle/contest palettes to black/white and
+        // set effect BG palette to black/white immediately
+        if (bgSwitch->fadeType == BATTLE_BG_FADE_TO_BLACK) {
+            PaletteData_StartFade(bgSwitch->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG_F, bgSwitch->battleAnimSystem->bgPalettes, 0, 0, 16, GX_RGBA(0, 0, 0, 0));
+            PaletteData_BlendMulti(bgSwitch->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG, BATTLE_BG_PALETTE_EFFECT, 16, GX_RGBA(0, 0, 0, 0));
         } else {
-            PaletteData_StartFade(param1->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG_F, param1->battleAnimSystem->bgPalettes, 0, 0, 16, GX_RGBA(31, 31, 31, 1));
-            PaletteData_BlendMulti(param1->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG, 0x200, 16, GX_RGBA(31, 31, 31, 1));
+            PaletteData_StartFade(bgSwitch->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG_F, bgSwitch->battleAnimSystem->bgPalettes, 0, 0, 16, GX_RGBA(31, 31, 31, 1));
+            PaletteData_BlendMulti(bgSwitch->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG, BATTLE_BG_PALETTE_EFFECT, 16, GX_RGBA(31, 31, 31, 1));
         }
 
-        param1->state++;
+        bgSwitch->state++;
+
+        // fallthrough
     case 1:
-        if (PaletteData_GetSelectedBuffersMask(param1->battleAnimSystem->paletteData) != 0) {
+        // Wait for palette fade
+        if (PaletteData_GetSelectedBuffersMask(bgSwitch->battleAnimSystem->paletteData) != 0) {
             break;
         }
 
-        Bg_SetControlParam(param1->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, BG_CONTROL_PARAM_COLOR_MODE, GX_BG_COLORMODE_16);
-        ov12_02221AA8(param1, param1->battleAnimSystem, BG_LAYER_MAIN_3, param1->bgID);
+        // Load new BG data into effect BG
+        Bg_SetControlParam(bgSwitch->battleAnimSystem->bgConfig, BATTLE_BG_EFFECT, BG_CONTROL_PARAM_COLOR_MODE, GX_BG_COLORMODE_16);
+        BattleBgSwitch_SetBg(bgSwitch, bgSwitch->battleAnimSystem, BATTLE_BG_EFFECT, bgSwitch->bgID);
 
-        if (param1->unk_0D == 0) {
-            PaletteData_StartFade(param1->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG_F, (1 << 9), 0, 16, 0, GX_RGBA(0, 0, 0, 0));
+        // Fade effect BG palette back to normal
+        if (bgSwitch->fadeType == BATTLE_BG_FADE_TO_BLACK) {
+            PaletteData_StartFade(bgSwitch->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG_F, BATTLE_BG_PALETTE_EFFECT, 0, 16, 0, GX_RGBA(0, 0, 0, 0));
         } else {
-            PaletteData_StartFade(param1->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG_F, (1 << 9), 0, 16, 0, GX_RGBA(31, 31, 31, 1));
+            PaletteData_StartFade(bgSwitch->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG_F, BATTLE_BG_PALETTE_EFFECT, 0, 16, 0, GX_RGBA(31, 31, 31, 1));
         }
 
-        ov12_02221B64(param1);
+        ov12_02221B64(bgSwitch);
 
-        param1->battleAnimSystem->unk_178 = 2;
-        param1->state++;
+        bgSwitch->battleAnimSystem->unk_178 = 2;
+        bgSwitch->state++;
         break;
-    default:
-        if (PaletteData_GetSelectedBuffersMask(param1->battleAnimSystem->paletteData) != 0) {
-            break;
-        }
-
-        return 0;
-    }
-
-    return 1;
-}
-
-static BOOL ov12_0222206C(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
-{
-    switch (param1->state) {
-    case 0:
-        ov12_02221B64(param1);
-        param1->state++;
-    case 1:
-        if (param1->unk_0D == 0) {
-            PaletteData_StartFade(param1->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG_F, (1 << 9), 0, 0, 16, GX_RGBA(0, 0, 0, 0));
-            PaletteData_BlendMulti(param1->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG, param1->battleAnimSystem->bgPalettes, 16, GX_RGBA(0, 0, 0, 0));
-        } else {
-            PaletteData_StartFade(param1->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG_F, (1 << 9), 0, 0, 16, GX_RGBA(31, 31, 31, 1));
-            PaletteData_BlendMulti(param1->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG, param1->battleAnimSystem->bgPalettes, 16, GX_RGBA(31, 31, 31, 1));
-        }
-
-        param1->state++;
-    case 2:
-        if (PaletteData_GetSelectedBuffersMask(param1->battleAnimSystem->paletteData) != 0) {
-            break;
-        }
-
-        if (param1->unk_44_0 == 1) {
-            ov12_02222338(param1->battleAnimSystem);
-        }
-
-        if (param1->unk_44_1 == 1) {
-            ov12_02222338(param1->battleAnimSystem);
-        }
-
-        Bg_ToggleLayer(BG_LAYER_MAIN_3, FALSE);
-
-        if (BattleAnimSystem_IsContest(param1->battleAnimSystem) == FALSE) {
-            Bg_SetControlParam(param1->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, 0, GX_BG_COLORMODE_256);
-
-            ov12_02223460(param1->battleAnimSystem, BG_LAYER_MAIN_3);
-            ov12_02223488(param1->battleAnimSystem);
-        } else {
-            Graphics_LoadTilesToBgLayer(param1->battleAnimSystem->unk_180.unk_00, param1->battleAnimSystem->unk_180.unk_04, param1->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, param1->battleAnimSystem->heapID);
-            PaletteData_LoadBufferFromFileStart(param1->battleAnimSystem->paletteData, param1->battleAnimSystem->unk_180.unk_00, param1->battleAnimSystem->unk_180.unk_08, param1->battleAnimSystem->heapID, 0, param1->battleAnimSystem->unk_180.unk_14 * 0x20, param1->battleAnimSystem->unk_180.unk_10);
-        }
-
-        Graphics_LoadTilemapToBgLayer(param1->battleAnimSystem->unk_180.unk_00, param1->battleAnimSystem->unk_180.unk_0C, param1->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, param1->battleAnimSystem->heapID);
-        Bg_ToggleLayer(BG_LAYER_MAIN_3, TRUE);
-
-        param1->state++;
-    case 3:
-        Bg_SetOffset(param1->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, BG_OFFSET_UPDATE_SET_X, 0);
-        Bg_SetOffset(param1->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, BG_OFFSET_UPDATE_SET_Y, 0);
-
-        if (param1->unk_0D == 0) {
-            PaletteData_StartFade(param1->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG_F, param1->battleAnimSystem->bgPalettes, 0, 16, 0, GX_RGBA(0, 0, 0, 0));
-        } else {
-            PaletteData_StartFade(param1->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG_F, param1->battleAnimSystem->bgPalettes, 0, 16, 0, GX_RGBA(31, 31, 31, 1));
-        }
-
-        param1->state++;
 
     default:
-        if (PaletteData_GetSelectedBuffersMask(param1->battleAnimSystem->paletteData) != 0) {
+        // Wait for effect palette fade
+        if (PaletteData_GetSelectedBuffersMask(bgSwitch->battleAnimSystem->paletteData) != 0) {
             break;
         }
-
-        param1->battleAnimSystem->unk_178 = 2;
-        param1->state++;
 
         return FALSE;
     }
@@ -2686,54 +2635,136 @@ static BOOL ov12_0222206C(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
     return TRUE;
 }
 
-static BOOL ov12_022222A4(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
+static BOOL BattleBgRestore_Fade(SysTask *task, BattleBgSwitch *bgSwitch)
+{
+    switch (bgSwitch->state) {
+    case 0:
+        ov12_02221B64(bgSwitch);
+        bgSwitch->state++;
+
+        // fallthrough
+    case 1:
+        // Fade effect BG palette to black/white and
+        // set normal battle/contest BG palettes to black/white
+        if (bgSwitch->fadeType == BATTLE_BG_FADE_TO_BLACK) {
+            PaletteData_StartFade(bgSwitch->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG_F, BATTLE_BG_PALETTE_EFFECT, 0, 0, 16, GX_RGBA(0, 0, 0, 0));
+            PaletteData_BlendMulti(bgSwitch->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG, bgSwitch->battleAnimSystem->bgPalettes, 16, GX_RGBA(0, 0, 0, 0));
+        } else {
+            PaletteData_StartFade(bgSwitch->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG_F, BATTLE_BG_PALETTE_EFFECT, 0, 0, 16, GX_RGBA(31, 31, 31, 1));
+            PaletteData_BlendMulti(bgSwitch->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG, bgSwitch->battleAnimSystem->bgPalettes, 16, GX_RGBA(31, 31, 31, 1));
+        }
+
+        bgSwitch->state++;
+
+        // fallthrough
+    case 2:
+        // Wait for palette fade
+        if (PaletteData_GetSelectedBuffersMask(bgSwitch->battleAnimSystem->paletteData) != 0) {
+            break;
+        }
+
+        if (bgSwitch->bgMoveAnimActive == TRUE) {
+            BattleAnimSystem_CancelBgAnim(bgSwitch->battleAnimSystem);
+        }
+
+        if (bgSwitch->unk_44_1 == 1) {
+            BattleAnimSystem_CancelBgAnim(bgSwitch->battleAnimSystem);
+        }
+
+        // Hide effect BG once palette is faded out
+        Bg_ToggleLayer(BATTLE_BG_EFFECT, FALSE);
+
+        if (!BattleAnimSystem_IsContest(bgSwitch->battleAnimSystem)) {
+            Bg_SetControlParam(bgSwitch->battleAnimSystem->bgConfig, BATTLE_BG_EFFECT, 0, GX_BG_COLORMODE_256);
+            BattleAnimSystem_LoadBattleBgTiles(bgSwitch->battleAnimSystem, BATTLE_BG_EFFECT);
+            ov12_02223488(bgSwitch->battleAnimSystem);
+        } else {
+            Graphics_LoadTilesToBgLayer(bgSwitch->battleAnimSystem->unk_180.unk_00, bgSwitch->battleAnimSystem->unk_180.unk_04, bgSwitch->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, bgSwitch->battleAnimSystem->heapID);
+            PaletteData_LoadBufferFromFileStart(bgSwitch->battleAnimSystem->paletteData, bgSwitch->battleAnimSystem->unk_180.unk_00, bgSwitch->battleAnimSystem->unk_180.unk_08, bgSwitch->battleAnimSystem->heapID, 0, bgSwitch->battleAnimSystem->unk_180.unk_14 * 0x20, bgSwitch->battleAnimSystem->unk_180.unk_10);
+        }
+
+        Graphics_LoadTilemapToBgLayer(bgSwitch->battleAnimSystem->unk_180.unk_00, bgSwitch->battleAnimSystem->unk_180.unk_0C, bgSwitch->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, bgSwitch->battleAnimSystem->heapID);
+        Bg_ToggleLayer(BATTLE_BG_EFFECT, TRUE);
+
+        bgSwitch->state++;
+
+        // fallthrough
+    case 3:
+        Bg_SetOffset(bgSwitch->battleAnimSystem->bgConfig, BATTLE_BG_EFFECT, BG_OFFSET_UPDATE_SET_X, 0);
+        Bg_SetOffset(bgSwitch->battleAnimSystem->bgConfig, BATTLE_BG_EFFECT, BG_OFFSET_UPDATE_SET_Y, 0);
+
+        if (bgSwitch->fadeType == BATTLE_BG_FADE_TO_BLACK) {
+            PaletteData_StartFade(bgSwitch->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG_F, bgSwitch->battleAnimSystem->bgPalettes, 0, 16, 0, GX_RGBA(0, 0, 0, 0));
+        } else {
+            PaletteData_StartFade(bgSwitch->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG_F, bgSwitch->battleAnimSystem->bgPalettes, 0, 16, 0, GX_RGBA(31, 31, 31, 1));
+        }
+
+        bgSwitch->state++;
+
+        // fallthrough
+    default:
+        // Wait for palette fade
+        if (PaletteData_GetSelectedBuffersMask(bgSwitch->battleAnimSystem->paletteData) != 0) {
+            break;
+        }
+
+        bgSwitch->battleAnimSystem->unk_178 = 2;
+        bgSwitch->state++;
+
+        return FALSE;
+    }
+
+    return TRUE;
+}
+
+static BOOL ov12_022222A4(SysTask *param0, BattleBgSwitch *param1)
 {
     ov12_02221B64(param1);
     return 0;
 }
 
-static BOOL ov12_022222B0(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
+static BOOL ov12_022222B0(SysTask *param0, BattleBgSwitch *bgSwitch)
 {
-    ov12_02221B64(param1);
+    ov12_02221B64(bgSwitch);
 
-    if (param1->unk_44_0 == 1) {
-        ov12_02222338(param1->battleAnimSystem);
+    if (bgSwitch->bgMoveAnimActive == TRUE) {
+        BattleAnimSystem_CancelBgAnim(bgSwitch->battleAnimSystem);
     }
 
     return 0;
 }
 
-static void ov12_022222D4(SysTask *param0, void *param1)
+static void ov12_022222D4(SysTask *task, void *param)
 {
-    UnkStruct_ov12_022222D4 *v0 = (UnkStruct_ov12_022222D4 *)param1;
+    BattleBgAnim *v0 = (BattleBgAnim *)param;
 
-    if (v0->unk_18 == 1) {
+    if (v0->cancel == TRUE) {
         Heap_Free(v0);
-        SysTask_Done(param0);
+        SysTask_Done(task);
         return;
     }
 
-    v0->unk_04 += v0->unk_08;
-    v0->unk_06 += v0->unk_0A;
+    v0->offsetX += v0->stepX;
+    v0->offsetY += v0->stepY;
 
-    if (v0->unk_08 != 0) {
-        Bg_SetOffset(v0->unk_00, v0->unk_0C, 0, v0->unk_04);
+    if (v0->stepX != 0) {
+        Bg_SetOffset(v0->bgConfig, v0->bg, 0, v0->offsetX);
     }
 
-    if (v0->unk_0A != 0) {
-        Bg_SetOffset(v0->unk_00, v0->unk_0C, 3, v0->unk_06);
+    if (v0->stepY != 0) {
+        Bg_SetOffset(v0->bgConfig, v0->bg, 3, v0->offsetY);
     }
 }
 
-void ov12_02222338(BattleAnimSystem *param0)
+void BattleAnimSystem_CancelBgAnim(BattleAnimSystem *system)
 {
-    GF_ASSERT(param0);
+    GF_ASSERT(system);
 
-    if (param0->unk_17C == NULL) {
+    if (system->bgAnim == NULL) {
         return;
     }
 
-    param0->unk_17C->unk_18 = 1;
+    system->bgAnim->cancel = TRUE;
 }
 
 int ov12_02222354(BattleAnimSystem *param0)
@@ -2741,54 +2772,56 @@ int ov12_02222354(BattleAnimSystem *param0)
     return param0->bgPalettes;
 }
 
-static BOOL ov12_0222235C(UnkStruct_ov12_02221BBC *param0)
+static BOOL BattleBgSwitch_AnimNone(BattleBgSwitch *bgSwitch)
 {
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov12_02222360(UnkStruct_ov12_02221BBC *param0)
+static BOOL BattleBgSwitch_AnimMoveStart(BattleBgSwitch *bgSwitch)
 {
-    int v0;
-    UnkStruct_ov12_022222D4 *v1 = Heap_AllocFromHeap(param0->battleAnimSystem->heapID, sizeof(UnkStruct_ov12_022222D4));
+    BattleBgAnim *bgAnim = Heap_AllocFromHeap(bgSwitch->battleAnimSystem->heapID, sizeof(BattleBgAnim));
 
-    v1->unk_00 = param0->battleAnimSystem->bgConfig;
-    v1->unk_04 = param0->battleAnimSystem->scriptVars[2];
-    v1->unk_06 = param0->battleAnimSystem->scriptVars[3];
-    v1->unk_08 = param0->battleAnimSystem->scriptVars[0];
-    v1->unk_0A = param0->battleAnimSystem->scriptVars[1];
-    v1->unk_0C = 3;
-    v1->unk_10 = 3;
+    bgAnim->bgConfig = bgSwitch->battleAnimSystem->bgConfig;
+    bgAnim->offsetX = bgSwitch->battleAnimSystem->scriptVars[BATTLE_ANIM_VAR_BG_MOVE_START_X];
+    bgAnim->offsetY = bgSwitch->battleAnimSystem->scriptVars[BATTLE_ANIM_VAR_BG_MOVE_START_Y];
+    bgAnim->stepX = bgSwitch->battleAnimSystem->scriptVars[BATTLE_ANIM_VAR_BG_MOVE_STEP_X];
+    bgAnim->stepY = bgSwitch->battleAnimSystem->scriptVars[BATTLE_ANIM_VAR_BG_MOVE_STEP_Y];
+    bgAnim->bg = BATTLE_BG_EFFECT;
+    bgAnim->unusedBg = BATTLE_BG_EFFECT;
 
-    if (ov12_02221A54(param0, param0->battleAnimSystem, 6) == 1) {
-        v1->unk_08 *= -1;
-        v1->unk_0A *= -1;
-        v1->unk_04 *= -1;
-        v1->unk_06 *= -1;
+    if (BattleBgSwitch_ShouldAnimBeReversed(bgSwitch, bgSwitch->battleAnimSystem, BATTLE_ANIM_VAR_BG_ANIM_REVERSE) == TRUE) {
+        bgAnim->stepX *= -1;
+        bgAnim->stepY *= -1;
+        bgAnim->offsetX *= -1;
+        bgAnim->offsetY *= -1;
     }
 
-    v1->unk_14 = 1;
-    v1->unk_18 = 0;
+    bgAnim->unused = TRUE;
+    bgAnim->cancel = FALSE;
 
-    param0->battleAnimSystem->unk_17C = v1;
-    param0->unk_44_0 = 1;
+    bgSwitch->battleAnimSystem->bgAnim = bgAnim;
+    bgSwitch->bgMoveAnimActive = TRUE;
 
-    SysTask_Start(ov12_022222D4, v1, 0x1001);
+    SysTask_Start(ov12_022222D4, bgAnim, 0x1001);
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov12_0222240C(UnkStruct_ov12_02221BBC *param0)
+static BOOL ov12_0222240C(BattleBgSwitch *param0)
 {
     int v0, v1;
-    BattleAnimSystem *v2 = param0->battleAnimSystem;
-    UnkStruct_ov12_022222D4 *v3 = Heap_AllocFromHeap(param0->battleAnimSystem->heapID, sizeof(UnkStruct_ov12_022222D4));
+    BattleAnimSystem *v2;
+    BattleBgAnim *v3;
+
+    v2 = param0->battleAnimSystem;
+    v3 = Heap_AllocFromHeap(param0->battleAnimSystem->heapID, sizeof(BattleBgAnim));
 
     v3->unk_1C = Heap_AllocFromHeap(v2->heapID, sizeof(UnkStruct_ov12_022224F8));
-    v2->unk_17C = v3;
+    v2->bgAnim = v3;
 
     param0->unk_44_1 = 1;
 
-    v3->unk_18 = 0;
+    v3->cancel = 0;
     v3->unk_1C->unk_C0 = ov12_02226544(ov12_022266F0(ov12_022233EC(v2, 2)), ov12_022266E8(0, 0), v2->heapID);
 
     for (v0 = 0; v0 < ((192 - 64) / 8); v0++) {
@@ -2798,7 +2831,7 @@ static BOOL ov12_0222240C(UnkStruct_ov12_02221BBC *param0)
         v3->unk_1C->unk_00[v0].unk_06 = 0;
         v3->unk_1C->unk_00[v0].unk_08 = ov12_022266E8(0, 0);
 
-        if (ov12_02221A54(param0, param0->battleAnimSystem, 6) == 1) {
+        if (BattleBgSwitch_ShouldAnimBeReversed(param0, param0->battleAnimSystem, 6) == 1) {
             v3->unk_1C->unk_00[v0].unk_04 *= -1;
         }
     }
@@ -2807,10 +2840,13 @@ static BOOL ov12_0222240C(UnkStruct_ov12_02221BBC *param0)
     return 0;
 }
 
-static BOOL ov12_022224E4(UnkStruct_ov12_02221BBC *param0)
+static BOOL ov12_022224E4(BattleBgSwitch *param0)
 {
-    BattleAnimSystem *v0 = param0->battleAnimSystem;
-    UnkStruct_ov12_022222D4 *v1 = param0->battleAnimSystem->unk_17C;
+    BattleAnimSystem *v0;
+    BattleBgAnim *v1;
+
+    v0 = param0->battleAnimSystem;
+    v1 = param0->battleAnimSystem->bgAnim;
 
     param0->unk_44_1 = 1;
     return 0;
@@ -2820,10 +2856,10 @@ static void ov12_022224F8(SysTask *param0, void *param1)
 {
     int v0, v1;
     u32 *v2;
-    UnkStruct_ov12_022224F8 *v3 = (UnkStruct_ov12_022224F8 *)(((UnkStruct_ov12_022222D4 *)param1)->unk_1C);
-    UnkStruct_ov12_022222D4 *v4 = (UnkStruct_ov12_022222D4 *)param1;
+    UnkStruct_ov12_022224F8 *v3 = (UnkStruct_ov12_022224F8 *)(((BattleBgAnim *)param1)->unk_1C);
+    BattleBgAnim *v4 = (BattleBgAnim *)param1;
 
-    if (v4->unk_18 == 1) {
+    if (v4->cancel == 1) {
         ov12_022265C0(v4->unk_1C->unk_C0);
         Heap_Free(v4->unk_1C);
         Heap_Free(v4);
@@ -2847,11 +2883,10 @@ static void ov12_022224F8(SysTask *param0, void *param1)
     }
 }
 
-void ov12_02222590(BattleAnimSystem *system, enum BgLayer bgLayer)
+void BattleAnimSystem_LoadBaseBg(BattleAnimSystem *system, enum BgLayer bgLayer)
 {
-    int v0 = ov12_02223428(system, 2);
-
-    Bg_SetPriority(bgLayer, v0);
+    int effectPrio = BattleAnimSystem_GetBgPriority(system, BATTLE_ANIM_BG_EFFECT);
+    Bg_SetPriority(bgLayer, effectPrio);
     Bg_ToggleLayer(bgLayer, FALSE);
 
     if (BattleAnimSystem_IsContest(system) == TRUE) {
@@ -2866,73 +2901,69 @@ void ov12_02222590(BattleAnimSystem *system, enum BgLayer bgLayer)
     if (BattleAnimSystem_IsContest(system) == TRUE) {
         Graphics_LoadTilesToBgLayer(system->unk_180.unk_00, system->unk_180.unk_04, system->bgConfig, bgLayer, 0, 0, TRUE, system->heapID);
     } else {
-        ov12_02223460(system, bgLayer);
+        BattleAnimSystem_LoadBattleBgTiles(system, bgLayer);
     }
 
     Graphics_LoadTilemapToBgLayer(system->unk_180.unk_00, system->unk_180.unk_0C, system->bgConfig, bgLayer, 0, 0, TRUE, system->heapID);
 }
 
-void ov12_02222664(BattleAnimSystem *param0, int param1)
+void BattleAnimSystem_UnloadBaseBg(BattleAnimSystem *system, enum BgLayer bgLayer)
 {
-    int v0 = ov12_02223428(param0, 1);
+    int basePrio = BattleAnimSystem_GetBgPriority(system, BATTLE_ANIM_BG_BASE);
+    Bg_SetPriority(bgLayer, basePrio);
 
-    Bg_SetPriority(param1, v0);
-
-    if (BattleAnimSystem_IsContest(param0) == 1) {
-        Bg_SetControlParam(param0->bgConfig, param1, 2, GX_BG_CHARBASE_0x0c000);
+    if (BattleAnimSystem_IsContest(system) == TRUE) {
+        Bg_SetControlParam(system->bgConfig, bgLayer, BG_CONTROL_PARAM_CHAR_BASE, GX_BG_CHARBASE_0x0c000);
     } else {
-        Bg_SetControlParam(param0->bgConfig, param1, 0, GX_BG_COLORMODE_16);
-        Bg_SetControlParam(param0->bgConfig, param1, 2, GX_BG_CHARBASE_0x0c000);
+        Bg_SetControlParam(system->bgConfig, bgLayer, BG_CONTROL_PARAM_COLOR_MODE, GX_BG_COLORMODE_16);
+        Bg_SetControlParam(system->bgConfig, bgLayer, BG_CONTROL_PARAM_CHAR_BASE, GX_BG_CHARBASE_0x0c000);
     }
 
-    Bg_ClearTilemap(param0->bgConfig, param1);
+    Bg_ClearTilemap(system->bgConfig, bgLayer);
 }
 
-static BOOL ov12_022226D0(UnkStruct_ov12_02221BBC *param0)
+static BOOL ov12_022226D0(BattleBgSwitch *param0)
 {
-    param0->unk_44_0 = 1;
+    param0->bgMoveAnimActive = 1;
     return 0;
 }
 
-static BOOL ov12_022226E8(UnkStruct_ov12_02221BBC *param0)
+static BOOL ov12_022226E8(BattleBgSwitch *param0)
 {
-    ov12_02222338(param0->battleAnimSystem);
+    BattleAnimSystem_CancelBgAnim(param0->battleAnimSystem);
     return 0;
 }
 
-static void ov12_022226F4(SysTask *param0, void *param1)
+static void BattleBgSwitchTask_Start(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02221BBC *v0 = (UnkStruct_ov12_02221BBC *)param1;
-    BOOL v1 = Unk_ov12_022385CC[v0->unk_14](param0, v0);
+    BattleBgSwitch *bgSwitch = param;
+    BOOL active = sBattleBgSwitchFuncs[bgSwitch->mode](task, bgSwitch);
+    
+    if (active == FALSE) {
+        bgSwitch->battleAnimSystem->unk_178 = 0;
 
-    if (v1 == 0) {
-        v0->battleAnimSystem->unk_178 = 0;
-
-        Heap_Free(v0);
-        SysTask_Done(param0);
+        Heap_Free(bgSwitch);
+        SysTask_Done(task);
     }
 }
 
-static void ov12_02222724(BattleAnimSystem *system)
+static void BattleAnimScriptCmd_SwitchBg(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_02221BBC *v0;
-    int v1;
+    BattleBgSwitch *bgSwitch = BattleAnimSystem_CreateBgSwitch(system);
 
-    v0 = ov12_02221BBC(system);
-
-    v0->unk_0D = BattleAnimSystem_GetScriptVar(system, 4);
+    bgSwitch->fadeType = BattleAnimSystem_GetScriptVar(system, BATTLE_ANIM_VAR_BG_FADE_TYPE);
     BattleAnimScript_Next(system);
 
-    v0->bgID = BattleAnimScript_ReadWord(system->scriptPtr);
+    bgSwitch->bgID = BattleAnimScript_ReadWord(system->scriptPtr);
     BattleAnimScript_Next(system);
 
-    v1 = BattleAnimScript_ReadWord(system->scriptPtr);
+    int param = BattleAnimScript_ReadWord(system->scriptPtr);
     BattleAnimScript_Next(system);
 
-    v0->unk_14 = (v1 & 0xFFFF);
-    v0->unk_18 = (v1 & 0xFFFF0000) >> 16;
+    bgSwitch->mode = BATTLE_BG_SWITCH_MODE(param);
+    bgSwitch->flags = BATTLE_BG_SWITCH_FLAGS(param);
 
-    SysTask_Start(ov12_022226F4, v0, 1100);
+    SysTask_Start(BattleBgSwitchTask_Start, bgSwitch, 1100);
 }
 
 static void ov12_02222774(BattleAnimSystem *param0)
@@ -2950,16 +2981,16 @@ static void ov12_02222774(BattleAnimSystem *param0)
 
     switch (v0) {
     case 0:
-        param0->unk_17C->unk_08 = v1;
+        param0->bgAnim->stepX = v1;
         break;
     case 1:
-        param0->unk_17C->unk_0A = v1;
+        param0->bgAnim->stepY = v1;
         break;
     case 2:
-        param0->unk_17C->unk_04 = v1;
+        param0->bgAnim->offsetX = v1;
         break;
     case 3:
-        param0->unk_17C->unk_04 = v1;
+        param0->bgAnim->offsetX = v1;
         break;
     default:
         break;
@@ -2968,12 +2999,12 @@ static void ov12_02222774(BattleAnimSystem *param0)
 
 static void ov12_022227CC(BattleAnimSystem *param0)
 {
-    UnkStruct_ov12_02221BBC *v0;
+    BattleBgSwitch *v0;
     int v1;
 
-    v0 = ov12_02221BBC(param0);
+    v0 = BattleAnimSystem_CreateBgSwitch(param0);
 
-    v0->unk_0D = BattleAnimSystem_GetScriptVar(param0, 4);
+    v0->fadeType = BattleAnimSystem_GetScriptVar(param0, 4);
     param0->scriptPtr += 1;
 
     v0->bgID = BattleAnimScript_ReadWord(param0->scriptPtr);
@@ -2982,10 +3013,10 @@ static void ov12_022227CC(BattleAnimSystem *param0)
     v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
-    v0->unk_14 = (v1 & 0xFFFF) + 3;
-    v0->unk_18 = (v1 & 0xFFFF0000) >> 16;
+    v0->mode = (v1 & 0xFFFF) + 3;
+    v0->flags = (v1 & 0xFFFF0000) >> 16;
 
-    SysTask_Start(ov12_022226F4, v0, 1100);
+    SysTask_Start(BattleBgSwitchTask_Start, v0, 1100);
 }
 
 static void ov12_02222820(BattleAnimSystem *param0)
@@ -3045,10 +3076,10 @@ static void BattleAnimScriptCmd_SetBg(BattleAnimSystem *system)
 
 static void ov12_022228DC(BattleAnimSystem *param0)
 {
-    UnkStruct_ov12_02221BBC *v0;
+    BattleBgSwitch *v0;
     int v1, v2, v3;
 
-    v0 = ov12_02221BBC(param0);
+    v0 = BattleAnimSystem_CreateBgSwitch(param0);
 
     param0->scriptPtr += 1;
 
@@ -3071,7 +3102,7 @@ static void ov12_022228DC(BattleAnimSystem *param0)
         }
     }
 
-    SysTask_Start(ov12_022226F4, v0, 1100);
+    SysTask_Start(BattleBgSwitchTask_Start, v0, 1100);
 }
 
 static void BattleAnimScriptCmd_Nop4(BattleAnimSystem *)
@@ -3813,48 +3844,31 @@ int ov12_022233EC(BattleAnimSystem *param0, int param1)
     return v0;
 }
 
-int ov12_02223428(BattleAnimSystem *param0, int param1)
+int BattleAnimSystem_GetBgPriority(BattleAnimSystem *system, enum BattleAnimBg bg)
 {
-    int v0;
-
-    switch (param1) {
-    case 0:
-        if (BattleAnimSystem_IsContest(param0) == 1) {
-            v0 = 0;
-        } else {
-            v0 = 0;
-        }
-        break;
-    case 1:
-        if (BattleAnimSystem_IsContest(param0) == 1) {
-            v0 = 1;
-        } else {
-            v0 = 1;
-        }
-        break;
-    case 2:
-        if (BattleAnimSystem_IsContest(param0) == 1) {
-            v0 = 3;
-        } else {
-            v0 = 3;
-        }
-        break;
-    case 3:
-        return BattleAnimSystem_GetPokemonSpritePriority(param0);
-        break;
+    switch (bg) {
+    case BATTLE_ANIM_BG_WINDOW:
+        UNUSED(BattleAnimSystem_IsContest(system));
+        return BATTLE_BG_PRIORITY_WINDOW;
+    case BATTLE_ANIM_BG_BASE:
+        UNUSED(BattleAnimSystem_IsContest(system));
+        return BATTLE_BG_PRIORITY_BASE;
+    case BATTLE_ANIM_BG_EFFECT:
+        UNUSED(BattleAnimSystem_IsContest(system));
+        return BATTLE_BG_PRIORITY_EFFECT;
+    case BATTLE_ANIM_BG_POKEMON:
+        return BattleAnimSystem_GetPokemonSpritePriority(system);
     }
-
-    return v0;
 }
 
-void ov12_02223460(BattleAnimSystem *system, enum BgLayer layer)
+void BattleAnimSystem_LoadBattleBgTiles(BattleAnimSystem *system, enum BgLayer layer)
 {
-    Bg_LoadTiles(system->bgConfig, layer, system->context->unk_110, 0x10000, 0);
+    Bg_LoadTiles(system->bgConfig, layer, system->context->bgTiles, 0x10000, 0);
 }
 
 void ov12_02223488(BattleAnimSystem *param0)
 {
-    PaletteData_LoadBuffer(param0->paletteData, param0->context->unk_114, 0, 0, 0x200);
+    PaletteData_LoadBuffer(param0->paletteData, param0->context->unk_114, PLTTBUF_MAIN_BG, 0, 0x200);
 }
 
 BOOL ov12_022234A8(BattleAnimSystem *param0, int param1)
