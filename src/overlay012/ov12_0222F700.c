@@ -1022,7 +1022,7 @@ static void ov12_0223025C(SysTask *param0, void *param1)
         ov12_0222669C(v0->unk_18);
 
         Bg_SetPriority(ov12_022233B0(v0->unk_00, 1), ov12_02223428(v0->unk_00, 1));
-        Bg_SetPriority(BG_LAYER_MAIN_0, ov12_0222339C(v0->unk_00));
+        Bg_SetPriority(BG_LAYER_MAIN_0, BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00));
 
         Bg_ClearTilesRange(ov12_022233B0(v0->unk_00, 1), 0x4000, 0, BattleAnimSystem_GetHeapID(v0->unk_00));
         Bg_ClearTilemap(BattleAnimSystem_GetBgConfig(v0->unk_00), ov12_022233B0(v0->unk_00, 1));
@@ -1078,8 +1078,8 @@ void ov12_022303D0(BattleAnimSystem *param0)
     v3 = BattleAnimUtil_GetBattlerType(v0->unk_00, BattleAnimSystem_GetAttacker(param0));
 
     if ((v3 == 3) || (v3 == 4)) {
-        Bg_SetPriority(ov12_022233B0(v0->unk_00, 1), ov12_0222339C(v0->unk_00));
-        Bg_SetPriority(BG_LAYER_MAIN_0, ov12_0222339C(v0->unk_00) + 1);
+        Bg_SetPriority(ov12_022233B0(v0->unk_00, 1), BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00));
+        Bg_SetPriority(BG_LAYER_MAIN_0, BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00) + 1);
     }
 
     ov12_0223025C(v2, v0);
@@ -1323,7 +1323,7 @@ static void ov12_02230994(SysTask *param0, void *param1)
         break;
     case 2:
         Bg_SetPriority(ov12_022233B0(v0->unk_00, 1), ov12_02223428(v0->unk_00, 1));
-        Bg_SetPriority(BG_LAYER_MAIN_0, ov12_0222339C(v0->unk_00));
+        Bg_SetPriority(BG_LAYER_MAIN_0, BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00));
 
         if (BattleAnimSystem_IsBattlerSemiInvulnerable(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00)) == 0) {
             PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_HIDE, 0);
@@ -1369,8 +1369,8 @@ void ov12_02230A8C(BattleAnimSystem *param0)
         ManagedSprite_SetDrawFlag(v0->unk_48, 1);
         ManagedSprite_SetExplicitPriority(v0->unk_48, 2);
     } else {
-        Bg_SetPriority(ov12_022233B0(v0->unk_00, 1), ov12_0222339C(v0->unk_00));
-        Bg_SetPriority(BG_LAYER_MAIN_0, ov12_0222339C(v0->unk_00) + 1);
+        Bg_SetPriority(ov12_022233B0(v0->unk_00, 1), BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00));
+        Bg_SetPriority(BG_LAYER_MAIN_0, BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00) + 1);
         ManagedSprite_SetDrawFlag(v0->unk_48, 0);
     }
 
@@ -3376,7 +3376,7 @@ static void ov12_02233574(UnkStruct_ov12_0223351C *param0)
         if ((param0->unk_30[v0].unk_04[1] >= ((90 * 0xffff) / 360)) && (param0->unk_30[v0].unk_04[1] <= ((269 * 0xffff) / 360))) {
             ManagedSprite_SetExplicitPriority(param0->unk_18[v0], 1);
         } else {
-            ManagedSprite_SetExplicitPriority(param0->unk_18[v0], ov12_0222339C(param0->unk_00) + 1);
+            ManagedSprite_SetExplicitPriority(param0->unk_18[v0], BattleAnimSystem_GetPokemonSpritePriority(param0->unk_00) + 1);
         }
     }
 }
@@ -3692,7 +3692,7 @@ static void ov12_02233BD8(SysTask *param0, void *param1)
         ov12_022265C0(v0->unk_04);
 
         Bg_SetPriority(ov12_022233B0(v0->unk_00, 1), ov12_02223428(v0->unk_00, 1));
-        Bg_SetPriority(BG_LAYER_MAIN_0, ov12_0222339C(v0->unk_00));
+        Bg_SetPriority(BG_LAYER_MAIN_0, BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00));
 
         Bg_ClearTilesRange(ov12_022233B0(v0->unk_00, 1), 0x4000, 0, BattleAnimSystem_GetHeapID(v0->unk_00));
         Bg_ClearTilemap(BattleAnimSystem_GetBgConfig(v0->unk_00), ov12_022233B0(v0->unk_00, 1));
@@ -3734,8 +3734,8 @@ void ov12_02233CD4(BattleAnimSystem *param0)
     v4 = BattleAnimUtil_GetBattlerType(v0->unk_00, BattleAnimSystem_GetDefender(param0));
 
     if ((v4 == 3) || (v4 == 4)) {
-        Bg_SetPriority(ov12_022233B0(v0->unk_00, 1), ov12_0222339C(v0->unk_00));
-        Bg_SetPriority(BG_LAYER_MAIN_0, ov12_0222339C(v0->unk_00) + 1);
+        Bg_SetPriority(ov12_022233B0(v0->unk_00, 1), BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00));
+        Bg_SetPriority(BG_LAYER_MAIN_0, BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00) + 1);
     }
 
     BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02233BD8, v0);

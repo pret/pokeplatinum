@@ -167,14 +167,14 @@ void ov12_0222EAA0(BattleAnimSystem *param0)
         int v4 = ov12_02223344(v0->unk_00.unk_04, BattleAnimSystem_GetAttacker(v0->unk_00.unk_04));
 
         v1 = v0->unk_1C.unk_0C;
-        ManagedSprite_SetExplicitPriority(v1, ov12_0222339C(v0->unk_00.unk_04) + 1);
+        ManagedSprite_SetExplicitPriority(v1, BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00.unk_04) + 1);
         v2 = PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(v1->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
 
         PaletteData_LoadBufferFromFileStartWithTint(ov12_0222332C(v0->unk_00.unk_04), v4, v3, BattleAnimSystem_GetHeapID(v0->unk_00.unk_04), 2, 0x20, v2 * 16, 196, 196, 196);
         ManagedSprite_SetExplicitOamMode(v1, GX_OAM_MODE_XLU);
 
         v1 = v0->unk_30;
-        ManagedSprite_SetExplicitPriority(v1, ov12_0222339C(v0->unk_00.unk_04) + 1);
+        ManagedSprite_SetExplicitPriority(v1, BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00.unk_04) + 1);
         v2 = PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(v1->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
 
         PaletteData_LoadBufferFromFileStartWithTint(ov12_0222332C(v0->unk_00.unk_04), v4, v3, BattleAnimSystem_GetHeapID(v0->unk_00.unk_04), 2, 0x20, v2 * 16, 196, 196, 196);
@@ -662,7 +662,7 @@ void ov12_0222F5EC(BattleAnimSystem *param0)
         switch (v1) {
         case 3:
         case 4:
-            Bg_SetPriority(BG_LAYER_MAIN_2, (ov12_0222339C(param0) - 1));
+            Bg_SetPriority(BG_LAYER_MAIN_2, (BattleAnimSystem_GetPokemonSpritePriority(param0) - 1));
             break;
         }
     }

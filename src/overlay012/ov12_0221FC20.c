@@ -90,23 +90,23 @@ enum BattleAnimSoundTaskType {
 typedef struct UnkStruct_ov12_02221BBC_t {
     int unk_00;
     u8 unk_04;
-    u8 unk_05;
+    u8 state;
     u8 unk_06;
     u8 unk_07;
     u8 unk_08;
-    u8 unk_09;
-    u8 unk_0A;
-    u8 unk_0B;
-    u8 unk_0C;
+    u8 blendCoeffA;
+    u8 blendCoeffB;
+    u8 targetBlendCoeffA;
+    u8 targetBlendCoeffB;
     u8 unk_0D;
-    int unk_10;
+    int bgID;
     int unk_14;
     int unk_18;
     int unk_1C[10];
     u16 unk_44_0 : 1;
     u16 unk_44_1 : 1;
     u16 unk_44_2 : 14;
-    BattleAnimSystem *unk_48;
+    BattleAnimSystem *battleAnimSystem;
 } UnkStruct_ov12_02221BBC;
 
 enum BattleAnimTaskKind {
@@ -126,8 +126,8 @@ enum BattleAnimBattlerType {
 };
 
 static void ov12_022224F8(SysTask *param0, void *param1);
-static void BattleAnimSystem_Script_WaitForDelay(BattleAnimSystem *param0);
-static void BattleAnimSystem_Script_Execute(BattleAnimSystem *param0);
+static void BattleAnimScript_WaitForDelay(BattleAnimSystem *param0);
+static void BattleAnimScript_Execute(BattleAnimSystem *param0);
 
 // See enum BattleAnimTaskKind for 'kind'
 static SysTask *BattleAnimSystem_StartTask(u8 kind, BattleAnimSystem *param1, SysTaskFunc param2, void *param3, u32 param4);
@@ -176,7 +176,7 @@ static void BattleAnimScriptCmd_Nop2(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_Nop3(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_WaitForSoundEffects(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_JumpIfEqual(BattleAnimSystem *param0);
-static void ov12_0222128C(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_LoadPokemonSpriteIntoBg(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_InitPokemonSpriteManager(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_LoadPokemonSpriteDummyResources(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_AddPokemonSprite(BattleAnimSystem *param0);
@@ -185,7 +185,7 @@ static void BattleAnimScriptCmd_RemovePokemonSprite(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_CancelTrackingTask(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_SetCameraProjection(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_SetCameraFlip(BattleAnimSystem *param0);
-static void ov12_02221424(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_RemovePokemonSpriteFromBg(BattleAnimSystem *param0);
 static void ov12_02220EA8(BattleAnimSystem *param0);
 static void ov12_022228DC(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_PlayMovingSoundEffectNoCorrection(BattleAnimSystem *param0);
@@ -214,7 +214,7 @@ static void BattleAnimScriptCmd_LoadParticleSystem(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_LoadDebugParticleSystem(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_UnloadParticleSystem(BattleAnimSystem *param0);
 static void ov12_022230CC(BattleAnimSystem *param0);
-static void ov12_02223160(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_Nop11(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_InitSpriteManager(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_LoadCharResObj(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_LoadPlttRes(BattleAnimSystem *param0);
@@ -226,10 +226,10 @@ static void BattleAnimScriptCmd_FreeSpriteManager(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_SetPokemonSpriteVisible(BattleAnimSystem *param0);
 static void ov12_02221834(BattleAnimSystem *param0);
 static void ov12_022219E8(BattleAnimSystem *param0);
-static void ov12_0222048C(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_WaitForLRX(BattleAnimSystem *param0);
 static int BattleAnimSystem_GetBattlerOfType(BattleAnimSystem *param0, enum BattleAnimBattlerType param1);
 static BOOL ov12_02221A54(UnkStruct_ov12_02221BBC *param0, BattleAnimSystem *param1, int param2);
-static void ov12_02221AA8(UnkStruct_ov12_02221BBC *param0, BattleAnimSystem *param1, int param2, int param3);
+static void ov12_02221AA8(UnkStruct_ov12_02221BBC *param0, BattleAnimSystem *param1, enum BgLayer param2, int param3);
 static int ov12_02221B54(int param0, int param1);
 static void ov12_02221B64(UnkStruct_ov12_02221BBC *param0);
 static BOOL ov12_02221C50(SysTask *param0, UnkStruct_ov12_02221BBC *param1);
@@ -269,16 +269,16 @@ static const s16 Unk_ov12_02238660[] = {
     0x20
 };
 
-static void BattleAnimSystem_Script_WaitForDelay(BattleAnimSystem *system)
+static void BattleAnimScript_WaitForDelay(BattleAnimSystem *system)
 {
     if (system->scriptDelay == 0) {
-        system->executeAnimScriptFunc = BattleAnimSystem_Script_Execute;
+        system->executeAnimScriptFunc = BattleAnimScript_Execute;
     } else {
         system->scriptDelay--;
     }
 }
 
-static void BattleAnimSystem_Script_Execute(BattleAnimSystem *system)
+static void BattleAnimScript_Execute(BattleAnimSystem *system)
 {
     do {
         BattleAnimScriptCmd cmd = BattleAnimSystem_GetScriptCmd(*system->scriptPtr);
@@ -516,13 +516,13 @@ BOOL BattleAnimSystem_StartMove(BattleAnimSystem *system, UnkStruct_ov16_02265BB
     }
 
     system->unk_17C = NULL;
-    system->executeAnimScriptFunc = BattleAnimSystem_Script_Execute;
+    system->executeAnimScriptFunc = BattleAnimScript_Execute;
     system->scriptDelay = 0;
 
     if (BattleAnimSystem_IsContest(system) == TRUE) {
-        system->unk_198 = 0x7;
+        system->bgPalettes = 0x7;
     } else {
-        system->unk_198 = 0xFF;
+        system->bgPalettes = 0xFF;
     }
 
     system->moveActive = TRUE;
@@ -818,8 +818,8 @@ static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
     BattleAnimScriptCmd_Nop3,
     BattleAnimScriptCmd_WaitForSoundEffects,
     BattleAnimScriptCmd_JumpIfEqual,
-    ov12_0222128C,
-    ov12_02221424,
+    BattleAnimScriptCmd_LoadPokemonSpriteIntoBg,
+    BattleAnimScriptCmd_RemovePokemonSpriteFromBg,
     ov12_02220EA8,
     ov12_022228DC,
     BattleAnimScriptCmd_PlayMovingSoundEffectNoCorrection,
@@ -841,7 +841,7 @@ static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
     BattleAnimScriptCmd_LoadParticleSystem,
     BattleAnimScriptCmd_LoadDebugParticleSystem,
     BattleAnimScriptCmd_UnloadParticleSystem,
-    ov12_02223160,
+    BattleAnimScriptCmd_Nop11,
     ov12_022230CC,
     BattleAnimScriptCmd_InitPokemonSpriteManager,
     BattleAnimScriptCmd_LoadPokemonSpriteDummyResources,
@@ -871,12 +871,12 @@ static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
     BattleAnimScriptCmd_SetPokemonSpriteVisible,
     ov12_02221834,
     ov12_022219E8,
-    ov12_0222048C
+    BattleAnimScriptCmd_WaitForLRX
 };
 
 void BattleAnimSystem_SetDefaultAlphaBlending(void)
 {
-    G2_SetBlendAlpha((GX_BLEND_PLANEMASK_NONE), (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 8, 8);
+    G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 8, 8);
 }
 
 static inline void BattleAnimScript_Next(BattleAnimSystem *system)
@@ -899,15 +899,15 @@ static inline int BattleAnimScript_ReadWord(u32 *scriptPtr)
     return *scriptPtr;
 }
 
-static void ov12_0222048C(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_WaitForLRX(BattleAnimSystem *system)
 {
-    param0->scriptDelay = 1;
+    system->scriptDelay = 1;
 
     if (gSystem.heldKeys & PAD_BUTTON_L) {
         if (gSystem.heldKeys & PAD_BUTTON_R) {
             if (gSystem.pressedKeys & PAD_BUTTON_X) {
-                param0->scriptPtr += 1;
-                param0->scriptDelay = 0;
+                BattleAnimScript_Next(system);
+                system->scriptDelay = 0;
             }
         }
     }
@@ -920,7 +920,7 @@ static void BattleAnimScriptCmd_Delay(BattleAnimSystem *system)
     system->scriptDelay = (u8)BattleAnimScript_ReadWord(system->scriptPtr);
     BattleAnimScript_Next(system);
 
-    system->executeAnimScriptFunc = BattleAnimSystem_Script_WaitForDelay;
+    system->executeAnimScriptFunc = BattleAnimScript_WaitForDelay;
 }
 
 static void BattleAnimScriptCmd_WaitForAnimTasks(BattleAnimSystem *system)
@@ -1392,7 +1392,7 @@ static void BattleAnimScriptCmd_LoadParticleSystem(BattleAnimSystem *system)
 
     system->context->particleSystems[psIndex] = BattleParticleUtil_CreateParticleSystem(system->heapID, memberIndex, FALSE);
     system->scriptDelay = 2; // Allow the resource upload to complete
-    system->executeAnimScriptFunc = BattleAnimSystem_Script_WaitForDelay;
+    system->executeAnimScriptFunc = BattleAnimScript_WaitForDelay;
 }
 
 static void BattleAnimScriptCmd_LoadDebugParticleSystem(BattleAnimSystem *system)
@@ -1413,7 +1413,7 @@ static void BattleAnimScriptCmd_LoadDebugParticleSystem(BattleAnimSystem *system
 
     system->context->particleSystems[psIndex] = BattleParticleUtil_CreateParticleSystemEx(system->heapID, narcID, memberIndex, FALSE);
     system->scriptDelay = 2; // Allow the resource upload to complete
-    system->executeAnimScriptFunc = BattleAnimSystem_Script_WaitForDelay;
+    system->executeAnimScriptFunc = BattleAnimScript_WaitForDelay;
 }
 
 static void BattleAnimScriptCmd_UnloadParticleSystem(BattleAnimSystem *system)
@@ -1776,84 +1776,83 @@ static void BattleAnimScriptCmd_Nop1(BattleAnimSystem *param0)
     return;
 }
 
-static void ov12_0222128C(BattleAnimSystem *system)
+static void BattleAnimScriptCmd_LoadPokemonSpriteIntoBg(BattleAnimSystem *system)
 {
-    void *v0 = NULL;
-    int v1;
-    int v2;
-    int v3;
-    int v4;
-    int v5;
-    int v6;
-    int v7;
-
-    system->scriptPtr += 1;
-
-    v1 = BattleAnimScript_ReadWord(system->scriptPtr);
-    system->scriptPtr += 1;
-
-    v2 = BattleAnimScript_ReadWord(system->scriptPtr);
-    system->scriptPtr += 1;
-
-    v3 = BattleAnimSystem_GetBattlerOfType(system, v1);
-    v4 = system->context->pokemonSpriteData[v3]->unk_04;
-    v5 = system->context->pokemonSpriteData[v3]->unk_08;
-    v0 = system->context->pokemonSpriteData[v3]->unk_00;
-    v7 = system->context->battlerForms[v3];
-
-    if ((BattleAnimSystem_IsContest(system) == 1) && (IsFormSymmetrical(BattleAnimSystem_GetBattlerSpecies(system, v3), v7) == 1)) {
-        v6 = 265;
+    void *charData = NULL;
+    
+    BattleAnimScript_Next(system);
+    
+    int battlerType = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
+    
+    BOOL trackBattler = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
+    
+    int battler = BattleAnimSystem_GetBattlerOfType(system, battlerType);
+    enum NarcID narcID = system->context->pokemonSpriteData[battler]->unk_04;
+    int paletteIndex = system->context->pokemonSpriteData[battler]->unk_08;
+    charData = system->context->pokemonSpriteData[battler]->unk_00;
+    int form = system->context->battlerForms[battler];
+    
+    int memberIndex;
+    if ((BattleAnimSystem_IsContest(system) == TRUE) && (IsFormSymmetrical(BattleAnimSystem_GetBattlerSpecies(system, battler), form) == TRUE)) {
+        memberIndex = 265;
     } else {
-        v6 = 264;
+        memberIndex = 264;
     }
 
-    {
-        u8 *v8 = Bg_GetCharPtr(2);
-        MI_CpuFill8(v8, 0, 10 * 10 * 2 * 0x20);
-    }
+    u8 *bgTiles = Bg_GetCharPtr(BG_LAYER_MAIN_2);
+    MI_CpuFill8(bgTiles, 0, 10 * 10 * 2 * TILE_SIZE_4BPP);
 
     Bg_ToggleLayer(BG_LAYER_MAIN_2, FALSE);
-    Bg_LoadTiles(system->bgConfig, BG_LAYER_MAIN_2, v0, (10 * 10 * ((8 / 2) * 8)), 0);
-    PaletteData_LoadBufferFromFileStart(system->paletteData, v4, v5, system->heapID, 0, 0, (8 * 16));
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(system->arcs[BATTLE_ANIM_SYSTEM_ARC_BATT_BG], v6, system->bgConfig, BG_LAYER_MAIN_2, 0, 0, FALSE, system->heapID);
+    Bg_LoadTiles(system->bgConfig, BG_LAYER_MAIN_2, charData, (10 * 10 * ((8 / 2) * 8)), 0);
+    PaletteData_LoadBufferFromFileStart(
+        system->paletteData,
+        narcID,
+        paletteIndex,
+        system->heapID,
+        PLTTBUF_MAIN_BG,
+        0,
+        8 * SLOTS_PER_PALETTE);
+    
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(
+        system->arcs[BATTLE_ANIM_SYSTEM_ARC_BATT_BG],
+        memberIndex,
+        system->bgConfig,
+        BG_LAYER_MAIN_2,
+        0,
+        0,
+        FALSE,
+        system->heapID);
 
-    if (v2 == 1) {
-        SysTask *v9;
-
+    if (trackBattler == TRUE) {
         system->bgTrackingTask = Heap_AllocFromHeap(system->heapID, sizeof(SpriteTrackingTask));
         system->bgTrackingTask->bg = system->bgConfig;
-        system->bgTrackingTask->data.sprite = BattleAnimSystem_GetBattlerSprite(system, v3);
+        system->bgTrackingTask->data.sprite = BattleAnimSystem_GetBattlerSprite(system, battler);
         system->bgTrackingTask->data.frameCount = 0;
         system->bgTrackingTask->data.interval = 0;
 
-        v9 = SysTask_Start(BattleAnimSystem_BgTrackingTaskFunc, system->bgTrackingTask, 0x1001);
-
-        system->bgTrackingTask->task = v9;
+        system->bgTrackingTask->task = SysTask_Start(BattleAnimSystem_BgTrackingTaskFunc, system->bgTrackingTask, 0x1001);
     }
 
-    {
-        s16 v10;
-        s16 v11;
+    s16 x = PokemonSprite_GetAttribute(BattleAnimSystem_GetBattlerSprite(system, battler), MON_SPRITE_X_CENTER);
+    s16 y = PokemonSprite_GetAttribute(BattleAnimSystem_GetBattlerSprite(system, battler), MON_SPRITE_Y_CENTER);
+    y -= PokemonSprite_GetAttribute(BattleAnimSystem_GetBattlerSprite(system, battler), MON_SPRITE_SHADOW_HEIGHT);
 
-        v10 = PokemonSprite_GetAttribute(BattleAnimSystem_GetBattlerSprite(system, v3), 0);
-        v11 = PokemonSprite_GetAttribute(BattleAnimSystem_GetBattlerSprite(system, v3), 1);
-        v11 -= PokemonSprite_GetAttribute(BattleAnimSystem_GetBattlerSprite(system, v3), 41);
+    Bg_SetOffset(system->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_X, -(x - 40));
+    Bg_SetOffset(system->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_Y, -(y - 40));
 
-        Bg_SetOffset(system->bgConfig, BG_LAYER_MAIN_2, 0, -(v10 - 40));
-        Bg_SetOffset(system->bgConfig, BG_LAYER_MAIN_2, 3, -(v11 - 40));
-    }
-
-    Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
-    Bg_SetPriority(BG_LAYER_MAIN_2, ov12_0222339C(system));
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, TRUE);
+    Bg_SetPriority(BG_LAYER_MAIN_2, BattleAnimSystem_GetPokemonSpritePriority(system));
 }
 
-static void ov12_02221424(BattleAnimSystem *system)
+static void BattleAnimScriptCmd_RemovePokemonSpriteFromBg(BattleAnimSystem *system)
 {
     BattleAnimScript_Next(system);
     BattleAnimScript_Next(system);
 
-    u8 *v0 = Bg_GetCharPtr(BG_LAYER_MAIN_2);
-    MI_CpuFill8(v0, 0, 10 * 10 * 2 * 0x20);
+    u8 *bgTiles = Bg_GetCharPtr(BG_LAYER_MAIN_2);
+    MI_CpuFill8(bgTiles, 0, 10 * 10 * 2 * TILE_SIZE_4BPP);
 
     BattleAnimSystem_CancelTrackingTask(system, BATTLE_ANIM_TRACKING_TASK_BG);
 }
@@ -2292,23 +2291,45 @@ static BOOL ov12_02221A54(UnkStruct_ov12_02221BBC *param0, BattleAnimSystem *par
     return 0;
 }
 
-static void ov12_02221AA8(UnkStruct_ov12_02221BBC *param0, BattleAnimSystem *param1, int param2, int param3)
+static void ov12_02221AA8(UnkStruct_ov12_02221BBC *param0, BattleAnimSystem *system, enum BgLayer bgLayer, int bgID)
 {
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, BattleAnimSystem_GetBgNarcMemberIndex(param3, HEAP_ID_SYSTEM), param1->bgConfig, param2, 0, 0, 1, param1->heapID);
-    PaletteData_LoadBufferFromFileStart(param1->paletteData, 7, BattleAnimSystem_GetBgNarcMemberIndex(param3, 1), param1->heapID, 0, 0x20, (9 * 16));
-    Bg_ClearTilemap(param1->bgConfig, param2);
+    Graphics_LoadTilesToBgLayer(
+        NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG,
+        BattleAnimSystem_GetBgNarcMemberIndex(bgID, BG_NARC_MEMBER_NCGR),
+        system->bgConfig,
+        bgLayer,
+        0,
+        0,
+        TRUE,
+        system->heapID);
+    
+    PaletteData_LoadBufferFromFileStart(
+        system->paletteData,
+        NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG,
+        BattleAnimSystem_GetBgNarcMemberIndex(bgID, BG_NARC_MEMBER_NCLR),
+        system->heapID,
+        0,
+        PALETTE_SIZE_BYTES,
+        9 * SLOTS_PER_PALETTE);
+    
+    Bg_ClearTilemap(system->bgConfig, bgLayer);
 
-    {
-        int v0 = 2;
-
-        if (BattleAnimSystem_IsContest(param1) == 1) {
-            v0 = 4;
-        } else if (ov12_02221A54(param0, param1, 7) == 1) {
-            v0 = 3;
-        }
-
-        Graphics_LoadTilemapToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, BattleAnimSystem_GetBgNarcMemberIndex(param3, v0), param1->bgConfig, param2, 0, 0, 1, param1->heapID);
+    enum BgNarcMemberType memberType = BG_NARC_MEMBER_NSCR1;
+    if (BattleAnimSystem_IsContest(system) == TRUE) {
+        memberType = BG_NARC_MEMBER_NSCR3;
+    } else if (ov12_02221A54(param0, system, 7) == TRUE) {
+        memberType = BG_NARC_MEMBER_NSCR2;
     }
+
+    Graphics_LoadTilemapToBgLayer(
+        NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG,
+        BattleAnimSystem_GetBgNarcMemberIndex(bgID, memberType),
+        system->bgConfig,
+        bgLayer,
+        0,
+        0,
+        TRUE,
+        system->heapID);
 }
 
 static int ov12_02221B54(int param0, int param1)
@@ -2369,25 +2390,25 @@ static UnkStruct_ov12_02221BBC *ov12_02221BBC(BattleAnimSystem *param0)
     memset(v0, 0, sizeof(UnkStruct_ov12_02221BBC));
 
     v0->unk_00 = 0;
-    v0->unk_05 = 0;
-    v0->unk_48 = param0;
-    v0->unk_09 = 0;
-    v0->unk_0A = 31;
-    v0->unk_0B = 31 - 2;
-    v0->unk_0C = 0 + 2;
+    v0->state = 0;
+    v0->battleAnimSystem = param0;
+    v0->blendCoeffA = 0;
+    v0->blendCoeffB = 31;
+    v0->targetBlendCoeffA = 31 - 2;
+    v0->targetBlendCoeffB = 0 + 2;
 
     if (BattleAnimSystem_GetScriptVar(param0, 5) == 1) {
-        v0->unk_09 = 0;
-        v0->unk_0A = 31;
-        v0->unk_0B = 15;
-        v0->unk_0C = 7;
+        v0->blendCoeffA = 0;
+        v0->blendCoeffB = 31;
+        v0->targetBlendCoeffA = 15;
+        v0->targetBlendCoeffB = 7;
     }
 
     if (BattleAnimSystem_GetScriptVar(param0, 5) == 2) {
-        v0->unk_09 = 7;
-        v0->unk_0A = 15;
-        v0->unk_0B = 31 - 2;
-        v0->unk_0C = 0 + 2;
+        v0->blendCoeffA = 7;
+        v0->blendCoeffB = 15;
+        v0->targetBlendCoeffA = 31 - 2;
+        v0->targetBlendCoeffB = 0 + 2;
     }
 
     {
@@ -2405,59 +2426,59 @@ static UnkStruct_ov12_02221BBC *ov12_02221BBC(BattleAnimSystem *param0)
 
 static BOOL ov12_02221C50(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
 {
-    switch (param1->unk_05) {
+    switch (param1->state) {
     case 0:
 
-        ov12_02222590(param1->unk_48, 2);
+        ov12_02222590(param1->battleAnimSystem, 2);
         {
-            int v0 = ov12_02223428(param1->unk_48, 2);
-            int v1 = ov12_02223428(param1->unk_48, 1);
+            int v0 = ov12_02223428(param1->battleAnimSystem, 2);
+            int v1 = ov12_02223428(param1->battleAnimSystem, 1);
 
             Bg_SetPriority(BG_LAYER_MAIN_3, v0);
             Bg_SetPriority(BG_LAYER_MAIN_2, v0);
         }
-        Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
+        Bg_ToggleLayer(BG_LAYER_MAIN_2, TRUE);
 
-        param1->unk_05++;
+        param1->state++;
         break;
 
     case 1: {
-        Bg_SetControlParam(param1->unk_48->bgConfig, 3, 2, GX_BG_CHARBASE_0x0c000);
+        Bg_SetControlParam(param1->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, BG_CONTROL_PARAM_CHAR_BASE, GX_BG_CHARBASE_0x0c000);
 
-        if (BattleAnimSystem_IsContest(param1->unk_48) != 1) {
-            Bg_SetControlParam(param1->unk_48->bgConfig, 3, 0, GX_BG_COLORMODE_16);
+        if (BattleAnimSystem_IsContest(param1->battleAnimSystem) != TRUE) {
+            Bg_SetControlParam(param1->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, BG_CONTROL_PARAM_COLOR_MODE, GX_BG_COLORMODE_16);
         }
 
-        ov12_02221AA8(param1, param1->unk_48, 3, param1->unk_10);
-        G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG3, param1->unk_0A, param1->unk_09);
+        ov12_02221AA8(param1, param1->battleAnimSystem, BG_LAYER_MAIN_3, param1->bgID);
+        G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG3, param1->blendCoeffB, param1->blendCoeffA);
         ov12_02221B64(param1);
     }
-        param1->unk_05++;
+        param1->state++;
 
     case 2: {
         int v2 = 0;
 
-        if (param1->unk_09 < param1->unk_0B) {
-            param1->unk_09 += 2;
+        if (param1->blendCoeffA < param1->targetBlendCoeffA) {
+            param1->blendCoeffA += 2;
         } else {
             v2++;
         }
 
-        if (param1->unk_0A > param1->unk_0C) {
-            param1->unk_0A -= 2;
+        if (param1->blendCoeffB > param1->targetBlendCoeffB) {
+            param1->blendCoeffB -= 2;
         } else {
             v2++;
         }
 
         if (v2 == 2) {
-            param1->unk_09 = param1->unk_0B;
-            param1->unk_0A = param1->unk_0C;
-            param1->unk_05++;
+            param1->blendCoeffA = param1->targetBlendCoeffA;
+            param1->blendCoeffB = param1->targetBlendCoeffB;
+            param1->state++;
         }
 
-        G2_ChangeBlendAlpha(param1->unk_0A, param1->unk_09);
+        G2_ChangeBlendAlpha(param1->blendCoeffB, param1->blendCoeffA);
 
-        if (param1->unk_05 != 2) {
+        if (param1->state != 2) {
             return 0;
         }
     } break;
@@ -2470,79 +2491,79 @@ static BOOL ov12_02221C50(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
 
 static BOOL ov12_02221D50(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
 {
-    switch (param1->unk_05) {
+    switch (param1->state) {
     case 0:
         Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
-        param1->unk_05++;
+        param1->state++;
     case 1: {
-        int v0 = ov12_02223428(param1->unk_48, 2);
-        int v1 = ov12_02223428(param1->unk_48, 1);
+        int v0 = ov12_02223428(param1->battleAnimSystem, 2);
+        int v1 = ov12_02223428(param1->battleAnimSystem, 1);
 
         Bg_SetPriority(BG_LAYER_MAIN_3, v0);
         Bg_SetPriority(BG_LAYER_MAIN_2, v0);
 
-        G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG3, param1->unk_09, param1->unk_0A);
+        G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG3, param1->blendCoeffA, param1->blendCoeffB);
         ov12_02221B64(param1);
     }
-        param1->unk_05++;
+        param1->state++;
 
     case 2: {
         int v2 = 0;
 
-        if (param1->unk_09 < param1->unk_0B) {
-            param1->unk_09 += 2;
+        if (param1->blendCoeffA < param1->targetBlendCoeffA) {
+            param1->blendCoeffA += 2;
         } else {
             v2++;
         }
 
-        if (param1->unk_0A > param1->unk_0C) {
-            param1->unk_0A -= 2;
+        if (param1->blendCoeffB > param1->targetBlendCoeffB) {
+            param1->blendCoeffB -= 2;
         } else {
             v2++;
         }
 
         if (v2 == 2) {
-            param1->unk_09 = param1->unk_0B + 2;
-            param1->unk_0A = param1->unk_0C - 2;
-            param1->unk_05++;
+            param1->blendCoeffA = param1->targetBlendCoeffA + 2;
+            param1->blendCoeffB = param1->targetBlendCoeffB - 2;
+            param1->state++;
         }
 
-        G2_ChangeBlendAlpha(param1->unk_09, param1->unk_0A);
+        G2_ChangeBlendAlpha(param1->blendCoeffA, param1->blendCoeffB);
     } break;
     case 3:
         if (param1->unk_44_0 == 1) {
-            ov12_02222338(param1->unk_48);
+            ov12_02222338(param1->battleAnimSystem);
         }
 
         if (param1->unk_44_1 == 1) {
-            ov12_02222338(param1->unk_48);
+            ov12_02222338(param1->battleAnimSystem);
         }
 
-        Bg_SetOffset(param1->unk_48->bgConfig, 3, 0, 0);
-        Bg_SetOffset(param1->unk_48->bgConfig, 3, 3, 0);
-        Bg_SetControlParam(param1->unk_48->bgConfig, 3, 2, GX_BG_CHARBASE_0x10000);
+        Bg_SetOffset(param1->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, BG_OFFSET_UPDATE_SET_X, 0);
+        Bg_SetOffset(param1->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, BG_OFFSET_UPDATE_SET_Y, 0);
+        Bg_SetControlParam(param1->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, BG_CONTROL_PARAM_CHAR_BASE, GX_BG_CHARBASE_0x10000);
 
-        if (BattleAnimSystem_IsContest(param1->unk_48) == 0) {
-            Bg_SetControlParam(param1->unk_48->bgConfig, 3, 0, GX_BG_COLORMODE_256);
-            ov12_02223460(param1->unk_48, 3);
-            ov12_02223488(param1->unk_48);
+        if (BattleAnimSystem_IsContest(param1->battleAnimSystem) == FALSE) {
+            Bg_SetControlParam(param1->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, BG_CONTROL_PARAM_COLOR_MODE, GX_BG_COLORMODE_256);
+            ov12_02223460(param1->battleAnimSystem, BG_LAYER_MAIN_3);
+            ov12_02223488(param1->battleAnimSystem);
         } else {
-            Graphics_LoadTilesToBgLayer(param1->unk_48->unk_180.unk_00, param1->unk_48->unk_180.unk_04, param1->unk_48->bgConfig, 3, 0, 0, 1, param1->unk_48->heapID);
-            PaletteData_LoadBufferFromFileStart(param1->unk_48->paletteData, param1->unk_48->unk_180.unk_00, param1->unk_48->unk_180.unk_08, param1->unk_48->heapID, 0, param1->unk_48->unk_180.unk_14 * 0x20, param1->unk_48->unk_180.unk_10);
+            Graphics_LoadTilesToBgLayer(param1->battleAnimSystem->unk_180.unk_00, param1->battleAnimSystem->unk_180.unk_04, param1->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, param1->battleAnimSystem->heapID);
+            PaletteData_LoadBufferFromFileStart(param1->battleAnimSystem->paletteData, param1->battleAnimSystem->unk_180.unk_00, param1->battleAnimSystem->unk_180.unk_08, param1->battleAnimSystem->heapID, 0, param1->battleAnimSystem->unk_180.unk_14 * 0x20, param1->battleAnimSystem->unk_180.unk_10);
         }
 
-        Graphics_LoadTilemapToBgLayer(param1->unk_48->unk_180.unk_00, param1->unk_48->unk_180.unk_0C, param1->unk_48->bgConfig, 3, 0, 0, 1, param1->unk_48->heapID);
-        param1->unk_05++;
+        Graphics_LoadTilemapToBgLayer(param1->battleAnimSystem->unk_180.unk_00, param1->battleAnimSystem->unk_180.unk_0C, param1->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, param1->battleAnimSystem->heapID);
+        param1->state++;
         break;
     case 4:
-        if (BattleAnimSystem_IsContest(param1->unk_48) == 0) {
+        if (BattleAnimSystem_IsContest(param1->battleAnimSystem) == FALSE) {
             Battle_SetDefaultBlend();
         } else {
             ov17_022413D8();
         }
 
-        ov12_02222664(param1->unk_48, 2);
-        param1->unk_05++;
+        ov12_02222664(param1->battleAnimSystem, 2);
+        param1->state++;
         break;
     default:
         return 0;
@@ -2553,38 +2574,38 @@ static BOOL ov12_02221D50(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
 
 static BOOL ov12_02221F44(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
 {
-    switch (param1->unk_05) {
+    switch (param1->state) {
     case 0:
         if (param1->unk_0D == 0) {
-            PaletteData_StartFade(param1->unk_48->paletteData, 0x1, param1->unk_48->unk_198, 0, 0, 16, 0);
-            PaletteData_BlendMulti(param1->unk_48->paletteData, 0, 0x200, 16, 0);
+            PaletteData_StartFade(param1->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG_F, param1->battleAnimSystem->bgPalettes, 0, 0, 16, GX_RGBA(0, 0, 0, 0));
+            PaletteData_BlendMulti(param1->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG, 0x200, 16, GX_RGBA(0, 0, 0, 0));
         } else {
-            PaletteData_StartFade(param1->unk_48->paletteData, 0x1, param1->unk_48->unk_198, 0, 0, 16, 0xFFFF);
-            PaletteData_BlendMulti(param1->unk_48->paletteData, 0, 0x200, 16, 0xFFFF);
+            PaletteData_StartFade(param1->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG_F, param1->battleAnimSystem->bgPalettes, 0, 0, 16, GX_RGBA(31, 31, 31, 1));
+            PaletteData_BlendMulti(param1->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG, 0x200, 16, GX_RGBA(31, 31, 31, 1));
         }
 
-        param1->unk_05++;
+        param1->state++;
     case 1:
-        if (PaletteData_GetSelectedBuffersMask(param1->unk_48->paletteData) != 0) {
+        if (PaletteData_GetSelectedBuffersMask(param1->battleAnimSystem->paletteData) != 0) {
             break;
         }
 
-        Bg_SetControlParam(param1->unk_48->bgConfig, 3, 0, GX_BG_COLORMODE_16);
-        ov12_02221AA8(param1, param1->unk_48, 3, param1->unk_10);
+        Bg_SetControlParam(param1->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, BG_CONTROL_PARAM_COLOR_MODE, GX_BG_COLORMODE_16);
+        ov12_02221AA8(param1, param1->battleAnimSystem, BG_LAYER_MAIN_3, param1->bgID);
 
         if (param1->unk_0D == 0) {
-            PaletteData_StartFade(param1->unk_48->paletteData, 0x1, (1 << 9), 0, 16, 0, 0);
+            PaletteData_StartFade(param1->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG_F, (1 << 9), 0, 16, 0, GX_RGBA(0, 0, 0, 0));
         } else {
-            PaletteData_StartFade(param1->unk_48->paletteData, 0x1, (1 << 9), 0, 16, 0, 0xFFFF);
+            PaletteData_StartFade(param1->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG_F, (1 << 9), 0, 16, 0, GX_RGBA(31, 31, 31, 1));
         }
 
         ov12_02221B64(param1);
 
-        param1->unk_48->unk_178 = 2;
-        param1->unk_05++;
+        param1->battleAnimSystem->unk_178 = 2;
+        param1->state++;
         break;
     default:
-        if (PaletteData_GetSelectedBuffersMask(param1->unk_48->paletteData) != 0) {
+        if (PaletteData_GetSelectedBuffersMask(param1->battleAnimSystem->paletteData) != 0) {
             break;
         }
 
@@ -2596,73 +2617,73 @@ static BOOL ov12_02221F44(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
 
 static BOOL ov12_0222206C(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
 {
-    switch (param1->unk_05) {
+    switch (param1->state) {
     case 0:
         ov12_02221B64(param1);
-        param1->unk_05++;
+        param1->state++;
     case 1:
         if (param1->unk_0D == 0) {
-            PaletteData_StartFade(param1->unk_48->paletteData, 0x1, (1 << 9), 0, 0, 16, 0);
-            PaletteData_BlendMulti(param1->unk_48->paletteData, 0, param1->unk_48->unk_198, 16, 0);
+            PaletteData_StartFade(param1->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG_F, (1 << 9), 0, 0, 16, GX_RGBA(0, 0, 0, 0));
+            PaletteData_BlendMulti(param1->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG, param1->battleAnimSystem->bgPalettes, 16, GX_RGBA(0, 0, 0, 0));
         } else {
-            PaletteData_StartFade(param1->unk_48->paletteData, 0x1, (1 << 9), 0, 0, 16, 0xFFFF);
-            PaletteData_BlendMulti(param1->unk_48->paletteData, 0, param1->unk_48->unk_198, 16, 0xFFFF);
+            PaletteData_StartFade(param1->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG_F, (1 << 9), 0, 0, 16, GX_RGBA(31, 31, 31, 1));
+            PaletteData_BlendMulti(param1->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG, param1->battleAnimSystem->bgPalettes, 16, GX_RGBA(31, 31, 31, 1));
         }
 
-        param1->unk_05++;
+        param1->state++;
     case 2:
-        if (PaletteData_GetSelectedBuffersMask(param1->unk_48->paletteData) != 0) {
+        if (PaletteData_GetSelectedBuffersMask(param1->battleAnimSystem->paletteData) != 0) {
             break;
         }
 
         if (param1->unk_44_0 == 1) {
-            ov12_02222338(param1->unk_48);
+            ov12_02222338(param1->battleAnimSystem);
         }
 
         if (param1->unk_44_1 == 1) {
-            ov12_02222338(param1->unk_48);
+            ov12_02222338(param1->battleAnimSystem);
         }
 
-        Bg_ToggleLayer(BG_LAYER_MAIN_3, 0);
+        Bg_ToggleLayer(BG_LAYER_MAIN_3, FALSE);
 
-        if (BattleAnimSystem_IsContest(param1->unk_48) == 0) {
-            Bg_SetControlParam(param1->unk_48->bgConfig, 3, 0, GX_BG_COLORMODE_256);
+        if (BattleAnimSystem_IsContest(param1->battleAnimSystem) == FALSE) {
+            Bg_SetControlParam(param1->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, 0, GX_BG_COLORMODE_256);
 
-            ov12_02223460(param1->unk_48, 3);
-            ov12_02223488(param1->unk_48);
+            ov12_02223460(param1->battleAnimSystem, BG_LAYER_MAIN_3);
+            ov12_02223488(param1->battleAnimSystem);
         } else {
-            Graphics_LoadTilesToBgLayer(param1->unk_48->unk_180.unk_00, param1->unk_48->unk_180.unk_04, param1->unk_48->bgConfig, 3, 0, 0, 1, param1->unk_48->heapID);
-            PaletteData_LoadBufferFromFileStart(param1->unk_48->paletteData, param1->unk_48->unk_180.unk_00, param1->unk_48->unk_180.unk_08, param1->unk_48->heapID, 0, param1->unk_48->unk_180.unk_14 * 0x20, param1->unk_48->unk_180.unk_10);
+            Graphics_LoadTilesToBgLayer(param1->battleAnimSystem->unk_180.unk_00, param1->battleAnimSystem->unk_180.unk_04, param1->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, param1->battleAnimSystem->heapID);
+            PaletteData_LoadBufferFromFileStart(param1->battleAnimSystem->paletteData, param1->battleAnimSystem->unk_180.unk_00, param1->battleAnimSystem->unk_180.unk_08, param1->battleAnimSystem->heapID, 0, param1->battleAnimSystem->unk_180.unk_14 * 0x20, param1->battleAnimSystem->unk_180.unk_10);
         }
 
-        Graphics_LoadTilemapToBgLayer(param1->unk_48->unk_180.unk_00, param1->unk_48->unk_180.unk_0C, param1->unk_48->bgConfig, 3, 0, 0, 1, param1->unk_48->heapID);
-        Bg_ToggleLayer(BG_LAYER_MAIN_3, 1);
+        Graphics_LoadTilemapToBgLayer(param1->battleAnimSystem->unk_180.unk_00, param1->battleAnimSystem->unk_180.unk_0C, param1->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, param1->battleAnimSystem->heapID);
+        Bg_ToggleLayer(BG_LAYER_MAIN_3, TRUE);
 
-        param1->unk_05++;
+        param1->state++;
     case 3:
-        Bg_SetOffset(param1->unk_48->bgConfig, 3, 0, 0);
-        Bg_SetOffset(param1->unk_48->bgConfig, 3, 3, 0);
+        Bg_SetOffset(param1->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, BG_OFFSET_UPDATE_SET_X, 0);
+        Bg_SetOffset(param1->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, BG_OFFSET_UPDATE_SET_Y, 0);
 
         if (param1->unk_0D == 0) {
-            PaletteData_StartFade(param1->unk_48->paletteData, 0x1, param1->unk_48->unk_198, 0, 16, 0, 0);
+            PaletteData_StartFade(param1->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG_F, param1->battleAnimSystem->bgPalettes, 0, 16, 0, GX_RGBA(0, 0, 0, 0));
         } else {
-            PaletteData_StartFade(param1->unk_48->paletteData, 0x1, param1->unk_48->unk_198, 0, 16, 0, 0xFFFF);
+            PaletteData_StartFade(param1->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG_F, param1->battleAnimSystem->bgPalettes, 0, 16, 0, GX_RGBA(31, 31, 31, 1));
         }
 
-        param1->unk_05++;
+        param1->state++;
 
     default:
-        if (PaletteData_GetSelectedBuffersMask(param1->unk_48->paletteData) != 0) {
+        if (PaletteData_GetSelectedBuffersMask(param1->battleAnimSystem->paletteData) != 0) {
             break;
         }
 
-        param1->unk_48->unk_178 = 2;
-        param1->unk_05++;
+        param1->battleAnimSystem->unk_178 = 2;
+        param1->state++;
 
-        return 0;
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
 static BOOL ov12_022222A4(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
@@ -2676,7 +2697,7 @@ static BOOL ov12_022222B0(SysTask *param0, UnkStruct_ov12_02221BBC *param1)
     ov12_02221B64(param1);
 
     if (param1->unk_44_0 == 1) {
-        ov12_02222338(param1->unk_48);
+        ov12_02222338(param1->battleAnimSystem);
     }
 
     return 0;
@@ -2717,7 +2738,7 @@ void ov12_02222338(BattleAnimSystem *param0)
 
 int ov12_02222354(BattleAnimSystem *param0)
 {
-    return param0->unk_198;
+    return param0->bgPalettes;
 }
 
 static BOOL ov12_0222235C(UnkStruct_ov12_02221BBC *param0)
@@ -2728,17 +2749,17 @@ static BOOL ov12_0222235C(UnkStruct_ov12_02221BBC *param0)
 static BOOL ov12_02222360(UnkStruct_ov12_02221BBC *param0)
 {
     int v0;
-    UnkStruct_ov12_022222D4 *v1 = Heap_AllocFromHeap(param0->unk_48->heapID, sizeof(UnkStruct_ov12_022222D4));
+    UnkStruct_ov12_022222D4 *v1 = Heap_AllocFromHeap(param0->battleAnimSystem->heapID, sizeof(UnkStruct_ov12_022222D4));
 
-    v1->unk_00 = param0->unk_48->bgConfig;
-    v1->unk_04 = param0->unk_48->scriptVars[2];
-    v1->unk_06 = param0->unk_48->scriptVars[3];
-    v1->unk_08 = param0->unk_48->scriptVars[0];
-    v1->unk_0A = param0->unk_48->scriptVars[1];
+    v1->unk_00 = param0->battleAnimSystem->bgConfig;
+    v1->unk_04 = param0->battleAnimSystem->scriptVars[2];
+    v1->unk_06 = param0->battleAnimSystem->scriptVars[3];
+    v1->unk_08 = param0->battleAnimSystem->scriptVars[0];
+    v1->unk_0A = param0->battleAnimSystem->scriptVars[1];
     v1->unk_0C = 3;
     v1->unk_10 = 3;
 
-    if (ov12_02221A54(param0, param0->unk_48, 6) == 1) {
+    if (ov12_02221A54(param0, param0->battleAnimSystem, 6) == 1) {
         v1->unk_08 *= -1;
         v1->unk_0A *= -1;
         v1->unk_04 *= -1;
@@ -2748,7 +2769,7 @@ static BOOL ov12_02222360(UnkStruct_ov12_02221BBC *param0)
     v1->unk_14 = 1;
     v1->unk_18 = 0;
 
-    param0->unk_48->unk_17C = v1;
+    param0->battleAnimSystem->unk_17C = v1;
     param0->unk_44_0 = 1;
 
     SysTask_Start(ov12_022222D4, v1, 0x1001);
@@ -2759,8 +2780,8 @@ static BOOL ov12_02222360(UnkStruct_ov12_02221BBC *param0)
 static BOOL ov12_0222240C(UnkStruct_ov12_02221BBC *param0)
 {
     int v0, v1;
-    BattleAnimSystem *v2 = param0->unk_48;
-    UnkStruct_ov12_022222D4 *v3 = Heap_AllocFromHeap(param0->unk_48->heapID, sizeof(UnkStruct_ov12_022222D4));
+    BattleAnimSystem *v2 = param0->battleAnimSystem;
+    UnkStruct_ov12_022222D4 *v3 = Heap_AllocFromHeap(param0->battleAnimSystem->heapID, sizeof(UnkStruct_ov12_022222D4));
 
     v3->unk_1C = Heap_AllocFromHeap(v2->heapID, sizeof(UnkStruct_ov12_022224F8));
     v2->unk_17C = v3;
@@ -2777,7 +2798,7 @@ static BOOL ov12_0222240C(UnkStruct_ov12_02221BBC *param0)
         v3->unk_1C->unk_00[v0].unk_06 = 0;
         v3->unk_1C->unk_00[v0].unk_08 = ov12_022266E8(0, 0);
 
-        if (ov12_02221A54(param0, param0->unk_48, 6) == 1) {
+        if (ov12_02221A54(param0, param0->battleAnimSystem, 6) == 1) {
             v3->unk_1C->unk_00[v0].unk_04 *= -1;
         }
     }
@@ -2788,8 +2809,8 @@ static BOOL ov12_0222240C(UnkStruct_ov12_02221BBC *param0)
 
 static BOOL ov12_022224E4(UnkStruct_ov12_02221BBC *param0)
 {
-    BattleAnimSystem *v0 = param0->unk_48;
-    UnkStruct_ov12_022222D4 *v1 = param0->unk_48->unk_17C;
+    BattleAnimSystem *v0 = param0->battleAnimSystem;
+    UnkStruct_ov12_022222D4 *v1 = param0->battleAnimSystem->unk_17C;
 
     param0->unk_44_1 = 1;
     return 0;
@@ -2826,29 +2847,29 @@ static void ov12_022224F8(SysTask *param0, void *param1)
     }
 }
 
-void ov12_02222590(BattleAnimSystem *param0, int param1)
+void ov12_02222590(BattleAnimSystem *system, enum BgLayer bgLayer)
 {
-    int v0 = ov12_02223428(param0, 2);
+    int v0 = ov12_02223428(system, 2);
 
-    Bg_SetPriority(param1, v0);
-    Bg_ToggleLayer(param1, 0);
+    Bg_SetPriority(bgLayer, v0);
+    Bg_ToggleLayer(bgLayer, FALSE);
 
-    if (BattleAnimSystem_IsContest(param0) == 1) {
-        Bg_SetControlParam(param0->bgConfig, param1, 2, GX_BG_CHARBASE_0x10000);
+    if (BattleAnimSystem_IsContest(system) == TRUE) {
+        Bg_SetControlParam(system->bgConfig, bgLayer, BG_CONTROL_PARAM_CHAR_BASE, GX_BG_CHARBASE_0x10000);
     } else {
-        Bg_SetControlParam(param0->bgConfig, param1, 0, GX_BG_COLORMODE_256);
-        Bg_SetControlParam(param0->bgConfig, param1, 2, GX_BG_CHARBASE_0x10000);
+        Bg_SetControlParam(system->bgConfig, bgLayer, BG_CONTROL_PARAM_COLOR_MODE, GX_BG_COLORMODE_256);
+        Bg_SetControlParam(system->bgConfig, bgLayer, BG_CONTROL_PARAM_CHAR_BASE, GX_BG_CHARBASE_0x10000);
     }
 
-    Bg_ClearTilemap(param0->bgConfig, param1);
+    Bg_ClearTilemap(system->bgConfig, bgLayer);
 
-    if (BattleAnimSystem_IsContest(param0) == 1) {
-        Graphics_LoadTilesToBgLayer(param0->unk_180.unk_00, param0->unk_180.unk_04, param0->bgConfig, param1, 0, 0, 1, param0->heapID);
+    if (BattleAnimSystem_IsContest(system) == TRUE) {
+        Graphics_LoadTilesToBgLayer(system->unk_180.unk_00, system->unk_180.unk_04, system->bgConfig, bgLayer, 0, 0, TRUE, system->heapID);
     } else {
-        ov12_02223460(param0, param1);
+        ov12_02223460(system, bgLayer);
     }
 
-    Graphics_LoadTilemapToBgLayer(param0->unk_180.unk_00, param0->unk_180.unk_0C, param0->bgConfig, param1, 0, 0, 1, param0->heapID);
+    Graphics_LoadTilemapToBgLayer(system->unk_180.unk_00, system->unk_180.unk_0C, system->bgConfig, bgLayer, 0, 0, TRUE, system->heapID);
 }
 
 void ov12_02222664(BattleAnimSystem *param0, int param1)
@@ -2875,7 +2896,7 @@ static BOOL ov12_022226D0(UnkStruct_ov12_02221BBC *param0)
 
 static BOOL ov12_022226E8(UnkStruct_ov12_02221BBC *param0)
 {
-    ov12_02222338(param0->unk_48);
+    ov12_02222338(param0->battleAnimSystem);
     return 0;
 }
 
@@ -2885,28 +2906,28 @@ static void ov12_022226F4(SysTask *param0, void *param1)
     BOOL v1 = Unk_ov12_022385CC[v0->unk_14](param0, v0);
 
     if (v1 == 0) {
-        v0->unk_48->unk_178 = 0;
+        v0->battleAnimSystem->unk_178 = 0;
 
         Heap_Free(v0);
         SysTask_Done(param0);
     }
 }
 
-static void ov12_02222724(BattleAnimSystem *param0)
+static void ov12_02222724(BattleAnimSystem *system)
 {
     UnkStruct_ov12_02221BBC *v0;
     int v1;
 
-    v0 = ov12_02221BBC(param0);
+    v0 = ov12_02221BBC(system);
 
-    v0->unk_0D = BattleAnimSystem_GetScriptVar(param0, 4);
-    param0->scriptPtr += 1;
+    v0->unk_0D = BattleAnimSystem_GetScriptVar(system, 4);
+    BattleAnimScript_Next(system);
 
-    v0->unk_10 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    v0->bgID = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    v1 = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
     v0->unk_14 = (v1 & 0xFFFF);
     v0->unk_18 = (v1 & 0xFFFF0000) >> 16;
@@ -2955,7 +2976,7 @@ static void ov12_022227CC(BattleAnimSystem *param0)
     v0->unk_0D = BattleAnimSystem_GetScriptVar(param0, 4);
     param0->scriptPtr += 1;
 
-    v0->unk_10 = BattleAnimScript_ReadWord(param0->scriptPtr);
+    v0->bgID = BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
 
     v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
@@ -3041,12 +3062,12 @@ static void ov12_022228DC(BattleAnimSystem *param0)
     param0->scriptPtr += 1;
 
     if (BattleAnimSystem_IsContest(param0) == 1) {
-        v0->unk_10 = v3;
+        v0->bgID = v3;
     } else {
         if (BattleAnimUtil_GetBattlerSide(param0, param0->context->defender) == 0x3) {
-            v0->unk_10 = v2;
+            v0->bgID = v2;
         } else {
-            v0->unk_10 = v1;
+            v0->bgID = v1;
         }
     }
 
@@ -3591,7 +3612,7 @@ static void BattleAnimScriptCmd_WaitForPokemonCries(BattleAnimSystem *system)
     }
 }
 
-static void ov12_02223160(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_Nop11(BattleAnimSystem *)
 {
     return;
 }
@@ -3749,17 +3770,13 @@ BOOL BattleAnimSystem_IsBattlerSemiInvulnerable(BattleAnimSystem *system, int ba
     return (system->context->battlerMoveEffects[battler] & MOVE_EFFECT_SEMI_INVULNERABLE) ? TRUE : FALSE;
 }
 
-int ov12_0222339C(BattleAnimSystem *param0)
+int BattleAnimSystem_GetPokemonSpritePriority(BattleAnimSystem *system)
 {
-    int v0;
-
-    if (BattleAnimSystem_IsContest(param0) == 1) {
-        v0 = 2;
+    if (BattleAnimSystem_IsContest(system) == TRUE) {
+        return 2;
     } else {
-        v0 = 1;
+        return 1;
     }
-
-    return v0;
 }
 
 int ov12_022233B0(BattleAnimSystem *param0, int param1)
@@ -3823,16 +3840,16 @@ int ov12_02223428(BattleAnimSystem *param0, int param1)
         }
         break;
     case 3:
-        return ov12_0222339C(param0);
+        return BattleAnimSystem_GetPokemonSpritePriority(param0);
         break;
     }
 
     return v0;
 }
 
-void ov12_02223460(BattleAnimSystem *param0, int param1)
+void ov12_02223460(BattleAnimSystem *system, enum BgLayer layer)
 {
-    Bg_LoadTiles(param0->bgConfig, param1, param0->context->unk_110, 0x10000, 0);
+    Bg_LoadTiles(system->bgConfig, layer, system->context->unk_110, 0x10000, 0);
 }
 
 void ov12_02223488(BattleAnimSystem *param0)

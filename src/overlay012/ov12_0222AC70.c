@@ -705,7 +705,7 @@ void ov12_0222B68C(BattleAnimSystem *param0)
         int v1;
         u16 v2;
         int v3 = ov12_02223334(v0->unk_0C, BattleAnimSystem_GetAttacker(v0->unk_0C));
-        int v4 = ov12_0222339C(v0->unk_0C);
+        int v4 = BattleAnimSystem_GetPokemonSpritePriority(v0->unk_0C);
         int v5 = ov12_02223344(v0->unk_0C, BattleAnimSystem_GetAttacker(v0->unk_0C));
 
         for (v1 = 0; v1 < 4; v1++) {
@@ -1855,7 +1855,7 @@ void ov12_0222CFA0(BattleAnimSystem *param0)
         ManagedSprite_SetAnim(v0->unk_40, 0);
         v0->unk_14.unk_00 = 255 - 76;
         v0->unk_14.unk_02 = 120;
-        ManagedSprite_SetExplicitPriority(v0->unk_40, ov12_0222339C(param0) + 1);
+        ManagedSprite_SetExplicitPriority(v0->unk_40, BattleAnimSystem_GetPokemonSpritePriority(param0) + 1);
         v0->unk_12 = -1;
     } else {
         if (BattleAnimUtil_GetBattlerSide(param0, BattleAnimSystem_GetAttacker(param0)) == 0x4) {
@@ -1870,7 +1870,7 @@ void ov12_0222CFA0(BattleAnimSystem *param0)
             ManagedSprite_SetAnim(v0->unk_40, 0);
             v0->unk_14.unk_00 = 76;
             v0->unk_14.unk_02 = 120;
-            ManagedSprite_SetExplicitPriority(v0->unk_40, ov12_0222339C(param0) + 1);
+            ManagedSprite_SetExplicitPriority(v0->unk_40, BattleAnimSystem_GetPokemonSpritePriority(param0) + 1);
         }
 
         v0->unk_12 = +1;
@@ -2071,12 +2071,12 @@ static void ov12_0222D128(SysTask *param0, void *param1)
             ManagedSprite_GetPositionXY(v1->unk_30[v0].unk_00, &v18, &v19);
 
             if (v19 < 80) {
-                ManagedSprite_SetExplicitPriority(v1->unk_30[v0].unk_00, ov12_0222339C(v1->unk_10));
+                ManagedSprite_SetExplicitPriority(v1->unk_30[v0].unk_00, BattleAnimSystem_GetPokemonSpritePriority(v1->unk_10));
             } else {
                 if (v18 > 128) {
-                    ManagedSprite_SetExplicitPriority(v1->unk_30[v0].unk_00, ov12_0222339C(v1->unk_10));
+                    ManagedSprite_SetExplicitPriority(v1->unk_30[v0].unk_00, BattleAnimSystem_GetPokemonSpritePriority(v1->unk_10));
                 } else {
-                    ManagedSprite_SetExplicitPriority(v1->unk_30[v0].unk_00, ov12_0222339C(v1->unk_10) + 1);
+                    ManagedSprite_SetExplicitPriority(v1->unk_30[v0].unk_00, BattleAnimSystem_GetPokemonSpritePriority(v1->unk_10) + 1);
                 }
             }
         }
@@ -2126,7 +2126,7 @@ void ov12_0222D56C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
 
     for (v0 = 0; v0 < BattleAnimSystem_GetScriptVar(v1->unk_10, 0); v0++) {
         ManagedSprite_SetExplicitOamMode(v1->unk_30[v0].unk_00, GX_OAM_MODE_XLU);
-        ManagedSprite_SetExplicitPriority(v1->unk_30[v0].unk_00, ov12_0222339C(v1->unk_10) + 1);
+        ManagedSprite_SetExplicitPriority(v1->unk_30[v0].unk_00, BattleAnimSystem_GetPokemonSpritePriority(v1->unk_10) + 1);
     }
 
     if (BattleAnimSystem_IsContest(param0) == 1) {

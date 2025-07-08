@@ -3241,11 +3241,11 @@ static void ov12_0222A1F4(SysTask *param0, void *param1)
             if (v1 == 0) {
                 v2 = ManagedSprite_GetExplicitPriority(v0->unk_1C);
 
-                if (v2 == ov12_0222339C(v0->unk_00.unk_04)) {
+                if (v2 == BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00.unk_04)) {
                     v3 = ov12_02223428(v0->unk_00.unk_04, 2);
                     ManagedSprite_SetExplicitPriority(v0->unk_1C, v3);
                 } else {
-                    v3 = ov12_0222339C(v0->unk_00.unk_04);
+                    v3 = BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00.unk_04);
                     ManagedSprite_SetExplicitPriority(v0->unk_1C, v3);
                 }
             }
@@ -3324,7 +3324,7 @@ void ov12_0222A34C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
         ManagedSprite_SetAnim(v0->unk_1C, 0);
     }
 
-    ManagedSprite_SetExplicitPriority(v0->unk_1C, ov12_0222339C(v0->unk_00.unk_04));
+    ManagedSprite_SetExplicitPriority(v0->unk_1C, BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00.unk_04));
     ManagedSprite_OffsetPositionXY(v0->unk_1C, 0, +12);
 
     BattleAnimSystem_StartAnimTask(v0->unk_00.unk_04, ov12_0222A1F4, v0);
