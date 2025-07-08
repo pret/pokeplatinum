@@ -168,25 +168,21 @@ void ov71_0223C6F0(Window *param0, const TrainerCard *param1)
 void ov71_0223CA28(Window *param0, const TrainerCard *param1)
 {
     u8 i;
-    MessageLoader *messageLoader;
-    Strbuf *strbuf, *strbuf2;
-    StringTemplate *template;
-    u32 xOffset;
 
     Window_FillRectWithColor(&param0[7], 0, 0, 0, 28 * 8, 4 * 8);
     Window_FillRectWithColor(&param0[8], 0, 0, 0, 28 * 8, 2 * 8);
     Window_FillRectWithColor(&param0[9], 0, 0, 0, 28 * 8, 2 * 8);
     Window_FillRectWithColor(&param0[10], 0, 0, 0, 28 * 8, 2 * 8);
-    messageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0616, HEAP_ID_25);
-    strbuf = Strbuf_Init(32, HEAP_ID_25);
+    MessageLoader *messageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0616, HEAP_ID_25);
+    Strbuf *strbuf = Strbuf_Init(32, HEAP_ID_25);
 
     for (i = 7; i < 11; i++) {
         MessageLoader_GetStrbuf(messageLoader, Unk_ov71_0223D644[i], strbuf);
         Text_AddPrinterWithParamsAndColor(&param0[i], FONT_SYSTEM, strbuf, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
     }
 
-    strbuf2 = Strbuf_Init(32, HEAP_ID_25);
-    template = StringTemplate_New(6, 32, HEAP_ID_25);
+    Strbuf *strbuf2 = Strbuf_Init(32, HEAP_ID_25);
+    StringTemplate *template = StringTemplate_New(6, 32, HEAP_ID_25);
 
     if (param1->unk_33 != 0) {
         StringTemplate_SetNumber(template, 2, param1->unk_32, 2, 2, 1);
@@ -203,7 +199,7 @@ void ov71_0223CA28(Window *param0, const TrainerCard *param1)
         MessageLoader_GetStrbuf(messageLoader, 20, strbuf);
     }
 
-    xOffset = 28 * 8 - Font_CalcStrbufWidth(0, strbuf, 0);
+    u32 xOffset = 28 * 8 - Font_CalcStrbufWidth(0, strbuf, 0);
     Text_AddPrinterWithParamsAndColor(&param0[7], FONT_SYSTEM, strbuf, xOffset, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
     MessageLoader_GetStrbuf(messageLoader, 15, strbuf2);
     StringTemplate_Format(template, strbuf, strbuf2);
