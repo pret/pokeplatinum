@@ -96,7 +96,7 @@ int GTSApplication_MainMenu_Init(GTSApplicationState *appState, int unused1)
         appState->currentScreenInstruction = 0;
         appState->hasPlayerDescended = TRUE;
 
-        ov94_02243FA8(appState, TrainerInfo_Gender(appState->unk_00->unk_1C));
+        ov94_02243FA8(appState, TrainerInfo_Gender(appState->playerData->unk_1C));
     } else {
         if (appState->fadeBothScreens == 1) {
             StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
@@ -113,14 +113,14 @@ int GTSApplication_MainMenu_Init(GTSApplicationState *appState, int unused1)
 
 int GTSApplication_MainMenu_Main(GTSApplicationState *appState, int unused1)
 {
-    sub_020397B0(GTSApplication_GetNetworkStrength());
+    SetNetworkIconStrength(GTSApplication_GetNetworkStrength());
 
     return (*sGTSMainMenuScreenStates[appState->currentScreenInstruction])(appState);
 }
 
 int GTSApplication_MainMenu_Exit(GTSApplicationState *appState, int unused1)
 {
-    sub_02039794(); // ??
+    DestroyNetworkIcon(); // ??
 
     GTSApplication_MainMenu_DeleteCursor(appState);
     GTSApplication_MainMenu_CleanupStrings(appState);
@@ -277,7 +277,7 @@ static void GTSApplication_MainMenu_InitGraphics(GTSApplicationState *param0)
 
     Graphics_LoadPaletteFromOpenNARC(v1, 4, 0, 0, 16 * 3 * 2, HEAP_ID_62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_62);
-    LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, 1, 10, Options_Frame(param0->unk_00->options), HEAP_ID_62);
+    LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, 1, 10, Options_Frame(param0->playerData->options), HEAP_ID_62);
     LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_0, (1 + (18 + 12)), 11, 0, HEAP_ID_62);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 14, v0, 1, 0, 16 * 6 * 0x20, 1, HEAP_ID_62);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 30, v0, 1, 0, 32 * 24 * 2, 1, HEAP_ID_62);
@@ -298,7 +298,7 @@ static void GTSApplication_MainMenu_InitCursor(GTSApplicationState *appState)
 {
     AffineSpriteListTemplate template;
 
-    ov94_0223C300(&template, appState, &appState->unk_DB4, NNS_G2D_VRAM_TYPE_2DMAIN);
+    GTSApplication_InitAffineTemplate(&template, appState, &appState->cursorSpriteResourceHeader, NNS_G2D_VRAM_TYPE_2DMAIN);
 
     template.position.x = FX32_ONE *sMainMenuCursorPositions[appState->unk_10C][0];
     template.position.y = FX32_ONE *sMainMenuCursorPositions[appState->unk_10C][1];
@@ -419,7 +419,7 @@ static int ov94_0223CBEC(GTSApplicationState *param0)
 static int ov94_0223CC28(GTSApplicationState *param0)
 {
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
-        ov94_0223CFD8(param0, GTS_Text_IsItOKToDisconnect, ov94_0223C4D4(param0), 0, 0xf0f);
+        ov94_0223CFD8(param0, GTS_Text_IsItOKToDisconnect, GTSApplicationState_GetTextFrameDelay(param0), 0, 0xf0f);
         GTSApplication_SetCurrentAndNextScreenInstruction(param0, 10, 12);
         Sprite_SetAnimateFlag(param0->cursorSprite, 0);
     } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
@@ -451,7 +451,7 @@ static int ov94_0223CC28(GTSApplicationState *param0)
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             break;
         case 2: // exit
-            ov94_0223CFD8(param0, GTS_Text_IsItOKToDisconnect, ov94_0223C4D4(param0), 0, 0xf0f);
+            ov94_0223CFD8(param0, GTS_Text_IsItOKToDisconnect, GTSApplicationState_GetTextFrameDelay(param0), 0, 0xf0f);
             GTSApplication_SetCurrentAndNextScreenInstruction(param0, 10, 12);
             Sprite_SetAnimateFlag(param0->cursorSprite, 0);
             Sound_PlayEffect(SEQ_SE_CONFIRM);
@@ -461,13 +461,13 @@ static int ov94_0223CC28(GTSApplicationState *param0)
         if (param0->unk_10C != 0) {
             param0->unk_10C--;
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            ov94_0223C3FC(param0->cursorSprite, sMainMenuCursorPositions[param0->unk_10C][0], sMainMenuCursorPositions[param0->unk_10C][1]);
+            GTSApplication_SetSpritePosition(param0->cursorSprite, sMainMenuCursorPositions[param0->unk_10C][0], sMainMenuCursorPositions[param0->unk_10C][1]);
         }
     } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
         if (param0->unk_10C < 2) {
             param0->unk_10C++;
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            ov94_0223C3FC(param0->cursorSprite, sMainMenuCursorPositions[param0->unk_10C][0], sMainMenuCursorPositions[param0->unk_10C][1]);
+            GTSApplication_SetSpritePosition(param0->cursorSprite, sMainMenuCursorPositions[param0->unk_10C][0], sMainMenuCursorPositions[param0->unk_10C][1]);
         }
     }
 
@@ -476,7 +476,7 @@ static int ov94_0223CC28(GTSApplicationState *param0)
 
 static int ov94_0223CDD8(GTSApplicationState *param0)
 {
-    ov94_022440B8(param0, TrainerInfo_Gender(param0->unk_00->unk_1C));
+    ov94_022440B8(param0, TrainerInfo_Gender(param0->playerData->unk_1C));
 
     param0->currentScreenInstruction = 8;
     param0->hasAvatarFinishedMoving = FALSE;

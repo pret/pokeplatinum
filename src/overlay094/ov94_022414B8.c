@@ -290,7 +290,7 @@ int ov94_022414B8(GTSApplicationState *param0, int param1)
     StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
 
     ov94_02245934(param0);
-    ov94_022422D4(param0->gtsMessageLoader, param0->unk_B94, param0->stringTemplate, &param0->unk_FCC[0], 0, 3, -1);
+    ov94_022422D4(param0->gtsMessageLoader, param0->speciesMessageLoader, param0->stringTemplate, &param0->unk_FCC[0], 0, 3, -1);
     ov94_022423FC(param0->gtsMessageLoader, param0->stringTemplate, &param0->unk_FCC[3], param0->unk_114, &param0->unk_B70);
 
     param0->currentScreenInstruction = 0;
@@ -302,7 +302,7 @@ int ov94_02241548(GTSApplicationState *param0, int param1)
 {
     int v0;
 
-    sub_020397B0(GTSApplication_GetNetworkStrength());
+    SetNetworkIconStrength(GTSApplication_GetNetworkStrength());
 
     v0 = (*Unk_ov94_0224695C[param0->currentScreenInstruction])(param0);
     return v0;
@@ -310,7 +310,7 @@ int ov94_02241548(GTSApplicationState *param0, int param1)
 
 int ov94_02241568(GTSApplicationState *param0, int param1)
 {
-    sub_02039794();
+    DestroyNetworkIcon();
 
     ov94_02241920(param0);
     ov94_02241880(param0);
@@ -456,7 +456,7 @@ static void ov94_0224170C(GTSApplicationState *param0)
 
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__WORLDTRADE, 1, 0, 0, 16 * 3 * 2, HEAP_ID_62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_62);
-    LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, 1, 10, Options_Frame(param0->unk_00->options), HEAP_ID_62);
+    LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, 1, 10, Options_Frame(param0->playerData->options), HEAP_ID_62);
     LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_0, (1 + (18 + 12)), 11, 0, HEAP_ID_62);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__WORLDTRADE, 11, v0, BG_LAYER_MAIN_1, 0, 16 * 5 * 0x20, 1, HEAP_ID_62);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__WORLDTRADE, 23, v0, BG_LAYER_MAIN_1, 0, 32 * 24 * 2, 1, HEAP_ID_62);
@@ -588,7 +588,7 @@ static int ov94_02241A58(GTSApplicationState *param0)
 
 static int ov94_02241B2C(GTSApplicationState *param0)
 {
-    param0->unk_10D8 = ov94_022427C0(param0, &param0->unk_10CC, &param0->unk_F9C[1], param0->gtsMessageLoader, param0->unk_B94, param0->unk_10E4, param0->unk_00->unk_10);
+    param0->unk_10D8 = ov94_022427C0(param0, &param0->unk_10CC, &param0->unk_F9C[1], param0->gtsMessageLoader, param0->speciesMessageLoader, param0->unk_10E4, param0->playerData->unk_10);
     param0->unk_108 = 0xffff;
     param0->currentScreenInstruction = 6;
 
@@ -649,7 +649,7 @@ static int ov94_02241BAC(GTSApplicationState *param0)
             v1 = 3;
         }
 
-        ov94_022422D4(param0->gtsMessageLoader, param0->unk_B94, param0->stringTemplate, &param0->unk_FCC[0], param0->unk_B74.species, v1, -1);
+        ov94_022422D4(param0->gtsMessageLoader, param0->speciesMessageLoader, param0->stringTemplate, &param0->unk_FCC[0], param0->unk_B74.species, v1, -1);
         ov94_02242AC4(&param0->unk_111C, param0->unk_10E4->unk_06 + param0->unk_10E4->unk_04, param0->unk_10E4->unk_0A, param0->unk_10E4->unk_08);
         break;
     }
@@ -702,7 +702,7 @@ static int ov94_02241DA0(GTSApplicationState *param0)
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->unk_B74.gender = v0 + 1;
         param0->currentScreenInstruction = 10;
-        ov94_022422D4(param0->gtsMessageLoader, param0->unk_B94, param0->stringTemplate, &param0->unk_FCC[0], param0->unk_B74.species, param0->unk_B74.gender, -1);
+        ov94_022422D4(param0->gtsMessageLoader, param0->speciesMessageLoader, param0->stringTemplate, &param0->unk_FCC[0], param0->unk_B74.species, param0->unk_B74.gender, -1);
         break;
     }
 
@@ -759,7 +759,7 @@ static int ov94_02241F28(GTSApplicationState *param0)
         Window_Remove(&param0->unk_F9C[0]);
         ov94_02242934(&param0->unk_B74, v0, 0);
         param0->currentScreenInstruction = 13;
-        ov94_022422D4(param0->gtsMessageLoader, param0->unk_B94, param0->stringTemplate, &param0->unk_FCC[0], param0->unk_B74.species, param0->unk_B74.gender, ov94_02242970(param0->unk_B74.level, param0->unk_B74.level2, 0));
+        ov94_022422D4(param0->gtsMessageLoader, param0->speciesMessageLoader, param0->stringTemplate, &param0->unk_FCC[0], param0->unk_B74.species, param0->unk_B74.gender, ov94_02242970(param0->unk_B74.level, param0->unk_B74.level2, 0));
         break;
     }
 
@@ -1047,13 +1047,13 @@ void ov94_022425A8(GTSPokemonListing *listing, GTSApplicationState *param1)
         Pokemon_FromBoxPokemon(param1->unk_114, (Pokemon *)listing->pokemon.bytes);
     }
 
-    CharCode_CopyNumChars(listing->unk_10C, TrainerInfo_Name(param1->unk_00->unk_1C), 8);
+    CharCode_CopyNumChars(listing->unk_10C, TrainerInfo_Name(param1->playerData->unk_1C), 8);
 
-    listing->unk_11C = TrainerInfo_ID_LowHalf(param1->unk_00->unk_1C);
-    listing->trainerCountry = WiFiHistory_GetCountry(param1->unk_00->wiFiHistory);
-    listing->trainerRegion = WiFiHistory_GetRegion(param1->unk_00->wiFiHistory);
-    listing->unk_120 = TrainerInfo_Appearance(param1->unk_00->unk_1C);
-    listing->unk_F6 = TrainerInfo_Gender(param1->unk_00->unk_1C);
+    listing->unk_11C = TrainerInfo_ID_LowHalf(param1->playerData->unk_1C);
+    listing->trainerCountry = WiFiHistory_GetCountry(param1->playerData->wiFiHistory);
+    listing->trainerRegion = WiFiHistory_GetRegion(param1->playerData->wiFiHistory);
+    listing->unk_120 = TrainerInfo_Appearance(param1->playerData->unk_1C);
+    listing->unk_F6 = TrainerInfo_Gender(param1->playerData->unk_1C);
     listing->unk_122 = GAME_VERSION;
     listing->trainerLanguage = GAME_LANGUAGE;
 }

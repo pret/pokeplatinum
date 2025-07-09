@@ -581,7 +581,7 @@ static void ov109_021D43EC(void)
 {
     {
         CharTransferTemplate v0 = {
-            20, 2048, 2048, 95
+            20, 2048, 2048, HEAP_ID_95
         };
 
         CharTransfer_Init(&v0);

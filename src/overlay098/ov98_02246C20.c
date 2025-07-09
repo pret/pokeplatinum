@@ -120,8 +120,8 @@ int ov98_02246C98(ApplicationManager *appMan, int *param1)
 
     if (v0->unk_80 == 1) {
         DWC_UpdateConnection();
-        ov94_0223B15C();
-        sub_020397B0(WM_LINK_LEVEL_3 - DWC_GetLinkLevel());
+        GTSNetworking_ProcessCurrentRequest();
+        SetNetworkIconStrength(WM_LINK_LEVEL_3 - DWC_GetLinkLevel());
     }
 
     switch (*param1) {
@@ -194,7 +194,7 @@ static void ov98_02246E08(UnkStruct_ov98_02246E88 *param0)
         param0->unk_10 = NNS_FndCreateExpHeap((void *)(((u32)param0->unk_0C + 31) / 32 * 32), 0x20000);
 
         sub_02099550();
-        sub_020995B4();
+        Overlay_LoadHttpOverlay();
         WirelessDriver_Init();
         SleepUnlock(4);
     }
@@ -206,7 +206,7 @@ static void ov98_02246E54(UnkStruct_ov98_02246E88 *param0)
         NNS_FndDestroyExpHeap(param0->unk_10);
 
         Heap_FreeToHeap(param0->unk_0C);
-        sub_020995C4();
+        Overlay_UnloadHttpOverlay();
         sub_02099560();
         WirelessDriver_Shutdown();
         Overlay_UnloadByID(FS_OVERLAY_ID(overlay94));

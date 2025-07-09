@@ -1518,7 +1518,7 @@ void sub_020877C4(void)
 {
     {
         CharTransferTemplate v0 = {
-            20, 2048, 2048, 18
+            20, 2048, 2048, HEAP_ID_18
         };
 
         CharTransfer_Init(&v0);

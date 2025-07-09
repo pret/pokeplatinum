@@ -66,7 +66,7 @@ typedef struct {
 // https://www.youtube.com/watch?v=vH8U16wV7-E
 // https://www.youtube.com/watch?v=aQpc0lr12vA
 typedef struct GTSApplicationState {
-    GTSPlayerData *unk_00;
+    GTSPlayerData *playerData;
     BgConfig *bgConfig;
     WiFiList *unk_08;
     int unk_0C;
@@ -87,14 +87,14 @@ typedef struct GTSApplicationState {
     int unk_40; // dwcError
     int unk_44; // dwcErrorCode
     int unk_48; // dwcErrorType
-    void *unk_4C;
-    NNSFndHeapHandle unk_50;
+    void *dwcHeapPointer;
+    NNSFndHeapHandle dwcHeapHandle;
     DWCInetControl dwcInetControlObject;
     ApplicationManager *appMan;
     PokemonSummary unk_B8;
     NpcTradeAnimationConfig tradeAnimationConfig;
     UnkStruct_0207AE68 *unk_100;
-    int unk_104;
+    BOOL hasTradedPokemon;
     u16 unk_108;
     u16 unk_10A;
     u16 unk_10C;
@@ -116,10 +116,10 @@ typedef struct GTSApplicationState {
     int unk_B88;
     StringTemplate *stringTemplate;
     MessageLoader *gtsMessageLoader;
-    MessageLoader *unk_B94;
-    MessageLoader *unk_B98;
-    MessageLoader *unk_B9C;
-    MessageLoader *unk_BA0;
+    MessageLoader *speciesMessageLoader;
+    MessageLoader *unk0674MessageLoader;
+    MessageLoader *unk0695MessageLoader;
+    MessageLoader *countryMessageLoader;
     Strbuf *unk_BA4;
     Strbuf *unk_BA8;
     Strbuf *genericMessageBuffer;
@@ -127,13 +127,13 @@ typedef struct GTSApplicationState {
     Strbuf *unk_BB4[10];
     Strbuf *shortErrorBuffer;
     int textPrinter;
-    SpriteList *unk_BE4;
-    G2dRenderer unk_BE8;
+    SpriteList *spriteList;
+    G2dRenderer g2dRenderer;
     SpriteResourceCollection *spriteResourceCollection[4];
     SpriteResource *spriteResource[3][4];
-    SpriteResourcesHeader unk_DB4;
-    SpriteResourcesHeader unk_DD8;
-    SpriteResourcesHeader unk_DFC;
+    SpriteResourcesHeader cursorSpriteResourceHeader;
+    SpriteResourcesHeader avatarSpriteResourceHeader;
+    SpriteResourcesHeader unused_DFC;
     Sprite *cursorSprite;
     Sprite *unk_E24;
     Sprite *unk_E28[30];
@@ -174,7 +174,7 @@ typedef struct GTSApplicationState {
     u16 deferredBoxId;
     u32 fadeBothScreens;
     void *unk_1114;
-    void (*unk_1118)(void *param0);
+    void (*updateBoxPalettesFunc)(void *param0);
     UnkStruct_ov94_02242AAC unk_111C;
     WorldExchangeTrainer worldExchangeTrainer;
     WorldExchangeTrainerError worldExchangeTrainerError;

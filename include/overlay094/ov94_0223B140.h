@@ -8,7 +8,7 @@
 #include "overlay096/struct_ov96_0223B574_1.h"
 
 void ov94_0223B140(s32 param0, u64 param1);
-void ov94_0223B15C(void);
+void GTSNetworking_ProcessCurrentRequest(void);
 void ov94_0223B7AC(void);
 BOOL GTSNetworking_RequestComplete(void);
 s32 GTSNetworking_GetErrorCode(void);

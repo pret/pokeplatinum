@@ -177,9 +177,9 @@ static void ov97_02238E88(void)
 
 static void ov97_02238E94(void)
 {
-    sub_02039794();
+    DestroyNetworkIcon();
     sub_02038514();
-    sub_020995C4();
+    Overlay_UnloadHttpOverlay();
     sub_02099560();
     WirelessDriver_Shutdown();
 }
@@ -200,7 +200,7 @@ int ov97_02238EAC(ApplicationManager *appMan, int *param1)
     case 4096:
         WirelessDriver_Init();
         sub_02099550();
-        sub_020995B4();
+        Overlay_LoadHttpOverlay();
         *param1 = 4097;
         break;
     case 4097:

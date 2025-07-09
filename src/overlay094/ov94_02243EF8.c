@@ -47,7 +47,7 @@ void ov94_02243EF8(GTSApplicationState *param0, int param1)
     int v1;
 
     ov94_0224432C(param0);
-    ov94_0223C300(&v0, param0, &param0->unk_DD8, NNS_G2D_VRAM_TYPE_2DSUB);
+    GTSApplication_InitAffineTemplate(&v0, param0, &param0->avatarSpriteResourceHeader, NNS_G2D_VRAM_TYPE_2DSUB);
 
     v0.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
     v0.position.x = FX32_ONE * 128;

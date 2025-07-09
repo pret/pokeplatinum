@@ -481,7 +481,7 @@ int ov117_02260C10(ApplicationManager *appMan, int *param1)
     RenderControlFlags_SetCanABSpeedUpPrint(0);
     RenderControlFlags_SetAutoScrollFlags(0);
     RenderControlFlags_SetSpeedUpOnTouch(0);
-    sub_02039794();
+    DestroyNetworkIcon();
 
     return 1;
 }

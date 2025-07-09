@@ -18,7 +18,7 @@ int sub_02038FFC(int heapID)
     u8 *v2;
 
     sub_02099550();
-    sub_020995B4();
+    Overlay_LoadHttpOverlay();
 
     v1 = Heap_AllocFromHeap(heapID, DWC_INIT_WORK_SIZE + 32);
     v2 = (u8 *)(((u32)v1 + 31) / 32 * 32);
@@ -26,7 +26,7 @@ int sub_02038FFC(int heapID)
 
     Heap_FreeToHeap(v1);
     sub_02099560();
-    sub_020995C4();
+    Overlay_UnloadHttpOverlay();
 
     return v0;
 }

@@ -107,7 +107,7 @@ int ov96_0223B6A0(ApplicationManager *appMan, int *param1)
         break;
     case 1:
         sub_02099550();
-        sub_020995B4();
+        Overlay_LoadHttpOverlay();
         WirelessDriver_Init();
         (*param1) = 0;
         return 1;
@@ -168,7 +168,7 @@ int ov96_0223B8CC(ApplicationManager *appMan, int *param1)
     int v1;
 
     Heap_FreeToHeap(v0->unk_24);
-    sub_020995C4();
+    Overlay_UnloadHttpOverlay();
     sub_02099560();
 
     ov96_0223BC8C(v0);
@@ -236,7 +236,7 @@ static void ov96_0223B9A0(void)
 {
     {
         CharTransferTemplate v0 = {
-            20, 2048, 2048, 68
+            20, 2048, 2048, HEAP_ID_68
         };
 
         CharTransfer_Init(&v0);

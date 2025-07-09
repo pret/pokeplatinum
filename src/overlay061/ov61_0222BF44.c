@@ -6,7 +6,6 @@
 
 #include "constants/dwc.h"
 #include "constants/graphics.h"
-#include "constants/screen.h"
 
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_defs/struct_02017498.h"
@@ -268,7 +267,7 @@ int ov61_0222C160(ApplicationManager *appMan, int *param1)
     RenderControlFlags_SetCanABSpeedUpPrint(0);
     RenderControlFlags_SetAutoScrollFlags(0);
     RenderControlFlags_SetSpeedUpOnTouch(0);
-    sub_02039794();
+    DestroyNetworkIcon();
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_117);
 
@@ -847,7 +846,7 @@ static int ov61_0222CCAC(UnkStruct_ov61_0222C664 *param0)
         sub_0203848C();
     }
 
-    sub_02039794();
+    DestroyNetworkIcon();
     ov61_0222C86C(param0);
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_117);
     param0->unk_08 = 0;
@@ -947,7 +946,7 @@ static int ov61_0222CE2C(UnkStruct_ov61_0222C664 *param0)
         param0->unk_90++;
         break;
     case 2:
-        sub_02039794();
+        DestroyNetworkIcon();
         ov61_0222C8B8(param0, param0->unk_2C, 27, TEXT_SPEED_FAST, 0xf0f);
         param0->unk_90++;
         break;

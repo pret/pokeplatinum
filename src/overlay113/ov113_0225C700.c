@@ -656,7 +656,7 @@ int ov113_0225CDFC(ApplicationManager *appMan, int *param1)
     RenderControlFlags_SetCanABSpeedUpPrint(0);
     RenderControlFlags_SetAutoScrollFlags(0);
     RenderControlFlags_SetSpeedUpOnTouch(0);
-    sub_02039794();
+    DestroyNetworkIcon();
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_118);
 

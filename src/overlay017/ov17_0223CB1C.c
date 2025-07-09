@@ -338,7 +338,7 @@ int ov17_0223CF8C(ApplicationManager *appMan, int *param1)
     DisableHBlank();
     Heap_Destroy(HEAP_ID_22);
     sub_02095A24();
-    sub_02039794();
+    DestroyNetworkIcon();
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay11));
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay12));
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay22));

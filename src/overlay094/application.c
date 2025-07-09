@@ -53,21 +53,21 @@
 #include "unk_02099550.h"
 #include "vram_transfer.h"
 
-static void ov94_0223BFE4(void *param0);
-static void ov94_0223C01C(void);
+static void GTSApplication_VBlankCallback(void *appStatePtr);
+static void GTSApplication_SetupGXBanks(void);
 static void GTSApplicationState_InitPlayerData(GTSApplicationState *appState, ApplicationManager *appMan);
-static void ov94_0223C0A0(GTSApplicationState *param0);
-static void ov94_0223C0A4(void);
-static void ov94_0223C0D4(GTSApplicationState *param0);
-static void ov94_0223C32C(GTSApplicationState *param0);
-static void ov94_0223C490(DWCAllocType param0, void *param1, u32 param2);
-static void *ov94_0223C468(DWCAllocType param0, u32 param1, int param2);
-static void ov94_0223C4E0(GTSApplicationState *param0);
-static void ov94_0223C508(GTSApplicationState *param0);
+static void GTSApplication_Noop(GTSApplicationState *appState);
+static void GTSApplication_InitCharTransfer(void);
+static void GTSApplication_InitGraphics(GTSApplicationState *appState);
+static void GTSApplication_InitSpriteHeaders(GTSApplicationState *appState);
+static void GTSApplication_DWCFree(DWCAllocType name, void *ptr, u32 size);
+static void *GTSApplication_DWCAlloc(DWCAllocType name, u32 size, int align);
+static void ov94_0223C4E0(GTSApplicationState *appState);
+static void GTSApplication_CleanupGraphics(GTSApplicationState *appState);
 static void GTSApplicationState_DecrementNetworkTimer(GTSApplicationState *appState);
 static void GTSApplicationState_CountBoxPokemon(GTSApplicationState *appState);
 
-static NNSFndHeapHandle Unk_ov94_02246C04;
+static NNSFndHeapHandle sGTSHeapHandle;
 
 // gtsApplicationScreens { init, main, exit }
 static int (*gtsApplicationScreens[][3])(GTSApplicationState *, int) = {
@@ -85,11 +85,9 @@ static int (*gtsApplicationScreens[][3])(GTSApplicationState *, int) = {
 
 GTSApplicationState *unused_GTSApplicationState;
 
-int GTSApplication_Init(ApplicationManager *appMan, int *param1)
+int GTSApplication_Init(ApplicationManager *appMan, int *loopState)
 {
-    GTSApplicationState *v0;
-
-    switch (*param1) {
+    switch (*loopState) {
     case 0:
         SetVBlankCallback(NULL, NULL);
         DisableHBlank();
@@ -101,45 +99,45 @@ int GTSApplication_Init(ApplicationManager *appMan, int *param1)
 
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_62, 0x70000);
 
-        v0 = ApplicationManager_NewData(appMan, sizeof(GTSApplicationState), HEAP_ID_62);
-        memset(v0, 0, sizeof(GTSApplicationState));
-        v0->bgConfig = BgConfig_New(HEAP_ID_62);
-        unused_GTSApplicationState = v0;
+        GTSApplicationState *appState = ApplicationManager_NewData(appMan, sizeof(GTSApplicationState), HEAP_ID_62);
+        memset(appState, 0, sizeof(GTSApplicationState));
+        appState->bgConfig = BgConfig_New(HEAP_ID_62);
+        unused_GTSApplicationState = appState;
 
         {
-            GraphicsModes v1 = {
+            GraphicsModes graphicsModes = {
                 GX_DISPMODE_GRAPHICS,
                 GX_BGMODE_0,
                 GX_BGMODE_0,
                 GX_BG0_AS_2D,
             };
 
-            SetAllGraphicsModes(&v1);
+            SetAllGraphicsModes(&graphicsModes);
         }
 
-        v0->stringTemplate = StringTemplate_New(11, 64, HEAP_ID_62);
-        v0->gtsMessageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_GTS, HEAP_ID_62);
-        v0->unk_B98 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0674, HEAP_ID_62);
-        v0->unk_B9C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0695, HEAP_ID_62);
-        v0->unk_B94 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_62);
-        v0->unk_BA0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COUNTRY_NAMES, HEAP_ID_62);
+        appState->stringTemplate = StringTemplate_New(11, 64, HEAP_ID_62);
+        appState->gtsMessageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_GTS, HEAP_ID_62);
+        appState->unk0674MessageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0674, HEAP_ID_62);
+        appState->unk0695MessageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0695, HEAP_ID_62);
+        appState->speciesMessageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_62);
+        appState->countryMessageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COUNTRY_NAMES, HEAP_ID_62);
 
         SetAutorepeat(4, 8);
 
-        GTSApplicationState_InitPlayerData(v0, appMan);
-        ov94_0223C4E0(v0);
+        GTSApplicationState_InitPlayerData(appState, appMan);
+        ov94_0223C4E0(appState);
 
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, SEQ_WIFILOBBY, 1);
 
-        v0->unk_4C = Heap_AllocFromHeap(HEAP_ID_62, 0x20000 + 32);
-        v0->unk_50 = NNS_FndCreateExpHeap((void *)(((u32)v0->unk_4C + 31) / 32 * 32), 0x20000);
-        *param1 = 1;
+        appState->dwcHeapPointer = Heap_AllocFromHeap(HEAP_ID_62, 0x20000 + 32);
+        appState->dwcHeapHandle = NNS_FndCreateExpHeap((void *)(((u32)appState->dwcHeapPointer + 31) / 32 * 32), 0x20000);
+        *loopState = 1;
         break;
     case 1:
         sub_02099550(); // load overlay4
-        sub_020995B4(); // load overlay60
-        WirelessDriver_Init(); // some network lock?
-        (*param1) = 0;
+        Overlay_LoadHttpOverlay();
+        WirelessDriver_Init();
+        (*loopState) = 0;
         return 1; // pass through to main
         break;
     }
@@ -147,46 +145,46 @@ int GTSApplication_Init(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-int GTSApplication_Main(ApplicationManager *appMan, int *param1)
+int GTSApplication_Main(ApplicationManager *appMan, int *loopState)
 {
     GTSApplicationState *appState = ApplicationManager_Data(appMan);
 
     DWC_UpdateConnection();
-    ov94_0223B15C();
+    GTSNetworking_ProcessCurrentRequest();
 
-    switch (*param1) {
+    switch (*loopState) {
     case GTS_APPLICATION_LOOP_STATE_WAIT_FOR_WIRELESS_DRIVER:
         if (WirelessDriver_IsReady()) {
-            Unk_ov94_02246C04 = appState->unk_50;
-            DWC_SetMemFunc(ov94_0223C468, ov94_0223C490);
-            *param1 = 1;
+            sGTSHeapHandle = appState->dwcHeapHandle;
+            DWC_SetMemFunc(GTSApplication_DWCAlloc, GTSApplication_DWCFree);
+            *loopState = GTS_APPLICATION_LOOP_STATE_INIT;
         }
         break;
     case GTS_APPLICATION_LOOP_STATE_INIT: // GTS_WFC_INIT_SCREEN
-        *param1 = (*gtsApplicationScreens[appState->screenId][0])(appState, *param1);
+        *loopState = (*gtsApplicationScreens[appState->screenId][0])(appState, *loopState);
 
-        if (appState->unk_104) {
-            ov94_0223C508(appState);
+        if (appState->hasTradedPokemon) {
+            GTSApplication_CleanupGraphics(appState);
         }
         break;
     case GTS_APPLICATION_LOOP_STATE_WAIT_FADE: // GTS_WFC_VISIBLE
         if (IsScreenFadeDone()) {
-            *param1 = 3;
+            *loopState = GTS_APPLICATION_LOOP_STATE_MAIN;
         }
         break;
     case GTS_APPLICATION_LOOP_STATE_MAIN: // GTS_WFC_CONNECTING
-        *param1 = (*gtsApplicationScreens[appState->screenId][1])(appState, *param1);
+        *loopState = (*gtsApplicationScreens[appState->screenId][1])(appState, *loopState);
         break;
     case GTS_APPLICATION_LOOP_STATE_FINISH:
         if (IsScreenFadeDone()) {
-            if (appState->unk_104) { // pokemon received?
+            if (appState->hasTradedPokemon) { // pokemon received?
                 ov94_0223C4E0(appState);
-                ov94_02243EF8(appState, TrainerInfo_Gender(appState->unk_00->unk_1C));
+                ov94_02243EF8(appState, TrainerInfo_Gender(appState->playerData->unk_1C));
                 ov94_02244234(appState, appState->unk_118, 0);
                 ov94_0223D068(appState);
-                appState->unk_104 = 0;
+                appState->hasTradedPokemon = FALSE;
             }
-            *param1 = (*gtsApplicationScreens[appState->screenId][2])(appState, *param1);
+            *loopState = (*gtsApplicationScreens[appState->screenId][2])(appState, *loopState);
         }
         break;
     case GTS_APPLICATION_LOOP_STATE_EXIT:
@@ -197,36 +195,35 @@ int GTSApplication_Main(ApplicationManager *appMan, int *param1)
     GTSApplicationState_DecrementNetworkTimer(appState);
     GTSApplicationState_CountBoxPokemon(appState);
 
-    if (appState->unk_BE4 != NULL) {
-        SpriteList_Update(appState->unk_BE4);
+    if (appState->spriteList != NULL) {
+        SpriteList_Update(appState->spriteList);
     }
 
     return 0;
 }
 
-int GTSApplication_Exit(ApplicationManager *appMan, int *param1)
+int GTSApplication_Exit(ApplicationManager *appMan, int *unused1)
 {
-    GTSApplicationState *v0 = ApplicationManager_Data(appMan);
-    int v1;
+    GTSApplicationState *appState = ApplicationManager_Data(appMan);
 
-    Heap_FreeToHeap(v0->unk_4C);
-    sub_020995C4();
+    Heap_FreeToHeap(appState->dwcHeapPointer);
+    Overlay_UnloadHttpOverlay();
     sub_02099560();
 
-    ov94_0223C508(v0);
+    GTSApplication_CleanupGraphics(appState);
 
-    MessageLoader_Free(v0->unk_B94);
-    MessageLoader_Free(v0->unk_B9C);
-    MessageLoader_Free(v0->unk_B98);
-    MessageLoader_Free(v0->gtsMessageLoader);
-    MessageLoader_Free(v0->unk_BA0);
-    StringTemplate_Free(v0->stringTemplate);
+    MessageLoader_Free(appState->speciesMessageLoader);
+    MessageLoader_Free(appState->unk0695MessageLoader);
+    MessageLoader_Free(appState->unk0674MessageLoader);
+    MessageLoader_Free(appState->gtsMessageLoader);
+    MessageLoader_Free(appState->countryMessageLoader);
+    StringTemplate_Free(appState->stringTemplate);
 
-    ov94_0223C0A0(v0);
+    GTSApplication_Noop(appState);
 
     WirelessDriver_Shutdown();
-    Heap_FreeToHeap(v0->bgConfig);
-    Heap_FreeToHeap(v0->unk_00);
+    Heap_FreeToHeap(appState->bgConfig);
+    Heap_FreeToHeap(appState->playerData);
     ApplicationManager_FreeData(appMan);
     SetVBlankCallback(NULL, NULL);
     Heap_Destroy(HEAP_ID_62);
@@ -234,26 +231,24 @@ int GTSApplication_Exit(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static void ov94_0223BFE4(void *param0)
+static void GTSApplication_VBlankCallback(void *appStatePtr)
 {
-    GTSApplicationState *v0 = param0;
+    GTSApplicationState *appState = appStatePtr;
 
-    if (v0->unk_1118) {
-        v0->unk_1118(param0);
-        v0->unk_1118 = NULL;
+    if (appState->updateBoxPalettesFunc) {
+        appState->updateBoxPalettesFunc(appStatePtr);
+        appState->updateBoxPalettesFunc = NULL;
     }
 
     VramTransfer_Process();
     RenderOam_Transfer();
 
-    inline_ov61_0222C1FC(&v0->unk_11B4);
-
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void ov94_0223C01C(void)
+static void GTSApplication_SetupGXBanks(void)
 {
-    UnkStruct_02099F80 v0 = {
+    UnkStruct_02099F80 banks = {
         GX_VRAM_BG_128_A,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,
@@ -266,44 +261,44 @@ static void ov94_0223C01C(void)
         GX_VRAM_TEXPLTT_01_FG
     };
 
-    GXLayers_SetBanks(&v0);
+    GXLayers_SetBanks(&banks);
 }
 
-static void GTSApplicationState_InitPlayerData(GTSApplicationState *param0, ApplicationManager *appMan)
+static void GTSApplicationState_InitPlayerData(GTSApplicationState *appState, ApplicationManager *appMan)
 {
-    param0->unk_00 = (GTSPlayerData *)ApplicationManager_Args(appMan);
-    param0->screenId = 0;
+    appState->playerData = (GTSPlayerData *)ApplicationManager_Args(appMan);
+    appState->screenId = 0;
 
-    GTSApplication_SetNextScreenWithArgument(param0, 0, 0);
+    GTSApplication_SetNextScreenWithArgument(appState, 0, 0);
 
-    param0->unk_10C = 0;
-    param0->unk_B7A.species = SPECIES_NONE;
-    param0->unk_B7A.gender = 2 + 1;
-    param0->unk_B7A.level = 0;
-    param0->unk_B7A.level2 = 0;
-    param0->unk_B80.species = SPECIES_NONE;
-    param0->hasAvatarFinishedMoving = FALSE;
-    param0->selectedBoxId = MAX_PC_BOXES;
-    param0->deferredBoxPokemonCount = 0;
-    param0->deferredBoxId = 0;
-    param0->unk_10F2 = 0;
-    param0->waitDial = NULL;
-    param0->unk_11B0 = 0;
+    appState->unk_10C = 0;
+    appState->unk_B7A.species = SPECIES_NONE;
+    appState->unk_B7A.gender = 2 + 1;
+    appState->unk_B7A.level = 0;
+    appState->unk_B7A.level2 = 0;
+    appState->unk_B80.species = SPECIES_NONE;
+    appState->hasAvatarFinishedMoving = FALSE;
+    appState->selectedBoxId = MAX_PC_BOXES;
+    appState->deferredBoxPokemonCount = 0;
+    appState->deferredBoxId = 0;
+    appState->unk_10F2 = 0;
+    appState->waitDial = NULL;
+    appState->unk_11B0 = 0;
 }
 
-static void ov94_0223C0A0(GTSApplicationState *param0)
+static void GTSApplication_Noop(GTSApplicationState *appState)
 {
     return;
 }
 
-static void ov94_0223C0A4(void)
+static void GTSApplication_InitCharTransfer(void)
 {
     {
-        CharTransferTemplate v0 = {
-            20, 2048, 2048, 62
+        CharTransferTemplate ov94_0223C300 = {
+            20, 2048, 2048, HEAP_ID_62
         };
 
-        CharTransfer_Init(&v0);
+        CharTransfer_Init(&ov94_0223C300);
     }
 
     PlttTransfer_Init(20, HEAP_ID_62);
@@ -311,94 +306,88 @@ static void ov94_0223C0A4(void)
     PlttTransfer_Clear();
 }
 
-static void ov94_0223C0D4(GTSApplicationState *param0) // set up gui?
+static void GTSApplication_InitGraphics(GTSApplicationState *appState)
 {
-    int v0;
-    NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, HEAP_ID_62);
+    NARC *narc = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, HEAP_ID_62);
 
     NNS_G2dInitOamManagerModule();
-    RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, 62);
+    RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, HEAP_ID_62);
 
-    param0->unk_BE4 = SpriteList_InitRendering(72 + 6, &param0->unk_BE8, HEAP_ID_62);
+    appState->spriteList = SpriteList_InitRendering(72 + 6, &appState->g2dRenderer, HEAP_ID_62);
 
-    SetSubScreenViewRect(&param0->unk_BE8, 0, (256 * FX32_ONE));
+    SetSubScreenViewRect(&appState->g2dRenderer, 0, (256 * FX32_ONE));
 
-    for (v0 = 0; v0 < 4; v0++) {
-        param0->spriteResourceCollection[v0] = SpriteResourceCollection_New(3, v0, HEAP_ID_62);
+    for (int i = 0; i < 4; i++) {
+        appState->spriteResourceCollection[i] = SpriteResourceCollection_New(3, i, HEAP_ID_62);
     }
 
-    param0->spriteResource[0][0] = SpriteResourceCollection_AddTilesFrom(param0->spriteResourceCollection[0], v1, 18, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_62);
-    param0->spriteResource[0][1] = SpriteResourceCollection_AddPaletteFrom(param0->spriteResourceCollection[1], v1, 9, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 3, HEAP_ID_62);
-    param0->spriteResource[0][2] = SpriteResourceCollection_AddFrom(param0->spriteResourceCollection[2], v1, 19, 1, 0, 2, HEAP_ID_62);
-    param0->spriteResource[0][3] = SpriteResourceCollection_AddFrom(param0->spriteResourceCollection[3], v1, 20, 1, 0, 3, HEAP_ID_62);
+    appState->spriteResource[0][0] = SpriteResourceCollection_AddTilesFrom(appState->spriteResourceCollection[0], narc, 18, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_62);
+    appState->spriteResource[0][1] = SpriteResourceCollection_AddPaletteFrom(appState->spriteResourceCollection[1], narc, 9, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 3, HEAP_ID_62);
+    appState->spriteResource[0][2] = SpriteResourceCollection_AddFrom(appState->spriteResourceCollection[2], narc, 19, 1, 0, 2, HEAP_ID_62);
+    appState->spriteResource[0][3] = SpriteResourceCollection_AddFrom(appState->spriteResourceCollection[3], narc, 20, 1, 0, 3, HEAP_ID_62);
 
-    param0->spriteResource[1][0] = SpriteResourceCollection_AddTilesFrom(param0->spriteResourceCollection[0], v1, 32, 1, 1, NNS_G2D_VRAM_TYPE_2DSUB, HEAP_ID_62);
-    param0->spriteResource[1][1] = SpriteResourceCollection_AddPaletteFrom(param0->spriteResourceCollection[1], v1, 8, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 9, HEAP_ID_62);
-    param0->spriteResource[1][2] = SpriteResourceCollection_AddFrom(param0->spriteResourceCollection[2], v1, 33, 1, 1, 2, HEAP_ID_62);
-    param0->spriteResource[1][3] = SpriteResourceCollection_AddFrom(param0->spriteResourceCollection[3], v1, 34, 1, 1, 3, HEAP_ID_62);
+    appState->spriteResource[1][0] = SpriteResourceCollection_AddTilesFrom(appState->spriteResourceCollection[0], narc, 32, 1, 1, NNS_G2D_VRAM_TYPE_2DSUB, HEAP_ID_62);
+    appState->spriteResource[1][1] = SpriteResourceCollection_AddPaletteFrom(appState->spriteResourceCollection[1], narc, 8, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 9, HEAP_ID_62);
+    appState->spriteResource[1][2] = SpriteResourceCollection_AddFrom(appState->spriteResourceCollection[2], narc, 33, 1, 1, 2, HEAP_ID_62);
+    appState->spriteResource[1][3] = SpriteResourceCollection_AddFrom(appState->spriteResourceCollection[3], narc, 34, 1, 1, 3, HEAP_ID_62);
 
-    SpriteTransfer_RequestChar(param0->spriteResource[0][0]);
-    SpriteTransfer_RequestChar(param0->spriteResource[1][0]);
-    SpriteTransfer_RequestPlttWholeRange(param0->spriteResource[0][1]);
-    SpriteTransfer_RequestPlttWholeRange(param0->spriteResource[1][1]);
+    SpriteTransfer_RequestChar(appState->spriteResource[0][0]);
+    SpriteTransfer_RequestChar(appState->spriteResource[1][0]);
+    SpriteTransfer_RequestPlttWholeRange(appState->spriteResource[0][1]);
+    SpriteTransfer_RequestPlttWholeRange(appState->spriteResource[1][1]);
 
     {
-        void *v2;
-        NNSG2dPaletteData *v3;
-        int v4, v5, v6, v7;
-        u16 *v8;
+        NNSG2dPaletteData *paletteData;
 
-        v2 = Graphics_GetPlttData(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), &v3, HEAP_ID_62);
+        void *palettePointer = Graphics_GetPlttData(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), &paletteData, HEAP_ID_62);
 
-        DC_FlushRange(v3->pRawData, (3 * 16) * 2);
-        GX_LoadOBJPltt(v3->pRawData, 3 * 0x20, (3 * 16) * 2);
+        DC_FlushRange(paletteData->pRawData, (3 * 16) * 2);
+        GX_LoadOBJPltt(paletteData->pRawData, 3 * 0x20, (3 * 16) * 2);
 
-        v8 = (u16 *)v3->pRawData;
+        u16 *rgb = (u16 *)paletteData->pRawData;
 
-        for (v4 = 0; v4 < (3 * 16); v4++) {
-            v5 = v8[v4] >> 10 & 0x1f;
-            v6 = (v8[v4] >> 5) & 0x1f;
-            v7 = v8[v4] & 0x1f;
-            v5 /= 2;
-            v6 /= 2;
-            v7 /= 2;
-            v8[v4] = (v5 << 10) | (v6 << 5) | v7;
+        for (int pixelIdx = 0; pixelIdx < (3 * 16); pixelIdx++) {
+            int b = rgb[pixelIdx] >> 10 & 0x1f;
+            int g = (rgb[pixelIdx] >> 5) & 0x1f;
+            int r = rgb[pixelIdx] & 0x1f;
+            b /= 2;
+            g /= 2;
+            r /= 2;
+            rgb[pixelIdx] = (b << 10) | (g << 5) | r;
         }
 
-        DC_FlushRange(v3->pRawData, (3 * 16) * 2);
-        GX_LoadOBJPltt(v3->pRawData, (3 + 3) * 0x20, (3 * 16) * 2);
+        DC_FlushRange(paletteData->pRawData, (3 * 16) * 2);
+        GX_LoadOBJPltt(paletteData->pRawData, (3 + 3) * 0x20, (3 * 16) * 2);
 
-        Heap_FreeToHeap(v2);
+        Heap_FreeToHeap(palettePointer);
     }
 
-    NARC_dtor(v1);
+    NARC_dtor(narc);
 }
 
-void ov94_0223C300(AffineSpriteListTemplate *param0, GTSApplicationState *param1, SpriteResourcesHeader *param2, int param3)
+void GTSApplication_InitAffineTemplate(AffineSpriteListTemplate *template, GTSApplicationState *appState, SpriteResourcesHeader *spriteResourceHeader, int vramType)
 {
-    param0->list = param1->unk_BE4;
-    param0->resourceData = param2;
-    param0->position.z = 0;
-    param0->affineScale.x = FX32_ONE;
-    param0->affineScale.y = FX32_ONE;
-    param0->affineScale.z = FX32_ONE;
-    param0->affineZRotation = 0;
-    param0->priority = 1;
-    param0->vramType = param3;
-    param0->heapID = HEAP_ID_62;
+    template->list = appState->spriteList;
+    template->resourceData = spriteResourceHeader;
+    template->position.z = 0;
+    template->affineScale.x = FX32_ONE;
+    template->affineScale.y = FX32_ONE;
+    template->affineScale.z = FX32_ONE;
+    template->affineZRotation = 0;
+    template->priority = 1;
+    template->vramType = vramType;
+    template->heapID = HEAP_ID_62;
 }
 
-static void ov94_0223C32C(GTSApplicationState *param0)
+static void GTSApplication_InitSpriteHeaders(GTSApplicationState *appState)
 {
-    int v0;
-
-    SpriteResourcesHeader_Init(&param0->unk_DB4, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, param0->spriteResourceCollection[0], param0->spriteResourceCollection[1], param0->spriteResourceCollection[2], param0->spriteResourceCollection[3], NULL, NULL);
-    SpriteResourcesHeader_Init(&param0->unk_DD8, 1, 1, 1, 1, 0xffffffff, 0xffffffff, 0, 0, param0->spriteResourceCollection[0], param0->spriteResourceCollection[1], param0->spriteResourceCollection[2], param0->spriteResourceCollection[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&appState->cursorSpriteResourceHeader, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, appState->spriteResourceCollection[0], appState->spriteResourceCollection[1], appState->spriteResourceCollection[2], appState->spriteResourceCollection[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&appState->avatarSpriteResourceHeader, 1, 1, 1, 1, 0xffffffff, 0xffffffff, 0, 0, appState->spriteResourceCollection[0], appState->spriteResourceCollection[1], appState->spriteResourceCollection[2], appState->spriteResourceCollection[3], NULL, NULL);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static const WindowTemplate Unk_ov94_022459F8 = {
+static const WindowTemplate sGTSYesNoWindowTemplate = {
     0x0,
     0x17,
     0xD,
@@ -408,65 +397,58 @@ static const WindowTemplate Unk_ov94_022459F8 = {
     0x0
 };
 
-Menu *GTSApplication_CreateYesNoMenu(BgConfig *param0, int param1, int param2)
+Menu *GTSApplication_CreateYesNoMenu(BgConfig *bgConfig, int tilemapTop, int baseTile)
 {
-    WindowTemplate v0;
+    WindowTemplate template = sGTSYesNoWindowTemplate;
+    template.tilemapTop = tilemapTop;
+    template.baseTile = baseTile;
 
-    v0 = Unk_ov94_022459F8;
-    v0.tilemapTop = param1;
-    v0.baseTile = param2;
-
-    return Menu_MakeYesNoChoice(param0, &v0, (1 + (18 + 12)), 11, HEAP_ID_62);
+    return Menu_MakeYesNoChoice(bgConfig, &template, (1 + (18 + 12)), 11, HEAP_ID_62);
 }
 
-void GTSApplication_SetCurrentAndNextScreenInstruction(GTSApplicationState *param0, int param1, int param2)
+void GTSApplication_SetCurrentAndNextScreenInstruction(GTSApplicationState *appState, int currentInstruction, int nextInstruction)
 {
-    param0->currentScreenInstruction = param1;
-    param0->nextScreenInstruction = param2;
+    appState->currentScreenInstruction = currentInstruction;
+    appState->nextScreenInstruction = nextInstruction;
 }
 
-void ov94_0223C3FC(Sprite *param0, int param1, int param2)
+void GTSApplication_SetSpritePosition(Sprite *sprite, int x, int y)
 {
-    VecFx32 v0;
+    VecFx32 pos;
 
-    v0.x = FX32_CONST(param1);
-    v0.y = FX32_CONST(param2);
-    v0.z = 0;
+    pos.x = FX32_CONST(x);
+    pos.y = FX32_CONST(y);
+    pos.z = 0;
 
-    Sprite_SetPosition(param0, &v0);
+    Sprite_SetPosition(sprite, &pos);
 }
 
-static void *ov94_0223C468(DWCAllocType param0, u32 param1, int param2)
+static void *GTSApplication_DWCAlloc(DWCAllocType name, u32 size, int align)
 {
-#pragma unused(param0)
-    void *v0;
-    OSIntrMode v1;
+#pragma unused(name)
+    OSIntrMode oldInterruptMode = OS_DisableInterrupts();
+    void *ptr = NNS_FndAllocFromExpHeapEx(sGTSHeapHandle, size, align);
 
-    v1 = OS_DisableInterrupts();
-    v0 = NNS_FndAllocFromExpHeapEx(Unk_ov94_02246C04, param1, param2);
+    OS_RestoreInterrupts(oldInterruptMode);
 
-    OS_RestoreInterrupts(v1);
-
-    if (v0 == NULL) {
+    if (ptr == NULL) {
         (void)0;
     }
 
-    return v0;
+    return ptr;
 }
 
-static void ov94_0223C490(DWCAllocType param0, void *param1, u32 param2)
+static void GTSApplication_DWCFree(DWCAllocType name, void *ptr, u32 size)
 {
-#pragma unused(param0, param2)
-    OSIntrMode v0;
-
-    if (!param1) {
+#pragma unused(name, size)
+    if (!ptr) {
         return;
     }
 
-    v0 = OS_DisableInterrupts();
+    OSIntrMode oldInterruptMode = OS_DisableInterrupts();
 
-    NNS_FndFreeToExpHeap(Unk_ov94_02246C04, param1);
-    OS_RestoreInterrupts(v0);
+    NNS_FndFreeToExpHeap(sGTSHeapHandle, ptr);
+    OS_RestoreInterrupts(oldInterruptMode);
 }
 
 int GTSApplication_GetNetworkStrength(void)
@@ -480,67 +462,65 @@ void GTSApplication_SetNextScreenWithArgument(GTSApplicationState *appState, int
     appState->screenArgument = screenArgument;
 }
 
-void GTSApplication_MoveToNextScreen(GTSApplicationState *param0)
+void GTSApplication_MoveToNextScreen(GTSApplicationState *appState)
 {
-    param0->unk_20 = param0->screenId;
-    param0->screenId = param0->nextScreen;
+    appState->unk_20 = appState->screenId;
+    appState->screenId = appState->nextScreen;
 }
 
-int ov94_0223C4D4(GTSApplicationState *param0)
+int GTSApplicationState_GetTextFrameDelay(GTSApplicationState *appState)
 {
-    return Options_TextFrameDelay(param0->unk_00->options);
+    return Options_TextFrameDelay(appState->playerData->options);
 }
 
-static void ov94_0223C4E0(GTSApplicationState *param0)
+static void ov94_0223C4E0(GTSApplicationState *appState)
 {
-    ov94_0223C01C();
-    ov94_0223C0A4();
-    ov94_0223C0D4(param0);
-    ov94_0223C32C(param0);
+    GTSApplication_SetupGXBanks();
+    GTSApplication_InitCharTransfer();
+    GTSApplication_InitGraphics(appState);
+    GTSApplication_InitSpriteHeaders(appState);
 
-    SetVBlankCallback(ov94_0223BFE4, param0);
+    SetVBlankCallback(GTSApplication_VBlankCallback, appState);
 }
 
-static void ov94_0223C508(GTSApplicationState *param0)
+static void GTSApplication_CleanupGraphics(GTSApplicationState *appState)
 {
-    int v0;
+    ov94_022443B8(appState);
 
-    ov94_022443B8(param0);
+    SpriteTransfer_ResetCharTransfer(appState->spriteResource[0][0]);
+    SpriteTransfer_ResetCharTransfer(appState->spriteResource[1][0]);
+    SpriteTransfer_ResetPlttTransfer(appState->spriteResource[0][1]);
+    SpriteTransfer_ResetPlttTransfer(appState->spriteResource[1][1]);
 
-    SpriteTransfer_ResetCharTransfer(param0->spriteResource[0][0]);
-    SpriteTransfer_ResetCharTransfer(param0->spriteResource[1][0]);
-    SpriteTransfer_ResetPlttTransfer(param0->spriteResource[0][1]);
-    SpriteTransfer_ResetPlttTransfer(param0->spriteResource[1][1]);
-
-    for (v0 = 0; v0 < 4; v0++) {
-        SpriteResourceCollection_Delete(param0->spriteResourceCollection[v0]);
+    for (int i = 0; i < 4; i++) {
+        SpriteResourceCollection_Delete(appState->spriteResourceCollection[i]);
     }
 
-    SpriteList_Delete(param0->unk_BE4);
-    param0->unk_BE4 = NULL;
+    SpriteList_Delete(appState->spriteList);
+    appState->spriteList = NULL;
 
     RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();
 }
 
-static void GTSApplicationState_DecrementNetworkTimer(GTSApplicationState *param0)
+static void GTSApplicationState_DecrementNetworkTimer(GTSApplicationState *appState)
 {
-    if (param0->networkTimer) {
-        param0->networkTimer--;
+    if (appState->networkTimer) {
+        appState->networkTimer--;
     }
 }
 
-void GTSApplicationState_StartCountingBoxPokemon(GTSApplicationState *param0)
+void GTSApplicationState_StartCountingBoxPokemon(GTSApplicationState *appState)
 {
-    param0->deferredBoxId = 1;
-    param0->deferredBoxPokemonCount = 0;
+    appState->deferredBoxId = 1;
+    appState->deferredBoxPokemonCount = 0;
 }
 
 static void GTSApplicationState_CountBoxPokemon(GTSApplicationState *appState)
 {
     if (appState->deferredBoxId) {
-        appState->deferredBoxPokemonCount += PCBoxes_CountMonsInBox(appState->unk_00->pcBoxes, appState->deferredBoxId - 1);
+        appState->deferredBoxPokemonCount += PCBoxes_CountMonsInBox(appState->playerData->pcBoxes, appState->deferredBoxId - 1);
         appState->deferredBoxId++;
 
         if (appState->deferredBoxId == MAX_PC_BOXES + 1) {

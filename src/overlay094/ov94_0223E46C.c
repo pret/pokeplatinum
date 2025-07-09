@@ -139,10 +139,10 @@ int ov94_0223E46C(GTSApplicationState *param0, int param1)
     ov94_0223E7D4(param0);
     ov94_0223E770(param0);
     ov94_0223F9FC(&param0->unk_FCC[0], &param0->unk_10AC[0], param0->gtsMessageLoader);
-    ov94_02242158(&param0->unk_FCC[1], param0->unk_B94, param0->unk_B7A.species, 0, 0, TEXT_COLOR(1, 2, 0));
+    ov94_02242158(&param0->unk_FCC[1], param0->speciesMessageLoader, param0->unk_B7A.species, 0, 0, TEXT_COLOR(1, 2, 0));
     ov94_02242204(&param0->unk_FCC[3], param0->gtsMessageLoader, param0->unk_B7A.gender, 1, 0, 0, TEXT_COLOR(1, 2, 0));
     ov94_022422B8(&param0->unk_FCC[5], param0->gtsMessageLoader, ov94_02242970(param0->unk_B7A.level, param0->unk_B7A.level2, 1), 0, 0, TEXT_COLOR(1, 2, 0), 1);
-    ov94_0224218C(&param0->unk_10AC[1], param0->unk_BA0, param0->gtsMessageLoader, param0->unk_11B0, 0, 0, TEXT_COLOR(1, 2, 0));
+    ov94_0224218C(&param0->unk_10AC[1], param0->countryMessageLoader, param0->gtsMessageLoader, param0->unk_11B0, 0, 0, TEXT_COLOR(1, 2, 0));
 
     StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
     param0->currentScreenInstruction = 0;
@@ -277,7 +277,7 @@ static void ov94_0223E6B8(GTSApplicationState *param0)
     Graphics_LoadPaletteFromOpenNARC(v1, 3, 0, 0, 16 * 3 * 2, HEAP_ID_62);
     Graphics_LoadPaletteFromOpenNARC(v1, 5, 4, 0, 16 * 8 * 2, HEAP_ID_62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_62);
-    LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, 1, 10, Options_Frame(param0->unk_00->options), HEAP_ID_62);
+    LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, 1, 10, Options_Frame(param0->playerData->options), HEAP_ID_62);
     LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_0, (1 + (18 + 12)), 11, 0, HEAP_ID_62);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 13, v0, 1, 0, 16 * 5 * 0x20, 1, HEAP_ID_62);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 26, v0, 1, 0, 32 * 24 * 2, 1, HEAP_ID_62);
@@ -288,7 +288,7 @@ static void ov94_0223E770(GTSApplicationState *param0)
 {
     AffineSpriteListTemplate v0;
 
-    ov94_0223C300(&v0, param0, &param0->unk_DB4, NNS_G2D_VRAM_TYPE_2DMAIN);
+    GTSApplication_InitAffineTemplate(&v0, param0, &param0->cursorSpriteResourceHeader, NNS_G2D_VRAM_TYPE_2DMAIN);
 
     v0.position.x = FX32_ONE;
     v0.position.y = FX32_ONE;
@@ -498,9 +498,9 @@ static int GTS_IsTradeTimestampRecent(GTSApplicationState *appState, int bySearc
     RTCTime v3;
 
     if (bySearching == 1) {
-        datestamp = GlobalTrade_GetSearchTradeDatestamp(appState->unk_00->unk_00);
+        datestamp = GlobalTrade_GetSearchTradeDatestamp(appState->playerData->unk_00);
     } else {
-        datestamp = GlobalTrade_GetDepositTradeDatestamp(appState->unk_00->unk_00);
+        datestamp = GlobalTrade_GetDepositTradeDatestamp(appState->playerData->unk_00);
     }
 
     Date_ConvertFromInteger(datestamp, &date);
@@ -795,7 +795,7 @@ static int ov94_0223F190(GTSApplicationState *param0)
 
 static int ov94_0223F25C(GTSApplicationState *param0)
 {
-    param0->unk_10D8 = ov94_022427C0(param0, &param0->unk_10CC, &param0->unk_F9C[1], param0->gtsMessageLoader, param0->unk_B94, param0->unk_10E4, param0->unk_00->unk_10);
+    param0->unk_10D8 = ov94_022427C0(param0, &param0->unk_10CC, &param0->unk_F9C[1], param0->gtsMessageLoader, param0->speciesMessageLoader, param0->unk_10E4, param0->playerData->unk_10);
     param0->unk_108 = 0xffff;
     param0->currentScreenInstruction = 7;
 
@@ -831,7 +831,7 @@ static int ov94_0223F2B0(GTSApplicationState *param0)
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         Window_FillTilemap(&param0->unk_FCC[1], 0x0);
 
-        ov94_02242158(&param0->unk_FCC[1], param0->unk_B94, v0, 0, 0, TEXT_COLOR(1, 2, 0));
+        ov94_02242158(&param0->unk_FCC[1], param0->speciesMessageLoader, v0, 0, 0, TEXT_COLOR(1, 2, 0));
         param0->unk_10E4->unk_20 = SpeciesData_GetSpeciesValue(v0, SPECIES_DATA_GENDER_RATIO);
         ov94_02242AC4(&param0->unk_111C, param0->unk_10E4->unk_06 + param0->unk_10E4->unk_04, param0->unk_10E4->unk_0A, param0->unk_10E4->unk_08);
 
@@ -967,7 +967,7 @@ static int ov94_0223F728(GTSApplicationState *param0)
 
 static int ov94_0223F780(GTSApplicationState *param0)
 {
-    param0->unk_10D8 = ov94_022429B4(&param0->unk_10CC, &param0->unk_F9C[0], param0->unk_BA0, param0->gtsMessageLoader);
+    param0->unk_10D8 = ov94_022429B4(&param0->unk_10CC, &param0->unk_F9C[0], param0->countryMessageLoader, param0->gtsMessageLoader);
     param0->unk_108 = 0xffff;
     param0->currentScreenInstruction = 16;
 
@@ -998,7 +998,7 @@ static int ov94_0223F7C0(GTSApplicationState *param0)
         ov94_02242A44(param0, v0);
         param0->currentScreenInstruction = 0;
         Window_FillTilemap(&param0->unk_10AC[1], 0x0);
-        ov94_0224218C(&param0->unk_10AC[1], param0->unk_BA0, param0->gtsMessageLoader, param0->unk_11B0, 0, 0, TEXT_COLOR(1, 2, 0));
+        ov94_0224218C(&param0->unk_10AC[1], param0->countryMessageLoader, param0->gtsMessageLoader, param0->unk_11B0, 0, 0, TEXT_COLOR(1, 2, 0));
     }
 
     return 3;

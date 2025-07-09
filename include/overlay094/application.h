@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV94_0223BCB0_H
-#define POKEPLATINUM_OV94_0223BCB0_H
+#ifndef POKEPLATINUM_GTS_APPLICATION_H
+#define POKEPLATINUM_GTS_APPLICATION_H
 
 #include "overlay094/gts_application_state.h"
 
@@ -8,19 +8,19 @@
 #include "overlay_manager.h"
 #include "sprite.h"
 
-int GTSApplication_Init(ApplicationManager *appMan, int *param1);
-int GTSApplication_Main(ApplicationManager *appMan, int *param1);
-int GTSApplication_Exit(ApplicationManager *appMan, int *param1);
-void ov94_0223C300(AffineSpriteListTemplate *param0, GTSApplicationState *param1, SpriteResourcesHeader *param2, int param3);
-Menu *GTSApplication_CreateYesNoMenu(BgConfig *param0, int param1, int param2);
-void ov94_0223C3F4(GTSApplicationState *param0, int param1, int param2);
-void ov94_0223C3FC(Sprite *param0, int param1, int param2);
+int GTSApplication_Init(ApplicationManager *appMan, int *loopState);
+int GTSApplication_Main(ApplicationManager *appMan, int *loopState);
+int GTSApplication_Exit(ApplicationManager *appMan, int *unused1);
+void GTSApplication_InitAffineTemplate(AffineSpriteListTemplate *template, GTSApplicationState *appState, SpriteResourcesHeader *spriteResourceHeader, int vramType);
+Menu *GTSApplication_CreateYesNoMenu(BgConfig *bgConfig, int tilemapTop, int baseTile);
+void GTSApplication_SetCurrentAndNextScreenInstruction(GTSApplicationState *appState, int currentInstruction, int nextInstruction);
+void GTSApplication_SetSpritePosition(Sprite *sprite, int x, int y);
 int GTSApplication_GetNetworkStrength(void);
-void GTSApplication_SetNextScreenWithArgument(GTSApplicationState *param0, int param1, int param2);
-void ov94_0223C4C8(GTSApplicationState *param0);
-int ov94_0223C4D4(GTSApplicationState *param0);
-void GTSApplicationState_StartCountingBoxPokemon(GTSApplicationState *param0);
-void GTSApplicationState_AddWaitDial(GTSApplicationState *param0);
-void GTSApplicationState_DestroyWaitDial(GTSApplicationState *param0);
+void GTSApplication_SetNextScreenWithArgument(GTSApplicationState *appState, int nextScreen, int screenArgument);
+void GTSApplication_MoveToNextScreen(GTSApplicationState *appState);
+int GTSApplicationState_GetTextFrameDelay(GTSApplicationState *appState);
+void GTSApplicationState_StartCountingBoxPokemon(GTSApplicationState *appState);
+void GTSApplicationState_AddWaitDial(GTSApplicationState *appState);
+void GTSApplicationState_DestroyWaitDial(GTSApplicationState *appState);
 
-#endif // POKEPLATINUM_OV94_0223BCB0_H
+#endif // POKEPLATINUM_GTS_APPLICATION_H

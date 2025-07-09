@@ -72,7 +72,7 @@ int ov94_0223DC04(GTSApplicationState *param0, int param1)
     ov94_0223DE04(param0);
     ov94_0223DED8(param0);
     ov94_0223DE7C(param0);
-    ov94_0223D910(param0->gtsMessageLoader, param0->unk_B94, param0->stringTemplate, &param0->unk_FCC[0], Pokemon_GetBoxPokemon((Pokemon *)param0->unk_250[param0->unk_11C].pokemon.bytes), &param0->unk_250[param0->unk_11C].unk_EC);
+    ov94_0223D910(param0->gtsMessageLoader, param0->speciesMessageLoader, param0->stringTemplate, &param0->unk_FCC[0], Pokemon_GetBoxPokemon((Pokemon *)param0->unk_250[param0->unk_11C].pokemon.bytes), &param0->unk_250[param0->unk_11C].unk_EC);
 
     v0 = (Pokemon *)param0->unk_250[param0->unk_11C].pokemon.bytes;
 
@@ -205,7 +205,7 @@ static void ov94_0223DE04(GTSApplicationState *param0)
     BgConfig *v0 = param0->bgConfig;
 
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_62);
-    LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, 1, 10, Options_Frame(param0->unk_00->options), HEAP_ID_62);
+    LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, 1, 10, Options_Frame(param0->playerData->options), HEAP_ID_62);
     LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_0, (1 + (18 + 12)), 11, 0, HEAP_ID_62);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__WORLDTRADE, 17, v0, 1, 0, 16 * 5 * 0x20, 1, HEAP_ID_62);
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__WORLDTRADE, 7, 0, 0, 16 * 3 * 2, HEAP_ID_62);
@@ -215,7 +215,7 @@ static void ov94_0223DE7C(GTSApplicationState *param0)
 {
     AffineSpriteListTemplate v0;
 
-    ov94_0223C300(&v0, param0, &param0->unk_DB4, NNS_G2D_VRAM_TYPE_2DMAIN);
+    GTSApplication_InitAffineTemplate(&v0, param0, &param0->cursorSpriteResourceHeader, NNS_G2D_VRAM_TYPE_2DMAIN);
 
     v0.position.x = FX32_ONE * 208;
     v0.position.y = FX32_ONE * 58;
@@ -400,7 +400,7 @@ static void ov94_0223E240(GTSApplicationState *param0)
 {
     if (param0->unk_10E == 0) {
         Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__WORLDTRADE, 27, param0->bgConfig, 1, 0, 32 * 24 * 2, 1, HEAP_ID_62);
-        ov94_0223E3B0(&param0->unk_FCC[9], param0->gtsMessageLoader, param0->unk_B94, &param0->unk_250[param0->unk_11C].unk_F0);
+        ov94_0223E3B0(&param0->unk_FCC[9], param0->gtsMessageLoader, param0->speciesMessageLoader, &param0->unk_250[param0->unk_11C].unk_F0);
     } else {
         Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__WORLDTRADE, 28, param0->bgConfig, 1, 0, 32 * 24 * 2, 1, HEAP_ID_62);
         ov94_0223E424(&param0->unk_FCC[9], param0->unk_BB4[0], param0->unk_BB4[1]);

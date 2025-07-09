@@ -7337,7 +7337,7 @@ static BOOL ScrCmd_2B0(ScriptContext *ctx)
 
 static BOOL ScrCmd_2B1(ScriptContext *ctx)
 {
-    sub_02039794();
+    DestroyNetworkIcon();
     return FALSE;
 }
 

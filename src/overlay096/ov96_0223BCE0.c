@@ -214,7 +214,7 @@ int ov96_0223BDBC(UnkStruct_ov96_0223BF40 *param0, int param1)
 {
     int v0, v1;
 
-    sub_020397B0(ov96_0223BC50());
+    SetNetworkIconStrength(ov96_0223BC50());
 
     v1 = param0->unk_1C;
     v0 = (*Unk_ov96_0223DCE0[param0->unk_1C])(param0);
@@ -1429,7 +1429,7 @@ static int ov96_0223D524(UnkStruct_ov96_0223BF40 *param0)
 
 static int ov96_0223D528(UnkStruct_ov96_0223BF40 *param0)
 {
-    sub_02039794();
+    DestroyNetworkIcon();
     sub_0203848C();
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 8, 1, HEAP_ID_68);
 

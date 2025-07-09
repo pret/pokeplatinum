@@ -80,12 +80,12 @@ int ov94_0223D0C4(GTSApplicationState *param0, int param1)
     ov94_0223D2E8(param0);
     ov94_0223D438(param0);
     ov94_0223D3DC(param0);
-    ov94_0223D910(param0->gtsMessageLoader, param0->unk_B94, param0->stringTemplate, &param0->unk_FCC[0], Pokemon_GetBoxPokemon((Pokemon *)param0->receivedListing.pokemon.bytes), &param0->receivedListing.unk_EC);
+    ov94_0223D910(param0->gtsMessageLoader, param0->speciesMessageLoader, param0->stringTemplate, &param0->unk_FCC[0], Pokemon_GetBoxPokemon((Pokemon *)param0->receivedListing.pokemon.bytes), &param0->receivedListing.unk_EC);
 
     v0 = (Pokemon *)param0->receivedListing.pokemon.bytes;
 
     ov94_0223DA78(param0->gtsMessageLoader, &param0->unk_FCC[5], param0->receivedListing.unk_10C, v0, &param0->unk_FCC[10]);
-    ov94_02242368(param0->gtsMessageLoader, param0->unk_B94, param0->stringTemplate, &param0->unk_FCC[7], param0->receivedListing.unk_F0.species, param0->receivedListing.unk_F0.gender, ov94_02242970(param0->receivedListing.unk_F0.level, param0->receivedListing.unk_F0.level2, 0));
+    ov94_02242368(param0->gtsMessageLoader, param0->speciesMessageLoader, param0->stringTemplate, &param0->unk_FCC[7], param0->receivedListing.unk_F0.species, param0->receivedListing.unk_F0.gender, ov94_02242970(param0->receivedListing.unk_F0.level, param0->receivedListing.unk_F0.level2, 0));
     ov94_0223DB2C((Pokemon *)param0->receivedListing.pokemon.bytes);
 
     StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
@@ -237,7 +237,7 @@ static void ov94_0223D2E8(GTSApplicationState *param0)
     Graphics_LoadPaletteFromOpenNARC(v1, 7, 0, 0, 16 * 3 * 2, HEAP_ID_62);
     Graphics_LoadPaletteFromOpenNARC(v1, 5, 4, 0, 16 * 8 * 2, HEAP_ID_62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_62);
-    LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, 1, 10, Options_Frame(param0->unk_00->options), HEAP_ID_62);
+    LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, 1, 10, Options_Frame(param0->playerData->options), HEAP_ID_62);
     LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_0, (1 + (18 + 12)), 11, 0, HEAP_ID_62);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 17, v0, 1, 0, 16 * 5 * 0x20, 1, HEAP_ID_62);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 25, v0, 1, 0, 32 * 24 * 2, 1, HEAP_ID_62);
@@ -250,7 +250,7 @@ static void ov94_0223D3DC(GTSApplicationState *param0)
 {
     AffineSpriteListTemplate v0;
 
-    ov94_0223C300(&v0, param0, &param0->unk_DB4, NNS_G2D_VRAM_TYPE_2DMAIN);
+    GTSApplication_InitAffineTemplate(&v0, param0, &param0->cursorSpriteResourceHeader, NNS_G2D_VRAM_TYPE_2DMAIN);
 
     v0.position.x = FX32_ONE * 208;
     v0.position.y = FX32_ONE * 58;
@@ -436,7 +436,7 @@ static int ov94_0223D754(GTSApplicationState *param0)
             Pokemon *v0 = (Pokemon *)param0->receivedListing.pokemon.bytes;
 
             if (Pokemon_HeldItemIsMail(v0)) {
-                if (Party_GetCurrentCount(param0->unk_00->unk_08) == 6) {
+                if (Party_GetCurrentCount(param0->playerData->unk_08) == 6) {
                     ov94_0223D88C(param0, GTS_Text_Error_NoRoomInParty, TEXT_SPEED_FAST, 0, 0xf0f, v0);
                     GTSApplication_SetCurrentAndNextScreenInstruction(param0, 3, 1);
                     return 3;
@@ -603,5 +603,5 @@ void ov94_0223DB2C(Pokemon *param0)
 
 static void ov94_0223DBBC(GTSApplicationState *param0)
 {
-    ov94_02242368(param0->gtsMessageLoader, param0->unk_B94, param0->stringTemplate, &param0->unk_FCC[7], param0->receivedListing.unk_F0.species, param0->receivedListing.unk_F0.gender, ov94_02242970(param0->receivedListing.unk_F0.level, param0->receivedListing.unk_F0.level2, 0));
+    ov94_02242368(param0->gtsMessageLoader, param0->speciesMessageLoader, param0->stringTemplate, &param0->unk_FCC[7], param0->receivedListing.unk_F0.species, param0->receivedListing.unk_F0.gender, ov94_02242970(param0->receivedListing.unk_F0.level, param0->receivedListing.unk_F0.level2, 0));
 }

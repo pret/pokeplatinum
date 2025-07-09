@@ -64,7 +64,7 @@ void ov94_0223B140(s32 param0, u64 param1)
     Unk_ov94_02246AC0.unk_0C = param1;
 }
 
-void ov94_0223B15C(void)
+void GTSNetworking_ProcessCurrentRequest(void)
 {
     switch (Unk_ov94_02246AC0.unk_00) {
     case UnkEnum_ov94_0223B15C_00:

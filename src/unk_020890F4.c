@@ -99,7 +99,7 @@ static int sub_0208924C(ApplicationManager *appMan, int *param1)
     v0 = sub_02089BEC(v1);
 
     if (v1->unk_38C.unk_30 != 0) {
-        sub_020397B0(WM_LINK_LEVEL_3 - DWC_GetLinkLevel());
+        SetNetworkIconStrength(WM_LINK_LEVEL_3 - DWC_GetLinkLevel());
     }
 
     return v0 ? 1 : 0;
@@ -110,7 +110,7 @@ static int sub_0208927C(ApplicationManager *appMan, int *param1)
     UnkStruct_02089688 *v0 = ApplicationManager_Data(appMan);
 
     if (v0->unk_38C.unk_30 != 0) {
-        sub_02039794();
+        DestroyNetworkIcon();
     }
 
     sub_0208A6CC(v0);

@@ -115,13 +115,13 @@ int GTSApplication_InitWFCScreen(GTSApplicationState *appState, int unused1)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
-    sub_02038438(appState->unk_00->saveData);
+    sub_02038438(appState->playerData->saveData);
 
     ov94_02245934(appState);
 
     if (!DWC_CheckInet()) {
-        if (appState->unk_00->unk_40) {
-            GTSApplication_DisplayStatusMessage(appState, appState->unk_B98, pl_msg_00000674_00001, TEXT_SPEED_FAST, 0xf0f);
+        if (appState->playerData->unk_40) {
+            GTSApplication_DisplayStatusMessage(appState, appState->unk0674MessageLoader, pl_msg_00000674_00001, TEXT_SPEED_FAST, 0xf0f);
             GTSApplication_SetCurrentAndNextScreenInstruction(appState, 12, 2);
             GTSApplicationState_AddWaitDial(appState);
         } else {
@@ -136,7 +136,7 @@ int GTSApplication_InitWFCScreen(GTSApplicationState *appState, int unused1)
 
 int GTSApplication_WFCInit_Main(GTSApplicationState *appState, int param1)
 {
-    sub_020397B0(GTSApplication_GetNetworkStrength());
+    SetNetworkIconStrength(GTSApplication_GetNetworkStrength());
 
     int previousInstruction = appState->currentScreenInstruction;
     int parentStateCode = (*gtsWFCInitScreenStates[appState->currentScreenInstruction])(appState);
@@ -281,7 +281,7 @@ static void GTSApplication_WFCInit_InitGraphics(GTSApplicationState *appState)
     Graphics_LoadPaletteFromOpenNARC(v1, 3, 4, 0, 0, HEAP_ID_62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_62);
     Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, HEAP_ID_62);
-    LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, 1, 10, Options_Frame(appState->unk_00->options), HEAP_ID_62);
+    LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, 1, 10, Options_Frame(appState->playerData->options), HEAP_ID_62);
     LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_0, (1 + (18 + 12)), 11, 0, HEAP_ID_62);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 2, v0, 1, 0, 0, 0, HEAP_ID_62);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 5, v0, 1, 0, 32 * 24 * 2, 0, HEAP_ID_62);
@@ -331,7 +331,7 @@ static void GTSApplication_WFCInit_CleanupStrings(GTSApplicationState *appState)
 
 static int GTSApplication_WFCInit_AskToSetupConnection(GTSApplicationState *appState)
 {
-    GTSApplication_DisplayStatusMessage(appState, appState->unk_B9C, pl_msg_00000695_00017, TEXT_SPEED_FAST, 0xf0f);
+    GTSApplication_DisplayStatusMessage(appState, appState->unk0695MessageLoader, pl_msg_00000695_00017, TEXT_SPEED_FAST, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(appState, 13, 1);
 
     // this starts counting box pokemon in the main loop
@@ -350,7 +350,7 @@ static int GTSApplication_WFCInit_ProcessSetupConfirmation(GTSApplicationState *
             GTSApplication_SetNextScreenWithArgument(appState, 0, 0);
             appState->currentScreenInstruction = 11;
         } else {
-            GTSApplication_DisplayStatusMessage(appState, appState->unk_B98, pl_msg_00000674_00001, TEXT_SPEED_FAST, 0xf0f);
+            GTSApplication_DisplayStatusMessage(appState, appState->unk0674MessageLoader, pl_msg_00000674_00001, TEXT_SPEED_FAST, 0xf0f);
             GTSApplication_SetCurrentAndNextScreenInstruction(appState, 12, 2);
             GTSApplicationState_AddWaitDial(appState);
         }
@@ -396,7 +396,7 @@ static int GTSApplication_WFCInit_RestartOrExit(GTSApplicationState *appState)
 
 static int GTSApplication_WFCInit_ShowDisconnectingMessage(GTSApplicationState *appState)
 {
-    GTSApplication_DisplayStatusMessage(appState, appState->unk_B9C, pl_msg_00000695_00026, TEXT_SPEED_FAST, 0xf0f);
+    GTSApplication_DisplayStatusMessage(appState, appState->unk0695MessageLoader, pl_msg_00000695_00026, TEXT_SPEED_FAST, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(appState, 12, 18);
 
     return GTS_APPLICATION_LOOP_STATE_MAIN;
@@ -415,7 +415,7 @@ static int GTSApplication_WFCInit_CleanupNetworking(GTSApplicationState *appStat
 
 static int GTSApplication_WFCInit_ShowDisconnectedMessage(GTSApplicationState *appState)
 {
-    GTSApplication_DisplayStatusMessage(appState, appState->unk_B9C, pl_msg_00000695_00027, TEXT_SPEED_FAST, 0xf0f);
+    GTSApplication_DisplayStatusMessage(appState, appState->unk0695MessageLoader, pl_msg_00000695_00027, TEXT_SPEED_FAST, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(appState, 20, 11);
 
     return GTS_APPLICATION_LOOP_STATE_MAIN;
@@ -563,14 +563,14 @@ static int GTSApplication_WFCInit_GetDWCKey(GTSApplicationState *appState)
     DWCUserData *v0;
     s32 v1;
 
-    v0 = WiFiList_GetUserData(appState->unk_00->unk_14);
-    v1 = SystemData_GetDWCProfileId(appState->unk_00->unk_04);
+    v0 = WiFiList_GetUserData(appState->playerData->unk_14);
+    v1 = SystemData_GetDWCProfileId(appState->playerData->unk_04);
 
     if (v1 == 0) {
-        SystemData_SetDWCProfileId(appState->unk_00->unk_04, appState->unk_00->unk_38);
+        SystemData_SetDWCProfileId(appState->playerData->unk_04, appState->playerData->unk_38);
     }
 
-    v1 = SystemData_GetDWCProfileId(appState->unk_00->unk_04);
+    v1 = SystemData_GetDWCProfileId(appState->playerData->unk_04);
     ov94_0223B140(v1, DWC_CreateFriendKey(v0));
     appState->currentScreenInstruction = 7;
 
@@ -640,7 +640,7 @@ static int GTSApplication_WFCInit_WaitForServerResponse(GTSApplicationState *par
 
 static int GTSApplication_WFCInit_SetProfileRequest(GTSApplicationState *param0)
 {
-    WorldExchange_GetTrainerObject(param0->unk_00->saveData, &param0->worldExchangeTrainer);
+    WorldExchange_GetTrainerObject(param0->playerData->saveData, &param0->worldExchangeTrainer);
     GTSNetworking_SetProfile(&param0->worldExchangeTrainer, &param0->worldExchangeTrainerError);
 
     param0->currentScreenInstruction = 10;
@@ -759,7 +759,7 @@ static int GTSApplication_WFCInit_RestartConnection(GTSApplicationState *param0)
 
 static int GTSApplication_WFCInit_ExitScreen(GTSApplicationState *param0)
 {
-    sub_02039794();
+    DestroyNetworkIcon();
     GTSApplicationState_DestroyWaitDial(param0);
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
 
@@ -952,7 +952,7 @@ static void GTSApplication_WFCInit_DisplayNetworkError(GTSApplicationState *appS
 {
     Strbuf *v0 = Strbuf_Init((16 * 8 * 2), HEAP_ID_62);
 
-    MessageLoader_GetStrbuf(appState->unk_B9C, messageId, v0);
+    MessageLoader_GetStrbuf(appState->unk0695MessageLoader, messageId, v0);
     StringTemplate_Format(appState->stringTemplate, appState->shortErrorBuffer, v0);
 
     Window_FillTilemap(&appState->unk_F8C, 15);

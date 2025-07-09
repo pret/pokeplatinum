@@ -337,7 +337,7 @@ int ov17_0224F86C(ApplicationManager *appMan, int *param1)
     MI_CpuFill16((void *)HW_DB_BG_PLTT, 0x7fff, 0x200);
     MI_CpuFill16((void *)HW_DB_OBJ_PLTT, 0x7fff, 0x200);
 
-    sub_02039794();
+    DestroyNetworkIcon();
 
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay11));
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay12));
