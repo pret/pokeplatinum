@@ -1808,7 +1808,7 @@ static void BattleAnimScriptCmd_LoadPokemonSpriteIntoBg(BattleAnimSystem *system
         system->heapID,
         PLTTBUF_MAIN_BG,
         0,
-        8 * SLOTS_PER_PALETTE);
+        PLTT_DEST(8));
 
     Graphics_LoadTilemapToBgLayerFromOpenNARC(
         system->arcs[BATTLE_ANIM_SYSTEM_ARC_BATT_BG],
@@ -2016,7 +2016,7 @@ static void BattleAnimScriptCmd_AddPokemonSprite(BattleAnimSystem *system)
             system->heapID,
             PLTTBUF_MAIN_OBJ,
             PALETTE_SIZE_BYTES,
-            offset * SLOTS_PER_PALETTE);
+            PLTT_DEST(offset));
     }
 
     GF_ASSERT(system->pokemonSprites[spriteID] == NULL);
@@ -2301,7 +2301,7 @@ static void BattleBgSwitch_SetBg(BattleBgSwitch *bgSwitch, BattleAnimSystem *sys
         system->heapID,
         0,
         PALETTE_SIZE_BYTES,
-        9 * SLOTS_PER_PALETTE);
+        PLTT_DEST(9));
 
     Bg_ClearTilemap(system->bgConfig, bgLayer);
 
