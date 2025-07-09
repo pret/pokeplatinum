@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV12_0221FC20_H
-#define POKEPLATINUM_OV12_0221FC20_H
+#ifndef POKEPLATINUM_BATTLE_ANIM_SYSTEM_H
+#define POKEPLATINUM_BATTLE_ANIM_SYSTEM_H
 
 #include "constants/battle.h"
 
@@ -292,4 +292,4 @@ void ov12_02223770(UnkStruct_ov12_02223764 *param0);
 void ov12_022237A4(UnkStruct_ov12_02223764 *param0, int param1);
 int ov12_022237D8(UnkStruct_ov12_02223764 *param0);
 
-#endif // POKEPLATINUM_OV12_0221FC20_H
+#endif // POKEPLATINUM_BATTLE_ANIM_SYSTEM_H
