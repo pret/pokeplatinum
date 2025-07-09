@@ -1328,38 +1328,36 @@ void sub_0203E0D0(FieldSystem *fieldSystem)
 
 void FieldSystem_LaunchGTSApp(FieldSystem *fieldSystem, int param1)
 {
-    GTSPlayerData *v0;
-
     FS_EXTERN_OVERLAY(overlay94);
 
-    const ApplicationManagerTemplate v1 = {
+    const ApplicationManagerTemplate gtsTemplate = {
         GTSApplication_Init,
         GTSApplication_Main,
         GTSApplication_Exit,
         FS_OVERLAY_ID(overlay94)
     };
 
-    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(GTSPlayerData));
+    GTSPlayerData *playerData = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(GTSPlayerData));
 
-    v0->globalTrade = SaveData_GetGlobalTrade(fieldSystem->saveData);
-    v0->systemData = SaveData_GetSystemData(fieldSystem->saveData);
-    v0->party = SaveData_SaveTable(fieldSystem->saveData, SAVE_TABLE_ENTRY_PARTY);
-    v0->pcBoxes = SaveData_GetPCBoxes(fieldSystem->saveData);
-    v0->pokedex = SaveData_GetPokedex(fieldSystem->saveData);
-    v0->wiFiList = SaveData_GetWiFiList(fieldSystem->saveData);
-    v0->wiFiHistory = SaveData_WiFiHistory(fieldSystem->saveData);
-    v0->trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    v0->options = SaveData_GetOptions(fieldSystem->saveData);
-    v0->records = SaveData_GetGameRecords(fieldSystem->saveData);
-    v0->journalEntry = fieldSystem->journalEntry;
-    v0->showContestData = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
-    v0->saveData = fieldSystem->saveData;
-    v0->dexMode = SaveData_GetDexMode(fieldSystem->saveData);
-    v0->dwcProfileId = WiFiList_GetUserGsProfileId(v0->wiFiList);
-    v0->bag = SaveData_GetBag(fieldSystem->saveData);
-    v0->unk_40 = param1;
+    playerData->globalTrade = SaveData_GetGlobalTrade(fieldSystem->saveData);
+    playerData->systemData = SaveData_GetSystemData(fieldSystem->saveData);
+    playerData->party = SaveData_SaveTable(fieldSystem->saveData, SAVE_TABLE_ENTRY_PARTY);
+    playerData->pcBoxes = SaveData_GetPCBoxes(fieldSystem->saveData);
+    playerData->pokedex = SaveData_GetPokedex(fieldSystem->saveData);
+    playerData->wiFiList = SaveData_GetWiFiList(fieldSystem->saveData);
+    playerData->wiFiHistory = SaveData_WiFiHistory(fieldSystem->saveData);
+    playerData->trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
+    playerData->options = SaveData_GetOptions(fieldSystem->saveData);
+    playerData->records = SaveData_GetGameRecords(fieldSystem->saveData);
+    playerData->journalEntry = fieldSystem->journalEntry;
+    playerData->showContestData = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
+    playerData->saveData = fieldSystem->saveData;
+    playerData->dexMode = SaveData_GetDexMode(fieldSystem->saveData);
+    playerData->dwcProfileId = WiFiList_GetUserGsProfileId(playerData->wiFiList);
+    playerData->bag = SaveData_GetBag(fieldSystem->saveData);
+    playerData->unk_40 = param1;
 
-    FieldSystem_StartChildProcess(fieldSystem, &v1, v0);
+    FieldSystem_StartChildProcess(fieldSystem, &gtsTemplate, playerData);
 }
 
 void *sub_0203E1AC(FieldSystem *fieldSystem, int param1, int param2)
