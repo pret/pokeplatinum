@@ -701,7 +701,7 @@ static void ov12_0222E080(SysTask *param0, void *param1)
         }
 
         v0->unk_00 = 0;
-        v0->unk_28 = ov12_0222662C(0, 160, ((2 * 0xffff) / 360), (12 * FX32_ONE), (2 * 100), ov12_022233EC(v0->unk_04.unk_04, 1), 0, ov12_022266E8(0, 0), BattleAnimSystem_GetHeapID(v0->unk_04.unk_04));
+        v0->unk_28 = ov12_0222662C(0, 160, ((2 * 0xffff) / 360), (12 * FX32_ONE), (2 * 100), BattleAnimSystem_GetBgID(v0->unk_04.unk_04, 1), 0, ov12_022266E8(0, 0), BattleAnimSystem_GetHeapID(v0->unk_04.unk_04));
         v0->unk_04.unk_00++;
         break;
     case 2:

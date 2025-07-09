@@ -1071,7 +1071,7 @@ void ov12_022303D0(BattleAnimSystem *param0)
         v0->unk_16 = 192;
     }
 
-    v0->unk_18 = ov12_0222662C(v0->unk_14, v0->unk_16, ((5 * 0xffff) / 360), (8 * FX32_ONE) * v1, 80, ov12_022233EC(param0, 1), SysTask_GetPriority(v2) + 1, ov12_022266E8(v0->unk_10, v0->unk_12), BattleAnimSystem_GetHeapID(param0));
+    v0->unk_18 = ov12_0222662C(v0->unk_14, v0->unk_16, ((5 * 0xffff) / 360), (8 * FX32_ONE) * v1, 80, BattleAnimSystem_GetBgID(param0, 1), SysTask_GetPriority(v2) + 1, ov12_022266E8(v0->unk_10, v0->unk_12), BattleAnimSystem_GetHeapID(param0));
     ov12_02225BC8(&v0->unk_1C, 0, 80, 0, 40, 24);
     v0->unk_1C.unk_04[1] *= v1;
 
@@ -1374,7 +1374,7 @@ void ov12_02230A8C(BattleAnimSystem *param0)
         ManagedSprite_SetDrawFlag(v0->unk_48, 0);
     }
 
-    v0->unk_14 = ov12_0222662C(v3, v3 + 80, ((5 * 0xffff) / 360), (5 * FX32_ONE), 100, ov12_022233EC(param0, 1), 0, ov12_022266E8(-v2, -v3), BattleAnimSystem_GetHeapID(param0));
+    v0->unk_14 = ov12_0222662C(v3, v3 + 80, ((5 * 0xffff) / 360), (5 * FX32_ONE), 100, BattleAnimSystem_GetBgID(param0, 1), 0, ov12_022266E8(-v2, -v3), BattleAnimSystem_GetHeapID(param0));
     v4 = 1 << 8;
 
     PaletteData_BlendMulti(v0->unk_18, 0, v4, 8, 0x0);
@@ -2110,7 +2110,7 @@ static void ov12_02231A38(SysTask *param0, void *param1)
         if (v0->unk_54 < 0) {
             v0->unk_0C++;
 
-            PaletteData_StartFade(ov12_0222332C(v0->unk_00), 0x1, ov12_02222354(v0->unk_00), -8, 0, 16, 0xffff);
+            PaletteData_StartFade(ov12_0222332C(v0->unk_00), 0x1, BattleAnimSystem_GetBaseBgPalettes(v0->unk_00), -8, 0, 16, 0xffff);
 
             for (v1 = 0; v1 < 4; v1++) {
                 if (v0->unk_14[v1]) {
@@ -2122,7 +2122,7 @@ static void ov12_02231A38(SysTask *param0, void *param1)
     case 3:
         if (PaletteData_GetSelectedBuffersMask(ov12_0222332C(v0->unk_00)) == 0) {
             v0->unk_0C++;
-            PaletteData_StartFade(ov12_0222332C(v0->unk_00), 0x1, ov12_02222354(v0->unk_00), -8, 16, 0, 0xffff);
+            PaletteData_StartFade(ov12_0222332C(v0->unk_00), 0x1, BattleAnimSystem_GetBaseBgPalettes(v0->unk_00), -8, 16, 0, 0xffff);
 
             for (v1 = 0; v1 < 4; v1++) {
                 if (v0->unk_14[v1]) {
@@ -3728,7 +3728,7 @@ void ov12_02233CD4(BattleAnimSystem *param0)
 
     v0->unk_10 = v3 - (80 / 2);
     v0->unk_30 = ov12_022266E8(-v2, -v0->unk_10);
-    v0->unk_04 = ov12_02226544(ov12_022266F0(ov12_022233EC(v0->unk_00, 1)), v0->unk_30, BattleAnimSystem_GetHeapID(v0->unk_00));
+    v0->unk_04 = ov12_02226544(BattleAnimUtil_GetHOffsetRegisterForBg(BattleAnimSystem_GetBgID(v0->unk_00, 1)), v0->unk_30, BattleAnimSystem_GetHeapID(v0->unk_00));
     v0->unk_20 = 1;
 
     v4 = BattleAnimUtil_GetBattlerType(v0->unk_00, BattleAnimSystem_GetDefender(param0));
@@ -3758,7 +3758,7 @@ static void ov12_02233DCC(SysTask *param0, void *param1)
         v0->unk_08--;
 
         if (v0->unk_08 < 0) {
-            PaletteData_StartFade(ov12_0222332C(v0->unk_00), 0x1, ov12_02222354(v0->unk_00), 0, 0, 16, 0xffff);
+            PaletteData_StartFade(ov12_0222332C(v0->unk_00), 0x1, BattleAnimSystem_GetBaseBgPalettes(v0->unk_00), 0, 0, 16, 0xffff);
             v0->unk_04++;
         }
         break;
@@ -3773,7 +3773,7 @@ static void ov12_02233DCC(SysTask *param0, void *param1)
         if (PaletteData_GetSelectedBuffersMask(ov12_0222332C(v0->unk_00)) == 0) {
             v0->unk_04++;
             GX_SetVisibleWnd(GX_WNDMASK_NONE);
-            PaletteData_StartFade(ov12_0222332C(v0->unk_00), 0x1, ov12_02222354(v0->unk_00), 0, 16, 0, 0xffff);
+            PaletteData_StartFade(ov12_0222332C(v0->unk_00), 0x1, BattleAnimSystem_GetBaseBgPalettes(v0->unk_00), 0, 16, 0, 0xffff);
         }
         break;
     case 4:

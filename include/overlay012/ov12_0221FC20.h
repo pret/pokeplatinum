@@ -209,7 +209,7 @@ typedef struct BattleAnimSystem {
     u8 unk_17B;
     BattleBgAnim *bgAnim;
     UnkStruct_ov16_02264408_sub1 unk_180;
-    int bgPalettes;
+    int baseBgPalettes;
     u8 bgLayerPriorities[4];
     NARC *arcs[BATTLE_ANIM_SYSTEM_ARC_COUNT];
 } BattleAnimSystem;
@@ -246,7 +246,7 @@ int BattleAnimSystem_GetMoveInfo(BattleAnimSystem *param0, enum BattleAnimMoveIn
 void ov12_02220590(BattleAnimSystem *param0, UnkStruct_ov12_022380DC *param1, int param2);
 void BattleAnimSystem_CancelTrackingTask(BattleAnimSystem *param0, enum BattleAnimTrackingTask param1);
 void BattleAnimSystem_CancelBgAnim(BattleAnimSystem *param0);
-int ov12_02222354(BattleAnimSystem *param0);
+int BattleAnimSystem_GetBaseBgPalettes(BattleAnimSystem *param0);
 void BattleAnimSystem_LoadBaseBg(BattleAnimSystem *param0, enum BgLayer param1);
 void BattleAnimSystem_UnloadBaseBg(BattleAnimSystem *param0, enum BgLayer param1);
 BattleAnimScriptCmd BattleAnimSystem_GetScriptCmd(u32 param0);
@@ -269,7 +269,7 @@ BOOL BattleAnimSystem_IsDoubleBattle(BattleAnimSystem *param0);
 BOOL BattleAnimSystem_IsBattlerSemiInvulnerable(BattleAnimSystem *param0, int param1);
 int BattleAnimSystem_GetPokemonSpritePriority(BattleAnimSystem *param0);
 int ov12_022233B0(BattleAnimSystem *param0, int param1);
-int ov12_022233EC(BattleAnimSystem *param0, int param1);
+int BattleAnimSystem_GetBgID(BattleAnimSystem *param0, enum BattleAnimBg param1);
 int BattleAnimSystem_GetBgPriority(BattleAnimSystem *param0, enum BattleAnimBg param1);
 void BattleAnimSystem_LoadBattleBgTiles(BattleAnimSystem *param0, enum BgLayer param1);
 void ov12_02223488(BattleAnimSystem *param0);

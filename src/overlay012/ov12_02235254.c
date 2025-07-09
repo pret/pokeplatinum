@@ -641,7 +641,7 @@ void ov12_02235780(BattleAnimSystem *param0, int param1, int param2)
         v1 = 5;
     }
 
-    G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, (1 << ov12_022233EC(param0, 2)) | GX_BLEND_PLANEMASK_BG0, v0, v1);
+    G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, (1 << BattleAnimSystem_GetBgID(param0, 2)) | GX_BLEND_PLANEMASK_BG0, v0, v1);
 }
 
 void ov12_022357BC(BattleAnimSystem *param0, int param1, int param2, int param3)
@@ -673,18 +673,18 @@ void ov12_022357EC(BattleAnimSystem *param0, int param1, int param2)
         v1 = 5;
     }
 
-    G2_SetBlendAlpha((1 << ov12_022233EC(param0, 1)), (1 << ov12_022233EC(param0, 2)) | GX_WND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ, v0, v1);
+    G2_SetBlendAlpha((1 << BattleAnimSystem_GetBgID(param0, 1)), (1 << BattleAnimSystem_GetBgID(param0, 2)) | GX_WND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ, v0, v1);
 }
 
 void ov12_02235838(BattleAnimSystem *param0, int param1, BOOL param2)
 {
     if (param1 == 0) {
-        G2_SetWnd0InsidePlane((1 << ov12_022233EC(param0, 2)) | (1 << ov12_022233EC(param0, 0)) | (1 << ov12_022233EC(param0, 1)) | GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_OBJ, param2);
+        G2_SetWnd0InsidePlane((1 << BattleAnimSystem_GetBgID(param0, 2)) | (1 << BattleAnimSystem_GetBgID(param0, 0)) | (1 << BattleAnimSystem_GetBgID(param0, 1)) | GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_OBJ, param2);
     } else {
-        G2_SetWnd1InsidePlane((1 << ov12_022233EC(param0, 2)) | (1 << ov12_022233EC(param0, 0)) | (1 << ov12_022233EC(param0, 1)) | GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_OBJ, param2);
+        G2_SetWnd1InsidePlane((1 << BattleAnimSystem_GetBgID(param0, 2)) | (1 << BattleAnimSystem_GetBgID(param0, 0)) | (1 << BattleAnimSystem_GetBgID(param0, 1)) | GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_OBJ, param2);
     }
 
-    G2_SetWndOutsidePlane((1 << ov12_022233EC(param0, 0)) | (1 << ov12_022233EC(param0, 1)) | GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_OBJ, 1);
+    G2_SetWndOutsidePlane((1 << BattleAnimSystem_GetBgID(param0, 0)) | (1 << BattleAnimSystem_GetBgID(param0, 1)) | GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_OBJ, 1);
 }
 
 void ov12_02235918(PokemonSprite *param0, UnkStruct_ov12_02235350 *param1)
