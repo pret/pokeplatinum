@@ -943,7 +943,7 @@ static void ov12_0222BD48(SysTask *param0, void *param1)
 
     switch (v0->unk_00) {
     case 0:
-        PaletteData_StartFade(v0->unk_04, 0x1, ov12_02222354(v0->unk_08), -2, 0, 16, 0x7FFF);
+        PaletteData_StartFade(v0->unk_04, 0x1, BattleAnimSystem_GetBaseBgPalettes(v0->unk_08), -2, 0, 16, 0x7FFF);
         PokemonSprite_StartFade(v0->unk_10, 0, 16, 0, 0x0);
         v0->unk_00++;
         break;
@@ -958,7 +958,7 @@ static void ov12_0222BD48(SysTask *param0, void *param1)
         }
         break;
     case 3:
-        PaletteData_StartFade(v0->unk_04, 0x1, ov12_02222354(v0->unk_08), -2, 16, 0, 0x7FFF);
+        PaletteData_StartFade(v0->unk_04, 0x1, BattleAnimSystem_GetBaseBgPalettes(v0->unk_08), -2, 16, 0, 0x7FFF);
         PokemonSprite_StartFade(v0->unk_10, 16, 0, 0, 0x0);
         v0->unk_00++;
         break;
@@ -1296,7 +1296,7 @@ static void ov12_0222C4A8(SysTask *param0, void *param1)
 
     switch (v1->unk_00) {
     case 0:
-        PaletteData_StartFade(ov12_0222332C(v1->unk_0C), 0x1, ov12_02222354(v1->unk_0C), 1, 0, 10, 0x0);
+        PaletteData_StartFade(ov12_0222332C(v1->unk_0C), 0x1, BattleAnimSystem_GetBaseBgPalettes(v1->unk_0C), 1, 0, 10, 0x0);
         v1->unk_00++;
         break;
     case 1:
@@ -1441,7 +1441,7 @@ void ov12_0222C6D4(BattleAnimSystem *param0)
         ov12_02225BC8(&v0->unk_40, v0->unk_04.unk_00, v0->unk_04.unk_00 + (-20 * v2), v0->unk_04.unk_02, v0->unk_04.unk_02 + ((+20) * v3), 20);
     }
 
-    ov12_022357BC(v0->unk_0C, (1 << ov12_022233EC(param0, 2)) | GX_BLEND_PLANEMASK_BD | (1 << ov12_022233EC(param0, 1)) | GX_WND_PLANEMASK_BG0, 0xffffffff, 0xffffffff);
+    ov12_022357BC(v0->unk_0C, (1 << BattleAnimSystem_GetBgID(param0, 2)) | GX_BLEND_PLANEMASK_BD | (1 << BattleAnimSystem_GetBgID(param0, 1)) | GX_WND_PLANEMASK_BG0, 0xffffffff, 0xffffffff);
     ov12_02226424(&v0->unk_64, 31, 0, 0, 31, (20 - 5));
 
     ManagedSprite_SetExplicitOamMode(v0->unk_18, GX_OAM_MODE_XLU);
@@ -2112,7 +2112,7 @@ void ov12_0222D56C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v1->unk_20 = PokemonSprite_GetAttribute(v1->unk_1C, MON_SPRITE_Y_CENTER);
     v1->unk_24 = ov12_02223354(v1->unk_10, BattleAnimSystem_GetAttacker(v1->unk_10));
 
-    ov12_022357BC(v1->unk_10, (1 << ov12_022233EC(param0, 2)) | (1 << ov12_022233EC(param0, 1)) | GX_WND_PLANEMASK_BG0, 0xffffffff, 0xffffffff);
+    ov12_022357BC(v1->unk_10, (1 << BattleAnimSystem_GetBgID(param0, 2)) | (1 << BattleAnimSystem_GetBgID(param0, 1)) | GX_WND_PLANEMASK_BG0, 0xffffffff, 0xffffffff);
     G2_ChangeBlendAlpha(v1->unk_04, v1->unk_08);
 
     v2 = ov12_0222329C(param0);

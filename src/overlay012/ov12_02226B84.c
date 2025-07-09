@@ -1067,7 +1067,7 @@ void ov12_02227828(BattleAnimSystem *param0)
 
     switch (BattleAnimSystem_GetScriptVar(param0, 0)) {
     case 0:
-        v1 = ov12_02222354(param0);
+        v1 = BattleAnimSystem_GetBaseBgPalettes(param0);
         break;
     case 1:
         v1 = (1 << 8);
@@ -3769,7 +3769,7 @@ static void ov12_0222ABBC(SysTask *param0, void *param1)
     switch (v0->unk_08.unk_00) {
     case 0:
         v0->unk_00 = 0;
-        v0->unk_24 = ov12_0222662C(0, 160, ((1 * 0xffff) / 360), (32 * FX32_ONE), (2 * 100), ov12_022233EC(v0->unk_08.unk_04, 2), 0, ov12_022266E8(0, 0), BattleAnimSystem_GetHeapID(v0->unk_08.unk_04));
+        v0->unk_24 = ov12_0222662C(0, 160, ((1 * 0xffff) / 360), (32 * FX32_ONE), (2 * 100), BattleAnimSystem_GetBgID(v0->unk_08.unk_04, 2), 0, ov12_022266E8(0, 0), BattleAnimSystem_GetHeapID(v0->unk_08.unk_04));
         v0->unk_08.unk_00++;
         break;
     case 1:

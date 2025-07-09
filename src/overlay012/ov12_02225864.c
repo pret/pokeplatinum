@@ -2,6 +2,7 @@
 
 #include <nitro.h>
 #include <string.h>
+#include "constants/battle/battle_anim.h"
 
 #include "overlay012/funcptr_ov12_02226274.h"
 #include "overlay012/ov12_0221FC20.h"
@@ -914,7 +915,7 @@ static void ov12_0222653C(void *param0)
     ov12_02226504(v0);
 }
 
-UnkStruct_ov12_02226504 *ov12_02226544(u32 param0, u32 param1, int heapID)
+UnkStruct_ov12_02226504 *ov12_02226544(u32 param0, u32 param1, enum HeapId heapID)
 {
     UnkStruct_ov12_02226504 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov12_02226504));
     memset(v0, 0, sizeof(UnkStruct_ov12_02226504));
@@ -984,7 +985,7 @@ UnkStruct_ov12_0222660C *ov12_0222662C(u8 param0, u8 param1, u16 param2, fx32 pa
 
     memset(v0, 0, sizeof(UnkStruct_ov12_0222660C));
 
-    v1 = ov12_022266F0(param5);
+    v1 = BattleAnimUtil_GetHOffsetRegisterForBg(param5);
     v0->screenScrollMgr = ScreenScrollManager_New(heapID);
 
     ScreenScrollManager_ScrollX(v0->screenScrollMgr, param0, param1, param2, param3, param4, v1, param7, param6);
@@ -1023,26 +1024,14 @@ u32 ov12_022266E8(u16 param0, u16 param1)
     return (param1 << 16) | param0;
 }
 
-u32 ov12_022266F0(int param0)
+u32 BattleAnimUtil_GetHOffsetRegisterForBg(int bgID)
 {
-    u32 v0;
-
-    switch (param0) {
-    case 0:
-        v0 = REG_BG0HOFS_ADDR;
-        break;
-    case 1:
-        v0 = REG_BG1HOFS_ADDR;
-        break;
-    case 2:
-        v0 = REG_BG2HOFS_ADDR;
-        break;
-    case 3:
-        v0 = REG_BG3HOFS_ADDR;
-        break;
+    switch (bgID) {
+    case BATTLE_BG_ID_UNUSED: return REG_BG0HOFS_ADDR;
+    case BATTLE_BG_ID_WINDOW: return REG_BG1HOFS_ADDR;
+    case BATTLE_BG_ID_BASE: return REG_BG2HOFS_ADDR;
+    case BATTLE_BG_ID_EFFECT: return REG_BG3HOFS_ADDR;
     }
-
-    return v0;
 }
 
 void ov12_02226728(s16 param0, s16 param1, s16 param2, s16 param3, s16 *param4, s16 *param5)
