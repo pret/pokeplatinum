@@ -34,7 +34,7 @@ c_args = [
     '-stdinc',
     '-sym', 'on',
     '-DPOKEPLATINUM_GENERATED_ENUM',
-    '-D_MSL_RESTRICT='
+    '-D_MSL_RESTRICT=',
 ]
 
 if get_option('rev1')
