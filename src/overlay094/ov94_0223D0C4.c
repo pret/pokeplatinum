@@ -436,7 +436,7 @@ static int ov94_0223D754(GTSApplicationState *param0)
             Pokemon *v0 = (Pokemon *)param0->receivedListing.pokemon.bytes;
 
             if (Pokemon_HeldItemIsMail(v0)) {
-                if (Party_GetCurrentCount(param0->playerData->unk_08) == 6) {
+                if (Party_GetCurrentCount(param0->playerData->party) == 6) {
                     ov94_0223D88C(param0, GTS_Text_Error_NoRoomInParty, TEXT_SPEED_FAST, 0, 0xf0f, v0);
                     GTSApplication_SetCurrentAndNextScreenInstruction(param0, 3, 1);
                     return 3;

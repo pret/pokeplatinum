@@ -96,7 +96,7 @@ int GTSApplication_MainMenu_Init(GTSApplicationState *appState, int unused1)
         appState->currentScreenInstruction = 0;
         appState->hasPlayerDescended = TRUE;
 
-        ov94_02243FA8(appState, TrainerInfo_Gender(appState->playerData->unk_1C));
+        ov94_02243FA8(appState, TrainerInfo_Gender(appState->playerData->trainerInfo));
     } else {
         if (appState->fadeBothScreens == 1) {
             StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
@@ -476,7 +476,7 @@ static int ov94_0223CC28(GTSApplicationState *param0)
 
 static int ov94_0223CDD8(GTSApplicationState *param0)
 {
-    ov94_022440B8(param0, TrainerInfo_Gender(param0->playerData->unk_1C));
+    ov94_022440B8(param0, TrainerInfo_Gender(param0->playerData->trainerInfo));
 
     param0->currentScreenInstruction = 8;
     param0->hasAvatarFinishedMoving = FALSE;

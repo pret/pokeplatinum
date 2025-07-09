@@ -17,22 +17,22 @@
 #include "trainer_info.h"
 
 typedef struct {
-    GlobalTrade *unk_00;
-    SystemData *unk_04;
-    Party *unk_08;
+    GlobalTrade *globalTrade;
+    SystemData *systemData;
+    Party *party;
     PCBoxes *pcBoxes;
-    Pokedex *unk_10;
-    WiFiList *unk_14;
+    Pokedex *pokedex;
+    WiFiList *wiFiList;
     WiFiHistory *wiFiHistory;
-    TrainerInfo *unk_1C;
+    TrainerInfo *trainerInfo;
     SaveData *saveData;
     Options *options;
     GameRecords *records;
     JournalEntry *journalEntry;
-    Bag *unk_30;
-    int unk_34;
-    int unk_38;
-    int unk_3C;
+    Bag *bag;
+    int dexMode;
+    int dwcProfileId;
+    int showContestData;
     int unk_40;
 } GTSPlayerData;
 

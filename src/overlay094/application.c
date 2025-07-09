@@ -179,7 +179,7 @@ int GTSApplication_Main(ApplicationManager *appMan, int *loopState)
         if (IsScreenFadeDone()) {
             if (appState->hasTradedPokemon) { // pokemon received?
                 ov94_0223C4E0(appState);
-                ov94_02243EF8(appState, TrainerInfo_Gender(appState->playerData->unk_1C));
+                ov94_02243EF8(appState, TrainerInfo_Gender(appState->playerData->trainerInfo));
                 ov94_02244234(appState, appState->unk_118, 0);
                 ov94_0223D068(appState);
                 appState->hasTradedPokemon = FALSE;

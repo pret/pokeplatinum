@@ -544,7 +544,7 @@ static int GTSApplication_NetworkHandler_GetListedPokemonResponse(GTSApplication
             if (appState->receivedListing.exchangedFromRemote) {
                 appState->currentScreenInstruction = 24; // we have a trade waiting
             } else {
-                GTSApplication_NetworkHandler_StorePokemonFromDepositing(appState, (Pokemon *)appState->receivedListing.pokemon.bytes, GlobalTrade_GetUnusedInt(appState->playerData->unk_00), appState->receivedListing.exchangedFromRemote);
+                GTSApplication_NetworkHandler_StorePokemonFromDepositing(appState, (Pokemon *)appState->receivedListing.pokemon.bytes, GlobalTrade_GetUnusedInt(appState->playerData->globalTrade), appState->receivedListing.exchangedFromRemote);
                 appState->currentScreenInstruction = 30;
             }
             break;
@@ -786,18 +786,18 @@ static int GTSApplication_NetworkHandler_GetListingStatusResponse(GTSApplication
         case -3: // first byte = 5
             appState->isPokemonListed = 0;
 
-            if (GlobalTrade_IsPokemonListed(appState->playerData->unk_00)) {
+            if (GlobalTrade_IsPokemonListed(appState->playerData->globalTrade)) {
                 Pokemon *tempPokemon = Pokemon_New(HEAP_ID_62);
 
-                GlobalTrade_CopyStoredPokemon(appState->playerData->unk_00, tempPokemon);
+                GlobalTrade_CopyStoredPokemon(appState->playerData->globalTrade, tempPokemon);
                 StringTemplate_SetNickname(appState->stringTemplate, 0, Pokemon_GetBoxPokemon(tempPokemon));
 
                 appState->depositReturnError = pl_msg_00000671_00002;
                 appState->currentScreenInstruction = 34;
 
-                GTSApplication_NetworkHandler_StorePokemonFromDepositing(appState, tempPokemon, GlobalTrade_GetUnusedInt(appState->playerData->unk_00), 0);
+                GTSApplication_NetworkHandler_StorePokemonFromDepositing(appState, tempPokemon, GlobalTrade_GetUnusedInt(appState->playerData->globalTrade), 0);
 
-                GlobalTrade_SetPokemonListed(appState->playerData->unk_00, 0);
+                GlobalTrade_SetPokemonListed(appState->playerData->globalTrade, 0);
                 Heap_FreeToHeap(tempPokemon);
             } else {
                 GTSApplication_NetworkHandler_ReturnToPreviousScreen(appState);
@@ -806,16 +806,16 @@ static int GTSApplication_NetworkHandler_GetListingStatusResponse(GTSApplication
         case -4: // first byte = 3; pokemon is fleeing
             appState->isPokemonListed = 0;
 
-            if (GlobalTrade_IsPokemonListed(appState->playerData->unk_00)) {
+            if (GlobalTrade_IsPokemonListed(appState->playerData->globalTrade)) {
                 Pokemon *tempPokemon = Pokemon_New(HEAP_ID_62);
 
-                GlobalTrade_CopyStoredPokemon(appState->playerData->unk_00, tempPokemon);
+                GlobalTrade_CopyStoredPokemon(appState->playerData->globalTrade, tempPokemon);
                 StringTemplate_SetNickname(appState->stringTemplate, 0, Pokemon_GetBoxPokemon(tempPokemon));
 
                 appState->depositReturnError = pl_msg_00000671_00003;
                 appState->currentScreenInstruction = 34;
 
-                GlobalTrade_SetPokemonListed(appState->playerData->unk_00, 0);
+                GlobalTrade_SetPokemonListed(appState->playerData->globalTrade, 0);
                 Heap_FreeToHeap(tempPokemon);
             }
             break;
@@ -925,7 +925,7 @@ static void GTSApplication_NetworkHandler_ReturnToPreviousScreen(GTSApplicationS
 
 static int GTSApplication_NetworkHandler_PerformDepositTrade(GTSApplicationState *appState)
 {
-    GTSApplication_NetworkHandler_StorePokemonFromDepositing(appState, (Pokemon *)appState->receivedListing.pokemon.bytes, GlobalTrade_GetUnusedInt(appState->playerData->unk_00), appState->receivedListing.exchangedFromRemote);
+    GTSApplication_NetworkHandler_StorePokemonFromDepositing(appState, (Pokemon *)appState->receivedListing.pokemon.bytes, GlobalTrade_GetUnusedInt(appState->playerData->globalTrade), appState->receivedListing.exchangedFromRemote);
     GTSApplication_NetworkHandler_FlagGeonetCommunicatedWith(appState->playerData->wiFiHistory, &appState->receivedListing);
 
     GameRecords_IncrementTrainerScore(appState->playerData->records, TRAINER_SCORE_EVENT_GTS_TRADE_COMPLETE);
@@ -935,7 +935,7 @@ static int GTSApplication_NetworkHandler_PerformDepositTrade(GTSApplicationState
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(appState->playerData->saveData);
     sub_0206D104(broadcast);
 
-    GlobalTrade_SetPokemonListed(appState->playerData->unk_00, 0);
+    GlobalTrade_SetPokemonListed(appState->playerData->globalTrade, 0);
     appState->currentScreenInstruction = 30;
     GTSApplication_NetworkHandler_SetSaveInstructions(appState, 19, 11);
 
@@ -1242,24 +1242,24 @@ static void ov94_02243B08(GTSApplicationState *param0, int param1)
         Pokemon *v0 = Pokemon_New(HEAP_ID_62);
 
         Pokemon_FromBoxPokemon(PCBoxes_GetBoxMonAt(param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112), v0);
-        sub_0202DA7C(param0->playerData->unk_00, v0, param0->selectedBoxId);
+        sub_0202DA7C(param0->playerData->globalTrade, v0, param0->selectedBoxId);
         PCBoxes_InitBoxMonAt(param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112);
         Heap_FreeToHeap(v0);
     } else {
-        Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->playerData->unk_08, param0->unk_112);
+        Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->playerData->party, param0->unk_112);
 
         sub_0207893C(v1);
-        sub_0202DA7C(param0->playerData->unk_00, v1, param0->selectedBoxId);
-        Party_RemovePokemonBySlotIndex(param0->playerData->unk_08, param0->unk_112);
+        sub_0202DA7C(param0->playerData->globalTrade, v1, param0->selectedBoxId);
+        Party_RemovePokemonBySlotIndex(param0->playerData->party, param0->unk_112);
 
-        if (Party_HasSpecies(param0->playerData->unk_08, SPECIES_CHATOT) == 0) {
+        if (Party_HasSpecies(param0->playerData->party, SPECIES_CHATOT) == 0) {
             ChatotCry *v2 = SaveData_GetChatotCry(param0->playerData->saveData);
             ResetChatotCryDataStatus(v2);
         }
     }
 
     if (param1) {
-        GlobalTrade_SetPokemonListed(param0->playerData->unk_00, 1);
+        GlobalTrade_SetPokemonListed(param0->playerData->globalTrade, 1);
     }
 }
 
@@ -1270,7 +1270,7 @@ static void GTSApplication_NetworkHandler_StorePokemonFromDepositing(GTSApplicat
     SaveData_UpdateCatchRecords(appState->playerData->saveData, pokemon);
     boxIndex = MAX_PC_BOXES;
 
-    if (Party_GetCurrentCount(appState->playerData->unk_08) == MAX_PARTY_SIZE) {
+    if (Party_GetCurrentCount(appState->playerData->party) == MAX_PARTY_SIZE) {
         boxIndex = 0;
     }
 
@@ -1291,12 +1291,12 @@ static void GTSApplication_NetworkHandler_StorePokemonFromDepositing(GTSApplicat
         Pokemon_SetValue(pokemon, MON_DATA_FRIENDSHIP, &friendship);
         Pokemon_SetValue(pokemon, MON_DATA_GENDER, NULL);
 
-        GTS_SetTradedTimestamp(appState->playerData->unk_00, GTS_TIMESTAMPS_TRADE_BY_DEPOSITING);
+        GTS_SetTradedTimestamp(appState->playerData->globalTrade, GTS_TIMESTAMPS_TRADE_BY_DEPOSITING);
     }
 
     if (boxIndex == MAX_PC_BOXES) {
-        Party_AddPokemon(appState->playerData->unk_08, pokemon);
-        int partyIndex = Party_GetCurrentCount(appState->playerData->unk_08);
+        Party_AddPokemon(appState->playerData->party, pokemon);
+        int partyIndex = Party_GetCurrentCount(appState->playerData->party);
 
         appState->tradedPokemonLocation.boxIndex = MAX_PC_BOXES;
         appState->tradedPokemonLocation.index = partyIndex - 1;
@@ -1310,7 +1310,7 @@ static void GTSApplication_NetworkHandler_StorePokemonFromDepositing(GTSApplicat
         appState->tradedPokemonLocation.index = boxPosition;
     }
 
-    GlobalTrade_SetPokemonListed(appState->playerData->unk_00, 0);
+    GlobalTrade_SetPokemonListed(appState->playerData->globalTrade, 0);
 }
 
 static void GTSApplication_NetworkHandler_StorePokemonFromSearching(GTSApplicationState *appState, Pokemon *pokemon, int boxIndex)
@@ -1319,7 +1319,7 @@ static void GTSApplication_NetworkHandler_StorePokemonFromSearching(GTSApplicati
 
     boxIndex = MAX_PC_BOXES;
 
-    if (Party_GetCurrentCount(appState->playerData->unk_08) == MAX_PARTY_SIZE) {
+    if (Party_GetCurrentCount(appState->playerData->party) == MAX_PARTY_SIZE) {
         boxIndex = 0;
     }
 
@@ -1341,8 +1341,8 @@ static void GTSApplication_NetworkHandler_StorePokemonFromSearching(GTSApplicati
     Pokemon_SetValue(pokemon, MON_DATA_GENDER, NULL);
 
     if (boxIndex == MAX_PC_BOXES) {
-        Party_AddPokemon(appState->playerData->unk_08, pokemon);
-        int partyIndex = Party_GetCurrentCount(appState->playerData->unk_08);
+        Party_AddPokemon(appState->playerData->party, pokemon);
+        int partyIndex = Party_GetCurrentCount(appState->playerData->party);
 
         appState->tradedPokemonLocation.boxIndex = MAX_PC_BOXES;
         appState->tradedPokemonLocation.index = partyIndex - 1;
@@ -1356,7 +1356,7 @@ static void GTSApplication_NetworkHandler_StorePokemonFromSearching(GTSApplicati
         appState->tradedPokemonLocation.index = boxPosition;
     }
 
-    GTS_SetTradedTimestamp(appState->playerData->unk_00, GTS_TIMESTAMPS_TRADE_BY_SEARCHING);
+    GTS_SetTradedTimestamp(appState->playerData->globalTrade, GTS_TIMESTAMPS_TRADE_BY_SEARCHING);
 }
 
 static void GTS_SetTradedTimestamp(GlobalTrade *globalTrade, int type)
@@ -1395,11 +1395,11 @@ static void GTS_LogTradeInJournal(JournalEntry *journalEntry, GTSPokemonListing 
 static int GTSApplication_NetworkHandler_HaveSpaceForPokemon(GTSApplicationState *param0, GTSPokemonListing *listing)
 {
     if (Pokemon_HeldItemIsMail((Pokemon *)listing->pokemon.bytes)
-        && (Party_GetCurrentCount(param0->playerData->unk_08) == MAX_PARTY_SIZE)) {
+        && (Party_GetCurrentCount(param0->playerData->party) == MAX_PARTY_SIZE)) {
         return 2;
     }
 
-    if ((param0->deferredBoxPokemonCount == (MAX_MONS_PER_BOX * MAX_PC_BOXES)) && (Party_GetCurrentCount(param0->playerData->unk_08) == MAX_PARTY_SIZE)) {
+    if ((param0->deferredBoxPokemonCount == (MAX_MONS_PER_BOX * MAX_PC_BOXES)) && (Party_GetCurrentCount(param0->playerData->party) == MAX_PARTY_SIZE)) {
         return 1;
     }
 
@@ -1414,7 +1414,7 @@ static void GTSApplication_NetworkHandler_SetSaveInstructions(GTSApplicationStat
 
 static BOOL GTSApplication_NetworkHandler_IsListingDesynced(GTSApplicationState *appState)
 {
-    if (GlobalTrade_IsPokemonListed(appState->playerData->unk_00) == FALSE) {
+    if (GlobalTrade_IsPokemonListed(appState->playerData->globalTrade) == FALSE) {
         if (appState->isPokemonListed) {
             return TRUE;
         }

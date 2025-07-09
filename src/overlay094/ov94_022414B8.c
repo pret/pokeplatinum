@@ -588,7 +588,7 @@ static int ov94_02241A58(GTSApplicationState *param0)
 
 static int ov94_02241B2C(GTSApplicationState *param0)
 {
-    param0->unk_10D8 = ov94_022427C0(param0, &param0->unk_10CC, &param0->unk_F9C[1], param0->gtsMessageLoader, param0->speciesMessageLoader, param0->unk_10E4, param0->playerData->unk_10);
+    param0->unk_10D8 = ov94_022427C0(param0, &param0->unk_10CC, &param0->unk_F9C[1], param0->gtsMessageLoader, param0->speciesMessageLoader, param0->unk_10E4, param0->playerData->pokedex);
     param0->unk_108 = 0xffff;
     param0->currentScreenInstruction = 6;
 
@@ -1047,13 +1047,13 @@ void ov94_022425A8(GTSPokemonListing *listing, GTSApplicationState *param1)
         Pokemon_FromBoxPokemon(param1->unk_114, (Pokemon *)listing->pokemon.bytes);
     }
 
-    CharCode_CopyNumChars(listing->unk_10C, TrainerInfo_Name(param1->playerData->unk_1C), 8);
+    CharCode_CopyNumChars(listing->unk_10C, TrainerInfo_Name(param1->playerData->trainerInfo), 8);
 
-    listing->unk_11C = TrainerInfo_ID_LowHalf(param1->playerData->unk_1C);
+    listing->unk_11C = TrainerInfo_ID_LowHalf(param1->playerData->trainerInfo);
     listing->trainerCountry = WiFiHistory_GetCountry(param1->playerData->wiFiHistory);
     listing->trainerRegion = WiFiHistory_GetRegion(param1->playerData->wiFiHistory);
-    listing->unk_120 = TrainerInfo_Appearance(param1->playerData->unk_1C);
-    listing->unk_F6 = TrainerInfo_Gender(param1->playerData->unk_1C);
+    listing->unk_120 = TrainerInfo_Appearance(param1->playerData->trainerInfo);
+    listing->unk_F6 = TrainerInfo_Gender(param1->playerData->trainerInfo);
     listing->unk_122 = GAME_VERSION;
     listing->trainerLanguage = GAME_LANGUAGE;
 }

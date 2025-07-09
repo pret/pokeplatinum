@@ -563,14 +563,14 @@ static int GTSApplication_WFCInit_GetDWCKey(GTSApplicationState *appState)
     DWCUserData *v0;
     s32 v1;
 
-    v0 = WiFiList_GetUserData(appState->playerData->unk_14);
-    v1 = SystemData_GetDWCProfileId(appState->playerData->unk_04);
+    v0 = WiFiList_GetUserData(appState->playerData->wiFiList);
+    v1 = SystemData_GetDWCProfileId(appState->playerData->systemData);
 
     if (v1 == 0) {
-        SystemData_SetDWCProfileId(appState->playerData->unk_04, appState->playerData->unk_38);
+        SystemData_SetDWCProfileId(appState->playerData->systemData, appState->playerData->dwcProfileId);
     }
 
-    v1 = SystemData_GetDWCProfileId(appState->playerData->unk_04);
+    v1 = SystemData_GetDWCProfileId(appState->playerData->systemData);
     ov94_0223B140(v1, DWC_CreateFriendKey(v0));
     appState->currentScreenInstruction = 7;
 

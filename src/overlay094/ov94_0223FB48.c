@@ -557,10 +557,10 @@ static int ov94_022402BC(GTSApplicationState *param0)
                 if (param0->unk_112 != 31) {
                     Sound_PlayEffect(SEQ_SE_CONFIRM);
 
-                    switch (ov94_022412F4(param0->playerData->unk_08, param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112)) {
+                    switch (ov94_022412F4(param0->playerData->party, param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112)) {
                     case 1:
-                        if (ov94_0224121C(param0->playerData->unk_08, param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112)) {
-                            StringTemplate_SetNickname(param0->stringTemplate, 0, ov94_022411DC(param0->playerData->unk_08, param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112));
+                        if (ov94_0224121C(param0->playerData->party, param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112)) {
+                            StringTemplate_SetNickname(param0->stringTemplate, 0, ov94_022411DC(param0->playerData->party, param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112));
                             ov94_02240D58(param0, 22, TEXT_SPEED_FAST, 0, 0xf0f, 0);
                             GTSApplication_SetCurrentAndNextScreenInstruction(param0, 3, 7);
                         } else {
@@ -588,12 +588,12 @@ static int ov94_022402BC(GTSApplicationState *param0)
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
             } else {
                 if (param0->unk_112 != 31) {
-                    switch (ov94_022412F4(param0->playerData->unk_08, param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112)) {
+                    switch (ov94_022412F4(param0->playerData->party, param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112)) {
                     case 1: {
-                        BoxPokemon *v0 = ov94_022411DC(param0->playerData->unk_08, param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112);
+                        BoxPokemon *v0 = ov94_022411DC(param0->playerData->party, param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112);
 
                         if (ov94_02241384(v0, &param0->unk_250[param0->unk_11C].unk_F0)) {
-                            if (ov94_0224121C(param0->playerData->unk_08, param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112)) {
+                            if (ov94_0224121C(param0->playerData->party, param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112)) {
                                 StringTemplate_SetNickname(param0->stringTemplate, 0, v0);
                                 ov94_02240D58(param0, 18, TEXT_SPEED_FAST, 0, 0xf0f, 0);
                                 GTSApplication_SetCurrentAndNextScreenInstruction(param0, 3, 9);
@@ -720,7 +720,7 @@ static int ov94_02240688(GTSApplicationState *param0)
         StringList_Free(param0->unk_10CC);
         Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
 
-        v0 = ov94_022411DC(param0->playerData->unk_08, param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112);
+        v0 = ov94_022411DC(param0->playerData->party, param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112);
 
         if (BoxPokemon_HasUnusedRibbons(v0)) {
             ov94_02240D58(param0, 37, TEXT_SPEED_FAST, 0, 0xf0f, 1);
@@ -737,7 +737,7 @@ static int ov94_02240688(GTSApplicationState *param0)
             if (ov94_022411D0(param0->selectedBoxId)) {
                 Pokemon *v2;
 
-                v2 = Party_GetPokemonBySlotIndex(param0->playerData->unk_08, param0->unk_112);
+                v2 = Party_GetPokemonBySlotIndex(param0->playerData->party, param0->unk_112);
 
                 if (Pokemon_GetValue(v2, MON_DATA_BALL_CAPSULE_ID, NULL)) {
                     v1 = 1;
@@ -746,7 +746,7 @@ static int ov94_02240688(GTSApplicationState *param0)
             }
 
             if (v1 == 0) {
-                param0->unk_114 = ov94_022411DC(param0->playerData->unk_08, param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112);
+                param0->unk_114 = ov94_022411DC(param0->playerData->party, param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112);
                 param0->currentScreenInstruction = 2;
 
                 GTSApplication_SetNextScreenWithArgument(param0, 6, 0);
@@ -812,7 +812,7 @@ static int ov94_022408E8(GTSApplicationState *param0)
         StringList_Free(param0->unk_10CC);
         Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
 
-        boxMon = ov94_022411DC(param0->playerData->unk_08, param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112);
+        boxMon = ov94_022411DC(param0->playerData->party, param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112);
 
         if (BoxPokemon_HasUnusedRibbons(boxMon)) {
             ov94_02240D58(param0, 37, TEXT_SPEED_FAST, 0, 0xf0f, 1);
@@ -829,7 +829,7 @@ static int ov94_022408E8(GTSApplicationState *param0)
             if (ov94_022411D0(param0->selectedBoxId)) {
                 Pokemon *v2;
 
-                v2 = Party_GetPokemonBySlotIndex(param0->playerData->unk_08, param0->unk_112);
+                v2 = Party_GetPokemonBySlotIndex(param0->playerData->party, param0->unk_112);
 
                 if (Pokemon_GetValue(v2, MON_DATA_BALL_CAPSULE_ID, NULL)) {
                     v1 = 1;
@@ -930,14 +930,14 @@ static int ov94_02240BB0(GTSApplicationState *param0)
     Pokemon *v0 = (Pokemon *)param0->unk_250[param0->unk_11C].pokemon.bytes;
 
     if (Pokemon_HeldItemIsMail(v0) && (param0->selectedBoxId != MAX_PC_BOXES)) {
-        if (Party_GetCurrentCount(param0->playerData->unk_08) == 6) {
+        if (Party_GetCurrentCount(param0->playerData->party) == 6) {
             ov94_02240D58(param0, 28, TEXT_SPEED_FAST, 0, 0xf0f, 1);
             GTSApplication_SetCurrentAndNextScreenInstruction(param0, 4, 1);
             return 0;
         }
     }
 
-    param0->unk_114 = ov94_022411DC(param0->playerData->unk_08, param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112);
+    param0->unk_114 = ov94_022411DC(param0->playerData->party, param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112);
     param0->currentScreenInstruction = 2;
     param0->fadeBothScreens = 1;
 
@@ -974,7 +974,7 @@ static int ov94_02240CA8(GTSApplicationState *param0)
             Window_EraseMessageBox(&param0->unk_109C, 0);
             param0->currentScreenInstruction = 1;
         } else {
-            param0->unk_114 = ov94_022411DC(param0->playerData->unk_08, param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112);
+            param0->unk_114 = ov94_022411DC(param0->playerData->party, param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112);
             param0->currentScreenInstruction = 2;
             GTSApplication_SetNextScreenWithArgument(param0, 6, 0);
         }
@@ -1149,10 +1149,10 @@ static void ov94_02240FA0(GTSApplicationState *param0, int param1)
 
         PCBoxes_BufferBoxName(pcBoxes, param1, param0->unk_BA4);
     } else {
-        int v8 = Party_GetCurrentCount(param0->playerData->unk_08);
+        int v8 = Party_GetCurrentCount(param0->playerData->party);
 
         for (v1 = 0; v1 < v8; v1++) {
-            v3 = Party_GetPokemonBySlotIndex(param0->playerData->unk_08, v1);
+            v3 = Party_GetPokemonBySlotIndex(param0->playerData->party, v1);
             v4 = Pokemon_GetBoxPokemon(v3);
 
             ov94_02240E50(v4, &param0->unk_1108->unk_00[v1]);

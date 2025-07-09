@@ -498,9 +498,9 @@ static int GTS_IsTradeTimestampRecent(GTSApplicationState *appState, int bySearc
     RTCTime v3;
 
     if (bySearching == 1) {
-        datestamp = GlobalTrade_GetSearchTradeDatestamp(appState->playerData->unk_00);
+        datestamp = GlobalTrade_GetSearchTradeDatestamp(appState->playerData->globalTrade);
     } else {
-        datestamp = GlobalTrade_GetDepositTradeDatestamp(appState->playerData->unk_00);
+        datestamp = GlobalTrade_GetDepositTradeDatestamp(appState->playerData->globalTrade);
     }
 
     Date_ConvertFromInteger(datestamp, &date);
@@ -795,7 +795,7 @@ static int ov94_0223F190(GTSApplicationState *param0)
 
 static int ov94_0223F25C(GTSApplicationState *param0)
 {
-    param0->unk_10D8 = ov94_022427C0(param0, &param0->unk_10CC, &param0->unk_F9C[1], param0->gtsMessageLoader, param0->speciesMessageLoader, param0->unk_10E4, param0->playerData->unk_10);
+    param0->unk_10D8 = ov94_022427C0(param0, &param0->unk_10CC, &param0->unk_F9C[1], param0->gtsMessageLoader, param0->speciesMessageLoader, param0->unk_10E4, param0->playerData->pokedex);
     param0->unk_108 = 0xffff;
     param0->currentScreenInstruction = 7;
 
