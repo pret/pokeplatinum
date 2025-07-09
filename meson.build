@@ -34,8 +34,14 @@ c_args = [
     '-stdinc',
     '-sym', 'on',
     '-DPOKEPLATINUM_GENERATED_ENUM',
-    '-D_MSL_RESTRICT=',
+    '-D_MSL_RESTRICT='
 ]
+
+if get_option('rev1')
+    c_args += [
+        '-DPOKEPLATINUM_REV1='
+    ]
+endif
 
 if get_option('gdb_debugging')
     c_args += [

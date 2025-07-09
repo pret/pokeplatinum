@@ -455,7 +455,11 @@ static void ov94_0223E3B0(Window *param0, MessageLoader *param1, MessageLoader *
 
     ov94_02242158(param0, param2, param3->species, 0, 3, TEXT_COLOR(15, 2, 0));
     ov94_02242204(param0, param1, param3->gender, 0, 3, 70, TEXT_COLOR(15, 2, 0));
+#ifdef POKEPLATINUM_REV1
+    ov94_0224226C(param0, param1, ov94_02242970(param3->level, param3->level2, 0), 0, 19, TEXT_COLOR(15, 2, 0), 0, 8);
+#else
     ov94_0224226C(param0 + 1, param1, ov94_02242970(param3->level, param3->level2, 0), 0, 19, TEXT_COLOR(15, 2, 0), 0, 8);
+#endif
 }
 
 static void ov94_0223E424(Window *param0, Strbuf *param1, Strbuf *param2)
