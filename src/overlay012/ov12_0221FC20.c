@@ -123,17 +123,6 @@ enum BattleAnimTaskKind {
     MOVE_EFFECT_TASK_KIND_SOUND,
 };
 
-enum BattleAnimBattlerType {
-    BATTLER_TYPE_ATTACKER = 0,
-    BATTLER_TYPE_DEFENDER,
-    BATTLER_TYPE_ATTACKER_PARTNER,
-    BATTLER_TYPE_DEFENDER_PARTNER,
-    BATTLER_TYPE_PLAYER_SLOT_1,
-    BATTLER_TYPE_ENEMY_SLOT_1,
-    BATTLER_TYPE_PLAYER_SLOT_2,
-    BATTLER_TYPE_ENEMY_SLOT_2,
-};
-
 static void ov12_022224F8(SysTask *param0, void *param1);
 static void BattleAnimScript_WaitForDelay(BattleAnimSystem *param0);
 static void BattleAnimScript_Execute(BattleAnimSystem *param0);
@@ -469,7 +458,7 @@ BOOL BattleAnimSystem_StartMove(BattleAnimSystem *system, UnkStruct_ov16_02265BB
 
     system->unk_180 = param3->unk_54;
     system->context->chatotCry = param3->unk_6C;
-    system->context->unk_114 = param3->unk_74;
+    system->context->bgPaletteBuffer = param3->unk_74;
     system->context->bgTiles = param3->unk_70;
 
     int moveID = move;
@@ -1173,8 +1162,8 @@ static void BattleAnimScriptCmd_End(BattleAnimSystem *system)
     if (BattleAnimSystem_IsContest(system) == FALSE) {
         Battle_SetDefaultBlend();
 
-        Bg_ClearTilesRange(ov12_022233B0(system, 1), 0x4000, 0, BattleAnimSystem_GetHeapID(system));
-        Bg_ClearTilemap(BattleAnimSystem_GetBgConfig(system), ov12_022233B0(system, 1));
+        Bg_ClearTilesRange(BattleAnimSystem_GetBgLayer(system, 1), 0x4000, 0, BattleAnimSystem_GetHeapID(system));
+        Bg_ClearTilemap(BattleAnimSystem_GetBgConfig(system), BattleAnimSystem_GetBgLayer(system, 1));
         Bg_ToggleLayer(BG_LAYER_MAIN_2, TRUE);
     } else {
         ov17_022413D8();
@@ -2556,7 +2545,7 @@ static BOOL BattleBgRestore_Blend(SysTask *task, BattleBgSwitch *bgSwitch)
         if (!BattleAnimSystem_IsContest(bgSwitch->battleAnimSystem)) {
             Bg_SetControlParam(bgSwitch->battleAnimSystem->bgConfig, BATTLE_BG_EFFECT, BG_CONTROL_PARAM_COLOR_MODE, GX_BG_COLORMODE_256);
             BattleAnimSystem_LoadBattleBgTiles(bgSwitch->battleAnimSystem, BATTLE_BG_EFFECT);
-            ov12_02223488(bgSwitch->battleAnimSystem);
+            BattleAnimSystem_LoadBattleBgPaletteBuffer(bgSwitch->battleAnimSystem);
         } else {
             Graphics_LoadTilesToBgLayer(bgSwitch->battleAnimSystem->unk_180.unk_00, bgSwitch->battleAnimSystem->unk_180.unk_04, bgSwitch->battleAnimSystem->bgConfig, BATTLE_BG_EFFECT, 0, 0, TRUE, bgSwitch->battleAnimSystem->heapID);
             PaletteData_LoadBufferFromFileStart(bgSwitch->battleAnimSystem->paletteData, bgSwitch->battleAnimSystem->unk_180.unk_00, bgSwitch->battleAnimSystem->unk_180.unk_08, bgSwitch->battleAnimSystem->heapID, 0, bgSwitch->battleAnimSystem->unk_180.unk_14 * 0x20, bgSwitch->battleAnimSystem->unk_180.unk_10);
@@ -2679,7 +2668,7 @@ static BOOL BattleBgRestore_Fade(SysTask *task, BattleBgSwitch *bgSwitch)
         if (!BattleAnimSystem_IsContest(bgSwitch->battleAnimSystem)) {
             Bg_SetControlParam(bgSwitch->battleAnimSystem->bgConfig, BATTLE_BG_EFFECT, 0, GX_BG_COLORMODE_256);
             BattleAnimSystem_LoadBattleBgTiles(bgSwitch->battleAnimSystem, BATTLE_BG_EFFECT);
-            ov12_02223488(bgSwitch->battleAnimSystem);
+            BattleAnimSystem_LoadBattleBgPaletteBuffer(bgSwitch->battleAnimSystem);
         } else {
             Graphics_LoadTilesToBgLayer(bgSwitch->battleAnimSystem->unk_180.unk_00, bgSwitch->battleAnimSystem->unk_180.unk_04, bgSwitch->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, bgSwitch->battleAnimSystem->heapID);
             PaletteData_LoadBufferFromFileStart(bgSwitch->battleAnimSystem->paletteData, bgSwitch->battleAnimSystem->unk_180.unk_00, bgSwitch->battleAnimSystem->unk_180.unk_08, bgSwitch->battleAnimSystem->heapID, 0, bgSwitch->battleAnimSystem->unk_180.unk_14 * 0x20, bgSwitch->battleAnimSystem->unk_180.unk_10);
@@ -3725,9 +3714,9 @@ BOOL ov12_0222325C(BattleAnimSystem *param0, int param1[], int param2)
     return 1;
 }
 
-SpriteTemplate ov12_0222329C(BattleAnimSystem *param0)
+SpriteTemplate BattleAnimSystem_GetLastSpriteTemplate(BattleAnimSystem *system)
 {
-    return param0->lastSpriteTemplate;
+    return system->lastSpriteTemplate;
 }
 
 int BattleAnimSystem_GetBattlerType(BattleAnimSystem *system, int battler)
@@ -3768,24 +3757,24 @@ PokemonSprite *BattleAnimSystem_GetBattlerSprite(BattleAnimSystem *system, int b
     }
 }
 
-PaletteData *ov12_0222332C(BattleAnimSystem *param0)
+PaletteData *BattleAnimSystem_GetPaletteData(BattleAnimSystem *system)
 {
-    return param0->paletteData;
+    return system->paletteData;
 }
 
-int ov12_02223334(BattleAnimSystem *param0, int param1)
+int BattleAnimSystem_GetBattlerSpritePaletteIndex(BattleAnimSystem *system, int battler)
 {
-    return param0->context->pokemonSpriteData[param1]->unk_08;
+    return system->context->pokemonSpriteData[battler]->unk_08;
 }
 
-int ov12_02223344(BattleAnimSystem *param0, int param1)
+int BattleAnimSystem_GetBattlerSpriteNarcID(BattleAnimSystem *system, int battler)
 {
-    return param0->context->pokemonSpriteData[param1]->unk_04;
+    return system->context->pokemonSpriteData[battler]->unk_04;
 }
 
-int ov12_02223354(BattleAnimSystem *param0, int param1)
+int BattleAnimSystem_GetBattlerSpriteHeight(BattleAnimSystem *system, int battler)
 {
-    return param0->context->pokemonSpriteData[param1]->unk_0C;
+    return system->context->pokemonSpriteData[battler]->unk_0C;
 }
 
 BOOL BattleAnimSystem_IsDoubleBattle(BattleAnimSystem *system)
@@ -3807,21 +3796,18 @@ int BattleAnimSystem_GetPokemonSpritePriority(BattleAnimSystem *system)
     }
 }
 
-int ov12_022233B0(BattleAnimSystem *param0, int param1)
+enum BgLayer BattleAnimSystem_GetBgLayer(BattleAnimSystem *system, enum BattleAnimBg bg)
 {
-    int v0;
-    int v1[][3] = {
-        { 0x1, 0x2, 0x3 },
-        { 0x1, 0x2, 0x3 }
+    enum BgLayer bgLayers[][3] = {
+        { BATTLE_BG_WINDOW, BATTLE_BG_BASE, BATTLE_BG_EFFECT },
+        { BATTLE_BG_WINDOW, BATTLE_BG_BASE, BATTLE_BG_EFFECT }
     };
 
-    if (BattleAnimSystem_IsContest(param0) == 1) {
-        v0 = v1[1][param1];
+    if (BattleAnimSystem_IsContest(system) == TRUE) {
+        return bgLayers[1][bg];
     } else {
-        v0 = v1[0][param1];
+        return bgLayers[0][bg];
     }
-
-    return v0;
 }
 
 int BattleAnimSystem_GetBgID(BattleAnimSystem *system, enum BattleAnimBg bg)
@@ -3860,24 +3846,22 @@ void BattleAnimSystem_LoadBattleBgTiles(BattleAnimSystem *system, enum BgLayer l
     Bg_LoadTiles(system->bgConfig, layer, system->context->bgTiles, 0x10000, 0);
 }
 
-void ov12_02223488(BattleAnimSystem *param0)
+void BattleAnimSystem_LoadBattleBgPaletteBuffer(BattleAnimSystem *system)
 {
-    PaletteData_LoadBuffer(param0->paletteData, param0->context->unk_114, PLTTBUF_MAIN_BG, 0, 0x200);
+    PaletteData_LoadBuffer(system->paletteData, system->context->bgPaletteBuffer, PLTTBUF_MAIN_BG, 0, 0x200);
 }
 
-BOOL ov12_022234A8(BattleAnimSystem *param0, int param1)
+BOOL BattleAnimSystem_ShouldBattlerSpriteBeFlipped(BattleAnimSystem *system, enum BattleAnimBattlerType type)
 {
-    int v0;
-    int v1;
+    int battler = BattleAnimSystem_GetBattlerOfType(system, type);
+    int form = system->context->battlerForms[battler];
 
-    v0 = BattleAnimSystem_GetBattlerOfType(param0, param1);
-    v1 = param0->context->battlerForms[v0];
-
-    if ((BattleAnimSystem_IsContest(param0) == 1) && (IsFormSymmetrical(BattleAnimSystem_GetBattlerSpecies(param0, v0), v1) == 1)) {
-        return 1;
+    if (BattleAnimSystem_IsContest(system) == TRUE &&
+        IsFormSymmetrical(BattleAnimSystem_GetBattlerSpecies(system, battler), form) == TRUE) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static const int sBgNarcIndices[][BG_NARC_MEMBER_COUNT] = {

@@ -1063,7 +1063,7 @@ void ov12_02227828(BattleAnimSystem *param0)
     v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_02227808));
 
     v0->unk_00 = param0;
-    v0->unk_04 = ov12_0222332C(v0->unk_00);
+    v0->unk_04 = BattleAnimSystem_GetPaletteData(v0->unk_00);
 
     switch (BattleAnimSystem_GetScriptVar(param0, 0)) {
     case 0:
@@ -1338,10 +1338,10 @@ void ov12_02227CBC(BattleAnimSystem *param0)
 
     if (BattleAnimSystem_GetScriptVar(param0, 0) == 0) {
         v1 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetAttacker(param0));
-        v0->unk_0E = ov12_02223354(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
+        v0->unk_0E = BattleAnimSystem_GetBattlerSpriteHeight(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
     } else {
         v1 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00));
-        v0->unk_0E = ov12_02223354(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00));
+        v0->unk_0E = BattleAnimSystem_GetBattlerSpriteHeight(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00));
     }
 
     v0->unk_0C = PokemonSprite_GetAttribute(v1, MON_SPRITE_Y_CENTER);
@@ -1370,7 +1370,7 @@ void ov12_02227CBC(BattleAnimSystem *param0)
         v2 = 1;
     }
 
-    if (ov12_022234A8(v0->unk_00, v2) == 1) {
+    if (BattleAnimSystem_ShouldBattlerSpriteBeFlipped(v0->unk_00, v2) == 1) {
         v0->unk_50 = 1;
     }
 }
@@ -1439,13 +1439,13 @@ void ov12_02227F30(BattleAnimSystem *param0)
     switch (BattleAnimSystem_GetScriptVar(param0, 0)) {
     case 0x2 | 0x100:
     case 0x4 | 0x100:
-        v0->unk_0A = ov12_02223354(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
+        v0->unk_0A = BattleAnimSystem_GetBattlerSpriteHeight(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
         ov12_02235998(v0->unk_00, BattleAnimSystem_GetScriptVar(param0, 0), v1, &v3);
         v0->unk_0C = v1[0].unk_08;
         break;
     case 0x8 | 0x100:
     case 0x10 | 0x100:
-        v0->unk_0A = ov12_02223354(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00));
+        v0->unk_0A = BattleAnimSystem_GetBattlerSpriteHeight(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00));
         ov12_02235998(v0->unk_00, BattleAnimSystem_GetScriptVar(param0, 0), v1, &v3);
         v0->unk_0C = v1[0].unk_08;
         break;
@@ -1897,7 +1897,7 @@ void ov12_022287CC(BattleAnimSystem *param0)
     v0->unk_09 = 0;
     v0->unk_0A = BattleAnimSystem_GetScriptVar(param0, 4);
     v0->unk_02 = PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_Y_CENTER);
-    v0->unk_04 = ov12_02223354(v0->unk_0C, BattleAnimSystem_GetAttacker(v0->unk_0C));
+    v0->unk_04 = BattleAnimSystem_GetBattlerSpriteHeight(v0->unk_0C, BattleAnimSystem_GetAttacker(v0->unk_0C));
 
     ov12_02225E68(&v0->unk_14, 100, 100, BattleAnimSystem_GetScriptVar(param0, 0), BattleAnimSystem_GetScriptVar(param0, 2));
     ov12_02226108(&v0->unk_38, 2, 0, 0, 10);
@@ -1995,7 +1995,7 @@ void ov12_02228A0C(BattleAnimSystem *param0)
 
     ov12_02225898(param0, BattleAnimSystem_GetAttacker(v0->unk_18), NULL, &v0->unk_02);
 
-    v0->unk_04 = ov12_02223354(v0->unk_18, BattleAnimSystem_GetAttacker(v0->unk_18));
+    v0->unk_04 = BattleAnimSystem_GetBattlerSpriteHeight(v0->unk_18, BattleAnimSystem_GetAttacker(v0->unk_18));
     v0->unk_02 += v0->unk_04;
 
     {
@@ -2345,7 +2345,7 @@ void ov12_022290DC(BattleAnimSystem *param0)
     ov12_02235998(param0, v0, &v4, &v2);
 
     {
-        s16 v5 = ov12_02223354(param0, v1);
+        s16 v5 = BattleAnimSystem_GetBattlerSpriteHeight(param0, v1);
 
         PokemonSprite_SetAttribute(v4.unk_08, MON_SPRITE_X_CENTER, v3.unk_00);
         PokemonSprite_SetAttribute(v4.unk_08, MON_SPRITE_Y_CENTER, v3.unk_02 + v5);
@@ -2481,7 +2481,7 @@ void ov12_02229304(BattleAnimSystem *param0)
         v0->unk_30 = 0;
         v0->unk_34 = 0;
         v0->unk_38 = 80;
-        v0->unk_3C = 80 - ov12_02223354(param0, v3);
+        v0->unk_3C = 80 - BattleAnimSystem_GetBattlerSpriteHeight(param0, v3);
         v0->unk_44 = BattleAnimSystem_GetScriptVar(param0, 4);
         v0->unk_4C = 0;
 
@@ -2633,7 +2633,7 @@ void ov12_02229638(BattleAnimSystem *param0)
     }
 
     if (BattleAnimSystem_GetScriptVar(param0, 5) != 0) {
-        v0->unk_3C = ov12_02223354(param0, v1);
+        v0->unk_3C = BattleAnimSystem_GetBattlerSpriteHeight(param0, v1);
         v0->unk_3C = 80 - v0->unk_3C;
         v0->unk_40 = 0;
 
@@ -2645,7 +2645,7 @@ void ov12_02229638(BattleAnimSystem *param0)
 
     v0->unk_44 = PokemonSprite_GetAttribute(v0->unk_28.unk_08, MON_SPRITE_Y_CENTER);
     v0->unk_48 = v0->unk_44;
-    v0->unk_3C = ov12_02223354(param0, v1);
+    v0->unk_3C = BattleAnimSystem_GetBattlerSpriteHeight(param0, v1);
     v0->unk_3C = 80 - v0->unk_3C;
     v0->unk_40 = v0->unk_3C;
 

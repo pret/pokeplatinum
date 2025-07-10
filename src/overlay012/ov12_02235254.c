@@ -719,7 +719,7 @@ void ov12_0223595C(BattleAnimSystem *param0, UnkStruct_ov12_0223595C *param1)
     param1->unk_0C = BattleAnimSystem_GetPokemonSpriteManager(param0);
     param1->unk_10 = ov12_02220300(param0);
     param1->unk_14 = BattleAnimSystem_GetBgConfig(param0);
-    param1->unk_18 = ov12_0222332C(param0);
+    param1->unk_18 = BattleAnimSystem_GetPaletteData(param0);
 }
 
 void ov12_02235998(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235998 *param2, int *param3)

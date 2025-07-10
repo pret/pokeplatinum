@@ -161,7 +161,7 @@ void ov12_02226B1C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v0->unk_10 = param3;
     v0->unk_04 = param0;
 
-    v1 = ov12_0222329C(param0);
+    v1 = BattleAnimSystem_GetLastSpriteTemplate(param0);
     v0->unk_14[0] = param3;
 
     {
