@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV97_02237694_H
-#define POKEPLATINUM_OV97_02237694_H
+#ifndef POKEPLATINUM_OV97_MAIN_MENU_UTIL_H
+#define POKEPLATINUM_OV97_MAIN_MENU_UTIL_H
 
 #include "overlay097/mystery_gift_app.h"
 
@@ -95,4 +95,4 @@ void MainMenuUtil_ContinueSaving(void);
 void MainMenuUtil_CancelSave(void);
 int MainMenuUtil_GetSavingStatus(void);
 
-#endif // POKEPLATINUM_OV97_02237694_H
+#endif // POKEPLATINUM_OV97_MAIN_MENU_UTIL_H

@@ -1,4 +1,4 @@
-#include "overlay097/ov97_02237694.h"
+#include "overlay097/main_menu_util.h"
 
 #include <nitro.h>
 #include <string.h>

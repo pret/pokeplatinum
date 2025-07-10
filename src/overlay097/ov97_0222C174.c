@@ -5,9 +5,9 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay077/const_ov77_021D742C.h"
+#include "overlay097/main_menu_util.h"
 #include "overlay097/ov97_02232DC8.h"
 #include "overlay097/ov97_02233408.h"
-#include "overlay097/ov97_02237694.h"
 #include "overlay097/struct_ov97_02232E38.h"
 #include "overlay097/struct_ov97_022335A8.h"
 #include "savedata/save_table.h"

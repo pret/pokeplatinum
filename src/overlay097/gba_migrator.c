@@ -20,9 +20,9 @@
 #include "overlay097/gba_convert_string.h"
 #include "overlay097/gba_pokemon.h"
 #include "overlay097/gba_save.h"
+#include "overlay097/main_menu_util.h"
 #include "overlay097/ov97_02235D18.h"
 #include "overlay097/ov97_0223635C.h"
-#include "overlay097/ov97_02237694.h"
 #include "savedata/save_table.h"
 
 #include "bg_window.h"
