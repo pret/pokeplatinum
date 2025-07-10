@@ -165,7 +165,7 @@ void SetupGrassPatches(FieldSystem *fieldSystem, const int param1, RadarChain *c
     }
 }
 
-void sub_02069638(FieldSystem *fieldSystem, RadarChain *chain)
+void FieldSystem_CreateShakingRadarPatches(FieldSystem *fieldSystem, RadarChain *chain)
 {
     for (u8 patchRing = 0; patchRing < NUM_GRASS_PATCHES; patchRing++) {
         if (chain->patch[patchRing].active) {
@@ -436,7 +436,7 @@ BOOL RefreshRadarChain(FieldTask *taskMan)
             RadarSpawnPatches(fieldSystem, v3, v4, fieldSystem->chain);
             if (fieldSystem->chain->active) {
                 SetupGrassPatches(fieldSystem, 0x1, fieldSystem->chain);
-                sub_02069638(fieldSystem, fieldSystem->chain);
+                FieldSystem_CreateShakingRadarPatches(fieldSystem, fieldSystem->chain);
                 *v1 = 1;
             } else {
                 *v1 = 3;
