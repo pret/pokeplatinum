@@ -77,6 +77,17 @@ enum BattleAnimBg {
     BATTLE_ANIM_BG_POKEMON,     // BG for Pokemon sprites
 };
 
+enum BattleAnimBattlerType {
+    BATTLER_TYPE_ATTACKER = 0,
+    BATTLER_TYPE_DEFENDER,
+    BATTLER_TYPE_ATTACKER_PARTNER,
+    BATTLER_TYPE_DEFENDER_PARTNER,
+    BATTLER_TYPE_PLAYER_SLOT_1,
+    BATTLER_TYPE_ENEMY_SLOT_1,
+    BATTLER_TYPE_PLAYER_SLOT_2,
+    BATTLER_TYPE_ENEMY_SLOT_2,
+};
+
 // Holds context information for the current move animation
 typedef struct BattleAnimContext {
     u8 unk_00;
@@ -99,7 +110,7 @@ typedef struct BattleAnimContext {
     SpriteSystem *spriteSystem;
 
     // Battler info
-    UnkStruct_ov16_0223E0C8 *pokemonSpriteData[4];
+    UnkStruct_ov16_0223E0C8 *pokemonSpriteData[MAX_BATTLERS];
     u8 battlerTypes[MAX_BATTLERS];
     PokemonSprite *battlerSprites[MAX_BATTLERS];
     u32 battleType;
@@ -111,8 +122,8 @@ typedef struct BattleAnimContext {
     u32 battlerMoveEffects[MAX_BATTLERS];
     ChatotCry *chatotCry;
     u8 *bgTiles;
-    u16 *unk_114;
-    int transformed; // Flag for if transform is currently active
+    u16 *bgPaletteBuffer;
+    BOOL transformed; // Flag for if transform is currently active
 } BattleAnimContext;
 
 typedef struct BattleAnimScriptLoop {
@@ -254,26 +265,26 @@ int ov12_02223178(BattleAnimContext *param0);
 s8 BattleAnimSound_CorrectPanDirection(BattleAnimSystem *param0, s8 param1);
 s8 BattleAnimSound_CorrectStepDirection(s8 param0, s8 param1, s8 param2);
 BOOL ov12_0222325C(BattleAnimSystem *param0, int param1[], int param2);
-SpriteTemplate ov12_0222329C(BattleAnimSystem *param0);
+SpriteTemplate BattleAnimSystem_GetLastSpriteTemplate(BattleAnimSystem *param0);
 int BattleAnimSystem_GetBattlerType(BattleAnimSystem *param0, int param1);
 int BattleAnimSystem_GetBattlerGender(BattleAnimSystem *param0, int param1);
 int BattleAnimSystem_GetBattlerSpecies(BattleAnimSystem *param0, int param1);
 int BattleAnimSystem_GetBattlerForm(BattleAnimSystem *param0, int param1);
 int BattleAnimSystem_GetBattlerPersonality(BattleAnimSystem *param0, int param1);
 PokemonSprite *BattleAnimSystem_GetBattlerSprite(BattleAnimSystem *param0, int param1);
-PaletteData *ov12_0222332C(BattleAnimSystem *param0);
-int ov12_02223334(BattleAnimSystem *param0, int param1);
-int ov12_02223344(BattleAnimSystem *param0, int param1);
-int ov12_02223354(BattleAnimSystem *param0, int param1);
+PaletteData *BattleAnimSystem_GetPaletteData(BattleAnimSystem *param0);
+int BattleAnimSystem_GetBattlerSpritePaletteIndex(BattleAnimSystem *param0, int param1);
+int BattleAnimSystem_GetBattlerSpriteNarcID(BattleAnimSystem *param0, int param1);
+int BattleAnimSystem_GetBattlerSpriteHeight(BattleAnimSystem *param0, int param1);
 BOOL BattleAnimSystem_IsDoubleBattle(BattleAnimSystem *param0);
 BOOL BattleAnimSystem_IsBattlerSemiInvulnerable(BattleAnimSystem *param0, int param1);
 int BattleAnimSystem_GetPokemonSpritePriority(BattleAnimSystem *param0);
-int ov12_022233B0(BattleAnimSystem *param0, int param1);
+enum BgLayer BattleAnimSystem_GetBgLayer(BattleAnimSystem *param0, enum BattleAnimBg param1);
 int BattleAnimSystem_GetBgID(BattleAnimSystem *param0, enum BattleAnimBg param1);
 int BattleAnimSystem_GetBgPriority(BattleAnimSystem *param0, enum BattleAnimBg param1);
 void BattleAnimSystem_LoadBattleBgTiles(BattleAnimSystem *param0, enum BgLayer param1);
-void ov12_02223488(BattleAnimSystem *param0);
-BOOL ov12_022234A8(BattleAnimSystem *param0, int param1);
+void BattleAnimSystem_LoadBattleBgPaletteBuffer(BattleAnimSystem *param0);
+BOOL BattleAnimSystem_ShouldBattlerSpriteBeFlipped(BattleAnimSystem *param0, enum BattleAnimBattlerType param1);
 int BattleAnimSystem_GetBgNarcMemberIndex(int bgID, enum BgNarcMemberType type);
 UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, int heapID, int param2);
 UnkStruct_ov12_02223764 *ov12_02223764(BattleSystem *battleSys, int heapID);

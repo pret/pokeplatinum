@@ -199,7 +199,7 @@ void ov12_0222D7C0(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v1->unk_10 = param2;
     v1->unk_08 = param0;
 
-    v2 = ov12_0222329C(param0);
+    v2 = BattleAnimSystem_GetLastSpriteTemplate(param0);
     ov12_02235780(v1->unk_08, 0xffffffff, 0xffffffff);
 
     v1->unk_05 = BattleAnimSystem_GetScriptVar(v1->unk_08, 0);
@@ -419,7 +419,7 @@ void ov12_0222DB60(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v1->unk_30 = 0;
     v1->unk_0C = param0;
 
-    v2 = ov12_0222329C(param0);
+    v2 = BattleAnimSystem_GetLastSpriteTemplate(param0);
     ov12_02235780(v1->unk_0C, 0xffffffff, 0xffffffff);
 
     v1->unk_09 = 0;
@@ -634,7 +634,7 @@ void ov12_0222DEFC(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v2->unk_10 = param2;
     v2->unk_08 = param0;
 
-    v3 = ov12_0222329C(param0);
+    v3 = BattleAnimSystem_GetLastSpriteTemplate(param0);
     ov12_02235780(v2->unk_08, 0xffffffff, 0xffffffff);
 
     v2->unk_02 = BattleAnimSystem_GetScriptVar(v2->unk_08, 0);
@@ -826,7 +826,7 @@ void ov12_0222E2F8(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
         int v1;
         SpriteTemplate v2;
 
-        v2 = ov12_0222329C(v0->unk_00.unk_04);
+        v2 = BattleAnimSystem_GetLastSpriteTemplate(v0->unk_00.unk_04);
 
         v0->unk_28[0] = param3;
         v0->unk_1E[0] = 0;
@@ -966,7 +966,7 @@ void ov12_0222E61C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
         s16 v2, v3;
         SpriteTemplate v4;
 
-        v4 = ov12_0222329C(v0->unk_00.unk_04);
+        v4 = BattleAnimSystem_GetLastSpriteTemplate(v0->unk_00.unk_04);
 
         v0->unk_2C[0] = param3;
         v0->unk_22[0] = 0;

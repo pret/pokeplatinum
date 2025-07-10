@@ -83,7 +83,7 @@ void ov12_022346A4(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v3 = BattleAnimSystem_GetAttacker(param0);
     v1->unk_10 = ov12_02225964(param0, v3);
 
-    v0 = ov12_0222329C(v1->unk_00);
+    v0 = BattleAnimSystem_GetLastSpriteTemplate(v1->unk_00);
     v0.x = BattleAnimUtil_GetBattlerPos(param0, v3, 0);
     v0.y = BattleAnimUtil_GetBattlerPos(param0, v3, 1);
 
@@ -259,7 +259,7 @@ void ov12_02234A10(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
 
     v2 = BattleAnimSystem_GetAttacker(v1->unk_00);
     v4 = ov12_02225964(param0, v2);
-    v0 = ov12_0222329C(v1->unk_00);
+    v0 = BattleAnimSystem_GetLastSpriteTemplate(v1->unk_00);
 
     v0.x = BattleAnimUtil_GetBattlerPos(param0, v2, 0);
     v0.y = BattleAnimUtil_GetBattlerPos(param0, v2, 1);
@@ -447,7 +447,7 @@ void ov12_02234D98(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v0->unk_130 = PokemonSprite_GetAttribute(v2, MON_SPRITE_X_CENTER);
     v0->unk_132 = PokemonSprite_GetAttribute(v2, MON_SPRITE_Y_CENTER);
 
-    v3 = ov12_0222329C(param0);
+    v3 = BattleAnimSystem_GetLastSpriteTemplate(param0);
 
     for (v1 = 0; v1 < 6; v1++) {
         if (v1 == 0) {

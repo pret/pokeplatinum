@@ -163,21 +163,21 @@ void ov12_0222EAA0(BattleAnimSystem *param0)
     {
         ManagedSprite *v1;
         int v2;
-        int v3 = ov12_02223334(v0->unk_00.unk_04, BattleAnimSystem_GetAttacker(v0->unk_00.unk_04));
-        int v4 = ov12_02223344(v0->unk_00.unk_04, BattleAnimSystem_GetAttacker(v0->unk_00.unk_04));
+        int v3 = BattleAnimSystem_GetBattlerSpritePaletteIndex(v0->unk_00.unk_04, BattleAnimSystem_GetAttacker(v0->unk_00.unk_04));
+        int v4 = BattleAnimSystem_GetBattlerSpriteNarcID(v0->unk_00.unk_04, BattleAnimSystem_GetAttacker(v0->unk_00.unk_04));
 
         v1 = v0->unk_1C.unk_0C;
         ManagedSprite_SetExplicitPriority(v1, BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00.unk_04) + 1);
         v2 = PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(v1->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
 
-        PaletteData_LoadBufferFromFileStartWithTint(ov12_0222332C(v0->unk_00.unk_04), v4, v3, BattleAnimSystem_GetHeapID(v0->unk_00.unk_04), 2, 0x20, v2 * 16, 196, 196, 196);
+        PaletteData_LoadBufferFromFileStartWithTint(BattleAnimSystem_GetPaletteData(v0->unk_00.unk_04), v4, v3, BattleAnimSystem_GetHeapID(v0->unk_00.unk_04), 2, 0x20, v2 * 16, 196, 196, 196);
         ManagedSprite_SetExplicitOamMode(v1, GX_OAM_MODE_XLU);
 
         v1 = v0->unk_30;
         ManagedSprite_SetExplicitPriority(v1, BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00.unk_04) + 1);
         v2 = PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(v1->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
 
-        PaletteData_LoadBufferFromFileStartWithTint(ov12_0222332C(v0->unk_00.unk_04), v4, v3, BattleAnimSystem_GetHeapID(v0->unk_00.unk_04), 2, 0x20, v2 * 16, 196, 196, 196);
+        PaletteData_LoadBufferFromFileStartWithTint(BattleAnimSystem_GetPaletteData(v0->unk_00.unk_04), v4, v3, BattleAnimSystem_GetHeapID(v0->unk_00.unk_04), 2, 0x20, v2 * 16, 196, 196, 196);
         ManagedSprite_SetExplicitOamMode(v1, GX_OAM_MODE_XLU);
     }
 
@@ -237,7 +237,7 @@ void ov12_0222EC90(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
             s16 v2, v3;
             SpriteTemplate v4;
 
-            v4 = ov12_0222329C(v0->unk_00.unk_04);
+            v4 = BattleAnimSystem_GetLastSpriteTemplate(v0->unk_00.unk_04);
             v0->unk_30[0] = param3;
 
             for (v1 = 1; v1 < 8; v1++) {
@@ -403,7 +403,7 @@ void ov12_0222EFB0(BattleAnimSystem *param0)
         v0->unk_2C = 1.0f;
         v0->unk_30 = 1.0f;
 
-        if (ov12_022234A8(param0, 1) == 1) {
+        if (BattleAnimSystem_ShouldBattlerSpriteBeFlipped(param0, 1) == 1) {
             v0->unk_36 = -1;
         } else {
             v0->unk_36 = +1;

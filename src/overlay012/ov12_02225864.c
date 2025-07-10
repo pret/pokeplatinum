@@ -1183,7 +1183,7 @@ static void ov12_022268DC(u16 *param0, u16 param1)
 
 void ov12_02226924(BattleAnimSystem *param0)
 {
-    PaletteData *v0 = ov12_0222332C(param0);
+    PaletteData *v0 = BattleAnimSystem_GetPaletteData(param0);
     u16 *v1 = PaletteData_GetFadedBuffer(v0, 0);
 
     if (BattleAnimSystem_IsContest(param0) == 1) {
@@ -1195,7 +1195,7 @@ void ov12_02226924(BattleAnimSystem *param0)
 
 void ov12_02226954(BattleAnimSystem *param0)
 {
-    PaletteData *v0 = ov12_0222332C(param0);
+    PaletteData *v0 = BattleAnimSystem_GetPaletteData(param0);
 
     if (BattleAnimSystem_IsContest(param0) == 1) {
         PaletteData_CopyBuffer(v0, 0, 0, 0, 0, 16 * 3 * 2);
