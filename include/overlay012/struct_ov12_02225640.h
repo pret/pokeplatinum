@@ -3,7 +3,7 @@
 
 #include <nitro/fx/fx.h>
 
-#include "overlay012/struct_ov12_0221FCDC_decl.h"
+#include "overlay012/battle_anim_system.h"
 
 #include "particle_system.h"
 

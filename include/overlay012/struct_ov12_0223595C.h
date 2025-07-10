@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV12_0223595C_H
 #define POKEPLATINUM_STRUCT_OV12_0223595C_H
 
-#include "overlay012/struct_ov12_0221FCDC_decl.h"
+#include "overlay012/battle_anim_system.h"
 
 #include "bg_window.h"
 #include "palette.h"

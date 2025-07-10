@@ -5,7 +5,7 @@
 
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_02265BBC.h"
-#include "overlay012/struct_ov12_0221FCDC_decl.h"
+#include "overlay012/battle_anim_system.h"
 
 #include "pokemon_sprite.h"
 

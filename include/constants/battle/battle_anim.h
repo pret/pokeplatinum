@@ -1,5 +1,6 @@
 #ifndef POKEPLATINUM_CONSTANTS_BATTLE_ANIM_H
 #define POKEPLATINUM_CONSTANTS_BATTLE_ANIM_H
+// clang-format off
 
 #define BATTLE_ANIM_VAR_BG_MOVE_STEP_X  0 //< Step size for background movement in X direction (BATTLE_BG_SWITCH_FLAG_MOVE)
 #define BATTLE_ANIM_VAR_BG_MOVE_STEP_Y  1 //< Step size for background movement in Y direction (BATTLE_BG_SWITCH_FLAG_MOVE)
@@ -58,4 +59,5 @@
 #define BATTLE_BG_SCREEN_REVERSE_ENEMY_ONLY 1 //< Reverse BG screen only for enemy attacking player
 #define BATTLE_BG_SCREEN_REVERSE_DEFAULT    2 //< Reverse BG screen for enemy attacking player OR enemy attacking enemy
 
+// clang-format on
 #endif // POKEPLATINUM_CONSTANTS_BATTLE_ANIM_H

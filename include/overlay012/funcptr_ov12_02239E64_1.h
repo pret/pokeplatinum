@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_FUNCPTR_OV12_02239E64_1_H
 #define POKEPLATINUM_FUNCPTR_OV12_02239E64_1_H
 
-#include "overlay012/struct_ov12_0221FCDC_decl.h"
+#include "overlay012/battle_anim_system.h"
 
 #include "sprite.h"
 #include "sprite_system.h"

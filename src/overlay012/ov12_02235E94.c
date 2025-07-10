@@ -5,13 +5,12 @@
 
 #include "struct_defs/seal_case.h"
 
-#include "overlay012/ov12_0221FC20.h"
+#include "overlay012/battle_anim_system.h"
 #include "overlay012/ov12_022237EC.h"
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/ov12_02235254.h"
 #include "overlay012/ov12_02237E54.h"
 #include "overlay012/struct_ov12_02223764.h"
-#include "overlay012/ov12_02225864.h"
 #include "overlay012/struct_ov12_02225F6C.h"
 #include "overlay012/struct_ov12_022267D4_decl.h"
 #include "overlay012/struct_ov12_02236030.h"

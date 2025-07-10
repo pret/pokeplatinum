@@ -7,8 +7,6 @@
 
 #include "battle/struct_ov16_02264408.h"
 #include "battle/struct_ov16_02265BBC.h"
-#include "overlay012/funcptr_ov12_02239EEC.h"
-#include "overlay012/struct_ov12_0221FCDC_decl.h"
 #include "overlay012/struct_ov12_02223764.h"
 #include "overlay012/struct_ov12_02226504_decl.h"
 #include "overlay012/struct_ov12_022380DC.h"
@@ -66,15 +64,15 @@ enum BattleAnimTrackingTask {
     BATTLE_ANIM_TRACKING_TASK_SPRITE_2,
     BATTLE_ANIM_TRACKING_TASK_SPRITE_3,
     BATTLE_ANIM_TRACKING_TASK_BG,
-    
+
     BATTLE_ANIM_TRACKING_TASK_COUNT,
 };
 
 enum BattleAnimBg {
-    BATTLE_ANIM_BG_WINDOW = 0,  // BG for windows
-    BATTLE_ANIM_BG_BASE,        // BG for base battle BG
-    BATTLE_ANIM_BG_EFFECT,      // BG for move anim BG switching
-    BATTLE_ANIM_BG_POKEMON,     // BG for Pokemon sprites
+    BATTLE_ANIM_BG_WINDOW = 0, // BG for windows
+    BATTLE_ANIM_BG_BASE, // BG for base battle BG
+    BATTLE_ANIM_BG_EFFECT, // BG for move anim BG switching
+    BATTLE_ANIM_BG_POKEMON, // BG for Pokemon sprites
 };
 
 enum BattleAnimBattlerType {
@@ -134,7 +132,7 @@ typedef struct BattleAnimScriptLoop {
 } BattleAnimScriptLoop;
 
 typedef struct {
-    BattleAnimSystem *unk_00;
+    struct BattleAnimSystem *unk_00;
     SpriteManager *unk_04;
     ManagedSprite *unk_08;
     BOOL unk_0C;
@@ -202,7 +200,7 @@ typedef struct BattleAnimSystem {
     u16 activeAnimTasks;
     u16 activeSoundTasks;
     s32 scriptVars[BATTLE_ANIM_SCRIPT_VAR_COUNT];
-    void (*executeAnimScriptFunc)(BattleAnimSystem *);
+    void (*executeAnimScriptFunc)(struct BattleAnimSystem *);
     BattleAnimContext *context;
     BgConfig *bgConfig;
     PaletteData *paletteData;
@@ -224,6 +222,8 @@ typedef struct BattleAnimSystem {
     u8 bgLayerPriorities[4];
     NARC *arcs[BATTLE_ANIM_SYSTEM_ARC_COUNT];
 } BattleAnimSystem;
+
+typedef void (*BattleAnimScriptCmd)(BattleAnimSystem *);
 
 BattleAnimSystem *BattleAnimSystem_New(enum HeapId heapID);
 void BattleAnimSystem_SetIsContest(BattleAnimSystem *param0, BOOL param1);

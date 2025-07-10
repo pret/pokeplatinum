@@ -1,9 +1,10 @@
-#include "overlay012/ov12_0221FC20.h"
+#include "overlay012/battle_anim_system.h"
 
 #include <nitro.h>
 #include <stdlib.h>
 #include <string.h>
 
+#include "constants/battle/battle_anim.h"
 #include "generated/battle_terrains.h"
 #include "generated/moves.h"
 
@@ -16,8 +17,6 @@
 #include "battle/struct_ov16_02264408_sub1.h"
 #include "battle/struct_ov16_02265BBC.h"
 #include "global/utility.h"
-#include "overlay012/funcptr_ov12_02239E68.h"
-#include "overlay012/funcptr_ov12_02239EEC.h"
 #include "overlay012/is_form_symmetrical.h"
 #include "overlay012/ov12_022237EC.h"
 #include "overlay012/ov12_02225864.h"
@@ -49,18 +48,17 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "vram_transfer.h"
-#include "constants/battle/battle_anim.h"
 
-#define BATTLE_ANIM_SCRIPT_RES_ID(MEMBER_IDX)   (MEMBER_IDX + 5000)
-#define BATTLE_ANIM_SCRIPT_MAX_SFX_WAIT_FRAMES    90 // 3s
+#define BATTLE_ANIM_SCRIPT_RES_ID(MEMBER_IDX)  (MEMBER_IDX + 5000)
+#define BATTLE_ANIM_SCRIPT_MAX_SFX_WAIT_FRAMES 90 // 3s
 
-#define BATTLE_BG_WINDOW                BG_LAYER_MAIN_1
-#define BATTLE_BG_BASE                  BG_LAYER_MAIN_2
-#define BATTLE_BG_EFFECT                BG_LAYER_MAIN_3
+#define BATTLE_BG_WINDOW BG_LAYER_MAIN_1
+#define BATTLE_BG_BASE   BG_LAYER_MAIN_2
+#define BATTLE_BG_EFFECT BG_LAYER_MAIN_3
 
-#define BATTLE_BG_BLENDMASK_WINDOW      GX_BLEND_PLANEMASK_BG1
-#define BATTLE_BG_BLENDMASK_BASE        GX_BLEND_PLANEMASK_BG2
-#define BATTLE_BG_BLENDMASK_EFFECT      GX_BLEND_PLANEMASK_BG3
+#define BATTLE_BG_BLENDMASK_WINDOW GX_BLEND_PLANEMASK_BG1
+#define BATTLE_BG_BLENDMASK_BASE   GX_BLEND_PLANEMASK_BG2
+#define BATTLE_BG_BLENDMASK_EFFECT GX_BLEND_PLANEMASK_BG3
 
 typedef struct BattleAnimSoundContext {
     u8 type;
@@ -1241,16 +1239,17 @@ static void BattleAnimScriptCmd_CreateEmitterEx(BattleAnimSystem *system)
     system->context->emitters[emitterIndex] = BattleParticleUtil_CreateEmitter(system->context->particleSystems[psIndex], resourceID, callbackID, system);
 }
 
+#define _ 0xFF
 static int BattleAnimSystem_GetParticleResIdxForMove(BattleAnimSystem *system)
 {
     int indexTable[6][6] = {
-        /* Atk/Def   PL    EM   PL1   EM1   PL2   EM2 */
-        /* PL  */ { 0xFF,    1, 0xFF, 0xFF, 0xFF, 0xFF },
-        /* EM  */ {    4, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF },
-        /* PL1 */ { 0xFF, 0xFF, 0xFF,    3, 0xFF,    1 },
-        /* EM1 */ { 0xFF, 0xFF,    6, 0xFF,    4, 0xFF },
-        /* PL2 */ { 0xFF, 0xFF, 0xFF,    1, 0xFF,    2 },
-        /* EM2 */ { 0xFF, 0xFF,    4, 0xFF,    5, 0xFF }
+        /* Atk/Def P1 E1 P1 E1 P2 E2 */
+        /* P1 */ { _, 1, _, _, _, _ },
+        /* E1 */ { 4, _, _, _, _, _ },
+        /* P1 */ { _, _, _, 3, _, 1 },
+        /* E1 */ { _, _, 6, _, 4, _ },
+        /* P2 */ { _, _, _, 1, _, 2 },
+        /* E2 */ { _, _, 4, _, 5, _ }
     };
 
     int attacker = BattleAnimSystem_GetAttacker(system);
@@ -1266,17 +1265,14 @@ static int BattleAnimSystem_GetParticleResIdxForMove(BattleAnimSystem *system)
 
 static int BattleAnimSystem_GetParticleResIdxForFriendlyFire(BattleAnimSystem *system)
 {
-    // int index;
-    // int attackerType, defenderType;
-    // int attacker, defender;
     int indexTable[6][6] = {
-        /* Atk/Def   PL    EM   PL1   EM1   PL2   EM2 */
-        /* PL  */ { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF },
-        /* EM  */ { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF },
-        /* PL1 */ { 0xFF, 0xFF, 0xFF, 0xFF,    0, 0xFF },
-        /* EM1 */ { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,    1 },
-        /* PL2 */ { 0xFF, 0xFF,    1, 0xFF, 0xFF, 0xFF },
-        /* EM2 */ { 0xFF, 0xFF, 0xFF,    0, 0xFF, 0xFF }
+        /* Atk/Def P1 E1 P1 E1 P2 E2 */
+        /* P1 */ { _, _, _, _, _, _ },
+        /* E1 */ { _, _, _, _, _, _ },
+        /* P1 */ { _, _, _, _, 0, _ },
+        /* E1 */ { _, _, _, _, _, 1 },
+        /* P2 */ { _, _, 1, _, _, _ },
+        /* E2 */ { _, _, _, 0, _, _ }
     };
 
     int attacker = BattleAnimSystem_GetAttacker(system);
@@ -1289,6 +1285,7 @@ static int BattleAnimSystem_GetParticleResIdxForFriendlyFire(BattleAnimSystem *s
 
     return index;
 }
+#undef _
 
 static void BattleAnimScriptCmd_CreateEmitterForMove(BattleAnimSystem *system)
 {
@@ -1777,21 +1774,21 @@ static void BattleAnimScriptCmd_Nop1(BattleAnimSystem *param0)
 static void BattleAnimScriptCmd_LoadPokemonSpriteIntoBg(BattleAnimSystem *system)
 {
     void *charData = NULL;
-    
+
     BattleAnimScript_Next(system);
-    
+
     int battlerType = BattleAnimScript_ReadWord(system->scriptPtr);
     BattleAnimScript_Next(system);
-    
+
     BOOL trackBattler = BattleAnimScript_ReadWord(system->scriptPtr);
     BattleAnimScript_Next(system);
-    
+
     int battler = BattleAnimSystem_GetBattlerOfType(system, battlerType);
     enum NarcID narcID = system->context->pokemonSpriteData[battler]->unk_04;
     int paletteIndex = system->context->pokemonSpriteData[battler]->unk_08;
     charData = system->context->pokemonSpriteData[battler]->unk_00;
     int form = system->context->battlerForms[battler];
-    
+
     int memberIndex;
     if ((BattleAnimSystem_IsContest(system) == TRUE) && (IsFormSymmetrical(BattleAnimSystem_GetBattlerSpecies(system, battler), form) == TRUE)) {
         memberIndex = 265;
@@ -1812,7 +1809,7 @@ static void BattleAnimScriptCmd_LoadPokemonSpriteIntoBg(BattleAnimSystem *system
         PLTTBUF_MAIN_BG,
         0,
         8 * SLOTS_PER_PALETTE);
-    
+
     Graphics_LoadTilemapToBgLayerFromOpenNARC(
         system->arcs[BATTLE_ANIM_SYSTEM_ARC_BATT_BG],
         memberIndex,
@@ -1879,7 +1876,7 @@ static void BattleAnimScriptCmd_LoadPokemonSpriteDummyResources(BattleAnimSystem
     BattleAnimScript_Next(system);
     int resID = BattleAnimScript_ReadWord(system->scriptPtr);
     BattleAnimScript_Next(system);
-    
+
     int resourceIDs[SPRITE_RESOURCE_MAX];
     resourceIDs[SPRITE_RESOURCE_CHAR] = 20001 + resID + (system->context->attacker * 5000);
     resourceIDs[SPRITE_RESOURCE_PLTT] = 20001 + resID + (system->context->attacker * 5000);
@@ -1962,13 +1959,13 @@ static void BattleAnimScriptCmd_AddPokemonSprite(BattleAnimSystem *system)
     PokemonSprite *battlerSprite = BattleAnimSystem_GetBattlerSprite(system, battler);
     s16 battlerX;
     s16 battlerY;
-    
+
     if (battlerSprite != NULL) {
         battlerX = PokemonSprite_GetAttribute(battlerSprite, MON_SPRITE_X_CENTER);
         battlerY = PokemonSprite_GetAttribute(battlerSprite, MON_SPRITE_Y_CENTER);
         battlerY -= PokemonSprite_GetAttribute(battlerSprite, MON_SPRITE_SHADOW_HEIGHT);
     }
-    
+
     SpriteTemplate template;
     template.x = battlerX;
     template.y = battlerY;
@@ -1995,8 +1992,7 @@ static void BattleAnimScriptCmd_AddPokemonSprite(BattleAnimSystem *system)
         }
     }
 
-    if (BattleAnimSystem_IsContest(system) == TRUE &&
-        IsFormSymmetrical(BattleAnimSystem_GetBattlerSpecies(system, battler), battlerForm) == TRUE) {
+    if (BattleAnimSystem_IsContest(system) == TRUE && IsFormSymmetrical(BattleAnimSystem_GetBattlerSpecies(system, battler), battlerForm) == TRUE) {
         ManagedSprite_SetFlipMode(sprite, TRUE);
     }
 
@@ -2297,7 +2293,7 @@ static void BattleBgSwitch_SetBg(BattleBgSwitch *bgSwitch, BattleAnimSystem *sys
         0,
         TRUE,
         system->heapID);
-    
+
     PaletteData_LoadBufferFromFileStart(
         system->paletteData,
         NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG,
@@ -2306,7 +2302,7 @@ static void BattleBgSwitch_SetBg(BattleBgSwitch *bgSwitch, BattleAnimSystem *sys
         0,
         PALETTE_SIZE_BYTES,
         9 * SLOTS_PER_PALETTE);
-    
+
     Bg_ClearTilemap(system->bgConfig, bgLayer);
 
     enum BgNarcMemberType memberType = BG_NARC_MEMBER_NSCR1;
@@ -2412,7 +2408,7 @@ static BOOL BattleBgSwitch_Blend(SysTask *task, BattleBgSwitch *bgSwitch)
     case 0:
         // Load normal battle/contest BG BG_BASE
         BattleAnimSystem_LoadBaseBg(bgSwitch->battleAnimSystem, BATTLE_BG_BASE);
-        
+
         int effectPrio = BattleAnimSystem_GetBgPriority(bgSwitch->battleAnimSystem, BATTLE_ANIM_BG_EFFECT);
         int basePrio = BattleAnimSystem_GetBgPriority(bgSwitch->battleAnimSystem, BATTLE_ANIM_BG_BASE);
 
@@ -2486,7 +2482,7 @@ static BOOL BattleBgRestore_Blend(SysTask *task, BattleBgSwitch *bgSwitch)
         // on which blend type was used to initially switch the BG
         Bg_ToggleLayer(BATTLE_BG_BASE, TRUE);
         bgSwitch->state++;
-        
+
         // fallthrough
     case 1: {
         int effectPrio = BattleAnimSystem_GetBgPriority(bgSwitch->battleAnimSystem, BATTLE_ANIM_BG_EFFECT);
@@ -2814,7 +2810,7 @@ static BOOL ov12_0222240C(BattleBgSwitch *param0)
 
     v3->cancel = 0;
     v3->unk_1C->unk_C0 = ov12_02226544(
-        BattleAnimUtil_GetHOffsetRegisterForBg(BattleAnimSystem_GetBgID(system, BATTLE_ANIM_BG_EFFECT)), 
+        BattleAnimUtil_GetHOffsetRegisterForBg(BattleAnimSystem_GetBgID(system, BATTLE_ANIM_BG_EFFECT)),
         ov12_022266E8(0, 0),
         system->heapID);
 
@@ -2932,7 +2928,7 @@ static void BattleBgSwitchTask_Start(SysTask *task, void *param)
 {
     BattleBgSwitch *bgSwitch = param;
     BOOL active = sBattleBgSwitchFuncs[bgSwitch->mode](task, bgSwitch);
-    
+
     if (active == FALSE) {
         bgSwitch->battleAnimSystem->bgSwitchState = BATTLE_BG_SWITCH_STATE_NONE;
 
@@ -3043,7 +3039,7 @@ static void BattleAnimScriptCmd_SetBg(BattleAnimSystem *system)
         0,
         TRUE,
         system->heapID);
-    
+
     Graphics_LoadPalette(
         NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG,
         BattleAnimSystem_GetBgNarcMemberIndex(bgID, BG_NARC_MEMBER_NCLR),
@@ -3051,7 +3047,7 @@ static void BattleAnimScriptCmd_SetBg(BattleAnimSystem *system)
         0,
         0,
         system->heapID);
-    
+
     Graphics_LoadTilemapToBgLayer(
         NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG,
         BattleAnimSystem_GetBgNarcMemberIndex(bgID, BG_NARC_MEMBER_NSCR1),
@@ -3856,8 +3852,7 @@ BOOL BattleAnimSystem_ShouldBattlerSpriteBeFlipped(BattleAnimSystem *system, enu
     int battler = BattleAnimSystem_GetBattlerOfType(system, type);
     int form = system->context->battlerForms[battler];
 
-    if (BattleAnimSystem_IsContest(system) == TRUE &&
-        IsFormSymmetrical(BattleAnimSystem_GetBattlerSpecies(system, battler), form) == TRUE) {
+    if (BattleAnimSystem_IsContest(system) == TRUE && IsFormSymmetrical(BattleAnimSystem_GetBattlerSpecies(system, battler), form) == TRUE) {
         return TRUE;
     }
 

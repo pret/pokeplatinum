@@ -19,7 +19,7 @@
 #include "battle/struct_ov16_02268520.h"
 #include "battle/struct_ov16_02268A14_decl.h"
 #include "battle/struct_ov16_0226D160_decl.h"
-#include "overlay012/struct_ov12_0221FCDC_decl.h"
+#include "overlay012/battle_anim_system.h"
 
 #include "bag.h"
 #include "bg_window.h"
