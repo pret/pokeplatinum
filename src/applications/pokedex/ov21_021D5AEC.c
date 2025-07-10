@@ -841,7 +841,7 @@ static void ov21_021D6744(UnkStruct_ov21_021D71A8 *param0, PokedexGraphicData *p
 
     param0->unk_7C = SpriteList_Add(&v0);
 
-    Sprite_SetDrawFlag(param0->unk_7C, 0);
+    Sprite_SetDrawFlag(param0->unk_7C, FALSE);
     Sprite_SetExplicitOAMMode(param0->unk_7C, GX_OAM_MODE_XLU);
 }
 
@@ -911,14 +911,14 @@ static void ov21_021D68C8(UnkStruct_ov21_021D71A8 *param0, PokedexGraphicData *p
         PokedexGraphics_SetPokemonCharHide(param1, 0);
 
         if (param0->unk_7C) {
-            Sprite_SetDrawFlag(param0->unk_7C, 1);
+            Sprite_SetDrawFlag(param0->unk_7C, TRUE);
         }
     } else {
         PokedexMain_DisplayPokemonSprite(param1, param2->unk_04, pokeCaughtStatus->species, 2, 56, 80);
         PokedexGraphics_SetPokemonCharHide(param1, 1);
 
         if (param0->unk_7C) {
-            Sprite_SetDrawFlag(param0->unk_7C, 0);
+            Sprite_SetDrawFlag(param0->unk_7C, FALSE);
         }
     }
 }
@@ -1032,9 +1032,9 @@ static void ov21_021D6A58(UnkStruct_ov21_021D71A8 *param0, const UnkStruct_ov21_
         v0 %= 9;
 
         if ((v1 + 4) >= v2) {
-            Sprite_SetDrawFlag(param0->unk_00[v0], 0);
+            Sprite_SetDrawFlag(param0->unk_00[v0], FALSE);
         } else {
-            Sprite_SetDrawFlag(param0->unk_00[v0], 1);
+            Sprite_SetDrawFlag(param0->unk_00[v0], TRUE);
         }
     } else {
         if (param1->unk_08 == 2) {
@@ -1047,9 +1047,9 @@ static void ov21_021D6A58(UnkStruct_ov21_021D71A8 *param0, const UnkStruct_ov21_
             v0 = param0->unk_24;
 
             if ((v1 - 4) < 0) {
-                Sprite_SetDrawFlag(param0->unk_00[v0], 0);
+                Sprite_SetDrawFlag(param0->unk_00[v0], FALSE);
             } else {
-                Sprite_SetDrawFlag(param0->unk_00[v0], 1);
+                Sprite_SetDrawFlag(param0->unk_00[v0], TRUE);
             }
         } else {
             ov21_021D6ED0(param0, param1);
@@ -1313,9 +1313,9 @@ static void ov21_021D6ED0(UnkStruct_ov21_021D71A8 *param0, const UnkStruct_ov21_
 
     for (v2 = 0; v2 < 9; v2++) {
         if ((v0 >= 0) && (v0 < v4)) {
-            Sprite_SetDrawFlag(param0->unk_00[v1], 1);
+            Sprite_SetDrawFlag(param0->unk_00[v1], TRUE);
         } else {
-            Sprite_SetDrawFlag(param0->unk_00[v1], 0);
+            Sprite_SetDrawFlag(param0->unk_00[v1], FALSE);
         }
 
         v1 = (v1 + 1) % 9;

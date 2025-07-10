@@ -232,9 +232,9 @@ int ov71_0223B140(ApplicationManager *appMan, int *param1)
                 }
 
                 if (v5 == 4 - 1) {
-                    Sprite_SetDrawFlag(v0->unk_30E4.unk_1C0[8 + v6], 1);
+                    Sprite_SetDrawFlag(v0->unk_30E4.unk_1C0[8 + v6], TRUE);
                 } else if (v5 == 4) {
-                    Sprite_SetDrawFlag(v0->unk_30E4.unk_1C0[(8 + 8) + v6], 1);
+                    Sprite_SetDrawFlag(v0->unk_30E4.unk_1C0[(8 + 8) + v6], TRUE);
                 }
             }
         }
@@ -273,7 +273,7 @@ int ov71_0223B388(ApplicationManager *appMan, int *param1)
                 v0->unk_3350 = 1;
                 v0->unk_3381 = 1;
 
-                Sprite_SetDrawFlag(v0->unk_30E4.unk_1C0[((8 + 8) + 8)], 1);
+                Sprite_SetDrawFlag(v0->unk_30E4.unk_1C0[((8 + 8) + 8)], TRUE);
                 Sprite_SetAnimateFlag(v0->unk_30E4.unk_1C0[((8 + 8) + 8)], 1);
                 Sprite_SetAnim(v0->unk_30E4.unk_1C0[((8 + 8) + 8)], 10);
 
@@ -1100,10 +1100,10 @@ static void ov71_0223C1AC(UnkStruct_ov71_0223B620 *param0, const u8 param1)
                 }
 
                 if (v1 == 4 - 1) {
-                    Sprite_SetDrawFlag(param0->unk_30E4.unk_1C0[8 + param1], 1);
+                    Sprite_SetDrawFlag(param0->unk_30E4.unk_1C0[8 + param1], TRUE);
                 } else if (v1 == 4) {
-                    Sprite_SetDrawFlag(param0->unk_30E4.unk_1C0[8 + param1], 0);
-                    Sprite_SetDrawFlag(param0->unk_30E4.unk_1C0[(8 + 8) + param1], 1);
+                    Sprite_SetDrawFlag(param0->unk_30E4.unk_1C0[8 + param1], FALSE);
+                    Sprite_SetDrawFlag(param0->unk_30E4.unk_1C0[(8 + 8) + param1], TRUE);
                 }
             }
         }

@@ -296,7 +296,7 @@ static int ov95_02247ED8(UnkStruct_ov95_02247C6C *param0, int *param1)
     case 0:
         if (IsScreenFadeDone()) {
             Sprite_SetAnim(param0->unk_3C[0], 1);
-            Sprite_SetDrawFlag(param0->unk_3C[0], 1);
+            Sprite_SetDrawFlag(param0->unk_3C[0], TRUE);
             return 1;
         }
         break;
@@ -391,7 +391,7 @@ static int ov95_02248090(UnkStruct_ov95_02247C6C *param0, int *param1)
         if (ov95_022483B4(param0)) {
             PokemonSprite_Delete(param0->unk_10);
             Sprite_SetAnim(param0->unk_3C[1], 0);
-            Sprite_SetDrawFlag(param0->unk_3C[1], 1);
+            Sprite_SetDrawFlag(param0->unk_3C[1], TRUE);
             (*param1)++;
         }
         break;
@@ -484,8 +484,8 @@ static void ov95_0224829C(UnkStruct_ov95_02247C6C *param0)
     param0->unk_3C[1] = ov95_022475E4(param0->unk_00, &v2, 128, 90, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
     Sprite_SetExplicitPriority(param0->unk_3C[1], 1);
-    Sprite_SetDrawFlag(param0->unk_3C[0], 0);
-    Sprite_SetDrawFlag(param0->unk_3C[1], 0);
+    Sprite_SetDrawFlag(param0->unk_3C[0], FALSE);
+    Sprite_SetDrawFlag(param0->unk_3C[1], FALSE);
 }
 
 static void ov95_02248340(UnkStruct_ov95_02247C6C *param0)

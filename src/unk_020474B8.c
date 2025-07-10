@@ -202,20 +202,20 @@ BOOL ScrCmd_BufferPartyMonNickname(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_251(ScriptContext *param0)
+BOOL ScrCmd_BufferPCBoxesMonNickname(ScriptContext *ctx)
 {
-    BoxPokemon *v0;
-    FieldSystem *fieldSystem = param0->fieldSystem;
+    BoxPokemon *boxMon;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
     PCBoxes *pcBoxes = SaveData_GetPCBoxes(fieldSystem->saveData);
-    StringTemplate **v3 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 v4 = ScriptContext_ReadByte(param0);
-    u16 v5 = ScriptContext_GetVar(param0);
-    u32 v6 = v5 % (5 * 6);
-    u32 v7 = v5 / (5 * 6);
-    v0 = PCBoxes_GetBoxMonAt(pcBoxes, v7, v6);
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u8 templateArg = ScriptContext_ReadByte(ctx);
+    u16 boxSlotIndex = ScriptContext_GetVar(ctx);
+    u32 slot = boxSlotIndex % MAX_MONS_PER_BOX;
+    u32 boxID = boxSlotIndex / MAX_MONS_PER_BOX;
+    boxMon = PCBoxes_GetBoxMonAt(pcBoxes, boxID, slot);
 
-    StringTemplate_SetNickname(*v3, v4, v0);
-    return 0;
+    StringTemplate_SetNickname(*strTemplate, templateArg, boxMon);
+    return FALSE;
 }
 
 BOOL ScrCmd_BufferPoketchAppName(ScriptContext *ctx)
@@ -229,15 +229,15 @@ BOOL ScrCmd_BufferPoketchAppName(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_0D8(ScriptContext *param0)
+BOOL ScrCmd_BufferTrainerClassName(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 v2 = ScriptContext_ReadByte(param0);
-    u16 v3 = ScriptContext_GetVar(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u8 templateArg = ScriptContext_ReadByte(ctx);
+    u16 trainerClass = ScriptContext_GetVar(ctx);
 
-    StringTemplate_SetTrainerClassName(*v1, v2, v3);
-    return 0;
+    StringTemplate_SetTrainerClassName(*strTemplate, templateArg, trainerClass);
+    return FALSE;
 }
 
 BOOL ScrCmd_0D9(ScriptContext *param0)

@@ -129,7 +129,7 @@ void ov71_0223D070(UnkStruct_ov71_0223D238 *param0, const u8 *param1)
             Sprite_SetAnim(param0->unk_1C0[v0], v0);
 
             if (!param1[v0]) {
-                Sprite_SetDrawFlag(param0->unk_1C0[v0], 0);
+                Sprite_SetDrawFlag(param0->unk_1C0[v0], FALSE);
             }
         }
 
@@ -143,7 +143,7 @@ void ov71_0223D070(UnkStruct_ov71_0223D238 *param0, const u8 *param1)
                 param0->unk_1C0[v2 + v0] = SpriteList_AddAffine(&v3);
                 Sprite_SetAnimateFlag(param0->unk_1C0[v2 + v0], 1);
                 Sprite_SetAnim(param0->unk_1C0[v2 + v0], 8);
-                Sprite_SetDrawFlag(param0->unk_1C0[v2 + v0], 0);
+                Sprite_SetDrawFlag(param0->unk_1C0[v2 + v0], FALSE);
             }
 
             v2 += 8;
@@ -155,7 +155,7 @@ void ov71_0223D070(UnkStruct_ov71_0223D238 *param0, const u8 *param1)
                 param0->unk_1C0[v2 + v0] = SpriteList_AddAffine(&v3);
                 Sprite_SetAnimateFlag(param0->unk_1C0[v2 + v0], 1);
                 Sprite_SetAnim(param0->unk_1C0[v2 + v0], 9);
-                Sprite_SetDrawFlag(param0->unk_1C0[v2 + v0], 0);
+                Sprite_SetDrawFlag(param0->unk_1C0[v2 + v0], FALSE);
             }
         }
         v2 += 8;
@@ -168,7 +168,7 @@ void ov71_0223D070(UnkStruct_ov71_0223D238 *param0, const u8 *param1)
             param0->unk_1C0[v2] = SpriteList_AddAffine(&v3);
             Sprite_SetAnimateFlag(param0->unk_1C0[v2], 0);
             Sprite_SetAnim(param0->unk_1C0[v2], 10);
-            Sprite_SetDrawFlag(param0->unk_1C0[v2], 0);
+            Sprite_SetDrawFlag(param0->unk_1C0[v2], FALSE);
         }
     }
 }

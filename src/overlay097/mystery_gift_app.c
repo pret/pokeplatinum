@@ -1852,7 +1852,7 @@ static void RunMysteryGiftAnimationFrame(SysTask *sysTask, MysteryGiftAnimationM
         } else if (numParticlesDone > 30) {
             Sprite_SetAnimNoRestart(animMan->topScreenLargeParticle.sprite, 3);
         } else if (numParticlesDone > 7) {
-            Sprite_SetDrawFlag(animMan->topScreenLargeParticle.sprite, 1);
+            Sprite_SetDrawFlag(animMan->topScreenLargeParticle.sprite, TRUE);
         }
 
         if (goToNextStage || (numParticlesDone == (NUM_MYSTERY_GIFT_PARTICLES - 1))) {
@@ -1925,7 +1925,7 @@ static void RunMysteryGiftAnimationFrame(SysTask *sysTask, MysteryGiftAnimationM
                 bottomLargeParticlePos->y += FX32_CONST(8);
 
                 if (Sprite_GetDrawFlag(animMan->bottomScreenLargeParticle.sprite) == 0) {
-                    Sprite_SetDrawFlag(animMan->bottomScreenLargeParticle.sprite, 1);
+                    Sprite_SetDrawFlag(animMan->bottomScreenLargeParticle.sprite, TRUE);
                 }
             } else {
                 animMan->animationStage = MG_ANIMATION_STAGE_SPIRAL_OUT;

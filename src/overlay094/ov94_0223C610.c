@@ -266,7 +266,7 @@ static void ov94_0223C85C(UnkStruct_ov94_0223FD4C *param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
-    Sprite_SetDrawFlag(param0->unk_E20, 0);
+    Sprite_SetDrawFlag(param0->unk_E20, FALSE);
 }
 
 static void ov94_0223C888(UnkStruct_ov94_0223FD4C *param0)

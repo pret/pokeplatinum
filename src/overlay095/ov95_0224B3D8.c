@@ -323,7 +323,7 @@ static int ov95_0224B6F0(UnkStruct_ov95_0224B4D4 *param0, int *param1)
     case 0:
         if (IsScreenFadeDone()) {
             Sprite_SetAnim(param0->unk_40[0], 1);
-            Sprite_SetDrawFlag(param0->unk_40[0], 1);
+            Sprite_SetDrawFlag(param0->unk_40[0], TRUE);
             return 1;
         }
         break;
@@ -341,7 +341,7 @@ static int ov95_0224B71C(UnkStruct_ov95_0224B4D4 *param0, int *param1)
     case 1:
         if (param0->unk_80 == NULL) {
             Sprite_SetAnim(param0->unk_40[1], 2);
-            Sprite_SetDrawFlag(param0->unk_40[1], 1);
+            Sprite_SetDrawFlag(param0->unk_40[1], TRUE);
             ov95_022479A8(param0->unk_78, 0);
             param0->unk_08 = 0;
             (*param1)++;
@@ -526,8 +526,8 @@ static void ov95_0224BAE8(UnkStruct_ov95_0224B4D4 *param0)
     param0->unk_40[1] = ov95_022475E4(param0->unk_00, &v2, 128, 90, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
     Sprite_SetExplicitPriority(param0->unk_40[1], 1);
-    Sprite_SetDrawFlag(param0->unk_40[0], 0);
-    Sprite_SetDrawFlag(param0->unk_40[1], 0);
+    Sprite_SetDrawFlag(param0->unk_40[0], FALSE);
+    Sprite_SetDrawFlag(param0->unk_40[1], FALSE);
 }
 
 static void ov95_0224BB8C(UnkStruct_ov95_0224B4D4 *param0)

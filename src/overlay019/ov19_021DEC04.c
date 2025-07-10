@@ -406,7 +406,7 @@ static void ov19_021DF178(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
             Sprite_SetPosition(param0->unk_34[compareMonSlot][i], &v6);
             BoxGraphics_SetSpritePriority(param0->unk_34[compareMonSlot][i], 0);
             BoxGraphics_SetSpritePriority(param0->unk_34[compareMonSlot ^ 1][i], 1);
-            Sprite_SetDrawFlag(param0->unk_34[compareMonSlot][i], 1);
+            Sprite_SetDrawFlag(param0->unk_34[compareMonSlot][i], TRUE);
             contestStat++;
         }
     } else {
@@ -422,7 +422,7 @@ static void ov19_021DF250(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
     int v0;
 
     for (v0 = 0; v0 < 5; v0++) {
-        Sprite_SetDrawFlag(param0->unk_34[compareMonSlot][v0], 0);
+        Sprite_SetDrawFlag(param0->unk_34[compareMonSlot][v0], FALSE);
     }
 }
 
@@ -605,7 +605,7 @@ static void ov19_021DF5D0(UnkStruct_ov19_021DEC04 *param0, NARC *param1)
             param0->unk_34[v4][v5] = ov19_021D785C(param0->unk_10, &v2, 0, 0, 0, NNS_G2D_VRAM_TYPE_2DSUB);
             Sprite_SetAnim(param0->unk_34[v4][v5], 5 + v4);
             Sprite_SetExplicitPalette(param0->unk_34[v4][v5], v4);
-            Sprite_SetDrawFlag(param0->unk_34[v4][v5], 0);
+            Sprite_SetDrawFlag(param0->unk_34[v4][v5], FALSE);
         }
     }
 
@@ -682,9 +682,9 @@ static void ov19_021DF834(UnkStruct_ov19_021DEC04 *param0)
         GXS_LoadOBJ(v4->pRawData, param0->unk_18[compareMonSlot], (4 * 4) * 0x20);
 
         Sprite_SetExplicitPalette(v2, v5);
-        Sprite_SetDrawFlag(v2, 1);
+        Sprite_SetDrawFlag(v2, TRUE);
     } else {
-        Sprite_SetDrawFlag(v2, 0);
+        Sprite_SetDrawFlag(v2, FALSE);
     }
 }
 

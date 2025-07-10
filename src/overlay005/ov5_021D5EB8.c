@@ -1461,7 +1461,7 @@ static void ov5_021D6D34(UnkStruct_ov5_021DB4B8 *param0)
 
     for (v0 = 0; v0 < 48; v0++) {
         param0->unk_48[v0].unk_04 = SpriteList_AddAffine(&param0->unk_08->unk_10);
-        Sprite_SetDrawFlag(param0->unk_48[v0].unk_04, 0);
+        Sprite_SetDrawFlag(param0->unk_48[v0].unk_04, FALSE);
         GF_ASSERT(param0->unk_48[v0].unk_04);
     }
 }
@@ -1572,7 +1572,7 @@ static UnkStruct_ov5_021D6FA8 *ov5_021D6F00(UnkStruct_ov5_021DB4B8 *param0, int 
     }
 
     GF_ASSERT(v0->unk_04);
-    Sprite_SetDrawFlag(v0->unk_04, 1);
+    Sprite_SetDrawFlag(v0->unk_04, TRUE);
 
     return v0;
 }
@@ -1596,7 +1596,7 @@ static void ov5_021D6FA8(UnkStruct_ov5_021D6FA8 *param0)
     param0->unk_38->unk_34 = param0->unk_34;
     param0->unk_34->unk_38 = param0->unk_38;
 
-    Sprite_SetDrawFlag(param0->unk_04, 0);
+    Sprite_SetDrawFlag(param0->unk_04, FALSE);
     ov5_021D6EF0(param0);
 
     v0 = param0->unk_04;

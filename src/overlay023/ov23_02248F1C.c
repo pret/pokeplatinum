@@ -117,7 +117,7 @@ static void ov23_02248F1C(SysTask *param0, void *param1)
             for (v2 = 0; v2 < (7 + 1); v2++) {
                 v0->unk_390[v2] = SpriteList_AddAffine(&v3);
                 Sprite_SetAnimateFlag(v0->unk_390[v2], 1);
-                Sprite_SetDrawFlag(v0->unk_390[v2], 0);
+                Sprite_SetDrawFlag(v0->unk_390[v2], FALSE);
 
                 if (v2 == 0) {
                     Sprite_SetAnim(v0->unk_390[v2], 1);
@@ -127,7 +127,7 @@ static void ov23_02248F1C(SysTask *param0, void *param1)
             for (v2 = 0; v2 < 16 + 1; v2++) {
                 v0->unk_3B0[v2] = SpriteList_AddAffine(&v3);
                 Sprite_SetAnimateFlag(v0->unk_3B0[v2], 1);
-                Sprite_SetDrawFlag(v0->unk_3B0[v2], 0);
+                Sprite_SetDrawFlag(v0->unk_3B0[v2], FALSE);
                 Sprite_SetAnim(v0->unk_3B0[v2], 2);
             }
         }
@@ -255,9 +255,9 @@ static void ov23_022492C8(int param0[][3], Sprite *param1[])
             v1.z = FX32_ONE;
 
             Sprite_SetPosition(param1[v0], &v1);
-            Sprite_SetDrawFlag(param1[v0], 1);
+            Sprite_SetDrawFlag(param1[v0], TRUE);
         } else {
-            Sprite_SetDrawFlag(param1[v0], 0);
+            Sprite_SetDrawFlag(param1[v0], FALSE);
         }
     }
 }
@@ -300,13 +300,13 @@ static void ov23_0224937C(int param0[][4], Sprite *param1[])
             if (param0[v0][2] != param0[v0][3]) {
                 if (param0[v0][2] != 0) {
                     Sprite_SetAnim(param1[v0], param0[v0][2]);
-                    Sprite_SetDrawFlag(param1[v0], 1);
+                    Sprite_SetDrawFlag(param1[v0], TRUE);
                 } else {
-                    Sprite_SetDrawFlag(param1[v0], 0);
+                    Sprite_SetDrawFlag(param1[v0], FALSE);
                 }
             }
         } else {
-            Sprite_SetDrawFlag(param1[v0], 0);
+            Sprite_SetDrawFlag(param1[v0], FALSE);
         }
 
         param0[v0][3] = param0[v0][2];

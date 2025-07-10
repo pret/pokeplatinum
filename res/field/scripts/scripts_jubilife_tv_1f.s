@@ -90,7 +90,7 @@ _0100:
     GoTo _011C
 
 _010E:
-    ScrCmd_251 0, VAR_0x8001
+    BufferPCBoxesMonNickname 0, VAR_0x8001
     Message 7
     GoTo _011C
 

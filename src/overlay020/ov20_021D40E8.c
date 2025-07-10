@@ -116,15 +116,15 @@ static void ov20_021D4210(UnkStruct_ov20_021D4210 *param0)
     param0->unk_30 = ov20_021D2E50(param0->unk_00, &v0, 72, 56, 3, NNS_G2D_VRAM_TYPE_2DMAIN);
 
     Sprite_SetAnim(param0->unk_30, 8);
-    Sprite_SetDrawFlag(param0->unk_30, 0);
+    Sprite_SetDrawFlag(param0->unk_30, FALSE);
 
     param0->unk_34 = ov20_021D2E50(param0->unk_00, &v0, 240, 64, 4, NNS_G2D_VRAM_TYPE_2DMAIN);
     Sprite_SetAnim(param0->unk_34, 11);
-    Sprite_SetDrawFlag(param0->unk_34, 0);
+    Sprite_SetDrawFlag(param0->unk_34, FALSE);
 
     param0->unk_38 = ov20_021D2E50(param0->unk_00, &v0, 240, 144, 4, NNS_G2D_VRAM_TYPE_2DMAIN);
     Sprite_SetAnim(param0->unk_38, 10);
-    Sprite_SetDrawFlag(param0->unk_38, 0);
+    Sprite_SetDrawFlag(param0->unk_38, FALSE);
 }
 
 void ov20_021D4294(UnkStruct_ov20_021D4210 *param0)
@@ -217,8 +217,8 @@ void ov20_021D4440(UnkStruct_ov20_021D4210 *param0, BOOL param1)
         Sprite_SetDrawFlag(param0->unk_34, ov20_021D204C(param0->unk_04));
         Sprite_SetDrawFlag(param0->unk_38, ov20_021D2060(param0->unk_04));
     } else {
-        Sprite_SetDrawFlag(param0->unk_34, 0);
-        Sprite_SetDrawFlag(param0->unk_38, 0);
+        Sprite_SetDrawFlag(param0->unk_34, FALSE);
+        Sprite_SetDrawFlag(param0->unk_38, FALSE);
     }
 }
 

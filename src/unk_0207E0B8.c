@@ -1000,7 +1000,7 @@ static void sub_0207EE14(GameWindowLayout *param0)
     }
 
     if ((param0->partyManagementData->unk_20 != 2) && (param0->partyManagementData->unk_20 != 17) && (param0->partyManagementData->unk_20 != 23) && (param0->partyManagementData->unk_20 != 22)) {
-        Sprite_SetDrawFlag(param0->unk_5B0[8], 0);
+        Sprite_SetDrawFlag(param0->unk_5B0[8], FALSE);
         Sprite_SetAnim(param0->unk_5B0[9], 0);
 
         {
@@ -1014,7 +1014,7 @@ static void sub_0207EE14(GameWindowLayout *param0)
     }
 
     if ((param0->partyManagementData->unk_20 == 4) || (param0->partyManagementData->unk_20 == 21)) {
-        Sprite_SetDrawFlag(param0->unk_5B0[9], 0);
+        Sprite_SetDrawFlag(param0->unk_5B0[9], FALSE);
         v0 ^= 2;
     }
 
@@ -1444,10 +1444,10 @@ static u8 sub_0207FA24(GameWindowLayout *param0)
 
     if ((v0 != param0->partySlot) && (v0 != 0xff)) {
         if ((v0 == 6) || (v0 == 7)) {
-            Sprite_SetDrawFlag(param0->unk_5B0[6], 0);
+            Sprite_SetDrawFlag(param0->unk_5B0[6], FALSE);
         } else {
             Sprite_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->partyManagementData->unk_21, v0));
-            Sprite_SetDrawFlag(param0->unk_5B0[6], 1);
+            Sprite_SetDrawFlag(param0->unk_5B0[6], TRUE);
             Sprite_SetPositionXY(param0->unk_5B0[6], v2, v3);
         }
 
@@ -1535,7 +1535,7 @@ static u8 sub_0207FC94(GameWindowLayout *param0)
 
         GridMenuCursor_CheckNavigation(param0->unk_7F4, &v1, &v2, NULL, NULL, param0->partySlot, GRID_MENU_CURSOR_POSITION_DIRECTION_NONE);
         Sprite_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->partyManagementData->unk_21, param0->partySlot));
-        Sprite_SetDrawFlag(param0->unk_5B0[6], 1);
+        Sprite_SetDrawFlag(param0->unk_5B0[6], TRUE);
         Sprite_SetPositionXY(param0->unk_5B0[6], v1, v2);
 
         param0->unk_B0C = 1;
@@ -1556,13 +1556,13 @@ static u8 sub_0207FC94(GameWindowLayout *param0)
 void sub_0207FD68(GameWindowLayout *windowLayout, u8 partySlot)
 {
     if ((partySlot == 6) || (partySlot == 7)) {
-        Sprite_SetDrawFlag(windowLayout->unk_5B0[6], 0);
+        Sprite_SetDrawFlag(windowLayout->unk_5B0[6], FALSE);
     } else {
         u8 v0, v1;
 
         GridMenuCursor_CheckNavigation(windowLayout->unk_7F4, &v0, &v1, NULL, NULL, windowLayout->partySlot, GRID_MENU_CURSOR_POSITION_DIRECTION_NONE);
         Sprite_SetAnim(windowLayout->unk_5B0[6], sub_020805D0(windowLayout->partyManagementData->unk_21, partySlot));
-        Sprite_SetDrawFlag(windowLayout->unk_5B0[6], 1);
+        Sprite_SetDrawFlag(windowLayout->unk_5B0[6], TRUE);
         Sprite_SetPositionXY(windowLayout->unk_5B0[6], v0, v1);
     }
 

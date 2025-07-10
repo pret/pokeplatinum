@@ -1277,10 +1277,10 @@
     .short \appID
     .endm
 
-    .macro ScrCmd_0D8 arg0, arg1
+    .macro BufferTrainerClassName templateArg, trainerClass
     .short 216
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \trainerClass
     .endm
 
     .macro ScrCmd_0D9 arg0
@@ -3380,10 +3380,10 @@
     .short 592
     .endm
 
-    .macro ScrCmd_251 arg0, arg1
+    .macro BufferPCBoxesMonNickname templateArg, boxSlotIndex
     .short 593
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \boxSlotIndex
     .endm
 
     .macro GetPCBoxesFreeSlotCount destVar

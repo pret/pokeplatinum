@@ -905,13 +905,13 @@ static void ov80_021D2398(UnkStruct_ov80_021D2A08 *param0)
 
     v0->unk_100 = SpriteSystem_NewSpriteFromResourceHeader(param0->unk_D8, param0->unk_DC, &Unk_ov80_021D30E8[0]);
 
-    Sprite_SetDrawFlag(v0->unk_100, 0);
+    Sprite_SetDrawFlag(v0->unk_100, FALSE);
     Sprite_SetAnimSpeed(v0->unk_100, FX32_ONE);
     Sprite_SetPositionXY(v0->unk_100, 128, 108);
 
     v0->unk_104 = SpriteSystem_NewSpriteFromResourceHeader(param0->unk_D8, param0->unk_DC, &Unk_ov80_021D30E8[1]);
 
-    Sprite_SetDrawFlag(v0->unk_104, 1);
+    Sprite_SetDrawFlag(v0->unk_104, TRUE);
     Sprite_SetAnimSpeed(v0->unk_104, FX32_CONST(2));
     Sprite_SetAnimateFlag(v0->unk_104, 1);
     Sprite_SetPositionXY(v0->unk_104, v0->unk_18 * 7 + (48 - 23), v0->unk_1C * 7 + (6 - 40));
@@ -924,7 +924,7 @@ static void ov80_021D2398(UnkStruct_ov80_021D2A08 *param0)
 
     v0->unk_108 = SpriteSystem_NewSpriteFromResourceHeader(param0->unk_D8, param0->unk_DC, &v1);
 
-    Sprite_SetDrawFlag(v0->unk_108, 1);
+    Sprite_SetDrawFlag(v0->unk_108, TRUE);
     Sprite_SetAnimFrame(v0->unk_108, param0->unk_2C->unk_0C);
     Sprite_SetPositionXY(v0->unk_108, v0->unk_18 * 7 + (48 - 23), v0->unk_1C * 7 + (6 - 40));
 }
@@ -1017,7 +1017,7 @@ static void ov80_021D259C(UnkStruct_ov80_021D2A08 *param0)
 
         Sprite_SetPositionXY(v2->unk_0C, v2->unk_00 * 7 + 25, v2->unk_04 * 7 + -34);
         Sprite_SetPriority(v2->unk_0C, 2);
-        Sprite_SetDrawFlag(v2->unk_0C, 0);
+        Sprite_SetDrawFlag(v2->unk_0C, FALSE);
     }
 
     if (v0->unk_A4.unk_00 == 0) {
@@ -1036,8 +1036,8 @@ static void ov80_021D26AC(SysTask *param0, void *param1)
         return;
     }
 
-    Sprite_SetDrawFlag(v0->unk_0C[v0->unk_0B].unk_0C, 0);
-    Sprite_SetDrawFlag(v0->unk_0C[v0->unk_0A].unk_0C, 1);
+    Sprite_SetDrawFlag(v0->unk_0C[v0->unk_0B].unk_0C, FALSE);
+    Sprite_SetDrawFlag(v0->unk_0C[v0->unk_0A].unk_0C, TRUE);
 
     v0->unk_0B = v0->unk_0A;
     v0->unk_0A = (v0->unk_0A + (v0->unk_00 - 1)) % v0->unk_00;
@@ -1085,7 +1085,7 @@ static void ov80_021D2774(SysTask *param0, void *param1)
 
     switch (v1->unk_04) {
     case 0:
-        Sprite_SetDrawFlag(v1->unk_100, 1);
+        Sprite_SetDrawFlag(v1->unk_100, TRUE);
         Sprite_SetAnimateFlag(v1->unk_100, 1);
         Sprite_SetAnimFrame(v1->unk_100, 1);
         Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
@@ -1103,7 +1103,7 @@ static void ov80_021D2774(SysTask *param0, void *param1)
 
         break;
     case 2:
-        Sprite_SetDrawFlag(v1->unk_100, 0);
+        Sprite_SetDrawFlag(v1->unk_100, FALSE);
         Sprite_SetAnimateFlag(v1->unk_100, 0);
 
         v0->unk_14 = 0;

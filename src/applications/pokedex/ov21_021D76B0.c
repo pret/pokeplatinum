@@ -606,7 +606,7 @@ static void ov21_021D7E80(UnkStruct_ov21_021D7C64 *param0, PokedexGraphicData **
     Sprite_SetAnim(param0->unk_00[0], 2);
 
     if (param2->unk_1C->unk_04->unk_1740 == 1) {
-        Sprite_SetDrawFlag(param0->unk_00[0], 0);
+        Sprite_SetDrawFlag(param0->unk_00[0], FALSE);
     }
 
     v1.position.x = 48 << FX32_SHIFT;
@@ -618,7 +618,7 @@ static void ov21_021D7E80(UnkStruct_ov21_021D7C64 *param0, PokedexGraphicData **
     Sprite_SetAnim(param0->unk_00[1], 0);
 
     if ((ov21_021D36A4(param2->unk_1C->unk_04, 1) == 0) || (param2->unk_1C->unk_04->unk_1740 == 1)) {
-        Sprite_SetDrawFlag(param0->unk_00[1], 0);
+        Sprite_SetDrawFlag(param0->unk_00[1], FALSE);
     }
 
     v1.position.x = 48 << FX32_SHIFT;
