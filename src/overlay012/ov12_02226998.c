@@ -19,11 +19,11 @@
 void include_unk_ov12_02239E64(void);
 
 static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
-    BattleAnimScriptFunc_NoOp,
+    BattleAnimScriptFunc_Nop,
     BattleAnimScriptFunc_AnimExample,
     BattleAnimScriptFunc_SoundExample,
     BattleAnimScriptFunc_GenericExample,
-    ov12_02227408,
+    BattleAnimScriptFunc_RotateMon,
     ov12_0222B194,
     ov12_0222B45C,
     ov12_0222B68C,

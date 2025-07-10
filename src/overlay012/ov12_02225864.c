@@ -8,11 +8,12 @@
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_02235254.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
-#include "overlay012/struct_ov12_02225D50.h"
+#include "overlay012/ov12_02225864.h"
 #include "overlay012/struct_ov12_02225F6C.h"
 #include "overlay012/struct_ov12_02226274.h"
 #include "overlay012/struct_ov12_02226454.h"
 
+#include "battle_script_battlers.h"
 #include "buffer_manager.h"
 #include "heap.h"
 #include "inlines.h"
@@ -152,24 +153,23 @@ u8 ov12_02225950(ManagedSprite *param0)
     return PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(param0->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
 }
 
-int ov12_02225964(BattleAnimSystem *param0, int param1)
+int BattleAnimMath_GetRotationDirection(BattleAnimSystem *system, int battler)
 {
-    int v0;
-    int v1 = 1;
+    int dir = 1;
 
-    v0 = BattleAnimUtil_GetBattlerSide(param0, param1);
+    enum Battler side = BattleAnimUtil_GetBattlerSide(system, battler);
 
-    if (BattleAnimSystem_IsContest(param0)) {
-        if (v0 == 0x3) {
-            v1 = -1;
+    if (BattleAnimSystem_IsContest(system)) {
+        if (side == BTLSCR_PLAYER) {
+            dir = -1;
         }
     } else {
-        if (v0 == 0x4) {
-            v1 = -1;
+        if (side == BTLSCR_ENEMY) {
+            dir = -1;
         }
     }
 
-    return v1;
+    return dir;
 }
 
 int ov12_0222598C(BattleAnimSystem *param0, int param1)
@@ -186,13 +186,9 @@ int ov12_0222598C(BattleAnimSystem *param0, int param1)
     return v1;
 }
 
-fx32 ov12_022259A0(fx32 param0, fx32 param1, u32 param2)
+fx32 BattleAnimMath_GetStepSize(fx32 start, fx32 end, u32 steps)
 {
-    fx32 v0;
-
-    v0 = FX_Div((param1 - param0), param2 << FX32_SHIFT);
-
-    return v0;
+    return FX_Div(end - start, steps << FX32_SHIFT);
 }
 
 u32 ov12_022259AC(fx32 param0, fx32 param1, fx32 param2)
@@ -321,8 +317,8 @@ void ov12_02225BC8(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, s16 
     param0->unk_00 = param1;
     param0->unk_02 = param3;
     param0->unk_04[0] = param5;
-    param0->unk_04[1] = ov12_022259A0(param1 * FX32_ONE, param2 * FX32_ONE, param5);
-    param0->unk_04[2] = ov12_022259A0(param3 * FX32_ONE, param4 * FX32_ONE, param5);
+    param0->unk_04[1] = BattleAnimMath_GetStepSize(param1 * FX32_ONE, param2 * FX32_ONE, param5);
+    param0->unk_04[2] = BattleAnimMath_GetStepSize(param3 * FX32_ONE, param4 * FX32_ONE, param5);
     param0->unk_04[3] = param1 * FX32_ONE;
     param0->unk_04[4] = param3 * FX32_ONE;
 }
@@ -402,76 +398,76 @@ BOOL ov12_02225D2C(UnkStruct_ov12_02225F6C *param0, UnkStruct_ov12_02225F6C *par
     return 0;
 }
 
-void ov12_02225D50(UnkStruct_ov12_02225D50 *param0, s32 param1, s32 param2, u32 param3)
+void AngleLerpContext_Init(AngleLerpContext *ctx, s32 start, s32 end, u32 steps)
 {
-    GF_ASSERT(param0);
+    GF_ASSERT(ctx);
 
-    param0->unk_00 = param1;
-    param0->unk_04[0] = param3;
-    param0->unk_04[1] = ov12_022259A0(param1 * FX32_ONE, param2 * FX32_ONE, param3) >> FX32_SHIFT;
+    ctx->angle = start;
+    ctx->data[0] = steps;
+    ctx->data[1] = BattleAnimMath_GetStepSize(start * FX32_ONE, end * FX32_ONE, steps) >> FX32_SHIFT;
 }
 
-void ov12_02225D78(UnkStruct_ov12_02225D50 *param0, s16 param1, s16 param2, u32 param3)
+void AngleLerpContext_InitFX32(AngleLerpContext *ctx, s16 start, s16 end, u32 steps)
 {
-    GF_ASSERT(param0);
+    GF_ASSERT(ctx);
 
-    param0->unk_00 = param1;
-    param0->unk_04[0] = param3;
-    param0->unk_04[1] = ov12_022259A0(param1 * FX32_ONE, param2 * FX32_ONE, param3);
-    param0->unk_04[2] = param1 * FX32_ONE;
+    ctx->angle = start;
+    ctx->data[0] = steps;
+    ctx->data[1] = BattleAnimMath_GetStepSize(start * FX32_ONE, end * FX32_ONE, steps);
+    ctx->data[2] = start * FX32_ONE;
 }
 
-BOOL ov12_02225DA0(UnkStruct_ov12_02225D50 *param0)
+BOOL AngleLerpContext_Update(AngleLerpContext *ctx)
 {
-    GF_ASSERT(param0);
+    GF_ASSERT(ctx);
 
-    if (param0->unk_04[0]) {
-        param0->unk_00 += param0->unk_04[1];
-        param0->unk_04[0]--;
+    if (ctx->data[0]) {
+        ctx->angle += ctx->data[1];
+        ctx->data[0]--;
 
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ov12_02225DC8(UnkStruct_ov12_02225D50 *param0)
+BOOL AngleLerpContext_UpdateFX32(AngleLerpContext *ctx)
 {
-    GF_ASSERT(param0);
+    GF_ASSERT(ctx);
 
-    if (param0->unk_04[0]) {
-        param0->unk_04[2] += param0->unk_04[1];
-        param0->unk_00 = param0->unk_04[2] >> FX32_SHIFT;
-        param0->unk_04[0]--;
+    if (ctx->data[0]) {
+        ctx->data[2] += ctx->data[1];
+        ctx->angle = ctx->data[2] >> FX32_SHIFT;
+        ctx->data[0]--;
 
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-void ov12_02225DF4(UnkStruct_ov12_02225D50 *param0, u16 param1, u16 param2, fx32 param3, u32 param4)
+void AngleLerpContext_InitCos(AngleLerpContext *ctx, u16 start, u16 end, fx32 amplitude, u32 steps)
 {
-    param0->unk_04[0] = param4;
-    param0->unk_04[1] = param1;
-    param0->unk_04[2] = param3;
-    param0->unk_04[3] = (param2 - param1) / param4;
+    ctx->data[0] = steps;
+    ctx->data[1] = start;
+    ctx->data[2] = amplitude;
+    ctx->data[3] = (end - start) / steps;
 }
 
-BOOL ov12_02225E0C(UnkStruct_ov12_02225D50 *param0)
+BOOL AngleLerpContext_UpdateCos(AngleLerpContext *ctx)
 {
-    GF_ASSERT(param0);
+    GF_ASSERT(ctx);
 
-    if (param0->unk_04[0]) {
-        param0->unk_04[1] += param0->unk_04[3];
-        param0->unk_04[1] &= 0xffff;
-        param0->unk_04[0]--;
-        param0->unk_00 = FX_Mul(FX_CosIdx(param0->unk_04[1]), param0->unk_04[2]) >> FX32_SHIFT;
+    if (ctx->data[0]) {
+        ctx->data[1] += ctx->data[3];
+        ctx->data[1] &= 0xFFFF;
+        ctx->data[0]--;
+        ctx->angle = FX_Mul(FX_CosIdx(ctx->data[1]), ctx->data[2]) >> FX32_SHIFT;
 
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 #define SCALE_RATE_PER(p1, p2) (((p1) * 0x100) / p2)
@@ -484,7 +480,7 @@ void ov12_02225E68(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, s16 
     v0 = param0;
 
     v0->unk_04[0] = param4;
-    v0->unk_04[1] = ov12_022259A0(SCALE_RATE_PER(param1, param2) * FX32_ONE, SCALE_RATE_PER(param3, param2) * FX32_ONE, param4);
+    v0->unk_04[1] = BattleAnimMath_GetStepSize(SCALE_RATE_PER(param1, param2) * FX32_ONE, SCALE_RATE_PER(param3, param2) * FX32_ONE, param4);
     v0->unk_00 = SCALE_RATE_PER(param1, param2);
     v0->unk_02 = SCALE_RATE_PER(param1, param2);
     v0->unk_04[3] = v0->unk_00 * FX32_ONE;
@@ -521,8 +517,8 @@ void ov12_02225EF0(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, s16 
     v0 = param0;
 
     v0->unk_04[0] = param6;
-    v0->unk_04[1] = ov12_022259A0(SCALE_RATE_PER(param1, param5) * FX32_ONE, SCALE_RATE_PER(param2, param5) * FX32_ONE, param6);
-    v0->unk_04[2] = ov12_022259A0(SCALE_RATE_PER(param3, param5) * FX32_ONE, SCALE_RATE_PER(param4, param5) * FX32_ONE, param6);
+    v0->unk_04[1] = BattleAnimMath_GetStepSize(SCALE_RATE_PER(param1, param5) * FX32_ONE, SCALE_RATE_PER(param2, param5) * FX32_ONE, param6);
+    v0->unk_04[2] = BattleAnimMath_GetStepSize(SCALE_RATE_PER(param3, param5) * FX32_ONE, SCALE_RATE_PER(param4, param5) * FX32_ONE, param6);
     v0->unk_00 = SCALE_RATE_PER(param1, param5);
     v0->unk_02 = SCALE_RATE_PER(param3, param5);
     v0->unk_04[3] = v0->unk_00 * FX32_ONE;

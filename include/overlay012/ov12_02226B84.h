@@ -8,7 +8,7 @@
 void ov12_02226CB0(BattleAnimSystem *param0);
 void ov12_02226EB0(BattleAnimSystem *param0);
 void ov12_022271D8(BattleAnimSystem *param0);
-void ov12_02227408(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_RotateMon(BattleAnimSystem *param0);
 void ov12_02227534(BattleAnimSystem *param0);
 void ov12_0222777C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
 void ov12_02227828(BattleAnimSystem *param0);
