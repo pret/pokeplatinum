@@ -1,9 +1,9 @@
-#ifndef POKEPLATINUM_STRUCT_UNDERGROUND_DATA_H
-#define POKEPLATINUM_STRUCT_UNDERGROUND_DATA_H
+#ifndef POKEPLATINUM_STRUCT_UNDERGROUND_H
+#define POKEPLATINUM_STRUCT_UNDERGROUND_H
 
 #include "struct_defs/struct_02029894.h"
 
-typedef struct UndergroundData {
+typedef struct Underground {
     UnkStruct_02029894 unk_00;
     u32 randomSeed;
     s32 unk_94;
@@ -36,6 +36,6 @@ typedef struct UndergroundData {
     u8 stepCount;
     u8 unk_9AC_0 : 4;
     u8 hasMined : 4;
-} UndergroundData;
+} Underground;
 
-#endif // POKEPLATINUM_STRUCT_UNDERGROUND_DATA_H
+#endif // POKEPLATINUM_STRUCT_UNDERGROUND_H
