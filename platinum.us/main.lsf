@@ -1415,7 +1415,7 @@ Overlay overlay93
 Overlay overlay94
 {
 	After overlay12
-	Object main.nef.p/src_overlay094_ov94_0223B140.c.o
+	Object main.nef.p/src_overlay094_networking.c.o
 	Object main.nef.p/src_overlay094_application.c.o
 	Object main.nef.p/src_overlay094_screens_main_menu.c.o
 	Object main.nef.p/src_overlay094_screens_summary.c.o

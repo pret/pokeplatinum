@@ -13,7 +13,7 @@
 
 #include "overlay004/ov4_021D0D80.h"
 #include "overlay061/struct_ov61_0222C3B0.h"
-#include "overlay094/ov94_0223B140.h"
+#include "overlay094/networking.h"
 #include "overlay098/ov98_02246C20.h"
 #include "overlay098/ov98_022499C8.h"
 #include "overlay098/struct_ov98_02246E88.h"

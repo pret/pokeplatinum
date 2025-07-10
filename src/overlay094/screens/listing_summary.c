@@ -7,9 +7,9 @@
 #include "overlay094/application.h"
 #include "overlay094/gts_application_state.h"
 #include "overlay094/ov94_02243EF8.h"
-#include "overlay094/ov94_02244950.h"
 #include "overlay094/screens/deposit.h"
 #include "overlay094/screens/summary.h"
+#include "overlay094/screens/wfc_init.h"
 #include "overlay094/struct_ov94_0223BA88.h"
 #include "overlay094/struct_ov94_0223BA88_sub3.h"
 

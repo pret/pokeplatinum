@@ -1,3 +1,5 @@
+#include "overlay094/screens/wfc_init.h"
+
 #include <dwc.h>
 #include <nitro.h>
 #include <string.h>
@@ -8,8 +10,7 @@
 #include "overlay004/ov4_021D0D80.h"
 #include "overlay094/application.h"
 #include "overlay094/gts_application_state.h"
-#include "overlay094/ov94_0223B140.h"
-#include "overlay094/ov94_02244950.h"
+#include "overlay094/networking.h"
 
 #include "bg_window.h"
 #include "font.h"

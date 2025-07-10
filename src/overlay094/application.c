@@ -11,9 +11,8 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay094/gts_application_state.h"
-#include "overlay094/ov94_0223B140.h"
+#include "overlay094/networking.h"
 #include "overlay094/ov94_02243EF8.h"
-#include "overlay094/ov94_02244950.h"
 #include "overlay094/screens/deposit.h"
 #include "overlay094/screens/listing_summary.h"
 #include "overlay094/screens/main_menu.h"
@@ -23,6 +22,7 @@
 #include "overlay094/screens/select_pokemon.h"
 #include "overlay094/screens/summary.h"
 #include "overlay094/screens/trade.h"
+#include "overlay094/screens/wfc_init.h"
 
 #include "bg_window.h"
 #include "char_transfer.h"

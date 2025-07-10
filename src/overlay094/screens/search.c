@@ -9,10 +9,10 @@
 #include "overlay094/application.h"
 #include "overlay094/const_ov94_02245FD4.h"
 #include "overlay094/gts_application_state.h"
-#include "overlay094/ov94_0223B140.h"
+#include "overlay094/networking.h"
 #include "overlay094/ov94_02243EF8.h"
-#include "overlay094/ov94_02244950.h"
 #include "overlay094/screens/deposit.h"
+#include "overlay094/screens/wfc_init.h"
 #include "overlay094/struct_ov94_0223BA24.h"
 #include "overlay094/struct_ov94_0223BA88_sub3.h"
 

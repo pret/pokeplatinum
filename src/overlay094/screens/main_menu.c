@@ -9,7 +9,7 @@
 #include "overlay094/application.h"
 #include "overlay094/gts_application_state.h"
 #include "overlay094/ov94_02243EF8.h"
-#include "overlay094/ov94_02244950.h"
+#include "overlay094/screens/wfc_init.h"
 
 #include "bg_window.h"
 #include "font.h"

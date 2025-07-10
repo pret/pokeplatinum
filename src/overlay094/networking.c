@@ -1,4 +1,4 @@
-#include "overlay094/ov94_0223B140.h"
+#include "overlay094/networking.h"
 
 #include <dwc.h>
 #include <nitro.h>
