@@ -11,15 +11,15 @@ typedef struct UnkStruct_0202C844_t {
 
 typedef struct UnkStruct_0202C834_t {
     UnkStruct_0202C844 unk_00[8];
-    u8 unk_20[1536];
+    u8 signature[1536];
 } UnkStruct_0202C834;
 
-int TrainerCard_SaveSize(void)
+int TrainerCardSignature_SaveSize(void)
 {
     return sizeof(UnkStruct_0202C834);
 }
 
-void TrainerCard_Init(UnkStruct_0202C834 *param0)
+void TrainerCardSignature_Init(UnkStruct_0202C834 *param0)
 {
     memset(param0, 0, sizeof(UnkStruct_0202C834));
 
@@ -37,12 +37,12 @@ void TrainerCard_Init(UnkStruct_0202C834 *param0)
 
 UnkStruct_0202C834 *sub_0202C834(SaveData *saveData)
 {
-    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_TRAINER_CARD);
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_TRAINER_CARD_SIGNATURE);
 }
 
-u8 *sub_0202C840(UnkStruct_0202C834 *param0)
+u8 *TrainerCardSignature_GetSignature(UnkStruct_0202C834 *param0)
 {
-    return param0->unk_20;
+    return param0->signature;
 }
 
 UnkStruct_0202C844 *sub_0202C844(UnkStruct_0202C834 *param0)

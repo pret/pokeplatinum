@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02072014.h"
 #include "struct_defs/struct_02098C44.h"
 
 #include "applications/pokemon_summary_screen/main.h"
@@ -37,6 +36,7 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
+#include "trainer_card.h"
 #include "trainer_info.h"
 #include "unk_0202602C.h"
 #include "unk_0202D778.h"
@@ -1012,7 +1012,7 @@ static BOOL sub_0205B140(FieldTask *param0)
         v1->unk_00 = Strbuf_Init((100 * 2), HEAP_ID_FIELD);
         v1->unk_04 = Strbuf_Init((100 * 2), HEAP_ID_FIELD);
 
-        MessageLoader_GetStrbuf(v1->unk_1C, 2 + v2->unk_03, v1->unk_00);
+        MessageLoader_GetStrbuf(v1->unk_1C, 2 + v2->stars, v1->unk_00);
         StringTemplate_SetPlayerName(v1->unk_18, 0, CommInfo_TrainerInfo(v1->unk_24));
         StringTemplate_Format(v1->unk_18, v1->unk_04, v1->unk_00);
         FieldMessage_AddWindow(fieldSystem->bgConfig, &v1->unk_08, 3);

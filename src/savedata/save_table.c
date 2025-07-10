@@ -65,7 +65,7 @@ const SaveTableEntry gSaveTable[] = {
     { SAVE_TABLE_ENTRY_POFFINS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)PoffinCase_SaveSize, (SaveEntryInitFunc)PoffinCase_Init },
     { SAVE_TABLE_ENTRY_RECORD_MIXED_RNG, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)RecordMixedRNG_SaveSize, (SaveEntryInitFunc)RecordMixedRNG_Init },
     { SAVE_TABLE_ENTRY_JOURNAL, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Journal_SaveSize, (SaveEntryInitFunc)Journal_Init10 },
-    { SAVE_TABLE_ENTRY_TRAINER_CARD, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)TrainerCard_SaveSize, (SaveEntryInitFunc)TrainerCard_Init },
+    { SAVE_TABLE_ENTRY_TRAINER_CARD_SIGNATURE, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)TrainerCardSignature_SaveSize, (SaveEntryInitFunc)TrainerCardSignature_Init },
     { SAVE_TABLE_ENTRY_GAME_RECORDS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)GameRecords_SaveSize, (SaveEntryInitFunc)GameRecords_Init },
     { SAVE_TABLE_ENTRY_SEAL_CASE, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)SealCase_SaveSize, (SaveEntryInitFunc)SealCase_Init },
     { SAVE_TABLE_ENTRY_CHATOT, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)ChatotCry_SaveSize, (SaveEntryInitFunc)ChatotCry_Init },

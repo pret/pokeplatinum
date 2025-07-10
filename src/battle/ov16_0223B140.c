@@ -2153,16 +2153,16 @@ static BOOL ov16_0223DB1C(ApplicationManager *appMan)
     switch (v0->resultMask) {
     case BATTLE_RESULT_WIN:
         if (!sub_020389B8()) {
-            GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_021);
+            GameRecords_IncrementRecordValue(v0->records, RECORD_LOCAL_LINK_BATTLE_WINS);
         } else {
-            GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_026);
+            GameRecords_IncrementRecordValue(v0->records, RECORD_WIFI_BATTLE_WINS);
         }
         break;
     case BATTLE_RESULT_LOSE:
         if (!sub_020389B8()) {
-            GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_022);
+            GameRecords_IncrementRecordValue(v0->records, RECORD_LOCAL_LINK_BATTLE_LOSSES);
         } else {
-            GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_027);
+            GameRecords_IncrementRecordValue(v0->records, RECORD_WIFI_BATTLE_LOSSES);
         }
         break;
     case BATTLE_RESULT_DRAW:

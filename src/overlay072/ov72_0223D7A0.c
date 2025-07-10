@@ -137,7 +137,7 @@ int ov72_0223D7A0(ApplicationManager *appMan, int *param1)
         {
             SaveData *saveData = (SaveData *)ApplicationManager_Args(appMan);
 
-            v0->unk_5BFC = (u8 *)sub_0202C840(sub_0202C834(saveData));
+            v0->unk_5BFC = (u8 *)TrainerCardSignature_GetSignature(sub_0202C834(saveData));
             v0->records = (GameRecords *)SaveData_GetGameRecords((SaveData *)ApplicationManager_Args(appMan));
             v0->options = SaveData_GetOptions((SaveData *)ApplicationManager_Args(appMan));
         }

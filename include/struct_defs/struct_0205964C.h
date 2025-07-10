@@ -3,12 +3,11 @@
 
 #include <nitro/math.h>
 
-#include "struct_defs/struct_02072014.h"
-
 #include "field/field_system_decl.h"
 #include "functypes/funcptr_020598EC.h"
 
 #include "party.h"
 #include "sys_task_manager.h"
+#include "trainer_card.h"
 
 #endif // POKEPLATINUM_STRUCT_0205964C_H
