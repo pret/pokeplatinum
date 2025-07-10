@@ -1845,7 +1845,7 @@ static int GBAMigrator_Init(ApplicationManager *appMan, int *state)
         OS_InitTick();
     }
 
-    ov97_02238440();
+    MainMenuUtil_UnsetGBACartIRQFunc();
     Unk_ov97_0223F434 = migrator->unk_E8FC;
 
     return 1;
@@ -2196,7 +2196,7 @@ static int GBAMigrator_Exit(ApplicationManager *appMan, int *state)
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_MIGRATE_FROM_GBA);
 
-    ov97_02238400(FALSE);
+    MainMenuUtil_ToggleTerminateOnGBACartRemoved(FALSE);
 
     return 1;
 }

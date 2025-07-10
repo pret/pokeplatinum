@@ -16,8 +16,6 @@
 #include "overlay097/ov97_02237694.h"
 #include "overlay097/ov97_02238534.h"
 #include "overlay097/ov97_02238D74.h"
-#include "overlay097/struct_ov97_02237808.h"
-#include "overlay097/struct_ov97_02237AEC.h"
 #include "overlay097/wonder_cards_app.h"
 #include "savedata/save_table.h"
 
@@ -216,7 +214,7 @@ typedef struct MysteryGiftAnimationManager {
     int animationStage;
     int unused_04;
     s8 blendBrightness;
-    UnkStruct_ov97_02237AEC *unk_0C;
+    MainMenuSpriteManager *unk_0C;
     SpriteResourcesHeader spriteResourcesHeaders[DS_SCREEN_MAX];
     SpriteResource *spriteResources[DS_SCREEN_MAX][SPRITE_RESOURCE_MAX];
     MysteryGiftParticle topScreenSmallParticles[NUM_MYSTERY_GIFT_PARTICLES];
@@ -299,7 +297,7 @@ StateChangeMenuOptionTemplate sConfirmReceiveGiftOptions_WirelessDistribution[] 
 
 static ListMenuTemplate sMysteryGiftAppListMenuTemplate = {
     .choices = NULL,
-    .cursorCallback = ov97_022383C4,
+    .cursorCallback = MainMenuUtil_ListMenuCursorCB,
     .printCallback = NULL,
     .window = NULL,
     .count = 0,
@@ -346,7 +344,7 @@ static void FreeApplicationResources(ApplicationManager *appMan)
 {
     MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
 
-    ov97_02237DA0();
+    MainMenuUtil_FreeSprites();
 
     if (appData->listMenuOptions) {
         StringList_Free(appData->listMenuOptions);
@@ -380,15 +378,15 @@ static void FreeApplicationResources(ApplicationManager *appMan)
 
 static void LoadDownloadArrowSpriteResources(MysteryGiftAppData *appData)
 {
-    ov97_02237A20();
-    ov97_02237A74();
-    ov97_02237B0C(NARC_INDEX_GRAPHIC__MYSTERY, 10, 7, 9, 8, 0);
+    MainMenuUtil_InitCharPlttTransferBuffers();
+    MainMenuUtil_InitSpriteLoader();
+    MainMenuUtil_LoadSprite(NARC_INDEX_GRAPHIC__MYSTERY, 10, 7, 9, 8, 0);
 }
 
 static void SetDownloadArrowAnim(MysteryGiftAppData *appData, int animID)
 {
     if (animID != HIDE_DOWNLOADING_ARROW) {
-        appData->dowloadArrowSprite = ov97_02237D14(0, appData->dowloadArrowSprite, HW_LCD_WIDTH / 2, 100, animID);
+        appData->dowloadArrowSprite = MainMenuUtil_InitSprite(0, appData->dowloadArrowSprite, HW_LCD_WIDTH / 2, 100, animID);
     } else {
         Sprite_SetDrawFlag(appData->dowloadArrowSprite, FALSE);
     }
@@ -478,7 +476,7 @@ static WonderCard *GetReceivedWonderCard(ApplicationManager *appMan)
     switch (appData->receptionMethod) {
     case RECEIVE_FROM_FRIEND:
         memcpy(wonderCard, ov97_0222D2B8(0, NULL, 0), sizeof(WonderCard));
-        ov97_02238324(&appData->eventData, &appData->eventData.wonderCard, HEAP_ID_MYSTERY_GIFT_APP);
+        MainMenuUtil_DecryptReceivedWonderCard(&appData->eventData, &appData->eventData.wonderCard, HEAP_ID_MYSTERY_GIFT_APP);
         break;
     case RECEIVE_FROM_LOCAL_WIRELESS:
         eventData = (MysteryGiftEventData *)appData->wirelessDistributionBuffer;
@@ -521,7 +519,7 @@ static void MainCallbackSaveGame(MysteryGiftAppData *appData)
         appData->mainCallback = NULL;
     }
 
-    int saveStatus = ov97_0223847C();
+    int saveStatus = MainMenuUtil_SaveState();
 
     if (saveStatus == SAVE_RESULT_OK || saveStatus == SAVE_RESULT_CORRUPT) {
         if (ShouldPlayAnimation(&appData->eventData.wonderCard) != TRUE) {
@@ -566,7 +564,7 @@ static void SaveReceivedGift(ApplicationManager *appMan)
         saved = MysteryGift_TrySaveWondercard(mysteryGift, wonderCard);
     }
 
-    ov97_0223846C(saveData);
+    MainMenuUtil_InitSaving(saveData);
 
     appData->cancelSave = FALSE;
     appData->mainCallback = MainCallbackSaveGame;
@@ -800,7 +798,7 @@ static enum MysteryGiftAppState ExitToWonderCardsApp(ApplicationManager *appMan)
         ov97_02230224(appData);
     }
 
-    ov97_02237790(0, MG_APP_STATE_EXIT_TO_WONDER_CARDS_APP, (int *)appData->statePtr, MG_APP_STATE_WAIT_SCREEN_TRANSITION);
+    MainMenuUtil_StartScreenFadeToState(0, MG_APP_STATE_EXIT_TO_WONDER_CARDS_APP, (int *)appData->statePtr, MG_APP_STATE_WAIT_SCREEN_TRANSITION);
     return MG_APP_KEEP_PREVIOUS_STATE;
 }
 
@@ -812,8 +810,8 @@ static enum MysteryGiftAppState ExitToTitleScreen(ApplicationManager *appMan)
         appData->unk_630 = 1;
     }
 
-    ov97_02237784(1);
-    ov97_02237790(0, MG_APP_STATE_EXIT_TO_TITLE_SCREEN, (int *)appData->statePtr, MG_APP_STATE_WAIT_SCREEN_TRANSITION);
+    MainMenuUtil_SetFadeToWhite(1);
+    MainMenuUtil_StartScreenFadeToState(0, MG_APP_STATE_EXIT_TO_TITLE_SCREEN, (int *)appData->statePtr, MG_APP_STATE_WAIT_SCREEN_TRANSITION);
 
     return MG_APP_KEEP_PREVIOUS_STATE;
 }
@@ -1078,14 +1076,14 @@ void MysteryGiftApp_ShowWiFiCommError(MysteryGiftAppData *appData)
     StringTemplate *strTemplate = StringTemplate_Default(HEAP_ID_MYSTERY_GIFT_APP);
     StringTemplate_SetNumber(strTemplate, 0, appData->wifiCommErrorCode, 5, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
 
-    UnkStruct_ov97_02237808 v1;
-    ov97_02237808(&v1, &appData->wifiCommErrorWindow, PLTT_1, TEXT_BANK_UNK_0695, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_3);
-    ov97_02237858(&v1, 24, 16, 100);
-    ov97_02237860(&v1, FALSE, FONT_MESSAGE);
+    MainMenuWindow v1;
+    MainMenuUtil_InitWindow(&v1, &appData->wifiCommErrorWindow, PLTT_1, TEXT_BANK_UNK_0695, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_3);
+    MainMenuWindow_SetDimensionsAndBasetile(&v1, 24, 16, 100);
+    MainMenuWindow_SetScrollableAndFont(&v1, FALSE, FONT_MESSAGE);
 
-    v1.unk_14 = strTemplate;
+    v1.strTemplate = strTemplate;
 
-    ov97_0223795C(appData->bgConfig, &v1, 4, 4, textEntryID);
+    MainMenuUtil_ShowWindowAtPos(appData->bgConfig, &v1, 4, 4, textEntryID);
     StringTemplate_Free(strTemplate);
 }
 
@@ -1186,7 +1184,7 @@ static int MysteryGiftApp_Init(ApplicationManager *appMan, int *unused)
     if (DistributionCartridge_ReadLength()) {
         appData->receptionMethod = RECEIVE_FROM_GBA_CARTRIDGE;
         SetGBACartridgeVersion(gGameVersion);
-        ov97_02238400(TRUE);
+        MainMenuUtil_ToggleTerminateOnGBACartRemoved(TRUE);
     }
 
     appData->unk_62C = 29;
@@ -1215,18 +1213,18 @@ static void LoadParticleSpriteResources(MysteryGiftAnimationManager *animMan)
     vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     resourceID = 20000 + vramType;
 
-    animMan->spriteResources[DS_SCREEN_MAIN][SPRITE_RESOURCE_CHAR] = SpriteResourceCollection_AddTiles(animMan->unk_0C->unk_190[SPRITE_RESOURCE_CHAR], narcID, tilesID, compressed, resourceID, vramType, heapID);
-    animMan->spriteResources[DS_SCREEN_MAIN][SPRITE_RESOURCE_PLTT] = SpriteResourceCollection_AddPalette(animMan->unk_0C->unk_190[SPRITE_RESOURCE_PLTT], narcID, paletteID, FALSE, resourceID, vramType, PLTT_1, heapID);
-    animMan->spriteResources[DS_SCREEN_MAIN][SPRITE_RESOURCE_CELL] = SpriteResourceCollection_Add(animMan->unk_0C->unk_190[SPRITE_RESOURCE_CELL], narcID, cellsID, compressed, resourceID, SPRITE_RESOURCE_CELL, heapID);
-    animMan->spriteResources[DS_SCREEN_MAIN][SPRITE_RESOURCE_ANIM] = SpriteResourceCollection_Add(animMan->unk_0C->unk_190[SPRITE_RESOURCE_ANIM], narcID, animationID, compressed, resourceID, SPRITE_RESOURCE_ANIM, heapID);
+    animMan->spriteResources[DS_SCREEN_MAIN][SPRITE_RESOURCE_CHAR] = SpriteResourceCollection_AddTiles(animMan->unk_0C->resourceCollections[SPRITE_RESOURCE_CHAR], narcID, tilesID, compressed, resourceID, vramType, heapID);
+    animMan->spriteResources[DS_SCREEN_MAIN][SPRITE_RESOURCE_PLTT] = SpriteResourceCollection_AddPalette(animMan->unk_0C->resourceCollections[SPRITE_RESOURCE_PLTT], narcID, paletteID, FALSE, resourceID, vramType, PLTT_1, heapID);
+    animMan->spriteResources[DS_SCREEN_MAIN][SPRITE_RESOURCE_CELL] = SpriteResourceCollection_Add(animMan->unk_0C->resourceCollections[SPRITE_RESOURCE_CELL], narcID, cellsID, compressed, resourceID, SPRITE_RESOURCE_CELL, heapID);
+    animMan->spriteResources[DS_SCREEN_MAIN][SPRITE_RESOURCE_ANIM] = SpriteResourceCollection_Add(animMan->unk_0C->resourceCollections[SPRITE_RESOURCE_ANIM], narcID, animationID, compressed, resourceID, SPRITE_RESOURCE_ANIM, heapID);
 
     vramType = NNS_G2D_VRAM_TYPE_2DSUB;
     resourceID = 20000 + vramType;
 
-    animMan->spriteResources[DS_SCREEN_SUB][SPRITE_RESOURCE_CHAR] = SpriteResourceCollection_AddTiles(animMan->unk_0C->unk_190[SPRITE_RESOURCE_CHAR], narcID, tilesID, compressed, resourceID, vramType, heapID);
-    animMan->spriteResources[DS_SCREEN_SUB][SPRITE_RESOURCE_PLTT] = SpriteResourceCollection_AddPalette(animMan->unk_0C->unk_190[SPRITE_RESOURCE_PLTT], narcID, paletteID, FALSE, resourceID, vramType, PLTT_1, heapID);
-    animMan->spriteResources[DS_SCREEN_SUB][SPRITE_RESOURCE_CELL] = SpriteResourceCollection_Add(animMan->unk_0C->unk_190[SPRITE_RESOURCE_CELL], narcID, cellsID, compressed, resourceID, SPRITE_RESOURCE_CELL, heapID);
-    animMan->spriteResources[DS_SCREEN_SUB][SPRITE_RESOURCE_ANIM] = SpriteResourceCollection_Add(animMan->unk_0C->unk_190[SPRITE_RESOURCE_ANIM], narcID, animationID, compressed, resourceID, SPRITE_RESOURCE_ANIM, heapID);
+    animMan->spriteResources[DS_SCREEN_SUB][SPRITE_RESOURCE_CHAR] = SpriteResourceCollection_AddTiles(animMan->unk_0C->resourceCollections[SPRITE_RESOURCE_CHAR], narcID, tilesID, compressed, resourceID, vramType, heapID);
+    animMan->spriteResources[DS_SCREEN_SUB][SPRITE_RESOURCE_PLTT] = SpriteResourceCollection_AddPalette(animMan->unk_0C->resourceCollections[SPRITE_RESOURCE_PLTT], narcID, paletteID, FALSE, resourceID, vramType, PLTT_1, heapID);
+    animMan->spriteResources[DS_SCREEN_SUB][SPRITE_RESOURCE_CELL] = SpriteResourceCollection_Add(animMan->unk_0C->resourceCollections[SPRITE_RESOURCE_CELL], narcID, cellsID, compressed, resourceID, SPRITE_RESOURCE_CELL, heapID);
+    animMan->spriteResources[DS_SCREEN_SUB][SPRITE_RESOURCE_ANIM] = SpriteResourceCollection_Add(animMan->unk_0C->resourceCollections[SPRITE_RESOURCE_ANIM], narcID, animationID, compressed, resourceID, SPRITE_RESOURCE_ANIM, heapID);
 
     SpriteTransfer_RequestChar(animMan->spriteResources[DS_SCREEN_MAIN][SPRITE_RESOURCE_CHAR]);
     SpriteTransfer_RequestChar(animMan->spriteResources[DS_SCREEN_SUB][SPRITE_RESOURCE_CHAR]);
@@ -1237,13 +1235,13 @@ static void LoadParticleSpriteResources(MysteryGiftAnimationManager *animMan)
     vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     resourceID = 20000 + vramType;
 
-    SpriteResourcesHeader_Init(&animMan->spriteResourcesHeaders[DS_SCREEN_MAIN], resourceID, resourceID, resourceID, resourceID, 0xffffffff, 0xffffffff, FALSE, 0, animMan->unk_0C->unk_190[SPRITE_RESOURCE_CHAR], animMan->unk_0C->unk_190[SPRITE_RESOURCE_PLTT], animMan->unk_0C->unk_190[SPRITE_RESOURCE_CELL], animMan->unk_0C->unk_190[SPRITE_RESOURCE_ANIM], NULL, NULL);
+    SpriteResourcesHeader_Init(&animMan->spriteResourcesHeaders[DS_SCREEN_MAIN], resourceID, resourceID, resourceID, resourceID, 0xffffffff, 0xffffffff, FALSE, 0, animMan->unk_0C->resourceCollections[SPRITE_RESOURCE_CHAR], animMan->unk_0C->resourceCollections[SPRITE_RESOURCE_PLTT], animMan->unk_0C->resourceCollections[SPRITE_RESOURCE_CELL], animMan->unk_0C->resourceCollections[SPRITE_RESOURCE_ANIM], NULL, NULL);
 
     vramType = NNS_G2D_VRAM_TYPE_2DSUB;
     resourceID = 20000 + vramType;
 
     // Despite baseIndex always being 0, replacing `baseIndex + DS_SCREEN_SUB` with `DS_SCREEN_SUB` doesn't match here.
-    SpriteResourcesHeader_Init(&animMan->spriteResourcesHeaders[baseIndex + DS_SCREEN_SUB], resourceID, resourceID, resourceID, resourceID, 0xffffffff, 0xffffffff, FALSE, 0, animMan->unk_0C->unk_190[SPRITE_RESOURCE_CHAR], animMan->unk_0C->unk_190[SPRITE_RESOURCE_PLTT], animMan->unk_0C->unk_190[SPRITE_RESOURCE_CELL], animMan->unk_0C->unk_190[SPRITE_RESOURCE_ANIM], NULL, NULL);
+    SpriteResourcesHeader_Init(&animMan->spriteResourcesHeaders[baseIndex + DS_SCREEN_SUB], resourceID, resourceID, resourceID, resourceID, 0xffffffff, 0xffffffff, FALSE, 0, animMan->unk_0C->resourceCollections[SPRITE_RESOURCE_CHAR], animMan->unk_0C->resourceCollections[SPRITE_RESOURCE_PLTT], animMan->unk_0C->resourceCollections[SPRITE_RESOURCE_CELL], animMan->unk_0C->resourceCollections[SPRITE_RESOURCE_ANIM], NULL, NULL);
 }
 
 static Sprite *InitParticleSprite(MysteryGiftAnimationManager *animMan, int vramType)
@@ -1256,7 +1254,7 @@ static Sprite *InitParticleSprite(MysteryGiftAnimationManager *animMan, int vram
         // 0 is the top screen, 1 is the bottom screen. Using enum variants doesn't match.
         enum DSScreen screen = (vramType == NNS_G2D_VRAM_TYPE_2DMAIN) ? 0 : 1;
 
-        template.list = animMan->unk_0C->unk_00;
+        template.list = animMan->unk_0C->spriteList;
         template.resourceData = &animMan->spriteResourcesHeaders[screen];
         template.position.z = 0;
         template.affineScale.x = FX32_ONE;
@@ -2004,7 +2002,7 @@ static BOOL MysteryGiftApp_Main(ApplicationManager *appMan, enum MysteryGiftAppS
 
     switch (*state) {
     case MG_APP_STATE_SETUP:
-        ov97_02237694(HEAP_ID_MYSTERY_GIFT_APP);
+        MainMenuUtil_Init(HEAP_ID_MYSTERY_GIFT_APP);
         appData->statePtr = state;
         *state = MG_APP_STATE_INIT_GRAPHICS;
         break;
@@ -2012,10 +2010,10 @@ static BOOL MysteryGiftApp_Main(ApplicationManager *appMan, enum MysteryGiftAppS
     case MG_APP_STATE_INIT_GRAPHICS:
         ShowAppMainMenu(appMan, appData);
         LoadDownloadArrowSpriteResources(appData);
-        ov97_02237790(1, MG_APP_STATE_WAIT_MAIN_MENU_INPUT, (int *)state, MG_APP_STATE_WAIT_SCREEN_TRANSITION);
+        MainMenuUtil_StartScreenFadeToState(1, MG_APP_STATE_WAIT_MAIN_MENU_INPUT, (int *)state, MG_APP_STATE_WAIT_SCREEN_TRANSITION);
         break;
     case MG_APP_STATE_WAIT_SCREEN_TRANSITION:
-        ov97_022377F0((int *)state);
+        MainMenuUtil_CheckScreenFadeDone((int *)state);
         break;
     case MG_APP_STATE_WAIT_MAIN_MENU_INPUT:
         ProcessStateTransitionMenuInput(appMan, state, ExitToTitleScreen);
@@ -2083,12 +2081,12 @@ static BOOL MysteryGiftApp_Main(ApplicationManager *appMan, enum MysteryGiftAppS
                 memset(animMan, 0, sizeof(MysteryGiftAnimationManager));
 
                 animMan->animationStatusPtr = &appData->animationStatus;
-                animMan->unk_0C = ov97_02237AEC();
+                animMan->unk_0C = MainMenuUtil_GetSpriteManager();
 
                 SysTask_Start((SysTaskFunc)RunMysteryGiftAnimationFrame, animMan, 5);
             }
         } else {
-            ov97_02238194(appData->bgConfig, wonderCard);
+            MainMenuUtil_LoadGiftSprite(appData->bgConfig, wonderCard);
             SaveReceivedGift(appMan);
         }
 
@@ -2101,10 +2099,10 @@ static BOOL MysteryGiftApp_Main(ApplicationManager *appMan, enum MysteryGiftAppS
         }
         break;
     case MG_APP_STATE_WAIT_LOCAL_WIRELESS_GIFT_SAVED: {
-        int saveStatus = ov97_02238528();
+        int saveStatus = MainMenuUtil_GetSavingStatus();
 
         if (saveStatus == 4) {
-            ov97_022384F4();
+            MainMenuUtil_ContinueSaving();
         }
 
         if (saveStatus == SAVE_RESULT_OK) {
@@ -2118,7 +2116,7 @@ static BOOL MysteryGiftApp_Main(ApplicationManager *appMan, enum MysteryGiftAppS
             WonderCard *wonderCard = &appData->eventData.wonderCard;
 
             if (ShouldPlayAnimation(wonderCard) == TRUE) {
-                ov97_02238194(appData->bgConfig, wonderCard);
+                MainMenuUtil_LoadGiftSprite(appData->bgConfig, wonderCard);
                 appData->animationStatus = MG_ANIMATION_STATUS_PROCEED_IMPLOSION;
             } else {
                 Sound_PlayEffect(SEQ_SE_DP_UG_020);
@@ -2219,7 +2217,7 @@ static BOOL MysteryGiftApp_Main(ApplicationManager *appMan, enum MysteryGiftAppS
         }
         break;
     case MG_APP_STATE_SAVE_GIFT_FROM_FRIEND:
-        ov97_02238194(appData->bgConfig, GetReceivedWonderCard(appMan));
+        MainMenuUtil_LoadGiftSprite(appData->bgConfig, GetReceivedWonderCard(appMan));
         CommMan_SetErrorHandling(0, 0);
         SaveReceivedGift(appMan);
         *state = MG_APP_STATE_CHECK_FRIEND_CONNECTION_STILL_VALID;
@@ -2230,7 +2228,7 @@ static BOOL MysteryGiftApp_Main(ApplicationManager *appMan, enum MysteryGiftAppS
         if (netID != 0 && CommSys_IsPlayerConnected(netID) == FALSE) {
             ov97_0222D2DC();
             appData->cancelSave = TRUE;
-            ov97_0223850C();
+            MainMenuUtil_CancelSave();
             ToggleWaitDial(appData, FALSE);
             sub_02039794();
             SetDownloadArrowAnim(appData, HIDE_DOWNLOADING_ARROW);
@@ -2238,12 +2236,12 @@ static BOOL MysteryGiftApp_Main(ApplicationManager *appMan, enum MysteryGiftAppS
             break;
         }
 
-        if (ov97_02238528() == 4) {
+        if (MainMenuUtil_GetSavingStatus() == 4) {
             CommTiming_StartSync(0x93);
             *state = MG_APP_STATE_WAIT_FRIEND_READY_TO_DISCONNECT;
             appData->delay = 120;
-        } else if (ov97_02238528() == SAVE_RESULT_CORRUPT) {
-            ov97_0223850C();
+        } else if (MainMenuUtil_GetSavingStatus() == SAVE_RESULT_CORRUPT) {
+            MainMenuUtil_CancelSave();
             appData->eventData.header.hasWonderCard = FALSE;
             ToggleWaitDial(appData, FALSE);
             *state = ShowMessageBoxIntoStateTransition(appMan, &appData->messageBox, MysteryGiftMenu_Text_ProblemWithReceivingTheGift, MG_APP_STATE_EXIT_AFTER_RECEIVING_GIFT);
@@ -2251,11 +2249,11 @@ static BOOL MysteryGiftApp_Main(ApplicationManager *appMan, enum MysteryGiftAppS
     } break;
     case MG_APP_STATE_WAIT_FRIEND_READY_TO_DISCONNECT:
         if (CommTiming_IsSyncState(0x93) == TRUE) {
-            ov97_022384F4();
+            MainMenuUtil_ContinueSaving();
             appData->delay = 10;
             *state = MG_APP_STATE_RECEIVE_FROM_FRIEND_SUCCESS;
         } else if (--appData->delay == 0) {
-            ov97_0223850C();
+            MainMenuUtil_CancelSave();
             appData->eventData.header.hasWonderCard = FALSE;
             ToggleWaitDial(appData, FALSE);
             *state = ShowMessageBoxIntoStateTransition(appMan, &appData->messageBox, MysteryGiftMenu_Text_ProblemWithReceivingTheGift, MG_APP_STATE_EXIT_AFTER_RECEIVING_GIFT);
@@ -2336,7 +2334,7 @@ static BOOL MysteryGiftApp_Main(ApplicationManager *appMan, enum MysteryGiftAppS
     case MG_APP_STATE_SHOW_RECEIVING_GIFT_MSG: {
         WonderCard *wonderCard = GetReceivedWonderCard(appMan);
 
-        ov97_02238194(appData->bgConfig, wonderCard);
+        MainMenuUtil_LoadGiftSprite(appData->bgConfig, wonderCard);
         ShowMessageBox(appMan, &appData->messageBox, MysteryGiftMenu_Text_ReceivingGiftDontTurnOff);
         SetDownloadArrowAnim(appData, 1);
         ToggleWaitDial(appData, TRUE);
@@ -2350,17 +2348,17 @@ static BOOL MysteryGiftApp_Main(ApplicationManager *appMan, enum MysteryGiftAppS
         }
         break;
     case MG_APP_STATE_WAIT_MYSTERY_GIFT_SAVED:
-        if (ov97_02238528() == 4) {
-            ov97_022384F4();
+        if (MainMenuUtil_GetSavingStatus() == 4) {
+            MainMenuUtil_ContinueSaving();
         }
 
-        if (ov97_02238528() == SAVE_RESULT_OK) {
+        if (MainMenuUtil_GetSavingStatus() == SAVE_RESULT_OK) {
             appData->delay = 1;
             ToggleWaitDial(appData, FALSE);
             SetDownloadArrowAnim(appData, HIDE_DOWNLOADING_ARROW);
             Sound_PlayEffect(SEQ_SE_DP_UG_020);
             *state = ShowMessageBoxIntoStateTransition(appMan, &appData->messageBox, MysteryGiftMenu_Text_GiftReceivedPickUpInPokeMart, MG_APP_STATE_WAIT_BEFORE_EXIT_AFTER_RECEIVING_GIFT);
-        } else if (ov97_02238528() == SAVE_RESULT_CORRUPT) {
+        } else if (MainMenuUtil_GetSavingStatus() == SAVE_RESULT_CORRUPT) {
             SetDownloadArrowAnim(appData, HIDE_DOWNLOADING_ARROW);
             appData->eventData.header.hasWonderCard = FALSE;
             *state = ShowMessageBoxIntoStateTransition(appMan, &appData->messageBox, MysteryGiftMenu_Text_ProblemWithReceivingTheGift, MG_APP_STATE_EXIT_AFTER_RECEIVING_GIFT);
@@ -2409,10 +2407,10 @@ static BOOL MysteryGiftApp_Main(ApplicationManager *appMan, enum MysteryGiftAppS
             Sound_PlayEffect(SEQ_SE_CONFIRM);
 
             if (appData->eventData.header.hasWonderCard == TRUE) {
-                ov97_02237790(0, MG_APP_STATE_SHOW_RECEIVED_WONDERCARD, (int *)appData->statePtr, MG_APP_STATE_WAIT_SCREEN_TRANSITION);
+                MainMenuUtil_StartScreenFadeToState(0, MG_APP_STATE_SHOW_RECEIVED_WONDERCARD, (int *)appData->statePtr, MG_APP_STATE_WAIT_SCREEN_TRANSITION);
             } else {
-                ov97_02237784(1);
-                ov97_02237790(0, MG_APP_STATE_RESET_SYSTEM, (int *)appData->statePtr, MG_APP_STATE_WAIT_SCREEN_TRANSITION);
+                MainMenuUtil_SetFadeToWhite(1);
+                MainMenuUtil_StartScreenFadeToState(0, MG_APP_STATE_RESET_SYSTEM, (int *)appData->statePtr, MG_APP_STATE_WAIT_SCREEN_TRANSITION);
             }
         }
         break;
@@ -2421,7 +2419,7 @@ static BOOL MysteryGiftApp_Main(ApplicationManager *appMan, enum MysteryGiftAppS
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, FALSE);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, TRUE);
         WonderCardsApp_ShowWondercard(appData->bgConfig, &appData->eventData.wonderCard, HEAP_ID_MYSTERY_GIFT_APP);
-        ov97_02237790(1, MG_APP_STATE_EXIT_AFTER_RECEIVING_GIFT, (int *)appData->statePtr, MG_APP_STATE_WAIT_SCREEN_TRANSITION);
+        MainMenuUtil_StartScreenFadeToState(1, MG_APP_STATE_EXIT_AFTER_RECEIVING_GIFT, (int *)appData->statePtr, MG_APP_STATE_WAIT_SCREEN_TRANSITION);
         appData->eventData.header.hasWonderCard = FALSE; // Makes the game exit the application
         break;
     case MG_APP_STATE_RESET_SYSTEM:
@@ -2433,7 +2431,7 @@ static BOOL MysteryGiftApp_Main(ApplicationManager *appMan, enum MysteryGiftAppS
         appData->mainCallback(appData);
     }
 
-    ov97_02237CAC(appData->animationStatus);
+    MainMenuUtil_UpdateSprites(appData->animationStatus);
     return FALSE;
 }
 
@@ -2470,7 +2468,7 @@ static int MysteryGiftApp_Exit(ApplicationManager *appMan, int *unused)
         SetGBACartridgeVersion(VERSION_NONE);
     }
 
-    ov97_02238400(FALSE);
+    MainMenuUtil_ToggleTerminateOnGBACartRemoved(FALSE);
 
     return TRUE;
 }
