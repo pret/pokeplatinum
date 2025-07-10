@@ -266,16 +266,16 @@ BOOL Battle_Main(ApplicationManager *appMan, int *param1)
         if (v2) {
             Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_73, 0x30000);
             v4 = Party_GetPokemonBySlotIndex(v0->parties[0], v1);
-            v0->unk_170 = sub_0207AE68(v0->parties[0], v4, v2, v0->options, v0->visitedContestHall, v0->pokedex, v0->bag, v0->records, v0->poketch, v3, 0x1 | 0x2, HEAP_ID_73);
+            v0->unk_170 = Evolution_Begin(v0->parties[0], v4, v2, v0->options, v0->visitedContestHall, v0->pokedex, v0->bag, v0->records, v0->poketch, v3, 0x1 | 0x2, HEAP_ID_73);
             *param1 = 14;
         } else {
             *param1 = 15;
         }
     } break;
     case 14: {
-        UnkStruct_0207AE68 *v5 = (UnkStruct_0207AE68 *)v0->unk_170;
+        EvolutionData *v5 = (EvolutionData *)v0->unk_170;
 
-        if (sub_0207B0D0(v5) == 1) {
+        if (Evolution_IsComplete(v5) == 1) {
             sub_0207B0E0(v5);
             Heap_Destroy(HEAP_ID_73);
             *param1 = 13;

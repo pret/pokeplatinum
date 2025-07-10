@@ -1833,7 +1833,7 @@ static void StartMenu_EvolveInit(FieldTask *taskMan)
     UnkStruct_0203C7B8 *v2;
     Party *v3;
     Pokemon *v4;
-    UnkStruct_0207AE68 *v5;
+    EvolutionData *v5;
 
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
     menu = FieldTask_GetEnv(taskMan);
@@ -1846,9 +1846,9 @@ static void StartMenu_EvolveInit(FieldTask *taskMan)
     v4 = Party_GetPokemonBySlotIndex(v3, v2->unk_00);
 
     if (v2->unk_01 == 0) {
-        v5 = sub_0207AE68(v3, v4, v2->unk_04, SaveData_GetOptions(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_GetPokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecords(fieldSystem->saveData), SaveData_GetPoketch(fieldSystem->saveData), v2->unk_08, 0x1, HEAP_ID_73);
+        v5 = Evolution_Begin(v3, v4, v2->unk_04, SaveData_GetOptions(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_GetPokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecords(fieldSystem->saveData), SaveData_GetPoketch(fieldSystem->saveData), v2->unk_08, 0x1, HEAP_ID_73);
     } else {
-        v5 = sub_0207AE68(v3, v4, v2->unk_04, SaveData_GetOptions(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_GetPokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecords(fieldSystem->saveData), SaveData_GetPoketch(fieldSystem->saveData), v2->unk_08, NULL, HEAP_ID_73);
+        v5 = Evolution_Begin(v3, v4, v2->unk_04, SaveData_GetOptions(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_GetPokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecords(fieldSystem->saveData), SaveData_GetPoketch(fieldSystem->saveData), v2->unk_08, NULL, HEAP_ID_73);
     }
 
     {
@@ -1869,7 +1869,7 @@ static void StartMenu_Evolve(FieldTask *taskMan)
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     StartMenu *menu = FieldTask_GetEnv(taskMan);
 
-    if (sub_0207B0D0(menu->taskData) == 1) {
+    if (Evolution_IsComplete(menu->taskData) == 1) {
         sub_0207B0E0(menu->taskData);
         Heap_Destroy(HEAP_ID_73);
         Sound_StopBGM(SEQ_SHINKA, 0);

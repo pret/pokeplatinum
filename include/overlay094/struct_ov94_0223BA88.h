@@ -7,8 +7,8 @@
 
 typedef struct {
     GTSPokemonListingMon pokemon; // pokemon
-    GTSPokemonListing_sub2 unk_EC; // species, gender, level
-    GTSPokemonListing_sub3 unk_F0;
+    GTSPokemonCriteria unk_EC; // species, gender, level
+    GTSPokemonRequirements unk_F0;
     u8 unk_F6;
     u8 chungus[17];
     s32 unk_108;

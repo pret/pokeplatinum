@@ -243,8 +243,8 @@ void ov94_02244234(GTSApplicationState *param0, int param1, int param2)
 
     for (v0 = 0; v0 < 7; v0++) {
         if (v0 < param1) {
-            int v1 = param0->unk_250[v0].unk_120;
-            int v2 = param0->unk_250[v0].unk_F6;
+            int v1 = param0->searchResults[v0].unk_120;
+            int v2 = param0->searchResults[v0].unk_F6;
 
             ov94_02244378(param0->unk_10F8, param0->unk_1100, v0, v1, v2);
 

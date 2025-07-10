@@ -85,7 +85,7 @@ static int ov94_0223EF1C(GTSApplicationState *param0);
 static int ov94_0223EF58(GTSApplicationState *param0);
 static void ov94_0223F9FC(Window *param0, Window *param1, MessageLoader *gtsMessageLoader);
 static int GTS_IsTradeTimestampRecent(GTSApplicationState *param0, int param1);
-static int ov94_0223FB0C(const GTSPokemonListing_sub3 *param0, const GTSPokemonListing_sub3 *param1, int param2, int param3);
+static int ov94_0223FB0C(const GTSPokemonRequirements *param0, const GTSPokemonRequirements *param1, int param2, int param3);
 static int ov94_0223F970(GTSApplicationState *param0);
 
 static int (*Unk_ov94_02246860[])(GTSApplicationState *) = {
@@ -459,7 +459,7 @@ static int ov94_0223EA84(GTSApplicationState *param0)
                 Sprite_SetAnim(param0->avatarSprites[v1 + 1], 16 + v1 * 4);
                 param0->currentScreenInstruction = 2;
                 GTSApplication_SetNextScreenWithArgument(param0, 3, 0);
-                param0->unk_11C = v1;
+                param0->selectedSearchResult = v1;
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
             }
         }
@@ -517,7 +517,7 @@ static int GTS_IsTradeTimestampRecent(GTSApplicationState *appState, int bySearc
 
 static int ov94_0223ECD4(GTSApplicationState *param0)
 {
-    GTSPokemonListing_sub3 v0;
+    GTSPokemonRequirements v0;
     int v1 = 3;
 
     if (GTS_IsTradeTimestampRecent(param0, 1)) {
@@ -529,7 +529,7 @@ static int ov94_0223ECD4(GTSApplicationState *param0)
     }
 
     if (param0->unk_11B0 == 0) {
-        GTSNetworking_Search(&param0->unk_B7A, v1, param0->unk_250);
+        GTSNetworking_Search(&param0->unk_B7A, v1, param0->searchResults);
     } else {
         UnkStruct_ov94_0223BA24 v2;
 
@@ -543,7 +543,7 @@ static int ov94_0223ECD4(GTSApplicationState *param0)
         v2.unk_06 = v1;
         v2.unk_07 = param0->unk_11B0;
 
-        ov94_0223BA24(&v2, param0->unk_250);
+        ov94_0223BA24(&v2, param0->searchResults);
     }
 
     param0->unk_B80 = param0->unk_B7A;
@@ -1117,7 +1117,7 @@ static void ov94_0223F9FC(Window *param0, Window *param1, MessageLoader *gtsMess
     Strbuf_Free(v0);
 }
 
-static int ov94_0223FB0C(const GTSPokemonListing_sub3 *param0, const GTSPokemonListing_sub3 *param1, int param2, int param3)
+static int ov94_0223FB0C(const GTSPokemonRequirements *param0, const GTSPokemonRequirements *param1, int param2, int param3)
 {
     return (param0->species == param1->species)
         && (param0->gender == param1->gender)

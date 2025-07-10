@@ -7,7 +7,7 @@
 #include "savedata.h"
 
 typedef struct GlobalTrade_t {
-    u8 storedPokemon[236];
+    u8 storedPokemon[sizeof(Pokemon)];
     u16 pokemonListed;
     u16 neverSet_EE;
     u32 depositTradeDatestamp;
@@ -41,12 +41,12 @@ void GlobalTrade_SetPokemonListed(GlobalTrade *globalTrade, int listed)
 
 void GlobalTrade_CopyStoredPokemon(GlobalTrade *param0, Pokemon *param1)
 {
-    MI_CpuCopyFast(param0->storedPokemon, (void *)param1, 236);
+    MI_CpuCopyFast(param0->storedPokemon, (void *)param1, sizeof(Pokemon));
 }
 
 void sub_0202DA7C(GlobalTrade *param0, Pokemon *param1, int param2)
 {
-    MI_CpuCopyFast((void *)param1, param0->storedPokemon, 236);
+    MI_CpuCopyFast((void *)param1, param0->storedPokemon, sizeof(Pokemon));
 }
 
 u32 GlobalTrade_GetDepositTradeDatestamp(GlobalTrade *param0)

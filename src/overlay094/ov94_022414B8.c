@@ -14,8 +14,8 @@
 #include "overlay094/const_ov94_02245FD4.h"
 #include "overlay094/const_ov94_02245FD8.h"
 #include "overlay094/gts_application_state.h"
-#include "overlay094/ov94_0223FB48.h"
 #include "overlay094/ov94_02244950.h"
+#include "overlay094/screens/select_pokemon.h"
 #include "overlay094/struct_ov94_0223BA88.h"
 #include "overlay094/struct_ov94_0223BA88_sub2.h"
 #include "overlay094/struct_ov94_0223BA88_sub3.h"
@@ -71,7 +71,7 @@ static int ov94_02241B2C(GTSApplicationState *param0);
 static int ov94_02241BAC(GTSApplicationState *param0);
 static int ov94_022420E4(GTSApplicationState *param0);
 static int ov94_02242138(GTSApplicationState *param0);
-static void ov94_022423FC(MessageLoader *param0, StringTemplate *param1, Window param2[], BoxPokemon *boxMon, GTSPokemonListing_sub2 *param4);
+static void ov94_022423FC(MessageLoader *param0, StringTemplate *param1, Window param2[], BoxPokemon *boxMon, GTSPokemonCriteria *param4);
 static int ov94_02241DA0(GTSApplicationState *param0);
 static int ov94_02241D64(GTSApplicationState *param0);
 static int ov94_02241D08(GTSApplicationState *param0);
@@ -595,7 +595,7 @@ static int ov94_02241B2C(GTSApplicationState *param0)
     return 3;
 }
 
-int ov94_02241B80(GTSPokemonListing_sub3 *param0, int genderRatio)
+int ov94_02241B80(GTSPokemonRequirements *param0, int genderRatio)
 {
     switch (genderRatio) {
     case GENDER_RATIO_MALE_ONLY:
@@ -961,7 +961,7 @@ void ov94_02242368(MessageLoader *gtsMessageLoader, MessageLoader *param1, Strin
     Strbuf_Free(v0);
 }
 
-static void ov94_022423FC(MessageLoader *param0, StringTemplate *param1, Window param2[], BoxPokemon *boxMon, GTSPokemonListing_sub2 *param4)
+static void ov94_022423FC(MessageLoader *param0, StringTemplate *param1, Window param2[], BoxPokemon *boxMon, GTSPokemonCriteria *param4)
 {
     Strbuf *v0, *v1;
     Strbuf *v2 = Strbuf_Init(10 + 1, HEAP_ID_62);
@@ -1243,7 +1243,7 @@ ListMenu *ov94_022428B0(StringList **param0, Window *param1, MessageLoader *para
     return ListMenu_New(&v0, 0, 0, HEAP_ID_62);
 }
 
-void ov94_02242934(GTSPokemonListing_sub3 *param0, int param1, int param2)
+void ov94_02242934(GTSPokemonRequirements *param0, int param1, int param2)
 {
     const GTSLevelRangeMessage *v0;
 

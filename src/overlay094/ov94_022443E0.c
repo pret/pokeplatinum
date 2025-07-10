@@ -7,7 +7,7 @@
 #include "applications/pokemon_summary_screen/main.h"
 #include "overlay094/application.h"
 #include "overlay094/gts_application_state.h"
-#include "overlay094/ov94_0223FB48.h"
+#include "overlay094/screens/select_pokemon.h"
 
 #include "overlay_manager.h"
 #include "unk_0202D778.h"

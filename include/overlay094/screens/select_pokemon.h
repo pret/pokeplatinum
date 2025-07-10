@@ -8,8 +8,8 @@
 #include "party.h"
 #include "pokemon.h"
 
-int ov94_0223FB48(GTSApplicationState *param0, int param1);
-int ov94_0223FBBC(GTSApplicationState *param0, int param1);
+int GTSApplication_SelectPokemon_Init(GTSApplicationState *param0, int param1);
+int GTSApplication_SelectPokemon_Main(GTSApplicationState *param0, int param1);
 int ov94_0223FBDC(GTSApplicationState *param0, int param1);
 int ov94_022411D0(int param0);
 BoxPokemon *ov94_022411DC(Party *param0, PCBoxes *pcBoxes, int param2, int param3);

@@ -18,7 +18,7 @@ void GTSNetworking_GetListedPokemon(GTSPokemonListing *param0);
 void GTSNetworking_GetListingStatus(GTSPokemonListing *param0);
 void GTSNetworking_Delete(void);
 void GTSNetworking_Return(void);
-void GTSNetworking_Search(const GTSPokemonListing_sub3 *param0, s32 param1, GTSPokemonListing *param2);
+void GTSNetworking_Search(const GTSPokemonRequirements *param0, s32 param1, GTSPokemonListing *param2);
 void ov94_0223BA24(const UnkStruct_ov94_0223BA24 *param0, GTSPokemonListing *param1);
 void ov94_0223BA88(s32 param0, const GTSPokemonListing *param1, GTSPokemonListing *param2);
 void ov94_0223BAEC(void);

@@ -825,7 +825,7 @@ u16 sub_02078824(u8 index);
 BOOL sub_02078838(Pokemon *mon);
 BOOL sub_0207884C(BoxPokemon *boxMon, TrainerInfo *param1, int heapID);
 int sub_020788D0(int param0);
-void sub_0207893C(Pokemon *mon);
+void Pokemon_ClearBallCapsuleData(Pokemon *mon);
 void BoxPokemon_RestorePP(BoxPokemon *boxMon);
 
 /**

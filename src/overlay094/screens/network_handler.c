@@ -19,10 +19,10 @@
 #include "overlay094/application.h"
 #include "overlay094/gts_application_state.h"
 #include "overlay094/ov94_0223B140.h"
-#include "overlay094/ov94_0223FB48.h"
 #include "overlay094/ov94_02243EF8.h"
 #include "overlay094/ov94_02244950.h"
 #include "overlay094/screens/main_menu.h"
+#include "overlay094/screens/select_pokemon.h"
 #include "overlay094/struct_ov94_0223BA88.h"
 #include "savedata/save_table.h"
 
@@ -83,7 +83,7 @@ static int ov94_02243794(GTSApplicationState *param0);
 static int ov94_02243920(GTSApplicationState *param0);
 static int ov94_02243948(GTSApplicationState *param0);
 static int GTSApplication_NetworkHandler_FadeAndExit(GTSApplicationState *param0);
-static int ov94_02243AE8(GTSApplicationState *param0);
+static int GTSApplication_NetworkHandler_WaitForText(GTSApplicationState *param0);
 static int GTSApplication_NetworkHandler_GetListedPokemonRequest(GTSApplicationState *param0);
 static int GTSApplication_NetworkHandler_GetListedPokemonResponse(GTSApplicationState *param0);
 static int ov94_02243104(GTSApplicationState *param0);
@@ -99,8 +99,8 @@ static void GTSApplication_NetworkHandler_StorePokemonFromDepositing(GTSApplicat
 static int GTSApplication_NetworkHandler_PrepareFullSave(GTSApplicationState *param0);
 static int ov94_02243974(GTSApplicationState *param0);
 static int GTSApplication_NetworkHandler_WaitForSaveComplete(GTSApplicationState *param0);
-static int ov94_02243588(GTSApplicationState *param0);
-static int ov94_02243568(GTSApplicationState *param0);
+static int GTSApplication_NetworkHandler_GetListedPokemonResponse2(GTSApplicationState *param0);
+static int GTSApplication_NetworkHandler_GetListedPokemonRequest2(GTSApplicationState *param0);
 static int GTSApplication_NetworkHandler_GetListingStatusResponse(GTSApplicationState *param0);
 static int GTSApplication_NetworkHandler_GetListingStatusRequest(GTSApplicationState *param0);
 static int GTSApplication_NetworkHandler_PerformDepositTrade(GTSApplicationState *param0);
@@ -112,8 +112,8 @@ static int ov94_02243554(GTSApplicationState *param0);
 static int GTSApplication_NetworkHandler_FullSave(GTSApplicationState *param0);
 static int GTSApplication_NetworkHandler_WaitForSuccessfulSave(GTSApplicationState *param0);
 static int GTSApplication_NetworkHandler_DeleteReceivedPokemonRequest(GTSApplicationState *param0);
-static int ov94_022437D8(GTSApplicationState *param0);
-static int ov94_022437F4(GTSApplicationState *param0);
+static int GTSApplication_NetworkHandler_DeleteDesyncedPokemonRequest(GTSApplicationState *param0);
+static int GTSApplication_NetworkHandler_DeleteDesyncedPokemonResponse(GTSApplicationState *param0);
 static BOOL GTSApplication_NetworkHandler_IsListingDesynced(GTSApplicationState *param0);
 
 static int (*sGTSNetworkHandlerScreenStates[])(GTSApplicationState *) = {
@@ -139,12 +139,12 @@ static int (*sGTSNetworkHandlerScreenStates[])(GTSApplicationState *) = {
     GTSApplication_NetworkHandler_DeleteReceivedPokemonRequest,
     GTSApplication_NetworkHandler_DeleteReceivedPokemonResponse, // #20
     ov94_022437C0,
-    ov94_022437D8,
-    ov94_022437F4,
+    GTSApplication_NetworkHandler_DeleteDesyncedPokemonRequest,
+    GTSApplication_NetworkHandler_DeleteDesyncedPokemonResponse,
     GTSApplication_NetworkHandler_GetListingStatusRequest, // get pokemon status
     GTSApplication_NetworkHandler_GetListingStatusResponse, // generic network handler?
-    ov94_02243568, // get pokemon, go 27
-    ov94_02243588,
+    GTSApplication_NetworkHandler_GetListedPokemonRequest2, // get pokemon, go 27
+    GTSApplication_NetworkHandler_GetListedPokemonResponse2,
     ov94_02243554,
     ov94_02243974,
     GTSApplication_NetworkHandler_PrepareFullSave, // #30
@@ -154,7 +154,7 @@ static int (*sGTSNetworkHandlerScreenStates[])(GTSApplicationState *) = {
     GTSApplication_NetworkHandler_FullSave,
     GTSApplication_NetworkHandler_WaitForSuccessfulSave,
     GTSApplication_NetworkHandler_FadeAndExit, // exit
-    ov94_02243AE8, // wait for text
+    GTSApplication_NetworkHandler_WaitForText, // wait for text
     ov94_02243920, // comms error
     ov94_02243948
 };
@@ -405,7 +405,7 @@ static int GTSApplication_NetworkHandler_ParseScreenArgument(GTSApplicationState
 
 static int ov94_02242E9C(GTSApplicationState *appState)
 {
-    sub_0207893C((Pokemon *)appState->receivedListing.pokemon.bytes);
+    Pokemon_ClearBallCapsuleData((Pokemon *)appState->receivedListing.pokemon.bytes);
     GTSNetworking_Post(&appState->receivedListing);
 
     appState->currentScreenInstruction = 3;
@@ -628,9 +628,9 @@ static int ov94_02243120(GTSApplicationState *param0)
 
 static int ov94_022431A4(GTSApplicationState *param0)
 {
-    sub_0207893C((Pokemon *)param0->receivedListing.pokemon.bytes);
+    Pokemon_ClearBallCapsuleData((Pokemon *)param0->receivedListing.pokemon.bytes);
 
-    ov94_0223BA88(param0->unk_250[param0->unk_11C].unk_108, &param0->receivedListing, &param0->selectedListing);
+    ov94_0223BA88(param0->searchResults[param0->selectedSearchResult].unk_108, &param0->receivedListing, &param0->selectedListing);
     GTSApplication_NetworkHandler_SetSaveInstructions(param0, 14, 16);
 
     param0->currentScreenInstruction = 13;
@@ -649,7 +649,7 @@ static int ov94_022431F0(GTSApplicationState *param0)
         param0->networkTimeoutCounter = 0;
 
         switch (v1) {
-        case 0:
+        case 0: // successful
             param0->currentScreenInstruction = 30;
 
             ov94_02243B08(param0, 0);
@@ -660,16 +660,16 @@ static int ov94_022431F0(GTSApplicationState *param0)
             GameRecords_IncrementRecordValue(param0->playerData->records, RECORD_GTS_TRADES);
             sub_0206D104(SaveData_GetTVBroadcast(param0->playerData->saveData));
             break;
-        case -5:
+        case -5: // first byte = 2
             param0->commsErrorMessage = v1;
             param0->currentScreenInstruction = 17;
             break;
-        case -6:
-        case -7:
-        case -8:
-        case -9:
-        case -10:
-        case -11:
+        case -6: // first byte = 12
+        case -7: // first byte = 13
+        case -8: // first byte = 8
+        case -9: // first byte = 9
+        case -10: // first byte = 10
+        case -11: // first byte = 11
             param0->commsErrorMessage = v1;
             param0->currentScreenInstruction = 39;
             break;
@@ -677,13 +677,13 @@ static int ov94_022431F0(GTSApplicationState *param0)
             param0->commsErrorMessage = v1;
             param0->currentScreenInstruction = 39;
             break;
-        case -2:
+        case -2: // first byte = 14
         case -14:
         case -15:
             param0->commsErrorMessage = v1;
             param0->currentScreenInstruction = 38;
             break;
-        case -13:
+        case -13: // catch-all
             NetworkError_DisplayGTSCriticalError();
             break;
         }
@@ -846,42 +846,38 @@ static int ov94_02243554(GTSApplicationState *param0)
     GTSApplication_SetNextScreenWithArgument(param0, 1, 0);
     param0->currentScreenInstruction = 36;
 
-    return 3;
+    return GTS_APPLICATION_LOOP_STATE_MAIN;
 }
 
-static int ov94_02243568(GTSApplicationState *param0)
+static int GTSApplication_NetworkHandler_GetListedPokemonRequest2(GTSApplicationState *appState)
 {
-    GTSNetworking_GetListedPokemon(&param0->receivedListing);
+    GTSNetworking_GetListedPokemon(&appState->receivedListing);
 
-    param0->currentScreenInstruction = 27;
-    param0->networkTimeoutCounter = 0;
+    appState->currentScreenInstruction = 27;
+    appState->networkTimeoutCounter = 0;
 
-    return 3;
+    return GTS_APPLICATION_LOOP_STATE_MAIN;
 }
 
-static int ov94_02243588(GTSApplicationState *param0)
+static int GTSApplication_NetworkHandler_GetListedPokemonResponse2(GTSApplicationState *appState)
 {
     if (GTSNetworking_RequestComplete()) {
-        s32 v0 = GTSNetworking_GetErrorCode();
+        s32 errorCode = GTSNetworking_GetErrorCode();
 
-        param0->networkTimeoutCounter = 0;
+        appState->networkTimeoutCounter = 0;
 
-        switch (v0) {
+        switch (errorCode) {
         case 0: // received pokemon
-            if (GTSApplication_NetworkHandler_IsListingDesynced(param0)) {
-                param0->currentScreenInstruction = 22;
-                param0->isPokemonListed = 0;
-                return 3;
+            if (GTSApplication_NetworkHandler_IsListingDesynced(appState)) {
+                appState->currentScreenInstruction = 22;
+                appState->isPokemonListed = 0;
+                return GTS_APPLICATION_LOOP_STATE_MAIN;
             } else {
-                param0->isPokemonListed = 1;
-            }
-
-            {
-                GTSPokemonListing *v1 = &param0->receivedListing;
+                appState->isPokemonListed = 1;
             }
             break;
         case -3: // first byte = 5
-            param0->isPokemonListed = 0;
+            appState->isPokemonListed = 0;
             break;
         case -4: // first byte = 3
             break;
@@ -889,24 +885,24 @@ static int ov94_02243588(GTSApplicationState *param0)
         case -15:
         case -2: // first byte = 14
         case -14:
-            param0->commsErrorMessage = v0;
-            param0->currentScreenInstruction = 38;
-            return 3;
+            appState->commsErrorMessage = errorCode;
+            appState->currentScreenInstruction = 38;
+            return GTS_APPLICATION_LOOP_STATE_MAIN;
         case -13: // catch-all
             NetworkError_DisplayGTSCriticalError();
-            return 3;
+            return GTS_APPLICATION_LOOP_STATE_MAIN;
         }
 
-        GTSApplication_NetworkHandler_ReturnToPreviousScreen(param0);
+        GTSApplication_NetworkHandler_ReturnToPreviousScreen(appState);
     } else {
-        param0->networkTimeoutCounter++;
+        appState->networkTimeoutCounter++;
 
-        if (param0->networkTimeoutCounter == (30 * 60 * 2)) {
+        if (appState->networkTimeoutCounter == (30 * 60 * 2)) {
             NetworkError_DisplayGTSCriticalError();
         }
     }
 
-    return 3;
+    return GTS_APPLICATION_LOOP_STATE_MAIN;
 }
 
 static void GTSApplication_NetworkHandler_ReturnToPreviousScreen(GTSApplicationState *appState)
@@ -1029,31 +1025,31 @@ static int ov94_022437C0(GTSApplicationState *param0)
     return 3;
 }
 
-static int ov94_022437D8(GTSApplicationState *param0)
+static int GTSApplication_NetworkHandler_DeleteDesyncedPokemonRequest(GTSApplicationState *appState)
 {
     GTSNetworking_Return();
 
-    param0->currentScreenInstruction = 23;
-    param0->networkTimeoutCounter = 0;
+    appState->currentScreenInstruction = 23;
+    appState->networkTimeoutCounter = 0;
 
-    return 3;
+    return GTS_APPLICATION_LOOP_STATE_MAIN;
 }
 
-static int ov94_022437F4(GTSApplicationState *appState)
+static int GTSApplication_NetworkHandler_DeleteDesyncedPokemonResponse(GTSApplicationState *appState)
 {
     if (GTSNetworking_RequestComplete()) {
         s32 errorCode = GTSNetworking_GetErrorCode();
         appState->networkTimeoutCounter = 0;
 
         switch (errorCode) {
-        case 0: // first byte = 1
+        case 0: // first byte = 1 (successful)
             GTSApplication_NetworkHandler_ReturnToPreviousScreen(appState);
             break;
         case -3: // first byte = 5
             GTSApplication_NetworkHandler_ReturnToPreviousScreen(appState);
         case -4: // first byte = 3
             GTSApplication_NetworkHandler_ReturnToPreviousScreen(appState);
-        case -5: // first byte = 2
+        case -5: // first byte = 2 (unsuccessful delete)
             Link_SetErrorState(3);
             break;
         case -12:
@@ -1227,10 +1223,10 @@ static int GTSApplication_NetworkHandler_FadeAndExit(GTSApplicationState *appSta
     return GTS_APPLICATION_LOOP_STATE_FINISH;
 }
 
-static int ov94_02243AE8(GTSApplicationState *param0)
+static int GTSApplication_NetworkHandler_WaitForText(GTSApplicationState *appState)
 {
-    if (Text_IsPrinterActive(param0->textPrinter) == 0) {
-        param0->currentScreenInstruction = param0->nextScreenInstruction;
+    if (Text_IsPrinterActive(appState->textPrinter) == 0) {
+        appState->currentScreenInstruction = appState->nextScreenInstruction;
     }
 
     return GTS_APPLICATION_LOOP_STATE_MAIN;
@@ -1248,7 +1244,7 @@ static void ov94_02243B08(GTSApplicationState *param0, int param1)
     } else {
         Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->playerData->party, param0->unk_112);
 
-        sub_0207893C(v1);
+        Pokemon_ClearBallCapsuleData(v1);
         sub_0202DA7C(param0->playerData->globalTrade, v1, param0->selectedBoxId);
         Party_RemovePokemonBySlotIndex(param0->playerData->party, param0->unk_112);
 

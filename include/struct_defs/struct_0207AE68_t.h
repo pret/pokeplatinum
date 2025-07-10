@@ -23,7 +23,7 @@
 #include "strbuf.h"
 #include "string_template.h"
 
-struct UnkStruct_0207AE68_t {
+struct EvolutionData_t {
     BgConfig *unk_00;
     Window *unk_04;
     MessageLoader *unk_08;

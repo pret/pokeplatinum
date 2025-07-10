@@ -15,14 +15,14 @@
 #include "overlay094/ov94_0223D0C4.h"
 #include "overlay094/ov94_0223DC04.h"
 #include "overlay094/ov94_0223E46C.h"
-#include "overlay094/ov94_0223FB48.h"
 #include "overlay094/ov94_022414B8.h"
 #include "overlay094/ov94_02243EF8.h"
 #include "overlay094/ov94_022443E0.h"
-#include "overlay094/ov94_022444C8.h"
 #include "overlay094/ov94_02244950.h"
 #include "overlay094/screens/main_menu.h"
 #include "overlay094/screens/network_handler.h"
+#include "overlay094/screens/select_pokemon.h"
+#include "overlay094/screens/trade.h"
 
 #include "bg_window.h"
 #include "char_transfer.h"
@@ -73,14 +73,14 @@ static NNSFndHeapHandle sGTSHeapHandle;
 static int (*gtsApplicationScreens[][3])(GTSApplicationState *, int) = {
     { GTSApplication_InitWFCScreen, GTSApplication_WFCInit_Main, GTSApplication_WFCInit_Exit }, // wfc
     { GTSApplication_MainMenu_Init, GTSApplication_MainMenu_Main, GTSApplication_MainMenu_Exit },
-    { ov94_0223D0C4, ov94_0223D19C, ov94_0223D1B0 },
+    { ov94_0223D0C4, ov94_0223D19C, ov94_0223D1B0 }, // summary?
     { ov94_0223DC04, ov94_0223DCE4, ov94_0223DCF8 },
-    { ov94_0223E46C, ov94_0223E560, ov94_0223E574 },
-    { ov94_0223FB48, ov94_0223FBBC, ov94_0223FBDC },
+    { ov94_0223E46C, ov94_0223E560, ov94_0223E574 }, // search
+    { GTSApplication_SelectPokemon_Init, GTSApplication_SelectPokemon_Main, ov94_0223FBDC }, // deposit
     { ov94_022414B8, ov94_02241548, ov94_02241568 },
     { GTSApplication_NetworkHandler_Init, GTSApplication_NetworkHandler_Main, GTSApplication_NetworkHandler_Exit },
     { ov94_022443E0, ov94_02244490, ov94_022444BC },
-    { ov94_022444C8, GTSApplication_Screen9_Main, ov94_0224484C },
+    { GTSApplication_Trade_Init, GTSApplication_Trade_Main, GTSApplication_Trade_Exit },
 };
 
 GTSApplicationState *unused_GTSApplicationState;
@@ -271,7 +271,7 @@ static void GTSApplicationState_InitPlayerData(GTSApplicationState *appState, Ap
 
     GTSApplication_SetNextScreenWithArgument(appState, 0, 0);
 
-    appState->unk_10C = 0;
+    appState->mainMenuSelectedOption = 0;
     appState->unk_B7A.species = SPECIES_NONE;
     appState->unk_B7A.gender = 2 + 1;
     appState->unk_B7A.level = 0;
@@ -294,11 +294,11 @@ static void GTSApplication_Noop(GTSApplicationState *appState)
 static void GTSApplication_InitCharTransfer(void)
 {
     {
-        CharTransferTemplate ov94_0223C300 = {
+        CharTransferTemplate template = {
             20, 2048, 2048, HEAP_ID_62
         };
 
-        CharTransfer_Init(&ov94_0223C300);
+        CharTransfer_Init(&template);
     }
 
     PlttTransfer_Init(20, HEAP_ID_62);

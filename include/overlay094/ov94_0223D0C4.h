@@ -12,7 +12,7 @@
 int ov94_0223D0C4(GTSApplicationState *param0, int param1);
 int ov94_0223D19C(GTSApplicationState *param0, int param1);
 int ov94_0223D1B0(GTSApplicationState *param0, int param1);
-void ov94_0223D910(MessageLoader *param0, MessageLoader *param1, StringTemplate *param2, Window param3[], BoxPokemon *boxMon, GTSPokemonListing_sub2 *param5);
+void ov94_0223D910(MessageLoader *param0, MessageLoader *param1, StringTemplate *param2, Window param3[], BoxPokemon *boxMon, GTSPokemonCriteria *param5);
 void ov94_0223DA78(MessageLoader *param0, Window param1[], u16 *param2, Pokemon *param3, Window param4[]);
 void ov94_0223DB2C(Pokemon *param0);
 

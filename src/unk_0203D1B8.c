@@ -205,7 +205,7 @@ typedef struct {
     int unk_00;
     UnkStruct_ov88_0223C370 unk_04;
     NpcTradeAnimationConfig unk_48;
-    UnkStruct_0207AE68 *unk_60;
+    EvolutionData *unk_60;
     int unk_64;
 } UnkStruct_0203DBF0;
 
@@ -1054,14 +1054,14 @@ BOOL sub_0203DBF0(FieldTask *param0)
 
         if ((v4 = Pokemon_GetEvolutionTargetSpecies(NULL, v2->unk_04.unk_40, EVO_CLASS_BY_TRADE, v3, &v5)) != 0) {
             Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_26, 0x30000);
-            v2->unk_60 = sub_0207AE68(NULL, v2->unk_04.unk_40, v4, SaveData_GetOptions(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_GetPokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecords(fieldSystem->saveData), SaveData_GetPoketch(fieldSystem->saveData), v5, 0x4, HEAP_ID_26);
+            v2->unk_60 = Evolution_Begin(NULL, v2->unk_04.unk_40, v4, SaveData_GetOptions(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_GetPokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecords(fieldSystem->saveData), SaveData_GetPoketch(fieldSystem->saveData), v5, 0x4, HEAP_ID_26);
             v2->unk_00 = 6;
         } else {
             v2->unk_00 = 7;
         }
     } break;
     case 6:
-        if (sub_0207B0D0(v2->unk_60)) {
+        if (Evolution_IsComplete(v2->unk_60)) {
             Pokemon_Copy(v2->unk_04.unk_40, Party_GetPokemonBySlotIndex(v2->unk_04.unk_08, v2->unk_04.unk_2C));
             sub_0207B0E0(v2->unk_60);
             Heap_Destroy(HEAP_ID_26);

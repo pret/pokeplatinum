@@ -652,19 +652,19 @@ void GTSNetworking_Return(void)
     }
 }
 
-void GTSNetworking_Search(const GTSPokemonListing_sub3 *param0, s32 param1, GTSPokemonListing *param2)
+void GTSNetworking_Search(const GTSPokemonRequirements *param0, s32 param1, GTSPokemonListing *param2)
 {
     Unk_ov94_02246AC0.unk_140 = (u8 *)param2;
 
     HTTP_Init();
 
-    memcpy(&Unk_ov94_02246AC0.unk_14[0], param0, sizeof(GTSPokemonListing_sub3));
-    Unk_ov94_02246AC0.unk_14[sizeof(GTSPokemonListing_sub3)] = (u8)param1;
+    memcpy(&Unk_ov94_02246AC0.unk_14[0], param0, sizeof(GTSPokemonRequirements));
+    Unk_ov94_02246AC0.unk_14[sizeof(GTSPokemonRequirements)] = (u8)param1;
 
     if (GTSNetworking_PrepareRequest(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
                                                              "worldexchange/search.asp"),
             Unk_ov94_02246AC0.unk_14,
-            sizeof(GTSPokemonListing_sub3) + 1,
+            sizeof(GTSPokemonRequirements) + 1,
             param2,
             (int)sizeof(GTSPokemonListing) * param1)) {
         Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_14;

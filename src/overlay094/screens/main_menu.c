@@ -46,32 +46,32 @@ static int ov94_0223CB90(GTSApplicationState *param0);
 static int ov94_0223CBA0(GTSApplicationState *param0);
 static int ov94_0223CBC4(GTSApplicationState *param0);
 static int ov94_0223CBD8(GTSApplicationState *param0);
-static int ov94_0223CBEC(GTSApplicationState *param0);
-static int ov94_0223CC28(GTSApplicationState *param0);
+static int GTSApplication_MainMenu_SetupBottomWindowQuestion(GTSApplicationState *param0);
+static int GTSApplication_MainMenu_HandleInput(GTSApplicationState *param0);
 static int GTSApplication_MainMenu_FadeAndExit(GTSApplicationState *param0);
 static int ov94_0223CE5C(GTSApplicationState *param0);
 static int ov94_0223CE7C(GTSApplicationState *param0);
-static int ov94_0223CEE8(GTSApplicationState *param0);
+static int GTSApplication_MainMenu_WaitForTextPrinter(GTSApplicationState *param0);
 static int ov94_0223CF08(GTSApplicationState *param0);
 static int ov94_0223CDD8(GTSApplicationState *param0);
 static int ov94_0223CE00(GTSApplicationState *param0);
 static void GTSApplication_MainMenu_RenderMenuButtons(GTSApplicationState *param0);
-static void ov94_0223CF80(GTSApplicationState *param0, int param1, int param2, int param3, u16 param4);
+static void GTSApplication_MainMenu_SetBottomWindowText(GTSApplicationState *param0, int param1, int param2, int param3, u16 param4);
 static void ov94_0223CFD8(GTSApplicationState *param0, int param1, int param2, int param3, u16 param4);
 static void ov94_0223C85C(GTSApplicationState *param0);
 
 static int (*sGTSMainMenuScreenStates[])(GTSApplicationState *) = {
-    GTSApplication_MainMenu_WaitUntilFinishedMoving, // GTSApplication_SetNextScreenWithArgument(appState, 7, 11);
+    GTSApplication_MainMenu_WaitUntilFinishedMoving, // GTSApplication_SetNextScreenWithArgument(appState, 7, 11); returns to #9
     ov94_0223CB90, // set currentScreenInstruction to 10 and unk_30 to 2
     ov94_0223CBA0, // start screen fade, set currentScreenInstruction to 3
     ov94_0223CBC4, // set currentScreenInstruction to 5 when screen fade is done, return 3
     ov94_0223CBD8, // set currentScreenInstruction to 5 when screen fade is done, return 3
-    ov94_0223CBEC, // are you seeking or offering a pokemon?
-    ov94_0223CC28,
+    GTSApplication_MainMenu_SetupBottomWindowQuestion, // are you seeking or offering a pokemon?
+    GTSApplication_MainMenu_HandleInput,
     ov94_0223CDD8,
     ov94_0223CE00,
     GTSApplication_MainMenu_FadeAndExit,
-    ov94_0223CEE8,
+    GTSApplication_MainMenu_WaitForTextPrinter,
     ov94_0223CF08,
     ov94_0223CE5C,
     ov94_0223CE7C
@@ -300,8 +300,8 @@ static void GTSApplication_MainMenu_InitCursor(GTSApplicationState *appState)
 
     GTSApplication_InitAffineTemplate(&template, appState, &appState->cursorSpriteResourceHeader, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    template.position.x = FX32_ONE *sMainMenuCursorPositions[appState->unk_10C][0];
-    template.position.y = FX32_ONE *sMainMenuCursorPositions[appState->unk_10C][1];
+    template.position.x = FX32_ONE *sMainMenuCursorPositions[appState->mainMenuSelectedOption][0];
+    template.position.y = FX32_ONE *sMainMenuCursorPositions[appState->mainMenuSelectedOption][1];
 
     appState->cursorSprite = SpriteList_AddAffine(&template);
 
@@ -406,68 +406,68 @@ static int ov94_0223CBD8(GTSApplicationState *param0)
     return 3;
 }
 
-static int ov94_0223CBEC(GTSApplicationState *param0)
+static int GTSApplication_MainMenu_SetupBottomWindowQuestion(GTSApplicationState *appState)
 {
-    ov94_0223CF80(param0, GTS_Text_AreYouSeekingOrOfferingAPokemon, TEXT_SPEED_FAST, 0, 0xf0f);
-    GTSApplication_SetCurrentAndNextScreenInstruction(param0, 10, 6);
-    Sprite_SetAnimateFlag(param0->cursorSprite, 1);
-    GTSApplicationState_StartCountingBoxPokemon(param0);
+    GTSApplication_MainMenu_SetBottomWindowText(appState, GTS_Text_AreYouSeekingOrOfferingAPokemon, TEXT_SPEED_FAST, 0, 0xf0f);
+    GTSApplication_SetCurrentAndNextScreenInstruction(appState, 10, 6);
+    Sprite_SetAnimateFlag(appState->cursorSprite, 1);
+    GTSApplicationState_StartCountingBoxPokemon(appState);
 
     return 3;
 }
 
-static int ov94_0223CC28(GTSApplicationState *param0)
+static int GTSApplication_MainMenu_HandleInput(GTSApplicationState *appState)
 {
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
-        ov94_0223CFD8(param0, GTS_Text_IsItOKToDisconnect, GTSApplicationState_GetTextFrameDelay(param0), 0, 0xf0f);
-        GTSApplication_SetCurrentAndNextScreenInstruction(param0, 10, 12);
-        Sprite_SetAnimateFlag(param0->cursorSprite, 0);
+        ov94_0223CFD8(appState, GTS_Text_IsItOKToDisconnect, GTSApplicationState_GetTextFrameDelay(appState), 0, 0xf0f);
+        GTSApplication_SetCurrentAndNextScreenInstruction(appState, 10, 12);
+        Sprite_SetAnimateFlag(appState->cursorSprite, 0);
     } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
-        switch (param0->unk_10C) {
+        switch (appState->mainMenuSelectedOption) {
         case 0: // deposit pokemon
-            if (param0->isPokemonListed == 0) {
-                GTSApplication_SetNextScreenWithArgument(param0, 5, 5);
-                param0->currentScreenInstruction = 9;
+            if (appState->isPokemonListed == FALSE) {
+                GTSApplication_SetNextScreenWithArgument(appState, 5, 5);
+                appState->currentScreenInstruction = 9;
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
             } else {
-                if (param0->networkTimer == 0) {
-                    GTSApplication_SetNextScreenWithArgument(param0, 7, 11);
-                    param0->previousScreen = 2;
-                    param0->currentScreenInstruction = 9;
-                    param0->networkTimer = (60 * 30);
+                if (appState->networkTimer == 0) {
+                    GTSApplication_SetNextScreenWithArgument(appState, 7, 11);
+                    appState->previousScreen = 2;
+                    appState->currentScreenInstruction = 9;
+                    appState->networkTimer = (60 * 30);
                     Sound_PlayEffect(SEQ_SE_CONFIRM);
                 } else {
-                    Sprite_SetAnimateFlag(param0->cursorSprite, 0);
-                    ov94_0223CF80(param0, GTS_Text_PleaseWaitAWhile, TEXT_SPEED_FAST, 0, 0xf0f);
-                    GTSApplication_SetCurrentAndNextScreenInstruction(param0, 11, 5);
+                    Sprite_SetAnimateFlag(appState->cursorSprite, 0);
+                    GTSApplication_MainMenu_SetBottomWindowText(appState, GTS_Text_PleaseWaitAWhile, TEXT_SPEED_FAST, 0, 0xf0f);
+                    GTSApplication_SetCurrentAndNextScreenInstruction(appState, 11, 5);
                     Sound_PlayEffect(SEQ_SE_DP_BOX03);
-                    param0->frameDelay = 0;
+                    appState->frameDelay = 0;
                 }
             }
             break;
         case 1: // seek pokemon
-            GTSApplication_SetNextScreenWithArgument(param0, 4, 0);
-            param0->currentScreenInstruction = 9;
+            GTSApplication_SetNextScreenWithArgument(appState, 4, 0);
+            appState->currentScreenInstruction = 9;
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             break;
         case 2: // exit
-            ov94_0223CFD8(param0, GTS_Text_IsItOKToDisconnect, GTSApplicationState_GetTextFrameDelay(param0), 0, 0xf0f);
-            GTSApplication_SetCurrentAndNextScreenInstruction(param0, 10, 12);
-            Sprite_SetAnimateFlag(param0->cursorSprite, 0);
+            ov94_0223CFD8(appState, GTS_Text_IsItOKToDisconnect, GTSApplicationState_GetTextFrameDelay(appState), 0, 0xf0f);
+            GTSApplication_SetCurrentAndNextScreenInstruction(appState, 10, 12);
+            Sprite_SetAnimateFlag(appState->cursorSprite, 0);
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             break;
         }
     } else if (gSystem.pressedKeys & PAD_KEY_UP) {
-        if (param0->unk_10C != 0) {
-            param0->unk_10C--;
+        if (appState->mainMenuSelectedOption != 0) {
+            appState->mainMenuSelectedOption--;
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            GTSApplication_SetSpritePosition(param0->cursorSprite, sMainMenuCursorPositions[param0->unk_10C][0], sMainMenuCursorPositions[param0->unk_10C][1]);
+            GTSApplication_SetSpritePosition(appState->cursorSprite, sMainMenuCursorPositions[appState->mainMenuSelectedOption][0], sMainMenuCursorPositions[appState->mainMenuSelectedOption][1]);
         }
     } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
-        if (param0->unk_10C < 2) {
-            param0->unk_10C++;
+        if (appState->mainMenuSelectedOption < 2) {
+            appState->mainMenuSelectedOption++;
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            GTSApplication_SetSpritePosition(param0->cursorSprite, sMainMenuCursorPositions[param0->unk_10C][0], sMainMenuCursorPositions[param0->unk_10C][1]);
+            GTSApplication_SetSpritePosition(appState->cursorSprite, sMainMenuCursorPositions[appState->mainMenuSelectedOption][0], sMainMenuCursorPositions[appState->mainMenuSelectedOption][1]);
         }
     }
 
@@ -535,18 +535,18 @@ static int ov94_0223CE7C(GTSApplicationState *param0)
     return 3;
 }
 
-static int ov94_0223CEE8(GTSApplicationState *param0)
+static int GTSApplication_MainMenu_WaitForTextPrinter(GTSApplicationState *appState)
 {
-    if (Text_IsPrinterActive(param0->textPrinter) == 0) {
-        param0->currentScreenInstruction = param0->nextScreenInstruction;
+    if (Text_IsPrinterActive(appState->textPrinter) == FALSE) {
+        appState->currentScreenInstruction = appState->nextScreenInstruction;
     }
 
-    return 3;
+    return GTS_APPLICATION_LOOP_STATE_MAIN;
 }
 
 static int ov94_0223CF08(GTSApplicationState *param0)
 {
-    if (Text_IsPrinterActive(param0->textPrinter) == 0) {
+    if (Text_IsPrinterActive(param0->textPrinter) == FALSE) {
         param0->frameDelay++;
 
         if (param0->frameDelay > 45) {
@@ -573,15 +573,15 @@ static void GTSApplication_MainMenu_RenderMenuButtons(GTSApplicationState *appSt
     }
 }
 
-static void ov94_0223CF80(GTSApplicationState *param0, int param1, int param2, int param3, u16 param4)
+static void GTSApplication_MainMenu_SetBottomWindowText(GTSApplicationState *appState, int messageId, int textSpeed, int unused3, u16 unused4)
 {
     Strbuf *v0;
 
-    MessageLoader_GetStrbuf(param0->gtsMessageLoader, param1, param0->genericMessageBuffer);
-    Window_FillTilemap(&param0->bottomInstructionWindow, 0xf0f);
-    Window_DrawMessageBoxWithScrollCursor(&param0->bottomInstructionWindow, 0, 1, 10);
+    MessageLoader_GetStrbuf(appState->gtsMessageLoader, messageId, appState->genericMessageBuffer);
+    Window_FillTilemap(&appState->bottomInstructionWindow, 0xf0f);
+    Window_DrawMessageBoxWithScrollCursor(&appState->bottomInstructionWindow, 0, 1, 10);
 
-    param0->textPrinter = Text_AddPrinterWithParams(&param0->bottomInstructionWindow, FONT_MESSAGE, param0->genericMessageBuffer, 0, 0, param2, NULL);
+    appState->textPrinter = Text_AddPrinterWithParams(&appState->bottomInstructionWindow, FONT_MESSAGE, appState->genericMessageBuffer, 0, 0, textSpeed, NULL);
 }
 
 static void ov94_0223CFD8(GTSApplicationState *param0, int param1, int param2, int param3, u16 param4)

@@ -5,6 +5,6 @@ typedef struct {
     s16 species;
     s8 gender;
     s8 level;
-} GTSPokemonListing_sub2;
+} GTSPokemonCriteria;
 
 #endif // POKEPLATINUM_STRUCT_OV94_0223BA88_SUB2_H

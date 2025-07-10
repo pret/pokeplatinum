@@ -23,6 +23,7 @@
 #include "menu.h"
 #include "message.h"
 #include "overlay_manager.h"
+#include "pc_boxes.h"
 #include "pokemon.h"
 #include "sprite.h"
 #include "sprite_resource.h"
@@ -39,8 +40,8 @@ typedef struct {
 } GTSTradedPokemonLocation;
 
 typedef struct {
-    GTSPokemonListing_sub2 unk_00[30];
-} GTSApplicationState_sub2;
+    GTSPokemonCriteria criteria[MAX_MONS_PER_BOX];
+} GTSBoxPokemonCriteria;
 
 typedef struct {
     Strbuf **unk_00;
@@ -93,26 +94,26 @@ typedef struct GTSApplicationState {
     ApplicationManager *appMan;
     PokemonSummary unk_B8;
     NpcTradeAnimationConfig tradeAnimationConfig;
-    UnkStruct_0207AE68 *unk_100;
+    EvolutionData *evolutionData;
     BOOL hasTradedPokemon;
     u16 unk_108;
     u16 unk_10A;
-    u16 unk_10C;
+    u16 mainMenuSelectedOption;
     u16 unk_10E;
     u16 selectedBoxId;
     u16 unk_112;
     BoxPokemon *unk_114;
     int unk_118;
-    int unk_11C;
+    int selectedSearchResult;
     TrainerInfo *receivingPokemonTrainer;
     GTSTradedPokemonLocation tradedPokemonLocation;
     GTSPokemonListing receivedListing;
-    GTSPokemonListing unk_250[7];
+    GTSPokemonListing searchResults[7];
     GTSPokemonListing selectedListing;
-    GTSPokemonListing_sub2 unk_B70;
-    GTSPokemonListing_sub3 unk_B74;
-    GTSPokemonListing_sub3 unk_B7A;
-    GTSPokemonListing_sub3 unk_B80;
+    GTSPokemonCriteria unk_B70;
+    GTSPokemonRequirements unk_B74;
+    GTSPokemonRequirements unk_B7A;
+    GTSPokemonRequirements unk_B80;
     int unk_B88;
     StringTemplate *stringTemplate;
     MessageLoader *gtsMessageLoader;
@@ -120,7 +121,7 @@ typedef struct GTSApplicationState {
     MessageLoader *unk0674MessageLoader;
     MessageLoader *unk0695MessageLoader;
     MessageLoader *countryMessageLoader;
-    Strbuf *unk_BA4;
+    Strbuf *selectPokemonBoxName;
     Strbuf *unk_BA8;
     Strbuf *genericMessageBuffer;
     Strbuf *title;
@@ -138,7 +139,7 @@ typedef struct GTSApplicationState {
     Sprite *unk_E24;
     Sprite *unk_E28[30];
     Sprite *unk_EA0[30];
-    Sprite *unk_F18[6];
+    Sprite *selectPokemonPartySprites[MAX_PARTY_SIZE];
     Sprite *unk_F30;
     Sprite *avatarSprites[8];
     Sprite *unk_F54[2];
@@ -168,12 +169,12 @@ typedef struct GTSApplicationState {
     NNSG2dCharacterData *unk_10F8;
     void *unk_10FC;
     NNSG2dPaletteData *unk_1100;
-    Pokemon *unk_1104;
-    GTSApplicationState_sub2 *unk_1108;
+    Pokemon *tradeTempPokemon;
+    GTSBoxPokemonCriteria *boxCriteria;
     u16 deferredBoxPokemonCount;
     u16 deferredBoxId;
     u32 fadeBothScreens;
-    void *unk_1114;
+    void *selectPokemonIconHeapPtr;
     void (*updateBoxPalettesFunc)(void *param0);
     UnkStruct_ov94_02242AAC unk_111C;
     WorldExchangeTrainer worldExchangeTrainer;

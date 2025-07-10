@@ -50,7 +50,7 @@ static int ov94_0223E2D0(GTSApplicationState *param0);
 static void ov94_0223E240(GTSApplicationState *param0);
 static void ov94_0223E358(MessageLoader *param0, Window param1[]);
 static void ov94_0223E300(GTSApplicationState *param0, int param1, int param2, int param3, u16 param4);
-static void ov94_0223E3B0(Window *param0, MessageLoader *gtsMessageLoader, MessageLoader *param2, GTSPokemonListing_sub3 *param3);
+static void ov94_0223E3B0(Window *param0, MessageLoader *gtsMessageLoader, MessageLoader *param2, GTSPokemonRequirements *param3);
 static void ov94_0223E424(Window *param0, Strbuf *param1, Strbuf *param2);
 
 static int (*Unk_ov94_0224682C[])(GTSApplicationState *wk) = {
@@ -72,12 +72,12 @@ int ov94_0223DC04(GTSApplicationState *param0, int param1)
     ov94_0223DE04(param0);
     ov94_0223DED8(param0);
     ov94_0223DE7C(param0);
-    ov94_0223D910(param0->gtsMessageLoader, param0->speciesMessageLoader, param0->stringTemplate, &param0->unk_FCC[0], Pokemon_GetBoxPokemon((Pokemon *)param0->unk_250[param0->unk_11C].pokemon.bytes), &param0->unk_250[param0->unk_11C].unk_EC);
+    ov94_0223D910(param0->gtsMessageLoader, param0->speciesMessageLoader, param0->stringTemplate, &param0->unk_FCC[0], Pokemon_GetBoxPokemon((Pokemon *)param0->searchResults[param0->selectedSearchResult].pokemon.bytes), &param0->searchResults[param0->selectedSearchResult].unk_EC);
 
-    v0 = (Pokemon *)param0->unk_250[param0->unk_11C].pokemon.bytes;
+    v0 = (Pokemon *)param0->searchResults[param0->selectedSearchResult].pokemon.bytes;
 
-    ov94_0223DA78(param0->gtsMessageLoader, &param0->unk_FCC[5], param0->unk_250[param0->unk_11C].unk_10C, v0, &param0->unk_FCC[10]);
-    ov94_0223DB2C((Pokemon *)param0->unk_250[param0->unk_11C].pokemon.bytes);
+    ov94_0223DA78(param0->gtsMessageLoader, &param0->unk_FCC[5], param0->searchResults[param0->selectedSearchResult].unk_10C, v0, &param0->unk_FCC[10]);
+    ov94_0223DB2C((Pokemon *)param0->searchResults[param0->selectedSearchResult].pokemon.bytes);
     ov94_0223E358(param0->gtsMessageLoader, &param0->unk_FCC[7]);
     ov94_0223E240(param0);
 
@@ -285,7 +285,7 @@ static void ov94_0223DFDC(GTSApplicationState *param0)
 {
     int v0;
     MessageLoader *v1;
-    GTSPokemonListing *v2 = &param0->unk_250[param0->unk_11C];
+    GTSPokemonListing *v2 = &param0->searchResults[param0->selectedSearchResult];
 
     param0->genericMessageBuffer = Strbuf_Init((90 * 2), HEAP_ID_62);
 
@@ -346,11 +346,11 @@ static int ov94_0223E0A4(GTSApplicationState *param0)
         int v0 = ov94_02244214(param0->unk_118);
 
         if (1) {
-            if ((v0 != param0->unk_11C) && (v0 >= 0)) {
+            if ((v0 != param0->selectedSearchResult) && (v0 >= 0)) {
                 Sprite_SetAnim(param0->avatarSprites[v0 + 1], 16 + v0 * 4);
                 param0->currentScreenInstruction = 2;
                 GTSApplication_SetNextScreenWithArgument(param0, 3, 0);
-                param0->unk_11C = v0;
+                param0->selectedSearchResult = v0;
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
             }
         }
@@ -400,7 +400,7 @@ static void ov94_0223E240(GTSApplicationState *param0)
 {
     if (param0->unk_10E == 0) {
         Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__WORLDTRADE, 27, param0->bgConfig, 1, 0, 32 * 24 * 2, 1, HEAP_ID_62);
-        ov94_0223E3B0(&param0->unk_FCC[9], param0->gtsMessageLoader, param0->speciesMessageLoader, &param0->unk_250[param0->unk_11C].unk_F0);
+        ov94_0223E3B0(&param0->unk_FCC[9], param0->gtsMessageLoader, param0->speciesMessageLoader, &param0->searchResults[param0->selectedSearchResult].unk_F0);
     } else {
         Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__WORLDTRADE, 28, param0->bgConfig, 1, 0, 32 * 24 * 2, 1, HEAP_ID_62);
         ov94_0223E424(&param0->unk_FCC[9], param0->unk_BB4[0], param0->unk_BB4[1]);
@@ -449,7 +449,7 @@ static void ov94_0223E358(MessageLoader *param0, Window param1[])
     Strbuf_Free(v1);
 }
 
-static void ov94_0223E3B0(Window *param0, MessageLoader *gtsMessageLoader, MessageLoader *param2, GTSPokemonListing_sub3 *param3)
+static void ov94_0223E3B0(Window *param0, MessageLoader *gtsMessageLoader, MessageLoader *param2, GTSPokemonRequirements *param3)
 {
     Window_FillTilemap(param0, 0x0);
 
