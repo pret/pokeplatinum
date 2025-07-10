@@ -2,6 +2,7 @@
 
 #include <nitro.h>
 #include <string.h>
+
 #include "generated/species.h"
 
 #include "struct_decls/pc_boxes_decl.h"

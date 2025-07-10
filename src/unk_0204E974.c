@@ -161,7 +161,7 @@ BOOL ScrCmd_08F(ScriptContext *param0)
     u16 *v5 = ScriptContext_GetVarPointer(param0);
 
     v2 = SaveData_GetUndergroundData(saveData);
-    *v5 = sub_02028CB0(v2, v3, v4);
+    *v5 = UndergroundData_TryAddSphere(v2, v3, v4);
     return 0;
 }
 
