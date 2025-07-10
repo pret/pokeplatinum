@@ -2,7 +2,6 @@
 src/unk_0208A3F4.c
 src/overlay107/ov107_02245EB0.c
 src/overlay107/ov107_02241AE0.c
-src/overlay071/ov71_0223C69C.c
 src/overlay065/ov65_0222DCE0.c
 src/overlay064/ov64_0222DCE0.c
 src/overlay098/ov98_022471C8.c
