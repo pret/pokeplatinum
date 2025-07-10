@@ -2,8 +2,8 @@
 #include "debug.h"
 
 #include "charcode.h"
-#include "charmap.h"
 #include "strbuf.h"
+
 #define NOCASHGBAIDADDR     0x04FFFA00
 #define NOCASHGBAPRINTADDR1 0x04FFFA14 // does not automatically add the newline
 #define NOCASHGBAPRINTADDR2 0x04FFFA18 // does automatically add the newline
