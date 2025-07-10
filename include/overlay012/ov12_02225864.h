@@ -3,7 +3,6 @@
 
 #include "overlay012/funcptr_ov12_02226274.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
-#include "overlay012/struct_ov12_02225D50.h"
 #include "overlay012/struct_ov12_02225F6C.h"
 #include "overlay012/struct_ov12_02226274.h"
 #include "overlay012/struct_ov12_02226454.h"
@@ -22,13 +21,18 @@ enum BattleAnimPositionType {
     BATTLE_ANIM_POSITION_PARTICLE_Y,
 };
 
+typedef struct AngleLerpContext {
+    s32 angle;
+    s32 data[4];
+} AngleLerpContext;
+
 void ov12_02225864(int param0, int param1, s16 *param2, s16 *param3);
 void ov12_02225898(BattleAnimSystem *param0, int param1, s16 *param2, s16 *param3);
 s16 BattleAnimUtil_GetBattlerPos(BattleAnimSystem *param0, int param1, enum BattleAnimPositionType param2);
 u8 ov12_02225950(ManagedSprite *param0);
-int ov12_02225964(BattleAnimSystem *param0, int param1);
+int BattleAnimMath_GetRotationDirection(BattleAnimSystem *param0, int param1);
 int ov12_0222598C(BattleAnimSystem *param0, int param1);
-fx32 ov12_022259A0(fx32 param0, fx32 param1, u32 param2);
+fx32 BattleAnimMath_GetStepSize(fx32 param0, fx32 param1, u32 param2);
 u32 ov12_022259AC(fx32 param0, fx32 param1, fx32 param2);
 void ov12_022259DC(UnkStruct_ov12_02225F6C *param0, ManagedSprite *param1, s16 param2, s16 param3);
 void ov12_022259FC(UnkStruct_ov12_02225F6C *param0, ManagedSprite *param1);
@@ -46,12 +50,12 @@ BOOL ov12_02225C74(UnkStruct_ov12_02225F6C *param0, PokemonSprite *param1);
 void ov12_02225C98(UnkStruct_ov12_02225F6C *param0, UnkStruct_ov12_02225F6C *param1, s16 param2, s16 param3, s16 param4, s16 param5, u16 param6, fx32 param7);
 BOOL ov12_02225CE4(UnkStruct_ov12_02225F6C *param0, UnkStruct_ov12_02225F6C *param1);
 BOOL ov12_02225D2C(UnkStruct_ov12_02225F6C *param0, UnkStruct_ov12_02225F6C *param1, ManagedSprite *param2);
-void ov12_02225D50(UnkStruct_ov12_02225D50 *param0, s32 param1, s32 param2, u32 param3);
-void ov12_02225D78(UnkStruct_ov12_02225D50 *param0, s16 param1, s16 param2, u32 param3);
-BOOL ov12_02225DA0(UnkStruct_ov12_02225D50 *param0);
-BOOL ov12_02225DC8(UnkStruct_ov12_02225D50 *param0);
-void ov12_02225DF4(UnkStruct_ov12_02225D50 *param0, u16 param1, u16 param2, fx32 param3, u32 param4);
-BOOL ov12_02225E0C(UnkStruct_ov12_02225D50 *param0);
+void AngleLerpContext_Init(AngleLerpContext *param0, s32 param1, s32 param2, u32 param3);
+void AngleLerpContext_InitFX32(AngleLerpContext *param0, s16 param1, s16 param2, u32 param3); // Uses FX32 internally
+BOOL AngleLerpContext_Update(AngleLerpContext *param0);
+BOOL AngleLerpContext_UpdateFX32(AngleLerpContext *param0);
+void AngleLerpContext_InitCos(AngleLerpContext *param0, u16 param1, u16 param2, fx32 param3, u32 param4);
+BOOL AngleLerpContext_UpdateCos(AngleLerpContext *param0);
 void ov12_02225E68(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, s16 param3, u32 param4);
 BOOL ov12_02225EB8(UnkStruct_ov12_02225F6C *param0);
 void ov12_02225EF0(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, s16 param3, s16 param4, s16 param5, u32 param6);

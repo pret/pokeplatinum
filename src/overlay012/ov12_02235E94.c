@@ -11,7 +11,7 @@
 #include "overlay012/ov12_02235254.h"
 #include "overlay012/ov12_02237E54.h"
 #include "overlay012/struct_ov12_02223764.h"
-#include "overlay012/struct_ov12_02225D50.h"
+#include "overlay012/ov12_02225864.h"
 #include "overlay012/struct_ov12_02225F6C.h"
 #include "overlay012/struct_ov12_022267D4_decl.h"
 #include "overlay012/struct_ov12_02236030.h"
@@ -96,7 +96,7 @@ typedef struct BallRotation {
     BOOL unk_28;
     SpriteManager *unk_2C;
     ManagedSprite *unk_30;
-    UnkStruct_ov12_02225D50 unk_34;
+    AngleLerpContext unk_34;
     UnkStruct_ov12_02225F6C unk_48[2];
     BallThrow unk_90;
     UnkStruct_ov12_02237C54_sub1 unk_B8;
@@ -1901,9 +1901,9 @@ static BOOL ov12_02237608(BallRotation *param0)
     switch (param0->unk_08) {
     case 0: {
         if (param0->unk_10 == 0) {
-            ov12_02225D50(&param0->unk_34, -((45 * 0xffff) / 360), +((45 * 0xffff) / 360), 10);
+            AngleLerpContext_Init(&param0->unk_34, -((45 * 0xffff) / 360), +((45 * 0xffff) / 360), 10);
         } else {
-            ov12_02225D50(&param0->unk_34, +((45 * 0xffff) / 360), -((45 * 0xffff) / 360), 10);
+            AngleLerpContext_Init(&param0->unk_34, +((45 * 0xffff) / 360), -((45 * 0xffff) / 360), 10);
         }
 
         param0->unk_10 ^= 1;
@@ -1911,9 +1911,9 @@ static BOOL ov12_02237608(BallRotation *param0)
         param0->unk_08++;
         break;
     case 1:
-        ManagedSprite_SetAffineZRotation(param0->unk_30, param0->unk_34.unk_00);
+        ManagedSprite_SetAffineZRotation(param0->unk_30, param0->unk_34.angle);
 
-        if (ov12_02225DA0(&param0->unk_34) == 0) {
+        if (AngleLerpContext_Update(&param0->unk_34) == 0) {
             if (param0->unk_0C >= 1) {
                 param0->unk_08++;
             } else {

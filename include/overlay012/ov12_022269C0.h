@@ -5,7 +5,7 @@
 
 #include "sprite_system.h"
 
-void BattleAnimScriptFunc_NoOp(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_Nop(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_AnimExample(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_SoundExample(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_GenericExample(BattleAnimSystem *param0);

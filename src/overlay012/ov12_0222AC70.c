@@ -7,7 +7,7 @@
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/ov12_02235254.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
-#include "overlay012/struct_ov12_02225D50.h"
+#include "overlay012/ov12_02225864.h"
 #include "overlay012/struct_ov12_02225F6C.h"
 #include "overlay012/struct_ov12_02226454.h"
 #include "overlay012/struct_ov12_022267D4_decl.h"
@@ -195,7 +195,7 @@ typedef struct {
     s16 unk_34;
     s16 unk_36;
     UnkStruct_ov12_02225F6C unk_38;
-    UnkStruct_ov12_02225D50 unk_5C;
+    AngleLerpContext unk_5C;
 } UnkStruct_ov12_0222C7E0;
 
 typedef struct {
@@ -226,7 +226,7 @@ typedef struct {
     ManagedSprite *unk_38;
     UnkStruct_ov12_02235998 unk_3C[4];
     UnkStruct_ov12_02225F6C unk_8C[2];
-    UnkStruct_ov12_02225D50 unk_D4;
+    AngleLerpContext unk_D4;
 } UnkStruct_ov12_0222CBFC;
 
 typedef struct {
@@ -247,7 +247,7 @@ typedef struct {
     ManagedSprite *unk_44[2];
     UnkStruct_ov12_02235998 unk_4C[4];
     UnkStruct_ov12_02225F6C unk_9C;
-    UnkStruct_ov12_02225D50 unk_C0;
+    AngleLerpContext unk_C0;
 } UnkStruct_ov12_0222CDF0;
 
 typedef struct {
@@ -1435,7 +1435,7 @@ void ov12_0222C6D4(BattleAnimSystem *param0)
     v0->unk_04.unk_02 -= PokemonSprite_GetAttribute(v0->unk_14, MON_SPRITE_SHADOW_HEIGHT);
 
     {
-        int v2 = ov12_02225964(v0->unk_0C, v1);
+        int v2 = BattleAnimMath_GetRotationDirection(v0->unk_0C, v1);
         int v3 = ov12_0222598C(v0->unk_0C, v1);
 
         ov12_02225BC8(&v0->unk_40, v0->unk_04.unk_00, v0->unk_04.unk_00 + (-20 * v2), v0->unk_04.unk_02, v0->unk_04.unk_02 + ((+20) * v3), 20);
@@ -1473,7 +1473,7 @@ static void ov12_0222C7E0(SysTask *param0, void *param1)
             v2 = -Unk_ov12_0223A118[v0->unk_00.unk_02][0];
         }
 
-        ov12_02225D50(&v0->unk_5C, v1, v2, Unk_ov12_0223A118[v0->unk_00.unk_02][1]);
+        AngleLerpContext_Init(&v0->unk_5C, v1, v2, Unk_ov12_0223A118[v0->unk_00.unk_02][1]);
 
         if (v0->unk_00.unk_01 == 1) {
             v0->unk_00.unk_02++;
@@ -1483,8 +1483,8 @@ static void ov12_0222C7E0(SysTask *param0, void *param1)
     }
         v0->unk_00.unk_00++;
     case 1:
-        if (ov12_02225DA0(&v0->unk_5C) == 1) {
-            PokemonSprite_SetAttribute(v0->unk_28[0], MON_SPRITE_ROTATION_Z, (u16)v0->unk_5C.unk_00);
+        if (AngleLerpContext_Update(&v0->unk_5C) == 1) {
+            PokemonSprite_SetAttribute(v0->unk_28[0], MON_SPRITE_ROTATION_Z, (u16)v0->unk_5C.angle);
         } else {
             if (v0->unk_00.unk_02 >= 5) {
                 v0->unk_00.unk_00++;
@@ -1695,8 +1695,8 @@ static void ov12_0222CBFC(SysTask *param0, void *param1)
         return;
     }
 
-    if (ov12_02225DA0(&v1->unk_D4) == 1) {
-        ManagedSprite_SetAffineZRotation(v1->unk_38, v1->unk_D4.unk_00);
+    if (AngleLerpContext_Update(&v1->unk_D4) == 1) {
+        ManagedSprite_SetAffineZRotation(v1->unk_38, v1->unk_D4.angle);
     }
 
     ManagedSprite_TickFrame(v1->unk_38);
@@ -1715,7 +1715,7 @@ void ov12_0222CC54(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v2->unk_04 = BattleAnimSystem_GetScriptVar(param0, 2);
     v2->unk_08 = BattleAnimSystem_GetScriptVar(param0, 3);
 
-    v1 = ov12_02225964(param0, BattleAnimSystem_GetAttacker(param0));
+    v1 = BattleAnimMath_GetRotationDirection(param0, BattleAnimSystem_GetAttacker(param0));
     v2->unk_38 = param3;
 
     ManagedSprite_SetAffineOverwriteMode(v2->unk_38, AFFINE_OVERWRITE_MODE_DOUBLE);
@@ -1736,12 +1736,12 @@ void ov12_0222CC54(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     }
 
     if (v1 > 0) {
-        ov12_02225D50(&v2->unk_D4, ((20 * 0xffff) / 360) * v1, ((130 * 0xffff) / 360) * v1, 10);
+        AngleLerpContext_Init(&v2->unk_D4, ((20 * 0xffff) / 360) * v1, ((130 * 0xffff) / 360) * v1, 10);
     } else {
-        ov12_02225D50(&v2->unk_D4, ((90 * 0xffff) / 360) * v1, ((130 * 0xffff) / 360) * v1, 10);
+        AngleLerpContext_Init(&v2->unk_D4, ((90 * 0xffff) / 360) * v1, ((130 * 0xffff) / 360) * v1, 10);
     }
 
-    ManagedSprite_SetAffineZRotation(v2->unk_38, v2->unk_D4.unk_00);
+    ManagedSprite_SetAffineZRotation(v2->unk_38, v2->unk_D4.angle);
     ov12_02225D2C(&v2->unk_8C[0], &v2->unk_8C[1], v2->unk_38);
 
     ManagedSprite_TickFrame(v2->unk_38);

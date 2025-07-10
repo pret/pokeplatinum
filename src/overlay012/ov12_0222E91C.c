@@ -397,7 +397,7 @@ void ov12_0222EFB0(BattleAnimSystem *param0)
 
     {
         v4 = -32;
-        v5 = ov12_02225964(param0, BattleAnimSystem_GetAttacker(param0));
+        v5 = BattleAnimMath_GetRotationDirection(param0, BattleAnimSystem_GetAttacker(param0));
         v4 *= v5;
 
         v0->unk_2C = 1.0f;

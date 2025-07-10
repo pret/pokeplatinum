@@ -18,17 +18,17 @@
 typedef struct {
     u8 state;
     BattleAnimSystem *system;
-} BattleAnimScriptContext_AnimExample;
+} AnimExampleContext;
 
 typedef struct {
     u8 state;
     BattleAnimSystem *system;
-} BattleAnimScriptContext_SoundExample;
+} SoundExampleContext;
 
 typedef struct {
     u8 state;
     BattleAnimSystem *system;
-} BattleAnimScriptContext_GenericExample;
+} GenericExampleContext;
 
 typedef struct {
     u8 unk_00;
@@ -40,14 +40,14 @@ typedef struct {
     Sprite *unk_1A4[10];
 } UnkStruct_ov12_02226AAC;
 
-void BattleAnimScriptFunc_NoOp(BattleAnimSystem *system)
+void BattleAnimScriptFunc_Nop(BattleAnimSystem *system)
 {
     return;
 }
 
-static void BattleAnimScriptTask_AnimExample(SysTask *task, void *param)
+static void BattleAnimTask_AnimExample(SysTask *task, void *param)
 {
-    BattleAnimScriptContext_AnimExample *ctx = param;
+    AnimExampleContext *ctx = param;
 
     switch (ctx->state) {
     case TASK_STATE_RUNNING:
@@ -62,17 +62,17 @@ static void BattleAnimScriptTask_AnimExample(SysTask *task, void *param)
 
 void BattleAnimScriptFunc_AnimExample(BattleAnimSystem *system)
 {
-    BattleAnimScriptContext_AnimExample *ctx = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(BattleAnimScriptContext_AnimExample));
+    AnimExampleContext *ctx = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(AnimExampleContext));
 
     ctx->state = TASK_STATE_RUNNING;
     ctx->system = system;
 
-    BattleAnimSystem_StartAnimTaskEx(ctx->system, BattleAnimScriptTask_AnimExample, ctx, 0x1000);
+    BattleAnimSystem_StartAnimTaskEx(ctx->system, BattleAnimTask_AnimExample, ctx, 0x1000);
 }
 
-static void BattleAnimScriptTask_SoundExample(SysTask *task, void *param)
+static void BattleAnimTask_SoundExample(SysTask *task, void *param)
 {
-    BattleAnimScriptContext_SoundExample *ctx = param;
+    SoundExampleContext *ctx = param;
 
     switch (ctx->state) {
     case TASK_STATE_RUNNING:
@@ -87,17 +87,17 @@ static void BattleAnimScriptTask_SoundExample(SysTask *task, void *param)
 
 void BattleAnimScriptFunc_SoundExample(BattleAnimSystem *system)
 {
-    BattleAnimScriptContext_SoundExample *ctx = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(BattleAnimScriptContext_SoundExample));
+    SoundExampleContext *ctx = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(SoundExampleContext));
 
     ctx->state = TASK_STATE_RUNNING;
     ctx->system = system;
 
-    BattleAnimSystem_StartSoundTask(ctx->system, BattleAnimScriptTask_SoundExample, ctx, 0x1000);
+    BattleAnimSystem_StartSoundTask(ctx->system, BattleAnimTask_SoundExample, ctx, 0x1000);
 }
 
-static void BattleAnimScriptTask_GenericExample(SysTask *task, void *param)
+static void BattleAnimtTask_GenericExample(SysTask *task, void *param)
 {
-    BattleAnimScriptContext_GenericExample *ctx = param;
+    GenericExampleContext *ctx = param;
 
     switch (ctx->state) {
     case TASK_STATE_RUNNING:
@@ -112,12 +112,12 @@ static void BattleAnimScriptTask_GenericExample(SysTask *task, void *param)
 
 void BattleAnimScriptFunc_GenericExample(BattleAnimSystem *system)
 {
-    BattleAnimScriptContext_GenericExample *ctx = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(BattleAnimScriptContext_GenericExample));
+    GenericExampleContext *ctx = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(GenericExampleContext));
 
     ctx->state = TASK_STATE_RUNNING;
     ctx->system = system;
 
-    SysTask_Start(BattleAnimScriptTask_GenericExample, ctx, 0x1000);
+    SysTask_Start(BattleAnimtTask_GenericExample, ctx, 0x1000);
 }
 
 static void ov12_02226AAC(SysTask *param0, void *param1)
