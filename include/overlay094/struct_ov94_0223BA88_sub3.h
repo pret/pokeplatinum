@@ -6,7 +6,7 @@ typedef struct {
     s8 gender;
     s8 level;
     s8 level2;
-    s8 unk_05; // maybe chungus
+    s8 unk_05;
 } GTSPokemonRequirements;
 
 #endif // POKEPLATINUM_STRUCT_OV94_0223BA88_SUB3_H

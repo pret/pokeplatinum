@@ -10,7 +10,7 @@ typedef struct {
     GTSPokemonCriteria unk_EC; // species, gender, level
     GTSPokemonRequirements unk_F0;
     u8 unk_F6;
-    u8 chungus[17];
+    u8 unused[17];
     s32 unk_108;
     u16 unk_10C[8];
     u16 unk_11C;
