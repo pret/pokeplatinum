@@ -202,7 +202,7 @@ BOOL ScrCmd_BufferPartyMonNickname(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_BufferPCBoxesMonNickname(ScriptContext *ctx)
+BOOL ScrCmd_BufferMonNicknameFromPC(ScriptContext *ctx)
 {
     BoxPokemon *boxMon;
     FieldSystem *fieldSystem = ctx->fieldSystem;

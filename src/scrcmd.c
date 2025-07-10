@@ -1361,7 +1361,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetJubilifeLotteryTrainerID,
     ScrCmd_CheckForJubilifeLotteryWinner,
     ScrCmd_RandomizeJubilifeLottery,
-    ScrCmd_BufferPCBoxesMonNickname,
+    ScrCmd_BufferMonNicknameFromPC,
     ScrCmd_GetPCBoxesFreeSlotCount,
     ScrCmd_SetClearInCatchingShowFlag,
     ScrCmd_CheckHasEnoughMonForCatchingShow,

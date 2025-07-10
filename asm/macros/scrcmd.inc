@@ -3380,7 +3380,7 @@
     .short 592
     .endm
 
-    .macro BufferPCBoxesMonNickname templateArg, boxSlotIndex
+    .macro BufferMonNicknameFromPC templateArg, boxSlotIndex
     .short 593
     .byte \templateArg
     .short \boxSlotIndex

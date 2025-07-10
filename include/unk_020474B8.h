@@ -17,7 +17,7 @@ BOOL ScrCmd_BufferNumber(ScriptContext *ctx);
 BOOL ScrCmd_280(ScriptContext *param0);
 BOOL ScrCmd_BufferNumberPaddingDigits(ScriptContext *ctx);
 BOOL ScrCmd_BufferPartyMonNickname(ScriptContext *ctx);
-BOOL ScrCmd_BufferPCBoxesMonNickname(ScriptContext *ctx);
+BOOL ScrCmd_BufferMonNicknameFromPC(ScriptContext *ctx);
 BOOL ScrCmd_BufferPoketchAppName(ScriptContext *ctx);
 BOOL ScrCmd_BufferTrainerClassName(ScriptContext *ctx);
 BOOL ScrCmd_0D9(ScriptContext *param0);

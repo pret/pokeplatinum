@@ -90,7 +90,7 @@ _0100:
     GoTo _011C
 
 _010E:
-    BufferPCBoxesMonNickname 0, VAR_0x8001
+    BufferMonNicknameFromPC 0, VAR_0x8001
     Message 7
     GoTo _011C
 
