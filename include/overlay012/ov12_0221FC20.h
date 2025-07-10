@@ -203,7 +203,7 @@ typedef struct BattleAnimSystem {
     BOOL usedPokemonSprites[BATTLE_ANIM_SCRIPT_MAX_POKEMON_SPRITES];
     SpriteTrackingTask *spriteTrackingTasks[BATTLE_ANIM_SCRIPT_MAX_POKEMON_SPRITES];
     BgTrackingTask *bgTrackingTask;
-    u8 unk_178;
+    u8 bgSwitchState;
     u8 soundEffectWaitTimer;
     u8 unk_17A;
     u8 unk_17B;

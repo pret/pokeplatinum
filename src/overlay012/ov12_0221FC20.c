@@ -96,7 +96,7 @@ enum BattleAnimSoundTaskType {
     BATTLE_ANIM_SOUND_TASK_COUNT,
 };
 
-typedef struct UnkStruct_ov12_02221BBC_t {
+typedef struct BattleBgSwitch {
     int unk_00;
     u8 unk_04;
     u8 state;
@@ -171,10 +171,10 @@ static void ov12_02220F30(BattleAnimSystem *param0);
 static void ov12_02221064(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_Jump(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_SwitchBg(BattleAnimSystem *param0);
-static void ov12_02222774(BattleAnimSystem *param0);
-static void ov12_022227CC(BattleAnimSystem *param0);
-static void ov12_02222820(BattleAnimSystem *param0);
-static void ov12_02222840(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_SetBgSwitchVar(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_RestoreBg(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_WaitForPartialBgSwitch(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_WaitForBgSwitch(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_SetBg(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_PlayPannedSoundEffect(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_PanSoundEffects(BattleAnimSystem *param0);
@@ -196,7 +196,7 @@ static void BattleAnimScriptCmd_SetCameraProjection(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_SetCameraFlip(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_RemovePokemonSpriteFromBg(BattleAnimSystem *param0);
 static void ov12_02220EA8(BattleAnimSystem *param0);
-static void ov12_022228DC(BattleAnimSystem *param0);
+static void BattleAnimScriptCmd_SwitchBgEx(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_PlayMovingSoundEffectNoCorrection(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_PlayMovingSoundEffectAtkDef2(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_Nop4(BattleAnimSystem *param0);
@@ -249,8 +249,8 @@ static BOOL BattleBgRestore_Fade(SysTask *param0, BattleBgSwitch *param1);
 static BOOL BattleBgRestore_FlagsOnly(SysTask *param0, BattleBgSwitch *param1);
 static BOOL BattleBgSwitch_AnimNone(BattleBgSwitch *param0);
 static BOOL BattleBgSwitch_AnimMoveStart(BattleBgSwitch *param0);
-static BOOL ov12_022226D0(BattleBgSwitch *param0);
-static BOOL ov12_022226E8(BattleBgSwitch *param0);
+static BOOL BattleBgSwitch_AnimStop(BattleBgSwitch *param0);
+static BOOL BattleBgSwitch_AnimCancel(BattleBgSwitch *param0);
 static BOOL ov12_0222240C(BattleBgSwitch *param0);
 static BOOL ov12_022224E4(BattleBgSwitch *param0);
 
@@ -813,10 +813,10 @@ static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
     ov12_02221064,
     BattleAnimScriptCmd_Jump,
     BattleAnimScriptCmd_SwitchBg,
-    ov12_02222774,
-    ov12_022227CC,
-    ov12_02222820,
-    ov12_02222840,
+    BattleAnimScriptCmd_SetBgSwitchVar,
+    BattleAnimScriptCmd_RestoreBg,
+    BattleAnimScriptCmd_WaitForPartialBgSwitch,
+    BattleAnimScriptCmd_WaitForBgSwitch,
     BattleAnimScriptCmd_SetBg,
     BattleAnimScriptCmd_PlayPannedSoundEffect,
     BattleAnimScriptCmd_PanSoundEffects,
@@ -830,7 +830,7 @@ static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
     BattleAnimScriptCmd_LoadPokemonSpriteIntoBg,
     BattleAnimScriptCmd_RemovePokemonSpriteFromBg,
     ov12_02220EA8,
-    ov12_022228DC,
+    BattleAnimScriptCmd_SwitchBgEx,
     BattleAnimScriptCmd_PlayMovingSoundEffectNoCorrection,
     BattleAnimScriptCmd_PlayMovingSoundEffectAtkDef2,
     BattleAnimScriptCmd_Nop4,
@@ -2266,8 +2266,8 @@ static BOOL (*const sBattleBgSwitchFuncs[])(SysTask *, BattleBgSwitch *) = {
 static BOOL (*const sBattleBgAnimFuncs[])(BattleBgSwitch *) = {
     BattleBgSwitch_AnimNone,
     BattleBgSwitch_AnimMoveStart,
-    ov12_022226D0,
-    ov12_022226E8,
+    BattleBgSwitch_AnimStop,
+    BattleBgSwitch_AnimCancel,
     BattleBgSwitch_AnimNone,
     ov12_0222240C,
     ov12_022224E4
@@ -2348,8 +2348,8 @@ static void BattleBgSwitch_ApplyFlags(BattleBgSwitch *bgSwitch)
     const u32 flags[] = {
         BATTLE_BG_SWITCH_FLAG_MOVE,
         BATTLE_BG_SWITCH_FLAG_STOP,
-        0x200000,
-        0x400000
+        BATTLE_BG_SWITCH_FLAG_UNK_20,
+        BATTLE_BG_SWITCH_FLAG_UNK_40
     };
 
     for (int i = 0; i < NELEMS(flags); i++) {
@@ -2412,7 +2412,7 @@ static BattleBgSwitch *BattleAnimSystem_CreateBgSwitch(BattleAnimSystem *system)
         bgSwitch->scriptVars[i] = system->scriptVars[i];
     }
 
-    system->unk_178 = 1;
+    system->bgSwitchState = BATTLE_BG_SWITCH_STATE_RUNNING;
 
     return bgSwitch;
 }
@@ -2427,6 +2427,7 @@ static BOOL BattleBgSwitch_Blend(SysTask *task, BattleBgSwitch *bgSwitch)
         int effectPrio = BattleAnimSystem_GetBgPriority(bgSwitch->battleAnimSystem, BATTLE_ANIM_BG_EFFECT);
         int basePrio = BattleAnimSystem_GetBgPriority(bgSwitch->battleAnimSystem, BATTLE_ANIM_BG_BASE);
 
+        // BUG: Second call should pass basePrio instead of effectPrio
         Bg_SetPriority(BATTLE_BG_EFFECT, effectPrio);
         Bg_SetPriority(BATTLE_BG_BASE, effectPrio);
         Bg_ToggleLayer(BATTLE_BG_BASE, TRUE);
@@ -2502,6 +2503,7 @@ static BOOL BattleBgRestore_Blend(SysTask *task, BattleBgSwitch *bgSwitch)
         int effectPrio = BattleAnimSystem_GetBgPriority(bgSwitch->battleAnimSystem, BATTLE_ANIM_BG_EFFECT);
         int basePrio = BattleAnimSystem_GetBgPriority(bgSwitch->battleAnimSystem, BATTLE_ANIM_BG_BASE);
 
+        // BUG: Second call should pass basePrio instead of effectPrio
         Bg_SetPriority(BATTLE_BG_EFFECT, effectPrio);
         Bg_SetPriority(BATTLE_BG_BASE, effectPrio);
 
@@ -2619,7 +2621,7 @@ static BOOL BattleBgSwitch_Fade(SysTask *task, BattleBgSwitch *bgSwitch)
 
         BattleBgSwitch_ApplyFlags(bgSwitch);
 
-        bgSwitch->battleAnimSystem->unk_178 = 2;
+        bgSwitch->battleAnimSystem->bgSwitchState = BATTLE_BG_SWITCH_STATE_PARTIAL;
         bgSwitch->state++;
         break;
 
@@ -2708,7 +2710,7 @@ static BOOL BattleBgRestore_Fade(SysTask *task, BattleBgSwitch *bgSwitch)
             break;
         }
 
-        bgSwitch->battleAnimSystem->unk_178 = 2;
+        bgSwitch->battleAnimSystem->bgSwitchState = BATTLE_BG_SWITCH_STATE_PARTIAL;
         bgSwitch->state++;
 
         return FALSE;
@@ -2925,16 +2927,16 @@ void BattleAnimSystem_UnloadBaseBg(BattleAnimSystem *system, enum BgLayer bgLaye
     Bg_ClearTilemap(system->bgConfig, bgLayer);
 }
 
-static BOOL ov12_022226D0(BattleBgSwitch *param0)
+static BOOL BattleBgSwitch_AnimStop(BattleBgSwitch *bgSwitch)
 {
-    param0->bgMoveAnimActive = 1;
-    return 0;
+    bgSwitch->bgMoveAnimActive = TRUE;
+    return FALSE;
 }
 
-static BOOL ov12_022226E8(BattleBgSwitch *param0)
+static BOOL BattleBgSwitch_AnimCancel(BattleBgSwitch *bgSwitch)
 {
-    BattleAnimSystem_CancelBgAnim(param0->battleAnimSystem);
-    return 0;
+    BattleAnimSystem_CancelBgAnim(bgSwitch->battleAnimSystem);
+    return FALSE;
 }
 
 static void BattleBgSwitchTask_Start(SysTask *task, void *param)
@@ -2943,7 +2945,7 @@ static void BattleBgSwitchTask_Start(SysTask *task, void *param)
     BOOL active = sBattleBgSwitchFuncs[bgSwitch->mode](task, bgSwitch);
     
     if (active == FALSE) {
-        bgSwitch->battleAnimSystem->unk_178 = 0;
+        bgSwitch->battleAnimSystem->bgSwitchState = BATTLE_BG_SWITCH_STATE_NONE;
 
         Heap_Free(bgSwitch);
         SysTask_Done(task);
@@ -2969,76 +2971,71 @@ static void BattleAnimScriptCmd_SwitchBg(BattleAnimSystem *system)
     SysTask_Start(BattleBgSwitchTask_Start, bgSwitch, 1100);
 }
 
-static void ov12_02222774(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_SetBgSwitchVar(BattleAnimSystem *system)
 {
-    int v0;
-    s16 v1;
+    BattleAnimScript_Next(system);
 
-    param0->scriptPtr += 1;
+    int var = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    s16 value = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
-
-    switch (v0) {
-    case 0:
-        param0->bgAnim->stepX = v1;
+    switch (var) {
+    case BATTLE_ANIM_VAR_BG_MOVE_STEP_X:
+        system->bgAnim->stepX = value;
         break;
-    case 1:
-        param0->bgAnim->stepY = v1;
+    case BATTLE_ANIM_VAR_BG_MOVE_STEP_Y:
+        system->bgAnim->stepY = value;
         break;
-    case 2:
-        param0->bgAnim->offsetX = v1;
+    case BATTLE_ANIM_VAR_BG_MOVE_START_X:
+        system->bgAnim->offsetX = value;
         break;
-    case 3:
-        param0->bgAnim->offsetX = v1;
+    case BATTLE_ANIM_VAR_BG_MOVE_START_Y:
+        // BUG: Should be offsetY, not offsetX
+        system->bgAnim->offsetX = value;
         break;
     default:
         break;
     }
 }
 
-static void ov12_022227CC(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_RestoreBg(BattleAnimSystem *system)
 {
-    BattleBgSwitch *v0;
-    int v1;
+    BattleBgSwitch *bgSwitch = BattleAnimSystem_CreateBgSwitch(system);
 
-    v0 = BattleAnimSystem_CreateBgSwitch(param0);
+    bgSwitch->fadeType = BattleAnimSystem_GetScriptVar(system, 4);
+    BattleAnimScript_Next(system);
 
-    v0->fadeType = BattleAnimSystem_GetScriptVar(param0, 4);
-    param0->scriptPtr += 1;
+    bgSwitch->bgID = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v0->bgID = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    int param = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    bgSwitch->mode = BATTLE_BG_SWITCH_MODE(param) + BATTLE_BG_SWITCH_MODE_COUNT;
+    bgSwitch->flags = BATTLE_BG_SWITCH_FLAGS(param);
 
-    v0->mode = (v1 & 0xFFFF) + 3;
-    v0->flags = (v1 & 0xFFFF0000) >> 16;
-
-    SysTask_Start(BattleBgSwitchTask_Start, v0, 1100);
+    SysTask_Start(BattleBgSwitchTask_Start, bgSwitch, 1100);
 }
 
-static void ov12_02222820(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_WaitForPartialBgSwitch(BattleAnimSystem *system)
 {
-    if (param0->unk_178 == 2) {
-        param0->scriptPtr += 1;
-        param0->scriptDelay = 0;
+    if (system->bgSwitchState == BATTLE_BG_SWITCH_STATE_PARTIAL) {
+        BattleAnimScript_Next(system);
+        system->scriptDelay = 0;
     } else {
-        param0->scriptDelay = 1;
+        system->scriptDelay = 1;
     }
 }
 
-static void ov12_02222840(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_WaitForBgSwitch(BattleAnimSystem *system)
 {
-    if (param0->unk_178 == 0) {
-        param0->scriptPtr += 1;
-        param0->scriptDelay = 0;
+    if (system->bgSwitchState == BATTLE_BG_SWITCH_STATE_NONE) {
+        BattleAnimScript_Next(system);
+        system->scriptDelay = 0;
     } else {
-        param0->scriptDelay = 1;
+        system->scriptDelay = 1;
     }
 }
 
@@ -3077,35 +3074,32 @@ static void BattleAnimScriptCmd_SetBg(BattleAnimSystem *system)
         system->heapID);
 }
 
-static void ov12_022228DC(BattleAnimSystem *param0)
+static void BattleAnimScriptCmd_SwitchBgEx(BattleAnimSystem *system)
 {
-    BattleBgSwitch *v0;
-    int v1, v2, v3;
+    BattleBgSwitch *bgSwitch = BattleAnimSystem_CreateBgSwitch(system);
 
-    v0 = BattleAnimSystem_CreateBgSwitch(param0);
+    BattleAnimScript_Next(system);
 
-    param0->scriptPtr += 1;
+    int battleBgPlayerAttack = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    int battleBgEnemyAttack = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v2 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    int contestBg = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v3 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
-
-    if (BattleAnimSystem_IsContest(param0) == 1) {
-        v0->bgID = v3;
+    if (BattleAnimSystem_IsContest(system) == TRUE) {
+        bgSwitch->bgID = contestBg;
     } else {
-        if (BattleAnimUtil_GetBattlerSide(param0, param0->context->defender) == 0x3) {
-            v0->bgID = v2;
+        if (BattleAnimUtil_GetBattlerSide(system, system->context->defender) == BTLSCR_PLAYER) {
+            bgSwitch->bgID = battleBgEnemyAttack;
         } else {
-            v0->bgID = v1;
+            bgSwitch->bgID = battleBgPlayerAttack;
         }
     }
 
-    SysTask_Start(BattleBgSwitchTask_Start, v0, 1100);
+    SysTask_Start(BattleBgSwitchTask_Start, bgSwitch, 1100);
 }
 
 static void BattleAnimScriptCmd_Nop4(BattleAnimSystem *)

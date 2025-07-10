@@ -26,11 +26,18 @@
 #define BATTLE_BG_SWITCH_FLAG_MOVE      (0x02 << BATTLE_BG_SWITCH_FLAGS_SHIFT)
 #define BATTLE_BG_SWITCH_FLAG_STOP      (0x04 << BATTLE_BG_SWITCH_FLAGS_SHIFT)
 #define BATTLE_BG_SWITCH_FLAG_CANCEL    (0x08 << BATTLE_BG_SWITCH_FLAGS_SHIFT)
+#define BATTLE_BG_SWITCH_FLAG_UNK_10    (0x10 << BATTLE_BG_SWITCH_FLAGS_SHIFT)
+#define BATTLE_BG_SWITCH_FLAG_UNK_20    (0x20 << BATTLE_BG_SWITCH_FLAGS_SHIFT)
+#define BATTLE_BG_SWITCH_FLAG_UNK_40    (0x40 << BATTLE_BG_SWITCH_FLAGS_SHIFT)
 
 #define BATTLE_BG_SWITCH_MODE_BLEND     0 //< Switch BG by blending between normal and effect BG
 #define BATTLE_BG_SWITCH_MODE_FADE      1 //< Switch BG by fading to black/white and then to effect BG
 #define BATTLE_BG_SWITCH_MODE_FLAGS     2 //< Don't switch BG, apply flags only
 #define BATTLE_BG_SWITCH_MODE_COUNT     3
+
+#define BATTLE_BG_SWITCH_STATE_NONE     0 //< No switch in progress
+#define BATTLE_BG_SWITCH_STATE_RUNNING  1 //< Switch in progress
+#define BATTLE_BG_SWITCH_STATE_PARTIAL  2 //< Faded to black/white. Note: Use only with BATTLE_BG_SWITCH_MODE_FADE
 
 #define BATTLE_BG_ID_UNUSED             0
 #define BATTLE_BG_ID_WINDOW             1
