@@ -8,6 +8,14 @@
 
 #include "strbuf.h"
 
+#define MAX_BURIED_OBJECTS 8
+#define MAX_BURIED_ITEMS   4
+
+#define INITIAL_WALL_INTEGRITY 196
+
+#define MINING_GAME_WIDTH  13
+#define MINING_GAME_HEIGHT 10
+
 void ov23_0223E1E4(void *param0, FieldSystem *fieldSystem);
 int ov23_0223E2E8(void);
 void ov23_0223E2F0(void);
@@ -22,7 +30,7 @@ void ov23_0223EB8C(int param0, int param1, void *param2, void *param3);
 void ov23_0223EBC0(int param0, int param1, void *param2, void *param3);
 void ov23_0223EBE4(int param0, int param1, void *param2, void *param3);
 int ov23_0223EBFC(void);
-void ov23_0223EC00(int param0, int param1, void *param2, void *param3);
+void Mining_TakeLinkInput(int param0, int param1, void *src, void *param3);
 int ov23_0223EC30(void);
 BOOL ov23_02241200(int param0, int param1);
 int ov23_0224121C(int param0);

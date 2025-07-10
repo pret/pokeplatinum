@@ -24,7 +24,6 @@
 
 #include "bg_window.h"
 #include "brightness_controller.h"
-#include "camera.h"
 #include "char_transfer.h"
 #include "comm_player_manager.h"
 #include "communication_information.h"
@@ -84,17 +83,17 @@ typedef struct {
 } UnkStruct_ov23_0224142C;
 
 typedef struct {
-    int unk_00;
+    int state;
     int unk_04;
-    int unk_08;
+    int timer;
     int itemCount;
     FieldSystem *fieldSystem;
     int unk_14;
-    void *unk_18[4];
-    NNSG2dPaletteData *unk_28[4];
-    int unk_38[4];
-    int unk_48;
-    int unk_4C;
+    void *unk_18[MAX_BURIED_ITEMS];
+    NNSG2dPaletteData *buriedItemPalettes[MAX_BURIED_ITEMS];
+    int unk_38[MAX_BURIED_ITEMS];
+    int sizeOfCurrentSphere;
+    int textTimer;
     u8 unk_50;
 } UnkStruct_ov23_0223EE80;
 
@@ -105,7 +104,7 @@ typedef struct {
     u8 unk_05;
 } UnkStruct_ov23_0223E6F8;
 
-typedef struct {
+typedef struct MiningObject {
     void *shape;
     u16 oddTIDWeight;
     u16 evenTIDWeight;
@@ -114,18 +113,18 @@ typedef struct {
     u8 width;
     u8 height;
     u8 itemID;
-    u16 unk_10;
-    u16 unk_12;
+    u16 spriteNARCIndex;
+    u16 paletteNARCIndex;
 } MiningObject;
 
-typedef struct {
-    MiningObject *unk_00;
+typedef struct BuriedObject {
+    MiningObject *miningObject;
     u8 itemID;
     u8 x;
     u8 y;
-    u8 unk_07;
-    u8 unk_08;
-} UnkStruct_ov23_0223FC9C;
+    u8 unused;
+    u8 isDugUp;
+} BuriedObject;
 
 typedef struct {
     UnkStruct_ov23_0224142C unk_00[250];
@@ -135,20 +134,20 @@ typedef struct {
 
 typedef struct {
     FieldSystem *fieldSystem;
-    BgConfig *unk_04;
-    MATHRandContext32 unk_08;
-    SpriteList *unk_20;
-    G2dRenderer unk_24;
+    BgConfig *bgConfig;
+    MATHRandContext32 rand;
+    SpriteList *spriteList;
+    G2dRenderer g2DRenderer;
     SpriteResourceCollection *unk_1B0[4];
     SpriteResource *unk_1C0[8];
     SpriteResourcesHeader unk_1E0;
     SpriteResourcesHeader unk_204[2];
-    Sprite *unk_24C[8];
+    Sprite *sprites[8];
     UnkStruct_ov23_0223E6F8 unk_26C[250];
     Menu *unk_848;
     UnkStruct_ov23_0223E6F8 *unk_84C[8];
     u8 unk_86C[8];
-    UnkStruct_ov23_0223FC9C unk_874[8];
+    BuriedObject buriedObjects[MAX_BURIED_OBJECTS];
     u8 unk_8BC[8];
     SysTask *unk_8C4;
     SysTask *unk_8C8;
@@ -158,15 +157,15 @@ typedef struct {
     u8 unk_8FC[8];
     void *unk_904;
     u8 unk_908[8];
-    u8 unk_910[8];
-    u8 unk_918[8];
-    u8 unk_920[10][13];
-    u8 unk_9A2[10][13];
+    u8 linkTouchX[MAX_CONNECTED_PLAYERS];
+    u8 linkTouchY[MAX_CONNECTED_PLAYERS];
+    u8 buriedObjectGrid[MINING_GAME_HEIGHT][MINING_GAME_WIDTH];
+    u8 dirtCover[MINING_GAME_HEIGHT][MINING_GAME_WIDTH];
     int unk_A24;
-    u8 unk_A28;
+    u8 pickaxeSelected;
     u8 unk_A29;
     u8 unk_A2A;
-    u8 unk_A2B;
+    u8 wallIntegrity;
     u8 unk_A2C;
     s8 unk_A2D;
     s8 unk_A2E;
@@ -174,24 +173,24 @@ typedef struct {
     u8 unk_A30;
 } UnkStruct_ov23_02257740;
 
-static void ov23_02240688(BgConfig *param0);
+static void Mining_DrawWallCrack(BgConfig *bgConfig);
 static void ov23_0223E434(MATHRandContext16 *param0, int param1);
 static UnkStruct_ov23_0223E6F8 *ov23_0223E6F8(void);
 static UnkStruct_ov23_0223E6F8 *ov23_0223E88C(u16 param0, u16 param1);
 static void ov23_0223EA38(SysTask *param0, void *param1);
-static void ov23_0223EE80(UnkStruct_ov23_0223EE80 *param0);
+static void Mining_InitGame(UnkStruct_ov23_0223EE80 *param0);
 static void ov23_0223EF98(void);
 static void ov23_0223F70C(FieldSystem *fieldSystem);
-static void Mining_GenerateGameLayout(BgConfig *param0, int param1, UnkStruct_ov23_0223EE80 *param2);
-static void ov23_0223FF60(int param0, BgConfig *param1, int param2, UnkStruct_ov23_0223EE80 *param3);
-static void ov23_0223FF8C(BgConfig *param0);
-static void ov23_022401B0(BgConfig *param0);
-static BOOL ov23_02240CFC(UnkStruct_ov23_0223EE80 *param0);
-static void ov23_022404C8(BgConfig *param0);
-static void ov23_022404F8(BgConfig *param0, int param1, int param2, int param3);
-static BOOL ov23_02240934(UnkStruct_ov23_0223EE80 *param0);
-static BOOL ov23_022409F0(UnkStruct_ov23_0223EE80 *param0);
-static BOOL ov23_02240A90(UnkStruct_ov23_0223EE80 *param0);
+static void Mining_GenerateGameLayout(BgConfig *bgConfig, int param1, UnkStruct_ov23_0223EE80 *param2);
+static void ov23_0223FF60(int buriedObjectCount, BgConfig *bgConfig, int param2, UnkStruct_ov23_0223EE80 *param3);
+static void Mining_RandomizeDirtCover(BgConfig *bgConfig);
+static void Mining_DrawDirt(BgConfig *bgConfig);
+static BOOL Mining_MainGameLoop(UnkStruct_ov23_0223EE80 *param0);
+static void ov23_022404C8(BgConfig *bgConfig);
+static void ov23_022404F8(BgConfig *bgConfig, int param1, int param2, int param3);
+static BOOL Mining_AreAllItemsDugUp(UnkStruct_ov23_0223EE80 *param0);
+static BOOL Mining_PrintNextDugUpItem(UnkStruct_ov23_0223EE80 *param0);
+static BOOL Mining_ProcessNextDugUpItem(UnkStruct_ov23_0223EE80 *param0);
 static void ov23_02240E88(void);
 static void ov23_0224108C(void);
 static void ov23_0224119C(void);
@@ -199,7 +198,7 @@ static void ov23_022411E8(void *param0);
 static void ov23_022413B4(void);
 static UnkStruct_ov23_0223E6F8 *ov23_0223E740(int param0, int param1);
 static void ov23_0223FDE0(UnkStruct_ov23_0223EE80 *param0);
-static void ov23_02240B84(BgConfig *param0);
+static void ov23_02240B84(BgConfig *bgConfig);
 static void ov23_022414D4(void);
 static void ov23_0223E834(void);
 
@@ -484,91 +483,91 @@ static u8 sDampRockShape[3][4] = {
 };
 
 static MiningObject sMiningObjects[] = {
-    { NULL, 0x1E, 0x16, 0x1B, 0x14, 0x4, 0x4, MINING_SMALL_PRISM_SPHERE, 0x39, 0x37 },
-    { NULL, 0x16, 0x1E, 0x14, 0x1B, 0x4, 0x4, MINING_SMALL_PALE_SPHERE, 0x67, 0x65 },
-    { NULL, 0xA7, 0xC2, 0x6E, 0xA4, 0x4, 0x4, MINING_SMALL_RED_SPHERE, 0x2, 0x0 },
-    { NULL, 0xC2, 0xA7, 0x96, 0x7C, 0x4, 0x4, MINING_SMALL_BLUE_SPHERE, 0x5, 0x3 },
-    { NULL, 0x96, 0x96, 0x6B, 0x6B, 0x4, 0x4, MINING_SMALL_GREEN_SPHERE, 0x3F, 0x3D },
-    { NULL, 0xF, 0xD, 0xD, 0xA, 0x6, 0x6, MINING_LARGE_PRISM_SPHERE, 0x38, 0x37 },
-    { NULL, 0xD, 0xF, 0xA, 0xD, 0x6, 0x6, MINING_LARGE_PALE_SPHERE, 0x66, 0x65 },
-    { NULL, 0x53, 0x60, 0x3D, 0x4B, 0x6, 0x6, MINING_LARGE_RED_SPHERE, 0x1, 0x0 },
-    { NULL, 0x60, 0x53, 0x4B, 0x3D, 0x6, 0x6, MINING_LARGE_BLUE_SPHERE, 0x4, 0x3 },
-    { NULL, 0x4B, 0x4B, 0x35, 0x35, 0x6, 0x6, MINING_LARGE_GREEN_SPHERE, 0x3E, 0x3D },
-    { NULL, 0x0, 0x0, 0x0, 0x0, 0x6, 0x6, MINING_TREASURE_OVAL_STONE, 0x3B, 0x3C },
-    { NULL, 0x0, 0x0, 0x2, 0x2, 0x8, 0x8, MINING_TREASURE_ODD_KEYSTONE, 0x2F, 0x30 },
-    { sSunStoneShape, 0x4, 0x1, 0xF, 0x3, 0x6, 0x6, MINING_TREASURE_SUN_STONE, 0x6A, 0x6B },
-    { sStarPieceReviveShape, 0x2, 0x2, 0xA, 0xA, 0x6, 0x6, MINING_TREASURE_STAR_PIECE, 0x68, 0x69 },
-    { sMoonStoneShape, 0x1, 0x2, 0x1, 0x8, 0x8, 0x4, MINING_TREASURE_MOON_STONE, 0x42, 0x43 },
-    { sMoonStoneShape90deg, 0x1, 0x2, 0x2, 0x7, 0x4, 0x8, MINING_TREASURE_MOON_STONE, 0x44, 0x43 },
-    { NULL, 0x4, 0x4, 0x14, 0x14, 0x4, 0x4, MINING_TREASURE_HARD_STONE, 0x12, 0x13 },
-    { sThunderstoneShape, 0x4, 0x1, 0x1E, 0x5, 0x6, 0x6, MINING_TREASURE_THUNDERSTONE, 0x2D, 0x2E },
-    { NULL, 0x4, 0x4, 0x14, 0x14, 0x8, 0x4, MINING_TREASURE_EVERSTONE, 0x32, 0x33 },
-    { NULL, 0x4, 0x1, 0x1E, 0x5, 0x6, 0x6, MINING_TREASURE_FIRE_STONE, 0x18, 0x19 },
-    { sWaterStoneShape, 0x1, 0x4, 0x5, 0x1E, 0x6, 0x6, MINING_TREASURE_WATER_STONE, 0x40, 0x41 },
-    { sLeafStoneShape, 0x1, 0x2, 0x3, 0xF, 0x6, 0x8, MINING_TREASURE_LEAF_STONE, 0x60, 0x61 },
-    { sLeafStoneShape90deg, 0x1, 0x2, 0x2, 0xF, 0x8, 0x6, MINING_TREASURE_LEAF_STONE, 0x62, 0x61 },
-    { sHelixFossilShape, 0x0, 0x0, 0x3, 0x1, 0x8, 0x8, MINING_TREASURE_HELIX_FOSSIL, 0x29, 0x31 },
-    { sHelixFossilShape90deg, 0x0, 0x0, 0x3, 0x1, 0x8, 0x8, MINING_TREASURE_HELIX_FOSSIL, 0x2C, 0x31 },
-    { sHelixFossilShape, 0x0, 0x0, 0x3, 0x1, 0x8, 0x8, MINING_TREASURE_HELIX_FOSSIL, 0x2A, 0x31 },
-    { sHelixFossilShape90deg, 0x0, 0x0, 0x3, 0x1, 0x8, 0x8, MINING_TREASURE_HELIX_FOSSIL, 0x2B, 0x31 },
-    { sDomeFossilShape, 0x0, 0x0, 0x1, 0xD, 0xA, 0x8, MINING_TREASURE_DOME_FOSSIL, 0x3A, 0x31 },
-    { sClawFossilShape, 0x0, 0x0, 0x3, 0x1, 0x8, 0xA, MINING_TREASURE_CLAW_FOSSIL, 0x6D, 0x31 },
-    { sClawFossilShape90deg, 0x0, 0x0, 0x3, 0x1, 0xA, 0x8, MINING_TREASURE_CLAW_FOSSIL, 0x70, 0x31 },
-    { sClawFossilShape180deg, 0x0, 0x0, 0x3, 0x1, 0x8, 0xA, MINING_TREASURE_CLAW_FOSSIL, 0x6E, 0x31 },
-    { sClawFossilShape270deg, 0x0, 0x0, 0x3, 0x1, 0xA, 0x8, MINING_TREASURE_CLAW_FOSSIL, 0x6F, 0x31 },
-    { sRootFossilShape, 0x0, 0x0, 0x1, 0x3, 0xA, 0xA, MINING_TREASURE_ROOT_FOSSIL, 0x45, 0x31 },
-    { sRootFossilShape90deg, 0x0, 0x0, 0x1, 0x3, 0xA, 0xA, MINING_TREASURE_ROOT_FOSSIL, 0x48, 0x31 },
-    { sRootFossilShape180deg, 0x0, 0x0, 0x1, 0x3, 0xA, 0xA, MINING_TREASURE_ROOT_FOSSIL, 0x46, 0x31 },
-    { sRootFossilShape270deg, 0x0, 0x0, 0x1, 0x3, 0xA, 0xA, MINING_TREASURE_ROOT_FOSSIL, 0x47, 0x31 },
-    { sOldAmberShape, 0x0, 0x0, 0x2, 0x2, 0x8, 0x8, MINING_TREASURE_OLD_AMBER, 0x34, 0x35 },
-    { sOldAmberShape90deg, 0x0, 0x0, 0x3, 0x3, 0x8, 0x8, MINING_TREASURE_OLD_AMBER, 0x36, 0x35 },
-    { sRareBoneShape, 0x1, 0x1, 0x5, 0x5, 0x6, 0xC, MINING_TREASURE_RARE_BONE, 0xA, 0xB },
-    { sRareBoneShape90deg, 0x1, 0x1, 0x5, 0x5, 0xC, 0x6, MINING_TREASURE_RARE_BONE, 0xC, 0xB },
-    { sStarPieceReviveShape, 0x8, 0x8, 0xA, 0xA, 0x6, 0x6, MINING_TREASURE_REVIVE, 0x11, 0xF },
-    { NULL, 0x1, 0x1, 0x2, 0x2, 0x6, 0x6, MINING_TREASURE_MAX_REVIVE, 0x10, 0xF },
-    { sRedShardShape, 0xD, 0xD, 0x11, 0x11, 0x6, 0x6, MINING_TREASURE_RED_SHARD, 0x58, 0x4F },
-    { sBlueShardShape, 0xD, 0xD, 0x11, 0x11, 0x6, 0x6, MINING_TREASURE_BLUE_SHARD, 0x4B, 0x5D },
-    { sYellowShardShape, 0xD, 0xD, 0x11, 0x11, 0x8, 0x6, MINING_TREASURE_YELLOW_SHARD, 0x5F, 0x5C },
-    { sGreenShardShape, 0xD, 0xD, 0x11, 0x11, 0x8, 0x6, MINING_TREASURE_GREEN_SHARD, 0x51, 0x59 },
-    { sHeartScaleShape, 0x21, 0x21, 0x1E, 0x1E, 0x4, 0x4, MINING_TREASURE_HEART_SCALE, 0x14, 0x15 },
-    { sArmorFossilShape, 0x0, 0x19, 0x0, 0xC, 0xA, 0x8, MINING_TREASURE_ARMOR_FOSSIL, 0x6C, 0x31 },
-    { sSkullFossilShape, 0x19, 0x0, 0xC, 0x0, 0x8, 0x8, MINING_TREASURE_SKULL_FOSSIL, 0x73, 0x31 },
-    { sLightClayShape, 0x1, 0x1, 0x5, 0x2, 0x8, 0x8, MINING_TREASURE_LIGHT_CLAY, 0x49, 0x4A },
-    { NULL, 0x1, 0x1, 0x2, 0x5, 0x6, 0x6, MINING_TREASURE_IRON_BALL, 0x6, 0x7 },
-    { sIcyRockShape, 0x2, 0x1, 0xB, 0x5, 0x8, 0x8, MINING_TREASURE_ICY_ROCK, 0xD, 0xE },
-    { sSmoothRockShape, 0x1, 0x2, 0x5, 0xB, 0x8, 0x8, MINING_TREASURE_SMOOTH_ROCK, 0x63, 0x64 },
-    { sHeatRockShape, 0x2, 0x1, 0xB, 0x5, 0x8, 0x6, MINING_TREASURE_HEAT_ROCK, 0x16, 0x17 },
-    { sDampRockShape, 0x1, 0x2, 0x5, 0xB, 0x6, 0x6, MINING_TREASURE_DAMP_ROCK, 0x71, 0x72 },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, MINING_TREASURE_FLAME_PLATE, 0x56, 0x4F },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, MINING_TREASURE_SPLASH_PLATE, 0x56, 0x5D },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, MINING_TREASURE_ZAP_PLATE, 0x56, 0x5C },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, MINING_TREASURE_MEADOW_PLATE, 0x56, 0x59 },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, MINING_TREASURE_ICICLE_PLATE, 0x56, 0x54 },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, MINING_TREASURE_FIST_PLATE, 0x56, 0x50 },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, MINING_TREASURE_TOXIC_PLATE, 0x56, 0x57 },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, MINING_TREASURE_EARTH_PLATE, 0x56, 0x53 },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, MINING_TREASURE_SKY_PLATE, 0x56, 0x5B },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, MINING_TREASURE_MIND_PLATE, 0x56, 0x5E },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, MINING_TREASURE_INSECT_PLATE, 0x56, 0x4C },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, MINING_TREASURE_STONE_PLATE, 0x56, 0x5A },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, MINING_TREASURE_SPOOKY_PLATE, 0x56, 0x52 },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, MINING_TREASURE_DRACO_PLATE, 0x56, 0x4E },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, MINING_TREASURE_DREAD_PLATE, 0x56, 0x4D },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x6, MINING_TREASURE_IRON_PLATE, 0x56, 0x55 },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x2, MINING_ROCK_1, 0x1B, 0x1A },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x2, 0x8, MINING_ROCK_1, 0x1C, 0x1A },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x4, 0x4, MINING_ROCK_2, 0x1D, 0x1A },
-    { sRockTShape, 0x1, 0x1, 0x1, 0x1, 0x6, 0x4, MINING_ROCK_3, 0x1E, 0x1A },
-    { sRockTShape90deg, 0x1, 0x1, 0x1, 0x1, 0x4, 0x6, MINING_ROCK_3, 0x21, 0x1A },
-    { sRockTShape180deg, 0x1, 0x1, 0x1, 0x1, 0x6, 0x4, MINING_ROCK_3, 0x1F, 0x1A },
-    { sRockTShape270deg, 0x1, 0x1, 0x1, 0x1, 0x4, 0x6, MINING_ROCK_3, 0x20, 0x1A },
-    { sRockZShape, 0x1, 0x1, 0x1, 0x1, 0x6, 0x4, MINING_ROCK_4, 0x22, 0x1A },
-    { sRockZShape90deg, 0x1, 0x1, 0x1, 0x1, 0x4, 0x6, MINING_ROCK_4, 0x23, 0x1A },
-    { sRockSShape, 0x1, 0x1, 0x1, 0x1, 0x6, 0x4, MINING_ROCK_5, 0x24, 0x1A },
-    { sRockSShape90deg, 0x1, 0x1, 0x1, 0x1, 0x4, 0x6, MINING_ROCK_5, 0x25, 0x1A },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x6, 0x6, MINING_ROCK_6, 0x26, 0x1A },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x4, 0x8, MINING_ROCK_7, 0x27, 0x1A },
-    { NULL, 0x1, 0x1, 0x1, 0x1, 0x8, 0x4, MINING_ROCK_7, 0x28, 0x1A }
+    { .itemID = MINING_SMALL_PRISM_SPHERE, .oddTIDWeight = 30, .evenTIDWeight = 22, .oddTIDNatDexWeight = 27, .evenTIDNatDexWeight = 20, .width = 2 * 2, .height = 2 * 2, .shape = NULL, .spriteNARCIndex = 57, .paletteNARCIndex = 55 },
+    { .itemID = MINING_SMALL_PALE_SPHERE, .oddTIDWeight = 22, .evenTIDWeight = 30, .oddTIDNatDexWeight = 20, .evenTIDNatDexWeight = 27, .width = 2 * 2, .height = 2 * 2, .shape = NULL, .spriteNARCIndex = 103, .paletteNARCIndex = 101 },
+    { .itemID = MINING_SMALL_RED_SPHERE, .oddTIDWeight = 167, .evenTIDWeight = 194, .oddTIDNatDexWeight = 110, .evenTIDNatDexWeight = 164, .width = 2 * 2, .height = 2 * 2, .shape = NULL, .spriteNARCIndex = 2, .paletteNARCIndex = 0 },
+    { .itemID = MINING_SMALL_BLUE_SPHERE, .oddTIDWeight = 194, .evenTIDWeight = 167, .oddTIDNatDexWeight = 150, .evenTIDNatDexWeight = 124, .width = 2 * 2, .height = 2 * 2, .shape = NULL, .spriteNARCIndex = 5, .paletteNARCIndex = 3 },
+    { .itemID = MINING_SMALL_GREEN_SPHERE, .oddTIDWeight = 150, .evenTIDWeight = 150, .oddTIDNatDexWeight = 107, .evenTIDNatDexWeight = 107, .width = 2 * 2, .height = 2 * 2, .shape = NULL, .spriteNARCIndex = 63, .paletteNARCIndex = 61 },
+    { .itemID = MINING_LARGE_PRISM_SPHERE, .oddTIDWeight = 15, .evenTIDWeight = 13, .oddTIDNatDexWeight = 13, .evenTIDNatDexWeight = 10, .width = 3 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 56, .paletteNARCIndex = 55 },
+    { .itemID = MINING_LARGE_PALE_SPHERE, .oddTIDWeight = 13, .evenTIDWeight = 15, .oddTIDNatDexWeight = 10, .evenTIDNatDexWeight = 13, .width = 3 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 102, .paletteNARCIndex = 101 },
+    { .itemID = MINING_LARGE_RED_SPHERE, .oddTIDWeight = 83, .evenTIDWeight = 96, .oddTIDNatDexWeight = 61, .evenTIDNatDexWeight = 75, .width = 3 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 1, .paletteNARCIndex = 0 },
+    { .itemID = MINING_LARGE_BLUE_SPHERE, .oddTIDWeight = 96, .evenTIDWeight = 83, .oddTIDNatDexWeight = 75, .evenTIDNatDexWeight = 61, .width = 3 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 4, .paletteNARCIndex = 3 },
+    { .itemID = MINING_LARGE_GREEN_SPHERE, .oddTIDWeight = 75, .evenTIDWeight = 75, .oddTIDNatDexWeight = 53, .evenTIDNatDexWeight = 53, .width = 3 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 62, .paletteNARCIndex = 61 },
+    { .itemID = MINING_TREASURE_OVAL_STONE, .oddTIDWeight = 0, .evenTIDWeight = 0, .oddTIDNatDexWeight = 0, .evenTIDNatDexWeight = 0, .width = 3 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 59, .paletteNARCIndex = 60 },
+    { .itemID = MINING_TREASURE_ODD_KEYSTONE, .oddTIDWeight = 0, .evenTIDWeight = 0, .oddTIDNatDexWeight = 2, .evenTIDNatDexWeight = 2, .width = 4 * 2, .height = 4 * 2, .shape = NULL, .spriteNARCIndex = 47, .paletteNARCIndex = 48 },
+    { .itemID = MINING_TREASURE_SUN_STONE, .oddTIDWeight = 4, .evenTIDWeight = 1, .oddTIDNatDexWeight = 15, .evenTIDNatDexWeight = 3, .width = 3 * 2, .height = 3 * 2, .shape = sSunStoneShape, .spriteNARCIndex = 106, .paletteNARCIndex = 107 },
+    { .itemID = MINING_TREASURE_STAR_PIECE, .oddTIDWeight = 2, .evenTIDWeight = 2, .oddTIDNatDexWeight = 10, .evenTIDNatDexWeight = 10, .width = 3 * 2, .height = 3 * 2, .shape = sStarPieceReviveShape, .spriteNARCIndex = 104, .paletteNARCIndex = 105 },
+    { .itemID = MINING_TREASURE_MOON_STONE, .oddTIDWeight = 1, .evenTIDWeight = 2, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 8, .width = 4 * 2, .height = 2 * 2, .shape = sMoonStoneShape, .spriteNARCIndex = 66, .paletteNARCIndex = 67 },
+    { .itemID = MINING_TREASURE_MOON_STONE, .oddTIDWeight = 1, .evenTIDWeight = 2, .oddTIDNatDexWeight = 2, .evenTIDNatDexWeight = 7, .width = 2 * 2, .height = 4 * 2, .shape = sMoonStoneShape90deg, .spriteNARCIndex = 68, .paletteNARCIndex = 67 },
+    { .itemID = MINING_TREASURE_HARD_STONE, .oddTIDWeight = 4, .evenTIDWeight = 4, .oddTIDNatDexWeight = 20, .evenTIDNatDexWeight = 20, .width = 2 * 2, .height = 2 * 2, .shape = NULL, .spriteNARCIndex = 18, .paletteNARCIndex = 19 },
+    { .itemID = MINING_TREASURE_THUNDERSTONE, .oddTIDWeight = 4, .evenTIDWeight = 1, .oddTIDNatDexWeight = 30, .evenTIDNatDexWeight = 5, .width = 3 * 2, .height = 3 * 2, .shape = sThunderstoneShape, .spriteNARCIndex = 45, .paletteNARCIndex = 46 },
+    { .itemID = MINING_TREASURE_EVERSTONE, .oddTIDWeight = 4, .evenTIDWeight = 4, .oddTIDNatDexWeight = 20, .evenTIDNatDexWeight = 20, .width = 4 * 2, .height = 2 * 2, .shape = NULL, .spriteNARCIndex = 50, .paletteNARCIndex = 51 },
+    { .itemID = MINING_TREASURE_FIRE_STONE, .oddTIDWeight = 4, .evenTIDWeight = 1, .oddTIDNatDexWeight = 30, .evenTIDNatDexWeight = 5, .width = 3 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 24, .paletteNARCIndex = 25 },
+    { .itemID = MINING_TREASURE_WATER_STONE, .oddTIDWeight = 1, .evenTIDWeight = 4, .oddTIDNatDexWeight = 5, .evenTIDNatDexWeight = 30, .width = 3 * 2, .height = 3 * 2, .shape = sWaterStoneShape, .spriteNARCIndex = 64, .paletteNARCIndex = 65 },
+    { .itemID = MINING_TREASURE_LEAF_STONE, .oddTIDWeight = 1, .evenTIDWeight = 2, .oddTIDNatDexWeight = 3, .evenTIDNatDexWeight = 15, .width = 3 * 2, .height = 4 * 2, .shape = sLeafStoneShape, .spriteNARCIndex = 96, .paletteNARCIndex = 97 },
+    { .itemID = MINING_TREASURE_LEAF_STONE, .oddTIDWeight = 1, .evenTIDWeight = 2, .oddTIDNatDexWeight = 2, .evenTIDNatDexWeight = 15, .width = 4 * 2, .height = 3 * 2, .shape = sLeafStoneShape90deg, .spriteNARCIndex = 98, .paletteNARCIndex = 97 },
+    { .itemID = MINING_TREASURE_HELIX_FOSSIL, .oddTIDWeight = 0, .evenTIDWeight = 0, .oddTIDNatDexWeight = 3, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 4 * 2, .shape = sHelixFossilShape, .spriteNARCIndex = 41, .paletteNARCIndex = 49 },
+    { .itemID = MINING_TREASURE_HELIX_FOSSIL, .oddTIDWeight = 0, .evenTIDWeight = 0, .oddTIDNatDexWeight = 3, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 4 * 2, .shape = sHelixFossilShape90deg, .spriteNARCIndex = 44, .paletteNARCIndex = 49 },
+    { .itemID = MINING_TREASURE_HELIX_FOSSIL, .oddTIDWeight = 0, .evenTIDWeight = 0, .oddTIDNatDexWeight = 3, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 4 * 2, .shape = sHelixFossilShape, .spriteNARCIndex = 42, .paletteNARCIndex = 49 },
+    { .itemID = MINING_TREASURE_HELIX_FOSSIL, .oddTIDWeight = 0, .evenTIDWeight = 0, .oddTIDNatDexWeight = 3, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 4 * 2, .shape = sHelixFossilShape90deg, .spriteNARCIndex = 43, .paletteNARCIndex = 49 },
+    { .itemID = MINING_TREASURE_DOME_FOSSIL, .oddTIDWeight = 0, .evenTIDWeight = 0, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 13, .width = 5 * 2, .height = 4 * 2, .shape = sDomeFossilShape, .spriteNARCIndex = 58, .paletteNARCIndex = 49 },
+    { .itemID = MINING_TREASURE_CLAW_FOSSIL, .oddTIDWeight = 0, .evenTIDWeight = 0, .oddTIDNatDexWeight = 3, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 5 * 2, .shape = sClawFossilShape, .spriteNARCIndex = 109, .paletteNARCIndex = 49 },
+    { .itemID = MINING_TREASURE_CLAW_FOSSIL, .oddTIDWeight = 0, .evenTIDWeight = 0, .oddTIDNatDexWeight = 3, .evenTIDNatDexWeight = 1, .width = 5 * 2, .height = 4 * 2, .shape = sClawFossilShape90deg, .spriteNARCIndex = 112, .paletteNARCIndex = 49 },
+    { .itemID = MINING_TREASURE_CLAW_FOSSIL, .oddTIDWeight = 0, .evenTIDWeight = 0, .oddTIDNatDexWeight = 3, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 5 * 2, .shape = sClawFossilShape180deg, .spriteNARCIndex = 110, .paletteNARCIndex = 49 },
+    { .itemID = MINING_TREASURE_CLAW_FOSSIL, .oddTIDWeight = 0, .evenTIDWeight = 0, .oddTIDNatDexWeight = 3, .evenTIDNatDexWeight = 1, .width = 5 * 2, .height = 4 * 2, .shape = sClawFossilShape270deg, .spriteNARCIndex = 111, .paletteNARCIndex = 49 },
+    { .itemID = MINING_TREASURE_ROOT_FOSSIL, .oddTIDWeight = 0, .evenTIDWeight = 0, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 3, .width = 5 * 2, .height = 5 * 2, .shape = sRootFossilShape, .spriteNARCIndex = 69, .paletteNARCIndex = 49 },
+    { .itemID = MINING_TREASURE_ROOT_FOSSIL, .oddTIDWeight = 0, .evenTIDWeight = 0, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 3, .width = 5 * 2, .height = 5 * 2, .shape = sRootFossilShape90deg, .spriteNARCIndex = 72, .paletteNARCIndex = 49 },
+    { .itemID = MINING_TREASURE_ROOT_FOSSIL, .oddTIDWeight = 0, .evenTIDWeight = 0, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 3, .width = 5 * 2, .height = 5 * 2, .shape = sRootFossilShape180deg, .spriteNARCIndex = 70, .paletteNARCIndex = 49 },
+    { .itemID = MINING_TREASURE_ROOT_FOSSIL, .oddTIDWeight = 0, .evenTIDWeight = 0, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 3, .width = 5 * 2, .height = 5 * 2, .shape = sRootFossilShape270deg, .spriteNARCIndex = 71, .paletteNARCIndex = 49 },
+    { .itemID = MINING_TREASURE_OLD_AMBER, .oddTIDWeight = 0, .evenTIDWeight = 0, .oddTIDNatDexWeight = 2, .evenTIDNatDexWeight = 2, .width = 4 * 2, .height = 4 * 2, .shape = sOldAmberShape, .spriteNARCIndex = 52, .paletteNARCIndex = 53 },
+    { .itemID = MINING_TREASURE_OLD_AMBER, .oddTIDWeight = 0, .evenTIDWeight = 0, .oddTIDNatDexWeight = 3, .evenTIDNatDexWeight = 3, .width = 4 * 2, .height = 4 * 2, .shape = sOldAmberShape90deg, .spriteNARCIndex = 54, .paletteNARCIndex = 53 },
+    { .itemID = MINING_TREASURE_RARE_BONE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 5, .evenTIDNatDexWeight = 5, .width = 3 * 2, .height = 6 * 2, .shape = sRareBoneShape, .spriteNARCIndex = 10, .paletteNARCIndex = 11 },
+    { .itemID = MINING_TREASURE_RARE_BONE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 5, .evenTIDNatDexWeight = 5, .width = 6 * 2, .height = 3 * 2, .shape = sRareBoneShape90deg, .spriteNARCIndex = 12, .paletteNARCIndex = 11 },
+    { .itemID = MINING_TREASURE_REVIVE, .oddTIDWeight = 8, .evenTIDWeight = 8, .oddTIDNatDexWeight = 10, .evenTIDNatDexWeight = 10, .width = 3 * 2, .height = 3 * 2, .shape = sStarPieceReviveShape, .spriteNARCIndex = 17, .paletteNARCIndex = 15 },
+    { .itemID = MINING_TREASURE_MAX_REVIVE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 2, .evenTIDNatDexWeight = 2, .width = 3 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 16, .paletteNARCIndex = 15 },
+    { .itemID = MINING_TREASURE_RED_SHARD, .oddTIDWeight = 13, .evenTIDWeight = 13, .oddTIDNatDexWeight = 17, .evenTIDNatDexWeight = 17, .width = 3 * 2, .height = 3 * 2, .shape = sRedShardShape, .spriteNARCIndex = 88, .paletteNARCIndex = 79 },
+    { .itemID = MINING_TREASURE_BLUE_SHARD, .oddTIDWeight = 13, .evenTIDWeight = 13, .oddTIDNatDexWeight = 17, .evenTIDNatDexWeight = 17, .width = 3 * 2, .height = 3 * 2, .shape = sBlueShardShape, .spriteNARCIndex = 75, .paletteNARCIndex = 93 },
+    { .itemID = MINING_TREASURE_YELLOW_SHARD, .oddTIDWeight = 13, .evenTIDWeight = 13, .oddTIDNatDexWeight = 17, .evenTIDNatDexWeight = 17, .width = 4 * 2, .height = 3 * 2, .shape = sYellowShardShape, .spriteNARCIndex = 95, .paletteNARCIndex = 92 },
+    { .itemID = MINING_TREASURE_GREEN_SHARD, .oddTIDWeight = 13, .evenTIDWeight = 13, .oddTIDNatDexWeight = 17, .evenTIDNatDexWeight = 17, .width = 4 * 2, .height = 3 * 2, .shape = sGreenShardShape, .spriteNARCIndex = 81, .paletteNARCIndex = 89 },
+    { .itemID = MINING_TREASURE_HEART_SCALE, .oddTIDWeight = 33, .evenTIDWeight = 33, .oddTIDNatDexWeight = 30, .evenTIDNatDexWeight = 30, .width = 2 * 2, .height = 2 * 2, .shape = sHeartScaleShape, .spriteNARCIndex = 20, .paletteNARCIndex = 21 },
+    { .itemID = MINING_TREASURE_ARMOR_FOSSIL, .oddTIDWeight = 0, .evenTIDWeight = 25, .oddTIDNatDexWeight = 0, .evenTIDNatDexWeight = 12, .width = 5 * 2, .height = 4 * 2, .shape = sArmorFossilShape, .spriteNARCIndex = 108, .paletteNARCIndex = 49 },
+    { .itemID = MINING_TREASURE_SKULL_FOSSIL, .oddTIDWeight = 25, .evenTIDWeight = 0, .oddTIDNatDexWeight = 12, .evenTIDNatDexWeight = 0, .width = 4 * 2, .height = 4 * 2, .shape = sSkullFossilShape, .spriteNARCIndex = 115, .paletteNARCIndex = 49 },
+    { .itemID = MINING_TREASURE_LIGHT_CLAY, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 5, .evenTIDNatDexWeight = 2, .width = 4 * 2, .height = 4 * 2, .shape = sLightClayShape, .spriteNARCIndex = 73, .paletteNARCIndex = 74 },
+    { .itemID = MINING_TREASURE_IRON_BALL, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 2, .evenTIDNatDexWeight = 5, .width = 3 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 6, .paletteNARCIndex = 7 },
+    { .itemID = MINING_TREASURE_ICY_ROCK, .oddTIDWeight = 2, .evenTIDWeight = 1, .oddTIDNatDexWeight = 11, .evenTIDNatDexWeight = 5, .width = 4 * 2, .height = 4 * 2, .shape = sIcyRockShape, .spriteNARCIndex = 13, .paletteNARCIndex = 14 },
+    { .itemID = MINING_TREASURE_SMOOTH_ROCK, .oddTIDWeight = 1, .evenTIDWeight = 2, .oddTIDNatDexWeight = 5, .evenTIDNatDexWeight = 11, .width = 4 * 2, .height = 4 * 2, .shape = sSmoothRockShape, .spriteNARCIndex = 99, .paletteNARCIndex = 100 },
+    { .itemID = MINING_TREASURE_HEAT_ROCK, .oddTIDWeight = 2, .evenTIDWeight = 1, .oddTIDNatDexWeight = 11, .evenTIDNatDexWeight = 5, .width = 4 * 2, .height = 3 * 2, .shape = sHeatRockShape, .spriteNARCIndex = 22, .paletteNARCIndex = 23 },
+    { .itemID = MINING_TREASURE_DAMP_ROCK, .oddTIDWeight = 1, .evenTIDWeight = 2, .oddTIDNatDexWeight = 5, .evenTIDNatDexWeight = 11, .width = 3 * 2, .height = 3 * 2, .shape = sDampRockShape, .spriteNARCIndex = 113, .paletteNARCIndex = 114 },
+    { .itemID = MINING_TREASURE_FLAME_PLATE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 86, .paletteNARCIndex = 79 },
+    { .itemID = MINING_TREASURE_SPLASH_PLATE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 86, .paletteNARCIndex = 93 },
+    { .itemID = MINING_TREASURE_ZAP_PLATE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 86, .paletteNARCIndex = 92 },
+    { .itemID = MINING_TREASURE_MEADOW_PLATE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 86, .paletteNARCIndex = 89 },
+    { .itemID = MINING_TREASURE_ICICLE_PLATE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 86, .paletteNARCIndex = 84 },
+    { .itemID = MINING_TREASURE_FIST_PLATE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 86, .paletteNARCIndex = 80 },
+    { .itemID = MINING_TREASURE_TOXIC_PLATE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 86, .paletteNARCIndex = 87 },
+    { .itemID = MINING_TREASURE_EARTH_PLATE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 86, .paletteNARCIndex = 83 },
+    { .itemID = MINING_TREASURE_SKY_PLATE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 86, .paletteNARCIndex = 91 },
+    { .itemID = MINING_TREASURE_MIND_PLATE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 86, .paletteNARCIndex = 94 },
+    { .itemID = MINING_TREASURE_INSECT_PLATE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 86, .paletteNARCIndex = 76 },
+    { .itemID = MINING_TREASURE_STONE_PLATE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 86, .paletteNARCIndex = 90 },
+    { .itemID = MINING_TREASURE_SPOOKY_PLATE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 86, .paletteNARCIndex = 82 },
+    { .itemID = MINING_TREASURE_DRACO_PLATE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 86, .paletteNARCIndex = 78 },
+    { .itemID = MINING_TREASURE_DREAD_PLATE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 86, .paletteNARCIndex = 77 },
+    { .itemID = MINING_TREASURE_IRON_PLATE, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 86, .paletteNARCIndex = 85 },
+    { .itemID = MINING_ROCK_1, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 1 * 2, .shape = NULL, .spriteNARCIndex = 27, .paletteNARCIndex = 26 },
+    { .itemID = MINING_ROCK_1, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 1 * 2, .height = 4 * 2, .shape = NULL, .spriteNARCIndex = 28, .paletteNARCIndex = 26 },
+    { .itemID = MINING_ROCK_2, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 2 * 2, .height = 2 * 2, .shape = NULL, .spriteNARCIndex = 29, .paletteNARCIndex = 26 },
+    { .itemID = MINING_ROCK_3, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 3 * 2, .height = 2 * 2, .shape = sRockTShape, .spriteNARCIndex = 30, .paletteNARCIndex = 26 },
+    { .itemID = MINING_ROCK_3, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 2 * 2, .height = 3 * 2, .shape = sRockTShape90deg, .spriteNARCIndex = 33, .paletteNARCIndex = 26 },
+    { .itemID = MINING_ROCK_3, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 3 * 2, .height = 2 * 2, .shape = sRockTShape180deg, .spriteNARCIndex = 31, .paletteNARCIndex = 26 },
+    { .itemID = MINING_ROCK_3, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 2 * 2, .height = 3 * 2, .shape = sRockTShape270deg, .spriteNARCIndex = 32, .paletteNARCIndex = 26 },
+    { .itemID = MINING_ROCK_4, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 3 * 2, .height = 2 * 2, .shape = sRockZShape, .spriteNARCIndex = 34, .paletteNARCIndex = 26 },
+    { .itemID = MINING_ROCK_4, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 2 * 2, .height = 3 * 2, .shape = sRockZShape90deg, .spriteNARCIndex = 35, .paletteNARCIndex = 26 },
+    { .itemID = MINING_ROCK_5, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 3 * 2, .height = 2 * 2, .shape = sRockSShape, .spriteNARCIndex = 36, .paletteNARCIndex = 26 },
+    { .itemID = MINING_ROCK_5, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 2 * 2, .height = 3 * 2, .shape = sRockSShape90deg, .spriteNARCIndex = 37, .paletteNARCIndex = 26 },
+    { .itemID = MINING_ROCK_6, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 3 * 2, .height = 3 * 2, .shape = NULL, .spriteNARCIndex = 38, .paletteNARCIndex = 26 },
+    { .itemID = MINING_ROCK_7, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 2 * 2, .height = 4 * 2, .shape = NULL, .spriteNARCIndex = 39, .paletteNARCIndex = 26 },
+    { .itemID = MINING_ROCK_7, .oddTIDWeight = 1, .evenTIDWeight = 1, .oddTIDNatDexWeight = 1, .evenTIDNatDexWeight = 1, .width = 4 * 2, .height = 2 * 2, .shape = NULL, .spriteNARCIndex = 40, .paletteNARCIndex = 26 }
 };
 
 static const WindowTemplate Unk_ov23_0225630E = {
@@ -581,27 +580,27 @@ static const WindowTemplate Unk_ov23_0225630E = {
     0x21F
 };
 
-static void ov23_0223E140(void)
+static void Mining_InitGameState(void)
 {
     int i;
 
-    for (i = 0; i < (7 + 1); i++) {
-        Unk_ov23_02257740->unk_910[i] = 0xff;
-        Unk_ov23_02257740->unk_918[i] = 0xff;
+    for (i = 0; i < MAX_CONNECTED_PLAYERS; i++) {
+        Unk_ov23_02257740->linkTouchX[i] = TOUCHSCREEN_INPUT_NONE;
+        Unk_ov23_02257740->linkTouchY[i] = TOUCHSCREEN_INPUT_NONE;
     }
 
-    Unk_ov23_02257740->unk_A28 = 1;
+    Unk_ov23_02257740->pickaxeSelected = TRUE;
     Unk_ov23_02257740->unk_A29 = 0;
-    Unk_ov23_02257740->unk_A2B = (200 - 4);
+    Unk_ov23_02257740->wallIntegrity = INITIAL_WALL_INTEGRITY;
 
-    for (i = 0; i < 8; i++) {
-        Unk_ov23_02257740->unk_874[i].unk_00 = NULL;
-        Unk_ov23_02257740->unk_874[i].unk_08 = 0;
+    for (i = 0; i < MAX_BURIED_OBJECTS; i++) {
+        Unk_ov23_02257740->buriedObjects[i].miningObject = NULL;
+        Unk_ov23_02257740->buriedObjects[i].isDugUp = FALSE;
     }
 
-    for (i = 0; i < 13 * 10; i++) {
-        Unk_ov23_02257740->unk_920[i / 13][i % 13] = 0;
-        Unk_ov23_02257740->unk_9A2[i / 13][i % 13] = 2;
+    for (i = 0; i < MINING_GAME_WIDTH * MINING_GAME_HEIGHT; i++) {
+        Unk_ov23_02257740->buriedObjectGrid[i / MINING_GAME_WIDTH][i % MINING_GAME_WIDTH] = 0;
+        Unk_ov23_02257740->dirtCover[i / MINING_GAME_WIDTH][i % MINING_GAME_WIDTH] = 2;
     }
 }
 
@@ -617,7 +616,7 @@ void ov23_0223E1E4(void *param0, FieldSystem *fieldSystem)
     Unk_ov23_02257740 = param0;
 
     MI_CpuFill8(Unk_ov23_02257740, 0, sizeof(UnkStruct_ov23_02257740));
-    CommSys_Seed(&Unk_ov23_02257740->unk_08);
+    CommSys_Seed(&Unk_ov23_02257740->rand);
 
     Unk_ov23_02257740->fieldSystem = fieldSystem;
 
@@ -627,7 +626,7 @@ void ov23_0223E1E4(void *param0, FieldSystem *fieldSystem)
         Unk_ov23_02257740->unk_26C[v0].unk_02 = 0xffff;
     }
 
-    ov23_0223E140();
+    Mining_InitGameState();
 
     Unk_ov23_02257740->unk_A24 = -1;
     undergroundData = SaveData_GetUndergroundData(Unk_ov23_02257740->fieldSystem->saveData);
@@ -813,7 +812,7 @@ static void ov23_0223E434(MATHRandContext16 *param0, int param1)
 
 void ov23_0223E650(int param0, int param1, MATHRandContext16 *param2)
 {
-    int v0, v1, v2, v3;
+    int v2, v3;
     u16 v4, v5;
     UnkStruct_ov23_0223E6F8 *v6;
     UndergroundData *v7 = SaveData_GetUndergroundData(Unk_ov23_02257740->fieldSystem->saveData);
@@ -907,8 +906,6 @@ static void ov23_0223E834(void)
 
 void ov23_0223E878(void)
 {
-    int v0;
-
     if (CommSys_CurNetId() == 0) {
         ov23_022414D4();
         ov23_022413B4();
@@ -1093,7 +1090,6 @@ void ov23_0223EBE4(int param0, int param1, void *param2, void *param3)
 {
     u8 *v0 = param2;
     u8 v1[3];
-    int v2;
 
     v1[0] = param0;
     v1[1] = v0[0];
@@ -1107,18 +1103,16 @@ int ov23_0223EBFC(void)
     return 2;
 }
 
-void ov23_0223EC00(int param0, int param1, void *param2, void *param3)
+void Mining_TakeLinkInput(int param0, int param1, void *src, void *param3)
 {
-    u8 *v0 = param2;
-    u8 v1[3];
-    int v2;
+    u8 *buffer = src;
 
-    if (v0[0] == CommSys_CurNetId()) {
+    if (buffer[0] == CommSys_CurNetId()) {
         return;
     }
 
-    Unk_ov23_02257740->unk_910[v0[0]] = v0[1];
-    Unk_ov23_02257740->unk_918[v0[0]] = v0[2];
+    Unk_ov23_02257740->linkTouchX[buffer[0]] = buffer[1];
+    Unk_ov23_02257740->linkTouchY[buffer[0]] = buffer[2];
 }
 
 int ov23_0223EC30(void)
@@ -1126,7 +1120,7 @@ int ov23_0223EC30(void)
     return 3;
 }
 
-static void ov23_0223EC34(BgConfig *param0)
+static void ov23_0223EC34(BgConfig *bgConfig)
 {
     {
         UnkStruct_02099F80 v0 = {
@@ -1172,9 +1166,9 @@ static void ov23_0223EC34(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_0, &v2, 0);
-        Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_29);
-        Bg_ClearTilemap(param0, BG_LAYER_MAIN_0);
+        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_0, &v2, 0);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_MINING);
+        Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_0);
     }
 
     {
@@ -1194,9 +1188,9 @@ static void ov23_0223EC34(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v3, 0);
-        Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_29);
-        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
+        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_1, &v3, 0);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_MINING);
+        Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_1);
     }
     {
         BgTemplate v4 = {
@@ -1215,9 +1209,9 @@ static void ov23_0223EC34(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v4, 0);
-        Bg_ClearTilesRange(BG_LAYER_MAIN_2, 32, 0, HEAP_ID_29);
-        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
+        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_2, &v4, 0);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_2, 32, 0, HEAP_ID_MINING);
+        Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_2);
     }
     {
         BgTemplate v5 = {
@@ -1236,117 +1230,103 @@ static void ov23_0223EC34(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v5, 0);
-        Bg_ClearTilesRange(BG_LAYER_MAIN_3, 32, 0, HEAP_ID_29);
-        Bg_ClearTilemap(param0, BG_LAYER_MAIN_3);
+        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_3, &v5, 0);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_3, 32, 0, HEAP_ID_MINING);
+        Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_3);
     }
 
-    Bg_ClearTilesRange(4, 32, 0, HEAP_ID_29);
-    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_29);
+    Bg_ClearTilesRange(BG_LAYER_SUB_0, 32, 0, HEAP_ID_MINING);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_MINING);
 }
 
-static void ov23_0223ED68(int param0, int param1, BOOL param2, BOOL param3, BOOL param4)
+static void ov23_0223ED68(int x, int y, BOOL pickaxeSelected, BOOL hitRock, BOOL foundItem)
 {
-    void *v0;
-    Camera *camera;
-    void *v2;
     VecFx32 v3;
 
-    if (param2) {
-        Sprite_SetAnim(Unk_ov23_02257740->unk_24C[0], 0);
+    if (pickaxeSelected) {
+        Sprite_SetAnim(Unk_ov23_02257740->sprites[0], 0);
     } else {
-        Sprite_SetAnim(Unk_ov23_02257740->unk_24C[0], 1);
+        Sprite_SetAnim(Unk_ov23_02257740->sprites[0], 1);
     }
 
-    if (param3) {
-        Sprite_SetAnim(Unk_ov23_02257740->unk_24C[3], 2);
+    if (hitRock) {
+        Sprite_SetAnim(Unk_ov23_02257740->sprites[3], 2);
         Sound_PlayEffect(SEQ_SE_DP_UG_004);
-    } else if (param2) {
-        Sprite_SetAnim(Unk_ov23_02257740->unk_24C[3], 3);
+    } else if (pickaxeSelected) {
+        Sprite_SetAnim(Unk_ov23_02257740->sprites[3], 3);
         Sound_PlayEffect(SEQ_SE_DP_UG_002);
     } else {
-        Sprite_SetAnim(Unk_ov23_02257740->unk_24C[3], 4);
+        Sprite_SetAnim(Unk_ov23_02257740->sprites[3], 4);
         Sound_PlayEffect(SEQ_SE_DP_UG_003);
     }
 
-    Sprite_SetAnimateFlag(Unk_ov23_02257740->unk_24C[0], 1);
-    Sprite_SetAnimateFlag(Unk_ov23_02257740->unk_24C[3], 1);
+    Sprite_SetAnimateFlag(Unk_ov23_02257740->sprites[0], TRUE);
+    Sprite_SetAnimateFlag(Unk_ov23_02257740->sprites[3], TRUE);
 
-    v3.x = FX32_ONE * (param0 + 8);
-    v3.y = FX32_ONE * (param1 + 8);
+    v3.x = FX32_ONE * (x + 8);
+    v3.y = FX32_ONE * (y + 8);
 
-    Sprite_SetPosition(Unk_ov23_02257740->unk_24C[0], &v3);
-    Sprite_SetPosition(Unk_ov23_02257740->unk_24C[3], &v3);
+    Sprite_SetPosition(Unk_ov23_02257740->sprites[0], &v3);
+    Sprite_SetPosition(Unk_ov23_02257740->sprites[3], &v3);
 
-    if (param4) {
-        Sprite_SetAnim(Unk_ov23_02257740->unk_24C[4], 5);
-        Sprite_SetAnimateFlag(Unk_ov23_02257740->unk_24C[4], 1);
-        Sprite_SetPosition(Unk_ov23_02257740->unk_24C[4], &v3);
+    if (foundItem) {
+        Sprite_SetAnim(Unk_ov23_02257740->sprites[4], 5);
+        Sprite_SetAnimateFlag(Unk_ov23_02257740->sprites[4], TRUE);
+        Sprite_SetPosition(Unk_ov23_02257740->sprites[4], &v3);
     }
 }
 
-static void ov23_0223EE80(UnkStruct_ov23_0223EE80 *param0)
+static void Mining_InitGame(UnkStruct_ov23_0223EE80 *param0)
 {
     int v0;
-    BgConfig *v1;
-    void *v2;
-    Camera *camera;
-    void *v4;
-    int v5;
+    BgConfig *bgConfig;
 
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_58, SEQ_NONE, 0);
-    ov23_0223E140();
+    Mining_InitGameState();
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
-    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_29, 0x50000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_MINING, HEAP_SIZE_MINING);
 
-    v1 = BgConfig_New(HEAP_ID_29);
-    Unk_ov23_02257740->unk_04 = v1;
+    bgConfig = BgConfig_New(HEAP_ID_MINING);
+    Unk_ov23_02257740->bgConfig = bgConfig;
 
-    SetVBlankCallback(ov23_022411E8, v1);
+    SetVBlankCallback(ov23_022411E8, bgConfig);
 
-    ov23_02253E2C(ov23_0224219C(), v1, (512 - (18 + 12)), (((512 - (18 + 12)) - 73) - (27 * 4)));
-    ov23_0223EC34(v1);
+    ov23_02253E2C(ov23_0224219C(), bgConfig, (512 - (18 + 12)), (((512 - (18 + 12)) - 73) - (27 * 4)));
+    ov23_0223EC34(bgConfig);
 
-    Bg_ClearTilemap(v1, BG_LAYER_MAIN_0);
-    Bg_ClearTilemap(v1, BG_LAYER_MAIN_1);
-    Bg_ClearTilemap(v1, BG_LAYER_MAIN_2);
-    LoadMessageBoxGraphics(v1, BG_LAYER_MAIN_3, (512 - (18 + 12)), 10, 0, HEAP_ID_29);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_0);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_1);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_2);
+    LoadMessageBoxGraphics(bgConfig, BG_LAYER_MAIN_3, (512 - (18 + 12)), 10, 0, HEAP_ID_MINING);
 
     {
-        NARC *v6;
+        NARC *narc;
 
-        v6 = NARC_ctor(NARC_INDEX_DATA__UG_FOSSIL, HEAP_ID_29);
-        Graphics_LoadPaletteFromOpenNARC(v6, 1, 0, 0, 32 * 3, HEAP_ID_29);
+        narc = NARC_ctor(NARC_INDEX_DATA__UG_FOSSIL, HEAP_ID_MINING);
+        Graphics_LoadPaletteFromOpenNARC(narc, 1, PAL_LOAD_MAIN_BG, 0, 32 * 3, HEAP_ID_MINING);
 
-        v0 = Graphics_LoadTilesToBgLayerFromOpenNARC(v6, 0, v1, 0, 0, 0, 0, HEAP_ID_29);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(v6, 2, v1, 0, 0, 0, 0, HEAP_ID_29);
-        NARC_dtor(v6);
+        v0 = Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 0, bgConfig, BG_LAYER_MAIN_0, 0, 0, 0, HEAP_ID_MINING);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 2, bgConfig, BG_LAYER_MAIN_0, 0, 0, 0, HEAP_ID_MINING);
+        NARC_dtor(narc);
     }
 
-    Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, 52, 0, 10 * 0x20, 4 * 0x20, HEAP_ID_29);
-    Mining_GenerateGameLayout(v1, v0, param0);
+    Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, 52, PAL_LOAD_MAIN_BG, 10 * 0x20, 4 * 0x20, HEAP_ID_MINING);
+    Mining_GenerateGameLayout(bgConfig, v0, param0);
 }
 
 static void ov23_0223EF98(void)
 {
-    int v0;
-    BgConfig *v1;
-    void *v2;
-    Camera *camera;
-    void *v4;
-    int v5;
+    ov23_022404C8(Unk_ov23_02257740->bgConfig);
+    Bg_CopyTilemapBufferToVRAM(Unk_ov23_02257740->bgConfig, BG_LAYER_MAIN_1);
 
-    ov23_022404C8(Unk_ov23_02257740->unk_04);
-    Bg_CopyTilemapBufferToVRAM(Unk_ov23_02257740->unk_04, 1);
+    Mining_RandomizeDirtCover(Unk_ov23_02257740->bgConfig);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_DATA__UG_PARTS, 9, Unk_ov23_02257740->bgConfig, BG_LAYER_MAIN_2, 1, 0, FALSE, HEAP_ID_MINING);
 
-    ov23_0223FF8C(Unk_ov23_02257740->unk_04);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_DATA__UG_PARTS, 9, Unk_ov23_02257740->unk_04, 2, 1, 0, 0, HEAP_ID_29);
-
-    ov23_022401B0(Unk_ov23_02257740->unk_04);
+    Mining_DrawDirt(Unk_ov23_02257740->bgConfig);
 
     Bg_SetPriority(BG_LAYER_MAIN_0, 3);
     Bg_SetPriority(BG_LAYER_MAIN_1, 2);
@@ -1355,7 +1335,7 @@ static void ov23_0223EF98(void)
 
     ov23_02240E88();
     ov23_0224108C();
-    ov23_02240688(Unk_ov23_02257740->unk_04);
+    Mining_DrawWallCrack(Unk_ov23_02257740->bgConfig);
 }
 
 static void ov23_0223F020(UnkStruct_ov23_0223EE80 *param0)
@@ -1363,10 +1343,10 @@ static void ov23_0223F020(UnkStruct_ov23_0223EE80 *param0)
     void *v0;
     int v1;
 
-    Bg_FreeTilemapBuffer(Unk_ov23_02257740->unk_04, BG_LAYER_MAIN_0);
-    Bg_FreeTilemapBuffer(Unk_ov23_02257740->unk_04, BG_LAYER_MAIN_1);
-    Bg_FreeTilemapBuffer(Unk_ov23_02257740->unk_04, BG_LAYER_MAIN_2);
-    Bg_FreeTilemapBuffer(Unk_ov23_02257740->unk_04, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(Unk_ov23_02257740->bgConfig, BG_LAYER_MAIN_0);
+    Bg_FreeTilemapBuffer(Unk_ov23_02257740->bgConfig, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(Unk_ov23_02257740->bgConfig, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(Unk_ov23_02257740->bgConfig, BG_LAYER_MAIN_3);
     SpriteTransfer_ResetCharTransfer(Unk_ov23_02257740->unk_1C0[0]);
     SpriteTransfer_ResetCharTransfer(Unk_ov23_02257740->unk_1C0[4]);
     SpriteTransfer_ResetPlttTransfer(Unk_ov23_02257740->unk_1C0[1]);
@@ -1383,18 +1363,18 @@ static void ov23_0223F020(UnkStruct_ov23_0223EE80 *param0)
         }
     }
 
-    SpriteList_Delete(Unk_ov23_02257740->unk_20);
+    SpriteList_Delete(Unk_ov23_02257740->spriteList);
     RenderOam_Free();
 
     CharTransfer_Free();
     PlttTransfer_Free();
 
     SetVBlankCallback(NULL, NULL);
-    Heap_FreeToHeap(Unk_ov23_02257740->unk_04);
+    Heap_FreeToHeap(Unk_ov23_02257740->bgConfig);
 
-    Unk_ov23_02257740->unk_04 = NULL;
+    Unk_ov23_02257740->bgConfig = NULL;
 
-    Heap_Destroy(HEAP_ID_29);
+    Heap_Destroy(HEAP_ID_MINING);
     ov23_02253E2C(ov23_0224219C(), Unk_ov23_02257740->fieldSystem->bgConfig, (1024 - (18 + 12)), (((1024 - (18 + 12)) - 73) - (27 * 4)));
 }
 
@@ -1403,169 +1383,169 @@ static void ov23_0223F118(SysTask *param0, void *param1)
     UnkStruct_ov23_0223EE80 *v0 = param1;
     FieldSystem *fieldSystem = v0->fieldSystem;
 
-    switch (v0->unk_00) {
+    switch (v0->state) {
     case 0:
         ov23_0224DBF4(0);
         ov23_022417CC();
         CommPlayerMan_Reset();
         ov23_0224B430();
-        (v0->unk_00)++;
+        (v0->state)++;
         break;
     case 1:
         ov23_0224942C(fieldSystem->unk_6C);
         StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_16, FADE_TYPE_UNK_18, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
-        (v0->unk_00)++;
+        (v0->state)++;
         break;
     case 2:
         if (IsScreenFadeDone()) {
             if (fieldSystem->unk_6C == NULL) {
                 FieldSystem_FlagNotRunningFieldMap(fieldSystem);
-                (v0->unk_00)++;
+                (v0->state)++;
             }
         }
         break;
     case 3:
         if (!FieldSystem_HasParentProcess(fieldSystem)) {
             sub_02039794();
-            (v0->unk_00)++;
+            (v0->state)++;
         }
         break;
     case 4:
-        ov23_0223EE80(v0);
-        (v0->unk_00)++;
+        Mining_InitGame(v0);
+        (v0->state)++;
         break;
     case 5:
         ov23_0223EF98();
-        (v0->unk_00)++;
+        (v0->state)++;
         break;
     case 6:
         sub_02039734();
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_17, FADE_TYPE_UNK_17, FADE_TO_BLACK, 6, 1, HEAP_ID_29);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_17, FADE_TYPE_UNK_17, FADE_TO_BLACK, 6, 1, HEAP_ID_MINING);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
-        (v0->unk_00)++;
+        (v0->state)++;
         break;
     case 7:
         if (IsScreenFadeDone()) {
-            v0->unk_08 = 0;
+            v0->timer = 0;
             Sound_PlayEffect(SEQ_SE_PL_UG_006);
-            v0->unk_00 = 8;
+            v0->state = 8;
         }
         break;
     case 8:
-        v0->unk_08++;
+        v0->timer++;
 
-        if (v0->unk_08 > 20) {
-            v0->unk_00 = 9;
+        if (v0->timer > 20) {
+            v0->state = 9;
         }
         break;
     case 9:
         ov23_0225410C(ov23_0224219C(), 0, v0->itemCount);
         Unk_ov23_02257740->unk_A24 = ov23_02253F60(ov23_0224219C(), UndergroundCommon_Text_SomethingPingedInWall, 0, NULL);
-        v0->unk_08 = 0;
-        (v0->unk_00)++;
+        v0->timer = 0;
+        (v0->state)++;
         break;
     case 10:
-        v0->unk_08++;
+        v0->timer++;
 
-        if (v0->unk_08 > 80) {
+        if (v0->timer > 80) {
             UndergroundData *undergroundData = SaveData_GetUndergroundData(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
 
             ov23_02254044(ov23_0224219C());
 
             if (UndergroundData_HasNeverMined(undergroundData)) {
-                v0->unk_00++;
+                v0->state++;
             } else {
-                v0->unk_00 = 13;
+                v0->state = 13;
             }
         }
         break;
     case 11:
         Unk_ov23_02257740->unk_A24 = ov23_02253F40(ov23_0224219C(), UndergroundCommon_Text_MiningTutorial, 0, NULL);
-        v0->unk_08 = 0;
-        (v0->unk_00)++;
+        v0->timer = 0;
+        (v0->state)++;
         break;
     case 12:
         if (Text_IsPrinterActive(Unk_ov23_02257740->unk_A24) == 0) {
             if (gSystem.touchPressed || (gSystem.pressedKeys & PAD_BUTTON_A)) {
                 ov23_02254044(ov23_0224219C());
-                v0->unk_00++;
+                v0->state++;
             }
         }
         break;
     case 13:
-        ov23_02240CFC(v0);
-        ov23_02240B84(Unk_ov23_02257740->unk_04);
+        Mining_MainGameLoop(v0);
+        ov23_02240B84(Unk_ov23_02257740->bgConfig);
         ov23_0223FDE0(v0);
-        SpriteList_Update(Unk_ov23_02257740->unk_20);
+        SpriteList_Update(Unk_ov23_02257740->spriteList);
         break;
     case 14:
         ov23_0223FDE0(v0);
-        SpriteList_Update(Unk_ov23_02257740->unk_20);
+        SpriteList_Update(Unk_ov23_02257740->spriteList);
 
-        v0->unk_08--;
+        v0->timer--;
 
-        if (v0->unk_08 == 0) {
+        if (v0->timer == 0) {
             Unk_ov23_02257740->unk_A24 = ov23_02253F40(ov23_0224219C(), UndergroundCommon_Text_EverythingDugUp, 0, NULL);
             Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
-            v0->unk_4C = 60;
-            v0->unk_00 = 15;
+            v0->textTimer = 60;
+            v0->state = 15;
         }
         break;
     case 15:
-        SpriteList_Update(Unk_ov23_02257740->unk_20);
+        SpriteList_Update(Unk_ov23_02257740->spriteList);
 
         if (Text_IsPrinterActive(Unk_ov23_02257740->unk_A24) == 0) {
-            v0->unk_4C--;
+            v0->textTimer--;
 
-            if (gSystem.touchPressed || (gSystem.pressedKeys & PAD_BUTTON_A) || (v0->unk_4C == 0)) {
+            if (gSystem.touchPressed || (gSystem.pressedKeys & PAD_BUTTON_A) || (v0->textTimer == 0)) {
                 ov23_02254044(ov23_0224219C());
-                v0->unk_00 = 16;
+                v0->state = 16;
             }
         }
         break;
     case 16:
-        SpriteList_Update(Unk_ov23_02257740->unk_20);
+        SpriteList_Update(Unk_ov23_02257740->spriteList);
 
-        if (ov23_022409F0(v0)) {
-            v0->unk_00 = 17;
-            v0->unk_4C = 60;
+        if (Mining_PrintNextDugUpItem(v0)) {
+            v0->state = 17;
+            v0->textTimer = 60;
         } else {
-            v0->unk_00 = 18;
+            v0->state = 18;
         }
         break;
     case 17:
-        SpriteList_Update(Unk_ov23_02257740->unk_20);
+        SpriteList_Update(Unk_ov23_02257740->spriteList);
 
         if (Text_IsPrinterActive(Unk_ov23_02257740->unk_A24) == 0) {
-            v0->unk_4C--;
+            v0->textTimer--;
 
-            if (gSystem.touchPressed || (gSystem.pressedKeys & PAD_BUTTON_A) || (v0->unk_4C == 0)) {
-                if (ov23_02240A90(v0)) {
-                    v0->unk_4C = 60;
-                    v0->unk_00 = 15;
+            if (gSystem.touchPressed || (gSystem.pressedKeys & PAD_BUTTON_A) || (v0->textTimer == 0)) {
+                if (Mining_ProcessNextDugUpItem(v0)) {
+                    v0->textTimer = 60;
+                    v0->state = 15;
                 } else {
-                    v0->unk_00 = 16;
+                    v0->state = 16;
                 }
             }
         }
         break;
     case 18:
-        SpriteList_Update(Unk_ov23_02257740->unk_20);
+        SpriteList_Update(Unk_ov23_02257740->spriteList);
         ov23_02254044(ov23_0224219C());
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_16, FADE_TYPE_UNK_16, FADE_TO_BLACK, 6, 1, HEAP_ID_29);
-        (v0->unk_00)++;
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_16, FADE_TYPE_UNK_16, FADE_TO_BLACK, 6, 1, HEAP_ID_MINING);
+        (v0->state)++;
         break;
     case 19:
-        SpriteList_Update(Unk_ov23_02257740->unk_20);
+        SpriteList_Update(Unk_ov23_02257740->spriteList);
 
         if (IsScreenFadeDone()) {
             sub_02039794();
             ov23_0223F020(v0);
             FieldSystem_StartFieldMap(fieldSystem);
-            (v0->unk_00)++;
+            (v0->state)++;
         }
         break;
     case 20:
@@ -1575,7 +1555,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
             sub_020594FC();
             HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
             StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_17, FADE_TYPE_UNK_19, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
-            (v0->unk_00)++;
+            (v0->state)++;
             break;
         }
         break;
@@ -1586,7 +1566,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
             HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
             HBlankSystem_Start(v0->fieldSystem->unk_04->hBlankSystem);
 
-            Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, 52, 0, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD);
+            Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, 52, PAL_LOAD_MAIN_BG, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD);
             LoadStandardWindowGraphics(v0->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
             CommPlayerMan_Restart();
 
@@ -1606,54 +1586,54 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         break;
     case 22:
         Unk_ov23_02257740->unk_A2C = 1;
-        v0->unk_08--;
+        v0->timer--;
 
-        if (v0->unk_08 == 0) {
+        if (v0->timer == 0) {
             Unk_ov23_02257740->unk_A2C = 100;
-            v0->unk_00 = 23;
+            v0->state = 23;
         }
 
-        ov23_02240B84(Unk_ov23_02257740->unk_04);
-        SpriteList_Update(Unk_ov23_02257740->unk_20);
+        ov23_02240B84(Unk_ov23_02257740->bgConfig);
+        SpriteList_Update(Unk_ov23_02257740->spriteList);
         break;
     case 23:
-        SpriteList_Update(Unk_ov23_02257740->unk_20);
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_2, FADE_TYPE_UNK_2, FADE_TO_BLACK, 15, 1, HEAP_ID_29);
+        SpriteList_Update(Unk_ov23_02257740->spriteList);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_2, FADE_TYPE_UNK_2, FADE_TO_BLACK, 15, 1, HEAP_ID_MINING);
         Sound_PlayEffect(SEQ_SE_DP_UG_001);
-        v0->unk_00 = 24;
+        v0->state = 24;
         break;
     case 24:
         if (IsScreenFadeDone()) {
             int v3;
 
             for (v3 = 0; v3 < 8; v3++) {
-                Sprite_SetDrawFlag(Unk_ov23_02257740->unk_24C[v3], 0);
+                Sprite_SetDrawFlag(Unk_ov23_02257740->sprites[v3], 0);
             }
 
-            v0->unk_00 = 25;
+            v0->state = 25;
         } else {
-            SpriteList_Update(Unk_ov23_02257740->unk_20);
+            SpriteList_Update(Unk_ov23_02257740->spriteList);
         }
 
         break;
     case 25:
         BrightnessController_StartTransition(1, -16, -16, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2, BRIGHTNESS_MAIN_SCREEN);
-        v0->unk_00 = 26;
+        v0->state = 26;
         break;
     case 26:
         ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
         ResetScreenMasterBrightness(DS_SCREEN_MAIN);
         Unk_ov23_02257740->unk_A24 = ov23_02253F40(ov23_0224219C(), UndergroundCommon_Text_WallCollapsed, 0, NULL);
-        v0->unk_4C = 60;
-        v0->unk_00 = 15;
+        v0->textTimer = 60;
+        v0->state = 15;
         break;
     case 27:
         if (Text_IsPrinterActive(Unk_ov23_02257740->unk_A24) == 0) {
-            v0->unk_4C--;
+            v0->textTimer--;
 
-            if (gSystem.touchPressed || (gSystem.pressedKeys & PAD_BUTTON_A) || (v0->unk_4C == 0)) {
+            if (gSystem.touchPressed || (gSystem.pressedKeys & PAD_BUTTON_A) || (v0->textTimer == 0)) {
                 ov23_02254044(ov23_0224219C());
-                v0->unk_00 = 19;
+                v0->state = 19;
             }
         }
         break;
@@ -1677,32 +1657,32 @@ static void ov23_0223F70C(FieldSystem *fieldSystem)
     Unk_ov23_02257740->unk_8CC = SysTask_Start(ov23_0223F118, v0, 100);
 }
 
-static BOOL ov23_0223F768(void)
+static BOOL Mining_IsBuriedObjectSlotAvailable(void)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < 8; v0++) {
-        if (Unk_ov23_02257740->unk_874[v0].unk_00 == NULL) {
-            return 1;
+    for (i = 0; i < MAX_BURIED_OBJECTS; i++) {
+        if (Unk_ov23_02257740->buriedObjects[i].miningObject == NULL) {
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-static int ov23_0223F78C(int index, int x, int y)
+static int Mining_AddBuriedObject(int index, int x, int y)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < 8; v0++) {
-        if (Unk_ov23_02257740->unk_874[v0].unk_00 == NULL) {
-            Unk_ov23_02257740->unk_874[v0].unk_00 = &sMiningObjects[index];
-            Unk_ov23_02257740->unk_874[v0].itemID = sMiningObjects[index].itemID;
-            Unk_ov23_02257740->unk_874[v0].x = x;
-            Unk_ov23_02257740->unk_874[v0].y = y;
-            Unk_ov23_02257740->unk_874[v0].unk_08 = 0;
+    for (i = 0; i < MAX_BURIED_OBJECTS; i++) {
+        if (Unk_ov23_02257740->buriedObjects[i].miningObject == NULL) {
+            Unk_ov23_02257740->buriedObjects[i].miningObject = &sMiningObjects[index];
+            Unk_ov23_02257740->buriedObjects[i].itemID = sMiningObjects[index].itemID;
+            Unk_ov23_02257740->buriedObjects[i].x = x;
+            Unk_ov23_02257740->buriedObjects[i].y = y;
+            Unk_ov23_02257740->buriedObjects[i].isDugUp = FALSE;
 
-            return v0 + 1;
+            return i + 1;
         }
     }
 
@@ -1710,7 +1690,7 @@ static int ov23_0223F78C(int index, int x, int y)
     return 0;
 }
 
-static BOOL IsCoordinatePartOfObject(MiningObject *param0, int x, int y)
+static BOOL Mining_AreCoordinatesWithinObjectShape(MiningObject *param0, int x, int y)
 {
     u8 *shape = param0->shape;
     int column, row, entriesPerRow;
@@ -1732,39 +1712,39 @@ static BOOL IsCoordinatePartOfObject(MiningObject *param0, int x, int y)
 
 static BOOL Mining_TryPlaceObject(int index, int x, int y)
 {
-    int i, j, endX, endY, v4;
+    int i, j, endX, endY, buriedIndex;
 
-    if (!ov23_0223F768()) {
+    if (!Mining_IsBuriedObjectSlotAvailable()) {
         return FALSE;
     }
 
     endX = sMiningObjects[index].width / 2 + x;
     endY = sMiningObjects[index].height / 2 + y;
 
-    if (endX > 13) {
+    if (endX > MINING_GAME_WIDTH) {
         return FALSE;
     }
 
-    if (endY > 10) {
+    if (endY > MINING_GAME_HEIGHT) {
         return FALSE;
     }
 
     for (i = x; i < endX; i++) {
         for (j = y; j < endY; j++) {
-            if (IsCoordinatePartOfObject(&sMiningObjects[index], (i - x) * 2, (j - y) * 2)) {
-                if (Unk_ov23_02257740->unk_920[j][i] != 0) {
+            if (Mining_AreCoordinatesWithinObjectShape(&sMiningObjects[index], (i - x) * 2, (j - y) * 2)) {
+                if (Unk_ov23_02257740->buriedObjectGrid[j][i] != 0) {
                     return FALSE;
                 }
             }
         }
     }
 
-    v4 = ov23_0223F78C(index, x, y);
+    buriedIndex = Mining_AddBuriedObject(index, x, y);
 
     for (i = x; i < endX; i++) {
         for (j = y; j < endY; j++) {
-            if (IsCoordinatePartOfObject(&sMiningObjects[index], (i - x) * 2, (j - y) * 2)) {
-                Unk_ov23_02257740->unk_920[j][i] = v4;
+            if (Mining_AreCoordinatesWithinObjectShape(&sMiningObjects[index], (i - x) * 2, (j - y) * 2)) {
+                Unk_ov23_02257740->buriedObjectGrid[j][i] = buriedIndex;
             }
         }
     }
@@ -1812,18 +1792,18 @@ static int Mining_GetTotalItemWeight(void)
     return totalWeight;
 }
 
-static int Mining_PickItem(int param0)
+static int Mining_PickItem(int randNum)
 {
-    int i, v1 = param0;
+    int i, counter = randNum;
 
     for (i = 0; i < NELEMS(sMiningObjects); i++) {
         if (MINING_ROCK_1 == sMiningObjects[i].itemID) {
             break;
         }
 
-        v1 -= Mining_GetWeightOfItem(&sMiningObjects[i]);
+        counter -= Mining_GetWeightOfItem(&sMiningObjects[i]);
 
-        if (v1 < 0) {
+        if (counter < 0) {
             return i;
         }
     }
@@ -1845,22 +1825,22 @@ static int Mining_GetTotalTypesOfRocks(void)
     return total;
 }
 
-static void Mining_GenerateGameLayout(BgConfig *param0, int param1, UnkStruct_ov23_0223EE80 *param2)
+static void Mining_GenerateGameLayout(BgConfig *bgConfig, int param1, UnkStruct_ov23_0223EE80 *param2)
 {
     UndergroundData *undergroundData = SaveData_GetUndergroundData(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
     int objectsPlaced, i, totalWeight = Mining_GetTotalItemWeight();
-    int randNum, unused, x, y, j = 0, index, itemID;
+    int randNum, x, y, j = 0, index, itemID;
     int typesOfRocks = Mining_GetTotalTypesOfRocks();
-    int selectedPlates[4];
+    int selectedPlates[MAX_BURIED_ITEMS];
 
-    param2->itemCount = MATH_Rand32(&Unk_ov23_02257740->unk_08, (4 - 1)) + 2;
+    param2->itemCount = MATH_Rand32(&Unk_ov23_02257740->rand, (MAX_BURIED_ITEMS - 1)) + 2;
 
     if (UndergroundData_HasNeverMined(undergroundData)) {
         param2->itemCount = 3;
     }
 
     for (objectsPlaced = 0; objectsPlaced < param2->itemCount;) {
-        randNum = MATH_Rand32(&Unk_ov23_02257740->unk_08, totalWeight);
+        randNum = MATH_Rand32(&Unk_ov23_02257740->rand, totalWeight);
         index = Mining_PickItem(randNum);
         itemID = sMiningObjects[index].itemID;
 
@@ -1886,8 +1866,8 @@ static void Mining_GenerateGameLayout(BgConfig *param0, int param1, UnkStruct_ov
             selectedPlates[objectsPlaced] = 28;
         }
 
-        x = MATH_Rand32(&Unk_ov23_02257740->unk_08, 13);
-        y = MATH_Rand32(&Unk_ov23_02257740->unk_08, 10);
+        x = MATH_Rand32(&Unk_ov23_02257740->rand, MINING_GAME_WIDTH);
+        y = MATH_Rand32(&Unk_ov23_02257740->rand, MINING_GAME_HEIGHT);
 
         if (Mining_TryPlaceObject(index, x, y)) {
             objectsPlaced++;
@@ -1896,61 +1876,62 @@ static void Mining_GenerateGameLayout(BgConfig *param0, int param1, UnkStruct_ov
 
     if (!UndergroundData_HasNeverMined(undergroundData)) {
         for (j = 0; j < 100; j++) {
-            index = MATH_Rand32(&Unk_ov23_02257740->unk_08, typesOfRocks);
+            index = MATH_Rand32(&Unk_ov23_02257740->rand, typesOfRocks);
             index += NELEMS(sMiningObjects) - typesOfRocks;
-            x = MATH_Rand32(&Unk_ov23_02257740->unk_08, 13);
-            y = MATH_Rand32(&Unk_ov23_02257740->unk_08, 10);
+            x = MATH_Rand32(&Unk_ov23_02257740->rand, MINING_GAME_WIDTH);
+            y = MATH_Rand32(&Unk_ov23_02257740->rand, MINING_GAME_HEIGHT);
 
             if (Mining_TryPlaceObject(index, x, y)) {
                 objectsPlaced++;
             }
 
+            // unreachable, objectsPlaced can never exceed 8
             if (objectsPlaced > 12) {
                 break;
             }
         }
     }
 
-    ov23_0223FF60(objectsPlaced, param0, param1, param2);
+    ov23_0223FF60(objectsPlaced, bgConfig, param1, param2);
 }
 
-static int ov23_0223FC9C(int param0, BgConfig *param1, int param2, UnkStruct_ov23_0223EE80 *param3)
+static int ov23_0223FC9C(int index, BgConfig *bgConfig, int param2, UnkStruct_ov23_0223EE80 *param3)
 {
-    UnkStruct_ov23_0223FC9C *v0 = &Unk_ov23_02257740->unk_874[param0];
-    u16 *v1 = Bg_GetTilemapBuffer(param1, 1);
-    int v2 = v0->x * 2;
-    int v3 = v0->y * 2;
-    int v4 = v2 + v0->unk_00->width;
-    int v5 = v3 + v0->unk_00->height;
-    int v6, v7, v8, v9 = param2;
+    BuriedObject *buriedObject = &Unk_ov23_02257740->buriedObjects[index];
+    u16 *v1 = Bg_GetTilemapBuffer(bgConfig, BG_LAYER_MAIN_1);
+    int x = buriedObject->x * 2;
+    int y = buriedObject->y * 2;
+    int endX = x + buriedObject->miningObject->width;
+    int endY = y + buriedObject->miningObject->height;
+    int i, j, v8, v9 = param2;
     u32 v10;
-    int v11 = param0;
-    NARC *v12 = NARC_ctor(NARC_INDEX_DATA__UG_PARTS, HEAP_ID_29);
+    int v11 = index;
+    NARC *v12 = NARC_ctor(NARC_INDEX_DATA__UG_PARTS, HEAP_ID_MINING);
 
-    if (param0 >= param3->itemCount) {
+    if (index >= param3->itemCount) {
         v11 = 4;
     }
 
-    if (param0 >= param3->itemCount) {
-        Graphics_LoadPaletteFromOpenNARC(v12, v0->unk_00->unk_12, 0, (v11 + 3) * 32, 32, HEAP_ID_29);
+    if (index >= param3->itemCount) {
+        Graphics_LoadPaletteFromOpenNARC(v12, buriedObject->miningObject->paletteNARCIndex, PAL_LOAD_MAIN_BG, (v11 + 3) * 32, 32, HEAP_ID_MINING);
     } else {
-        param3->unk_18[param0] = Graphics_GetPlttDataFromOpenNARC(v12, v0->unk_00->unk_12, &param3->unk_28[param0], HEAP_ID_29);
-        DC_FlushRange(param3->unk_28[param0]->pRawData, 32);
-        GX_LoadBGPltt(param3->unk_28[param0]->pRawData, (v11 + 3) * 32, 32);
+        param3->unk_18[index] = Graphics_GetPlttDataFromOpenNARC(v12, buriedObject->miningObject->paletteNARCIndex, &param3->buriedItemPalettes[index], HEAP_ID_MINING);
+        DC_FlushRange(param3->buriedItemPalettes[index]->pRawData, 32);
+        GX_LoadBGPltt(param3->buriedItemPalettes[index]->pRawData, (v11 + 3) * 32, 32);
     }
 
-    v10 = Graphics_LoadTilesToBgLayerFromOpenNARC(v12, v0->unk_00->unk_10, param1, 1, param2, 0, 0, HEAP_ID_29);
+    v10 = Graphics_LoadTilesToBgLayerFromOpenNARC(v12, buriedObject->miningObject->spriteNARCIndex, bgConfig, BG_LAYER_MAIN_1, param2, 0, 0, HEAP_ID_MINING);
     NARC_dtor(v12);
 
-    for (v6 = v3; v6 < v5; v6++) {
-        for (v7 = v2; v7 < v4; v7++) {
+    for (i = y; i < endY; i++) {
+        for (j = x; j < endX; j++) {
             v9++;
 
-            if (!IsCoordinatePartOfObject(v0->unk_00, v7 - v2, v6 - v3)) {
+            if (!Mining_AreCoordinatesWithinObjectShape(buriedObject->miningObject, j - x, i - y)) {
                 continue;
             }
 
-            v8 = v7 + ((v6 + 4) * 32);
+            v8 = j + ((i + 4) * 32);
             v1[v8] = ((v11 + 3) * 0x1000) + v9 - 1;
         }
     }
@@ -1982,29 +1963,29 @@ static void ov23_0223FDE0(UnkStruct_ov23_0223EE80 *param0)
     int v0, v1, v2, v3;
     VecFx32 v4;
 
-    for (v0 = 0; v0 < 4; v0++) {
+    for (v0 = 0; v0 < MAX_BURIED_ITEMS; v0++) {
         if (param0->unk_38[v0] == 1) {
             Sound_PlayEffect(SEQ_SE_DP_KIRAKIRA4);
 
             for (v3 = 0; v3 < 3; v3++) {
-                v1 = MATH_Rand32(&Unk_ov23_02257740->unk_08, Unk_ov23_02257740->unk_874[v0].unk_00->width * 8);
-                v2 = MATH_Rand32(&Unk_ov23_02257740->unk_08, Unk_ov23_02257740->unk_874[v0].unk_00->height * 8);
-                v1 += Unk_ov23_02257740->unk_874[v0].x * 2 * 8;
-                v2 += Unk_ov23_02257740->unk_874[v0].y * 2 * 8;
+                v1 = MATH_Rand32(&Unk_ov23_02257740->rand, Unk_ov23_02257740->buriedObjects[v0].miningObject->width * 8);
+                v2 = MATH_Rand32(&Unk_ov23_02257740->rand, Unk_ov23_02257740->buriedObjects[v0].miningObject->height * 8);
+                v1 += Unk_ov23_02257740->buriedObjects[v0].x * 2 * 8;
+                v2 += Unk_ov23_02257740->buriedObjects[v0].y * 2 * 8;
                 v2 += 8 * 4;
 
                 v4.x = FX32_ONE * v1;
                 v4.y = FX32_ONE * v2;
 
-                Sprite_SetAnim(Unk_ov23_02257740->unk_24C[5 + v3], 8 + v3);
-                Sprite_SetPosition(Unk_ov23_02257740->unk_24C[5 + v3], &v4);
+                Sprite_SetAnim(Unk_ov23_02257740->sprites[5 + v3], 8 + v3);
+                Sprite_SetPosition(Unk_ov23_02257740->sprites[5 + v3], &v4);
             }
         }
     }
 
-    for (v0 = 0; v0 < 4; v0++) {
+    for (v0 = 0; v0 < MAX_BURIED_ITEMS; v0++) {
         if (param0->unk_38[v0]) {
-            u16 *v5 = param0->unk_28[v0]->pRawData;
+            u16 *v5 = param0->buriedItemPalettes[v0]->pRawData;
             u8 v6 = Unk_ov23_02257570[param0->unk_38[v0] - 1];
 
             if (v6 == 0xff) {
@@ -2023,18 +2004,18 @@ static void ov23_0223FDE0(UnkStruct_ov23_0223EE80 *param0)
     }
 }
 
-static void ov23_0223FF60(int param0, BgConfig *param1, int param2, UnkStruct_ov23_0223EE80 *param3)
+static void ov23_0223FF60(int buriedObjectCount, BgConfig *bgConfig, int param2, UnkStruct_ov23_0223EE80 *param3)
 {
-    int v0, v1 = 512 + 24 * 3 + 32 + 1;
+    int i, v1 = 512 + 24 * 3 + 32 + 1;
     u32 v2;
 
-    for (v0 = 0; v0 < param0; v0++) {
-        v2 = ov23_0223FC9C(v0, param1, v1, param3);
+    for (i = 0; i < buriedObjectCount; i++) {
+        v2 = ov23_0223FC9C(i, bgConfig, v1, param3);
         v1 += v2 / 32;
     }
 }
 
-static void ov23_0223FF8C(BgConfig *param0)
+static void Mining_RandomizeDirtCover(BgConfig *bgConfig)
 {
     static const u8 v0 = 8;
     static const u8 v1 = 5;
@@ -2059,16 +2040,16 @@ static void ov23_0223FF8C(BgConfig *param0)
     BOOL v11 = 1;
 
     for (v10 = 0; v10 < 10; v10++) {
-        v8 = MATH_Rand32(&Unk_ov23_02257740->unk_08, 13 + v0) - v0;
-        v9 = MATH_Rand32(&Unk_ov23_02257740->unk_08, 10 + v0) - v1;
+        v8 = MATH_Rand32(&Unk_ov23_02257740->rand, MINING_GAME_WIDTH + v0) - v0;
+        v9 = MATH_Rand32(&Unk_ov23_02257740->rand, MINING_GAME_HEIGHT + v0) - v1;
 
         for (v7 = v9; v7 < v9 + v0; v7++) {
-            if ((v7 >= 10) || (v7 < 0)) {
+            if ((v7 >= MINING_GAME_HEIGHT) || (v7 < 0)) {
                 continue;
             }
 
             for (v6 = v8; v6 < v8 + v0; v6++) {
-                if ((v6 >= 13) || (v6 < 0)) {
+                if ((v6 >= MINING_GAME_WIDTH) || (v6 < 0)) {
                     continue;
                 }
 
@@ -2076,23 +2057,23 @@ static void ov23_0223FF8C(BgConfig *param0)
                     continue;
                 }
 
-                Unk_ov23_02257740->unk_9A2[v7][v6] = v2[v7 - v9][v6 - v8];
+                Unk_ov23_02257740->dirtCover[v7][v6] = v2[v7 - v9][v6 - v8];
             }
         }
     }
 
     for (v10 = 0; v10 < 15; v10++) {
-        v8 = MATH_Rand32(&Unk_ov23_02257740->unk_08, 13 + v1) - v1;
-        v9 = MATH_Rand32(&Unk_ov23_02257740->unk_08, 10 + v1) - v1;
+        v8 = MATH_Rand32(&Unk_ov23_02257740->rand, MINING_GAME_WIDTH + v1) - v1;
+        v9 = MATH_Rand32(&Unk_ov23_02257740->rand, MINING_GAME_HEIGHT + v1) - v1;
         v11 = 1;
 
         for (v7 = v9; v7 < v9 + v1; v7++) {
-            if ((v7 >= 10) || (v7 < 0)) {
+            if ((v7 >= MINING_GAME_HEIGHT) || (v7 < 0)) {
                 continue;
             }
 
             for (v6 = v8; v6 < v8 + v1; v6++) {
-                if ((v6 >= 13) || (v6 < 0)) {
+                if ((v6 >= MINING_GAME_WIDTH) || (v6 < 0)) {
                     continue;
                 }
 
@@ -2100,7 +2081,7 @@ static void ov23_0223FF8C(BgConfig *param0)
                     continue;
                 }
 
-                if (Unk_ov23_02257740->unk_9A2[v7][v6] < 4) {
+                if (Unk_ov23_02257740->dirtCover[v7][v6] < 4) {
                     v11 = 0;
                     break;
                 }
@@ -2116,12 +2097,12 @@ static void ov23_0223FF8C(BgConfig *param0)
         }
 
         for (v7 = v9; v7 < v9 + v1; v7++) {
-            if ((v7 >= 10) || (v7 < 0)) {
+            if ((v7 >= MINING_GAME_HEIGHT) || (v7 < 0)) {
                 continue;
             }
 
             for (v6 = v8; v6 < v8 + v1; v6++) {
-                if ((v6 >= 13) || (v6 < 0)) {
+                if ((v6 >= MINING_GAME_WIDTH) || (v6 < 0)) {
                     continue;
                 }
 
@@ -2129,19 +2110,19 @@ static void ov23_0223FF8C(BgConfig *param0)
                     continue;
                 }
 
-                Unk_ov23_02257740->unk_9A2[v7][v6] = v3[v7 - v9][v6 - v8];
+                Unk_ov23_02257740->dirtCover[v7][v6] = v3[v7 - v9][v6 - v8];
             }
         }
     }
 
-    for (v7 = 0; v7 < 10; v7++) {
-        for (v6 = 0; v6 < 13; v6++) {
+    for (v7 = 0; v7 < MINING_GAME_HEIGHT; v7++) {
+        for (v6 = 0; v6 < MINING_GAME_WIDTH; v6++) {
             (void)0;
         }
     }
 }
 
-static void ov23_022401B0(BgConfig *param0)
+static void Mining_DrawDirt(BgConfig *bgConfig)
 {
     static u8 v0[] = { 0xe, 0xf, 0x1e, 0x1f };
     static u8 v1[] = { 0xa, 0xb, 0x1a, 0x1b };
@@ -2151,124 +2132,124 @@ static void ov23_022401B0(BgConfig *param0)
     static u8 v5[] = { 0x2, 0x3, 0x12, 0x13 };
     static u8 v6[] = { 0x0, 0x1, 0x10, 0x11 };
     static u8 *v7[] = { v0, v1, v2, v3, v4, v5, v6 };
-    u16 *v8 = Bg_GetTilemapBuffer(param0, 2);
-    int v9, v10, v11;
+    u16 *tilemapBuffer = Bg_GetTilemapBuffer(bgConfig, BG_LAYER_MAIN_2);
+    int y, x, v11;
 
-    for (v9 = 0; v9 < 10; v9++) {
-        for (v10 = 0; v10 < 13; v10++) {
-            u8 *v12 = v7[Unk_ov23_02257740->unk_9A2[v9][v10]];
+    for (y = 0; y < MINING_GAME_HEIGHT; y++) {
+        for (x = 0; x < MINING_GAME_WIDTH; x++) {
+            u8 *v12 = v7[Unk_ov23_02257740->dirtCover[y][x]];
 
-            v11 = v10 * 2 + ((v9 * 2 + 4) * 32);
-            v8[v11] = v12[0] + 0x2001;
-            v8[v11 + 1] = v12[1] + 0x2001;
-            v8[v11 + 32] = v12[2] + 0x2001;
-            v8[v11 + 33] = v12[3] + 0x2001;
+            v11 = x * 2 + ((y * 2 + 4) * 32);
+            tilemapBuffer[v11] = v12[0] + 0x2001;
+            tilemapBuffer[v11 + 1] = v12[1] + 0x2001;
+            tilemapBuffer[v11 + 32] = v12[2] + 0x2001;
+            tilemapBuffer[v11 + 33] = v12[3] + 0x2001;
         }
     }
 
-    Bg_CopyTilemapBufferToVRAM(param0, 2);
+    Bg_CopyTilemapBufferToVRAM(bgConfig, BG_LAYER_MAIN_2);
 }
 
-static BOOL ov23_02240244(int param0, int param1)
+static BOOL Mining_IsItemAtCoordinates(int x, int y)
 {
-    int v0;
-    int v1 = Unk_ov23_02257740->unk_920[param1][param0];
+    int itemID;
+    int index = Unk_ov23_02257740->buriedObjectGrid[y][x];
 
-    if (v1 == 0) {
+    if (index == 0) {
         return FALSE;
     }
 
-    v0 = Unk_ov23_02257740->unk_874[v1 - 1].itemID;
+    itemID = Unk_ov23_02257740->buriedObjects[index - 1].itemID;
 
-    if ((v0 != 0) && (v0 < MINING_ROCK_1)) {
+    if ((itemID != 0) && (itemID < MINING_ROCK_1)) {
         return TRUE;
     }
 
     return FALSE;
 }
 
-static BOOL ov23_02240280(int param0, int param1)
+static BOOL Mining_IsRockAtCoordinates(int x, int y)
 {
-    int v0 = Unk_ov23_02257740->unk_920[param1][param0];
+    int index = Unk_ov23_02257740->buriedObjectGrid[y][x];
 
-    if (v0 == 0) {
+    if (index == 0) {
         return FALSE;
     }
 
-    if (Unk_ov23_02257740->unk_874[v0 - 1].itemID >= MINING_ROCK_1) {
+    if (Unk_ov23_02257740->buriedObjects[index - 1].itemID >= MINING_ROCK_1) {
         return TRUE;
     }
 
     return FALSE;
 }
 
-static void ov23_022402B8(int param0, int param1, BOOL param2, UnkStruct_ov23_0223EE80 *param3)
+static void Mining_RemoveDirt(int touchX, int touchY, BOOL pickaxeSelected, UnkStruct_ov23_0223EE80 *param3)
 {
-    static s8 v0[] = { 1, -1, -1, 1 };
-    static s8 v1[] = { 1, -1, 1, -1 };
-    static s8 v2[] = { 0, 0, -1, 1 };
-    static s8 v3[] = { 1, -1, 0, 0 };
-    int v4, v5, v6, v7;
-    BOOL v8 = 0, v9 = 0;
+    static s8 diagonalXModifiers[] = { 1, -1, -1, 1 };
+    static s8 diagonalYModifiers[] = { 1, -1, 1, -1 };
+    static s8 adjacentXModifiers[] = { 0, 0, -1, 1 };
+    static s8 adjacentYModifiers[] = { 1, -1, 0, 0 };
+    int x, y, i;
+    BOOL hitRock = FALSE, foundItem = FALSE;
 
-    v4 = param0 / 16;
-    v5 = param1 / 16 - 2;
+    x = touchX / 16;
+    y = touchY / 16 - 2;
 
-    if ((v4 < 0) || (v4 >= 13) || (v5 < 0) || (v5 >= 10)) {
+    if ((x < 0) || (x >= MINING_GAME_WIDTH) || (y < 0) || (y >= MINING_GAME_HEIGHT)) {
         return;
     }
 
-    if (Unk_ov23_02257740->unk_9A2[v5][v4] != 0) {
-        Unk_ov23_02257740->unk_9A2[v5][v4] -= 1;
+    if (Unk_ov23_02257740->dirtCover[y][x] != 0) {
+        Unk_ov23_02257740->dirtCover[y][x] -= 1;
     }
 
-    if (Unk_ov23_02257740->unk_9A2[v5][v4] != 0) {
-        Unk_ov23_02257740->unk_9A2[v5][v4] -= 1;
+    if (Unk_ov23_02257740->dirtCover[y][x] != 0) {
+        Unk_ov23_02257740->dirtCover[y][x] -= 1;
     }
 
-    if (ov23_02240280(v4, v5) && (Unk_ov23_02257740->unk_9A2[v5][v4] == 0)) {
-        v8 = 1;
+    if (Mining_IsRockAtCoordinates(x, y) && (Unk_ov23_02257740->dirtCover[y][x] == 0)) {
+        hitRock = TRUE;
     }
 
-    if (ov23_02240244(v4, v5) && (Unk_ov23_02257740->unk_9A2[v5][v4] == 0)) {
-        v9 = 1;
+    if (Mining_IsItemAtCoordinates(x, y) && (Unk_ov23_02257740->dirtCover[y][x] == 0)) {
+        foundItem = TRUE;
         param3->unk_14 = 15;
     }
 
-    ov23_0223ED68(v4 * 16, (v5 + 2) * 16, param2, v8, v9);
+    ov23_0223ED68(x * 16, (y + 2) * 16, pickaxeSelected, hitRock, foundItem);
 
-    if (v8) {
+    if (hitRock) {
         return;
     }
 
-    if (!param2) {
-        for (v7 = 0; v7 < 4; v7++) {
-            int v10 = v5 + v1[v7];
-            int v11 = v4 + v0[v7];
+    if (!pickaxeSelected) {
+        for (i = 0; i < 4; i++) {
+            int diagonalY = y + diagonalYModifiers[i];
+            int diagonalX = x + diagonalXModifiers[i];
 
-            if ((v10 >= 0) && (v10 < 10)) {
-                if ((v11 >= 0) && (v11 < 13)) {
-                    if (Unk_ov23_02257740->unk_9A2[v10][v11] != 0) {
-                        Unk_ov23_02257740->unk_9A2[v10][v11] -= 1;
+            if ((diagonalY >= 0) && (diagonalY < MINING_GAME_HEIGHT)) {
+                if ((diagonalX >= 0) && (diagonalX < MINING_GAME_WIDTH)) {
+                    if (Unk_ov23_02257740->dirtCover[diagonalY][diagonalX] != 0) {
+                        Unk_ov23_02257740->dirtCover[diagonalY][diagonalX] -= 1;
                     }
                 }
             }
         }
     }
 
-    for (v7 = 0; v7 < 4; v7++) {
-        int v12 = v5 + v3[v7];
-        int v13 = v4 + v2[v7];
+    for (i = 0; i < 4; i++) {
+        int adjacentY = y + adjacentYModifiers[i];
+        int adjacentX = x + adjacentXModifiers[i];
 
-        if ((v12 >= 0) && (v12 < 10)) {
-            if ((v13 >= 0) && (v13 < 13)) {
-                if (Unk_ov23_02257740->unk_9A2[v12][v13] != 0) {
-                    Unk_ov23_02257740->unk_9A2[v12][v13] -= 1;
+        if ((adjacentY >= 0) && (adjacentY < MINING_GAME_HEIGHT)) {
+            if ((adjacentX >= 0) && (adjacentX < MINING_GAME_WIDTH)) {
+                if (Unk_ov23_02257740->dirtCover[adjacentY][adjacentX] != 0) {
+                    Unk_ov23_02257740->dirtCover[adjacentY][adjacentX] -= 1;
                 }
 
-                if (!param2) {
-                    if (Unk_ov23_02257740->unk_9A2[v12][v13] != 0) {
-                        Unk_ov23_02257740->unk_9A2[v12][v13] -= 1;
+                if (!pickaxeSelected) {
+                    if (Unk_ov23_02257740->dirtCover[adjacentY][adjacentX] != 0) {
+                        Unk_ov23_02257740->dirtCover[adjacentY][adjacentX] -= 1;
                     }
                 }
             }
@@ -2312,18 +2293,18 @@ static UnkStruct_ov23_02256BF8 endPos[] = {
     0x4
 };
 
-static void ov23_022404C8(BgConfig *param0)
+static void ov23_022404C8(BgConfig *bgConfig)
 {
     u16 *v0;
 
     Unk_ov23_02257740->unk_A2A = 1;
-    Unk_ov23_02257740->unk_A28 = 1;
+    Unk_ov23_02257740->pickaxeSelected = TRUE;
 
-    v0 = Bg_GetTilemapBuffer(param0, 1);
+    v0 = Bg_GetTilemapBuffer(bgConfig, BG_LAYER_MAIN_1);
     ov23_02240454(v0, Unk_ov23_02256BF4, 0x30, 54);
 }
 
-static void ov23_022404F8(BgConfig *param0, int param1, int param2, int param3)
+static void ov23_022404F8(BgConfig *bgConfig, int touchX, int touchY, int param3)
 {
     VecFx32 v0;
     u8 *v1;
@@ -2334,13 +2315,13 @@ static void ov23_022404F8(BgConfig *param0, int param1, int param2, int param3)
     }
 
     if (param3 == 2) {
-        if ((param1 > (0x1a * 8 + 6)) && ((0x1f * 8 + 4) > param1)) {
-            if ((param2 > (5 * 8 + 3)) && ((0xd * 8 + 6) > param2)) {
+        if ((touchX > (0x1a * 8 + 6)) && ((0x1f * 8 + 4) > touchX)) {
+            if ((touchY > (5 * 8 + 3)) && ((0xd * 8 + 6) > touchY)) {
                 Unk_ov23_02257740->unk_A2A = 0;
-                Unk_ov23_02257740->unk_A28 = 0;
-            } else if ((param2 > (0xe * 8 + 2)) && ((0x15 * 8 + 6) > param2)) {
+                Unk_ov23_02257740->pickaxeSelected = FALSE;
+            } else if ((touchY > (0xe * 8 + 2)) && ((0x15 * 8 + 6) > touchY)) {
                 Unk_ov23_02257740->unk_A2A = 1;
-                Unk_ov23_02257740->unk_A28 = 1;
+                Unk_ov23_02257740->pickaxeSelected = TRUE;
             } else {
                 return;
             }
@@ -2349,7 +2330,7 @@ static void ov23_022404F8(BgConfig *param0, int param1, int param2, int param3)
         }
     }
 
-    v2 = Bg_GetTilemapBuffer(param0, 1);
+    v2 = Bg_GetTilemapBuffer(bgConfig, 1);
 
     switch (Unk_ov23_02257740->unk_A2A) {
     case 0:
@@ -2362,13 +2343,13 @@ static void ov23_022404F8(BgConfig *param0, int param1, int param2, int param3)
         }
 
         if (2 == param3) {
-            Sprite_SetAnim(Unk_ov23_02257740->unk_24C[2], 6);
-            Sprite_SetAnimateFlag(Unk_ov23_02257740->unk_24C[2], 1);
+            Sprite_SetAnim(Unk_ov23_02257740->sprites[2], 6);
+            Sprite_SetAnimateFlag(Unk_ov23_02257740->sprites[2], TRUE);
 
             v0.x = FX32_ONE * 232;
             v0.y = FX32_ONE * 80;
 
-            Sprite_SetPosition(Unk_ov23_02257740->unk_24C[2], &v0);
+            Sprite_SetPosition(Unk_ov23_02257740->sprites[2], &v0);
         }
         break;
     case 1:
@@ -2381,24 +2362,24 @@ static void ov23_022404F8(BgConfig *param0, int param1, int param2, int param3)
         }
 
         if (2 == param3) {
-            Sprite_SetAnim(Unk_ov23_02257740->unk_24C[2], 7);
-            Sprite_SetAnimateFlag(Unk_ov23_02257740->unk_24C[2], 1);
+            Sprite_SetAnim(Unk_ov23_02257740->sprites[2], 7);
+            Sprite_SetAnimateFlag(Unk_ov23_02257740->sprites[2], TRUE);
 
             v0.x = FX32_ONE * 232;
             v0.y = FX32_ONE * 152;
 
-            Sprite_SetPosition(Unk_ov23_02257740->unk_24C[2], &v0);
+            Sprite_SetPosition(Unk_ov23_02257740->sprites[2], &v0);
         }
         break;
     }
 
-    Bg_CopyTilemapBufferToVRAM(param0, 1);
+    Bg_CopyTilemapBufferToVRAM(bgConfig, BG_LAYER_MAIN_1);
 }
 
 static void ov23_02240660(VecFx32 *param0)
 {
     int v0;
-    int v1 = Unk_ov23_02257740->unk_A2B;
+    int v1 = Unk_ov23_02257740->wallIntegrity;
 
     v1 = (v1 / 4) * 4;
     v1 = v1 + 8;
@@ -2407,99 +2388,99 @@ static void ov23_02240660(VecFx32 *param0)
     param0->y = FX32_ONE * 16;
 }
 
-static void ov23_02240688(BgConfig *param0)
+static void Mining_DrawWallCrack(BgConfig *bgConfig)
 {
     VecFx32 v0;
-    int v1 = Unk_ov23_02257740->unk_A2B;
+    int wallIntegrity = Unk_ov23_02257740->wallIntegrity;
     int v2, v3, v4;
-    u16 *v5 = Bg_GetTilemapBuffer(param0, 0);
+    u16 *tilemapBuffer = Bg_GetTilemapBuffer(bgConfig, BG_LAYER_MAIN_0);
 
-    v1 = (v1 / 4) * 4;
-    v4 = 6 - (v1 % 24) / 4;
+    wallIntegrity = (wallIntegrity / 4) * 4;
+    v4 = 6 - (wallIntegrity % 24) / 4;
 
     ov23_02240660(&v0);
-    Sprite_SetAnim(Unk_ov23_02257740->unk_24C[1], v4);
+    Sprite_SetAnim(Unk_ov23_02257740->sprites[1], v4);
 
-    v1 = v1 + 8;
-    v2 = ((26 * 8) - v1) / 8;
+    wallIntegrity = wallIntegrity + 8;
+    v2 = ((26 * 8) - wallIntegrity) / 8;
 
     for (v3 = 0; v3 < v2; v3++) {
-        v5[0x19 - v3] = (v5[0x19 - v3] & 0xfc00) + 0xb - (v3 % 3);
-        v5[0x39 - v3] = (v5[0x39 - v3] & 0xfc00) + 0x41 - (v3 % 3);
-        v5[0x59 - v3] = (v5[0x59 - v3] & 0xfc00) + 0x77 - (v3 % 3);
-        v5[0x79 - v3] = (v5[0x79 - v3] & 0xfc00) + 0xad - (v3 % 3);
+        tilemapBuffer[0x19 - v3] = (tilemapBuffer[0x19 - v3] & 0xfc00) + 0xb - (v3 % 3);
+        tilemapBuffer[0x39 - v3] = (tilemapBuffer[0x39 - v3] & 0xfc00) + 0x41 - (v3 % 3);
+        tilemapBuffer[0x59 - v3] = (tilemapBuffer[0x59 - v3] & 0xfc00) + 0x77 - (v3 % 3);
+        tilemapBuffer[0x79 - v3] = (tilemapBuffer[0x79 - v3] & 0xfc00) + 0xad - (v3 % 3);
     }
 
-    Bg_CopyTilemapBufferToVRAM(param0, 0);
+    Bg_CopyTilemapBufferToVRAM(bgConfig, BG_LAYER_MAIN_0);
 }
 
-static void ov23_02240758(UnkStruct_ov23_0223EE80 *param0)
+static void Mining_NearbyLinksRemoveDirt(UnkStruct_ov23_0223EE80 *param0)
 {
-    BOOL v0 = 0;
-    int v1;
+    BOOL dirtRemoved = FALSE;
+    int netID;
 
-    for (v1 = 0; v1 < (7 + 1); v1++) {
-        if ((Unk_ov23_02257740->unk_910[v1] != 0xff) && (Unk_ov23_02257740->unk_918[v1] != 0xff)) {
-            int v2 = CommPlayer_XPos(CommSys_CurNetId());
-            int v3 = CommPlayer_ZPos(CommSys_CurNetId());
-            int v4 = ov23_0224AD04(v1);
-            int v5 = ov23_0224AD40(v1);
+    for (netID = 0; netID < MAX_CONNECTED_PLAYERS; netID++) {
+        if ((Unk_ov23_02257740->linkTouchX[netID] != (u8)TOUCHSCREEN_INPUT_NONE) && (Unk_ov23_02257740->linkTouchY[netID] != (u8)TOUCHSCREEN_INPUT_NONE)) {
+            int playerXPos = CommPlayer_XPos(CommSys_CurNetId());
+            int playerZPos = CommPlayer_ZPos(CommSys_CurNetId());
+            int linkXPos = Underground_GetLinkXPos(netID);
+            int linkZPos = Underground_GetLinkZPos(netID);
 
-            if ((v4 > (v2 - 10)) && (v4 < (v2 + 10))) {
-                if ((v5 > (v3 - 10)) && (v5 < (v3 + 10))) {
-                    ov23_022402B8(Unk_ov23_02257740->unk_910[v1], Unk_ov23_02257740->unk_918[v1], 1, param0);
-                    v0 = 1;
+            if ((linkXPos > (playerXPos - 10)) && (linkXPos < (playerXPos + 10))) {
+                if ((linkZPos > (playerZPos - 10)) && (linkZPos < (playerZPos + 10))) {
+                    Mining_RemoveDirt(Unk_ov23_02257740->linkTouchX[netID], Unk_ov23_02257740->linkTouchY[netID], TRUE, param0);
+                    dirtRemoved = TRUE;
 
-                    Unk_ov23_02257740->unk_910[v1] = 0xff;
-                    Unk_ov23_02257740->unk_918[v1] = 0xff;
+                    Unk_ov23_02257740->linkTouchX[netID] = TOUCHSCREEN_INPUT_NONE;
+                    Unk_ov23_02257740->linkTouchY[netID] = TOUCHSCREEN_INPUT_NONE;
                 }
             }
         }
     }
 
-    if (v0) {
-        ov23_022401B0(Unk_ov23_02257740->unk_04);
+    if (dirtRemoved) {
+        Mining_DrawDirt(Unk_ov23_02257740->bgConfig);
     }
 }
 
-static int ov23_0224080C(int param0)
+static int Mining_GenerateSizeOfMinedSphere(int itemID)
 {
-    int v0 = 0;
-    int v1 = param0;
+    int sphereSize = 0;
+    int id = itemID;
 
-    if (IsMiningItemSphere(v1)) {
-        if ((v1 == MINING_LARGE_PRISM_SPHERE) || (v1 == MINING_LARGE_PALE_SPHERE) || (v1 == MINING_SMALL_PRISM_SPHERE) || (v1 == MINING_SMALL_PALE_SPHERE)) {
-            v0 = MATH_Rand32(&Unk_ov23_02257740->unk_08, 1) + 1;
+    if (IsMiningItemSphere(id)) {
+        if ((id == MINING_LARGE_PRISM_SPHERE) || (id == MINING_LARGE_PALE_SPHERE) || (id == MINING_SMALL_PRISM_SPHERE) || (id == MINING_SMALL_PALE_SPHERE)) {
+            sphereSize = MATH_Rand32(&Unk_ov23_02257740->rand, 1) + 1;
         } else {
-            v0 = MATH_Rand32(&Unk_ov23_02257740->unk_08, 4) + 1;
+            sphereSize = MATH_Rand32(&Unk_ov23_02257740->rand, 4) + 1;
         }
 
-        if ((v1 == MINING_LARGE_PRISM_SPHERE) || (v1 == MINING_LARGE_PALE_SPHERE) || (v1 == MINING_LARGE_RED_SPHERE) || (v1 == MINING_LARGE_BLUE_SPHERE) || (v1 == MINING_LARGE_GREEN_SPHERE)) {
-            v1 = v1 - 6 + 1;
-            v0 += 10;
+        if ((id == MINING_LARGE_PRISM_SPHERE) || (id == MINING_LARGE_PALE_SPHERE) || (id == MINING_LARGE_RED_SPHERE) || (id == MINING_LARGE_BLUE_SPHERE) || (id == MINING_LARGE_GREEN_SPHERE)) {
+            id = id - MINING_LARGE_PRISM_SPHERE + 1;
+            sphereSize += 10;
         }
 
-        v0 += Unk_ov23_02257740->unk_A2B / ((200 - 4) / 5);
+        sphereSize += Unk_ov23_02257740->wallIntegrity / (INITIAL_WALL_INTEGRITY / 5);
 
-        if (Unk_ov23_02257740->unk_A2B != 0) {
-            v0 += 5;
+        if (Unk_ov23_02257740->wallIntegrity != 0) {
+            sphereSize += 5;
         }
     }
 
-    return v0;
+    return sphereSize;
 }
 
-static void ov23_022408A0(int itemID, int param1)
+static void Mining_AddItem(int itemID, int sphereSize)
 {
-    int v0 = itemID;
-    UndergroundRecord *v1 = SaveData_UndergroundRecord(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
+    int id = itemID;
+    UndergroundRecord *unused = SaveData_UndergroundRecord(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
     UndergroundData *undergroundData = SaveData_GetUndergroundData(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
 
-    if (IsMiningItemSphere(v0)) {
-        ov23_0224F6E0(v0, param1);
+    if (IsMiningItemSphere(id)) {
+        Underground_TryAddSphere(id, sphereSize);
     } else {
-        ov23_0224F710(v0);
-        UndergroundData_SetPlateMined(undergroundData, v0);
+        Underground_TryAddTreasure(id);
+        UndergroundData_SetPlateMined(undergroundData, id);
     }
 }
 
@@ -2522,77 +2503,77 @@ static BOOL Mining_IsRoomInBag(int itemID)
     }
 }
 
-static BOOL ov23_02240934(UnkStruct_ov23_0223EE80 *param0)
+static BOOL Mining_AreAllItemsDugUp(UnkStruct_ov23_0223EE80 *param0)
 {
-    int v0, v1, v2;
-    BOOL v3[4];
-    BOOL v4 = 1;
+    int y, x, i;
+    BOOL itemsDugUp[MAX_BURIED_ITEMS];
+    BOOL everythingDugUp = TRUE;
 
-    for (v2 = 0; v2 < param0->itemCount; v2++) {
-        v3[v2] = 1;
+    for (i = 0; i < param0->itemCount; i++) {
+        itemsDugUp[i] = TRUE;
     }
 
-    for (v0 = 0; v0 < 10; v0++) {
-        for (v1 = 0; v1 < 13; v1++) {
-            v2 = Unk_ov23_02257740->unk_920[v0][v1];
+    for (y = 0; y < MINING_GAME_HEIGHT; y++) {
+        for (x = 0; x < MINING_GAME_WIDTH; x++) {
+            i = Unk_ov23_02257740->buriedObjectGrid[y][x];
 
-            if ((v2 <= param0->itemCount) && (v2 != 0)) {
-                if (Unk_ov23_02257740->unk_9A2[v0][v1] != 0) {
-                    v3[v2 - 1] = 0;
+            if ((i <= param0->itemCount) && (i != 0)) {
+                if (Unk_ov23_02257740->dirtCover[y][x] != 0) {
+                    itemsDugUp[i - 1] = FALSE;
                 }
             }
         }
     }
 
-    for (v2 = 0; v2 < param0->itemCount; v2++) {
-        if (!v3[v2]) {
-            v4 = 0;
-        } else if (Unk_ov23_02257740->unk_874[v2].unk_08 == 0) {
-            param0->unk_38[v2] = 1;
-            Unk_ov23_02257740->unk_874[v2].unk_08 = 1;
+    for (i = 0; i < param0->itemCount; i++) {
+        if (!itemsDugUp[i]) {
+            everythingDugUp = FALSE;
+        } else if (Unk_ov23_02257740->buriedObjects[i].isDugUp == FALSE) {
+            param0->unk_38[i] = 1;
+            Unk_ov23_02257740->buriedObjects[i].isDugUp = TRUE;
         }
     }
 
-    return v4;
+    return everythingDugUp;
 }
 
-static BOOL ov23_022409F0(UnkStruct_ov23_0223EE80 *param0)
+static BOOL Mining_PrintNextDugUpItem(UnkStruct_ov23_0223EE80 *param0)
 {
-    int v0, entryID;
+    int i, entryID;
 
-    for (v0 = 0; v0 < param0->itemCount; v0++) {
-        if (Unk_ov23_02257740->unk_874[v0].unk_08 == 1) {
-            param0->unk_48 = ov23_0224080C(Unk_ov23_02257740->unk_874[v0].itemID);
+    for (i = 0; i < param0->itemCount; i++) {
+        if (Unk_ov23_02257740->buriedObjects[i].isDugUp == TRUE) {
+            param0->sizeOfCurrentSphere = Mining_GenerateSizeOfMinedSphere(Unk_ov23_02257740->buriedObjects[i].itemID);
 
-            ov23_02254080(ov23_0224219C(), Unk_ov23_02257740->unk_874[v0].itemID);
+            ov23_02254080(ov23_0224219C(), Unk_ov23_02257740->buriedObjects[i].itemID);
 
-            if (IsMiningItemSphere(Unk_ov23_02257740->unk_874[v0].itemID)) {
+            if (IsMiningItemSphere(Unk_ov23_02257740->buriedObjects[i].itemID)) {
                 entryID = UndergroundCommon_Text_YouObtainedSphere;
-                ov23_02254154(ov23_0224219C(), 1, param0->unk_48);
+                ov23_02254154(ov23_0224219C(), 1, param0->sizeOfCurrentSphere);
             } else {
                 entryID = UndergroundCommon_Text_ItemWasObtained;
                 ov23_02254204(ov23_0224219C(), 2);
             }
 
             Unk_ov23_02257740->unk_A24 = ov23_02253F40(ov23_0224219C(), entryID, 0, NULL);
-            return 1;
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov23_02240A90(UnkStruct_ov23_0223EE80 *param0)
+static BOOL Mining_ProcessNextDugUpItem(UnkStruct_ov23_0223EE80 *param0)
 {
-    int v0, v1, itemID;
+    int i, itemID;
     UndergroundRecord *undergroundRecord = SaveData_UndergroundRecord(Unk_ov23_02257740->fieldSystem->saveData);
-    UndergroundData *undergroundData = SaveData_GetUndergroundData(Unk_ov23_02257740->fieldSystem->saveData);
+    UndergroundData *unused = SaveData_GetUndergroundData(Unk_ov23_02257740->fieldSystem->saveData);
 
-    for (v0 = 0; v0 < param0->itemCount; v0++) {
-        if (Unk_ov23_02257740->unk_874[v0].unk_08 == 1) {
-            Unk_ov23_02257740->unk_874[v0].unk_08 = 0;
+    for (i = 0; i < param0->itemCount; i++) {
+        if (Unk_ov23_02257740->buriedObjects[i].isDugUp == TRUE) {
+            Unk_ov23_02257740->buriedObjects[i].isDugUp = FALSE;
 
-            itemID = Unk_ov23_02257740->unk_874[v0].itemID;
+            itemID = Unk_ov23_02257740->buriedObjects[i].itemID;
 
             if (IsMiningItemSphere(itemID)) {
                 UndergroundRecord_AddNumSpheresDug(undergroundRecord, 1);
@@ -2613,19 +2594,19 @@ static BOOL ov23_02240A90(UnkStruct_ov23_0223EE80 *param0)
             }
 
             if (Mining_IsRoomInBag(itemID)) {
-                ov23_022408A0(itemID, param0->unk_48);
+                Mining_AddItem(itemID, param0->sizeOfCurrentSphere);
                 break;
             } else {
                 Unk_ov23_02257740->unk_A24 = ov23_02253F40(ov23_0224219C(), UndergroundCommon_Text_TooBadBagIsFull3, 0, NULL);
-                return 1;
+                return TRUE;
             }
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-static void ov23_02240B84(BgConfig *param0)
+static void ov23_02240B84(BgConfig *bgConfig)
 {
     int v0, v1, v2;
     VecFx32 v3;
@@ -2634,16 +2615,16 @@ static void ov23_02240B84(BgConfig *param0)
         return;
     }
 
-    v1 = (((200 - 4) - Unk_ov23_02257740->unk_A2B) / 15);
-    v2 = (((200 - 4) - Unk_ov23_02257740->unk_A2B) / 50);
+    v1 = ((INITIAL_WALL_INTEGRITY - Unk_ov23_02257740->wallIntegrity) / 15);
+    v2 = ((INITIAL_WALL_INTEGRITY - Unk_ov23_02257740->wallIntegrity) / 50);
 
     Unk_ov23_02257740->unk_A2C++;
 
     if (Unk_ov23_02257740->unk_A2C > v1) {
         Unk_ov23_02257740->unk_A2D = Unk_ov23_02257740->unk_A2E = 0;
     } else {
-        Unk_ov23_02257740->unk_A2D = MATH_Rand32(&Unk_ov23_02257740->unk_08, 3 + v2) - (3 + v2) / 2;
-        Unk_ov23_02257740->unk_A2E = MATH_Rand32(&Unk_ov23_02257740->unk_08, 3 + v2) - (3 + v2) / 2;
+        Unk_ov23_02257740->unk_A2D = MATH_Rand32(&Unk_ov23_02257740->rand, 3 + v2) - (3 + v2) / 2;
+        Unk_ov23_02257740->unk_A2E = MATH_Rand32(&Unk_ov23_02257740->rand, 3 + v2) - (3 + v2) / 2;
     }
 
     ov23_02240660(&v3);
@@ -2651,34 +2632,33 @@ static void ov23_02240B84(BgConfig *param0)
     v3.x -= Unk_ov23_02257740->unk_A2D * FX32_ONE;
     v3.y -= Unk_ov23_02257740->unk_A2E * FX32_ONE;
 
-    Sprite_SetPosition(Unk_ov23_02257740->unk_24C[1], &v3);
+    Sprite_SetPosition(Unk_ov23_02257740->sprites[1], &v3);
 }
 
-static void ov23_02240C94(BgConfig *param0)
+static void ov23_02240C94(BgConfig *bgConfig)
 {
-    int v0, v1, v2;
-    VecFx32 v3;
+    int bgLayer, v1, v2;
 
     if (Unk_ov23_02257740->unk_A2C == 0) {
         return;
     }
 
-    v1 = (((200 - 4) - Unk_ov23_02257740->unk_A2B) / 10);
+    v1 = ((INITIAL_WALL_INTEGRITY - Unk_ov23_02257740->wallIntegrity) / 10);
 
     if (Unk_ov23_02257740->unk_A2C > v1) {
         Unk_ov23_02257740->unk_A2C = 0;
     }
 
-    for (v0 = 0; v0 < 3; v0++) {
-        Bg_SetOffset(param0, v0, 0, Unk_ov23_02257740->unk_A2D);
-        Bg_SetOffset(param0, v0, 3, Unk_ov23_02257740->unk_A2E);
+    for (bgLayer = BG_LAYER_MAIN_0; bgLayer < BG_LAYER_MAIN_3; bgLayer++) {
+        Bg_SetOffset(bgConfig, bgLayer, BG_OFFSET_UPDATE_SET_X, Unk_ov23_02257740->unk_A2D);
+        Bg_SetOffset(bgConfig, bgLayer, BG_OFFSET_UPDATE_SET_Y, Unk_ov23_02257740->unk_A2E);
     }
 }
 
-static BOOL ov23_02240CFC(UnkStruct_ov23_0223EE80 *param0)
+static BOOL Mining_MainGameLoop(UnkStruct_ov23_0223EE80 *param0)
 {
     u8 v0[2];
-    int v1;
+    int damageToWall;
     UndergroundData *undergroundData = SaveData_GetUndergroundData(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
 
     if (Unk_ov23_02257740->unk_A29 == 1) {
@@ -2690,24 +2670,24 @@ static BOOL ov23_02240CFC(UnkStruct_ov23_0223EE80 *param0)
             v0[0] = gSystem.touchX;
             v0[1] = gSystem.touchY;
 
-            ov23_022402B8(gSystem.touchX, gSystem.touchY, Unk_ov23_02257740->unk_A28, param0);
+            Mining_RemoveDirt(gSystem.touchX, gSystem.touchY, Unk_ov23_02257740->pickaxeSelected, param0);
 
-            if (Unk_ov23_02257740->unk_A28) {
-                v1 = 4;
+            if (Unk_ov23_02257740->pickaxeSelected) {
+                damageToWall = 4;
             } else {
-                v1 = 8;
+                damageToWall = 8;
             }
 
             CommSys_SendDataFixedSize(68, v0);
 
-            if (Unk_ov23_02257740->unk_A2B > v1) {
-                Unk_ov23_02257740->unk_A2B -= v1;
+            if (Unk_ov23_02257740->wallIntegrity > damageToWall) {
+                Unk_ov23_02257740->wallIntegrity -= damageToWall;
             } else {
-                Unk_ov23_02257740->unk_A2B = 0;
+                Unk_ov23_02257740->wallIntegrity = 0;
             }
 
-            ov23_022401B0(Unk_ov23_02257740->unk_04);
-            ov23_02240688(Unk_ov23_02257740->unk_04);
+            Mining_DrawDirt(Unk_ov23_02257740->bgConfig);
+            Mining_DrawWallCrack(Unk_ov23_02257740->bgConfig);
 
             Unk_ov23_02257740->unk_A2C = 1;
         } else if (gSystem.touchX >= (2 * 8 * 13)) {
@@ -2723,31 +2703,31 @@ static BOOL ov23_02240CFC(UnkStruct_ov23_0223EE80 *param0)
         }
     }
 
-    ov23_022404F8(Unk_ov23_02257740->unk_04, gSystem.touchX, gSystem.touchY, Unk_ov23_02257740->unk_A29);
+    ov23_022404F8(Unk_ov23_02257740->bgConfig, gSystem.touchX, gSystem.touchY, Unk_ov23_02257740->unk_A29);
 
     if (Unk_ov23_02257740->unk_A29 >= 2) {
         Unk_ov23_02257740->unk_A29++;
     }
 
-    ov23_02240758(param0);
+    Mining_NearbyLinksRemoveDirt(param0);
 
-    if (ov23_02240934(param0)) {
+    if (Mining_AreAllItemsDugUp(param0)) {
         UndergroundData_SetHasMined(undergroundData);
         GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(Unk_ov23_02257740->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNDERGROUND_UNCOVER_FOSSIL);
-        param0->unk_00 = 14;
-        param0->unk_08 = 25;
+        param0->state = 14;
+        param0->timer = 25;
         param0->unk_50 = 1;
-        return 1;
-    } else if (Unk_ov23_02257740->unk_A2B == 0) {
+        return TRUE;
+    } else if (Unk_ov23_02257740->wallIntegrity == 0) {
         UndergroundData_SetHasMined(undergroundData);
         param0->unk_50 = 0;
-        param0->unk_08 = 45;
-        param0->unk_00 = 22;
+        param0->timer = 45;
+        param0->state = 22;
 
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static void ov23_02240E60(SpriteResource *param0)
@@ -2765,35 +2745,35 @@ static void ov23_02240E88(void)
 
     NNS_G2dInitOamManagerModule();
 
-    RenderOam_Init(0, 124, 0, 31, 0, 124, 0, 31, 29);
+    RenderOam_Init(0, 124, 0, 31, 0, 124, 0, 31, HEAP_ID_MINING);
     ov23_0224119C();
 
-    Unk_ov23_02257740->unk_20 = SpriteList_InitRendering(26, &Unk_ov23_02257740->unk_24, HEAP_ID_29);
+    Unk_ov23_02257740->spriteList = SpriteList_InitRendering(26, &Unk_ov23_02257740->g2DRenderer, HEAP_ID_MINING);
 
-    SetSubScreenViewRect(&Unk_ov23_02257740->unk_24, 0, (192 << FX32_SHIFT) * 2);
+    SetSubScreenViewRect(&Unk_ov23_02257740->g2DRenderer, 0, (192 << FX32_SHIFT) * 2);
 
     for (v0 = 0; v0 < 4; v0++) {
-        Unk_ov23_02257740->unk_1B0[v0] = SpriteResourceCollection_New(2, v0, HEAP_ID_29);
+        Unk_ov23_02257740->unk_1B0[v0] = SpriteResourceCollection_New(2, v0, HEAP_ID_MINING);
     }
 
-    v1 = NARC_ctor(NARC_INDEX_DATA__UG_ANIM, HEAP_ID_29);
+    v1 = NARC_ctor(NARC_INDEX_DATA__UG_ANIM, HEAP_ID_MINING);
 
-    ov23_02240E60(SpriteResourceCollection_AddTilesFrom(Unk_ov23_02257740->unk_1B0[0], v1, 6, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 29));
+    ov23_02240E60(SpriteResourceCollection_AddTilesFrom(Unk_ov23_02257740->unk_1B0[0], v1, 6, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_MINING));
     SpriteTransfer_RequestChar(Unk_ov23_02257740->unk_1C0[Unk_ov23_02257740->unk_A2F - 1]);
-    ov23_02240E60(SpriteResourceCollection_AddPaletteFrom(Unk_ov23_02257740->unk_1B0[1], v1, 7, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1, 29));
+    ov23_02240E60(SpriteResourceCollection_AddPaletteFrom(Unk_ov23_02257740->unk_1B0[1], v1, 7, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1, HEAP_ID_MINING));
 
     SpriteTransfer_RequestPlttFreeSpace(Unk_ov23_02257740->unk_1C0[Unk_ov23_02257740->unk_A2F - 1]);
 
-    ov23_02240E60(SpriteResourceCollection_AddFrom(Unk_ov23_02257740->unk_1B0[2], v1, 5, 0, 0, 2, 29));
-    ov23_02240E60(SpriteResourceCollection_AddFrom(Unk_ov23_02257740->unk_1B0[3], v1, 4, 0, 0, 3, 29));
-    ov23_02240E60(SpriteResourceCollection_AddTilesFrom(Unk_ov23_02257740->unk_1B0[0], v1, 3, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 29));
+    ov23_02240E60(SpriteResourceCollection_AddFrom(Unk_ov23_02257740->unk_1B0[2], v1, 5, 0, 0, 2, HEAP_ID_MINING));
+    ov23_02240E60(SpriteResourceCollection_AddFrom(Unk_ov23_02257740->unk_1B0[3], v1, 4, 0, 0, 3, HEAP_ID_MINING));
+    ov23_02240E60(SpriteResourceCollection_AddTilesFrom(Unk_ov23_02257740->unk_1B0[0], v1, 3, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_MINING));
 
     SpriteTransfer_RequestChar(Unk_ov23_02257740->unk_1C0[Unk_ov23_02257740->unk_A2F - 1]);
-    ov23_02240E60(SpriteResourceCollection_AddPalette(Unk_ov23_02257740->unk_1B0[1], 52, 1, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 29));
+    ov23_02240E60(SpriteResourceCollection_AddPalette(Unk_ov23_02257740->unk_1B0[1], 52, 1, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 3, HEAP_ID_MINING));
     SpriteTransfer_RequestPlttFreeSpace(Unk_ov23_02257740->unk_1C0[Unk_ov23_02257740->unk_A2F - 1]);
 
-    ov23_02240E60(SpriteResourceCollection_AddFrom(Unk_ov23_02257740->unk_1B0[2], v1, 2, 0, 1, 2, 29));
-    ov23_02240E60(SpriteResourceCollection_AddFrom(Unk_ov23_02257740->unk_1B0[3], v1, 1, 0, 1, 3, 29));
+    ov23_02240E60(SpriteResourceCollection_AddFrom(Unk_ov23_02257740->unk_1B0[2], v1, 2, 0, 1, 2, HEAP_ID_MINING));
+    ov23_02240E60(SpriteResourceCollection_AddFrom(Unk_ov23_02257740->unk_1B0[3], v1, 1, 0, 1, 3, HEAP_ID_MINING));
     NARC_dtor(v1);
 }
 
@@ -2805,7 +2785,7 @@ static void ov23_0224108C(void)
     for (v0 = 0; v0 < 2; v0++) {
         SpriteResourcesHeader_Init(&Unk_ov23_02257740->unk_204[v0], v0, v0, v0, v0, 0xffffffff, 0xffffffff, 0, 0, Unk_ov23_02257740->unk_1B0[0], Unk_ov23_02257740->unk_1B0[1], Unk_ov23_02257740->unk_1B0[2], Unk_ov23_02257740->unk_1B0[3], NULL, NULL);
 
-        v2.list = Unk_ov23_02257740->unk_20;
+        v2.list = Unk_ov23_02257740->spriteList;
         v2.resourceData = &Unk_ov23_02257740->unk_204[v0];
         v2.position.x = FX32_CONST(32);
         v2.position.y = FX32_CONST(96);
@@ -2816,19 +2796,19 @@ static void ov23_0224108C(void)
         v2.affineZRotation = 0;
         v2.priority = 0;
         v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v2.heapID = HEAP_ID_29;
+        v2.heapID = HEAP_ID_MINING;
         v2.position.x = FX32_ONE * 0;
         v2.position.y = FX32_ONE * 240;
 
         if (v0 == 0) {
             for (v1 = 2; v1 <= 7; v1++) {
-                Unk_ov23_02257740->unk_24C[v1] = SpriteList_AddAffine(&v2);
-                Sprite_SetAnimateFlag(Unk_ov23_02257740->unk_24C[v1], 1);
+                Unk_ov23_02257740->sprites[v1] = SpriteList_AddAffine(&v2);
+                Sprite_SetAnimateFlag(Unk_ov23_02257740->sprites[v1], TRUE);
             }
         }
 
-        Unk_ov23_02257740->unk_24C[v0] = SpriteList_AddAffine(&v2);
-        Sprite_SetAnimateFlag(Unk_ov23_02257740->unk_24C[v0], 1);
+        Unk_ov23_02257740->sprites[v0] = SpriteList_AddAffine(&v2);
+        Sprite_SetAnimateFlag(Unk_ov23_02257740->sprites[v0], TRUE);
     }
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -2845,7 +2825,7 @@ static void ov23_0224119C(void)
         CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_128K);
     }
 
-    PlttTransfer_Init(20, HEAP_ID_29);
+    PlttTransfer_Init(20, HEAP_ID_MINING);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
@@ -2854,11 +2834,11 @@ static void ov23_0224119C(void)
 
 static void ov23_022411E8(void *param0)
 {
-    BgConfig *v0 = param0;
+    BgConfig *bgConfig = param0;
 
-    ov23_02240C94(v0);
+    ov23_02240C94(bgConfig);
 
-    Bg_RunScheduledUpdates(v0);
+    Bg_RunScheduledUpdates(bgConfig);
     VramTransfer_Process();
     RenderOam_Transfer();
 }
