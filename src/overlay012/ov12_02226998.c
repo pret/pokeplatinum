@@ -3,9 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "overlay012/battle_anim_system.h"
 #include "overlay012/funcptr_ov12_02239E64_1.h"
-#include "overlay012/funcptr_ov12_02239E68.h"
-#include "overlay012/funcptr_ov12_02239EEC.h"
+#include "overlay012/ov12_02226998.h"
 #include "overlay012/ov12_022269C0.h"
 #include "overlay012/ov12_02226B84.h"
 #include "overlay012/ov12_0222AC70.h"

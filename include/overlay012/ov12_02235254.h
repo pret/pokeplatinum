@@ -5,7 +5,7 @@
 
 #include "generated/battle_script_battlers.h"
 
-#include "overlay012/struct_ov12_0221FCDC_decl.h"
+#include "overlay012/battle_anim_system.h"
 #include "overlay012/struct_ov12_02235350.h"
 #include "overlay012/struct_ov12_0223595C.h"
 #include "overlay012/struct_ov12_02235998.h"

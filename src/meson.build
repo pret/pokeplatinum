@@ -492,7 +492,7 @@ pokeplatinum_c = files(
     'overlay011/move_palettes.c',
     'overlay011/ov11_0221F840.c',
     'overlay012/is_form_symmetrical.c',
-    'overlay012/ov12_0221FC20.c',
+    'overlay012/battle_anim_system.c',
     'overlay012/ov12_022237EC.c',
     'overlay012/ov12_0222389C.c',
     'overlay012/ov12_0222421C.c',

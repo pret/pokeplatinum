@@ -1,10 +1,12 @@
 #ifndef POKEPLATINUM_OV12_02226998_H
 #define POKEPLATINUM_OV12_02226998_H
 
-#include "overlay012/funcptr_ov12_02239E68.h"
-#include "overlay012/funcptr_ov12_02239EEC.h"
+#include "sprite_system.h"
 
-typedef void (*BattleAnimScriptFunc)(BattleAnimSystem *system);
+struct BattleAnimSystem;
+
+typedef void (*BattleAnimScriptFunc)(struct BattleAnimSystem *system);
+typedef void (*BattleAnimScriptSpriteFunc)(struct BattleAnimSystem *, SpriteSystem *, SpriteManager *, ManagedSprite *);
 
 enum BattleAnimScriptFuncID {
     BATTLE_ANIM_SCRIPT_FUNC_NOOP = 0,

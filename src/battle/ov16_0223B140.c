@@ -31,7 +31,7 @@
 #include "overlay010/ov10_0221F800.h"
 #include "overlay010/struct_ov10_0221F800.h"
 #include "overlay011/ov11_0221F840.h"
-#include "overlay012/ov12_0221FC20.h"
+#include "overlay012/battle_anim_system.h"
 
 #include "bag.h"
 #include "bg_window.h"

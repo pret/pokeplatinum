@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay012/ov12_0221FC20.h"
+#include "overlay012/battle_anim_system.h"
 #include "overlay012/ov12_02235254.h"
 #include "overlay012/struct_ov12_02225640.h"
 

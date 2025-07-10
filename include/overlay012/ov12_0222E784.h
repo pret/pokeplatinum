@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV12_0222E784_H
 #define POKEPLATINUM_OV12_0222E784_H
 
-#include "overlay012/struct_ov12_0221FCDC_decl.h"
+#include "overlay012/battle_anim_system.h"
 
 void ov12_0222E810(BattleAnimSystem *param0);
 

@@ -2,13 +2,13 @@
 
 #include <nitro.h>
 #include <string.h>
+
 #include "constants/battle/battle_anim.h"
 
+#include "overlay012/battle_anim_system.h"
 #include "overlay012/funcptr_ov12_02226274.h"
-#include "overlay012/ov12_0221FC20.h"
-#include "overlay012/ov12_02235254.h"
-#include "overlay012/struct_ov12_0221FCDC_decl.h"
 #include "overlay012/ov12_02225864.h"
+#include "overlay012/ov12_02235254.h"
 #include "overlay012/struct_ov12_02225F6C.h"
 #include "overlay012/struct_ov12_02226274.h"
 #include "overlay012/struct_ov12_02226454.h"
@@ -77,22 +77,22 @@ static void ov12_022268DC(u16 *param0, u16 param1);
 static const BattleAnimPosition sBattleAnimBattlerPositions[][6] = {
     // Single Battle
     {
-        [BATTLER_TYPE_SOLO_PLAYER]        = {  64, 112 },
-        [BATTLER_TYPE_SOLO_ENEMY]         = { 192,  48 },
+        [BATTLER_TYPE_SOLO_PLAYER] = { 64, 112 },
+        [BATTLER_TYPE_SOLO_ENEMY] = { 192, 48 },
         [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = { 216, 112 },
-        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1]  = {  80,  42 },
-        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = {   0,   0 },
-        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2]  = {   0,   0 },
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = { 80, 42 },
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = { 0, 0 },
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = { 0, 0 },
     },
 
     // Double Battle
     {
-        [BATTLER_TYPE_SOLO_PLAYER]        = {  64, 112 },
-        [BATTLER_TYPE_SOLO_ENEMY]         = { 192,  48 },
-        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = {  40, 112 },
-        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1]  = { 216,  50 },
-        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = {  80, 120 },
-        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2]  = { 176,  42 },
+        [BATTLER_TYPE_SOLO_PLAYER] = { 64, 112 },
+        [BATTLER_TYPE_SOLO_ENEMY] = { 192, 48 },
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = { 40, 112 },
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = { 216, 50 },
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = { 80, 120 },
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = { 176, 42 },
     },
 };
 
@@ -1023,10 +1023,14 @@ u32 ov12_022266E8(u16 param0, u16 param1)
 u32 BattleAnimUtil_GetHOffsetRegisterForBg(int bgID)
 {
     switch (bgID) {
-    case BATTLE_BG_ID_UNUSED: return REG_BG0HOFS_ADDR;
-    case BATTLE_BG_ID_WINDOW: return REG_BG1HOFS_ADDR;
-    case BATTLE_BG_ID_BASE: return REG_BG2HOFS_ADDR;
-    case BATTLE_BG_ID_EFFECT: return REG_BG3HOFS_ADDR;
+    case BATTLE_BG_ID_UNUSED:
+        return REG_BG0HOFS_ADDR;
+    case BATTLE_BG_ID_WINDOW:
+        return REG_BG1HOFS_ADDR;
+    case BATTLE_BG_ID_BASE:
+        return REG_BG2HOFS_ADDR;
+    case BATTLE_BG_ID_EFFECT:
+        return REG_BG3HOFS_ADDR;
     }
 }
 

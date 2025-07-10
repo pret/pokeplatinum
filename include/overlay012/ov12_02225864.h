@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_OV12_02225864_H
 #define POKEPLATINUM_OV12_02225864_H
 
+#include "overlay012/battle_anim_system.h"
 #include "overlay012/funcptr_ov12_02226274.h"
-#include "overlay012/struct_ov12_0221FCDC_decl.h"
 #include "overlay012/struct_ov12_02225F6C.h"
 #include "overlay012/struct_ov12_02226274.h"
 #include "overlay012/struct_ov12_02226454.h"
