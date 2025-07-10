@@ -15,7 +15,7 @@
 #include "string_template.h"
 #include "text.h"
 
-int ov94_022414B8(GTSApplicationState *param0, int param1);
+int GTSApplication_Deposit_Init(GTSApplicationState *param0, int param1);
 int ov94_02241548(GTSApplicationState *param0, int param1);
 int ov94_02241568(GTSApplicationState *param0, int param1);
 int ov94_02241B80(GTSPokemonRequirements *param0, int genderRatio);

@@ -12,16 +12,16 @@
 
 #include "overlay094/gts_application_state.h"
 #include "overlay094/ov94_0223B140.h"
-#include "overlay094/ov94_0223D0C4.h"
-#include "overlay094/ov94_0223DC04.h"
-#include "overlay094/ov94_0223E46C.h"
-#include "overlay094/ov94_022414B8.h"
 #include "overlay094/ov94_02243EF8.h"
-#include "overlay094/ov94_022443E0.h"
 #include "overlay094/ov94_02244950.h"
+#include "overlay094/screens/deposit.h"
+#include "overlay094/screens/listing_summary.h"
 #include "overlay094/screens/main_menu.h"
 #include "overlay094/screens/network_handler.h"
+#include "overlay094/screens/pokemon_info.h"
+#include "overlay094/screens/search.h"
 #include "overlay094/screens/select_pokemon.h"
+#include "overlay094/screens/summary.h"
 #include "overlay094/screens/trade.h"
 
 #include "bg_window.h"
@@ -71,15 +71,15 @@ static NNSFndHeapHandle sGTSHeapHandle;
 
 // gtsApplicationScreens { init, main, exit }
 static int (*gtsApplicationScreens[][3])(GTSApplicationState *, int) = {
-    { GTSApplication_InitWFCScreen, GTSApplication_WFCInit_Main, GTSApplication_WFCInit_Exit }, // wfc
+    { GTSApplication_InitWFCScreen, GTSApplication_WFCInit_Main, GTSApplication_WFCInit_Exit },
     { GTSApplication_MainMenu_Init, GTSApplication_MainMenu_Main, GTSApplication_MainMenu_Exit },
-    { ov94_0223D0C4, ov94_0223D19C, ov94_0223D1B0 }, // summary?
-    { ov94_0223DC04, ov94_0223DCE4, ov94_0223DCF8 },
-    { ov94_0223E46C, ov94_0223E560, ov94_0223E574 }, // search
-    { GTSApplication_SelectPokemon_Init, GTSApplication_SelectPokemon_Main, ov94_0223FBDC }, // deposit
-    { ov94_022414B8, ov94_02241548, ov94_02241568 },
+    { GTSApplication_Summary_Init, ov94_0223D19C, ov94_0223D1B0 },
+    { GTSApplication_ListingSummary_Init, ov94_0223DCE4, ov94_0223DCF8 },
+    { GTSApplication_Search_Init, ov94_0223E560, ov94_0223E574 },
+    { GTSApplication_SelectPokemon_Init, GTSApplication_SelectPokemon_Main, ov94_0223FBDC },
+    { GTSApplication_Deposit_Init, ov94_02241548, ov94_02241568 },
     { GTSApplication_NetworkHandler_Init, GTSApplication_NetworkHandler_Main, GTSApplication_NetworkHandler_Exit },
-    { ov94_022443E0, ov94_02244490, ov94_022444BC },
+    { GTSApplication_PokemonInfo_Init, ov94_02244490, ov94_022444BC },
     { GTSApplication_Trade_Init, GTSApplication_Trade_Main, GTSApplication_Trade_Exit },
 };
 

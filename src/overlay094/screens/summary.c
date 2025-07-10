@@ -1,4 +1,4 @@
-#include "overlay094/ov94_0223D0C4.h"
+#include "overlay094/screens/summary.h"
 
 #include <dwc.h>
 #include <nitro.h>
@@ -7,8 +7,8 @@
 #include "overlay094/application.h"
 #include "overlay094/const_ov94_02245FD8.h"
 #include "overlay094/gts_application_state.h"
-#include "overlay094/ov94_022414B8.h"
 #include "overlay094/ov94_02244950.h"
+#include "overlay094/screens/deposit.h"
 #include "overlay094/screens/select_pokemon.h"
 #include "overlay094/struct_ov94_0223BA88_sub2.h"
 
@@ -71,7 +71,7 @@ static int (*Unk_ov94_02246808[])(GTSApplicationState *) = {
     ov94_0223D754
 };
 
-int ov94_0223D0C4(GTSApplicationState *param0, int param1)
+int GTSApplication_Summary_Init(GTSApplicationState *param0, int param1)
 {
     Pokemon *v0;
 
@@ -563,10 +563,10 @@ void ov94_0223DA78(MessageLoader *param0, Window param1[], u16 *param2, Pokemon 
     v0 = Strbuf_Init((7 + 1) * 2, HEAP_ID_62);
     v3 = Strbuf_Init((7 + 1) * 2, HEAP_ID_62);
 
-    v1 = MessageLoader_GetNewStrbuf(param0, 48);
+    v1 = MessageLoader_GetNewStrbuf(param0, pl_msg_00000671_00048);
     Strbuf_CopyChars(v0, param2);
 
-    v2 = MessageLoader_GetNewStrbuf(param0, 172);
+    v2 = MessageLoader_GetNewStrbuf(param0, pl_msg_00000671_00172);
     Pokemon_GetValue(param3, MON_DATA_OTNAME_STRBUF, v3);
 
     ov94_02245900(&param1[0], v1, 0, 0, 0, TEXT_COLOR(15, 2, 0));

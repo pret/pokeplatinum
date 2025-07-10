@@ -9,7 +9,7 @@
 #include "pokemon.h"
 #include "string_template.h"
 
-int ov94_0223D0C4(GTSApplicationState *param0, int param1);
+int GTSApplication_Summary_Init(GTSApplicationState *param0, int param1);
 int ov94_0223D19C(GTSApplicationState *param0, int param1);
 int ov94_0223D1B0(GTSApplicationState *param0, int param1);
 void ov94_0223D910(MessageLoader *param0, MessageLoader *param1, StringTemplate *param2, Window param3[], BoxPokemon *boxMon, GTSPokemonCriteria *param5);

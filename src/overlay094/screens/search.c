@@ -1,4 +1,4 @@
-#include "overlay094/ov94_0223E46C.h"
+#include "overlay094/screens/search.h"
 
 #include <dwc.h>
 #include <nitro.h>
@@ -10,9 +10,9 @@
 #include "overlay094/const_ov94_02245FD4.h"
 #include "overlay094/gts_application_state.h"
 #include "overlay094/ov94_0223B140.h"
-#include "overlay094/ov94_022414B8.h"
 #include "overlay094/ov94_02243EF8.h"
 #include "overlay094/ov94_02244950.h"
+#include "overlay094/screens/deposit.h"
 #include "overlay094/struct_ov94_0223BA24.h"
 #include "overlay094/struct_ov94_0223BA88_sub3.h"
 
@@ -131,7 +131,7 @@ static u16 Unk_ov94_02246848[][2] = {
     { 0xB0, 0x60 }
 };
 
-int ov94_0223E46C(GTSApplicationState *param0, int param1)
+int GTSApplication_Search_Init(GTSApplicationState *param0, int param1)
 {
     ov94_0223E9B8(param0);
     ov94_0223E598(param0->bgConfig);

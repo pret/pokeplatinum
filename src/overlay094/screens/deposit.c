@@ -1,4 +1,4 @@
-#include "overlay094/ov94_022414B8.h"
+#include "overlay094/screens/deposit.h"
 
 #include <dwc.h>
 #include <nitro.h>
@@ -280,7 +280,7 @@ __attribute__((aligned(4))) static const u16 gtsAvailableCountries[] = {
 
 const u32 Unk_ov94_02245FD4 = NELEMS(gtsAvailableCountries);
 
-int ov94_022414B8(GTSApplicationState *param0, int param1)
+int GTSApplication_Deposit_Init(GTSApplicationState *param0, int param1)
 {
     ov94_022418B8(param0);
     ov94_022415F8(param0->bgConfig);

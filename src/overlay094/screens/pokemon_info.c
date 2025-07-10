@@ -1,4 +1,4 @@
-#include "overlay094/ov94_022443E0.h"
+#include "overlay094/screens/pokemon_info.h"
 
 #include <dwc.h>
 #include <nitro.h>
@@ -26,7 +26,7 @@ static const u8 Unk_ov94_02246360[] = {
     0x8
 };
 
-int ov94_022443E0(GTSApplicationState *param0, int param1)
+int GTSApplication_PokemonInfo_Init(GTSApplicationState *param0, int param1)
 {
     param0->unk_B8.monData = ov94_022411DC(param0->playerData->party, param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112);
     param0->unk_B8.dataType = SUMMARY_DATA_BOX_MON;

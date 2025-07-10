@@ -1,4 +1,4 @@
-#include "overlay094/ov94_0223DC04.h"
+#include "overlay094/screens/listing_summary.h"
 
 #include <dwc.h>
 #include <nitro.h>
@@ -6,10 +6,10 @@
 
 #include "overlay094/application.h"
 #include "overlay094/gts_application_state.h"
-#include "overlay094/ov94_0223D0C4.h"
-#include "overlay094/ov94_022414B8.h"
 #include "overlay094/ov94_02243EF8.h"
 #include "overlay094/ov94_02244950.h"
+#include "overlay094/screens/deposit.h"
+#include "overlay094/screens/summary.h"
 #include "overlay094/struct_ov94_0223BA88.h"
 #include "overlay094/struct_ov94_0223BA88_sub3.h"
 
@@ -30,6 +30,8 @@
 #include "system.h"
 #include "text.h"
 #include "unk_020393C8.h"
+
+#include "res/text/bank/gts.h"
 
 static void ov94_0223DD1C(BgConfig *param0);
 static void ov94_0223DDE0(BgConfig *param0);
@@ -63,7 +65,7 @@ static int (*Unk_ov94_0224682C[])(GTSApplicationState *wk) = {
     ov94_0223E2D0
 };
 
-int ov94_0223DC04(GTSApplicationState *param0, int param1)
+int GTSApplication_ListingSummary_Init(GTSApplicationState *param0, int param1)
 {
     Pokemon *v0;
 
@@ -321,7 +323,7 @@ static int ov94_0223E09C(GTSApplicationState *param0)
 static int ov94_0223E0A4(GTSApplicationState *param0)
 {
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
-        ov94_0223E300(param0, 16, TEXT_SPEED_FAST, 0, 0xf0f);
+        ov94_0223E300(param0, pl_msg_00000671_00016, TEXT_SPEED_FAST, 0, 0xf0f);
         GTSApplication_SetCurrentAndNextScreenInstruction(param0, 3, 4);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
@@ -439,8 +441,8 @@ static void ov94_0223E358(MessageLoader *param0, Window param1[])
 {
     Strbuf *v0, *v1;
 
-    v0 = MessageLoader_GetNewStrbuf(param0, 74);
-    v1 = MessageLoader_GetNewStrbuf(param0, 78);
+    v0 = MessageLoader_GetNewStrbuf(param0, pl_msg_00000671_00074);
+    v1 = MessageLoader_GetNewStrbuf(param0, pl_msg_00000671_00078);
 
     ov94_02245900(&param1[0], v0, 0, 2, 0, TEXT_COLOR(15, 2, 0));
     ov94_02245900(&param1[1], v1, 0, 2, 1, TEXT_COLOR(15, 2, 0));
