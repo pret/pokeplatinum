@@ -585,23 +585,23 @@ UnkStruct_ov19_021DCD18 *ov19_021D84C8(UnkStruct_ov19_021D8318 *param0, u32 posI
 
 void ov19_021D84E0(UnkStruct_ov19_021D8318 *param0)
 {
-    int i, v1;
+    int i, boxID;
     BoxPokemon *boxMon;
 
-    v1 = PCBoxes_GetCurrentBoxID(param0->unk_58F8->pcBoxes);
+    boxID = PCBoxes_GetCurrentBoxID(param0->unk_58F8->pcBoxes);
 
     for (i = 0; i < MAX_MONS_PER_BOX; i++) {
-        boxMon = PCBoxes_GetBoxMonAt(param0->unk_58F8->pcBoxes, v1, i);
+        boxMon = PCBoxes_GetBoxMonAt(param0->unk_58F8->pcBoxes, boxID, i);
 
         if (BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES_EXISTS, NULL)) {
             if (param0->unk_A8[param0->unk_02][i].unk_00 == NULL) {
-                int v3, v4, v5;
+                int boxCol, boxRow, v5;
 
-                v4 = i / 6;
-                v3 = i % 6;
+                boxRow = i / MAX_PC_COLS;
+                boxCol = i % MAX_PC_COLS;
                 v5 = (88 + (param0->unk_02 * 480)) + ((4 * 4) * i);
 
-                ov19_021DA428(param0->unk_58F0, boxMon, 112 + param0->unk_585C + 24 * v3, 40 + 24 * v4, 2, ov19_021D85B4(i), v5, &(param0->unk_A8[param0->unk_02][i]));
+                ov19_021DA428(param0->unk_58F0, boxMon, 112 + param0->unk_585C + 24 * boxCol, 40 + 24 * boxRow, 2, ov19_021D85B4(i), v5, &(param0->unk_A8[param0->unk_02][i]));
             }
         }
     }
