@@ -1,15 +1,23 @@
 pngs_4bpp = files([
     'bottom_screen_border.png',
-    'top_screen_border.png',
-    'copyright.png',
 ])
+
 pngs_8bpp = files([
     'logo.png',
     'logo_jp.png'
 ])
 
-png_gf_presents = files('gf_presents.png')
-pal_gf_presents = files('gf_presents.pal')
+# These PNGs require explicit palettes because they are 4bpp palettes that contain more than 16 colors.
+pngs_explicit = files([
+    'gf_presents.png',
+    'top_screen_border.png',
+    'copyright.png',
+])
+pals_explicit = files([
+    'gf_presents.pal',
+    'top_screen_border.pal',
+    'copyright.pal',
+])
 
 ncgrs_4bpp = ncgr_gen.process(pngs_4bpp,
     extra_args: [ '-sopc', '-version101', ],
@@ -19,19 +27,19 @@ ncgrs_8bpp = ncgr_gen.process(pngs_8bpp,
     extra_args: [ '-sopc', '-version101', '-bitdepth', '8', ],
 )
 
-ncgr_gf_presents = ncgr_gen.process(png_gf_presents,
+ncgrs_explicit = ncgr_gen.process(pngs_explicit,
     extra_args: [ '-sopc', '-version101', ],
 )
 
 nclrs_4bpp = nclr_gen.process(pngs_4bpp,
-    extra_args: [ '-bitdepth', '4', '-invertsize', ],
+    extra_args: [ '-bitdepth', '4', ]
 )
 
 nclrs_8bpp = nclr_gen.process(pngs_8bpp,
-    extra_args: [ '-bitdepth', '8', '-invertsize', ],
+    extra_args: [ '-bitdepth', '8', ],
 )
 
-nclr_gf_presents = nclr_gen.process(pal_gf_presents,
+nclrs_explicit = nclr_gen.process(pals_explicit,
     extra_args: [ '-bitdepth', '4', ],
 )
 
@@ -78,8 +86,8 @@ titledemo_narc = custom_target('titledemo.narc',
         ncgrs_8bpp,
         nclrs_4bpp,
         nclrs_8bpp,
-        nclr_gf_presents,
-        ncgr_gf_presents,
+        nclrs_explicit,
+        ncgrs_explicit,
         tilemaps,
         titledemo_order,
         models,
