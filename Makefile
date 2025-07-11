@@ -89,7 +89,7 @@ endif
 export NINJA_STATUS := [%p %f/%t] 
 
 # Modders can delete the `check` dependency here after their first build.
-all: release check
+all: debug check
 
 .NOTPARALLEL: release
 release: setup_release rom
