@@ -257,7 +257,7 @@ static BOOL ov5_021EAB58(UnkStruct_ov5_021EAE78 *param0)
     int v2 = sub_0202AF94(v0);
     int v3 = 5;
 
-    param0->unk_00 = StringList_New(v2 + 1, 4);
+    param0->unk_00 = StringList_New(v2 + 1, HEAP_ID_FIELD1);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_20, 3, 19, 1, 12, v3 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (10 * (v3 + 2) * 2));
     Window_DrawStandardFrame(&param0->unk_20, 1, 1024 - (18 + 12) - 9, 11);
@@ -285,7 +285,7 @@ static BOOL ov5_021EAB58(UnkStruct_ov5_021EAE78 *param0)
     v1.cursorCallback = ov5_021EAF90;
     v1.parent = param0;
 
-    param0->unk_04 = ListMenu_New(&v1, 0, 0, 4);
+    param0->unk_04 = ListMenu_New(&v1, 0, 0, HEAP_ID_FIELD1);
     Window_CopyToVRAM(&param0->unk_20);
     param0->unk_48 = 9;
 

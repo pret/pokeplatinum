@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
 #include "generated/movement_actions.h"
 #include "generated/trainer_score_events.h"
 
@@ -1006,17 +1007,17 @@ static int ov23_0224BD1C(int param0, BOOL param1)
     return v1;
 }
 
-static Menu *ov23_0224BD90(BgConfig *param0, const WindowTemplate *param1, u16 param2, u8 param3, u32 param4)
+static Menu *ov23_0224BD90(BgConfig *param0, const WindowTemplate *param1, u16 param2, u8 param3, u32 heapID)
 {
     MenuTemplate v0;
     MessageLoader *v1 = ov23_02253E3C(ov23_0224219C());
-    StringList *v2 = StringList_New(2, param4);
+    StringList *v2 = StringList_New(2, heapID);
 
     StringList_AddFromMessageBank(v2, v1, 38, 0);
     StringList_AddFromMessageBank(v2, v1, 39, 1);
 
     v0.choices = v2;
-    v0.window = Window_New(param4, 1);
+    v0.window = Window_New(heapID, 1);
     v0.fontID = FONT_SYSTEM;
     v0.xSize = 1;
     v0.ySize = 2;
@@ -1027,7 +1028,7 @@ static Menu *ov23_0224BD90(BgConfig *param0, const WindowTemplate *param1, u16 p
     Window_AddFromTemplate(param0, v0.window, param1);
     Window_DrawStandardFrame(v0.window, 1, param2, param3);
 
-    return Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, param4, PAD_BUTTON_B);
+    return Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, heapID, PAD_BUTTON_B);
 }
 
 static void ov23_0224BE28(SysTask *param0, void *param1)
@@ -1098,7 +1099,7 @@ static void ov23_0224BE28(SysTask *param0, void *param1)
         break;
     case 6:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            v0->unk_04 = ov23_0224BD90(fieldSystem->bgConfig, &Unk_ov23_0225686C, 1024 - (18 + 12) - 9, 11, 4);
+            v0->unk_04 = ov23_0224BD90(fieldSystem->bgConfig, &Unk_ov23_0225686C, 1024 - (18 + 12) - 9, 11, HEAP_ID_FIELD1);
             v0->unk_0C = 7;
         }
         break;

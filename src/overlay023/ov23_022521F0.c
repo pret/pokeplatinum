@@ -191,7 +191,7 @@ static int ov23_02252404(UnkStruct_ov23_02250CD4 *param0, int param1, int param2
     } else if (param0->unk_2AC == 0) {
         v0 = sub_02028BC8(v1, param0->unk_274[param1]);
     } else if (param0->unk_2AC == 2) {
-        v0 = sub_02028DB4(v1, param0->unk_274[param1]);
+        v0 = UndergroundData_TryAddTreasure(v1, param0->unk_274[param1]);
     }
 
     if (v0) {
@@ -214,7 +214,7 @@ static void *ov23_022524B8(UnkStruct_ov23_02250CD4 *param0)
 
     ov23_0224FB7C(param0);
 
-    param0->unk_40 = StringList_New(v1, 4);
+    param0->unk_40 = StringList_New(v1, HEAP_ID_FIELD1);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, 3, 19, 3, 12, v1 * 2, 13, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - 12 * 6));
     Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
@@ -253,7 +253,7 @@ static void *ov23_022524B8(UnkStruct_ov23_02250CD4 *param0)
 
     ov23_02251238(param0, v0.maxDisplay, v0.count);
 
-    param0->unk_48 = ListMenu_New(&v0, param0->unk_294, param0->unk_290, 4);
+    param0->unk_48 = ListMenu_New(&v0, param0->unk_294, param0->unk_290, HEAP_ID_FIELD1);
     param0->unk_2AE = param0->unk_290;
 
     Window_CopyToVRAM(&param0->unk_10);
@@ -396,7 +396,7 @@ static void ov23_02252A18(UnkStruct_ov23_02250CD4 *param0)
     const int v1 = 5 + 1;
 
     ov23_0224FB7C(param0);
-    param0->unk_40 = StringList_New(v1, 4);
+    param0->unk_40 = StringList_New(v1, HEAP_ID_FIELD1);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, 3, 19, 3, 12, v1 * 2, 13, (((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - 12 * 6) - 12 * 12));
     Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
@@ -439,7 +439,7 @@ static void ov23_02252A18(UnkStruct_ov23_02250CD4 *param0)
     param0->unk_2AE = param0->unk_290;
 
     ov23_02251238(param0, v0.maxDisplay, v0.count);
-    param0->unk_48 = ListMenu_New(&v0, param0->unk_294, param0->unk_290, 4);
+    param0->unk_48 = ListMenu_New(&v0, param0->unk_294, param0->unk_290, HEAP_ID_FIELD1);
     Window_CopyToVRAM(&param0->unk_10);
 }
 
@@ -476,7 +476,7 @@ static u32 ov23_02252C08(UnkStruct_ov23_02250CD4 *param0)
 {
     UndergroundData *v0 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(param0->fieldSystem));
 
-    if (ov23_0224F6E0(param0->unk_279[0], param0->unk_27E[0])) {
+    if (Underground_TryAddSphere(param0->unk_279[0], param0->unk_27E[0])) {
         if (param0->unk_2AC == 1) {
             sub_02028E50(v0, param0->unk_2A8);
         } else if (param0->unk_2AC == 0) {

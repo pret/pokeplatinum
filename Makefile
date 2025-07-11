@@ -121,6 +121,7 @@ target: $(BUILD)/build.ninja
 
 clean: $(BUILD)/build.ninja
 	$(MESON) compile -C $(BUILD) --clean
+	rm -rf $(BUILD)/res
 
 distclean:
 	rm -rf $(BUILD)

@@ -504,7 +504,7 @@ BOOL WildEncounters_TrySweetScentEncounter(FieldSystem *fieldSystem, FieldTask *
         safariGameActive = SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData));
         CreateWildSingleBattle(fieldSystem, safariGameActive, &battleParams);
     } else {
-        battleParams = FieldBattleDTO_New(11, BATTLE_TYPE_AI_PARTNER);
+        battleParams = FieldBattleDTO_New(HEAP_ID_FIELD2, BATTLE_TYPE_AI_PARTNER);
     }
 
     FieldBattleDTO_Init(battleParams, fieldSystem);
@@ -618,7 +618,7 @@ BOOL WildEncounters_TryMudEncounter(FieldSystem *fieldSystem, FieldBattleDTO **b
 
         if (TryEncounterRoamer(fieldSystem, &roamer)) {
             if (!RepelPreventsEncounter(Roamer_GetData(roamer, ROAMER_DATA_LEVEL), &encounterFieldParams)) {
-                *battleParams = FieldBattleDTO_New(11, BATTLE_TYPE_ROAMER);
+                *battleParams = FieldBattleDTO_New(HEAP_ID_FIELD2, BATTLE_TYPE_ROAMER);
 
                 FieldBattleDTO_Init(*battleParams, fieldSystem);
                 AddRoamerToEnemyParty(encounterFieldParams.trainerID, roamer, *battleParams);
@@ -634,7 +634,7 @@ BOOL WildEncounters_TryMudEncounter(FieldSystem *fieldSystem, FieldBattleDTO **b
         safariGameActive = SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData));
         CreateWildSingleBattle(fieldSystem, safariGameActive, battleParams);
     } else {
-        *battleParams = FieldBattleDTO_New(11, BATTLE_TYPE_AI_PARTNER);
+        *battleParams = FieldBattleDTO_New(HEAP_ID_FIELD2, BATTLE_TYPE_AI_PARTNER);
     }
 
     FieldBattleDTO_Init(*battleParams, fieldSystem);

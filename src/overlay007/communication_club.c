@@ -203,7 +203,7 @@ static void CommClubMan_CreateList(ListMenuTemplate param0, u8 param1, u8 param2
     v0.choices = sCommClubMan->unk_64;
     v0.window = &sCommClubMan->unk_20;
 
-    sCommClubMan->unk_5C = ListMenu_New(&v0, 0, 0, 4);
+    sCommClubMan->unk_5C = ListMenu_New(&v0, 0, 0, HEAP_ID_FIELD1);
     Window_CopyToVRAM(&sCommClubMan->unk_20);
 }
 
@@ -430,7 +430,7 @@ static void ov7_02249F54(SysTask *task, void *data)
     if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
         int v2;
 
-        sCommClubMan->unk_64 = StringList_New(16, 4);
+        sCommClubMan->unk_64 = StringList_New(16, HEAP_ID_FIELD1);
 
         for (v2 = 0; v2 < 16; v2++) {
             StringTemplate_SetNumber(sCommClubMan->unk_50, 0, v2 + 1, 2, 2, 1);
@@ -842,7 +842,7 @@ static void ov7_0224A72C(SysTask *task, void *param1)
     if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
         int netId;
 
-        sCommClubMan->unk_64 = StringList_New(5, 4);
+        sCommClubMan->unk_64 = StringList_New(5, HEAP_ID_FIELD1);
 
         for (netId = 0; netId < 5; netId++) {
             StringList_AddFromMessageBank(sCommClubMan->unk_64, sCommClubMan->msgLoader, pl_msg_00000353_00069, 0);

@@ -270,7 +270,7 @@ void ov23_022419B4(int param0, int param1, void *param2, void *param3)
         if (v5) {
             sub_020594FC();
 
-            if (ov23_0224F6E0(v5->unk_06, v5->unk_04 + v5->unk_05)) {
+            if (Underground_TryAddSphere(v5->unk_06, v5->unk_04 + v5->unk_05)) {
                 Unk_ov23_02257744->unk_468[v1] = v5->unk_06;
                 Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
                 v4 = 99;

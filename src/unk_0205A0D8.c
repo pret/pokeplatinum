@@ -673,7 +673,7 @@ void sub_0205AB10(FieldSystem *fieldSystem, UnkFuncPtr_0205AB10 *param1)
     Window_Init(&v0->unk_54);
     Window_Init(&v0->unk_64);
 
-    v0->unk_78 = ColoredArrow_New(11);
+    v0->unk_78 = ColoredArrow_New(HEAP_ID_FIELD2);
     v0->unk_88 = sub_0203895C();
     v0->unk_4C = NULL;
     v0->unk_48 = NULL;

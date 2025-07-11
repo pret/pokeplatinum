@@ -893,7 +893,7 @@ static void ov91_021D1784(UnkStruct_ov91_021D0ED8 *param0)
     u32 v2;
 
     param0->unk_184 = (u8)ov91_021D175C(param0) + 1;
-    param0->unk_108 = StringList_New(param0->unk_184, 67);
+    param0->unk_108 = StringList_New(param0->unk_184, HEAP_ID_67);
 
     v0 = MessageLoader_Init(
         0, 26, 647, 67);
@@ -917,7 +917,7 @@ static void ov91_021D1784(UnkStruct_ov91_021D0ED8 *param0)
     v1.count = param0->unk_184;
     v1.parent = (void *)param0;
 
-    param0->unk_104 = ListMenu_New(&v1, param0->unk_00->unk_12, param0->unk_00->unk_10, 67);
+    param0->unk_104 = ListMenu_New(&v1, param0->unk_00->unk_12, param0->unk_00->unk_10, HEAP_ID_67);
 
     Window_ScheduleCopyToVRAM(&param0->unk_08[13]);
 }
@@ -1507,7 +1507,7 @@ static int ov91_021D261C(UnkStruct_ov91_021D0ED8 *param0)
 
     PokemonSummaryScreen_FlagVisiblePages(&param0->unk_14C, v0);
 
-    param0->appMan = ApplicationManager_New(&gPokemonSummaryScreenApp, &param0->unk_14C, 67);
+    param0->appMan = ApplicationManager_New(&gPokemonSummaryScreenApp, &param0->unk_14C, HEAP_ID_67);
     return 12;
 }
 

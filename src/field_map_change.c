@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/field/map_load.h"
+#include "constants/heap.h"
 #include "constants/overworld_weather.h"
 
 #include "struct_decls/struct_0203A790_decl.h"
@@ -1177,7 +1178,7 @@ BOOL FieldTask_MapChangeToUnderground(FieldTask *task)
             ScriptManager_Start(task, 2034, NULL, NULL);
         } else {
             sub_020287E0(fieldSystem->saveData);
-            mapChangeUndergroundData->saveInfoWin = SaveInfoWindow_New(fieldSystem, 11, BG_LAYER_MAIN_3);
+            mapChangeUndergroundData->saveInfoWin = SaveInfoWindow_New(fieldSystem, HEAP_ID_FIELD2, BG_LAYER_MAIN_3);
             SaveInfoWindow_Draw(mapChangeUndergroundData->saveInfoWin);
             mapChangeUndergroundData->unk_1C = 0;
             ScriptManager_Start(task, 2005, NULL, &mapChangeUndergroundData->unk_1C);

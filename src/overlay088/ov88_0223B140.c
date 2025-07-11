@@ -1736,7 +1736,7 @@ static void ov88_0223D1EC(UnkStruct_02095E80 *param0, int param1)
 
     PokemonSummaryScreen_FlagVisiblePages(&param0->unk_0C, Unk_ov88_0223F13C);
 
-    param0->appMan = ApplicationManager_New(&gPokemonSummaryScreenApp, &param0->unk_0C, 26);
+    param0->appMan = ApplicationManager_New(&gPokemonSummaryScreenApp, &param0->unk_0C, HEAP_ID_26);
     param0->unk_3C = param1;
 }
 
@@ -1888,7 +1888,7 @@ static int ov88_0223D69C(UnkStruct_02095E80 *param0)
     int v1 = sub_0202AF94(param0->unk_36EC);
     int v2 = 5;
 
-    param0->unk_36D4 = StringList_New(v1 + 1, 26);
+    param0->unk_36D4 = StringList_New(v1 + 1, HEAP_ID_26);
 
     {
         MessageLoader *v3;
@@ -2071,7 +2071,7 @@ static int ov88_0223DA3C(UnkStruct_02095E80 *param0)
     Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
     ov88_0223ECBC(&param0->unk_49C[22], 16, FONT_MESSAGE, param0->unk_184, param0->unk_17C);
 
-    param0->unk_6C0 = StringList_New(3, 26);
+    param0->unk_6C0 = StringList_New(3, HEAP_ID_26);
 
     StringList_AddFromMessageBank(param0->unk_6C0, param0->unk_184, 17, 0);
     StringList_AddFromMessageBank(param0->unk_6C0, param0->unk_184, 18, 1);
@@ -2420,7 +2420,7 @@ static int ov88_0223E4BC(UnkStruct_02095E80 *param0)
     Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
     ov88_0223ECBC(&param0->unk_49C[22], 16, FONT_MESSAGE, param0->unk_184, param0->unk_17C);
 
-    param0->unk_6C0 = StringList_New(2, 26);
+    param0->unk_6C0 = StringList_New(2, HEAP_ID_26);
 
     StringList_AddFromMessageBank(param0->unk_6C0, param0->unk_184, 17, 0);
     StringList_AddFromMessageBank(param0->unk_6C0, param0->unk_184, 19, 1);

@@ -155,7 +155,7 @@ static void ov23_0225437C(UnkStruct_ov23_022542D8 *param0)
     int v3 = 3;
     int v4 = 4;
 
-    param0->unk_24 = StringList_New(v3 + 1, 4);
+    param0->unk_24 = StringList_New(v3 + 1, HEAP_ID_FIELD1);
 
     v1 = 12 * v4 * 2;
     v2 = 7 * (1 * 2);
@@ -201,7 +201,7 @@ static void ov23_0225437C(UnkStruct_ov23_022542D8 *param0)
     v0.window = &param0->unk_04;
     v0.cursorCallback = ov23_02254350;
 
-    param0->unk_28 = ListMenu_New(&v0, *(param0->unk_30), *(param0->unk_34), 4);
+    param0->unk_28 = ListMenu_New(&v0, *(param0->unk_30), *(param0->unk_34), HEAP_ID_FIELD1);
     Window_CopyToVRAM(&param0->unk_04);
     Window_CopyToVRAM(&param0->unk_14);
     param0->unk_38 = 1;
@@ -390,7 +390,7 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
         v5 = 7;
     }
 
-    param0->unk_28 = StringList_New(v4 + 1, 4);
+    param0->unk_28 = StringList_New(v4 + 1, HEAP_ID_FIELD1);
 
     v2 = 12 * 7 * 2;
     v3 = 8 * (2 * 2);
