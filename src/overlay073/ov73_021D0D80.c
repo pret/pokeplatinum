@@ -131,11 +131,11 @@ enum RowanIntroManagerState {
     RIM_STATE_NAME_CONFIRM_DIALOGUE,
     RIM_STATE_NAME_CONFIRM_CHOICE_BOX,
     RIM_STATE_NAME_FADE_OUT_AVATAR,
-    RIM_STATE_PLACEHOLDER_0,
+    RIM_STATE_LOAD_ROWAN_TILEMAP_0,
     RIM_STATE_FADE_IN_ROWAN_AFTER_NAME,
     RIM_STATE_DIALOGUE_SO_YOURE,
     RIM_STATE_FADE_OUT_ROWAN_FOR_BARRY,
-    RIM_STATE_PLACEHOLDER_1,
+    RIM_STATE_LOAD_BARRY_TILEMAP,
     RIM_STATE_FADE_IN_BARRY,
     RIM_STATE_BARRY_NAME_DIALOGUE,
     RIM_STATE_MOVE_BARRY_RIGHT_FOR_NAMES,
@@ -147,13 +147,13 @@ enum RowanIntroManagerState {
     RIM_STATE_BARRY_NAME_CONFIRM_DIALOGUE,
     RIM_STATE_BARRY_NAME_CONFIRM_CHOICE_BOX,
     RIM_STATE_FADE_OUT_BARRY,
-    RIM_STATE_PLACEHOLDER_2,
+    RIM_LOAD_ROWAN_TILEMAP_1,
     RIM_STATE_FADE_IN_ROWAN_AFTER_BARRY,
     RIM_STATE_DELAY_BEFORE_END_0,
     RIM_STATE_DIALOGUE_END,
     RIM_STATE_FADE_OUT_ROWAN_END,
     RIM_STATE_DELAY_BEFORE_END_1,
-    RIM_STATE_PLACEHOLDER_3,
+    RIM_STATE_LOAD_MINI_AVATAR,
     RIM_STATE_FADE_IN_AVATAR_END,
     RIM_STATE_DELAY_BEFORE_END_2,
     RIM_STATE_AVATAR_SHRINK_ANIMATION,
@@ -197,8 +197,8 @@ typedef struct {
     int unk_80;
     u32 playerGender;
     u8 unk_88;
-    u8 unk_89;
-    u8 unk_8A;
+    u8 bgLayer1TilemapIndex;
+    u8 bgLayer2TilemapIndex;
     u8 unk_8B;
     u8 unk_8C;
     u8 unk_8D;
@@ -211,7 +211,7 @@ typedef struct {
 } RowanIntroManager;
 
 void EnqueueApplication(FSOverlayID param0, const ApplicationManagerTemplate *param1);
-int ov73_021D0D80(ApplicationManager *appMan, int *param1);
+int RowanIntroManager_Init(ApplicationManager *appMan, int *param1);
 int ov73_021D0E20(ApplicationManager *appMan, int *param1);
 int ov73_021D0F7C(ApplicationManager *appMan, int *param1);
 static void ov73_021D0FF0(void *param0);
@@ -223,7 +223,7 @@ static void ov73_021D1318(RowanIntroManager *manager);
 static void ov73_021D1328(RowanIntroManager *manager);
 static void ov73_021D1930(RowanIntroManager *manager);
 static void ov73_021D19DC(RowanIntroManager *manager);
-static void ov73_021D1A20(RowanIntroManager *manager);
+static void RowanIntroManager_LoadTilemap(RowanIntroManager *manager);
 static void ov73_021D1B14(RowanIntroManager *manager);
 static void ov73_021D1CE0(RowanIntroManager *manager);
 static BOOL ov73_021D2318(RowanIntroManager *manager);
@@ -232,7 +232,7 @@ int ov73_021D3280(ApplicationManager *appMan, int *param1);
 int ov73_021D3404(ApplicationManager *appMan, int *param1);
 
 const ApplicationManagerTemplate dummy_ApplicationManagerTemplate = {
-    ov73_021D0D80,
+    RowanIntroManager_Init,
     ov73_021D0E20,
     ov73_021D0F7C,
     0xffffffff
@@ -245,7 +245,7 @@ static const ApplicationManagerTemplate Unk_ov72_021D3820 = {
     0xffffffff
 };
 
-int ov73_021D0D80(ApplicationManager *appMan, int *param1)
+int RowanIntroManager_Init(ApplicationManager *appMan, int *unused)
 {
     RowanIntroManager *manager;
     int childHeapID = HEAP_ID_82;
@@ -264,8 +264,8 @@ int ov73_021D0D80(ApplicationManager *appMan, int *param1)
     manager->unk_70 = sub_0208712C(childHeapID, 0, 0, 7, manager->options);
     manager->unk_74 = sub_0208712C(childHeapID, 3, 0, 7, manager->options);
     manager->unk_88 = 0;
-    manager->unk_89 = 0;
-    manager->unk_8A = 0;
+    manager->bgLayer1TilemapIndex = 0;
+    manager->bgLayer2TilemapIndex = 0;
     manager->unk_8B = 0;
     manager->delayUpdateCounter = 0;
     manager->unk_B8 = Heap_AllocFromHeap(childHeapID, 0x20);
@@ -695,10 +695,10 @@ static BOOL RowanIntroManager_Delay(RowanIntroManager *manager, int param1)
     }
 }
 
-static void ov73_021D14DC(RowanIntroManager *manager, int param1, int param2)
+static void RowanIntroManager_ChangePaletteAndCopyTilemap(RowanIntroManager *manager, int bgLayer, int palette)
 {
-    Bg_ChangeTilemapRectPalette(manager->bgConfig, param1, 0, 0, 32, 24, param2);
-    Bg_CopyTilemapBufferToVRAM(manager->bgConfig, param1);
+    Bg_ChangeTilemapRectPalette(manager->bgConfig, bgLayer, 0, 0, 32, 24, palette);
+    Bg_CopyTilemapBufferToVRAM(manager->bgConfig, bgLayer);
 }
 
 typedef struct UnkStruct_ov72_021D3840_t {
@@ -1043,7 +1043,7 @@ static void ov73_021D1930(RowanIntroManager *manager)
     }
 
     ov73_021D19DC(manager);
-    ov73_021D1A20(manager);
+    RowanIntroManager_LoadTilemap(manager);
     ov73_021D1B14(manager);
 
     Bg_MaskPalette(BG_LAYER_MAIN_0, 0x0);
@@ -1061,9 +1061,9 @@ static void ov73_021D19DC(RowanIntroManager *manager)
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, v0[manager->unk_88], manager->bgConfig, 3, 0, 0, 0, manager->heapID);
 }
 
-static void ov73_021D1A20(RowanIntroManager *manager)
+static void RowanIntroManager_LoadTilemap(RowanIntroManager *manager)
 {
-    int v0[][2] = {
+    int tilemapLocations[][2] = {
         { 0, 0 },
         { 19, 20 },
         { 9, 13 },
@@ -1077,18 +1077,18 @@ static void ov73_021D1A20(RowanIntroManager *manager)
         { 21, 22 }
     };
 
-    if ((manager->unk_89 != 0) && (manager->unk_89 < 12)) {
-        Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, v0[manager->unk_89][0], manager->bgConfig, 1, 0, 0, 0, manager->heapID);
-        Graphics_LoadPalette(NARC_INDEX_DEMO__INTRO__INTRO, v0[manager->unk_89][1], 0, 7 * (2 * 16), 2 * 16, manager->heapID);
-        Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, 23, manager->bgConfig, 1, 0, 0, 0, manager->heapID);
-        ov73_021D14DC(manager, 1, 7);
+    if ((manager->bgLayer1TilemapIndex != 0) && (manager->bgLayer1TilemapIndex < 12)) {
+        Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, tilemapLocations[manager->bgLayer1TilemapIndex][0], manager->bgConfig, BG_LAYER_MAIN_1, 0, 0, FALSE, manager->heapID);
+        Graphics_LoadPalette(NARC_INDEX_DEMO__INTRO__INTRO, tilemapLocations[manager->bgLayer1TilemapIndex][1], PAL_LOAD_MAIN_BG, 7 * (2 * 16), 2 * 16, manager->heapID);
+        Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, 23, manager->bgConfig, BG_LAYER_MAIN_1, 0, 0, FALSE, manager->heapID);
+        RowanIntroManager_ChangePaletteAndCopyTilemap(manager, BG_LAYER_MAIN_1, 7);
     }
 
-    if ((manager->unk_8A != 0) && (manager->unk_8A < 12)) {
-        Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, v0[manager->unk_8A][0], manager->bgConfig, 2, 0, 0, 0, manager->heapID);
-        Graphics_LoadPalette(NARC_INDEX_DEMO__INTRO__INTRO, v0[manager->unk_8A][1], 0, 8 * (2 * 16), 2 * 16, manager->heapID);
-        Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, 23, manager->bgConfig, 2, 0, 0, 0, manager->heapID);
-        ov73_021D14DC(manager, 2, 8);
+    if ((manager->bgLayer2TilemapIndex != 0) && (manager->bgLayer2TilemapIndex < 12)) {
+        Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, tilemapLocations[manager->bgLayer2TilemapIndex][0], manager->bgConfig, BG_LAYER_MAIN_2, 0, 0, FALSE, manager->heapID);
+        Graphics_LoadPalette(NARC_INDEX_DEMO__INTRO__INTRO, tilemapLocations[manager->bgLayer2TilemapIndex][1], PAL_LOAD_MAIN_BG, 8 * (2 * 16), 2 * 16, manager->heapID);
+        Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, 23, manager->bgConfig, BG_LAYER_MAIN_2, 0, 0, FALSE, manager->heapID);
+        RowanIntroManager_ChangePaletteAndCopyTilemap(manager, BG_LAYER_MAIN_2, 8);
     }
 }
 
@@ -1103,9 +1103,9 @@ static void ov73_021D1B14(RowanIntroManager *manager)
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, v0[manager->unk_8B], manager->bgConfig, 7, 0, 0, 0, manager->heapID);
 
     if (manager->unk_8B == 1) {
-        ov73_021D14DC(manager, 7, 3);
+        RowanIntroManager_ChangePaletteAndCopyTilemap(manager, 7, 3);
     } else if (manager->unk_8B == 2) {
-        ov73_021D14DC(manager, 7, 2);
+        RowanIntroManager_ChangePaletteAndCopyTilemap(manager, 7, 2);
     }
 }
 
@@ -1244,7 +1244,7 @@ static void ov73_021D1B80(RowanIntroManager *manager)
     Bg_FillTilemapRect(manager->bgConfig, v4, 0, 0, 0, 32, 24, v6);
     Bg_LoadToTilemapRect(manager->bgConfig, v4, v1, 11, 9, 10, 10);
 
-    ov73_021D14DC(manager, v4, v6);
+    RowanIntroManager_ChangePaletteAndCopyTilemap(manager, v4, v6);
 
     Bg_ClearTilesRange(v4, 32, 0, manager->heapID);
     Bg_LoadTiles(manager->bgConfig, v4, v2, (10 * 10) * 0x20, 1);
@@ -1252,7 +1252,7 @@ static void ov73_021D1B80(RowanIntroManager *manager)
     Bg_FillTilemapRect(manager->bgConfig, v5, 0, 0, 0, 32, 24, v7);
     Bg_LoadToTilemapRect(manager->bgConfig, v5, v1, 11, 7, 10, 10);
 
-    ov73_021D14DC(manager, v5, v7);
+    RowanIntroManager_ChangePaletteAndCopyTilemap(manager, v5, v7);
 
     Bg_ClearTilesRange(v5, 32, 0, manager->heapID);
     Bg_LoadTiles(manager->bgConfig, v5, v2, (10 * 10) * 0x20, 1);
@@ -1265,7 +1265,7 @@ static void ov73_021D1B80(RowanIntroManager *manager)
 static void ov73_021D1CE0(RowanIntroManager *manager)
 {
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, 40, manager->bgConfig, 6, 0, 0, 0, manager->heapID);
-    ov73_021D14DC(manager, 6, 9);
+    RowanIntroManager_ChangePaletteAndCopyTilemap(manager, 6, 9);
 
     Graphics_LoadPalette(NARC_INDEX_DEMO__INTRO__INTRO, 41, 4, 7 * (2 * 16), (2 * 16) * 3, manager->heapID);
     Bg_ClearTilesRange(6, 32, 0, manager->heapID);
@@ -1561,9 +1561,9 @@ static BOOL ov73_021D2318(RowanIntroManager *manager)
         break;
     case RIM_STATE_FADE_IN_ROWAN_START:
         Sound_PlayBGM(SEQ_OPENING);
-        manager->unk_89 = 1;
-        manager->unk_8A = 0;
-        ov73_021D1A20(manager);
+        manager->bgLayer1TilemapIndex = 1;
+        manager->bgLayer2TilemapIndex = 0;
+        RowanIntroManager_LoadTilemap(manager);
         Bg_ToggleLayer(BG_LAYER_MAIN_3, 1);
         Bg_ToggleLayer(BG_LAYER_MAIN_1, 1);
         StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 16, 4, manager->heapID);
@@ -1976,9 +1976,9 @@ static BOOL ov73_021D2318(RowanIntroManager *manager)
         break;
     case RIM_STATE_GENDR_FADE_IN_AVATAR_PREP:
         ov73_021D1DCC(manager);
-        manager->unk_89 = 2;
-        manager->unk_8A = 6;
-        ov73_021D1A20(manager);
+        manager->bgLayer1TilemapIndex = 2;
+        manager->bgLayer2TilemapIndex = 6;
+        RowanIntroManager_LoadTilemap(manager);
         Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_1, 0, -8 * 6);
         Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, 0, 8 * 6);
         manager->state = RIM_STATE_GENDR_FADE_IN_AVATAR_MALE;
@@ -2141,7 +2141,7 @@ static BOOL ov73_021D2318(RowanIntroManager *manager)
 
             switch (manager->playerChoice) {
             case 1:
-                manager->bufferedState = RIM_STATE_PLACEHOLDER_0;
+                manager->bufferedState = RIM_STATE_LOAD_ROWAN_TILEMAP_0;
                 manager->state = RIM_STATE_NAME_FADE_OUT_AVATAR;
                 break;
             case 2:
@@ -2168,10 +2168,10 @@ static BOOL ov73_021D2318(RowanIntroManager *manager)
             }
         }
     } break;
-    case RIM_STATE_PLACEHOLDER_0:
-        manager->unk_89 = 1;
-        manager->unk_8A = 0;
-        ov73_021D1A20(manager);
+    case RIM_STATE_LOAD_ROWAN_TILEMAP_0:
+        manager->bgLayer1TilemapIndex = 1;
+        manager->bgLayer2TilemapIndex = 0;
+        RowanIntroManager_LoadTilemap(manager);
         manager->state = RIM_STATE_FADE_IN_ROWAN_AFTER_NAME;
         break;
     case RIM_STATE_FADE_IN_ROWAN_AFTER_NAME:
@@ -2186,13 +2186,13 @@ static BOOL ov73_021D2318(RowanIntroManager *manager)
         break;
     case RIM_STATE_FADE_OUT_ROWAN_FOR_BARRY:
         if (ov73_021D1334(manager, 1, 1) == 1) {
-            manager->state = RIM_STATE_PLACEHOLDER_1;
+            manager->state = RIM_STATE_LOAD_BARRY_TILEMAP;
         }
         break;
-    case RIM_STATE_PLACEHOLDER_1:
-        manager->unk_89 = 10;
-        manager->unk_8A = 0;
-        ov73_021D1A20(manager);
+    case RIM_STATE_LOAD_BARRY_TILEMAP:
+        manager->bgLayer1TilemapIndex = 10;
+        manager->bgLayer2TilemapIndex = 0;
+        RowanIntroManager_LoadTilemap(manager);
         manager->state = RIM_STATE_FADE_IN_BARRY;
         break;
     case RIM_STATE_FADE_IN_BARRY:
@@ -2286,13 +2286,13 @@ static BOOL ov73_021D2318(RowanIntroManager *manager)
         break;
     case RIM_STATE_FADE_OUT_BARRY:
         if (ov73_021D1334(manager, 1, 1) == 1) {
-            manager->state = RIM_STATE_PLACEHOLDER_2;
+            manager->state = RIM_LOAD_ROWAN_TILEMAP_1;
         }
         break;
-    case RIM_STATE_PLACEHOLDER_2:
-        manager->unk_89 = 1;
-        manager->unk_8A = 0;
-        ov73_021D1A20(manager);
+    case RIM_LOAD_ROWAN_TILEMAP_1:
+        manager->bgLayer1TilemapIndex = 1;
+        manager->bgLayer2TilemapIndex = 0;
+        RowanIntroManager_LoadTilemap(manager);
         manager->state = RIM_STATE_FADE_IN_ROWAN_AFTER_BARRY;
         break;
     case RIM_STATE_FADE_IN_ROWAN_AFTER_BARRY:
@@ -2321,18 +2321,18 @@ static BOOL ov73_021D2318(RowanIntroManager *manager)
         break;
     case RIM_STATE_DELAY_BEFORE_END_1:
         if (RowanIntroManager_Delay(manager, 30) == 1) {
-            manager->state = RIM_STATE_PLACEHOLDER_3;
+            manager->state = RIM_STATE_LOAD_MINI_AVATAR;
         }
         break;
-    case RIM_STATE_PLACEHOLDER_3:
+    case RIM_STATE_LOAD_MINI_AVATAR:
         if (manager->playerGender == GENDER_MALE) {
-            manager->unk_89 = 2;
-            manager->unk_8A = 0;
-            ov73_021D1A20(manager);
+            manager->bgLayer1TilemapIndex = 2;
+            manager->bgLayer2TilemapIndex = 0;
+            RowanIntroManager_LoadTilemap(manager);
         } else {
-            manager->unk_89 = 6;
-            manager->unk_8A = 0;
-            ov73_021D1A20(manager);
+            manager->bgLayer1TilemapIndex = 6;
+            manager->bgLayer2TilemapIndex = 0;
+            RowanIntroManager_LoadTilemap(manager);
         }
 
         manager->state = RIM_STATE_FADE_IN_AVATAR_END;
