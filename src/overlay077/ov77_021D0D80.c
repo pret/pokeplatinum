@@ -33,6 +33,8 @@
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "text/bank/title_screen.h"
+#include "res/graphics/title_screen/titledemo.naix.h"
+
 
 FS_EXTERN_OVERLAY(overlay77);
 FS_EXTERN_OVERLAY(overlay89);
@@ -401,7 +403,7 @@ static void ov77_021D1208(UnkStruct_ov77_021D1208 *param0, int param1, int param
 
     param0->unk_5C = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_DEMO__TITLE__TITLEDEMO, param1, heapID);
     param0->unk_60 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_DEMO__TITLE__TITLEDEMO, param2, heapID);
-    param0->unk_64 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_DEMO__TITLE__TITLEDEMO, 2, heapID);
+    param0->unk_64 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_DEMO__TITLE__TITLEDEMO, giratina_nsbca, heapID);
 
     Easy3D_InitRenderObjFromResource(&param0->unk_04, &param0->unk_58, &param0->unk_5C);
 
@@ -438,15 +440,15 @@ static void ov77_021D1300(UnkStruct_ov77_021D1208 *param0, int heapID)
     NARC *v0 = NARC_ctor(NARC_INDEX_DEMO__TITLE__TITLEDEMO, heapID);
 
     {
-        Easy3DModel_LoadFrom(&param0->unk_150, v0, 19, heapID);
+        Easy3DModel_LoadFrom(&param0->unk_150, v0, giratina_face_nsbmd, heapID);
 
         NNS_G3dMdlUseMdlAlpha(param0->unk_150.model);
         NNS_G3dMdlUseMdlPolygonID(param0->unk_150.model);
 
-        Easy3DAnim_LoadFrom(&param0->unk_128, &param0->unk_150, v0, 21, heapID, &param0->unk_70);
+        Easy3DAnim_LoadFrom(&param0->unk_128, &param0->unk_150, v0, giratina_face_nsbca, heapID, &param0->unk_70);
         Easy3DAnim_SetFrame(&param0->unk_128, 0);
 
-        Easy3DAnim_LoadFrom(&param0->unk_13C, &param0->unk_150, v0, 20, heapID, &param0->unk_70);
+        Easy3DAnim_LoadFrom(&param0->unk_13C, &param0->unk_150, v0, giratina_face_nsbma, heapID, &param0->unk_70);
         Easy3DAnim_SetFrame(&param0->unk_13C, 0);
 
         Easy3DObject_Init(&param0->unk_B0, &param0->unk_150);
@@ -460,14 +462,14 @@ static void ov77_021D1300(UnkStruct_ov77_021D1208 *param0, int heapID)
     }
 
     {
-        Easy3DModel_LoadFrom(&param0->unk_200, v0, 16, heapID);
+        Easy3DModel_LoadFrom(&param0->unk_200, v0, giratina_portal_nsbmd, heapID);
         NNS_G3dMdlUseMdlAlpha(param0->unk_200.model);
         NNS_G3dMdlUseMdlPolygonID(param0->unk_200.model);
 
-        Easy3DAnim_LoadFrom(&param0->unk_1D8, &param0->unk_200, v0, 18, heapID, &param0->unk_70);
+        Easy3DAnim_LoadFrom(&param0->unk_1D8, &param0->unk_200, v0, giratina_portal_nsbca, heapID, &param0->unk_70);
         Easy3DAnim_SetFrame(&param0->unk_1D8, 0);
 
-        Easy3DAnim_LoadFrom(&param0->unk_1EC, &param0->unk_200, v0, 17, heapID, &param0->unk_70);
+        Easy3DAnim_LoadFrom(&param0->unk_1EC, &param0->unk_200, v0, giratina_portal_nsbta, heapID, &param0->unk_70);
         Easy3DAnim_SetFrame(&param0->unk_1EC, 0);
 
         Easy3DObject_Init(&param0->unk_160, &param0->unk_200);
@@ -828,7 +830,7 @@ static BOOL ov77_021D1A60(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
 {
     ov77_021D24C8(param0);
     ov77_021D2214(param1, param2, param0);
-    ov77_021D1208(&param0->unk_04, 1, 0, param2);
+    ov77_021D1208(&param0->unk_04, giratina_nsbmd, giratina_nsbta, param2);
 
     G3X_AntiAlias(1);
     G3X_AlphaBlend(1);
@@ -932,8 +934,8 @@ static void ov77_021D1CC0(BgConfig *param0, int param1)
         Bg_InitFromTemplate(param0, BG_LAYER_SUB_1, &v0, 0);
     }
 
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, 23, param0, BG_LAYER_SUB_1, 0, 0, 0, param1);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, 25, param0, BG_LAYER_SUB_1, 0, 0, 0, param1);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, top_screen_border_NCGR, param0, BG_LAYER_SUB_1, 0, 0, 0, param1);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, top_screen_border_2_NSCR, param0, BG_LAYER_SUB_1, 0, 0, 0, param1);
 
     G2_BlendNone();
     G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_PLANEMASK_BG3, 10, 10);
@@ -965,7 +967,7 @@ static void ov77_021D1D48(BgConfig *param0, int param1)
         Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v0, 0);
     }
 
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, 22, param0, 4, 0, 0, 0, param1);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, logo_NSCR, param0, 4, 0, 0, 0, param1);
 
     G2S_SetBG0Priority(0);
     G2S_SetBG1Priority(1);
@@ -1198,26 +1200,26 @@ static BOOL ov77_021D21C0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
 static void ov77_021D2214(BgConfig *bgConfig, enum HeapId heapID, UnkStruct_ov77_021D1568 *param2)
 {
     // Borders
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, 23, bgConfig, BG_LAYER_SUB_3, 0, 0, FALSE, heapID);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, 26, bgConfig, BG_LAYER_MAIN_3, 0, 0, FALSE, heapID);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, 24, bgConfig, BG_LAYER_SUB_3, 0, 0, FALSE, heapID);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, 27, bgConfig, BG_LAYER_MAIN_3, 0, 0, FALSE, heapID);
-    Graphics_LoadPalette(NARC_INDEX_DEMO__TITLE__TITLEDEMO, 7, PAL_LOAD_SUB_BG, 0, 0, heapID);
-    Graphics_LoadPalette(NARC_INDEX_DEMO__TITLE__TITLEDEMO, 6, PAL_LOAD_MAIN_BG, 0, 0, heapID);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, top_screen_border_NCGR, bgConfig, BG_LAYER_SUB_3, 0, 0, FALSE, heapID);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, bottom_screen_border_NCGR, bgConfig, BG_LAYER_MAIN_3, 0, 0, FALSE, heapID);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, top_screen_border_NSCR, bgConfig, BG_LAYER_SUB_3, 0, 0, FALSE, heapID);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, bottom_screen_border_NSCR, bgConfig, BG_LAYER_MAIN_3, 0, 0, FALSE, heapID);
+    Graphics_LoadPalette(NARC_INDEX_DEMO__TITLE__TITLEDEMO, top_screen_border_NCLR, PAL_LOAD_SUB_BG, 0, 0, heapID);
+    Graphics_LoadPalette(NARC_INDEX_DEMO__TITLE__TITLEDEMO, bottom_screen_border_NCLR, PAL_LOAD_MAIN_BG, 0, 0, heapID);
 
     // Game Logo
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, 12, bgConfig, BG_LAYER_SUB_2, 0, 0, 0, heapID);
-    Graphics_LoadPalette(NARC_INDEX_DEMO__TITLE__TITLEDEMO, 11, PAL_LOAD_SUB_BGEXT, 0x4000, 0, heapID);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, 22, bgConfig, BG_LAYER_SUB_2, 0, 0, 0, heapID);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, logo_NCGR, bgConfig, BG_LAYER_SUB_2, 0, 0, 0, heapID);
+    Graphics_LoadPalette(NARC_INDEX_DEMO__TITLE__TITLEDEMO, logo_NCLR, PAL_LOAD_SUB_BGEXT, 0x4000, 0, heapID);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, logo_NSCR, bgConfig, BG_LAYER_SUB_2, 0, 0, 0, heapID);
 
     Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__TITLE__OP_DEMO, 14, bgConfig, BG_LAYER_SUB_1, 0, 0, 0, heapID);
     Graphics_LoadPalette(NARC_INDEX_DEMO__TITLE__OP_DEMO, 13, PAL_LOAD_SUB_BGEXT, 0x2000, 0, heapID);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__TITLE__OP_DEMO, 12, bgConfig, BG_LAYER_SUB_1, 0, 0, 0, heapID);
 
     // "GAME FREAK Presents"
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, 5, bgConfig, BG_LAYER_MAIN_1, 0, 0, 0, heapID);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, 3, bgConfig, BG_LAYER_MAIN_1, 0, 0, 0, heapID);
-    Graphics_LoadPalette(NARC_INDEX_DEMO__TITLE__TITLEDEMO, 4, PAL_LOAD_MAIN_BG, 32 * 1, 32 * 3, heapID);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, gf_presents_NCGR, bgConfig, BG_LAYER_MAIN_1, 0, 0, 0, heapID);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, gf_presents_NSCR, bgConfig, BG_LAYER_MAIN_1, 0, 0, 0, heapID);
+    Graphics_LoadPalette(NARC_INDEX_DEMO__TITLE__TITLEDEMO, gf_presents_NCLR, PAL_LOAD_MAIN_BG, 32 * 1, 32 * 3, heapID);
 
     Bg_MaskPalette(BG_LAYER_MAIN_0, COLOR_BLACK);
     Bg_MaskPalette(BG_LAYER_SUB_0, COLOR_BLACK);
