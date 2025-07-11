@@ -168,7 +168,7 @@ FieldBattleDTO *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104
 
     v2 = ov104_0223BD70(param0->unk_10, 0);
     v3 = ov104_0223BDA4(param0->unk_10, 0);
-    FieldBattleDTO *v5 = FieldBattleDTO_New(11, ov104_0223BFD0(param0->unk_10));
+    FieldBattleDTO *v5 = FieldBattleDTO_New(HEAP_ID_FIELDMAP, ov104_0223BFD0(param0->unk_10));
 
     FieldBattleDTO_InitFromGameState(v5, NULL, param1->saveData, param1->unk_1C, param1->journalEntry, param1->bagCursor, param1->unk_20);
 

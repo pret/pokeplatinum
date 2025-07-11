@@ -4,7 +4,6 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "bg_window.h"
-#include "system.h"
 #include "font.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -13,16 +12,16 @@
 #include "message.h"
 #include "overlay_manager.h"
 #include "palette.h"
-#include "strbuf.h"
-#include "text.h"
-#include "sound.h"
 #include "screen_fade.h"
+#include "sound.h"
+#include "strbuf.h"
 #include "system.h"
+#include "text.h"
 
 typedef struct {
     int heapID;
     BgConfig *unk_04;
-    MessageLoader * unk_08;
+    MessageLoader *unk_08;
     int unk_0C;
     Window unk_10;
     int unk_20;
@@ -30,20 +29,20 @@ typedef struct {
 } UnkStruct_ov73_021D342C;
 
 void EnqueueApplication(FSOverlayID param0, const ApplicationManagerTemplate *param1);
-int ov73_021D3250(ApplicationManager *appMan, int * param1);
-int ov73_021D3280(ApplicationManager *appMan, int * param1);
-int ov73_021D3404(ApplicationManager *appMan, int * param1);
-static void ov73_021D3420(void * param0);
-static void ov73_021D342C(UnkStruct_ov73_021D342C * param0);
-static void ov73_021D35F4(UnkStruct_ov73_021D342C * param0);
-static void ov73_021D366C(UnkStruct_ov73_021D342C * param0);
-static void ov73_021D368C(UnkStruct_ov73_021D342C * param0);
-static BOOL ov73_021D3698(UnkStruct_ov73_021D342C * param0, int param1, int param2, int param3);
-static void ov73_021D37AC(UnkStruct_ov73_021D342C * param0);
+int ov73_021D3250(ApplicationManager *appMan, int *param1);
+int ov73_021D3280(ApplicationManager *appMan, int *param1);
+int ov73_021D3404(ApplicationManager *appMan, int *param1);
+static void ov73_021D3420(void *param0);
+static void ov73_021D342C(UnkStruct_ov73_021D342C *param0);
+static void ov73_021D35F4(UnkStruct_ov73_021D342C *param0);
+static void ov73_021D366C(UnkStruct_ov73_021D342C *param0);
+static void ov73_021D368C(UnkStruct_ov73_021D342C *param0);
+static BOOL ov73_021D3698(UnkStruct_ov73_021D342C *param0, int param1, int param2, int param3);
+static void ov73_021D37AC(UnkStruct_ov73_021D342C *param0);
 
-int ov73_021D3250 (ApplicationManager *appMan, int * param1)
+int ov73_021D3250(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov73_021D342C * v0;
+    UnkStruct_ov73_021D342C *v0;
     int heapID = HEAP_ID_83;
 
     Heap_Create(HEAP_ID_APPLICATION, heapID, 0x40000);
@@ -57,9 +56,9 @@ int ov73_021D3250 (ApplicationManager *appMan, int * param1)
     return 1;
 }
 
-int ov73_021D3280 (ApplicationManager *appMan, int * param1)
+int ov73_021D3280(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov73_021D342C * v0 = ApplicationManager_Data(appMan);
+    UnkStruct_ov73_021D342C *v0 = ApplicationManager_Data(appMan);
     int v1 = 0;
 
     switch (*param1) {
@@ -143,9 +142,9 @@ int ov73_021D3280 (ApplicationManager *appMan, int * param1)
     return v1;
 }
 
-int ov73_021D3404 (ApplicationManager *appMan, int * param1)
+int ov73_021D3404(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov73_021D342C * v0 = ApplicationManager_Data(appMan);
+    UnkStruct_ov73_021D342C *v0 = ApplicationManager_Data(appMan);
     int heapID = v0->heapID;
 
     ApplicationManager_FreeData(appMan);
@@ -154,13 +153,13 @@ int ov73_021D3404 (ApplicationManager *appMan, int * param1)
     return 1;
 }
 
-static void ov73_021D3420 (void * param0)
+static void ov73_021D3420(void *param0)
 {
-    UnkStruct_ov73_021D342C * v0 = param0;
+    UnkStruct_ov73_021D342C *v0 = param0;
     Bg_RunScheduledUpdates(v0->unk_04);
 }
 
-static void ov73_021D342C (UnkStruct_ov73_021D342C * param0)
+static void ov73_021D342C(UnkStruct_ov73_021D342C *param0)
 {
     {
         UnkStruct_02099F80 v0 = {
@@ -302,7 +301,7 @@ static void ov73_021D342C (UnkStruct_ov73_021D342C * param0)
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, (GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3), 0x4, 0xc);
 }
 
-static void ov73_021D35F4 (UnkStruct_ov73_021D342C * param0)
+static void ov73_021D35F4(UnkStruct_ov73_021D342C *param0)
 {
     Bg_ToggleLayer(BG_LAYER_MAIN_0, 0);
     Bg_ToggleLayer(BG_LAYER_MAIN_1, 0);
@@ -322,7 +321,7 @@ static void ov73_021D35F4 (UnkStruct_ov73_021D342C * param0)
     Heap_Free(param0->unk_04);
 }
 
-static void ov73_021D366C (UnkStruct_ov73_021D342C * param0)
+static void ov73_021D366C(UnkStruct_ov73_021D342C *param0)
 {
     param0->unk_08 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0607, param0->heapID);
 
@@ -330,7 +329,7 @@ static void ov73_021D366C (UnkStruct_ov73_021D342C * param0)
     param0->unk_0C = 0;
 }
 
-static void ov73_021D368C (UnkStruct_ov73_021D342C * param0)
+static void ov73_021D368C(UnkStruct_ov73_021D342C *param0)
 {
     MessageLoader_Free(param0->unk_08);
 }
@@ -345,138 +344,49 @@ static const WindowTemplate Unk_ov72_021D3A38 = {
     0x1
 };
 
-// clang-format off
-asm static BOOL ov73_021D3698 (UnkStruct_ov73_021D342C * param0, int param1, int param2, int param3)
+static BOOL ov73_021D3698(UnkStruct_ov73_021D342C *a0, int a1, int a2, int a3)
 {
-    push {r3, r4, r5, r6, r7, lr}
-    sub sp, #0x10
-    add r4, r0, #0
-    ldr r0, [r4, #0xc]
-    add r7, r1, #0
-    mov r6, #0
-    cmp r0, #3
-    bhi _021D3798
-    add r0, r0, r0
-    add r0, pc
-    ldrh r0, [r0, #6]
-    lsl r0, r0, #0x10
-    asr r0, r0, #0x10
-    add pc, r0
- _021D36B4:
-    dcd 0xa00006
-    dcd 0xcc00b2
- _021D36BC:
-    mov r0, #2
-    add r1, r6, #0
-    bl Bg_ToggleLayer
-    mov r0, #1
-    ldr r1, [r4, #0]
-    lsl r0, r0, #0xa
-    bl Strbuf_Init
-    add r5, r0, #0
-    ldr r0, [r4, #8]
-    add r1, r7, #0
-    add r2, r5, #0
-    bl MessageLoader_GetStrbuf
-    add r1, r4, #0
-    ldr r0, [r4, #4]
-    ldr r2, = Unk_ov72_021D3A38
-    add r1, #0x10
-    bl Window_AddFromTemplate
-    add r1, r6, #0
-    mov r0, #1
-    lsl r0, r0, #8
-    str r0, [sp]
-    mov r0, #0xc0
-    str r0, [sp, #4]
-    add r0, r4, #0
-    add r0, #0x10
-    add r2, r1, #0
-    add r3, r1, #0
-    bl Window_FillRectWithColor
-    add r0, r6, #0
-    add r1, r5, #0
-    add r2, r0, #0
-    bl Font_CalcMaxLineWidth
-    mov r1, #1
-    lsl r1, r1, #8
-    sub r0, r1, r0
-    lsr r7, r0, #1
-    add r0, r5, #0
-    bl Strbuf_NumLines
-    lsl r1, r0, #4
-    mov r0, #0xc0
-    sub r0, r0, r1
-    lsr r0, r0, #1
-    str r0, [sp]
-    add r1, r6, #0
-    ldr r0, = 0xF0200
-    str r1, [sp, #4]
-    str r0, [sp, #8]
-    add r0, r4, #0
-    add r0, #0x10
-    add r2, r5, #0
-    add r3, r7, #0
-    str r1, [sp, #0xc]
-    bl Text_AddPrinterWithParamsAndColor
-    add r0, r5, #0
-    bl Strbuf_Free
-    add r0, r4, #0
-    add r0, #0x10
-    bl Window_CopyToVRAM
-    mov r0, #2
-    mov r1, #1
-    bl Bg_ToggleLayer
-    mov r0, #0xf0
-    str r0, [r4, #0x24]
-    mov r0, #1
-    str r0, [r4, #0xc]
-    b _021D3798
- _021D3756:
-    ldr r0, [r4, #0x24]
-    cmp r0, #0
-    beq _021D3762
-    sub r0, r0, #1
-    str r0, [r4, #0x24]
-    b _021D3798
- _021D3762:
-    mov r0, #2
-    str r0, [r4, #0xc]
-    b _021D3798
- _021D3768:
-    ldr r0, = gSystem
-    ldr r1, [r0, #0x48]
-    mov r0, #1
-    and r0, r1
-    cmp r0, #1
-    beq _021D377C
-    mov r0, #2
-    and r0, r1
-    cmp r0, #2
-    bne _021D3798
- _021D377C:
-    mov r0, #3
-    str r0, [r4, #0xc]
-    b _021D3798
- _021D3782:
-    add r0, r4, #0
-    add r0, #0x10
-    bl Window_Remove
-    ldr r0, [r4, #4]
-    mov r1, #2
-    bl Bg_ClearTilemap
-    add r0, r6, #0
-    str r0, [r4, #0xc]
-    mov r6, #1
- _021D3798:
-    add r0, r6, #0
-    add sp, #0x10
-    pop {r3, r4, r5, r6, r7, pc}
-    nop
+    BOOL r6 = FALSE;
+    switch (a0->unk_0C) {
+    case 0:
+        Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
+        Strbuf *r5 = Strbuf_Init(0x400, a0->heapID);
+        MessageLoader_GetStrbuf(a0->unk_08, a1, r5);
+        Window_AddFromTemplate(a0->unk_04, &a0->unk_10, &Unk_ov72_021D3A38);
+        Window_FillRectWithColor(&a0->unk_10, 0, 0, 0, 0x100, 0xc0);
+        u32 r7 = (0x100 - Font_CalcMaxLineWidth(0, r5, 0)) / 2;
+        u32 r1 = Strbuf_NumLines(r5) * 16;
+        u32 sp00 = (0xc0 - r1) / 2;
+        Text_AddPrinterWithParamsAndColor(&a0->unk_10, FONT_SYSTEM, r5, r7, sp00, TEXT_SPEED_INSTANT, TEXT_COLOR(15, 2, 0), NULL);
+        Strbuf_Free(r5);
+        Window_CopyToVRAM(&a0->unk_10);
+        Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
+        a0->unk_24 = 240;
+        a0->unk_0C = 1;
+        break;
+    case 1:
+        if (a0->unk_24) {
+            a0->unk_24--;
+        } else {
+            a0->unk_0C = 2;
+        }
+        break;
+    case 2:
+        if (JOY_NEW(PAD_BUTTON_A) == PAD_BUTTON_A || JOY_NEW(PAD_BUTTON_B) == PAD_BUTTON_B) {
+            a0->unk_0C = 3;
+        }
+        break;
+    case 3:
+        Window_Remove(&a0->unk_10);
+        Bg_ClearTilemap(a0->unk_04, BG_LAYER_MAIN_2);
+        a0->unk_0C = 0;
+        r6 = TRUE;
+        break;
+    }
+    return r6;
 }
-// clang-format on
 
-static void ov73_021D37AC (UnkStruct_ov73_021D342C * param0)
+static void ov73_021D37AC(UnkStruct_ov73_021D342C *param0)
 {
     param0->unk_20 += 0x4;
     Bg_SetOffset(param0->unk_04, BG_LAYER_MAIN_1, 3, param0->unk_20 >> 4);

@@ -2447,7 +2447,7 @@ static BOOL ov104_022319CC(UnkStruct_ov104_02231148 *param0)
 {
     switch (param0->unk_04) {
     case 0:
-        ov104_0223F094(&param0->unk_18, 94);
+        ov104_0223F094(&param0->unk_18, HEAP_ID_94);
         param0->unk_04++;
         break;
     case 1:

@@ -282,7 +282,7 @@ static void ov5_021F6768(UnkStruct_ov5_021F6704 *param0)
     Window_DrawStandardFrame(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
     ov5_021F68BC(param0);
 
-    param0->unk_23C = ListMenu_New((const ListMenuTemplate *)&param0->unk_21C, *param0->unk_214, *param0->unk_218, 4);
+    param0->unk_23C = ListMenu_New((const ListMenuTemplate *)&param0->unk_21C, *param0->unk_214, *param0->unk_218, HEAP_ID_FIELD);
     param0->unk_04 = SysTask_Start(ov5_021F6A34, param0, 0);
 
     return;

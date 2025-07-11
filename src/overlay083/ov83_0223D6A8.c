@@ -89,14 +89,14 @@ typedef struct {
     u8 unk_1A;
 } UnkStruct_ov83_022404B0;
 
-static void ov83_0223E09C(UnkStruct_ov83_0223E138 *param0, u32 param1);
+static void ov83_0223E09C(UnkStruct_ov83_0223E138 *param0, u32 heapID);
 static void ov83_0223E138(UnkStruct_ov83_0223E138 *param0);
 static void ov83_0223E15C(UnkStruct_ov83_0223E138 *param0, u32 param1, NARC *param2);
 static void ov83_0223E208(UnkStruct_ov83_0223E138 *param0);
 static void ov83_0223E21C(Window *param0, Strbuf *param1, int param2, int param3);
-static void ov83_0223E77C(UnkStruct_ov83_0223E824 *param0, u32 param1);
+static void ov83_0223E77C(UnkStruct_ov83_0223E824 *param0, u32 heapID);
 static void ov83_0223E824(UnkStruct_ov83_0223E824 *param0);
-static void ov83_0223E844(UnkStruct_ov83_0223E824 *param0, u32 param1, NARC *param2);
+static void ov83_0223E844(UnkStruct_ov83_0223E824 *param0, u32 heapID, NARC *param2);
 static UnkStruct_ov83_0223F054 *ov83_0223EFF4(UnkStruct_ov83_0223ED3C *param0);
 static UnkStruct_ov83_0223F054 *ov83_0223F018(UnkStruct_ov83_0223ED3C *param0);
 static void ov83_0223F054(UnkStruct_ov83_0223F054 *param0);
@@ -536,14 +536,14 @@ void ov83_0223DEC4(UnkStruct_ov83_0223E138 *param0)
     memset(param0, 0, sizeof(UnkStruct_ov83_0223E138));
 }
 
-void ov83_0223DEE0(UnkStruct_ov83_0223E138 *param0, BgConfig *param1, u32 param2, NARC *param3)
+void ov83_0223DEE0(UnkStruct_ov83_0223E138 *param0, BgConfig *param1, u32 heapID, NARC *param3)
 {
     GF_ASSERT(param0->unk_30 == 0);
 
     param0->unk_04 = param1;
 
-    ov83_0223E09C(param0, param2);
-    ov83_0223E15C(param0, param2, param3);
+    ov83_0223E09C(param0, heapID);
+    ov83_0223E15C(param0, heapID, param3);
 
     param0->unk_30 = 1;
 }
@@ -618,17 +618,17 @@ void ov83_0223DFAC(UnkStruct_ov83_0223E138 *param0)
     Bg_ScheduleTilemapTransfer(param0->unk_04, 5);
 }
 
-static void ov83_0223E09C(UnkStruct_ov83_0223E138 *param0, u32 param1)
+static void ov83_0223E09C(UnkStruct_ov83_0223E138 *param0, u32 heapID)
 {
-    param0->unk_08 = Window_New(param1, 1);
-    param0->unk_0C = Window_New(param1, 1);
+    param0->unk_08 = Window_New(heapID, 1);
+    param0->unk_0C = Window_New(heapID, 1);
 
     Window_Add(param0->unk_04, param0->unk_08, 4, 4, 19, 23, 4, 1, (18 + 12) + 1);
     Window_Add(param0->unk_04, param0->unk_0C, 4, 6, 13, 20, 8, 1, (18 + 12) + 1);
     Window_FillTilemap(param0->unk_08, 15);
     Window_FillTilemap(param0->unk_0C, 0);
-    LoadMessageBoxGraphics(param0->unk_04, BG_LAYER_SUB_0, 1, 0, param0->unk_10, param1);
-    Font_LoadScreenIndicatorsPalette(4, 1 * 32, param1);
+    LoadMessageBoxGraphics(param0->unk_04, BG_LAYER_SUB_0, 1, 0, param0->unk_10, heapID);
+    Font_LoadScreenIndicatorsPalette(4, 1 * 32, heapID);
     Window_DrawMessageBoxWithScrollCursor(param0->unk_08, 1, 1, 0);
 }
 
@@ -640,12 +640,12 @@ static void ov83_0223E138(UnkStruct_ov83_0223E138 *param0)
     Windows_Delete(param0->unk_0C, 1);
 }
 
-static void ov83_0223E15C(UnkStruct_ov83_0223E138 *param0, u32 param1, NARC *param2)
+static void ov83_0223E15C(UnkStruct_ov83_0223E138 *param0, u32 heapID, NARC *param2)
 {
     int v0;
 
-    Graphics_LoadPaletteFromOpenNARC(param2, 1, 4, 2 * 32, 2 * 32, param1);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param2, 0, param0->unk_04, 5, 0, 0, 0, param1);
+    Graphics_LoadPaletteFromOpenNARC(param2, 1, 4, 2 * 32, 2 * 32, heapID);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param2, 0, param0->unk_04, 5, 0, 0, 0, heapID);
 
     if (param0->unk_14 == 1) {
         v0 = 2;
@@ -653,12 +653,12 @@ static void ov83_0223E15C(UnkStruct_ov83_0223E138 *param0, u32 param1, NARC *par
         v0 = 3;
     }
 
-    param0->unk_20 = Graphics_GetScrnDataFromOpenNARC(param2, v0, 0, &param0->unk_24, param1);
+    param0->unk_20 = Graphics_GetScrnDataFromOpenNARC(param2, v0, 0, &param0->unk_24, heapID);
 
     Bg_LoadToTilemapRect(param0->unk_04, 5, param0->unk_24->rawData, 0, 0, param0->unk_24->screenWidth / 8, param0->unk_24->screenHeight / 8);
     Bg_ChangeTilemapRectPalette(param0->unk_04, 5, 0, 0, param0->unk_24->screenWidth / 8, param0->unk_24->screenHeight / 8, 2 + 1);
 
-    param0->unk_28 = Graphics_GetScrnDataFromOpenNARC(param2, 4, 0, &param0->unk_2C, param1);
+    param0->unk_28 = Graphics_GetScrnDataFromOpenNARC(param2, 4, 0, &param0->unk_2C, heapID);
 
     Bg_ScheduleTilemapTransfer(param0->unk_04, 5);
 }
@@ -1020,14 +1020,14 @@ void ov83_0223E6F8(UnkStruct_ov83_0223E824 *param0)
     memset(param0, 0, sizeof(UnkStruct_ov83_0223E824));
 }
 
-void ov83_0223E720(UnkStruct_ov83_0223E824 *param0, BgConfig *param1, u32 param2, NARC *param3)
+void ov83_0223E720(UnkStruct_ov83_0223E824 *param0, BgConfig *param1, u32 heapID, NARC *param3)
 {
     GF_ASSERT(param0->unk_28 == 0);
 
     param0->unk_04 = param1;
 
-    ov83_0223E77C(param0, param2);
-    ov83_0223E844(param0, param2, param3);
+    ov83_0223E77C(param0, heapID);
+    ov83_0223E844(param0, heapID, param3);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
@@ -1044,7 +1044,7 @@ void ov83_0223E760(UnkStruct_ov83_0223E824 *param0)
     param0->unk_28 = 0;
 }
 
-static void ov83_0223E77C(UnkStruct_ov83_0223E824 *param0, u32 param1)
+static void ov83_0223E77C(UnkStruct_ov83_0223E824 *param0, u32 heapID)
 {
     int v0;
     static u16 v1[4][6] = {
@@ -1054,13 +1054,13 @@ static void ov83_0223E77C(UnkStruct_ov83_0223E824 *param0, u32 param1)
         { 2, 2, 27, 5, 2, 40 }
     };
 
-    LoadMessageBoxGraphics(param0->unk_04, BG_LAYER_MAIN_2, 1, 0, param0->unk_18, param1);
-    Font_LoadScreenIndicatorsPalette(0, 2 * 32, param1);
-    LoadStandardWindowGraphics(param0->unk_04, BG_LAYER_MAIN_2, (1 + (18 + 12)), 1, 0, param1);
-    Font_LoadTextPalette(0, 3 * 32, param1);
+    LoadMessageBoxGraphics(param0->unk_04, BG_LAYER_MAIN_2, 1, 0, param0->unk_18, heapID);
+    Font_LoadScreenIndicatorsPalette(0, 2 * 32, heapID);
+    LoadStandardWindowGraphics(param0->unk_04, BG_LAYER_MAIN_2, (1 + (18 + 12)), 1, 0, heapID);
+    Font_LoadTextPalette(0, 3 * 32, heapID);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_08[v0] = Window_New(param1, 1);
+        param0->unk_08[v0] = Window_New(heapID, 1);
         Window_Add(param0->unk_04, param0->unk_08[v0], 2, v1[v0][0], v1[v0][1], v1[v0][2], v1[v0][3], v1[v0][4], v1[v0][5]);
         Window_FillTilemap(param0->unk_08[v0], 0);
     }
@@ -1076,15 +1076,15 @@ static void ov83_0223E824(UnkStruct_ov83_0223E824 *param0)
     }
 }
 
-static void ov83_0223E844(UnkStruct_ov83_0223E824 *param0, u32 param1, NARC *param2)
+static void ov83_0223E844(UnkStruct_ov83_0223E824 *param0, u32 heapID, NARC *param2)
 {
     void *v0;
     NNSG2dScreenData *v1;
 
-    Graphics_LoadPaletteFromOpenNARC(param2, 6, 0, 4 * 32, 1 * 32, param1);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param2, 5, param0->unk_04, 1, 0, 0, 0, param1);
+    Graphics_LoadPaletteFromOpenNARC(param2, 6, 0, 4 * 32, 1 * 32, heapID);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param2, 5, param0->unk_04, 1, 0, 0, 0, heapID);
 
-    v0 = Graphics_GetScrnDataFromOpenNARC(param2, 7, 0, &v1, param1);
+    v0 = Graphics_GetScrnDataFromOpenNARC(param2, 7, 0, &v1, heapID);
 
     Bg_LoadToTilemapRect(param0->unk_04, 1, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Bg_ChangeTilemapRectPalette(param0->unk_04, 1, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8, 4);

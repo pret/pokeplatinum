@@ -967,7 +967,7 @@ static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0)
         if (IsScreenFadeDone() == TRUE) {
             ov105_02245464(param0);
             ov105_022451B4(param0);
-            param0->unk_04 = ApplicationManager_New(&gPokemonSummaryScreenApp, param0->unk_140, 93);
+            param0->unk_04 = ApplicationManager_New(&gPokemonSummaryScreenApp, param0->unk_140, HEAP_ID_93);
             param0->unk_13_1 = 1;
             return 1;
         }
@@ -1482,7 +1482,7 @@ static BOOL ov105_022434BC(UnkStruct_ov105_02241FF4 *param0)
         if (IsScreenFadeDone() == TRUE) {
             ov105_02245464(param0);
             ov105_022451B4(param0);
-            param0->unk_04 = ApplicationManager_New(&gPokemonSummaryScreenApp, param0->unk_140, 93);
+            param0->unk_04 = ApplicationManager_New(&gPokemonSummaryScreenApp, param0->unk_140, HEAP_ID_93);
             param0->unk_13_1 = 1;
             return 1;
         }

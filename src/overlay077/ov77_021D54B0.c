@@ -91,20 +91,20 @@ static fx32 Unk_ov77_021D79A4[2] = {
 
 static void ov77_021D54B0()
 {
-    const int v0 = 76;
+    const int heapID = HEAP_ID_76;
 
     {
         CharTransferTemplate v1 = {
-            11, 0x8000, 0x4000, v0
+            11, 0x8000, 0x4000, heapID
         };
 
         CharTransfer_Init(&v1);
     }
 
-    PlttTransfer_Init(11, v0);
+    PlttTransfer_Init(11, heapID);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
-    VramTransfer_New((3 * 2), v0);
+    VramTransfer_New((3 * 2), heapID);
 }
 
 static void ov77_021D54E8(const int param0, UnkStruct_ov77_021D5564 *param1, const int param2, AffineSpriteListTemplate *param3, SpriteResourcesHeader *param4, int param5, int param6)

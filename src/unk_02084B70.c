@@ -1162,7 +1162,7 @@ void sub_020866A0(GameWindowLayout *windowLayout, u8 param1)
         sub_020826F4(windowLayout, 40, 1);
     }
 
-    windowLayout->unk_6FC = StringList_New(4, 12);
+    windowLayout->unk_6FC = StringList_New(4, HEAP_ID_12);
 
     moveCount = BufferLearnedMoveInSlot(windowLayout, 0);
     moveCount += BufferLearnedMoveInSlot(windowLayout, 1);

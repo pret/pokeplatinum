@@ -79,7 +79,7 @@ int sub_02017524(ApplicationManager *appMan, int *param1)
         }
         break;
     case 2:
-        v0->appMan = ApplicationManager_New(&Unk_020E5664, v0, 116);
+        v0->appMan = ApplicationManager_New(&Unk_020E5664, v0, HEAP_ID_116);
         (*param1)++;
         break;
     case 3:
@@ -98,7 +98,7 @@ int sub_02017524(ApplicationManager *appMan, int *param1)
         const ApplicationManagerTemplate *v1;
 
         v1 = sub_0208BE5C(v0->unk_00->unk_0C);
-        v0->appMan = ApplicationManager_New(v1, v0->unk_00->fieldSystem, 116);
+        v0->appMan = ApplicationManager_New(v1, v0->unk_00->fieldSystem, HEAP_ID_116);
         (*param1)++;
     } break;
     case 5:
@@ -108,7 +108,7 @@ int sub_02017524(ApplicationManager *appMan, int *param1)
         }
         break;
     case 6:
-        v0->appMan = ApplicationManager_New(&Unk_020E5664, v0, 116);
+        v0->appMan = ApplicationManager_New(&Unk_020E5664, v0, HEAP_ID_116);
         (*param1)++;
         break;
     case 7:

@@ -118,7 +118,7 @@ static BOOL ov28_02256210(UnkStruct_ov28_02256210 *param0, u32 param1, BgConfig 
             return 0;
         }
 
-        param0->buttonManager = PoketchButtonManager_New(Unk_ov28_02257658, NELEMS(Unk_ov28_02257658), ov28_02256344, param0, 8);
+        param0->buttonManager = PoketchButtonManager_New(Unk_ov28_02257658, NELEMS(Unk_ov28_02257658), ov28_02256344, param0, HEAP_ID_POKETCH_APP);
 
         if (param0->buttonManager == NULL) {
             return 0;

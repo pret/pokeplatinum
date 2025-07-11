@@ -327,7 +327,7 @@ void ov119_021D11E4(UnkStruct_ov119_021D0FD0 *param0, BgConfig *param1, Window *
     Window_Init(param2);
     Window_Add(param1, param2, param3, param4, param5, param6, param7, param9, param8);
 
-    param0->unk_04.unk_44 = StringList_New(2, 71);
+    param0->unk_04.unk_44 = StringList_New(2, HEAP_ID_71);
 
     {
         int v1;

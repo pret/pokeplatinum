@@ -86,7 +86,7 @@ static void ov21_021E8E0C(UnkStruct_ov21_021E8D48 *param0, const UnkStruct_ov21_
 static void ov21_021E900C(UnkStruct_ov21_021E8D48 *param0);
 static void ov21_021E90B0(BgConfig *param0, int heapID);
 static void ov21_021E9194(BgConfig *param0);
-static Window *ov21_021E91B0(BgConfig *param0, int param1);
+static Window *ov21_021E91B0(BgConfig *param0, int heapID);
 static void ov21_021E91F0(Window *param0);
 static void ov21_021E9208(SpriteResourceCollection **param0, int heapID);
 static void ov21_021E9228(SpriteResourceCollection **param0);
@@ -346,9 +346,9 @@ static void ov21_021E9194(BgConfig *param0)
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_3);
 }
 
-static Window *ov21_021E91B0(BgConfig *param0, int param1)
+static Window *ov21_021E91B0(BgConfig *param0, int heapID)
 {
-    Window *v0 = Window_New(param1, 1);
+    Window *v0 = Window_New(heapID, 1);
 
     Window_Add(param0, v0, 1, 0, 0, 32, 32, 0xc, 0);
     Window_FillTilemap(v0, 0);

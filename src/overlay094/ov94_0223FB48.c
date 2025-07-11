@@ -685,7 +685,7 @@ static int ov94_022405DC(UnkStruct_ov94_0223FD4C *param0)
     v0.suppressCursor = FALSE;
     v0.loopAround = FALSE;
 
-    param0->unk_10CC = StringList_New(3, 62);
+    param0->unk_10CC = StringList_New(3, HEAP_ID_62);
 
     StringList_AddFromMessageBank(param0->unk_10CC, param0->unk_B90, 94, 1);
     StringList_AddFromMessageBank(param0->unk_10CC, param0->unk_B90, 95, 2);
@@ -776,7 +776,7 @@ static int ov94_02240830(UnkStruct_ov94_0223FD4C *param0)
     v0.suppressCursor = FALSE;
     v0.loopAround = FALSE;
 
-    param0->unk_10CC = StringList_New(3, 62);
+    param0->unk_10CC = StringList_New(3, HEAP_ID_62);
 
     StringList_AddFromMessageBank(param0->unk_10CC, param0->unk_B90, 84, 1);
     StringList_AddFromMessageBank(param0->unk_10CC, param0->unk_B90, 85, 2);

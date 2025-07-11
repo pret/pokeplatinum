@@ -474,7 +474,7 @@ void ov76_0223BF74(BgConfig *param0, Window *param1, int param2, UnkStruct_ov76_
     Window_Init(param1);
     Window_Add(param0, param1, param2, v2, v3, v4, v5, 14, v6);
 
-    param3->unk_D4.unk_C8 = StringList_New(v7, 53);
+    param3->unk_D4.unk_C8 = StringList_New(v7, HEAP_ID_53);
 
     {
         int v9;

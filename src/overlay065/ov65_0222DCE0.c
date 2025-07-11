@@ -3267,7 +3267,7 @@ static int ov65_02230E04(UnkStruct_ov65_0222EBE0 *param0, int param1)
         v3[v1 - 1] = Unk_ov65_02239C20;
     }
 
-    param0->unk_154 = StringList_New(v1, 54);
+    param0->unk_154 = StringList_New(v1, HEAP_ID_54);
 
     for (v0 = 0; v0 < v1; v0++) {
         StringList_AddFromMessageBank(param0->unk_154, param0->unk_168, v3[v0].unk_00, v3[v0].unk_04);
@@ -3284,7 +3284,7 @@ static int ov65_02230E04(UnkStruct_ov65_0222EBE0 *param0, int param1)
     v2.choices = param0->unk_154;
     v2.window = &param0->unk_380;
 
-    param0->unk_158 = ListMenu_New(&v2, 0, param0->unk_3D4, 54);
+    param0->unk_158 = ListMenu_New(&v2, 0, param0->unk_3D4, HEAP_ID_54);
 
     Window_ScheduleCopyToVRAM(&param0->unk_380);
     ov65_02232B58(param0, 8, 0);
@@ -3453,7 +3453,7 @@ static int ov65_0223128C(UnkStruct_ov65_0222EBE0 *param0, int param1)
         break;
     }
 
-    param0->unk_154 = StringList_New(v1, 54);
+    param0->unk_154 = StringList_New(v1, HEAP_ID_54);
 
     for (v0 = 0; v0 < v1; v0++) {
         if (v3[v0].unk_00 != 71) {
@@ -3477,7 +3477,7 @@ static int ov65_0223128C(UnkStruct_ov65_0222EBE0 *param0, int param1)
     v2.choices = param0->unk_154;
     v2.window = &param0->unk_380;
 
-    param0->unk_158 = ListMenu_New(&v2, 0, param0->unk_3D6[param0->unk_3DC], 54);
+    param0->unk_158 = ListMenu_New(&v2, 0, param0->unk_3D6[param0->unk_3DC], HEAP_ID_54);
 
     Window_ScheduleCopyToVRAM(&param0->unk_380);
 
@@ -3717,7 +3717,7 @@ static int ov65_022316F0(UnkStruct_ov65_0222EBE0 *param0, int param1)
         param0->unk_3E0 = v10;
 
         v10 += param0->unk_04->unk_00.unk_21;
-        param0->unk_154 = StringList_New(v6, 54);
+        param0->unk_154 = StringList_New(v6, HEAP_ID_54);
         v5 = 0;
 
         for (v5 = 0; v5 < NELEMS(Unk_ov65_02238968); v5++) {
@@ -3748,7 +3748,7 @@ static int ov65_022316F0(UnkStruct_ov65_0222EBE0 *param0, int param1)
         v7.choices = param0->unk_154;
         v7.window = &param0->unk_380;
 
-        param0->unk_158 = ListMenu_New(&v7, 0, 0, 54);
+        param0->unk_158 = ListMenu_New(&v7, 0, 0, HEAP_ID_54);
 
         Window_ScheduleCopyToVRAM(&param0->unk_380);
     }
