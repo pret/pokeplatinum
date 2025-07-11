@@ -5,8 +5,6 @@
 
 #include "generated/game_records.h"
 
-#include "struct_decls/struct_0202C834_decl.h"
-#include "struct_decls/struct_0202C844_decl.h"
 #include "struct_defs/battle_frontier.h"
 #include "struct_defs/underground_record.h"
 
@@ -22,9 +20,9 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "system_flags.h"
+#include "trainer_card_save_data.h"
 #include "trainer_info.h"
 #include "unk_0202854C.h"
-#include "unk_0202C7FC.h"
 #include "unk_0203061C.h"
 #include "unk_0203D1B8.h"
 #include "unk_020559DC.h"
@@ -64,13 +62,13 @@ void TrainerCard_Init(const u8 param0, const u8 param1, const u8 param2, const u
     FieldSystem_GetFirstCompletionTimestamp(fieldSystem, &firstCompletionDate, &firstCompletionTime);
     TrainerCard_SetDates(SystemFlag_CheckGameCompleted(SaveData_GetVarsFlags(fieldSystem->saveData)), playTime, &adventureStartedDate, &firstCompletionDate, &firstCompletionTime, param1, trainerCard);
 
-    UnkStruct_0202C834 *v12 = sub_0202C834(fieldSystem->saveData);
+    TrainerCardSaveData *tcSaveData = SaveData_GetTrainerCardSaveData(fieldSystem->saveData);
     u32 timesLinked = GameRecords_GetRecordValue(gameRecords, RECORD_UNK_091) + GameRecords_GetRecordValue(gameRecords, RECORD_LOCAL_LINK_TRADES) + GameRecords_GetRecordValue(gameRecords, RECORD_WIFI_TRADES) + GameRecords_GetRecordValue(gameRecords, RECORD_UNK_020) + GameRecords_GetRecordValue(gameRecords, RECORD_UNK_025) + GameRecords_GetRecordValue(gameRecords, RECORD_UNK_032);
     u32 linkBattleWins = GameRecords_GetRecordValue(gameRecords, RECORD_LOCAL_LINK_BATTLE_WINS) + GameRecords_GetRecordValue(gameRecords, RECORD_WIFI_BATTLE_WINS);
     u32 linkBattleLosses = GameRecords_GetRecordValue(gameRecords, RECORD_LOCAL_LINK_BATTLE_LOSSES) + GameRecords_GetRecordValue(gameRecords, RECORD_WIFI_BATTLE_LOSSES);
     u32 linkTrades = GameRecords_GetRecordValue(gameRecords, RECORD_LOCAL_LINK_TRADES) + GameRecords_GetRecordValue(gameRecords, RECORD_WIFI_TRADES);
 
-    TrainerCard_SetLinkDataAndSignature(timesLinked, linkBattleWins, linkBattleLosses, linkTrades, TrainerCardSignature_GetSignature(v12), trainerCard);
+    TrainerCard_SetLinkDataAndSignature(timesLinked, linkBattleWins, linkBattleLosses, linkTrades, TrainerCardSaveData_GetSignature(tcSaveData), trainerCard);
 
     sub_0207216C(trainerInfo, fieldSystem, trainerCard);
 
@@ -217,8 +215,8 @@ static void TrainerCard_SetLinkDataAndSignature(const u32 timesLinked, const u32
 static void sub_0207216C(TrainerInfo *param0, FieldSystem *fieldSystem, TrainerCard *trainerCard)
 {
     u8 v0;
-    UnkStruct_0202C834 *v1 = sub_0202C834(fieldSystem->saveData);
-    UnkStruct_0202C844 *v2 = sub_0202C844(v1);
+    TrainerCardSaveData *v1 = SaveData_GetTrainerCardSaveData(fieldSystem->saveData);
+    TrainerCardBadge *v2 = TrainerCardSaveData_GetTrainerCardBadges(v1);
 
     for (v0 = 0; v0 < 8; v0++) {
         if (TrainerInfo_HasBadge(param0, v0)) {
@@ -227,18 +225,18 @@ static void sub_0207216C(TrainerInfo *param0, FieldSystem *fieldSystem, TrainerC
             trainerCard->unk_48[v0].unk_00_0 = 0;
         }
 
-        trainerCard->unk_48[v0].unk_00_1 = sub_0202C848(v0, v2);
+        trainerCard->unk_48[v0].unk_00_1 = TrainerCardBadge_GetCleanliness(v0, v2);
     }
 }
 
 void sub_020721D4(FieldSystem *fieldSystem, const TrainerCard *trainerCard)
 {
     u8 v0;
-    UnkStruct_0202C834 *v1 = sub_0202C834(fieldSystem->saveData);
-    UnkStruct_0202C844 *v2 = sub_0202C844(v1);
+    TrainerCardSaveData *v1 = SaveData_GetTrainerCardSaveData(fieldSystem->saveData);
+    TrainerCardBadge *v2 = TrainerCardSaveData_GetTrainerCardBadges(v1);
 
     for (v0 = 0; v0 < 8; v0++) {
-        sub_0202C850(v0, trainerCard->unk_48[v0].unk_00_1, v2);
+        TrainerCardBadge_SetCleanliness(v0, trainerCard->unk_48[v0].unk_00_1, v2);
     }
 }
 

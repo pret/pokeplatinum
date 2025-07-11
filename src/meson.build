@@ -114,7 +114,7 @@ pokeplatinum_c = files(
     'unk_0202ACE0.c',
     'record_mixed_rng.c',
     'journal.c',
-    'unk_0202C7FC.c',
+    'trainer_card_save_data.c',
     'unk_0202C858.c',
     'unk_0202C9F4.c',
     'play_time.c',
