@@ -932,8 +932,8 @@ static void ov77_021D1CC0(BgConfig *param0, int param1)
         Bg_InitFromTemplate(param0, BG_LAYER_SUB_1, &v0, 0);
     }
 
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, 23, param0, 5, 0, 0, 0, param1);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, 25, param0, 5, 0, 0, 0, param1);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, 23, param0, BG_LAYER_SUB_1, 0, 0, 0, param1);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, 25, param0, BG_LAYER_SUB_1, 0, 0, 0, param1);
 
     G2_BlendNone();
     G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_PLANEMASK_BG3, 10, 10);

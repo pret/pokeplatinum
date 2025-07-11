@@ -329,7 +329,7 @@ res/prebuilt/particledata/pl_etc/pl_etc_particle.narc,/particledata/pl_etc/pl_et
 res/prebuilt/contest/graphic/contest_bg.narc,/contest/graphic/contest_bg.narc
 res/prebuilt/contest/graphic/contest_obj.narc,/contest/graphic/contest_obj.narc
 res/prebuilt/demo/title/op_demo.narc,/demo/title/op_demo.narc
-res/prebuilt/demo/title/titledemo.narc,/demo/title/titledemo.narc
+res/graphics/title_screen/titledemo.narc,/demo/title/titledemo.narc
 res/field/trades/fld_trade.narc,/fielddata/pokemon_trade/fld_trade.narc
 res/prebuilt/resource/eng/zukan/zukan.narc,/resource/eng/zukan/zukan.narc
 res/prebuilt/resource/eng/batt_rec/batt_rec_gra.narc,/resource/eng/batt_rec/batt_rec_gra.narc
