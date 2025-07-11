@@ -1,3 +1,4 @@
+#include "nitro/types.h"
 #include <nitro.h>
 #include <string.h>
 
@@ -41,7 +42,7 @@ FS_EXTERN_OVERLAY(overlay89);
 FS_EXTERN_OVERLAY(overlay97);
 FS_EXTERN_OVERLAY(d_startmenu);
 
-typedef struct {
+typedef struct TitleScreenResources {
     int unk_00;
     NNSG3dRenderObj unk_04;
     NNSG3dResMdl *unk_58;
@@ -54,7 +55,7 @@ typedef struct {
     VecFx32 unk_80;
     VecFx32 unk_8C;
     VecFx32 unk_98;
-    Camera *camera1;
+    Camera *titleCamera;
     Camera *camera2;
     int unk_AC;
     Easy3DObject unk_B0;
@@ -72,27 +73,27 @@ typedef struct {
     int unk_220;
     u8 unk_224;
     u8 unk_225;
-} UnkStruct_ov77_021D1208;
+} TitleScreenResources;
 
-typedef struct {
-    int unk_00;
-    UnkStruct_ov77_021D1208 unk_04;
-} UnkStruct_ov77_021D17B4_sub1;
+typedef struct TitleScreenUnusedStruct {
+    int unused0;
+    TitleScreenResources unused1;
+} TitleScreenUnusedStruct;
 
-typedef struct {
-    int unk_00;
-    UnkStruct_ov77_021D1208 unk_04;
+typedef struct TitleScreen {
+    int state;
+    TitleScreenResources resources;
     u16 unk_22A;
     Window pressStartWindow;
-    VecFx32 unk_23C;
-    VecFx32 unk_248;
+    VecFx32 titleCamTarget;
+    VecFx32 titleCamPos;
     BOOL unk_254;
-    VecFx32 unk_258;
-    VecFx32 unk_264;
-    VecFx32 unk_270;
-    VecFx32 unk_27C;
-    VecFx16 unk_288;
-    VecFx16 unk_28E;
+    VecFx32 titleCamStartPos;
+    VecFx32 titleCamEndPos;
+    VecFx32 titleCamStartTarget;
+    VecFx32 titleCamEndTarget;
+    VecFx16 light0Dir;
+    VecFx16 light1Dir;
     u16 unk_294;
     u16 unk_296;
     fx32 unk_298;
@@ -101,14 +102,14 @@ typedef struct {
     int unk_2A4;
     int unk_2A8;
     int unk_2AC;
-} UnkStruct_ov77_021D1568;
+} TitleScreen;
 
 typedef struct {
     int heapID;
     BgConfig *bgConfig;
     GenericPointerData *unk_08;
-    UnkStruct_ov77_021D17B4_sub1 unk_0C;
-    UnkStruct_ov77_021D1568 unk_238;
+    TitleScreenUnusedStruct unused;
+    TitleScreen titleScreen;
     u16 unk_4E8;
     int unk_4EC;
     int unk_4F0;
@@ -118,7 +119,7 @@ typedef struct {
 } TitleScreenAppData;
 
 enum TitleScreenState {
-    TITLE_SCREEN_STATE_INIT,
+    TITLE_SCREEN_STATE_INIT_RESOURCES,
 };
 
 extern const ApplicationManagerTemplate Unk_020F8A48;
@@ -136,23 +137,23 @@ static void TitleScreen_InitBgs(TitleScreenAppData *param0);
 static void ov77_021D1908(TitleScreenAppData *param0);
 static void ov77_021D11CC(TitleScreenAppData *param0);
 static void ov77_021D11FC(TitleScreenAppData *param0);
-static void ov77_021D1208(UnkStruct_ov77_021D1208 *param0, int param1, int param2, int param3);
-static void ov77_021D14E4(UnkStruct_ov77_021D1208 *param0);
-static void ov77_021D1568(UnkStruct_ov77_021D1568 *param0, UnkStruct_ov77_021D1208 *param1);
+static void TitleScreen_Load3DGfx(TitleScreenResources *param0, int param1, int param2, enum HeapId param3);
+static void ov77_021D14E4(TitleScreenResources *param0);
+static void ov77_021D1568(TitleScreen *param0, TitleScreenResources *param1);
 static BOOL ov77_021D11A4(void);
-static BOOL ov77_021D1A60(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int param2);
-static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int heapID);
-static BOOL ov77_021D20E4(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int param2);
-static BOOL ov77_021D21C0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int param2);
-static void ov77_021D1300(UnkStruct_ov77_021D1208 *param0, int heapID);
-static void ov77_021D1514(UnkStruct_ov77_021D1208 *param0);
-static void ov77_021D1704(UnkStruct_ov77_021D1208 *param0);
-static void ov77_021D1984(UnkStruct_ov77_021D1568 *param0, UnkStruct_ov77_021D1208 *param1);
+static BOOL TitleScreen_InitResources(TitleScreen *param0, BgConfig *param1, enum HeapId param2);
+static BOOL ov77_021D1DF0(TitleScreen *param0, BgConfig *param1, enum HeapId heapID);
+static BOOL ov77_021D20E4(TitleScreen *param0, BgConfig *param1, int param2);
+static BOOL ov77_021D21C0(TitleScreen *param0, BgConfig *param1, int param2);
+static void ov77_021D1300(TitleScreenResources *param0, int heapID);
+static void ov77_021D1514(TitleScreenResources *param0);
+static void ov77_021D1704(TitleScreenResources *param0);
+static void ov77_021D1984(TitleScreen *param0, TitleScreenResources *param1);
 static void ov77_021D25AC(Camera *camera);
-static void ov77_021D2214(BgConfig *param0, enum HeapId param1, UnkStruct_ov77_021D1568 *param2);
-static void ov77_021D2428(BgConfig *param0, enum HeapId param1, UnkStruct_ov77_021D1568 *param2);
-static void ov77_021D24C8(UnkStruct_ov77_021D1568 *param0);
-static void ov77_021D2438(UnkStruct_ov77_021D1568 *param0);
+static void TitleScreen_Load2DGfx(BgConfig *param0, enum HeapId param1, TitleScreen *param2);
+static void ov77_021D2428(BgConfig *param0, enum HeapId param1, TitleScreen *param2);
+static void TitleScreen_InitCoordinates(TitleScreen *param0);
+static void ov77_021D2438(TitleScreen *param0);
 
 const ApplicationManagerTemplate gTitleScreenAppTemplate = {
     .init = TitleScreen_Init,
@@ -204,26 +205,26 @@ static int TitleScreen_Main(ApplicationManager *appMan, int *state)
     TitleScreenAppData *appData = ApplicationManager_Data(appMan);
 
     switch (*state) {
-    case TITLE_SCREEN_STATE_INIT:
-        if (ov77_021D1A60(&appData->unk_238, appData->bgConfig, appData->heapID) == TRUE) {
-            appData->unk_238.unk_00 = 0;
+    case TITLE_SCREEN_STATE_INIT_RESOURCES:
+        if (TitleScreen_InitResources(&appData->titleScreen, appData->bgConfig, appData->heapID) == TRUE) {
+            appData->titleScreen.state = 0;
 
-            if (gSystem.unk_6C == 0) {
+            if (!gSystem.unk_6C) {
                 appData->unk_4EC = 30 * 1;
-                appData->unk_238.unk_29C = 1;
-                appData->unk_238.unk_2A0 = 0;
+                appData->titleScreen.unk_29C = 1;
+                appData->titleScreen.unk_2A0 = 0;
                 *state = 2;
             } else {
                 appData->unk_4EC = 0;
                 gSystem.unk_6C = 0;
-                appData->unk_238.unk_2A0 = 1;
+                appData->titleScreen.unk_2A0 = 1;
                 *state = 1;
             }
         }
         break;
     case 1:
-        if (ov77_021D1DF0(&appData->unk_238, appData->bgConfig, appData->heapID) == 1) {
-            appData->unk_238.unk_00 = 0;
+        if (ov77_021D1DF0(&appData->titleScreen, appData->bgConfig, appData->heapID) == 1) {
+            appData->titleScreen.state = 0;
             *state = 2;
         }
         break;
@@ -236,12 +237,12 @@ static int TitleScreen_Main(ApplicationManager *appMan, int *state)
         if (appData->unk_4EC) {
             appData->unk_4EC--;
 
-            appData->unk_238.unk_254 = 0;
-            ov77_021D20E4(&appData->unk_238, appData->bgConfig, appData->heapID);
+            appData->titleScreen.unk_254 = 0;
+            ov77_021D20E4(&appData->titleScreen, appData->bgConfig, appData->heapID);
             break;
         } else {
-            appData->unk_238.unk_254 = 1;
-            ov77_021D20E4(&appData->unk_238, appData->bgConfig, appData->heapID);
+            appData->titleScreen.unk_254 = 1;
+            ov77_021D20E4(&appData->titleScreen, appData->bgConfig, appData->heapID);
         }
 
         appData->unk_4F8++;
@@ -274,8 +275,8 @@ static int TitleScreen_Main(ApplicationManager *appMan, int *state)
         }
         break;
     case 4:
-        appData->unk_238.unk_254 = 0;
-        ov77_021D20E4(&appData->unk_238, appData->bgConfig, appData->heapID);
+        appData->titleScreen.unk_254 = 0;
+        ov77_021D20E4(&appData->titleScreen, appData->bgConfig, appData->heapID);
 
         if ((++appData->unk_4FC) == 10) {
             StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_WHITE, 6, 1, appData->heapID);
@@ -297,8 +298,8 @@ static int TitleScreen_Main(ApplicationManager *appMan, int *state)
         }
         break;
     case 5:
-        appData->unk_238.unk_254 = 0;
-        ov77_021D20E4(&appData->unk_238, appData->bgConfig, appData->heapID);
+        appData->titleScreen.unk_254 = 0;
+        ov77_021D20E4(&appData->titleScreen, appData->bgConfig, appData->heapID);
 
         if (Sound_IsFadeActive() == FALSE) {
             Sound_StopBGM(SEQ_TITLE01, 0);
@@ -308,7 +309,7 @@ static int TitleScreen_Main(ApplicationManager *appMan, int *state)
         break;
     case 6:
         if (IsScreenFadeDone() == TRUE) {
-            if (ov77_021D21C0(&appData->unk_238, appData->bgConfig, appData->heapID) == 1) {
+            if (ov77_021D21C0(&appData->titleScreen, appData->bgConfig, appData->heapID) == 1) {
                 return 1;
             }
         }
@@ -393,7 +394,7 @@ static void ov77_021D11FC(TitleScreenAppData *param0)
     sub_020242C4(param0->unk_08);
 }
 
-static void ov77_021D1208(UnkStruct_ov77_021D1208 *param0, int param1, int param2, int heapID)
+static void TitleScreen_Load3DGfx(TitleScreenResources *param0, int param1, int param2, enum HeapId heapID)
 {
     void *v0;
     void *v1;
@@ -435,7 +436,7 @@ static void ov77_021D1208(UnkStruct_ov77_021D1208 *param0, int param1, int param
     ov77_021D1300(param0, heapID);
 }
 
-static void ov77_021D1300(UnkStruct_ov77_021D1208 *param0, int heapID)
+static void ov77_021D1300(TitleScreenResources *param0, int heapID)
 {
     NARC *v0 = NARC_ctor(NARC_INDEX_DEMO__TITLE__TITLEDEMO, heapID);
 
@@ -490,7 +491,7 @@ static void ov77_021D1300(UnkStruct_ov77_021D1208 *param0, int heapID)
     param0->unk_220 = (120 << 8);
 }
 
-static void ov77_021D14E4(UnkStruct_ov77_021D1208 *param0)
+static void ov77_021D14E4(TitleScreenResources *param0)
 {
     ov77_021D1514(param0);
 
@@ -502,7 +503,7 @@ static void ov77_021D14E4(UnkStruct_ov77_021D1208 *param0)
     Heap_Free(param0->unk_5C);
 }
 
-static void ov77_021D1514(UnkStruct_ov77_021D1208 *param0)
+static void ov77_021D1514(TitleScreenResources *param0)
 {
     Easy3DModel_Release(&param0->unk_150);
     Easy3DAnim_Release(&param0->unk_128, &param0->unk_70);
@@ -513,75 +514,75 @@ static void ov77_021D1514(UnkStruct_ov77_021D1208 *param0)
     Easy3DAnim_Release(&param0->unk_1EC, &param0->unk_70);
 }
 
-static void ov77_021D1568(UnkStruct_ov77_021D1568 *param0, UnkStruct_ov77_021D1208 *param1)
+static void ov77_021D1568(TitleScreen *titleScreen, TitleScreenResources *resources)
 {
     MtxFx33 v0 = { FX32_ONE, 0, 0, 0, FX32_ONE, 0, 0, 0, FX32_ONE };
 
-    if ((param0->unk_29C == 0) && (param0->unk_2A0 == 1)) {
-        ov77_021D25AC(param1->camera2);
-        Camera_ComputeProjectionMatrix(0, param1->camera2);
-        Camera_SetAsActive(param1->camera2);
+    if ((titleScreen->unk_29C == 0) && (titleScreen->unk_2A0 == 1)) {
+        ov77_021D25AC(resources->camera2);
+        Camera_ComputeProjectionMatrix(0, resources->camera2);
+        Camera_SetAsActive(resources->camera2);
     } else {
-        Camera_ComputeProjectionMatrix(0, param1->camera1);
-        Camera_SetAsActive(param1->camera1);
+        Camera_ComputeProjectionMatrix(0, resources->titleCamera);
+        Camera_SetAsActive(resources->titleCamera);
     }
 
     {
         fx32 v1;
 
-        param0->unk_2A8 += 2;
-        param0->unk_2A8 %= 360;
+        titleScreen->unk_2A8 += 2;
+        titleScreen->unk_2A8 %= 360;
 
-        v1 = CalcSineDegrees_Wraparound((param0->unk_2A8 * 0xffff) / 360);
+        v1 = CalcSineDegrees_Wraparound((titleScreen->unk_2A8 * 0xffff) / 360);
         v1 *= 0.30;
 
-        param1->unk_80.y -= v1;
+        resources->unk_80.y -= v1;
     }
 
-    switch (param1->unk_00) {
+    switch (resources->unk_00) {
     case 0:
         break;
     case 1:
         sub_020241B4();
         G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_W);
-        param1->unk_00 = 0;
+        resources->unk_00 = 0;
         break;
     case 2:
         sub_020241B4();
         Camera_ComputeViewMatrix();
-        MTX_Rot33Vec(&v0, &param1->unk_98);
+        MTX_Rot33Vec(&v0, &resources->unk_98);
 
-        if (param0->unk_29C == 0) {
-            if (param0->unk_2A0 == 1) {
-                ov77_021D1704(param1);
+        if (titleScreen->unk_29C == 0) {
+            if (titleScreen->unk_2A0 == 1) {
+                ov77_021D1704(resources);
             } else {
                 (void)0;
             }
         } else {
             DC_FlushAll();
-            Easy3D_DrawRenderObj(&param1->unk_04, &param1->unk_80, &v0, &param1->unk_8C);
+            Easy3D_DrawRenderObj(&resources->unk_04, &resources->unk_80, &v0, &resources->unk_8C);
         }
 
-        switch (param1->unk_AC) {
+        switch (resources->unk_AC) {
         case 0:
-            param1->unk_68->frame = 0;
-            param1->unk_6C->frame = 0;
+            resources->unk_68->frame = 0;
+            resources->unk_6C->frame = 0;
             break;
         case 1:
-            if (param1->unk_68->frame == 0) {
-                param1->unk_AC = 0;
+            if (resources->unk_68->frame == 0) {
+                resources->unk_AC = 0;
                 break;
             }
         case 2:
-            param1->unk_68->frame += (FX32_ONE);
-            param1->unk_6C->frame += (FX32_ONE);
+            resources->unk_68->frame += (FX32_ONE);
+            resources->unk_6C->frame += (FX32_ONE);
 
-            if (param1->unk_68->frame == NNS_G3dAnmObjGetNumFrame(param1->unk_68)) {
-                param1->unk_68->frame = 0;
+            if (resources->unk_68->frame == NNS_G3dAnmObjGetNumFrame(resources->unk_68)) {
+                resources->unk_68->frame = 0;
             }
 
-            if (param1->unk_6C->frame == NNS_G3dAnmObjGetNumFrame(param1->unk_6C)) {
-                param1->unk_6C->frame = 0;
+            if (resources->unk_6C->frame == NNS_G3dAnmObjGetNumFrame(resources->unk_6C)) {
+                resources->unk_6C->frame = 0;
             }
             break;
         }
@@ -591,7 +592,7 @@ static void ov77_021D1568(UnkStruct_ov77_021D1568 *param0, UnkStruct_ov77_021D12
     }
 }
 
-static void ov77_021D1704(UnkStruct_ov77_021D1208 *param0)
+static void ov77_021D1704(TitleScreenResources *param0)
 {
     if (param0->unk_224 == 1) {
         if (Easy3DAnim_Update(&param0->unk_128, FX32_ONE) == 1) {
@@ -769,7 +770,7 @@ static void ov77_021D1908(TitleScreenAppData *param0)
     Heap_Free(param0->bgConfig);
 }
 
-static void ov77_021D1984(UnkStruct_ov77_021D1568 *param0, UnkStruct_ov77_021D1208 *param1)
+static void ov77_021D1984(TitleScreen *param0, TitleScreenResources *param1)
 {
     VecFx32 v0 = { 0, 0, 0 };
     CameraAngle v1 = { 0, 0, 0, 0 };
@@ -826,89 +827,92 @@ static const WindowTemplate sPressStartWindowTemplate = {
     .baseTile = 0x1
 };
 
-static BOOL ov77_021D1A60(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int param2)
+static BOOL TitleScreen_InitResources(TitleScreen *titleScreen, BgConfig *bgConfig, enum HeapId heapID)
 {
-    ov77_021D24C8(param0);
-    ov77_021D2214(param1, param2, param0);
-    ov77_021D1208(&param0->unk_04, giratina_nsbmd, giratina_nsbta, param2);
+    TitleScreen_InitCoordinates(titleScreen);
+    TitleScreen_Load2DGfx(bgConfig, heapID, titleScreen);
+    TitleScreen_Load3DGfx(&titleScreen->resources, giratina_nsbmd, giratina_nsbta, heapID);
 
-    G3X_AntiAlias(1);
-    G3X_AlphaBlend(1);
+    G3X_AntiAlias(TRUE);
+    G3X_AlphaBlend(TRUE);
 
-    {
-        param0->unk_23C.x = param0->unk_270.x;
-        param0->unk_23C.y = param0->unk_270.y;
-        param0->unk_23C.z = param0->unk_270.z;
-        param0->unk_248.x = param0->unk_258.x;
-        param0->unk_248.y = param0->unk_258.y;
-        param0->unk_248.z = param0->unk_258.z;
-        param0->unk_04.camera1 = Camera_Alloc(param2);
+    titleScreen->titleCamTarget.x = titleScreen->titleCamStartTarget.x;
+    titleScreen->titleCamTarget.y = titleScreen->titleCamStartTarget.y;
+    titleScreen->titleCamTarget.z = titleScreen->titleCamStartTarget.z;
+    titleScreen->titleCamPos.x = titleScreen->titleCamStartPos.x;
+    titleScreen->titleCamPos.y = titleScreen->titleCamStartPos.y;
+    titleScreen->titleCamPos.z = titleScreen->titleCamStartPos.z;
+    titleScreen->resources.titleCamera = Camera_Alloc(heapID);
 
-        Camera_InitWithTargetAndPosition(&param0->unk_23C, &param0->unk_248, 0xb60, 0, 0, param0->unk_04.camera1);
-        Camera_SetClipping(0, (FX32_ONE * 300), param0->unk_04.camera1);
-        Camera_ComputeProjectionMatrix(0, param0->unk_04.camera1);
-        Camera_SetAsActive(param0->unk_04.camera1);
-    }
-    {
-        static const CameraAngle v0 = {
-            (0x10000 - 0x1c7d),
-            ((0 * 0xffff) / 360),
-            ((0 * 0xffff) / 360),
-        };
-        VecFx32 v1 = { 0, 0, 0 };
+    Camera_InitWithTargetAndPosition(
+        &titleScreen->titleCamTarget,
+        &titleScreen->titleCamPos,
+        FX_DEG_TO_IDX(FX32_CONST(15.996)),
+        CAMERA_PROJECTION_PERSPECTIVE,
+        FALSE,
+        titleScreen->resources.titleCamera);
 
-        param0->unk_04.camera2 = Camera_Alloc(param2);
+    Camera_SetClipping(FX32_CONST(0), FX32_CONST(300), titleScreen->resources.titleCamera);
+    Camera_ComputeProjectionMatrix(CAMERA_PROJECTION_PERSPECTIVE, titleScreen->resources.titleCamera);
+    Camera_SetAsActive(titleScreen->resources.titleCamera);
 
-        Camera_InitWithTarget(&v1, (160 << FX32_SHIFT), &v0, ((22 * 0xffff) / 360), 0, 0, param0->unk_04.camera2);
-        Camera_SetClipping(0, (FX32_ONE * 300), param0->unk_04.camera2);
+    static const CameraAngle angle = { FX_DEG_TO_IDX(FX32_CONST(319.94)), 0, 0 };
+    VecFx32 target = { 0, 0, 0 };
 
-        {
-            VecFx32 v2 = { 0, 0, (0xa00 * 60) };
-            Camera_Move(&v2, param0->unk_04.camera2);
-        }
+    titleScreen->resources.camera2 = Camera_Alloc(heapID);
 
-        Camera_SetAsActive(param0->unk_04.camera2);
-    }
-    {
-        NNS_G3dGlbLightVector(0, param0->unk_288.x, param0->unk_288.y, param0->unk_288.z);
-        NNS_G3dGlbLightColor(0, 0x7fff);
-        NNS_G3dGlbLightVector(1, param0->unk_28E.x, param0->unk_28E.y, param0->unk_28E.z);
-        NNS_G3dGlbLightColor(1, 0x7fff);
-    }
-    {
-        G3X_AntiAlias(1);
-    }
+    Camera_InitWithTarget(
+        &target,
+        FX32_CONST(160),
+        &angle,
+        FX_DEG_TO_IDX(FX32_CONST(21.994)),
+        CAMERA_PROJECTION_PERSPECTIVE,
+        FALSE,
+        titleScreen->resources.camera2);
+
+    Camera_SetClipping(FX32_CONST(0), FX32_CONST(300), titleScreen->resources.camera2);
+
+    VecFx32 pos = { 0, 0, FX32_CONST(37.5) };
+    Camera_Move(&pos, titleScreen->resources.camera2);
+    Camera_SetAsActive(titleScreen->resources.camera2);
+
+    NNS_G3dGlbLightVector(GX_LIGHTID_0, titleScreen->light0Dir.x, titleScreen->light0Dir.y, titleScreen->light0Dir.z);
+    NNS_G3dGlbLightColor(GX_LIGHTID_0, GX_RGB(31, 31, 31));
+    NNS_G3dGlbLightVector(GX_LIGHTID_1, titleScreen->light1Dir.x, titleScreen->light1Dir.y, titleScreen->light1Dir.z);
+    NNS_G3dGlbLightColor(GX_LIGHTID_1, GX_RGB(31, 31, 31));
+
+    G3X_AntiAlias(TRUE);
 
     gSystem.whichScreenIs3D = DS_SCREEN_SUB;
     GXLayers_SwapDisplay();
-    param0->unk_04.unk_00 = 2;
+    titleScreen->resources.unk_00 = 2;
 
-    return 1;
+    return TRUE;
 }
 
-static void ov77_021D1C10(UnkStruct_ov77_021D1568 *param0)
+static void ov77_021D1C10(TitleScreen *param0)
 {
     BOOL v0 = 1;
     fx32 v1;
     fx32 v2 = 60;
 
-    v1 = (param0->unk_27C.x - param0->unk_270.x) / v2;
-    param0->unk_23C.x += (v1);
+    v1 = (param0->titleCamEndTarget.x - param0->titleCamStartTarget.x) / v2;
+    param0->titleCamTarget.x += (v1);
 
-    v1 = (param0->unk_27C.y - param0->unk_270.y) / v2;
-    param0->unk_23C.y += (v1);
+    v1 = (param0->titleCamEndTarget.y - param0->titleCamStartTarget.y) / v2;
+    param0->titleCamTarget.y += (v1);
 
-    v1 = (param0->unk_27C.z - param0->unk_270.z) / v2;
-    param0->unk_23C.z += (v1);
+    v1 = (param0->titleCamEndTarget.z - param0->titleCamStartTarget.z) / v2;
+    param0->titleCamTarget.z += (v1);
 
-    v1 = (param0->unk_264.x - param0->unk_258.x) / v2;
-    param0->unk_248.x += (v1);
+    v1 = (param0->titleCamEndPos.x - param0->titleCamStartPos.x) / v2;
+    param0->titleCamPos.x += (v1);
 
-    v1 = (param0->unk_264.y - param0->unk_258.y) / v2;
-    param0->unk_248.y += (v1);
+    v1 = (param0->titleCamEndPos.y - param0->titleCamStartPos.y) / v2;
+    param0->titleCamPos.y += (v1);
 
-    v1 = (param0->unk_264.z - param0->unk_258.z) / v2;
-    param0->unk_248.z += (v1);
+    v1 = (param0->titleCamEndPos.z - param0->titleCamStartPos.z) / v2;
+    param0->titleCamPos.z += (v1);
 }
 
 static void ov77_021D1CC0(BgConfig *param0, int param1)
@@ -982,7 +986,7 @@ static void ov77_021D1D48(BgConfig *param0, int param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
 }
 
-static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int heapID)
+static BOOL ov77_021D1DF0(TitleScreen *param0, BgConfig *param1, enum HeapId heapID)
 {
     BOOL v0 = 0;
 
@@ -994,13 +998,13 @@ static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
         return 1;
     }
 
-    switch (param0->unk_00) {
+    switch (param0->state) {
     case 0:
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
         param0->unk_296 = 0;
         param0->unk_22A = 15 + 252;
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 15, 3, heapID);
-        param0->unk_00 = 1;
+        param0->state = 1;
         break;
     case 1:
         if (IsScreenFadeDone() == TRUE) {
@@ -1008,7 +1012,7 @@ static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
                 param0->unk_22A--;
             } else {
                 param0->unk_22A = 2;
-                param0->unk_00 = 2;
+                param0->state = 2;
             }
         }
         break;
@@ -1019,10 +1023,10 @@ static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
                 BrightnessController_StartTransition(10, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_SUB_SCREEN);
                 param0->unk_296 = 2;
                 param0->unk_22A--;
-                param0->unk_00 = 3;
+                param0->state = 3;
             } else {
                 param0->unk_22A = 0;
-                param0->unk_00 = 4;
+                param0->state = 4;
             }
         }
         break;
@@ -1031,7 +1035,7 @@ static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
             BrightnessController_StartTransition(10, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2), BRIGHTNESS_MAIN_SCREEN);
             BrightnessController_StartTransition(10, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_SUB_SCREEN);
             param0->unk_296 = 3;
-            param0->unk_00 = 2;
+            param0->state = 2;
         }
         break;
     case 4:
@@ -1039,7 +1043,7 @@ static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
             param0->unk_22A--;
         } else {
             param0->unk_22A = 1;
-            param0->unk_00 = 5;
+            param0->state = 5;
         }
         break;
     case 5:
@@ -1048,10 +1052,10 @@ static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
                 StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_WHITE, 5, 2, heapID);
                 param0->unk_296 = 2;
                 param0->unk_22A--;
-                param0->unk_00 = 6;
+                param0->state = 6;
             } else {
                 param0->unk_22A = 10;
-                param0->unk_00 = 8;
+                param0->state = 8;
                 param0->unk_29C = 1;
                 SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
             }
@@ -1063,28 +1067,28 @@ static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
             {
                 GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
             }
-            param0->unk_04.unk_AC = 2;
+            param0->resources.unk_AC = 2;
             StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_WHITE, 16, 3, heapID);
-            param0->unk_00 = 5;
+            param0->state = 5;
         }
         break;
     case 8:
         if (param0->unk_22A) {
             param0->unk_22A--;
         } else {
-            param0->unk_00 = 7;
+            param0->state = 7;
         }
         break;
     case 7:
         StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 48, 1, heapID);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
-        param0->unk_00 = 9;
+        param0->state = 9;
         param0->unk_2A4 = 0;
         break;
     case 9: {
         ov77_021D1C10(param0);
-        Camera_SetTarget(&param0->unk_23C, param0->unk_04.camera1);
-        Camera_SetPosition(&param0->unk_248, param0->unk_04.camera1);
+        Camera_SetTarget(&param0->titleCamTarget, param0->resources.titleCamera);
+        Camera_SetPosition(&param0->titleCamPos, param0->resources.titleCamera);
 
         param0->unk_2A4++;
 
@@ -1099,7 +1103,7 @@ static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
             GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
             param0->unk_22A = 90;
-            param0->unk_00 = 10;
+            param0->state = 10;
         }
     } break;
     case 10:
@@ -1114,20 +1118,20 @@ static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
     }
 
     ov77_021D2438(param0);
-    ov77_021D1984(param0, &param0->unk_04);
-    ov77_021D1568(param0, &param0->unk_04);
+    ov77_021D1984(param0, &param0->resources);
+    ov77_021D1568(param0, &param0->resources);
 
     return v0;
 }
 
-static BOOL ov77_021D20E4(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int param2)
+static BOOL ov77_021D20E4(TitleScreen *param0, BgConfig *param1, int param2)
 {
     BOOL v0 = 0;
 
-    switch (param0->unk_00) {
+    switch (param0->state) {
     case 0:
-        Camera_SetTarget(&param0->unk_27C, param0->unk_04.camera1);
-        Camera_SetPosition(&param0->unk_264, param0->unk_04.camera1);
+        Camera_SetTarget(&param0->titleCamEndTarget, param0->resources.titleCamera);
+        Camera_SetPosition(&param0->titleCamEndPos, param0->resources.titleCamera);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
@@ -1143,7 +1147,7 @@ static BOOL ov77_021D20E4(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
         ResetScreenMasterBrightness(DS_SCREEN_MAIN);
         ResetScreenMasterBrightness(DS_SCREEN_SUB);
 
-        param0->unk_04.unk_AC = 2;
+        param0->resources.unk_AC = 2;
         NNS_G3dGlbLightColor(1, 0x7fff);
 
         {
@@ -1151,7 +1155,7 @@ static BOOL ov77_021D20E4(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
         }
 
         param0->unk_22A = 0;
-        param0->unk_00 = 1;
+        param0->state = 1;
         break;
     case 1:
         if (param0->unk_254 == 1) {
@@ -1175,17 +1179,17 @@ static BOOL ov77_021D20E4(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
         break;
     }
 
-    ov77_021D1568(param0, &param0->unk_04);
+    ov77_021D1568(param0, &param0->resources);
 
     return v0;
 }
 
-static BOOL ov77_021D21C0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int param2)
+static BOOL ov77_021D21C0(TitleScreen *param0, BgConfig *param1, int param2)
 {
-    Camera_Delete(param0->unk_04.camera1);
-    Camera_Delete(param0->unk_04.camera2);
+    Camera_Delete(param0->resources.titleCamera);
+    Camera_Delete(param0->resources.camera2);
 
-    ov77_021D14E4(&param0->unk_04);
+    ov77_021D14E4(&param0->resources);
     ov77_021D2428(param1, param2, param0);
 
     G2_BlendNone();
@@ -1197,7 +1201,7 @@ static BOOL ov77_021D21C0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
     return 1;
 }
 
-static void ov77_021D2214(BgConfig *bgConfig, enum HeapId heapID, UnkStruct_ov77_021D1568 *param2)
+static void TitleScreen_Load2DGfx(BgConfig *bgConfig, enum HeapId heapID, TitleScreen *param2)
 {
     // Borders
     Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, top_screen_border_NCGR, bgConfig, BG_LAYER_SUB_3, 0, 0, FALSE, heapID);
@@ -1208,18 +1212,18 @@ static void ov77_021D2214(BgConfig *bgConfig, enum HeapId heapID, UnkStruct_ov77
     Graphics_LoadPalette(NARC_INDEX_DEMO__TITLE__TITLEDEMO, bottom_screen_border_NCLR, PAL_LOAD_MAIN_BG, 0, 0, heapID);
 
     // Game Logo
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, logo_NCGR, bgConfig, BG_LAYER_SUB_2, 0, 0, 0, heapID);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, logo_NCGR, bgConfig, BG_LAYER_SUB_2, 0, 0, FALSE, heapID);
     Graphics_LoadPalette(NARC_INDEX_DEMO__TITLE__TITLEDEMO, logo_NCLR, PAL_LOAD_SUB_BGEXT, 0x4000, 0, heapID);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, logo_NSCR, bgConfig, BG_LAYER_SUB_2, 0, 0, 0, heapID);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, logo_NSCR, bgConfig, BG_LAYER_SUB_2, 0, 0, FALSE, heapID);
 
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__TITLE__OP_DEMO, 14, bgConfig, BG_LAYER_SUB_1, 0, 0, 0, heapID);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__TITLE__OP_DEMO, 14, bgConfig, BG_LAYER_SUB_1, 0, 0, FALSE, heapID);
     Graphics_LoadPalette(NARC_INDEX_DEMO__TITLE__OP_DEMO, 13, PAL_LOAD_SUB_BGEXT, 0x2000, 0, heapID);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__TITLE__OP_DEMO, 12, bgConfig, BG_LAYER_SUB_1, 0, 0, 0, heapID);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__TITLE__OP_DEMO, 12, bgConfig, BG_LAYER_SUB_1, 0, 0, FALSE, heapID);
 
     // "GAME FREAK Presents"
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, gf_presents_NCGR, bgConfig, BG_LAYER_MAIN_1, 0, 0, 0, heapID);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, gf_presents_NSCR, bgConfig, BG_LAYER_MAIN_1, 0, 0, 0, heapID);
-    Graphics_LoadPalette(NARC_INDEX_DEMO__TITLE__TITLEDEMO, gf_presents_NCLR, PAL_LOAD_MAIN_BG, 32 * 1, 32 * 3, heapID);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, gf_presents_NCGR, bgConfig, BG_LAYER_MAIN_1, 0, 0, FALSE, heapID);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, gf_presents_NSCR, bgConfig, BG_LAYER_MAIN_1, 0, 0, FALSE, heapID);
+    Graphics_LoadPalette(NARC_INDEX_DEMO__TITLE__TITLEDEMO, gf_presents_NCLR, PAL_LOAD_MAIN_BG, PLTT_OFFSET(1), 3 * PALETTE_SIZE_BYTES, heapID);
 
     Bg_MaskPalette(BG_LAYER_MAIN_0, COLOR_BLACK);
     Bg_MaskPalette(BG_LAYER_SUB_0, COLOR_BLACK);
@@ -1235,12 +1239,23 @@ static void ov77_021D2214(BgConfig *bgConfig, enum HeapId heapID, UnkStruct_ov77
     Strbuf *buffer = Strbuf_Init(64, heapID);
 
     Window_AddFromTemplate(bgConfig, &param2->pressStartWindow, &sPressStartWindowTemplate);
-    Window_FillRectWithColor(&param2->pressStartWindow, 0, 0, 0, 28 * TILE_WIDTH_PIXELS, 2 * TILE_HEIGHT_PIXELS);
+    Window_FillRectWithColor(&param2->pressStartWindow, 0, 0, 0, TILES_TO_PIXELS(28), TILES_TO_PIXELS(2));
     MessageLoader_GetStrbuf(msgLoader, TitleScreen_Text_PressStart, buffer);
 
     u32 xpos = Font_CalcCenterAlignment(FONT_SYSTEM, buffer, 1, param2->pressStartWindow.width * TILE_HEIGHT_PIXELS);
 
-    Text_AddPrinterWithParamsColorAndSpacing(&param2->pressStartWindow, FONT_SYSTEM, buffer, xpos, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 1, 0), 1, 0, NULL);
+    Text_AddPrinterWithParamsColorAndSpacing(
+        &param2->pressStartWindow,
+        FONT_SYSTEM,
+        buffer,
+        xpos,
+        0,
+        TEXT_SPEED_INSTANT,
+        TEXT_COLOR(1, 1, 0),
+        1,
+        0,
+        NULL);
+
     Strbuf_Free(buffer);
     MessageLoader_Free(msgLoader);
 
@@ -1250,12 +1265,12 @@ static void ov77_021D2214(BgConfig *bgConfig, enum HeapId heapID, UnkStruct_ov77
     Bg_LoadPalette(BG_LAYER_SUB_0, &shadowColor, sizeof(u16), PLTT_OFFSET(2) + 2 * sizeof(u16));
 }
 
-static void ov77_021D2428(BgConfig *bgConfig, enum HeapId heapID, UnkStruct_ov77_021D1568 *param2)
+static void ov77_021D2428(BgConfig *bgConfig, enum HeapId heapID, TitleScreen *param2)
 {
     Window_Remove(&param2->pressStartWindow);
 }
 
-static void ov77_021D2438(UnkStruct_ov77_021D1568 *param0)
+static void ov77_021D2438(TitleScreen *param0)
 {
     switch (param0->unk_296) {
     case 0:
@@ -1285,43 +1300,41 @@ static void ov77_021D2438(UnkStruct_ov77_021D1568 *param0)
     NNS_G3dGlbLightColor(1, (((param0->unk_294 << 0) & 0x1f) | ((param0->unk_294 << 5) & 0x3e0) | ((param0->unk_294 << 10) & 0x7c00)));
 }
 
-static void ov77_021D24C8(UnkStruct_ov77_021D1568 *param0)
+static void TitleScreen_InitCoordinates(TitleScreen *titleScreen)
 {
-    param0->unk_258.x = (((fx32)0x00001000L) * 0);
-    param0->unk_258.y = (((fx32)0x00001000L) * 192);
-    param0->unk_258.z = (((fx32)0x00001000L) * 600);
+    titleScreen->titleCamStartPos.x = FX32_CONST(0);
+    titleScreen->titleCamStartPos.y = FX32_CONST(192);
+    titleScreen->titleCamStartPos.z = FX32_CONST(600);
 
-    param0->unk_264.x = (((fx32)0x00001000L) * -64);
-    param0->unk_264.y = (((fx32)0x00001000L) * 192);
-    param0->unk_264.z = (((fx32)0x00001000L) * 484);
+    titleScreen->titleCamEndPos.x = FX32_CONST(-64);
+    titleScreen->titleCamEndPos.y = FX32_CONST(192);
+    titleScreen->titleCamEndPos.z = FX32_CONST(484);
 
-    param0->unk_270.x = (((fx32)0x00001000L) * 0);
-    param0->unk_270.y = (((fx32)0x00001000L) * 100);
-    param0->unk_270.z = (((fx32)0x00001000L) * -18);
+    titleScreen->titleCamStartTarget.x = FX32_CONST(0);
+    titleScreen->titleCamStartTarget.y = FX32_CONST(100);
+    titleScreen->titleCamStartTarget.z = FX32_CONST(-18);
 
-    param0->unk_27C.x = (((fx32)0x00001000L) * 0);
-    param0->unk_27C.y = (((fx32)0x00001000L) * 100);
-    param0->unk_27C.z = (((fx32)0x00001000L) * -18);
+    titleScreen->titleCamEndTarget.x = FX32_CONST(0);
+    titleScreen->titleCamEndTarget.y = FX32_CONST(100);
+    titleScreen->titleCamEndTarget.z = FX32_CONST(-18);
 
-    param0->unk_288.x = 2267;
-    param0->unk_288.y = -1953;
-    param0->unk_288.z = -2797;
+    titleScreen->light0Dir.x = FX32_CONST(0.5534);
+    titleScreen->light0Dir.y = -FX32_CONST(0.4768);
+    titleScreen->light0Dir.z = -FX32_CONST(0.6828);
 
-    param0->unk_28E.x = -2267;
-    param0->unk_28E.y = 1953;
-    param0->unk_28E.z = -2797;
-    param0->unk_298 = (FX32_ONE * 3);
+    titleScreen->light1Dir.x = -FX32_CONST(0.5534);
+    titleScreen->light1Dir.y = FX32_CONST(0.4768);
+    titleScreen->light1Dir.z = -FX32_CONST(0.6828);
+    titleScreen->unk_298 = FX32_CONST(3);
 
-    {
-        VecFx32 v0, v1;
+    VecFx32 light0Dir;
+    VEC_Subtract(&titleScreen->titleCamEndTarget, &titleScreen->titleCamEndPos, &light0Dir);
+    VecFx32 normalized;
+    VEC_Normalize(&light0Dir, &normalized);
 
-        VEC_Subtract(&param0->unk_27C, &param0->unk_264, &v0);
-        VEC_Normalize(&v0, &v1);
-
-        param0->unk_288.x = v1.x;
-        param0->unk_288.y = v1.y;
-        param0->unk_288.z = v1.z;
-    }
+    titleScreen->light0Dir.x = normalized.x;
+    titleScreen->light0Dir.y = normalized.y;
+    titleScreen->light0Dir.z = normalized.z;
 }
 
 static void ov77_021D25AC(Camera *camera)
