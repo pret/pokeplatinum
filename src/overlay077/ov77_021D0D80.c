@@ -112,7 +112,7 @@ typedef struct {
     int unk_4F4;
     int unk_4F8;
     int unk_4FC;
-} UnkStruct_ov77_021D17B4;
+} TitleScreenAppData;
 
 extern const ApplicationManagerTemplate Unk_020F8A48;
 extern const ApplicationManagerTemplate Unk_020F8AB4;
@@ -120,15 +120,15 @@ extern const ApplicationManagerTemplate gOpeningCutsceneAppTemplate;
 
 static void ov77_021D1D48(BgConfig *param0, int param1);
 void EnqueueApplication(FSOverlayID param0, const ApplicationManagerTemplate *param1);
-static int ov77_021D0D80(ApplicationManager *appMan, int *param1);
-static int ov77_021D0E3C(ApplicationManager *appMan, int *param1);
-static int ov77_021D10FC(ApplicationManager *appMan, int *param1);
+static BOOL TitleScreen_Init(ApplicationManager *appMan, int *param1);
+static int TitleScreen_Main(ApplicationManager *appMan, int *param1);
+static int TitleScreen_Exit(ApplicationManager *appMan, int *param1);
 static void ov77_021D1178(void *param0);
-static void ov77_021D1184(void);
-static void ov77_021D17B4(UnkStruct_ov77_021D17B4 *param0);
-static void ov77_021D1908(UnkStruct_ov77_021D17B4 *param0);
-static void ov77_021D11CC(UnkStruct_ov77_021D17B4 *param0);
-static void ov77_021D11FC(UnkStruct_ov77_021D17B4 *param0);
+static void TitleScreen_SetVRAMBanks(void);
+static void ov77_021D17B4(TitleScreenAppData *param0);
+static void ov77_021D1908(TitleScreenAppData *param0);
+static void ov77_021D11CC(TitleScreenAppData *param0);
+static void ov77_021D11FC(TitleScreenAppData *param0);
 static void ov77_021D1208(UnkStruct_ov77_021D1208 *param0, int param1, int param2, int param3);
 static void ov77_021D14E4(UnkStruct_ov77_021D1208 *param0);
 static void ov77_021D1568(UnkStruct_ov77_021D1568 *param0, UnkStruct_ov77_021D1208 *param1);
@@ -148,55 +148,53 @@ static void ov77_021D24C8(UnkStruct_ov77_021D1568 *param0);
 static void ov77_021D2438(UnkStruct_ov77_021D1568 *param0);
 
 const ApplicationManagerTemplate gTitleScreenAppTemplate = {
-    ov77_021D0D80,
-    ov77_021D0E3C,
-    ov77_021D10FC,
-    0xffffffff
+    .init = TitleScreen_Init,
+    .main = TitleScreen_Main,
+    .exit = TitleScreen_Exit,
+    .overlayID = FS_OVERLAY_ID_NONE
 };
 
-static int ov77_021D0D80(ApplicationManager *appMan, int *param1)
+static BOOL TitleScreen_Init(ApplicationManager *appMan, int *unused)
 {
-    UnkStruct_ov77_021D17B4 *v0;
-    int heapID = HEAP_ID_DISTORTION_WORLD_WARP;
-
-    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
-    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
-
+    SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
+    
     G2S_BlendNone();
     G2_BlendNone();
-
+    
     SetVBlankCallback(NULL, NULL);
     SetHBlankCallback(NULL, NULL);
-
+    
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
-
+    
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
-
+    
     SetAutorepeat(4, 8);
-    Heap_Create(HEAP_ID_APPLICATION, heapID, 0x40000);
+    
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_DISTORTION_WORLD_WARP, 0x40000);
 
-    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov77_021D17B4), heapID);
-    memset(v0, 0, sizeof(UnkStruct_ov77_021D17B4));
+    TitleScreenAppData *appData = ApplicationManager_NewData(appMan, sizeof(TitleScreenAppData), HEAP_ID_DISTORTION_WORLD_WARP);
+    memset(appData, 0, sizeof(TitleScreenAppData));
 
-    v0->heapID = heapID;
-    v0->unk_4E8 = 0;
-    v0->unk_4F8 = 0;
+    appData->heapID = HEAP_ID_DISTORTION_WORLD_WARP;
+    appData->unk_4E8 = 0;
+    appData->unk_4F8 = 0;
 
-    ov77_021D1184();
-    ov77_021D17B4(v0);
-    ov77_021D11CC(v0);
+    TitleScreen_SetVRAMBanks();
+    ov77_021D17B4(appData);
+    ov77_021D11CC(appData);
 
-    SetVBlankCallback(ov77_021D1178, (void *)v0);
+    SetVBlankCallback(ov77_021D1178, appData);
     GXLayers_TurnBothDispOn();
 
-    return 1;
+    return TRUE;
 }
 
-static int ov77_021D0E3C(ApplicationManager *appMan, int *param1)
+static int TitleScreen_Main(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov77_021D17B4 *v0 = ApplicationManager_Data(appMan);
+    TitleScreenAppData *v0 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
     case 0:
@@ -313,9 +311,9 @@ static int ov77_021D0E3C(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-static int ov77_021D10FC(ApplicationManager *appMan, int *param1)
+static int TitleScreen_Exit(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov77_021D17B4 *v0 = ApplicationManager_Data(appMan);
+    TitleScreenAppData *v0 = ApplicationManager_Data(appMan);
     int heapID = v0->heapID;
     int v2 = v0->unk_4E8;
 
@@ -346,13 +344,13 @@ static int ov77_021D10FC(ApplicationManager *appMan, int *param1)
 
 static void ov77_021D1178(void *param0)
 {
-    UnkStruct_ov77_021D17B4 *v0 = param0;
+    TitleScreenAppData *v0 = param0;
     Bg_RunScheduledUpdates(v0->unk_04);
 }
 
-static void ov77_021D1184(void)
+static void TitleScreen_SetVRAMBanks(void)
 {
-    UnkStruct_02099F80 v0 = {
+    UnkStruct_02099F80 banks = {
         GX_VRAM_BG_128_B,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,
@@ -365,7 +363,7 @@ static void ov77_021D1184(void)
         GX_VRAM_TEXPLTT_0_G
     };
 
-    GXLayers_SetBanks(&v0);
+    GXLayers_SetBanks(&banks);
 }
 
 static BOOL ov77_021D11A4(void)
@@ -377,13 +375,13 @@ static BOOL ov77_021D11A4(void)
     return 0;
 }
 
-static void ov77_021D11CC(UnkStruct_ov77_021D17B4 *param0)
+static void ov77_021D11CC(TitleScreenAppData *param0)
 {
     param0->unk_08 = sub_02024220(param0->heapID, 0, 1, 0, 4, NULL);
     G2_SetBG0Priority(1);
 }
 
-static void ov77_021D11FC(UnkStruct_ov77_021D17B4 *param0)
+static void ov77_021D11FC(TitleScreenAppData *param0)
 {
     sub_020242C4(param0->unk_08);
 }
@@ -618,7 +616,7 @@ static void ov77_021D1704(UnkStruct_ov77_021D1208 *param0)
     NNS_G3dGePopMtx(1);
 }
 
-static void ov77_021D17B4(UnkStruct_ov77_021D17B4 *param0)
+static void ov77_021D17B4(TitleScreenAppData *param0)
 {
     param0->unk_04 = BgConfig_New(param0->heapID);
 
@@ -761,7 +759,7 @@ static void ov77_021D17B4(UnkStruct_ov77_021D17B4 *param0)
     Bg_MaskPalette(BG_LAYER_SUB_0, 0x0);
 }
 
-static void ov77_021D1908(UnkStruct_ov77_021D17B4 *param0)
+static void ov77_021D1908(TitleScreenAppData *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
