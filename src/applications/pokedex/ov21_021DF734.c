@@ -583,7 +583,7 @@ static void ov21_021DFE0C(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF8
     Sprite_SetExplicitPriority(param0->unk_BC, 0);
 
     if (param2->unk_10 <= 1) {
-        Sprite_SetDrawFlag(param0->unk_BC, 0);
+        Sprite_SetDrawFlag(param0->unk_BC, FALSE);
     }
 }
 
@@ -1262,7 +1262,7 @@ static void ov21_021E0BF8(UnkStruct_ov21_021DFFF8 *param0)
 
 static void ov21_021E0C10(UnkStruct_ov21_021DFFF8 *param0)
 {
-    Sprite_SetDrawFlag(param0->unk_BC, 0);
+    Sprite_SetDrawFlag(param0->unk_BC, FALSE);
 
     param0->unk_C0 = (16 + 8);
     param0->unk_C4 = 1;
@@ -1274,7 +1274,7 @@ static void ov21_021E0C30(UnkStruct_ov21_021DFFF8 *param0)
         param0->unk_C0--;
 
         if (param0->unk_C0 <= 0) {
-            Sprite_SetDrawFlag(param0->unk_BC, 1);
+            Sprite_SetDrawFlag(param0->unk_BC, TRUE);
             param0->unk_C4 = 0;
         }
     }

@@ -654,7 +654,7 @@ static void ov109_021D4518(UnkStruct_ov109_021D5140 *param0)
 
             Sprite_SetAnimateFlag(param0->unk_29C[v0 + 1], 1);
             Sprite_SetAnim(param0->unk_29C[v0 + 1], 27 + (v0 - 1) * 2);
-            Sprite_SetDrawFlag(param0->unk_29C[v0 + 1], 0);
+            Sprite_SetDrawFlag(param0->unk_29C[v0 + 1], FALSE);
         }
 
         for (v0 = 0; v0 < 5; v0++) {
@@ -1619,7 +1619,7 @@ static void ov109_021D5668(UnkStruct_ov109_021D5140 *param0)
                 Sprite_SetAnim(param0->unk_29C[v0 + 1], 27 + v0 * 2);
             }
         }
-            Sprite_SetDrawFlag(param0->unk_29C[v0 + 1], 1);
+            Sprite_SetDrawFlag(param0->unk_29C[v0 + 1], TRUE);
             param0->unk_400[v0] = 2;
             v1 = 1;
             break;

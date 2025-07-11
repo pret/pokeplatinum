@@ -1459,7 +1459,7 @@ static void AttachCursorCellActor(ChooseStarterApp *param0, ChooseStarterCursor 
     v1.position.y = 0;
 
     param1->unk_00 = SpriteList_Add(&v1);
-    Sprite_SetDrawFlag(param1->unk_00, 0);
+    Sprite_SetDrawFlag(param1->unk_00, FALSE);
 
     param1->unk_1C.x = 0;
     param1->unk_1C.y = 0;

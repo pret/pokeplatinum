@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/species.h"
+
 #include "struct_decls/pc_boxes_decl.h"
 
 #include "overlay019/box_customization.h"
@@ -86,7 +88,7 @@ static void ov19_021D7F14(UnkStruct_ov19_021D8318 *param0, fx32 param1, s32 para
 static void ov19_021D7F9C(UnkStruct_ov19_021D8318 *param0, fx32 param1);
 static void ov19_021D803C(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021DCD18 *param1, int param2, int param3);
 static void ov19_021D8114(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021DCD18 *param1, int param2);
-static void ov19_021D813C(UnkStruct_ov19_021D8318 *param0, u32 param1);
+static void ov19_021D813C(UnkStruct_ov19_021D8318 *param0, u32 boxID);
 static void ov19_021D81B8(UnkStruct_ov19_021D8318 *param0, int param1, int param2, u32 param3);
 static void ov19_021D8210(SysTask *param0, void *param1);
 static void ov19_021D826C(void *param0);
@@ -413,22 +415,22 @@ static void ov19_021D8114(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021DCD
     }
 }
 
-static void ov19_021D813C(UnkStruct_ov19_021D8318 *param0, u32 param1)
+static void ov19_021D813C(UnkStruct_ov19_021D8318 *param0, u32 boxID)
 {
     const PCBoxes *pcBoxes;
-    BoxPokemon *v1;
-    u32 v2, v3;
+    BoxPokemon *boxMon;
+    u32 i, species;
 
     pcBoxes = ov19_GetPCBoxes(param0->unk_58F8);
 
-    for (v2 = 0; v2 < (5 * 6); v2++) {
-        v1 = PCBoxes_GetBoxMonAt(pcBoxes, param1, v2);
-        v3 = BoxPokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
+    for (i = 0; i < MAX_MONS_PER_BOX; i++) {
+        boxMon = PCBoxes_GetBoxMonAt(pcBoxes, boxID, i);
+        species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
 
-        if (v3) {
-            param0->unk_5814[v2] = v3;
-            param0->unk_57D8[v2] = BoxPokemon_IconSpriteIndex(v1);
-            ov19_021DA744(param0->unk_58F0, param0->unk_CD8[v2], param0->unk_57D8[v2], ((4 * 4) * 0x20 + 0x80));
+        if (species != SPECIES_NONE) {
+            param0->unk_5814[i] = species;
+            param0->unk_57D8[i] = BoxPokemon_IconSpriteIndex(boxMon);
+            ov19_021DA744(param0->unk_58F0, param0->unk_CD8[i], param0->unk_57D8[i], ((4 * 4) * 0x20 + 0x80));
         }
     }
 }
@@ -583,23 +585,23 @@ UnkStruct_ov19_021DCD18 *ov19_021D84C8(UnkStruct_ov19_021D8318 *param0, u32 posI
 
 void ov19_021D84E0(UnkStruct_ov19_021D8318 *param0)
 {
-    int v0, v1;
-    BoxPokemon *v2;
+    int i, boxID;
+    BoxPokemon *boxMon;
 
-    v1 = PCBoxes_GetCurrentBoxID(param0->unk_58F8->pcBoxes);
+    boxID = PCBoxes_GetCurrentBoxID(param0->unk_58F8->pcBoxes);
 
-    for (v0 = 0; v0 < (5 * 6); v0++) {
-        v2 = PCBoxes_GetBoxMonAt(param0->unk_58F8->pcBoxes, v1, v0);
+    for (i = 0; i < MAX_MONS_PER_BOX; i++) {
+        boxMon = PCBoxes_GetBoxMonAt(param0->unk_58F8->pcBoxes, boxID, i);
 
-        if (BoxPokemon_GetValue(v2, MON_DATA_SPECIES_EXISTS, NULL)) {
-            if (param0->unk_A8[param0->unk_02][v0].unk_00 == NULL) {
-                int v3, v4, v5;
+        if (BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES_EXISTS, NULL)) {
+            if (param0->unk_A8[param0->unk_02][i].unk_00 == NULL) {
+                int boxCol, boxRow, v5;
 
-                v4 = v0 / 6;
-                v3 = v0 % 6;
-                v5 = (88 + (param0->unk_02 * 480)) + ((4 * 4) * v0);
+                boxRow = i / MAX_PC_COLS;
+                boxCol = i % MAX_PC_COLS;
+                v5 = (88 + (param0->unk_02 * 480)) + ((4 * 4) * i);
 
-                ov19_021DA428(param0->unk_58F0, v2, 112 + param0->unk_585C + 24 * v3, 40 + 24 * v4, 2, ov19_021D85B4(v0), v5, &(param0->unk_A8[param0->unk_02][v0]));
+                ov19_021DA428(param0->unk_58F0, boxMon, 112 + param0->unk_585C + 24 * boxCol, 40 + 24 * boxRow, 2, ov19_021D85B4(i), v5, &(param0->unk_A8[param0->unk_02][i]));
             }
         }
     }

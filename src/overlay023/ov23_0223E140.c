@@ -1607,7 +1607,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
             int v3;
 
             for (v3 = 0; v3 < 8; v3++) {
-                Sprite_SetDrawFlag(Unk_ov23_02257740->sprites[v3], 0);
+                Sprite_SetDrawFlag(Unk_ov23_02257740->sprites[v3], FALSE);
             }
 
             v0->state = 25;

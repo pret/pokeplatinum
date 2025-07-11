@@ -805,7 +805,7 @@ void sub_0205D714(UnkStruct_0205D094 *param0, struct UnkStruct_0205D3AC_t *param
 
     Sprite_SetAnim(v0->unk_0C, 1);
     v0->unk_14 = (2 * FX32_ONE);
-    Sprite_SetDrawFlag(v0->unk_0C, 0);
+    Sprite_SetDrawFlag(v0->unk_0C, FALSE);
 }
 
 void sub_0205D768(struct UnkStruct_0205D3AC_t *param0)
@@ -827,7 +827,7 @@ int sub_0205D788(struct UnkStruct_0205D3AC_t *param0)
 
     switch (v1->unk_10) {
     case 0:
-        Sprite_SetDrawFlag(v1->unk_0C, 1);
+        Sprite_SetDrawFlag(v1->unk_0C, TRUE);
         v1->unk_10++;
         break;
     case 1:

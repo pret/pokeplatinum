@@ -1651,7 +1651,7 @@ static void ov70_0225EC20(UnkStruct_ov70_0225EC20 *param0, UnkStruct_ov70_0225E4
 
         Sprite_SetAnim(param0->unk_50[v2], v2);
         Sprite_SetAnimateFlag(param0->unk_50[v2], 1);
-        Sprite_SetDrawFlag(param0->unk_50[v2], 0);
+        Sprite_SetDrawFlag(param0->unk_50[v2], FALSE);
     }
 
     param0->unk_3C = 0;
@@ -1787,7 +1787,7 @@ static void ov70_0225EF14(UnkStruct_ov70_0225EC20 *param0, u16 *param1, u16 *par
     param0->unk_3C = 0;
 
     for (v0 = 0; v0 < 2; v0++) {
-        Sprite_SetDrawFlag(param0->unk_50[v0], 0);
+        Sprite_SetDrawFlag(param0->unk_50[v0], FALSE);
     }
 }
 
@@ -1808,23 +1808,23 @@ static void ov70_0225EF70(UnkStruct_ov70_0225EC20 *param0)
     u16 v0;
 
     if (param0->unk_3C == 0) {
-        Sprite_SetDrawFlag(param0->unk_50[0], 0);
-        Sprite_SetDrawFlag(param0->unk_50[1], 0);
+        Sprite_SetDrawFlag(param0->unk_50[0], FALSE);
+        Sprite_SetDrawFlag(param0->unk_50[1], FALSE);
         return;
     }
 
     ListMenu_GetListAndCursorPos(param0->unk_30, &v0, NULL);
 
     if (v0 <= 0) {
-        Sprite_SetDrawFlag(param0->unk_50[0], 0);
+        Sprite_SetDrawFlag(param0->unk_50[0], FALSE);
     } else {
-        Sprite_SetDrawFlag(param0->unk_50[0], 1);
+        Sprite_SetDrawFlag(param0->unk_50[0], TRUE);
     }
 
     if (v0 >= (param0->unk_3A - 7)) {
-        Sprite_SetDrawFlag(param0->unk_50[1], 0);
+        Sprite_SetDrawFlag(param0->unk_50[1], FALSE);
     } else {
-        Sprite_SetDrawFlag(param0->unk_50[1], 1);
+        Sprite_SetDrawFlag(param0->unk_50[1], TRUE);
     }
 }
 

@@ -680,7 +680,7 @@ static void ov68_0225CCD0(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB
         v2.heapID = param3;
 
         param0->unk_14 = SpriteList_Add(&v2);
-        Sprite_SetDrawFlag(param0->unk_14, 0);
+        Sprite_SetDrawFlag(param0->unk_14, FALSE);
     }
 
     {
@@ -870,7 +870,7 @@ static void ov68_0225D06C(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB
 
 static void ov68_0225D0F8(UnkStruct_ov68_0225D0F8 *param0)
 {
-    Sprite_SetDrawFlag(param0->unk_14, 1);
+    Sprite_SetDrawFlag(param0->unk_14, TRUE);
     Sprite_SetPosition(param0->unk_14, &Unk_ov68_0225DD78[param0->unk_10]);
 }
 

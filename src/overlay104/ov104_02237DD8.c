@@ -716,9 +716,9 @@ void ov104_0223886C(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *
     }
 
     if (param2 == 1) {
-        Sprite_SetDrawFlag(param0->unk_30[param3]->sprite, 1);
+        Sprite_SetDrawFlag(param0->unk_30[param3]->sprite, TRUE);
     } else {
-        Sprite_SetDrawFlag(param0->unk_30[param3]->sprite, 0);
+        Sprite_SetDrawFlag(param0->unk_30[param3]->sprite, FALSE);
     }
 
     return;
@@ -733,9 +733,9 @@ void ov104_022388A4(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *
     }
 
     if (param2 == 1) {
-        Sprite_SetDrawFlag(param0->unk_40[param3]->sprite, 1);
+        Sprite_SetDrawFlag(param0->unk_40[param3]->sprite, TRUE);
     } else {
-        Sprite_SetDrawFlag(param0->unk_40[param3]->sprite, 0);
+        Sprite_SetDrawFlag(param0->unk_40[param3]->sprite, FALSE);
     }
 
     return;
@@ -757,7 +757,7 @@ void ov104_022388DC(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *
             v3 = Party_GetPokemonBySlotIndex(param0->unk_70, v2);
 
             if (Pokemon_GetValue(v3, MON_DATA_HELD_ITEM, NULL) == 0) {
-                Sprite_SetDrawFlag(param0->unk_50[v2]->sprite, 0);
+                Sprite_SetDrawFlag(param0->unk_50[v2]->sprite, FALSE);
             }
         }
     } else {
@@ -767,7 +767,7 @@ void ov104_022388DC(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *
             v3 = Party_GetPokemonBySlotIndex(param0->unk_74, v2);
 
             if (Pokemon_GetValue(v3, MON_DATA_HELD_ITEM, NULL) == 0) {
-                Sprite_SetDrawFlag(param0->unk_60[v2]->sprite, 0);
+                Sprite_SetDrawFlag(param0->unk_60[v2]->sprite, FALSE);
             }
         }
     }
@@ -796,48 +796,48 @@ void ov104_022389A0(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *
     return;
 }
 
-void ov104_022389F4(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *param1, u16 param2, u16 param3, u16 param4)
+void ov104_022389F4(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *param1, u16 param2, u16 slot, u16 param4)
 {
-    u32 v0;
+    u32 item;
     u8 v1, v2;
-    Pokemon *v3;
+    Pokemon *mon;
 
     v1 = ov104_0223BD70(param0->unk_10, 1);
     v2 = ov104_0223BDA4(param0->unk_10, 1);
 
     if (param2 == 0) {
-        if (param3 >= v1) {
+        if (slot >= v1) {
             return;
         }
 
-        v3 = Party_GetPokemonBySlotIndex(param0->unk_70, param3);
-        v0 = Pokemon_GetValue(v3, MON_DATA_HELD_ITEM, NULL);
+        mon = Party_GetPokemonBySlotIndex(param0->unk_70, slot);
+        item = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
 
         if (param4 == 1) {
-            if (v0 == 0) {
-                Sprite_SetDrawFlag(param0->unk_50[param3]->sprite, 0);
+            if (item == ITEM_NONE) {
+                Sprite_SetDrawFlag(param0->unk_50[slot]->sprite, FALSE);
             } else {
-                Sprite_SetDrawFlag(param0->unk_50[param3]->sprite, 1);
+                Sprite_SetDrawFlag(param0->unk_50[slot]->sprite, TRUE);
             }
         } else {
-            Sprite_SetDrawFlag(param0->unk_50[param3]->sprite, 0);
+            Sprite_SetDrawFlag(param0->unk_50[slot]->sprite, FALSE);
         }
     } else {
-        if (param3 >= v2) {
+        if (slot >= v2) {
             return;
         }
 
-        v3 = Party_GetPokemonBySlotIndex(param0->unk_74, param3);
-        v0 = Pokemon_GetValue(v3, MON_DATA_HELD_ITEM, NULL);
+        mon = Party_GetPokemonBySlotIndex(param0->unk_74, slot);
+        item = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
 
         if (param4 == 1) {
-            if (v0 == 0) {
-                Sprite_SetDrawFlag(param0->unk_60[param3]->sprite, 0);
+            if (item == 0) {
+                Sprite_SetDrawFlag(param0->unk_60[slot]->sprite, FALSE);
             } else {
-                Sprite_SetDrawFlag(param0->unk_60[param3]->sprite, 1);
+                Sprite_SetDrawFlag(param0->unk_60[slot]->sprite, TRUE);
             }
         } else {
-            Sprite_SetDrawFlag(param0->unk_60[param3]->sprite, 0);
+            Sprite_SetDrawFlag(param0->unk_60[slot]->sprite, FALSE);
         }
     }
 

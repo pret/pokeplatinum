@@ -551,7 +551,7 @@ static BOOL ov104_0223E4A4(UnkStruct_ov104_0223E48C *param0)
         v3 = ov104_0223E58C(param0->unk_14[v0].currentValue, param0->unk_14[v0].currentValue, param0->unk_14[v0].currentValue);
 
         Sprite_SetAffineScale(param0->unk_04[v0]->sprite, &v3);
-        Sprite_SetDrawFlag(param0->unk_04[v0]->sprite, 1);
+        Sprite_SetDrawFlag(param0->unk_04[v0]->sprite, TRUE);
 
         if (v1 == 0) {
             v2 = 0;

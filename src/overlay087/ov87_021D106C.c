@@ -516,7 +516,7 @@ static void ov87_021D18A0(UnkStruct_ov87_021D106C *param0, NNSG2dCellDataBank *p
         v2.priority = v9 + 1;
 
         param0->unk_1C4[v9] = SpriteList_Add(&v2);
-        Sprite_SetDrawFlag(param0->unk_1C4[v9], 0);
+        Sprite_SetDrawFlag(param0->unk_1C4[v9], FALSE);
     }
 
     Heap_FreeToHeap(v8);
@@ -556,11 +556,11 @@ static void ov87_021D1970(UnkStruct_ov87_021D106C *param0)
             Sprite_SetExplicitOAMMode(param0->unk_1C4[v3], GX_OAM_MODE_XLU);
         }
 
-        Sprite_SetDrawFlag(param0->unk_1C4[v3], 1);
+        Sprite_SetDrawFlag(param0->unk_1C4[v3], TRUE);
     }
 
     for (; v3 < 6; v3++) {
-        Sprite_SetDrawFlag(param0->unk_1C4[v3], 0);
+        Sprite_SetDrawFlag(param0->unk_1C4[v3], FALSE);
     }
 }
 
@@ -569,6 +569,6 @@ static void ov87_021D1AB8(UnkStruct_ov87_021D106C *param0)
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        Sprite_SetDrawFlag(param0->unk_1C4[v0], 0);
+        Sprite_SetDrawFlag(param0->unk_1C4[v0], FALSE);
     }
 }

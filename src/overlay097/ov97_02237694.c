@@ -409,7 +409,7 @@ void ov97_02237CAC(int param0)
 
         if (v0->unk_270 == 0) {
             if ((Sprite_GetDrawFlag(v0->unk_26C) == 0) && (param0 == 0)) {
-                Sprite_SetDrawFlag(v0->unk_26C, 1);
+                Sprite_SetDrawFlag(v0->unk_26C, TRUE);
             }
 
             v1 = (VecFx32 *)Sprite_GetPosition(v0->unk_26C);
@@ -457,7 +457,7 @@ Sprite *ov97_02237D14(int param0, Sprite *param1, int param2, int param3, int pa
     Sprite_SetAnimateFlag(param1, 1);
     Sprite_SetExplicitPriority(param1, 0);
     Sprite_SetAnim(param1, param4);
-    Sprite_SetDrawFlag(param1, 1);
+    Sprite_SetDrawFlag(param1, TRUE);
 
     return param1;
 }
@@ -707,7 +707,7 @@ void ov97_02238194(BgConfig *param0, WonderCard *param1)
         break;
     }
 
-    Sprite_SetDrawFlag(v2->unk_26C, 0);
+    Sprite_SetDrawFlag(v2->unk_26C, FALSE);
 }
 
 void ov97_0223829C(MysteryGiftEventData *param0, WonderCard *param1, int heapID)

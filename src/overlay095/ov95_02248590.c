@@ -623,8 +623,8 @@ static void ov95_02248CA8(UnkStruct_ov95_02248688 *param0)
 
         Sprite_SetAnim(param0->unk_1C[v3][0], 0);
         Sprite_SetAnim(param0->unk_1C[v3][1], 1);
-        Sprite_SetDrawFlag(param0->unk_1C[v3][0], 0);
-        Sprite_SetDrawFlag(param0->unk_1C[v3][1], 0);
+        Sprite_SetDrawFlag(param0->unk_1C[v3][0], FALSE);
+        Sprite_SetDrawFlag(param0->unk_1C[v3][1], FALSE);
     }
 }
 
@@ -709,8 +709,8 @@ static void ov95_02248EC4(SysTask *param0, void *param1)
             v0->unk_58[v2].y = -114688 + (v0->unk_58[v2].y - 1736704);
 
             if (v0->unk_08[v2]) {
-                Sprite_SetDrawFlag(v0->unk_04->unk_1C[v2][0], 1);
-                Sprite_SetDrawFlag(v0->unk_04->unk_1C[v2][1], 1);
+                Sprite_SetDrawFlag(v0->unk_04->unk_1C[v2][0], TRUE);
+                Sprite_SetDrawFlag(v0->unk_04->unk_1C[v2][1], TRUE);
             }
         }
 

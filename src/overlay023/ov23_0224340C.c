@@ -3845,7 +3845,7 @@ static void ov23_022471D8(UnkStruct_ov23_022471D8 *param0)
 
             Sprite_SetAnim(Unk_ov23_02257764->unk_25C[v1], 2);
             Sprite_SetAnimateFlag(Unk_ov23_02257764->unk_25C[v1], 1);
-            Sprite_SetDrawFlag(Unk_ov23_02257764->unk_25C[v1], 0);
+            Sprite_SetDrawFlag(Unk_ov23_02257764->unk_25C[v1], FALSE);
             Sprite_SetAnimFrame(Unk_ov23_02257764->unk_25C[v1], 0);
             Sprite_SetPriority(Unk_ov23_02257764->unk_25C[v1], 15 - v1);
             Sprite_SetExplicitPriority(Unk_ov23_02257764->unk_25C[v1], 1);
@@ -3863,7 +3863,7 @@ static void ov23_0224730C(UnkStruct_ov23_022471D8 *param0, int param1, int param
     param0->unk_44[param1] = param3;
     param0->unk_BC[param1] = param5;
 
-    Sprite_SetDrawFlag(Unk_ov23_02257764->unk_25C[param1], 1);
+    Sprite_SetDrawFlag(Unk_ov23_02257764->unk_25C[param1], TRUE);
 }
 
 static void ov23_0224733C(UnkStruct_ov23_022471D8 *param0, int param1)
@@ -3909,7 +3909,7 @@ static void ov23_022474D4(UnkStruct_ov23_022471D8 *param0)
             Sprite_SetPosition(Unk_ov23_02257764->unk_25C[v0], &v1);
 
             if (param0->unk_44[v0] > (param0->unk_120 + 35)) {
-                Sprite_SetDrawFlag(Unk_ov23_02257764->unk_25C[v0], 0);
+                Sprite_SetDrawFlag(Unk_ov23_02257764->unk_25C[v0], FALSE);
                 param0->unk_80[v0] = 0;
             }
         }
@@ -3947,7 +3947,7 @@ static BOOL ov23_02247568(BgConfig *param0, UnkStruct_ov23_022471D8 *param1)
         v11.y = param1->unk_120 * FX32_ONE;
 
         Sprite_SetPosition(Unk_ov23_02257764->unk_25C[0], &v11);
-        Sprite_SetDrawFlag(Unk_ov23_02257764->unk_25C[0], 1);
+        Sprite_SetDrawFlag(Unk_ov23_02257764->unk_25C[0], TRUE);
 
         if (param1->unk_120 > 65) {
             param1->unk_125 = 3;
@@ -4045,7 +4045,7 @@ static BOOL ov23_02247568(BgConfig *param0, UnkStruct_ov23_022471D8 *param1)
                 v11.y = (param1->unk_120 + 39 + v0 % 2) * FX32_ONE;
 
                 Sprite_SetPosition(Unk_ov23_02257764->unk_25C[v0], &v11);
-                Sprite_SetDrawFlag(Unk_ov23_02257764->unk_25C[v0], 1);
+                Sprite_SetDrawFlag(Unk_ov23_02257764->unk_25C[v0], TRUE);
             }
 
             Sprite_SetAnim(Unk_ov23_02257764->unk_25C[10], 1);
@@ -4054,14 +4054,14 @@ static BOOL ov23_02247568(BgConfig *param0, UnkStruct_ov23_022471D8 *param1)
             v11.y = (param1->unk_120 + 21) * FX32_ONE;
 
             Sprite_SetPosition(Unk_ov23_02257764->unk_25C[10], &v11);
-            Sprite_SetDrawFlag(Unk_ov23_02257764->unk_25C[10], 1);
+            Sprite_SetDrawFlag(Unk_ov23_02257764->unk_25C[10], TRUE);
             Sprite_SetAnim(Unk_ov23_02257764->unk_25C[11], 1);
 
             v11.x = 122 * FX32_ONE;
             v11.y = param1->unk_120 * FX32_ONE;
 
             Sprite_SetPosition(Unk_ov23_02257764->unk_25C[11], &v11);
-            Sprite_SetDrawFlag(Unk_ov23_02257764->unk_25C[11], 1);
+            Sprite_SetDrawFlag(Unk_ov23_02257764->unk_25C[11], TRUE);
         }
 
         param1->unk_124++;
@@ -4086,7 +4086,7 @@ static BOOL ov23_02247568(BgConfig *param0, UnkStruct_ov23_022471D8 *param1)
             param1->unk_114 = NULL;
         }
 
-        Sprite_SetDrawFlag(Unk_ov23_02257764->unk_25C[0], 0);
+        Sprite_SetDrawFlag(Unk_ov23_02257764->unk_25C[0], FALSE);
         return 1;
     }
 
