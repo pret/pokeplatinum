@@ -225,6 +225,7 @@ pl_pokegra_narc = custom_target('pl_pokegra.narc',
     output: 'pl_pokegra.narc',
     input: pokegra_files,
     env: species_env,
+    depends: [ py_consts_generators ],
     command: [
         make_pl_pokegra_py,
         '--nitrogfx', nitrogfx_exe,
@@ -261,6 +262,7 @@ naix_headers += pl_otherpoke_narc[1]
 pl_pokezukan_narc = custom_target('pl_pokezukan.narc',
     output: 'pl_pokezukan.narc',
     env: py_consts_env,
+    depends: [ py_consts_generators ],
     command: [
         make_pl_pokezukan_py,
         '--narc', narc_exe,
@@ -277,6 +279,7 @@ shinzukan_narc = custom_target('shinzukan.narc',
         'pokedex_sizes.h'
     ],
     env: py_consts_env,
+    depends: [ py_consts_generators ],
     command: [
         make_shinzukan_py,
         '--narc', narc_exe,
