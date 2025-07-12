@@ -4822,7 +4822,7 @@ int sub_020788D0(int param0)
     return param0;
 }
 
-void sub_0207893C(Pokemon *mon)
+void Pokemon_ClearBallCapsuleData(Pokemon *mon)
 {
     u8 zero = 0;
 

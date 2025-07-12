@@ -28,7 +28,7 @@ void sub_02073700(SaveData *saveData, int param1, UnkStruct_ov96_0223B450_sub1 *
     param2->unk_B8 = gGameVersion;
     param2->unk_B9 = gGameLanguage;
     param2->unk_BA = (u8)WiFiHistory_GetCountry(wiFiHistory);
-    param2->unk_BB = (u8)sub_0202C8C4(wiFiHistory);
+    param2->unk_BB = (u8)WiFiHistory_GetRegion(wiFiHistory);
     param2->unk_C8_val1_1 = TrainerInfo_Gender(v1);
     param2->unk_C9 = sub_0205CA14(param2->unk_C8_val1_1, TrainerInfo_Appearance(v1), 1);
 

@@ -1,11 +1,13 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/global_terminal_1f.h"
+#include "res/text/bank/menu_entries.h"
+#include "constants/map_object.h"
 
     .data
 
     ScriptEntry _00F0
     ScriptEntry _00F2
-    ScriptEntry _00F4
+    ScriptEntry GlobalTerminal1f_GTS_Clerk_Talk
     ScriptEntry _0374
     ScriptEntry _0387
     ScriptEntry _039A
@@ -31,19 +33,19 @@ _0056:
     End
 
 _0065:
-    ScrCmd_1B2 0xFF
+    HideMapObj MAP_OBJ_PLAYER_AVATAR
     Return
 
 _006B:
     LockAll
-    Call _0077
+    Call GlobalTerminal1f_GTS_WalkOut
     ReleaseAll
     End
 
-_0077:
+GlobalTerminal1f_GTS_WalkOut:
     ScrCmd_168 0, 0, 8, 2, 77
     Call _00C5
-    ScrCmd_1B1 0xFF
+    ShowMapObj MAP_OBJ_PLAYER_AVATAR
     ApplyMovement LOCALID_PLAYER, _00D8
     WaitMovement
     Call _00CD
@@ -91,41 +93,41 @@ _00F0:
 _00F2:
     End
 
-_00F4:
+GlobalTerminal1f_GTS_Clerk_Talk:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_2B7 VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0368
-    GoToIfSet FLAG_UNK_0x00C3, _02FB
-    SetFlag FLAG_UNK_0x00C3
-    Message 0
-    GoTo _0127
+    PartyHasBadEgg VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, GlobalTerminal1f_GTS_Exit_BadEgg
+    GoToIfSet FLAG_GTS_INTRO_COMPLETED, GlobalTerminal1f_GTS_Clerk_ShortIntro
+    SetFlag FLAG_GTS_INTRO_COMPLETED
+    Message pl_msg_00000046_00000
+    GoTo GlobalTerminal1f_GTS_Clerk_Menu
     End
 
-_0127:
+GlobalTerminal1f_GTS_Clerk_Menu:
     InitGlobalTextMenu 1, 1, 0, VAR_RESULT
-    AddMenuEntryImm 129, 0
-    AddMenuEntryImm 128, 1
-    AddMenuEntryImm 130, 2
+    AddMenuEntryImm pl_msg_00000361_00129, 0
+    AddMenuEntryImm pl_msg_00000361_00128, 1
+    AddMenuEntryImm pl_msg_00000361_00130, 2
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, _01E9
+    GoToIfEq VAR_0x8008, 0, GlobalTerminal1f_CheckPartyCount
     GoToIfEq VAR_0x8008, 1, _0172
-    GoToIfEq VAR_0x8008, 2, _02EA
-    GoTo _02EA
+    GoToIfEq VAR_0x8008, 2, GlobalTerminal1f_GTS_Clerk_EndTalk
+    GoTo GlobalTerminal1f_GTS_Clerk_EndTalk
     End
 
 _0172:
-    Message 2
+    Message pl_msg_00000046_00002
     GoTo _017D
     End
 
 _017D:
     InitGlobalTextMenu 1, 1, 0, VAR_RESULT
-    AddMenuEntryImm 131, 0
-    AddMenuEntryImm 132, 1
-    AddMenuEntryImm 133, 2
+    AddMenuEntryImm pl_msg_00000361_00131, 0
+    AddMenuEntryImm pl_msg_00000361_00132, 1
+    AddMenuEntryImm pl_msg_00000361_00133, 2
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _01C8
@@ -135,40 +137,40 @@ _017D:
     End
 
 _01C8:
-    Message 3
+    Message pl_msg_00000046_00003
     GoTo _017D
     End
 
 _01D3:
-    Message 4
+    Message pl_msg_00000046_00004
     GoTo _017D
     End
 
 _01DE:
-    Message 5
-    GoTo _0127
+    Message pl_msg_00000046_00005
+    GoTo GlobalTerminal1f_GTS_Clerk_Menu
     End
 
-_01E9:
+GlobalTerminal1f_CheckPartyCount:
     GetPartyCountHatched VAR_RESULT
-    GoToIfLt VAR_RESULT, 2, _0202
-    GoTo _0306
+    GoToIfLt VAR_RESULT, 2, GlobalTerminal1f_GTS_Exit_NotEnoughPokemon
+    GoTo GlobalTerminal1f_CheckFreePartySlot
     End
 
-_0202:
-    Message 9
+GlobalTerminal1f_GTS_Exit_NotEnoughPokemon:
+    Message pl_msg_00000046_00009
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_020D:
+GlobalTerminal1f_BeginTrade:
     CallCommonScript 0x7D6
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_RESULT, 0, _02EA
+    GoToIfEq VAR_RESULT, 0, GlobalTerminal1f_GTS_Clerk_EndTalk
     HealParty
     SetVar VAR_UNK_0x40D5, 6
-    Message 7
+    Message pl_msg_00000046_00007
     CloseMessage
     ApplyMovement LOCALID_PLAYER, _0344
     WaitMovement
@@ -181,7 +183,7 @@ _020D:
     Call _00C5
     ApplyMovement LOCALID_PLAYER, _0350
     WaitMovement
-    ScrCmd_1B2 0xFF
+    HideMapObj MAP_OBJ_PLAYER_AVATAR
     ApplyMovement LOCALID_PLAYER, _0360
     WaitMovement
     Call _00CD
@@ -190,50 +192,50 @@ _020D:
     ScrCmd_2B2
     ScrCmd_0B3 VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
-    ScrCmd_0B2 VAR_0x8004, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _02CE
+    TryStartGTSApp VAR_0x8004, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, GlobalTerminal1f_GTS_Exit
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    Call _0077
+    Call GlobalTerminal1f_GTS_WalkOut
     ReleaseAll
     End
 
-_02CE:
+GlobalTerminal1f_GTS_Exit:
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    Call _0077
-    GoTo _02EA
+    Call GlobalTerminal1f_GTS_WalkOut
+    GoTo GlobalTerminal1f_GTS_Clerk_EndTalk
     End
 
-_02EA:
+GlobalTerminal1f_GTS_Clerk_EndTalk:
     SetVar VAR_UNK_0x40D5, 0
-    Message 6
+    Message pl_msg_00000046_00006
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_02FB:
-    Message 1
-    GoTo _0127
+GlobalTerminal1f_GTS_Clerk_ShortIntro:
+    Message pl_msg_00000046_00001
+    GoTo GlobalTerminal1f_GTS_Clerk_Menu
     End
 
-_0306:
+GlobalTerminal1f_CheckFreePartySlot:
     GetPartyCount VAR_RESULT
-    GoToIfEq VAR_RESULT, 6, _031F
-    GoTo _020D
+    GoToIfEq VAR_RESULT, 6, GlobalTerminal1f_CheckFreeBoxSlot
+    GoTo GlobalTerminal1f_BeginTrade
     End
 
-_031F:
+GlobalTerminal1f_CheckFreeBoxSlot:
     GetPCBoxesFreeSlotCount VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0338
-    GoTo _020D
+    GoToIfEq VAR_RESULT, 0, GlobalTerminal1f_GTS_Exit_NoSpace
+    GoTo GlobalTerminal1f_BeginTrade
     End
 
-_0338:
-    Message 8
+GlobalTerminal1f_GTS_Exit_NoSpace:
+    Message pl_msg_00000046_00008
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -260,8 +262,8 @@ _0360:
     FaceSouth
     EndMovement
 
-_0368:
-    CallCommonScript 0x2338
+GlobalTerminal1f_GTS_Exit_BadEgg:
+    CallCommonScript 0x2338 @ CommonScript_HasBadEgg; outputs pl_msg_00000221_00127
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -271,7 +273,7 @@ _0374:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 10
+    Message pl_msg_00000046_00010
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -281,7 +283,7 @@ _0387:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 11
+    Message pl_msg_00000046_00011
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -291,7 +293,7 @@ _039A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 12
+    Message pl_msg_00000046_00012
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -301,7 +303,7 @@ _03AD:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 13
+    Message pl_msg_00000046_00013
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -311,7 +313,7 @@ _03C0:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 14
+    Message pl_msg_00000046_00014
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -321,7 +323,7 @@ _03D3:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 15
+    Message pl_msg_00000046_00015
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -331,7 +333,7 @@ _03E6:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 16
+    Message pl_msg_00000046_00016
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -341,7 +343,7 @@ _03F9:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 17
+    Message pl_msg_00000046_00017
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -355,12 +357,12 @@ _040C:
     End
 
 _0420:
-    Message 36
+    Message pl_msg_00000046_00036
     InitLocalTextMenu 31, 11, 0, VAR_RESULT
     SetMenuXOriginToRight
-    AddMenuEntryImm 38, 0
-    AddMenuEntryImm 39, 1
-    AddMenuEntryImm 40, 2
+    AddMenuEntryImm pl_msg_00000361_00038, 0
+    AddMenuEntryImm pl_msg_00000361_00039, 1
+    AddMenuEntryImm pl_msg_00000361_00040, 2
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _046A
@@ -383,7 +385,7 @@ _046A:
     End
 
 _048B:
-    Message 37
+    Message pl_msg_00000046_00037
     GoTo _0420
     End
 
@@ -395,12 +397,12 @@ _0496:
     End
 
 _04AA:
-    Message 34
+    Message pl_msg_00000046_00034
     InitLocalTextMenu 31, 11, 0, VAR_RESULT
     SetMenuXOriginToRight
-    AddMenuEntryImm 38, 0
-    AddMenuEntryImm 39, 1
-    AddMenuEntryImm 40, 2
+    AddMenuEntryImm pl_msg_00000361_00038, 0
+    AddMenuEntryImm pl_msg_00000361_00039, 1
+    AddMenuEntryImm pl_msg_00000361_00040, 2
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _04F4
@@ -423,7 +425,7 @@ _04F4:
     End
 
 _0515:
-    Message 35
+    Message pl_msg_00000046_00035
     GoTo _04AA
     End
 
@@ -431,7 +433,7 @@ _0520:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 32
+    Message pl_msg_00000046_00032
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -441,7 +443,7 @@ _0533:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 33
+    Message pl_msg_00000046_00033
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -451,32 +453,32 @@ _0546:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_2B7 VAR_RESULT
+    PartyHasBadEgg VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _05A0
     SetVar VAR_0x8000, 0
     GetPartyMonSpecies VAR_0x8000, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _05CB
     BufferPartyMonSpecies 0, 0
-    Message 18
+    Message pl_msg_00000046_00018
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, _05AB
     GoToIfEq VAR_RESULT, MENU_NO, _05B8
     End
 
 _05A0:
-    Message 23
+    Message pl_msg_00000046_00023
     GoTo _05F9
     End
 
 _05AB:
     ScrCmd_300
-    Message 20
+    Message pl_msg_00000046_00020
     GoTo _05F9
     End
 
 _05B8:
     BufferPartyMonSpecies 0, 0
-    Message 21
+    Message pl_msg_00000046_00021
     GoTo _05F9
 
     .byte 2
@@ -486,14 +488,14 @@ _05B8:
     .byte 18
 
 _05CB:
-    Message 19
+    Message pl_msg_00000046_00019
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, _05AB
     GoToIfEq VAR_RESULT, MENU_NO, _05EE
     End
 
 _05EE:
-    Message 22
+    Message pl_msg_00000046_00022
     GoTo _05F9
     End
 
@@ -507,7 +509,7 @@ _0601:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 29
+    Message pl_msg_00000046_00029
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _0647
     FadeScreen 6, 1, 0, 0
@@ -515,14 +517,14 @@ _0601:
     CloseMessage
     ScrCmd_30E VAR_0x8004
     GoToIfEq VAR_0x8004, 0, _0647
-    Message 30
+    Message pl_msg_00000046_00030
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
 _0647:
-    Message 31
+    Message pl_msg_00000046_00031
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -536,13 +538,13 @@ _0652:
     GoToIfEq VAR_RESULT, 0, _0696
     GoToIfSet FLAG_UNK_0x0AC3, _06FD
     GoToIfSet FLAG_UNK_0x00CF, _06F2
-    Message 24
+    Message pl_msg_00000046_00024
     SetVar VAR_0x8004, 1
     GoTo _06A1
     End
 
 _0696:
-    Message 42
+    Message pl_msg_00000046_00042
     GoTo _0708
     End
 
@@ -558,19 +560,19 @@ _06A1:
 _06D3:
     SetVar VAR_0x8005, 1
     CallCommonScript 0x7FD
-    Message 28
+    Message pl_msg_00000046_00028
     Call _0710
     SetFlag FLAG_UNK_0x0AC3
     GoTo _0708
     End
 
 _06F2:
-    Message 27
+    Message pl_msg_00000046_00027
     GoTo _0708
     End
 
 _06FD:
-    Message 26
+    Message pl_msg_00000046_00026
     GoTo _0708
     End
 
@@ -599,7 +601,7 @@ _074A:
 _074C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    Message 41
+    Message pl_msg_00000046_00041
     WaitABXPadPress
     CloseMessage
     ReleaseAll

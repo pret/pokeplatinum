@@ -2,8 +2,8 @@
 #define POKEPLATINUM_STRUCT_OV96_0223B574_1_H
 
 typedef struct {
-    u32 unk_00;
-    u32 unk_04;
-} UnkStruct_ov96_0223B574_1;
+    u32 validationError;
+    u32 systemError;
+} WorldExchangeTrainerError;
 
 #endif // POKEPLATINUM_STRUCT_OV96_0223B574_1_H

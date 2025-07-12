@@ -851,7 +851,7 @@ static void ov75_021D1ADC(UnkStruct_ov75_021D1184 *param0)
     int v0 = 0, v1 = 0;
     SpriteTemplate v2;
 
-    DrawWifiConnectionIcon();
+    NetworkIcon_Init();
 
     if (param0->unk_0C == 1) {
         return;

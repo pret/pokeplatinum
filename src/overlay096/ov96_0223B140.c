@@ -38,7 +38,7 @@ typedef struct {
     u8 *unk_108;
 } UnkStruct_ov96_0223DDE0;
 
-static BOOL ov96_0223B5D0(const u8 *param0, const void *param1, int param2, void *param3, int param4);
+static BOOL BattleTowerNetworking_PrepareRequest(const u8 *param0, const void *param1, int param2, void *param3, int param4);
 static int ov96_0223B608(int param0);
 
 static UnkStruct_ov96_0223DDE0 Unk_ov96_0223DDE0;
@@ -59,36 +59,36 @@ void ov96_0223B15C(void)
     case UnkEnum_ov96_0223B15C_01:
         break;
     case UnkEnum_ov96_0223B15C_02:
-        switch (ov60_0221FD48()) {
+        switch (HTTP_GetRequestStatus()) {
         case 1:
             Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
-            Unk_ov96_0223DDE0.unk_04 = ov96_0223B608(ov60_0221FE14());
-            ov60_0221FDEC();
+            Unk_ov96_0223DDE0.unk_04 = ov96_0223B608(HTTP_GetErrorCode());
+            HTTP_Shutdown();
             break;
         case 7:
             Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
 
-            if (ov60_0221FE20() > 0) {
+            if (HTTP_GetResponseLength() > 0) {
                 Unk_ov96_0223DDE0.unk_04 = Unk_ov96_0223DDE0.unk_103[0];
             } else {
                 Unk_ov96_0223DDE0.unk_04 = -2;
             }
 
-            ov60_0221FDEC();
+            HTTP_Shutdown();
             break;
         }
         break;
     case UnkEnum_ov96_0223B15C_04:
-        switch (ov60_0221FD48()) {
+        switch (HTTP_GetRequestStatus()) {
         case 1:
             Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
-            Unk_ov96_0223DDE0.unk_04 = ov96_0223B608(ov60_0221FE14());
-            ov60_0221FDEC();
+            Unk_ov96_0223DDE0.unk_04 = ov96_0223B608(HTTP_GetErrorCode());
+            HTTP_Shutdown();
             break;
         case 7:
             Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
 
-            if (ov60_0221FE20() == sizeof(UnkStruct_ov96_0223B450)) {
+            if (HTTP_GetResponseLength() == sizeof(UnkStruct_ov96_0223B450)) {
                 Unk_ov96_0223DDE0.unk_04 = 0;
             } else {
                 switch (Unk_ov96_0223DDE0.unk_108[0]) {
@@ -105,17 +105,17 @@ void ov96_0223B15C(void)
                 }
             }
 
-            ov60_0221FDEC();
+            HTTP_Shutdown();
             break;
         }
 
         break;
     case UnkEnum_ov96_0223B15C_06:
-        switch (ov60_0221FD48()) {
+        switch (HTTP_GetRequestStatus()) {
         case 1:
             Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
-            Unk_ov96_0223DDE0.unk_04 = ov96_0223B608(ov60_0221FE14());
-            ov60_0221FDEC();
+            Unk_ov96_0223DDE0.unk_04 = ov96_0223B608(HTTP_GetErrorCode());
+            HTTP_Shutdown();
             break;
         case 7:
             Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
@@ -138,16 +138,16 @@ void ov96_0223B15C(void)
                 break;
             }
 
-            ov60_0221FDEC();
+            HTTP_Shutdown();
             break;
         }
         break;
     case UnkEnum_ov96_0223B15C_08:
-        switch (ov60_0221FD48()) {
+        switch (HTTP_GetRequestStatus()) {
         case 1:
             Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
-            Unk_ov96_0223DDE0.unk_04 = ov96_0223B608(ov60_0221FE14());
-            ov60_0221FDEC();
+            Unk_ov96_0223DDE0.unk_04 = ov96_0223B608(HTTP_GetErrorCode());
+            HTTP_Shutdown();
             break;
         case 7:
             Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
@@ -170,21 +170,21 @@ void ov96_0223B15C(void)
                 break;
             }
 
-            ov60_0221FDEC();
+            HTTP_Shutdown();
             break;
         }
         break;
     case UnkEnum_ov96_0223B15C_10:
-        switch (ov60_0221FD48()) {
+        switch (HTTP_GetRequestStatus()) {
         case 1:
             Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
-            Unk_ov96_0223DDE0.unk_04 = ov96_0223B608(ov60_0221FE14());
-            ov60_0221FDEC();
+            Unk_ov96_0223DDE0.unk_04 = ov96_0223B608(HTTP_GetErrorCode());
+            HTTP_Shutdown();
             break;
         case 7:
             Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
 
-            if (ov60_0221FE20() == sizeof(UnkStruct_ov96_0223B574_1)) {
+            if (HTTP_GetResponseLength() == sizeof(WorldExchangeTrainerError)) {
                 Unk_ov96_0223DDE0.unk_04 = 0;
             } else {
                 switch (Unk_ov96_0223DDE0.unk_103[0]) {
@@ -207,7 +207,7 @@ void ov96_0223B15C(void)
                 }
             }
 
-            ov60_0221FDEC();
+            HTTP_Shutdown();
             break;
         }
         break;
@@ -218,7 +218,7 @@ void ov96_0223B15C(void)
     case UnkEnum_ov96_0223B15C_11:
         Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
         Unk_ov96_0223DDE0.unk_04 = -4;
-        ov60_0221FDEC();
+        HTTP_Shutdown();
         break;
     case UnkEnum_ov96_0223B15C_12:
         break;
@@ -247,12 +247,12 @@ s32 ov96_0223B3F4(void)
 
 void ov96_0223B400(s32 param0)
 {
-    ov60_0221FC84();
+    HTTP_Init();
 
     Unk_ov96_0223DDE0.unk_14[0] = (u8)(param0 - 1);
 
-    if (ov96_0223B5D0((const u8 *)("http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                   "battletower/roomnum.asp"),
+    if (BattleTowerNetworking_PrepareRequest((const u8 *)("http://gamestats2.gs.nintendowifi.net/pokemondpds/"
+                                                          "battletower/roomnum.asp"),
             Unk_ov96_0223DDE0.unk_14,
             1,
             Unk_ov96_0223DDE0.unk_103,
@@ -261,7 +261,7 @@ void ov96_0223B400(s32 param0)
     } else {
         Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
         Unk_ov96_0223DDE0.unk_04 = -5;
-        ov60_0221FDEC();
+        HTTP_Shutdown();
     }
 }
 
@@ -269,13 +269,13 @@ void ov96_0223B450(s32 param0, s32 param1, UnkStruct_ov96_0223B450 *param2)
 {
     Unk_ov96_0223DDE0.unk_108 = (u8 *)param2;
 
-    ov60_0221FC84();
+    HTTP_Init();
 
     Unk_ov96_0223DDE0.unk_14[0] = (u8)(param0 - 1);
     Unk_ov96_0223DDE0.unk_14[1] = (u8)(param1 - 1);
 
-    if (ov96_0223B5D0((const u8 *)("http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                   "battletower/download.asp"),
+    if (BattleTowerNetworking_PrepareRequest((const u8 *)("http://gamestats2.gs.nintendowifi.net/pokemondpds/"
+                                                          "battletower/download.asp"),
             Unk_ov96_0223DDE0.unk_14,
             2,
             param2,
@@ -284,13 +284,13 @@ void ov96_0223B450(s32 param0, s32 param1, UnkStruct_ov96_0223B450 *param2)
     } else {
         Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
         Unk_ov96_0223DDE0.unk_04 = -5;
-        ov60_0221FDEC();
+        HTTP_Shutdown();
     }
 }
 
 void ov96_0223B4B0(s32 param0, s32 param1, s32 param2, const UnkStruct_ov96_0223B450_sub1 *param3)
 {
-    ov60_0221FC84();
+    HTTP_Init();
 
     memcpy(&Unk_ov96_0223DDE0.unk_14[0], param3, sizeof(UnkStruct_ov96_0223B450_sub1));
 
@@ -300,8 +300,8 @@ void ov96_0223B4B0(s32 param0, s32 param1, s32 param2, const UnkStruct_ov96_0223
 
     memcpy(&Unk_ov96_0223DDE0.unk_14[sizeof(UnkStruct_ov96_0223B450_sub1) + 3], &Unk_ov96_0223DDE0.unk_0C, 8);
 
-    if (ov96_0223B5D0((const u8 *)("http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                   "battletower/upload.asp"),
+    if (BattleTowerNetworking_PrepareRequest((const u8 *)("http://gamestats2.gs.nintendowifi.net/pokemondpds/"
+                                                          "battletower/upload.asp"),
             Unk_ov96_0223DDE0.unk_14,
             sizeof(UnkStruct_ov96_0223B450_sub1) + 11,
             Unk_ov96_0223DDE0.unk_103,
@@ -310,16 +310,16 @@ void ov96_0223B4B0(s32 param0, s32 param1, s32 param2, const UnkStruct_ov96_0223
     } else {
         Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
         Unk_ov96_0223DDE0.unk_04 = -5;
-        ov60_0221FDEC();
+        HTTP_Shutdown();
     }
 }
 
 void ov96_0223B530(void)
 {
-    ov60_0221FC84();
+    HTTP_Init();
 
-    if (ov96_0223B5D0((const u8 *)("http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                   "battletower/info.asp"),
+    if (BattleTowerNetworking_PrepareRequest((const u8 *)("http://gamestats2.gs.nintendowifi.net/pokemondpds/"
+                                                          "battletower/info.asp"),
             Unk_ov96_0223DDE0.unk_14,
             0,
             Unk_ov96_0223DDE0.unk_103,
@@ -328,36 +328,36 @@ void ov96_0223B530(void)
     } else {
         Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
         Unk_ov96_0223DDE0.unk_04 = -5;
-        ov60_0221FDEC();
+        HTTP_Shutdown();
     }
 }
 
-void ov96_0223B574(const UnkStruct_ov96_0223B574 *param0, UnkStruct_ov96_0223B574_1 *param1)
+void WorldExchange_SetProfile(const WorldExchangeTrainer *param0, WorldExchangeTrainerError *param1)
 {
-    OS_GetMacAddress((u8 *)param0->unk_14);
+    OS_GetMacAddress((u8 *)param0->macAddress);
 
-    memcpy(Unk_ov96_0223DDE0.unk_14, param0, sizeof(UnkStruct_ov96_0223B574));
+    memcpy(Unk_ov96_0223DDE0.unk_14, param0, sizeof(WorldExchangeTrainer));
     Unk_ov96_0223DDE0.unk_108 = (u8 *)param1;
 
-    ov60_0221FC84();
+    HTTP_Init();
 
-    if (ov96_0223B5D0((const u8 *)("http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                   "common/setProfile.asp"),
+    if (BattleTowerNetworking_PrepareRequest((const u8 *)("http://gamestats2.gs.nintendowifi.net/pokemondpds/"
+                                                          "common/setProfile.asp"),
             Unk_ov96_0223DDE0.unk_14,
-            sizeof(UnkStruct_ov96_0223B574),
+            sizeof(WorldExchangeTrainer),
             Unk_ov96_0223DDE0.unk_108,
-            sizeof(UnkStruct_ov96_0223B574_1))) {
+            sizeof(WorldExchangeTrainerError))) {
         Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_10;
     } else {
         Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_12;
         Unk_ov96_0223DDE0.unk_04 = -5;
-        ov60_0221FDEC();
+        HTTP_Shutdown();
     }
 }
 
-static BOOL ov96_0223B5D0(const u8 *param0, const void *param1, int param2, void *param3, int param4)
+static BOOL BattleTowerNetworking_PrepareRequest(const u8 *param0, const void *param1, int param2, void *param3, int param4)
 {
-    switch (ov60_0221FCA8(param0, Unk_ov96_0223DDE0.unk_08, param1, param2, (u8 *)param3, param4)) {
+    switch (HTTP_PrepareRequest(param0, Unk_ov96_0223DDE0.unk_08, param1, param2, (u8 *)param3, param4)) {
     case 0:
         return 1;
         break;

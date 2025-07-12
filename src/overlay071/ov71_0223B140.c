@@ -247,7 +247,7 @@ int ov71_0223B140(ApplicationManager *appMan, int *param1)
     ov71_0223C288();
 
     SetVBlankCallback(ov71_0223C18C, NULL);
-    DrawWifiConnectionIcon();
+    NetworkIcon_Init();
     Sound_SetPlayerVolume(1, (127 / 3));
     StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_3, FADE_TYPE_UNK_3, FADE_TO_BLACK, 6, 1, HEAP_ID_TRAINER_CARD_SCREEN);
     NARC_dtor(v1);

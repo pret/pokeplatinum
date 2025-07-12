@@ -865,7 +865,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
     int *v3 = &param0->unk_15C;
 
     if (param0->unk_158 == 1) {
-        sub_020397B0(WM_LINK_LEVEL_3 - ov97_02233230());
+        NetworkIcon_SetStrength(WM_LINK_LEVEL_3 - ov97_02233230());
 
         ov97_022330DC();
         ov97_0223346C(1);
@@ -874,12 +874,12 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
     switch (*v3) {
     case UnkEnum_ov97_0222C6F8_00:
         ov97_0222C210(param0);
-        sub_02033478();
+        WirelessDriver_Init();
         param0->unk_148 = 1;
         *v3 = UnkEnum_ov97_0222C6F8_01;
         break;
     case UnkEnum_ov97_0222C6F8_01:
-        if (sub_020334A4()) {
+        if (WirelessDriver_IsReady()) {
             ov97_02232E38(&Unk_ov97_0223E0A4, param0->unk_16C);
             param0->unk_158 = 1;
             sub_02039734();
@@ -1062,8 +1062,8 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
     case UnkEnum_ov97_0222C6F8_20:
         if (ov97_022333FC()) {
             if (param0->unk_148 == 1) {
-                sub_020334CC();
-                sub_02039794();
+                WirelessDriver_Shutdown();
+                NetworkIcon_Destroy();
                 param0->unk_148 = 0;
             }
 
@@ -1089,8 +1089,8 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
     case UnkEnum_ov97_0222C6F8_28:
         if (ov97_022333FC()) {
             if (param0->unk_148 == 1) {
-                sub_020334CC();
-                sub_02039794();
+                WirelessDriver_Shutdown();
+                NetworkIcon_Destroy();
                 param0->unk_148 = 0;
             }
 
@@ -1102,8 +1102,8 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
     case UnkEnum_ov97_0222C6F8_26:
         if (ov97_022333FC()) {
             if (param0->unk_148 == 1) {
-                sub_020334CC();
-                sub_02039794();
+                WirelessDriver_Shutdown();
+                NetworkIcon_Destroy();
                 param0->unk_148 = 0;
 
                 if (param0->unk_34D8) {

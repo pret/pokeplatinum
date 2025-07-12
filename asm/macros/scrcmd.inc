@@ -1071,7 +1071,7 @@
     .short 177
     .endm
 
-    .macro ScrCmd_0B2 arg0, arg1
+    .macro TryStartGTSApp arg0, arg1
     .short 178
     .short \arg0
     .short \arg1
@@ -1731,7 +1731,7 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_12D arg0
+    .macro SaveGame arg0
     .short 301
     .short \arg0
     .endm
@@ -2210,11 +2210,11 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_18D
+    .macro AddWaitDial
     .short 397
     .endm
 
-    .macro ScrCmd_18E
+    .macro RemoveWaitDial
     .short 398
     .endm
 
@@ -2398,12 +2398,12 @@
     .short \partySlot
     .endm
 
-    .macro ScrCmd_1B1 arg0
+    .macro ShowMapObj arg0
     .short 433
     .short \arg0
     .endm
 
-    .macro ScrCmd_1B2 arg0
+    .macro HideMapObj arg0
     .short 434
     .short \arg0
     .endm
@@ -3960,7 +3960,7 @@
     .byte \arg1
     .endm
 
-    .macro ScrCmd_2B7 arg0
+    .macro PartyHasBadEgg arg0
     .short 695
     .short \arg0
     .endm
@@ -4008,11 +4008,11 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_2C1
+    .macro OpenSaveInfo
     .short 705
     .endm
 
-    .macro ScrCmd_2C2
+    .macro CloseSaveInfo
     .short 706
     .endm
 
@@ -4120,11 +4120,11 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_2D6
+    .macro SaveExtraData
     .short 726
     .endm
 
-    .macro ScrCmd_2D7 arg0
+    .macro IsMiscSaveInit arg0
     .short 727
     .short \arg0
     .endm

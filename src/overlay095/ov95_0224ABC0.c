@@ -57,7 +57,7 @@ enum {
 };
 
 typedef struct {
-    UnkStruct_ov95_02247628 *unk_00;
+    TradeSequenceData *unk_00;
     int unk_04;
     int unk_08;
     BgConfig *unk_0C;
@@ -120,7 +120,7 @@ static void ov95_0224B324(UnkStruct_ov95_02247958 *param0, int param1, int param
 static void ov95_0224B388(SysTask *param0, void *param1);
 static void ov95_0224B3BC(SysTask *param0);
 
-void *ov95_0224ABC0(UnkStruct_ov95_02247628 *param0)
+void *ov95_0224ABC0(TradeSequenceData *param0)
 {
     UnkStruct_ov95_0224AC64 *v0 = Heap_AllocFromHeap(HEAP_ID_58, sizeof(UnkStruct_ov95_0224AC64));
 
@@ -363,7 +363,7 @@ static void ov95_0224AE1C(UnkStruct_ov95_0224AC64 *param0)
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 1, param0->unk_0C, 2, 0, 0, 1, HEAP_ID_58);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 1, param0->unk_0C, 6, 0, 0, 1, HEAP_ID_58);
 
-    v5 = ov95_02247644(param0->unk_00);
+    v5 = TradeSequence_GetBackgroundColour(param0->unk_00);
 
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 3, 0, 0, 0x20, HEAP_ID_58);
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 3, 4, 0, 0x20, HEAP_ID_58);

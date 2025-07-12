@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_tower_multi_battle_room.h"
+#include "constants/map_object.h"
 
     .data
 
@@ -36,7 +37,7 @@ _008E:
     End
 
 _0090:
-    ScrCmd_1B2 0xFF
+    HideMapObj MAP_OBJ_PLAYER_AVATAR
     ScrCmd_06B 8, 0, 0
     Return
 
@@ -152,9 +153,9 @@ _025B:
     ScrCmd_1DD 39, 0, 0
     ScrCmd_1DC
     Message 0
-    ScrCmd_18D
-    ScrCmd_12D VAR_RESULT
-    ScrCmd_18E
+    AddWaitDial
+    SaveGame VAR_RESULT
+    RemoveWaitDial
     PlayFanfare SEQ_SE_DP_SAVE
     WaitFanfare SEQ_SE_DP_SAVE
     FadeScreen 6, 1, 0, 0

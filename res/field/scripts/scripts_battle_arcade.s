@@ -454,9 +454,9 @@ _06B8:
     End
 
 _06DF:
-    ScrCmd_18D
-    ScrCmd_12D VAR_RESULT
-    ScrCmd_18E
+    AddWaitDial
+    SaveGame VAR_RESULT
+    RemoveWaitDial
     PlayFanfare SEQ_SE_DP_SAVE
     WaitFanfare SEQ_SE_DP_SAVE
     Return

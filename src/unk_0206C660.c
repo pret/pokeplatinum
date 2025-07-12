@@ -19,7 +19,7 @@ typedef struct {
     NpcTradeData *unk_00;
     u32 unk_04;
     int unk_08;
-    UnkStruct_ov6_02246254 unk_0C;
+    NpcTradeAnimationConfig unk_0C;
     Pokemon *unk_24;
     Pokemon *unk_28;
 } UnkStruct_0206C660;
@@ -36,9 +36,9 @@ void sub_0206C660(FieldTask *param0)
         FS_EXTERN_OVERLAY(overlay95);
 
         static const ApplicationManagerTemplate v2 = {
-            ov95_02246C20,
-            ov95_02246E7C,
-            ov95_02246E1C,
+            TradeSequence_Init,
+            TradeSequence_Main,
+            TradeSequence_Exit,
             FS_OVERLAY_ID(overlay95),
         };
 

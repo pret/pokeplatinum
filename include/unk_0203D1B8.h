@@ -72,7 +72,7 @@ void sub_0203E09C(FieldSystem *fieldSystem, TrainerCard *param1);
 BOOL sub_0203E0AC(FieldSystem *fieldSystem, void *param1);
 void FieldSystem_LaunchChooseStarterApp(FieldSystem *fieldSystem, ChooseStarterData *param1);
 void sub_0203E0D0(FieldSystem *fieldSystem);
-void sub_0203E0FC(FieldSystem *fieldSystem, int param1);
+void FieldSystem_LaunchGTSApp(FieldSystem *fieldSystem, int param1);
 void *sub_0203E1AC(FieldSystem *fieldSystem, int param1, int param2);
 void sub_0203E224(FieldSystem *fieldSystem);
 void sub_0203E234(FieldSystem *fieldSystem, UnkStruct_0203E234 *param1);

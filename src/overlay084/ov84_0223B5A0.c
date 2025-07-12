@@ -444,7 +444,7 @@ int ov84_0223B5A0(ApplicationManager *appMan, int *param1)
 
     SetVBlankCallback(ov84_0223BA14, v0);
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_BAG, SEQ_NONE, 0);
-    DrawWifiConnectionIcon();
+    NetworkIcon_Init();
 
     return 1;
 }

@@ -1,5 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/unk_0221.h"
+#include "res/text/bank/menu_entries.h"
+#include "constants/map_object.h"
 
     .data
 
@@ -19,7 +21,7 @@
     ScriptEntry _0075
     ScriptEntry _005B
     ScriptEntry _005B
-    ScriptEntry _0763
+    ScriptEntry CommonScript_HasBadEgg @ 0x2338
     ScriptEntryEnd
 
 _0046:
@@ -27,7 +29,7 @@ _0046:
     End
 
 _0055:
-    ScrCmd_1B2 0xFF
+    HideMapObj MAP_OBJ_PLAYER_AVATAR
     Return
 
 _005B:
@@ -48,7 +50,7 @@ _008F:
     LockAll
     ScrCmd_168 0, 0, VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_2, 77
     Call _050B
-    ScrCmd_1B1 0xFF
+    ShowMapObj MAP_OBJ_PLAYER_AVATAR
     ApplyMovement LOCALID_PLAYER, _00F0
     WaitMovement
     Call _0513
@@ -83,7 +85,7 @@ _0108:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_2B7 VAR_RESULT
+    PartyHasBadEgg VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0755
     Message 0
     GoTo _012C
@@ -92,14 +94,14 @@ _0108:
 _012C:
     Message 1
     InitGlobalTextListMenu 1, 1, 1, VAR_RESULT
-    AddListMenuEntry 163, LIST_MENU_BUILDER_HEADER
-    AddListMenuEntry 6, 0
-    AddListMenuEntry 7, 1
-    AddListMenuEntry 8, 2
-    AddListMenuEntry 164, LIST_MENU_BUILDER_HEADER
-    AddListMenuEntry 9, 3
-    AddListMenuEntry 10, 4
-    AddListMenuEntry 11, 5
+    AddListMenuEntry MenuEntries_Text_BattlesForTwo, LIST_MENU_BUILDER_HEADER
+    AddListMenuEntry MenuEntries_Text_SingleBattle, 0
+    AddListMenuEntry MenuEntries_Text_DoubleBattle, 1
+    AddListMenuEntry MenuEntries_Text_MixBattle, 2
+    AddListMenuEntry MenuEntries_Text_BattlesForFour, LIST_MENU_BUILDER_HEADER
+    AddListMenuEntry MenuEntries_Text_MultiBattle, 3
+    AddListMenuEntry MenuEntries_Text_Battle_Info, 4
+    AddListMenuEntry MenuEntries_Text_Battle_Exit, 5
     ShowListMenu
     SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _01DE
@@ -425,7 +427,7 @@ _0544:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_2B7 VAR_RESULT
+    PartyHasBadEgg VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0755
     GoTo _0565
     End
@@ -572,13 +574,13 @@ _0755:
     ReleaseAll
     End
 
-_0763:
+CommonScript_HasBadEgg:
     Call _076D
     ReturnCommonScript
     End
 
 _076D:
-    Message 127
+    Message pl_msg_00000221_00127
     Return
 
     .byte 0
