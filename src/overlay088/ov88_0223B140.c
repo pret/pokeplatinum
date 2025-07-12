@@ -849,11 +849,11 @@ static void ov88_0223BFD8(UnkStruct_02095E80 *param0)
     int v0;
 
     for (v0 = 0; v0 < Party_GetCurrentCount(param0->unk_2270); v0++) {
-        Heap_FreeToHeap(param0->unk_7E8[v0]);
+        Heap_Free(param0->unk_7E8[v0]);
     }
 
     for (v0 = 0; v0 < Party_GetCurrentCount(param0->unk_2274); v0++) {
-        Heap_FreeToHeap(param0->unk_7E8[v0 + 6]);
+        Heap_Free(param0->unk_7E8[v0 + 6]);
     }
 }
 
@@ -868,13 +868,13 @@ int ov88_0223C03C(ApplicationManager *appMan, int *param1)
     ov88_0223BFD8(v0);
 
     Strbuf_Free(v0->unk_190);
-    Heap_FreeToHeap(v0->unk_2274);
+    Heap_Free(v0->unk_2274);
 
     ov88_0223BF7C(v0);
     ov88_0223EC04(v0->unk_49C);
     ov88_0223C44C(v0->unk_174);
 
-    Heap_FreeToHeapExplicit(HEAP_ID_26, v0->unk_174);
+    Heap_FreeExplicit(HEAP_ID_26, v0->unk_174);
     MessageLoader_Free(v0->unk_184);
     StringTemplate_Free(v0->unk_180);
     StringTemplate_Free(v0->unk_17C);
@@ -1177,7 +1177,7 @@ static void ov88_0223C488(NARC *param0, u32 param1, BgConfig *param2, u32 param3
             }
         }
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 }
 
@@ -1867,7 +1867,7 @@ static int ov88_0223D5B8(UnkStruct_02095E80 *param0)
 
         TrainerInfo_SetName(v2, sub_0202AEF0(param0->unk_36EC, v0));
         StringTemplate_SetPlayerName(param0->unk_36CC, 0, v2);
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
 
         ov88_0223D49C(param0, 60);
         param0->unk_226C = ov88_0223D514;
@@ -2506,8 +2506,8 @@ static void ov88_0223E694(Party *param0, Party *param1, int param2, int param3, 
     Pokemon_Copy(v0, Party_GetPokemonBySlotIndex(param1, param3));
     ov88_0223E7F0(param4->unk_1C, v1);
     GameRecords_IncrementRecordValue(param4->records, RECORD_LOCAL_LINK_TRADES);
-    Heap_FreeToHeap(v0);
-    Heap_FreeToHeap(v1);
+    Heap_Free(v0);
+    Heap_Free(v1);
 }
 
 static void ov88_0223E7F0(JournalEntry *journalEntry, Pokemon *mon)

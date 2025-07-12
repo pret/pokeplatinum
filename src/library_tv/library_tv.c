@@ -248,7 +248,7 @@ static void LibraryTV_ReleaseVramBank(LibraryTV *ltv)
     Bg_FreeTilemapBuffer(ltv->bgl, BG_LAYER_MAIN_0);
     Bg_FreeTilemapBuffer(ltv->bgl, BG_LAYER_MAIN_2);
 
-    Heap_FreeToHeap(ltv->bgl);
+    Heap_Free(ltv->bgl);
 }
 
 static void LibraryTV_SetMsgLdr(LibraryTV *ltv)

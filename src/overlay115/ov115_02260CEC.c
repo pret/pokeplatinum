@@ -740,7 +740,7 @@ void ov115_02260D78(UnkStruct_ov115_02260D78 *param0)
 
     ov115_022630DC(&param0->unk_8730, &param0->unk_1AB4);
     ov115_02263560(param0);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 BOOL ov115_02260DAC(UnkStruct_ov115_02260D78 *param0, u32 param1)
@@ -3142,7 +3142,7 @@ static void ov115_02263954(UnkStruct_ov115_02261ADC *param0)
     Bg_FreeTilemapBuffer(param0->unk_00, BG_LAYER_SUB_1);
     Bg_FreeTilemapBuffer(param0->unk_00, BG_LAYER_SUB_2);
     Bg_FreeTilemapBuffer(param0->unk_00, BG_LAYER_SUB_3);
-    Heap_FreeToHeap(param0->unk_00);
+    Heap_Free(param0->unk_00);
 }
 
 static void ov115_02263990(UnkStruct_ov115_02261ADC *param0, u32 heapID)

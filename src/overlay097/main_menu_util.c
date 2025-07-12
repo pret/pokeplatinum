@@ -669,7 +669,7 @@ void MainMenuUtil_LoadGiftSprite(BgConfig *bgConfig, WonderCard *wonderCard)
     NNS_G2dGetUnpackedScreenData(nscr, &screenData);
 
     Bg_LoadTilemapBuffer(bgConfig, BG_LAYER_SUB_1, screenData->rawData, 32 * 24 * 2);
-    Heap_FreeToHeap(nscr);
+    Heap_Free(nscr);
 
     Bg_ChangeTilemapRectPalette(bgConfig, BG_LAYER_SUB_1, 0, 0, 32, 24, PLTT_8 + plttOffset);
     Bg_ScheduleTilemapTransfer(bgConfig, BG_LAYER_SUB_1);
@@ -710,7 +710,7 @@ void MainMenuUtil_EncryptWonderCard(MysteryGiftEventData *eventData, WonderCard 
     MATH_CRC16InitTable(crcTable);
 
     u16 headerCRC = MATH_CalcCRC16(crcTable, &eventData->header, sizeof(MysteryGiftEventHeader));
-    Heap_FreeToHeap(crcTable);
+    Heap_Free(crcTable);
 
     u16 key[4];
     OS_GetMacAddress((u8 *)key);
@@ -729,7 +729,7 @@ void MainMenuUtil_EncryptWonderCard(MysteryGiftEventData *eventData, WonderCard 
     CRYPTO_RC4Init(cryptoCtx, key, sizeof(key));
     CRYPTO_RC4Encrypt(cryptoCtx, &eventData->wonderCard, sizeof(WonderCard), wonderCard);
 
-    Heap_FreeToHeap(cryptoCtx);
+    Heap_Free(cryptoCtx);
 }
 
 void MainMenuUtil_DecryptReceivedWonderCard(MysteryGiftEventData *eventData, WonderCard *wonderCard, enum HeapId heapID)
@@ -738,7 +738,7 @@ void MainMenuUtil_DecryptReceivedWonderCard(MysteryGiftEventData *eventData, Won
     MATH_CRC16InitTable(crcTable);
 
     u16 headerCRC = MATH_CalcCRC16(crcTable, &eventData->header, sizeof(MysteryGiftEventHeader));
-    Heap_FreeToHeap(crcTable);
+    Heap_Free(crcTable);
 
     u16 key[4];
     const WMBssDesc *bssDesc = sub_02033F3C(0); // Network ID 0 is the sending console
@@ -758,7 +758,7 @@ void MainMenuUtil_DecryptReceivedWonderCard(MysteryGiftEventData *eventData, Won
     CRYPTO_RC4Init(cryptoCtx, key, sizeof(key));
     CRYPTO_RC4Encrypt(cryptoCtx, &eventData->wonderCard, sizeof(WonderCard), wonderCard);
 
-    Heap_FreeToHeap(cryptoCtx);
+    Heap_Free(cryptoCtx);
 }
 
 void MainMenuUtil_ListMenuCursorCB(ListMenu *listMenu, u32 index, u8 onInit)

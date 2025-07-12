@@ -127,15 +127,15 @@ void ov101_021D7FB4(UnkStruct_ov101_021D7E48 *param0)
     SpriteResourceCollection_Delete(param0->unk_1A4);
     SpriteResourceCollection_Delete(param0->unk_1A8);
     SpriteResourceCollection_Delete(param0->unk_1AC);
-    Heap_FreeToHeap(param0->unk_1B0);
-    Heap_FreeToHeap(param0->unk_1B4);
-    Heap_FreeToHeap(param0->unk_1B8);
-    Heap_FreeToHeap(param0->unk_1BC);
+    Heap_Free(param0->unk_1B0);
+    Heap_Free(param0->unk_1B4);
+    Heap_Free(param0->unk_1B8);
+    Heap_Free(param0->unk_1BC);
     VramTransfer_Free();
     CellTransfer_Free(param0->unk_19C);
     SpriteList_DeleteAll(param0->unk_0C);
     SpriteList_Delete(param0->unk_0C);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov101_021D80D4(UnkStruct_ov101_021D7E48 *param0)

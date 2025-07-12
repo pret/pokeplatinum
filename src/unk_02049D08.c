@@ -411,7 +411,7 @@ void sub_0204A32C(UnkStruct_0204AFC4 *param0)
     v0 = param0->heapID;
 
     MI_CpuClear8(param0, sizeof(UnkStruct_0204AFC4));
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 
     param0 = NULL;
 }
@@ -429,7 +429,7 @@ BOOL sub_0204A378(UnkStruct_0204AFC4 *param0, void **param1, SaveData *saveData)
     Pokemon *v3;
 
     if ((partyMan->menuSelectionResult != 0) || (partyMan->selectedMonSlot == 7)) {
-        Heap_FreeToHeap(*param1);
+        Heap_Free(*param1);
         *param1 = NULL;
         return 0;
     }
@@ -443,7 +443,7 @@ BOOL sub_0204A378(UnkStruct_0204AFC4 *param0, void **param1, SaveData *saveData)
         param0->unk_36[v0] = Pokemon_GetValue(v3, MON_DATA_HELD_ITEM, NULL);
     }
 
-    Heap_FreeToHeap(*param1);
+    Heap_Free(*param1);
     *param1 = NULL;
     return 1;
 }
@@ -1035,7 +1035,7 @@ static void sub_0204AE20(UnkStruct_0204AFC4 *param0, SaveData *saveData, int par
 
     sub_0202D2F0(param0->unk_74, param2, v1);
     MI_CpuClear8(v1, sizeof(FrontierPokemonDataDTO) * 3);
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
 u8 sub_0204AE84(u16 param0)

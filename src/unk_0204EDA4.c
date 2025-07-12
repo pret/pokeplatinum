@@ -42,7 +42,7 @@ BOOL ScrCmd_GetSelectedPartyMonMove(ScriptContext *ctx)
         *destVar = MOVE_NOT_SELECTED;
     }
 
-    Heap_FreeToHeap(*partyData);
+    Heap_Free(*partyData);
     *partyData = NULL;
 
     return FALSE;
@@ -64,7 +64,7 @@ BOOL ScrCmd_21F(ScriptContext *param0)
     v1 = sub_020997D8(mon, HEAP_ID_FIELD_TASK);
     *v2 = sub_020998D8(v1);
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
     return 0;
 }
 
@@ -82,7 +82,7 @@ static void sub_0204EE90(ScriptContext *param0, u16 param1, Pokemon *param2, u16
 
     sub_0203E284(param0->fieldSystem, v1);
     ScriptContext_Pause(param0, ScriptContext_WaitForApplicationExit);
-    Heap_FreeToHeap(param3);
+    Heap_Free(param3);
 }
 
 BOOL ScrCmd_220(ScriptContext *param0)

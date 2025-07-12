@@ -100,7 +100,7 @@ void CommInfo_Delete(void)
         }
 
         if (sCommInfo) {
-            Heap_FreeToHeap(sCommInfo);
+            Heap_Free(sCommInfo);
         }
 
         sCommInfo = NULL;

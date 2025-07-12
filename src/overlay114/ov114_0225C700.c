@@ -915,7 +915,7 @@ void ov114_0225C838(UnkStruct_ov114_0225D678 *param0)
     ov114_0225D058(&param0->unk_84);
     ov114_0225CF84(&param0->unk_30);
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 BOOL ov114_0225C8BC(const UnkStruct_ov114_0225D678 *param0)
@@ -975,7 +975,7 @@ void ov114_0225C904(UnkStruct_ov114_0225E854 *param0)
     G2S_BlendNone();
 
     VramTransfer_Free();
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 BOOL ov114_0225C9A0(const UnkStruct_ov114_0225E854 *param0)
@@ -1122,7 +1122,7 @@ void ov114_0225CB38(UnkStruct_ov114_0225CAD4 *param0)
     ov114_0225CD10(&param0->unk_10);
 
     NARC_dtor(param0->unk_0C);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 int ov114_0225CB74(UnkStruct_ov114_0225CAD4 *param0)
@@ -1242,7 +1242,7 @@ static void ov114_0225CD10(UnkStruct_ov114_0225CCD0 *param0)
         SpriteResourceCollection_Delete(param0->unk_00[v0]);
     }
 
-    Heap_FreeToHeap(param0->unk_10);
+    Heap_Free(param0->unk_10);
 }
 
 static UnkStruct_ov114_0225CDB4 *ov114_0225CD54(UnkStruct_ov114_0225CCD0 *param0, NARC *param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
@@ -1355,7 +1355,7 @@ static void ov114_0225CF84(UnkStruct_ov114_0225CEF0 *param0)
         }
     }
 
-    Heap_FreeToHeap(param0->unk_00);
+    Heap_Free(param0->unk_00);
 }
 
 static void ov114_0225CFC0(UnkStruct_ov114_0225CEF0 *param0)
@@ -1686,7 +1686,7 @@ static void ov114_0225D5BC(UnkStruct_ov114_0225D678 *param0, u32 heapID)
 
 static void ov114_0225D678(UnkStruct_ov114_0225D678 *param0)
 {
-    Heap_FreeToHeap(param0->unk_260);
+    Heap_Free(param0->unk_260);
 }
 
 static void ov114_0225D688(SysTask *param0, void *param1)
@@ -2568,7 +2568,7 @@ static void ov114_0225E854(UnkStruct_ov114_0225E854 *param0)
         int v0;
 
         for (v0 = 0; v0 < 1; v0++) {
-            Heap_FreeToHeap(param0->unk_2B8[v0]);
+            Heap_Free(param0->unk_2B8[v0]);
         }
     }
 
@@ -3182,7 +3182,7 @@ static void ov114_0225F19C(UnkStruct_ov114_0225E854 *param0)
 
 static void ov114_0225F224(UnkStruct_ov114_0225E854 *param0)
 {
-    Heap_FreeToHeap(param0->unk_6B8);
+    Heap_Free(param0->unk_6B8);
 }
 
 static void ov114_0225F234(UnkStruct_ov114_0225F270 *param0, UnkStruct_ov114_0225CEF0 *param1, u32 param2, u32 heapID)
@@ -3399,7 +3399,7 @@ static void ov114_0225F578(UnkStruct_ov114_0225F578 *param0)
     }
 
     {
-        Heap_FreeToHeap(param0->unk_00);
+        Heap_Free(param0->unk_00);
     }
 }
 

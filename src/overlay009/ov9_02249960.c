@@ -1263,7 +1263,7 @@ void DistWorld_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
     ov9_0224BE8C(v0);
     CloseArchives(v0);
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     fieldSystem->unk_04->dynamicMapFeaturesData = NULL;
 }
@@ -1843,11 +1843,11 @@ static void ov9_0224A334(DistWorldSystem *param0)
     }
 
     if (v1->unk_08 != NULL) {
-        Heap_FreeToHeap(v1->unk_08);
+        Heap_Free(v1->unk_08);
         v1->unk_08 = NULL;
     }
 
-    Heap_FreeToHeap(v1->unk_04);
+    Heap_Free(v1->unk_04);
     v1->unk_04 = NULL;
 }
 
@@ -2598,7 +2598,7 @@ static void ov9_0224ADC0(DistWorldSystem *param0)
             }
         }
 
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
     }
 
     {
@@ -2609,7 +2609,7 @@ static void ov9_0224ADC0(DistWorldSystem *param0)
         NNS_G2dGetUnpackedCharacterData(v6, &v7);
 
         Bg_LoadTiles(param0->fieldSystem->bgConfig, 2, v7->pRawData, v7->szByte, 0);
-        Heap_FreeToHeap(v6);
+        Heap_Free(v6);
     }
 
     {
@@ -2622,7 +2622,7 @@ static void ov9_0224ADC0(DistWorldSystem *param0)
         Bg_CopyTilemapBufferRangeToVRAM(param0->fieldSystem->bgConfig, 2, (void *)v9->rawData, v9->szByte, 0);
         Bg_LoadTilemapBuffer(param0->fieldSystem->bgConfig, 2, (void *)v9->rawData, v9->szByte);
         Bg_CopyTilemapBufferToVRAM(param0->fieldSystem->bgConfig, 2);
-        Heap_FreeToHeap(v8);
+        Heap_Free(v8);
     }
 
     {
@@ -2981,7 +2981,7 @@ static void ov9_0224B528(UnkStruct_ov9_0224B528 *param0)
             }
         }
 
-        Heap_FreeToHeap(param0->unk_08);
+        Heap_Free(param0->unk_08);
 
         param0->unk_08 = NULL;
         param0->unk_04 = 0;
@@ -3676,7 +3676,7 @@ static void ov9_0224BFE0(UnkStruct_ov9_0224BFE0 *param0)
 {
     GF_ASSERT(param0->unk_08 != NULL);
 
-    Heap_FreeToHeap(param0->unk_08);
+    Heap_Free(param0->unk_08);
     param0->unk_08 = NULL;
 }
 
@@ -3785,7 +3785,7 @@ static void DistWorldFile_Invalidate(DistWorldFile *file)
 static void DistWorldFile_Free(DistWorldFile *file)
 {
     if (file->buffer != NULL) {
-        Heap_FreeToHeap(file->buffer);
+        Heap_Free(file->buffer);
     }
 
     DistWorldFile_Invalidate(file);
@@ -3948,7 +3948,7 @@ static void ov9_0224C300(DistWorldSystem *param0)
     UnkStruct_ov9_0224C2C4 *v0 = &param0->unk_169C.unk_28;
 
     if (v0->unk_10 != NULL) {
-        Heap_FreeToHeap(v0->unk_10);
+        Heap_Free(v0->unk_10);
     }
 
     memset(v0, 0, sizeof(UnkStruct_ov9_0224C2C4));
@@ -3988,7 +3988,7 @@ static void ov9_0224C378(DistWorldSystem *param0, int param1, int param2, int pa
     ov9_02249E20(param0, v3);
 
     if (v0->unk_10 != NULL) {
-        Heap_FreeToHeap(v0->unk_10);
+        Heap_Free(v0->unk_10);
         v0->unk_10 = NULL;
     }
 
@@ -4020,7 +4020,7 @@ static void ov9_0224C3F8(DistWorldSystem *param0, u32 param1)
     v0->unk_00 = v3;
 
     if (v0->unk_10 != NULL) {
-        Heap_FreeToHeap(v0->unk_10);
+        Heap_Free(v0->unk_10);
         v0->unk_10 = NULL;
     }
 
@@ -4043,7 +4043,7 @@ static void ov9_0224C44C(DistWorldSystem *param0)
     ov9_02249E20(param0, v0->unk_04);
 
     if (v0->unk_10 != NULL) {
-        Heap_FreeToHeap(v0->unk_10);
+        Heap_Free(v0->unk_10);
         v0->unk_10 = NULL;
     }
 }
@@ -4104,7 +4104,7 @@ static void ov9_0224C4F4(DistWorldSystem *param0, u32 param1)
     UnkStruct_ov9_0224C2C4 *v0 = &param0->unk_169C.unk_28;
 
     if (v0->unk_10 != NULL) {
-        Heap_FreeToHeap(v0->unk_10);
+        Heap_Free(v0->unk_10);
     }
 
     v0->unk_0C = NARC_GetMemberSize(param0->unk_0C, param1);
@@ -5440,7 +5440,7 @@ static void ov9_0224D874(DistWorldSystem *param0, u32 param1)
 
     if (v0->unk_258[param1].unk_00 != 5) {
         v0->unk_258[param1].unk_00 = 5;
-        Heap_FreeToHeap(v0->unk_258[param1].unk_04);
+        Heap_Free(v0->unk_258[param1].unk_04);
     }
 }
 
@@ -7729,7 +7729,7 @@ BOOL ov9_0224F6EC(UnkStruct_ov9_0224F6EC *param0)
     }
 
     if (v0 == 1) {
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0);
     }
 
     return v0;

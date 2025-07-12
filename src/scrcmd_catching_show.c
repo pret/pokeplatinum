@@ -56,7 +56,7 @@ BOOL ScrCmd_CheckHasEnoughMonForCatchingShow(ScriptContext *ctx)
         *destVar = FALSE;
     }
 
-    Heap_FreeToHeap(dummy);
+    Heap_Free(dummy);
     return FALSE;
 }
 
@@ -77,7 +77,7 @@ BOOL ScrCmd_MoveCatchingShowMonsToPCBoxes(ScriptContext *ctx)
         SaveData_UpdateCatchRecords(ctx->fieldSystem->saveData, mon);
     }
 
-    Heap_FreeToHeap(mon);
+    Heap_Free(mon);
     ClearPalParkTransferPokemonData(transferData);
 
     return FALSE;

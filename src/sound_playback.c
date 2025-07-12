@@ -660,7 +660,7 @@ void Sound_Impl_DestroyCryDurationTask()
     if (*task != NULL) {
         void *param = SysTask_GetParam(*task);
         SysTask_Done(*task);
-        Heap_FreeToHeap(param);
+        Heap_Free(param);
     }
 
     *task = NULL;

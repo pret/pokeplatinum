@@ -107,7 +107,7 @@ void ov23_02253DD8(UnkStruct_ov23_02253E2C *param0)
     Strbuf_Free(param0->unk_04);
     StringTemplate_Free(param0->unk_28);
     MessageLoader_Free(param0->unk_24);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov23_02253DFC(UnkStruct_ov23_02253E2C *param0, int bankID, int param2)

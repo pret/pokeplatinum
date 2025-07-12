@@ -81,10 +81,10 @@ void sub_0200C560(UnkStruct_0200C440 *param0)
 {
     if (param0) {
         if (param0->unk_00) {
-            Heap_FreeToHeap(param0->unk_00);
+            Heap_Free(param0->unk_00);
         }
 
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0);
     }
 }
 

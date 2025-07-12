@@ -285,7 +285,7 @@ void ov23_0224F588(Underground *underground)
 
 void ov23_0224F5B8(void)
 {
-    Heap_FreeToHeap(Unk_ov23_022577B8);
+    Heap_Free(Unk_ov23_022577B8);
 }
 
 static int ov23_0224F5C8(void *param0)
@@ -1476,7 +1476,7 @@ static void ov23_02250B34(SysTask *param0, UnkStruct_ov23_02250CD4 *param1, BOOL
         sub_0206A844(param1->unk_08);
     }
 
-    Heap_FreeToHeap(param1);
+    Heap_Free(param1);
 
     if (!param2) {
         sub_02059514();
@@ -1779,7 +1779,7 @@ void ov23_02251044(void *param0, u32 param1)
         SysTask_Done(v0->unk_04);
     }
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 static BOOL ov23_022510F0(SysTask *param0, void *param1)

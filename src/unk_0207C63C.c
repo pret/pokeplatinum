@@ -157,7 +157,7 @@ void sub_0207C83C(ParticleSystem *param0)
     void *v0 = ParticleSystem_GetHeapStart(param0);
 
     ParticleSystem_Free(param0);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 static void sub_0207C854(SPLEmitter *param0)
@@ -212,5 +212,5 @@ BOOL sub_0207C8E0(UnkStruct_0207C8C4 *param0)
 void sub_0207C8F4(UnkStruct_0207C8C4 *param0)
 {
     sub_0207C83C(param0->unk_0C);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }

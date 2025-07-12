@@ -373,7 +373,7 @@ static void FreeApplicationResources(ApplicationManager *appMan)
     Bg_FreeTilemapBuffer(appData->bgConfig, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(appData->bgConfig, BG_LAYER_SUB_0);
     Bg_FreeTilemapBuffer(appData->bgConfig, BG_LAYER_SUB_1);
-    Heap_FreeToHeap(appData->bgConfig);
+    Heap_Free(appData->bgConfig);
 }
 
 static void LoadDownloadArrowSpriteResources(MysteryGiftAppData *appData)
@@ -1983,7 +1983,7 @@ static void RunMysteryGiftAnimationFrame(SysTask *sysTask, MysteryGiftAnimationM
     default:
         *animMan->animationStatusPtr = MG_ANIMATION_STATUS_DONE;
         SysTask_Done(sysTask);
-        Heap_FreeToHeap(animMan);
+        Heap_Free(animMan);
         return;
     }
 
@@ -2528,7 +2528,7 @@ static void ov97_02230280(int param0)
 static void ov97_022302D4(void)
 {
     sub_020334CC();
-    Heap_FreeToHeap(Unk_ov97_0223F1AC);
+    Heap_Free(Unk_ov97_0223F1AC);
     sub_02039794();
 
     Unk_ov97_0223F1AC = NULL;

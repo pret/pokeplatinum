@@ -106,7 +106,7 @@ void ov22_02259838(UnkStruct_ov22_02259820 *param0, int param1)
         v1 = Graphics_GetScrnData(param0->unk_00->narcID, v2, 0, &v0, param0->unk_14);
 
         ov22_02259ABC(param0->unk_00->unk_00, param0->unk_00->unk_1C, v0, param0->unk_00->unk_14, param0->unk_00->unk_18, param0->unk_00->unk_0C, param0->unk_00->unk_10, param0->unk_00->unk_28, param0->unk_00->unk_20);
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
     }
 }
 
@@ -116,7 +116,7 @@ void ov22_022598A0(UnkStruct_ov22_02259820 *param0)
     void *v1 = Graphics_GetScrnData(param0->unk_00->narcID, param0->unk_00->unk_08, 0, &v0, param0->unk_14);
 
     ov22_02259ABC(param0->unk_00->unk_00, param0->unk_00->unk_1C, v0, param0->unk_00->unk_14, param0->unk_00->unk_18, param0->unk_00->unk_0C, param0->unk_00->unk_10, param0->unk_00->unk_28, param0->unk_00->unk_20);
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 
     memset(param0, 0, sizeof(UnkStruct_ov22_02259820));
 }
@@ -181,7 +181,7 @@ static void ov22_022599A0(UnkStruct_ov22_022599A0 *param0, int *param1, int *par
     v3 = v1->screenHeight / 8;
 
     ov22_02259ABC(param0->unk_00, param0->unk_1C, v1, v4, v3, v5, v6, param0->unk_28, param0->unk_24);
-    Heap_FreeToHeap(v2);
+    Heap_Free(v2);
 
     if (param1) {
         *param1 = v4;
@@ -256,8 +256,8 @@ static void ov22_02259BD4(SysTask *param0, void *param1)
 
     Bg_LoadTiles(v0->unk_00, v0->unk_0C, v0->unk_04->pRawData, v0->unk_04->szByte, v0->unk_10);
     SysTask_Done(param0);
-    Heap_FreeToHeap(v0->unk_08);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0->unk_08);
+    Heap_Free(v0);
 }
 
 static void ov22_02259C10(SysTask *param0, void *param1)
@@ -273,6 +273,6 @@ static void ov22_02259C10(SysTask *param0, void *param1)
     }
 
     SysTask_Done(param0);
-    Heap_FreeToHeap(v0->unk_04);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0->unk_04);
+    Heap_Free(v0);
 }

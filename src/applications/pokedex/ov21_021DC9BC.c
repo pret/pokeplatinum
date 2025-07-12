@@ -261,13 +261,13 @@ static UnkStruct_ov21_021DCAE0 *ov21_021DCAA0(enum HeapId heapID, PokedexApp *pa
 static void ov21_021DCACC(UnkStruct_ov21_021DCACC *param0)
 {
     GF_ASSERT(param0);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov21_021DCAE0(UnkStruct_ov21_021DCAE0 *param0)
 {
     GF_ASSERT(param0);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static int ov21_021DCAF4(void)
@@ -334,15 +334,15 @@ static int ov21_021DCBA8(PokedexDataManager *dataMan, void *data)
     EncounterCollection *encounterCollection = dataMan->pageData;
 
     if (encounterCollection->invisibleFields) {
-        Heap_FreeToHeap(encounterCollection->invisibleFields);
+        Heap_Free(encounterCollection->invisibleFields);
     }
 
     if (encounterCollection->invisibleDungeons) {
-        Heap_FreeToHeap(encounterCollection->invisibleDungeons);
+        Heap_Free(encounterCollection->invisibleDungeons);
     }
 
     ov21_021DDB68(encounterCollection);
-    Heap_FreeToHeap(encounterCollection);
+    Heap_Free(encounterCollection);
 
     dataMan->pageData = NULL;
 
@@ -454,9 +454,9 @@ static int ov21_021DCD04(void *graphics, PokedexGraphicsManager *graphicsMan, co
         break;
     case 3:
         GXLayers_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG1, 1);
-        Heap_FreeToHeap(mapDisplay->dungeonCoordinatesArray);
-        Heap_FreeToHeap(mapDisplay->fieldCoordinatesArray);
-        Heap_FreeToHeap(graphicsMan->pageGraphics);
+        Heap_Free(mapDisplay->dungeonCoordinatesArray);
+        Heap_Free(mapDisplay->fieldCoordinatesArray);
+        Heap_Free(graphicsMan->pageGraphics);
         graphicsMan->pageGraphics = NULL;
         graphicsMan->state++;
         break;
@@ -496,34 +496,34 @@ static void ov21_021DCE40(UnkStruct_ov21_021DCAE0 *param0, const UnkStruct_ov21_
     v0 = PokedexGraphics_GetGraphicNarcScreenData(param0->unk_00, 64, 1, &v1, heapID);
 
     Bg_LoadToTilemapRect(param0->unk_00->bgConfig, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     if (param1->unk_00->newmoonIslandVisible) {
         v0 = PokedexGraphics_GetGraphicNarcScreenData(param0->unk_00, 65, 1, &v1, heapID);
 
         Bg_LoadToTilemapRect(param0->unk_00->bgConfig, 3, v1->rawData, 13, 8, v1->screenWidth / 8, v1->screenHeight / 8);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 
     if (param1->unk_00->seabreakPathVisible) {
         v0 = PokedexGraphics_GetGraphicNarcScreenData(param0->unk_00, 66, 1, &v1, heapID);
 
         Bg_LoadToTilemapRect(param0->unk_00->bgConfig, 3, v1->rawData, 28, 7, v1->screenWidth / 8, v1->screenHeight / 8);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 
     if (param1->unk_00->fullmoonIslandVisible) {
         v0 = PokedexGraphics_GetGraphicNarcScreenData(param0->unk_00, 67, 1, &v1, heapID);
 
         Bg_LoadToTilemapRect(param0->unk_00->bgConfig, 3, v1->rawData, 11, 8, v1->screenWidth / 8, v1->screenHeight / 8);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 
     if (param1->unk_00->springPathVisible) {
         v0 = PokedexGraphics_GetGraphicNarcScreenData(param0->unk_00, 68, 1, &v1, heapID);
 
         Bg_LoadToTilemapRect(param0->unk_00->bgConfig, 3, v1->rawData, 25, 16, v1->screenWidth / 8, v1->screenHeight / 8);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 
     Bg_ScheduleTilemapTransfer(param0->unk_00->bgConfig, 3);
@@ -811,12 +811,12 @@ static void ov21_021DD6C0(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
 {
     Window_FillTilemap(&param1->unk_00->window, 0);
     Bg_ClearTilemap(param1->unk_00->bgConfig, 1);
-    Heap_FreeToHeap(mapDisplay->unk_7F4);
+    Heap_Free(mapDisplay->unk_7F4);
 
     mapDisplay->unk_7F4 = NULL;
     mapDisplay->unk_7F8 = NULL;
 
-    Heap_FreeToHeap(mapDisplay->unk_7FC);
+    Heap_Free(mapDisplay->unk_7FC);
 
     mapDisplay->unk_7FC = NULL;
     mapDisplay->unk_800 = NULL;
@@ -849,7 +849,7 @@ static void ov21_021DD710(PokedexMapDisplay *mapDisplay, const UnkStruct_ov21_02
 
     mapDisplay->fieldsZero = PokedexEncData_LocateVisibleFields(mapDisplay->pokedexFieldMap_2, POKEDEXMAPHEIGHT, POKEDEXMAPWIDTH, mapDisplay->fieldCoordinatesArray, &encounterCollection->fieldSpecialEncounters, combinedMapArray, numCombinedMaps);
 
-    Heap_FreeToHeap(combinedMapArray);
+    Heap_Free(combinedMapArray);
     PokedexFieldMap_SmoothFields(mapDisplay->pokedexFieldMap_1, POKEDEXMAPHEIGHT, POKEDEXMAPWIDTH);
     PokedexFieldMap_SmoothFields(mapDisplay->pokedexFieldMap_2, POKEDEXMAPHEIGHT, POKEDEXMAPWIDTH);
 
@@ -883,7 +883,7 @@ static void ov21_021DD710(PokedexMapDisplay *mapDisplay, const UnkStruct_ov21_02
 
     mapDisplay->numDungeons = PokedexEncData_LocateVisibleDungeons(mapDisplay->cellActorArray, mapDisplay->numDungeons, (NUMDUNGEONS * 2), xOffset, yOffset, POKEDEXMAPXSCALE, POKEDEXMAPYSCALE, mapDisplay->dungeonCoordinatesArray, &encounterCollection->dungeonSpecialEncounters, 3, v3, combinedMapArray, numCombinedMaps, &mapDisplay->dungeonsZero);
 
-    Heap_FreeToHeap(combinedMapArray);
+    Heap_Free(combinedMapArray);
 }
 
 static void ov21_021DD8B4(PokedexMapDisplay *mapDisplay)

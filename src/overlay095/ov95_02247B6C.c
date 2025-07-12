@@ -141,7 +141,7 @@ void ov95_02247BC8(void *param0)
         }
 
         PokemonSpriteManager_Free(v0->unk_0C);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 }
 
@@ -586,7 +586,7 @@ static int ov95_0224847C(UnkStruct_ov95_02247C6C *param0)
 static void ov95_02248490(UnkStruct_ov95_02247C6C *param0)
 {
     if (param0->unk_7C) {
-        Heap_FreeToHeap(SysTask_GetParam(param0->unk_7C));
+        Heap_Free(SysTask_GetParam(param0->unk_7C));
         SysTask_Done(param0->unk_7C);
         param0->unk_7C = NULL;
     }

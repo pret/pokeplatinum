@@ -51,7 +51,7 @@ UnkStruct_ov111_021D33F4 *ov111_021D33F4(UnkStruct_ov111_021D2F80 *param0, u32 p
 void *ov111_021D3448(UnkStruct_ov111_021D33F4 *param0)
 {
     Sprite_Delete(param0->unk_0C);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
     return NULL;
 }
 

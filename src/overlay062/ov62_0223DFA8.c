@@ -521,7 +521,7 @@ static BOOL ov62_0223E510 (UnkStruct_0208C06C * param0)
             Bg_ClearTilemap(param0->unk_14.unk_10, 6);
             Bg_ClearTilemap(param0->unk_14.unk_10, 3);
             Bg_ClearTilemap(param0->unk_14.unk_10, 7);
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
 
             if (sub_0202F250() == 1) {
                 sub_0202F22C();
@@ -1137,7 +1137,7 @@ static BOOL ov62_0223F348 (UnkStruct_0208C06C * param0)
             Bg_ClearTilemap(param0->unk_14.unk_10, 6);
             Bg_ClearTilemap(param0->unk_14.unk_10, 3);
             Bg_ClearTilemap(param0->unk_14.unk_10, 7);
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
         } else {
             PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);
             PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
@@ -1467,7 +1467,7 @@ asm static BOOL ov62_0223FB74 (UnkStruct_0208C06C * param0)
     mov r1, #7
     bl Bg_ClearTilemap
     add r0, r4, #0
-    bl Heap_FreeToHeap
+    bl Heap_Free
     b _0223FCC0
  _0223FC90:
     ldr r0, [r5, #0x58]
@@ -1659,7 +1659,7 @@ static BOOL ov62_0223FF90 (UnkStruct_0208C06C * param0)
         param0->unk_08++;
         break;
     default:
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return 1;
     }
 

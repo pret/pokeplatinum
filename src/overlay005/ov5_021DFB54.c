@@ -1677,7 +1677,7 @@ static void ov5_021E0FC0(SysTask *param0)
         int v2 = Player_MoveStateFromGender(0x0, PlayerAvatar_Gender(playerAvatar));
 
         PlayerAvatar_RequestStateWalking(playerAvatar);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
     }
 }
@@ -1783,7 +1783,7 @@ static void *MonRideTaskEnv_New(int size)
 
 static void MonRideTaskEnv_Free(void *taskEnv)
 {
-    Heap_FreeToHeapExplicit(HEAP_ID_FIELD, taskEnv);
+    Heap_FreeExplicit(HEAP_ID_FIELD, taskEnv);
 }
 
 static Pokemon *GetPokemonByIndex(FieldSystem *fieldSystem, int partySlot)

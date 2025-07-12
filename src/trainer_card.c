@@ -94,7 +94,7 @@ TrainerCard *TrainerCard_New(u16 heapID)
 
 void TrainerCard_Free(TrainerCard *trainerCard)
 {
-    Heap_FreeToHeap(trainerCard);
+    Heap_Free(trainerCard);
 }
 
 u8 TrainerCard_CalculateStars(FieldSystem *fieldSystem)
@@ -271,7 +271,7 @@ static BOOL sub_02072230(FieldTask *param0)
     case 11:
         if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             sub_0205C1F0(fieldSystem->unk_7C);
-            Heap_FreeToHeap(v1);
+            Heap_Free(v1);
             return 1;
         }
         break;

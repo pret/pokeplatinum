@@ -317,9 +317,9 @@ void ov99_021D3F38(UnkStruct_ov99_021D3E78 *param0)
     Strbuf_Free(param0->unk_30);
     Window_Remove(param0->unk_24);
     Window_Remove(param0->unk_28);
-    Heap_FreeToHeap(param0->unk_24);
-    Heap_FreeToHeap(param0->unk_28);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0->unk_24);
+    Heap_Free(param0->unk_28);
+    Heap_Free(param0);
 }
 
 BOOL ov99_021D3F6C(UnkStruct_ov99_021D3E78 *param0, int param1)

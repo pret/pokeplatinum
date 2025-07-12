@@ -76,7 +76,7 @@ static BOOL New(void **appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u
             return TRUE;
         }
 
-        Heap_FreeToHeap(digitalWatch);
+        Heap_Free(digitalWatch);
     }
 
     return FALSE;
@@ -122,7 +122,7 @@ static void Free(PoketchDigitalWatch *appData)
 {
     PoketchDigitalWatchGraphics_Free(appData->graphics);
     PoketchButtonManager_Free(appData->buttonManager);
-    Heap_FreeToHeap(appData);
+    Heap_Free(appData);
 }
 
 static void Task_Main(SysTask *task, void *callbackData)

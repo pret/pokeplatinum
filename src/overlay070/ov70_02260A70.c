@@ -41,7 +41,7 @@ void ov70_02260AD4(UnkStruct_ov70_02260AD4 *param0)
 {
     Camera_ClearActive();
     Camera_Delete(param0->camera);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov70_02260AEC(UnkStruct_ov70_02260AD4 *param0)

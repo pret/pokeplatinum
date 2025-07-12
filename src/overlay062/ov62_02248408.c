@@ -89,7 +89,7 @@ void ov62_02248408(BattleRecording *param0, FieldBattleDTO *param1, int heapID)
 
     Strbuf_Free(v6);
     Strbuf_Free(v7);
-    Heap_FreeToHeap(v8);
+    Heap_Free(v8);
 }
 
 static void ov62_0224856C(Strbuf *param0, int heapID)

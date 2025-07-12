@@ -31,7 +31,7 @@ void HBlankSystem_Delete(HBlankSystem *hBlankSystem)
     }
 
     HBlankSystem_Init(hBlankSystem);
-    Heap_FreeToHeap(hBlankSystem);
+    Heap_Free(hBlankSystem);
 }
 
 void HBlankSystem_Start(HBlankSystem *hBlankSystem)

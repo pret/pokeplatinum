@@ -107,7 +107,7 @@ void ov113_02260620(MessageLoader *param0, StringTemplate *param1, Window param2
     Strbuf_Free(v4);
     Strbuf_Free(v2);
     Strbuf_Free(v3);
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
 void ov113_02260714(Window param0[], u32 param1)

@@ -157,7 +157,7 @@ void SaveInfoWindow_Erase(SaveInfoWindow *saveInfoWin)
 {
     Window_EraseStandardFrame(saveInfoWin->window, FALSE);
     Window_Remove(saveInfoWin->window);
-    Heap_FreeToHeap(saveInfoWin->window);
+    Heap_Free(saveInfoWin->window);
 }
 
 SaveInfoWindow *SaveInfoWindow_New(FieldSystem *fieldSystem, enum HeapId heapID, u8 bgLayer)
@@ -184,7 +184,7 @@ void SaveInfoWindow_Free(SaveInfoWindow *saveInfoWin)
 {
     MessageLoader_Free(saveInfoWin->msgLoader);
     StringTemplate_Free(saveInfoWin->strTemplate);
-    Heap_FreeToHeap(saveInfoWin);
+    Heap_Free(saveInfoWin);
 }
 
 BOOL FieldSystem_Save(FieldSystem *fieldSystem)

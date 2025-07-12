@@ -1533,7 +1533,7 @@ static BOOL sub_020102D8(ScreenFade *param0)
         }
         break;
     case 2:
-        Heap_FreeToHeap(param0->data);
+        Heap_Free(param0->data);
         param0->data = NULL;
         param0->state++;
         v2 = 1;
@@ -1662,7 +1662,7 @@ static void sub_020105EC(UnkStruct_02010588 *param0)
 
 static void sub_020105F4(UnkStruct_02010588 *param0)
 {
-    Heap_FreeToHeap(param0->unk_00);
+    Heap_Free(param0->unk_00);
     param0->unk_00 = NULL;
 }
 
@@ -1877,7 +1877,7 @@ static BOOL sub_02010D44(ScreenFade *param0)
         }
         break;
     case 2:
-        Heap_FreeToHeap(param0->data);
+        Heap_Free(param0->data);
         param0->data = NULL;
         param0->state++;
         v2 = 1;
@@ -1928,7 +1928,7 @@ static BOOL sub_02010DEC(ScreenFade *param0)
         }
         break;
     case 2:
-        Heap_FreeToHeap(param0->data);
+        Heap_Free(param0->data);
         param0->data = NULL;
         param0->state++;
         v2 = 1;
@@ -2008,7 +2008,7 @@ static BOOL sub_02010F64(ScreenFade *param0)
         break;
     case 2:
         sub_020105EC(&v0->unk_00);
-        Heap_FreeToHeap(param0->data);
+        Heap_Free(param0->data);
         param0->data = NULL;
         param0->state++;
         v2 = 1;
@@ -2172,7 +2172,7 @@ static BOOL sub_0201123C(ScreenFade *param0)
         break;
     case 2:
         sub_020105EC(&v0->unk_00);
-        Heap_FreeToHeap(param0->data);
+        Heap_Free(param0->data);
         param0->data = NULL;
         param0->state++;
         v2 = 1;
@@ -2284,7 +2284,7 @@ static BOOL sub_02011440(ScreenFade *param0)
         break;
     case 2:
         sub_020105EC(&v0->unk_00);
-        Heap_FreeToHeap(param0->data);
+        Heap_Free(param0->data);
         param0->data = NULL;
         param0->state++;
         v2 = 1;
@@ -2433,7 +2433,7 @@ static BOOL sub_020116D8(ScreenFade *param0)
     case 2:
         sub_0201189C(v0);
         sub_020105EC(&v0->unk_00);
-        Heap_FreeToHeap(param0->data);
+        Heap_Free(param0->data);
         param0->data = NULL;
         param0->state++;
         v2 = 1;
@@ -2510,7 +2510,7 @@ static BOOL sub_0201184C(UnkStruct_0201184C *param0)
 
 static void sub_0201189C(UnkStruct_0201184C *param0)
 {
-    Heap_FreeToHeap(param0->unk_0C);
+    Heap_Free(param0->unk_0C);
     param0->unk_0C = NULL;
 }
 
@@ -2586,7 +2586,7 @@ static BOOL sub_020119A0(ScreenFade *param0)
     case 2:
         sub_02011B54(v0);
         sub_020105EC(&v0->unk_00);
-        Heap_FreeToHeap(param0->data);
+        Heap_Free(param0->data);
         param0->data = NULL;
         param0->state++;
         v2 = 1;
@@ -2761,7 +2761,7 @@ static BOOL sub_02011CD4(ScreenFade *param0)
     case 2:
         sub_02011E5C(v0);
         sub_020105EC(&v0->unk_00);
-        Heap_FreeToHeap(param0->data);
+        Heap_Free(param0->data);
         param0->data = NULL;
         param0->state++;
         v2 = 1;
@@ -2914,7 +2914,7 @@ static BOOL sub_02011F88(ScreenFade *param0)
         break;
     case 2:
         sub_02012134(v0);
-        Heap_FreeToHeap(param0->data);
+        Heap_Free(param0->data);
         param0->data = NULL;
         param0->state++;
         v2 = 1;
@@ -3086,7 +3086,7 @@ static BOOL sub_02012228(ScreenFade *param0)
         }
         break;
     case 2:
-        Heap_FreeToHeap(param0->data);
+        Heap_Free(param0->data);
         param0->data = NULL;
         param0->state++;
         v2 = 1;

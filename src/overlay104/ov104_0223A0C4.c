@@ -643,7 +643,7 @@ BOOL ov104_0223A0C4(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_0223A348 *param1
     BattleFrontierTrainerData *v1 = ov104_0222DD04(&param1->unk_00, param2, heapID, ov104_0223A77C(param0->unk_0F));
     v0 = ov104_0223A118(param0, v1, param2, &param1->unk_30[0], param3, param4, param5, param6, heapID);
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 
     return v0;
 }
@@ -914,7 +914,7 @@ FieldBattleDTO *ov104_0223A580(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_02230
         FieldBattleDTO_AddPokemonToBattler(v3, mon, BATTLER_PLAYER_1);
     }
 
-    Heap_FreeToHeap(mon);
+    Heap_Free(mon);
     FieldBattleDTO_CopyPlayerInfoToTrainerData(v3);
 
     ov104_0223A6AC(v3, &(param0->unk_78[0]), param0->unk_0E, BATTLER_ENEMY_1, param0->heapID);
@@ -948,7 +948,7 @@ static void ov104_0223A6AC(FieldBattleDTO *param0, UnkStruct_ov104_0223A348 *par
         Party_AddPokemon(param0->parties[battlerId], mon);
     }
 
-    Heap_FreeToHeap(mon);
+    Heap_Free(mon);
 }
 
 static u32 ov104_0223A700(u8 param0)

@@ -19,7 +19,7 @@ BattleSubMenuCursor *MakeBattleSubMenuCursor(u32 heapID)
 
 void DeleteBattleSubMenuCursor(BattleSubMenuCursor *cursor)
 {
-    Heap_FreeToHeap(cursor);
+    Heap_Free(cursor);
 }
 
 UnkStruct_ov16_0226DC24 *GetBattleSubMenuCursorSprites(BattleSubMenuCursor *cursor)

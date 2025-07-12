@@ -493,8 +493,8 @@ BOOL ov12_0221FDF4(UnkStruct_ov12_0221FCDC *param0)
         }
     }
 
-    Heap_FreeToHeap(param0->unk_BC);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0->unk_BC);
+    Heap_Free(param0);
 
     return 1;
 }
@@ -651,7 +651,7 @@ BOOL ov12_02220198(UnkStruct_ov12_0221FCDC *param0)
         return 0;
     }
 
-    Heap_FreeToHeap(param0->unk_14);
+    Heap_Free(param0->unk_14);
     return 1;
 }
 
@@ -807,7 +807,7 @@ static void ov12_0222035C(SysTask *param0, void *param1)
             v1->unk_38->unk_8C--;
         }
 
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         SysTask_Done(param0);
     }
 }
@@ -1962,13 +1962,13 @@ void ov12_02221238(UnkStruct_ov12_0221FCDC *param0, int param1)
     if (param1 == 4) {
         if (param0->unk_174 != NULL) {
             SysTask_Done(param0->unk_174->unk_04.unk_08);
-            Heap_FreeToHeap(param0->unk_174);
+            Heap_Free(param0->unk_174);
             param0->unk_174 = NULL;
         }
     } else {
         if (param0->unk_160[param1] != NULL) {
             SysTask_Done(param0->unk_160[param1]->unk_04.unk_08);
-            Heap_FreeToHeap(param0->unk_160[param1]);
+            Heap_Free(param0->unk_160[param1]);
             param0->unk_160[param1] = NULL;
         }
     }
@@ -2887,7 +2887,7 @@ static void ov12_022222D4(SysTask *param0, void *param1)
     UnkStruct_ov12_022222D4 *v0 = (UnkStruct_ov12_022222D4 *)param1;
 
     if (v0->unk_18 == 1) {
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         return;
     }
@@ -3004,8 +3004,8 @@ static void ov12_022224F8(SysTask *param0, void *param1)
 
     if (v4->unk_18 == 1) {
         ov12_022265C0(v4->unk_1C->unk_C0);
-        Heap_FreeToHeap(v4->unk_1C);
-        Heap_FreeToHeap(v4);
+        Heap_Free(v4->unk_1C);
+        Heap_Free(v4);
         SysTask_Done(param0);
         return;
     }
@@ -3087,7 +3087,7 @@ static void ov12_022226F4(SysTask *param0, void *param1)
     if (v1 == 0) {
         v0->unk_48->unk_178 = 0;
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
     }
 }
@@ -4305,7 +4305,7 @@ void ov12_02223770(UnkStruct_ov12_02223764 *battleSys)
         Sprite_DeleteAndFreeResources(battleSys->unk_24[v0]);
     }
 
-    Heap_FreeToHeap(battleSys);
+    Heap_Free(battleSys);
 }
 
 void ov12_022237A4(UnkStruct_ov12_02223764 *param0, int param1)
@@ -4322,7 +4322,7 @@ void ov12_022237A4(UnkStruct_ov12_02223764 *param0, int param1)
         Sprite_DeleteAndFreeResources(param0->unk_24[v0]);
     }
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 int ov12_022237D8(UnkStruct_ov12_02223764 *param0)

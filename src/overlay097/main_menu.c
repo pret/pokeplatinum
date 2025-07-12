@@ -1055,7 +1055,7 @@ static void FreeApplicationResources(ApplicationManager *appMan)
     Bg_FreeTilemapBuffer(appData->bgConfig, BG_LAYER_MAIN_0);
     Bg_FreeTilemapBuffer(appData->bgConfig, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(appData->bgConfig, BG_LAYER_MAIN_2);
-    Heap_FreeToHeap(appData->bgConfig);
+    Heap_Free(appData->bgConfig);
     SetVBlankCallback(NULL, NULL);
 }
 

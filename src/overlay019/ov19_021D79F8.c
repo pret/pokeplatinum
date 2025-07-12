@@ -192,7 +192,7 @@ static void ov19_021D7BC0(UnkStruct_ov19_021D8318 *param0, const BoxCustomizatio
 
         ov19_021D78C8(v0->pRawData, param0->unk_5860[v2], 16, 0x7fff, 16);
         DC_FlushRange(param0->unk_5860, sizeof(param0->unk_5860));
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
     }
 }
 
@@ -220,13 +220,13 @@ static void ov19_021D7C58(UnkStruct_ov19_021D8318 *param0, const BoxCustomizatio
                 v3 = 84 - (v4 / 2);
 
                 Text_AddPrinterWithParamsAndColor(v2, FONT_SYSTEM, customization->name, v3, 13, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(2, 1, 0), NULL);
-                Heap_FreeToHeap(v2);
+                Heap_Free(v2);
             }
 
             Bg_LoadTiles(param0->unk_58F4, 3, v1->pRawData, v1->szByte, param2);
         }
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 }
 
@@ -245,7 +245,7 @@ static void ov19_021D7D00(UnkStruct_ov19_021D8318 *param0, const BoxCustomizatio
             ov19_021D8764(v1, (const u16 *)(v2->rawData), param2, param3, param4);
         }
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         Bg_CopyTilemapBufferRangeToVRAM(param0->unk_58F4, 3, v1, 0x1000, 0);
     }
 }
@@ -453,7 +453,7 @@ static void ov19_021D81B8(UnkStruct_ov19_021D8318 *param0, int param1, int param
         if (ov19_021D77C8(ov19_021D8210, v0, 0) != NULL) {
             param0->unk_A3 = 1;
         } else {
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
         }
     }
 }

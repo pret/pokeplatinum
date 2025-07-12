@@ -372,19 +372,19 @@ void ov19_021DD078(UnkStruct_ov19_021DCF88 *param0)
         Window_Remove(&(param0->unk_88));
 
         if (param0->unk_98) {
-            Heap_FreeToHeap(param0->unk_98);
+            Heap_Free(param0->unk_98);
         }
 
         if (param0->unk_A0) {
-            Heap_FreeToHeap(param0->unk_A0);
+            Heap_Free(param0->unk_A0);
         }
 
         if (param0->unk_A8) {
-            Heap_FreeToHeap(param0->unk_A8);
+            Heap_Free(param0->unk_A8);
         }
 
         if (param0->unk_B0) {
-            Heap_FreeToHeap(param0->unk_B0);
+            Heap_Free(param0->unk_B0);
         }
 
         if (param0->unk_2C) {
@@ -411,7 +411,7 @@ void ov19_021DD078(UnkStruct_ov19_021DCF88 *param0)
             }
         }
 
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0);
     }
 }
 
@@ -534,7 +534,7 @@ void ov19_021DD378(UnkStruct_ov19_021DCF88 *param0)
                 ov19_021DE324(param0);
                 break;
             default:
-                Heap_FreeToHeap(v2);
+                Heap_Free(v2);
                 return;
             }
 
@@ -1157,7 +1157,7 @@ static void ov19_021DDD80(UnkStruct_ov19_021DCF88 *param0)
         }
 
         if (ov19_021DD344(param0, ov19_021DDCC0, v0) == NULL) {
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
         }
     }
 }
@@ -1273,7 +1273,7 @@ static void ov19_021DDFA8(UnkStruct_ov19_021DCF88 *param0)
         }
 
         if (ov19_021DD344(param0, ov19_021DDDD0, v0) == NULL) {
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
         }
     }
 }
@@ -1331,7 +1331,7 @@ static void ov19_021DE0A0(UnkStruct_ov19_021DCF88 *param0)
         }
 
         if (ov19_021DD344(param0, ov19_021DDFFC, v0) == NULL) {
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
         }
     }
 }
@@ -1455,7 +1455,7 @@ static void ov19_021DE2A4(UnkStruct_ov19_021DCF88 *param0)
         }
 
         if (ov19_021DD344(param0, ov19_021DE0F0, v0) == NULL) {
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
         }
     }
 }

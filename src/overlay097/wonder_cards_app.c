@@ -1082,7 +1082,7 @@ static void LoadTilemapBufferFromNarc(WonderCardsAppData *appData, u32 narcMembe
     NNS_G2dGetUnpackedScreenData(nscr, &screenData);
 
     Bg_LoadTilemapBuffer(appData->bgConfig, bgLayer, screenData->rawData, size);
-    Heap_FreeToHeap(nscr);
+    Heap_Free(nscr);
 }
 
 static void LoadWondercardGraphics(WonderCardsAppData *appData, enum WonderCardsAppScreen screen)
@@ -1188,7 +1188,7 @@ static void LoadPokemonSpritesForSelectedWc(WonderCardsAppData *appData)
         GX_LoadOBJ(charData->pRawData, (0x64 + i * 4 * 4) * 0x20, (4 * 4 * 0x20));
 
         Sprite_SetExplicitPalette(appData->selectedWcSprites[i], PokeIconPaletteIndex(species, 0, 0) + 3);
-        Heap_FreeToHeap(ncgrBuffer);
+        Heap_Free(ncgrBuffer);
     }
 }
 
@@ -1825,7 +1825,7 @@ static BOOL WonderCardsApp_Exit(ApplicationManager *appMan, int *unused)
     Bg_FreeTilemapBuffer(appData->bgConfig, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(appData->bgConfig, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(appData->bgConfig, BG_LAYER_MAIN_3);
-    Heap_FreeToHeap(appData->bgConfig);
+    Heap_Free(appData->bgConfig);
     EnqueueApplication(FS_OVERLAY_ID(overlay97), &gMysteryGiftAppTemplate);
     Heap_Destroy(HEAP_ID_91);
     ApplicationManager_FreeData(appMan);
@@ -1857,5 +1857,5 @@ void WonderCardsApp_ShowWondercard(BgConfig *bgConfig, WonderCard *wonderCard, e
     appData->selectedWondercardSlot = 0;
 
     ShowWindowsForScreen(appData, 1, WC_SCREEN_WONDERCARD_FRONT);
-    Heap_FreeToHeap(appData);
+    Heap_Free(appData);
 }

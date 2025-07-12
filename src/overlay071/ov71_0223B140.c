@@ -387,8 +387,8 @@ int ov71_0223B5B8(ApplicationManager *appMan, int *param1)
     ov71_0223B668(v0);
     ov71_0223D238(&v0->unk_30E4);
 
-    Heap_FreeToHeap(v0->unk_30B8);
-    Heap_FreeToHeap(v0->unk_335C);
+    Heap_Free(v0->unk_30B8);
+    Heap_Free(v0->unk_335C);
 
     TrainerCard_RemoveWindows(v0->windows);
     ov71_0223BBDC(v0->bgConfig);
@@ -477,7 +477,7 @@ static void ov71_0223B6A8(const u8 stars, const u8 pokedexObtained, NARC *narc)
             GXS_LoadBGPltt(&v2[16], 2 * 16, 2 * 16 * 3);
             GXS_LoadBGPltt(&v2[16 * 15], 2 * 16 * 15, 2 * 16);
 
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
         }
     }
 }
@@ -513,7 +513,7 @@ static void ov71_0223B768(const u8 gameVersion, NARC *narc)
     GX_LoadBGPltt(v1->pRawData, 0, 2 * 16);
     GXS_LoadBGPltt(v1->pRawData, 0, 2 * 16);
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 static void ov71_0223B820(const u8 param0, NARC *narc)
@@ -528,7 +528,7 @@ static void ov71_0223B820(const u8 param0, NARC *narc)
     DC_FlushRange(&v1[2 * 16 * param0], 2 * 16);
     GXS_LoadBGPltt(&v1[2 * 16 * param0], 2 * 16 * 4, 2 * 16);
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 static void ov71_0223B858(BgConfig *bgConfig)
@@ -662,7 +662,7 @@ static void ov71_0223B968(UnkStruct_ov71_0223B620 *param0, NARC *narc)
 
         DC_FlushRange(v1->pRawData, 2 * 16 * 16);
         GXS_LoadBGPltt(v1->pRawData, 0, 2 * 16 * 16);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 
     ov71_0223B6A8(param0->trainerCard->stars, param0->trainerCard->pokedexObtained, narc);
@@ -675,7 +675,7 @@ static void ov71_0223B968(UnkStruct_ov71_0223B620 *param0, NARC *narc)
 
         DC_FlushRange(v3->pRawData, 16 * 2 * 16);
         GX_LoadBGPltt(v3->pRawData, 0, 16 * 2 * 16);
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
     }
 
     ov71_0223B768(param0->trainerCard->gameVersion, narc);
@@ -758,7 +758,7 @@ static void ov71_0223BBDC(BgConfig *bgConfig)
     Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_SUB_1);
     Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_3);
-    Heap_FreeToHeap(bgConfig);
+    Heap_Free(bgConfig);
 }
 
 static BOOL ov71_0223BC20(UnkStruct_ov71_0223B620 *param0)

@@ -36,7 +36,7 @@ void Pokedex_HeightWeightData_Free(HeightWeightData *HWData)
 {
     GF_ASSERT(HWData);
 
-    Heap_FreeToHeap(HWData);
+    Heap_Free(HWData);
     HWData = NULL;
 }
 
@@ -68,13 +68,13 @@ void Pokedex_HeightWeightData_Release(HeightWeightData *HWData)
     GF_ASSERT(HWData->height);
     GF_ASSERT(HWData->weight);
 
-    Heap_FreeToHeap(HWData->height);
-    Heap_FreeToHeap(HWData->weight);
+    Heap_Free(HWData->height);
+    Heap_Free(HWData->weight);
 
-    Heap_FreeToHeap(HWData->trainerPos);
-    Heap_FreeToHeap(HWData->pokemonPos);
-    Heap_FreeToHeap(HWData->trainerScale);
-    Heap_FreeToHeap(HWData->pokemonScale);
+    Heap_Free(HWData->trainerPos);
+    Heap_Free(HWData->pokemonPos);
+    Heap_Free(HWData->trainerScale);
+    Heap_Free(HWData->pokemonScale);
 
     HWData->height = NULL;
     HWData->weight = NULL;

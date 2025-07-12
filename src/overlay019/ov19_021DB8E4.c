@@ -87,11 +87,11 @@ BOOL ov19_021DB8E4(UnkStruct_ov19_021DBA9C *param0, UnkStruct_ov19_021D61B0 *par
 
         v2 = Graphics_GetPlttDataFromOpenNARC(param5, 27, &v1, HEAP_ID_BOX_GRAPHICS);
         MI_CpuCopy16(v1->pRawData, &(param0->unk_E4[0][0]), 0x40);
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
 
         v2 = Graphics_GetPlttDataFromOpenNARC(param5, 20, &v1, HEAP_ID_BOX_GRAPHICS);
         MI_CpuCopy16(v1->pRawData, &(param0->unk_E4[0][32]), 0x20);
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
 
         {
             int v3;
@@ -161,19 +161,19 @@ void ov19_021DBAD0(UnkStruct_ov19_021DBA9C *param0)
     }
 
     if (param0->unk_14) {
-        Heap_FreeToHeap(param0->unk_14);
+        Heap_Free(param0->unk_14);
     }
 
     if (param0->unk_1C) {
-        Heap_FreeToHeap(param0->unk_1C);
+        Heap_Free(param0->unk_1C);
     }
 
     if (param0->unk_2C) {
-        Heap_FreeToHeap(param0->unk_2C);
+        Heap_Free(param0->unk_2C);
     }
 
     if (param0->unk_34) {
-        Heap_FreeToHeap(param0->unk_34);
+        Heap_Free(param0->unk_34);
     }
 
     if (param0->unk_44) {
@@ -191,7 +191,7 @@ void ov19_021DBAD0(UnkStruct_ov19_021DBA9C *param0)
             Window_Remove(&(param0->unk_10[v0]));
         }
 
-        Heap_FreeToHeap(param0->unk_10);
+        Heap_Free(param0->unk_10);
     }
 }
 
@@ -489,7 +489,7 @@ static void ov19_021DC034(UnkStruct_ov19_021DBA9C *param0, int param1)
         param0->unk_DC = SysTask_Start(v0[param1], v1, 0);
 
         if (param0->unk_DC == NULL) {
-            Heap_FreeToHeap(v1);
+            Heap_Free(v1);
         }
     }
 }
@@ -500,7 +500,7 @@ static void ov19_021DC074(SysTask *param0, void *param1)
 
     v0->unk_00->unk_DC = NULL;
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     SysTask_Done(param0);
 }
 
@@ -729,7 +729,7 @@ static void ov19_021DC4F8(UnkStruct_ov19_021DBA9C *param0, u32 param1)
             Sprite_SetExplicitPalette(param0->unk_90, 6);
         }
 
-        Heap_FreeToHeap(v4);
+        Heap_Free(v4);
     }
 }
 

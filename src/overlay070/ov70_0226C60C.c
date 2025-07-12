@@ -102,7 +102,7 @@ void ov70_0226C6F8(UnkStruct_ov70_0226C6F8 *param0)
     ov70_0226CF38(param0->unk_14);
     ov70_0226C39C(param0->unk_10);
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov70_0226C718(UnkStruct_ov70_0226C6F8 *param0)

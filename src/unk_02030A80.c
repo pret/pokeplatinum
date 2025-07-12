@@ -33,7 +33,7 @@ UnkStruct_02030A80 *sub_02030A80(int heapID)
 
 void sub_02030A98(UnkStruct_02030A80 *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void sub_02030AA0(UnkStruct_02030A80 *param0, SaveData *saveData)

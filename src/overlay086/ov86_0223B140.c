@@ -707,7 +707,7 @@ static void ov86_0223B8C4(UnkStruct_ov86_0223B3C8 *param0)
     Bg_FreeTilemapBuffer(param0->unk_10, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(param0->unk_10, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(param0->unk_10, BG_LAYER_MAIN_3);
-    Heap_FreeToHeap(param0->unk_10);
+    Heap_Free(param0->unk_10);
 }
 
 static void ov86_0223B900(UnkStruct_ov86_0223B3C8 *param0)
@@ -869,8 +869,8 @@ static void ov86_0223BAC8(UnkStruct_ov86_0223B3C8 *param0, NNSG2dCellDataBank *p
     param0->unk_1CC = SpriteList_Add(&v3);
 
     Sprite_SetDrawFlag(param0->unk_1CC, FALSE);
-    Heap_FreeToHeap(v10);
-    Heap_FreeToHeap(v9);
+    Heap_Free(v10);
+    Heap_Free(v9);
 }
 
 static void ov86_0223BD68(UnkStruct_ov86_0223B3C8 *param0)
@@ -881,8 +881,8 @@ static void ov86_0223BD68(UnkStruct_ov86_0223B3C8 *param0)
         Sprite_Delete(param0->unk_1B4[v0]);
     }
 
-    Heap_FreeToHeap(param0->unk_1D4);
-    Heap_FreeToHeap(param0->unk_1D0);
+    Heap_Free(param0->unk_1D4);
+    Heap_Free(param0->unk_1D0);
     SpriteList_Delete(param0->unk_24);
     RenderOam_Free();
 }
@@ -893,7 +893,7 @@ static void ov86_0223BDAC(SysTask *param0, void *param1)
 
     *(v0->unk_04) = NULL;
 
-    Heap_FreeToHeap(v0->unk_00);
+    Heap_Free(v0->unk_00);
     SysTask_Done(param0);
 }
 
@@ -1651,10 +1651,10 @@ static void ov86_0223CD34(SysTask *param0)
         v0 = SysTask_GetParam(param0);
 
         for (v1 = 0; v1 < v0->unk_83C; v1++) {
-            Heap_FreeToHeap(SysTask_GetParam(v0->unk_818[v1]));
+            Heap_Free(SysTask_GetParam(v0->unk_818[v1]));
         }
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 }
 
@@ -1736,7 +1736,7 @@ static SysTask *ov86_0223CD94(UnkStruct_ov86_0223B3C8 *param0)
 static void ov86_0223CF44(SysTask *param0)
 {
     if (param0) {
-        Heap_FreeToHeap(SysTask_GetParam(param0));
+        Heap_Free(SysTask_GetParam(param0));
         SysTask_Done(param0);
     }
 }

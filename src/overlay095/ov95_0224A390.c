@@ -146,7 +146,7 @@ void ov95_0224A3CC(void *param0)
         ov95_0224A830(v0);
         ov95_0224A850(&(v0->unk_34));
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 }
 

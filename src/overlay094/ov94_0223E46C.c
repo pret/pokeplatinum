@@ -390,9 +390,9 @@ static void ov94_0223E9B8(UnkStruct_ov94_0223FD4C *param0)
 
 static void ov94_0223EA20(UnkStruct_ov94_0223FD4C *param0)
 {
-    Heap_FreeToHeap(param0->unk_10E4->unk_14);
-    Heap_FreeToHeap(param0->unk_10E4->unk_18);
-    Heap_FreeToHeap(param0->unk_10E4);
+    Heap_Free(param0->unk_10E4->unk_14);
+    Heap_Free(param0->unk_10E4->unk_18);
+    Heap_Free(param0->unk_10E4);
     Strbuf_Free(param0->unk_BAC);
     Strbuf_Free(param0->unk_BB0);
 }

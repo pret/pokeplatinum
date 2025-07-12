@@ -110,7 +110,7 @@ void ov23_022542D8(UnkStruct_ov23_022542D8 *param0, FieldSystem *fieldSystem, u1
 
 void ov23_0225430C(UnkStruct_ov23_022542D8 *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 const u32 ov23_02254314(UnkStruct_ov23_022542D8 *param0)
@@ -286,7 +286,7 @@ void ov23_022545C4(UnkStruct_ov23_02254594 *param0, const u8 param1, const u8 pa
 
 void ov23_022545D0(UnkStruct_ov23_02254594 *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 const u32 ov23_022545D8(UnkStruct_ov23_02254594 *param0)

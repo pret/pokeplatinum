@@ -70,8 +70,8 @@ UnkStruct_ov63_0222BE18 *ov63_0222BE18(u32 param0, u32 heapID)
 void ov63_0222BE58(UnkStruct_ov63_0222BE18 *param0)
 {
     GF_ASSERT(param0);
-    Heap_FreeToHeap(param0->unk_00);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0->unk_00);
+    Heap_Free(param0);
 }
 
 void ov63_0222BE70(UnkStruct_ov63_0222BE18 *param0, const UnkStruct_ov63_0222CCB8 *param1)

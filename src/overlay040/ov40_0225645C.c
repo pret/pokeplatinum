@@ -76,7 +76,7 @@ void ov40_022564B8(UnkStruct_ov40_0225645C *param0)
     if (param0 != NULL) {
         ov40_02256598(param0);
         SysTask_Done(param0->unk_8C);
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0);
     }
 }
 

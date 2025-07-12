@@ -194,16 +194,16 @@ void ov104_02235190(UnkStruct_ov104_0223B5C0 *param0)
     }
 
     if (param0->unk_264 != NULL) {
-        Heap_FreeToHeap(param0->unk_264);
+        Heap_Free(param0->unk_264);
     }
 
     if (param0->unk_D8C != NULL) {
-        Heap_FreeToHeap(param0->unk_D8C);
+        Heap_Free(param0->unk_D8C);
     }
 
     MI_CpuClear8(param0, sizeof(UnkStruct_ov104_0223B5C0));
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
     param0 = NULL;
 
     return;
@@ -329,7 +329,7 @@ u16 ov104_022354C0(UnkStruct_ov104_0223B5C0 *param0, u8 param1)
     FrontierTrainerDataDTO v0;
     u8 v2 = (param0->unk_05 * 2) + param1;
 
-    Heap_FreeToHeap(ov104_0222DD04(&v0, param0->unk_18[v2], HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+    Heap_Free(ov104_0222DD04(&v0, param0->unk_18[v2], HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
 
     return ov104_0222E10C(v0.trainerType);
 }

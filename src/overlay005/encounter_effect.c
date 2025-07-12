@@ -195,7 +195,7 @@ void EncounterEffect_Start(enum EncEffectCutIn effect, FieldSystem *fieldSystem,
 void EncounterEffect_Finish(EncounterEffect *encEffect, SysTask *effectTask)
 {
     NARC_dtor(encEffect->narc);
-    Heap_FreeToHeapExplicit(HEAP_ID_FIELD, encEffect->param);
+    Heap_FreeExplicit(HEAP_ID_FIELD, encEffect->param);
     SysTask_FinishAndFreeParam(effectTask);
 }
 
@@ -266,7 +266,7 @@ static void EncounterEffect_FlashTask(SysTask *task, void *param)
         }
 
         SysTask_Done(task);
-        Heap_FreeToHeap(screenFlash);
+        Heap_Free(screenFlash);
 
         return;
     }
@@ -414,7 +414,7 @@ void ScreenSliceEffect_Delete(ScreenSliceEffect *efx)
     }
 
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
-    Heap_FreeToHeap(efx);
+    Heap_Free(efx);
 }
 
 void EncounterEffect_ScreenSlice(EncounterEffect *encEffect, ScreenSliceEffect *screenSliceEfx, u8 pixelsPerSlice, u32 numSteps, fx32 startX, fx32 endX, fx32 initialSpeed)
@@ -548,7 +548,7 @@ void ScreenSplitEffect_Delete(ScreenSplitEffect *screenSplitEfx)
     }
 
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
-    Heap_FreeToHeap(screenSplitEfx);
+    Heap_Free(screenSplitEfx);
 }
 
 void EncounterEffect_ScreenSplit(EncounterEffect *encEffect, ScreenSplitEffect *screenSplitEfx, u32 numSteps, fx32 initialSpeedX, fx32 initialSpeedY)
@@ -717,7 +717,7 @@ void ov5_021DE3D0(NARC *param0, u32 param1, u32 param2, u32 param3, u32 param4, 
 
     Bg_LoadToTilemapRect(param6, param7, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Bg_ChangeTilemapRectPalette(param6, param7, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8, param4);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     Bg_ScheduleTilemapTransfer(param6, param7);
 }
 
@@ -782,8 +782,8 @@ void ov5_021DE5D0(Sprite *param0, u32 heapID, u32 param2, u8 param3, u16 param4)
 
     ov5_021DE67C(param0, v3, 32);
 
-    Heap_FreeToHeap(v3);
-    Heap_FreeToHeap(v2);
+    Heap_Free(v3);
+    Heap_Free(v2);
 }
 
 Sprite *ov5_021DE62C(UnkStruct_ov5_021DE47C *param0, UnkStruct_ov5_021DE5A4 *param1, fx32 param2, fx32 param3, fx32 param4, int param5)
@@ -828,7 +828,7 @@ UnkStruct_ov5_021DE6BC *ov5_021DE6A4(u32 heapID)
 
 void ov5_021DE6BC(UnkStruct_ov5_021DE6BC *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov5_021DE6C4(UnkStruct_ov5_021DE6BC *param0, int param1, int param2, int param3, int param4, int param5, Window *param6, u32 param7, u32 param8, u8 param9)
@@ -877,7 +877,7 @@ static UnkStruct_ov5_021DE79C *ov5_021DE784(u32 heapID)
 
 void ov5_021DE79C(UnkStruct_ov5_021DE79C *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov5_021DE7A4(UnkStruct_ov5_021DE79C *param0, int param1, int param2, int param3, int param4, int param5, Window *param6, u32 param7, u32 param8, u8 param9)
@@ -974,7 +974,7 @@ void ov5_021DE928(UnkStruct_ov5_021DE928 *param0)
         ov5_021DE79C(param0->unk_04[v0]);
     }
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov5_021DE948(UnkStruct_ov5_021DE928 *param0, u8 param1, u8 param2, Window *param3, u8 param4)
@@ -1040,7 +1040,7 @@ UnkStruct_ov5_021DEA98 *ov5_021DEA80(u32 heapID)
 
 void ov5_021DEA98(UnkStruct_ov5_021DEA98 *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov5_021DEAA0(UnkStruct_ov5_021DEA98 *param0, u8 param1, u16 param2, u16 param3, Window *param4, u8 param5)
@@ -1139,7 +1139,7 @@ void ov5_021DEC18(UnkStruct_ov5_021DEC18 *param0)
         ov5_021DEA98(param0->unk_00[v0]);
     }
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov5_021DEC38(UnkStruct_ov5_021DEC18 *param0, u8 param1, Window *param2, u8 param3)
@@ -1189,7 +1189,7 @@ void ov5_021DED04(UnkStruct_ov5_021DED04 *param0)
         ov5_021DEE84(param0);
     }
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov5_021DED20(EncounterEffect *param0, UnkStruct_ov5_021DED04 *param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6)
@@ -1406,7 +1406,7 @@ void ov5_021DF084(void)
     ov5_021D16F4(Unk_ov5_02202120->fieldSystem, 1);
     ov5_021D1718(Unk_ov5_02202120->fieldSystem, 1);
 
-    Heap_FreeToHeap(Unk_ov5_02202120);
+    Heap_Free(Unk_ov5_02202120);
     Unk_ov5_02202120 = NULL;
 }
 
@@ -1475,7 +1475,7 @@ void ov5_021DF224(void)
     GF_ASSERT(Unk_ov5_02202120);
 
     ParticleSystem_Free(Unk_ov5_02202120->unk_08);
-    Heap_FreeToHeap(Unk_ov5_02202120->unk_0C);
+    Heap_Free(Unk_ov5_02202120->unk_0C);
 
     Unk_ov5_02202120->unk_08 = NULL;
     Unk_ov5_02202120->unk_0C = NULL;

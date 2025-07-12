@@ -124,7 +124,7 @@ void sub_02082DA8(GameWindowLayout *param0, u8 param1)
         GX_LoadOBJ(v6->pRawData, v4, v6->szByte);
     }
 
-    Heap_FreeToHeap(v5);
+    Heap_Free(v5);
     Sprite_SetExplicitPalette2(param0->unk_704[param1].unk_24, PokeIconPaletteIndex(v2, v3, 0) + 3);
     NARC_dtor(v1);
 }

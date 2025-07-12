@@ -115,7 +115,7 @@ BOOL Party_SwapSlots(Party *party, int slotA, int slotB)
     party->pokemon[slotA] = party->pokemon[slotB];
     party->pokemon[slotB] = *tempPokemon;
 
-    Heap_FreeToHeap(tempPokemon);
+    Heap_Free(tempPokemon);
 
     return FALSE;
 }

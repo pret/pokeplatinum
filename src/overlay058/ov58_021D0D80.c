@@ -353,7 +353,7 @@ int ov58_021D1018(ApplicationManager *appMan, int *param1)
 
         ov58_021D13B4(v0);
 
-        Heap_FreeToHeap(v0->unk_08);
+        Heap_Free(v0->unk_08);
         ApplicationManager_FreeData(appMan);
         SetVBlankCallback(NULL, NULL);
         Heap_Destroy(HEAP_ID_39);
@@ -557,7 +557,7 @@ static void ov58_021D13B4(UnkStruct_02095EAC *param0)
 {
     int v0;
 
-    Heap_FreeToHeap(param0->unk_442C);
+    Heap_Free(param0->unk_442C);
     sub_02015938(param0->unk_9454);
 
     for (v0 = 0; v0 < 5; v0++) {
@@ -576,7 +576,7 @@ static void ov58_021D13F0(BgConfig *param0)
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov58_021D142C(UnkStruct_02095EAC *param0, NARC *param1)

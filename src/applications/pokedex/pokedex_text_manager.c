@@ -39,12 +39,12 @@ void PokedexTextManager_Free(PokedexTextManager *textMan)
     GF_ASSERT(textMan);
 
     PokedexTextManager_FreeAllTextData(textMan);
-    Heap_FreeToHeap(textMan->textData);
+    Heap_Free(textMan->textData);
     sub_020127BC(textMan->unk_00);
 
     memset(textMan, 0, sizeof(PokedexTextManager));
 
-    Heap_FreeToHeap(textMan);
+    Heap_Free(textMan);
 }
 
 PokedexTextData *PokedexTextManager_NextTextData(const PokedexDisplayBox *displayBox)
