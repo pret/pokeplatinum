@@ -1,23 +1,23 @@
-pngs_4bpp = files([
+pngs_4bpp = files(
     'bottom_screen_border.png',
-])
+)
 
-pngs_8bpp = files([
+pngs_8bpp = files(
     'logo.png',
-    'logo_jp.png'
-])
+    'logo_jp.png',
+)
 
 # These PNGs require explicit palettes because they are 4bpp palettes that contain more than 16 colors.
-pngs_explicit = files([
+pngs_explicit = files(
     'gf_presents.png',
     'top_screen_border.png',
     'copyright.png',
-])
-pals_explicit = files([
+)
+pals_explicit = files(
     'gf_presents.pal',
     'top_screen_border.pal',
     'copyright.pal',
-])
+)
 
 ncgrs_4bpp = ncgr_gen.process(pngs_4bpp,
     extra_args: [ '-sopc', '-version101', ],
@@ -43,7 +43,7 @@ nclrs_explicit = nclr_gen.process(pals_explicit,
     extra_args: [ '-bitdepth', '4', ],
 )
 
-tilemaps = copy_gen.process(files([
+tilemaps = copy_gen.process(files(
     'bottom_screen_border.NSCR',
     'bottom_screen_border_2.NSCR',
     'top_screen_border.NSCR',
@@ -51,29 +51,29 @@ tilemaps = copy_gen.process(files([
     'copyright.NSCR',
     'gf_presents.NSCR',
     'logo.NSCR',
-    'logo_jp.NSCR'
-]))
+    'logo_jp.NSCR',
+))
 
-models = copy_gen.process(files([
+models = copy_gen.process(files(
     'giratina.nsbmd',
     'giratina_face.nsbmd',
-    'giratina_portal.nsbmd'
-]))
+    'giratina_portal.nsbmd',
+))
 
-anims = copy_gen.process(files([
+anims = copy_gen.process(files(
     'giratina.nsbca',
     'giratina_face.nsbca',
-    'giratina_portal.nsbca'
-]))
+    'giratina_portal.nsbca',
+))
 
-tex_anims = copy_gen.process(files([
+tex_anims = copy_gen.process(files(
     'giratina.nsbta',
-    'giratina_portal.nsbta'
-]))
+    'giratina_portal.nsbta',
+))
 
-mat_anims = copy_gen.process(files([
+mat_anims = copy_gen.process(files(
     'giratina_face.nsbma',
-]))
+))
 
 titledemo_order = files('titledemo.order')
 titledemo_narc = custom_target('titledemo.narc',
