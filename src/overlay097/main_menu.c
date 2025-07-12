@@ -10,7 +10,7 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay077/const_ov77_021D742C.h"
+#include "game_opening/const_ov77_021D742C.h"
 #include "overlay097/const_ov97_0223D674.h"
 #include "overlay097/distribution_cartridge.h"
 #include "overlay097/main_menu_util.h"
@@ -55,7 +55,7 @@
 #include "res/text/bank/unk_0695.h"
 
 FS_EXTERN_OVERLAY(game_start);
-FS_EXTERN_OVERLAY(overlay77);
+FS_EXTERN_OVERLAY(game_opening);
 FS_EXTERN_OVERLAY(overlay97);
 FS_EXTERN_OVERLAY(overlay98);
 
@@ -1332,7 +1332,7 @@ static void EnqueueNextApplication(MainMenuAppData *appData)
         EnqueueApplication(FS_OVERLAY_ID(overlay98), &gWiiMessageAppTemplate);
         break;
     case NEXT_APP_TITLE_SCREEN:
-        EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenAppTemplate);
+        EnqueueApplication(FS_OVERLAY_ID(game_opening), &gTitleScreenAppTemplate);
         break;
     }
 }

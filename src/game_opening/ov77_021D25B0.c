@@ -6,14 +6,14 @@
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
+#include "game_opening/ov77_021D54B0.h"
+#include "game_opening/ov77_021D6670.h"
+#include "game_opening/ov77_021D6C70.h"
+#include "game_opening/struct_ov77_021D5564_decl.h"
+#include "game_opening/struct_ov77_021D670C_decl.h"
+#include "game_opening/struct_ov77_021D6734_decl.h"
+#include "game_opening/struct_ov77_021D6CFC_decl.h"
 #include "overlay009/camera_configuration.h"
-#include "overlay077/ov77_021D54B0.h"
-#include "overlay077/ov77_021D6670.h"
-#include "overlay077/ov77_021D6C70.h"
-#include "overlay077/struct_ov77_021D5564_decl.h"
-#include "overlay077/struct_ov77_021D670C_decl.h"
-#include "overlay077/struct_ov77_021D6734_decl.h"
-#include "overlay077/struct_ov77_021D6CFC_decl.h"
 
 #include "bg_window.h"
 #include "brightness_controller.h"
@@ -37,7 +37,7 @@
 #include "unk_02024220.h"
 #include "vram_transfer.h"
 
-FS_EXTERN_OVERLAY(overlay77);
+FS_EXTERN_OVERLAY(game_opening);
 
 typedef struct {
     NNSG3dRenderObj unk_00;
@@ -1015,7 +1015,7 @@ static int ov77_021D2E60(ApplicationManager *appMan, int *param1)
     LCRNG_SetSeed(v0->unk_14);
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_76);
-    EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenAppTemplate);
+    EnqueueApplication(FS_OVERLAY_ID(game_opening), &gTitleScreenAppTemplate);
 
     return 1;
 }

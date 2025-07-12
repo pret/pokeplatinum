@@ -20,7 +20,7 @@
 #include "system.h"
 #include "text.h"
 
-FS_EXTERN_OVERLAY(overlay77);
+FS_EXTERN_OVERLAY(game_opening);
 
 typedef struct {
     int heapID;

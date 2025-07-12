@@ -16,7 +16,7 @@
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay077/const_ov77_021D742C.h"
+#include "game_opening/const_ov77_021D742C.h"
 #include "overlay097/gba_convert_string.h"
 #include "overlay097/gba_pokemon.h"
 #include "overlay097/gba_save.h"
@@ -66,7 +66,7 @@
 
 #include "res/text/bank/migrate_from_gba.h"
 
-FS_EXTERN_OVERLAY(overlay77);
+FS_EXTERN_OVERLAY(game_opening);
 
 enum GBAMigratorState {
     GBA_MIGRATOR_STATE_0 = 0,
@@ -2185,14 +2185,14 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
 
 static int GBAMigrator_Exit(ApplicationManager *appMan, int *state)
 {
-    FS_EXTERN_OVERLAY(overlay77);
+    FS_EXTERN_OVERLAY(game_opening);
 
     GBAMigrator *migrator = ApplicationManager_Data(appMan);
 
     Strbuf_Free(migrator->unk_12668);
     Strbuf_Free(migrator->unk_1266C);
     Heap_Free(migrator->bgConfig);
-    EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenAppTemplate);
+    EnqueueApplication(FS_OVERLAY_ID(game_opening), &gTitleScreenAppTemplate);
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_MIGRATE_FROM_GBA);
 

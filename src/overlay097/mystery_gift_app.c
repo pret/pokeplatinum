@@ -9,7 +9,7 @@
 #include "generated/string_padding_mode.h"
 #include "generated/text_banks.h"
 
-#include "overlay077/const_ov77_021D742C.h"
+#include "game_opening/const_ov77_021D742C.h"
 #include "overlay097/distribution_cartridge.h"
 #include "overlay097/main_menu_util.h"
 #include "overlay097/ov97_0222D04C.h"
@@ -61,7 +61,7 @@
 #include "res/text/bank/mystery_gift_menu.h"
 #include "res/text/bank/unk_0695.h"
 
-FS_EXTERN_OVERLAY(overlay77);
+FS_EXTERN_OVERLAY(game_opening);
 FS_EXTERN_OVERLAY(overlay97);
 
 #define EVENT_LOCATION_MOVIES_START     3
@@ -2449,13 +2449,13 @@ extern const ApplicationManagerTemplate gWonderCardsAppTemplate;
 
 static int MysteryGiftApp_Exit(ApplicationManager *appMan, int *unused)
 {
-    FS_EXTERN_OVERLAY(overlay77);
+    FS_EXTERN_OVERLAY(game_opening);
     FS_EXTERN_OVERLAY(overlay97);
 
     MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
 
     if (appData->exitToWondercardsApp == FALSE) {
-        EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenAppTemplate);
+        EnqueueApplication(FS_OVERLAY_ID(game_opening), &gTitleScreenAppTemplate);
     } else if (appData->exitToWondercardsApp == TRUE) {
         EnqueueApplication(FS_OVERLAY_ID(overlay97), &gWonderCardsAppTemplate);
     }

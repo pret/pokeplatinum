@@ -1,3 +1,5 @@
+#include "text/bank/title_screen.h"
+
 #include <nitro/gx/g3.h>
 #include <nitro/types.h>
 
@@ -8,8 +10,7 @@
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay077/const_ov77_021D742C.h"
-#include "text/bank/title_screen.h"
+#include "game_opening/const_ov77_021D742C.h"
 
 #include "bg_window.h"
 #include "brightness_controller.h"
@@ -37,7 +38,7 @@
 
 #include "res/graphics/title_screen/titledemo.naix.h"
 
-FS_EXTERN_OVERLAY(overlay77);
+FS_EXTERN_OVERLAY(game_opening);
 FS_EXTERN_OVERLAY(overlay89);
 FS_EXTERN_OVERLAY(overlay97);
 FS_EXTERN_OVERLAY(d_startmenu);
@@ -472,7 +473,7 @@ static BOOL TitleScreen_Exit(ApplicationManager *appMan, int *state)
         break;
     case NEXT_APP_REPLAY_OPENING:
         Sound_SetScene(SOUND_SCENE_NONE);
-        EnqueueApplication(FS_OVERLAY_ID(overlay77), &gOpeningCutsceneAppTemplate);
+        EnqueueApplication(FS_OVERLAY_ID(game_opening), &gOpeningCutsceneAppTemplate);
         break;
     }
 

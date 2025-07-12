@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_OV77_021D54B0_H
 #define POKEPLATINUM_OV77_021D54B0_H
 
-#include "overlay077/struct_ov77_021D5564_decl.h"
-#include "overlay077/struct_ov77_021D6734_decl.h"
+#include "game_opening/struct_ov77_021D5564_decl.h"
+#include "game_opening/struct_ov77_021D6734_decl.h"
 
 const int ov77_021D555C(void);
 void ov77_021D5564(UnkStruct_ov77_021D5564 *param0);
