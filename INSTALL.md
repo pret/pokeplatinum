@@ -249,12 +249,13 @@ If everything works, then the following ROM should be built:
 
 - [build/pokeplatinum.us.nds](https://datomatic.no-intro.org/index.php?page=show_record&s=28&n=4997) `sha1: 0862ec35b24de5c7e2dcb88c9eea0873110d755c`
 
-Optionally, the repository can be configured to build a "revision 0" ROM. This
-revision matches the original retail version that was shipped in North America;
-it contains an error in the GTS code where the game will not display the level
-range of a wanted Pokémon. This error was patched as part of a second shipment
-of cartridges for the North American release; it is not present in any other
-localization.
+Optionally, the repository can be configured to build a ["revision 0"
+ROM](https://datomatic.no-intro.org/index.php?page=show_record&s=28&n=3541)
+(`sha1: ce81046eda7d232513069519cb2085349896dec7`). This revision matches the
+original retail version that was shipped in North America; it contains an error
+in the GTS code where the game will not display the level range of a wanted
+Pokémon. This error was patched as part of a second shipment of cartridges for
+the North American release; it is not present in any other localization.
 
 To build this revision, instead of the above command, run the following:
 
