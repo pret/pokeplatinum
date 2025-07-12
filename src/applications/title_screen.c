@@ -1,7 +1,5 @@
-#include "nitro/gx/g3.h"
-#include "nitro/types.h"
-#include <nitro.h>
-#include <string.h>
+#include <nitro/gx/g3.h>
+#include <nitro/types.h>
 
 #include "constants/graphics.h"
 #include "constants/heap.h"
@@ -44,8 +42,6 @@ FS_EXTERN_OVERLAY(overlay89);
 FS_EXTERN_OVERLAY(overlay97);
 FS_EXTERN_OVERLAY(d_startmenu);
 
-#define KEY_PRESSED(key)     ((JOY_NEW(key)) == (key))
-#define KEY_HELD(key)        ((JOY_HELD(key)) == (key))
 #define LIGHT_COLOR(r, g, b) ((((r) << 0) & GX_RGB_R_MASK) | (((g) << 5) & GX_RGB_G_MASK) | (((b) << 10) & GX_RGB_B_MASK))
 #define ANGLE(angle)         FX_DEG_TO_IDX(FX32_CONST(angle))
 
@@ -132,7 +128,7 @@ enum TitleScreenRenderState {
 enum TitleScreenNextApp {
     NEXT_APP_NONE = 0,
     NEXT_APP_START_MENU,
-    NEXT_APP_2,
+    NEXT_APP_CLEAR_SAVE_FILE,
     NEXT_APP_REPLAY_OPENING,
 };
 
@@ -217,20 +213,19 @@ typedef struct TitleScreenAppData {
 } TitleScreenAppData;
 
 extern const ApplicationManagerTemplate Unk_020F8A48;
-extern const ApplicationManagerTemplate gStartMenuAppTemplate;
+extern const ApplicationManagerTemplate Unk_020F8AB4;
 extern const ApplicationManagerTemplate gOpeningCutsceneAppTemplate;
 
-void EnqueueApplication(FSOverlayID overlayID, const ApplicationManagerTemplate *template);
-static BOOL TitleScreen_Init(ApplicationManager *appMan, int *param1);
-static BOOL TitleScreen_Main(ApplicationManager *appMan, int *param1);
-static BOOL TitleScreen_Exit(ApplicationManager *appMan, int *param1);
+static BOOL TitleScreen_Init(ApplicationManager *appMan, int *state);
+static BOOL TitleScreen_Main(ApplicationManager *appMan, int *state);
+static BOOL TitleScreen_Exit(ApplicationManager *appMan, int *state);
 static void TitleScreen_VBlank(void *param);
 static void TitleScreen_SetVRAMBanks(void);
 static void TitleScreen_InitBgs(TitleScreenAppData *appData);
 static void TitleScreen_ReleaseBgs(TitleScreenAppData *appData);
 static void ov77_021D11CC(TitleScreenAppData *appData);
 static void ov77_021D11FC(TitleScreenAppData *appData);
-static void TitleScreen_Load3DGfx(TitleScreenGraphics *gfx, int param1, int param2, enum HeapId param3);
+static void TitleScreen_Load3DGfx(TitleScreenGraphics *gfx, int giratinaModel, int giratinaTexAnim, enum HeapId heapID);
 static void TitleScreen_Release3DGfx(TitleScreenGraphics *gfx);
 static void TitleScreen_Render(TitleScreen *titleScreen, TitleScreenGraphics *gfx);
 static BOOL TitleScreen_ShouldSkipIntro(void);
@@ -388,7 +383,7 @@ static BOOL TitleScreen_Main(ApplicationManager *appMan, int *state)
 
         appData->titleScreenTimer++;
 
-        if (KEY_PRESSED(PAD_BUTTON_A) || KEY_PRESSED(PAD_BUTTON_START)) {
+        if (JOY_NEW_ONLY(PAD_BUTTON_A) || JOY_NEW_ONLY(PAD_BUTTON_START)) {
             appData->nextApp = NEXT_APP_START_MENU;
             Sound_FadeOutBGM(0, 60);
             Sound_PlayPokemonCry(SPECIES_GIRATINA, 1);
@@ -397,15 +392,15 @@ static BOOL TitleScreen_Main(ApplicationManager *appMan, int *state)
             break;
         }
 
-        if (KEY_HELD(PAD_BUTTON_B | PAD_KEY_UP | PAD_BUTTON_SELECT)) {
-            appData->nextApp = 2;
+        if (JOY_HELD_ONLY(PAD_BUTTON_B | PAD_KEY_UP | PAD_BUTTON_SELECT)) {
+            appData->nextApp = NEXT_APP_CLEAR_SAVE_FILE;
             StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_BLACK, 6, 1, appData->heapID);
             *state = TITLE_SCREEN_APP_STATE_CLEANUP;
             break;
         }
 
         if (appData->titleScreenTimer > TITLE_SCREEN_REPLAY_OPENING_FRAMES) {
-            appData->nextApp = 3;
+            appData->nextApp = NEXT_APP_REPLAY_OPENING;
             gSystem.unk_6C = TRUE;
 
             GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, FALSE);
@@ -470,9 +465,9 @@ static BOOL TitleScreen_Exit(ApplicationManager *appMan, int *state)
     switch (nextApp) {
     default:
     case NEXT_APP_START_MENU:
-        EnqueueApplication(FS_OVERLAY_ID_NONE, &gStartMenuAppTemplate);
+        EnqueueApplication(FS_OVERLAY_ID_NONE, &Unk_020F8AB4);
         break;
-    case NEXT_APP_2:
+    case NEXT_APP_CLEAR_SAVE_FILE:
         EnqueueApplication(FS_OVERLAY_ID_NONE, &Unk_020F8A48);
         break;
     case NEXT_APP_REPLAY_OPENING:
@@ -510,7 +505,7 @@ static void TitleScreen_SetVRAMBanks(void)
 
 static BOOL TitleScreen_ShouldSkipIntro(void)
 {
-    if (KEY_PRESSED(PAD_BUTTON_A) || KEY_PRESSED(PAD_BUTTON_START) || KEY_PRESSED(PAD_BUTTON_SELECT)) {
+    if (JOY_NEW_ONLY(PAD_BUTTON_A) || JOY_NEW_ONLY(PAD_BUTTON_START) || JOY_NEW_ONLY(PAD_BUTTON_SELECT)) {
         return TRUE;
     }
 
@@ -615,16 +610,16 @@ static void TitleScreen_LoadCutscene3DGfx(TitleScreenGraphics *gfx, enum HeapId 
     gfx->introCamFovStep = INTRO_CAM_FOV_STEP_START;
 }
 
-static void TitleScreen_Release3DGfx(TitleScreenGraphics *param0)
+static void TitleScreen_Release3DGfx(TitleScreenGraphics *gfx)
 {
-    TitleScreen_ReleaseIntro3DGfx(param0);
+    TitleScreen_ReleaseIntro3DGfx(gfx);
 
-    NNS_G3dFreeAnmObj(&param0->allocator, param0->giratinaTexAnim);
-    NNS_G3dFreeAnmObj(&param0->allocator, param0->giratinaAnim);
+    NNS_G3dFreeAnmObj(&gfx->allocator, gfx->giratinaTexAnim);
+    NNS_G3dFreeAnmObj(&gfx->allocator, gfx->giratinaAnim);
 
-    Heap_Free(param0->giratinaTexAnimRes);
-    Heap_Free(param0->giratinaAnimRes);
-    Heap_Free(param0->giratinaModelRes);
+    Heap_Free(gfx->giratinaTexAnimRes);
+    Heap_Free(gfx->giratinaAnimRes);
+    Heap_Free(gfx->giratinaModelRes);
 }
 
 static void TitleScreen_ReleaseIntro3DGfx(TitleScreenGraphics *gfx)
@@ -1300,7 +1295,7 @@ static BOOL TitleScreen_ReleaseGfx(TitleScreen *titleScreen, BgConfig *bgConfig,
     return TRUE;
 }
 
-static void TitleScreen_Load2DGfx(BgConfig *bgConfig, enum HeapId heapID, TitleScreen *param2)
+static void TitleScreen_Load2DGfx(BgConfig *bgConfig, enum HeapId heapID, TitleScreen *titleScreen)
 {
     // Borders
     Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, top_screen_border_NCGR, bgConfig, TITLE_SCREEN_LAYER_LOGO_BG, 0, 0, FALSE, heapID);
@@ -1338,14 +1333,14 @@ static void TitleScreen_Load2DGfx(BgConfig *bgConfig, enum HeapId heapID, TitleS
 
     Strbuf *buffer = Strbuf_Init(64, heapID);
 
-    Window_AddFromTemplate(bgConfig, &param2->pressStartWindow, &sPressStartWindowTemplate);
-    Window_FillRectWithColor(&param2->pressStartWindow, 0, 0, 0, TILES_TO_PIXELS(28), TILES_TO_PIXELS(2));
+    Window_AddFromTemplate(bgConfig, &titleScreen->pressStartWindow, &sPressStartWindowTemplate);
+    Window_FillRectWithColor(&titleScreen->pressStartWindow, 0, 0, 0, TILES_TO_PIXELS(28), TILES_TO_PIXELS(2));
     MessageLoader_GetStrbuf(msgLoader, TitleScreen_Text_PressStart, buffer);
 
-    u32 xpos = Font_CalcCenterAlignment(FONT_SYSTEM, buffer, 1, param2->pressStartWindow.width * TILE_HEIGHT_PIXELS);
+    u32 xpos = Font_CalcCenterAlignment(FONT_SYSTEM, buffer, 1, titleScreen->pressStartWindow.width * TILE_HEIGHT_PIXELS);
 
     Text_AddPrinterWithParamsColorAndSpacing(
-        &param2->pressStartWindow,
+        &titleScreen->pressStartWindow,
         FONT_SYSTEM,
         buffer,
         xpos,
@@ -1359,15 +1354,15 @@ static void TitleScreen_Load2DGfx(BgConfig *bgConfig, enum HeapId heapID, TitleS
     Strbuf_Free(buffer);
     MessageLoader_Free(msgLoader);
 
-    u16 fgColor = GX_RGB(21, 0, 0);
+    u16 letterColor = GX_RGB(21, 0, 0);
     u16 shadowColor = GX_RGB(21, 0, 0);
-    Bg_LoadPalette(TITLE_SCREEN_LAYER_PRESS_START, &fgColor, sizeof(u16), PLTT_OFFSET(2) + 1 * sizeof(u16));
+    Bg_LoadPalette(TITLE_SCREEN_LAYER_PRESS_START, &letterColor, sizeof(u16), PLTT_OFFSET(2) + 1 * sizeof(u16));
     Bg_LoadPalette(TITLE_SCREEN_LAYER_PRESS_START, &shadowColor, sizeof(u16), PLTT_OFFSET(2) + 2 * sizeof(u16));
 }
 
-static void TitleScreen_Release2DGfx(BgConfig *bgConfig, enum HeapId heapID, TitleScreen *param2)
+static void TitleScreen_Release2DGfx(BgConfig *bgConfig, enum HeapId heapID, TitleScreen *titleScreen)
 {
-    Window_Remove(&param2->pressStartWindow);
+    Window_Remove(&titleScreen->pressStartWindow);
 }
 
 static void TitleScreen_UpdateLight1(TitleScreen *titleScreen)

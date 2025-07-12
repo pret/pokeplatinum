@@ -20,10 +20,12 @@ enum SleepType {
     SLEEP_TYPE_SAVE_DATA = 1,
 };
 
-#define PAD_KEY             (PAD_KEY_UP | PAD_KEY_DOWN | PAD_KEY_LEFT | PAD_KEY_RIGHT)
-#define JOY_NEW(buttons)    (gSystem.pressedKeys & (buttons))
-#define JOY_HELD(buttons)   (gSystem.heldKeys & (buttons))
-#define JOY_REPEAT(buttons) (gSystem.pressedKeysRepeatable & (buttons))
+#define PAD_KEY                (PAD_KEY_UP | PAD_KEY_DOWN | PAD_KEY_LEFT | PAD_KEY_RIGHT)
+#define JOY_NEW(buttons)       (gSystem.pressedKeys & (buttons))
+#define JOY_HELD(buttons)      (gSystem.heldKeys & (buttons))
+#define JOY_REPEAT(buttons)    (gSystem.pressedKeysRepeatable & (buttons))
+#define JOY_NEW_ONLY(buttons)  (JOY_NEW(buttons) == (buttons))
+#define JOY_HELD_ONLY(buttons) (JOY_HELD(buttons) == (buttons))
 
 typedef struct System {
     Callback vblankCallback;
