@@ -50,7 +50,7 @@ static u8 ov5_021D481C(const int param0);
 
 UnkStruct_ov5_021D432C *ov5_021D431C(void)
 {
-    UnkStruct_ov5_021D432C *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021D432C));
+    UnkStruct_ov5_021D432C *v0 = Heap_AllocAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021D432C));
     v0->unk_00 = 0;
 
     return v0;
@@ -818,7 +818,7 @@ void ov5_021D4CEC(FieldSystem *fieldSystem, const u8 param1)
 
 void ov5_021D4D48(FieldSystem *fieldSystem, const u8 param1)
 {
-    u8 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(u8));
+    u8 *v0 = Heap_AllocAtEnd(HEAP_ID_FIELD, sizeof(u8));
 
     *v0 = param1;
     FieldTask_InitCall(fieldSystem->task, ov5_021D4BC8, v0);
@@ -865,7 +865,7 @@ void ov5_021D4D78(const int param0, const int param1, const int param2, FieldSys
 
 UnkStruct_ov5_021D4E00 *ov5_021D4E00(void)
 {
-    UnkStruct_ov5_021D4E00 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021D4E00));
+    UnkStruct_ov5_021D4E00 *v0 = Heap_AllocAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021D4E00));
     v0->unk_00 = 0;
 
     return v0;

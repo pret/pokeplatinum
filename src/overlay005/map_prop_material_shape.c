@@ -9,7 +9,7 @@
 
 MapPropMaterialShape *MapPropMaterialShape_Alloc(void)
 {
-    MapPropMaterialShape *propMatShp = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(MapPropMaterialShape));
+    MapPropMaterialShape *propMatShp = Heap_Alloc(HEAP_ID_FIELD, sizeof(MapPropMaterialShape));
     GF_ASSERT(propMatShp != NULL);
 
     return propMatShp;
@@ -32,10 +32,10 @@ void MapPropMaterialShape_Load(const char *path, MapPropMaterialShape *propMatSh
         int idsLocatorsSize = sizeof(MapPropMaterialShapeIDsLocator) * idsLocatorsCount;
         int idsSize = sizeof(MapPropMaterialShapeIDs) * idsCount;
 
-        propMatShp->idsLocators = Heap_AllocFromHeap(HEAP_ID_FIELD, idsLocatorsSize);
+        propMatShp->idsLocators = Heap_Alloc(HEAP_ID_FIELD, idsLocatorsSize);
         GF_ASSERT(propMatShp->idsLocators != NULL);
 
-        propMatShp->ids = Heap_AllocFromHeap(HEAP_ID_FIELD, idsSize);
+        propMatShp->ids = Heap_Alloc(HEAP_ID_FIELD, idsSize);
         GF_ASSERT(propMatShp->ids != NULL);
 
         readLength = FS_ReadFile(&file, propMatShp->idsLocators, idsLocatorsSize);

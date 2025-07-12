@@ -41,7 +41,7 @@ UnkStruct_ov5_021D5CB0 *ov5_021D5CB0(void)
     int v0;
     UnkStruct_ov5_021D5CB0 *v1 = NULL;
 
-    v1 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021D5CB0));
+    v1 = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021D5CB0));
 
     GF_ASSERT(v1);
 

@@ -120,7 +120,7 @@ static void *sub_02013388(enum NarcID narcID, int param1, enum HeapId heapID, in
 {
     void *v0;
     int v1 = ((param5 * param6) * ((8 / 2) * 8));
-    v0 = Heap_AllocFromHeap(heapID, v1);
+    v0 = Heap_Alloc(heapID, v1);
 
     sub_02013338(narcID, param1, heapID, param3, param4, param5, param6, v0, param7, param8, param9, param10);
 
@@ -177,7 +177,7 @@ static void *sub_020134A8(enum NarcID narcID, int param1, enum HeapId heapID, in
 {
     void *v0;
     int v1 = ((param5 * param6) * ((8 / 2) * 8));
-    v0 = Heap_AllocFromHeap(heapID, v1);
+    v0 = Heap_Alloc(heapID, v1);
 
     sub_020133D4(narcID, param1, heapID, param3, param4, param5, param6, v0);
 
@@ -259,7 +259,7 @@ void *sub_0201363C(enum NarcID narcID, int param1, enum HeapId heapID)
 {
     void *v0 = NULL;
     int v1 = (10 * 10 * ((8 / 2) * 8));
-    v0 = Heap_AllocFromHeap(heapID, v1);
+    v0 = Heap_Alloc(heapID, v1);
 
     sub_02013610(narcID, param1, heapID, v0);
 
@@ -274,7 +274,7 @@ void *sub_02013660(enum NarcID narcID, int param1, enum HeapId heapID)
     int v3;
     BOOL v4;
 
-    v2 = Heap_AllocFromHeap(heapID, 0x20);
+    v2 = Heap_Alloc(heapID, 0x20);
     v1 = NARC_AllocAndReadWholeMemberByIndexPair(narcID, param1, heapID);
     v4 = NNS_G2dGetUnpackedPaletteData(v1, &v0);
 

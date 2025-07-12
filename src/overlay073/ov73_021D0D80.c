@@ -147,8 +147,8 @@ int ov73_021D0D80(ApplicationManager *appMan, int *param1)
     v0->unk_8A = 0;
     v0->unk_8B = 0;
     v0->unk_90 = 0;
-    v0->unk_B8 = Heap_AllocFromHeap(childHeapID, 0x20);
-    v0->unk_BC = Heap_AllocFromHeap(childHeapID, 0x20);
+    v0->unk_B8 = Heap_Alloc(childHeapID, 0x20);
+    v0->unk_BC = Heap_Alloc(childHeapID, 0x20);
 
     return 1;
 }
@@ -1104,7 +1104,7 @@ static void ov73_021D1B80(UnkStruct_ov73_021D1058 *param0)
 
     BuildPokemonSpriteTemplate(&v0, 427, 0, 2, 0, 0, 0);
 
-    v1 = Heap_AllocFromHeap(param0->heapID, (10 * 10) * 2);
+    v1 = Heap_Alloc(param0->heapID, (10 * 10) * 2);
 
     {
         int v8;

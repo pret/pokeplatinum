@@ -243,6 +243,6 @@ u16 CalcCRC16Checksum(const void *data, u32 dataLen)
 void InitCRC16Table(enum HeapId heapID)
 {
     GF_ASSERT(sCRC16Table == NULL);
-    sCRC16Table = Heap_AllocFromHeap(heapID, sizeof(MATHCRC16Table));
+    sCRC16Table = Heap_Alloc(heapID, sizeof(MATHCRC16Table));
     MATH_CRC16CCITTInitTable(sCRC16Table);
 }

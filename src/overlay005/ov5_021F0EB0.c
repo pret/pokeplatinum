@@ -37,7 +37,7 @@ static void (*const Unk_ov5_0220020C[4])(UnkStruct_ov5_021F0FB8 *);
 SysTask *ov5_021F0EB0(FieldSystem *fieldSystem, u32 heapID)
 {
     SysTask *v0;
-    UnkStruct_ov5_021F0FB8 *v1 = Heap_AllocFromHeapAtEnd(heapID, (sizeof(UnkStruct_ov5_021F0FB8)));
+    UnkStruct_ov5_021F0FB8 *v1 = Heap_AllocAtEnd(heapID, (sizeof(UnkStruct_ov5_021F0FB8)));
 
     memset(v1, 0, (sizeof(UnkStruct_ov5_021F0FB8)));
 

@@ -560,7 +560,7 @@ void ov23_02241E6C(void)
     GF_ASSERT(!Unk_ov23_02257744->unk_460);
     GF_ASSERT(!Unk_ov23_02257744->unk_45C);
 
-    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov23_02241E4C));
+    v0 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov23_02241E4C));
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_02241E4C));
     v0->unk_02 = 100;
 

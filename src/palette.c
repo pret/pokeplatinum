@@ -26,7 +26,7 @@ static void SysTask_FadePalette(SysTask *task, void *data);
 
 PaletteData *PaletteData_New(enum HeapId heapID)
 {
-    PaletteData *paletteData = Heap_AllocFromHeap(heapID, sizeof(PaletteData));
+    PaletteData *paletteData = Heap_Alloc(heapID, sizeof(PaletteData));
     MI_CpuClear8(paletteData, sizeof(PaletteData));
 
     return paletteData;
@@ -46,8 +46,8 @@ void PaletteData_InitBuffer(PaletteData *paletteData, enum PaletteBufferID buffe
 
 void PaletteData_AllocBuffer(PaletteData *paletteData, enum PaletteBufferID bufferID, u32 size, u32 heapID)
 {
-    void *unfaded = Heap_AllocFromHeap(heapID, size);
-    void *faded = Heap_AllocFromHeap(heapID, size);
+    void *unfaded = Heap_Alloc(heapID, size);
+    void *faded = Heap_Alloc(heapID, size);
     PaletteData_InitBuffer(paletteData, bufferID, unfaded, faded, size);
 }
 

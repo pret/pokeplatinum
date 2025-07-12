@@ -27,7 +27,7 @@ static u32 sub_0207CC00(SaveData *saveData);
 
 UnkStruct_0207CB08 *sub_0207CB08(u8 heapID)
 {
-    UnkStruct_0207CB08 *v0 = (UnkStruct_0207CB08 *)Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0207CB08));
+    UnkStruct_0207CB08 *v0 = (UnkStruct_0207CB08 *)Heap_Alloc(heapID, sizeof(UnkStruct_0207CB08));
     memset(v0, 0, sizeof(UnkStruct_0207CB08));
     return v0;
 }

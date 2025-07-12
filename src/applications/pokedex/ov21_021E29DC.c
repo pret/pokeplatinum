@@ -204,7 +204,7 @@ static UnkStruct_ov21_021E2BA8 *ov21_021E2A5C(enum HeapId heapID, PokedexApp *pa
     UnkStruct_ov21_021E2BA8 *v0;
     UnkStruct_ov21_021E68F4 *v1;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021E2BA8));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov21_021E2BA8));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021E2BA8));
@@ -245,7 +245,7 @@ static PokedexGraphicData **ov21_021E2AE0(enum HeapId heapID, PokedexApp *param1
     PokedexGraphicData **v0;
     UnkStruct_ov21_021E68F4 *v1;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(PokedexGraphicData **));
+    v0 = Heap_Alloc(heapID, sizeof(PokedexGraphicData **));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(PokedexGraphicData **));
@@ -260,7 +260,7 @@ static UnkStruct_ov21_021D4660 *ov21_021E2B08(enum HeapId heapID, PokedexApp *pa
     UnkStruct_ov21_021D4660 *v0;
     int v1 = ov21_021E2C20();
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021D4660) * v1);
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov21_021D4660) * v1);
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021D4660) * v1);
@@ -356,7 +356,7 @@ static int ov21_021E2C64(void *graphics, PokedexGraphicsManager *graphicsMan, co
 
     switch (graphicsMan->state) {
     case 0:
-        graphicsMan->pageGraphics = Heap_AllocFromHeap(graphicsMan->heapID, sizeof(UnkStruct_ov21_021E326C));
+        graphicsMan->pageGraphics = Heap_Alloc(graphicsMan->heapID, sizeof(UnkStruct_ov21_021E326C));
         memset(graphicsMan->pageGraphics, 0, sizeof(UnkStruct_ov21_021E326C));
         v3 = graphicsMan->pageGraphics;
         v3->unk_00 = v0->unk_08;
@@ -798,7 +798,7 @@ static UnkStruct_ov21_021E342C *ov21_021E33C4(enum HeapId heapID, PokedexApp *pa
     UnkStruct_ov21_021E342C *v0;
     UnkStruct_ov21_021E68F4 *v1;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021E342C));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov21_021E342C));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021E342C));
@@ -816,7 +816,7 @@ static PokedexGraphicData **ov21_021E3400(enum HeapId heapID, PokedexApp *param1
     PokedexGraphicData **v0;
     UnkStruct_ov21_021E68F4 *v1;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(PokedexGraphicData **));
+    v0 = Heap_Alloc(heapID, sizeof(PokedexGraphicData **));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(PokedexGraphicData **));
@@ -859,7 +859,7 @@ static int ov21_021E345C(PokedexDataManager *dataMan, void *data)
     UnkStruct_ov21_021E37B4 *v1 = dataMan->pageData;
     int v2;
 
-    v1 = Heap_AllocFromHeap(dataMan->heapID, sizeof(UnkStruct_ov21_021E37B4));
+    v1 = Heap_Alloc(dataMan->heapID, sizeof(UnkStruct_ov21_021E37B4));
     memset(v1, 0, sizeof(UnkStruct_ov21_021E37B4));
 
     ov21_021E3688(v1, v0, dataMan->heapID);
@@ -933,7 +933,7 @@ static int ov21_021E3540(void *graphics, PokedexGraphicsManager *graphicsMan, co
 
     switch (graphicsMan->state) {
     case 0:
-        graphicsMan->pageGraphics = Heap_AllocFromHeap(graphicsMan->heapID, sizeof(UnkStruct_ov21_021E3900));
+        graphicsMan->pageGraphics = Heap_Alloc(graphicsMan->heapID, sizeof(UnkStruct_ov21_021E3900));
         memset(graphicsMan->pageGraphics, 0, sizeof(UnkStruct_ov21_021E3900));
         graphicsMan->state++;
         break;
@@ -1015,7 +1015,7 @@ static int ov21_021E3604(void *graphics, PokedexGraphicsManager *graphicsMan, co
 
 static void ov21_021E3688(UnkStruct_ov21_021E37B4 *param0, UnkStruct_ov21_021E342C *param1, enum HeapId heapID)
 {
-    param0->unk_04 = Heap_AllocFromHeap(heapID, sizeof(TouchScreenHitTable) * 6);
+    param0->unk_04 = Heap_Alloc(heapID, sizeof(TouchScreenHitTable) * 6);
 
     ov21_021D154C(&param0->unk_04[0], 24 - (32 / 2), 24 + (32 / 2), 28 - (40 / 2), 28 + (40 / 2));
     ov21_021D154C(&param0->unk_04[5], 24 - (32 / 2), 24 + (32 / 2), 228 - (40 / 2), 228 + (40 / 2));
@@ -1368,7 +1368,7 @@ static void ov21_021E3C6C(UnkStruct_ov21_021E37B4 *param0, UnkStruct_ov21_021E34
 {
     int v0;
 
-    param0->unk_18 = Heap_AllocFromHeap(heapID, sizeof(PokedexCursorData) * 6);
+    param0->unk_18 = Heap_Alloc(heapID, sizeof(PokedexCursorData) * 6);
 
     PokedexPanel_InitCursorData(&param0->unk_18[0], 28, 24, 24, 16, 0, 0, 0);
     PokedexPanel_InitCursorData(&param0->unk_18[1], 68, 24, 24, 16, 0, 0, 1);

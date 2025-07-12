@@ -435,7 +435,7 @@ static void DisableScreenHBlank(ScreenFadeHBlanks *hblanks, enum DSScreen screen
 
 void RequestEnableScreenHBlank(ScreenFadeHBlanks *hblanks, void *data, Callback callback, enum DSScreen screen, enum HeapId heapID)
 {
-    EnableHBlankTemplate *template = Heap_AllocFromHeapAtEnd(heapID, sizeof(EnableHBlankTemplate));
+    EnableHBlankTemplate *template = Heap_AllocAtEnd(heapID, sizeof(EnableHBlankTemplate));
     template->hblanks = hblanks;
     template->data = data;
     template->callback = callback;
@@ -446,7 +446,7 @@ void RequestEnableScreenHBlank(ScreenFadeHBlanks *hblanks, void *data, Callback 
 
 void RequestDisableScreenHBlank(ScreenFadeHBlanks *hblanks, enum DSScreen screen, enum HeapId heapID)
 {
-    DisableHBlankTemplate *template = Heap_AllocFromHeapAtEnd(heapID, sizeof(DisableHBlankTemplate));
+    DisableHBlankTemplate *template = Heap_AllocAtEnd(heapID, sizeof(DisableHBlankTemplate));
     template->hblanks = hblanks;
     template->screen = screen;
 

@@ -551,7 +551,7 @@ static BOOL ov7_0224BC74(FieldTask *param0)
 
 static UnkStruct_ov7_0224B4E8 *ov7_0224BE10(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov7_0224B4E8 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov7_0224B4E8));
+    UnkStruct_ov7_0224B4E8 *v0 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov7_0224B4E8));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov7_0224B4E8));
 

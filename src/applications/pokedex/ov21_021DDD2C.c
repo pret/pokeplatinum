@@ -131,7 +131,7 @@ void ov21_021DDD8C(UnkStruct_ov21_021E68F4 *param0)
 
 static UnkStruct_ov21_021DDDA4 *ov21_021DDDA4(enum HeapId heapID, PokedexApp *param1)
 {
-    UnkStruct_ov21_021DDDA4 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021DDDA4));
+    UnkStruct_ov21_021DDDA4 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov21_021DDDA4));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021DDDA4));
@@ -145,7 +145,7 @@ static UnkStruct_ov21_021DDDA4 *ov21_021DDDA4(enum HeapId heapID, PokedexApp *pa
 
 static PokedexGraphicData **ov21_021DDDF0(enum HeapId heapID, PokedexApp *param1)
 {
-    PokedexGraphicData **v0 = Heap_AllocFromHeap(heapID, sizeof(PokedexGraphicData **));
+    PokedexGraphicData **v0 = Heap_Alloc(heapID, sizeof(PokedexGraphicData **));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(PokedexGraphicData **));
@@ -187,7 +187,7 @@ static int ov21_021DDE4C(PokedexDataManager *dataMan, void *data)
     UnkStruct_ov21_021DDDA4 *v0 = data;
     UnkStruct_ov21_021DDE4C *v1;
 
-    v1 = Heap_AllocFromHeap(dataMan->heapID, sizeof(UnkStruct_ov21_021DDE4C));
+    v1 = Heap_Alloc(dataMan->heapID, sizeof(UnkStruct_ov21_021DDE4C));
 
     GF_ASSERT(v1);
     memset(v1, 0, sizeof(UnkStruct_ov21_021DDE4C));
@@ -240,7 +240,7 @@ static int ov21_021DDEC8(void *graphics, PokedexGraphicsManager *graphicsMan, co
 
     switch (graphicsMan->state) {
     case 0:
-        graphicsMan->pageGraphics = Heap_AllocFromHeap(graphicsMan->heapID, sizeof(UnkStruct_ov21_021DDEC8));
+        graphicsMan->pageGraphics = Heap_Alloc(graphicsMan->heapID, sizeof(UnkStruct_ov21_021DDEC8));
         memset(graphicsMan->pageGraphics, 0, sizeof(UnkStruct_ov21_021DDEC8));
         graphicsMan->state++;
         break;
@@ -444,7 +444,7 @@ static void ov21_021DE2E0(UnkStruct_ov21_021DDEC8 *param0)
 
 static void ov21_021DE2EC(UnkStruct_ov21_021DDE4C *param0, UnkStruct_ov21_021DDDA4 *param1, enum HeapId heapID)
 {
-    param0->unk_14 = Heap_AllocFromHeap(heapID, sizeof(TouchScreenHitTable) * 1);
+    param0->unk_14 = Heap_Alloc(heapID, sizeof(TouchScreenHitTable) * 1);
     param0->unk_14[0].circle.code = TOUCHSCREEN_USE_CIRCLE;
     param0->unk_14[0].circle.x = param0->unk_00;
     param0->unk_14[0].circle.y = param0->unk_04;

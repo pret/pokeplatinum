@@ -706,7 +706,7 @@ void MainMenuUtil_LoadGiftSprite(BgConfig *bgConfig, WonderCard *wonderCard)
 void MainMenuUtil_EncryptWonderCard(MysteryGiftEventData *eventData, WonderCard *wonderCard, enum HeapId heapID)
 {
 
-    MATHCRC16Table *crcTable = Heap_AllocFromHeap(heapID, sizeof(MATHCRC16Table));
+    MATHCRC16Table *crcTable = Heap_Alloc(heapID, sizeof(MATHCRC16Table));
     MATH_CRC16InitTable(crcTable);
 
     u16 headerCRC = MATH_CalcCRC16(crcTable, &eventData->header, sizeof(MysteryGiftEventHeader));
@@ -724,7 +724,7 @@ void MainMenuUtil_EncryptWonderCard(MysteryGiftEventData *eventData, WonderCard 
         magic = key[i];
     }
 
-    CRYPTORC4Context *cryptoCtx = Heap_AllocFromHeap(heapID, sizeof(CRYPTORC4Context));
+    CRYPTORC4Context *cryptoCtx = Heap_Alloc(heapID, sizeof(CRYPTORC4Context));
 
     CRYPTO_RC4Init(cryptoCtx, key, sizeof(key));
     CRYPTO_RC4Encrypt(cryptoCtx, &eventData->wonderCard, sizeof(WonderCard), wonderCard);
@@ -734,7 +734,7 @@ void MainMenuUtil_EncryptWonderCard(MysteryGiftEventData *eventData, WonderCard 
 
 void MainMenuUtil_DecryptReceivedWonderCard(MysteryGiftEventData *eventData, WonderCard *wonderCard, enum HeapId heapID)
 {
-    MATHCRC16Table *crcTable = Heap_AllocFromHeap(heapID, sizeof(MATHCRC16Table));
+    MATHCRC16Table *crcTable = Heap_Alloc(heapID, sizeof(MATHCRC16Table));
     MATH_CRC16InitTable(crcTable);
 
     u16 headerCRC = MATH_CalcCRC16(crcTable, &eventData->header, sizeof(MysteryGiftEventHeader));
@@ -753,7 +753,7 @@ void MainMenuUtil_DecryptReceivedWonderCard(MysteryGiftEventData *eventData, Won
         magic = key[i];
     }
 
-    CRYPTORC4Context *cryptoCtx = Heap_AllocFromHeap(heapID, sizeof(CRYPTORC4Context));
+    CRYPTORC4Context *cryptoCtx = Heap_Alloc(heapID, sizeof(CRYPTORC4Context));
 
     CRYPTO_RC4Init(cryptoCtx, key, sizeof(key));
     CRYPTO_RC4Encrypt(cryptoCtx, &eventData->wonderCard, sizeof(WonderCard), wonderCard);

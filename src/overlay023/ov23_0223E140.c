@@ -1646,7 +1646,7 @@ static void ov23_0223F70C(FieldSystem *fieldSystem)
     void *journalEntryLocationEvent = JournalEntry_CreateEventDugUnderground(HEAP_ID_FIELDMAP);
 
     JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
-    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov23_0223EE80));
+    v0 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov23_0223EE80));
 
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_0223EE80));
     v0->fieldSystem = fieldSystem;
@@ -2913,7 +2913,7 @@ void ov23_022412F0(void)
     GF_ASSERT(!Unk_ov23_02257740->unk_8D0);
     GF_ASSERT(!Unk_ov23_02257740->unk_8C4);
 
-    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov23_022412CC));
+    v0 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov23_022412CC));
 
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_022412CC));
     Link_Message(71);

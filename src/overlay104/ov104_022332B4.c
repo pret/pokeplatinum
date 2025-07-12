@@ -110,7 +110,7 @@ BOOL ov104_02233324(UnkStruct_ov104_0222E930 *param0)
     };
 
     v1 = sub_0209B978(param0->unk_00->unk_00);
-    v2 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov104_02234130));
+    v2 = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov104_02234130));
 
     MI_CpuClear8(v2, sizeof(UnkStruct_ov104_02234130));
 
@@ -174,7 +174,7 @@ BOOL ov104_022333F8(UnkStruct_ov104_0222E930 *param0)
         v1->unk_4DC[v0] = 0;
     }
 
-    v2 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov104_02234130));
+    v2 = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov104_02234130));
     MI_CpuClear8(v2, sizeof(UnkStruct_ov104_02234130));
 
     v2->saveData = v3->saveData;

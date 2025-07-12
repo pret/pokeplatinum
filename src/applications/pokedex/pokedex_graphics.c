@@ -431,7 +431,7 @@ static void *LoadGraphicsFile(PokedexGraphicData *pokedexGraphicData, u32 member
 
     if (graphicFile != NULL) {
         if (isCompressed) {
-            void *uncompressedGraphicFile = Heap_AllocFromHeap(heapID, MI_GetUncompressedSize(graphicFile));
+            void *uncompressedGraphicFile = Heap_Alloc(heapID, MI_GetUncompressedSize(graphicFile));
 
             if (uncompressedGraphicFile) {
                 MI_UncompressLZ8(graphicFile, uncompressedGraphicFile);

@@ -17,7 +17,7 @@ ParticleSystem *ov11_0221F840(int heapID)
     void *v1;
     Camera *camera;
 
-    v1 = Heap_AllocFromHeap(heapID, 0x4800);
+    v1 = Heap_Alloc(heapID, 0x4800);
     v0 = ParticleSystem_New(ov11_0221F914, ov11_0221F930, v1, 0x4800, 1, heapID);
     camera = ParticleSystem_GetCamera(v0);
 
@@ -34,7 +34,7 @@ ParticleSystem *ov11_0221F888(int heapID)
     void *v1;
     Camera *camera;
 
-    v1 = Heap_AllocFromHeap(heapID, 0x4200);
+    v1 = Heap_Alloc(heapID, 0x4200);
 
     if (v1 == NULL) {
         return NULL;

@@ -101,7 +101,7 @@ void MessageBank_GetStrbuf(const MessageBank *bank, u32 entryID, Strbuf *strbuf)
         DecodeEntry(&entry, entryID, bank->seed);
 
         u32 size = entry.length * sizeof(charcode_t);
-        charcode_t *cstr = Heap_AllocFromHeapAtEnd(HEAP_ID_SYSTEM, size);
+        charcode_t *cstr = Heap_AllocAtEnd(HEAP_ID_SYSTEM, size);
         if (cstr) {
             MI_CpuCopy16(EntryOffsetAddress(bank, entry.offset), cstr, size);
             DecodeString(cstr, entry.length, entryID, bank->seed);
@@ -125,7 +125,7 @@ Strbuf *MessageBank_GetNewStrbuf(const MessageBank *bank, u32 entryID, u32 heapI
         DecodeEntry(&entry, entryID, bank->seed);
 
         u32 size = entry.length * sizeof(u16);
-        charcode_t *cstr = Heap_AllocFromHeapAtEnd(heapID, size);
+        charcode_t *cstr = Heap_AllocAtEnd(heapID, size);
         if (cstr) {
             MI_CpuCopy16(EntryOffsetAddress(bank, entry.offset), cstr, size);
             DecodeString(cstr, entry.length, entryID, bank->seed);
@@ -167,7 +167,7 @@ void MessageBank_GetStrbufFromHandle(NARC *narc, u32 bankID, u32 entryID, u32 he
         DecodeEntry(&entry, entryID, bank.seed);
 
         u32 size = entry.length * sizeof(charcode_t);
-        charcode_t *cstr = Heap_AllocFromHeapAtEnd(heapID, size);
+        charcode_t *cstr = Heap_AllocAtEnd(heapID, size);
         if (cstr) {
             NARC_ReadFromMember(narc, bankID, entry.offset, size, cstr);
             DecodeString(cstr, entry.length, entryID, bank.seed);
@@ -212,7 +212,7 @@ Strbuf *MessageBank_GetNewStrbufFromHandle(NARC *narc, u32 bankID, u32 entryID, 
         Strbuf *strbuf = Strbuf_Init(entry.length, heapID);
         if (strbuf) {
             u32 size = entry.length * sizeof(charcode_t);
-            charcode_t *cstr = Heap_AllocFromHeapAtEnd(heapID, size);
+            charcode_t *cstr = Heap_AllocAtEnd(heapID, size);
 
             if (cstr) {
                 NARC_ReadFromMember(narc, bankID, entry.offset, size, cstr);
@@ -246,7 +246,7 @@ u32 MessageBank_NARCEntryCount(enum NarcID narcID, u32 bankID)
 
 MessageLoader *MessageLoader_Init(enum MessageLoaderType type, enum NarcID narcID, u32 bankID, u32 heapID)
 {
-    MessageLoader *loader = Heap_AllocFromHeapAtEnd(heapID, sizeof(MessageLoader));
+    MessageLoader *loader = Heap_AllocAtEnd(heapID, sizeof(MessageLoader));
 
     if (loader) {
         if (type == MESSAGE_LOADER_BANK_HANDLE) {

@@ -57,7 +57,7 @@ static void ov97_0222D04C(MysteryGiftAppData *param0)
 
     ov97_0222D2F8((void *)param0);
 
-    Unk_ov97_0223F1A4 = (UnkStruct_ov97_0223F1A4 *)Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sizeof(UnkStruct_ov97_0223F1A4));
+    Unk_ov97_0223F1A4 = (UnkStruct_ov97_0223F1A4 *)Heap_Alloc(HEAP_ID_COMMUNICATION, sizeof(UnkStruct_ov97_0223F1A4));
     MI_CpuFill8(Unk_ov97_0223F1A4, 0, sizeof(UnkStruct_ov97_0223F1A4));
 
     Unk_ov97_0223F1A4->unk_24 = 50;

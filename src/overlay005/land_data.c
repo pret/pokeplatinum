@@ -385,7 +385,7 @@ static void LandData_CalculateLoadedMapMatrixIndexes(const BOOL inDistortionWorl
 static void LandDataManager_NewLoadedMaps(LandDataManager *landDataMan)
 {
     for (u8 i = 0; i < QUADRANT_COUNT; i++) {
-        LoadedMap *loadedMap = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(LoadedMap));
+        LoadedMap *loadedMap = Heap_Alloc(HEAP_ID_FIELD, sizeof(LoadedMap));
         landDataMan->loadedMaps[i] = loadedMap;
         landDataMan->loadedMaps[i]->valid = FALSE;
 
@@ -406,7 +406,7 @@ static void LandDataManager_NewLoadedMaps(LandDataManager *landDataMan)
 void LandDataManager_DistortionWorldNewLoadedMapsWithoutAttributesAndModel(LandDataManager *landDataMan)
 {
     for (u8 i = 0; i < QUADRANT_COUNT; i++) {
-        LoadedMap *loadedMap = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(LoadedMap));
+        LoadedMap *loadedMap = Heap_Alloc(HEAP_ID_FIELD, sizeof(LoadedMap));
         landDataMan->loadedMaps[i] = loadedMap;
         landDataMan->loadedMaps[i]->valid = FALSE;
 
@@ -423,7 +423,7 @@ void LandDataManager_DistortionWorldNewLoadedMapsWithoutAttributesAndModel(LandD
 static void LandDataManager_NewLoadedMapsWithoutAttributes(LandDataManager *landDataMan)
 {
     for (u8 i = 0; i < QUADRANT_COUNT; i++) {
-        LoadedMap *loadedMap = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(LoadedMap));
+        LoadedMap *loadedMap = Heap_Alloc(HEAP_ID_FIELD, sizeof(LoadedMap));
         landDataMan->loadedMaps[i] = loadedMap;
         landDataMan->loadedMaps[i]->valid = FALSE;
 
@@ -459,7 +459,7 @@ static void LandDataHeader_Load(NARC *landDataNARC, const int landDataID, LandDa
     int bufferSize = sizeof(LandDataHeader);
 
     if (landDataNARC != NULL) {
-        buffer = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, bufferSize);
+        buffer = Heap_AllocAtEnd(HEAP_ID_FIELD, bufferSize);
         NARC_ReadFromMember(landDataNARC, landDataID, 0, bufferSize, buffer);
     } else {
         GF_ASSERT(FALSE);
@@ -1577,7 +1577,7 @@ LandDataManager *LandDataManager_New(MapMatrix *mapMatrix, AreaDataManager *area
 {
     BOOL allocBDHCFiles;
 
-    LandDataManager *landDataMan = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(LandDataManager));
+    LandDataManager *landDataMan = Heap_Alloc(HEAP_ID_FIELD, sizeof(LandDataManager));
     MI_CpuClear8(landDataMan, sizeof(LandDataManager));
 
     if (skipAttributes == FALSE) {
@@ -1956,7 +1956,7 @@ static void LandDataManager_LazyLoadMapModelTask(SysTask *sysTask, void *sysTask
 
 SysTask *LandDataManager_LazyLoadMapModel(NARC *landDataNARC, const int mapModelDataSize, NNSG3dRenderObj *mapRenderObj, NNSG3dResFileHeader **mapModelFile, NNSG3dResTex *mapTexture, BOOL *loadedMapValid, BOOL *loadTaskRunning)
 {
-    MapModelLoaderTaskContext *ctx = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(MapModelLoaderTaskContext));
+    MapModelLoaderTaskContext *ctx = Heap_AllocAtEnd(HEAP_ID_FIELD, sizeof(MapModelLoaderTaskContext));
 
     ctx->landDataNARC = landDataNARC;
     ctx->mapModelDataSize = mapModelDataSize;
@@ -2001,7 +2001,7 @@ NARC *LandDataManager_GetLandDataNARC(LandDataManager *landDataMan)
 
 LandDataManager *LandDataManager_DistortionWorldNew(MapMatrix *mapMatrix, AreaDataManager *areaDataMan, NARC *landDataNARC)
 {
-    LandDataManager *landDataMan = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(LandDataManager));
+    LandDataManager *landDataMan = Heap_Alloc(HEAP_ID_FIELD, sizeof(LandDataManager));
     MI_CpuClear8(landDataMan, sizeof(LandDataManager));
 
     landDataMan->loadedMapBufs = LoadedMapBuffers_NewWithHeapMapModelFiles(FALSE);

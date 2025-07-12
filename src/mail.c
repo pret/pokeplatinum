@@ -75,7 +75,7 @@ BOOL Mail_IsEmpty(Mail *mail)
 
 Mail *Mail_New(int heapID)
 {
-    Mail *mail = Heap_AllocFromHeapAtEnd(heapID, sizeof(Mail));
+    Mail *mail = Heap_AllocAtEnd(heapID, sizeof(Mail));
     Mail_Init(mail);
 
     return mail;

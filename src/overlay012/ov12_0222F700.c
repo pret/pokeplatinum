@@ -528,7 +528,7 @@ void ov12_0222F770(UnkStruct_ov12_0221FCDC *param0)
     int v2;
     UnkStruct_ov12_02225F6C v3;
 
-    v0 = Heap_AllocFromHeap(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_0222F700));
+    v0 = Heap_Alloc(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_0222F700));
 
     v0->unk_00 = param0;
     v0->unk_04 = ov12_022202EC(v0->unk_00);
@@ -626,7 +626,7 @@ void ov12_0222F9E4(UnkStruct_ov12_0221FCDC *param0)
     int v2;
     int v3;
 
-    v0 = Heap_AllocFromHeap(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_0222F700));
+    v0 = Heap_Alloc(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_0222F700));
 
     v0->unk_00 = param0;
     v0->unk_04 = 0;
@@ -814,7 +814,7 @@ void ov12_0222FE30(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, Sprite
     int v3;
     int v4;
 
-    v0 = Heap_AllocFromHeap(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_0222FC44));
+    v0 = Heap_Alloc(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_0222FC44));
 
     v0->unk_00 = param0;
     v0->unk_04 = param1;
@@ -917,7 +917,7 @@ static void ov12_02230018(SysTask *param0, void *param1)
 
 void ov12_022300C4(UnkStruct_ov12_0221FCDC *param0)
 {
-    UnkStruct_ov12_0222FF80 *v0 = Heap_AllocFromHeap(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_0222FF80));
+    UnkStruct_ov12_0222FF80 *v0 = Heap_Alloc(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_0222FF80));
 
     v0->unk_00 = param0;
     v0->unk_04 = ov12_022202EC(v0->unk_00);
@@ -1042,7 +1042,7 @@ void ov12_022303D0(UnkStruct_ov12_0221FCDC *param0)
     SysTask *v2;
     int v3;
 
-    v0 = Heap_AllocFromHeap(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_02230194));
+    v0 = Heap_Alloc(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_02230194));
     memset(v0, 0, sizeof(UnkStruct_ov12_02230194));
 
     v0->unk_00 = param0;
@@ -1194,7 +1194,7 @@ void ov12_02230754(UnkStruct_ov12_0221FCDC *param0)
     UnkStruct_ov12_02230540 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_02230540));
+    v0 = Heap_Alloc(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_02230540));
     memset(v0, 0, sizeof(UnkStruct_ov12_02230540));
 
     v0->unk_00 = param0;
@@ -1228,7 +1228,7 @@ void ov12_02230804(UnkStruct_ov12_0221FCDC *param0)
     int v2;
     int v3;
 
-    v0 = Heap_AllocFromHeap(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_02230600));
+    v0 = Heap_Alloc(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_02230600));
     memset(v0, 0, sizeof(UnkStruct_ov12_02230600));
 
     v0->unk_00 = param0;

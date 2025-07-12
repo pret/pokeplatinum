@@ -113,7 +113,7 @@ void ov6_02242B58(FieldSystem *fieldSystem, const u16 param1, const u16 param2)
 {
     PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     UnkStruct_ov6_02242AF0 *v1 = (UnkStruct_ov6_02242AF0 *)PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_GREAT_MARSH);
-    UnkStruct_ov6_02242B58 *v2 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov6_02242B58));
+    UnkStruct_ov6_02242B58 *v2 = Heap_AllocAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov6_02242B58));
 
     memset(v2, 0, sizeof(UnkStruct_ov6_02242B58));
 

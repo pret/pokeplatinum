@@ -124,7 +124,7 @@ static void sub_0205A0D8(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem, P
     };
 
     saveData = fieldSystem->saveData;
-    v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(PokemonSummary));
+    v0 = Heap_AllocAtEnd(heapID, sizeof(PokemonSummary));
 
     MI_CpuClear8(v0, sizeof(PokemonSummary));
     PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(fieldSystem->saveData));
@@ -149,7 +149,7 @@ static void sub_0205A0D8(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem, P
 static void sub_0205A164(UnkStruct_0205A0D8 *param0, int heapID)
 {
     int v0;
-    PartyManagementData *partyMan = Heap_AllocFromHeap(heapID, sizeof(PartyManagementData));
+    PartyManagementData *partyMan = Heap_Alloc(heapID, sizeof(PartyManagementData));
 
     MI_CpuClear8(partyMan, sizeof(PartyManagementData));
 
@@ -658,7 +658,7 @@ void sub_0205AB10(FieldSystem *fieldSystem, UnkFuncPtr_0205AB10 *param1)
         return;
     }
 
-    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0205A0D8));
+    v0 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0205A0D8));
     MI_CpuClear8(v0, sizeof(UnkStruct_0205A0D8));
 
     v0->unk_43 = 5;
@@ -686,8 +686,8 @@ void sub_0205AB10(FieldSystem *fieldSystem, UnkFuncPtr_0205AB10 *param1)
     case 3: {
         u32 v2 = sub_0205B0E4();
 
-        v0->unk_4C = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, v2);
-        v0->unk_48 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, v2);
+        v0->unk_4C = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, v2);
+        v0->unk_48 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, v2);
         v0->unk_50 = Party_New(HEAP_ID_FIELDMAP);
 
         Party_InitWithCapacity(v0->unk_50, 3);
@@ -1084,7 +1084,7 @@ void sub_0205B2D4(FieldSystem *fieldSystem)
         }
 
         if ((v2 == CommPlayer_XPos(v0)) && (v3 == CommPlayer_ZPos(v0))) {
-            UnkStruct_0205B2D4 *v4 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0205B2D4));
+            UnkStruct_0205B2D4 *v4 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0205B2D4));
 
             v4->unk_24 = v0;
             v4->unk_28 = 0;

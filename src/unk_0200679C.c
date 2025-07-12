@@ -12,7 +12,7 @@ SysTask *SysTask_StartAndAllocateParam(SysTaskFunc callback, int paramSize, u32 
     void *param;
 
     if (paramSize) {
-        param = Heap_AllocFromHeap(heapID, paramSize);
+        param = Heap_Alloc(heapID, paramSize);
 
         if (param == NULL) {
             return NULL;

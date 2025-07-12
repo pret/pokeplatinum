@@ -257,7 +257,7 @@ static void FieldMoves_CanUseSurfDistortionWorld(FieldSystem *fieldSystem, Field
 
 static FieldMoveTaskData *FieldMoves_AllocateTaskData(const FieldMovePokemon *fieldMoveMon, const FieldMoveContext *fieldMoveContext)
 {
-    FieldMoveTaskData *taskData = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(FieldMoveTaskData));
+    FieldMoveTaskData *taskData = Heap_Alloc(HEAP_ID_FIELD_TASK, sizeof(FieldMoveTaskData));
 
     taskData->magicNumber = 0x19740205;
     taskData->mapObj = fieldMoveContext->mapObj;
@@ -343,11 +343,11 @@ static void FieldMoves_SetFlyTask(FieldMovePokemon *fieldMoveMon, const FieldMov
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(fieldMoveMon->fieldTask);
     StartMenu *menu = FieldTask_GetEnv(fieldMoveMon->fieldTask);
 
-    u32 *fieldMonID = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(u32));
+    u32 *fieldMonID = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(u32));
     *fieldMonID = fieldMoveMon->fieldMonId;
     menu->unk_260 = fieldMonID;
 
-    menu->taskData = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203D8AC));
+    menu->taskData = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203D8AC));
 
     sub_0206B70C(fieldSystem, menu->taskData, 1);
     sub_0203D884(fieldSystem, menu->taskData);

@@ -15,7 +15,7 @@ UnkStruct_0207E060 *sub_0207E060(const TrainerInfo *info, u32 heapID)
     UnkStruct_0207E060 *v0;
     BOOL v1;
 
-    v0 = Heap_AllocFromHeap(heapID, (sizeof(UnkStruct_0207E060)));
+    v0 = Heap_Alloc(heapID, (sizeof(UnkStruct_0207E060)));
     memset(v0, 0, (sizeof(UnkStruct_0207E060)));
 
     v0->unk_1B = 28;

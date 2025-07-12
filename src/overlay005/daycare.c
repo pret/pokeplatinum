@@ -471,7 +471,7 @@ static u8 LoadSpeciesEggMoves(Pokemon *mon, u16 *eggMoves)
 static void Egg_BuildMoveset(Pokemon *egg, BoxPokemon *father, BoxPokemon *mother)
 {
     u16 i, j, v2, species, levelUpMoveCount, eggMoveCount, form;
-    EggMoveBuilder *builder = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(EggMoveBuilder));
+    EggMoveBuilder *builder = Heap_Alloc(HEAP_ID_FIELD, sizeof(EggMoveBuilder));
 
     v2 = 0;
 

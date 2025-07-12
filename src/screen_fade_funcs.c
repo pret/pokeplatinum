@@ -1473,7 +1473,7 @@ static void sub_02010238(ScreenFade *param0, int param1)
     int v0, v1;
     UnkStruct_02010318 *v2;
 
-    param0->data = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02010318));
+    param0->data = Heap_Alloc(param0->heapID, sizeof(UnkStruct_02010318));
     memset(param0->data, 0, sizeof(UnkStruct_02010318));
     v2 = param0->data;
 
@@ -1634,7 +1634,7 @@ static void sub_02010588(UnkStruct_02010588 *param0, int param1, int param2, int
     switch (param1) {
     case 0:
     case 1:
-        param0->unk_00 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02010FC0));
+        param0->unk_00 = Heap_Alloc(heapID, sizeof(UnkStruct_02010FC0));
         param0->unk_04 = 1;
         param0->unk_08 = param2;
         param0->unk_00->unk_600 = param1;
@@ -1642,7 +1642,7 @@ static void sub_02010588(UnkStruct_02010588 *param0, int param1, int param2, int
     case 2: {
         int v0;
 
-        param0->unk_00 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02010FC0) * 2);
+        param0->unk_00 = Heap_Alloc(heapID, sizeof(UnkStruct_02010FC0) * 2);
         param0->unk_04 = 2;
         param0->unk_08 = param2;
 
@@ -1844,7 +1844,7 @@ static void sub_02010CF4(ScreenFade *param0, const UnkStruct_0200F980 *param1)
 {
     UnkStruct_02010EA4 *v0;
 
-    param0->data = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02010EA4));
+    param0->data = Heap_Alloc(param0->heapID, sizeof(UnkStruct_02010EA4));
 
     v0 = (UnkStruct_02010EA4 *)param0->data;
 
@@ -1898,7 +1898,7 @@ static void sub_02010D94(ScreenFade *param0, const UnkStruct_0200F980 *param1, c
 {
     UnkStruct_02010D94 *v0;
 
-    param0->data = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02010D94));
+    param0->data = Heap_Alloc(param0->heapID, sizeof(UnkStruct_02010D94));
     v0 = (UnkStruct_02010D94 *)param0->data;
 
     sub_02010E48(&v0->unk_00, param1, param0->steps, param0->framesPerStep, param0->screen, param0->hwSettings);
@@ -1981,7 +1981,7 @@ static void sub_02010F2C(ScreenFade *param0, const UnkStruct_0200FB7C *param1)
 {
     UnkStruct_0201109C *v0;
 
-    param0->data = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_0201109C));
+    param0->data = Heap_Alloc(param0->heapID, sizeof(UnkStruct_0201109C));
     v0 = (UnkStruct_0201109C *)param0->data;
 
     sub_02010FC0(v0, param1, param0->steps, param0->framesPerStep, param0->screen, param0->hwSettings, param0->hblanks, param0->heapID);
@@ -2146,7 +2146,7 @@ static void sub_02011204(ScreenFade *param0, const UnkStruct_0200FC2C *param1)
 {
     UnkStruct_02011360 *v0;
 
-    param0->data = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02011360));
+    param0->data = Heap_Alloc(param0->heapID, sizeof(UnkStruct_02011360));
     v0 = (UnkStruct_02011360 *)param0->data;
 
     sub_02011298(v0, param1, param0->steps, param0->framesPerStep, param0->screen, param0->hwSettings, param0->hblanks, param0->heapID);
@@ -2258,7 +2258,7 @@ static void sub_02011408(ScreenFade *param0, const UnkStruct_0200FD34 *param1)
 {
     UnkStruct_02011568 *v0;
 
-    param0->data = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02011568));
+    param0->data = Heap_Alloc(param0->heapID, sizeof(UnkStruct_02011568));
     v0 = (UnkStruct_02011568 *)param0->data;
 
     sub_02011494(v0, param1, param0->steps, param0->framesPerStep, param0->screen, param0->hwSettings, param0->hblanks, param0->heapID);
@@ -2406,7 +2406,7 @@ static void sub_020116A0(ScreenFade *param0, const UnkStruct_02011738 *param1)
 {
     UnkStruct_0201184C *v0;
 
-    param0->data = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_0201184C));
+    param0->data = Heap_Alloc(param0->heapID, sizeof(UnkStruct_0201184C));
     v0 = (UnkStruct_0201184C *)param0->data;
 
     sub_02011738(v0, param1, param0->steps, param0->framesPerStep, param0->screen, param0->hwSettings, param0->hblanks, param0->heapID);
@@ -2454,7 +2454,7 @@ static void sub_02011738(UnkStruct_0201184C *param0, const UnkStruct_02011738 *p
     int v0;
     UnkStruct_02010FC0 *v1;
 
-    param0->unk_0C = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0201184C_sub1) * param1->unk_08);
+    param0->unk_0C = Heap_Alloc(heapID, sizeof(UnkStruct_0201184C_sub1) * param1->unk_08);
     GF_ASSERT(param0->unk_0C != NULL);
     param0->unk_10 = param1->unk_08;
 
@@ -2557,7 +2557,7 @@ static void sub_02011960(ScreenFade *param0, UnkStruct_0200FEA4 *param1)
 {
     UnkStruct_02011AFC *v0;
 
-    param0->data = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02011AFC));
+    param0->data = Heap_Alloc(param0->heapID, sizeof(UnkStruct_02011AFC));
     memset(param0->data, 0, sizeof(UnkStruct_02011AFC));
 
     v0 = param0->data;
@@ -2732,7 +2732,7 @@ static void sub_02011C94(ScreenFade *param0, UnkStruct_0200FF30 *param1)
 {
     UnkStruct_02011E04 *v0;
 
-    param0->data = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02011E04));
+    param0->data = Heap_Alloc(param0->heapID, sizeof(UnkStruct_02011E04));
     memset(param0->data, 0, sizeof(UnkStruct_02011E04));
 
     v0 = param0->data;
@@ -2886,7 +2886,7 @@ static void sub_02011F44(ScreenFade *param0, UnkStruct_0200FE6C *param1)
 {
     UnkStruct_020120D4 *v0;
 
-    param0->data = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_020120D4));
+    param0->data = Heap_Alloc(param0->heapID, sizeof(UnkStruct_020120D4));
     memset(param0->data, 0, sizeof(UnkStruct_020120D4));
 
     v0 = param0->data;
@@ -3050,7 +3050,7 @@ static void sub_020121C4(ScreenFade *param0, UnkStruct_0201006C *param1)
 {
     UnkStruct_02012290 *v0;
 
-    param0->data = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02012290));
+    param0->data = Heap_Alloc(param0->heapID, sizeof(UnkStruct_02012290));
     memset(param0->data, 0, sizeof(UnkStruct_02012290));
 
     v0 = param0->data;

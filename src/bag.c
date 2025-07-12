@@ -29,7 +29,7 @@ int Bag_SaveSize(void)
 
 Bag *Bag_New(enum HeapId heapID)
 {
-    Bag *bag = Heap_AllocFromHeap(heapID, sizeof(Bag));
+    Bag *bag = Heap_Alloc(heapID, sizeof(Bag));
     Bag_Init(bag);
 
     return bag;
@@ -410,7 +410,7 @@ Bag *SaveData_GetBag(SaveData *saveData)
 
 BagCursor *BagCursor_New(u32 heapID)
 {
-    BagCursor *cursor = Heap_AllocFromHeap(heapID, sizeof(BagCursor));
+    BagCursor *cursor = Heap_Alloc(heapID, sizeof(BagCursor));
     MI_CpuClear16(cursor, sizeof(BagCursor));
     return cursor;
 }

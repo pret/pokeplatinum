@@ -232,7 +232,7 @@ void ov21_021DCA54(UnkStruct_ov21_021E68F4 *param0, int param1)
 
 static UnkStruct_ov21_021DCACC *ov21_021DCA5C(enum HeapId heapID, PokedexApp *param1)
 {
-    UnkStruct_ov21_021DCACC *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021DCACC));
+    UnkStruct_ov21_021DCACC *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov21_021DCACC));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021DCACC));
@@ -248,7 +248,7 @@ static UnkStruct_ov21_021DCAE0 *ov21_021DCAA0(enum HeapId heapID, PokedexApp *pa
     UnkStruct_ov21_021DCAE0 *v0;
     UnkStruct_ov21_021E68F4 *v1;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021DCAE0));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov21_021DCAE0));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021DCAE0));
@@ -280,7 +280,7 @@ static int PokedexEncounters_PopulateEncounterCollection(PokedexDataManager *dat
     UnkStruct_ov21_021DCACC *v0 = data;
     EncounterCollection *encounterCollection;
 
-    encounterCollection = Heap_AllocFromHeap(dataMan->heapID, sizeof(EncounterCollection));
+    encounterCollection = Heap_Alloc(dataMan->heapID, sizeof(EncounterCollection));
 
     GF_ASSERT(encounterCollection);
     memset(encounterCollection, 0, sizeof(EncounterCollection));
@@ -359,7 +359,7 @@ static int ov21_021DCBD8(void *graphics, PokedexGraphicsManager *graphicsMan, co
 
     switch (graphicsMan->state) {
     case 0:
-        graphicsMan->pageGraphics = Heap_AllocFromHeap(graphicsMan->heapID, sizeof(PokedexMapDisplay));
+        graphicsMan->pageGraphics = Heap_Alloc(graphicsMan->heapID, sizeof(PokedexMapDisplay));
         memset(graphicsMan->pageGraphics, 0, sizeof(PokedexMapDisplay));
 
         mapDisplay = graphicsMan->pageGraphics;
@@ -837,7 +837,7 @@ static void ov21_021DD710(PokedexMapDisplay *mapDisplay, const UnkStruct_ov21_02
 
     mapDisplay->numVisibleFields = PokedexEncData_LocateVisibleFields(mapDisplay->pokedexFieldMap_1, POKEDEXMAPHEIGHT, POKEDEXMAPWIDTH, mapDisplay->fieldCoordinatesArray, &encounterCollection->fieldsEncounteredOn, encounterCollection->invisibleFields, encounterCollection->numInvisibleFields);
     numCombinedMaps = (encounterCollection->fieldsEncounteredOn.numLocations - 1) + encounterCollection->numInvisibleFields;
-    combinedMapArray = Heap_AllocFromHeapAtEnd(heapID, numCombinedMaps);
+    combinedMapArray = Heap_AllocAtEnd(heapID, numCombinedMaps);
 
     for (index = 0; index < numCombinedMaps; index++) {
         if (index < encounterCollection->numInvisibleFields) {
@@ -871,7 +871,7 @@ static void ov21_021DD710(PokedexMapDisplay *mapDisplay, const UnkStruct_ov21_02
     mapDisplay->numDungeons = PokedexEncData_LocateVisibleDungeons(mapDisplay->cellActorArray, mapDisplay->numDungeons, (NUMDUNGEONS * 2), xOffset, yOffset, POKEDEXMAPXSCALE, POKEDEXMAPYSCALE, mapDisplay->dungeonCoordinatesArray, &encounterCollection->dungeonsEncounteredOn, 2, v2, encounterCollection->invisibleDungeons, encounterCollection->numInvisibleDungeons, &mapDisplay->numVisibleDungeons);
 
     numCombinedMaps = (encounterCollection->dungeonsEncounteredOn.numLocations - 1) + encounterCollection->numInvisibleDungeons;
-    combinedMapArray = Heap_AllocFromHeapAtEnd(heapID, numCombinedMaps);
+    combinedMapArray = Heap_AllocAtEnd(heapID, numCombinedMaps);
 
     for (index = 0; index < numCombinedMaps; index++) {
         if (index < encounterCollection->numInvisibleDungeons) {
@@ -945,7 +945,7 @@ static u8 *PokedexEncounters_InvisibleFields(u32 heapID, const UnkStruct_ov21_02
     }
 
     if (fieldCount > 0) {
-        invisibleFields = Heap_AllocFromHeap(heapID, sizeof(u8) * fieldCount);
+        invisibleFields = Heap_Alloc(heapID, sizeof(u8) * fieldCount);
     } else {
         invisibleFields = NULL;
     }
@@ -1042,7 +1042,7 @@ static u8 *PokedexEncounters_InvisibleDungeons(u32 heapID, const UnkStruct_ov21_
     }
 
     if (dungeonCount > 0) {
-        invisibleDungeons = Heap_AllocFromHeap(heapID, sizeof(u8) * dungeonCount);
+        invisibleDungeons = Heap_Alloc(heapID, sizeof(u8) * dungeonCount);
     } else {
         invisibleDungeons = NULL;
     }

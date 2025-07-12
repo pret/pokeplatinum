@@ -375,7 +375,7 @@ static const MapObjectAnimCmd sVsSeekerAnimSingleExclamationMark[] = {
 void VsSeeker_Start(FieldTask *taskMan, StringTemplate *template, u16 *outResult)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
-    VsSeekerSystem *vsSeeker = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(VsSeekerSystem));
+    VsSeekerSystem *vsSeeker = Heap_Alloc(HEAP_ID_FIELD, sizeof(VsSeekerSystem));
 
     if (vsSeeker == NULL) {
         GF_ASSERT(FALSE);
@@ -619,7 +619,7 @@ static void VsSeekerSystem_StartAnimation(VsSeekerSystem *vsSeeker, MapObject *m
 
 static void VsSeekerSystem_StartAnimationTask(VsSeekerSystem *vsSeeker, SysTask *animTask)
 {
-    VsSeekerAnimationTask *vssAnimTask = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(VsSeekerAnimationTask));
+    VsSeekerAnimationTask *vssAnimTask = Heap_Alloc(HEAP_ID_FIELD, sizeof(VsSeekerAnimationTask));
     if (vssAnimTask == NULL) {
         GF_ASSERT(FALSE);
         return;

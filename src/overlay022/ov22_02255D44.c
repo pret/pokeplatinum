@@ -1177,7 +1177,7 @@ static void ov22_02256FD8(UnkStruct_02029C88 *param0, UnkStruct_ov22_02257964 *p
     Strbuf *v4;
     int v5;
 
-    v2 = Heap_AllocFromHeap(HEAP_ID_13, sizeof(UnkStruct_ov22_02256FD8));
+    v2 = Heap_Alloc(HEAP_ID_13, sizeof(UnkStruct_ov22_02256FD8));
     ov22_0225764C(v2);
 
     sub_0202A284(param0, param1->unk_2C.unk_4C.unk_0C, &param1->unk_2C.unk_4C);

@@ -50,7 +50,7 @@ StringTemplate *StringTemplate_New(u32 maxArgs, u32 maxLen, u32 heapID)
     GF_ASSERT(maxArgs);
     GF_ASSERT(maxLen);
 
-    StringTemplate *tmp = Heap_AllocFromHeapAtEnd(heapID, sizeof(StringTemplate));
+    StringTemplate *tmp = Heap_AllocAtEnd(heapID, sizeof(StringTemplate));
     if (tmp == NULL) {
         goto cleanup;
     }
@@ -62,7 +62,7 @@ StringTemplate *StringTemplate_New(u32 maxArgs, u32 maxLen, u32 heapID)
         goto cleanup;
     }
 
-    tmp->args = Heap_AllocFromHeapAtEnd(heapID, sizeof(StringTemplateArg) * maxArgs);
+    tmp->args = Heap_AllocAtEnd(heapID, sizeof(StringTemplateArg) * maxArgs);
     if (tmp->args == NULL) {
         goto cleanup;
     }

@@ -216,7 +216,7 @@ void ov21_021E73D4(UnkStruct_ov21_021E68F4 *param0)
 
 static UnkStruct_ov21_021E7468 *ov21_021E73E8(enum HeapId heapID, PokedexApp *param1)
 {
-    UnkStruct_ov21_021E7468 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021E7468));
+    UnkStruct_ov21_021E7468 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov21_021E7468));
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021E7468));
 
@@ -231,7 +231,7 @@ UnkStruct_ov21_021E747C *ov21_021E7424(enum HeapId heapID, PokedexApp *param1)
     UnkStruct_ov21_021E747C *v0;
     UnkStruct_ov21_021E68F4 *v1;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021E747C));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov21_021E747C));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021E747C));
@@ -273,7 +273,7 @@ static int ov21_021E74A0(PokedexDataManager *dataMan, void *data)
     int v3;
     int species;
 
-    v1 = Heap_AllocFromHeap(dataMan->heapID, sizeof(UnkStruct_ov21_021E74A0));
+    v1 = Heap_Alloc(dataMan->heapID, sizeof(UnkStruct_ov21_021E74A0));
 
     GF_ASSERT(v1);
     memset(v1, 0, sizeof(UnkStruct_ov21_021E74A0));
@@ -335,7 +335,7 @@ static int ov21_021E7530(void *graphics, PokedexGraphicsManager *graphicsMan, co
 
     switch (graphicsMan->state) {
     case 0:
-        graphicsMan->pageGraphics = Heap_AllocFromHeap(graphicsMan->heapID, sizeof(UnkStruct_ov21_021E7714));
+        graphicsMan->pageGraphics = Heap_Alloc(graphicsMan->heapID, sizeof(UnkStruct_ov21_021E7714));
         memset(graphicsMan->pageGraphics, 0, sizeof(UnkStruct_ov21_021E7714));
         v3 = graphicsMan->pageGraphics;
         v3->unk_B8 = 1;
@@ -565,7 +565,7 @@ static void ov21_021E7904(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
     GF_ASSERT(v6);
 
     {
-        param0->unk_BC = Heap_AllocFromHeap(heapID, 32 * 3);
+        param0->unk_BC = Heap_Alloc(heapID, 32 * 3);
     }
 
     param0->unk_14[2] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[2], v9, v3, 0, 8000, 2, heapID);
@@ -580,7 +580,7 @@ static void ov21_021E7904(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
     SpriteTransfer_RequestPlttFreeSpace(param0->unk_24[1]);
 
     {
-        param0->unk_C0 = Heap_AllocFromHeap(heapID, 32 * 5);
+        param0->unk_C0 = Heap_Alloc(heapID, 32 * 5);
     }
 
     param0->unk_24[2] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[2], v7, 91, 1, 91 + 7000, 2, heapID);

@@ -219,7 +219,7 @@ static void Shop_SetItemsForSale(ShopMenu *shopMenu, u16 *itemsPtr)
     }
 
     shopMenu->itemsCount = i;
-    shopMenu->itemsPtr = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, shopMenu->itemsCount * sizeof(u16));
+    shopMenu->itemsPtr = Heap_Alloc(HEAP_ID_FIELDMAP, shopMenu->itemsCount * sizeof(u16));
 
     for (i = 0; i < shopMenu->itemsCount; i++) {
         shopMenu->itemsPtr[i] = itemsPtr[i];
@@ -228,7 +228,7 @@ static void Shop_SetItemsForSale(ShopMenu *shopMenu, u16 *itemsPtr)
 
 static ShopMenu *Shop_Alloc(void)
 {
-    ShopMenu *shopMenu = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(ShopMenu));
+    ShopMenu *shopMenu = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(ShopMenu));
 
     memset(shopMenu, 0, sizeof(ShopMenu));
     return shopMenu;

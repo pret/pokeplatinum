@@ -371,7 +371,7 @@ static void DrawMessageBoxScrollCursor(Window *window, u16 baseTile)
 
     u32 heapID = BgConfig_GetHeapID(window->bgConfig);
     u8 bgLayer = Window_GetBgLayer(window);
-    u8 *cursorBlit = Heap_AllocFromHeap(heapID, SCROLL_CURSOR_GRAPHICS_SIZE);
+    u8 *cursorBlit = Heap_Alloc(heapID, SCROLL_CURSOR_GRAPHICS_SIZE);
     u8 *bgGfx = Bg_GetCharPtr(bgLayer);
 
     NNSG2dCharacterData *cursorCharData;
@@ -424,7 +424,7 @@ void ReplaceTransparentTiles(BgConfig *bgConfig, u8 bgLayer, u16 bgBaseTile, u8 
         FALSE,
         &chars,
         heapID);
-    src = Heap_AllocFromHeap(heapID, TILE_SIZE_4BPP * 18);
+    src = Heap_Alloc(heapID, TILE_SIZE_4BPP * 18);
     memcpy(src, chars->pRawData, TILE_SIZE_4BPP * 18);
 
     for (i = 0; i < TILE_SIZE_4BPP * 18; i++) {
@@ -613,11 +613,11 @@ void *Window_AddWaitDial(Window *window, u32 baseTile)
     heapID = BgConfig_GetHeapID(window->bgConfig);
     bgLayer = Window_GetBgLayer(window);
     bgCharPtr = Bg_GetCharPtr(bgLayer);
-    dial = Heap_AllocFromHeap(heapID, sizeof(WaitDial));
+    dial = Heap_Alloc(heapID, sizeof(WaitDial));
 
     memcpy(dial->messageBoxPixels, &bgCharPtr[(baseTile + 18) * TILE_SIZE_4BPP], WAIT_DIAL_FRAME_SIZE);
 
-    tmp = Heap_AllocFromHeap(heapID, WAIT_DIAL_FRAME_SIZE);
+    tmp = Heap_Alloc(heapID, WAIT_DIAL_FRAME_SIZE);
 
     memcpy(&tmp[TILE_SIZE_4BPP * 0], &bgCharPtr[(baseTile + 10) * TILE_SIZE_4BPP], TILE_SIZE_4BPP);
     memcpy(&tmp[TILE_SIZE_4BPP * 1], &bgCharPtr[(baseTile + 11) * TILE_SIZE_4BPP], TILE_SIZE_4BPP);
@@ -886,7 +886,7 @@ static void DrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, PokemonSpri
     NNSG2dImageProxy *imageProxy;
     const NNSG2dImagePaletteProxy *paletteProxy;
 
-    buf = Heap_AllocFromHeap(param0->heapID, POKEMON_SPRITE_WHOLE_SIZE_BYTES);
+    buf = Heap_Alloc(param0->heapID, POKEMON_SPRITE_WHOLE_SIZE_BYTES);
 
     // frame 0
     UnkStruct_02013610 v6 = { 0, 0, 10, 10 };

@@ -201,7 +201,7 @@ static void ov6_0224825C(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     NARC *v2;
 
     memset(v0, 0, sizeof(UnkStruct_ov6_0224825C));
-    Heap_FndInitAllocatorForExpHeap(&v0->unk_DC, HEAP_ID_FIELD, 32);
+    HeapExp_FndInitAllocator(&v0->unk_DC, HEAP_ID_FIELD, 32);
 
     v2 = NARC_ctor(NARC_INDEX_GRAPHIC__HIDEN_EFFECT, HEAP_ID_FIELD);
 
@@ -280,7 +280,7 @@ static void ov6_02248340(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     NARC *v2;
 
     memset(v0, 0, sizeof(UnkStruct_ov6_02248340));
-    Heap_FndInitAllocatorForExpHeap(&v0->unk_DC, HEAP_ID_FIELD, 32);
+    HeapExp_FndInitAllocator(&v0->unk_DC, HEAP_ID_FIELD, 32);
 
     v2 = NARC_ctor(NARC_INDEX_GRAPHIC__HIDEN_EFFECT, HEAP_ID_FIELD);
 
@@ -300,7 +300,7 @@ static void ov6_022483A0(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     NARC *v2;
 
     memset(v0, 0, sizeof(UnkStruct_ov6_02248340));
-    Heap_FndInitAllocatorForExpHeap(&v0->unk_DC, HEAP_ID_FIELD, 32);
+    HeapExp_FndInitAllocator(&v0->unk_DC, HEAP_ID_FIELD, 32);
 
     v2 = NARC_ctor(NARC_INDEX_GRAPHIC__HIDEN_EFFECT, HEAP_ID_FIELD);
 
@@ -398,7 +398,7 @@ static void ov6_02248498(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     NARC *v2;
 
     memset(v0, 0, sizeof(UnkStruct_ov6_02248498));
-    Heap_FndInitAllocatorForExpHeap(&v0->unk_1B8, HEAP_ID_FIELD, 32);
+    HeapExp_FndInitAllocator(&v0->unk_1B8, HEAP_ID_FIELD, 32);
 
     v2 = NARC_ctor(NARC_INDEX_GRAPHIC__HIDEN_EFFECT, HEAP_ID_FIELD);
 
@@ -600,7 +600,7 @@ static void ov6_022487F8(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     NARC *v2;
 
     memset(v0, 0, sizeof(UnkStruct_ov6_022487F8));
-    Heap_FndInitAllocatorForExpHeap(&v0->unk_CFC, HEAP_ID_FIELD, 32);
+    HeapExp_FndInitAllocator(&v0->unk_CFC, HEAP_ID_FIELD, 32);
 
     v2 = NARC_ctor(NARC_INDEX_GRAPHIC__HIDEN_EFFECT, HEAP_ID_FIELD);
 

@@ -2900,7 +2900,7 @@ static BOOL ScrCmd_2A1(ScriptContext *ctx)
         GF_ASSERT(FALSE);
     }
 
-    MapObjectAnimCmd *v10 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(MapObjectAnimCmd) * 64);
+    MapObjectAnimCmd *v10 = Heap_Alloc(HEAP_ID_FIELD, sizeof(MapObjectAnimCmd) * 64);
     u16 v8 = MapObject_GetX(v4);
     u16 v9 = MapObject_GetZ(v4);
     int v11 = 0;
@@ -2975,7 +2975,7 @@ static void sub_02040F28(FieldSystem *fieldSystem, SysTask *param1, MapObjectAni
 {
     UnkStruct_02040F28 *v0 = NULL;
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_02040F28));
+    v0 = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_02040F28));
 
     if (v0 == NULL) {
         GF_ASSERT(FALSE);
@@ -3804,7 +3804,7 @@ static UnkStruct_02041DC8 *sub_02041DC8(int heapID, FieldSystem *fieldSystem, in
         return NULL;
     }
 
-    UnkStruct_02041DC8 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02041DC8));
+    UnkStruct_02041DC8 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_02041DC8));
     memset(v0, 0, sizeof(UnkStruct_02041DC8));
 
     v0->unk_00 = v3;
@@ -4077,7 +4077,7 @@ static BOOL ScrCmd_0AA(ScriptContext *ctx)
 {
     void **v1 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
 
-    *v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203D8AC));
+    *v1 = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203D8AC));
 
     sub_0206B70C(ctx->fieldSystem, *v1, 2);
     sub_0203D884(ctx->fieldSystem, *v1);
@@ -4121,7 +4121,7 @@ static BOOL ScrCmd_1D9(ScriptContext *ctx)
     u16 v2 = ScriptContext_GetVar(ctx);
     void **v3 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
 
-    *v3 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov90_021D0D80));
+    *v3 = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov90_021D0D80));
 
     UnkStruct_ov90_021D0D80 *v0 = (UnkStruct_ov90_021D0D80 *)*v3;
     MI_CpuClear8(v0, sizeof(UnkStruct_ov90_021D0D80));
@@ -4139,7 +4139,7 @@ static BOOL ScrCmd_1D9(ScriptContext *ctx)
 static BOOL ScrCmd_0AB(ScriptContext *ctx)
 {
     void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-    UnkStruct_02042434 *v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02042434));
+    UnkStruct_02042434 *v1 = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02042434));
 
     v1->saveData = ctx->fieldSystem->saveData;
     v1->boxMode = ScriptContext_ReadByte(ctx);
@@ -4242,7 +4242,7 @@ static BOOL ScrCmd_StartChooseStarterScene(ScriptContext *ctx)
 {
     void **fieldSysDataPtr = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
 
-    *fieldSysDataPtr = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(ChooseStarterData));
+    *fieldSysDataPtr = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(ChooseStarterData));
     ChooseStarterData *chooseStarterData = *fieldSysDataPtr;
 
     chooseStarterData->options = SaveData_GetOptions(ctx->fieldSystem->saveData);
@@ -7424,7 +7424,7 @@ static BOOL ScrCmd_2C4(ScriptContext *ctx)
 {
     void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
     u8 v1 = ScriptContext_ReadByte(ctx);
-    UnkStruct_ov104_02230BE4 *v2 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov104_02230BE4));
+    UnkStruct_ov104_02230BE4 *v2 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov104_02230BE4));
 
     MI_CpuClear8(v2, sizeof(UnkStruct_ov104_02230BE4));
 
@@ -7883,9 +7883,9 @@ static BOOL ScrCmd_313(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 v1 = ScriptContext_GetVar(ctx);
-    u32 v2 = Heap_FndGetTotalFreeSizeForExpHeap(HEAP_ID_FIELDMAP);
-    u32 v3 = Heap_FndGetTotalFreeSizeForExpHeap(HEAP_ID_FIELD);
-    u32 v4 = Heap_FndGetTotalFreeSizeForExpHeap(HEAP_ID_FIELD_TASK);
+    u32 v2 = HeapExp_FndGetTotalFreeSize(HEAP_ID_FIELDMAP);
+    u32 v3 = HeapExp_FndGetTotalFreeSize(HEAP_ID_FIELD);
+    u32 v4 = HeapExp_FndGetTotalFreeSize(HEAP_ID_FIELD_TASK);
 
     if (v1 == 0) {
         Unk_021C07E8 = v2;

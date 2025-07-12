@@ -46,7 +46,7 @@ static void RunScheduledTilemapTransfers(BgConfig *bgConfig);
 
 BgConfig *BgConfig_New(u32 heapID)
 {
-    BgConfig *bgConfig = Heap_AllocFromHeap(heapID, sizeof(BgConfig));
+    BgConfig *bgConfig = Heap_Alloc(heapID, sizeof(BgConfig));
 
     memset(bgConfig, 0, sizeof(BgConfig));
 
@@ -206,7 +206,7 @@ void Bg_InitFromTemplate(BgConfig *bgConfig, u8 bgLayer, const BgTemplate *bgTem
     bgConfig->bgs[bgLayer].yCenter = 0;
 
     if (bgTemplate->bufferSize) {
-        bgConfig->bgs[bgLayer].tilemapBuffer = Heap_AllocFromHeap(bgConfig->heapID, bgTemplate->bufferSize);
+        bgConfig->bgs[bgLayer].tilemapBuffer = Heap_Alloc(bgConfig->heapID, bgTemplate->bufferSize);
 
         MI_CpuClear16(bgConfig->bgs[bgLayer].tilemapBuffer, bgTemplate->bufferSize);
 
@@ -792,7 +792,7 @@ void Bg_CopyTilemapBufferRangeToVRAM(BgConfig *bgConfig, u8 bgLayer, void *src, 
         }
 
         u32 decompressedSize = MI_GetUncompressedSize(src);
-        void *tmp = Heap_AllocFromHeapAtEnd(bgConfig->heapID, decompressedSize);
+        void *tmp = Heap_AllocAtEnd(bgConfig->heapID, decompressedSize);
 
         CopyOrDecompressData(src, tmp, size);
         LoadBgVRAMScr(bgLayer, tmp, offset * 2, decompressedSize);
@@ -861,7 +861,7 @@ void Bg_LoadTilesToVRAM(BgConfig *bgConfig, u8 bgLayer, void *src, u32 size, u32
 {
     if (size == 0) {
         u32 decompressedSize = MI_GetUncompressedSize(src);
-        void *tmp = Heap_AllocFromHeapAtEnd(bgConfig->heapID, decompressedSize);
+        void *tmp = Heap_AllocAtEnd(bgConfig->heapID, decompressedSize);
 
         CopyOrDecompressData(src, tmp, size);
         LoadBgVRAMChar(bgLayer, tmp, offset, decompressedSize);
@@ -914,7 +914,7 @@ static void LoadBgVRAMChar(u8 bgLayer, void *src, u32 offset, u32 size)
 
 void Bg_ClearTilesRange(u8 bgLayer, u32 size, u32 offset, u32 heapID)
 {
-    u32 *buf = (u32 *)Heap_AllocFromHeapAtEnd(heapID, size);
+    u32 *buf = (u32 *)Heap_AllocAtEnd(heapID, size);
 
     memset(buf, 0, size);
 
@@ -926,7 +926,7 @@ void Bg_FillTilesRange(BgConfig *bgConfig, u32 bgLayer, u32 fillVal, u32 numTile
 {
     u32 *buf;
     u32 size = numTiles * bgConfig->bgs[bgLayer].tileSize;
-    buf = Heap_AllocFromHeapAtEnd(bgConfig->heapID, size);
+    buf = Heap_AllocAtEnd(bgConfig->heapID, size);
 
     if (bgConfig->bgs[bgLayer].tileSize == TILE_SIZE_4BPP) {
         fillVal = (fillVal << 12) | (fillVal << 8) | (fillVal << 4) | fillVal;
@@ -1322,7 +1322,7 @@ static void Copy4bppTo8bpp(const u8 *src, u32 size, u8 *dest, u8 palette)
 
 static void *Convert4bppTo8bpp(const u8 *src, u32 size, u8 palette, u32 heapID)
 {
-    void *dest = Heap_AllocFromHeap(heapID, size * 2);
+    void *dest = Heap_Alloc(heapID, size * 2);
     Copy4bppTo8bpp(src, size, dest, palette);
 
     return dest;
@@ -1584,7 +1584,7 @@ void Bitmap_FillRect8bpp(const Bitmap *bitmap, u16 x, u16 y, u16 width, u16 heig
 
 Window *Window_New(u32 heapID, u8 winCount)
 {
-    Window *windows = (Window *)Heap_AllocFromHeap(heapID, sizeof(Window) * winCount);
+    Window *windows = (Window *)Heap_Alloc(heapID, sizeof(Window) * winCount);
 
     for (u16 i = 0; i < winCount; i++) {
         Window_Init(&windows[i]);
@@ -1623,7 +1623,7 @@ void Window_Add(BgConfig *bgConfig, Window *window, u8 bgLayer, u8 tilemapLeft, 
     }
 
     u32 size = width * height * bgConfig->bgs[bgLayer].tileSize;
-    void *pixels = Heap_AllocFromHeap(bgConfig->heapID, size);
+    void *pixels = Heap_Alloc(bgConfig->heapID, size);
 
     if (pixels == NULL) {
         return;
@@ -1644,7 +1644,7 @@ void Window_Add(BgConfig *bgConfig, Window *window, u8 bgLayer, u8 tilemapLeft, 
 void Window_AddToTopLeftCorner(BgConfig *bgConfig, Window *window, u8 width, u8 height, u16 baseTile, u8 fillVal)
 {
     u32 size = width * height * TILE_SIZE_4BPP;
-    void *pixels = Heap_AllocFromHeap(bgConfig->heapID, size);
+    void *pixels = Heap_Alloc(bgConfig->heapID, size);
 
     fillVal |= fillVal << 4;
     memset(pixels, fillVal, size);
@@ -2617,7 +2617,7 @@ u8 Bg_DoesPixelAtXYMatchVal(BgConfig *bgConfig, u8 bgLayer, u16 x, u16 y, u16 *s
 
     if (bgConfig->bgs[bgLayer].colorMode == GX_BG_COLORMODE_16) {
         u16 *tilemapBuffer = bgConfig->bgs[bgLayer].tilemapBuffer;
-        u8 *tile = Heap_AllocFromHeapAtEnd(bgConfig->heapID, 64);
+        u8 *tile = Heap_AllocAtEnd(bgConfig->heapID, 64);
 
         charPtr += (tilemapBuffer[tilemapIndex] & 0x3FF) * TILE_SIZE_4BPP;
 
@@ -2636,7 +2636,7 @@ u8 Bg_DoesPixelAtXYMatchVal(BgConfig *bgConfig, u8 bgLayer, u16 x, u16 y, u16 *s
     } else {
         if (bgConfig->bgs[bgLayer].type != BG_TYPE_AFFINE) {
             u16 *tilemapBuffer = bgConfig->bgs[bgLayer].tilemapBuffer;
-            u8 *tile = Heap_AllocFromHeapAtEnd(bgConfig->heapID, 64);
+            u8 *tile = Heap_AllocAtEnd(bgConfig->heapID, 64);
 
             memcpy(tile, &charPtr[(tilemapBuffer[tilemapIndex] & 0x3FF) * TILE_SIZE_8BPP], 64);
             ApplyFlipFlagsToTile(bgConfig, (tilemapBuffer[tilemapIndex] >> 10) & 3, tile);
@@ -2669,7 +2669,7 @@ static void ApplyFlipFlagsToTile(BgConfig *bgConfig, u8 flags, u8 *tile)
         return;
     }
 
-    u8 *buf = Heap_AllocFromHeapAtEnd(bgConfig->heapID, 64);
+    u8 *buf = Heap_AllocAtEnd(bgConfig->heapID, 64);
 
     if (flags & 1) {
         for (u8 i = 0; i < 8; i++) {

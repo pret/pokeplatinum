@@ -1647,7 +1647,7 @@ static SysTask *ov5_021E0F54(FieldSystem *fieldSystem, u32 param1)
     {
         SysTask *v2;
         MapObject *v3 = Player_MapObject(playerAvatar);
-        UnkStruct_ov5_021E0FF0 *v4 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, (sizeof(UnkStruct_ov5_021E0FF0)));
+        UnkStruct_ov5_021E0FF0 *v4 = Heap_AllocAtEnd(HEAP_ID_FIELD, (sizeof(UnkStruct_ov5_021E0FF0)));
 
         v4->unk_00 = 0;
         v4->fieldSystem = fieldSystem;
@@ -1773,7 +1773,7 @@ static MapObject *ov5_021E10D4(PlayerAvatar *playerAvatar, int param1)
 
 static void *MonRideTaskEnv_New(int size)
 {
-    void *monRideTaskEnv = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, size);
+    void *monRideTaskEnv = Heap_AllocAtEnd(HEAP_ID_FIELD, size);
 
     GF_ASSERT(monRideTaskEnv != NULL);
     memset(monRideTaskEnv, 0, size);

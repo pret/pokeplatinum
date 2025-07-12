@@ -161,7 +161,7 @@ static UnkStruct_ov21_021E40F4 *ov21_021E4080(enum HeapId heapID, PokedexApp *pa
     UnkStruct_ov21_021E40F4 *v0;
     UnkStruct_ov21_021E68F4 *v1;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021E40F4));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov21_021E40F4));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021E40F4));
@@ -179,7 +179,7 @@ static UnkStruct_ov21_021E4108 *ov21_021E40C8(enum HeapId heapID, PokedexApp *pa
     UnkStruct_ov21_021E4108 *v0;
     UnkStruct_ov21_021E68F4 *v1;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021E4108));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov21_021E4108));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021E4108));
@@ -212,7 +212,7 @@ static int ov21_021E4120(PokedexDataManager *dataMan, void *data)
     UnkStruct_ov21_021E4898 *v1;
     int species = PokedexSort_CurrentSpecies(v0->unk_04);
 
-    v1 = Heap_AllocFromHeap(dataMan->heapID, sizeof(UnkStruct_ov21_021E4898));
+    v1 = Heap_Alloc(dataMan->heapID, sizeof(UnkStruct_ov21_021E4898));
 
     GF_ASSERT(v1);
     memset(v1, 0, sizeof(UnkStruct_ov21_021E4898));
@@ -266,7 +266,7 @@ static int ov21_021E41A8(void *graphics, PokedexGraphicsManager *graphicsMan, co
 
     switch (graphicsMan->state) {
     case 0:
-        graphicsMan->pageGraphics = Heap_AllocFromHeap(graphicsMan->heapID, sizeof(UnkStruct_ov21_021E4360));
+        graphicsMan->pageGraphics = Heap_Alloc(graphicsMan->heapID, sizeof(UnkStruct_ov21_021E4360));
         memset(graphicsMan->pageGraphics, 0, sizeof(UnkStruct_ov21_021E4360));
         graphicsMan->state++;
         break;

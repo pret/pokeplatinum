@@ -103,7 +103,7 @@ static void sub_020528D0(BgConfig *param0)
 
 static void sub_02052914(FieldSystem *fieldSystem, FieldTask *task)
 {
-    UnkStruct_02052AA4 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02052AA4));
+    UnkStruct_02052AA4 *v0 = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02052AA4));
 
     if (v0 == NULL) {
         GF_ASSERT(FALSE);

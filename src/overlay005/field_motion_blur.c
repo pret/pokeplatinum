@@ -20,7 +20,7 @@ FieldMotionBlur *FieldMotionBlur_Start(int coeffA, int coeffB)
 
     GX_ResetBankForBG();
 
-    fieldMotionBlur = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(FieldMotionBlur));
+    fieldMotionBlur = Heap_Alloc(HEAP_ID_FIELD, sizeof(FieldMotionBlur));
     MI_CpuClear32(fieldMotionBlur, sizeof(FieldMotionBlur));
 
     {

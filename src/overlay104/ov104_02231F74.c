@@ -279,7 +279,7 @@ UnkStruct_ov104_02232B5C *ov104_02232258(UnkStruct_ov104_022320B4 *param0, u8 pa
     UnkStruct_ov104_02232B5C *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov104_02232B5C));
+    v0 = Heap_Alloc(param0->heapID, sizeof(UnkStruct_ov104_02232B5C));
 
     if (v0 == NULL) {
         return NULL;
@@ -901,7 +901,7 @@ void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, enum Heap
     {
         u32 v9, v10;
 
-        v4 = Heap_AllocFromHeap(heapID, (10 * 10 * ((8 / 2) * 8)));
+        v4 = Heap_Alloc(heapID, (10 * 10 * ((8 / 2) * 8)));
         v9 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
         v10 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
 

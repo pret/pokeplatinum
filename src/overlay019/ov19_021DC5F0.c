@@ -67,7 +67,7 @@ BOOL ov19_021DC5F0(UnkStruct_ov19_021DC680 *param0, UnkStruct_ov19_021D61B0 *par
 
     ov19_021DA3CC(param0->unk_38, param0->unk_3C, 6);
 
-    param0->unk_1C = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(VecFx32) * 6 * 8);
+    param0->unk_1C = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(VecFx32) * 6 * 8);
     param0->unk_14 = Graphics_GetScrnDataFromOpenNARC(param5, 6, 1, &(param0->unk_18), HEAP_ID_BOX_GRAPHICS);
 
     if ((param0->unk_14 == NULL) || (param0->unk_1C == NULL)) {

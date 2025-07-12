@@ -36,7 +36,7 @@ UnkStruct_0209BBA4 *ov104_02239C58(SaveData *saveData)
 {
     static UnkStruct_0209BBA4 *v0;
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0209BBA4));
+    v0 = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0209BBA4));
     MI_CpuClear8(v0, sizeof(UnkStruct_0209BBA4));
 
     v0->saveData = saveData;
@@ -108,7 +108,7 @@ static void ov104_02239D1C(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
 {
     u8 v0;
 
-    param1->unk_A8 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
+    param1->unk_A8 = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
     MI_CpuClearFast(param1->unk_A8, sizeof(PartyManagementData));
 
     param1->unk_A8->party = SaveData_GetParty(param1->saveData);
@@ -194,7 +194,7 @@ static void ov104_02239FB0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
         0, 1, 2, 4, 3, 5, 6, 7, 8
     };
 
-    param1->unk_AC = Heap_AllocFromHeapAtEnd(heapID, sizeof(PokemonSummary));
+    param1->unk_AC = Heap_AllocAtEnd(heapID, sizeof(PokemonSummary));
     MI_CpuClear8(param1->unk_AC, sizeof(PokemonSummary));
 
     param1->unk_AC->options = SaveData_GetOptions(param1->saveData);

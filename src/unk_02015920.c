@@ -102,7 +102,7 @@ static void sub_02015F54(const NNSG2dScreenData *param0, int param1);
 
 UnkStruct_02015920 *sub_02015920(u32 heapID)
 {
-    UnkStruct_02015920 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02015920));
+    UnkStruct_02015920 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_02015920));
     sub_02015A80(v0, heapID);
 
     return v0;
@@ -366,7 +366,7 @@ static u32 sub_02015DA0(const UnkStruct_02015D8C *param0)
 
 static void sub_02015DCC(enum NarcID narcID, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 heapID)
 {
-    UnkStruct_02015DCC *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02015DCC));
+    UnkStruct_02015DCC *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_02015DCC));
     memset(v0, 0, sizeof(UnkStruct_02015DCC));
 
     v0->unk_08 = Graphics_GetCharData(narcID, param1, 1, &v0->unk_04, heapID);
@@ -379,7 +379,7 @@ static void sub_02015DCC(enum NarcID narcID, u32 param1, BgConfig *param2, u32 p
 
 static void sub_02015E1C(enum NarcID narcID, u32 param1, int param2, u32 param3, u32 param4, u32 heapID)
 {
-    UnkStruct_02015E1C *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02015E1C));
+    UnkStruct_02015E1C *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_02015E1C));
     memset(v0, 0, sizeof(UnkStruct_02015E1C));
 
     v0->unk_04 = Graphics_GetPlttData(narcID, param1, &v0->unk_00, heapID);

@@ -415,7 +415,7 @@ static ParticleSystem *ov119_021D13EC(int heapID)
     void *v1;
     Camera *camera;
 
-    v1 = Heap_AllocFromHeap(heapID, 0x4800);
+    v1 = Heap_Alloc(heapID, 0x4800);
     v0 = ParticleSystem_New(ov119_021D13B4, ov119_021D13D0, v1, 0x4800, 1, heapID);
     camera = ParticleSystem_GetCamera(v0);
 
@@ -456,7 +456,7 @@ UnkStruct_ov119_021D14DC *ov119_021D14AC(UnkStruct_ov119_021D1930 *param0)
     int v1;
     int v2;
     int v3;
-    UnkStruct_ov119_021D14DC *v4 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov119_021D14DC));
+    UnkStruct_ov119_021D14DC *v4 = Heap_Alloc(param0->heapID, sizeof(UnkStruct_ov119_021D14DC));
 
     GF_ASSERT(v4 != NULL);
 

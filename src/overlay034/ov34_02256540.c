@@ -41,7 +41,7 @@ static void ov34_022569E8(UnkStruct_ov34_02256540 *param0);
 
 BOOL ov34_02256540(UnkStruct_ov34_02256540 **param0, const UnkStruct_ov34_02256540_1 *param1, BgConfig *param2)
 {
-    UnkStruct_ov34_02256540 *v0 = (UnkStruct_ov34_02256540 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov34_02256540));
+    UnkStruct_ov34_02256540 *v0 = (UnkStruct_ov34_02256540 *)Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov34_02256540));
 
     if (v0 != NULL) {
         int v1;

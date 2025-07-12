@@ -148,7 +148,7 @@ UnkStruct_ov104_0223BFFC *ov104_02237DD8(SaveData *saveData, u16 param1, u8 para
     static UnkStruct_ov104_0223BFFC *v9;
     UnkStruct_020305B8 *v10;
 
-    v9 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov104_0223BFFC));
+    v9 = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov104_0223BFFC));
     MI_CpuClear8(v9, sizeof(UnkStruct_ov104_0223BFFC));
 
     v9->unk_08 = sub_020304A0(saveData);
@@ -860,7 +860,7 @@ void ov104_02238AB4(u8 param0, u8 param1)
         v1 = (9 * 16) * 2;
     }
 
-    v5 = Heap_AllocFromHeap(HEAP_ID_94, 0x1000 * 2);
+    v5 = Heap_Alloc(HEAP_ID_94, 0x1000 * 2);
     memset(v5, 0, 0x1000 * 2);
 
     v4 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, HEAP_ID_94);

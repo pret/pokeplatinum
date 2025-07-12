@@ -177,7 +177,7 @@ static const BattleControlFunc sBattleControlCommands[] = {
 
 void *BattleContext_New(BattleSystem *battleSys)
 {
-    BattleContext *battleContext = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(BattleContext));
+    BattleContext *battleContext = Heap_Alloc(HEAP_ID_BATTLE, sizeof(BattleContext));
 
     MI_CpuClearFast(battleContext, sizeof(BattleContext));
 

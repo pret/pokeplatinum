@@ -153,7 +153,7 @@ static FieldSystem *InitFieldSystem(ApplicationManager *appMan)
     FieldSystem *fieldSystem = ApplicationManager_NewData(appMan, sizeof(FieldSystem), HEAP_ID_FIELDMAP);
     MI_CpuClear8(fieldSystem, sizeof(FieldSystem));
 
-    fieldSystem->processManager = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(FieldProcessManager));
+    fieldSystem->processManager = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(FieldProcessManager));
     fieldSystem->processManager->parent = NULL;
     fieldSystem->processManager->child = NULL;
     fieldSystem->processManager->pause = FALSE;

@@ -132,7 +132,7 @@ void ov21_021E84E4(UnkStruct_ov21_021E68F4 *param0)
 
 static UnkStruct_ov21_021E8570 *ov21_021E84FC(enum HeapId heapID, PokedexApp *param1)
 {
-    UnkStruct_ov21_021E8570 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021E8570));
+    UnkStruct_ov21_021E8570 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov21_021E8570));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021E8570));
@@ -150,7 +150,7 @@ static PokedexGraphicData **ov21_021E8544(enum HeapId heapID, PokedexApp *param1
     PokedexGraphicData **v0;
     UnkStruct_ov21_021E68F4 *v1;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(PokedexGraphicData **));
+    v0 = Heap_Alloc(heapID, sizeof(PokedexGraphicData **));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(PokedexGraphicData **));
@@ -193,7 +193,7 @@ static int ov21_021E85A0(PokedexDataManager *dataMan, void *data)
     UnkStruct_ov21_021E88B0 *v1 = dataMan->pageData;
     int v2;
 
-    v1 = Heap_AllocFromHeap(dataMan->heapID, sizeof(UnkStruct_ov21_021E88B0));
+    v1 = Heap_Alloc(dataMan->heapID, sizeof(UnkStruct_ov21_021E88B0));
     memset(v1, 0, sizeof(UnkStruct_ov21_021E88B0));
 
     for (v2 = 0; v2 < 1; v2++) {
@@ -259,7 +259,7 @@ static int ov21_021E8654(void *graphics, PokedexGraphicsManager *graphicsMan, co
 
     switch (graphicsMan->state) {
     case 0:
-        graphicsMan->pageGraphics = Heap_AllocFromHeap(graphicsMan->heapID, sizeof(UnkStruct_ov21_021E8794));
+        graphicsMan->pageGraphics = Heap_Alloc(graphicsMan->heapID, sizeof(UnkStruct_ov21_021E8794));
         memset(graphicsMan->pageGraphics, 0, sizeof(UnkStruct_ov21_021E8794));
         graphicsMan->state++;
         break;
@@ -389,7 +389,7 @@ static BOOL ov21_021E8830(UnkStruct_ov21_021E8794 *param0, PokedexGraphicData **
 
 static void ov21_021E886C(UnkStruct_ov21_021E88B0 *param0, UnkStruct_ov21_021E8570 *param1, enum HeapId heapID)
 {
-    param0->unk_04 = Heap_AllocFromHeap(heapID, sizeof(TouchScreenHitTable) * 1);
+    param0->unk_04 = Heap_Alloc(heapID, sizeof(TouchScreenHitTable) * 1);
 
     ov21_021D154C(&param0->unk_04[0], 144 - (80 / 2), 144 + (80 / 2), 128 - (240 / 2), 128 + (240 / 2));
 

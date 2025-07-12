@@ -110,13 +110,13 @@ static void ov5_021DFADC(SysTask *param0, void *param1);
 
 UnkStruct_ov5_021DF47C *ov5_021DF440(FieldSystem *fieldSystem, u32 param1, u32 heapID)
 {
-    UnkStruct_ov5_021DF47C *v0 = Heap_AllocFromHeap(heapID, (sizeof(UnkStruct_ov5_021DF47C)));
+    UnkStruct_ov5_021DF47C *v0 = Heap_Alloc(heapID, (sizeof(UnkStruct_ov5_021DF47C)));
     memset(v0, 0, (sizeof(UnkStruct_ov5_021DF47C)));
 
     v0->heapID = heapID;
     v0->unk_04 = param1;
     v0->fieldSystem = fieldSystem;
-    v0->unk_14 = Heap_AllocFromHeap(heapID, (sizeof(UnkStruct_ov5_021DF6AC)) * param1);
+    v0->unk_14 = Heap_Alloc(heapID, (sizeof(UnkStruct_ov5_021DF6AC)) * param1);
 
     ov5_021DF5E8(v0);
     ov5_021DF588(v0);
@@ -182,9 +182,9 @@ void *ov5_021DF528(const UnkStruct_ov5_021DF47C *param0, u32 param1, int param2)
     void *v0;
 
     if (param2 == 0) {
-        v0 = Heap_AllocFromHeap(param0->heapID, param1);
+        v0 = Heap_Alloc(param0->heapID, param1);
     } else {
-        v0 = Heap_AllocFromHeapAtEnd(param0->heapID, param1);
+        v0 = Heap_AllocAtEnd(param0->heapID, param1);
     }
 
     return v0;

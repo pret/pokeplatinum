@@ -38,16 +38,16 @@ SpriteList *SpriteList_New(const SpriteListParams *params)
     GF_ASSERT(params);
     GF_ASSERT(params->renderer);
 
-    SpriteList *list = Heap_AllocFromHeap(params->heapID, sizeof(SpriteList));
+    SpriteList *list = Heap_Alloc(params->heapID, sizeof(SpriteList));
     GF_ASSERT(list);
 
     SpriteList_Reset(list);
 
-    list->sprites = Heap_AllocFromHeap(params->heapID, sizeof(Sprite) * params->maxElements);
+    list->sprites = Heap_Alloc(params->heapID, sizeof(Sprite) * params->maxElements);
     GF_ASSERT(list->sprites);
     list->capacity = params->maxElements;
 
-    list->freeSprites = Heap_AllocFromHeap(params->heapID, sizeof(Sprite *) * params->maxElements);
+    list->freeSprites = Heap_Alloc(params->heapID, sizeof(Sprite *) * params->maxElements);
     GF_ASSERT(list->freeSprites);
 
     SpriteList_InitSprites(list);
@@ -585,7 +585,7 @@ void Sprite_SetExplicitOAMMode(Sprite *sprite, GXOamMode mode)
 
 void Utility_Clear2DMainOAM(enum HeapId heapID)
 {
-    GXOamAttr *oam = Heap_AllocFromHeap(heapID, sizeof(GXOamAttr) * MAX_SPRITES);
+    GXOamAttr *oam = Heap_Alloc(heapID, sizeof(GXOamAttr) * MAX_SPRITES);
 
     MI_CpuFill16(oam, 0x2C0, sizeof(GXOamAttr) * MAX_SPRITES);
     DC_FlushRange(oam, sizeof(GXOamAttr) * MAX_SPRITES);
@@ -596,7 +596,7 @@ void Utility_Clear2DMainOAM(enum HeapId heapID)
 
 void Utility_Clear2DSubOAM(enum HeapId heapID)
 {
-    GXOamAttr *oam = Heap_AllocFromHeap(heapID, sizeof(GXOamAttr) * MAX_SPRITES);
+    GXOamAttr *oam = Heap_Alloc(heapID, sizeof(GXOamAttr) * MAX_SPRITES);
 
     MI_CpuFill16(oam, 0x2C0, sizeof(GXOamAttr) * MAX_SPRITES);
     // According to the NitroSDK docs there should be a call to DC_FlushRange here.
@@ -745,8 +745,8 @@ static void Sprite_CreateMultiCellAnim(Sprite *sprite, enum HeapId heapID)
     MultiCellAnimationData *multiCellAnim = (MultiCellAnimationData *)&sprite->animData;
     const NNSG2dMultiCellAnimSequence *animSequence = NNS_G2dGetAnimSequenceByIdx(multiCellAnim->animBank, 0);
     u16 maxNodes = NNS_G2dGetMCBankNumNodesRequired(multiCellAnim->cellBank);
-    multiCellAnim->nodes = Heap_AllocFromHeap(heapID, sizeof(NNSG2dNode) * maxNodes);
-    multiCellAnim->cellAnims = Heap_AllocFromHeap(heapID, sizeof(NNSG2dCellAnimation) * maxNodes);
+    multiCellAnim->nodes = Heap_Alloc(heapID, sizeof(NNSG2dNode) * maxNodes);
+    multiCellAnim->cellAnims = Heap_Alloc(heapID, sizeof(NNSG2dCellAnimation) * maxNodes);
 
     NNS_G2dInitMCAnimation(
         &multiCellAnim->anim,

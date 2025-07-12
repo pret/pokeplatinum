@@ -373,7 +373,7 @@ void FieldSystem_OpenSummaryScreen(FieldSystem *fieldSystem, void *appArgs)
 
 static PartyManagementData *sub_0203D344(int heapID, FieldSystem *fieldSystem, int param2, int param3)
 {
-    PartyManagementData *partyMan = Heap_AllocFromHeap(heapID, sizeof(PartyManagementData));
+    PartyManagementData *partyMan = Heap_Alloc(heapID, sizeof(PartyManagementData));
 
     MI_CpuClearFast(partyMan, sizeof(PartyManagementData));
 
@@ -496,7 +496,7 @@ void *sub_0203D50C(FieldTask *taskMan, int heapID)
     PartyManagementData *partyMan;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0203D444));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_0203D444));
     v0->heapID = heapID;
     partyMan = sub_0203D344(heapID, fieldSystem, 0, 2);
     partyMan->unk_32_0 = 2;
@@ -531,7 +531,7 @@ void *sub_0203D578(int param0, FieldSystem *fieldSystem, int param2, int param3,
 
 void *sub_0203D5C8(int param0, FieldSystem *fieldSystem, int param2)
 {
-    PokemonSummary *v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PokemonSummary));
+    PokemonSummary *v0 = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(PokemonSummary));
 
     v0->monData = SaveData_GetParty(fieldSystem->saveData);
     v0->options = SaveData_GetOptions(fieldSystem->saveData);
@@ -571,7 +571,7 @@ PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, int heapID, int mode)
     };
 
     saveData = fieldSystem->saveData;
-    v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(PokemonSummary));
+    v0 = Heap_AllocAtEnd(heapID, sizeof(PokemonSummary));
 
     MI_CpuClear8(v0, sizeof(PokemonSummary));
 
@@ -600,7 +600,7 @@ static const u8 Unk_020EA160[] = {
 
 void *FieldSystem_OpenSummaryScreenSelectMove(enum HeapId heapID, FieldSystem *fieldSystem, u8 partySlot)
 {
-    PokemonSummary *summary = Heap_AllocFromHeap(heapID, sizeof(PokemonSummary));
+    PokemonSummary *summary = Heap_Alloc(heapID, sizeof(PokemonSummary));
 
     memset(summary, 0, sizeof(PokemonSummary));
 
@@ -687,7 +687,7 @@ void sub_0203D80C(FieldTask *taskMan, u16 *param1, u16 *param2, u16 *param3)
     UnkStruct_0203D764 *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0203D764));
+    v0 = Heap_Alloc(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0203D764));
     v0->unk_00 = param1;
     v0->unk_04 = param2;
     v0->unk_08 = param3;
@@ -738,7 +738,7 @@ void *sub_0203D8AC(FieldSystem *fieldSystem)
     int v2 = 0, v3 = 0;
     FieldOverworldState_GetMapHistory(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
-    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203D8AC));
+    v0 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203D8AC));
 
     sub_0206B70C(fieldSystem, v0, 0);
     sub_0203D884(fieldSystem, v0);
@@ -762,7 +762,7 @@ static void OpenOptionsMenu(FieldSystem *fieldSystem, Options *options)
 
 void *FieldSystem_OpenOptionsMenu(FieldSystem *fieldSystem)
 {
-    OptionsMenu *optionsMenu = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(OptionsMenu));
+    OptionsMenu *optionsMenu = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(OptionsMenu));
     Options *options = SaveData_GetOptions(FieldSystem_GetSaveData(fieldSystem));
     OpenOptionsMenu(fieldSystem, options);
 
@@ -843,7 +843,7 @@ static UnkStruct_0203DA00 *sub_0203DA00(int heapID, SaveData *saveData, int para
     UnkStruct_02029C68 *v4;
     UnkStruct_02029D04 *v5;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0203DA00));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_0203DA00));
     memset(v0, 0, sizeof(UnkStruct_0203DA00));
     v1 = Party_GetPokemonBySlotIndex(SaveData_GetParty(saveData), param2);
 
@@ -895,7 +895,7 @@ static BOOL sub_0203DA64(FieldTask *param0)
 
 void sub_0203DAC0(FieldTask *param0, u16 *param1, SaveData *saveData, u16 param3, u16 param4)
 {
-    UnkStruct_0203DA64 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0203DA64));
+    UnkStruct_0203DA64 *v0 = Heap_Alloc(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0203DA64));
     memset(v0, 0, sizeof(UnkStruct_0203DA64));
 
     v0->unk_0C = sub_0203DA00(HEAP_ID_FIELD_TASK, saveData, param3, &v0->unk_08, param4);
@@ -962,9 +962,9 @@ static void sub_0203DB38(UnkStruct_ov88_0223C370 *param0, FieldSystem *fieldSyst
     param0->saveData = fieldSystem->saveData;
     param0->unk_1C = fieldSystem->journalEntry;
     param0->records = SaveData_GetGameRecords(fieldSystem->saveData);
-    param0->unk_38 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, TrainerInfo_Size());
-    param0->unk_3C = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, Pokemon_GetStructSize());
-    param0->unk_40 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, Pokemon_GetStructSize());
+    param0->unk_38 = Heap_Alloc(HEAP_ID_FIELD_TASK, TrainerInfo_Size());
+    param0->unk_3C = Heap_Alloc(HEAP_ID_FIELD_TASK, Pokemon_GetStructSize());
+    param0->unk_40 = Heap_Alloc(HEAP_ID_FIELD_TASK, Pokemon_GetStructSize());
     param0->fieldSystem = fieldSystem;
     param0->unk_34 = 0;
 }
@@ -1087,7 +1087,7 @@ BOOL sub_0203DBF0(FieldTask *param0)
 
 void sub_0203DDDC(FieldTask *param0)
 {
-    UnkStruct_0203DBF0 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0203DBF0));
+    UnkStruct_0203DBF0 *v0 = Heap_Alloc(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0203DBF0));
 
     v0->unk_00 = 0;
     FieldTask_InitCall(param0, sub_0203DBF0, v0);
@@ -1109,7 +1109,7 @@ const ApplicationManagerTemplate Unk_020EA248 = {
 
 void sub_0203DDFC(FieldSystem *fieldSystem)
 {
-    UnkStruct_0203DDFC *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0203DDFC));
+    UnkStruct_0203DDFC *v0 = Heap_Alloc(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0203DDFC));
 
     v0->unk_00 = fieldSystem->unk_80;
     v0->unk_04 = fieldSystem->journalEntry;
@@ -1120,7 +1120,7 @@ void sub_0203DDFC(FieldSystem *fieldSystem)
 
 void *sub_0203DE34(FieldSystem *fieldSystem)
 {
-    UnkStruct_0203DE34 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203DE34));
+    UnkStruct_0203DE34 *v0 = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203DE34));
 
     v0->saveData = fieldSystem->saveData;
     v0->unk_04 = fieldSystem->unk_80;
@@ -1235,7 +1235,7 @@ void sub_0203DFE8(FieldTask *param0, int param1, int param2, int param3, int par
 {
     Pokemon *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_0203DE98 *v2 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203DE98));
+    UnkStruct_0203DE98 *v2 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203DE98));
 
     v2->unk_00 = 0;
     v2->unk_04 = param4;
@@ -1338,7 +1338,7 @@ void sub_0203E0FC(FieldSystem *fieldSystem, int param1)
         FS_OVERLAY_ID(overlay94)
     };
 
-    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203E0FC));
+    v0 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203E0FC));
 
     v0->unk_00 = SaveData_GetGlobalTrade(fieldSystem->saveData);
     v0->unk_04 = SaveData_GetSystemData(fieldSystem->saveData);
@@ -1374,7 +1374,7 @@ void *sub_0203E1AC(FieldSystem *fieldSystem, int param1, int param2)
         FS_OVERLAY_ID(overlay96)
     };
 
-    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0206BC70));
+    v0 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0206BC70));
 
     v0->unk_00 = sub_0202D750(fieldSystem->saveData);
     v0->unk_04 = sub_0202D764(fieldSystem->saveData);
@@ -1565,7 +1565,7 @@ void sub_0203E414(FieldTask *task, int slotMachineID)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     Options *options = SaveData_GetOptions(fieldSystem->saveData);
-    UnkStruct_0203E35C *v2 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0203E35C));
+    UnkStruct_0203E35C *v2 = Heap_Alloc(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0203E35C));
 
     v2->unk_0C.unk_00 = &v2->unk_00;
     v2->unk_00 = Coins_GetValue(SaveData_GetCoins(fieldSystem->saveData));
@@ -1665,7 +1665,7 @@ void *sub_0203E53C(FieldSystem *fieldSystem, int heapID, int param2)
         ov102_021D0F50,
         FS_OVERLAY_ID(overlay102),
     };
-    UnkStruct_0203E53C *v1 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0203E53C));
+    UnkStruct_0203E53C *v1 = Heap_Alloc(heapID, sizeof(UnkStruct_0203E53C));
 
     {
         v1->unk_04 = param2;
@@ -1690,7 +1690,7 @@ void *sub_0203E564(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 param3, i
         FS_OVERLAY_ID(overlay110)
     };
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0203E564));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_0203E564));
 
     v0->unk_04 = param1;
     v0->unk_05 = param2;
@@ -1704,7 +1704,7 @@ void *sub_0203E564(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 param3, i
 
 PartyManagementData *sub_0203E598(FieldSystem *fieldSystem, int heapID, int param2)
 {
-    PartyManagementData *partyMan = Heap_AllocFromHeap(heapID, sizeof(PartyManagementData));
+    PartyManagementData *partyMan = Heap_Alloc(heapID, sizeof(PartyManagementData));
     memset(partyMan, 0, sizeof(PartyManagementData));
 
     partyMan->party = SaveData_GetParty(fieldSystem->saveData);
@@ -1737,7 +1737,7 @@ void *sub_0203E608(FieldSystem *fieldSystem, int heapID)
         FS_OVERLAY_ID(overlay111)
     };
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0203E608));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_0203E608));
     memset(v0, 0, sizeof(UnkStruct_0203E608));
 
     v0->saveData = fieldSystem->saveData;
@@ -1754,7 +1754,7 @@ static const u8 sTeachMoveSummaryPages[] = {
 
 void *FieldSystem_OpenSummaryScreenTeachMove(int unused, FieldSystem *fieldSystem, u16 partySlot, u16 move)
 {
-    PokemonSummary *summary = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PokemonSummary));
+    PokemonSummary *summary = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(PokemonSummary));
 
     summary->monData = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), partySlot);
     summary->options = SaveData_GetOptions(fieldSystem->saveData);
@@ -1788,7 +1788,7 @@ void sub_0203E6C0(FieldSystem *fieldSystem, int param1, int param2)
         FS_OVERLAY_ID(overlay61)
     };
 
-    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203E6C0));
+    v0 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203E6C0));
     MI_CpuClear8(v0, sizeof(UnkStruct_0203E6C0));
 
     v0->fieldSystem = fieldSystem;

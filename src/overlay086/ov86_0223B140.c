@@ -920,7 +920,7 @@ static void ov86_0223BDE0(UnkStruct_ov86_0223B3C8 *param0, int param1, int param
     UnkStruct_ov86_0223BDE0 *v1;
     int v2;
 
-    v1 = Heap_AllocFromHeap(HEAP_ID_63, sizeof(UnkStruct_ov86_0223BDE0));
+    v1 = Heap_Alloc(HEAP_ID_63, sizeof(UnkStruct_ov86_0223BDE0));
     v2 = param1 & 1;
 
     ov86_0223BDC4(&v1->unk_00, v1, &(param0->unk_1C34[param2]));
@@ -950,7 +950,7 @@ static void ov86_0223BE6C(SysTask *param0, void *param1)
 
 static void ov86_0223BEA0(UnkStruct_ov86_0223B3C8 *param0, int param1)
 {
-    UnkStruct_ov86_0223BEA0 *v0 = Heap_AllocFromHeap(HEAP_ID_63, sizeof(UnkStruct_ov86_0223BEA0));
+    UnkStruct_ov86_0223BEA0 *v0 = Heap_Alloc(HEAP_ID_63, sizeof(UnkStruct_ov86_0223BEA0));
     ov86_0223BDC4(&v0->unk_00, v0, &(param0->unk_1C34[param1]));
 
     v0->unk_08 = param0->unk_1CC;
@@ -1108,7 +1108,7 @@ static void ov86_0223C104(UnkStruct_ov86_0223B3C8 *param0, int param1, int param
     };
     UnkStruct_ov86_0223BF44 *v1;
     int v2 = param1 & 1;
-    v1 = Heap_AllocFromHeap(HEAP_ID_63, sizeof(UnkStruct_ov86_0223BF44));
+    v1 = Heap_Alloc(HEAP_ID_63, sizeof(UnkStruct_ov86_0223BF44));
 
     ov86_0223BDC4(&v1->unk_00, v1, &(param0->unk_1C34[param2]));
     ov86_0223D264(&v1->unk_08, v0[v2].unk_00, v0[v2].unk_04, 28);
@@ -1124,7 +1124,7 @@ static void ov86_0223C158(UnkStruct_ov86_0223B3C8 *param0, int param1, int param
     };
     UnkStruct_ov86_0223BFAC *v1;
     int v2 = param1 & 1;
-    v1 = Heap_AllocFromHeap(HEAP_ID_63, sizeof(UnkStruct_ov86_0223BFAC));
+    v1 = Heap_Alloc(HEAP_ID_63, sizeof(UnkStruct_ov86_0223BFAC));
 
     ov86_0223BDC4(&v1->unk_00, v1, &(param0->unk_1C34[param2]));
     ov86_0223D264(&v1->unk_08, FX32_CONST(32), FX32_CONST(-160), 28);
@@ -1138,7 +1138,7 @@ static void ov86_0223C158(UnkStruct_ov86_0223B3C8 *param0, int param1, int param
 
 static void ov86_0223C1B8(UnkStruct_ov86_0223B3C8 *param0, int param1)
 {
-    UnkStruct_ov86_0223BFAC *v0 = Heap_AllocFromHeap(HEAP_ID_63, sizeof(UnkStruct_ov86_0223BFAC));
+    UnkStruct_ov86_0223BFAC *v0 = Heap_Alloc(HEAP_ID_63, sizeof(UnkStruct_ov86_0223BFAC));
 
     ov86_0223BDC4(&v0->unk_00, v0, &(param0->unk_1C34[param1]));
     ov86_0223D264(&v0->unk_08, FX32_CONST(-144), FX32_CONST(24), 28);
@@ -1152,7 +1152,7 @@ static void ov86_0223C1B8(UnkStruct_ov86_0223B3C8 *param0, int param1)
 
 static void ov86_0223C20C(UnkStruct_ov86_0223B3C8 *param0, int param1)
 {
-    UnkStruct_ov86_0223C01C *v0 = Heap_AllocFromHeap(HEAP_ID_63, sizeof(UnkStruct_ov86_0223C01C));
+    UnkStruct_ov86_0223C01C *v0 = Heap_Alloc(HEAP_ID_63, sizeof(UnkStruct_ov86_0223C01C));
 
     ov86_0223BDC4(&v0->unk_00, v0, &(param0->unk_1C34[param1]));
     ov86_0223D264(&v0->unk_08, FX32_CONST(88), 0, 12);
@@ -1166,7 +1166,7 @@ static void ov86_0223C20C(UnkStruct_ov86_0223B3C8 *param0, int param1)
 
 static void ov86_0223C26C(UnkStruct_ov86_0223B3C8 *param0, int param1)
 {
-    UnkStruct_ov86_0223C090 *v0 = Heap_AllocFromHeap(HEAP_ID_63, sizeof(UnkStruct_ov86_0223C090));
+    UnkStruct_ov86_0223C090 *v0 = Heap_Alloc(HEAP_ID_63, sizeof(UnkStruct_ov86_0223C090));
 
     ov86_0223BDC4(&v0->unk_00, v0, &(param0->unk_1C34[param1]));
     ov86_0223D264(&v0->unk_08, FX32_CONST(24), FX32_CONST(96), 24);
@@ -1183,7 +1183,7 @@ static void ov86_0223C2CC(UnkStruct_ov86_0223B3C8 *param0, int param1, BOOL para
     UnkStruct_ov86_0223C2CC *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_63, sizeof(UnkStruct_ov86_0223C2CC));
+    v0 = Heap_Alloc(HEAP_ID_63, sizeof(UnkStruct_ov86_0223C2CC));
     ov86_0223BDC4(&v0->unk_00, v0, &(param0->unk_1C34[param3]));
 
     v0->unk_08 = param0->unk_1B4[param1];
@@ -1228,7 +1228,7 @@ static void ov86_0223C3E4(UnkStruct_ov86_0223B3C8 *param0, int param1, int param
     UnkStruct_ov86_0223C3E4 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_63, sizeof(UnkStruct_ov86_0223C3E4));
+    v0 = Heap_Alloc(HEAP_ID_63, sizeof(UnkStruct_ov86_0223C3E4));
     ov86_0223BDC4(&v0->unk_00, v0, &(param0->unk_1C34[param2]));
 
     v0->unk_08 = param0;
@@ -1344,7 +1344,7 @@ static void ov86_0223C664(UnkStruct_ov86_0223B3C8 *param0, int param1)
     UnkStruct_ov86_0223C664 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_63, sizeof(UnkStruct_ov86_0223C664));
+    v0 = Heap_Alloc(HEAP_ID_63, sizeof(UnkStruct_ov86_0223C664));
 
     ov86_0223BDC4(&v0->unk_00, v0, &(param0->unk_1C34[param1]));
 
@@ -1427,7 +1427,7 @@ static void ov86_0223C840(UnkStruct_ov86_0223B3C8 *param0, int param1)
     UnkStruct_ov86_0223C840 *v2;
     int v3;
 
-    v2 = Heap_AllocFromHeap(HEAP_ID_63, sizeof(UnkStruct_ov86_0223C840));
+    v2 = Heap_Alloc(HEAP_ID_63, sizeof(UnkStruct_ov86_0223C840));
 
     ov86_0223BDC4(&v2->unk_00, v2, &(param0->unk_1C34[param1]));
 
@@ -1483,7 +1483,7 @@ static BOOL Unk_ov86_0223D540 = 1;
 
 static SysTask *ov86_0223C9B0(UnkStruct_ov86_0223B3C8 *param0)
 {
-    UnkStruct_ov86_0223C9B0 *v0 = Heap_AllocFromHeap(HEAP_ID_63, sizeof(UnkStruct_ov86_0223C9B0));
+    UnkStruct_ov86_0223C9B0 *v0 = Heap_Alloc(HEAP_ID_63, sizeof(UnkStruct_ov86_0223C9B0));
 
     if (v0) {
         SysTask *v1;
@@ -1558,7 +1558,7 @@ static SysTask *ov86_0223CAE4(UnkStruct_ov86_0223C9B0 *param0, fx16 param1, fx32
         0xb00,
         0xa00
     };
-    UnkStruct_ov86_0223CAE4 *v2 = Heap_AllocFromHeap(HEAP_ID_63, sizeof(UnkStruct_ov86_0223CAE4));
+    UnkStruct_ov86_0223CAE4 *v2 = Heap_Alloc(HEAP_ID_63, sizeof(UnkStruct_ov86_0223CAE4));
 
     if (v2) {
         v2->unk_00 = &(param0->unk_00);
@@ -1685,7 +1685,7 @@ static SysTask *ov86_0223CD94(UnkStruct_ov86_0223B3C8 *param0)
     int v3, v4, v5, v6;
     s16 v7, v8, v9;
 
-    v2 = Heap_AllocFromHeap(HEAP_ID_63, sizeof(UnkStruct_ov86_0223CD94));
+    v2 = Heap_Alloc(HEAP_ID_63, sizeof(UnkStruct_ov86_0223CD94));
     v5 = LCRNG_Next();
 
     LCRNG_SetSeed(13716);

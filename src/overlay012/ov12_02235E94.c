@@ -329,7 +329,7 @@ UnkStruct_ov12_02235FE0 *ov12_02235FE0(int heapID)
 {
     UnkStruct_ov12_02235FE0 *v0 = NULL;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov12_02235FE0));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov12_02235FE0));
 
     if (v0 == NULL) {
         GF_ASSERT(0);
@@ -665,7 +665,7 @@ static void ov12_0223646C(UnkStruct_ov12_02235FE0 *param0, SPLEmitterCallback pa
         ParticleSystem_SetCameraProjection(param0->unk_14[0], 1);
     } else {
         for (v0 = 0; v0 < param0->unk_10; v0++) {
-            UnkStruct_02236430 *v4 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02236430));
+            UnkStruct_02236430 *v4 = Heap_Alloc(param0->heapID, sizeof(UnkStruct_02236430));
 
             GF_ASSERT(v4 != NULL);
 
@@ -822,7 +822,7 @@ static void ov12_02236648(SPLEmitter *param0)
 
 UnkStruct_ov12_02236648 *ov12_02236690(UnkStruct_ov12_02236690 *param0)
 {
-    UnkStruct_ov12_02236648 *v0 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov12_02236648));
+    UnkStruct_ov12_02236648 *v0 = Heap_Alloc(param0->heapID, sizeof(UnkStruct_ov12_02236648));
     GF_ASSERT(v0 != NULL);
 
     v0->unk_00 = *param0;
@@ -1981,7 +1981,7 @@ BallRotation *ov12_02237728(BallThrow *param0)
 {
     BallRotation *v0 = NULL;
 
-    v0 = Heap_AllocFromHeap(param0->heapID, sizeof(BallRotation));
+    v0 = Heap_Alloc(param0->heapID, sizeof(BallRotation));
     MI_CpuClear8(v0, sizeof(BallRotation));
 
     GF_ASSERT(v0 != NULL);

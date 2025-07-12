@@ -269,7 +269,7 @@ static void sub_020684D0(FieldSystem *fieldSystem, UnkStruct_020684D0 *param1)
 
 static UnkStruct_0206851C *sub_0206851C(u32 param0, u16 param1, u16 param2, u16 param3, u16 param4)
 {
-    UnkStruct_0206851C *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0206851C));
+    UnkStruct_0206851C *v0 = Heap_Alloc(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0206851C));
 
     v0->unk_00 = param0;
     v0->unk_04 = param1;
@@ -329,7 +329,7 @@ static void sub_02068630(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
     StartMenu *menu = FieldTask_GetEnv(param0->unk_00);
-    PartyManagementData *partyMan = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
+    PartyManagementData *partyMan = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
 
     memset(partyMan, 0, sizeof(PartyManagementData));
 
@@ -563,7 +563,7 @@ static void sub_02068A34(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
     StartMenu *menu = FieldTask_GetEnv(param0->unk_00);
-    PartyManagementData *partyMan = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
+    PartyManagementData *partyMan = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
 
     memset(partyMan, 0, sizeof(PartyManagementData));
 
@@ -673,7 +673,7 @@ static void sub_02068BF8(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
     StartMenu *menu = FieldTask_GetEnv(param0->unk_00);
-    int *v2 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(int));
+    int *v2 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(int));
 
     (*v2) = 0;
     FieldSystem_StartFieldMap(fieldSystem);
@@ -685,7 +685,7 @@ static void sub_02068BF8(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 
 static BOOL sub_02068C38(UnkStruct_02068870 *param0)
 {
-    int *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(int));
+    int *v0 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(int));
 
     *v0 = 0;
     FieldSystem_CreateTask(param0->fieldSystem, RefreshRadarChain, v0);
@@ -761,7 +761,7 @@ static void sub_02068CF0(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     FieldSystem_StartFieldMap(fieldSystem);
 
     v3 = ov5_021F0484();
-    v2 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, v3);
+    v2 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, v3);
 
     memset(v2, 0, v3);
 
@@ -879,7 +879,7 @@ static u32 sub_02068E94(const UnkStruct_020684D0 *param0)
 
 static BOOL sub_02068EFC(UnkStruct_02068870 *param0)
 {
-    UnkStruct_02068EFC *v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02068EFC));
+    UnkStruct_02068EFC *v0 = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02068EFC));
 
     v0->unk_16 = 0;
     v0->unk_10 = Strbuf_Init(128, HEAP_ID_FIELDMAP);
@@ -930,7 +930,7 @@ static void sub_02068FEC(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
     StartMenu *menu = FieldTask_GetEnv(param0->unk_00);
-    PartyManagementData *partyMan = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
+    PartyManagementData *partyMan = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
 
     memset(partyMan, 0, sizeof(PartyManagementData));
 
@@ -1095,7 +1095,7 @@ BOOL sub_02069238(FieldSystem *fieldSystem)
         return 0;
     }
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02068870));
+    v0 = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02068870));
     memset(v0, 0, sizeof(UnkStruct_02068870));
 
     v0->fieldSystem = fieldSystem;
@@ -1126,7 +1126,7 @@ BOOL sub_02069238(FieldSystem *fieldSystem)
 
 static void sub_020692E4(UnkStruct_02068870 *param0, u32 param1)
 {
-    UnkStruct_02068EFC *v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02068EFC));
+    UnkStruct_02068EFC *v0 = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02068EFC));
 
     v0->unk_16 = 0;
     v0->unk_10 = Strbuf_Init(128, HEAP_ID_FIELDMAP);

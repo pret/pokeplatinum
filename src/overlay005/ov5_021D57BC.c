@@ -17,7 +17,7 @@ typedef struct UnkStruct_ov5_021D57D8_t {
 
 UnkStruct_ov5_021D57D8 *ov5_021D57BC(void)
 {
-    UnkStruct_ov5_021D57D8 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021D57D8));
+    UnkStruct_ov5_021D57D8 *v0 = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021D57D8));
     MI_CpuClear32(v0, sizeof(UnkStruct_ov5_021D57D8));
 
     return v0;

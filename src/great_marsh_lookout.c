@@ -38,7 +38,7 @@ static BOOL Task_GreatMarshLookout(FieldTask *taskMan);
 
 void GreatMarshLookout_Init(FieldSystem *fieldSystem)
 {
-    LookoutData *lookout = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(LookoutData));
+    LookoutData *lookout = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(LookoutData));
 
     lookout->spriteResources = GreatMarshLookout_AllocSpriteResources(HEAP_ID_FIELDMAP);
     lookout->binocularsData = GreatMarshBinoculars_InitData(HEAP_ID_FIELDMAP, fieldSystem);

@@ -428,7 +428,7 @@ static void MoveTutorManager_Init(FieldSystem *fieldSystem, MoveTutorManager *mo
 
 MoveTutorManager *MoveTutorManager_New(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop, u8 initialCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *stringTemplate, Window *window, MessageLoader *messageLoader)
 {
-    MoveTutorManager *moveTutorManager = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(MoveTutorManager));
+    MoveTutorManager *moveTutorManager = Heap_Alloc(HEAP_ID_FIELD, sizeof(MoveTutorManager));
 
     if (moveTutorManager == NULL) {
         return NULL;

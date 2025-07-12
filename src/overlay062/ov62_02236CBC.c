@@ -572,7 +572,7 @@ static BOOL ov62_02237884(UnkStruct_0208C06C *param0)
     UnkStruct_ov62_02236CBC *v0;
 
     if (param0->unk_08 == 0) {
-        v0 = Heap_AllocFromHeap(HEAP_ID_102, sizeof(UnkStruct_ov62_02236CBC));
+        v0 = Heap_Alloc(HEAP_ID_102, sizeof(UnkStruct_ov62_02236CBC));
         MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov62_02236CBC));
         param0->unk_860 = v0;
         v0->unk_00 = 0;

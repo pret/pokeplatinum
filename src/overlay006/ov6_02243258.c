@@ -1057,7 +1057,7 @@ void ov6_02243FC8(SysTask *param0)
 
 static UnkStruct_ov6_02243FFC *ov6_02243FDC(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov6_02243FFC *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, (sizeof(UnkStruct_ov6_02243FFC)));
+    UnkStruct_ov6_02243FFC *v0 = Heap_AllocAtEnd(HEAP_ID_FIELD, (sizeof(UnkStruct_ov6_02243FFC)));
 
     memset(v0, 0, (sizeof(UnkStruct_ov6_02243FFC)));
     v0->fieldSystem = fieldSystem;
@@ -2051,7 +2051,7 @@ static void ov6_0224508C(UnkStruct_ov6_02243FFC *param0, PokemonSpriteTemplate *
 
 static void *ov6_0224509C(Pokemon *param0, PokemonSpriteTemplate *param1, u32 heapID)
 {
-    void *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, (32 * 10) * 10);
+    void *v0 = Heap_Alloc(HEAP_ID_FIELD, (32 * 10) * 10);
 
     GF_ASSERT(v0 != NULL);
 
@@ -3027,7 +3027,7 @@ static int (*const Unk_ov6_02249270[])(UnkStruct_ov6_02249270 *) = {
 
 static void *ov6_02245F44(u32 heapID, int param1)
 {
-    void *v0 = Heap_AllocFromHeapAtEnd(heapID, param1);
+    void *v0 = Heap_AllocAtEnd(heapID, param1);
 
     GF_ASSERT(v0 != NULL);
     memset(v0, 0, param1);

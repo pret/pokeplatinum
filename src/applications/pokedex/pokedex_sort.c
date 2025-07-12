@@ -273,13 +273,13 @@ BOOL PokedexSort_Sort(PokedexSortData *param0, enum SortOrder sortOrder, enum Fi
     int fullDexLength;
     BOOL dexExists;
 
-    encounteredPokedex = Heap_AllocFromHeapAtEnd(heapID, sizeof(u16) * NATIONAL_DEX_COUNT);
+    encounteredPokedex = Heap_AllocAtEnd(heapID, sizeof(u16) * NATIONAL_DEX_COUNT);
 
     GF_ASSERT(encounteredPokedex);
     memset(encounteredPokedex, 0, sizeof(u16) * NATIONAL_DEX_COUNT);
 
     caughtStatusLength = 0;
-    resultingPokedex = Heap_AllocFromHeapAtEnd(heapID, sizeof(u16) * NATIONAL_DEX_COUNT);
+    resultingPokedex = Heap_AllocAtEnd(heapID, sizeof(u16) * NATIONAL_DEX_COUNT);
 
     GF_ASSERT(resultingPokedex);
     memset(resultingPokedex, 0, sizeof(u16) * NATIONAL_DEX_COUNT);

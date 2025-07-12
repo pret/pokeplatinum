@@ -107,7 +107,7 @@ int ov4_021D0D80(SaveData *saveData, int heapID, int param2, int param3)
 
     GF_ASSERT(Unk_ov4_0221A400 == NULL);
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov4_0221A400) + 32);
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov4_0221A400) + 32);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov4_0221A400) + 32);
 
     Unk_ov4_0221A400 = (UnkStruct_ov4_0221A400 *)(((u32)v0 + 31) / 32 * 32);
@@ -120,7 +120,7 @@ int ov4_021D0D80(SaveData *saveData, int heapID, int param2, int param3)
     Unk_ov4_0221A400->unk_1078 = heapID;
     Unk_ov4_0221A400->unk_107C = heapID;
     Unk_ov4_0221A400->unk_1080 = param2;
-    Unk_ov4_0221A400->unk_F84 = Heap_AllocFromHeap(heapID, param2 + ((4 * 1024) * 3) + 32);
+    Unk_ov4_0221A400->unk_F84 = Heap_Alloc(heapID, param2 + ((4 * 1024) * 3) + 32);
     Unk_ov4_0221A400->unk_F8C = NULL;
     Unk_ov4_0221A400->unk_F88 = NNS_FndCreateExpHeap((void *)(((u32)Unk_ov4_0221A400->unk_F84 + 31) / 32 * 32), param2);
     Unk_ov4_0221A400->unk_F90 = NULL;
@@ -1535,7 +1535,7 @@ void ov4_021D2618(BOOL param0, int heapID)
         Unk_ov4_0221A400->unk_107C = 11;
 
         if (Unk_ov4_0221A400->unk_F8C == NULL) {
-            Unk_ov4_0221A400->unk_F8C = Heap_AllocFromHeap(heapID, 0xf000 + 32);
+            Unk_ov4_0221A400->unk_F8C = Heap_Alloc(heapID, 0xf000 + 32);
             Unk_ov4_0221A400->unk_F90 = NNS_FndCreateExpHeap((void *)(((u32)Unk_ov4_0221A400->unk_F8C + 31) / 32 * 32), 0xf000);
             NNS_FndSetGroupIDForExpHeap(Unk_ov4_0221A400->unk_F90, 16);
             Unk_ov4_0221A400->unk_F94 = NNS_FndGetTotalFreeSizeForExpHeap(Unk_ov4_0221A400->unk_F90);
@@ -1581,7 +1581,7 @@ void ov4_021D2748(int param0)
 
     if (Unk_ov4_0221A400->unk_F74[param0] == NULL) {
         if (Unk_ov4_0221A400->unk_107C == 11) {
-            Unk_ov4_0221A400->unk_F74[param0] = Heap_AllocFromHeap(Unk_ov4_0221A400->unk_107C, (4 * 1024) + 32);
+            Unk_ov4_0221A400->unk_F74[param0] = Heap_Alloc(Unk_ov4_0221A400->unk_107C, (4 * 1024) + 32);
             Unk_ov4_0221A400->unk_10D5[param0] = 1;
         } else {
             Unk_ov4_0221A400->unk_F74[param0] = ov4_021D1AA0(0, (4 * 1024), 32);

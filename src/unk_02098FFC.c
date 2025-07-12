@@ -22,7 +22,7 @@ static s16 sub_020994B8(UnkStruct_0209903C *param0, u8 param1);
 
 UnkStruct_0209903C *sub_02098FFC(int heapID, u16 param1, u16 param2, u16 param3, int param4)
 {
-    UnkStruct_0209903C *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0209903C));
+    UnkStruct_0209903C *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_0209903C));
     MI_CpuClear8(v0, sizeof(UnkStruct_0209903C));
 
     v0->heapID = heapID;
@@ -68,7 +68,7 @@ static void sub_02099058(UnkStruct_0209903C *param0)
 
     sub_020993A8(param0);
 
-    param0->unk_1C4 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_0209903C_sub1));
+    param0->unk_1C4 = Heap_Alloc(param0->heapID, sizeof(UnkStruct_0209903C_sub1));
     MI_CpuClear8(param0->unk_1C4, sizeof(UnkStruct_0209903C_sub1));
 }
 
@@ -109,7 +109,7 @@ UnkStruct_0209916C *sub_0209916C(UnkStruct_0209903C *param0, int param1, u16 par
         return NULL;
     }
 
-    v3 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_0209916C));
+    v3 = Heap_Alloc(param0->heapID, sizeof(UnkStruct_0209916C));
     MI_CpuClear8(v3, sizeof(UnkStruct_0209916C));
     v3->unk_00 = v1;
 
@@ -124,10 +124,10 @@ UnkStruct_0209916C *sub_0209916C(UnkStruct_0209903C *param0, int param1, u16 par
     SpriteResourceCollection_ModifyPalette(param0->unk_1A4[1], param0->unk_1B4[1]->resources[v1], 88, 3 + param1, 0, param0->heapID);
     SpriteTransfer_ReplacePlttData(param0->unk_1B4[1]->resources[v1]);
 
-    v4 = Heap_AllocFromHeap(param0->heapID, sizeof(ManagedSprite));
+    v4 = Heap_Alloc(param0->heapID, sizeof(ManagedSprite));
 
-    v4->resourceHeaderList = Heap_AllocFromHeap(param0->heapID, sizeof(SpriteResourcesHeaderList));
-    v4->resourceHeaderList->headers = Heap_AllocFromHeap(param0->heapID, sizeof(SpriteResourcesHeader));
+    v4->resourceHeaderList = Heap_Alloc(param0->heapID, sizeof(SpriteResourcesHeaderList));
+    v4->resourceHeaderList->headers = Heap_Alloc(param0->heapID, sizeof(SpriteResourcesHeader));
     v4->resourceHeader = v4->resourceHeaderList->headers;
 
     SpriteResourcesHeader_Init(v4->resourceHeader, 0xe000, 0xe000 + v1, 0xe000, 0xe000, 0xffffffff, 0xffffffff, 0, param5, param0->unk_1A4[0], param0->unk_1A4[1], param0->unk_1A4[2], param0->unk_1A4[3], NULL, NULL);

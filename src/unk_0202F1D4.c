@@ -621,7 +621,7 @@ UnkStruct_0202F41C *sub_0202FD88(int heapID)
 
     GF_ASSERT(Unk_021C07A4 != NULL);
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0202F41C));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_0202F41C));
     MI_CpuCopy32(&Unk_021C07A4->unk_84, v0, sizeof(UnkStruct_0202F41C));
 
     return v0;
@@ -633,7 +633,7 @@ UnkStruct_02030A80 *sub_0202FDB8(int heapID)
 
     GF_ASSERT(Unk_021C07A4 != NULL);
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02030A80));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_02030A80));
     MI_CpuCopy32(&Unk_021C07A4->unk_04, v0, sizeof(UnkStruct_02030A80));
 
     return v0;
@@ -706,7 +706,7 @@ u64 sub_0202FE98(UnkStruct_0202F41C *param0, int param1, int param2)
 
 UnkStruct_0202F41C *sub_0202FF2C(int heapID)
 {
-    UnkStruct_0202F41C *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0202F41C));
+    UnkStruct_0202F41C *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_0202F41C));
     MI_CpuClear8(v0, sizeof(UnkStruct_0202F41C));
 
     return v0;

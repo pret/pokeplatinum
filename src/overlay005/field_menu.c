@@ -130,7 +130,7 @@ static void FieldMenuManager_Init(FieldSystem *fieldSystem, FieldMenuManager *me
 
 FieldMenuManager *FieldMenuManager_New(FieldSystem *fieldSystem, u8 anchorX, u8 anchorY, u8 initialCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *stringTemplate, Window *parentWindow, MessageLoader *messageLoader)
 {
-    FieldMenuManager *menuManager = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(FieldMenuManager));
+    FieldMenuManager *menuManager = Heap_Alloc(HEAP_ID_FIELD, sizeof(FieldMenuManager));
 
     if (menuManager == NULL) {
         return NULL;

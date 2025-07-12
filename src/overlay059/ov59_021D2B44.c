@@ -173,7 +173,7 @@ static void ov59_021D2B90(SaveData *saveData, UnkStruct_0202E794 *param1, UnkStr
 
 UnkStruct_0202E794 *ov59_021D2C28(SaveData *saveData, int heapID, u32 param2)
 {
-    UnkStruct_0202E794 *v0 = Heap_AllocFromHeapAtEnd(heapID, param2);
+    UnkStruct_0202E794 *v0 = Heap_AllocAtEnd(heapID, param2);
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(saveData);
 
     GF_ASSERT(param2 == ov59_021D2B44(saveData));
@@ -184,7 +184,7 @@ UnkStruct_0202E794 *ov59_021D2C28(SaveData *saveData, int heapID, u32 param2)
 
 UnkStruct_0202E794 *ov59_021D2C70(SaveData *saveData, int heapID, u32 param2)
 {
-    UnkStruct_0202E794 *v0 = Heap_AllocFromHeapAtEnd(heapID, param2);
+    UnkStruct_0202E794 *v0 = Heap_AllocAtEnd(heapID, param2);
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(saveData);
 
     GF_ASSERT(param2 == ov59_021D2B4C(saveData));
@@ -195,7 +195,7 @@ UnkStruct_0202E794 *ov59_021D2C70(SaveData *saveData, int heapID, u32 param2)
 
 UnkStruct_0202E794 *ov59_021D2CB4(SaveData *saveData, int heapID, u32 param2)
 {
-    UnkStruct_0202E794 *v0 = Heap_AllocFromHeapAtEnd(heapID, param2);
+    UnkStruct_0202E794 *v0 = Heap_AllocAtEnd(heapID, param2);
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(saveData);
 
     GF_ASSERT(param2 == ov59_021D2B54(saveData));
@@ -206,7 +206,7 @@ UnkStruct_0202E794 *ov59_021D2CB4(SaveData *saveData, int heapID, u32 param2)
 
 UnkStruct_0202E794 *ov59_021D2CF8(SaveData *saveData, int heapID, u32 param2)
 {
-    UnkStruct_0202E794 *v0 = Heap_AllocFromHeapAtEnd(heapID, param2);
+    UnkStruct_0202E794 *v0 = Heap_AllocAtEnd(heapID, param2);
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(saveData);
 
     GF_ASSERT(param2 == ov59_021D2B44(saveData));
@@ -217,7 +217,7 @@ UnkStruct_0202E794 *ov59_021D2CF8(SaveData *saveData, int heapID, u32 param2)
 
 UnkStruct_0202E794 *ov59_021D2D3C(SaveData *saveData, int heapID, u32 param2)
 {
-    UnkStruct_0202E794 *v0 = Heap_AllocFromHeapAtEnd(heapID, param2);
+    UnkStruct_0202E794 *v0 = Heap_AllocAtEnd(heapID, param2);
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(saveData);
 
     GF_ASSERT(param2 == ov59_021D2B4C(saveData));
@@ -228,7 +228,7 @@ UnkStruct_0202E794 *ov59_021D2D3C(SaveData *saveData, int heapID, u32 param2)
 
 UnkStruct_0202E794 *ov59_021D2D80(SaveData *saveData, int heapID, u32 param2)
 {
-    UnkStruct_0202E794 *v0 = Heap_AllocFromHeapAtEnd(heapID, param2);
+    UnkStruct_0202E794 *v0 = Heap_AllocAtEnd(heapID, param2);
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(saveData);
 
     GF_ASSERT(param2 == ov59_021D2B54(saveData));

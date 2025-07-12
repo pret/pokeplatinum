@@ -35,7 +35,7 @@ static BOOL sub_0209B3C4(FieldTask *param0);
 void sub_0209B344(FieldTask *param0, u16 *param1)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_0209B3AC *v1 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0209B3AC));
+    UnkStruct_0209B3AC *v1 = Heap_Alloc(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0209B3AC));
 
     v1->fieldSystem = fieldSystem;
     v1->unk_04 = StringTemplate_Default(HEAP_ID_FIELD_TASK);

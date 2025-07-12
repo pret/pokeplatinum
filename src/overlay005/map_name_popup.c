@@ -227,7 +227,7 @@ static void MapNamePopUp_StartSlideOut(MapNamePopUp *mapPopUp)
 
 MapNamePopUp *MapNamePopUp_Create(BgConfig *bgConfig)
 {
-    MapNamePopUp *mapPopUp = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(MapNamePopUp));
+    MapNamePopUp *mapPopUp = Heap_Alloc(HEAP_ID_FIELD, sizeof(MapNamePopUp));
     mapPopUp->strbuf = Strbuf_Init(22, HEAP_ID_FIELD);
 
     MapNamePopUp_SetBgConfig(mapPopUp, bgConfig);

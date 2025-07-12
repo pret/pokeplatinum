@@ -60,7 +60,7 @@ UnkStruct_02097728 *sub_02097624(SaveData *saveData, int param1, u8 param2, u8 p
     int v2;
 
     Mailbox *mailbox = SaveData_GetMailbox(saveData);
-    v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(UnkStruct_02097728));
+    v0 = Heap_AllocAtEnd(heapID, sizeof(UnkStruct_02097728));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_02097728));
 
@@ -81,7 +81,7 @@ UnkStruct_02097728 *sub_02097624(SaveData *saveData, int param1, u8 param2, u8 p
 
 UnkStruct_02097728 *sub_0209767C(SaveData *saveData, int param1, u16 param2, int heapID)
 {
-    UnkStruct_02097728 *v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(UnkStruct_02097728));
+    UnkStruct_02097728 *v0 = Heap_AllocAtEnd(heapID, sizeof(UnkStruct_02097728));
     MI_CpuClear8(v0, sizeof(UnkStruct_02097728));
 
     v0->unk_00 = 0;
@@ -99,7 +99,7 @@ UnkStruct_02097728 *sub_0209767C(SaveData *saveData, int param1, u16 param2, int
 
 UnkStruct_02097728 *sub_020976BC(SaveData *saveData, Pokemon *param1, int heapID)
 {
-    UnkStruct_02097728 *v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(UnkStruct_02097728));
+    UnkStruct_02097728 *v0 = Heap_AllocAtEnd(heapID, sizeof(UnkStruct_02097728));
     MI_CpuClear8(v0, sizeof(UnkStruct_02097728));
 
     v0->unk_00 = 0;
@@ -112,7 +112,7 @@ UnkStruct_02097728 *sub_020976BC(SaveData *saveData, Pokemon *param1, int heapID
 
 UnkStruct_02097728 *sub_020976F4(SaveData *saveData, u8 param1, int heapID)
 {
-    UnkStruct_02097728 *v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(UnkStruct_02097728));
+    UnkStruct_02097728 *v0 = Heap_AllocAtEnd(heapID, sizeof(UnkStruct_02097728));
     MI_CpuClear8(v0, sizeof(UnkStruct_02097728));
 
     v0->unk_00 = 0;
@@ -200,7 +200,7 @@ int sub_020977E4(Mailbox *mailbox, u16 param1, Pokemon *mon, int heapID)
 UnkStruct_020978D8 *sub_02097834(const Mail *mail, int heapID)
 {
     u16 i;
-    UnkStruct_020978D8 *v1 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_020978D8));
+    UnkStruct_020978D8 *v1 = Heap_Alloc(heapID, sizeof(UnkStruct_020978D8));
     MI_CpuClear8(v1, sizeof(UnkStruct_020978D8));
 
     v1->unk_00 = 0;

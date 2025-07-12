@@ -38,7 +38,7 @@ static void ov5_021EF710(UnkStruct_ov5_021EF4F8 *param0);
 
 UnkStruct_ov5_021EF4F8 *ov5_021EF4BC(u32 heapID, HBlankSystem *param1)
 {
-    UnkStruct_ov5_021EF4F8 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov5_021EF4F8));
+    UnkStruct_ov5_021EF4F8 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov5_021EF4F8));
     memset(v0, 0, sizeof(UnkStruct_ov5_021EF4F8));
 
     v0->unk_00 = 0;

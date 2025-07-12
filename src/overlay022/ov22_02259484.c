@@ -10,7 +10,7 @@
 
 void ov22_02259484(UnkStruct_ov22_02259484 *param0, int param1, int heapID)
 {
-    param0->unk_00 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov22_02259560) * param1);
+    param0->unk_00 = Heap_Alloc(heapID, sizeof(UnkStruct_ov22_02259560) * param1);
     GF_ASSERT(param0->unk_00);
     memset(param0->unk_00, 0, sizeof(UnkStruct_ov22_02259560) * param1);
     param0->unk_04 = param1;

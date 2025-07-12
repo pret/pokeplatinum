@@ -77,7 +77,7 @@ static const int sEncounterTableIndexes_P_Unused[] = {
 
 HoneyTreeShakeList *HoneyTree_ShakeDataInit(void)
 {
-    HoneyTreeShakeList *data = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(HoneyTreeShakeList));
+    HoneyTreeShakeList *data = Heap_Alloc(HEAP_ID_FIELD, sizeof(HoneyTreeShakeList));
 
     for (u8 i = 0; i < NUM_HONEY_TREES; i++) {
         data->trees[i].shakeValue = 0;

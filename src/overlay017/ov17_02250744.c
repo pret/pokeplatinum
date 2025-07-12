@@ -189,7 +189,7 @@ void ov17_02250744(UnkStruct_ov17_0224FCA0 *param0)
 
         GF_ASSERT(param0->unk_10.unk_C8[v1].unk_00 == NULL);
 
-        param0->unk_10.unk_C8[v1].unk_00 = Heap_AllocFromHeap(HEAP_ID_24, (32 * 10 * 10));
+        param0->unk_10.unk_C8[v1].unk_00 = Heap_Alloc(HEAP_ID_24, (32 * 10 * 10));
         param0->unk_10.unk_08[v1] = sub_02095484(param0->unk_10.unk_04, v0, param0->unk_10.unk_00->unk_00[v1], 2, &param0->unk_10.unk_C8[v1], HEAP_ID_24, Unk_ov17_02254BF4[v0][0], Unk_ov17_02254BF4[v0][1], Unk_ov17_02254BF4[v0][2]);
     }
 }
@@ -467,7 +467,7 @@ void ov17_02250FE4(UnkStruct_ov17_0224FCA0 *param0)
     UnkStruct_ov17_02250FE4 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_24, sizeof(UnkStruct_ov17_02250FE4));
+    v0 = Heap_Alloc(HEAP_ID_24, sizeof(UnkStruct_ov17_02250FE4));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_02250FE4));
 
     v0->unk_00 = param0;
@@ -510,7 +510,7 @@ static void ov17_02251070(UnkStruct_ov17_0224FCA0 *param0)
     UnkStruct_ov17_02251070 *v1;
     s32 v2, v3;
 
-    v1 = Heap_AllocFromHeap(HEAP_ID_24, sizeof(UnkStruct_ov17_02251070));
+    v1 = Heap_Alloc(HEAP_ID_24, sizeof(UnkStruct_ov17_02251070));
     MI_CpuClear8(v1, sizeof(UnkStruct_ov17_02251070));
 
     v1->unk_00 = param0;
@@ -708,7 +708,7 @@ void ov17_02251598(UnkStruct_ov17_0224FCA0 *param0, int param1, u8 *param2)
     UnkStruct_ov17_02251598 *v0;
 
     *param2 = 0;
-    v0 = Heap_AllocFromHeap(HEAP_ID_24, sizeof(UnkStruct_ov17_02251598));
+    v0 = Heap_Alloc(HEAP_ID_24, sizeof(UnkStruct_ov17_02251598));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_02251598));
 
@@ -795,7 +795,7 @@ void ov17_02251718(UnkStruct_ov17_0224FCA0 *param0, int param1, int param2, u8 *
     UnkStruct_ov17_02251718 *v0;
 
     *param3 = 0;
-    v0 = Heap_AllocFromHeap(HEAP_ID_24, sizeof(UnkStruct_ov17_02251718));
+    v0 = Heap_Alloc(HEAP_ID_24, sizeof(UnkStruct_ov17_02251718));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_02251718));
 

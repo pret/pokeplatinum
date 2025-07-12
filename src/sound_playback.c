@@ -606,7 +606,7 @@ void Sound_SetPokemonCryDuration(int duration, int heapID)
 
     Sound_Impl_DestroyCryDurationTask();
 
-    param = Heap_AllocFromHeap(heapID, sizeof(PokemonCryDurationParam));
+    param = Heap_Alloc(heapID, sizeof(PokemonCryDurationParam));
     if (param == NULL) {
         GF_ASSERT(FALSE);
         return;

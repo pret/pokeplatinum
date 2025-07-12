@@ -152,7 +152,7 @@ static UnkStruct_0205B43C *sub_0205B3A0(FieldSystem *fieldSystem)
     saveData = FieldSystem_GetSaveData(fieldSystem);
     sub_020369EC(saveData);
 
-    v2 = (UnkStruct_0205B43C *)Heap_AllocFromHeap(HEAP_ID_31, sizeof(UnkStruct_0205B43C));
+    v2 = (UnkStruct_0205B43C *)Heap_Alloc(HEAP_ID_31, sizeof(UnkStruct_0205B43C));
     MI_CpuClear8(v2, sizeof(UnkStruct_0205B43C));
 
     v2->unk_10 = NULL;

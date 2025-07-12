@@ -47,7 +47,7 @@ static BOOL FieldTask_RunEncounterEffect(FieldTask *task)
 
 void FieldTransition_StartEncounterEffect(FieldTask *task, int encEffectID, int battleBGM)
 {
-    EncounterEffectTaskData *data = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(EncounterEffectTaskData));
+    EncounterEffectTaskData *data = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(EncounterEffectTaskData));
 
     data->taskState = 0;
     data->done = FALSE;

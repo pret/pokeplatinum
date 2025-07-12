@@ -241,7 +241,7 @@ static void sub_02071420(SysTask *param0, void *param1)
 
 static UnkStruct_020711EC *sub_0207142C(int heapID)
 {
-    UnkStruct_020711EC *v0 = Heap_AllocFromHeap(heapID, (sizeof(UnkStruct_020711EC)));
+    UnkStruct_020711EC *v0 = Heap_Alloc(heapID, (sizeof(UnkStruct_020711EC)));
     GF_ASSERT(v0 != NULL);
 
     memset(v0, 0, (sizeof(UnkStruct_020711EC)));
@@ -258,7 +258,7 @@ static UnkStruct_ov101_021D5D90 *sub_0207145C(int heapID, int param1)
     UnkStruct_ov101_021D5D90 *v0;
 
     param1 *= (sizeof(UnkStruct_ov101_021D5D90));
-    v0 = Heap_AllocFromHeap(heapID, param1);
+    v0 = Heap_Alloc(heapID, param1);
 
     GF_ASSERT(v0 != NULL);
     memset(v0, 0, param1);

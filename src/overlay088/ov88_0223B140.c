@@ -1137,7 +1137,7 @@ static void ov88_0223C370(UnkStruct_02095E80 *param0, ApplicationManager *appMan
     param0->unk_2270 = v0->unk_08;
     param0->unk_227C = v0->unk_0C;
     param0->saveData = v0->saveData;
-    param0->unk_2274 = Heap_AllocFromHeap(HEAP_ID_26, Party_SaveSize());
+    param0->unk_2274 = Heap_Alloc(HEAP_ID_26, Party_SaveSize());
 
     Party_InitWithCapacity(param0->unk_2274, 6);
     memset(param0->unk_2274, 0xff, Party_SaveSize());

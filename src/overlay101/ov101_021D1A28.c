@@ -4225,7 +4225,7 @@ static const UnkStruct_ov101_021D86B0 Unk_ov101_021D8700 = {
 
 static void ov101_021D53B0(UnkStruct_ov101_021D13C8 *param0)
 {
-    UnkStruct_ov101_021D53B0 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_79, sizeof(UnkStruct_ov101_021D53B0));
+    UnkStruct_ov101_021D53B0 *v0 = Heap_AllocAtEnd(HEAP_ID_79, sizeof(UnkStruct_ov101_021D53B0));
 
     v0->unk_00 = 0;
     v0->unk_04 = 0;
@@ -4236,7 +4236,7 @@ static void ov101_021D53B0(UnkStruct_ov101_021D13C8 *param0)
 
 static void ov101_021D53D4(UnkStruct_ov101_021D13C8 *param0)
 {
-    UnkStruct_ov101_021D53B0 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_79, sizeof(UnkStruct_ov101_021D53B0));
+    UnkStruct_ov101_021D53B0 *v0 = Heap_AllocAtEnd(HEAP_ID_79, sizeof(UnkStruct_ov101_021D53B0));
 
     v0->unk_00 = 0;
     v0->unk_04 = 0;
@@ -4247,7 +4247,7 @@ static void ov101_021D53D4(UnkStruct_ov101_021D13C8 *param0)
 
 static void ov101_021D53F8(UnkStruct_ov101_021D13C8 *param0, int param1)
 {
-    UnkStruct_ov101_021D53B0 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_79, sizeof(UnkStruct_ov101_021D53B0));
+    UnkStruct_ov101_021D53B0 *v0 = Heap_AllocAtEnd(HEAP_ID_79, sizeof(UnkStruct_ov101_021D53B0));
 
     v0->unk_00 = 0;
     v0->unk_08 = param1;

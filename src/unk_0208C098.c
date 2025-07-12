@@ -158,7 +158,7 @@ void sub_0208C210(BgConfig *param0, int heapID, NARC *param2, int param3, int pa
     NNSG2dPaletteData *v4;
 
     v0 = NARC_GetMemberSize(param2, param4);
-    v1 = Heap_AllocFromHeapAtEnd(heapID, v0);
+    v1 = Heap_AllocAtEnd(heapID, v0);
 
     NARC_ReadWholeMember(param2, param4, (void *)v1);
 
@@ -204,7 +204,7 @@ void *sub_0208C2F4(NARC *param0, int param1, int param2, NNSG2dScreenData **para
     void *v1;
 
     v0 = NARC_GetMemberSize(param0, param2);
-    v1 = Heap_AllocFromHeap(heapID, v0);
+    v1 = Heap_Alloc(heapID, v0);
 
     NARC_ReadWholeMember(param0, param2, v1);
     NNS_G2dGetUnpackedScreenData(v1, param3);

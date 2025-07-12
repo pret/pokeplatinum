@@ -40,14 +40,14 @@ static void AreaData_StripTextureData(void *resourceFile, NNSG3dResTex *texture)
     u8 *textureData = (u8 *)texture + texture->texInfo.ofsTex;
     u32 strippedTextureDataSize = (u32)(textureData - (u8 *)resourceFile);
 
-    Heap_ReallocFromHeap(resourceFile, strippedTextureDataSize);
+    Heap_Realloc(resourceFile, strippedTextureDataSize);
 }
 
 AreaDataManager *AreaDataManager_Alloc(const int areaDataArchiveID, MapPropAnimationManager *mapPropAnimMan)
 {
-    AreaDataManager *areaDataManager = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(AreaDataManager));
+    AreaDataManager *areaDataManager = Heap_Alloc(HEAP_ID_FIELD, sizeof(AreaDataManager));
 
-    areaDataManager->loadData = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(AreaDataManagerLoadData));
+    areaDataManager->loadData = Heap_AllocAtEnd(HEAP_ID_FIELD, sizeof(AreaDataManagerLoadData));
     areaDataManager->loadData->areaDataArchiveID = areaDataArchiveID;
     areaDataManager->loadData->mapPropAnimMan = mapPropAnimMan;
     areaDataManager->loadData->dummy0C = 0;

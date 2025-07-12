@@ -86,7 +86,7 @@ void TrainerCard_Init(u8 param0, u8 param1, u8 param2, u8 param3, FieldSystem *f
 
 TrainerCard *TrainerCard_New(u16 heapID)
 {
-    TrainerCard *trainerCard = Heap_AllocFromHeap(heapID, sizeof(TrainerCard));
+    TrainerCard *trainerCard = Heap_Alloc(heapID, sizeof(TrainerCard));
 
     memset(trainerCard, 0, sizeof(TrainerCard));
     return trainerCard;
@@ -242,7 +242,7 @@ void sub_020721D4(FieldSystem *fieldSystem, const TrainerCard *trainerCard)
 
 void sub_02072204(FieldSystem *fieldSystem)
 {
-    UnkStruct_02072204 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02072204));
+    UnkStruct_02072204 *v0 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02072204));
 
     v0->unk_00 = 0;
     v0->unk_04 = (TrainerCard *)sub_0205C17C(fieldSystem->unk_7C);

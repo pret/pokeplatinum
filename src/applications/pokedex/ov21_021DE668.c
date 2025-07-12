@@ -144,7 +144,7 @@ static UnkStruct_ov21_021DE6D4 *ov21_021DE6E8(enum HeapId heapID, PokedexApp *pa
     UnkStruct_ov21_021DE6D4 *v0;
     UnkStruct_ov21_021E68F4 *v1;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021DE6D4));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov21_021DE6D4));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021DE6D4));
@@ -162,7 +162,7 @@ static PokedexGraphicData **ov21_021DE724(enum HeapId heapID, PokedexApp *param1
     PokedexGraphicData **v0;
     UnkStruct_ov21_021E68F4 *v1;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(PokedexGraphicData **));
+    v0 = Heap_Alloc(heapID, sizeof(PokedexGraphicData **));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(PokedexGraphicData **));
@@ -242,7 +242,7 @@ static int ov21_021DE804(void *graphics, PokedexGraphicsManager *graphicsMan, co
 
     switch (graphicsMan->state) {
     case 0:
-        graphicsMan->pageGraphics = Heap_AllocFromHeap(graphicsMan->heapID, sizeof(UnkStruct_ov21_021DF374));
+        graphicsMan->pageGraphics = Heap_Alloc(graphicsMan->heapID, sizeof(UnkStruct_ov21_021DF374));
         memset(graphicsMan->pageGraphics, 0, sizeof(UnkStruct_ov21_021DF374));
         graphicsMan->state++;
         break;

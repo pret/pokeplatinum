@@ -90,7 +90,7 @@ static const UnkStruct_ov6_022496F4 Unk_ov6_0224971C[][4] = {
 
 void ov6_02247A0C(FieldTask *param0)
 {
-    UnkStruct_ov6_02247A0C *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov6_02247A0C));
+    UnkStruct_ov6_02247A0C *v0 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov6_02247A0C));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov6_02247A0C));
 
     FieldTask_InitCall(param0, ov6_02247A34, v0);
@@ -130,7 +130,7 @@ void *ov6_02247A90(void *param0)
 
     v1 = FieldSystem_GetBgConfig(param0);
     saveData = FieldSystem_GetSaveData(param0);
-    v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov6_02247A90));
+    v0 = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov6_02247A90));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov6_02247A90));
 

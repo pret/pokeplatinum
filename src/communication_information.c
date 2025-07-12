@@ -73,7 +73,7 @@ void CommInfo_Init(SaveData *saveData, const BattleRegulation *regulation)
         return;
     }
 
-    sCommInfo = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sizeof(CommunicationInformation));
+    sCommInfo = Heap_Alloc(HEAP_ID_COMMUNICATION, sizeof(CommunicationInformation));
     MI_CpuClear8(sCommInfo, sizeof(CommunicationInformation));
 
     for (netId = 0; netId < MAX_CONNECTED_PLAYERS; netId++) {

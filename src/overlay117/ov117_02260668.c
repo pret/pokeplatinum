@@ -192,7 +192,7 @@ int ov117_02260668(ApplicationManager *appMan, int *param1)
 
     v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov117_02261280), HEAP_ID_110);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov117_02261280));
-    Heap_FndInitAllocatorForExpHeap(&v0->unk_A8, HEAP_ID_110, 32);
+    HeapExp_FndInitAllocator(&v0->unk_A8, HEAP_ID_110, 32);
 
     v0->unk_98 = ov117_02260E14(HEAP_ID_110);
     v0->unk_00 = ApplicationManager_Args(appMan);
@@ -902,7 +902,7 @@ static void ov117_02261574(UnkStruct_ov117_02261280 *param0)
 
     ParticleSystem_ZeroAll();
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_110, 0x4800);
+    v0 = Heap_Alloc(HEAP_ID_110, 0x4800);
     param0->unk_A4 = ParticleSystem_New(ov117_02261644, ov117_02261668, v0, 0x4800, 1, HEAP_ID_110);
     camera = ParticleSystem_GetCamera(param0->unk_A4);
 

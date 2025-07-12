@@ -781,7 +781,7 @@ static void ov23_02251C04(SysTask *param0, void *param1)
         break;
     case 3:
         if (v0->fieldSystem->task == NULL) {
-            v2 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov23_02251ACC));
+            v2 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov23_02251ACC));
             MI_CpuClear8(v2, sizeof(UnkStruct_ov23_02251ACC));
             v2->unk_00 = 0;
             v2->unk_04 = 0;
@@ -836,7 +836,7 @@ static void ov23_02251F94(FieldSystem *fieldSystem)
 
     ov23_022430D0(1);
 
-    v1 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02250CD4));
+    v1 = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02250CD4));
     MI_CpuFill8(v1, 0, sizeof(UnkStruct_ov23_02250CD4));
     v1->fieldSystem = fieldSystem;
 
@@ -906,7 +906,7 @@ static void ov23_022520C8(SysTask *param0, void *param1)
 
 static void ov23_022520E8(FieldSystem *fieldSystem, UnkStruct_ov23_022513B0 *param1)
 {
-    UnkStruct_ov23_02252038 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02250CD4));
+    UnkStruct_ov23_02252038 *v0 = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02250CD4));
 
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_02252038));
 

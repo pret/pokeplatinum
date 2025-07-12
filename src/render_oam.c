@@ -77,7 +77,7 @@ void RenderOam_Init(int mainOamStart, int mainOamCount, int mainAffineOamStart, 
 static void InitOamManager(int mainOamStart, int mainOamCount, int mainAffineOamStart, int mainAffineOamCount, int subOamStart, int subOamCount, int subAffineOamStart, int subAffineOamCount, enum HeapId heapID)
 {
     GF_ASSERT(sOamManager == NULL);
-    sOamManager = Heap_AllocFromHeap(heapID, sizeof(OamManager));
+    sOamManager = Heap_Alloc(heapID, sizeof(OamManager));
     GF_ASSERT(sOamManager);
 
     sOamManager->heapID = heapID;

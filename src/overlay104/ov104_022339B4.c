@@ -59,7 +59,7 @@ UnkStruct_ov104_0223ADA0 *ov104_022339B4(SaveData *saveData, u16 param1, u8 para
     u32 v6;
     static UnkStruct_ov104_0223ADA0 *v7;
 
-    v7 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov104_0223ADA0));
+    v7 = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov104_0223ADA0));
     MI_CpuClear8(v7, sizeof(UnkStruct_ov104_0223ADA0));
 
     v7->unk_4F4 = sub_0202FF58(saveData);

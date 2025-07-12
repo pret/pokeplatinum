@@ -712,7 +712,7 @@ UnkStruct_ov115_02260D78 *ov115_02260CEC(u32 heapID, u32 param1, u32 param2, u32
     UnkStruct_ov115_02260D78 *v0;
     u32 v1;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov115_02260D78));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov115_02260D78));
     memset(v0, 0, sizeof(UnkStruct_ov115_02260D78));
 
     v0->unk_04 = 1;
@@ -2874,7 +2874,7 @@ static void ov115_022633FC(UnkStruct_ov115_02260D78 *param0, u32 heapID)
 {
     NARC *v0;
 
-    Heap_FndInitAllocatorForExpHeap(&param0->unk_1AB4.unk_6BBC, heapID, 32);
+    HeapExp_FndInitAllocator(&param0->unk_1AB4.unk_6BBC, heapID, 32);
 
     ov115_02263308();
     ov115_022633B4(&param0->unk_1AB4, param0->unk_10, param0->unk_14, heapID);

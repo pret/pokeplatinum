@@ -83,7 +83,7 @@ BOOL CommPlayerMan_Init(void *dest, FieldSystem *fieldSystem, BOOL isUnderground
     sCommPlayerManager->unk_04 = NULL;
 
     if (isUnderground) {
-        sCommPlayerManager->unk_04 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, ov23_02249918());
+        sCommPlayerManager->unk_04 = Heap_Alloc(HEAP_ID_COMMUNICATION, ov23_02249918());
         ov23_0224991C(sCommPlayerManager->unk_04);
     }
 

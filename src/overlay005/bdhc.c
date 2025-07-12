@@ -366,7 +366,7 @@ static void BDHC_LazyLoadTask(SysTask *sysTask, void *sysTaskParam)
 
 BDHC *BDHC_New(void)
 {
-    BDHC *bdhc = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(BDHC));
+    BDHC *bdhc = Heap_Alloc(HEAP_ID_FIELD, sizeof(BDHC));
 
     bdhc->points = NULL;
     bdhc->normals = NULL;
@@ -382,7 +382,7 @@ BDHC *BDHC_New(void)
 
 void BDHC_Load(NARC *narc, const int bdhcSize, BDHC *bdhc, u8 *buffer)
 {
-    BDHCHeader *bdhcHeader = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(BDHCHeader));
+    BDHCHeader *bdhcHeader = Heap_AllocAtEnd(HEAP_ID_FIELD, sizeof(BDHCHeader));
 
     BDHC_LoadHeader(narc, bdhcHeader);
     bdhc->stripsCount = bdhcHeader->stripsCount;
@@ -425,7 +425,7 @@ void BDHC_Reset(BDHC *bdhc)
 
 SysTask *BDHC_LazyLoad(NARC *landDataNARC, const int unused1, BDHC *bdhc, BOOL *loadTaskRunning, u8 **buffer, BOOL *mapModelLoadTaskRunning)
 {
-    BDHCLoaderTaskContext *ctx = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(BDHCLoaderTaskContext));
+    BDHCLoaderTaskContext *ctx = Heap_AllocAtEnd(HEAP_ID_FIELD, sizeof(BDHCLoaderTaskContext));
 
     ctx->currentSubTask = BDHC_LOADER_SUBTASK_PREPARE_FILE_LOAD;
     ctx->landDataNARC = landDataNARC;

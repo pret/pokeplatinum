@@ -418,7 +418,7 @@ UnkStruct_ov12_0221FCDC *ov12_0221FCDC(int heapID)
     int v0;
     UnkStruct_ov12_0221FCDC *v1 = NULL;
 
-    v1 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov12_0221FCDC));
+    v1 = Heap_Alloc(heapID, sizeof(UnkStruct_ov12_0221FCDC));
 
     if (v1 == NULL) {
         GF_ASSERT(v1 != NULL);
@@ -429,7 +429,7 @@ UnkStruct_ov12_0221FCDC *ov12_0221FCDC(int heapID)
 
     v1->heapID = heapID;
     v1->unk_08 = 0;
-    v1->unk_BC = Heap_AllocFromHeap(v1->heapID, sizeof(UnkStruct_ov12_02223178));
+    v1->unk_BC = Heap_Alloc(v1->heapID, sizeof(UnkStruct_ov12_02223178));
     v1->unk_1A0[0] = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, heapID);
     v1->unk_1A0[1] = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, heapID);
     v1->unk_1A0[2] = NARC_ctor(NARC_INDEX_WAZAEFFECT__EFFECTCLACT__WECHAR, heapID);
@@ -776,7 +776,7 @@ static UnkStruct_ov12_02220314 *ov12_02220314(UnkStruct_ov12_0221FCDC *param0)
 {
     UnkStruct_ov12_02220314 *v0 = NULL;
 
-    v0 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov12_02220314));
+    v0 = Heap_Alloc(param0->heapID, sizeof(UnkStruct_ov12_02220314));
 
     if (v0 == NULL) {
         GF_ASSERT(FALSE);
@@ -2028,7 +2028,7 @@ static void ov12_0222128C(UnkStruct_ov12_0221FCDC *param0)
     if (v2 == 1) {
         SysTask *v9;
 
-        param0->unk_174 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov12_0222118C));
+        param0->unk_174 = Heap_Alloc(param0->heapID, sizeof(UnkStruct_ov12_0222118C));
         param0->unk_174->unk_00 = param0->unk_C0;
         param0->unk_174->unk_04.unk_04 = ov12_022232FC(param0, v3);
         param0->unk_174->unk_04.unk_00 = 0;
@@ -2224,7 +2224,7 @@ static void ov12_02221580(UnkStruct_ov12_0221FCDC *param0)
             return;
         }
 
-        param0->unk_160[v5] = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov12_0222118C));
+        param0->unk_160[v5] = Heap_Alloc(param0->heapID, sizeof(UnkStruct_ov12_0222118C));
         param0->unk_160[v5]->unk_00 = v1;
         param0->unk_160[v5]->unk_04.unk_04 = ov12_022232FC(param0, v7);
         param0->unk_160[v5]->unk_04.unk_00 = 0;
@@ -2559,7 +2559,7 @@ static UnkStruct_ov12_02221BBC *ov12_02221BBC(UnkStruct_ov12_0221FCDC *param0)
 {
     UnkStruct_ov12_02221BBC *v0 = NULL;
 
-    v0 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov12_02221BBC));
+    v0 = Heap_Alloc(param0->heapID, sizeof(UnkStruct_ov12_02221BBC));
 
     if (v0 == NULL) {
         GF_ASSERT(FALSE);
@@ -2928,7 +2928,7 @@ static BOOL ov12_0222235C(UnkStruct_ov12_02221BBC *param0)
 static BOOL ov12_02222360(UnkStruct_ov12_02221BBC *param0)
 {
     int v0;
-    UnkStruct_ov12_022222D4 *v1 = Heap_AllocFromHeap(param0->unk_48->heapID, sizeof(UnkStruct_ov12_022222D4));
+    UnkStruct_ov12_022222D4 *v1 = Heap_Alloc(param0->unk_48->heapID, sizeof(UnkStruct_ov12_022222D4));
 
     v1->unk_00 = param0->unk_48->unk_C0;
     v1->unk_04 = param0->unk_48->unk_90[2];
@@ -2960,9 +2960,9 @@ static BOOL ov12_0222240C(UnkStruct_ov12_02221BBC *param0)
 {
     int v0, v1;
     UnkStruct_ov12_0221FCDC *v2 = param0->unk_48;
-    UnkStruct_ov12_022222D4 *v3 = Heap_AllocFromHeap(param0->unk_48->heapID, sizeof(UnkStruct_ov12_022222D4));
+    UnkStruct_ov12_022222D4 *v3 = Heap_Alloc(param0->unk_48->heapID, sizeof(UnkStruct_ov12_022222D4));
 
-    v3->unk_1C = Heap_AllocFromHeap(v2->heapID, sizeof(UnkStruct_ov12_022224F8));
+    v3->unk_1C = Heap_Alloc(v2->heapID, sizeof(UnkStruct_ov12_022224F8));
     v2->unk_17C = v3;
 
     param0->unk_44_1 = 1;
@@ -4142,7 +4142,7 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, int heapID, int 
 {
     int v0;
     int v1[] = { 0, 0, 20, 10, 10, 20 };
-    UnkStruct_ov12_02223764 *v2 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov12_02223764));
+    UnkStruct_ov12_02223764 *v2 = Heap_Alloc(heapID, sizeof(UnkStruct_ov12_02223764));
 
     v2->heapID = heapID;
     v2->unk_04 = param2;

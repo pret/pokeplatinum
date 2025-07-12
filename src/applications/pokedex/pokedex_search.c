@@ -247,7 +247,7 @@ int PokedexSearch_GetScreenTimer(const UnkStruct_ov21_021E68F4 *param0)
 
 static PokedexSearchSettings *InitSearchSettings(enum HeapId heapID, PokedexApp *param1)
 {
-    PokedexSearchSettings *searchSettings = Heap_AllocFromHeap(heapID, sizeof(PokedexSearchSettings));
+    PokedexSearchSettings *searchSettings = Heap_Alloc(heapID, sizeof(PokedexSearchSettings));
 
     GF_ASSERT(searchSettings);
     memset(searchSettings, 0, sizeof(PokedexSearchSettings));
@@ -262,7 +262,7 @@ static PokedexSearchSettings *InitSearchSettings(enum HeapId heapID, PokedexApp 
 
 static PokedexGraphicData **ov21_021D8724(enum HeapId heapID, PokedexApp *param1)
 {
-    PokedexGraphicData **v0 = Heap_AllocFromHeap(heapID, sizeof(PokedexGraphicData **));
+    PokedexGraphicData **v0 = Heap_Alloc(heapID, sizeof(PokedexGraphicData **));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(PokedexGraphicData **));
@@ -276,7 +276,7 @@ static UnkStruct_ov21_021D4660 *ov21_021D874C(enum HeapId heapID, PokedexApp *pa
 {
     int v1 = ov21_021D87C8();
 
-    UnkStruct_ov21_021D4660 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021D4660) * v1);
+    UnkStruct_ov21_021D4660 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov21_021D4660) * v1);
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021D4660) * v1);
@@ -314,7 +314,7 @@ static int ov21_021D87C8(void)
 static int ResetSearchSettings(PokedexDataManager *dataMan, void *data)
 {
     PokedexSearchSettings *searchSettings = data;
-    int *v1 = Heap_AllocFromHeap(dataMan->heapID, sizeof(int));
+    int *v1 = Heap_Alloc(dataMan->heapID, sizeof(int));
 
     GF_ASSERT(v1);
     memset(v1, 0, sizeof(int));
@@ -438,7 +438,7 @@ static int EnterPokedexSearch(void *graphics, PokedexGraphicsManager *graphicsMa
 
     switch (graphicsMan->state) {
     case 0:
-        graphicsMan->pageGraphics = Heap_AllocFromHeap(graphicsMan->heapID, sizeof(PokedexSearchDisplay));
+        graphicsMan->pageGraphics = Heap_Alloc(graphicsMan->heapID, sizeof(PokedexSearchDisplay));
         memset(graphicsMan->pageGraphics, 0, sizeof(PokedexSearchDisplay));
         graphicsMan->state++;
         break;

@@ -17,7 +17,7 @@ static const u8 TerrainAttributes_GetOrPushLandDataID(const u16 landDataID, u16 
 void TerrainAttributes_New(FieldSystem *fieldSystem, const u8 blockCount)
 {
     if (fieldSystem->terrainAttributes == NULL) {
-        fieldSystem->terrainAttributes = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(TerrainAttributes));
+        fieldSystem->terrainAttributes = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(TerrainAttributes));
 
         TerrainAttributes_Load(fieldSystem->mapMatrix, fieldSystem->terrainAttributes, blockCount);
     }

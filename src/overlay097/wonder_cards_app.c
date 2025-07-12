@@ -1845,7 +1845,7 @@ void WonderCardsApp_ShowWondercard(BgConfig *bgConfig, WonderCard *wonderCard, e
 {
     ov97_02232074(bgConfig);
 
-    WonderCardsAppData *appData = Heap_AllocFromHeapAtEnd(heapID, sizeof(WonderCardsAppData));
+    WonderCardsAppData *appData = Heap_AllocAtEnd(heapID, sizeof(WonderCardsAppData));
     memset(appData, 0, sizeof(WonderCardsAppData));
 
     appData->bgConfig = bgConfig;

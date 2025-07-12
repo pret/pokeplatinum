@@ -20,7 +20,7 @@ static void MapHeaderData_LoadInitScripts(MapHeaderData *data, int headerID);
 void MapHeaderData_Init(FieldSystem *fieldSystem, enum HeapId heapID)
 {
     GF_ASSERT(fieldSystem->mapHeaderData == NULL);
-    fieldSystem->mapHeaderData = Heap_AllocFromHeap(heapID, sizeof(MapHeaderData));
+    fieldSystem->mapHeaderData = Heap_Alloc(heapID, sizeof(MapHeaderData));
 }
 
 void MapHeaderData_Free(FieldSystem *fieldSystem)

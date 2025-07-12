@@ -199,7 +199,7 @@ void *ReadFileToHeap(int heapID, const char *filename)
     void *buf;
     if (FS_OpenFile(&file, filename)) {
         u32 length = FS_GetLength(&file);
-        buf = Heap_AllocFromHeap(heapID, length);
+        buf = Heap_Alloc(heapID, length);
         if (buf != NULL) {
             if (FS_ReadFile(&file, buf, length) != length) {
                 Heap_FreeExplicit(heapID, buf);
@@ -440,7 +440,7 @@ void InitHeapCanary(enum HeapId heapID)
 {
     GF_ASSERT(gSystem.heapCanary == NULL);
 
-    gSystem.heapCanary = Heap_AllocFromHeapAtEnd(heapID, sizeof(u32));
+    gSystem.heapCanary = Heap_AllocAtEnd(heapID, sizeof(u32));
     *(gSystem.heapCanary) = HEAP_CANARY;
 }
 

@@ -69,7 +69,7 @@ static Sprite *ov20_021D4B40(UnkStruct_ov20_021D4AD4 *param0, NNSG2dImageProxy *
 
 UnkStruct_ov20_021D4AD4 *ov20_021D4728(UnkStruct_ov20_021D2128 *param0, const UnkStruct_ov20_021D16E8 *param1, const UnkStruct_020998EC *param2)
 {
-    UnkStruct_ov20_021D4AD4 *v0 = Heap_AllocFromHeap(HEAP_ID_35, sizeof(UnkStruct_ov20_021D4AD4));
+    UnkStruct_ov20_021D4AD4 *v0 = Heap_Alloc(HEAP_ID_35, sizeof(UnkStruct_ov20_021D4AD4));
 
     v0->unk_00 = param0;
     v0->unk_04 = param1;
@@ -281,7 +281,7 @@ static Sprite *ov20_021D4B40(UnkStruct_ov20_021D4AD4 *param0, NNSG2dImageProxy *
 
 void ov20_021D4BA4(UnkStruct_ov20_021D4AD4 *param0)
 {
-    UnkStruct_ov20_021D4BA4 *v0 = Heap_AllocFromHeap(HEAP_ID_35, sizeof(UnkStruct_ov20_021D4BA4));
+    UnkStruct_ov20_021D4BA4 *v0 = Heap_Alloc(HEAP_ID_35, sizeof(UnkStruct_ov20_021D4BA4));
 
     if (v0) {
         static const struct {

@@ -19,7 +19,7 @@ void ov18_0221F800(int heapID)
 
     v0 = OS_DisableInterrupts();
     DWC_SetAuthServer(DWC_CONNECTINET_AUTH_RELEASE);
-    v1 = Heap_AllocFromHeap(heapID, DWC_UTILITY_WORK_SIZE);
+    v1 = Heap_Alloc(heapID, DWC_UTILITY_WORK_SIZE);
 
     (void)DWC_StartUtility(v1, DWC_LANGUAGE_ENGLISH, DWC_UTILITY_TOP_MENU_COMMON);
 

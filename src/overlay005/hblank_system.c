@@ -14,7 +14,7 @@ static HBlankTask *HBlankSystem_GetAvailableTask(HBlankSystem *hBlankSystem);
 
 HBlankSystem *HBlankSystem_New(enum HeapId heapID)
 {
-    HBlankSystem *hBlankSystem = Heap_AllocFromHeap(heapID, sizeof(HBlankSystem));
+    HBlankSystem *hBlankSystem = Heap_Alloc(heapID, sizeof(HBlankSystem));
     HBlankSystem_Init(hBlankSystem);
 
     return hBlankSystem;

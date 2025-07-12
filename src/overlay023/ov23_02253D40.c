@@ -73,7 +73,7 @@ const ListMenuTemplate *ov23_02253D40(void)
 UnkStruct_ov23_02253E2C *ov23_02253D48(int bankID, int heapID, BgConfig *param2, int param3, int param4)
 {
     int v0 = param4;
-    UnkStruct_ov23_02253E2C *v1 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov23_02253E2C));
+    UnkStruct_ov23_02253E2C *v1 = Heap_Alloc(heapID, sizeof(UnkStruct_ov23_02253E2C));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_ov23_02253E2C));
 

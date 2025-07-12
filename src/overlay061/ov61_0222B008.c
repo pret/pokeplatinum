@@ -90,7 +90,7 @@ int ov61_0222B008(UnkStruct_ov62_022349A8 *param0, const UnkStruct_ov62_02241130
     param0->unk_14C = -1;
     param0->unk_3E8 = 23004;
     param0->unk_3EC = 23004;
-    param0->unk_3B4 = Heap_AllocFromHeap(param1->heapID, ov61_0222DE8C(-1));
+    param0->unk_3B4 = Heap_Alloc(param1->heapID, ov61_0222DE8C(-1));
 
     MI_CpuClear8(param0->unk_3B4, ov61_0222DE8C(-1));
 
@@ -785,7 +785,7 @@ static void *ov61_0222BBF0(int heapID)
     void *v2;
     int v3 = 0x2000;
 
-    v0 = Heap_AllocFromHeap(heapID, v3);
+    v0 = Heap_Alloc(heapID, v3);
     v2 = v0;
     v1 = (void *)((u32)v0 + v3);
     v0 = OS_InitAlloc(OS_ARENA_MAIN, v0, v1, 1);

@@ -184,7 +184,7 @@ void sub_020656DC(MapObject *mapObj)
 
 SysTask *MapObject_StartAnimation(MapObject *mapObj, const MapObjectAnimCmd *animCmd)
 {
-    MoveAnimData *data = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(MoveAnimData));
+    MoveAnimData *data = Heap_AllocAtEnd(HEAP_ID_FIELD, sizeof(MoveAnimData));
     GF_ASSERT(data != NULL);
     memset(data, 0, sizeof(MoveAnimData));
 

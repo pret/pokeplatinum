@@ -45,7 +45,7 @@ static void OffsetSpriteAffineZRotation(Sprite *sprite, s32 offset);
 
 SpriteSystem *SpriteSystem_Alloc(enum HeapId heapID)
 {
-    SpriteSystem *spriteSys = Heap_AllocFromHeap(heapID, sizeof(SpriteSystem));
+    SpriteSystem *spriteSys = Heap_Alloc(heapID, sizeof(SpriteSystem));
     if (spriteSys == NULL) {
         return NULL;
     }
@@ -61,7 +61,7 @@ SpriteManager *SpriteManager_New(SpriteSystem *spriteSys)
 {
     GF_ASSERT(spriteSys != NULL);
 
-    SpriteManager *spriteMan = Heap_AllocFromHeap(spriteSys->heapID, sizeof(SpriteManager));
+    SpriteManager *spriteMan = Heap_Alloc(spriteSys->heapID, sizeof(SpriteManager));
     if (spriteMan == NULL) {
         return NULL;
     }
@@ -214,7 +214,7 @@ BOOL SpriteSystem_LoadResourceDataFromFilepaths(SpriteSystem *spriteSys, SpriteM
 
     spriteMan->numResourceTypes = numResourceTypes;
     int resourceCount = SpriteResourceTable_Size();
-    spriteMan->resourcePaths = Heap_AllocFromHeap(spriteSys->heapID, resourceCount * numResourceTypes);
+    spriteMan->resourcePaths = Heap_Alloc(spriteSys->heapID, resourceCount * numResourceTypes);
 
     for (int i = 0; i < numResourceTypes; i++) {
         SpriteResourceTable *resourceTable = SpriteResourceTable_GetArrayElement(spriteMan->resourcePaths, i);
@@ -482,17 +482,17 @@ ManagedSprite *SpriteSystem_NewSprite(SpriteSystem *spriteSys, SpriteManager *sp
     AffineSpriteListTemplate innerTemplate;
     int resourceIDs[SPRITE_RESOURCE_MAX];
 
-    managedSprite = Heap_AllocFromHeap(spriteSys->heapID, sizeof(ManagedSprite));
+    managedSprite = Heap_Alloc(spriteSys->heapID, sizeof(ManagedSprite));
     if (managedSprite == NULL) {
         return NULL;
     }
 
-    managedSprite->resourceHeaderList = Heap_AllocFromHeap(spriteSys->heapID, sizeof(SpriteResourcesHeaderList));
+    managedSprite->resourceHeaderList = Heap_Alloc(spriteSys->heapID, sizeof(SpriteResourcesHeaderList));
     if (managedSprite->resourceHeaderList == NULL) {
         return NULL;
     }
 
-    managedSprite->resourceHeaderList->headers = Heap_AllocFromHeap(spriteSys->heapID, sizeof(SpriteResourcesHeader));
+    managedSprite->resourceHeaderList->headers = Heap_Alloc(spriteSys->heapID, sizeof(SpriteResourcesHeader));
     managedSprite->resourceHeader = managedSprite->resourceHeaderList->headers;
     if (managedSprite->resourceHeaderList->headers == NULL) {
         if (managedSprite->resourceHeaderList) {

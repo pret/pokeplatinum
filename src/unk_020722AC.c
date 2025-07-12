@@ -196,7 +196,7 @@ void sub_020722AC(void *param0, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_43, 0x5000);
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_43, sizeof(UnkStruct_02072334));
+    v0 = Heap_Alloc(HEAP_ID_43, sizeof(UnkStruct_02072334));
     MI_CpuClear8(v0, sizeof(UnkStruct_02072334));
     v0->unk_04 = param1;
 
@@ -1198,7 +1198,7 @@ static int sub_02073524(UnkStruct_02072334 *param0, int param1)
 
     switch (param0->unk_12) {
     case 0:
-        partyMan = Heap_AllocFromHeap(param0->heapID, sizeof(PartyManagementData));
+        partyMan = Heap_Alloc(param0->heapID, sizeof(PartyManagementData));
         MI_CpuClear8(partyMan, sizeof(PartyManagementData));
 
         partyMan->party = SaveData_GetParty(FieldSystem_GetSaveData(param0->fieldSystem));
@@ -1290,7 +1290,7 @@ static BOOL sub_02073694(FieldTask *param0)
 void sub_020736D8(FieldTask *param0)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_020736D8 *v1 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_020736D8));
+    UnkStruct_020736D8 *v1 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_020736D8));
 
     v1->unk_00 = 0;
     v1->unk_04 = 0;

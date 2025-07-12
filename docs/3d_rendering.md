@@ -56,7 +56,7 @@ Easy3DModel_LoadFrom(&giratinaModel, narc, 1, HEAP_ID_FIELD);
 Easy3DObject_Init(&giratinaObj, &giratinaModel);
 
 // Initialize the Allocator used by the animations
-Heap_FndInitAllocatorForExpHeap(&allocator, HEAP_ID_FIELD, 4);
+HeapExp_FndInitAllocator(&allocator, HEAP_ID_FIELD, 4);
 
 // Load the model animation with member index 2.
 Easy3DAnim_LoadFrom(&giratinaModelAnim, &giratinaModel, narc, 2, HEAP_ID_FIELD, &allocator);

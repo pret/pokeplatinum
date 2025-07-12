@@ -112,7 +112,7 @@ BOOL ScrCmd_224(ScriptContext *param0)
     u16 *v3;
 
     v0 = Party_GetPokemonBySlotIndex(SaveData_GetParty(param0->fieldSystem->saveData), v1);
-    v3 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, (1 + 1) * 2);
+    v3 = Heap_Alloc(HEAP_ID_FIELD_TASK, (1 + 1) * 2);
 
     *(v3 + 0) = v2;
     *(v3 + 1) = 0xffff;

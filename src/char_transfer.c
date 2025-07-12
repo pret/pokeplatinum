@@ -99,11 +99,11 @@ void CharTransfer_Init(const CharTransferTemplate *template)
 void CharTransfer_InitWithVramModes(const CharTransferTemplate *template, GXOBJVRamModeChar modeMain, GXOBJVRamModeChar modeSub)
 {
     if (sTaskManager == NULL) {
-        sTaskManager = Heap_AllocFromHeap(template->heapID, sizeof(CharTransferTaskManager));
+        sTaskManager = Heap_Alloc(template->heapID, sizeof(CharTransferTaskManager));
         MI_CpuClear32(sTaskManager, sizeof(CharTransferTaskManager));
 
         sTaskManager->capacity = template->maxTasks;
-        sTaskManager->tasks = Heap_AllocFromHeap(template->heapID, sizeof(CharTransferTask) * sTaskManager->capacity);
+        sTaskManager->tasks = Heap_Alloc(template->heapID, sizeof(CharTransferTask) * sTaskManager->capacity);
         for (int i = 0; i < template->maxTasks; i++) {
             InitTransferTask(sTaskManager->tasks + i);
         }
@@ -793,11 +793,11 @@ static void InitTransferBuffers(u32 numBlocksMain, u32 numBlocksSub, enum HeapId
     }
 
     if (sTaskManager->numBlocksMain != 0) {
-        sTaskManager->bufMain = Heap_AllocFromHeap(heapID, numBlocksMain / 8);
+        sTaskManager->bufMain = Heap_Alloc(heapID, numBlocksMain / 8);
     }
 
     if (sTaskManager->numBlocksSub != 0) {
-        sTaskManager->bufSub = Heap_AllocFromHeap(heapID, numBlocksSub / 8);
+        sTaskManager->bufSub = Heap_Alloc(heapID, numBlocksSub / 8);
     }
 
     ClearBothTransferBuffers();

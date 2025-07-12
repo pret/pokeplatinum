@@ -183,7 +183,7 @@ static BOOL FieldMap_Init(ApplicationManager *appMan, int *param1)
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELD, fieldSystem->mapLoadMode->unk_04);
         GF_ASSERT(fieldSystem->unk_04 == NULL);
 
-        fieldSystem->unk_04 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(FieldSystem_sub2));
+        fieldSystem->unk_04 = Heap_Alloc(HEAP_ID_FIELD, sizeof(FieldSystem_sub2));
         MI_CpuClear8(fieldSystem->unk_04, sizeof(FieldSystem_sub2));
         fieldSystem->unk_04->unk_04 = ov5_021D1A94(fieldSystem, HEAP_ID_FIELD, 8);
 
@@ -915,7 +915,7 @@ static UnkStruct_ov5_021D1A68 *ov5_021D1A14(int fieldSystem, int param1)
 {
     int v0;
     u16 *v1;
-    UnkStruct_ov5_021D1A68 *v2 = Heap_AllocFromHeap(fieldSystem, sizeof(UnkStruct_ov5_021D1A68));
+    UnkStruct_ov5_021D1A68 *v2 = Heap_Alloc(fieldSystem, sizeof(UnkStruct_ov5_021D1A68));
     v1 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__MM_LIST__MOVE_MODEL_LIST, param1, fieldSystem);
 
     for (v0 = 0; v0 < 24; v0++) {

@@ -44,7 +44,7 @@ UnkStruct_ov5_021F06D8 *ov5_021F067C(u32 parentHeapID, u32 childHeapID, u32 para
     }
 
     param2 = v1 - param2;
-    v2 = Heap_AllocFromHeap(childHeapID, param2);
+    v2 = Heap_Alloc(childHeapID, param2);
 
     GF_ASSERT(v2 != NULL);
     memset(v2, 0, param2);
@@ -140,9 +140,9 @@ static void *ov5_021F07B4(UnkStruct_ov5_021F06D8 *param0, u32 param1, int param2
     void *v0;
 
     if (param2 == 0) {
-        v0 = Heap_AllocFromHeap(param0->childHeapID, param1);
+        v0 = Heap_Alloc(param0->childHeapID, param1);
     } else {
-        v0 = Heap_AllocFromHeapAtEnd(param0->childHeapID, param1);
+        v0 = Heap_AllocAtEnd(param0->childHeapID, param1);
     }
 
     GF_ASSERT(v0 != NULL);

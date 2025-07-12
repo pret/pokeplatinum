@@ -213,7 +213,7 @@ BOOL ov21_021D5B68(const UnkStruct_ov21_021D5B68 *param0)
 
 static UnkStruct_ov21_021D5B68 *ov21_021D5B90(enum HeapId heapID, PokedexApp *param1)
 {
-    UnkStruct_ov21_021D5B68 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021D5B68));
+    UnkStruct_ov21_021D5B68 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov21_021D5B68));
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021D5B68));
 
@@ -234,7 +234,7 @@ static void ov21_021D5BCC(UnkStruct_ov21_021D5B68 *param0)
 
 static PokedexGraphicData **ov21_021D5BE0(enum HeapId heapID, PokedexApp *param1)
 {
-    PokedexGraphicData **v0 = Heap_AllocFromHeap(heapID, sizeof(PokedexGraphicData **));
+    PokedexGraphicData **v0 = Heap_Alloc(heapID, sizeof(PokedexGraphicData **));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(PokedexGraphicData **));
@@ -252,7 +252,7 @@ static void ov21_021D5C08(PokedexGraphicData **param0)
 
 static UnkStruct_ov21_021D4660 *ov21_021D5C1C(enum HeapId heapID, UnkStruct_ov21_021E68F4 *param1, PokedexApp *param2)
 {
-    UnkStruct_ov21_021D4660 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021D4660) * ov21_021D5CB4());
+    UnkStruct_ov21_021D4660 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov21_021D4660) * ov21_021D5CB4());
     ov21_021D467C(heapID, &v0[0], param2, (1 << 0));
     ov21_021D475C(heapID, &v0[1], param2, (1 << 1));
     ov21_021D4704(heapID, &v0[2], param2, (1 << 2));
@@ -284,7 +284,7 @@ static int ov21_021D5CB8(PokedexDataManager *dataMan, void *data)
 {
     UnkStruct_ov21_021D5B68 *v0 = data;
 
-    dataMan->pageData = Heap_AllocFromHeap(dataMan->heapID, sizeof(UnkStruct_ov21_021D7464));
+    dataMan->pageData = Heap_Alloc(dataMan->heapID, sizeof(UnkStruct_ov21_021D7464));
 
     GF_ASSERT(dataMan->pageData);
     memset(dataMan->pageData, 0, sizeof(UnkStruct_ov21_021D7464));
@@ -341,7 +341,7 @@ static int ov21_021D5D48(void *graphics, PokedexGraphicsManager *graphicsMan, co
 
     switch (graphicsMan->state) {
     case 0:
-        v3 = Heap_AllocFromHeap(graphicsMan->heapID, sizeof(UnkStruct_ov21_021D71A8));
+        v3 = Heap_Alloc(graphicsMan->heapID, sizeof(UnkStruct_ov21_021D71A8));
         GF_ASSERT(v3);
         graphicsMan->pageGraphics = v3;
         ov21_021D6C24(v3, v1);

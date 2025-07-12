@@ -237,7 +237,7 @@ static UnkStruct_ov21_021D95B8 *ov21_021D9534(enum HeapId heapID, PokedexApp *pa
     UnkStruct_ov21_021D95B8 *v0;
     UnkStruct_ov21_021E68F4 *v1;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021D95B8));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov21_021D95B8));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021D95B8));
@@ -255,7 +255,7 @@ static UnkStruct_ov21_021D95CC *ov21_021D957C(enum HeapId heapID, PokedexApp *pa
     UnkStruct_ov21_021D95CC *v0;
     UnkStruct_ov21_021E68F4 *v1;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021D95CC));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov21_021D95CC));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021D95CC));
@@ -298,7 +298,7 @@ static int ov21_021D95E8(PokedexDataManager *dataMan, void *data)
     UnkStruct_ov21_021D9B24 *v1;
     int v2;
 
-    v1 = Heap_AllocFromHeap(dataMan->heapID, sizeof(UnkStruct_ov21_021D9B24));
+    v1 = Heap_Alloc(dataMan->heapID, sizeof(UnkStruct_ov21_021D9B24));
 
     GF_ASSERT(v1);
     memset(v1, 0, sizeof(UnkStruct_ov21_021D9B24));
@@ -422,7 +422,7 @@ static int ov21_021D97A0(void *graphics, PokedexGraphicsManager *graphicsMan, co
 
     switch (graphicsMan->state) {
     case 0:
-        graphicsMan->pageGraphics = Heap_AllocFromHeap(graphicsMan->heapID, sizeof(UnkStruct_ov21_021DC96C));
+        graphicsMan->pageGraphics = Heap_Alloc(graphicsMan->heapID, sizeof(UnkStruct_ov21_021DC96C));
         memset(graphicsMan->pageGraphics, 0, sizeof(UnkStruct_ov21_021DC96C));
         graphicsMan->state++;
         break;
@@ -679,7 +679,7 @@ static void ov21_021D9BB0(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
 
 static void ov21_021D9BEC(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, enum HeapId heapID)
 {
-    param0->unk_04 = Heap_AllocFromHeap(heapID, sizeof(TouchScreenHitTable) * 6);
+    param0->unk_04 = Heap_Alloc(heapID, sizeof(TouchScreenHitTable) * 6);
 
     ov21_021D154C(&param0->unk_04[1], 48 - (32 / 2), 48 + (32 / 2), 224 - (64 / 2), 224 + (64 / 2));
     ov21_021D154C(&param0->unk_04[0], 16 - (32 / 2), 16 + (32 / 2), 212 - (48 / 2), 212 + (48 / 2));
@@ -786,7 +786,7 @@ static void ov21_021D9D78(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
     int v0, v1;
     int v2, v3;
 
-    param0->unk_0C = Heap_AllocFromHeap(heapID, sizeof(TouchScreenHitTable) * 6);
+    param0->unk_0C = Heap_Alloc(heapID, sizeof(TouchScreenHitTable) * 6);
 
     for (v0 = 0; v0 < 3; v0++) {
         v3 = 48 + (v0 * (48 - 16));
@@ -869,7 +869,7 @@ static void ov21_021D9EB4(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
     int v0, v1;
     int v2, v3;
 
-    param0->unk_0C = Heap_AllocFromHeap(heapID, sizeof(TouchScreenHitTable) * 10);
+    param0->unk_0C = Heap_Alloc(heapID, sizeof(TouchScreenHitTable) * 10);
 
     for (v0 = 0; v0 < 5; v0++) {
         v3 = 16 + (v0 * (48 - 16));
@@ -969,7 +969,7 @@ static void ov21_021DA018(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
     int v0, v1;
     int v2, v3;
 
-    param0->unk_0C = Heap_AllocFromHeap(heapID, sizeof(TouchScreenHitTable) * 11);
+    param0->unk_0C = Heap_Alloc(heapID, sizeof(TouchScreenHitTable) * 11);
 
     for (v0 = 0; v0 < 5; v0++) {
         v3 = 16 + (v0 * (48 - 16));
@@ -1083,7 +1083,7 @@ static void ov21_021DA1C8(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
     int v0, v1;
     int v2, v3;
 
-    param0->unk_0C = Heap_AllocFromHeap(heapID, sizeof(TouchScreenHitTable) * 10);
+    param0->unk_0C = Heap_Alloc(heapID, sizeof(TouchScreenHitTable) * 10);
 
     for (v0 = 0; v0 < 4; v0++) {
         v3 = 16 + (v0 * (48 - 16));
@@ -1202,7 +1202,7 @@ static void ov21_021DA38C(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
     int v0, v1;
     int v2, v3;
 
-    param0->unk_0C = Heap_AllocFromHeap(heapID, sizeof(TouchScreenHitTable) * 15);
+    param0->unk_0C = Heap_Alloc(heapID, sizeof(TouchScreenHitTable) * 15);
 
     for (v0 = 0; v0 < 5; v0++) {
         v3 = 16 + (v0 * (48 - 16));
@@ -1423,7 +1423,7 @@ static void ov21_021DA6B0(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID)
     int v4;
     int v5;
 
-    param0->unk_1C = Heap_AllocFromHeap(heapID, sizeof(PokedexCursorData) * (3 * 6));
+    param0->unk_1C = Heap_Alloc(heapID, sizeof(PokedexCursorData) * (3 * 6));
 
     for (v0 = 0; v0 < 6; v0++) {
         v3 = 16 + (v0 * (48 - 16));
@@ -1534,7 +1534,7 @@ static void ov21_021DA888(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID)
     int v4;
     int v5;
 
-    param0->unk_1C = Heap_AllocFromHeap(heapID, sizeof(PokedexCursorData) * (3 * 6));
+    param0->unk_1C = Heap_Alloc(heapID, sizeof(PokedexCursorData) * (3 * 6));
 
     for (v0 = 0; v0 < 6; v0++) {
         v3 = 16 + (v0 * (48 - 16));
@@ -1662,7 +1662,7 @@ static void ov21_021DAAD4(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID)
     int v6;
     int v7;
 
-    param0->unk_1C = Heap_AllocFromHeap(heapID, sizeof(PokedexCursorData) * (3 * 6));
+    param0->unk_1C = Heap_Alloc(heapID, sizeof(PokedexCursorData) * (3 * 6));
 
     for (v0 = 0; v0 < 6; v0++) {
         v3 = 16 + (v0 * (48 - 16));
@@ -1814,7 +1814,7 @@ static void ov21_021DAD74(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID)
     int v6, v7;
     int v8;
 
-    param0->unk_1C = Heap_AllocFromHeap(heapID, sizeof(PokedexCursorData) * (3 * 6));
+    param0->unk_1C = Heap_Alloc(heapID, sizeof(PokedexCursorData) * (3 * 6));
 
     for (v0 = 0; v0 < 6; v0++) {
         v3 = 16 + (v0 * (48 - 16));
@@ -1975,7 +1975,7 @@ static void ov21_021DB02C(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID)
     int v4;
     int v5;
 
-    param0->unk_1C = Heap_AllocFromHeap(heapID, sizeof(PokedexCursorData) * (4 * 6));
+    param0->unk_1C = Heap_Alloc(heapID, sizeof(PokedexCursorData) * (4 * 6));
 
     for (v0 = 0; v0 < 6; v0++) {
         v3 = 16 + (v0 * (48 - 16));

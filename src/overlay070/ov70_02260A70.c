@@ -26,7 +26,7 @@ UnkStruct_ov70_02260AD4 *ov70_02260A70(u32 heapID)
     UnkStruct_ov70_02260AD4 *v0;
     VecFx32 v1;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov70_02260AD4));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov70_02260AD4));
     memset(v0, 0, sizeof(UnkStruct_ov70_02260AD4));
     v0->camera = Camera_Alloc(heapID);
 

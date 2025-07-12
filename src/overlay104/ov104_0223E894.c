@@ -82,7 +82,7 @@ static void ov104_0223F070(SysTask *param0, void *param1);
 void ov104_0223E894(int param0, u32 param1, u32 param2, BOOL *param3, u32 param4)
 {
     SysTask *v0;
-    UnkStruct_ov104_0223E894 *v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov104_0223E894));
+    UnkStruct_ov104_0223E894 *v1 = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov104_0223E894));
     memset(v1, 0, sizeof(UnkStruct_ov104_0223E894));
 
     SysTask_Start(ov104_0223E8D8, v1, 5);
@@ -214,7 +214,7 @@ BOOL ov104_0223EA38(UnkStruct_ov104_0223EA38 *param0)
 
 UnkStruct_ov104_0223EA84 *ov104_0223EA64(u32 heapID)
 {
-    UnkStruct_ov104_0223EA84 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov104_0223EA84));
+    UnkStruct_ov104_0223EA84 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov104_0223EA84));
     memset(v0, 0, sizeof(UnkStruct_ov104_0223EA84));
 
     return v0;
@@ -300,7 +300,7 @@ UnkStruct_ov104_0223EBD0 *ov104_0223EBA0(u32 heapID)
     UnkStruct_ov104_0223EBD0 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov104_0223EBD0));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov104_0223EBD0));
     memset(v0, 0, sizeof(UnkStruct_ov104_0223EBD0));
 
     for (v1 = 0; v1 < ((256 / 16) * (192 / 32)); v1++) {
@@ -597,7 +597,7 @@ UnkStruct_ov104_0223F174 *ov104_0223F1B4(u32 param0, UnkStruct_ov104_0223F1B4 *p
     UnkStruct_ov104_0223F174 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov104_0223F174));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov104_0223F174));
     memset(v0, 0, sizeof(UnkStruct_ov104_0223F174));
 
     GF_ASSERT(v0);

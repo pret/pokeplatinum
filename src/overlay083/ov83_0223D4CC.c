@@ -41,7 +41,7 @@ static BOOL ov83_0223D638(UnkStruct_ov83_0223D584 *param0, int param1, const voi
 
 UnkStruct_ov83_0223D4CC *ov83_0223D4CC(const CommCmdTable *param0, int param1, void *param2, int param3, int heapID)
 {
-    UnkStruct_ov83_0223D4CC *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov83_0223D4CC));
+    UnkStruct_ov83_0223D4CC *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov83_0223D4CC));
     v0->unk_00 = param3;
     v0->unk_04 = NULL;
 
@@ -99,7 +99,7 @@ int ov83_0223D570(UnkStruct_ov83_0223D4CC *param0)
 
 static UnkStruct_ov83_0223D584 *ov83_0223D584(const CommCmdTable *param0, int param1, void *param2, int heapID)
 {
-    UnkStruct_ov83_0223D584 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov83_0223D584));
+    UnkStruct_ov83_0223D584 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov83_0223D584));
     memset(v0, 0, sizeof(UnkStruct_ov83_0223D584));
 
     v0->unk_190 = param0;

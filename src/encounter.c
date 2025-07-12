@@ -123,7 +123,7 @@ static void CallBattleTask(FieldTask *task, FieldBattleDTO *dto)
 
 static Encounter *NewEncounter(FieldBattleDTO *dto, int introEffectID, int battleBGM, int *resultMaskPtr)
 {
-    Encounter *encounter = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(Encounter));
+    Encounter *encounter = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(Encounter));
     encounter->resultMaskPtr = resultMaskPtr;
     if (resultMaskPtr != NULL) {
         *resultMaskPtr = BATTLE_IN_PROGRESS;
@@ -321,7 +321,7 @@ static BOOL FieldTask_WiFiEncounter(FieldTask *task)
 
 static WildEncounter *NewWildEncounter(FieldBattleDTO *dto, int introEffectID, int battleBGM, int *resultMaskPtr)
 {
-    WildEncounter *encounter = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(WildEncounter));
+    WildEncounter *encounter = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(WildEncounter));
     encounter->resultMaskPtr = resultMaskPtr;
 
     if (resultMaskPtr != NULL) {

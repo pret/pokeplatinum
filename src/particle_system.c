@@ -103,7 +103,7 @@ ParticleSystem *ParticleSystem_New(SPLTexVRAMAllocFunc texAllocFunc, SPLPalVRAMA
         return NULL;
     }
 
-    particleSystem = Heap_AllocFromHeap(heapID, sizeof(ParticleSystem));
+    particleSystem = Heap_Alloc(heapID, sizeof(ParticleSystem));
     if (particleSystem == NULL) {
         GF_ASSERT(FALSE);
     }

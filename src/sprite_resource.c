@@ -68,9 +68,9 @@ static int SpriteResourceTableEntryNARC_GetEntryCount(const SpriteResourceTableE
 
 SpriteResourceCollection *SpriteResourceCollection_New(int capacity, enum SpriteResourceType type, enum HeapId heapID)
 {
-    SpriteResourceCollection *spriteResources = Heap_AllocFromHeap(heapID, sizeof(SpriteResourceCollection));
+    SpriteResourceCollection *spriteResources = Heap_Alloc(heapID, sizeof(SpriteResourceCollection));
     spriteResources->collection = ResourceCollection_New(capacity, heapID);
-    spriteResources->resources = Heap_AllocFromHeap(heapID, sizeof(SpriteResource) * capacity);
+    spriteResources->resources = Heap_Alloc(heapID, sizeof(SpriteResource) * capacity);
 
     memset(spriteResources->resources, 0, sizeof(SpriteResource) * capacity);
 
@@ -418,9 +418,9 @@ void SpriteResoureCollection_ExtendEx(SpriteResourceCollection *spriteResources,
 
 SpriteResourceList *SpriteResourceList_New(int capacity, enum HeapId heapID)
 {
-    SpriteResourceList *list = Heap_AllocFromHeap(heapID, sizeof(SpriteResourceList));
+    SpriteResourceList *list = Heap_Alloc(heapID, sizeof(SpriteResourceList));
 
-    list->resources = Heap_AllocFromHeap(heapID, sizeof(SpriteResource *) * capacity);
+    list->resources = Heap_Alloc(heapID, sizeof(SpriteResource *) * capacity);
     list->capacity = capacity;
     list->count = 0;
 
@@ -610,7 +610,7 @@ void SpriteResourceTable_LoadFromBinary(const void *data, SpriteResourceTable *t
     table->count = SpriteResourceTableEntryNARC_GetEntryCount(tableBin->narcEntries);
 
     if (table->count > 0) {
-        table->entries = Heap_AllocFromHeap(heapID, sizeof(SpriteResourceTableEntryNARC) * table->count);
+        table->entries = Heap_Alloc(heapID, sizeof(SpriteResourceTableEntryNARC) * table->count);
     } else {
         table->entries = NULL;
     }
@@ -747,7 +747,7 @@ static void SpriteResource_UnpackData(SpriteResource *spriteRes, enum SpriteReso
 
 static TileResourceData *SpriteUtil_UnpackTileResource(void *rawData, NNS_G2D_VRAM_TYPE vramType, enum HeapId heapID)
 {
-    TileResourceData *tileData = Heap_AllocFromHeap(heapID, sizeof(TileResourceData));
+    TileResourceData *tileData = Heap_Alloc(heapID, sizeof(TileResourceData));
     NNS_G2dGetUnpackedCharacterData(rawData, &tileData->tileData);
     tileData->vramType = vramType;
 
@@ -756,7 +756,7 @@ static TileResourceData *SpriteUtil_UnpackTileResource(void *rawData, NNS_G2D_VR
 
 static PaletteResourceData *SpriteUtil_UnpackPaletteResource(void *rawData, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum HeapId heapID)
 {
-    PaletteResourceData *paletteData = Heap_AllocFromHeap(heapID, sizeof(PaletteResourceData));
+    PaletteResourceData *paletteData = Heap_Alloc(heapID, sizeof(PaletteResourceData));
     NNS_G2dGetUnpackedPaletteData(rawData, &paletteData->paletteData);
 
     paletteData->vramType = vramType;
@@ -767,7 +767,7 @@ static PaletteResourceData *SpriteUtil_UnpackPaletteResource(void *rawData, NNS_
 
 static SpriteResourceData *SpriteUtil_UnpackSpriteResource(void *rawData, enum HeapId heapID)
 {
-    SpriteResourceData *spriteResData = Heap_AllocFromHeap(heapID, sizeof(SpriteResourceData));
+    SpriteResourceData *spriteResData = Heap_Alloc(heapID, sizeof(SpriteResourceData));
     NNS_G2dGetUnpackedCellBank(rawData, &spriteResData->spriteBank);
 
     return spriteResData;
@@ -775,7 +775,7 @@ static SpriteResourceData *SpriteUtil_UnpackSpriteResource(void *rawData, enum H
 
 static SpriteAnimResourceData *SpriteUtil_UnpackSpriteAnimResource(void *rawData, enum HeapId heapID)
 {
-    SpriteAnimResourceData *spriteAnimData = Heap_AllocFromHeap(heapID, sizeof(SpriteAnimResourceData));
+    SpriteAnimResourceData *spriteAnimData = Heap_Alloc(heapID, sizeof(SpriteAnimResourceData));
     NNS_G2dGetUnpackedAnimBank(rawData, &spriteAnimData->animBank);
 
     return spriteAnimData;
@@ -783,7 +783,7 @@ static SpriteAnimResourceData *SpriteUtil_UnpackSpriteAnimResource(void *rawData
 
 static MultiSpriteResourceData *SpriteUtil_UnpackMultiSpriteResource(void *rawData, enum HeapId heapID)
 {
-    MultiSpriteResourceData *multiSpriteData = Heap_AllocFromHeap(heapID, sizeof(MultiSpriteResourceData));
+    MultiSpriteResourceData *multiSpriteData = Heap_Alloc(heapID, sizeof(MultiSpriteResourceData));
     NNS_G2dGetUnpackedMultiCellBank(rawData, &multiSpriteData->multiSpriteBank);
 
     return multiSpriteData;
@@ -791,7 +791,7 @@ static MultiSpriteResourceData *SpriteUtil_UnpackMultiSpriteResource(void *rawDa
 
 static MultiSpriteAnimResourceData *SpriteUtil_UnpackMultiSpriteAnimResource(void *rawData, enum HeapId heapID)
 {
-    MultiSpriteAnimResourceData *multiSpriteAnimData = Heap_AllocFromHeap(heapID, sizeof(MultiSpriteAnimResourceData));
+    MultiSpriteAnimResourceData *multiSpriteAnimData = Heap_Alloc(heapID, sizeof(MultiSpriteAnimResourceData));
     NNS_G2dGetUnpackedMCAnimBank(rawData, &multiSpriteAnimData->multiSpriteAnimBank);
 
     return multiSpriteAnimData;
@@ -861,9 +861,9 @@ static void *SpriteUtil_ReadNARCMember(NARC *narc, u32 memberIdx, BOOL compresse
             void *decompressed;
 
             if (allocAtEnd == FALSE) {
-                decompressed = Heap_AllocFromHeap(heapID, MI_GetUncompressedSize(data));
+                decompressed = Heap_Alloc(heapID, MI_GetUncompressedSize(data));
             } else {
-                decompressed = Heap_AllocFromHeapAtEnd(heapID, MI_GetUncompressedSize(data));
+                decompressed = Heap_AllocAtEnd(heapID, MI_GetUncompressedSize(data));
             }
 
             if (decompressed) {

@@ -211,7 +211,7 @@ int ov21_021E4D1C(const UnkStruct_ov21_021E68F4 *param0)
 
 static UnkStruct_ov21_021E4D90 *ov21_021E4D24(enum HeapId heapID, PokedexApp *param1)
 {
-    UnkStruct_ov21_021E4D90 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021E4D90));
+    UnkStruct_ov21_021E4D90 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov21_021E4D90));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021E4D90));
@@ -228,7 +228,7 @@ static PokedexGraphicData **ov21_021E4D64(enum HeapId heapID, PokedexApp *param1
     PokedexGraphicData **v0;
     UnkStruct_ov21_021E68F4 *v1;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(PokedexGraphicData **));
+    v0 = Heap_Alloc(heapID, sizeof(PokedexGraphicData **));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(PokedexGraphicData **));
@@ -272,7 +272,7 @@ static int ov21_021E4DC0(PokedexDataManager *dataMan, void *data)
     int v2;
     int species = PokedexSort_CurrentSpecies(v0->unk_04);
 
-    v1 = Heap_AllocFromHeap(dataMan->heapID, sizeof(UnkStruct_ov21_021E51DC));
+    v1 = Heap_Alloc(dataMan->heapID, sizeof(UnkStruct_ov21_021E51DC));
     memset(v1, 0, sizeof(UnkStruct_ov21_021E51DC));
 
     ov21_021E5128(v1, v0, dataMan->heapID);
@@ -343,7 +343,7 @@ static int ov21_021E4E98(void *graphics, PokedexGraphicsManager *graphicsMan, co
 
     switch (graphicsMan->state) {
     case 0:
-        graphicsMan->pageGraphics = Heap_AllocFromHeap(graphicsMan->heapID, sizeof(UnkStruct_ov21_021E5004));
+        graphicsMan->pageGraphics = Heap_Alloc(graphicsMan->heapID, sizeof(UnkStruct_ov21_021E5004));
         memset(graphicsMan->pageGraphics, 0, sizeof(UnkStruct_ov21_021E5004));
         graphicsMan->state++;
         break;
@@ -482,8 +482,8 @@ static BOOL ov21_021E50EC(UnkStruct_ov21_021E5004 *param0, PokedexGraphicData **
 
 static void ov21_021E5128(UnkStruct_ov21_021E51DC *param0, UnkStruct_ov21_021E4D90 *param1, enum HeapId heapID)
 {
-    param0->unk_04 = Heap_AllocFromHeap(heapID, sizeof(TouchScreenHitTable) * 3);
-    param0->unk_10 = Heap_AllocFromHeap(heapID, sizeof(TouchScreenHitTable) * 2);
+    param0->unk_04 = Heap_Alloc(heapID, sizeof(TouchScreenHitTable) * 3);
+    param0->unk_10 = Heap_Alloc(heapID, sizeof(TouchScreenHitTable) * 2);
 
     ov21_021D154C(&param0->unk_04[0], 67 - 14, 67 + 14, 64 - 42, 64 + 42);
 

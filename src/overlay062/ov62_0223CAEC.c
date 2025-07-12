@@ -885,7 +885,7 @@ static void ov62_0223D540 (u32 param0, enum TouchScreenButtonState param1, void 
 
 static BOOL ov62_0223D5A4 (UnkStruct_0208C06C * param0)
 {
-    UnkStruct_ov62_0223D518 * v0 = Heap_AllocFromHeap(HEAP_ID_102, sizeof(UnkStruct_ov62_0223D518));
+    UnkStruct_ov62_0223D518 * v0 = Heap_Alloc(HEAP_ID_102, sizeof(UnkStruct_ov62_0223D518));
 
     memset(v0, 0, sizeof(UnkStruct_ov62_0223D518));
 

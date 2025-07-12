@@ -21,7 +21,7 @@ static void ov21_021D4334(UnkStruct_ov21_021D423C *param0, UnkStruct_ov21_021D46
 
 UnkStruct_ov21_021D423C *ov21_021D423C(enum HeapId heapID)
 {
-    UnkStruct_ov21_021D423C *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021D423C));
+    UnkStruct_ov21_021D423C *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov21_021D423C));
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021D423C));
 

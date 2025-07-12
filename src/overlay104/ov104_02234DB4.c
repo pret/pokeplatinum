@@ -53,7 +53,7 @@ UnkStruct_ov104_0223B5C0 *ov104_02234DB4(SaveData *saveData, u16 param1, u8 para
     Pokemon *v9;
     static UnkStruct_ov104_0223B5C0 *v10;
 
-    v10 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov104_0223B5C0));
+    v10 = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov104_0223B5C0));
     MI_CpuClear8(v10, sizeof(UnkStruct_ov104_0223B5C0));
 
     v10->unk_6F8 = sub_02030114(saveData);

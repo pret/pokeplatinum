@@ -440,7 +440,7 @@ static void ov19_021D81B8(UnkStruct_ov19_021D8318 *param0, int param1, int param
     UnkStruct_ov19_021D81B8 *v0;
 
     param0->unk_A3 = 0;
-    v0 = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021D81B8));
+    v0 = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021D81B8));
 
     if (v0) {
         v0->unk_00 = param0;

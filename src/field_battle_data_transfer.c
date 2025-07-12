@@ -68,7 +68,7 @@ static void SetBackgroundAndTerrain(FieldBattleDTO *dto, const FieldSystem *fiel
 FieldBattleDTO *FieldBattleDTO_New(enum HeapId heapID, u32 battleType)
 {
     int i;
-    FieldBattleDTO *dto = Heap_AllocFromHeap(heapID, sizeof(FieldBattleDTO));
+    FieldBattleDTO *dto = Heap_Alloc(heapID, sizeof(FieldBattleDTO));
     MI_CpuClear8(dto, sizeof(FieldBattleDTO));
 
     dto->battleType = battleType;

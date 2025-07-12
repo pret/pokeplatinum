@@ -12,7 +12,7 @@
 
 BattleSubMenuCursor *MakeBattleSubMenuCursor(u32 heapID)
 {
-    BattleSubMenuCursor *cursor = Heap_AllocFromHeap(heapID, sizeof(BattleSubMenuCursor));
+    BattleSubMenuCursor *cursor = Heap_Alloc(heapID, sizeof(BattleSubMenuCursor));
     memset(cursor, 0, sizeof(BattleSubMenuCursor));
     return cursor;
 }

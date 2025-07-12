@@ -18,7 +18,7 @@ int TrainerInfo_Size(void)
 
 TrainerInfo *TrainerInfo_New(enum HeapId heapID)
 {
-    TrainerInfo *info = Heap_AllocFromHeap(heapID, sizeof(TrainerInfo));
+    TrainerInfo *info = Heap_Alloc(heapID, sizeof(TrainerInfo));
     TrainerInfo_Init(info);
 
     return info;

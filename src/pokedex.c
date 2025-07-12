@@ -62,7 +62,7 @@ int Pokedex_SaveSize(void)
 
 Pokedex *Pokedex_New(enum HeapId heapID)
 {
-    Pokedex *pokedexData = Heap_AllocFromHeap(heapID, sizeof(Pokedex));
+    Pokedex *pokedexData = Heap_Alloc(heapID, sizeof(Pokedex));
     Pokedex_Init(pokedexData);
 
     return pokedexData;

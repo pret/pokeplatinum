@@ -185,7 +185,7 @@ void include_unk_ov116_02267C4C(void)
 
 UnkStruct_ov116_02262A8C *ov116_02262A8C(int param0, u32 param1, UnkStruct_ov116_022649E4 *param2)
 {
-    UnkStruct_ov116_02262A8C *v0 = Heap_AllocFromHeap(HEAP_ID_106, sizeof(UnkStruct_ov116_02262A8C));
+    UnkStruct_ov116_02262A8C *v0 = Heap_Alloc(HEAP_ID_106, sizeof(UnkStruct_ov116_02262A8C));
 
     memset(v0, 0, sizeof(UnkStruct_ov116_02262A8C));
 
@@ -291,7 +291,7 @@ void ov116_02262C84(UnkStruct_ov116_02262A8C *param0)
 
 static void ov116_02262CB8(UnkStruct_ov116_02262A8C *param0, int param1)
 {
-    UnkStruct_ov116_02262CB8 *v0 = Heap_AllocFromHeap(HEAP_ID_106, sizeof(UnkStruct_ov116_02262CB8));
+    UnkStruct_ov116_02262CB8 *v0 = Heap_Alloc(HEAP_ID_106, sizeof(UnkStruct_ov116_02262CB8));
 
     memset(v0, 0, sizeof(UnkStruct_ov116_02262CB8));
 
@@ -347,7 +347,7 @@ static void ov116_02262D64(UnkStruct_ov116_02262A8C *param0, int param1)
 
 static void ov116_02262DC0(UnkStruct_ov116_02262A8C *param0)
 {
-    UnkStruct_ov116_02262DC0 *v0 = Heap_AllocFromHeap(HEAP_ID_106, sizeof(UnkStruct_ov116_02262DC0));
+    UnkStruct_ov116_02262DC0 *v0 = Heap_Alloc(HEAP_ID_106, sizeof(UnkStruct_ov116_02262DC0));
 
     memset(v0, 0, sizeof(UnkStruct_ov116_02262DC0));
 

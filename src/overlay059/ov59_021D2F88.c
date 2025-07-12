@@ -53,7 +53,7 @@ static u32 ov59_021D2F88(SaveData *saveData)
 static void *ov59_021D2F94(SaveData *saveData, int heapID, u32 param2)
 {
     RecordMixedRNG *v0 = SaveData_GetRecordMixedRNG(saveData);
-    void *v1 = Heap_AllocFromHeapAtEnd(heapID, param2);
+    void *v1 = Heap_AllocAtEnd(heapID, param2);
 
     MI_CpuCopyFast(ov59_021D2A30(v0), v1, param2);
 
@@ -76,7 +76,7 @@ static void *ov59_021D2FE0(SaveData *saveData, int heapID, u32 param2)
 {
     UnkStruct_02029C68 *v0;
     UnkStruct_0202A750 *v1 = sub_0202A750(saveData);
-    void *v2 = Heap_AllocFromHeapAtEnd(heapID, param2);
+    void *v2 = Heap_AllocAtEnd(heapID, param2);
 
     v0 = sub_02029CA8(v1, 0);
     MI_CpuCopyFast(v0, v2, param2);
@@ -122,7 +122,7 @@ static void ov59_021D3090(const UnkStruct_ov59_021D2FBC *param0)
 
 static void *ov59_021D30B4(SaveData *saveData, int heapID, u32 param2)
 {
-    UnkStruct_ov96_0223B450_sub1 *v0 = Heap_AllocFromHeapAtEnd(heapID, param2);
+    UnkStruct_ov96_0223B450_sub1 *v0 = Heap_AllocAtEnd(heapID, param2);
     MI_CpuClear8(v0, param2);
     sub_02073700(saveData, 0, v0);
 

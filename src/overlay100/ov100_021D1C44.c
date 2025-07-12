@@ -252,7 +252,7 @@ static void ov100_021D2324(UnkStruct_ov100_021D1C98 *param0)
 
 void *ov100_021D2340(UnkStruct_ov100_021D4DD8 *param0)
 {
-    UnkStruct_ov100_021D1C98 *v0 = Heap_AllocFromHeap(HEAP_ID_111, sizeof(UnkStruct_ov100_021D1C98));
+    UnkStruct_ov100_021D1C98 *v0 = Heap_Alloc(HEAP_ID_111, sizeof(UnkStruct_ov100_021D1C98));
 
     memset(v0, 0, sizeof(UnkStruct_ov100_021D1C98));
 

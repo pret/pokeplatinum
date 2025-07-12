@@ -2077,7 +2077,7 @@ static void ov23_02244C70(SysTask *param0, void *param1)
 
 static void ov23_02244D80(FieldSystem *fieldSystem, int param1, int param2, BOOL param3)
 {
-    UnkStruct_ov23_02244C70 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02244C70));
+    UnkStruct_ov23_02244C70 *v0 = Heap_AllocAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02244C70));
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_02244C70));
 
     GF_ASSERT(Unk_ov23_02257764->unk_300 == NULL);
@@ -2148,7 +2148,7 @@ static UnkStruct_ov23_02243DA8 *ov23_02244EA0(UnkStruct_ov23_02243DA8 *param0)
 
 static void ov23_02244EA4(FieldSystem *fieldSystem, BOOL param1, int param2)
 {
-    UnkStruct_ov23_022451BC *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_022451BC));
+    UnkStruct_ov23_022451BC *v0 = Heap_AllocAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_022451BC));
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_022451BC));
 
     Unk_ov23_02257764->unk_300 = v0;
@@ -2632,7 +2632,7 @@ void ov23_02245728(void)
         return;
     }
 
-    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02245700));
+    v0 = Heap_AllocAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02245700));
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_02245700));
     Link_Message(46);
 
@@ -2802,7 +2802,7 @@ static void ov23_0224599C(SysTask *param0, void *param1)
 static void ov23_02245A58(BOOL param0)
 {
     int v0;
-    UnkStruct_ov23_0224590C *v1 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_0224590C));
+    UnkStruct_ov23_0224590C *v1 = Heap_AllocAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_0224590C));
     MI_CpuClear8(v1, sizeof(UnkStruct_ov23_0224590C));
 
     v1->unk_00 = 0;
@@ -3005,7 +3005,7 @@ static void ov23_02245BA8(SysTask *param0, void *param1)
 static void ov23_02245DF8(BOOL param0, BOOL param1, int param2)
 {
     int v0;
-    UnkStruct_ov23_02245AA4 *v1 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02245AA4));
+    UnkStruct_ov23_02245AA4 *v1 = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02245AA4));
     MI_CpuClear8(v1, sizeof(UnkStruct_ov23_02245AA4));
 
     v1->unk_00 = 0;
@@ -3218,7 +3218,7 @@ static void ov23_02246220(int param0, BOOL param1)
 static void ov23_022462A8(FieldSystem *fieldSystem, BOOL param1, int param2)
 {
     int v0;
-    UnkStruct_ov23_02245ED4 *v1 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02245ED4));
+    UnkStruct_ov23_02245ED4 *v1 = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02245ED4));
     MI_CpuFill8(v1, 0, sizeof(UnkStruct_ov23_02245ED4));
 
     v1->unk_113 = param1;
@@ -3626,7 +3626,7 @@ static void ov23_02246A80(SysTask *param0, void *param1)
 static void ov23_02246CF0(BgConfig *param0, BOOL param1, int param2)
 {
     int v0;
-    UnkStruct_ov23_022468DC *v1 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_022468DC));
+    UnkStruct_ov23_022468DC *v1 = Heap_AllocAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_022468DC));
     MI_CpuFill8(v1, 0, sizeof(UnkStruct_ov23_022468DC));
     v1->unk_15E = param1;
 
@@ -4235,7 +4235,7 @@ static void ov23_02247A8C(SysTask *param0, void *param1)
 static void ov23_02247D28(BgConfig *param0, BOOL param1, int param2)
 {
     int v0;
-    UnkStruct_ov23_022471D8 *v1 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_022471D8));
+    UnkStruct_ov23_022471D8 *v1 = Heap_AllocAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_022471D8));
     MI_CpuFill8(v1, 0, sizeof(UnkStruct_ov23_022471D8));
 
     v1->unk_127 = param1;
@@ -4529,7 +4529,7 @@ static void ov23_022480C4(SysTask *param0, void *param1)
 static void ov23_02248318(BgConfig *param0, BOOL param1, int param2)
 {
     int v0;
-    UnkStruct_ov23_02247E38 *v1 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02247E38));
+    UnkStruct_ov23_02247E38 *v1 = Heap_AllocAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02247E38));
     MI_CpuFill8(v1, 0, sizeof(UnkStruct_ov23_02247E38));
 
     v1->unk_2A = param1;
@@ -4649,7 +4649,7 @@ static void ov23_02248418(SysTask *param0, void *param1)
 static void ov23_0224852C(BgConfig *param0, BOOL param1, int param2)
 {
     int v0;
-    UnkStruct_ov23_02248418 *v1 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02248418));
+    UnkStruct_ov23_02248418 *v1 = Heap_AllocAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02248418));
     MI_CpuFill8(v1, 0, sizeof(UnkStruct_ov23_02248418));
 
     v1->unk_11 = param1;
@@ -4855,7 +4855,7 @@ void ov23_022489F8(FieldSystem *fieldSystem, int param1, int param2, int param3,
         return;
     }
 
-    v1 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02248748));
+    v1 = Heap_AllocAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02248748));
     MI_CpuFill8(v1, 0, sizeof(UnkStruct_ov23_02248748));
 
     v1->unk_00 = 0;
@@ -4948,7 +4948,7 @@ static void ov23_02248B3C(int param0, int param1)
     }
 
     if (Unk_ov23_02257764->unk_00[param0] == NULL) {
-        v1 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02248A6C));
+        v1 = Heap_AllocAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02248A6C));
         MI_CpuFill8(v1, 0, sizeof(UnkStruct_ov23_02248A6C));
         Unk_ov23_02257764->unk_00[param0] = v1;
         Unk_ov23_02257764->unk_20[param0] = SysTask_Start(ov23_02248A6C, v1, 100);

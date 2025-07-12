@@ -63,7 +63,7 @@ static void IncWithCap(int *param0);
 
 RadarChain *RadarChain_Init(const int heapID)
 {
-    RadarChain *chain = Heap_AllocFromHeap(heapID, sizeof(RadarChain));
+    RadarChain *chain = Heap_Alloc(heapID, sizeof(RadarChain));
     GFXBoxTest_MakeBox(FX32_ONE * 16, FX32_ONE * 8, FX32_ONE * 16, &chain->unk_BC);
     return chain;
 }

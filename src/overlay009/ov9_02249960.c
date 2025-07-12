@@ -1191,7 +1191,7 @@ void DistWorld_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 {
     PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     DistWorldPersistedData *data = PersistedMapFeatures_GetBuffer(persistedMapFeatures, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD);
-    DistWorldSystem *dwSystem = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(DistWorldSystem));
+    DistWorldSystem *dwSystem = Heap_Alloc(HEAP_ID_FIELD, sizeof(DistWorldSystem));
 
     memset(dwSystem, 0, sizeof(DistWorldSystem));
 
@@ -1750,10 +1750,10 @@ static void ov9_0224A1E4(DistWorldSystem *param0, int param1)
 
     v0->unk_00 = param1;
     param1 *= sizeof(UnkStruct_ov9_0224A294);
-    v0->unk_04 = Heap_AllocFromHeap(HEAP_ID_FIELD, param1);
+    v0->unk_04 = Heap_Alloc(HEAP_ID_FIELD, param1);
 
     memset(v0->unk_04, 0, param1);
-    Heap_FndInitAllocatorForExpHeap(&v0->unk_10, HEAP_ID_FIELD, 4);
+    HeapExp_FndInitAllocator(&v0->unk_10, HEAP_ID_FIELD, 4);
 
     v0->unk_08 = ov5_021DF5C0(param0->fieldSystem->unk_40, 197, 1);
     v0->unk_0C = NNS_G3dGetAnmByIdx(v0->unk_08, 0);
@@ -2915,7 +2915,7 @@ static void ov9_0224B3F8(DistWorldSystem *param0, UnkStruct_ov9_0224B528 *param1
         GF_ASSERT(param1->unk_04);
 
         v0 = param1->unk_04 * sizeof(UnkStruct_ov101_021D5D90 *);
-        param1->unk_08 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, v0);
+        param1->unk_08 = Heap_AllocAtEnd(HEAP_ID_FIELD, v0);
 
         memset((u8 *)param1->unk_08, 0, v0);
         ov9_0224B6CC(param0, param1, param3, param4);
@@ -3657,7 +3657,7 @@ static void ov9_0224BF8C(NARC *distortionWorldNARC, UnkStruct_ov9_0224BFE0 *para
 {
     u32 v0 = NARC_GetMemberSize(distortionWorldNARC, 0);
 
-    param1->unk_08 = Heap_AllocFromHeap(HEAP_ID_FIELD, v0);
+    param1->unk_08 = Heap_Alloc(HEAP_ID_FIELD, v0);
     NARC_ReadWholeMember(distortionWorldNARC, 0, param1->unk_08);
 
     param1->unk_00 = *(int *)param1->unk_08;
@@ -3744,7 +3744,7 @@ static void DistWorldFile_Load(DistWorldSystem *system, DistWorldFile *file, enu
         narcIndex = FindNARCIndex(system, mapHeaderID);
         narcMemberSize = NARC_GetMemberSize(system->distortionWorldNARC, narcIndex);
 
-        file->buffer = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, narcMemberSize);
+        file->buffer = Heap_AllocAtEnd(HEAP_ID_FIELD, narcMemberSize);
         NARC_ReadWholeMember(system->distortionWorldNARC, narcIndex, file->buffer);
 
         header = file->buffer;
@@ -4108,7 +4108,7 @@ static void ov9_0224C4F4(DistWorldSystem *param0, u32 param1)
     }
 
     v0->unk_0C = NARC_GetMemberSize(param0->unk_0C, param1);
-    v0->unk_10 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, v0->unk_0C);
+    v0->unk_10 = Heap_AllocAtEnd(HEAP_ID_FIELD, v0->unk_0C);
 
     NARC_ReadWholeMember(param0->unk_0C, param1, v0->unk_10);
 }
@@ -5426,7 +5426,7 @@ static void ov9_0224D814(DistWorldSystem *param0, u32 param1)
         u32 v1 = Unk_ov9_022514A4[param1];
         u32 v2 = ov5_021DF5A8(param0->fieldSystem->unk_40, v1);
 
-        v0->unk_258[param1].unk_04 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, v2);
+        v0->unk_258[param1].unk_04 = Heap_AllocAtEnd(HEAP_ID_FIELD, v2);
         ov5_021DF5B4(param0->fieldSystem->unk_40, v1, v0->unk_258[param1].unk_04);
         v0->unk_258[param1].unk_00 = param1;
     }
@@ -7386,7 +7386,7 @@ BOOL ov9_0224F2B0(const MapObject *param0)
 
 UnkStruct_ov9_0224F6EC *ov9_0224F2BC(FieldSystem *fieldSystem, FieldTask *param1, MapObject *param2)
 {
-    UnkStruct_ov9_0224F6EC *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov9_0224F6EC));
+    UnkStruct_ov9_0224F6EC *v0 = Heap_AllocAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov9_0224F6EC));
     memset(v0, 0, sizeof(UnkStruct_ov9_0224F6EC));
 
     v0->unk_00 = fieldSystem->unk_04->dynamicMapFeaturesData;

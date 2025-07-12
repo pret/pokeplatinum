@@ -252,7 +252,7 @@ UnkStruct_ov5_021F6704 *ov5_021F6704(FieldSystem *fieldSystem, u8 param1, u8 par
     UnkStruct_ov5_021F6704 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021F6704));
+    v0 = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021F6704));
 
     if (v0 == NULL) {
         return NULL;

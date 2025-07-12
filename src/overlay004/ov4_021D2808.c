@@ -385,7 +385,7 @@ BOOL ov4_021D2C70(int param0, void *param1, int param2)
 
 static void ov4_021D2C98(void **param0, void **param1, int param2, int heapID)
 {
-    *param0 = Heap_AllocFromHeap(heapID, param2 + 32);
+    *param0 = Heap_Alloc(heapID, param2 + 32);
     MI_CpuClear8(*param0, param2 + 32);
     *param1 = (UnkStruct_ov4_0221A408 *)(((u32)*param0 + 31) / 32 * 32);
 }

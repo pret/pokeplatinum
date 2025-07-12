@@ -123,7 +123,7 @@ static void ov21_021E9B08(UnkStruct_ov21_021E9A9C *param0, int param1);
 
 UnkStruct_ov21_021E8D48 *ov21_021E8D48(const UnkStruct_ov21_021E8E0C *param0)
 {
-    UnkStruct_ov21_021E8D48 *v0 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov21_021E8D48));
+    UnkStruct_ov21_021E8D48 *v0 = Heap_Alloc(param0->heapID, sizeof(UnkStruct_ov21_021E8D48));
 
     memset(v0, 0, sizeof(UnkStruct_ov21_021E8D48));
 

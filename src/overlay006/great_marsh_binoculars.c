@@ -42,7 +42,7 @@ int GreatMarshBinoculars_GetMonSpecies(FieldSystem *fieldSystem)
 GreatMarshBinoculars *GreatMarshBinoculars_InitData(const int heapID, FieldSystem *fieldSystem)
 {
     u8 i;
-    GreatMarshBinoculars *binocularsData = Heap_AllocFromHeapAtEnd(heapID, sizeof(GreatMarshBinoculars));
+    GreatMarshBinoculars *binocularsData = Heap_AllocAtEnd(heapID, sizeof(GreatMarshBinoculars));
     binocularsData->fieldSystem = fieldSystem;
 
     u8 randIndex;

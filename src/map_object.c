@@ -208,13 +208,13 @@ static MapObjectManager *MapObjectMan_Alloc(int maxObjs)
 {
     int size;
     MapObject *mapObj;
-    MapObjectManager *mapObjMan = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(MapObjectManager));
+    MapObjectManager *mapObjMan = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(MapObjectManager));
 
     GF_ASSERT(mapObjMan != NULL);
     memset(mapObjMan, 0, sizeof(MapObjectManager));
 
     size = sizeof(MapObject) * maxObjs;
-    mapObj = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, size);
+    mapObj = Heap_Alloc(HEAP_ID_FIELDMAP, size);
 
     GF_ASSERT(mapObj != NULL);
     memset(mapObj, 0, size);
@@ -598,12 +598,12 @@ void sub_02062068(const MapObjectManager *mapObjMan, int param1, int param2, con
     GF_ASSERT(param2);
 
     v0 = sizeof(ObjectEvent) * param2;
-    v1 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, v0);
+    v1 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, v0);
 
     GF_ASSERT(v1 != NULL);
     memcpy(v1, objectEvent, v0);
 
-    v2 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_020620C4));
+    v2 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_020620C4));
     GF_ASSERT(v2 != NULL);
 
     v2->unk_00 = param1;

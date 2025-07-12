@@ -143,13 +143,13 @@ static const UnkStruct_ov66_02258B38 Unk_ov66_02258B38[20] = {
 
 UnkStruct_ov66_02234548 *ov66_022343A8(u32 param0, u32 param1, u32 heapID, u32 heapID2)
 {
-    UnkStruct_ov66_02234548 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov66_02234548));
+    UnkStruct_ov66_02234548 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov66_02234548));
     memset(v0, 0, sizeof(UnkStruct_ov66_02234548));
 
     {
         int v1;
 
-        v0->unk_10 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov66_02234798) * param0);
+        v0->unk_10 = Heap_Alloc(heapID, sizeof(UnkStruct_ov66_02234798) * param0);
         v0->unk_14 = param0;
 
         for (v1 = 0; v1 < v0->unk_14; v1++) {

@@ -412,7 +412,7 @@ void ov104_0222EBA4(UnkStruct_ov104_0223C4CC *param0, void **param1, int param2)
 
 static void ov104_0222EBBC(UnkStruct_ov104_0223C4CC *param0, void **param1)
 {
-    *param1 = Heap_AllocFromHeap(HEAP_ID_94, 32);
+    *param1 = Heap_Alloc(HEAP_ID_94, 32);
 }
 
 static void ov104_0222EBCC(UnkStruct_ov104_0223C4CC *param0, void **param1)

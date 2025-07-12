@@ -626,7 +626,7 @@ static void ov97_02234190(TouchScreenRect *rect, int param1, int param2, int par
 
 static void *ov97_022341B4(u32 narcID, u32 memberIndex, NNSG2dCharacterData **param2, u32 heapID)
 {
-    void *v0 = Heap_AllocFromHeapAtEnd(heapID, 4096);
+    void *v0 = Heap_AllocAtEnd(heapID, 4096);
 
     if (v0 != NULL) {
         NARC_ReadWholeMemberByIndexPair(v0, narcID, memberIndex);
@@ -752,7 +752,7 @@ static void ov97_022343A8(GBAMigrator *migrator)
     u32 personality;
     void *v6;
     NARC *v7 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_MIGRATE_FROM_GBA);
-    v6 = Heap_AllocFromHeapAtEnd(HEAP_ID_MIGRATE_FROM_GBA, 4096);
+    v6 = Heap_AllocAtEnd(HEAP_ID_MIGRATE_FROM_GBA, 4096);
 
     for (i = 0; i < GBA_MAX_MONS_PER_BOX; i++) {
         if (GBABoxPokemon_GetData(&(migrator->pokemonStorage->boxes[migrator->currentBox][i]), GBA_MON_DATA_SANITY_HAS_SPECIES, NULL)) {

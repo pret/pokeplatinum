@@ -768,25 +768,25 @@ void ov23_02242BC0(FieldSystem *fieldSystem)
     void *v0;
 
     if (sCommManUnderground == NULL) {
-        v0 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sizeof(CommManUnderground));
+        v0 = Heap_Alloc(HEAP_ID_COMMUNICATION, sizeof(CommManUnderground));
         CommManUnderground_Init(v0, fieldSystem);
 
-        v0 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, CommPlayer_Size());
+        v0 = Heap_Alloc(HEAP_ID_COMMUNICATION, CommPlayer_Size());
         CommPlayerMan_Init(v0, fieldSystem, 1);
 
-        v0 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, ov23_02243858());
+        v0 = Heap_Alloc(HEAP_ID_COMMUNICATION, ov23_02243858());
         ov23_022434BC(v0, fieldSystem);
 
-        v0 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, ov23_0224B5C4());
+        v0 = Heap_Alloc(HEAP_ID_COMMUNICATION, ov23_0224B5C4());
         ov23_0224B144(v0, fieldSystem);
 
-        v0 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, ov23_022417C4());
+        v0 = Heap_Alloc(HEAP_ID_COMMUNICATION, ov23_022417C4());
         ov23_022416E0(v0, fieldSystem);
 
-        v0 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, ov23_0223E2E8());
+        v0 = Heap_Alloc(HEAP_ID_COMMUNICATION, ov23_0223E2E8());
         ov23_0223E1E4(v0, fieldSystem);
 
-        v0 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, ov23_02253608());
+        v0 = Heap_Alloc(HEAP_ID_COMMUNICATION, ov23_02253608());
         ov23_02253598(v0, SaveData_UndergroundRecord(FieldSystem_GetSaveData(fieldSystem)), FieldSystem_GetSaveData(fieldSystem));
         ov23_0224F588(SaveData_GetUnderground(FieldSystem_GetSaveData(fieldSystem)));
     }

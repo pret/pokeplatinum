@@ -624,7 +624,7 @@ static void sub_02084134(GameWindowLayout *param0)
 
     v1 = &param0->unk_7F8;
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_12, sizeof(StrBufWrapper));
+    v0 = Heap_Alloc(HEAP_ID_12, sizeof(StrBufWrapper));
     *v0 = param0->unk_704[v1->unk_300[0]];
 
     param0->unk_704[v1->unk_300[0]] = param0->unk_704[v1->unk_300[1]];

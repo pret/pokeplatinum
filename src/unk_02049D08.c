@@ -319,7 +319,7 @@ UnkStruct_0204AFC4 *sub_0204A124(SaveData *saveData, u16 param1, u16 param2)
     BattleFrontier *frontier;
     GameRecords *v5;
 
-    v3 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0204AFC4));
+    v3 = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0204AFC4));
     MI_CpuClear8(v3, sizeof(UnkStruct_0204AFC4));
 
     v3->heapID = HEAP_ID_FIELDMAP;
@@ -1025,7 +1025,7 @@ static void sub_0204ACFC(FrontierPokemonDataDTO *param0, Pokemon *mon)
 
 static void sub_0204AE20(UnkStruct_0204AFC4 *param0, SaveData *saveData, int param2)
 {
-    FrontierPokemonDataDTO *v1 = Heap_AllocFromHeapAtEnd(param0->heapID, sizeof(FrontierPokemonDataDTO) * 3);
+    FrontierPokemonDataDTO *v1 = Heap_AllocAtEnd(param0->heapID, sizeof(FrontierPokemonDataDTO) * 3);
     MI_CpuClear8(v1, sizeof(FrontierPokemonDataDTO) * 3);
     Party *party = SaveData_GetParty(saveData);
 

@@ -143,7 +143,7 @@ static void SaveInfoWindow_PrintText(const SaveInfoWindow *saveInfoWin)
 
 void SaveInfoWindow_Draw(SaveInfoWindow *saveInfoWin)
 {
-    saveInfoWin->window = Heap_AllocFromHeap(saveInfoWin->heapID, sizeof(Window));
+    saveInfoWin->window = Heap_Alloc(saveInfoWin->heapID, sizeof(Window));
 
     Window_Add(saveInfoWin->bgConfig, saveInfoWin->window, saveInfoWin->bgLayer, 1, 1, saveInfoWin->width, saveInfoWin->height, FIELD_MESSAGE_PALETTE_INDEX, SAVE_INFO_MESSAGE_BASE_TILE);
     LoadStandardWindowGraphics(saveInfoWin->bgConfig, saveInfoWin->bgLayer, SAVE_INFO_WINDOW_BASE_TILE, FIELD_WINDOW_PALETTE_INDEX, STANDARD_WINDOW_SYSTEM, saveInfoWin->heapID);
@@ -162,7 +162,7 @@ void SaveInfoWindow_Erase(SaveInfoWindow *saveInfoWin)
 
 SaveInfoWindow *SaveInfoWindow_New(FieldSystem *fieldSystem, enum HeapId heapID, u8 bgLayer)
 {
-    SaveInfoWindow *saveInfoWin = Heap_AllocFromHeap(heapID, sizeof(SaveInfoWindow));
+    SaveInfoWindow *saveInfoWin = Heap_Alloc(heapID, sizeof(SaveInfoWindow));
 
     saveInfoWin->fieldSystem = fieldSystem;
     saveInfoWin->heapID = heapID;

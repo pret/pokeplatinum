@@ -18,7 +18,7 @@ static BOOL Signpost_ScrollOut(FieldSystem *fieldSystem);
 
 void *Signpost_Init(u32 heapID)
 {
-    void *signpost = Heap_AllocFromHeap(heapID, sizeof(Signpost));
+    void *signpost = Heap_Alloc(heapID, sizeof(Signpost));
 
     memset(signpost, 0, sizeof(Signpost));
     return signpost;

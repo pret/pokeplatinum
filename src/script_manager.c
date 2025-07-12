@@ -134,7 +134,7 @@ static BOOL FieldTask_RunScript(FieldTask *taskManager)
 
 static ScriptManager *ScriptManager_New()
 {
-    ScriptManager *scriptManager = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(ScriptManager));
+    ScriptManager *scriptManager = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(ScriptManager));
 
     GF_ASSERT(scriptManager != NULL);
 
@@ -170,7 +170,7 @@ static void sub_0203EA68(FieldSystem *fieldSystem, ScriptManager *scriptManager,
 
 ScriptContext *ScriptContext_CreateAndStart(FieldSystem *fieldSystem, u16 scriptID)
 {
-    ScriptContext *ctx = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(ScriptContext));
+    ScriptContext *ctx = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(ScriptContext));
 
     GF_ASSERT(ctx != NULL);
 
@@ -676,7 +676,7 @@ UnkStruct_0203F478 *sub_0203F478(FieldSystem *fieldSystem, int heapID)
     v6 = 0;
     v5 = MapHeaderData_GetNumBgEvents(fieldSystem);
     v5++;
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0203F478) * v5);
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_0203F478) * v5);
 
     if (v5 == 1) {
         v0[0].unk_04 = 0xff;

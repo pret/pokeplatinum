@@ -539,7 +539,7 @@ static UnkStruct_ov113_0225E6B8 *ov113_0225E6B8(UnkStruct_ov113_0225DBCC *param0
     fx32 v1, v2;
     BOOL v3;
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_118, sizeof(UnkStruct_ov113_0225E6B8));
+    v0 = Heap_Alloc(HEAP_ID_118, sizeof(UnkStruct_ov113_0225E6B8));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov113_0225E6B8));
 
     v0->unk_240_24 = 0xff;
@@ -775,7 +775,7 @@ static void ov113_0225EA60(NNSG3dResTex *param0, int param1)
     int v2, v3, v4, v5, v6;
 
     v0 = (u32 *)((u8 *)param0 + param0->texInfo.ofsTex);
-    v1 = Heap_AllocFromHeap(HEAP_ID_118, (16 * 16 / 4));
+    v1 = Heap_Alloc(HEAP_ID_118, (16 * 16 / 4));
 
     MI_CpuCopy16(v0, v1, (16 * 16 / 4));
     MI_CpuClear16(v0, (16 * 16 / 4));

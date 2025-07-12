@@ -15,7 +15,7 @@ static void JumpToButton(PokedexPanelData *pokedexPanelData, int button);
 
 PokedexPanelData *PokedexPanel_Alloc(enum HeapId heapID)
 {
-    PokedexPanelData *pokedexPanelData = Heap_AllocFromHeap(heapID, sizeof(PokedexPanelData));
+    PokedexPanelData *pokedexPanelData = Heap_Alloc(heapID, sizeof(PokedexPanelData));
     memset(pokedexPanelData, 0, sizeof(PokedexPanelData));
 
     return pokedexPanelData;

@@ -550,7 +550,7 @@ static void LoadBgTiles(OptionsMenuData *menuData)
     NARC *narc = NARC_ctor(NARC_INDEX_GRAPHIC__CONFIG_GRA, menuData->heapID);
 
     u32 memberSize = NARC_GetMemberSize(narc, tiles_NCGR);
-    void *memberBuffer = Heap_AllocFromHeapAtEnd(menuData->heapID, memberSize);
+    void *memberBuffer = Heap_AllocAtEnd(menuData->heapID, memberSize);
     NARC_ReadWholeMember(narc, tiles_NCGR, memberBuffer);
     NNS_G2dGetUnpackedCharacterData(memberBuffer, &cursorTiles);
     Bg_LoadTiles(menuData->bgConfig, BG_LAYER_MAIN_0, cursorTiles->pRawData, cursorTiles->szByte, 0);
@@ -558,7 +558,7 @@ static void LoadBgTiles(OptionsMenuData *menuData)
     Heap_Free(memberBuffer);
 
     memberSize = NARC_GetMemberSize(narc, tiles_NCLR);
-    memberBuffer = Heap_AllocFromHeapAtEnd(menuData->heapID, memberSize);
+    memberBuffer = Heap_AllocAtEnd(menuData->heapID, memberSize);
     NARC_ReadWholeMember(narc, tiles_NCLR, memberBuffer);
     NNS_G2dGetUnpackedPaletteData(memberBuffer, &cursorPalette);
     Bg_LoadPalette(BG_LAYER_MAIN_0, cursorPalette->pRawData, PALETTE_SIZE_BYTES, 0);
@@ -566,7 +566,7 @@ static void LoadBgTiles(OptionsMenuData *menuData)
     Heap_Free(memberBuffer);
 
     memberSize = NARC_GetMemberSize(narc, tilemap_bin);
-    menuData->nscrBuffer = Heap_AllocFromHeap(menuData->heapID, memberSize);
+    menuData->nscrBuffer = Heap_Alloc(menuData->heapID, memberSize);
     NARC_ReadWholeMember(narc, tilemap_bin, menuData->nscrBuffer);
     NNS_G2dGetUnpackedScreenData(menuData->nscrBuffer, &(menuData->tilemapData));
 

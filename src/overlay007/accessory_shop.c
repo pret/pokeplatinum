@@ -88,7 +88,7 @@ static void AccessoryShop_DoPurchase(UnkStruct_02029D04 *param0, Bag *bag, const
 
 AccessoryShop *AccessoryShop_New(enum HeapId heapID, SaveData *saveData, BgConfig *bgConfig)
 {
-    AccessoryShop *shop = Heap_AllocFromHeap(heapID, sizeof(AccessoryShop));
+    AccessoryShop *shop = Heap_Alloc(heapID, sizeof(AccessoryShop));
 
     memset(shop, 0, sizeof(AccessoryShop));
 

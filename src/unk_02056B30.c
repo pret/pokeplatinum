@@ -102,7 +102,7 @@ static const UnkFuncPtr_020EC57C Unk_020EC57C[7] = {
 
 void sub_02056B30(FieldTask *taskMan, int param1, int param2, int param3, u16 param4, int param5, int param6, int heapID)
 {
-    UnkStruct_02056B30 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02056B30));
+    UnkStruct_02056B30 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_02056B30));
 
     v0->unk_04 = param1;
     v0->unk_08 = param2;
@@ -140,7 +140,7 @@ static BOOL sub_02056B70(FieldTask *taskMan)
 
 void sub_02056BDC(FieldSystem *fieldSystem, const int param1, const int param2, const int param3, const int param4, const int param5, const int param6)
 {
-    UnkStruct_02056BDC *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02056BDC));
+    UnkStruct_02056BDC *v0 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02056BDC));
 
     v0->unk_00 = 0;
     v0->unk_04 = 0;
@@ -156,7 +156,7 @@ void sub_02056C18(FieldSystem *fieldSystem, const int param1, const int param2, 
 {
     int v0;
     int v1;
-    UnkStruct_02056BDC *v2 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02056BDC));
+    UnkStruct_02056BDC *v2 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02056BDC));
 
     v2->unk_00 = 0;
     v2->unk_04 = 0;

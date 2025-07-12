@@ -254,7 +254,7 @@ PokedexApp *PokedexMain_NewPokedexApp(enum HeapId heapID, const PokedexOverlayAr
     int i;
     PokedexDefaultSortParams sortParams;
 
-    PokedexApp *pokedexApp = Heap_AllocFromHeap(heapID, sizeof(PokedexApp));
+    PokedexApp *pokedexApp = Heap_Alloc(heapID, sizeof(PokedexApp));
 
     GF_ASSERT(pokedexApp);
     memset(pokedexApp, 0, sizeof(PokedexApp));

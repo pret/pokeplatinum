@@ -28,7 +28,7 @@ AreaLightManager *AreaLightManager_New(ModelAttributes *areaModelAttrs, const u8
 {
     GF_ASSERT(archiveID < AREA_LIGHT_FILE_COUNT);
 
-    AreaLightManager *areaLightMan = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(AreaLightManager));
+    AreaLightManager *areaLightMan = Heap_Alloc(HEAP_ID_FIELD, sizeof(AreaLightManager));
 
     areaLightMan->areaModelAttrs = areaModelAttrs;
     areaLightMan->templateCount = AreaLightTemplate_New(archiveID, &areaLightMan->templates);
@@ -147,7 +147,7 @@ static u32 AreaLightTemplate_New(u32 archiveID, AreaLightTemplate **templates)
         }
     } while (!(lineBuffer[0] == 'E' && lineBuffer[1] == 'O' && lineBuffer[2] == 'F'));
 
-    *templates = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(AreaLightTemplate) * templateCount);
+    *templates = Heap_Alloc(HEAP_ID_FIELD, sizeof(AreaLightTemplate) * templateCount);
     MI_CpuClear8(*templates, sizeof(AreaLightTemplate) * templateCount);
     fileIter = fileBuffer;
 

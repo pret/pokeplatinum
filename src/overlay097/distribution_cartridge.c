@@ -71,7 +71,7 @@ void DistributionCartridge_UseHeap(enum HeapId heapID)
 
 static void *DistributionCartridge_Alloc(u32 size)
 {
-    return Heap_AllocFromHeap(sHeapID, size);
+    return Heap_Alloc(sHeapID, size);
 }
 
 inline u32 FlipEndianness(u32 val)

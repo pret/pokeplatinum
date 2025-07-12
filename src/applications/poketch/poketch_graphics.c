@@ -109,7 +109,7 @@ static void PoketchGraphics_FreeTilemapBufferTask(SysTask *task, void *taskMan);
 
 BOOL PoketchGraphics_Main(PoketchGraphics_TaskData **taskDataPtr, const PoketchGraphics_ConstTaskData *constTaskData, NNSG2dOamManagerInstance *oamMan, PoketchSystem *poketchSys)
 {
-    *taskDataPtr = Heap_AllocFromHeap(HEAP_ID_POKETCH_MAIN, sizeof(PoketchGraphics_TaskData));
+    *taskDataPtr = Heap_Alloc(HEAP_ID_POKETCH_MAIN, sizeof(PoketchGraphics_TaskData));
 
     if (*taskDataPtr != NULL) {
         PoketchGraphics_TaskData *newTaskData = *taskDataPtr;

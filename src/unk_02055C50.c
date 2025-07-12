@@ -85,7 +85,7 @@ static int sub_02055C80(int param0)
 
 UnkStruct_02055CBC *sub_02055C8C(FieldSystem *fieldSystem, int heapID)
 {
-    UnkStruct_02055CBC *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02055CBC));
+    UnkStruct_02055CBC *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_02055CBC));
     MI_CpuClear8(v0, sizeof(UnkStruct_02055CBC));
 
     v0->heapID = heapID;
@@ -124,7 +124,7 @@ static void sub_02055D14(FieldSystem *fieldSystem, UnkStruct_02055CBC *param1)
     UnkStruct_ov5_021DF47C *v0 = fieldSystem->unk_40;
     u32 v1 = ov5_021DF5A8(v0, 17);
 
-    param1->unk_60 = Heap_AllocFromHeap(param1->heapID, v1);
+    param1->unk_60 = Heap_Alloc(param1->heapID, v1);
 
     ov5_021DF5B4(v0, 17, param1->unk_60);
     Easy3D_InitRenderObjFromResource(&param1->unk_08, &param1->unk_5C, &param1->unk_60);
@@ -453,7 +453,7 @@ static BOOL sub_02056124(FieldTask *taskMan)
 
 void sub_020562AC(FieldSystem *fieldSystem)
 {
-    UnkStruct_020562AC *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_020562AC));
+    UnkStruct_020562AC *v0 = Heap_Alloc(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_020562AC));
 
     v0->unk_00 = 0;
     v0->unk_0C = NULL;

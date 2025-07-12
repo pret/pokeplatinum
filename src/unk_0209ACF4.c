@@ -63,7 +63,7 @@ static int sub_0209B288(UnkStruct_0209AD84 *param0);
 void sub_0209ACF4(FieldTask *param0)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_0209AD84 *v1 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0209AD84));
+    UnkStruct_0209AD84 *v1 = Heap_Alloc(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0209AD84));
 
     v1->fieldSystem = fieldSystem;
     v1->unk_04 = Strbuf_Init(400, HEAP_ID_FIELD_TASK);

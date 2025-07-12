@@ -97,8 +97,8 @@ SpriteResourcesHeaderList *SpriteResourcesHeaderList_NewFromResdat(const ResdatT
         resdatLength++;
     }
 
-    SpriteResourcesHeaderList *headerList = Heap_AllocFromHeap(heapID, sizeof(SpriteResourcesHeaderList));
-    headerList->headers = Heap_AllocFromHeap(heapID, sizeof(SpriteResourcesHeader) * resdatLength);
+    SpriteResourcesHeaderList *headerList = Heap_Alloc(heapID, sizeof(SpriteResourcesHeaderList));
+    headerList->headers = Heap_Alloc(heapID, sizeof(SpriteResourcesHeader) * resdatLength);
     headerList->length = resdatLength;
 
     for (int i = 0; i < headerList->length; i++) {

@@ -333,7 +333,7 @@ void PlatformLift_Trigger(FieldSystem *fieldSystem)
         return;
     }
 
-    PlatformLiftFieldTaskEnv *taskEnv = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(PlatformLiftFieldTaskEnv));
+    PlatformLiftFieldTaskEnv *taskEnv = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(PlatformLiftFieldTaskEnv));
     taskEnv->state = PLATFORM_LIFT_STATE_START_MOVING;
     taskEnv->isIronIslandB2FLeftRoom = sPerMapPlatformLiftConfiguration[data->id].isIronIslandB2FLeftRoom;
     taskEnv->kind = data->kind;

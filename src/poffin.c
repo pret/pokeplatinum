@@ -37,7 +37,7 @@ void Poffin_Clear(Poffin *poffin)
 
 Poffin *Poffin_New(int heapID)
 {
-    Poffin *poffin = Heap_AllocFromHeapAtEnd(heapID, sizeof(Poffin));
+    Poffin *poffin = Heap_AllocAtEnd(heapID, sizeof(Poffin));
     Poffin_Clear(poffin);
 
     return poffin;

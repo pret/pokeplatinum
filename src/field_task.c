@@ -16,7 +16,7 @@ typedef struct FieldTaskEnv {
 
 static FieldTask *CreateTaskManager(FieldSystem *fieldSys, FieldTaskFunc taskFunc, void *taskEnv)
 {
-    FieldTask *task = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD_TASK, sizeof(FieldTask));
+    FieldTask *task = Heap_AllocAtEnd(HEAP_ID_FIELD_TASK, sizeof(FieldTask));
     task->prev = NULL;
     task->func = taskFunc;
     task->state = 0;
@@ -24,7 +24,7 @@ static FieldTask *CreateTaskManager(FieldSystem *fieldSys, FieldTaskFunc taskFun
     task->dummy10 = 0;
     task->dummy14 = NULL;
     task->fieldSys = fieldSys;
-    task->dummy1C = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD_TASK, sizeof(u32));
+    task->dummy1C = Heap_AllocAtEnd(HEAP_ID_FIELD_TASK, sizeof(u32));
 
     return task;
 }
@@ -137,7 +137,7 @@ static BOOL RunChildApplication(FieldTask *task)
 
 void FieldTask_RunApplication(FieldTask *task, const ApplicationManagerTemplate *appTemplate, void *appArgs)
 {
-    FieldTaskEnv *env = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD_TASK, sizeof(FieldTaskEnv));
+    FieldTaskEnv *env = Heap_AllocAtEnd(HEAP_ID_FIELD_TASK, sizeof(FieldTaskEnv));
     env->state = 0;
     env->appTemplate = appTemplate;
     env->appArgs = appArgs;

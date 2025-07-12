@@ -316,7 +316,7 @@ BOOL ChooseStarter_Init(ApplicationManager *appMan, int *param1)
     GF_ASSERT(app);
     memset(app, 0, sizeof(ChooseStarterApp));
 
-    Heap_FndInitAllocatorForExpHeap(&app->unk_2B4, HEAP_ID_CHOOSE_STARTER_APP, 32);
+    HeapExp_FndInitAllocator(&app->unk_2B4, HEAP_ID_CHOOSE_STARTER_APP, 32);
 
     ChooseStarterData *data = ApplicationManager_Args(appMan);
     app->messageFrame = Options_Frame(data->options);

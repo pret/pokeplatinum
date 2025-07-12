@@ -25,10 +25,10 @@ static u32 GetStrippedTextureResourceSize(const void *resFile);
 
 ResourceCollection *ResourceCollection_New(s32 capacity, enum HeapId heapID)
 {
-    ResourceCollection *resMgr = Heap_AllocFromHeap(heapID, sizeof(ResourceCollection));
+    ResourceCollection *resMgr = Heap_Alloc(heapID, sizeof(ResourceCollection));
     GF_ASSERT(resMgr);
 
-    resMgr->resources = Heap_AllocFromHeap(heapID, sizeof(Resource) * capacity);
+    resMgr->resources = Heap_Alloc(heapID, sizeof(Resource) * capacity);
     GF_ASSERT(resMgr->resources);
 
     for (int i = 0; i < capacity; i++) {
@@ -176,10 +176,10 @@ static void Resource_Init(Resource *resource)
 
 TextureResourceManager *TextureResourceManager_New(s32 maxTextures, enum HeapId heapID)
 {
-    TextureResourceManager *texMgr = Heap_AllocFromHeap(heapID, sizeof(TextureResourceManager));
+    TextureResourceManager *texMgr = Heap_Alloc(heapID, sizeof(TextureResourceManager));
 
     texMgr->resources = ResourceCollection_New(maxTextures, heapID);
-    texMgr->textures = Heap_AllocFromHeap(heapID, sizeof(TextureResource) * maxTextures);
+    texMgr->textures = Heap_Alloc(heapID, sizeof(TextureResource) * maxTextures);
 
     for (int i = 0; i < maxTextures; i++) {
         TextureResource_Init(texMgr->textures + i);
@@ -487,7 +487,7 @@ static void TexRes_ReleaseVRamKeys(NNSG3dResTex *texRes)
 static void *CreateStrippedTexture(void *resFile, enum HeapId heapID)
 {
     u32 size = GetStrippedTextureResourceSize(resFile);
-    void *stripped = Heap_AllocFromHeap(heapID, size);
+    void *stripped = Heap_Alloc(heapID, size);
     memcpy(stripped, resFile, size);
 
     return stripped;

@@ -914,7 +914,7 @@ static void ov12_0222653C(void *param0)
 
 UnkStruct_ov12_02226504 *ov12_02226544(u32 param0, u32 param1, int heapID)
 {
-    UnkStruct_ov12_02226504 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov12_02226504));
+    UnkStruct_ov12_02226504 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov12_02226504));
     memset(v0, 0, sizeof(UnkStruct_ov12_02226504));
 
     GF_ASSERT(v0);
@@ -977,7 +977,7 @@ UnkStruct_ov12_0222660C *ov12_0222662C(u8 param0, u8 param1, u16 param2, fx32 pa
     void *v2;
     const void *v3;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov12_0222660C));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov12_0222660C));
     GF_ASSERT(v0);
 
     memset(v0, 0, sizeof(UnkStruct_ov12_0222660C));
@@ -1147,7 +1147,7 @@ UnkStruct_ov12_022267D4 *ov12_02226870(PaletteData *param0, int heapID, int para
 {
     UnkStruct_ov12_022267D4 *v0 = NULL;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov12_022267D4));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov12_022267D4));
 
     GF_ASSERT(v0 != NULL);
 

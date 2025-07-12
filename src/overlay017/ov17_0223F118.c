@@ -394,7 +394,7 @@ static void ov17_0223F6E8(SysTask *param0, void *param1)
 
 UnkStruct_ov17_0223F744 *ov17_0223F70C(int heapID, PaletteData *param1, const u16 *param2, int param3, int param4, u32 param5)
 {
-    UnkStruct_ov17_0223F744 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov17_0223F744));
+    UnkStruct_ov17_0223F744 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov17_0223F744));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_0223F744));
 
     v0->unk_04 = param1;

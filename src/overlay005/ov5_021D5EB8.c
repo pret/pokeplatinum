@@ -371,7 +371,7 @@ static void ov5_021DB588(fx32 param0, int param1, int param2, int param3, int *p
 
 UnkStruct_ov5_021D5EF8 *ov5_021D5EB8(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov5_021D5EF8 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021D5EF8));
+    UnkStruct_ov5_021D5EF8 *v0 = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021D5EF8));
     memset(v0, 0, sizeof(UnkStruct_ov5_021D5EF8));
 
     v0->unk_00 = ov5_021D6364(fieldSystem);
@@ -782,7 +782,7 @@ static void ov5_021D61D0(UnkStruct_ov5_021D61D0 *param0)
     }
 
     v2 = SpriteResourceTable_Size();
-    param0->unk_10 = Heap_AllocFromHeap(HEAP_ID_FIELD, v2 * 4);
+    param0->unk_10 = Heap_Alloc(HEAP_ID_FIELD, v2 * 4);
 
     ov5_021D6290(param0->unk_10, 0, 63);
     ov5_021D6290(param0->unk_10, 1, 64);
@@ -861,7 +861,7 @@ static void ov5_021D630C(Sprite *param0, VecFx32 *param1)
 
 UnkStruct_ov5_021D6594 *ov5_021D6364(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov5_021D6594 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021D6594));
+    UnkStruct_ov5_021D6594 *v0 = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021D6594));
     v0->fieldSystem = fieldSystem;
 
     ov5_021D61D0(&v0->unk_08);
@@ -1164,7 +1164,7 @@ static BOOL ov5_021D676C(UnkStruct_ov5_021D6594 *param0, int param1, int param2,
     v0->unk_08->unk_B8C = *(NNS_G3dGlbGetCameraTarget());
 
     if (v0->unk_04 > 0) {
-        v0->unk_08->unk_B98 = Heap_AllocFromHeap(HEAP_ID_FIELD, v0->unk_04);
+        v0->unk_08->unk_B98 = Heap_Alloc(HEAP_ID_FIELD, v0->unk_04);
         memset(v0->unk_08->unk_B98, 0, v0->unk_04);
     } else {
         v0->unk_08->unk_B98 = NULL;
@@ -1369,7 +1369,7 @@ static BOOL ov5_021D6B60(UnkStruct_ov5_021D6594 *param0, UnkStruct_ov5_021D69B8 
         return 1;
     }
 
-    param1->unk_08 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021DB4B8));
+    param1->unk_08 = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021DB4B8));
 
     if (param1->unk_08 == NULL) {
         return 0;
@@ -1395,7 +1395,7 @@ static BOOL ov5_021D6BC4(UnkStruct_ov5_021D69B8 *param0)
             return 1;
         }
 
-        param0->unk_0C = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021D6690));
+        param0->unk_0C = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021D6690));
 
         if (param0->unk_0C == NULL) {
             return 0;

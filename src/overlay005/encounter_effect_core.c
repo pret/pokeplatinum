@@ -114,7 +114,7 @@ void EncounterEffect_Grass_HigherLevel(SysTask *task, void *param)
 
     switch (encEffect->state) {
     case 0:
-        encEffect->param = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(GrassEncounterEffect));
+        encEffect->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(GrassEncounterEffect));
         memset(encEffect->param, 0, sizeof(GrassEncounterEffect));
         grassEffect = encEffect->param;
         grassEffect->screenSliceEfx = ScreenSliceEffect_New();
@@ -207,7 +207,7 @@ void EncounterEffect_Grass_LowerLevel(SysTask *task, void *param)
 
     switch (encEffect->state) {
     case 0:
-        encEffect->param = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(GrassEncounterEffect));
+        encEffect->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(GrassEncounterEffect));
         memset(encEffect->param, 0, sizeof(GrassEncounterEffect));
         grassEffect = encEffect->param;
         grassEffect->screenSliceEfx = ScreenSliceEffect_New();
@@ -298,7 +298,7 @@ void EncounterEffect_Water_LowerLevel(SysTask *task, void *param)
 
     switch (encEffect->state) {
     case 0:
-        encEffect->param = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(WaterEncounterEffect));
+        encEffect->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(WaterEncounterEffect));
         memset(encEffect->param, 0, sizeof(WaterEncounterEffect));
         waterEffect = encEffect->param;
         ScreenShakeEffect_Init(&waterEffect->screenShakeEfx, HEAP_ID_FIELD);
@@ -356,7 +356,7 @@ void EncounterEffect_Water_HigherLevel(SysTask *task, void *param)
 
     switch (encEffect->state) {
     case 0:
-        encEffect->param = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(WaterEncounterEffect));
+        encEffect->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(WaterEncounterEffect));
         memset(encEffect->param, 0, sizeof(WaterEncounterEffect));
         waterEffect = encEffect->param;
         ScreenShakeEffect_Init(&waterEffect->screenShakeEfx, HEAP_ID_FIELD);
@@ -467,7 +467,7 @@ void EncounterEffect_Cave_LowerLevel(SysTask *task, void *param)
 
     switch (encEffect->state) {
     case 0:
-        encEffect->param = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(CaveEncounterEffect));
+        encEffect->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(CaveEncounterEffect));
         memset(encEffect->param, 0, sizeof(CaveEncounterEffect));
         caveEffect = encEffect->param;
         encEffect->state++;
@@ -525,7 +525,7 @@ void EncounterEffect_Cave_HigherLevel(SysTask *task, void *param)
 
     switch (encEffect->state) {
     case 0:
-        encEffect->param = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(CaveEncounterEffect));
+        encEffect->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(CaveEncounterEffect));
         memset(encEffect->param, 0, sizeof(CaveEncounterEffect));
         caveEffect = encEffect->param;
         encEffect->state++;
@@ -669,7 +669,7 @@ void EncounterEffect_Trainer_Grass_LowerLevel(SysTask *task, void *param)
 
     switch (encEffect->state) {
     case 0:
-        encEffect->param = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(TrainerGrassEncounterEffect));
+        encEffect->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(TrainerGrassEncounterEffect));
         memset(encEffect->param, 0, sizeof(TrainerGrassEncounterEffect));
         trainerEffect = encEffect->param;
 
@@ -830,7 +830,7 @@ void EncounterEffect_Trainer_Grass_HigherLevel(SysTask *param0, void *param1)
 
     switch (encEffect->state) {
     case 0:
-        encEffect->param = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E2EB0));
+        encEffect->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E2EB0));
         memset(encEffect->param, 0, sizeof(UnkStruct_ov5_021E2EB0));
         v1 = encEffect->param;
 
@@ -977,7 +977,7 @@ void EncounterEffect_Trainer_Water_LowerLevel(SysTask *param0, void *param1)
 
     switch (v0->state) {
     case 0:
-        v0->param = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E31A4));
+        v0->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E31A4));
         memset(v0->param, 0, sizeof(UnkStruct_ov5_021E31A4));
         v1 = v0->param;
 
@@ -1148,7 +1148,7 @@ void EncounterEffect_Trainer_Water_HigherLevel(SysTask *param0, void *param1)
 
     switch (v0->state) {
     case 0:
-        v0->param = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E3560));
+        v0->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E3560));
         memset(v0->param, 0, sizeof(UnkStruct_ov5_021E3560));
         v1 = v0->param;
 
@@ -1360,7 +1360,7 @@ void EncounterEffect_Trainer_Cave_LowerLevel(SysTask *param0, void *param1)
 
     switch (v0->state) {
     case 0:
-        v0->param = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E3AD0));
+        v0->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E3AD0));
         memset(v0->param, 0, sizeof(UnkStruct_ov5_021E3AD0));
         v1 = v0->param;
 
@@ -1486,7 +1486,7 @@ void EncounterEffect_Trainer_Cave_HigherLevel(SysTask *param0, void *param1)
 
     switch (v0->state) {
     case 0:
-        v0->param = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E3D8C));
+        v0->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E3D8C));
         memset(v0->param, 0, sizeof(UnkStruct_ov5_021E3D8C));
         v1 = v0->param;
 
@@ -1712,7 +1712,7 @@ void EncounterEffect_Frontier(SysTask *param0, void *param1)
 
     switch (v0->state) {
     case 0:
-        v0->param = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E4260));
+        v0->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E4260));
         memset(v0->param, 0, sizeof(UnkStruct_ov5_021E4260));
         v1 = v0->param;
 
@@ -1827,7 +1827,7 @@ void EncounterEffect_Double(SysTask *param0, void *param1)
 
     switch (v0->state) {
     case 0:
-        v0->param = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E44C0));
+        v0->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E44C0));
         memset(v0->param, 0, sizeof(UnkStruct_ov5_021E44C0));
         v1 = v0->param;
 
@@ -1981,7 +1981,7 @@ void EncounterEffect_GalacticGrunt(SysTask *param0, void *param1)
 
     switch (v0->state) {
     case 0:
-        v0->param = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E4738));
+        v0->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E4738));
         memset(v0->param, 0, sizeof(UnkStruct_ov5_021E4738));
         v1 = v0->param;
 
@@ -2127,7 +2127,7 @@ void EncounterEffect_GalacticBoss(SysTask *param0, void *param1)
 
     switch (v0->state) {
     case 0:
-        v0->param = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E4B3C));
+        v0->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E4B3C));
         memset(v0->param, 0, sizeof(UnkStruct_ov5_021E4B3C));
         v1 = v0->param;
 
@@ -2405,7 +2405,7 @@ void EncounterEffect_Mythical(SysTask *task, void *param)
 
     switch (encEffect->state) {
     case 0:
-        encEffect->param = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(MythicalEncounterEffect));
+        encEffect->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(MythicalEncounterEffect));
         memset(encEffect->param, 0, sizeof(MythicalEncounterEffect));
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
@@ -2488,7 +2488,7 @@ void EncounterEffect_Legendary(SysTask *task, void *param)
 
     switch (encEffect->state) {
     case 0:
-        encEffect->param = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(LegendaryEncounterEffect));
+        encEffect->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(LegendaryEncounterEffect));
         memset(encEffect->param, 0, sizeof(LegendaryEncounterEffect));
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
@@ -2892,7 +2892,7 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId he
 
     switch (encEffect->state) {
     case 0:
-        encEffect->param = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov5_021E52A8));
+        encEffect->param = Heap_Alloc(heapID, sizeof(UnkStruct_ov5_021E52A8));
         memset(encEffect->param, 0, sizeof(UnkStruct_ov5_021E52A8));
         v0 = encEffect->param;
 
@@ -3210,7 +3210,7 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
 
     switch (encEffect->state) {
     case 0:
-        encEffect->param = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov5_021E5890));
+        encEffect->param = Heap_Alloc(heapID, sizeof(UnkStruct_ov5_021E5890));
         memset(encEffect->param, 0, sizeof(UnkStruct_ov5_021E5890));
         v0 = encEffect->param;
 

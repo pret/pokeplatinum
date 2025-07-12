@@ -19,7 +19,7 @@ static BOOL RunGraphicsFunction(PokedexGraphicsFunction graphicsFunc, void *grap
 
 PokedexUpdater *PokedexUpdater_New(enum HeapId heapID)
 {
-    PokedexUpdater *pokedexUpdater = Heap_AllocFromHeap(heapID, sizeof(PokedexUpdater));
+    PokedexUpdater *pokedexUpdater = Heap_Alloc(heapID, sizeof(PokedexUpdater));
 
     GF_ASSERT(pokedexUpdater);
     memset(pokedexUpdater, 0, sizeof(PokedexUpdater));

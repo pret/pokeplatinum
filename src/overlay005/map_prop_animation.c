@@ -82,7 +82,7 @@ static void BicycleSlopeAnimation_ResetFinishedAnimations(BicycleSlopeAnimation 
 MapPropAnimationManager *MapPropAnimationManager_New(void)
 {
     int i;
-    MapPropAnimationManager *manager = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(MapPropAnimationManager));
+    MapPropAnimationManager *manager = Heap_Alloc(HEAP_ID_FIELD, sizeof(MapPropAnimationManager));
 
     for (i = 0; i < MAP_PROP_ANIMATION_MANAGER_MAX_ANIMATIONS; i++) {
         manager->animations[i].loaded = FALSE;
@@ -104,7 +104,7 @@ MapPropAnimationManager *MapPropAnimationManager_New(void)
         manager->bicycleSlopeAnimations[i].animeArchiveID = 0;
     }
 
-    Heap_FndInitAllocatorForExpHeap(&manager->allocator, HEAP_ID_FIELD, 4);
+    HeapExp_FndInitAllocator(&manager->allocator, HEAP_ID_FIELD, 4);
 
     manager->animeNARC = NARC_ctor(NARC_INDEX_ARC__BM_ANIME, HEAP_ID_FIELD);
     manager->animeListNARC = NARC_ctor(NARC_INDEX_ARC__BM_ANIME_LIST, HEAP_ID_FIELD);
@@ -692,7 +692,7 @@ static void MapPropAnimationManager_UnloadOneShotAnimation(MapPropAnimationManag
 MapPropOneShotAnimationManager *MapPropOneShotAnimationManager_New(void)
 {
     int oneShotAnimationManagerSize = sizeof(MapPropOneShotAnimationManager);
-    MapPropOneShotAnimationManager *oneShotAnimMan = Heap_AllocFromHeap(HEAP_ID_FIELD, oneShotAnimationManagerSize);
+    MapPropOneShotAnimationManager *oneShotAnimMan = Heap_Alloc(HEAP_ID_FIELD, oneShotAnimationManagerSize);
 
     MI_CpuClearFast(oneShotAnimMan, oneShotAnimationManagerSize);
 

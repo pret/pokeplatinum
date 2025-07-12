@@ -311,7 +311,7 @@ static void ov23_0224A5CC(SysTask *param0, void *param1)
 static void ov23_0224A620(int param0)
 {
     CommPlayerManager *commPlayerMan = CommPlayerMan_Get();
-    UnkStruct_ov23_0224A5CC *v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov23_0224A5CC));
+    UnkStruct_ov23_0224A5CC *v1 = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov23_0224A5CC));
 
     v1->unk_00 = 0;
     v1->unk_04 = param0;

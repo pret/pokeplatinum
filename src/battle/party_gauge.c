@@ -219,7 +219,7 @@ void PartyGauge_FreeGraphics(SpriteManager *spriteMan)
 
 static PartyGauge *NewPartyGauge()
 {
-    PartyGauge *gauge = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(PartyGauge));
+    PartyGauge *gauge = Heap_Alloc(HEAP_ID_BATTLE, sizeof(PartyGauge));
     MI_CpuClear8(gauge, sizeof(PartyGauge));
     return gauge;
 }

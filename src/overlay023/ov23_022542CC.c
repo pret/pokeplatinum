@@ -92,7 +92,7 @@ static const ListMenuTemplate Unk_ov23_02256B3C = {
 
 UnkStruct_ov23_022542D8 *ov23_022542CC(void)
 {
-    UnkStruct_ov23_022542D8 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_022542D8));
+    UnkStruct_ov23_022542D8 *v0 = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_022542D8));
 
     return v0;
 }
@@ -263,7 +263,7 @@ static void ov23_02254564(ListMenu *param0, u32 param1, u8 param2)
 
 UnkStruct_ov23_02254594 *ov23_02254588(void)
 {
-    UnkStruct_ov23_02254594 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02254594));
+    UnkStruct_ov23_02254594 *v0 = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02254594));
     return v0;
 }
 

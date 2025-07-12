@@ -179,7 +179,7 @@ void sub_02052E58(FieldTask *param0)
     Party *v7;
 
     fieldSystem = FieldTask_GetFieldSystem(param0);
-    v5 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0205300C));
+    v5 = Heap_Alloc(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0205300C));
     v3 = SaveData_GetVarsFlags(fieldSystem->saveData);
     v4 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     v1 = FieldOverworldState_GetSpecialLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));

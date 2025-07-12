@@ -187,7 +187,7 @@ static int sub_0206F314(UnkStruct_0206F314 *param0, FieldSystem *fieldSystem, u1
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_80, 0x6000);
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_80, sizeof(UnkStruct_0206F7F8));
+    v0 = Heap_Alloc(HEAP_ID_80, sizeof(UnkStruct_0206F7F8));
     MI_CpuClear8(v0, sizeof(UnkStruct_0206F7F8));
 
     v0->heapID = HEAP_ID_80;
@@ -457,7 +457,7 @@ static void sub_0206F7F8(UnkStruct_0206F7F8 *param0, SaveData *saveData)
     int v0, v1, v2, v3;
     UnkStruct_0202EE10 *v4;
 
-    param0->unk_324 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02070050) * param0->unk_18);
+    param0->unk_324 = Heap_Alloc(param0->heapID, sizeof(UnkStruct_02070050) * param0->unk_18);
     MI_CpuClear8(param0->unk_324, sizeof(UnkStruct_02070050) * param0->unk_18);
     param0->unk_308[0] = sub_0202ED8C(saveData, param0->unk_16, param0->heapID);
 
@@ -900,7 +900,7 @@ static BOOL sub_020702D0(FieldTask *param0)
 void sub_020703FC(FieldTask *param0, u16 param1)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_0206F314 *v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0206F314));
+    UnkStruct_0206F314 *v1 = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0206F314));
 
     v1->unk_00 = 0;
     v1->unk_04 = param1;
