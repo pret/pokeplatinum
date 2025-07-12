@@ -702,7 +702,7 @@ static void ov5_021D15F4(FieldSystem *fieldSystem)
         Camera_ComputeViewMatrix();
     }
 
-    sub_0206979C(fieldSystem);
+    PokeRadar_ClearIfAllOutOfView(fieldSystem);
     LandDataManager_RenderLoadedMaps(fieldSystem->landDataMan, fieldSystem->areaModelAttrs);
 
     if (FieldMap_InDistortionWorld(fieldSystem) == TRUE) {
