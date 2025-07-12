@@ -3521,9 +3521,9 @@
     .short \arg2
     .endm
 
-    .macro ScrCmd_26B arg0
+    .macro CheckHasAllLegendaryTitansInParty destVar
     .short 619
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro TryGetRandomMassageGirlAccessory destAccessoryID
