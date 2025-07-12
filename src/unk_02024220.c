@@ -51,9 +51,9 @@ GenericPointerData *sub_02024220(u32 heapID, int param1, int param2, int param3,
 
 void sub_020242C4(GenericPointerData *param0)
 {
-    Heap_FreeToHeap(param0->unk_04);
-    Heap_FreeToHeap(param0->unk_08);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0->unk_04);
+    Heap_Free(param0->unk_08);
+    Heap_Free(param0);
 }
 
 static void sub_020242DC(void)

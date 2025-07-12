@@ -150,7 +150,7 @@ static void InitSpeciesData(FieldSystem *fieldSystem, CatchingShow *catchingShow
         catchingShow->pokemon[i].type2 = Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL);
     }
 
-    Heap_FreeToHeap(mon);
+    Heap_Free(mon);
 }
 
 static int NumMonsCaptured(CatchingShow *catchingShow)
@@ -265,7 +265,7 @@ static FieldBattleDTO *SetupBattleDTO(FieldSystem *fieldSystem, CatchingShow *ca
     FieldBattleDTO_Init(dto, fieldSystem);
     TransferDataToMon(transferData, catchingShow->currentEncounterIndex, mon);
     FieldBattleDTO_AddPokemonToBattler(dto, mon, BATTLER_ENEMY_1);
-    Heap_FreeToHeap(mon);
+    Heap_Free(mon);
 
     return dto;
 }

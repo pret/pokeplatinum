@@ -65,7 +65,7 @@ typedef struct {
     int unk_54;
     int unk_58;
     Strbuf *unk_5C;
-    void *unk_60;
+    UnkStruct_020157E4 *unk_60;
     StringTemplate *unk_64;
     UnkStruct_02015920 *unk_68;
     SysTask *unk_6C;
@@ -232,8 +232,8 @@ int ov73_021D0F7C(ApplicationManager *appMan, int *param1)
     UnkStruct_ov73_021D1058 *v0 = ApplicationManager_Data(appMan);
     int heapID = v0->heapID;
 
-    Heap_FreeToHeap(v0->unk_B8);
-    Heap_FreeToHeap(v0->unk_BC);
+    Heap_Free(v0->unk_B8);
+    Heap_Free(v0->unk_BC);
 
     TrainerInfo_SetNameFromStrbuf(SaveData_GetTrainerInfo(v0->saveData), v0->unk_70->textInputStr);
     TrainerInfo_SetGender(SaveData_GetTrainerInfo(v0->saveData), v0->unk_70->unk_04);
@@ -357,8 +357,8 @@ static void ov73_021D1058(UnkStruct_ov73_021D1058 *param0)
         Bg_InitFromTemplate(param0->unk_18, BG_LAYER_MAIN_3, &v2, 0);
         Bg_ClearTilemap(param0->unk_18, BG_LAYER_MAIN_3);
 
-        LoadMessageBoxGraphics(param0->unk_18, BG_LAYER_MAIN_0, (0x400 - (18 + 12)), 4, 0, param0->heapID);
-        LoadStandardWindowGraphics(param0->unk_18, BG_LAYER_MAIN_0, ((0x400 - (18 + 12)) - 9), 3, 0, param0->heapID);
+        LoadMessageBoxGraphics(param0->unk_18, BG_LAYER_MAIN_0, 0x400 - (18 + 12), 4, 0, param0->heapID);
+        LoadStandardWindowGraphics(param0->unk_18, BG_LAYER_MAIN_0, (0x400 - (18 + 12)) - 9, 3, 0, param0->heapID);
         Font_LoadTextPalette(0, 5 * (2 * 16), param0->heapID);
         Font_LoadScreenIndicatorsPalette(0, 6 * (2 * 16), param0->heapID);
     }
@@ -436,7 +436,7 @@ static void ov73_021D1238(UnkStruct_ov73_021D1058 *param0)
     Bg_FreeTilemapBuffer(param0->unk_18, BG_LAYER_SUB_2);
     Bg_FreeTilemapBuffer(param0->unk_18, BG_LAYER_SUB_3);
 
-    Heap_FreeToHeap(param0->unk_18);
+    Heap_Free(param0->unk_18);
 }
 
 static void ov73_021D12C4(UnkStruct_ov73_021D1058 *param0)
@@ -696,7 +696,7 @@ static BOOL ov73_021D1510(UnkStruct_ov73_021D1058 *param0, u32 param1, int param
     case 0:
         Window_AddFromTemplate(param0->unk_18, &param0->unk_1C, &Unk_ov72_021D37EC);
         Window_FillRectWithColor(&param0->unk_1C, 15, 0, 0, 27 * 8, 4 * 8);
-        Window_DrawMessageBoxWithScrollCursor(&param0->unk_1C, 0, (0x400 - (18 + 12)), 4);
+        Window_DrawMessageBoxWithScrollCursor(&param0->unk_1C, 0, 0x400 - (18 + 12), 4);
         RenderControlFlags_SetCanABSpeedUpPrint(1);
         RenderControlFlags_SetAutoScrollFlags(0);
 
@@ -712,7 +712,7 @@ static BOOL ov73_021D1510(UnkStruct_ov73_021D1058 *param0, u32 param1, int param
             Strbuf_Free(v1);
         }
 
-        param0->unk_58 = Text_AddPrinterWithParams(&param0->unk_1C, FONT_MESSAGE, param0->unk_5C, 0, 0, (Options_TextFrameDelay(param0->options)), NULL);
+        param0->unk_58 = Text_AddPrinterWithParams(&param0->unk_1C, FONT_MESSAGE, param0->unk_5C, 0, 0, Options_TextFrameDelay(param0->options), NULL);
         param0->unk_50 = 1;
         break;
     case 1:
@@ -791,7 +791,7 @@ static BOOL ov73_021D1648(UnkStruct_ov73_021D1058 *param0, int param1, int param
 
         param0->unk_40 = ListMenu_New(&v1, 0, 0, param0->heapID);
 
-        Window_DrawStandardFrame(v1.window, 1, ((0x400 - (18 + 12)) - 9), 3);
+        Window_DrawStandardFrame(v1.window, 1, (0x400 - (18 + 12)) - 9, 3);
         Window_CopyToVRAM(&param0->unk_30);
 
         param0->unk_2C = 1;
@@ -958,14 +958,14 @@ static void ov73_021D1A20(UnkStruct_ov73_021D1058 *param0)
 
     if ((param0->unk_89 != 0) && (param0->unk_89 < 12)) {
         Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, v0[param0->unk_89][0], param0->unk_18, 1, 0, 0, 0, param0->heapID);
-        Graphics_LoadPalette(NARC_INDEX_DEMO__INTRO__INTRO, v0[param0->unk_89][1], 0, 7 * (2 * 16), (2 * 16), param0->heapID);
+        Graphics_LoadPalette(NARC_INDEX_DEMO__INTRO__INTRO, v0[param0->unk_89][1], 0, 7 * (2 * 16), 2 * 16, param0->heapID);
         Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, 23, param0->unk_18, 1, 0, 0, 0, param0->heapID);
         ov73_021D14DC(param0, 1, 7);
     }
 
     if ((param0->unk_8A != 0) && (param0->unk_8A < 12)) {
         Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, v0[param0->unk_8A][0], param0->unk_18, 2, 0, 0, 0, param0->heapID);
-        Graphics_LoadPalette(NARC_INDEX_DEMO__INTRO__INTRO, v0[param0->unk_8A][1], 0, 8 * (2 * 16), (2 * 16), param0->heapID);
+        Graphics_LoadPalette(NARC_INDEX_DEMO__INTRO__INTRO, v0[param0->unk_8A][1], 0, 8 * (2 * 16), 2 * 16, param0->heapID);
         Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, 23, param0->unk_18, 2, 0, 0, 0, param0->heapID);
         ov73_021D14DC(param0, 2, 8);
     }
@@ -1127,7 +1127,7 @@ static void ov73_021D1B80(UnkStruct_ov73_021D1058 *param0)
 
     Bg_ClearTilesRange(v4, 32, 0, param0->heapID);
     Bg_LoadTiles(param0->unk_18, v4, v2, (10 * 10) * 0x20, 1);
-    Bg_LoadPalette(v4, v3, (2 * 16), (2 * 16) * v6);
+    Bg_LoadPalette(v4, v3, 2 * 16, (2 * 16) * v6);
     Bg_FillTilemapRect(param0->unk_18, v5, 0, 0, 0, 32, 24, v7);
     Bg_LoadToTilemapRect(param0->unk_18, v5, v1, 11, 7, 10, 10);
 
@@ -1135,10 +1135,10 @@ static void ov73_021D1B80(UnkStruct_ov73_021D1058 *param0)
 
     Bg_ClearTilesRange(v5, 32, 0, param0->heapID);
     Bg_LoadTiles(param0->unk_18, v5, v2, (10 * 10) * 0x20, 1);
-    Bg_LoadPalette(v5, v3, (2 * 16), (2 * 16) * v7);
-    Heap_FreeToHeap(v3);
-    Heap_FreeToHeap(v2);
-    Heap_FreeToHeap(v1);
+    Bg_LoadPalette(v5, v3, 2 * 16, (2 * 16) * v7);
+    Heap_Free(v3);
+    Heap_Free(v2);
+    Heap_Free(v1);
 }
 
 static void ov73_021D1CE0(UnkStruct_ov73_021D1058 *param0)
@@ -1280,8 +1280,8 @@ static void ov73_021D1FA0(UnkStruct_ov73_021D1058 *param0)
         param0->unk_94[8]--;
 
         BlendPalettes(param0->unk_B8, param0->unk_BC, 1, param0->unk_94[8] / 3, 0x6a3c);
-        Bg_LoadPalette(2, param0->unk_BC, (2 * 16), (2 * 16) * 8);
-        Bg_LoadPalette(5, param0->unk_BC, (2 * 16), (2 * 16) * 10);
+        Bg_LoadPalette(2, param0->unk_BC, 2 * 16, (2 * 16) * 8);
+        Bg_LoadPalette(5, param0->unk_BC, 2 * 16, (2 * 16) * 10);
     }
 }
 
@@ -1292,7 +1292,7 @@ static BOOL ov73_021D200C(UnkStruct_ov73_021D1058 *param0, int *param1)
     switch (*param1) {
     case 0:
         Bg_SetOffset(param0->unk_18, BG_LAYER_MAIN_2, 0, 0);
-        Bg_SetOffset(param0->unk_18, BG_LAYER_MAIN_2, 3, (-8 * 13));
+        Bg_SetOffset(param0->unk_18, BG_LAYER_MAIN_2, 3, -8 * 13);
         Bg_SetPriority(BG_LAYER_MAIN_2, 0);
         Bg_ToggleLayer(BG_LAYER_SUB_1, 1);
 
@@ -1773,21 +1773,21 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
         }
         break;
     case 50:
-        BrightnessController_StartTransition(1, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3), BRIGHTNESS_MAIN_SCREEN);
-        BrightnessController_StartTransition(1, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3), BRIGHTNESS_SUB_SCREEN);
+        BrightnessController_StartTransition(1, 16, 0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, BRIGHTNESS_MAIN_SCREEN);
+        BrightnessController_StartTransition(1, 16, 0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, BRIGHTNESS_SUB_SCREEN);
         param0->unk_0C = 51;
         break;
     case 51:
         if ((BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) && (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN) == TRUE)) {
-            BrightnessController_StartTransition(1, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3), BRIGHTNESS_MAIN_SCREEN);
-            BrightnessController_StartTransition(1, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3), BRIGHTNESS_SUB_SCREEN);
+            BrightnessController_StartTransition(1, 0, 16, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, BRIGHTNESS_MAIN_SCREEN);
+            BrightnessController_StartTransition(1, 0, 16, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, BRIGHTNESS_SUB_SCREEN);
             param0->unk_0C = 52;
         }
         break;
     case 52:
         if ((BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) && (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN) == TRUE)) {
-            BrightnessController_StartTransition(4, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3), BRIGHTNESS_MAIN_SCREEN);
-            BrightnessController_StartTransition(4, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3), BRIGHTNESS_SUB_SCREEN);
+            BrightnessController_StartTransition(4, 16, 0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, BRIGHTNESS_MAIN_SCREEN);
+            BrightnessController_StartTransition(4, 16, 0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, BRIGHTNESS_SUB_SCREEN);
             param0->unk_0C = 53;
         }
         break;
@@ -1803,8 +1803,8 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
         ov73_021D200C(param0, &param0->unk_94[0]);
         param0->unk_8B = 0;
         ov73_021D1B14(param0);
-        BrightnessController_StartTransition(16, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3), BRIGHTNESS_MAIN_SCREEN);
-        BrightnessController_StartTransition(16, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3), BRIGHTNESS_SUB_SCREEN);
+        BrightnessController_StartTransition(16, 0, 16, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, BRIGHTNESS_MAIN_SCREEN);
+        BrightnessController_StartTransition(16, 0, 16, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, BRIGHTNESS_SUB_SCREEN);
         param0->unk_0C = 55;
         break;
     case 55:

@@ -23,7 +23,7 @@ ApplicationManager *ApplicationManager_New(const ApplicationManagerTemplate *tem
 
 void ApplicationManager_Free(ApplicationManager *appMan)
 {
-    Heap_FreeToHeap(appMan);
+    Heap_Free(appMan);
 }
 
 void *ApplicationManager_NewData(ApplicationManager *appMan, u32 size, enum HeapId heapID)
@@ -39,7 +39,7 @@ void *ApplicationManager_Data(ApplicationManager *appMan)
 
 void ApplicationManager_FreeData(ApplicationManager *appMan)
 {
-    Heap_FreeToHeap(appMan->data);
+    Heap_Free(appMan->data);
     appMan->data = NULL;
 }
 

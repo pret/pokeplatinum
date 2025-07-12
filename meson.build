@@ -37,6 +37,16 @@ c_args = [
     '-D_MSL_RESTRICT=',
 ]
 
+if get_option('revision') == '0'
+    c_args += [
+        '-DPOKEPLATINUM_REVISION=0'
+    ]
+else
+    c_args += [
+        '-DPOKEPLATINUM_REVISION=1'
+    ]
+endif
+
 if get_option('gdb_debugging')
     c_args += [
         '-O1,p',

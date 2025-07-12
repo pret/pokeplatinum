@@ -274,7 +274,7 @@ static void JournalController_TeardownBgs(BgConfig *bgConfig)
     Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_0);
-    Heap_FreeToHeapExplicit(HEAP_ID_JOURNAL, bgConfig);
+    Heap_FreeExplicit(HEAP_ID_JOURNAL, bgConfig);
 }
 
 static void JournalController_LoadGraphics(JournalManager *journalManager)

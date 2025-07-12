@@ -318,7 +318,7 @@ static BOOL sub_020685AC(FieldTask *task)
         (*v2)++;
         break;
     case 1:
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return 1;
     }
 
@@ -918,7 +918,7 @@ static BOOL sub_02068F48(FieldTask *task)
         MapObjectMan_UnpauseAllMovement(fieldSystem->mapObjMan);
         Window_Remove(&v1->unk_00);
         Strbuf_Free(v1->unk_10);
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
 
         return 1;
     }
@@ -1118,7 +1118,7 @@ BOOL sub_02069238(FieldSystem *fieldSystem)
     }
 
     if (v5 == 0) {
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 
     return 1;
@@ -1161,7 +1161,7 @@ static BOOL sub_0206932C(FieldTask *task)
             if (v1->unk_20 == sub_02068B9C) {
                 sub_02098AF0(v1->unk_24);
             } else {
-                Heap_FreeToHeap(v1->unk_24);
+                Heap_Free(v1->unk_24);
             }
         }
 
@@ -1178,7 +1178,7 @@ static BOOL sub_0206932C(FieldTask *task)
     case 4:
         if (IsScreenFadeDone()) {
             MapObjectMan_UnpauseAllMovement(fieldSystem->mapObjMan);
-            Heap_FreeToHeap(v1);
+            Heap_Free(v1);
             return 1;
         }
         break;

@@ -600,7 +600,7 @@ static int ov83_0223BCEC(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
             v0 = Poffin_New(param1->heapID);
             ov83_0223FFD4(&param1->unk_34C, v0, &param1->unk_1494, param1->unk_1488, param1->heapID);
             v1 = ov83_0223D508(28, v0, Poffin_SizeOf(), param1->unk_148C);
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
 
             if (v1 == 1) {
                 (*param2)++;
@@ -1074,7 +1074,7 @@ static void ov83_0223C87C(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B7
 {
     GF_ASSERT(param1->unk_1494.unk_100);
 
-    Heap_FreeToHeap(param1->unk_1494.unk_100);
+    Heap_Free(param1->unk_1494.unk_100);
     param1->unk_1494.unk_100 = NULL;
 
     if (param0->unk_26) {

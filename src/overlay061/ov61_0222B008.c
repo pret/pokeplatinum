@@ -120,9 +120,9 @@ void ov61_0222B0F0(UnkStruct_ov62_022349A8 *param0)
     Strbuf_Free(param0->unk_3FC);
     StringTemplate_Free(param0->unk_3F8);
     MessageLoader_Free(param0->unk_3F4);
-    Heap_FreeToHeap(param0->unk_3B4);
+    Heap_Free(param0->unk_3B4);
     ov61_0222BC40();
-    Heap_FreeToHeap(param0->unk_18C);
+    Heap_Free(param0->unk_18C);
 }
 
 static int ov61_0222B138(UnkStruct_ov62_022349A8 *param0, UnkStruct_ov61_0222B138 *param1)

@@ -492,9 +492,9 @@ static void ov77_021D14E4(UnkStruct_ov77_021D1208 *param0)
     NNS_G3dFreeAnmObj(&param0->unk_70, param0->unk_68);
     NNS_G3dFreeAnmObj(&param0->unk_70, param0->unk_6C);
 
-    Heap_FreeToHeap(param0->unk_60);
-    Heap_FreeToHeap(param0->unk_64);
-    Heap_FreeToHeap(param0->unk_5C);
+    Heap_Free(param0->unk_60);
+    Heap_Free(param0->unk_64);
+    Heap_Free(param0->unk_5C);
 }
 
 static void ov77_021D1514(UnkStruct_ov77_021D1208 *param0)
@@ -777,7 +777,7 @@ static void ov77_021D1908(UnkStruct_ov77_021D17B4 *param0)
     Bg_FreeTilemapBuffer(param0->unk_04, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(param0->unk_04, BG_LAYER_MAIN_3);
     Bg_FreeTilemapBuffer(param0->unk_04, BG_LAYER_SUB_3);
-    Heap_FreeToHeap(param0->unk_04);
+    Heap_Free(param0->unk_04);
 }
 
 static void ov77_021D1984(UnkStruct_ov77_021D1568 *param0, UnkStruct_ov77_021D1208 *param1)

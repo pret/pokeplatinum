@@ -143,7 +143,7 @@ UnkStruct_0203D9B8 *sub_020989DC(SaveData *saveData, int heapID)
     }
 
     StringTemplate_Free(v3);
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 
     v0->unk_00 = v6;
     v0->unk_03 = 5;
@@ -154,7 +154,7 @@ UnkStruct_0203D9B8 *sub_020989DC(SaveData *saveData, int heapID)
 void sub_02098AF0(UnkStruct_0203D9B8 *param0)
 {
     int v0;
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static BOOL sub_02098AF8(ApplicationManager **appManPtr)
@@ -313,7 +313,7 @@ static int sub_02098CB0(UnkStruct_02098BE4 *param0)
     partyMan = (PartyManagementData *)param0->unk_10;
     v0 = partyMan->selectedMonSlot;
     param0->unk_08 = v0;
-    Heap_FreeToHeap(param0->unk_10);
+    Heap_Free(param0->unk_10);
 
     if (v0 == 7) {
         return 0;
@@ -353,7 +353,7 @@ static int sub_02098D38(UnkStruct_02098BE4 *param0)
 
     param0->unk_08 = summaryScreen->monIndex;
 
-    Heap_FreeToHeap(param0->unk_10);
+    Heap_Free(param0->unk_10);
 
     if (returnMode == SUMMARY_RETURN_CANCEL) {
         return 0;
@@ -400,8 +400,8 @@ static int sub_02098DE8(UnkStruct_02098BE4 *param0)
 
     v0 = (UnkStruct_02098DE8 *)param0->unk_10;
 
-    Heap_FreeToHeap(v0->unk_04);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0->unk_04);
+    Heap_Free(v0);
 
     return 6;
 }
@@ -449,8 +449,8 @@ static int sub_02098E88(UnkStruct_02098BE4 *param0)
     }
 
     v1 = (PokemonSummary *)param0->unk_10;
-    Heap_FreeToHeap(v1->poffin);
-    Heap_FreeToHeap(param0->unk_10);
+    Heap_Free(v1->poffin);
+    Heap_Free(param0->unk_10);
 
     return 0;
 }

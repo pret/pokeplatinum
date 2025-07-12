@@ -584,7 +584,7 @@ static BOOL FieldTask_LoadMapFromError(FieldTask *task)
         }
         break;
     case 5:
-        Heap_FreeToHeap(errorData);
+        Heap_Free(errorData);
         return 1;
     }
 
@@ -642,7 +642,7 @@ static BOOL FieldTask_ChangeMap(FieldTask *task)
         mapChangeData->state++;
         break;
     case 3:
-        Heap_FreeToHeap(mapChangeData);
+        Heap_Free(mapChangeData);
         return TRUE;
     }
 
@@ -679,7 +679,7 @@ static BOOL FieldTask_ChangeMapSub(FieldTask *task)
         break;
     case 2:
         FieldMapChange_CreateObjects(fieldSystem);
-        Heap_FreeToHeap(mapChangeSub);
+        Heap_Free(mapChangeSub);
         return 1;
     }
 
@@ -736,7 +736,7 @@ static BOOL FieldTask_ChangeMapFull(FieldTask *task)
         mapChangeSub->state++;
         break;
     case 3:
-        Heap_FreeToHeap(mapChangeSub);
+        Heap_Free(mapChangeSub);
         return TRUE;
     }
 
@@ -811,7 +811,7 @@ static BOOL FieldTask_MapChangeFly(FieldTask *task)
         mapChangeData->state++;
         break;
     case 3:
-        Heap_FreeToHeap(mapChangeData);
+        Heap_Free(mapChangeData);
         return 1;
     }
 
@@ -941,7 +941,7 @@ static BOOL FieldTask_MapChangeByDig(FieldTask *task)
         mapChangeData->state++;
         break;
     case 3:
-        Heap_FreeToHeap(mapChangeData);
+        Heap_Free(mapChangeData);
         return TRUE;
     }
 
@@ -1054,7 +1054,7 @@ static BOOL FieldTask_MapChangeWarp(FieldTask *task)
         }
         break;
     case 6:
-        Heap_FreeToHeap(mapChangeWarpData);
+        Heap_Free(mapChangeWarpData);
         return 1;
     }
 
@@ -1202,7 +1202,7 @@ BOOL FieldTask_MapChangeToUnderground(FieldTask *task)
         break;
     case 5:
         MapObjectMan_UnpauseAllMovement(fieldSystem->mapObjMan);
-        Heap_FreeToHeap(mapChangeUndergroundData);
+        Heap_Free(mapChangeUndergroundData);
         return 1;
     case 6:
         Sound_FadeOutBGM(0, 30);
@@ -1245,7 +1245,7 @@ BOOL FieldTask_MapChangeToUnderground(FieldTask *task)
     case 12:
         if (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN)) {
             ov23_0224DBF4(1);
-            Heap_FreeToHeap(mapChangeUndergroundData);
+            Heap_Free(mapChangeUndergroundData);
             return 1;
         }
         break;
@@ -1307,7 +1307,7 @@ BOOL FieldTask_MapChangeFromUnderground(FieldTask *task)
         }
         break;
     case 7:
-        Heap_FreeToHeap(mapChangeUndergroundData);
+        Heap_Free(mapChangeUndergroundData);
         return 1;
         break;
     }
@@ -1367,7 +1367,7 @@ static BOOL sub_02054494(FieldTask *task)
         break;
     case 2:
         FieldMapChange_CreateObjects(fieldSystem);
-        Heap_FreeToHeap(mapChangeSub);
+        Heap_Free(mapChangeSub);
         return 1;
     }
 
@@ -1427,7 +1427,7 @@ static BOOL sub_02054538(FieldTask *task)
         (*state)++;
         break;
     case 5:
-        Heap_FreeToHeap(mapChangeData);
+        Heap_Free(mapChangeData);
         return TRUE;
     }
 
@@ -1491,7 +1491,7 @@ static BOOL sub_02054648(FieldTask *task)
         }
         break;
     case 6:
-        Heap_FreeToHeap(mapChangeData);
+        Heap_Free(mapChangeData);
         return TRUE;
     }
 
@@ -1543,7 +1543,7 @@ static BOOL FieldTask_ChangeMapColosseum(FieldTask *task)
         mapChangeData->state++;
         break;
     case 3:
-        Heap_FreeToHeap(mapChangeData);
+        Heap_Free(mapChangeData);
         return TRUE;
     }
 

@@ -272,7 +272,7 @@ void ov77_021D5C3C(UnkStruct_ov77_021D5564 *param0)
         param0->unk_250[0] = SpriteList_AddAffine(&v2);
 
         Sprite_SetAnimateFlag(param0->unk_250[0], 0);
-        Sprite_SetDrawFlag(param0->unk_250[0], 0);
+        Sprite_SetDrawFlag(param0->unk_250[0], FALSE);
 
         ov77_021D54E8(1, param0, 0, &v2, &param0->unk_294[2], 1, NNS_G2D_VRAM_TYPE_2DSUB);
 
@@ -281,7 +281,7 @@ void ov77_021D5C3C(UnkStruct_ov77_021D5564 *param0)
         param0->unk_250[1] = SpriteList_AddAffine(&v2);
 
         Sprite_SetAnimateFlag(param0->unk_250[1], 0);
-        Sprite_SetDrawFlag(param0->unk_250[1], 0);
+        Sprite_SetDrawFlag(param0->unk_250[1], FALSE);
 
         ov77_021D54E8(2, param0, 0, &v2, &param0->unk_294[1], 1, NNS_G2D_VRAM_TYPE_2DMAIN);
 
@@ -290,7 +290,7 @@ void ov77_021D5C3C(UnkStruct_ov77_021D5564 *param0)
         param0->unk_250[2] = SpriteList_AddAffine(&v2);
 
         Sprite_SetAnimateFlag(param0->unk_250[2], 0);
-        Sprite_SetDrawFlag(param0->unk_250[2], 0);
+        Sprite_SetDrawFlag(param0->unk_250[2], FALSE);
 
         ov77_021D54E8(3, param0, 0, &v2, &v1, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
@@ -299,7 +299,7 @@ void ov77_021D5C3C(UnkStruct_ov77_021D5564 *param0)
         param0->unk_250[3] = SpriteList_AddAffine(&v2);
 
         Sprite_SetAnimateFlag(param0->unk_250[3], 1);
-        Sprite_SetDrawFlag(param0->unk_250[3], 0);
+        Sprite_SetDrawFlag(param0->unk_250[3], FALSE);
 
         ov77_021D54E8(6, param0, 0, &v2, &v1, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
@@ -308,7 +308,7 @@ void ov77_021D5C3C(UnkStruct_ov77_021D5564 *param0)
         param0->unk_250[10] = SpriteList_AddAffine(&v2);
 
         Sprite_SetAnimateFlag(param0->unk_250[10], 1);
-        Sprite_SetDrawFlag(param0->unk_250[10], 0);
+        Sprite_SetDrawFlag(param0->unk_250[10], FALSE);
 
         ov77_021D54E8(7, param0, 1, &v2, &v1, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
@@ -317,7 +317,7 @@ void ov77_021D5C3C(UnkStruct_ov77_021D5564 *param0)
         param0->unk_250[11] = SpriteList_AddAffine(&v2);
 
         Sprite_SetAnimateFlag(param0->unk_250[11], 1);
-        Sprite_SetDrawFlag(param0->unk_250[11], 0);
+        Sprite_SetDrawFlag(param0->unk_250[11], FALSE);
         Sprite_SetAffineOverwriteMode(param0->unk_250[11], 1);
 
         ov77_021D54E8(8, param0, 1, &v2, &v1, 0, NNS_G2D_VRAM_TYPE_2DSUB);
@@ -327,7 +327,7 @@ void ov77_021D5C3C(UnkStruct_ov77_021D5564 *param0)
         param0->unk_250[12] = SpriteList_AddAffine(&v2);
 
         Sprite_SetAnimateFlag(param0->unk_250[12], 1);
-        Sprite_SetDrawFlag(param0->unk_250[12], 0);
+        Sprite_SetDrawFlag(param0->unk_250[12], FALSE);
         Sprite_SetAffineOverwriteMode(param0->unk_250[12], 1);
 
         ov77_021D54E8(9, param0, 3, &v2, &v1, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
@@ -337,12 +337,12 @@ void ov77_021D5C3C(UnkStruct_ov77_021D5564 *param0)
         param0->unk_250[13] = SpriteList_AddAffine(&v2);
 
         Sprite_SetAnimateFlag(param0->unk_250[13], 1);
-        Sprite_SetDrawFlag(param0->unk_250[13], 0);
+        Sprite_SetDrawFlag(param0->unk_250[13], FALSE);
 
         param0->unk_250[14] = SpriteList_AddAffine(&v2);
 
         Sprite_SetAnimateFlag(param0->unk_250[14], 1);
-        Sprite_SetDrawFlag(param0->unk_250[14], 0);
+        Sprite_SetDrawFlag(param0->unk_250[14], FALSE);
 
         ov77_021D54E8(10, param0, 3, &v2, &v1, 0, NNS_G2D_VRAM_TYPE_2DSUB);
 
@@ -351,12 +351,12 @@ void ov77_021D5C3C(UnkStruct_ov77_021D5564 *param0)
         param0->unk_250[15] = SpriteList_AddAffine(&v2);
 
         Sprite_SetAnimateFlag(param0->unk_250[15], 1);
-        Sprite_SetDrawFlag(param0->unk_250[15], 0);
+        Sprite_SetDrawFlag(param0->unk_250[15], FALSE);
 
         param0->unk_250[16] = SpriteList_AddAffine(&v2);
 
         Sprite_SetAnimateFlag(param0->unk_250[16], 1);
-        Sprite_SetDrawFlag(param0->unk_250[16], 0);
+        Sprite_SetDrawFlag(param0->unk_250[16], FALSE);
 
         for (v0 = 0; v0 < 6; v0++) {
             ov77_021D54E8(4, param0, 0, &v2, &v1, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
@@ -366,7 +366,7 @@ void ov77_021D5C3C(UnkStruct_ov77_021D5564 *param0)
             param0->unk_250[v3[v0]] = SpriteList_AddAffine(&v2);
 
             Sprite_SetAnimateFlag(param0->unk_250[v3[v0]], 1);
-            Sprite_SetDrawFlag(param0->unk_250[v3[v0]], 0);
+            Sprite_SetDrawFlag(param0->unk_250[v3[v0]], FALSE);
         }
     }
 }
@@ -385,7 +385,7 @@ void ov77_021D5FB4(UnkStruct_ov77_021D5564 *param0, UnkStruct_ov77_021D6734 *par
             v3 = ov77_021D6794(param1, v0);
             (*v3) = SpriteList_AddAffine(&v2);
             Sprite_SetAnimateFlag(*v3, 0);
-            Sprite_SetDrawFlag(*v3, 0);
+            Sprite_SetDrawFlag(*v3, FALSE);
         }
     }
 }
@@ -397,7 +397,7 @@ void ov77_021D6000(UnkStruct_ov77_021D5564 *param0, UnkStruct_ov77_021D6734 *par
 
     for (v0 = 0; v0 < 16; v0++) {
         v1 = ov77_021D6794(param1, v0);
-        Sprite_SetDrawFlag(*v1, 0);
+        Sprite_SetDrawFlag(*v1, FALSE);
     }
 }
 

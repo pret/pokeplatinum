@@ -319,7 +319,7 @@ void ov17_022493A4(UnkStruct_ov17_022492DC *param0)
     ov17_02249D3C(param0, 1);
 
     sub_020127BC(param0->unk_18);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov17_022493C4(UnkStruct_ov17_022492DC *param0)
@@ -349,31 +349,31 @@ static void ov17_022493DC(UnkStruct_ov17_022492DC *param0)
 
     v2 = Graphics_GetCharData(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 9, 1, &v0, HEAP_ID_23);
     MI_CpuCopy32(v0->pRawData, param0->unk_C4[0], (0x8000 - (0x800 * 4)));
-    Heap_FreeToHeap(v2);
+    Heap_Free(v2);
 
     v2 = Graphics_GetCharData(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 18, 1, &v0, HEAP_ID_23);
     MI_CpuCopy32(v0->pRawData, param0->unk_C4[1], (0x8000 - (0x800 * 4)));
-    Heap_FreeToHeap(v2);
+    Heap_Free(v2);
 
     v2 = Graphics_GetCharData(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 16, 1, &v0, HEAP_ID_23);
     MI_CpuCopy32(v0->pRawData, param0->unk_C4[2], 6 * 12 * 0x20 * 3);
-    Heap_FreeToHeap(v2);
+    Heap_Free(v2);
 
     v2 = Graphics_GetScrnData(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 7, 1, &v1, HEAP_ID_23);
     MI_CpuCopy32(v1->rawData, param0->unk_D0[0], 0x800);
-    Heap_FreeToHeap(v2);
+    Heap_Free(v2);
 
     v2 = Graphics_GetScrnData(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 8, 1, &v1, HEAP_ID_23);
     MI_CpuCopy32(v1->rawData, param0->unk_D0[1], 0x800);
-    Heap_FreeToHeap(v2);
+    Heap_Free(v2);
 
     v2 = Graphics_GetScrnData(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 17, 1, &v1, HEAP_ID_23);
     MI_CpuCopy32(v1->rawData, param0->unk_D0[2], 0x800);
-    Heap_FreeToHeap(v2);
+    Heap_Free(v2);
 
     v2 = Graphics_GetScrnData(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 28, 1, &v1, HEAP_ID_23);
     MI_CpuCopy32(v1->rawData, param0->unk_D0[3], 0x800);
-    Heap_FreeToHeap(v2);
+    Heap_Free(v2);
 
     LoadPaletteFromFile(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 31, HEAP_ID_23, 0x200, 0, param0->unk_E0[0]);
     LoadPaletteFromFile(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 38, HEAP_ID_23, 32, 16 * param0->unk_04->unk_00->unk_10F, &param0->unk_E0[0][2 * 16]);
@@ -385,15 +385,15 @@ static void ov17_022495F8(UnkStruct_ov17_022492DC *param0)
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
-        Heap_FreeToHeap(param0->unk_C4[v0]);
+        Heap_Free(param0->unk_C4[v0]);
     }
 
     for (v0 = 0; v0 < 4; v0++) {
-        Heap_FreeToHeap(param0->unk_D0[v0]);
+        Heap_Free(param0->unk_D0[v0]);
     }
 
     for (v0 = 0; v0 < 2; v0++) {
-        Heap_FreeToHeap(param0->unk_E0[v0]);
+        Heap_Free(param0->unk_E0[v0]);
     }
 }
 
@@ -629,10 +629,10 @@ static BOOL ov17_02249B30(UnkStruct_ov17_02249B30 *param0)
 {
     if (param0->unk_00 == NULL) {
         if (param0->unk_08 != NULL) {
-            Heap_FreeToHeap(param0->unk_08);
+            Heap_Free(param0->unk_08);
         }
 
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0);
         return 1;
     }
 

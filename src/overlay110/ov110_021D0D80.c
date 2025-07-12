@@ -390,7 +390,7 @@ static void ov110_021D11CC(BgConfig *param0)
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_2);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 
     return;
 }
@@ -450,7 +450,7 @@ static void ov110_021D128C(void)
 
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 2));
     GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 2));
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     return;
 }
@@ -671,7 +671,7 @@ static void ov110_021D1808(UnkStruct_ov110_021D0F78 *param0)
     }
 
     if (frontierStage != NULL) {
-        Heap_FreeToHeap(frontierStage);
+        Heap_Free(frontierStage);
     }
 
     ov110_021D13F0(param0, 0, v3);

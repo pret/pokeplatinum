@@ -387,10 +387,10 @@ void sub_02033794(BOOL param0)
 
 static void sub_020337C0(void)
 {
-    Heap_FreeToHeap(sCommServerClient->unk_1500);
-    Heap_FreeToHeap(sCommServerClient->unk_14E8);
-    Heap_FreeToHeap((void *)sCommServerClient->unk_1508);
-    Heap_FreeToHeap(sCommServerClient);
+    Heap_Free(sCommServerClient->unk_1500);
+    Heap_Free(sCommServerClient->unk_14E8);
+    Heap_Free((void *)sCommServerClient->unk_1508);
+    Heap_Free(sCommServerClient);
 
     sCommServerClient = NULL;
 }

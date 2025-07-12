@@ -310,7 +310,7 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, int heapID)
     }
     }
 
-    Heap_FreeToHeap(buf);
-    Heap_FreeToHeap(mon);
+    Heap_Free(buf);
+    Heap_Free(mon);
     LCRNG_SetSeed(oldSeed);
 }

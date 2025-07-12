@@ -195,7 +195,7 @@ void sub_0208C210(BgConfig *param0, int heapID, NARC *param2, int param3, int pa
         Bg_LoadPalette(param5, v4->pRawData, param7, param8);
     }
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
 void *sub_0208C2F4(NARC *param0, int param1, int param2, NNSG2dScreenData **param3, int heapID)

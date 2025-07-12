@@ -242,7 +242,7 @@ static BOOL ov6_02242C5C(FieldTask *taskMan)
         (v1->unk_05)++;
         break;
     case 5:
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return 1;
     }
 

@@ -79,7 +79,7 @@ void sub_0206A844(UnkStruct_0206A844 *param0)
     }
 
     ov5_021D375C(&param0->unk_00);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void sub_0206A870(UnkStruct_0206A844 *param0)

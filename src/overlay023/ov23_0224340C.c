@@ -5,7 +5,7 @@
 
 #include "generated/trainer_score_events.h"
 
-#include "struct_defs/underground_data.h"
+#include "struct_defs/underground.h"
 #include "struct_defs/underground_record.h"
 
 #include "field/field_system.h"
@@ -616,7 +616,7 @@ static const UnkFuncPtr_ov23_022564CC Unk_ov23_022565E4[] = {
 static void ov23_0224340C(void)
 {
     int v0;
-    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(Unk_ov23_02257764->fieldSystem));
+    Underground *v1 = SaveData_GetUnderground(FieldSystem_GetSaveData(Unk_ov23_02257764->fieldSystem));
 
     for (v0 = 0; v0 < 16; v0++) {
         Unk_ov23_02257764->unk_308[v0].unk_04 = sub_02029030(v1, v0);
@@ -635,7 +635,7 @@ static void ov23_0224340C(void)
 void ov23_022434BC(void *param0, FieldSystem *fieldSystem)
 {
     int v0;
-    UndergroundData *v1;
+    Underground *v1;
 
     if (Unk_ov23_02257764) {
         return;
@@ -645,7 +645,7 @@ void ov23_022434BC(void *param0, FieldSystem *fieldSystem)
     MI_CpuFill8(Unk_ov23_02257764, 0, sizeof(UnkStruct_ov23_02257764));
     Unk_ov23_02257764->fieldSystem = fieldSystem;
 
-    v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(fieldSystem));
+    v1 = SaveData_GetUnderground(FieldSystem_GetSaveData(fieldSystem));
 
     Unk_ov23_02257764->unk_2F0 = NULL;
 
@@ -679,7 +679,7 @@ void ov23_02243520(void)
     }
 
     if (Unk_ov23_02257764->unk_300) {
-        Heap_FreeToHeap(Unk_ov23_02257764->unk_300);
+        Heap_Free(Unk_ov23_02257764->unk_300);
         Unk_ov23_02257764->unk_300 = NULL;
     }
 
@@ -722,17 +722,17 @@ void ov23_022435DC(void)
     }
 
     if (Unk_ov23_02257764->unk_300) {
-        Heap_FreeToHeap(Unk_ov23_02257764->unk_300);
+        Heap_Free(Unk_ov23_02257764->unk_300);
     }
 
-    Heap_FreeToHeap(Unk_ov23_02257764);
+    Heap_Free(Unk_ov23_02257764);
     Unk_ov23_02257764 = NULL;
 }
 
 void ov23_02243670(FieldSystem *fieldSystem)
 {
     int v0;
-    UndergroundData *v1;
+    Underground *v1;
 
     for (v0 = 0; v0 < 16; v0++) {
         if (Unk_ov23_02257764->unk_368[v0]) {
@@ -1095,7 +1095,7 @@ int ov23_02243C3C(int param0, int param1, MATHRandContext16 *param2, int param3)
     int v2, v3;
     UnkStruct_ov23_02243DA8 *v4;
     UnkStruct_ov23_02243DA8 *v5;
-    UndergroundData *v6 = SaveData_GetUndergroundData(Unk_ov23_02257764->fieldSystem->saveData);
+    Underground *v6 = SaveData_GetUnderground(Unk_ov23_02257764->fieldSystem->saveData);
 
     if (param3 >= (16 * 4)) {
         return 0;
@@ -1128,7 +1128,7 @@ int ov23_02243C3C(int param0, int param1, MATHRandContext16 *param2, int param3)
 void ov23_02243CE8(void)
 {
     int v0;
-    UndergroundData *v1 = SaveData_GetUndergroundData(Unk_ov23_02257764->fieldSystem->saveData);
+    Underground *v1 = SaveData_GetUnderground(Unk_ov23_02257764->fieldSystem->saveData);
 
     for (v0 = 0; v0 < (16 * 4); v0++) {
         int v2 = sub_02028F40(v1, v0);
@@ -1150,7 +1150,7 @@ void ov23_02243CE8(void)
 
 static void ov23_02243D50(void)
 {
-    UndergroundData *v0 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(Unk_ov23_02257764->fieldSystem));
+    Underground *v0 = SaveData_GetUnderground(FieldSystem_GetSaveData(Unk_ov23_02257764->fieldSystem));
     int v1;
 
     for (v1 = 0; v1 < 16; v1++) {
@@ -1324,7 +1324,7 @@ BOOL ov23_02244080(int param0, UnkStruct_ov23_0224271C *param1, u8 param2)
     u8 v2 = param0;
     UnkStruct_ov23_02243DA8 *v3;
     UnkStruct_ov23_02244140 v4;
-    UndergroundData *v5 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(Unk_ov23_02257764->fieldSystem));
+    Underground *v5 = SaveData_GetUnderground(FieldSystem_GetSaveData(Unk_ov23_02257764->fieldSystem));
 
     v0 = CommPlayer_AddXServer(param0);
     v1 = CommPlayer_AddZServer(param0);
@@ -1465,7 +1465,7 @@ static BOOL ov23_022442F0(int param0)
 {
     UnkStruct_ov23_02244140 v0;
     UnkStruct_ov23_02243DA8 *v1;
-    UndergroundData *v2 = SaveData_GetUndergroundData(Unk_ov23_02257764->fieldSystem->saveData);
+    Underground *v2 = SaveData_GetUnderground(Unk_ov23_02257764->fieldSystem->saveData);
 
     if (ov23_0224162C(param0)) {
         return 0;
@@ -2064,7 +2064,7 @@ static void ov23_02244C70(SysTask *param0, void *param1)
         break;
     case 7:
         BrightnessController_SetScreenBrightness(0, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
 
         Unk_ov23_02257764->unk_2F0 = NULL;
@@ -2114,7 +2114,7 @@ static void ov23_02244E10(int param0, BOOL param1)
         UnkStruct_ov23_02244C70 *v0 = Unk_ov23_02257764->unk_300;
 
         BrightnessController_SetScreenBrightness(0, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(Unk_ov23_02257764->unk_2F0);
 
         Unk_ov23_02257764->unk_2F0 = NULL;
@@ -2231,7 +2231,7 @@ static void ov23_02244FD0(int param0, BOOL param1)
 
         sub_0205948C(0x10);
         SysTask_Done(Unk_ov23_02257764->unk_2F0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
 
         Unk_ov23_02257764->unk_2F0 = NULL;
         Unk_ov23_02257764->unk_300 = NULL;
@@ -2647,7 +2647,7 @@ void ov23_02245784(void)
         G2_BlendNone();
         GX_SetMasterBrightness(0);
         SysTask_Done(Unk_ov23_02257764->unk_2F8);
-        Heap_FreeToHeap(Unk_ov23_02257764->unk_2FC);
+        Heap_Free(Unk_ov23_02257764->unk_2FC);
         Unk_ov23_02257764->unk_2F8 = NULL;
         Unk_ov23_02257764->unk_2FC = NULL;
     }
@@ -2744,7 +2744,7 @@ static void ov23_02245938(int param0, BOOL param1)
 
         sub_0203568C();
         SysTask_Done(Unk_ov23_02257764->unk_2F0);
-        Heap_FreeToHeap(Unk_ov23_02257764->unk_300);
+        Heap_Free(Unk_ov23_02257764->unk_300);
 
         Unk_ov23_02257764->unk_2F0 = NULL;
         Unk_ov23_02257764->unk_300 = NULL;
@@ -2790,7 +2790,7 @@ static void ov23_0224599C(SysTask *param0, void *param1)
         GX_SetMasterBrightness(0);
 
         sub_0203568C();
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
 
         Unk_ov23_02257764->unk_2F0 = NULL;
@@ -2823,7 +2823,7 @@ static void ov23_02245AA4(int param0, BOOL param1)
 
             Player_SetYPos(Unk_ov23_02257764->fieldSystem->playerAvatar, 0);
             SysTask_Done(Unk_ov23_02257764->unk_2F0);
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
 
             Unk_ov23_02257764->unk_2F0 = NULL;
             Unk_ov23_02257764->unk_300 = NULL;
@@ -2852,7 +2852,7 @@ static void ov23_02245AF4(int param0, BOOL param1)
 
         Player_SetYPos(Unk_ov23_02257764->fieldSystem->playerAvatar, 0);
         SysTask_Done(Unk_ov23_02257764->unk_2F0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
 
         Unk_ov23_02257764->unk_2F0 = NULL;
         Unk_ov23_02257764->unk_300 = NULL;
@@ -2957,7 +2957,7 @@ static void ov23_02245BA8(SysTask *param0, void *param1)
         break;
     case 9:
         Player_SetYPos(Unk_ov23_02257764->fieldSystem->playerAvatar, 0);
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         Unk_ov23_02257764->unk_2F0 = NULL;
         Unk_ov23_02257764->unk_300 = NULL;
@@ -3208,7 +3208,7 @@ static void ov23_02246220(int param0, BOOL param1)
 
         sub_0205948C(0x10);
         SysTask_Done(Unk_ov23_02257764->unk_2F0);
-        Heap_FreeToHeap(Unk_ov23_02257764->unk_300);
+        Heap_Free(Unk_ov23_02257764->unk_300);
 
         Unk_ov23_02257764->unk_2F0 = NULL;
         Unk_ov23_02257764->unk_300 = NULL;
@@ -3807,7 +3807,7 @@ static void ov23_02247144(int param0, BOOL param1)
 
         sub_0205948C(0x10);
         SysTask_Done(Unk_ov23_02257764->unk_2F0);
-        Heap_FreeToHeap(Unk_ov23_02257764->unk_300);
+        Heap_Free(Unk_ov23_02257764->unk_300);
 
         Unk_ov23_02257764->unk_2F0 = NULL;
         Unk_ov23_02257764->unk_300 = NULL;
@@ -3845,7 +3845,7 @@ static void ov23_022471D8(UnkStruct_ov23_022471D8 *param0)
 
             Sprite_SetAnim(Unk_ov23_02257764->unk_25C[v1], 2);
             Sprite_SetAnimateFlag(Unk_ov23_02257764->unk_25C[v1], 1);
-            Sprite_SetDrawFlag(Unk_ov23_02257764->unk_25C[v1], 0);
+            Sprite_SetDrawFlag(Unk_ov23_02257764->unk_25C[v1], FALSE);
             Sprite_SetAnimFrame(Unk_ov23_02257764->unk_25C[v1], 0);
             Sprite_SetPriority(Unk_ov23_02257764->unk_25C[v1], 15 - v1);
             Sprite_SetExplicitPriority(Unk_ov23_02257764->unk_25C[v1], 1);
@@ -3863,7 +3863,7 @@ static void ov23_0224730C(UnkStruct_ov23_022471D8 *param0, int param1, int param
     param0->unk_44[param1] = param3;
     param0->unk_BC[param1] = param5;
 
-    Sprite_SetDrawFlag(Unk_ov23_02257764->unk_25C[param1], 1);
+    Sprite_SetDrawFlag(Unk_ov23_02257764->unk_25C[param1], TRUE);
 }
 
 static void ov23_0224733C(UnkStruct_ov23_022471D8 *param0, int param1)
@@ -3909,7 +3909,7 @@ static void ov23_022474D4(UnkStruct_ov23_022471D8 *param0)
             Sprite_SetPosition(Unk_ov23_02257764->unk_25C[v0], &v1);
 
             if (param0->unk_44[v0] > (param0->unk_120 + 35)) {
-                Sprite_SetDrawFlag(Unk_ov23_02257764->unk_25C[v0], 0);
+                Sprite_SetDrawFlag(Unk_ov23_02257764->unk_25C[v0], FALSE);
                 param0->unk_80[v0] = 0;
             }
         }
@@ -3947,7 +3947,7 @@ static BOOL ov23_02247568(BgConfig *param0, UnkStruct_ov23_022471D8 *param1)
         v11.y = param1->unk_120 * FX32_ONE;
 
         Sprite_SetPosition(Unk_ov23_02257764->unk_25C[0], &v11);
-        Sprite_SetDrawFlag(Unk_ov23_02257764->unk_25C[0], 1);
+        Sprite_SetDrawFlag(Unk_ov23_02257764->unk_25C[0], TRUE);
 
         if (param1->unk_120 > 65) {
             param1->unk_125 = 3;
@@ -4045,7 +4045,7 @@ static BOOL ov23_02247568(BgConfig *param0, UnkStruct_ov23_022471D8 *param1)
                 v11.y = (param1->unk_120 + 39 + v0 % 2) * FX32_ONE;
 
                 Sprite_SetPosition(Unk_ov23_02257764->unk_25C[v0], &v11);
-                Sprite_SetDrawFlag(Unk_ov23_02257764->unk_25C[v0], 1);
+                Sprite_SetDrawFlag(Unk_ov23_02257764->unk_25C[v0], TRUE);
             }
 
             Sprite_SetAnim(Unk_ov23_02257764->unk_25C[10], 1);
@@ -4054,14 +4054,14 @@ static BOOL ov23_02247568(BgConfig *param0, UnkStruct_ov23_022471D8 *param1)
             v11.y = (param1->unk_120 + 21) * FX32_ONE;
 
             Sprite_SetPosition(Unk_ov23_02257764->unk_25C[10], &v11);
-            Sprite_SetDrawFlag(Unk_ov23_02257764->unk_25C[10], 1);
+            Sprite_SetDrawFlag(Unk_ov23_02257764->unk_25C[10], TRUE);
             Sprite_SetAnim(Unk_ov23_02257764->unk_25C[11], 1);
 
             v11.x = 122 * FX32_ONE;
             v11.y = param1->unk_120 * FX32_ONE;
 
             Sprite_SetPosition(Unk_ov23_02257764->unk_25C[11], &v11);
-            Sprite_SetDrawFlag(Unk_ov23_02257764->unk_25C[11], 1);
+            Sprite_SetDrawFlag(Unk_ov23_02257764->unk_25C[11], TRUE);
         }
 
         param1->unk_124++;
@@ -4086,7 +4086,7 @@ static BOOL ov23_02247568(BgConfig *param0, UnkStruct_ov23_022471D8 *param1)
             param1->unk_114 = NULL;
         }
 
-        Sprite_SetDrawFlag(Unk_ov23_02257764->unk_25C[0], 0);
+        Sprite_SetDrawFlag(Unk_ov23_02257764->unk_25C[0], FALSE);
         return 1;
     }
 
@@ -4279,7 +4279,7 @@ static void ov23_02247DB0(int param0, BOOL param1)
         BrightnessController_SetScreenBrightness(0, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
         sub_0205948C(0x10);
         SysTask_Done(Unk_ov23_02257764->unk_2F0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
 
         Unk_ov23_02257764->unk_2F0 = NULL;
         Unk_ov23_02257764->unk_300 = NULL;
@@ -4569,7 +4569,7 @@ static void ov23_0224839C(int param0, BOOL param1)
 
         sub_0205948C(0x10);
         SysTask_Done(Unk_ov23_02257764->unk_2F0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
 
         Unk_ov23_02257764->unk_2F0 = NULL;
         Unk_ov23_02257764->unk_300 = NULL;
@@ -4688,7 +4688,7 @@ static void ov23_022485A8(int param0, BOOL param1)
 
         sub_0205948C(0x10);
         SysTask_Done(Unk_ov23_02257764->unk_2F0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
 
         Unk_ov23_02257764->unk_2F0 = NULL;
         Unk_ov23_02257764->unk_300 = NULL;
@@ -4836,7 +4836,7 @@ static void ov23_02248884(SysTask *param0, void *param1)
 
         SpriteList_Delete(Unk_ov23_02257764->unk_44);
         SysTask_Done(param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
 
         Unk_ov23_02257764->unk_2F4 = NULL;
         sub_0205948C(0x80);
@@ -4882,7 +4882,7 @@ static void ov23_02248A6C(SysTask *param0, void *param1)
 
     if (!Unk_ov23_02257764) {
         SysTask_Done(param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 
@@ -4894,7 +4894,7 @@ static void ov23_02248A6C(SysTask *param0, void *param1)
         Unk_ov23_02257764->unk_20[v3] = NULL;
 
         SysTask_Done(param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         CommPlayer_StopBlowAnimation(v3);
 
         return;
@@ -4982,7 +4982,7 @@ static void ov23_02248BD0(void)
     for (v0 = 0; v0 < (7 + 1); v0++) {
         if (Unk_ov23_02257764->unk_20[v0]) {
             SysTask_Done(Unk_ov23_02257764->unk_20[v0]);
-            Heap_FreeToHeap(Unk_ov23_02257764->unk_00[v0]);
+            Heap_Free(Unk_ov23_02257764->unk_00[v0]);
 
             Unk_ov23_02257764->unk_20[v0] = NULL;
             Unk_ov23_02257764->unk_00[v0] = NULL;

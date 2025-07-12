@@ -75,7 +75,7 @@ void ov22_022590D4(UnkStruct_020298D8 *param0, PokemonSpriteManager *param1, Pok
             param0->unk_08.unk_02 = v3;
         }
 
-        Heap_FreeToHeap(v4);
+        Heap_Free(v4);
     }
 
     param0->unk_0C = param2;

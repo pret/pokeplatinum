@@ -364,8 +364,8 @@ static void ov5_021ED0F0(UnkStruct_ov5_021ED0A4 *param0)
 {
     ov5_021ED1A4(param0);
 
-    Heap_FreeToHeapExplicit(HEAP_ID_FIELD, param0->unk_E4);
-    Heap_FreeToHeapExplicit(HEAP_ID_FIELD, param0->unk_F4);
+    Heap_FreeExplicit(HEAP_ID_FIELD, param0->unk_E4);
+    Heap_FreeExplicit(HEAP_ID_FIELD, param0->unk_F4);
 }
 
 static UnkStruct_ov5_021DF84C *ov5_021ED110(UnkStruct_ov5_021ED0A4 *param0, u32 param1)
@@ -1854,7 +1854,7 @@ static void ov5_021EE3C4(UnkStruct_ov5_021ED0A4 *param0)
     SysTask_Done(v0->unk_1C);
     SysTask_Done(v0->unk_20);
     SysTask_Done(v0->unk_24);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     param0->unk_100 = NULL;
 }
@@ -2027,10 +2027,10 @@ static void ov5_021EE698(SysTask *param0, void *param1)
             }
 
             sub_020211FC(v0->unk_24);
-            Heap_FreeToHeap(v0->unk_08);
-            Heap_FreeToHeap(v0->unk_0C);
-            Heap_FreeToHeap(v0->unk_10);
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0->unk_08);
+            Heap_Free(v0->unk_0C);
+            Heap_Free(v0->unk_10);
+            Heap_Free(v0);
             SysTask_Done(param0);
             return;
         }
@@ -2051,10 +2051,10 @@ static void ov5_021EE698(SysTask *param0, void *param1)
             }
 
             sub_020211FC(v0->unk_24);
-            Heap_FreeToHeap(v0->unk_08);
-            Heap_FreeToHeap(v0->unk_0C);
-            Heap_FreeToHeap(v0->unk_10);
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0->unk_08);
+            Heap_Free(v0->unk_0C);
+            Heap_Free(v0->unk_10);
+            Heap_Free(v0);
             SysTask_Done(param0);
         }
     }

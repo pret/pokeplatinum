@@ -813,7 +813,7 @@ static void ov69_0225C980(UnkStruct_ov69_0225CA7C *param0, const UnkStruct_ov66_
             v2++;
         }
 
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
     }
     {
         void *v6;
@@ -838,7 +838,7 @@ static void ov69_0225C980(UnkStruct_ov69_0225CA7C *param0, const UnkStruct_ov66_
                 v7++;
             }
 
-            Heap_FreeToHeap(v6);
+            Heap_Free(v6);
             v12++;
         }
     }
@@ -1437,7 +1437,7 @@ static void ov69_0225D504(UnkStruct_ov69_0225D35C *param0)
         }
     }
 
-    Heap_FreeToHeap(param0->unk_00);
+    Heap_Free(param0->unk_00);
     gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
     GXLayers_SwapDisplay();
 }
@@ -2013,7 +2013,7 @@ static void ov69_0225DFBC(UnkStruct_ov69_0225E084 *param0, UnkStruct_ov69_0225D3
     ov69_0225E4E8(&param0->unk_2E4);
     ov69_0225EAE8(&param0->unk_1B8, param1);
 
-    Heap_FreeToHeap(param0->unk_94);
+    Heap_Free(param0->unk_94);
     ov69_0225E61C(param0);
     Window_Remove(&param0->unk_1A8);
     ov69_0225E148(param0);
@@ -2511,12 +2511,12 @@ static void ov69_0225E7DC(UnkStruct_ov69_0225E7DC *param0)
 
     if (param0->unk_18 > 0) {
         for (v0 = 0; v0 < param0->unk_18; v0++) {
-            Heap_FreeToHeap(param0->unk_08[v0]);
+            Heap_Free(param0->unk_08[v0]);
         }
     }
 
     if (param0->unk_24 > 0) {
-        Heap_FreeToHeap(param0->unk_1C);
+        Heap_Free(param0->unk_1C);
     }
 }
 
@@ -2674,7 +2674,7 @@ static void ov69_0225EBEC(UnkStruct_ov69_0225EB60 *param0)
     int v0;
 
     for (v0 = 0; v0 < 12; v0++) {
-        Sprite_SetDrawFlag(param0->unk_3C[v0], 0);
+        Sprite_SetDrawFlag(param0->unk_3C[v0], FALSE);
     }
 }
 
@@ -2717,7 +2717,7 @@ static BOOL ov69_0225EC70(UnkStruct_ov69_0225EB60 *param0, u32 param1, UnkStruct
     }
 
     ov69_0225ED5C(&param0->unk_00[param1], param2);
-    Sprite_SetDrawFlag(param0->unk_3C[param0->unk_38[param1]], 1);
+    Sprite_SetDrawFlag(param0->unk_3C[param0->unk_38[param1]], TRUE);
     ov69_0225EEC4(param0, param1);
 
     return 1;
@@ -2735,7 +2735,7 @@ static BOOL ov69_0225ECAC(UnkStruct_ov69_0225EB60 *param0, u32 param1, UnkStruct
     ov69_0225EEC4(param0, param1);
 
     if (v0 == 1) {
-        Sprite_SetDrawFlag(param0->unk_3C[param0->unk_38[param1]], 0);
+        Sprite_SetDrawFlag(param0->unk_3C[param0->unk_38[param1]], FALSE);
     }
 
     return v0;

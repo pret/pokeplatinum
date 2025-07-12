@@ -28,7 +28,7 @@ void Daycare_BufferNicknameLevelGender(Daycare *daycare, u32 idxNickname, u32 id
 u16 Party_StringTemplateSetNicknameReturnSpecies(Party *party, int slot, StringTemplate *strTemplate);
 u8 Daycare_GetState(Daycare *daycare);
 u32 Daycare_GetCompatibilityLevel(Daycare *daycare);
-void Egg_CreateHatchedMon(Pokemon *param0, int heapID);
+void Egg_CreateHatchedMon(Pokemon *egg, int heapID);
 u32 BoxMon_GetPairDaycareCompatibilityLevel(BoxPokemon **boxMonPair);
 
 #endif // POKEPLATINUM_DAYCARE_H

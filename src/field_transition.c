@@ -36,7 +36,7 @@ static BOOL FieldTask_RunEncounterEffect(FieldTask *task)
 
     case 1:
         if (data->done == TRUE) {
-            Heap_FreeToHeap(data);
+            Heap_Free(data);
             return TRUE;
         }
         break;

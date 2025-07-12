@@ -23,7 +23,7 @@ void ov18_0221F800(int heapID)
 
     (void)DWC_StartUtility(v1, DWC_LANGUAGE_ENGLISH, DWC_UTILITY_TOP_MENU_COMMON);
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 
     OS_RestoreInterrupts(v0);
     OS_EnableIrq();

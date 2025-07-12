@@ -634,7 +634,7 @@ int ov113_0225CDFC(ApplicationManager *appMan, int *param1)
     ov113_0225DC4C(v0);
     ov113_0225D12C(v0->unk_08);
 
-    Heap_FreeToHeap(v0->unk_08);
+    Heap_Free(v0->unk_08);
     SpriteSystem_FreeResourcesAndManager(v0->unk_1C, v0->unk_20);
     SpriteSystem_Free(v0->unk_1C);
     PaletteData_FreeBuffer(v0->unk_0C, 0);
@@ -1142,7 +1142,7 @@ static BOOL ov113_0225D938(int param0, int param1, ManagedSprite *param2, NARC *
     MI_CpuCopy16(v4, (void *)((u32)v0 + v1->vramLocation.baseAddrOfVram[param5]), 0x20 * 2);
     MI_CpuCopy16(v5, (void *)((u32)v0 + 0x20 * 2 + v1->vramLocation.baseAddrOfVram[param5]), 0x20 * 2);
 
-    Heap_FreeToHeap(v2);
+    Heap_Free(v2);
     return 1;
 }
 

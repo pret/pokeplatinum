@@ -76,12 +76,12 @@ BOOL SpriteList_Delete(SpriteList *list)
 
     SpriteList_DeleteAll(list);
 
-    Heap_FreeToHeap(list->rawAnimData);
-    Heap_FreeToHeap(list->freeSprites);
-    Heap_FreeToHeap(list->sprites);
+    Heap_Free(list->rawAnimData);
+    Heap_Free(list->freeSprites);
+    Heap_Free(list->sprites);
 
     SpriteList_Reset(list);
-    Heap_FreeToHeap(list);
+    Heap_Free(list);
 
     list = NULL;
 
@@ -257,11 +257,11 @@ void Sprite_Delete(Sprite *sprite)
         MultiCellAnimationData *multiCellAnim = (MultiCellAnimationData *)&sprite->animData;
 
         if (multiCellAnim->nodes != NULL) {
-            Heap_FreeToHeap(multiCellAnim->nodes);
+            Heap_Free(multiCellAnim->nodes);
         }
 
         if (multiCellAnim->cellAnims != NULL) {
-            Heap_FreeToHeap(multiCellAnim->cellAnims);
+            Heap_Free(multiCellAnim->cellAnims);
         }
     }
 
@@ -591,7 +591,7 @@ void Utility_Clear2DMainOAM(enum HeapId heapID)
     DC_FlushRange(oam, sizeof(GXOamAttr) * MAX_SPRITES);
     GX_LoadOAM(oam, 0, sizeof(GXOamAttr) * MAX_SPRITES);
 
-    Heap_FreeToHeap(oam);
+    Heap_Free(oam);
 }
 
 void Utility_Clear2DSubOAM(enum HeapId heapID)
@@ -602,7 +602,7 @@ void Utility_Clear2DSubOAM(enum HeapId heapID)
     // According to the NitroSDK docs there should be a call to DC_FlushRange here.
     GXS_LoadOAM(oam, 0, sizeof(GXOamAttr) * MAX_SPRITES);
 
-    Heap_FreeToHeap(oam);
+    Heap_Free(oam);
 }
 
 u32 Sprite_GetUserAttrForAnimFrame(const Sprite *sprite, u32 animID, u32 frame)

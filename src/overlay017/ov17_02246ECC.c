@@ -1266,7 +1266,7 @@ void ov17_02246ECC(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_0223BE58 *par
         ov17_02246F9C(param0, v1, v0, &param1->unk_00[v0], &param1->unk_08[v0]);
     }
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
 static void ov17_02246F24(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F9C *param1, int param2)

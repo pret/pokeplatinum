@@ -24,7 +24,7 @@ int sub_02038FFC(int heapID)
     v2 = (u8 *)(((u32)v1 + 31) / 32 * 32);
     v0 = DWC_Init(v2);
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
     sub_02099560();
     sub_020995C4();
 

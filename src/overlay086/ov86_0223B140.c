@@ -471,7 +471,7 @@ static BOOL ov86_0223B464(UnkStruct_ov86_0223B3C8 *param0)
         break;
     case 6:
         if (ov86_0223B6B4(param0, 0)) {
-            Sprite_SetDrawFlag(param0->unk_1B4[v0], 0);
+            Sprite_SetDrawFlag(param0->unk_1B4[v0], FALSE);
 
             if (++v0 < param0->unk_04) {
                 param0->unk_08 = 30;
@@ -707,7 +707,7 @@ static void ov86_0223B8C4(UnkStruct_ov86_0223B3C8 *param0)
     Bg_FreeTilemapBuffer(param0->unk_10, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(param0->unk_10, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(param0->unk_10, BG_LAYER_MAIN_3);
-    Heap_FreeToHeap(param0->unk_10);
+    Heap_Free(param0->unk_10);
 }
 
 static void ov86_0223B900(UnkStruct_ov86_0223B3C8 *param0)
@@ -831,7 +831,7 @@ static void ov86_0223BAC8(UnkStruct_ov86_0223B3C8 *param0, NNSG2dCellDataBank *p
         v3.priority = 1 + v12;
         param0->unk_1B4[v12] = SpriteList_Add(&v3);
 
-        Sprite_SetDrawFlag(param0->unk_1B4[v12], 0);
+        Sprite_SetDrawFlag(param0->unk_1B4[v12], FALSE);
         v11 = Party_GetPokemonBySlotIndex(param0->unk_0C->unk_04, param0->unk_2C8[v12]);
         Pokemon_BuildSpriteTemplate(&v1, (Pokemon *)v11, 2);
 
@@ -868,9 +868,9 @@ static void ov86_0223BAC8(UnkStruct_ov86_0223B3C8 *param0, NNSG2dCellDataBank *p
     v3.priority = 0;
     param0->unk_1CC = SpriteList_Add(&v3);
 
-    Sprite_SetDrawFlag(param0->unk_1CC, 0);
-    Heap_FreeToHeap(v10);
-    Heap_FreeToHeap(v9);
+    Sprite_SetDrawFlag(param0->unk_1CC, FALSE);
+    Heap_Free(v10);
+    Heap_Free(v9);
 }
 
 static void ov86_0223BD68(UnkStruct_ov86_0223B3C8 *param0)
@@ -881,8 +881,8 @@ static void ov86_0223BD68(UnkStruct_ov86_0223B3C8 *param0)
         Sprite_Delete(param0->unk_1B4[v0]);
     }
 
-    Heap_FreeToHeap(param0->unk_1D4);
-    Heap_FreeToHeap(param0->unk_1D0);
+    Heap_Free(param0->unk_1D4);
+    Heap_Free(param0->unk_1D0);
     SpriteList_Delete(param0->unk_24);
     RenderOam_Free();
 }
@@ -893,7 +893,7 @@ static void ov86_0223BDAC(SysTask *param0, void *param1)
 
     *(v0->unk_04) = NULL;
 
-    Heap_FreeToHeap(v0->unk_00);
+    Heap_Free(v0->unk_00);
     SysTask_Done(param0);
 }
 
@@ -930,7 +930,7 @@ static void ov86_0223BDE0(UnkStruct_ov86_0223B3C8 *param0, int param1, int param
     VEC_Set(&v1->unk_0C, v0[v2].unk_00, 393216, 0);
 
     Sprite_SetPosition(v1->unk_08, &v1->unk_0C);
-    Sprite_SetDrawFlag(v1->unk_08, 1);
+    Sprite_SetDrawFlag(v1->unk_08, TRUE);
 
     param0->unk_1C34[param2] = ov86_0223B744(ov86_0223BE6C, v1, 0);
 }
@@ -959,7 +959,7 @@ static void ov86_0223BEA0(UnkStruct_ov86_0223B3C8 *param0, int param1)
     VEC_Set(&v0->unk_0C, FX32_CONST(128), FX32_CONST(232), 0);
 
     Sprite_SetPosition(v0->unk_08, &v0->unk_0C);
-    Sprite_SetDrawFlag(v0->unk_08, 1);
+    Sprite_SetDrawFlag(v0->unk_08, TRUE);
 
     param0->unk_1C34[param1] = ov86_0223B744(ov86_0223BF10, v0, 0);
 }
@@ -1440,7 +1440,7 @@ static void ov86_0223C840(UnkStruct_ov86_0223B3C8 *param0, int param1)
     for (v3 = 0; v3 < v2->unk_14; v3++) {
         v2->unk_94[v3] = v0[v3];
         Sprite_SetPosition(v2->unk_08[v3], &v0[v3]);
-        Sprite_SetDrawFlag(v2->unk_08[v3], 1);
+        Sprite_SetDrawFlag(v2->unk_08[v3], TRUE);
     }
 
     for (v3 = 0; v3 < 6; v3++) {
@@ -1651,10 +1651,10 @@ static void ov86_0223CD34(SysTask *param0)
         v0 = SysTask_GetParam(param0);
 
         for (v1 = 0; v1 < v0->unk_83C; v1++) {
-            Heap_FreeToHeap(SysTask_GetParam(v0->unk_818[v1]));
+            Heap_Free(SysTask_GetParam(v0->unk_818[v1]));
         }
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 }
 
@@ -1736,7 +1736,7 @@ static SysTask *ov86_0223CD94(UnkStruct_ov86_0223B3C8 *param0)
 static void ov86_0223CF44(SysTask *param0)
 {
     if (param0) {
-        Heap_FreeToHeap(SysTask_GetParam(param0));
+        Heap_Free(SysTask_GetParam(param0));
         SysTask_Done(param0);
     }
 }

@@ -507,9 +507,9 @@ static void ov94_022418B8(UnkStruct_ov94_0223FD4C *param0)
 
 static void ov94_02241920(UnkStruct_ov94_0223FD4C *param0)
 {
-    Heap_FreeToHeap(param0->unk_10E4->unk_14);
-    Heap_FreeToHeap(param0->unk_10E4->unk_18);
-    Heap_FreeToHeap(param0->unk_10E4);
+    Heap_Free(param0->unk_10E4->unk_14);
+    Heap_Free(param0->unk_10E4->unk_18);
+    Heap_Free(param0->unk_10E4);
     Strbuf_Free(param0->unk_BAC);
     Strbuf_Free(param0->unk_BB0);
 }
@@ -1027,7 +1027,7 @@ u8 *ov94_02242548(int param0)
         }
     }
 
-    Heap_FreeToHeap(v3);
+    Heap_Free(v3);
 
     return v4;
 }
@@ -1036,7 +1036,7 @@ void ov94_022425A8(UnkStruct_ov94_0223BA88 *param0, UnkStruct_ov94_0223FD4C *par
 {
     u16 *v0;
 
-    if (ov94_022411D0(param1->unk_110)) {
+    if (IsBoxIDParty(param1->unk_110)) {
         Pokemon_SetShayminForm((Pokemon *)(param1->unk_114), SHAYMIN_FORM_LAND);
 
         MI_CpuCopyFast(param1->unk_114, param0->unk_00.unk_00, Pokemon_StructSize());

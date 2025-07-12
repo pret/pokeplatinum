@@ -37,7 +37,7 @@ MapPropManager *MapPropManager_New(const u8 heapID)
 
 void MapPropManager_Free(MapPropManager *mapPropManager)
 {
-    Heap_FreeToHeap(mapPropManager);
+    Heap_Free(mapPropManager);
     mapPropManager = NULL;
 }
 
@@ -116,7 +116,7 @@ void MapPropManager_Load(NARC *landDataNARC, const int mapPropFilesSize, AreaDat
     }
 
     if (mapPropFiles != NULL) {
-        Heap_FreeToHeap(mapPropFiles);
+        Heap_Free(mapPropFiles);
     }
 }
 

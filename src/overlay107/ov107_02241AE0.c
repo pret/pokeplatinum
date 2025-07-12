@@ -1562,7 +1562,7 @@ static void ov107_022433A8(BgConfig *param0)
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0);
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
     return;
 }
 
@@ -1750,7 +1750,7 @@ static void ov107_022435FC (void)
 
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 4));
     GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 4));
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     return;
 }
@@ -1773,7 +1773,7 @@ static void ov107_02243678 (void)
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 4));
     GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 4));
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     return;
 }
 

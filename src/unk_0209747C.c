@@ -62,7 +62,7 @@ UnkStruct_0209747C *sub_0209747C(u32 param0, u32 param1, SaveData *saveData, u32
 
 void sub_020974EC(UnkStruct_0209747C *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void sub_020974F4(UnkStruct_0209747C *param0, u16 param1)

@@ -726,7 +726,7 @@ static void LoadGraphicsData(BattleBag *battleBag)
     void *buffer = NARC_AllocAndReadWholeMember(narc, 1, battleBag->context->heapID);
     NNS_G2dGetUnpackedScreenData(buffer, &screenData);
     BattleBagButtons_InitializeButtonData(battleBag, (u16 *)screenData->rawData);
-    Heap_FreeToHeap(buffer);
+    Heap_Free(buffer);
 
     NARC_dtor(narc);
     PaletteData_LoadBufferFromFileStart(battleBag->palette, NARC_INDEX_BATTLE__GRAPHIC__B_BAG_GRA, 3, battleBag->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 12, 0);

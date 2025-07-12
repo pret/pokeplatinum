@@ -45,7 +45,7 @@ BOOL ov38_0225632C(UnkStruct_ov38_0225632C **param0, const UnkStruct_ov38_022563
 void ov38_0225635C(UnkStruct_ov38_0225632C *param0)
 {
     if (param0 != NULL) {
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0);
     }
 }
 

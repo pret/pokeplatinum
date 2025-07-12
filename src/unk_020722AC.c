@@ -222,7 +222,7 @@ void sub_02072334(UnkStruct_02072334 *param0)
     *(param0->unk_04) = 1;
     sub_020731A4(param0);
     sub_02072F04(param0->unk_1C, 20);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
     Heap_Destroy(param0->heapID);
 }
 
@@ -527,7 +527,7 @@ static void sub_02072754(SysTask *param0, void *param1)
         }
 
         v0 = v2->unk_1B4->selectedMonSlot;
-        Heap_FreeToHeap(v2->unk_1B4);
+        Heap_Free(v2->unk_1B4);
 
         if (v0 == 7) {
             sub_02072EA4(v2, v2->unk_0C, NULL);
@@ -606,7 +606,7 @@ static void sub_02072878(SysTask *param0, void *param1)
         v1 = v4->unk_1B4->selectedMonSlot;
         v2 = v4->unk_1B4->menuSelectionResult;
 
-        Heap_FreeToHeap(v4->unk_1B4);
+        Heap_Free(v4->unk_1B4);
 
         if ((v2 != 6) || (v1 == 7)) {
             v4->unk_0C = sub_020726B4;
@@ -636,7 +636,7 @@ static void sub_02072878(SysTask *param0, void *param1)
             return;
         }
 
-        Heap_FreeToHeap(v4->unk_1B4);
+        Heap_Free(v4->unk_1B4);
         sub_020730B8(v4, v4->unk_17, v4->unk_13B_6);
         v4->unk_13B_6 = 0;
         break;
@@ -944,7 +944,7 @@ static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *saveData, int hea
     param0->unk_1C[param0->unk_19].unk_03 = param0->unk_1A;
     param0->unk_1C[param0->unk_1A].unk_02 = param0->unk_19;
 
-    Heap_FreeToHeap(mail);
+    Heap_Free(mail);
 }
 
 static void sub_02073020(UnkStruct_02072334 *param0, u8 param1)
@@ -1280,7 +1280,7 @@ static BOOL sub_02073694(FieldTask *param0)
             return 0;
         }
 
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return 1;
     }
 

@@ -184,7 +184,7 @@ static void sub_02036734(void)
     sub_020327E0();
 
     if (Unk_021C07D4->unk_00) {
-        Heap_FreeToHeap(Unk_021C07D4->unk_00);
+        Heap_Free(Unk_021C07D4->unk_00);
     }
 
     if (sub_020389B8()) {
@@ -193,7 +193,7 @@ static void sub_02036734(void)
 
     sub_02039794();
     sub_020334CC();
-    Heap_FreeToHeap(Unk_021C07D4);
+    Heap_Free(Unk_021C07D4);
     Heap_Destroy(HEAP_ID_COMMUNICATION);
 
     Unk_021C07D4 = NULL;
@@ -2082,7 +2082,7 @@ void sub_0203848C(void)
     if (Unk_021C07D4) {
         ResetUnlock(RESET_LOCK_0x1);
         CommMan_SetErrorHandling(0, 0);
-        Heap_FreeToHeap(Unk_021C07D4);
+        Heap_Free(Unk_021C07D4);
         Unk_021C07D4 = NULL;
         Heap_Destroy(HEAP_ID_COMMUNICATION);
     }
@@ -2107,7 +2107,7 @@ void sub_02038514(void)
     if (Unk_021C07D4) {
         ResetUnlock(RESET_LOCK_0x1);
         CommMan_SetErrorHandling(0, 0);
-        Heap_FreeToHeap(Unk_021C07D4);
+        Heap_Free(Unk_021C07D4);
         Unk_021C07D4 = NULL;
         Heap_Destroy(HEAP_ID_COMMUNICATION);
     }
@@ -2132,7 +2132,7 @@ void sub_0203859C(void)
     if (Unk_021C07D4) {
         ResetUnlock(RESET_LOCK_0x1);
         CommMan_SetErrorHandling(0, 0);
-        Heap_FreeToHeap(Unk_021C07D4);
+        Heap_Free(Unk_021C07D4);
         Unk_021C07D4 = NULL;
         Heap_Destroy(HEAP_ID_COMMUNICATION);
     }

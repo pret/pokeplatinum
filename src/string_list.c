@@ -33,7 +33,7 @@ StringList *StringList_New(u32 capacity, u32 heapID)
 void StringList_Free(StringList *list)
 {
     FreeEntries(list);
-    Heap_FreeToHeap(list);
+    Heap_Free(list);
 }
 
 void StringList_AddFromMessageBank(StringList *list, const MessageLoader *loader, u32 bankEntry, u32 index)

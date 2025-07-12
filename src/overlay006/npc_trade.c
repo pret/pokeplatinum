@@ -52,10 +52,10 @@ NpcTradeData *NpcTrade_Init(u32 heapID, u32 npcTradeID)
 
 void NpcTrade_Free(NpcTradeData *data)
 {
-    Heap_FreeToHeap(data->npcTradeMon);
-    Heap_FreeToHeap(data->mon);
-    Heap_FreeToHeap(data->trainerInfo);
-    Heap_FreeToHeap(data);
+    Heap_Free(data->npcTradeMon);
+    Heap_Free(data->mon);
+    Heap_Free(data->trainerInfo);
+    Heap_Free(data);
 }
 
 u32 NpcTrade_GetSpecies(const NpcTradeData *data)

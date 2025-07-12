@@ -172,7 +172,7 @@ static void ov104_02233BAC(UnkStruct_ov104_0223ADA0 *param0)
         v4 = Pokemon_New(HEAP_ID_FIELDMAP);
         ov104_0222DF40(&param0->unk_280[v0], v4, ov104_0223ADA0(param0));
         ov104_0222E1C0(param0->saveData, param0->unk_4D4, v4);
-        Heap_FreeToHeap(v4);
+        Heap_Free(v4);
     }
 
     for (v0 = 0; v0 < 6; v0++) {
@@ -258,7 +258,7 @@ static void ov104_02233F1C(UnkStruct_ov104_0223ADA0 *param0)
         ov104_0222E1C0(param0->saveData, param0->unk_4D4, v1);
     }
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 
     for (v0 = 0; v0 < 4; v0++) {
         v6[v0] = (u16)sub_02030030(param0->unk_4F4, 7, v0, NULL);
@@ -277,7 +277,7 @@ static void ov104_02233F1C(UnkStruct_ov104_0223ADA0 *param0)
         ov104_0222E1C0(param0->saveData, param0->unk_4D8, v1);
     }
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 
     return;
 }
@@ -291,16 +291,16 @@ void ov104_022340D0(UnkStruct_ov104_0223ADA0 *param0)
     }
 
     if (param0->unk_4D4 != NULL) {
-        Heap_FreeToHeap(param0->unk_4D4);
+        Heap_Free(param0->unk_4D4);
     }
 
     if (param0->unk_4D8 != NULL) {
-        Heap_FreeToHeap(param0->unk_4D8);
+        Heap_Free(param0->unk_4D8);
     }
 
     MI_CpuClear8(param0, sizeof(UnkStruct_ov104_0223ADA0));
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
     param0 = NULL;
 
     return;
@@ -437,7 +437,7 @@ u16 ov104_02234440(UnkStruct_ov104_0223ADA0 *param0, u8 param1)
     FrontierTrainerDataDTO v0;
     u8 v2 = param0->unk_06 + (param1 * 7);
 
-    Heap_FreeToHeap(ov104_0222DD04(&v0, param0->unk_18[v2], HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+    Heap_Free(ov104_0222DD04(&v0, param0->unk_18[v2], HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
 
     return ov104_0222E10C(v0.trainerType);
 }
@@ -487,7 +487,7 @@ void ov104_0223449C(UnkStruct_ov104_0223ADA0 *param0)
         ov104_0222E1C0(param0->saveData, param0->unk_4D8, v3);
     }
 
-    Heap_FreeToHeap(v3);
+    Heap_Free(v3);
 
     return;
 }
@@ -572,7 +572,7 @@ void ov104_0223470C(UnkStruct_ov104_0223ADA0 *param0)
         ov104_0222E1C0(param0->saveData, param0->unk_4D8, v3);
     }
 
-    Heap_FreeToHeap(v3);
+    Heap_Free(v3);
 
     for (v0 = 0; v0 < v2; v0++) {
         v3 = Party_GetPokemonBySlotIndex(param0->unk_4D8, v0);

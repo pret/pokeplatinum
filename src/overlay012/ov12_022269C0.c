@@ -52,7 +52,7 @@ static void ov12_022269C4(SysTask *param0, void *param1)
         break;
     case 1:
         ov12_02220220(v0->unk_04, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         break;
     }
 }
@@ -77,7 +77,7 @@ static void ov12_02226A14(SysTask *param0, void *param1)
         break;
     case 1:
         ov12_02220230(v0->unk_04, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         break;
     }
 }
@@ -102,7 +102,7 @@ static void ov12_02226A64(SysTask *param0, void *param1)
         break;
     case 1:
         SysTask_Done(param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         break;
     }
 }
@@ -137,7 +137,7 @@ static void ov12_02226AAC(SysTask *param0, void *param1)
         UnkStruct_ov12_0221FCDC *v1 = v0->unk_04;
 
         Sprite_DeleteAndFreeResources(v0->unk_10);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         ov12_02220220(v1, param0);
     } break;
     }

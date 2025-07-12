@@ -859,7 +859,7 @@ static void sub_0207EA24(BgConfig *param0)
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
-    Heap_FreeToHeapExplicit(HEAP_ID_12, param0);
+    Heap_FreeExplicit(HEAP_ID_12, param0);
 }
 
 void sub_0207EA74(GameWindowLayout *windowLayout, int param1)
@@ -919,7 +919,7 @@ static void sub_0207EB6C(GameWindowLayout *param0, NARC *param1)
 
         v2 = (u16 *)v0->pRawData;
         memcpy(param0->unk_4A4, &v2[3 * 16], 32 * 8);
-        Heap_FreeToHeapExplicit(HEAP_ID_12, v1);
+        Heap_FreeExplicit(HEAP_ID_12, v1);
     }
 
     Font_LoadScreenIndicatorsPalette(0, 13 * 32, HEAP_ID_12);
@@ -1000,7 +1000,7 @@ static void sub_0207EE14(GameWindowLayout *param0)
     }
 
     if ((param0->partyManagementData->unk_20 != 2) && (param0->partyManagementData->unk_20 != 17) && (param0->partyManagementData->unk_20 != 23) && (param0->partyManagementData->unk_20 != 22)) {
-        Sprite_SetDrawFlag(param0->unk_5B0[8], 0);
+        Sprite_SetDrawFlag(param0->unk_5B0[8], FALSE);
         Sprite_SetAnim(param0->unk_5B0[9], 0);
 
         {
@@ -1014,7 +1014,7 @@ static void sub_0207EE14(GameWindowLayout *param0)
     }
 
     if ((param0->partyManagementData->unk_20 == 4) || (param0->partyManagementData->unk_20 == 21)) {
-        Sprite_SetDrawFlag(param0->unk_5B0[9], 0);
+        Sprite_SetDrawFlag(param0->unk_5B0[9], FALSE);
         v0 ^= 2;
     }
 
@@ -1444,10 +1444,10 @@ static u8 sub_0207FA24(GameWindowLayout *param0)
 
     if ((v0 != param0->partySlot) && (v0 != 0xff)) {
         if ((v0 == 6) || (v0 == 7)) {
-            Sprite_SetDrawFlag(param0->unk_5B0[6], 0);
+            Sprite_SetDrawFlag(param0->unk_5B0[6], FALSE);
         } else {
             Sprite_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->partyManagementData->unk_21, v0));
-            Sprite_SetDrawFlag(param0->unk_5B0[6], 1);
+            Sprite_SetDrawFlag(param0->unk_5B0[6], TRUE);
             Sprite_SetPositionXY(param0->unk_5B0[6], v2, v3);
         }
 
@@ -1535,7 +1535,7 @@ static u8 sub_0207FC94(GameWindowLayout *param0)
 
         GridMenuCursor_CheckNavigation(param0->unk_7F4, &v1, &v2, NULL, NULL, param0->partySlot, GRID_MENU_CURSOR_POSITION_DIRECTION_NONE);
         Sprite_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->partyManagementData->unk_21, param0->partySlot));
-        Sprite_SetDrawFlag(param0->unk_5B0[6], 1);
+        Sprite_SetDrawFlag(param0->unk_5B0[6], TRUE);
         Sprite_SetPositionXY(param0->unk_5B0[6], v1, v2);
 
         param0->unk_B0C = 1;
@@ -1556,13 +1556,13 @@ static u8 sub_0207FC94(GameWindowLayout *param0)
 void sub_0207FD68(GameWindowLayout *windowLayout, u8 partySlot)
 {
     if ((partySlot == 6) || (partySlot == 7)) {
-        Sprite_SetDrawFlag(windowLayout->unk_5B0[6], 0);
+        Sprite_SetDrawFlag(windowLayout->unk_5B0[6], FALSE);
     } else {
         u8 v0, v1;
 
         GridMenuCursor_CheckNavigation(windowLayout->unk_7F4, &v0, &v1, NULL, NULL, windowLayout->partySlot, GRID_MENU_CURSOR_POSITION_DIRECTION_NONE);
         Sprite_SetAnim(windowLayout->unk_5B0[6], sub_020805D0(windowLayout->partyManagementData->unk_21, partySlot));
-        Sprite_SetDrawFlag(windowLayout->unk_5B0[6], 1);
+        Sprite_SetDrawFlag(windowLayout->unk_5B0[6], TRUE);
         Sprite_SetPositionXY(windowLayout->unk_5B0[6], v0, v1);
     }
 
@@ -1708,7 +1708,7 @@ static void sub_0207FFC8(GameWindowLayout *param0)
     }
 
     sub_02081CF4(param0, v0, v1);
-    Heap_FreeToHeapExplicit(HEAP_ID_12, v0);
+    Heap_FreeExplicit(HEAP_ID_12, v0);
     sub_02081E08(param0);
     sub_020826F4(param0, 0xffffffff, 1);
     Sprite_SetExplicitPalette2(param0->unk_5B0[6], 1);
@@ -2556,19 +2556,19 @@ static int ApplyItemEffectOnPokemon(GameWindowLayout *param0)
 
     if ((param0->partyManagementData->usedItemID == 466) && (Pokemon_CanShayminSkyForm(Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->partySlot)) == 1)) {
         param0->partyManagementData->evoTargetSpecies = 1;
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         LoadOverlay118(param0);
         return 31;
     }
 
     if ((Item_Get(v0, 34) != 0) || (Item_Get(v0, 35) != 0)) {
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         sub_020866A0(param0, 0);
         return 6;
     }
 
     if ((Item_Get(v0, 36) != 0) && (Item_Get(v0, 37) == 0)) {
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         sub_020866A0(param0, 1);
         return 6;
     }
@@ -2581,7 +2581,7 @@ static int ApplyItemEffectOnPokemon(GameWindowLayout *param0)
 
             param0->partyManagementData->evoTargetSpecies = Pokemon_GetEvolutionTargetSpecies(NULL, v1, EVO_CLASS_BY_ITEM, param0->partyManagementData->usedItemID, &param0->partyManagementData->evoType);
             param0->partyManagementData->menuSelectionResult = 8;
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             return 32;
         }
 
@@ -2597,7 +2597,7 @@ static int ApplyItemEffectOnPokemon(GameWindowLayout *param0)
         param0->unk_B00 = sub_02085348;
     }
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     return 5;
 }
 
@@ -2925,7 +2925,7 @@ void LoadScreenDataFromNARC(u32 param0, u16 *param1, u16 *param2, u16 *param3)
         memcpy(&param3[v3 * 16], &v2[((6 + 6) + v3) * 32], 16 * 2);
     }
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
 void LoadOverlay118(GameWindowLayout *windowLayout)

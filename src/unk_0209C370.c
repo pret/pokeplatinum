@@ -11,5 +11,5 @@ u8 *sub_0209C370(int heapID)
 
 void sub_0209C388(u8 *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }

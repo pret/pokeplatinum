@@ -540,7 +540,7 @@ static BOOL ov7_0224BC74(FieldTask *param0)
         Strbuf_Free(v1->unk_1C);
         Strbuf_Free(v1->unk_20);
         sub_0207A2C0(v1->unk_6C);
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return 1;
     default:
         return 1;

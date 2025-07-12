@@ -314,8 +314,8 @@ void BoxGraphics_Free(UnkStruct_ov19_021D61B0 *param0)
     Bg_FreeTilemapBuffer(param0->unk_1C0, BG_LAYER_SUB_0);
     PokemonSpriteManager_Free(param0->unk_1BC);
     Font_UseLazyGlyphAccess(FONT_SYSTEM);
-    Heap_FreeToHeap(param0->unk_1C0);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0->unk_1C0);
+    Heap_Free(param0);
     RenderOam_Free();
 }
 
@@ -382,7 +382,7 @@ static void BoxTaskParams_Free(BoxTaskParams *params)
 
     SysTask_Done(v0->unk_08[params->unk_04]);
     v0->unk_08[params->unk_04] = NULL;
-    Heap_FreeToHeap(params);
+    Heap_Free(params);
 }
 
 static void ov19_021D6664(SysTask *param0, void *param1)
@@ -1961,7 +1961,7 @@ static void ov19_021D797C(void)
         u32 i;
 
         for (i = 0; i < Unk_ov19_021E05EC; i++) {
-            Heap_FreeToHeap(Unk_ov19_021E05F0[i].unk_08);
+            Heap_Free(Unk_ov19_021E05F0[i].unk_08);
 
             if (Unk_ov19_021E05F0[i].unk_00) {
                 Unk_ov19_021E05F0[i].unk_00(Unk_ov19_021E05F0[i].unk_04);

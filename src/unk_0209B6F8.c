@@ -141,7 +141,7 @@ int sub_0209B75C(ApplicationManager *appMan, int *param1)
             }
 
             if ((v0->unk_08 != NULL) && (v0->unk_10 == 1)) {
-                Heap_FreeToHeap(v0->unk_08);
+                Heap_Free(v0->unk_08);
             }
 
             v0->appMan = NULL;

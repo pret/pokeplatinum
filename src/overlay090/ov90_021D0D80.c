@@ -520,7 +520,7 @@ static void ov90_021D1280(UnkStruct_ov90_021D0ECC *param0)
         Bg_FreeTilemapBuffer(param0->unk_10, v1++);
     }
 
-    Heap_FreeToHeap(param0->unk_10);
+    Heap_Free(param0->unk_10);
 }
 
 static void ov90_021D12B0(UnkStruct_ov90_021D0ECC *param0)
@@ -730,7 +730,7 @@ static void ov90_021D1750(UnkStruct_ov90_021D0ECC *param0)
         }
     }
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
 static void ov90_021D17DC(UnkStruct_ov90_021D0ECC *param0)
@@ -923,8 +923,8 @@ static void ov90_021D1BAC(UnkStruct_ov90_021D0ECC *param0)
         param0->unk_2A4[v0] = SpriteSystem_NewSpriteFromResourceHeader(param0->unk_29C, param0->unk_2A0, &v1[v0]);
     }
 
-    Sprite_SetDrawFlag(param0->unk_2A4[2], 0);
-    Sprite_SetDrawFlag(param0->unk_2A4[1], 0);
+    Sprite_SetDrawFlag(param0->unk_2A4[2], FALSE);
+    Sprite_SetDrawFlag(param0->unk_2A4[1], FALSE);
     Sprite_SetAnimateFlag(param0->unk_2A4[0], 1);
     Sprite_SetAnimateFlag(param0->unk_2A4[2], 1);
     Sprite_SetAnimateFlag(param0->unk_2A4[3], 1);
@@ -962,30 +962,30 @@ static void ov90_021D1C90(UnkStruct_ov90_021D0ECC *param0, u8 param1, u8 param2,
     u16 v0, v1;
 
     if (param0->unk_0E == 10 - 2) {
-        Sprite_SetDrawFlag(param0->unk_2A4[1], 1);
+        Sprite_SetDrawFlag(param0->unk_2A4[1], TRUE);
 
         if (param1 == 10) {
             Sprite_SetAnimFrame(param0->unk_2A4[1], 1);
-            Sprite_SetDrawFlag(param0->unk_2A4[0], 0);
+            Sprite_SetDrawFlag(param0->unk_2A4[0], FALSE);
         } else {
             Sprite_SetAnimFrame(param0->unk_2A4[1], 0);
-            Sprite_SetDrawFlag(param0->unk_2A4[0], 1);
+            Sprite_SetDrawFlag(param0->unk_2A4[0], TRUE);
         }
     } else {
-        Sprite_SetDrawFlag(param0->unk_2A4[0], 1);
-        Sprite_SetDrawFlag(param0->unk_2A4[1], 0);
+        Sprite_SetDrawFlag(param0->unk_2A4[0], TRUE);
+        Sprite_SetDrawFlag(param0->unk_2A4[1], FALSE);
     }
 
     switch (param0->unk_0E) {
     case 0:
-        Sprite_SetDrawFlag(param0->unk_2A4[2], 0);
+        Sprite_SetDrawFlag(param0->unk_2A4[2], FALSE);
         break;
     case (10 - 2):
-        Sprite_SetDrawFlag(param0->unk_2A4[3], 0);
+        Sprite_SetDrawFlag(param0->unk_2A4[3], FALSE);
         break;
     default:
-        Sprite_SetDrawFlag(param0->unk_2A4[2], 1);
-        Sprite_SetDrawFlag(param0->unk_2A4[3], 1);
+        Sprite_SetDrawFlag(param0->unk_2A4[2], TRUE);
+        Sprite_SetDrawFlag(param0->unk_2A4[3], TRUE);
         break;
     }
 

@@ -35,7 +35,7 @@ void Strbuf_Free(Strbuf *strbuf)
     Strbuf_Check(strbuf);
 
     strbuf->integrity = STRBUF_MAGIC_NUMBER + 1;
-    Heap_FreeToHeap(strbuf);
+    Heap_Free(strbuf);
 }
 
 void Strbuf_Clear(Strbuf *strbuf)

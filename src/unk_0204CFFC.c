@@ -109,7 +109,7 @@ BOOL ScrCmd_GiveEgg(ScriptContext *ctx)
         Egg_CreateEgg(egg, species, 1, trainer, 3, specialMetLoc);
 
         partyHasRoom = Party_AddPokemon(playerParty, egg);
-        Heap_FreeToHeap(egg);
+        Heap_Free(egg);
     }
 
     return FALSE;

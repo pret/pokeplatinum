@@ -411,7 +411,7 @@ static BOOL FieldTask_PlatformLiftGoUp(FieldTask *taskMan)
         break;
 
     case PLATFORM_LIFT_STATE_END:
-        Heap_FreeToHeap(taskEnv);
+        Heap_Free(taskEnv);
         return TRUE;
     }
 
@@ -473,7 +473,7 @@ static BOOL FieldTask_PlatformLiftGoDown(FieldTask *taskMan)
         break;
 
     case PLATFORM_LIFT_STATE_END:
-        Heap_FreeToHeap(taskEnv);
+        Heap_Free(taskEnv);
         return TRUE;
     }
 

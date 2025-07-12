@@ -60,16 +60,16 @@ void ov71_0223CF0C(UnkStruct_ov71_0223D238 *param0, NARC *param1)
     NNS_G2dInitOamManagerModule();
     RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 25);
 
-    param0->unk_00 = SpriteList_InitRendering((8 + 8 + 8 + 1), &param0->unk_04, HEAP_ID_25);
+    param0->unk_00 = SpriteList_InitRendering((8 + 8 + 8 + 1), &param0->unk_04, HEAP_ID_TRAINER_CARD_SCREEN);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_190[v0] = SpriteResourceCollection_New(Unk_ov71_0223D6C8[v0], v0, HEAP_ID_25);
+        param0->unk_190[v0] = SpriteResourceCollection_New(Unk_ov71_0223D6C8[v0], v0, HEAP_ID_TRAINER_CARD_SCREEN);
     }
 
-    param0->unk_1A0[0][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_190[0], param1, 33, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_25);
-    param0->unk_1A0[0][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_190[1], param1, 14, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 9, HEAP_ID_25);
-    param0->unk_1A0[0][2] = SpriteResourceCollection_AddFrom(param0->unk_190[2], param1, 44, 0, 1, 2, HEAP_ID_25);
-    param0->unk_1A0[0][3] = SpriteResourceCollection_AddFrom(param0->unk_190[3], param1, 46, 0, 1, 3, HEAP_ID_25);
+    param0->unk_1A0[0][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_190[0], param1, 33, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_TRAINER_CARD_SCREEN);
+    param0->unk_1A0[0][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_190[1], param1, 14, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 9, HEAP_ID_TRAINER_CARD_SCREEN);
+    param0->unk_1A0[0][2] = SpriteResourceCollection_AddFrom(param0->unk_190[2], param1, 44, 0, 1, 2, HEAP_ID_TRAINER_CARD_SCREEN);
+    param0->unk_1A0[0][3] = SpriteResourceCollection_AddFrom(param0->unk_190[3], param1, 46, 0, 1, 3, HEAP_ID_TRAINER_CARD_SCREEN);
 
     SpriteTransfer_RequestChar(param0->unk_1A0[0][0]);
     SpriteTransfer_RequestPlttWholeRange(param0->unk_1A0[0][1]);
@@ -85,7 +85,7 @@ void ov71_0223CF0C(UnkStruct_ov71_0223D238 *param0, NARC *param1)
 
             if (param0->unk_224[v1] != NULL) {
                 if (NNS_G2dGetUnpackedPaletteData(param0->unk_224[v1], &param0->unk_244[v1]) == 0) {
-                    Heap_FreeToHeap(param0->unk_244[v1]);
+                    Heap_Free(param0->unk_244[v1]);
                     GF_ASSERT(0);
                 }
             } else {
@@ -119,7 +119,7 @@ void ov71_0223D070(UnkStruct_ov71_0223D238 *param0, const u8 *param1)
         v3.affineZRotation = 0;
         v3.priority = 2;
         v3.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v3.heapID = HEAP_ID_25;
+        v3.heapID = HEAP_ID_TRAINER_CARD_SCREEN;
 
         for (v0 = 0; v0 < 8; v0++) {
             v3.position.x = FX32_ONE * Unk_ov71_0223D73C[v0].unk_00;
@@ -129,7 +129,7 @@ void ov71_0223D070(UnkStruct_ov71_0223D238 *param0, const u8 *param1)
             Sprite_SetAnim(param0->unk_1C0[v0], v0);
 
             if (!param1[v0]) {
-                Sprite_SetDrawFlag(param0->unk_1C0[v0], 0);
+                Sprite_SetDrawFlag(param0->unk_1C0[v0], FALSE);
             }
         }
 
@@ -143,7 +143,7 @@ void ov71_0223D070(UnkStruct_ov71_0223D238 *param0, const u8 *param1)
                 param0->unk_1C0[v2 + v0] = SpriteList_AddAffine(&v3);
                 Sprite_SetAnimateFlag(param0->unk_1C0[v2 + v0], 1);
                 Sprite_SetAnim(param0->unk_1C0[v2 + v0], 8);
-                Sprite_SetDrawFlag(param0->unk_1C0[v2 + v0], 0);
+                Sprite_SetDrawFlag(param0->unk_1C0[v2 + v0], FALSE);
             }
 
             v2 += 8;
@@ -155,7 +155,7 @@ void ov71_0223D070(UnkStruct_ov71_0223D238 *param0, const u8 *param1)
                 param0->unk_1C0[v2 + v0] = SpriteList_AddAffine(&v3);
                 Sprite_SetAnimateFlag(param0->unk_1C0[v2 + v0], 1);
                 Sprite_SetAnim(param0->unk_1C0[v2 + v0], 9);
-                Sprite_SetDrawFlag(param0->unk_1C0[v2 + v0], 0);
+                Sprite_SetDrawFlag(param0->unk_1C0[v2 + v0], FALSE);
             }
         }
         v2 += 8;
@@ -168,7 +168,7 @@ void ov71_0223D070(UnkStruct_ov71_0223D238 *param0, const u8 *param1)
             param0->unk_1C0[v2] = SpriteList_AddAffine(&v3);
             Sprite_SetAnimateFlag(param0->unk_1C0[v2], 0);
             Sprite_SetAnim(param0->unk_1C0[v2], 10);
-            Sprite_SetDrawFlag(param0->unk_1C0[v2], 0);
+            Sprite_SetDrawFlag(param0->unk_1C0[v2], FALSE);
         }
     }
 }
@@ -178,7 +178,7 @@ void ov71_0223D238(UnkStruct_ov71_0223D238 *param0)
     u8 v0;
 
     for (v0 = 0; v0 < 8; v0++) {
-        Heap_FreeToHeap(param0->unk_224[v0]);
+        Heap_Free(param0->unk_224[v0]);
     }
 
     SpriteTransfer_ResetCharTransfer(param0->unk_1A0[0][0]);
@@ -223,7 +223,7 @@ static void ov71_0223D2F4(void)
         CharTransfer_Init(&v0);
     }
 
-    PlttTransfer_Init(2, HEAP_ID_25);
+    PlttTransfer_Init(2, HEAP_ID_TRAINER_CARD_SCREEN);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
 }

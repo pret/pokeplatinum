@@ -113,7 +113,7 @@ u16 *sub_0205CA4C(int heapID)
         v4[v6] = v5[v6];
     }
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     return v4;
 }
