@@ -142,7 +142,7 @@ int GTSApplication_Search_Init(GTSApplicationState *param0, int param1)
     ov94_02242158(&param0->unk_FCC[1], param0->speciesMessageLoader, param0->unk_B7A.species, 0, 0, TEXT_COLOR(1, 2, 0));
     ov94_02242204(&param0->unk_FCC[3], param0->gtsMessageLoader, param0->unk_B7A.gender, 1, 0, 0, TEXT_COLOR(1, 2, 0));
     ov94_022422B8(&param0->unk_FCC[5], param0->gtsMessageLoader, ov94_02242970(param0->unk_B7A.level, param0->unk_B7A.level2, 1), 0, 0, TEXT_COLOR(1, 2, 0), 1);
-    ov94_0224218C(&param0->unk_10AC[1], param0->countryMessageLoader, param0->gtsMessageLoader, param0->unk_11B0, 0, 0, TEXT_COLOR(1, 2, 0));
+    ov94_0224218C(&param0->unk_10AC[1], param0->countryMessageLoader, param0->gtsMessageLoader, param0->selectedCountryIndex, 0, 0, TEXT_COLOR(1, 2, 0));
 
     StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
     param0->currentScreenInstruction = 0;
@@ -150,13 +150,13 @@ int GTSApplication_Search_Init(GTSApplicationState *param0, int param1)
     return 2;
 }
 
-int ov94_0223E560(GTSApplicationState *param0, int param1)
+int GTSApplication_Search_Main(GTSApplicationState *param0, int param1)
 {
     int v0 = (*Unk_ov94_02246860[param0->currentScreenInstruction])(param0);
     return v0;
 }
 
-int ov94_0223E574(GTSApplicationState *param0, int param1)
+int GTSApplication_Search_Exit(GTSApplicationState *param0, int param1)
 {
     ov94_0223E7C4(param0);
     ov94_0223EA20(param0);
@@ -475,7 +475,7 @@ static int ov94_0223EBCC(GTSApplicationState *param0)
         GTSApplication_SetCurrentAndNextScreenInstruction(param0, 23, 1);
         Sound_PlayEffect(SEQ_SE_DP_BOX03);
     } else {
-        if (ov94_0223FB0C(&param0->unk_B7A, &param0->unk_B80, param0->unk_11B0, param0->unk_B88)) {
+        if (ov94_0223FB0C(&param0->unk_B7A, &param0->unk_B80, param0->selectedCountryIndex, param0->unk_B88)) {
             ov94_0223F9A4(param0, 33, TEXT_SPEED_FAST, 0, 0xf0f);
             GTSApplication_SetCurrentAndNextScreenInstruction(param0, 23, 1);
             Sound_PlayEffect(SEQ_SE_DP_BOX03);
@@ -528,7 +528,7 @@ static int ov94_0223ECD4(GTSApplicationState *param0)
         v1 += 2;
     }
 
-    if (param0->unk_11B0 == 0) {
+    if (param0->selectedCountryIndex == 0) {
         GTSNetworking_Search(&param0->unk_B7A, v1, param0->searchResults);
     } else {
         UnkStruct_ov94_0223BA24 v2;
@@ -541,13 +541,13 @@ static int ov94_0223ECD4(GTSApplicationState *param0)
         v2.level2 = param0->unk_B7A.level2;
         v2.unk_05 = param0->unk_B7A.unk_05;
         v2.unk_06 = v1;
-        v2.unk_07 = param0->unk_11B0;
+        v2.unk_07 = param0->selectedCountryIndex;
 
         ov94_0223BA24(&v2, param0->searchResults);
     }
 
     param0->unk_B80 = param0->unk_B7A;
-    param0->unk_B88 = param0->unk_11B0;
+    param0->unk_B88 = param0->selectedCountryIndex;
     param0->networkTimeoutCounter = 0;
     param0->currentScreenInstruction = 19;
     param0->unk_10F2 = 0;
@@ -998,7 +998,7 @@ static int ov94_0223F7C0(GTSApplicationState *param0)
         ov94_02242A44(param0, v0);
         param0->currentScreenInstruction = 0;
         Window_FillTilemap(&param0->unk_10AC[1], 0x0);
-        ov94_0224218C(&param0->unk_10AC[1], param0->countryMessageLoader, param0->gtsMessageLoader, param0->unk_11B0, 0, 0, TEXT_COLOR(1, 2, 0));
+        ov94_0224218C(&param0->unk_10AC[1], param0->countryMessageLoader, param0->gtsMessageLoader, param0->selectedCountryIndex, 0, 0, TEXT_COLOR(1, 2, 0));
     }
 
     return 3;

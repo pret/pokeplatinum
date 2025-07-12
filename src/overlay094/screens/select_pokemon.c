@@ -147,7 +147,7 @@ int GTSApplication_SelectPokemon_Main(GTSApplicationState *appState, int param1)
     return (*sGTSPokemonSelectScreenStates[appState->currentScreenInstruction])(appState);
 }
 
-int ov94_0223FBDC(GTSApplicationState *appState, int param1)
+int GTSApplication_SelectPokemon_Exit(GTSApplicationState *appState, int param1)
 {
     DestroyNetworkIcon();
 

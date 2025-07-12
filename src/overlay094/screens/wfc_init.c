@@ -44,8 +44,8 @@ static void GTSApplication_WFCInit_InitText(GTSApplicationState *appState);
 static void GTSApplication_WFCInit_CleanupWindows(GTSApplicationState *appState);
 static void GTSApplication_WFCInit_InitTitle(GTSApplicationState *appState);
 static void GTSApplication_WFCInit_CleanupStrings(GTSApplicationState *appState);
-static void GTSApplication_WFCInit_DisplayNetworkError(GTSApplicationState *appState, int param1);
-static void GTSApplication_WFCInit_DisplayErrorCode(GTSApplicationState *appState, int errorCode, int param2);
+static void GTSApplication_WFCInit_DisplayNetworkError(GTSApplicationState *appState, int messageId);
+static void GTSApplication_WFCInit_DisplayErrorCode(GTSApplicationState *appState, int errorCode, int visibleErrorCode);
 static int GTSApplication_WFCInit_AskToSetupConnection(GTSApplicationState *appState);
 static int GTSApplication_WFCInit_ProcessSetupConfirmation(GTSApplicationState *appState);
 static int GTSApplication_WFCInit_RestartOrExit(GTSApplicationState *appState);
@@ -56,7 +56,7 @@ static int GTSApplication_WFCInit_ConnectToRemoteServer(GTSApplicationState *app
 static int GTSApplication_WFCInit_SetProfileRequest(GTSApplicationState *appState);
 static int GTSApplication_WFCInit_SetProfileResponse(GTSApplicationState *appState);
 static int GTSApplication_WFCInit_ExitScreen(GTSApplicationState *appState);
-static int ov94_022455D0(GTSApplicationState *param0);
+static int ov94_022455D0(GTSApplicationState *appState);
 static int GTSApplication_WFCInit_WaitForText(GTSApplicationState *appState);
 static int GTSApplication_WFCInit_WaitForTextThenYesNoMenu(GTSApplicationState *appState);
 static int GTSApplication_WFCInit_FatalError(GTSApplicationState *appState);
@@ -64,42 +64,42 @@ static int GTSApplication_WFCInit_FatalErrorDisconnectMessage(GTSApplicationStat
 static int GTSApplication_WFCInit_WaitForServerResponse(GTSApplicationState *appState);
 static int GTSApplication_WFCInit_AskToDisconnect(GTSApplicationState *appState);
 static int GTSApplication_WFCInit_ShowDisconnectingMessage(GTSApplicationState *appState);
-static int GTSApplication_WFCInit_CleanupNetworking(GTSApplicationState *param0);
+static int GTSApplication_WFCInit_CleanupNetworking(GTSApplicationState *appState);
 static int GTSApplication_WFCInit_ShowDisconnectedMessage(GTSApplicationState *appState);
 static int GTSApplication_WFCInit_WaitForTextDelayed(GTSApplicationState *appState);
 static int GTSApplication_WFCInit_Authenticate(GTSApplicationState *appState);
 static int GTSApplication_WFCInit_CheckAuthentication(GTSApplicationState *appState);
 static int GTSApplication_WFCInit_ShowNetworkError(GTSApplicationState *appState);
 static int GTSApplication_WFCInit_RestartConnection(GTSApplicationState *appState);
-static int ov94_02245894(Window *param0, Strbuf *param1, int param2, int param3, u32 param4, int param5);
+static int ov94_02245894(Window *window, Strbuf *strbuf, int x, int centered, TextColor textColor, int font);
 
 static int (*gtsWFCInitScreenStates[])(GTSApplicationState *) = {
-    GTSApplication_WFCInit_AskToSetupConnection, // <
+    GTSApplication_WFCInit_AskToSetupConnection,
     GTSApplication_WFCInit_ProcessSetupConfirmation, // 11 (exit) or 12 (continue)
-    GTSApplication_WFCInit_Connect, //
+    GTSApplication_WFCInit_Connect,
     GTSApplication_WFCInit_CheckConnection, // returns 23 (connection error), 21 (fatal error), or 4
-    GTSApplication_WFCInit_Authenticate, // returns 5
+    GTSApplication_WFCInit_Authenticate,
     GTSApplication_WFCInit_CheckAuthentication, // returns 6 (successful) or 23 (connection error)
-    GTSApplication_WFCInit_GetDWCKey, // returns 7
+    GTSApplication_WFCInit_GetDWCKey,
     GTSApplication_WFCInit_ConnectToRemoteServer,
     GTSApplication_WFCInit_WaitForServerResponse,
     GTSApplication_WFCInit_SetProfileRequest,
     GTSApplication_WFCInit_SetProfileResponse, // 11 successful, 21 error
     GTSApplication_WFCInit_ExitScreen, // exit -> returns 4
 
-    GTSApplication_WFCInit_WaitForText, // continue
-    GTSApplication_WFCInit_WaitForTextThenYesNoMenu, //
+    GTSApplication_WFCInit_WaitForText,
+    GTSApplication_WFCInit_WaitForTextThenYesNoMenu,
 
     ov94_022455D0, // never called? returns 0 or 11
-    GTSApplication_WFCInit_AskToDisconnect, // returns 13 + 16
+    GTSApplication_WFCInit_AskToDisconnect,
     GTSApplication_WFCInit_RestartOrExit,
-    GTSApplication_WFCInit_ShowDisconnectingMessage, // 12 then 18
-    GTSApplication_WFCInit_CleanupNetworking, // 19
-    GTSApplication_WFCInit_ShowDisconnectedMessage, // 20 then 11
+    GTSApplication_WFCInit_ShowDisconnectingMessage,
+    GTSApplication_WFCInit_CleanupNetworking,
+    GTSApplication_WFCInit_ShowDisconnectedMessage,
     GTSApplication_WFCInit_WaitForTextDelayed,
-    GTSApplication_WFCInit_FatalError, // 12 then 22
+    GTSApplication_WFCInit_FatalError,
     GTSApplication_WFCInit_FatalErrorDisconnectMessage,
-    GTSApplication_WFCInit_ShowNetworkError, // 24
+    GTSApplication_WFCInit_ShowNetworkError,
     GTSApplication_WFCInit_RestartConnection
 };
 
@@ -147,7 +147,7 @@ int GTSApplication_WFCInit_Main(GTSApplicationState *appState, int param1)
         appState->wfcDisconnectMessageFrameDelay = 0;
     }
 
-    inline_ov61_0222C0F8(&appState->unk_11B4); // draw network icon
+    inline_ov61_0222C0F8(&appState->unk_11B4);
 
     return parentStateCode;
 }
@@ -913,38 +913,37 @@ void GTSApplication_DisplayStatusMessage(GTSApplicationState *appState, MessageL
     appState->frameDelay = 0;
 }
 
-static int ov94_02245894(Window *param0, Strbuf *param1, int param2, int param3, u32 param4, int param5)
+static int ov94_02245894(Window *window, Strbuf *strbuf, int x, int centered, TextColor textColor, int font)
 {
-    int v0 = 0, v1;
+    int width = 0;
 
-    switch (param3) {
+    switch (centered) {
     case 1:
-        v0 = Font_CalcStrbufWidth(param5, param1, 0);
-        param2 = ((param0->width * 8) - v0) / 2;
+        width = Font_CalcStrbufWidth(font, strbuf, 0);
+        x = ((window->width * 8) - width) / 2;
         break;
     case 2:
-        v0 = Font_CalcStrbufWidth(param5, param1, 0);
-        param2 = (param0->width * 8) - v0;
+        width = Font_CalcStrbufWidth(font, strbuf, 0);
+        x = (window->width * 8) - width;
         break;
     }
 
-    return param2;
+    return x;
 }
 
-void ov94_022458CC(Window *param0, Strbuf *param1, int param2, int param3, int param4, u32 param5)
+void ov94_022458CC(Window *window, Strbuf *strbuf, int x, int y, int width, TextColor textColor)
 {
-    param2 = ov94_02245894(param0, param1, param2, param4, param5, 1);
-    Text_AddPrinterWithParamsAndColor(param0, FONT_MESSAGE, param1, param2, param3, TEXT_SPEED_INSTANT, param5, NULL);
+    x = ov94_02245894(window, strbuf, x, width, textColor, FONT_MESSAGE);
+    Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, strbuf, x, y, TEXT_SPEED_INSTANT, textColor, NULL);
 }
 
-// TODO: invocations
-void ov94_02245900(Window *param0, Strbuf *param1, int param2, int param3, int param4, u32 param5)
+void ov94_02245900(Window *window, Strbuf *strbuf, int x, int y, int centered, TextColor textColor)
 {
-    param2 = ov94_02245894(param0, param1, param2, param4, param5, 0);
-    Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, param1, param2, param3, TEXT_SPEED_INSTANT, param5, NULL);
+    x = ov94_02245894(window, strbuf, x, centered, textColor, FONT_SYSTEM);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strbuf, x, y, TEXT_SPEED_INSTANT, textColor, NULL);
 }
 
-void ov94_02245934(GTSApplicationState *param0)
+void ov94_02245934(GTSApplicationState *appState)
 {
     sub_02039734();
 }

@@ -67,7 +67,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Stop searching?</language>
 	</row>
-	<row id="pl_msg_00000671_00016" index="16">
+	<row id="Gts_Text_TradeForThisPokemon" index="16">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Trade for this Pokémon?</language>
 	</row>
@@ -309,7 +309,7 @@
 		<language name="English"></language>
 		<language name="日本語">XXXXX</language>
 	</row>
-	<row id="pl_msg_00000671_00074" index="74">
+	<row id="Gts_Text_WantedPokemon" index="74">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">WANTED</language>
 	</row>
@@ -328,15 +328,15 @@
 		<language name="English"></language>
 		<language name="日本語">XXXXX</language>
 	</row>
-	<row id="pl_msg_00000671_00078" index="78">
+	<row id="Gts_Text_OTLocation" index="78">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">OT’S LOCATION</language>
 	</row>
-	<row id="pl_msg_00000671_00079" index="79">
+	<row id="Text_Gts_Template_Country" index="79">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 36, 8, 0}</language>
 	</row>
-	<row id="pl_msg_00000671_00080" index="80">
+	<row id="Text_Gts_Template_City" index="80">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 37, 9, 0}</language>
 	</row>
@@ -424,7 +424,7 @@
 		<language name="English"></language>
 		<language name="日本語">XXXXX</language>
 	</row>
-	<row id="pl_msg_00000671_00100" index="100">
+	<row id="GTS_Text_OfferPokemonHeader" index="100">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">OFFER POKéMON</language>
 	</row>
@@ -709,7 +709,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">ANY</language>
 	</row>
-	<row id="pl_msg_00000671_00168" index="168">
+	<row id="GTS_Text_Country_Cancel" index="168">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">CANCEL</language>
 	</row>

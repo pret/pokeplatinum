@@ -6,10 +6,10 @@
 #include "bg_window.h"
 #include "message.h"
 
-int GTSApplication_MainMenu_Init(GTSApplicationState *param0, int param1);
-int GTSApplication_MainMenu_Main(GTSApplicationState *param0, int param1);
-int GTSApplication_MainMenu_Exit(GTSApplicationState *param0, int param1);
-void GTSApplication_MainMenu_RenderButton(Window *param0, MessageLoader *gtsMessageLoader, int param2, u16 param3);
-void ov94_0223D068(GTSApplicationState *param0);
+int GTSApplication_MainMenu_Init(GTSApplicationState *appState, int unused1);
+int GTSApplication_MainMenu_Main(GTSApplicationState *appState, int unused1);
+int GTSApplication_MainMenu_Exit(GTSApplicationState *appState, int unused1);
+void GTSApplication_MainMenu_RenderButton(Window *window, MessageLoader *gtsMessageLoader, int messageId, u16 tile);
+void ov94_0223D068(GTSApplicationState *appState);
 
 #endif // POKEPLATINUM_GTS_SCREENS_MAIN_MENU_H

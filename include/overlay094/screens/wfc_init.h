@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV94_02244950_H
-#define POKEPLATINUM_OV94_02244950_H
+#ifndef POKEPLATINUM_GTS_SCREENS_WFC_INIT_H
+#define POKEPLATINUM_GTS_SCREENS_WFC_INIT_H
 
 #include "overlay094/gts_application_state.h"
 
@@ -11,8 +11,8 @@ int GTSApplication_InitWFCScreen(GTSApplicationState *appState, int param1);
 int GTSApplication_WFCInit_Main(GTSApplicationState *appState, int param1);
 int GTSApplication_WFCInit_Exit(GTSApplicationState *appState, int param1);
 void GTSApplication_DisplayStatusMessage(GTSApplicationState *appState, MessageLoader *messageLoader, int messageId, int textSpeed, u16 unused);
-void ov94_022458CC(Window *param0, Strbuf *param1, int param2, int param3, int param4, u32 param5);
-void ov94_02245900(Window *param0, Strbuf *param1, int param2, int param3, int param4, u32 param5);
-void ov94_02245934(GTSApplicationState *param0);
+void ov94_022458CC(Window *window, Strbuf *strbuf, int x, int y, int width, TextColor textColor);
+void ov94_02245900(Window *window, Strbuf *strbuf, int x, int y, int centered, TextColor textColor);
+void ov94_02245934(GTSApplicationState *appState);
 
-#endif // POKEPLATINUM_OV94_02244950_H
+#endif // POKEPLATINUM_GTS_SCREENS_WFC_INIT_H

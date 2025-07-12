@@ -95,13 +95,13 @@ int GTSApplication_Summary_Init(GTSApplicationState *param0, int param1)
     return 2;
 }
 
-int ov94_0223D19C(GTSApplicationState *param0, int param1)
+int GTSApplication_Summary_Main(GTSApplicationState *param0, int param1)
 {
     int v0 = (*Unk_ov94_02246808[param0->currentScreenInstruction])(param0);
     return v0;
 }
 
-int ov94_0223D1B0(GTSApplicationState *param0, int param1)
+int GTSApplication_Summary_Exit(GTSApplicationState *param0, int param1)
 {
     ov94_0223D428(param0);
     ov94_0223D57C(param0);

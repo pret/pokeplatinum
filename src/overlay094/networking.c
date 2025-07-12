@@ -34,15 +34,15 @@ typedef enum GTSNetworkStatus {
     UnkEnum_ov94_0223B15C_17,
     UnkEnum_ov94_0223B15C_18,
     UnkEnum_ov94_0223B15C_19,
-    NETWORK_STATUS_INIT_PENDING, // connected?
+    NETWORK_STATUS_INIT_PENDING,
     UnkEnum_ov94_0223B15C_21,
     NETWORK_STATUS_SET_PROFILE_PENDING,
     UnkEnum_ov94_0223B15C_23,
-    NETWORK_STATUS_COMPLETE // connection failed
+    NETWORK_STATUS_COMPLETE
 } GTSNetworkStatus;
 
 typedef struct {
-    GTSNetworkStatus unk_00; // network status
+    GTSNetworkStatus unk_00;
     s32 unk_04; // error code?
     s32 unk_08;
     u64 unk_0C;

@@ -4,6 +4,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/gts.h"
+
 #include "applications/pokemon_summary_screen/main.h"
 #include "overlay094/application.h"
 #include "overlay094/gts_application_state.h"
@@ -14,56 +16,57 @@
 
 #include "constdata/const_020F410C.h"
 
-static const u8 Unk_ov94_02246360[] = {
-    0x0,
-    0x1,
-    0x2,
-    0x4,
-    0x3,
-    0x5,
-    0x6,
-    0x7,
-    0x8
+static const u8 sGTSPokemonSummaryPages[] = {
+    // compiler
+    0x0, // SUMMARY_PAGE_INFO
+    0x1, // SUMMARY_PAGE_MEMO
+    0x2, // SUMMARY_PAGE_SKILLS
+    0x4, // SUMMARY_PAGE_BATTLE_MOVES
+    0x3, // SUMMARY_PAGE_CONDITION
+    0x5, // SUMMARY_PAGE_CONTEST_MOVES
+    0x6, // SUMMARY_PAGE_RIBBONS
+    0x7, // SUMMARY_PAGE_EXIT
+    0x8 // SUMMARY_PAGE_MAX
 };
 
-int GTSApplication_PokemonInfo_Init(GTSApplicationState *param0, int param1)
+int GTSApplication_PokemonInfo_Init(GTSApplicationState *appState, int unused1)
 {
-    param0->unk_B8.monData = ov94_022411DC(param0->playerData->party, param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112);
-    param0->unk_B8.dataType = SUMMARY_DATA_BOX_MON;
-    param0->unk_B8.monMax = 1;
-    param0->unk_B8.monIndex = 0;
-    param0->unk_B8.mode = SUMMARY_MODE_LOCK_MOVES;
-    param0->unk_B8.move = 0;
-    param0->unk_B8.showContest = PokemonSummaryScreen_ShowContestData(param0->playerData->saveData);
-    param0->unk_B8.dexMode = param0->playerData->dexMode;
-    param0->unk_B8.options = param0->playerData->options;
-    param0->unk_B8.specialRibbons = sub_0202D79C(param0->playerData->saveData);
+    appState->pokemonSummary.monData = ov94_022411DC(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->unk_112);
+    appState->pokemonSummary.dataType = SUMMARY_DATA_BOX_MON;
+    appState->pokemonSummary.monMax = 1;
+    appState->pokemonSummary.monIndex = 0;
+    appState->pokemonSummary.mode = SUMMARY_MODE_LOCK_MOVES;
+    appState->pokemonSummary.move = 0;
+    appState->pokemonSummary.showContest = PokemonSummaryScreen_ShowContestData(appState->playerData->saveData);
+    appState->pokemonSummary.dexMode = appState->playerData->dexMode;
+    appState->pokemonSummary.options = appState->playerData->options;
+    appState->pokemonSummary.specialRibbons = sub_0202D79C(appState->playerData->saveData);
 
-    PokemonSummaryScreen_FlagVisiblePages(&param0->unk_B8, Unk_ov94_02246360);
-    PokemonSummaryScreen_SetPlayerProfile(&param0->unk_B8, param0->playerData->trainerInfo);
+    PokemonSummaryScreen_FlagVisiblePages(&appState->pokemonSummary, sGTSPokemonSummaryPages);
+    PokemonSummaryScreen_SetPlayerProfile(&appState->pokemonSummary, appState->playerData->trainerInfo);
 
-    param0->appMan = ApplicationManager_New(&gPokemonSummaryScreenApp, &param0->unk_B8, HEAP_ID_62);
-    param0->hasTradedPokemon = TRUE;
+    appState->appMan = ApplicationManager_New(&gPokemonSummaryScreenApp, &appState->pokemonSummary, HEAP_ID_62);
+    appState->hasTradedPokemon = TRUE;
 
-    return 2;
+    return GTS_APPLICATION_LOOP_STATE_WAIT_FADE;
 }
 
-int ov94_02244490(GTSApplicationState *param0, int param1)
+int GTSApplication_PokemonInfo_Main(GTSApplicationState *appState, int unused1)
 {
-    int v0 = 3;
+    int loopState = GTS_APPLICATION_LOOP_STATE_MAIN;
 
-    if (ApplicationManager_Exec(param0->appMan)) {
-        ApplicationManager_Free(param0->appMan);
-        GTSApplication_SetNextScreenWithArgument(param0, 5, param0->screenArgument);
+    if (ApplicationManager_Exec(appState->appMan)) {
+        ApplicationManager_Free(appState->appMan);
+        GTSApplication_SetNextScreenWithArgument(appState, 5, appState->screenArgument);
 
-        v0 = 4;
+        loopState = GTS_APPLICATION_LOOP_STATE_FINISH;
     }
 
-    return v0;
+    return loopState;
 }
 
-int ov94_022444BC(GTSApplicationState *param0, int param1)
+int GTSApplication_PokemonInfo_Exit(GTSApplicationState *appState, int unused1)
 {
-    GTSApplication_MoveToNextScreen(param0);
-    return 1;
+    GTSApplication_MoveToNextScreen(appState);
+    return GTS_APPLICATION_LOOP_STATE_INIT;
 }

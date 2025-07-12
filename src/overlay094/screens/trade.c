@@ -193,10 +193,10 @@ static void GTSApplication_Trade_StoreTradedPokemon(GTSApplicationState *appStat
     if (appState->tradedPokemonLocation.boxIndex == MAX_PC_BOXES) {
         Pokemon_Copy(tradedPokemon, Party_GetPokemonBySlotIndex(appState->playerData->party, appState->tradedPokemonLocation.index));
     } else {
-        int v1 = 0, v2 = 0;
+        int boxIdx = 0, boxSpaceIdx = 0;
 
         PCBoxes_InitBoxMonAt(appState->playerData->pcBoxes, appState->tradedPokemonLocation.boxIndex, appState->tradedPokemonLocation.index);
-        PCBoxes_TryGetNextAvailableSpace(appState->playerData->pcBoxes, &v1, &v2);
-        PCBoxes_TryStoreBoxMonInBox(appState->playerData->pcBoxes, v1, Pokemon_GetBoxPokemon(tradedPokemon));
+        PCBoxes_TryGetNextAvailableSpace(appState->playerData->pcBoxes, &boxIdx, &boxSpaceIdx);
+        PCBoxes_TryStoreBoxMonInBox(appState->playerData->pcBoxes, boxIdx, Pokemon_GetBoxPokemon(tradedPokemon));
     }
 }

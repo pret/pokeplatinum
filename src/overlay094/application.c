@@ -73,13 +73,13 @@ static NNSFndHeapHandle sGTSHeapHandle;
 static int (*gtsApplicationScreens[][3])(GTSApplicationState *, int) = {
     { GTSApplication_InitWFCScreen, GTSApplication_WFCInit_Main, GTSApplication_WFCInit_Exit },
     { GTSApplication_MainMenu_Init, GTSApplication_MainMenu_Main, GTSApplication_MainMenu_Exit },
-    { GTSApplication_Summary_Init, ov94_0223D19C, ov94_0223D1B0 },
-    { GTSApplication_ListingSummary_Init, ov94_0223DCE4, ov94_0223DCF8 },
-    { GTSApplication_Search_Init, ov94_0223E560, ov94_0223E574 },
-    { GTSApplication_SelectPokemon_Init, GTSApplication_SelectPokemon_Main, ov94_0223FBDC },
-    { GTSApplication_Deposit_Init, ov94_02241548, ov94_02241568 },
+    { GTSApplication_Summary_Init, GTSApplication_Summary_Main, GTSApplication_Summary_Exit },
+    { GTSApplication_ListingSummary_Init, GTSApplication_ListingSummary_Main, GTSApplication_ListingSummary_Exit },
+    { GTSApplication_Search_Init, GTSApplication_Search_Main, GTSApplication_Search_Exit },
+    { GTSApplication_SelectPokemon_Init, GTSApplication_SelectPokemon_Main, GTSApplication_SelectPokemon_Exit },
+    { GTSApplication_Deposit_Init, GTSApplication_Deposit_Main, GTSApplication_Deposit_Exit },
     { GTSApplication_NetworkHandler_Init, GTSApplication_NetworkHandler_Main, GTSApplication_NetworkHandler_Exit },
-    { GTSApplication_PokemonInfo_Init, ov94_02244490, ov94_022444BC },
+    { GTSApplication_PokemonInfo_Init, GTSApplication_PokemonInfo_Main, GTSApplication_PokemonInfo_Exit },
     { GTSApplication_Trade_Init, GTSApplication_Trade_Main, GTSApplication_Trade_Exit },
 };
 
@@ -283,7 +283,7 @@ static void GTSApplicationState_InitPlayerData(GTSApplicationState *appState, Ap
     appState->deferredBoxId = 0;
     appState->unk_10F2 = 0;
     appState->waitDial = NULL;
-    appState->unk_11B0 = 0;
+    appState->selectedCountryIndex = 0;
 }
 
 static void GTSApplication_Noop(GTSApplicationState *appState)

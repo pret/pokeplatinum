@@ -57,64 +57,64 @@
 
 #include "res/text/bank/gts.h"
 
-static void GTSApplication_NetworkHandler_InitBackground(BgConfig *param0);
-static void GTSApplication_NetworkHandler_CleanupBackground(BgConfig *param0);
-static void GTSApplication_NetworkHandler_InitGraphics(GTSApplicationState *param0);
-static void GTSApplication_NetworkHandler_CreateWindow(GTSApplicationState *param0);
-static void GTSApplication_NetworkHandler_CleanupWindows(GTSApplicationState *param0);
-static void GTSApplication_NetworkHandler_InitStrings(GTSApplicationState *param0);
-static void GTSApplication_NetworkHandler_CleanupStrings(GTSApplicationState *param0);
-static void GTS_LogTradeInJournal(JournalEntry *param0, GTSPokemonListing *param1);
-static void GTSApplication_NetworkHandler_ReturnToPreviousScreen(GTSApplicationState *param0);
+static void GTSApplication_NetworkHandler_InitBackground(BgConfig *bgConfig);
+static void GTSApplication_NetworkHandler_CleanupBackground(BgConfig *bgConfig);
+static void GTSApplication_NetworkHandler_InitGraphics(GTSApplicationState *appState);
+static void GTSApplication_NetworkHandler_CreateWindow(GTSApplicationState *appState);
+static void GTSApplication_NetworkHandler_CleanupWindows(GTSApplicationState *appState);
+static void GTSApplication_NetworkHandler_InitStrings(GTSApplicationState *appState);
+static void GTSApplication_NetworkHandler_CleanupStrings(GTSApplicationState *appState);
+static void GTS_LogTradeInJournal(JournalEntry *journalEntry, GTSPokemonListing *param1);
+static void GTSApplication_NetworkHandler_ReturnToPreviousScreen(GTSApplicationState *appState);
 static void GTSApplication_NetworkHandler_FlagGeonetCommunicatedWith(WiFiHistory *wiFiHistory, GTSPokemonListing *param1);
-static void GTSApplication_NetworkHandler_StorePokemonFromSearching(GTSApplicationState *param0, Pokemon *param1, int param2);
-static void GTS_SetTradedTimestamp(GlobalTrade *param0, int param1);
-static int GTSApplication_NetworkHandler_HaveSpaceForPokemon(GTSApplicationState *param0, GTSPokemonListing *param1);
-static void ov94_022438C8(GTSApplicationState *param0);
-static void GTSApplication_NetworkHandler_SetSaveInstructions(GTSApplicationState *param0, int param1, int param2);
-static int GTSApplication_NetworkHandler_ParseScreenArgument(GTSApplicationState *param0);
-static int ov94_02242E9C(GTSApplicationState *param0);
-static int ov94_02242ED0(GTSApplicationState *param0);
-static int ov94_02242F78(GTSApplicationState *param0);
-static int ov94_02242F98(GTSApplicationState *param0);
-static int ov94_02243778(GTSApplicationState *param0);
-static int ov94_0224377C(GTSApplicationState *param0);
-static int ov94_02243794(GTSApplicationState *param0);
-static int ov94_02243920(GTSApplicationState *param0);
-static int ov94_02243948(GTSApplicationState *param0);
-static int GTSApplication_NetworkHandler_FadeAndExit(GTSApplicationState *param0);
-static int GTSApplication_NetworkHandler_WaitForText(GTSApplicationState *param0);
-static int GTSApplication_NetworkHandler_GetListedPokemonRequest(GTSApplicationState *param0);
-static int GTSApplication_NetworkHandler_GetListedPokemonResponse(GTSApplicationState *param0);
-static int ov94_02243104(GTSApplicationState *param0);
-static int ov94_02243120(GTSApplicationState *param0);
-static int ov94_022431A4(GTSApplicationState *param0);
-static int ov94_022431F0(GTSApplicationState *param0);
-static int ov94_022432D8(GTSApplicationState *param0);
-static int ov94_022432F4(GTSApplicationState *param0);
-static int ov94_022437AC(GTSApplicationState *param0);
-static int ov94_02243884(GTSApplicationState *param0);
-static void ov94_02243B08(GTSApplicationState *param0, int param1);
-static void GTSApplication_NetworkHandler_StorePokemonFromDepositing(GTSApplicationState *param0, Pokemon *param1, int param2, int param3);
-static int GTSApplication_NetworkHandler_PrepareFullSave(GTSApplicationState *param0);
-static int ov94_02243974(GTSApplicationState *param0);
-static int GTSApplication_NetworkHandler_WaitForSaveComplete(GTSApplicationState *param0);
-static int GTSApplication_NetworkHandler_GetListedPokemonResponse2(GTSApplicationState *param0);
-static int GTSApplication_NetworkHandler_GetListedPokemonRequest2(GTSApplicationState *param0);
-static int GTSApplication_NetworkHandler_GetListingStatusResponse(GTSApplicationState *param0);
-static int GTSApplication_NetworkHandler_GetListingStatusRequest(GTSApplicationState *param0);
-static int GTSApplication_NetworkHandler_PerformDepositTrade(GTSApplicationState *param0);
-static int GTSApplication_NetworkHandler_DeleteReceivedPokemonResponse(GTSApplicationState *param0);
-static int ov94_022437C0(GTSApplicationState *param0);
-static int GTSApplication_NetworkHandler_WaitForSaveProceed(GTSApplicationState *param0);
-static int GTSApplication_NetworkHandler_WaitForFrameDelay(GTSApplicationState *param0);
-static int ov94_02243554(GTSApplicationState *param0);
-static int GTSApplication_NetworkHandler_FullSave(GTSApplicationState *param0);
-static int GTSApplication_NetworkHandler_WaitForSuccessfulSave(GTSApplicationState *param0);
-static int GTSApplication_NetworkHandler_DeleteReceivedPokemonRequest(GTSApplicationState *param0);
-static int GTSApplication_NetworkHandler_DeleteDesyncedPokemonRequest(GTSApplicationState *param0);
-static int GTSApplication_NetworkHandler_DeleteDesyncedPokemonResponse(GTSApplicationState *param0);
-static BOOL GTSApplication_NetworkHandler_IsListingDesynced(GTSApplicationState *param0);
+static void GTSApplication_NetworkHandler_StorePokemonFromSearching(GTSApplicationState *appState, Pokemon *param1, int param2);
+static void GTS_SetTradedTimestamp(GlobalTrade *globalTrade, int param1);
+static int GTSApplication_NetworkHandler_HaveSpaceForPokemon(GTSApplicationState *appState, GTSPokemonListing *param1);
+static void ov94_022438C8(GTSApplicationState *appState);
+static void GTSApplication_NetworkHandler_SetSaveInstructions(GTSApplicationState *appState, int param1, int param2);
+static int GTSApplication_NetworkHandler_ParseScreenArgument(GTSApplicationState *appState);
+static int ov94_02242E9C(GTSApplicationState *appState);
+static int ov94_02242ED0(GTSApplicationState *appState);
+static int ov94_02242F78(GTSApplicationState *appState);
+static int ov94_02242F98(GTSApplicationState *appState);
+static int ov94_02243778(GTSApplicationState *appState);
+static int ov94_0224377C(GTSApplicationState *appState);
+static int ov94_02243794(GTSApplicationState *appState);
+static int ov94_02243920(GTSApplicationState *appState);
+static int ov94_02243948(GTSApplicationState *appState);
+static int GTSApplication_NetworkHandler_FadeAndExit(GTSApplicationState *appState);
+static int GTSApplication_NetworkHandler_WaitForText(GTSApplicationState *appState);
+static int GTSApplication_NetworkHandler_GetListedPokemonRequest(GTSApplicationState *appState);
+static int GTSApplication_NetworkHandler_GetListedPokemonResponse(GTSApplicationState *appState);
+static int ov94_02243104(GTSApplicationState *appState);
+static int ov94_02243120(GTSApplicationState *appState);
+static int ov94_022431A4(GTSApplicationState *appState);
+static int ov94_022431F0(GTSApplicationState *appState);
+static int ov94_022432D8(GTSApplicationState *appState);
+static int ov94_022432F4(GTSApplicationState *appState);
+static int ov94_022437AC(GTSApplicationState *appState);
+static int ov94_02243884(GTSApplicationState *appState);
+static void ov94_02243B08(GTSApplicationState *appState, int param1);
+static void GTSApplication_NetworkHandler_StorePokemonFromDepositing(GTSApplicationState *appState, Pokemon *param1, int param2, int param3);
+static int GTSApplication_NetworkHandler_PrepareFullSave(GTSApplicationState *appState);
+static int ov94_02243974(GTSApplicationState *appState);
+static int GTSApplication_NetworkHandler_WaitForSaveComplete(GTSApplicationState *appState);
+static int GTSApplication_NetworkHandler_GetListedPokemonResponse2(GTSApplicationState *appState);
+static int GTSApplication_NetworkHandler_GetListedPokemonRequest2(GTSApplicationState *appState);
+static int GTSApplication_NetworkHandler_GetListingStatusResponse(GTSApplicationState *appState);
+static int GTSApplication_NetworkHandler_GetListingStatusRequest(GTSApplicationState *appState);
+static int GTSApplication_NetworkHandler_PerformDepositTrade(GTSApplicationState *appState);
+static int GTSApplication_NetworkHandler_DeleteReceivedPokemonResponse(GTSApplicationState *appState);
+static int ov94_022437C0(GTSApplicationState *appState);
+static int GTSApplication_NetworkHandler_WaitForSaveProceed(GTSApplicationState *appState);
+static int GTSApplication_NetworkHandler_WaitForFrameDelay(GTSApplicationState *appState);
+static int ov94_02243554(GTSApplicationState *appState);
+static int GTSApplication_NetworkHandler_FullSave(GTSApplicationState *appState);
+static int GTSApplication_NetworkHandler_WaitForSuccessfulSave(GTSApplicationState *appState);
+static int GTSApplication_NetworkHandler_DeleteReceivedPokemonRequest(GTSApplicationState *appState);
+static int GTSApplication_NetworkHandler_DeleteDesyncedPokemonRequest(GTSApplicationState *appState);
+static int GTSApplication_NetworkHandler_DeleteDesyncedPokemonResponse(GTSApplicationState *appState);
+static BOOL GTSApplication_NetworkHandler_IsListingDesynced(GTSApplicationState *appState);
 
 static int (*sGTSNetworkHandlerScreenStates[])(GTSApplicationState *) = {
     GTSApplication_NetworkHandler_ParseScreenArgument,
@@ -127,34 +127,34 @@ static int (*sGTSNetworkHandlerScreenStates[])(GTSApplicationState *) = {
     GTSApplication_NetworkHandler_GetListedPokemonRequest,
     GTSApplication_NetworkHandler_GetListedPokemonResponse,
     ov94_02243104,
-    ov94_02243120, // #10
+    ov94_02243120,
     ov94_02243794, // go to screen #9, called after saving and receiving a pokemon
     ov94_022431A4,
-    ov94_022431F0, //
+    ov94_022431F0,
     ov94_022432D8,
     ov94_022432F4,
     ov94_022437AC,
     ov94_02243884,
-    GTSApplication_NetworkHandler_PerformDepositTrade, // retrieved pokemon from status call
+    GTSApplication_NetworkHandler_PerformDepositTrade,
     GTSApplication_NetworkHandler_DeleteReceivedPokemonRequest,
-    GTSApplication_NetworkHandler_DeleteReceivedPokemonResponse, // #20
+    GTSApplication_NetworkHandler_DeleteReceivedPokemonResponse,
     ov94_022437C0,
     GTSApplication_NetworkHandler_DeleteDesyncedPokemonRequest,
     GTSApplication_NetworkHandler_DeleteDesyncedPokemonResponse,
-    GTSApplication_NetworkHandler_GetListingStatusRequest, // get pokemon status
-    GTSApplication_NetworkHandler_GetListingStatusResponse, // generic network handler?
-    GTSApplication_NetworkHandler_GetListedPokemonRequest2, // get pokemon, go 27
+    GTSApplication_NetworkHandler_GetListingStatusRequest,
+    GTSApplication_NetworkHandler_GetListingStatusResponse,
+    GTSApplication_NetworkHandler_GetListedPokemonRequest2,
     GTSApplication_NetworkHandler_GetListedPokemonResponse2,
     ov94_02243554,
     ov94_02243974,
-    GTSApplication_NetworkHandler_PrepareFullSave, // #30
+    GTSApplication_NetworkHandler_PrepareFullSave,
     GTSApplication_NetworkHandler_WaitForFrameDelay,
     GTSApplication_NetworkHandler_WaitForSaveProceed,
     GTSApplication_NetworkHandler_WaitForSaveComplete,
     GTSApplication_NetworkHandler_FullSave,
     GTSApplication_NetworkHandler_WaitForSuccessfulSave,
-    GTSApplication_NetworkHandler_FadeAndExit, // exit
-    GTSApplication_NetworkHandler_WaitForText, // wait for text
+    GTSApplication_NetworkHandler_FadeAndExit,
+    GTSApplication_NetworkHandler_WaitForText,
     ov94_02243920, // comms error
     ov94_02243948
 };

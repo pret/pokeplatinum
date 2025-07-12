@@ -1,10 +1,10 @@
-#ifndef POKEPLATINUM_OV94_022443E0_H
-#define POKEPLATINUM_OV94_022443E0_H
+#ifndef POKEPLATINUM_GTS_SCREENS_POKEMON_INFO_H
+#define POKEPLATINUM_GTS_SCREENS_POKEMON_INFO_H
 
 #include "overlay094/gts_application_state.h"
 
-int GTSApplication_PokemonInfo_Init(GTSApplicationState *param0, int param1);
-int ov94_02244490(GTSApplicationState *param0, int param1);
-int ov94_022444BC(GTSApplicationState *param0, int param1);
+int GTSApplication_PokemonInfo_Init(GTSApplicationState *appState, int unused1);
+int GTSApplication_PokemonInfo_Main(GTSApplicationState *appState, int unused1);
+int GTSApplication_PokemonInfo_Exit(GTSApplicationState *appState, int unused1);
 
-#endif // POKEPLATINUM_OV94_022443E0_H
+#endif // POKEPLATINUM_GTS_SCREENS_POKEMON_INFO_H

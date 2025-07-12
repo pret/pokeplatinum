@@ -45,14 +45,14 @@ typedef struct {
 
 typedef struct {
     Strbuf **unk_00;
-    u16 unk_04;
-    u16 unk_06;
+    u16 unk_04; // cursor
+    u16 unk_06; // start pos
     u16 unk_08;
     u16 unk_0A;
     int unk_0C;
     int unk_10;
-    u8 *unk_14;
-    u16 *unk_18; // ov94_Pokedex_Alphabetical
+    u8 *unk_14; // seen
+    u16 *unk_18; // species
     int unk_1C;
     int unk_20;
     int unk_24;
@@ -92,7 +92,7 @@ typedef struct GTSApplicationState {
     NNSFndHeapHandle dwcHeapHandle;
     DWCInetControl dwcInetControlObject;
     ApplicationManager *appMan;
-    PokemonSummary unk_B8;
+    PokemonSummary pokemonSummary;
     NpcTradeAnimationConfig tradeAnimationConfig;
     EvolutionData *evolutionData;
     BOOL hasTradedPokemon;
@@ -173,13 +173,13 @@ typedef struct GTSApplicationState {
     GTSBoxPokemonCriteria *boxCriteria;
     u16 deferredBoxPokemonCount;
     u16 deferredBoxId;
-    u32 fadeBothScreens;
+    BOOL fadeBothScreens;
     void *selectPokemonIconHeapPtr;
     void (*updateBoxPalettesFunc)(void *param0);
     UnkStruct_ov94_02242AAC unk_111C;
     WorldExchangeTrainer worldExchangeTrainer;
     WorldExchangeTrainerError worldExchangeTrainerError;
-    int unk_11B0;
+    int selectedCountryIndex;
     UnkStruct_ov61_0222C3B0 unk_11B4;
 
     // these are only used in GTSApplication_WFCInit_FatalErrorDisconnectMessage

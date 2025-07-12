@@ -4,7 +4,7 @@
 #include "overlay094/gts_application_state.h"
 
 int GTSApplication_ListingSummary_Init(GTSApplicationState *param0, int param1);
-int ov94_0223DCE4(GTSApplicationState *param0, int param1);
-int ov94_0223DCF8(GTSApplicationState *param0, int param1);
+int GTSApplication_ListingSummary_Main(GTSApplicationState *param0, int param1);
+int GTSApplication_ListingSummary_Exit(GTSApplicationState *param0, int param1);
 
 #endif // POKEPLATINUM_OV94_0223DC04_H

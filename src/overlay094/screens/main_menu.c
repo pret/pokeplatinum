@@ -32,33 +32,33 @@
 
 #include "res/text/bank/gts.h"
 
-static void GTSApplication_MainMenu_InitBackground(BgConfig *param0);
-static void GTSApplication_MainMenu_CleanupBackground(BgConfig *param0);
-static void GTSApplication_MainMenu_InitGraphics(GTSApplicationState *param0);
-static void GTSApplication_MainMenu_InitCursor(GTSApplicationState *param0);
-static void GTSApplication_MainMenu_DeleteCursor(GTSApplicationState *param0);
-static void GTSApplication_MainMenu_CreateMenu(GTSApplicationState *param0);
-static void GTSApplication_MainMenu_CleanupWindows(GTSApplicationState *param0);
-static void GTS_MainMenu_LoadTitle(GTSApplicationState *param0);
-static void GTSApplication_MainMenu_CleanupStrings(GTSApplicationState *param0);
-static int GTSApplication_MainMenu_WaitUntilFinishedMoving(GTSApplicationState *param0);
-static int ov94_0223CB90(GTSApplicationState *param0);
-static int ov94_0223CBA0(GTSApplicationState *param0);
-static int ov94_0223CBC4(GTSApplicationState *param0);
-static int ov94_0223CBD8(GTSApplicationState *param0);
-static int GTSApplication_MainMenu_SetupBottomWindowQuestion(GTSApplicationState *param0);
-static int GTSApplication_MainMenu_HandleInput(GTSApplicationState *param0);
-static int GTSApplication_MainMenu_FadeAndExit(GTSApplicationState *param0);
-static int ov94_0223CE5C(GTSApplicationState *param0);
-static int ov94_0223CE7C(GTSApplicationState *param0);
-static int GTSApplication_MainMenu_WaitForTextPrinter(GTSApplicationState *param0);
-static int ov94_0223CF08(GTSApplicationState *param0);
-static int ov94_0223CDD8(GTSApplicationState *param0);
-static int ov94_0223CE00(GTSApplicationState *param0);
-static void GTSApplication_MainMenu_RenderMenuButtons(GTSApplicationState *param0);
-static void GTSApplication_MainMenu_SetBottomWindowText(GTSApplicationState *param0, int param1, int param2, int param3, u16 param4);
-static void ov94_0223CFD8(GTSApplicationState *param0, int param1, int param2, int param3, u16 param4);
-static void ov94_0223C85C(GTSApplicationState *param0);
+static void GTSApplication_MainMenu_InitBackground(BgConfig *bgConfig);
+static void GTSApplication_MainMenu_CleanupBackground(BgConfig *bgConfig);
+static void GTSApplication_MainMenu_InitGraphics(GTSApplicationState *appState);
+static void GTSApplication_MainMenu_InitCursor(GTSApplicationState *appState);
+static void GTSApplication_MainMenu_DeleteCursor(GTSApplicationState *appState);
+static void GTSApplication_MainMenu_CreateMenu(GTSApplicationState *appState);
+static void GTSApplication_MainMenu_CleanupWindows(GTSApplicationState *appState);
+static void GTS_MainMenu_LoadTitle(GTSApplicationState *appState);
+static void GTSApplication_MainMenu_CleanupStrings(GTSApplicationState *appState);
+static int GTSApplication_MainMenu_WaitUntilFinishedMoving(GTSApplicationState *appState);
+static int ov94_0223CB90(GTSApplicationState *appState);
+static int ov94_0223CBA0(GTSApplicationState *appState);
+static int ov94_0223CBC4(GTSApplicationState *appState);
+static int ov94_0223CBD8(GTSApplicationState *appState);
+static int GTSApplication_MainMenu_SetupBottomWindowQuestion(GTSApplicationState *appState);
+static int GTSApplication_MainMenu_HandleInput(GTSApplicationState *appState);
+static int GTSApplication_MainMenu_FadeAndExit(GTSApplicationState *appState);
+static int ov94_0223CE5C(GTSApplicationState *appState);
+static int ov94_0223CE7C(GTSApplicationState *appState);
+static int GTSApplication_MainMenu_WaitForTextPrinter(GTSApplicationState *appState);
+static int ov94_0223CF08(GTSApplicationState *appState);
+static int ov94_0223CDD8(GTSApplicationState *appState);
+static int ov94_0223CE00(GTSApplicationState *appState);
+static void GTSApplication_MainMenu_RenderMenuButtons(GTSApplicationState *appState);
+static void GTSApplication_MainMenu_SetBottomWindowText(GTSApplicationState *appState, int messageId, int textSpeed, int unused3, u16 unused4);
+static void ov94_0223CFD8(GTSApplicationState *appState, int messageId, int textSpeed, int unused3, u16 unused4);
+static void ov94_0223C85C(GTSApplicationState *appState);
 
 static int (*sGTSMainMenuScreenStates[])(GTSApplicationState *) = {
     GTSApplication_MainMenu_WaitUntilFinishedMoving, // GTSApplication_SetNextScreenWithArgument(appState, 7, 11); returns to #9
@@ -120,7 +120,7 @@ int GTSApplication_MainMenu_Main(GTSApplicationState *appState, int unused1)
 
 int GTSApplication_MainMenu_Exit(GTSApplicationState *appState, int unused1)
 {
-    DestroyNetworkIcon(); // ??
+    DestroyNetworkIcon();
 
     GTSApplication_MainMenu_DeleteCursor(appState);
     GTSApplication_MainMenu_CleanupStrings(appState);
@@ -131,7 +131,7 @@ int GTSApplication_MainMenu_Exit(GTSApplicationState *appState, int unused1)
     return GTS_APPLICATION_LOOP_STATE_INIT;
 }
 
-static void GTSApplication_MainMenu_InitBackground(BgConfig *param0)
+static void GTSApplication_MainMenu_InitBackground(BgConfig *bgConfig)
 {
     {
         GraphicsModes v0 = {
@@ -161,8 +161,8 @@ static void GTSApplication_MainMenu_InitBackground(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_0, &v1, 0);
-        Bg_ClearTilemap(param0, BG_LAYER_MAIN_0);
+        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_0, &v1, 0);
+        Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_0);
     }
 
     {
@@ -182,7 +182,7 @@ static void GTSApplication_MainMenu_InitBackground(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v2, 0);
+        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_1, &v2, 0);
     }
 
     {
@@ -202,7 +202,7 @@ static void GTSApplication_MainMenu_InitBackground(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v3, 0);
+        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_2, &v3, 0);
     }
 
     {
@@ -222,8 +222,8 @@ static void GTSApplication_MainMenu_InitBackground(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v4, 0);
-        Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
+        Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_0, &v4, 0);
+        Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_0);
     }
 
     {
@@ -243,7 +243,7 @@ static void GTSApplication_MainMenu_InitBackground(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_SUB_1, &v5, 0);
+        Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_1, &v5, 0);
     }
 
     Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_62);
@@ -262,30 +262,30 @@ static void GTSApplication_MainMenu_CleanupBackground(BgConfig *bgConfig)
     Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_0);
 }
 
-static void ov94_0223C85C(GTSApplicationState *param0)
+static void ov94_0223C85C(GTSApplicationState *appState)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
-    Sprite_SetDrawFlag(param0->cursorSprite, 0);
+    Sprite_SetDrawFlag(appState->cursorSprite, FALSE);
 }
 
-static void GTSApplication_MainMenu_InitGraphics(GTSApplicationState *param0)
+static void GTSApplication_MainMenu_InitGraphics(GTSApplicationState *appState)
 {
-    BgConfig *v0 = param0->bgConfig;
-    NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, HEAP_ID_62);
+    BgConfig *bgConfig = appState->bgConfig;
+    NARC *narc = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, HEAP_ID_62);
 
-    Graphics_LoadPaletteFromOpenNARC(v1, 4, 0, 0, 16 * 3 * 2, HEAP_ID_62);
+    Graphics_LoadPaletteFromOpenNARC(narc, 4, 0, 0, 16 * 3 * 2, HEAP_ID_62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_62);
-    LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, 1, 10, Options_Frame(param0->playerData->options), HEAP_ID_62);
-    LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_0, (1 + (18 + 12)), 11, 0, HEAP_ID_62);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 14, v0, 1, 0, 16 * 6 * 0x20, 1, HEAP_ID_62);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 30, v0, 1, 0, 32 * 24 * 2, 1, HEAP_ID_62);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 29, v0, 2, 0, 32 * 24 * 2, 1, HEAP_ID_62);
+    LoadMessageBoxGraphics(bgConfig, BG_LAYER_MAIN_0, 1, 10, Options_Frame(appState->playerData->options), HEAP_ID_62);
+    LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_0, (1 + (18 + 12)), 11, 0, HEAP_ID_62);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 14, bgConfig, 1, 0, 16 * 6 * 0x20, 1, HEAP_ID_62);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 30, bgConfig, 1, 0, 32 * 24 * 2, 1, HEAP_ID_62);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 29, bgConfig, 2, 0, 32 * 24 * 2, 1, HEAP_ID_62);
 
-    ov94_0223D068(param0);
+    ov94_0223D068(appState);
 
-    NARC_dtor(v1);
+    NARC_dtor(narc);
 }
 
 static const u16 sMainMenuCursorPositions[][2] = {
@@ -305,7 +305,7 @@ static void GTSApplication_MainMenu_InitCursor(GTSApplicationState *appState)
 
     appState->cursorSprite = SpriteList_AddAffine(&template);
 
-    Sprite_SetAnimateFlag(appState->cursorSprite, 1);
+    Sprite_SetAnimateFlag(appState->cursorSprite, TRUE);
     Sprite_SetAnim(appState->cursorSprite, 1);
 }
 
@@ -320,11 +320,9 @@ static void GTSApplication_MainMenu_CreateMenu(GTSApplicationState *appState)
     Window_FillTilemap(&appState->unk_F7C, 0x0);
     Text_AddPrinterWithParamsAndColor(&appState->unk_F7C, FONT_MESSAGE, appState->title, 0, 2, TEXT_SPEED_INSTANT, TEXT_COLOR(15, 4, 0), NULL);
 
-    {
-        for (int i = 0; i < 3; i++) {
-            Window_Add(appState->bgConfig, &appState->unk_F9C[i], 1, 9, 6 + i * 5, 15, 2, 13, (16 * 6 + 1) + (15 * 2) * i);
-            Window_FillTilemap(&appState->unk_F9C[i], 0x0);
-        }
+    for (int i = 0; i < 3; i++) {
+        Window_Add(appState->bgConfig, &appState->unk_F9C[i], 1, 9, 6 + i * 5, 15, 2, 13, (16 * 6 + 1) + (15 * 2) * i);
+        Window_FillTilemap(&appState->unk_F9C[i], 0x0);
     }
 
     Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, 0, 2, 21, 27, 2, 13, (((1 + (18 + 12)) + 9) + 28 * 2));
@@ -374,36 +372,36 @@ static int GTSApplication_MainMenu_WaitUntilFinishedMoving(GTSApplicationState *
     return GTS_APPLICATION_LOOP_STATE_MAIN;
 }
 
-static int ov94_0223CB90(GTSApplicationState *param0)
+static int ov94_0223CB90(GTSApplicationState *appState)
 {
-    GTSApplication_SetCurrentAndNextScreenInstruction(param0, 10, 2);
-    return 3;
+    GTSApplication_SetCurrentAndNextScreenInstruction(appState, 10, 2);
+    return GTS_APPLICATION_LOOP_STATE_MAIN;
 }
 
-static int ov94_0223CBA0(GTSApplicationState *param0)
+static int ov94_0223CBA0(GTSApplicationState *appState)
 {
     StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
-    param0->currentScreenInstruction = 3;
+    appState->currentScreenInstruction = 3;
 
-    return 3;
+    return GTS_APPLICATION_LOOP_STATE_MAIN;
 }
 
-static int ov94_0223CBC4(GTSApplicationState *param0)
+static int ov94_0223CBC4(GTSApplicationState *appState)
 {
     if (IsScreenFadeDone()) {
-        param0->currentScreenInstruction = 5;
+        appState->currentScreenInstruction = 5;
     }
 
-    return 3;
+    return GTS_APPLICATION_LOOP_STATE_MAIN;
 }
 
-static int ov94_0223CBD8(GTSApplicationState *param0)
+static int ov94_0223CBD8(GTSApplicationState *appState)
 {
     if (IsScreenFadeDone()) {
-        param0->currentScreenInstruction = 5;
+        appState->currentScreenInstruction = 5;
     }
 
-    return 3;
+    return GTS_APPLICATION_LOOP_STATE_MAIN;
 }
 
 static int GTSApplication_MainMenu_SetupBottomWindowQuestion(GTSApplicationState *appState)
@@ -413,7 +411,7 @@ static int GTSApplication_MainMenu_SetupBottomWindowQuestion(GTSApplicationState
     Sprite_SetAnimateFlag(appState->cursorSprite, 1);
     GTSApplicationState_StartCountingBoxPokemon(appState);
 
-    return 3;
+    return GTS_APPLICATION_LOOP_STATE_MAIN;
 }
 
 static int GTSApplication_MainMenu_HandleInput(GTSApplicationState *appState)
@@ -421,7 +419,7 @@ static int GTSApplication_MainMenu_HandleInput(GTSApplicationState *appState)
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
         ov94_0223CFD8(appState, GTS_Text_IsItOKToDisconnect, GTSApplicationState_GetTextFrameDelay(appState), 0, 0xf0f);
         GTSApplication_SetCurrentAndNextScreenInstruction(appState, 10, 12);
-        Sprite_SetAnimateFlag(appState->cursorSprite, 0);
+        Sprite_SetAnimateFlag(appState->cursorSprite, FALSE);
     } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
         switch (appState->mainMenuSelectedOption) {
         case 0: // deposit pokemon
@@ -437,7 +435,7 @@ static int GTSApplication_MainMenu_HandleInput(GTSApplicationState *appState)
                     appState->networkTimer = (60 * 30);
                     Sound_PlayEffect(SEQ_SE_CONFIRM);
                 } else {
-                    Sprite_SetAnimateFlag(appState->cursorSprite, 0);
+                    Sprite_SetAnimateFlag(appState->cursorSprite, FALSE);
                     GTSApplication_MainMenu_SetBottomWindowText(appState, GTS_Text_PleaseWaitAWhile, TEXT_SPEED_FAST, 0, 0xf0f);
                     GTSApplication_SetCurrentAndNextScreenInstruction(appState, 11, 5);
                     Sound_PlayEffect(SEQ_SE_DP_BOX03);
@@ -453,7 +451,7 @@ static int GTSApplication_MainMenu_HandleInput(GTSApplicationState *appState)
         case 2: // exit
             ov94_0223CFD8(appState, GTS_Text_IsItOKToDisconnect, GTSApplicationState_GetTextFrameDelay(appState), 0, 0xf0f);
             GTSApplication_SetCurrentAndNextScreenInstruction(appState, 10, 12);
-            Sprite_SetAnimateFlag(appState->cursorSprite, 0);
+            Sprite_SetAnimateFlag(appState->cursorSprite, FALSE);
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             break;
         }
@@ -471,26 +469,26 @@ static int GTSApplication_MainMenu_HandleInput(GTSApplicationState *appState)
         }
     }
 
-    return 3;
+    return GTS_APPLICATION_LOOP_STATE_MAIN;
 }
 
-static int ov94_0223CDD8(GTSApplicationState *param0)
+static int ov94_0223CDD8(GTSApplicationState *appState)
 {
-    ov94_022440B8(param0, TrainerInfo_Gender(param0->playerData->trainerInfo));
+    ov94_022440B8(appState, TrainerInfo_Gender(appState->playerData->trainerInfo));
 
-    param0->currentScreenInstruction = 8;
-    param0->hasAvatarFinishedMoving = FALSE;
+    appState->currentScreenInstruction = 8;
+    appState->hasAvatarFinishedMoving = FALSE;
 
-    return 3;
+    return GTS_APPLICATION_LOOP_STATE_MAIN;
 }
 
-static int ov94_0223CE00(GTSApplicationState *param0)
+static int ov94_0223CE00(GTSApplicationState *appState)
 {
-    if (param0->hasAvatarFinishedMoving) {
-        param0->currentScreenInstruction = 9;
+    if (appState->hasAvatarFinishedMoving) {
+        appState->currentScreenInstruction = 9;
     }
 
-    return 3;
+    return GTS_APPLICATION_LOOP_STATE_MAIN;
 }
 
 static int GTSApplication_MainMenu_FadeAndExit(GTSApplicationState *appState)
@@ -506,33 +504,33 @@ static int GTSApplication_MainMenu_FadeAndExit(GTSApplicationState *appState)
     return GTS_APPLICATION_LOOP_STATE_FINISH;
 }
 
-static int ov94_0223CE5C(GTSApplicationState *param0)
+static int ov94_0223CE5C(GTSApplicationState *appState)
 {
-    param0->yesNoMenu = GTSApplication_CreateYesNoMenu(param0->bgConfig, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 27 * 4));
-    param0->currentScreenInstruction = 13;
+    appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 27 * 4));
+    appState->currentScreenInstruction = 13;
 
-    return 3;
+    return GTS_APPLICATION_LOOP_STATE_MAIN;
 }
 
-static int ov94_0223CE7C(GTSApplicationState *param0)
+static int ov94_0223CE7C(GTSApplicationState *appState)
 {
-    int v0 = Menu_ProcessInputAndHandleExit(param0->yesNoMenu, HEAP_ID_62);
+    int input = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_62);
 
-    if (v0 != 0xffffffff) {
-        if (v0 == 0xfffffffe) {
-            Window_EraseMessageBox(&param0->unk_109C, 1);
-            Window_ClearAndCopyToVRAM(&param0->unk_109C);
-            Sprite_SetAnimateFlag(param0->cursorSprite, 1);
-            param0->currentScreenInstruction = 5;
+    if (input != 0xffffffff) {
+        if (input == 0xfffffffe) {
+            Window_EraseMessageBox(&appState->unk_109C, 1);
+            Window_ClearAndCopyToVRAM(&appState->unk_109C);
+            Sprite_SetAnimateFlag(appState->cursorSprite, TRUE);
+            appState->currentScreenInstruction = 5;
         } else {
-            Window_EraseMessageBox(&param0->unk_109C, 1);
-            Window_ClearAndCopyToVRAM(&param0->unk_109C);
-            GTSApplication_SetNextScreenWithArgument(param0, 0, 0);
-            param0->currentScreenInstruction = 7;
+            Window_EraseMessageBox(&appState->unk_109C, 1);
+            Window_ClearAndCopyToVRAM(&appState->unk_109C);
+            GTSApplication_SetNextScreenWithArgument(appState, 0, 0);
+            appState->currentScreenInstruction = 7;
         }
     }
 
-    return 3;
+    return GTS_APPLICATION_LOOP_STATE_MAIN;
 }
 
 static int GTSApplication_MainMenu_WaitForTextPrinter(GTSApplicationState *appState)
@@ -544,18 +542,18 @@ static int GTSApplication_MainMenu_WaitForTextPrinter(GTSApplicationState *appSt
     return GTS_APPLICATION_LOOP_STATE_MAIN;
 }
 
-static int ov94_0223CF08(GTSApplicationState *param0)
+static int ov94_0223CF08(GTSApplicationState *appState)
 {
-    if (Text_IsPrinterActive(param0->textPrinter) == FALSE) {
-        param0->frameDelay++;
+    if (Text_IsPrinterActive(appState->textPrinter) == FALSE) {
+        appState->frameDelay++;
 
-        if (param0->frameDelay > 45) {
-            param0->frameDelay = 0;
-            param0->currentScreenInstruction = param0->nextScreenInstruction;
+        if (appState->frameDelay > 45) {
+            appState->frameDelay = 0;
+            appState->currentScreenInstruction = appState->nextScreenInstruction;
         }
     }
 
-    return 3;
+    return GTS_APPLICATION_LOOP_STATE_MAIN;
 }
 
 static const int GTS_MAIN_MENU_OPTIONS[][3] = {
@@ -575,8 +573,6 @@ static void GTSApplication_MainMenu_RenderMenuButtons(GTSApplicationState *appSt
 
 static void GTSApplication_MainMenu_SetBottomWindowText(GTSApplicationState *appState, int messageId, int textSpeed, int unused3, u16 unused4)
 {
-    Strbuf *v0;
-
     MessageLoader_GetStrbuf(appState->gtsMessageLoader, messageId, appState->genericMessageBuffer);
     Window_FillTilemap(&appState->bottomInstructionWindow, 0xf0f);
     Window_DrawMessageBoxWithScrollCursor(&appState->bottomInstructionWindow, 0, 1, 10);
@@ -584,31 +580,29 @@ static void GTSApplication_MainMenu_SetBottomWindowText(GTSApplicationState *app
     appState->textPrinter = Text_AddPrinterWithParams(&appState->bottomInstructionWindow, FONT_MESSAGE, appState->genericMessageBuffer, 0, 0, textSpeed, NULL);
 }
 
-static void ov94_0223CFD8(GTSApplicationState *param0, int param1, int param2, int param3, u16 param4)
+static void ov94_0223CFD8(GTSApplicationState *appState, int messageId, int textSpeed, int unused3, u16 unused4)
 {
-    Strbuf *v0;
+    MessageLoader_GetStrbuf(appState->gtsMessageLoader, messageId, appState->genericMessageBuffer);
+    Window_FillTilemap(&appState->unk_109C, 0xf0f);
+    Window_DrawMessageBoxWithScrollCursor(&appState->unk_109C, 0, 1, 10);
 
-    MessageLoader_GetStrbuf(param0->gtsMessageLoader, param1, param0->genericMessageBuffer);
-    Window_FillTilemap(&param0->unk_109C, 0xf0f);
-    Window_DrawMessageBoxWithScrollCursor(&param0->unk_109C, 0, 1, 10);
-
-    param0->textPrinter = Text_AddPrinterWithParams(&param0->unk_109C, FONT_MESSAGE, param0->genericMessageBuffer, 0, 0, param2, NULL);
+    appState->textPrinter = Text_AddPrinterWithParams(&appState->unk_109C, FONT_MESSAGE, appState->genericMessageBuffer, 0, 0, textSpeed, NULL);
 }
 
-void GTSApplication_MainMenu_RenderButton(Window *param0, MessageLoader *gtsMessageLoader, int param2, u16 param3)
+void GTSApplication_MainMenu_RenderButton(Window *window, MessageLoader *gtsMessageLoader, int messageId, u16 tile)
 {
-    Strbuf *v0 = MessageLoader_GetNewStrbuf(gtsMessageLoader, param2);
+    Strbuf *strbuf = MessageLoader_GetNewStrbuf(gtsMessageLoader, messageId);
 
-    Window_FillTilemap(param0, param3);
-    Text_AddPrinterWithParams(param0, FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_INSTANT, NULL);
-    Strbuf_Free(v0);
+    Window_FillTilemap(window, tile);
+    Text_AddPrinterWithParams(window, FONT_MESSAGE, strbuf, 0, 0, TEXT_SPEED_INSTANT, NULL);
+    Strbuf_Free(strbuf);
 }
 
-void ov94_0223D068(GTSApplicationState *param0)
+void ov94_0223D068(GTSApplicationState *appState)
 {
-    BgConfig *v0 = param0->bgConfig;
+    BgConfig *bgConfig = appState->bgConfig;
 
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__WORLDTRADE, 5, 4, 0, 16 * 16 * 2, HEAP_ID_62);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__WORLDTRADE, 15, v0, 5, 0, 32 * 21 * 0x40, 1, HEAP_ID_62);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__WORLDTRADE, 31, v0, 5, 0, 32 * 24 * 2, 1, HEAP_ID_62);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__WORLDTRADE, 15, bgConfig, 5, 0, 32 * 21 * 0x40, 1, HEAP_ID_62);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__WORLDTRADE, 31, bgConfig, 5, 0, 32 * 24 * 2, 1, HEAP_ID_62);
 }
