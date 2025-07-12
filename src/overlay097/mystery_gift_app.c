@@ -1175,8 +1175,8 @@ static int MysteryGiftApp_Init(ApplicationManager *appMan, int *unused)
     ov97_02232054();
     SetupGraphics(appData->bgConfig);
 
-    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
-    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
 
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_10, SEQ_PRESENT, 1);
     DistributionCartridge_UseHeap(HEAP_ID_MYSTERY_GIFT_APP);

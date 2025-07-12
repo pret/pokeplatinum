@@ -208,7 +208,7 @@ static int ov95_0224AC98(UnkStruct_ov95_0224AC64 *param0, int *param1)
 {
     ov95_0224AE1C(param0);
     ov95_0224B084(param0);
-    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_WHITE, 8, 1, HEAP_ID_58);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_WHITE, 8, 1, HEAP_ID_58);
 
     return 1;
 }
@@ -271,7 +271,7 @@ static int ov95_0224AD98(UnkStruct_ov95_0224AC64 *param0, int *param1)
         break;
     case 1:
         if (++(param0->unk_08) > 13) {
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_BLACK, 8, 1, HEAP_ID_58);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 8, 1, HEAP_ID_58);
             (*param1)++;
         }
         break;

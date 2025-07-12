@@ -7,10 +7,6 @@
 #include "hardware_window.h"
 #include "system.h"
 
-#define FADE_TO_WHITE       0x7FFF
-#define FADE_TO_BLACK       0x0000
-#define FADE_TO_SAVED_COLOR 0xFFFF
-
 enum FadeMode {
     FADE_BOTH_SCREENS = 0,
     FADE_MAIN_THEN_SUB,

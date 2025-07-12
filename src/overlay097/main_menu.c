@@ -1123,8 +1123,8 @@ static int MainMenu_Init(ApplicationManager *appMan, int *unused)
     memset(appData, 0, sizeof(MainMenuAppData));
     appData->bgConfig = BgConfig_New(HEAP_ID_MAIN_MENU);
 
-    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
-    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
 
     appData->saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
     appData->mysteryGift = SaveData_GetMysteryGift(appData->saveData);

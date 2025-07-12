@@ -344,7 +344,7 @@ static BOOL ov106_02241D28(UnkStruct_ov106_02243118 *param0)
         break;
     case 2:
         ov106_02241DD4(param0);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_BLACK, 6, 1 * 3, HEAP_ID_98);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1 * 3, HEAP_ID_98);
         param0->unk_08++;
         break;
     case 3:
@@ -408,7 +408,7 @@ static BOOL ov106_02241E5C(UnkStruct_ov106_02243118 *param0)
         if (gSystem.pressedKeys & PAD_BUTTON_A) {
             if (ov104_0223B5A4(param0->unk_0D) == 0xfe) {
                 Sound_PlayEffect(SEQ_SE_DP_DECIDE);
-                StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_BLACK, 6, 1, HEAP_ID_98);
+                StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_98);
 
                 param0->unk_10 = 1;
                 param0->unk_08 = 6;
@@ -692,7 +692,7 @@ static BOOL ov106_02242344(UnkStruct_ov106_02243118 *param0)
 
         if (param0->unk_1B == 0) {
             ov106_022432D4(param0);
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_BLACK, 6, 1, HEAP_ID_98);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_98);
             param0->unk_08++;
         }
         break;

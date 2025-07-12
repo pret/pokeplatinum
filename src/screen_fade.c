@@ -202,12 +202,12 @@ void ResetScreenMasterBrightness(enum DSScreen screen)
 
 void SetScreenColorBrightness(enum DSScreen screen, u16 color)
 {
-    if (color == FADE_TO_SAVED_COLOR) {
+    if (color == COLOR_SAVED) {
         color = sScreenFadeManager.savedColor;
     }
 
     int brightness;
-    if (color == FADE_TO_WHITE) {
+    if (color == COLOR_WHITE) {
         brightness = BRIGHTNESS_WHITE;
     } else {
         brightness = BRIGHTNESS_BLACK;
@@ -218,12 +218,12 @@ void SetScreenColorBrightness(enum DSScreen screen, u16 color)
 
 void SetColorBrightness(u16 color)
 {
-    if (color == FADE_TO_SAVED_COLOR) {
+    if (color == COLOR_SAVED) {
         color = sScreenFadeManager.savedColor;
     }
 
     int brightness;
-    if (color == FADE_TO_WHITE) {
+    if (color == COLOR_WHITE) {
         brightness = BRIGHTNESS_WHITE;
     } else {
         brightness = BRIGHTNESS_BLACK;
@@ -236,7 +236,7 @@ void SetColorBrightness(u16 color)
 
 void SetupScreenFadeRegisters(enum DSScreen screen, u16 color)
 {
-    if (color == FADE_TO_SAVED_COLOR) {
+    if (color == COLOR_SAVED) {
         color = sScreenFadeManager.savedColor;
     }
 
@@ -476,7 +476,7 @@ static void DummyHBlankCallback(void *data)
 
 static u16 GetFadeColor(ScreenFadeManager *manager, u16 color)
 {
-    if (color == FADE_TO_SAVED_COLOR) {
+    if (color == COLOR_SAVED) {
         return manager->savedColor;
     }
 
@@ -509,7 +509,7 @@ static void Task_ResetScreenMasterBrightness(SysTask *task, void *data)
 static void RequestResetScreenMasterBrightness(ScreenFade *fade)
 {
     if (fade->direction == FADE_IN
-        && (fade->color == FADE_TO_WHITE || fade->color == FADE_TO_BLACK)
+        && (fade->color == COLOR_WHITE || fade->color == COLOR_BLACK)
         && fade->method == FADE_BY_WINDOW) {
         SysTask_ExecuteAfterVBlank(Task_ResetScreenMasterBrightness, fade, LOCAL_TASK_PRIORIITY);
     }
@@ -518,7 +518,7 @@ static void RequestResetScreenMasterBrightness(ScreenFade *fade)
 static void ResetWindowScreenFade(ScreenFade *fade)
 {
     if (fade->direction == FADE_OUT
-        && (fade->color == FADE_TO_WHITE || fade->color == FADE_TO_BLACK)
+        && (fade->color == COLOR_WHITE || fade->color == COLOR_BLACK)
         && fade->method == FADE_BY_WINDOW) {
         SetScreenColorBrightness(fade->screen, fade->color);
         ResetVisibleHardwareWindows(fade->screen);

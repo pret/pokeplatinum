@@ -96,7 +96,7 @@ BOOL ov95_02249FC8(void *param0, int *param1)
 static int ov95_02249FF8(UnkStruct_ov95_02249FF8 *param0, int *param1)
 {
     ov95_0224A10C(param0);
-    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_WHITE, 8, 1, HEAP_ID_58);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_WHITE, 8, 1, HEAP_ID_58);
 
     return 1;
 }
@@ -119,7 +119,7 @@ static int ov95_0224A020(UnkStruct_ov95_02249FF8 *param0, int *param1)
     case 1:
         if (param0->unk_20) {
             Sound_PlayEffect(SEQ_SE_DP_KOUKAN03);
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_WHITE, 16, 1, HEAP_ID_58);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 16, 1, HEAP_ID_58);
             (*param1)++;
         }
         break;

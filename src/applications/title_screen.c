@@ -394,7 +394,7 @@ static BOOL TitleScreen_Main(ApplicationManager *appMan, int *state)
 
         if (JOY_HELD_ONLY(PAD_BUTTON_B | PAD_KEY_UP | PAD_BUTTON_SELECT)) {
             appData->nextApp = NEXT_APP_CLEAR_SAVE_FILE;
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_BLACK, 6, 1, appData->heapID);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, appData->heapID);
             *state = TITLE_SCREEN_APP_STATE_CLEANUP;
             break;
         }
@@ -414,7 +414,7 @@ static BOOL TitleScreen_Main(ApplicationManager *appMan, int *state)
         TitleScreen_RenderMain(&appData->titleScreen, appData->bgConfig, appData->heapID);
 
         if ((++appData->exitFadeTimer) == TITLE_SCREEN_EXIT_FADE_DELAY_FRAMES) {
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_WHITE, 6, 1, appData->heapID);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 6, 1, appData->heapID);
         }
 
         if (Sound_IsPokemonCryPlaying() == FALSE && IsScreenFadeDone() == TRUE && appData->exitFadeTimer >= TITLE_SCREEN_EXIT_FADE_DELAY_FRAMES) {
@@ -422,7 +422,7 @@ static BOOL TitleScreen_Main(ApplicationManager *appMan, int *state)
 
             DisableAllLayers();
 
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_WHITE, 6, 1, appData->heapID);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_WHITE, 6, 1, appData->heapID);
             *state = TITLE_SCREEN_APP_STATE_CLEANUP;
         }
         break;
@@ -432,7 +432,7 @@ static BOOL TitleScreen_Main(ApplicationManager *appMan, int *state)
 
         if (Sound_IsFadeActive() == FALSE) {
             Sound_StopBGM(SEQ_TITLE01, 0);
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_WHITE, 6, 1, appData->heapID);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 6, 1, appData->heapID);
             *state = TITLE_SCREEN_APP_STATE_CLEANUP;
         }
         break;
@@ -1091,7 +1091,7 @@ static BOOL TitleScreen_ShowIntro(TitleScreen *titleScreen, BgConfig *bgConfig, 
 
         // Roughly a 9s delay. During this time the portal animation plays.
         titleScreen->delay = 267;
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_BLACK, 15, 3, heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 15, 3, heapID);
         titleScreen->state = INTRO_STATE_WAIT_FOR_FADE;
         break;
     case INTRO_STATE_WAIT_FOR_FADE:
@@ -1161,7 +1161,7 @@ static BOOL TitleScreen_ShowIntro(TitleScreen *titleScreen, BgConfig *bgConfig, 
     case INTRO_STATE_WAIT_AND_FADE_TO_WHITE_2:
         if (IsScreenFadeDone() == TRUE) {
             if (titleScreen->fadeCount) {
-                StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_WHITE, 5, 2, heapID);
+                StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 5, 2, heapID);
                 titleScreen->light1State = LIGHT1_STATE_BRIGHTEN;
                 titleScreen->fadeCount--;
                 titleScreen->state = INTRO_STATE_WAIT_AND_FADE_MAIN_FROM_WHITE;
@@ -1169,7 +1169,7 @@ static BOOL TitleScreen_ShowIntro(TitleScreen *titleScreen, BgConfig *bgConfig, 
                 titleScreen->delay = 10;
                 titleScreen->state = INTRO_STATE_WAIT_FOR_DELAY;
                 titleScreen->giratinaShown = TRUE;
-                SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+                SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
             }
         }
         break;
@@ -1178,7 +1178,7 @@ static BOOL TitleScreen_ShowIntro(TitleScreen *titleScreen, BgConfig *bgConfig, 
             titleScreen->introShown = FALSE;
             ToggleLogoBg2Layer(TRUE);
             titleScreen->graphics.giratinaAnimState = GIRATINA_ANIM_STATE_PLAY;
-            StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_WHITE, 16, 3, heapID);
+            StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_WHITE, 16, 3, heapID);
             titleScreen->state = INTRO_STATE_WAIT_AND_FADE_TO_WHITE_2;
         }
         break;
@@ -1191,7 +1191,7 @@ static BOOL TitleScreen_ShowIntro(TitleScreen *titleScreen, BgConfig *bgConfig, 
         break;
     case INTRO_STATE_FADE_MAIN_FROM_BLACK:
         // Slowly fade in the Giratina model
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_BLACK, 48, 1, heapID);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 48, 1, heapID);
         ToggleGiratinaBgLayer(TRUE);
         titleScreen->state = INTRO_STATE_MOVE_IN_TITLE_CAMERA;
         titleScreen->titleCamMoveInCounter = 0;
@@ -1206,7 +1206,7 @@ static BOOL TitleScreen_ShowIntro(TitleScreen *titleScreen, BgConfig *bgConfig, 
         if (titleScreen->titleCamMoveInCounter >= TITLE_CAM_MOVE_IN_FRAMES) {
             ToggleLogoLayer(TRUE);
             TitleScreen_LoadTopScreenBg(bgConfig, heapID);
-            StartScreenFade(FADE_SUB_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_WHITE, 16, 3, heapID);
+            StartScreenFade(FADE_SUB_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_WHITE, 16, 3, heapID);
             ToggleCopyrightLayer(TRUE);
             ToggleLogoBgLayer(TRUE);
 

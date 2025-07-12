@@ -225,7 +225,7 @@ BOOL OptionsMenu_Main(ApplicationManager *appMan, int *state)
             return FALSE;
         }
 
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_BLACK, 6, 1, menuData->heapID);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, menuData->heapID);
         break;
 
     case STATE_WAIT_FOR_FADE_IN:
@@ -286,7 +286,7 @@ BOOL OptionsMenu_Main(ApplicationManager *appMan, int *state)
             Text_RemovePrinter(menuData->textPrinter);
         }
 
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_BLACK, 6, 1, menuData->heapID);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, menuData->heapID);
         break;
 
     case STATE_WAIT_FOR_FADE_OUT:

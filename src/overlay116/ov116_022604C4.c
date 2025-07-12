@@ -1134,7 +1134,7 @@ static u32 ov116_022617E4(UnkStruct_ov116_0226139C *param0)
                 FinishScreenFade();
             }
 
-            SetColorBrightness(FADE_TO_BLACK);
+            SetColorBrightness(COLOR_BLACK);
             param0->unk_48.unk_2C.unk_00 = 1;
 
             return 1;
