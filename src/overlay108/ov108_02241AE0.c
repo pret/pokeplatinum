@@ -758,7 +758,7 @@ static void ov108_02242238(UnkStruct_ov108_02241DB0 *param0)
         }
     }
 
-    DestroyNetworkIcon();
+    NetworkIcon_Destroy();
     PaletteData_FreeBuffer(param0->unk_D4, 2);
     PaletteData_FreeBuffer(param0->unk_D4, 0);
     PaletteData_Free(param0->unk_D4);

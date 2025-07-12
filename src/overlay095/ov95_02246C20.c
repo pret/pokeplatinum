@@ -206,7 +206,7 @@ int TradeSequence_Exit(ApplicationManager *appMan, int *param1)
     v1 = ApplicationManager_Data(appMan);
 
     SysTask_Done(v1->unk_1A8);
-    DestroyNetworkIcon();
+    NetworkIcon_Destroy();
     StringTemplate_Free(v1->unk_0C);
     MessageLoader_Free(v1->unk_10);
     Strbuf_Free(v1->unk_14);

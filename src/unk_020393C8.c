@@ -34,8 +34,11 @@ static void sub_02039428(SysTask *param0, void *param1);
 static void sub_020394D0(int vramType, BOOL unusedIsWifi, u32 offset, u32 heapID);
 static void sub_02039530(int vramType, BOOL isWifi, u32 heapID);
 static void sub_02039614(NetworkIcon *param0);
+static void SetNetworkIconStrength(NetworkIcon *icon, int networkStrength);
+static void DestroyNetworkIcon(NetworkIcon *icon);
+static NetworkIcon *CreateNetworkIcon(u32 unused0, u32 heapID, int x, int y, BOOL isWifi, const UnkStruct_020E5EB4 *unused5[], int vramType);
 
-NetworkIcon *NetworkIcon_Init(u32 unused0, u32 heapID, int x, int y, BOOL isWifi, const UnkStruct_020E5EB4 *unused5[], int vramType)
+NetworkIcon *CreateNetworkIcon(u32 unused0, u32 heapID, int x, int y, BOOL isWifi, const UnkStruct_020E5EB4 *unused5[], int vramType)
 {
     NetworkIcon *v0;
 
@@ -114,7 +117,7 @@ static inline void inline_02039440(GXOamAttr *param0)
     G2_SetOBJAttr(param0, 0, 0, 0, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NODISPLAY, GX_OAM_SHAPE_16x16, GX_OAM_COLORMODE_16, 0, 0, 0);
 }
 
-void NetworkIcon_SetStrength(NetworkIcon *param0, int networkStrength)
+void SetNetworkIconStrength(NetworkIcon *param0, int networkStrength)
 {
     if (networkStrength < 4) {
         param0->strength = networkStrength;
@@ -122,7 +125,7 @@ void NetworkIcon_SetStrength(NetworkIcon *param0, int networkStrength)
     }
 }
 
-void sub_02039440(NetworkIcon *param0)
+void DestroyNetworkIcon(NetworkIcon *param0)
 {
     SysTask_Done(param0->unk_18);
     inline_02039440((GXOamAttr *)(HW_OAM));
@@ -315,24 +318,24 @@ void sub_02039750(int param0, int param1, BOOL isWifi, int param3)
     }
 
     if (sGlobalNetworkIcon) {
-        DestroyNetworkIcon();
+        NetworkIcon_Destroy();
     }
 
-    sGlobalNetworkIcon = NetworkIcon_Init(0, HEAP_ID_91, param0, param1, isWifi, Unk_02100A38, param3);
+    sGlobalNetworkIcon = CreateNetworkIcon(0, HEAP_ID_91, param0, param1, isWifi, Unk_02100A38, param3);
 }
 
-void DestroyNetworkIcon(void)
+void NetworkIcon_Destroy(void)
 {
     if (sGlobalNetworkIcon) {
-        sub_02039440(sGlobalNetworkIcon);
+        DestroyNetworkIcon(sGlobalNetworkIcon);
         sGlobalNetworkIcon = NULL;
     }
 }
 
-void SetNetworkIconStrength(int param0)
+void NetworkIcon_SetStrength(int networkStrength)
 {
     if (sGlobalNetworkIcon) {
-        NetworkIcon_SetStrength(sGlobalNetworkIcon, param0);
+        SetNetworkIconStrength(sGlobalNetworkIcon, networkStrength);
     }
 }
 
@@ -343,7 +346,7 @@ void sub_020397C8(BOOL param0, u32 heapID)
     }
 }
 
-void DrawWifiConnectionIcon(void)
+void NetworkIcon_Init(void)
 {
     if (CommSys_IsInitialized()) {
         if ((CommSys_ConnectedCount() > 1) || CommMan_IsConnectedToWifi()) {

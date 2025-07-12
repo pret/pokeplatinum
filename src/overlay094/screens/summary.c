@@ -354,7 +354,7 @@ static int ov94_0223D5B8(GTSApplicationState *param0)
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
         param0->currentScreenInstruction = 2;
-        GTSApplication_SetNextScreenWithArgument(param0, 1, 0);
+        GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_MAIN_MENU, 0);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
@@ -388,7 +388,7 @@ static int ov94_0223D664(GTSApplicationState *param0)
         } else {
             param0->currentScreenInstruction = 2;
             param0->fadeBothScreens = 1;
-            GTSApplication_SetNextScreenWithArgument(param0, 7, 8);
+            GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_NETWORK_HANDLER, 8);
         }
 
         ov94_0223DBBC(param0);
@@ -457,7 +457,7 @@ static int ov94_0223D754(GTSApplicationState *param0)
 
         param0->currentScreenInstruction = 2;
 
-        GTSApplication_SetNextScreenWithArgument(param0, 1, 0);
+        GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_MAIN_MENU, 0);
         ov94_0223DBBC(param0);
         break;
     }

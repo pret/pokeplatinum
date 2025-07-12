@@ -296,26 +296,26 @@ int GTSApplication_Deposit_Init(GTSApplicationState *appState, int unused1)
 
     appState->currentScreenInstruction = 0;
 
-    return GTS_APPLICATION_LOOP_STATE_WAIT_FADE;
+    return GTS_LOOP_STATE_WAIT_FADE;
 }
 
 int GTSApplication_Deposit_Main(GTSApplicationState *appState, int unused1)
 {
-    SetNetworkIconStrength(GTSApplication_GetNetworkStrength());
+    NetworkIcon_SetStrength(GTSApplication_GetNetworkStrength());
 
     return (*Unk_ov94_0224695C[appState->currentScreenInstruction])(appState);
 }
 
 int GTSApplication_Deposit_Exit(GTSApplicationState *appState, int unused1)
 {
-    DestroyNetworkIcon();
+    NetworkIcon_Destroy();
 
     ov94_02241920(appState);
     ov94_02241880(appState);
     ov94_022416E0(appState->bgConfig);
     GTSApplication_MoveToNextScreen(appState);
 
-    return GTS_APPLICATION_LOOP_STATE_INIT;
+    return GTS_LOOP_STATE_INIT;
 }
 
 static void ov94_0224158C(GTSApplicationState *appState, int messageId, int textSpeed, int unused3, u16 unused4)
@@ -517,13 +517,13 @@ static int ov94_0224195C(GTSApplicationState *appState)
         GTSApplication_SetCurrentAndNextScreenInstruction(appState, 16, 1);
     }
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int ov94_02241990(GTSApplicationState *appState)
 {
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
-        GTSApplication_SetNextScreenWithArgument(appState, 5, 5);
+        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SELECT_POKEMON, 5);
         appState->currentScreenInstruction = 2;
     }
 
@@ -535,7 +535,7 @@ static int ov94_02241990(GTSApplicationState *appState)
 
     appState->currentScreenInstruction = 3;
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int ov94_02241A1C(GTSApplicationState *appState)
@@ -544,7 +544,7 @@ static int ov94_02241A1C(GTSApplicationState *appState)
     appState->unk_108 = 0xffff;
     appState->currentScreenInstruction = 4;
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int ov94_02241A58(GTSApplicationState *appState)
@@ -571,13 +571,13 @@ static int ov94_02241A58(GTSApplicationState *appState)
         Window_EraseMessageBox(&appState->bottomInstructionWindow, 0);
         Window_Remove(&appState->unk_F9C[0]);
         Window_Remove(&appState->unk_F9C[1]);
-        GTSApplication_SetNextScreenWithArgument(appState, 5, 5);
+        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SELECT_POKEMON, 5);
         appState->currentScreenInstruction = 2;
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         break;
     }
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int ov94_02241B2C(GTSApplicationState *appState)
@@ -586,7 +586,7 @@ static int ov94_02241B2C(GTSApplicationState *appState)
     appState->unk_108 = 0xffff;
     appState->currentScreenInstruction = 6;
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 int ov94_02241B80(GTSPokemonRequirements *requirements, int genderRatio)
@@ -648,7 +648,7 @@ static int ov94_02241BAC(GTSApplicationState *appState)
         break;
     }
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int ov94_02241D08(GTSApplicationState *appState)
@@ -659,7 +659,7 @@ static int ov94_02241D08(GTSApplicationState *appState)
     Window_Add(appState->bgConfig, &appState->unk_F9C[0], 0, 21, 10, 10, 8, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 11 * 2 * 6));
     Window_FillTilemap(&appState->unk_F9C[0], 0x0);
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int ov94_02241D64(GTSApplicationState *appState)
@@ -668,7 +668,7 @@ static int ov94_02241D64(GTSApplicationState *appState)
     appState->unk_108 = 0xffff;
     appState->currentScreenInstruction = 9;
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int ov94_02241DA0(GTSApplicationState *appState)
@@ -700,7 +700,7 @@ static int ov94_02241DA0(GTSApplicationState *appState)
         break;
     }
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int ov94_02241E8C(GTSApplicationState *appState)
@@ -711,7 +711,7 @@ static int ov94_02241E8C(GTSApplicationState *appState)
     Window_Add(appState->bgConfig, &appState->unk_F9C[0], 0, 15, 5, 16, 13, 13, (((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 11 * 2 * 6));
     Window_FillTilemap(&appState->unk_F9C[0], 0x0);
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int ov94_02241EE8(GTSApplicationState *appState)
@@ -720,7 +720,7 @@ static int ov94_02241EE8(GTSApplicationState *appState)
     appState->unk_108 = 0xffff;
     appState->currentScreenInstruction = 12;
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int ov94_02241F28(GTSApplicationState *appState)
@@ -757,7 +757,7 @@ static int ov94_02241F28(GTSApplicationState *appState)
         break;
     }
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int ov94_02242040(GTSApplicationState *appState)
@@ -765,7 +765,7 @@ static int ov94_02242040(GTSApplicationState *appState)
     ov94_0224158C(appState, GTS_Text_ConfirmCriteria, TEXT_SPEED_FAST, 0, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(appState, 16, 14);
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int ov94_02242068(GTSApplicationState *appState)
@@ -773,7 +773,7 @@ static int ov94_02242068(GTSApplicationState *appState)
     appState->yesNoMenu = GTSApplication_CreateYesNoMenu(appState->bgConfig, 15, ((((((1 + (18 + 12)) + 9) + 28 * 2) + 27 * 2) + 11 * 2 * 6) + 16 * 13));
     appState->currentScreenInstruction = 15;
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int ov94_0224208C(GTSApplicationState *appState)
@@ -782,22 +782,22 @@ static int ov94_0224208C(GTSApplicationState *appState)
 
     if (input != 0xffffffff) {
         if (input == 0xfffffffe) {
-            GTSApplication_SetNextScreenWithArgument(appState, 5, 5);
+            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SELECT_POKEMON, 5);
             appState->currentScreenInstruction = 2;
         } else {
-            GTSApplication_SetNextScreenWithArgument(appState, 7, 7);
+            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_NETWORK_HANDLER, 7);
             appState->currentScreenInstruction = 2;
             appState->fadeBothScreens = TRUE;
             ov94_02242668(&appState->receivedListing, appState);
         }
     }
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int ov94_022420E4(GTSApplicationState *appState)
 {
-    if (appState->nextScreen == 0) {
+    if (appState->nextScreen == GTS_SCREEN_WFC_INIT) {
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
         appState->fadeBothScreens = TRUE;
     } else {
@@ -806,16 +806,16 @@ static int ov94_022420E4(GTSApplicationState *appState)
 
     appState->currentScreenInstruction = 0;
 
-    return GTS_APPLICATION_LOOP_STATE_FINISH;
+    return GTS_LOOP_STATE_FINISH;
 }
 
 static int ov94_02242138(GTSApplicationState *appState)
 {
-    if (Text_IsPrinterActive(appState->textPrinter) == 0) {
+    if (Text_IsPrinterActive(appState->textPrinter) == FALSE) {
         appState->currentScreenInstruction = appState->nextScreenInstruction;
     }
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static TextColor sGenderTextColors[] = {

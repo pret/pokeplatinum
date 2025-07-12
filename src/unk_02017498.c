@@ -124,7 +124,7 @@ int sub_02017524(ApplicationManager *appMan, int *param1)
 
     if ((v0->unk_88 == 1) && (v0->unk_10 == 1) && (v0->unk_8C == 1)) {
         DWC_UpdateConnection();
-        SetNetworkIconStrength(WM_LINK_LEVEL_3 - DWC_GetLinkLevel());
+        NetworkIcon_SetStrength(WM_LINK_LEVEL_3 - DWC_GetLinkLevel());
     }
 
     return 0;

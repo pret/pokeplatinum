@@ -138,21 +138,21 @@ int GTSApplication_SelectPokemon_Init(GTSApplicationState *appState, int unused1
 
     appState->currentScreenInstruction = 0;
 
-    return GTS_APPLICATION_LOOP_STATE_WAIT_FADE;
+    return GTS_LOOP_STATE_WAIT_FADE;
 }
 
 int GTSApplication_SelectPokemon_Main(GTSApplicationState *appState, int param1)
 {
     UNUSED(param1);
 
-    SetNetworkIconStrength(GTSApplication_GetNetworkStrength());
+    NetworkIcon_SetStrength(GTSApplication_GetNetworkStrength());
 
     return (*sGTSPokemonSelectScreenStates[appState->currentScreenInstruction])(appState);
 }
 
 int GTSApplication_SelectPokemon_Exit(GTSApplicationState *appState, int param1)
 {
-    DestroyNetworkIcon();
+    NetworkIcon_Destroy();
 
     ov94_0223FFC8(appState);
     ov94_02240268(appState);
@@ -547,12 +547,12 @@ static int ov94_022402BC(GTSApplicationState *param0)
 
     if (param0->screenArgument == 5) { // from main menu
         if (gSystem.pressedKeys & PAD_BUTTON_B) {
-            GTSApplication_SetNextScreenWithArgument(param0, 1, 0);
+            GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_MAIN_MENU, 0);
             param0->currentScreenInstruction = 2;
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
             if (param0->unk_112 == 30) {
-                GTSApplication_SetNextScreenWithArgument(param0, 1, 0);
+                GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_MAIN_MENU, 0);
                 param0->currentScreenInstruction = 2;
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
             } else {
@@ -580,12 +580,12 @@ static int ov94_022402BC(GTSApplicationState *param0)
         }
     } else if (param0->screenArgument == 6) {
         if (gSystem.pressedKeys & PAD_BUTTON_B) {
-            GTSApplication_SetNextScreenWithArgument(param0, 3, 0);
+            GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_LISTING_SUMMARY, 0);
             param0->currentScreenInstruction = 2;
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
             if (param0->unk_112 == 30) {
-                GTSApplication_SetNextScreenWithArgument(param0, 3, 0);
+                GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_LISTING_SUMMARY, 0);
                 param0->currentScreenInstruction = 2;
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
             } else {
@@ -715,7 +715,7 @@ static int ov94_02240688(GTSApplicationState *param0)
         StringList_Free(param0->unk_10CC);
         Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
         param0->currentScreenInstruction = 2;
-        GTSApplication_SetNextScreenWithArgument(param0, 8, 5);
+        GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_POKEMON_INFO, 5);
         break;
     case 2:
         Menu_Free(param0->unk_10D4, NULL);
@@ -751,7 +751,7 @@ static int ov94_02240688(GTSApplicationState *param0)
                 param0->unk_114 = ov94_022411DC(param0->playerData->party, param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112);
                 param0->currentScreenInstruction = 2;
 
-                GTSApplication_SetNextScreenWithArgument(param0, 6, 0);
+                GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_DEPOSIT, 0);
             }
         }
         break;
@@ -807,7 +807,7 @@ static int ov94_022408E8(GTSApplicationState *param0)
         StringList_Free(param0->unk_10CC);
         Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
         param0->currentScreenInstruction = 2;
-        GTSApplication_SetNextScreenWithArgument(param0, 8, 6);
+        GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_POKEMON_INFO, 6);
         break;
     case 2:
         Menu_Free(param0->unk_10D4, NULL);
@@ -859,7 +859,7 @@ static int ov94_022408E8(GTSApplicationState *param0)
 
 static int ov94_02240A6C(GTSApplicationState *param0)
 {
-    if ((param0->nextScreen == 0) || (param0->nextScreen == 8)) {
+    if ((param0->nextScreen == GTS_SCREEN_WFC_INIT) || (param0->nextScreen == GTS_SCREEN_POKEMON_INFO)) {
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
         param0->fadeBothScreens = 1;
     } else {
@@ -888,7 +888,7 @@ static int ov94_02240AE8(GTSApplicationState *param0)
             param0->currentScreenInstruction = 0;
         } else {
             param0->currentScreenInstruction = 2;
-            GTSApplication_SetNextScreenWithArgument(param0, 0, 0);
+            GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_WFC_INIT, 0);
         }
     }
 
@@ -943,7 +943,7 @@ static int ov94_02240BB0(GTSApplicationState *param0)
     param0->currentScreenInstruction = 2;
     param0->fadeBothScreens = 1;
 
-    GTSApplication_SetNextScreenWithArgument(param0, 7, 9);
+    GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_NETWORK_HANDLER, 9);
     ov94_022413BC(&param0->receivedListing, param0);
 
     param0->unk_118 = 0;
@@ -978,7 +978,7 @@ static int ov94_02240CA8(GTSApplicationState *param0)
         } else {
             param0->unk_114 = ov94_022411DC(param0->playerData->party, param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112);
             param0->currentScreenInstruction = 2;
-            GTSApplication_SetNextScreenWithArgument(param0, 6, 0);
+            GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_DEPOSIT, 0);
         }
     }
 

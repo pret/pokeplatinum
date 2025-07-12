@@ -191,7 +191,7 @@ static void sub_02036734(void)
         Heap_Destroy(HEAP_ID_49);
     }
 
-    DestroyNetworkIcon();
+    NetworkIcon_Destroy();
     WirelessDriver_Shutdown();
     Heap_Free(Unk_021C07D4);
     Heap_Destroy(HEAP_ID_COMMUNICATION);
@@ -439,7 +439,7 @@ void sub_02036AC4(void)
         CommMan_SetErrorHandling(0, 0);
     }
 
-    DestroyNetworkIcon();
+    NetworkIcon_Destroy();
 
     Unk_021C07D4->unk_4A = 9;
     Unk_021C07D4->unk_53 = 0;
@@ -544,9 +544,9 @@ void sub_02036C50(void)
     }
 
     if (CommMan_IsConnectedToWifi()) {
-        SetNetworkIconStrength(WM_LINK_LEVEL_3 - DWC_GetLinkLevel());
+        NetworkIcon_SetStrength(WM_LINK_LEVEL_3 - DWC_GetLinkLevel());
     } else if (CommServerClient_IsInitialized()) {
-        SetNetworkIconStrength(WM_LINK_LEVEL_3 - WM_GetLinkLevel());
+        NetworkIcon_SetStrength(WM_LINK_LEVEL_3 - WM_GetLinkLevel());
     }
 }
 

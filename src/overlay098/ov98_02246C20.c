@@ -121,7 +121,7 @@ int ov98_02246C98(ApplicationManager *appMan, int *param1)
     if (v0->unk_80 == 1) {
         DWC_UpdateConnection();
         GTSNetworking_ProcessCurrentRequest();
-        SetNetworkIconStrength(WM_LINK_LEVEL_3 - DWC_GetLinkLevel());
+        NetworkIcon_SetStrength(WM_LINK_LEVEL_3 - DWC_GetLinkLevel());
     }
 
     switch (*param1) {

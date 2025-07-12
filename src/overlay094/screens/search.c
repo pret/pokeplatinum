@@ -458,7 +458,7 @@ static int ov94_0223EA84(GTSApplicationState *param0)
             if (v1 >= 0) {
                 Sprite_SetAnim(param0->avatarSprites[v1 + 1], 16 + v1 * 4);
                 param0->currentScreenInstruction = 2;
-                GTSApplication_SetNextScreenWithArgument(param0, 3, 0);
+                GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_LISTING_SUMMARY, 0);
                 param0->selectedSearchResult = v1;
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
             }
@@ -656,7 +656,7 @@ static int ov94_0223EF58(GTSApplicationState *param0)
 {
     ov94_0223F9A4(param0, 152, TEXT_SPEED_NORMAL, 0, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(param0, 24, 2);
-    GTSApplication_SetNextScreenWithArgument(param0, 0, 0);
+    GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_WFC_INIT, 0);
     Sound_PlayEffect(SEQ_SE_DP_BOX03);
 
     return 3;
@@ -1021,7 +1021,7 @@ static int ov94_0223F8D8(GTSApplicationState *param0)
             param0->currentScreenInstruction = 0;
         } else {
             param0->currentScreenInstruction = 2;
-            GTSApplication_SetNextScreenWithArgument(param0, 1, 0);
+            GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_MAIN_MENU, 0);
             ov94_022442E4(param0);
             param0->unk_118 = 0;
         }

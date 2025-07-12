@@ -177,7 +177,7 @@ static void ov97_02238E88(void)
 
 static void ov97_02238E94(void)
 {
-    DestroyNetworkIcon();
+    NetworkIcon_Destroy();
     sub_02038514();
     Overlay_UnloadHttpOverlay();
     sub_02099560();

@@ -597,7 +597,7 @@ static enum MysteryGiftAppState ReturnToReceptionMethodChoiceAfterRefusingWirele
         ToggleWaitDial(appData, FALSE);
     }
 
-    DestroyNetworkIcon();
+    NetworkIcon_Destroy();
 
     return ShowMysteryGiftReceptionMethodsMenu(appMan);
 }
@@ -689,7 +689,7 @@ static enum MysteryGiftAppState ReturnToReceptionMethodChoiceAfterRefusingGift(A
     EraseStdFrameIfInUse(&appData->menuWindows[2], FALSE);
     EraseStdFrameIfInUse(&appData->wonderCardTitleWindow, FALSE);
 
-    DestroyNetworkIcon();
+    NetworkIcon_Destroy();
 
     if (appData->receptionMethod == RECEIVE_FROM_FRIEND) {
         ov97_0222D2DC();
@@ -1149,7 +1149,7 @@ static void FreeMultiplayerCommResources(MysteryGiftAppData *appData)
         break;
     case RECEIVE_FROM_FRIEND:
         ov97_0222D2DC();
-        DestroyNetworkIcon();
+        NetworkIcon_Destroy();
         break;
     case RECEIVE_FROM_GBA_CARTRIDGE:
         break;
@@ -2163,7 +2163,7 @@ static BOOL MysteryGiftApp_Main(ApplicationManager *appMan, enum MysteryGiftAppS
         if (JOY_NEW(PAD_BUTTON_B) || --appData->wirelessCommsTimeout == 0) {
             ToggleWaitDial(appData, FALSE);
             ov97_0222D2DC();
-            DestroyNetworkIcon();
+            NetworkIcon_Destroy();
             *state = MG_APP_STATE_NO_GIFT_FOUND;
         }
         break;
@@ -2185,7 +2185,7 @@ static BOOL MysteryGiftApp_Main(ApplicationManager *appMan, enum MysteryGiftAppS
             }
         } else if (netID != 0 && CommSys_IsPlayerConnected(netID) == FALSE) {
             ov97_0222D2DC();
-            DestroyNetworkIcon();
+            NetworkIcon_Destroy();
             SetDownloadArrowAnim(appData, HIDE_DOWNLOADING_ARROW);
             ToggleWaitDial(appData, FALSE);
             *state = MG_APP_STATE_FRIEND_LEFT_BEFORE_SENDING;
@@ -2194,7 +2194,7 @@ static BOOL MysteryGiftApp_Main(ApplicationManager *appMan, enum MysteryGiftAppS
 
         if (JOY_NEW(PAD_BUTTON_B) || --appData->wirelessCommsTimeout == 0) {
             ov97_0222D2DC();
-            DestroyNetworkIcon();
+            NetworkIcon_Destroy();
             SetDownloadArrowAnim(appData, HIDE_DOWNLOADING_ARROW);
             ToggleWaitDial(appData, FALSE);
             *state = MG_APP_STATE_NO_GIFT_FOUND;
@@ -2212,7 +2212,7 @@ static BOOL MysteryGiftApp_Main(ApplicationManager *appMan, enum MysteryGiftAppS
             || (netID != 0 && CommSys_IsPlayerConnected(netID) == FALSE)) {
             ToggleWaitDial(appData, FALSE);
             ov97_0222D2DC();
-            DestroyNetworkIcon();
+            NetworkIcon_Destroy();
             *state = MG_APP_STATE_NO_GIFT_FOUND;
         }
         break;
@@ -2230,7 +2230,7 @@ static BOOL MysteryGiftApp_Main(ApplicationManager *appMan, enum MysteryGiftAppS
             appData->cancelSave = TRUE;
             MainMenuUtil_CancelSave();
             ToggleWaitDial(appData, FALSE);
-            DestroyNetworkIcon();
+            NetworkIcon_Destroy();
             SetDownloadArrowAnim(appData, HIDE_DOWNLOADING_ARROW);
             *state = MG_APP_STATE_PERSON_SHARING_DISCONNECTED;
             break;
@@ -2268,7 +2268,7 @@ static BOOL MysteryGiftApp_Main(ApplicationManager *appMan, enum MysteryGiftAppS
         if (--appData->delay == 0) {
             ToggleWaitDial(appData, FALSE);
             ov97_0222D2DC();
-            DestroyNetworkIcon();
+            NetworkIcon_Destroy();
             Sound_PlayEffect(SEQ_SE_DP_UG_020);
             SetDownloadArrowAnim(appData, HIDE_DOWNLOADING_ARROW);
             *state = ShowMessageBoxIntoStateTransition(appMan, &appData->messageBox, MysteryGiftMenu_Text_GiftReceivedPickUpInPokeMart, MG_APP_STATE_EXIT_AFTER_RECEIVING_GIFT);
@@ -2529,7 +2529,7 @@ static void ov97_022302D4(void)
 {
     WirelessDriver_Shutdown();
     Heap_Free(Unk_ov97_0223F1AC);
-    DestroyNetworkIcon();
+    NetworkIcon_Destroy();
 
     Unk_ov97_0223F1AC = NULL;
 }
@@ -2552,7 +2552,7 @@ static void UpdateLocalWirelessDistributionState(MysteryGiftAppData *appData)
         || sWirelessDistribState == WIRELESS_DISTRIBUTION_STATE_40
         || sWirelessDistribState == WIRELESS_DISTRIBUTION_STATE_41
         || sWirelessDistribState == WIRELESS_DISTRIBUTION_STATE_43) {
-        SetNetworkIconStrength(WM_LINK_LEVEL_3 - WM_GetLinkLevel());
+        NetworkIcon_SetStrength(WM_LINK_LEVEL_3 - WM_GetLinkLevel());
     }
 
     switch (sWirelessDistribState) {

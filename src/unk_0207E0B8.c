@@ -310,7 +310,7 @@ static int sub_0207E0B8(ApplicationManager *appMan, int *param1)
     }
 
     SetVBlankCallback(sub_0207E898, v0);
-    DrawWifiConnectionIcon();
+    NetworkIcon_Init();
     NARC_dtor(v1);
 
     return 1;

@@ -865,7 +865,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
     int *v3 = &param0->unk_15C;
 
     if (param0->unk_158 == 1) {
-        SetNetworkIconStrength(WM_LINK_LEVEL_3 - ov97_02233230());
+        NetworkIcon_SetStrength(WM_LINK_LEVEL_3 - ov97_02233230());
 
         ov97_022330DC();
         ov97_0223346C(1);
@@ -1063,7 +1063,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
         if (ov97_022333FC()) {
             if (param0->unk_148 == 1) {
                 WirelessDriver_Shutdown();
-                DestroyNetworkIcon();
+                NetworkIcon_Destroy();
                 param0->unk_148 = 0;
             }
 
@@ -1090,7 +1090,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
         if (ov97_022333FC()) {
             if (param0->unk_148 == 1) {
                 WirelessDriver_Shutdown();
-                DestroyNetworkIcon();
+                NetworkIcon_Destroy();
                 param0->unk_148 = 0;
             }
 
@@ -1103,7 +1103,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
         if (ov97_022333FC()) {
             if (param0->unk_148 == 1) {
                 WirelessDriver_Shutdown();
-                DestroyNetworkIcon();
+                NetworkIcon_Destroy();
                 param0->unk_148 = 0;
 
                 if (param0->unk_34D8) {

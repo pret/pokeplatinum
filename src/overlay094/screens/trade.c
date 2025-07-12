@@ -79,12 +79,12 @@ int GTSApplication_Trade_Init(GTSApplicationState *appState, int unused1)
     appState->appMan = ApplicationManager_New(&sTradeSequenceConfig, &appState->tradeAnimationConfig, HEAP_ID_62);
     appState->hasTradedPokemon = TRUE;
 
-    return GTS_APPLICATION_LOOP_STATE_WAIT_FADE;
+    return GTS_LOOP_STATE_WAIT_FADE;
 }
 
 int GTSApplication_Trade_Main(GTSApplicationState *appState, int unused1)
 {
-    int loopState = GTS_APPLICATION_LOOP_STATE_MAIN;
+    int loopState = GTS_LOOP_STATE_MAIN;
 
     switch (appState->currentScreenInstruction) {
     case 0:
@@ -102,8 +102,8 @@ int GTSApplication_Trade_Main(GTSApplicationState *appState, int unused1)
                     appState->evolutionData = Evolution_Begin(NULL, receivingPokemon, evolvedSpecies, appState->playerData->options, appState->playerData->showContestData, appState->playerData->pokedex, appState->playerData->bag, appState->playerData->records, SaveData_GetPoketch(appState->playerData->saveData), evolutionType, 0x4, HEAP_ID_62);
                     appState->currentScreenInstruction = 1;
                 } else {
-                    GTSApplication_SetNextScreenWithArgument(appState, 1, 0);
-                    loopState = GTS_APPLICATION_LOOP_STATE_FINISH;
+                    GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, 0);
+                    loopState = GTS_LOOP_STATE_FINISH;
                 }
             } else if ((appState->screenArgument == 8) || (appState->screenArgument == 10)) { // receiving flow
                 Pokemon *tradedPokemon = GTSApplication_Trade_GetTradedPokemon(appState, appState->screenArgument);
@@ -121,19 +121,19 @@ int GTSApplication_Trade_Main(GTSApplicationState *appState, int unused1)
                         appState->evolutionData = Evolution_Begin(NULL, tradedPokemon, evolvedSpecies, appState->playerData->options, appState->playerData->showContestData, appState->playerData->pokedex, appState->playerData->bag, appState->playerData->records, SaveData_GetPoketch(appState->playerData->saveData), evolutionType, 0x4, HEAP_ID_62);
                         appState->currentScreenInstruction = 1;
                     } else {
-                        GTSApplication_SetNextScreenWithArgument(appState, 1, 0);
-                        loopState = GTS_APPLICATION_LOOP_STATE_FINISH;
+                        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, 0);
+                        loopState = GTS_LOOP_STATE_FINISH;
                     }
                 } else {
                     // receiving our stored pokemon back
-                    GTSApplication_SetNextScreenWithArgument(appState, 1, 0);
-                    loopState = GTS_APPLICATION_LOOP_STATE_FINISH;
+                    GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, 0);
+                    loopState = GTS_LOOP_STATE_FINISH;
                 }
 
                 Heap_Free(storedPokemon);
             } else {
-                GTSApplication_SetNextScreenWithArgument(appState, 1, 0);
-                loopState = GTS_APPLICATION_LOOP_STATE_FINISH;
+                GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, 0);
+                loopState = GTS_LOOP_STATE_FINISH;
             }
         }
         break;
@@ -142,8 +142,8 @@ int GTSApplication_Trade_Main(GTSApplicationState *appState, int unused1)
             sub_0207B0E0(appState->evolutionData);
             GTSApplication_Trade_StoreTradedPokemon(appState);
             GX_SetVisibleWnd(GX_WNDMASK_NONE);
-            GTSApplication_SetNextScreenWithArgument(appState, 7, 12);
-            loopState = GTS_APPLICATION_LOOP_STATE_FINISH;
+            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_NETWORK_HANDLER, 12);
+            loopState = GTS_LOOP_STATE_FINISH;
         }
         break;
     }
@@ -157,7 +157,7 @@ int GTSApplication_Trade_Exit(GTSApplicationState *appState, int unused1)
     Heap_Free(appState->receivingPokemonTrainer);
     GTSApplication_MoveToNextScreen(appState);
 
-    return GTS_APPLICATION_LOOP_STATE_INIT;
+    return GTS_LOOP_STATE_INIT;
 }
 
 static TrainerInfo *GTSPokemonListing_GetTrainerInfo(GTSPokemonListing *listing)

@@ -169,7 +169,7 @@ void ov62_0222F514(UnkStruct_0208C06C *param0)
     SysTask_Done(param0->unk_41E8);
     SpriteSystem_FreeResourcesAndManager(param0->unk_14.unk_04, param0->unk_14.unk_08);
     SpriteSystem_Free(param0->unk_14.unk_04);
-    DestroyNetworkIcon();
+    NetworkIcon_Destroy();
 
     {
         u32 v1;

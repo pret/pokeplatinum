@@ -246,7 +246,7 @@ void ov104_0223C4CC(UnkStruct_ov104_0223C4CC *param0)
     RenderControlFlags_SetAutoScrollFlags(0);
     RenderControlFlags_SetSpeedUpOnTouch(0);
 
-    DestroyNetworkIcon();
+    NetworkIcon_Destroy();
 
     MI_CpuFill16((void *)HW_BG_PLTT, 0x7fff, 0x200);
     MI_CpuFill16((void *)HW_OBJ_PLTT, 0x7fff, 0x200);

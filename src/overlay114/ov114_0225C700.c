@@ -3292,7 +3292,7 @@ static BOOL ov114_0225F27C(UnkStruct_ov114_0225F270 *param0, UnkStruct_ov114_022
         break;
     case 11:
         if (IsScreenFadeDone()) {
-            DestroyNetworkIcon();
+            NetworkIcon_Destroy();
 
             if (param0->unk_01) {
                 ov4_021D1F18();

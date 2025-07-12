@@ -427,7 +427,7 @@ int ov98_02247440(ApplicationManager *appMan, int *param1)
     RenderControlFlags_SetCanABSpeedUpPrint(0);
     RenderControlFlags_SetAutoScrollFlags(0);
     RenderControlFlags_SetSpeedUpOnTouch(0);
-    DestroyNetworkIcon();
+    NetworkIcon_Destroy();
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_109);
 
@@ -1518,7 +1518,7 @@ static int ov98_0224897C(UnkStruct_ov98_02247704 *param0)
 
     DWC_CleanupInet();
 
-    DestroyNetworkIcon();
+    NetworkIcon_Destroy();
     SleepUnlock(4);
 
     if (param0->unk_00->unk_11C == 1) {
@@ -1586,7 +1586,7 @@ static int ov98_02248A68(UnkStruct_ov98_02247704 *param0)
             DWC_ClearError();
             DWC_CleanupInet();
 
-            DestroyNetworkIcon();
+            NetworkIcon_Destroy();
             sub_0203859C();
             SleepUnlock(4);
 
@@ -1662,7 +1662,7 @@ static int ov98_02248B24(UnkStruct_ov98_02247704 *param0)
             DWC_ClearError();
             DWC_CleanupInet();
 
-            DestroyNetworkIcon();
+            NetworkIcon_Destroy();
             sub_0203859C();
             SleepUnlock(4);
 
@@ -2118,7 +2118,7 @@ static int ov98_02249320(UnkStruct_ov98_02247704 *param0)
 
         DWC_CleanupInet();
 
-        DestroyNetworkIcon();
+        NetworkIcon_Destroy();
         sub_0203859C();
         SleepUnlock(4);
 
@@ -2179,7 +2179,7 @@ static int ov98_02249464(UnkStruct_ov98_02247704 *param0)
         sub_0203859C();
     }
 
-    DestroyNetworkIcon();
+    NetworkIcon_Destroy();
     ov98_02247B0C(param0);
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_109);
 
@@ -2282,7 +2282,7 @@ static int ov98_022495C4(UnkStruct_ov98_02247704 *param0)
 
             DWC_CleanupInet();
 
-            DestroyNetworkIcon();
+            NetworkIcon_Destroy();
             SleepUnlock(4);
 
             if (param0->unk_00->unk_11C == 1) {

@@ -1406,7 +1406,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         break;
     case 3:
         if (!FieldSystem_HasParentProcess(fieldSystem)) {
-            DestroyNetworkIcon();
+            NetworkIcon_Destroy();
             (v0->state)++;
         }
         break;
@@ -1542,7 +1542,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         SpriteList_Update(Unk_ov23_02257740->spriteList);
 
         if (IsScreenFadeDone()) {
-            DestroyNetworkIcon();
+            NetworkIcon_Destroy();
             ov23_0223F020(v0);
             FieldSystem_StartFieldMap(fieldSystem);
             (v0->state)++;

@@ -661,7 +661,7 @@ int ov22_02256600(ApplicationManager *appMan, int *param1)
     Heap_Destroy(HEAP_ID_13);
     Heap_Destroy(HEAP_ID_14);
     sub_02095A24();
-    DestroyNetworkIcon();
+    NetworkIcon_Destroy();
 
     return 1;
 }

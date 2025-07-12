@@ -8,9 +8,9 @@
 #include "overlay_manager.h"
 #include "sprite.h"
 
-int GTSApplication_Init(ApplicationManager *appMan, int *loopState);
-int GTSApplication_Main(ApplicationManager *appMan, int *loopState);
-int GTSApplication_Exit(ApplicationManager *appMan, int *unused1);
+BOOL GTSApplication_Init(ApplicationManager *appMan, int *loopState);
+BOOL GTSApplication_Main(ApplicationManager *appMan, int *loopState);
+BOOL GTSApplication_Exit(ApplicationManager *appMan, int *unused1);
 void GTSApplication_InitAffineTemplate(AffineSpriteListTemplate *template, GTSApplicationState *appState, SpriteResourcesHeader *spriteResourceHeader, NNS_G2D_VRAM_TYPE vramType);
 Menu *GTSApplication_CreateYesNoMenu(BgConfig *bgConfig, int tilemapTop, int baseTile);
 void GTSApplication_SetCurrentAndNextScreenInstruction(GTSApplicationState *appState, int currentInstruction, int nextInstruction);

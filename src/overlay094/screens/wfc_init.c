@@ -132,12 +132,12 @@ int GTSApplication_InitWFC_Init(GTSApplicationState *appState, int unused1)
         appState->currentScreenInstruction = 17;
     }
 
-    return GTS_APPLICATION_LOOP_STATE_WAIT_FADE;
+    return GTS_LOOP_STATE_WAIT_FADE;
 }
 
 int GTSApplication_WFCInit_Main(GTSApplicationState *appState, int param1)
 {
-    SetNetworkIconStrength(GTSApplication_GetNetworkStrength());
+    NetworkIcon_SetStrength(GTSApplication_GetNetworkStrength());
 
     int previousInstruction = appState->currentScreenInstruction;
     int parentStateCode = (*gtsWFCInitScreenStates[appState->currentScreenInstruction])(appState);
@@ -166,10 +166,10 @@ int GTSApplication_WFCInit_Exit(GTSApplicationState *appState, int param1)
 
     // this line of code is triggered when nextScreen has been set to 0
     if (appState->screenId == 0) {
-        return GTS_APPLICATION_LOOP_STATE_EXIT;
+        return GTS_LOOP_STATE_EXIT;
     }
 
-    return GTS_APPLICATION_LOOP_STATE_INIT;
+    return GTS_LOOP_STATE_INIT;
 }
 
 static void GTSApplication_WFCInit_InitBackground(BgConfig *bgConfig)
@@ -338,7 +338,7 @@ static int GTSApplication_WFCInit_AskToSetupConnection(GTSApplicationState *appS
     // this starts counting box pokemon in the main loop
     appState->deferredBoxId = 1;
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int GTSApplication_WFCInit_ProcessSetupConfirmation(GTSApplicationState *appState)
@@ -348,7 +348,7 @@ static int GTSApplication_WFCInit_ProcessSetupConfirmation(GTSApplicationState *
     if (menuInput != 0xffffffff) { // BATTLE_SUB_MENU_CURSOR_NO_MOVEMENT_INDEX
         if (menuInput == 0xfffffffe) { // BATTLE_SUB_MENU_CURSOR_BACK_INDEX
             sub_0203848C(); // free the network lock?
-            GTSApplication_SetNextScreenWithArgument(appState, 0, 0);
+            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, 0);
             appState->currentScreenInstruction = 11;
         } else {
             GTSApplication_DisplayStatusMessage(appState, appState->unk0674MessageLoader, pl_msg_00000674_00001, TEXT_SPEED_FAST, 0xf0f);
@@ -357,7 +357,7 @@ static int GTSApplication_WFCInit_ProcessSetupConfirmation(GTSApplicationState *
         }
     }
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int GTSApplication_WFCInit_AskToDisconnect(GTSApplicationState *appState)
@@ -365,7 +365,7 @@ static int GTSApplication_WFCInit_AskToDisconnect(GTSApplicationState *appState)
     GTSApplication_DisplayStatusMessage(appState, appState->gtsMessageLoader, GTS_Text_IsItOKToDisconnect, TEXT_SPEED_FAST, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(appState, 13, 16);
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int GTSApplication_WFCInit_RestartOrExit(GTSApplicationState *appState)
@@ -377,8 +377,8 @@ static int GTSApplication_WFCInit_RestartOrExit(GTSApplicationState *appState)
             if (!DWC_CheckInet()) {
                 appState->currentScreenInstruction = 0;
             } else {
-                GTSApplication_SetNextScreenWithArgument(appState, 7, 11);
-                appState->returnAfterNetworkScreen = 1;
+                GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_NETWORK_HANDLER, 11);
+                appState->returnAfterNetworkScreen = GTS_SCREEN_MAIN_MENU;
                 appState->currentScreenInstruction = 11;
             }
         } else {
@@ -387,12 +387,12 @@ static int GTSApplication_WFCInit_RestartOrExit(GTSApplicationState *appState)
             }
 
             sub_0203848C();
-            GTSApplication_SetNextScreenWithArgument(appState, 0, 0);
+            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, 0);
             appState->currentScreenInstruction = 11;
         }
     }
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int GTSApplication_WFCInit_ShowDisconnectingMessage(GTSApplicationState *appState)
@@ -400,7 +400,7 @@ static int GTSApplication_WFCInit_ShowDisconnectingMessage(GTSApplicationState *
     GTSApplication_DisplayStatusMessage(appState, appState->unk0695MessageLoader, pl_msg_00000695_00026, TEXT_SPEED_FAST, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(appState, 12, 18);
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int GTSApplication_WFCInit_CleanupNetworking(GTSApplicationState *appState)
@@ -408,10 +408,10 @@ static int GTSApplication_WFCInit_CleanupNetworking(GTSApplicationState *appStat
     sub_0203848C();
 
     DWC_CleanupInet();
-    GTSApplication_SetNextScreenWithArgument(appState, 0, 0);
+    GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, 0);
     appState->currentScreenInstruction = 19;
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int GTSApplication_WFCInit_ShowDisconnectedMessage(GTSApplicationState *appState)
@@ -419,7 +419,7 @@ static int GTSApplication_WFCInit_ShowDisconnectedMessage(GTSApplicationState *a
     GTSApplication_DisplayStatusMessage(appState, appState->unk0695MessageLoader, pl_msg_00000695_00027, TEXT_SPEED_FAST, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(appState, 20, 11);
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int GTSApplication_WFCInit_Connect(GTSApplicationState *appState)
@@ -430,7 +430,7 @@ static int GTSApplication_WFCInit_Connect(GTSApplicationState *appState)
 
     appState->currentScreenInstruction = 3;
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int GTSApplication_WFCInit_CheckConnection(GTSApplicationState *appState)
@@ -490,7 +490,7 @@ static int GTSApplication_WFCInit_CheckConnection(GTSApplicationState *appState)
         }
     }
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int GTSApplication_WFCInit_Authenticate(GTSApplicationState *appState)
@@ -498,7 +498,7 @@ static int GTSApplication_WFCInit_Authenticate(GTSApplicationState *appState)
     DWC_NASLoginAsync();
     appState->currentScreenInstruction = 5;
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int GTSApplication_WFCInit_CheckAuthentication(GTSApplicationState *appState)
@@ -556,7 +556,7 @@ static int GTSApplication_WFCInit_CheckAuthentication(GTSApplicationState *appSt
         break;
     }
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int GTSApplication_WFCInit_GetDWCKey(GTSApplicationState *appState)
@@ -575,7 +575,7 @@ static int GTSApplication_WFCInit_GetDWCKey(GTSApplicationState *appState)
     ov94_0223B140(v1, DWC_CreateFriendKey(v0));
     appState->currentScreenInstruction = 7;
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int GTSApplication_WFCInit_ConnectToRemoteServer(GTSApplicationState *param0)
@@ -585,7 +585,7 @@ static int GTSApplication_WFCInit_ConnectToRemoteServer(GTSApplicationState *par
     param0->currentScreenInstruction = 8;
     param0->networkTimeoutCounter = 0;
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int GTSApplication_WFCInit_WaitForServerResponse(GTSApplicationState *param0)
@@ -636,7 +636,7 @@ static int GTSApplication_WFCInit_WaitForServerResponse(GTSApplicationState *par
         }
     }
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int GTSApplication_WFCInit_SetProfileRequest(GTSApplicationState *param0)
@@ -647,7 +647,7 @@ static int GTSApplication_WFCInit_SetProfileRequest(GTSApplicationState *param0)
     param0->currentScreenInstruction = 10;
     param0->networkTimeoutCounter = 0;
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int GTSApplication_WFCInit_SetProfileResponse(GTSApplicationState *appState)
@@ -665,7 +665,7 @@ static int GTSApplication_WFCInit_SetProfileResponse(GTSApplicationState *appSta
             case 0:
                 switch (appState->worldExchangeTrainerError.systemError) {
                 case 0:
-                    GTSApplication_SetNextScreenWithArgument(appState, 1, 0);
+                    GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, 0);
                     appState->currentScreenInstruction = 11;
                     break;
                 case 3: // pl_msg_00000671_00177
@@ -736,7 +736,7 @@ static int GTSApplication_WFCInit_SetProfileResponse(GTSApplicationState *appSta
         }
     }
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int GTSApplication_WFCInit_ShowNetworkError(GTSApplicationState *appState)
@@ -745,7 +745,7 @@ static int GTSApplication_WFCInit_ShowNetworkError(GTSApplicationState *appState
     GTSApplication_WFCInit_DisplayErrorCode(appState, errorMessage, -appState->unk_44);
     appState->currentScreenInstruction = 24;
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int GTSApplication_WFCInit_RestartConnection(GTSApplicationState *param0)
@@ -755,19 +755,19 @@ static int GTSApplication_WFCInit_RestartConnection(GTSApplicationState *param0)
         param0->currentScreenInstruction = 0;
     }
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int GTSApplication_WFCInit_ExitScreen(GTSApplicationState *param0)
 {
-    DestroyNetworkIcon();
+    NetworkIcon_Destroy();
     GTSApplicationState_DestroyWaitDial(param0);
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
 
     param0->currentScreenInstruction = 0;
     param0->fadeBothScreens = 1;
 
-    return GTS_APPLICATION_LOOP_STATE_FINISH;
+    return GTS_LOOP_STATE_FINISH;
 }
 
 static int ov94_022455D0(GTSApplicationState *param0)
@@ -778,12 +778,12 @@ static int ov94_022455D0(GTSApplicationState *param0)
         if (v0 == 0xfffffffe) {
             param0->currentScreenInstruction = 0;
         } else {
-            GTSApplication_SetNextScreenWithArgument(param0, 0, 0);
+            GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_WFC_INIT, 0);
             param0->currentScreenInstruction = 11;
         }
     }
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int GTSApplication_WFCInit_FatalError(GTSApplicationState *appState)
@@ -829,7 +829,7 @@ static int GTSApplication_WFCInit_FatalError(GTSApplicationState *appState)
     GTSApplication_DisplayStatusMessage(appState, appState->gtsMessageLoader, errorMessage, TEXT_SPEED_FAST, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(appState, 12, 22);
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int GTSApplication_WFCInit_FatalErrorDisconnectMessage(GTSApplicationState *appState)
@@ -859,13 +859,13 @@ static int GTSApplication_WFCInit_FatalErrorDisconnectMessage(GTSApplicationStat
         appState->wfcDisconnectMessageFrameDelay++;
 
         if (appState->wfcDisconnectMessageFrameDelay > 30) {
-            GTSApplication_SetNextScreenWithArgument(appState, 0, 0);
+            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, 0);
             appState->currentScreenInstruction = 11;
         }
         break;
     }
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int GTSApplication_WFCInit_WaitForText(GTSApplicationState *appState)
@@ -874,7 +874,7 @@ static int GTSApplication_WFCInit_WaitForText(GTSApplicationState *appState)
         appState->currentScreenInstruction = appState->nextScreenInstruction;
     }
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int GTSApplication_WFCInit_WaitForTextDelayed(GTSApplicationState *appState)
@@ -887,7 +887,7 @@ static int GTSApplication_WFCInit_WaitForTextDelayed(GTSApplicationState *appSta
         appState->frameDelay++;
     }
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 static int GTSApplication_WFCInit_WaitForTextThenYesNoMenu(GTSApplicationState *appState)
@@ -897,7 +897,7 @@ static int GTSApplication_WFCInit_WaitForTextThenYesNoMenu(GTSApplicationState *
         appState->currentScreenInstruction = appState->nextScreenInstruction;
     }
 
-    return GTS_APPLICATION_LOOP_STATE_MAIN;
+    return GTS_LOOP_STATE_MAIN;
 }
 
 void GTSApplication_DisplayStatusMessage(GTSApplicationState *appState, MessageLoader *messageLoader, int messageId, int textSpeed, u16 unused)

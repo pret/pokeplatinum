@@ -34,6 +34,28 @@
 #include "sys_task_manager.h"
 #include "trainer_info.h"
 
+enum GTSApplicationScreen {
+    GTS_SCREEN_WFC_INIT = 0,
+    GTS_SCREEN_MAIN_MENU,
+    GTS_SCREEN_SUMMARY,
+    GTS_SCREEN_LISTING_SUMMARY,
+    GTS_SCREEN_SEARCH,
+    GTS_SCREEN_SELECT_POKEMON,
+    GTS_SCREEN_DEPOSIT,
+    GTS_SCREEN_NETWORK_HANDLER,
+    GTS_SCREEN_POKEMON_INFO,
+    GTS_SCREEN_TRADE
+};
+
+enum GTSApplicationLoopState {
+    GTS_LOOP_STATE_WAIT_FOR_WIRELESS_DRIVER = 0,
+    GTS_LOOP_STATE_INIT,
+    GTS_LOOP_STATE_WAIT_FADE,
+    GTS_LOOP_STATE_MAIN,
+    GTS_LOOP_STATE_FINISH,
+    GTS_LOOP_STATE_EXIT
+};
+
 typedef struct GTSTradedPokemonLocation {
     int boxIndex;
     int index;

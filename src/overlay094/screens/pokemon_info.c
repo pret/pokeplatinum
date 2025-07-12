@@ -47,18 +47,18 @@ int GTSApplication_PokemonInfo_Init(GTSApplicationState *appState, int unused1)
     appState->appMan = ApplicationManager_New(&gPokemonSummaryScreenApp, &appState->pokemonSummary, HEAP_ID_62);
     appState->hasTradedPokemon = TRUE;
 
-    return GTS_APPLICATION_LOOP_STATE_WAIT_FADE;
+    return GTS_LOOP_STATE_WAIT_FADE;
 }
 
 int GTSApplication_PokemonInfo_Main(GTSApplicationState *appState, int unused1)
 {
-    int loopState = GTS_APPLICATION_LOOP_STATE_MAIN;
+    int loopState = GTS_LOOP_STATE_MAIN;
 
     if (ApplicationManager_Exec(appState->appMan)) {
         ApplicationManager_Free(appState->appMan);
-        GTSApplication_SetNextScreenWithArgument(appState, 5, appState->screenArgument);
+        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SELECT_POKEMON, appState->screenArgument);
 
-        loopState = GTS_APPLICATION_LOOP_STATE_FINISH;
+        loopState = GTS_LOOP_STATE_FINISH;
     }
 
     return loopState;
@@ -67,5 +67,5 @@ int GTSApplication_PokemonInfo_Main(GTSApplicationState *appState, int unused1)
 int GTSApplication_PokemonInfo_Exit(GTSApplicationState *appState, int unused1)
 {
     GTSApplication_MoveToNextScreen(appState);
-    return GTS_APPLICATION_LOOP_STATE_INIT;
+    return GTS_LOOP_STATE_INIT;
 }

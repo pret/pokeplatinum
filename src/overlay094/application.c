@@ -86,7 +86,7 @@ static int (*gtsApplicationScreens[][3])(GTSApplicationState *, int) = {
 
 GTSApplicationState *unused_GTSApplicationState;
 
-int GTSApplication_Init(ApplicationManager *appMan, int *loopState)
+BOOL GTSApplication_Init(ApplicationManager *appMan, int *loopState)
 {
     switch (*loopState) {
     case 0:
@@ -139,13 +139,13 @@ int GTSApplication_Init(ApplicationManager *appMan, int *loopState)
         Overlay_LoadHttpOverlay();
         WirelessDriver_Init();
         (*loopState) = 0;
-        return 1; // pass through to main
+        return TRUE; // pass through to main
     }
 
-    return 0;
+    return FALSE;
 }
 
-int GTSApplication_Main(ApplicationManager *appMan, int *loopState)
+BOOL GTSApplication_Main(ApplicationManager *appMan, int *loopState)
 {
     GTSApplicationState *appState = ApplicationManager_Data(appMan);
 
@@ -153,29 +153,29 @@ int GTSApplication_Main(ApplicationManager *appMan, int *loopState)
     GTSNetworking_ProcessCurrentRequest();
 
     switch (*loopState) {
-    case GTS_APPLICATION_LOOP_STATE_WAIT_FOR_WIRELESS_DRIVER:
+    case GTS_LOOP_STATE_WAIT_FOR_WIRELESS_DRIVER:
         if (WirelessDriver_IsReady()) {
             sGTSHeapHandle = appState->dwcHeapHandle;
             DWC_SetMemFunc(GTSApplication_DWCAlloc, GTSApplication_DWCFree);
-            *loopState = GTS_APPLICATION_LOOP_STATE_INIT;
+            *loopState = GTS_LOOP_STATE_INIT;
         }
         break;
-    case GTS_APPLICATION_LOOP_STATE_INIT: // GTS_WFC_INIT_SCREEN
+    case GTS_LOOP_STATE_INIT: // GTS_WFC_INIT_SCREEN
         *loopState = (*gtsApplicationScreens[appState->screenId][0])(appState, *loopState);
 
         if (appState->hasTradedPokemon) {
             GTSApplication_CleanupGraphics(appState);
         }
         break;
-    case GTS_APPLICATION_LOOP_STATE_WAIT_FADE: // GTS_WFC_VISIBLE
+    case GTS_LOOP_STATE_WAIT_FADE: // GTS_WFC_VISIBLE
         if (IsScreenFadeDone()) {
-            *loopState = GTS_APPLICATION_LOOP_STATE_MAIN;
+            *loopState = GTS_LOOP_STATE_MAIN;
         }
         break;
-    case GTS_APPLICATION_LOOP_STATE_MAIN: // GTS_WFC_CONNECTING
+    case GTS_LOOP_STATE_MAIN: // GTS_WFC_CONNECTING
         *loopState = (*gtsApplicationScreens[appState->screenId][1])(appState, *loopState);
         break;
-    case GTS_APPLICATION_LOOP_STATE_FINISH:
+    case GTS_LOOP_STATE_FINISH:
         if (IsScreenFadeDone()) {
             if (appState->hasTradedPokemon) { // pokemon received?
                 ov94_0223C4E0(appState);
@@ -187,8 +187,8 @@ int GTSApplication_Main(ApplicationManager *appMan, int *loopState)
             *loopState = (*gtsApplicationScreens[appState->screenId][2])(appState, *loopState);
         }
         break;
-    case GTS_APPLICATION_LOOP_STATE_EXIT:
-        return 1;
+    case GTS_LOOP_STATE_EXIT:
+        return TRUE;
     }
 
     GTSApplicationState_DecrementNetworkTimer(appState);
@@ -198,10 +198,10 @@ int GTSApplication_Main(ApplicationManager *appMan, int *loopState)
         SpriteList_Update(appState->spriteList);
     }
 
-    return 0;
+    return FALSE;
 }
 
-int GTSApplication_Exit(ApplicationManager *appMan, int *unused1)
+BOOL GTSApplication_Exit(ApplicationManager *appMan, int *unused1)
 {
     GTSApplicationState *appState = ApplicationManager_Data(appMan);
 
@@ -227,7 +227,7 @@ int GTSApplication_Exit(ApplicationManager *appMan, int *unused1)
     SetVBlankCallback(NULL, NULL);
     Heap_Destroy(HEAP_ID_62);
 
-    return 1;
+    return TRUE;
 }
 
 static void GTSApplication_VBlankCallback(void *appStatePtr)
@@ -268,7 +268,7 @@ static void GTSApplicationState_InitPlayerData(GTSApplicationState *appState, Ap
     appState->playerData = (GTSPlayerData *)ApplicationManager_Args(appMan);
     appState->screenId = 0;
 
-    GTSApplication_SetNextScreenWithArgument(appState, 0, 0);
+    GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, 0);
 
     appState->mainMenuSelectedOption = 0;
     appState->unk_B7A.species = SPECIES_NONE;

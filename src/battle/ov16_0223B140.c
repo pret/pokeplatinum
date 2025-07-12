@@ -2004,7 +2004,7 @@ static BOOL ov16_0223D800(ApplicationManager *appMan)
     ov16_0223C2C0(battleSys, v1);
 
     if (((battleSys->battleType & BATTLE_TYPE_LINK) == FALSE) || (battleSys->battleStatusMask & 0x10) || (battleSys->battleType & BATTLE_TYPE_FRONTIER)) {
-        DestroyNetworkIcon();
+        NetworkIcon_Destroy();
         return 0;
     }
 
@@ -2077,7 +2077,7 @@ static BOOL ov16_0223D98C(ApplicationManager *appMan)
     int v3;
 
     if (((battleSys->battleType & BATTLE_TYPE_LINK) == FALSE) || (battleSys->battleStatusMask & 0x10) || (battleSys->battleType & BATTLE_TYPE_FRONTIER)) {
-        DestroyNetworkIcon();
+        NetworkIcon_Destroy();
         return 0;
     }
 
@@ -2312,8 +2312,8 @@ static void ov16_0223DECC(void)
     sub_02039734();
 
     if (CommMan_IsConnectedToWifi()) {
-        SetNetworkIconStrength(WM_LINK_LEVEL_3 - DWC_GetLinkLevel());
+        NetworkIcon_SetStrength(WM_LINK_LEVEL_3 - DWC_GetLinkLevel());
     } else if (CommServerClient_IsInitialized()) {
-        SetNetworkIconStrength(WM_LINK_LEVEL_3 - WM_GetLinkLevel());
+        NetworkIcon_SetStrength(WM_LINK_LEVEL_3 - WM_GetLinkLevel());
     }
 }
