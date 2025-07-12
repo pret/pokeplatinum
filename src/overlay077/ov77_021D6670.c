@@ -148,8 +148,8 @@ void ov77_021D6760(UnkStruct_ov77_021D6734 *param0)
         }
     }
 
-    Heap_FreeToHeap(param0->unk_04);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0->unk_04);
+    Heap_Free(param0);
 }
 
 Sprite **ov77_021D6794(UnkStruct_ov77_021D6734 *param0, const int param1)
@@ -176,7 +176,7 @@ void ov77_021D67B0(UnkStruct_ov77_021D670C *param0)
         }
     }
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov77_021D6800(UnkStruct_ov77_021D6800 *param0)
@@ -241,7 +241,7 @@ static void ov77_021D6964(UnkStruct_ov77_021D6800 *param0)
         param0->unk_1B0[v0].unk_04 = SpriteList_AddAffine(&v2);
 
         Sprite_SetAnimateFlag(param0->unk_1B0[v0].unk_04, 0);
-        Sprite_SetDrawFlag(param0->unk_1B0[v0].unk_04, 0);
+        Sprite_SetDrawFlag(param0->unk_1B0[v0].unk_04, FALSE);
     }
 }
 
@@ -299,7 +299,7 @@ static void ov77_021D6A44(UnkStruct_ov77_021D6ADC *param0, const u8 param1, cons
         }
 
         Sprite_SetAnimateFlag(v1->unk_04, 1);
-        Sprite_SetDrawFlag(v1->unk_04, 1);
+        Sprite_SetDrawFlag(v1->unk_04, TRUE);
 
         v1->unk_08 = SysTask_Start(ov77_021D6B48, v1, 20);
     }
@@ -359,7 +359,7 @@ static void ov77_021D6B48(SysTask *param0, void *param1)
         v0->unk_08 = NULL;
         v0->unk_00 = 0;
         Sprite_SetAnimateFlag(v0->unk_04, 0);
-        Sprite_SetDrawFlag(v0->unk_04, 0);
+        Sprite_SetDrawFlag(v0->unk_04, FALSE);
     }
 }
 
@@ -392,9 +392,9 @@ static void ov77_021D6BAC(UnkStruct_ov77_021D6734 *param0, const u8 param1, int 
         Sprite_SetAnimateFlag(v2->unk_04, 1);
 
         if (param2 == 0) {
-            Sprite_SetDrawFlag(v2->unk_04, 1);
+            Sprite_SetDrawFlag(v2->unk_04, TRUE);
         } else {
-            Sprite_SetDrawFlag(v2->unk_04, 0);
+            Sprite_SetDrawFlag(v2->unk_04, FALSE);
         }
 
         v2->unk_08 = SysTask_Start(ov77_021D6C44, v2, 20);
@@ -412,6 +412,6 @@ static void ov77_021D6C44(SysTask *param0, void *param1)
         v0->unk_08 = NULL;
         v0->unk_00 = 0;
         Sprite_SetAnimateFlag(v0->unk_04, 0);
-        Sprite_SetDrawFlag(v0->unk_04, 0);
+        Sprite_SetDrawFlag(v0->unk_04, FALSE);
     }
 }

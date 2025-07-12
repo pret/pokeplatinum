@@ -45,7 +45,7 @@ void sub_0209903C(UnkStruct_0209903C *param0)
 {
     sub_02099118(param0);
     MI_CpuClear8(param0, sizeof(UnkStruct_0209903C));
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void sub_02099058(UnkStruct_0209903C *param0)
@@ -76,7 +76,7 @@ static void sub_02099118(UnkStruct_0209903C *param0)
 {
     u32 v0;
 
-    Heap_FreeToHeap(param0->unk_1C4);
+    Heap_Free(param0->unk_1C4);
     SpriteList_Delete(param0->unk_10);
     SpriteTransfer_ResetCharTransferList(param0->unk_1B4[0]);
     SpriteTransfer_ResetPlttTransferList(param0->unk_1B4[1]);
@@ -181,7 +181,7 @@ void sub_02099370(UnkStruct_0209903C *param0, UnkStruct_0209916C *param1)
     param0->unk_1C4[param1->unk_00].unk_02 = 0;
     param0->unk_1C4[param1->unk_00].unk_01 = 0;
 
-    Heap_FreeToHeap(param1);
+    Heap_Free(param1);
 }
 
 static void sub_020993A8(UnkStruct_0209903C *param0)

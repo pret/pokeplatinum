@@ -57,7 +57,7 @@ static void sub_0209B3AC(UnkStruct_0209B3AC *param0)
 {
     sub_020974EC(param0->unk_10);
     StringTemplate_Free(param0->unk_04);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static BOOL sub_0209B3C4(FieldTask *param0)

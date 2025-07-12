@@ -170,5 +170,5 @@ void NetworkError_DisplayNetworkError(int heapID, int networkErrorId, int errorC
     Window_Remove(&v1);
     MessageLoader_Free(v2);
     StringTemplate_Free(v5);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }

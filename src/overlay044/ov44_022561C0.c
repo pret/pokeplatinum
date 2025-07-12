@@ -64,7 +64,7 @@ static BOOL ov44_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *pa
             }
         }
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 
     return 0;
@@ -121,7 +121,7 @@ static void ov44_02256314(UnkStruct_ov44_0225621C *param0)
 {
     PoketchButtonManager_Free(param0->buttonManager);
     ov44_022565F8(param0->unk_38);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov44_0225632C(u32 param0, u32 param1, u32 param2, void *param3)

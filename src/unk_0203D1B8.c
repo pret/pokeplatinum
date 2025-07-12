@@ -9,7 +9,6 @@
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
-#include "struct_decls/struct_0202C834_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/choose_starter_data.h"
@@ -31,7 +30,6 @@
 #include "struct_defs/struct_02042434.h"
 #include "struct_defs/struct_020684D0.h"
 #include "struct_defs/struct_0206BC70.h"
-#include "struct_defs/struct_02072014.h"
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02097728.h"
 #include "struct_defs/struct_02098C44.h"
@@ -112,10 +110,11 @@
 #include "system_data.h"
 #include "system_flags.h"
 #include "system_vars.h"
+#include "trainer_card.h"
+#include "trainer_card_save_data.h"
 #include "trainer_info.h"
 #include "unk_02017498.h"
 #include "unk_020298BC.h"
-#include "unk_0202C7FC.h"
 #include "unk_0202C858.h"
 #include "unk_0202D05C.h"
 #include "unk_0202D778.h"
@@ -479,12 +478,12 @@ static BOOL sub_0203D444(FieldTask *param0)
         break;
     case 3:
         if (!FieldSystem_IsRunningApplication(fieldSystem)) {
-            Heap_FreeToHeap(v1->unk_08);
+            Heap_Free(v1->unk_08);
             *v2 = 0;
         }
         break;
     case 4:
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return 1;
     }
 
@@ -675,7 +674,7 @@ static BOOL sub_0203D764(FieldTask *taskMan)
         }
 
         sub_020974EC(v1->unk_0C);
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return 1;
         break;
     }
@@ -883,8 +882,8 @@ static BOOL sub_0203DA64(FieldTask *param0)
                 *v1->unk_04 = 0;
             }
 
-            Heap_FreeToHeap(v1->unk_0C);
-            Heap_FreeToHeap(v1);
+            Heap_Free(v1->unk_0C);
+            Heap_Free(v1);
 
             return 1;
         }
@@ -973,17 +972,17 @@ static void sub_0203DB38(UnkStruct_ov88_0223C370 *param0, FieldSystem *fieldSyst
 static void sub_0203DBC0(UnkStruct_ov88_0223C370 *param0)
 {
     if (param0->unk_38) {
-        Heap_FreeToHeap(param0->unk_38);
+        Heap_Free(param0->unk_38);
         param0->unk_38 = NULL;
     }
 
     if (param0->unk_3C) {
-        Heap_FreeToHeap(param0->unk_3C);
+        Heap_Free(param0->unk_3C);
         param0->unk_3C = NULL;
     }
 
     if (param0->unk_40) {
-        Heap_FreeToHeap(param0->unk_40);
+        Heap_Free(param0->unk_40);
         param0->unk_40 = NULL;
     }
 }
@@ -1012,7 +1011,7 @@ BOOL sub_0203DBF0(FieldTask *param0)
     case 3:
         if (v2->unk_04.unk_28 == 0) {
             sub_0203DBC0(&(v2->unk_04));
-            Heap_FreeToHeap(v2);
+            Heap_Free(v2);
             return 1;
         }
 
@@ -1194,7 +1193,7 @@ static BOOL sub_0203DE98(FieldTask *param0)
 
         sub_0208716C(v2->unk_0C);
         Strbuf_Free(v2->unk_10);
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
 
         return 1;
     }
@@ -1312,7 +1311,7 @@ void FieldSystem_LaunchChooseStarterApp(FieldSystem *fieldSystem, ChooseStarterD
 
 void sub_0203E0D0(FieldSystem *fieldSystem)
 {
-    UnkStruct_0202C834 *v0 = sub_0202C834(fieldSystem->saveData);
+    TrainerCardSaveData *v0 = SaveData_GetTrainerCardSaveData(fieldSystem->saveData);
 
     FS_EXTERN_OVERLAY(overlay72);
 
@@ -1431,7 +1430,7 @@ void *sub_0203E244(FieldSystem *fieldSystem)
     v1 = SaveData_HallOfFame(fieldSystem->saveData, 11, &v2);
 
     if (v2 == 2) {
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return NULL;
     } else {
         FieldSystem_StartChildProcess(fieldSystem, &v0, v1);
@@ -1551,7 +1550,7 @@ static BOOL sub_0203E35C(FieldTask *param0)
                 SystemVars_SetConsecutiveBonusRoundWins(v1, v2->unk_0C.unk_0C);
             }
 
-            Heap_FreeToHeap(v2);
+            Heap_Free(v2);
             return 1;
         }
         break;

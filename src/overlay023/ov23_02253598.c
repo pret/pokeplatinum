@@ -5,7 +5,7 @@
 
 #include "constants/heap.h"
 
-#include "struct_defs/underground_data.h"
+#include "struct_defs/underground.h"
 #include "struct_defs/underground_record.h"
 
 #include "overlay023/funcptr_ov23_0224DCB8.h"
@@ -74,8 +74,8 @@ void ov23_02253598(UnkStruct_ov23_02253598 *param0, UndergroundRecord *param1, S
 
 void ov23_022535CC(void)
 {
-    Heap_FreeToHeap(Unk_ov23_022577BC->unk_10);
-    Heap_FreeToHeap(Unk_ov23_022577BC);
+    Heap_Free(Unk_ov23_022577BC->unk_10);
+    Heap_Free(Unk_ov23_022577BC);
 
     Unk_ov23_022577BC = NULL;
 }
@@ -192,7 +192,7 @@ static void ov23_022537D4(SysTask *param0, void *param1)
         }
     }
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     SysTask_Done(param0);
 
     Unk_ov23_022577BC->unk_04 = NULL;
@@ -262,7 +262,7 @@ void ov23_022538FC(int param0)
     MI_CpuCopy8(Unk_ov23_022577BC->unk_0C, &v2[1], undergroundRecordSize);
 
     CommSys_SendData(81, v2, undergroundRecordSize + 1);
-    Heap_FreeToHeap(v2);
+    Heap_Free(v2);
 }
 
 void ov23_02253968(void)
@@ -322,13 +322,13 @@ void ov23_02253A00(UndergroundRecord *undergroundRecord, int param1)
     MI_CpuCopy8(undergroundRecord, undergroundRecordBuffer, UndergroundRecord_Size());
 
     v0 = v2(undergroundRecordBuffer);
-    Heap_FreeToHeap(undergroundRecordBuffer);
+    Heap_Free(undergroundRecordBuffer);
 
     ov23_02254178(ov23_022421BC(), v0);
     ov23_02253F40(ov23_022421BC(), param1, 1, ov23_022539F8);
 }
 
-static void ov23_02253A78(Window *param0, MessageLoader *param1, TrainerInfo *param2, const UndergroundRecord *param3, const UndergroundData *param4)
+static void ov23_02253A78(Window *param0, MessageLoader *param1, TrainerInfo *param2, const UndergroundRecord *param3, const Underground *param4)
 {
     StringTemplate *v0;
     Strbuf *v1;
@@ -377,7 +377,7 @@ static void ov23_02253A78(Window *param0, MessageLoader *param1, TrainerInfo *pa
             StringTemplate_Format(v0, v2, v1);
 
             Text_AddPrinterWithParams(param0, FONT_SYSTEM, v2, v7 + v12, 1 + v8 * (4 + v3), TEXT_SPEED_NO_TRANSFER, NULL);
-            Heap_FreeToHeap(v13);
+            Heap_Free(v13);
         } else {
             MessageLoader_GetStrbuf(param1, 51, v1);
             Text_AddPrinterWithParams(param0, FONT_SYSTEM, v1, v7, 1 + v8 * (4 + v3), TEXT_SPEED_NO_TRANSFER, NULL);
@@ -391,7 +391,7 @@ static void ov23_02253A78(Window *param0, MessageLoader *param1, TrainerInfo *pa
     StringTemplate_Free(v0);
 }
 
-void *ov23_02253C64(BgConfig *param0, TrainerInfo *param1, UndergroundData *param2, UnkFuncPtr_ov23_02253834 param3, void *param4)
+void *ov23_02253C64(BgConfig *param0, TrainerInfo *param1, Underground *underground, UnkFuncPtr_ov23_02253834 param3, void *param4)
 {
     UndergroundRecord *v0;
     MessageLoader *v1;
@@ -411,7 +411,7 @@ void *ov23_02253C64(BgConfig *param0, TrainerInfo *param1, UndergroundData *para
     Window_FillTilemap(&v4->unk_08, 15);
 
     v0 = Unk_ov23_022577BC->unk_0C;
-    ov23_02253A78(&v4->unk_08, v1, param1, v0, param2);
+    ov23_02253A78(&v4->unk_08, v1, param1, v0, underground);
 
     Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
     Window_ScheduleCopyToVRAM(&v4->unk_08);
@@ -436,5 +436,5 @@ void ov23_02253D10(void *param0)
         }
     }
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }

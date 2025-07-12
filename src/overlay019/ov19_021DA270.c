@@ -44,7 +44,7 @@ BOOL ov19_021DA270(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021D61B0 *par
             NNS_G2dLoadPalette(v1, 6 * 0x20, NNS_G2D_VRAM_TYPE_2DMAIN, &v0);
         }
 
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
     }
 
     param0->unk_08 = Graphics_GetCellBankFromOpenNARC(param4, 21, 1, &(param0->unk_10), HEAP_ID_BOX_GRAPHICS);
@@ -66,22 +66,22 @@ BOOL ov19_021DA270(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021D61B0 *par
 void ov19_021DA384(UnkStruct_ov19_021DA384 *param0)
 {
     if (param0->unk_08 != NULL) {
-        Heap_FreeToHeap(param0->unk_08);
+        Heap_Free(param0->unk_08);
         param0->unk_08 = NULL;
     }
 
     if (param0->unk_00 != NULL) {
-        Heap_FreeToHeap(param0->unk_00);
+        Heap_Free(param0->unk_00);
         param0->unk_00 = NULL;
     }
 
     if (param0->unk_14 != NULL) {
-        Heap_FreeToHeap(param0->unk_14);
+        Heap_Free(param0->unk_14);
         param0->unk_14 = NULL;
     }
 
     if (param0->unk_18 != NULL) {
-        Heap_FreeToHeap(param0->unk_18);
+        Heap_Free(param0->unk_18);
         param0->unk_18 = NULL;
     }
 

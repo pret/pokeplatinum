@@ -933,7 +933,7 @@ void Sound_StopWaveOutReversed(enum WaveOutChannel channel)
 
     if (*reversedPlaybackEnabled == TRUE) {
         *reversedPlaybackEnabled = FALSE;
-        Heap_FreeToHeap(*reverseBuffer);
+        Heap_Free(*reverseBuffer);
     }
 }
 

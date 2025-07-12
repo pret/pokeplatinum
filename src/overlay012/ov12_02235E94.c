@@ -630,7 +630,7 @@ static void ov12_022363CC(SysTask *param0, void *param1)
 
 void ov12_02236428(UnkStruct_ov12_02235FE0 *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov12_02236430(SysTask *param0, void *param1)
@@ -642,7 +642,7 @@ static void ov12_02236430(SysTask *param0, void *param1)
         ParticleSystem_CreateEmitterWithCallback(v0->unk_10, 0, v0->unk_18, v0);
         ParticleSystem_SetCameraProjection(v0->unk_10, 1);
         SysTask_Done(param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     } else {
         v0->unk_04--;
     }
@@ -882,7 +882,7 @@ BOOL ov12_02236764(UnkStruct_ov12_02236648 *param0)
 
 void ov12_02236780(UnkStruct_ov12_02236648 *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static BOOL (*const Unk_ov12_0223AB84[])(BallRotation *) = {
@@ -2057,7 +2057,7 @@ void ov12_0223783C(BallRotation *param0)
     SpriteSystem_FreeResourcesAndManager(param0->unk_90.cellActorSys, param0->unk_2C);
     Sprite_DeleteAndFreeResources(param0->unk_30);
     SysTask_Done(param0->unk_CC);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov12_0223786C(BallRotation *param0, int param1)

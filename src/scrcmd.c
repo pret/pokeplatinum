@@ -45,7 +45,7 @@
 #include "struct_defs/struct_02042434.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_02098C44.h"
-#include "struct_defs/underground_data.h"
+#include "struct_defs/underground.h"
 #include "struct_defs/underground_record.h"
 
 #include "applications/pokemon_summary_screen/main.h"
@@ -166,6 +166,7 @@
 #include "system_flags.h"
 #include "system_vars.h"
 #include "text.h"
+#include "trainer_card.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
 #include "unk_02014D38.h"
@@ -214,7 +215,6 @@
 #include "unk_0206CCB0.h"
 #include "unk_0206F314.h"
 #include "unk_02070428.h"
-#include "unk_02071D40.h"
 #include "unk_020722AC.h"
 #include "unk_0207DA28.h"
 #include "unk_02097B18.h"
@@ -649,7 +649,7 @@ static BOOL ScrCmd_267(ScriptContext *ctx);
 static BOOL ScrCmd_GetHour(ScriptContext *ctx);
 static BOOL ScrCmd_269(ScriptContext *ctx);
 static BOOL ScrCmd_26A(ScriptContext *ctx);
-static BOOL ScrCmd_26B(ScriptContext *ctx);
+static BOOL ScrCmd_CheckHasAllLegendaryTitansInParty(ScriptContext *ctx);
 static BOOL ScrCmd_TryGetRandomMassageGirlAccessory(ScriptContext *ctx);
 static BOOL ScrCmd_GetGBACartridgeVersion(ScriptContext *ctx);
 static BOOL ScrCmd_SetHiddenLocation(ScriptContext *ctx);
@@ -984,7 +984,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_BufferNumber,
     ScrCmd_BufferPartyMonNickname,
     ScrCmd_BufferPoketchAppName,
-    ScrCmd_0D8,
+    ScrCmd_BufferTrainerClassName,
     ScrCmd_0D9,
     ScrCmd_BufferSpeciesNameFromVar,
     ScrCmd_BufferPlayerStarterSpeciesName,
@@ -1361,7 +1361,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetJubilifeLotteryTrainerID,
     ScrCmd_CheckForJubilifeLotteryWinner,
     ScrCmd_RandomizeJubilifeLottery,
-    ScrCmd_251,
+    ScrCmd_BufferMonNicknameFromPC,
     ScrCmd_GetPCBoxesFreeSlotCount,
     ScrCmd_SetClearInCatchingShowFlag,
     ScrCmd_CheckHasEnoughMonForCatchingShow,
@@ -1387,7 +1387,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetHour,
     ScrCmd_269,
     ScrCmd_26A,
-    ScrCmd_26B,
+    ScrCmd_CheckHasAllLegendaryTitansInParty,
     ScrCmd_TryGetRandomMassageGirlAccessory,
     ScrCmd_26D,
     ScrCmd_GetGBACartridgeVersion,
@@ -3000,10 +3000,10 @@ static void sub_02040F5C(SysTask *task, void *param1)
         SysTask_Done(v0->unk_00);
 
         if (v0->unk_08) {
-            Heap_FreeToHeap(v0->unk_08);
+            Heap_Free(v0->unk_08);
         }
 
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
 
         if (*v1 == 0) {
             GF_ASSERT(FALSE);
@@ -3466,7 +3466,7 @@ static BOOL ScrCmd_GetSelectedPartySlot(ScriptContext *ctx)
         *destVar = 0xff;
     }
 
-    Heap_FreeToHeap(*partySelect);
+    Heap_Free(*partySelect);
     *partySelect = NULL;
 
     return FALSE;
@@ -3497,7 +3497,7 @@ static BOOL ScrCmd_2D0(ScriptContext *ctx)
         }
     }
 
-    Heap_FreeToHeap(*v2);
+    Heap_Free(*v2);
     *v2 = NULL;
 
     return FALSE;
@@ -3531,7 +3531,7 @@ static BOOL ScrCmd_2D4(ScriptContext *ctx)
         }
     }
 
-    Heap_FreeToHeap(*v2);
+    Heap_Free(*v2);
     *v2 = NULL;
 
     return FALSE;
@@ -3565,7 +3565,7 @@ static BOOL ScrCmd_2DB(ScriptContext *ctx)
         }
     }
 
-    Heap_FreeToHeap(*v2);
+    Heap_Free(*v2);
     *v2 = NULL;
 
     return FALSE;
@@ -3607,7 +3607,7 @@ static BOOL ScrCmd_195(ScriptContext *ctx)
         *v2 = 0;
     }
 
-    Heap_FreeToHeap(*v0);
+    Heap_Free(*v0);
     *v0 = NULL;
 
     return FALSE;
@@ -3633,7 +3633,7 @@ static BOOL ScrCmd_197(ScriptContext *ctx)
 
     *v1 = sub_0203D440(*v0);
 
-    Heap_FreeToHeap(*v0);
+    Heap_Free(*v0);
     *v0 = NULL;
 
     return FALSE;
@@ -3661,7 +3661,7 @@ static BOOL ScrCmd_GetSummarySelectedMoveSlot(ScriptContext *ctx)
     PokemonSummary *summary = *partySelect;
     *destVar = summary->selectedMoveSlot;
 
-    Heap_FreeToHeap(*partySelect);
+    Heap_Free(*partySelect);
     *partySelect = NULL;
 
     return TRUE;
@@ -3715,7 +3715,7 @@ BOOL sub_02041CC8(ScriptContext *ctx)
         return FALSE;
     }
 
-    Heap_FreeToHeap(*v0);
+    Heap_Free(*v0);
     *v0 = NULL;
 
     return TRUE;
@@ -3741,7 +3741,7 @@ static BOOL sub_02041CF4(ScriptContext *ctx)
         JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
     }
 
-    Heap_FreeToHeap(*v0);
+    Heap_Free(*v0);
     *v0 = NULL;
 
     return TRUE;
@@ -3834,7 +3834,7 @@ static BOOL ScrCmd_0A4(ScriptContext *ctx)
     UnkStruct_ov98_02247168 *v0 = (*v1);
     *v2 = v0->unk_04;
 
-    Heap_FreeToHeap(*v1);
+    Heap_Free(*v1);
     return FALSE;
 }
 
@@ -4210,7 +4210,7 @@ static BOOL ScrCmd_336(ScriptContext *ctx)
         *v0 = 1;
     }
 
-    Heap_FreeToHeap(v2);
+    Heap_Free(v2);
     return FALSE;
 }
 
@@ -4261,7 +4261,7 @@ static BOOL ScrCmd_SaveChosenStarter(ScriptContext *ctx)
 
     SystemVars_SetPlayerStarter(SaveData_GetVarsFlags(ctx->fieldSystem->saveData), chooseStarterData->species);
 
-    Heap_FreeToHeap(*fieldSysDataPtr);
+    Heap_Free(*fieldSysDataPtr);
 
     return FALSE;
 }
@@ -4294,7 +4294,7 @@ static BOOL ScrCmd_179(ScriptContext *ctx)
     GF_ASSERT(*v1 != 0);
     *v0 = sub_0203D2C4(*v1);
 
-    Heap_FreeToHeap(*v1);
+    Heap_Free(*v1);
     *v1 = NULL;
 
     return FALSE;
@@ -4734,7 +4734,7 @@ static BOOL ScrCmd_StartLinkBattle(ScriptContext *ctx)
     PartyManagementData *partyManagementData = *partyManagementDataPtr;
 
     Encounter_NewVsLink(ctx->fieldSystem->task, partyManagementData->unk_2C, BATTLE_TYPE_LINK | BATTLE_TYPE_TRAINER);
-    Heap_FreeToHeap(partyManagementData);
+    Heap_Free(partyManagementData);
 
     *partyManagementDataPtr = NULL;
 
@@ -5146,7 +5146,7 @@ static BOOL ScrCmd_2BA(ScriptContext *ctx)
     if (*v2 != 0) {
         void **v1 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
         PartyManagementData *partyMan = *v1;
-        Heap_FreeToHeap(partyMan);
+        Heap_Free(partyMan);
     }
 
     return FALSE;
@@ -6499,7 +6499,7 @@ static void FieldSystem_WriteSpeciesSeen(FieldSystem *fieldSystem, u16 species)
     Pokemon_Init(pokemon);
     Pokemon_InitWith(pokemon, species, 50, INIT_IVS_RANDOM, FALSE, 0, OTID_NOT_SET, 0);
     Pokedex_Encounter(pokedex, pokemon);
-    Heap_FreeToHeap(pokemon);
+    Heap_Free(pokemon);
 
     return;
 }
@@ -6724,11 +6724,11 @@ static BOOL ScrCmd_26A(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_26B(ScriptContext *ctx)
+static BOOL ScrCmd_CheckHasAllLegendaryTitansInParty(ScriptContext *ctx)
 {
-    u16 *v0 = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
+    u16 *destVar = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
 
-    *v0 = HasAllLegendaryTitansInParty(ctx->fieldSystem->saveData);
+    *destVar = HasAllLegendaryTitansInParty(ctx->fieldSystem->saveData);
     return FALSE;
 }
 
@@ -7066,7 +7066,7 @@ static BOOL ScrCmd_289(ScriptContext *ctx)
     PoffinCase *poffinCase = SaveData_GetPoffinCase(ctx->fieldSystem->saveData);
     u16 slotId = PoffinCase_AddPoffin(poffinCase, poffin);
 
-    Heap_FreeToHeap(poffin);
+    Heap_Free(poffin);
 
     if (slotId == POFFIN_NONE) {
         *v6 = 0xffff;
@@ -7120,15 +7120,15 @@ static BOOL ScrCmd_28F(ScriptContext *ctx)
 
     if (v0 == 0) {
         *v2 = 0;
-        Heap_FreeToHeap((void *)v1);
+        Heap_Free((void *)v1);
         return TRUE;
     } else if (v0 == 1) {
         *v2 = sub_0202E174(v1, 0);
-        Heap_FreeToHeap((void *)v1);
+        Heap_Free((void *)v1);
         return TRUE;
     } else if (v0 == 2) {
         *v2 = 0;
-        Heap_FreeToHeap((void *)v1);
+        Heap_Free((void *)v1);
         return TRUE;
     }
 
@@ -7169,7 +7169,7 @@ static BOOL ScrCmd_291(ScriptContext *ctx)
         *v2 = 0;
     }
 
-    Heap_FreeToHeap(*v0);
+    Heap_Free(*v0);
     *v0 = NULL;
 
     return FALSE;
@@ -7259,10 +7259,10 @@ static BOOL ScrCmd_2A4(ScriptContext *ctx)
 static BOOL ScrCmd_TrySetUnusedUndergroundField(ScriptContext *ctx)
 {
     u16 item = ScriptContext_GetVar(ctx);
-    UndergroundData *undergroundData = SaveData_GetUndergroundData(ctx->fieldSystem->saveData);
+    Underground *underground = SaveData_GetUnderground(ctx->fieldSystem->saveData);
 
     if (item == ITEM_ADAMANT_ORB || item == ITEM_LUSTROUS_ORB) {
-        UndergroundData_SetUnusedField(undergroundData);
+        Underground_SetUnusedField(underground);
     }
 
     return FALSE;
@@ -7384,7 +7384,7 @@ static BOOL ScrCmd_2BE(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = sub_02071F28(fieldSystem);
+    *v1 = TrainerCard_CalculateStars(fieldSystem);
     return FALSE;
 }
 
@@ -7574,7 +7574,7 @@ BOOL ScrCmd_2E3(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
     void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-    Heap_FreeToHeap(*v0);
+    Heap_Free(*v0);
     *v0 = NULL;
 
     return TRUE;

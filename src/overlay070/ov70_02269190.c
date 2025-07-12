@@ -661,7 +661,7 @@ void ov70_02269204(UnkStruct_ov70_02269204 *param0)
         ov70_02269700(param0);
     }
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov70_02269220(UnkStruct_ov70_02269204 *param0)
@@ -805,7 +805,7 @@ static void ov70_022695C4(UnkStruct_ov70_02269204 *param0)
     int v0;
 
     for (v0 = 0; v0 < 15; v0++) {
-        Heap_FreeToHeap(param0->unk_10550[v0].data);
+        Heap_Free(param0->unk_10550[v0].data);
     }
 }
 
@@ -835,7 +835,7 @@ static void ov70_02269608(UnkStruct_ov70_02269204 *param0)
 
         v3 = NNS_G3dPlttReleasePlttKey(v4);
         NNS_GfdFreePlttVram(v3);
-        Heap_FreeToHeap(param0->unk_10640[v0]);
+        Heap_Free(param0->unk_10640[v0]);
     }
 }
 

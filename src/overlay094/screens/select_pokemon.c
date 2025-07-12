@@ -70,7 +70,7 @@ static int ov94_02240D08(GTSApplicationState *param0);
 static int ov94_02240D28(GTSApplicationState *param0);
 static void ov94_02240D58(GTSApplicationState *param0, int param1, int param2, int param3, u16 param4, int param5);
 static void ov94_02240DF8(int param0, int param1, int param2, int param3, Sprite *param4, NARC *param5, PokemonIcon *param6);
-static void ov94_02240FA0(GTSApplicationState *param0, int param1);
+static void ov94_02240FA0(GTSApplicationState *param0, int boxID);
 static int ov94_022405CC(int param0, int param1, int param2);
 static void ov94_022404F0(GTSApplicationState *param0);
 static int ov94_022405DC(GTSApplicationState *param0);
@@ -89,7 +89,7 @@ static void ov94_02240EAC(BoxPokemon *boxMon, Sprite *param1, Sprite *param2, u1
 void *ov94_02240DD0(NARC *param0, u32 param1, NNSG2dCharacterData **param2, u32 param3);
 static BOOL GTSApplication_SelectPokemon_MatchesRequirements(GTSPokemonCriteria *param0, GTSPokemonRequirements *param1);
 static void GTSApplication_SelectPokemon_DarkenNonMatchingMons(GTSPokemonCriteria *param0, Sprite **param1, GTSPokemonRequirements *param2, PokemonIcon *param3);
-static int ov94_0224121C(Party *param0, PCBoxes *pcBoxes, int param2, int param3);
+static BOOL ov94_0224121C(Party *party, PCBoxes *pcBoxes, int boxID, int param3);
 static int ov94_022412F4(Party *param0, PCBoxes *pcBoxes, int param2, int param3);
 static int ov94_02240BB0(GTSApplicationState *param0);
 static int BoxPokemon_HasUnusedRibbons(BoxPokemon *boxMon);
@@ -487,7 +487,7 @@ static void ov94_022401E0(GTSApplicationState *param0)
 
 static void ov94_02240268(GTSApplicationState *param0)
 {
-    Heap_FreeToHeap(param0->boxCriteria);
+    Heap_Free(param0->boxCriteria);
     Strbuf_Free(param0->selectPokemonBoxName);
     Strbuf_Free(param0->genericMessageBuffer);
     Strbuf_Free(param0->unk_BA8);
@@ -733,7 +733,7 @@ static int ov94_02240688(GTSApplicationState *param0)
         } else {
             int v1 = 0;
 
-            if (ov94_022411D0(param0->selectedBoxId)) {
+            if (IsBoxIDParty(param0->selectedBoxId)) {
                 Pokemon *v2;
 
                 v2 = Party_GetPokemonBySlotIndex(param0->playerData->party, param0->unk_112);
@@ -825,7 +825,7 @@ static int ov94_022408E8(GTSApplicationState *param0)
         } else {
             int v1 = 0;
 
-            if (ov94_022411D0(param0->selectedBoxId)) {
+            if (IsBoxIDParty(param0->selectedBoxId)) {
                 Pokemon *v2;
 
                 v2 = Party_GetPokemonBySlotIndex(param0->playerData->party, param0->unk_112);
@@ -926,10 +926,10 @@ static int ov94_02240B70(GTSApplicationState *param0)
 
 static int ov94_02240BB0(GTSApplicationState *param0)
 {
-    Pokemon *v0 = (Pokemon *)param0->searchResults[param0->selectedSearchResult].pokemon.bytes;
+    Pokemon *mon = (Pokemon *)param0->searchResults[param0->selectedSearchResult].pokemon.bytes;
 
-    if (Pokemon_HeldItemIsMail(v0) && (param0->selectedBoxId != MAX_PC_BOXES)) {
-        if (Party_GetCurrentCount(param0->playerData->party) == 6) {
+    if (Pokemon_IsHoldingMail(mon) && (param0->selectedBoxId != MAX_PC_BOXES)) {
+        if (Party_GetCurrentCount(param0->playerData->party) == MAX_PARTY_SIZE) {
             ov94_02240D58(param0, 28, TEXT_SPEED_FAST, 0, 0xf0f, 1);
             GTSApplication_SetCurrentAndNextScreenInstruction(param0, 4, 1);
             return 0;
@@ -1027,7 +1027,7 @@ void *ov94_02240DD0(NARC *param0, u32 param1, NNSG2dCharacterData **param2, u32 
 
     if (v0 != NULL) {
         if (NNS_G2dGetUnpackedBGCharacterData(v0, param2) == 0) {
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             return NULL;
         }
     }
@@ -1049,7 +1049,7 @@ static void ov94_02240DF8(int param0, int param1, int param2, int param3, Sprite
     param6->sprite = param4;
     param6->paletteIndex = PokeIconPaletteIndex(param0, param1, param2) + 3;
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
 static void ov94_02240E50(BoxPokemon *boxMon, GTSPokemonCriteria *param1)
@@ -1072,7 +1072,7 @@ static void ov94_02240E5C(void *param0)
         }
     }
 
-    Heap_FreeToHeap(v0->selectPokemonIconHeapPtr);
+    Heap_Free(v0->selectPokemonIconHeapPtr);
 }
 
 static void ov94_02240EAC(BoxPokemon *boxMon, Sprite *param1, Sprite *param2, u16 *species, int param4, NARC *param5, GTSPokemonCriteria *param6, PokemonIcon *param7)
@@ -1099,10 +1099,10 @@ static void ov94_02240EAC(BoxPokemon *boxMon, Sprite *param1, Sprite *param2, u1
 
     if (v0) {
         ov94_02240DF8(*species, form, isEgg, param4, param1, param5, param7);
-        Sprite_SetDrawFlag(param1, 1);
+        Sprite_SetDrawFlag(param1, TRUE);
 
         if (item != 0) {
-            Sprite_SetDrawFlag(param2, 1);
+            Sprite_SetDrawFlag(param2, TRUE);
 
             if (Item_IsMail(item)) {
                 Sprite_SetAnim(param2, 41);
@@ -1110,11 +1110,11 @@ static void ov94_02240EAC(BoxPokemon *boxMon, Sprite *param1, Sprite *param2, u1
                 Sprite_SetAnim(param2, 40);
             }
         } else {
-            Sprite_SetDrawFlag(param2, 0);
+            Sprite_SetDrawFlag(param2, FALSE);
         }
     } else {
-        Sprite_SetDrawFlag(param1, 0);
-        Sprite_SetDrawFlag(param2, 0);
+        Sprite_SetDrawFlag(param1, FALSE);
+        Sprite_SetDrawFlag(param2, FALSE);
 
         param7->sprite = NULL;
     }
@@ -1158,20 +1158,20 @@ static void ov94_02240FA0(GTSApplicationState *appState, int boxId)
             ov94_02240EAC(v4, appState->unk_E28[boxIdx], appState->unk_EA0[boxIdx], &species[boxIdx], boxIdx, v6, &appState->boxCriteria->criteria[boxIdx], &icons[boxIdx]);
 
             if (Pokemon_GetValue(v3, MON_DATA_BALL_CAPSULE_ID, NULL)) {
-                Sprite_SetDrawFlag(appState->selectPokemonPartySprites[boxIdx], 1);
+                Sprite_SetDrawFlag(appState->selectPokemonPartySprites[boxIdx], TRUE);
             } else {
-                Sprite_SetDrawFlag(appState->selectPokemonPartySprites[boxIdx], 0);
+                Sprite_SetDrawFlag(appState->selectPokemonPartySprites[boxIdx], FALSE);
             }
         }
 
         for (; boxIdx < MAX_MONS_PER_BOX; boxIdx++) {
             appState->boxCriteria->criteria[boxIdx].species = SPECIES_NONE;
-            Sprite_SetDrawFlag(appState->unk_E28[boxIdx], 0);
-            Sprite_SetDrawFlag(appState->unk_EA0[boxIdx], 0);
+            Sprite_SetDrawFlag(appState->unk_E28[boxIdx], FALSE);
+            Sprite_SetDrawFlag(appState->unk_EA0[boxIdx], FALSE);
             icons[boxIdx].sprite = NULL;
 
             if (boxIdx < MAX_PARTY_SIZE) {
-                Sprite_SetDrawFlag(appState->selectPokemonPartySprites[boxIdx], 0);
+                Sprite_SetDrawFlag(appState->selectPokemonPartySprites[boxIdx], FALSE);
             }
         }
 
@@ -1190,37 +1190,37 @@ static void ov94_02240FA0(GTSApplicationState *appState, int boxId)
     appState->updateBoxPalettesFunc = ov94_02240E5C;
 }
 
-int ov94_022411D0(int param0)
+int IsBoxIDParty(int boxID)
 {
-    if (param0 == 18) {
-        return 1;
+    if (boxID == MAX_PC_BOXES) {
+        return TRUE;
     } else {
-        return 0;
+        return FALSE;
     }
 }
 
-BoxPokemon *ov94_022411DC(Party *param0, PCBoxes *pcBoxes, int param2, int param3)
+BoxPokemon *ov94_022411DC(Party *party, PCBoxes *pcBoxes, int boxID, int slot)
 {
-    if (ov94_022411D0(param2)) {
-        if (param3 > (Party_GetCurrentCount(param0) - 1)) {
+    if (IsBoxIDParty(boxID)) {
+        if (slot > (Party_GetCurrentCount(party) - 1)) {
             return NULL;
         }
 
-        return Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0, param3));
+        return Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(party, slot));
     }
 
-    return PCBoxes_GetBoxMonAt(pcBoxes, param2, param3);
+    return PCBoxes_GetBoxMonAt(pcBoxes, boxID, slot);
 }
 
-static int ov94_0224121C(Party *param0, PCBoxes *pcBoxes, int param2, int param3)
+static BOOL ov94_0224121C(Party *party, PCBoxes *pcBoxes, int boxID, int param3)
 {
-    if (ov94_022411D0(param2)) {
-        if (Party_GetCurrentCount(param0) < 2) {
-            return 0;
+    if (IsBoxIDParty(boxID)) {
+        if (Party_GetCurrentCount(party) < 2) {
+            return FALSE;
         }
     }
 
-    return 1;
+    return TRUE;
 }
 
 static const u16 sUnusedRibbons[] = {
@@ -1293,17 +1293,17 @@ static BOOL BoxPokemon_HeldItemNotInDP(BoxPokemon *boxMon)
 
 static int ov94_022412F4(Party *param0, PCBoxes *pcBoxes, int param2, int param3)
 {
-    BoxPokemon *v0 = ov94_022411DC(param0, pcBoxes, param2, param3);
+    BoxPokemon *boxMon = ov94_022411DC(param0, pcBoxes, param2, param3);
 
-    if (v0 == NULL) {
+    if (boxMon == NULL) {
         return 0;
     }
 
-    if (!BoxPokemon_GetValue(v0, MON_DATA_SPECIES_EXISTS, NULL)) {
+    if (!BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES_EXISTS, NULL)) {
         return 0;
     }
 
-    if (BoxPokemon_GetValue(v0, MON_DATA_EGG_EXISTS, NULL)) {
+    if (BoxPokemon_GetValue(boxMon, MON_DATA_EGG_EXISTS, NULL)) {
         return 2;
     }
 
@@ -1388,9 +1388,9 @@ static void GTSApplication_SelectPokemon_DarkenNonMatchingMons(GTSPokemonCriteri
     }
 }
 
-BOOL Pokemon_HeldItemIsMail(Pokemon *pokemon)
+BOOL Pokemon_IsHoldingMail(Pokemon *mon)
 {
-    if (Item_IsMail(Pokemon_GetValue(pokemon, MON_DATA_HELD_ITEM, NULL))) {
+    if (Item_IsMail(Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL))) {
         return TRUE;
     }
 

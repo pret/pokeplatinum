@@ -99,7 +99,7 @@ enum MysteryGiftType {
     MYST_GIFT_POKETCH_APP,
     MYST_GIFT_SECRET_KEY,
     MYST_GIFT_UNKNOWN,
-    MYST_GIFT_TYPE_MAX = 14,
+    MYST_GIFT_TYPE_MAX,
 };
 
 typedef struct MysteryGift {

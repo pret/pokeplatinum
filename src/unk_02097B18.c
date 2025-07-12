@@ -230,14 +230,14 @@ static int sub_02097D88(ApplicationManager *appMan, int *param1)
     Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 5);
     Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 6);
     Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 7);
-    Heap_FreeToHeap(v0->unk_D4.unk_10);
+    Heap_Free(v0->unk_D4.unk_10);
     PaletteData_FreeBuffer(v0->unk_D4.unk_14, 0);
     PaletteData_FreeBuffer(v0->unk_D4.unk_14, 1);
     PaletteData_FreeBuffer(v0->unk_D4.unk_14, 2);
     PaletteData_FreeBuffer(v0->unk_D4.unk_14, 3);
     PaletteData_Free(v0->unk_D4.unk_14);
     sub_02097F20(v0->unk_00, v0->unk_3C4[0]);
-    Heap_FreeToHeap(v0->unk_428);
+    Heap_Free(v0->unk_428);
     ov76_0223B678(v0);
     TouchScreenActions_Free(v0->unk_D4.unk_F8);
     PokemonSpriteManager_Free(v0->unk_D4.unk_D0);
@@ -398,9 +398,9 @@ static BOOL sub_02097F38(FieldTask *param0)
         v0->unk_14 = 6;
         break;
     case 6:
-        Heap_FreeToHeap(v0->unk_0C);
-        Heap_FreeToHeap(v0->unk_08);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0->unk_0C);
+        Heap_Free(v0->unk_08);
+        Heap_Free(v0);
         return 1;
     }
 

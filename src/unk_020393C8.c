@@ -131,7 +131,7 @@ void sub_02039440(NetworkIcon *param0)
         inline_02039440((GXOamAttr *)(HW_OAM_END));
     }
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void sub_02039474(NetworkIcon *param0, BOOL param1, u32 heapID)
@@ -170,7 +170,7 @@ static void sub_020394D0(int vramType, BOOL unusedIsWifi, u32 offset, u32 heapID
             GXS_LoadOBJPltt(paletteData->pRawData, offset, (16 * 2));
         }
 
-        Heap_FreeToHeap(heapPtr);
+        Heap_Free(heapPtr);
     }
 }
 
@@ -227,7 +227,7 @@ static void sub_02039530(int vramType, BOOL isWifi, u32 heapID)
             GXS_LoadOBJ(v1->pRawData, offset, (4 * 4 * 32));
         }
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 }
 

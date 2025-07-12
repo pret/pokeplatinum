@@ -8,7 +8,7 @@
 #include "generated/trainer_score_events.h"
 
 #include "struct_decls/struct_02029894_decl.h"
-#include "struct_defs/underground_data.h"
+#include "struct_defs/underground.h"
 #include "struct_defs/underground_record.h"
 
 #include "field/field_system.h"
@@ -482,7 +482,7 @@ void ov23_0224B4E4(void)
     ov23_0224C6E8();
 
     if (Unk_ov23_022577AC) {
-        Heap_FreeToHeap(Unk_ov23_022577AC);
+        Heap_Free(Unk_ov23_022577AC);
     }
 
     Unk_ov23_022577AC = NULL;
@@ -807,7 +807,7 @@ static void ov23_0224BA48(SysTask *param0, void *param1)
     }
 
     SysTask_Done(param0);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     ov23_02243204();
 }
@@ -827,7 +827,7 @@ static void ov23_0224BA6C(SysTask *param0, void *param1)
 
     CommSys_SendDataFixedSize(59, &v1);
     SysTask_Done(param0);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     ov23_02243204();
     ov23_0224DC24();
@@ -1687,7 +1687,7 @@ static BOOL ov23_0224C790(FieldTask *param0)
 
         sub_02059638(0);
         sub_02059514();
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
 
         if (sub_02033DFC() && ov23_02242E58(v1->unk_1C, v1->unk_20)) {
             ov23_02242FA8();
@@ -1837,7 +1837,7 @@ static void ov23_0224CB1C(SysTask *param0, void *param1)
 
             CommSys_SendDataFixedSize(86, &v10);
             SysTask_Done(param0);
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
 
             ov23_02243204();
             return;
@@ -1857,7 +1857,7 @@ static void ov23_0224CB1C(SysTask *param0, void *param1)
         }
 
         SysTask_Done(param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
 
         ov23_02243204();
         ov23_0224DC24();
@@ -1948,7 +1948,7 @@ static void ov23_0224CE94(SysTask *param0, void *param1)
     }
 
     SysTask_Done(param0);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     ov23_02243204();
     sub_02059514();
@@ -2146,7 +2146,7 @@ BOOL ov23_0224D1A0(int param0, int param1)
 static void ov23_0224D238(void)
 {
     UnkStruct_02029894 *v0 = sub_02029894(FieldSystem_GetSaveData(Unk_ov23_022577AC->fieldSystem));
-    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(Unk_ov23_022577AC->fieldSystem));
+    Underground *v1 = SaveData_GetUnderground(FieldSystem_GetSaveData(Unk_ov23_022577AC->fieldSystem));
     int v2 = CommPlayer_AddXServer(0);
     int v3 = CommPlayer_AddZServer(0);
     int v4 = CommPlayer_DirServer(0);
@@ -2341,7 +2341,7 @@ static void ov23_0224D54C(UnkStruct_ov23_0224D54C *param0)
 
 static void ov23_0224D5A8(SysTask *param0, void *param1)
 {
-    Heap_FreeToHeap(param1);
+    Heap_Free(param1);
     SysTask_Done(param0);
 }
 
@@ -2380,7 +2380,7 @@ static void ov23_0224D5BC(SysTask *param0, void *param1)
         StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
         break;
     case 4:
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         ov23_02243204();
         break;

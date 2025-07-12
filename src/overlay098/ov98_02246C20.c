@@ -205,7 +205,7 @@ static void ov98_02246E54(UnkStruct_ov98_02246E88 *param0)
     if (param0->unk_80 == 1) {
         NNS_FndDestroyExpHeap(param0->unk_10);
 
-        Heap_FreeToHeap(param0->unk_0C);
+        Heap_Free(param0->unk_0C);
         Overlay_UnloadHttpOverlay();
         sub_02099560();
         WirelessDriver_Shutdown();
@@ -274,7 +274,7 @@ void ov98_02246EF8(UnkStruct_ov98_02246E88 *param0)
 
     ov98_022499C8(param0->unk_114, v0, HEAP_ID_108);
     sub_02030D38(param0->saveData, v0);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 void ov98_02246F24(UnkStruct_ov98_02246E88 *param0)
@@ -440,6 +440,6 @@ static void ov98_02247198(UnkStruct_ov98_02246E88 *param0)
         SystemFlag_SetConnectedToWiFi(SaveData_GetVarsFlags(param0->saveData));
     }
 
-    Heap_FreeToHeap(param0->unk_98);
+    Heap_Free(param0->unk_98);
     ov98_02246E88(param0, 0, 0);
 }

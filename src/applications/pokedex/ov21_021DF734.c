@@ -208,13 +208,13 @@ static UnkStruct_ov21_021DF858 *ov21_021DF80C(enum HeapId heapID, PokedexApp *pa
 static void ov21_021DF844(UnkStruct_ov21_021DF844 *param0)
 {
     GF_ASSERT(param0);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov21_021DF858(UnkStruct_ov21_021DF858 *param0)
 {
     GF_ASSERT(param0);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static int ov21_021DF86C(void)
@@ -390,7 +390,7 @@ static int ov21_021DFA18(void *graphics, PokedexGraphicsManager *graphicsMan, co
         graphicsMan->state++;
         break;
     case 3:
-        Heap_FreeToHeap(graphicsMan->pageGraphics);
+        Heap_Free(graphicsMan->pageGraphics);
         graphicsMan->state++;
         break;
     case 4:
@@ -428,7 +428,7 @@ static void ov21_021DFAE8(UnkStruct_ov21_021DF858 *param0, int heapID)
     v0 = PokedexGraphics_GetGraphicNarcScreenData(param0->unk_00, 50, 1, &v1, heapID);
 
     Bg_LoadToTilemapRect(param0->unk_00->bgConfig, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     Bg_ScheduleTilemapTransfer(param0->unk_00->bgConfig, 3);
 }
 
@@ -583,7 +583,7 @@ static void ov21_021DFE0C(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF8
     Sprite_SetExplicitPriority(param0->unk_BC, 0);
 
     if (param2->unk_10 <= 1) {
-        Sprite_SetDrawFlag(param0->unk_BC, 0);
+        Sprite_SetDrawFlag(param0->unk_BC, FALSE);
     }
 }
 
@@ -1262,7 +1262,7 @@ static void ov21_021E0BF8(UnkStruct_ov21_021DFFF8 *param0)
 
 static void ov21_021E0C10(UnkStruct_ov21_021DFFF8 *param0)
 {
-    Sprite_SetDrawFlag(param0->unk_BC, 0);
+    Sprite_SetDrawFlag(param0->unk_BC, FALSE);
 
     param0->unk_C0 = (16 + 8);
     param0->unk_C4 = 1;
@@ -1274,7 +1274,7 @@ static void ov21_021E0C30(UnkStruct_ov21_021DFFF8 *param0)
         param0->unk_C0--;
 
         if (param0->unk_C0 <= 0) {
-            Sprite_SetDrawFlag(param0->unk_BC, 1);
+            Sprite_SetDrawFlag(param0->unk_BC, TRUE);
             param0->unk_C4 = 0;
         }
     }

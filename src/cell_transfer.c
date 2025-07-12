@@ -23,7 +23,7 @@ void CellTransfer_Update(void)
 
 void CellTransfer_Free(NNSG2dCellTransferState *transferStates)
 {
-    Heap_FreeToHeap(transferStates);
+    Heap_Free(transferStates);
 }
 
 static BOOL RegisterTransferTaskCB(NNS_GFD_DST_TYPE type, u32 destAddr, void *buf, u32 size)

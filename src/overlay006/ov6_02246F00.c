@@ -97,7 +97,7 @@ static BOOL ov6_02246F40(FieldTask *param0)
         }
         break;
     case 4:
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return 1;
     }
 

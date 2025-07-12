@@ -514,14 +514,14 @@ void ov94_0223D910(MessageLoader *param0, MessageLoader *param1, StringTemplate 
     Strbuf *v0, *v1, *v2, *v3;
     Strbuf *v4 = Strbuf_Init((10 + 1) * 2, HEAP_ID_62);
     Strbuf *v5 = Strbuf_Init((8 + 1) * 2, HEAP_ID_62);
-    int gender, level, v8, v9, species;
+    int gender, level, item, v9, species;
 
     BoxPokemon_GetValue(boxMon, MON_DATA_NICKNAME_STRBUF, v4);
 
     species = param5->species;
     gender = param5->gender;
     level = param5->level;
-    v8 = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
+    item = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
     v3 = MessageLoader_GetNewStrbuf(param0, GTS_Text_Item);
     v1 = MessageLoader_GetNewStrbuf(param0, gGTSGenderPreferenceMessages[gender]);
 
@@ -530,7 +530,7 @@ void ov94_0223D910(MessageLoader *param0, MessageLoader *param1, StringTemplate 
     v2 = MessageUtil_ExpandedStrbuf(param2, param0, GTS_Text_LevelTemplate, HEAP_ID_62);
     v0 = MessageLoader_GetNewStrbuf(param1, species);
 
-    Item_LoadName(v5, v8, 62);
+    Item_LoadName(v5, item, HEAP_ID_62);
 
     for (v9 = 0; v9 < 5; v9++) {
         Window_FillTilemap(&param3[v9], 0x0);
@@ -598,7 +598,7 @@ void ov94_0223DB2C(Pokemon *param0)
     GX_LoadOBJ(v1, ((18 * 32 + 16) * 32), (0x20 * 10 * 10));
 
     Graphics_LoadPalette(v0.narcID, v0.palette, 1, 0x20 * 13, 32, HEAP_ID_62);
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
 static void ov94_0223DBBC(GTSApplicationState *param0)

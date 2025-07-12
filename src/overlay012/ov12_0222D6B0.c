@@ -171,7 +171,7 @@ static void ov12_0222D6B0(SysTask *param0, void *param1)
         }
 
         ov12_02220220(v1->unk_08, param0);
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
 
         return;
     }
@@ -389,7 +389,7 @@ static void ov12_0222D934(SysTask *param0, void *param1)
         }
 
         ov12_02220220(v2->unk_0C, param0);
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
         return;
     }
 
@@ -602,7 +602,7 @@ static void ov12_0222DE24(SysTask *param0, void *param1)
         break;
     default:
         ov12_02220220(v1->unk_08, param0);
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return;
     }
 
@@ -732,7 +732,7 @@ static void ov12_0222E080(SysTask *param0, void *param1)
         GX_SetVisibleWnd(GX_WNDMASK_NONE);
         ov12_02222664(v0->unk_04.unk_04, 2);
         ov12_02220220(v0->unk_04.unk_04, param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 
@@ -805,7 +805,7 @@ static void ov12_0222E25C(SysTask *param0, void *param1)
             }
 
             ov12_02220220(v0->unk_00.unk_04, param0);
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             return;
         }
     }
@@ -944,7 +944,7 @@ static void ov12_0222E390(SysTask *param0, void *param1)
             }
 
             ov12_02220220(v0->unk_00.unk_04, param0);
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             return;
         }
     }

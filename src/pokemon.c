@@ -234,7 +234,7 @@ void Pokemon_InitWith(Pokemon *mon, int monSpecies, int monLevel, int monIVs, BO
     Mail *mail = Mail_New(HEAP_ID_SYSTEM);
 
     Pokemon_SetValue(mon, MON_DATA_MAIL, mail);
-    Heap_FreeToHeap(mail);
+    Heap_Free(mail);
 
     u32 zero = 0;
     Pokemon_SetValue(mon, MON_DATA_BALL_CAPSULE_ID, &zero);
@@ -475,7 +475,7 @@ void Pokemon_CalcStats(Pokemon *mon)
     newSpDef = Pokemon_GetNatureStatValue(Pokemon_GetNature(mon), newSpDef, STAT_SPECIAL_DEFENSE);
 
     Pokemon_SetValue(mon, MON_DATA_SP_DEF, &newSpDef);
-    Heap_FreeToHeap(speciesData);
+    Heap_Free(speciesData);
 
     if (monCurrentHp != 0 || monMaxHp == 0) {
         if (monSpecies == SPECIES_SHEDINJA) {
@@ -2115,7 +2115,7 @@ u32 SpeciesData_GetValue(SpeciesData *speciesData, enum SpeciesDataParam param)
 void SpeciesData_Free(SpeciesData *speciesData)
 {
     GF_ASSERT(speciesData);
-    Heap_FreeToHeap(speciesData);
+    Heap_Free(speciesData);
 }
 
 u32 SpeciesData_GetFormValue(int monSpecies, int monForm, enum SpeciesDataParam param)
@@ -2196,7 +2196,7 @@ static u32 Pokemon_GetExpRateBaseExpAt(enum ExpRate monExpRate, int monLevel)
     Pokemon_LoadExperienceTableOf(monExpRate, expTable);
 
     u32 result = expTable[monLevel];
-    Heap_FreeToHeap(expTable);
+    Heap_Free(expTable);
 
     return result;
 }
@@ -3490,7 +3490,7 @@ u16 Pokemon_GetEvolutionTargetSpecies(Party *party, Pokemon *mon, u8 evoClass, u
         break;
     }
 
-    Heap_FreeToHeap(speciesEvolutions);
+    Heap_Free(speciesEvolutions);
     return targetSpecies;
 }
 
@@ -3551,7 +3551,7 @@ static void BoxPokemon_SetDefaultMoves(BoxPokemon *boxMon)
         }
     }
 
-    Heap_FreeToHeap(monLevelUpMoves);
+    Heap_Free(monLevelUpMoves);
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
 }
 
@@ -3655,14 +3655,14 @@ u16 Pokemon_LevelUpMove(Pokemon *mon, int *index, u16 *moveID)
     Pokemon_LoadLevelUpMovesOf(monSpecies, monForm, monLevelUpMoves);
 
     if (monLevelUpMoves[*index] == LEARNSET_SENTINEL_ENTRY) {
-        Heap_FreeToHeap(monLevelUpMoves);
+        Heap_Free(monLevelUpMoves);
         return MOVE_NONE;
     }
 
     while ((monLevelUpMoves[*index] & 0xFE00) != monLevel << 9) {
         (*index)++;
         if (monLevelUpMoves[*index] == LEARNSET_SENTINEL_ENTRY) {
-            Heap_FreeToHeap(monLevelUpMoves);
+            Heap_Free(monLevelUpMoves);
             return MOVE_NONE;
         }
     }
@@ -3673,7 +3673,7 @@ u16 Pokemon_LevelUpMove(Pokemon *mon, int *index, u16 *moveID)
         result = Pokemon_AddMove(mon, *moveID);
     }
 
-    Heap_FreeToHeap(monLevelUpMoves);
+    Heap_Free(monLevelUpMoves);
     return result;
 }
 
@@ -3755,7 +3755,7 @@ void Pokemon_FromBoxPokemon(BoxPokemon *boxMon, Pokemon *mon)
 
     Mail *mail = Mail_New(HEAP_ID_SYSTEM);
     Pokemon_SetValue(mon, MON_DATA_MAIL, mail);
-    Heap_FreeToHeap(mail);
+    Heap_Free(mail);
 
     Pokemon_SetValue(mon, MON_DATA_BALL_CAPSULE_ID, &zero);
 
@@ -3857,7 +3857,7 @@ int Pokemon_LoadLevelUpMoveIdsOf(int monSpecies, int monForm, u16 *monLevelUpMov
         result++;
     }
 
-    Heap_FreeToHeap(monLevelUpMoves);
+    Heap_Free(monLevelUpMoves);
     return result;
 }
 
@@ -4522,7 +4522,7 @@ void sub_020780C4(Pokemon *mon, u32 monPersonality)
 
     Pokemon_EncryptData(&mon->box.dataBlocks, sizeof(PokemonDataBlock) * 4, mon->box.checksum);
     Pokemon_EncryptData(&mon->party, sizeof(PartyPokemon), mon->box.personality);
-    Heap_FreeToHeap(newMon);
+    Heap_Free(newMon);
 }
 
 static void SpeciesData_LoadSpecies(int monSpecies, SpeciesData *speciesData)

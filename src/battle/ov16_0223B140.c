@@ -723,16 +723,16 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
 
     for (battlerId = 0; battlerId < MAX_BATTLERS; battlerId++) {
         Party_Copy(battleSystem->parties[battlerId], v1->parties[battlerId]);
-        Heap_FreeToHeap(battleSystem->parties[battlerId]);
+        Heap_Free(battleSystem->parties[battlerId]);
         TrainerInfo_Copy(battleSystem->trainerInfo[battlerId], v1->trainerInfo[battlerId]);
-        Heap_FreeToHeap(battleSystem->trainerInfo[battlerId]);
+        Heap_Free(battleSystem->trainerInfo[battlerId]);
     }
 
     sub_02015760(battleSystem->unk_1AC);
     Bag_Copy(battleSystem->bag, v1->bag);
-    Heap_FreeToHeap(battleSystem->bag);
+    Heap_Free(battleSystem->bag);
     Pokedex_Copy(battleSystem->pokedex, v1->pokedex);
-    Heap_FreeToHeap(battleSystem->pokedex);
+    Heap_Free(battleSystem->pokedex);
     v1->pcBoxes = battleSystem->pcBoxes;
     v1->bagCursor = battleSystem->bagCursor;
     v1->subscreenCursorOn = battleSystem->unk_1BC;
@@ -749,10 +749,10 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
     v1->unk_19C = battleSystem->recordingStopped;
 
     for (battlerId = 0; battlerId < 4; battlerId++) {
-        Heap_FreeToHeap(battleSystem->unk_1CC[battlerId].unk_00);
+        Heap_Free(battleSystem->unk_1CC[battlerId].unk_00);
     }
 
-    Heap_FreeToHeap(battleSystem->msgBuffer);
+    Heap_Free(battleSystem->msgBuffer);
     PaletteData_FreeBuffer(battleSystem->paletteSys, 0);
     PaletteData_FreeBuffer(battleSystem->paletteSys, 1);
     PaletteData_FreeBuffer(battleSystem->paletteSys, 2);
@@ -781,9 +781,9 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
     RenderControlFlags_SetAutoScrollFlags(0);
     RenderControlFlags_SetSpeedUpOnTouch(0);
     Windows_Delete(battleSystem->windows, 3);
-    Heap_FreeToHeap(battleSystem->unk_04);
-    Heap_FreeToHeap(battleSystem->unk_21C);
-    Heap_FreeToHeap(battleSystem->unk_220);
+    Heap_Free(battleSystem->unk_04);
+    Heap_Free(battleSystem->unk_21C);
+    Heap_Free(battleSystem->unk_220);
     sub_0200C560(battleSystem->unk_1A4);
     Font_Free(FONT_SUBSCREEN);
     SysTask_Done(battleSystem->unk_1C);
@@ -808,7 +808,7 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
         ov16_0226E174(battleSystem->playbackStopButton);
     }
 
-    Heap_FreeToHeap(battleSystem);
+    Heap_Free(battleSystem);
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay11));
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay12));
 
@@ -1948,7 +1948,7 @@ static BOOL ov16_0223D354(ApplicationManager *appMan)
                 int v2;
 
                 for (v2 = 0; v2 < 4; v2++) {
-                    Heap_FreeToHeap(v0->unk_10[v2]);
+                    Heap_Free(v0->unk_10[v2]);
                 }
             }
 
@@ -1990,8 +1990,8 @@ static void ov16_0223D7B4(ApplicationManager *appMan)
     Windows_Delete(v0->unk_08, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
     Bg_FreeTilemapBuffer(v0->unk_04, BG_LAYER_MAIN_1);
-    Heap_FreeToHeap(v0->unk_04);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0->unk_04);
+    Heap_Free(v0);
 }
 
 static BOOL ov16_0223D800(ApplicationManager *appMan)
@@ -2058,11 +2058,11 @@ static BOOL ov16_0223D944(ApplicationManager *appMan)
     if (v1->unk_1C0->unk_2B) {
         for (v0 = 0; v0 < 4; v0++) {
             if (v1->unk_1C0->unk_14[v0] != NULL) {
-                Heap_FreeToHeap(v1->unk_1C0->unk_14[v0]);
+                Heap_Free(v1->unk_1C0->unk_14[v0]);
             }
         }
 
-        Heap_FreeToHeap(v1->unk_1C0);
+        Heap_Free(v1->unk_1C0);
         return 1;
     }
 
@@ -2118,11 +2118,11 @@ static BOOL ov16_0223DAD4(ApplicationManager *appMan)
     if (v1->unk_1C0->unk_2B) {
         for (v0 = 0; v0 < 4; v0++) {
             if (v1->unk_1C0->unk_14[v0] != NULL) {
-                Heap_FreeToHeap(v1->unk_1C0->unk_14[v0]);
+                Heap_Free(v1->unk_1C0->unk_14[v0]);
             }
         }
 
-        Heap_FreeToHeap(v1->unk_1C0);
+        Heap_Free(v1->unk_1C0);
         return 1;
     }
 
@@ -2153,16 +2153,16 @@ static BOOL ov16_0223DB1C(ApplicationManager *appMan)
     switch (v0->resultMask) {
     case BATTLE_RESULT_WIN:
         if (!CommMan_IsConnectedToWifi()) {
-            GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_021);
+            GameRecords_IncrementRecordValue(v0->records, RECORD_LOCAL_LINK_BATTLE_WINS);
         } else {
-            GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_026);
+            GameRecords_IncrementRecordValue(v0->records, RECORD_WIFI_BATTLE_WINS);
         }
         break;
     case BATTLE_RESULT_LOSE:
         if (!CommMan_IsConnectedToWifi()) {
-            GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_022);
+            GameRecords_IncrementRecordValue(v0->records, RECORD_LOCAL_LINK_BATTLE_LOSSES);
         } else {
-            GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_027);
+            GameRecords_IncrementRecordValue(v0->records, RECORD_WIFI_BATTLE_LOSSES);
         }
         break;
     case BATTLE_RESULT_DRAW:
@@ -2222,11 +2222,11 @@ static BOOL ov16_0223DD10(ApplicationManager *appMan)
     if (v2->unk_2B) {
         for (v0 = 0; v0 < 4; v0++) {
             if (v2->unk_14[v0] != NULL) {
-                Heap_FreeToHeap(v2->unk_14[v0]);
+                Heap_Free(v2->unk_14[v0]);
             }
         }
 
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
         return 1;
     }
 

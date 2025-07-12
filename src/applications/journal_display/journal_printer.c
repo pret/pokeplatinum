@@ -824,7 +824,7 @@ static void JournalPrinter_SetSpeciesName(JournalManager *journalManager, u16 sp
 
     sub_02074088(mon, species, 1, 32, gender, 0, 0);
     StringTemplate_SetSpeciesName(journalManager->template, idx, Pokemon_GetBoxPokemon(mon));
-    Heap_FreeToHeap(mon);
+    Heap_Free(mon);
 }
 
 static void JournalPrinter_PrintPokemonCaught(JournalManager *journalManager, Window *window, JournalEntryMon *journalEntryMon)

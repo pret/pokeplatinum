@@ -304,7 +304,7 @@ static void ov22_0225A914(UnkStruct_ov22_0225A914 *param0, SpriteList *param1, S
             Sprite_SetAnim(param0->unk_10[(v2 * 10) + v3], 1);
 
             if (((v2 * 10) + v3) >= param3) {
-                Sprite_SetDrawFlag(param0->unk_10[(v2 * 10) + v3], 0);
+                Sprite_SetDrawFlag(param0->unk_10[(v2 * 10) + v3], FALSE);
             }
         }
     }

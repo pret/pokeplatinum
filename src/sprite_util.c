@@ -126,10 +126,10 @@ void SpriteResourcesHeaderList_Free(SpriteResourcesHeaderList *headerList)
 {
     GF_ASSERT(headerList);
     if (headerList->headers) {
-        Heap_FreeToHeap(headerList->headers);
+        Heap_Free(headerList->headers);
     }
 
-    Heap_FreeToHeap(headerList);
+    Heap_Free(headerList);
 }
 
 SpriteList *SpriteList_InitRendering(int maxElements, G2dRenderer *g2dRenderer, enum HeapId heapID)

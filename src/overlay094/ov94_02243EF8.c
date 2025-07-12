@@ -57,14 +57,14 @@ void ov94_02243EF8(GTSApplicationState *param0, int param1)
 
     Sprite_SetAnimateFlag(param0->avatarSprites[0], 1);
     Sprite_SetAnim(param0->avatarSprites[0], 3 + param1 * 7);
-    Sprite_SetDrawFlag(param0->avatarSprites[0], 1);
+    Sprite_SetDrawFlag(param0->avatarSprites[0], TRUE);
 
     for (v1 = 0; v1 < 7; v1++) {
         param0->avatarSprites[v1 + 1] = SpriteList_AddAffine(&v0);
 
         Sprite_SetAnimateFlag(param0->avatarSprites[v1 + 1], 1);
         Sprite_SetAnim(param0->avatarSprites[v1 + 1], 14 + v1 * 4);
-        Sprite_SetDrawFlag(param0->avatarSprites[v1 + 1], 0);
+        Sprite_SetDrawFlag(param0->avatarSprites[v1 + 1], FALSE);
 
         ov94_022441A0(param0->avatarSprites[v1 + 1], Unk_ov94_02246322[v1][0], Unk_ov94_02246322[v1][1]);
     }
@@ -254,9 +254,9 @@ void ov94_02244234(GTSApplicationState *param0, int param1, int param2)
                 Sprite_SetAnim(param0->avatarSprites[v0 + 1], 17 + v0 * 4);
             }
 
-            Sprite_SetDrawFlag(param0->avatarSprites[v0 + 1], 1);
+            Sprite_SetDrawFlag(param0->avatarSprites[v0 + 1], TRUE);
         } else {
-            Sprite_SetDrawFlag(param0->avatarSprites[v0 + 1], 0);
+            Sprite_SetDrawFlag(param0->avatarSprites[v0 + 1], FALSE);
         }
     }
 }
@@ -313,7 +313,7 @@ static void ov94_02244378(NNSG2dCharacterData *param0, NNSG2dPaletteData *param1
 void ov94_022443B8(GTSApplicationState *param0)
 {
     if (param0->hasAvatarFinishedMoving) {
-        Heap_FreeToHeap(param0->unk_10FC);
-        Heap_FreeToHeap(param0->unk_10F4);
+        Heap_Free(param0->unk_10FC);
+        Heap_Free(param0->unk_10F4);
     }
 }

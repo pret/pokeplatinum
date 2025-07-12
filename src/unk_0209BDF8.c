@@ -50,9 +50,9 @@ UnkStruct_0209BDF8 *sub_0209BDF8(UnkStruct_0209C194 *param0, u32 heapID)
 
 void sub_0209BE38(UnkStruct_0209BDF8 *param0)
 {
-    Heap_FreeToHeap(param0->unk_4C);
-    Heap_FreeToHeap(param0->unk_50);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0->unk_4C);
+    Heap_Free(param0->unk_50);
+    Heap_Free(param0);
 }
 
 void sub_0209BE50(UnkStruct_0209BDF8 *param0)

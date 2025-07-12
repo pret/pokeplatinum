@@ -85,7 +85,7 @@ static void ov23_0224A204(int param0)
             GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(commPlayerMan->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNDERGROUND_CAPTURE_FLAG);
 
             if (commPlayerMan->unk_27C[5 - 1]) {
-                Heap_FreeToHeap(commPlayerMan->unk_27C[5 - 1]);
+                Heap_Free(commPlayerMan->unk_27C[5 - 1]);
             }
 
             for (v0 = 5 - 1; v0 >= 1; v0--) {
@@ -93,7 +93,7 @@ static void ov23_0224A204(int param0)
             }
 
             commPlayerMan->unk_27C[0] = commPlayerMan->unk_290[param0];
-            sub_02028830(SaveData_GetUndergroundData(FieldSystem_GetSaveData(commPlayerMan->fieldSystem)), commPlayerMan->unk_290[param0]);
+            sub_02028830(SaveData_GetUnderground(FieldSystem_GetSaveData(commPlayerMan->fieldSystem)), commPlayerMan->unk_290[param0]);
 
             commPlayerMan->unk_290[param0] = NULL;
             commPlayerMan->unk_14A[param0].unk_20 = 0xff;
@@ -290,7 +290,7 @@ static void ov23_0224A5CC(SysTask *param0, void *param1)
     u8 v3 = 0;
 
     if (!CommSys_IsPlayerConnected(v2)) {
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         SysTask_Done(param0);
         return;
     } else {
@@ -303,7 +303,7 @@ static void ov23_0224A5CC(SysTask *param0, void *param1)
 
     if (v3) {
         commPlayerMan->unk_EA[v2] = 1;
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         SysTask_Done(param0);
     }
 }
@@ -540,7 +540,7 @@ void ov23_0224AAB0(void)
         TrainerInfo_SetNameFromStrbuf(v0, v1);
         CommSys_SendDataFixedSize(91, v0);
         Strbuf_Free(v1);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 }
 
@@ -592,7 +592,7 @@ void ov23_0224ABC4(int param0, int param1, void *param2, void *param3)
         v3 = v1->unk_20;
 
         if (commPlayerMan->unk_290[v3]) {
-            Heap_FreeToHeap(commPlayerMan->unk_290[v3]);
+            Heap_Free(commPlayerMan->unk_290[v3]);
         }
 
         commPlayerMan->unk_290[v3] = TrainerInfo_New(HEAP_ID_COMMUNICATION);
@@ -765,7 +765,7 @@ BOOL ov23_0224AE60(int param0)
     CommPlayerManager *v0 = CommPlayerMan_Get();
 
     if (v0->unk_290[param0] != NULL) {
-        Heap_FreeToHeap(v0->unk_290[param0]);
+        Heap_Free(v0->unk_290[param0]);
 
         v0->unk_290[param0] = NULL;
         v0->unk_FA[param0] = 0;

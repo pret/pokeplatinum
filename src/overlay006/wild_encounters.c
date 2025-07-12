@@ -223,7 +223,7 @@ static void WildEncounters_ReplaceTrophyGardenEncounters(FieldSystem *fieldSyste
                 *trophySlot2 = trophyGardenData[index2];
             }
 
-            Heap_FreeToHeap(trophyGardenData);
+            Heap_Free(trophyGardenData);
         }
     }
 }
@@ -1041,7 +1041,7 @@ static void CreateWildMonShinyWithGenderOrNature(const u16 species, const u8 lev
     Pokemon_InitWith(newEncounter, species, level, INIT_IVS_RANDOM, TRUE, newEncounterPersonality, OTID_SET, encounterFieldParams->trainerID);
 
     GF_ASSERT(AddWildMonToParty(partySlot, encounterFieldParams, newEncounter, battleParams));
-    Heap_FreeToHeap(newEncounter);
+    Heap_Free(newEncounter);
 }
 
 static void CreateWildMon(u16 species, u8 level, const int partyDest, const WildEncounters_FieldParams *encounterFieldParams, Pokemon *firstPartyMon, FieldBattleDTO *battleParams)
@@ -1075,7 +1075,7 @@ static void CreateWildMon(u16 species, u8 level, const int partyDest, const Wild
         Pokemon_SetValue(newEncounter, MON_DATA_OT_ID, &encounterFieldParams->trainerID);
 
         GF_ASSERT(AddWildMonToParty(partyDest, encounterFieldParams, newEncounter, battleParams));
-        Heap_FreeToHeap(newEncounter);
+        Heap_Free(newEncounter);
         return;
     }
 
@@ -1083,7 +1083,7 @@ static void CreateWildMon(u16 species, u8 level, const int partyDest, const Wild
     Pokemon_SetValue(newEncounter, MON_DATA_OT_ID, &encounterFieldParams->trainerID);
 
     GF_ASSERT(AddWildMonToParty(partyDest, encounterFieldParams, newEncounter, battleParams));
-    Heap_FreeToHeap(newEncounter);
+    Heap_Free(newEncounter);
 }
 
 static BOOL TryGenerateWildMon(Pokemon *firstPartyMon, const int fishingRodType, const WildEncounters_FieldParams *encounterFieldParams, const EncounterSlot *encounterTable, const u8 encounterType, const int partyDest, FieldBattleDTO *battleParams)
@@ -1415,7 +1415,7 @@ static void AddRoamerToEnemyParty(const u32 trainerID, Roamer *roamer, FieldBatt
     Pokemon_SetValue(mon, MON_DATA_CURRENT_HP, &roamerCurrentHP);
 
     GF_ASSERT(Party_AddPokemon(battle->parties[1], mon));
-    Heap_FreeToHeap(mon);
+    Heap_Free(mon);
 }
 
 // 50% chance to encounter a roamer if there is one on the current map.

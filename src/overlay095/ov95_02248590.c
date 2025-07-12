@@ -254,7 +254,7 @@ void ov95_022485FC(void *param0)
         }
 
         MTRNG_SetSeed(v1->unk_BC);
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
     }
 
     OS_RestoreInterrupts(v0);
@@ -512,7 +512,7 @@ static void ov95_022488A4(UnkStruct_ov95_02248688 *param0)
             GX_EndLoadBGExtPltt();
             GXS_EndLoadBGExtPltt();
 
-            Heap_FreeToHeap(v7);
+            Heap_Free(v7);
         }
     }
 
@@ -623,8 +623,8 @@ static void ov95_02248CA8(UnkStruct_ov95_02248688 *param0)
 
         Sprite_SetAnim(param0->unk_1C[v3][0], 0);
         Sprite_SetAnim(param0->unk_1C[v3][1], 1);
-        Sprite_SetDrawFlag(param0->unk_1C[v3][0], 0);
-        Sprite_SetDrawFlag(param0->unk_1C[v3][1], 0);
+        Sprite_SetDrawFlag(param0->unk_1C[v3][0], FALSE);
+        Sprite_SetDrawFlag(param0->unk_1C[v3][1], FALSE);
     }
 }
 
@@ -683,7 +683,7 @@ static void ov95_02248E5C(UnkStruct_ov95_02248688 *param0, SysTask **param1, Unk
     *(param2->unk_00) = SysTask_Start(ov95_02248EC4, param2, 0);
 
     if (*(param2->unk_00) == NULL) {
-        Heap_FreeToHeap(param2);
+        Heap_Free(param2);
     }
 }
 
@@ -709,8 +709,8 @@ static void ov95_02248EC4(SysTask *param0, void *param1)
             v0->unk_58[v2].y = -114688 + (v0->unk_58[v2].y - 1736704);
 
             if (v0->unk_08[v2]) {
-                Sprite_SetDrawFlag(v0->unk_04->unk_1C[v2][0], 1);
-                Sprite_SetDrawFlag(v0->unk_04->unk_1C[v2][1], 1);
+                Sprite_SetDrawFlag(v0->unk_04->unk_1C[v2][0], TRUE);
+                Sprite_SetDrawFlag(v0->unk_04->unk_1C[v2][1], TRUE);
             }
         }
 
@@ -750,7 +750,7 @@ static void ov95_02248FAC(UnkStruct_ov95_02248688 *param0, SysTask **param1)
         *param1 = SysTask_ExecuteOnVBlank(ov95_02249020, v0, 0);
 
         if (*param1 == NULL) {
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
         }
     }
 }
@@ -781,7 +781,7 @@ static void ov95_022490A4(SysTask *param0)
 
         *(v0->unk_168) = NULL;
         ov95_02248F94(v0->unk_16C);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
     }
 }
@@ -811,7 +811,7 @@ static void ov95_02249118(SysTask *param0, void *param1)
         ov95_022479AC(v0->unk_10, v0->unk_00 >> 12);
     } else {
         ov95_022479AC(v0->unk_10, v0->unk_08 >> 12);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
     }
 }

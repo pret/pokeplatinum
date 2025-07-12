@@ -200,7 +200,7 @@ void ov17_0223F334(UnkStruct_02095C48 *param0, int param1)
         param0->unk_00.unk_118[v1].unk_02 = ov17_02252A70(param0->unk_00.unk_E8[v1], v0);
     }
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 void ov17_0223F374(UnkStruct_02095C48 *param0)
@@ -411,7 +411,7 @@ void ov17_0223F744(UnkStruct_ov17_0223F744 *param0)
     GF_ASSERT(param0->unk_00 != NULL);
 
     SysTask_Done(param0->unk_00);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 BOOL ov17_0223F760(void)

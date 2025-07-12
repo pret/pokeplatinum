@@ -120,7 +120,7 @@ UnkStruct_ov70_0226C39C *ov70_0226C338(u32 heapID, int param1, int param2, int p
 
 void ov70_0226C39C(UnkStruct_ov70_0226C39C *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov70_0226C3A4(UnkStruct_ov70_0226C39C *param0)

@@ -86,7 +86,7 @@ UnkStruct_ov20_021D4AD4 *ov20_021D4728(UnkStruct_ov20_021D2128 *param0, const Un
 void ov20_021D4764(UnkStruct_ov20_021D4AD4 *param0)
 {
     ov20_021D4AD4(param0);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov20_021D4774(UnkStruct_ov20_021D4AD4 *param0, NARC *param1)
@@ -131,7 +131,7 @@ static void ov20_021D4874(UnkStruct_ov20_021D4AD4 *param0, NARC *param1)
         if (v2) {
             MI_CpuCopy16(v3->rawData, param0->unk_2C[v1], 77 * 2);
             DC_FlushRange(param0->unk_2C[v1], 77 * 2);
-            Heap_FreeToHeap(v2);
+            Heap_Free(v2);
         }
     }
 }
@@ -160,7 +160,7 @@ static void ov20_021D48C4(UnkStruct_ov20_021D4AD4 *param0, NARC *param1)
         ov20_021D498C(&v4, param0->unk_0C, v1, 0);
         DC_FlushRange(v3->pRawData, v3->szByte);
         Bg_LoadTiles(param0->unk_0C, 4, v3->pRawData, v3->szByte, 0);
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
     }
 
     Strbuf_Free(v1);
@@ -212,11 +212,11 @@ static void ov20_021D4A24(UnkStruct_ov20_021D4AD4 *param0, NARC *param1)
 
     param0->unk_14 = ov20_021D4B40(param0, &v1, &v0, &param0->unk_1C, 192, 56, 0, 0);
     Sprite_SetAnim(param0->unk_14, 0);
-    Sprite_SetDrawFlag(param0->unk_14, 0);
+    Sprite_SetDrawFlag(param0->unk_14, FALSE);
 
     param0->unk_18 = ov20_021D4B40(param0, &v1, &v0, &param0->unk_1C, 192, 136, 0, 0);
     Sprite_SetAnim(param0->unk_18, 2);
-    Sprite_SetDrawFlag(param0->unk_18, 0);
+    Sprite_SetDrawFlag(param0->unk_18, FALSE);
 }
 
 static void ov20_021D4AD4(UnkStruct_ov20_021D4AD4 *param0)
@@ -240,8 +240,8 @@ static void ov20_021D4AF8(UnkStruct_ov20_021D4B2C *param0, NARC *param1, u32 par
 
 static void ov20_021D4B2C(UnkStruct_ov20_021D4B2C *param0)
 {
-    Heap_FreeToHeap(param0->unk_00);
-    Heap_FreeToHeap(param0->unk_08);
+    Heap_Free(param0->unk_00);
+    Heap_Free(param0->unk_08);
 }
 
 static Sprite *ov20_021D4B40(UnkStruct_ov20_021D4AD4 *param0, NNSG2dImageProxy *param1, NNSG2dImagePaletteProxy *param2, UnkStruct_ov20_021D4B2C *param3, int param4, int param5, int param6, int param7)
@@ -352,7 +352,7 @@ static void ov20_021D4C40(SysTask *param0, void *param1)
         break;
     case 3:
         v0->unk_00->unk_4FC = NULL;
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
     }
 }
@@ -363,8 +363,8 @@ void ov20_021D4DBC(UnkStruct_ov20_021D4AD4 *param0, BOOL param1)
         Sprite_SetDrawFlag(param0->unk_14, ov20_021D204C(param0->unk_04));
         Sprite_SetDrawFlag(param0->unk_18, ov20_021D2060(param0->unk_04));
     } else {
-        Sprite_SetDrawFlag(param0->unk_14, 0);
-        Sprite_SetDrawFlag(param0->unk_18, 0);
+        Sprite_SetDrawFlag(param0->unk_14, FALSE);
+        Sprite_SetDrawFlag(param0->unk_18, FALSE);
     }
 }
 

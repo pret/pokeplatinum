@@ -205,12 +205,12 @@ void sub_0207B0E0(EvolutionData *param0)
     sub_0207C460(param0->unk_00);
     MessageLoader_Free(param0->unk_08);
     StringTemplate_Free(param0->unk_0C);
-    Heap_FreeToHeap(param0->unk_10);
-    Heap_FreeToHeap(param0->unk_3C);
+    Heap_Free(param0->unk_10);
+    Heap_Free(param0->unk_3C);
     sub_02015760(param0->unk_58);
-    Heap_FreeToHeap(param0->unk_00);
+    Heap_Free(param0->unk_00);
     NARC_dtor(param0->unk_80);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
     RenderControlFlags_SetCanABSpeedUpPrint(0);
 }
 
@@ -725,7 +725,7 @@ static void sub_0207C028(EvolutionData *param0)
 
                 mail = Mail_New(param0->heapID);
                 Pokemon_SetValue(shedinja, MON_DATA_MAIL, mail);
-                Heap_FreeToHeap(mail);
+                Heap_Free(mail);
                 Pokemon_SetValue(shedinja, MON_DATA_BALL_CAPSULE_ID, &value);
 
                 MI_CpuClearFast(&v4, sizeof(BallCapsule));
@@ -742,7 +742,7 @@ static void sub_0207C028(EvolutionData *param0)
                 GameRecords_IncrementRecordValue(param0->records, RECORD_UNK_012);
                 GameRecords_IncrementTrainerScore(param0->records, TRAINER_SCORE_EVENT_CAUGHT_SPECIES);
                 Poketch_PokemonHistoryEnqueue(param0->poketch, Pokemon_GetBoxPokemon(shedinja));
-                Heap_FreeToHeap(shedinja);
+                Heap_Free(shedinja);
                 Bag_TryRemoveItem(param0->unk_4C, ITEM_POKE_BALL, 1, param0->heapID);
             }
         }
@@ -947,7 +947,7 @@ static void sub_0207C498(EvolutionData *param0)
     Pokemon_SetValue(v1, MON_DATA_SPECIES, (u8 *)&param0->unk_62);
     Pokemon_CalcLevelAndStats(v1);
     Pokemon_BuildSpriteTemplate(&v0, v1, 2);
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 
     param0->unk_1C[1] = PokemonSpriteManager_CreateSprite(param0->unk_18, &v0, 128, 80, 0, 0, NULL, NULL);
 
@@ -974,7 +974,7 @@ static u8 sub_0207C584(EvolutionData *param0, int param1)
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_08, param1);
 
     StringTemplate_Format(param0->unk_0C, param0->unk_10, v0);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     Window_FillTilemap(param0->unk_04, 0xff);
 
     return Text_AddPrinterWithParams(param0->unk_04, FONT_MESSAGE, param0->unk_10, 0, 0, Options_TextFrameDelay(param0->options), sub_0207C5CC);

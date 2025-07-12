@@ -15,7 +15,7 @@ PokedexMemory *PokedexMemory_New(u32 heapID)
 
 void PokedexMemory_Free(PokedexMemory *pokedexMemory)
 {
-    Heap_FreeToHeap(pokedexMemory);
+    Heap_Free(pokedexMemory);
 }
 
 u32 PokedexMemory_GetCurrentSpecies(const PokedexMemory *pokedexMemory)

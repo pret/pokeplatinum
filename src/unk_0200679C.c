@@ -30,7 +30,7 @@ void SysTask_FinishAndFreeParam(SysTask *task)
 {
     void *param = SysTask_GetParam(task);
     if (param != NULL) {
-        Heap_FreeToHeap(param);
+        Heap_Free(param);
     }
 
     SysTask_Done(task);

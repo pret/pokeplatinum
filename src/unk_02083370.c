@@ -438,7 +438,7 @@ static void sub_02083AD0(GameWindowLayout *param0, int *param1)
     Sprite_GetPositionXY(param0->unk_5B0[6], &v0, &v1);
     Sprite_SetPositionXY(param0->unk_5B0[7], v0, v1);
     Sprite_SetAnim(param0->unk_5B0[7], sub_020805D0(param0->partyManagementData->unk_21, param0->unk_B0F_0) + 2);
-    Sprite_SetDrawFlag(param0->unk_5B0[7], 1);
+    Sprite_SetDrawFlag(param0->unk_5B0[7], TRUE);
     sub_0207F8F8(param0, param0->unk_B0F_0);
     Window_EraseMessageBox(&param0->unk_04[33], 1);
     sub_0208337C(param0);
@@ -450,7 +450,7 @@ static void sub_02083AD0(GameWindowLayout *param0, int *param1)
 void sub_02083B88(GameWindowLayout *param0)
 {
     param0->unk_B0F_6 = 0;
-    Sprite_SetDrawFlag(param0->unk_5B0[7], 0);
+    Sprite_SetDrawFlag(param0->unk_5B0[7], FALSE);
 
     if (param0->partySlot < 6) {
         sub_0207F8F8(param0, param0->partySlot);
@@ -500,8 +500,8 @@ void sub_02083BD4(GameWindowLayout *param0)
         memcpy(&param0->unk_7F8.unk_180[1][v6 * 16], &v1[v4 + (v5 + v6) * 32], 16 * 2);
     }
 
-    Sprite_SetDrawFlag(param0->unk_5B0[6], 0);
-    Sprite_SetDrawFlag(param0->unk_5B0[7], 0);
+    Sprite_SetDrawFlag(param0->unk_5B0[6], FALSE);
+    Sprite_SetDrawFlag(param0->unk_5B0[7], FALSE);
 }
 
 BOOL sub_02083D1C(GameWindowLayout *param0)
@@ -550,7 +550,7 @@ BOOL sub_02083D1C(GameWindowLayout *param0)
 
     case 4:
         Party_SwapSlots(param0->partyManagementData->party, v0->unk_300[0], v0->unk_300[1]);
-        Sprite_SetDrawFlag(param0->unk_5B0[6], 1);
+        Sprite_SetDrawFlag(param0->unk_5B0[6], TRUE);
 
         v0->unk_304 = 0;
         param0->unk_B0F_6 = 0;
@@ -630,7 +630,7 @@ static void sub_02084134(GameWindowLayout *param0)
     param0->unk_704[v1->unk_300[0]] = param0->unk_704[v1->unk_300[1]];
     param0->unk_704[v1->unk_300[1]] = *v0;
 
-    Heap_FreeToHeapExplicit(HEAP_ID_12, v0);
+    Heap_FreeExplicit(HEAP_ID_12, v0);
 
     v3 = param0->unk_704[v1->unk_300[0]].unk_16;
     param0->unk_704[v1->unk_300[0]].unk_16 = param0->unk_704[v1->unk_300[1]].unk_16;
@@ -843,7 +843,7 @@ int sub_02084780(GameWindowLayout *param0)
 
     if (Pokemon_GetValue(v0, MON_DATA_BALL_CAPSULE_ID, NULL) == 0) {
         MessageLoader_GetStrbuf(param0->messageLoader, 129, param0->unk_6A4);
-        Sprite_SetDrawFlag(param0->unk_5B0[22 + param0->partySlot], 1);
+        Sprite_SetDrawFlag(param0->unk_5B0[22 + param0->partySlot], TRUE);
     } else {
         MessageLoader_GetStrbuf(param0->messageLoader, 130, param0->unk_6A4);
         param0->partySlot = 7;
@@ -1016,7 +1016,7 @@ static int sub_02084A18(GameWindowLayout *param0)
         Sprite_GetPositionXY(param0->unk_5B0[6], &v0, &v1);
         Sprite_SetPositionXY(param0->unk_5B0[7], v0, v1);
         Sprite_SetAnim(param0->unk_5B0[7], sub_020805D0(param0->partyManagementData->unk_21, param0->unk_B0F_0) + 2);
-        Sprite_SetDrawFlag(param0->unk_5B0[7], 1);
+        Sprite_SetDrawFlag(param0->unk_5B0[7], TRUE);
         sub_0207F8F8(param0, param0->unk_B0F_0);
         sub_020826E0(param0, 36, 1);
 

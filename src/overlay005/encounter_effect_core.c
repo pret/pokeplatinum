@@ -684,7 +684,7 @@ void EncounterEffect_Trainer_Grass_LowerLevel(SysTask *task, void *param)
         for (i = 0; i < 2; i++) {
             trainerEffect->pokeballSprites[i] = ov5_021DE62C(
                 &trainerEffect->unk_48, &trainerEffect->unk_1E8, (128 * FX32_ONE), (96 * FX32_ONE), 0, 0);
-            Sprite_SetDrawFlag(trainerEffect->pokeballSprites[i], 0);
+            Sprite_SetDrawFlag(trainerEffect->pokeballSprites[i], FALSE);
             Sprite_SetPriority(trainerEffect->pokeballSprites[i], i * 2);
         }
 
@@ -849,7 +849,7 @@ void EncounterEffect_Trainer_Grass_HigherLevel(SysTask *param0, void *param1)
             for (v4 = 0; v4 < 2; v4++) {
                 v1->unk_200[v4] = ov5_021DE62C(
                     &v1->unk_2C, &v1->unk_1CC, (128 * FX32_ONE), 0, 0, 0);
-                Sprite_SetDrawFlag(v1->unk_200[v4], 0);
+                Sprite_SetDrawFlag(v1->unk_200[v4], FALSE);
                 Sprite_SetAffineOverwriteMode(v1->unk_200[v4], 2);
             }
         }
@@ -994,7 +994,7 @@ void EncounterEffect_Trainer_Water_LowerLevel(SysTask *param0, void *param1)
         for (v5 = 0; v5 < 2; v5++) {
             v1->unk_224[v5] = ov5_021DE62C(
                 &v1->unk_50, &v1->unk_1F0, (128 * FX32_ONE), (96 * FX32_ONE), 0, 0);
-            Sprite_SetDrawFlag(v1->unk_224[v5], 0);
+            Sprite_SetDrawFlag(v1->unk_224[v5], FALSE);
             Sprite_SetPriority(v1->unk_224[v5], v5);
         }
 
@@ -1165,7 +1165,7 @@ void EncounterEffect_Trainer_Water_HigherLevel(SysTask *param0, void *param1)
         for (v3 = 0; v3 < 3; v3++) {
             v1->unk_1D4[v3] = ov5_021DE62C(
                 &v1->unk_00, &v1->unk_1A0, 0, 0, 0, 0);
-            Sprite_SetDrawFlag(v1->unk_1D4[v3], 0);
+            Sprite_SetDrawFlag(v1->unk_1D4[v3], FALSE);
             Sprite_SetAffineOverwriteMode(v1->unk_1D4[v3], 2);
 
             v1->unk_258[v3] = ov5_021DE6A4(HEAP_ID_FIELD);
@@ -1228,7 +1228,7 @@ void EncounterEffect_Trainer_Water_HigherLevel(SysTask *param0, void *param1)
         v4 = VecFx32_FromXYZ(
             43 * FX32_ONE, 231 * FX32_ONE, 0);
         Sprite_SetPosition(v1->unk_1D4[0], &v4);
-        Sprite_SetDrawFlag(v1->unk_1D4[0], 1);
+        Sprite_SetDrawFlag(v1->unk_1D4[0], TRUE);
         v1->unk_264[0] = 1;
         v0->state++;
         v1->unk_2A0 = 4;
@@ -1249,7 +1249,7 @@ void EncounterEffect_Trainer_Water_HigherLevel(SysTask *param0, void *param1)
         v4 = VecFx32_FromXYZ(
             215 * FX32_ONE, 231 * FX32_ONE, 1);
         Sprite_SetPosition(v1->unk_1D4[1], &v4);
-        Sprite_SetDrawFlag(v1->unk_1D4[1], 1);
+        Sprite_SetDrawFlag(v1->unk_1D4[1], TRUE);
         v1->unk_264[1] = 1;
         v0->state++;
         v1->unk_2A0 = 2;
@@ -1270,7 +1270,7 @@ void EncounterEffect_Trainer_Water_HigherLevel(SysTask *param0, void *param1)
         v4 = VecFx32_FromXYZ(
             129 * FX32_ONE, 231 * FX32_ONE, 2);
         Sprite_SetPosition(v1->unk_1D4[2], &v4);
-        Sprite_SetDrawFlag(v1->unk_1D4[2], 1);
+        Sprite_SetDrawFlag(v1->unk_1D4[2], TRUE);
         v1->unk_264[2] = 1;
 
         v0->state++;
@@ -1373,7 +1373,7 @@ void EncounterEffect_Trainer_Cave_LowerLevel(SysTask *param0, void *param1)
 
         v1->unk_230 = ov5_021DE62C(
             &v1->unk_5C, &v1->unk_1FC, (128 * FX32_ONE), (-32 * FX32_ONE), 0, 0);
-        Sprite_SetDrawFlag(v1->unk_230, 0);
+        Sprite_SetDrawFlag(v1->unk_230, FALSE);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         v0->state++;
@@ -1500,7 +1500,7 @@ void EncounterEffect_Trainer_Cave_HigherLevel(SysTask *param0, void *param1)
         for (v4 = 0; v4 < 3; v4++) {
             v1->unk_1D4[v4] = ov5_021DE62C(
                 &v1->unk_00, &v1->unk_1A0, 0, -32, 0, 0);
-            Sprite_SetDrawFlag(v1->unk_1D4[v4], 0);
+            Sprite_SetDrawFlag(v1->unk_1D4[v4], FALSE);
         }
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -1723,7 +1723,7 @@ void EncounterEffect_Frontier(SysTask *param0, void *param1)
 
         v1->unk_200 = ov5_021DE62C(
             &v1->unk_2C, &v1->unk_1CC, (128 * FX32_ONE), (96 * FX32_ONE), 0, 0);
-        Sprite_SetDrawFlag(v1->unk_200, 0);
+        Sprite_SetDrawFlag(v1->unk_200, FALSE);
         Sprite_SetExplicitOAMMode(v1->unk_200, GX_OAM_MODE_XLU);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
@@ -1839,7 +1839,7 @@ void EncounterEffect_Double(SysTask *param0, void *param1)
         for (v3 = 0; v3 < 4; v3++) {
             v1->unk_1D4[v3] = ov5_021DE62C(
                 &v1->unk_00, &v1->unk_1A0, (128 * FX32_ONE), (96 * FX32_ONE), 0, 0);
-            Sprite_SetDrawFlag(v1->unk_1D4[v3], 0);
+            Sprite_SetDrawFlag(v1->unk_1D4[v3], FALSE);
         }
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -1865,7 +1865,7 @@ void EncounterEffect_Double(SysTask *param0, void *param1)
         QuadraticInterpolationTaskFX32_Init(&v1->unk_1E4[1], 0, (160 * FX32_ONE), (FX32_CONST(0.1f)), 4);
 
         for (v3 = 0; v3 < 4; v3++) {
-            Sprite_SetDrawFlag(v1->unk_1D4[v3], 1);
+            Sprite_SetDrawFlag(v1->unk_1D4[v3], TRUE);
         }
 
         v0->state++;
@@ -1993,7 +1993,7 @@ void EncounterEffect_GalacticGrunt(SysTask *param0, void *param1)
         for (v3 = 0; v3 < 6; v3++) {
             v1->unk_1D4[v3] = ov5_021DE62C(
                 &v1->unk_00, &v1->unk_1A0, 0, 0, 0, 0);
-            Sprite_SetDrawFlag(v1->unk_1D4[v3], 0);
+            Sprite_SetDrawFlag(v1->unk_1D4[v3], FALSE);
         }
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -2028,7 +2028,7 @@ void EncounterEffect_GalacticGrunt(SysTask *param0, void *param1)
 
             LinearInterpolationTaskS32_Init(&v1->unk_39C[v1->unk_42C], 0, Unk_ov5_021F9E94[v1->unk_42C][7], 8);
 
-            Sprite_SetDrawFlag(v1->unk_1D4[v1->unk_42C], 1);
+            Sprite_SetDrawFlag(v1->unk_1D4[v1->unk_42C], TRUE);
             v4 = VecFx32_FromXYZ(
                 Unk_ov5_021F9E94[v1->unk_42C][0], Unk_ov5_021F9E94[v1->unk_42C][3], 0);
             Sprite_SetPosition(v1->unk_1D4[v1->unk_42C], &v4);
@@ -2101,7 +2101,7 @@ void EncounterEffect_GalacticGrunt(SysTask *param0, void *param1)
 
             if (v2) {
                 v1->unk_414[v3] = 0;
-                Sprite_SetDrawFlag(v1->unk_1D4[v3], 0);
+                Sprite_SetDrawFlag(v1->unk_1D4[v3], FALSE);
             }
 
             v4 = VecFx32_FromXYZ(
@@ -2138,7 +2138,7 @@ void EncounterEffect_GalacticBoss(SysTask *param0, void *param1)
 
         v1->unk_1DC = ov5_021DE62C(
             &v1->unk_08, &v1->unk_1A8, (128 * FX32_ONE), (96 * FX32_ONE), 0, 0);
-        Sprite_SetDrawFlag(v1->unk_1DC, 0);
+        Sprite_SetDrawFlag(v1->unk_1DC, FALSE);
         Sprite_SetExplicitOAMMode(v1->unk_1DC, GX_OAM_MODE_XLU);
         Sprite_SetExplicitPriority(v1->unk_1DC, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -2175,7 +2175,7 @@ void EncounterEffect_GalacticBoss(SysTask *param0, void *param1)
 
     case 3:
         LinearInterpolationTaskS32_Init(&v1->unk_1F4, 0, 16, 15);
-        Sprite_SetDrawFlag(v1->unk_1DC, 1);
+        Sprite_SetDrawFlag(v1->unk_1DC, TRUE);
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, v1->unk_1F4.currentValue, 16 - v1->unk_1F4.currentValue);
         v0->state++;
         break;
@@ -2803,7 +2803,7 @@ static void ov5_021E5128(UnkStruct_ov5_021E5128 *param0, UnkStruct_ov5_021DE47C 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_04[v0] = ov5_021DE62C(
             param1, param2, param3, param4, 0, 0);
-        Sprite_SetDrawFlag(param0->unk_04[v0], 0);
+        Sprite_SetDrawFlag(param0->unk_04[v0], FALSE);
 
         if (v0 != 3) {
             Sprite_SetAffineOverwriteMode(param0->unk_04[v0], 2);
@@ -2848,7 +2848,7 @@ static BOOL ov5_021E51B4(UnkStruct_ov5_021E5128 *param0)
         v3 = VecFx32_FromXYZ(
             param0->unk_14[v0].currentValue, param0->unk_14[v0].currentValue, param0->unk_14[v0].currentValue);
         Sprite_SetAffineScale(param0->unk_04[v0], &v3);
-        Sprite_SetDrawFlag(param0->unk_04[v0], 1);
+        Sprite_SetDrawFlag(param0->unk_04[v0], TRUE);
 
         if (v1 == 0) {
             v2 = 0;
@@ -2915,7 +2915,7 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId he
 
         v0->unk_24C = ov5_021DE62C(
             &v0->unk_44, &v0->unk_1E4[0], (272 * FX32_ONE), (66 * FX32_ONE), 0, 0);
-        Sprite_SetDrawFlag(v0->unk_24C, 0);
+        Sprite_SetDrawFlag(v0->unk_24C, FALSE);
         ov5_021E5128(&v0->unk_250, &v0->unk_44, &v0->unk_1E4[1], (FX32_CONST(72)), (FX32_CONST(74)), heapID);
 
         ov5_021DE5D0(v0->unk_24C, heapID, param->trainerClass, 14, (GX_RGB(0, 0, 0)));
@@ -2984,7 +2984,7 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId he
     case 6:
 
         QuadraticInterpolationTaskFX32_Init(&v0->unk_00, (272 * FX32_ONE), param->endX, (-64 * FX32_ONE), 4);
-        Sprite_SetDrawFlag(v0->unk_24C, 1);
+        Sprite_SetDrawFlag(v0->unk_24C, TRUE);
         Sprite_SetExplicitPriority(v0->unk_24C, 0);
 
         v3 = VecFx32_FromXYZ(
@@ -3255,7 +3255,7 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
 
             v0->unk_2CC[v5] = ov5_021DE62C(
                 &v0->unk_5C, v7, 0, 0, 0, 0);
-            Sprite_SetDrawFlag(v0->unk_2CC[v5], 0);
+            Sprite_SetDrawFlag(v0->unk_2CC[v5], FALSE);
             Sprite_SetAnim(v0->unk_2CC[v5], v8);
             Sprite_SetExplicitPriority(v0->unk_2CC[v5], 1);
         }
@@ -3315,8 +3315,8 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
         v3.y += (4 * FX32_ONE);
         v3.x += (16 * FX32_ONE);
         Sprite_SetPosition(v0->unk_2CC[2], &v3);
-        Sprite_SetDrawFlag(v0->unk_2CC[0], 1);
-        Sprite_SetDrawFlag(v0->unk_2CC[2], 1);
+        Sprite_SetDrawFlag(v0->unk_2CC[0], TRUE);
+        Sprite_SetDrawFlag(v0->unk_2CC[2], TRUE);
 
         QuadraticInterpolationTaskFX32_Init(&v0->unk_30, (384 * FX32_ONE), (200 * FX32_ONE), (-80 * FX32_ONE), 6);
         v3 = VecFx32_FromXYZ(
@@ -3325,8 +3325,8 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
         v3.y += (4 * FX32_ONE);
         v3.x += (-16 * FX32_ONE);
         Sprite_SetPosition(v0->unk_2CC[3], &v3);
-        Sprite_SetDrawFlag(v0->unk_2CC[1], 1);
-        Sprite_SetDrawFlag(v0->unk_2CC[3], 1);
+        Sprite_SetDrawFlag(v0->unk_2CC[1], TRUE);
+        Sprite_SetDrawFlag(v0->unk_2CC[3], TRUE);
 
         {
             Strbuf *v9;

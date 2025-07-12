@@ -115,7 +115,7 @@ void PlayerAvatar_InitDraw(PlayerAvatar *playerAvatar, int dynamicMapFeaturesID)
 
 void Player_Delete(PlayerAvatar *playerAvatar)
 {
-    Heap_FreeToHeap(playerAvatar);
+    Heap_Free(playerAvatar);
 }
 
 void Player_DeleteAll(PlayerAvatar *playerAvatar)

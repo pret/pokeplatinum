@@ -390,8 +390,8 @@ static void ov88_0223B3C0(UnkStruct_02095E80 *param0)
     ov88_0223B7A0(param0->unk_2270, 0, param0);
     ov88_0223B7A0(param0->unk_2274, 6, param0);
 
-    Sprite_SetDrawFlag(param0->unk_39C[0], 1);
-    Sprite_SetDrawFlag(param0->unk_39C[1], 1);
+    Sprite_SetDrawFlag(param0->unk_39C[0], TRUE);
+    Sprite_SetDrawFlag(param0->unk_39C[1], TRUE);
     SetVBlankCallback(ov88_0223C0E0, param0);
     NARC_dtor(v0);
 }
@@ -524,27 +524,27 @@ static void ov88_0223B7A0(Party *param0, int param1, UnkStruct_02095E80 *param2)
         DC_FlushRange(param2->unk_818[v1]->pRawData, 0x20 * 4 * 4);
 
         ov88_0223B2F0(param2->unk_818[v1], param2->unk_6F4[v1].unk_00, param2->unk_6F4[v1].unk_06, param2->unk_6F4[v1].unk_05, v1, param2->unk_3D4[v1]);
-        Sprite_SetDrawFlag(param2->unk_3D4[v1], 1);
+        Sprite_SetDrawFlag(param2->unk_3D4[v1], TRUE);
 
         if (param2->unk_6F4[v1].unk_02 == 0) {
-            Sprite_SetDrawFlag(param2->unk_404[v1], 0);
+            Sprite_SetDrawFlag(param2->unk_404[v1], FALSE);
         } else {
-            Sprite_SetDrawFlag(param2->unk_404[v1], 1);
+            Sprite_SetDrawFlag(param2->unk_404[v1], TRUE);
             Sprite_SetAnim(param2->unk_404[v1], 3 + param2->unk_6F4[v1].unk_02 - 1);
         }
 
         if (param2->unk_6F4[v1].unk_0C == 0) {
-            Sprite_SetDrawFlag(param2->unk_434[v1], 0);
+            Sprite_SetDrawFlag(param2->unk_434[v1], FALSE);
         } else {
-            Sprite_SetDrawFlag(param2->unk_434[v1], 1);
+            Sprite_SetDrawFlag(param2->unk_434[v1], TRUE);
             Sprite_SetAnim(param2->unk_434[v1], 21);
         }
     }
 
     for (; i < 6; i++) {
-        Sprite_SetDrawFlag(param2->unk_3D4[i + param1], 0);
-        Sprite_SetDrawFlag(param2->unk_404[i + param1], 0);
-        Sprite_SetDrawFlag(param2->unk_434[i + param1], 0);
+        Sprite_SetDrawFlag(param2->unk_3D4[i + param1], FALSE);
+        Sprite_SetDrawFlag(param2->unk_404[i + param1], FALSE);
+        Sprite_SetDrawFlag(param2->unk_434[i + param1], FALSE);
     }
 }
 
@@ -690,7 +690,7 @@ static int ov88_0223B914(UnkStruct_02095E80 *param0)
                 int v9;
 
                 for (v9 = 0; v9 < 2; v9++) {
-                    Sprite_SetDrawFlag(param0->unk_39C[v9], 1);
+                    Sprite_SetDrawFlag(param0->unk_39C[v9], TRUE);
                 }
             }
         }
@@ -785,11 +785,11 @@ static void ov88_0223BE28(UnkStruct_02095E80 *param0)
 
             ov88_0223C8D8(param0->unk_49C, 0, param0->unk_2270, param0->unk_88[0], param0);
             ov88_0223CB34(param0->unk_49C, 1, param0);
-            Sprite_SetDrawFlag(param0->unk_464[3], 0);
+            Sprite_SetDrawFlag(param0->unk_464[3], FALSE);
         } else {
             ov88_0223BDA4(param0, param0->unk_88[0]);
             ov88_0223CB34(param0->unk_49C, 0, param0);
-            Sprite_SetDrawFlag(param0->unk_464[2], 0);
+            Sprite_SetDrawFlag(param0->unk_464[2], FALSE);
         }
     }
 }
@@ -849,11 +849,11 @@ static void ov88_0223BFD8(UnkStruct_02095E80 *param0)
     int v0;
 
     for (v0 = 0; v0 < Party_GetCurrentCount(param0->unk_2270); v0++) {
-        Heap_FreeToHeap(param0->unk_7E8[v0]);
+        Heap_Free(param0->unk_7E8[v0]);
     }
 
     for (v0 = 0; v0 < Party_GetCurrentCount(param0->unk_2274); v0++) {
-        Heap_FreeToHeap(param0->unk_7E8[v0 + 6]);
+        Heap_Free(param0->unk_7E8[v0 + 6]);
     }
 }
 
@@ -868,13 +868,13 @@ int ov88_0223C03C(ApplicationManager *appMan, int *param1)
     ov88_0223BFD8(v0);
 
     Strbuf_Free(v0->unk_190);
-    Heap_FreeToHeap(v0->unk_2274);
+    Heap_Free(v0->unk_2274);
 
     ov88_0223BF7C(v0);
     ov88_0223EC04(v0->unk_49C);
     ov88_0223C44C(v0->unk_174);
 
-    Heap_FreeToHeapExplicit(HEAP_ID_26, v0->unk_174);
+    Heap_FreeExplicit(HEAP_ID_26, v0->unk_174);
     MessageLoader_Free(v0->unk_184);
     StringTemplate_Free(v0->unk_180);
     StringTemplate_Free(v0->unk_17C);
@@ -1177,7 +1177,7 @@ static void ov88_0223C488(NARC *param0, u32 param1, BgConfig *param2, u32 param3
             }
         }
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 }
 
@@ -1298,12 +1298,12 @@ static int ov88_0223C8AC(UnkStruct_ov88_0223C8AC *param0, Party *param1, int par
 static void ov88_0223C8D8(Window *param0, int param1, Party *param2, int param3, UnkStruct_02095E80 *param4)
 {
     Strbuf *v0, *v1;
-    u16 v2, v3;
+    u16 item, v3;
     int v4;
     Pokemon *v5 = Party_GetPokemonBySlotIndex(param2, param3);
     v4 = Pokemon_SpriteYOffset(v5, 2);
 
-    Sprite_SetDrawFlag(param4->unk_464[param1], 1);
+    Sprite_SetDrawFlag(param4->unk_464[param1], TRUE);
     ov88_0223E87C(param4->unk_464[param1], Unk_ov88_0223EF54[param1][0], Unk_ov88_0223EF54[param1][1] + v4 + 192);
 
     if (param1 == 0) {
@@ -1311,7 +1311,7 @@ static void ov88_0223C8D8(Window *param0, int param1, Party *param2, int param3,
     }
 
     Sprite_SetAnim(param4->unk_464[2 + param1], param4->unk_6F4[param3].unk_04 + 6 - 1);
-    Sprite_SetDrawFlag(param4->unk_464[2 + param1], 1);
+    Sprite_SetDrawFlag(param4->unk_464[2 + param1], TRUE);
     ov88_0223C860(&param0[26 + param1], param2, param3, 9, 6);
 
     {
@@ -1325,14 +1325,14 @@ static void ov88_0223C8D8(Window *param0, int param1, Party *param2, int param3,
 
         switch (v6) {
         case 2:
-            Sprite_SetDrawFlag(param4->unk_464[4 + param1], 0);
+            Sprite_SetDrawFlag(param4->unk_464[4 + param1], FALSE);
             break;
         case 0:
-            Sprite_SetDrawFlag(param4->unk_464[4 + param1], 1);
+            Sprite_SetDrawFlag(param4->unk_464[4 + param1], TRUE);
             Sprite_SetAnim(param4->unk_464[4 + param1], 22 + 1);
             break;
         case 1:
-            Sprite_SetDrawFlag(param4->unk_464[4 + param1], 1);
+            Sprite_SetDrawFlag(param4->unk_464[4 + param1], TRUE);
             Sprite_SetAnim(param4->unk_464[4 + param1], 22);
             break;
         }
@@ -1354,20 +1354,20 @@ static void ov88_0223C8D8(Window *param0, int param1, Party *param2, int param3,
 
     ov88_0223EC78(&param0[30 + param1], param4->unk_190, 7, TEXT_SPEED_INSTANT, 3, 0);
 
-    v2 = Pokemon_GetValue(Party_GetPokemonBySlotIndex(param2, param3), MON_DATA_HELD_ITEM, NULL);
+    item = Pokemon_GetValue(Party_GetPokemonBySlotIndex(param2, param3), MON_DATA_HELD_ITEM, NULL);
     Window_FillTilemap(&param0[32 + param1], 0);
 
     v1 = Strbuf_Init(20, HEAP_ID_26);
-    Item_LoadName(v1, v2, 26);
+    Item_LoadName(v1, item, HEAP_ID_26);
     ov88_0223EC78(&param0[32 + param1], v1, 9, TEXT_SPEED_INSTANT, 3, 0);
     Strbuf_Free(v1);
 }
 
 static void ov88_0223CB34(Window *param0, int param1, UnkStruct_02095E80 *param2)
 {
-    Sprite_SetDrawFlag(param2->unk_464[param1], 0);
-    Sprite_SetDrawFlag(param2->unk_464[2 + param1], 0);
-    Sprite_SetDrawFlag(param2->unk_464[4 + param1], 0);
+    Sprite_SetDrawFlag(param2->unk_464[param1], FALSE);
+    Sprite_SetDrawFlag(param2->unk_464[2 + param1], FALSE);
+    Sprite_SetDrawFlag(param2->unk_464[4 + param1], FALSE);
     Window_ClearAndCopyToVRAM(&param0[26 + param1]);
     Window_ClearAndCopyToVRAM(&param0[28 + param1]);
     Window_ClearAndCopyToVRAM(&param0[30 + param1]);
@@ -1403,7 +1403,7 @@ static void ov88_0223CBA0(UnkStruct_02095E80 *param0)
             Sprite_SetAnimateFlag(param0->unk_39C[v1], 1);
             ov88_0223CF68(param0->unk_88[v1], param0->unk_39C[v1], v1);
             Sprite_SetPriority(param0->unk_39C[v1], 100);
-            Sprite_SetDrawFlag(param0->unk_39C[v1], 0);
+            Sprite_SetDrawFlag(param0->unk_39C[v1], FALSE);
         }
 
         for (v1 = 0; v1 < 12; v1++) {
@@ -1413,7 +1413,7 @@ static void ov88_0223CBA0(UnkStruct_02095E80 *param0)
             Sprite_SetAnimateFlag(param0->unk_3D4[v1], 1);
             Sprite_SetAnim(param0->unk_3D4[v1], 5 + v1);
             Sprite_SetPriority(param0->unk_3D4[v1], 5);
-            Sprite_SetDrawFlag(param0->unk_3D4[v1], 0);
+            Sprite_SetDrawFlag(param0->unk_3D4[v1], FALSE);
         }
 
         for (v1 = 0; v1 < 12; v1++) {
@@ -1422,7 +1422,7 @@ static void ov88_0223CBA0(UnkStruct_02095E80 *param0)
             v0.priority = 0;
             param0->unk_404[v1] = SpriteList_AddAffine(&v0);
             Sprite_SetPriority(param0->unk_404[v1], 3);
-            Sprite_SetDrawFlag(param0->unk_404[v1], 0);
+            Sprite_SetDrawFlag(param0->unk_404[v1], FALSE);
         }
 
         for (v1 = 0; v1 < 12; v1++) {
@@ -1431,7 +1431,7 @@ static void ov88_0223CBA0(UnkStruct_02095E80 *param0)
             v0.priority = 0;
             param0->unk_434[v1] = SpriteList_AddAffine(&v0);
             Sprite_SetPriority(param0->unk_434[v1], 3);
-            Sprite_SetDrawFlag(param0->unk_434[v1], 0);
+            Sprite_SetDrawFlag(param0->unk_434[v1], FALSE);
         }
 
         v0.position.x = FX32_ONE * (128 - 4 * 8);
@@ -1439,7 +1439,7 @@ static void ov88_0223CBA0(UnkStruct_02095E80 *param0)
         param0->unk_47C = SpriteList_AddAffine(&v0);
         Sprite_SetAnimateFlag(param0->unk_47C, 1);
         Sprite_SetAnim(param0->unk_47C, 20);
-        Sprite_SetDrawFlag(param0->unk_47C, 0);
+        Sprite_SetDrawFlag(param0->unk_47C, FALSE);
 
         for (v1 = 0; v1 < 6; v1++) {
             v0.resourceData = &param0->unk_378;
@@ -1447,7 +1447,7 @@ static void ov88_0223CBA0(UnkStruct_02095E80 *param0)
             v0.position.y = FX32_ONE * (Unk_ov88_0223EF54[v1][1]) + (192 << FX32_SHIFT);
             v0.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
             param0->unk_464[v1] = SpriteList_AddAffine(&v0);
-            Sprite_SetDrawFlag(param0->unk_464[v1], 0);
+            Sprite_SetDrawFlag(param0->unk_464[v1], FALSE);
             Sprite_SetAnimateFlag(param0->unk_464[v1], 0);
             Sprite_SetAnim(param0->unk_464[v1], Unk_ov88_0223EF54[v1][2]);
         }
@@ -1867,7 +1867,7 @@ static int ov88_0223D5B8(UnkStruct_02095E80 *param0)
 
         TrainerInfo_SetName(v2, sub_0202AEF0(param0->unk_36EC, v0));
         StringTemplate_SetPlayerName(param0->unk_36CC, 0, v2);
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
 
         ov88_0223D49C(param0, 60);
         param0->unk_226C = ov88_0223D514;
@@ -2153,36 +2153,36 @@ static int ov88_0223DD1C(UnkStruct_02095E80 *param0)
 
     for (v0 = 0; v0 < 6; v0++) {
         if (v0 != param0->unk_88[0]) {
-            Sprite_SetDrawFlag(param0->unk_3D4[v0], 0);
+            Sprite_SetDrawFlag(param0->unk_3D4[v0], FALSE);
 
             if (param0->unk_6F4[v0].unk_02) {
-                Sprite_SetDrawFlag(param0->unk_404[v0], 0);
+                Sprite_SetDrawFlag(param0->unk_404[v0], FALSE);
             }
 
             if (param0->unk_6F4[v0].unk_0C) {
-                Sprite_SetDrawFlag(param0->unk_434[v0], 0);
+                Sprite_SetDrawFlag(param0->unk_434[v0], FALSE);
             }
         }
 
         Window_ClearAndScheduleCopyToVRAM(&param0->unk_49C[7 + v0]);
 
         if (v0 != (param0->unk_88[1] - 6)) {
-            Sprite_SetDrawFlag(param0->unk_3D4[v0 + 6], 0);
+            Sprite_SetDrawFlag(param0->unk_3D4[v0 + 6], FALSE);
 
             if (param0->unk_6F4[v0 + 6].unk_02) {
-                Sprite_SetDrawFlag(param0->unk_404[v0 + 6], 0);
+                Sprite_SetDrawFlag(param0->unk_404[v0 + 6], FALSE);
             }
 
             if (param0->unk_6F4[v0 + 6].unk_0C) {
-                Sprite_SetDrawFlag(param0->unk_434[v0 + 6], 0);
+                Sprite_SetDrawFlag(param0->unk_434[v0 + 6], FALSE);
             }
         }
 
         Window_ClearAndScheduleCopyToVRAM(&param0->unk_49C[13 + v0]);
     }
 
-    Sprite_SetDrawFlag(param0->unk_39C[0], 0);
-    Sprite_SetDrawFlag(param0->unk_39C[1], 0);
+    Sprite_SetDrawFlag(param0->unk_39C[0], FALSE);
+    Sprite_SetDrawFlag(param0->unk_39C[1], FALSE);
 
     ov88_0223DE68(param0->unk_231C, Unk_ov88_0223EF9C[param0->unk_88[0]][0] + 16, Unk_ov88_0223EF9C[param0->unk_88[0]][1] + -6, 6 * 8, 6 * 8);
     ov88_0223DE68(param0->unk_2334, Unk_ov88_0223EF9C[param0->unk_88[1]][0] + 16, Unk_ov88_0223EF9C[param0->unk_88[1]][1] + -6, 22 * 8, 6 * 8);
@@ -2235,7 +2235,7 @@ static int ov88_0223DF00(UnkStruct_02095E80 *param0)
         ov88_0223C860(&param0->unk_49C[20], param0->unk_2274, param0->unk_88[1] - 6, 8, 1);
         ov88_0223BDA4(param0, param0->unk_88[1]);
         param0->unk_226C = ov88_0223E110;
-        Sprite_SetDrawFlag(param0->unk_47C, 1);
+        Sprite_SetDrawFlag(param0->unk_47C, TRUE);
     }
 
     return 0;
@@ -2252,27 +2252,27 @@ static void ov88_0223DFF4(UnkStruct_02095E80 *param0)
     for (v0 = 0; v0 < 12; v0++) {
         if (param0->unk_6F4[v0].unk_00 != 0) {
             ov88_0223E87C(param0->unk_3D4[v0], Unk_ov88_0223EF9C[v0][0] + 16, Unk_ov88_0223EF9C[v0][1] + -6);
-            Sprite_SetDrawFlag(param0->unk_3D4[v0], 1);
+            Sprite_SetDrawFlag(param0->unk_3D4[v0], TRUE);
 
             if (param0->unk_6F4[v0].unk_02) {
                 ov88_0223E87C(param0->unk_404[v0], Unk_ov88_0223EF9C[v0][0] + (16 + 20), Unk_ov88_0223EF9C[v0][1] + 16);
-                Sprite_SetDrawFlag(param0->unk_404[v0], 1);
+                Sprite_SetDrawFlag(param0->unk_404[v0], TRUE);
             }
 
             if (param0->unk_6F4[v0].unk_0C) {
                 ov88_0223E87C(param0->unk_434[v0], Unk_ov88_0223EF9C[v0][0] + (16 + 20 + 8), Unk_ov88_0223EF9C[v0][1] + 16);
-                Sprite_SetDrawFlag(param0->unk_434[v0], 1);
+                Sprite_SetDrawFlag(param0->unk_434[v0], TRUE);
             }
 
             Window_ScheduleCopyToVRAM(&param0->unk_49C[7 + v0]);
         }
     }
 
-    Sprite_SetDrawFlag(param0->unk_39C[0], 1);
-    Sprite_SetDrawFlag(param0->unk_39C[1], 1);
+    Sprite_SetDrawFlag(param0->unk_39C[0], TRUE);
+    Sprite_SetDrawFlag(param0->unk_39C[1], TRUE);
     ov88_0223CB34(param0->unk_49C, 1, param0);
-    Sprite_SetDrawFlag(param0->unk_464[3], 0);
-    Sprite_SetDrawFlag(param0->unk_47C, 0);
+    Sprite_SetDrawFlag(param0->unk_464[3], FALSE);
+    Sprite_SetDrawFlag(param0->unk_47C, FALSE);
 }
 
 static int ov88_0223E110(UnkStruct_02095E80 *param0)
@@ -2505,9 +2505,9 @@ static void ov88_0223E694(Party *param0, Party *param1, int param2, int param3, 
     Pokemon_Copy(v1, Party_GetPokemonBySlotIndex(param0, param2));
     Pokemon_Copy(v0, Party_GetPokemonBySlotIndex(param1, param3));
     ov88_0223E7F0(param4->unk_1C, v1);
-    GameRecords_IncrementRecordValue(param4->records, RECORD_UNK_019);
-    Heap_FreeToHeap(v0);
-    Heap_FreeToHeap(v1);
+    GameRecords_IncrementRecordValue(param4->records, RECORD_LOCAL_LINK_TRADES);
+    Heap_Free(v0);
+    Heap_Free(v1);
 }
 
 static void ov88_0223E7F0(JournalEntry *journalEntry, Pokemon *mon)

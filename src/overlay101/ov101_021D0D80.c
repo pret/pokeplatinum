@@ -199,7 +199,7 @@ static UnkStruct_ov101_021D13C8 *ov101_021D0F6C(UnkStruct_0203E348 *param0)
 
 static void ov101_021D0F94(UnkStruct_ov101_021D13C8 *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov101_021D0F9C(UnkStruct_ov101_021D13C8 *param0)
@@ -366,7 +366,7 @@ static void ov101_021D11A4(BgConfig *param0)
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_3);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov101_021D11D0(void)
@@ -383,45 +383,45 @@ static void ov101_021D121C(UnkStruct_ov101_021D13C8 *param0)
 
     NNS_G2dGetUnpackedPaletteData(v0, &param0->unk_448);
     Bg_LoadPalette(1, param0->unk_448->pRawData, (32 * 13), (32 * 0));
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     v0 = ov101_021D19E4(param0, 0, 0);
     NNS_G2dGetUnpackedCharacterData(v0, &param0->unk_444);
     Bg_LoadTiles(param0->unk_43C, 1, param0->unk_444->pRawData, param0->unk_444->szByte, (32 * 0));
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     v0 = ov101_021D19E4(param0, 1, 0);
     NNS_G2dGetUnpackedScreenData(v0, &param0->unk_440);
     Bg_LoadTilemapBuffer(param0->unk_43C, 1, (void *)param0->unk_440->rawData, param0->unk_440->szByte);
     Bg_CopyTilemapBufferToVRAM(param0->unk_43C, 1);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     v0 = ov101_021D19E4(param0, 8, 0);
     NNS_G2dGetUnpackedCharacterData(v0, &param0->unk_444);
     Bg_LoadTiles(param0->unk_43C, 2, param0->unk_444->pRawData, param0->unk_444->szByte, (32 * 0));
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     v0 = ov101_021D19E4(param0, 9, 0);
     NNS_G2dGetUnpackedScreenData(v0, &param0->unk_440);
     Bg_LoadTilemapBuffer(param0->unk_43C, 2, (void *)param0->unk_440->rawData, param0->unk_440->szByte);
     Bg_CopyTilemapBufferToVRAM(param0->unk_43C, 2);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     v0 = ov101_021D19E4(param0, 3, 0);
     NNS_G2dGetUnpackedPaletteData(v0, &param0->unk_448);
     Bg_LoadPalette(7, param0->unk_448->pRawData, (32 * 13), (32 * 0));
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     v0 = ov101_021D19E4(param0, 2, 0);
     NNS_G2dGetUnpackedCharacterData(v0, &param0->unk_444);
     Bg_LoadTiles(param0->unk_43C, 7, param0->unk_444->pRawData, param0->unk_444->szByte, 0);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     v0 = ov101_021D19E4(param0, 4, 0);
     NNS_G2dGetUnpackedScreenData(v0, &param0->unk_440);
     Bg_LoadTilemapBuffer(param0->unk_43C, 7, (void *)param0->unk_440->rawData, param0->unk_440->szByte);
     Bg_CopyTilemapBufferToVRAM(param0->unk_43C, 7);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 void ov101_021D13C8(UnkStruct_ov101_021D13C8 *param0)

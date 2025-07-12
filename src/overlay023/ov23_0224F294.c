@@ -5,7 +5,7 @@
 
 #include "constants/heap.h"
 
-#include "struct_defs/underground_data.h"
+#include "struct_defs/underground.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021D2F14.h"
@@ -61,7 +61,7 @@
 typedef void (*UnkFuncPtr_ov23_0224FA58)(UnkStruct_ov23_02250CD4 *);
 
 typedef struct {
-    UndergroundData *unk_00;
+    Underground *underground;
     u8 unk_04;
     u8 unk_05;
 } UnkStruct_ov23_022577B8;
@@ -274,24 +274,24 @@ static void ov23_0224F560(Sprite *param0)
     }
 }
 
-void ov23_0224F588(UndergroundData *param0)
+void ov23_0224F588(Underground *underground)
 {
     Unk_ov23_022577B8 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sizeof(UnkStruct_ov23_022577B8));
     MI_CpuClear8(Unk_ov23_022577B8, sizeof(UnkStruct_ov23_022577B8));
     Unk_ov23_022577B8->unk_04 = 0;
     Unk_ov23_022577B8->unk_05 = 0;
-    Unk_ov23_022577B8->unk_00 = param0;
+    Unk_ov23_022577B8->underground = underground;
 }
 
 void ov23_0224F5B8(void)
 {
-    Heap_FreeToHeap(Unk_ov23_022577B8);
+    Heap_Free(Unk_ov23_022577B8);
 }
 
 static int ov23_0224F5C8(void *param0)
 {
     UnkStruct_ov23_02250CD4 *v0 = param0;
-    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
+    Underground *v1 = SaveData_GetUnderground(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_02028E28(v1);
 }
@@ -299,7 +299,7 @@ static int ov23_0224F5C8(void *param0)
 static int ov23_0224F5DC(void *param0)
 {
     UnkStruct_ov23_02250CD4 *v0 = param0;
-    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
+    Underground *v1 = SaveData_GetUnderground(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_020289A0(v1);
 }
@@ -307,7 +307,7 @@ static int ov23_0224F5DC(void *param0)
 int ov23_0224F5F0(int param0, void *param1)
 {
     UnkStruct_ov23_02250CD4 *v0 = param1;
-    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
+    Underground *v1 = SaveData_GetUnderground(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_020289B8(v1, param0);
 }
@@ -315,7 +315,7 @@ int ov23_0224F5F0(int param0, void *param1)
 static int ov23_0224F608(void *param0)
 {
     UnkStruct_ov23_02250CD4 *v0 = param0;
-    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
+    Underground *v1 = SaveData_GetUnderground(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_02028B70(v1);
 }
@@ -323,7 +323,7 @@ static int ov23_0224F608(void *param0)
 int ov23_0224F61C(int param0, void *param1)
 {
     UnkStruct_ov23_02250CD4 *v0 = param1;
-    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
+    Underground *v1 = SaveData_GetUnderground(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_02028B88(v1, param0);
 }
@@ -331,21 +331,21 @@ int ov23_0224F61C(int param0, void *param1)
 void ov23_0224F634(int param0)
 {
     GF_ASSERT(Unk_ov23_022577B8->unk_05 == param0);
-    sub_02028B94(Unk_ov23_022577B8->unk_00, Unk_ov23_022577B8->unk_04);
+    sub_02028B94(Unk_ov23_022577B8->underground, Unk_ov23_022577B8->unk_04);
 }
 
 static int ov23_0224F658(void *param0)
 {
     UnkStruct_ov23_02250CD4 *v0 = param0;
-    UndergroundData *undergroundData = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
+    Underground *underground = SaveData_GetUnderground(FieldSystem_GetSaveData(v0->fieldSystem));
 
-    return UndergroundData_GetSphereCount(undergroundData);
+    return Underground_GetSphereCount(underground);
 }
 
 int ov23_0224F66C(int param0, void *param1)
 {
     UnkStruct_ov23_02250CD4 *v0 = param1;
-    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
+    Underground *v1 = SaveData_GetUnderground(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_02028E44(v1, param0);
 }
@@ -353,7 +353,7 @@ int ov23_0224F66C(int param0, void *param1)
 int ov23_0224F684(int param0, void *param1)
 {
     UnkStruct_ov23_02250CD4 *v0 = param1;
-    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
+    Underground *v1 = SaveData_GetUnderground(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_02028C54(v1, param0);
 }
@@ -361,7 +361,7 @@ int ov23_0224F684(int param0, void *param1)
 int ov23_0224F69C(int param0, void *param1)
 {
     UnkStruct_ov23_02250CD4 *v0 = param1;
-    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
+    Underground *v1 = SaveData_GetUnderground(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_02028C60(v1, param0);
 }
@@ -369,20 +369,20 @@ int ov23_0224F69C(int param0, void *param1)
 static int ov23_0224F6B4(void *param0)
 {
     UnkStruct_ov23_02250CD4 *v0 = param0;
-    UndergroundData *undergroundData = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
+    Underground *underground = SaveData_GetUnderground(FieldSystem_GetSaveData(v0->fieldSystem));
 
-    return UndergroundData_GetTreasureCount(undergroundData);
+    return Underground_GetTreasureCount(underground);
 }
 
 int ov23_0224F6C8(int param0, void *param1)
 {
     UnkStruct_ov23_02250CD4 *v0 = param1;
-    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
+    Underground *v1 = SaveData_GetUnderground(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_02028D74(v1, param0);
 }
 
-BOOL Underground_TryAddSphere(int sphereID, int sphereSize)
+BOOL Underground_TryAddSphere2(int sphereID, int sphereSize)
 {
     int sphereType = sphereID;
 
@@ -396,23 +396,23 @@ BOOL Underground_TryAddSphere(int sphereID, int sphereSize)
         sphereSize = 99;
     }
 
-    return UndergroundData_TryAddSphere(Unk_ov23_022577B8->unk_00, sphereType, sphereSize);
+    return Underground_TryAddSphere(Unk_ov23_022577B8->underground, sphereType, sphereSize);
 }
 
-BOOL Underground_TryAddTreasure(int treasureID)
+BOOL Underground_TryAddTreasure2(int treasureID)
 {
     GF_ASSERT(treasureID < MINING_ROCK_1);
-    return UndergroundData_TryAddTreasure(Unk_ov23_022577B8->unk_00, treasureID);
+    return Underground_TryAddTreasure(Unk_ov23_022577B8->underground, treasureID);
 }
 
 BOOL ov23_0224F730(int param0)
 {
-    return sub_02028E84(Unk_ov23_022577B8->unk_00, param0);
+    return sub_02028E84(Unk_ov23_022577B8->underground, param0);
 }
 
 BOOL ov23_0224F744(int param0)
 {
-    return sub_02028BC8(Unk_ov23_022577B8->unk_00, param0);
+    return sub_02028BC8(Unk_ov23_022577B8->underground, param0);
 }
 
 void ov23_0224F758(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSystem)
@@ -786,7 +786,7 @@ static void ov23_0224FD3C(UnkStruct_ov23_02250CD4 *param0)
 void ov23_0224FD68(int param0)
 {
     if (Unk_ov23_022577B8->unk_05 == param0) {
-        sub_02028E50(Unk_ov23_022577B8->unk_00, Unk_ov23_022577B8->unk_04);
+        sub_02028E50(Unk_ov23_022577B8->underground, Unk_ov23_022577B8->unk_04);
     }
 }
 
@@ -868,7 +868,7 @@ static void ov23_0224FE38(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
 
     ov23_02251238(param0, v4, v2.count);
 
-    param0->unk_4C = ov23_02248C08(&v2, param0->unk_294, param0->unk_290, HEAP_ID_FIELD, param1, Unk_ov23_022577B8->unk_00, 0);
+    param0->unk_4C = ov23_02248C08(&v2, param0->unk_294, param0->unk_290, HEAP_ID_FIELD, param1, Unk_ov23_022577B8->underground, 0);
     param0->unk_2AA = 5;
 }
 
@@ -976,7 +976,7 @@ static BOOL ov23_02250048(SysTask *param0, void *param1)
 void ov23_02250128(int param0)
 {
     GF_ASSERT(Unk_ov23_022577B8->unk_05 == param0);
-    sub_02028C6C(Unk_ov23_022577B8->unk_00, Unk_ov23_022577B8->unk_04);
+    sub_02028C6C(Unk_ov23_022577B8->underground, Unk_ov23_022577B8->unk_04);
 }
 
 static void ov23_0225014C(ListMenu *param0, u32 param1, u8 param2)
@@ -1062,7 +1062,7 @@ static void ov23_0225021C(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
 
     ov23_02251238(param0, v5, v3.count);
 
-    param0->unk_4C = ov23_02248C08(&v3, param0->unk_294, param0->unk_290, HEAP_ID_FIELD, param1, Unk_ov23_022577B8->unk_00, 0);
+    param0->unk_4C = ov23_02248C08(&v3, param0->unk_294, param0->unk_290, HEAP_ID_FIELD, param1, Unk_ov23_022577B8->underground, 0);
     param0->unk_2AA = 6;
 }
 
@@ -1234,7 +1234,7 @@ static void ov23_022505EC(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
 
     ov23_02251238(param0, v4, v2.count);
 
-    param0->unk_4C = ov23_02248C08(&v2, param0->unk_294, param0->unk_290, HEAP_ID_FIELD, param1, Unk_ov23_022577B8->unk_00, 0);
+    param0->unk_4C = ov23_02248C08(&v2, param0->unk_294, param0->unk_290, HEAP_ID_FIELD, param1, Unk_ov23_022577B8->underground, 0);
     param0->unk_2AA = 7;
 }
 
@@ -1318,7 +1318,7 @@ static BOOL ov23_022507D8(SysTask *param0, void *param1)
             Sound_PlayEffect(SEQ_SE_CONFIRM);
 
             if (Bag_TryAddItem(v4, item, 1, HEAP_ID_FIELD)) {
-                sub_02028D80(Unk_ov23_022577B8->unk_00, Unk_ov23_022577B8->unk_04);
+                sub_02028D80(Unk_ov23_022577B8->underground, Unk_ov23_022577B8->unk_04);
                 ov23_022541A0(ov23_0224219C(), 0, Unk_ov23_022577B8->unk_05);
 
                 if ((Unk_ov23_022577B8->unk_05 == 29) || (Unk_ov23_022577B8->unk_05 == 30)) {
@@ -1332,7 +1332,7 @@ static BOOL ov23_022507D8(SysTask *param0, void *param1)
             }
         } else if (v1 == 2) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            sub_02028D80(Unk_ov23_022577B8->unk_00, Unk_ov23_022577B8->unk_04);
+            sub_02028D80(Unk_ov23_022577B8->underground, Unk_ov23_022577B8->unk_04);
 
             ov23_022541A0(ov23_0224219C(), 2, Unk_ov23_022577B8->unk_05);
             ov23_02253F40(ov23_0224219C(), 130, 0, NULL);
@@ -1476,7 +1476,7 @@ static void ov23_02250B34(SysTask *param0, UnkStruct_ov23_02250CD4 *param1, BOOL
         sub_0206A844(param1->unk_08);
     }
 
-    Heap_FreeToHeap(param1);
+    Heap_Free(param1);
 
     if (!param2) {
         sub_02059514();
@@ -1545,7 +1545,7 @@ static void ov23_02250C74(ListMenu *param0, u32 param1, u8 param2)
 {
     UnkStruct_ov23_02250CD4 *v0 = (UnkStruct_ov23_02250CD4 *)ListMenu_GetAttribute(param0, 19);
     int v1 = param1;
-    UndergroundData *v2 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
+    Underground *v2 = SaveData_GetUnderground(FieldSystem_GetSaveData(v0->fieldSystem));
 
     if (!sub_02028AFC(v2, v1)) {
         ListMenu_SetAltTextColors(param0, 1, 15, 2);
@@ -1636,7 +1636,7 @@ static void ov23_02250D90(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
 
     ov23_02251238(param0, v4, v2.count);
 
-    param0->unk_4C = ov23_02248C08(&v2, param0->unk_294, param0->unk_290, HEAP_ID_FIELD, param1, Unk_ov23_022577B8->unk_00, 0);
+    param0->unk_4C = ov23_02248C08(&v2, param0->unk_294, param0->unk_290, HEAP_ID_FIELD, param1, Unk_ov23_022577B8->underground, 0);
     param0->unk_2AA = 8;
 }
 
@@ -1716,7 +1716,7 @@ static BOOL ov23_02250F8C(SysTask *param0, void *param1)
 
         if (v1 == 2) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            sub_02028B94(Unk_ov23_022577B8->unk_00, Unk_ov23_022577B8->unk_04);
+            sub_02028B94(Unk_ov23_022577B8->underground, Unk_ov23_022577B8->unk_04);
             ov23_022541C8(ov23_0224219C(), 2, Unk_ov23_022577B8->unk_05);
             ov23_02253F40(ov23_0224219C(), 130, 0, NULL);
         }
@@ -1779,7 +1779,7 @@ void ov23_02251044(void *param0, u32 param1)
         SysTask_Done(v0->unk_04);
     }
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 static BOOL ov23_022510F0(SysTask *param0, void *param1)

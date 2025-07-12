@@ -164,7 +164,7 @@ void ov95_0224ABF4(void *param0)
             ov95_0224B3BC(v0->unk_38);
         }
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 }
 
@@ -389,7 +389,7 @@ static void ov95_0224AE1C(UnkStruct_ov95_0224AC64 *param0)
             GX_EndLoadBGExtPltt();
             GXS_EndLoadBGExtPltt();
 
-            Heap_FreeToHeap(v7);
+            Heap_Free(v7);
         }
     }
 
@@ -489,7 +489,7 @@ static void ov95_0224B1A8(UnkStruct_ov95_0224AC64 *param0, SysTask **param1)
         *param1 = SysTask_ExecuteOnVBlank(ov95_0224B1F8, v0, 0);
 
         if (*param1 == NULL) {
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
         }
     }
 }
@@ -537,7 +537,7 @@ static void ov95_0224B274(UnkStruct_ov95_0224AC64 *param0, SysTask **param1)
         *param1 = SysTask_Start(ov95_0224B2C8, v0, 0);
 
         if (*param1 == NULL) {
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
         }
     }
 }
@@ -564,7 +564,7 @@ static void ov95_0224B308(SysTask *param0)
 
         *(v0->unk_00) = NULL;
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
     }
 }
@@ -584,7 +584,7 @@ static void ov95_0224B324(UnkStruct_ov95_02247958 *param0, int param1, int param
         *param4 = SysTask_Start(ov95_0224B388, v0, 0);
 
         if (*param4 == NULL) {
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
         }
     } else {
         *param4 = NULL;
@@ -610,7 +610,7 @@ static void ov95_0224B3BC(SysTask *param0)
         UnkStruct_ov95_0224B324 *v0 = SysTask_GetParam(param0);
 
         *(v0->unk_00) = NULL;
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
     }
 }

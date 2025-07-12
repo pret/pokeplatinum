@@ -5,7 +5,7 @@
 
 #include "generated/game_records.h"
 
-#include "struct_defs/underground_data.h"
+#include "struct_defs/underground.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021F575C.h"
@@ -87,7 +87,7 @@ static void ov23_022416B0(int param0)
 void ov23_022416E0(void *param0, FieldSystem *fieldSystem)
 {
     int v0;
-    UndergroundData *v1;
+    Underground *v1;
 
     if (Unk_ov23_02257744) {
         return;
@@ -97,7 +97,7 @@ void ov23_022416E0(void *param0, FieldSystem *fieldSystem)
     MI_CpuFill8(Unk_ov23_02257744, 0, sizeof(UnkStruct_ov23_02257744));
     Unk_ov23_02257744->fieldSystem = fieldSystem;
 
-    v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(fieldSystem));
+    v1 = SaveData_GetUnderground(FieldSystem_GetSaveData(fieldSystem));
 
     for (v0 = 0; v0 < 100; v0++) {
         Unk_ov23_02257744->unk_00[v0].unk_06 = sub_020290DC(v1, v0);
@@ -114,7 +114,7 @@ void ov23_022416E0(void *param0, FieldSystem *fieldSystem)
 
 static void ov23_02241778(void)
 {
-    UndergroundData *v0 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(Unk_ov23_02257744->fieldSystem));
+    Underground *v0 = SaveData_GetUnderground(FieldSystem_GetSaveData(Unk_ov23_02257744->fieldSystem));
     int v1;
 
     for (v1 = 0; v1 < 100; v1++) {
@@ -140,7 +140,7 @@ void ov23_022417E0(void)
 void ov23_022417F4(void)
 {
     if (Unk_ov23_02257744) {
-        Heap_FreeToHeap(Unk_ov23_02257744);
+        Heap_Free(Unk_ov23_02257744);
         Unk_ov23_02257744 = NULL;
     }
 }
@@ -270,7 +270,7 @@ void ov23_022419B4(int param0, int param1, void *param2, void *param3)
         if (v5) {
             sub_020594FC();
 
-            if (Underground_TryAddSphere(v5->unk_06, v5->unk_04 + v5->unk_05)) {
+            if (Underground_TryAddSphere2(v5->unk_06, v5->unk_04 + v5->unk_05)) {
                 Unk_ov23_02257744->unk_468[v1] = v5->unk_06;
                 Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
                 v4 = 99;
@@ -527,7 +527,7 @@ BOOL ov23_02241D58(Strbuf *param0)
 
 int ov23_02241DF8(MATHRandContext16 *param0)
 {
-    UndergroundData *v0 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(Unk_ov23_02257744->fieldSystem));
+    Underground *v0 = SaveData_GetUnderground(FieldSystem_GetSaveData(Unk_ov23_02257744->fieldSystem));
     int v1, v2, v3;
 
     for (v3 = 0; v3 < 100; v3++) {
@@ -572,7 +572,7 @@ void ov23_02241ED0(void)
 {
     if (Unk_ov23_02257744->unk_45C) {
         SysTask_Done(Unk_ov23_02257744->unk_45C);
-        Heap_FreeToHeap(Unk_ov23_02257744->unk_460);
+        Heap_Free(Unk_ov23_02257744->unk_460);
 
         Unk_ov23_02257744->unk_45C = NULL;
         Unk_ov23_02257744->unk_460 = NULL;

@@ -391,9 +391,9 @@ static void ov94_0223E9B8(GTSApplicationState *param0)
 
 static void ov94_0223EA20(GTSApplicationState *param0)
 {
-    Heap_FreeToHeap(param0->unk_10E4->unk_14);
-    Heap_FreeToHeap(param0->unk_10E4->unk_18);
-    Heap_FreeToHeap(param0->unk_10E4);
+    Heap_Free(param0->unk_10E4->unk_14);
+    Heap_Free(param0->unk_10E4->unk_18);
+    Heap_Free(param0->unk_10E4);
     Strbuf_Free(param0->genericMessageBuffer);
     Strbuf_Free(param0->title);
 }

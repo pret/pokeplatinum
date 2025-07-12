@@ -94,7 +94,7 @@ void ov19_021DA9E0(UnkStruct_ov19_021DA9E0 *param0)
             Window_Remove(&param0->unk_04[v0]);
         }
 
-        Heap_FreeToHeap(param0->unk_04);
+        Heap_Free(param0->unk_04);
         param0->unk_04 = NULL;
     }
 
@@ -120,7 +120,7 @@ void ov19_021DA9E0(UnkStruct_ov19_021DA9E0 *param0)
     }
 
     if (param0->unk_28) {
-        Heap_FreeToHeap(param0->unk_28);
+        Heap_Free(param0->unk_28);
     }
 
     if (param0->unk_30) {
@@ -128,7 +128,7 @@ void ov19_021DA9E0(UnkStruct_ov19_021DA9E0 *param0)
     }
 
     if (param0->unk_34) {
-        Heap_FreeToHeap(param0->unk_34);
+        Heap_Free(param0->unk_34);
     }
 
     for (v0 = 0; v0 < 2; v0++) {
@@ -221,7 +221,7 @@ static void ov19_021DAB44(UnkStruct_ov19_021DA9E0 *param0)
         param0->unk_3C[i] = ov19_021D785C(param0->unk_0C, &v1, 24 + 36 * i, 176, 46, NNS_G2D_VRAM_TYPE_2DMAIN);
         GF_ASSERT(param0->unk_3C[i] != NULL);
 
-        Sprite_SetDrawFlag(param0->unk_3C[i], 0);
+        Sprite_SetDrawFlag(param0->unk_3C[i], FALSE);
     }
 
     NNS_G2dInitImageProxy(&v0);
@@ -252,7 +252,7 @@ static void ov19_021DAC4C(UnkStruct_ov19_021DA9E0 *param0)
 static void ov19_021DAC90(UnkStruct_ov19_021DA9E0 *param0)
 {
     if (param0->unk_4C) {
-        Heap_FreeToHeap(SysTask_GetParam(param0->unk_4C));
+        Heap_Free(SysTask_GetParam(param0->unk_4C));
         SysTask_Done(param0->unk_4C);
         param0->unk_4C = NULL;
     }
@@ -361,7 +361,7 @@ static void ov19_021DAE10(UnkStruct_ov19_021DA9E0 *param0)
     int v0;
 
     for (v0 = 0; v0 < 2; v0++) {
-        Sprite_SetDrawFlag(param0->unk_3C[v0], 0);
+        Sprite_SetDrawFlag(param0->unk_3C[v0], FALSE);
     }
 }
 
@@ -412,7 +412,7 @@ static void ov19_021DAE60(Window *param0, UnkStruct_ov19_021DA9E0 *param1, u32 p
 
         Sprite_SetPosition(param1->unk_3C[0], &v2);
         Sprite_SetExplicitPalette(param1->unk_3C[0], 10 + TypeIcon_GetPltt(param1->unk_10->pcMonPreview.type1));
-        Sprite_SetDrawFlag(param1->unk_3C[0], 1);
+        Sprite_SetDrawFlag(param1->unk_3C[0], TRUE);
 
         if (param1->unk_10->pcMonPreview.type1 != param1->unk_10->pcMonPreview.type2) {
             Graphics_LoadObjectTiles(TypeIcon_GetNARC(), TypeIcon_GetChar(param1->unk_10->pcMonPreview.type2), 0, (1504 + 8) * 0x20, 0, 1, HEAP_ID_BOX_GRAPHICS);
@@ -421,9 +421,9 @@ static void ov19_021DAE60(Window *param0, UnkStruct_ov19_021DA9E0 *param1, u32 p
 
             Sprite_SetPosition(param1->unk_3C[1], &v2);
             Sprite_SetExplicitPalette(param1->unk_3C[1], 10 + TypeIcon_GetPltt(param1->unk_10->pcMonPreview.type2));
-            Sprite_SetDrawFlag(param1->unk_3C[1], 1);
+            Sprite_SetDrawFlag(param1->unk_3C[1], TRUE);
         } else {
-            Sprite_SetDrawFlag(param1->unk_3C[1], 0);
+            Sprite_SetDrawFlag(param1->unk_3C[1], FALSE);
         }
     }
         return;

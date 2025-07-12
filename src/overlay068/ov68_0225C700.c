@@ -495,7 +495,7 @@ static void ov68_0225CA8C(UnkStruct_ov68_0225C91C *param0)
         }
     }
 
-    Heap_FreeToHeap(param0->unk_00);
+    Heap_Free(param0->unk_00);
 }
 
 static void ov68_0225CAB4(UnkStruct_ov68_0225C91C *param0, u32 heapID)
@@ -622,7 +622,7 @@ static void ov68_0225CC78(UnkStruct_ov68_0225CB70 *param0, u32 param1, u32 heapI
 
     ov66_0222E640(v1, v0, heapID);
     StringTemplate_SetPlayerName(param0->unk_24, param1, v0);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 static void ov68_0225CCA8(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov66_02231374 *param3, u32 param4)
@@ -680,7 +680,7 @@ static void ov68_0225CCD0(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB
         v2.heapID = param3;
 
         param0->unk_14 = SpriteList_Add(&v2);
-        Sprite_SetDrawFlag(param0->unk_14, 0);
+        Sprite_SetDrawFlag(param0->unk_14, FALSE);
     }
 
     {
@@ -870,7 +870,7 @@ static void ov68_0225D06C(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB
 
 static void ov68_0225D0F8(UnkStruct_ov68_0225D0F8 *param0)
 {
-    Sprite_SetDrawFlag(param0->unk_14, 1);
+    Sprite_SetDrawFlag(param0->unk_14, TRUE);
     Sprite_SetPosition(param0->unk_14, &Unk_ov68_0225DD78[param0->unk_10]);
 }
 
@@ -1255,7 +1255,7 @@ static void ov68_0225D868(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
         ov68_0225DC24(&param0->unk_A8);
     }
 
-    Heap_FreeToHeap(param0->unk_80);
+    Heap_Free(param0->unk_80);
     param0->unk_80 = NULL;
 
     {

@@ -437,7 +437,7 @@ static void ov79_021D260C(UnkStruct_ov79_021D2928 *param0)
     }
 
     Bg_FreeTilemapBuffer(param0->unk_68, BG_LAYER_SUB_0);
-    Heap_FreeToHeap(param0->unk_68);
+    Heap_Free(param0->unk_68);
 }
 
 static void ov79_021D2634(UnkStruct_ov79_021D2928 *param0)
@@ -767,7 +767,7 @@ static void ov79_021D2C50(SysTask *param0, void *param1)
     VEC_Subtract(&v2->unk_24, &v2->unk_30, &v3);
 
     ov79_021D2268(&v2->unk_3C, &v3, FX32_CONST(v0->unk_04));
-    Sprite_SetDrawFlag(v1->unk_C4, 1);
+    Sprite_SetDrawFlag(v1->unk_C4, TRUE);
     Sprite_SetAffineOverwriteMode(v1->unk_C4, 1);
     Sprite_SetAffineScale(v1->unk_C4, &v2->unk_24);
     SysTask_SetCallback(param0, ov79_021D2CEC);
@@ -789,7 +789,7 @@ static void ov79_021D2CEC(SysTask *param0, void *param1)
     v0->unk_04--;
 
     if (v0->unk_04 == 0) {
-        Sprite_SetDrawFlag(v1->unk_C4, 0);
+        Sprite_SetDrawFlag(v1->unk_C4, FALSE);
         ov79_021D29E4(v0);
     }
 }

@@ -425,7 +425,7 @@ int ov17_0223DF0C(ApplicationManager *appMan, int *param1)
     PokemonSpriteManager_Free(v0->unk_14.unk_44);
     sub_020127BC(v0->unk_14.unk_94);
     Font_Free(FONT_SUBSCREEN);
-    Heap_FreeToHeap(v0->unk_1050.unk_00);
+    Heap_Free(v0->unk_1050.unk_00);
     PaletteData_FreeBuffer(v0->unk_14.unk_90, 0);
     PaletteData_FreeBuffer(v0->unk_14.unk_90, 1);
     PaletteData_FreeBuffer(v0->unk_14.unk_90, 2);
@@ -434,7 +434,7 @@ int ov17_0223DF0C(ApplicationManager *appMan, int *param1)
     Strbuf_Free(v0->unk_14.unk_8C);
     StringTemplate_Free(v0->unk_14.unk_88);
     MessageLoader_Free(v0->unk_14.unk_84);
-    Heap_FreeToHeap(v0->unk_14.unk_60);
+    Heap_Free(v0->unk_14.unk_60);
     SysTask_Done(v0->unk_04);
 
     ov17_0223F1E0(v0->unk_10);
@@ -844,7 +844,7 @@ static void ov17_0223E7E0(UnkStruct_ov17_0224DF54 *param0)
 {
     void *v0 = ParticleSystem_GetHeapStart(param0->unk_0C);
     ParticleSystem_Free(param0->unk_0C);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     param0->unk_0C = NULL;
 }

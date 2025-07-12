@@ -5,12 +5,11 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay077/const_ov77_021D742C.h"
+#include "overlay097/main_menu_util.h"
 #include "overlay097/ov97_02232DC8.h"
 #include "overlay097/ov97_02233408.h"
-#include "overlay097/ov97_02237694.h"
 #include "overlay097/struct_ov97_02232E38.h"
 #include "overlay097/struct_ov97_022335A8.h"
-#include "overlay097/struct_ov97_02237808.h"
 #include "savedata/save_table.h"
 
 #include "bg_window.h"
@@ -352,9 +351,9 @@ typedef struct {
     Window unk_18;
     Window unk_28;
     Window unk_38;
-    UnkStruct_ov97_02237808 unk_48;
-    UnkStruct_ov97_02237808 unk_9C;
-    UnkStruct_ov97_02237808 unk_F0;
+    MainMenuWindow unk_48;
+    MainMenuWindow unk_9C;
+    MainMenuWindow unk_F0;
     int unk_144;
     int unk_148;
     int unk_14C;
@@ -529,10 +528,10 @@ static void ov97_0222C254(UnkStruct_ov97_0222C388 *param0)
     GXLayers_SetBanks(&v1);
 
     SetAllGraphicsModes(&v2);
-    ov97_022376FC(param0->unk_04, 0, 1, 0xF000, 0x0);
-    ov97_022376FC(param0->unk_04, 1, 1, 0xF800, 0x4000);
-    ov97_022376FC(param0->unk_04, 4, 1, 0x7800, 0x0);
-    ov97_022376FC(param0->unk_04, 5, 1, 0x7000, 0x4000);
+    MainMenuUtil_InitBG(param0->unk_04, 0, 1, 0xF000, 0x0);
+    MainMenuUtil_InitBG(param0->unk_04, 1, 1, 0xF800, 0x4000);
+    MainMenuUtil_InitBG(param0->unk_04, 4, 1, 0x7800, 0x0);
+    MainMenuUtil_InitBG(param0->unk_04, 5, 1, 0x7000, 0x4000);
 
     Text_ResetAllPrinters();
     Font_LoadTextPalette(0, 0 * 32, param0->heapID);
@@ -561,12 +560,12 @@ static void ov97_0222C388(UnkStruct_ov97_0222C388 *param0)
 
 static BOOL ov97_0222C404(UnkStruct_ov97_0222C388 *param0)
 {
-    UnkStruct_ov97_02237808 v0;
+    MainMenuWindow v0;
 
     if (Window_IsInUse(&param0->unk_18) == 0) {
-        ov97_02237808(&v0, &param0->unk_18, 0, 14, 1, 1);
-        ov97_02237858(&v0, 22, 16, param0->unk_144);
-        ov97_0223795C(param0->unk_04, &v0, 5, 4, 2);
+        MainMenuUtil_InitWindow(&v0, &param0->unk_18, 0, 14, 1, 1);
+        MainMenuWindow_SetDimensionsAndBasetile(&v0, 22, 16, param0->unk_144);
+        MainMenuUtil_ShowWindowAtPos(param0->unk_04, &v0, 5, 4, 2);
         return 1;
     } else {
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
@@ -583,25 +582,25 @@ static void ov97_0222C578(UnkStruct_ov97_0222C388 *param0);
 
 static void ov97_0222C47C(UnkStruct_ov97_0222C388 *param0)
 {
-    ov97_02237808(&param0->unk_48, &param0->unk_28, 0, 421, (1 + 9), 2);
-    ov97_02237858(&param0->unk_48, 27, 4, param0->unk_144);
-    ov97_02237860(&param0->unk_48, 1, 1);
-    ov97_0223795C(param0->unk_04, &param0->unk_48, 2, 19, 70);
+    MainMenuUtil_InitWindow(&param0->unk_48, &param0->unk_28, 0, 421, (1 + 9), 2);
+    MainMenuWindow_SetDimensionsAndBasetile(&param0->unk_48, 27, 4, param0->unk_144);
+    MainMenuWindow_SetScrollableAndFont(&param0->unk_48, 1, 1);
+    MainMenuUtil_ShowWindowAtPos(param0->unk_04, &param0->unk_48, 2, 19, 70);
 
-    param0->unk_144 += ov97_02237A18(&param0->unk_48);
+    param0->unk_144 += MainMenuWindow_GetSize(&param0->unk_48);
 
-    ov97_02237808(&param0->unk_9C, &param0->unk_18, 0, 421, 1, 1);
-    ov97_02237858(&param0->unk_9C, 30, 4, param0->unk_144);
-    ov97_02237860(&param0->unk_9C, 0, 1);
-    ov97_0223795C(param0->unk_04, &param0->unk_9C, 1, 1, 11);
+    MainMenuUtil_InitWindow(&param0->unk_9C, &param0->unk_18, 0, 421, 1, 1);
+    MainMenuWindow_SetDimensionsAndBasetile(&param0->unk_9C, 30, 4, param0->unk_144);
+    MainMenuWindow_SetScrollableAndFont(&param0->unk_9C, 0, 1);
+    MainMenuUtil_ShowWindowAtPos(param0->unk_04, &param0->unk_9C, 1, 1, 11);
 
-    param0->unk_144 += ov97_02237A18(&param0->unk_9C);
+    param0->unk_144 += MainMenuWindow_GetSize(&param0->unk_9C);
 
-    ov97_02237A20();
-    ov97_02237A74();
-    ov97_02237B0C(116, 10, 7, 9, 8, 0);
+    MainMenuUtil_InitCharPlttTransferBuffers();
+    MainMenuUtil_InitSpriteLoader();
+    MainMenuUtil_LoadSprite(116, 10, 7, 9, 8, 0);
 
-    param0->unk_3170 = ov97_02237D14(0, param0->unk_3170, HW_LCD_WIDTH / 2, 76, 1);
+    param0->unk_3170 = MainMenuUtil_InitSprite(0, param0->unk_3170, HW_LCD_WIDTH / 2, 76, 1);
 
     ov97_0222C578(param0);
 }
@@ -613,19 +612,19 @@ static void ov97_0222C578(UnkStruct_ov97_0222C388 *param0)
     UnkStruct_ov97_022335A8 v5;
     StringTemplate *v6 = StringTemplate_Default(param0->heapID);
 
-    ov97_02237808(&param0->unk_F0, &param0->unk_38, 0, 421, 1, 1);
-    ov97_02237858(&param0->unk_F0, 26, 4, param0->unk_144);
-    ov97_02237860(&param0->unk_F0, 0, 1);
+    MainMenuUtil_InitWindow(&param0->unk_F0, &param0->unk_38, 0, 421, 1, 1);
+    MainMenuWindow_SetDimensionsAndBasetile(&param0->unk_F0, 26, 4, param0->unk_144);
+    MainMenuWindow_SetScrollableAndFont(&param0->unk_F0, 0, 1);
 
-    param0->unk_F0.unk_14 = v6;
+    param0->unk_F0.strTemplate = v6;
 
     StringTemplate_SetPlayerName(v6, 0, param0->unk_10);
     StringTemplate_SetNumber(v6, 1, TrainerInfo_ID_LowHalf(param0->unk_10), 5, 2, 1);
 
-    ov97_0223795C(param0->unk_04, &param0->unk_F0, 3, 13, 66);
-    param0->unk_F0.unk_08 = 0;
-    ov97_02237868(&param0->unk_F0, 0, Font_GetAttribute(FONT_SYSTEM, FONTATTR_MAX_LETTER_HEIGHT));
-    ov97_0223795C(param0->unk_04, &param0->unk_F0, -1, -1, 68);
+    MainMenuUtil_ShowWindowAtPos(param0->unk_04, &param0->unk_F0, 3, 13, 66);
+    param0->unk_F0.clearBeforePrinting = 0;
+    MainMenuWindow_SetTextOffsets(&param0->unk_F0, 0, Font_GetAttribute(FONT_SYSTEM, FONTATTR_MAX_LETTER_HEIGHT));
+    MainMenuUtil_ShowWindowAtPos(param0->unk_04, &param0->unk_F0, -1, -1, 68);
 
     OS_GetMacAddress(v4);
 
@@ -635,9 +634,9 @@ static void ov97_0222C578(UnkStruct_ov97_0222C388 *param0)
     StringTemplate_SetNumber(v6, 0, v0, 4, 2, 1);
     StringTemplate_SetNumber(v6, 1, v1, 4, 2, 1);
 
-    param0->unk_F0.unk_0C = 1;
+    param0->unk_F0.textRightAligned = 1;
 
-    ov97_0223795C(param0->unk_04, &param0->unk_F0, -1, -1, 69);
+    MainMenuUtil_ShowWindowAtPos(param0->unk_04, &param0->unk_F0, -1, -1, 69);
     StringTemplate_Free(v6);
 }
 
@@ -646,7 +645,7 @@ static void ov97_0222C688(ApplicationManager *appMan)
     int v0;
     UnkStruct_ov97_0222C388 *v1 = ApplicationManager_Data(appMan);
 
-    ov97_02237DA0();
+    MainMenuUtil_FreeSprites();
 
     if (Window_IsInUse(&v1->unk_18) == 1) {
         Window_ClearAndCopyToVRAM(&v1->unk_18);
@@ -661,12 +660,12 @@ static void ov97_0222C688(ApplicationManager *appMan)
     Bg_FreeTilemapBuffer(v1->unk_04, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(v1->unk_04, BG_LAYER_SUB_0);
     Bg_FreeTilemapBuffer(v1->unk_04, BG_LAYER_SUB_1);
-    Heap_FreeToHeap(v1->unk_04);
+    Heap_Free(v1->unk_04);
 }
 
 static int ov97_0222C6F8(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov97_0222C388 *v0 = ov97_022376C4(appMan, HEAP_ID_85, sizeof(UnkStruct_ov97_0222C388), 0x20000);
+    UnkStruct_ov97_0222C388 *v0 = MainMenuUtil_InitAppAndFadeToBlack(appMan, HEAP_ID_85, sizeof(UnkStruct_ov97_0222C388), 0x20000);
 
     v0->heapID = HEAP_ID_85;
     v0->unk_04 = BgConfig_New(v0->heapID);
@@ -675,7 +674,7 @@ static int ov97_0222C6F8(ApplicationManager *appMan, int *param1)
     v0->unk_0C = SaveData_GetPokedex(v0->saveData);
     v0->options = SaveData_GetOptions(v0->saveData);
 
-    ov97_02237694(v0->heapID);
+    MainMenuUtil_Init(v0->heapID);
 
     v0->unk_3174 = SaveData_GetMysteryGift(v0->saveData);
     v0->unk_14C = UnkEnum_ov97_0222C78C_09;
@@ -699,44 +698,44 @@ static int ov97_0222C78C(ApplicationManager *appMan, int *param1)
         ov97_0222C254(v0);
 
         if (Pokedex_IsObtained(v0->unk_0C) == FALSE) {
-            ov97_02237790(1, UnkEnum_ov97_0222C78C_01, param1, UnkEnum_ov97_0222C78C_13);
+            MainMenuUtil_StartScreenFadeToState(1, UnkEnum_ov97_0222C78C_01, param1, UnkEnum_ov97_0222C78C_13);
         } else {
             *param1 = UnkEnum_ov97_0222C78C_02;
         }
         break;
     case UnkEnum_ov97_0222C78C_01:
         if (ov97_0222C404(v0) == 0) {
-            ov97_02237784(1);
-            ov97_02237790(0, UnkEnum_ov97_0222C78C_12, param1, UnkEnum_ov97_0222C78C_13);
+            MainMenuUtil_SetFadeToWhite(1);
+            MainMenuUtil_StartScreenFadeToState(0, UnkEnum_ov97_0222C78C_12, param1, UnkEnum_ov97_0222C78C_13);
         }
         break;
     case UnkEnum_ov97_0222C78C_02:
         ov97_0222C47C(v0);
 
         if (MysteryGift_CheckFreePgtSlotExists(v0->unk_3174) == 0) {
-            v0->unk_48.unk_50 = 1;
-            v0->unk_317C = ov97_0223795C(v0->unk_04, &v0->unk_48, 2, 19, 21);
-            ov97_02237790(1, UnkEnum_ov97_0222C78C_03, param1, UnkEnum_ov97_0222C78C_13);
+            v0->unk_48.renderDelay = 1;
+            v0->unk_317C = MainMenuUtil_ShowWindowAtPos(v0->unk_04, &v0->unk_48, 2, 19, 21);
+            MainMenuUtil_StartScreenFadeToState(1, UnkEnum_ov97_0222C78C_03, param1, UnkEnum_ov97_0222C78C_13);
         } else {
             v0->unk_14C = UnkEnum_ov97_0222C78C_07;
-            ov97_02237790(1, UnkEnum_ov97_0222C78C_04, param1, UnkEnum_ov97_0222C78C_13);
+            MainMenuUtil_StartScreenFadeToState(1, UnkEnum_ov97_0222C78C_04, param1, UnkEnum_ov97_0222C78C_13);
         }
         break;
     case UnkEnum_ov97_0222C78C_03:
         if ((Text_IsPrinterActive(v0->unk_317C) == 0) && gSystem.pressedKeys & PAD_BUTTON_A) {
-            ov97_02237784(1);
-            ov97_02237790(0, UnkEnum_ov97_0222C78C_12, param1, UnkEnum_ov97_0222C78C_13);
+            MainMenuUtil_SetFadeToWhite(1);
+            MainMenuUtil_StartScreenFadeToState(0, UnkEnum_ov97_0222C78C_12, param1, UnkEnum_ov97_0222C78C_13);
         }
         break;
     case UnkEnum_ov97_0222C78C_04:
         v0->unk_150 = ov97_0222CB10(v0);
 
         if (v0->unk_150 == 5) {
-            ov97_02237784(1);
-            ov97_02237790(0, UnkEnum_ov97_0222C78C_12, param1, UnkEnum_ov97_0222C78C_13);
+            MainMenuUtil_SetFadeToWhite(1);
+            MainMenuUtil_StartScreenFadeToState(0, UnkEnum_ov97_0222C78C_12, param1, UnkEnum_ov97_0222C78C_13);
         } else if (v0->unk_150 == 4) {
-            ov97_02237784(1);
-            ov97_02237790(0, UnkEnum_ov97_0222C78C_12, param1, UnkEnum_ov97_0222C78C_13);
+            MainMenuUtil_SetFadeToWhite(1);
+            MainMenuUtil_StartScreenFadeToState(0, UnkEnum_ov97_0222C78C_12, param1, UnkEnum_ov97_0222C78C_13);
         }
         break;
     case UnkEnum_ov97_0222C78C_05:
@@ -746,12 +745,12 @@ static int ov97_0222C78C(ApplicationManager *appMan, int *param1)
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
 
         WonderCardsApp_ShowWondercard(v0->unk_04, &v0->unk_3180, HEAP_ID_85);
-        ov97_02237790(1, UnkEnum_ov97_0222C78C_06, param1, UnkEnum_ov97_0222C78C_13);
+        MainMenuUtil_StartScreenFadeToState(1, UnkEnum_ov97_0222C78C_06, param1, UnkEnum_ov97_0222C78C_13);
         v0->unk_3180.eventHeader.hasWonderCard = 0;
         break;
     case UnkEnum_ov97_0222C78C_06:
         if (gSystem.pressedKeys) {
-            ov97_02237790(0, UnkEnum_ov97_0222C78C_11, param1, UnkEnum_ov97_0222C78C_13);
+            MainMenuUtil_StartScreenFadeToState(0, UnkEnum_ov97_0222C78C_11, param1, UnkEnum_ov97_0222C78C_13);
         }
         break;
     case UnkEnum_ov97_0222C78C_11:
@@ -762,11 +761,11 @@ static int ov97_0222C78C(ApplicationManager *appMan, int *param1)
         return 1;
         break;
     case UnkEnum_ov97_0222C78C_13:
-        ov97_022377F0(param1);
+        MainMenuUtil_CheckScreenFadeDone(param1);
         break;
     }
 
-    ov97_02237CA0();
+    MainMenuUtil_UpdateSpritesSkipGift();
 
     return 0;
 }
@@ -800,7 +799,7 @@ static void ov97_0222C974(UnkStruct_ov97_0222C388 *param0)
     Strbuf_ToChars((const Strbuf *)v1, v4->eventHeader.title, 36);
     Strbuf_Free(v1);
 
-    v4->eventHeader.validGames = (ov97_02237E4C(10) | ov97_02237E4C(11) | ov97_02237E4C(12));
+    v4->eventHeader.validGames = (MainMenuUtil_CalcMysteryGiftVersionBit(10) | MainMenuUtil_CalcMysteryGiftVersionBit(11) | MainMenuUtil_CalcMysteryGiftVersionBit(12));
     v4->eventHeader.id = 1;
     v4->eventHeader.unique = 0;
     v4->eventHeader.unk_4E_1 = 0;
@@ -826,7 +825,7 @@ static void ov97_0222C974(UnkStruct_ov97_0222C388 *param0)
     MysteryGift_TrySavePgt(param0->unk_3174, &v4->pgt, 3);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
 
-    ov97_02238194(param0->unk_04, v4);
+    MainMenuUtil_LoadGiftSprite(param0->unk_04, v4);
 }
 
 static void ov97_0222CAAC(UnkStruct_ov97_0222C388 *param0, int param1)
@@ -921,8 +920,8 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
         }
         break;
     case UnkEnum_ov97_0222C6F8_29:
-        ov97_0223795C(param0->unk_04, &param0->unk_48, 2, 19, 30);
-        Sprite_SetDrawFlag(param0->unk_3170, 0);
+        MainMenuUtil_ShowWindowAtPos(param0->unk_04, &param0->unk_48, 2, 19, 30);
+        Sprite_SetDrawFlag(param0->unk_3170, FALSE);
         DestroyWaitDial(param0->unk_34D8);
         param0->unk_34D8 = NULL;
         Sound_PlayEffect(SEQ_SE_CONFIRM);
@@ -947,7 +946,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
             ov97_0223329C();
             *v3 = UnkEnum_ov97_0222C6F8_10;
             param0->unk_160 = 3200;
-            ov97_0223795C(param0->unk_04, &param0->unk_48, 2, 19, 34);
+            MainMenuUtil_ShowWindowAtPos(param0->unk_04, &param0->unk_48, 2, 19, 34);
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             param0->unk_34D8 = NULL;
 
@@ -958,8 +957,8 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
         break;
     case UnkEnum_ov97_0222C6F8_10:
         if (ov97_022332F4()) {
-            ov97_0223795C(param0->unk_04, &param0->unk_48, 2, 19, 71);
-            Sprite_SetDrawFlag(param0->unk_3170, 1);
+            MainMenuUtil_ShowWindowAtPos(param0->unk_04, &param0->unk_48, 2, 19, 71);
+            Sprite_SetDrawFlag(param0->unk_3170, TRUE);
             ov97_0222C578(param0);
             *v3 = UnkEnum_ov97_0222C6F8_11;
         }
@@ -975,22 +974,22 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
         if (ov97_02233320()) {
             *v3 = UnkEnum_ov97_0222C6F8_13;
             param0->unk_160 = 60;
-            ov97_0223795C(param0->unk_04, &param0->unk_48, 2, 19, 71);
+            MainMenuUtil_ShowWindowAtPos(param0->unk_04, &param0->unk_48, 2, 19, 71);
         }
 
         ov97_0222CAB4(param0, v3, 1, PAD_BUTTON_B);
         break;
     case UnkEnum_ov97_0222C6F8_13:
         if (--param0->unk_160 == 0) {
-            ov97_0223795C(param0->unk_04, &param0->unk_48, 2, 19, 72);
+            MainMenuUtil_ShowWindowAtPos(param0->unk_04, &param0->unk_48, 2, 19, 72);
             param0->unk_34D8 = Window_AddWaitDial(&param0->unk_28, (1 + 9));
             ov97_0222C974(param0);
-            ov97_0223846C(param0->saveData);
+            MainMenuUtil_InitSaving(param0->saveData);
             *v3 = UnkEnum_ov97_0222C6F8_14;
         }
         break;
     case UnkEnum_ov97_0222C6F8_14:
-        if (ov97_0223847C() == 1) {
+        if (MainMenuUtil_SaveState() == 1) {
             *v3 = UnkEnum_ov97_0222C6F8_15;
             param0->unk_160 = 6 + (OS_GetTickLo() % 54);
         }
@@ -1007,7 +1006,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
         break;
     case UnkEnum_ov97_0222C6F8_17:
         if (ov97_0223334C()) {
-            ov97_022384F4();
+            MainMenuUtil_ContinueSaving();
 
             *v3 = UnkEnum_ov97_0222C6F8_18;
             param0->unk_160 = 800;
@@ -1027,12 +1026,12 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
         }
         break;
     case UnkEnum_ov97_0222C6F8_18:
-        if (ov97_02238528() == 3) {
+        if (MainMenuUtil_GetSavingStatus() == 3) {
             ov97_022333BC();
             *v3 = UnkEnum_ov97_0222C6F8_22;
             param0->unk_160 = 120;
-        } else if (ov97_02238528() != 2) {
-            ov97_0223847C();
+        } else if (MainMenuUtil_GetSavingStatus() != 2) {
+            MainMenuUtil_SaveState();
         } else {
             if (ov97_02233320() || (!ov97_02233388())) {
                 *v3 = UnkEnum_ov97_0222C6F8_19;
@@ -1051,9 +1050,9 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
         if (--param0->unk_160 == 0) {
             *v3 = UnkEnum_ov97_0222C6F8_20;
 
-            ov97_0223795C(param0->unk_04, &param0->unk_48, 2, 19, 73);
+            MainMenuUtil_ShowWindowAtPos(param0->unk_04, &param0->unk_48, 2, 19, 73);
 
-            Sprite_SetDrawFlag(param0->unk_3170, 0);
+            Sprite_SetDrawFlag(param0->unk_3170, FALSE);
             DestroyWaitDial(param0->unk_34D8);
             Sound_PlayEffect(SEQ_SE_CONFIRM);
 
@@ -1077,8 +1076,8 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
     case UnkEnum_ov97_0222C6F8_22:
         *v3 = UnkEnum_ov97_0222C6F8_23;
     case UnkEnum_ov97_0222C6F8_23:
-        ov97_0223795C(param0->unk_04, &param0->unk_48, 2, 19, 74);
-        Sprite_SetDrawFlag(param0->unk_3170, 0);
+        MainMenuUtil_ShowWindowAtPos(param0->unk_04, &param0->unk_48, 2, 19, 74);
+        Sprite_SetDrawFlag(param0->unk_3170, FALSE);
 
         if (param0->unk_34D8) {
             DestroyWaitDial(param0->unk_34D8);

@@ -180,7 +180,7 @@ void ov66_02232598(void)
     ov66_02233920(Unk_ov66_0225B6C0);
     ov66_02233788(Unk_ov66_0225B6C0);
 
-    Heap_FreeToHeap(Unk_ov66_0225B6C0);
+    Heap_Free(Unk_ov66_0225B6C0);
     Unk_ov66_0225B6C0 = NULL;
 }
 
@@ -1203,7 +1203,7 @@ static void ov66_02233758(UnkStruct_ov66_022336C4 *param0, u32 param1, u32 heapI
 
 static void ov66_02233788(UnkStruct_ov66_022336C4 *param0)
 {
-    Heap_FreeToHeap(Unk_ov66_0225B6C0->unk_24);
+    Heap_Free(Unk_ov66_0225B6C0->unk_24);
 }
 
 static void ov66_0223379C(UnkStruct_ov66_022336C4 *param0, s32 param1, const void *param2)
@@ -1313,7 +1313,7 @@ static void ov66_02233920(UnkStruct_ov66_022336C4 *param0)
 
     for (v0 = 0; v0 < 2; v0++) {
         GF_ASSERT(param0->unk_11C[v0].unk_04 != NULL);
-        Heap_FreeToHeap(param0->unk_11C[v0].unk_04);
+        Heap_Free(param0->unk_11C[v0].unk_04);
         param0->unk_11C[v0].unk_04 = NULL;
     }
 }
@@ -1886,7 +1886,7 @@ static void ov66_022342F4(UnkStruct_ov66_022342F4 *param0, u32 param1, u32 heapI
 
 static void ov66_0223430C(UnkStruct_ov66_022342F4 *param0)
 {
-    Heap_FreeToHeap(param0->unk_00);
+    Heap_Free(param0->unk_00);
     param0->unk_00 = NULL;
 }
 

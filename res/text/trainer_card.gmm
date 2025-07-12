@@ -1,95 +1,95 @@
 <?xml version="1.0"?>
 <body language="English">
 	<key value="16542" />
-	<row id="pl_msg_00000616_00000" index="0">
+	<row id="TrainerCard_Text_IDNo" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">IDNo.</language>
 	</row>
-	<row id="pl_msg_00000616_00001" index="1">
+	<row id="TrainerCard_Text_Name" index="1">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">NAME</language>
 	</row>
-	<row id="pl_msg_00000616_00002" index="2">
+	<row id="TrainerCard_Text_Money" index="2">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">MONEY</language>
 	</row>
-	<row id="pl_msg_00000616_00003" index="3">
+	<row id="TrainerCard_Text_Pokedex" index="3">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">POKéDEX</language>
 	</row>
-	<row id="pl_msg_00000616_00004" index="4">
+	<row id="TrainerCard_Text_Score" index="4">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">SCORE</language>
 	</row>
-	<row id="pl_msg_00000616_00005" index="5">
+	<row id="TrainerCard_Text_Time" index="5">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">TIME</language>
 	</row>
-	<row id="pl_msg_00000616_00006" index="6">
+	<row id="TrainerCard_Text_AdventureStarted" index="6">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">ADVENTURE STARTED</language>
 	</row>
-	<row id="pl_msg_00000616_00007" index="7">
+	<row id="TrainerCard_Text_HallOfFameDebut" index="7">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">HALL OF FAME DEBUT</language>
 	</row>
-	<row id="pl_msg_00000616_00008" index="8">
+	<row id="TrainerCard_Text_TimesLinked" index="8">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">TIMES LINKED</language>
 	</row>
-	<row id="pl_msg_00000616_00009" index="9">
+	<row id="TrainerCard_Text_LinkBattles" index="9">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">LINK BATTLES</language>
 	</row>
-	<row id="pl_msg_00000616_00010" index="10">
+	<row id="TrainerCard_Text_LinkTrades" index="10">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">LINK TRADES</language>
 	</row>
-	<row id="pl_msg_00000616_00011" index="11">
+	<row id="TrainerCard_Text_Colon" index="11">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">:</language>
 	</row>
-	<row id="pl_msg_00000616_00012" index="12">
+	<row id="TrainerCard_Text_TwoDashes" index="12">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">--</language>
 	</row>
-	<row id="pl_msg_00000616_00013" index="13">
+	<row id="TrainerCard_Text_BlankTime_Unused" index="13">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">--:--</language>
 	</row>
-	<row id="pl_msg_00000616_00014" index="14">
+	<row id="TrainerCard_Text_Format_Money" index="14">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">${STRVAR_1 55, 5, 0}</language>
 	</row>
-	<row id="pl_msg_00000616_00015" index="15">
+	<row id="TrainerCard_Text_Format_HHMMWithColon" index="15">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 51, 0, 0}:{STRVAR_1 51, 1, 0}</language>
 	</row>
-	<row id="pl_msg_00000616_00016" index="16">
+	<row id="TrainerCard_Text_Format_HHMMWithoutColon" index="16">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 51, 0, 0}  {STRVAR_1 51, 1, 0}</language>
 	</row>
-	<row id="pl_msg_00000616_00017" index="17">
+	<row id="TrainerCard_Text_Format_MMDD20YY" index="17">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 74, 3, 0} {STRVAR_1 51, 4, 0}, 20{STRVAR_1 51, 2, 0}</language>
 	</row>
-	<row id="pl_msg_00000616_00018" index="18">
+	<row id="TrainerCard_Text_W" index="18">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">W</language>
 	</row>
-	<row id="pl_msg_00000616_00019" index="19">
+	<row id="TrainerCard_Text_L" index="19">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">L</language>
 	</row>
-	<row id="pl_msg_00000616_00020" index="20">
+	<row id="TrainerCard_Text_BlankDate" index="20">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">--- --, ----</language>
 	</row>
-	<row id="pl_msg_00000616_00021" index="21">
+	<row id="TrainerCard_Text_Format_Number_1" index="21">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 52, 5, 0}</language>
 	</row>
-	<row id="pl_msg_00000616_00022" index="22">
+	<row id="TrainerCard_Text_Format_Number_2" index="22">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 55, 5, 0}</language>
 	</row>

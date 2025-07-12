@@ -45,10 +45,10 @@ void ov55_02256360(UnkStruct_ov55_0225632C *param0)
 {
     if (param0 != NULL) {
         if (param0->unk_04 != NULL) {
-            Heap_FreeToHeap(param0->unk_04);
+            Heap_Free(param0->unk_04);
         }
 
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0);
     }
 }
 

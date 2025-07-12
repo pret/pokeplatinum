@@ -425,7 +425,7 @@ static void ov116_022649E4(SysTask *param0, void *param1)
     if ((IsScreenFadeDone() == FALSE) || (v1->unk_2C.unk_00 == 1)) {
         *v0->unk_10 = 0;
         SysTask_Done(param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 
@@ -586,7 +586,7 @@ static void ov116_022649E4(SysTask *param0, void *param1)
 
     default:
         ov116_02261E0C(v0->unk_00, 0, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         break;
     }

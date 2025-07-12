@@ -224,7 +224,7 @@ void ov104_0223C4CC(UnkStruct_ov104_0223C4CC *param0)
     PaletteData_FreeBuffer(param0->unk_04, 2);
     PaletteData_FreeBuffer(param0->unk_04, 3);
     PaletteData_Free(param0->unk_04);
-    Heap_FreeToHeap(param0->unk_00);
+    Heap_Free(param0->unk_00);
     SysTask_Done(param0->unk_94);
     SysTask_Done(param0->unk_98);
     SysTask_Done(param0->unk_9C);
@@ -233,7 +233,7 @@ void ov104_0223C4CC(UnkStruct_ov104_0223C4CC *param0)
     ov104_0223CFEC(param0->unk_0C);
 
     DisableTouchPad();
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
@@ -705,7 +705,7 @@ static void ov104_0223CC74(UnkStruct_ov104_0223C4CC *param0, int param1, const T
             GX_LoadBGExtPltt(v5->pRawData, 0x6000, 0x2000);
             GX_EndLoadBGExtPltt();
 
-            Heap_FreeToHeap(v6);
+            Heap_Free(v6);
         }
 
         PaletteData_FillBufferRange(param0->unk_04, 0, 2, 0x0, 0, 1);
@@ -728,7 +728,7 @@ static void ov104_0223CC74(UnkStruct_ov104_0223C4CC *param0, int param1, const T
                 GX_LoadBGExtPltt(v7->pRawData, 0x4000, 0x2000);
                 GX_EndLoadBGExtPltt();
 
-                Heap_FreeToHeap(v8);
+                Heap_Free(v8);
             }
         }
 

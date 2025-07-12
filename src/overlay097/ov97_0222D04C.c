@@ -246,7 +246,7 @@ void ov97_0222D2C4(int param0, int param1, void *param2, void *param3)
 
 void ov97_0222D2DC(void)
 {
-    Heap_FreeToHeapExplicit(HEAP_ID_COMMUNICATION, Unk_ov97_0223F1A4);
+    Heap_FreeExplicit(HEAP_ID_COMMUNICATION, Unk_ov97_0223F1A4);
     Unk_ov97_0223F1A4 = NULL;
     sub_02036978();
 }
