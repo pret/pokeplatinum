@@ -20,7 +20,7 @@ void RadarChain_Free(RadarChain *chain);
 void RadarChain_Clear(RadarChain *chain);
 BOOL RadarSpawnPatches(FieldSystem *fieldSystem, const int param1, const int param2, RadarChain *chain);
 void SetupGrassPatches(FieldSystem *fieldSystem, const int param1, RadarChain *chain);
-void sub_02069638(FieldSystem *fieldSystem, RadarChain *chain);
+void FieldSystem_CreateShakingRadarPatches(FieldSystem *fieldSystem, RadarChain *chain);
 BOOL sub_02069690(RadarChain *chain);
 int PokeRadar_ShouldDoRadarEncounter(const int param0, const int param1, FieldSystem *fieldSystem, RadarChain *chain, int *param4, BOOL *param5, BOOL *param6);
 void SetRadarMon(RadarChain *chain, const int species, const int level);

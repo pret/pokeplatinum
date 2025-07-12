@@ -429,7 +429,7 @@ static BOOL FieldTask_WildEncounter(FieldTask *task)
     case 5:
         if (GetRadarChainActive(fieldSystem->chain)) {
             SetupGrassPatches(fieldSystem, encounter->dto->resultMask, fieldSystem->chain);
-            sub_02069638(fieldSystem, fieldSystem->chain);
+            FieldSystem_CreateShakingRadarPatches(fieldSystem, fieldSystem->chain);
         }
 
         encounter->state++;

@@ -49,7 +49,7 @@ typedef struct RadarChain {
     BOOL unk_14;
     BOOL unk_18;
     GrassPatch patch[NUM_GRASS_PATCHES];
-    GFXTestBox unk_BC;
+    GFXTestBox grassPatchVolume;
     u8 unk_D0;
 } RadarChain;
 
@@ -64,7 +64,7 @@ static void IncWithCap(int *param0);
 RadarChain *RadarChain_Init(const int heapID)
 {
     RadarChain *chain = Heap_AllocFromHeap(heapID, sizeof(RadarChain));
-    GFXBoxTest_MakeBox(FX32_ONE * 16, FX32_ONE * 8, FX32_ONE * 16, &chain->unk_BC);
+    GFXBoxTest_MakeBox(FX32_ONE * 16, FX32_ONE * 8, FX32_ONE * 16, &chain->grassPatchVolume);
     return chain;
 }
 
@@ -165,7 +165,7 @@ void SetupGrassPatches(FieldSystem *fieldSystem, const int param1, RadarChain *c
     }
 }
 
-void sub_02069638(FieldSystem *fieldSystem, RadarChain *chain)
+void FieldSystem_CreateShakingRadarPatches(FieldSystem *fieldSystem, RadarChain *chain)
 {
     for (u8 patchRing = 0; patchRing < NUM_GRASS_PATCHES; patchRing++) {
         if (chain->patch[patchRing].active) {
@@ -274,7 +274,7 @@ void sub_0206979C(FieldSystem *fieldSystem)
 
     for (patchRing = 0; patchRing < NUM_GRASS_PATCHES; patchRing++) {
         patch = &(fieldSystem->chain->patch[patchRing]);
-        v0 = GFXBoxTest_IsBoxAtPositionInView(&(patch->position), &(fieldSystem->chain->unk_BC));
+        v0 = GFXBoxTest_IsBoxAtPositionInView(&(patch->position), &(fieldSystem->chain->grassPatchVolume));
         if (patch->active && !v0) {
             patch->active = FALSE;
         }
@@ -436,7 +436,7 @@ BOOL RefreshRadarChain(FieldTask *taskMan)
             RadarSpawnPatches(fieldSystem, v3, v4, fieldSystem->chain);
             if (fieldSystem->chain->active) {
                 SetupGrassPatches(fieldSystem, 0x1, fieldSystem->chain);
-                sub_02069638(fieldSystem, fieldSystem->chain);
+                FieldSystem_CreateShakingRadarPatches(fieldSystem, fieldSystem->chain);
                 *v1 = 1;
             } else {
                 *v1 = 3;
