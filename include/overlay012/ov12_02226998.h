@@ -1,10 +1,18 @@
 #ifndef POKEPLATINUM_OV12_02226998_H
 #define POKEPLATINUM_OV12_02226998_H
 
-#include "overlay012/funcptr_ov12_02239E68.h"
-#include "overlay012/funcptr_ov12_02239EEC.h"
+#include "sprite_system.h"
 
-UnkFuncPtr_ov12_02239EEC ov12_02226998(u32 param0);
-UnkFuncPtr_ov12_02239E68 ov12_022269AC(u32 param0);
+struct BattleAnimSystem;
+
+typedef void (*BattleAnimScriptFunc)(struct BattleAnimSystem *system);
+typedef void (*BattleAnimScriptSpriteFunc)(struct BattleAnimSystem *, SpriteSystem *, SpriteManager *, ManagedSprite *);
+
+enum BattleAnimScriptFuncID {
+    BATTLE_ANIM_SCRIPT_FUNC_NOOP = 0,
+};
+
+BattleAnimScriptFunc BattleAnimScript_GetFunc(enum BattleAnimScriptFuncID param0);
+BattleAnimScriptSpriteFunc BattleAnimScript_GetSpriteFunc(u32 param0);
 
 #endif // POKEPLATINUM_OV12_02226998_H

@@ -10,8 +10,11 @@
 #include "camera.h"
 #include "spl.h"
 
-#define MAX_TEXTURE_KEYS 16
-#define MAX_PALETTE_KEYS 16
+#define MAX_PARTICLE_SYSTEMS 16 // Global maximum number of particle systems
+#define MAX_EMITTERS         20 // Maximum number of concurrent emitters per particle system
+#define MAX_PARTICLES        200 // Maximum number of concurrent particles per particle system
+#define MAX_TEXTURE_KEYS     16
+#define MAX_PALETTE_KEYS     16
 
 enum VRAMAutoRelease {
     VRAM_AUTO_RELEASE_NONE = 0,

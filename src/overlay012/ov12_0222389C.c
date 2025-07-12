@@ -3,15 +3,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay012/ov12_0221FC20.h"
+#include "overlay012/battle_anim_system.h"
 #include "overlay012/ov12_02235254.h"
-#include "overlay012/struct_ov12_0221FCDC_decl.h"
 
 #include "camera.h"
 #include "particle_system.h"
 #include "spl.h"
 
-static s8 ov12_0222389C(UnkStruct_ov12_0221FCDC *param0, int param1, int param2);
+static s8 ov12_0222389C(BattleAnimSystem *param0, int param1, int param2);
 
 static const VecFx32 Unk_ov12_0223A218 = {
     0x1700,
@@ -25,11 +24,11 @@ static const VecFx32 Unk_ov12_0223A224 = {
     0x0
 };
 
-static s8 ov12_0222389C(UnkStruct_ov12_0221FCDC *param0, int param1, int param2)
+static s8 ov12_0222389C(BattleAnimSystem *param0, int param1, int param2)
 {
     s8 v0 = 1;
-    int v1 = ov12_02235254(param0, param1);
-    int v2 = ov12_02235254(param0, param2);
+    int v1 = BattleAnimUtil_GetBattlerType(param0, param1);
+    int v2 = BattleAnimUtil_GetBattlerType(param0, param2);
 
     switch (v1) {
     case 0:
@@ -60,29 +59,29 @@ void ov12_022238DC(SPLEmitter *param0)
 
 void ov12_022238E0(SPLEmitter *param0)
 {
-    UnkStruct_ov12_0221FCDC *v0;
+    BattleAnimSystem *v0;
     ParticleSystem *v1;
     int v2, v3, v4;
     VecFx32 v5, v6, v7;
 
     v0 = ParticleSystem_GetEmitterCallbackParam();
-    v2 = ov12_02220240(v0);
-    v3 = ov12_02220248(v0);
+    v2 = BattleAnimSystem_GetAttacker(v0);
+    v3 = BattleAnimSystem_GetDefender(v0);
     v2 = 1;
     v3 = 0;
-    v1 = ov12_02220250(v0);
+    v1 = BattleAnimSystem_GetCurrentParticleSystem(v0);
 
     {
         int v8, v9;
         int v10;
 
-        if (ov12_0223525C(v0, v2) == 0x3) {
+        if (BattleAnimUtil_GetBattlerSide(v0, v2) == 0x3) {
             ov12_02235508(v0, v2, &v5);
         } else {
-            v8 = ov12_02235254(v0, v2);
-            v9 = ov12_02235310(v8);
+            v8 = BattleAnimUtil_GetBattlerType(v0, v2);
+            v9 = BattleAnimUtil_GetOpposingBattlerType(v8);
             v10 = ParticleSystem_GetCameraProjection(v1);
-            v4 = ov12_0221FDD4(v0);
+            v4 = BattleAnimSystem_IsContest(v0);
 
             ov12_02235448(v9, &v5, v4, v10);
             ov12_02235448(v8, &v6, v4, v10);
@@ -119,14 +118,14 @@ void ov12_022238E0(SPLEmitter *param0)
 
 void ov12_02223998(SPLEmitter *param0)
 {
-    UnkStruct_ov12_0221FCDC *v0;
+    BattleAnimSystem *v0;
     ParticleSystem *v1;
     int v2;
     VecFx32 v3, v4;
 
     v0 = ParticleSystem_GetEmitterCallbackParam();
-    v2 = ov12_02220248(v0);
-    v1 = ov12_02220250(v0);
+    v2 = BattleAnimSystem_GetDefender(v0);
+    v1 = BattleAnimSystem_GetCurrentParticleSystem(v0);
 
     ov12_02235508(v0, 0, &v3);
 
@@ -140,12 +139,12 @@ void ov12_02223998(SPLEmitter *param0)
 
 void ov12_022239F4(SPLEmitter *param0)
 {
-    UnkStruct_ov12_0221FCDC *v0;
+    BattleAnimSystem *v0;
     int v1;
     VecFx32 v2;
 
     v0 = ParticleSystem_GetEmitterCallbackParam();
-    v1 = ov12_02220248(v0);
+    v1 = BattleAnimSystem_GetDefender(v0);
 
     ov12_02235508(v0, v1, &v2);
 
@@ -156,12 +155,12 @@ void ov12_022239F4(SPLEmitter *param0)
 
 void ov12_02223A38(SPLEmitter *param0)
 {
-    UnkStruct_ov12_0221FCDC *v0;
+    BattleAnimSystem *v0;
     int v1;
     VecFx32 v2;
 
     v0 = ParticleSystem_GetEmitterCallbackParam();
-    v1 = ov12_02220240(v0);
+    v1 = BattleAnimSystem_GetAttacker(v0);
 
     ov12_02235508(v0, v1, &v2);
 
@@ -172,14 +171,14 @@ void ov12_02223A38(SPLEmitter *param0)
 
 void ov12_02223A7C(SPLEmitter *param0)
 {
-    UnkStruct_ov12_0221FCDC *v0;
+    BattleAnimSystem *v0;
     int v1;
     int v2;
     VecFx32 v3;
 
     v0 = ParticleSystem_GetEmitterCallbackParam();
-    v1 = ov12_02220240(v0);
-    v2 = ov12_02220248(v0);
+    v1 = BattleAnimSystem_GetAttacker(v0);
+    v2 = BattleAnimSystem_GetDefender(v0);
 
     ov12_02235508(v0, v1, &v3);
 
@@ -190,7 +189,7 @@ void ov12_02223A7C(SPLEmitter *param0)
 
 void ov12_02223AC8(SPLEmitter *param0)
 {
-    UnkStruct_ov12_0221FCDC *v0;
+    BattleAnimSystem *v0;
     VecFx32 v1;
     ParticleSystem *v2;
     int v3;
@@ -199,10 +198,10 @@ void ov12_02223AC8(SPLEmitter *param0)
     int v6;
 
     v0 = ParticleSystem_GetEmitterCallbackParam();
-    v2 = ov12_02220250(v0);
+    v2 = BattleAnimSystem_GetCurrentParticleSystem(v0);
     v3 = ParticleSystem_GetCameraProjection(v2);
-    v5 = ov12_02220240(v0);
-    v6 = ov12_0223525C(v0, v5);
+    v5 = BattleAnimSystem_GetAttacker(v0);
+    v6 = BattleAnimUtil_GetBattlerSide(v0, v5);
 
     if (v6 == 0x3) {
         v4 = 0;
@@ -210,7 +209,7 @@ void ov12_02223AC8(SPLEmitter *param0)
         v4 = 1;
     }
 
-    ov12_02235448(v4, &v1, ov12_0221FDD4(v0), v3);
+    ov12_02235448(v4, &v1, BattleAnimSystem_IsContest(v0), v3);
 
     SPLEmitter_SetPosX(param0, v1.x);
     SPLEmitter_SetPosY(param0, v1.y);
@@ -219,7 +218,7 @@ void ov12_02223AC8(SPLEmitter *param0)
 
 void ov12_02223B30(SPLEmitter *param0)
 {
-    UnkStruct_ov12_0221FCDC *v0;
+    BattleAnimSystem *v0;
     VecFx32 v1;
     ParticleSystem *v2;
     int v3;
@@ -229,10 +228,10 @@ void ov12_02223B30(SPLEmitter *param0)
     int v7;
 
     v0 = ParticleSystem_GetEmitterCallbackParam();
-    v2 = ov12_02220250(v0);
+    v2 = BattleAnimSystem_GetCurrentParticleSystem(v0);
     v4 = ParticleSystem_GetCameraProjection(v2);
-    v6 = ov12_02220248(v0);
-    v7 = ov12_0223525C(v0, v6);
+    v6 = BattleAnimSystem_GetDefender(v0);
+    v7 = BattleAnimUtil_GetBattlerSide(v0, v6);
 
     if (v7 == 0x3) {
         v5 = 0;
@@ -240,7 +239,7 @@ void ov12_02223B30(SPLEmitter *param0)
         v5 = 1;
     }
 
-    ov12_02235448(v5, &v1, ov12_0221FDD4(v0), v4);
+    ov12_02235448(v5, &v1, BattleAnimSystem_IsContest(v0), v4);
 
     SPLEmitter_SetPosX(param0, v1.x);
     SPLEmitter_SetPosY(param0, v1.y);
@@ -249,7 +248,7 @@ void ov12_02223B30(SPLEmitter *param0)
 
 void ov12_02223B98(SPLEmitter *param0)
 {
-    UnkStruct_ov12_0221FCDC *v0;
+    BattleAnimSystem *v0;
     int v1;
     int v2;
     int v3;
@@ -276,10 +275,10 @@ void ov12_02223B98(SPLEmitter *param0)
     };
 
     v0 = ParticleSystem_GetEmitterCallbackParam();
-    v1 = ov12_02220240(v0);
-    v2 = ov12_02220248(v0);
-    v3 = ov12_02235254(v0, v1);
-    v4 = ov12_02235254(v0, v2);
+    v1 = BattleAnimSystem_GetAttacker(v0);
+    v2 = BattleAnimSystem_GetDefender(v0);
+    v3 = BattleAnimUtil_GetBattlerType(v0, v1);
+    v4 = BattleAnimUtil_GetBattlerType(v0, v2);
     v5 = v9[v3][v4] * 172;
     v6 = v10[v3][v4] * 172;
 
@@ -328,7 +327,7 @@ static void ov12_02223C40(int param0, s8 param1, VecFx32 *param2)
     }
 }
 
-static void ov12_02223CD4(UnkStruct_ov12_0221FCDC *param0, SPLEmitter *param1, int param2, int param3, int param4, s8 param5, VecFx32 *param6)
+static void ov12_02223CD4(BattleAnimSystem *param0, SPLEmitter *param1, int param2, int param3, int param4, s8 param5, VecFx32 *param6)
 {
     VecFx32 v0 = { 0, 0, 0 };
 
@@ -368,7 +367,7 @@ static void ov12_02223CD4(UnkStruct_ov12_0221FCDC *param0, SPLEmitter *param1, i
     ParticleSystem_SetEmitterConvergenceTarget(param1, &v0);
 }
 
-static void ov12_02223DA4(UnkStruct_ov12_0221FCDC *param0, SPLEmitter *param1, int param2, int param3, int param4, s8 param5, VecFx32 *param6)
+static void ov12_02223DA4(BattleAnimSystem *param0, SPLEmitter *param1, int param2, int param3, int param4, s8 param5, VecFx32 *param6)
 {
     VecFx32 v0 = { 0, 0, 0 };
 
@@ -408,7 +407,7 @@ static void ov12_02223DA4(UnkStruct_ov12_0221FCDC *param0, SPLEmitter *param1, i
     ParticleSystem_SetEmitterMagnetTarget(param1, &v0);
 }
 
-static void ov12_02223E74(UnkStruct_ov12_0221FCDC *param0, SPLEmitter *param1, int param2, int param3, int param4, int param5)
+static void ov12_02223E74(BattleAnimSystem *param0, SPLEmitter *param1, int param2, int param3, int param4, int param5)
 {
     ParticleSystem *v0;
     VecFx32 v1;
@@ -416,9 +415,9 @@ static void ov12_02223E74(UnkStruct_ov12_0221FCDC *param0, SPLEmitter *param1, i
     VecFx16 v4;
     s8 v5 = 1;
 
-    v0 = ov12_02220250(param0);
-    v2 = ov12_02235254(param0, param2);
-    v3 = ov12_02235254(param0, param3);
+    v0 = BattleAnimSystem_GetCurrentParticleSystem(param0);
+    v2 = BattleAnimUtil_GetBattlerType(param0, param2);
+    v3 = BattleAnimUtil_GetBattlerType(param0, param3);
 
     {
         int v6[3], v7[3], v8[3], v9[3], v10[3], v11[3], v12[3];
@@ -534,9 +533,9 @@ static void ov12_02223E74(UnkStruct_ov12_0221FCDC *param0, SPLEmitter *param1, i
 static void ov12_02224138(SPLEmitter *param0, int param1, int param2)
 {
     int v0, v1;
-    UnkStruct_ov12_0221FCDC *v2 = ParticleSystem_GetEmitterCallbackParam();
-    v0 = ov12_02220240(v2);
-    v1 = ov12_02220248(v2);
+    BattleAnimSystem *v2 = ParticleSystem_GetEmitterCallbackParam();
+    v0 = BattleAnimSystem_GetAttacker(v2);
+    v1 = BattleAnimSystem_GetDefender(v2);
 
     ov12_02223E74(v2, param0, v0, v1, param1, param2);
 }
@@ -599,9 +598,9 @@ void ov12_022241E0(SPLEmitter *param0)
 void ov12_022241EC(SPLEmitter *param0)
 {
     int v0, v1;
-    UnkStruct_ov12_0221FCDC *v2 = ParticleSystem_GetEmitterCallbackParam();
-    v0 = ov12_02220240(v2);
-    v1 = ov12_02220248(v2);
+    BattleAnimSystem *v2 = ParticleSystem_GetEmitterCallbackParam();
+    v0 = BattleAnimSystem_GetAttacker(v2);
+    v1 = BattleAnimSystem_GetDefender(v2);
 
     ov12_02223E74(v2, param0, v1, v0, 0, 0);
 }

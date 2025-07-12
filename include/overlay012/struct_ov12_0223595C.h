@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV12_0223595C_H
 #define POKEPLATINUM_STRUCT_OV12_0223595C_H
 
-#include "overlay012/struct_ov12_0221FCDC_decl.h"
+#include "overlay012/battle_anim_system.h"
 
 #include "bg_window.h"
 #include "palette.h"
@@ -12,7 +12,7 @@ typedef struct {
     u8 unk_01;
     u8 unk_02;
     u8 unk_03;
-    UnkStruct_ov12_0221FCDC *unk_04;
+    BattleAnimSystem *unk_04;
     SpriteSystem *unk_08;
     SpriteManager *unk_0C;
     SpriteManager *unk_10;

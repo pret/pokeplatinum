@@ -3,9 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "overlay012/battle_anim_system.h"
 #include "overlay012/funcptr_ov12_02239E64_1.h"
-#include "overlay012/funcptr_ov12_02239E68.h"
-#include "overlay012/funcptr_ov12_02239EEC.h"
+#include "overlay012/ov12_02226998.h"
 #include "overlay012/ov12_022269C0.h"
 #include "overlay012/ov12_02226B84.h"
 #include "overlay012/ov12_0222AC70.h"
@@ -18,12 +18,12 @@
 
 void include_unk_ov12_02239E64(void);
 
-static const UnkFuncPtr_ov12_02239EEC Unk_ov12_02239EEC[] = {
-    ov12_022269C0,
-    ov12_022269EC,
-    ov12_02226A3C,
-    ov12_02226A88,
-    ov12_02227408,
+static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
+    BattleAnimScriptFunc_Nop,
+    BattleAnimScriptFunc_AnimExample,
+    BattleAnimScriptFunc_SoundExample,
+    BattleAnimScriptFunc_GenericExample,
+    BattleAnimScriptFunc_RotateMon,
     ov12_0222B194,
     ov12_0222B45C,
     ov12_0222B68C,
@@ -105,7 +105,7 @@ static const UnkFuncPtr_ov12_02239EEC Unk_ov12_02239EEC[] = {
     ov12_02235228
 };
 
-static const UnkFuncPtr_ov12_02239E68 Unk_ov12_02239E68[] = {
+static const BattleAnimScriptSpriteFunc sBattleAnimScriptSpriteFuncs[] = {
     ov12_02226B1C,
     ov12_0222AE68,
     ov12_0222FE30,
@@ -150,26 +150,20 @@ void include_unk_ov12_02239E64()
     Unk_ov12_02239E64[0];
 }
 
-UnkFuncPtr_ov12_02239EEC ov12_02226998(u32 param0)
+BattleAnimScriptFunc BattleAnimScript_GetFunc(enum BattleAnimScriptFuncID id)
 {
-    UnkFuncPtr_ov12_02239EEC v0;
-
-    if (param0 >= (NELEMS(Unk_ov12_02239EEC))) {
+    if (id >= (NELEMS(sBattleAnimScriptFuncs))) {
         return NULL;
     }
 
-    v0 = Unk_ov12_02239EEC[param0];
-    return v0;
+    return sBattleAnimScriptFuncs[id];
 }
 
-UnkFuncPtr_ov12_02239E68 ov12_022269AC(u32 param0)
+BattleAnimScriptSpriteFunc BattleAnimScript_GetSpriteFunc(u32 id)
 {
-    UnkFuncPtr_ov12_02239E68 v0;
-
-    if (param0 >= (NELEMS(Unk_ov12_02239E68))) {
+    if (id >= (NELEMS(sBattleAnimScriptSpriteFuncs))) {
         return NULL;
     }
 
-    v0 = Unk_ov12_02239E68[param0];
-    return v0;
+    return sBattleAnimScriptSpriteFuncs[id];
 }

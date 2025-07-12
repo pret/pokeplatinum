@@ -5,8 +5,8 @@
 
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_02265BBC.h"
+#include "overlay012/battle_anim_system.h"
 #include "overlay012/struct_ball_rotation_decl.h"
-#include "overlay012/struct_ov12_0221FCDC_decl.h"
 #include "overlay012/struct_ov12_02223764.h"
 #include "overlay012/struct_ov12_02235FE0_decl.h"
 
@@ -17,7 +17,7 @@ typedef struct {
     BallRotation *unk_0C;
     UnkStruct_ov12_02223764 *unk_10;
     PokemonSpriteTemplate unk_14;
-    UnkStruct_ov12_0221FCDC *unk_24;
+    BattleAnimSystem *unk_24;
     UnkStruct_ov16_02265BBC unk_28;
     u8 unk_80;
     u8 unk_81;

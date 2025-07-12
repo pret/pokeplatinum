@@ -8,11 +8,11 @@ typedef struct {
     s32 unk_04;
     u16 unk_08;
     u16 unk_0A;
-    u16 unk_0C;
+    u16 friendship;
     u16 unk_0E_0 : 1;
     u16 unk_0E_1 : 1;
     u16 : 14;
-    u32 unk_10;
+    u32 fieldConditions;
     u16 unk_14;
     u16 unk_16;
     u16 unk_18[4];
