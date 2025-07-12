@@ -14,7 +14,7 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_02057B48.h"
 #include "struct_defs/struct_020590C4.h"
-#include "struct_defs/underground_data.h"
+#include "struct_defs/underground.h"
 #include "struct_defs/underground_record.h"
 
 #include "field/field_system.h"
@@ -919,14 +919,14 @@ void CommPlayer_RecvLocationAndInit(int netId, int size, void *src, void *unused
 
 static void sub_02058644(int netId)
 {
-    UndergroundData *underground = SaveData_GetUndergroundData(FieldSystem_GetSaveData(sCommPlayerManager->fieldSystem));
+    Underground *underground = SaveData_GetUnderground(FieldSystem_GetSaveData(sCommPlayerManager->fieldSystem));
     SaveData_UndergroundRecord(FieldSystem_GetSaveData(sCommPlayerManager->fieldSystem));
 
     if (sCommPlayerManager->isUnderground) {
         if (netId == CommSys_CurNetId()) {
-            UndergroundData_IncrementStepCount(underground);
+            Underground_IncrementStepCount(underground);
 
-            if (UndergroundData_GetStepCount(underground) == 50) {
+            if (Underground_GetStepCount(underground) == 50) {
                 GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(sCommPlayerManager->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNDERGROUND_100_STEPS);
             }
         }

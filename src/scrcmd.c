@@ -45,7 +45,7 @@
 #include "struct_defs/struct_02042434.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_02098C44.h"
-#include "struct_defs/underground_data.h"
+#include "struct_defs/underground.h"
 #include "struct_defs/underground_record.h"
 
 #include "applications/pokemon_summary_screen/main.h"
@@ -7259,10 +7259,10 @@ static BOOL ScrCmd_2A4(ScriptContext *ctx)
 static BOOL ScrCmd_TrySetUnusedUndergroundField(ScriptContext *ctx)
 {
     u16 item = ScriptContext_GetVar(ctx);
-    UndergroundData *undergroundData = SaveData_GetUndergroundData(ctx->fieldSystem->saveData);
+    Underground *underground = SaveData_GetUnderground(ctx->fieldSystem->saveData);
 
     if (item == ITEM_ADAMANT_ORB || item == ITEM_LUSTROUS_ORB) {
-        UndergroundData_SetUnusedField(undergroundData);
+        Underground_SetUnusedField(underground);
     }
 
     return FALSE;

@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/underground_data.h"
+#include "struct_defs/underground.h"
 
 #include "field/field_system.h"
 #include "overlay023/ov23_02241F74.h"
@@ -86,9 +86,9 @@ static void ov23_022521F0(UnkStruct_ov23_02250CD4 *param0, int param1)
 {
     MATHRandContext16 v0;
     int v1, v2, v3, v4, v5;
-    UndergroundData *v6 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(param0->fieldSystem));
+    Underground *v6 = SaveData_GetUnderground(FieldSystem_GetSaveData(param0->fieldSystem));
 
-    MATH_InitRand16(&v0, UndergroundData_GetRandomSeed(v6) + param1);
+    MATH_InitRand16(&v0, Underground_GetRandomSeed(v6) + param1);
 
     for (v5 = 0; v5 < 5; v5++) {
         if (v5 == 0) {
@@ -132,10 +132,10 @@ static void ov23_022522F0(UnkStruct_ov23_02250CD4 *param0, int param1)
     MATHRandContext16 v0;
     int v1, v2, v3, v4, v5;
     SaveData *saveData = FieldSystem_GetSaveData(param0->fieldSystem);
-    UndergroundData *v7 = SaveData_GetUndergroundData(saveData);
+    Underground *v7 = SaveData_GetUnderground(saveData);
     BOOL natdexObtained = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(saveData));
 
-    MATH_InitRand16(&v0, UndergroundData_GetRandomSeed(v7) + param1);
+    MATH_InitRand16(&v0, Underground_GetRandomSeed(v7) + param1);
 
     for (v5 = 0; v5 < 5; v5++) {
         v1 = MATH_Rand16(&v0, 139 - 1) + 1;
@@ -176,7 +176,7 @@ static void ov23_022522F0(UnkStruct_ov23_02250CD4 *param0, int param1)
 static int ov23_02252404(UnkStruct_ov23_02250CD4 *param0, int param1, int param2)
 {
     BOOL v0 = 0;
-    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(param0->fieldSystem));
+    Underground *v1 = SaveData_GetUnderground(FieldSystem_GetSaveData(param0->fieldSystem));
 
     if (param0->unk_279[param1] != ov23_0224F684(param2, param0)) {
         return 0xfffd;
@@ -191,7 +191,7 @@ static int ov23_02252404(UnkStruct_ov23_02250CD4 *param0, int param1, int param2
     } else if (param0->unk_2AC == 0) {
         v0 = sub_02028BC8(v1, param0->unk_274[param1]);
     } else if (param0->unk_2AC == 2) {
-        v0 = UndergroundData_TryAddTreasure(v1, param0->unk_274[param1]);
+        v0 = Underground_TryAddTreasure(v1, param0->unk_274[param1]);
     }
 
     if (v0) {
@@ -299,7 +299,7 @@ static void ov23_02252754(ListMenu *param0, u32 param1, u8 param2)
 {
     MATHRandContext16 v0;
     UnkStruct_ov23_02250CD4 *v1 = (UnkStruct_ov23_02250CD4 *)ListMenu_GetAttribute(param0, 19);
-    UndergroundData *v2 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v1->fieldSystem));
+    Underground *v2 = SaveData_GetUnderground(FieldSystem_GetSaveData(v1->fieldSystem));
     int v3 = param1, v4, v5;
     int v6, v7 = 0, v8;
 
@@ -308,7 +308,7 @@ static void ov23_02252754(ListMenu *param0, u32 param1, u8 param2)
     if (param1 != 0xfffffffe) {
         if (v1->unk_2AC == 1) {
             v6 = ov23_0224F66C(v3, v1);
-            MATH_InitRand16(&v0, UndergroundData_GetRandomSeed(v2) + v1->unk_288 + v6);
+            MATH_InitRand16(&v0, Underground_GetRandomSeed(v2) + v1->unk_288 + v6);
             v7 = ov23_0225429C(v6);
 
             if (v7 == 6) {
@@ -321,7 +321,7 @@ static void ov23_02252754(ListMenu *param0, u32 param1, u8 param2)
             v8 = v8 / 2;
         } else if (v1->unk_2AC == 0) {
             v6 = ov23_0224F61C(v3, v1);
-            MATH_InitRand16(&v0, UndergroundData_GetRandomSeed(v2) + v1->unk_288 + v6);
+            MATH_InitRand16(&v0, Underground_GetRandomSeed(v2) + v1->unk_288 + v6);
             v7 = sub_0205742C(v6);
 
             if (v7 == 6) {
@@ -334,7 +334,7 @@ static void ov23_02252754(ListMenu *param0, u32 param1, u8 param2)
             v8 = v8 / 2;
         } else {
             v6 = ov23_0224F6C8(v3, v1);
-            MATH_InitRand16(&v0, UndergroundData_GetRandomSeed(v2) + v1->unk_288 + v6);
+            MATH_InitRand16(&v0, Underground_GetRandomSeed(v2) + v1->unk_288 + v6);
             v7 = ov23_0225426C(v6);
 
             if (v7 == 6) {
@@ -474,9 +474,9 @@ static void ov23_02252BB8(int param0, UnkStruct_ov23_02250CD4 *param1)
 
 static u32 ov23_02252C08(UnkStruct_ov23_02250CD4 *param0)
 {
-    UndergroundData *v0 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(param0->fieldSystem));
+    Underground *v0 = SaveData_GetUnderground(FieldSystem_GetSaveData(param0->fieldSystem));
 
-    if (Underground_TryAddSphere(param0->unk_279[0], param0->unk_27E[0])) {
+    if (Underground_TryAddSphere2(param0->unk_279[0], param0->unk_27E[0])) {
         if (param0->unk_2AC == 1) {
             sub_02028E50(v0, param0->unk_2A8);
         } else if (param0->unk_2AC == 0) {

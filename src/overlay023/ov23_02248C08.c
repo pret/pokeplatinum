@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/underground_data.h"
+#include "struct_defs/underground.h"
 
 #include "overlay023/funcptr_ov23_02248D20.h"
 #include "overlay023/struct_ov23_02248D20.h"
@@ -17,7 +17,7 @@
 #include "system.h"
 #include "unk_0202854C.h"
 
-UnkStruct_ov23_02248D20 *ov23_02248C08(ListMenuTemplate *param0, u16 param1, u16 param2, u8 heapID, UnkFuncPtr_ov23_02248D20 param4, UndergroundData *param5, BOOL param6)
+UnkStruct_ov23_02248D20 *ov23_02248C08(ListMenuTemplate *param0, u16 param1, u16 param2, u8 heapID, UnkFuncPtr_ov23_02248D20 param4, Underground *underground, BOOL param6)
 {
     UnkStruct_ov23_02248D20 *v0 = (UnkStruct_ov23_02248D20 *)Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov23_02248D20));
 
@@ -26,7 +26,7 @@ UnkStruct_ov23_02248D20 *ov23_02248C08(ListMenuTemplate *param0, u16 param1, u16
     v0->unk_00 = param4;
 
     if (v0->unk_00) {
-        v0->unk_04 = param5;
+        v0->unk_04 = underground;
         v0->unk_1E = param6;
         v0->unk_10 = ColoredArrow_New(heapID);
 

@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/underground_data.h"
+#include "struct_defs/underground.h"
 
 #include "field/field_system.h"
 #include "overlay023/funcptr_ov23_022515D8.h"
@@ -227,7 +227,7 @@ int ov23_02251414(void)
 
 static BOOL ov23_02251418(int param0, UnkStruct_ov23_02250CD4 *param1)
 {
-    UndergroundData *v0 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(param1->fieldSystem));
+    Underground *v0 = SaveData_GetUnderground(FieldSystem_GetSaveData(param1->fieldSystem));
     int v1 = sub_02028B88(v0, param0);
 
     if (sub_0202895C(v0, v1)) {
@@ -240,7 +240,7 @@ static BOOL ov23_02251418(int param0, UnkStruct_ov23_02250CD4 *param1)
 
 static int ov23_0225144C(int param0, UnkStruct_ov23_02250CD4 *param1)
 {
-    UndergroundData *v0 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(param1->fieldSystem));
+    Underground *v0 = SaveData_GetUnderground(FieldSystem_GetSaveData(param1->fieldSystem));
     int v1;
 
     if (sub_02028AFC(v0, param0)) {
@@ -301,7 +301,7 @@ static BOOL ov23_022514D8(SysTask *param0, void *param1)
         v0->unk_2AA = 2;
         break;
     case 0: {
-        UndergroundData *v4 = SaveData_GetUndergroundData(v0->fieldSystem->saveData);
+        Underground *v4 = SaveData_GetUnderground(v0->fieldSystem->saveData);
 
         if (0 == sub_020289A0(v4)) {
             ov23_02253F40(ov23_022421BC(), 60, 0, NULL);
@@ -699,7 +699,7 @@ static void ov23_02251C04(SysTask *param0, void *param1)
     case 6:
         ov23_0224FB7C(param1);
         ov23_02254044(ov23_022421BC());
-        v0->unk_270 = ov23_02253C64(v0->fieldSystem->bgConfig, SaveData_GetTrainerInfo(FieldSystem_GetSaveData(v0->fieldSystem)), SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem)), NULL, NULL);
+        v0->unk_270 = ov23_02253C64(v0->fieldSystem->bgConfig, SaveData_GetTrainerInfo(FieldSystem_GetSaveData(v0->fieldSystem)), SaveData_GetUnderground(FieldSystem_GetSaveData(v0->fieldSystem)), NULL, NULL);
         v0->unk_2AA = 7;
         break;
     case 7:

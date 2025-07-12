@@ -10,7 +10,7 @@
 #include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_0206BC70.h"
 #include "struct_defs/struct_02098C44.h"
-#include "struct_defs/underground_data.h"
+#include "struct_defs/underground.h"
 
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
@@ -328,7 +328,7 @@ u16 sub_0206BDBC(SaveData *saveData)
 {
     BattleFrontier *frontier;
     UnkStruct_0202D750 *v1;
-    UndergroundData *v2;
+    Underground *v2;
     u16 v3;
     u8 v4, v5, v6, v7, v8, v9;
 
@@ -351,7 +351,7 @@ u16 sub_0206BDBC(SaveData *saveData)
         return 0;
     }
 
-    v2 = SaveData_GetUndergroundData(saveData);
+    v2 = SaveData_GetUnderground(saveData);
 
     if (!v4) {
         if (sub_02028984(v2, 85)) {
