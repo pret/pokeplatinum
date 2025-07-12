@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/species.h"
 #include "generated/items.h"
+#include "generated/species.h"
 
 #include "overlay097/mystery_gift_app.h"
 #include "overlay097/struct_ov97_02237808.h"

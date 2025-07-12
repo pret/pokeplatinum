@@ -3,7 +3,7 @@
 
 #include "constants/battle.h"
 #include "constants/items.h"
-#include "constants/species.h"
+#include "generated/species.h"
 #include "generated/abilities.h"
 #include "generated/battle_subscripts.h"
 #include "generated/game_records.h"

@@ -4,8 +4,8 @@
 #include <string.h>
 
 #include "constants/heap.h"
-#include "constants/species.h"
 #include "generated/items.h"
+#include "generated/species.h"
 
 #include "struct_decls/battle_system.h"
 #include "struct_defs/battle_io.h"

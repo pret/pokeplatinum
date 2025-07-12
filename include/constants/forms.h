@@ -1,7 +1,9 @@
 #ifndef POKEPLATINUM_CONSTANTS_FORMS_H
 #define POKEPLATINUM_CONSTANTS_FORMS_H
 
-#include "species.h"
+#include "generated/species.h"
+
+#include "res/pokemon/pokedex_sizes.h"
 
 #define MOVESET_FORM_DEOXYS_ATTACK   NATIONAL_DEX_COUNT + 1
 #define MOVESET_FORM_DEOXYS_DEFENSE  NATIONAL_DEX_COUNT + 2

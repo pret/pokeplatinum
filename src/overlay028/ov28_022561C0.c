@@ -2,7 +2,7 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
-#include "constants/species.h"
+#include "generated/species.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 
@@ -21,6 +21,8 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
+
+#include "res/pokemon/pokedex_sizes.h"
 
 typedef struct {
     u8 unk_00;

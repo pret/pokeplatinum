@@ -4,8 +4,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/species.h"
 #include "generated/gender_ratios.h"
+#include "generated/species.h"
 #include "generated/species_data_params.h"
 
 #include "struct_decls/pokedexdata_decl.h"
@@ -46,6 +46,8 @@
 #include "trainer_info.h"
 #include "unk_0202C858.h"
 #include "unk_020393C8.h"
+
+#include "res/pokemon/pokedex_sizes.h"
 
 typedef struct {
     int unk_00;

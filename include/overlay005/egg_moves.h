@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_EGG_MOVES_H
 #define POKEPLATINUM_EGG_MOVES_H
 
+#include "generated/species.h"
+
 #define EGG_MOVES_SPECIES_OFFSET     20000
 #define EGG_MOVES_TERMINATOR         0xFFFF
 #define EGG_MOVES(species, moves...) (##species + EGG_MOVES_SPECIES_OFFSET), moves

@@ -286,11 +286,10 @@ static u16 TryParseOffspring(rapidjson::Document &root, u16 personalValue)
     return LookupConst(root["offspring"].GetString(), Species);
 }
 
-
 static void PackOffspring(std::vector<u16> offspringData, fs::path path)
 {
     std::ofstream ofs(path);
-    ofs.write(reinterpret_cast<char*>(&offspringData[0]), offspringData.size() * sizeof(u16));
+    ofs.write(reinterpret_cast<char *>(&offspringData[0]), offspringData.size() * sizeof(u16));
 }
 
 static std::vector<Move> EmitTutorableMoves(fs::path &tutorSchemaFname, fs::path outFname)
@@ -487,7 +486,7 @@ int main(int argc, char **argv)
                << "#ifndef POKEPLATINUM_GENERATED_SPECIES_FOOTPRINTS_H\n"
                << "#define POKEPLATINUM_GENERATED_SPECIES_FOOTPRINTS_H\n"
                << "\n"
-               << "#include \"constants/species.h\"\n"
+               << "#include \"res/pokemon/pokedex_sizes.h\"\n"
                << "#include \"generated/footprint_sizes.h\"\n"
                << "\n"
                << "#include \"overlay113/footprint_data.h\"\n"

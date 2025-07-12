@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/species.h"
 #include "generated/sdat.h"
+#include "generated/species.h"
 
 #include "struct_defs/chatot_cry.h"
 
@@ -16,6 +16,8 @@
 #include "sound_system.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+
+#include "res/pokemon/pokedex_sizes.h"
 
 #define WAVE_OUT_SPEED_HYPERVOICE_1 (WAVE_OUT_SPEED(1.046875))
 #define WAVE_OUT_SPEED_UPROAR_1     (WAVE_OUT_SPEED(0.8125))

@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/species.h"
+#include "generated/species.h"
 
 #include "overlay101/ov101_021D1A28.h"
 #include "overlay101/ov101_021D7E48.h"
