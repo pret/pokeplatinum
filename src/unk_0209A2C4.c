@@ -58,7 +58,7 @@ static const WindowTemplate Unk_020F8A58 = {
     0x16D
 };
 
-const ApplicationManagerTemplate Unk_020F8AB4 = {
+const ApplicationManagerTemplate gStartMenuAppTemplate = {
     sub_0209A2C4,
     sub_0209A300,
     sub_0209A3A4,

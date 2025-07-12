@@ -1110,7 +1110,7 @@ static BOOL ov77_021D30D0(UnkStruct_ov77_021D2F38 *param0, const int param1)
         param0->unk_06 = 0;
         param0->unk_08 = 0;
         param0->unk_10 = SysTask_Start(ov77_021D32A4, param0, 0);
-        Sound_SetSceneAndPlayBGM(SOUND_SCENE_1, SEQ_TITLE00, 1);
+        Sound_SetSceneAndPlayBGM(SOUND_SCENE_TITLE_SCREEN, SEQ_TITLE00, 1);
         (*v0)++;
         break;
     case 1:
