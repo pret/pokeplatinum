@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "global/utility.h"
 #include "overlay012/battle_anim_system.h"
-#include "overlay012/funcptr_ov12_02239E64_1.h"
 #include "overlay012/ov12_02226998.h"
 #include "overlay012/ov12_022269C0.h"
 #include "overlay012/ov12_02226B84.h"
@@ -16,7 +16,7 @@
 #include "overlay012/ov12_022346A4.h"
 #include "overlay012/ov12_02234E44.h"
 
-void include_unk_ov12_02239E64(void);
+typedef void (*UnkFuncPtr_ov12_02239E64_1)(BattleAnimSystem *, SpriteSystem *, SpriteManager *, Sprite *);
 
 static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_Nop,
@@ -147,7 +147,7 @@ static const UnkFuncPtr_ov12_02239E64_1 Unk_ov12_02239E64[] = {
 
 void include_unk_ov12_02239E64()
 {
-    Unk_ov12_02239E64[0];
+    UNUSED(Unk_ov12_02239E64[0]);
 }
 
 BattleAnimScriptFunc BattleAnimScript_GetFunc(enum BattleAnimScriptFuncID id)
