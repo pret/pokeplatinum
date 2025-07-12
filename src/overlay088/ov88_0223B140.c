@@ -2505,7 +2505,7 @@ static void ov88_0223E694(Party *param0, Party *param1, int param2, int param3, 
     Pokemon_Copy(v1, Party_GetPokemonBySlotIndex(param0, param2));
     Pokemon_Copy(v0, Party_GetPokemonBySlotIndex(param1, param3));
     ov88_0223E7F0(param4->unk_1C, v1);
-    GameRecords_IncrementRecordValue(param4->records, RECORD_UNK_019);
+    GameRecords_IncrementRecordValue(param4->records, RECORD_LOCAL_LINK_TRADES);
     Heap_Free(v0);
     Heap_Free(v1);
 }

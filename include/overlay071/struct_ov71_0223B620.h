@@ -3,19 +3,33 @@
 
 #include <nnsys.h>
 
-#include "struct_defs/struct_02072014.h"
-
 #include "overlay071/struct_ov71_0223C444.h"
 #include "overlay071/struct_ov71_0223D238.h"
 #include "overlay071/struct_ov71_0223D324.h"
 
 #include "bg_window.h"
 #include "strbuf.h"
+#include "trainer_card.h"
+
+enum TrainerCardWindows {
+    TRAINER_CARD_WINDOW_ID,
+    TRAINER_CARD_WINDOW_NAME,
+    TRAINER_CARD_WINDOW_MONEY,
+    TRAINER_CARD_WINDOW_POKEDEX,
+    TRAINER_CARD_WINDOW_SCORE,
+    TRAINER_CARD_WINDOW_TIME,
+    TRAINER_CARD_WINDOW_ADVENTURE_STARTED,
+    TRAINER_CARD_WINDOW_HOF_DEBUT,
+    TRAINER_CARD_WINDOW_TIMES_LINKED,
+    TRAINER_CARD_WINDOW_LINK_BATTLES,
+    TRAINER_CARD_WINDOW_LINK_TRADES,
+    TRAINER_CARD_WINDOW_COUNT
+};
 
 typedef struct {
-    BgConfig *unk_00;
-    Window unk_04[11];
-    TrainerCard *unk_B4;
+    BgConfig *bgConfig;
+    Window windows[TRAINER_CARD_WINDOW_COUNT];
+    TrainerCard *trainerCard;
     u8 unk_B8[12288];
     void *unk_30B8;
     NNSG2dCharacterData *unk_30BC;
@@ -36,8 +50,8 @@ typedef struct {
     void *unk_335C;
     NNSG2dScreenData *unk_3360;
     UnkStruct_ov71_0223C444 unk_3364;
-    Strbuf *unk_336C;
-    Strbuf *unk_3370;
+    Strbuf *unusedStrbuf;
+    Strbuf *colonStrbuf;
     u8 unk_3374[8];
     u8 unk_337C;
     u8 unk_337D;

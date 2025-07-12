@@ -166,6 +166,7 @@
 #include "system_flags.h"
 #include "system_vars.h"
 #include "text.h"
+#include "trainer_card.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
 #include "unk_02014D38.h"
@@ -214,7 +215,6 @@
 #include "unk_0206CCB0.h"
 #include "unk_0206F314.h"
 #include "unk_02070428.h"
-#include "unk_02071D40.h"
 #include "unk_020722AC.h"
 #include "unk_0207DA28.h"
 #include "unk_02097B18.h"
@@ -7384,7 +7384,7 @@ static BOOL ScrCmd_2BE(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = sub_02071F28(fieldSystem);
+    *v1 = TrainerCard_CalculateStars(fieldSystem);
     return FALSE;
 }
 

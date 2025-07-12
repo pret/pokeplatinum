@@ -8,7 +8,6 @@
 #include "struct_defs/sentence.h"
 #include "struct_defs/struct_0203330C.h"
 #include "struct_defs/struct_0205B4F8.h"
-#include "struct_defs/struct_02072014.h"
 
 #include "field/field_system.h"
 
@@ -26,13 +25,13 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "trainer_card.h"
 #include "trainer_info.h"
 #include "unk_02014A84.h"
 #include "unk_02014D38.h"
 #include "unk_02033200.h"
 #include "unk_020366A0.h"
 #include "unk_0205C980.h"
-#include "unk_02071D40.h"
 #include "unk_02095E98.h"
 #include "unk_02099500.h"
 
@@ -1369,11 +1368,11 @@ static void sub_0205C160(UnkStruct_0205B43C *param0)
 
 void *sub_0205C17C(UnkStruct_0205B43C *param0)
 {
-    param0->unk_184 = sub_02071F04(HEAP_ID_SYSTEM);
-    param0->unk_188[0] = sub_02071F04(HEAP_ID_SYSTEM);
-    param0->unk_188[1] = sub_02071F04(HEAP_ID_SYSTEM);
+    param0->unk_184 = TrainerCard_New(HEAP_ID_SYSTEM);
+    param0->unk_188[0] = TrainerCard_New(HEAP_ID_SYSTEM);
+    param0->unk_188[1] = TrainerCard_New(HEAP_ID_SYSTEM);
 
-    sub_02071D40(0, 0, 0, sub_0205CA14(TrainerInfo_Gender(param0->unk_08), TrainerInfo_Appearance(param0->unk_08), 0), param0->fieldSystem, param0->unk_184);
+    TrainerCard_Init(0, 0, 0, sub_0205CA14(TrainerInfo_Gender(param0->unk_08), TrainerInfo_Appearance(param0->unk_08), 0), param0->fieldSystem, param0->unk_184);
 
     return (void *)param0->unk_188[CommSys_CurNetId() ^ 1];
 }
