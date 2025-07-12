@@ -6,12 +6,11 @@
 #include "palette.h"
 #include "sys_task_manager.h"
 
-struct UnkStruct_020157E4_t;
-typedef struct UnkStruct_020157E4_t UnkStruct_020157E4;
+typedef struct UnkStruct_020157E4 UnkStruct_020157E4;
 
 typedef void (*UnkFuncPtr_020157E4)(UnkStruct_020157E4 *, u16 *);
 
-struct UnkStruct_020157E4_t {
+struct UnkStruct_020157E4 {
     SysTask *unk_00;
     UnkFuncPtr_020157E4 unk_04;
     PaletteData *unk_08;
@@ -22,7 +21,6 @@ struct UnkStruct_020157E4_t {
     u8 unk_4E;
     u8 unk_4F;
 };
-
 
 UnkStruct_020157E4 *sub_0201567C(PaletteData *param0, u16 param1, u16 param2, u32 heapID);
 void sub_02015738(UnkStruct_020157E4 *param0, u8 param1);
