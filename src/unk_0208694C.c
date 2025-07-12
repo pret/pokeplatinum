@@ -1024,7 +1024,7 @@ static int sub_02086D38(UnkStruct_02087A10 *param0, int param1)
 
     if (gSystem.pressedKeys & PAD_BUTTON_SELECT) {
         if (Sprite_GetDrawFlag(param0->unk_390[8]) == 0) {
-            Sprite_SetDrawFlag(param0->unk_390[8], 1);
+            Sprite_SetDrawFlag(param0->unk_390[8], TRUE);
             return param1;
         }
 
@@ -1616,8 +1616,8 @@ static void sub_02087A10(UnkStruct_02087A10 *param0)
             Sprite_SetPriority(param0->unk_390[v0], Unk_020F2984[v0][3]);
         }
 
-        Sprite_SetDrawFlag(param0->unk_390[4], 0);
-        Sprite_SetDrawFlag(param0->unk_390[8], 0);
+        Sprite_SetDrawFlag(param0->unk_390[4], FALSE);
+        Sprite_SetDrawFlag(param0->unk_390[8], FALSE);
 
         for (v0 = 0; v0 < 7; v0++) {
             UnkStruct_020879DC *v2;
@@ -1953,35 +1953,35 @@ static void sub_02088350(UnkStruct_02087A10 *param0)
 
     if (gSystem.pressedKeysRepeatable & PAD_KEY_UP) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        Sprite_SetDrawFlag(param0->unk_390[8], 1);
+        Sprite_SetDrawFlag(param0->unk_390[8], TRUE);
         v1 = 1;
         v0++;
     }
 
     if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        Sprite_SetDrawFlag(param0->unk_390[8], 1);
+        Sprite_SetDrawFlag(param0->unk_390[8], TRUE);
         v1 = 2;
         v0++;
     }
 
     if (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        Sprite_SetDrawFlag(param0->unk_390[8], 1);
+        Sprite_SetDrawFlag(param0->unk_390[8], TRUE);
         v1 = 3;
         v0++;
     }
 
     if (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        Sprite_SetDrawFlag(param0->unk_390[8], 1);
+        Sprite_SetDrawFlag(param0->unk_390[8], TRUE);
         v1 = 4;
         v0++;
     }
 
     if (gSystem.pressedKeys & PAD_BUTTON_START) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        Sprite_SetDrawFlag(param0->unk_390[8], 1);
+        Sprite_SetDrawFlag(param0->unk_390[8], TRUE);
         param0->unk_1C.unk_00 = 12;
         param0->unk_1C.unk_04 = 0;
         v0++;
@@ -2221,7 +2221,7 @@ static int sub_02088898(UnkStruct_02087A10 *param0, u16 param1, int param2)
     }
 
     if ((Sprite_GetDrawFlag(param0->unk_390[8]) == 0) && (gSystem.touchPressed == 0)) {
-        Sprite_SetDrawFlag(param0->unk_390[8], 1);
+        Sprite_SetDrawFlag(param0->unk_390[8], TRUE);
         return 2;
     }
 
@@ -2311,7 +2311,7 @@ static int sub_02088898(UnkStruct_02087A10 *param0, u16 param1, int param2)
 
             sub_02088E1C(param0->unk_3C8, param0->unk_158, param0->unk_0C);
             Sound_PlayEffect(SEQ_SE_DP_BOX02);
-            Sprite_SetDrawFlag(param0->unk_390[8], 1);
+            Sprite_SetDrawFlag(param0->unk_390[8], TRUE);
             Sprite_SetExplicitOAMMode(param0->unk_390[8], GX_OAM_MODE_XLU);
 
             G2_SetBlendAlpha(0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2, 8, 8);
@@ -2499,7 +2499,7 @@ static void sub_02088FD0(UnkStruct_02087A10 *param0)
         }
 
         if (param0->unk_1C.unk_14 == 0) {
-            Sprite_SetDrawFlag(param0->unk_390[8], 0);
+            Sprite_SetDrawFlag(param0->unk_390[8], FALSE);
         } else {
             sub_02088454(param0, 0);
         }

@@ -945,9 +945,9 @@ static void FilterType2Message(PokedexGraphicData **param0, int typeFilter2, enu
 static void FilterFormSilhouette(PokedexSearchDisplay *searchDisplay, int filterForm)
 {
     if (filterForm == FF_NONE) {
-        Sprite_SetDrawFlag(searchDisplay->form, 0);
+        Sprite_SetDrawFlag(searchDisplay->form, FALSE);
     } else {
-        Sprite_SetDrawFlag(searchDisplay->form, 1);
+        Sprite_SetDrawFlag(searchDisplay->form, TRUE);
 
         switch (filterForm) {
         case FF_QUADRUPED:

@@ -603,7 +603,7 @@ static void ov21_021DD1A8(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
 
     for (v3 = 0; v3 < (NUMDUNGEONS * 2); v3++) {
         mapDisplay->cellActorArray[v3] = SpriteList_Add(&v1);
-        Sprite_SetDrawFlag(mapDisplay->cellActorArray[v3], 0);
+        Sprite_SetDrawFlag(mapDisplay->cellActorArray[v3], FALSE);
         Sprite_SetExplicitOAMMode(mapDisplay->cellActorArray[v3], GX_OAM_MODE_XLU);
     }
 }
@@ -894,7 +894,7 @@ static void ov21_021DD8B4(PokedexMapDisplay *mapDisplay)
     memset(mapDisplay->pokedexFieldMap_2, 0, sizeof(u8) * (POKEDEXMAPHEIGHT * POKEDEXMAPWIDTH));
 
     for (v0 = 0; v0 < mapDisplay->numDungeons; v0++) {
-        Sprite_SetDrawFlag(mapDisplay->cellActorArray[v0], 0);
+        Sprite_SetDrawFlag(mapDisplay->cellActorArray[v0], FALSE);
     }
 
     mapDisplay->numDungeons = 0;
@@ -1107,10 +1107,10 @@ static void ov21_021DD964(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
 static void ov21_021DD9E8(PokedexMapDisplay *mapDisplay, const EncounterCollection *encounterCollection)
 {
     if ((mapDisplay->numVisibleDungeons <= 0) && (mapDisplay->numVisibleFields <= 0) && (mapDisplay->dungeonsZero <= 0) && (mapDisplay->fieldsZero <= 0)) {
-        Sprite_SetDrawFlag(mapDisplay->AreaUnknownCellActor, 1);
+        Sprite_SetDrawFlag(mapDisplay->AreaUnknownCellActor, TRUE);
         sub_020129D0(mapDisplay->AreaUnknownSpriteManager->fontOAM, 1);
     } else {
-        Sprite_SetDrawFlag(mapDisplay->AreaUnknownCellActor, 0);
+        Sprite_SetDrawFlag(mapDisplay->AreaUnknownCellActor, FALSE);
         sub_020129D0(mapDisplay->AreaUnknownSpriteManager->fontOAM, 0);
     }
 }
@@ -1193,7 +1193,7 @@ static void ov21_021DDB8C(PokedexMapDisplay *mapDisplay)
     GXLayers_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG1, 0);
 
     for (dungeonIndex = 0; dungeonIndex < mapDisplay->numDungeons; dungeonIndex++) {
-        Sprite_SetDrawFlag(mapDisplay->cellActorArray[dungeonIndex], 0);
+        Sprite_SetDrawFlag(mapDisplay->cellActorArray[dungeonIndex], FALSE);
     }
 }
 
@@ -1205,7 +1205,7 @@ static void ov21_021DDBCC(PokedexMapDisplay *mapDisplay)
     GXLayers_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG1, 1);
 
     for (dungeonIndex = 0; dungeonIndex < mapDisplay->numDungeons; dungeonIndex++) {
-        Sprite_SetDrawFlag(mapDisplay->cellActorArray[dungeonIndex], 0);
+        Sprite_SetDrawFlag(mapDisplay->cellActorArray[dungeonIndex], FALSE);
     }
 }
 
@@ -1220,7 +1220,7 @@ static void ov21_021DDC14(PokedexMapDisplay *mapDisplay)
 
         if (mapDisplay->unk_810 == 0) {
             for (dungeonIndex = 0; dungeonIndex < mapDisplay->numDungeons; dungeonIndex++) {
-                Sprite_SetDrawFlag(mapDisplay->cellActorArray[dungeonIndex], 1);
+                Sprite_SetDrawFlag(mapDisplay->cellActorArray[dungeonIndex], TRUE);
             }
 
             mapDisplay->unk_810 = 1;
@@ -1248,7 +1248,7 @@ static void ov21_021DDC14(PokedexMapDisplay *mapDisplay)
             GXLayers_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG1, 0);
         } else {
             for (dungeonIndex = 0; dungeonIndex < mapDisplay->numDungeons; dungeonIndex++) {
-                Sprite_SetDrawFlag(mapDisplay->cellActorArray[dungeonIndex], 0);
+                Sprite_SetDrawFlag(mapDisplay->cellActorArray[dungeonIndex], FALSE);
             }
         }
     }

@@ -1960,7 +1960,7 @@ static void ov114_0225DAC0(UnkStruct_ov114_0225DAC0 *param0, u32 param1, u32 par
 
         Sprite_SetAnim(param0->unk_10, v1);
         Sprite_SetExplicitPaletteOffset(param0->unk_10, param5);
-        Sprite_SetDrawFlag(param0->unk_10, 0);
+        Sprite_SetDrawFlag(param0->unk_10, FALSE);
         Sprite_SetAnimateFlag(param0->unk_10, 1);
     }
 
@@ -1973,7 +1973,7 @@ static void ov114_0225DAC0(UnkStruct_ov114_0225DAC0 *param0, u32 param1, u32 par
         param0->unk_14 = ov114_0225CDB4(param8, param7->unk_00, v4, v5, 0, heapID);
 
         Sprite_SetAnim(param0->unk_14, 0);
-        Sprite_SetDrawFlag(param0->unk_14, 0);
+        Sprite_SetDrawFlag(param0->unk_14, FALSE);
     }
 
     param0->unk_1A = param5;
@@ -2011,7 +2011,7 @@ static void ov114_0225DCA0(UnkStruct_ov114_0225DAC0 *param0, UnkStruct_ov114_022
 
 static void ov114_0225DD0C(UnkStruct_ov114_0225DAC0 *param0, u32 param1)
 {
-    Sprite_SetDrawFlag(param0->unk_14, 1);
+    Sprite_SetDrawFlag(param0->unk_14, TRUE);
     Sprite_SetAnim(param0->unk_14, 4 + param1);
     Sprite_SetAnimateFlag(param0->unk_14, 1);
 }
@@ -2035,7 +2035,7 @@ static void ov114_0225DD80(UnkStruct_ov114_0225DAC0 *param0, UnkStruct_ov114_022
 
 static void ov114_0225DD94(UnkStruct_ov114_0225DAC0 *param0)
 {
-    Sprite_SetDrawFlag(param0->unk_10, 1);
+    Sprite_SetDrawFlag(param0->unk_10, TRUE);
 }
 
 static void ov114_0225DDA0(UnkStruct_ov114_0225DAC0 *param0)
@@ -3376,7 +3376,7 @@ static void ov114_0225F484(UnkStruct_ov114_0225F578 *param0, UnkStruct_ov114_022
             for (v1 = 0; v1 < 5; v1++) {
                 v2 = (v0 * 5) + v1;
                 param0->unk_08[v2] = ov114_0225CDB4(param0->unk_44, param2->unk_00, v3, v4, 0, param5);
-                Sprite_SetDrawFlag(param0->unk_08[v2], 0);
+                Sprite_SetDrawFlag(param0->unk_08[v2], FALSE);
                 Sprite_SetAnim(param0->unk_08[v2], v0);
                 Sprite_SetExplicitPriority(param0->unk_08[v2], 0);
 
@@ -3428,7 +3428,7 @@ static BOOL ov114_0225F5AC(UnkStruct_ov114_0225F578 *param0, UnkStruct_ov114_022
         }
 
         Sound_PlayEffect(SEQ_SE_PL_BALLOON07);
-        Sprite_SetDrawFlag(param0->unk_08[(param0->unk_4A % (5 * 3))], 1);
+        Sprite_SetDrawFlag(param0->unk_08[(param0->unk_4A % (5 * 3))], TRUE);
         param0->unk_49 = 8;
         param0->unk_48++;
         break;
@@ -3443,7 +3443,7 @@ static BOOL ov114_0225F5AC(UnkStruct_ov114_0225F578 *param0, UnkStruct_ov114_022
 
                 if (param0->unk_4A != param0->unk_4B) {
                     for (v0 = 0; v0 < (5 * 3); v0++) {
-                        Sprite_SetDrawFlag(param0->unk_08[v0], 0);
+                        Sprite_SetDrawFlag(param0->unk_08[v0], FALSE);
                         Sprite_SetAnim(param0->unk_08[v0], 2);
                     }
                 }
@@ -3677,8 +3677,8 @@ static BOOL ov114_0225FAD8(UnkStruct_ov114_0225FAB8 *param0)
         param0->unk_08 = 1;
         v0 = 1;
 
-        Sprite_SetDrawFlag(param0->unk_00[0], 0);
-        Sprite_SetDrawFlag(param0->unk_00[1], 0);
+        Sprite_SetDrawFlag(param0->unk_00[0], FALSE);
+        Sprite_SetDrawFlag(param0->unk_00[1], FALSE);
     }
 
     ov114_0225FB10(param0, -1);

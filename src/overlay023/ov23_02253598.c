@@ -5,7 +5,7 @@
 
 #include "constants/heap.h"
 
-#include "struct_defs/underground_data.h"
+#include "struct_defs/underground.h"
 #include "struct_defs/underground_record.h"
 
 #include "overlay023/funcptr_ov23_0224DCB8.h"
@@ -328,7 +328,7 @@ void ov23_02253A00(UndergroundRecord *undergroundRecord, int param1)
     ov23_02253F40(ov23_022421BC(), param1, 1, ov23_022539F8);
 }
 
-static void ov23_02253A78(Window *param0, MessageLoader *param1, TrainerInfo *param2, const UndergroundRecord *param3, const UndergroundData *param4)
+static void ov23_02253A78(Window *param0, MessageLoader *param1, TrainerInfo *param2, const UndergroundRecord *param3, const Underground *param4)
 {
     StringTemplate *v0;
     Strbuf *v1;
@@ -391,7 +391,7 @@ static void ov23_02253A78(Window *param0, MessageLoader *param1, TrainerInfo *pa
     StringTemplate_Free(v0);
 }
 
-void *ov23_02253C64(BgConfig *param0, TrainerInfo *param1, UndergroundData *param2, UnkFuncPtr_ov23_02253834 param3, void *param4)
+void *ov23_02253C64(BgConfig *param0, TrainerInfo *param1, Underground *underground, UnkFuncPtr_ov23_02253834 param3, void *param4)
 {
     UndergroundRecord *v0;
     MessageLoader *v1;
@@ -411,7 +411,7 @@ void *ov23_02253C64(BgConfig *param0, TrainerInfo *param1, UndergroundData *para
     Window_FillTilemap(&v4->unk_08, 15);
 
     v0 = Unk_ov23_022577BC->unk_0C;
-    ov23_02253A78(&v4->unk_08, v1, param1, v0, param2);
+    ov23_02253A78(&v4->unk_08, v1, param1, v0, underground);
 
     Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
     Window_ScheduleCopyToVRAM(&v4->unk_08);

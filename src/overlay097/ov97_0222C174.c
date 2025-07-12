@@ -922,7 +922,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
         break;
     case UnkEnum_ov97_0222C6F8_29:
         ov97_0223795C(param0->unk_04, &param0->unk_48, 2, 19, 30);
-        Sprite_SetDrawFlag(param0->unk_3170, 0);
+        Sprite_SetDrawFlag(param0->unk_3170, FALSE);
         DestroyWaitDial(param0->unk_34D8);
         param0->unk_34D8 = NULL;
         Sound_PlayEffect(SEQ_SE_CONFIRM);
@@ -959,7 +959,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
     case UnkEnum_ov97_0222C6F8_10:
         if (ov97_022332F4()) {
             ov97_0223795C(param0->unk_04, &param0->unk_48, 2, 19, 71);
-            Sprite_SetDrawFlag(param0->unk_3170, 1);
+            Sprite_SetDrawFlag(param0->unk_3170, TRUE);
             ov97_0222C578(param0);
             *v3 = UnkEnum_ov97_0222C6F8_11;
         }
@@ -1053,7 +1053,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
 
             ov97_0223795C(param0->unk_04, &param0->unk_48, 2, 19, 73);
 
-            Sprite_SetDrawFlag(param0->unk_3170, 0);
+            Sprite_SetDrawFlag(param0->unk_3170, FALSE);
             DestroyWaitDial(param0->unk_34D8);
             Sound_PlayEffect(SEQ_SE_CONFIRM);
 
@@ -1078,7 +1078,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
         *v3 = UnkEnum_ov97_0222C6F8_23;
     case UnkEnum_ov97_0222C6F8_23:
         ov97_0223795C(param0->unk_04, &param0->unk_48, 2, 19, 74);
-        Sprite_SetDrawFlag(param0->unk_3170, 0);
+        Sprite_SetDrawFlag(param0->unk_3170, FALSE);
 
         if (param0->unk_34D8) {
             DestroyWaitDial(param0->unk_34D8);

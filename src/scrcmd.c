@@ -45,7 +45,7 @@
 #include "struct_defs/struct_02042434.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_02098C44.h"
-#include "struct_defs/underground_data.h"
+#include "struct_defs/underground.h"
 #include "struct_defs/underground_record.h"
 
 #include "applications/pokemon_summary_screen/main.h"
@@ -649,7 +649,7 @@ static BOOL ScrCmd_267(ScriptContext *ctx);
 static BOOL ScrCmd_GetHour(ScriptContext *ctx);
 static BOOL ScrCmd_269(ScriptContext *ctx);
 static BOOL ScrCmd_26A(ScriptContext *ctx);
-static BOOL ScrCmd_26B(ScriptContext *ctx);
+static BOOL ScrCmd_CheckHasAllLegendaryTitansInParty(ScriptContext *ctx);
 static BOOL ScrCmd_TryGetRandomMassageGirlAccessory(ScriptContext *ctx);
 static BOOL ScrCmd_GetGBACartridgeVersion(ScriptContext *ctx);
 static BOOL ScrCmd_SetHiddenLocation(ScriptContext *ctx);
@@ -984,7 +984,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_BufferNumber,
     ScrCmd_BufferPartyMonNickname,
     ScrCmd_BufferPoketchAppName,
-    ScrCmd_0D8,
+    ScrCmd_BufferTrainerClassName,
     ScrCmd_0D9,
     ScrCmd_BufferSpeciesNameFromVar,
     ScrCmd_BufferPlayerStarterSpeciesName,
@@ -1361,7 +1361,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetJubilifeLotteryTrainerID,
     ScrCmd_CheckForJubilifeLotteryWinner,
     ScrCmd_RandomizeJubilifeLottery,
-    ScrCmd_251,
+    ScrCmd_BufferMonNicknameFromPC,
     ScrCmd_GetPCBoxesFreeSlotCount,
     ScrCmd_SetClearInCatchingShowFlag,
     ScrCmd_CheckHasEnoughMonForCatchingShow,
@@ -1387,7 +1387,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetHour,
     ScrCmd_269,
     ScrCmd_26A,
-    ScrCmd_26B,
+    ScrCmd_CheckHasAllLegendaryTitansInParty,
     ScrCmd_TryGetRandomMassageGirlAccessory,
     ScrCmd_26D,
     ScrCmd_GetGBACartridgeVersion,
@@ -6724,11 +6724,11 @@ static BOOL ScrCmd_26A(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_26B(ScriptContext *ctx)
+static BOOL ScrCmd_CheckHasAllLegendaryTitansInParty(ScriptContext *ctx)
 {
-    u16 *v0 = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
+    u16 *destVar = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
 
-    *v0 = HasAllLegendaryTitansInParty(ctx->fieldSystem->saveData);
+    *destVar = HasAllLegendaryTitansInParty(ctx->fieldSystem->saveData);
     return FALSE;
 }
 
@@ -7259,10 +7259,10 @@ static BOOL ScrCmd_2A4(ScriptContext *ctx)
 static BOOL ScrCmd_TrySetUnusedUndergroundField(ScriptContext *ctx)
 {
     u16 item = ScriptContext_GetVar(ctx);
-    UndergroundData *undergroundData = SaveData_GetUndergroundData(ctx->fieldSystem->saveData);
+    Underground *underground = SaveData_GetUnderground(ctx->fieldSystem->saveData);
 
     if (item == ITEM_ADAMANT_ORB || item == ITEM_LUSTROUS_ORB) {
-        UndergroundData_SetUnusedField(undergroundData);
+        Underground_SetUnusedField(underground);
     }
 
     return FALSE;

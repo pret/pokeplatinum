@@ -1180,7 +1180,7 @@ static void ov64_0222E9A4(UnkStruct_ov64_0222E21C *param0, u32 heapID)
         param0->unk_270[v1] = SpriteList_AddAffine(&v0[v1]);
 
         Sprite_SetAnimateFlag(param0->unk_270[v1], 1);
-        Sprite_SetDrawFlag(param0->unk_270[v1], 0);
+        Sprite_SetDrawFlag(param0->unk_270[v1], FALSE);
         Sprite_SetAnim(param0->unk_270[v1], v1);
     }
 }
@@ -2578,7 +2578,7 @@ static void ov64_0222FF5C (UnkStruct_ov64_0222F0C4 * param0)
     VecFx32 v0;
     u32 v1;
 
-    Sprite_SetDrawFlag(param0->unk_104, 1);
+    Sprite_SetDrawFlag(param0->unk_104, TRUE);
     Sprite_SetAnim(param0->unk_104, 2);
 
     param0->unk_108 = 0;
@@ -2623,7 +2623,7 @@ static void ov64_02230044 (UnkStruct_ov64_0222F0C4 * param0)
 {
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
 
-    Sprite_SetDrawFlag(param0->unk_104, 0);
+    Sprite_SetDrawFlag(param0->unk_104, FALSE);
     Sprite_SetAnimateFlag(param0->unk_104, 0);
 }
 

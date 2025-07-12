@@ -377,7 +377,7 @@ static void ov19_021DBDF4(UnkStruct_ov19_021DBA9C *param0)
 
         GF_ASSERT(param0->unk_48[v4] != NULL);
 
-        Sprite_SetDrawFlag(param0->unk_48[v4], 0);
+        Sprite_SetDrawFlag(param0->unk_48[v4], FALSE);
         VEC_Set(&v3, FX32_CONST(32 + v4 * 32), FX32_CONST(88), 0);
         Sprite_SetPosition(param0->unk_48[v4], &v3);
         ov19_021DBD68(param0, v5);
@@ -412,7 +412,7 @@ static void ov19_021DBF18(UnkStruct_ov19_021DBA9C *param0)
 
     for (v1 = 0; v1 < 7; v1++) {
         ov19_021DBD9C(param0, v1, v0);
-        Sprite_SetDrawFlag(param0->unk_48[v1], 1);
+        Sprite_SetDrawFlag(param0->unk_48[v1], TRUE);
 
         if (++v0 >= 18) {
             v0 = 0;

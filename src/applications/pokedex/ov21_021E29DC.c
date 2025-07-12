@@ -1571,6 +1571,6 @@ static void ov21_021E3FC0(UnkStruct_ov21_021E326C *param0, int param1, int param
 static void ov21_021E3FE4(UnkStruct_ov21_021E3900 *param0, const UnkStruct_ov21_021E342C *param1)
 {
     if (PokedexSort_CanDetectForms(param1->unk_08) == 0) {
-        Sprite_SetDrawFlag(param0->unk_00[4], 0);
+        Sprite_SetDrawFlag(param0->unk_00[4], FALSE);
     }
 }

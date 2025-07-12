@@ -493,11 +493,11 @@ static void ov19_021DCE50(UnkStruct_ov19_021DC680 *param0, fx32 param1)
 
             if (param1 < 0) {
                 if (v0.y < 851968) {
-                    Sprite_SetDrawFlag(param0->unk_3C[v1].unk_00, 1);
+                    Sprite_SetDrawFlag(param0->unk_3C[v1].unk_00, TRUE);
                 }
             } else {
                 if (v0.y >= 851968) {
-                    Sprite_SetDrawFlag(param0->unk_3C[v1].unk_00, 0);
+                    Sprite_SetDrawFlag(param0->unk_3C[v1].unk_00, FALSE);
                 }
             }
         } else {

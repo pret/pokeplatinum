@@ -6,7 +6,7 @@
 #include "generated/trainer_score_events.h"
 
 #include "struct_defs/struct_02099F80.h"
-#include "struct_defs/underground_data.h"
+#include "struct_defs/underground.h"
 #include "struct_defs/underground_record.h"
 
 #include "field/field_system.h"
@@ -607,7 +607,7 @@ static void Mining_InitGameState(void)
 void ov23_0223E1E4(void *param0, FieldSystem *fieldSystem)
 {
     int v0, v1;
-    UndergroundData *undergroundData;
+    Underground *underground;
 
     if (Unk_ov23_02257740) {
         return;
@@ -629,19 +629,19 @@ void ov23_0223E1E4(void *param0, FieldSystem *fieldSystem)
     Mining_InitGameState();
 
     Unk_ov23_02257740->unk_A24 = -1;
-    undergroundData = SaveData_GetUndergroundData(Unk_ov23_02257740->fieldSystem->saveData);
+    underground = SaveData_GetUnderground(Unk_ov23_02257740->fieldSystem->saveData);
 
-    if (sub_02029234(undergroundData)) {
+    if (sub_02029234(underground)) {
         MATHRandContext16 v3;
 
-        MATH_InitRand16(&v3, UndergroundData_GetRandomSeed(undergroundData));
+        MATH_InitRand16(&v3, Underground_GetRandomSeed(underground));
 
         for (v0 = 0; v0 < 255; v0++) {
-            sub_020291A4(undergroundData, v0);
+            sub_020291A4(underground, v0);
         }
 
         for (v0 = 0; v0 < (16 * 4); v0++) {
-            sub_02028EF8(undergroundData, 0, v0, 0, 0);
+            sub_02028EF8(underground, 0, v0, 0, 0);
         }
 
         v1 = ov23_02241DF8(&v3);
@@ -651,7 +651,7 @@ void ov23_0223E1E4(void *param0, FieldSystem *fieldSystem)
             ov23_0223E434(&v3, v0);
         }
 
-        sub_02029240(undergroundData);
+        sub_02029240(underground);
     } else {
         ov23_0223E834();
         ov23_02243CE8();
@@ -754,7 +754,7 @@ static void ov23_0223E434(MATHRandContext16 *param0, int param1)
     u16 v4, v5, v6;
     u16 v7, v8, v9;
     UnkStruct_ov23_0223E6F8 *v10;
-    UndergroundData *v11 = SaveData_GetUndergroundData(Unk_ov23_02257740->fieldSystem->saveData);
+    Underground *v11 = SaveData_GetUnderground(Unk_ov23_02257740->fieldSystem->saveData);
 
     v6 = (MapMatrix_GetWidth(Unk_ov23_02257740->fieldSystem->mapMatrix) - 2) * 32;
     v9 = (MapMatrix_GetHeight(Unk_ov23_02257740->fieldSystem->mapMatrix) - 2) * 32;
@@ -815,7 +815,7 @@ void ov23_0223E650(int param0, int param1, MATHRandContext16 *param2)
     int v2, v3;
     u16 v4, v5;
     UnkStruct_ov23_0223E6F8 *v6;
-    UndergroundData *v7 = SaveData_GetUndergroundData(Unk_ov23_02257740->fieldSystem->saveData);
+    Underground *v7 = SaveData_GetUnderground(Unk_ov23_02257740->fieldSystem->saveData);
 
     v3 = 0;
 
@@ -888,7 +888,7 @@ static UnkStruct_ov23_0223E6F8 *ov23_0223E740(int param0, int param1)
 
 static void ov23_0223E834(void)
 {
-    UndergroundData *v0 = SaveData_GetUndergroundData(Unk_ov23_02257740->fieldSystem->saveData);
+    Underground *v0 = SaveData_GetUnderground(Unk_ov23_02257740->fieldSystem->saveData);
     int v1;
     int v2, v3;
     UnkStruct_ov23_0223E6F8 *v4;
@@ -1043,7 +1043,7 @@ static void ov23_0223EA38(SysTask *param0, void *param1)
 
 void ov23_0223EAF8(int param0, int param1, void *param2, void *param3)
 {
-    UndergroundData *v0 = SaveData_GetUndergroundData(Unk_ov23_02257740->fieldSystem->saveData);
+    Underground *v0 = SaveData_GetUnderground(Unk_ov23_02257740->fieldSystem->saveData);
     UnkStruct_ov23_0223E6F8 *v1 = Unk_ov23_02257740->unk_84C[param0];
     u8 v2 = param0;
     u8 *v3 = param2;
@@ -1451,11 +1451,11 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         v0->timer++;
 
         if (v0->timer > 80) {
-            UndergroundData *undergroundData = SaveData_GetUndergroundData(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
+            Underground *underground = SaveData_GetUnderground(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
 
             ov23_02254044(ov23_0224219C());
 
-            if (UndergroundData_HasNeverMined(undergroundData)) {
+            if (Underground_HasNeverMined(underground)) {
                 v0->state++;
             } else {
                 v0->state = 13;
@@ -1607,7 +1607,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
             int v3;
 
             for (v3 = 0; v3 < 8; v3++) {
-                Sprite_SetDrawFlag(Unk_ov23_02257740->sprites[v3], 0);
+                Sprite_SetDrawFlag(Unk_ov23_02257740->sprites[v3], FALSE);
             }
 
             v0->state = 25;
@@ -1755,7 +1755,7 @@ static BOOL Mining_TryPlaceObject(int index, int x, int y)
 static int Mining_GetWeightOfItem(MiningObject *item)
 {
     SaveData *saveData = FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem);
-    UndergroundData *undergroundData = SaveData_GetUndergroundData(saveData);
+    Underground *underground = SaveData_GetUnderground(saveData);
     BOOL isTrainerIDOdd = TrainerInfo_ID(SaveData_GetTrainerInfo(saveData)) % 2;
     BOOL isNationalDexObtained = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(saveData));
     int weight = 0;
@@ -1827,7 +1827,7 @@ static int Mining_GetTotalTypesOfRocks(void)
 
 static void Mining_GenerateGameLayout(BgConfig *bgConfig, int param1, UnkStruct_ov23_0223EE80 *param2)
 {
-    UndergroundData *undergroundData = SaveData_GetUndergroundData(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
+    Underground *underground = SaveData_GetUnderground(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
     int objectsPlaced, i, totalWeight = Mining_GetTotalItemWeight();
     int randNum, x, y, j = 0, index, itemID;
     int typesOfRocks = Mining_GetTotalTypesOfRocks();
@@ -1835,7 +1835,7 @@ static void Mining_GenerateGameLayout(BgConfig *bgConfig, int param1, UnkStruct_
 
     param2->itemCount = MATH_Rand32(&Unk_ov23_02257740->rand, (MAX_BURIED_ITEMS - 1)) + 2;
 
-    if (UndergroundData_HasNeverMined(undergroundData)) {
+    if (Underground_HasNeverMined(underground)) {
         param2->itemCount = 3;
     }
 
@@ -1844,7 +1844,7 @@ static void Mining_GenerateGameLayout(BgConfig *bgConfig, int param1, UnkStruct_
         index = Mining_PickItem(randNum);
         itemID = sMiningObjects[index].itemID;
 
-        if (!UndergroundData_HasPlateNeverBeenMined(undergroundData, sMiningObjects[index].itemID)) {
+        if (!Underground_HasPlateNeverBeenMined(underground, sMiningObjects[index].itemID)) {
             continue;
         }
 
@@ -1874,7 +1874,7 @@ static void Mining_GenerateGameLayout(BgConfig *bgConfig, int param1, UnkStruct_
         }
     }
 
-    if (!UndergroundData_HasNeverMined(undergroundData)) {
+    if (!Underground_HasNeverMined(underground)) {
         for (j = 0; j < 100; j++) {
             index = MATH_Rand32(&Unk_ov23_02257740->rand, typesOfRocks);
             index += NELEMS(sMiningObjects) - typesOfRocks;
@@ -2474,28 +2474,28 @@ static void Mining_AddItem(int itemID, int sphereSize)
 {
     int id = itemID;
     UndergroundRecord *unused = SaveData_UndergroundRecord(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
-    UndergroundData *undergroundData = SaveData_GetUndergroundData(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
+    Underground *underground = SaveData_GetUnderground(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
 
     if (IsMiningItemSphere(id)) {
-        Underground_TryAddSphere(id, sphereSize);
+        Underground_TryAddSphere2(id, sphereSize);
     } else {
-        Underground_TryAddTreasure(id);
-        UndergroundData_SetPlateMined(undergroundData, id);
+        Underground_TryAddTreasure2(id);
+        Underground_SetPlateMined(underground, id);
     }
 }
 
 static BOOL Mining_IsRoomInBag(int itemID)
 {
-    UndergroundData *undergroundData = SaveData_GetUndergroundData(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
+    Underground *underground = SaveData_GetUnderground(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
 
     if (IsMiningItemSphere(itemID)) {
-        if (40 == UndergroundData_GetSphereCount(undergroundData)) {
+        if (40 == Underground_GetSphereCount(underground)) {
             return FALSE;
         }
 
         return TRUE;
     } else {
-        if (40 == UndergroundData_GetTreasureCount(undergroundData)) {
+        if (40 == Underground_GetTreasureCount(underground)) {
             return FALSE;
         }
 
@@ -2567,7 +2567,7 @@ static BOOL Mining_ProcessNextDugUpItem(UnkStruct_ov23_0223EE80 *param0)
 {
     int i, itemID;
     UndergroundRecord *undergroundRecord = SaveData_UndergroundRecord(Unk_ov23_02257740->fieldSystem->saveData);
-    UndergroundData *unused = SaveData_GetUndergroundData(Unk_ov23_02257740->fieldSystem->saveData);
+    Underground *unused = SaveData_GetUnderground(Unk_ov23_02257740->fieldSystem->saveData);
 
     for (i = 0; i < param0->itemCount; i++) {
         if (Unk_ov23_02257740->buriedObjects[i].isDugUp == TRUE) {
@@ -2659,7 +2659,7 @@ static BOOL Mining_MainGameLoop(UnkStruct_ov23_0223EE80 *param0)
 {
     u8 v0[2];
     int damageToWall;
-    UndergroundData *undergroundData = SaveData_GetUndergroundData(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
+    Underground *underground = SaveData_GetUnderground(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
 
     if (Unk_ov23_02257740->unk_A29 == 1) {
         Unk_ov23_02257740->unk_A29 = 0;
@@ -2712,14 +2712,14 @@ static BOOL Mining_MainGameLoop(UnkStruct_ov23_0223EE80 *param0)
     Mining_NearbyLinksRemoveDirt(param0);
 
     if (Mining_AreAllItemsDugUp(param0)) {
-        UndergroundData_SetHasMined(undergroundData);
+        Underground_SetHasMined(underground);
         GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(Unk_ov23_02257740->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNDERGROUND_UNCOVER_FOSSIL);
         param0->state = 14;
         param0->timer = 25;
         param0->unk_50 = 1;
         return TRUE;
     } else if (Unk_ov23_02257740->wallIntegrity == 0) {
-        UndergroundData_SetHasMined(undergroundData);
+        Underground_SetHasMined(underground);
         param0->unk_50 = 0;
         param0->timer = 45;
         param0->state = 22;

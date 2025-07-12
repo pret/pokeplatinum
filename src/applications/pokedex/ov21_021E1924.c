@@ -1075,39 +1075,39 @@ static void ov21_021E28A8(UnkStruct_ov21_021E1E74 *param0)
 static void ov21_021E28D0(UnkStruct_ov21_021E2588 *param0, const UnkStruct_ov21_021E1E74 *param1)
 {
     if ((param1->unk_38 & 1) == 0) {
-        Sprite_SetDrawFlag(param0->unk_00[2], 0);
+        Sprite_SetDrawFlag(param0->unk_00[2], FALSE);
     } else {
-        Sprite_SetDrawFlag(param0->unk_00[2], 1);
+        Sprite_SetDrawFlag(param0->unk_00[2], TRUE);
     }
 
     if ((param1->unk_38 & 2) == 0) {
-        Sprite_SetDrawFlag(param0->unk_00[3], 0);
+        Sprite_SetDrawFlag(param0->unk_00[3], FALSE);
     } else {
-        Sprite_SetDrawFlag(param0->unk_00[3], 1);
+        Sprite_SetDrawFlag(param0->unk_00[3], TRUE);
     }
 
     if ((param1->unk_38 & 4) == 0) {
-        Sprite_SetDrawFlag(param0->unk_00[4], 0);
+        Sprite_SetDrawFlag(param0->unk_00[4], FALSE);
     } else {
-        Sprite_SetDrawFlag(param0->unk_00[4], 1);
+        Sprite_SetDrawFlag(param0->unk_00[4], TRUE);
     }
 
     if ((param1->unk_38 & 8) == 0) {
-        Sprite_SetDrawFlag(param0->unk_00[5], 0);
+        Sprite_SetDrawFlag(param0->unk_00[5], FALSE);
     } else {
-        Sprite_SetDrawFlag(param0->unk_00[5], 1);
+        Sprite_SetDrawFlag(param0->unk_00[5], TRUE);
     }
 
     if ((param1->unk_38 & 16) == 0) {
-        Sprite_SetDrawFlag(param0->unk_00[6], 0);
+        Sprite_SetDrawFlag(param0->unk_00[6], FALSE);
     } else {
-        Sprite_SetDrawFlag(param0->unk_00[6], 1);
+        Sprite_SetDrawFlag(param0->unk_00[6], TRUE);
     }
 
     if ((param1->unk_38 & 32) == 0) {
-        Sprite_SetDrawFlag(param0->unk_00[7], 0);
+        Sprite_SetDrawFlag(param0->unk_00[7], FALSE);
     } else {
-        Sprite_SetDrawFlag(param0->unk_00[7], 1);
+        Sprite_SetDrawFlag(param0->unk_00[7], TRUE);
     }
 }
 

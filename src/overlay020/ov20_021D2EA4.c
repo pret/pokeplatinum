@@ -229,8 +229,8 @@ static void ov20_021D3184(UnkStruct_ov20_021D30F8 *param0)
     Sprite_SetAnim(param0->unk_44, 12);
 
     if (ov20_021D1F84(param0->unk_04) != 2) {
-        Sprite_SetDrawFlag(param0->unk_44, 0);
-        Sprite_SetDrawFlag(param0->unk_40, 0);
+        Sprite_SetDrawFlag(param0->unk_44, FALSE);
+        Sprite_SetDrawFlag(param0->unk_40, FALSE);
     }
 }
 
@@ -475,16 +475,16 @@ void ov20_021D369C(UnkStruct_ov20_021D30F8 *param0, BOOL param1)
 void ov20_021D36B0(UnkStruct_ov20_021D30F8 *param0)
 {
     if (ov20_021D1F84(param0->unk_04) == 2) {
-        Sprite_SetDrawFlag(param0->unk_40, 0);
-        Sprite_SetDrawFlag(param0->unk_44, 0);
+        Sprite_SetDrawFlag(param0->unk_40, FALSE);
+        Sprite_SetDrawFlag(param0->unk_44, FALSE);
     }
 }
 
 void ov20_021D36D0(UnkStruct_ov20_021D30F8 *param0)
 {
     if (ov20_021D1F84(param0->unk_04) == 2) {
-        Sprite_SetDrawFlag(param0->unk_40, 1);
-        Sprite_SetDrawFlag(param0->unk_44, 1);
+        Sprite_SetDrawFlag(param0->unk_40, TRUE);
+        Sprite_SetDrawFlag(param0->unk_44, TRUE);
 
         Sprite_SetAnim(param0->unk_40, 13);
         Sprite_SetAnim(param0->unk_44, 12);

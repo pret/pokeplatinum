@@ -12,7 +12,7 @@
 #include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_02098C44.h"
-#include "struct_defs/underground_data.h"
+#include "struct_defs/underground.h"
 
 #include "field/field_system.h"
 #include "savedata/save_table.h"
@@ -896,7 +896,7 @@ u16 sub_0204ABA0(UnkStruct_0204AFC4 *param0, SaveData *saveData)
 {
     u8 v0, v1;
     u16 v2, v3, v4;
-    UndergroundData *v5;
+    Underground *v5;
 
     if (param0->unk_0F == 5) {
         return 0;

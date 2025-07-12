@@ -1396,7 +1396,7 @@ static void ov94_02243E48(JournalEntry *journalEntry, UnkStruct_ov94_0223BA88 *p
 
 static int ov94_02243E84(UnkStruct_ov94_0223FD4C *param0, UnkStruct_ov94_0223BA88 *param1)
 {
-    if (ov94_02241498((Pokemon *)param1->unk_00.unk_00)
+    if (Pokemon_IsHoldingMail((Pokemon *)param1->unk_00.unk_00)
         && (Party_GetCurrentCount(param0->unk_00->unk_08) == 6)) {
         return 2;
     }

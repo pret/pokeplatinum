@@ -212,11 +212,11 @@ static void ov20_021D4A24(UnkStruct_ov20_021D4AD4 *param0, NARC *param1)
 
     param0->unk_14 = ov20_021D4B40(param0, &v1, &v0, &param0->unk_1C, 192, 56, 0, 0);
     Sprite_SetAnim(param0->unk_14, 0);
-    Sprite_SetDrawFlag(param0->unk_14, 0);
+    Sprite_SetDrawFlag(param0->unk_14, FALSE);
 
     param0->unk_18 = ov20_021D4B40(param0, &v1, &v0, &param0->unk_1C, 192, 136, 0, 0);
     Sprite_SetAnim(param0->unk_18, 2);
-    Sprite_SetDrawFlag(param0->unk_18, 0);
+    Sprite_SetDrawFlag(param0->unk_18, FALSE);
 }
 
 static void ov20_021D4AD4(UnkStruct_ov20_021D4AD4 *param0)
@@ -363,8 +363,8 @@ void ov20_021D4DBC(UnkStruct_ov20_021D4AD4 *param0, BOOL param1)
         Sprite_SetDrawFlag(param0->unk_14, ov20_021D204C(param0->unk_04));
         Sprite_SetDrawFlag(param0->unk_18, ov20_021D2060(param0->unk_04));
     } else {
-        Sprite_SetDrawFlag(param0->unk_14, 0);
-        Sprite_SetDrawFlag(param0->unk_18, 0);
+        Sprite_SetDrawFlag(param0->unk_14, FALSE);
+        Sprite_SetDrawFlag(param0->unk_18, FALSE);
     }
 }
 

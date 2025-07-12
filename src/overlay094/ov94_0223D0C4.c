@@ -433,7 +433,7 @@ static int ov94_0223D754(UnkStruct_ov94_0223FD4C *param0)
         {
             Pokemon *v0 = (Pokemon *)param0->unk_12C.unk_00.unk_00;
 
-            if (ov94_02241498(v0)) {
+            if (Pokemon_IsHoldingMail(v0)) {
                 if (Party_GetCurrentCount(param0->unk_00->unk_08) == 6) {
                     ov94_0223D88C(param0, 36, TEXT_SPEED_FAST, 0, 0xf0f, v0);
                     ov94_0223C3F4(param0, 3, 1);
@@ -512,14 +512,14 @@ void ov94_0223D910(MessageLoader *param0, MessageLoader *param1, StringTemplate 
     Strbuf *v0, *v1, *v2, *v3;
     Strbuf *v4 = Strbuf_Init((10 + 1) * 2, HEAP_ID_62);
     Strbuf *v5 = Strbuf_Init((8 + 1) * 2, HEAP_ID_62);
-    int gender, level, v8, v9, species;
+    int gender, level, item, v9, species;
 
     BoxPokemon_GetValue(boxMon, MON_DATA_NICKNAME_STRBUF, v4);
 
     species = param5->species;
     gender = param5->gender;
     level = param5->level;
-    v8 = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
+    item = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
     v3 = MessageLoader_GetNewStrbuf(param0, 70);
     v1 = MessageLoader_GetNewStrbuf(param0, Unk_ov94_02245FD8[gender]);
 
@@ -528,7 +528,7 @@ void ov94_0223D910(MessageLoader *param0, MessageLoader *param1, StringTemplate 
     v2 = MessageUtil_ExpandedStrbuf(param2, param0, 102, HEAP_ID_62);
     v0 = MessageLoader_GetNewStrbuf(param1, species);
 
-    Item_LoadName(v5, v8, 62);
+    Item_LoadName(v5, item, HEAP_ID_62);
 
     for (v9 = 0; v9 < 5; v9++) {
         Window_FillTilemap(&param3[v9], 0x0);

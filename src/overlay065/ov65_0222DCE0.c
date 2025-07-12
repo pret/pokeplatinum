@@ -6754,7 +6754,7 @@ static void ov65_02234D6C(UnkStruct_ov65_0222EBE0 *param0)
 static void ov65_02234DA0(UnkStruct_ov65_0222EBE0 *param0)
 {
     if (param0->unk_BE0.unk_238 == 2) {
-        Sprite_SetDrawFlag(param0->unk_BE0.unk_21C[1], 1);
+        Sprite_SetDrawFlag(param0->unk_BE0.unk_21C[1], TRUE);
         sub_020129D0(param0->unk_BE0.unk_234, 1);
     }
 

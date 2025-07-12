@@ -2648,7 +2648,7 @@ static void ov21_021DBBE4(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D95
                 Sprite_SetAnim(param0->unk_A8[(v3 * 3) + v4], 7);
                 break;
             case 14:
-                Sprite_SetDrawFlag(param0->unk_A8[(v3 * 3) + v4], 0);
+                Sprite_SetDrawFlag(param0->unk_A8[(v3 * 3) + v4], FALSE);
                 break;
             }
         }

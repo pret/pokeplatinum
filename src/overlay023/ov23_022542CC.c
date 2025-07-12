@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "struct_defs/struct_0206A844.h"
-#include "struct_defs/underground_data.h"
+#include "struct_defs/underground.h"
 
 #include "field/field_system.h"
 #include "overlay023/ov23_02241F74.h"
@@ -355,11 +355,11 @@ static void ov23_0225461C(UnkStruct_ov23_02254594 *param0)
 static void ov23_022546A0(ListMenu *param0, u32 param1, u8 param2)
 {
     int v0;
-    UndergroundData *v1;
+    Underground *v1;
     u32 v2;
     u32 v3;
 
-    v1 = (UndergroundData *)ListMenu_GetAttribute(param0, 19);
+    v1 = (Underground *)ListMenu_GetAttribute(param0, 19);
     v3 = ListMenu_GetAttribute(param0, 2);
     v2 = (param1 >> 1);
 
@@ -375,13 +375,13 @@ static void ov23_022546A0(ListMenu *param0, u32 param1, u8 param2)
 
 static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
 {
-    UndergroundData *v0;
+    Underground *v0;
     ListMenuTemplate v1;
     int v2, v3;
     int v4;
     int v5;
 
-    v0 = SaveData_GetUndergroundData(param0->fieldSystem->saveData);
+    v0 = SaveData_GetUnderground(param0->fieldSystem->saveData);
     v4 = sub_020289A0(v0);
     param0->unk_48 = v4;
     v5 = v4 + 1;

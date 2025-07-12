@@ -683,8 +683,8 @@ static void ov65_02235A94(UnkStruct_ov65_022358CC *param0, u32 param1)
     param0->unk_1A0.unk_34 = SpriteList_AddAffine(&v0);
     param0->unk_1A0.unk_38 = SpriteList_AddAffine(&v0);
 
-    Sprite_SetDrawFlag(param0->unk_1A0.unk_34, 0);
-    Sprite_SetDrawFlag(param0->unk_1A0.unk_38, 0);
+    Sprite_SetDrawFlag(param0->unk_1A0.unk_34, FALSE);
+    Sprite_SetDrawFlag(param0->unk_1A0.unk_38, FALSE);
     Sprite_SetAnimateFlag(param0->unk_1A0.unk_34, 1);
     Sprite_SetAnim(param0->unk_1A0.unk_38, 1);
 }
@@ -709,12 +709,12 @@ static void ov65_02235B30(UnkStruct_ov65_02235130 *param0)
     v1.y = v0.unk_02 << FX32_SHIFT;
 
     Sprite_SetPosition(param0->unk_14.unk_1A0.unk_34, &v1);
-    Sprite_SetDrawFlag(param0->unk_14.unk_1A0.unk_34, 1);
+    Sprite_SetDrawFlag(param0->unk_14.unk_1A0.unk_34, TRUE);
 }
 
 static void ov65_02235B78(UnkStruct_ov65_02235130 *param0)
 {
-    Sprite_SetDrawFlag(param0->unk_14.unk_1A0.unk_34, 0);
+    Sprite_SetDrawFlag(param0->unk_14.unk_1A0.unk_34, FALSE);
 }
 
 static void ov65_02235B88(UnkStruct_ov65_02235130 *param0, UnkStruct_ov63_0222CC3C param1, u32 param2)
@@ -729,12 +729,12 @@ static void ov65_02235B88(UnkStruct_ov65_02235130 *param0, UnkStruct_ov63_0222CC
 
     Sprite_SetPosition(param0->unk_14.unk_1A0.unk_38, &v0);
     Sprite_SetPriority(param0->unk_14.unk_1A0.unk_38, param2);
-    Sprite_SetDrawFlag(param0->unk_14.unk_1A0.unk_38, 1);
+    Sprite_SetDrawFlag(param0->unk_14.unk_1A0.unk_38, TRUE);
 }
 
 static void ov65_02235BD8(UnkStruct_ov65_02235130 *param0)
 {
-    Sprite_SetDrawFlag(param0->unk_14.unk_1A0.unk_38, 0);
+    Sprite_SetDrawFlag(param0->unk_14.unk_1A0.unk_38, FALSE);
 }
 
 static BOOL ov65_02235BE8(UnkStruct_ov65_02235130 *param0)

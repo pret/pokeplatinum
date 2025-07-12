@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV23_02248D20_H
 #define POKEPLATINUM_STRUCT_OV23_02248D20_H
 
-#include "struct_defs/underground_data.h"
+#include "struct_defs/underground.h"
 
 #include "overlay023/funcptr_ov23_02248D20.h"
 
@@ -11,7 +11,7 @@
 
 typedef struct {
     UnkFuncPtr_ov23_02248D20 unk_00;
-    UndergroundData *unk_04;
+    Underground *unk_04;
     StringList *unk_08;
     ListMenu *unk_0C;
     ColoredArrow *unk_10;
