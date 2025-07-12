@@ -17,10 +17,13 @@ waza_seq_private_dir = relative_build_dir / waza_seq_target_name + '.p'
 
 be_seq_narc = custom_target(be_seq_target_name,
     output: be_seq_target_name,
-    input: script_bin_gen.process(
-        effect_script_files,
-        extra_args: ['--out-dir', be_seq_private_dir]
-    ),
+    input: [
+        script_bin_gen.process(
+            effect_script_files,
+            extra_args: ['--out-dir', be_seq_private_dir]
+        ),
+        h_headers,
+    ],
     command: [
         narc_exe, 'create',
         '--output', '@OUTPUT@',
@@ -33,10 +36,13 @@ sub_seq_narc = custom_target(sub_seq_narc_name,
         sub_seq_narc_name,
         sub_seq_naix_name,
     ],
-    input: script_bin_gen.process(
-        subscript_files,
-        extra_args: ['--out-dir', sub_seq_private_dir]
-    ),
+    input: [
+        script_bin_gen.process(
+            subscript_files,
+            extra_args: ['--out-dir', sub_seq_private_dir]
+        ),
+        h_headers,
+    ],
     command: [
         narc_exe, 'create',
         '--naix',
@@ -48,10 +54,13 @@ sub_seq_narc = custom_target(sub_seq_narc_name,
 
 waza_seq_narc = custom_target(waza_seq_target_name,
     output: waza_seq_target_name,
-    input: script_bin_gen.process(
-        move_script_files,
-        extra_args: ['--out-dir', waza_seq_private_dir]
-    ),
+    input: [
+        script_bin_gen.process(
+            move_script_files,
+            extra_args: ['--out-dir', waza_seq_private_dir]
+        ),
+        h_headers,
+    ],
     command: [
         narc_exe, 'create',
         '--output', '@OUTPUT@',

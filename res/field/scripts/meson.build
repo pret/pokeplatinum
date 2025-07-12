@@ -1143,7 +1143,7 @@ scr_seq_narc = custom_target('scr_seq.narc',
             scr_seq_files,
             extra_args: ['--depfile', '--out-dir', scr_seq_private_dir]
         ),
-        pokedex_sizes_h,
+        h_headers,
     ],
     command: [
         narc_exe, 'create',
