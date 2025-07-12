@@ -443,7 +443,11 @@ static void ov94_0223E3B0(Window *window, MessageLoader *gtsMessageLoader, Messa
 
     ov94_02242158(window, speciesMessageLoader, requirements->species, 0, 3, TEXT_COLOR(15, 2, 0));
     ov94_02242204(window, gtsMessageLoader, requirements->gender, 0, 3, 70, TEXT_COLOR(15, 2, 0));
+#if POKEPLATINUM_REVISION == 0
     ov94_0224226C(window + 1, gtsMessageLoader, ov94_02242970(requirements->level, requirements->level2, 0), 0, 19, TEXT_COLOR(15, 2, 0), 0, 8);
+#else
+    ov94_0224226C(window, gtsMessageLoader, ov94_02242970(requirements->level, requirements->level2, 0), 0, 19, TEXT_COLOR(15, 2, 0), 0, 8);
+#endif
 }
 
 static void ov94_0223E424(Window *window, Strbuf *countryStrbuf, Strbuf *cityStrbuf)
