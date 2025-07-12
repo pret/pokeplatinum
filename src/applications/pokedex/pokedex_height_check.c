@@ -43,9 +43,9 @@ typedef struct {
     Sprite *trainerHeightCellActor;
 } HeightCheckVisuals;
 
-static UnkStruct_ov21_021E6104 *ov21_021E608C(enum HeapId heapID, PokedexApp *param1);
-static PokedexGraphicData **ov21_021E60D8(enum HeapId heapID, PokedexApp *param1);
-static UnkStruct_ov21_021D4660 *ov21_021E6100(enum HeapId heapID, PokedexApp *param1);
+static UnkStruct_ov21_021E6104 *ov21_021E608C(enum HeapID heapID, PokedexApp *param1);
+static PokedexGraphicData **ov21_021E60D8(enum HeapID heapID, PokedexApp *param1);
+static UnkStruct_ov21_021D4660 *ov21_021E6100(enum HeapID heapID, PokedexApp *param1);
 static void ov21_021E6104(UnkStruct_ov21_021E6104 *param0);
 static void ov21_021E6118(PokedexGraphicData **param0);
 static void DummyForMatching1(UnkStruct_ov21_021D4660 *param0);
@@ -60,17 +60,17 @@ static void SetTrainerHeightLarge(HeightCheckVisuals *heightCheckVisuals);
 static void SetTrainerHeightNormal(HeightCheckVisuals *heightCheckVisuals);
 static void ov21_021E628C(HeightCheckVisuals *heightCheckVisuals, PokedexGraphicData **param1, const UnkStruct_ov21_021E6104 *param2, BOOL param3);
 static BOOL ov21_021E62F8(HeightCheckVisuals *heightCheckVisuals, PokedexGraphicData **param1, const UnkStruct_ov21_021E6104 *param2, BOOL param3);
-static void DisplayHeightCheck(HeightCheckVisuals *heightCheckVisuals, PokedexGraphicData **param1, const UnkStruct_ov21_021E6104 *param2, const int *param3, enum HeapId heapID);
+static void DisplayHeightCheck(HeightCheckVisuals *heightCheckVisuals, PokedexGraphicData **param1, const UnkStruct_ov21_021E6104 *param2, const int *param3, enum HeapID heapID);
 static void FreeVisuals(HeightCheckVisuals *heightCheckVisuals, PokedexGraphicData **param1);
-static void DisplayBackground(PokedexGraphicData **param0, const UnkStruct_ov21_021E6104 *param1, enum HeapId heapID);
-static void GetHeightCheckGraphics(HeightCheckVisuals *heightCheckVisuals, PokedexGraphicData **param1, enum HeapId heapID);
+static void DisplayBackground(PokedexGraphicData **param0, const UnkStruct_ov21_021E6104 *param1, enum HeapID heapID);
+static void GetHeightCheckGraphics(HeightCheckVisuals *heightCheckVisuals, PokedexGraphicData **param1, enum HeapID heapID);
 static void FreeSprites(HeightCheckVisuals *heightCheckVisuals, PokedexGraphicData **param1);
-static void DisplayTrainerHeight(HeightCheckVisuals *heightCheckVisuals, PokedexGraphicData **param1, const UnkStruct_ov21_021E6104 *param2, enum HeapId heapID);
+static void DisplayTrainerHeight(HeightCheckVisuals *heightCheckVisuals, PokedexGraphicData **param1, const UnkStruct_ov21_021E6104 *param2, enum HeapID heapID);
 static void FreeTrainerHeight(HeightCheckVisuals *heightCheckVisuals);
-static void DummyForMatching2(HeightCheckVisuals *heightCheckVisuals, PokedexGraphicData **param1, const UnkStruct_ov21_021E6104 *param2, enum HeapId heapID);
+static void DummyForMatching2(HeightCheckVisuals *heightCheckVisuals, PokedexGraphicData **param1, const UnkStruct_ov21_021E6104 *param2, enum HeapID heapID);
 static void DummyForMatching3(HeightCheckVisuals *heightCheckVisuals);
-static void DisplayHeightLabels(PokedexGraphicData **param0, enum HeapId heapID);
-static void DisplayHeightValues(PokedexGraphicData **param0, const UnkStruct_ov21_021E6104 *param1, enum HeapId heapID);
+static void DisplayHeightLabels(PokedexGraphicData **param0, enum HeapID heapID);
+static void DisplayHeightValues(PokedexGraphicData **param0, const UnkStruct_ov21_021E6104 *param1, enum HeapID heapID);
 static void DisplaySpeciesHeight(PokedexGraphicData **param0, const UnkStruct_ov21_021E6104 *param1);
 static void ClearSpeciesSprite(PokedexGraphicData **param0);
 static void SetTrainerPosition(Sprite *trainerHeightSprite, short trainerPos);
@@ -78,7 +78,7 @@ static void SetSpeciesPosition(PokemonSprite *speciesSprite, short pokemonPos);
 static void SetTrainerScale(Sprite *trainerHeightSprite, short trainerScale);
 static void SetSpeciesScale(PokemonSprite *speciesSprite, short pokemonScale);
 
-void ov21_021E6014(UnkStruct_ov21_021E68F4 *param0, PokedexApp *param1, enum HeapId heapID)
+void ov21_021E6014(UnkStruct_ov21_021E68F4 *param0, PokedexApp *param1, enum HeapID heapID)
 {
     UnkStruct_ov21_021E6104 *v0 = ov21_021E608C(heapID, param1);
     PokedexGraphicData **v1 = ov21_021E60D8(heapID, param1);
@@ -104,7 +104,7 @@ void ov21_021E6074(UnkStruct_ov21_021E68F4 *param0)
     DummyForMatching1(param0->unk_20);
 }
 
-static UnkStruct_ov21_021E6104 *ov21_021E608C(enum HeapId heapID, PokedexApp *param1)
+static UnkStruct_ov21_021E6104 *ov21_021E608C(enum HeapID heapID, PokedexApp *param1)
 {
     UnkStruct_ov21_021E6104 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov21_021E6104));
     GF_ASSERT(v0);
@@ -117,7 +117,7 @@ static UnkStruct_ov21_021E6104 *ov21_021E608C(enum HeapId heapID, PokedexApp *pa
     return v0;
 }
 
-PokedexGraphicData **ov21_021E60D8(enum HeapId heapID, PokedexApp *param1)
+PokedexGraphicData **ov21_021E60D8(enum HeapID heapID, PokedexApp *param1)
 {
     PokedexGraphicData **v0 = Heap_Alloc(heapID, sizeof(PokedexGraphicData *));
 
@@ -129,7 +129,7 @@ PokedexGraphicData **ov21_021E60D8(enum HeapId heapID, PokedexApp *param1)
     return v0;
 }
 
-static UnkStruct_ov21_021D4660 *ov21_021E6100(enum HeapId heapID, PokedexApp *param1)
+static UnkStruct_ov21_021D4660 *ov21_021E6100(enum HeapID heapID, PokedexApp *param1)
 {
     return NULL;
 }
@@ -297,7 +297,7 @@ static BOOL ov21_021E62F8(HeightCheckVisuals *heightCheckVisuals, PokedexGraphic
     return FALSE;
 }
 
-static void DisplayHeightCheck(HeightCheckVisuals *heightCheckVisuals, PokedexGraphicData **param1, const UnkStruct_ov21_021E6104 *param2, const int *param3, enum HeapId heapID)
+static void DisplayHeightCheck(HeightCheckVisuals *heightCheckVisuals, PokedexGraphicData **param1, const UnkStruct_ov21_021E6104 *param2, const int *param3, enum HeapID heapID)
 {
     DisplayBackground(param1, param2, heapID);
     DisplayHeightLabels(param1, heapID);
@@ -320,7 +320,7 @@ static void FreeVisuals(HeightCheckVisuals *heightCheckVisuals, PokedexGraphicDa
     ClearSpeciesSprite(param1);
 }
 
-static void DisplayBackground(PokedexGraphicData **param0, const UnkStruct_ov21_021E6104 *param1, enum HeapId heapID)
+static void DisplayBackground(PokedexGraphicData **param0, const UnkStruct_ov21_021E6104 *param1, enum HeapID heapID)
 {
     NNSG2dScreenData *v1;
 
@@ -333,7 +333,7 @@ static void DisplayBackground(PokedexGraphicData **param0, const UnkStruct_ov21_
     Bg_ScheduleTilemapTransfer((*param0)->bgConfig, 3);
 }
 
-static void GetHeightCheckGraphics(HeightCheckVisuals *heightCheckVisuals, PokedexGraphicData **param1, enum HeapId heapID)
+static void GetHeightCheckGraphics(HeightCheckVisuals *heightCheckVisuals, PokedexGraphicData **param1, enum HeapID heapID)
 {
     PokedexGraphicData *v0 = *param1;
     NARC *pokedexGraphicsNarc = PokedexGraphics_GetNARC(v0);
@@ -364,7 +364,7 @@ static void FreeSprites(HeightCheckVisuals *heightCheckVisuals, PokedexGraphicDa
     SpriteResourceCollection_Remove(v0->spriteResourceCollection[3], heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_ANIM]);
 }
 
-static void DisplayTrainerHeight(HeightCheckVisuals *heightCheckVisuals, PokedexGraphicData **param1, const UnkStruct_ov21_021E6104 *param2, enum HeapId heapID)
+static void DisplayTrainerHeight(HeightCheckVisuals *heightCheckVisuals, PokedexGraphicData **param1, const UnkStruct_ov21_021E6104 *param2, enum HeapID heapID)
 {
     SpriteResourcesHeader trainerResource;
     SpriteListTemplate trainerCellParams;
@@ -402,7 +402,7 @@ static void FreeTrainerHeight(HeightCheckVisuals *heightCheckVisuals)
     Sprite_Delete(heightCheckVisuals->trainerHeightCellActor);
 }
 
-static void DummyForMatching2(HeightCheckVisuals *heightCheckVisuals, PokedexGraphicData **param1, const UnkStruct_ov21_021E6104 *param2, enum HeapId heapID)
+static void DummyForMatching2(HeightCheckVisuals *heightCheckVisuals, PokedexGraphicData **param1, const UnkStruct_ov21_021E6104 *param2, enum HeapID heapID)
 {
     return;
 }
@@ -412,7 +412,7 @@ static void DummyForMatching3(HeightCheckVisuals *heightCheckVisuals)
     return;
 }
 
-static void DisplayHeightLabels(PokedexGraphicData **param0, enum HeapId heapID)
+static void DisplayHeightLabels(PokedexGraphicData **param0, enum HeapID heapID)
 {
     Strbuf *strbuf = Strbuf_Init(32, heapID);
     MessageLoader *pokedexMessageBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
@@ -432,7 +432,7 @@ static void DisplayHeightLabels(PokedexGraphicData **param0, enum HeapId heapID)
     MessageLoader_Free(pokedexMessageBank);
 }
 
-static void DisplayHeightValues(PokedexGraphicData **param0, const UnkStruct_ov21_021E6104 *param1, enum HeapId heapID)
+static void DisplayHeightValues(PokedexGraphicData **param0, const UnkStruct_ov21_021E6104 *param1, enum HeapID heapID)
 {
     Strbuf *strbuf = Strbuf_Init(32, heapID);
     int species = PokedexSort_CurrentSpecies(param1->unk_04);

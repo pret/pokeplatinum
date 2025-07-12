@@ -35,7 +35,7 @@ int TrainerInfo_Size(void);
  * @param heapID    Heap on which to allocate the new struct.
  * @return Address of the new struct.
  */
-TrainerInfo *TrainerInfo_New(enum HeapId heapID);
+TrainerInfo *TrainerInfo_New(enum HeapID heapID);
 
 /**
  * @brief Copy a source TrainerInfo struct into a destination struct, byte-for-byte.

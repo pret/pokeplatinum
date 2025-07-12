@@ -13,7 +13,7 @@ static void WalkCols(PokedexPanelData *pokedexPanelData, int distance);
 static void WalkRows(PokedexPanelData *pokedexPanelData, int distance);
 static void JumpToButton(PokedexPanelData *pokedexPanelData, int button);
 
-PokedexPanelData *PokedexPanel_Alloc(enum HeapId heapID)
+PokedexPanelData *PokedexPanel_Alloc(enum HeapID heapID)
 {
     PokedexPanelData *pokedexPanelData = Heap_Alloc(heapID, sizeof(PokedexPanelData));
     memset(pokedexPanelData, 0, sizeof(PokedexPanelData));

@@ -9,7 +9,7 @@
 
 static BOOL RegisterTransferTaskCB(NNS_GFD_DST_TYPE type, u32 destAddr, void *buf, u32 size);
 
-NNSG2dCellTransferState *CellTransfer_New(int capacity, enum HeapId heapID)
+NNSG2dCellTransferState *CellTransfer_New(int capacity, enum HeapID heapID)
 {
     NNSG2dCellTransferState *transferStates = Heap_Alloc(heapID, sizeof(NNSG2dCellTransferState) * capacity);
     NNS_G2dInitCellTransferStateManager(transferStates, capacity, RegisterTransferTaskCB);

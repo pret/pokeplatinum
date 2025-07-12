@@ -12,7 +12,7 @@ static void HBlankSystem_HBlankCallback(void *param);
 static void HBlankTask_DummyCallback(HBlankTask *task, void *param);
 static HBlankTask *HBlankSystem_GetAvailableTask(HBlankSystem *hBlankSystem);
 
-HBlankSystem *HBlankSystem_New(enum HeapId heapID)
+HBlankSystem *HBlankSystem_New(enum HeapID heapID)
 {
     HBlankSystem *hBlankSystem = Heap_Alloc(heapID, sizeof(HBlankSystem));
     HBlankSystem_Init(hBlankSystem);

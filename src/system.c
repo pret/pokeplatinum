@@ -436,7 +436,7 @@ void ResetUnlock(u8 mask)
 
 #define HEAP_CANARY 0x2F93A1BC
 
-void InitHeapCanary(enum HeapId heapID)
+void InitHeapCanary(enum HeapID heapID)
 {
     GF_ASSERT(gSystem.heapCanary == NULL);
 

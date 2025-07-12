@@ -31,7 +31,7 @@ void BerryPatches_Clear(BerryPatch *patches)
     }
 }
 
-void BerryPatches_Init(BerryPatch *patches, enum HeapId heapID, const u16 *initPatches, int initSize)
+void BerryPatches_Init(BerryPatch *patches, enum HeapID heapID, const u16 *initPatches, int initSize)
 {
     BerryGrowthData *growthData = BerryGrowthData_Init(heapID);
 
@@ -49,7 +49,7 @@ void BerryPatches_Init(BerryPatch *patches, enum HeapId heapID, const u16 *initP
     Heap_Free(growthData);
 }
 
-BerryGrowthData *BerryGrowthData_Init(enum HeapId heapID)
+BerryGrowthData *BerryGrowthData_Init(enum HeapID heapID)
 {
     BerryGrowthData *growthData;
     BerryData *berryData;

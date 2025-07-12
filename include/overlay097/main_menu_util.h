@@ -60,8 +60,8 @@ typedef struct MainMenuWindow {
     int renderDelay;
 } MainMenuWindow;
 
-void MainMenuUtil_Init(enum HeapId heapID);
-void *MainMenuUtil_InitAppAndFadeToBlack(ApplicationManager *appMan, enum HeapId heapID, int appDataSize, enum HeapSize heapSize);
+void MainMenuUtil_Init(enum HeapID heapID);
+void *MainMenuUtil_InitAppAndFadeToBlack(ApplicationManager *appMan, enum HeapID heapID, int appDataSize, enum HeapSize heapSize);
 void MainMenuUtil_InitBG(BgConfig *bgConfig, enum BgLayer bgLayer, u8 screenSize, u32 screenBase, u32 charBase);
 void MainMenuUtil_SetFadeToWhite(BOOL enable);
 void MainMenuUtil_StartScreenFadeToState(enum FadeType fadeType, int destState, int *state, int waitState);
@@ -84,8 +84,8 @@ Sprite *MainMenuUtil_InitSprite(enum DSScreen screen, Sprite *sprite, int x, int
 void MainMenuUtil_FreeSprites(void);
 u32 MainMenuUtil_CalcMysteryGiftVersionBit(enum Version version);
 void MainMenuUtil_LoadGiftSprite(BgConfig *bgConfig, WonderCard *wonderCard);
-void MainMenuUtil_EncryptWonderCard(MysteryGiftEventData *eventData, WonderCard *wonderCard, enum HeapId heapID);
-void MainMenuUtil_DecryptReceivedWonderCard(MysteryGiftEventData *param0, WonderCard *param1, enum HeapId heapID);
+void MainMenuUtil_EncryptWonderCard(MysteryGiftEventData *eventData, WonderCard *wonderCard, enum HeapID heapID);
+void MainMenuUtil_DecryptReceivedWonderCard(MysteryGiftEventData *param0, WonderCard *param1, enum HeapID heapID);
 void MainMenuUtil_ListMenuCursorCB(ListMenu *param0, u32 param1, u8 param2);
 void MainMenuUtil_ToggleTerminateOnGBACartRemoved(BOOL enable);
 void MainMenuUtil_UnsetGBACartIRQFunc(void);

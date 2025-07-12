@@ -89,7 +89,7 @@ typedef struct UnkStruct_ov70_02260BB8_t {
     NNSFndAllocator unk_494;
 } UnkStruct_ov70_02260BB8;
 
-static UnkStruct_ov70_02261418 *ov70_022613F4(int param0, int param1, enum HeapId heapID);
+static UnkStruct_ov70_02261418 *ov70_022613F4(int param0, int param1, enum HeapID heapID);
 static void ov70_02261418(UnkStruct_ov70_02261418 *param0);
 static void ov70_0226146C(Easy3DModel *param0);
 static void ov70_02261474(fx32 *param0, const Easy3DAnim *param1, fx32 param2);
@@ -556,7 +556,7 @@ void ov70_022613E8(UnkStruct_ov70_022610B8 *param0, fx32 param1, fx32 param2, fx
     Easy3DObject_SetScale(&param0->unk_04, param1, param2, param3);
 }
 
-static UnkStruct_ov70_02261418 *ov70_022613F4(int param0, int param1, enum HeapId heapID)
+static UnkStruct_ov70_02261418 *ov70_022613F4(int param0, int param1, enum HeapID heapID)
 {
     void *v0;
     u32 v1 = (param1 * 5) + param0;

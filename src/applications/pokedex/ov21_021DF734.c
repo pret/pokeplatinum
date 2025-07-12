@@ -61,8 +61,8 @@ typedef struct {
 } UnkStruct_ov21_021DFFF8;
 
 static inline int inline_ov21_021E00F4(int param0, int param1);
-static UnkStruct_ov21_021DF844 *ov21_021DF7CC(enum HeapId heapID, PokedexApp *param1);
-static UnkStruct_ov21_021DF858 *ov21_021DF80C(enum HeapId heapID, PokedexApp *param1);
+static UnkStruct_ov21_021DF844 *ov21_021DF7CC(enum HeapID heapID, PokedexApp *param1);
+static UnkStruct_ov21_021DF858 *ov21_021DF80C(enum HeapID heapID, PokedexApp *param1);
 static void ov21_021DF844(UnkStruct_ov21_021DF844 *param0);
 static void ov21_021DF858(UnkStruct_ov21_021DF858 *param0);
 static int ov21_021DF86C(void);
@@ -128,7 +128,7 @@ static void ov21_021E0BF8(UnkStruct_ov21_021DFFF8 *param0);
 static void ov21_021E0C10(UnkStruct_ov21_021DFFF8 *param0);
 static void ov21_021E0C30(UnkStruct_ov21_021DFFF8 *param0);
 
-void ov21_021DF734(UnkStruct_ov21_021E68F4 *param0, PokedexApp *param1, enum HeapId heapID)
+void ov21_021DF734(UnkStruct_ov21_021E68F4 *param0, PokedexApp *param1, enum HeapID heapID)
 {
     UnkStruct_ov21_021DF844 *v0 = ov21_021DF7CC(heapID, param1);
     UnkStruct_ov21_021DF858 *v1 = ov21_021DF80C(heapID, param1);
@@ -172,7 +172,7 @@ BOOL ov21_021DF7A0(UnkStruct_ov21_021E68F4 *param0, int param1)
     return 0;
 }
 
-static UnkStruct_ov21_021DF844 *ov21_021DF7CC(enum HeapId heapID, PokedexApp *param1)
+static UnkStruct_ov21_021DF844 *ov21_021DF7CC(enum HeapID heapID, PokedexApp *param1)
 {
     UnkStruct_ov21_021DF844 *v0;
     UnkStruct_ov21_021E68F4 *v1;
@@ -190,7 +190,7 @@ static UnkStruct_ov21_021DF844 *ov21_021DF7CC(enum HeapId heapID, PokedexApp *pa
     return v0;
 }
 
-static UnkStruct_ov21_021DF858 *ov21_021DF80C(enum HeapId heapID, PokedexApp *param1)
+static UnkStruct_ov21_021DF858 *ov21_021DF80C(enum HeapID heapID, PokedexApp *param1)
 {
     UnkStruct_ov21_021DF858 *v0;
     UnkStruct_ov21_021E68F4 *v1;

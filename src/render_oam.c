@@ -17,10 +17,10 @@
 typedef struct OamManager {
     NNSG2dOamManagerInstance mainScreenOam;
     NNSG2dOamManagerInstance subScreenOam;
-    enum HeapId heapID;
+    enum HeapID heapID;
 } OamManager;
 
-static void InitOamManager(int mainOamStart, int mainOamCount, int mainAffineOamStart, int mainAffineOamCount, int subOamStart, int subOamCount, int subAffineOamStart, int subAffineOamCount, enum HeapId heapID);
+static void InitOamManager(int mainOamStart, int mainOamCount, int mainAffineOamStart, int mainAffineOamCount, int subOamStart, int subOamCount, int subAffineOamStart, int subAffineOamCount, enum HeapID heapID);
 static BOOL AddToMainOamManager(const GXOamAttr *oam, u16 affineIdx, BOOL unused);
 static BOOL AddToSubOamManager(const GXOamAttr *oam, u16 affineIdx, BOOL unused);
 static u16 AddAffineToMainOamManager(const MtxFx22 *affineTransform);
@@ -28,7 +28,7 @@ static u16 AddAffineToSubOamManager(const MtxFx22 *affineTransform);
 
 static OamManager *sOamManager;
 
-void RenderOam_Init(int mainOamStart, int mainOamCount, int mainAffineOamStart, int mainAffineOamCount, int subOamStart, int subOamCount, int subAffineOamStart, int subAffineOamCount, enum HeapId heapID)
+void RenderOam_Init(int mainOamStart, int mainOamCount, int mainAffineOamStart, int mainAffineOamCount, int subOamStart, int subOamCount, int subAffineOamStart, int subAffineOamCount, enum HeapID heapID)
 {
     int trueMainOamStart;
     int trueMainOamCount;
@@ -74,7 +74,7 @@ void RenderOam_Init(int mainOamStart, int mainOamCount, int mainAffineOamStart, 
         heapID);
 }
 
-static void InitOamManager(int mainOamStart, int mainOamCount, int mainAffineOamStart, int mainAffineOamCount, int subOamStart, int subOamCount, int subAffineOamStart, int subAffineOamCount, enum HeapId heapID)
+static void InitOamManager(int mainOamStart, int mainOamCount, int mainAffineOamStart, int mainAffineOamCount, int subOamStart, int subOamCount, int subAffineOamStart, int subAffineOamCount, enum HeapID heapID)
 {
     GF_ASSERT(sOamManager == NULL);
     sOamManager = Heap_Alloc(heapID, sizeof(OamManager));
@@ -126,12 +126,12 @@ NNSG2dOamManagerInstance *RenderOam_GetScreenOam(enum DSScreen screen)
     return manager;
 }
 
-void RenderOam_ClearMain(enum HeapId heapID)
+void RenderOam_ClearMain(enum HeapID heapID)
 {
     Utility_Clear2DMainOAM(heapID);
 }
 
-void RenderOam_ClearSub(enum HeapId heapID)
+void RenderOam_ClearSub(enum HeapID heapID)
 {
     Utility_Clear2DSubOAM(heapID);
 }

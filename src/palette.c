@@ -24,7 +24,7 @@ static void UpdateFadeBlendStep(PaletteData *paletteData, u8 bufferID, PaletteFa
 
 static void SysTask_FadePalette(SysTask *task, void *data);
 
-PaletteData *PaletteData_New(enum HeapId heapID)
+PaletteData *PaletteData_New(enum HeapID heapID)
 {
     PaletteData *paletteData = Heap_Alloc(heapID, sizeof(PaletteData));
     MI_CpuClear8(paletteData, sizeof(PaletteData));

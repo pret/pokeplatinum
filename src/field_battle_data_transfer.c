@@ -65,7 +65,7 @@
 static int CalcTerrain(const FieldSystem *fieldSystem, enum BattleBackground background);
 static void SetBackgroundAndTerrain(FieldBattleDTO *dto, const FieldSystem *fieldSystem);
 
-FieldBattleDTO *FieldBattleDTO_New(enum HeapId heapID, u32 battleType)
+FieldBattleDTO *FieldBattleDTO_New(enum HeapID heapID, u32 battleType)
 {
     int i;
     FieldBattleDTO *dto = Heap_Alloc(heapID, sizeof(FieldBattleDTO));
@@ -133,21 +133,21 @@ FieldBattleDTO *FieldBattleDTO_New(enum HeapId heapID, u32 battleType)
     return dto;
 }
 
-FieldBattleDTO *FieldBattleDTO_NewSafari(enum HeapId heapID, int countSafariBalls)
+FieldBattleDTO *FieldBattleDTO_NewSafari(enum HeapID heapID, int countSafariBalls)
 {
     FieldBattleDTO *dto = FieldBattleDTO_New(heapID, BATTLE_TYPE_SAFARI);
     dto->countSafariBalls = countSafariBalls;
     return dto;
 }
 
-FieldBattleDTO *FieldBattleDTO_NewPalPark(enum HeapId heapID, int countParkBalls)
+FieldBattleDTO *FieldBattleDTO_NewPalPark(enum HeapID heapID, int countParkBalls)
 {
     FieldBattleDTO *dto = FieldBattleDTO_New(heapID, BATTLE_TYPE_PAL_PARK);
     dto->countSafariBalls = countParkBalls;
     return dto;
 }
 
-FieldBattleDTO *FieldBattleDTO_NewCatchingTutorial(enum HeapId heapID, const FieldSystem *fieldSystem)
+FieldBattleDTO *FieldBattleDTO_NewCatchingTutorial(enum HeapID heapID, const FieldSystem *fieldSystem)
 {
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
     Options *options = SaveData_GetOptions(fieldSystem->saveData);

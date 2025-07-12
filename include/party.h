@@ -14,7 +14,7 @@ typedef struct Party {
 } Party;
 
 int Party_SaveSize(void);
-Party *Party_New(enum HeapId heapID);
+Party *Party_New(enum HeapID heapID);
 void Party_Init(Party *party);
 void Party_InitWithCapacity(Party *party, int capacity);
 BOOL Party_AddPokemon(Party *party, Pokemon *pokemon);

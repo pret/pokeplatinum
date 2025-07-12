@@ -6,7 +6,7 @@
 #include "game_overlay.h"
 #include "heap.h"
 
-ApplicationManager *ApplicationManager_New(const ApplicationManagerTemplate *template, void *args, const enum HeapId heapID)
+ApplicationManager *ApplicationManager_New(const ApplicationManagerTemplate *template, void *args, const enum HeapID heapID)
 {
     ApplicationManager *appMan = Heap_Alloc(heapID, sizeof(ApplicationManager));
 
@@ -26,7 +26,7 @@ void ApplicationManager_Free(ApplicationManager *appMan)
     Heap_Free(appMan);
 }
 
-void *ApplicationManager_NewData(ApplicationManager *appMan, u32 size, enum HeapId heapID)
+void *ApplicationManager_NewData(ApplicationManager *appMan, u32 size, enum HeapID heapID)
 {
     appMan->data = Heap_Alloc(heapID, size);
     return appMan->data;

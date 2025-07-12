@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_CONSTANTS_HEAP_H
 #define POKEPLATINUM_CONSTANTS_HEAP_H
 
-enum HeapId {
+enum HeapID {
     HEAP_ID_SYSTEM = 0,
     HEAP_ID_SAVE,
     HEAP_ID_DEBUG,

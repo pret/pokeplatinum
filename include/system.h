@@ -82,7 +82,7 @@ void ReadKeypadAndTouchpad(void);
 void SetAutorepeat(int rate, int delay);
 void ResetLock(u8 mask);
 void ResetUnlock(u8 mask);
-void InitHeapCanary(enum HeapId param0);
+void InitHeapCanary(enum HeapID param0);
 void FreeHeapCanary(void);
 BOOL HeapCanaryOK(void);
 

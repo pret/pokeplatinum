@@ -90,7 +90,7 @@ void SpriteResourcesHeader_Clear(SpriteResourcesHeader *resourceHeader)
     memset(resourceHeader, 0, sizeof(SpriteResourcesHeader));
 }
 
-SpriteResourcesHeaderList *SpriteResourcesHeaderList_NewFromResdat(const ResdatTableEntry *resdatEntries, enum HeapId heapID, SpriteResourceCollection *charResources, SpriteResourceCollection *plttResources, SpriteResourceCollection *cellResources, SpriteResourceCollection *animResources, SpriteResourceCollection *mcellResources, SpriteResourceCollection *manimResources)
+SpriteResourcesHeaderList *SpriteResourcesHeaderList_NewFromResdat(const ResdatTableEntry *resdatEntries, enum HeapID heapID, SpriteResourceCollection *charResources, SpriteResourceCollection *plttResources, SpriteResourceCollection *cellResources, SpriteResourceCollection *animResources, SpriteResourceCollection *mcellResources, SpriteResourceCollection *manimResources)
 {
     int resdatLength = 0;
     while (resdatEntries[resdatLength].charResourceID != RESDAT_TABLE_TERMINATOR) {
@@ -132,7 +132,7 @@ void SpriteResourcesHeaderList_Free(SpriteResourcesHeaderList *headerList)
     Heap_Free(headerList);
 }
 
-SpriteList *SpriteList_InitRendering(int maxElements, G2dRenderer *g2dRenderer, enum HeapId heapID)
+SpriteList *SpriteList_InitRendering(int maxElements, G2dRenderer *g2dRenderer, enum HeapID heapID)
 {
     SpriteListParams template;
     NNSG2dViewRect viewRect;

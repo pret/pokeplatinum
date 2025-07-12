@@ -62,7 +62,7 @@ static BOOL TryScreenFade(ScreenFadeParams *screen, ScreenFade *fadeMain, Screen
 static void TryScreenFadeFunc(BOOL *running, ScreenFade *fade);
 static BOOL CallScreenFadeFunc(ScreenFade *fade);
 static void SetupScreenFadeParams(enum FadeMode mode, ScreenFadeParams *params);
-static void InitScreenFade(ScreenFade *fade, enum FadeType type, int steps, int framesPerStep, enum FadeState state, void *data, enum DSScreen screen, HardwareWindowSettings *hwSettings, ScreenFadeHBlanks *hblanks, enum HeapId heapID, u16 color);
+static void InitScreenFade(ScreenFade *fade, enum FadeType type, int steps, int framesPerStep, enum FadeState state, void *data, enum DSScreen screen, HardwareWindowSettings *hwSettings, ScreenFadeHBlanks *hblanks, enum HeapID heapID, u16 color);
 static void InitScreenFadeParams(ScreenFadeParams *params, enum ScreenFadeOrder order, BOOL fadeMain, BOOL fadeSub);
 static void EnableScreenHBlank(ScreenFadeHBlanks *hblanks, void *data, Callback callback, enum DSScreen screen);
 static void DisableScreenHBlank(ScreenFadeHBlanks *hblanks, enum DSScreen screen);
@@ -124,7 +124,7 @@ static const ScreenFadeFunc sScreenFadeFuncs[FADE_TYPE_MAX] = {
 
 static ScreenFadeManager sScreenFadeManager;
 
-void StartScreenFade(enum FadeMode mode, enum FadeType typeMain, enum FadeType typeSub, u16 color, int steps, int framesPerStep, enum HeapId heapID)
+void StartScreenFade(enum FadeMode mode, enum FadeType typeMain, enum FadeType typeSub, u16 color, int steps, int framesPerStep, enum HeapID heapID)
 {
     GF_ASSERT(steps);
     GF_ASSERT(framesPerStep);
@@ -367,7 +367,7 @@ static void InitScreenFadeParams(ScreenFadeParams *params, enum ScreenFadeOrder 
     params->existsSub = fadeSub;
 }
 
-static void InitScreenFade(ScreenFade *fade, enum FadeType type, int steps, int framesPerStep, enum FadeState state, void *data, enum DSScreen screen, HardwareWindowSettings *hwSettings, ScreenFadeHBlanks *hblanks, enum HeapId heapID, u16 color)
+static void InitScreenFade(ScreenFade *fade, enum FadeType type, int steps, int framesPerStep, enum FadeState state, void *data, enum DSScreen screen, HardwareWindowSettings *hwSettings, ScreenFadeHBlanks *hblanks, enum HeapID heapID, u16 color)
 {
     fade->type = type;
     fade->steps = steps;
@@ -433,7 +433,7 @@ static void DisableScreenHBlank(ScreenFadeHBlanks *hblanks, enum DSScreen screen
     hblanks->data[screen] = NULL;
 }
 
-void RequestEnableScreenHBlank(ScreenFadeHBlanks *hblanks, void *data, Callback callback, enum DSScreen screen, enum HeapId heapID)
+void RequestEnableScreenHBlank(ScreenFadeHBlanks *hblanks, void *data, Callback callback, enum DSScreen screen, enum HeapID heapID)
 {
     EnableHBlankTemplate *template = Heap_AllocAtEnd(heapID, sizeof(EnableHBlankTemplate));
     template->hblanks = hblanks;
@@ -444,7 +444,7 @@ void RequestEnableScreenHBlank(ScreenFadeHBlanks *hblanks, void *data, Callback 
     SysTask_ExecuteAfterVBlank(Task_EnableScreenHBlank, template, LOCAL_TASK_PRIORIITY);
 }
 
-void RequestDisableScreenHBlank(ScreenFadeHBlanks *hblanks, enum DSScreen screen, enum HeapId heapID)
+void RequestDisableScreenHBlank(ScreenFadeHBlanks *hblanks, enum DSScreen screen, enum HeapID heapID)
 {
     DisableHBlankTemplate *template = Heap_AllocAtEnd(heapID, sizeof(DisableHBlankTemplate));
     template->hblanks = hblanks;

@@ -105,7 +105,7 @@ static void Camera_UpdateHistory(Camera const *camera, const VecFx32 *inPos, Vec
     }
 }
 
-void Camera_InitHistory(int historySize, int delay, int delayMask, enum HeapId heapID, Camera *camera)
+void Camera_InitHistory(int historySize, int delay, int delayMask, enum HeapID heapID, Camera *camera)
 {
     if (camera->targetPos == NULL) {
         return;
@@ -155,7 +155,7 @@ void Camera_DeleteHistory(Camera *camera)
     }
 }
 
-Camera *Camera_Alloc(const enum HeapId heapID)
+Camera *Camera_Alloc(const enum HeapID heapID)
 {
     return Heap_Alloc(heapID, sizeof(Camera));
 }

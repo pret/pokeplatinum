@@ -74,7 +74,7 @@ static void TransferGraphicsOnVBlank(void *unused);
 
 static MainMenuUtilManager sMainMenuUtilManager;
 
-void MainMenuUtil_Init(enum HeapId heapID)
+void MainMenuUtil_Init(enum HeapID heapID)
 {
     MainMenuUtilManager *utilMan = &sMainMenuUtilManager;
 
@@ -84,7 +84,7 @@ void MainMenuUtil_Init(enum HeapId heapID)
     utilMan->heapID = heapID;
 }
 
-void *MainMenuUtil_InitAppAndFadeToBlack(ApplicationManager *appMan, enum HeapId heapID, int appDataSize, enum HeapSize heapSize)
+void *MainMenuUtil_InitAppAndFadeToBlack(ApplicationManager *appMan, enum HeapID heapID, int appDataSize, enum HeapSize heapSize)
 {
     void *newAppData;
 
@@ -703,7 +703,7 @@ void MainMenuUtil_LoadGiftSprite(BgConfig *bgConfig, WonderCard *wonderCard)
     Sprite_SetDrawFlag(utilMan->mysteryGiftSprite, FALSE);
 }
 
-void MainMenuUtil_EncryptWonderCard(MysteryGiftEventData *eventData, WonderCard *wonderCard, enum HeapId heapID)
+void MainMenuUtil_EncryptWonderCard(MysteryGiftEventData *eventData, WonderCard *wonderCard, enum HeapID heapID)
 {
 
     MATHCRC16Table *crcTable = Heap_Alloc(heapID, sizeof(MATHCRC16Table));
@@ -732,7 +732,7 @@ void MainMenuUtil_EncryptWonderCard(MysteryGiftEventData *eventData, WonderCard 
     Heap_Free(cryptoCtx);
 }
 
-void MainMenuUtil_DecryptReceivedWonderCard(MysteryGiftEventData *eventData, WonderCard *wonderCard, enum HeapId heapID)
+void MainMenuUtil_DecryptReceivedWonderCard(MysteryGiftEventData *eventData, WonderCard *wonderCard, enum HeapID heapID)
 {
     MATHCRC16Table *crcTable = Heap_Alloc(heapID, sizeof(MATHCRC16Table));
     MATH_CRC16InitTable(crcTable);

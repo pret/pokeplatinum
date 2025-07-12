@@ -19,7 +19,7 @@ static BOOL ov21_021D42EC(UnkStruct_ov21_021D423C *param0);
 static UnkStruct_ov21_021D4660 *ov21_021D42FC(UnkStruct_ov21_021D423C *param0, int param1);
 static void ov21_021D4334(UnkStruct_ov21_021D423C *param0, UnkStruct_ov21_021D4660 *param1);
 
-UnkStruct_ov21_021D423C *ov21_021D423C(enum HeapId heapID)
+UnkStruct_ov21_021D423C *ov21_021D423C(enum HeapID heapID)
 {
     UnkStruct_ov21_021D423C *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov21_021D423C));
     GF_ASSERT(v0);

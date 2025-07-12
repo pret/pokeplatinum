@@ -15,7 +15,7 @@ static void ScreenScrollManager_StartDMA(const ScreenScrollManager *screenScroll
 static void ScreenScrollManager_UpdateScrollX(SysTask *task, void *param);
 static void ScreenScrollManager_UpdateScrollY(SysTask *task, void *param);
 
-BufferManager *BufferManager_New(enum HeapId heapID, void *buffer1, void *buffer2)
+BufferManager *BufferManager_New(enum HeapID heapID, void *buffer1, void *buffer2)
 {
     BufferManager *bufferManager = Heap_Alloc(heapID, sizeof(BufferManager));
     memset(bufferManager, 0, sizeof(BufferManager));
@@ -80,7 +80,7 @@ void BufferManager_StartDMA(const void *src, void *dst, int size, enum BufferMan
     }
 }
 
-ScreenScrollManager *ScreenScrollManager_New(enum HeapId heapID)
+ScreenScrollManager *ScreenScrollManager_New(enum HeapID heapID)
 {
     ScreenScrollManager *screenScrollMgr = Heap_Alloc(heapID, sizeof(ScreenScrollManager));
     memset(screenScrollMgr, 0, sizeof(ScreenScrollManager));

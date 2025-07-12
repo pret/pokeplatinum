@@ -160,7 +160,7 @@ void SaveInfoWindow_Erase(SaveInfoWindow *saveInfoWin)
     Heap_Free(saveInfoWin->window);
 }
 
-SaveInfoWindow *SaveInfoWindow_New(FieldSystem *fieldSystem, enum HeapId heapID, u8 bgLayer)
+SaveInfoWindow *SaveInfoWindow_New(FieldSystem *fieldSystem, enum HeapID heapID, u8 bgLayer)
 {
     SaveInfoWindow *saveInfoWin = Heap_Alloc(heapID, sizeof(SaveInfoWindow));
 
