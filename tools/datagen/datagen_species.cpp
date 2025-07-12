@@ -486,7 +486,7 @@ int main(int argc, char **argv)
                << "#ifndef POKEPLATINUM_GENERATED_SPECIES_FOOTPRINTS_H\n"
                << "#define POKEPLATINUM_GENERATED_SPECIES_FOOTPRINTS_H\n"
                << "\n"
-               << "#include \"res/pokemon/pokedex_sizes.h\"\n"
+               << "#include \"constants/species.h\"\n"
                << "#include \"generated/footprint_sizes.h\"\n"
                << "\n"
                << "#include \"overlay113/footprint_data.h\"\n"

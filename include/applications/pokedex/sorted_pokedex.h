@@ -1,11 +1,9 @@
 #ifndef POKEPLATINUM_SORTEDPOKEDEX_H
 #define POKEPLATINUM_SORTEDPOKEDEX_H
 
-#include "generated/species.h"
+#include "constants/species.h"
 
 #include "applications/pokedex/species_caught_status.h"
-
-#include "res/pokemon/pokedex_sizes.h"
 
 typedef struct {
     SpeciesCaughtStatus caughtStatusArray[NATIONAL_DEX_COUNT];

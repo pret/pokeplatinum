@@ -16,7 +16,6 @@
 #include "generated/exp_rates.h"
 #include "generated/gender_ratios.h"
 #include "generated/genders.h"
-#include "generated/species.h"
 #include "generated/species_data_params.h"
 
 #include "struct_decls/pokemon_animation_sys_decl.h"
@@ -57,8 +56,6 @@
 #include "unk_02017038.h"
 #include "unk_0202C9F4.h"
 #include "unk_02092494.h"
-
-#include "res/pokemon/pokedex_sizes.h"
 
 #define FATEFUL_ENCOUNTER_LOCATION 3002
 

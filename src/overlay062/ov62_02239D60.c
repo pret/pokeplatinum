@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "constants/narc.h"
-#include "generated/species.h"
+#include "constants/species.h"
 
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_defs/struct_02030A80.h"

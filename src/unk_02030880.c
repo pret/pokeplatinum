@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/species.h"
+#include "constants/species.h"
 
 #include "struct_defs/battle_frontier.h"
 
@@ -12,8 +12,6 @@
 #include "heap.h"
 #include "savedata.h"
 #include "unk_0203061C.h"
-
-#include "res/pokemon/pokedex_sizes.h"
 
 typedef struct {
     u16 unk_00[MAX_SPECIES];

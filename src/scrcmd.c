@@ -12,13 +12,13 @@
 #include "constants/items.h"
 #include "constants/overworld_weather.h"
 #include "constants/scrcmd.h"
+#include "constants/species.h"
 #include "generated/accessories.h"
 #include "generated/first_arrival_to_zones.h"
 #include "generated/journal_location_events.h"
 #include "generated/movement_actions.h"
 #include "generated/save_types.h"
 #include "generated/signpost_commands.h"
-#include "generated/species.h"
 
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
@@ -229,7 +229,6 @@
 #include "constdata/const_020EAB80.h"
 #include "constdata/const_020EAC58.h"
 #include "constdata/const_020F8BE0.h"
-#include "res/pokemon/pokedex_sizes.h"
 
 typedef struct {
     SysTask *unk_00;

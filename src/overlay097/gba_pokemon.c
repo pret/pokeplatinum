@@ -5,8 +5,8 @@
 
 #include "constants/gba/pokemon.h"
 #include "constants/gba/species.h"
+#include "constants/species.h"
 #include "generated/abilities.h"
-#include "generated/species.h"
 
 #include "overlay097/gba_convert_string.h"
 #include "overlay097/gba_save.h"

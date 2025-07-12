@@ -4,7 +4,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/species.h"
+#include "constants/species.h"
 
 #include "overlay094/const_ov94_02245FD4.h"
 #include "overlay094/ov94_0223B140.h"

@@ -9,7 +9,7 @@
 #include "constants/items.h"
 #include "constants/narc.h"
 #include "constants/pokemon.h"
-#include "generated/species.h"
+#include "constants/species.h"
 
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02024440_decl.h"

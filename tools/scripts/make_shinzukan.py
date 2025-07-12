@@ -82,7 +82,6 @@ with open(output_dir / 'pokedex_sizes.h', 'w') as header_file:
         #ifndef POKEPLATINUM_RES_POKEMON_POKEDEX_SIZES_H
         #define POKEPLATINUM_RES_POKEMON_POKEDEX_SIZES_H
 
-        #define MAX_SPECIES {NUM_NATIONAL - 1}
         #define NATIONAL_DEX_COUNT {NUM_NATIONAL - 3}
         #define SINNOH_DEX_COUNT {NUM_SINNOH - 1}
 

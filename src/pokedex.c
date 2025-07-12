@@ -4,15 +4,13 @@
 #include <string.h>
 
 #include "constants/forms.h"
+#include "constants/species.h"
 #include "generated/gender_ratios.h"
-#include "generated/species.h"
 
 #include "inlines.h"
 #include "pokedex_language.h"
 #include "pokemon.h"
 #include "savedata.h"
-
-#include "res/pokemon/pokedex_sizes.h"
 
 static const u16 sExcludedMonsNational[] = {
     SPECIES_MEW,

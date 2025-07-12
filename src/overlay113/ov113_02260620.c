@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/species.h"
 #include "generated/footprint_sizes.h"
-#include "generated/species.h"
 
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/ov66_022324F0.h"
@@ -21,8 +21,6 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-
-#include "res/pokemon/pokedex_sizes.h"
 
 __attribute__((aligned(4))) static const u16 Unk_ov113_02260D6C[][2] = {
     { 0x4210, 0x6f7b },

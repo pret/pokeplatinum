@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/species.h"
+#include "constants/species.h"
 
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_defs/struct_02015958.h"

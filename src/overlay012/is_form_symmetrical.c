@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/species.h"
+#include "constants/species.h"
 
 BOOL IsFormSymmetrical(u32 species, u32 formId)
 {

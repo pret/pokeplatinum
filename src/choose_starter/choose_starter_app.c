@@ -7,7 +7,7 @@
 #include "constants/graphics.h"
 #include "constants/heap.h"
 #include "constants/narc.h"
-#include "generated/species.h"
+#include "constants/species.h"
 
 #include "struct_decls/struct_02015064_decl.h"
 #include "struct_decls/struct_02015128_decl.h"

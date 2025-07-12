@@ -8,8 +8,6 @@
 #include "narc.h"
 #include "sprite.h"
 
-#include "res/pokemon/pokedex_sizes.h"
-
 enum PokedexEncFileIndex {
     PEFI_DUNGEONMORNING = 4,
     PEFI_DUNGEONDAY = (4 + MAX_SPECIES),

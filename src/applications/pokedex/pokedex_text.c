@@ -2,14 +2,12 @@
 
 #include "constants/heap.h"
 #include "constants/narc.h"
-#include "generated/species.h"
+#include "constants/species.h"
 
 #include "message.h"
 #include "message_util.h"
 #include "pokedex_language.h"
 #include "strbuf.h"
-
-#include "res/pokemon/pokedex_sizes.h"
 
 enum LangIndex {
     LI_JAPANESE,

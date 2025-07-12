@@ -201,6 +201,9 @@ datagen_species_out = custom_target('datagen_species_out',
 tutorable_moves_h = datagen_species_out[6]
 species_learnsets_by_tutor_h = datagen_species_out[7]
 species_footprints_h = datagen_species_out[8]
+h_headers += tutorable_moves_h
+h_headers += species_learnsets_by_tutor_h
+h_headers += species_footprints_h
 
 
 # OLD NARCs
@@ -286,7 +289,8 @@ shinzukan_narc = custom_target('shinzukan.narc',
         sinnoh_pokedex
     ]
 )
-pokedex_sizes = shinzukan_narc[1]
+pokedex_sizes_h = shinzukan_narc[1]
+h_headers += pokedex_sizes_h
 
 pl_growtbl_narc = custom_target('pl_growtbl.narc',
     output: 'pl_growtbl.narc',

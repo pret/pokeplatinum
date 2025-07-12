@@ -6,8 +6,8 @@
 #include "constants/forms.h"
 #include "constants/graphics.h"
 #include "constants/narc.h"
+#include "constants/species.h"
 #include "generated/items.h"
-#include "generated/species.h"
 
 #include "overlay097/mystery_gift_app.h"
 

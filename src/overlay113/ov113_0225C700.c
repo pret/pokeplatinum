@@ -5,7 +5,7 @@
 #include <string.h>
 
 #include "constants/graphics.h"
-#include "generated/species.h"
+#include "constants/species.h"
 
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02012744_decl.h"
@@ -67,8 +67,6 @@
 #include "unk_02024220.h"
 #include "unk_020393C8.h"
 #include "vram_transfer.h"
-
-#include "res/pokemon/pokedex_sizes.h"
 
 typedef struct {
     Easy3DModel unk_00;

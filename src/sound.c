@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/species.h"
+#include "constants/species.h"
 
 #include "global/utility.h"
 
@@ -11,8 +11,6 @@
 #include "heap.h"
 #include "sound_playback.h"
 #include "sound_system.h"
-
-#include "res/pokemon/pokedex_sizes.h"
 
 #define BGM_PLAYER_NORMAL_CHANNELS 0x7FF
 #define BGM_PLAYER_EXTRA_CHANNELS  0x7FFF

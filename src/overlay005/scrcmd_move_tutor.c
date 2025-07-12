@@ -5,9 +5,9 @@
 
 #include "constants/forms.h"
 #include "constants/heap.h"
+#include "constants/species.h"
 #include "generated/items.h"
 #include "generated/moves.h"
-#include "generated/species.h"
 
 #include "field/field_system.h"
 #include "overlay005/field_menu.h"
