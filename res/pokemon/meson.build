@@ -286,6 +286,7 @@ shinzukan_narc = custom_target('shinzukan.narc',
         sinnoh_pokedex
     ]
 )
+pokedex_sizes = shinzukan_narc[1]
 
 pl_growtbl_narc = custom_target('pl_growtbl.narc',
     output: 'pl_growtbl.narc',
