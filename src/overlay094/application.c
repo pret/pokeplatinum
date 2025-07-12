@@ -4,6 +4,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/graphics.h"
 #include "constants/gts.h"
 #include "constants/species.h"
 
@@ -294,7 +295,10 @@ static void GTSApplication_InitCharTransfer(void)
 {
     {
         CharTransferTemplate template = {
-            20, 2048, 2048, HEAP_ID_62
+            .maxTasks = 20,
+            .sizeMain = 2048,
+            .sizeSub = 2048,
+            .heapID = HEAP_ID_62
         };
 
         CharTransfer_Init(&template);
@@ -322,44 +326,42 @@ static void GTSApplication_InitGraphics(GTSApplicationState *appState)
 
     appState->spriteResource[0][0] = SpriteResourceCollection_AddTilesFrom(appState->spriteResourceCollection[0], narc, 18, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_62);
     appState->spriteResource[0][1] = SpriteResourceCollection_AddPaletteFrom(appState->spriteResourceCollection[1], narc, 9, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 3, HEAP_ID_62);
-    appState->spriteResource[0][2] = SpriteResourceCollection_AddFrom(appState->spriteResourceCollection[2], narc, 19, 1, 0, 2, HEAP_ID_62);
-    appState->spriteResource[0][3] = SpriteResourceCollection_AddFrom(appState->spriteResourceCollection[3], narc, 20, 1, 0, 3, HEAP_ID_62);
+    appState->spriteResource[0][2] = SpriteResourceCollection_AddFrom(appState->spriteResourceCollection[2], narc, 19, 1, 0, SPRITE_RESOURCE_CELL, HEAP_ID_62);
+    appState->spriteResource[0][3] = SpriteResourceCollection_AddFrom(appState->spriteResourceCollection[3], narc, 20, 1, 0, SPRITE_RESOURCE_ANIM, HEAP_ID_62);
 
     appState->spriteResource[1][0] = SpriteResourceCollection_AddTilesFrom(appState->spriteResourceCollection[0], narc, 32, 1, 1, NNS_G2D_VRAM_TYPE_2DSUB, HEAP_ID_62);
     appState->spriteResource[1][1] = SpriteResourceCollection_AddPaletteFrom(appState->spriteResourceCollection[1], narc, 8, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 9, HEAP_ID_62);
-    appState->spriteResource[1][2] = SpriteResourceCollection_AddFrom(appState->spriteResourceCollection[2], narc, 33, 1, 1, 2, HEAP_ID_62);
-    appState->spriteResource[1][3] = SpriteResourceCollection_AddFrom(appState->spriteResourceCollection[3], narc, 34, 1, 1, 3, HEAP_ID_62);
+    appState->spriteResource[1][2] = SpriteResourceCollection_AddFrom(appState->spriteResourceCollection[2], narc, 33, 1, 1, SPRITE_RESOURCE_CELL, HEAP_ID_62);
+    appState->spriteResource[1][3] = SpriteResourceCollection_AddFrom(appState->spriteResourceCollection[3], narc, 34, 1, 1, SPRITE_RESOURCE_ANIM, HEAP_ID_62);
 
     SpriteTransfer_RequestChar(appState->spriteResource[0][0]);
     SpriteTransfer_RequestChar(appState->spriteResource[1][0]);
     SpriteTransfer_RequestPlttWholeRange(appState->spriteResource[0][1]);
     SpriteTransfer_RequestPlttWholeRange(appState->spriteResource[1][1]);
 
-    {
-        NNSG2dPaletteData *paletteData;
+    NNSG2dPaletteData *paletteData;
 
-        void *palettePointer = Graphics_GetPlttData(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), &paletteData, HEAP_ID_62);
+    void *palettePointer = Graphics_GetPlttData(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), &paletteData, HEAP_ID_62);
 
-        DC_FlushRange(paletteData->pRawData, (3 * 16) * 2);
-        GX_LoadOBJPltt(paletteData->pRawData, 3 * 0x20, (3 * 16) * 2);
+    DC_FlushRange(paletteData->pRawData, (3 * 16) * 2);
+    GX_LoadOBJPltt(paletteData->pRawData, 3 * 0x20, (3 * 16) * 2);
 
-        u16 *rgb = (u16 *)paletteData->pRawData;
+    u16 *rgb = (u16 *)paletteData->pRawData;
 
-        for (int pixelIdx = 0; pixelIdx < (3 * 16); pixelIdx++) {
-            int b = rgb[pixelIdx] >> 10 & 0x1f;
-            int g = (rgb[pixelIdx] >> 5) & 0x1f;
-            int r = rgb[pixelIdx] & 0x1f;
-            b /= 2;
-            g /= 2;
-            r /= 2;
-            rgb[pixelIdx] = (b << 10) | (g << 5) | r;
-        }
-
-        DC_FlushRange(paletteData->pRawData, (3 * 16) * 2);
-        GX_LoadOBJPltt(paletteData->pRawData, (3 + 3) * 0x20, (3 * 16) * 2);
-
-        Heap_Free(palettePointer);
+    for (int pixelIdx = 0; pixelIdx < (3 * 16); pixelIdx++) {
+        int b = GX_RGB_B(rgb[pixelIdx]);
+        int g = GX_RGB_G(rgb[pixelIdx]);
+        int r = GX_RGB_R(rgb[pixelIdx]);
+        b /= 2;
+        g /= 2;
+        r /= 2;
+        rgb[pixelIdx] = (b << 10) | (g << 5) | r;
     }
+
+    DC_FlushRange(paletteData->pRawData, (3 * 16) * 2);
+    GX_LoadOBJPltt(paletteData->pRawData, (3 + 3) * 0x20, (3 * 16) * 2);
+
+    Heap_Free(palettePointer);
 
     NARC_dtor(narc);
 }
