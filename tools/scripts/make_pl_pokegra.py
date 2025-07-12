@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 
 import argparse
+import os
 import pathlib
 import shutil
 import subprocess
+
+SPECIES_DIRS = os.environ['SPECIES'].split(';')
 
 argparser = argparse.ArgumentParser(
     prog='pl_poke_icon.narc packer',
@@ -24,9 +27,6 @@ argparser.add_argument('-p', '--private-dir',
 argparser.add_argument('-o', '--output-dir',
                        required=True,
                        help='Path to the output directory (where the NARC will be made)')
-argparser.add_argument('subdirs',
-                       nargs='+',
-                       help='List of subdirectories to process in-order')
 args = argparser.parse_args()
 
 source_dir = pathlib.Path(args.source_dir)
@@ -35,7 +35,7 @@ output_dir = pathlib.Path(args.output_dir)
 
 private_dir.mkdir(parents=True, exist_ok=True)
 
-for i, subdir in enumerate(args.subdirs):
+for i, subdir in enumerate(SPECIES_DIRS):
     # Do not attempt to process either egg or bad_egg
     if subdir in ['egg', 'bad_egg']:
         continue

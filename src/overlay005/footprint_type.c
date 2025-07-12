@@ -5,7 +5,9 @@
 #include <string.h>
 
 #include "constants/footstep_house.h"
-#include "constants/species.h"
+#include "generated/species.h"
+
+#include "res/pokemon/pokedex_sizes.h"
 
 typedef struct {
     u16 type;

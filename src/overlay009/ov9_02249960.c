@@ -4,10 +4,10 @@
 #include <string.h>
 
 #include "constants/field/dynamic_map_features.h"
-#include "constants/species.h"
 #include "constants/types.h"
 #include "generated/map_headers.h"
 #include "generated/movement_actions.h"
+#include "generated/species.h"
 
 #include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"

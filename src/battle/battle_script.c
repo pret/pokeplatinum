@@ -7,10 +7,10 @@
 #include "constants/narc.h"
 #include "constants/pokemon.h"
 #include "constants/rtc.h"
-#include "constants/species.h"
 #include "constants/trainer.h"
 #include "generated/abilities.h"
 #include "generated/genders.h"
+#include "generated/species.h"
 
 #include "struct_decls/battle_system.h"
 #include "struct_decls/pc_boxes_decl.h"

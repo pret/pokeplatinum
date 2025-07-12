@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/species.h"
+#include "generated/species.h"
 
 #include "struct_defs/chatot_cry.h"
 

@@ -238,9 +238,8 @@ honey_tree_fields = [
 great_marsh_dungeon = 4
 
 NUM_POKEMON = len(Species) - 1
-NUM_FILES = NUM_POKEMON * 10 + 4
 
-NUM_DIGITS = len(str(NUM_FILES))
+NUM_DIGITS = 8
 
 bin_data = bytes()
 for dungeon in file_0:

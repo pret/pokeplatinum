@@ -5,8 +5,8 @@
 
 #include "constants/heap.h"
 #include "constants/overworld_weather.h"
-#include "constants/species.h"
 #include "generated/first_arrival_to_zones.h"
+#include "generated/species.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
@@ -62,6 +62,8 @@
 #include "unk_0205DFC4.h"
 #include "unk_02094EDC.h"
 #include "vars_flags.h"
+
+#include "res/pokemon/pokedex_sizes.h"
 
 static void sub_0206CD70(FieldSystem *fieldSystem, int param1, int param2, const void *param3);
 static void sub_0206CD7C(SaveData *saveData, int param1, int param2, const void *param3);

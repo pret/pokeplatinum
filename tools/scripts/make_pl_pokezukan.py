@@ -38,7 +38,7 @@ output_dir = pathlib.Path(args.output_dir)
 
 private_dir.mkdir(parents=True, exist_ok=True)
 
-NUM_POKEMON = 494
+NUM_POKEMON = len(Species) - 2 # ignore egg and bad_egg
 
 pokedex = [0 for i in range(NUM_POKEMON)]
 

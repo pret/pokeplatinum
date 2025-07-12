@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/species.h"
+#include "generated/species.h"
 
 #include "overlay113/ov113_02260620.h"
 #include "overlay113/struct_ov113_0225DBCC_decl.h"
@@ -33,6 +33,8 @@
 #include "pokemon.h"
 #include "screen_fade.h"
 #include "sound_playback.h"
+
+#include "res/pokemon/pokedex_sizes.h"
 
 __attribute__((aligned(4))) static const s16 Unk_ov113_02260BCC[] = {
     0xFF,

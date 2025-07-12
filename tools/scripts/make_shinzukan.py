@@ -4,6 +4,7 @@ import json
 import pathlib
 import subprocess
 import sys
+from textwrap import dedent
 
 from generated.species import Species
 
@@ -38,13 +39,11 @@ output_dir = pathlib.Path(args.output_dir)
 
 private_dir.mkdir(parents=True, exist_ok=True)
 
-NUM_SINNOH = 211
-
-pokedex = [0 for i in range(NUM_SINNOH)]
-
 try:
     with open(args.pokedex) as data_file:
         dex_data = json.load(data_file)
+        NUM_SINNOH = len(dex_data)
+        pokedex = [0 for i in range(NUM_SINNOH)]
         for i, mon in enumerate(dex_data):
             pokedex[i] = Species[mon].value
 except json.decoder.JSONDecodeError as e:
@@ -69,3 +68,25 @@ with open(target_fname, 'wb+') as target_file:
     target_file.write(bytes(shinzukan))
 
 subprocess.run([args.narc, 'create', '--output', output_dir / 'shinzukan.narc', private_dir])
+
+# generate header for dex size constants
+NUM_NATIONAL = len(Species)
+with open(output_dir / 'pokedex_sizes.h', 'w') as header_file:
+    print(
+        dedent(f"""
+        /*
+         * This file was generated; DO NOT MODIFY IT!!
+         * Source file: /tools/scripts/make_shinzukan.py
+         */
+
+        #ifndef POKEPLATINUM_RES_POKEMON_POKEDEX_SIZES_H
+        #define POKEPLATINUM_RES_POKEMON_POKEDEX_SIZES_H
+
+        #define MAX_SPECIES {NUM_NATIONAL - 1}
+        #define NATIONAL_DEX_COUNT {NUM_NATIONAL - 3}
+        #define SINNOH_DEX_COUNT {NUM_SINNOH - 1}
+
+        #endif // POKEPLATINUM_RES_POKEMON_POKEDEX_SIZES_H
+        """),
+        file=header_file,
+    )

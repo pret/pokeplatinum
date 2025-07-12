@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/species.h"
 #include "generated/game_records.h"
+#include "generated/species.h"
 
 #include "struct_decls/struct_02030114_decl.h"
 #include "struct_decls/struct_0203026C_decl.h"
@@ -44,6 +44,7 @@
 
 #include "constdata/const_020F1E88.h"
 #include "constdata/const_020F410C.h"
+#include "res/pokemon/pokedex_sizes.h"
 
 typedef struct UnkStruct_0204F470_t {
     int unk_00;

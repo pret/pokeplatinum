@@ -4,10 +4,13 @@
 #include <string.h>
 
 #include "constants/pokemon.h"
+#include "generated/species.h"
 
 #include "data/pokeicon_palettes.h"
 
 #include "pokemon.h"
+
+#include "res/pokemon/pokedex_sizes.h"
 
 enum PokeIconSharedResourceIndex {
     POKEICON_SHARED_PALETTES = 0,

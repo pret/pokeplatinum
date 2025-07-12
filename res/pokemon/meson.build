@@ -224,6 +224,7 @@ pl_poke_icon_narc = custom_target('pl_poke_icon.narc',
 pl_pokegra_narc = custom_target('pl_pokegra.narc',
     output: 'pl_pokegra.narc',
     input: pokegra_files,
+    env: species_env,
     command: [
         make_pl_pokegra_py,
         '--nitrogfx', nitrogfx_exe,
@@ -231,7 +232,6 @@ pl_pokegra_narc = custom_target('pl_pokegra.narc',
         '--source-dir', '@CURRENT_SOURCE_DIR@',
         '--private-dir', '@PRIVATE_DIR@',
         '--output-dir', '@OUTDIR@',
-        species_dirnames,
     ]
 )
 
@@ -272,7 +272,10 @@ pl_pokezukan_narc = custom_target('pl_pokezukan.narc',
 )
 
 shinzukan_narc = custom_target('shinzukan.narc',
-    output: 'shinzukan.narc',
+    output: [
+        'shinzukan.narc',
+        'pokedex_sizes.h'
+    ],
     env: py_consts_env,
     command: [
         make_shinzukan_py,
@@ -283,6 +286,7 @@ shinzukan_narc = custom_target('shinzukan.narc',
         sinnoh_pokedex
     ]
 )
+pokedex_sizes = shinzukan_narc[1]
 
 pl_growtbl_narc = custom_target('pl_growtbl.narc',
     output: 'pl_growtbl.narc',
@@ -305,6 +309,7 @@ pokedex_data_narc = custom_target('zukan_data.narc',
         '--source-dir', '@CURRENT_SOURCE_DIR@',
         '--private-dir', '@PRIVATE_DIR@',
         '--output-dir', '@OUTDIR@',
+        sinnoh_pokedex,
         'giratina_origin',
     ],
     env: species_env,
@@ -320,6 +325,7 @@ pokedex_data_giratina_altered_narc = custom_target('zukan_data_gira.narc',
         '--source-dir', '@CURRENT_SOURCE_DIR@',
         '--private-dir', '@PRIVATE_DIR@',
         '--output-dir', '@OUTDIR@',
+        sinnoh_pokedex,
         'giratina_altered',
     ],
     env: species_env,

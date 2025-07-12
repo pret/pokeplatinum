@@ -32,6 +32,7 @@
 #include "text.h"
 #include "unk_02012744.h"
 
+#include "res/pokemon/pokedex_sizes.h"
 #include "res/text/bank/pokedex.h"
 
 typedef struct {

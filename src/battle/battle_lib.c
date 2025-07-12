@@ -8,12 +8,12 @@
 #include "constants/heap.h"
 #include "constants/items.h"
 #include "constants/sound.h"
-#include "constants/species.h"
 #include "constants/string.h"
 #include "constants/trainer.h"
 #include "generated/abilities.h"
 #include "generated/game_records.h"
 #include "generated/genders.h"
+#include "generated/species.h"
 
 #include "struct_decls/battle_system.h"
 #include "struct_decls/struct_02098700_decl.h"

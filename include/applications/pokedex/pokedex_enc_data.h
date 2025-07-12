@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_POKEDEXENCDATA_H
 #define POKEPLATINUM_POKEDEXENCDATA_H
 
-#include "constants/species.h"
+#include "generated/species.h"
 
 #include "heap.h"
 #include "sprite.h"

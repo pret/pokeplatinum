@@ -1138,10 +1138,13 @@ scr_seq_narc = custom_target('scr_seq.narc',
         'scr_seq.narc',
         'scr_seq.naix.h',
     ],
-    input: script_bin_gen.process(
-        scr_seq_files,
-        extra_args: ['--depfile', '--out-dir', scr_seq_private_dir]
-    ),
+    input: [
+        script_bin_gen.process(
+            scr_seq_files,
+            extra_args: ['--depfile', '--out-dir', scr_seq_private_dir]
+        ),
+        pokedex_sizes,
+    ],
     command: [
         narc_exe, 'create',
         '--naix',
