@@ -809,7 +809,7 @@ pokeplatinum_c = files(
     'overlay076/ov76_0223B140.c',
     'overlay076/ov76_0223B870.c',
     'overlay076/ov76_0223D338.c',
-    'overlay077/ov77_021D0D80.c',
+    'overlay077/title_screen.c',
     'overlay077/ov77_021D25B0.c',
     'overlay077/ov77_021D54B0.c',
     'overlay077/ov77_021D6670.c',
