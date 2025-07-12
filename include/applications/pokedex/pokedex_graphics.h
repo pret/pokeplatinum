@@ -3,6 +3,8 @@
 
 #include <nitro.h>
 
+#include "generated/species.h"
+
 #include "struct_decls/struct_02015064_decl.h"
 
 #include "applications/pokedex/pokedex_panel.h"
@@ -12,7 +14,6 @@
 #include "heap.h"
 #include "narc.h"
 #include "pokemon_sprite.h"
-#include "species.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
 #include "sys_task_manager.h"

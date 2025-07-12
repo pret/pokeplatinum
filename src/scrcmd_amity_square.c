@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/species.h"
 #include "generated/accessories.h"
+#include "generated/species.h"
 
 #include "field_script_context.h"
 #include "inlines.h"

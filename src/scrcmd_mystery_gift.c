@@ -4,9 +4,9 @@
 #include <string.h>
 
 #include "constants/heap.h"
-#include "constants/species.h"
 #include "generated/items.h"
 #include "generated/mystery_gift_delivery_stages.h"
+#include "generated/species.h"
 
 #include "struct_defs/struct_0202610C.h"
 

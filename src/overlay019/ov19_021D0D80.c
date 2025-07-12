@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "constants/items.h"
-#include "constants/species.h"
+#include "generated/species.h"
 
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/struct_0207CB08_decl.h"

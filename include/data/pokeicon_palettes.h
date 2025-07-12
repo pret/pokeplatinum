@@ -1,4 +1,4 @@
-#include "constants/species.h"
+#include "generated/species.h"
 
 enum FormIconIndex {
     ICON_EGG = SPECIES_EGG,

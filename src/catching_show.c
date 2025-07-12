@@ -4,8 +4,8 @@
 #include <string.h>
 
 #include "constants/battle.h"
-#include "constants/species.h"
 #include "generated/pal_park_land_area.h"
+#include "generated/species.h"
 #include "generated/trainer_score_events.h"
 
 #include "struct_decls/struct_02024440_decl.h"
@@ -21,9 +21,10 @@
 #include "narc.h"
 #include "pokemon.h"
 #include "rtc.h"
-#include "species.h"
 #include "terrain_collision_manager.h"
 #include "unk_0202EEC0.h"
+
+#include "res/pokemon/pokedex_sizes.h"
 
 #define PAL_PARK_AREA_NONE     0
 #define POINTS_LOST_PER_SECOND 2

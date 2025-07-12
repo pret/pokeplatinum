@@ -20,6 +20,8 @@
 #include "system.h"
 #include "trainer_info.h"
 
+#include "res/pokemon/pokedex_sizes.h"
+
 #define NUMSTATFILES 11
 #define BLANKSPACE   (NATIONAL_DEX_COUNT + 1)
 

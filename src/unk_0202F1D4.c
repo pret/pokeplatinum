@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "constants/battle.h"
-#include "constants/species.h"
+#include "generated/species.h"
 
 #include "struct_defs/struct_0202F264.h"
 #include "struct_defs/struct_0202F298.h"
@@ -31,6 +31,8 @@
 #include "system.h"
 #include "trainer_info.h"
 #include "unk_02026150.h"
+
+#include "res/pokemon/pokedex_sizes.h"
 
 BattleRecording *Unk_021C07A4 = NULL;
 
