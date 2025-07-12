@@ -42,30 +42,33 @@ FS_EXTERN_OVERLAY(overlay89);
 FS_EXTERN_OVERLAY(overlay97);
 FS_EXTERN_OVERLAY(d_startmenu);
 
+#define KEY_PRESSED(key) (JOY_NEW(key) == key)
+#define KEY_HELD(key) (JOY_HELD(key) == key)
+
 typedef struct TitleScreenResources {
     int unk_00;
-    NNSG3dRenderObj unk_04;
-    NNSG3dResMdl *unk_58;
-    NNSG3dResFileHeader *unk_5C;
-    void *unk_60;
-    void *unk_64;
-    NNSG3dAnmObj *unk_68;
-    NNSG3dAnmObj *unk_6C;
-    NNSFndAllocator unk_70;
-    VecFx32 unk_80;
-    VecFx32 unk_8C;
-    VecFx32 unk_98;
+    NNSG3dRenderObj giratinaRenderObj;
+    NNSG3dResMdl *giratinaModel;
+    NNSG3dResFileHeader *giratinaModelRes;
+    void *giratinaTexAnimRes;
+    void *giratinaAnimRes;
+    NNSG3dAnmObj *giratinaTexAnim;
+    NNSG3dAnmObj *giratinaAnim;
+    NNSFndAllocator allocator;
+    VecFx32 giratinaPos;
+    VecFx32 giratinaScale;
+    VecFx32 giratinaRot;
     Camera *titleCamera;
     Camera *camera2;
     int unk_AC;
-    Easy3DObject unk_B0;
-    Easy3DAnim unk_128;
-    Easy3DAnim unk_13C;
-    Easy3DModel unk_150;
-    Easy3DObject unk_160;
-    Easy3DAnim unk_1D8;
-    Easy3DAnim unk_1EC;
-    Easy3DModel unk_200;
+    Easy3DObject giratinaFaceObj;
+    Easy3DAnim giratinaFaceAnim;
+    Easy3DAnim giratinaFaceMatAnim;
+    Easy3DModel giratinaFaceModel;
+    Easy3DObject portalObj;
+    Easy3DAnim portalAnim;
+    Easy3DAnim portalTexAnim;
+    Easy3DModel portalModel;
     u32 unk_210;
     int unk_214;
     int unk_218;
@@ -80,10 +83,19 @@ typedef struct TitleScreenUnusedStruct {
     TitleScreenResources unused1;
 } TitleScreenUnusedStruct;
 
+enum TitleScreenAppState {
+    TITLE_SCREEN_APP_STATE_INIT_RESOURCES,
+};
+
+enum TitleScreenState {
+    TITLE_SCREEN_STATE_FADE_IN = 0,
+    TITLE_SCREEN_STATE_WAIT_FOR_FADE,
+};
+
 typedef struct TitleScreen {
     int state;
     TitleScreenResources resources;
-    u16 unk_22A;
+    u16 delay;
     Window pressStartWindow;
     VecFx32 titleCamTarget;
     VecFx32 titleCamPos;
@@ -118,10 +130,6 @@ typedef struct {
     int unk_4FC;
 } TitleScreenAppData;
 
-enum TitleScreenState {
-    TITLE_SCREEN_STATE_INIT_RESOURCES,
-};
-
 extern const ApplicationManagerTemplate Unk_020F8A48;
 extern const ApplicationManagerTemplate Unk_020F8AB4;
 extern const ApplicationManagerTemplate gOpeningCutsceneAppTemplate;
@@ -140,12 +148,12 @@ static void ov77_021D11FC(TitleScreenAppData *param0);
 static void TitleScreen_Load3DGfx(TitleScreenResources *param0, int param1, int param2, enum HeapId param3);
 static void ov77_021D14E4(TitleScreenResources *param0);
 static void ov77_021D1568(TitleScreen *param0, TitleScreenResources *param1);
-static BOOL ov77_021D11A4(void);
-static BOOL TitleScreen_InitResources(TitleScreen *param0, BgConfig *param1, enum HeapId param2);
+static BOOL TitleScreen_ShouldSkipCutscene(void);
+static BOOL TitleScreen_InitGraphics(TitleScreen *param0, BgConfig *param1, enum HeapId param2);
 static BOOL ov77_021D1DF0(TitleScreen *param0, BgConfig *param1, enum HeapId heapID);
 static BOOL ov77_021D20E4(TitleScreen *param0, BgConfig *param1, int param2);
 static BOOL ov77_021D21C0(TitleScreen *param0, BgConfig *param1, int param2);
-static void ov77_021D1300(TitleScreenResources *param0, int heapID);
+static void TitleScreen_LoadCutscene3DGfx(TitleScreenResources *param0, enum HeapId heapID);
 static void ov77_021D1514(TitleScreenResources *param0);
 static void ov77_021D1704(TitleScreenResources *param0);
 static void ov77_021D1984(TitleScreen *param0, TitleScreenResources *param1);
@@ -205,8 +213,8 @@ static int TitleScreen_Main(ApplicationManager *appMan, int *state)
     TitleScreenAppData *appData = ApplicationManager_Data(appMan);
 
     switch (*state) {
-    case TITLE_SCREEN_STATE_INIT_RESOURCES:
-        if (TitleScreen_InitResources(&appData->titleScreen, appData->bgConfig, appData->heapID) == TRUE) {
+    case TITLE_SCREEN_APP_STATE_INIT_RESOURCES:
+        if (TitleScreen_InitGraphics(&appData->titleScreen, appData->bgConfig, appData->heapID) == TRUE) {
             appData->titleScreen.state = 0;
 
             if (!gSystem.unk_6C) {
@@ -216,14 +224,14 @@ static int TitleScreen_Main(ApplicationManager *appMan, int *state)
                 *state = 2;
             } else {
                 appData->unk_4EC = 0;
-                gSystem.unk_6C = 0;
+                gSystem.unk_6C = FALSE;
                 appData->titleScreen.unk_2A0 = 1;
                 *state = 1;
             }
         }
         break;
     case 1:
-        if (ov77_021D1DF0(&appData->titleScreen, appData->bgConfig, appData->heapID) == 1) {
+        if (ov77_021D1DF0(&appData->titleScreen, appData->bgConfig, appData->heapID) == TRUE) {
             appData->titleScreen.state = 0;
             *state = 2;
         }
@@ -374,13 +382,13 @@ static void TitleScreen_SetVRAMBanks(void)
     GXLayers_SetBanks(&banks);
 }
 
-static BOOL ov77_021D11A4(void)
+static BOOL TitleScreen_ShouldSkipCutscene(void)
 {
-    if (((gSystem.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A) || ((gSystem.pressedKeys & PAD_BUTTON_START) == PAD_BUTTON_START) || ((gSystem.pressedKeys & PAD_BUTTON_SELECT) == PAD_BUTTON_SELECT)) {
-        return 1;
+    if (KEY_PRESSED(PAD_BUTTON_A) || KEY_PRESSED(PAD_BUTTON_START) || KEY_PRESSED(PAD_BUTTON_SELECT)) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static void ov77_021D11CC(TitleScreenAppData *appData)
@@ -394,124 +402,114 @@ static void ov77_021D11FC(TitleScreenAppData *param0)
     sub_020242C4(param0->unk_08);
 }
 
-static void TitleScreen_Load3DGfx(TitleScreenResources *param0, int param1, int param2, enum HeapId heapID)
+static void TitleScreen_Load3DGfx(TitleScreenResources *resources, int giratinaModel, int giratinaTexAnim, enum HeapId heapID)
 {
-    void *v0;
-    void *v1;
-    NNSG3dResTex *v2;
+    Heap_FndInitAllocatorForExpHeap(&resources->allocator, heapID, 4);
 
-    Heap_FndInitAllocatorForExpHeap(&param0->unk_70, heapID, 4);
+    resources->giratinaModelRes = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_DEMO__TITLE__TITLEDEMO, giratinaModel, heapID);
+    resources->giratinaTexAnimRes = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_DEMO__TITLE__TITLEDEMO, giratinaTexAnim, heapID);
+    resources->giratinaAnimRes = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_DEMO__TITLE__TITLEDEMO, giratina_nsbca, heapID);
 
-    param0->unk_5C = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_DEMO__TITLE__TITLEDEMO, param1, heapID);
-    param0->unk_60 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_DEMO__TITLE__TITLEDEMO, param2, heapID);
-    param0->unk_64 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_DEMO__TITLE__TITLEDEMO, giratina_nsbca, heapID);
+    Easy3D_InitRenderObjFromResource(&resources->giratinaRenderObj, &resources->giratinaModel, &resources->giratinaModelRes);
 
-    Easy3D_InitRenderObjFromResource(&param0->unk_04, &param0->unk_58, &param0->unk_5C);
+    void *texAnim = NNS_G3dGetAnmByIdx(resources->giratinaTexAnimRes, 0);
+    void *skeletalAnim = NNS_G3dGetAnmByIdx(resources->giratinaAnimRes, 0);
 
-    v0 = NNS_G3dGetAnmByIdx(param0->unk_60, 0);
-    v1 = NNS_G3dGetAnmByIdx(param0->unk_64, 0);
+    resources->giratinaTexAnim = NNS_G3dAllocAnmObj(&resources->allocator, texAnim, resources->giratinaModel);
+    resources->giratinaAnim = NNS_G3dAllocAnmObj(&resources->allocator, skeletalAnim, resources->giratinaModel);
 
-    param0->unk_68 = NNS_G3dAllocAnmObj(&param0->unk_70, v0, param0->unk_58);
-    param0->unk_6C = NNS_G3dAllocAnmObj(&param0->unk_70, v1, param0->unk_58);
+    NNSG3dResTex *texRes = NNS_G3dGetTex(resources->giratinaModelRes);
 
-    v2 = NNS_G3dGetTex(param0->unk_5C);
+    NNS_G3dAnmObjInit(resources->giratinaTexAnim, texAnim, resources->giratinaModel, texRes);
+    NNS_G3dAnmObjInit(resources->giratinaAnim, skeletalAnim, resources->giratinaModel, texRes);
+    NNS_G3dRenderObjAddAnmObj(&resources->giratinaRenderObj, resources->giratinaTexAnim);
+    NNS_G3dRenderObjAddAnmObj(&resources->giratinaRenderObj, resources->giratinaAnim);
 
-    NNS_G3dAnmObjInit(param0->unk_68, v0, param0->unk_58, v2);
-    NNS_G3dAnmObjInit(param0->unk_6C, v1, param0->unk_58, v2);
-    NNS_G3dRenderObjAddAnmObj(&param0->unk_04, param0->unk_68);
-    NNS_G3dRenderObjAddAnmObj(&param0->unk_04, param0->unk_6C);
+    VecFx32 pos = { 0, 0, 0 };
+    VecFx32 scale = { FX32_ONE, FX32_ONE, FX32_ONE };
+    VecFx32 rot = { 0, 0, 0 };
 
-    {
-        VecFx32 v3 = { 0, 0, 0 };
-        VecFx32 v4 = { FX32_ONE, FX32_ONE, FX32_ONE };
-        VecFx32 v5 = { 0, 0, 0 };
+    resources->giratinaPos = pos;
+    resources->giratinaScale = scale;
+    resources->giratinaRot = rot;
 
-        param0->unk_80 = v3;
-        param0->unk_8C = v4;
-        param0->unk_98 = v5;
-    }
+    resources->unk_AC = 0;
 
-    param0->unk_AC = 0;
-
-    ov77_021D1300(param0, heapID);
+    TitleScreen_LoadCutscene3DGfx(resources, heapID);
 }
 
-static void ov77_021D1300(TitleScreenResources *param0, int heapID)
+static void TitleScreen_LoadCutscene3DGfx(TitleScreenResources *resources, enum HeapId heapID)
 {
-    NARC *v0 = NARC_ctor(NARC_INDEX_DEMO__TITLE__TITLEDEMO, heapID);
+    NARC *narc = NARC_ctor(NARC_INDEX_DEMO__TITLE__TITLEDEMO, heapID);
 
-    {
-        Easy3DModel_LoadFrom(&param0->unk_150, v0, giratina_face_nsbmd, heapID);
+    Easy3DModel_LoadFrom(&resources->giratinaFaceModel, narc, giratina_face_nsbmd, heapID);
 
-        NNS_G3dMdlUseMdlAlpha(param0->unk_150.model);
-        NNS_G3dMdlUseMdlPolygonID(param0->unk_150.model);
+    NNS_G3dMdlUseMdlAlpha(resources->giratinaFaceModel.model);
+    NNS_G3dMdlUseMdlPolygonID(resources->giratinaFaceModel.model);
 
-        Easy3DAnim_LoadFrom(&param0->unk_128, &param0->unk_150, v0, giratina_face_nsbca, heapID, &param0->unk_70);
-        Easy3DAnim_SetFrame(&param0->unk_128, 0);
+    Easy3DAnim_LoadFrom(&resources->giratinaFaceAnim, &resources->giratinaFaceModel, narc, giratina_face_nsbca, heapID, &resources->allocator);
+    Easy3DAnim_SetFrame(&resources->giratinaFaceAnim, 0);
 
-        Easy3DAnim_LoadFrom(&param0->unk_13C, &param0->unk_150, v0, giratina_face_nsbma, heapID, &param0->unk_70);
-        Easy3DAnim_SetFrame(&param0->unk_13C, 0);
+    Easy3DAnim_LoadFrom(&resources->giratinaFaceMatAnim, &resources->giratinaFaceModel, narc, giratina_face_nsbma, heapID, &resources->allocator);
+    Easy3DAnim_SetFrame(&resources->giratinaFaceMatAnim, 0);
 
-        Easy3DObject_Init(&param0->unk_B0, &param0->unk_150);
+    Easy3DObject_Init(&resources->giratinaFaceObj, &resources->giratinaFaceModel);
 
-        Easy3DObject_SetPosition(&param0->unk_B0, 0, 0, 0);
-        Easy3DObject_SetScale(&param0->unk_B0, (FX32_ONE), (FX32_ONE), (FX32_ONE));
-        Easy3DObject_SetVisibility(&param0->unk_B0, 1);
+    Easy3DObject_SetPosition(&resources->giratinaFaceObj, 0, 0, 0);
+    Easy3DObject_SetScale(&resources->giratinaFaceObj, FX32_ONE, FX32_ONE, FX32_ONE);
+    Easy3DObject_SetVisible(&resources->giratinaFaceObj, TRUE);
 
-        Easy3DObject_AddAnim(&param0->unk_B0, &param0->unk_128);
-        Easy3DObject_AddAnim(&param0->unk_B0, &param0->unk_13C);
-    }
+    Easy3DObject_AddAnim(&resources->giratinaFaceObj, &resources->giratinaFaceAnim);
+    Easy3DObject_AddAnim(&resources->giratinaFaceObj, &resources->giratinaFaceMatAnim);
 
-    {
-        Easy3DModel_LoadFrom(&param0->unk_200, v0, giratina_portal_nsbmd, heapID);
-        NNS_G3dMdlUseMdlAlpha(param0->unk_200.model);
-        NNS_G3dMdlUseMdlPolygonID(param0->unk_200.model);
+    Easy3DModel_LoadFrom(&resources->portalModel, narc, giratina_portal_nsbmd, heapID);
+    NNS_G3dMdlUseMdlAlpha(resources->portalModel.model);
+    NNS_G3dMdlUseMdlPolygonID(resources->portalModel.model);
 
-        Easy3DAnim_LoadFrom(&param0->unk_1D8, &param0->unk_200, v0, giratina_portal_nsbca, heapID, &param0->unk_70);
-        Easy3DAnim_SetFrame(&param0->unk_1D8, 0);
+    Easy3DAnim_LoadFrom(&resources->portalAnim, &resources->portalModel, narc, giratina_portal_nsbca, heapID, &resources->allocator);
+    Easy3DAnim_SetFrame(&resources->portalAnim, 0);
 
-        Easy3DAnim_LoadFrom(&param0->unk_1EC, &param0->unk_200, v0, giratina_portal_nsbta, heapID, &param0->unk_70);
-        Easy3DAnim_SetFrame(&param0->unk_1EC, 0);
+    Easy3DAnim_LoadFrom(&resources->portalTexAnim, &resources->portalModel, narc, giratina_portal_nsbta, heapID, &resources->allocator);
+    Easy3DAnim_SetFrame(&resources->portalTexAnim, 0);
 
-        Easy3DObject_Init(&param0->unk_160, &param0->unk_200);
+    Easy3DObject_Init(&resources->portalObj, &resources->portalModel);
 
-        Easy3DObject_SetPosition(&param0->unk_160, 0, 0, 0);
-        Easy3DObject_SetScale(&param0->unk_160, (FX32_ONE), (FX32_ONE), (FX32_ONE));
-        Easy3DObject_SetVisibility(&param0->unk_160, 1);
+    Easy3DObject_SetPosition(&resources->portalObj, 0, 0, 0);
+    Easy3DObject_SetScale(&resources->portalObj, FX32_ONE, FX32_ONE, FX32_ONE);
+    Easy3DObject_SetVisible(&resources->portalObj, TRUE);
 
-        Easy3DObject_AddAnim(&param0->unk_160, &param0->unk_1D8);
-        Easy3DObject_AddAnim(&param0->unk_160, &param0->unk_1EC);
-    }
+    Easy3DObject_AddAnim(&resources->portalObj, &resources->portalAnim);
+    Easy3DObject_AddAnim(&resources->portalObj, &resources->portalTexAnim);
 
-    NARC_dtor(v0);
+    NARC_dtor(narc);
 
-    param0->unk_214 = ((0x10000 - 0x3fef) - (0x10000 - 0x1c7d)) / 30;
-    param0->unk_218 = (0x10000 - 0x1c7d);
-    param0->unk_21C = (FX32_ONE);
-    param0->unk_220 = (120 << 8);
+    resources->unk_214 = ((0x10000 - 0x3fef) - (0x10000 - 0x1c7d)) / 30;
+    resources->unk_218 = (0x10000 - 0x1c7d);
+    resources->unk_21C = (FX32_ONE);
+    resources->unk_220 = (120 << 8);
 }
 
 static void ov77_021D14E4(TitleScreenResources *param0)
 {
     ov77_021D1514(param0);
 
-    NNS_G3dFreeAnmObj(&param0->unk_70, param0->unk_68);
-    NNS_G3dFreeAnmObj(&param0->unk_70, param0->unk_6C);
+    NNS_G3dFreeAnmObj(&param0->allocator, param0->giratinaTexAnim);
+    NNS_G3dFreeAnmObj(&param0->allocator, param0->giratinaAnim);
 
-    Heap_Free(param0->unk_60);
-    Heap_Free(param0->unk_64);
-    Heap_Free(param0->unk_5C);
+    Heap_Free(param0->giratinaTexAnimRes);
+    Heap_Free(param0->giratinaAnimRes);
+    Heap_Free(param0->giratinaModelRes);
 }
 
 static void ov77_021D1514(TitleScreenResources *param0)
 {
-    Easy3DModel_Release(&param0->unk_150);
-    Easy3DAnim_Release(&param0->unk_128, &param0->unk_70);
-    Easy3DAnim_Release(&param0->unk_13C, &param0->unk_70);
+    Easy3DModel_Release(&param0->giratinaFaceModel);
+    Easy3DAnim_Release(&param0->giratinaFaceAnim, &param0->allocator);
+    Easy3DAnim_Release(&param0->giratinaFaceMatAnim, &param0->allocator);
 
-    Easy3DModel_Release(&param0->unk_200);
-    Easy3DAnim_Release(&param0->unk_1D8, &param0->unk_70);
-    Easy3DAnim_Release(&param0->unk_1EC, &param0->unk_70);
+    Easy3DModel_Release(&param0->portalModel);
+    Easy3DAnim_Release(&param0->portalAnim, &param0->allocator);
+    Easy3DAnim_Release(&param0->portalTexAnim, &param0->allocator);
 }
 
 static void ov77_021D1568(TitleScreen *titleScreen, TitleScreenResources *resources)
@@ -536,7 +534,7 @@ static void ov77_021D1568(TitleScreen *titleScreen, TitleScreenResources *resour
         v1 = CalcSineDegrees_Wraparound((titleScreen->unk_2A8 * 0xffff) / 360);
         v1 *= 0.30;
 
-        resources->unk_80.y -= v1;
+        resources->giratinaPos.y -= v1;
     }
 
     switch (resources->unk_00) {
@@ -550,7 +548,7 @@ static void ov77_021D1568(TitleScreen *titleScreen, TitleScreenResources *resour
     case 2:
         sub_020241B4();
         Camera_ComputeViewMatrix();
-        MTX_Rot33Vec(&v0, &resources->unk_98);
+        MTX_Rot33Vec(&v0, &resources->giratinaRot);
 
         if (titleScreen->unk_29C == 0) {
             if (titleScreen->unk_2A0 == 1) {
@@ -560,29 +558,29 @@ static void ov77_021D1568(TitleScreen *titleScreen, TitleScreenResources *resour
             }
         } else {
             DC_FlushAll();
-            Easy3D_DrawRenderObj(&resources->unk_04, &resources->unk_80, &v0, &resources->unk_8C);
+            Easy3D_DrawRenderObj(&resources->giratinaRenderObj, &resources->giratinaPos, &v0, &resources->giratinaScale);
         }
 
         switch (resources->unk_AC) {
         case 0:
-            resources->unk_68->frame = 0;
-            resources->unk_6C->frame = 0;
+            resources->giratinaTexAnim->frame = 0;
+            resources->giratinaAnim->frame = 0;
             break;
         case 1:
-            if (resources->unk_68->frame == 0) {
+            if (resources->giratinaTexAnim->frame == 0) {
                 resources->unk_AC = 0;
                 break;
             }
         case 2:
-            resources->unk_68->frame += (FX32_ONE);
-            resources->unk_6C->frame += (FX32_ONE);
+            resources->giratinaTexAnim->frame += (FX32_ONE);
+            resources->giratinaAnim->frame += (FX32_ONE);
 
-            if (resources->unk_68->frame == NNS_G3dAnmObjGetNumFrame(resources->unk_68)) {
-                resources->unk_68->frame = 0;
+            if (resources->giratinaTexAnim->frame == NNS_G3dAnmObjGetNumFrame(resources->giratinaTexAnim)) {
+                resources->giratinaTexAnim->frame = 0;
             }
 
-            if (resources->unk_6C->frame == NNS_G3dAnmObjGetNumFrame(resources->unk_6C)) {
-                resources->unk_6C->frame = 0;
+            if (resources->giratinaAnim->frame == NNS_G3dAnmObjGetNumFrame(resources->giratinaAnim)) {
+                resources->giratinaAnim->frame = 0;
             }
             break;
         }
@@ -595,29 +593,29 @@ static void ov77_021D1568(TitleScreen *titleScreen, TitleScreenResources *resour
 static void ov77_021D1704(TitleScreenResources *param0)
 {
     if (param0->unk_224 == 1) {
-        if (Easy3DAnim_Update(&param0->unk_128, FX32_ONE) == 1) {
+        if (Easy3DAnim_Update(&param0->giratinaFaceAnim, FX32_ONE) == 1) {
             param0->unk_224 = 2;
         }
     }
 
     if (param0->unk_225 == 1) {
-        if (Easy3DAnim_Update(&param0->unk_13C, FX32_ONE) == 1) {
+        if (Easy3DAnim_Update(&param0->giratinaFaceMatAnim, FX32_ONE) == 1) {
             param0->unk_225 = 2;
         }
     }
 
-    Easy3DAnim_UpdateLooped(&param0->unk_1D8, FX32_ONE);
-    Easy3DAnim_UpdateLooped(&param0->unk_1EC, FX32_ONE);
+    Easy3DAnim_UpdateLooped(&param0->portalAnim, FX32_ONE);
+    Easy3DAnim_UpdateLooped(&param0->portalTexAnim, FX32_ONE);
 
     NNS_G3dGePushMtx();
 
     {
-        Easy3DObject_Draw(&param0->unk_160);
+        Easy3DObject_Draw(&param0->portalObj);
 
         if ((param0->unk_224 != 2) || (param0->unk_225 != 2)) {
-            Easy3DObject_Draw(&param0->unk_B0);
+            Easy3DObject_Draw(&param0->giratinaFaceObj);
         } else {
-            Easy3DObject_SetVisibility(&param0->unk_B0, 0);
+            Easy3DObject_SetVisible(&param0->giratinaFaceObj, 0);
         }
     }
 
@@ -827,7 +825,7 @@ static const WindowTemplate sPressStartWindowTemplate = {
     .baseTile = 0x1
 };
 
-static BOOL TitleScreen_InitResources(TitleScreen *titleScreen, BgConfig *bgConfig, enum HeapId heapID)
+static BOOL TitleScreen_InitGraphics(TitleScreen *titleScreen, BgConfig *bgConfig, enum HeapId heapID)
 {
     TitleScreen_InitCoordinates(titleScreen);
     TitleScreen_Load2DGfx(bgConfig, heapID, titleScreen);
@@ -986,129 +984,153 @@ static void ov77_021D1D48(BgConfig *param0, int param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
 }
 
-static BOOL ov77_021D1DF0(TitleScreen *param0, BgConfig *param1, enum HeapId heapID)
+static BOOL ov77_021D1DF0(TitleScreen *titleScreen, BgConfig *bgConfig, enum HeapId heapID)
 {
     BOOL v0 = 0;
 
-    if (ov77_021D11A4() == 1) {
-        param0->unk_29C = 1;
-        param0->unk_2A0 = 0;
+    if (TitleScreen_ShouldSkipCutscene() == TRUE) {
+        titleScreen->unk_29C = TRUE;
+        titleScreen->unk_2A0 = FALSE;
         FinishScreenFade();
         BrightnessController_ResetScreenController(BRIGHTNESS_BOTH_SCREENS);
-        return 1;
+        return TRUE;
     }
 
-    switch (param0->state) {
-    case 0:
-        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
-        param0->unk_296 = 0;
-        param0->unk_22A = 15 + 252;
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 15, 3, heapID);
-        param0->state = 1;
+    switch (titleScreen->state) {
+    case TITLE_SCREEN_STATE_FADE_IN:
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, TRUE);
+        titleScreen->unk_296 = 0;
+        titleScreen->delay = 267; // ~9 seconds
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, COLOR_BLACK, 15, 3, heapID);
+        titleScreen->state = TITLE_SCREEN_STATE_WAIT_FOR_FADE;
         break;
-    case 1:
+    case TITLE_SCREEN_STATE_WAIT_FOR_FADE:
         if (IsScreenFadeDone() == TRUE) {
-            if (param0->unk_22A) {
-                param0->unk_22A--;
+            if (titleScreen->delay) {
+                titleScreen->delay--;
             } else {
-                param0->unk_22A = 2;
-                param0->state = 2;
+                titleScreen->delay = 2;
+                titleScreen->state = 2;
             }
         }
         break;
     case 2:
-        if ((BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) && (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN) == TRUE)) {
-            if (param0->unk_22A) {
-                BrightnessController_StartTransition(10, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2), BRIGHTNESS_MAIN_SCREEN);
-                BrightnessController_StartTransition(10, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_SUB_SCREEN);
-                param0->unk_296 = 2;
-                param0->unk_22A--;
-                param0->state = 3;
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE && 
+            BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN) == TRUE) {
+            if (titleScreen->delay) {
+                BrightnessController_StartTransition(
+                    10,
+                    BRIGHTNESS_WHITE,
+                    0,
+                    GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2,
+                    BRIGHTNESS_MAIN_SCREEN);
+                BrightnessController_StartTransition(
+                    10,
+                    BRIGHTNESS_WHITE,
+                    0,
+                    GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BD,
+                    BRIGHTNESS_SUB_SCREEN);
+
+                titleScreen->unk_296 = 2;
+                titleScreen->delay--;
+                titleScreen->state = 3;
             } else {
-                param0->unk_22A = 0;
-                param0->state = 4;
+                titleScreen->delay = 0;
+                titleScreen->state = 4;
             }
         }
         break;
     case 3:
-        if ((BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) && (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN) == TRUE)) {
-            BrightnessController_StartTransition(10, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2), BRIGHTNESS_MAIN_SCREEN);
-            BrightnessController_StartTransition(10, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_SUB_SCREEN);
-            param0->unk_296 = 3;
-            param0->state = 2;
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE &&
+            BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN) == TRUE) {
+            BrightnessController_StartTransition(
+                10,
+                0,
+                BRIGHTNESS_WHITE,
+                GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2,
+                BRIGHTNESS_MAIN_SCREEN);
+            BrightnessController_StartTransition(
+                10,
+                0,
+                BRIGHTNESS_WHITE,
+                GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BD,
+                BRIGHTNESS_SUB_SCREEN);
+
+            titleScreen->unk_296 = 3;
+            titleScreen->state = 2;
         }
         break;
     case 4:
-        if (param0->unk_22A) {
-            param0->unk_22A--;
+        if (titleScreen->delay) {
+            titleScreen->delay--;
         } else {
-            param0->unk_22A = 1;
-            param0->state = 5;
+            titleScreen->delay = 1;
+            titleScreen->state = 5;
         }
         break;
     case 5:
         if (IsScreenFadeDone() == TRUE) {
-            if (param0->unk_22A) {
+            if (titleScreen->delay) {
                 StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_WHITE, 5, 2, heapID);
-                param0->unk_296 = 2;
-                param0->unk_22A--;
-                param0->state = 6;
+                titleScreen->unk_296 = 2;
+                titleScreen->delay--;
+                titleScreen->state = 6;
             } else {
-                param0->unk_22A = 10;
-                param0->state = 8;
-                param0->unk_29C = 1;
+                titleScreen->delay = 10;
+                titleScreen->state = 8;
+                titleScreen->unk_29C = 1;
                 SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
             }
         }
         break;
     case 6:
         if (IsScreenFadeDone() == TRUE) {
-            param0->unk_2A0 = 0;
+            titleScreen->unk_2A0 = 0;
             {
                 GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
             }
-            param0->resources.unk_AC = 2;
+            titleScreen->resources.unk_AC = 2;
             StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_WHITE, 16, 3, heapID);
-            param0->state = 5;
+            titleScreen->state = 5;
         }
         break;
     case 8:
-        if (param0->unk_22A) {
-            param0->unk_22A--;
+        if (titleScreen->delay) {
+            titleScreen->delay--;
         } else {
-            param0->state = 7;
+            titleScreen->state = 7;
         }
         break;
     case 7:
         StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 48, 1, heapID);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
-        param0->state = 9;
-        param0->unk_2A4 = 0;
+        titleScreen->state = 9;
+        titleScreen->unk_2A4 = 0;
         break;
     case 9: {
-        ov77_021D1C10(param0);
-        Camera_SetTarget(&param0->titleCamTarget, param0->resources.titleCamera);
-        Camera_SetPosition(&param0->titleCamPos, param0->resources.titleCamera);
+        ov77_021D1C10(titleScreen);
+        Camera_SetTarget(&titleScreen->titleCamTarget, titleScreen->resources.titleCamera);
+        Camera_SetPosition(&titleScreen->titleCamPos, titleScreen->resources.titleCamera);
 
-        param0->unk_2A4++;
+        titleScreen->unk_2A4++;
 
-        if (param0->unk_2A4 >= 60) {
+        if (titleScreen->unk_2A4 >= 60) {
             {
                 GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
             }
             {
-                ov77_021D1CC0(param1, heapID);
+                ov77_021D1CC0(bgConfig, heapID);
             }
             StartScreenFade(FADE_SUB_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_WHITE, 16, 3, heapID);
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
             GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
-            param0->unk_22A = 90;
-            param0->state = 10;
+            titleScreen->delay = 90;
+            titleScreen->state = 10;
         }
     } break;
     case 10:
-        if (param0->unk_22A) {
-            param0->unk_22A--;
+        if (titleScreen->delay) {
+            titleScreen->delay--;
         } else {
             if (IsScreenFadeDone() == TRUE) {
                 v0 = 1;
@@ -1117,9 +1139,9 @@ static BOOL ov77_021D1DF0(TitleScreen *param0, BgConfig *param1, enum HeapId hea
         break;
     }
 
-    ov77_021D2438(param0);
-    ov77_021D1984(param0, &param0->resources);
-    ov77_021D1568(param0, &param0->resources);
+    ov77_021D2438(titleScreen);
+    ov77_021D1984(titleScreen, &titleScreen->resources);
+    ov77_021D1568(titleScreen, &titleScreen->resources);
 
     return v0;
 }
@@ -1154,16 +1176,16 @@ static BOOL ov77_021D20E4(TitleScreen *param0, BgConfig *param1, int param2)
             ov77_021D1CC0(param1, param2);
         }
 
-        param0->unk_22A = 0;
+        param0->delay = 0;
         param0->state = 1;
         break;
     case 1:
         if (param0->unk_254 == 1) {
-            if (param0->unk_22A == 0) {
+            if (param0->delay == 0) {
                 {
                     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
                 }
-            } else if (param0->unk_22A == 0x10) {
+            } else if (param0->delay == 0x10) {
                 {
                     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
                 }
@@ -1172,8 +1194,8 @@ static BOOL ov77_021D20E4(TitleScreen *param0, BgConfig *param1, int param2)
             (void)0;
         }
 
-        param0->unk_22A++;
-        param0->unk_22A &= 0x1f;
+        param0->delay++;
+        param0->delay &= 0x1f;
 
         v0 = 1;
         break;

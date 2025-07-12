@@ -257,7 +257,7 @@ static void DWWarp_InitModel(DistortionWorldWarp *warp)
 
     Easy3DObject_SetPosition(&warp->animationObj, 0, 0, 0);
     Easy3DObject_SetScale(&warp->animationObj, FX32_ONE, FX32_ONE, FX32_ONE);
-    Easy3DObject_SetVisibility(&warp->animationObj, TRUE);
+    Easy3DObject_SetVisible(&warp->animationObj, TRUE);
 
     Easy3DObject_AddAnim(&warp->animationObj, &warp->animationAnimation);
     Easy3DObject_AddAnim(&warp->animationObj, &warp->animationAnimation2);

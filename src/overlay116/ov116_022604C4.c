@@ -136,7 +136,7 @@ static void ov116_022604C4(UnkStruct_ov116_0226139C *param0)
                 Easy3DAnim_LoadFrom(&param0->unk_04->unk_B38[v4].unk_88[0], &param0->unk_04->unk_B38[v4].unk_78, param0->unk_48.unk_00, v5[v4][1], 106, &param0->unk_48.unk_24);
                 Easy3DObject_AddAnim(&param0->unk_04->unk_B38[v4].unk_00, &param0->unk_04->unk_B38[v4].unk_88[0]);
                 Easy3DAnim_SetFrame(&param0->unk_04->unk_B38[v4].unk_88[0], 0);
-                Easy3DObject_SetVisibility(&param0->unk_04->unk_B38[v4].unk_00, 0);
+                Easy3DObject_SetVisible(&param0->unk_04->unk_B38[v4].unk_00, 0);
 
                 {
                     int v6 = 5;
@@ -162,7 +162,7 @@ static void ov116_022604C4(UnkStruct_ov116_0226139C *param0)
 
         ov116_022618A8(&param0->unk_04->unk_92C, param0->unk_48.unk_00, 71);
         ov116_022618B4(&param0->unk_04->unk_92C, param0->unk_14.unk_00);
-        Easy3DObject_SetVisibility(&param0->unk_04->unk_92C.unk_00, 0);
+        Easy3DObject_SetVisible(&param0->unk_04->unk_92C.unk_00, 0);
 
         {
             int v7[] = {
