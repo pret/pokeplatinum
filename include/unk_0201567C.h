@@ -23,7 +23,6 @@ struct UnkStruct_020157E4_t {
     u8 unk_4F;
 };
 
-
 UnkStruct_020157E4 *sub_0201567C(PaletteData *param0, u16 param1, u16 param2, u32 heapID);
 void sub_02015738(UnkStruct_020157E4 *param0, u8 param1);
 void sub_02015760(UnkStruct_020157E4 *param0);
