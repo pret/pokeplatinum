@@ -61,7 +61,7 @@ typedef struct System {
     u8 inhibitSleep;
     u8 inhibitReset;
     u8 padding_69[3];
-    BOOL unk_6C;
+    BOOL showTitleScreenIntro;
     u32 *heapCanary;
 } System;
 

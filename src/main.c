@@ -113,7 +113,7 @@ void NitroMain(void)
         }
     }
 
-    gSystem.unk_6C = 1;
+    gSystem.showTitleScreenIntro = TRUE;
     gSystem.frameCounter = 0;
 
     InitRNG();

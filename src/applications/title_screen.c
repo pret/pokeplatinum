@@ -346,15 +346,15 @@ static BOOL TitleScreen_Main(ApplicationManager *appMan, int *state)
         if (TitleScreen_LoadGfx(&appData->titleScreen, appData->bgConfig, appData->heapID) == TRUE) {
             appData->titleScreen.state = INTRO_STATE_FADE_FROM_BLACK;
 
-            if (!gSystem.unk_6C) {
+            if (!gSystem.showTitleScreenIntro) {
                 appData->inputEnableDelay = TITLE_SCREEN_INPUT_DISABLE_FRAMES;
-                appData->titleScreen.giratinaShown = 1;
-                appData->titleScreen.introShown = 0;
+                appData->titleScreen.giratinaShown = TRUE;
+                appData->titleScreen.introShown = FALSE;
                 *state = TITLE_SCREEN_APP_STATE_INIT_SOUND;
             } else {
                 appData->inputEnableDelay = 0;
-                gSystem.unk_6C = FALSE;
-                appData->titleScreen.introShown = 1;
+                gSystem.showTitleScreenIntro = FALSE;
+                appData->titleScreen.introShown = TRUE;
                 *state = TITLE_SCREEN_APP_STATE_SHOW_INTRO;
             }
         }
@@ -402,7 +402,7 @@ static BOOL TitleScreen_Main(ApplicationManager *appMan, int *state)
 
         if (appData->titleScreenTimer > TITLE_SCREEN_REPLAY_OPENING_FRAMES) {
             appData->nextApp = NEXT_APP_REPLAY_OPENING;
-            gSystem.unk_6C = TRUE;
+            gSystem.showTitleScreenIntro = TRUE;
 
             GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, FALSE);
             Sound_FadeOutBGM(0, 60);

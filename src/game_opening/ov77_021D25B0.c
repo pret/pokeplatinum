@@ -961,7 +961,7 @@ static int ov77_021D2D94(ApplicationManager *appMan, int *param1)
 
     if ((v0->unk_2A8) && ((gSystem.pressedKeys & PAD_BUTTON_A) || (gSystem.pressedKeys & PAD_BUTTON_START))) {
         v0->unk_08 = 1;
-        gSystem.unk_6C = 0;
+        gSystem.showTitleScreenIntro = FALSE;
         SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
         SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
     }
