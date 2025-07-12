@@ -80,7 +80,7 @@ static BOOL GameStartRowanIntro_Main(ApplicationManager *appMan, int *state)
 static int GameStartRowanIntro_Exit(ApplicationManager *appMan, int *state)
 {
     Heap_Destroy(HEAP_ID_GAME_START);
-    EnqueueApplication(FS_OVERLAY_ID_NONE, &Unk_020F6824);
+    EnqueueApplication(FS_OVERLAY_ID_NONE, &ApplicationManagerTemplate_RowanIntroManager);
     return TRUE;
 }
 

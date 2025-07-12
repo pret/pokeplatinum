@@ -3,6 +3,6 @@
 
 #include "overlay_manager.h"
 
-extern const ApplicationManagerTemplate Unk_020F6824;
+extern const ApplicationManagerTemplate ApplicationManagerTemplate_RowanIntroManager;
 
 #endif // POKEPLATINUM_CONST_020F6824_H
