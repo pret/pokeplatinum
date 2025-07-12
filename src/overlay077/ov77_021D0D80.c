@@ -63,45 +63,6 @@ FS_EXTERN_OVERLAY(d_startmenu);
 #define INTRO_CAM_FOV_STEP_REDUCE ANGLE(3.516)   // Actually ~0.0137°
 #define INTRO_CAM_FOV_STEP_MIN    ANGLE(22.5)    // Actually ~0.088°
 
-
-typedef struct TitleScreenResources {
-    int renderState;
-    NNSG3dRenderObj giratinaRenderObj;
-    NNSG3dResMdl *giratinaModel;
-    NNSG3dResFileHeader *giratinaModelRes;
-    void *giratinaTexAnimRes;
-    void *giratinaAnimRes;
-    NNSG3dAnmObj *giratinaTexAnim;
-    NNSG3dAnmObj *giratinaAnim;
-    NNSFndAllocator allocator;
-    VecFx32 giratinaPos;
-    VecFx32 giratinaScale;
-    VecFx32 giratinaRot;
-    Camera *titleCamera;
-    Camera *introCamera;
-    int giratinaAnimState;
-    Easy3DObject giratinaFaceObj;
-    Easy3DAnim giratinaFaceAnim;
-    Easy3DAnim giratinaFaceMatAnim;
-    Easy3DModel giratinaFaceModel;
-    Easy3DObject portalObj;
-    Easy3DAnim portalAnim;
-    Easy3DAnim portalTexAnim;
-    Easy3DModel portalModel;
-    u32 introFrameCounter;
-    int introCamPitchStep;
-    int introCamPitch;
-    fx32 unk_21C;
-    int introCamFovStep; // Amount by which the camera FOV is adjusted each frame
-    u8 giratinaFaceAnimState;
-    u8 giratinaFaceMatAnimState;
-} TitleScreenResources;
-
-typedef struct TitleScreenUnusedStruct {
-    int unused0;
-    TitleScreenResources unused1;
-} TitleScreenUnusedStruct;
-
 enum TitleScreenAppState {
     TITLE_SCREEN_APP_STATE_INIT_RESOURCES,
     TITLE_SCREEN_APP_STATE_SHOW_INTRO,
@@ -134,21 +95,59 @@ enum GiratinaFaceState {
     GIRATINA_FACE_STATE_DONE,
 };
 
-enum TitleScreenRenderState {
-    RENDER_STATE_OFF = 0, // No rendering
-    RENDER_STATE_DISABLE, // Reset GFX pipeline and disable rendering after
-    RENDER_STATE_ENABLE,  // Enable rendering
-};
-
 enum GiratinaAnimState {
     GIRATINA_ANIM_STATE_DISABLED = 0, // No animation
     GIRATINA_ANIM_STATE_STOP, // Let the animation run until the end and then stop
     GIRATINA_ANIM_STATE_PLAY, // Play the animation from the start
 };
 
+enum TitleScreenRenderState {
+    RENDER_STATE_OFF = 0, // No rendering
+    RENDER_STATE_DISABLE, // Reset GFX pipeline and disable rendering after
+    RENDER_STATE_ENABLE,  // Enable rendering
+};
+
+typedef struct TitleScreenGraphics {
+    enum TitleScreenRenderState renderState;
+    NNSG3dRenderObj giratinaRenderObj;
+    NNSG3dResMdl *giratinaModel;
+    NNSG3dResFileHeader *giratinaModelRes;
+    void *giratinaTexAnimRes;
+    void *giratinaAnimRes;
+    NNSG3dAnmObj *giratinaTexAnim;
+    NNSG3dAnmObj *giratinaAnim;
+    NNSFndAllocator allocator;
+    VecFx32 giratinaPos;
+    VecFx32 giratinaScale;
+    VecFx32 giratinaRot;
+    Camera *titleCamera;
+    Camera *introCamera;
+    enum GiratinaAnimState giratinaAnimState;
+    Easy3DObject giratinaFaceObj;
+    Easy3DAnim giratinaFaceAnim;
+    Easy3DAnim giratinaFaceMatAnim;
+    Easy3DModel giratinaFaceModel;
+    Easy3DObject portalObj;
+    Easy3DAnim portalAnim;
+    Easy3DAnim portalTexAnim;
+    Easy3DModel portalModel;
+    u32 introFrameCounter;
+    int introCamPitchStep;
+    int introCamPitch;
+    fx32 unk_21C;
+    int introCamFovStep; // Amount by which the camera FOV is adjusted each frame
+    u8 giratinaFaceAnimState;
+    u8 giratinaFaceMatAnimState;
+} TitleScreenGraphics;
+
+typedef struct TitleScreenUnusedStruct {
+    int unused0;
+    TitleScreenGraphics unused1;
+} TitleScreenUnusedStruct;
+
 typedef struct TitleScreen {
     int state;
-    TitleScreenResources resources;
+    TitleScreenGraphics graphics;
     union {
         u16 delay;
         u16 fadeCount;
@@ -202,18 +201,18 @@ static void TitleScreen_InitBgs(TitleScreenAppData *param0);
 static void ov77_021D1908(TitleScreenAppData *param0);
 static void ov77_021D11CC(TitleScreenAppData *param0);
 static void ov77_021D11FC(TitleScreenAppData *param0);
-static void TitleScreen_Load3DGfx(TitleScreenResources *param0, int param1, int param2, enum HeapId param3);
-static void ov77_021D14E4(TitleScreenResources *param0);
-static void TitleScreen_Render(TitleScreen *param0, TitleScreenResources *param1);
+static void TitleScreen_Load3DGfx(TitleScreenGraphics *param0, int param1, int param2, enum HeapId param3);
+static void ov77_021D14E4(TitleScreenGraphics *param0);
+static void TitleScreen_Render(TitleScreen *param0, TitleScreenGraphics *param1);
 static BOOL TitleScreen_ShouldSkipIntro(void);
 static BOOL TitleScreen_InitGraphics(TitleScreen *param0, BgConfig *param1, enum HeapId param2);
 static BOOL TitleScreen_ShowIntro(TitleScreen *param0, BgConfig *param1, enum HeapId heapID);
 static BOOL ov77_021D20E4(TitleScreen *param0, BgConfig *param1, int param2);
 static BOOL ov77_021D21C0(TitleScreen *param0, BgConfig *param1, int param2);
-static void TitleScreen_LoadCutscene3DGfx(TitleScreenResources *param0, enum HeapId heapID);
-static void ov77_021D1514(TitleScreenResources *param0);
-static void TitleScreen_RenderIntroGraphics(TitleScreenResources *param0);
-static void TitleScreen_UpdateIntroCamera(TitleScreen *param0, TitleScreenResources *param1);
+static void TitleScreen_LoadCutscene3DGfx(TitleScreenGraphics *param0, enum HeapId heapID);
+static void ov77_021D1514(TitleScreenGraphics *param0);
+static void TitleScreen_RenderIntroGraphics(TitleScreenGraphics *param0);
+static void TitleScreen_UpdateIntroCamera(TitleScreen *param0, TitleScreenGraphics *param1);
 static void EmptyCameraFunction(Camera *camera);
 static void TitleScreen_Load2DGfx(BgConfig *param0, enum HeapId param1, TitleScreen *param2);
 static void ov77_021D2428(BgConfig *param0, enum HeapId param1, TitleScreen *param2);
@@ -272,7 +271,7 @@ static int TitleScreen_Main(ApplicationManager *appMan, int *state)
     switch (*state) {
     case TITLE_SCREEN_APP_STATE_INIT_RESOURCES:
         if (TitleScreen_InitGraphics(&appData->titleScreen, appData->bgConfig, appData->heapID) == TRUE) {
-            appData->titleScreen.state = 0;
+            appData->titleScreen.state = INTRO_STATE_FADE_FROM_BLACK;
 
             if (!gSystem.unk_6C) {
                 appData->unk_4EC = 30 * 1;
@@ -459,94 +458,94 @@ static void ov77_021D11FC(TitleScreenAppData *param0)
     sub_020242C4(param0->unk_08);
 }
 
-static void TitleScreen_Load3DGfx(TitleScreenResources *resources, int giratinaModel, int giratinaTexAnim, enum HeapId heapID)
+static void TitleScreen_Load3DGfx(TitleScreenGraphics *gfx, int giratinaModel, int giratinaTexAnim, enum HeapId heapID)
 {
-    Heap_FndInitAllocatorForExpHeap(&resources->allocator, heapID, 4);
+    Heap_FndInitAllocatorForExpHeap(&gfx->allocator, heapID, 4);
 
-    resources->giratinaModelRes = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_DEMO__TITLE__TITLEDEMO, giratinaModel, heapID);
-    resources->giratinaTexAnimRes = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_DEMO__TITLE__TITLEDEMO, giratinaTexAnim, heapID);
-    resources->giratinaAnimRes = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_DEMO__TITLE__TITLEDEMO, giratina_nsbca, heapID);
+    gfx->giratinaModelRes = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_DEMO__TITLE__TITLEDEMO, giratinaModel, heapID);
+    gfx->giratinaTexAnimRes = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_DEMO__TITLE__TITLEDEMO, giratinaTexAnim, heapID);
+    gfx->giratinaAnimRes = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_DEMO__TITLE__TITLEDEMO, giratina_nsbca, heapID);
 
-    Easy3D_InitRenderObjFromResource(&resources->giratinaRenderObj, &resources->giratinaModel, &resources->giratinaModelRes);
+    Easy3D_InitRenderObjFromResource(&gfx->giratinaRenderObj, &gfx->giratinaModel, &gfx->giratinaModelRes);
 
-    void *texAnim = NNS_G3dGetAnmByIdx(resources->giratinaTexAnimRes, 0);
-    void *skeletalAnim = NNS_G3dGetAnmByIdx(resources->giratinaAnimRes, 0);
+    void *texAnim = NNS_G3dGetAnmByIdx(gfx->giratinaTexAnimRes, 0);
+    void *skeletalAnim = NNS_G3dGetAnmByIdx(gfx->giratinaAnimRes, 0);
 
-    resources->giratinaTexAnim = NNS_G3dAllocAnmObj(&resources->allocator, texAnim, resources->giratinaModel);
-    resources->giratinaAnim = NNS_G3dAllocAnmObj(&resources->allocator, skeletalAnim, resources->giratinaModel);
+    gfx->giratinaTexAnim = NNS_G3dAllocAnmObj(&gfx->allocator, texAnim, gfx->giratinaModel);
+    gfx->giratinaAnim = NNS_G3dAllocAnmObj(&gfx->allocator, skeletalAnim, gfx->giratinaModel);
 
-    NNSG3dResTex *texRes = NNS_G3dGetTex(resources->giratinaModelRes);
+    NNSG3dResTex *texRes = NNS_G3dGetTex(gfx->giratinaModelRes);
 
-    NNS_G3dAnmObjInit(resources->giratinaTexAnim, texAnim, resources->giratinaModel, texRes);
-    NNS_G3dAnmObjInit(resources->giratinaAnim, skeletalAnim, resources->giratinaModel, texRes);
-    NNS_G3dRenderObjAddAnmObj(&resources->giratinaRenderObj, resources->giratinaTexAnim);
-    NNS_G3dRenderObjAddAnmObj(&resources->giratinaRenderObj, resources->giratinaAnim);
+    NNS_G3dAnmObjInit(gfx->giratinaTexAnim, texAnim, gfx->giratinaModel, texRes);
+    NNS_G3dAnmObjInit(gfx->giratinaAnim, skeletalAnim, gfx->giratinaModel, texRes);
+    NNS_G3dRenderObjAddAnmObj(&gfx->giratinaRenderObj, gfx->giratinaTexAnim);
+    NNS_G3dRenderObjAddAnmObj(&gfx->giratinaRenderObj, gfx->giratinaAnim);
 
     VecFx32 pos = { 0, 0, 0 };
     VecFx32 scale = { FX32_ONE, FX32_ONE, FX32_ONE };
     VecFx32 rot = { 0, 0, 0 };
 
-    resources->giratinaPos = pos;
-    resources->giratinaScale = scale;
-    resources->giratinaRot = rot;
+    gfx->giratinaPos = pos;
+    gfx->giratinaScale = scale;
+    gfx->giratinaRot = rot;
 
-    resources->giratinaAnimState = GIRATINA_ANIM_STATE_DISABLED;
+    gfx->giratinaAnimState = GIRATINA_ANIM_STATE_DISABLED;
 
-    TitleScreen_LoadCutscene3DGfx(resources, heapID);
+    TitleScreen_LoadCutscene3DGfx(gfx, heapID);
 }
 
-static void TitleScreen_LoadCutscene3DGfx(TitleScreenResources *resources, enum HeapId heapID)
+static void TitleScreen_LoadCutscene3DGfx(TitleScreenGraphics *gfx, enum HeapId heapID)
 {
     NARC *narc = NARC_ctor(NARC_INDEX_DEMO__TITLE__TITLEDEMO, heapID);
 
-    Easy3DModel_LoadFrom(&resources->giratinaFaceModel, narc, giratina_face_nsbmd, heapID);
+    Easy3DModel_LoadFrom(&gfx->giratinaFaceModel, narc, giratina_face_nsbmd, heapID);
 
-    NNS_G3dMdlUseMdlAlpha(resources->giratinaFaceModel.model);
-    NNS_G3dMdlUseMdlPolygonID(resources->giratinaFaceModel.model);
+    NNS_G3dMdlUseMdlAlpha(gfx->giratinaFaceModel.model);
+    NNS_G3dMdlUseMdlPolygonID(gfx->giratinaFaceModel.model);
 
-    Easy3DAnim_LoadFrom(&resources->giratinaFaceAnim, &resources->giratinaFaceModel, narc, giratina_face_nsbca, heapID, &resources->allocator);
-    Easy3DAnim_SetFrame(&resources->giratinaFaceAnim, 0);
+    Easy3DAnim_LoadFrom(&gfx->giratinaFaceAnim, &gfx->giratinaFaceModel, narc, giratina_face_nsbca, heapID, &gfx->allocator);
+    Easy3DAnim_SetFrame(&gfx->giratinaFaceAnim, 0);
 
-    Easy3DAnim_LoadFrom(&resources->giratinaFaceMatAnim, &resources->giratinaFaceModel, narc, giratina_face_nsbma, heapID, &resources->allocator);
-    Easy3DAnim_SetFrame(&resources->giratinaFaceMatAnim, 0);
+    Easy3DAnim_LoadFrom(&gfx->giratinaFaceMatAnim, &gfx->giratinaFaceModel, narc, giratina_face_nsbma, heapID, &gfx->allocator);
+    Easy3DAnim_SetFrame(&gfx->giratinaFaceMatAnim, 0);
 
-    Easy3DObject_Init(&resources->giratinaFaceObj, &resources->giratinaFaceModel);
+    Easy3DObject_Init(&gfx->giratinaFaceObj, &gfx->giratinaFaceModel);
 
-    Easy3DObject_SetPosition(&resources->giratinaFaceObj, 0, 0, 0);
-    Easy3DObject_SetScale(&resources->giratinaFaceObj, FX32_ONE, FX32_ONE, FX32_ONE);
-    Easy3DObject_SetVisible(&resources->giratinaFaceObj, TRUE);
+    Easy3DObject_SetPosition(&gfx->giratinaFaceObj, 0, 0, 0);
+    Easy3DObject_SetScale(&gfx->giratinaFaceObj, FX32_ONE, FX32_ONE, FX32_ONE);
+    Easy3DObject_SetVisible(&gfx->giratinaFaceObj, TRUE);
 
-    Easy3DObject_AddAnim(&resources->giratinaFaceObj, &resources->giratinaFaceAnim);
-    Easy3DObject_AddAnim(&resources->giratinaFaceObj, &resources->giratinaFaceMatAnim);
+    Easy3DObject_AddAnim(&gfx->giratinaFaceObj, &gfx->giratinaFaceAnim);
+    Easy3DObject_AddAnim(&gfx->giratinaFaceObj, &gfx->giratinaFaceMatAnim);
 
-    Easy3DModel_LoadFrom(&resources->portalModel, narc, giratina_portal_nsbmd, heapID);
-    NNS_G3dMdlUseMdlAlpha(resources->portalModel.model);
-    NNS_G3dMdlUseMdlPolygonID(resources->portalModel.model);
+    Easy3DModel_LoadFrom(&gfx->portalModel, narc, giratina_portal_nsbmd, heapID);
+    NNS_G3dMdlUseMdlAlpha(gfx->portalModel.model);
+    NNS_G3dMdlUseMdlPolygonID(gfx->portalModel.model);
 
-    Easy3DAnim_LoadFrom(&resources->portalAnim, &resources->portalModel, narc, giratina_portal_nsbca, heapID, &resources->allocator);
-    Easy3DAnim_SetFrame(&resources->portalAnim, 0);
+    Easy3DAnim_LoadFrom(&gfx->portalAnim, &gfx->portalModel, narc, giratina_portal_nsbca, heapID, &gfx->allocator);
+    Easy3DAnim_SetFrame(&gfx->portalAnim, 0);
 
-    Easy3DAnim_LoadFrom(&resources->portalTexAnim, &resources->portalModel, narc, giratina_portal_nsbta, heapID, &resources->allocator);
-    Easy3DAnim_SetFrame(&resources->portalTexAnim, 0);
+    Easy3DAnim_LoadFrom(&gfx->portalTexAnim, &gfx->portalModel, narc, giratina_portal_nsbta, heapID, &gfx->allocator);
+    Easy3DAnim_SetFrame(&gfx->portalTexAnim, 0);
 
-    Easy3DObject_Init(&resources->portalObj, &resources->portalModel);
+    Easy3DObject_Init(&gfx->portalObj, &gfx->portalModel);
 
-    Easy3DObject_SetPosition(&resources->portalObj, 0, 0, 0);
-    Easy3DObject_SetScale(&resources->portalObj, FX32_ONE, FX32_ONE, FX32_ONE);
-    Easy3DObject_SetVisible(&resources->portalObj, TRUE);
+    Easy3DObject_SetPosition(&gfx->portalObj, 0, 0, 0);
+    Easy3DObject_SetScale(&gfx->portalObj, FX32_ONE, FX32_ONE, FX32_ONE);
+    Easy3DObject_SetVisible(&gfx->portalObj, TRUE);
 
-    Easy3DObject_AddAnim(&resources->portalObj, &resources->portalAnim);
-    Easy3DObject_AddAnim(&resources->portalObj, &resources->portalTexAnim);
+    Easy3DObject_AddAnim(&gfx->portalObj, &gfx->portalAnim);
+    Easy3DObject_AddAnim(&gfx->portalObj, &gfx->portalTexAnim);
 
     NARC_dtor(narc);
 
-    resources->introCamPitchStep = (INTRO_CAM_PITCH_END - INTRO_CAM_PITCH_START) / 30;
-    resources->introCamPitch = INTRO_CAM_PITCH_START;
-    resources->unk_21C = (FX32_ONE);
-    resources->introCamFovStep = INTRO_CAM_FOV_STEP_START;
+    gfx->introCamPitchStep = (INTRO_CAM_PITCH_END - INTRO_CAM_PITCH_START) / 30;
+    gfx->introCamPitch = INTRO_CAM_PITCH_START;
+    gfx->unk_21C = (FX32_ONE);
+    gfx->introCamFovStep = INTRO_CAM_FOV_STEP_START;
 }
 
-static void ov77_021D14E4(TitleScreenResources *param0)
+static void ov77_021D14E4(TitleScreenGraphics *param0)
 {
     ov77_021D1514(param0);
 
@@ -558,7 +557,7 @@ static void ov77_021D14E4(TitleScreenResources *param0)
     Heap_Free(param0->giratinaModelRes);
 }
 
-static void ov77_021D1514(TitleScreenResources *param0)
+static void ov77_021D1514(TitleScreenGraphics *param0)
 {
     Easy3DModel_Release(&param0->giratinaFaceModel);
     Easy3DAnim_Release(&param0->giratinaFaceAnim, &param0->allocator);
@@ -569,7 +568,7 @@ static void ov77_021D1514(TitleScreenResources *param0)
     Easy3DAnim_Release(&param0->portalTexAnim, &param0->allocator);
 }
 
-static void TitleScreen_Render(TitleScreen *titleScreen, TitleScreenResources *resources)
+static void TitleScreen_Render(TitleScreen *titleScreen, TitleScreenGraphics *gfx)
 {
     MtxFx33 rotationMatrix = {
         FX32_ONE, 0,        0,
@@ -578,12 +577,12 @@ static void TitleScreen_Render(TitleScreen *titleScreen, TitleScreenResources *r
     };
 
     if (titleScreen->giratinaShown == FALSE && titleScreen->introShown == TRUE) {
-        EmptyCameraFunction(resources->introCamera);
-        Camera_ComputeProjectionMatrix(CAMERA_PROJECTION_PERSPECTIVE, resources->introCamera);
-        Camera_SetAsActive(resources->introCamera);
+        EmptyCameraFunction(gfx->introCamera);
+        Camera_ComputeProjectionMatrix(CAMERA_PROJECTION_PERSPECTIVE, gfx->introCamera);
+        Camera_SetAsActive(gfx->introCamera);
     } else {
-        Camera_ComputeProjectionMatrix(CAMERA_PROJECTION_PERSPECTIVE, resources->titleCamera);
-        Camera_SetAsActive(resources->titleCamera);
+        Camera_ComputeProjectionMatrix(CAMERA_PROJECTION_PERSPECTIVE, gfx->titleCamera);
+        Camera_SetAsActive(gfx->titleCamera);
     }
 
     titleScreen->giratinaHoverAngle += 2;
@@ -593,50 +592,50 @@ static void TitleScreen_Render(TitleScreen *titleScreen, TitleScreenResources *r
     // But in practice this just slightly reduces the range of the hover so it isn't very noticeable.
     fx32 offset = CalcSineDegrees_Wraparound((titleScreen->giratinaHoverAngle * 0xFFFF) / 360);
     offset *= 0.3;
-    resources->giratinaPos.y -= offset;
+    gfx->giratinaPos.y -= offset;
 
-    switch (resources->renderState) {
+    switch (gfx->renderState) {
     case RENDER_STATE_OFF:
         break;
     case RENDER_STATE_DISABLE:
         sub_020241B4();
         G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_W);
-        resources->renderState = RENDER_STATE_OFF;
+        gfx->renderState = RENDER_STATE_OFF;
         break;
     case RENDER_STATE_ENABLE:
         sub_020241B4();
         Camera_ComputeViewMatrix();
-        MTX_Rot33Vec(&rotationMatrix, &resources->giratinaRot);
+        MTX_Rot33Vec(&rotationMatrix, &gfx->giratinaRot);
 
         if (titleScreen->giratinaShown == FALSE) {
             if (titleScreen->introShown == TRUE) {
-                TitleScreen_RenderIntroGraphics(resources);
+                TitleScreen_RenderIntroGraphics(gfx);
             }
         } else {
             DC_FlushAll();
-            Easy3D_DrawRenderObj(&resources->giratinaRenderObj, &resources->giratinaPos, &rotationMatrix, &resources->giratinaScale);
+            Easy3D_DrawRenderObj(&gfx->giratinaRenderObj, &gfx->giratinaPos, &rotationMatrix, &gfx->giratinaScale);
         }
 
-        switch (resources->giratinaAnimState) {
+        switch (gfx->giratinaAnimState) {
         case GIRATINA_ANIM_STATE_DISABLED:
-            resources->giratinaTexAnim->frame = 0;
-            resources->giratinaAnim->frame = 0;
+            gfx->giratinaTexAnim->frame = 0;
+            gfx->giratinaAnim->frame = 0;
             break;
         case GIRATINA_ANIM_STATE_STOP:
-            if (resources->giratinaTexAnim->frame == 0) {
-                resources->giratinaAnimState = GIRATINA_ANIM_STATE_DISABLED;
+            if (gfx->giratinaTexAnim->frame == 0) {
+                gfx->giratinaAnimState = GIRATINA_ANIM_STATE_DISABLED;
                 break;
             }
         case GIRATINA_ANIM_STATE_PLAY:
-            resources->giratinaTexAnim->frame += FX32_ONE;
-            resources->giratinaAnim->frame += FX32_ONE;
+            gfx->giratinaTexAnim->frame += FX32_ONE;
+            gfx->giratinaAnim->frame += FX32_ONE;
 
-            if (resources->giratinaTexAnim->frame == NNS_G3dAnmObjGetNumFrame(resources->giratinaTexAnim)) {
-                resources->giratinaTexAnim->frame = 0;
+            if (gfx->giratinaTexAnim->frame == NNS_G3dAnmObjGetNumFrame(gfx->giratinaTexAnim)) {
+                gfx->giratinaTexAnim->frame = 0;
             }
 
-            if (resources->giratinaAnim->frame == NNS_G3dAnmObjGetNumFrame(resources->giratinaAnim)) {
-                resources->giratinaAnim->frame = 0;
+            if (gfx->giratinaAnim->frame == NNS_G3dAnmObjGetNumFrame(gfx->giratinaAnim)) {
+                gfx->giratinaAnim->frame = 0;
             }
             break;
         }
@@ -646,32 +645,32 @@ static void TitleScreen_Render(TitleScreen *titleScreen, TitleScreenResources *r
     }
 }
 
-static void TitleScreen_RenderIntroGraphics(TitleScreenResources *resources)
+static void TitleScreen_RenderIntroGraphics(TitleScreenGraphics *gfx)
 {
-    if (resources->giratinaFaceAnimState == GIRATINA_FACE_STATE_SHOWN) {
-        if (Easy3DAnim_Update(&resources->giratinaFaceAnim, FX32_ONE) == TRUE) {
-            resources->giratinaFaceAnimState = GIRATINA_FACE_STATE_DONE;
+    if (gfx->giratinaFaceAnimState == GIRATINA_FACE_STATE_SHOWN) {
+        if (Easy3DAnim_Update(&gfx->giratinaFaceAnim, FX32_ONE) == TRUE) {
+            gfx->giratinaFaceAnimState = GIRATINA_FACE_STATE_DONE;
         }
     }
 
-    if (resources->giratinaFaceMatAnimState == GIRATINA_FACE_STATE_SHOWN) {
-        if (Easy3DAnim_Update(&resources->giratinaFaceMatAnim, FX32_ONE) == TRUE) {
-            resources->giratinaFaceMatAnimState = GIRATINA_FACE_STATE_DONE;
+    if (gfx->giratinaFaceMatAnimState == GIRATINA_FACE_STATE_SHOWN) {
+        if (Easy3DAnim_Update(&gfx->giratinaFaceMatAnim, FX32_ONE) == TRUE) {
+            gfx->giratinaFaceMatAnimState = GIRATINA_FACE_STATE_DONE;
         }
     }
 
-    Easy3DAnim_UpdateLooped(&resources->portalAnim, FX32_ONE);
-    Easy3DAnim_UpdateLooped(&resources->portalTexAnim, FX32_ONE);
+    Easy3DAnim_UpdateLooped(&gfx->portalAnim, FX32_ONE);
+    Easy3DAnim_UpdateLooped(&gfx->portalTexAnim, FX32_ONE);
 
     NNS_G3dGePushMtx();
 
-    Easy3DObject_Draw(&resources->portalObj);
+    Easy3DObject_Draw(&gfx->portalObj);
 
-    if (resources->giratinaFaceAnimState != GIRATINA_FACE_STATE_DONE ||
-        resources->giratinaFaceMatAnimState != GIRATINA_FACE_STATE_DONE) {
-        Easy3DObject_Draw(&resources->giratinaFaceObj);
+    if (gfx->giratinaFaceAnimState != GIRATINA_FACE_STATE_DONE ||
+        gfx->giratinaFaceMatAnimState != GIRATINA_FACE_STATE_DONE) {
+        Easy3DObject_Draw(&gfx->giratinaFaceObj);
     } else {
-        Easy3DObject_SetVisible(&resources->giratinaFaceObj, FALSE);
+        Easy3DObject_SetVisible(&gfx->giratinaFaceObj, FALSE);
     }
 
     NNS_G3dGePopMtx(1);
@@ -823,7 +822,7 @@ static void ov77_021D1908(TitleScreenAppData *param0)
     Heap_Free(param0->bgConfig);
 }
 
-static void TitleScreen_UpdateIntroCamera(TitleScreen *titleScreen, TitleScreenResources *resources)
+static void TitleScreen_UpdateIntroCamera(TitleScreen *titleScreen, TitleScreenGraphics *gfx)
 {
     VecFx32 offset = { 0, 0, 0 };
     CameraAngle angle = { 0, 0, 0, 0 };
@@ -833,55 +832,55 @@ static void TitleScreen_UpdateIntroCamera(TitleScreen *titleScreen, TitleScreenR
     }
 
     // Move camera towards the portal
-    if (resources->introFrameCounter < 60) {
+    if (gfx->introFrameCounter < 60) {
         offset.z = -FX32_CONST(0.625);
-        Camera_Move(&offset, resources->introCamera);
+        Camera_Move(&offset, gfx->introCamera);
     }
 
-    if (resources->introFrameCounter == 75) {
-        resources->giratinaFaceAnimState = 1;
-        resources->giratinaFaceMatAnimState = 1;
+    if (gfx->introFrameCounter == 75) {
+        gfx->giratinaFaceAnimState = 1;
+        gfx->giratinaFaceMatAnimState = 1;
     }
 
-    if (resources->introFrameCounter >= 250) {
-        angle = Camera_GetAngle(resources->introCamera);
-        angle.x = resources->introCamPitch;
+    if (gfx->introFrameCounter >= 250) {
+        angle = Camera_GetAngle(gfx->introCamera);
+        angle.x = gfx->introCamPitch;
 
-        Camera_SetAngleAroundTarget(&angle, resources->introCamera);
+        Camera_SetAngleAroundTarget(&angle, gfx->introCamera);
 
-        resources->introCamPitch += resources->introCamPitchStep;
+        gfx->introCamPitch += gfx->introCamPitchStep;
 
-        if (resources->introCamPitch < INTRO_CAM_PITCH_END) {
-            resources->introCamPitch = INTRO_CAM_PITCH_END;
+        if (gfx->introCamPitch < INTRO_CAM_PITCH_END) {
+            gfx->introCamPitch = INTRO_CAM_PITCH_END;
 
             // "Zoom in" on the portal
-            Camera_AdjustFOV(-(resources->introCamFovStep >> 8), resources->introCamera);
-            resources->introCamFovStep -= INTRO_CAM_FOV_STEP_REDUCE;
+            Camera_AdjustFOV(-(gfx->introCamFovStep >> 8), gfx->introCamera);
+            gfx->introCamFovStep -= INTRO_CAM_FOV_STEP_REDUCE;
 
-            if (resources->introCamFovStep < INTRO_CAM_FOV_STEP_MIN) {
-                resources->introCamFovStep = INTRO_CAM_FOV_STEP_MIN;
+            if (gfx->introCamFovStep < INTRO_CAM_FOV_STEP_MIN) {
+                gfx->introCamFovStep = INTRO_CAM_FOV_STEP_MIN;
             }
         }
     }
 
-    resources->introFrameCounter++;
+    gfx->introFrameCounter++;
 }
 
 static const WindowTemplate sPressStartWindowTemplate = {
     .bgLayer = BG_LAYER_SUB_0,
-    .tilemapLeft = 0x2,
-    .tilemapTop = 0x13,
-    .width = 0x1C,
-    .height = 0x2,
-    .palette = 0x2,
-    .baseTile = 0x1
+    .tilemapLeft = 2,
+    .tilemapTop = 19,
+    .width = 28,
+    .height = 2,
+    .palette = 2,
+    .baseTile = 1
 };
 
 static BOOL TitleScreen_InitGraphics(TitleScreen *titleScreen, BgConfig *bgConfig, enum HeapId heapID)
 {
     TitleScreen_InitCoordinates(titleScreen);
     TitleScreen_Load2DGfx(bgConfig, heapID, titleScreen);
-    TitleScreen_Load3DGfx(&titleScreen->resources, giratina_nsbmd, giratina_nsbta, heapID);
+    TitleScreen_Load3DGfx(&titleScreen->graphics, giratina_nsbmd, giratina_nsbta, heapID);
 
     G3X_AntiAlias(TRUE);
     G3X_AlphaBlend(TRUE);
@@ -892,7 +891,7 @@ static BOOL TitleScreen_InitGraphics(TitleScreen *titleScreen, BgConfig *bgConfi
     titleScreen->titleCamPos.x = titleScreen->titleCamStartPos.x;
     titleScreen->titleCamPos.y = titleScreen->titleCamStartPos.y;
     titleScreen->titleCamPos.z = titleScreen->titleCamStartPos.z;
-    titleScreen->resources.titleCamera = Camera_Alloc(heapID);
+    titleScreen->graphics.titleCamera = Camera_Alloc(heapID);
 
     Camera_InitWithTargetAndPosition(
         &titleScreen->titleCamTarget,
@@ -900,16 +899,16 @@ static BOOL TitleScreen_InitGraphics(TitleScreen *titleScreen, BgConfig *bgConfi
         FX_DEG_TO_IDX(FX32_CONST(15.996)),
         CAMERA_PROJECTION_PERSPECTIVE,
         FALSE,
-        titleScreen->resources.titleCamera);
+        titleScreen->graphics.titleCamera);
 
-    Camera_SetClipping(FX32_CONST(0), FX32_CONST(300), titleScreen->resources.titleCamera);
-    Camera_ComputeProjectionMatrix(CAMERA_PROJECTION_PERSPECTIVE, titleScreen->resources.titleCamera);
-    Camera_SetAsActive(titleScreen->resources.titleCamera);
+    Camera_SetClipping(FX32_CONST(0), FX32_CONST(300), titleScreen->graphics.titleCamera);
+    Camera_ComputeProjectionMatrix(CAMERA_PROJECTION_PERSPECTIVE, titleScreen->graphics.titleCamera);
+    Camera_SetAsActive(titleScreen->graphics.titleCamera);
 
     static const CameraAngle angle = { FX_DEG_TO_IDX(FX32_CONST(319.94)), 0, 0 };
     VecFx32 target = { 0, 0, 0 };
 
-    titleScreen->resources.introCamera = Camera_Alloc(heapID);
+    titleScreen->graphics.introCamera = Camera_Alloc(heapID);
 
     Camera_InitWithTarget(
         &target,
@@ -918,13 +917,13 @@ static BOOL TitleScreen_InitGraphics(TitleScreen *titleScreen, BgConfig *bgConfi
         FX_DEG_TO_IDX(FX32_CONST(21.994)),
         CAMERA_PROJECTION_PERSPECTIVE,
         FALSE,
-        titleScreen->resources.introCamera);
+        titleScreen->graphics.introCamera);
 
-    Camera_SetClipping(FX32_CONST(0), FX32_CONST(300), titleScreen->resources.introCamera);
+    Camera_SetClipping(FX32_CONST(0), FX32_CONST(300), titleScreen->graphics.introCamera);
 
     VecFx32 pos = { 0, 0, FX32_CONST(37.5) };
-    Camera_Move(&pos, titleScreen->resources.introCamera);
-    Camera_SetAsActive(titleScreen->resources.introCamera);
+    Camera_Move(&pos, titleScreen->graphics.introCamera);
+    Camera_SetAsActive(titleScreen->graphics.introCamera);
 
     NNS_G3dGlbLightVector(GX_LIGHTID_0, titleScreen->light0Dir.x, titleScreen->light0Dir.y, titleScreen->light0Dir.z);
     NNS_G3dGlbLightColor(GX_LIGHTID_0, GX_RGB(31, 31, 31));
@@ -935,7 +934,7 @@ static BOOL TitleScreen_InitGraphics(TitleScreen *titleScreen, BgConfig *bgConfi
 
     gSystem.whichScreenIs3D = DS_SCREEN_SUB;
     GXLayers_SwapDisplay();
-    titleScreen->resources.renderState = 2;
+    titleScreen->graphics.renderState = RENDER_STATE_ENABLE;
 
     return TRUE;
 }
@@ -1130,7 +1129,7 @@ static BOOL TitleScreen_ShowIntro(TitleScreen *titleScreen, BgConfig *bgConfig, 
         if (IsScreenFadeDone() == TRUE) {
             titleScreen->introShown = FALSE;
             GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, TRUE);
-            titleScreen->resources.giratinaAnimState = GIRATINA_ANIM_STATE_PLAY;
+            titleScreen->graphics.giratinaAnimState = GIRATINA_ANIM_STATE_PLAY;
             StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_WHITE, 16, 3, heapID);
             titleScreen->state = INTRO_STATE_WAIT_AND_FADE_TO_WHITE_2;
         }
@@ -1151,8 +1150,8 @@ static BOOL TitleScreen_ShowIntro(TitleScreen *titleScreen, BgConfig *bgConfig, 
         break;
     case INTRO_STATE_MOVE_IN_TITLE_CAMERA:
         TitleScreen_UpdateTitleCam(titleScreen);
-        Camera_SetTarget(&titleScreen->titleCamTarget, titleScreen->resources.titleCamera);
-        Camera_SetPosition(&titleScreen->titleCamPos, titleScreen->resources.titleCamera);
+        Camera_SetTarget(&titleScreen->titleCamTarget, titleScreen->graphics.titleCamera);
+        Camera_SetPosition(&titleScreen->titleCamPos, titleScreen->graphics.titleCamera);
 
         titleScreen->titleCamMoveInCounter++;
 
@@ -1179,8 +1178,8 @@ static BOOL TitleScreen_ShowIntro(TitleScreen *titleScreen, BgConfig *bgConfig, 
     }
 
     TitleScreen_UpdateLight1(titleScreen);
-    TitleScreen_UpdateIntroCamera(titleScreen, &titleScreen->resources);
-    TitleScreen_Render(titleScreen, &titleScreen->resources);
+    TitleScreen_UpdateIntroCamera(titleScreen, &titleScreen->graphics);
+    TitleScreen_Render(titleScreen, &titleScreen->graphics);
 
     return done;
 }
@@ -1191,8 +1190,8 @@ static BOOL ov77_021D20E4(TitleScreen *param0, BgConfig *param1, int param2)
 
     switch (param0->state) {
     case 0:
-        Camera_SetTarget(&param0->titleCamEndTarget, param0->resources.titleCamera);
-        Camera_SetPosition(&param0->titleCamEndPos, param0->resources.titleCamera);
+        Camera_SetTarget(&param0->titleCamEndTarget, param0->graphics.titleCamera);
+        Camera_SetPosition(&param0->titleCamEndPos, param0->graphics.titleCamera);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
@@ -1208,7 +1207,7 @@ static BOOL ov77_021D20E4(TitleScreen *param0, BgConfig *param1, int param2)
         ResetScreenMasterBrightness(DS_SCREEN_MAIN);
         ResetScreenMasterBrightness(DS_SCREEN_SUB);
 
-        param0->resources.giratinaAnimState = GIRATINA_ANIM_STATE_PLAY;
+        param0->graphics.giratinaAnimState = GIRATINA_ANIM_STATE_PLAY;
         NNS_G3dGlbLightColor(1, 0x7fff);
 
         {
@@ -1240,17 +1239,17 @@ static BOOL ov77_021D20E4(TitleScreen *param0, BgConfig *param1, int param2)
         break;
     }
 
-    TitleScreen_Render(param0, &param0->resources);
+    TitleScreen_Render(param0, &param0->graphics);
 
     return v0;
 }
 
 static BOOL ov77_021D21C0(TitleScreen *param0, BgConfig *param1, int param2)
 {
-    Camera_Delete(param0->resources.titleCamera);
-    Camera_Delete(param0->resources.introCamera);
+    Camera_Delete(param0->graphics.titleCamera);
+    Camera_Delete(param0->graphics.introCamera);
 
-    ov77_021D14E4(&param0->resources);
+    ov77_021D14E4(&param0->graphics);
     ov77_021D2428(param1, param2, param0);
 
     G2_BlendNone();
