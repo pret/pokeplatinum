@@ -1289,7 +1289,7 @@ Overlay overlay76
 Overlay overlay77
 {
 	After main
-	Object main.nef.p/src_overlay077_title_screen.c.o
+	Object main.nef.p/src_applications_title_screen.c.o
 	Object main.nef.p/src_overlay077_ov77_021D25B0.c.o
 	Object main.nef.p/src_overlay077_ov77_021D54B0.c.o
 	Object main.nef.p/src_overlay077_ov77_021D6670.c.o
