@@ -20,6 +20,8 @@
 	target        \
 	update
 
+ROM_REVISION ?= 1
+
 SUBPROJ_DIR := subprojects
 
 MESON_VER := 1.7.0
@@ -139,15 +141,16 @@ update: meson skrewup
 	$(MESON) subprojects update || true
 
 setup_release: $(BUILD)/build.ninja
-	$(MESON) configure build -Dgdb_debugging=false -Dlogging_enabled=false
+	$(MESON) configure $(BUILD) -Dgdb_debugging=false -Dlogging_enabled=false
 
 setup_debug: $(BUILD)/build.ninja
-	$(MESON) configure build -Dgdb_debugging=true -Dlogging_enabled=true
+	$(MESON) configure $(BUILD) -Dgdb_debugging=true -Dlogging_enabled=true
 
 configure: $(BUILD)/build.ninja
 
 $(BUILD)/build.ninja: $(ROOT_INI) | $(BUILD) $(SKREW_EXE) meson
 	$(MESON) setup \
+		-Drevision=$(ROM_REVISION) \
 		--wrap-mode=nopromote \
 		--native-file=meson/$(NATIVE) \
 		--native-file=$(ROOT_INI) \
