@@ -70,7 +70,7 @@ void WiFiHistory_SetGeonetCommunicatedWith(WiFiHistory *wiFiHistory, int country
     GF_ASSERT(country < 256);
     GF_ASSERT(region < 64);
 
-    if (country == pl_msg_00000694_00000) {
+    if (country == Text_Country_None) {
         return;
     }
 
@@ -79,7 +79,7 @@ void WiFiHistory_SetGeonetCommunicatedWith(WiFiHistory *wiFiHistory, int country
     *v0 &= ((v1 << ((region % 4) * 2)) ^ 0xff);
     *v0 |= recency << ((region % 4) * 2);
 
-    if (country != pl_msg_00000694_00103) { // japan
+    if (country != Text_Country_Japan) { // japan
         WiFiHistory_SetInteractedOutsideJapan(wiFiHistory, TRUE);
     }
 

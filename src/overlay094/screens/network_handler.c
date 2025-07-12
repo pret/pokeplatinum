@@ -1085,7 +1085,7 @@ static int ov94_02243884(GTSApplicationState *appState)
 }
 
 static void ov94_022438C8(GTSApplicationState *appState)
-{ // @todo: comms error
+{
     int errorMessage = GTS_Text_Error_CommsErrorPadded;
 
     switch (appState->commsErrorMessage) {

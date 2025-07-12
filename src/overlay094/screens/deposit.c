@@ -215,7 +215,7 @@ __attribute__((aligned(4))) static const u16 gtsAvailableCountries[] = {
     pl_msg_00000694_00100,
     pl_msg_00000694_00101,
     pl_msg_00000694_00102,
-    pl_msg_00000694_00103,
+    Text_Country_Japan,
     pl_msg_00000694_00104,
     pl_msg_00000694_00107,
     pl_msg_00000694_00111,

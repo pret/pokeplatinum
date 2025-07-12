@@ -16,7 +16,7 @@
 #include "system_data.h"
 #include "trainer_info.h"
 
-typedef struct {
+typedef struct GTSPlayerData {
     GlobalTrade *globalTrade;
     SystemData *systemData;
     Party *party;

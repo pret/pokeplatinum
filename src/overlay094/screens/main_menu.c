@@ -556,7 +556,7 @@ static int ov94_0223CF08(GTSApplicationState *appState)
     return GTS_APPLICATION_LOOP_STATE_MAIN;
 }
 
-static const int GTS_MAIN_MENU_OPTIONS[][3] = {
+static const int sGTSMainMenuOptions[][3] = {
     { GTS_Text_DepositPokemon, GTS_Text_SeekPokemon, GTS_Text_Exit },
     { GTS_Text_Summary, GTS_Text_SeekPokemon, GTS_Text_Exit }
 };
@@ -566,7 +566,7 @@ static void GTSApplication_MainMenu_RenderMenuButtons(GTSApplicationState *appSt
     int isPokemonListed = appState->isPokemonListed;
 
     for (int i = 0; i < 3; i++) {
-        GTSApplication_MainMenu_RenderButton(&appState->unk_F9C[i], appState->gtsMessageLoader, GTS_MAIN_MENU_OPTIONS[isPokemonListed][i], 0xf0f);
+        GTSApplication_MainMenu_RenderButton(&appState->unk_F9C[i], appState->gtsMessageLoader, sGTSMainMenuOptions[isPokemonListed][i], 0xf0f);
         Window_CopyToVRAM(&appState->unk_F9C[i]);
     }
 }

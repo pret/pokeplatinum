@@ -60,25 +60,19 @@ typedef struct {
     int unk_2C;
 } GTSApplicationState_sub3;
 
-// video sources:
-// https://www.youtube.com/watch?v=18h1r5AQ5ZQ
-// https://www.youtube.com/watch?v=-MEPpSTuYEM
-// https://www.youtube.com/watch?v=TrOswIZsocc
-// https://www.youtube.com/watch?v=vH8U16wV7-E
-// https://www.youtube.com/watch?v=aQpc0lr12vA
 typedef struct GTSApplicationState {
     GTSPlayerData *playerData;
     BgConfig *bgConfig;
     WiFiList *unk_08;
     int unk_0C;
     int unk_10;
-    int screenId; // some kind of pointer
+    int screenId;
     int nextScreen;
     int previousScreen;
     int unk_20;
     int screenArgument;
     int depositReturnError;
-    int currentScreenInstruction; // some kind of instruction pointer
+    int currentScreenInstruction;
     int nextScreenInstruction;
     u16 hasPlayerDescended;
     u16 isPokemonListed;
@@ -143,8 +137,6 @@ typedef struct GTSApplicationState {
     Sprite *unk_F30;
     Sprite *avatarSprites[8];
     Sprite *unk_F54[2];
-    // this window provides a running instruction at the bottom of the screen
-    // ex. https://www.youtube.com/watch?v=vH8U16wV7-E&t=94
     Window bottomInstructionWindow;
     Window unk_F6C;
     Window unk_F7C;

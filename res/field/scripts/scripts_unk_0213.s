@@ -94,14 +94,14 @@ _0108:
 _012C:
     Message 1
     InitGlobalTextListMenu 1, 1, 1, VAR_RESULT
-    AddListMenuEntry pl_msg_00000361_00163, LIST_MENU_BUILDER_HEADER
-    AddListMenuEntry pl_msg_00000361_00006, 0
-    AddListMenuEntry pl_msg_00000361_00007, 1
-    AddListMenuEntry pl_msg_00000361_00008, 2
-    AddListMenuEntry pl_msg_00000361_00164, LIST_MENU_BUILDER_HEADER
-    AddListMenuEntry pl_msg_00000361_00009, 3
-    AddListMenuEntry pl_msg_00000361_00010, 4
-    AddListMenuEntry pl_msg_00000361_00011, 5
+    AddListMenuEntry MenuEntries_Text_BattlesForTwo, LIST_MENU_BUILDER_HEADER
+    AddListMenuEntry MenuEntries_Text_SingleBattle, 0
+    AddListMenuEntry MenuEntries_Text_DoubleBattle, 1
+    AddListMenuEntry MenuEntries_Text_MixBattle, 2
+    AddListMenuEntry MenuEntries_Text_BattlesForFour, LIST_MENU_BUILDER_HEADER
+    AddListMenuEntry MenuEntries_Text_MultiBattle, 3
+    AddListMenuEntry MenuEntries_Text_Battle_Info, 4
+    AddListMenuEntry MenuEntries_Text_Battle_Exit, 5
     ShowListMenu
     SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, _01DE

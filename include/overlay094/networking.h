@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV94_0223B140_H
-#define POKEPLATINUM_OV94_0223B140_H
+#ifndef POKEPLATINUM_GTS_NETWORKING_H
+#define POKEPLATINUM_GTS_NETWORKING_H
 
 #include "overlay094/struct_ov94_0223BA24.h"
 #include "overlay094/struct_ov94_0223BA88.h"
@@ -25,4 +25,4 @@ void ov94_0223BAEC(void);
 void GTSNetworking_InitConnection(void);
 void GTSNetworking_SetProfile(const WorldExchangeTrainer *param0, WorldExchangeTrainerError *param1);
 
-#endif // POKEPLATINUM_OV94_0223B140_H
+#endif // POKEPLATINUM_GTS_NETWORKING_H

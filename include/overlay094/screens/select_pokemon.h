@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV94_0223FB48_H
-#define POKEPLATINUM_OV94_0223FB48_H
+#ifndef POKEPLATINUM_GTS_SCREENS_SELECT_POKEMON_H
+#define POKEPLATINUM_GTS_SCREENS_SELECT_POKEMON_H
 
 #include "struct_decls/pc_boxes_decl.h"
 
@@ -15,4 +15,4 @@ int IsBoxIDParty(int boxID);
 BoxPokemon *ov94_022411DC(Party *party, PCBoxes *pcBoxes, int boxID, int pos);
 BOOL Pokemon_IsHoldingMail(Pokemon *mon);
 
-#endif // POKEPLATINUM_OV94_0223FB48_H
+#endif // POKEPLATINUM_GTS_SCREENS_SELECT_POKEMON_H
