@@ -552,7 +552,7 @@ static void ov16_0223B790(ApplicationManager *appMan)
     battleSys->windows = Window_New(HEAP_ID_BATTLE, 3);
 
     for (v3 = 0; v3 < 4; v3++) {
-        battleSys->unk_1CC[v3].unk_00 = Heap_AllocFromHeap(HEAP_ID_BATTLE, (32 * 10 * 10));
+        battleSys->unk_1CC[v3].unk_00 = Heap_Alloc(HEAP_ID_BATTLE, (32 * 10 * 10));
     }
 
     VramTransfer_New(64, HEAP_ID_BATTLE);
@@ -2014,7 +2014,7 @@ static BOOL ov16_0223D800(ApplicationManager *appMan)
         return 0;
     }
 
-    battleSys->unk_1C0 = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(UnkStruct_ov10_0221F800));
+    battleSys->unk_1C0 = Heap_Alloc(HEAP_ID_BATTLE, sizeof(UnkStruct_ov10_0221F800));
     MI_CpuClearFast(battleSys->unk_1C0, sizeof(UnkStruct_ov10_0221F800));
     v2 = CommSys_CurNetId();
 
@@ -2082,7 +2082,7 @@ static BOOL ov16_0223D98C(ApplicationManager *appMan)
     }
 
     v2 = CommSys_CurNetId();
-    battleSys->unk_1C0 = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(UnkStruct_ov10_0221F800));
+    battleSys->unk_1C0 = Heap_Alloc(HEAP_ID_BATTLE, sizeof(UnkStruct_ov10_0221F800));
 
     MI_CpuClearFast(battleSys->unk_1C0, sizeof(UnkStruct_ov10_0221F800));
 
@@ -2144,7 +2144,7 @@ static BOOL ov16_0223DB1C(ApplicationManager *appMan)
 
     v2 = CommSys_CurNetId();
     Overlay_LoadByID(FS_OVERLAY_ID(overlay10), 2);
-    v1 = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(UnkStruct_ov10_0221F800));
+    v1 = Heap_Alloc(HEAP_ID_BATTLE, sizeof(UnkStruct_ov10_0221F800));
 
     v0->unk_170 = v1;
     MI_CpuClearFast(v1, sizeof(UnkStruct_ov10_0221F800));

@@ -131,7 +131,7 @@ static ParticleSystem *sub_0207C7CC(int heapID)
     void *v1;
     Camera *camera;
 
-    v1 = Heap_AllocFromHeap(heapID, 0x4800);
+    v1 = Heap_Alloc(heapID, 0x4800);
     v0 = ParticleSystem_New(sub_0207C794, sub_0207C7B0, v1, 0x4800, 1, heapID);
     camera = ParticleSystem_GetCamera(v0);
 
@@ -174,7 +174,7 @@ UnkStruct_0207C8C4 *sub_0207C894(UnkStruct_0207C894 *param0)
     int v1;
     int v2;
     int v3;
-    UnkStruct_0207C8C4 *v4 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_0207C8C4));
+    UnkStruct_0207C8C4 *v4 = Heap_Alloc(param0->heapID, sizeof(UnkStruct_0207C8C4));
 
     GF_ASSERT(v4 != NULL);
 

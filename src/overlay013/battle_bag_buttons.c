@@ -376,7 +376,7 @@ static void RetrieveButtonData(BattleBag *battleBag, u16 *buttonData, u8 button,
 
 static void DrawButton(BattleBag *battleBag, u8 button, u8 buttonState, u8 screen)
 {
-    u16 *buttonData = Heap_AllocFromHeap(battleBag->context->heapID, sButtonDimensions[button].width * sButtonDimensions[button].height * sizeof(u16));
+    u16 *buttonData = Heap_Alloc(battleBag->context->heapID, sButtonDimensions[button].width * sButtonDimensions[button].height * sizeof(u16));
 
     RetrieveButtonData(battleBag, buttonData, button, buttonState, screen);
 

@@ -28,9 +28,9 @@ struct ApplicationManager {
     ApplicationManager *child;
 };
 
-ApplicationManager *ApplicationManager_New(const ApplicationManagerTemplate *template, void *args, const enum HeapId heapID);
+ApplicationManager *ApplicationManager_New(const ApplicationManagerTemplate *template, void *args, const enum HeapID heapID);
 void ApplicationManager_Free(ApplicationManager *appMan);
-void *ApplicationManager_NewData(ApplicationManager *appMan, u32 size, enum HeapId heapID);
+void *ApplicationManager_NewData(ApplicationManager *appMan, u32 size, enum HeapID heapID);
 void *ApplicationManager_Data(ApplicationManager *appMan);
 void ApplicationManager_FreeData(ApplicationManager *appMan);
 void *ApplicationManager_Args(ApplicationManager *appMan);

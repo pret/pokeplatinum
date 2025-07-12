@@ -53,7 +53,7 @@ void PalPad_PushEntries(PalPad *destination, PalPad *source, int numberToCopy, i
 {
     int i;
     int diffs[5];
-    PalPad *newPad = Heap_AllocFromHeap(heapID, sizeof(PalPad) * PAL_PAD_ENTRIES);
+    PalPad *newPad = Heap_Alloc(heapID, sizeof(PalPad) * PAL_PAD_ENTRIES);
     PalPad_Init(newPad);
 
     for (i = 0; i < numberToCopy; i++) {

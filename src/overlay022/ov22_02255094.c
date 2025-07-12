@@ -488,10 +488,10 @@ static void ov22_02255738(void)
 static void ov22_02255748(UnkStruct_ov22_0225A0E4 *param0, const UnkStruct_ov22_022550D4 *param1)
 {
     param0->unk_00 = sub_02015064(param1);
-    param0->unk_04 = Heap_AllocFromHeap(param1->heapID, sizeof(UnkStruct_02015128 *) * (100 + 18));
+    param0->unk_04 = Heap_Alloc(param1->heapID, sizeof(UnkStruct_02015128 *) * (100 + 18));
     param0->unk_08 = (100 + 18);
     param0->unk_0C = 0;
-    param0->unk_10 = Heap_AllocFromHeap(param1->heapID, sizeof(UnkStruct_020151A4 *) * (1 + 18));
+    param0->unk_10 = Heap_Alloc(param1->heapID, sizeof(UnkStruct_020151A4 *) * (1 + 18));
     param0->unk_14 = (1 + 18);
     param0->unk_18 = 0;
     param0->unk_1C = 1;
@@ -667,7 +667,7 @@ static void ov22_02255984(UnkStruct_ov22_0225A0E4 *param0)
 static void ov22_022559B4(UnkStruct_ov22_0225A0E4 *param0)
 {
     param0->unk_34 = ResourceCollection_New(((100 + 18) + 1), HEAP_ID_14);
-    param0->unk_38 = Heap_AllocFromHeap(HEAP_ID_14, sizeof(NNSG2dCharacterData *) * ((100 + 18) + 1));
+    param0->unk_38 = Heap_Alloc(HEAP_ID_14, sizeof(NNSG2dCharacterData *) * ((100 + 18) + 1));
     memset(param0->unk_38, 0, sizeof(NNSG2dCharacterData *) * ((100 + 18) + 1));
     param0->unk_3C = ((100 + 18) + 1);
 }
@@ -816,12 +816,12 @@ static void ov22_02255C90(UnkStruct_ov22_0225A0E4 *param0)
 
 static void ov22_02255CB8(UnkStruct_ov22_02255CB8 *param0, int param1, int param2, int heapID)
 {
-    param0->unk_00 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov22_022557A0) * param1);
+    param0->unk_00 = Heap_Alloc(heapID, sizeof(UnkStruct_ov22_022557A0) * param1);
     memset(param0->unk_00, 0, sizeof(UnkStruct_ov22_022557A0) * param1);
     param0->unk_10 = ResourceCollection_New(param1, heapID);
     param0->unk_04 = param1;
 
-    param0->unk_08 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov22_02255800) * param2);
+    param0->unk_08 = Heap_Alloc(heapID, sizeof(UnkStruct_ov22_02255800) * param2);
     memset(param0->unk_08, 0, sizeof(UnkStruct_ov22_02255800) * param2);
     param0->unk_14 = ResourceCollection_New(param2, heapID);
     param0->unk_0C = param2;

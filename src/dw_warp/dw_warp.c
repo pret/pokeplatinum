@@ -239,7 +239,7 @@ static void DWWarp_DeleteCamera(DistortionWorldWarp *warp)
 
 static void DWWarp_InitModel(DistortionWorldWarp *warp)
 {
-    Heap_FndInitAllocatorForExpHeap(&warp->allocator, HEAP_ID_DISTORTION_WORLD_WARP, 4);
+    HeapExp_FndInitAllocator(&warp->allocator, HEAP_ID_DISTORTION_WORLD_WARP, 4);
 
     NARC *narc = NARC_ctor(NARC_INDEX_DEMO__TITLE__TITLEDEMO, HEAP_ID_DISTORTION_WORLD_WARP);
 

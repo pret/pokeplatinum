@@ -665,7 +665,7 @@ static void ov101_021D197C(void *param0)
 
 void *ov101_021D1998(u32 param0)
 {
-    void *v0 = Heap_AllocFromHeap(HEAP_ID_79, param0);
+    void *v0 = Heap_Alloc(HEAP_ID_79, param0);
 
     GF_ASSERT(v0 != NULL);
     memset(v0, 0, param0);
@@ -689,9 +689,9 @@ void *ov101_021D19E4(UnkStruct_ov101_021D13C8 *param0, u32 param1, int param2)
     u32 v1 = NARC_GetMemberSize(param0->unk_438, param1);
 
     if (param2 == 1) {
-        v0 = Heap_AllocFromHeap(HEAP_ID_79, v1);
+        v0 = Heap_Alloc(HEAP_ID_79, v1);
     } else {
-        v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_79, v1);
+        v0 = Heap_AllocAtEnd(HEAP_ID_79, v1);
     }
 
     GF_ASSERT(v0 != NULL);

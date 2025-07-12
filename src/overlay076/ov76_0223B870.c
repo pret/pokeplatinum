@@ -333,7 +333,7 @@ static void ov76_0223BCA0(SysTask *param0, void *param1)
 
 void ov76_0223BD30(UnkStruct_ov76_0223DE00 *param0, s8 param1, int param2)
 {
-    UnkStruct_ov76_0223BCA0 *v0 = Heap_AllocFromHeap(HEAP_ID_53, sizeof(UnkStruct_ov76_0223BCA0));
+    UnkStruct_ov76_0223BCA0 *v0 = Heap_Alloc(HEAP_ID_53, sizeof(UnkStruct_ov76_0223BCA0));
     v0->unk_164 = param0->unk_D4.unk_10;
 
     {

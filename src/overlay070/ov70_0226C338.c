@@ -99,7 +99,7 @@ UnkStruct_ov70_0226C39C *ov70_0226C338(u32 heapID, int param1, int param2, int p
     UnkStruct_ov70_0226C39C *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov70_0226C39C));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov70_0226C39C));
     memset(v0, 0, sizeof(UnkStruct_ov70_0226C39C));
 
     ov70_0226C568(&v0->unk_00, &Unk_ov70_0226E678[param1]);

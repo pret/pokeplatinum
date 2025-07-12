@@ -482,7 +482,7 @@ static void ov94_022401E0(UnkStruct_ov94_0223FD4C *param0)
         param0->unk_112 = 0;
     }
 
-    param0->unk_1108 = Heap_AllocFromHeap(HEAP_ID_62, sizeof(UnkStruct_ov94_0223FD4C_sub2));
+    param0->unk_1108 = Heap_Alloc(HEAP_ID_62, sizeof(UnkStruct_ov94_0223FD4C_sub2));
 }
 
 static void ov94_02240268(UnkStruct_ov94_0223FD4C *param0)
@@ -1129,7 +1129,7 @@ static void ov94_02240FA0(UnkStruct_ov94_0223FD4C *param0, int boxID)
     NARC *v6;
     UnkStruct_ov94_02240FA0 *v7;
 
-    param0->unk_1114 = v7 = Heap_AllocFromHeapAtEnd(HEAP_ID_APPLICATION, sizeof(UnkStruct_ov94_02240FA0) * 30);
+    param0->unk_1114 = v7 = Heap_AllocAtEnd(HEAP_ID_APPLICATION, sizeof(UnkStruct_ov94_02240FA0) * 30);
     v6 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_62);
 
     if ((boxID >= 0) && (boxID < MAX_PC_BOXES)) {

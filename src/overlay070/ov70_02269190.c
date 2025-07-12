@@ -628,7 +628,7 @@ static const UnkStruct_ov70_0226E5A4 Unk_ov70_0226E5A4[39] = {
 
 UnkStruct_ov70_02269204 *ov70_02269190(UnkStruct_ov66_0222DFF8 *param0, UnkStruct_ov70_0225C894 *param1, UnkStruct_ov70_02260AD4 *param2, UnkStruct_ov70_0225CA20 *param3, u32 heapID, u32 heapID2)
 {
-    UnkStruct_ov70_02269204 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov70_02269204));
+    UnkStruct_ov70_02269204 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov70_02269204));
     memset(v0, 0, sizeof(UnkStruct_ov70_02269204));
 
     v0->unk_00 = param0;
@@ -641,7 +641,7 @@ UnkStruct_ov70_02269204 *ov70_02269190(UnkStruct_ov66_0222DFF8 *param0, UnkStruc
 
         v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_LOBBY_OTHER, heapID);
 
-        Heap_FndInitAllocatorForExpHeap(&v0->unk_1081C, heapID2, 4);
+        HeapExp_FndInitAllocator(&v0->unk_1081C, heapID2, 4);
 
         ov70_02269540(v0, v1, heapID2);
         ov70_022695E0(v0, v1, heapID2);

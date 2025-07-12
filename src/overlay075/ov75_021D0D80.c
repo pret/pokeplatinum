@@ -697,7 +697,7 @@ static void ov75_021D1598(UnkStruct_ov75_021D1184 *param0)
     LoadMessageBoxGraphics(param0->unk_18, BG_LAYER_MAIN_0, 1 + 9, UnkEnum_ov75_021D1598_06, param0->unk_0A, param0->heapID);
 
     v1 = NARC_GetMemberSize(v5, v6);
-    v2 = Heap_AllocFromHeapAtEnd(param0->heapID, v1);
+    v2 = Heap_AllocAtEnd(param0->heapID, v1);
     NARC_ReadWholeMember(v5, v6, (void *)v2);
 
     NNS_G2dGetUnpackedCharacterData(v2, &v3);
@@ -706,7 +706,7 @@ static void ov75_021D1598(UnkStruct_ov75_021D1184 *param0)
     Heap_Free(v2);
 
     v1 = NARC_GetMemberSize(v5, v8);
-    v2 = Heap_AllocFromHeapAtEnd(param0->heapID, v1);
+    v2 = Heap_AllocAtEnd(param0->heapID, v1);
     NARC_ReadWholeMember(v5, v8, (void *)v2);
 
     NNS_G2dGetUnpackedPaletteData(v2, &v4);
@@ -734,12 +734,12 @@ static void ov75_021D1598(UnkStruct_ov75_021D1184 *param0)
     Heap_Free(v2);
 
     v1 = NARC_GetMemberSize(v5, v7);
-    param0->unk_34 = Heap_AllocFromHeap(param0->heapID, v1);
+    param0->unk_34 = Heap_Alloc(param0->heapID, v1);
     NARC_ReadWholeMember(v5, v7, (void *)param0->unk_34);
     NNS_G2dGetUnpackedScreenData(param0->unk_34, &(param0->unk_3C));
 
     v1 = NARC_GetMemberSize(v5, 36);
-    param0->unk_38 = Heap_AllocFromHeap(param0->heapID, v1);
+    param0->unk_38 = Heap_Alloc(param0->heapID, v1);
     NARC_ReadWholeMember(v5, 36, (void *)param0->unk_38);
     NNS_G2dGetUnpackedScreenData(param0->unk_38, &(param0->unk_40));
 

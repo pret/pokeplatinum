@@ -118,7 +118,7 @@ static void ov95_0224BD5C(SysTask *param0, void *param1);
 
 void *ov95_0224B3D8(UnkStruct_ov95_02247628 *param0)
 {
-    UnkStruct_ov95_0224B4D4 *v0 = Heap_AllocFromHeap(HEAP_ID_58, sizeof(UnkStruct_ov95_0224B4D4));
+    UnkStruct_ov95_0224B4D4 *v0 = Heap_Alloc(HEAP_ID_58, sizeof(UnkStruct_ov95_0224B4D4));
 
     if (v0) {
         int v1;
@@ -545,7 +545,7 @@ static void ov95_0224BB8C(UnkStruct_ov95_0224B4D4 *param0)
 
 static void ov95_0224BBB0(UnkStruct_ov95_0224B4D4 *param0, int param1, int param2, int param3)
 {
-    UnkStruct_ov95_0224BBB0 *v0 = Heap_AllocFromHeap(HEAP_ID_58, sizeof(UnkStruct_ov95_0224BBB0));
+    UnkStruct_ov95_0224BBB0 *v0 = Heap_Alloc(HEAP_ID_58, sizeof(UnkStruct_ov95_0224BBB0));
 
     if (v0) {
         v0->unk_00 = param0;
@@ -591,7 +591,7 @@ static void ov95_0224BC30(SysTask *param0, void *param1)
 
 static void ov95_0224BC6C(UnkStruct_ov95_0224B4D4 *param0, SysTask **param1)
 {
-    UnkStruct_ov95_0224BC6C *v0 = Heap_AllocFromHeap(HEAP_ID_58, sizeof(UnkStruct_ov95_0224BC6C));
+    UnkStruct_ov95_0224BC6C *v0 = Heap_Alloc(HEAP_ID_58, sizeof(UnkStruct_ov95_0224BC6C));
 
     if (v0) {
         v0->unk_04 = 0;

@@ -1094,7 +1094,7 @@ BOOL ov114_0225CA98(const UnkStruct_ov114_0225C76C *param0)
 
 UnkStruct_ov114_0225CAD4 *ov114_0225CAD4(SpriteList *param0, u32 heapID)
 {
-    UnkStruct_ov114_0225CAD4 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov114_0225CAD4));
+    UnkStruct_ov114_0225CAD4 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov114_0225CAD4));
     memset(v0, 0, sizeof(UnkStruct_ov114_0225CAD4));
 
     v0->unk_08 = param0;
@@ -1223,7 +1223,7 @@ static void ov114_0225CCD0(UnkStruct_ov114_0225CCD0 *param0, u32 param1, u32 hea
         param0->unk_00[v0] = SpriteResourceCollection_New(param1, v0, heapID);
     }
 
-    param0->unk_10 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov114_0225CDB4) * param1);
+    param0->unk_10 = Heap_Alloc(heapID, sizeof(UnkStruct_ov114_0225CDB4) * param1);
     memset(param0->unk_10, 0, sizeof(UnkStruct_ov114_0225CDB4) * param1);
     param0->unk_14 = param1;
 }
@@ -1623,7 +1623,7 @@ static UnkStruct_ov114_0225D678 *ov114_0225D48C(const UnkStruct_ov114_0225C76C *
 
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_19, SEQ_PL_WIFIGAME, 0);
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov114_0225D678));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov114_0225D678));
     memset(v0, 0, sizeof(UnkStruct_ov114_0225D678));
     memcpy(&v0->unk_08, param0, sizeof(UnkStruct_ov114_0225C76C));
 
@@ -2463,7 +2463,7 @@ static UnkStruct_ov114_0225E854 *ov114_0225E5A8(const UnkStruct_ov114_0225C76C *
     UnkStruct_ov114_0225E854 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov114_0225E854));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov114_0225E854));
     memset(v0, 0, sizeof(UnkStruct_ov114_0225E854));
     memcpy(&v0->unk_1C, param1, sizeof(UnkStruct_ov114_0225C9A8));
     memcpy(&v0->unk_0C, param0, sizeof(UnkStruct_ov114_0225C76C));

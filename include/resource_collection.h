@@ -39,11 +39,11 @@ typedef struct TextureResourceManager {
     TextureResource *textures;
 } TextureResourceManager;
 
-ResourceCollection *ResourceCollection_New(s32 maxResources, enum HeapId heapID);
+ResourceCollection *ResourceCollection_New(s32 maxResources, enum HeapID heapID);
 void ResourceCollection_Delete(ResourceCollection *collection);
 BOOL ResourceCollection_IsIDUnused(ResourceCollection *collection, int id);
 Resource *ResourceCollection_Add(ResourceCollection *collection, void *data, int id);
-Resource *ResourceCollection_AddFromFile(ResourceCollection *collection, const char *filename, int id, enum HeapId heapID);
+Resource *ResourceCollection_AddFromFile(ResourceCollection *collection, const char *filename, int id, enum HeapID heapID);
 void ResourceCollection_Remove(ResourceCollection *collection, Resource *resource);
 void ResourceCollection_Clear(ResourceCollection *collection);
 Resource *ResourceCollection_FindResource(ResourceCollection *collection, int id);
@@ -51,11 +51,11 @@ void *Resource_GetData(Resource *resource);
 void Resource_SetData(Resource *resource, void *data);
 int Resource_GetID(Resource *resource);
 
-TextureResourceManager *TextureResourceManager_New(s32 maxTextures, enum HeapId heapID);
+TextureResourceManager *TextureResourceManager_New(s32 maxTextures, enum HeapID heapID);
 void TextureResourceManager_Delete(TextureResourceManager *texMgr);
 BOOL TextureResourceManager_IsIDUnused(const TextureResourceManager *texMgr, int id);
-TextureResource *TextureResourceManager_AddTexture(const TextureResourceManager *texMgr, void *data, int id, enum TextureResourceMode mode, enum HeapId heapID);
-TextureResource *TextureResourceManager_AddTextureAndAllocVRam(TextureResourceManager *texMgr, void *data, int id, enum TextureResourceMode mode, enum HeapId heapID);
+TextureResource *TextureResourceManager_AddTexture(const TextureResourceManager *texMgr, void *data, int id, enum TextureResourceMode mode, enum HeapID heapID);
+TextureResource *TextureResourceManager_AddTextureAndAllocVRam(TextureResourceManager *texMgr, void *data, int id, enum TextureResourceMode mode, enum HeapID heapID);
 void TextureResourceManager_RemoveTexture(TextureResourceManager *texMgr, TextureResource *texResource);
 void TextureResourceManager_RemoveTextureWithID(TextureResourceManager *texMgr, int id);
 void TextureResourceManager_Clear(TextureResourceManager *texMgr);

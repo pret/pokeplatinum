@@ -394,7 +394,7 @@ static void ov77_021D1208(UnkStruct_ov77_021D1208 *param0, int param1, int param
     void *v1;
     NNSG3dResTex *v2;
 
-    Heap_FndInitAllocatorForExpHeap(&param0->unk_70, heapID, 4);
+    HeapExp_FndInitAllocator(&param0->unk_70, heapID, 4);
 
     param0->unk_5C = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_DEMO__TITLE__TITLEDEMO, param1, heapID);
     param0->unk_60 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_DEMO__TITLE__TITLEDEMO, param2, heapID);

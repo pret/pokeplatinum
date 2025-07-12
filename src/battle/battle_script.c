@@ -2538,7 +2538,7 @@ static BOOL BtlCmd_StartGetExpTask(BattleSystem *battleSys, BattleContext *battl
 {
     BattleScript_Iter(battleCtx, 1);
 
-    battleCtx->taskData = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(BattleScriptTaskData));
+    battleCtx->taskData = Heap_Alloc(HEAP_ID_BATTLE, sizeof(BattleScriptTaskData));
     battleCtx->taskData->battleSys = battleSys;
     battleCtx->taskData->battleCtx = battleCtx;
     battleCtx->taskData->seqNum = SEQ_GET_EXP_START;
@@ -2794,7 +2794,7 @@ static BOOL BtlCmd_StartCatchMonTask(BattleSystem *battleSys, BattleContext *bat
     BattleScript_Iter(battleCtx, 1);
     BOOL safariCapture = BattleScript_Read(battleCtx);
 
-    battleCtx->taskData = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(BattleScriptTaskData));
+    battleCtx->taskData = Heap_Alloc(HEAP_ID_BATTLE, sizeof(BattleScriptTaskData));
     battleCtx->taskData->battleSys = battleSys;
     battleCtx->taskData->battleCtx = battleCtx;
     battleCtx->taskData->seqNum = 0;
@@ -3865,7 +3865,7 @@ static BOOL BtlCmd_PrintTrainerMessage(BattleSystem *battleSys, BattleContext *b
 static u32 BattleScript_CalcPrizeMoney(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
     u8 lastLevel = 0;
-    void *rawParty = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(TrainerMonWithMovesAndItem) * MAX_PARTY_SIZE);
+    void *rawParty = Heap_Alloc(HEAP_ID_BATTLE, sizeof(TrainerMonWithMovesAndItem) * MAX_PARTY_SIZE);
 
     Trainer trainer;
     Trainer_Load(battleSys->trainerIDs[battler], &trainer);
@@ -10074,7 +10074,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
             int level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
 
             // Cache the stats from the previous level for later
-            data->battleCtx->tmpData = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(PokemonStats));
+            data->battleCtx->tmpData = Heap_Alloc(HEAP_ID_BATTLE, sizeof(PokemonStats));
             PokemonStats *oldStats = data->battleCtx->tmpData;
             for (i = 0; i < STAT_MAX; i++) {
                 oldStats->stat[i] = Pokemon_GetValue(mon, statParams[i], NULL);

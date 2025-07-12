@@ -243,7 +243,7 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 heapID, const U
 
     switch (param0->unk_00) {
     case 0:
-        param0->unk_0C = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov104_0223DDE4));
+        param0->unk_0C = Heap_Alloc(heapID, sizeof(UnkStruct_ov104_0223DDE4));
         memset(param0->unk_0C, 0, sizeof(UnkStruct_ov104_0223DDE4));
 
         v0 = param0->unk_0C;

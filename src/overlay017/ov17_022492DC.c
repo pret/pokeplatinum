@@ -271,7 +271,7 @@ static const UnkStruct_ov17_02254630 Unk_ov17_02254630[][4] = {
 
 static void *ov17_022492DC(void)
 {
-    UnkStruct_ov17_022492DC *v0 = Heap_AllocFromHeap(HEAP_ID_23, sizeof(UnkStruct_ov17_022492DC));
+    UnkStruct_ov17_022492DC *v0 = Heap_Alloc(HEAP_ID_23, sizeof(UnkStruct_ov17_022492DC));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_022492DC));
     v0->unk_8A = -1;
 
@@ -335,17 +335,17 @@ static void ov17_022493DC(UnkStruct_ov17_022492DC *param0)
     NNSG2dScreenData *v1;
     void *v2;
 
-    param0->unk_C4[0] = Heap_AllocFromHeap(HEAP_ID_23, (0x8000 - (0x800 * 4)));
-    param0->unk_C4[1] = Heap_AllocFromHeap(HEAP_ID_23, (0x8000 - (0x800 * 4)));
-    param0->unk_C4[2] = Heap_AllocFromHeap(HEAP_ID_23, 6 * 12 * 0x20 * 3);
+    param0->unk_C4[0] = Heap_Alloc(HEAP_ID_23, (0x8000 - (0x800 * 4)));
+    param0->unk_C4[1] = Heap_Alloc(HEAP_ID_23, (0x8000 - (0x800 * 4)));
+    param0->unk_C4[2] = Heap_Alloc(HEAP_ID_23, 6 * 12 * 0x20 * 3);
 
-    param0->unk_D0[0] = Heap_AllocFromHeap(HEAP_ID_23, 0x800);
-    param0->unk_D0[1] = Heap_AllocFromHeap(HEAP_ID_23, 0x800);
-    param0->unk_D0[2] = Heap_AllocFromHeap(HEAP_ID_23, 0x800);
-    param0->unk_D0[3] = Heap_AllocFromHeap(HEAP_ID_23, 0x800);
+    param0->unk_D0[0] = Heap_Alloc(HEAP_ID_23, 0x800);
+    param0->unk_D0[1] = Heap_Alloc(HEAP_ID_23, 0x800);
+    param0->unk_D0[2] = Heap_Alloc(HEAP_ID_23, 0x800);
+    param0->unk_D0[3] = Heap_Alloc(HEAP_ID_23, 0x800);
 
-    param0->unk_E0[0] = Heap_AllocFromHeap(HEAP_ID_23, 0x200);
-    param0->unk_E0[1] = Heap_AllocFromHeap(HEAP_ID_23, 0x200);
+    param0->unk_E0[0] = Heap_Alloc(HEAP_ID_23, 0x200);
+    param0->unk_E0[1] = Heap_Alloc(HEAP_ID_23, 0x200);
 
     v2 = Graphics_GetCharData(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 9, 1, &v0, HEAP_ID_23);
     MI_CpuCopy32(v0->pRawData, param0->unk_C4[0], (0x8000 - (0x800 * 4)));
@@ -603,7 +603,7 @@ static int ov17_02249A0C(UnkStruct_ov17_022492DC *param0, int param1)
 
 static UnkStruct_ov17_02249B30 *ov17_02249AAC(UnkStruct_ov17_022492DC *param0, int param1, u16 param2, u32 param3, const UnkStruct_ov17_02254630 *param4, int param5)
 {
-    UnkStruct_ov17_02249B30 *v0 = Heap_AllocFromHeap(HEAP_ID_23, sizeof(UnkStruct_ov17_02249B30));
+    UnkStruct_ov17_02249B30 *v0 = Heap_Alloc(HEAP_ID_23, sizeof(UnkStruct_ov17_02249B30));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_02249B30));
 
     if (param3 != 0xffffffff) {

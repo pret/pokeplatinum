@@ -59,7 +59,7 @@ static void ov12_022269C4(SysTask *param0, void *param1)
 
 void ov12_022269EC(UnkStruct_ov12_0221FCDC *param0)
 {
-    UnkStruct_ov12_022269C4 *v0 = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(UnkStruct_ov12_022269C4));
+    UnkStruct_ov12_022269C4 *v0 = Heap_Alloc(HEAP_ID_BATTLE, sizeof(UnkStruct_ov12_022269C4));
 
     v0->unk_00 = 0;
     v0->unk_04 = param0;
@@ -84,7 +84,7 @@ static void ov12_02226A14(SysTask *param0, void *param1)
 
 void ov12_02226A3C(UnkStruct_ov12_0221FCDC *param0)
 {
-    UnkStruct_ov12_02226A14 *v0 = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(UnkStruct_ov12_02226A14));
+    UnkStruct_ov12_02226A14 *v0 = Heap_Alloc(HEAP_ID_BATTLE, sizeof(UnkStruct_ov12_02226A14));
 
     v0->unk_00 = 0;
     v0->unk_04 = param0;
@@ -109,7 +109,7 @@ static void ov12_02226A64(SysTask *param0, void *param1)
 
 void ov12_02226A88(UnkStruct_ov12_0221FCDC *param0)
 {
-    UnkStruct_ov12_02226A64 *v0 = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(UnkStruct_ov12_02226A64));
+    UnkStruct_ov12_02226A64 *v0 = Heap_Alloc(HEAP_ID_BATTLE, sizeof(UnkStruct_ov12_02226A64));
 
     v0->unk_00 = 0;
     v0->unk_04 = param0;
@@ -148,7 +148,7 @@ void ov12_02226B1C(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, Sprite
     UnkStruct_ov12_02226AAC *v0;
     SpriteTemplate v1;
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(UnkStruct_ov12_02226AAC));
+    v0 = Heap_Alloc(HEAP_ID_BATTLE, sizeof(UnkStruct_ov12_02226AAC));
 
     GF_ASSERT(v0 != NULL);
 

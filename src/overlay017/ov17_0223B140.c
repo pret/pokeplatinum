@@ -666,8 +666,8 @@ static void ov17_0223BBA8(UnkStruct_ov17_02246F24 *param0, NARC *param1)
     {
         u16 *v0, *v1, *v2, *v3;
 
-        v0 = Heap_AllocFromHeap(HEAP_ID_21, 0x20);
-        v1 = Heap_AllocFromHeap(HEAP_ID_21, 0x20);
+        v0 = Heap_Alloc(HEAP_ID_21, 0x20);
+        v1 = Heap_Alloc(HEAP_ID_21, 0x20);
         v2 = PaletteData_GetUnfadedBuffer(param0->unk_0C.unk_50, 0);
         v3 = PaletteData_GetFadedBuffer(param0->unk_0C.unk_50, 0);
 

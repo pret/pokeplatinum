@@ -94,7 +94,7 @@ void PoketchTask_Start(const PoketchTask *appTasks, u32 taskId, void *taskData, 
     for (u32 slot = 0; appTasks[slot].taskId != POKETCH_EMPTY_TASK; slot++) {
         if (appTasks[slot].taskId == taskId) {
             u32 size = sizeof(PoketchTaskManager) + appTasks[slot].extraDataSize;
-            PoketchTaskManager *poketchTaskMan = Heap_AllocFromHeap(heapID, size);
+            PoketchTaskManager *poketchTaskMan = Heap_Alloc(heapID, size);
 
             if (poketchTaskMan != NULL) {
                 if (appTasks[slot].extraDataSize != 0) {
@@ -179,7 +179,7 @@ void ov25_02255258(u16 *tileBuffer, u32 param1, u32 param2, u32 param3, u32 para
 
 void PoketchTask_MapToActivePaletteFromLuminance(u16 *rawData, u32 numPaletteEntries)
 {
-    u16 *activePalette = Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, PALETTE_SIZE_BYTES);
+    u16 *activePalette = Heap_Alloc(HEAP_ID_POKETCH_APP, PALETTE_SIZE_BYTES);
 
     if (activePalette) {
         static const u8 paletteEntries[] = {
@@ -209,10 +209,10 @@ void PoketchTask_MapToActivePaletteFromLuminance(u16 *rawData, u32 numPaletteEnt
 
 void PoketchTask_FillPaletteFromActivePaletteSlot(u32 slot, u32 offset)
 {
-    u16 *activePalette = Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, PALETTE_SIZE_BYTES);
+    u16 *activePalette = Heap_Alloc(HEAP_ID_POKETCH_APP, PALETTE_SIZE_BYTES);
 
     if (activePalette) {
-        u16 *newPalette = Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, PALETTE_SIZE_BYTES);
+        u16 *newPalette = Heap_Alloc(HEAP_ID_POKETCH_APP, PALETTE_SIZE_BYTES);
 
         PoketchGraphics_CopyActivePalette(activePalette);
 
@@ -251,7 +251,7 @@ void PoketchTask_LoadPokemonIcons(u32 offset, const u32 *iconIdxList, u32 numIco
 {
     static const u16 iconSize[2] = { 512, 1024 };
     static const u16 readSize[2] = { 640, 1152 };
-    u8 *ncgrFile = Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, readSize[isLarge]);
+    u8 *ncgrFile = Heap_Alloc(HEAP_ID_POKETCH_APP, readSize[isLarge]);
 
     if (ncgrFile) {
         NARC *iconNARC = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_POKETCH_APP);

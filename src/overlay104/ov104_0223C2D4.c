@@ -136,7 +136,7 @@ UnkStruct_ov104_0223C4CC *ov104_0223C2D4(UnkStruct_0209B75C *param0)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_94, 0x90000);
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_94, sizeof(UnkStruct_ov104_0223C4CC));
+    v0 = Heap_Alloc(HEAP_ID_94, sizeof(UnkStruct_ov104_0223C4CC));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov104_0223C4CC));
 
     v0->unk_08 = param0;

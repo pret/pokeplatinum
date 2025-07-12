@@ -3870,7 +3870,7 @@ asm static void ov64_02231164 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     mov r1, #0x32
     ldr r0, [sp, #0x24]
     lsl r1, r1, #6
-    bl Heap_AllocFromHeap
+    bl Heap_Alloc
     mov r3, #0
     str r0, [sp, #0x34]
     str r3, [sp]

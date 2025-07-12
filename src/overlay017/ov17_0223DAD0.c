@@ -251,7 +251,7 @@ int ov17_0223DAD0(ApplicationManager *appMan, int *param1)
     PaletteData_AllocBuffer(v0->unk_14.unk_90, 2, (((16 - 2) * 16) * sizeof(u16)), HEAP_ID_23);
     PaletteData_AllocBuffer(v0->unk_14.unk_90, 3, 0x200, HEAP_ID_23);
 
-    v0->unk_1050.unk_00 = Heap_AllocFromHeap(HEAP_ID_23, 0x200);
+    v0->unk_1050.unk_00 = Heap_Alloc(HEAP_ID_23, 0x200);
     ov17_0224CDB4(v0, 1);
     v0->unk_14.unk_60 = BgConfig_New(HEAP_ID_23);
 
@@ -830,7 +830,7 @@ static void ov17_0223E778(UnkStruct_ov17_0224DF54 *param0)
 
     GF_ASSERT(param0->unk_0C == NULL);
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_23, 0x4800);
+    v0 = Heap_Alloc(HEAP_ID_23, 0x4800);
     param0->unk_0C = ParticleSystem_New(ov17_0223E800, ov17_0223E81C, v0, 0x4800, 1, HEAP_ID_23);
 
     camera = ParticleSystem_GetCamera(param0->unk_0C);

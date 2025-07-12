@@ -129,7 +129,7 @@ int ov94_0223BCB0(ApplicationManager *appMan, int *param1)
 
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_11, SEQ_WIFILOBBY, 1);
 
-        v0->unk_4C = Heap_AllocFromHeap(HEAP_ID_62, 0x20000 + 32);
+        v0->unk_4C = Heap_Alloc(HEAP_ID_62, 0x20000 + 32);
         v0->unk_50 = NNS_FndCreateExpHeap((void *)(((u32)v0->unk_4C + 31) / 32 * 32), 0x20000);
         *param1 = 1;
         break;

@@ -118,7 +118,7 @@ static void DisplayExclamation(PoketchMoveTesterGraphics *graphics, u32 exclamCo
 
 BOOL PoketchMoveTesterGraphics_New(PoketchMoveTesterGraphics **graphics, const MoveTesterData *moveTesterData, BgConfig *bgConfig)
 {
-    PoketchMoveTesterGraphics *moveTesterGraphics = (PoketchMoveTesterGraphics *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(PoketchMoveTesterGraphics));
+    PoketchMoveTesterGraphics *moveTesterGraphics = (PoketchMoveTesterGraphics *)Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(PoketchMoveTesterGraphics));
 
     if (moveTesterGraphics != NULL) {
         PoketchTask_InitActiveTaskList(moveTesterGraphics->activeTasks, NUM_TASK_SLOTS);

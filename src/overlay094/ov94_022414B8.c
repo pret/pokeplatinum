@@ -495,7 +495,7 @@ static void ov94_022418B8(UnkStruct_ov94_0223FD4C *param0)
 {
     param0->unk_BAC = Strbuf_Init((90 * 2), HEAP_ID_62);
     param0->unk_BB0 = MessageLoader_GetNewStrbuf(param0->unk_B90, 90);
-    param0->unk_10E4 = Heap_AllocFromHeap(HEAP_ID_62, sizeof(UnkStruct_ov94_0223FD4C_sub3));
+    param0->unk_10E4 = Heap_Alloc(HEAP_ID_62, sizeof(UnkStruct_ov94_0223FD4C_sub3));
 
     MI_CpuClearFast(param0->unk_10E4, sizeof(UnkStruct_ov94_0223FD4C_sub3));
 
@@ -1014,7 +1014,7 @@ u8 *ov94_02242548(int param0)
 {
     u32 v0, v1, v2;
     u16 *v3;
-    u8 *v4 = Heap_AllocFromHeap(HEAP_ID_62, NATIONAL_DEX_COUNT + 1);
+    u8 *v4 = Heap_Alloc(HEAP_ID_62, NATIONAL_DEX_COUNT + 1);
 
     MI_CpuClearFast(v4, NATIONAL_DEX_COUNT + 1);
 

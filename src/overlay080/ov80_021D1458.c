@@ -132,7 +132,7 @@ int ov80_021D1458(UnkStruct_ov80_021D2A08 *param0)
 {
     UnkStruct_ov80_021D1478 *v0;
 
-    param0->unk_34 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov80_021D1478));
+    param0->unk_34 = Heap_Alloc(param0->heapID, sizeof(UnkStruct_ov80_021D1478));
     v0 = (UnkStruct_ov80_021D1478 *)param0->unk_34;
 
     memset(v0, 0, sizeof(UnkStruct_ov80_021D1478));

@@ -80,7 +80,7 @@ UnkStruct_ov16_0226DEEC *ov16_0226DEEC(SpriteSystem *param0, SpriteManager *para
     v1.priority = param7;
     v1.bgPriority = param8;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov16_0226DEEC));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov16_0226DEEC));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov16_0226DEEC));
 
     v0->unk_00 = SpriteSystem_NewSprite(param0, param1, &v1);

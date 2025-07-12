@@ -36,7 +36,7 @@ UnkStruct_ov108_02243594 *ov108_0224351C(UnkStruct_ov108_02243030 *param0, u32 p
     UnkStruct_ov108_02243594 *v0;
     VecFx32 v1;
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_103, sizeof(UnkStruct_ov108_02243594));
+    v0 = Heap_Alloc(HEAP_ID_103, sizeof(UnkStruct_ov108_02243594));
     memset(v0, 0, sizeof(UnkStruct_ov108_02243594));
 
     v0->unk_10 = ov108_022430F0(param0, param1, param2, param3, param4, param7, param8, param9);

@@ -524,7 +524,7 @@ __attribute__((aligned(4))) static const UnkStruct_ov17_02253388 Unk_ov17_022533
 
 static void *ov17_0223F7E4(void)
 {
-    UnkStruct_ov17_0223F7E4 *v0 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_0223F7E4));
+    UnkStruct_ov17_0223F7E4 *v0 = Heap_Alloc(HEAP_ID_21, sizeof(UnkStruct_ov17_0223F7E4));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_0223F7E4));
     v0->unk_2C8 = -1;
 
@@ -573,7 +573,7 @@ void *ov17_0223F88C(UnkStruct_02095C48 *param0, UnkStruct_ov17_0223F88C *param1,
         int v4;
 
         for (v4 = 0; v4 < 5; v4++) {
-            v0->unk_20[v4] = Heap_AllocFromHeap(HEAP_ID_21, 0x800);
+            v0->unk_20[v4] = Heap_Alloc(HEAP_ID_21, 0x800);
             v3 = Graphics_GetScrnDataFromOpenNARC(v1, Unk_ov17_02253250[v4], 1, &v2, HEAP_ID_21);
             MI_CpuCopy32(v2->rawData, v0->unk_20[v4], 0x800);
             Heap_Free(v3);
@@ -588,7 +588,7 @@ void *ov17_0223F88C(UnkStruct_02095C48 *param0, UnkStruct_ov17_0223F88C *param1,
         v6 = v0->unk_04->unk_50;
 
         for (v7 = 0; v7 < 2; v7++) {
-            v0->unk_34[v7] = Heap_AllocFromHeap(HEAP_ID_21, 0x200);
+            v0->unk_34[v7] = Heap_Alloc(HEAP_ID_21, 0x200);
             PaletteData_LoadBufferFromFileStart(v6, 45, Unk_ov17_02253238[v7], 21, 1, 0, 0);
             v5 = PaletteData_GetUnfadedBuffer(v6, 1);
             MI_CpuCopy16(v5, v0->unk_34[v7], 0x200);

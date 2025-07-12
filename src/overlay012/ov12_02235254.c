@@ -911,7 +911,7 @@ void *ov12_02235E50(UnkStruct_ov12_0221FCDC *param0, int param1)
     GF_ASSERT(param0 != NULL);
 
     heapID = ov12_0221FDE4(param0);
-    v1 = Heap_AllocFromHeap(heapID, param1);
+    v1 = Heap_Alloc(heapID, param1);
 
     GF_ASSERT(v1 != NULL);
     memset(v1, 0, param1);

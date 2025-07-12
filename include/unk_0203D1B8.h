@@ -45,7 +45,7 @@ void *sub_0203D578(int param0, FieldSystem *fieldSystem, int param2, int param3,
 void *sub_0203D5C8(int param0, FieldSystem *fieldSystem, int param2);
 void *sub_0203D644(FieldSystem *fieldSystem, int param1);
 PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, int heapID, int mode);
-void *FieldSystem_OpenSummaryScreenSelectMove(enum HeapId heapID, FieldSystem *fieldSystem, u8 partyIndex);
+void *FieldSystem_OpenSummaryScreenSelectMove(enum HeapID heapID, FieldSystem *fieldSystem, u8 partyIndex);
 int PokemonSummary_GetSelectedMoveSlot(void *summary);
 void sub_0203D754(FieldSystem *fieldSystem, UnkStruct_02042434 *param1);
 void sub_0203D80C(FieldTask *param0, u16 *param1, u16 *param2, u16 *param3);
