@@ -310,7 +310,7 @@ void sub_02039734(void)
 
 void sub_02039750(int param0, int param1, BOOL isWifi, int param3)
 {
-    if (!WirelessDriver_Initialised()) {
+    if (!WirelessDriver_Initialized()) {
         return;
     }
 

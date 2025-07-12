@@ -103,7 +103,7 @@ static int (*gtsWFCInitScreenStates[])(GTSApplicationState *) = {
     GTSApplication_WFCInit_RestartConnection
 };
 
-int GTSApplication_InitWFCScreen(GTSApplicationState *appState, int unused1)
+int GTSApplication_InitWFC_Init(GTSApplicationState *appState, int unused1)
 {
     GTSApplication_WFCInit_InitTitle(appState);
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
@@ -378,7 +378,7 @@ static int GTSApplication_WFCInit_RestartOrExit(GTSApplicationState *appState)
                 appState->currentScreenInstruction = 0;
             } else {
                 GTSApplication_SetNextScreenWithArgument(appState, 7, 11);
-                appState->previousScreen = 1;
+                appState->returnAfterNetworkScreen = 1;
                 appState->currentScreenInstruction = 11;
             }
         } else {

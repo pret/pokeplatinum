@@ -365,7 +365,7 @@ static int GTSApplication_MainMenu_WaitUntilFinishedMoving(GTSApplicationState *
         // this jumps us to screen #7 (network handler) with argument 11
         GTSApplication_SetNextScreenWithArgument(appState, 7, 11);
 
-        appState->previousScreen = 1;
+        appState->returnAfterNetworkScreen = 1;
         appState->currentScreenInstruction = 9;
     }
 
@@ -430,7 +430,7 @@ static int GTSApplication_MainMenu_HandleInput(GTSApplicationState *appState)
             } else {
                 if (appState->networkTimer == 0) {
                     GTSApplication_SetNextScreenWithArgument(appState, 7, 11);
-                    appState->previousScreen = 2;
+                    appState->returnAfterNetworkScreen = 2;
                     appState->currentScreenInstruction = 9;
                     appState->networkTimer = (60 * 30);
                     Sound_PlayEffect(SEQ_SE_CONFIRM);

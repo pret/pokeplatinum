@@ -222,7 +222,7 @@ BOOL WirelessDriver_IsReady(void)
     return sWirelessDriverStatus == WIRELESS_DRIVER_STATUS_CONNECTED;
 }
 
-BOOL WirelessDriver_Initialised(void)
+BOOL WirelessDriver_Initialized(void)
 {
     return sWirelessDriverStatus != WIRELESS_DRIVER_STATUS_DISCONNECTED;
 }

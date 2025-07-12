@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_0207AE68_T_H
-#define POKEPLATINUM_STRUCT_0207AE68_T_H
+#ifndef POKEPLATINUM_STRUCT_EVOLUTION_DATA_H
+#define POKEPLATINUM_STRUCT_EVOLUTION_DATA_H
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
@@ -23,7 +23,7 @@
 #include "strbuf.h"
 #include "string_template.h"
 
-struct EvolutionData_t {
+typedef struct EvolutionData {
     BgConfig *unk_00;
     Window *unk_04;
     MessageLoader *unk_08;
@@ -69,6 +69,6 @@ struct EvolutionData_t {
     u8 unk_84;
     u8 unk_85;
     u8 unk_86;
-};
+} EvolutionData;
 
-#endif // POKEPLATINUM_STRUCT_0207AE68_T_H
+#endif // POKEPLATINUM_STRUCT_EVOLUTION_DATA_H

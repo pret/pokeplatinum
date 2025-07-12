@@ -7,7 +7,7 @@
 #include "message.h"
 #include "strbuf.h"
 
-int GTSApplication_InitWFCScreen(GTSApplicationState *appState, int param1);
+int GTSApplication_InitWFC_Init(GTSApplicationState *appState, int param1);
 int GTSApplication_WFCInit_Main(GTSApplicationState *appState, int param1);
 int GTSApplication_WFCInit_Exit(GTSApplicationState *appState, int param1);
 void GTSApplication_DisplayStatusMessage(GTSApplicationState *appState, MessageLoader *messageLoader, int messageId, int textSpeed, u16 unused);

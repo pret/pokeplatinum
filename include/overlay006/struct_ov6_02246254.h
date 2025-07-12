@@ -5,7 +5,7 @@
 #include "pokemon.h"
 #include "trainer_info.h"
 
-typedef struct {
+typedef struct NpcTradeAnimationConfig {
     const BoxPokemon *sendingPokemon;
     const BoxPokemon *receivingPokemon;
     const TrainerInfo *otherTrainer;

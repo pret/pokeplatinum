@@ -17,16 +17,15 @@
 #include "constdata/const_020F410C.h"
 
 static const u8 sGTSPokemonSummaryPages[] = {
-    // compiler
-    0x0, // SUMMARY_PAGE_INFO
-    0x1, // SUMMARY_PAGE_MEMO
-    0x2, // SUMMARY_PAGE_SKILLS
-    0x4, // SUMMARY_PAGE_BATTLE_MOVES
-    0x3, // SUMMARY_PAGE_CONDITION
-    0x5, // SUMMARY_PAGE_CONTEST_MOVES
-    0x6, // SUMMARY_PAGE_RIBBONS
-    0x7, // SUMMARY_PAGE_EXIT
-    0x8 // SUMMARY_PAGE_MAX
+    SUMMARY_PAGE_INFO,
+    SUMMARY_PAGE_MEMO,
+    SUMMARY_PAGE_SKILLS,
+    SUMMARY_PAGE_CONDITION,
+    SUMMARY_PAGE_BATTLE_MOVES,
+    SUMMARY_PAGE_CONTEST_MOVES,
+    SUMMARY_PAGE_RIBBONS,
+    SUMMARY_PAGE_EXIT,
+    SUMMARY_PAGE_MAX
 };
 
 int GTSApplication_PokemonInfo_Init(GTSApplicationState *appState, int unused1)

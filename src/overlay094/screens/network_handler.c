@@ -339,7 +339,7 @@ static void GTSApplication_NetworkHandler_InitGraphics(GTSApplicationState *appS
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 0);
     }
 
-    if (appState->unk_20 == 9) {
+    if (appState->previousScreen == 9) {
         ov94_0223D068(appState);
     }
 }
@@ -907,7 +907,7 @@ static int GTSApplication_NetworkHandler_GetListedPokemonResponse2(GTSApplicatio
 
 static void GTSApplication_NetworkHandler_ReturnToPreviousScreen(GTSApplicationState *appState)
 {
-    switch (appState->previousScreen) {
+    switch (appState->returnAfterNetworkScreen) {
     case 1:
         GTSApplication_SetNextScreenWithArgument(appState, 1, 0);
         appState->currentScreenInstruction = 36;

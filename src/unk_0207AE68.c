@@ -11,11 +11,10 @@
 #include "generated/trainer_score_events.h"
 
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/struct_0207AE68_decl.h"
+#include "struct_defs/evolution_data.h"
 #include "struct_defs/mail.h"
 #include "struct_defs/seal_case.h"
 #include "struct_defs/sprite_animation_frame.h"
-#include "struct_defs/struct_0207AE68_t.h"
 #include "struct_defs/struct_0207C894.h"
 #include "struct_defs/struct_02099F80.h"
 

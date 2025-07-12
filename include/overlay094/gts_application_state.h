@@ -5,7 +5,7 @@
 #include <nnsys.h>
 
 #include "struct_decls/struct_0202B370_decl.h"
-#include "struct_decls/struct_0207AE68_decl.h"
+#include "struct_defs/evolution_data.h"
 #include "struct_defs/gts_player_data.h"
 
 #include "applications/pokemon_summary_screen/main.h"
@@ -34,12 +34,12 @@
 #include "sys_task_manager.h"
 #include "trainer_info.h"
 
-typedef struct {
+typedef struct GTSTradedPokemonLocation {
     int boxIndex;
     int index;
 } GTSTradedPokemonLocation;
 
-typedef struct {
+typedef struct GTSBoxPokemonCriteria {
     GTSPokemonCriteria criteria[MAX_MONS_PER_BOX];
 } GTSBoxPokemonCriteria;
 
@@ -68,8 +68,8 @@ typedef struct GTSApplicationState {
     int unk_10;
     int screenId;
     int nextScreen;
+    int returnAfterNetworkScreen;
     int previousScreen;
-    int unk_20;
     int screenArgument;
     int depositReturnError;
     int currentScreenInstruction;

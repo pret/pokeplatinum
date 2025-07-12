@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV94_0223BA88_SUB1_H
 #define POKEPLATINUM_STRUCT_OV94_0223BA88_SUB1_H
 
-typedef struct {
+typedef struct GTSPokemonListingMon {
     u8 bytes[236];
 } GTSPokemonListingMon;
 

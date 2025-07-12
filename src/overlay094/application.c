@@ -10,6 +10,7 @@
 #include "struct_defs/gts_player_data.h"
 #include "struct_defs/struct_02099F80.h"
 
+#include "global/utility.h"
 #include "overlay094/gts_application_state.h"
 #include "overlay094/networking.h"
 #include "overlay094/ov94_02243EF8.h"
@@ -54,7 +55,7 @@
 #include "vram_transfer.h"
 
 static void GTSApplication_VBlankCallback(void *appStatePtr);
-static void GTSApplication_SetupGXBanks(void);
+static void GTSApplication_SetVRAMBanks(void);
 static void GTSApplicationState_InitPlayerData(GTSApplicationState *appState, ApplicationManager *appMan);
 static void GTSApplication_Noop(GTSApplicationState *appState);
 static void GTSApplication_InitCharTransfer(void);
@@ -71,7 +72,7 @@ static NNSFndHeapHandle sGTSHeapHandle;
 
 // gtsApplicationScreens { init, main, exit }
 static int (*gtsApplicationScreens[][3])(GTSApplicationState *, int) = {
-    { GTSApplication_InitWFCScreen, GTSApplication_WFCInit_Main, GTSApplication_WFCInit_Exit },
+    { GTSApplication_InitWFC_Init, GTSApplication_WFCInit_Main, GTSApplication_WFCInit_Exit },
     { GTSApplication_MainMenu_Init, GTSApplication_MainMenu_Main, GTSApplication_MainMenu_Exit },
     { GTSApplication_Summary_Init, GTSApplication_Summary_Main, GTSApplication_Summary_Exit },
     { GTSApplication_ListingSummary_Init, GTSApplication_ListingSummary_Main, GTSApplication_ListingSummary_Exit },
@@ -139,7 +140,6 @@ int GTSApplication_Init(ApplicationManager *appMan, int *loopState)
         WirelessDriver_Init();
         (*loopState) = 0;
         return 1; // pass through to main
-        break;
     }
 
     return 0;
@@ -189,7 +189,6 @@ int GTSApplication_Main(ApplicationManager *appMan, int *loopState)
         break;
     case GTS_APPLICATION_LOOP_STATE_EXIT:
         return 1;
-        break;
     }
 
     GTSApplicationState_DecrementNetworkTimer(appState);
@@ -246,7 +245,7 @@ static void GTSApplication_VBlankCallback(void *appStatePtr)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void GTSApplication_SetupGXBanks(void)
+static void GTSApplication_SetVRAMBanks(void)
 {
     UnkStruct_02099F80 banks = {
         GX_VRAM_BG_128_A,
@@ -365,7 +364,7 @@ static void GTSApplication_InitGraphics(GTSApplicationState *appState)
     NARC_dtor(narc);
 }
 
-void GTSApplication_InitAffineTemplate(AffineSpriteListTemplate *template, GTSApplicationState *appState, SpriteResourcesHeader *spriteResourceHeader, int vramType)
+void GTSApplication_InitAffineTemplate(AffineSpriteListTemplate *template, GTSApplicationState *appState, SpriteResourcesHeader *spriteResourceHeader, NNS_G2D_VRAM_TYPE vramType)
 {
     template->list = appState->spriteList;
     template->resourceData = spriteResourceHeader;
@@ -381,8 +380,8 @@ void GTSApplication_InitAffineTemplate(AffineSpriteListTemplate *template, GTSAp
 
 static void GTSApplication_InitSpriteHeaders(GTSApplicationState *appState)
 {
-    SpriteResourcesHeader_Init(&appState->cursorSpriteResourceHeader, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, appState->spriteResourceCollection[0], appState->spriteResourceCollection[1], appState->spriteResourceCollection[2], appState->spriteResourceCollection[3], NULL, NULL);
-    SpriteResourcesHeader_Init(&appState->avatarSpriteResourceHeader, 1, 1, 1, 1, 0xffffffff, 0xffffffff, 0, 0, appState->spriteResourceCollection[0], appState->spriteResourceCollection[1], appState->spriteResourceCollection[2], appState->spriteResourceCollection[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&appState->cursorSpriteResourceHeader, 0, 0, 0, 0, -1, -1, 0, 0, appState->spriteResourceCollection[0], appState->spriteResourceCollection[1], appState->spriteResourceCollection[2], appState->spriteResourceCollection[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&appState->avatarSpriteResourceHeader, 1, 1, 1, 1, -1, -1, 0, 0, appState->spriteResourceCollection[0], appState->spriteResourceCollection[1], appState->spriteResourceCollection[2], appState->spriteResourceCollection[3], NULL, NULL);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
@@ -425,22 +424,21 @@ void GTSApplication_SetSpritePosition(Sprite *sprite, int x, int y)
 
 static void *GTSApplication_DWCAlloc(DWCAllocType name, u32 size, int align)
 {
-#pragma unused(name)
+    UNUSED(name);
+
     OSIntrMode oldInterruptMode = OS_DisableInterrupts();
     void *ptr = NNS_FndAllocFromExpHeapEx(sGTSHeapHandle, size, align);
 
     OS_RestoreInterrupts(oldInterruptMode);
-
-    if (ptr == NULL) {
-        (void)0;
-    }
 
     return ptr;
 }
 
 static void GTSApplication_DWCFree(DWCAllocType name, void *ptr, u32 size)
 {
-#pragma unused(name, size)
+    UNUSED(name);
+    UNUSED(size);
+
     if (!ptr) {
         return;
     }
@@ -464,7 +462,7 @@ void GTSApplication_SetNextScreenWithArgument(GTSApplicationState *appState, int
 
 void GTSApplication_MoveToNextScreen(GTSApplicationState *appState)
 {
-    appState->unk_20 = appState->screenId;
+    appState->previousScreen = appState->screenId;
     appState->screenId = appState->nextScreen;
 }
 
@@ -475,7 +473,7 @@ int GTSApplicationState_GetTextFrameDelay(GTSApplicationState *appState)
 
 static void ov94_0223C4E0(GTSApplicationState *appState)
 {
-    GTSApplication_SetupGXBanks();
+    GTSApplication_SetVRAMBanks();
     GTSApplication_InitCharTransfer();
     GTSApplication_InitGraphics(appState);
     GTSApplication_InitSpriteHeaders(appState);

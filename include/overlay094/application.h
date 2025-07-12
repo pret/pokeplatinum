@@ -11,7 +11,7 @@
 int GTSApplication_Init(ApplicationManager *appMan, int *loopState);
 int GTSApplication_Main(ApplicationManager *appMan, int *loopState);
 int GTSApplication_Exit(ApplicationManager *appMan, int *unused1);
-void GTSApplication_InitAffineTemplate(AffineSpriteListTemplate *template, GTSApplicationState *appState, SpriteResourcesHeader *spriteResourceHeader, int vramType);
+void GTSApplication_InitAffineTemplate(AffineSpriteListTemplate *template, GTSApplicationState *appState, SpriteResourcesHeader *spriteResourceHeader, NNS_G2D_VRAM_TYPE vramType);
 Menu *GTSApplication_CreateYesNoMenu(BgConfig *bgConfig, int tilemapTop, int baseTile);
 void GTSApplication_SetCurrentAndNextScreenInstruction(GTSApplicationState *appState, int currentInstruction, int nextInstruction);
 void GTSApplication_SetSpritePosition(Sprite *sprite, int x, int y);

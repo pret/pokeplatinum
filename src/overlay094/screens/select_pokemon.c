@@ -10,6 +10,7 @@
 
 #include "struct_decls/pc_boxes_decl.h"
 
+#include "global/utility.h"
 #include "overlay094/application.h"
 #include "overlay094/gts_application_state.h"
 #include "overlay094/screens/deposit.h"
@@ -45,7 +46,7 @@
 
 #include "res/text/bank/gts.h"
 
-typedef struct {
+typedef struct PokemonIcon {
     int unk_00;
     int paletteIndex;
     Sprite *sprite;
@@ -118,14 +119,15 @@ static int (*sGTSPokemonSelectScreenStates[])(GTSApplicationState *) = {
 
 int GTSApplication_SelectPokemon_Init(GTSApplicationState *appState, int unused1)
 {
-#pragma unused(unused1)
+    UNUSED(unused1);
+
     ov94_022401E0(appState);
     ov94_0223FC08(appState->bgConfig);
     ov94_0223FD4C(appState);
     ov94_02240028(appState);
     ov94_0223FE24(appState);
 
-    if (appState->unk_20 == 8) {
+    if (appState->previousScreen == 8) {
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
     } else {
         StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
@@ -141,7 +143,8 @@ int GTSApplication_SelectPokemon_Init(GTSApplicationState *appState, int unused1
 
 int GTSApplication_SelectPokemon_Main(GTSApplicationState *appState, int param1)
 {
-#pragma unused(unused1)
+    UNUSED(param1);
+
     SetNetworkIconStrength(GTSApplication_GetNetworkStrength());
 
     return (*sGTSPokemonSelectScreenStates[appState->currentScreenInstruction])(appState);
@@ -1378,7 +1381,8 @@ static void ov94_022413BC(GTSPokemonListing *param0, GTSApplicationState *param1
 
 static void GTSApplication_SelectPokemon_DarkenNonMatchingMons(GTSPokemonCriteria *criteria, Sprite **param1, GTSPokemonRequirements *requirements, PokemonIcon *icons)
 {
-#pragma unused(param1)
+    UNUSED(param1);
+
     for (int i = 0; i < MAX_MONS_PER_BOX; i++) {
         if (criteria[i].species != SPECIES_NONE) {
             if (GTSApplication_SelectPokemon_MatchesRequirements(&criteria[i], requirements) == FALSE) {
