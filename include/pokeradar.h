@@ -26,7 +26,7 @@ int PokeRadar_ShouldDoRadarEncounter(const int param0, const int param1, FieldSy
 void SetRadarMon(RadarChain *chain, const int species, const int level);
 void GetRadarMon(RadarChain *chain, int *species, int *level);
 const BOOL sub_02069798(const RadarChain *chain);
-void sub_0206979C(FieldSystem *fieldSystem);
+void PokeRadar_ClearIfAllOutOfView(FieldSystem *fieldSystem);
 BOOL GetRadarChainActive(const RadarChain *chain);
 BOOL RefreshRadarChain(FieldTask *param0);
 void RadarChain_Increment(FieldSystem *fieldSystem);
