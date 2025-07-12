@@ -698,7 +698,7 @@ static void ov116_02263434(SysTask *param0, void *param1)
         Easy3DObject_AddAnim(&v2->unk_00, &v2->unk_88[1]);
         Easy3DAnim_SetFrame(&v2->unk_88[0], 0);
         Easy3DAnim_SetFrame(&v2->unk_88[1], 0);
-        Easy3DObject_SetVisibility(&v2->unk_00, 0);
+        Easy3DObject_SetVisible(&v2->unk_00, 0);
 
         v2->unk_1EC = 0;
 
@@ -722,7 +722,7 @@ static void ov116_02263434(SysTask *param0, void *param1)
         Easy3DObject_AddAnim(&v3->unk_00, &v3->unk_88[1]);
         Easy3DAnim_SetFrame(&v3->unk_88[0], 0);
         Easy3DAnim_SetFrame(&v3->unk_88[1], 0);
-        Easy3DObject_SetVisibility(&v3->unk_00, 1);
+        Easy3DObject_SetVisible(&v3->unk_00, 1);
 
         v3->unk_1EC = 1;
 
@@ -742,8 +742,8 @@ static void ov116_02263434(SysTask *param0, void *param1)
         break;
     case 4:
         if (v3->unk_1EC == 0) {
-            Easy3DObject_SetVisibility(&v2->unk_00, 1);
-            Easy3DObject_SetVisibility(&v3->unk_00, 0);
+            Easy3DObject_SetVisible(&v2->unk_00, 1);
+            Easy3DObject_SetVisible(&v3->unk_00, 0);
             v2->unk_1EC = 1;
             v1->unk_00++;
         }

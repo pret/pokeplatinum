@@ -218,7 +218,7 @@ void ov100_021D4AC8(UnkStruct_ov100_021D49B4 *param0, int param1, NARC *param2)
     Easy3DObject_Init(&param0->unk_00, &param0->unk_78);
     Easy3DObject_SetPosition(&param0->unk_00, 0, 0, 0);
     Easy3DObject_SetScale(&param0->unk_00, FX32_CONST(1.00f), FX32_CONST(1.00f), FX32_CONST(1.00f));
-    Easy3DObject_SetVisibility(&param0->unk_00, 1);
+    Easy3DObject_SetVisible(&param0->unk_00, 1);
 
     param0->unk_174 = 1;
 }
@@ -228,7 +228,7 @@ void ov100_021D4B10(UnkStruct_ov100_021D49B4 *param0, UnkStruct_ov100_021D49B4 *
     Easy3DObject_Init(&param1->unk_00, &param0->unk_78);
     Easy3DObject_SetPosition(&param1->unk_00, 0, 0, 0);
     Easy3DObject_SetScale(&param1->unk_00, FX32_CONST(1.00f), FX32_CONST(1.00f), FX32_CONST(1.00f));
-    Easy3DObject_SetVisibility(&param1->unk_00, 1);
+    Easy3DObject_SetVisible(&param1->unk_00, 1);
 
     param1->unk_174 = 1;
 }

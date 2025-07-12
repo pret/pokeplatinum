@@ -1191,7 +1191,7 @@ static void ov113_0225DAA8(UnkStruct_ov113_0225DBCC *param0, NARC *param1)
     Easy3DObject_Init(&param0->unk_D8.unk_10, &param0->unk_D8.unk_00);
     Easy3DObject_SetPosition(&param0->unk_D8.unk_10, (FX32_CONST(0)), (FX32_CONST(0)), (FX32_CONST(0)));
     Easy3DObject_SetScale(&param0->unk_D8.unk_10, (FX32_CONST(1.00f)), (FX32_CONST(1.00f)), (FX32_CONST(1.00f)));
-    Easy3DObject_SetVisibility(&param0->unk_D8.unk_10, 1);
+    Easy3DObject_SetVisible(&param0->unk_D8.unk_10, 1);
 }
 
 static void ov113_0225DAFC(UnkStruct_ov113_0225DBCC *param0)

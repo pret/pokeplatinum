@@ -231,7 +231,7 @@ static void ov6_022482CC(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
         v2 = ov6_022481F0(&v0->unk_00);
 
         if (v2 == 1) {
-            Easy3DObject_SetVisibility(&v0->unk_00.unk_00, 0);
+            Easy3DObject_SetVisible(&v0->unk_00.unk_00, 0);
             v0->unk_EC++;
         }
         break;
@@ -330,7 +330,7 @@ static void ov6_02248410(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
         v2 = ov6_022481F0(&v0->unk_00);
 
         if (v2 == 1) {
-            Easy3DObject_SetVisibility(&v0->unk_00.unk_00, 0);
+            Easy3DObject_SetVisible(&v0->unk_00.unk_00, 0);
             v0->unk_EC++;
         }
         break;
@@ -433,15 +433,15 @@ static void ov6_02248520(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
         ov6_02248140(&v0->unk_00[1], v2, 11, 9, 2, &v0->unk_1B8);
         NARC_dtor(v2);
         ov6_02248124(fieldSystem->playerAvatar, &v0->unk_00[1].unk_00);
-        Easy3DObject_SetVisibility(&v0->unk_00[1].unk_00, 0);
+        Easy3DObject_SetVisible(&v0->unk_00[1].unk_00, 0);
         v0->unk_1C8++;
     case 1:
         v1 = ov6_022481F0(&v0->unk_00[0]);
         ov6_02248124(fieldSystem->playerAvatar, &v0->unk_00[0].unk_00);
 
         if (v1 == 1) {
-            Easy3DObject_SetVisibility(&v0->unk_00[1].unk_00, 1);
-            Easy3DObject_SetVisibility(&v0->unk_00[0].unk_00, 0);
+            Easy3DObject_SetVisible(&v0->unk_00[1].unk_00, 1);
+            Easy3DObject_SetVisible(&v0->unk_00[0].unk_00, 0);
             ov6_02248124(fieldSystem->playerAvatar, &v0->unk_00[1].unk_00);
             v0->unk_1C8++;
         }
@@ -500,7 +500,7 @@ static void ov6_02248610(UnkStruct_ov6_022486B4 *param0, PlayerAvatar *const pla
         Easy3DAnim_SetFrame(&param0->unk_78[v1], 0);
     }
 
-    Easy3DObject_SetVisibility(&param0->unk_00, 1);
+    Easy3DObject_SetVisible(&param0->unk_00, 1);
     Sound_PlayEffect(SEQ_SE_DP_UG_023);
 }
 
@@ -521,7 +521,7 @@ static void ov6_02248678(UnkStruct_ov6_022486B4 *param0)
 
     if (v1 == 1) {
         param0->unk_C8 = 0;
-        Easy3DObject_SetVisibility(&param0->unk_00, 0);
+        Easy3DObject_SetVisible(&param0->unk_00, 0);
     }
 }
 
@@ -537,7 +537,7 @@ static void ov6_022486B4(UnkStruct_ov6_022486B4 *param0, Easy3DModel *param1, NN
         Easy3DObject_AddAnim(&param0->unk_00, &param0->unk_78[v0]);
     }
 
-    Easy3DObject_SetVisibility(&param0->unk_00, 0);
+    Easy3DObject_SetVisible(&param0->unk_00, 0);
 }
 
 static void ov6_02248700(UnkStruct_ov6_022486B4 *param0, NNSFndAllocator *param1)

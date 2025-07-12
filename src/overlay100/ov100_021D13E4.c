@@ -114,7 +114,7 @@ BOOL ov100_021D14A8(void *param0)
         v0->unk_00 = 2;
         break;
     case 2:
-        Easy3DObject_SetVisibility(&v0->unk_1A4.unk_00[v0->unk_08].unk_00, 1);
+        Easy3DObject_SetVisible(&v0->unk_1A4.unk_00[v0->unk_08].unk_00, 1);
         v0->unk_1A4.unk_00[v0->unk_08].unk_160 = 1;
         v0->unk_1A4.unk_00[v0->unk_08].unk_16C = 1;
         v0->unk_00++;
@@ -140,7 +140,7 @@ BOOL ov100_021D14A8(void *param0)
             G2_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), v0->unk_7C4->unk_50.unk_03);
         } else {
             v0->unk_0C.unk_0C[v0->unk_08].unk_3C = 1;
-            Easy3DObject_SetVisibility(&v0->unk_1A4.unk_00[v0->unk_08].unk_00, 0);
+            Easy3DObject_SetVisible(&v0->unk_1A4.unk_00[v0->unk_08].unk_00, 0);
             v0->unk_00++;
 
             v0->unk_08++;
@@ -269,9 +269,9 @@ static void ov100_021D1808(UnkStruct_ov100_021D1808 *param0)
     ov100_021D4B4C(0, &param0->unk_1A4.unk_00[2], 15, param0->unk_7C4->unk_00, &param0->unk_7C4->unk_1C);
     ov100_021D4B4C(1, &param0->unk_1A4.unk_00[2], 16, param0->unk_7C4->unk_00, &param0->unk_7C4->unk_1C);
 
-    Easy3DObject_SetVisibility(&param0->unk_1A4.unk_00[0].unk_00, 1);
-    Easy3DObject_SetVisibility(&param0->unk_1A4.unk_00[1].unk_00, 0);
-    Easy3DObject_SetVisibility(&param0->unk_1A4.unk_00[2].unk_00, 0);
+    Easy3DObject_SetVisible(&param0->unk_1A4.unk_00[0].unk_00, 1);
+    Easy3DObject_SetVisible(&param0->unk_1A4.unk_00[1].unk_00, 0);
+    Easy3DObject_SetVisible(&param0->unk_1A4.unk_00[2].unk_00, 0);
 }
 
 static void ov100_021D1A24(UnkStruct_ov100_021D1808 *param0)

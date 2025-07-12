@@ -560,7 +560,7 @@ static UnkStruct_ov113_0225E6B8 *ov113_0225E6B8(UnkStruct_ov113_0225DBCC *param0
     ov113_0225EB64(param0, param2->unk_09, param2->unk_0A, &v1, &v2);
     Easy3DObject_SetPosition(&v0->unk_1C, v1, v2, (FX32_ONE * 16));
     Easy3DObject_SetScale(&v0->unk_1C, (FX32_CONST(1.00f)), (FX32_CONST(1.00f)), (FX32_CONST(1.00f)));
-    Easy3DObject_SetVisibility(&v0->unk_1C, 0);
+    Easy3DObject_SetVisible(&v0->unk_1C, 0);
 
     return v0;
 }
@@ -1032,7 +1032,7 @@ static int ov113_0225EF0C(UnkStruct_ov113_0225EB20 *param0, UnkStruct_ov113_0225
 
     if (v0->unk_00 == 2) {
         ov113_0225ECA0(&param1->unk_1C, &param1->unk_00, &v0->unk_04, 0);
-        Easy3DObject_SetVisibility(&param1->unk_1C, 1);
+        Easy3DObject_SetVisible(&param1->unk_1C, 1);
         param1->unk_240_0 = 1;
     }
 
@@ -1063,7 +1063,7 @@ static int ov113_0225EF78(UnkStruct_ov113_0225EB20 *param0, UnkStruct_ov113_0225
         v0->unk_04 += 0xc0;
 
         if (v0->unk_00 - 0xc0 < 0x100) {
-            Easy3DObject_SetVisibility(&param1->unk_1C, 0);
+            Easy3DObject_SetVisible(&param1->unk_1C, 0);
             v0->unk_08++;
             break;
         }
@@ -1351,7 +1351,7 @@ static int ov113_0225F51C(UnkStruct_ov113_0225EB20 *param0, UnkStruct_ov113_0225
         for (v4 = 0; v4 < 3; v4++) {
             Easy3DObject_Init(&v0->unk_00[v4], &param1->unk_0C);
             Easy3DObject_SetPosition(&v0->unk_00[v4], v1, v2, v3);
-            Easy3DObject_SetVisibility(&v0->unk_00[v4], 0);
+            Easy3DObject_SetVisible(&v0->unk_00[v4], 0);
         }
 
         v0->unk_16D++;
@@ -1360,10 +1360,10 @@ static int ov113_0225F51C(UnkStruct_ov113_0225EB20 *param0, UnkStruct_ov113_0225
 
         if ((v1 < Unk_ov113_02260BBC.unk_00) || (v1 > Unk_ov113_02260BBC.unk_04) || (v2 > Unk_ov113_02260BBC.unk_08) || (v2 < Unk_ov113_02260BBC.unk_0C) || (v0->unk_16B == 1)) {
             for (v4 = 0; v4 < 3; v4++) {
-                Easy3DObject_SetVisibility(&v0->unk_00[v4], 0);
+                Easy3DObject_SetVisible(&v0->unk_00[v4], 0);
             }
 
-            Easy3DObject_SetVisibility(&param1->unk_1C, 0);
+            Easy3DObject_SetVisible(&param1->unk_1C, 0);
             v0->unk_16D++;
             break;
         }
@@ -1372,7 +1372,7 @@ static int ov113_0225F51C(UnkStruct_ov113_0225EB20 *param0, UnkStruct_ov113_0225
 
         if (v0->unk_168 % 3 == 0) {
             Easy3DObject_SetPosition(&v0->unk_00[v0->unk_16A], v1, v2 + 0x2800, v3);
-            Easy3DObject_SetVisibility(&v0->unk_00[v0->unk_16A], 1);
+            Easy3DObject_SetVisible(&v0->unk_00[v0->unk_16A], 1);
 
             v0->unk_16A++;
 
@@ -1526,7 +1526,7 @@ static int ov113_0225F890(UnkStruct_ov113_0225EB20 *param0, UnkStruct_ov113_0225
         for (v5 = 0; v5 < 2; v5++) {
             Easy3DObject_Init(&v0->unk_00[v5], &param1->unk_0C);
             Easy3DObject_SetPosition(&v0->unk_00[v5], v1, v2, v3);
-            Easy3DObject_SetVisibility(&v0->unk_00[v5], 1);
+            Easy3DObject_SetVisible(&v0->unk_00[v5], 1);
         }
 
         v0->unk_F4 = 31 << 8;
@@ -1534,10 +1534,10 @@ static int ov113_0225F890(UnkStruct_ov113_0225EB20 *param0, UnkStruct_ov113_0225
     case 1:
         if (v0->unk_F4 - 0xa0 < 0x100) {
             for (v5 = 0; v5 < 2; v5++) {
-                Easy3DObject_SetVisibility(&v0->unk_00[v5], 0);
+                Easy3DObject_SetVisible(&v0->unk_00[v5], 0);
             }
 
-            Easy3DObject_SetVisibility(&param1->unk_1C, 0);
+            Easy3DObject_SetVisible(&param1->unk_1C, 0);
             v0->unk_F7++;
             break;
         }
@@ -1624,7 +1624,7 @@ static int ov113_0225FAB0(UnkStruct_ov113_0225EB20 *param0, UnkStruct_ov113_0225
         for (v5 = 0; v5 < 2; v5++) {
             Easy3DObject_Init(&v0->unk_00[v5], &param1->unk_0C);
             Easy3DObject_SetPosition(&v0->unk_00[v5], v1, v2, v3);
-            Easy3DObject_SetVisibility(&v0->unk_00[v5], 1);
+            Easy3DObject_SetVisible(&v0->unk_00[v5], 1);
         }
 
         v0->unk_F4 = 31 << 8;
@@ -1632,10 +1632,10 @@ static int ov113_0225FAB0(UnkStruct_ov113_0225EB20 *param0, UnkStruct_ov113_0225
     case 1:
         if (v0->unk_F4 - 0xa0 < 0x100) {
             for (v5 = 0; v5 < 2; v5++) {
-                Easy3DObject_SetVisibility(&v0->unk_00[v5], 0);
+                Easy3DObject_SetVisible(&v0->unk_00[v5], 0);
             }
 
-            Easy3DObject_SetVisibility(&param1->unk_1C, 0);
+            Easy3DObject_SetVisible(&param1->unk_1C, 0);
             v0->unk_F7++;
             break;
         }

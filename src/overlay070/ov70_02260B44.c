@@ -251,7 +251,7 @@ UnkStruct_ov70_02260E8C *ov70_02260E20(UnkStruct_ov70_02260BB8 *param0, int para
     v0 = ov70_02261718(param0);
 
     Easy3DObject_Init(&v0->unk_04, &param0->unk_1C4.unk_00[param1]);
-    Easy3DObject_SetVisibility(&v0->unk_04, 1);
+    Easy3DObject_SetVisible(&v0->unk_04, 1);
 
     ov70_02260EA0(v0, param3);
     {
@@ -273,7 +273,7 @@ UnkStruct_ov70_02260E8C *ov70_02260E20(UnkStruct_ov70_02260BB8 *param0, int para
 
 void ov70_02260E8C(UnkStruct_ov70_02260E8C *param0)
 {
-    Easy3DObject_SetVisibility(&param0->unk_04, 0);
+    Easy3DObject_SetVisible(&param0->unk_04, 0);
 
     param0->unk_00 = 0;
 }
@@ -297,7 +297,7 @@ void ov70_02260F28(const UnkStruct_ov70_02260E8C *param0, VecFx32 *param1)
 
 void ov70_02260F38(UnkStruct_ov70_02260E8C *param0, BOOL param1)
 {
-    Easy3DObject_SetVisibility(&param0->unk_04, param1);
+    Easy3DObject_SetVisible(&param0->unk_04, param1);
 }
 
 BOOL ov70_02260F44(UnkStruct_ov70_02260E8C *param0)
@@ -350,7 +350,7 @@ UnkStruct_ov70_022610B8 *ov70_02260F90(UnkStruct_ov70_02260BB8 *param0, int para
         }
     }
 
-    Easy3DObject_SetVisibility(&v0->unk_04, 1);
+    Easy3DObject_SetVisible(&v0->unk_04, 1);
 
     {
         UnkStruct_ov63_0222CC3C v2;
@@ -376,7 +376,7 @@ void ov70_02261058(UnkStruct_ov70_02260BB8 *param0, UnkStruct_ov70_022610B8 *par
 {
     int v0;
 
-    Easy3DObject_SetVisibility(&param1->unk_04, 0);
+    Easy3DObject_SetVisible(&param1->unk_04, 0);
 
     for (v0 = 0; v0 < 3; v0++) {
         if (param0->unk_29C.unk_120[param1->unk_02][v0] != NULL) {
@@ -525,7 +525,7 @@ fx32 ov70_02261368(const UnkStruct_ov70_022610B8 *param0, int param1)
 
 void ov70_0226138C(UnkStruct_ov70_022610B8 *param0, BOOL param1)
 {
-    Easy3DObject_SetVisibility(&param0->unk_04, param1);
+    Easy3DObject_SetVisible(&param0->unk_04, param1);
 }
 
 void ov70_02261398(UnkStruct_ov70_02260BB8 *param0, UnkStruct_ov70_022610B8 *param1, u32 param2)
@@ -698,7 +698,7 @@ static void ov70_022615E8(UnkStruct_ov70_022615E8 *param0, UnkStruct_ov70_022615
 
     for (v0 = 0; v0 < 2; v0++) {
         Easy3DObject_Init(&param0->unk_04[v0], &param1->unk_00[v0]);
-        Easy3DObject_SetVisibility(&param0->unk_04[v0], 1);
+        Easy3DObject_SetVisible(&param0->unk_04[v0], 1);
     }
 
     for (v0 = 0; v0 < 5 - 1; v0++) {

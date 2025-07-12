@@ -1047,7 +1047,7 @@ static void ov6_0223EA98(UnkStruct_ov6_0223EA98 *param0)
     Easy3DObject_Init(&param0->unk_24, &param0->unk_9C);
     Easy3DObject_SetPosition(&param0->unk_24, 0, 0, 0);
     Easy3DObject_SetScale(&param0->unk_24, FX32_CONST(1.00f), FX32_CONST(1.00f), FX32_CONST(1.00f));
-    Easy3DObject_SetVisibility(&param0->unk_24, 1);
+    Easy3DObject_SetVisible(&param0->unk_24, 1);
     Easy3DAnim_LoadFrom(&param0->unk_AC, &param0->unk_9C, v2, v1, 4, &param0->unk_C0);
     Easy3DAnim_SetFrame(&param0->unk_AC, 0);
     Easy3DObject_AddAnim(&param0->unk_24, &param0->unk_AC);
@@ -1330,7 +1330,7 @@ static BOOL ov6_0223EE5C(UnkStruct_ov6_0223EA98 *param0)
         }
 
         MapObject_SetHidden(param0->unk_108, 0);
-        Easy3DObject_SetVisibility(&param0->unk_24, 0);
+        Easy3DObject_SetVisible(&param0->unk_24, 0);
         param0->unk_18++;
         break;
     case 15:
@@ -1359,7 +1359,7 @@ static BOOL ov6_0223EE5C(UnkStruct_ov6_0223EA98 *param0)
         }
 
         MapObject_SetHidden(param0->unk_108, 1);
-        Easy3DObject_SetVisibility(&param0->unk_24, 1);
+        Easy3DObject_SetVisible(&param0->unk_24, 1);
 
         param0->unk_18++;
     case 18:
@@ -1800,7 +1800,7 @@ static void ov6_0223FDBC(Easy3DObject *param0)
 
 static void ov6_0223FDC4(Easy3DObject *param0, BOOL param1)
 {
-    Easy3DObject_SetVisibility(param0, param1);
+    Easy3DObject_SetVisible(param0, param1);
 }
 
 static void ov6_0223FDCC(Easy3DObject *param0, fx32 param1, fx32 param2, fx32 param3)
