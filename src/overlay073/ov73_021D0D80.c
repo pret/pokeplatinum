@@ -180,6 +180,16 @@ enum DisplayMessageState {
     DM_STATE_END,
 };
 
+enum BunearyAnimState {
+    BAN_INIT = 0,
+    BAN_MOVE_UP,
+    BAN_PLACEHOLDER_2,
+    BAN_PLACEHOLDER_3,
+    BAN_PLACEHOLDER_4,
+    BAN_PLACEHOLDER_5,
+    BAN_PLACEHOLDER_6,
+};
+
 typedef struct {
     int heapID;
     SaveData *saveData;
@@ -221,7 +231,16 @@ typedef struct {
     u8 unk_8E;
     u8 unk_8F;
     int delayUpdateCounter;
-    int unk_94[9];
+    union {
+        int progressCounter;
+        enum BunearyAnimState bunearyAnimState;
+    } animData;
+    int animDelayUpdateCounter;
+    int unused2[3];
+    int unk_A8;
+    int unk_AC;
+    int unk_B0;
+    int unk_B4;
     u16 *unk_B8;
     u16 *unk_BC;
 } RowanIntroManager;
@@ -241,7 +260,6 @@ static void ov73_021D1930(RowanIntroManager *manager);
 static void RowanIntroManager_LoadLayer3Tilemap(RowanIntroManager *manager);
 static void RowanIntroManager_LoadTilemap(RowanIntroManager *manager);
 static void RowanIntroManager_LoadSubLayer3Tilemap(RowanIntroManager *manager);
-static void ov73_021D1CE0(RowanIntroManager *manager);
 static BOOL ov73_021D2318(RowanIntroManager *manager);
 int ov73_021D3250(ApplicationManager *appMan, int *param1);
 int ov73_021D3280(ApplicationManager *appMan, int *param1);
@@ -396,32 +414,34 @@ static void ov73_021D0FF0(void *param0)
     Bg_RunScheduledUpdates(manager->bgConfig);
 }
 
-static BOOL ov73_021D0FFC(void)
+static BOOL RowanIntroManager_WasPokeballOpened(void)
 {
-    BOOL v0 = 0;
-    u16 v1, v2;
+    BOOL wasTouched = FALSE;
+    u16 xOffset, yOffset;
 
     if (gSystem.touchPressed) {
         if ((gSystem.touchX < 256) && (gSystem.touchY < 192)) {
             if (gSystem.touchX < 128) {
-                v1 = 128 - gSystem.touchX;
+                xOffset = 128 - gSystem.touchX;
             } else {
-                v1 = gSystem.touchX - 128;
+                xOffset = gSystem.touchX - 128;
             }
 
             if (gSystem.touchY < 100) {
-                v2 = 100 - gSystem.touchY;
+                yOffset = 100 - gSystem.touchY;
             } else {
-                v2 = gSystem.touchY - 100;
+                yOffset = gSystem.touchY - 100;
             }
 
-            if ((v1 * v1 + v2 * v2) <= 16 * 16) {
-                v0 = 1;
+            // check that touched within or on boundary of
+            // circle of radius 16 from centre.
+            if ((xOffset * xOffset + yOffset * yOffset) <= 16 * 16) {
+                wasTouched = TRUE;
             }
         }
     }
 
-    return v0;
+    return wasTouched;
 }
 
 static void ov73_021D1058(RowanIntroManager *manager)
@@ -1278,7 +1298,7 @@ static void ov73_021D1B80(RowanIntroManager *manager)
     Heap_Free(v1);
 }
 
-static void ov73_021D1CE0(RowanIntroManager *manager)
+static void RowanIntroManager_LoadPokeballTilemap(RowanIntroManager *manager)
 {
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, 40, manager->bgConfig, 6, 0, 0, 0, manager->heapID);
     RowanIntroManager_ChangePaletteAndCopyTilemap(manager, 6, 9);
@@ -1374,8 +1394,8 @@ static void ov73_021D1EFC(RowanIntroManager *manager)
 
 static void ov73_021D1F08(RowanIntroManager *manager)
 {
-    manager->unk_94[0] = 0;
-    manager->unk_94[1] = 0;
+    manager->animData.progressCounter = 0;
+    manager->animDelayUpdateCounter = 0;
 }
 
 static BOOL ov73_021D1F18(RowanIntroManager *manager)
@@ -1383,22 +1403,22 @@ static BOOL ov73_021D1F18(RowanIntroManager *manager)
     BOOL v0 = 0;
     int v1;
 
-    if (manager->unk_94[1]) {
-        manager->unk_94[1]--;
+    if (manager->animDelayUpdateCounter) {
+        manager->animDelayUpdateCounter--;
     } else {
-        manager->unk_94[0]++;
-        manager->unk_94[1] = 8;
+        manager->animData.progressCounter++;
+        manager->animDelayUpdateCounter = 8;
     }
 
     if (manager->playerGender == GENDER_MALE) {
         {
             int v2[] = { 9, 42, 43, 44, 45, 0xff };
-            v1 = v2[manager->unk_94[0]];
+            v1 = v2[manager->animData.progressCounter];
         }
     } else {
         {
             int v3[] = { 14, 46, 47, 48, 49, 0xff };
-            v1 = v3[manager->unk_94[0]];
+            v1 = v3[manager->animData.progressCounter];
         }
     }
 
@@ -1413,77 +1433,77 @@ static BOOL ov73_021D1F18(RowanIntroManager *manager)
 
 static void ov73_021D1FA0(RowanIntroManager *manager)
 {
-    if (manager->unk_94[8] > 0) {
-        manager->unk_94[8]--;
+    if (manager->unk_B4 > 0) {
+        manager->unk_B4--;
 
-        BlendPalettes(manager->unk_B8, manager->unk_BC, 1, manager->unk_94[8] / 3, 0x6a3c);
+        BlendPalettes(manager->unk_B8, manager->unk_BC, 1, manager->unk_B4 / 3, 0x6a3c);
         Bg_LoadPalette(2, manager->unk_BC, 2 * 16, (2 * 16) * 8);
         Bg_LoadPalette(5, manager->unk_BC, 2 * 16, (2 * 16) * 10);
     }
 }
 
-static BOOL ov73_021D200C(RowanIntroManager *manager, int *param1)
+static BOOL RowanIntroManager_AnimateBuneary(RowanIntroManager *manager, enum BunearyAnimState *state)
 {
-    BOOL v0 = 0;
+    BOOL isFinished = 0;
 
-    switch (*param1) {
-    case 0:
+    switch (*state) {
+    case BAN_INIT:
         Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, 0, 0);
         Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, 3, -8 * 13);
         Bg_SetPriority(BG_LAYER_MAIN_2, 0);
         Bg_ToggleLayer(BG_LAYER_SUB_1, 1);
 
-        manager->unk_94[5] = 0;
-        manager->unk_94[6] = 8;
-        manager->unk_94[7] = 0;
-        manager->unk_94[8] = (16 * 3);
-        *param1 = 1;
+        manager->unk_A8 = 0;
+        manager->unk_AC = 8;
+        manager->unk_B0 = 0;
+        manager->unk_B4 = (16 * 3);
+        *state = BAN_MOVE_UP;
         break;
-    case 1: {
+    case BAN_MOVE_UP: {
         int v1 = Bg_GetXOffset(manager->bgConfig, 2);
         int v2 = Bg_GetYOffset(manager->bgConfig, 5);
-        int v3 = manager->unk_94[6] * 9 * manager->unk_94[7];
-        int v4 = 9 * manager->unk_94[7] * manager->unk_94[7] / 2;
+        int v3 = manager->unk_AC * 9 * manager->unk_B0;
+        int v4 = 9 * manager->unk_B0 * manager->unk_B0 / 2;
         int v5 = v3 - v4;
 
         if (v2 < 8 * 11) {
-            manager->unk_94[7]++;
+            manager->unk_B0++;
             Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, 1, 2);
             Bg_SetOffset(manager->bgConfig, BG_LAYER_SUB_1, 1, 2);
             Bg_SetOffset(manager->bgConfig, BG_LAYER_SUB_1, 3, v5);
         } else {
             Bg_ToggleLayer(BG_LAYER_SUB_1, 0);
-            manager->unk_94[7] = 0;
-            *param1 = 2;
+            manager->unk_B0 = 0;
+            *state = BAN_PLACEHOLDER_2;
         }
     } break;
-    case 2:
-        if (manager->unk_94[7]) {
-            manager->unk_94[7]--;
+    case BAN_PLACEHOLDER_2:
+        if (manager->unk_B0) {
+            manager->unk_B0--;
         } else {
             Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
-            manager->unk_94[5] = 0;
-            manager->unk_94[6] = 9;
-            manager->unk_94[7] = 0;
-            *param1 = 3;
+            manager->unk_A8 = 0;
+            manager->unk_AC = 9;
+            manager->unk_B0 = 0;
+            *state = BAN_PLACEHOLDER_3;
         }
         break;
-    case 3: {
+    case BAN_PLACEHOLDER_3: {
         int v6 = Bg_GetXOffset(manager->bgConfig, 2);
         int v7 = Bg_GetYOffset(manager->bgConfig, 2);
-        int v8 = manager->unk_94[6] * 9 * manager->unk_94[7];
-        int v9 = 9 * manager->unk_94[7] * manager->unk_94[7] / 2;
+        int v8 = manager->unk_AC * 9 * manager->unk_B0;
+        int v9 = 9 * manager->unk_B0 * manager->unk_B0 / 2;
         int v10 = (-8 * 13) + v8 - v9;
 
-        if ((manager->unk_94[5] > 0) && (v10 <= 0)) {
+        if ((manager->unk_A8 > 0) && (v10 <= 0)) {
             Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, 3, 0);
-            manager->unk_94[5] = 0;
-            manager->unk_94[6] = 3;
-            manager->unk_94[7] = 0;
-            *param1 = 4;
+            manager->unk_A8 = 0;
+            manager->unk_AC = 3;
+            manager->unk_B0 = 0;
+            *state = BAN_PLACEHOLDER_4;
         } else {
-            manager->unk_94[7]++;
-            manager->unk_94[5] = v10;
+            manager->unk_B0++;
+            manager->unk_A8 = v10;
             Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, 1, 1);
             v10 = v10 >> 1;
 
@@ -1494,52 +1514,52 @@ static BOOL ov73_021D200C(RowanIntroManager *manager, int *param1)
             Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, 3, v10);
         }
     } break;
-    case 4: {
+    case BAN_PLACEHOLDER_4: {
         int v11 = Bg_GetXOffset(manager->bgConfig, 2);
         int v12 = Bg_GetYOffset(manager->bgConfig, 2);
-        int v13 = manager->unk_94[6] * 9 * manager->unk_94[7];
-        int v14 = 9 * manager->unk_94[7] * manager->unk_94[7] / 3;
+        int v13 = manager->unk_AC * 9 * manager->unk_B0;
+        int v14 = 9 * manager->unk_B0 * manager->unk_B0 / 3;
         int v15 = v13 - v14;
 
-        if ((manager->unk_94[5] > 0) && (v15 <= 0)) {
+        if ((manager->unk_A8 > 0) && (v15 <= 0)) {
             Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, 3, 0);
-            manager->unk_94[5] = 0;
-            manager->unk_94[6] = 3;
-            manager->unk_94[7] = 0;
-            *param1 = 5;
+            manager->unk_A8 = 0;
+            manager->unk_AC = 3;
+            manager->unk_B0 = 0;
+            *state = BAN_PLACEHOLDER_5;
         } else {
-            manager->unk_94[7]++;
+            manager->unk_B0++;
             Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, 2, 2);
             Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, 3, v15);
-            manager->unk_94[5] = v15;
+            manager->unk_A8 = v15;
         }
     } break;
-    case 5: {
+    case BAN_PLACEHOLDER_5: {
         int v16 = Bg_GetXOffset(manager->bgConfig, 2);
         int v17 = Bg_GetYOffset(manager->bgConfig, 2);
-        int v18 = manager->unk_94[6] * 9 * manager->unk_94[7];
-        int v19 = 9 * manager->unk_94[7] * manager->unk_94[7] / 3;
+        int v18 = manager->unk_AC * 9 * manager->unk_B0;
+        int v19 = 9 * manager->unk_B0 * manager->unk_B0 / 3;
         int v20 = v18 - v19;
 
-        if ((manager->unk_94[5] > 0) && (v20 <= 0)) {
+        if ((manager->unk_A8 > 0) && (v20 <= 0)) {
             Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, 3, 0);
-            *param1 = 6;
+            *state = BAN_PLACEHOLDER_6;
         } else {
-            manager->unk_94[7]++;
+            manager->unk_B0++;
             Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, 1, 4);
             Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, 3, v20);
-            manager->unk_94[5] = v20;
+            manager->unk_A8 = v20;
         }
     } break;
-    case 6:
+    case BAN_PLACEHOLDER_6:
         Sound_PlayPokemonCry(SPECIES_BUNEARY, 0);
-        v0 = 1;
+        isFinished = TRUE;
         break;
     }
 
     ov73_021D1FA0(manager);
 
-    return v0;
+    return isFinished;
 }
 
 static void ov73_021D230C(RowanIntroManager *manager)
@@ -1855,7 +1875,7 @@ static BOOL ov73_021D2318(RowanIntroManager *manager)
         break;
     case RIM_STATE_PKBL_FADE_MIDDLE:
         if (IsScreenFadeDone() == TRUE) {
-            ov73_021D1CE0(manager);
+            RowanIntroManager_LoadPokeballTilemap(manager);
             manager->bgSubLayer3TilemapIndex = 4;
             RowanIntroManager_LoadSubLayer3Tilemap(manager);
             Bg_ToggleLayer(BG_LAYER_SUB_2, 1);
@@ -1874,9 +1894,9 @@ static BOOL ov73_021D2318(RowanIntroManager *manager)
         }
         break;
     case RIM_STATE_PKBL_WAIT_INPUT:
-        if (ov73_021D0FFC() == 1) {
-            manager->unk_94[0] = 0;
-            manager->unk_94[1] = 0;
+        if (RowanIntroManager_WasPokeballOpened() == TRUE) {
+            manager->animData.progressCounter = 0;
+            manager->animDelayUpdateCounter = 0;
             {
                 Bg_ClearTilemap(manager->bgConfig, BG_LAYER_MAIN_0);
             }
@@ -1886,20 +1906,20 @@ static BOOL ov73_021D2318(RowanIntroManager *manager)
         }
         break;
     case RIM_STATE_PKBL_ANIM_PUSH_IN:
-        if (manager->unk_94[1]) {
-            manager->unk_94[1]--;
+        if (manager->animDelayUpdateCounter) {
+            manager->animDelayUpdateCounter--;
         } else {
             {
                 int v3[] = { 33, 34, 0xffff };
 
-                if (v3[manager->unk_94[0]] == 0xffff) {
+                if (v3[manager->animData.progressCounter] == 0xffff) {
                     Sound_PlayEffect(SEQ_SE_DP_BOWA2);
 
                     manager->state = RIM_STATE_PKBL_ANIM_FLASH_0;
                 } else {
-                    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, v3[manager->unk_94[0]], manager->bgConfig, 6, 0x20, 0, 0, manager->heapID);
-                    manager->unk_94[0]++;
-                    manager->unk_94[1] = 4;
+                    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, v3[manager->animData.progressCounter], manager->bgConfig, 6, 0x20, 0, 0, manager->heapID);
+                    manager->animData.progressCounter++;
+                    manager->animDelayUpdateCounter = 4;
                 }
             }
         }
@@ -1936,8 +1956,8 @@ static BOOL ov73_021D2318(RowanIntroManager *manager)
     case RIM_STATE_PKBL_ANIM_SPAWN_PKM_AND_FLASH_4:
         ov73_021D1B80(manager);
         Bg_ToggleLayer(BG_LAYER_SUB_2, 0);
-        manager->unk_94[0] = 0;
-        ov73_021D200C(manager, &manager->unk_94[0]);
+        manager->animData.bunearyAnimState = BAN_INIT;
+        RowanIntroManager_AnimateBuneary(manager, &manager->animData.bunearyAnimState);
         manager->bgSubLayer3TilemapIndex = 0;
         RowanIntroManager_LoadSubLayer3Tilemap(manager);
         BrightnessController_StartTransition(16, 0, 16, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, BRIGHTNESS_MAIN_SCREEN);
@@ -1945,14 +1965,14 @@ static BOOL ov73_021D2318(RowanIntroManager *manager)
         manager->state = RIM_STATE_PKBL_ANIM_MV_PKM_UP_AND_FLASH_END;
         break;
     case RIM_STATE_PKBL_ANIM_MV_PKM_UP_AND_FLASH_END:
-        ov73_021D200C(manager, &manager->unk_94[0]);
+        RowanIntroManager_AnimateBuneary(manager, &manager->animData.bunearyAnimState);
 
         if ((BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) && (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN) == TRUE)) {
             manager->state = RIM_STATE_PKBL_ANIM_MV_PKM_DOWN_AND_BOUNCE;
         }
         break;
     case RIM_STATE_PKBL_ANIM_MV_PKM_DOWN_AND_BOUNCE:
-        if (ov73_021D200C(manager, &manager->unk_94[0]) == 1) {
+        if (RowanIntroManager_AnimateBuneary(manager, &manager->animData.bunearyAnimState) == TRUE) {
             manager->state = RIM_STATE_PKBL_ANIM_END_DELAY;
         }
         break;
