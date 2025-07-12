@@ -314,7 +314,7 @@ static BOOL sub_02015CC0(UnkStruct_02015C38 *param0)
         return 1;
     }
 
-    sub_02015D98(&param0->unk_28, (FX32_HALF));
+    sub_02015D98(&param0->unk_28, FX32_HALF);
 
     return 0;
 }

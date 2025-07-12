@@ -74,7 +74,6 @@
 #include "touch_pad.h"
 #include "trainer_info.h"
 #include "unk_0200C440.h"
-#include "unk_0201567C.h"
 #include "unk_02015F84.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
@@ -358,7 +357,7 @@ void ov16_0223B430(BattleSystem *battleSys)
     NARC_dtor(v1);
     TextPrinter_SetScrollArrowBaseTile(1);
     ov16_0223DD4C(battleSys);
-    SetSubScreenViewRect(SpriteSystem_GetRenderer(battleSys->spriteSys), 0, ((192 + 80) << FX32_SHIFT));
+    SetSubScreenViewRect(SpriteSystem_GetRenderer(battleSys->spriteSys), 0, (192 + 80) << FX32_SHIFT);
 }
 
 void ov16_0223B53C(BattleSystem *battleSys)
@@ -545,14 +544,14 @@ static void ov16_0223B790(ApplicationManager *appMan)
     PaletteData_SetAutoTransparent(battleSys->paletteSys, 1);
     PaletteData_AllocBuffer(battleSys->paletteSys, 0, 0x200, HEAP_ID_BATTLE);
     PaletteData_AllocBuffer(battleSys->paletteSys, 1, 0x200, HEAP_ID_BATTLE);
-    PaletteData_AllocBuffer(battleSys->paletteSys, 2, (((16 - 2) * 16) * sizeof(u16)), HEAP_ID_BATTLE);
+    PaletteData_AllocBuffer(battleSys->paletteSys, 2, ((16 - 2) * 16) * sizeof(u16), HEAP_ID_BATTLE);
     PaletteData_AllocBuffer(battleSys->paletteSys, 3, 0x200, HEAP_ID_BATTLE);
 
     battleSys->unk_04 = BgConfig_New(HEAP_ID_BATTLE);
     battleSys->windows = Window_New(HEAP_ID_BATTLE, 3);
 
     for (v3 = 0; v3 < 4; v3++) {
-        battleSys->unk_1CC[v3].unk_00 = Heap_AllocFromHeap(HEAP_ID_BATTLE, (32 * 10 * 10));
+        battleSys->unk_1CC[v3].unk_00 = Heap_AllocFromHeap(HEAP_ID_BATTLE, 32 * 10 * 10);
     }
 
     VramTransfer_New(64, HEAP_ID_BATTLE);
@@ -569,21 +568,21 @@ static void ov16_0223B790(ApplicationManager *appMan)
 
     ov16_0223C004(battleSys, battleSys->unk_04);
 
-    Window_Add(battleSys->unk_04, &battleSys->windows[0], 1, 2, 0x13, 27, 4, 11, ((18 + 12) + 1));
+    Window_Add(battleSys->unk_04, &battleSys->windows[0], 1, 2, 0x13, 27, 4, 11, (18 + 12) + 1);
     Window_FillTilemap(&battleSys->windows[0], 0xff);
     Window_DrawMessageBoxWithScrollCursor(&battleSys->windows[0], 0, 1, 10);
 
     battleSys->spriteSys = SpriteSystem_Alloc(5);
 
-    SpriteSystem_Init(battleSys->spriteSys, &Unk_ov16_0226E2E4, &Unk_ov16_0226E29C, (16 + 16));
+    SpriteSystem_Init(battleSys->spriteSys, &Unk_ov16_0226E2E4, &Unk_ov16_0226E29C, 16 + 16);
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
     ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
     battleSys->spriteMan = SpriteManager_New(battleSys->spriteSys);
 
-    SpriteSystem_InitSprites(battleSys->spriteSys, battleSys->spriteMan, (64 + 64));
+    SpriteSystem_InitSprites(battleSys->spriteSys, battleSys->spriteMan, 64 + 64);
     SpriteSystem_InitManagerWithCapacities(battleSys->spriteSys, battleSys->spriteMan, &Unk_ov16_0226E2B0);
-    SetSubScreenViewRect(SpriteSystem_GetRenderer(battleSys->spriteSys), 0, ((192 + 80) << FX32_SHIFT));
+    SetSubScreenViewRect(SpriteSystem_GetRenderer(battleSys->spriteSys), 0, (192 + 80) << FX32_SHIFT);
 
     ov16_02268A88(battleSys->unk_198);
 
@@ -602,7 +601,7 @@ static void ov16_0223B790(ApplicationManager *appMan)
     }
 
     battleSys->unk_88 = PokemonSpriteManager_New(HEAP_ID_BATTLE);
-    PokemonSpriteManager_SetPlttBaseAddrAndSize(battleSys->unk_88, 0, (0x20 * 6));
+    PokemonSpriteManager_SetPlttBaseAddrAndSize(battleSys->unk_88, 0, 0x20 * 6);
 
     ov16_0223F36C(battleSys);
     ov16_0223CE28();
@@ -617,7 +616,7 @@ static void ov16_0223B790(ApplicationManager *appMan)
     battleSys->unk_0C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_STRINGS, HEAP_ID_BATTLE);
     battleSys->unk_10 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVES_USED_IN_BATTLE, HEAP_ID_BATTLE);
     battleSys->strFormatter = StringTemplate_Default(HEAP_ID_BATTLE);
-    battleSys->msgBuffer = Strbuf_Init((2 * 160), HEAP_ID_BATTLE);
+    battleSys->msgBuffer = Strbuf_Init(2 * 160, HEAP_ID_BATTLE);
 
     MI_CpuCopy16(PaletteData_GetUnfadedBuffer(battleSys->paletteSys, 0), &battleSys->unk_2224[0], 0x20 * 7);
     MI_CpuCopy16(PaletteData_GetUnfadedBuffer(battleSys->paletteSys, 2), &battleSys->unk_2304[0], 0x20 * 7);
@@ -1589,7 +1588,7 @@ static void ov16_0223CF8C(SysTask *param0, void *param1)
             v2 = ov16_02263B08(v1);
 
             if (v2 != NULL) {
-                if (HealthBar_Color(v2->curHP, v2->maxHP, (8 * 6)) == 1) {
+                if (HealthBar_Color(v2->curHP, v2->maxHP, 8 * 6) == 1) {
                     v5 |= FlagIndex(v3);
                 }
             }
@@ -1726,7 +1725,7 @@ static void ov16_0223D10C(ApplicationManager *appMan, FieldBattleDTO *param1)
 
     GXLayers_TurnBothDispOn();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    Window_Add(v0->unk_04, v0->unk_08, 1, 2, 0x13, 27, 4, 11, ((18 + 12) + 1));
+    Window_Add(v0->unk_04, v0->unk_08, 1, 2, 0x13, 27, 4, 11, (18 + 12) + 1);
     Window_FillTilemap(v0->unk_08, 0xff);
     Window_DrawMessageBoxWithScrollCursor(v0->unk_08, 0, 1, 10);
 
@@ -1745,7 +1744,7 @@ static void ov16_0223D10C(ApplicationManager *appMan, FieldBattleDTO *param1)
     }
 
     SetVBlankCallback(ov16_0223CF1C, v0);
-    PaletteData_StartFade(v0->unk_0C, (0x1 | 0x4), 0xffff, 0, 16, 0, 0x0);
+    PaletteData_StartFade(v0->unk_0C, 0x1 | 0x4, 0xffff, 0, 16, 0, 0x0);
 
     v0->unk_1024 = Window_AddWaitDial(v0->unk_08, 1);
 
@@ -1957,7 +1956,7 @@ static BOOL ov16_0223D354(ApplicationManager *appMan)
             v0->unk_1021++;
 
             if (v0->unk_1021 == 33) {
-                PaletteData_StartFade(v0->unk_0C, (0x1 | 0x4), 0xffff, 0, 0, 16, 0x0);
+                PaletteData_StartFade(v0->unk_0C, 0x1 | 0x4, 0xffff, 0, 0, 16, 0x0);
             }
         } else {
             v0->unk_1022++;
