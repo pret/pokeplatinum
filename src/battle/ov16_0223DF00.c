@@ -111,7 +111,7 @@ u32 BattleSystem_GetTrainerGender(BattleSystem *battleSystem, int param1);
 int BattleSystem_BattlerOfType(BattleSystem *battleSys, int type);
 u8 BattleSystem_BattlerSlot(BattleSystem *battleSys, int battler);
 u8 Battler_Side(BattleSystem *battleSystem, int param1);
-void *ov16_0223E220(BattleSystem *battleSystem);
+UnkStruct_020157E4 *ov16_0223E220(BattleSystem *battleSystem);
 enum BattleTerrain BattleSystem_Terrain(BattleSystem *battleSys);
 int BattleSystem_MapHeader(BattleSystem *battleSystem);
 int BattleSystem_Partner(BattleSystem *battleSys, int battler);
@@ -490,7 +490,7 @@ u8 Battler_Side(BattleSystem *battleSystem, int battler)
     return Battler_Type(battleSystem->battlers[battler]) & 1;
 }
 
-void *ov16_0223E220(BattleSystem *battleSystem)
+UnkStruct_020157E4 *ov16_0223E220(BattleSystem *battleSystem)
 {
     return battleSystem->unk_1AC;
 }

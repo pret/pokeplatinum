@@ -22,6 +22,7 @@
 #include "poketch.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "unk_0201567C.h"
 
 struct UnkStruct_0207AE68_t {
     BgConfig *unk_00;
@@ -45,7 +46,7 @@ struct UnkStruct_0207AE68_t {
     Bag *unk_4C;
     GameRecords *records;
     Poketch *poketch;
-    void *unk_58;
+    UnkStruct_020157E4 *unk_58;
     int heapID;
     u16 unk_60;
     u16 unk_62;

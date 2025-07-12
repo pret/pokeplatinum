@@ -111,7 +111,7 @@ struct UnkStruct_02087A10_t {
     void *unk_520;
     NNSG2dPaletteData *unk_524;
     u8 unk_528[256];
-    void *unk_628;
+    UnkStruct_020157E4 *unk_628;
     BOOL unk_62C;
     int unk_630;
 };

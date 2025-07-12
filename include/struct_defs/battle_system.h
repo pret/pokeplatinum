@@ -39,6 +39,7 @@
 #include "string_template.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
+#include "unk_0201567C.h"
 
 struct BattleSystem {
     GenericPointerData *unk_00;
@@ -77,7 +78,7 @@ struct BattleSystem {
     PartyGauge *partyGauges[2];
     UnkStruct_0200C440 *unk_1A4;
     UnkStruct_0200C440 *unk_1A8;
-    void *unk_1AC;
+    UnkStruct_020157E4 *unk_1AC;
     Options *options;
     PalPad *palPad;
     WaitDial *waitDial;
