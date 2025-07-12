@@ -35,6 +35,7 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "trainer_info.h"
+#include "unk_0201567C.h"
 
 #define ENEMY_IN_SLOT_RIGHT 0
 #define ENEMY_IN_SLOT_LEFT  2
@@ -141,7 +142,7 @@ u32 BattleSystem_GetTrainerGender(BattleSystem *battleSys, int battler);
 int BattleSystem_BattlerOfType(BattleSystem *battleSys, int type);
 u8 BattleSystem_BattlerSlot(BattleSystem *battleSys, int param1);
 u8 Battler_Side(BattleSystem *battleSys, int param1);
-void *ov16_0223E220(BattleSystem *battleSys);
+UnkStruct_020157E4 *ov16_0223E220(BattleSystem *battleSys);
 PCBoxes *BattleSystem_PCBoxes(BattleSystem *battleSys);
 
 /**

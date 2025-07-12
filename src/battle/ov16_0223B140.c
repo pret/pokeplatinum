@@ -74,7 +74,6 @@
 #include "touch_pad.h"
 #include "trainer_info.h"
 #include "unk_0200C440.h"
-#include "unk_0201567C.h"
 #include "unk_02015F84.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"

@@ -72,7 +72,7 @@ struct UnkStruct_ov111_021D0F7C_t {
     u8 unk_19[3];
     VecFx32 unk_1C;
     VecFx32 unk_28;
-    void *unk_34;
+    UnkStruct_020157E4 *unk_34;
     MessageLoader *unk_38;
     StringTemplate *unk_3C;
     Strbuf *unk_40;

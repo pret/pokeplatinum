@@ -199,7 +199,7 @@ typedef struct {
     int displayTextBlockState;
     int textPrinterID;
     Strbuf *strbuf;
-    void *unk_60;
+    UnkStruct_020157E4 *unk_60;
     StringTemplate *strFormatter;
     UnkStruct_02015920 *unk_68;
     SysTask *unused;
