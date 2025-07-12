@@ -37,9 +37,13 @@ c_args = [
     '-D_MSL_RESTRICT=',
 ]
 
-if get_option('rev1')
+if get_option('revision') == '0'
     c_args += [
-        '-DPOKEPLATINUM_REV1='
+        '-DPOKEPLATINUM_REVISION=0'
+    ]
+else
+    c_args += [
+        '-DPOKEPLATINUM_REVISION=1'
     ]
 endif
 
