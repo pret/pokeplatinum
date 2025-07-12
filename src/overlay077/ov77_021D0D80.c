@@ -1,8 +1,10 @@
+#include "nitro/gx/g3.h"
 #include "nitro/types.h"
 #include <nitro.h>
 #include <string.h>
 
 #include "constants/graphics.h"
+#include "constants/heap.h"
 #include "constants/species.h"
 
 #include "struct_defs/struct_0207C690.h"
@@ -44,9 +46,26 @@ FS_EXTERN_OVERLAY(d_startmenu);
 
 #define KEY_PRESSED(key) (JOY_NEW(key) == key)
 #define KEY_HELD(key) (JOY_HELD(key) == key)
+#define LIGHT_COLOR(r, g, b) ((((r) << 0) & GX_RGB_R_MASK) | (((g) << 5) & GX_RGB_G_MASK) | (((b) << 10) & GX_RGB_B_MASK))
+#define ANGLE(angle) FX_DEG_TO_IDX(FX32_CONST(angle))
+
+#define TITLE_CAM_MOVE_IN_FRAMES 60
+#define LIGHT1_BRIGHTNESS_MIN    5
+#define LIGHT1_BRIGHTNESS_MAX    31
+#define LIGHT1_BRIGHTNESS_STEP   2
+
+#define INTRO_CAM_PITCH_START    ANGLE(319.94)
+#define INTRO_CAM_PITCH_END      ANGLE(270.094)
+
+// These angles are divided by 256 before being passed to Camera_AdjustFOV.
+// The actual angles are denoted in the comments below.
+#define INTRO_CAM_FOV_STEP_START  ANGLE(168.75)  // Actually ~0.66°
+#define INTRO_CAM_FOV_STEP_REDUCE ANGLE(3.516)   // Actually ~0.0137°
+#define INTRO_CAM_FOV_STEP_MIN    ANGLE(22.5)    // Actually ~0.088°
+
 
 typedef struct TitleScreenResources {
-    int unk_00;
+    int renderState;
     NNSG3dRenderObj giratinaRenderObj;
     NNSG3dResMdl *giratinaModel;
     NNSG3dResFileHeader *giratinaModelRes;
@@ -59,8 +78,8 @@ typedef struct TitleScreenResources {
     VecFx32 giratinaScale;
     VecFx32 giratinaRot;
     Camera *titleCamera;
-    Camera *camera2;
-    int unk_AC;
+    Camera *introCamera;
+    int giratinaAnimState;
     Easy3DObject giratinaFaceObj;
     Easy3DAnim giratinaFaceAnim;
     Easy3DAnim giratinaFaceMatAnim;
@@ -69,13 +88,13 @@ typedef struct TitleScreenResources {
     Easy3DAnim portalAnim;
     Easy3DAnim portalTexAnim;
     Easy3DModel portalModel;
-    u32 unk_210;
-    int unk_214;
-    int unk_218;
+    u32 introFrameCounter;
+    int introCamPitchStep;
+    int introCamPitch;
     fx32 unk_21C;
-    int unk_220;
-    u8 unk_224;
-    u8 unk_225;
+    int introCamFovStep; // Amount by which the camera FOV is adjusted each frame
+    u8 giratinaFaceAnimState;
+    u8 giratinaFaceMatAnimState;
 } TitleScreenResources;
 
 typedef struct TitleScreenUnusedStruct {
@@ -85,17 +104,55 @@ typedef struct TitleScreenUnusedStruct {
 
 enum TitleScreenAppState {
     TITLE_SCREEN_APP_STATE_INIT_RESOURCES,
+    TITLE_SCREEN_APP_STATE_SHOW_INTRO,
 };
 
-enum TitleScreenState {
-    TITLE_SCREEN_STATE_FADE_IN = 0,
-    TITLE_SCREEN_STATE_WAIT_FOR_FADE,
+enum TitleScreenIntroState {
+    INTRO_STATE_FADE_FROM_BLACK = 0,
+    INTRO_STATE_WAIT_FOR_FADE,
+    INTRO_STATE_WAIT_AND_FADE_TO_WHITE,
+    INTRO_STATE_WAIT_AND_FADE_FROM_WHITE,
+    INTRO_STATE_RESET_COUNTER,
+    INTRO_STATE_WAIT_AND_FADE_TO_WHITE_2,
+    INTRO_STATE_WAIT_AND_FADE_MAIN_FROM_WHITE,
+    INTRO_STATE_FADE_MAIN_FROM_BLACK,
+    INTRO_STATE_WAIT_FOR_DELAY,
+    INTRO_STATE_MOVE_IN_TITLE_CAMERA,
+    INTRO_STATE_WAIT_FOR_DELAY_AND_FADE,
+};
+
+enum Light1State {
+    LIGHT1_STATE_DEFAULT = 0,
+    LIGHT1_STATE_IDLE,
+    LIGHT1_STATE_BRIGHTEN,
+    LIGHT1_STATE_DARKEN,
+};
+
+enum GiratinaFaceState {
+    GIRATINA_FACE_STATE_HIDDEN = 0,
+    GIRATINA_FACE_STATE_SHOWN,
+    GIRATINA_FACE_STATE_DONE,
+};
+
+enum TitleScreenRenderState {
+    RENDER_STATE_OFF = 0, // No rendering
+    RENDER_STATE_DISABLE, // Reset GFX pipeline and disable rendering after
+    RENDER_STATE_ENABLE,  // Enable rendering
+};
+
+enum GiratinaAnimState {
+    GIRATINA_ANIM_STATE_DISABLED = 0, // No animation
+    GIRATINA_ANIM_STATE_STOP, // Let the animation run until the end and then stop
+    GIRATINA_ANIM_STATE_PLAY, // Play the animation from the start
 };
 
 typedef struct TitleScreen {
     int state;
     TitleScreenResources resources;
-    u16 delay;
+    union {
+        u16 delay;
+        u16 fadeCount;
+    };
     Window pressStartWindow;
     VecFx32 titleCamTarget;
     VecFx32 titleCamPos;
@@ -106,17 +163,17 @@ typedef struct TitleScreen {
     VecFx32 titleCamEndTarget;
     VecFx16 light0Dir;
     VecFx16 light1Dir;
-    u16 unk_294;
-    u16 unk_296;
+    u16 light1Brightness;
+    u16 light1State; // See enum Light1State
     fx32 unk_298;
-    BOOL unk_29C;
-    BOOL unk_2A0;
-    int unk_2A4;
-    int unk_2A8;
+    BOOL giratinaShown; // Giratina 3D model shown
+    BOOL introShown; // Sky pillar portal with Giratina face shown
+    int titleCamMoveInCounter;
+    int giratinaHoverAngle;
     int unk_2AC;
 } TitleScreen;
 
-typedef struct {
+typedef struct TitleScreenAppData {
     int heapID;
     BgConfig *bgConfig;
     GenericPointerData *unk_08;
@@ -147,21 +204,21 @@ static void ov77_021D11CC(TitleScreenAppData *param0);
 static void ov77_021D11FC(TitleScreenAppData *param0);
 static void TitleScreen_Load3DGfx(TitleScreenResources *param0, int param1, int param2, enum HeapId param3);
 static void ov77_021D14E4(TitleScreenResources *param0);
-static void ov77_021D1568(TitleScreen *param0, TitleScreenResources *param1);
-static BOOL TitleScreen_ShouldSkipCutscene(void);
+static void TitleScreen_Render(TitleScreen *param0, TitleScreenResources *param1);
+static BOOL TitleScreen_ShouldSkipIntro(void);
 static BOOL TitleScreen_InitGraphics(TitleScreen *param0, BgConfig *param1, enum HeapId param2);
-static BOOL ov77_021D1DF0(TitleScreen *param0, BgConfig *param1, enum HeapId heapID);
+static BOOL TitleScreen_ShowIntro(TitleScreen *param0, BgConfig *param1, enum HeapId heapID);
 static BOOL ov77_021D20E4(TitleScreen *param0, BgConfig *param1, int param2);
 static BOOL ov77_021D21C0(TitleScreen *param0, BgConfig *param1, int param2);
 static void TitleScreen_LoadCutscene3DGfx(TitleScreenResources *param0, enum HeapId heapID);
 static void ov77_021D1514(TitleScreenResources *param0);
-static void ov77_021D1704(TitleScreenResources *param0);
-static void ov77_021D1984(TitleScreen *param0, TitleScreenResources *param1);
-static void ov77_021D25AC(Camera *camera);
+static void TitleScreen_RenderIntroGraphics(TitleScreenResources *param0);
+static void TitleScreen_UpdateIntroCamera(TitleScreen *param0, TitleScreenResources *param1);
+static void EmptyCameraFunction(Camera *camera);
 static void TitleScreen_Load2DGfx(BgConfig *param0, enum HeapId param1, TitleScreen *param2);
 static void ov77_021D2428(BgConfig *param0, enum HeapId param1, TitleScreen *param2);
 static void TitleScreen_InitCoordinates(TitleScreen *param0);
-static void ov77_021D2438(TitleScreen *param0);
+static void TitleScreen_UpdateLight1(TitleScreen *param0);
 
 const ApplicationManagerTemplate gTitleScreenAppTemplate = {
     .init = TitleScreen_Init,
@@ -219,19 +276,19 @@ static int TitleScreen_Main(ApplicationManager *appMan, int *state)
 
             if (!gSystem.unk_6C) {
                 appData->unk_4EC = 30 * 1;
-                appData->titleScreen.unk_29C = 1;
-                appData->titleScreen.unk_2A0 = 0;
+                appData->titleScreen.giratinaShown = 1;
+                appData->titleScreen.introShown = 0;
                 *state = 2;
             } else {
                 appData->unk_4EC = 0;
                 gSystem.unk_6C = FALSE;
-                appData->titleScreen.unk_2A0 = 1;
-                *state = 1;
+                appData->titleScreen.introShown = 1;
+                *state = TITLE_SCREEN_APP_STATE_SHOW_INTRO;
             }
         }
         break;
-    case 1:
-        if (ov77_021D1DF0(&appData->titleScreen, appData->bgConfig, appData->heapID) == TRUE) {
+    case TITLE_SCREEN_APP_STATE_SHOW_INTRO:
+        if (TitleScreen_ShowIntro(&appData->titleScreen, appData->bgConfig, appData->heapID) == TRUE) {
             appData->titleScreen.state = 0;
             *state = 2;
         }
@@ -266,7 +323,7 @@ static int TitleScreen_Main(ApplicationManager *appMan, int *state)
 
         if ((gSystem.heldKeys & (PAD_BUTTON_B | PAD_KEY_UP | PAD_BUTTON_SELECT)) == (PAD_BUTTON_B | PAD_KEY_UP | PAD_BUTTON_SELECT)) {
             appData->unk_4E8 = 2;
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, appData->heapID);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_BLACK, 6, 1, appData->heapID);
             *state = 6;
             break;
         }
@@ -287,7 +344,7 @@ static int TitleScreen_Main(ApplicationManager *appMan, int *state)
         ov77_021D20E4(&appData->titleScreen, appData->bgConfig, appData->heapID);
 
         if ((++appData->unk_4FC) == 10) {
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_WHITE, 6, 1, appData->heapID);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_WHITE, 6, 1, appData->heapID);
         }
 
         if ((Sound_IsPokemonCryPlaying() == 0) && (IsScreenFadeDone() == TRUE) && (appData->unk_4FC >= 10)) {
@@ -301,7 +358,7 @@ static int TitleScreen_Main(ApplicationManager *appMan, int *state)
             GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
             GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
             GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_WHITE, 6, 1, appData->heapID);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_WHITE, 6, 1, appData->heapID);
             *state = 6;
         }
         break;
@@ -311,7 +368,7 @@ static int TitleScreen_Main(ApplicationManager *appMan, int *state)
 
         if (Sound_IsFadeActive() == FALSE) {
             Sound_StopBGM(SEQ_TITLE01, 0);
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_WHITE, 6, 1, appData->heapID);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_WHITE, 6, 1, appData->heapID);
             *state = 6;
         }
         break;
@@ -382,7 +439,7 @@ static void TitleScreen_SetVRAMBanks(void)
     GXLayers_SetBanks(&banks);
 }
 
-static BOOL TitleScreen_ShouldSkipCutscene(void)
+static BOOL TitleScreen_ShouldSkipIntro(void)
 {
     if (KEY_PRESSED(PAD_BUTTON_A) || KEY_PRESSED(PAD_BUTTON_START) || KEY_PRESSED(PAD_BUTTON_SELECT)) {
         return TRUE;
@@ -433,7 +490,7 @@ static void TitleScreen_Load3DGfx(TitleScreenResources *resources, int giratinaM
     resources->giratinaScale = scale;
     resources->giratinaRot = rot;
 
-    resources->unk_AC = 0;
+    resources->giratinaAnimState = GIRATINA_ANIM_STATE_DISABLED;
 
     TitleScreen_LoadCutscene3DGfx(resources, heapID);
 }
@@ -483,10 +540,10 @@ static void TitleScreen_LoadCutscene3DGfx(TitleScreenResources *resources, enum 
 
     NARC_dtor(narc);
 
-    resources->unk_214 = ((0x10000 - 0x3fef) - (0x10000 - 0x1c7d)) / 30;
-    resources->unk_218 = (0x10000 - 0x1c7d);
+    resources->introCamPitchStep = (INTRO_CAM_PITCH_END - INTRO_CAM_PITCH_START) / 30;
+    resources->introCamPitch = INTRO_CAM_PITCH_START;
     resources->unk_21C = (FX32_ONE);
-    resources->unk_220 = (120 << 8);
+    resources->introCamFovStep = INTRO_CAM_FOV_STEP_START;
 }
 
 static void ov77_021D14E4(TitleScreenResources *param0)
@@ -512,68 +569,67 @@ static void ov77_021D1514(TitleScreenResources *param0)
     Easy3DAnim_Release(&param0->portalTexAnim, &param0->allocator);
 }
 
-static void ov77_021D1568(TitleScreen *titleScreen, TitleScreenResources *resources)
+static void TitleScreen_Render(TitleScreen *titleScreen, TitleScreenResources *resources)
 {
-    MtxFx33 v0 = { FX32_ONE, 0, 0, 0, FX32_ONE, 0, 0, 0, FX32_ONE };
+    MtxFx33 rotationMatrix = {
+        FX32_ONE, 0,        0,
+        0,        FX32_ONE, 0,
+        0,        0,        FX32_ONE
+    };
 
-    if ((titleScreen->unk_29C == 0) && (titleScreen->unk_2A0 == 1)) {
-        ov77_021D25AC(resources->camera2);
-        Camera_ComputeProjectionMatrix(0, resources->camera2);
-        Camera_SetAsActive(resources->camera2);
+    if (titleScreen->giratinaShown == FALSE && titleScreen->introShown == TRUE) {
+        EmptyCameraFunction(resources->introCamera);
+        Camera_ComputeProjectionMatrix(CAMERA_PROJECTION_PERSPECTIVE, resources->introCamera);
+        Camera_SetAsActive(resources->introCamera);
     } else {
-        Camera_ComputeProjectionMatrix(0, resources->titleCamera);
+        Camera_ComputeProjectionMatrix(CAMERA_PROJECTION_PERSPECTIVE, resources->titleCamera);
         Camera_SetAsActive(resources->titleCamera);
     }
 
-    {
-        fx32 v1;
+    titleScreen->giratinaHoverAngle += 2;
+    titleScreen->giratinaHoverAngle %= 360;
 
-        titleScreen->unk_2A8 += 2;
-        titleScreen->unk_2A8 %= 360;
+    // BUG: This should pass the value in directly, since the function takes degrees as input, not an index.
+    // But in practice this just slightly reduces the range of the hover so it isn't very noticeable.
+    fx32 offset = CalcSineDegrees_Wraparound((titleScreen->giratinaHoverAngle * 0xFFFF) / 360);
+    offset *= 0.3;
+    resources->giratinaPos.y -= offset;
 
-        v1 = CalcSineDegrees_Wraparound((titleScreen->unk_2A8 * 0xffff) / 360);
-        v1 *= 0.30;
-
-        resources->giratinaPos.y -= v1;
-    }
-
-    switch (resources->unk_00) {
-    case 0:
+    switch (resources->renderState) {
+    case RENDER_STATE_OFF:
         break;
-    case 1:
+    case RENDER_STATE_DISABLE:
         sub_020241B4();
         G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_W);
-        resources->unk_00 = 0;
+        resources->renderState = RENDER_STATE_OFF;
         break;
-    case 2:
+    case RENDER_STATE_ENABLE:
         sub_020241B4();
         Camera_ComputeViewMatrix();
-        MTX_Rot33Vec(&v0, &resources->giratinaRot);
+        MTX_Rot33Vec(&rotationMatrix, &resources->giratinaRot);
 
-        if (titleScreen->unk_29C == 0) {
-            if (titleScreen->unk_2A0 == 1) {
-                ov77_021D1704(resources);
-            } else {
-                (void)0;
+        if (titleScreen->giratinaShown == FALSE) {
+            if (titleScreen->introShown == TRUE) {
+                TitleScreen_RenderIntroGraphics(resources);
             }
         } else {
             DC_FlushAll();
-            Easy3D_DrawRenderObj(&resources->giratinaRenderObj, &resources->giratinaPos, &v0, &resources->giratinaScale);
+            Easy3D_DrawRenderObj(&resources->giratinaRenderObj, &resources->giratinaPos, &rotationMatrix, &resources->giratinaScale);
         }
 
-        switch (resources->unk_AC) {
-        case 0:
+        switch (resources->giratinaAnimState) {
+        case GIRATINA_ANIM_STATE_DISABLED:
             resources->giratinaTexAnim->frame = 0;
             resources->giratinaAnim->frame = 0;
             break;
-        case 1:
+        case GIRATINA_ANIM_STATE_STOP:
             if (resources->giratinaTexAnim->frame == 0) {
-                resources->unk_AC = 0;
+                resources->giratinaAnimState = GIRATINA_ANIM_STATE_DISABLED;
                 break;
             }
-        case 2:
-            resources->giratinaTexAnim->frame += (FX32_ONE);
-            resources->giratinaAnim->frame += (FX32_ONE);
+        case GIRATINA_ANIM_STATE_PLAY:
+            resources->giratinaTexAnim->frame += FX32_ONE;
+            resources->giratinaAnim->frame += FX32_ONE;
 
             if (resources->giratinaTexAnim->frame == NNS_G3dAnmObjGetNumFrame(resources->giratinaTexAnim)) {
                 resources->giratinaTexAnim->frame = 0;
@@ -590,33 +646,32 @@ static void ov77_021D1568(TitleScreen *titleScreen, TitleScreenResources *resour
     }
 }
 
-static void ov77_021D1704(TitleScreenResources *param0)
+static void TitleScreen_RenderIntroGraphics(TitleScreenResources *resources)
 {
-    if (param0->unk_224 == 1) {
-        if (Easy3DAnim_Update(&param0->giratinaFaceAnim, FX32_ONE) == 1) {
-            param0->unk_224 = 2;
+    if (resources->giratinaFaceAnimState == GIRATINA_FACE_STATE_SHOWN) {
+        if (Easy3DAnim_Update(&resources->giratinaFaceAnim, FX32_ONE) == TRUE) {
+            resources->giratinaFaceAnimState = GIRATINA_FACE_STATE_DONE;
         }
     }
 
-    if (param0->unk_225 == 1) {
-        if (Easy3DAnim_Update(&param0->giratinaFaceMatAnim, FX32_ONE) == 1) {
-            param0->unk_225 = 2;
+    if (resources->giratinaFaceMatAnimState == GIRATINA_FACE_STATE_SHOWN) {
+        if (Easy3DAnim_Update(&resources->giratinaFaceMatAnim, FX32_ONE) == TRUE) {
+            resources->giratinaFaceMatAnimState = GIRATINA_FACE_STATE_DONE;
         }
     }
 
-    Easy3DAnim_UpdateLooped(&param0->portalAnim, FX32_ONE);
-    Easy3DAnim_UpdateLooped(&param0->portalTexAnim, FX32_ONE);
+    Easy3DAnim_UpdateLooped(&resources->portalAnim, FX32_ONE);
+    Easy3DAnim_UpdateLooped(&resources->portalTexAnim, FX32_ONE);
 
     NNS_G3dGePushMtx();
 
-    {
-        Easy3DObject_Draw(&param0->portalObj);
+    Easy3DObject_Draw(&resources->portalObj);
 
-        if ((param0->unk_224 != 2) || (param0->unk_225 != 2)) {
-            Easy3DObject_Draw(&param0->giratinaFaceObj);
-        } else {
-            Easy3DObject_SetVisible(&param0->giratinaFaceObj, 0);
-        }
+    if (resources->giratinaFaceAnimState != GIRATINA_FACE_STATE_DONE ||
+        resources->giratinaFaceMatAnimState != GIRATINA_FACE_STATE_DONE) {
+        Easy3DObject_Draw(&resources->giratinaFaceObj);
+    } else {
+        Easy3DObject_SetVisible(&resources->giratinaFaceObj, FALSE);
     }
 
     NNS_G3dGePopMtx(1);
@@ -768,51 +823,48 @@ static void ov77_021D1908(TitleScreenAppData *param0)
     Heap_Free(param0->bgConfig);
 }
 
-static void ov77_021D1984(TitleScreen *param0, TitleScreenResources *param1)
+static void TitleScreen_UpdateIntroCamera(TitleScreen *titleScreen, TitleScreenResources *resources)
 {
-    VecFx32 v0 = { 0, 0, 0 };
-    CameraAngle v1 = { 0, 0, 0, 0 };
-    int v2;
+    VecFx32 offset = { 0, 0, 0 };
+    CameraAngle angle = { 0, 0, 0, 0 };
 
-    if (param0->unk_29C == 1) {
+    if (titleScreen->giratinaShown == TRUE) {
         return;
     }
 
-    if (param1->unk_210 < 60) {
-        v0.z = -0xa00;
-        Camera_Move(&v0, param1->camera2);
+    // Move camera towards the portal
+    if (resources->introFrameCounter < 60) {
+        offset.z = -FX32_CONST(0.625);
+        Camera_Move(&offset, resources->introCamera);
     }
 
-    if (param1->unk_210 == 75) {
-        param1->unk_224 = 1;
-        param1->unk_225 = 1;
+    if (resources->introFrameCounter == 75) {
+        resources->giratinaFaceAnimState = 1;
+        resources->giratinaFaceMatAnimState = 1;
     }
 
-    if (param1->unk_210 >= 250) {
-        v1 = Camera_GetAngle(param1->camera2);
-        v1.x = param1->unk_218;
+    if (resources->introFrameCounter >= 250) {
+        angle = Camera_GetAngle(resources->introCamera);
+        angle.x = resources->introCamPitch;
 
-        Camera_SetAngleAroundTarget(&v1, param1->camera2);
+        Camera_SetAngleAroundTarget(&angle, resources->introCamera);
 
-        param1->unk_218 += param1->unk_214;
+        resources->introCamPitch += resources->introCamPitchStep;
 
-        if (param1->unk_218 < (0x10000 - 0x3fef)) {
-            param1->unk_218 = (0x10000 - 0x3fef);
+        if (resources->introCamPitch < INTRO_CAM_PITCH_END) {
+            resources->introCamPitch = INTRO_CAM_PITCH_END;
 
-            Camera_AdjustFOV(-(param1->unk_220 >> 8), param1->camera2);
-            param1->unk_220 -= 0x280;
+            // "Zoom in" on the portal
+            Camera_AdjustFOV(-(resources->introCamFovStep >> 8), resources->introCamera);
+            resources->introCamFovStep -= INTRO_CAM_FOV_STEP_REDUCE;
 
-            if (param1->unk_220 < (16 << 8)) {
-                param1->unk_220 = (16 << 8);
+            if (resources->introCamFovStep < INTRO_CAM_FOV_STEP_MIN) {
+                resources->introCamFovStep = INTRO_CAM_FOV_STEP_MIN;
             }
         }
     }
 
-    if (param1->unk_218 >= (0x10000 - 0x3fef)) {
-        (void)0;
-    }
-
-    param1->unk_210++;
+    resources->introFrameCounter++;
 }
 
 static const WindowTemplate sPressStartWindowTemplate = {
@@ -857,7 +909,7 @@ static BOOL TitleScreen_InitGraphics(TitleScreen *titleScreen, BgConfig *bgConfi
     static const CameraAngle angle = { FX_DEG_TO_IDX(FX32_CONST(319.94)), 0, 0 };
     VecFx32 target = { 0, 0, 0 };
 
-    titleScreen->resources.camera2 = Camera_Alloc(heapID);
+    titleScreen->resources.introCamera = Camera_Alloc(heapID);
 
     Camera_InitWithTarget(
         &target,
@@ -866,13 +918,13 @@ static BOOL TitleScreen_InitGraphics(TitleScreen *titleScreen, BgConfig *bgConfi
         FX_DEG_TO_IDX(FX32_CONST(21.994)),
         CAMERA_PROJECTION_PERSPECTIVE,
         FALSE,
-        titleScreen->resources.camera2);
+        titleScreen->resources.introCamera);
 
-    Camera_SetClipping(FX32_CONST(0), FX32_CONST(300), titleScreen->resources.camera2);
+    Camera_SetClipping(FX32_CONST(0), FX32_CONST(300), titleScreen->resources.introCamera);
 
     VecFx32 pos = { 0, 0, FX32_CONST(37.5) };
-    Camera_Move(&pos, titleScreen->resources.camera2);
-    Camera_SetAsActive(titleScreen->resources.camera2);
+    Camera_Move(&pos, titleScreen->resources.introCamera);
+    Camera_SetAsActive(titleScreen->resources.introCamera);
 
     NNS_G3dGlbLightVector(GX_LIGHTID_0, titleScreen->light0Dir.x, titleScreen->light0Dir.y, titleScreen->light0Dir.z);
     NNS_G3dGlbLightColor(GX_LIGHTID_0, GX_RGB(31, 31, 31));
@@ -883,66 +935,53 @@ static BOOL TitleScreen_InitGraphics(TitleScreen *titleScreen, BgConfig *bgConfi
 
     gSystem.whichScreenIs3D = DS_SCREEN_SUB;
     GXLayers_SwapDisplay();
-    titleScreen->resources.unk_00 = 2;
+    titleScreen->resources.renderState = 2;
 
     return TRUE;
 }
 
-static void ov77_021D1C10(TitleScreen *param0)
+static void TitleScreen_UpdateTitleCam(TitleScreen *titleScreen)
 {
-    BOOL v0 = 1;
-    fx32 v1;
-    fx32 v2 = 60;
+    fx32 steps = TITLE_CAM_MOVE_IN_FRAMES;
 
-    v1 = (param0->titleCamEndTarget.x - param0->titleCamStartTarget.x) / v2;
-    param0->titleCamTarget.x += (v1);
+    titleScreen->titleCamTarget.x += (titleScreen->titleCamEndTarget.x - titleScreen->titleCamStartTarget.x) / steps;
+    titleScreen->titleCamTarget.y += (titleScreen->titleCamEndTarget.y - titleScreen->titleCamStartTarget.y) / steps;
+    titleScreen->titleCamTarget.z += (titleScreen->titleCamEndTarget.z - titleScreen->titleCamStartTarget.z) / steps;
 
-    v1 = (param0->titleCamEndTarget.y - param0->titleCamStartTarget.y) / v2;
-    param0->titleCamTarget.y += (v1);
-
-    v1 = (param0->titleCamEndTarget.z - param0->titleCamStartTarget.z) / v2;
-    param0->titleCamTarget.z += (v1);
-
-    v1 = (param0->titleCamEndPos.x - param0->titleCamStartPos.x) / v2;
-    param0->titleCamPos.x += (v1);
-
-    v1 = (param0->titleCamEndPos.y - param0->titleCamStartPos.y) / v2;
-    param0->titleCamPos.y += (v1);
-
-    v1 = (param0->titleCamEndPos.z - param0->titleCamStartPos.z) / v2;
-    param0->titleCamPos.z += (v1);
+    titleScreen->titleCamPos.x += (titleScreen->titleCamEndPos.x - titleScreen->titleCamStartPos.x) / steps;
+    titleScreen->titleCamPos.y += (titleScreen->titleCamEndPos.y - titleScreen->titleCamStartPos.y) / steps;
+    titleScreen->titleCamPos.z += (titleScreen->titleCamEndPos.z - titleScreen->titleCamStartPos.z) / steps;
 }
 
-static void ov77_021D1CC0(BgConfig *param0, int param1)
+static void TitleScreen_LoadTopScreenBg(BgConfig *bgConfig, enum HeapId heapID)
 {
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_1);
-    {
-        BgTemplate v0 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x3000,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_01,
-            1,
-            0,
-            0,
-            0
-        };
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_SUB_1);
 
-        Bg_InitFromTemplate(param0, BG_LAYER_SUB_1, &v0, 0);
-    }
+    BgTemplate template = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x3000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .dummy = 0,
+        .mosaic = FALSE
+    };
 
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, top_screen_border_NCGR, param0, BG_LAYER_SUB_1, 0, 0, 0, param1);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, top_screen_border_2_NSCR, param0, BG_LAYER_SUB_1, 0, 0, 0, param1);
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_1, &template, BG_TYPE_STATIC);
+
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, top_screen_border_NCGR, bgConfig, BG_LAYER_SUB_1, 0, 0, FALSE, heapID);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, top_screen_border_2_NSCR, bgConfig, BG_LAYER_SUB_1, 0, 0, FALSE, heapID);
 
     G2_BlendNone();
     G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_PLANEMASK_BG3, 10, 10);
 
-    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, TRUE);
 }
 
 static void ov77_021D1D48(BgConfig *param0, int param1)
@@ -984,166 +1023,166 @@ static void ov77_021D1D48(BgConfig *param0, int param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
 }
 
-static BOOL ov77_021D1DF0(TitleScreen *titleScreen, BgConfig *bgConfig, enum HeapId heapID)
+static BOOL TitleScreen_ShowIntro(TitleScreen *titleScreen, BgConfig *bgConfig, enum HeapId heapID)
 {
-    BOOL v0 = 0;
+    BOOL done = FALSE;
 
-    if (TitleScreen_ShouldSkipCutscene() == TRUE) {
-        titleScreen->unk_29C = TRUE;
-        titleScreen->unk_2A0 = FALSE;
+    if (TitleScreen_ShouldSkipIntro() == TRUE) {
+        titleScreen->giratinaShown = TRUE;
+        titleScreen->introShown = FALSE;
         FinishScreenFade();
         BrightnessController_ResetScreenController(BRIGHTNESS_BOTH_SCREENS);
         return TRUE;
     }
 
     switch (titleScreen->state) {
-    case TITLE_SCREEN_STATE_FADE_IN:
+    case INTRO_STATE_FADE_FROM_BLACK:
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, TRUE);
-        titleScreen->unk_296 = 0;
-        titleScreen->delay = 267; // ~9 seconds
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, COLOR_BLACK, 15, 3, heapID);
-        titleScreen->state = TITLE_SCREEN_STATE_WAIT_FOR_FADE;
+        titleScreen->light1State = LIGHT1_STATE_DEFAULT;
+
+        // Roughly a 9s delay. During this time the portal animation plays.
+        titleScreen->delay = 267;
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_BLACK, 15, 3, heapID);
+        titleScreen->state = INTRO_STATE_WAIT_FOR_FADE;
         break;
-    case TITLE_SCREEN_STATE_WAIT_FOR_FADE:
+    case INTRO_STATE_WAIT_FOR_FADE:
         if (IsScreenFadeDone() == TRUE) {
             if (titleScreen->delay) {
                 titleScreen->delay--;
             } else {
-                titleScreen->delay = 2;
-                titleScreen->state = 2;
+                titleScreen->fadeCount = 2; // Do 2 white flashes
+                titleScreen->state = INTRO_STATE_WAIT_AND_FADE_TO_WHITE;
             }
         }
         break;
-    case 2:
+    case INTRO_STATE_WAIT_AND_FADE_TO_WHITE:
         if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE && 
             BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN) == TRUE) {
-            if (titleScreen->delay) {
+            if (titleScreen->fadeCount != 0) {
+                // Fade both screens from normal brightness to white
                 BrightnessController_StartTransition(
                     10,
                     BRIGHTNESS_WHITE,
-                    0,
+                    BRIGHTNESS_NORMAL,
                     GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2,
                     BRIGHTNESS_MAIN_SCREEN);
                 BrightnessController_StartTransition(
                     10,
                     BRIGHTNESS_WHITE,
-                    0,
+                    BRIGHTNESS_NORMAL,
                     GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BD,
                     BRIGHTNESS_SUB_SCREEN);
 
-                titleScreen->unk_296 = 2;
-                titleScreen->delay--;
-                titleScreen->state = 3;
+                titleScreen->light1State = LIGHT1_STATE_BRIGHTEN;
+                titleScreen->fadeCount--;
+                titleScreen->state = INTRO_STATE_WAIT_AND_FADE_FROM_WHITE;
             } else {
-                titleScreen->delay = 0;
-                titleScreen->state = 4;
+                titleScreen->fadeCount = 0;
+                titleScreen->state = INTRO_STATE_RESET_COUNTER;
             }
         }
         break;
-    case 3:
+    case INTRO_STATE_WAIT_AND_FADE_FROM_WHITE:
         if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE &&
             BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN) == TRUE) {
+            // Fade both screens from white to normal brightness
             BrightnessController_StartTransition(
                 10,
-                0,
+                BRIGHTNESS_NORMAL,
                 BRIGHTNESS_WHITE,
                 GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2,
                 BRIGHTNESS_MAIN_SCREEN);
             BrightnessController_StartTransition(
                 10,
-                0,
+                BRIGHTNESS_NORMAL,
                 BRIGHTNESS_WHITE,
                 GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BD,
                 BRIGHTNESS_SUB_SCREEN);
 
-            titleScreen->unk_296 = 3;
-            titleScreen->state = 2;
+            titleScreen->light1State = LIGHT1_STATE_DARKEN;
+            titleScreen->state = INTRO_STATE_WAIT_AND_FADE_TO_WHITE;
         }
         break;
-    case 4:
-        if (titleScreen->delay) {
-            titleScreen->delay--;
+    case INTRO_STATE_RESET_COUNTER:
+        if (titleScreen->fadeCount != 0) {
+            titleScreen->fadeCount--;
         } else {
-            titleScreen->delay = 1;
-            titleScreen->state = 5;
+            titleScreen->fadeCount = 1;
+            titleScreen->state = INTRO_STATE_WAIT_AND_FADE_TO_WHITE_2;
         }
         break;
-    case 5:
+    case INTRO_STATE_WAIT_AND_FADE_TO_WHITE_2:
         if (IsScreenFadeDone() == TRUE) {
-            if (titleScreen->delay) {
-                StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_WHITE, 5, 2, heapID);
-                titleScreen->unk_296 = 2;
-                titleScreen->delay--;
-                titleScreen->state = 6;
+            if (titleScreen->fadeCount) {
+                StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_WHITE, 5, 2, heapID);
+                titleScreen->light1State = LIGHT1_STATE_BRIGHTEN;
+                titleScreen->fadeCount--;
+                titleScreen->state = INTRO_STATE_WAIT_AND_FADE_MAIN_FROM_WHITE;
             } else {
                 titleScreen->delay = 10;
-                titleScreen->state = 8;
-                titleScreen->unk_29C = 1;
+                titleScreen->state = INTRO_STATE_WAIT_FOR_DELAY;
+                titleScreen->giratinaShown = TRUE;
                 SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
             }
         }
         break;
-    case 6:
+    case INTRO_STATE_WAIT_AND_FADE_MAIN_FROM_WHITE:
         if (IsScreenFadeDone() == TRUE) {
-            titleScreen->unk_2A0 = 0;
-            {
-                GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
-            }
-            titleScreen->resources.unk_AC = 2;
-            StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_WHITE, 16, 3, heapID);
-            titleScreen->state = 5;
+            titleScreen->introShown = FALSE;
+            GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, TRUE);
+            titleScreen->resources.giratinaAnimState = GIRATINA_ANIM_STATE_PLAY;
+            StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_WHITE, 16, 3, heapID);
+            titleScreen->state = INTRO_STATE_WAIT_AND_FADE_TO_WHITE_2;
         }
         break;
-    case 8:
+    case INTRO_STATE_WAIT_FOR_DELAY:
         if (titleScreen->delay) {
             titleScreen->delay--;
         } else {
-            titleScreen->state = 7;
+            titleScreen->state = INTRO_STATE_FADE_MAIN_FROM_BLACK;
         }
         break;
-    case 7:
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 48, 1, heapID);
-        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
-        titleScreen->state = 9;
-        titleScreen->unk_2A4 = 0;
+    case INTRO_STATE_FADE_MAIN_FROM_BLACK:
+        // Slowly fade in the Giratina model
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_BLACK, 48, 1, heapID);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, TRUE);
+        titleScreen->state = INTRO_STATE_MOVE_IN_TITLE_CAMERA;
+        titleScreen->titleCamMoveInCounter = 0;
         break;
-    case 9: {
-        ov77_021D1C10(titleScreen);
+    case INTRO_STATE_MOVE_IN_TITLE_CAMERA:
+        TitleScreen_UpdateTitleCam(titleScreen);
         Camera_SetTarget(&titleScreen->titleCamTarget, titleScreen->resources.titleCamera);
         Camera_SetPosition(&titleScreen->titleCamPos, titleScreen->resources.titleCamera);
 
-        titleScreen->unk_2A4++;
+        titleScreen->titleCamMoveInCounter++;
 
-        if (titleScreen->unk_2A4 >= 60) {
-            {
-                GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
-            }
-            {
-                ov77_021D1CC0(bgConfig, heapID);
-            }
-            StartScreenFade(FADE_SUB_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_WHITE, 16, 3, heapID);
-            GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
-            GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
+        if (titleScreen->titleCamMoveInCounter >= TITLE_CAM_MOVE_IN_FRAMES) {
+            GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, TRUE);
+            TitleScreen_LoadTopScreenBg(bgConfig, heapID);
+            StartScreenFade(FADE_SUB_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_WHITE, 16, 3, heapID);
+            GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, TRUE);
+            GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, TRUE);
+
             titleScreen->delay = 90;
-            titleScreen->state = 10;
+            titleScreen->state = INTRO_STATE_WAIT_FOR_DELAY_AND_FADE;
         }
-    } break;
-    case 10:
+        break;
+    case INTRO_STATE_WAIT_FOR_DELAY_AND_FADE:
         if (titleScreen->delay) {
             titleScreen->delay--;
         } else {
             if (IsScreenFadeDone() == TRUE) {
-                v0 = 1;
+                done = TRUE;
             }
         }
         break;
     }
 
-    ov77_021D2438(titleScreen);
-    ov77_021D1984(titleScreen, &titleScreen->resources);
-    ov77_021D1568(titleScreen, &titleScreen->resources);
+    TitleScreen_UpdateLight1(titleScreen);
+    TitleScreen_UpdateIntroCamera(titleScreen, &titleScreen->resources);
+    TitleScreen_Render(titleScreen, &titleScreen->resources);
 
-    return v0;
+    return done;
 }
 
 static BOOL ov77_021D20E4(TitleScreen *param0, BgConfig *param1, int param2)
@@ -1169,11 +1208,11 @@ static BOOL ov77_021D20E4(TitleScreen *param0, BgConfig *param1, int param2)
         ResetScreenMasterBrightness(DS_SCREEN_MAIN);
         ResetScreenMasterBrightness(DS_SCREEN_SUB);
 
-        param0->resources.unk_AC = 2;
+        param0->resources.giratinaAnimState = GIRATINA_ANIM_STATE_PLAY;
         NNS_G3dGlbLightColor(1, 0x7fff);
 
         {
-            ov77_021D1CC0(param1, param2);
+            TitleScreen_LoadTopScreenBg(param1, param2);
         }
 
         param0->delay = 0;
@@ -1201,7 +1240,7 @@ static BOOL ov77_021D20E4(TitleScreen *param0, BgConfig *param1, int param2)
         break;
     }
 
-    ov77_021D1568(param0, &param0->resources);
+    TitleScreen_Render(param0, &param0->resources);
 
     return v0;
 }
@@ -1209,7 +1248,7 @@ static BOOL ov77_021D20E4(TitleScreen *param0, BgConfig *param1, int param2)
 static BOOL ov77_021D21C0(TitleScreen *param0, BgConfig *param1, int param2)
 {
     Camera_Delete(param0->resources.titleCamera);
-    Camera_Delete(param0->resources.camera2);
+    Camera_Delete(param0->resources.introCamera);
 
     ov77_021D14E4(&param0->resources);
     ov77_021D2428(param1, param2, param0);
@@ -1292,34 +1331,34 @@ static void ov77_021D2428(BgConfig *bgConfig, enum HeapId heapID, TitleScreen *p
     Window_Remove(&param2->pressStartWindow);
 }
 
-static void ov77_021D2438(TitleScreen *param0)
+static void TitleScreen_UpdateLight1(TitleScreen *titleScreen)
 {
-    switch (param0->unk_296) {
-    case 0:
-        param0->unk_294 = 5;
-        param0->unk_296 = 1;
+    switch (titleScreen->light1State) {
+    case LIGHT1_STATE_DEFAULT:
+        titleScreen->light1Brightness = LIGHT1_BRIGHTNESS_MIN;
+        titleScreen->light1State = LIGHT1_STATE_IDLE;
         break;
-    case 1:
+    case LIGHT1_STATE_IDLE:
         break;
-    case 2:
-        param0->unk_294 += 2;
+    case LIGHT1_STATE_BRIGHTEN:
+        titleScreen->light1Brightness += LIGHT1_BRIGHTNESS_STEP;
 
-        if (param0->unk_294 >= 0x1f) {
-            param0->unk_294 = 0x1f;
-            param0->unk_296 = 1;
+        if (titleScreen->light1Brightness >= LIGHT1_BRIGHTNESS_MAX) {
+            titleScreen->light1Brightness = LIGHT1_BRIGHTNESS_MAX;
+            titleScreen->light1State = LIGHT1_STATE_IDLE;
         }
         break;
-    case 3:
-        param0->unk_294 -= 2;
+    case LIGHT1_STATE_DARKEN:
+        titleScreen->light1Brightness -= LIGHT1_BRIGHTNESS_STEP;
 
-        if (param0->unk_294 <= 5) {
-            param0->unk_294 = 5;
-            param0->unk_296 = 1;
+        if (titleScreen->light1Brightness <= LIGHT1_BRIGHTNESS_MIN) {
+            titleScreen->light1Brightness = LIGHT1_BRIGHTNESS_MIN;
+            titleScreen->light1State = LIGHT1_STATE_IDLE;
         }
         break;
     }
 
-    NNS_G3dGlbLightColor(1, (((param0->unk_294 << 0) & 0x1f) | ((param0->unk_294 << 5) & 0x3e0) | ((param0->unk_294 << 10) & 0x7c00)));
+    NNS_G3dGlbLightColor(GX_LIGHTID_1, LIGHT_COLOR(titleScreen->light1Brightness, titleScreen->light1Brightness, titleScreen->light1Brightness));
 }
 
 static void TitleScreen_InitCoordinates(TitleScreen *titleScreen)
@@ -1359,7 +1398,7 @@ static void TitleScreen_InitCoordinates(TitleScreen *titleScreen)
     titleScreen->light0Dir.z = normalized.z;
 }
 
-static void ov77_021D25AC(Camera *camera)
+static void EmptyCameraFunction(Camera *camera)
 {
     return;
 }

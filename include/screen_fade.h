@@ -30,8 +30,8 @@ enum FadeMethod {
 };
 
 enum FadeType {
-    FADE_TYPE_UNK_0 = 0,
-    FADE_TYPE_UNK_1,
+    FADE_TYPE_BRIGHTNESS_OUT = 0,
+    FADE_TYPE_BRIGHTNESS_IN,
     FADE_TYPE_UNK_2,
     FADE_TYPE_UNK_3,
     FADE_TYPE_UNK_4,

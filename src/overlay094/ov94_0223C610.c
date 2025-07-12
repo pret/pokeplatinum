@@ -87,7 +87,7 @@ int ov94_0223C610(UnkStruct_ov94_0223FD4C *param0, int param1)
 
     if (param0->unk_34 == 0) {
         ov94_0223C85C(param0);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
 
         param0->unk_2C = 0;
         param0->unk_34 = 1;
@@ -95,9 +95,9 @@ int ov94_0223C610(UnkStruct_ov94_0223FD4C *param0, int param1)
         ov94_02243FA8(param0, TrainerInfo_Gender(param0->unk_00->unk_1C));
     } else {
         if (param0->unk_1110 == 1) {
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
         } else {
-            StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
+            StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
         }
 
         param0->unk_2C = 5;
@@ -384,7 +384,7 @@ static int ov94_0223CB90(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_0223CBA0(UnkStruct_ov94_0223FD4C *param0)
 {
-    StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
+    StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
     param0->unk_2C = 3;
 
     return 3;
@@ -498,9 +498,9 @@ static int ov94_0223CE00(UnkStruct_ov94_0223FD4C *param0)
 static int ov94_0223CE14(UnkStruct_ov94_0223FD4C *param0)
 {
     if (param0->unk_18 == 0) {
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
     } else {
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
     }
 
     param0->unk_2C = 0;

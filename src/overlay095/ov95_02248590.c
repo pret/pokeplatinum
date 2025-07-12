@@ -300,7 +300,7 @@ static int ov95_022486AC(UnkStruct_ov95_02248688 *param0, int *param1)
     ov95_022488A4(param0);
     ov95_02248B84(param0);
     ov95_02248CA8(param0);
-    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 8, 1, HEAP_ID_58);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_BLACK, 8, 1, HEAP_ID_58);
 
     return 1;
 }
@@ -394,7 +394,7 @@ static int ov95_022487D4(UnkStruct_ov95_02248688 *param0, int *param1)
         }
 
         if (ov95_022494F4(param0->unk_160)) {
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_WHITE, 4, 1, HEAP_ID_58);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_WHITE, 4, 1, HEAP_ID_58);
             (*param1)++;
         }
         break;

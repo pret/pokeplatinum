@@ -107,7 +107,7 @@ BOOL LibraryTV_Main(ApplicationManager *appMan, int *state)
             ltv->waitTiming--;
         } else {
             ltv->waitTiming = 0;
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, ltv->heapID);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_BLACK, 6, 1, ltv->heapID);
             *state = STATE_FADE_WAIT;
         }
         break;
@@ -126,7 +126,7 @@ BOOL LibraryTV_Main(ApplicationManager *appMan, int *state)
             ltv->waitTiming--;
         } else {
             ltv->waitTiming = 0;
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, ltv->heapID);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_BLACK, 6, 1, ltv->heapID);
             *state = STATE_EXIT;
         }
         break;

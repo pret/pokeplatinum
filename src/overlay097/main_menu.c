@@ -1173,13 +1173,13 @@ static int MainMenu_Main(ApplicationManager *appMan, int *state)
         if (CheckWFCUserInfoErased(appData) == FALSE) {
             *state = MAIN_MENU_STATE_CHECK_NEW_GAME_AND_GBA;
         } else {
-            MainMenuUtil_StartScreenFadeToState(FADE_TYPE_UNK_1, MAIN_MENU_STATE_WARM_WFC_USER_INFO_ERASED, state, MAIN_MENU_STATE_WAIT_SCREEN_TRANSITION);
+            MainMenuUtil_StartScreenFadeToState(FADE_TYPE_BRIGHTNESS_IN, MAIN_MENU_STATE_WARM_WFC_USER_INFO_ERASED, state, MAIN_MENU_STATE_WAIT_SCREEN_TRANSITION);
             *HW_BG_A_PLTT_COLOR(PLTT_0, 0) = BACKGROUND_COLOR;
         }
         break;
     case MAIN_MENU_STATE_WARM_WFC_USER_INFO_ERASED:
         if (ShowWFCUserInfoErasedMsg(appData) == FALSE) {
-            MainMenuUtil_StartScreenFadeToState(FADE_TYPE_UNK_0, MAIN_MENU_STATE_CHECK_NEW_GAME_AND_GBA, state, MAIN_MENU_STATE_WAIT_SCREEN_TRANSITION);
+            MainMenuUtil_StartScreenFadeToState(FADE_TYPE_BRIGHTNESS_OUT, MAIN_MENU_STATE_CHECK_NEW_GAME_AND_GBA, state, MAIN_MENU_STATE_WAIT_SCREEN_TRANSITION);
         }
         break;
     case MAIN_MENU_STATE_CHECK_NEW_GAME_AND_GBA:
@@ -1187,7 +1187,7 @@ static int MainMenu_Main(ApplicationManager *appMan, int *state)
 
         if (appData->isNewGame == TRUE) {
             appData->nextApplication = NEXT_APP_GAME_INTRO;
-            MainMenuUtil_StartScreenFadeToState(FADE_TYPE_UNK_0, MAIN_MENU_STATE_EXIT, state, MAIN_MENU_STATE_WAIT_SCREEN_TRANSITION);
+            MainMenuUtil_StartScreenFadeToState(FADE_TYPE_BRIGHTNESS_OUT, MAIN_MENU_STATE_EXIT, state, MAIN_MENU_STATE_WAIT_SCREEN_TRANSITION);
         } else {
             DetectGBAGame(appData);
             *state = MAIN_MENU_STATE_LOAD_GRAPHICS;
@@ -1201,7 +1201,7 @@ static int MainMenu_Main(ApplicationManager *appMan, int *state)
 
         RenderOptions(appData);
         RenderOptionsFrames(appData, appData->focusedOption);
-        MainMenuUtil_StartScreenFadeToState(FADE_TYPE_UNK_1, MAIN_MENU_STATE_SELECT_OPTION, state, MAIN_MENU_STATE_WAIT_SCREEN_TRANSITION);
+        MainMenuUtil_StartScreenFadeToState(FADE_TYPE_BRIGHTNESS_IN, MAIN_MENU_STATE_SELECT_OPTION, state, MAIN_MENU_STATE_WAIT_SCREEN_TRANSITION);
 
         *HW_BG_A_PLTT_COLOR(PLTT_0, 0) = BACKGROUND_COLOR;
         appData->wirelessCheckState = MAIN_MENU_WIRELESS_CHECK_START;
@@ -1236,7 +1236,7 @@ static int MainMenu_Main(ApplicationManager *appMan, int *state)
                     MainMenuUtil_SetFadeToWhite(TRUE);
                 }
 
-                MainMenuUtil_StartScreenFadeToState(FADE_TYPE_UNK_0, MAIN_MENU_STATE_EXIT, state, MAIN_MENU_STATE_WAIT_SCREEN_TRANSITION);
+                MainMenuUtil_StartScreenFadeToState(FADE_TYPE_BRIGHTNESS_OUT, MAIN_MENU_STATE_EXIT, state, MAIN_MENU_STATE_WAIT_SCREEN_TRANSITION);
             }
 
             if (appData->wirelessCheckState == MAIN_MENU_WIRELESS_CHECK_CHECK_RESULT) {
@@ -1273,7 +1273,7 @@ static int MainMenu_Main(ApplicationManager *appMan, int *state)
             if (appData->alertDismissKeys & PAD_BUTTON_B) {
                 *state = MAIN_MENU_STATE_SELECT_OPTION;
             } else {
-                MainMenuUtil_StartScreenFadeToState(FADE_TYPE_UNK_0, MAIN_MENU_STATE_EXIT, state, MAIN_MENU_STATE_WAIT_SCREEN_TRANSITION);
+                MainMenuUtil_StartScreenFadeToState(FADE_TYPE_BRIGHTNESS_OUT, MAIN_MENU_STATE_EXIT, state, MAIN_MENU_STATE_WAIT_SCREEN_TRANSITION);
             }
         }
         break;

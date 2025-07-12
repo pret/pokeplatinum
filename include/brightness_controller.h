@@ -9,6 +9,7 @@
 #define BRIGHTNESS_BOTH_SCREENS (BRIGHTNESS_SUB_SCREEN | BRIGHTNESS_MAIN_SCREEN)
 
 #define BRIGHTNESS_WHITE 16
+#define BRIGHTNESS_NORMAL 0
 #define BRIGHTNESS_BLACK -16
 
 void BrightnessController_StartTransition(const u8 stepCount, const s16 tragetBrightness, const s16 startBrightness, const int planeMask, const u32 screenSelect);

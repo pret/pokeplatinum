@@ -2377,7 +2377,7 @@ static void ov23_0224D5BC(SysTask *param0, void *param1)
         }
         break;
     case 3:
-        StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
         break;
     case 4:
         Heap_Free(param1);

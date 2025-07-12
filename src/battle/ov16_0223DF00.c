@@ -1560,7 +1560,7 @@ void BattleSystem_SetStopRecording(BattleSystem *battleSys, int flag)
 
     ov16_0226CEB0(battleSys->unk_198, flag);
 
-    StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 16, 2, HEAP_ID_BATTLE);
+    StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_BLACK, 16, 2, HEAP_ID_BATTLE);
     Sound_StopWaveOutAndSequences();
     Sound_SetMasterVolume(0);
 

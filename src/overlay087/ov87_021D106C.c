@@ -154,7 +154,7 @@ static BOOL ov87_021D1210(UnkStruct_ov87_021D106C *param0, int *param1)
     case 0:
         ov87_021D139C(param0);
         ov87_021D1818(param0);
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_61);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_BLACK, 6, 1, HEAP_ID_61);
         (*param1)++;
         break;
     case 1:
@@ -173,7 +173,7 @@ static BOOL ov87_021D1260(UnkStruct_ov87_021D106C *param0, int *param1)
     switch (*param1) {
     case 0:
         Sound_PlayEffect(SEQ_SE_DP_PC_LOGOFF);
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_61);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_BLACK, 6, 1, HEAP_ID_61);
         (*param1)++;
         break;
     case 1:

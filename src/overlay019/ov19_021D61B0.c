@@ -443,7 +443,7 @@ static void BoxGraphics_ScreenFadeBothToBlackLogIn(SysTask *task, void *param1)
     case 0:
         Sound_PlayEffect(SEQ_SE_DP_PC_LOGIN);
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_ALL, 0x6, 0xa);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 8, 1, HEAP_ID_BOX_GRAPHICS);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_BLACK, 8, 1, HEAP_ID_BOX_GRAPHICS);
         v2->state++;
         break;
     case 1:
@@ -465,7 +465,7 @@ static void BoxGraphics_ScreenFadeBothToBlack1(SysTask *task, void *param1)
     switch (v2->state) {
     case 0:
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_ALL, 0x6, 0xa);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_BOX_GRAPHICS);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_BLACK, 6, 1, HEAP_ID_BOX_GRAPHICS);
         v2->state++;
         break;
     case 1:
@@ -486,7 +486,7 @@ static void BoxGraphics_ScreenFadeBothToBlack2(SysTask *task, void *param1)
 
     switch (v2->state) {
     case 0:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_BOX_GRAPHICS);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_BLACK, 6, 1, HEAP_ID_BOX_GRAPHICS);
         v2->state++;
         break;
     case 1:
@@ -1517,7 +1517,7 @@ static void BoxGraphics_ScreenFadeBothToBlackLogOff(SysTask *task, void *param1)
     switch (params->state) {
     case 0:
         Sound_PlayEffect(SEQ_SE_DP_PC_LOGOFF);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_BOX_GRAPHICS);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_BLACK, 6, 1, HEAP_ID_BOX_GRAPHICS);
         params->state++;
         break;
     case 1:

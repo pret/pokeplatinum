@@ -442,7 +442,7 @@ static BOOL ov111_021D0F7C(UnkStruct_ov111_021D0F7C *param0)
 {
     switch (param0->unk_08) {
     case 0:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1 * 3, HEAP_ID_115);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_BLACK, 6, 1 * 3, HEAP_ID_115);
         param0->unk_08++;
         break;
     case 1:
@@ -997,7 +997,7 @@ static BOOL ov111_021D1A88(UnkStruct_ov111_021D0F7C *param0)
 
         if (param0->unk_0D == 0) {
             Window_EraseMessageBox(&param0->unk_5C[0], 0);
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_115);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_BLACK, 6, 1, HEAP_ID_115);
             param0->unk_08++;
         }
         break;

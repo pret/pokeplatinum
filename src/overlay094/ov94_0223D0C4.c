@@ -86,7 +86,7 @@ int ov94_0223D0C4(UnkStruct_ov94_0223FD4C *param0, int param1)
     ov94_02242368(param0->unk_B90, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[7], param0->unk_12C.unk_F0.species, param0->unk_12C.unk_F0.gender, ov94_02242970(param0->unk_12C.unk_F0.level, param0->unk_12C.unk_F0.level2, 0));
     ov94_0223DB2C((Pokemon *)param0->unk_12C.unk_00.unk_00);
 
-    StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
+    StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
 
     param0->unk_2C = 0;
 
@@ -361,7 +361,7 @@ static int ov94_0223D5B8(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_0223D618(UnkStruct_ov94_0223FD4C *param0)
 {
-    StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
+    StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
 
     param0->unk_2C = 0;
     return 4;

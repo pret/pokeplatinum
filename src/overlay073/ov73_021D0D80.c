@@ -184,12 +184,12 @@ int ov73_021D0E20(ApplicationManager *appMan, int *param1)
         break;
     case 1:
         if (ov73_021D2318(v0) == 1) {
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, v0->heapID);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_BLACK, 6, 1, v0->heapID);
             *param1 = 2;
         }
 
         if (v0->appMan != NULL) {
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, v0->heapID);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_BLACK, 6, 1, v0->heapID);
             *param1 = 3;
         }
         break;
@@ -1420,7 +1420,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
         Sound_StopBGM(SEQ_OPENING, 0);
         Bg_ToggleLayer(BG_LAYER_MAIN_0, 1);
         Bg_ToggleLayer(BG_LAYER_SUB_3, 1);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, param0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_BLACK, 6, 1, param0->heapID);
         param0->unk_0C = 1;
         break;
     case 1:
@@ -1445,7 +1445,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
         ov73_021D1A20(param0);
         Bg_ToggleLayer(BG_LAYER_MAIN_3, 1);
         Bg_ToggleLayer(BG_LAYER_MAIN_1, 1);
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 16, 4, param0->heapID);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_BLACK, 16, 4, param0->heapID);
         param0->unk_0C = 4;
         break;
     case 4:
@@ -1484,7 +1484,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
         }
         break;
     case 8:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, param0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_BLACK, 6, 1, param0->heapID);
         param0->unk_0C = 9;
         break;
     case 9:
@@ -1503,7 +1503,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
         ov73_021D19DC(param0);
         param0->unk_8B = 1;
         ov73_021D1B14(param0);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, param0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_BLACK, 6, 1, param0->heapID);
         param0->unk_0C = 11;
         break;
     case 11:
@@ -1596,7 +1596,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
     case 24:
         if (ov73_021D1334(param0, 6, 1) == 1) {
             sub_02015A54(param0->unk_68);
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, param0->heapID);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_BLACK, 6, 1, param0->heapID);
             param0->unk_0C = 25;
         }
         break;
@@ -1633,7 +1633,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
         ov73_021D1B14(param0);
         Bg_ToggleLayer(BG_LAYER_MAIN_1, 1);
         Bg_SetOffset(param0->unk_18, BG_LAYER_MAIN_1, 0, 0);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, param0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_BLACK, 6, 1, param0->heapID);
         param0->unk_0C = 29;
         break;
     case 29:
@@ -1651,7 +1651,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
         ov73_021D19DC(param0);
         param0->unk_8B = 2;
         ov73_021D1B14(param0);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, param0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_BLACK, 6, 1, param0->heapID);
         param0->unk_0C = 32;
         break;
     case 32:
@@ -1690,7 +1690,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
         }
         break;
     case 39:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, param0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_BLACK, 6, 1, param0->heapID);
         param0->unk_0C = 40;
         break;
     case 40:
@@ -1713,7 +1713,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
         }
         break;
     case 43:
-        StartScreenFade(FADE_SUB_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, param0->heapID);
+        StartScreenFade(FADE_SUB_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_BLACK, 6, 1, param0->heapID);
         param0->unk_0C = 44;
         break;
     case 44:
@@ -1722,7 +1722,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
             param0->unk_8B = 4;
             ov73_021D1B14(param0);
             Bg_ToggleLayer(BG_LAYER_SUB_2, 1);
-            StartScreenFade(FADE_SUB_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, param0->heapID);
+            StartScreenFade(FADE_SUB_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_BLACK, 6, 1, param0->heapID);
             param0->unk_0C = 45;
         }
         break;
@@ -1990,7 +1990,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
             Bg_SetOffset(param0->unk_18, BG_LAYER_MAIN_2, 0, 0);
         }
 
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, param0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_BLACK, 6, 1, param0->heapID);
         param0->unk_0C = 78;
         break;
     case 78:
@@ -2134,7 +2134,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
         Bg_ToggleLayer(BG_LAYER_SUB_3, 1);
         Bg_ToggleLayer(BG_LAYER_MAIN_1, 1);
         Bg_SetOffset(param0->unk_18, BG_LAYER_MAIN_1, 0, 0);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, param0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_BLACK, 6, 1, param0->heapID);
         param0->unk_0C = 94;
         break;
     case 94:

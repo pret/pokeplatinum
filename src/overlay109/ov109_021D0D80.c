@@ -480,7 +480,7 @@ int ov109_021D0D80(ApplicationManager *appMan, int *param1)
     ov109_021D3584(v0);
     ov109_021D379C(v0);
     ov109_021D3884(v0);
-    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 8, 1, HEAP_ID_95);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_BLACK, 8, 1, HEAP_ID_95);
 
     return 1;
 }
@@ -1450,7 +1450,7 @@ static int ov109_021D1B8C(UnkStruct_ov109_021D0F70 *param0)
 
 static int ov109_021D1BA4(UnkStruct_ov109_021D0F70 *param0)
 {
-    StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 8, 1, HEAP_ID_95);
+    StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_BLACK, 8, 1, HEAP_ID_95);
 
     if (param0->unk_1C != Sound_Impl_GetCurrentBGM()) {
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, param0->unk_1C, 1);
