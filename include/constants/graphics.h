@@ -51,6 +51,7 @@ enum DSScreen {
 
 #define COLOR_BLACK       GX_RGB(0, 0, 0)
 #define COLOR_DARK_GRAY   GX_RGB(4, 4, 4)
+#define COLOR_WHITE       GX_RGB(31, 31, 31)
 #define COLOR_TRANSPARENT GX_RGB(31, 31, 16)
 
 #endif // POKEPLATINUM_CONSTANTS_GRAPHICS_H
