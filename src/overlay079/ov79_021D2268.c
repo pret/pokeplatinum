@@ -216,7 +216,7 @@ int ov79_021D22E4(ApplicationManager *appMan, int *param1)
         }
 
         v0->unk_04 = 0;
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, v0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_BLACK, 6, 1, v0->heapID);
         break;
     case 3:
         if (!IsScreenFadeDone()) {
@@ -229,7 +229,7 @@ int ov79_021D22E4(ApplicationManager *appMan, int *param1)
             return 0;
         }
 
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, v0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_BLACK, 6, 1, v0->heapID);
         break;
     case 5:
         if (!IsScreenFadeDone()) {

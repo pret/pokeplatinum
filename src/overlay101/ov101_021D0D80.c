@@ -105,7 +105,7 @@ int ov101_021D0D80(ApplicationManager *appMan, int *param1)
     ov101_021D5C28(v1);
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_66, SEQ_NONE, 0);
     ov101_021D18C0(v1);
-    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 8, 1, HEAP_ID_79);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_BLACK, 8, 1, HEAP_ID_79);
 
     return 1;
 }
@@ -124,7 +124,7 @@ int ov101_021D0E40(ApplicationManager *appMan, int *param1)
     case 1:
         if (ov101_021D1AAC(v1) == 1) {
             (*param1)++;
-            StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 8, 1, HEAP_ID_79);
+            StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_BLACK, 8, 1, HEAP_ID_79);
             ov101_021D1894(v1, UnkEnum_ov101_021D1894_00);
         }
         break;

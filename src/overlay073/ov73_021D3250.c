@@ -107,7 +107,7 @@ int ov73_021D3280(ApplicationManager *appMan, int *param1)
             v0->unk_24--;
         } else {
             v0->unk_24 = 0;
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, v0->heapID);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_BLACK, 6, 1, v0->heapID);
             *param1 = 3;
         }
         break;
@@ -122,7 +122,7 @@ int ov73_021D3280(ApplicationManager *appMan, int *param1)
         ov73_021D37AC(v0);
 
         if (ov73_021D3698(v0, 0, 5 * 8, 6 * 8) == 1) {
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, v0->heapID);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_BLACK, 6, 1, v0->heapID);
             *param1 = 5;
         }
         break;

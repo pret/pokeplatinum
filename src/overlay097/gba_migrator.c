@@ -1925,7 +1925,7 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
             break;
         case 2:
             sub_02015A54(migrator->unk_E8EC);
-            ov97_02234CF4(migrator, FADE_TYPE_UNK_0, 24, state);
+            ov97_02234CF4(migrator, FADE_TYPE_BRIGHTNESS_OUT, 24, state);
             break;
         }
         break;
@@ -1958,7 +1958,7 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
             break;
         case 2:
             sub_02015A54(migrator->unk_E8EC);
-            ov97_02234CF4(migrator, FADE_TYPE_UNK_0, 24, state);
+            ov97_02234CF4(migrator, FADE_TYPE_BRIGHTNESS_OUT, 24, state);
             break;
         }
         break;
@@ -1991,7 +1991,7 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
             break;
         case 2:
             sub_02015A54(migrator->unk_E8EC);
-            ov97_02234CF4(migrator, FADE_TYPE_UNK_0, 24, state);
+            ov97_02234CF4(migrator, FADE_TYPE_BRIGHTNESS_OUT, 24, state);
             break;
         }
         break;
@@ -2069,7 +2069,7 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
                     Sound_PlayEffect(SEQ_SE_CONFIRM);
                     break;
                 case (GBA_MAX_MONS_PER_BOX + 0):
-                    ov97_02234CF4(migrator, FADE_TYPE_UNK_0, 24, state);
+                    ov97_02234CF4(migrator, FADE_TYPE_BRIGHTNESS_OUT, 24, state);
                     Sound_PlayEffect(SEQ_SE_CONFIRM);
                     break;
                 }
@@ -2161,7 +2161,7 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
         break;
     case GBA_MIGRATOR_STATE_22:
         if (gSystem.touchPressed || gSystem.pressedKeys) {
-            ov97_02234CF4(migrator, FADE_TYPE_UNK_0, 24, state);
+            ov97_02234CF4(migrator, FADE_TYPE_BRIGHTNESS_OUT, 24, state);
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         }
         break;

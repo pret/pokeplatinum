@@ -118,7 +118,7 @@ void FieldTransition_FadeOut(FieldTask *task)
         return;
     }
 
-    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
     FieldTask_InitCall(task, FieldTask_WaitUntilScreenTransitionDone, NULL);
 }
 
@@ -130,7 +130,7 @@ void FieldTransition_FadeIn(FieldTask *task)
         return;
     }
 
-    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
     FieldTask_InitCall(task, FieldTask_WaitUntilScreenTransitionDone, NULL);
 }
 

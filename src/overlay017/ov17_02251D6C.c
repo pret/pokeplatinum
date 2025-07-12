@@ -480,7 +480,7 @@ static void ov17_022523AC(SysTask *param0, void *param1)
         }
         break;
     case 2:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_24);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_BLACK, 6, 1, HEAP_ID_24);
         Sound_StopBGM(SEQ_CONTEST_DRESSING_ROOM, 30);
         v0->unk_10++;
         break;
@@ -516,7 +516,7 @@ static void ov17_022523AC(SysTask *param0, void *param1)
         break;
     case 5:
         if (Sound_IsFadeActive() == FALSE) {
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_24);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_BLACK, 6, 1, HEAP_ID_24);
             v0->unk_10++;
         }
         break;

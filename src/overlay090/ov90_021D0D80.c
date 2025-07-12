@@ -158,7 +158,7 @@ int ov90_021D0E04(ApplicationManager *appMan, int *param1)
             break;
         }
 
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, v1->heapID);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, FADE_TO_BLACK, 6, 1, v1->heapID);
         (*param1)++;
         break;
     case 1:
@@ -179,7 +179,7 @@ int ov90_021D0E04(ApplicationManager *appMan, int *param1)
             break;
         }
 
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, v1->heapID);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, FADE_TO_BLACK, 6, 1, v1->heapID);
         (*param1)++;
         break;
     case 3:

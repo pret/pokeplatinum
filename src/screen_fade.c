@@ -78,8 +78,8 @@ static void Task_ResetScreenMasterBrightness(SysTask *task, void *data);
 static void DummyHBlankCallback(void *data);
 
 static const ScreenFadeFunc sScreenFadeFuncs[FADE_TYPE_MAX] = {
-    [FADE_TYPE_UNK_0] = sub_0200F85C,
-    [FADE_TYPE_UNK_1] = sub_0200F878,
+    [FADE_TYPE_BRIGHTNESS_OUT] = sub_0200F85C,
+    [FADE_TYPE_BRIGHTNESS_IN] = sub_0200F878,
     [FADE_TYPE_UNK_2] = sub_0200F898,
     [FADE_TYPE_UNK_3] = sub_0200F8D4,
     [FADE_TYPE_UNK_4] = sub_0200F90C,
