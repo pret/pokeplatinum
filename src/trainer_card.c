@@ -34,14 +34,14 @@ typedef struct {
     TrainerCard *unk_04;
 } UnkStruct_02072204;
 
-static void sub_02072014(const u8 param0, const u8 gameVersion, const u8 stars, const u8 param3, const u8 regionCode, TrainerCard *trainerCard);
-static void TrainerCard_SetTrainerInfo(const u16 id, const u8 gender, const u16 *name, const u32 money, const u32 seenPokemon, const BOOL pokedexObtained, const u32 score, TrainerCard *trainerCard);
-static void TrainerCard_SetDates(const u8 gameCompleted, const PlayTime *playTime, const RTCDate *adventureStartedDate, const RTCDate *hofDebutDate, const RTCTime *hofDebutTime, const u8 param5, TrainerCard *trainerCard);
-static void TrainerCard_SetLinkDataAndSignature(const u32 param0, const u32 param1, const u32 param2, const u32 param3, const u8 *param4, TrainerCard *trainerCard);
+static void sub_02072014(u8 param0, u8 gameVersion, u8 stars, u8 param3, u8 regionCode, TrainerCard *trainerCard);
+static void TrainerCard_SetTrainerInfo(u16 id, u8 gender, const u16 *name, u32 money, u32 seenPokemon, BOOL pokedexObtained, u32 score, TrainerCard *trainerCard);
+static void TrainerCard_SetDates(u8 gameCompleted, const PlayTime *playTime, const RTCDate *adventureStartedDate, const RTCDate *hofDebutDate, const RTCTime *hofDebutTime, u8 param5, TrainerCard *trainerCard);
+static void TrainerCard_SetLinkDataAndSignature(u32 param0, u32 param1, u32 param2, u32 param3, const u8 *param4, TrainerCard *trainerCard);
 static void sub_0207216C(TrainerInfo *param0, FieldSystem *fieldSystem, TrainerCard *trainerCard);
 static BOOL sub_02072230(FieldTask *param0);
 
-void TrainerCard_Init(const u8 param0, const u8 param1, const u8 param2, const u8 param3, FieldSystem *fieldSystem, TrainerCard *trainerCard)
+void TrainerCard_Init(u8 param0, u8 param1, u8 param2, u8 param3, FieldSystem *fieldSystem, TrainerCard *trainerCard)
 {
     SaveData *saveData = FieldSystem_GetSaveData(fieldSystem);
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(saveData);
@@ -84,7 +84,7 @@ void TrainerCard_Init(const u8 param0, const u8 param1, const u8 param2, const u
     trainerCard->unk_66A = 0;
 }
 
-TrainerCard *TrainerCard_New(const u16 heapID)
+TrainerCard *TrainerCard_New(u16 heapID)
 {
     TrainerCard *trainerCard = Heap_AllocFromHeap(heapID, sizeof(TrainerCard));
 
@@ -131,7 +131,7 @@ u8 TrainerCard_CalculateStars(FieldSystem *fieldSystem)
     return trainerCardStars;
 }
 
-static void sub_02072014(const u8 param0, const u8 gameVersion, const u8 stars, const u8 param3, const u8 regionCode, TrainerCard *trainerCard)
+static void sub_02072014(u8 param0, u8 gameVersion, u8 stars, u8 param3, u8 regionCode, TrainerCard *trainerCard)
 {
     trainerCard->unk_04_0 = param0;
     trainerCard->gameVersion = gameVersion;
@@ -140,7 +140,7 @@ static void sub_02072014(const u8 param0, const u8 gameVersion, const u8 stars, 
     trainerCard->unk_02 = param3;
 }
 
-static void TrainerCard_SetTrainerInfo(const u16 id, const u8 gender, const u16 *name, const u32 money, const u32 seenPokemon, const BOOL pokedexObtained, const u32 score, TrainerCard *trainerCard)
+static void TrainerCard_SetTrainerInfo(u16 id, u8 gender, const u16 *name, u32 money, u32 seenPokemon, BOOL pokedexObtained, u32 score, TrainerCard *trainerCard)
 {
     trainerCard->id = id;
     trainerCard->gender = gender;
@@ -153,7 +153,7 @@ static void TrainerCard_SetTrainerInfo(const u16 id, const u8 gender, const u16 
     trainerCard->score = score;
 }
 
-static void TrainerCard_SetDates(const u8 gameCompleted, const PlayTime *playTime, const RTCDate *adventureStartedDate, const RTCDate *firstCompletionDate, const RTCTime *firstCompletionTime, const u8 param5, TrainerCard *trainerCard)
+static void TrainerCard_SetDates(u8 gameCompleted, const PlayTime *playTime, const RTCDate *adventureStartedDate, const RTCDate *firstCompletionDate, const RTCTime *firstCompletionTime, const u8 param5, TrainerCard *trainerCard)
 {
     trainerCard->playTimeHours = PlayTime_GetHours(playTime);
     trainerCard->playTimeMinutes = PlayTime_GetMinutes(playTime);
@@ -184,7 +184,7 @@ static void TrainerCard_SetDates(const u8 gameCompleted, const PlayTime *playTim
     }
 }
 
-static void TrainerCard_SetLinkDataAndSignature(const u32 timesLinked, const u32 linkBattleWins, const u32 linkBattleLosses, const u32 linkTrades, const u8 *signature, TrainerCard *trainerCard)
+static void TrainerCard_SetLinkDataAndSignature(u32 timesLinked, u32 linkBattleWins, u32 linkBattleLosses, u32 linkTrades, const u8 *signature, TrainerCard *trainerCard)
 {
     trainerCard->timesLinked = timesLinked;
 
