@@ -146,7 +146,7 @@ static void ov6_02248140(UnkStruct_ov6_02248140 *param0, NARC *param1, u32 param
 
     memset(param0, 0, sizeof(UnkStruct_ov6_02248140));
 
-    Easy3DModel_LoadFrom(&param0->unk_78, param1, param2, HEAP_ID_FIELD);
+    Easy3DModel_LoadFrom(&param0->unk_78, param1, param2, HEAP_ID_FIELD1);
     Easy3DObject_Init(&param0->unk_00, &param0->unk_78);
 
     param0->unk_D8 = param4;
@@ -201,9 +201,9 @@ static void ov6_0224825C(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     NARC *v2;
 
     memset(v0, 0, sizeof(UnkStruct_ov6_0224825C));
-    HeapExp_FndInitAllocator(&v0->unk_DC, HEAP_ID_FIELD, 32);
+    HeapExp_FndInitAllocator(&v0->unk_DC, HEAP_ID_FIELD1, 32);
 
-    v2 = NARC_ctor(NARC_INDEX_GRAPHIC__HIDEN_EFFECT, HEAP_ID_FIELD);
+    v2 = NARC_ctor(NARC_INDEX_GRAPHIC__HIDEN_EFFECT, HEAP_ID_FIELD1);
 
     ov6_02248140(&v0->unk_00, v2, 3, 0, 3, &v0->unk_DC);
     NARC_dtor(v2);
@@ -280,9 +280,9 @@ static void ov6_02248340(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     NARC *v2;
 
     memset(v0, 0, sizeof(UnkStruct_ov6_02248340));
-    HeapExp_FndInitAllocator(&v0->unk_DC, HEAP_ID_FIELD, 32);
+    HeapExp_FndInitAllocator(&v0->unk_DC, HEAP_ID_FIELD1, 32);
 
-    v2 = NARC_ctor(NARC_INDEX_GRAPHIC__HIDEN_EFFECT, HEAP_ID_FIELD);
+    v2 = NARC_ctor(NARC_INDEX_GRAPHIC__HIDEN_EFFECT, HEAP_ID_FIELD1);
 
     ov6_02248140(&v0->unk_00, v2, 8, 4, 4, &v0->unk_DC);
     NARC_dtor(v2);
@@ -300,9 +300,9 @@ static void ov6_022483A0(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     NARC *v2;
 
     memset(v0, 0, sizeof(UnkStruct_ov6_02248340));
-    HeapExp_FndInitAllocator(&v0->unk_DC, HEAP_ID_FIELD, 32);
+    HeapExp_FndInitAllocator(&v0->unk_DC, HEAP_ID_FIELD1, 32);
 
-    v2 = NARC_ctor(NARC_INDEX_GRAPHIC__HIDEN_EFFECT, HEAP_ID_FIELD);
+    v2 = NARC_ctor(NARC_INDEX_GRAPHIC__HIDEN_EFFECT, HEAP_ID_FIELD1);
 
     ov6_02248140(&v0->unk_00, v2, 8, 4, 4, &v0->unk_DC);
     ov6_02248050(fieldSystem->mapObjMan, 0, &v0->unk_00.unk_00);
@@ -398,9 +398,9 @@ static void ov6_02248498(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     NARC *v2;
 
     memset(v0, 0, sizeof(UnkStruct_ov6_02248498));
-    HeapExp_FndInitAllocator(&v0->unk_1B8, HEAP_ID_FIELD, 32);
+    HeapExp_FndInitAllocator(&v0->unk_1B8, HEAP_ID_FIELD1, 32);
 
-    v2 = NARC_ctor(NARC_INDEX_GRAPHIC__HIDEN_EFFECT, HEAP_ID_FIELD);
+    v2 = NARC_ctor(NARC_INDEX_GRAPHIC__HIDEN_EFFECT, HEAP_ID_FIELD1);
 
     ov6_02248140(&v0->unk_00[0], v2, 14, 12, 2, &v0->unk_1B8);
     ov6_02248124(fieldSystem->playerAvatar, &v0->unk_00[0].unk_00);
@@ -429,7 +429,7 @@ static void ov6_02248520(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
 
     switch (v0->unk_1C8) {
     case 0:
-        v2 = NARC_ctor(NARC_INDEX_GRAPHIC__HIDEN_EFFECT, HEAP_ID_FIELD);
+        v2 = NARC_ctor(NARC_INDEX_GRAPHIC__HIDEN_EFFECT, HEAP_ID_FIELD1);
         ov6_02248140(&v0->unk_00[1], v2, 11, 9, 2, &v0->unk_1B8);
         NARC_dtor(v2);
         ov6_02248124(fieldSystem->playerAvatar, &v0->unk_00[1].unk_00);
@@ -600,14 +600,14 @@ static void ov6_022487F8(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     NARC *v2;
 
     memset(v0, 0, sizeof(UnkStruct_ov6_022487F8));
-    HeapExp_FndInitAllocator(&v0->unk_CFC, HEAP_ID_FIELD, 32);
+    HeapExp_FndInitAllocator(&v0->unk_CFC, HEAP_ID_FIELD1, 32);
 
-    v2 = NARC_ctor(NARC_INDEX_GRAPHIC__HIDEN_EFFECT, HEAP_ID_FIELD);
+    v2 = NARC_ctor(NARC_INDEX_GRAPHIC__HIDEN_EFFECT, HEAP_ID_FIELD1);
 
-    Easy3DModel_LoadFrom(&v0->unk_00, v2, 8, HEAP_ID_FIELD);
+    Easy3DModel_LoadFrom(&v0->unk_00, v2, 8, HEAP_ID_FIELD1);
 
     for (v1 = 0; v1 < 4; v1++) {
-        v0->unk_CD0[v1] = LoadMemberFromOpenNARC(v2, 4 + v1, 0, HEAP_ID_FIELD, 0);
+        v0->unk_CD0[v1] = LoadMemberFromOpenNARC(v2, 4 + v1, 0, HEAP_ID_FIELD1, 0);
     }
 
     for (v1 = 0; v1 < 16; v1++) {

@@ -25,7 +25,7 @@ BOOL ScrCmd_SelectPartyMonMove(ScriptContext *ctx)
 {
     u16 partySlot = ScriptContext_GetVar(ctx);
     void **partyData = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-    *partyData = FieldSystem_OpenSummaryScreenSelectMove(HEAP_ID_FIELD_TASK, ctx->fieldSystem, partySlot);
+    *partyData = FieldSystem_OpenSummaryScreenSelectMove(HEAP_ID_FIELD3, ctx->fieldSystem, partySlot);
 
     ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
     return TRUE;
@@ -61,7 +61,7 @@ BOOL ScrCmd_21F(ScriptContext *param0)
     u16 v3 = ScriptContext_GetVar(param0);
 
     mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(param0->fieldSystem->saveData), v3);
-    v1 = sub_020997D8(mon, HEAP_ID_FIELD_TASK);
+    v1 = sub_020997D8(mon, HEAP_ID_FIELD3);
     *v2 = sub_020998D8(v1);
 
     Heap_Free(v1);
@@ -71,7 +71,7 @@ BOOL ScrCmd_21F(ScriptContext *param0)
 static void sub_0204EE90(ScriptContext *param0, u16 param1, Pokemon *param2, u16 *param3)
 {
     void **v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, 19);
-    UnkStruct_020997B8 *v1 = sub_020997B8(HEAP_ID_FIELD_TASK);
+    UnkStruct_020997B8 *v1 = sub_020997B8(HEAP_ID_FIELD3);
     *v0 = v1;
 
     v1->unk_00 = param2;
@@ -97,7 +97,7 @@ BOOL ScrCmd_221(ScriptContext *param0)
     u16 *v2;
 
     mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(param0->fieldSystem->saveData), v1);
-    v2 = sub_020997D8(mon, HEAP_ID_FIELD_TASK);
+    v2 = sub_020997D8(mon, HEAP_ID_FIELD3);
 
     sub_0204EE90(param0, 1, mon, v2);
 
@@ -112,7 +112,7 @@ BOOL ScrCmd_224(ScriptContext *param0)
     u16 *v3;
 
     v0 = Party_GetPokemonBySlotIndex(SaveData_GetParty(param0->fieldSystem->saveData), v1);
-    v3 = Heap_Alloc(HEAP_ID_FIELD_TASK, (1 + 1) * 2);
+    v3 = Heap_Alloc(HEAP_ID_FIELD3, (1 + 1) * 2);
 
     *(v3 + 0) = v2;
     *(v3 + 1) = 0xffff;

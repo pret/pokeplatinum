@@ -93,9 +93,9 @@ static BOOL FieldTask_RunScript(FieldTask *taskManager)
     case 0:
         scriptManager->ctx[SCRIPT_CONTEXT_MAIN] = ScriptContext_CreateAndStart(fieldSystem, scriptManager->scriptID);
         scriptManager->numActiveContexts = 1;
-        scriptManager->strTemplate = StringTemplate_New(8, 64, HEAP_ID_FIELDMAP);
-        scriptManager->msgBuf = Strbuf_Init(1024, HEAP_ID_FIELDMAP);
-        scriptManager->tmpBuf = Strbuf_Init(1024, HEAP_ID_FIELDMAP);
+        scriptManager->strTemplate = StringTemplate_New(8, 64, HEAP_ID_FIELD2);
+        scriptManager->msgBuf = Strbuf_Init(1024, HEAP_ID_FIELD2);
+        scriptManager->tmpBuf = Strbuf_Init(1024, HEAP_ID_FIELD2);
         scriptManager->state++;
     case 1:
         for (i = 0; i < NUM_SCRIPT_CONTEXTS; i++) {
@@ -134,7 +134,7 @@ static BOOL FieldTask_RunScript(FieldTask *taskManager)
 
 static ScriptManager *ScriptManager_New()
 {
-    ScriptManager *scriptManager = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(ScriptManager));
+    ScriptManager *scriptManager = Heap_Alloc(HEAP_ID_FIELD2, sizeof(ScriptManager));
 
     GF_ASSERT(scriptManager != NULL);
 
@@ -170,7 +170,7 @@ static void sub_0203EA68(FieldSystem *fieldSystem, ScriptManager *scriptManager,
 
 ScriptContext *ScriptContext_CreateAndStart(FieldSystem *fieldSystem, u16 scriptID)
 {
-    ScriptContext *ctx = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(ScriptContext));
+    ScriptContext *ctx = Heap_Alloc(HEAP_ID_FIELD2, sizeof(ScriptContext));
 
     GF_ASSERT(ctx != NULL);
 
@@ -299,14 +299,14 @@ static void ScriptContext_Load(FieldSystem *fieldSystem, ScriptContext *ctx, int
 {
     u8 *scripts = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__SCRIPT__SCR_SEQ, scriptFile, 11);
     ctx->scripts = scripts;
-    ctx->loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, textBank, HEAP_ID_FIELDMAP);
+    ctx->loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, textBank, HEAP_ID_FIELD2);
 }
 
 static void ScriptContext_LoadFromCurrentMap(FieldSystem *fieldSystem, ScriptContext *ctx)
 {
     u8 *scripts = ScriptContext_LoadScripts(fieldSystem->location->mapId);
     ctx->scripts = scripts;
-    ctx->loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, MapHeaderToMsgArchive(fieldSystem->location->mapId), HEAP_ID_FIELDMAP);
+    ctx->loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, MapHeaderToMsgArchive(fieldSystem->location->mapId), HEAP_ID_FIELD2);
 }
 
 void *ScriptManager_GetMemberPtr(ScriptManager *scriptManager, u32 member)

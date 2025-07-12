@@ -242,7 +242,7 @@ void sub_020721D4(FieldSystem *fieldSystem, const TrainerCard *trainerCard)
 
 void sub_02072204(FieldSystem *fieldSystem)
 {
-    UnkStruct_02072204 *v0 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02072204));
+    UnkStruct_02072204 *v0 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_02072204));
 
     v0->unk_00 = 0;
     v0->unk_04 = (TrainerCard *)sub_0205C17C(fieldSystem->unk_7C);

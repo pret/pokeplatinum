@@ -500,8 +500,8 @@ BOOL ov23_02241D58(Strbuf *param0)
 
     for (v0 = 0; v0 < (7 + 1); v0++) {
         if (Unk_ov23_02257744->unk_468[v0] != 0) {
-            v1 = StringTemplate_Default(HEAP_ID_FIELD);
-            v2 = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
+            v1 = StringTemplate_Default(HEAP_ID_FIELD1);
+            v2 = Strbuf_Init((50 * 2), HEAP_ID_FIELD1);
 
             StringTemplate_SetUndergroundItemNameWithArticle(v1, 2, Unk_ov23_02257744->unk_468[v0]);
             StringTemplate_CapitalizeArgAtIndex(v1, 2);
@@ -560,7 +560,7 @@ void ov23_02241E6C(void)
     GF_ASSERT(!Unk_ov23_02257744->unk_460);
     GF_ASSERT(!Unk_ov23_02257744->unk_45C);
 
-    v0 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov23_02241E4C));
+    v0 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_ov23_02241E4C));
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_02241E4C));
     v0->unk_02 = 100;
 

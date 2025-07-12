@@ -22,8 +22,8 @@ FS_EXTERN_OVERLAY(overlay100);
 
 void sub_020985E4(FieldTask *param0, SaveData *saveData)
 {
-    UnkStruct_0209862C *v0 = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0209862C));
-    UnkStruct_020985E4 *v1 = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(UnkStruct_020985E4));
+    UnkStruct_0209862C *v0 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_0209862C));
+    UnkStruct_020985E4 *v1 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_020985E4));
 
     v1->options = SaveData_GetOptions(saveData);
     v1->unk_08 = SaveData_GetTrainerInfo(saveData);

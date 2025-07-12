@@ -169,7 +169,7 @@ static void sub_0206B878(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, c
     v1 = FS_ReadFile(&v0, &v3, 4);
     GF_ASSERT(v1 >= 0);
 
-    v4 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0206B878));
+    v4 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_0206B878));
     MI_CpuClear8(v4, sizeof(UnkStruct_0206B878));
 
     param1->unk_13A = v3;

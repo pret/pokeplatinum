@@ -111,7 +111,7 @@ static void ov7_0224B558(UnkStruct_ov7_0224B4E8 *param0, BOOL param1)
 
 static void ov7_0224B57C(UnkStruct_ov7_0224B4E8 *param0, int param1)
 {
-    sub_0202616C(param0->fieldSystem->saveData, param1, param0->unk_1C, HEAP_ID_FIELD);
+    sub_0202616C(param0->fieldSystem->saveData, param1, param0->unk_1C, HEAP_ID_FIELD1);
     StringTemplate_SetStrbuf(param0->unk_64, 0, param0->unk_1C, 0, 1, GAME_LANGUAGE);
 }
 
@@ -129,7 +129,7 @@ static void ov7_0224B5A8(UnkStruct_ov7_0224B4E8 *param0)
     if (Window_IsInUse(v1) == 0) {
         int v4;
 
-        param0->unk_08 = StringList_New(v3 + 2, HEAP_ID_FIELD);
+        param0->unk_08 = StringList_New(v3 + 2, HEAP_ID_FIELD1);
 
         Window_Add(param0->fieldSystem->bgConfig, v1, 3, 1, 1, 16, (v3 + 2) * 2, 13, 1);
         Window_DrawStandardFrame(&param0->unk_34, 1, 1024 - (18 + 12) - 9, 11);
@@ -153,7 +153,7 @@ static void ov7_0224B5A8(UnkStruct_ov7_0224B4E8 *param0)
     v0.window = &param0->unk_34;
     v0.parent = param0;
 
-    param0->unk_00 = ListMenu_New(&v0, 0, param0->unk_78, HEAP_ID_FIELD);
+    param0->unk_00 = ListMenu_New(&v0, 0, param0->unk_78, HEAP_ID_FIELD1);
     Window_CopyToVRAM(&param0->unk_34);
 }
 
@@ -222,7 +222,7 @@ static void ov7_0224B788(UnkStruct_ov7_0224B4E8 *param0)
     int v5 = 22;
     UnkStruct_ov7_0224F4D8 *v6 = Unk_ov7_0224F4D8;
 
-    param0->unk_0C = StringList_New(v1, HEAP_ID_FIELD);
+    param0->unk_0C = StringList_New(v1, HEAP_ID_FIELD1);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_44, 3, v5, v3, v4, v1 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - v4 * v1 * 2);
     Window_DrawStandardFrame(&param0->unk_44, 1, 1024 - (18 + 12) - 9, 11);
@@ -243,7 +243,7 @@ static void ov7_0224B788(UnkStruct_ov7_0224B4E8 *param0)
     v0.window = &param0->unk_44;
     v0.parent = param0;
 
-    param0->unk_04 = ListMenu_New(&v0, 0, param0->unk_7A, HEAP_ID_FIELD);
+    param0->unk_04 = ListMenu_New(&v0, 0, param0->unk_7A, HEAP_ID_FIELD1);
     Window_CopyToVRAM(&param0->unk_44);
 }
 
@@ -326,9 +326,9 @@ static void ov7_0224B8DC(UnkStruct_ov7_0224B4E8 *param0)
     const int v12 = 55;
     const int v13 = (24 * 8) - 1;
 
-    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0353, HEAP_ID_FIELD);
-    v2 = Strbuf_Init((90 * 2), HEAP_ID_FIELD);
-    v3 = Strbuf_Init((90 * 2), HEAP_ID_FIELD);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0353, HEAP_ID_FIELD1);
+    v2 = Strbuf_Init((90 * 2), HEAP_ID_FIELD1);
+    v3 = Strbuf_Init((90 * 2), HEAP_ID_FIELD1);
     v4 = &param0->unk_24;
 
     Window_Add(param0->fieldSystem->bgConfig, v4, 3, 4, 2, 24, 19, 13, 1);
@@ -551,20 +551,20 @@ static BOOL ov7_0224BC74(FieldTask *param0)
 
 static UnkStruct_ov7_0224B4E8 *ov7_0224BE10(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov7_0224B4E8 *v0 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov7_0224B4E8));
+    UnkStruct_ov7_0224B4E8 *v0 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_ov7_0224B4E8));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov7_0224B4E8));
 
     v0->unk_7C = 0;
     v0->fieldSystem = fieldSystem;
     v0->fieldSystem->unk_B0 = NULL;
-    v0->unk_64 = StringTemplate_Default(HEAP_ID_FIELD);
-    v0->unk_68 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0221, HEAP_ID_FIELD);
-    v0->unk_14 = Strbuf_Init((90 * 2), HEAP_ID_FIELD);
-    v0->unk_18 = Strbuf_Init((90 * 2), HEAP_ID_FIELD);
-    v0->unk_1C = Strbuf_Init((90 * 2), HEAP_ID_FIELD);
-    v0->unk_20 = Strbuf_Init((90 * 2), HEAP_ID_FIELD);
-    v0->unk_6C = sub_0207A2A8(HEAP_ID_FIELDMAP);
+    v0->unk_64 = StringTemplate_Default(HEAP_ID_FIELD1);
+    v0->unk_68 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0221, HEAP_ID_FIELD1);
+    v0->unk_14 = Strbuf_Init((90 * 2), HEAP_ID_FIELD1);
+    v0->unk_18 = Strbuf_Init((90 * 2), HEAP_ID_FIELD1);
+    v0->unk_1C = Strbuf_Init((90 * 2), HEAP_ID_FIELD1);
+    v0->unk_20 = Strbuf_Init((90 * 2), HEAP_ID_FIELD1);
+    v0->unk_6C = sub_0207A2A8(HEAP_ID_FIELD2);
 
     return v0;
 }

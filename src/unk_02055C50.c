@@ -178,7 +178,7 @@ BOOL sub_02055E00(FieldSystem *fieldSystem, MapObject *param1)
     BerryPatches_HarvestPatch(v3, v0);
     sub_02067834(param1);
 
-    return Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), sub_02055C50(v2), v1, HEAP_ID_FIELD);
+    return Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), sub_02055C50(v2), v1, HEAP_ID_FIELD1);
 }
 
 void sub_02055E80(FieldSystem *fieldSystem, MapObject *param1, u16 param2)
@@ -453,7 +453,7 @@ static BOOL sub_02056124(FieldTask *taskMan)
 
 void sub_020562AC(FieldSystem *fieldSystem)
 {
-    UnkStruct_020562AC *v0 = Heap_Alloc(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_020562AC));
+    UnkStruct_020562AC *v0 = Heap_Alloc(HEAP_ID_FIELD3, sizeof(UnkStruct_020562AC));
 
     v0->unk_00 = 0;
     v0->unk_0C = NULL;

@@ -129,9 +129,9 @@ static void ov23_0225360C(Window *param0, MessageLoader *param1, TrainerInfo *pa
     const int v11 = 146;
     const int v12 = 146;
 
-    v0 = StringTemplate_Default(HEAP_ID_FIELD);
-    v1 = Strbuf_Init(30, HEAP_ID_FIELD);
-    v2 = Strbuf_Init(30, HEAP_ID_FIELD);
+    v0 = StringTemplate_Default(HEAP_ID_FIELD1);
+    v1 = Strbuf_Init(30, HEAP_ID_FIELD1);
+    v2 = Strbuf_Init(30, HEAP_ID_FIELD1);
 
     MessageLoader_GetStrbuf(param1, 0, v1);
     Text_AddPrinterWithParams(param0, FONT_SYSTEM, v1, v7, 1, TEXT_SPEED_NO_TRANSFER, NULL);
@@ -214,7 +214,7 @@ void ov23_02253834(BgConfig *param0, TrainerInfo *param1, UnkFuncPtr_ov23_022538
     MessageLoader *v1;
     ListMenuTemplate v2;
     int v3 = 10;
-    UnkStruct_ov23_022537D4 *v4 = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_022537D4));
+    UnkStruct_ov23_022537D4 *v4 = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UnkStruct_ov23_022537D4));
 
     MI_CpuClear8(v4, sizeof(UnkStruct_ov23_022537D4));
 
@@ -224,7 +224,7 @@ void ov23_02253834(BgConfig *param0, TrainerInfo *param1, UnkFuncPtr_ov23_022538
     Window_Add(param0, &v4->unk_08, 3, 4, 2, 24, 19, 13, 1);
     Window_DrawStandardFrame(&v4->unk_08, 1, 1024 - (18 + 12) - 9, 11);
 
-    v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0640, HEAP_ID_FIELD);
+    v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0640, HEAP_ID_FIELD1);
     Window_FillTilemap(&v4->unk_08, 15);
 
     if (param4) {
@@ -248,7 +248,7 @@ void ov23_022538FC(int param0)
 {
     int undergroundRecordSize = UndergroundRecord_Size();
     int trainerScore = GameRecords_GetTrainerScore(SaveData_GetGameRecords(Unk_ov23_022577BC->saveData));
-    u8 *v2 = Heap_Alloc(HEAP_ID_FIELD, undergroundRecordSize + 1);
+    u8 *v2 = Heap_Alloc(HEAP_ID_FIELD1, undergroundRecordSize + 1);
 
     MI_CpuClear8(v2, undergroundRecordSize + 1);
     v2[0] = param0;
@@ -318,7 +318,7 @@ void ov23_02253A00(UndergroundRecord *undergroundRecord, int param1)
     sub_020594FC();
     ov23_02253DFC(ov23_022421BC(), 640, 1);
 
-    undergroundRecordBuffer = UndergroundRecord_Init(HEAP_ID_FIELD);
+    undergroundRecordBuffer = UndergroundRecord_Init(HEAP_ID_FIELD1);
     MI_CpuCopy8(undergroundRecord, undergroundRecordBuffer, UndergroundRecord_Size());
 
     v0 = v2(undergroundRecordBuffer);
@@ -343,9 +343,9 @@ static void ov23_02253A78(Window *param0, MessageLoader *param1, TrainerInfo *pa
     const int v11 = 146;
     const int v12 = 100;
 
-    v0 = StringTemplate_Default(HEAP_ID_FIELD);
-    v1 = Strbuf_Init(40, HEAP_ID_FIELD);
-    v2 = Strbuf_Init(40, HEAP_ID_FIELD);
+    v0 = StringTemplate_Default(HEAP_ID_FIELD1);
+    v1 = Strbuf_Init(40, HEAP_ID_FIELD1);
+    v2 = Strbuf_Init(40, HEAP_ID_FIELD1);
 
     StringTemplate_SetPlayerName(v0, 1, param2);
     MessageLoader_GetStrbuf(param1, 12, v1);
@@ -364,7 +364,7 @@ static void ov23_02253A78(Window *param0, MessageLoader *param1, TrainerInfo *pa
     Text_AddPrinterWithParams(param0, FONT_SYSTEM, v1, v7, 1 + v8 * 3, TEXT_SPEED_NO_TRANSFER, NULL);
 
     for (v3 = 0; v3 < 5; v3++) {
-        TrainerInfo *v13 = sub_020288C8(param4, HEAP_ID_FIELD, v3);
+        TrainerInfo *v13 = sub_020288C8(param4, HEAP_ID_FIELD1, v3);
 
         if (v13) {
             StringTemplate_SetPlayerName(v0, 0, v13);
@@ -397,7 +397,7 @@ void *ov23_02253C64(BgConfig *param0, TrainerInfo *param1, Underground *undergro
     MessageLoader *v1;
     ListMenuTemplate v2;
     int v3 = 10;
-    UnkStruct_ov23_022537D4 *v4 = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_022537D4));
+    UnkStruct_ov23_022537D4 *v4 = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UnkStruct_ov23_022537D4));
 
     MI_CpuClear8(v4, sizeof(UnkStruct_ov23_022537D4));
 
@@ -407,7 +407,7 @@ void *ov23_02253C64(BgConfig *param0, TrainerInfo *param1, Underground *undergro
     Window_Add(param0, &v4->unk_08, 3, 4, 2, 24, 19, 13, 1);
     Window_DrawStandardFrame(&v4->unk_08, 1, 1024 - (18 + 12) - 9, 11);
 
-    v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0639, HEAP_ID_FIELD);
+    v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0639, HEAP_ID_FIELD1);
     Window_FillTilemap(&v4->unk_08, 15);
 
     v0 = Unk_ov23_022577BC->unk_0C;

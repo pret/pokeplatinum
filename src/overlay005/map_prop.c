@@ -78,7 +78,7 @@ void MapPropManager_Load(NARC *landDataNARC, const int mapPropFilesSize, AreaDat
     u32 mapPropFilesCount;
 
     if (mapPropFilesSize != 0) {
-        mapPropFiles = Heap_AllocAtEnd(HEAP_ID_FIELD, mapPropFilesSize);
+        mapPropFiles = Heap_AllocAtEnd(HEAP_ID_FIELD1, mapPropFilesSize);
         NARC_ReadFile(landDataNARC, mapPropFilesSize, mapPropFiles);
         mapPropFilesCount = mapPropFilesSize / sizeof(MapPropFile);
     } else {

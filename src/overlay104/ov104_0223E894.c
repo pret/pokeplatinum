@@ -82,7 +82,7 @@ static void ov104_0223F070(SysTask *param0, void *param1);
 void ov104_0223E894(int param0, u32 param1, u32 param2, BOOL *param3, u32 param4)
 {
     SysTask *v0;
-    UnkStruct_ov104_0223E894 *v1 = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov104_0223E894));
+    UnkStruct_ov104_0223E894 *v1 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_ov104_0223E894));
     memset(v1, 0, sizeof(UnkStruct_ov104_0223E894));
 
     SysTask_Start(ov104_0223E8D8, v1, 5);

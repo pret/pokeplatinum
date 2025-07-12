@@ -41,7 +41,7 @@ BOOL ScrCmd_GivePokemon(ScriptContext *ctx)
     u16 *partyHasRoom = ScriptContext_GetVarPointer(ctx);
 
     playerParty = SaveData_GetParty(fieldSystem->saveData);
-    *partyHasRoom = Pokemon_GiveMonFromScript(HEAP_ID_FIELDMAP, fieldSystem->saveData, species, level, heldItem, metLocation, metTerrain);
+    *partyHasRoom = Pokemon_GiveMonFromScript(HEAP_ID_FIELD2, fieldSystem->saveData, species, level, heldItem, metLocation, metTerrain);
 
     return FALSE;
 }
@@ -102,7 +102,7 @@ BOOL ScrCmd_GiveEgg(ScriptContext *ctx)
     partyCount = Party_GetCurrentCount(playerParty);
 
     if (partyCount < 6) {
-        egg = Pokemon_New(HEAP_ID_FIELDMAP);
+        egg = Pokemon_New(HEAP_ID_FIELD2);
         Pokemon_Init(egg);
 
         specialMetLoc = SpecialMetLoc_GetId(1, eggGiver);
@@ -306,7 +306,7 @@ BOOL ScrCmd_1BA(ScriptContext *param0)
     v4 = Pokemon_GetValue(v1, MON_DATA_FRIENDSHIP, NULL);
 
     if (v2 > 0) {
-        if (Item_LoadParam(Pokemon_GetValue(v1, MON_DATA_HELD_ITEM, NULL), ITEM_PARAM_HOLD_EFFECT, HEAP_ID_FIELDMAP) == 53) {
+        if (Item_LoadParam(Pokemon_GetValue(v1, MON_DATA_HELD_ITEM, NULL), ITEM_PARAM_HOLD_EFFECT, HEAP_ID_FIELD2) == 53) {
             v2 = v2 * 150 / 100;
         }
 

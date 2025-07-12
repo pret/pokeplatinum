@@ -355,7 +355,7 @@ static BOOL sub_0205A324(FieldTask *param0)
         break;
     case 15:
         sub_0205AAA0(v0, 0);
-        sub_0205A164(v0, HEAP_ID_FIELDMAP);
+        sub_0205A164(v0, HEAP_ID_FIELD2);
         v0->unk_34 = 16;
         break;
     case 16:
@@ -374,7 +374,7 @@ static BOOL sub_0205A324(FieldTask *param0)
         }
         break;
     case 17:
-        sub_0205A0D8(v0, v0->fieldSystem, SaveData_GetParty(v0->fieldSystem->saveData), v0->unk_3C, 0, HEAP_ID_FIELDMAP);
+        sub_0205A0D8(v0, v0->fieldSystem, SaveData_GetParty(v0->fieldSystem->saveData), v0->unk_3C, 0, HEAP_ID_FIELD2);
         v0->unk_34 = 18;
         break;
     case 18:
@@ -549,7 +549,7 @@ static BOOL sub_0205A324(FieldTask *param0)
     case 33:
         if (IsScreenFadeDone()) {
             sub_0205AAA0(v0, 0);
-            sub_0205A0D8(v0, v0->fieldSystem, v0->unk_50, v0->unk_84, 1, HEAP_ID_FIELDMAP);
+            sub_0205A0D8(v0, v0->fieldSystem, v0->unk_50, v0->unk_84, 1, HEAP_ID_FIELD2);
             v0->unk_34 = 34;
         }
         break;
@@ -658,22 +658,22 @@ void sub_0205AB10(FieldSystem *fieldSystem, UnkFuncPtr_0205AB10 *param1)
         return;
     }
 
-    v0 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0205A0D8));
+    v0 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_0205A0D8));
     MI_CpuClear8(v0, sizeof(UnkStruct_0205A0D8));
 
     v0->unk_43 = 5;
     v0->fieldSystem = fieldSystem;
     v0->unk_08 = param1;
-    v0->unk_28 = StringTemplate_Default(HEAP_ID_FIELDMAP);
-    v0->unk_2C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0011, HEAP_ID_FIELDMAP);
-    v0->unk_0C = Strbuf_Init((100 * 2), HEAP_ID_FIELDMAP);
-    v0->unk_10 = Strbuf_Init((100 * 2), HEAP_ID_FIELDMAP);
+    v0->unk_28 = StringTemplate_Default(HEAP_ID_FIELD2);
+    v0->unk_2C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0011, HEAP_ID_FIELD2);
+    v0->unk_0C = Strbuf_Init((100 * 2), HEAP_ID_FIELD2);
+    v0->unk_10 = Strbuf_Init((100 * 2), HEAP_ID_FIELD2);
 
     Window_Init(&v0->unk_14);
     Window_Init(&v0->unk_54);
     Window_Init(&v0->unk_64);
 
-    v0->unk_78 = ColoredArrow_New(HEAP_ID_FIELDMAP);
+    v0->unk_78 = ColoredArrow_New(HEAP_ID_FIELD2);
     v0->unk_88 = sub_0203895C();
     v0->unk_4C = NULL;
     v0->unk_48 = NULL;
@@ -686,9 +686,9 @@ void sub_0205AB10(FieldSystem *fieldSystem, UnkFuncPtr_0205AB10 *param1)
     case 3: {
         u32 v2 = sub_0205B0E4();
 
-        v0->unk_4C = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, v2);
-        v0->unk_48 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, v2);
-        v0->unk_50 = Party_New(HEAP_ID_FIELDMAP);
+        v0->unk_4C = Heap_AllocAtEnd(HEAP_ID_FIELD2, v2);
+        v0->unk_48 = Heap_AllocAtEnd(HEAP_ID_FIELD2, v2);
+        v0->unk_50 = Party_New(HEAP_ID_FIELD2);
 
         Party_InitWithCapacity(v0->unk_50, 3);
 
@@ -866,11 +866,11 @@ static void sub_0205ADF8(UnkStruct_0205A0D8 *param0, int param1)
         int v1, v2, v3;
         MessageLoader *v4;
 
-        v4 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_FIELD);
+        v4 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_FIELD1);
         v3 = Pokemon_GetStructSize();
 
         Window_Add(param0->fieldSystem->bgConfig, v0, 3, 21, 9, 10, 8, 13, 10);
-        LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1, 11, 0, HEAP_ID_FIELD);
+        LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1, 11, 0, HEAP_ID_FIELD1);
         Window_FillTilemap(v0, 15);
 
         for (v1 = 0; v1 < 3; v1++) {
@@ -902,7 +902,7 @@ static void sub_0205AF18(UnkStruct_0205A0D8 *param0, int param1)
         int v1;
 
         Window_Add(param0->fieldSystem->bgConfig, v0, 3, 20, 11, 11, 6, 13, 90);
-        LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1, 11, 0, HEAP_ID_FIELD);
+        LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1, 11, 0, HEAP_ID_FIELD1);
         Window_FillTilemap(v0, 15);
 
         for (v1 = 0; v1 < 3; v1++) {
@@ -1007,10 +1007,10 @@ static BOOL sub_0205B140(FieldTask *param0)
 
     switch (v1->unk_28) {
     case 0:
-        v1->unk_18 = StringTemplate_Default(HEAP_ID_FIELD);
-        v1->unk_1C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0011, HEAP_ID_FIELD);
-        v1->unk_00 = Strbuf_Init((100 * 2), HEAP_ID_FIELD);
-        v1->unk_04 = Strbuf_Init((100 * 2), HEAP_ID_FIELD);
+        v1->unk_18 = StringTemplate_Default(HEAP_ID_FIELD1);
+        v1->unk_1C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0011, HEAP_ID_FIELD1);
+        v1->unk_00 = Strbuf_Init((100 * 2), HEAP_ID_FIELD1);
+        v1->unk_04 = Strbuf_Init((100 * 2), HEAP_ID_FIELD1);
 
         MessageLoader_GetStrbuf(v1->unk_1C, 2 + v2->stars, v1->unk_00);
         StringTemplate_SetPlayerName(v1->unk_18, 0, CommInfo_TrainerInfo(v1->unk_24));
@@ -1084,7 +1084,7 @@ void sub_0205B2D4(FieldSystem *fieldSystem)
         }
 
         if ((v2 == CommPlayer_XPos(v0)) && (v3 == CommPlayer_ZPos(v0))) {
-            UnkStruct_0205B2D4 *v4 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0205B2D4));
+            UnkStruct_0205B2D4 *v4 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_0205B2D4));
 
             v4->unk_24 = v0;
             v4->unk_28 = 0;

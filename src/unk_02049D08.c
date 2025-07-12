@@ -319,10 +319,10 @@ UnkStruct_0204AFC4 *sub_0204A124(SaveData *saveData, u16 param1, u16 param2)
     BattleFrontier *frontier;
     GameRecords *v5;
 
-    v3 = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0204AFC4));
+    v3 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_0204AFC4));
     MI_CpuClear8(v3, sizeof(UnkStruct_0204AFC4));
 
-    v3->heapID = HEAP_ID_FIELDMAP;
+    v3->heapID = HEAP_ID_FIELD2;
     v3->unk_70 = sub_0202D740(saveData);
     v3->unk_74 = sub_0202D750(saveData);
     v3->unk_00 = 0x12345678;
@@ -696,7 +696,7 @@ void sub_0204A7A4(UnkStruct_0204AFC4 *param0, SaveData *saveData, JournalEntry *
     sub_0204ACC8(param0);
     sub_0204A5EC(param0, saveData, 1, v0);
 
-    if (param0->unk_0F == HEAP_ID_FIELD) {
+    if (param0->unk_0F == HEAP_ID_FIELD1) {
         journalEntryOnlineEvent = JournalEntry_CreateEventBattleRoom(param0->heapID);
         JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
     }

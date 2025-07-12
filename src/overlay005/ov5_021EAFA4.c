@@ -79,7 +79,7 @@ VecFx32 ov5_021EAFA4(const u16 param0, const u16 param1, const UnkStruct_ov5_021
 
 UnkStruct_ov5_021EB0E0 *ov5_021EB0C8(Camera *const param0)
 {
-    UnkStruct_ov5_021EB0E0 *v0 = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021EB0E0));
+    UnkStruct_ov5_021EB0E0 *v0 = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UnkStruct_ov5_021EB0E0));
     ov5_021EB0E0(v0, param0);
 
     return v0;

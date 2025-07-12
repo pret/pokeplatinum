@@ -71,14 +71,14 @@ UnkStruct_ov104_0223BA10 *ov104_022361B4(SaveData *saveData, u16 param1, u8 para
     static UnkStruct_ov104_0223BA10 *v9;
     UnkStruct_0203041C *v10;
 
-    v9 = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov104_0223BA10));
+    v9 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_ov104_0223BA10));
     MI_CpuClear8(v9, sizeof(UnkStruct_ov104_0223BA10));
 
     v9->unk_08 = sub_020302DC(saveData);
     v9->saveData = saveData;
     v9->unk_00 = 11;
-    v9->unk_28 = Party_New(HEAP_ID_FIELDMAP);
-    v9->unk_2C = Party_New(HEAP_ID_FIELDMAP);
+    v9->unk_28 = Party_New(HEAP_ID_FIELD2);
+    v9->unk_2C = Party_New(HEAP_ID_FIELD2);
     v9->unk_A20 = param6;
 
     v4 = v9->unk_08;
@@ -213,7 +213,7 @@ static void ov104_022365F8(UnkStruct_ov104_0223BA10 *param0)
 
     ov104_0222E330(v4, v6, v5, NULL, v7, 4, 11, 179);
 
-    v2 = Pokemon_New(HEAP_ID_FIELDMAP);
+    v2 = Pokemon_New(HEAP_ID_FIELD2);
 
     for (v1 = 0; v1 < 4; v1++) {
         ov104_0222DF40(&v4[v1], v2, ov104_0223BA10(param0));
@@ -437,7 +437,7 @@ u16 ov104_02236B58(UnkStruct_ov104_0223BA10 *param0, u8 param1)
     FrontierTrainerDataDTO v0;
     u8 v2 = param0->unk_11 + (param1 * 7);
 
-    Heap_Free(ov104_0222DD04(&v0, param0->unk_30[v2], HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+    Heap_Free(ov104_0222DD04(&v0, param0->unk_30[v2], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
 
     return ov104_0222E10C(v0.trainerType);
 }
@@ -683,12 +683,12 @@ void ov104_02236FC0(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *
     GF_ASSERT(param0->unk_AC == NULL);
 
     if (ov104_0223BA14(param1->unk_10) == 0) {
-        param0->unk_A8 = Window_New(HEAP_ID_FIELDMAP, 1);
+        param0->unk_A8 = Window_New(HEAP_ID_FIELD2, 1);
         Window_Add(v0->unk_00, param0->unk_A8, 1, 1, 1, 10, 4, 14, (((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4)));
         ov104_022370C0(v0->unk_00, param0->unk_A8);
     } else {
-        param0->unk_A8 = Window_New(HEAP_ID_FIELDMAP, 1);
-        param0->unk_AC = Window_New(HEAP_ID_FIELDMAP, 1);
+        param0->unk_A8 = Window_New(HEAP_ID_FIELD2, 1);
+        param0->unk_AC = Window_New(HEAP_ID_FIELD2, 1);
 
         Window_Add(v0->unk_00, param0->unk_A8, 1, 1, 1, 10, 4, 14, (((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4)));
         Window_Add(v0->unk_00, param0->unk_AC, 1, 21, 1, 10, 4, 14, ((((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4)) - (10 * 4)));
@@ -776,7 +776,7 @@ static void ov104_02237284(UnkStruct_ov104_022320B4 *param0, Window *param1, Tra
     Strbuf *v1 = Strbuf_Init((10 * 2), param0->heapID);
     Strbuf *v2 = Strbuf_Init((10 * 2), param0->heapID);
 
-    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0199, HEAP_ID_FIELDMAP);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0199, HEAP_ID_FIELD2);
 
     StringTemplate_SetNumber(param0->unk_44, 0, param3, 4, 1, 1);
     MessageLoader_GetStrbuf(v0, 2, v1);

@@ -114,7 +114,7 @@ void EncounterEffect_Grass_HigherLevel(SysTask *task, void *param)
 
     switch (encEffect->state) {
     case 0:
-        encEffect->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(GrassEncounterEffect));
+        encEffect->param = Heap_Alloc(HEAP_ID_FIELD1, sizeof(GrassEncounterEffect));
         memset(encEffect->param, 0, sizeof(GrassEncounterEffect));
         grassEffect = encEffect->param;
         grassEffect->screenSliceEfx = ScreenSliceEffect_New();
@@ -207,7 +207,7 @@ void EncounterEffect_Grass_LowerLevel(SysTask *task, void *param)
 
     switch (encEffect->state) {
     case 0:
-        encEffect->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(GrassEncounterEffect));
+        encEffect->param = Heap_Alloc(HEAP_ID_FIELD1, sizeof(GrassEncounterEffect));
         memset(encEffect->param, 0, sizeof(GrassEncounterEffect));
         grassEffect = encEffect->param;
         grassEffect->screenSliceEfx = ScreenSliceEffect_New();
@@ -298,10 +298,10 @@ void EncounterEffect_Water_LowerLevel(SysTask *task, void *param)
 
     switch (encEffect->state) {
     case 0:
-        encEffect->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(WaterEncounterEffect));
+        encEffect->param = Heap_Alloc(HEAP_ID_FIELD1, sizeof(WaterEncounterEffect));
         memset(encEffect->param, 0, sizeof(WaterEncounterEffect));
         waterEffect = encEffect->param;
-        ScreenShakeEffect_Init(&waterEffect->screenShakeEfx, HEAP_ID_FIELD);
+        ScreenShakeEffect_Init(&waterEffect->screenShakeEfx, HEAP_ID_FIELD1);
         HBlankSystem_Stop(encEffect->fieldSystem->unk_04->hBlankSystem);
         encEffect->state++;
         break;
@@ -327,7 +327,7 @@ void EncounterEffect_Water_LowerLevel(SysTask *task, void *param)
         }
         break;
     case 4:
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_30, FADE_TYPE_UNK_0, FADE_TO_BLACK, 8, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_30, FADE_TYPE_UNK_0, FADE_TO_BLACK, 8, 1, HEAP_ID_FIELD1);
         encEffect->state++;
         break;
     case 5:
@@ -356,10 +356,10 @@ void EncounterEffect_Water_HigherLevel(SysTask *task, void *param)
 
     switch (encEffect->state) {
     case 0:
-        encEffect->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(WaterEncounterEffect));
+        encEffect->param = Heap_Alloc(HEAP_ID_FIELD1, sizeof(WaterEncounterEffect));
         memset(encEffect->param, 0, sizeof(WaterEncounterEffect));
         waterEffect = encEffect->param;
-        ScreenShakeEffect_Init(&waterEffect->screenShakeEfx, HEAP_ID_FIELD);
+        ScreenShakeEffect_Init(&waterEffect->screenShakeEfx, HEAP_ID_FIELD1);
         HBlankSystem_Stop(encEffect->fieldSystem->unk_04->hBlankSystem);
         encEffect->state++;
         break;
@@ -385,7 +385,7 @@ void EncounterEffect_Water_HigherLevel(SysTask *task, void *param)
         }
         break;
     case 4:
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_30, FADE_TYPE_UNK_0, FADE_TO_BLACK, 8, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_30, FADE_TYPE_UNK_0, FADE_TO_BLACK, 8, 1, HEAP_ID_FIELD1);
         encEffect->state++;
         break;
     case 5:
@@ -467,7 +467,7 @@ void EncounterEffect_Cave_LowerLevel(SysTask *task, void *param)
 
     switch (encEffect->state) {
     case 0:
-        encEffect->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(CaveEncounterEffect));
+        encEffect->param = Heap_Alloc(HEAP_ID_FIELD1, sizeof(CaveEncounterEffect));
         memset(encEffect->param, 0, sizeof(CaveEncounterEffect));
         caveEffect = encEffect->param;
         encEffect->state++;
@@ -483,7 +483,7 @@ void EncounterEffect_Cave_LowerLevel(SysTask *task, void *param)
         break;
     case 3:
         HBlankSystem_Stop(encEffect->fieldSystem->unk_04->hBlankSystem);
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_16, FADE_TYPE_UNK_16, FADE_TO_BLACK, 12, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_16, FADE_TYPE_UNK_16, FADE_TO_BLACK, 12, 1, HEAP_ID_FIELD1);
 
         caveEffect->camera = encEffect->fieldSystem->camera;
         distance = Camera_GetDistance(caveEffect->camera);
@@ -525,7 +525,7 @@ void EncounterEffect_Cave_HigherLevel(SysTask *task, void *param)
 
     switch (encEffect->state) {
     case 0:
-        encEffect->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(CaveEncounterEffect));
+        encEffect->param = Heap_Alloc(HEAP_ID_FIELD1, sizeof(CaveEncounterEffect));
         memset(encEffect->param, 0, sizeof(CaveEncounterEffect));
         caveEffect = encEffect->param;
         encEffect->state++;
@@ -541,7 +541,7 @@ void EncounterEffect_Cave_HigherLevel(SysTask *task, void *param)
         break;
     case 3:
         HBlankSystem_Stop(encEffect->fieldSystem->unk_04->hBlankSystem);
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_16, FADE_TYPE_UNK_16, FADE_TO_BLACK, 12, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_16, FADE_TYPE_UNK_16, FADE_TO_BLACK, 12, 1, HEAP_ID_FIELD1);
 
         caveEffect->camera = encEffect->fieldSystem->camera;
         distance = Camera_GetDistance(caveEffect->camera);
@@ -669,7 +669,7 @@ void EncounterEffect_Trainer_Grass_LowerLevel(SysTask *task, void *param)
 
     switch (encEffect->state) {
     case 0:
-        encEffect->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(TrainerGrassEncounterEffect));
+        encEffect->param = Heap_Alloc(HEAP_ID_FIELD1, sizeof(TrainerGrassEncounterEffect));
         memset(encEffect->param, 0, sizeof(TrainerGrassEncounterEffect));
         trainerEffect = encEffect->param;
 
@@ -830,7 +830,7 @@ void EncounterEffect_Trainer_Grass_HigherLevel(SysTask *param0, void *param1)
 
     switch (encEffect->state) {
     case 0:
-        encEffect->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E2EB0));
+        encEffect->param = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UnkStruct_ov5_021E2EB0));
         memset(encEffect->param, 0, sizeof(UnkStruct_ov5_021E2EB0));
         v1 = encEffect->param;
 
@@ -977,13 +977,13 @@ void EncounterEffect_Trainer_Water_LowerLevel(SysTask *param0, void *param1)
 
     switch (v0->state) {
     case 0:
-        v0->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E31A4));
+        v0->param = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UnkStruct_ov5_021E31A4));
         memset(v0->param, 0, sizeof(UnkStruct_ov5_021E31A4));
         v1 = v0->param;
 
         v1->camera = v0->fieldSystem->camera;
 
-        ScreenShakeEffect_Init(&v1->unk_40, HEAP_ID_FIELD);
+        ScreenShakeEffect_Init(&v1->unk_40, HEAP_ID_FIELD1);
         v1->unk_248 = 12;
 
         ov5_021DE47C(&v1->unk_50, 2, 1);
@@ -1084,7 +1084,7 @@ void EncounterEffect_Trainer_Water_LowerLevel(SysTask *param0, void *param1)
         v4 = Camera_GetDistance(v1->camera);
         QuadraticInterpolationTaskFX32_Init(&v1->unk_230, v4, v4 + (-FX32_CONST(500)), (-FX32_CONST(10)), 8);
 
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_24, FADE_TYPE_UNK_0, FADE_TO_BLACK, 8, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_24, FADE_TYPE_UNK_0, FADE_TO_BLACK, 8, 1, HEAP_ID_FIELD1);
         v0->state++;
         break;
 
@@ -1148,13 +1148,13 @@ void EncounterEffect_Trainer_Water_HigherLevel(SysTask *param0, void *param1)
 
     switch (v0->state) {
     case 0:
-        v0->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E3560));
+        v0->param = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UnkStruct_ov5_021E3560));
         memset(v0->param, 0, sizeof(UnkStruct_ov5_021E3560));
         v1 = v0->param;
 
         v1->camera = v0->fieldSystem->camera;
 
-        ScreenShakeEffect_Init(&v1->unk_274, HEAP_ID_FIELD);
+        ScreenShakeEffect_Init(&v1->unk_274, HEAP_ID_FIELD1);
         v1->unk_2A0 = 14;
 
         ov5_021DE47C(&v1->unk_00, 3, 1);
@@ -1168,12 +1168,12 @@ void EncounterEffect_Trainer_Water_HigherLevel(SysTask *param0, void *param1)
             Sprite_SetDrawFlag(v1->unk_1D4[v3], FALSE);
             Sprite_SetAffineOverwriteMode(v1->unk_1D4[v3], 2);
 
-            v1->unk_258[v3] = ov5_021DE6A4(HEAP_ID_FIELD);
+            v1->unk_258[v3] = ov5_021DE6A4(HEAP_ID_FIELD1);
         }
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
-        v1->unk_270 = Window_New(HEAP_ID_FIELD, 1);
+        v1->unk_270 = Window_New(HEAP_ID_FIELD1, 1);
         Window_Add(v0->fieldSystem->bgConfig, v1->unk_270, 3, 0, 0, 32, 32, 0, 0);
 
         {
@@ -1309,7 +1309,7 @@ void EncounterEffect_Trainer_Water_HigherLevel(SysTask *param0, void *param1)
         Window_Remove(v1->unk_270);
         Windows_Delete(v1->unk_270, 1);
 
-        Bg_ClearTilesRange(BG_LAYER_MAIN_3, 32, 0, HEAP_ID_FIELD);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_3, 32, 0, HEAP_ID_FIELD1);
         Bg_ClearTilemap(v0->fieldSystem->bgConfig, 3);
 
         EncounterEffect_Finish(v0, param0);
@@ -1360,7 +1360,7 @@ void EncounterEffect_Trainer_Cave_LowerLevel(SysTask *param0, void *param1)
 
     switch (v0->state) {
     case 0:
-        v0->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E3AD0));
+        v0->param = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UnkStruct_ov5_021E3AD0));
         memset(v0->param, 0, sizeof(UnkStruct_ov5_021E3AD0));
         v1 = v0->param;
 
@@ -1439,7 +1439,7 @@ void EncounterEffect_Trainer_Cave_LowerLevel(SysTask *param0, void *param1)
         v3 = Camera_GetDistance(v1->camera);
         QuadraticInterpolationTaskFX32_Init(&v1->unk_238, v3, v3 + (-FX32_CONST(1000)), (FX32_CONST(10)), 8);
 
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_18, FADE_TYPE_UNK_0, FADE_TO_BLACK, 8, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_18, FADE_TYPE_UNK_0, FADE_TO_BLACK, 8, 1, HEAP_ID_FIELD1);
         v0->state++;
         break;
 
@@ -1486,7 +1486,7 @@ void EncounterEffect_Trainer_Cave_HigherLevel(SysTask *param0, void *param1)
 
     switch (v0->state) {
     case 0:
-        v0->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E3D8C));
+        v0->param = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UnkStruct_ov5_021E3D8C));
         memset(v0->param, 0, sizeof(UnkStruct_ov5_021E3D8C));
         v1 = v0->param;
 
@@ -1505,7 +1505,7 @@ void EncounterEffect_Trainer_Cave_HigherLevel(SysTask *param0, void *param1)
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
-        v1->unk_264 = Window_New(HEAP_ID_FIELD, 1);
+        v1->unk_264 = Window_New(HEAP_ID_FIELD1, 1);
         Window_Add(v0->fieldSystem->bgConfig, v1->unk_264, 3, 0, 0, 32, 32, 0, 0);
 
         {
@@ -1517,7 +1517,7 @@ void EncounterEffect_Trainer_Cave_HigherLevel(SysTask *param0, void *param1)
         Window_FillTilemap(v1->unk_264, 0);
         Window_ScheduleCopyToVRAM(v1->unk_264);
 
-        v1->unk_268 = ov5_021DE8F8(HEAP_ID_FIELD);
+        v1->unk_268 = ov5_021DE8F8(HEAP_ID_FIELD1);
 
         v0->state++;
         break;
@@ -1656,7 +1656,7 @@ void EncounterEffect_Trainer_Cave_HigherLevel(SysTask *param0, void *param1)
         Window_Remove(v1->unk_264);
         Windows_Delete(v1->unk_264, 1);
 
-        Bg_ClearTilesRange(BG_LAYER_MAIN_3, 32, 0, HEAP_ID_FIELD);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_3, 32, 0, HEAP_ID_FIELD1);
         Bg_ClearTilemap(v0->fieldSystem->bgConfig, 3);
 
         EncounterEffect_Finish(v0, param0);
@@ -1712,7 +1712,7 @@ void EncounterEffect_Frontier(SysTask *param0, void *param1)
 
     switch (v0->state) {
     case 0:
-        v0->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E4260));
+        v0->param = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UnkStruct_ov5_021E4260));
         memset(v0->param, 0, sizeof(UnkStruct_ov5_021E4260));
         v1 = v0->param;
 
@@ -1777,7 +1777,7 @@ void EncounterEffect_Frontier(SysTask *param0, void *param1)
         }
 
         HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_16, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_16, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD1);
         v0->state++;
         break;
 
@@ -1827,7 +1827,7 @@ void EncounterEffect_Double(SysTask *param0, void *param1)
 
     switch (v0->state) {
     case 0:
-        v0->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E44C0));
+        v0->param = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UnkStruct_ov5_021E44C0));
         memset(v0->param, 0, sizeof(UnkStruct_ov5_021E44C0));
         v1 = v0->param;
 
@@ -1901,7 +1901,7 @@ void EncounterEffect_Double(SysTask *param0, void *param1)
     case 5:
 
         HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_34, FADE_TYPE_UNK_0, FADE_TO_BLACK, 8, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_34, FADE_TYPE_UNK_0, FADE_TO_BLACK, 8, 1, HEAP_ID_FIELD1);
         v0->state++;
         break;
 
@@ -1981,7 +1981,7 @@ void EncounterEffect_GalacticGrunt(SysTask *param0, void *param1)
 
     switch (v0->state) {
     case 0:
-        v0->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E4738));
+        v0->param = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UnkStruct_ov5_021E4738));
         memset(v0->param, 0, sizeof(UnkStruct_ov5_021E4738));
         v1 = v0->param;
 
@@ -2061,7 +2061,7 @@ void EncounterEffect_GalacticGrunt(SysTask *param0, void *param1)
 
         HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
 
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_34, FADE_TYPE_UNK_0, FADE_TO_BLACK, 12, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_34, FADE_TYPE_UNK_0, FADE_TO_BLACK, 12, 1, HEAP_ID_FIELD1);
         v0->state++;
         break;
 
@@ -2127,7 +2127,7 @@ void EncounterEffect_GalacticBoss(SysTask *param0, void *param1)
 
     switch (v0->state) {
     case 0:
-        v0->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E4B3C));
+        v0->param = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UnkStruct_ov5_021E4B3C));
         memset(v0->param, 0, sizeof(UnkStruct_ov5_021E4B3C));
         v1 = v0->param;
 
@@ -2143,9 +2143,9 @@ void EncounterEffect_GalacticBoss(SysTask *param0, void *param1)
         Sprite_SetExplicitPriority(v1->unk_1DC, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
-        v1->unk_04 = ov5_021DEBEC(HEAP_ID_FIELD);
+        v1->unk_04 = ov5_021DEBEC(HEAP_ID_FIELD1);
 
-        v1->unk_00 = Window_New(HEAP_ID_FIELD, 1);
+        v1->unk_00 = Window_New(HEAP_ID_FIELD1, 1);
         Window_Add(v0->fieldSystem->bgConfig, v1->unk_00, 3, 0, 0, 32, 32, 0, 0);
 
         {
@@ -2233,7 +2233,7 @@ void EncounterEffect_GalacticBoss(SysTask *param0, void *param1)
         Window_Remove(v1->unk_00);
         Windows_Delete(v1->unk_00, 1);
 
-        Bg_ClearTilesRange(BG_LAYER_MAIN_3, 32, 0, HEAP_ID_FIELD);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_3, 32, 0, HEAP_ID_FIELD1);
         Bg_ClearTilemap(v0->fieldSystem->bgConfig, 3);
 
         G2_SetOBJMosaicSize(0, 0);
@@ -2405,7 +2405,7 @@ void EncounterEffect_Mythical(SysTask *task, void *param)
 
     switch (encEffect->state) {
     case 0:
-        encEffect->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(MythicalEncounterEffect));
+        encEffect->param = Heap_Alloc(HEAP_ID_FIELD1, sizeof(MythicalEncounterEffect));
         memset(encEffect->param, 0, sizeof(MythicalEncounterEffect));
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
@@ -2451,7 +2451,7 @@ void EncounterEffect_Mythical(SysTask *task, void *param)
         break;
 
     case 5:
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_WHITE, 10, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_WHITE, 10, 1, HEAP_ID_FIELD1);
         encEffect->state++;
         break;
 
@@ -2488,7 +2488,7 @@ void EncounterEffect_Legendary(SysTask *task, void *param)
 
     switch (encEffect->state) {
     case 0:
-        encEffect->param = Heap_Alloc(HEAP_ID_FIELD, sizeof(LegendaryEncounterEffect));
+        encEffect->param = Heap_Alloc(HEAP_ID_FIELD1, sizeof(LegendaryEncounterEffect));
         memset(encEffect->param, 0, sizeof(LegendaryEncounterEffect));
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
@@ -2554,7 +2554,7 @@ void EncounterEffect_Legendary(SysTask *task, void *param)
         break;
 
     case 7:
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_WHITE, 60, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_WHITE, 60, 1, HEAP_ID_FIELD1);
         encEffect->state++;
         break;
 
@@ -3063,7 +3063,7 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId he
 
     case 13:
 
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_WHITE, 15, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_WHITE, 15, 1, HEAP_ID_FIELD1);
         encEffect->state++;
         break;
 
@@ -3115,7 +3115,7 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId he
 void EncounterEffect_LeaderRoark(SysTask *task, void *param)
 {
     EncounterEffect *encEffect = param;
-    BOOL done = EncounterEffect_GymLeader(encEffect, HEAP_ID_FIELD, &sGymLeaderEncounterParams[0]);
+    BOOL done = EncounterEffect_GymLeader(encEffect, HEAP_ID_FIELD1, &sGymLeaderEncounterParams[0]);
 
     if (done == TRUE) {
         EncounterEffect_Finish(encEffect, task);
@@ -3125,7 +3125,7 @@ void EncounterEffect_LeaderRoark(SysTask *task, void *param)
 void EncounterEffect_LeaderGardenia(SysTask *task, void *param)
 {
     EncounterEffect *encEffect = param;
-    BOOL done = EncounterEffect_GymLeader(encEffect, HEAP_ID_FIELD, &sGymLeaderEncounterParams[1]);
+    BOOL done = EncounterEffect_GymLeader(encEffect, HEAP_ID_FIELD1, &sGymLeaderEncounterParams[1]);
 
     if (done == TRUE) {
         EncounterEffect_Finish(encEffect, task);
@@ -3135,7 +3135,7 @@ void EncounterEffect_LeaderGardenia(SysTask *task, void *param)
 void EncounterEffect_LeaderWake(SysTask *task, void *param)
 {
     EncounterEffect *encEffect = param;
-    BOOL done = EncounterEffect_GymLeader(encEffect, HEAP_ID_FIELD, &sGymLeaderEncounterParams[2]);
+    BOOL done = EncounterEffect_GymLeader(encEffect, HEAP_ID_FIELD1, &sGymLeaderEncounterParams[2]);
 
     if (done == TRUE) {
         EncounterEffect_Finish(encEffect, task);
@@ -3145,7 +3145,7 @@ void EncounterEffect_LeaderWake(SysTask *task, void *param)
 void EncounterEffect_LeaderMaylene(SysTask *task, void *param)
 {
     EncounterEffect *encEffect = param;
-    BOOL done = EncounterEffect_GymLeader(encEffect, HEAP_ID_FIELD, &sGymLeaderEncounterParams[3]);
+    BOOL done = EncounterEffect_GymLeader(encEffect, HEAP_ID_FIELD1, &sGymLeaderEncounterParams[3]);
 
     if (done == TRUE) {
         EncounterEffect_Finish(encEffect, task);
@@ -3155,7 +3155,7 @@ void EncounterEffect_LeaderMaylene(SysTask *task, void *param)
 void EncounterEffect_LeaderFantina(SysTask *task, void *param)
 {
     EncounterEffect *encEffect = param;
-    BOOL done = EncounterEffect_GymLeader(encEffect, HEAP_ID_FIELD, &sGymLeaderEncounterParams[4]);
+    BOOL done = EncounterEffect_GymLeader(encEffect, HEAP_ID_FIELD1, &sGymLeaderEncounterParams[4]);
 
     if (done == TRUE) {
         EncounterEffect_Finish(encEffect, task);
@@ -3165,7 +3165,7 @@ void EncounterEffect_LeaderFantina(SysTask *task, void *param)
 void EncounterEffect_LeaderCandice(SysTask *task, void *param)
 {
     EncounterEffect *encEffect = param;
-    BOOL done = EncounterEffect_GymLeader(encEffect, HEAP_ID_FIELD, &sGymLeaderEncounterParams[5]);
+    BOOL done = EncounterEffect_GymLeader(encEffect, HEAP_ID_FIELD1, &sGymLeaderEncounterParams[5]);
 
     if (done == TRUE) {
         EncounterEffect_Finish(encEffect, task);
@@ -3175,7 +3175,7 @@ void EncounterEffect_LeaderCandice(SysTask *task, void *param)
 void EncounterEffect_LeaderByron(SysTask *task, void *param)
 {
     EncounterEffect *encEffect = param;
-    BOOL done = EncounterEffect_GymLeader(encEffect, HEAP_ID_FIELD, &sGymLeaderEncounterParams[6]);
+    BOOL done = EncounterEffect_GymLeader(encEffect, HEAP_ID_FIELD1, &sGymLeaderEncounterParams[6]);
 
     if (done == TRUE) {
         EncounterEffect_Finish(encEffect, task);
@@ -3185,7 +3185,7 @@ void EncounterEffect_LeaderByron(SysTask *task, void *param)
 void EncounterEffect_LeaderVolkner(SysTask *task, void *param)
 {
     EncounterEffect *encEffect = param;
-    BOOL done = EncounterEffect_GymLeader(encEffect, HEAP_ID_FIELD, &sGymLeaderEncounterParams[7]);
+    BOOL done = EncounterEffect_GymLeader(encEffect, HEAP_ID_FIELD1, &sGymLeaderEncounterParams[7]);
 
     if (done == TRUE) {
         EncounterEffect_Finish(encEffect, task);
@@ -3506,7 +3506,7 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
             QuadraticInterpolationTaskFX32_Init(&v0->unk_00, 0, (FX32_CONST(192.0f)), (FX32_CONST(24.0f)), 16);
             QuadraticInterpolationTaskFX32_Init(&v0->unk_18, 0, (FX32_CONST(192.0f)), (FX32_CONST(24.0f)), 16);
 
-            StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_WHITE, 8, 1, HEAP_ID_FIELD);
+            StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_WHITE, 8, 1, HEAP_ID_FIELD1);
         }
 
         break;
@@ -3582,7 +3582,7 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
 void EncounterEffect_EliteFourAaron(SysTask *task, void *param)
 {
     EncounterEffect *encEffect = param;
-    BOOL done = EncounterEffect_EliteFourChampion(encEffect, HEAP_ID_FIELD, &sEliteFourChampionEncounterParams[0]);
+    BOOL done = EncounterEffect_EliteFourChampion(encEffect, HEAP_ID_FIELD1, &sEliteFourChampionEncounterParams[0]);
 
     if (done == TRUE) {
         EncounterEffect_Finish(encEffect, task);
@@ -3592,7 +3592,7 @@ void EncounterEffect_EliteFourAaron(SysTask *task, void *param)
 void EncounterEffect_EliteFourBertha(SysTask *task, void *param)
 {
     EncounterEffect *encEffect = param;
-    BOOL done = EncounterEffect_EliteFourChampion(encEffect, HEAP_ID_FIELD, &sEliteFourChampionEncounterParams[1]);
+    BOOL done = EncounterEffect_EliteFourChampion(encEffect, HEAP_ID_FIELD1, &sEliteFourChampionEncounterParams[1]);
 
     if (done == TRUE) {
         EncounterEffect_Finish(encEffect, task);
@@ -3602,7 +3602,7 @@ void EncounterEffect_EliteFourBertha(SysTask *task, void *param)
 void EncounterEffect_EliteFourFlint(SysTask *task, void *param)
 {
     EncounterEffect *encEffect = param;
-    BOOL done = EncounterEffect_EliteFourChampion(encEffect, HEAP_ID_FIELD, &sEliteFourChampionEncounterParams[2]);
+    BOOL done = EncounterEffect_EliteFourChampion(encEffect, HEAP_ID_FIELD1, &sEliteFourChampionEncounterParams[2]);
 
     if (done == TRUE) {
         EncounterEffect_Finish(encEffect, task);
@@ -3612,7 +3612,7 @@ void EncounterEffect_EliteFourFlint(SysTask *task, void *param)
 void EncounterEffect_EliteFourLucian(SysTask *task, void *param)
 {
     EncounterEffect *encEffect = param;
-    BOOL done = EncounterEffect_EliteFourChampion(encEffect, HEAP_ID_FIELD, &sEliteFourChampionEncounterParams[3]);
+    BOOL done = EncounterEffect_EliteFourChampion(encEffect, HEAP_ID_FIELD1, &sEliteFourChampionEncounterParams[3]);
 
     if (done == TRUE) {
         EncounterEffect_Finish(encEffect, task);
@@ -3622,7 +3622,7 @@ void EncounterEffect_EliteFourLucian(SysTask *task, void *param)
 void EncounterEffect_ChampionCynthia(SysTask *task, void *param)
 {
     EncounterEffect *encEffect = param;
-    BOOL done = EncounterEffect_EliteFourChampion(encEffect, HEAP_ID_FIELD, &sEliteFourChampionEncounterParams[4]);
+    BOOL done = EncounterEffect_EliteFourChampion(encEffect, HEAP_ID_FIELD1, &sEliteFourChampionEncounterParams[4]);
 
     if (done == TRUE) {
         EncounterEffect_Finish(encEffect, task);

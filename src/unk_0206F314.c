@@ -900,7 +900,7 @@ static BOOL sub_020702D0(FieldTask *param0)
 void sub_020703FC(FieldTask *param0, u16 param1)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_0206F314 *v1 = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0206F314));
+    UnkStruct_0206F314 *v1 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_0206F314));
 
     v1->unk_00 = 0;
     v1->unk_04 = param1;

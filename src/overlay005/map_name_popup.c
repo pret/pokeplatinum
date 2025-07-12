@@ -72,9 +72,9 @@ static void MapNamePopUp_LoadAreaGfx(MapNamePopUp *mapPopUp, u8 bgLayer, u16 til
     NNSG2dPaletteData *paletteData;
     u8 narcMemberIdx = mapPopUp->windowID * 2;
 
-    mapPopUp->tiles = Graphics_GetCharData(NARC_INDEX_ARC__AREA_WIN_GRA, narcMemberIdx, FALSE, &mapPopUp->unk_34, HEAP_ID_FIELD);
+    mapPopUp->tiles = Graphics_GetCharData(NARC_INDEX_ARC__AREA_WIN_GRA, narcMemberIdx, FALSE, &mapPopUp->unk_34, HEAP_ID_FIELD1);
     Bg_LoadTiles(mapPopUp->bgConfig, bgLayer, mapPopUp->unk_34->pRawData, mapPopUp->unk_34->szByte, tileStart);
-    ptr = Graphics_GetPlttData(NARC_INDEX_ARC__AREA_WIN_GRA, narcMemberIdx + 1, &paletteData, HEAP_ID_FIELD);
+    ptr = Graphics_GetPlttData(NARC_INDEX_ARC__AREA_WIN_GRA, narcMemberIdx + 1, &paletteData, HEAP_ID_FIELD1);
 
     MapNamePopUp_LoadPalette(paletteData->pRawData, 1, offset);
     Heap_Free(ptr);
@@ -227,13 +227,13 @@ static void MapNamePopUp_StartSlideOut(MapNamePopUp *mapPopUp)
 
 MapNamePopUp *MapNamePopUp_Create(BgConfig *bgConfig)
 {
-    MapNamePopUp *mapPopUp = Heap_Alloc(HEAP_ID_FIELD, sizeof(MapNamePopUp));
-    mapPopUp->strbuf = Strbuf_Init(22, HEAP_ID_FIELD);
+    MapNamePopUp *mapPopUp = Heap_Alloc(HEAP_ID_FIELD1, sizeof(MapNamePopUp));
+    mapPopUp->strbuf = Strbuf_Init(22, HEAP_ID_FIELD1);
 
     MapNamePopUp_SetBgConfig(mapPopUp, bgConfig);
     MapNamePopUp_CreateWindow(mapPopUp);
 
-    mapPopUp->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_LOCATION_NAMES, HEAP_ID_FIELD);
+    mapPopUp->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_LOCATION_NAMES, HEAP_ID_FIELD1);
     return mapPopUp;
 }
 

@@ -67,7 +67,7 @@ static void ov5_021E139C(SysTask *param0, void *param1)
         v0->unk_0C++;
 
         if (v0->unk_0C == 20) {
-            StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
+            StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD1);
         } else if ((v0->unk_0C > 20) && IsScreenFadeDone()) {
             *v0->unk_04 = 1;
             Heap_Free(v0);
@@ -109,7 +109,7 @@ static void ov5_021E1470(SysTask *param0, void *param1)
         v0->unk_0C++;
 
         if (v0->unk_0C == 2) {
-            StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
+            StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD1);
         }
 
         if (v0->unk_0C > 20) {
@@ -129,7 +129,7 @@ static void ov5_021E1470(SysTask *param0, void *param1)
 
 void FieldSystem_StartWarpAnimation(FieldSystem *fieldSystem, BOOL param1, BOOL *param2)
 {
-    UnkStruct_ov5_021E135C *v0 = Heap_AllocAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E135C));
+    UnkStruct_ov5_021E135C *v0 = Heap_AllocAtEnd(HEAP_ID_FIELD1, sizeof(UnkStruct_ov5_021E135C));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov5_021E135C));
 

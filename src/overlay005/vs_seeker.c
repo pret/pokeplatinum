@@ -375,7 +375,7 @@ static const MapObjectAnimCmd sVsSeekerAnimSingleExclamationMark[] = {
 void VsSeeker_Start(FieldTask *taskMan, StringTemplate *template, u16 *outResult)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
-    VsSeekerSystem *vsSeeker = Heap_Alloc(HEAP_ID_FIELD, sizeof(VsSeekerSystem));
+    VsSeekerSystem *vsSeeker = Heap_Alloc(HEAP_ID_FIELD1, sizeof(VsSeekerSystem));
 
     if (vsSeeker == NULL) {
         GF_ASSERT(FALSE);
@@ -571,7 +571,7 @@ BOOL VsSeeker_UpdateStepCount(FieldSystem *fieldSystem)
     u16 battery = SystemVars_GetVsSeekerBattery(varsFlags);
     u16 activeStepCount = SystemVars_GetVsSeekerStepCount(varsFlags);
 
-    if (Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), ITEM_VS_SEEKER, 1, HEAP_ID_FIELD) == TRUE
+    if (Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), ITEM_VS_SEEKER, 1, HEAP_ID_FIELD1) == TRUE
         && battery < VS_SEEKER_MAX_BATTERY) {
         battery++;
         SystemVars_SetVsSeekerBattery(varsFlags, battery);
@@ -619,7 +619,7 @@ static void VsSeekerSystem_StartAnimation(VsSeekerSystem *vsSeeker, MapObject *m
 
 static void VsSeekerSystem_StartAnimationTask(VsSeekerSystem *vsSeeker, SysTask *animTask)
 {
-    VsSeekerAnimationTask *vssAnimTask = Heap_Alloc(HEAP_ID_FIELD, sizeof(VsSeekerAnimationTask));
+    VsSeekerAnimationTask *vssAnimTask = Heap_Alloc(HEAP_ID_FIELD1, sizeof(VsSeekerAnimationTask));
     if (vssAnimTask == NULL) {
         GF_ASSERT(FALSE);
         return;
@@ -643,7 +643,7 @@ static void VsSeeker_TrackAnimation(SysTask *task, void *param)
 
         MapObject_FinishAnimation(vssAnimTask->animationTask);
         SysTask_Done(vssAnimTask->trackingTask);
-        Heap_FreeExplicit(HEAP_ID_FIELD, param);
+        Heap_FreeExplicit(HEAP_ID_FIELD1, param);
     }
 }
 

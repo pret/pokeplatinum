@@ -10,7 +10,7 @@
 
 ModelAttributes *ModelAttributes_New(void)
 {
-    ModelAttributes *modelAttrs = Heap_Alloc(HEAP_ID_FIELD, sizeof(ModelAttributes));
+    ModelAttributes *modelAttrs = Heap_Alloc(HEAP_ID_FIELD1, sizeof(ModelAttributes));
     MI_CpuClear32(modelAttrs, sizeof(ModelAttributes));
 
     return modelAttrs;
@@ -18,7 +18,7 @@ ModelAttributes *ModelAttributes_New(void)
 
 void ModelAttributes_Free(ModelAttributes **modelAttrs)
 {
-    Heap_FreeExplicit(HEAP_ID_FIELD, *modelAttrs);
+    Heap_FreeExplicit(HEAP_ID_FIELD1, *modelAttrs);
     *modelAttrs = NULL;
 }
 

@@ -936,7 +936,7 @@ static void ov23_0224BC5C(FieldSystem *fieldSystem, int param1, int param2, int 
     UnkStruct_ov23_0224BA48 *v0 = NULL;
 
     ov23_0224DC08();
-    v0 = Heap_AllocAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_0224BA48));
+    v0 = Heap_AllocAtEnd(HEAP_ID_FIELD1, sizeof(UnkStruct_ov23_0224BA48));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov23_0224BA48));
 
     v0->unk_18 = -1;
@@ -958,7 +958,7 @@ static UnkStruct_ov23_0224BA48 *ov23_0224BCC4(FieldSystem *fieldSystem, int para
     UnkStruct_ov23_0224BA48 *v0 = NULL;
 
     if (fieldSystem->task == NULL) {
-        v0 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov23_0224BA48));
+        v0 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_ov23_0224BA48));
         MI_CpuClear8(v0, sizeof(UnkStruct_ov23_0224BA48));
 
         v0->unk_18 = -1;
@@ -1099,7 +1099,7 @@ static void ov23_0224BE28(SysTask *param0, void *param1)
         break;
     case 6:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            v0->unk_04 = ov23_0224BD90(fieldSystem->bgConfig, &Unk_ov23_0225686C, 1024 - (18 + 12) - 9, 11, HEAP_ID_FIELD);
+            v0->unk_04 = ov23_0224BD90(fieldSystem->bgConfig, &Unk_ov23_0225686C, 1024 - (18 + 12) - 9, 11, HEAP_ID_FIELD1);
             v0->unk_0C = 7;
         }
         break;
@@ -1166,7 +1166,7 @@ static void ov23_0224C090(FieldSystem *fieldSystem, int param1, int param2, int 
 {
     UnkStruct_ov23_0224BA48 *v0 = NULL;
 
-    v0 = Heap_AllocAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_0224BA48));
+    v0 = Heap_AllocAtEnd(HEAP_ID_FIELD1, sizeof(UnkStruct_ov23_0224BA48));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov23_0224BA48));
 
     v0->unk_18 = -1;
@@ -1580,7 +1580,7 @@ static BOOL ov23_0224C790(FieldTask *param0)
         break;
     case 1:
         FinishScreenFade();
-        StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_16, FADE_TYPE_UNK_18, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_16, FADE_TYPE_UNK_18, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD1);
         ov23_0224942C(fieldSystem->unk_6C);
         Sound_PlayEffect(SEQ_SE_DP_KAIDAN2);
         v1->unk_0C++;
@@ -1614,7 +1614,7 @@ static BOOL ov23_0224C790(FieldTask *param0)
     case 6:
         fieldSystem->unk_6C = ov23_02249404(fieldSystem);
         FinishScreenFade();
-        StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_17, FADE_TYPE_UNK_19, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_17, FADE_TYPE_UNK_19, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD1);
         (v1->unk_0C)++;
         break;
     case 7:
@@ -1631,8 +1631,8 @@ static BOOL ov23_0224C790(FieldTask *param0)
         CommSys_EnableSendMovementData();
         sub_020594FC();
 
-        Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, 52, 0, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD);
-        LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
+        Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, 52, 0, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD1);
+        LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD1);
 
         if (v1->unk_2D) {
             sub_020594EC();
@@ -1961,7 +1961,7 @@ static void ov23_0224CEC8(void)
 
     ov23_0224DC08();
 
-    v0 = Heap_AllocAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_0224CB1C));
+    v0 = Heap_AllocAtEnd(HEAP_ID_FIELD1, sizeof(UnkStruct_ov23_0224CB1C));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov23_0224CB1C));
 
     v0->unk_0C = 0;
@@ -2010,7 +2010,7 @@ void ov23_0224CF18(int param0, int param1, void *param2, void *param3)
         }
 
         if (v0->unk_01 == 3 || v0->unk_01 == 4) {
-            void *journalEntryLocationEvent = JournalEntry_CreateEventBuiltSecretBase(HEAP_ID_FIELDMAP);
+            void *journalEntryLocationEvent = JournalEntry_CreateEventBuiltSecretBase(HEAP_ID_FIELD2);
 
             JournalEntry_SaveData(Unk_ov23_022577AC->fieldSystem->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
             GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(Unk_ov23_022577AC->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNDERGROUND_NEW_SECRET_BASE);
@@ -2377,7 +2377,7 @@ static void ov23_0224D5BC(SysTask *param0, void *param1)
         }
         break;
     case 3:
-        StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD1);
         break;
     case 4:
         Heap_Free(param1);
@@ -2405,7 +2405,7 @@ void ov23_0224D6AC(int param0, int param1, void *param2, void *param3)
     SysTask *v2;
 
     if (v1[0] == CommSys_CurNetId()) {
-        UnkStruct_ov23_0224D54C *v3 = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov23_0224D54C));
+        UnkStruct_ov23_0224D54C *v3 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_ov23_0224D54C));
 
         MI_CpuClear8(v3, sizeof(v3));
 

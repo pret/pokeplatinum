@@ -62,14 +62,14 @@ static BOOL ov5_021EA874(UnkStruct_ov5_021EAE78 *param0)
     DWCFriendData *v2 = sub_0202AED8(SaveData_GetWiFiList(param0->saveData), 0);
     DWCFriendData *v3;
 
-    if (0 == sub_020391DC(param0->saveData, param0->unk_4C, HEAP_ID_FIELD)) {
+    if (0 == sub_020391DC(param0->saveData, param0->unk_4C, HEAP_ID_FIELD1)) {
         return 1;
     }
 
     param0->unk_8C = 0;
 
-    LoadMessageBoxGraphics(param0->fieldSystem->bgConfig, 3, (512 - (18 + 12)), 10, Options_Frame(SaveData_GetOptions(param0->saveData)), HEAP_ID_FIELD);
-    LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, HEAP_ID_FIELD);
+    LoadMessageBoxGraphics(param0->fieldSystem->bgConfig, 3, (512 - (18 + 12)), 10, Options_Frame(SaveData_GetOptions(param0->saveData)), HEAP_ID_FIELD1);
+    LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, HEAP_ID_FIELD1);
 
     param0->unk_48 = 1;
     return 0;
@@ -94,7 +94,7 @@ static BOOL ov5_021EA8F0(UnkStruct_ov5_021EAE78 *param0)
         return 1;
     }
 
-    if (Bag_CanRemoveItem(SaveData_GetBag(param0->saveData), ITEM_PAL_PAD, 1, HEAP_ID_FIELD) == TRUE) {
+    if (Bag_CanRemoveItem(SaveData_GetBag(param0->saveData), ITEM_PAL_PAD, 1, HEAP_ID_FIELD1) == TRUE) {
         v1 = CommInfo_TrainerInfo(param0->unk_8C);
         StringTemplate_SetPlayerName(param0->unk_38, 0, v1);
         ov5_021EAE78(param0, 57);
@@ -107,7 +107,7 @@ static BOOL ov5_021EA8F0(UnkStruct_ov5_021EAE78 *param0)
 
         for (v0 = 0; v0 < 32; v0++) {
             if (!sub_0202AF78(v2, v0)) {
-                sub_02039298(param0->saveData, param0->unk_8C, v0, HEAP_ID_FIELD, 0);
+                sub_02039298(param0->saveData, param0->unk_8C, v0, HEAP_ID_FIELD1, 0);
                 break;
             }
         }
@@ -141,7 +141,7 @@ static BOOL ov5_021EA9F8(UnkStruct_ov5_021EAE78 *param0)
     DWCFriendData *v0;
     Strbuf *v1;
     int v2;
-    int v3 = Menu_ProcessInputAndHandleExit(param0->unk_44, HEAP_ID_FIELD);
+    int v3 = Menu_ProcessInputAndHandleExit(param0->unk_44, HEAP_ID_FIELD1);
 
     if (v3 == 0xffffffff) {
         return 0;
@@ -150,7 +150,7 @@ static BOOL ov5_021EA9F8(UnkStruct_ov5_021EAE78 *param0)
 
         for (v2 = 0; v2 < 32; v2++) {
             if (!sub_0202AF78(v4, v2)) {
-                sub_02039298(param0->saveData, param0->unk_8C, v2, HEAP_ID_FIELD, 0);
+                sub_02039298(param0->saveData, param0->unk_8C, v2, HEAP_ID_FIELD1, 0);
                 break;
             }
         }
@@ -257,7 +257,7 @@ static BOOL ov5_021EAB58(UnkStruct_ov5_021EAE78 *param0)
     int v2 = sub_0202AF94(v0);
     int v3 = 5;
 
-    param0->unk_00 = StringList_New(v2 + 1, HEAP_ID_FIELD);
+    param0->unk_00 = StringList_New(v2 + 1, HEAP_ID_FIELD1);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_20, 3, 19, 1, 12, v3 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (10 * (v3 + 2) * 2));
     Window_DrawStandardFrame(&param0->unk_20, 1, 1024 - (18 + 12) - 9, 11);
@@ -285,7 +285,7 @@ static BOOL ov5_021EAB58(UnkStruct_ov5_021EAE78 *param0)
     v1.cursorCallback = ov5_021EAF90;
     v1.parent = param0;
 
-    param0->unk_04 = ListMenu_New(&v1, 0, 0, HEAP_ID_FIELD);
+    param0->unk_04 = ListMenu_New(&v1, 0, 0, HEAP_ID_FIELD1);
     Window_CopyToVRAM(&param0->unk_20);
     param0->unk_48 = 9;
 
@@ -312,7 +312,7 @@ static BOOL ov5_021EAC44(UnkStruct_ov5_021EAE78 *param0)
         param0->unk_90 = v1;
 
         WiFiList *v2 = SaveData_GetWiFiList(param0->saveData);
-        TrainerInfo *v3 = TrainerInfo_New(HEAP_ID_FIELD);
+        TrainerInfo *v3 = TrainerInfo_New(HEAP_ID_FIELD1);
 
         TrainerInfo_SetName(v3, sub_0202AEF0(v2, v1));
         StringTemplate_SetPlayerName(param0->unk_38, 0, v3);
@@ -347,14 +347,14 @@ static BOOL ov5_021EAD38(UnkStruct_ov5_021EAE78 *param0)
     TrainerInfo *v1;
     DWCFriendData *v2;
     Strbuf *v3;
-    int v4 = Menu_ProcessInputAndHandleExit(param0->unk_44, HEAP_ID_FIELD);
+    int v4 = Menu_ProcessInputAndHandleExit(param0->unk_44, HEAP_ID_FIELD1);
 
     if (v4 == 0xffffffff) {
         return 0;
     } else if (v4 == 0) {
         sub_02030788(SaveData_GetBattleFrontier(param0->saveData), param0->unk_90);
         sub_0202AFD4(v0, param0->unk_90);
-        sub_02039298(param0->saveData, param0->unk_8C, 32 - 1, HEAP_ID_FIELD, 0);
+        sub_02039298(param0->saveData, param0->unk_8C, 32 - 1, HEAP_ID_FIELD1, 0);
         param0->unk_48 = 1;
     } else {
         v1 = CommInfo_TrainerInfo(param0->unk_8C);
@@ -440,10 +440,10 @@ static void ov5_021EAEE0(UnkStruct_ov5_021EAE78 *param0)
 {
     MI_CpuClear8(param0, sizeof(UnkStruct_ov5_021EAE78));
 
-    param0->unk_38 = StringTemplate_Default(HEAP_ID_FIELD);
-    param0->unk_3C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0675, HEAP_ID_FIELD);
-    param0->unk_0C = Strbuf_Init(110, HEAP_ID_FIELD);
-    param0->unk_08 = Strbuf_Init(110, HEAP_ID_FIELD);
+    param0->unk_38 = StringTemplate_Default(HEAP_ID_FIELD1);
+    param0->unk_3C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0675, HEAP_ID_FIELD1);
+    param0->unk_0C = Strbuf_Init(110, HEAP_ID_FIELD1);
+    param0->unk_08 = Strbuf_Init(110, HEAP_ID_FIELD1);
 }
 
 static void ov5_021EAF1C(UnkStruct_ov5_021EAE78 *param0)
@@ -463,7 +463,7 @@ void ov5_021EAF50(FieldSystem *fieldSystem)
     UnkStruct_ov5_021EAE78 *v0;
     FieldTask *v1 = fieldSystem->task;
 
-    v0 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov5_021EAE78));
+    v0 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_ov5_021EAE78));
     ov5_021EAEE0(v0);
 
     v0->fieldSystem = fieldSystem;

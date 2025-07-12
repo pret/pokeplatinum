@@ -49,7 +49,7 @@ void ov5_021ECC78(MapObjectManager *param0)
 
 static void ov5_021ECCA4(MapObjectManager *param0)
 {
-    NARC *v0 = NARC_ctor(NARC_INDEX_DATA__MMODEL__MMODEL, HEAP_ID_FIELD);
+    NARC *v0 = NARC_ctor(NARC_INDEX_DATA__MMODEL__MMODEL, HEAP_ID_FIELD1);
     MapObjectMan_SetNARC(param0, v0);
 }
 
@@ -122,9 +122,9 @@ void *ov5_021ECD68(const MapObjectManager *param0, u32 param1, int param2)
     u32 v2 = NARC_GetMemberSize(v1, param1);
 
     if (param2 == 1) {
-        v0 = Heap_Alloc(HEAP_ID_FIELD, v2);
+        v0 = Heap_Alloc(HEAP_ID_FIELD1, v2);
     } else {
-        v0 = Heap_AllocAtEnd(HEAP_ID_FIELD, v2);
+        v0 = Heap_AllocAtEnd(HEAP_ID_FIELD1, v2);
     }
 
     NARC_ReadWholeMember(v1, param1, v0);

@@ -161,7 +161,7 @@ BOOL ScrCmd_2D3(ScriptContext *param0)
 
 static void sub_0204FCF8(FieldTask *param0, u16 param1, u16 param2, u16 *param3)
 {
-    UnkStruct_0204FCF8 *v0 = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0204FCF8));
+    UnkStruct_0204FCF8 *v0 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_0204FCF8));
     memset(v0, 0, sizeof(UnkStruct_0204FCF8));
 
     v0->unk_04[0] = param1;
@@ -210,7 +210,7 @@ static BOOL sub_0204FD38(FieldTask *param0)
 static void sub_0204FDB4(FieldTask *param0, void **param1, u8 param2)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_0204FE50 *v1 = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0204FE50));
+    UnkStruct_0204FE50 *v1 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_0204FE50));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0204FE50));
 
@@ -234,7 +234,7 @@ static BOOL sub_0204FDE8(FieldTask *param0)
         v1->unk_00 = sub_0204FF1C(v1, fieldSystem);
         break;
     case 2:
-        v1->unk_00 = sub_0204FF6C(v1, fieldSystem, HEAP_ID_FIELDMAP);
+        v1->unk_00 = sub_0204FF6C(v1, fieldSystem, HEAP_ID_FIELD2);
         break;
     case 3:
         v1->unk_00 = sub_0204FFF4(v1, fieldSystem);
@@ -250,7 +250,7 @@ static BOOL sub_0204FDE8(FieldTask *param0)
 static int sub_0204FE50(UnkStruct_0204FE50 *param0, FieldSystem *fieldSystem, int param2)
 {
     u8 v0;
-    PartyManagementData *partyMan = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
+    PartyManagementData *partyMan = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyManagementData));
 
     MI_CpuClearFast(partyMan, sizeof(PartyManagementData));
 

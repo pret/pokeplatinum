@@ -77,7 +77,7 @@ static const int sEncounterTableIndexes_P_Unused[] = {
 
 HoneyTreeShakeList *HoneyTree_ShakeDataInit(void)
 {
-    HoneyTreeShakeList *data = Heap_Alloc(HEAP_ID_FIELD, sizeof(HoneyTreeShakeList));
+    HoneyTreeShakeList *data = Heap_Alloc(HEAP_ID_FIELD1, sizeof(HoneyTreeShakeList));
 
     for (u8 i = 0; i < NUM_HONEY_TREES; i++) {
         data->trees[i].shakeValue = 0;
@@ -452,9 +452,9 @@ int HoneyTree_GetSpecies(FieldSystem *fieldSystem)
     HoneyTree *tree = SpecialEncounter_GetHoneyTree(treeId, treeDat);
 
     if ((GAME_VERSION == VERSION_DIAMOND) || (GAME_VERSION == VERSION_PLATINUM)) {
-        narcData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, sEncounterTableIndexes_DPt[tree->encounterTableIndex], HEAP_ID_FIELD);
+        narcData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, sEncounterTableIndexes_DPt[tree->encounterTableIndex], HEAP_ID_FIELD1);
     } else {
-        narcData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, sEncounterTableIndexes_P_Unused[tree->encounterTableIndex], HEAP_ID_FIELD);
+        narcData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, sEncounterTableIndexes_P_Unused[tree->encounterTableIndex], HEAP_ID_FIELD1);
     }
 
     species = narcData[tree->encounterSlot];

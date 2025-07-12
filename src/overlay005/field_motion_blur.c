@@ -20,7 +20,7 @@ FieldMotionBlur *FieldMotionBlur_Start(int coeffA, int coeffB)
 
     GX_ResetBankForBG();
 
-    fieldMotionBlur = Heap_Alloc(HEAP_ID_FIELD, sizeof(FieldMotionBlur));
+    fieldMotionBlur = Heap_Alloc(HEAP_ID_FIELD1, sizeof(FieldMotionBlur));
     MI_CpuClear32(fieldMotionBlur, sizeof(FieldMotionBlur));
 
     {
@@ -52,5 +52,5 @@ void FieldMotionBlur_Stop(FieldMotionBlur **fieldMotionBlur)
     MotionBlur_Delete(&(*fieldMotionBlur)->motionBlur, GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_3D);
     GX_SetBankForBG(GX_VRAM_BG_128_C);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3, 1);
-    Heap_FreeExplicit(HEAP_ID_FIELD, *fieldMotionBlur);
+    Heap_FreeExplicit(HEAP_ID_FIELD1, *fieldMotionBlur);
 }

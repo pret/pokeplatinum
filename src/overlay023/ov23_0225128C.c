@@ -350,7 +350,7 @@ static void ov23_022515D8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
 
     ov23_0224FB7C(param0);
 
-    param0->unk_40 = StringList_New(v1, HEAP_ID_FIELD);
+    param0->unk_40 = StringList_New(v1, HEAP_ID_FIELD1);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, 3, 17, 3, 14, v1 * 2, 13, 2);
     Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
@@ -359,7 +359,7 @@ static void ov23_022515D8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
         MessageLoader *v3;
         int v4 = 0;
 
-        v3 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0639, HEAP_ID_FIELD);
+        v3 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0639, HEAP_ID_FIELD1);
 
         for (v4 = 0; v4 < v1; v4++) {
             if (v4 == (v1 - 1)) {
@@ -385,7 +385,7 @@ static void ov23_022515D8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
 
     v0.parent = param0;
     ov23_02251238(param0, v1, v0.count);
-    param0->unk_48 = ListMenu_New(&v0, param0->unk_294, param0->unk_290, HEAP_ID_FIELD);
+    param0->unk_48 = ListMenu_New(&v0, param0->unk_294, param0->unk_290, HEAP_ID_FIELD1);
 }
 
 static void ov23_022516E8(UnkStruct_ov23_02250CD4 *param0, int param1, int param2, UnkFuncPtr_ov23_022515D8 param3, int param4)
@@ -396,7 +396,7 @@ static void ov23_022516E8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
 
     ov23_0224FB7C(param0);
 
-    param0->unk_40 = StringList_New(v1, HEAP_ID_FIELD);
+    param0->unk_40 = StringList_New(v1, HEAP_ID_FIELD1);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, 3, 17, 3, 14, v1 * 2, 13, (2 + 14 * 16));
     Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
@@ -405,7 +405,7 @@ static void ov23_022516E8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
         MessageLoader *v3;
         int v4 = 0;
 
-        v3 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0639, HEAP_ID_FIELD);
+        v3 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0639, HEAP_ID_FIELD1);
 
         for (v4 = 0; v4 < v1; v4++) {
             if (v4 == param2) {
@@ -431,7 +431,7 @@ static void ov23_022516E8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
 
     v0.parent = param0;
     ov23_02251238(param0, v1, v0.count);
-    param0->unk_48 = ListMenu_New(&v0, param0->unk_294, param0->unk_290, HEAP_ID_FIELD);
+    param0->unk_48 = ListMenu_New(&v0, param0->unk_294, param0->unk_290, HEAP_ID_FIELD1);
 }
 
 static BOOL ov23_022517E0(SysTask *param0, void *param1)
@@ -613,7 +613,7 @@ static BOOL ov23_02251ACC(FieldTask *param0)
     switch (v1->unk_00) {
     case 0:
         Sound_PlayEffect(SEQ_SE_DP_PC_LOGIN);
-        StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD1);
         v1->unk_00 = 1;
         break;
     case 1:
@@ -634,7 +634,7 @@ static BOOL ov23_02251ACC(FieldTask *param0)
     case 4:
         PlayerAvatar_SetHidden(fieldSystem->playerAvatar, 1);
         ov23_02251A84(0, fieldSystem);
-        StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD1);
         v1->unk_00 = 5;
         break;
     case 5:
@@ -781,7 +781,7 @@ static void ov23_02251C04(SysTask *param0, void *param1)
         break;
     case 3:
         if (v0->fieldSystem->task == NULL) {
-            v2 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov23_02251ACC));
+            v2 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_ov23_02251ACC));
             MI_CpuClear8(v2, sizeof(UnkStruct_ov23_02251ACC));
             v2->unk_00 = 0;
             v2->unk_04 = 0;
@@ -836,17 +836,17 @@ static void ov23_02251F94(FieldSystem *fieldSystem)
 
     ov23_022430D0(1);
 
-    v1 = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02250CD4));
+    v1 = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UnkStruct_ov23_02250CD4));
     MI_CpuFill8(v1, 0, sizeof(UnkStruct_ov23_02250CD4));
     v1->fieldSystem = fieldSystem;
 
     ov23_02253DFC(ov23_022421BC(), 639, 1);
 
     v1->unk_2AA = 0;
-    v1->unk_68 = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
-    v1->unk_6C = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
-    v1->unk_70 = StringTemplate_Default(HEAP_ID_FIELD);
-    v1->unk_08 = sub_0206A780(HEAP_ID_FIELD);
+    v1->unk_68 = Strbuf_Init((50 * 2), HEAP_ID_FIELD1);
+    v1->unk_6C = Strbuf_Init((50 * 2), HEAP_ID_FIELD1);
+    v1->unk_70 = StringTemplate_Default(HEAP_ID_FIELD1);
+    v1->unk_08 = sub_0206A780(HEAP_ID_FIELD1);
 
     sub_0206A8A0(v1->unk_08, 200, 20, 122);
     sub_0206A8C4(v1->unk_08, 0, 0);
@@ -906,7 +906,7 @@ static void ov23_022520C8(SysTask *param0, void *param1)
 
 static void ov23_022520E8(FieldSystem *fieldSystem, UnkStruct_ov23_022513B0 *param1)
 {
-    UnkStruct_ov23_02252038 *v0 = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02250CD4));
+    UnkStruct_ov23_02252038 *v0 = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UnkStruct_ov23_02250CD4));
 
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_02252038));
 

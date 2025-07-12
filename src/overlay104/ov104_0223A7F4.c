@@ -323,7 +323,7 @@ void ov104_0223AB0C(u8 param0, u16 param1, u8 param2, FrontierPokemonDataDTO *pa
     }
 
     ov104_0223A918(v3, v4, param8, param0, param4, 11, v2, 0, param6);
-    ov104_0222E330(param5, param4, param6, NULL, param7, param0, HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
+    ov104_0222E330(param5, param4, param6, NULL, param7, param0, HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
 
     return;
 }
@@ -343,14 +343,14 @@ FieldBattleDTO *ov104_0223ABA0(UnkStruct_ov104_0223ADA0 *param0, UnkStruct_ov104
     Party_HealAllMembers(param0->unk_4D4);
     Party_HealAllMembers(param0->unk_4D8);
 
-    v4 = FieldBattleDTO_New(HEAP_ID_FIELDMAP, ov104_0223AD74(param0->unk_04));
+    v4 = FieldBattleDTO_New(HEAP_ID_FIELD2, ov104_0223AD74(param0->unk_04));
     FieldBattleDTO_InitFromGameState(v4, NULL, param1->saveData, param1->unk_1C, param1->journalEntry, param1->bagCursor, param1->unk_20);
 
     v4->background = BACKGROUND_BATTLE_FACTORY;
     v4->terrain = TERRAIN_BATTLE_FACTORY;
 
     Party_InitWithCapacity(v4->parties[0], v2);
-    v5 = Pokemon_New(HEAP_ID_FIELDMAP);
+    v5 = Pokemon_New(HEAP_ID_FIELD2);
 
     for (v0 = 0; v0 < v2; v0++) {
         Pokemon_Copy(Party_GetPokemonBySlotIndex(param0->unk_4D4, v0), v5);
@@ -360,7 +360,7 @@ FieldBattleDTO *ov104_0223ABA0(UnkStruct_ov104_0223ADA0 *param0, UnkStruct_ov104
     Heap_Free(v5);
     FieldBattleDTO_CopyPlayerInfoToTrainerData(v4);
 
-    Heap_Free(ov104_0222DD04(&v6, param0->unk_18[param0->unk_06], HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+    Heap_Free(ov104_0222DD04(&v6, param0->unk_18[param0->unk_06], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
 
     ov104_0222E284(v4, &v6, v3, 1, 11);
     Party_InitWithCapacity(v4->parties[1], ov104_0223AA74(param0->unk_04, 0));
@@ -369,7 +369,7 @@ FieldBattleDTO *ov104_0223ABA0(UnkStruct_ov104_0223ADA0 *param0, UnkStruct_ov104
         v4->trainer[v0].header.aiMask = ov104_0223AEE4(param0);
     }
 
-    v5 = Pokemon_New(HEAP_ID_FIELDMAP);
+    v5 = Pokemon_New(HEAP_ID_FIELD2);
 
     for (v0 = 0; v0 < v3; v0++) {
         Pokemon_Copy(Party_GetPokemonBySlotIndex(param0->unk_4D8, v0), v5);
@@ -385,12 +385,12 @@ FieldBattleDTO *ov104_0223ABA0(UnkStruct_ov104_0223ADA0 *param0, UnkStruct_ov104
 
         TrainerInfo_Copy(CommInfo_TrainerInfo(1 - CommSys_CurNetId()), v4->trainerInfo[2]);
 
-        Heap_Free(ov104_0222DD04(&v6, param0->unk_18[param0->unk_06 + 7], HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+        Heap_Free(ov104_0222DD04(&v6, param0->unk_18[param0->unk_06 + 7], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
 
         ov104_0222E284(v4, &v6, v3, 3, 11);
         Party_InitWithCapacity(v4->parties[3], ov104_0223AA74(param0->unk_04, 0));
 
-        v5 = Pokemon_New(HEAP_ID_FIELDMAP);
+        v5 = Pokemon_New(HEAP_ID_FIELD2);
 
         for (v0 = 0; v0 < v3; v0++) {
             Pokemon_Copy(Party_GetPokemonBySlotIndex(param0->unk_4D8, (v3 + v0)), v5);
@@ -437,7 +437,7 @@ void ov104_0223ADB0(UnkStruct_ov104_0223ADA0 *param0)
     ov104_0222E330(param0->unk_280, param0->unk_254, param0->unk_260, param0->unk_268, NULL, 6, 11, 179);
     Party_Init(param0->unk_4D4);
 
-    v1 = Pokemon_New(HEAP_ID_FIELDMAP);
+    v1 = Pokemon_New(HEAP_ID_FIELD2);
 
     for (v0 = 0; v0 < 6; v0++) {
         ov104_0222DF40(&param0->unk_280[v0], v1, ov104_0223ADA0(param0));
@@ -463,7 +463,7 @@ void ov104_0223AE30(UnkStruct_ov104_0223ADA0 *param0)
 
     ov104_0222E330(v3, param0->unk_584, param0->unk_590, param0->unk_598, NULL, 2, 11, 179);
 
-    v2 = Pokemon_New(HEAP_ID_FIELDMAP);
+    v2 = Pokemon_New(HEAP_ID_FIELD2);
 
     for (v0 = 0; v0 < 2; v0++) {
         ov104_0222DF40(&v3[v0], v2, ov104_0223ADA0(param0));

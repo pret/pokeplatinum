@@ -143,9 +143,9 @@ static void CommManUnderground_Init(CommManUnderground *param0, FieldSystem *fie
     sCommManUnderground->unk_124 = ov23_02253D48(TEXT_BANK_UNDERGROUND_DECORATE_BASE, HEAP_ID_33, fieldSystem->bgConfig, v0, 0);
     sCommManUnderground->unk_128 = ov23_02253D48(TEXT_BANK_UNDERGROUND_TRAP_NAMES, HEAP_ID_33, fieldSystem->bgConfig, v0, 0);
 
-    LoadMessageBoxGraphics(sCommManUnderground->fieldSystem->bgConfig, 3, (1024 - (18 + 12)), 10, 0, HEAP_ID_FIELD);
-    Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, 52, 0, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD);
-    LoadStandardWindowGraphics(sCommManUnderground->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
+    LoadMessageBoxGraphics(sCommManUnderground->fieldSystem->bgConfig, 3, (1024 - (18 + 12)), 10, 0, HEAP_ID_FIELD1);
+    Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, 52, 0, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD1);
+    LoadStandardWindowGraphics(sCommManUnderground->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD1);
 
     for (i = 0; i < (7 + 1); i++) {
         sCommManUnderground->unk_C2[i] = 0xff;
@@ -222,8 +222,8 @@ BOOL ov23_0224223C(TrainerInfo *param0, TrainerInfo *param1, int param2, Strbuf 
     Strbuf *v1;
 
     if (param0 && param1) {
-        v0 = StringTemplate_Default(HEAP_ID_FIELD);
-        v1 = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
+        v0 = StringTemplate_Default(HEAP_ID_FIELD1);
+        v1 = Strbuf_Init((50 * 2), HEAP_ID_FIELD1);
 
         StringTemplate_SetPlayerName(v0, 0, param0);
         StringTemplate_SetPlayerName(v0, 1, param1);
@@ -244,8 +244,8 @@ BOOL ov23_022422A8(TrainerInfo *param0, int param1, int param2, Strbuf *param3)
     Strbuf *v1;
 
     if (param0) {
-        v0 = StringTemplate_Default(HEAP_ID_FIELD);
-        v1 = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
+        v0 = StringTemplate_Default(HEAP_ID_FIELD1);
+        v1 = Strbuf_Init((50 * 2), HEAP_ID_FIELD1);
 
         StringTemplate_SetPlayerName(v0, param1, param0);
         MessageLoader_GetStrbuf(ov23_02253E3C(ov23_0224219C()), param2, v1);
@@ -817,7 +817,7 @@ void ov23_02242CB4(void)
         ov23_022435A8();
         ov23_0223E2F4();
         sCommManUnderground->unk_14B = 0;
-        LoadMessageBoxGraphics(sCommManUnderground->fieldSystem->bgConfig, 3, (1024 - (18 + 12)), 10, 0, HEAP_ID_FIELD);
+        LoadMessageBoxGraphics(sCommManUnderground->fieldSystem->bgConfig, 3, (1024 - (18 + 12)), 10, 0, HEAP_ID_FIELD1);
     }
 }
 
@@ -1052,8 +1052,8 @@ void UndergroundMan_SetReturnLog(int param0)
         if (sCommManUnderground->unk_DC[param0] == NULL) {
             sCommManUnderground->unk_DC[param0] = Strbuf_Init((50 * 2), HEAP_ID_COMMUNICATION);
 
-            v0 = StringTemplate_Default(HEAP_ID_FIELDMAP);
-            v1 = Strbuf_Init((50 * 2), HEAP_ID_FIELDMAP);
+            v0 = StringTemplate_Default(HEAP_ID_FIELD2);
+            v1 = Strbuf_Init((50 * 2), HEAP_ID_FIELD2);
 
             StringTemplate_SetPlayerName(v0, 0, CommInfo_TrainerInfo(param0));
             MessageLoader_GetStrbuf(ov23_02253E3C(ov23_0224219C()), 115, v1);

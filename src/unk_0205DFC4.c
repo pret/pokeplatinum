@@ -314,7 +314,7 @@ static BOOL sub_0205E268(FieldTask *param0)
 void sub_0205E318(FieldTask *param0, MapObject *param1, u16 param2, u16 param3, u16 param4, u16 param5)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_0205E268 *v1 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0205E268));
+    UnkStruct_0205E268 *v1 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_0205E268));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0205E268));
 
@@ -350,7 +350,7 @@ static BOOL sub_0205E3AC(FieldTask *param0)
 void sub_0205E3F4(FieldTask *param0, MapObject *param1, u16 param2, u16 param3)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_0205E3AC *v1 = Heap_AllocAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0205E3AC));
+    UnkStruct_0205E3AC *v1 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_0205E3AC));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0205E3AC));
 

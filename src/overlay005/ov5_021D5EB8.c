@@ -371,7 +371,7 @@ static void ov5_021DB588(fx32 param0, int param1, int param2, int param3, int *p
 
 UnkStruct_ov5_021D5EF8 *ov5_021D5EB8(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov5_021D5EF8 *v0 = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021D5EF8));
+    UnkStruct_ov5_021D5EF8 *v0 = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UnkStruct_ov5_021D5EF8));
     memset(v0, 0, sizeof(UnkStruct_ov5_021D5EF8));
 
     v0->unk_00 = ov5_021D6364(fieldSystem);
@@ -778,11 +778,11 @@ static void ov5_021D61D0(UnkStruct_ov5_021D61D0 *param0)
     RenderOam_InitSurface(&param0->unk_C0, &v0, NNS_G2D_SURFACETYPE_MAIN2D, &param0->unk_14);
 
     for (v1 = 0; v1 < 4; v1++) {
-        param0->unk_00[v1] = SpriteResourceCollection_New(31, v1, HEAP_ID_FIELD);
+        param0->unk_00[v1] = SpriteResourceCollection_New(31, v1, HEAP_ID_FIELD1);
     }
 
     v2 = SpriteResourceTable_Size();
-    param0->unk_10 = Heap_Alloc(HEAP_ID_FIELD, v2 * 4);
+    param0->unk_10 = Heap_Alloc(HEAP_ID_FIELD1, v2 * 4);
 
     ov5_021D6290(param0->unk_10, 0, 63);
     ov5_021D6290(param0->unk_10, 1, 64);
@@ -794,7 +794,7 @@ static void ov5_021D61D0(UnkStruct_ov5_021D61D0 *param0)
 
         v3.maxElements = 96;
         v3.renderer = &param0->unk_14;
-        v3.heapID = HEAP_ID_FIELD;
+        v3.heapID = HEAP_ID_FIELD1;
 
         param0->unk_130 = SpriteList_New(&v3);
         param0->unk_134 = SysTask_Start(ov5_021D6284, param0, 10);
@@ -810,9 +810,9 @@ static void ov5_021D6284(SysTask *param0, void *param1)
 static void ov5_021D6290(SpriteResourceTable *param0, int param1, int param2)
 {
     SpriteResourceTable *v0 = SpriteResourceTable_GetArrayElement(param0, param1);
-    void *v1 = LoadMemberFromNARC(NARC_INDEX_DATA__WEATHER_SYS, param2, 0, HEAP_ID_FIELD, 1);
+    void *v1 = LoadMemberFromNARC(NARC_INDEX_DATA__WEATHER_SYS, param2, 0, HEAP_ID_FIELD1, 1);
 
-    SpriteResourceTable_LoadFromBinary(v1, v0, HEAP_ID_FIELD);
+    SpriteResourceTable_LoadFromBinary(v1, v0, HEAP_ID_FIELD1);
     Heap_Free(v1);
 }
 
@@ -861,14 +861,14 @@ static void ov5_021D630C(Sprite *param0, VecFx32 *param1)
 
 UnkStruct_ov5_021D6594 *ov5_021D6364(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov5_021D6594 *v0 = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021D6594));
+    UnkStruct_ov5_021D6594 *v0 = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UnkStruct_ov5_021D6594));
     v0->fieldSystem = fieldSystem;
 
     ov5_021D61D0(&v0->unk_08);
 
     v0->unk_00 = Unk_ov5_02201D78;
     v0->unk_04 = Unk_ov5_021F8D90;
-    v0->unk_144 = NARC_ctor(NARC_INDEX_DATA__WEATHER_SYS, HEAP_ID_FIELD);
+    v0->unk_144 = NARC_ctor(NARC_INDEX_DATA__WEATHER_SYS, HEAP_ID_FIELD1);
 
     return v0;
 }
@@ -890,7 +890,7 @@ void ov5_021D63A4(UnkStruct_ov5_021D6594 **param0)
         ov5_021D62BC(&(*param0)->unk_08);
 
         NARC_dtor((*param0)->unk_144);
-        Heap_FreeExplicit(HEAP_ID_FIELD, *param0);
+        Heap_FreeExplicit(HEAP_ID_FIELD1, *param0);
 
         *param0 = NULL;
     }
@@ -1046,10 +1046,10 @@ static SpriteResource *ov5_021D65C0(SpriteResourceTable *param0, int param1, int
         v1 = SpriteResourceCollection_AddPaletteFromEx(param3, param4, v2, v3, v6, v4, v5, 4, param5);
         break;
     case 2:
-        v1 = SpriteResourceCollection_AddFrom(param3, param4, v2, v3, v6, 2, HEAP_ID_FIELD);
+        v1 = SpriteResourceCollection_AddFrom(param3, param4, v2, v3, v6, 2, HEAP_ID_FIELD1);
         break;
     case 3:
-        v1 = SpriteResourceCollection_AddFrom(param3, param4, v2, v3, v6, 3, HEAP_ID_FIELD);
+        v1 = SpriteResourceCollection_AddFrom(param3, param4, v2, v3, v6, 3, HEAP_ID_FIELD1);
         break;
     }
 
@@ -1164,7 +1164,7 @@ static BOOL ov5_021D676C(UnkStruct_ov5_021D6594 *param0, int param1, int param2,
     v0->unk_08->unk_B8C = *(NNS_G3dGlbGetCameraTarget());
 
     if (v0->unk_04 > 0) {
-        v0->unk_08->unk_B98 = Heap_Alloc(HEAP_ID_FIELD, v0->unk_04);
+        v0->unk_08->unk_B98 = Heap_Alloc(HEAP_ID_FIELD1, v0->unk_04);
         memset(v0->unk_08->unk_B98, 0, v0->unk_04);
     } else {
         v0->unk_08->unk_B98 = NULL;
@@ -1214,7 +1214,7 @@ static void ov5_021D68B8(UnkStruct_ov5_021D6594 *param0, int param1)
 
     if (v0->unk_0C != NULL) {
         ov5_021D6690(param0, v0->unk_00, v0->unk_0C);
-        Heap_FreeExplicit(HEAP_ID_FIELD, v0->unk_0C);
+        Heap_FreeExplicit(HEAP_ID_FIELD1, v0->unk_0C);
         v0->unk_0C = NULL;
 
         if (v0->unk_14 != NULL) {
@@ -1235,7 +1235,7 @@ static void ov5_021D68B8(UnkStruct_ov5_021D6594 *param0, int param1)
         }
 
         if (v0->unk_08->unk_B98 != NULL) {
-            Heap_FreeExplicit(HEAP_ID_FIELD, v0->unk_08->unk_B98);
+            Heap_FreeExplicit(HEAP_ID_FIELD1, v0->unk_08->unk_B98);
             v0->unk_08->unk_B98 = NULL;
         }
 
@@ -1249,7 +1249,7 @@ static void ov5_021D68B8(UnkStruct_ov5_021D6594 *param0, int param1)
             }
         }
 
-        Heap_FreeExplicit(HEAP_ID_FIELD, v0->unk_08);
+        Heap_FreeExplicit(HEAP_ID_FIELD1, v0->unk_08);
         v0->unk_08 = NULL;
     }
 
@@ -1369,7 +1369,7 @@ static BOOL ov5_021D6B60(UnkStruct_ov5_021D6594 *param0, UnkStruct_ov5_021D69B8 
         return 1;
     }
 
-    param1->unk_08 = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021DB4B8));
+    param1->unk_08 = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UnkStruct_ov5_021DB4B8));
 
     if (param1->unk_08 == NULL) {
         return 0;
@@ -1395,7 +1395,7 @@ static BOOL ov5_021D6BC4(UnkStruct_ov5_021D69B8 *param0)
             return 1;
         }
 
-        param0->unk_0C = Heap_Alloc(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021D6690));
+        param0->unk_0C = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UnkStruct_ov5_021D6690));
 
         if (param0->unk_0C == NULL) {
             return 0;
@@ -5359,8 +5359,8 @@ static void ov5_021DB614(UnkStruct_ov5_021DB614 *param0, HBlankSystem *param1)
 
     memset(param0, 0, sizeof(UnkStruct_ov5_021DB614));
 
-    param0->bufferManagers[0] = BufferManager_New(HEAP_ID_FIELD, param0->unk_2C[0], param0->unk_2C[1]);
-    param0->bufferManagers[1] = BufferManager_New(HEAP_ID_FIELD, param0->unk_2C[2], param0->unk_2C[3]);
+    param0->bufferManagers[0] = BufferManager_New(HEAP_ID_FIELD1, param0->unk_2C[0], param0->unk_2C[1]);
+    param0->bufferManagers[1] = BufferManager_New(HEAP_ID_FIELD1, param0->unk_2C[2], param0->unk_2C[3]);
 
     for (v0 = 0; v0 < 192; v0++) {
         param0->unk_2C[2][v0] = 255;

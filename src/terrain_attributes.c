@@ -17,7 +17,7 @@ static const u8 TerrainAttributes_GetOrPushLandDataID(const u16 landDataID, u16 
 void TerrainAttributes_New(FieldSystem *fieldSystem, const u8 blockCount)
 {
     if (fieldSystem->terrainAttributes == NULL) {
-        fieldSystem->terrainAttributes = Heap_Alloc(HEAP_ID_FIELDMAP, sizeof(TerrainAttributes));
+        fieldSystem->terrainAttributes = Heap_Alloc(HEAP_ID_FIELD2, sizeof(TerrainAttributes));
 
         TerrainAttributes_Load(fieldSystem->mapMatrix, fieldSystem->terrainAttributes, blockCount);
     }
@@ -58,7 +58,7 @@ static void TerrainAttributes_Load(MapMatrix *mapMatrix, TerrainAttributes *terr
         }
     }
 
-    NARC *landDataNARC = NARC_ctor(NARC_INDEX_FIELDDATA__LAND_DATA__LAND_DATA, HEAP_ID_FIELDMAP);
+    NARC *landDataNARC = NARC_ctor(NARC_INDEX_FIELDDATA__LAND_DATA__LAND_DATA, HEAP_ID_FIELD2);
 
     for (i = 0; i < blockCount; i++) {
         landDataID = blockIndexToLandDataID[i];
