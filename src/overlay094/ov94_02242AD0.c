@@ -656,7 +656,7 @@ static int ov94_022431F0(UnkStruct_ov94_0223FD4C *param0)
             ov94_02243E2C(param0->unk_00->wiFiHistory, &param0->unk_A4C);
             GameRecords_IncrementTrainerScore(param0->unk_00->records, TRAINER_SCORE_EVENT_UNK_25);
             ov94_02243E48(param0->unk_00->unk_2C, &param0->unk_A4C);
-            GameRecords_IncrementRecordValue(param0->unk_00->records, RECORD_UNK_024);
+            GameRecords_IncrementRecordValue(param0->unk_00->records, RECORD_WIFI_TRADES);
             sub_0206D104(SaveData_GetTVBroadcast(param0->unk_00->saveData));
             break;
         case -5:
@@ -929,7 +929,7 @@ static int ov94_02243658(UnkStruct_ov94_0223FD4C *param0)
 
     GameRecords_IncrementTrainerScore(param0->unk_00->records, TRAINER_SCORE_EVENT_UNK_25);
     ov94_02243E48(param0->unk_00->unk_2C, &param0->unk_12C);
-    GameRecords_IncrementRecordValue(param0->unk_00->records, RECORD_UNK_024);
+    GameRecords_IncrementRecordValue(param0->unk_00->records, RECORD_WIFI_TRADES);
 
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(param0->unk_00->saveData);
     sub_0206D104(broadcast);

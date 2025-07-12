@@ -9,7 +9,6 @@
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
-#include "struct_decls/struct_0202C834_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/choose_starter_data.h"
@@ -31,7 +30,6 @@
 #include "struct_defs/struct_02042434.h"
 #include "struct_defs/struct_020684D0.h"
 #include "struct_defs/struct_0206BC70.h"
-#include "struct_defs/struct_02072014.h"
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02097728.h"
 #include "struct_defs/struct_02098C44.h"
@@ -112,10 +110,11 @@
 #include "system_data.h"
 #include "system_flags.h"
 #include "system_vars.h"
+#include "trainer_card.h"
+#include "trainer_card_save_data.h"
 #include "trainer_info.h"
 #include "unk_02017498.h"
 #include "unk_020298BC.h"
-#include "unk_0202C7FC.h"
 #include "unk_0202C858.h"
 #include "unk_0202D05C.h"
 #include "unk_0202D778.h"
@@ -1312,7 +1311,7 @@ void FieldSystem_LaunchChooseStarterApp(FieldSystem *fieldSystem, ChooseStarterD
 
 void sub_0203E0D0(FieldSystem *fieldSystem)
 {
-    UnkStruct_0202C834 *v0 = sub_0202C834(fieldSystem->saveData);
+    TrainerCardSaveData *v0 = SaveData_GetTrainerCardSaveData(fieldSystem->saveData);
 
     FS_EXTERN_OVERLAY(overlay72);
 

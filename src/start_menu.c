@@ -19,7 +19,6 @@
 #include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_02068630.h"
 #include "struct_defs/struct_020708E0.h"
-#include "struct_defs/struct_02072014.h"
 #include "struct_defs/struct_02097728.h"
 #include "struct_defs/struct_02098C44.h"
 
@@ -71,6 +70,7 @@
 #include "system_flags.h"
 #include "system_vars.h"
 #include "text.h"
+#include "trainer_card.h"
 #include "trainer_info.h"
 #include "unk_02014A84.h"
 #include "unk_0202D778.h"
@@ -85,7 +85,6 @@
 #include "unk_020683F4.h"
 #include "unk_0206B9D8.h"
 #include "unk_0207064C.h"
-#include "unk_02071D40.h"
 #include "unk_0207AE68.h"
 #include "unk_0207CB08.h"
 #include "unk_020972FC.h"
@@ -1355,9 +1354,9 @@ static BOOL StartMenu_TrainerCard(FieldTask *taskMan)
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     StartMenu *menu = FieldTask_GetEnv(taskMan);
 
-    menu->taskData = sub_02071F04(HEAP_ID_FIELDMAP);
+    menu->taskData = TrainerCard_New(HEAP_ID_FIELDMAP);
 
-    sub_02071D40(1, 1, 0, 0xff, fieldSystem, (TrainerCard *)menu->taskData);
+    TrainerCard_Init(1, 1, 0, 0xff, fieldSystem, (TrainerCard *)menu->taskData);
     sub_0203E09C(fieldSystem, (TrainerCard *)menu->taskData);
 
     menu->callback = sub_0203BF00;
@@ -1370,7 +1369,7 @@ static BOOL sub_0203BF00(FieldTask *taskMan)
     StartMenu *menu = FieldTask_GetEnv(taskMan);
 
     sub_020721D4(fieldSystem, (TrainerCard *)menu->taskData);
-    sub_02071F20((TrainerCard *)menu->taskData);
+    TrainerCard_Free((TrainerCard *)menu->taskData);
     FieldSystem_StartFieldMap(fieldSystem);
 
     menu->state = START_MENU_STATE_12;

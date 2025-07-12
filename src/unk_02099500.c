@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_defs/struct_02039A58.h"
-#include "struct_defs/struct_02072014.h"
 
 #include "overlay023/ov23_0223E140.h"
 #include "overlay023/ov23_022416A8.h"
@@ -18,6 +17,7 @@
 
 #include "comm_player_manager.h"
 #include "field_comm_manager.h"
+#include "trainer_card.h"
 #include "trainer_info.h"
 #include "unk_02032798.h"
 #include "unk_0204FA34.h"

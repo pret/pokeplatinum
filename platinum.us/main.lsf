@@ -125,7 +125,7 @@ Static main
 	Object main.nef.p/src_record_mixed_rng.c.o
 	Object main.nef.p/src_coins.c.o
 	Object main.nef.p/src_journal.c.o
-	Object main.nef.p/src_unk_0202C7FC.c.o
+	Object main.nef.p/src_trainer_card_save_data.c.o
 	Object main.nef.p/src_unk_0202C858.c.o
 	Object main.nef.p/src_unk_0202C9F4.c.o
 	Object main.nef.p/src_play_time.c.o
@@ -283,7 +283,7 @@ Static main
 	Object main.nef.p/src_platform_lift.c.o
 	Object main.nef.p/src_persisted_map_features_init.c.o
 	Object main.nef.p/src_map_header_util.c.o
-	Object main.nef.p/src_unk_02071D40.c.o
+	Object main.nef.p/src_trainer_card.c.o
 	Object main.nef.p/src_unk_020722AC.c.o
 	Object main.nef.p/src_unk_02073700.c.o
 	Object main.nef.p/src_unk_02073838.c.o
@@ -1248,7 +1248,7 @@ Overlay overlay71
 {
 	After overlay12
 	Object main.nef.p/src_overlay071_ov71_0223B140.c.o
-	Object main.nef.p/src_overlay071_ov71_0223C69C.c.o
+	Object main.nef.p/src_overlay071_trainer_card_display_text.c.o
 	Object main.nef.p/src_overlay071_ov71_0223CF0C.c.o
 	Object main.nef.p/src_overlay071_ov71_0223D324.c.o
 }
