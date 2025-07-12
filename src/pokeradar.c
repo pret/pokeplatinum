@@ -262,7 +262,7 @@ const BOOL sub_02069798(const RadarChain *chain)
     return chain->unk_18;
 }
 
-void sub_0206979C(FieldSystem *fieldSystem)
+void PokeRadar_ClearIfAllOutOfView(FieldSystem *fieldSystem)
 {
     BOOL patchInView;
     GrassPatch *patch;
