@@ -206,7 +206,7 @@ int GTSApplication_Exit(ApplicationManager *appMan, int *unused1)
 {
     GTSApplicationState *appState = ApplicationManager_Data(appMan);
 
-    Heap_FreeToHeap(appState->dwcHeapPointer);
+    Heap_Free(appState->dwcHeapPointer);
     Overlay_UnloadHttpOverlay();
     sub_02099560();
 
@@ -222,8 +222,8 @@ int GTSApplication_Exit(ApplicationManager *appMan, int *unused1)
     GTSApplication_Noop(appState);
 
     WirelessDriver_Shutdown();
-    Heap_FreeToHeap(appState->bgConfig);
-    Heap_FreeToHeap(appState->playerData);
+    Heap_Free(appState->bgConfig);
+    Heap_Free(appState->playerData);
     ApplicationManager_FreeData(appMan);
     SetVBlankCallback(NULL, NULL);
     Heap_Destroy(HEAP_ID_62);
@@ -359,7 +359,7 @@ static void GTSApplication_InitGraphics(GTSApplicationState *appState)
         DC_FlushRange(paletteData->pRawData, (3 * 16) * 2);
         GX_LoadOBJPltt(paletteData->pRawData, (3 + 3) * 0x20, (3 * 16) * 2);
 
-        Heap_FreeToHeap(palettePointer);
+        Heap_Free(palettePointer);
     }
 
     NARC_dtor(narc);

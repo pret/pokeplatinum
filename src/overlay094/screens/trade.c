@@ -130,7 +130,7 @@ int GTSApplication_Trade_Main(GTSApplicationState *appState, int unused1)
                     loopState = GTS_APPLICATION_LOOP_STATE_FINISH;
                 }
 
-                Heap_FreeToHeap(storedPokemon);
+                Heap_Free(storedPokemon);
             } else {
                 GTSApplication_SetNextScreenWithArgument(appState, 1, 0);
                 loopState = GTS_APPLICATION_LOOP_STATE_FINISH;
@@ -153,8 +153,8 @@ int GTSApplication_Trade_Main(GTSApplicationState *appState, int unused1)
 
 int GTSApplication_Trade_Exit(GTSApplicationState *appState, int unused1)
 {
-    Heap_FreeToHeap(appState->tradeTempPokemon);
-    Heap_FreeToHeap(appState->receivingPokemonTrainer);
+    Heap_Free(appState->tradeTempPokemon);
+    Heap_Free(appState->receivingPokemonTrainer);
     GTSApplication_MoveToNextScreen(appState);
 
     return GTS_APPLICATION_LOOP_STATE_INIT;

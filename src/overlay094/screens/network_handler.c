@@ -798,7 +798,7 @@ static int GTSApplication_NetworkHandler_GetListingStatusResponse(GTSApplication
                 GTSApplication_NetworkHandler_StorePokemonFromDepositing(appState, tempPokemon, GlobalTrade_GetUnusedInt(appState->playerData->globalTrade), 0);
 
                 GlobalTrade_SetPokemonListed(appState->playerData->globalTrade, 0);
-                Heap_FreeToHeap(tempPokemon);
+                Heap_Free(tempPokemon);
             } else {
                 GTSApplication_NetworkHandler_ReturnToPreviousScreen(appState);
             }
@@ -816,7 +816,7 @@ static int GTSApplication_NetworkHandler_GetListingStatusResponse(GTSApplication
                 appState->currentScreenInstruction = 34;
 
                 GlobalTrade_SetPokemonListed(appState->playerData->globalTrade, 0);
-                Heap_FreeToHeap(tempPokemon);
+                Heap_Free(tempPokemon);
             }
             break;
         case -12:
@@ -1240,7 +1240,7 @@ static void ov94_02243B08(GTSApplicationState *param0, int param1)
         Pokemon_FromBoxPokemon(PCBoxes_GetBoxMonAt(param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112), v0);
         sub_0202DA7C(param0->playerData->globalTrade, v0, param0->selectedBoxId);
         PCBoxes_InitBoxMonAt(param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     } else {
         Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->playerData->party, param0->unk_112);
 
@@ -1390,7 +1390,7 @@ static void GTS_LogTradeInJournal(JournalEntry *journalEntry, GTSPokemonListing 
 
 static int GTSApplication_NetworkHandler_HaveSpaceForPokemon(GTSApplicationState *param0, GTSPokemonListing *listing)
 {
-    if (Pokemon_HeldItemIsMail((Pokemon *)listing->pokemon.bytes)
+    if (Pokemon_IsHoldingMail((Pokemon *)listing->pokemon.bytes)
         && (Party_GetCurrentCount(param0->playerData->party) == MAX_PARTY_SIZE)) {
         return 2;
     }

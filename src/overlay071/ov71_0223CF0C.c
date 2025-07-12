@@ -217,7 +217,7 @@ static void ov71_0223D2F4(void)
 {
     {
         CharTransferTemplate v0 = {
-            1, 2048, 0, HEAP_ID_25
+            1, 2048, 0, HEAP_ID_TRAINER_CARD_SCREEN
         };
 
         CharTransfer_Init(&v0);
