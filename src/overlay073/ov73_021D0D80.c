@@ -65,7 +65,7 @@ typedef struct {
     int unk_54;
     int unk_58;
     Strbuf *unk_5C;
-    void *unk_60;
+    UnkStruct_020157E4 *unk_60;
     StringTemplate *unk_64;
     UnkStruct_02015920 *unk_68;
     SysTask *unk_6C;

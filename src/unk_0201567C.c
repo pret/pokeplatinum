@@ -9,28 +9,14 @@
 #include "sys_task_manager.h"
 #include "unk_0200679C.h"
 
-typedef void (*UnkFuncPtr_020157E4)(void *, u16 *);
-
-typedef struct {
-    SysTask *unk_00;
-    UnkFuncPtr_020157E4 unk_04;
-    PaletteData *unk_08;
-    u16 unk_0C[16];
-    u16 unk_2C[16];
-    u8 unk_4C;
-    u8 unk_4D;
-    u8 unk_4E;
-    u8 unk_4F;
-} UnkStruct_020157E4;
-
 static void sub_0201576C(SysTask *param0, void *param1);
 static u8 sub_020157E4(UnkStruct_020157E4 *param0);
-static void sub_02015840(void *param0, u16 *param1);
-static void sub_02015858(void *param0, u16 *param1);
-static void sub_02015870(void *param0, u16 *param1);
-static void sub_0201588C(void *param0, u16 *param1);
+static void sub_02015840(UnkStruct_020157E4 *param0, u16 *param1);
+static void sub_02015858(UnkStruct_020157E4 *param0, u16 *param1);
+static void sub_02015870(UnkStruct_020157E4 *param0, u16 *param1);
+static void sub_0201588C(UnkStruct_020157E4 *param0, u16 *param1);
 
-void *sub_0201567C(PaletteData *param0, u16 param1, u16 param2, u32 heapID)
+UnkStruct_020157E4 *sub_0201567C(PaletteData *param0, u16 param1, u16 param2, u32 heapID)
 {
     UnkStruct_020157E4 *v0;
     SysTask *v1;
@@ -70,26 +56,24 @@ void *sub_0201567C(PaletteData *param0, u16 param1, u16 param2, u32 heapID)
     return v0;
 }
 
-void sub_02015738(void *param0, u8 param1)
+void sub_02015738(UnkStruct_020157E4 *param0, u8 param1)
 {
-    UnkStruct_020157E4 *v0 = (UnkStruct_020157E4 *)param0;
 
     switch (param1) {
     case 0:
-        v0->unk_4E = 0;
+        param0->unk_4E = 0;
         break;
     case 1:
-        v0->unk_4E = 2;
+        param0->unk_4E = 2;
         break;
     case 2:
-        v0->unk_4E = 3;
+        param0->unk_4E = 3;
     }
 }
 
-void sub_02015760(void *param0)
+void sub_02015760(UnkStruct_020157E4 *param0)
 {
-    UnkStruct_020157E4 *v0 = (UnkStruct_020157E4 *)param0;
-    SysTask_FinishAndFreeParam(v0->unk_00);
+    SysTask_FinishAndFreeParam(param0->unk_00);
 }
 
 static void sub_0201576C(SysTask *param0, void *param1)
@@ -149,26 +133,22 @@ static u8 sub_020157E4(UnkStruct_020157E4 *param0)
     return 0;
 }
 
-static void sub_02015840(void *param0, u16 *param1)
+static void sub_02015840(UnkStruct_020157E4 *param0, u16 *param1)
 {
-    UnkStruct_020157E4 *v0 = (UnkStruct_020157E4 *)param0;
-    Bg_LoadPalette(0, param1, 0x20, v0->unk_4D * 0x20);
+    Bg_LoadPalette(0, param1, 0x20, param0->unk_4D * 0x20);
 }
 
-static void sub_02015858(void *param0, u16 *param1)
+static void sub_02015858(UnkStruct_020157E4 *param0, u16 *param1)
 {
-    UnkStruct_020157E4 *v0 = (UnkStruct_020157E4 *)param0;
-    Bg_LoadPalette(4, param1, 0x20, v0->unk_4D * 0x20);
+    Bg_LoadPalette(4, param1, 0x20, param0->unk_4D * 0x20);
 }
 
-static void sub_02015870(void *param0, u16 *param1)
+static void sub_02015870(UnkStruct_020157E4 *param0, u16 *param1)
 {
-    UnkStruct_020157E4 *v0 = (UnkStruct_020157E4 *)param0;
-    PaletteData_LoadBuffer(v0->unk_08, param1, 0, v0->unk_4D * 16, 0x20);
+    PaletteData_LoadBuffer(param0->unk_08, param1, 0, param0->unk_4D * 16, 0x20);
 }
 
-static void sub_0201588C(void *param0, u16 *param1)
+static void sub_0201588C(UnkStruct_020157E4 *param0, u16 *param1)
 {
-    UnkStruct_020157E4 *v0 = (UnkStruct_020157E4 *)param0;
-    PaletteData_LoadBuffer(v0->unk_08, param1, 1, v0->unk_4D * 16, 0x20);
+    PaletteData_LoadBuffer(param0->unk_08, param1, 1, param0->unk_4D * 16, 0x20);
 }
