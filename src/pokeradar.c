@@ -264,7 +264,7 @@ const BOOL sub_02069798(const RadarChain *chain)
 
 void sub_0206979C(FieldSystem *fieldSystem)
 {
-    BOOL v0;
+    BOOL patchInView;
     GrassPatch *patch;
     int patchRing;
 
@@ -274,21 +274,21 @@ void sub_0206979C(FieldSystem *fieldSystem)
 
     for (patchRing = 0; patchRing < NUM_GRASS_PATCHES; patchRing++) {
         patch = &(fieldSystem->chain->patch[patchRing]);
-        v0 = GFXBoxTest_IsBoxAtPositionInView(&(patch->position), &(fieldSystem->chain->grassPatchVolume));
-        if (patch->active && !v0) {
+        patchInView = GFXBoxTest_IsBoxAtPositionInView(&patch->position, &fieldSystem->chain->grassPatchVolume);
+        if (patch->active && !patchInView) {
             patch->active = FALSE;
         }
     }
 
-    int v3 = 0;
+    int inactiveRadarRings = 0;
     for (patchRing = 0; patchRing < NUM_GRASS_PATCHES; patchRing++) {
         patch = &(fieldSystem->chain->patch[patchRing]);
         if (patch->active == 0) {
-            v3++;
+            inactiveRadarRings++;
         }
     }
 
-    if (v3 == 4) {
+    if (inactiveRadarRings == 4) {
         RadarChain_Clear(fieldSystem->chain);
         Sound_TryFadeOutToBGM(fieldSystem, Sound_GetOverrideBGM(fieldSystem, fieldSystem->location->mapId), 1);
     }
