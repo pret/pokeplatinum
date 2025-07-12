@@ -1138,13 +1138,10 @@ scr_seq_narc = custom_target('scr_seq.narc',
         'scr_seq.narc',
         'scr_seq.naix.h',
     ],
-    input: [
-        h_headers,
-        script_bin_gen.process(
-            scr_seq_files,
-            extra_args: ['--depfile', '--out-dir', scr_seq_private_dir]
-        ),
-    ],
+    input: script_bin_gen.process(
+        scr_seq_files,
+        extra_args: ['--depfile', '--out-dir', scr_seq_private_dir]
+    ),
     command: [
         narc_exe, 'create',
         '--naix',
