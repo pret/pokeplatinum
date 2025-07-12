@@ -11,6 +11,7 @@
 #include "overlay094/struct_ov94_0223BA88.h"
 #include "overlay095/ov95_02246C20.h"
 
+#include "evolution.h"
 #include "heap.h"
 #include "overlay_manager.h"
 #include "party.h"
@@ -19,7 +20,6 @@
 #include "poketch.h"
 #include "trainer_info.h"
 #include "unk_0202DA40.h"
-#include "unk_0207AE68.h"
 
 FS_EXTERN_OVERLAY(overlay95);
 

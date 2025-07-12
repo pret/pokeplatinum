@@ -1,5 +1,3 @@
-#include "unk_0207AE68.h"
-
 #include <nitro.h>
 #include <string.h>
 
@@ -11,7 +9,6 @@
 #include "generated/trainer_score_events.h"
 
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_defs/evolution_data.h"
 #include "struct_defs/mail.h"
 #include "struct_defs/seal_case.h"
 #include "struct_defs/sprite_animation_frame.h"
@@ -22,6 +19,7 @@
 
 #include "bag.h"
 #include "bg_window.h"
+#include "evolution.h"
 #include "game_options.h"
 #include "game_records.h"
 #include "graphics.h"

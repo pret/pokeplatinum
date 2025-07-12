@@ -1015,7 +1015,7 @@ u8 *ov94_02242548(int heapID)
 
 void ov94_022425A8(GTSPokemonListing *listing, GTSApplicationState *appState)
 {
-    if (IsBoxIDParty(appState->selectedBoxId)) {
+    if (GTSApplication_IsBoxIDParty(appState->selectedBoxId)) {
         Pokemon_SetShayminForm((Pokemon *)(appState->unk_114), SHAYMIN_FORM_LAND);
 
         MI_CpuCopyFast(appState->unk_114, listing->pokemon.bytes, Pokemon_StructSize());

@@ -1,26 +1,19 @@
-#ifndef POKEPLATINUM_STRUCT_EVOLUTION_DATA_H
-#define POKEPLATINUM_STRUCT_EVOLUTION_DATA_H
+#ifndef POKEPLATINUM_EVOLUTION_H
+#define POKEPLATINUM_EVOLUTION_H
 
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_0207C8C4.h"
 
 #include "applications/pokemon_summary_screen/main.h"
 
 #include "bag.h"
-#include "bg_window.h"
 #include "game_options.h"
 #include "game_records.h"
-#include "message.h"
-#include "narc.h"
 #include "overlay_manager.h"
-#include "palette.h"
 #include "party.h"
 #include "pokemon.h"
-#include "pokemon_sprite.h"
 #include "poketch.h"
-#include "strbuf.h"
 #include "string_template.h"
 
 typedef struct EvolutionData {
@@ -71,4 +64,8 @@ typedef struct EvolutionData {
     u8 unk_86;
 } EvolutionData;
 
-#endif // POKEPLATINUM_STRUCT_EVOLUTION_DATA_H
+EvolutionData *Evolution_Begin(Party *param0, Pokemon *param1, int param2, Options *options, int param4, Pokedex *param5, Bag *param6, GameRecords *records, Poketch *poketch, int param9, int param10, int heapID);
+BOOL Evolution_IsComplete(EvolutionData *param0);
+void sub_0207B0E0(EvolutionData *param0);
+
+#endif // POKEPLATINUM_EVOLUTION_H

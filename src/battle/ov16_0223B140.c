@@ -11,7 +11,6 @@
 
 #include "struct_decls/battle_system.h"
 #include "struct_defs/battle_system.h"
-#include "struct_defs/evolution_data.h"
 #include "struct_defs/struct_0207A778.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
@@ -38,6 +37,7 @@
 #include "bg_window.h"
 #include "cell_transfer.h"
 #include "communication_system.h"
+#include "evolution.h"
 #include "field_battle_data_transfer.h"
 #include "flags.h"
 #include "font.h"
@@ -85,7 +85,6 @@
 #include "unk_02038F8C.h"
 #include "unk_020393C8.h"
 #include "unk_0207A6DC.h"
-#include "unk_0207AE68.h"
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
 

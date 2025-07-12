@@ -736,7 +736,7 @@ static int ov94_02240688(GTSApplicationState *param0)
         } else {
             int v1 = 0;
 
-            if (IsBoxIDParty(param0->selectedBoxId)) {
+            if (GTSApplication_IsBoxIDParty(param0->selectedBoxId)) {
                 Pokemon *v2;
 
                 v2 = Party_GetPokemonBySlotIndex(param0->playerData->party, param0->unk_112);
@@ -828,7 +828,7 @@ static int ov94_022408E8(GTSApplicationState *param0)
         } else {
             int v1 = 0;
 
-            if (IsBoxIDParty(param0->selectedBoxId)) {
+            if (GTSApplication_IsBoxIDParty(param0->selectedBoxId)) {
                 Pokemon *v2;
 
                 v2 = Party_GetPokemonBySlotIndex(param0->playerData->party, param0->unk_112);
@@ -1193,18 +1193,14 @@ static void ov94_02240FA0(GTSApplicationState *appState, int boxId)
     appState->updateBoxPalettesFunc = ov94_02240E5C;
 }
 
-int IsBoxIDParty(int boxID)
+BOOL GTSApplication_IsBoxIDParty(int boxID)
 {
-    if (boxID == MAX_PC_BOXES) {
-        return TRUE;
-    } else {
-        return FALSE;
-    }
+    return boxID == MAX_PC_BOXES;
 }
 
 BoxPokemon *ov94_022411DC(Party *party, PCBoxes *pcBoxes, int boxID, int slot)
 {
-    if (IsBoxIDParty(boxID)) {
+    if (GTSApplication_IsBoxIDParty(boxID)) {
         if (slot > (Party_GetCurrentCount(party) - 1)) {
             return NULL;
         }
@@ -1217,7 +1213,7 @@ BoxPokemon *ov94_022411DC(Party *party, PCBoxes *pcBoxes, int boxID, int slot)
 
 static BOOL ov94_0224121C(Party *party, PCBoxes *pcBoxes, int boxID, int param3)
 {
-    if (IsBoxIDParty(boxID)) {
+    if (GTSApplication_IsBoxIDParty(boxID)) {
         if (Party_GetCurrentCount(party) < 2) {
             return FALSE;
         }

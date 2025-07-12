@@ -5,7 +5,6 @@
 #include <nnsys.h>
 
 #include "struct_decls/struct_0202B370_decl.h"
-#include "struct_defs/evolution_data.h"
 #include "struct_defs/gts_player_data.h"
 
 #include "applications/pokemon_summary_screen/main.h"
@@ -19,6 +18,7 @@
 #include "overlay096/struct_ov96_0223B574_1.h"
 
 #include "bg_window.h"
+#include "evolution.h"
 #include "list_menu.h"
 #include "menu.h"
 #include "message.h"
