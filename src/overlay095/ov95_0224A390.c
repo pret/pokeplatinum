@@ -146,7 +146,7 @@ void ov95_0224A3CC(void *param0)
         ov95_0224A830(v0);
         ov95_0224A850(&(v0->unk_34));
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 }
 
@@ -188,7 +188,7 @@ static int ov95_0224A464(UnkStruct_ov95_0224A42C *param0, int *param1)
     case 0:
         if (IsScreenFadeDone()) {
             Sprite_SetAnim(param0->unk_20[0], 3);
-            Sprite_SetDrawFlag(param0->unk_20[0], 1);
+            Sprite_SetDrawFlag(param0->unk_20[0], TRUE);
             (*param1)++;
         }
         break;
@@ -393,7 +393,7 @@ static void ov95_0224A7B0(UnkStruct_ov95_0224A42C *param0)
 
     ov95_022475C4(&v2, &param0->unk_10, &v1, &v0, 1);
     param0->unk_20[0] = ov95_022475E4(param0->unk_00, &v2, 128, 96, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
-    Sprite_SetDrawFlag(param0->unk_20[0], 0);
+    Sprite_SetDrawFlag(param0->unk_20[0], FALSE);
 }
 
 static void ov95_0224A830(UnkStruct_ov95_0224A42C *param0)

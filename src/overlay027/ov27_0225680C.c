@@ -86,10 +86,10 @@ void ov27_02256890(UnkStruct_ov27_0225680C *param0)
 {
     if (param0) {
         if (param0->unk_04) {
-            Heap_FreeToHeap(param0->unk_04);
+            Heap_Free(param0->unk_04);
         }
 
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0);
     }
 }
 

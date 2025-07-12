@@ -656,7 +656,7 @@ static int ov94_022431F0(UnkStruct_ov94_0223FD4C *param0)
             ov94_02243E2C(param0->unk_00->wiFiHistory, &param0->unk_A4C);
             GameRecords_IncrementTrainerScore(param0->unk_00->records, TRAINER_SCORE_EVENT_UNK_25);
             ov94_02243E48(param0->unk_00->unk_2C, &param0->unk_A4C);
-            GameRecords_IncrementRecordValue(param0->unk_00->records, RECORD_UNK_024);
+            GameRecords_IncrementRecordValue(param0->unk_00->records, RECORD_WIFI_TRADES);
             sub_0206D104(SaveData_GetTVBroadcast(param0->unk_00->saveData));
             break;
         case -5:
@@ -797,7 +797,7 @@ static int ov94_02243398(UnkStruct_ov94_0223FD4C *param0)
                 ov94_02243BC4(param0, v1, sub_0202DAAC(param0->unk_00->unk_00), 0);
 
                 sub_0202DA68(param0->unk_00->unk_00, 0);
-                Heap_FreeToHeap(v1);
+                Heap_Free(v1);
             } else {
                 ov94_0224362C(param0);
             }
@@ -815,7 +815,7 @@ static int ov94_02243398(UnkStruct_ov94_0223FD4C *param0)
                 param0->unk_2C = 34;
 
                 sub_0202DA68(param0->unk_00->unk_00, 0);
-                Heap_FreeToHeap(v2);
+                Heap_Free(v2);
             }
             break;
         case -12:
@@ -929,7 +929,7 @@ static int ov94_02243658(UnkStruct_ov94_0223FD4C *param0)
 
     GameRecords_IncrementTrainerScore(param0->unk_00->records, TRAINER_SCORE_EVENT_UNK_25);
     ov94_02243E48(param0->unk_00->unk_2C, &param0->unk_12C);
-    GameRecords_IncrementRecordValue(param0->unk_00->records, RECORD_UNK_024);
+    GameRecords_IncrementRecordValue(param0->unk_00->records, RECORD_WIFI_TRADES);
 
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(param0->unk_00->saveData);
     sub_0206D104(broadcast);
@@ -1243,7 +1243,7 @@ static void ov94_02243B08(UnkStruct_ov94_0223FD4C *param0, int param1)
         Pokemon_FromBoxPokemon(PCBoxes_GetBoxMonAt(param0->unk_00->pcBoxes, param0->unk_110, param0->unk_112), v0);
         sub_0202DA7C(param0->unk_00->unk_00, v0, param0->unk_110);
         PCBoxes_InitBoxMonAt(param0->unk_00->pcBoxes, param0->unk_110, param0->unk_112);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     } else {
         Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->unk_00->unk_08, param0->unk_112);
 
@@ -1396,7 +1396,7 @@ static void ov94_02243E48(JournalEntry *journalEntry, UnkStruct_ov94_0223BA88 *p
 
 static int ov94_02243E84(UnkStruct_ov94_0223FD4C *param0, UnkStruct_ov94_0223BA88 *param1)
 {
-    if (ov94_02241498((Pokemon *)param1->unk_00.unk_00)
+    if (Pokemon_IsHoldingMail((Pokemon *)param1->unk_00.unk_00)
         && (Party_GetCurrentCount(param0->unk_00->unk_08) == 6)) {
         return 2;
     }

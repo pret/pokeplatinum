@@ -147,7 +147,7 @@ void ov95_02249770(void *param0)
         ov95_02249C10(v0);
         ov95_02249C30(&(v0->unk_34));
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 }
 
@@ -217,7 +217,7 @@ static int ov95_02249840(UnkStruct_ov95_022497D8 *param0, int *param1)
         if (ov95_02249CF0(&(param0->unk_34))) {
             Sound_PlayEffect(SEQ_SE_DP_KOUKAN07);
             Sprite_SetAnim(param0->unk_20[0], 3);
-            Sprite_SetDrawFlag(param0->unk_20[0], 1);
+            Sprite_SetDrawFlag(param0->unk_20[0], TRUE);
             (*param1)++;
         }
         break;
@@ -410,7 +410,7 @@ static void ov95_02249B90(UnkStruct_ov95_022497D8 *param0)
 
     param0->unk_20[0] = ov95_022475E4(param0->unk_00, &v2, UnkEnum_ov95_02249B90_00, UnkEnum_ov95_02249B90_01, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    Sprite_SetDrawFlag(param0->unk_20[0], 0);
+    Sprite_SetDrawFlag(param0->unk_20[0], FALSE);
 }
 
 static void ov95_02249C10(UnkStruct_ov95_022497D8 *param0)

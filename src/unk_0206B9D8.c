@@ -10,7 +10,7 @@
 #include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_0206BC70.h"
 #include "struct_defs/struct_02098C44.h"
-#include "struct_defs/underground_data.h"
+#include "struct_defs/underground.h"
 
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
@@ -119,7 +119,7 @@ static int sub_0206BA84(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem)
 
     MI_CpuCopy8(partyMan->unk_2C, param0->unk_0E, 6);
     param0->unk_0D = partyMan->selectedMonSlot;
-    Heap_FreeToHeap(partyMan);
+    Heap_Free(partyMan);
     *(param0->unk_14) = NULL;
 
     return 2;
@@ -166,7 +166,7 @@ static int sub_0206BB6C(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem)
 
     v0 = *(param0->unk_14);
     param0->unk_0D = v0->monIndex;
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     *(param0->unk_14) = NULL;
 
     return 0;
@@ -191,7 +191,7 @@ static BOOL sub_0206BB94(FieldTask *param0)
         v1->unk_04 = sub_0206BB6C(v1, v0);
         break;
     case 4:
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return 1;
     }
 
@@ -239,7 +239,7 @@ static int sub_0206BC70(UnkStruct_0206BC48 *param0, FieldSystem *fieldSystem)
     }
 
     param0->unk_00 = param0->unk_08->unk_20;
-    Heap_FreeToHeap(param0->unk_08);
+    Heap_Free(param0->unk_08);
 
     return 2;
 }
@@ -260,7 +260,7 @@ static BOOL sub_0206BC94(FieldTask *param0)
     case 2:
         v0 = FieldSystem_GetVarPointer(fieldSystem, v2->unk_10);
         *v0 = v2->unk_00;
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
         return 1;
     }
 
@@ -307,7 +307,7 @@ static BOOL sub_0206BD1C(FieldTask *param0)
         *v0 = sub_0204B044(fieldSystem, v1);
     }
 
-    Heap_FreeToHeap(v3);
+    Heap_Free(v3);
     return 1;
 }
 
@@ -328,7 +328,7 @@ u16 sub_0206BDBC(SaveData *saveData)
 {
     BattleFrontier *frontier;
     UnkStruct_0202D750 *v1;
-    UndergroundData *v2;
+    Underground *v2;
     u16 v3;
     u8 v4, v5, v6, v7, v8, v9;
 
@@ -351,7 +351,7 @@ u16 sub_0206BDBC(SaveData *saveData)
         return 0;
     }
 
-    v2 = SaveData_GetUndergroundData(saveData);
+    v2 = SaveData_GetUnderground(saveData);
 
     if (!v4) {
         if (sub_02028984(v2, 85)) {

@@ -248,7 +248,7 @@ UnkStruct_ov21_021E747C *ov21_021E7424(enum HeapId heapID, PokedexApp *param1)
 static void ov21_021E7468(UnkStruct_ov21_021E7468 *param0)
 {
     GF_ASSERT(param0);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov21_021E747C(UnkStruct_ov21_021E747C *param0)
@@ -257,7 +257,7 @@ static void ov21_021E747C(UnkStruct_ov21_021E747C *param0)
 
     ov21_021E7F20(param0);
     ov21_021E7F7C(param0);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static int ov21_021E749C(void)
@@ -320,7 +320,7 @@ static int ov21_021E751C(PokedexDataManager *dataMan, void *data)
     UnkStruct_ov21_021E7468 *v0 = data;
     UnkStruct_ov21_021E74A0 *v1 = dataMan->pageData;
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
     dataMan->pageData = NULL;
 
     return 1;
@@ -441,7 +441,7 @@ static int ov21_021E7694(void *graphics, PokedexGraphicsManager *graphicsMan, co
             SysTask_Done(v3->unk_3C);
         }
 
-        Heap_FreeToHeap(graphicsMan->pageGraphics);
+        Heap_Free(graphicsMan->pageGraphics);
         graphicsMan->pageGraphics = NULL;
         graphicsMan->state++;
         break;
@@ -535,7 +535,7 @@ static void ov21_021E789C(UnkStruct_ov21_021E747C *param0, const UnkStruct_ov21_
     v0 = PokedexGraphics_GetGraphicNarcScreenData(param0->unk_00, 73, 1, &v1, heapID);
 
     Bg_LoadToTilemapRect(param0->unk_00->bgConfig, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     Bg_ScheduleTilemapTransfer(param0->unk_00->bgConfig, 3);
 }
 
@@ -609,8 +609,8 @@ static void ov21_021E7AA0(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
     SpriteResourceCollection_Remove(v0->spriteResourceCollection[2], param0->unk_24[2]);
     SpriteResourceCollection_Remove(v0->spriteResourceCollection[3], param0->unk_24[3]);
 
-    Heap_FreeToHeap(param0->unk_BC);
-    Heap_FreeToHeap(param0->unk_C0);
+    Heap_Free(param0->unk_BC);
+    Heap_Free(param0->unk_C0);
 }
 
 static void ov21_021E7B34(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E747C *param1, const UnkStruct_ov21_021E7468 *param2, enum HeapId heapID)
@@ -778,8 +778,8 @@ static void ov21_021E7F20(UnkStruct_ov21_021E747C *param0)
 {
     sub_02015164(param0->unk_04);
     sub_020151D4(param0->unk_08);
-    Heap_FreeToHeap(param0->unk_10);
-    Heap_FreeToHeap(param0->unk_14);
+    Heap_Free(param0->unk_10);
+    Heap_Free(param0->unk_14);
 }
 
 static void ov21_021E7F40(UnkStruct_ov21_021E747C *param0, int param1)

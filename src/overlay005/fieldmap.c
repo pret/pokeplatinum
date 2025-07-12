@@ -335,8 +335,8 @@ static BOOL FieldMap_Exit(ApplicationManager *appMan, int *param1)
             Easy3D_Shutdown();
             ov5_021D1AE4(fieldSystem->unk_04->unk_04);
             SetVBlankCallback(NULL, NULL);
-            Heap_FreeToHeap(fieldSystem->bgConfig);
-            Heap_FreeToHeap(fieldSystem->unk_04);
+            Heap_Free(fieldSystem->bgConfig);
+            Heap_Free(fieldSystem->unk_04);
 
             fieldSystem->unk_04 = NULL;
 
@@ -931,7 +931,7 @@ static UnkStruct_ov5_021D1A68 *ov5_021D1A14(int fieldSystem, int param1)
     }
 
     v2->unk_00 = v0;
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
     return v2;
 }
 
@@ -947,7 +947,7 @@ static const int ov5_021D1A6C(const UnkStruct_ov5_021D1A68 *param0)
 
 static void ov5_021D1A70(UnkStruct_ov5_021D1A68 *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static BOOL FieldMap_InDistortionWorld(FieldSystem *fieldSystem)

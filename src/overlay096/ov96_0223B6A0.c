@@ -167,7 +167,7 @@ int ov96_0223B8CC(ApplicationManager *appMan, int *param1)
     UnkStruct_ov96_0223BF40 *v0 = ApplicationManager_Data(appMan);
     int v1;
 
-    Heap_FreeToHeap(v0->unk_24);
+    Heap_Free(v0->unk_24);
     sub_020995C4();
     sub_02099560();
 
@@ -181,7 +181,7 @@ int ov96_0223B8CC(ApplicationManager *appMan, int *param1)
     ov96_0223B99C(v0);
 
     sub_020334CC();
-    Heap_FreeToHeap(v0->unk_04);
+    Heap_Free(v0->unk_04);
     ApplicationManager_FreeData(appMan);
     SetVBlankCallback(NULL, NULL);
     Heap_Destroy(HEAP_ID_68);
@@ -309,7 +309,7 @@ static void ov96_0223BB0C(UnkStruct_ov96_0223BF40 *param0)
             param0->unk_E30[v0] = SpriteList_AddAffine(&v1);
             Sprite_SetAnimateFlag(param0->unk_E30[v0], 1);
             Sprite_SetAnim(param0->unk_E30[v0], v0);
-            Sprite_SetDrawFlag(param0->unk_E30[v0], 0);
+            Sprite_SetDrawFlag(param0->unk_E30[v0], FALSE);
         }
     }
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);

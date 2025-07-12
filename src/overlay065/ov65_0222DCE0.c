@@ -1222,12 +1222,12 @@ static void ov65_0222E90C(BgConfig *param0, UnkStruct_ov65_0222E99C *param1, NAR
 static void ov65_0222E99C(UnkStruct_ov65_0222E99C *param0)
 {
     if (param0->unk_00 != NULL) {
-        Heap_FreeToHeap(param0->unk_00);
+        Heap_Free(param0->unk_00);
         param0->unk_00 = NULL;
     }
 
     if (param0->unk_08 != NULL) {
-        Heap_FreeToHeap(param0->unk_08);
+        Heap_Free(param0->unk_08);
         param0->unk_08 = NULL;
     }
 }
@@ -1434,7 +1434,7 @@ static void ov65_0222EC5C(BgConfig *param0)
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov65_0222ECA8(UnkStruct_ov65_0222EBE0 *param0, NARC *param1)
@@ -4792,7 +4792,7 @@ static void ov65_02232DC0(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
         TrainerInfo_SetName(v0, sub_0202AEF0(param0->unk_00, param1));
         StringTemplate_SetPlayerName(param0->unk_164, 0, v0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 }
 
@@ -5185,13 +5185,13 @@ static void ov65_02233570(UnkStruct_ov65_0222EBE0 *param0)
     }
 
     Window_Remove(&param0->unk_BE0.unk_1FC);
-    Heap_FreeToHeap(param0->unk_BE0.unk_04);
+    Heap_Free(param0->unk_BE0.unk_04);
 
     for (v0 = 0; v0 < 7; v0++) {
-        Heap_FreeToHeap(param0->unk_BE0.unk_0C[v0]);
+        Heap_Free(param0->unk_BE0.unk_0C[v0]);
     }
 
-    Heap_FreeToHeap(param0->unk_BE0.unk_44);
+    Heap_Free(param0->unk_BE0.unk_44);
 }
 
 static void ov65_022335F8(NNSG2dScreenData *param0, u8 param1)
@@ -5470,7 +5470,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     add r2, r6, #0
     bl StringTemplate_SetPlayerName
     add r0, r6, #0
-    bl Heap_FreeToHeap
+    bl Heap_Free
     mov r2, #0x5a
     lsl r2, r2, #2
     ldr r0, [r5, r2]
@@ -6754,7 +6754,7 @@ static void ov65_02234D6C(UnkStruct_ov65_0222EBE0 *param0)
 static void ov65_02234DA0(UnkStruct_ov65_0222EBE0 *param0)
 {
     if (param0->unk_BE0.unk_238 == 2) {
-        Sprite_SetDrawFlag(param0->unk_BE0.unk_21C[1], 1);
+        Sprite_SetDrawFlag(param0->unk_BE0.unk_21C[1], TRUE);
         sub_020129D0(param0->unk_BE0.unk_234, 1);
     }
 
@@ -6863,7 +6863,7 @@ static void ov65_02234F68(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
         TrainerInfo_SetName(v0, sub_0202AEF0(param0->unk_00, param1));
         StringTemplate_SetPlayerName(param0->unk_BE0.unk_00, 0, v0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 }
 

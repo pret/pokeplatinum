@@ -163,7 +163,7 @@ void sub_02020BD0(void)
         sub_02020CCC(Unk_021C0774 + v0);
     }
 
-    Heap_FreeToHeap(Unk_021C0774);
+    Heap_Free(Unk_021C0774);
 
     Unk_021C0774 = NULL;
     Unk_021C0778 = 0;
@@ -222,9 +222,9 @@ BOOL sub_02020CCC(UnkStruct_02020C44 *param0)
 
     if (param0->unk_00 != 0) {
         sub_02020D14(param0);
-        Heap_FreeToHeap(param0->unk_04);
-        Heap_FreeToHeap(param0->unk_CC);
-        Heap_FreeToHeap(param0->unk_D4);
+        Heap_Free(param0->unk_04);
+        Heap_Free(param0->unk_CC);
+        Heap_Free(param0->unk_D4);
         sub_0201DD3C(param0->unk_D8);
         sub_02020AEC(param0);
     }

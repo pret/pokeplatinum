@@ -134,7 +134,7 @@ static UnkStruct_02015128 *ov83_0223D6BC(UnkStruct_02015064 *param0, u32 param1,
     v0.unk_04 = v2;
     v3 = sub_02015128(&v0);
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 
     return v3;
 }
@@ -152,7 +152,7 @@ static UnkStruct_020151A4 *ov83_0223D6EC(UnkStruct_02015064 *param0, u32 param1,
     v0.unk_08 = 1;
     v3 = sub_020151A4(&v0);
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 
     return v3;
 }
@@ -400,10 +400,10 @@ void ov83_0223DB4C(UnkStruct_ov83_0223DB30 *param0, UnkStruct_ov83_0223DB4C *par
             ov83_0223D7A8(param2, &param0->unk_28[v1], v2, (70 + ((param1->unk_00[v0].unk_00) - 149)), 1, (6 + ((param1->unk_00[v0].unk_00) - 149)), 5, 4, 1000 + v0, heapID);
 
             param0->unk_08[v1] = ov83_0223D9A8(param2, &param0->unk_28[v1], 0, 0, 0, 0, heapID);
-            Sprite_SetDrawFlag(param0->unk_08[v1], 0);
+            Sprite_SetDrawFlag(param0->unk_08[v1], FALSE);
 
             param0->unk_18[v1] = ov83_0223D9A8(param2, &param3[0], 0, 0, 0, 0, heapID);
-            Sprite_SetDrawFlag(param0->unk_18[v1], 0);
+            Sprite_SetDrawFlag(param0->unk_18[v1], FALSE);
             Sprite_SetAnim(param0->unk_18[v1], 1);
             v1++;
         }
@@ -471,7 +471,7 @@ u32 ov83_0223DD30(UnkStruct_ov83_0223DB30 *param0)
 
         if (param0->unk_1DC[param0->unk_1EC] <= 0) {
             param0->unk_1CC[param0->unk_1EC] = 1;
-            Sprite_SetDrawFlag(param0->unk_08[param0->unk_1EC], 1);
+            Sprite_SetDrawFlag(param0->unk_08[param0->unk_1EC], TRUE);
 
             v3 = 2 + param0->unk_1EC;
             param0->unk_1EC++;
@@ -491,16 +491,16 @@ u32 ov83_0223DD30(UnkStruct_ov83_0223DB30 *param0)
 
             if (v1 == 1) {
                 Sprite_SetPosition(param0->unk_18[v0], &v2);
-                Sprite_SetDrawFlag(param0->unk_18[v0], 1);
+                Sprite_SetDrawFlag(param0->unk_18[v0], TRUE);
                 Sprite_SetAnimateFlag(param0->unk_18[v0], 1);
-                Sprite_SetDrawFlag(param0->unk_08[v0], 0);
+                Sprite_SetDrawFlag(param0->unk_08[v0], FALSE);
                 Sound_PlayEffect(SEQ_SE_DP_NM09);
                 param0->unk_1CC[v0]++;
             }
             break;
         case 2:
             if (Sprite_IsAnimated(param0->unk_18[v0]) == 0) {
-                Sprite_SetDrawFlag(param0->unk_18[v0], 0);
+                Sprite_SetDrawFlag(param0->unk_18[v0], FALSE);
                 param0->unk_1CC[v0]++;
             }
             break;
@@ -665,8 +665,8 @@ static void ov83_0223E15C(UnkStruct_ov83_0223E138 *param0, u32 heapID, NARC *par
 
 static void ov83_0223E208(UnkStruct_ov83_0223E138 *param0)
 {
-    Heap_FreeToHeap(param0->unk_20);
-    Heap_FreeToHeap(param0->unk_28);
+    Heap_Free(param0->unk_20);
+    Heap_Free(param0->unk_28);
 }
 
 static void ov83_0223E21C(Window *param0, Strbuf *param1, int param2, int param3)
@@ -688,7 +688,7 @@ void ov83_0223E260(UnkStruct_ov83_0223E244 *param0)
 void ov83_0223E28C(UnkStruct_ov83_0223E244 *param0, UnkStruct_ov83_0223D784 *param1, UnkStruct_ov83_0223D95C *param2, u32 param3, u32 param4, u32 param5)
 {
     param0->unk_08 = ov83_0223D9A8(param1, &param2[param4], (128 * FX32_ONE), (96 * FX32_ONE), 0, 0, param3);
-    Sprite_SetDrawFlag(param0->unk_08, 0);
+    Sprite_SetDrawFlag(param0->unk_08, FALSE);
     Sprite_SetAnim(param0->unk_08, param5);
     param0->unk_00 = 1;
 }
@@ -702,7 +702,7 @@ void ov83_0223E2C8(UnkStruct_ov83_0223E244 *param0)
 
 void ov83_0223E2E4(UnkStruct_ov83_0223E244 *param0)
 {
-    Sprite_SetDrawFlag(param0->unk_08, 1);
+    Sprite_SetDrawFlag(param0->unk_08, TRUE);
     Sprite_SetAnimateFlag(param0->unk_08, 1);
 }
 
@@ -710,7 +710,7 @@ void ov83_0223E2FC(UnkStruct_ov83_0223E244 *param0)
 {
     VecFx32 v0;
 
-    Sprite_SetDrawFlag(param0->unk_08, 1);
+    Sprite_SetDrawFlag(param0->unk_08, TRUE);
     Sprite_SetAnimateFlag(param0->unk_08, 1);
 
     v0.x = 168 * FX32_ONE;
@@ -952,7 +952,7 @@ void ov83_0223E5DC(UnkStruct_ov83_0223E5C0 *param0, UnkStruct_ov83_0223D784 *par
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_04[v0] = ov83_0223D9A8(param1, &param2[1], 128, 96, 0, 2, param3);
-        Sprite_SetDrawFlag(param0->unk_04[v0], 0);
+        Sprite_SetDrawFlag(param0->unk_04[v0], FALSE);
         Sprite_SetAnim(param0->unk_04[v0], 4 + v0);
         Sprite_SetPosition(param0->unk_04[v0], &v1);
     }
@@ -1088,7 +1088,7 @@ static void ov83_0223E844(UnkStruct_ov83_0223E824 *param0, u32 heapID, NARC *par
 
     Bg_LoadToTilemapRect(param0->unk_04, 1, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Bg_ChangeTilemapRectPalette(param0->unk_04, 1, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8, 4);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     Bg_ScheduleTilemapTransfer(param0->unk_04, 1);
 }
 
@@ -1570,7 +1570,7 @@ void ov83_0223F2C4(UnkStruct_ov83_0223F29C *param0, UnkStruct_ov83_0223D784 *par
             Sprite_SetAnim(param0->unk_3C[v0].unk_00, 1);
         }
 
-        Sprite_SetDrawFlag(param0->unk_3C[v0].unk_00, 0);
+        Sprite_SetDrawFlag(param0->unk_3C[v0].unk_00, FALSE);
     }
 
     param0->unk_7C = 1;
@@ -1621,7 +1621,7 @@ void ov83_0223F3D0(UnkStruct_ov83_0223F29C *param0, int param1)
 
     param0->unk_3C[param1].unk_0C = 0;
 
-    Sprite_SetDrawFlag(param0->unk_3C[param1].unk_00, 0);
+    Sprite_SetDrawFlag(param0->unk_3C[param1].unk_00, FALSE);
 }
 
 BOOL ov83_0223F3F0(const UnkStruct_ov83_0223F29C *param0, int param1)
@@ -1656,7 +1656,7 @@ static void ov83_0223F420(UnkStruct_ov83_0223F410 *param0)
         if (param0->unk_08 <= 0) {
             param0->unk_0C = 0;
 
-            Sprite_SetDrawFlag(param0->unk_00, 0);
+            Sprite_SetDrawFlag(param0->unk_00, FALSE);
         }
     }
 }
@@ -1674,9 +1674,9 @@ static void ov83_0223F458(UnkStruct_ov83_0223F410 *param0)
     }
 
     if (param0->unk_04 == 0) {
-        Sprite_SetDrawFlag(param0->unk_00, 1);
+        Sprite_SetDrawFlag(param0->unk_00, TRUE);
     } else if (param0->unk_04 == 8) {
-        Sprite_SetDrawFlag(param0->unk_00, 0);
+        Sprite_SetDrawFlag(param0->unk_00, FALSE);
     } else if (param0->unk_04 == (8 * 2)) {
         param0->unk_04 = 0;
         return;
@@ -1703,7 +1703,7 @@ void ov83_0223F4CC(UnkStruct_ov83_0223F4AC *param0, UnkStruct_ov83_0223D784 *par
 
     for (v0 = 0; v0 < 32; v0++) {
         param0->unk_0C[v0].unk_44 = ov83_0223D9A8(param1, &param2[1], 0, 0, 0, 5, param3);
-        Sprite_SetDrawFlag(param0->unk_0C[v0].unk_44, 0);
+        Sprite_SetDrawFlag(param0->unk_0C[v0].unk_44, FALSE);
     }
 
     param0->unk_00 = 1;
@@ -1797,7 +1797,7 @@ static void ov83_0223F6B4(UnkStruct_ov83_0223F670 *param0)
         return;
     }
 
-    Sprite_SetDrawFlag(param0->unk_44, 0);
+    Sprite_SetDrawFlag(param0->unk_44, FALSE);
     param0->unk_00 = 0;
 }
 
@@ -1809,7 +1809,7 @@ static void ov83_0223F6CC(UnkStruct_ov83_0223F670 *param0, int param1, fx32 para
     param0->unk_08.x = param2;
     param0->unk_08.y = param3;
 
-    Sprite_SetDrawFlag(param0->unk_44, 1);
+    Sprite_SetDrawFlag(param0->unk_44, TRUE);
     Sprite_SetAnim(param0->unk_44, param1);
     Sprite_RestartAnim(param0->unk_44);
     Sprite_SetAnimateFlag(param0->unk_44, 1);

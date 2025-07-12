@@ -166,7 +166,7 @@ void ov95_0224B438(void *param0)
 
         NARC_dtor(v0->unk_84);
         PokemonSpriteManager_Free(v0->unk_10);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 }
 
@@ -323,7 +323,7 @@ static int ov95_0224B6F0(UnkStruct_ov95_0224B4D4 *param0, int *param1)
     case 0:
         if (IsScreenFadeDone()) {
             Sprite_SetAnim(param0->unk_40[0], 1);
-            Sprite_SetDrawFlag(param0->unk_40[0], 1);
+            Sprite_SetDrawFlag(param0->unk_40[0], TRUE);
             return 1;
         }
         break;
@@ -341,7 +341,7 @@ static int ov95_0224B71C(UnkStruct_ov95_0224B4D4 *param0, int *param1)
     case 1:
         if (param0->unk_80 == NULL) {
             Sprite_SetAnim(param0->unk_40[1], 2);
-            Sprite_SetDrawFlag(param0->unk_40[1], 1);
+            Sprite_SetDrawFlag(param0->unk_40[1], TRUE);
             ov95_022479A8(param0->unk_78, 0);
             param0->unk_08 = 0;
             (*param1)++;
@@ -526,8 +526,8 @@ static void ov95_0224BAE8(UnkStruct_ov95_0224B4D4 *param0)
     param0->unk_40[1] = ov95_022475E4(param0->unk_00, &v2, 128, 90, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
     Sprite_SetExplicitPriority(param0->unk_40[1], 1);
-    Sprite_SetDrawFlag(param0->unk_40[0], 0);
-    Sprite_SetDrawFlag(param0->unk_40[1], 0);
+    Sprite_SetDrawFlag(param0->unk_40[0], FALSE);
+    Sprite_SetDrawFlag(param0->unk_40[1], FALSE);
 }
 
 static void ov95_0224BB8C(UnkStruct_ov95_0224B4D4 *param0)
@@ -613,7 +613,7 @@ static void ov95_0224BC6C(UnkStruct_ov95_0224B4D4 *param0, SysTask **param1)
         *param1 = SysTask_Start(ov95_0224BD5C, v0, 0);
 
         if (*param1 == NULL) {
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
         }
     } else {
         *param1 = NULL;
@@ -626,7 +626,7 @@ static void ov95_0224BCE8(SysTask *param0)
         UnkStruct_ov95_0224BC6C *v0 = SysTask_GetParam(param0);
 
         *(v0->unk_00) = NULL;
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
     }
 }

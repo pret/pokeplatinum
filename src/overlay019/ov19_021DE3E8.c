@@ -96,7 +96,7 @@ BOOL ov19_021DE3E8(UnkStruct_ov19_021DE3E8 **param0, UnkStruct_ov19_021D61B0 *pa
 void ov19_021DE440(UnkStruct_ov19_021DE3E8 *param0)
 {
     ov19_021DE51C(param0);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov19_021DE450(UnkStruct_ov19_021DE3E8 *param0)
@@ -123,13 +123,13 @@ static void ov19_021DE450(UnkStruct_ov19_021DE3E8 *param0)
                 param0->unk_1C[v5] = ov19_021D785C(param0->unk_10, &v0, 0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
                 Sprite_SetExplicitPalette(param0->unk_1C[v5], Unk_ov19_021E04CC[v5].unk_04);
-                Sprite_SetDrawFlag(param0->unk_1C[v5], 0);
+                Sprite_SetDrawFlag(param0->unk_1C[v5], FALSE);
                 Sprite_SetAffineOverwriteMode(param0->unk_1C[v5], 1);
 
                 param0->unk_28[v5] = 0;
             }
 
-            Heap_FreeToHeap(v3);
+            Heap_Free(v3);
         }
     } else {
         int v6;
@@ -203,7 +203,7 @@ static void ov19_021DE59C(UnkStruct_ov19_021DE3E8 *param0)
 
         ov19_021DE718(param0, v1, v0);
         Sprite_SetAnim(param0->unk_1C[v1], 6);
-        Sprite_SetDrawFlag(param0->unk_1C[v1], 1);
+        Sprite_SetDrawFlag(param0->unk_1C[v1], TRUE);
     }
 }
 
@@ -235,7 +235,7 @@ static void ov19_021DE5D4(UnkStruct_ov19_021DE3E8 *param0)
 
         Sprite_SetPosition(param0->unk_1C[v3], &v1);
         Sprite_SetAnim(param0->unk_1C[v3], 0);
-        Sprite_SetDrawFlag(param0->unk_1C[v3], 1);
+        Sprite_SetDrawFlag(param0->unk_1C[v3], TRUE);
     }
 }
 
@@ -297,7 +297,7 @@ void ov19_021DE7A0(UnkStruct_ov19_021DE3E8 *param0)
             if (v0 >= 0) {
                 ov19_021DE718(param0, v0, v1);
                 Sprite_SetAnim(param0->unk_1C[v0], 1);
-                Sprite_SetDrawFlag(param0->unk_1C[v0], 1);
+                Sprite_SetDrawFlag(param0->unk_1C[v0], TRUE);
             }
         }
     }
@@ -348,7 +348,7 @@ static void ov19_021DE858(UnkStruct_ov19_021DE3E8 *param0, int param1, const Vec
         if (ov19_021D77C8(ov19_021DE8E0, v0, 0)) {
             param0->unk_34++;
         } else {
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
         }
     }
 }

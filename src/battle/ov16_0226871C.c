@@ -1091,7 +1091,7 @@ void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *battleSys, int par
             v4 = Graphics_GetScrnData(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, v6, 1, &v3, 5);
 
             MI_CpuCopy32(v3->rawData, v0->unk_3C[i], 0x800);
-            Heap_FreeToHeap(v4);
+            Heap_Free(v4);
         }
     }
 
@@ -1157,7 +1157,7 @@ void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *battleSys, int par
             MI_CpuCopy16(v13->pRawData, v0->unk_60, 0x20);
         }
 
-        Heap_FreeToHeap(v14);
+        Heap_Free(v14);
         RenderControlFlags_ZeroSpeedUpBattle();
         RenderControlFlags_ZeroWaitBattle();
 
@@ -1183,15 +1183,15 @@ void ov16_02268A14(UnkStruct_ov16_02268A14 *param0)
     SysTask_Done(param0->unk_678);
 
     for (i = 0; i < 7; i++) {
-        Heap_FreeToHeap(param0->unk_3C[i]);
+        Heap_Free(param0->unk_3C[i]);
     }
 
-    Heap_FreeToHeap(param0->unk_58);
+    Heap_Free(param0->unk_58);
     ov16_0226ABE8(param0);
-    Heap_FreeToHeap(param0->unk_5C);
-    Heap_FreeToHeap(param0->unk_60);
+    Heap_Free(param0->unk_5C);
+    Heap_Free(param0->unk_60);
     SysTask_Done(param0->unk_64);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov16_02268A88(UnkStruct_ov16_02268A14 *param0)
@@ -2012,7 +2012,7 @@ static void ov16_02269E94(UnkStruct_ov16_02268A14 *param0, int param1, int param
 
         v4 = Graphics_GetScrnData(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 46, 1, &v3, 5);
         MI_CpuCopy32(v3->rawData, param0->unk_3C[6], 0x800);
-        Heap_FreeToHeap(v4);
+        Heap_Free(v4);
 
         v2 = BattleSystem_BGL(param0->battleSys);
         Bg_LoadTilemapBuffer(v2, 4, param0->unk_3C[6], 0x800);
@@ -2724,7 +2724,7 @@ static void ov16_0226ABE8(UnkStruct_ov16_02268A14 *param0)
 
     for (i = 0; i < 4; i++) {
         for (j = 0; j < 4; j++) {
-            Heap_FreeToHeap(param0->unk_68[i].moveIcons[j]);
+            Heap_Free(param0->unk_68[i].moveIcons[j]);
 
             if (param0->unk_68[i].unk_28[j].unk_00.pixels != NULL) {
                 Window_Remove(&param0->unk_68[i].unk_28[j].unk_00);
@@ -2766,7 +2766,7 @@ void ov16_0226AC98(UnkStruct_ov16_02268A14 *param0, int param1, const MoveDispla
             v5 = MoveTable_LoadParam(param2->move[i], MOVEATTRIBUTE_TYPE);
             v1 = Graphics_GetCharData(TypeIcon_GetNARC(), TypeIcon_GetChar(v5), 1, &v2, HEAP_ID_BATTLE);
             MI_CpuCopy32(v2->pRawData, v0->moveIcons[i], v3);
-            Heap_FreeToHeap(v1);
+            Heap_Free(v1);
         }
 
         if ((v0->unk_28[i].unk_00.pixels == NULL) || ((param2->move[i] != v0->unk_00.move[i]) && (param2->move[i] != 0))) {
@@ -3499,7 +3499,7 @@ static void ov16_0226B988(SysTask *param0, void *param1)
         Bg_SetOffset(v1, BG_LAYER_SUB_1, 0, 0);
         Bg_SetOffset(v1, BG_LAYER_SUB_1, 3, 0);
         BattleSystem_SetCommandSelectionFlags(v0->unk_00->battleSys, 1);
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
 
         return;

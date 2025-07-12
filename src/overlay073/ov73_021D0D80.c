@@ -369,8 +369,8 @@ int RowanIntroManager_Exit(ApplicationManager *appMan, int *unusedState)
     RowanIntroManager *manager = ApplicationManager_Data(appMan);
     int heapID = manager->heapID;
 
-    Heap_FreeToHeap(manager->unk_B8);
-    Heap_FreeToHeap(manager->unk_BC);
+    Heap_Free(manager->unk_B8);
+    Heap_Free(manager->unk_BC);
 
     TrainerInfo_SetNameFromStrbuf(SaveData_GetTrainerInfo(manager->saveData), manager->unk_70->textInputStr);
     TrainerInfo_SetGender(SaveData_GetTrainerInfo(manager->saveData), manager->unk_70->unk_04);
@@ -573,7 +573,7 @@ static void ov73_021D1238(RowanIntroManager *manager)
     Bg_FreeTilemapBuffer(manager->bgConfig, BG_LAYER_SUB_2);
     Bg_FreeTilemapBuffer(manager->bgConfig, BG_LAYER_SUB_3);
 
-    Heap_FreeToHeap(manager->bgConfig);
+    Heap_Free(manager->bgConfig);
 }
 
 static void ov73_021D12C4(RowanIntroManager *manager)
@@ -1273,9 +1273,9 @@ static void ov73_021D1B80(RowanIntroManager *manager)
     Bg_ClearTilesRange(v5, 32, 0, manager->heapID);
     Bg_LoadTiles(manager->bgConfig, v5, v2, (10 * 10) * 0x20, 1);
     Bg_LoadPalette(v5, v3, 2 * 16, (2 * 16) * v7);
-    Heap_FreeToHeap(v3);
-    Heap_FreeToHeap(v2);
-    Heap_FreeToHeap(v1);
+    Heap_Free(v3);
+    Heap_Free(v2);
+    Heap_Free(v1);
 }
 
 static void ov73_021D1CE0(RowanIntroManager *manager)

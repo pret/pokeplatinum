@@ -200,7 +200,7 @@ void ov17_022507C4(UnkStruct_ov17_022507C4 *param0)
 
     for (v0 = 0; v0 < 4; v0++) {
         PokemonSprite_Delete(param0->unk_08[v0]);
-        Heap_FreeToHeap(param0->unk_C8[v0].unk_00);
+        Heap_Free(param0->unk_C8[v0].unk_00);
         param0->unk_C8[v0].unk_00 = NULL;
     }
 }
@@ -489,7 +489,7 @@ static void ov17_0225102C(SysTask *param0, void *param1)
     UnkStruct_ov17_02250FE4 *v0 = param1;
 
     if (v0->unk_00->unk_1279 == 1) {
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         return;
     }
@@ -542,7 +542,7 @@ static void ov17_02251140(SysTask *param0, void *param1)
     if ((v0->unk_00->unk_1279 == 1) || ((v0->unk_0C / 0x100) > (192 + 16)) || (((v0->unk_08 + v0->unk_10) / 0x100) < -16)) {
         v0->unk_00->unk_127A--;
         Sprite_DeleteAndFreeResources(v0->unk_04);
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         return;
     }
@@ -752,7 +752,7 @@ static void ov17_022515F4(SysTask *param0, void *param1)
         break;
     default:
         *(v0->unk_04) = 1;
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         return;
     }
@@ -784,7 +784,7 @@ static void ov17_02251688(SysTask *param0, void *param1)
         break;
     default:
         *(v0->unk_04) = 1;
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         return;
     }
@@ -834,7 +834,7 @@ static void ov17_02251784(SysTask *param0, void *param1)
         break;
     default:
         *(v0->unk_04) = 1;
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         return;
     }
@@ -860,7 +860,7 @@ static void ov17_022517F0(SysTask *param0, void *param1)
     default:
         PokemonSprite_SetAttribute(v0->unk_00, MON_SPRITE_HIDE, 1);
         *(v0->unk_04) = 1;
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         return;
     }

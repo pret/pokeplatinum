@@ -799,7 +799,7 @@ int ov70_0225DDF8(ApplicationManager *appMan, int *param1)
     ov70_0225C894(v0->unk_44C);
     ov70_0225E6D0(&v0->unk_3C);
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     Heap_Destroy(HEAP_ID_112);
     Heap_Destroy(HEAP_ID_113);
     Sound_StopAllEffects(0);
@@ -1078,7 +1078,7 @@ void ov70_0225E234(UnkStruct_ov70_0225DEE8 *param0, u32 param1, u32 param2)
 
     ov66_0222E640(v1, v0, HEAP_ID_112);
     ov70_0225F2C8(&param0->unk_340, v0, param2);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 void ov70_0225E27C(UnkStruct_ov70_0225DEE8 *param0, enum PlazaMinigame param1, u32 param2)
@@ -1338,7 +1338,7 @@ static void ov70_0225E6D0(UnkStruct_ov70_0225E4EC *param0)
             Bg_FreeTilemapBuffer(param0->unk_00, Unk_ov70_0226D5CC[v0]);
         }
 
-        Heap_FreeToHeap(param0->unk_00);
+        Heap_Free(param0->unk_00);
     }
 
     {
@@ -1651,7 +1651,7 @@ static void ov70_0225EC20(UnkStruct_ov70_0225EC20 *param0, UnkStruct_ov70_0225E4
 
         Sprite_SetAnim(param0->unk_50[v2], v2);
         Sprite_SetAnimateFlag(param0->unk_50[v2], 1);
-        Sprite_SetDrawFlag(param0->unk_50[v2], 0);
+        Sprite_SetDrawFlag(param0->unk_50[v2], FALSE);
     }
 
     param0->unk_3C = 0;
@@ -1787,7 +1787,7 @@ static void ov70_0225EF14(UnkStruct_ov70_0225EC20 *param0, u16 *param1, u16 *par
     param0->unk_3C = 0;
 
     for (v0 = 0; v0 < 2; v0++) {
-        Sprite_SetDrawFlag(param0->unk_50[v0], 0);
+        Sprite_SetDrawFlag(param0->unk_50[v0], FALSE);
     }
 }
 
@@ -1808,23 +1808,23 @@ static void ov70_0225EF70(UnkStruct_ov70_0225EC20 *param0)
     u16 v0;
 
     if (param0->unk_3C == 0) {
-        Sprite_SetDrawFlag(param0->unk_50[0], 0);
-        Sprite_SetDrawFlag(param0->unk_50[1], 0);
+        Sprite_SetDrawFlag(param0->unk_50[0], FALSE);
+        Sprite_SetDrawFlag(param0->unk_50[1], FALSE);
         return;
     }
 
     ListMenu_GetListAndCursorPos(param0->unk_30, &v0, NULL);
 
     if (v0 <= 0) {
-        Sprite_SetDrawFlag(param0->unk_50[0], 0);
+        Sprite_SetDrawFlag(param0->unk_50[0], FALSE);
     } else {
-        Sprite_SetDrawFlag(param0->unk_50[0], 1);
+        Sprite_SetDrawFlag(param0->unk_50[0], TRUE);
     }
 
     if (v0 >= (param0->unk_3A - 7)) {
-        Sprite_SetDrawFlag(param0->unk_50[1], 0);
+        Sprite_SetDrawFlag(param0->unk_50[1], FALSE);
     } else {
-        Sprite_SetDrawFlag(param0->unk_50[1], 1);
+        Sprite_SetDrawFlag(param0->unk_50[1], TRUE);
     }
 }
 
@@ -2457,7 +2457,7 @@ static void ov70_0225FA14(UnkStruct_ov70_0225E4EC *param0, NARC *param1, u32 par
 
     Bg_LoadToTilemapRect(param0->unk_00, param3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Bg_ScheduleTilemapTransfer(param0->unk_00, param3);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 static void ov70_0225FA84(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4EC *param1, NARC *param2, u32 param3)
@@ -2590,7 +2590,7 @@ static void ov70_0225FAD0(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225E9
 
     ov70_0225FDA0(param0, param2, param3, heapID, param8);
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
 static void ov70_0225FDA0(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225FA84 *param1, UnkStruct_ov70_0225E4EC *param2, u32 param3, const UnkStruct_ov66_0222E71C *param4)
@@ -2611,7 +2611,7 @@ static void ov70_0225FDA0(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225FA
             NNS_G2dGetUnpackedCharacterData(v3, &v4);
 
             Bg_LoadTiles(param2->unk_00, Unk_ov70_0226D5CC[3], v4->pRawData, 4 * 2 * 32, Unk_ov70_0226D590[v1]);
-            Heap_FreeToHeap(v3);
+            Heap_Free(v3);
             Bg_CopyToTilemapRect(param2->unk_00, Unk_ov70_0226D5CC[3], 26, 2 + (2 * v1), 4, 2, Unk_ov70_0226D624[v1], 0, 0, 4, 2);
             Bg_ChangeTilemapRectPalette(param2->unk_00, Unk_ov70_0226D5CC[3], 26, 2 + (2 * v1), 4, 2, 11 + TypeIcon_GetPltt(v2));
             Bg_ScheduleTilemapTransfer(param2->unk_00, Unk_ov70_0226D5CC[3]);
@@ -3051,7 +3051,7 @@ static void ov70_022607A8(UnkStruct_ov70_02260744 *param0)
     Window_Remove(&param0->unk_0C);
 
     for (v0 = 0; v0 < 3; v0++) {
-        Heap_FreeToHeap(param0->unk_20[v0]);
+        Heap_Free(param0->unk_20[v0]);
     }
 
     param0->unk_02 = 0;

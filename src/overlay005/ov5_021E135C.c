@@ -70,7 +70,7 @@ static void ov5_021E139C(SysTask *param0, void *param1)
             StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
         } else if ((v0->unk_0C > 20) && IsScreenFadeDone()) {
             *v0->unk_04 = 1;
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             SysTask_Done(param0);
         } else {
             break;
@@ -120,7 +120,7 @@ static void ov5_021E1470(SysTask *param0, void *param1)
         if (IsScreenFadeDone()) {
             Player_SetDir(v0->fieldSystem->playerAvatar, 1);
             *v0->unk_04 = 1;
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             SysTask_Done(param0);
         }
         break;

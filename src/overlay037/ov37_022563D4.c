@@ -52,7 +52,7 @@ BOOL ov37_022563D4(UnkStruct_ov37_022563D4 **param0, const UnkStruct_ov37_022563
 void ov37_02256410(UnkStruct_ov37_022563D4 *param0)
 {
     if (param0 != NULL) {
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0);
     }
 }
 

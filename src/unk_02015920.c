@@ -114,7 +114,7 @@ void sub_02015938(UnkStruct_02015920 *param0)
         sub_02015A54(param0);
     }
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void sub_02015958(UnkStruct_02015920 *param0, const UnkStruct_02015958 *param1)
@@ -327,7 +327,7 @@ static void sub_02015D00(UnkStruct_02015C38 *param0)
     Bg_ScheduleTilemapTransfer(param0->unk_00, param0->unk_04);
 
     for (v0 = 0; v0 < 4; v0++) {
-        Heap_FreeToHeap(param0->unk_08[v0]);
+        Heap_Free(param0->unk_08[v0]);
     }
 
     memset(param0, 0, sizeof(UnkStruct_02015C38));
@@ -398,8 +398,8 @@ static void sub_02015E64(SysTask *param0, void *param1)
 
     Bg_LoadTiles(v0->unk_00, v0->unk_0C, v0->unk_04->pRawData, v0->unk_04->szByte, v0->unk_10);
     SysTask_Done(param0);
-    Heap_FreeToHeap(v0->unk_08);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0->unk_08);
+    Heap_Free(v0);
 }
 
 static void sub_02015EA0(SysTask *param0, void *param1)
@@ -415,8 +415,8 @@ static void sub_02015EA0(SysTask *param0, void *param1)
     }
 
     SysTask_Done(param0);
-    Heap_FreeToHeap(v0->unk_04);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0->unk_04);
+    Heap_Free(v0);
 }
 
 static void sub_02015EE8(BgConfig *param0, int param1, const NNSG2dScreenData *param2, int param3, int param4)

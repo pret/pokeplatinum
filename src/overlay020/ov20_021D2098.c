@@ -146,8 +146,8 @@ void ov20_021D2128(UnkStruct_ov20_021D2128 *param0)
         RenderOam_Free();
         SpriteList_Delete(param0->unk_24);
 
-        Heap_FreeToHeap(param0->unk_20);
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0->unk_20);
+        Heap_Free(param0);
     }
 }
 
@@ -264,7 +264,7 @@ static void ov20_021D2238(UnkStruct_ov20_021D2238 *param0)
 {
     SysTask_Done(param0->unk_00->unk_08[param0->unk_10]);
     param0->unk_00->unk_08[param0->unk_10] = NULL;
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov20_021D2260(SysTask *param0, void *param1)
@@ -350,11 +350,11 @@ static void ov20_021D2414(SysTask *param0, void *param1)
 
             for (v2 = 0; v2 < 2; v2++) {
                 if (v1->unk_234[v2] != NULL) {
-                    Heap_FreeToHeap(v1->unk_234[v2]);
+                    Heap_Free(v1->unk_234[v2]);
                 }
 
                 if (v1->unk_23C[v2] != NULL) {
-                    Heap_FreeToHeap(v1->unk_23C[v2]);
+                    Heap_Free(v1->unk_23C[v2]);
                 }
             }
 

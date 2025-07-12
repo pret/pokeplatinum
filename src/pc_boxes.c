@@ -337,41 +337,41 @@ u32 PCBoxes_CountAllNonEggBoxMons(const PCBoxes *pcBoxes)
     return count;
 }
 
-u32 PCBoxes_GetBoxMonData(const PCBoxes *pcBoxes, u32 boxID, u32 monPosInBox, enum PokemonDataParam pokemonData, void *dest)
+u32 PCBoxes_GetBoxMonData(const PCBoxes *pcBoxes, u32 boxID, u32 slot, enum PokemonDataParam pokemonData, void *dest)
 {
     GF_ASSERT(boxID < MAX_PC_BOXES || boxID == USE_CURRENT_BOX);
-    GF_ASSERT(monPosInBox < MAX_MONS_PER_BOX);
+    GF_ASSERT(slot < MAX_MONS_PER_BOX);
 
     if (boxID == USE_CURRENT_BOX) {
         boxID = pcBoxes->currentBoxID;
     }
 
-    return BoxPokemon_GetValue((&pcBoxes->boxMons[boxID][monPosInBox]), pokemonData, dest);
+    return BoxPokemon_GetValue((&pcBoxes->boxMons[boxID][slot]), pokemonData, dest);
 }
 
-void PCBoxes_SetBoxMonData(PCBoxes *pcBoxes, u32 boxID, u32 monPosInBox, enum PokemonDataParam pokemonData, void *value)
+void PCBoxes_SetBoxMonData(PCBoxes *pcBoxes, u32 boxID, u32 slot, enum PokemonDataParam pokemonData, void *value)
 {
     GF_ASSERT(boxID < MAX_PC_BOXES || boxID == USE_CURRENT_BOX);
-    GF_ASSERT(monPosInBox < MAX_MONS_PER_BOX);
+    GF_ASSERT(slot < MAX_MONS_PER_BOX);
 
     if (boxID == USE_CURRENT_BOX) {
         boxID = pcBoxes->currentBoxID;
     }
 
-    BoxPokemon_SetValue((&pcBoxes->boxMons[boxID][monPosInBox]), pokemonData, value);
+    BoxPokemon_SetValue((&pcBoxes->boxMons[boxID][slot]), pokemonData, value);
     SaveData_SetFullSaveRequired();
 }
 
-BoxPokemon *PCBoxes_GetBoxMonAt(const PCBoxes *pcBoxes, u32 boxID, u32 monPosInBox)
+BoxPokemon *PCBoxes_GetBoxMonAt(const PCBoxes *pcBoxes, u32 boxID, u32 slot)
 {
     GF_ASSERT(boxID < MAX_PC_BOXES || boxID == USE_CURRENT_BOX);
-    GF_ASSERT(monPosInBox < MAX_MONS_PER_BOX);
+    GF_ASSERT(slot < MAX_MONS_PER_BOX);
 
     if (boxID == USE_CURRENT_BOX) {
         boxID = pcBoxes->currentBoxID;
     }
 
-    return &pcBoxes->boxMons[boxID][monPosInBox];
+    return &pcBoxes->boxMons[boxID][slot];
 }
 
 void PCBoxes_UnlockWallpaper(PCBoxes *pcBoxes, u32 wallpaper)

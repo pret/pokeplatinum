@@ -139,7 +139,7 @@ void ov19_021D8C1C(UnkStruct_ov19_021D8E00 *param0, NARC *param1)
     }
 
     if (cursorLocation != CURSOR_IN_BOX) {
-        Sprite_SetDrawFlag(param0->unk_08, 0);
+        Sprite_SetDrawFlag(param0->unk_08, FALSE);
     }
 
     if (pcMode != PC_MODE_MOVE_ITEMS) {
@@ -193,12 +193,12 @@ static void ov19_021D8E00(UnkStruct_ov19_021D8E00 *param0)
 void ov19_021D8E84(UnkStruct_ov19_021D8E00 *param0)
 {
     if (param0->unk_14) {
-        Heap_FreeToHeap(param0->unk_14);
+        Heap_Free(param0->unk_14);
         param0->unk_14 = NULL;
     }
 
     if (param0->unk_18) {
-        Heap_FreeToHeap(param0->unk_18);
+        Heap_Free(param0->unk_18);
         param0->unk_18 = NULL;
     }
 
@@ -262,7 +262,7 @@ void ov19_021D8F60(UnkStruct_ov19_021D8E00 *param0)
     ov19_021D8EE0(param0, &v0, &v1);
 
     if (param0->unk_786 != 0) {
-        Sprite_SetDrawFlag(param0->unk_08, 0);
+        Sprite_SetDrawFlag(param0->unk_08, FALSE);
     }
 
     param0->unk_774 = param0->unk_764 << FX32_SHIFT;
@@ -365,7 +365,7 @@ static void ov19_021D9088(SysTask *param0, void *param1)
     v0->unk_78B = ov19_GetCursorPartyPosition(v0->unk_790);
 
     if (v0->unk_786 == 0) {
-        Sprite_SetDrawFlag(v0->unk_08, 1);
+        Sprite_SetDrawFlag(v0->unk_08, TRUE);
     }
 
     if (v0->unk_786 != 2) {
@@ -559,7 +559,7 @@ static void ov19_021D9554(UnkStruct_ov19_021D8E00 *param0, Sprite *param1, fx32 
             param0->unk_788 = 1;
             return;
         } else {
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
         }
     }
 }

@@ -192,13 +192,13 @@ static UnkStruct_ov21_021E4108 *ov21_021E40C8(enum HeapId heapID, PokedexApp *pa
 static void ov21_021E40F4(UnkStruct_ov21_021E40F4 *param0)
 {
     GF_ASSERT(param0);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov21_021E4108(UnkStruct_ov21_021E4108 *param0)
 {
     GF_ASSERT(param0);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static int ov21_021E411C(void)
@@ -250,7 +250,7 @@ static int ov21_021E4194(PokedexDataManager *dataMan, void *data)
 {
     UnkStruct_ov21_021E4898 *v0 = dataMan->pageData;
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     dataMan->pageData = NULL;
 
     return 1;
@@ -351,7 +351,7 @@ static int ov21_021E4288(void *graphics, PokedexGraphicsManager *graphicsMan, co
         graphicsMan->state++;
         break;
     case 3:
-        Heap_FreeToHeap(graphicsMan->pageGraphics);
+        Heap_Free(graphicsMan->pageGraphics);
         graphicsMan->pageGraphics = NULL;
         graphicsMan->state++;
         break;
@@ -515,7 +515,7 @@ static void ov21_021E45FC(UnkStruct_ov21_021E4108 *param0, const UnkStruct_ov21_
     v0 = PokedexGraphics_GetGraphicNarcScreenData(param0->unk_00, 70, 1, &v1, heapID);
 
     Bg_LoadToTilemapRect(param0->unk_00->bgConfig, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     Bg_ScheduleTilemapTransfer(param0->unk_00->bgConfig, 3);
 }
 
@@ -744,7 +744,7 @@ static void ov21_021E4B30(UnkStruct_ov21_021E4B30 *param0, int param1)
 
     for (v0 = 0; v0 < 9; v0++) {
         Sprite_SetPosition(param0->unk_00[v0].unk_00, &v1);
-        Sprite_SetDrawFlag(param0->unk_00[v0].unk_00, 0);
+        Sprite_SetDrawFlag(param0->unk_00[v0].unk_00, FALSE);
 
         v1.y += -8 << FX32_SHIFT;
 
@@ -754,7 +754,7 @@ static void ov21_021E4B30(UnkStruct_ov21_021E4B30 *param0, int param1)
     v1.y = 96 << FX32_SHIFT;
 
     Sprite_SetPosition(param0->unk_48.unk_00, &v1);
-    Sprite_SetDrawFlag(param0->unk_48.unk_00, 0);
+    Sprite_SetDrawFlag(param0->unk_48.unk_00, FALSE);
 }
 
 static void ov21_021E4B94(UnkStruct_ov21_021E4B30 *param0, int param1)
@@ -763,7 +763,7 @@ static void ov21_021E4B94(UnkStruct_ov21_021E4B30 *param0, int param1)
     int v1 = 0;
 
     for (v0 = 0; v0 < param1; v0++) {
-        Sprite_SetDrawFlag(param0->unk_00[v0].unk_00, 1);
+        Sprite_SetDrawFlag(param0->unk_00[v0].unk_00, TRUE);
         param0->unk_00[v0].unk_04 = 2 * (v0 + 1);
     }
 
@@ -773,7 +773,7 @@ static void ov21_021E4B94(UnkStruct_ov21_021E4B30 *param0, int param1)
                 param0->unk_00[v0].unk_04--;
                 v1 = v0 + 1;
             } else {
-                Sprite_SetDrawFlag(param0->unk_00[v0].unk_00, 0);
+                Sprite_SetDrawFlag(param0->unk_00[v0].unk_00, FALSE);
             }
         }
     }
@@ -783,7 +783,7 @@ static void ov21_021E4B94(UnkStruct_ov21_021E4B30 *param0, int param1)
         param0->unk_48.unk_08 = 16;
 
         if (param0->unk_48.unk_04 < v1) {
-            Sprite_SetDrawFlag(param0->unk_48.unk_00, 1);
+            Sprite_SetDrawFlag(param0->unk_48.unk_00, TRUE);
         }
 
         param0->unk_48.unk_04 = v1;
@@ -797,7 +797,7 @@ static void ov21_021E4B94(UnkStruct_ov21_021E4B30 *param0, int param1)
             param0->unk_48.unk_08--;
         }
     } else {
-        Sprite_SetDrawFlag(param0->unk_48.unk_00, 0);
+        Sprite_SetDrawFlag(param0->unk_48.unk_00, FALSE);
     }
 }
 

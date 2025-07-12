@@ -92,7 +92,7 @@ void PalPad_PushEntries(PalPad *destination, PalPad *source, int numberToCopy, i
     }
 
     memcpy(destination, newPad, sizeof(PalPad) * PAL_PAD_ENTRIES);
-    Heap_FreeToHeap(newPad);
+    Heap_Free(newPad);
 }
 
 int PalPad_TrainerIsFriend(PalPad *palPad, u32 trainerId)

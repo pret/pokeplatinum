@@ -1206,7 +1206,7 @@ static void ov22_02256FD8(UnkStruct_02029C88 *param0, UnkStruct_ov22_02257964 *p
     sub_0202A35C(param0, param1->unk_2C.unk_48);
     sub_0202A378(param0, param2);
     sub_0202A240(param0);
-    Heap_FreeToHeap(v2);
+    Heap_Free(v2);
 }
 
 static BOOL ov22_02257098(UnkStruct_ov22_02256C48 *param0, int param1, int param2, int param3)

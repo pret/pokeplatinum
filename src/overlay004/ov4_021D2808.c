@@ -523,8 +523,8 @@ void ov4_021D2F08(void)
 
         VCT_Cleanup();
 
-        Heap_FreeToHeapExplicit(Unk_ov4_0221A408->unk_19F4, Unk_ov4_0221A408->unk_888);
-        Heap_FreeToHeapExplicit(Unk_ov4_0221A408->unk_19F4, Unk_ov4_0221A408->unk_880);
+        Heap_FreeExplicit(Unk_ov4_0221A408->unk_19F4, Unk_ov4_0221A408->unk_888);
+        Heap_FreeExplicit(Unk_ov4_0221A408->unk_19F4, Unk_ov4_0221A408->unk_880);
         Unk_ov4_0221A408 = NULL;
 
         if (v0 != NULL) {

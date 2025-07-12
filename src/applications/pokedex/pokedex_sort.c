@@ -372,9 +372,9 @@ BOOL PokedexSort_Sort(PokedexSortData *param0, enum SortOrder sortOrder, enum Fi
 
     NumEncounteredAndCaught(&param0->sortedPokedex, &param0->numEncountered, &param0->numCaught);
 
-    Heap_FreeToHeap(encounteredPokedex);
-    Heap_FreeToHeap(resultingPokedex);
-    Heap_FreeToHeap(fullDex);
+    Heap_Free(encounteredPokedex);
+    Heap_Free(resultingPokedex);
+    Heap_Free(fullDex);
 
     return dexExists;
 }
@@ -759,7 +759,7 @@ static void DexSortOrder(int sortOrder, u16 *resultingPokedex, int *numResulting
 
     if (pokedexFromFile != NULL) {
         IntersectPokedexes(resultingPokedex, numResulting, pokedexFromFile, pokedexLength, encounteredPokedex, caughtStatusLength, keepUncaught, pokedex);
-        Heap_FreeToHeap(pokedexFromFile);
+        Heap_Free(pokedexFromFile);
     } else {
         memcpy(resultingPokedex, encounteredPokedex, (sizeof(u16)) * caughtStatusLength);
         *numResulting = caughtStatusLength;
@@ -809,7 +809,7 @@ static void FilterByName(int filterName, u16 *resultingPokedex, int *numResultin
 
     if (pokedexFromFile != NULL) {
         IntersectPokedexes(resultingPokedex, numResulting, encounteredPokedex, caughtStatusLength, pokedexFromFile, pokedexLength, TRUE, pokedex);
-        Heap_FreeToHeap(pokedexFromFile);
+        Heap_Free(pokedexFromFile);
     } else {
         memcpy(resultingPokedex, encounteredPokedex, (sizeof(u16)) * caughtStatusLength);
         *numResulting = caughtStatusLength;
@@ -883,7 +883,7 @@ static void FilterByType(int typeFilter, u16 *resultingPokedex, int *numResultin
 
     if (pokedexFromFile != NULL) {
         IntersectPokedexes(resultingPokedex, numResulting, encounteredPokedex, caughtStatusLength, pokedexFromFile, pokedexLength, FALSE, pokedex);
-        Heap_FreeToHeap(pokedexFromFile);
+        Heap_Free(pokedexFromFile);
     } else {
         memcpy(resultingPokedex, encounteredPokedex, (sizeof(u16)) * caughtStatusLength);
         *numResulting = caughtStatusLength;
@@ -948,7 +948,7 @@ static void FilterByForm(int filterForm, u16 *resultingPokedex, int *numResultin
 
     if (pokedexFromFile != NULL) {
         IntersectPokedexes(resultingPokedex, numResulting, encounteredPokedex, caughtStatusLength, pokedexFromFile, pokedexLength, TRUE, pokedex);
-        Heap_FreeToHeap(pokedexFromFile);
+        Heap_Free(pokedexFromFile);
     } else {
         memcpy(resultingPokedex, encounteredPokedex, (sizeof(u16)) * caughtStatusLength);
         *numResulting = caughtStatusLength;

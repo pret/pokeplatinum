@@ -62,21 +62,21 @@ void LoadedMapBuffers_Free(LoadedMapBuffers *buffers)
 {
     for (int i = 0; i < LOADED_MAP_BUFFERS_FILE_COUNT; i++) {
         if (buffers->mapModelAllocType == LOADED_MAP_BUFFERS_ALLOC_HEAP) {
-            Heap_FreeToHeap(buffers->mapModelFiles[i]);
+            Heap_Free(buffers->mapModelFiles[i]);
         }
 
         buffers->mapModelFiles[i] = NULL;
 
         if (buffers->bdhcFiles[i] != NULL) {
             if (buffers->bdhcAllocType == LOADED_MAP_BUFFERS_ALLOC_HEAP) {
-                Heap_FreeToHeap(buffers->bdhcFiles[i]);
+                Heap_Free(buffers->bdhcFiles[i]);
             }
 
             buffers->bdhcFiles[i] = NULL;
         }
     }
 
-    Heap_FreeToHeap(buffers);
+    Heap_Free(buffers);
     buffers = NULL;
 }
 

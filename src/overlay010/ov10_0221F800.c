@@ -1410,7 +1410,7 @@ static void ov10_02220E30(UnkStruct_ov10_0221FB28 *param0)
         Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_0);
     }
 
-    Heap_FreeToHeap(param0->unk_0C);
+    Heap_Free(param0->unk_0C);
 }
 
 static void ov10_02220E70(UnkStruct_ov10_0221FB28 *param0)
@@ -1776,7 +1776,7 @@ static void ov10_022218F4(UnkStruct_ov10_0221FB28 *param0)
     }
 
     ParticleSystem_Free(param0->unk_B50);
-    Heap_FreeToHeap(param0->unk_B54);
+    Heap_Free(param0->unk_B54);
     sub_020242C4(param0->unk_B4C);
 }
 
@@ -1893,7 +1893,7 @@ static void ov10_02221A10(UnkStruct_ov10_0221FB28 *param0)
     Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_3);
     Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_1);
-    Heap_FreeToHeap(param0->unk_0C);
+    Heap_Free(param0->unk_0C);
 }
 
 static void ov10_02221A3C(UnkStruct_ov10_0221FB28 *param0)
@@ -1914,7 +1914,7 @@ static void ov10_02221A3C(UnkStruct_ov10_0221FB28 *param0)
 
         v3 = (u16 *)v1->pRawData;
         memcpy(param0->unk_4D8, &v3[3 * 16], 32 * 3);
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
     }
 
     LoadScreenDataFromNARC(param0->unk_00->heapID, param0->unk_298, param0->unk_358, param0->unk_418);
@@ -2380,7 +2380,7 @@ static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
 
         Strbuf_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
         journalEntryOnlineEvent = JournalEntry_CreateEventUnionBattle(opponentName1, opponentGender1, battleResult, param0->heapID);
-        Heap_FreeToHeap(opponentName1);
+        Heap_Free(opponentName1);
     } else {
         switch (sub_0203895C()) {
         case 1:
@@ -2390,7 +2390,7 @@ static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
             Strbuf_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
 
             journalEntryOnlineEvent = JournalEntry_CreateEventSingleBattle(opponentName1, opponentGender1, battleResult, param0->heapID);
-            Heap_FreeToHeap(opponentName1);
+            Heap_Free(opponentName1);
             break;
         case 2:
             opponentGender1 = TrainerClass_Gender(param0->unk_00->trainer[v6 ^ 1].header.trainerType);
@@ -2399,7 +2399,7 @@ static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
             Strbuf_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
 
             journalEntryOnlineEvent = JournalEntry_CreateEventDoubleBattle(opponentName1, opponentGender1, battleResult, param0->heapID);
-            Heap_FreeToHeap(opponentName1);
+            Heap_Free(opponentName1);
             break;
         case 3:
             opponentGender1 = TrainerClass_Gender(param0->unk_00->trainer[v6 ^ 1].header.trainerType);
@@ -2408,7 +2408,7 @@ static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
             Strbuf_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
 
             journalEntryOnlineEvent = JournalEntry_CreateEventMixSingleBattle(opponentName1, opponentGender1, battleResult, param0->heapID);
-            Heap_FreeToHeap(opponentName1);
+            Heap_Free(opponentName1);
             break;
         case 4:
             opponentName1 = Heap_AllocFromHeap(param0->heapID, sizeof(u16) * (TRAINER_NAME_LEN + 1));
@@ -2430,8 +2430,8 @@ static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
 
             journalEntryOnlineEvent = JournalEntry_CreateEventMultiBattle(opponentName1, opponentName2, opponentGender1, opponentGender2, battleResult, param0->heapID);
 
-            Heap_FreeToHeap(opponentName1);
-            Heap_FreeToHeap(opponentName2);
+            Heap_Free(opponentName1);
+            Heap_Free(opponentName2);
             break;
         default:
             return;

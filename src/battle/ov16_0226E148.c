@@ -41,7 +41,7 @@ void ov16_0226E174(SysTask *param0)
 {
     UnkStruct_ov16_0226E148 *v0 = SysTask_GetParam(param0);
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     SysTask_Done(param0);
 }
 

@@ -50,7 +50,7 @@ static BOOL sub_020574CC(FieldTask *param0)
         v1->unk_00++;
     } break;
     case 1:
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return 1;
     }
 

@@ -604,7 +604,7 @@ static void ov79_021D13A4(UnkStruct_ov79_021D0E1C *param0)
         Bg_FreeTilemapBuffer(param0->unk_24, v0);
     }
 
-    Heap_FreeToHeap(param0->unk_24);
+    Heap_Free(param0->unk_24);
 }
 
 static void ov79_021D13C4(UnkStruct_ov79_021D0E1C *param0)
@@ -743,7 +743,7 @@ static void ov79_021D167C(UnkStruct_ov79_021D0E1C *param0)
 
     for (v0 = 0; v0 < 3; v0++) {
         param0->unk_1C0[v0] = SpriteSystem_NewSpriteFromResourceHeader(param0->unk_1B8, param0->unk_1BC, &v1[v0]);
-        Sprite_SetDrawFlag(param0->unk_1C0[v0], 1);
+        Sprite_SetDrawFlag(param0->unk_1C0[v0], TRUE);
     }
 
     Sprite_SetAnimateFlag(param0->unk_1C0[0], 0);
@@ -763,7 +763,7 @@ static void ov79_021D167C(UnkStruct_ov79_021D0E1C *param0)
 
         param0->unk_1CC[v0] = SpriteSystem_NewSpriteFromResourceHeader(param0->unk_1B8, param0->unk_1BC, &v1[3]);
 
-        Sprite_SetDrawFlag(param0->unk_1CC[v0], 1);
+        Sprite_SetDrawFlag(param0->unk_1CC[v0], TRUE);
         Sprite_SetAnim(param0->unk_1CC[v0], v0 + 3);
         Sprite_SetPositionXY(param0->unk_1CC[v0], v2[v0].unk_00, v2[v0].unk_02);
     }
@@ -782,7 +782,7 @@ static void ov79_021D167C(UnkStruct_ov79_021D0E1C *param0)
 
         param0->unk_1E0[v0] = SpriteSystem_NewSpriteFromResourceHeader(param0->unk_1B8, param0->unk_1BC, &v1[4]);
 
-        Sprite_SetDrawFlag(param0->unk_1E0[v0], 1);
+        Sprite_SetDrawFlag(param0->unk_1E0[v0], TRUE);
         Sprite_SetAnim(param0->unk_1E0[v0], v0 * 3);
         Sprite_SetAnimSpeed(param0->unk_1E0[v0], FX32_CONST(2));
         Sprite_SetExplicitPalette(param0->unk_1E0[v0], v0 + 2);

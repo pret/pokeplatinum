@@ -379,8 +379,8 @@ static BOOL ov106_02241E14(UnkStruct_ov106_02243118 *param0)
 
         if (ApplicationManager_Exec(param0->unk_04) == 1) {
             param0->unk_288 = param0->unk_BC->monIndex;
-            Heap_FreeToHeap(param0->unk_BC);
-            Heap_FreeToHeap(param0->unk_04);
+            Heap_Free(param0->unk_BC);
+            Heap_Free(param0->unk_04);
             param0->unk_04 = NULL;
             ov106_0224248C(param0);
             param0->unk_10 = 0;
@@ -870,7 +870,7 @@ static void ov106_022426A4(BgConfig *param0)
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 
     return;
 }
@@ -1035,7 +1035,7 @@ static void ov106_02242884(void)
 
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 6));
     GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 6));
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     return;
 }

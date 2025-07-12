@@ -87,10 +87,10 @@ void ov29_02256770(UnkStruct_ov29_022566C8 *param0)
         if (param0->unk_70) {
             PoketchMemory_WriteFast(param0->unk_00->unk_16E8, param0->unk_70->pixels, (20 * 19 * 0x20));
             Window_Remove(param0->unk_70);
-            Heap_FreeToHeap(param0->unk_70);
+            Heap_Free(param0->unk_70);
         }
 
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0);
     }
 }
 

@@ -192,7 +192,7 @@ static int Daycare_MoveToPartyFromDaycareMon(Party *party, DaycareMon *daycareMo
     Party_AddPokemon(party, mon);
     BoxPokemon_Init(boxMon);
     DaycareMon_SetSteps(daycareMon, 0);
-    Heap_FreeToHeap(mon);
+    Heap_Free(mon);
 
     return species;
 }
@@ -222,7 +222,7 @@ int BoxPokemon_GiveExperience(BoxPokemon *boxMon, u32 givenExp)
 
     BoxPokemon_SetValue(boxMonRef, MON_DATA_EXP, (u8 *)&exp);
     level = BoxPokemon_GetLevel(boxMonRef);
-    Heap_FreeToHeap(mon);
+    Heap_Free(mon);
 
     return level;
 }
@@ -549,7 +549,7 @@ static void Egg_BuildMoveset(Pokemon *egg, BoxPokemon *father, BoxPokemon *mothe
         }
     }
 
-    Heap_FreeToHeap(builder);
+    Heap_Free(builder);
 }
 
 void Daycare_ResetPersonalityAndStepCounter(Daycare *daycare)
@@ -776,7 +776,7 @@ void Daycare_GiveEggFromDaycare(Daycare *daycare, Party *party, TrainerInfo *tra
 
     Party_AddPokemon(party, mon);
     Daycare_ResetPersonalityAndStepCounter(daycare);
-    Heap_FreeToHeap(mon);
+    Heap_Free(mon);
 }
 
 static int Party_GetEggCyclesToSubtract(Party *party)
@@ -1179,7 +1179,7 @@ static void Egg_CreateHatchedMonInternal(Pokemon *egg, int heapID)
 
     Pokemon_Copy(mon, egg);
     Strbuf_Free(strBuf);
-    Heap_FreeToHeap(mon);
+    Heap_Free(mon);
 }
 
 void Egg_CreateHatchedMon(Pokemon *egg, int heapID)

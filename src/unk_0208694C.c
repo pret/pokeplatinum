@@ -1024,7 +1024,7 @@ static int sub_02086D38(UnkStruct_02087A10 *param0, int param1)
 
     if (gSystem.pressedKeys & PAD_BUTTON_SELECT) {
         if (Sprite_GetDrawFlag(param0->unk_390[8]) == 0) {
-            Sprite_SetDrawFlag(param0->unk_390[8], 1);
+            Sprite_SetDrawFlag(param0->unk_390[8], TRUE);
             return param1;
         }
 
@@ -1122,7 +1122,7 @@ static int sub_02086F3C(ApplicationManager *appMan, int *param1)
 
         v4 = Pokemon_New(HEAP_ID_18);
         Pokemon_InitWith(v4, v0->unk_04, 5, 10, 10, 10, 10, 10);
-        Heap_FreeToHeap(v4);
+        Heap_Free(v4);
     }
 
     if ((v0->unk_158 == 0) || (CharCode_Compare(v0->unk_D8, v0->unk_118) == 0) || sub_02086F14(v0->unk_D8)) {
@@ -1150,11 +1150,11 @@ static int sub_02086F3C(ApplicationManager *appMan, int *param1)
 
     SpriteList_Delete(v0->unk_188);
     RenderOam_Free();
-    Heap_FreeToHeapExplicit(HEAP_ID_18, v0->unk_510);
+    Heap_FreeExplicit(HEAP_ID_18, v0->unk_510);
 
     if (v0->unk_00 == 1) {
-        Heap_FreeToHeapExplicit(HEAP_ID_18, v0->unk_518);
-        Heap_FreeToHeapExplicit(HEAP_ID_18, v0->unk_520);
+        Heap_FreeExplicit(HEAP_ID_18, v0->unk_518);
+        Heap_FreeExplicit(HEAP_ID_18, v0->unk_520);
     }
 
     Bg_FreeTilemapBuffer(v0->unk_160, BG_LAYER_SUB_3);
@@ -1214,7 +1214,7 @@ void sub_0208716C(UnkStruct_0208737C *param0)
     GF_ASSERT((param0) != NULL);
 
     Strbuf_Free(param0->textInputStr);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void sub_02087190(void *param0)
@@ -1399,7 +1399,7 @@ static void sub_0208737C(UnkStruct_02087A10 *param0, ApplicationManager *appMan)
         v1 = Pokemon_New(HEAP_ID_18);
         Pokemon_InitWith(v1, param0->unk_04, 5, 10, 10, 10, 10, 10);
         StringTemplate_SetSpeciesName(param0->unk_168, 0, Pokemon_GetBoxPokemon(v1));
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
     }
 
     if (v0->unk_44 != 0) {
@@ -1466,7 +1466,7 @@ static void sub_02087544(UnkStruct_02087A10 *param0, ApplicationManager *appMan)
 
             Pokemon_InitWith(v4, param0->unk_04, 1, 0, 0, 0, 0, 0);
             StringTemplate_SetSpeciesName(param0->unk_168, 0, Pokemon_GetBoxPokemon(v4));
-            Heap_FreeToHeap(v4);
+            Heap_Free(v4);
         } else {
             param0->unk_D8[param0->unk_158] = 0xffff;
             Strbuf_CopyChars(v0, param0->unk_D8);
@@ -1492,7 +1492,7 @@ static void sub_0208765C(BgConfig *param0, Window *param1)
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
-    Heap_FreeToHeapExplicit(HEAP_ID_18, param0);
+    Heap_FreeExplicit(HEAP_ID_18, param0);
 }
 
 static void sub_0208769C(UnkStruct_02087A10 *param0, NARC *param1)
@@ -1616,8 +1616,8 @@ static void sub_02087A10(UnkStruct_02087A10 *param0)
             Sprite_SetPriority(param0->unk_390[v0], Unk_020F2984[v0][3]);
         }
 
-        Sprite_SetDrawFlag(param0->unk_390[4], 0);
-        Sprite_SetDrawFlag(param0->unk_390[8], 0);
+        Sprite_SetDrawFlag(param0->unk_390[4], FALSE);
+        Sprite_SetDrawFlag(param0->unk_390[8], FALSE);
 
         for (v0 = 0; v0 < 7; v0++) {
             UnkStruct_020879DC *v2;
@@ -1953,35 +1953,35 @@ static void sub_02088350(UnkStruct_02087A10 *param0)
 
     if (gSystem.pressedKeysRepeatable & PAD_KEY_UP) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        Sprite_SetDrawFlag(param0->unk_390[8], 1);
+        Sprite_SetDrawFlag(param0->unk_390[8], TRUE);
         v1 = 1;
         v0++;
     }
 
     if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        Sprite_SetDrawFlag(param0->unk_390[8], 1);
+        Sprite_SetDrawFlag(param0->unk_390[8], TRUE);
         v1 = 2;
         v0++;
     }
 
     if (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        Sprite_SetDrawFlag(param0->unk_390[8], 1);
+        Sprite_SetDrawFlag(param0->unk_390[8], TRUE);
         v1 = 3;
         v0++;
     }
 
     if (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        Sprite_SetDrawFlag(param0->unk_390[8], 1);
+        Sprite_SetDrawFlag(param0->unk_390[8], TRUE);
         v1 = 4;
         v0++;
     }
 
     if (gSystem.pressedKeys & PAD_BUTTON_START) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        Sprite_SetDrawFlag(param0->unk_390[8], 1);
+        Sprite_SetDrawFlag(param0->unk_390[8], TRUE);
         param0->unk_1C.unk_00 = 12;
         param0->unk_1C.unk_04 = 0;
         v0++;
@@ -2221,7 +2221,7 @@ static int sub_02088898(UnkStruct_02087A10 *param0, u16 param1, int param2)
     }
 
     if ((Sprite_GetDrawFlag(param0->unk_390[8]) == 0) && (gSystem.touchPressed == 0)) {
-        Sprite_SetDrawFlag(param0->unk_390[8], 1);
+        Sprite_SetDrawFlag(param0->unk_390[8], TRUE);
         return 2;
     }
 
@@ -2311,7 +2311,7 @@ static int sub_02088898(UnkStruct_02087A10 *param0, u16 param1, int param2)
 
             sub_02088E1C(param0->unk_3C8, param0->unk_158, param0->unk_0C);
             Sound_PlayEffect(SEQ_SE_DP_BOX02);
-            Sprite_SetDrawFlag(param0->unk_390[8], 1);
+            Sprite_SetDrawFlag(param0->unk_390[8], TRUE);
             Sprite_SetExplicitOAMMode(param0->unk_390[8], GX_OAM_MODE_XLU);
 
             G2_SetBlendAlpha(0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2, 8, 8);
@@ -2499,7 +2499,7 @@ static void sub_02088FD0(UnkStruct_02087A10 *param0)
         }
 
         if (param0->unk_1C.unk_14 == 0) {
-            Sprite_SetDrawFlag(param0->unk_390[8], 0);
+            Sprite_SetDrawFlag(param0->unk_390[8], FALSE);
         } else {
             sub_02088454(param0, 0);
         }

@@ -85,7 +85,7 @@ void ov83_0223D558(UnkStruct_ov83_0223D4CC *param0)
         ov83_0223D620(param0->unk_04);
     }
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 int ov83_0223D570(UnkStruct_ov83_0223D4CC *param0)
@@ -128,7 +128,7 @@ static void ov83_0223D5CC(SysTask *param0, void *param1)
 static void ov83_0223D620(UnkStruct_ov83_0223D584 *param0)
 {
     SysTask_Done(param0->unk_19C);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static BOOL ov83_0223D638(UnkStruct_ov83_0223D584 *param0, int param1, const void *param2, int param3)
