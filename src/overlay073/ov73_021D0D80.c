@@ -372,12 +372,26 @@ int RowanIntro_Main(ApplicationManager *appMan, int *state)
         break;
     case RI_APP_STATE_RUNNING:
         if (RowanIntro_Run(manager) == TRUE) {
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, manager->heapID);
+            StartScreenFade(
+                FADE_BOTH_SCREENS,
+                FADE_TYPE_UNK_0,
+                FADE_TYPE_UNK_0,
+                FADE_TO_BLACK,
+                6,
+                1,
+                manager->heapID);
             *state = RI_APP_STATE_EXIT;
         }
 
         if (manager->appMan != NULL) {
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, manager->heapID);
+            StartScreenFade(
+                FADE_BOTH_SCREENS,
+                FADE_TYPE_UNK_0,
+                FADE_TYPE_UNK_0,
+                FADE_TO_BLACK,
+                6,
+                1,
+                manager->heapID);
             *state = RI_APP_STATE_CHANGE_APP_WAIT_FADE;
         }
         break;
@@ -423,8 +437,12 @@ int RowanIntro_Exit(ApplicationManager *appMan, int *unusedState)
     Heap_Free(manager->bunearyPalette);
     Heap_Free(manager->bunearyBlendedPalette);
 
-    TrainerInfo_SetNameFromStrbuf(SaveData_GetTrainerInfo(manager->saveData), manager->unk_70->textInputStr);
-    TrainerInfo_SetGender(SaveData_GetTrainerInfo(manager->saveData), manager->unk_70->unk_04);
+    TrainerInfo_SetNameFromStrbuf(
+        SaveData_GetTrainerInfo(manager->saveData),
+        manager->unk_70->textInputStr);
+    TrainerInfo_SetGender(
+        SaveData_GetTrainerInfo(manager->saveData),
+        manager->unk_70->unk_04);
 
     {
         MiscSaveBlock *miscSaveBlock = SaveData_MiscSaveBlock(manager->saveData);
@@ -529,28 +547,59 @@ static void RowanIntro_InitGraphics(RowanIntro *manager)
 
         bgConfig.screenBase = GX_BG_SCRBASE_0x7800;
         bgConfig.charBase = GX_BG_CHARBASE_0x18000;
-        Bg_InitFromTemplate(manager->bgConfig, BG_LAYER_MAIN_0, &bgConfig, BG_TYPE_STATIC);
+        Bg_InitFromTemplate(
+            manager->bgConfig,
+            BG_LAYER_MAIN_0,
+            &bgConfig,
+            BG_TYPE_STATIC);
         Bg_ClearTilemap(manager->bgConfig, BG_LAYER_MAIN_0);
 
         bgConfig.screenBase = GX_BG_SCRBASE_0x7000;
         bgConfig.charBase = GX_BG_CHARBASE_0x14000;
-        Bg_InitFromTemplate(manager->bgConfig, BG_LAYER_MAIN_1, &bgConfig, BG_TYPE_STATIC);
+        Bg_InitFromTemplate(
+            manager->bgConfig,
+            BG_LAYER_MAIN_1,
+            &bgConfig,
+            BG_TYPE_STATIC);
         Bg_ClearTilemap(manager->bgConfig, BG_LAYER_MAIN_1);
 
         bgConfig.screenBase = GX_BG_SCRBASE_0x6800;
         bgConfig.charBase = GX_BG_CHARBASE_0x10000;
-        Bg_InitFromTemplate(manager->bgConfig, BG_LAYER_MAIN_2, &bgConfig, BG_TYPE_STATIC);
+        Bg_InitFromTemplate(
+            manager->bgConfig,
+            BG_LAYER_MAIN_2,
+            &bgConfig,
+            BG_TYPE_STATIC);
         Bg_ClearTilemap(manager->bgConfig, BG_LAYER_MAIN_2);
 
         bgConfig.screenBase = GX_BG_SCRBASE_0x6000;
         bgConfig.charBase = GX_BG_CHARBASE_0x0c000;
-        Bg_InitFromTemplate(manager->bgConfig, BG_LAYER_MAIN_3, &bgConfig, BG_TYPE_STATIC);
+        Bg_InitFromTemplate(
+            manager->bgConfig,
+            BG_LAYER_MAIN_3,
+            &bgConfig,
+            BG_TYPE_STATIC);
         Bg_ClearTilemap(manager->bgConfig, BG_LAYER_MAIN_3);
 
-        LoadMessageBoxGraphics(manager->bgConfig, BG_LAYER_MAIN_0, 0x400 - (18 + 12), 4, 0, manager->heapID);
-        LoadStandardWindowGraphics(manager->bgConfig, BG_LAYER_MAIN_0, (0x400 - (18 + 12)) - 9, 3, 0, manager->heapID);
+        LoadMessageBoxGraphics(
+            manager->bgConfig,
+            BG_LAYER_MAIN_0,
+            0x400 - (18 + 12),
+            4,
+            0,
+            manager->heapID);
+        LoadStandardWindowGraphics(
+            manager->bgConfig,
+            BG_LAYER_MAIN_0,
+            (0x400 - (18 + 12)) - 9,
+            3,
+            0,
+            manager->heapID);
         Font_LoadTextPalette(PAL_LOAD_MAIN_BG, 5 * (2 * 16), manager->heapID);
-        Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, 6 * (2 * 16), manager->heapID);
+        Font_LoadScreenIndicatorsPalette(
+            PAL_LOAD_MAIN_BG,
+            6 * (2 * 16),
+            manager->heapID);
     }
     {
         BgTemplate bgConfig = {
@@ -571,22 +620,38 @@ static void RowanIntro_InitGraphics(RowanIntro *manager)
 
         bgConfig.screenBase = GX_BG_SCRBASE_0x7800;
         bgConfig.charBase = GX_BG_CHARBASE_0x18000;
-        Bg_InitFromTemplate(manager->bgConfig, BG_LAYER_SUB_0, &bgConfig, BG_TYPE_STATIC);
+        Bg_InitFromTemplate(
+            manager->bgConfig,
+            BG_LAYER_SUB_0,
+            &bgConfig,
+            BG_TYPE_STATIC);
         Bg_ClearTilemap(manager->bgConfig, BG_LAYER_SUB_0);
 
         bgConfig.screenBase = GX_BG_SCRBASE_0x7000;
         bgConfig.charBase = GX_BG_CHARBASE_0x14000;
-        Bg_InitFromTemplate(manager->bgConfig, BG_LAYER_SUB_1, &bgConfig, BG_TYPE_STATIC);
+        Bg_InitFromTemplate(
+            manager->bgConfig,
+            BG_LAYER_SUB_1,
+            &bgConfig,
+            BG_TYPE_STATIC);
         Bg_ClearTilemap(manager->bgConfig, BG_LAYER_SUB_1);
 
         bgConfig.screenBase = GX_BG_SCRBASE_0x6800;
         bgConfig.charBase = GX_BG_CHARBASE_0x10000;
-        Bg_InitFromTemplate(manager->bgConfig, BG_LAYER_SUB_2, &bgConfig, BG_TYPE_STATIC);
+        Bg_InitFromTemplate(
+            manager->bgConfig,
+            BG_LAYER_SUB_2,
+            &bgConfig,
+            BG_TYPE_STATIC);
         Bg_ClearTilemap(manager->bgConfig, BG_LAYER_SUB_2);
 
         bgConfig.screenBase = GX_BG_SCRBASE_0x6000;
         bgConfig.charBase = GX_BG_CHARBASE_0x0c000;
-        Bg_InitFromTemplate(manager->bgConfig, BG_LAYER_SUB_3, &bgConfig, BG_TYPE_STATIC);
+        Bg_InitFromTemplate(
+            manager->bgConfig,
+            BG_LAYER_SUB_3,
+            &bgConfig,
+            BG_TYPE_STATIC);
         Bg_ClearTilemap(manager->bgConfig, BG_LAYER_SUB_3);
     }
 
@@ -631,7 +696,11 @@ static void RowanIntro_FreeGraphics(RowanIntro *manager)
 
 static void RowanIntro_InitMessageStructs(RowanIntro *manager)
 {
-    manager->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ROWAN_INTRO, manager->heapID);
+    manager->msgLoader = MessageLoader_Init(
+        MESSAGE_LOADER_NARC_HANDLE,
+        NARC_INDEX_MSGDATA__PL_MSG,
+        TEXT_BANK_ROWAN_INTRO,
+        manager->heapID);
 
     Text_ResetAllPrinters();
 
@@ -659,7 +728,10 @@ static void ov73_021D1328(RowanIntro *manager)
     sub_02015938(manager->unk_68);
 }
 
-static BOOL RowanIntro_FadeBgLayer(RowanIntro *manager, int bgLayer, enum FadeDirection fadeDirection)
+static BOOL RowanIntro_FadeBgLayer(
+    RowanIntro *manager,
+    int bgLayer,
+    enum FadeDirection fadeDirection)
 {
     BOOL isFinished = FALSE;
     GXBlendPlaneMask blendPlaneMask;
@@ -701,9 +773,17 @@ static BOOL RowanIntro_FadeBgLayer(RowanIntro *manager, int bgLayer, enum FadeDi
             manager->fadeBgLayerState = FBL_STATE_FADE_IN;
 
             if (isSubLayer == FALSE) {
-                G2_SetBlendAlpha(blendPlaneMask, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, manager->fadeBgLayerCurAlpha, manager->fadeBgLayerCurAlphaInv);
+                G2_SetBlendAlpha(
+                    blendPlaneMask,
+                    GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3,
+                    manager->fadeBgLayerCurAlpha,
+                    manager->fadeBgLayerCurAlphaInv);
             } else {
-                G2S_SetBlendAlpha(blendPlaneMask, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, manager->fadeBgLayerCurAlpha, manager->fadeBgLayerCurAlphaInv);
+                G2S_SetBlendAlpha(
+                    blendPlaneMask,
+                    GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3,
+                    manager->fadeBgLayerCurAlpha,
+                    manager->fadeBgLayerCurAlphaInv);
             }
 
             Bg_ToggleLayer(bgLayer, 1);
@@ -719,9 +799,17 @@ static BOOL RowanIntro_FadeBgLayer(RowanIntro *manager, int bgLayer, enum FadeDi
             manager->fadeBgLayerCurAlphaInv--;
 
             if (isSubLayer == FALSE) {
-                G2_SetBlendAlpha(blendPlaneMask, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, manager->fadeBgLayerCurAlpha, manager->fadeBgLayerCurAlphaInv);
+                G2_SetBlendAlpha(
+                    blendPlaneMask,
+                    GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3,
+                    manager->fadeBgLayerCurAlpha,
+                    manager->fadeBgLayerCurAlphaInv);
             } else {
-                G2S_SetBlendAlpha(blendPlaneMask, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, manager->fadeBgLayerCurAlpha, manager->fadeBgLayerCurAlphaInv);
+                G2S_SetBlendAlpha(
+                    blendPlaneMask,
+                    GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3,
+                    manager->fadeBgLayerCurAlpha,
+                    manager->fadeBgLayerCurAlphaInv);
             }
         } else {
             manager->fadeBgLayerState = FBL_STATE_END;
@@ -733,9 +821,17 @@ static BOOL RowanIntro_FadeBgLayer(RowanIntro *manager, int bgLayer, enum FadeDi
             manager->fadeBgLayerCurAlphaInv++;
 
             if (isSubLayer == FALSE) {
-                G2_SetBlendAlpha(blendPlaneMask, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, manager->fadeBgLayerCurAlpha, manager->fadeBgLayerCurAlphaInv);
+                G2_SetBlendAlpha(
+                    blendPlaneMask,
+                    GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3,
+                    manager->fadeBgLayerCurAlpha,
+                    manager->fadeBgLayerCurAlphaInv);
             } else {
-                G2S_SetBlendAlpha(blendPlaneMask, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, manager->fadeBgLayerCurAlpha, manager->fadeBgLayerCurAlphaInv);
+                G2S_SetBlendAlpha(
+                    blendPlaneMask,
+                    GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3,
+                    manager->fadeBgLayerCurAlpha,
+                    manager->fadeBgLayerCurAlphaInv);
             }
         } else {
             manager->fadeBgLayerState = FBL_STATE_END;
@@ -766,7 +862,14 @@ static BOOL RowanIntro_Delay(RowanIntro *manager, int updateCount)
 
 static void RowanIntro_ChangePaletteAndCopyTilemap(RowanIntro *manager, enum BgLayer bgLayer, int palette)
 {
-    Bg_ChangeTilemapRectPalette(manager->bgConfig, bgLayer, 0, 0, 32, 24, palette);
+    Bg_ChangeTilemapRectPalette(
+        manager->bgConfig,
+        bgLayer,
+        0,
+        0,
+        32,
+        24,
+        palette);
     Bg_CopyTilemapBufferToVRAM(manager->bgConfig, bgLayer);
 }
 
@@ -884,9 +987,16 @@ static BOOL RowanIntro_DisplayMessage(RowanIntro *manager, u32 textID, int endEa
 
     switch (manager->displayMessageState) {
     case DM_STATE_INIT:
-        Window_AddFromTemplate(manager->bgConfig, &manager->textWindow, &sDisplayMessageTemplate);
+        Window_AddFromTemplate(
+            manager->bgConfig,
+            &manager->textWindow,
+            &sDisplayMessageTemplate);
         Window_FillRectWithColor(&manager->textWindow, 15, 0, 0, 27 * 8, 4 * 8);
-        Window_DrawMessageBoxWithScrollCursor(&manager->textWindow, FALSE, 0x400 - (18 + 12), 4);
+        Window_DrawMessageBoxWithScrollCursor(
+            &manager->textWindow,
+            FALSE,
+            0x400 - (18 + 12),
+            4);
         RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
         RenderControlFlags_SetAutoScrollFlags(0);
 
@@ -896,13 +1006,35 @@ static BOOL RowanIntro_DisplayMessage(RowanIntro *manager, u32 textID, int endEa
             manager->strbuf = Strbuf_Init(0x400, manager->heapID);
 
             MessageLoader_GetStrbuf(manager->msgLoader, textID, tmpStrbuf);
-            StringTemplate_SetStrbuf(manager->strFormatter, 0, manager->unk_70->textInputStr, manager->playerGender, 1, GAME_LANGUAGE);
-            StringTemplate_SetStrbuf(manager->strFormatter, 1, manager->unk_74->textInputStr, 0, 1, GAME_LANGUAGE);
-            StringTemplate_Format(manager->strFormatter, manager->strbuf, tmpStrbuf);
+            StringTemplate_SetStrbuf(
+                manager->strFormatter,
+                0,
+                manager->unk_70->textInputStr,
+                manager->playerGender,
+                1,
+                GAME_LANGUAGE);
+            StringTemplate_SetStrbuf(
+                manager->strFormatter,
+                1,
+                manager->unk_74->textInputStr,
+                0,
+                1,
+                GAME_LANGUAGE);
+            StringTemplate_Format(
+                manager->strFormatter,
+                manager->strbuf,
+                tmpStrbuf);
             Strbuf_Free(tmpStrbuf);
         }
 
-        manager->textPrinterID = Text_AddPrinterWithParams(&manager->textWindow, FONT_MESSAGE, manager->strbuf, 0, 0, Options_TextFrameDelay(manager->options), NULL);
+        manager->textPrinterID = Text_AddPrinterWithParams(
+            &manager->textWindow,
+            FONT_MESSAGE,
+            manager->strbuf,
+            0,
+            0,
+            Options_TextFrameDelay(manager->options),
+            NULL);
         manager->displayMessageState = DM_STATE_PRINT;
         break;
     case DM_STATE_PRINT:
@@ -965,12 +1097,19 @@ static BOOL RowanIntro_ChoiceBox(RowanIntro *manager, enum ChoicesCase choicesCa
             break;
         }
 
-        Window_AddFromTemplate(manager->bgConfig, &manager->choiceBoxWindow, windowTemplate);
+        Window_AddFromTemplate(
+            manager->bgConfig,
+            &manager->choiceBoxWindow,
+            windowTemplate);
 
         manager->choices = StringList_New(choiceInfosLength, manager->heapID);
 
         for (i = 0; i < choiceInfosLength; i++) {
-            StringList_AddFromMessageBank(manager->choices, manager->msgLoader, choiceInfos[i].textID, choiceInfos[i].choiceIndex);
+            StringList_AddFromMessageBank(
+                manager->choices,
+                manager->msgLoader,
+                choiceInfos[i].textID,
+                choiceInfos[i].choiceIndex);
         }
 
         menuTemplate = sChoiceBoxTemplate;
@@ -982,7 +1121,11 @@ static BOOL RowanIntro_ChoiceBox(RowanIntro *manager, enum ChoicesCase choicesCa
 
         manager->listMenu = ListMenu_New(&menuTemplate, 0, 0, manager->heapID);
 
-        Window_DrawStandardFrame(menuTemplate.window, 1, (0x400 - (18 + 12)) - 9, 3);
+        Window_DrawStandardFrame(
+            menuTemplate.window,
+            1,
+            (0x400 - (18 + 12)) - 9,
+            3);
         Window_CopyToVRAM(&manager->choiceBoxWindow);
 
         manager->choiceBoxState = 1;
@@ -1035,9 +1178,26 @@ static BOOL RowanIntro_DisplayTextBlock(RowanIntro *manager, u32 textID, enum Di
                 windowTemplate.height = numLines * 2;
             }
 
-            Window_AddFromTemplate(manager->bgConfig, &manager->textWindow, &windowTemplate);
-            Window_FillRectWithColor(&manager->textWindow, 0, 0, 0, 24 * 8, 24 * 8);
-            Text_AddPrinterWithParamsAndColor(&manager->textWindow, FONT_SYSTEM, manager->strbuf, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
+            Window_AddFromTemplate(
+                manager->bgConfig,
+                &manager->textWindow,
+                &windowTemplate);
+            Window_FillRectWithColor(
+                &manager->textWindow,
+                0,
+                0,
+                0,
+                24 * 8,
+                24 * 8);
+            Text_AddPrinterWithParamsAndColor(
+                &manager->textWindow,
+                FONT_SYSTEM,
+                manager->strbuf,
+                0,
+                0,
+                TEXT_SPEED_INSTANT,
+                TEXT_COLOR(1, 2, 0),
+                NULL);
         } else {
             windowTemplate = sControlInfoTextWindow;
 
@@ -1051,9 +1211,26 @@ static BOOL RowanIntro_DisplayTextBlock(RowanIntro *manager, u32 textID, enum Di
                 windowTemplate.height = param4;
             }
 
-            Window_AddFromTemplate(manager->bgConfig, &manager->textWindow, &windowTemplate);
-            Window_FillRectWithColor(&manager->textWindow, 0, 0, 0, 24 * 8, 24 * 8);
-            Text_AddPrinterWithParamsAndColor(&manager->textWindow, FONT_SYSTEM, manager->strbuf, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(15, 2, 0), NULL);
+            Window_AddFromTemplate(
+                manager->bgConfig,
+                &manager->textWindow,
+                &windowTemplate);
+            Window_FillRectWithColor(
+                &manager->textWindow,
+                0,
+                0,
+                0,
+                24 * 8,
+                24 * 8);
+            Text_AddPrinterWithParamsAndColor(
+                &manager->textWindow,
+                FONT_SYSTEM,
+                manager->strbuf,
+                0,
+                0,
+                TEXT_SPEED_INSTANT,
+                TEXT_COLOR(15, 2, 0),
+                NULL);
         }
 
         Strbuf_Free(manager->strbuf);
@@ -1092,9 +1269,25 @@ static BOOL RowanIntro_DisplayTextBlock(RowanIntro *manager, u32 textID, enum Di
 
 static void RowanIntro_LoadInitialTilemaps(RowanIntro *manager)
 {
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, 0, manager->bgConfig, BG_LAYER_MAIN_3, 0, 0, FALSE, manager->heapID);
+    Graphics_LoadTilesToBgLayer(
+        NARC_INDEX_DEMO__INTRO__INTRO,
+        0,
+        manager->bgConfig,
+        BG_LAYER_MAIN_3,
+        0,
+        0,
+        FALSE,
+        manager->heapID);
     Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, manager->heapID);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, 24, manager->bgConfig, BG_LAYER_SUB_3, 0, 0, FALSE, manager->heapID);
+    Graphics_LoadTilesToBgLayer(
+        NARC_INDEX_DEMO__INTRO__INTRO,
+        24,
+        manager->bgConfig,
+        BG_LAYER_SUB_3,
+        0,
+        0,
+        FALSE,
+        manager->heapID);
 
     {
         int mainBgPaletteIdx, subBgPaletteIdx;
@@ -1110,8 +1303,20 @@ static void RowanIntro_LoadInitialTilemaps(RowanIntro *manager)
             subBgPaletteIdx = 26;
         }
 
-        Graphics_LoadPalette(NARC_INDEX_DEMO__INTRO__INTRO, mainBgPaletteIdx, PAL_LOAD_MAIN_BG, 0 * (2 * 16), (2 * 16) * 3, manager->heapID);
-        Graphics_LoadPalette(NARC_INDEX_DEMO__INTRO__INTRO, subBgPaletteIdx, PAL_LOAD_SUB_BG, 0 * (2 * 16), (2 * 16) * 5, manager->heapID);
+        Graphics_LoadPalette(
+            NARC_INDEX_DEMO__INTRO__INTRO,
+            mainBgPaletteIdx,
+            PAL_LOAD_MAIN_BG,
+            0 * (2 * 16),
+            (2 * 16) * 3,
+            manager->heapID);
+        Graphics_LoadPalette(
+            NARC_INDEX_DEMO__INTRO__INTRO,
+            subBgPaletteIdx,
+            PAL_LOAD_SUB_BG,
+            0 * (2 * 16),
+            (2 * 16) * 5,
+            manager->heapID);
     }
 
     RowanIntro_LoadLayer3Tilemap(manager);
@@ -1130,7 +1335,15 @@ static void RowanIntro_LoadLayer3Tilemap(RowanIntro *manager)
         return;
     }
 
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, tilemapLocations[manager->bgLayer3TilemapIndex], manager->bgConfig, BG_LAYER_MAIN_3, 0, 0, FALSE, manager->heapID);
+    Graphics_LoadTilemapToBgLayer(
+        NARC_INDEX_DEMO__INTRO__INTRO,
+        tilemapLocations[manager->bgLayer3TilemapIndex],
+        manager->bgConfig,
+        BG_LAYER_MAIN_3,
+        0,
+        0,
+        FALSE,
+        manager->heapID);
 }
 
 static void RowanIntro_LoadTilemap(RowanIntro *manager)
@@ -1150,16 +1363,60 @@ static void RowanIntro_LoadTilemap(RowanIntro *manager)
     };
 
     if ((manager->bgLayer1TilemapIndex != 0) && (manager->bgLayer1TilemapIndex < 12)) {
-        Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, tilemapLocations[manager->bgLayer1TilemapIndex][0], manager->bgConfig, BG_LAYER_MAIN_1, 0, 0, FALSE, manager->heapID);
-        Graphics_LoadPalette(NARC_INDEX_DEMO__INTRO__INTRO, tilemapLocations[manager->bgLayer1TilemapIndex][1], PAL_LOAD_MAIN_BG, 7 * (2 * 16), 2 * 16, manager->heapID);
-        Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, 23, manager->bgConfig, BG_LAYER_MAIN_1, 0, 0, FALSE, manager->heapID);
+        Graphics_LoadTilesToBgLayer(
+            NARC_INDEX_DEMO__INTRO__INTRO,
+            tilemapLocations[manager->bgLayer1TilemapIndex][0],
+            manager->bgConfig,
+            BG_LAYER_MAIN_1,
+            0,
+            0,
+            FALSE,
+            manager->heapID);
+        Graphics_LoadPalette(
+            NARC_INDEX_DEMO__INTRO__INTRO,
+            tilemapLocations[manager->bgLayer1TilemapIndex][1],
+            PAL_LOAD_MAIN_BG,
+            7 * (2 * 16),
+            2 * 16,
+            manager->heapID);
+        Graphics_LoadTilemapToBgLayer(
+            NARC_INDEX_DEMO__INTRO__INTRO,
+            23,
+            manager->bgConfig,
+            BG_LAYER_MAIN_1,
+            0,
+            0,
+            FALSE,
+            manager->heapID);
         RowanIntro_ChangePaletteAndCopyTilemap(manager, BG_LAYER_MAIN_1, 7);
     }
 
     if ((manager->bgLayer2TilemapIndex != 0) && (manager->bgLayer2TilemapIndex < 12)) {
-        Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, tilemapLocations[manager->bgLayer2TilemapIndex][0], manager->bgConfig, BG_LAYER_MAIN_2, 0, 0, FALSE, manager->heapID);
-        Graphics_LoadPalette(NARC_INDEX_DEMO__INTRO__INTRO, tilemapLocations[manager->bgLayer2TilemapIndex][1], PAL_LOAD_MAIN_BG, 8 * (2 * 16), 2 * 16, manager->heapID);
-        Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, 23, manager->bgConfig, BG_LAYER_MAIN_2, 0, 0, FALSE, manager->heapID);
+        Graphics_LoadTilesToBgLayer(
+            NARC_INDEX_DEMO__INTRO__INTRO,
+            tilemapLocations[manager->bgLayer2TilemapIndex][0],
+            manager->bgConfig,
+            BG_LAYER_MAIN_2,
+            0,
+            0,
+            FALSE,
+            manager->heapID);
+        Graphics_LoadPalette(
+            NARC_INDEX_DEMO__INTRO__INTRO,
+            tilemapLocations[manager->bgLayer2TilemapIndex][1],
+            PAL_LOAD_MAIN_BG,
+            8 * (2 * 16),
+            2 * 16,
+            manager->heapID);
+        Graphics_LoadTilemapToBgLayer(
+            NARC_INDEX_DEMO__INTRO__INTRO,
+            23,
+            manager->bgConfig,
+            BG_LAYER_MAIN_2,
+            0,
+            0,
+            FALSE,
+            manager->heapID);
         RowanIntro_ChangePaletteAndCopyTilemap(manager, BG_LAYER_MAIN_2, 8);
     }
 }
@@ -1172,7 +1429,15 @@ static void RowanIntro_LoadSubLayer3Tilemap(RowanIntro *manager)
         return;
     }
 
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, tilemapLocations[manager->bgSubLayer3TilemapIndex], manager->bgConfig, BG_LAYER_SUB_3, 0, 0, FALSE, manager->heapID);
+    Graphics_LoadTilemapToBgLayer(
+        NARC_INDEX_DEMO__INTRO__INTRO,
+        tilemapLocations[manager->bgSubLayer3TilemapIndex],
+        manager->bgConfig,
+        BG_LAYER_SUB_3,
+        0,
+        0,
+        FALSE,
+        manager->heapID);
 
     if (manager->bgSubLayer3TilemapIndex == 1) {
         RowanIntro_ChangePaletteAndCopyTilemap(manager, 7, 3);
@@ -1295,7 +1560,14 @@ static void RowanIntro_LoadBunearySprite(RowanIntro *manager)
     int mainPalette = 8;
     int subPalette = 10;
 
-    BuildPokemonSpriteTemplate(&spriteTemplate, SPECIES_BUNEARY, GENDER_MALE, FACE_FRONT, FALSE, NULL, NULL);
+    BuildPokemonSpriteTemplate(
+        &spriteTemplate,
+        SPECIES_BUNEARY,
+        GENDER_MALE,
+        FACE_FRONT,
+        FALSE,
+        NULL,
+        NULL);
 
     rawData = Heap_AllocFromHeap(manager->heapID, (10 * 10) * 2);
 
@@ -1307,21 +1579,50 @@ static void RowanIntro_LoadBunearySprite(RowanIntro *manager)
         }
     }
 
-    tileSrc = sub_0201363C(spriteTemplate.narcID, spriteTemplate.character, manager->heapID);
-    paletteBuffer = sub_02013660(spriteTemplate.narcID, spriteTemplate.palette, manager->heapID);
+    tileSrc = sub_0201363C(
+        spriteTemplate.narcID,
+        spriteTemplate.character,
+        manager->heapID);
+    paletteBuffer = sub_02013660(
+        spriteTemplate.narcID,
+        spriteTemplate.palette,
+        manager->heapID);
 
     MI_CpuCopy32(paletteBuffer, manager->bunearyPalette, 0x20);
 
     BlendPalettes(manager->bunearyPalette, paletteBuffer, 1, 16, 0x6a3c);
-    Bg_FillTilemapRect(manager->bgConfig, mainBgLayer, 0, 0, 0, 32, 24, mainPalette);
-    Bg_LoadToTilemapRect(manager->bgConfig, mainBgLayer, rawData, 11, 9, 10, 10);
+    Bg_FillTilemapRect(
+        manager->bgConfig,
+        mainBgLayer,
+        0,
+        0,
+        0,
+        32,
+        24,
+        mainPalette);
+    Bg_LoadToTilemapRect(
+        manager->bgConfig,
+        mainBgLayer,
+        rawData,
+        11,
+        9,
+        10,
+        10);
 
     RowanIntro_ChangePaletteAndCopyTilemap(manager, mainBgLayer, mainPalette);
 
     Bg_ClearTilesRange(mainBgLayer, 32, 0, manager->heapID);
     Bg_LoadTiles(manager->bgConfig, mainBgLayer, tileSrc, (10 * 10) * 0x20, 1);
     Bg_LoadPalette(mainBgLayer, paletteBuffer, 2 * 16, (2 * 16) * mainPalette);
-    Bg_FillTilemapRect(manager->bgConfig, subBgLayer, 0, 0, 0, 32, 24, subPalette);
+    Bg_FillTilemapRect(
+        manager->bgConfig,
+        subBgLayer,
+        0,
+        0,
+        0,
+        32,
+        24,
+        subPalette);
     Bg_LoadToTilemapRect(manager->bgConfig, subBgLayer, rawData, 11, 7, 10, 10);
 
     RowanIntro_ChangePaletteAndCopyTilemap(manager, subBgLayer, subPalette);
@@ -1336,12 +1637,34 @@ static void RowanIntro_LoadBunearySprite(RowanIntro *manager)
 
 static void RowanIntro_LoadPokeballTilemap(RowanIntro *manager)
 {
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, 40, manager->bgConfig, BG_LAYER_SUB_2, 0, 0, FALSE, manager->heapID);
+    Graphics_LoadTilemapToBgLayer(
+        NARC_INDEX_DEMO__INTRO__INTRO,
+        40,
+        manager->bgConfig,
+        BG_LAYER_SUB_2,
+        0,
+        0,
+        FALSE,
+        manager->heapID);
     RowanIntro_ChangePaletteAndCopyTilemap(manager, 6, 9);
 
-    Graphics_LoadPalette(NARC_INDEX_DEMO__INTRO__INTRO, 41, PAL_LOAD_SUB_BG, 7 * (2 * 16), (2 * 16) * 3, manager->heapID);
+    Graphics_LoadPalette(
+        NARC_INDEX_DEMO__INTRO__INTRO,
+        41,
+        PAL_LOAD_SUB_BG,
+        7 * (2 * 16),
+        (2 * 16) * 3,
+        manager->heapID);
     Bg_ClearTilesRange(BG_LAYER_SUB_2, 32, 0, manager->heapID);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, 32, manager->bgConfig, BG_LAYER_SUB_2, 0x20, 0, FALSE, manager->heapID);
+    Graphics_LoadTilesToBgLayer(
+        NARC_INDEX_DEMO__INTRO__INTRO,
+        32,
+        manager->bgConfig,
+        BG_LAYER_SUB_2,
+        0x20,
+        0,
+        FALSE,
+        manager->heapID);
 }
 
 static BOOL RowanIntro_MoveBgLayer(RowanIntro *manager, enum BgLayer bgLayer, enum MoveBgLayerCases mBLCase)
@@ -1355,9 +1678,17 @@ static BOOL RowanIntro_MoveBgLayer(RowanIntro *manager, enum BgLayer bgLayer, en
 
             if (currentXOffset != 0) {
                 if (currentXOffset > 0) {
-                    Bg_SetOffset(manager->bgConfig, bgLayer, BG_OFFSET_UPDATE_SUB_X, 4);
+                    Bg_SetOffset(
+                        manager->bgConfig,
+                        bgLayer,
+                        BG_OFFSET_UPDATE_SUB_X,
+                        4);
                 } else {
-                    Bg_SetOffset(manager->bgConfig, bgLayer, BG_OFFSET_UPDATE_ADD_X, 4);
+                    Bg_SetOffset(
+                        manager->bgConfig,
+                        bgLayer,
+                        BG_OFFSET_UPDATE_ADD_X,
+                        4);
                 }
             } else {
                 isFinished = TRUE;
@@ -1403,7 +1734,15 @@ static void RowanIntro_AnimateAvatarRun(RowanIntro *manager)
 
         {
             int maleSpriteNARCIndices[] = { 9, 10, 11, 12 };
-            Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, maleSpriteNARCIndices[manager->maleRunAnimSpriteIndex], manager->bgConfig, BG_LAYER_MAIN_1, 0, 0, FALSE, manager->heapID);
+            Graphics_LoadTilesToBgLayer(
+                NARC_INDEX_DEMO__INTRO__INTRO,
+                maleSpriteNARCIndices[manager->maleRunAnimSpriteIndex],
+                manager->bgConfig,
+                BG_LAYER_MAIN_1,
+                0,
+                0,
+                FALSE,
+                manager->heapID);
         }
     } else {
         if (manager->femaleRunAnimUpdateCounter) {
@@ -1418,7 +1757,15 @@ static void RowanIntro_AnimateAvatarRun(RowanIntro *manager)
 
         {
             int femaleSpriteNARCIndices[] = { 14, 15, 16, 17 };
-            Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, femaleSpriteNARCIndices[manager->femaleRunAnimSpriteIndex], manager->bgConfig, BG_LAYER_MAIN_2, 0, 0, FALSE, manager->heapID);
+            Graphics_LoadTilesToBgLayer(
+                NARC_INDEX_DEMO__INTRO__INTRO,
+                femaleSpriteNARCIndices[manager->femaleRunAnimSpriteIndex],
+                manager->bgConfig,
+                BG_LAYER_MAIN_2,
+                0,
+                0,
+                FALSE,
+                manager->heapID);
         }
     }
 }
@@ -1461,7 +1808,15 @@ static BOOL RowanIntro_AnimateAvatarShrink(RowanIntro *manager)
     if (spriteID == 0xff) {
         isFinished = TRUE;
     } else {
-        Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, spriteID, manager->bgConfig, BG_LAYER_MAIN_1, 0, 0, 0, manager->heapID);
+        Graphics_LoadTilesToBgLayer(
+            NARC_INDEX_DEMO__INTRO__INTRO,
+            spriteID,
+            manager->bgConfig,
+            BG_LAYER_MAIN_1,
+            0,
+            0,
+            0,
+            manager->heapID);
     }
 
     return isFinished;
@@ -1472,9 +1827,22 @@ static void RowanIntro_AnimateBuneary_BlendSpritePalette(RowanIntro *manager)
     if (manager->bunearyPaletteBlendUpdateCounter > 0) {
         manager->bunearyPaletteBlendUpdateCounter--;
 
-        BlendPalettes(manager->bunearyPalette, manager->bunearyBlendedPalette, 1, manager->bunearyPaletteBlendUpdateCounter / 3, 0x6a3c);
-        Bg_LoadPalette(BG_LAYER_MAIN_2, manager->bunearyBlendedPalette, 2 * 16, (2 * 16) * 8);
-        Bg_LoadPalette(BG_LAYER_SUB_1, manager->bunearyBlendedPalette, 2 * 16, (2 * 16) * 10);
+        BlendPalettes(
+            manager->bunearyPalette,
+            manager->bunearyBlendedPalette,
+            1,
+            manager->bunearyPaletteBlendUpdateCounter / 3,
+            0x6a3c);
+        Bg_LoadPalette(
+            BG_LAYER_MAIN_2,
+            manager->bunearyBlendedPalette,
+            2 * 16,
+            (2 * 16) * 8);
+        Bg_LoadPalette(
+            BG_LAYER_SUB_1,
+            manager->bunearyBlendedPalette,
+            2 * 16,
+            (2 * 16) * 10);
     }
 }
 
@@ -1484,8 +1852,16 @@ static BOOL RowanIntro_AnimateBuneary(RowanIntro *manager, enum BunearyAnimState
 
     switch (*state) {
     case BA_STATE_INIT:
-        Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_X, 0);
-        Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_Y, -8 * 13);
+        Bg_SetOffset(
+            manager->bgConfig,
+            BG_LAYER_MAIN_2,
+            BG_OFFSET_UPDATE_SET_X,
+            0);
+        Bg_SetOffset(
+            manager->bgConfig,
+            BG_LAYER_MAIN_2,
+            BG_OFFSET_UPDATE_SET_Y,
+            -8 * 13);
         Bg_SetPriority(BG_LAYER_MAIN_2, 0);
         Bg_ToggleLayer(BG_LAYER_SUB_1, 1);
 
@@ -1504,9 +1880,21 @@ static BOOL RowanIntro_AnimateBuneary(RowanIntro *manager, enum BunearyAnimState
 
         if (yOffset < 8 * 11) {
             manager->bunearyAnimUpdateCounter++;
-            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_ADD_X, 2);
-            Bg_SetOffset(manager->bgConfig, BG_LAYER_SUB_1, BG_OFFSET_UPDATE_ADD_X, 2);
-            Bg_SetOffset(manager->bgConfig, BG_LAYER_SUB_1, BG_OFFSET_UPDATE_SET_Y, newYOffset);
+            Bg_SetOffset(
+                manager->bgConfig,
+                BG_LAYER_MAIN_2,
+                BG_OFFSET_UPDATE_ADD_X,
+                2);
+            Bg_SetOffset(
+                manager->bgConfig,
+                BG_LAYER_SUB_1,
+                BG_OFFSET_UPDATE_ADD_X,
+                2);
+            Bg_SetOffset(
+                manager->bgConfig,
+                BG_LAYER_SUB_1,
+                BG_OFFSET_UPDATE_SET_Y,
+                newYOffset);
         } else {
             Bg_ToggleLayer(BG_LAYER_SUB_1, 0);
             manager->bunearyAnimUpdateCounter = 0;
@@ -1532,7 +1920,11 @@ static BOOL RowanIntro_AnimateBuneary(RowanIntro *manager, enum BunearyAnimState
         int newYOffset = (-8 * 13) + linearTerm - quadraticTerm;
 
         if ((manager->bunearyAnimCarryover > 0) && (newYOffset <= 0)) {
-            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_Y, 0);
+            Bg_SetOffset(
+                manager->bgConfig,
+                BG_LAYER_MAIN_2,
+                BG_OFFSET_UPDATE_SET_Y,
+                0);
             manager->bunearyAnimCarryover = 0;
             manager->bunearyParabolaCoeff = 3;
             manager->bunearyAnimUpdateCounter = 0;
@@ -1540,14 +1932,22 @@ static BOOL RowanIntro_AnimateBuneary(RowanIntro *manager, enum BunearyAnimState
         } else {
             manager->bunearyAnimUpdateCounter++;
             manager->bunearyAnimCarryover = newYOffset;
-            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_ADD_X, 1);
+            Bg_SetOffset(
+                manager->bgConfig,
+                BG_LAYER_MAIN_2,
+                BG_OFFSET_UPDATE_ADD_X,
+                1);
             newYOffset = newYOffset >> 1;
 
             if (newYOffset > 8 * 18) {
                 newYOffset = 8 * 18;
             }
 
-            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_Y, newYOffset);
+            Bg_SetOffset(
+                manager->bgConfig,
+                BG_LAYER_MAIN_2,
+                BG_OFFSET_UPDATE_SET_Y,
+                newYOffset);
         }
     } break;
     case BA_STATE_JUMP_RIGHT: {
@@ -1558,15 +1958,27 @@ static BOOL RowanIntro_AnimateBuneary(RowanIntro *manager, enum BunearyAnimState
         int newYOffset = linearTerm - quadraticTerm;
 
         if ((manager->bunearyAnimCarryover > 0) && (newYOffset <= 0)) {
-            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_Y, 0);
+            Bg_SetOffset(
+                manager->bgConfig,
+                BG_LAYER_MAIN_2,
+                BG_OFFSET_UPDATE_SET_Y,
+                0);
             manager->bunearyAnimCarryover = 0;
             manager->bunearyParabolaCoeff = 3;
             manager->bunearyAnimUpdateCounter = 0;
             *state = BA_STATE_JUMP_LEFT;
         } else {
             manager->bunearyAnimUpdateCounter++;
-            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SUB_X, 2);
-            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_Y, newYOffset);
+            Bg_SetOffset(
+                manager->bgConfig,
+                BG_LAYER_MAIN_2,
+                BG_OFFSET_UPDATE_SUB_X,
+                2);
+            Bg_SetOffset(
+                manager->bgConfig,
+                BG_LAYER_MAIN_2,
+                BG_OFFSET_UPDATE_SET_Y,
+                newYOffset);
             manager->bunearyAnimCarryover = newYOffset;
         }
     } break;
@@ -1578,12 +1990,24 @@ static BOOL RowanIntro_AnimateBuneary(RowanIntro *manager, enum BunearyAnimState
         int newYOffset = linearTerm - quadraticTerm;
 
         if ((manager->bunearyAnimCarryover > 0) && (newYOffset <= 0)) {
-            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_Y, 0);
+            Bg_SetOffset(
+                manager->bgConfig,
+                BG_LAYER_MAIN_2,
+                BG_OFFSET_UPDATE_SET_Y,
+                0);
             *state = BA_STATE_END;
         } else {
             manager->bunearyAnimUpdateCounter++;
-            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_ADD_X, 4);
-            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_Y, newYOffset);
+            Bg_SetOffset(
+                manager->bgConfig,
+                BG_LAYER_MAIN_2,
+                BG_OFFSET_UPDATE_ADD_X,
+                4);
+            Bg_SetOffset(
+                manager->bgConfig,
+                BG_LAYER_MAIN_2,
+                BG_OFFSET_UPDATE_SET_Y,
+                newYOffset);
             manager->bunearyAnimCarryover = newYOffset;
         }
     } break;
@@ -1613,7 +2037,14 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         Sound_StopBGM(SEQ_OPENING, 0);
         Bg_ToggleLayer(BG_LAYER_MAIN_0, 1);
         Bg_ToggleLayer(BG_LAYER_SUB_3, 1);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, manager->heapID);
+        StartScreenFade(
+            FADE_BOTH_SCREENS,
+            FADE_TYPE_UNK_1,
+            FADE_TYPE_UNK_1,
+            FADE_TO_BLACK,
+            6,
+            1,
+            manager->heapID);
         manager->state = RI_STATE_FIRST_FADE_BLACK_END;
         break;
     case RI_STATE_FIRST_FADE_BLACK_END:
@@ -1638,7 +2069,14 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         RowanIntro_LoadTilemap(manager);
         Bg_ToggleLayer(BG_LAYER_MAIN_3, 1);
         Bg_ToggleLayer(BG_LAYER_MAIN_1, 1);
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 16, 4, manager->heapID);
+        StartScreenFade(
+            FADE_MAIN_ONLY,
+            FADE_TYPE_UNK_1,
+            FADE_TYPE_UNK_1,
+            FADE_TO_BLACK,
+            16,
+            4,
+            manager->heapID);
         manager->state = RI_STATE_FADE_IN_ROWAN_END;
         break;
     case RI_STATE_FADE_IN_ROWAN_END:
@@ -1677,7 +2115,14 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_INFO_FADE_BLACK_START:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, manager->heapID);
+        StartScreenFade(
+            FADE_BOTH_SCREENS,
+            FADE_TYPE_UNK_0,
+            FADE_TYPE_UNK_0,
+            FADE_TO_BLACK,
+            6,
+            1,
+            manager->heapID);
         manager->state = RI_STATE_INFO_FADE_BLACK_END;
         break;
     case RI_STATE_INFO_FADE_BLACK_END:
@@ -1696,7 +2141,14 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         RowanIntro_LoadLayer3Tilemap(manager);
         manager->bgSubLayer3TilemapIndex = 1;
         RowanIntro_LoadSubLayer3Tilemap(manager);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, manager->heapID);
+        StartScreenFade(
+            FADE_BOTH_SCREENS,
+            FADE_TYPE_UNK_1,
+            FADE_TYPE_UNK_1,
+            FADE_TO_BLACK,
+            6,
+            1,
+            manager->heapID);
         manager->state = RI_STATE_CONTROL_INFO_FADE_IN_END;
         break;
     case RI_STATE_CONTROL_INFO_FADE_IN_END:
@@ -1789,7 +2241,14 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
     case RI_STATE_CONTROL_INFO_FADE_OUT_START:
         if (RowanIntro_FadeBgLayer(manager, BG_LAYER_SUB_2, FADE_OUT) == TRUE) {
             sub_02015A54(manager->unk_68);
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, manager->heapID);
+            StartScreenFade(
+                FADE_BOTH_SCREENS,
+                FADE_TYPE_UNK_0,
+                FADE_TYPE_UNK_0,
+                FADE_TO_BLACK,
+                6,
+                1,
+                manager->heapID);
             manager->state = RI_STATE_CONTROL_INFO_FADE_OUT_END;
         }
         break;
@@ -1825,8 +2284,19 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         manager->bgSubLayer3TilemapIndex = 0;
         RowanIntro_LoadSubLayer3Tilemap(manager);
         Bg_ToggleLayer(BG_LAYER_MAIN_1, 1);
-        Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_1, BG_OFFSET_UPDATE_SET_X, 0);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, manager->heapID);
+        Bg_SetOffset(
+            manager->bgConfig,
+            BG_LAYER_MAIN_1,
+            BG_OFFSET_UPDATE_SET_X,
+            0);
+        StartScreenFade(
+            FADE_BOTH_SCREENS,
+            FADE_TYPE_UNK_1,
+            FADE_TYPE_UNK_1,
+            FADE_TO_BLACK,
+            6,
+            1,
+            manager->heapID);
         manager->state = RI_STATE_FADE_IN_ROWAN_2_END;
         break;
     case RI_STATE_FADE_IN_ROWAN_2_END:
@@ -1844,7 +2314,14 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         RowanIntro_LoadLayer3Tilemap(manager);
         manager->bgSubLayer3TilemapIndex = 2;
         RowanIntro_LoadSubLayer3Tilemap(manager);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, manager->heapID);
+        StartScreenFade(
+            FADE_BOTH_SCREENS,
+            FADE_TYPE_UNK_1,
+            FADE_TYPE_UNK_1,
+            FADE_TO_BLACK,
+            6,
+            1,
+            manager->heapID);
         manager->state = RI_STATE_ADVENTURE_INFO_FADE_IN_END;
         break;
     case RI_STATE_ADVENTURE_INFO_FADE_IN_END:
@@ -1883,7 +2360,14 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_ADVENTURE_INFO_FADE_OUT_START:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, manager->heapID);
+        StartScreenFade(
+            FADE_BOTH_SCREENS,
+            FADE_TYPE_UNK_0,
+            FADE_TYPE_UNK_0,
+            FADE_TO_BLACK,
+            6,
+            1,
+            manager->heapID);
         manager->state = RI_STATE_ADVENTURE_INFO_FADE_OUT_END;
         break;
     case RI_STATE_ADVENTURE_INFO_FADE_OUT_END:
@@ -1906,7 +2390,14 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_PKBL_FADE_START:
-        StartScreenFade(FADE_SUB_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, manager->heapID);
+        StartScreenFade(
+            FADE_SUB_ONLY,
+            FADE_TYPE_UNK_0,
+            FADE_TYPE_UNK_0,
+            FADE_TO_BLACK,
+            6,
+            1,
+            manager->heapID);
         manager->state = RI_STATE_PKBL_FADE_MIDDLE;
         break;
     case RI_STATE_PKBL_FADE_MIDDLE:
@@ -1915,7 +2406,14 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
             manager->bgSubLayer3TilemapIndex = 4;
             RowanIntro_LoadSubLayer3Tilemap(manager);
             Bg_ToggleLayer(BG_LAYER_SUB_2, 1);
-            StartScreenFade(FADE_SUB_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, manager->heapID);
+            StartScreenFade(
+                FADE_SUB_ONLY,
+                FADE_TYPE_UNK_1,
+                FADE_TYPE_UNK_1,
+                FADE_TO_BLACK,
+                6,
+                1,
+                manager->heapID);
             manager->state = RI_STATE_PKBL_FADE_END;
         }
         break;
@@ -1953,7 +2451,15 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
 
                     manager->state = RI_STATE_PKBL_ANIM_FLASH_0;
                 } else {
-                    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, pokeballTextureNARCIndices[manager->animData.progressCounter], manager->bgConfig, 6, 0x20, 0, 0, manager->heapID);
+                    Graphics_LoadTilesToBgLayer(
+                        NARC_INDEX_DEMO__INTRO__INTRO,
+                        pokeballTextureNARCIndices[manager->animData.progressCounter],
+                        manager->bgConfig,
+                        6,
+                        0x20,
+                        0,
+                        0,
+                        manager->heapID);
                     manager->animData.progressCounter++;
                     manager->animDelayUpdateCounter = 4;
                 }
@@ -1966,8 +2472,18 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_PKBL_ANIM_FLASH_0:
-        BrightnessController_StartTransition(1, 16, 0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, BRIGHTNESS_MAIN_SCREEN);
-        BrightnessController_StartTransition(1, 16, 0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, BRIGHTNESS_SUB_SCREEN);
+        BrightnessController_StartTransition(
+            1,
+            16,
+            0,
+            GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3,
+            BRIGHTNESS_MAIN_SCREEN);
+        BrightnessController_StartTransition(
+            1,
+            16,
+            0,
+            GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3,
+            BRIGHTNESS_SUB_SCREEN);
         manager->state = RI_STATE_PKBL_ANIM_FLASH_1;
         break;
     case RI_STATE_PKBL_ANIM_FLASH_1:
@@ -1996,8 +2512,18 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         RowanIntro_AnimateBuneary(manager, &manager->animData.bunearyAnimState);
         manager->bgSubLayer3TilemapIndex = 0;
         RowanIntro_LoadSubLayer3Tilemap(manager);
-        BrightnessController_StartTransition(16, 0, 16, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, BRIGHTNESS_MAIN_SCREEN);
-        BrightnessController_StartTransition(16, 0, 16, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, BRIGHTNESS_SUB_SCREEN);
+        BrightnessController_StartTransition(
+            16,
+            0,
+            16,
+            GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3,
+            BRIGHTNESS_MAIN_SCREEN);
+        BrightnessController_StartTransition(
+            16,
+            0,
+            16,
+            GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3,
+            BRIGHTNESS_SUB_SCREEN);
         manager->state = RI_STATE_PKBL_ANIM_MV_PKM_UP_AND_FLASH_END;
         break;
     case RI_STATE_PKBL_ANIM_MV_PKM_UP_AND_FLASH_END:
@@ -2051,8 +2577,16 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         manager->bgLayer1TilemapIndex = 2;
         manager->bgLayer2TilemapIndex = 6;
         RowanIntro_LoadTilemap(manager);
-        Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_1, BG_OFFSET_UPDATE_SET_X, -8 * 6);
-        Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_X, 8 * 6);
+        Bg_SetOffset(
+            manager->bgConfig,
+            BG_LAYER_MAIN_1,
+            BG_OFFSET_UPDATE_SET_X,
+            -8 * 6);
+        Bg_SetOffset(
+            manager->bgConfig,
+            BG_LAYER_MAIN_2,
+            BG_OFFSET_UPDATE_SET_X,
+            8 * 6);
         manager->state = RI_STATE_GENDR_FADE_IN_AVATAR_MALE;
         break;
     case RI_STATE_GENDR_FADE_IN_AVATAR_MALE:
@@ -2167,7 +2701,10 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         break;
     case RI_STATE_NAME_APP_KEYBOARD:
         manager->unk_70->unk_04 = manager->playerGender;
-        manager->appMan = ApplicationManager_New(&Unk_020F2DAC, manager->unk_70, manager->heapID);
+        manager->appMan = ApplicationManager_New(
+            &Unk_020F2DAC,
+            manager->unk_70,
+            manager->heapID);
         manager->state = RI_STATE_NAME_KEYBOARD;
         break;
     case RI_STATE_NAME_KEYBOARD:
@@ -2177,13 +2714,28 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
 
         if (manager->playerGender == GENDER_MALE) {
             Bg_ToggleLayer(BG_LAYER_MAIN_1, 1);
-            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_1, BG_OFFSET_UPDATE_SET_X, 0);
+            Bg_SetOffset(
+                manager->bgConfig,
+                BG_LAYER_MAIN_1,
+                BG_OFFSET_UPDATE_SET_X,
+                0);
         } else {
             Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
-            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_X, 0);
+            Bg_SetOffset(
+                manager->bgConfig,
+                BG_LAYER_MAIN_2,
+                BG_OFFSET_UPDATE_SET_X,
+                0);
         }
 
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, manager->heapID);
+        StartScreenFade(
+            FADE_BOTH_SCREENS,
+            FADE_TYPE_UNK_1,
+            FADE_TYPE_UNK_1,
+            FADE_TO_BLACK,
+            6,
+            1,
+            manager->heapID);
         manager->state = RI_STATE_NAME_KEYBOARD_FADE_INTO_AVATAR;
         break;
     case RI_STATE_NAME_KEYBOARD_FADE_INTO_AVATAR:
@@ -2318,7 +2870,10 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_BARRY_NAME_APP_KEYBOARD:
-        manager->appMan = ApplicationManager_New(&Unk_020F2DAC, manager->unk_74, manager->heapID);
+        manager->appMan = ApplicationManager_New(
+            &Unk_020F2DAC,
+            manager->unk_74,
+            manager->heapID);
         manager->state = RI_STATE_BARRY_NAME_KEYBOARD;
         break;
     case RI_STATE_BARRY_NAME_KEYBOARD:
@@ -2326,8 +2881,19 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         Bg_ToggleLayer(BG_LAYER_MAIN_3, 1);
         Bg_ToggleLayer(BG_LAYER_SUB_3, 1);
         Bg_ToggleLayer(BG_LAYER_MAIN_1, 1);
-        Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_1, BG_OFFSET_UPDATE_SET_X, 0);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, manager->heapID);
+        Bg_SetOffset(
+            manager->bgConfig,
+            BG_LAYER_MAIN_1,
+            BG_OFFSET_UPDATE_SET_X,
+            0);
+        StartScreenFade(
+            FADE_BOTH_SCREENS,
+            FADE_TYPE_UNK_1,
+            FADE_TYPE_UNK_1,
+            FADE_TO_BLACK,
+            6,
+            1,
+            manager->heapID);
         manager->state = RI_STATE_BARRY_NAME_KEYBOARD_FADE_INTO_AVATAR;
         break;
     case RI_STATE_BARRY_NAME_KEYBOARD_FADE_INTO_AVATAR:
@@ -2426,7 +2992,10 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_END:
-        manager->appMan = ApplicationManager_New(&sKeyboardApplicationTemplate, NULL, manager->heapID);
+        manager->appMan = ApplicationManager_New(
+            &sKeyboardApplicationTemplate,
+            NULL,
+            manager->heapID);
         manager->state = RI_STATE_EXIT;
         break;
     case RI_STATE_EXIT:
