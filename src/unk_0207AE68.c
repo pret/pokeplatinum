@@ -22,6 +22,7 @@
 
 #include "bag.h"
 #include "bg_window.h"
+#include "g3d_pipeline_state.h"
 #include "game_options.h"
 #include "game_records.h"
 #include "graphics.h"
@@ -51,7 +52,6 @@
 #include "text.h"
 #include "unk_02015F84.h"
 #include "unk_0202419C.h"
-#include "unk_02024220.h"
 #include "unk_020393C8.h"
 #include "unk_0207C63C.h"
 #include "vram_transfer.h"

@@ -6,7 +6,6 @@
 
 #include "constants/graphics.h"
 
-#include "unk_02024220.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay004/ov4_021D0D80.h"
@@ -27,6 +26,7 @@
 #include "easy3d_object.h"
 #include "enums.h"
 #include "font.h"
+#include "g3d_pipeline_state.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -51,7 +51,6 @@
 #include "trainer_info.h"
 #include "unk_02012744.h"
 #include "unk_0202419C.h"
-#include "unk_02024220.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"

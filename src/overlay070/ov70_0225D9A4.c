@@ -6,7 +6,6 @@
 
 #include "constants/graphics.h"
 
-#include "unk_02024220.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay005/struct_ov5_021DE5D0.h"
@@ -41,6 +40,7 @@
 #include "enums.h"
 #include "error_handling.h"
 #include "font.h"
+#include "g3d_pipeline_state.h"
 #include "game_options.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -74,7 +74,6 @@
 #include "trainer_info.h"
 #include "type_icon.h"
 #include "unk_0202419C.h"
-#include "unk_02024220.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 #include "vram_transfer.h"

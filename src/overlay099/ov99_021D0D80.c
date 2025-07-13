@@ -5,7 +5,6 @@
 
 #include "constants/graphics.h"
 
-#include "unk_02024220.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay099/ov99_021D1A54.h"
@@ -18,6 +17,7 @@
 #include "camera.h"
 #include "easy3d_object.h"
 #include "enums.h"
+#include "g3d_pipeline_state.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -33,7 +33,6 @@
 #include "system.h"
 #include "touch_pad.h"
 #include "unk_0202419C.h"
-#include "unk_02024220.h"
 #include "vram_transfer.h"
 
 static const CameraAngle Unk_ov99_021D46CC = {

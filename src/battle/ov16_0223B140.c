@@ -13,7 +13,6 @@
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/struct_0207A778.h"
-#include "unk_02024220.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "battle/battle_context.h"
@@ -41,6 +40,7 @@
 #include "field_battle_data_transfer.h"
 #include "flags.h"
 #include "font.h"
+#include "g3d_pipeline_state.h"
 #include "game_options.h"
 #include "game_overlay.h"
 #include "game_records.h"
@@ -76,7 +76,6 @@
 #include "unk_0200C440.h"
 #include "unk_02015F84.h"
 #include "unk_0202419C.h"
-#include "unk_02024220.h"
 #include "unk_0202F1D4.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"

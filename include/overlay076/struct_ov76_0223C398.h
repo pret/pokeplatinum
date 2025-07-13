@@ -5,7 +5,6 @@
 #include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
-#include "unk_02024220.h"
 
 #include "overlay012/struct_ball_rotation_decl.h"
 #include "overlay012/struct_ov12_02235FE0_decl.h"
@@ -13,6 +12,7 @@
 
 #include "bg_window.h"
 #include "char_transfer.h"
+#include "g3d_pipeline_state.h"
 #include "menu.h"
 #include "palette.h"
 #include "pokemon_sprite.h"

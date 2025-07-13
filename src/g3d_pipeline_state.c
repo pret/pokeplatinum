@@ -1,8 +1,9 @@
-#include "unk_02024220.h"
+#include "g3d_pipeline_state.h"
 
 #include <nitro.h>
 
 #include "constants/graphics.h"
+
 #include "gx_layers.h"
 #include "heap.h"
 

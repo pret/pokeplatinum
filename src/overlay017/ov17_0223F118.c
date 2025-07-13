@@ -9,7 +9,6 @@
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_defs/struct_020127E8.h"
-#include "unk_02024220.h"
 #include "struct_defs/struct_02095C48.h"
 
 #include "overlay017/ov17_02252A70.h"
@@ -21,6 +20,7 @@
 #include "brightness_controller.h"
 #include "char_transfer.h"
 #include "font.h"
+#include "g3d_pipeline_state.h"
 #include "game_overlay.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -34,7 +34,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_02012744.h"
-#include "unk_02024220.h"
 
 FS_EXTERN_OVERLAY(overlay11);
 FS_EXTERN_OVERLAY(overlay12);

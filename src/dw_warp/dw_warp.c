@@ -5,11 +5,11 @@
 
 #include "constants/graphics.h"
 
-#include "unk_02024220.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "camera.h"
 #include "easy3d_object.h"
+#include "g3d_pipeline_state.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "narc.h"
@@ -22,7 +22,6 @@
 #include "system.h"
 #include "touch_pad.h"
 #include "unk_0202419C.h"
-#include "unk_02024220.h"
 
 #define DWARP_SND_EFFECT_DELAY 15
 #define DWARP_ANM_DURATION     85

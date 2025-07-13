@@ -8,7 +8,6 @@
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02012B20_decl.h"
 #include "struct_defs/struct_020127E8.h"
-#include "unk_02024220.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay092/struct_ov92_021D28C0.h"
@@ -26,6 +25,7 @@
 #include "char_transfer.h"
 #include "easy3d_object.h"
 #include "font.h"
+#include "g3d_pipeline_state.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -49,7 +49,6 @@
 #include "trainer_info.h"
 #include "unk_02012744.h"
 #include "unk_0202419C.h"
-#include "unk_02024220.h"
 #include "unk_020363E8.h"
 #include "vram_transfer.h"
 

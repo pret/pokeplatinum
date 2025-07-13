@@ -18,7 +18,7 @@
 #include "easy3d_object.h"
 #include "font.h"
 #include "fx_util.h"
-#include "unk_02024220.h"
+#include "g3d_pipeline_state.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -34,7 +34,6 @@
 #include "system.h"
 #include "text.h"
 #include "unk_0202419C.h"
-#include "unk_02024220.h"
 
 #include "res/graphics/title_screen/titledemo.naix.h"
 
@@ -515,7 +514,7 @@ static BOOL TitleScreen_ShouldSkipIntro(void)
 
 static void ov77_021D11CC(TitleScreenAppData *appData)
 {
-    appData->unk_08 = G3DPipelineState_New(appData->heapID, 0, 1, 0, 4, NULL);
+    appData->unk_08 = G3DPipelineState_New(appData->heapID, 1, 4, NULL);
     G2_SetBG0Priority(1);
 }
 

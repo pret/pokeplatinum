@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_02024220.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "applications/pokemon_summary_screen/main.h"
@@ -27,6 +26,7 @@
 #include "communication_system.h"
 #include "dexmode_checker.h"
 #include "font.h"
+#include "g3d_pipeline_state.h"
 #include "game_options.h"
 #include "game_overlay.h"
 #include "graphics.h"
@@ -54,7 +54,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02024220.h"
 #include "unk_020363E8.h"
 #include "unk_020393C8.h"
 #include "unk_0209BA80.h"

@@ -12,7 +12,6 @@
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0206D140_decl.h"
 #include "struct_defs/chatot_cry.h"
-#include "unk_02024220.h"
 #include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
@@ -27,6 +26,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "field_battle_data_transfer.h"
+#include "g3d_pipeline_state.h"
 #include "game_options.h"
 #include "message.h"
 #include "pal_pad.h"

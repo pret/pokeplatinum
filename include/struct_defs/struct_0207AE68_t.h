@@ -3,13 +3,13 @@
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
-#include "unk_02024220.h"
 #include "struct_defs/struct_0207C8C4.h"
 
 #include "applications/pokemon_summary_screen/main.h"
 
 #include "bag.h"
 #include "bg_window.h"
+#include "g3d_pipeline_state.h"
 #include "game_options.h"
 #include "game_records.h"
 #include "message.h"

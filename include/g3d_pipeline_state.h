@@ -1,8 +1,7 @@
-#ifndef POKEPLATINUM_UNK_02024220_H
-#define POKEPLATINUM_UNK_02024220_H
+#ifndef POKEPLATINUM_G3D_PIPELINE_STATE_H
+#define POKEPLATINUM_G3D_PIPELINE_STATE_H
 
 #include "constants/heap.h"
-#include "heap.h"
 
 typedef struct G3DPipelineState {
     enum HeapId heapID;
@@ -41,4 +40,4 @@ static inline G3DPipelineState *G3DPipelineState_New(enum HeapId heapID, enum Te
     return G3DPipelineState_NewEx(heapID, VRAM_MANAGER_TYPE_LINKED_LIST, texVramSize, VRAM_MANAGER_TYPE_LINKED_LIST, plttVramSize, cb);
 }
 
-#endif // POKEPLATINUM_UNK_02024220_H
+#endif // POKEPLATINUM_G3D_PIPELINE_STATE_H

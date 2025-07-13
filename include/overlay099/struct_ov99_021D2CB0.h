@@ -2,7 +2,6 @@
 #define POKEPLATINUM_STRUCT_OV99_021D2CB0_H
 
 #include "struct_defs/struct_0203E274.h"
-#include "unk_02024220.h"
 
 #include "overlay099/struct_ov99_021D2CB0_sub1.h"
 #include "overlay099/struct_ov99_021D2CB0_sub2.h"
@@ -12,6 +11,7 @@
 #include "bg_window.h"
 #include "camera.h"
 #include "easy3d_object.h"
+#include "g3d_pipeline_state.h"
 #include "message.h"
 #include "narc.h"
 #include "palette.h"

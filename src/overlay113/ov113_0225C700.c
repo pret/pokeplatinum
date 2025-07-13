@@ -12,7 +12,6 @@
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_02015958.h"
-#include "unk_02024220.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay066/ov66_0222DDF0.h"
@@ -35,6 +34,7 @@
 #include "easy3d_object.h"
 #include "font.h"
 #include "fx_util.h"
+#include "g3d_pipeline_state.h"
 #include "game_options.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -64,7 +64,6 @@
 #include "unk_02012744.h"
 #include "unk_02015920.h"
 #include "unk_0202419C.h"
-#include "unk_02024220.h"
 #include "unk_020393C8.h"
 #include "vram_transfer.h"
 

@@ -7,7 +7,6 @@
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_defs/struct_020127E8.h"
-#include "unk_02024220.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "applications/pokemon_summary_screen/main.h"
@@ -19,6 +18,7 @@
 #include "communication_information.h"
 #include "communication_system.h"
 #include "font.h"
+#include "g3d_pipeline_state.h"
 #include "game_options.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -51,7 +51,6 @@
 #include "unk_0200C440.h"
 #include "unk_02012744.h"
 #include "unk_0202419C.h"
-#include "unk_02024220.h"
 #include "unk_0202F1D4.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"

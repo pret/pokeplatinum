@@ -5,7 +5,6 @@
 
 #include "constants/items.h"
 
-#include "unk_02024220.h"
 #include "struct_defs/struct_0207F248.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -17,6 +16,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "font.h"
+#include "g3d_pipeline_state.h"
 #include "game_options.h"
 #include "game_overlay.h"
 #include "graphics.h"
@@ -46,7 +46,6 @@
 #include "touch_pad.h"
 #include "touch_screen.h"
 #include "unk_0200C440.h"
-#include "unk_02024220.h"
 #include "unk_0202602C.h"
 #include "unk_020393C8.h"
 #include "unk_0206B9D8.h"

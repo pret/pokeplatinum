@@ -3,7 +3,6 @@
 
 #include "constants/graphics.h"
 
-#include "unk_02024220.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "game_opening/ov77_021D54B0.h"
@@ -19,6 +18,7 @@
 #include "brightness_controller.h"
 #include "camera.h"
 #include "easy3d.h"
+#include "g3d_pipeline_state.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -34,7 +34,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "unk_0202419C.h"
-#include "unk_02024220.h"
 #include "vram_transfer.h"
 
 FS_EXTERN_OVERLAY(game_opening);

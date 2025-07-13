@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV17_02247A48_H
 #define POKEPLATINUM_STRUCT_OV17_02247A48_H
 
-#include "unk_02024220.h"
 #include "struct_defs/struct_02095C48.h"
 
 #include "overlay017/struct_ov17_0223D60C.h"
@@ -12,6 +11,7 @@
 #include "overlay017/struct_ov17_0224B09C.h"
 #include "overlay017/struct_ov17_0224F30C.h"
 
+#include "g3d_pipeline_state.h"
 #include "sys_task_manager.h"
 
 typedef struct {

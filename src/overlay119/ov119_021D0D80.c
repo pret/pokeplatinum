@@ -7,7 +7,6 @@
 #include "constants/narc.h"
 
 #include "struct_defs/sprite_animation_frame.h"
-#include "unk_02024220.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay119/struct_ov119_021D0FD0.h"
@@ -19,6 +18,7 @@
 #include "bg_window.h"
 #include "camera.h"
 #include "font.h"
+#include "g3d_pipeline_state.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -38,7 +38,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "unk_0202419C.h"
-#include "unk_02024220.h"
 #include "vram_transfer.h"
 
 void ov119_021D0D80(void);

@@ -14,6 +14,7 @@
 #include "overlay062/ov62_const_funcptr_tables.h"
 
 #include "bg_window.h"
+#include "g3d_pipeline_state.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -31,7 +32,6 @@
 #include "touch_screen_actions.h"
 #include "unk_02012744.h"
 #include "unk_0202419C.h"
-#include "unk_02024220.h"
 #include "unk_020298BC.h"
 #include "unk_020393C8.h"
 #include "unk_0208B284.h"

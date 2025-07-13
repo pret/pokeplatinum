@@ -4,8 +4,6 @@
 #include <nitro/fx/fx.h>
 #include <nnsys.h>
 
-#include "unk_02024220.h"
-
 #include "overlay100/struct_ov100_021D36CC.h"
 #include "overlay100/struct_ov100_021D46C8_sub1.h"
 #include "overlay100/struct_ov100_021D4890.h"
@@ -13,6 +11,7 @@
 
 #include "bg_window.h"
 #include "camera.h"
+#include "g3d_pipeline_state.h"
 #include "message.h"
 #include "narc.h"
 #include "palette.h"

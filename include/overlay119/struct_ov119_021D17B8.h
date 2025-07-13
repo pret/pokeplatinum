@@ -2,11 +2,11 @@
 #define POKEPLATINUM_STRUCT_OV119_021D17B8_H
 
 #include "struct_decls/pokemon_animation_sys_decl.h"
-#include "unk_02024220.h"
 
 #include "overlay119/struct_ov119_021D14DC.h"
 
 #include "bg_window.h"
+#include "g3d_pipeline_state.h"
 #include "menu.h"
 #include "narc.h"
 #include "palette.h"

@@ -4,7 +4,6 @@
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_02098700_decl.h"
 #include "struct_defs/funcptr_0207F248_sub1.h"
-#include "unk_02024220.h"
 #include "struct_defs/struct_020831B4.h"
 #include "struct_defs/struct_02083D1C.h"
 #include "struct_defs/struct_02098C44.h"
@@ -13,6 +12,7 @@
 #include "overlay118/struct_ov118_021D0FDC_decl.h"
 
 #include "bg_window.h"
+#include "g3d_pipeline_state.h"
 #include "grid_menu_cursor_position.h"
 #include "menu.h"
 #include "message.h"

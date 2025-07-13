@@ -7,7 +7,6 @@
 
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_defs/struct_02015958.h"
-#include "unk_02024220.h"
 #include "struct_defs/struct_02099F80.h"
 #include "struct_defs/wi_fi_history.h"
 
@@ -24,6 +23,7 @@
 #include "char_transfer.h"
 #include "easy3d_object.h"
 #include "font.h"
+#include "g3d_pipeline_state.h"
 #include "game_options.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -51,7 +51,6 @@
 #include "text.h"
 #include "unk_02015920.h"
 #include "unk_0202419C.h"
-#include "unk_02024220.h"
 #include "unk_0202C858.h"
 #include "unk_020393C8.h"
 #include "unk_020996D0.h"

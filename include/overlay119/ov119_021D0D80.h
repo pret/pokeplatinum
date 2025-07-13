@@ -1,14 +1,13 @@
 #ifndef POKEPLATINUM_OV119_021D0D80_H
 #define POKEPLATINUM_OV119_021D0D80_H
 
-#include "unk_02024220.h"
-
 #include "overlay119/struct_ov119_021D0FD0.h"
 #include "overlay119/struct_ov119_021D14DC.h"
 #include "overlay119/struct_ov119_021D17B8.h"
 #include "overlay119/struct_ov119_021D1930.h"
 
 #include "bg_window.h"
+#include "g3d_pipeline_state.h"
 #include "palette.h"
 #include "particle_system.h"
 #include "pokemon.h"

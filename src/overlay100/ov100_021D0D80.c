@@ -16,6 +16,7 @@
 
 #include "bg_window.h"
 #include "camera.h"
+#include "g3d_pipeline_state.h"
 #include "game_options.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -28,7 +29,6 @@
 #include "sound.h"
 #include "sprite_system.h"
 #include "system.h"
-#include "unk_02024220.h"
 #include "vram_transfer.h"
 
 FS_EXTERN_OVERLAY(overlay100);

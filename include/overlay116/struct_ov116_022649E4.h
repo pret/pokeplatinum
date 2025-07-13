@@ -3,12 +3,11 @@
 
 #include <nnsys.h>
 
-#include "unk_02024220.h"
-
 #include "overlay116/struct_ov116_022649E4_sub1.h"
 
 #include "bg_window.h"
 #include "camera.h"
+#include "g3d_pipeline_state.h"
 #include "narc.h"
 #include "palette.h"
 #include "sprite_system.h"

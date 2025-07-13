@@ -4,7 +4,6 @@
 #include <nnsys.h>
 
 #include "struct_decls/struct_02012744_decl.h"
-#include "unk_02024220.h"
 
 #include "overlay114/struct_ov114_0225CAD4_decl.h"
 #include "overlay117/struct_ov117_022605C0.h"
@@ -27,6 +26,7 @@
 
 #include "bg_window.h"
 #include "camera.h"
+#include "g3d_pipeline_state.h"
 #include "message.h"
 #include "palette.h"
 #include "particle_system.h"

@@ -1,9 +1,10 @@
 #ifndef POKEPLATINUM_UNK_0207C63C_H
 #define POKEPLATINUM_UNK_0207C63C_H
 
-#include "unk_02024220.h"
 #include "struct_defs/struct_0207C894.h"
 #include "struct_defs/struct_0207C8C4.h"
+
+#include "g3d_pipeline_state.h"
 
 void sub_0207C63C(void);
 void sub_0207C664(void);

@@ -4,11 +4,9 @@
 #include <nnsys.h>
 #include <string.h>
 
-#include "unk_02024220.h"
-
+#include "g3d_pipeline_state.h"
 #include "gx_layers.h"
 #include "system.h"
-#include "unk_02024220.h"
 
 #define G3X_DEPTH_MAX 0x7FFF
 
@@ -78,11 +76,11 @@ void Easy3D_DrawRenderObjSimple(NNSG3dRenderObj *renderObj, const VecFx32 *pos, 
     NNS_G3dGeFlushBuffer();
 }
 
-static G3DPipelineState *Unk_021BFB0C = NULL;
+static G3DPipelineState *sPipelineState = NULL;
 
 void Easy3D_Init(const u8 heapID)
 {
-    Unk_021BFB0C = G3DPipelineState_New(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_64K, Easy3D_SetupEngine);
+    sPipelineState = G3DPipelineState_New(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_64K, Easy3D_SetupEngine);
 }
 
 static void Easy3D_SetupEngine(void)
@@ -102,7 +100,7 @@ static void Easy3D_SetupEngine(void)
 
 void Easy3D_Shutdown(void)
 {
-    G3DPipelineState_Free(Unk_021BFB0C);
+    G3DPipelineState_Free(sPipelineState);
 }
 
 BOOL Easy3D_BindTextureToResource(void *resource, NNSG3dResTex *texture)

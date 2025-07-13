@@ -2,7 +2,6 @@
 #define POKEPLATINUM_STRUCT_OV104_0223C4CC_H
 
 #include "struct_decls/struct_0209B75C_decl.h"
-#include "unk_02024220.h"
 
 #include "overlay063/struct_ov63_0222BCE8_decl.h"
 #include "overlay063/struct_ov63_0222BE18_decl.h"
@@ -17,6 +16,7 @@
 #include "overlay104/struct_ov104_0223D5F0_decl.h"
 
 #include "bg_window.h"
+#include "g3d_pipeline_state.h"
 #include "palette.h"
 #include "sprite_system.h"
 #include "sys_task_manager.h"

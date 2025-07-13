@@ -7,7 +7,6 @@
 
 #include "struct_defs/seal_case.h"
 #include "struct_defs/struct_020127E8.h"
-#include "unk_02024220.h"
 
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/struct_ov12_02225F6C.h"
@@ -20,6 +19,7 @@
 #include "bg_window.h"
 #include "char_transfer.h"
 #include "font.h"
+#include "g3d_pipeline_state.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -42,7 +42,6 @@
 #include "touch_screen.h"
 #include "unk_02012744.h"
 #include "unk_0202419C.h"
-#include "unk_02024220.h"
 #include "unk_0202C9F4.h"
 #include "unk_02097B18.h"
 

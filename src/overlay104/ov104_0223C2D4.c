@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_0209B75C_decl.h"
-#include "unk_02024220.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay063/ov63_0222BCE8.h"
@@ -34,6 +33,7 @@
 #include "overlay104/struct_ov104_0223D570.h"
 
 #include "bg_window.h"
+#include "g3d_pipeline_state.h"
 #include "game_options.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -52,7 +52,6 @@
 #include "touch_pad.h"
 #include "trainer_info.h"
 #include "unk_0202419C.h"
-#include "unk_02024220.h"
 #include "unk_020393C8.h"
 #include "unk_0209B6F8.h"
 #include "vram_transfer.h"

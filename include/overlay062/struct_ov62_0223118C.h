@@ -2,7 +2,6 @@
 #define POKEPLATINUM_STRUCT_OV62_0223118C_H
 
 #include "struct_decls/struct_02012744_decl.h"
-#include "unk_02024220.h"
 
 #include "overlay062/struct_ov62_0223118C_sub1.h"
 #include "overlay062/struct_ov62_02233310.h"
@@ -10,6 +9,7 @@
 #include "overlay062/struct_ov62_022349A8.h"
 
 #include "bg_window.h"
+#include "g3d_pipeline_state.h"
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
