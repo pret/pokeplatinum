@@ -1,68 +1,70 @@
 #include "unk_02024220.h"
 
 #include <nitro.h>
-#include <string.h>
 
+#include "constants/graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 
-static void sub_020242DC(void);
+#define TEXTURE_VRAM_BLOCK_SIZE 0x20000
+#define PALETTE_VRAM_BLOCK_SIZE 0x2000
 
-G3DPipelineState *G3DPipelineState_New(u32 heapID, int param1, int param2, int param3, int param4, G3DPipelineSetupCallback param5)
+static void SetupDefaultPipelineState(void);
+
+G3DPipelineState *G3DPipelineState_New(enum HeapId heapID, enum VramManagerType texVramManagerType, enum TextureVramSize texVramSize, enum VramManagerType plttVramManagerType, enum PaletteVramSize plttVramSize, G3DPipelineSetupCallback cb)
 {
-    int v0, v1;
-    G3DPipelineState *v2 = Heap_AllocFromHeap(heapID, sizeof(G3DPipelineState));
-
-    v2->heapID = heapID;
+    G3DPipelineState *state = Heap_AllocFromHeap(heapID, sizeof(G3DPipelineState));
+    state->heapID = heapID;
 
     NNS_G3dInit();
 
     G3X_InitMtxStack();
     G3_SwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);
 
-    if (param1 == 0) {
-        v0 = NNS_GfdGetLnkTexVramManagerWorkSize(128 * param2);
-        v2->unk_08 = Heap_AllocFromHeap(v2->heapID, v0);
-        NNS_GfdInitLnkTexVramManager(0x20000 * param2, 0, v2->unk_08, v0, 1);
+    if (texVramManagerType == VRAM_MANAGER_TYPE_LINKED_LIST) {
+        int bufferSize = NNS_GfdGetLnkTexVramManagerWorkSize(128 * texVramSize);
+        state->textureBuffer = Heap_AllocFromHeap(state->heapID, bufferSize);
+        NNS_GfdInitLnkTexVramManager(texVramSize * TEXTURE_VRAM_BLOCK_SIZE, 0, state->textureBuffer, bufferSize, TRUE);
     } else {
-        NNS_GfdInitFrmTexVramManager(param2, 1);
+        NNS_GfdInitFrmTexVramManager(texVramSize, TRUE);
     }
 
-    if (param3 == 0) {
-        v1 = NNS_GfdGetLnkPlttVramManagerWorkSize(256 * param4);
-        v2->unk_04 = Heap_AllocFromHeap(v2->heapID, v1);
-        NNS_GfdInitLnkPlttVramManager(0x2000 * param4, v2->unk_04, v1, 1);
+    if (plttVramManagerType == VRAM_MANAGER_TYPE_LINKED_LIST) {
+        int bufferSize = NNS_GfdGetLnkPlttVramManagerWorkSize(256 * plttVramSize);
+        state->paletteBuffer = Heap_AllocFromHeap(state->heapID, bufferSize);
+        NNS_GfdInitLnkPlttVramManager(plttVramSize * PALETTE_VRAM_BLOCK_SIZE, state->paletteBuffer, bufferSize, TRUE);
     } else {
-        NNS_GfdInitFrmTexVramManager(0x2000 * param4, 1);
+        // BUG: This should be NNS_GfdInitFrmPlttVramManager
+        NNS_GfdInitFrmTexVramManager(plttVramSize * PALETTE_VRAM_BLOCK_SIZE, TRUE);
     }
 
-    if (param5 != NULL) {
-        param5();
+    if (cb != NULL) {
+        cb();
     } else {
-        sub_020242DC();
+        SetupDefaultPipelineState();
     }
 
-    return v2;
+    return state;
 }
 
-void G3DPipelineState_Free(G3DPipelineState *param0)
+void G3DPipelineState_Free(G3DPipelineState *state)
 {
-    Heap_Free(param0->unk_04);
-    Heap_Free(param0->unk_08);
-    Heap_Free(param0);
+    Heap_Free(state->paletteBuffer);
+    Heap_Free(state->textureBuffer);
+    Heap_Free(state);
 }
 
-static void sub_020242DC(void)
+static void SetupDefaultPipelineState(void)
 {
-    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, TRUE);
 
     G2_SetBG0Priority(0);
     G3X_SetShading(GX_SHADING_TOON);
-    G3X_AntiAlias(0);
-    G3X_AlphaTest(0, 0);
-    G3X_AlphaBlend(0);
-    G3X_EdgeMarking(0);
-    G3X_SetFog(0, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0);
-    G3X_SetClearColor(GX_RGB(0, 0, 0), 0, 0x7fff, 63, 0);
+    G3X_AntiAlias(FALSE);
+    G3X_AlphaTest(FALSE, 0);
+    G3X_AlphaBlend(FALSE);
+    G3X_EdgeMarking(FALSE);
+    G3X_SetFog(FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0);
+    G3X_SetClearColor(COLOR_BLACK, 0, 0x7FFF, 63, FALSE);
     G3_ViewPort(0, 0, 255, 191);
 }
