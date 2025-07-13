@@ -883,7 +883,7 @@ void sub_0207EA74(GameWindowLayout *windowLayout, int param1)
 
 static G3DPipelineState *sub_0207EAD4(int heapID)
 {
-    return G3DPipelineState_New(heapID, 0, 1, 0, 2, sub_0207EAF4);
+    return G3DPipelineState_New(heapID, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_32K, sub_0207EAF4);
 }
 
 static void sub_0207EAF4(void)

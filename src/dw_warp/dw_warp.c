@@ -316,7 +316,7 @@ static void Model3D_Update(DistortionWorldWarp *warp)
 
 static G3DPipelineState *DWWarp_Init3D(int heapID)
 {
-    return G3DPipelineState_New(heapID, 0, 2, 0, 2, DWWarp_Setup3D);
+    return G3DPipelineState_New(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, DWWarp_Setup3D);
 }
 
 static void DWWarp_Setup3D(void)

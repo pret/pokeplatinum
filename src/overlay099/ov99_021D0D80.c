@@ -769,7 +769,7 @@ static void ov99_021D19A0(UnkStruct_ov99_021D2CB0 *param0)
 
 static G3DPipelineState *ov99_021D19AC(int heapID)
 {
-    return G3DPipelineState_New(heapID, 0, 1, 0, 1, ov99_021D19C8);
+    return G3DPipelineState_New(heapID, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_16K, ov99_021D19C8);
 }
 
 static void ov99_021D19C8(void)

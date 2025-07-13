@@ -2860,7 +2860,7 @@ static void ov115_02263328(void)
 
 static void ov115_022633B4(UnkStruct_ov115_02261ADC *param0, u32 param1, u32 param2, u32 heapID)
 {
-    param0->unk_18 = G3DPipelineState_New(heapID, 0, 1, 0, 4, ov115_02263328);
+    param0->unk_18 = G3DPipelineState_New(heapID, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_64K, ov115_02263328);
     ov115_02263C24(param0, param1, param2, heapID);
 }
 

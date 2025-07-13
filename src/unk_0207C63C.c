@@ -46,7 +46,7 @@ void sub_0207C664(void)
 
 G3DPipelineState *sub_0207C690(int heapID)
 {
-    return G3DPipelineState_New(heapID, 0, 2, 0, 2, sub_0207C6AC);
+    return G3DPipelineState_New(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, sub_0207C6AC);
 }
 
 void sub_0207C6AC(void)

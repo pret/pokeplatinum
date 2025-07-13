@@ -760,7 +760,7 @@ static void ov116_022612CC(UnkStruct_ov116_0226139C *param0)
     param0->unk_48.unk_04 = NARC_ctor(NARC_INDEX_GRAPHIC__BUCKET, HEAP_ID_106);
     param0->unk_48.unk_10 = BgConfig_New(HEAP_ID_106);
     param0->unk_48.unk_14 = PaletteData_New(HEAP_ID_106);
-    param0->unk_48.unk_18 = G3DPipelineState_New(HEAP_ID_106, 0, 1, 0, 4, NULL);
+    param0->unk_48.unk_18 = G3DPipelineState_New(HEAP_ID_106, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_64K, NULL);
     param0->unk_48.camera = Camera_Alloc(HEAP_ID_106);
 
     ov116_02261C88(param0);

@@ -1317,7 +1317,7 @@ static void ov70_0225E4EC(UnkStruct_ov70_0225E4EC *param0, SaveData *saveData, u
     }
 
     {
-        param0->unk_1A8 = G3DPipelineState_New(heapID, 0, 2, 0, 4, ov70_0225E754);
+        param0->unk_1A8 = G3DPipelineState_New(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_64K, ov70_0225E754);
     }
 }
 

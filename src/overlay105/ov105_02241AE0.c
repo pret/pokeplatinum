@@ -357,7 +357,7 @@ int ov105_02241AE0(ApplicationManager *appMan, int *param1)
     v1 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov105_02241FF4), HEAP_ID_93);
     memset(v1, 0, sizeof(UnkStruct_ov105_02241FF4));
 
-    v1->unk_124 = G3DPipelineState_New(HEAP_ID_93, 0, 2, 0, 2, ov105_02245CD0);
+    v1->unk_124 = G3DPipelineState_New(HEAP_ID_93, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov105_02245CD0);
     v1->unk_4C = BgConfig_New(HEAP_ID_93);
     v1->unk_00 = appMan;
 
@@ -2793,7 +2793,7 @@ static void ov105_022452A0(UnkStruct_ov105_02241FF4 *param0)
 
     ov105_022452E4();
 
-    param0->unk_124 = G3DPipelineState_New(HEAP_ID_93, 0, 2, 0, 2, ov105_02245CD0);
+    param0->unk_124 = G3DPipelineState_New(HEAP_ID_93, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov105_02245CD0);
     param0->unk_4C = BgConfig_New(HEAP_ID_93);
 
     ov105_0224531C(param0);

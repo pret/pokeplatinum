@@ -80,7 +80,7 @@ static void NitroStaticInit(void)
 
 G3DPipelineState *ov17_0223F140(int heapID)
 {
-    return G3DPipelineState_New(heapID, 0, 2, 0, 2, ov17_0223F15C);
+    return G3DPipelineState_New(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov17_0223F15C);
 }
 
 static void ov17_0223F15C(void)

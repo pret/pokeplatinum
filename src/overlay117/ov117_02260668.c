@@ -510,7 +510,7 @@ static void ov117_02260DA0(void *param0)
 
 static G3DPipelineState *ov117_02260E14(int heapID)
 {
-    return G3DPipelineState_New(heapID, 0, 1, 0, 2, ov117_02260E34);
+    return G3DPipelineState_New(heapID, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_32K, ov117_02260E34);
 }
 
 static void ov117_02260E34(void)

@@ -11,7 +11,7 @@
 
 static void SetupDefaultPipelineState(void);
 
-G3DPipelineState *G3DPipelineState_New(enum HeapId heapID, enum VramManagerType texVramManagerType, enum TextureVramSize texVramSize, enum VramManagerType plttVramManagerType, enum PaletteVramSize plttVramSize, G3DPipelineSetupCallback cb)
+G3DPipelineState *G3DPipelineState_NewEx(enum HeapId heapID, enum VramManagerType texVramManagerType, enum TextureVramSize texVramSize, enum VramManagerType plttVramManagerType, enum PaletteVramSize plttVramSize, G3DPipelineSetupCallback cb)
 {
     G3DPipelineState *state = Heap_AllocFromHeap(heapID, sizeof(G3DPipelineState));
     state->heapID = heapID;

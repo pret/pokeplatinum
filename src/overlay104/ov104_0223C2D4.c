@@ -772,7 +772,7 @@ static void ov104_0223CEEC(UnkStruct_ov104_0223C4CC *param0)
 
 static G3DPipelineState *ov104_0223CF4C(int heapID)
 {
-    return G3DPipelineState_New(heapID, 0, 1, 0, 1, ov104_0223CF68);
+    return G3DPipelineState_New(heapID, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_16K, ov104_0223CF68);
 }
 
 static void ov104_0223CF68(void)

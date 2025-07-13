@@ -822,7 +822,7 @@ static void ov77_021D2A58(UnkStruct_ov77_021D2E9C *param0)
     NNSGfdPlttKey v1;
     u32 v2, v3;
 
-    param0->unk_10 = G3DPipelineState_New(param0->unk_00, 0, 1, 0, 4, ov77_021D2AA0);
+    param0->unk_10 = G3DPipelineState_New(param0->unk_00, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_64K, ov77_021D2AA0);
 
     v0 = NNS_GfdAllocTexVram(0x2000 * 4, 0, 0);
     v1 = NNS_GfdAllocPlttVram(0x20 * 4, 0, NNS_GFD_ALLOC_FROM_LOW);

@@ -1727,7 +1727,7 @@ static void ov10_022217CC(UnkStruct_ov10_0221FB28 *param0)
     Camera *camera;
     void *v1;
 
-    param0->unk_B4C = G3DPipelineState_New(param0->unk_00->heapID, 0, 4, 0, 2, NULL);
+    param0->unk_B4C = G3DPipelineState_New(param0->unk_00->heapID, TEXTURE_VRAM_SIZE_512K, PALETTE_VRAM_SIZE_32K, NULL);
 
     G3X_AlphaBlend(1);
     ParticleSystem_ZeroAll();

@@ -82,7 +82,7 @@ static G3DPipelineState *Unk_021BFB0C = NULL;
 
 void Easy3D_Init(const u8 heapID)
 {
-    Unk_021BFB0C = G3DPipelineState_New(heapID, 0, 2, 0, 4, Easy3D_SetupEngine);
+    Unk_021BFB0C = G3DPipelineState_New(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_64K, Easy3D_SetupEngine);
 }
 
 static void Easy3D_SetupEngine(void)

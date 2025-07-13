@@ -1424,7 +1424,11 @@ static BOOL ov16_0223CD3C(u16 param0)
 
 static G3DPipelineState *ov16_0223CD7C(void)
 {
-    return G3DPipelineState_New(HEAP_ID_BATTLE, 0, 2, 0, 2, ov16_0223CD9C);
+    return G3DPipelineState_New(
+        HEAP_ID_BATTLE,
+        TEXTURE_VRAM_SIZE_256K,
+        PALETTE_VRAM_SIZE_32K,
+        ov16_0223CD9C);
 }
 
 static void ov16_0223CD9C(void)

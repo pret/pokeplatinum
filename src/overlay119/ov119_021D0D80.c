@@ -69,7 +69,7 @@ void ov119_021D0DA8(void)
 
 G3DPipelineState *ov119_021D0DD4(void)
 {
-    return G3DPipelineState_New(HEAP_ID_71, 0, 2, 0, 2, ov119_021D0DF4);
+    return G3DPipelineState_New(HEAP_ID_71, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov119_021D0DF4);
 }
 
 void ov119_021D0DF4(void)

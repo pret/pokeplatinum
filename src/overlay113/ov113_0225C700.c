@@ -1262,7 +1262,7 @@ static void ov113_0225DC4C(UnkStruct_ov113_0225DBCC *param0)
 
 static G3DPipelineState *ov113_0225DC6C(int heapID)
 {
-    return G3DPipelineState_New(heapID, 0, 2, 0, 2, ov113_0225DC88);
+    return G3DPipelineState_New(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov113_0225DC88);
 }
 
 static void ov113_0225DC88(void)

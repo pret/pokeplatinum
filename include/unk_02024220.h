@@ -33,7 +33,12 @@ enum PaletteVramSize {
 
 typedef void (*G3DPipelineSetupCallback)(void);
 
-G3DPipelineState *G3DPipelineState_New(enum HeapId heapID, enum VramManagerType texVramManagerType, enum TextureVramSize texVramSize, enum VramManagerType plttVramManagerType, enum PaletteVramSize plttVramSize, G3DPipelineSetupCallback cb);
+G3DPipelineState *G3DPipelineState_NewEx(enum HeapId heapID, enum VramManagerType texVramManagerType, enum TextureVramSize texVramSize, enum VramManagerType plttVramManagerType, enum PaletteVramSize plttVramSize, G3DPipelineSetupCallback cb);
 void G3DPipelineState_Free(G3DPipelineState *state);
+
+static inline G3DPipelineState *G3DPipelineState_New(enum HeapId heapID, enum TextureVramSize texVramSize, enum PaletteVramSize plttVramSize, G3DPipelineSetupCallback cb)
+{
+    return G3DPipelineState_NewEx(heapID, VRAM_MANAGER_TYPE_LINKED_LIST, texVramSize, VRAM_MANAGER_TYPE_LINKED_LIST, plttVramSize, cb);
+}
 
 #endif // POKEPLATINUM_UNK_02024220_H

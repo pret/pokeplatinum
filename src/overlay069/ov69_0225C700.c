@@ -1486,7 +1486,7 @@ static void ov69_0225D5D8(UnkStruct_ov69_0225D35C *param0)
 
 static void ov69_0225D604(UnkStruct_ov69_0225D35C *param0, u32 heapID)
 {
-    param0->unk_1A4 = G3DPipelineState_New(heapID, 0, 2, 0, 4, ov69_0225D64C);
+    param0->unk_1A4 = G3DPipelineState_New(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_64K, ov69_0225D64C);
     NNS_G3dGlbLightVector(0, 0, 0, (-(FX32_ONE - 1)));
 }
 

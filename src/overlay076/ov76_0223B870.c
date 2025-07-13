@@ -369,7 +369,7 @@ void ov76_0223BD30(UnkStruct_ov76_0223DE00 *param0, s8 param1, int param2)
 
 G3DPipelineState *ov76_0223BE6C(void)
 {
-    return G3DPipelineState_New(HEAP_ID_53, 0, 2, 0, 2, ov76_0223BE8C);
+    return G3DPipelineState_New(HEAP_ID_53, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov76_0223BE8C);
 }
 
 void ov76_0223BE8C(void)
