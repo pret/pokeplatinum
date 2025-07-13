@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
 #include "generated/genders.h"
 
 #include "struct_decls/struct_02015920_decl.h"
@@ -314,7 +315,7 @@ static const ApplicationManagerTemplate sKeyboardApplicationTemplate = {
 int RowanIntro_Init(ApplicationManager *appMan, int *unusedState)
 {
     RowanIntro *manager;
-    int heapID = HEAP_ID_82;
+    int heapID = HEAP_ID_ROWAN_INTRO;
 
     Heap_Create(HEAP_ID_APPLICATION, heapID, 0x40000);
 
