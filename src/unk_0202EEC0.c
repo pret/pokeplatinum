@@ -6,24 +6,24 @@
 #include "pokemon.h"
 #include "rtc.h"
 
-typedef struct PalParkTransfer {
+typedef struct MigratedPokemon {
     Pokemon mons[CATCHING_SHOW_MONS];
     u32 gbaTrainerIds[MAX_GBA_TRANSFER_HISTORY];
     s64 timeStamps[MAX_GBA_TRANSFER_HISTORY];
     s64 rtcOffset;
     u8 macAddress[6];
-} PalParkTransfer;
+} MigratedPokemon;
 
-int PalParkTransfer_SaveSize(void)
+int MigratedPokemon_SaveSize(void)
 {
-    return sizeof(PalParkTransfer);
+    return sizeof(MigratedPokemon);
 }
 
-void PalParkTransfer_Init(PalParkTransfer *transferData)
+void PalParkTransfer_Init(MigratedPokemon *transferData)
 {
     int i;
 
-    MI_CpuClearFast(transferData, sizeof(PalParkTransfer));
+    MI_CpuClearFast(transferData, sizeof(MigratedPokemon));
 
     for (i = 0; i < CATCHING_SHOW_MONS; i++) {
         Pokemon_Init(&transferData->mons[i]);
@@ -31,7 +31,7 @@ void PalParkTransfer_Init(PalParkTransfer *transferData)
     }
 }
 
-void ClearPalParkTransferPokemonData(PalParkTransfer *transferData)
+void ClearPalParkTransferPokemonData(MigratedPokemon *transferData)
 {
     int i;
 
@@ -43,7 +43,7 @@ void ClearPalParkTransferPokemonData(PalParkTransfer *transferData)
     }
 }
 
-static int GetTransferSlotByTrainerID(PalParkTransfer *transferData, u32 param1)
+static int GetTransferSlotByTrainerID(MigratedPokemon *transferData, u32 param1)
 {
     int i, slot;
     s64 temp;
@@ -73,12 +73,12 @@ static int GetTransferSlotByTrainerID(PalParkTransfer *transferData, u32 param1)
     return slot;
 }
 
-void BoxMonToTransferData(PalParkTransfer *transfer, BoxPokemon *boxMon, int slot)
+void BoxMonToTransferData(MigratedPokemon *transfer, BoxPokemon *boxMon, int slot)
 {
     Pokemon_FromBoxPokemon(boxMon, &transfer->mons[slot]);
 }
 
-void PalParkTransfer_SaveTransferHistory(PalParkTransfer *transferData, u32 gbaTrainerId)
+void PalParkTransfer_SaveTransferHistory(MigratedPokemon *transferData, u32 gbaTrainerId)
 {
     int slot = GetTransferSlotByTrainerID(transferData, gbaTrainerId);
 
@@ -89,13 +89,13 @@ void PalParkTransfer_SaveTransferHistory(PalParkTransfer *transferData, u32 gbaT
     OS_GetMacAddress(transferData->macAddress);
 }
 
-void TransferDataToMon(const PalParkTransfer *transferData, int slot, Pokemon *mon)
+void MigratedPokemon_ToPokemon(const MigratedPokemon *transferData, int slot, Pokemon *mon)
 {
     GF_ASSERT(slot < CATCHING_SHOW_MONS);
     *mon = transferData->mons[slot];
 }
 
-int GetPalParkTransferMonCount(const PalParkTransfer *transferData)
+int GetPalParkTransferMonCount(const MigratedPokemon *transferData)
 {
     int i, count;
 
@@ -108,7 +108,7 @@ int GetPalParkTransferMonCount(const PalParkTransfer *transferData)
     return count;
 }
 
-int PalParkTransfer_GetSecondsSinceLastTransfer(const PalParkTransfer *transferData, u32 gbaTrainerId)
+int PalParkTransfer_GetSecondsSinceLastTransfer(const MigratedPokemon *transferData, u32 gbaTrainerId)
 {
     s64 currentTime = GetTimestamp();
 
@@ -121,7 +121,7 @@ int PalParkTransfer_GetSecondsSinceLastTransfer(const PalParkTransfer *transferD
     return 0;
 }
 
-BOOL MacAddressMatchesLastPalParkTransfer(const PalParkTransfer *transferData)
+BOOL MacAddressMatchesLastPalParkTransfer(const MigratedPokemon *transferData)
 {
     u8 currMacAddress[6];
 
@@ -136,12 +136,12 @@ BOOL MacAddressMatchesLastPalParkTransfer(const PalParkTransfer *transferData)
     return TRUE;
 }
 
-BOOL RtcOffsetMatchesLastPalParkTransfer(const PalParkTransfer *transferData)
+BOOL RtcOffsetMatchesLastPalParkTransfer(const MigratedPokemon *transferData)
 {
     return transferData->rtcOffset == OS_GetOwnerRtcOffset();
 }
 
-BOOL IsPalParkTransferMacAddressUnset(const PalParkTransfer *transferData)
+BOOL IsPalParkTransferMacAddressUnset(const MigratedPokemon *transferData)
 {
     int i;
     u8 v1;
