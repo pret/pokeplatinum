@@ -5,7 +5,7 @@
 
 #include "constants/graphics.h"
 
-#include "struct_defs/struct_0207C690.h"
+#include "unk_02024220.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "camera.h"
@@ -28,7 +28,7 @@
 #define DWARP_ANM_DURATION     85
 
 typedef struct DistortionWorldWarp {
-    GenericPointerData *p3DCallback;
+    G3DPipelineState *p3DCallback;
     Camera *camera;
     SysTask *task;
     int frameCnt;
@@ -53,9 +53,9 @@ static void DWWarp_DeleteCamera(DistortionWorldWarp *warp);
 static void DWWarp_InitModel(DistortionWorldWarp *warp);
 static void DWWarp_DeleteModel(DistortionWorldWarp *warp);
 static void Model3D_Update(DistortionWorldWarp *warp);
-static GenericPointerData *DWWarp_Init3D(int heapID);
+static G3DPipelineState *DWWarp_Init3D(int heapID);
 static void DWWarp_Setup3D(void);
-static void DWWarp_Exit3D(GenericPointerData *param0);
+static void DWWarp_Exit3D(G3DPipelineState *param0);
 static void DWWarp_CameraMove(DistortionWorldWarp *warp);
 
 BOOL DWWarp_Init(ApplicationManager *appMan, int *state)
@@ -314,9 +314,9 @@ static void Model3D_Update(DistortionWorldWarp *warp)
     NNS_G3dGePopMtx(1);
 }
 
-static GenericPointerData *DWWarp_Init3D(int heapID)
+static G3DPipelineState *DWWarp_Init3D(int heapID)
 {
-    return sub_02024220(heapID, 0, 2, 0, 2, DWWarp_Setup3D);
+    return G3DPipelineState_New(heapID, 0, 2, 0, 2, DWWarp_Setup3D);
 }
 
 static void DWWarp_Setup3D(void)
@@ -335,9 +335,9 @@ static void DWWarp_Setup3D(void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void DWWarp_Exit3D(GenericPointerData *param0)
+static void DWWarp_Exit3D(G3DPipelineState *param0)
 {
-    sub_020242C4(param0);
+    G3DPipelineState_Free(param0);
 }
 
 static void DWWarp_CameraMove(DistortionWorldWarp *warp)

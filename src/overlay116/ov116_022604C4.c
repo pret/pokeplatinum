@@ -760,7 +760,7 @@ static void ov116_022612CC(UnkStruct_ov116_0226139C *param0)
     param0->unk_48.unk_04 = NARC_ctor(NARC_INDEX_GRAPHIC__BUCKET, HEAP_ID_106);
     param0->unk_48.unk_10 = BgConfig_New(HEAP_ID_106);
     param0->unk_48.unk_14 = PaletteData_New(HEAP_ID_106);
-    param0->unk_48.unk_18 = sub_02024220(HEAP_ID_106, 0, 1, 0, 4, NULL);
+    param0->unk_48.unk_18 = G3DPipelineState_New(HEAP_ID_106, 0, 1, 0, 4, NULL);
     param0->unk_48.camera = Camera_Alloc(HEAP_ID_106);
 
     ov116_02261C88(param0);
@@ -821,7 +821,7 @@ void ov116_0226139C(UnkStruct_ov116_0226139C *param0)
     PaletteData_Free(param0->unk_48.unk_14);
     NARC_dtor(param0->unk_48.unk_00);
     NARC_dtor(param0->unk_48.unk_04);
-    sub_020242C4(param0->unk_48.unk_18);
+    G3DPipelineState_Free(param0->unk_48.unk_18);
     Camera_Delete(param0->unk_48.camera);
     SpriteSystem_FreeResourcesAndManager(param0->unk_48.unk_08, param0->unk_48.unk_0C);
     SpriteSystem_Free(param0->unk_48.unk_08);

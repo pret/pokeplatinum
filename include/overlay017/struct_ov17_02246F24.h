@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV17_02246F24_H
 #define POKEPLATINUM_STRUCT_OV17_02246F24_H
 
-#include "struct_defs/struct_0207C690.h"
+#include "unk_02024220.h"
 #include "struct_defs/struct_02095C48.h"
 
 #include "overlay017/struct_ov17_0223BCE8.h"
@@ -16,7 +16,7 @@
 typedef struct {
     UnkStruct_02095C48 *unk_00;
     SysTask *unk_04;
-    GenericPointerData *unk_08;
+    G3DPipelineState *unk_08;
     UnkStruct_ov17_0223F88C unk_0C;
     UnkStruct_ov17_022472F8 unk_220;
     UnkStruct_ov17_02246F24_sub1 unk_304;

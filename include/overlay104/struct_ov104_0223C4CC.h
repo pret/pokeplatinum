@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV104_0223C4CC_H
 
 #include "struct_decls/struct_0209B75C_decl.h"
-#include "struct_defs/struct_0207C690.h"
+#include "unk_02024220.h"
 
 #include "overlay063/struct_ov63_0222BCE8_decl.h"
 #include "overlay063/struct_ov63_0222BE18_decl.h"
@@ -25,7 +25,7 @@ typedef struct UnkStruct_ov104_0223C4CC_t {
     BgConfig *unk_00;
     PaletteData *unk_04;
     UnkStruct_0209B75C *unk_08;
-    GenericPointerData *unk_0C;
+    G3DPipelineState *unk_0C;
     UnkStruct_ov104_0223D5F0 *unk_10;
     UnkStruct_ov63_0222BE18 *unk_14;
     UnkStruct_ov63_0222BCE8 *unk_18;

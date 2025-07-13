@@ -7,7 +7,6 @@
 #include "constants/heap.h"
 #include "constants/species.h"
 
-#include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "game_opening/const_ov77_021D742C.h"
@@ -19,6 +18,7 @@
 #include "easy3d_object.h"
 #include "font.h"
 #include "fx_util.h"
+#include "unk_02024220.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -202,7 +202,7 @@ typedef struct TitleScreen {
 typedef struct TitleScreenAppData {
     int heapID;
     BgConfig *bgConfig;
-    GenericPointerData *unk_08;
+    G3DPipelineState *unk_08;
     TitleScreenUnusedStruct unused0;
     TitleScreen titleScreen;
     u16 nextApp;
@@ -515,13 +515,13 @@ static BOOL TitleScreen_ShouldSkipIntro(void)
 
 static void ov77_021D11CC(TitleScreenAppData *appData)
 {
-    appData->unk_08 = sub_02024220(appData->heapID, 0, 1, 0, 4, NULL);
+    appData->unk_08 = G3DPipelineState_New(appData->heapID, 0, 1, 0, 4, NULL);
     G2_SetBG0Priority(1);
 }
 
 static void ov77_021D11FC(TitleScreenAppData *appData)
 {
-    sub_020242C4(appData->unk_08);
+    G3DPipelineState_Free(appData->unk_08);
 }
 
 static void TitleScreen_Load3DGfx(TitleScreenGraphics *gfx, int giratinaModel, int giratinaTexAnim, enum HeapId heapID)

@@ -155,7 +155,7 @@ static int sub_02098388(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov119_021D0FD0 *v0 = ApplicationManager_Data(appMan);
 
-    sub_020242C4(v0->unk_04.unk_34);
+    G3DPipelineState_Free(v0->unk_04.unk_34);
 
     GXLayers_EngineAToggleLayers(1, 0);
     GXLayers_EngineAToggleLayers(2, 0);

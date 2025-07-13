@@ -7,7 +7,7 @@
 
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_defs/struct_02015958.h"
-#include "struct_defs/struct_0207C690.h"
+#include "unk_02024220.h"
 #include "struct_defs/struct_02099F80.h"
 #include "struct_defs/wi_fi_history.h"
 
@@ -108,7 +108,7 @@ typedef struct {
     SpriteList *unk_04;
     G2dRenderer unk_08;
     SpriteResourceCollection *unk_194[4];
-    GenericPointerData *unk_1A4;
+    G3DPipelineState *unk_1A4;
     NARC *unk_1A8;
 } UnkStruct_ov69_0225D35C;
 
@@ -1486,13 +1486,13 @@ static void ov69_0225D5D8(UnkStruct_ov69_0225D35C *param0)
 
 static void ov69_0225D604(UnkStruct_ov69_0225D35C *param0, u32 heapID)
 {
-    param0->unk_1A4 = sub_02024220(heapID, 0, 2, 0, 4, ov69_0225D64C);
+    param0->unk_1A4 = G3DPipelineState_New(heapID, 0, 2, 0, 4, ov69_0225D64C);
     NNS_G3dGlbLightVector(0, 0, 0, (-(FX32_ONE - 1)));
 }
 
 static void ov69_0225D63C(UnkStruct_ov69_0225D35C *param0)
 {
-    sub_020242C4(param0->unk_1A4);
+    G3DPipelineState_Free(param0->unk_1A4);
 }
 
 static void ov69_0225D64C(void)

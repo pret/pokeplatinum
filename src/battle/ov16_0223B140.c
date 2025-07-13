@@ -13,7 +13,7 @@
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/struct_0207A778.h"
-#include "struct_defs/struct_0207C690.h"
+#include "unk_02024220.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "battle/battle_context.h"
@@ -125,8 +125,8 @@ static void ov16_0223CE68(void *param0);
 static void ov16_0223CF1C(void *param0);
 static void ov16_0223CF48(SysTask *param0, void *param1);
 static void ov16_0223CF8C(SysTask *param0, void *param1);
-static GenericPointerData *ov16_0223CD7C(void);
-static void ov16_0223CE20(GenericPointerData *param0);
+static G3DPipelineState *ov16_0223CD7C(void);
+static void ov16_0223CE20(G3DPipelineState *param0);
 static void ov16_0223CD9C(void);
 static void ov16_0223DD4C(BattleSystem *battleSys);
 static void ov16_0223D0C4(SysTask *param0, void *param1);
@@ -1422,9 +1422,9 @@ static BOOL ov16_0223CD3C(u16 param0)
     return 0;
 }
 
-static GenericPointerData *ov16_0223CD7C(void)
+static G3DPipelineState *ov16_0223CD7C(void)
 {
-    return sub_02024220(HEAP_ID_BATTLE, 0, 2, 0, 2, ov16_0223CD9C);
+    return G3DPipelineState_New(HEAP_ID_BATTLE, 0, 2, 0, 2, ov16_0223CD9C);
 }
 
 static void ov16_0223CD9C(void)
@@ -1442,9 +1442,9 @@ static void ov16_0223CD9C(void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void ov16_0223CE20(GenericPointerData *param0)
+static void ov16_0223CE20(G3DPipelineState *param0)
 {
-    sub_020242C4(param0);
+    G3DPipelineState_Free(param0);
 }
 
 static void ov16_0223CE28(void)

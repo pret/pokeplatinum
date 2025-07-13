@@ -8,7 +8,7 @@
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02012B20_decl.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_0207C690.h"
+#include "unk_02024220.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay092/struct_ov92_021D28C0.h"
@@ -274,7 +274,7 @@ typedef struct {
     Strbuf *unk_10;
     u16 unk_14;
     u16 unk_16;
-    GenericPointerData *unk_18;
+    G3DPipelineState *unk_18;
     SpriteList *unk_1C;
     G2dRenderer unk_20;
     SpriteResourceCollection *unk_1AC[4];
@@ -2860,14 +2860,14 @@ static void ov115_02263328(void)
 
 static void ov115_022633B4(UnkStruct_ov115_02261ADC *param0, u32 param1, u32 param2, u32 heapID)
 {
-    param0->unk_18 = sub_02024220(heapID, 0, 1, 0, 4, ov115_02263328);
+    param0->unk_18 = G3DPipelineState_New(heapID, 0, 1, 0, 4, ov115_02263328);
     ov115_02263C24(param0, param1, param2, heapID);
 }
 
 static void ov115_022633EC(UnkStruct_ov115_02261ADC *param0)
 {
     ov115_02263CC0(param0);
-    sub_020242C4(param0->unk_18);
+    G3DPipelineState_Free(param0->unk_18);
 }
 
 static void ov115_022633FC(UnkStruct_ov115_02260D78 *param0, u32 heapID)

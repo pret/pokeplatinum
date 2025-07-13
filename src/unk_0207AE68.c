@@ -198,7 +198,7 @@ void sub_0207B0E0(UnkStruct_0207AE68 *param0)
     PaletteData_Free(param0->unk_14);
     PokemonSpriteManager_Free(param0->unk_18);
     sub_02015FB8(param0->unk_44);
-    sub_020242C4(param0->unk_34);
+    G3DPipelineState_Free(param0->unk_34);
     sub_0207C460(param0->unk_00);
     MessageLoader_Free(param0->unk_08);
     StringTemplate_Free(param0->unk_0C);

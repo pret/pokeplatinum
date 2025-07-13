@@ -5,7 +5,7 @@
 
 #include "constants/graphics.h"
 
-#include "struct_defs/struct_0207C690.h"
+#include "unk_02024220.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay099/ov99_021D1A54.h"
@@ -76,9 +76,9 @@ static void ov99_021D1380(BgConfig *param0);
 static void ov99_021D1720(UnkStruct_ov99_021D2CB0 *param0);
 static void ov99_021D1918(UnkStruct_ov99_021D2CB0 *param0);
 static void ov99_021D19A0(UnkStruct_ov99_021D2CB0 *param0);
-static GenericPointerData *ov99_021D19AC(int heapID);
+static G3DPipelineState *ov99_021D19AC(int heapID);
 static void ov99_021D19C8(void);
-static void ov99_021D1A4C(GenericPointerData *param0);
+static void ov99_021D1A4C(G3DPipelineState *param0);
 static void ov99_021D16E4(UnkStruct_ov99_021D2CB0 *param0);
 static void ov99_021D1270(UnkStruct_ov99_021D2CB0 *param0);
 static void ov99_021D1314(UnkStruct_ov99_021D2CB0 *param0);
@@ -767,9 +767,9 @@ static void ov99_021D19A0(UnkStruct_ov99_021D2CB0 *param0)
     Camera_Delete(param0->camera);
 }
 
-static GenericPointerData *ov99_021D19AC(int heapID)
+static G3DPipelineState *ov99_021D19AC(int heapID)
 {
-    return sub_02024220(heapID, 0, 1, 0, 1, ov99_021D19C8);
+    return G3DPipelineState_New(heapID, 0, 1, 0, 1, ov99_021D19C8);
 }
 
 static void ov99_021D19C8(void)
@@ -787,7 +787,7 @@ static void ov99_021D19C8(void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void ov99_021D1A4C(GenericPointerData *param0)
+static void ov99_021D1A4C(G3DPipelineState *param0)
 {
-    sub_020242C4(param0);
+    G3DPipelineState_Free(param0);
 }

@@ -6,7 +6,7 @@
 
 #include "constants/graphics.h"
 
-#include "struct_defs/struct_0207C690.h"
+#include "unk_02024220.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay005/struct_ov5_021DE5D0.h"
@@ -100,7 +100,7 @@ typedef struct {
     G2dRenderer unk_08;
     SpriteResourceCollection *unk_194[4];
     NNSG2dCellTransferState *unk_1A4;
-    GenericPointerData *unk_1A8;
+    G3DPipelineState *unk_1A8;
 } UnkStruct_ov70_0225E4EC;
 
 typedef struct {
@@ -1317,7 +1317,7 @@ static void ov70_0225E4EC(UnkStruct_ov70_0225E4EC *param0, SaveData *saveData, u
     }
 
     {
-        param0->unk_1A8 = sub_02024220(heapID, 0, 2, 0, 4, ov70_0225E754);
+        param0->unk_1A8 = G3DPipelineState_New(heapID, 0, 2, 0, 4, ov70_0225E754);
     }
 }
 
@@ -1358,7 +1358,7 @@ static void ov70_0225E6D0(UnkStruct_ov70_0225E4EC *param0)
     }
 
     {
-        sub_020242C4(param0->unk_1A8);
+        G3DPipelineState_Free(param0->unk_1A8);
     }
 }
 

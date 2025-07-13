@@ -3,19 +3,15 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0207C690.h"
-
-#include "functypes/funcptr_02024220.h"
-
 #include "gx_layers.h"
 #include "heap.h"
 
 static void sub_020242DC(void);
 
-GenericPointerData *sub_02024220(u32 heapID, int param1, int param2, int param3, int param4, UnkFuncPtr_02024220 param5)
+G3DPipelineState *G3DPipelineState_New(u32 heapID, int param1, int param2, int param3, int param4, G3DPipelineSetupCallback param5)
 {
     int v0, v1;
-    GenericPointerData *v2 = Heap_AllocFromHeap(heapID, sizeof(GenericPointerData));
+    G3DPipelineState *v2 = Heap_AllocFromHeap(heapID, sizeof(G3DPipelineState));
 
     v2->heapID = heapID;
 
@@ -49,7 +45,7 @@ GenericPointerData *sub_02024220(u32 heapID, int param1, int param2, int param3,
     return v2;
 }
 
-void sub_020242C4(GenericPointerData *param0)
+void G3DPipelineState_Free(G3DPipelineState *param0)
 {
     Heap_Free(param0->unk_04);
     Heap_Free(param0->unk_08);

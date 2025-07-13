@@ -2,7 +2,7 @@
 #include <nnsys.h>
 #include <string.h>
 
-#include "struct_defs/struct_0207C690.h"
+#include "unk_02024220.h"
 #include "struct_defs/struct_0207C894.h"
 #include "struct_defs/struct_0207C8C4.h"
 
@@ -44,9 +44,9 @@ void sub_0207C664(void)
     G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 7, 8);
 }
 
-GenericPointerData *sub_0207C690(int heapID)
+G3DPipelineState *sub_0207C690(int heapID)
 {
-    return sub_02024220(heapID, 0, 2, 0, 2, sub_0207C6AC);
+    return G3DPipelineState_New(heapID, 0, 2, 0, 2, sub_0207C6AC);
 }
 
 void sub_0207C6AC(void)

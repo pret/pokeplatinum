@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV99_021D2CB0_H
 
 #include "struct_defs/struct_0203E274.h"
-#include "struct_defs/struct_0207C690.h"
+#include "unk_02024220.h"
 
 #include "overlay099/struct_ov99_021D2CB0_sub1.h"
 #include "overlay099/struct_ov99_021D2CB0_sub2.h"
@@ -23,7 +23,7 @@ typedef struct {
     BOOL unk_04;
     BgConfig *unk_08;
     PaletteData *unk_0C;
-    GenericPointerData *unk_10;
+    G3DPipelineState *unk_10;
     SysTask *unk_14;
     SpriteSystem *unk_18;
     SpriteManager *unk_1C;

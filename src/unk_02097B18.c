@@ -245,7 +245,7 @@ static int sub_02097D88(ApplicationManager *appMan, int *param1)
     ov76_0223B8C4(v0);
     ov76_0223C424(&v0->unk_D4);
     VramTransfer_Free();
-    sub_020242C4(v0->unk_D4.unk_15C);
+    G3DPipelineState_Free(v0->unk_D4.unk_15C);
     ov76_0223EB54(53);
     NARC_dtor(v0->unk_42C);
     ApplicationManager_FreeData(appMan);

@@ -4,7 +4,7 @@
 #include <nnsys.h>
 #include <string.h>
 
-#include "struct_defs/struct_0207C690.h"
+#include "unk_02024220.h"
 
 #include "gx_layers.h"
 #include "system.h"
@@ -78,11 +78,11 @@ void Easy3D_DrawRenderObjSimple(NNSG3dRenderObj *renderObj, const VecFx32 *pos, 
     NNS_G3dGeFlushBuffer();
 }
 
-static GenericPointerData *Unk_021BFB0C = NULL;
+static G3DPipelineState *Unk_021BFB0C = NULL;
 
 void Easy3D_Init(const u8 heapID)
 {
-    Unk_021BFB0C = sub_02024220(heapID, 0, 2, 0, 4, Easy3D_SetupEngine);
+    Unk_021BFB0C = G3DPipelineState_New(heapID, 0, 2, 0, 4, Easy3D_SetupEngine);
 }
 
 static void Easy3D_SetupEngine(void)
@@ -102,7 +102,7 @@ static void Easy3D_SetupEngine(void)
 
 void Easy3D_Shutdown(void)
 {
-    sub_020242C4(Unk_021BFB0C);
+    G3DPipelineState_Free(Unk_021BFB0C);
 }
 
 BOOL Easy3D_BindTextureToResource(void *resource, NNSG3dResTex *texture)

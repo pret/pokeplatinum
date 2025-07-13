@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV119_021D0D80_H
 #define POKEPLATINUM_OV119_021D0D80_H
 
-#include "struct_defs/struct_0207C690.h"
+#include "unk_02024220.h"
 
 #include "overlay119/struct_ov119_021D0FD0.h"
 #include "overlay119/struct_ov119_021D14DC.h"
@@ -15,7 +15,7 @@
 
 void ov119_021D0D80(void);
 void ov119_021D0DA8(void);
-GenericPointerData *ov119_021D0DD4(void);
+G3DPipelineState *ov119_021D0DD4(void);
 void ov119_021D0DF4(void);
 void ov119_021D0E78(void);
 void ov119_021D0EB8(BgConfig *param0);

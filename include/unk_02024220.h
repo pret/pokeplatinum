@@ -1,11 +1,15 @@
 #ifndef POKEPLATINUM_UNK_02024220_H
 #define POKEPLATINUM_UNK_02024220_H
 
-#include "struct_defs/struct_0207C690.h"
+typedef struct G3DPipelineState {
+    int heapID;
+    void *unk_04;
+    void *unk_08;
+} G3DPipelineState;
 
-#include "functypes/funcptr_02024220.h"
+typedef void (*G3DPipelineSetupCallback)(void);
 
-GenericPointerData *sub_02024220(u32 heapID, int param1, int param2, int param3, int param4, UnkFuncPtr_02024220 param5);
-void sub_020242C4(GenericPointerData *param0);
+G3DPipelineState *G3DPipelineState_New(u32 heapID, int param1, int param2, int param3, int param4, G3DPipelineSetupCallback cb);
+void G3DPipelineState_Free(G3DPipelineState *state);
 
 #endif // POKEPLATINUM_UNK_02024220_H

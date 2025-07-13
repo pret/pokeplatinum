@@ -9,7 +9,7 @@
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_0207C690.h"
+#include "unk_02024220.h"
 #include "struct_defs/struct_02095C48.h"
 
 #include "overlay017/ov17_02252A70.h"
@@ -78,9 +78,9 @@ static void NitroStaticInit(void)
     Overlay_LoadByID(FS_OVERLAY_ID(overlay22), 2);
 }
 
-GenericPointerData *ov17_0223F140(int heapID)
+G3DPipelineState *ov17_0223F140(int heapID)
 {
-    return sub_02024220(heapID, 0, 2, 0, 2, ov17_0223F15C);
+    return G3DPipelineState_New(heapID, 0, 2, 0, 2, ov17_0223F15C);
 }
 
 static void ov17_0223F15C(void)
@@ -98,9 +98,9 @@ static void ov17_0223F15C(void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-void ov17_0223F1E0(GenericPointerData *param0)
+void ov17_0223F1E0(G3DPipelineState *param0)
 {
-    sub_020242C4(param0);
+    G3DPipelineState_Free(param0);
 }
 
 void ov17_0223F1E8(int heapID, BgConfig *param1, SpriteManager *param2, UnkStruct_02012744 *param3, UnkStruct_ov17_0223F2E4 *param4, const Strbuf *param5, enum Font param6, TextColor param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)

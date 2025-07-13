@@ -6,7 +6,7 @@
 
 #include "constants/graphics.h"
 
-#include "struct_defs/struct_0207C690.h"
+#include "unk_02024220.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay004/ov4_021D0D80.h"
@@ -58,9 +58,9 @@
 #include "vram_transfer.h"
 
 static void ov117_02260DA0(void *param0);
-static GenericPointerData *ov117_02260E14(int heapID);
+static G3DPipelineState *ov117_02260E14(int heapID);
 static void ov117_02260E34(void);
-static void ov117_02260EB8(GenericPointerData *param0);
+static void ov117_02260EB8(G3DPipelineState *param0);
 static void ov117_02260F7C(SysTask *param0, void *param1);
 static void ov117_022610D8(BgConfig *param0);
 static void ov117_02261280(UnkStruct_ov117_02261280 *param0);
@@ -508,9 +508,9 @@ static void ov117_02260DA0(void *param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static GenericPointerData *ov117_02260E14(int heapID)
+static G3DPipelineState *ov117_02260E14(int heapID)
 {
-    return sub_02024220(heapID, 0, 1, 0, 2, ov117_02260E34);
+    return G3DPipelineState_New(heapID, 0, 1, 0, 2, ov117_02260E34);
 }
 
 static void ov117_02260E34(void)
@@ -528,9 +528,9 @@ static void ov117_02260E34(void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void ov117_02260EB8(GenericPointerData *param0)
+static void ov117_02260EB8(G3DPipelineState *param0)
 {
-    sub_020242C4(param0);
+    G3DPipelineState_Free(param0);
 }
 
 static void ov117_02260EC0(UnkStruct_ov117_02261280 *param0)

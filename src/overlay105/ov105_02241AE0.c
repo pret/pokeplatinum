@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0207C690.h"
+#include "unk_02024220.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "applications/pokemon_summary_screen/main.h"
@@ -100,7 +100,7 @@ struct UnkStruct_ov105_02241FF4_t {
     Menu *unk_FC;
     StringList unk_100[4];
     PaletteData *unk_120;
-    GenericPointerData *unk_124;
+    G3DPipelineState *unk_124;
     PokemonSpriteManager *unk_128;
     PokemonSprite *unk_12C[3];
     Options *options;
@@ -357,7 +357,7 @@ int ov105_02241AE0(ApplicationManager *appMan, int *param1)
     v1 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov105_02241FF4), HEAP_ID_93);
     memset(v1, 0, sizeof(UnkStruct_ov105_02241FF4));
 
-    v1->unk_124 = sub_02024220(HEAP_ID_93, 0, 2, 0, 2, ov105_02245CD0);
+    v1->unk_124 = G3DPipelineState_New(HEAP_ID_93, 0, 2, 0, 2, ov105_02245CD0);
     v1->unk_4C = BgConfig_New(HEAP_ID_93);
     v1->unk_00 = appMan;
 
@@ -2782,7 +2782,7 @@ static void ov105_022451B4(UnkStruct_ov105_02241FF4 *param0)
     ov105_0224473C(param0->unk_4C);
 
     NARC_dtor(param0->unk_338);
-    sub_020242C4(param0->unk_124);
+    G3DPipelineState_Free(param0->unk_124);
 
     return;
 }
@@ -2793,7 +2793,7 @@ static void ov105_022452A0(UnkStruct_ov105_02241FF4 *param0)
 
     ov105_022452E4();
 
-    param0->unk_124 = sub_02024220(HEAP_ID_93, 0, 2, 0, 2, ov105_02245CD0);
+    param0->unk_124 = G3DPipelineState_New(HEAP_ID_93, 0, 2, 0, 2, ov105_02245CD0);
     param0->unk_4C = BgConfig_New(HEAP_ID_93);
 
     ov105_0224531C(param0);

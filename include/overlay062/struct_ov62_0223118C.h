@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV62_0223118C_H
 
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_defs/struct_0207C690.h"
+#include "unk_02024220.h"
 
 #include "overlay062/struct_ov62_0223118C_sub1.h"
 #include "overlay062/struct_ov62_02233310.h"
@@ -35,7 +35,7 @@ typedef struct {
     int unk_44;
     u8 unk_48;
     u8 padding_49[3];
-    GenericPointerData *unk_4C;
+    G3DPipelineState *unk_4C;
     PokemonSpriteManager *unk_50;
     UnkStruct_ov62_022349A8 unk_54;
     UnkStruct_ov62_0223359C unk_46C;

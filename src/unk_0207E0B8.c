@@ -5,7 +5,7 @@
 
 #include "constants/items.h"
 
-#include "struct_defs/struct_0207C690.h"
+#include "unk_02024220.h"
 #include "struct_defs/struct_0207F248.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -123,9 +123,9 @@ static u8 CheckDuplicateValues(GameWindowLayout *param0);
 static u8 CheckUniqueValues(GameWindowLayout *param0);
 static u8 CheckEqualityInArray(GameWindowLayout *param0);
 static BOOL ValidateGameWindowState(GameWindowLayout *param0);
-static GenericPointerData *sub_0207EAD4(int heapID);
+static G3DPipelineState *sub_0207EAD4(int heapID);
 static void sub_0207EAF4(void);
-static void sub_0207EB64(GenericPointerData *param0);
+static void sub_0207EB64(G3DPipelineState *param0);
 static int ProcessMessageResult(GameWindowLayout *param0);
 static int HandleOverlayCompletion(GameWindowLayout *param0);
 static void sub_0207F388(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1);
@@ -881,9 +881,9 @@ void sub_0207EA74(GameWindowLayout *windowLayout, int param1)
     }
 }
 
-static GenericPointerData *sub_0207EAD4(int heapID)
+static G3DPipelineState *sub_0207EAD4(int heapID)
 {
-    return sub_02024220(heapID, 0, 1, 0, 2, sub_0207EAF4);
+    return G3DPipelineState_New(heapID, 0, 1, 0, 2, sub_0207EAF4);
 }
 
 static void sub_0207EAF4(void)
@@ -898,9 +898,9 @@ static void sub_0207EAF4(void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void sub_0207EB64(GenericPointerData *param0)
+static void sub_0207EB64(G3DPipelineState *param0)
 {
-    sub_020242C4(param0);
+    G3DPipelineState_Free(param0);
 }
 
 static void sub_0207EB6C(GameWindowLayout *param0, NARC *param1)

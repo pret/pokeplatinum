@@ -3,7 +3,7 @@
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
-#include "struct_defs/struct_0207C690.h"
+#include "unk_02024220.h"
 #include "struct_defs/struct_0207C8C4.h"
 
 #include "applications/pokemon_summary_screen/main.h"
@@ -37,7 +37,7 @@ struct UnkStruct_0207AE68_t {
     Pokemon *unk_28;
     Options *options;
     UnkStruct_0207C8C4 *unk_30;
-    GenericPointerData *unk_34;
+    G3DPipelineState *unk_34;
     ApplicationManager *appMan;
     PokemonSummary *unk_3C;
     void *unk_40;

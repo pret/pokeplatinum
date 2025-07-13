@@ -55,7 +55,7 @@ void ov62_0222F2C0(UnkStruct_0208C06C *param0)
     param0->unk_14.unk_00 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__BATT_REC__BATT_REC_GRA, HEAP_ID_102);
     param0->unk_14.unk_10 = BgConfig_New(HEAP_ID_102);
     param0->unk_14.unk_14 = PaletteData_New(HEAP_ID_102);
-    param0->unk_14.unk_4C = sub_02024220(HEAP_ID_102, 0, 1, 0, 4, NULL);
+    param0->unk_14.unk_4C = G3DPipelineState_New(HEAP_ID_102, 0, 1, 0, 4, NULL);
     param0->unk_14.unk_50 = PokemonSpriteManager_New(HEAP_ID_102);
 
     NNS_G2dSetupSoftwareSpriteCamera();
@@ -199,7 +199,7 @@ void ov62_0222F514(UnkStruct_0208C06C *param0)
         MessageLoader_Free(param0->unk_14.unk_38);
     }
 
-    sub_020242C4(param0->unk_14.unk_4C);
+    G3DPipelineState_Free(param0->unk_14.unk_4C);
     PokemonSpriteManager_Free(param0->unk_14.unk_50);
 
     ov62_022411EC(param0);

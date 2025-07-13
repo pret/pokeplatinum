@@ -3,7 +3,7 @@
 
 #include <nnsys.h>
 
-#include "struct_defs/struct_0207C690.h"
+#include "unk_02024220.h"
 
 #include "overlay116/struct_ov116_022649E4_sub1.h"
 
@@ -20,7 +20,7 @@ typedef struct {
     SpriteManager *unk_0C;
     BgConfig *unk_10;
     PaletteData *unk_14;
-    GenericPointerData *unk_18;
+    G3DPipelineState *unk_18;
     Camera *camera;
     u8 padding_20[4];
     NNSFndAllocator unk_24;

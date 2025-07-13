@@ -12,7 +12,7 @@
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0206D140_decl.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/struct_0207C690.h"
+#include "unk_02024220.h"
 #include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
@@ -42,7 +42,7 @@
 #include "unk_0201567C.h"
 
 struct BattleSystem {
-    GenericPointerData *unk_00;
+    G3DPipelineState *unk_00;
     BgConfig *unk_04;
     Window *windows;
     MessageLoader *unk_0C;
