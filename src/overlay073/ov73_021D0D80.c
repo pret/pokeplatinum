@@ -1556,6 +1556,7 @@ static void RowanIntro_LoadBunearySprite(RowanIntro *manager)
     u16 *rawData;
     void *tileSrc;
     void *paletteBuffer;
+    // changing these to enum BgLayer causes the ROM checksum to fail.
     int mainBgLayer = BG_LAYER_MAIN_2;
     int subBgLayer = BG_LAYER_SUB_1;
     int mainPalette = 8;
@@ -1872,7 +1873,7 @@ static BOOL RowanIntro_AnimateBuneary(RowanIntro *manager, enum BunearyAnimState
         *state = BA_STATE_MOVE_UP_BOTTOM_SCREEN;
         break;
     case BA_STATE_MOVE_UP_BOTTOM_SCREEN: {
-        int unused = Bg_GetXOffset(manager->bgConfig, 2);
+        Bg_GetXOffset(manager->bgConfig, 2);
         int yOffset = Bg_GetYOffset(manager->bgConfig, 5);
         int linearTerm = manager->bunearyParabolaCoeff * 9 * manager->bunearyAnimUpdateCounter;
         int quadraticTerm = 9 * manager->bunearyAnimUpdateCounter * manager->bunearyAnimUpdateCounter / 2;
@@ -1913,8 +1914,8 @@ static BOOL RowanIntro_AnimateBuneary(RowanIntro *manager, enum BunearyAnimState
         }
         break;
     case BA_STATE_JUMP_UP_AND_DOWN: {
-        int unused0 = Bg_GetXOffset(manager->bgConfig, 2);
-        int unused1 = Bg_GetYOffset(manager->bgConfig, 2);
+        Bg_GetXOffset(manager->bgConfig, 2);
+        Bg_GetYOffset(manager->bgConfig, 2);
         int linearTerm = manager->bunearyParabolaCoeff * 9 * manager->bunearyAnimUpdateCounter;
         int quadraticTerm = 9 * manager->bunearyAnimUpdateCounter * manager->bunearyAnimUpdateCounter / 2;
         int newYOffset = (-8 * 13) + linearTerm - quadraticTerm;
@@ -1951,8 +1952,8 @@ static BOOL RowanIntro_AnimateBuneary(RowanIntro *manager, enum BunearyAnimState
         }
     } break;
     case BA_STATE_JUMP_RIGHT: {
-        int unused0 = Bg_GetXOffset(manager->bgConfig, 2);
-        int unused1 = Bg_GetYOffset(manager->bgConfig, 2);
+        Bg_GetXOffset(manager->bgConfig, 2);
+        Bg_GetYOffset(manager->bgConfig, 2);
         int linearTerm = manager->bunearyParabolaCoeff * 9 * manager->bunearyAnimUpdateCounter;
         int quadraticTerm = 9 * manager->bunearyAnimUpdateCounter * manager->bunearyAnimUpdateCounter / 3;
         int newYOffset = linearTerm - quadraticTerm;
@@ -1983,8 +1984,8 @@ static BOOL RowanIntro_AnimateBuneary(RowanIntro *manager, enum BunearyAnimState
         }
     } break;
     case BA_STATE_JUMP_LEFT: {
-        int unused0 = Bg_GetXOffset(manager->bgConfig, 2);
-        int unused1 = Bg_GetYOffset(manager->bgConfig, 2);
+        Bg_GetXOffset(manager->bgConfig, 2);
+        Bg_GetYOffset(manager->bgConfig, 2);
         int linearTerm = manager->bunearyParabolaCoeff * 9 * manager->bunearyAnimUpdateCounter;
         int quadraticTerm = 9 * manager->bunearyAnimUpdateCounter * manager->bunearyAnimUpdateCounter / 3;
         int newYOffset = linearTerm - quadraticTerm;
