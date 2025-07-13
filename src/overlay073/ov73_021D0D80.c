@@ -221,7 +221,7 @@ enum DisplayTextBlockState {
     DTB_STATE_EXIT,
 };
 
-typedef struct {
+typedef struct RowanIntro {
     enum HeapId heapID;
     SaveData *saveData;
     Options *options;
