@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/species.h"
 #include "generated/genders.h"
 
 #include "struct_decls/struct_02015920_decl.h"
@@ -48,117 +47,126 @@
 
 FS_EXTERN_OVERLAY(game_start);
 
-enum RowanIntroManagerState {
-    RIM_STATE_FIRST_FADE_BLACK_START = 0,
-    RIM_STATE_FIRST_FADE_BLACK_END,
-    RIM_STATE_DIALOGUE_WELCOME,
-    RIM_STATE_FADE_IN_ROWAN_START,
-    RIM_STATE_FADE_IN_ROWAN_END,
-    RIM_STATE_DIALOGUE_ROWAN_INTRO,
-    RIM_STATE_MOVE_ROWAN_RIGHT_FOR_INFO,
-    RIM_STATE_INFO_CHOICE_BOX,
-    RIM_STATE_INFO_FADE_BLACK_START,
-    RIM_STATE_INFO_FADE_BLACK_END,
-    RIM_STATE_CONTROL_INFO_FADE_IN_START,
-    RIM_STATE_CONTROL_INFO_FADE_IN_END,
-    RIM_STATE_CONTROL_INFO_TEXT_0,
-    RIM_STATE_CONTROL_INFO_SHOW_XY_ICONS,
-    RIM_STATE_CONTROL_INFO_TEXT_1,
-    RIM_STATE_CONTROL_INFO_HIDE_XY_ICONS,
-    RIM_STATE_CONTROL_INFO_TEXT_2,
-    RIM_STATE_CONTROL_INFO_DIALOGUE_DS_ICON,
-    RIM_STATE_CONTROL_INFO_TEXT_3,
-    RIM_STATE_CONTROL_INFO_HIDE_FG,
-    RIM_STATE_CONTROL_INFO_DIALOGUE_UNDERSTOOD,
-    RIM_STATE_CONTROL_INFO_SHOW_YESNO,
-    RIM_STATE_CONTROL_INFO_WAIT_INPUT,
-    RIM_STATE_CONTROL_INFO_PROCESS_YESNO,
-    RIM_STATE_CONTROL_INFO_FADE_OUT_START,
-    RIM_STATE_CONTROL_INFO_FADE_OUT_END,
-    RIM_STATE_CONTROL_INFO_REPEAT,
-    RIM_STATE_CONTROL_INFO_DIALOGUE_USE_TOUCHSCREEN,
-    RIM_STATE_FADE_IN_ROWAN_2_START,
-    RIM_STATE_FADE_IN_ROWAN_2_END,
-    RIM_STATE_DIALOGUE_ANOTHER_INFO,
-    RIM_STATE_ADVENTURE_INFO_FADE_IN_START,
-    RIM_STATE_ADVENTURE_INFO_FADE_IN_END,
-    RIM_STATE_ADVENTURE_INFO_TEXT_0,
-    RIM_STATE_ADVENTURE_INFO_TEXT_1,
-    RIM_STATE_ADVENTURE_INFO_TEXT_2,
-    RIM_STATE_ADVENTURE_INFO_TEXT_3,
-    RIM_STATE_ADVENTURE_INFO_TEXT_4,
-    RIM_STATE_ADVENTURE_INFO_TEXT_5,
-    RIM_STATE_ADVENTURE_INFO_FADE_OUT_START,
-    RIM_STATE_ADVENTURE_INFO_FADE_OUT_END,
-    RIM_STATE_LEFT_ROWAN_AFTER_INFO,
-    RIM_STATE_DIALOGUE_WIDELY_INHABITED,
-    RIM_STATE_PKBL_FADE_START,
-    RIM_STATE_PKBL_FADE_MIDDLE,
-    RIM_STATE_PKBL_FADE_END,
-    RIM_STATE_PKBL_DIALOGUE,
-    RIM_STATE_PKBL_WAIT_INPUT,
-    RIM_STATE_PKBL_ANIM_PUSH_IN,
-    RIM_STATE_PKBL_DIALOGUE_USE_TOUCHSCREEN,
-    RIM_STATE_PKBL_ANIM_FLASH_0,
-    RIM_STATE_PKBL_ANIM_FLASH_1,
-    RIM_STATE_PKBL_ANIM_FLASH_2,
-    RIM_STATE_PKBL_ANIM_FLASH_3,
-    RIM_STATE_PKBL_ANIM_SPAWN_PKM_AND_FLASH_4,
-    RIM_STATE_PKBL_ANIM_MV_PKM_UP_AND_FLASH_END,
-    RIM_STATE_PKBL_ANIM_MV_PKM_DOWN_AND_BOUNCE,
-    RIM_STATE_PKBL_ANIM_END_DELAY,
-    RIM_STATE_PKBL_DIALOGUE_LIVE_ALONGSIDE,
-    RIM_STATE_PKBL_PUT_AWAY_PKM,
-    RIM_STATE_BETWEEN_DIALOGUE_DELAY,
-    RIM_STATE_DIALOGUE_ABOUT_YOURSELF,
-    RIM_STATE_GENDR_FADE_OUT_ROWAN,
-    RIM_STATE_GENDR_FADE_IN_AVATAR_PREP,
-    RIM_STATE_GENDR_FADE_IN_AVATAR_MALE,
-    RIM_STATE_GENDR_FADE_IN_AVATAR_FEMALE,
-    RIM_STATE_GENDR_DIALOGUE,
-    RIM_STATE_GENDR_CHOICE,
-    RIM_STATE_GENDR_FADE_OUT_AVATAR_FEMALE,
-    RIM_STATE_GENDR_CENTRE_AVATAR_MALE,
-    RIM_STATE_GENDR_FADE_OUT_AVATAR_MALE,
-    RIM_STATE_GENDR_CENTRE_AVATAR_FEMALE,
-    RIM_STATE_GENDR_CONFIRM_DIALOGUE,
-    RIM_STATE_GENDR_CONFIRM_CHOICE_BOX,
-    RIM_STATE_GENDR_REPEAT,
-    RIM_STATE_NAME_DIALOGUE,
-    RIM_STATE_NAME_KEYBOARD_PREP,
-    RIM_STATE_NAME_KEYBOARD,
-    RIM_STATE_NAME_KEYBOARD_FADE_INTO_AVATAR,
-    RIM_STATE_NAME_CONFIRM_DIALOGUE,
-    RIM_STATE_NAME_CONFIRM_CHOICE_BOX,
-    RIM_STATE_NAME_FADE_OUT_AVATAR,
-    RIM_STATE_LOAD_ROWAN_TILEMAP_0,
-    RIM_STATE_FADE_IN_ROWAN_AFTER_NAME,
-    RIM_STATE_DIALOGUE_SO_YOURE,
-    RIM_STATE_FADE_OUT_ROWAN_FOR_BARRY,
-    RIM_STATE_LOAD_BARRY_TILEMAP,
-    RIM_STATE_FADE_IN_BARRY,
-    RIM_STATE_BARRY_NAME_DIALOGUE,
-    RIM_STATE_MOVE_BARRY_RIGHT_FOR_NAMES,
-    RIM_STATE_BARRY_NAME_CHOICE_BOX,
-    RIM_STATE_MOVE_BARRY_LEFT_AFTER_NAME,
-    RIM_STATE_BARRY_NAME_KEYBOARD_PREP,
-    RIM_STATE_BARRY_NAME_KEYBOARD,
-    RIM_STATE_BARRY_NAME_KEYBOARD_FADE_INTO_AVATAR,
-    RIM_STATE_BARRY_NAME_CONFIRM_DIALOGUE,
-    RIM_STATE_BARRY_NAME_CONFIRM_CHOICE_BOX,
-    RIM_STATE_FADE_OUT_BARRY,
-    RIM_LOAD_ROWAN_TILEMAP_1,
-    RIM_STATE_FADE_IN_ROWAN_AFTER_BARRY,
-    RIM_STATE_DELAY_BEFORE_END_0,
-    RIM_STATE_DIALOGUE_END,
-    RIM_STATE_FADE_OUT_ROWAN_END,
-    RIM_STATE_DELAY_BEFORE_END_1,
-    RIM_STATE_LOAD_MINI_AVATAR,
-    RIM_STATE_FADE_IN_AVATAR_END,
-    RIM_STATE_DELAY_BEFORE_END_2,
-    RIM_STATE_AVATAR_SHRINK_ANIMATION,
-    RIM_STATE_END,
-    RIM_STATE_EXIT,
+enum RowanIntroState {
+    RI_STATE_FIRST_FADE_BLACK_START = 0,
+    RI_STATE_FIRST_FADE_BLACK_END,
+    RI_STATE_DIALOGUE_WELCOME,
+    RI_STATE_FADE_IN_ROWAN_START,
+    RI_STATE_FADE_IN_ROWAN_END,
+    RI_STATE_DIALOGUE_ROWAN_INTRO,
+    RI_STATE_MOVE_ROWAN_RIGHT_FOR_INFO,
+    RI_STATE_INFO_CHOICE_BOX,
+    RI_STATE_INFO_FADE_BLACK_START,
+    RI_STATE_INFO_FADE_BLACK_END,
+    RI_STATE_CONTROL_INFO_FADE_IN_START,
+    RI_STATE_CONTROL_INFO_FADE_IN_END,
+    RI_STATE_CONTROL_INFO_TEXT_0,
+    RI_STATE_CONTROL_INFO_SHOW_XY_ICONS,
+    RI_STATE_CONTROL_INFO_TEXT_1,
+    RI_STATE_CONTROL_INFO_HIDE_XY_ICONS,
+    RI_STATE_CONTROL_INFO_TEXT_2,
+    RI_STATE_CONTROL_INFO_DIALOGUE_DS_ICON,
+    RI_STATE_CONTROL_INFO_TEXT_3,
+    RI_STATE_CONTROL_INFO_HIDE_FG,
+    RI_STATE_CONTROL_INFO_DIALOGUE_UNDERSTOOD,
+    RI_STATE_CONTROL_INFO_SHOW_YESNO,
+    RI_STATE_CONTROL_INFO_WAIT_INPUT,
+    RI_STATE_CONTROL_INFO_PROCESS_YESNO,
+    RI_STATE_CONTROL_INFO_FADE_OUT_START,
+    RI_STATE_CONTROL_INFO_FADE_OUT_END,
+    RI_STATE_CONTROL_INFO_REPEAT,
+    RI_STATE_CONTROL_INFO_DIALOGUE_USE_TOUCHSCREEN,
+    RI_STATE_FADE_IN_ROWAN_2_START,
+    RI_STATE_FADE_IN_ROWAN_2_END,
+    RI_STATE_DIALOGUE_ANOTHER_INFO,
+    RI_STATE_ADVENTURE_INFO_FADE_IN_START,
+    RI_STATE_ADVENTURE_INFO_FADE_IN_END,
+    RI_STATE_ADVENTURE_INFO_TEXT_0,
+    RI_STATE_ADVENTURE_INFO_TEXT_1,
+    RI_STATE_ADVENTURE_INFO_TEXT_2,
+    RI_STATE_ADVENTURE_INFO_TEXT_3,
+    RI_STATE_ADVENTURE_INFO_TEXT_4,
+    RI_STATE_ADVENTURE_INFO_TEXT_5,
+    RI_STATE_ADVENTURE_INFO_FADE_OUT_START,
+    RI_STATE_ADVENTURE_INFO_FADE_OUT_END,
+    RI_STATE_LEFT_ROWAN_AFTER_INFO,
+    RI_STATE_DIALOGUE_WIDELY_INHABITED,
+    RI_STATE_PKBL_FADE_START,
+    RI_STATE_PKBL_FADE_MIDDLE,
+    RI_STATE_PKBL_FADE_END,
+    RI_STATE_PKBL_DIALOGUE,
+    RI_STATE_PKBL_WAIT_INPUT,
+    RI_STATE_PKBL_ANIM_PUSH_IN,
+    RI_STATE_PKBL_DIALOGUE_USE_TOUCHSCREEN,
+    RI_STATE_PKBL_ANIM_FLASH_0,
+    RI_STATE_PKBL_ANIM_FLASH_1,
+    RI_STATE_PKBL_ANIM_FLASH_2,
+    RI_STATE_PKBL_ANIM_FLASH_3,
+    RI_STATE_PKBL_ANIM_SPAWN_PKM_AND_FLASH_4,
+    RI_STATE_PKBL_ANIM_MV_PKM_UP_AND_FLASH_END,
+    RI_STATE_PKBL_ANIM_MV_PKM_DOWN_AND_BOUNCE,
+    RI_STATE_PKBL_ANIM_END_DELAY,
+    RI_STATE_PKBL_DIALOGUE_LIVE_ALONGSIDE,
+    RI_STATE_PKBL_PUT_AWAY_PKM,
+    RI_STATE_BETWEEN_DIALOGUE_DELAY,
+    RI_STATE_DIALOGUE_ABOUT_YOURSELF,
+    RI_STATE_GENDR_FADE_OUT_ROWAN,
+    RI_STATE_GENDR_FADE_IN_AVATAR_PREP,
+    RI_STATE_GENDR_FADE_IN_AVATAR_MALE,
+    RI_STATE_GENDR_FADE_IN_AVATAR_FEMALE,
+    RI_STATE_GENDR_DIALOGUE,
+    RI_STATE_GENDR_CHOICE,
+    RI_STATE_GENDR_FADE_OUT_AVATAR_FEMALE,
+    RI_STATE_GENDR_CENTRE_AVATAR_MALE,
+    RI_STATE_GENDR_FADE_OUT_AVATAR_MALE,
+    RI_STATE_GENDR_CENTRE_AVATAR_FEMALE,
+    RI_STATE_GENDR_CONFIRM_DIALOGUE,
+    RI_STATE_GENDR_CONFIRM_CHOICE_BOX,
+    RI_STATE_GENDR_REPEAT,
+    RI_STATE_NAME_DIALOGUE,
+    RI_STATE_NAME_APP_KEYBOARD,
+    RI_STATE_NAME_KEYBOARD,
+    RI_STATE_NAME_KEYBOARD_FADE_INTO_AVATAR,
+    RI_STATE_NAME_CONFIRM_DIALOGUE,
+    RI_STATE_NAME_CONFIRM_CHOICE_BOX,
+    RI_STATE_NAME_FADE_OUT_AVATAR,
+    RI_STATE_LOAD_ROWAN_TILEMAP_0,
+    RI_STATE_FADE_IN_ROWAN_AFTER_NAME,
+    RI_STATE_DIALOGUE_SO_YOURE,
+    RI_STATE_FADE_OUT_ROWAN_FOR_BARRY,
+    RI_STATE_LOAD_BARRY_TILEMAP,
+    RI_STATE_FADE_IN_BARRY,
+    RI_STATE_BARRY_NAME_DIALOGUE,
+    RI_STATE_MOVE_BARRY_RIGHT_FOR_NAMES,
+    RI_STATE_BARRY_NAME_CHOICE_BOX,
+    RI_STATE_MOVE_BARRY_LEFT_AFTER_NAME,
+    RI_STATE_BARRY_NAME_APP_KEYBOARD,
+    RI_STATE_BARRY_NAME_KEYBOARD,
+    RI_STATE_BARRY_NAME_KEYBOARD_FADE_INTO_AVATAR,
+    RI_STATE_BARRY_NAME_CONFIRM_DIALOGUE,
+    RI_STATE_BARRY_NAME_CONFIRM_CHOICE_BOX,
+    RI_STATE_FADE_OUT_BARRY,
+    RI_STATE_LOAD_ROWAN_TILEMAP_1,
+    RI_STATE_FADE_IN_ROWAN_AFTER_BARRY,
+    RI_STATE_DELAY_BEFORE_END_0,
+    RI_STATE_DIALOGUE_END,
+    RI_STATE_FADE_OUT_ROWAN_END,
+    RI_STATE_DELAY_BEFORE_END_1,
+    RI_STATE_LOAD_MINI_AVATAR,
+    RI_STATE_FADE_IN_AVATAR_END,
+    RI_STATE_DELAY_BEFORE_END_2,
+    RI_STATE_AVATAR_SHRINK_ANIMATION,
+    RI_STATE_END,
+    RI_STATE_EXIT,
+};
+
+enum RowanIntroAppState {
+    RI_APP_STATE_INIT = 0,
+    RI_APP_STATE_RUNNING,
+    RI_APP_STATE_EXIT,
+    RI_APP_STATE_CHANGE_APP_WAIT_FADE,
+    RI_APP_STATE_CHANGE_APP,
+    RI_APP_STATE_INIT_AGAIN,
 };
 
 enum MoveBgLayerCases {
@@ -181,20 +189,41 @@ enum DisplayMessageState {
 };
 
 enum BunearyAnimState {
-    BAN_INIT = 0,
-    BAN_MOVE_UP,
-    BAN_PLACEHOLDER_2,
-    BAN_PLACEHOLDER_3,
-    BAN_PLACEHOLDER_4,
-    BAN_PLACEHOLDER_5,
-    BAN_PLACEHOLDER_6,
+    BA_STATE_INIT = 0,
+    BA_STATE_MOVE_UP_BOTTOM_SCREEN,
+    BA_STATE_SHOW_ON_TOP_SCREEN,
+    BA_STATE_JUMP_UP_AND_DOWN,
+    BA_STATE_JUMP_RIGHT,
+    BA_STATE_JUMP_LEFT,
+    BA_STATE_END,
+};
+
+enum ChoicesCase {
+    CC_YESNO,
+    CC_INFO,
+    CC_RIVAL_NAMES,
+};
+
+enum DisplayTextBlockCase {
+    DTBC_CONTROL_INFO_0,
+    DTBC_ADVENTURE_INFO,
+    DTBC_CONTROL_INFO_1,
+};
+
+enum DisplayTextBlockState {
+    DTB_STATE_INIT,
+    DTB_STATE_COPY_WINDOW_TO_VRAM,
+    DTB_STATE_FADE_IN_TEXT,
+    DTB_STATE_WAIT_FOR_INPUT,
+    DTB_STATE_FADE_OUT_TEXT,
+    DTB_STATE_EXIT,
 };
 
 typedef struct {
-    int heapID;
+    enum HeapId heapID;
     SaveData *saveData;
     Options *options;
-    enum RowanIntroManagerState state;
+    enum RowanIntroState state;
     int bufferedState;
     ApplicationManager *appMan;
     BgConfig *bgConfig;
@@ -219,17 +248,17 @@ typedef struct {
     int fadeBgLayerCurAlpha;
     int fadeBgLayerCurAlphaInv;
     u32 playerGender;
-    // This is an index into the tilemapLocations structure in RowanIntroManager_LoadLayer3Tilemap
+    // This is an index into the tilemapLocations structure in RowanIntro_LoadLayer3Tilemap
     u8 bgLayer3TilemapIndex;
-    // These are indices into the tilemapLocations structure in RowanIntroManager_LoadTilemap.
+    // These are indices into the tilemapLocations structure in RowanIntro_LoadTilemap.
     u8 bgLayer1TilemapIndex;
     u8 bgLayer2TilemapIndex;
-    // This is an index into the tilemapLocations structure in RowanIntroManager_LoadSubLayer3Tilemap
+    // This is an index into the tilemapLocations structure in RowanIntro_LoadSubLayer3Tilemap
     u8 bgSubLayer3TilemapIndex;
-    u8 unk_8C;
-    u8 unk_8D;
-    u8 unk_8E;
-    u8 unk_8F;
+    u8 maleRunAnimSpriteIndex;
+    u8 maleRunAnimUpdateCounter;
+    u8 femaleRunAnimSpriteIndex;
+    u8 femaleRunAnimUpdateCounter;
     int delayUpdateCounter;
     union {
         int progressCounter;
@@ -237,84 +266,87 @@ typedef struct {
     } animData;
     int animDelayUpdateCounter;
     int unused2[3];
-    int unk_A8;
-    int unk_AC;
-    int unk_B0;
-    int unk_B4;
-    u16 *unk_B8;
-    u16 *unk_BC;
-} RowanIntroManager;
+    int bunearyAnimCarryover;
+    int bunearyParabolaCoeff;
+    int bunearyAnimUpdateCounter;
+    int bunearyPaletteBlendUpdateCounter;
+    u16 *bunearyPalette;
+    u16 *bunearyBlendedPalette;
+} RowanIntro;
 
-void EnqueueApplication(FSOverlayID param0, const ApplicationManagerTemplate *param1);
-int RowanIntroManager_Init(ApplicationManager *appMan, int *state);
-int RowanIntroManager_Main(ApplicationManager *appMan, int *state);
-int RowanIntroManager_Exit(ApplicationManager *appMan, int *state);
-static void ov73_021D0FF0(void *param0);
-static void ov73_021D1058(RowanIntroManager *manager);
-static void ov73_021D1238(RowanIntroManager *manager);
-static void ov73_021D12C4(RowanIntroManager *manager);
-static void ov73_021D1300(RowanIntroManager *manager);
-static void ov73_021D1318(RowanIntroManager *manager);
-static void ov73_021D1328(RowanIntroManager *manager);
-static void ov73_021D1930(RowanIntroManager *manager);
-static void RowanIntroManager_LoadLayer3Tilemap(RowanIntroManager *manager);
-static void RowanIntroManager_LoadTilemap(RowanIntroManager *manager);
-static void RowanIntroManager_LoadSubLayer3Tilemap(RowanIntroManager *manager);
-static BOOL ov73_021D2318(RowanIntroManager *manager);
-int ov73_021D3250(ApplicationManager *appMan, int *param1);
-int ov73_021D3280(ApplicationManager *appMan, int *param1);
-int ov73_021D3404(ApplicationManager *appMan, int *param1);
+int RowanIntro_Init(ApplicationManager *appMan, int *state);
+int RowanIntro_Main(ApplicationManager *appMan, int *state);
+int RowanIntro_Exit(ApplicationManager *appMan, int *state);
 
-const ApplicationManagerTemplate dummy_ApplicationManagerTemplate = {
-    RowanIntroManager_Init,
-    RowanIntroManager_Main,
-    RowanIntroManager_Exit,
+static void RowanIntro_VBlankCallback(void *manager);
+static void RowanIntro_InitGraphics(RowanIntro *manager);
+static void RowanIntro_FreeGraphics(RowanIntro *manager);
+static void RowanIntro_InitMessageStructs(RowanIntro *manager);
+static void RowanIntro_FreeMessageStructs(RowanIntro *manager);
+// relating to unkown structure
+static void ov73_021D1318(RowanIntro *manager);
+static void ov73_021D1328(RowanIntro *manager);
+static void RowanIntro_LoadInitialTilemaps(RowanIntro *manager);
+static void RowanIntro_LoadLayer3Tilemap(RowanIntro *manager);
+static void RowanIntro_LoadTilemap(RowanIntro *manager);
+static void RowanIntro_LoadSubLayer3Tilemap(RowanIntro *manager);
+static BOOL RowanIntro_Run(RowanIntro *manager);
+
+// Keyboard application Init,Main,Exit
+int ov73_021D3250(ApplicationManager *appMan, int *state);
+int ov73_021D3280(ApplicationManager *appMan, int *state);
+int ov73_021D3404(ApplicationManager *appMan, int *state);
+
+const ApplicationManagerTemplate sDummyApplicationManagerTemplate = {
+    RowanIntro_Init,
+    RowanIntro_Main,
+    RowanIntro_Exit,
     0xffffffff
 };
 
-static const ApplicationManagerTemplate Unk_ov72_021D3820 = {
+static const ApplicationManagerTemplate sKeyboardApplicationTemplate = {
     ov73_021D3250,
     ov73_021D3280,
     ov73_021D3404,
     0xffffffff
 };
 
-int RowanIntroManager_Init(ApplicationManager *appMan, int *unusedState)
+int RowanIntro_Init(ApplicationManager *appMan, int *unusedState)
 {
-    RowanIntroManager *manager;
-    int childHeapID = HEAP_ID_82;
+    RowanIntro *manager;
+    int heapID = HEAP_ID_82;
 
-    Heap_Create(HEAP_ID_APPLICATION, childHeapID, 0x40000);
+    Heap_Create(HEAP_ID_APPLICATION, heapID, 0x40000);
 
-    manager = ApplicationManager_NewData(appMan, sizeof(RowanIntroManager), childHeapID);
-    memset(manager, 0, sizeof(RowanIntroManager));
+    manager = ApplicationManager_NewData(appMan, sizeof(RowanIntro), heapID);
+    memset(manager, 0, sizeof(RowanIntro));
 
-    manager->heapID = childHeapID;
+    manager->heapID = heapID;
     manager->saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
     manager->options = SaveData_GetOptions(manager->saveData);
-    manager->state = RIM_STATE_FIRST_FADE_BLACK_START;
-    manager->bufferedState = RIM_STATE_FIRST_FADE_BLACK_START;
+    manager->state = RI_STATE_FIRST_FADE_BLACK_START;
+    manager->bufferedState = RI_STATE_FIRST_FADE_BLACK_START;
     manager->appMan = NULL;
-    manager->unk_70 = sub_0208712C(childHeapID, 0, 0, 7, manager->options);
-    manager->unk_74 = sub_0208712C(childHeapID, 3, 0, 7, manager->options);
+    manager->unk_70 = sub_0208712C(heapID, 0, 0, 7, manager->options);
+    manager->unk_74 = sub_0208712C(heapID, 3, 0, 7, manager->options);
     manager->bgLayer3TilemapIndex = 0;
     manager->bgLayer1TilemapIndex = 0;
     manager->bgLayer2TilemapIndex = 0;
     manager->bgSubLayer3TilemapIndex = 0;
     manager->delayUpdateCounter = 0;
-    manager->unk_B8 = Heap_AllocFromHeap(childHeapID, 0x20);
-    manager->unk_BC = Heap_AllocFromHeap(childHeapID, 0x20);
+    manager->bunearyPalette = Heap_AllocFromHeap(heapID, 0x20);
+    manager->bunearyBlendedPalette = Heap_AllocFromHeap(heapID, 0x20);
 
     return 1;
 }
 
-int RowanIntroManager_Main(ApplicationManager *appMan, int *state)
+int RowanIntro_Main(ApplicationManager *appMan, int *state)
 {
-    RowanIntroManager *manager = ApplicationManager_Data(appMan);
-    int v1 = 0;
+    RowanIntro *manager = ApplicationManager_Data(appMan);
+    int isFinished = FALSE;
 
     switch (*state) {
-    case 0:
+    case RI_APP_STATE_INIT:
         SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
         SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
 
@@ -328,75 +360,75 @@ int RowanIntroManager_Main(ApplicationManager *appMan, int *state)
         GXS_SetVisiblePlane(0);
         SetAutorepeat(4, 8);
 
-        ov73_021D1058(manager);
-        ov73_021D12C4(manager);
+        RowanIntro_InitGraphics(manager);
+        RowanIntro_InitMessageStructs(manager);
         ov73_021D1318(manager);
 
-        SetVBlankCallback(ov73_021D0FF0, (void *)manager);
+        SetVBlankCallback(RowanIntro_VBlankCallback, (void *)manager);
         GXLayers_TurnBothDispOn();
 
-        *state = 1;
+        *state = RI_APP_STATE_RUNNING;
         break;
-    case 1:
-        if (ov73_021D2318(manager) == 1) {
+    case RI_APP_STATE_RUNNING:
+        if (RowanIntro_Run(manager) == TRUE) {
             StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, manager->heapID);
-            *state = 2;
+            *state = RI_APP_STATE_EXIT;
         }
 
         if (manager->appMan != NULL) {
             StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, manager->heapID);
-            *state = 3;
+            *state = RI_APP_STATE_CHANGE_APP_WAIT_FADE;
         }
         break;
-    case 2:
+    case RI_APP_STATE_EXIT:
         if (IsScreenFadeDone() == TRUE) {
-            ov73_021D1300(manager);
-            ov73_021D1238(manager);
+            RowanIntro_FreeMessageStructs(manager);
+            RowanIntro_FreeGraphics(manager);
             ov73_021D1328(manager);
             SetVBlankCallback(NULL, NULL);
 
-            v1 = 1;
+            isFinished = TRUE;
         }
         break;
-    case 3:
+    case RI_APP_STATE_CHANGE_APP_WAIT_FADE:
         if (IsScreenFadeDone() == TRUE) {
-            ov73_021D1300(manager);
-            ov73_021D1238(manager);
+            RowanIntro_FreeMessageStructs(manager);
+            RowanIntro_FreeGraphics(manager);
             ov73_021D1328(manager);
             SetVBlankCallback(NULL, NULL);
-            *state = 4;
+            *state = RI_APP_STATE_CHANGE_APP;
         }
         break;
-    case 4:
-        if (ApplicationManager_Exec(manager->appMan) == 1) {
+    case RI_APP_STATE_CHANGE_APP:
+        if (ApplicationManager_Exec(manager->appMan) == TRUE) {
             ApplicationManager_Free(manager->appMan);
             manager->appMan = NULL;
-            *state = 5;
+            *state = RI_APP_STATE_INIT_AGAIN;
         }
         break;
-    case 5:
-        *state = 0;
+    case RI_APP_STATE_INIT_AGAIN:
+        *state = RI_APP_STATE_INIT;
         break;
     }
 
-    return v1;
+    return isFinished;
 }
 
-int RowanIntroManager_Exit(ApplicationManager *appMan, int *unusedState)
+int RowanIntro_Exit(ApplicationManager *appMan, int *unusedState)
 {
-    RowanIntroManager *manager = ApplicationManager_Data(appMan);
+    RowanIntro *manager = ApplicationManager_Data(appMan);
     int heapID = manager->heapID;
 
-    Heap_Free(manager->unk_B8);
-    Heap_Free(manager->unk_BC);
+    Heap_Free(manager->bunearyPalette);
+    Heap_Free(manager->bunearyBlendedPalette);
 
     TrainerInfo_SetNameFromStrbuf(SaveData_GetTrainerInfo(manager->saveData), manager->unk_70->textInputStr);
     TrainerInfo_SetGender(SaveData_GetTrainerInfo(manager->saveData), manager->unk_70->unk_04);
 
     {
-        MiscSaveBlock *v2 = SaveData_MiscSaveBlock(manager->saveData);
+        MiscSaveBlock *miscSaveBlock = SaveData_MiscSaveBlock(manager->saveData);
 
-        MiscSaveBlock_SetRivalName(v2, manager->unk_74->textInputStr);
+        MiscSaveBlock_SetRivalName(miscSaveBlock, manager->unk_74->textInputStr);
     }
 
     sub_0208716C(manager->unk_70);
@@ -408,13 +440,13 @@ int RowanIntroManager_Exit(ApplicationManager *appMan, int *unusedState)
     return 1;
 }
 
-static void ov73_021D0FF0(void *param0)
+static void RowanIntro_VBlankCallback(void *managerVoid)
 {
-    RowanIntroManager *manager = param0;
+    RowanIntro *manager = managerVoid;
     Bg_RunScheduledUpdates(manager->bgConfig);
 }
 
-static BOOL RowanIntroManager_WasPokeballOpened(void)
+static BOOL RowanIntro_WasPokeballOpened(void)
 {
     BOOL wasTouched = FALSE;
     u16 xOffset, yOffset;
@@ -444,10 +476,10 @@ static BOOL RowanIntroManager_WasPokeballOpened(void)
     return wasTouched;
 }
 
-static void ov73_021D1058(RowanIntroManager *manager)
+static void RowanIntro_InitGraphics(RowanIntro *manager)
 {
     {
-        UnkStruct_02099F80 v0 = {
+        UnkStruct_02099F80 banks = {
             GX_VRAM_BG_128_B,
             GX_VRAM_BGEXTPLTT_NONE,
             GX_VRAM_SUB_BG_128_C,
@@ -460,7 +492,7 @@ static void ov73_021D1058(RowanIntroManager *manager)
             GX_VRAM_TEXPLTT_NONE
         };
 
-        GXLayers_SetBanks(&v0);
+        GXLayers_SetBanks(&banks);
     }
 
     {
@@ -468,17 +500,17 @@ static void ov73_021D1058(RowanIntroManager *manager)
     }
 
     {
-        GraphicsModes v1 = {
+        GraphicsModes graphicsModes = {
             GX_DISPMODE_GRAPHICS,
             GX_BGMODE_0,
             GX_BGMODE_0,
             GX_BG0_AS_2D
         };
 
-        SetAllGraphicsModes(&v1);
+        SetAllGraphicsModes(&graphicsModes);
     }
     {
-        BgTemplate v2 = {
+        BgTemplate bgConfig = {
             0,
             0,
             0x800,
@@ -494,33 +526,33 @@ static void ov73_021D1058(RowanIntroManager *manager)
             0
         };
 
-        v2.screenBase = GX_BG_SCRBASE_0x7800;
-        v2.charBase = GX_BG_CHARBASE_0x18000;
-        Bg_InitFromTemplate(manager->bgConfig, BG_LAYER_MAIN_0, &v2, 0);
+        bgConfig.screenBase = GX_BG_SCRBASE_0x7800;
+        bgConfig.charBase = GX_BG_CHARBASE_0x18000;
+        Bg_InitFromTemplate(manager->bgConfig, BG_LAYER_MAIN_0, &bgConfig, BG_TYPE_STATIC);
         Bg_ClearTilemap(manager->bgConfig, BG_LAYER_MAIN_0);
 
-        v2.screenBase = GX_BG_SCRBASE_0x7000;
-        v2.charBase = GX_BG_CHARBASE_0x14000;
-        Bg_InitFromTemplate(manager->bgConfig, BG_LAYER_MAIN_1, &v2, 0);
+        bgConfig.screenBase = GX_BG_SCRBASE_0x7000;
+        bgConfig.charBase = GX_BG_CHARBASE_0x14000;
+        Bg_InitFromTemplate(manager->bgConfig, BG_LAYER_MAIN_1, &bgConfig, BG_TYPE_STATIC);
         Bg_ClearTilemap(manager->bgConfig, BG_LAYER_MAIN_1);
 
-        v2.screenBase = GX_BG_SCRBASE_0x6800;
-        v2.charBase = GX_BG_CHARBASE_0x10000;
-        Bg_InitFromTemplate(manager->bgConfig, BG_LAYER_MAIN_2, &v2, 0);
+        bgConfig.screenBase = GX_BG_SCRBASE_0x6800;
+        bgConfig.charBase = GX_BG_CHARBASE_0x10000;
+        Bg_InitFromTemplate(manager->bgConfig, BG_LAYER_MAIN_2, &bgConfig, BG_TYPE_STATIC);
         Bg_ClearTilemap(manager->bgConfig, BG_LAYER_MAIN_2);
 
-        v2.screenBase = GX_BG_SCRBASE_0x6000;
-        v2.charBase = GX_BG_CHARBASE_0x0c000;
-        Bg_InitFromTemplate(manager->bgConfig, BG_LAYER_MAIN_3, &v2, 0);
+        bgConfig.screenBase = GX_BG_SCRBASE_0x6000;
+        bgConfig.charBase = GX_BG_CHARBASE_0x0c000;
+        Bg_InitFromTemplate(manager->bgConfig, BG_LAYER_MAIN_3, &bgConfig, BG_TYPE_STATIC);
         Bg_ClearTilemap(manager->bgConfig, BG_LAYER_MAIN_3);
 
         LoadMessageBoxGraphics(manager->bgConfig, BG_LAYER_MAIN_0, 0x400 - (18 + 12), 4, 0, manager->heapID);
         LoadStandardWindowGraphics(manager->bgConfig, BG_LAYER_MAIN_0, (0x400 - (18 + 12)) - 9, 3, 0, manager->heapID);
-        Font_LoadTextPalette(0, 5 * (2 * 16), manager->heapID);
-        Font_LoadScreenIndicatorsPalette(0, 6 * (2 * 16), manager->heapID);
+        Font_LoadTextPalette(PAL_LOAD_MAIN_BG, 5 * (2 * 16), manager->heapID);
+        Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, 6 * (2 * 16), manager->heapID);
     }
     {
-        BgTemplate v2 = {
+        BgTemplate bgConfig = {
             0,
             0,
             0x800,
@@ -536,24 +568,24 @@ static void ov73_021D1058(RowanIntroManager *manager)
             0
         };
 
-        v2.screenBase = GX_BG_SCRBASE_0x7800;
-        v2.charBase = GX_BG_CHARBASE_0x18000;
-        Bg_InitFromTemplate(manager->bgConfig, BG_LAYER_SUB_0, &v2, 0);
+        bgConfig.screenBase = GX_BG_SCRBASE_0x7800;
+        bgConfig.charBase = GX_BG_CHARBASE_0x18000;
+        Bg_InitFromTemplate(manager->bgConfig, BG_LAYER_SUB_0, &bgConfig, BG_TYPE_STATIC);
         Bg_ClearTilemap(manager->bgConfig, BG_LAYER_SUB_0);
 
-        v2.screenBase = GX_BG_SCRBASE_0x7000;
-        v2.charBase = GX_BG_CHARBASE_0x14000;
-        Bg_InitFromTemplate(manager->bgConfig, BG_LAYER_SUB_1, &v2, 0);
+        bgConfig.screenBase = GX_BG_SCRBASE_0x7000;
+        bgConfig.charBase = GX_BG_CHARBASE_0x14000;
+        Bg_InitFromTemplate(manager->bgConfig, BG_LAYER_SUB_1, &bgConfig, BG_TYPE_STATIC);
         Bg_ClearTilemap(manager->bgConfig, BG_LAYER_SUB_1);
 
-        v2.screenBase = GX_BG_SCRBASE_0x6800;
-        v2.charBase = GX_BG_CHARBASE_0x10000;
-        Bg_InitFromTemplate(manager->bgConfig, BG_LAYER_SUB_2, &v2, 0);
+        bgConfig.screenBase = GX_BG_SCRBASE_0x6800;
+        bgConfig.charBase = GX_BG_CHARBASE_0x10000;
+        Bg_InitFromTemplate(manager->bgConfig, BG_LAYER_SUB_2, &bgConfig, BG_TYPE_STATIC);
         Bg_ClearTilemap(manager->bgConfig, BG_LAYER_SUB_2);
 
-        v2.screenBase = GX_BG_SCRBASE_0x6000;
-        v2.charBase = GX_BG_CHARBASE_0x0c000;
-        Bg_InitFromTemplate(manager->bgConfig, BG_LAYER_SUB_3, &v2, 0);
+        bgConfig.screenBase = GX_BG_SCRBASE_0x6000;
+        bgConfig.charBase = GX_BG_CHARBASE_0x0c000;
+        Bg_InitFromTemplate(manager->bgConfig, BG_LAYER_SUB_3, &bgConfig, BG_TYPE_STATIC);
         Bg_ClearTilemap(manager->bgConfig, BG_LAYER_SUB_3);
     }
 
@@ -566,12 +598,12 @@ static void ov73_021D1058(RowanIntroManager *manager)
     Bg_ToggleLayer(BG_LAYER_SUB_2, 0);
     Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
 
-    ov73_021D1930(manager);
+    RowanIntro_LoadInitialTilemaps(manager);
 
     manager->fadeBgLayerState = FBL_STATE_INIT;
 }
 
-static void ov73_021D1238(RowanIntroManager *manager)
+static void RowanIntro_FreeGraphics(RowanIntro *manager)
 {
     Bg_ToggleLayer(BG_LAYER_MAIN_0, 0);
     Bg_ToggleLayer(BG_LAYER_MAIN_1, 0);
@@ -596,7 +628,7 @@ static void ov73_021D1238(RowanIntroManager *manager)
     Heap_Free(manager->bgConfig);
 }
 
-static void ov73_021D12C4(RowanIntroManager *manager)
+static void RowanIntro_InitMessageStructs(RowanIntro *manager)
 {
     manager->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ROWAN_INTRO, manager->heapID);
 
@@ -605,28 +637,28 @@ static void ov73_021D12C4(RowanIntroManager *manager)
     manager->unk_60 = sub_0201567C(NULL, 0, 6, manager->heapID);
     manager->strFormatter = StringTemplate_Default(manager->heapID);
     manager->displayMessageState = DM_STATE_INIT;
-    manager->displayTextBlockState = 0;
+    manager->displayTextBlockState = DTB_STATE_INIT;
     manager->choiceBoxState = 0;
 }
 
-static void ov73_021D1300(RowanIntroManager *manager)
+static void RowanIntro_FreeMessageStructs(RowanIntro *manager)
 {
     StringTemplate_Free(manager->strFormatter);
     sub_02015760(manager->unk_60);
     MessageLoader_Free(manager->msgLoader);
 }
 
-static void ov73_021D1318(RowanIntroManager *manager)
+static void ov73_021D1318(RowanIntro *manager)
 {
     manager->unk_68 = sub_02015920(manager->heapID);
 }
 
-static void ov73_021D1328(RowanIntroManager *manager)
+static void ov73_021D1328(RowanIntro *manager)
 {
     sub_02015938(manager->unk_68);
 }
 
-static BOOL RowanIntroManager_FadeBgLayer(RowanIntroManager *manager, int bgLayer, enum FadeDirection fadeDirection)
+static BOOL RowanIntro_FadeBgLayer(RowanIntro *manager, int bgLayer, enum FadeDirection fadeDirection)
 {
     BOOL isFinished = FALSE;
     GXBlendPlaneMask blendPlaneMask;
@@ -636,27 +668,27 @@ static BOOL RowanIntroManager_FadeBgLayer(RowanIntroManager *manager, int bgLaye
     default:
     case BG_LAYER_MAIN_0:
         blendPlaneMask = GX_BLEND_PLANEMASK_BG0;
-        isSubLayer = 0;
+        isSubLayer = FALSE;
         break;
     case BG_LAYER_MAIN_1:
         blendPlaneMask = GX_BLEND_PLANEMASK_BG1;
-        isSubLayer = 0;
+        isSubLayer = FALSE;
         break;
     case BG_LAYER_MAIN_2:
         blendPlaneMask = GX_BLEND_PLANEMASK_BG2;
-        isSubLayer = 0;
+        isSubLayer = FALSE;
         break;
     case BG_LAYER_SUB_0:
         blendPlaneMask = GX_BLEND_PLANEMASK_BG0;
-        isSubLayer = 1;
+        isSubLayer = TRUE;
         break;
     case BG_LAYER_SUB_1:
         blendPlaneMask = GX_BLEND_PLANEMASK_BG1;
-        isSubLayer = 1;
+        isSubLayer = TRUE;
         break;
     case BG_LAYER_SUB_2:
         blendPlaneMask = GX_BLEND_PLANEMASK_BG2;
-        isSubLayer = 1;
+        isSubLayer = TRUE;
         break;
     }
 
@@ -720,7 +752,7 @@ static BOOL RowanIntroManager_FadeBgLayer(RowanIntroManager *manager, int bgLaye
     return isFinished;
 }
 
-static BOOL RowanIntroManager_Delay(RowanIntroManager *manager, int updateCount)
+static BOOL RowanIntro_Delay(RowanIntro *manager, int updateCount)
 {
     if (manager->delayUpdateCounter < updateCount) {
         manager->delayUpdateCounter++;
@@ -731,73 +763,73 @@ static BOOL RowanIntroManager_Delay(RowanIntroManager *manager, int updateCount)
     }
 }
 
-static void RowanIntroManager_ChangePaletteAndCopyTilemap(RowanIntroManager *manager, int bgLayer, int palette)
+static void RowanIntro_ChangePaletteAndCopyTilemap(RowanIntro *manager, enum BgLayer bgLayer, int palette)
 {
     Bg_ChangeTilemapRectPalette(manager->bgConfig, bgLayer, 0, 0, 32, 24, palette);
     Bg_CopyTilemapBufferToVRAM(manager->bgConfig, bgLayer);
 }
 
-typedef struct UnkStruct_ov72_021D3840_t {
-    u32 unk_00;
-    u32 unk_04;
-} UnkStruct_ov72_021D3840;
+typedef struct ChoiceInfo {
+    u32 textID;
+    u32 choiceIndex;
+} ChoiceInfo;
 
-static const WindowTemplate displayMessageTemplate = {
-    0x0,
-    0x2,
-    0x13,
-    0x1B,
-    0x4,
-    0x6,
-    0x36D
+static const WindowTemplate sDisplayMessageTemplate = {
+    .bgLayer = BG_LAYER_MAIN_0,
+    .tilemapLeft = 0x2,
+    .tilemapTop = 0x13,
+    .width = 0x1B,
+    .height = 0x4,
+    .palette = 0x6,
+    .baseTile = 0x36D,
 };
-static const WindowTemplate Unk_ov72_021D37C4 = {
-    0x0,
-    0x2,
-    0x3,
-    0x6,
-    0x4,
-    0x5,
-    0x355
+static const WindowTemplate sYesNoWindowTemplate = {
+    .bgLayer = BG_LAYER_MAIN_0,
+    .tilemapLeft = 0x2,
+    .tilemapTop = 0x3,
+    .width = 0x6,
+    .height = 0x4,
+    .palette = 0x5,
+    .baseTile = 0x355,
 };
-static const WindowTemplate Unk_ov72_021D37DC = {
-    0x0,
-    0x1,
-    0x3,
-    0x10,
-    0x6,
-    0x5,
-    0x30D
+static const WindowTemplate sInfoChoiceBoxWindowTemplate = {
+    .bgLayer = BG_LAYER_MAIN_0,
+    .tilemapLeft = 0x1,
+    .tilemapTop = 0x3,
+    .width = 0x10,
+    .height = 0x6,
+    .palette = 0x5,
+    .baseTile = 0x30D,
 };
-static const WindowTemplate Unk_ov72_021D37CC = {
-    0x0,
-    0x2,
-    0x3,
-    0xE,
-    0xA,
-    0x5,
-    0x2E1
+static const WindowTemplate sRivalNamesChoiceBoxTemplate = {
+    .bgLayer = BG_LAYER_MAIN_0,
+    .tilemapLeft = 0x2,
+    .tilemapTop = 0x3,
+    .width = 0xE,
+    .height = 0xA,
+    .palette = 0x5,
+    .baseTile = 0x2E1,
 };
-const WindowTemplate Unk_ov72_021D37E4 = {
-    0x0,
-    0x8,
-    0x0,
-    0x18,
-    0x18,
-    0x5,
-    0x12D
+const WindowTemplate sControlInfoTextWindow = {
+    .bgLayer = BG_LAYER_MAIN_0,
+    .tilemapLeft = 0x8,
+    .tilemapTop = 0x0,
+    .width = 0x18,
+    .height = 0x18,
+    .palette = 0x5,
+    .baseTile = 0x12D,
 };
-const WindowTemplate Unk_ov72_021D37D4 = {
-    0x0,
-    0x4,
-    0x0,
-    0x18,
-    0x18,
-    0x5,
-    0x12D
+const WindowTemplate sAdventureInfoTextWindow = {
+    .bgLayer = BG_LAYER_MAIN_0,
+    .tilemapLeft = 0x4,
+    .tilemapTop = 0x0,
+    .width = 0x18,
+    .height = 0x18,
+    .palette = 0x5,
+    .baseTile = 0x12D,
 };
 
-static const ListMenuTemplate Unk_ov72_021D390C = {
+static const ListMenuTemplate sChoiceBoxTemplate = {
     NULL,
     NULL,
     NULL,
@@ -812,24 +844,24 @@ static const ListMenuTemplate Unk_ov72_021D390C = {
     0xF,
     0x2,
     0x0,
-    0x10,
     0x0,
-    0x0,
+    PAGER_MODE_NONE,
+    FONT_SYSTEM,
     0x0
 };
 
-static const UnkStruct_ov72_021D3840 Unk_ov72_021D3840[] = {
+static const ChoiceInfo sYesNoChoiceInfos[] = {
     { 0x22, 0x1 },
     { 0x23, 0x2 }
 };
 
-static const UnkStruct_ov72_021D3840 Unk_ov72_021D38A4[] = {
+static const ChoiceInfo sInfoChoiceInfos[] = {
     { 0x1F, 0x1 },
     { 0x20, 0x2 },
     { 0x21, 0x3 }
 };
 
-static const UnkStruct_ov72_021D3840 Unk_ov72_021D3954[] = {
+static const ChoiceInfo sRivalNameChoiceInfos[] = {
     { 0x24, 0x1 },
     { 0x25, 0x2 },
     { 0x26, 0x3 },
@@ -837,7 +869,7 @@ static const UnkStruct_ov72_021D3840 Unk_ov72_021D3954[] = {
     { 0x28, 0x5 }
 };
 
-static const UnkStruct_ov72_021D3840 Unk_ov73_021D1648[] = {
+static const ChoiceInfo sUnusedRivalNameChoiceInfos[] = {
     { 0x24, 0x1 },
     { 0x29, 0x2 },
     { 0x2A, 0x3 },
@@ -845,15 +877,15 @@ static const UnkStruct_ov72_021D3840 Unk_ov73_021D1648[] = {
     { 0x2C, 0x5 }
 };
 
-static BOOL RowanIntroManager_DisplayMessage(RowanIntroManager *manager, u32 textID, int endEarly)
+static BOOL RowanIntro_DisplayMessage(RowanIntro *manager, u32 textID, int endEarly)
 {
     BOOL isFinished = FALSE;
 
     switch (manager->displayMessageState) {
     case DM_STATE_INIT:
-        Window_AddFromTemplate(manager->bgConfig, &manager->textWindow, &displayMessageTemplate);
+        Window_AddFromTemplate(manager->bgConfig, &manager->textWindow, &sDisplayMessageTemplate);
         Window_FillRectWithColor(&manager->textWindow, 15, 0, 0, 27 * 8, 4 * 8);
-        Window_DrawMessageBoxWithScrollCursor(&manager->textWindow, 0, 0x400 - (18 + 12), 4);
+        Window_DrawMessageBoxWithScrollCursor(&manager->textWindow, FALSE, 0x400 - (18 + 12), 4);
         RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
         RenderControlFlags_SetAutoScrollFlags(0);
 
@@ -889,66 +921,67 @@ static BOOL RowanIntroManager_DisplayMessage(RowanIntroManager *manager, u32 tex
     return isFinished;
 }
 
-static void ov73_021D1634(ListMenu *param0, u32 param1, u8 param2)
+static void RowanIntro_ListMenuCursorCallback(ListMenu *menu, u32 index, u8 onInit)
 {
-    if (param2 == 0) {
+    if (onInit == 0) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 }
 
-static BOOL RowanIntroManager_ChoiceBox(RowanIntroManager *manager, int param1, int param2)
+static BOOL RowanIntro_ChoiceBox(RowanIntro *manager, enum ChoicesCase choicesCase, int allowCancel)
 {
-    BOOL v0 = 0;
-    ListMenuTemplate v1;
-    const WindowTemplate *v2;
-    const UnkStruct_ov72_021D3840 *v3;
-    int v4, v5;
+    BOOL isFinished = FALSE;
+    ListMenuTemplate menuTemplate;
+    const WindowTemplate *windowTemplate;
+    const ChoiceInfo *choiceInfos;
+    int i, choiceInfosLength;
 
+    // case 0: starting up, case 1: waiting for choice
     switch (manager->choiceBoxState) {
     case 0:
-        switch (param1) {
+        switch (choicesCase) {
         default:
-        case 0:
-            v2 = &Unk_ov72_021D37C4;
-            v3 = Unk_ov72_021D3840;
-            v5 = NELEMS(Unk_ov72_021D3840);
+        case CC_YESNO:
+            windowTemplate = &sYesNoWindowTemplate;
+            choiceInfos = sYesNoChoiceInfos;
+            choiceInfosLength = NELEMS(sYesNoChoiceInfos);
             break;
-        case 1:
-            v2 = &Unk_ov72_021D37DC;
-            v3 = Unk_ov72_021D38A4;
-            v5 = NELEMS(Unk_ov72_021D38A4);
+        case CC_INFO:
+            windowTemplate = &sInfoChoiceBoxWindowTemplate;
+            choiceInfos = sInfoChoiceInfos;
+            choiceInfosLength = NELEMS(sInfoChoiceInfos);
             break;
-        case 2:
-            v2 = &Unk_ov72_021D37CC;
+        case CC_RIVAL_NAMES:
+            windowTemplate = &sRivalNamesChoiceBoxTemplate;
 
             if ((gGameVersion == VERSION_DIAMOND) || (GAME_VERSION == VERSION_PLATINUM)) {
-                v3 = Unk_ov72_021D3954;
-                v5 = NELEMS(Unk_ov72_021D3954);
+                choiceInfos = sRivalNameChoiceInfos;
+                choiceInfosLength = NELEMS(sRivalNameChoiceInfos);
             } else {
-                v3 = Unk_ov73_021D1648;
-                v5 = NELEMS(Unk_ov73_021D1648);
+                choiceInfos = sUnusedRivalNameChoiceInfos;
+                choiceInfosLength = NELEMS(sUnusedRivalNameChoiceInfos);
             }
             break;
         }
 
-        Window_AddFromTemplate(manager->bgConfig, &manager->choiceBoxWindow, v2);
+        Window_AddFromTemplate(manager->bgConfig, &manager->choiceBoxWindow, windowTemplate);
 
-        manager->choices = StringList_New(v5, manager->heapID);
+        manager->choices = StringList_New(choiceInfosLength, manager->heapID);
 
-        for (v4 = 0; v4 < v5; v4++) {
-            StringList_AddFromMessageBank(manager->choices, manager->msgLoader, v3[v4].unk_00, v3[v4].unk_04);
+        for (i = 0; i < choiceInfosLength; i++) {
+            StringList_AddFromMessageBank(manager->choices, manager->msgLoader, choiceInfos[i].textID, choiceInfos[i].choiceIndex);
         }
 
-        v1 = Unk_ov72_021D390C;
-        v1.choices = manager->choices;
-        v1.count = v5;
-        v1.maxDisplay = v5;
-        v1.cursorCallback = ov73_021D1634;
-        v1.window = &manager->choiceBoxWindow;
+        menuTemplate = sChoiceBoxTemplate;
+        menuTemplate.choices = manager->choices;
+        menuTemplate.count = choiceInfosLength;
+        menuTemplate.maxDisplay = choiceInfosLength;
+        menuTemplate.cursorCallback = RowanIntro_ListMenuCursorCallback;
+        menuTemplate.window = &manager->choiceBoxWindow;
 
-        manager->listMenu = ListMenu_New(&v1, 0, 0, manager->heapID);
+        manager->listMenu = ListMenu_New(&menuTemplate, 0, 0, manager->heapID);
 
-        Window_DrawStandardFrame(v1.window, 1, (0x400 - (18 + 12)) - 9, 3);
+        Window_DrawStandardFrame(menuTemplate.window, 1, (0x400 - (18 + 12)) - 9, 3);
         Window_CopyToVRAM(&manager->choiceBoxWindow);
 
         manager->choiceBoxState = 1;
@@ -956,11 +989,11 @@ static BOOL RowanIntroManager_ChoiceBox(RowanIntroManager *manager, int param1, 
     case 1:
         manager->playerChoice = ListMenu_ProcessInput(manager->listMenu);
 
-        if (manager->playerChoice == 0xffffffff) {
+        if (manager->playerChoice == LIST_NOTHING_CHOSEN) {
             break;
         }
 
-        if ((manager->playerChoice == 0xfffffffe) && (param2 == 1)) {
+        if ((manager->playerChoice == LIST_CANCEL) && (allowCancel == TRUE)) {
             break;
         }
 
@@ -971,122 +1004,124 @@ static BOOL RowanIntroManager_ChoiceBox(RowanIntroManager *manager, int param1, 
         Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         manager->choiceBoxState = 0;
-        v0 = 1;
+        isFinished = TRUE;
         break;
     }
 
-    return v0;
+    return isFinished;
 }
 
-static BOOL RowanIntroManager_DisplayTextBlock(RowanIntroManager *manager, u32 textID, int param2, int param3, int param4)
+static BOOL RowanIntro_DisplayTextBlock(RowanIntro *manager, u32 textID, enum DisplayTextBlockCase whichCase, int param3, int param4)
 {
-    BOOL v0 = 0;
-    WindowTemplate v1;
+    // param3 and param4 have different uses depending on what value is passed to whichCase
+
+    BOOL isFinished = FALSE;
+    WindowTemplate windowTemplate;
 
     switch (manager->displayTextBlockState) {
-    case 0:
+    case DTB_STATE_INIT:
         Bg_ToggleLayer(BG_LAYER_MAIN_0, 0);
         manager->strbuf = Strbuf_Init(0x400, manager->heapID);
         MessageLoader_GetStrbuf(manager->msgLoader, textID, manager->strbuf);
 
-        if (param2 == 1) {
-            v1 = Unk_ov72_021D37D4;
+        if (whichCase == DTBC_ADVENTURE_INFO) {
+            windowTemplate = sAdventureInfoTextWindow;
 
             {
                 u32 numLines = Strbuf_NumLines(manager->strbuf);
 
-                v1.tilemapTop = 12 - numLines;
-                v1.height = numLines * 2;
+                windowTemplate.tilemapTop = 12 - numLines;
+                windowTemplate.height = numLines * 2;
             }
 
-            Window_AddFromTemplate(manager->bgConfig, &manager->textWindow, &v1);
+            Window_AddFromTemplate(manager->bgConfig, &manager->textWindow, &windowTemplate);
             Window_FillRectWithColor(&manager->textWindow, 0, 0, 0, 24 * 8, 24 * 8);
             Text_AddPrinterWithParamsAndColor(&manager->textWindow, FONT_SYSTEM, manager->strbuf, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
         } else {
-            v1 = Unk_ov72_021D37E4;
+            windowTemplate = sControlInfoTextWindow;
 
-            if (param2 == 2) {
+            if (whichCase == DTBC_CONTROL_INFO_1) {
                 u32 numLines = Strbuf_NumLines(manager->strbuf);
 
-                v1.tilemapTop = param3 + param4 / 2 - numLines;
-                v1.height = numLines * 2;
+                windowTemplate.tilemapTop = param3 + param4 / 2 - numLines;
+                windowTemplate.height = numLines * 2;
             } else {
-                v1.tilemapTop = param3;
-                v1.height = param4;
+                windowTemplate.tilemapTop = param3;
+                windowTemplate.height = param4;
             }
 
-            Window_AddFromTemplate(manager->bgConfig, &manager->textWindow, &v1);
+            Window_AddFromTemplate(manager->bgConfig, &manager->textWindow, &windowTemplate);
             Window_FillRectWithColor(&manager->textWindow, 0, 0, 0, 24 * 8, 24 * 8);
             Text_AddPrinterWithParamsAndColor(&manager->textWindow, FONT_SYSTEM, manager->strbuf, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(15, 2, 0), NULL);
         }
 
         Strbuf_Free(manager->strbuf);
-        manager->displayTextBlockState = 1;
+        manager->displayTextBlockState = DTB_STATE_COPY_WINDOW_TO_VRAM;
         break;
-    case 1:
+    case DTB_STATE_COPY_WINDOW_TO_VRAM:
         Window_CopyToVRAM(&manager->textWindow);
-        manager->displayTextBlockState = 2;
+        manager->displayTextBlockState = DTB_STATE_FADE_IN_TEXT;
         break;
-    case 2:
-        if (RowanIntroManager_FadeBgLayer(manager, BG_LAYER_MAIN_0, FADE_IN) == TRUE) {
-            manager->displayTextBlockState = 3;
+    case DTB_STATE_FADE_IN_TEXT:
+        if (RowanIntro_FadeBgLayer(manager, BG_LAYER_MAIN_0, FADE_IN) == TRUE) {
+            manager->displayTextBlockState = DTB_STATE_WAIT_FOR_INPUT;
         }
         break;
-    case 3:
+    case DTB_STATE_WAIT_FOR_INPUT:
         if (((gSystem.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A) || ((gSystem.pressedKeys & PAD_BUTTON_B) == PAD_BUTTON_B)) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            manager->displayTextBlockState = 4;
+            manager->displayTextBlockState = DTB_STATE_FADE_OUT_TEXT;
         }
         break;
-    case 4:
-        if (RowanIntroManager_FadeBgLayer(manager, BG_LAYER_MAIN_0, FADE_OUT) == TRUE) {
-            manager->displayTextBlockState = 5;
+    case DTB_STATE_FADE_OUT_TEXT:
+        if (RowanIntro_FadeBgLayer(manager, BG_LAYER_MAIN_0, FADE_OUT) == TRUE) {
+            manager->displayTextBlockState = DTB_STATE_EXIT;
         }
         break;
-    case 5:
+    case DTB_STATE_EXIT:
         Window_Remove(&manager->textWindow);
         Bg_ClearTilemap(manager->bgConfig, BG_LAYER_MAIN_0);
-        manager->displayTextBlockState = 0;
-        v0 = 1;
+        manager->displayTextBlockState = DTB_STATE_INIT;
+        isFinished = TRUE;
         break;
     }
 
-    return v0;
+    return isFinished;
 }
 
-static void ov73_021D1930(RowanIntroManager *manager)
+static void RowanIntro_LoadInitialTilemaps(RowanIntro *manager)
 {
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, 0, manager->bgConfig, BG_LAYER_MAIN_3, 0, 0, 0, manager->heapID);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, 0, manager->bgConfig, BG_LAYER_MAIN_3, 0, 0, FALSE, manager->heapID);
     Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, manager->heapID);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, 24, manager->bgConfig, BG_LAYER_SUB_3, 0, 0, 0, manager->heapID);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, 24, manager->bgConfig, BG_LAYER_SUB_3, 0, 0, FALSE, manager->heapID);
 
     {
-        int v0, v1;
+        int mainBgPaletteIdx, subBgPaletteIdx;
 
         if (gGameVersion == VERSION_PLATINUM) {
-            v0 = 3;
-            v1 = 27;
+            mainBgPaletteIdx = 3;
+            subBgPaletteIdx = 27;
         } else if (gGameVersion == VERSION_DIAMOND) {
-            v0 = 1;
-            v1 = 25;
+            mainBgPaletteIdx = 1;
+            subBgPaletteIdx = 25;
         } else {
-            v0 = 2;
-            v1 = 26;
+            mainBgPaletteIdx = 2;
+            subBgPaletteIdx = 26;
         }
 
-        Graphics_LoadPalette(NARC_INDEX_DEMO__INTRO__INTRO, v0, 0, 0 * (2 * 16), (2 * 16) * 3, manager->heapID);
-        Graphics_LoadPalette(NARC_INDEX_DEMO__INTRO__INTRO, v1, 4, 0 * (2 * 16), (2 * 16) * 5, manager->heapID);
+        Graphics_LoadPalette(NARC_INDEX_DEMO__INTRO__INTRO, mainBgPaletteIdx, PAL_LOAD_MAIN_BG, 0 * (2 * 16), (2 * 16) * 3, manager->heapID);
+        Graphics_LoadPalette(NARC_INDEX_DEMO__INTRO__INTRO, subBgPaletteIdx, PAL_LOAD_SUB_BG, 0 * (2 * 16), (2 * 16) * 5, manager->heapID);
     }
 
-    RowanIntroManager_LoadLayer3Tilemap(manager);
-    RowanIntroManager_LoadTilemap(manager);
-    RowanIntroManager_LoadSubLayer3Tilemap(manager);
+    RowanIntro_LoadLayer3Tilemap(manager);
+    RowanIntro_LoadTilemap(manager);
+    RowanIntro_LoadSubLayer3Tilemap(manager);
 
     Bg_MaskPalette(BG_LAYER_MAIN_0, 0x0);
     Bg_MaskPalette(BG_LAYER_SUB_0, 0x0);
 }
 
-static void RowanIntroManager_LoadLayer3Tilemap(RowanIntroManager *manager)
+static void RowanIntro_LoadLayer3Tilemap(RowanIntro *manager)
 {
     int tilemapLocations[] = { 4, 5, 6, 7, 8 };
 
@@ -1097,7 +1132,7 @@ static void RowanIntroManager_LoadLayer3Tilemap(RowanIntroManager *manager)
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, tilemapLocations[manager->bgLayer3TilemapIndex], manager->bgConfig, BG_LAYER_MAIN_3, 0, 0, FALSE, manager->heapID);
 }
 
-static void RowanIntroManager_LoadTilemap(RowanIntroManager *manager)
+static void RowanIntro_LoadTilemap(RowanIntro *manager)
 {
     int tilemapLocations[][2] = {
         { 0, 0 },
@@ -1117,18 +1152,18 @@ static void RowanIntroManager_LoadTilemap(RowanIntroManager *manager)
         Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, tilemapLocations[manager->bgLayer1TilemapIndex][0], manager->bgConfig, BG_LAYER_MAIN_1, 0, 0, FALSE, manager->heapID);
         Graphics_LoadPalette(NARC_INDEX_DEMO__INTRO__INTRO, tilemapLocations[manager->bgLayer1TilemapIndex][1], PAL_LOAD_MAIN_BG, 7 * (2 * 16), 2 * 16, manager->heapID);
         Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, 23, manager->bgConfig, BG_LAYER_MAIN_1, 0, 0, FALSE, manager->heapID);
-        RowanIntroManager_ChangePaletteAndCopyTilemap(manager, BG_LAYER_MAIN_1, 7);
+        RowanIntro_ChangePaletteAndCopyTilemap(manager, BG_LAYER_MAIN_1, 7);
     }
 
     if ((manager->bgLayer2TilemapIndex != 0) && (manager->bgLayer2TilemapIndex < 12)) {
         Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, tilemapLocations[manager->bgLayer2TilemapIndex][0], manager->bgConfig, BG_LAYER_MAIN_2, 0, 0, FALSE, manager->heapID);
         Graphics_LoadPalette(NARC_INDEX_DEMO__INTRO__INTRO, tilemapLocations[manager->bgLayer2TilemapIndex][1], PAL_LOAD_MAIN_BG, 8 * (2 * 16), 2 * 16, manager->heapID);
         Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, 23, manager->bgConfig, BG_LAYER_MAIN_2, 0, 0, FALSE, manager->heapID);
-        RowanIntroManager_ChangePaletteAndCopyTilemap(manager, BG_LAYER_MAIN_2, 8);
+        RowanIntro_ChangePaletteAndCopyTilemap(manager, BG_LAYER_MAIN_2, 8);
     }
 }
 
-static void RowanIntroManager_LoadSubLayer3Tilemap(RowanIntroManager *manager)
+static void RowanIntro_LoadSubLayer3Tilemap(RowanIntro *manager)
 {
     int tilemapLocations[] = { 28, 29, 29, 30, 31 };
 
@@ -1136,16 +1171,16 @@ static void RowanIntroManager_LoadSubLayer3Tilemap(RowanIntroManager *manager)
         return;
     }
 
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, tilemapLocations[manager->bgSubLayer3TilemapIndex], manager->bgConfig, BG_LAYER_SUB_3, 0, 0, 0, manager->heapID);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, tilemapLocations[manager->bgSubLayer3TilemapIndex], manager->bgConfig, BG_LAYER_SUB_3, 0, 0, FALSE, manager->heapID);
 
     if (manager->bgSubLayer3TilemapIndex == 1) {
-        RowanIntroManager_ChangePaletteAndCopyTilemap(manager, 7, 3);
+        RowanIntro_ChangePaletteAndCopyTilemap(manager, 7, 3);
     } else if (manager->bgSubLayer3TilemapIndex == 2) {
-        RowanIntroManager_ChangePaletteAndCopyTilemap(manager, 7, 2);
+        RowanIntro_ChangePaletteAndCopyTilemap(manager, 7, 2);
     }
 }
 
-static const u8 Unk_ov72_021D39D4[] = {
+static const u8 sBunearyLoadTilemapRectRawData[] = {
     0x0,
     0x1,
     0x2,
@@ -1248,69 +1283,69 @@ static const u8 Unk_ov72_021D39D4[] = {
     0x63
 };
 
-static void ov73_021D1B80(RowanIntroManager *manager)
+static void RowanIntro_LoadBunearySprite(RowanIntro *manager)
 {
-    PokemonSpriteTemplate v0;
-    void *v1;
-    void *v2;
-    void *v3;
-    int v4 = 2;
-    int v5 = 5;
-    int v6 = 8;
-    int v7 = 10;
+    PokemonSpriteTemplate spriteTemplate;
+    u16 *rawData;
+    void *tileSrc;
+    void *paletteBuffer;
+    int mainBgLayer = BG_LAYER_MAIN_2;
+    int subBgLayer = 5;
+    int mainPalette = 8;
+    int subPalette = 10;
 
-    BuildPokemonSpriteTemplate(&v0, 427, 0, 2, 0, 0, 0);
+    BuildPokemonSpriteTemplate(&spriteTemplate, SPECIES_BUNEARY, GENDER_MALE, FACE_FRONT, FALSE, NULL, NULL);
 
-    v1 = Heap_AllocFromHeap(manager->heapID, (10 * 10) * 2);
+    rawData = Heap_AllocFromHeap(manager->heapID, (10 * 10) * 2);
 
     {
-        int v8;
+        int i;
 
-        for (v8 = 0; v8 < (10 * 10); v8++) {
-            ((u16 *)v1)[v8] = Unk_ov72_021D39D4[v8] + 1;
+        for (i = 0; i < (10 * 10); i++) {
+            rawData[i] = sBunearyLoadTilemapRectRawData[i] + 1;
         }
     }
 
-    v2 = sub_0201363C(v0.narcID, v0.character, manager->heapID);
-    v3 = sub_02013660(v0.narcID, v0.palette, manager->heapID);
+    tileSrc = sub_0201363C(spriteTemplate.narcID, spriteTemplate.character, manager->heapID);
+    paletteBuffer = sub_02013660(spriteTemplate.narcID, spriteTemplate.palette, manager->heapID);
 
-    MI_CpuCopy32(v3, manager->unk_B8, 0x20);
+    MI_CpuCopy32(paletteBuffer, manager->bunearyPalette, 0x20);
 
-    BlendPalettes(manager->unk_B8, v3, 1, 16, 0x6a3c);
-    Bg_FillTilemapRect(manager->bgConfig, v4, 0, 0, 0, 32, 24, v6);
-    Bg_LoadToTilemapRect(manager->bgConfig, v4, v1, 11, 9, 10, 10);
+    BlendPalettes(manager->bunearyPalette, paletteBuffer, 1, 16, 0x6a3c);
+    Bg_FillTilemapRect(manager->bgConfig, mainBgLayer, 0, 0, 0, 32, 24, mainPalette);
+    Bg_LoadToTilemapRect(manager->bgConfig, mainBgLayer, rawData, 11, 9, 10, 10);
 
-    RowanIntroManager_ChangePaletteAndCopyTilemap(manager, v4, v6);
+    RowanIntro_ChangePaletteAndCopyTilemap(manager, mainBgLayer, mainPalette);
 
-    Bg_ClearTilesRange(v4, 32, 0, manager->heapID);
-    Bg_LoadTiles(manager->bgConfig, v4, v2, (10 * 10) * 0x20, 1);
-    Bg_LoadPalette(v4, v3, 2 * 16, (2 * 16) * v6);
-    Bg_FillTilemapRect(manager->bgConfig, v5, 0, 0, 0, 32, 24, v7);
-    Bg_LoadToTilemapRect(manager->bgConfig, v5, v1, 11, 7, 10, 10);
+    Bg_ClearTilesRange(mainBgLayer, 32, 0, manager->heapID);
+    Bg_LoadTiles(manager->bgConfig, mainBgLayer, tileSrc, (10 * 10) * 0x20, 1);
+    Bg_LoadPalette(mainBgLayer, paletteBuffer, 2 * 16, (2 * 16) * mainPalette);
+    Bg_FillTilemapRect(manager->bgConfig, subBgLayer, 0, 0, 0, 32, 24, subPalette);
+    Bg_LoadToTilemapRect(manager->bgConfig, subBgLayer, rawData, 11, 7, 10, 10);
 
-    RowanIntroManager_ChangePaletteAndCopyTilemap(manager, v5, v7);
+    RowanIntro_ChangePaletteAndCopyTilemap(manager, subBgLayer, subPalette);
 
-    Bg_ClearTilesRange(v5, 32, 0, manager->heapID);
-    Bg_LoadTiles(manager->bgConfig, v5, v2, (10 * 10) * 0x20, 1);
-    Bg_LoadPalette(v5, v3, 2 * 16, (2 * 16) * v7);
-    Heap_Free(v3);
-    Heap_Free(v2);
-    Heap_Free(v1);
+    Bg_ClearTilesRange(subBgLayer, 32, 0, manager->heapID);
+    Bg_LoadTiles(manager->bgConfig, subBgLayer, tileSrc, (10 * 10) * 0x20, 1);
+    Bg_LoadPalette(subBgLayer, paletteBuffer, 2 * 16, (2 * 16) * subPalette);
+    Heap_Free(paletteBuffer);
+    Heap_Free(tileSrc);
+    Heap_Free(rawData);
 }
 
-static void RowanIntroManager_LoadPokeballTilemap(RowanIntroManager *manager)
+static void RowanIntro_LoadPokeballTilemap(RowanIntro *manager)
 {
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, 40, manager->bgConfig, 6, 0, 0, 0, manager->heapID);
-    RowanIntroManager_ChangePaletteAndCopyTilemap(manager, 6, 9);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, 40, manager->bgConfig, BG_LAYER_SUB_2, 0, 0, FALSE, manager->heapID);
+    RowanIntro_ChangePaletteAndCopyTilemap(manager, 6, 9);
 
-    Graphics_LoadPalette(NARC_INDEX_DEMO__INTRO__INTRO, 41, 4, 7 * (2 * 16), (2 * 16) * 3, manager->heapID);
-    Bg_ClearTilesRange(6, 32, 0, manager->heapID);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, 32, manager->bgConfig, 6, 0x20, 0, 0, manager->heapID);
+    Graphics_LoadPalette(NARC_INDEX_DEMO__INTRO__INTRO, 41, PAL_LOAD_SUB_BG, 7 * (2 * 16), (2 * 16) * 3, manager->heapID);
+    Bg_ClearTilesRange(BG_LAYER_SUB_2, 32, 0, manager->heapID);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, 32, manager->bgConfig, BG_LAYER_SUB_2, 0x20, 0, FALSE, manager->heapID);
 }
 
-static BOOL RowanIntroManager_MoveBgLayer(RowanIntroManager *manager, enum BgLayer bgLayer, enum MoveBgLayerCases mBLCase)
+static BOOL RowanIntro_MoveBgLayer(RowanIntro *manager, enum BgLayer bgLayer, enum MoveBgLayerCases mBLCase)
 {
-    BOOL ret = 0;
+    BOOL isFinished = FALSE;
     GXBlendPlaneMask unused;
 
     if (mBLCase == MBL_CASE_CENTRE_AVATAR) {
@@ -1324,84 +1359,84 @@ static BOOL RowanIntroManager_MoveBgLayer(RowanIntroManager *manager, enum BgLay
                     Bg_SetOffset(manager->bgConfig, bgLayer, BG_OFFSET_UPDATE_ADD_X, 4);
                 }
             } else {
-                ret = 1;
+                isFinished = TRUE;
             }
         }
     } else if (mBLCase == MBL_CASE_MOVE_RIGHT) {
         if (Bg_GetXOffset(manager->bgConfig, bgLayer) != -8 * 6) {
             Bg_SetOffset(manager->bgConfig, bgLayer, BG_OFFSET_UPDATE_SUB_X, 4);
         } else {
-            ret = 1;
+            isFinished = TRUE;
         }
     } else if (mBLCase == MBL_CASE_MOVE_LEFT) {
         if (Bg_GetXOffset(manager->bgConfig, bgLayer) != 0) {
             Bg_SetOffset(manager->bgConfig, bgLayer, BG_OFFSET_UPDATE_ADD_X, 4);
         } else {
-            ret = 1;
+            isFinished = TRUE;
         }
     }
 
-    return ret;
+    return isFinished;
 }
 
-static void ov73_021D1DCC(RowanIntroManager *manager)
+static void RowanIntro_ResetAvatarRunAnimation(RowanIntro *manager)
 {
-    manager->unk_8C = 0;
-    manager->unk_8D = 0;
-    manager->unk_8E = 0;
-    manager->unk_8F = 0;
+    manager->maleRunAnimSpriteIndex = 0;
+    manager->maleRunAnimUpdateCounter = 0;
+    manager->femaleRunAnimSpriteIndex = 0;
+    manager->femaleRunAnimUpdateCounter = 0;
 }
 
-static void ov73_021D1DE8(RowanIntroManager *manager)
+static void RowanIntro_AnimateAvatarRun(RowanIntro *manager)
 {
     if (manager->playerGender == GENDER_MALE) {
-        if (manager->unk_8D) {
-            manager->unk_8D--;
+        if (manager->maleRunAnimUpdateCounter) {
+            manager->maleRunAnimUpdateCounter--;
         } else {
-            manager->unk_8C++;
-            manager->unk_8C &= 3;
-            manager->unk_8D = 4;
+            manager->maleRunAnimSpriteIndex++;
+            manager->maleRunAnimSpriteIndex &= 3;
+            manager->maleRunAnimUpdateCounter = 4;
         }
 
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG3, 6, 10);
 
         {
-            int v0[] = { 9, 10, 11, 12 };
-            Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, v0[manager->unk_8C], manager->bgConfig, 1, 0, 0, 0, manager->heapID);
+            int maleSpriteNARCIndices[] = { 9, 10, 11, 12 };
+            Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, maleSpriteNARCIndices[manager->maleRunAnimSpriteIndex], manager->bgConfig, BG_LAYER_MAIN_1, 0, 0, FALSE, manager->heapID);
         }
     } else {
-        if (manager->unk_8F) {
-            manager->unk_8F--;
+        if (manager->femaleRunAnimUpdateCounter) {
+            manager->femaleRunAnimUpdateCounter--;
         } else {
-            manager->unk_8E++;
-            manager->unk_8E &= 3;
-            manager->unk_8F = 4;
+            manager->femaleRunAnimSpriteIndex++;
+            manager->femaleRunAnimSpriteIndex &= 3;
+            manager->femaleRunAnimUpdateCounter = 4;
         }
 
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_PLANEMASK_BG3, 6, 10);
 
         {
-            int v1[] = { 14, 15, 16, 17 };
-            Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, v1[manager->unk_8E], manager->bgConfig, 2, 0, 0, 0, manager->heapID);
+            int femaleSpriteNARCIndices[] = { 14, 15, 16, 17 };
+            Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, femaleSpriteNARCIndices[manager->femaleRunAnimSpriteIndex], manager->bgConfig, BG_LAYER_MAIN_2, 0, 0, FALSE, manager->heapID);
         }
     }
 }
 
-static void ov73_021D1EFC(RowanIntroManager *manager)
+static void RowanIntro_ResetBlending(RowanIntro *manager)
 {
     G2_BlendNone();
 }
 
-static void ov73_021D1F08(RowanIntroManager *manager)
+static void RowanIntro_ResetAnimationCounters(RowanIntro *manager)
 {
     manager->animData.progressCounter = 0;
     manager->animDelayUpdateCounter = 0;
 }
 
-static BOOL ov73_021D1F18(RowanIntroManager *manager)
+static BOOL RowanIntro_AnimateAvatarShrink(RowanIntro *manager)
 {
-    BOOL v0 = 0;
-    int v1;
+    BOOL isFinished = FALSE;
+    int spriteID;
 
     if (manager->animDelayUpdateCounter) {
         manager->animDelayUpdateCounter--;
@@ -1412,239 +1447,239 @@ static BOOL ov73_021D1F18(RowanIntroManager *manager)
 
     if (manager->playerGender == GENDER_MALE) {
         {
-            int v2[] = { 9, 42, 43, 44, 45, 0xff };
-            v1 = v2[manager->animData.progressCounter];
+            int maleSpriteIDs[] = { 9, 42, 43, 44, 45, 0xff };
+            spriteID = maleSpriteIDs[manager->animData.progressCounter];
         }
     } else {
         {
-            int v3[] = { 14, 46, 47, 48, 49, 0xff };
-            v1 = v3[manager->animData.progressCounter];
+            int femaleSpriteIDs[] = { 14, 46, 47, 48, 49, 0xff };
+            spriteID = femaleSpriteIDs[manager->animData.progressCounter];
         }
     }
 
-    if (v1 == 0xff) {
-        v0 = 1;
+    if (spriteID == 0xff) {
+        isFinished = TRUE;
     } else {
-        Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, v1, manager->bgConfig, 1, 0, 0, 0, manager->heapID);
+        Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, spriteID, manager->bgConfig, BG_LAYER_MAIN_1, 0, 0, 0, manager->heapID);
     }
 
-    return v0;
+    return isFinished;
 }
 
-static void ov73_021D1FA0(RowanIntroManager *manager)
+static void RowanIntro_AnimateBuneary_BlendSpritePalette(RowanIntro *manager)
 {
-    if (manager->unk_B4 > 0) {
-        manager->unk_B4--;
+    if (manager->bunearyPaletteBlendUpdateCounter > 0) {
+        manager->bunearyPaletteBlendUpdateCounter--;
 
-        BlendPalettes(manager->unk_B8, manager->unk_BC, 1, manager->unk_B4 / 3, 0x6a3c);
-        Bg_LoadPalette(2, manager->unk_BC, 2 * 16, (2 * 16) * 8);
-        Bg_LoadPalette(5, manager->unk_BC, 2 * 16, (2 * 16) * 10);
+        BlendPalettes(manager->bunearyPalette, manager->bunearyBlendedPalette, 1, manager->bunearyPaletteBlendUpdateCounter / 3, 0x6a3c);
+        Bg_LoadPalette(BG_LAYER_MAIN_2, manager->bunearyBlendedPalette, 2 * 16, (2 * 16) * 8);
+        Bg_LoadPalette(BG_LAYER_SUB_1, manager->bunearyBlendedPalette, 2 * 16, (2 * 16) * 10);
     }
 }
 
-static BOOL RowanIntroManager_AnimateBuneary(RowanIntroManager *manager, enum BunearyAnimState *state)
+static BOOL RowanIntro_AnimateBuneary(RowanIntro *manager, enum BunearyAnimState *state)
 {
-    BOOL isFinished = 0;
+    BOOL isFinished = FALSE;
 
     switch (*state) {
-    case BAN_INIT:
-        Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, 0, 0);
-        Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, 3, -8 * 13);
+    case BA_STATE_INIT:
+        Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_X, 0);
+        Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_Y, -8 * 13);
         Bg_SetPriority(BG_LAYER_MAIN_2, 0);
         Bg_ToggleLayer(BG_LAYER_SUB_1, 1);
 
-        manager->unk_A8 = 0;
-        manager->unk_AC = 8;
-        manager->unk_B0 = 0;
-        manager->unk_B4 = (16 * 3);
-        *state = BAN_MOVE_UP;
+        manager->bunearyAnimCarryover = 0;
+        manager->bunearyParabolaCoeff = 8;
+        manager->bunearyAnimUpdateCounter = 0;
+        manager->bunearyPaletteBlendUpdateCounter = (16 * 3);
+        *state = BA_STATE_MOVE_UP_BOTTOM_SCREEN;
         break;
-    case BAN_MOVE_UP: {
-        int v1 = Bg_GetXOffset(manager->bgConfig, 2);
-        int v2 = Bg_GetYOffset(manager->bgConfig, 5);
-        int v3 = manager->unk_AC * 9 * manager->unk_B0;
-        int v4 = 9 * manager->unk_B0 * manager->unk_B0 / 2;
-        int v5 = v3 - v4;
+    case BA_STATE_MOVE_UP_BOTTOM_SCREEN: {
+        int unused = Bg_GetXOffset(manager->bgConfig, 2);
+        int yOffset = Bg_GetYOffset(manager->bgConfig, 5);
+        int linearTerm = manager->bunearyParabolaCoeff * 9 * manager->bunearyAnimUpdateCounter;
+        int quadraticTerm = 9 * manager->bunearyAnimUpdateCounter * manager->bunearyAnimUpdateCounter / 2;
+        int newYOffset = linearTerm - quadraticTerm;
 
-        if (v2 < 8 * 11) {
-            manager->unk_B0++;
-            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, 1, 2);
-            Bg_SetOffset(manager->bgConfig, BG_LAYER_SUB_1, 1, 2);
-            Bg_SetOffset(manager->bgConfig, BG_LAYER_SUB_1, 3, v5);
+        if (yOffset < 8 * 11) {
+            manager->bunearyAnimUpdateCounter++;
+            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_ADD_X, 2);
+            Bg_SetOffset(manager->bgConfig, BG_LAYER_SUB_1, BG_OFFSET_UPDATE_ADD_X, 2);
+            Bg_SetOffset(manager->bgConfig, BG_LAYER_SUB_1, BG_OFFSET_UPDATE_SET_Y, newYOffset);
         } else {
             Bg_ToggleLayer(BG_LAYER_SUB_1, 0);
-            manager->unk_B0 = 0;
-            *state = BAN_PLACEHOLDER_2;
+            manager->bunearyAnimUpdateCounter = 0;
+            *state = BA_STATE_SHOW_ON_TOP_SCREEN;
         }
     } break;
-    case BAN_PLACEHOLDER_2:
-        if (manager->unk_B0) {
-            manager->unk_B0--;
+    case BA_STATE_SHOW_ON_TOP_SCREEN:
+        if (manager->bunearyAnimUpdateCounter) {
+            manager->bunearyAnimUpdateCounter--;
         } else {
             Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
-            manager->unk_A8 = 0;
-            manager->unk_AC = 9;
-            manager->unk_B0 = 0;
-            *state = BAN_PLACEHOLDER_3;
+            manager->bunearyAnimCarryover = 0;
+            manager->bunearyParabolaCoeff = 9;
+            manager->bunearyAnimUpdateCounter = 0;
+            *state = BA_STATE_JUMP_UP_AND_DOWN;
         }
         break;
-    case BAN_PLACEHOLDER_3: {
-        int v6 = Bg_GetXOffset(manager->bgConfig, 2);
-        int v7 = Bg_GetYOffset(manager->bgConfig, 2);
-        int v8 = manager->unk_AC * 9 * manager->unk_B0;
-        int v9 = 9 * manager->unk_B0 * manager->unk_B0 / 2;
-        int v10 = (-8 * 13) + v8 - v9;
+    case BA_STATE_JUMP_UP_AND_DOWN: {
+        int unused0 = Bg_GetXOffset(manager->bgConfig, 2);
+        int unused1 = Bg_GetYOffset(manager->bgConfig, 2);
+        int linearTerm = manager->bunearyParabolaCoeff * 9 * manager->bunearyAnimUpdateCounter;
+        int quadraticTerm = 9 * manager->bunearyAnimUpdateCounter * manager->bunearyAnimUpdateCounter / 2;
+        int newYOffset = (-8 * 13) + linearTerm - quadraticTerm;
 
-        if ((manager->unk_A8 > 0) && (v10 <= 0)) {
-            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, 3, 0);
-            manager->unk_A8 = 0;
-            manager->unk_AC = 3;
-            manager->unk_B0 = 0;
-            *state = BAN_PLACEHOLDER_4;
+        if ((manager->bunearyAnimCarryover > 0) && (newYOffset <= 0)) {
+            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_Y, 0);
+            manager->bunearyAnimCarryover = 0;
+            manager->bunearyParabolaCoeff = 3;
+            manager->bunearyAnimUpdateCounter = 0;
+            *state = BA_STATE_JUMP_RIGHT;
         } else {
-            manager->unk_B0++;
-            manager->unk_A8 = v10;
-            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, 1, 1);
-            v10 = v10 >> 1;
+            manager->bunearyAnimUpdateCounter++;
+            manager->bunearyAnimCarryover = newYOffset;
+            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_ADD_X, 1);
+            newYOffset = newYOffset >> 1;
 
-            if (v10 > 8 * 18) {
-                v10 = 8 * 18;
+            if (newYOffset > 8 * 18) {
+                newYOffset = 8 * 18;
             }
 
-            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, 3, v10);
+            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_Y, newYOffset);
         }
     } break;
-    case BAN_PLACEHOLDER_4: {
-        int v11 = Bg_GetXOffset(manager->bgConfig, 2);
-        int v12 = Bg_GetYOffset(manager->bgConfig, 2);
-        int v13 = manager->unk_AC * 9 * manager->unk_B0;
-        int v14 = 9 * manager->unk_B0 * manager->unk_B0 / 3;
-        int v15 = v13 - v14;
+    case BA_STATE_JUMP_RIGHT: {
+        int unused0 = Bg_GetXOffset(manager->bgConfig, 2);
+        int unused1 = Bg_GetYOffset(manager->bgConfig, 2);
+        int linearTerm = manager->bunearyParabolaCoeff * 9 * manager->bunearyAnimUpdateCounter;
+        int quadraticTerm = 9 * manager->bunearyAnimUpdateCounter * manager->bunearyAnimUpdateCounter / 3;
+        int newYOffset = linearTerm - quadraticTerm;
 
-        if ((manager->unk_A8 > 0) && (v15 <= 0)) {
-            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, 3, 0);
-            manager->unk_A8 = 0;
-            manager->unk_AC = 3;
-            manager->unk_B0 = 0;
-            *state = BAN_PLACEHOLDER_5;
+        if ((manager->bunearyAnimCarryover > 0) && (newYOffset <= 0)) {
+            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_Y, 0);
+            manager->bunearyAnimCarryover = 0;
+            manager->bunearyParabolaCoeff = 3;
+            manager->bunearyAnimUpdateCounter = 0;
+            *state = BA_STATE_JUMP_LEFT;
         } else {
-            manager->unk_B0++;
-            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, 2, 2);
-            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, 3, v15);
-            manager->unk_A8 = v15;
+            manager->bunearyAnimUpdateCounter++;
+            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SUB_X, 2);
+            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_Y, newYOffset);
+            manager->bunearyAnimCarryover = newYOffset;
         }
     } break;
-    case BAN_PLACEHOLDER_5: {
-        int v16 = Bg_GetXOffset(manager->bgConfig, 2);
-        int v17 = Bg_GetYOffset(manager->bgConfig, 2);
-        int v18 = manager->unk_AC * 9 * manager->unk_B0;
-        int v19 = 9 * manager->unk_B0 * manager->unk_B0 / 3;
-        int v20 = v18 - v19;
+    case BA_STATE_JUMP_LEFT: {
+        int unused0 = Bg_GetXOffset(manager->bgConfig, 2);
+        int unused1 = Bg_GetYOffset(manager->bgConfig, 2);
+        int linearTerm = manager->bunearyParabolaCoeff * 9 * manager->bunearyAnimUpdateCounter;
+        int quadraticTerm = 9 * manager->bunearyAnimUpdateCounter * manager->bunearyAnimUpdateCounter / 3;
+        int newYOffset = linearTerm - quadraticTerm;
 
-        if ((manager->unk_A8 > 0) && (v20 <= 0)) {
-            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, 3, 0);
-            *state = BAN_PLACEHOLDER_6;
+        if ((manager->bunearyAnimCarryover > 0) && (newYOffset <= 0)) {
+            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_Y, 0);
+            *state = BA_STATE_END;
         } else {
-            manager->unk_B0++;
-            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, 1, 4);
-            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, 3, v20);
-            manager->unk_A8 = v20;
+            manager->bunearyAnimUpdateCounter++;
+            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_ADD_X, 4);
+            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_Y, newYOffset);
+            manager->bunearyAnimCarryover = newYOffset;
         }
     } break;
-    case BAN_PLACEHOLDER_6:
+    case BA_STATE_END:
         Sound_PlayPokemonCry(SPECIES_BUNEARY, 0);
         isFinished = TRUE;
         break;
     }
 
-    ov73_021D1FA0(manager);
+    RowanIntro_AnimateBuneary_BlendSpritePalette(manager);
 
     return isFinished;
 }
 
-static void ov73_021D230C(RowanIntroManager *manager)
+static void RowanIntro_SetBunearyLayerPriority(RowanIntro *manager)
 {
     Bg_SetPriority(BG_LAYER_MAIN_2, 1);
 }
 
-static BOOL ov73_021D2318(RowanIntroManager *manager)
+static BOOL RowanIntro_Run(RowanIntro *manager)
 {
-    BOOL v0 = 0;
+    BOOL isFinished = FALSE;
 
     switch (manager->state) {
-    case RIM_STATE_FIRST_FADE_BLACK_START:
+    case RI_STATE_FIRST_FADE_BLACK_START:
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_2, SEQ_OPENING, 1);
         Sound_StopBGM(SEQ_OPENING, 0);
         Bg_ToggleLayer(BG_LAYER_MAIN_0, 1);
         Bg_ToggleLayer(BG_LAYER_SUB_3, 1);
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, manager->heapID);
-        manager->state = RIM_STATE_FIRST_FADE_BLACK_END;
+        manager->state = RI_STATE_FIRST_FADE_BLACK_END;
         break;
-    case RIM_STATE_FIRST_FADE_BLACK_END:
+    case RI_STATE_FIRST_FADE_BLACK_END:
         if (IsScreenFadeDone() == TRUE) {
-            if (RowanIntroManager_Delay(manager, 40) == TRUE) {
-                manager->state = RIM_STATE_DIALOGUE_WELCOME;
+            if (RowanIntro_Delay(manager, 40) == TRUE) {
+                manager->state = RI_STATE_DIALOGUE_WELCOME;
             }
         }
         break;
-    case RIM_STATE_DIALOGUE_WELCOME:
-        if (RowanIntroManager_DisplayMessage(manager, 0, 1) == 1) {
-            manager->state = RIM_STATE_FADE_IN_ROWAN_START;
+    case RI_STATE_DIALOGUE_WELCOME:
+        if (RowanIntro_DisplayMessage(manager, 0, TRUE) == TRUE) {
+            manager->state = RI_STATE_FADE_IN_ROWAN_START;
             {
                 Bg_ClearTilemap(manager->bgConfig, BG_LAYER_MAIN_0);
             }
         }
         break;
-    case RIM_STATE_FADE_IN_ROWAN_START:
+    case RI_STATE_FADE_IN_ROWAN_START:
         Sound_PlayBGM(SEQ_OPENING);
         manager->bgLayer1TilemapIndex = 1;
         manager->bgLayer2TilemapIndex = 0;
-        RowanIntroManager_LoadTilemap(manager);
+        RowanIntro_LoadTilemap(manager);
         Bg_ToggleLayer(BG_LAYER_MAIN_3, 1);
         Bg_ToggleLayer(BG_LAYER_MAIN_1, 1);
         StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 16, 4, manager->heapID);
-        manager->state = RIM_STATE_FADE_IN_ROWAN_END;
+        manager->state = RI_STATE_FADE_IN_ROWAN_END;
         break;
-    case RIM_STATE_FADE_IN_ROWAN_END:
+    case RI_STATE_FADE_IN_ROWAN_END:
         if (IsScreenFadeDone() == TRUE) {
-            manager->state = RIM_STATE_DIALOGUE_ROWAN_INTRO;
+            manager->state = RI_STATE_DIALOGUE_ROWAN_INTRO;
         }
         break;
-    case RIM_STATE_DIALOGUE_ROWAN_INTRO:
-        if (RowanIntroManager_DisplayMessage(manager, 1, 1) == 1) {
-            manager->state = RIM_STATE_MOVE_ROWAN_RIGHT_FOR_INFO;
+    case RI_STATE_DIALOGUE_ROWAN_INTRO:
+        if (RowanIntro_DisplayMessage(manager, 1, TRUE) == TRUE) {
+            manager->state = RI_STATE_MOVE_ROWAN_RIGHT_FOR_INFO;
         }
         break;
-    case RIM_STATE_MOVE_ROWAN_RIGHT_FOR_INFO:
-        if (RowanIntroManager_MoveBgLayer(manager, BG_LAYER_MAIN_1, MBL_CASE_MOVE_RIGHT) == 1) {
-            manager->state = RIM_STATE_INFO_CHOICE_BOX;
+    case RI_STATE_MOVE_ROWAN_RIGHT_FOR_INFO:
+        if (RowanIntro_MoveBgLayer(manager, BG_LAYER_MAIN_1, MBL_CASE_MOVE_RIGHT) == TRUE) {
+            manager->state = RI_STATE_INFO_CHOICE_BOX;
         }
         break;
-    case RIM_STATE_INFO_CHOICE_BOX:
-        if (RowanIntroManager_ChoiceBox(manager, 1, 1) == 1) {
+    case RI_STATE_INFO_CHOICE_BOX:
+        if (RowanIntro_ChoiceBox(manager, CC_INFO, TRUE) == TRUE) {
             switch (manager->playerChoice) {
             case 1:
-                manager->bufferedState = RIM_STATE_CONTROL_INFO_FADE_IN_START;
-                manager->state = RIM_STATE_INFO_FADE_BLACK_START;
+                manager->bufferedState = RI_STATE_CONTROL_INFO_FADE_IN_START;
+                manager->state = RI_STATE_INFO_FADE_BLACK_START;
                 break;
             case 2:
-                manager->bufferedState = RIM_STATE_ADVENTURE_INFO_FADE_IN_START;
-                manager->state = RIM_STATE_INFO_FADE_BLACK_START;
+                manager->bufferedState = RI_STATE_ADVENTURE_INFO_FADE_IN_START;
+                manager->state = RI_STATE_INFO_FADE_BLACK_START;
                 {
                     Bg_ClearTilemap(manager->bgConfig, BG_LAYER_MAIN_0);
                 }
                 break;
             case 3:
-                manager->state = RIM_STATE_LEFT_ROWAN_AFTER_INFO;
+                manager->state = RI_STATE_LEFT_ROWAN_AFTER_INFO;
                 break;
             }
         }
         break;
-    case RIM_STATE_INFO_FADE_BLACK_START:
+    case RI_STATE_INFO_FADE_BLACK_START:
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, manager->heapID);
-        manager->state = RIM_STATE_INFO_FADE_BLACK_END;
+        manager->state = RI_STATE_INFO_FADE_BLACK_END;
         break;
-    case RIM_STATE_INFO_FADE_BLACK_END:
+    case RI_STATE_INFO_FADE_BLACK_END:
         if (IsScreenFadeDone() == TRUE) {
             {
                 Bg_ClearTilemap(manager->bgConfig, BG_LAYER_MAIN_0);
@@ -1655,67 +1690,67 @@ static BOOL ov73_021D2318(RowanIntroManager *manager)
             }
         }
         break;
-    case RIM_STATE_CONTROL_INFO_FADE_IN_START:
+    case RI_STATE_CONTROL_INFO_FADE_IN_START:
         manager->bgLayer3TilemapIndex = 1;
-        RowanIntroManager_LoadLayer3Tilemap(manager);
+        RowanIntro_LoadLayer3Tilemap(manager);
         manager->bgSubLayer3TilemapIndex = 1;
-        RowanIntroManager_LoadSubLayer3Tilemap(manager);
+        RowanIntro_LoadSubLayer3Tilemap(manager);
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, manager->heapID);
-        manager->state = RIM_STATE_CONTROL_INFO_FADE_IN_END;
+        manager->state = RI_STATE_CONTROL_INFO_FADE_IN_END;
         break;
-    case RIM_STATE_CONTROL_INFO_FADE_IN_END:
+    case RI_STATE_CONTROL_INFO_FADE_IN_END:
         if (IsScreenFadeDone() == TRUE) {
-            manager->state = RIM_STATE_CONTROL_INFO_TEXT_0;
+            manager->state = RI_STATE_CONTROL_INFO_TEXT_0;
         }
         break;
-    case RIM_STATE_CONTROL_INFO_TEXT_0:
-        if (RowanIntroManager_DisplayTextBlock(manager, 2, 0, 3, 18) == 1) {
-            manager->state = RIM_STATE_CONTROL_INFO_SHOW_XY_ICONS;
+    case RI_STATE_CONTROL_INFO_TEXT_0:
+        if (RowanIntro_DisplayTextBlock(manager, 2, DTBC_CONTROL_INFO_0, 3, 18) == TRUE) {
+            manager->state = RI_STATE_CONTROL_INFO_SHOW_XY_ICONS;
         }
         break;
-    case RIM_STATE_CONTROL_INFO_SHOW_XY_ICONS:
+    case RI_STATE_CONTROL_INFO_SHOW_XY_ICONS:
         manager->bgLayer3TilemapIndex = 2;
-        RowanIntroManager_LoadLayer3Tilemap(manager);
-        manager->state = RIM_STATE_CONTROL_INFO_TEXT_1;
+        RowanIntro_LoadLayer3Tilemap(manager);
+        manager->state = RI_STATE_CONTROL_INFO_TEXT_1;
         break;
-    case RIM_STATE_CONTROL_INFO_TEXT_1:
-        if (RowanIntroManager_DisplayTextBlock(manager, 3, 0, 7, 12) == 1) {
-            manager->state = RIM_STATE_CONTROL_INFO_HIDE_XY_ICONS;
+    case RI_STATE_CONTROL_INFO_TEXT_1:
+        if (RowanIntro_DisplayTextBlock(manager, 3, DTBC_CONTROL_INFO_0, 7, 12) == TRUE) {
+            manager->state = RI_STATE_CONTROL_INFO_HIDE_XY_ICONS;
         }
         break;
-    case RIM_STATE_CONTROL_INFO_HIDE_XY_ICONS:
+    case RI_STATE_CONTROL_INFO_HIDE_XY_ICONS:
         manager->bgLayer3TilemapIndex = 3;
-        RowanIntroManager_LoadLayer3Tilemap(manager);
-        manager->state = RIM_STATE_CONTROL_INFO_TEXT_2;
+        RowanIntro_LoadLayer3Tilemap(manager);
+        manager->state = RI_STATE_CONTROL_INFO_TEXT_2;
         break;
-    case RIM_STATE_CONTROL_INFO_TEXT_2:
-        if (RowanIntroManager_DisplayTextBlock(manager, 4, 2, 4, 12) == 1) {
-            manager->state = RIM_STATE_CONTROL_INFO_DIALOGUE_DS_ICON;
+    case RI_STATE_CONTROL_INFO_TEXT_2:
+        if (RowanIntro_DisplayTextBlock(manager, 4, DTBC_CONTROL_INFO_1, 4, 12) == TRUE) {
+            manager->state = RI_STATE_CONTROL_INFO_DIALOGUE_DS_ICON;
         }
         break;
-    case RIM_STATE_CONTROL_INFO_DIALOGUE_DS_ICON:
-        if (RowanIntroManager_DisplayMessage(manager, 6, 1) == 1) {
-            manager->state = RIM_STATE_CONTROL_INFO_TEXT_3;
+    case RI_STATE_CONTROL_INFO_DIALOGUE_DS_ICON:
+        if (RowanIntro_DisplayMessage(manager, 6, TRUE) == TRUE) {
+            manager->state = RI_STATE_CONTROL_INFO_TEXT_3;
         }
         break;
-    case RIM_STATE_CONTROL_INFO_TEXT_3:
-        if (RowanIntroManager_DisplayTextBlock(manager, 5, 2, 4, 10) == 1) {
-            manager->state = RIM_STATE_CONTROL_INFO_HIDE_FG;
+    case RI_STATE_CONTROL_INFO_TEXT_3:
+        if (RowanIntro_DisplayTextBlock(manager, 5, DTBC_CONTROL_INFO_1, 4, 10) == TRUE) {
+            manager->state = RI_STATE_CONTROL_INFO_HIDE_FG;
             {
                 Bg_ClearTilemap(manager->bgConfig, BG_LAYER_MAIN_0);
             }
         }
         break;
-    case RIM_STATE_CONTROL_INFO_HIDE_FG:
+    case RI_STATE_CONTROL_INFO_HIDE_FG:
         Bg_ToggleLayer(BG_LAYER_MAIN_0, 1);
-        manager->state = RIM_STATE_CONTROL_INFO_DIALOGUE_UNDERSTOOD;
+        manager->state = RI_STATE_CONTROL_INFO_DIALOGUE_UNDERSTOOD;
         break;
-    case RIM_STATE_CONTROL_INFO_DIALOGUE_UNDERSTOOD:
-        if (RowanIntroManager_DisplayMessage(manager, 7, 1) == 1) {
-            manager->state = RIM_STATE_CONTROL_INFO_SHOW_YESNO;
+    case RI_STATE_CONTROL_INFO_DIALOGUE_UNDERSTOOD:
+        if (RowanIntro_DisplayMessage(manager, 7, TRUE) == TRUE) {
+            manager->state = RI_STATE_CONTROL_INFO_SHOW_YESNO;
         }
         break;
-    case RIM_STATE_CONTROL_INFO_SHOW_YESNO: {
+    case RI_STATE_CONTROL_INFO_SHOW_YESNO: {
         UnkStruct_02015958 v1 = { NULL, 6, 1, 12, 12, 8 };
 
         v1.unk_00 = manager->bgConfig;
@@ -1723,12 +1758,12 @@ static BOOL ov73_021D2318(RowanIntroManager *manager)
         Bg_ToggleLayer(BG_LAYER_SUB_2, 1);
     }
         manager->bgSubLayer3TilemapIndex = 3;
-        RowanIntroManager_LoadSubLayer3Tilemap(manager);
-        manager->state = RIM_STATE_CONTROL_INFO_WAIT_INPUT;
+        RowanIntro_LoadSubLayer3Tilemap(manager);
+        manager->state = RI_STATE_CONTROL_INFO_WAIT_INPUT;
         break;
-    case RIM_STATE_CONTROL_INFO_WAIT_INPUT:
+    case RI_STATE_CONTROL_INFO_WAIT_INPUT:
         if (gSystem.pressedKeys) {
-            manager->state = RIM_STATE_CONTROL_INFO_DIALOGUE_USE_TOUCHSCREEN;
+            manager->state = RI_STATE_CONTROL_INFO_DIALOGUE_USE_TOUCHSCREEN;
             break;
         }
 
@@ -1736,315 +1771,315 @@ static BOOL ov73_021D2318(RowanIntroManager *manager)
             int v2 = sub_020159C0(manager->unk_68);
 
             if ((v2 == 3) || (v2 == 4)) {
-                manager->state = RIM_STATE_CONTROL_INFO_PROCESS_YESNO;
+                manager->state = RI_STATE_CONTROL_INFO_PROCESS_YESNO;
             }
         }
         break;
-    case RIM_STATE_CONTROL_INFO_PROCESS_YESNO:
+    case RI_STATE_CONTROL_INFO_PROCESS_YESNO:
         switch (sub_020159C0(manager->unk_68)) {
         case 1:
-            manager->state = RIM_STATE_CONTROL_INFO_FADE_OUT_START;
+            manager->state = RI_STATE_CONTROL_INFO_FADE_OUT_START;
             break;
         case 2:
-            manager->state = RIM_STATE_CONTROL_INFO_REPEAT;
+            manager->state = RI_STATE_CONTROL_INFO_REPEAT;
             break;
         }
         break;
-    case RIM_STATE_CONTROL_INFO_FADE_OUT_START:
-        if (RowanIntroManager_FadeBgLayer(manager, BG_LAYER_SUB_2, FADE_OUT) == TRUE) {
+    case RI_STATE_CONTROL_INFO_FADE_OUT_START:
+        if (RowanIntro_FadeBgLayer(manager, BG_LAYER_SUB_2, FADE_OUT) == TRUE) {
             sub_02015A54(manager->unk_68);
             StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, manager->heapID);
-            manager->state = RIM_STATE_CONTROL_INFO_FADE_OUT_END;
+            manager->state = RI_STATE_CONTROL_INFO_FADE_OUT_END;
         }
         break;
-    case RIM_STATE_CONTROL_INFO_FADE_OUT_END:
+    case RI_STATE_CONTROL_INFO_FADE_OUT_END:
         if (IsScreenFadeDone() == TRUE) {
             {
                 Bg_ClearTilemap(manager->bgConfig, BG_LAYER_MAIN_0);
             }
-            manager->state = RIM_STATE_FADE_IN_ROWAN_2_START;
+            manager->state = RI_STATE_FADE_IN_ROWAN_2_START;
         }
         break;
-    case RIM_STATE_CONTROL_INFO_REPEAT:
-        if (RowanIntroManager_FadeBgLayer(manager, BG_LAYER_SUB_2, FADE_OUT) == TRUE) {
+    case RI_STATE_CONTROL_INFO_REPEAT:
+        if (RowanIntro_FadeBgLayer(manager, BG_LAYER_SUB_2, FADE_OUT) == TRUE) {
             {
                 Bg_ClearTilemap(manager->bgConfig, BG_LAYER_MAIN_0);
             }
             sub_02015A54(manager->unk_68);
             manager->bgLayer3TilemapIndex = 1;
-            RowanIntroManager_LoadLayer3Tilemap(manager);
+            RowanIntro_LoadLayer3Tilemap(manager);
             manager->bgSubLayer3TilemapIndex = 1;
-            RowanIntroManager_LoadSubLayer3Tilemap(manager);
-            manager->state = RIM_STATE_CONTROL_INFO_TEXT_0;
+            RowanIntro_LoadSubLayer3Tilemap(manager);
+            manager->state = RI_STATE_CONTROL_INFO_TEXT_0;
         }
         break;
-    case RIM_STATE_CONTROL_INFO_DIALOGUE_USE_TOUCHSCREEN:
-        if (RowanIntroManager_DisplayMessage(manager, 8, 1) == 1) {
-            manager->state = RIM_STATE_CONTROL_INFO_WAIT_INPUT;
+    case RI_STATE_CONTROL_INFO_DIALOGUE_USE_TOUCHSCREEN:
+        if (RowanIntro_DisplayMessage(manager, 8, TRUE) == TRUE) {
+            manager->state = RI_STATE_CONTROL_INFO_WAIT_INPUT;
         }
         break;
-    case RIM_STATE_FADE_IN_ROWAN_2_START:
+    case RI_STATE_FADE_IN_ROWAN_2_START:
         manager->bgLayer3TilemapIndex = 0;
-        RowanIntroManager_LoadLayer3Tilemap(manager);
+        RowanIntro_LoadLayer3Tilemap(manager);
         manager->bgSubLayer3TilemapIndex = 0;
-        RowanIntroManager_LoadSubLayer3Tilemap(manager);
+        RowanIntro_LoadSubLayer3Tilemap(manager);
         Bg_ToggleLayer(BG_LAYER_MAIN_1, 1);
-        Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_1, 0, 0);
+        Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_1, BG_OFFSET_UPDATE_SET_X, 0);
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, manager->heapID);
-        manager->state = RIM_STATE_FADE_IN_ROWAN_2_END;
+        manager->state = RI_STATE_FADE_IN_ROWAN_2_END;
         break;
-    case RIM_STATE_FADE_IN_ROWAN_2_END:
+    case RI_STATE_FADE_IN_ROWAN_2_END:
         if (IsScreenFadeDone() == TRUE) {
-            manager->state = RIM_STATE_DIALOGUE_ANOTHER_INFO;
+            manager->state = RI_STATE_DIALOGUE_ANOTHER_INFO;
         }
         break;
-    case RIM_STATE_DIALOGUE_ANOTHER_INFO:
-        if (RowanIntroManager_DisplayMessage(manager, 9, 1) == 1) {
-            manager->state = RIM_STATE_MOVE_ROWAN_RIGHT_FOR_INFO;
+    case RI_STATE_DIALOGUE_ANOTHER_INFO:
+        if (RowanIntro_DisplayMessage(manager, 9, TRUE) == TRUE) {
+            manager->state = RI_STATE_MOVE_ROWAN_RIGHT_FOR_INFO;
         }
         break;
-    case RIM_STATE_ADVENTURE_INFO_FADE_IN_START:
+    case RI_STATE_ADVENTURE_INFO_FADE_IN_START:
         manager->bgLayer3TilemapIndex = 4;
-        RowanIntroManager_LoadLayer3Tilemap(manager);
+        RowanIntro_LoadLayer3Tilemap(manager);
         manager->bgSubLayer3TilemapIndex = 2;
-        RowanIntroManager_LoadSubLayer3Tilemap(manager);
+        RowanIntro_LoadSubLayer3Tilemap(manager);
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, manager->heapID);
-        manager->state = RIM_STATE_ADVENTURE_INFO_FADE_IN_END;
+        manager->state = RI_STATE_ADVENTURE_INFO_FADE_IN_END;
         break;
-    case RIM_STATE_ADVENTURE_INFO_FADE_IN_END:
+    case RI_STATE_ADVENTURE_INFO_FADE_IN_END:
         if (IsScreenFadeDone() == TRUE) {
-            manager->state = RIM_STATE_ADVENTURE_INFO_TEXT_0;
+            manager->state = RI_STATE_ADVENTURE_INFO_TEXT_0;
         }
         break;
-    case RIM_STATE_ADVENTURE_INFO_TEXT_0:
-        if (RowanIntroManager_DisplayTextBlock(manager, 10, 1, 9, 6) == 1) {
-            manager->state = RIM_STATE_ADVENTURE_INFO_TEXT_1;
+    case RI_STATE_ADVENTURE_INFO_TEXT_0:
+        if (RowanIntro_DisplayTextBlock(manager, 10, DTBC_ADVENTURE_INFO, 9, 6) == TRUE) {
+            manager->state = RI_STATE_ADVENTURE_INFO_TEXT_1;
         }
         break;
-    case RIM_STATE_ADVENTURE_INFO_TEXT_1:
-        if (RowanIntroManager_DisplayTextBlock(manager, 11, 1, 8, 8) == 1) {
-            manager->state = RIM_STATE_ADVENTURE_INFO_TEXT_2;
+    case RI_STATE_ADVENTURE_INFO_TEXT_1:
+        if (RowanIntro_DisplayTextBlock(manager, 11, DTBC_ADVENTURE_INFO, 8, 8) == TRUE) {
+            manager->state = RI_STATE_ADVENTURE_INFO_TEXT_2;
         }
         break;
-    case RIM_STATE_ADVENTURE_INFO_TEXT_2:
-        if (RowanIntroManager_DisplayTextBlock(manager, 12, 1, 9, 6) == 1) {
-            manager->state = RIM_STATE_ADVENTURE_INFO_TEXT_3;
+    case RI_STATE_ADVENTURE_INFO_TEXT_2:
+        if (RowanIntro_DisplayTextBlock(manager, 12, DTBC_ADVENTURE_INFO, 9, 6) == TRUE) {
+            manager->state = RI_STATE_ADVENTURE_INFO_TEXT_3;
         }
         break;
-    case RIM_STATE_ADVENTURE_INFO_TEXT_3:
-        if (RowanIntroManager_DisplayTextBlock(manager, 13, 1, 5, 14) == 1) {
-            manager->state = RIM_STATE_ADVENTURE_INFO_TEXT_4;
+    case RI_STATE_ADVENTURE_INFO_TEXT_3:
+        if (RowanIntro_DisplayTextBlock(manager, 13, DTBC_ADVENTURE_INFO, 5, 14) == TRUE) {
+            manager->state = RI_STATE_ADVENTURE_INFO_TEXT_4;
         }
         break;
-    case RIM_STATE_ADVENTURE_INFO_TEXT_4:
-        if (RowanIntroManager_DisplayTextBlock(manager, 14, 1, 10, 4) == 1) {
-            manager->state = RIM_STATE_ADVENTURE_INFO_TEXT_5;
+    case RI_STATE_ADVENTURE_INFO_TEXT_4:
+        if (RowanIntro_DisplayTextBlock(manager, 14, DTBC_ADVENTURE_INFO, 10, 4) == TRUE) {
+            manager->state = RI_STATE_ADVENTURE_INFO_TEXT_5;
         }
         break;
-    case RIM_STATE_ADVENTURE_INFO_TEXT_5:
-        if (RowanIntroManager_DisplayTextBlock(manager, 15, 1, 6, 12) == 1) {
-            manager->state = RIM_STATE_ADVENTURE_INFO_FADE_OUT_START;
+    case RI_STATE_ADVENTURE_INFO_TEXT_5:
+        if (RowanIntro_DisplayTextBlock(manager, 15, DTBC_ADVENTURE_INFO, 6, 12) == TRUE) {
+            manager->state = RI_STATE_ADVENTURE_INFO_FADE_OUT_START;
         }
         break;
-    case RIM_STATE_ADVENTURE_INFO_FADE_OUT_START:
+    case RI_STATE_ADVENTURE_INFO_FADE_OUT_START:
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, manager->heapID);
-        manager->state = RIM_STATE_ADVENTURE_INFO_FADE_OUT_END;
+        manager->state = RI_STATE_ADVENTURE_INFO_FADE_OUT_END;
         break;
-    case RIM_STATE_ADVENTURE_INFO_FADE_OUT_END:
+    case RI_STATE_ADVENTURE_INFO_FADE_OUT_END:
         if (IsScreenFadeDone() == TRUE) {
             {
                 Bg_ClearTilemap(manager->bgConfig, BG_LAYER_MAIN_0);
             }
             Bg_ToggleLayer(BG_LAYER_MAIN_0, 1);
-            manager->state = RIM_STATE_FADE_IN_ROWAN_2_START;
+            manager->state = RI_STATE_FADE_IN_ROWAN_2_START;
         }
         break;
-    case RIM_STATE_LEFT_ROWAN_AFTER_INFO:
-        if (RowanIntroManager_MoveBgLayer(manager, BG_LAYER_MAIN_1, MBL_CASE_MOVE_LEFT) == 1) {
-            manager->state = RIM_STATE_DIALOGUE_WIDELY_INHABITED;
+    case RI_STATE_LEFT_ROWAN_AFTER_INFO:
+        if (RowanIntro_MoveBgLayer(manager, BG_LAYER_MAIN_1, MBL_CASE_MOVE_LEFT) == TRUE) {
+            manager->state = RI_STATE_DIALOGUE_WIDELY_INHABITED;
         }
         break;
-    case RIM_STATE_DIALOGUE_WIDELY_INHABITED:
-        if (RowanIntroManager_DisplayMessage(manager, 16, 1) == 1) {
-            manager->state = RIM_STATE_PKBL_FADE_START;
+    case RI_STATE_DIALOGUE_WIDELY_INHABITED:
+        if (RowanIntro_DisplayMessage(manager, 16, TRUE) == TRUE) {
+            manager->state = RI_STATE_PKBL_FADE_START;
         }
         break;
-    case RIM_STATE_PKBL_FADE_START:
+    case RI_STATE_PKBL_FADE_START:
         StartScreenFade(FADE_SUB_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, manager->heapID);
-        manager->state = RIM_STATE_PKBL_FADE_MIDDLE;
+        manager->state = RI_STATE_PKBL_FADE_MIDDLE;
         break;
-    case RIM_STATE_PKBL_FADE_MIDDLE:
+    case RI_STATE_PKBL_FADE_MIDDLE:
         if (IsScreenFadeDone() == TRUE) {
-            RowanIntroManager_LoadPokeballTilemap(manager);
+            RowanIntro_LoadPokeballTilemap(manager);
             manager->bgSubLayer3TilemapIndex = 4;
-            RowanIntroManager_LoadSubLayer3Tilemap(manager);
+            RowanIntro_LoadSubLayer3Tilemap(manager);
             Bg_ToggleLayer(BG_LAYER_SUB_2, 1);
             StartScreenFade(FADE_SUB_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, manager->heapID);
-            manager->state = RIM_STATE_PKBL_FADE_END;
+            manager->state = RI_STATE_PKBL_FADE_END;
         }
         break;
-    case RIM_STATE_PKBL_FADE_END:
+    case RI_STATE_PKBL_FADE_END:
         if (IsScreenFadeDone() == TRUE) {
-            manager->state = RIM_STATE_PKBL_DIALOGUE;
+            manager->state = RI_STATE_PKBL_DIALOGUE;
         }
         break;
-    case RIM_STATE_PKBL_DIALOGUE:
-        if (RowanIntroManager_DisplayMessage(manager, 17, 1) == 1) {
-            manager->state = RIM_STATE_PKBL_WAIT_INPUT;
+    case RI_STATE_PKBL_DIALOGUE:
+        if (RowanIntro_DisplayMessage(manager, 17, TRUE) == TRUE) {
+            manager->state = RI_STATE_PKBL_WAIT_INPUT;
         }
         break;
-    case RIM_STATE_PKBL_WAIT_INPUT:
-        if (RowanIntroManager_WasPokeballOpened() == TRUE) {
+    case RI_STATE_PKBL_WAIT_INPUT:
+        if (RowanIntro_WasPokeballOpened() == TRUE) {
             manager->animData.progressCounter = 0;
             manager->animDelayUpdateCounter = 0;
             {
                 Bg_ClearTilemap(manager->bgConfig, BG_LAYER_MAIN_0);
             }
-            manager->state = RIM_STATE_PKBL_ANIM_PUSH_IN;
+            manager->state = RI_STATE_PKBL_ANIM_PUSH_IN;
         } else if (gSystem.pressedKeys) {
-            manager->state = RIM_STATE_PKBL_DIALOGUE_USE_TOUCHSCREEN;
+            manager->state = RI_STATE_PKBL_DIALOGUE_USE_TOUCHSCREEN;
         }
         break;
-    case RIM_STATE_PKBL_ANIM_PUSH_IN:
+    case RI_STATE_PKBL_ANIM_PUSH_IN:
         if (manager->animDelayUpdateCounter) {
             manager->animDelayUpdateCounter--;
         } else {
             {
-                int v3[] = { 33, 34, 0xffff };
+                int pokeballTextureNARCIndices[] = { 33, 34, 0xffff };
 
-                if (v3[manager->animData.progressCounter] == 0xffff) {
+                if (pokeballTextureNARCIndices[manager->animData.progressCounter] == 0xffff) {
                     Sound_PlayEffect(SEQ_SE_DP_BOWA2);
 
-                    manager->state = RIM_STATE_PKBL_ANIM_FLASH_0;
+                    manager->state = RI_STATE_PKBL_ANIM_FLASH_0;
                 } else {
-                    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, v3[manager->animData.progressCounter], manager->bgConfig, 6, 0x20, 0, 0, manager->heapID);
+                    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO, pokeballTextureNARCIndices[manager->animData.progressCounter], manager->bgConfig, 6, 0x20, 0, 0, manager->heapID);
                     manager->animData.progressCounter++;
                     manager->animDelayUpdateCounter = 4;
                 }
             }
         }
         break;
-    case RIM_STATE_PKBL_DIALOGUE_USE_TOUCHSCREEN:
-        if (RowanIntroManager_DisplayMessage(manager, 18, 1) == 1) {
-            manager->state = RIM_STATE_PKBL_WAIT_INPUT;
+    case RI_STATE_PKBL_DIALOGUE_USE_TOUCHSCREEN:
+        if (RowanIntro_DisplayMessage(manager, 18, TRUE) == TRUE) {
+            manager->state = RI_STATE_PKBL_WAIT_INPUT;
         }
         break;
-    case RIM_STATE_PKBL_ANIM_FLASH_0:
+    case RI_STATE_PKBL_ANIM_FLASH_0:
         BrightnessController_StartTransition(1, 16, 0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, BRIGHTNESS_MAIN_SCREEN);
         BrightnessController_StartTransition(1, 16, 0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, BRIGHTNESS_SUB_SCREEN);
-        manager->state = RIM_STATE_PKBL_ANIM_FLASH_1;
+        manager->state = RI_STATE_PKBL_ANIM_FLASH_1;
         break;
-    case RIM_STATE_PKBL_ANIM_FLASH_1:
+    case RI_STATE_PKBL_ANIM_FLASH_1:
         if ((BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) && (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN) == TRUE)) {
             BrightnessController_StartTransition(1, 0, 16, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, BRIGHTNESS_MAIN_SCREEN);
             BrightnessController_StartTransition(1, 0, 16, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, BRIGHTNESS_SUB_SCREEN);
-            manager->state = RIM_STATE_PKBL_ANIM_FLASH_2;
+            manager->state = RI_STATE_PKBL_ANIM_FLASH_2;
         }
         break;
-    case RIM_STATE_PKBL_ANIM_FLASH_2:
+    case RI_STATE_PKBL_ANIM_FLASH_2:
         if ((BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) && (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN) == TRUE)) {
             BrightnessController_StartTransition(4, 16, 0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, BRIGHTNESS_MAIN_SCREEN);
             BrightnessController_StartTransition(4, 16, 0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, BRIGHTNESS_SUB_SCREEN);
-            manager->state = RIM_STATE_PKBL_ANIM_FLASH_3;
+            manager->state = RI_STATE_PKBL_ANIM_FLASH_3;
         }
         break;
-    case RIM_STATE_PKBL_ANIM_FLASH_3:
+    case RI_STATE_PKBL_ANIM_FLASH_3:
         if ((BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) && (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN) == TRUE)) {
-            manager->state = RIM_STATE_PKBL_ANIM_SPAWN_PKM_AND_FLASH_4;
+            manager->state = RI_STATE_PKBL_ANIM_SPAWN_PKM_AND_FLASH_4;
         }
         break;
-    case RIM_STATE_PKBL_ANIM_SPAWN_PKM_AND_FLASH_4:
-        ov73_021D1B80(manager);
+    case RI_STATE_PKBL_ANIM_SPAWN_PKM_AND_FLASH_4:
+        RowanIntro_LoadBunearySprite(manager);
         Bg_ToggleLayer(BG_LAYER_SUB_2, 0);
-        manager->animData.bunearyAnimState = BAN_INIT;
-        RowanIntroManager_AnimateBuneary(manager, &manager->animData.bunearyAnimState);
+        manager->animData.bunearyAnimState = BA_STATE_INIT;
+        RowanIntro_AnimateBuneary(manager, &manager->animData.bunearyAnimState);
         manager->bgSubLayer3TilemapIndex = 0;
-        RowanIntroManager_LoadSubLayer3Tilemap(manager);
+        RowanIntro_LoadSubLayer3Tilemap(manager);
         BrightnessController_StartTransition(16, 0, 16, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, BRIGHTNESS_MAIN_SCREEN);
         BrightnessController_StartTransition(16, 0, 16, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, BRIGHTNESS_SUB_SCREEN);
-        manager->state = RIM_STATE_PKBL_ANIM_MV_PKM_UP_AND_FLASH_END;
+        manager->state = RI_STATE_PKBL_ANIM_MV_PKM_UP_AND_FLASH_END;
         break;
-    case RIM_STATE_PKBL_ANIM_MV_PKM_UP_AND_FLASH_END:
-        RowanIntroManager_AnimateBuneary(manager, &manager->animData.bunearyAnimState);
+    case RI_STATE_PKBL_ANIM_MV_PKM_UP_AND_FLASH_END:
+        RowanIntro_AnimateBuneary(manager, &manager->animData.bunearyAnimState);
 
         if ((BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) && (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN) == TRUE)) {
-            manager->state = RIM_STATE_PKBL_ANIM_MV_PKM_DOWN_AND_BOUNCE;
+            manager->state = RI_STATE_PKBL_ANIM_MV_PKM_DOWN_AND_BOUNCE;
         }
         break;
-    case RIM_STATE_PKBL_ANIM_MV_PKM_DOWN_AND_BOUNCE:
-        if (RowanIntroManager_AnimateBuneary(manager, &manager->animData.bunearyAnimState) == TRUE) {
-            manager->state = RIM_STATE_PKBL_ANIM_END_DELAY;
+    case RI_STATE_PKBL_ANIM_MV_PKM_DOWN_AND_BOUNCE:
+        if (RowanIntro_AnimateBuneary(manager, &manager->animData.bunearyAnimState) == TRUE) {
+            manager->state = RI_STATE_PKBL_ANIM_END_DELAY;
         }
         break;
-    case RIM_STATE_PKBL_ANIM_END_DELAY:
-        if (RowanIntroManager_Delay(manager, 40) == TRUE) {
-            manager->state = RIM_STATE_PKBL_DIALOGUE_LIVE_ALONGSIDE;
+    case RI_STATE_PKBL_ANIM_END_DELAY:
+        if (RowanIntro_Delay(manager, 40) == TRUE) {
+            manager->state = RI_STATE_PKBL_DIALOGUE_LIVE_ALONGSIDE;
         }
         break;
-    case RIM_STATE_PKBL_DIALOGUE_LIVE_ALONGSIDE:
-        if (RowanIntroManager_DisplayMessage(manager, 19, 1) == 1) {
+    case RI_STATE_PKBL_DIALOGUE_LIVE_ALONGSIDE:
+        if (RowanIntro_DisplayMessage(manager, 19, TRUE) == TRUE) {
             {
                 Bg_ClearTilemap(manager->bgConfig, BG_LAYER_MAIN_0);
             }
-            manager->state = RIM_STATE_PKBL_PUT_AWAY_PKM;
+            manager->state = RI_STATE_PKBL_PUT_AWAY_PKM;
         }
         break;
-    case RIM_STATE_PKBL_PUT_AWAY_PKM:
-        if (RowanIntroManager_FadeBgLayer(manager, BG_LAYER_MAIN_2, FADE_OUT) == TRUE) {
-            ov73_021D230C(manager);
-            manager->state = RIM_STATE_BETWEEN_DIALOGUE_DELAY;
+    case RI_STATE_PKBL_PUT_AWAY_PKM:
+        if (RowanIntro_FadeBgLayer(manager, BG_LAYER_MAIN_2, FADE_OUT) == TRUE) {
+            RowanIntro_SetBunearyLayerPriority(manager);
+            manager->state = RI_STATE_BETWEEN_DIALOGUE_DELAY;
         }
         break;
-    case RIM_STATE_BETWEEN_DIALOGUE_DELAY:
-        if (RowanIntroManager_Delay(manager, 30) == TRUE) {
-            manager->state = RIM_STATE_DIALOGUE_ABOUT_YOURSELF;
+    case RI_STATE_BETWEEN_DIALOGUE_DELAY:
+        if (RowanIntro_Delay(manager, 30) == TRUE) {
+            manager->state = RI_STATE_DIALOGUE_ABOUT_YOURSELF;
         }
         break;
-    case RIM_STATE_DIALOGUE_ABOUT_YOURSELF:
-        if (RowanIntroManager_DisplayMessage(manager, 20, 1) == 1) {
-            manager->state = RIM_STATE_GENDR_FADE_OUT_ROWAN;
+    case RI_STATE_DIALOGUE_ABOUT_YOURSELF:
+        if (RowanIntro_DisplayMessage(manager, 20, TRUE) == TRUE) {
+            manager->state = RI_STATE_GENDR_FADE_OUT_ROWAN;
         }
         break;
-    case RIM_STATE_GENDR_FADE_OUT_ROWAN:
-        if (RowanIntroManager_FadeBgLayer(manager, BG_LAYER_MAIN_1, FADE_OUT) == TRUE) {
-            manager->state = RIM_STATE_GENDR_FADE_IN_AVATAR_PREP;
+    case RI_STATE_GENDR_FADE_OUT_ROWAN:
+        if (RowanIntro_FadeBgLayer(manager, BG_LAYER_MAIN_1, FADE_OUT) == TRUE) {
+            manager->state = RI_STATE_GENDR_FADE_IN_AVATAR_PREP;
         }
         break;
-    case RIM_STATE_GENDR_FADE_IN_AVATAR_PREP:
-        ov73_021D1DCC(manager);
+    case RI_STATE_GENDR_FADE_IN_AVATAR_PREP:
+        RowanIntro_ResetAvatarRunAnimation(manager);
         manager->bgLayer1TilemapIndex = 2;
         manager->bgLayer2TilemapIndex = 6;
-        RowanIntroManager_LoadTilemap(manager);
-        Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_1, 0, -8 * 6);
-        Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, 0, 8 * 6);
-        manager->state = RIM_STATE_GENDR_FADE_IN_AVATAR_MALE;
+        RowanIntro_LoadTilemap(manager);
+        Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_1, BG_OFFSET_UPDATE_SET_X, -8 * 6);
+        Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_X, 8 * 6);
+        manager->state = RI_STATE_GENDR_FADE_IN_AVATAR_MALE;
         break;
-    case RIM_STATE_GENDR_FADE_IN_AVATAR_MALE:
-        if (RowanIntroManager_FadeBgLayer(manager, BG_LAYER_MAIN_1, FADE_IN) == TRUE) {
-            manager->state = RIM_STATE_GENDR_FADE_IN_AVATAR_FEMALE;
+    case RI_STATE_GENDR_FADE_IN_AVATAR_MALE:
+        if (RowanIntro_FadeBgLayer(manager, BG_LAYER_MAIN_1, FADE_IN) == TRUE) {
+            manager->state = RI_STATE_GENDR_FADE_IN_AVATAR_FEMALE;
         }
         break;
-    case RIM_STATE_GENDR_FADE_IN_AVATAR_FEMALE:
-        if (RowanIntroManager_FadeBgLayer(manager, BG_LAYER_MAIN_2, FADE_IN) == TRUE) {
-            manager->state = 66;
+    case RI_STATE_GENDR_FADE_IN_AVATAR_FEMALE:
+        if (RowanIntro_FadeBgLayer(manager, BG_LAYER_MAIN_2, FADE_IN) == TRUE) {
+            manager->state = RI_STATE_GENDR_DIALOGUE;
         }
         break;
-    case RIM_STATE_GENDR_DIALOGUE:
-        if (RowanIntroManager_DisplayMessage(manager, 21, 1) == 1) {
+    case RI_STATE_GENDR_DIALOGUE:
+        if (RowanIntro_DisplayMessage(manager, 21, TRUE) == TRUE) {
             manager->playerGender = GENDER_MALE;
-            manager->state = RIM_STATE_GENDR_CHOICE;
+            manager->state = RI_STATE_GENDR_CHOICE;
         }
         break;
-    case RIM_STATE_GENDR_CHOICE:
+    case RI_STATE_GENDR_CHOICE:
         if ((gSystem.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A) {
             manager->fadeBgLayerCurAlpha = 6;
             manager->fadeBgLayerCurAlphaInv = 10;
             manager->fadeBgLayerState = FBL_STATE_FADE_OUT;
 
             if (manager->playerGender == GENDER_MALE) {
-                manager->state = RIM_STATE_GENDR_FADE_OUT_AVATAR_FEMALE;
+                manager->state = RI_STATE_GENDR_FADE_OUT_AVATAR_FEMALE;
             } else {
-                manager->state = RIM_STATE_GENDR_FADE_OUT_AVATAR_MALE;
+                manager->state = RI_STATE_GENDR_FADE_OUT_AVATAR_MALE;
             }
             break;
         }
@@ -2059,344 +2094,344 @@ static BOOL ov73_021D2318(RowanIntroManager *manager)
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         }
 
-        ov73_021D1DE8(manager);
+        RowanIntro_AnimateAvatarRun(manager);
         break;
-    case RIM_STATE_GENDR_FADE_OUT_AVATAR_FEMALE:
-        if (RowanIntroManager_FadeBgLayer(manager, BG_LAYER_MAIN_2, FADE_OUT) == TRUE) {
-            manager->state = RIM_STATE_GENDR_CENTRE_AVATAR_MALE;
+    case RI_STATE_GENDR_FADE_OUT_AVATAR_FEMALE:
+        if (RowanIntro_FadeBgLayer(manager, BG_LAYER_MAIN_2, FADE_OUT) == TRUE) {
+            manager->state = RI_STATE_GENDR_CENTRE_AVATAR_MALE;
         }
         break;
-    case RIM_STATE_GENDR_CENTRE_AVATAR_MALE:
-        if (RowanIntroManager_MoveBgLayer(manager, BG_LAYER_MAIN_1, MBL_CASE_CENTRE_AVATAR) == 1) {
-            ov73_021D1EFC(manager);
-            manager->state = RIM_STATE_GENDR_CONFIRM_DIALOGUE;
+    case RI_STATE_GENDR_CENTRE_AVATAR_MALE:
+        if (RowanIntro_MoveBgLayer(manager, BG_LAYER_MAIN_1, MBL_CASE_CENTRE_AVATAR) == TRUE) {
+            RowanIntro_ResetBlending(manager);
+            manager->state = RI_STATE_GENDR_CONFIRM_DIALOGUE;
         }
         break;
-    case RIM_STATE_GENDR_FADE_OUT_AVATAR_MALE:
-        if (RowanIntroManager_FadeBgLayer(manager, BG_LAYER_MAIN_1, FADE_OUT) == TRUE) {
-            manager->state = RIM_STATE_GENDR_CENTRE_AVATAR_FEMALE;
+    case RI_STATE_GENDR_FADE_OUT_AVATAR_MALE:
+        if (RowanIntro_FadeBgLayer(manager, BG_LAYER_MAIN_1, FADE_OUT) == TRUE) {
+            manager->state = RI_STATE_GENDR_CENTRE_AVATAR_FEMALE;
         }
         break;
-    case RIM_STATE_GENDR_CENTRE_AVATAR_FEMALE:
-        if (RowanIntroManager_MoveBgLayer(manager, BG_LAYER_MAIN_2, MBL_CASE_CENTRE_AVATAR) == 1) {
-            ov73_021D1EFC(manager);
-            manager->state = RIM_STATE_GENDR_CONFIRM_DIALOGUE;
+    case RI_STATE_GENDR_CENTRE_AVATAR_FEMALE:
+        if (RowanIntro_MoveBgLayer(manager, BG_LAYER_MAIN_2, MBL_CASE_CENTRE_AVATAR) == TRUE) {
+            RowanIntro_ResetBlending(manager);
+            manager->state = RI_STATE_GENDR_CONFIRM_DIALOGUE;
         }
         break;
-    case RIM_STATE_GENDR_CONFIRM_DIALOGUE: {
-        u32 v4;
+    case RI_STATE_GENDR_CONFIRM_DIALOGUE: {
+        u32 genderConfirmTextID;
 
         if (manager->playerGender == GENDER_MALE) {
-            v4 = 22;
+            genderConfirmTextID = 22;
         } else {
-            v4 = 23;
+            genderConfirmTextID = 23;
         }
 
-        if (RowanIntroManager_DisplayMessage(manager, v4, 1) == 1) {
-            manager->state = RIM_STATE_GENDR_CONFIRM_CHOICE_BOX;
+        if (RowanIntro_DisplayMessage(manager, genderConfirmTextID, TRUE) == TRUE) {
+            manager->state = RI_STATE_GENDR_CONFIRM_CHOICE_BOX;
         }
     } break;
-    case RIM_STATE_GENDR_CONFIRM_CHOICE_BOX:
-        if (RowanIntroManager_ChoiceBox(manager, 0, 0) == 1) {
+    case RI_STATE_GENDR_CONFIRM_CHOICE_BOX:
+        if (RowanIntro_ChoiceBox(manager, CC_YESNO, FALSE) == TRUE) {
             switch (manager->playerChoice) {
             case 1:
-                manager->state = RIM_STATE_NAME_DIALOGUE;
+                manager->state = RI_STATE_NAME_DIALOGUE;
                 break;
             case 2:
-            case 0xfffffffe: {
+            case LIST_CANCEL: {
                 Bg_ClearTilemap(manager->bgConfig, BG_LAYER_MAIN_0);
             }
-                manager->state = RIM_STATE_GENDR_REPEAT;
+                manager->state = RI_STATE_GENDR_REPEAT;
                 break;
             }
         }
         break;
-    case RIM_STATE_GENDR_REPEAT: {
+    case RI_STATE_GENDR_REPEAT: {
         int genderRepeatBgLayer;
 
         if (manager->playerGender == GENDER_MALE) {
-            genderRepeatBgLayer = 1;
+            genderRepeatBgLayer = BG_LAYER_MAIN_1;
         } else {
-            genderRepeatBgLayer = 2;
+            genderRepeatBgLayer = BG_LAYER_MAIN_2;
         }
 
-        if (RowanIntroManager_FadeBgLayer(manager, genderRepeatBgLayer, FADE_OUT) == TRUE) {
-            manager->state = RIM_STATE_GENDR_FADE_IN_AVATAR_PREP;
+        if (RowanIntro_FadeBgLayer(manager, genderRepeatBgLayer, FADE_OUT) == TRUE) {
+            manager->state = RI_STATE_GENDR_FADE_IN_AVATAR_PREP;
         }
     } break;
-    case RIM_STATE_NAME_DIALOGUE:
-        if (RowanIntroManager_DisplayMessage(manager, 24, FADE_OUT) == 1) {
-            manager->state = RIM_STATE_NAME_KEYBOARD_PREP;
+    case RI_STATE_NAME_DIALOGUE:
+        if (RowanIntro_DisplayMessage(manager, 24, TRUE) == TRUE) {
+            manager->state = RI_STATE_NAME_APP_KEYBOARD;
         }
         break;
-    case RIM_STATE_NAME_KEYBOARD_PREP:
+    case RI_STATE_NAME_APP_KEYBOARD:
         manager->unk_70->unk_04 = manager->playerGender;
         manager->appMan = ApplicationManager_New(&Unk_020F2DAC, manager->unk_70, manager->heapID);
-        manager->state = RIM_STATE_NAME_KEYBOARD;
+        manager->state = RI_STATE_NAME_KEYBOARD;
         break;
-    case RIM_STATE_NAME_KEYBOARD:
+    case RI_STATE_NAME_KEYBOARD:
         Bg_ToggleLayer(BG_LAYER_MAIN_0, 1);
         Bg_ToggleLayer(BG_LAYER_MAIN_3, 1);
         Bg_ToggleLayer(BG_LAYER_SUB_3, 1);
 
         if (manager->playerGender == GENDER_MALE) {
             Bg_ToggleLayer(BG_LAYER_MAIN_1, 1);
-            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_1, 0, 0);
+            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_1, BG_OFFSET_UPDATE_SET_X, 0);
         } else {
             Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
-            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, 0, 0);
+            Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_X, 0);
         }
 
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, manager->heapID);
-        manager->state = RIM_STATE_NAME_KEYBOARD_FADE_INTO_AVATAR;
+        manager->state = RI_STATE_NAME_KEYBOARD_FADE_INTO_AVATAR;
         break;
-    case RIM_STATE_NAME_KEYBOARD_FADE_INTO_AVATAR:
+    case RI_STATE_NAME_KEYBOARD_FADE_INTO_AVATAR:
         if (IsScreenFadeDone() == TRUE) {
-            manager->state = RIM_STATE_NAME_CONFIRM_DIALOGUE;
+            manager->state = RI_STATE_NAME_CONFIRM_DIALOGUE;
         }
         break;
-    case RIM_STATE_NAME_CONFIRM_DIALOGUE: {
-        u32 v6;
-        int v7;
+    case RI_STATE_NAME_CONFIRM_DIALOGUE: {
+        u32 nameConfirmTextID;
+        int unused;
 
         if (manager->playerGender == GENDER_MALE) {
-            v6 = 25;
+            nameConfirmTextID = 25;
         } else {
-            v6 = 26;
+            nameConfirmTextID = 26;
         }
 
-        if (RowanIntroManager_DisplayMessage(manager, v6, 1) == 1) {
-            manager->state = RIM_STATE_NAME_CONFIRM_CHOICE_BOX;
+        if (RowanIntro_DisplayMessage(manager, nameConfirmTextID, TRUE) == TRUE) {
+            manager->state = RI_STATE_NAME_CONFIRM_CHOICE_BOX;
         }
     } break;
-    case RIM_STATE_NAME_CONFIRM_CHOICE_BOX:
-        if (RowanIntroManager_ChoiceBox(manager, 0, 0) == 1) {
+    case RI_STATE_NAME_CONFIRM_CHOICE_BOX:
+        if (RowanIntro_ChoiceBox(manager, CC_YESNO, FALSE) == TRUE) {
             {
                 Bg_ClearTilemap(manager->bgConfig, BG_LAYER_MAIN_0);
             }
 
             switch (manager->playerChoice) {
             case 1:
-                manager->bufferedState = RIM_STATE_LOAD_ROWAN_TILEMAP_0;
-                manager->state = RIM_STATE_NAME_FADE_OUT_AVATAR;
+                manager->bufferedState = RI_STATE_LOAD_ROWAN_TILEMAP_0;
+                manager->state = RI_STATE_NAME_FADE_OUT_AVATAR;
                 break;
             case 2:
-            case 0xfffffffe:
+            case LIST_CANCEL:
                 Strbuf_Clear(manager->unk_70->textInputStr);
-                manager->bufferedState = RIM_STATE_GENDR_FADE_IN_AVATAR_PREP;
-                manager->state = RIM_STATE_NAME_FADE_OUT_AVATAR;
+                manager->bufferedState = RI_STATE_GENDR_FADE_IN_AVATAR_PREP;
+                manager->state = RI_STATE_NAME_FADE_OUT_AVATAR;
                 break;
             }
         }
         break;
-    case RIM_STATE_NAME_FADE_OUT_AVATAR: {
+    case RI_STATE_NAME_FADE_OUT_AVATAR: {
         int fadeoutAvaterBgLayer;
 
         if (manager->playerGender == GENDER_MALE) {
-            fadeoutAvaterBgLayer = 1;
+            fadeoutAvaterBgLayer = BG_LAYER_MAIN_1;
         } else {
-            fadeoutAvaterBgLayer = 2;
+            fadeoutAvaterBgLayer = BG_LAYER_MAIN_2;
         }
 
-        if (RowanIntroManager_FadeBgLayer(manager, fadeoutAvaterBgLayer, FADE_OUT) == TRUE) {
+        if (RowanIntro_FadeBgLayer(manager, fadeoutAvaterBgLayer, FADE_OUT) == TRUE) {
             {
                 manager->state = manager->bufferedState;
             }
         }
     } break;
-    case RIM_STATE_LOAD_ROWAN_TILEMAP_0:
+    case RI_STATE_LOAD_ROWAN_TILEMAP_0:
         manager->bgLayer1TilemapIndex = 1;
         manager->bgLayer2TilemapIndex = 0;
-        RowanIntroManager_LoadTilemap(manager);
-        manager->state = RIM_STATE_FADE_IN_ROWAN_AFTER_NAME;
+        RowanIntro_LoadTilemap(manager);
+        manager->state = RI_STATE_FADE_IN_ROWAN_AFTER_NAME;
         break;
-    case RIM_STATE_FADE_IN_ROWAN_AFTER_NAME:
-        if (RowanIntroManager_FadeBgLayer(manager, BG_LAYER_MAIN_1, FADE_IN) == TRUE) {
-            manager->state = RIM_STATE_DIALOGUE_SO_YOURE;
+    case RI_STATE_FADE_IN_ROWAN_AFTER_NAME:
+        if (RowanIntro_FadeBgLayer(manager, BG_LAYER_MAIN_1, FADE_IN) == TRUE) {
+            manager->state = RI_STATE_DIALOGUE_SO_YOURE;
         }
         break;
-    case RIM_STATE_DIALOGUE_SO_YOURE:
-        if (RowanIntroManager_DisplayMessage(manager, 27, 1) == 1) {
-            manager->state = RIM_STATE_FADE_OUT_ROWAN_FOR_BARRY;
+    case RI_STATE_DIALOGUE_SO_YOURE:
+        if (RowanIntro_DisplayMessage(manager, 27, TRUE) == TRUE) {
+            manager->state = RI_STATE_FADE_OUT_ROWAN_FOR_BARRY;
         }
         break;
-    case RIM_STATE_FADE_OUT_ROWAN_FOR_BARRY:
-        if (RowanIntroManager_FadeBgLayer(manager, BG_LAYER_MAIN_1, FADE_OUT) == TRUE) {
-            manager->state = RIM_STATE_LOAD_BARRY_TILEMAP;
+    case RI_STATE_FADE_OUT_ROWAN_FOR_BARRY:
+        if (RowanIntro_FadeBgLayer(manager, BG_LAYER_MAIN_1, FADE_OUT) == TRUE) {
+            manager->state = RI_STATE_LOAD_BARRY_TILEMAP;
         }
         break;
-    case RIM_STATE_LOAD_BARRY_TILEMAP:
+    case RI_STATE_LOAD_BARRY_TILEMAP:
         manager->bgLayer1TilemapIndex = 10;
         manager->bgLayer2TilemapIndex = 0;
-        RowanIntroManager_LoadTilemap(manager);
-        manager->state = RIM_STATE_FADE_IN_BARRY;
+        RowanIntro_LoadTilemap(manager);
+        manager->state = RI_STATE_FADE_IN_BARRY;
         break;
-    case RIM_STATE_FADE_IN_BARRY:
-        if (RowanIntroManager_FadeBgLayer(manager, BG_LAYER_MAIN_1, FADE_IN) == TRUE) {
-            manager->state = RIM_STATE_BARRY_NAME_DIALOGUE;
+    case RI_STATE_FADE_IN_BARRY:
+        if (RowanIntro_FadeBgLayer(manager, BG_LAYER_MAIN_1, FADE_IN) == TRUE) {
+            manager->state = RI_STATE_BARRY_NAME_DIALOGUE;
         }
         break;
-    case RIM_STATE_BARRY_NAME_DIALOGUE:
-        if (RowanIntroManager_DisplayMessage(manager, 28, 1) == 1) {
-            manager->state = RIM_STATE_MOVE_BARRY_RIGHT_FOR_NAMES;
+    case RI_STATE_BARRY_NAME_DIALOGUE:
+        if (RowanIntro_DisplayMessage(manager, 28, TRUE) == TRUE) {
+            manager->state = RI_STATE_MOVE_BARRY_RIGHT_FOR_NAMES;
         }
         break;
-    case RIM_STATE_MOVE_BARRY_RIGHT_FOR_NAMES:
-        if (RowanIntroManager_MoveBgLayer(manager, BG_LAYER_MAIN_1, MBL_CASE_MOVE_RIGHT) == 1) {
-            manager->state = RIM_STATE_BARRY_NAME_CHOICE_BOX;
+    case RI_STATE_MOVE_BARRY_RIGHT_FOR_NAMES:
+        if (RowanIntro_MoveBgLayer(manager, BG_LAYER_MAIN_1, MBL_CASE_MOVE_RIGHT) == TRUE) {
+            manager->state = RI_STATE_BARRY_NAME_CHOICE_BOX;
         }
         break;
-    case RIM_STATE_BARRY_NAME_CHOICE_BOX:
-        if (RowanIntroManager_ChoiceBox(manager, 2, 1) == 1) {
+    case RI_STATE_BARRY_NAME_CHOICE_BOX:
+        if (RowanIntro_ChoiceBox(manager, CC_RIVAL_NAMES, TRUE) == TRUE) {
             switch (manager->playerChoice) {
             case 1:
-                manager->state = RIM_STATE_BARRY_NAME_KEYBOARD_PREP;
+                manager->state = RI_STATE_BARRY_NAME_APP_KEYBOARD;
                 break;
             case 2:
             case 3:
             case 4:
             case 5: {
-                u32 v9;
+                u32 rivalNameTextID;
 
                 if ((gGameVersion == VERSION_DIAMOND) || (GAME_VERSION == VERSION_PLATINUM)) {
-                    v9 = Unk_ov72_021D3954[manager->playerChoice - 1].unk_00;
+                    rivalNameTextID = sRivalNameChoiceInfos[manager->playerChoice - 1].textID;
                 } else {
-                    v9 = Unk_ov73_021D1648[manager->playerChoice - 1].unk_00;
+                    rivalNameTextID = sUnusedRivalNameChoiceInfos[manager->playerChoice - 1].textID;
                 }
 
                 {
-                    Strbuf *v10 = MessageLoader_GetNewStrbuf(manager->msgLoader, v9);
+                    Strbuf *tmpStrbuf = MessageLoader_GetNewStrbuf(manager->msgLoader, rivalNameTextID);
 
-                    Strbuf_Copy(manager->unk_74->textInputStr, v10);
-                    Strbuf_Free(v10);
+                    Strbuf_Copy(manager->unk_74->textInputStr, tmpStrbuf);
+                    Strbuf_Free(tmpStrbuf);
                 }
             }
-                manager->state = RIM_STATE_MOVE_BARRY_LEFT_AFTER_NAME;
+                manager->state = RI_STATE_MOVE_BARRY_LEFT_AFTER_NAME;
                 break;
             }
         }
         break;
-    case RIM_STATE_MOVE_BARRY_LEFT_AFTER_NAME:
-        if (RowanIntroManager_MoveBgLayer(manager, BG_LAYER_MAIN_1, MBL_CASE_MOVE_LEFT) == 1) {
-            manager->state = RIM_STATE_BARRY_NAME_CONFIRM_DIALOGUE;
+    case RI_STATE_MOVE_BARRY_LEFT_AFTER_NAME:
+        if (RowanIntro_MoveBgLayer(manager, BG_LAYER_MAIN_1, MBL_CASE_MOVE_LEFT) == TRUE) {
+            manager->state = RI_STATE_BARRY_NAME_CONFIRM_DIALOGUE;
         }
         break;
-    case RIM_STATE_BARRY_NAME_KEYBOARD_PREP:
+    case RI_STATE_BARRY_NAME_APP_KEYBOARD:
         manager->appMan = ApplicationManager_New(&Unk_020F2DAC, manager->unk_74, manager->heapID);
-        manager->state = RIM_STATE_BARRY_NAME_KEYBOARD;
+        manager->state = RI_STATE_BARRY_NAME_KEYBOARD;
         break;
-    case RIM_STATE_BARRY_NAME_KEYBOARD:
+    case RI_STATE_BARRY_NAME_KEYBOARD:
         Bg_ToggleLayer(BG_LAYER_MAIN_0, 1);
         Bg_ToggleLayer(BG_LAYER_MAIN_3, 1);
         Bg_ToggleLayer(BG_LAYER_SUB_3, 1);
         Bg_ToggleLayer(BG_LAYER_MAIN_1, 1);
-        Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_1, 0, 0);
+        Bg_SetOffset(manager->bgConfig, BG_LAYER_MAIN_1, BG_OFFSET_UPDATE_SET_X, 0);
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, manager->heapID);
-        manager->state = RIM_STATE_BARRY_NAME_KEYBOARD_FADE_INTO_AVATAR;
+        manager->state = RI_STATE_BARRY_NAME_KEYBOARD_FADE_INTO_AVATAR;
         break;
-    case RIM_STATE_BARRY_NAME_KEYBOARD_FADE_INTO_AVATAR:
+    case RI_STATE_BARRY_NAME_KEYBOARD_FADE_INTO_AVATAR:
         if (IsScreenFadeDone() == TRUE) {
-            manager->state = RIM_STATE_BARRY_NAME_CONFIRM_DIALOGUE;
+            manager->state = RI_STATE_BARRY_NAME_CONFIRM_DIALOGUE;
         }
         break;
-    case RIM_STATE_BARRY_NAME_CONFIRM_DIALOGUE:
-        if (RowanIntroManager_DisplayMessage(manager, 29, 1) == 1) {
-            manager->state = RIM_STATE_BARRY_NAME_CONFIRM_CHOICE_BOX;
+    case RI_STATE_BARRY_NAME_CONFIRM_DIALOGUE:
+        if (RowanIntro_DisplayMessage(manager, 29, TRUE) == TRUE) {
+            manager->state = RI_STATE_BARRY_NAME_CONFIRM_CHOICE_BOX;
         }
         break;
-    case RIM_STATE_BARRY_NAME_CONFIRM_CHOICE_BOX:
-        if (RowanIntroManager_ChoiceBox(manager, 0, 0) == 1) {
+    case RI_STATE_BARRY_NAME_CONFIRM_CHOICE_BOX:
+        if (RowanIntro_ChoiceBox(manager, CC_YESNO, FALSE) == TRUE) {
             switch (manager->playerChoice) {
             case 1: {
                 Bg_ClearTilemap(manager->bgConfig, BG_LAYER_MAIN_0);
             }
-                manager->state = RIM_STATE_FADE_OUT_BARRY;
+                manager->state = RI_STATE_FADE_OUT_BARRY;
                 break;
             case 2:
-            case 0xfffffffe:
+            case LIST_CANCEL:
                 Strbuf_Clear(manager->unk_74->textInputStr);
-                manager->state = RIM_STATE_BARRY_NAME_DIALOGUE;
+                manager->state = RI_STATE_BARRY_NAME_DIALOGUE;
                 break;
             }
         }
         break;
-    case RIM_STATE_FADE_OUT_BARRY:
-        if (RowanIntroManager_FadeBgLayer(manager, BG_LAYER_MAIN_1, FADE_OUT) == TRUE) {
-            manager->state = RIM_LOAD_ROWAN_TILEMAP_1;
+    case RI_STATE_FADE_OUT_BARRY:
+        if (RowanIntro_FadeBgLayer(manager, BG_LAYER_MAIN_1, FADE_OUT) == TRUE) {
+            manager->state = RI_STATE_LOAD_ROWAN_TILEMAP_1;
         }
         break;
-    case RIM_LOAD_ROWAN_TILEMAP_1:
+    case RI_STATE_LOAD_ROWAN_TILEMAP_1:
         manager->bgLayer1TilemapIndex = 1;
         manager->bgLayer2TilemapIndex = 0;
-        RowanIntroManager_LoadTilemap(manager);
-        manager->state = RIM_STATE_FADE_IN_ROWAN_AFTER_BARRY;
+        RowanIntro_LoadTilemap(manager);
+        manager->state = RI_STATE_FADE_IN_ROWAN_AFTER_BARRY;
         break;
-    case RIM_STATE_FADE_IN_ROWAN_AFTER_BARRY:
-        if (RowanIntroManager_FadeBgLayer(manager, BG_LAYER_MAIN_1, FADE_IN) == TRUE) {
-            manager->state = RIM_STATE_DELAY_BEFORE_END_0;
+    case RI_STATE_FADE_IN_ROWAN_AFTER_BARRY:
+        if (RowanIntro_FadeBgLayer(manager, BG_LAYER_MAIN_1, FADE_IN) == TRUE) {
+            manager->state = RI_STATE_DELAY_BEFORE_END_0;
         }
         break;
-    case RIM_STATE_DELAY_BEFORE_END_0:
-        if (RowanIntroManager_Delay(manager, 30) == TRUE) {
-            manager->state = RIM_STATE_DIALOGUE_END;
+    case RI_STATE_DELAY_BEFORE_END_0:
+        if (RowanIntro_Delay(manager, 30) == TRUE) {
+            manager->state = RI_STATE_DIALOGUE_END;
         }
         break;
-    case RIM_STATE_DIALOGUE_END:
-        if (RowanIntroManager_DisplayMessage(manager, 30, 1) == 1) {
+    case RI_STATE_DIALOGUE_END:
+        if (RowanIntro_DisplayMessage(manager, 30, TRUE) == TRUE) {
             Sound_FadeOutBGM(0, 50);
-            manager->state = RIM_STATE_FADE_OUT_ROWAN_END;
+            manager->state = RI_STATE_FADE_OUT_ROWAN_END;
         }
         break;
-    case RIM_STATE_FADE_OUT_ROWAN_END:
-        if (RowanIntroManager_FadeBgLayer(manager, BG_LAYER_MAIN_1, FADE_OUT) == TRUE) {
+    case RI_STATE_FADE_OUT_ROWAN_END:
+        if (RowanIntro_FadeBgLayer(manager, BG_LAYER_MAIN_1, FADE_OUT) == TRUE) {
             {
                 Bg_ClearTilemap(manager->bgConfig, BG_LAYER_MAIN_0);
             }
-            manager->state = RIM_STATE_DELAY_BEFORE_END_1;
+            manager->state = RI_STATE_DELAY_BEFORE_END_1;
         }
         break;
-    case RIM_STATE_DELAY_BEFORE_END_1:
-        if (RowanIntroManager_Delay(manager, 30) == TRUE) {
-            manager->state = RIM_STATE_LOAD_MINI_AVATAR;
+    case RI_STATE_DELAY_BEFORE_END_1:
+        if (RowanIntro_Delay(manager, 30) == TRUE) {
+            manager->state = RI_STATE_LOAD_MINI_AVATAR;
         }
         break;
-    case RIM_STATE_LOAD_MINI_AVATAR:
+    case RI_STATE_LOAD_MINI_AVATAR:
         if (manager->playerGender == GENDER_MALE) {
             manager->bgLayer1TilemapIndex = 2;
             manager->bgLayer2TilemapIndex = 0;
-            RowanIntroManager_LoadTilemap(manager);
+            RowanIntro_LoadTilemap(manager);
         } else {
             manager->bgLayer1TilemapIndex = 6;
             manager->bgLayer2TilemapIndex = 0;
-            RowanIntroManager_LoadTilemap(manager);
+            RowanIntro_LoadTilemap(manager);
         }
 
-        manager->state = RIM_STATE_FADE_IN_AVATAR_END;
+        manager->state = RI_STATE_FADE_IN_AVATAR_END;
         break;
-    case RIM_STATE_FADE_IN_AVATAR_END:
-        if (RowanIntroManager_FadeBgLayer(manager, BG_LAYER_MAIN_1, FADE_IN) == TRUE) {
-            ov73_021D1F08(manager);
-            manager->state = RIM_STATE_DELAY_BEFORE_END_2;
+    case RI_STATE_FADE_IN_AVATAR_END:
+        if (RowanIntro_FadeBgLayer(manager, BG_LAYER_MAIN_1, FADE_IN) == TRUE) {
+            RowanIntro_ResetAnimationCounters(manager);
+            manager->state = RI_STATE_DELAY_BEFORE_END_2;
         }
         break;
-    case RIM_STATE_DELAY_BEFORE_END_2:
-        if (RowanIntroManager_Delay(manager, 30) == TRUE) {
-            manager->state = RIM_STATE_AVATAR_SHRINK_ANIMATION;
+    case RI_STATE_DELAY_BEFORE_END_2:
+        if (RowanIntro_Delay(manager, 30) == TRUE) {
+            manager->state = RI_STATE_AVATAR_SHRINK_ANIMATION;
         }
         break;
-    case RIM_STATE_AVATAR_SHRINK_ANIMATION:
-        if (ov73_021D1F18(manager) == 1) {
-            manager->state = RIM_STATE_END;
+    case RI_STATE_AVATAR_SHRINK_ANIMATION:
+        if (RowanIntro_AnimateAvatarShrink(manager) == TRUE) {
+            manager->state = RI_STATE_END;
         }
         break;
-    case RIM_STATE_END:
-        manager->appMan = ApplicationManager_New(&Unk_ov72_021D3820, NULL, manager->heapID);
-        manager->state = RIM_STATE_EXIT;
+    case RI_STATE_END:
+        manager->appMan = ApplicationManager_New(&sKeyboardApplicationTemplate, NULL, manager->heapID);
+        manager->state = RI_STATE_EXIT;
         break;
-    case RIM_STATE_EXIT:
-        v0 = 1;
+    case RI_STATE_EXIT:
+        isFinished = TRUE;
         break;
     }
 
-    return v0;
+    return isFinished;
 }
