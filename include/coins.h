@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0202B594_H
-#define POKEPLATINUM_UNK_0202B594_H
+#ifndef POKEPLATINUM_COINS_H
+#define POKEPLATINUM_COINS_H
 
 #define MAX_COINS 50000
 
@@ -25,7 +25,7 @@ void Coins_SetValue(u16 *coins, u32 value);
  *
  * @returns: The amount of coins owned
  */
-u32 Coins_GetValue(const u16 *coins);
+u16 Coins_GetValue(u16 *coins);
 
 /*
  * Adds an amount of coins. It will fail if the
@@ -36,7 +36,7 @@ u32 Coins_GetValue(const u16 *coins);
  *
  * @returns: TRUE if success, otherwise FALSE
  */
-BOOL Coins_Add(u16 *coins, u32 amount);
+BOOL Coins_Add(u16 *coins, u16 amount);
 
 /*
  * Checks if a certain amount of coins can be
@@ -47,7 +47,7 @@ BOOL Coins_Add(u16 *coins, u32 amount);
  *
  * @returns: TRUE if success, otherwise FALSE
  */
-BOOL Coins_CanAddAmount(const u16 *coins, u32 amount);
+BOOL Coins_CanAdd(u16 *coins, u16 amount);
 
 /*
  * Subtracts an amount of coins. It will fail if the
@@ -58,6 +58,6 @@ BOOL Coins_CanAddAmount(const u16 *coins, u32 amount);
  *
  * @returns: TRUE if success, otherwise FALSE
  */
-BOOL Coins_Subtract(u16 *coins, u32 amount);
+BOOL Coins_Remove(u16 *coins, u16 amount);
 
-#endif // POKEPLATINUM_UNK_0202B594_H
+#endif // POKEPLATINUM_COINS_H
