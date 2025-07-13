@@ -45,6 +45,7 @@
 #include "unk_0208694C.h"
 
 #include "constdata/const_020F2DAC.h"
+#include "res/text/bank/rowan_intro.h"
 
 FS_EXTERN_OVERLAY(game_start);
 
@@ -225,7 +226,7 @@ typedef struct {
     SaveData *saveData;
     Options *options;
     enum RowanIntroState state;
-    int bufferedState;
+    enum RowanIntroState bufferedState;
     ApplicationManager *appMan;
     BgConfig *bgConfig;
     Window textWindow;
@@ -236,7 +237,7 @@ typedef struct {
     int playerChoice;
     MessageLoader *msgLoader;
     enum DisplayMessageState displayMessageState;
-    int displayTextBlockState;
+    enum DisplayTextBlockState displayTextBlockState;
     int textPrinterID;
     Strbuf *strbuf;
     UnkStruct_020157E4 *unk_60;
@@ -248,7 +249,7 @@ typedef struct {
     enum FadeBgLayerState fadeBgLayerState;
     int fadeBgLayerCurAlpha;
     int fadeBgLayerCurAlphaInv;
-    u32 playerGender;
+    enum Gender playerGender;
     // This is an index into the tilemapLocations structure in RowanIntro_LoadLayer3Tilemap
     u8 bgLayer3TilemapIndex;
     // These are indices into the tilemapLocations structure in RowanIntro_LoadTilemap.
@@ -275,9 +276,9 @@ typedef struct {
     u16 *bunearyBlendedPalette;
 } RowanIntro;
 
-int RowanIntro_Init(ApplicationManager *appMan, int *state);
-int RowanIntro_Main(ApplicationManager *appMan, int *state);
-int RowanIntro_Exit(ApplicationManager *appMan, int *state);
+BOOL RowanIntro_Init(ApplicationManager *appMan, int *state);
+BOOL RowanIntro_Main(ApplicationManager *appMan, int *state);
+BOOL RowanIntro_Exit(ApplicationManager *appMan, int *state);
 
 static void RowanIntro_VBlankCallback(void *manager);
 static void RowanIntro_InitGraphics(RowanIntro *manager);
@@ -312,7 +313,7 @@ static const ApplicationManagerTemplate sKeyboardApplicationTemplate = {
     0xffffffff
 };
 
-int RowanIntro_Init(ApplicationManager *appMan, int *unusedState)
+BOOL RowanIntro_Init(ApplicationManager *appMan, int *unusedState)
 {
     RowanIntro *manager;
     int heapID = HEAP_ID_ROWAN_INTRO;
@@ -338,13 +339,13 @@ int RowanIntro_Init(ApplicationManager *appMan, int *unusedState)
     manager->bunearyPalette = Heap_AllocFromHeap(heapID, 0x20);
     manager->bunearyBlendedPalette = Heap_AllocFromHeap(heapID, 0x20);
 
-    return 1;
+    return TRUE;
 }
 
-int RowanIntro_Main(ApplicationManager *appMan, int *state)
+BOOL RowanIntro_Main(ApplicationManager *appMan, int *state)
 {
     RowanIntro *manager = ApplicationManager_Data(appMan);
-    int isFinished = FALSE;
+    BOOL isFinished = FALSE;
 
     switch (*state) {
     case RI_APP_STATE_INIT:
@@ -429,7 +430,7 @@ int RowanIntro_Main(ApplicationManager *appMan, int *state)
     return isFinished;
 }
 
-int RowanIntro_Exit(ApplicationManager *appMan, int *unusedState)
+BOOL RowanIntro_Exit(ApplicationManager *appMan, int *unusedState)
 {
     RowanIntro *manager = ApplicationManager_Data(appMan);
     int heapID = manager->heapID;
@@ -456,7 +457,7 @@ int RowanIntro_Exit(ApplicationManager *appMan, int *unusedState)
     Heap_Destroy(heapID);
     EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartNewSaveAppTemplate);
 
-    return 1;
+    return TRUE;
 }
 
 static void RowanIntro_VBlankCallback(void *managerVoid)
@@ -655,14 +656,14 @@ static void RowanIntro_InitGraphics(RowanIntro *manager)
         Bg_ClearTilemap(manager->bgConfig, BG_LAYER_SUB_3);
     }
 
-    Bg_ToggleLayer(BG_LAYER_MAIN_0, 0);
-    Bg_ToggleLayer(BG_LAYER_MAIN_1, 0);
-    Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
-    Bg_ToggleLayer(BG_LAYER_MAIN_3, 0);
-    Bg_ToggleLayer(BG_LAYER_SUB_0, 0);
-    Bg_ToggleLayer(BG_LAYER_SUB_1, 0);
-    Bg_ToggleLayer(BG_LAYER_SUB_2, 0);
-    Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_0, FALSE);
+    Bg_ToggleLayer(BG_LAYER_MAIN_1, FALSE);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, FALSE);
+    Bg_ToggleLayer(BG_LAYER_MAIN_3, FALSE);
+    Bg_ToggleLayer(BG_LAYER_SUB_0, FALSE);
+    Bg_ToggleLayer(BG_LAYER_SUB_1, FALSE);
+    Bg_ToggleLayer(BG_LAYER_SUB_2, FALSE);
+    Bg_ToggleLayer(BG_LAYER_SUB_3, FALSE);
 
     RowanIntro_LoadInitialTilemaps(manager);
 
@@ -671,14 +672,14 @@ static void RowanIntro_InitGraphics(RowanIntro *manager)
 
 static void RowanIntro_FreeGraphics(RowanIntro *manager)
 {
-    Bg_ToggleLayer(BG_LAYER_MAIN_0, 0);
-    Bg_ToggleLayer(BG_LAYER_MAIN_1, 0);
-    Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
-    Bg_ToggleLayer(BG_LAYER_MAIN_3, 0);
-    Bg_ToggleLayer(BG_LAYER_SUB_0, 0);
-    Bg_ToggleLayer(BG_LAYER_SUB_1, 0);
-    Bg_ToggleLayer(BG_LAYER_SUB_2, 0);
-    Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_0, FALSE);
+    Bg_ToggleLayer(BG_LAYER_MAIN_1, FALSE);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, FALSE);
+    Bg_ToggleLayer(BG_LAYER_MAIN_3, FALSE);
+    Bg_ToggleLayer(BG_LAYER_SUB_0, FALSE);
+    Bg_ToggleLayer(BG_LAYER_SUB_1, FALSE);
+    Bg_ToggleLayer(BG_LAYER_SUB_2, FALSE);
+    Bg_ToggleLayer(BG_LAYER_SUB_3, FALSE);
 
     Bg_FreeTilemapBuffer(manager->bgConfig, BG_LAYER_MAIN_0);
 
@@ -730,12 +731,12 @@ static void ov73_021D1328(RowanIntro *manager)
 
 static BOOL RowanIntro_FadeBgLayer(
     RowanIntro *manager,
-    int bgLayer,
+    enum BgLayer bgLayer,
     enum FadeDirection fadeDirection)
 {
     BOOL isFinished = FALSE;
     GXBlendPlaneMask blendPlaneMask;
-    int isSubLayer;
+    BOOL isSubLayer;
 
     switch (bgLayer) {
     default:
@@ -786,7 +787,7 @@ static BOOL RowanIntro_FadeBgLayer(
                     manager->fadeBgLayerCurAlphaInv);
             }
 
-            Bg_ToggleLayer(bgLayer, 1);
+            Bg_ToggleLayer(bgLayer, TRUE);
         } else {
             manager->fadeBgLayerCurAlpha = 16;
             manager->fadeBgLayerCurAlphaInv = 0;
@@ -835,7 +836,7 @@ static BOOL RowanIntro_FadeBgLayer(
             }
         } else {
             manager->fadeBgLayerState = FBL_STATE_END;
-            Bg_ToggleLayer(bgLayer, 0);
+            Bg_ToggleLayer(bgLayer, FALSE);
         }
         break;
     case FBL_STATE_END:
@@ -955,33 +956,33 @@ static const ListMenuTemplate sChoiceBoxTemplate = {
 };
 
 static const ChoiceInfo sYesNoChoiceInfos[] = {
-    { 0x22, 0x1 },
-    { 0x23, 0x2 }
+    { pl_msg_00000389_00034, 0x1 },
+    { pl_msg_00000389_00035, 0x2 }
 };
 
 static const ChoiceInfo sInfoChoiceInfos[] = {
-    { 0x1F, 0x1 },
-    { 0x20, 0x2 },
-    { 0x21, 0x3 }
+    { pl_msg_00000389_00031, 0x1 },
+    { pl_msg_00000389_00032, 0x2 },
+    { pl_msg_00000389_00033, 0x3 }
 };
 
 static const ChoiceInfo sRivalNameChoiceInfos[] = {
-    { 0x24, 0x1 },
-    { 0x25, 0x2 },
-    { 0x26, 0x3 },
-    { 0x27, 0x4 },
-    { 0x28, 0x5 }
+    { pl_msg_00000389_00036, 0x1 },
+    { pl_msg_00000389_00037, 0x2 },
+    { pl_msg_00000389_00038, 0x3 },
+    { pl_msg_00000389_00039, 0x4 },
+    { pl_msg_00000389_00040, 0x5 }
 };
 
 static const ChoiceInfo sUnusedRivalNameChoiceInfos[] = {
-    { 0x24, 0x1 },
-    { 0x29, 0x2 },
-    { 0x2A, 0x3 },
-    { 0x2B, 0x4 },
-    { 0x2C, 0x5 }
+    { pl_msg_00000389_00036, 0x1 },
+    { pl_msg_00000389_00041, 0x2 },
+    { pl_msg_00000389_00042, 0x3 },
+    { pl_msg_00000389_00043, 0x4 },
+    { pl_msg_00000389_00044, 0x5 }
 };
 
-static BOOL RowanIntro_DisplayMessage(RowanIntro *manager, u32 textID, int endEarly)
+static BOOL RowanIntro_DisplayMessage(RowanIntro *manager, u32 textID, BOOL endEarly)
 {
     BOOL isFinished = FALSE;
 
@@ -1056,12 +1057,12 @@ static BOOL RowanIntro_DisplayMessage(RowanIntro *manager, u32 textID, int endEa
 
 static void RowanIntro_ListMenuCursorCallback(ListMenu *menu, u32 index, u8 onInit)
 {
-    if (onInit == 0) {
+    if (onInit == FALSE) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 }
 
-static BOOL RowanIntro_ChoiceBox(RowanIntro *manager, enum ChoicesCase choicesCase, int allowCancel)
+static BOOL RowanIntro_ChoiceBox(RowanIntro *manager, enum ChoicesCase choicesCase, BOOL allowCancel)
 {
     BOOL isFinished = FALSE;
     ListMenuTemplate menuTemplate;
@@ -1164,7 +1165,7 @@ static BOOL RowanIntro_DisplayTextBlock(RowanIntro *manager, u32 textID, enum Di
 
     switch (manager->displayTextBlockState) {
     case DTB_STATE_INIT:
-        Bg_ToggleLayer(BG_LAYER_MAIN_0, 0);
+        Bg_ToggleLayer(BG_LAYER_MAIN_0, FALSE);
         manager->strbuf = Strbuf_Init(0x400, manager->heapID);
         MessageLoader_GetStrbuf(manager->msgLoader, textID, manager->strbuf);
 
@@ -1329,7 +1330,7 @@ static void RowanIntro_LoadInitialTilemaps(RowanIntro *manager)
 
 static void RowanIntro_LoadLayer3Tilemap(RowanIntro *manager)
 {
-    int tilemapLocations[] = { 4, 5, 6, 7, 8 };
+    int tilemapNarcMemberIdx[] = { 4, 5, 6, 7, 8 };
 
     if (manager->bgLayer3TilemapIndex >= 5) {
         return;
@@ -1337,7 +1338,7 @@ static void RowanIntro_LoadLayer3Tilemap(RowanIntro *manager)
 
     Graphics_LoadTilemapToBgLayer(
         NARC_INDEX_DEMO__INTRO__INTRO,
-        tilemapLocations[manager->bgLayer3TilemapIndex],
+        tilemapNarcMemberIdx[manager->bgLayer3TilemapIndex],
         manager->bgConfig,
         BG_LAYER_MAIN_3,
         0,
@@ -1348,7 +1349,7 @@ static void RowanIntro_LoadLayer3Tilemap(RowanIntro *manager)
 
 static void RowanIntro_LoadTilemap(RowanIntro *manager)
 {
-    int tilemapLocations[][2] = {
+    int tilemapNarcMemberIdx[][2] = {
         { 0, 0 },
         { 19, 20 },
         { 9, 13 },
@@ -1365,7 +1366,7 @@ static void RowanIntro_LoadTilemap(RowanIntro *manager)
     if ((manager->bgLayer1TilemapIndex != 0) && (manager->bgLayer1TilemapIndex < 12)) {
         Graphics_LoadTilesToBgLayer(
             NARC_INDEX_DEMO__INTRO__INTRO,
-            tilemapLocations[manager->bgLayer1TilemapIndex][0],
+            tilemapNarcMemberIdx[manager->bgLayer1TilemapIndex][0],
             manager->bgConfig,
             BG_LAYER_MAIN_1,
             0,
@@ -1374,7 +1375,7 @@ static void RowanIntro_LoadTilemap(RowanIntro *manager)
             manager->heapID);
         Graphics_LoadPalette(
             NARC_INDEX_DEMO__INTRO__INTRO,
-            tilemapLocations[manager->bgLayer1TilemapIndex][1],
+            tilemapNarcMemberIdx[manager->bgLayer1TilemapIndex][1],
             PAL_LOAD_MAIN_BG,
             7 * (2 * 16),
             2 * 16,
@@ -1394,7 +1395,7 @@ static void RowanIntro_LoadTilemap(RowanIntro *manager)
     if ((manager->bgLayer2TilemapIndex != 0) && (manager->bgLayer2TilemapIndex < 12)) {
         Graphics_LoadTilesToBgLayer(
             NARC_INDEX_DEMO__INTRO__INTRO,
-            tilemapLocations[manager->bgLayer2TilemapIndex][0],
+            tilemapNarcMemberIdx[manager->bgLayer2TilemapIndex][0],
             manager->bgConfig,
             BG_LAYER_MAIN_2,
             0,
@@ -1403,7 +1404,7 @@ static void RowanIntro_LoadTilemap(RowanIntro *manager)
             manager->heapID);
         Graphics_LoadPalette(
             NARC_INDEX_DEMO__INTRO__INTRO,
-            tilemapLocations[manager->bgLayer2TilemapIndex][1],
+            tilemapNarcMemberIdx[manager->bgLayer2TilemapIndex][1],
             PAL_LOAD_MAIN_BG,
             8 * (2 * 16),
             2 * 16,
@@ -1423,7 +1424,7 @@ static void RowanIntro_LoadTilemap(RowanIntro *manager)
 
 static void RowanIntro_LoadSubLayer3Tilemap(RowanIntro *manager)
 {
-    int tilemapLocations[] = { 28, 29, 29, 30, 31 };
+    int tilemapNarcMemberIdx[] = { 28, 29, 29, 30, 31 };
 
     if (manager->bgSubLayer3TilemapIndex >= 5) {
         return;
@@ -1431,7 +1432,7 @@ static void RowanIntro_LoadSubLayer3Tilemap(RowanIntro *manager)
 
     Graphics_LoadTilemapToBgLayer(
         NARC_INDEX_DEMO__INTRO__INTRO,
-        tilemapLocations[manager->bgSubLayer3TilemapIndex],
+        tilemapNarcMemberIdx[manager->bgSubLayer3TilemapIndex],
         manager->bgConfig,
         BG_LAYER_SUB_3,
         0,
@@ -1556,7 +1557,7 @@ static void RowanIntro_LoadBunearySprite(RowanIntro *manager)
     void *tileSrc;
     void *paletteBuffer;
     int mainBgLayer = BG_LAYER_MAIN_2;
-    int subBgLayer = 5;
+    int subBgLayer = BG_LAYER_SUB_1;
     int mainPalette = 8;
     int subPalette = 10;
 
@@ -1670,7 +1671,6 @@ static void RowanIntro_LoadPokeballTilemap(RowanIntro *manager)
 static BOOL RowanIntro_MoveBgLayer(RowanIntro *manager, enum BgLayer bgLayer, enum MoveBgLayerCases mBLCase)
 {
     BOOL isFinished = FALSE;
-    GXBlendPlaneMask unused;
 
     if (mBLCase == MBL_CASE_CENTRE_AVATAR) {
         {
@@ -1863,7 +1863,7 @@ static BOOL RowanIntro_AnimateBuneary(RowanIntro *manager, enum BunearyAnimState
             BG_OFFSET_UPDATE_SET_Y,
             -8 * 13);
         Bg_SetPriority(BG_LAYER_MAIN_2, 0);
-        Bg_ToggleLayer(BG_LAYER_SUB_1, 1);
+        Bg_ToggleLayer(BG_LAYER_SUB_1, TRUE);
 
         manager->bunearyAnimCarryover = 0;
         manager->bunearyParabolaCoeff = 8;
@@ -1896,7 +1896,7 @@ static BOOL RowanIntro_AnimateBuneary(RowanIntro *manager, enum BunearyAnimState
                 BG_OFFSET_UPDATE_SET_Y,
                 newYOffset);
         } else {
-            Bg_ToggleLayer(BG_LAYER_SUB_1, 0);
+            Bg_ToggleLayer(BG_LAYER_SUB_1, FALSE);
             manager->bunearyAnimUpdateCounter = 0;
             *state = BA_STATE_SHOW_ON_TOP_SCREEN;
         }
@@ -1905,7 +1905,7 @@ static BOOL RowanIntro_AnimateBuneary(RowanIntro *manager, enum BunearyAnimState
         if (manager->bunearyAnimUpdateCounter) {
             manager->bunearyAnimUpdateCounter--;
         } else {
-            Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
+            Bg_ToggleLayer(BG_LAYER_MAIN_2, TRUE);
             manager->bunearyAnimCarryover = 0;
             manager->bunearyParabolaCoeff = 9;
             manager->bunearyAnimUpdateCounter = 0;
@@ -2035,8 +2035,8 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
     case RI_STATE_FIRST_FADE_BLACK_START:
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_2, SEQ_OPENING, 1);
         Sound_StopBGM(SEQ_OPENING, 0);
-        Bg_ToggleLayer(BG_LAYER_MAIN_0, 1);
-        Bg_ToggleLayer(BG_LAYER_SUB_3, 1);
+        Bg_ToggleLayer(BG_LAYER_MAIN_0, TRUE);
+        Bg_ToggleLayer(BG_LAYER_SUB_3, TRUE);
         StartScreenFade(
             FADE_BOTH_SCREENS,
             FADE_TYPE_UNK_1,
@@ -2055,7 +2055,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_DIALOGUE_WELCOME:
-        if (RowanIntro_DisplayMessage(manager, 0, TRUE) == TRUE) {
+        if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00000, TRUE) == TRUE) {
             manager->state = RI_STATE_FADE_IN_ROWAN_START;
             {
                 Bg_ClearTilemap(manager->bgConfig, BG_LAYER_MAIN_0);
@@ -2067,8 +2067,8 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         manager->bgLayer1TilemapIndex = 1;
         manager->bgLayer2TilemapIndex = 0;
         RowanIntro_LoadTilemap(manager);
-        Bg_ToggleLayer(BG_LAYER_MAIN_3, 1);
-        Bg_ToggleLayer(BG_LAYER_MAIN_1, 1);
+        Bg_ToggleLayer(BG_LAYER_MAIN_3, TRUE);
+        Bg_ToggleLayer(BG_LAYER_MAIN_1, TRUE);
         StartScreenFade(
             FADE_MAIN_ONLY,
             FADE_TYPE_UNK_1,
@@ -2085,7 +2085,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_DIALOGUE_ROWAN_INTRO:
-        if (RowanIntro_DisplayMessage(manager, 1, TRUE) == TRUE) {
+        if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00001, TRUE) == TRUE) {
             manager->state = RI_STATE_MOVE_ROWAN_RIGHT_FOR_INFO;
         }
         break;
@@ -2130,7 +2130,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
             {
                 Bg_ClearTilemap(manager->bgConfig, BG_LAYER_MAIN_0);
             }
-            Bg_ToggleLayer(BG_LAYER_MAIN_1, 0);
+            Bg_ToggleLayer(BG_LAYER_MAIN_1, FALSE);
             {
                 manager->state = manager->bufferedState;
             }
@@ -2157,7 +2157,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_CONTROL_INFO_TEXT_0:
-        if (RowanIntro_DisplayTextBlock(manager, 2, DTBC_CONTROL_INFO_0, 3, 18) == TRUE) {
+        if (RowanIntro_DisplayTextBlock(manager, pl_msg_00000389_00002, DTBC_CONTROL_INFO_0, 3, 18) == TRUE) {
             manager->state = RI_STATE_CONTROL_INFO_SHOW_XY_ICONS;
         }
         break;
@@ -2167,7 +2167,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         manager->state = RI_STATE_CONTROL_INFO_TEXT_1;
         break;
     case RI_STATE_CONTROL_INFO_TEXT_1:
-        if (RowanIntro_DisplayTextBlock(manager, 3, DTBC_CONTROL_INFO_0, 7, 12) == TRUE) {
+        if (RowanIntro_DisplayTextBlock(manager, pl_msg_00000389_00003, DTBC_CONTROL_INFO_0, 7, 12) == TRUE) {
             manager->state = RI_STATE_CONTROL_INFO_HIDE_XY_ICONS;
         }
         break;
@@ -2177,17 +2177,17 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         manager->state = RI_STATE_CONTROL_INFO_TEXT_2;
         break;
     case RI_STATE_CONTROL_INFO_TEXT_2:
-        if (RowanIntro_DisplayTextBlock(manager, 4, DTBC_CONTROL_INFO_1, 4, 12) == TRUE) {
+        if (RowanIntro_DisplayTextBlock(manager, pl_msg_00000389_00004, DTBC_CONTROL_INFO_1, 4, 12) == TRUE) {
             manager->state = RI_STATE_CONTROL_INFO_DIALOGUE_DS_ICON;
         }
         break;
     case RI_STATE_CONTROL_INFO_DIALOGUE_DS_ICON:
-        if (RowanIntro_DisplayMessage(manager, 6, TRUE) == TRUE) {
+        if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00006, TRUE) == TRUE) {
             manager->state = RI_STATE_CONTROL_INFO_TEXT_3;
         }
         break;
     case RI_STATE_CONTROL_INFO_TEXT_3:
-        if (RowanIntro_DisplayTextBlock(manager, 5, DTBC_CONTROL_INFO_1, 4, 10) == TRUE) {
+        if (RowanIntro_DisplayTextBlock(manager, pl_msg_00000389_00005, DTBC_CONTROL_INFO_1, 4, 10) == TRUE) {
             manager->state = RI_STATE_CONTROL_INFO_HIDE_FG;
             {
                 Bg_ClearTilemap(manager->bgConfig, BG_LAYER_MAIN_0);
@@ -2195,11 +2195,11 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_CONTROL_INFO_HIDE_FG:
-        Bg_ToggleLayer(BG_LAYER_MAIN_0, 1);
+        Bg_ToggleLayer(BG_LAYER_MAIN_0, TRUE);
         manager->state = RI_STATE_CONTROL_INFO_DIALOGUE_UNDERSTOOD;
         break;
     case RI_STATE_CONTROL_INFO_DIALOGUE_UNDERSTOOD:
-        if (RowanIntro_DisplayMessage(manager, 7, TRUE) == TRUE) {
+        if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00007, TRUE) == TRUE) {
             manager->state = RI_STATE_CONTROL_INFO_SHOW_YESNO;
         }
         break;
@@ -2208,7 +2208,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
 
         v1.unk_00 = manager->bgConfig;
         sub_02015958(manager->unk_68, &v1);
-        Bg_ToggleLayer(BG_LAYER_SUB_2, 1);
+        Bg_ToggleLayer(BG_LAYER_SUB_2, TRUE);
     }
         manager->bgSubLayer3TilemapIndex = 3;
         RowanIntro_LoadSubLayer3Tilemap(manager);
@@ -2274,7 +2274,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_CONTROL_INFO_DIALOGUE_USE_TOUCHSCREEN:
-        if (RowanIntro_DisplayMessage(manager, 8, TRUE) == TRUE) {
+        if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00008, TRUE) == TRUE) {
             manager->state = RI_STATE_CONTROL_INFO_WAIT_INPUT;
         }
         break;
@@ -2283,7 +2283,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         RowanIntro_LoadLayer3Tilemap(manager);
         manager->bgSubLayer3TilemapIndex = 0;
         RowanIntro_LoadSubLayer3Tilemap(manager);
-        Bg_ToggleLayer(BG_LAYER_MAIN_1, 1);
+        Bg_ToggleLayer(BG_LAYER_MAIN_1, TRUE);
         Bg_SetOffset(
             manager->bgConfig,
             BG_LAYER_MAIN_1,
@@ -2305,7 +2305,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_DIALOGUE_ANOTHER_INFO:
-        if (RowanIntro_DisplayMessage(manager, 9, TRUE) == TRUE) {
+        if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00009, TRUE) == TRUE) {
             manager->state = RI_STATE_MOVE_ROWAN_RIGHT_FOR_INFO;
         }
         break;
@@ -2330,32 +2330,32 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_ADVENTURE_INFO_TEXT_0:
-        if (RowanIntro_DisplayTextBlock(manager, 10, DTBC_ADVENTURE_INFO, 9, 6) == TRUE) {
+        if (RowanIntro_DisplayTextBlock(manager, pl_msg_00000389_00010, DTBC_ADVENTURE_INFO, 9, 6) == TRUE) {
             manager->state = RI_STATE_ADVENTURE_INFO_TEXT_1;
         }
         break;
     case RI_STATE_ADVENTURE_INFO_TEXT_1:
-        if (RowanIntro_DisplayTextBlock(manager, 11, DTBC_ADVENTURE_INFO, 8, 8) == TRUE) {
+        if (RowanIntro_DisplayTextBlock(manager, pl_msg_00000389_00011, DTBC_ADVENTURE_INFO, 8, 8) == TRUE) {
             manager->state = RI_STATE_ADVENTURE_INFO_TEXT_2;
         }
         break;
     case RI_STATE_ADVENTURE_INFO_TEXT_2:
-        if (RowanIntro_DisplayTextBlock(manager, 12, DTBC_ADVENTURE_INFO, 9, 6) == TRUE) {
+        if (RowanIntro_DisplayTextBlock(manager, pl_msg_00000389_00012, DTBC_ADVENTURE_INFO, 9, 6) == TRUE) {
             manager->state = RI_STATE_ADVENTURE_INFO_TEXT_3;
         }
         break;
     case RI_STATE_ADVENTURE_INFO_TEXT_3:
-        if (RowanIntro_DisplayTextBlock(manager, 13, DTBC_ADVENTURE_INFO, 5, 14) == TRUE) {
+        if (RowanIntro_DisplayTextBlock(manager, pl_msg_00000389_00013, DTBC_ADVENTURE_INFO, 5, 14) == TRUE) {
             manager->state = RI_STATE_ADVENTURE_INFO_TEXT_4;
         }
         break;
     case RI_STATE_ADVENTURE_INFO_TEXT_4:
-        if (RowanIntro_DisplayTextBlock(manager, 14, DTBC_ADVENTURE_INFO, 10, 4) == TRUE) {
+        if (RowanIntro_DisplayTextBlock(manager, pl_msg_00000389_00014, DTBC_ADVENTURE_INFO, 10, 4) == TRUE) {
             manager->state = RI_STATE_ADVENTURE_INFO_TEXT_5;
         }
         break;
     case RI_STATE_ADVENTURE_INFO_TEXT_5:
-        if (RowanIntro_DisplayTextBlock(manager, 15, DTBC_ADVENTURE_INFO, 6, 12) == TRUE) {
+        if (RowanIntro_DisplayTextBlock(manager, pl_msg_00000389_00015, DTBC_ADVENTURE_INFO, 6, 12) == TRUE) {
             manager->state = RI_STATE_ADVENTURE_INFO_FADE_OUT_START;
         }
         break;
@@ -2375,7 +2375,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
             {
                 Bg_ClearTilemap(manager->bgConfig, BG_LAYER_MAIN_0);
             }
-            Bg_ToggleLayer(BG_LAYER_MAIN_0, 1);
+            Bg_ToggleLayer(BG_LAYER_MAIN_0, TRUE);
             manager->state = RI_STATE_FADE_IN_ROWAN_2_START;
         }
         break;
@@ -2385,7 +2385,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_DIALOGUE_WIDELY_INHABITED:
-        if (RowanIntro_DisplayMessage(manager, 16, TRUE) == TRUE) {
+        if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00016, TRUE) == TRUE) {
             manager->state = RI_STATE_PKBL_FADE_START;
         }
         break;
@@ -2405,7 +2405,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
             RowanIntro_LoadPokeballTilemap(manager);
             manager->bgSubLayer3TilemapIndex = 4;
             RowanIntro_LoadSubLayer3Tilemap(manager);
-            Bg_ToggleLayer(BG_LAYER_SUB_2, 1);
+            Bg_ToggleLayer(BG_LAYER_SUB_2, TRUE);
             StartScreenFade(
                 FADE_SUB_ONLY,
                 FADE_TYPE_UNK_1,
@@ -2423,7 +2423,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_PKBL_DIALOGUE:
-        if (RowanIntro_DisplayMessage(manager, 17, TRUE) == TRUE) {
+        if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00017, TRUE) == TRUE) {
             manager->state = RI_STATE_PKBL_WAIT_INPUT;
         }
         break;
@@ -2467,7 +2467,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_PKBL_DIALOGUE_USE_TOUCHSCREEN:
-        if (RowanIntro_DisplayMessage(manager, 18, TRUE) == TRUE) {
+        if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00018, TRUE) == TRUE) {
             manager->state = RI_STATE_PKBL_WAIT_INPUT;
         }
         break;
@@ -2507,7 +2507,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         break;
     case RI_STATE_PKBL_ANIM_SPAWN_PKM_AND_FLASH_4:
         RowanIntro_LoadBunearySprite(manager);
-        Bg_ToggleLayer(BG_LAYER_SUB_2, 0);
+        Bg_ToggleLayer(BG_LAYER_SUB_2, FALSE);
         manager->animData.bunearyAnimState = BA_STATE_INIT;
         RowanIntro_AnimateBuneary(manager, &manager->animData.bunearyAnimState);
         manager->bgSubLayer3TilemapIndex = 0;
@@ -2544,7 +2544,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_PKBL_DIALOGUE_LIVE_ALONGSIDE:
-        if (RowanIntro_DisplayMessage(manager, 19, TRUE) == TRUE) {
+        if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00019, TRUE) == TRUE) {
             {
                 Bg_ClearTilemap(manager->bgConfig, BG_LAYER_MAIN_0);
             }
@@ -2563,7 +2563,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_DIALOGUE_ABOUT_YOURSELF:
-        if (RowanIntro_DisplayMessage(manager, 20, TRUE) == TRUE) {
+        if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00020, TRUE) == TRUE) {
             manager->state = RI_STATE_GENDR_FADE_OUT_ROWAN;
         }
         break;
@@ -2600,7 +2600,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_GENDR_DIALOGUE:
-        if (RowanIntro_DisplayMessage(manager, 21, TRUE) == TRUE) {
+        if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00021, TRUE) == TRUE) {
             manager->playerGender = GENDER_MALE;
             manager->state = RI_STATE_GENDR_CHOICE;
         }
@@ -2657,9 +2657,9 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         u32 genderConfirmTextID;
 
         if (manager->playerGender == GENDER_MALE) {
-            genderConfirmTextID = 22;
+            genderConfirmTextID = pl_msg_00000389_00022;
         } else {
-            genderConfirmTextID = 23;
+            genderConfirmTextID = pl_msg_00000389_00023;
         }
 
         if (RowanIntro_DisplayMessage(manager, genderConfirmTextID, TRUE) == TRUE) {
@@ -2695,7 +2695,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
     } break;
     case RI_STATE_NAME_DIALOGUE:
-        if (RowanIntro_DisplayMessage(manager, 24, TRUE) == TRUE) {
+        if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00024, TRUE) == TRUE) {
             manager->state = RI_STATE_NAME_APP_KEYBOARD;
         }
         break;
@@ -2708,19 +2708,19 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         manager->state = RI_STATE_NAME_KEYBOARD;
         break;
     case RI_STATE_NAME_KEYBOARD:
-        Bg_ToggleLayer(BG_LAYER_MAIN_0, 1);
-        Bg_ToggleLayer(BG_LAYER_MAIN_3, 1);
-        Bg_ToggleLayer(BG_LAYER_SUB_3, 1);
+        Bg_ToggleLayer(BG_LAYER_MAIN_0, TRUE);
+        Bg_ToggleLayer(BG_LAYER_MAIN_3, TRUE);
+        Bg_ToggleLayer(BG_LAYER_SUB_3, TRUE);
 
         if (manager->playerGender == GENDER_MALE) {
-            Bg_ToggleLayer(BG_LAYER_MAIN_1, 1);
+            Bg_ToggleLayer(BG_LAYER_MAIN_1, TRUE);
             Bg_SetOffset(
                 manager->bgConfig,
                 BG_LAYER_MAIN_1,
                 BG_OFFSET_UPDATE_SET_X,
                 0);
         } else {
-            Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
+            Bg_ToggleLayer(BG_LAYER_MAIN_2, TRUE);
             Bg_SetOffset(
                 manager->bgConfig,
                 BG_LAYER_MAIN_2,
@@ -2745,12 +2745,11 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         break;
     case RI_STATE_NAME_CONFIRM_DIALOGUE: {
         u32 nameConfirmTextID;
-        int unused;
 
         if (manager->playerGender == GENDER_MALE) {
-            nameConfirmTextID = 25;
+            nameConfirmTextID = pl_msg_00000389_00025;
         } else {
-            nameConfirmTextID = 26;
+            nameConfirmTextID = pl_msg_00000389_00026;
         }
 
         if (RowanIntro_DisplayMessage(manager, nameConfirmTextID, TRUE) == TRUE) {
@@ -2804,7 +2803,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_DIALOGUE_SO_YOURE:
-        if (RowanIntro_DisplayMessage(manager, 27, TRUE) == TRUE) {
+        if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00027, TRUE) == TRUE) {
             manager->state = RI_STATE_FADE_OUT_ROWAN_FOR_BARRY;
         }
         break;
@@ -2825,7 +2824,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_BARRY_NAME_DIALOGUE:
-        if (RowanIntro_DisplayMessage(manager, 28, TRUE) == TRUE) {
+        if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00028, TRUE) == TRUE) {
             manager->state = RI_STATE_MOVE_BARRY_RIGHT_FOR_NAMES;
         }
         break;
@@ -2877,10 +2876,10 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         manager->state = RI_STATE_BARRY_NAME_KEYBOARD;
         break;
     case RI_STATE_BARRY_NAME_KEYBOARD:
-        Bg_ToggleLayer(BG_LAYER_MAIN_0, 1);
-        Bg_ToggleLayer(BG_LAYER_MAIN_3, 1);
-        Bg_ToggleLayer(BG_LAYER_SUB_3, 1);
-        Bg_ToggleLayer(BG_LAYER_MAIN_1, 1);
+        Bg_ToggleLayer(BG_LAYER_MAIN_0, TRUE);
+        Bg_ToggleLayer(BG_LAYER_MAIN_3, TRUE);
+        Bg_ToggleLayer(BG_LAYER_SUB_3, TRUE);
+        Bg_ToggleLayer(BG_LAYER_MAIN_1, TRUE);
         Bg_SetOffset(
             manager->bgConfig,
             BG_LAYER_MAIN_1,
@@ -2902,7 +2901,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_BARRY_NAME_CONFIRM_DIALOGUE:
-        if (RowanIntro_DisplayMessage(manager, 29, TRUE) == TRUE) {
+        if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00029, TRUE) == TRUE) {
             manager->state = RI_STATE_BARRY_NAME_CONFIRM_CHOICE_BOX;
         }
         break;
@@ -2944,7 +2943,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_DIALOGUE_END:
-        if (RowanIntro_DisplayMessage(manager, 30, TRUE) == TRUE) {
+        if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00030, TRUE) == TRUE) {
             Sound_FadeOutBGM(0, 50);
             manager->state = RI_STATE_FADE_OUT_ROWAN_END;
         }
