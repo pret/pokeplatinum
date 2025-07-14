@@ -1,6 +1,5 @@
 #include "macros/btlcmd.inc"
 
-    .data
 
 _000:
     TryRestoreStatusOnSwitch BTLSCR_SWITCHED_MON, _007

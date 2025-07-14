@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/global_terminal_1f.h"
 
-    .data
 
     ScriptEntry _00F0
     ScriptEntry _00F2

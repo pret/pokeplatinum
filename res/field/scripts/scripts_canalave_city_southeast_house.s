@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/canalave_city_southeast_house.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _0066

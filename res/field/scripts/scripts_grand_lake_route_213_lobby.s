@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/grand_lake_route_213_lobby.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _0014

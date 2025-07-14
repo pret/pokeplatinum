@@ -8,7 +8,6 @@
 #define PICKUP_TYPE_ITEM             0
 #define PICKUP_TYPE_ACCESORY         1
 
-    .data
 
     ScriptEntry _00B6
     ScriptEntry AmitySquare_Trigger_WestGate

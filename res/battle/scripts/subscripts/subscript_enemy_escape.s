@@ -1,6 +1,5 @@
 #include "macros/btlcmd.inc"
 
-    .data
 
 _000:
     PlaySound BTLSCR_ATTACKER, 1791

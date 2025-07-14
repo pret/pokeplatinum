@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/fight_area.h"
 
-    .data
 
     ScriptEntry _00D8
     ScriptEntry _049C

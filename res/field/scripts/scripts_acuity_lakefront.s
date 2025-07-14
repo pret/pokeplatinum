@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/acuity_lakefront.h"
 
-    .data
 
     ScriptEntry _004E
     ScriptEntry _0012

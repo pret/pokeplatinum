@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_222_gate_to_sunyshore_city.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _001D

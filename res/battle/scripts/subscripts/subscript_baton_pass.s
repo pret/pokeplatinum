@@ -1,6 +1,5 @@
 #include "macros/btlcmd.inc"
 
-    .data
 
 _000:
     TryReplaceFaintedMon BTLSCR_ATTACKER, TRUE, _029

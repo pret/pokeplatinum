@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/snowpoint_temple_1f.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _0010

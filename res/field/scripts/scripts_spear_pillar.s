@@ -2,7 +2,6 @@
 #include "generated/distribution_events.h"
 #include "res/text/bank/spear_pillar.h"
 
-    .data
 
     ScriptEntry _0022
     ScriptEntry _0107

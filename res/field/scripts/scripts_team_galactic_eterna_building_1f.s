@@ -2,7 +2,6 @@
 #include "generated/distribution_events.h"
 #include "res/text/bank/team_galactic_eterna_building_1f.h"
 
-    .data
 
     ScriptEntry _0020
     ScriptEntry _0033

@@ -3,7 +3,6 @@
 
 #define LOCALID_UXIE 0
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry AcuityCavern_CheckShouldUxieBeRemoved

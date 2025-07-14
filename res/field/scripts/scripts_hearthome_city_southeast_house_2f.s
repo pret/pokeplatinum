@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/hearthome_city_southeast_house_2f.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _006E

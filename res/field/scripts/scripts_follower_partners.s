@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/follower_partners.h"
 
-    .data
 
     ScriptEntry FollowerPartners_Rival
     ScriptEntry _00F9

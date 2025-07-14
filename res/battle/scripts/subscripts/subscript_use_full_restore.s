@@ -1,6 +1,5 @@
 #include "macros/btlcmd.inc"
 
-    .data
 
 _000:
     SetHealthbarStatus BTLSCR_ATTACKER, BATTLE_ANIMATION_NONE

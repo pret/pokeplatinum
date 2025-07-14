@@ -7,7 +7,6 @@
 #define LOCALID_MOVE_TO_LEARN VAR_0x8001
 #define LOCALID_ROTOM_FORM VAR_0x8004
 
-    .data
 
     ScriptEntry RotomsRoom_MicrowaveOven
     ScriptEntry RotomsRoom_Refrigerator

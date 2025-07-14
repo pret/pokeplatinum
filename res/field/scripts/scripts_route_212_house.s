@@ -2,7 +2,6 @@
 #include "generated/tutor_locations.h"
 #include "res/text/bank/route_212_house.h"
 
-    .data
 
     ScriptEntry _0016
     ScriptEntry _001C

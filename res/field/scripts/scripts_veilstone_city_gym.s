@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/veilstone_city_gym.h"
 
-    .data
 
     ScriptEntry _001E
     ScriptEntry _0022

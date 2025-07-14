@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pokemon_day_care.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _0021

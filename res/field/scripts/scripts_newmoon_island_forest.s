@@ -2,7 +2,6 @@
 #include "generated/distribution_events.h"
 #include "res/text/bank/newmoon_island_forest.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _005E

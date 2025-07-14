@@ -3,7 +3,6 @@
 
 #define LOCALID_SLOT_MACHINE_ID VAR_0x8004
 
-    .data
 
     ScriptEntry GameCorner_SlotMachine_0
     ScriptEntry GameCorner_SlotMachine_1

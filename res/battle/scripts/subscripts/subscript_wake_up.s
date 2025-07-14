@@ -1,6 +1,5 @@
 #include "macros/btlcmd.inc"
 
-    .data
 
 _000:
     CheckAbility CHECK_HAVE, BTLSCR_MSG_TEMP, ABILITY_SOUNDPROOF, _015

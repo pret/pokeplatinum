@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/jubilife_city_unknown_house_3.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _001D

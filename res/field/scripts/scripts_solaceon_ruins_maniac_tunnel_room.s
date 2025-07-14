@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/solaceon_ruins_maniac_tunnel_room.h"
 
-    .data
 
     ScriptEntry _0006
     ScriptEntryEnd

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/hearthome_city_dp_gym_elevator_room_2.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _0016

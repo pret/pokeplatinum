@@ -4,7 +4,6 @@
 #define LOCALID_MESPRIT 0
 #define LOCALID_ROWAN   1
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry VerityCavern_Mesprit

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/scratch_off_cards.h"
 
-    .data
 
     ScriptEntry _0006
     ScriptEntryEnd

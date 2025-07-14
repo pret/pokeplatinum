@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/survival_area_south_house.h"
 
-    .data
 
     ScriptEntry _0006
     ScriptEntryEnd

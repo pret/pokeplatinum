@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_frontier_gate_to_fight_area.h"
 
-    .data
 
     ScriptEntry _0038
     ScriptEntry _007C

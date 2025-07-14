@@ -17,6 +17,7 @@ INCLUDE_ARGS=()
 SCRIPT_FILES=()
 AS="arm-none-eabi-gcc"
 OBJCOPY="arm-none-eabi-objcopy"
+LD="arm-none-eabi-ld"
 OUTDIR="."
 MD=""
 
@@ -68,5 +69,6 @@ for script_file in "${SCRIPT_FILES[@]}" ; do
     # Convert + clean-up
     $AS $MD -c -x assembler-with-cpp "${INCLUDE_ARGS[@]}" -o "$script_obj" "$script_file"
     $OBJCOPY -O binary --file-alignment 4 "$script_obj" "$script_bin"
-    rm "$script_obj"
+    $LD "$script_obj" -o "$script_obj.dummy"
+    rm "$script_obj" "$script_obj.dummy"
 done

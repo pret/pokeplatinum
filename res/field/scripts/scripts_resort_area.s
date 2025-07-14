@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/resort_area.h"
 
-    .data
 
     ScriptEntry _00DA
     ScriptEntry _00ED

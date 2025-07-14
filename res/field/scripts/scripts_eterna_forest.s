@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/eterna_forest.h"
 
-    .data
 
     ScriptEntry _0047
     ScriptEntry _0108

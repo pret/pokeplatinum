@@ -1,6 +1,5 @@
 #include "macros/scrcmd.inc"
 
-    .data
 
     .byte 1
     ScriptEntry _0006

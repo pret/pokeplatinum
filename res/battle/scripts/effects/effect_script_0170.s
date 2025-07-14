@@ -1,6 +1,5 @@
 #include "macros/btlcmd.inc"
 
-    .data
 
 _000:
     CompareVarToValue OPCODE_NEQ, BTLVAR_ATTACKER_PHYSICAL_DAMAGE_MASK, 0, _016

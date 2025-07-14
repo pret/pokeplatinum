@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/team_galactic_eterna_building_2f.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _0021

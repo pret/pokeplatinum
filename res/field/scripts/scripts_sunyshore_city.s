@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/sunyshore_city.h"
 
-    .data
 
     ScriptEntry _0593
     ScriptEntry _0680

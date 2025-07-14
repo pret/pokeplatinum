@@ -2,7 +2,6 @@
 #include "generated/distribution_events.h"
 #include "res/text/bank/spear_pillar_palkia.h"
 
-    .data
 
     ScriptEntry _0077
     ScriptEntry _000A

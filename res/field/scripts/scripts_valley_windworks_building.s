@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/valley_windworks_building.h"
 
-    .data
 
     ScriptEntry _0022
     ScriptEntry _005F
