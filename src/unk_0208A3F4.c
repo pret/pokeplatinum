@@ -131,169 +131,53 @@ void sub_0208A6CC(UnkStruct_02089688 *param0)
     Window_Remove(&param0->unk_2EC.unk_B0);
 }
 
-extern void _u32_div_f(void);
-
-// clang-format off
-asm void sub_0208A758 (UnkStruct_02089688 * param0)
+void sub_0208A758(UnkStruct_02089688 *param0)
 {
-    push {r4, r5, r6, r7, lr}
-    sub sp, #0x44
-    str r0, [sp]
-    mov r0, #0
-    str r0, [sp, #0xc]
-    mov r0, #0x2f
-    lsl r0, r0, #4
-    ldr r1, [sp]
-    add r2, r0, #4
-    ldr r1, [r1, r0]
-    str r1, [sp, #8]
-    ldr r1, [sp]
-    ldr r1, [r1, r2]
-    add r2, sp, #0x10
-    str r1, [sp, #4]
-    ldr r1, [sp, #0xc]
-    strh r1, [r2]
-    strh r1, [r2, #2]
-    strh r1, [r2, #4]
-    strh r1, [r2, #6]
-    mov r1, #0xa
-    str r1, [sp, #0x18]
-    ldr r1, [sp, #0xc]
-    mov r2, #1
-    str r1, [sp, #0x3c]
-    str r1, [sp, #0x40]
-    str r1, [sp, #0x1c]
-    add r1, r0, #0
-    add r1, #0xf8
-    str r1, [sp, #0x24]
-    str r1, [sp, #0x28]
-    str r1, [sp, #0x2c]
-    str r1, [sp, #0x30]
-    sub r1, r2, #2
-    str r1, [sp, #0x34]
-    str r1, [sp, #0x38]
-    ldr r1, [sp]
-    str r2, [sp, #0x20]
-    add r0, #0xf0
-    ldr r4, [r1, r0]
-    mov r1, #0x3f
-    ldr r0, [sp]
-    lsl r1, r1, #4
-    ldr r0, [r0, r1]
-    sub r6, r0, #1
-    bmi _0208A7DC
-    mov r0, #0x1c
-    add r1, r6, #0
-    mul r1, r0
-    ldr r0, [sp]
-    mov r7, #0xa
-    add r5, r0, r1
- _0208A7C0:
-    add r0, r4, #0
-    add r1, r7, #0
-    bl _u32_div_f
-    add r0, r1, #1
-    str r0, [r5]
-    add r0, r4, #0
-    mov r1, #0xa
-    bl _u32_div_f
-    add r4, r0, #0
-    sub r5, #0x1c
-    sub r6, r6, #1
-    bpl _0208A7C0
- _0208A7DC:
-    mov r1, #0xfb
-    ldr r0, [sp]
-    lsl r1, r1, #2
-    ldr r0, [r0, r1]
-    mov r2, #0x2d
-    ldr r1, [sp]
-    lsl r2, r2, #4
-    ldr r1, [r1, r2]
-    mov r6, #0
-    add r1, r1, r0
-    cmp r1, #0
-    ble _0208A89C
-    ldr r4, [sp]
-    mov r7, #0x4c
-    add r5, r4, #0
- _0208A7FA:
-    cmp r0, #0
-    beq _0208A84C
-    mov r0, #7
-    lsl r0, r0, #6
-    ldr r1, [r4, r0]
-    ldr r0, [sp, #0xc]
-    add r0, r0, r1
-    add r0, r0, #1
-    cmp r6, r0
-    bne _0208A84C
-    ldr r0, [sp, #8]
-    ldr r1, [sp, #4]
-    add r2, sp, #0x10
-    bl SpriteSystem_NewSprite
-    mov r1, #0x73
-    lsl r1, r1, #2
-    str r0, [r4, r1]
-    add r0, r1, #0
-    lsl r1, r7, #0x10
-    ldr r0, [r4, r0]
-    asr r1, r1, #0x10
-    mov r2, #0x18
-    bl ManagedSprite_SetPositionXY
-    mov r0, #0x73
-    lsl r0, r0, #2
-    ldr r0, [r4, r0]
-    mov r1, #0x16
-    bl ManagedSprite_SetAnim
-    mov r0, #0x73
-    lsl r0, r0, #2
-    ldr r0, [r4, r0]
-    bl ManagedSprite_TickFrame
-    ldr r0, [sp, #0xc]
-    add r4, #0x1c
-    add r0, r0, #1
-    str r0, [sp, #0xc]
-    b _0208A882
- _0208A84C:
-    ldr r0, [sp, #8]
-    ldr r1, [sp, #4]
-    add r2, sp, #0x10
-    bl SpriteSystem_NewSprite
-    lsl r1, r7, #0x10
-    str r0, [r5, #0xc]
-    asr r1, r1, #0x10
-    mov r2, #0x18
-    bl ManagedSprite_SetPositionXY
-    ldr r0, [r5, #0]
-    ldr r1, [r5, #8]
-    bl sub_0208AD98
-    add r1, r0, #0
-    ldr r0, [r5, #0xc]
-    bl ManagedSprite_SetAnim
-    ldr r0, [r5, #0xc]
-    mov r1, #2
-    bl ManagedSprite_SetAffineOverwriteMode
-    ldr r0, [r5, #0xc]
-    bl ManagedSprite_TickFrame
-    add r5, #0x1c
- _0208A882:
-    ldr r1, [sp]
-    mov r0, #0xfb
-    lsl r0, r0, #2
-    ldr r0, [r1, r0]
-    add r2, r1, #0
-    mov r1, #0x2d
-    lsl r1, r1, #4
-    ldr r1, [r2, r1]
-    add r6, r6, #1
-    add r1, r1, r0
-    add r7, #8
-    cmp r6, r1
-    blt _0208A7FA
- _0208A89C:
-    add sp, #0x44
-    pop {r4, r5, r6, r7, pc}
+    int i;
+    int v0 = 0, v1 = 0;
+
+    SpriteTemplate v2;
+    SpriteSystem *v3 = param0->unk_2EC.unk_04;
+    SpriteManager *v4 = param0->unk_2EC.unk_08;
+
+    v2.x = 0;
+    v2.y = 0;
+    v2.z = 0;
+    v2.animIdx = 0;
+    v2.priority = 10;
+    v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v2.bgPriority = 0;
+    v2.vramTransfer = FALSE;
+    v2.plttIdx = 0;
+    v2.resources[0] = 1000;
+    v2.resources[1] = 1000;
+    v2.resources[2] = 1000;
+    v2.resources[3] = 1000;
+    v2.resources[4] = SPRITE_RESOURCE_NONE;
+    v2.resources[5] = SPRITE_RESOURCE_NONE;
+
+    u32 v5 = param0->unk_3B8.unk_28;
+    for (i = param0->unk_3F0 - 1; i >= 0; i--) {
+        param0->unk_00[i].unk_00 = (v5 % 10) + 1;
+        v5 /= 10;
+    }
+
+    for (i = 0; i < param0->unk_2D0 + param0->unk_3EC; i++) {
+        if (param0->unk_3EC != 0 && i == param0->unk_1C0[v0].unk_00 + v0 + 1) {
+            param0->unk_1C0[v0].unk_0C = SpriteSystem_NewSprite(v3, v4, &v2);
+            ManagedSprite_SetPositionXY(param0->unk_1C0[v0].unk_0C, 76 + i * 8, 24);
+            ManagedSprite_SetAnim(param0->unk_1C0[v0].unk_0C, 22);
+            ManagedSprite_TickFrame(param0->unk_1C0[v0].unk_0C);
+            v0++;
+        } else {
+            param0->unk_00[v1].unk_0C = SpriteSystem_NewSprite(v3, v4, &v2);
+            ManagedSprite_SetPositionXY(param0->unk_00[v1].unk_0C, 76 + i * 8, 24);
+            ManagedSprite_SetAnim(param0->unk_00[v1].unk_0C, sub_0208AD98(param0->unk_00[v1].unk_00, param0->unk_00[v1].unk_08));
+            ManagedSprite_SetAffineOverwriteMode(param0->unk_00[v1].unk_0C, AFFINE_OVERWRITE_MODE_DOUBLE);
+            ManagedSprite_TickFrame(param0->unk_00[v1].unk_0C);
+            v1++;
+        }
+    }
 }
 
 void sub_0208A8A0(UnkStruct_02089688 *param0)
