@@ -16,8 +16,6 @@
 #include "overlay012/ov12_022346A4.h"
 #include "overlay012/ov12_02234E44.h"
 
-typedef void (*UnkFuncPtr_ov12_02239E64_1)(BattleAnimSystem *, SpriteSystem *, SpriteManager *, Sprite *);
-
 static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_Nop,
     BattleAnimScriptFunc_AnimExample,
@@ -141,13 +139,13 @@ static const BattleAnimScriptSpriteFunc sBattleAnimScriptSpriteFuncs[] = {
     ov12_02234D98
 };
 
-static const UnkFuncPtr_ov12_02239E64_1 Unk_ov12_02239E64[] = {
+static const BattleAnimScriptSpriteFunc sUnusedSpriteFuncs[] = {
     NULL
 };
 
-void include_unk_ov12_02239E64()
+void UnusedSpriteFunc()
 {
-    UNUSED(Unk_ov12_02239E64[0]);
+    UNUSED(sUnusedSpriteFuncs[0]);
 }
 
 BattleAnimScriptFunc BattleAnimScript_GetFunc(enum BattleAnimScriptFuncID id)

@@ -94,6 +94,17 @@ enum BattleAnimSoundTaskType {
     BATTLE_ANIM_SOUND_TASK_COUNT,
 };
 
+enum BattleAnimParticleResource {
+    PARTICLE_RESOURCE_PL_PARALLEL_ATTACK = 0, // P>E, P1>E2, P2>E1
+    PARTICLE_RESOURCE_PL_DIAGONAL_ATTACK_2, // P2>E2
+    PARTICLE_RESOURCE_PL_DIAGONAL_ATTACK_1, // P1>E1
+    PARTICLE_RESOURCE_EM_PARALLEL_ATTACK, // E>P, E1>P2, E2>P1
+    PARTICLE_RESOURCE_EM_DIAGONAL_ATTACK_2, // E2>P2
+    PARTICLE_RESOURCE_EM_DIAGONAL_ATTACK_1, // E1>P1
+
+    PARTICLE_RESOURCE_COUNT,
+};
+
 typedef struct BattleBgSwitch {
     int unk_00;
     u8 unk_04;
@@ -1242,6 +1253,7 @@ static void BattleAnimScriptCmd_CreateEmitterEx(BattleAnimSystem *system)
 #define _ 0xFF
 static int BattleAnimSystem_GetParticleResIdxForMove(BattleAnimSystem *system)
 {
+    // For the meaning of these values, see enum BattleAnimParticleResource
     int indexTable[6][6] = {
         /* Atk/Def P1 E1 P1 E1 P2 E2 */
         /* P1 */ { _, 1, _, _, _, _ },
@@ -1289,14 +1301,14 @@ static int BattleAnimSystem_GetParticleResIdxForFriendlyFire(BattleAnimSystem *s
 
 static void BattleAnimScriptCmd_CreateEmitterForMove(BattleAnimSystem *system)
 {
-    u32 resourceTable[6];
+    u32 resourceTable[PARTICLE_RESOURCE_COUNT];
 
     BattleAnimScript_Next(system);
 
     u32 psIndex = (u32)BattleAnimScript_ReadWord(system->scriptPtr);
     BattleAnimScript_Next(system);
 
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < PARTICLE_RESOURCE_COUNT; i++) {
         resourceTable[i] = (u32)BattleAnimScript_ReadWord(system->scriptPtr);
         BattleAnimScript_Next(system);
     }
