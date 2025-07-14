@@ -21,88 +21,88 @@ void sub_02089604(UnkStruct_02089688 *param0, int param1)
 {
     int v0;
 
-    param0->unk_2AC = param0->unk_2A8;
-    param0->unk_2A8 = param1;
-    param0->unk_2B0 = 0;
-    param0->unk_2B4 = 0;
-    param0->unk_2B8 = 0;
-    param0->unk_2BC = 0;
+    param0->unk_2D8 = param0->unk_2D4;
+    param0->unk_2D4 = param1;
+    param0->unk_2DC = 0;
+    param0->unk_2E0 = 0;
+    param0->unk_2E4 = 0;
+    param0->unk_2E8 = 0;
 
-    if (param0->unk_2A8 != 0) {
-        param0->unk_2B0 = param0->unk_27E[param0->unk_2A8 - 1][0];
-        param0->unk_2B4 = param0->unk_27E[param0->unk_2A8 - 1][1];
+    if (param0->unk_2D4 != 0) {
+        param0->unk_2DC = param0->unk_2AA[param0->unk_2D4 - 1][0];
+        param0->unk_2E0 = param0->unk_2AA[param0->unk_2D4 - 1][1];
     }
 
-    if (param0->unk_2AC != 0) {
-        param0->unk_2B8 = param0->unk_27E[param0->unk_2AC - 1][0];
-        param0->unk_2BC = param0->unk_27E[param0->unk_2AC - 1][1];
+    if (param0->unk_2D8 != 0) {
+        param0->unk_2E4 = param0->unk_2AA[param0->unk_2D8 - 1][0];
+        param0->unk_2E8 = param0->unk_2AA[param0->unk_2D8 - 1][1];
     }
 }
 
 void sub_02089688(UnkStruct_02089688 *param0)
 {
     int v0;
-    param0->unk_2C0.unk_88 = 1;
+    param0->unk_2EC.unk_88 = 1;
     u16 v1 = 0;
     int v2, v3, v4, v5;
 
     for (v0 = 0; v0 < 4 + 1; v0++) {
-        param0->unk_27E[v0][0] = v1;
-        v1 += param0->unk_38C.unk_04[v0];
-        param0->unk_27E[v0][1] = v1;
+        param0->unk_2AA[v0][0] = v1;
+        v1 += param0->unk_3B8.unk_04[v0];
+        param0->unk_2AA[v0][1] = v1;
     }
 
-    sub_02089604(param0, param0->unk_38C.unk_24 + 1);
+    sub_02089604(param0, param0->unk_3B8.unk_24 + 1);
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param0->unk_38C.unk_04[v0] == 0) {
+        if (param0->unk_3B8.unk_04[v0] == 0) {
             break;
         }
 
-        param0->unk_2A4 += param0->unk_38C.unk_04[v0];
-        param0->unk_3C0++;
+        param0->unk_2D0 += param0->unk_3B8.unk_04[v0];
+        param0->unk_3EC++;
     }
 
-    param0->unk_3C0--;
-    v2 = 8 * (param0->unk_2A4 + param0->unk_3C0);
-    param0->unk_274[0] = 112 - v2 / 2;
+    param0->unk_3EC--;
+    v2 = 8 * (param0->unk_2D0 + param0->unk_3EC);
+    param0->unk_2A0[0] = 112 - v2 / 2;
 
     for (v0 = 0; v0 < 4; v0++) {
-        v2 = 8 * param0->unk_3C0 + (8 * (param0->unk_2A4 - param0->unk_38C.unk_04[v0]) + 32 * param0->unk_38C.unk_04[v0]);
+        v2 = 8 * param0->unk_3EC + (8 * (param0->unk_2D0 - param0->unk_3B8.unk_04[v0]) + 32 * param0->unk_3B8.unk_04[v0]);
 
-        param0->unk_274[v0 + 1] = 112 - v2 / 2;
+        param0->unk_2A0[v0 + 1] = 112 - v2 / 2;
     }
 
-    param0->unk_274[1] += 12;
+    param0->unk_2A0[1] += 12;
     v3 = 0;
 
-    for (v0 = 0; v0 < param0->unk_3C0; v0++) {
-        v3 += param0->unk_38C.unk_04[v0];
-        param0->unk_1A0[v0].unk_00 = v3 - 1;
+    for (v0 = 0; v0 < param0->unk_3EC; v0++) {
+        v3 += param0->unk_3B8.unk_04[v0];
+        param0->unk_1C0[v0].unk_00 = v3 - 1;
     }
 
     v5 = 0;
     v0 = 0;
 
     do {
-        for (v4 = 0; v4 < param0->unk_38C.unk_04[v5]; v4++) {
+        for (v4 = 0; v4 < param0->unk_3B8.unk_04[v5]; v4++) {
             param0->unk_00[v0].unk_04 = v5 + 1;
             v0++;
         }
         v5++;
-    } while (v0 < param0->unk_2A4);
+    } while (v0 < param0->unk_2D0);
 
-    for (v0 = 0; v0 < param0->unk_38C.unk_24; v0++) {
-        param0->unk_3C4 += param0->unk_38C.unk_04[v0];
+    for (v0 = 0; v0 < param0->unk_3B8.unk_24; v0++) {
+        param0->unk_3F0 += param0->unk_3B8.unk_04[v0];
     }
 }
 
 void sub_02089808(UnkStruct_02089688 *param0, int param1)
 {
-    param0->unk_294 = param1;
-    param0->unk_298 = 0;
-    param0->unk_29C = 0;
-    param0->unk_2A0 = 0;
+    param0->unk_2C0 = param1;
+    param0->unk_2C4 = 0;
+    param0->unk_2C8 = 0;
+    param0->unk_2CC = 0;
 }
 
 BOOL sub_02089820(UnkStruct_02089688 *param0)
@@ -116,14 +116,14 @@ BOOL sub_02089820(UnkStruct_02089688 *param0)
     sub_0208AF44(param0);
     sub_0208AFCC(param0);
     sub_0208B064(param0);
-    sub_0208B1C4(param0->unk_2C0.unk_0C, &param0->unk_2C0.unk_B0, 4, 2, 21, 27, 2, 100, param0->unk_38C.unk_2C);
+    sub_0208B1C4(param0->unk_2EC.unk_0C, &param0->unk_2EC.unk_B0, 4, 2, 21, 27, 2, 100, param0->unk_3B8.unk_2C);
 
-    if (param0->unk_38C.unk_30 != 0) {
+    if (param0->unk_3B8.unk_30 != 0) {
         NNSG2dPaletteData *v0;
         void *v1 = sub_020394A8(HEAP_ID_101);
 
         NNS_G2dGetUnpackedPaletteData(v1, &v0);
-        PaletteData_LoadBuffer(param0->unk_2C0.unk_10, v0->pRawData, 0x1 | 0x2, 0xe0, 0x20);
+        PaletteData_LoadBuffer(param0->unk_2EC.unk_10, v0->pRawData, 0x1 | 0x2, 0xe0, 0x20);
         Heap_Free(v1);
     }
 
@@ -135,14 +135,14 @@ BOOL sub_02089820(UnkStruct_02089688 *param0)
 
 BOOL sub_020898DC(UnkStruct_02089688 *param0)
 {
-    switch (param0->unk_29C) {
+    switch (param0->unk_2C8) {
     case 0:
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_101);
-        param0->unk_29C++;
+        param0->unk_2C8++;
         break;
     case 1:
         if (IsScreenFadeDone() == TRUE) {
-            param0->unk_29C++;
+            param0->unk_2C8++;
         }
         break;
     default:
@@ -154,15 +154,15 @@ BOOL sub_020898DC(UnkStruct_02089688 *param0)
 
 BOOL sub_02089938(UnkStruct_02089688 *param0)
 {
-    switch (param0->unk_29C) {
+    switch (param0->unk_2C8) {
     case 0:
         if (IsScreenFadeDone() == TRUE) {
-            param0->unk_29C++;
+            param0->unk_2C8++;
         }
         break;
     default:
         sub_0208A328(param0);
-        TouchScreenActions_HandleAction(param0->unk_2C0.unk_14);
+        TouchScreenActions_HandleAction(param0->unk_2EC.unk_14);
         sub_02089C20(param0);
         break;
     }
@@ -180,11 +180,11 @@ BOOL sub_02089974(UnkStruct_02089688 *param0)
         0.8f, 0.6f, 0.4f, 0.2f, 0.8f, 1.0f, 1.0f
     };
 
-    switch (param0->unk_29C) {
+    switch (param0->unk_2C8) {
     case 0:
         sub_0208AAB4(param0, 0, 0);
         {
-            for (v0 = 0; v0 < param0->unk_2A4; v0++) {
+            for (v0 = 0; v0 < param0->unk_2D0; v0++) {
                 if (param0->unk_00[v0].unk_14.unk_04 == 0) {
                     continue;
                 }
@@ -192,45 +192,45 @@ BOOL sub_02089974(UnkStruct_02089688 *param0)
                 ManagedSprite_OffsetPositionXY(param0->unk_00[v0].unk_0C, param0->unk_00[v0].unk_14.unk_00, param0->unk_00[v0].unk_14.unk_02);
                 param0->unk_00[v0].unk_14.unk_04--;
 
-                if ((v0 >= param0->unk_2B0) && (v0 < param0->unk_2B4)) {
+                if ((v0 >= param0->unk_2DC) && (v0 < param0->unk_2E0)) {
                     ManagedSprite_SetAffineScale(param0->unk_00[v0].unk_0C, v1[param0->unk_00[v0].unk_14.unk_05], v1[param0->unk_00[v0].unk_14.unk_05]);
                     param0->unk_00[v0].unk_14.unk_05++;
                 }
 
-                if ((v0 >= param0->unk_2B8) && (v0 < param0->unk_2BC)) {
+                if ((v0 >= param0->unk_2E4) && (v0 < param0->unk_2E8)) {
                     ManagedSprite_SetAffineScale(param0->unk_00[v0].unk_0C, v2[param0->unk_00[v0].unk_14.unk_05], v2[param0->unk_00[v0].unk_14.unk_05]);
                     param0->unk_00[v0].unk_14.unk_05++;
                 }
             }
 
-            for (v0 = 0; v0 < param0->unk_3C0; v0++) {
-                if (param0->unk_1A0[v0].unk_14.unk_04 == 0) {
+            for (v0 = 0; v0 < param0->unk_3EC; v0++) {
+                if (param0->unk_1C0[v0].unk_14.unk_04 == 0) {
                     continue;
                 }
 
-                ManagedSprite_OffsetPositionXY(param0->unk_1A0[v0].unk_0C, param0->unk_1A0[v0].unk_14.unk_00, param0->unk_1A0[v0].unk_14.unk_02);
-                param0->unk_1A0[v0].unk_14.unk_04--;
+                ManagedSprite_OffsetPositionXY(param0->unk_1C0[v0].unk_0C, param0->unk_1C0[v0].unk_14.unk_00, param0->unk_1C0[v0].unk_14.unk_02);
+                param0->unk_1C0[v0].unk_14.unk_04--;
             }
 
             if (param0->unk_00[0].unk_14.unk_04 == 0) {
-                for (v0 = param0->unk_2B0; v0 < param0->unk_2B4; v0++) {
+                for (v0 = param0->unk_2DC; v0 < param0->unk_2E0; v0++) {
                     ManagedSprite_SetAnim(param0->unk_00[v0].unk_0C, sub_0208AD98(param0->unk_00[v0].unk_00, param0->unk_00[v0].unk_08));
                     ManagedSprite_TickFrame(param0->unk_00[v0].unk_0C);
                 }
 
-                for (v0 = param0->unk_2B8; v0 < param0->unk_2BC; v0++) {
+                for (v0 = param0->unk_2E4; v0 < param0->unk_2E8; v0++) {
                     ManagedSprite_SetAnim(param0->unk_00[v0].unk_0C, sub_0208AD98(param0->unk_00[v0].unk_00, param0->unk_00[v0].unk_08));
                     ManagedSprite_TickFrame(param0->unk_00[v0].unk_0C);
                 }
 
-                param0->unk_29C++;
+                param0->unk_2C8++;
             }
 
-            param0->unk_2A0++;
+            param0->unk_2CC++;
         }
         break;
     case 1:
-        for (v0 = param0->unk_2B0; v0 < param0->unk_2B4; v0++) {
+        for (v0 = param0->unk_2DC; v0 < param0->unk_2E0; v0++) {
             if (param0->unk_00[v0].unk_14.unk_05 == 6) {
                 continue;
             }
@@ -239,7 +239,7 @@ BOOL sub_02089974(UnkStruct_02089688 *param0)
             param0->unk_00[v0].unk_14.unk_05++;
         }
 
-        for (v0 = param0->unk_2B8; v0 < param0->unk_2BC; v0++) {
+        for (v0 = param0->unk_2E4; v0 < param0->unk_2E8; v0++) {
             if (param0->unk_00[v0].unk_14.unk_05 == 6) {
                 continue;
             }
@@ -248,22 +248,22 @@ BOOL sub_02089974(UnkStruct_02089688 *param0)
             param0->unk_00[v0].unk_14.unk_05++;
         }
 
-        param0->unk_2A0++;
+        param0->unk_2CC++;
 
-        if (param0->unk_2A0 == 6) {
-            param0->unk_29C++;
+        if (param0->unk_2CC == 6) {
+            param0->unk_2C8++;
         }
         break;
     default:
         sub_0208AF44(param0);
 
-        if (param0->unk_380.unk_08 == 0) {
-            sub_0208AAE4(param0, sub_0208A398(param0, param0->unk_380.unk_04));
+        if (param0->unk_3AC.unk_08 == 0) {
+            sub_0208AAE4(param0, sub_0208A398(param0, param0->unk_3AC.unk_04));
         } else {
-            sub_0208AAE4(param0, sub_0208A3C0(param0, param0->unk_380.unk_04));
+            sub_0208AAE4(param0, sub_0208A3C0(param0, param0->unk_3AC.unk_04));
         }
 
-        if (param0->unk_2A8 != 0) {
+        if (param0->unk_2D4 != 0) {
             sub_0208AAB4(param0, 0, 1);
         }
 
@@ -284,11 +284,11 @@ static BOOL (*const Unk_020F2EB8[])(UnkStruct_02089688 *) = {
 
 BOOL sub_02089BEC(UnkStruct_02089688 *param0)
 {
-    BOOL v0 = Unk_020F2EB8[param0->unk_294](param0);
+    BOOL v0 = Unk_020F2EB8[param0->unk_2C0](param0);
 
     sub_0208ABB4(param0);
     sub_0208AC8C(param0);
-    SpriteSystem_DrawSprites(param0->unk_2C0.unk_08);
+    SpriteSystem_DrawSprites(param0->unk_2EC.unk_08);
 
     return v0;
 }
@@ -751,10 +751,10 @@ void sub_02089F80(UnkStruct_02089688 *param0)
     u32 v1 = 0;
     Strbuf *v2 = Strbuf_Init(100, HEAP_ID_101);
 
-    param0->unk_240[1].unk_00 = 1;
-    param0->unk_240[1].unk_14.unk_04 = 0;
+    param0->unk_268[1].unk_00 = 1;
+    param0->unk_268[1].unk_14.unk_04 = 0;
 
-    for (v0 = 0; v0 < param0->unk_2A4; v0++) {
+    for (v0 = 0; v0 < param0->unk_2D0; v0++) {
         if (param0->unk_00[v0].unk_00 == 0) {
             param0->unk_00[v0].unk_00 = 1;
             ManagedSprite_SetAnim(param0->unk_00[v0].unk_0C, sub_0208AD98(param0->unk_00[v0].unk_00, param0->unk_00[v0].unk_08));
@@ -762,7 +762,7 @@ void sub_02089F80(UnkStruct_02089688 *param0)
 
         v1 = param0->unk_00[v0].unk_00 - 1;
         Strbuf_FormatInt(v2, v1, 1, 1, 1);
-        Strbuf_Concat(param0->unk_38C.unk_1C, v2);
+        Strbuf_Concat(param0->unk_3B8.unk_1C, v2);
     }
 
     Strbuf_Free(v2);
@@ -775,39 +775,39 @@ void sub_02089FFC(UnkStruct_02089688 *param0)
     int v1;
     int v2;
 
-    param0->unk_240[0].unk_00 = 1;
-    param0->unk_240[0].unk_14.unk_04 = 0;
+    param0->unk_268[0].unk_00 = 1;
+    param0->unk_268[0].unk_14.unk_04 = 0;
 
-    if (param0->unk_2A8 == 0) {
-        v0 = param0->unk_1F0[0].unk_00 = param0->unk_2A4 - 1;
+    if (param0->unk_2D4 == 0) {
+        v0 = param0->unk_214[0].unk_00 = param0->unk_2D0 - 1;
         v2 = param0->unk_00[v0].unk_04;
 
-        param0->unk_380.unk_00 = 1;
-        param0->unk_380.unk_04 = v2;
-        param0->unk_380.unk_08 = 1;
+        param0->unk_3AC.unk_00 = 1;
+        param0->unk_3AC.unk_04 = v2;
+        param0->unk_3AC.unk_08 = 1;
 
         return;
     }
 
-    v0 = param0->unk_1F0[0].unk_00;
+    v0 = param0->unk_214[0].unk_00;
     param0->unk_00[v0].unk_00 = 0;
 
     ManagedSprite_SetAnim(param0->unk_00[v0].unk_0C, sub_0208AD98(param0->unk_00[v0].unk_00, param0->unk_00[v0].unk_08));
     v1 = param0->unk_00[v0].unk_04;
 
-    if (v0 > param0->unk_3C4) {
+    if (v0 > param0->unk_3F0) {
         v0--;
         ManagedSprite_SetAnim(param0->unk_00[v0].unk_0C, sub_0208AD98(param0->unk_00[v0].unk_00, param0->unk_00[v0].unk_08));
 
         v2 = param0->unk_00[v0].unk_04;
 
         if (v1 != v2) {
-            param0->unk_380.unk_00 = 1;
-            param0->unk_380.unk_04 = v2;
-            param0->unk_380.unk_08 = 1;
+            param0->unk_3AC.unk_00 = 1;
+            param0->unk_3AC.unk_04 = v2;
+            param0->unk_3AC.unk_08 = 1;
         } else {
-            param0->unk_380.unk_00 = 2;
-            param0->unk_380.unk_04 = v0;
+            param0->unk_3AC.unk_00 = 2;
+            param0->unk_3AC.unk_04 = v0;
         }
     }
 }
@@ -817,7 +817,7 @@ void sub_0208A0B8(UnkStruct_02089688 *param0)
     int v0;
 
     for (v0 = 0; v0 < 15 + 1; v0++) {
-        param0->unk_00[v0].unk_10 = &param0->unk_2C0.unk_18[v0];
+        param0->unk_00[v0].unk_10 = &param0->unk_2EC.unk_18[v0];
     }
 
     {
@@ -837,55 +837,55 @@ void sub_0208A0B8(UnkStruct_02089688 *param0)
         };
 
         for (; v0 < 0x1c; v0++) {
-            param0->unk_2C0.unk_18[v0].rect.top = v1[v0 - 16][1] - v1[v0 - 16][3];
-            param0->unk_2C0.unk_18[v0].rect.left = v1[v0 - 16][0] - v1[v0 - 16][2];
-            param0->unk_2C0.unk_18[v0].rect.bottom = v1[v0 - 16][1] + v1[v0 - 16][3];
-            param0->unk_2C0.unk_18[v0].rect.right = v1[v0 - 16][0] + v1[v0 - 16][2];
+            param0->unk_2EC.unk_18[v0].rect.top = v1[v0 - 16][1] - v1[v0 - 16][3];
+            param0->unk_2EC.unk_18[v0].rect.left = v1[v0 - 16][0] - v1[v0 - 16][2];
+            param0->unk_2EC.unk_18[v0].rect.bottom = v1[v0 - 16][1] + v1[v0 - 16][3];
+            param0->unk_2EC.unk_18[v0].rect.right = v1[v0 - 16][0] + v1[v0 - 16][2];
         }
     }
 
-    param0->unk_2C0.unk_14 = TouchScreenActions_RegisterHandler(param0->unk_2C0.unk_18, 0x1c, sub_0208A180, param0, HEAP_ID_101);
+    param0->unk_2EC.unk_14 = TouchScreenActions_RegisterHandler(param0->unk_2EC.unk_18, 0x1c, sub_0208A180, param0, HEAP_ID_101);
 }
 
 void sub_0208A180(u32 param0, enum TouchScreenButtonState param1, void *param2)
 {
     UnkStruct_02089688 *v0 = param2;
 
-    if (v0->unk_294 != 1) {
+    if (v0->unk_2C0 != 1) {
         return;
     }
 
-    if (v0->unk_2C0.unk_88 != 1) {
-        v0->unk_2C0.unk_88 = 1;
+    if (v0->unk_2EC.unk_88 != 1) {
+        v0->unk_2EC.unk_88 = 1;
     }
 
     if (param1 == TOUCH_BUTTON_PRESSED) {
         if ((param0 >= 0) && (param0 < 16)) {
-            if (param0 < v0->unk_3C4) {
+            if (param0 < v0->unk_3F0) {
                 return;
             }
 
             if (v0->unk_00[param0].unk_08 == 1) {
-                v0->unk_380.unk_00 = 2;
-                v0->unk_380.unk_04 = param0;
+                v0->unk_3AC.unk_00 = 2;
+                v0->unk_3AC.unk_04 = param0;
             } else {
-                v0->unk_380.unk_00 = 1;
-                v0->unk_380.unk_04 = v0->unk_00[param0].unk_04;
+                v0->unk_3AC.unk_00 = 1;
+                v0->unk_3AC.unk_04 = v0->unk_00[param0].unk_04;
             }
 
             Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
         } else {
             if (param0 == 26) {
-                v0->unk_1F0[1].unk_14.unk_00 = 0;
-                v0->unk_1F0[1].unk_14.unk_02 = 2;
+                v0->unk_214[1].unk_14.unk_00 = 0;
+                v0->unk_214[1].unk_14.unk_02 = 2;
                 Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
             } else if (param0 == 27) {
-                v0->unk_1F0[1].unk_14.unk_00 = 3;
-                v0->unk_1F0[1].unk_14.unk_02 = 2;
+                v0->unk_214[1].unk_14.unk_00 = 3;
+                v0->unk_214[1].unk_14.unk_02 = 2;
                 Sound_PlayEffect(SEQ_SE_DP_PIRORIRO);
             } else {
-                v0->unk_1F0[1].unk_14.unk_00 = (param0 - 16) % 5;
-                v0->unk_1F0[1].unk_14.unk_02 = (param0 - 16) / 5;
+                v0->unk_214[1].unk_14.unk_00 = (param0 - 16) % 5;
+                v0->unk_214[1].unk_14.unk_02 = (param0 - 16) / 5;
                 Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
             }
 
@@ -894,11 +894,11 @@ void sub_0208A180(u32 param0, enum TouchScreenButtonState param1, void *param2)
                 int v2;
                 int v3;
 
-                if (v0->unk_2A8 == 0) {
+                if (v0->unk_2D4 == 0) {
                     return;
                 }
 
-                v1 = v0->unk_1F0[0].unk_00;
+                v1 = v0->unk_214[0].unk_00;
                 v0->unk_00[v1].unk_00 = param0 - 16 + 1;
 
                 ManagedSprite_SetAnim(v0->unk_00[v1].unk_0C, sub_0208AD98(v0->unk_00[v1].unk_00, v0->unk_00[v1].unk_08));
@@ -907,25 +907,25 @@ void sub_0208A180(u32 param0, enum TouchScreenButtonState param1, void *param2)
                 sub_0208AAB4(v0, 1, 0);
                 sub_0208AAB4(v0, 2, 1);
                 sub_0208AB6C(v0, param0 - 16, 2);
-                ManagedSprite_SetAnim(v0->unk_1F0[2].unk_0C, 3);
+                ManagedSprite_SetAnim(v0->unk_214[2].unk_0C, 3);
 
                 v2 = v0->unk_00[v1].unk_04;
                 v1++;
 
-                if (v1 == v0->unk_2A4) {
-                    v0->unk_380.unk_00 = 1;
-                    v0->unk_380.unk_04 = 0;
-                    v0->unk_380.unk_08 = 0;
+                if (v1 == v0->unk_2D0) {
+                    v0->unk_3AC.unk_00 = 1;
+                    v0->unk_3AC.unk_04 = 0;
+                    v0->unk_3AC.unk_08 = 0;
                 } else {
                     v3 = v0->unk_00[v1].unk_04;
 
                     if (v2 != v3) {
-                        v0->unk_380.unk_00 = 1;
-                        v0->unk_380.unk_04 = v3;
-                        v0->unk_380.unk_08 = 0;
+                        v0->unk_3AC.unk_00 = 1;
+                        v0->unk_3AC.unk_04 = v3;
+                        v0->unk_3AC.unk_08 = 0;
                     } else {
-                        v0->unk_380.unk_00 = 2;
-                        v0->unk_380.unk_04 = v1;
+                        v0->unk_3AC.unk_00 = 2;
+                        v0->unk_3AC.unk_04 = v1;
                     }
                 }
             } else {
@@ -941,18 +941,18 @@ void sub_0208A180(u32 param0, enum TouchScreenButtonState param1, void *param2)
 
 void sub_0208A328(UnkStruct_02089688 *param0)
 {
-    switch (param0->unk_380.unk_00) {
+    switch (param0->unk_3AC.unk_00) {
     case 0:
         break;
     case 1:
-        sub_02089604(param0, param0->unk_380.unk_04);
+        sub_02089604(param0, param0->unk_3AC.unk_04);
         sub_0208ADA4(param0);
         sub_0208ADE4(param0, 1);
         sub_02089808(param0, 2);
-        param0->unk_380.unk_00 = 0xFF;
+        param0->unk_3AC.unk_00 = 0xFF;
         break;
     case 2:
-        sub_0208AAE4(param0, param0->unk_380.unk_04);
+        sub_0208AAE4(param0, param0->unk_3AC.unk_04);
         sub_0208A384(param0);
         break;
     case 0xFF:
@@ -962,16 +962,16 @@ void sub_0208A328(UnkStruct_02089688 *param0)
 
 void sub_0208A384(UnkStruct_02089688 *param0)
 {
-    param0->unk_380.unk_00 = 0;
-    param0->unk_380.unk_04 = 0;
-    param0->unk_380.unk_08 = 0;
+    param0->unk_3AC.unk_00 = 0;
+    param0->unk_3AC.unk_04 = 0;
+    param0->unk_3AC.unk_08 = 0;
 }
 
 int sub_0208A398(UnkStruct_02089688 *param0, int param1)
 {
     int v0;
 
-    for (v0 = 0; v0 < param0->unk_2A4; v0++) {
+    for (v0 = 0; v0 < param0->unk_2D0; v0++) {
         if (param0->unk_00[v0].unk_04 == param1) {
             return v0;
         }
@@ -986,7 +986,7 @@ int sub_0208A3C0(UnkStruct_02089688 *param0, int param1)
     int v1 = 0;
     int v2 = 0;
 
-    for (v0 = 0; v0 < param0->unk_2A4; v0++) {
+    for (v0 = 0; v0 < param0->unk_2D0; v0++) {
         if (param0->unk_00[v0].unk_04 == param1) {
             v2 = 1;
         } else {
@@ -996,5 +996,5 @@ int sub_0208A3C0(UnkStruct_02089688 *param0, int param1)
         }
     }
 
-    return param0->unk_2A4 - 1;
+    return param0->unk_2D0 - 1;
 }
