@@ -9,6 +9,8 @@
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02099F80.h"
 
+#include "applications/rowan_intro/main.h"
+
 #include "bg_window.h"
 #include "brightness_controller.h"
 #include "font.h"
@@ -25,7 +27,6 @@
 #include "pokemon.h"
 #include "render_text.h"
 #include "render_window.h"
-#include "applications/rowan_intro/main.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "savedata_misc.h"
