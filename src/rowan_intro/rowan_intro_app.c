@@ -25,6 +25,7 @@
 #include "pokemon.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "rowan_intro.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "savedata_misc.h"
@@ -135,21 +136,21 @@ enum RowanIntroState {
     RI_STATE_LOAD_ROWAN_TILEMAP_0,
     RI_STATE_FADE_IN_ROWAN_AFTER_NAME,
     RI_STATE_DIALOGUE_SO_YOURE,
-    RI_STATE_FADE_OUT_ROWAN_FOR_BARRY,
-    RI_STATE_LOAD_BARRY_TILEMAP,
-    RI_STATE_FADE_IN_BARRY,
-    RI_STATE_BARRY_NAME_DIALOGUE,
-    RI_STATE_MOVE_BARRY_RIGHT_FOR_NAMES,
-    RI_STATE_BARRY_NAME_CHOICE_BOX,
-    RI_STATE_MOVE_BARRY_LEFT_AFTER_NAME,
-    RI_STATE_BARRY_NAME_APP_KEYBOARD,
-    RI_STATE_BARRY_NAME_KEYBOARD,
-    RI_STATE_BARRY_NAME_KEYBOARD_FADE_INTO_AVATAR,
-    RI_STATE_BARRY_NAME_CONFIRM_DIALOGUE,
-    RI_STATE_BARRY_NAME_CONFIRM_CHOICE_BOX,
-    RI_STATE_FADE_OUT_BARRY,
+    RI_STATE_FADE_OUT_ROWAN_FOR_RIVAL,
+    RI_STATE_LOAD_RIVAL_TILEMAP,
+    RI_STATE_FADE_IN_RIVAL,
+    RI_STATE_RIVAL_NAME_DIALOGUE,
+    RI_STATE_MOVE_RIVAL_RIGHT_FOR_NAMES,
+    RI_STATE_RIVAL_NAME_CHOICE_BOX,
+    RI_STATE_MOVE_RIVAL_LEFT_AFTER_NAME,
+    RI_STATE_RIVAL_NAME_APP_KEYBOARD,
+    RI_STATE_RIVAL_NAME_KEYBOARD,
+    RI_STATE_RIVAL_NAME_KEYBOARD_FADE_INTO_AVATAR,
+    RI_STATE_RIVAL_NAME_CONFIRM_DIALOGUE,
+    RI_STATE_RIVAL_NAME_CONFIRM_CHOICE_BOX,
+    RI_STATE_FADE_OUT_RIVAL,
     RI_STATE_LOAD_ROWAN_TILEMAP_1,
-    RI_STATE_FADE_IN_ROWAN_AFTER_BARRY,
+    RI_STATE_FADE_IN_ROWAN_AFTER_RIVAL,
     RI_STATE_DELAY_BEFORE_END_0,
     RI_STATE_DIALOGUE_END,
     RI_STATE_FADE_OUT_ROWAN_END,
@@ -276,10 +277,6 @@ typedef struct RowanIntro {
     u16 *bunearyBlendedPalette;
 } RowanIntro;
 
-BOOL RowanIntro_Init(ApplicationManager *appMan, int *state);
-BOOL RowanIntro_Main(ApplicationManager *appMan, int *state);
-BOOL RowanIntro_Exit(ApplicationManager *appMan, int *state);
-
 static void RowanIntro_VBlankCallback(void *manager);
 static void RowanIntro_InitGraphics(RowanIntro *manager);
 static void RowanIntro_FreeGraphics(RowanIntro *manager);
@@ -303,14 +300,14 @@ const ApplicationManagerTemplate sDummyApplicationManagerTemplate = {
     RowanIntro_Init,
     RowanIntro_Main,
     RowanIntro_Exit,
-    0xffffffff
+    FS_OVERLAY_ID_NONE,
 };
 
 static const ApplicationManagerTemplate sKeyboardApplicationTemplate = {
     ov73_021D3250,
     ov73_021D3280,
     ov73_021D3404,
-    0xffffffff
+    FS_OVERLAY_ID_NONE,
 };
 
 BOOL RowanIntro_Init(ApplicationManager *appMan, int *unusedState)
@@ -349,8 +346,8 @@ BOOL RowanIntro_Main(ApplicationManager *appMan, int *state)
 
     switch (*state) {
     case RI_APP_STATE_INIT:
-        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
-        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
 
         SetVBlankCallback(NULL, NULL);
         SetHBlankCallback(NULL, NULL);
@@ -377,7 +374,7 @@ BOOL RowanIntro_Main(ApplicationManager *appMan, int *state)
                 FADE_BOTH_SCREENS,
                 FADE_TYPE_UNK_0,
                 FADE_TYPE_UNK_0,
-                FADE_TO_BLACK,
+                COLOR_BLACK,
                 6,
                 1,
                 manager->heapID);
@@ -389,7 +386,7 @@ BOOL RowanIntro_Main(ApplicationManager *appMan, int *state)
                 FADE_BOTH_SCREENS,
                 FADE_TYPE_UNK_0,
                 FADE_TYPE_UNK_0,
-                FADE_TO_BLACK,
+                COLOR_BLACK,
                 6,
                 1,
                 manager->heapID);
@@ -433,7 +430,7 @@ BOOL RowanIntro_Main(ApplicationManager *appMan, int *state)
 BOOL RowanIntro_Exit(ApplicationManager *appMan, int *unusedState)
 {
     RowanIntro *manager = ApplicationManager_Data(appMan);
-    int heapID = manager->heapID;
+    enum HeapId heapID = manager->heapID;
 
     Heap_Free(manager->bunearyPalette);
     Heap_Free(manager->bunearyBlendedPalette);
@@ -2042,7 +2039,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
             FADE_BOTH_SCREENS,
             FADE_TYPE_UNK_1,
             FADE_TYPE_UNK_1,
-            FADE_TO_BLACK,
+            COLOR_BLACK,
             6,
             1,
             manager->heapID);
@@ -2074,7 +2071,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
             FADE_MAIN_ONLY,
             FADE_TYPE_UNK_1,
             FADE_TYPE_UNK_1,
-            FADE_TO_BLACK,
+            COLOR_BLACK,
             16,
             4,
             manager->heapID);
@@ -2120,7 +2117,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
             FADE_BOTH_SCREENS,
             FADE_TYPE_UNK_0,
             FADE_TYPE_UNK_0,
-            FADE_TO_BLACK,
+            COLOR_BLACK,
             6,
             1,
             manager->heapID);
@@ -2146,7 +2143,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
             FADE_BOTH_SCREENS,
             FADE_TYPE_UNK_1,
             FADE_TYPE_UNK_1,
-            FADE_TO_BLACK,
+            COLOR_BLACK,
             6,
             1,
             manager->heapID);
@@ -2246,7 +2243,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
                 FADE_BOTH_SCREENS,
                 FADE_TYPE_UNK_0,
                 FADE_TYPE_UNK_0,
-                FADE_TO_BLACK,
+                COLOR_BLACK,
                 6,
                 1,
                 manager->heapID);
@@ -2294,7 +2291,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
             FADE_BOTH_SCREENS,
             FADE_TYPE_UNK_1,
             FADE_TYPE_UNK_1,
-            FADE_TO_BLACK,
+            COLOR_BLACK,
             6,
             1,
             manager->heapID);
@@ -2319,7 +2316,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
             FADE_BOTH_SCREENS,
             FADE_TYPE_UNK_1,
             FADE_TYPE_UNK_1,
-            FADE_TO_BLACK,
+            COLOR_BLACK,
             6,
             1,
             manager->heapID);
@@ -2365,7 +2362,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
             FADE_BOTH_SCREENS,
             FADE_TYPE_UNK_0,
             FADE_TYPE_UNK_0,
-            FADE_TO_BLACK,
+            COLOR_BLACK,
             6,
             1,
             manager->heapID);
@@ -2395,7 +2392,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
             FADE_SUB_ONLY,
             FADE_TYPE_UNK_0,
             FADE_TYPE_UNK_0,
-            FADE_TO_BLACK,
+            COLOR_BLACK,
             6,
             1,
             manager->heapID);
@@ -2411,7 +2408,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
                 FADE_SUB_ONLY,
                 FADE_TYPE_UNK_1,
                 FADE_TYPE_UNK_1,
-                FADE_TO_BLACK,
+                COLOR_BLACK,
                 6,
                 1,
                 manager->heapID);
@@ -2733,7 +2730,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
             FADE_BOTH_SCREENS,
             FADE_TYPE_UNK_1,
             FADE_TYPE_UNK_1,
-            FADE_TO_BLACK,
+            COLOR_BLACK,
             6,
             1,
             manager->heapID);
@@ -2805,40 +2802,40 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         break;
     case RI_STATE_DIALOGUE_SO_YOURE:
         if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00027, TRUE) == TRUE) {
-            manager->state = RI_STATE_FADE_OUT_ROWAN_FOR_BARRY;
+            manager->state = RI_STATE_FADE_OUT_ROWAN_FOR_RIVAL;
         }
         break;
-    case RI_STATE_FADE_OUT_ROWAN_FOR_BARRY:
+    case RI_STATE_FADE_OUT_ROWAN_FOR_RIVAL:
         if (RowanIntro_FadeBgLayer(manager, BG_LAYER_MAIN_1, FADE_OUT) == TRUE) {
-            manager->state = RI_STATE_LOAD_BARRY_TILEMAP;
+            manager->state = RI_STATE_LOAD_RIVAL_TILEMAP;
         }
         break;
-    case RI_STATE_LOAD_BARRY_TILEMAP:
+    case RI_STATE_LOAD_RIVAL_TILEMAP:
         manager->bgLayer1TilemapIndex = 10;
         manager->bgLayer2TilemapIndex = 0;
         RowanIntro_LoadTilemap(manager);
-        manager->state = RI_STATE_FADE_IN_BARRY;
+        manager->state = RI_STATE_FADE_IN_RIVAL;
         break;
-    case RI_STATE_FADE_IN_BARRY:
+    case RI_STATE_FADE_IN_RIVAL:
         if (RowanIntro_FadeBgLayer(manager, BG_LAYER_MAIN_1, FADE_IN) == TRUE) {
-            manager->state = RI_STATE_BARRY_NAME_DIALOGUE;
+            manager->state = RI_STATE_RIVAL_NAME_DIALOGUE;
         }
         break;
-    case RI_STATE_BARRY_NAME_DIALOGUE:
+    case RI_STATE_RIVAL_NAME_DIALOGUE:
         if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00028, TRUE) == TRUE) {
-            manager->state = RI_STATE_MOVE_BARRY_RIGHT_FOR_NAMES;
+            manager->state = RI_STATE_MOVE_RIVAL_RIGHT_FOR_NAMES;
         }
         break;
-    case RI_STATE_MOVE_BARRY_RIGHT_FOR_NAMES:
+    case RI_STATE_MOVE_RIVAL_RIGHT_FOR_NAMES:
         if (RowanIntro_MoveBgLayer(manager, BG_LAYER_MAIN_1, MBL_CASE_MOVE_RIGHT) == TRUE) {
-            manager->state = RI_STATE_BARRY_NAME_CHOICE_BOX;
+            manager->state = RI_STATE_RIVAL_NAME_CHOICE_BOX;
         }
         break;
-    case RI_STATE_BARRY_NAME_CHOICE_BOX:
+    case RI_STATE_RIVAL_NAME_CHOICE_BOX:
         if (RowanIntro_ChoiceBox(manager, CC_RIVAL_NAMES, TRUE) == TRUE) {
             switch (manager->playerChoice) {
             case 1:
-                manager->state = RI_STATE_BARRY_NAME_APP_KEYBOARD;
+                manager->state = RI_STATE_RIVAL_NAME_APP_KEYBOARD;
                 break;
             case 2:
             case 3:
@@ -2859,24 +2856,24 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
                     Strbuf_Free(tmpStrbuf);
                 }
             }
-                manager->state = RI_STATE_MOVE_BARRY_LEFT_AFTER_NAME;
+                manager->state = RI_STATE_MOVE_RIVAL_LEFT_AFTER_NAME;
                 break;
             }
         }
         break;
-    case RI_STATE_MOVE_BARRY_LEFT_AFTER_NAME:
+    case RI_STATE_MOVE_RIVAL_LEFT_AFTER_NAME:
         if (RowanIntro_MoveBgLayer(manager, BG_LAYER_MAIN_1, MBL_CASE_MOVE_LEFT) == TRUE) {
-            manager->state = RI_STATE_BARRY_NAME_CONFIRM_DIALOGUE;
+            manager->state = RI_STATE_RIVAL_NAME_CONFIRM_DIALOGUE;
         }
         break;
-    case RI_STATE_BARRY_NAME_APP_KEYBOARD:
+    case RI_STATE_RIVAL_NAME_APP_KEYBOARD:
         manager->appMan = ApplicationManager_New(
             &Unk_020F2DAC,
             manager->unk_74,
             manager->heapID);
-        manager->state = RI_STATE_BARRY_NAME_KEYBOARD;
+        manager->state = RI_STATE_RIVAL_NAME_KEYBOARD;
         break;
-    case RI_STATE_BARRY_NAME_KEYBOARD:
+    case RI_STATE_RIVAL_NAME_KEYBOARD:
         Bg_ToggleLayer(BG_LAYER_MAIN_0, TRUE);
         Bg_ToggleLayer(BG_LAYER_MAIN_3, TRUE);
         Bg_ToggleLayer(BG_LAYER_SUB_3, TRUE);
@@ -2890,39 +2887,39 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
             FADE_BOTH_SCREENS,
             FADE_TYPE_UNK_1,
             FADE_TYPE_UNK_1,
-            FADE_TO_BLACK,
+            COLOR_BLACK,
             6,
             1,
             manager->heapID);
-        manager->state = RI_STATE_BARRY_NAME_KEYBOARD_FADE_INTO_AVATAR;
+        manager->state = RI_STATE_RIVAL_NAME_KEYBOARD_FADE_INTO_AVATAR;
         break;
-    case RI_STATE_BARRY_NAME_KEYBOARD_FADE_INTO_AVATAR:
+    case RI_STATE_RIVAL_NAME_KEYBOARD_FADE_INTO_AVATAR:
         if (IsScreenFadeDone() == TRUE) {
-            manager->state = RI_STATE_BARRY_NAME_CONFIRM_DIALOGUE;
+            manager->state = RI_STATE_RIVAL_NAME_CONFIRM_DIALOGUE;
         }
         break;
-    case RI_STATE_BARRY_NAME_CONFIRM_DIALOGUE:
+    case RI_STATE_RIVAL_NAME_CONFIRM_DIALOGUE:
         if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00029, TRUE) == TRUE) {
-            manager->state = RI_STATE_BARRY_NAME_CONFIRM_CHOICE_BOX;
+            manager->state = RI_STATE_RIVAL_NAME_CONFIRM_CHOICE_BOX;
         }
         break;
-    case RI_STATE_BARRY_NAME_CONFIRM_CHOICE_BOX:
+    case RI_STATE_RIVAL_NAME_CONFIRM_CHOICE_BOX:
         if (RowanIntro_ChoiceBox(manager, CC_YESNO, FALSE) == TRUE) {
             switch (manager->playerChoice) {
             case 1: {
                 Bg_ClearTilemap(manager->bgConfig, BG_LAYER_MAIN_0);
             }
-                manager->state = RI_STATE_FADE_OUT_BARRY;
+                manager->state = RI_STATE_FADE_OUT_RIVAL;
                 break;
             case 2:
             case LIST_CANCEL:
                 Strbuf_Clear(manager->unk_74->textInputStr);
-                manager->state = RI_STATE_BARRY_NAME_DIALOGUE;
+                manager->state = RI_STATE_RIVAL_NAME_DIALOGUE;
                 break;
             }
         }
         break;
-    case RI_STATE_FADE_OUT_BARRY:
+    case RI_STATE_FADE_OUT_RIVAL:
         if (RowanIntro_FadeBgLayer(manager, BG_LAYER_MAIN_1, FADE_OUT) == TRUE) {
             manager->state = RI_STATE_LOAD_ROWAN_TILEMAP_1;
         }
@@ -2931,9 +2928,9 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         manager->bgLayer1TilemapIndex = 1;
         manager->bgLayer2TilemapIndex = 0;
         RowanIntro_LoadTilemap(manager);
-        manager->state = RI_STATE_FADE_IN_ROWAN_AFTER_BARRY;
+        manager->state = RI_STATE_FADE_IN_ROWAN_AFTER_RIVAL;
         break;
-    case RI_STATE_FADE_IN_ROWAN_AFTER_BARRY:
+    case RI_STATE_FADE_IN_ROWAN_AFTER_RIVAL:
         if (RowanIntro_FadeBgLayer(manager, BG_LAYER_MAIN_1, FADE_IN) == TRUE) {
             manager->state = RI_STATE_DELAY_BEFORE_END_0;
         }
