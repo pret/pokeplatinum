@@ -7,7 +7,6 @@
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "applications/pokemon_summary_screen/main.h"
@@ -19,6 +18,7 @@
 #include "communication_information.h"
 #include "communication_system.h"
 #include "font.h"
+#include "g3d_pipeline.h"
 #include "game_options.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -51,7 +51,6 @@
 #include "unk_0200C440.h"
 #include "unk_02012744.h"
 #include "unk_0202419C.h"
-#include "unk_02024220.h"
 #include "unk_0202F1D4.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
@@ -96,7 +95,7 @@ typedef struct UnkStruct_ov10_0221FB28_t {
     u16 unk_538[2][384];
     UnkStruct_02012744 *unk_B38;
     FontOAM *unk_B3C[4];
-    GenericPointerData *unk_B4C;
+    G3DPipelineBuffers *unk_B4C;
     ParticleSystem *unk_B50;
     void *unk_B54;
     u8 unk_B58[4];
@@ -1727,7 +1726,7 @@ static void ov10_022217CC(UnkStruct_ov10_0221FB28 *param0)
     Camera *camera;
     void *v1;
 
-    param0->unk_B4C = sub_02024220(param0->unk_00->heapID, 0, 4, 0, 2, NULL);
+    param0->unk_B4C = G3DPipeline_Init(param0->unk_00->heapID, TEXTURE_VRAM_SIZE_512K, PALETTE_VRAM_SIZE_32K, NULL);
 
     G3X_AlphaBlend(1);
     ParticleSystem_ZeroAll();
@@ -1777,7 +1776,7 @@ static void ov10_022218F4(UnkStruct_ov10_0221FB28 *param0)
 
     ParticleSystem_Free(param0->unk_B50);
     Heap_Free(param0->unk_B54);
-    sub_020242C4(param0->unk_B4C);
+    G3DPipelineBuffers_Free(param0->unk_B4C);
 }
 
 static u32 ov10_02221928(u32 param0, BOOL param1)

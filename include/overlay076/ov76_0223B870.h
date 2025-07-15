@@ -1,12 +1,11 @@
 #ifndef POKEPLATINUM_OV76_0223B870_H
 #define POKEPLATINUM_OV76_0223B870_H
 
-#include "struct_defs/struct_0207C690.h"
-
 #include "overlay076/struct_ov76_0223C398.h"
 #include "overlay076/struct_ov76_0223DE00.h"
 
 #include "bg_window.h"
+#include "g3d_pipeline.h"
 #include "narc.h"
 #include "palette.h"
 #include "sprite_system.h"
@@ -22,7 +21,7 @@ void ov76_0223BB04(UnkStruct_ov76_0223DE00 *param0);
 void ov76_0223BBAC(UnkStruct_ov76_0223DE00 *param0);
 void ov76_0223BC70(UnkStruct_ov76_0223DE00 *param0);
 void ov76_0223BD30(UnkStruct_ov76_0223DE00 *param0, s8 param1, int param2);
-GenericPointerData *ov76_0223BE6C(void);
+G3DPipelineBuffers *ov76_0223BE6C(void);
 void ov76_0223BE8C(void);
 void ov76_0223BF10(void);
 void ov76_0223BF50(void);

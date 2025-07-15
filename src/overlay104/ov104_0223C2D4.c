@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_0209B75C_decl.h"
-#include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay063/ov63_0222BCE8.h"
@@ -34,6 +33,7 @@
 #include "overlay104/struct_ov104_0223D570.h"
 
 #include "bg_window.h"
+#include "g3d_pipeline.h"
 #include "game_options.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -52,7 +52,6 @@
 #include "touch_pad.h"
 #include "trainer_info.h"
 #include "unk_0202419C.h"
-#include "unk_02024220.h"
 #include "unk_020393C8.h"
 #include "unk_0209B6F8.h"
 #include "vram_transfer.h"
@@ -72,9 +71,9 @@ UnkStruct_ov104_0223C4CC *ov104_0223C2D4(UnkStruct_0209B75C *param0);
 void ov104_0223C4CC(UnkStruct_ov104_0223C4CC *param0);
 static void ov104_0223C8E8(UnkStruct_ov104_0223C4CC *param0);
 static void ov104_0223CC10(UnkStruct_ov104_0223C4CC *param0);
-static GenericPointerData *ov104_0223CF4C(int heapID);
+static G3DPipelineBuffers *ov104_0223CF4C(int heapID);
 static void ov104_0223CF68(void);
-static void ov104_0223CFEC(GenericPointerData *param0);
+static void ov104_0223CFEC(G3DPipelineBuffers *param0);
 static void ov104_0223D3B0(UnkStruct_ov104_0223C4CC *param0);
 static void ov104_0223D498(UnkStruct_ov104_0223C4CC *param0);
 static void ov104_0223D570(UnkStruct_ov104_0223C634 *param0, UnkStruct_ov104_0223D570 *param1);
@@ -770,9 +769,9 @@ static void ov104_0223CEEC(UnkStruct_ov104_0223C4CC *param0)
     ov63_0222D7B4(param0->unk_30);
 }
 
-static GenericPointerData *ov104_0223CF4C(int heapID)
+static G3DPipelineBuffers *ov104_0223CF4C(int heapID)
 {
-    return sub_02024220(heapID, 0, 1, 0, 1, ov104_0223CF68);
+    return G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_16K, ov104_0223CF68);
 }
 
 static void ov104_0223CF68(void)
@@ -790,9 +789,9 @@ static void ov104_0223CF68(void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void ov104_0223CFEC(GenericPointerData *param0)
+static void ov104_0223CFEC(G3DPipelineBuffers *param0)
 {
-    sub_020242C4(param0);
+    G3DPipelineBuffers_Free(param0);
 }
 
 static void ov104_0223CFF4(UnkStruct_ov104_0223C4CC *param0)

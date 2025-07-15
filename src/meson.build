@@ -92,7 +92,7 @@ pokeplatinum_c = files(
     'unk_0202414C.c',
     'unk_0202419C.c',
     'hardware_palette.c',
-    'unk_02024220.c',
+    'g3d_pipeline.c',
     'boot.c',
     'savedata/save_table.c',
     'savedata.c',

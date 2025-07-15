@@ -7,7 +7,6 @@
 #include "constants/heap.h"
 #include "constants/species.h"
 
-#include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "game_opening/const_ov77_021D742C.h"
@@ -19,6 +18,7 @@
 #include "easy3d_object.h"
 #include "font.h"
 #include "fx_util.h"
+#include "g3d_pipeline.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -34,7 +34,6 @@
 #include "system.h"
 #include "text.h"
 #include "unk_0202419C.h"
-#include "unk_02024220.h"
 
 #include "res/graphics/title_screen/titledemo.naix.h"
 
@@ -202,7 +201,7 @@ typedef struct TitleScreen {
 typedef struct TitleScreenAppData {
     int heapID;
     BgConfig *bgConfig;
-    GenericPointerData *unk_08;
+    G3DPipelineBuffers *buffers;
     TitleScreenUnusedStruct unused0;
     TitleScreen titleScreen;
     u16 nextApp;
@@ -224,8 +223,8 @@ static void TitleScreen_VBlank(void *param);
 static void TitleScreen_SetVRAMBanks(void);
 static void TitleScreen_InitBgs(TitleScreenAppData *appData);
 static void TitleScreen_ReleaseBgs(TitleScreenAppData *appData);
-static void ov77_021D11CC(TitleScreenAppData *appData);
-static void ov77_021D11FC(TitleScreenAppData *appData);
+static void TitleScreen_Init3DPipeline(TitleScreenAppData *appData);
+static void TitleScreen_Free3DPipelineBuffers(TitleScreenAppData *appData);
 static void TitleScreen_Load3DGfx(TitleScreenGraphics *gfx, int giratinaModel, int giratinaTexAnim, enum HeapId heapID);
 static void TitleScreen_Release3DGfx(TitleScreenGraphics *gfx);
 static void TitleScreen_Render(TitleScreen *titleScreen, TitleScreenGraphics *gfx);
@@ -329,7 +328,7 @@ static BOOL TitleScreen_Init(ApplicationManager *appMan, int *unused)
 
     TitleScreen_SetVRAMBanks();
     TitleScreen_InitBgs(appData);
-    ov77_021D11CC(appData);
+    TitleScreen_Init3DPipeline(appData);
 
     SetVBlankCallback(TitleScreen_VBlank, appData);
     GXLayers_TurnBothDispOn();
@@ -457,7 +456,7 @@ static BOOL TitleScreen_Exit(ApplicationManager *appMan, int *state)
 
     SetVBlankCallback(NULL, NULL);
 
-    ov77_021D11FC(appData);
+    TitleScreen_Free3DPipelineBuffers(appData);
     TitleScreen_ReleaseBgs(appData);
 
     ApplicationManager_FreeData(appMan);
@@ -513,15 +512,15 @@ static BOOL TitleScreen_ShouldSkipIntro(void)
     return FALSE;
 }
 
-static void ov77_021D11CC(TitleScreenAppData *appData)
+static void TitleScreen_Init3DPipeline(TitleScreenAppData *appData)
 {
-    appData->unk_08 = sub_02024220(appData->heapID, 0, 1, 0, 4, NULL);
+    appData->buffers = G3DPipeline_Init(appData->heapID, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_64K, NULL);
     G2_SetBG0Priority(1);
 }
 
-static void ov77_021D11FC(TitleScreenAppData *appData)
+static void TitleScreen_Free3DPipelineBuffers(TitleScreenAppData *appData)
 {
-    sub_020242C4(appData->unk_08);
+    G3DPipelineBuffers_Free(appData->buffers);
 }
 
 static void TitleScreen_Load3DGfx(TitleScreenGraphics *gfx, int giratinaModel, int giratinaTexAnim, enum HeapId heapID)

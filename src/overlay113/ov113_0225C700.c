@@ -12,7 +12,6 @@
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_02015958.h"
-#include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay066/ov66_0222DDF0.h"
@@ -35,6 +34,7 @@
 #include "easy3d_object.h"
 #include "font.h"
 #include "fx_util.h"
+#include "g3d_pipeline.h"
 #include "game_options.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -64,7 +64,6 @@
 #include "unk_02012744.h"
 #include "unk_02015920.h"
 #include "unk_0202419C.h"
-#include "unk_02024220.h"
 #include "unk_020393C8.h"
 #include "vram_transfer.h"
 
@@ -85,7 +84,7 @@ typedef struct UnkStruct_ov113_0225DBCC_t {
     BgConfig *unk_08;
     PaletteData *unk_0C;
     UnkStruct_02012744 *unk_10;
-    GenericPointerData *unk_14;
+    G3DPipelineBuffers *unk_14;
     SysTask *unk_18;
     SpriteSystem *unk_1C;
     SpriteManager *unk_20;
@@ -135,9 +134,9 @@ static void ov113_0225D12C(BgConfig *param0);
 static void ov113_0225D160(UnkStruct_ov113_0225DBCC *param0, NARC *param1);
 static void ov113_0225DBCC(UnkStruct_ov113_0225DBCC *param0);
 static void ov113_0225DC4C(UnkStruct_ov113_0225DBCC *param0);
-static GenericPointerData *ov113_0225DC6C(int heapID);
+static G3DPipelineBuffers *ov113_0225DC6C(int heapID);
 static void ov113_0225DC88(void);
-static void ov113_0225DD0C(GenericPointerData *param0);
+static void ov113_0225DD0C(G3DPipelineBuffers *param0);
 static void ov113_0225D9FC(UnkStruct_ov113_0225DBCC *param0);
 static void ov113_0225DA9C(UnkStruct_ov113_0225DBCC *param0);
 static void ov113_0225DAA8(UnkStruct_ov113_0225DBCC *param0, NARC *param1);
@@ -1260,9 +1259,9 @@ static void ov113_0225DC4C(UnkStruct_ov113_0225DBCC *param0)
     }
 }
 
-static GenericPointerData *ov113_0225DC6C(int heapID)
+static G3DPipelineBuffers *ov113_0225DC6C(int heapID)
 {
-    return sub_02024220(heapID, 0, 2, 0, 2, ov113_0225DC88);
+    return G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov113_0225DC88);
 }
 
 static void ov113_0225DC88(void)
@@ -1280,9 +1279,9 @@ static void ov113_0225DC88(void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void ov113_0225DD0C(GenericPointerData *param0)
+static void ov113_0225DD0C(G3DPipelineBuffers *param0)
 {
-    sub_020242C4(param0);
+    G3DPipelineBuffers_Free(param0);
 }
 
 static void ov113_0225DD14(UnkStruct_ov113_0225DBCC *param0)
