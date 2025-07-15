@@ -1259,11 +1259,11 @@ Overlay overlay72
 	Object main.nef.p/src_overlay072_ov72_0223D7A0.c.o
 }
 
-Overlay overlay73
+Overlay rowan_intro
 {
 	After main
-	Object main.nef.p/src_overlay073_ov73_021D0D80.c.o
-	Object main.nef.p/src_overlay073_ov73_021D3250.c.o
+	Object main.nef.p/src_rowan_intro_rowan_intro_app.c.o
+	Object main.nef.p/src_rowan_intro_keyboard_app.c.o
 }
 
 Overlay options_menu
