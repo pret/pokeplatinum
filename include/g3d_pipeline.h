@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_G3D_PIPELINE_STATE_H
-#define POKEPLATINUM_G3D_PIPELINE_STATE_H
+#ifndef POKEPLATINUM_G3D_PIPELINE_H
+#define POKEPLATINUM_G3D_PIPELINE_H
 
 #include "constants/heap.h"
 
@@ -40,4 +40,4 @@ static inline G3DPipelineBuffers *G3DPipeline_Init(enum HeapId heapID, enum Text
     return G3DPipeline_InitEx(heapID, VRAM_MANAGER_TYPE_LINKED_LIST, texVramSize, VRAM_MANAGER_TYPE_LINKED_LIST, plttVramSize, cb);
 }
 
-#endif // POKEPLATINUM_G3D_PIPELINE_STATE_H
+#endif // POKEPLATINUM_G3D_PIPELINE_H
