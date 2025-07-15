@@ -89,8 +89,8 @@ int sub_0209A300(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
-        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
         SetVBlankCallback(NULL, NULL);
         SetHBlankCallback(NULL, NULL);
         GXLayers_DisableEngineALayers();
@@ -259,7 +259,7 @@ static BOOL sub_0209A544(UnkStruct_0209A3D0 *param0)
     case 2:
         Bg_MaskPalette(BG_LAYER_MAIN_0, 0x6c21);
         Bg_MaskPalette(BG_LAYER_SUB_0, 0x6c21);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, param0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, param0->heapID);
         param0->unk_04 = 3;
         break;
     case 3:
@@ -269,7 +269,7 @@ static BOOL sub_0209A544(UnkStruct_0209A3D0 *param0)
         break;
     case 4:
         if (sub_0209A688(param0, param0->unk_08, 0, 4) == 1) {
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, param0->heapID);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, param0->heapID);
             param0->unk_04 = 5;
         }
         break;

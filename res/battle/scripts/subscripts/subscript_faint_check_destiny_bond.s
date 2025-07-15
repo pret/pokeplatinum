@@ -1,6 +1,5 @@
 #include "macros/btlcmd.inc"
 
-    .data
 
 _000:
     CompareMonDataToValue OPCODE_FLAG_NOT, BTLSCR_FAINTED_MON, BATTLEMON_VOLATILE_STATUS, VOLATILE_CONDITION_DESTINY_BOND, _066

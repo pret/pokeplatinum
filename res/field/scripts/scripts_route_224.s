@@ -3,7 +3,6 @@
 #include "generated/hidden_locations.h"
 #include "res/text/bank/route_224.h"
 
-    .data
 
     ScriptEntry _001A
     ScriptEntry _0082

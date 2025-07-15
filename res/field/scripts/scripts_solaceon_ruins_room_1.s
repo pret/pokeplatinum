@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/solaceon_ruins_room_1.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _0010

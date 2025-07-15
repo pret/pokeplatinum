@@ -413,7 +413,7 @@ int ov113_0225C700(ApplicationManager *appMan, int *param1)
 
     v0->unk_24 = sub_02015920(HEAP_ID_118);
 
-    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_118);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_118);
 
     if (v0->unk_00->unk_00 != NULL) {
         ov66_0222E31C(v0->unk_00->unk_00, 1);
@@ -568,7 +568,7 @@ int ov113_0225CA04(ApplicationManager *appMan, int *param1)
             FinishScreenFade();
         }
 
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_118);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_118);
         (*param1)++;
         break;
     case 10:
@@ -1191,7 +1191,7 @@ static void ov113_0225DAA8(UnkStruct_ov113_0225DBCC *param0, NARC *param1)
     Easy3DObject_Init(&param0->unk_D8.unk_10, &param0->unk_D8.unk_00);
     Easy3DObject_SetPosition(&param0->unk_D8.unk_10, (FX32_CONST(0)), (FX32_CONST(0)), (FX32_CONST(0)));
     Easy3DObject_SetScale(&param0->unk_D8.unk_10, (FX32_CONST(1.00f)), (FX32_CONST(1.00f)), (FX32_CONST(1.00f)));
-    Easy3DObject_SetVisibility(&param0->unk_D8.unk_10, 1);
+    Easy3DObject_SetVisible(&param0->unk_D8.unk_10, 1);
 }
 
 static void ov113_0225DAFC(UnkStruct_ov113_0225DBCC *param0)

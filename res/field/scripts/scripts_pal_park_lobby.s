@@ -7,7 +7,6 @@
 #define LOCALID_OAK 1
 #define LOCALID_RECEPCIONIST 7
 
-    .data
 
     ScriptEntry PalParkLobby_OnLoad
     ScriptEntry PalParkLobby_Receptionist

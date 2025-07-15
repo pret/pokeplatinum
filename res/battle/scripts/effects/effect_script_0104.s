@@ -1,6 +1,5 @@
 #include "macros/btlcmd.inc"
 
-    .data
 
 _000:
     SetMultiHit 3, SYSCTL_TRIPLE_KICK

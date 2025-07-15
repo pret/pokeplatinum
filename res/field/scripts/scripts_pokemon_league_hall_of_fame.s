@@ -2,7 +2,6 @@
 #include "generated/hidden_locations.h"
 #include "res/text/bank/pokemon_league_hall_of_fame.h"
 
-    .data
 
     ScriptEntry _0006
     ScriptEntryEnd

@@ -1,6 +1,5 @@
 #include "macros/btlcmd.inc"
 
-    .data
 
 _000:
     CompareVarToValue OPCODE_EQU, BTLVAR_SCRIPT_TEMP, 1, _034

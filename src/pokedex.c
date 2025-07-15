@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/forms.h"
+#include "constants/species.h"
 #include "generated/gender_ratios.h"
 
 #include "inlines.h"
@@ -31,7 +32,7 @@ static const u16 sExcludedMonsLocal[] = {};
 #define NUM_EXCLUDED_NATIONAL ((int)(sizeof(sExcludedMonsNational) / sizeof(u16)))
 #define NUM_EXCLUDED_LOCAL    0 //((int)(sizeof(sExcludedMonsLocal) / sizeof(u16)))
 #define NATIONAL_DEX_GOAL     (NATIONAL_DEX_COUNT - NUM_EXCLUDED_NATIONAL)
-#define LOCAL_DEX_GOAL        (LOCAL_DEX_COUNT - NUM_EXCLUDED_LOCAL)
+#define LOCAL_DEX_GOAL        (SINNOH_DEX_COUNT - NUM_EXCLUDED_LOCAL)
 
 typedef struct Pokedex {
     u32 magic;

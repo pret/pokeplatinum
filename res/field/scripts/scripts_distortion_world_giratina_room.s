@@ -2,7 +2,6 @@
 #include "generated/hidden_locations.h"
 #include "res/text/bank/distortion_world_giratina_room.h"
 
-    .data
 
     ScriptEntry _0022
     ScriptEntry _0026

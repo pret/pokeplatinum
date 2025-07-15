@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/verity_lakefront_unknown_house.h"
 
-    .data
 
     ScriptEntry _0006
     ScriptEntryEnd

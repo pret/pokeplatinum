@@ -2,7 +2,6 @@
 #include "res/text/bank/villa.h"
 #include "generated/string_padding_mode.h"
 
-    .data
 
     ScriptEntry _00B2
     ScriptEntry _029C

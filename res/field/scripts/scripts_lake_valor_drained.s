@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/lake_valor_drained.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _0025

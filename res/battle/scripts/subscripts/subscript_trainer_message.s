@@ -1,6 +1,5 @@
 #include "macros/btlcmd.inc"
 
-    .data
 
 _000:
     TrainerSlideIn BTLSCR_ENEMY, BATTLER_TYPE_SOLO_ENEMY

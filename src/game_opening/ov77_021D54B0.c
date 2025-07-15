@@ -1,12 +1,12 @@
-#include "overlay077/ov77_021D54B0.h"
+#include "game_opening/ov77_021D54B0.h"
 
 #include <nitro.h>
 #include <string.h>
 
 #include "constants/graphics.h"
 
-#include "overlay077/ov77_021D6670.h"
-#include "overlay077/struct_ov77_021D6734_decl.h"
+#include "game_opening/ov77_021D6670.h"
+#include "game_opening/struct_ov77_021D6734_decl.h"
 
 #include "cell_transfer.h"
 #include "char_transfer.h"

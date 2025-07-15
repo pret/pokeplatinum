@@ -2,7 +2,6 @@
 #include "generated/distribution_events.h"
 #include "res/text/bank/flower_paradise.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _0062

@@ -2,7 +2,6 @@
 #include "generated/distribution_events.h"
 #include "res/text/bank/hall_of_origin.h"
 
-    .data
 
     ScriptEntry _003B
     ScriptEntry _0056

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/celestic_town.h"
 
-    .data
 
     ScriptEntry _0032
     ScriptEntry _026C

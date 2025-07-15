@@ -1,6 +1,5 @@
 #include "macros/btlcmd.inc"
 
-    .data
 
 _000:
     UpdateVarFromVar OPCODE_SET, BTLVAR_ATTACKER_LOCKED_MOVE, BTLVAR_CURRENT_MOVE

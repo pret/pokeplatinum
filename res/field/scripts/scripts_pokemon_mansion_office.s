@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pokemon_mansion_office.h"
 
-    .data
 
     ScriptEntry _001E
     ScriptEntry _0067

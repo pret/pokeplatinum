@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_208_gate_to_hearthome_city.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _0021

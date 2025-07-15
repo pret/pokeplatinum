@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pokemon_league_north_pokecenter_1f.h"
 
-    .data
 
     ScriptEntry _006D
     ScriptEntry _0128

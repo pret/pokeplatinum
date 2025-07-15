@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/jubilife_tv_2f.h"
 
-    .data
 
     ScriptEntry _0031
     ScriptEntry _0044

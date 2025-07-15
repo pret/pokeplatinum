@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_213.h"
 
-    .data
 
     ScriptEntry _0022
     ScriptEntry _0078

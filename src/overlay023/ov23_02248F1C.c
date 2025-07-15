@@ -341,7 +341,7 @@ static void ov23_02249438(BgConfig *param0)
 
 static void ov23_0224944C(BgConfig *param0, Window *param1)
 {
-    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
     ov23_02249438(param0);
 
     {

@@ -21,6 +21,8 @@ this is some code
   - [Post-KO Switch-In AI Scoring Overflow](#post-ko-switch-in-ai-scoring-overflow)
 - [Wild Encounters](#wild-encounters)
   - [Fishing Encounters ignore Sticky Hold and Suction Cups](#fishing-encounters-ignore-sticky-hold-and-suction-cups)
+- [Title Screen](#title-screen)
+  - [Giratina Hover Range](#giratina-hover-range)
 
 ## Battle Engine
 
@@ -174,4 +176,15 @@ due to lacking a check in between Magnet Pull and Static.
 +        encounterSlot = GetWaterEncounterSlot();
 +    }
 +  }
+```
+
+## Title Screen
+### Giratina Hover Range
+The Giratina model on the title screen hovers up and down slowly, but the range of motion is smaller than intended because the hover angle is incorrectly scaled before being passed to `CalcSineDegrees_Wraparound`, which expects degrees as input.
+
+**Fix:** Edit the hover calculation in the function `TitleScreen_Render` in [`src/applications/title_screen.c`](https://github.com/pret/pokeplatinum/blob/main/src/applications/title_screen.c#L656):
+
+```diff
+-    fx32 offset = CalcSineDegrees_Wraparound((titleScreen->giratinaHoverAngle * 0xFFFF) / 360);
++    fx32 offset = CalcSineDegrees_Wraparound(titleScreen->giratinaHoverAngle);
 ```

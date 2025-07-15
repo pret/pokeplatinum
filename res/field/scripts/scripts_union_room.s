@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/union_room.h"
 
-    .data
 
     ScriptEntry _0022
     ScriptEntry _0024

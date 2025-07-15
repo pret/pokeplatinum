@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_OV77_021D6670_H
 #define POKEPLATINUM_OV77_021D6670_H
 
-#include "overlay077/struct_ov77_021D670C_decl.h"
-#include "overlay077/struct_ov77_021D6734_decl.h"
+#include "game_opening/struct_ov77_021D670C_decl.h"
+#include "game_opening/struct_ov77_021D6734_decl.h"
 
 #include "sprite.h"
 

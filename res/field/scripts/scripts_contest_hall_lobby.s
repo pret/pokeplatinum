@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/contest_hall_lobby.h"
 
-    .data
 
     ScriptEntry _002E
     ScriptEntry _01EC

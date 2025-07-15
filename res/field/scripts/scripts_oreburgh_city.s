@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/oreburgh_city.h"
 
-    .data
 
     ScriptEntry _005A
     ScriptEntry _0090

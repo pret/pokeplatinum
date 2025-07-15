@@ -372,8 +372,8 @@ BOOL RowanIntro_Main(ApplicationManager *appMan, int *state)
         if (RowanIntro_Run(manager) == TRUE) {
             StartScreenFade(
                 FADE_BOTH_SCREENS,
-                FADE_TYPE_UNK_0,
-                FADE_TYPE_UNK_0,
+                FADE_TYPE_BRIGHTNESS_OUT,
+                FADE_TYPE_BRIGHTNESS_OUT,
                 COLOR_BLACK,
                 6,
                 1,
@@ -384,8 +384,8 @@ BOOL RowanIntro_Main(ApplicationManager *appMan, int *state)
         if (manager->appMan != NULL) {
             StartScreenFade(
                 FADE_BOTH_SCREENS,
-                FADE_TYPE_UNK_0,
-                FADE_TYPE_UNK_0,
+                FADE_TYPE_BRIGHTNESS_OUT,
+                FADE_TYPE_BRIGHTNESS_OUT,
                 COLOR_BLACK,
                 6,
                 1,
@@ -2037,8 +2037,8 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         Bg_ToggleLayer(BG_LAYER_SUB_3, TRUE);
         StartScreenFade(
             FADE_BOTH_SCREENS,
-            FADE_TYPE_UNK_1,
-            FADE_TYPE_UNK_1,
+            FADE_TYPE_BRIGHTNESS_IN,
+            FADE_TYPE_BRIGHTNESS_IN,
             COLOR_BLACK,
             6,
             1,
@@ -2069,8 +2069,8 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         Bg_ToggleLayer(BG_LAYER_MAIN_1, TRUE);
         StartScreenFade(
             FADE_MAIN_ONLY,
-            FADE_TYPE_UNK_1,
-            FADE_TYPE_UNK_1,
+            FADE_TYPE_BRIGHTNESS_IN,
+            FADE_TYPE_BRIGHTNESS_IN,
             COLOR_BLACK,
             16,
             4,
@@ -2115,8 +2115,8 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
     case RI_STATE_INFO_FADE_BLACK_START:
         StartScreenFade(
             FADE_BOTH_SCREENS,
-            FADE_TYPE_UNK_0,
-            FADE_TYPE_UNK_0,
+            FADE_TYPE_BRIGHTNESS_OUT,
+            FADE_TYPE_BRIGHTNESS_OUT,
             COLOR_BLACK,
             6,
             1,
@@ -2141,8 +2141,8 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         RowanIntro_LoadSubLayer3Tilemap(manager);
         StartScreenFade(
             FADE_BOTH_SCREENS,
-            FADE_TYPE_UNK_1,
-            FADE_TYPE_UNK_1,
+            FADE_TYPE_BRIGHTNESS_IN,
+            FADE_TYPE_BRIGHTNESS_IN,
             COLOR_BLACK,
             6,
             1,
@@ -2241,8 +2241,8 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
             sub_02015A54(manager->unk_68);
             StartScreenFade(
                 FADE_BOTH_SCREENS,
-                FADE_TYPE_UNK_0,
-                FADE_TYPE_UNK_0,
+                FADE_TYPE_BRIGHTNESS_OUT,
+                FADE_TYPE_BRIGHTNESS_OUT,
                 COLOR_BLACK,
                 6,
                 1,
@@ -2289,8 +2289,8 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
             0);
         StartScreenFade(
             FADE_BOTH_SCREENS,
-            FADE_TYPE_UNK_1,
-            FADE_TYPE_UNK_1,
+            FADE_TYPE_BRIGHTNESS_IN,
+            FADE_TYPE_BRIGHTNESS_IN,
             COLOR_BLACK,
             6,
             1,
@@ -2314,8 +2314,8 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         RowanIntro_LoadSubLayer3Tilemap(manager);
         StartScreenFade(
             FADE_BOTH_SCREENS,
-            FADE_TYPE_UNK_1,
-            FADE_TYPE_UNK_1,
+            FADE_TYPE_BRIGHTNESS_IN,
+            FADE_TYPE_BRIGHTNESS_IN,
             COLOR_BLACK,
             6,
             1,
@@ -2360,8 +2360,8 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
     case RI_STATE_ADVENTURE_INFO_FADE_OUT_START:
         StartScreenFade(
             FADE_BOTH_SCREENS,
-            FADE_TYPE_UNK_0,
-            FADE_TYPE_UNK_0,
+            FADE_TYPE_BRIGHTNESS_OUT,
+            FADE_TYPE_BRIGHTNESS_OUT,
             COLOR_BLACK,
             6,
             1,
@@ -2390,8 +2390,8 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
     case RI_STATE_PKBL_FADE_START:
         StartScreenFade(
             FADE_SUB_ONLY,
-            FADE_TYPE_UNK_0,
-            FADE_TYPE_UNK_0,
+            FADE_TYPE_BRIGHTNESS_OUT,
+            FADE_TYPE_BRIGHTNESS_OUT,
             COLOR_BLACK,
             6,
             1,
@@ -2406,8 +2406,8 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
             Bg_ToggleLayer(BG_LAYER_SUB_2, TRUE);
             StartScreenFade(
                 FADE_SUB_ONLY,
-                FADE_TYPE_UNK_1,
-                FADE_TYPE_UNK_1,
+                FADE_TYPE_BRIGHTNESS_IN,
+                FADE_TYPE_BRIGHTNESS_IN,
                 COLOR_BLACK,
                 6,
                 1,
@@ -2728,8 +2728,8 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
 
         StartScreenFade(
             FADE_BOTH_SCREENS,
-            FADE_TYPE_UNK_1,
-            FADE_TYPE_UNK_1,
+            FADE_TYPE_BRIGHTNESS_IN,
+            FADE_TYPE_BRIGHTNESS_IN,
             COLOR_BLACK,
             6,
             1,
@@ -2885,8 +2885,8 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
             0);
         StartScreenFade(
             FADE_BOTH_SCREENS,
-            FADE_TYPE_UNK_1,
-            FADE_TYPE_UNK_1,
+            FADE_TYPE_BRIGHTNESS_IN,
+            FADE_TYPE_BRIGHTNESS_IN,
             COLOR_BLACK,
             6,
             1,
