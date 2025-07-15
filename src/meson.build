@@ -803,7 +803,7 @@ pokeplatinum_c = files(
     'overlay071/ov71_0223D324.c',
     'overlay072/ov72_0223D7A0.c',
     'applications/rowan_intro/rowan_intro_app.c',
-    'applications/rowan_intro/keyboard_app.c',
+    'applications/rowan_intro/tv_app.c',
     'applications/options_menu.c',
     'overlay075/ov75_021D0D80.c',
     'overlay076/ov76_0223B140.c',
