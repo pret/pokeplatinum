@@ -1,7 +1,5 @@
-#ifndef ROWAN_INTRO_H
-#define ROWAN_INTRO_H
-
-#include <nitro.h>
+#ifndef POKEPLATINUM_ROWAN_INTRO_MAIN_H
+#define POKEPLATINUM_ROWAN_INTRO_MAIN_H
 
 #include "overlay_manager.h"
 
@@ -9,4 +7,4 @@ BOOL RowanIntro_Init(ApplicationManager *appMan, int *state);
 BOOL RowanIntro_Main(ApplicationManager *appMan, int *state);
 BOOL RowanIntro_Exit(ApplicationManager *appMan, int *state);
 
-#endif // ROWAN_INTRO_H
+#endif // POKEPLATINUM_ROWAN_INTRO_MAIN_H

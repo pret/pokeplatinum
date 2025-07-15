@@ -25,7 +25,7 @@
 #include "pokemon.h"
 #include "render_text.h"
 #include "render_window.h"
-#include "rowan_intro.h"
+#include "applications/rowan_intro/main.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "savedata_misc.h"
