@@ -1263,7 +1263,7 @@ Overlay rowan_intro
 {
 	After main
 	Object main.nef.p/src_applications_rowan_intro_rowan_intro_app.c.o
-	Object main.nef.p/src_applications_rowan_intro_keyboard_app.c.o
+	Object main.nef.p/src_applications_rowan_intro_tv_app.c.o
 }
 
 Overlay options_menu

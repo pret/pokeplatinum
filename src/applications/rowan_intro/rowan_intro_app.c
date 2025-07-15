@@ -292,10 +292,9 @@ static void RowanIntro_LoadTilemap(RowanIntro *manager);
 static void RowanIntro_LoadSubLayer3Tilemap(RowanIntro *manager);
 static BOOL RowanIntro_Run(RowanIntro *manager);
 
-// Keyboard application Init,Main,Exit
-int ov73_021D3250(ApplicationManager *appMan, int *state);
-int ov73_021D3280(ApplicationManager *appMan, int *state);
-int ov73_021D3404(ApplicationManager *appMan, int *state);
+int RowanIntroTv_Init(ApplicationManager *appMan, int *state);
+int RowanIntroTv_Main(ApplicationManager *appMan, int *state);
+int RowanIntroTv_Exit(ApplicationManager *appMan, int *state);
 
 const ApplicationManagerTemplate sDummyApplicationManagerTemplate = {
     RowanIntro_Init,
@@ -304,10 +303,10 @@ const ApplicationManagerTemplate sDummyApplicationManagerTemplate = {
     FS_OVERLAY_ID_NONE,
 };
 
-static const ApplicationManagerTemplate sKeyboardApplicationTemplate = {
-    ov73_021D3250,
-    ov73_021D3280,
-    ov73_021D3404,
+static const ApplicationManagerTemplate sTvApplicationTemplate = {
+    RowanIntroTv_Init,
+    RowanIntroTv_Main,
+    RowanIntroTv_Exit,
     FS_OVERLAY_ID_NONE,
 };
 
@@ -2991,7 +2990,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         break;
     case RI_STATE_END:
         manager->appMan = ApplicationManager_New(
-            &sKeyboardApplicationTemplate,
+            &sTvApplicationTemplate,
             NULL,
             manager->heapID);
         manager->state = RI_STATE_EXIT;
