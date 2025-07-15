@@ -10,11 +10,11 @@
 #include "struct_decls/struct_02012B20_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_defs/battle_frontier.h"
-#include "struct_defs/wi_fi_history.h"
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_0207DFAC.h"
 #include "struct_defs/struct_0207E060.h"
 #include "struct_defs/struct_02099F80.h"
+#include "struct_defs/wi_fi_history.h"
 
 #include "overlay004/ov4_021D0D80.h"
 #include "overlay065/ov65_02235060.h"
@@ -29,7 +29,6 @@
 #include "assert.h"
 #include "bag.h"
 #include "bg_window.h"
-#include "sprite.h"
 #include "char_transfer.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -60,6 +59,10 @@
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
+#include "sound.h"
+#include "sound_playback.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
@@ -69,14 +72,11 @@
 #include "system.h"
 #include "system_flags.h"
 #include "text.h"
-#include "touch_screen.h"
-#include "trainer_info.h"
-#include "sound.h"
-#include "sound_playback.h"
-#include "screen_fade.h"
-#include "unk_02012744.h"
 #include "touch_pad.h"
+#include "touch_screen.h"
 #include "touch_screen_actions.h"
+#include "trainer_info.h"
+#include "unk_02012744.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202C858.h"
 #include "unk_0203061C.h"
@@ -5314,7 +5314,7 @@ static void ov65_02233874(UnkStruct_ov65_0222EBE0 *param0, u32 heapID)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
 }
 
-static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
+static void ov65_02233940(UnkStruct_ov65_0222EBE0 *param0, u32 param1)
 {
     int v0 = param0->unk_BE0.unk_71 - 1;
     TextColor color;
@@ -5398,7 +5398,7 @@ static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     ov65_0222EA38(param0->unk_15C, &param0->unk_BD0, 6, 2, 2, v3);
 
     int v5;
-    
+
     if (v2->unk_21) {
         v5 = 8;
     } else {
@@ -5430,7 +5430,8 @@ static void ov65_02233E20(UnkStruct_ov65_0222EBE0 *param0, u32 param1)
     }
 }
 
-static void ov65_02233EF0(UnkStruct_ov65_0222EBE0 *param0, u32 param1) {
+static void ov65_02233EF0(UnkStruct_ov65_0222EBE0 *param0, u32 param1)
+{
     int v0 = param0->unk_BE0.unk_71 - 1;
 
     MessageLoader_GetStrbuf(param0->unk_168, 53, param0->unk_178);

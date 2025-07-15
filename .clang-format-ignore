@@ -1,5 +1,4 @@
 # These files still contain inline-ASM functions; ignore them for formatting for now
-src/overlay065/ov65_0222DCE0.c
 src/overlay064/ov64_0222DCE0.c
 src/overlay062/ov62_02241204.c
 src/overlay062/ov62_0223DFA8.c
