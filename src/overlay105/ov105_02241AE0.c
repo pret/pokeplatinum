@@ -26,7 +26,7 @@
 #include "communication_system.h"
 #include "dexmode_checker.h"
 #include "font.h"
-#include "g3d_pipeline_state.h"
+#include "g3d_pipeline.h"
 #include "game_options.h"
 #include "game_overlay.h"
 #include "graphics.h"
@@ -99,7 +99,7 @@ struct UnkStruct_ov105_02241FF4_t {
     Menu *unk_FC;
     StringList unk_100[4];
     PaletteData *unk_120;
-    G3DPipelineState *unk_124;
+    G3DPipelineBuffers *unk_124;
     PokemonSpriteManager *unk_128;
     PokemonSprite *unk_12C[3];
     Options *options;
@@ -356,7 +356,7 @@ int ov105_02241AE0(ApplicationManager *appMan, int *param1)
     v1 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov105_02241FF4), HEAP_ID_93);
     memset(v1, 0, sizeof(UnkStruct_ov105_02241FF4));
 
-    v1->unk_124 = G3DPipelineState_New(HEAP_ID_93, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov105_02245CD0);
+    v1->unk_124 = G3DPipeline_Init(HEAP_ID_93, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov105_02245CD0);
     v1->unk_4C = BgConfig_New(HEAP_ID_93);
     v1->unk_00 = appMan;
 
@@ -2781,7 +2781,7 @@ static void ov105_022451B4(UnkStruct_ov105_02241FF4 *param0)
     ov105_0224473C(param0->unk_4C);
 
     NARC_dtor(param0->unk_338);
-    G3DPipelineState_Free(param0->unk_124);
+    G3DPipelineBuffers_Free(param0->unk_124);
 
     return;
 }
@@ -2792,7 +2792,7 @@ static void ov105_022452A0(UnkStruct_ov105_02241FF4 *param0)
 
     ov105_022452E4();
 
-    param0->unk_124 = G3DPipelineState_New(HEAP_ID_93, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov105_02245CD0);
+    param0->unk_124 = G3DPipeline_Init(HEAP_ID_93, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov105_02245CD0);
     param0->unk_4C = BgConfig_New(HEAP_ID_93);
 
     ov105_0224531C(param0);

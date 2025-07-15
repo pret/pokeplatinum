@@ -40,7 +40,7 @@
 #include "enums.h"
 #include "error_handling.h"
 #include "font.h"
-#include "g3d_pipeline_state.h"
+#include "g3d_pipeline.h"
 #include "game_options.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -99,7 +99,7 @@ typedef struct {
     G2dRenderer unk_08;
     SpriteResourceCollection *unk_194[4];
     NNSG2dCellTransferState *unk_1A4;
-    G3DPipelineState *unk_1A8;
+    G3DPipelineBuffers *unk_1A8;
 } UnkStruct_ov70_0225E4EC;
 
 typedef struct {
@@ -1316,7 +1316,7 @@ static void ov70_0225E4EC(UnkStruct_ov70_0225E4EC *param0, SaveData *saveData, u
     }
 
     {
-        param0->unk_1A8 = G3DPipelineState_New(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_64K, ov70_0225E754);
+        param0->unk_1A8 = G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_64K, ov70_0225E754);
     }
 }
 
@@ -1357,7 +1357,7 @@ static void ov70_0225E6D0(UnkStruct_ov70_0225E4EC *param0)
     }
 
     {
-        G3DPipelineState_Free(param0->unk_1A8);
+        G3DPipelineBuffers_Free(param0->unk_1A8);
     }
 }
 

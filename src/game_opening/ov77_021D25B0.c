@@ -18,7 +18,7 @@
 #include "brightness_controller.h"
 #include "camera.h"
 #include "easy3d.h"
-#include "g3d_pipeline_state.h"
+#include "g3d_pipeline.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -127,7 +127,7 @@ typedef struct {
     int unk_04;
     BOOL unk_08;
     BgConfig *unk_0C;
-    G3DPipelineState *unk_10;
+    G3DPipelineBuffers *unk_10;
     u32 unk_14;
     UnkStruct_ov77_021D2F38 unk_18;
     UnkStruct_ov77_021D37C0 unk_34;
@@ -821,7 +821,7 @@ static void ov77_021D2A58(UnkStruct_ov77_021D2E9C *param0)
     NNSGfdPlttKey v1;
     u32 v2, v3;
 
-    param0->unk_10 = G3DPipelineState_New(param0->unk_00, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_64K, ov77_021D2AA0);
+    param0->unk_10 = G3DPipeline_Init(param0->unk_00, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_64K, ov77_021D2AA0);
 
     v0 = NNS_GfdAllocTexVram(0x2000 * 4, 0, 0);
     v1 = NNS_GfdAllocPlttVram(0x20 * 4, 0, NNS_GFD_ALLOC_FROM_LOW);
@@ -1453,7 +1453,7 @@ static void ov77_021D36F8(UnkStruct_ov77_021D2E9C *param0)
             param0->unk_34.unk_240 = NULL;
         }
 
-        G3DPipelineState_Free(param0->unk_10);
+        G3DPipelineBuffers_Free(param0->unk_10);
         param0->unk_34.unk_02 = 0;
     }
 

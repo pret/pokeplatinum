@@ -18,7 +18,7 @@
 #include "bg_window.h"
 #include "camera.h"
 #include "font.h"
-#include "g3d_pipeline_state.h"
+#include "g3d_pipeline.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -42,7 +42,7 @@
 
 void ov119_021D0D80(void);
 void ov119_021D0DA8(void);
-G3DPipelineState *ov119_021D0DD4(void);
+G3DPipelineBuffers *ov119_021D0DD4(void);
 void ov119_021D0DF4(void);
 void ov119_021D0E78(void);
 static u32 ov119_021D13B4(u32 param0, BOOL param1);
@@ -66,9 +66,9 @@ void ov119_021D0DA8(void)
     G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 7, 8);
 }
 
-G3DPipelineState *ov119_021D0DD4(void)
+G3DPipelineBuffers *ov119_021D0DD4(void)
 {
-    return G3DPipelineState_New(HEAP_ID_71, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov119_021D0DF4);
+    return G3DPipeline_Init(HEAP_ID_71, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov119_021D0DF4);
 }
 
 void ov119_021D0DF4(void)

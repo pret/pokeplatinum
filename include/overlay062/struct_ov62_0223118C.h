@@ -9,7 +9,7 @@
 #include "overlay062/struct_ov62_022349A8.h"
 
 #include "bg_window.h"
-#include "g3d_pipeline_state.h"
+#include "g3d_pipeline.h"
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
@@ -35,7 +35,7 @@ typedef struct {
     int unk_44;
     u8 unk_48;
     u8 padding_49[3];
-    G3DPipelineState *unk_4C;
+    G3DPipelineBuffers *unk_4C;
     PokemonSpriteManager *unk_50;
     UnkStruct_ov62_022349A8 unk_54;
     UnkStruct_ov62_0223359C unk_46C;

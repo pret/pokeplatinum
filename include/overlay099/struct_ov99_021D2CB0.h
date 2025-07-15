@@ -11,7 +11,7 @@
 #include "bg_window.h"
 #include "camera.h"
 #include "easy3d_object.h"
-#include "g3d_pipeline_state.h"
+#include "g3d_pipeline.h"
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
@@ -23,7 +23,7 @@ typedef struct {
     BOOL unk_04;
     BgConfig *unk_08;
     PaletteData *unk_0C;
-    G3DPipelineState *unk_10;
+    G3DPipelineBuffers *unk_10;
     SysTask *unk_14;
     SpriteSystem *unk_18;
     SpriteManager *unk_1C;

@@ -16,7 +16,7 @@
 #include "overlay104/struct_ov104_0223D5F0_decl.h"
 
 #include "bg_window.h"
-#include "g3d_pipeline_state.h"
+#include "g3d_pipeline.h"
 #include "palette.h"
 #include "sprite_system.h"
 #include "sys_task_manager.h"
@@ -25,7 +25,7 @@ typedef struct UnkStruct_ov104_0223C4CC_t {
     BgConfig *unk_00;
     PaletteData *unk_04;
     UnkStruct_0209B75C *unk_08;
-    G3DPipelineState *unk_0C;
+    G3DPipelineBuffers *unk_0C;
     UnkStruct_ov104_0223D5F0 *unk_10;
     UnkStruct_ov63_0222BE18 *unk_14;
     UnkStruct_ov63_0222BCE8 *unk_18;

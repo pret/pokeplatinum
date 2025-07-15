@@ -3,11 +3,11 @@
 
 #include "constants/heap.h"
 
-typedef struct G3DPipelineState {
+typedef struct G3DPipelineBuffers {
     enum HeapId heapID;
     void *paletteBuffer;
     void *textureBuffer;
-} G3DPipelineState;
+} G3DPipelineBuffers;
 
 enum VramManagerType {
     VRAM_MANAGER_TYPE_LINKED_LIST = 0,
@@ -32,12 +32,12 @@ enum PaletteVramSize {
 
 typedef void (*G3DPipelineSetupCallback)(void);
 
-G3DPipelineState *G3DPipelineState_NewEx(enum HeapId heapID, enum VramManagerType texVramManagerType, enum TextureVramSize texVramSize, enum VramManagerType plttVramManagerType, enum PaletteVramSize plttVramSize, G3DPipelineSetupCallback cb);
-void G3DPipelineState_Free(G3DPipelineState *state);
+G3DPipelineBuffers *G3DPipeline_InitEx(enum HeapId heapID, enum VramManagerType texVramManagerType, enum TextureVramSize texVramSize, enum VramManagerType plttVramManagerType, enum PaletteVramSize plttVramSize, G3DPipelineSetupCallback cb);
+void G3DPipelineBuffers_Free(G3DPipelineBuffers *state);
 
-static inline G3DPipelineState *G3DPipelineState_New(enum HeapId heapID, enum TextureVramSize texVramSize, enum PaletteVramSize plttVramSize, G3DPipelineSetupCallback cb)
+static inline G3DPipelineBuffers *G3DPipeline_Init(enum HeapId heapID, enum TextureVramSize texVramSize, enum PaletteVramSize plttVramSize, G3DPipelineSetupCallback cb)
 {
-    return G3DPipelineState_NewEx(heapID, VRAM_MANAGER_TYPE_LINKED_LIST, texVramSize, VRAM_MANAGER_TYPE_LINKED_LIST, plttVramSize, cb);
+    return G3DPipeline_InitEx(heapID, VRAM_MANAGER_TYPE_LINKED_LIST, texVramSize, VRAM_MANAGER_TYPE_LINKED_LIST, plttVramSize, cb);
 }
 
 #endif // POKEPLATINUM_G3D_PIPELINE_STATE_H

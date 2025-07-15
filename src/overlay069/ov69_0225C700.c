@@ -23,7 +23,7 @@
 #include "char_transfer.h"
 #include "easy3d_object.h"
 #include "font.h"
-#include "g3d_pipeline_state.h"
+#include "g3d_pipeline.h"
 #include "game_options.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -107,7 +107,7 @@ typedef struct {
     SpriteList *unk_04;
     G2dRenderer unk_08;
     SpriteResourceCollection *unk_194[4];
-    G3DPipelineState *unk_1A4;
+    G3DPipelineBuffers *unk_1A4;
     NARC *unk_1A8;
 } UnkStruct_ov69_0225D35C;
 
@@ -1485,13 +1485,13 @@ static void ov69_0225D5D8(UnkStruct_ov69_0225D35C *param0)
 
 static void ov69_0225D604(UnkStruct_ov69_0225D35C *param0, u32 heapID)
 {
-    param0->unk_1A4 = G3DPipelineState_New(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_64K, ov69_0225D64C);
+    param0->unk_1A4 = G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_64K, ov69_0225D64C);
     NNS_G3dGlbLightVector(0, 0, 0, (-(FX32_ONE - 1)));
 }
 
 static void ov69_0225D63C(UnkStruct_ov69_0225D35C *param0)
 {
-    G3DPipelineState_Free(param0->unk_1A4);
+    G3DPipelineBuffers_Free(param0->unk_1A4);
 }
 
 static void ov69_0225D64C(void)

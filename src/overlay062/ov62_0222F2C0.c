@@ -14,7 +14,7 @@
 #include "overlay062/ov62_const_funcptr_tables.h"
 
 #include "bg_window.h"
-#include "g3d_pipeline_state.h"
+#include "g3d_pipeline.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -55,7 +55,7 @@ void ov62_0222F2C0(UnkStruct_0208C06C *param0)
     param0->unk_14.unk_00 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__BATT_REC__BATT_REC_GRA, HEAP_ID_102);
     param0->unk_14.unk_10 = BgConfig_New(HEAP_ID_102);
     param0->unk_14.unk_14 = PaletteData_New(HEAP_ID_102);
-    param0->unk_14.unk_4C = G3DPipelineState_New(HEAP_ID_102, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_64K, NULL);
+    param0->unk_14.unk_4C = G3DPipeline_Init(HEAP_ID_102, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_64K, NULL);
     param0->unk_14.unk_50 = PokemonSpriteManager_New(HEAP_ID_102);
 
     NNS_G2dSetupSoftwareSpriteCamera();
@@ -199,7 +199,7 @@ void ov62_0222F514(UnkStruct_0208C06C *param0)
         MessageLoader_Free(param0->unk_14.unk_38);
     }
 
-    G3DPipelineState_Free(param0->unk_14.unk_4C);
+    G3DPipelineBuffers_Free(param0->unk_14.unk_4C);
     PokemonSpriteManager_Free(param0->unk_14.unk_50);
 
     ov62_022411EC(param0);

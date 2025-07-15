@@ -19,7 +19,7 @@
 #include "field_system.h"
 #include "field_task.h"
 #include "field_transition.h"
-#include "g3d_pipeline_state.h"
+#include "g3d_pipeline.h"
 #include "game_options.h"
 #include "game_records.h"
 #include "gx_layers.h"
@@ -155,7 +155,7 @@ static int sub_02098388(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov119_021D0FD0 *v0 = ApplicationManager_Data(appMan);
 
-    G3DPipelineState_Free(v0->unk_04.unk_34);
+    G3DPipelineBuffers_Free(v0->unk_04.unk_34);
 
     GXLayers_EngineAToggleLayers(1, 0);
     GXLayers_EngineAToggleLayers(2, 0);

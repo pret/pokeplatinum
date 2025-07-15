@@ -10,14 +10,14 @@
 #include "overlay017/struct_ov17_0224FECC.h"
 #include "overlay017/struct_ov17_022507C4.h"
 
-#include "g3d_pipeline_state.h"
+#include "g3d_pipeline.h"
 #include "sys_task_manager.h"
 
 typedef struct {
     UnkStruct_02095C48 *unk_00;
     SysTask *unk_04;
     SysTask *unk_08;
-    G3DPipelineState *unk_0C;
+    G3DPipelineBuffers *unk_0C;
     UnkStruct_ov17_022507C4 unk_10;
     UnkStruct_ov17_0224FCA0_sub1 unk_39A;
     UnkStruct_ov17_0224FCA0_sub2 unk_434;

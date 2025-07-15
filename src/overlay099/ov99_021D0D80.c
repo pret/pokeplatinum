@@ -17,7 +17,7 @@
 #include "camera.h"
 #include "easy3d_object.h"
 #include "enums.h"
-#include "g3d_pipeline_state.h"
+#include "g3d_pipeline.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -75,9 +75,9 @@ static void ov99_021D1380(BgConfig *param0);
 static void ov99_021D1720(UnkStruct_ov99_021D2CB0 *param0);
 static void ov99_021D1918(UnkStruct_ov99_021D2CB0 *param0);
 static void ov99_021D19A0(UnkStruct_ov99_021D2CB0 *param0);
-static G3DPipelineState *ov99_021D19AC(int heapID);
+static G3DPipelineBuffers *ov99_021D19AC(int heapID);
 static void ov99_021D19C8(void);
-static void ov99_021D1A4C(G3DPipelineState *param0);
+static void ov99_021D1A4C(G3DPipelineBuffers *param0);
 static void ov99_021D16E4(UnkStruct_ov99_021D2CB0 *param0);
 static void ov99_021D1270(UnkStruct_ov99_021D2CB0 *param0);
 static void ov99_021D1314(UnkStruct_ov99_021D2CB0 *param0);
@@ -766,9 +766,9 @@ static void ov99_021D19A0(UnkStruct_ov99_021D2CB0 *param0)
     Camera_Delete(param0->camera);
 }
 
-static G3DPipelineState *ov99_021D19AC(int heapID)
+static G3DPipelineBuffers *ov99_021D19AC(int heapID)
 {
-    return G3DPipelineState_New(heapID, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_16K, ov99_021D19C8);
+    return G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_16K, ov99_021D19C8);
 }
 
 static void ov99_021D19C8(void)
@@ -786,7 +786,7 @@ static void ov99_021D19C8(void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void ov99_021D1A4C(G3DPipelineState *param0)
+static void ov99_021D1A4C(G3DPipelineBuffers *param0)
 {
-    G3DPipelineState_Free(param0);
+    G3DPipelineBuffers_Free(param0);
 }

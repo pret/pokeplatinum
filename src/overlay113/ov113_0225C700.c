@@ -34,7 +34,7 @@
 #include "easy3d_object.h"
 #include "font.h"
 #include "fx_util.h"
-#include "g3d_pipeline_state.h"
+#include "g3d_pipeline.h"
 #include "game_options.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -84,7 +84,7 @@ typedef struct UnkStruct_ov113_0225DBCC_t {
     BgConfig *unk_08;
     PaletteData *unk_0C;
     UnkStruct_02012744 *unk_10;
-    G3DPipelineState *unk_14;
+    G3DPipelineBuffers *unk_14;
     SysTask *unk_18;
     SpriteSystem *unk_1C;
     SpriteManager *unk_20;
@@ -134,9 +134,9 @@ static void ov113_0225D12C(BgConfig *param0);
 static void ov113_0225D160(UnkStruct_ov113_0225DBCC *param0, NARC *param1);
 static void ov113_0225DBCC(UnkStruct_ov113_0225DBCC *param0);
 static void ov113_0225DC4C(UnkStruct_ov113_0225DBCC *param0);
-static G3DPipelineState *ov113_0225DC6C(int heapID);
+static G3DPipelineBuffers *ov113_0225DC6C(int heapID);
 static void ov113_0225DC88(void);
-static void ov113_0225DD0C(G3DPipelineState *param0);
+static void ov113_0225DD0C(G3DPipelineBuffers *param0);
 static void ov113_0225D9FC(UnkStruct_ov113_0225DBCC *param0);
 static void ov113_0225DA9C(UnkStruct_ov113_0225DBCC *param0);
 static void ov113_0225DAA8(UnkStruct_ov113_0225DBCC *param0, NARC *param1);
@@ -1259,9 +1259,9 @@ static void ov113_0225DC4C(UnkStruct_ov113_0225DBCC *param0)
     }
 }
 
-static G3DPipelineState *ov113_0225DC6C(int heapID)
+static G3DPipelineBuffers *ov113_0225DC6C(int heapID)
 {
-    return G3DPipelineState_New(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov113_0225DC88);
+    return G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov113_0225DC88);
 }
 
 static void ov113_0225DC88(void)
@@ -1279,9 +1279,9 @@ static void ov113_0225DC88(void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void ov113_0225DD0C(G3DPipelineState *param0)
+static void ov113_0225DD0C(G3DPipelineBuffers *param0)
 {
-    G3DPipelineState_Free(param0);
+    G3DPipelineBuffers_Free(param0);
 }
 
 static void ov113_0225DD14(UnkStruct_ov113_0225DBCC *param0)

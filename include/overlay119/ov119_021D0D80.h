@@ -7,14 +7,14 @@
 #include "overlay119/struct_ov119_021D1930.h"
 
 #include "bg_window.h"
-#include "g3d_pipeline_state.h"
+#include "g3d_pipeline.h"
 #include "palette.h"
 #include "particle_system.h"
 #include "pokemon.h"
 
 void ov119_021D0D80(void);
 void ov119_021D0DA8(void);
-G3DPipelineState *ov119_021D0DD4(void);
+G3DPipelineBuffers *ov119_021D0DD4(void);
 void ov119_021D0DF4(void);
 void ov119_021D0E78(void);
 void ov119_021D0EB8(BgConfig *param0);

@@ -51,6 +51,8 @@ enum DSScreen {
 #define GX_COLOR_DIMS  3
 #define GX_VEC_FX_DIMS 3
 
+#define G3X_DEPTH_MAX 0x7FFF
+
 #define COLOR_BLACK       GX_RGB(0, 0, 0)
 #define COLOR_DARK_GRAY   GX_RGB(4, 4, 4)
 #define COLOR_WHITE       GX_RGB(31, 31, 31)

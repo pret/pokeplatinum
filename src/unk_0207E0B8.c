@@ -16,7 +16,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "font.h"
-#include "g3d_pipeline_state.h"
+#include "g3d_pipeline.h"
 #include "game_options.h"
 #include "game_overlay.h"
 #include "graphics.h"
@@ -122,9 +122,9 @@ static u8 CheckDuplicateValues(GameWindowLayout *param0);
 static u8 CheckUniqueValues(GameWindowLayout *param0);
 static u8 CheckEqualityInArray(GameWindowLayout *param0);
 static BOOL ValidateGameWindowState(GameWindowLayout *param0);
-static G3DPipelineState *sub_0207EAD4(int heapID);
+static G3DPipelineBuffers *sub_0207EAD4(int heapID);
 static void sub_0207EAF4(void);
-static void sub_0207EB64(G3DPipelineState *param0);
+static void sub_0207EB64(G3DPipelineBuffers *param0);
 static int ProcessMessageResult(GameWindowLayout *param0);
 static int HandleOverlayCompletion(GameWindowLayout *param0);
 static void sub_0207F388(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1);
@@ -880,9 +880,9 @@ void sub_0207EA74(GameWindowLayout *windowLayout, int param1)
     }
 }
 
-static G3DPipelineState *sub_0207EAD4(int heapID)
+static G3DPipelineBuffers *sub_0207EAD4(int heapID)
 {
-    return G3DPipelineState_New(heapID, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_32K, sub_0207EAF4);
+    return G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_32K, sub_0207EAF4);
 }
 
 static void sub_0207EAF4(void)
@@ -897,9 +897,9 @@ static void sub_0207EAF4(void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void sub_0207EB64(G3DPipelineState *param0)
+static void sub_0207EB64(G3DPipelineBuffers *param0)
 {
-    G3DPipelineState_Free(param0);
+    G3DPipelineBuffers_Free(param0);
 }
 
 static void sub_0207EB6C(GameWindowLayout *param0, NARC *param1)

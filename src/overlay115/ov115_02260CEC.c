@@ -25,7 +25,7 @@
 #include "char_transfer.h"
 #include "easy3d_object.h"
 #include "font.h"
-#include "g3d_pipeline_state.h"
+#include "g3d_pipeline.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -273,7 +273,7 @@ typedef struct {
     Strbuf *unk_10;
     u16 unk_14;
     u16 unk_16;
-    G3DPipelineState *unk_18;
+    G3DPipelineBuffers *unk_18;
     SpriteList *unk_1C;
     G2dRenderer unk_20;
     SpriteResourceCollection *unk_1AC[4];
@@ -2859,14 +2859,14 @@ static void ov115_02263328(void)
 
 static void ov115_022633B4(UnkStruct_ov115_02261ADC *param0, u32 param1, u32 param2, u32 heapID)
 {
-    param0->unk_18 = G3DPipelineState_New(heapID, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_64K, ov115_02263328);
+    param0->unk_18 = G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_64K, ov115_02263328);
     ov115_02263C24(param0, param1, param2, heapID);
 }
 
 static void ov115_022633EC(UnkStruct_ov115_02261ADC *param0)
 {
     ov115_02263CC0(param0);
-    G3DPipelineState_Free(param0->unk_18);
+    G3DPipelineBuffers_Free(param0->unk_18);
 }
 
 static void ov115_022633FC(UnkStruct_ov115_02260D78 *param0, u32 heapID)

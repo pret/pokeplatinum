@@ -19,7 +19,7 @@
 #include "bg_window.h"
 #include "char_transfer.h"
 #include "font.h"
-#include "g3d_pipeline_state.h"
+#include "g3d_pipeline.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -366,9 +366,9 @@ void ov76_0223BD30(UnkStruct_ov76_0223DE00 *param0, s8 param1, int param2)
     SysTask_Start(ov76_0223BCA0, v0, 0x1000);
 }
 
-G3DPipelineState *ov76_0223BE6C(void)
+G3DPipelineBuffers *ov76_0223BE6C(void)
 {
-    return G3DPipelineState_New(HEAP_ID_53, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov76_0223BE8C);
+    return G3DPipeline_Init(HEAP_ID_53, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov76_0223BE8C);
 }
 
 void ov76_0223BE8C(void)

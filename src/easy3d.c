@@ -4,11 +4,11 @@
 #include <nnsys.h>
 #include <string.h>
 
-#include "g3d_pipeline_state.h"
+#include "constants/graphics.h"
+
+#include "g3d_pipeline.h"
 #include "gx_layers.h"
 #include "system.h"
-
-#define G3X_DEPTH_MAX 0x7FFF
 
 static void Easy3D_SetupEngine(void);
 
@@ -76,11 +76,11 @@ void Easy3D_DrawRenderObjSimple(NNSG3dRenderObj *renderObj, const VecFx32 *pos, 
     NNS_G3dGeFlushBuffer();
 }
 
-static G3DPipelineState *sPipelineState = NULL;
+static G3DPipelineBuffers *sPipelineBuffers = NULL;
 
 void Easy3D_Init(const u8 heapID)
 {
-    sPipelineState = G3DPipelineState_New(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_64K, Easy3D_SetupEngine);
+    sPipelineBuffers = G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_64K, Easy3D_SetupEngine);
 }
 
 static void Easy3D_SetupEngine(void)
@@ -95,12 +95,12 @@ static void Easy3D_SetupEngine(void)
     G3X_EdgeMarking(FALSE);
     G3X_SetFog(FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0);
     G3X_SetClearColor(GX_RGB(0, 0, 0), 0, G3X_DEPTH_MAX, 63, FALSE);
-    G3_ViewPort(0, 0, 255, 191);
+    G3_ViewPort(0, 0, HW_LCD_WIDTH - 1, HW_LCD_HEIGHT - 1);
 }
 
 void Easy3D_Shutdown(void)
 {
-    G3DPipelineState_Free(sPipelineState);
+    G3DPipelineBuffers_Free(sPipelineBuffers);
 }
 
 BOOL Easy3D_BindTextureToResource(void *resource, NNSG3dResTex *texture)

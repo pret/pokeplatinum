@@ -18,7 +18,7 @@
 #include "communication_information.h"
 #include "communication_system.h"
 #include "font.h"
-#include "g3d_pipeline_state.h"
+#include "g3d_pipeline.h"
 #include "game_options.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -95,7 +95,7 @@ typedef struct UnkStruct_ov10_0221FB28_t {
     u16 unk_538[2][384];
     UnkStruct_02012744 *unk_B38;
     FontOAM *unk_B3C[4];
-    G3DPipelineState *unk_B4C;
+    G3DPipelineBuffers *unk_B4C;
     ParticleSystem *unk_B50;
     void *unk_B54;
     u8 unk_B58[4];
@@ -1726,7 +1726,7 @@ static void ov10_022217CC(UnkStruct_ov10_0221FB28 *param0)
     Camera *camera;
     void *v1;
 
-    param0->unk_B4C = G3DPipelineState_New(param0->unk_00->heapID, TEXTURE_VRAM_SIZE_512K, PALETTE_VRAM_SIZE_32K, NULL);
+    param0->unk_B4C = G3DPipeline_Init(param0->unk_00->heapID, TEXTURE_VRAM_SIZE_512K, PALETTE_VRAM_SIZE_32K, NULL);
 
     G3X_AlphaBlend(1);
     ParticleSystem_ZeroAll();
@@ -1776,7 +1776,7 @@ static void ov10_022218F4(UnkStruct_ov10_0221FB28 *param0)
 
     ParticleSystem_Free(param0->unk_B50);
     Heap_Free(param0->unk_B54);
-    G3DPipelineState_Free(param0->unk_B4C);
+    G3DPipelineBuffers_Free(param0->unk_B4C);
 }
 
 static u32 ov10_02221928(u32 param0, BOOL param1)

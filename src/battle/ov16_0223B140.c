@@ -40,7 +40,7 @@
 #include "field_battle_data_transfer.h"
 #include "flags.h"
 #include "font.h"
-#include "g3d_pipeline_state.h"
+#include "g3d_pipeline.h"
 #include "game_options.h"
 #include "game_overlay.h"
 #include "game_records.h"
@@ -124,8 +124,8 @@ static void ov16_0223CE68(void *param0);
 static void ov16_0223CF1C(void *param0);
 static void ov16_0223CF48(SysTask *param0, void *param1);
 static void ov16_0223CF8C(SysTask *param0, void *param1);
-static G3DPipelineState *ov16_0223CD7C(void);
-static void ov16_0223CE20(G3DPipelineState *param0);
+static G3DPipelineBuffers *ov16_0223CD7C(void);
+static void ov16_0223CE20(G3DPipelineBuffers *param0);
 static void ov16_0223CD9C(void);
 static void ov16_0223DD4C(BattleSystem *battleSys);
 static void ov16_0223D0C4(SysTask *param0, void *param1);
@@ -1421,9 +1421,9 @@ static BOOL ov16_0223CD3C(u16 param0)
     return 0;
 }
 
-static G3DPipelineState *ov16_0223CD7C(void)
+static G3DPipelineBuffers *ov16_0223CD7C(void)
 {
-    return G3DPipelineState_New(
+    return G3DPipeline_Init(
         HEAP_ID_BATTLE,
         TEXTURE_VRAM_SIZE_256K,
         PALETTE_VRAM_SIZE_32K,
@@ -1445,9 +1445,9 @@ static void ov16_0223CD9C(void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void ov16_0223CE20(G3DPipelineState *param0)
+static void ov16_0223CE20(G3DPipelineBuffers *param0)
 {
-    G3DPipelineState_Free(param0);
+    G3DPipelineBuffers_Free(param0);
 }
 
 static void ov16_0223CE28(void)

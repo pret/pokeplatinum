@@ -12,7 +12,7 @@
 
 #include "bg_window.h"
 #include "char_transfer.h"
-#include "g3d_pipeline_state.h"
+#include "g3d_pipeline.h"
 #include "menu.h"
 #include "palette.h"
 #include "pokemon_sprite.h"
@@ -40,7 +40,7 @@ typedef struct {
     UnkStruct_02015920 *unk_150;
     UnkStruct_ov12_02235FE0 *unk_154;
     BallRotation *unk_158;
-    G3DPipelineState *unk_15C;
+    G3DPipelineBuffers *unk_15C;
     UnkStruct_02012744 *unk_160;
     FontOAM *unk_164[2];
     CharTransferAllocation unk_16C[2];

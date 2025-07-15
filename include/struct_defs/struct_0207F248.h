@@ -12,7 +12,7 @@
 #include "overlay118/struct_ov118_021D0FDC_decl.h"
 
 #include "bg_window.h"
-#include "g3d_pipeline_state.h"
+#include "g3d_pipeline.h"
 #include "grid_menu_cursor_position.h"
 #include "menu.h"
 #include "message.h"
@@ -61,7 +61,7 @@ typedef struct {
     u16 monStats[6];
     HeightWeightData *unk_B20;
     OverlayMetadata *unk_B24;
-    G3DPipelineState *unk_B28;
+    G3DPipelineBuffers *unk_B28;
 } GameWindowLayout;
 
 #endif // POKEPLATINUM_STRUCT_0207F248_H

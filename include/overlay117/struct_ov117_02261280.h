@@ -26,7 +26,7 @@
 
 #include "bg_window.h"
 #include "camera.h"
-#include "g3d_pipeline_state.h"
+#include "g3d_pipeline.h"
 #include "message.h"
 #include "palette.h"
 #include "particle_system.h"
@@ -52,7 +52,7 @@ typedef struct UnkStruct_ov117_02261280_t {
     PaletteData *unk_8C;
     UnkStruct_02012744 *unk_90;
     SysTask *unk_94;
-    G3DPipelineState *unk_98;
+    G3DPipelineBuffers *unk_98;
     Camera *camera1;
     Camera *camera2;
     ParticleSystem *unk_A4;

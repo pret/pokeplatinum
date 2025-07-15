@@ -20,7 +20,7 @@
 #include "brightness_controller.h"
 #include "char_transfer.h"
 #include "font.h"
-#include "g3d_pipeline_state.h"
+#include "g3d_pipeline.h"
 #include "game_overlay.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -77,9 +77,9 @@ static void NitroStaticInit(void)
     Overlay_LoadByID(FS_OVERLAY_ID(overlay22), 2);
 }
 
-G3DPipelineState *ov17_0223F140(int heapID)
+G3DPipelineBuffers *ov17_0223F140(int heapID)
 {
-    return G3DPipelineState_New(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov17_0223F15C);
+    return G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov17_0223F15C);
 }
 
 static void ov17_0223F15C(void)
@@ -97,9 +97,9 @@ static void ov17_0223F15C(void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-void ov17_0223F1E0(G3DPipelineState *param0)
+void ov17_0223F1E0(G3DPipelineBuffers *param0)
 {
-    G3DPipelineState_Free(param0);
+    G3DPipelineBuffers_Free(param0);
 }
 
 void ov17_0223F1E8(int heapID, BgConfig *param1, SpriteManager *param2, UnkStruct_02012744 *param3, UnkStruct_ov17_0223F2E4 *param4, const Strbuf *param5, enum Font param6, TextColor param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)

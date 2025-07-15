@@ -26,7 +26,7 @@
 #include "easy3d_object.h"
 #include "enums.h"
 #include "font.h"
-#include "g3d_pipeline_state.h"
+#include "g3d_pipeline.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -57,9 +57,9 @@
 #include "vram_transfer.h"
 
 static void ov117_02260DA0(void *param0);
-static G3DPipelineState *ov117_02260E14(int heapID);
+static G3DPipelineBuffers *ov117_02260E14(int heapID);
 static void ov117_02260E34(void);
-static void ov117_02260EB8(G3DPipelineState *param0);
+static void ov117_02260EB8(G3DPipelineBuffers *param0);
 static void ov117_02260F7C(SysTask *param0, void *param1);
 static void ov117_022610D8(BgConfig *param0);
 static void ov117_02261280(UnkStruct_ov117_02261280 *param0);
@@ -507,9 +507,9 @@ static void ov117_02260DA0(void *param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static G3DPipelineState *ov117_02260E14(int heapID)
+static G3DPipelineBuffers *ov117_02260E14(int heapID)
 {
-    return G3DPipelineState_New(heapID, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_32K, ov117_02260E34);
+    return G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_32K, ov117_02260E34);
 }
 
 static void ov117_02260E34(void)
@@ -527,9 +527,9 @@ static void ov117_02260E34(void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void ov117_02260EB8(G3DPipelineState *param0)
+static void ov117_02260EB8(G3DPipelineBuffers *param0)
 {
-    G3DPipelineState_Free(param0);
+    G3DPipelineBuffers_Free(param0);
 }
 
 static void ov117_02260EC0(UnkStruct_ov117_02261280 *param0)

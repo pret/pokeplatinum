@@ -6,7 +6,7 @@
 #include "struct_defs/struct_0207C8C4.h"
 
 #include "camera.h"
-#include "g3d_pipeline_state.h"
+#include "g3d_pipeline.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "particle_system.h"
@@ -43,9 +43,9 @@ void sub_0207C664(void)
     G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 7, 8);
 }
 
-G3DPipelineState *sub_0207C690(int heapID)
+G3DPipelineBuffers *sub_0207C690(int heapID)
 {
-    return G3DPipelineState_New(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, sub_0207C6AC);
+    return G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, sub_0207C6AC);
 }
 
 void sub_0207C6AC(void)

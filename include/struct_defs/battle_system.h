@@ -26,7 +26,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "field_battle_data_transfer.h"
-#include "g3d_pipeline_state.h"
+#include "g3d_pipeline.h"
 #include "game_options.h"
 #include "message.h"
 #include "pal_pad.h"
@@ -42,7 +42,7 @@
 #include "unk_0201567C.h"
 
 struct BattleSystem {
-    G3DPipelineState *unk_00;
+    G3DPipelineBuffers *unk_00;
     BgConfig *unk_04;
     Window *windows;
     MessageLoader *unk_0C;

@@ -9,7 +9,7 @@
 
 #include "camera.h"
 #include "easy3d_object.h"
-#include "g3d_pipeline_state.h"
+#include "g3d_pipeline.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "narc.h"
@@ -27,7 +27,7 @@
 #define DWARP_ANM_DURATION     85
 
 typedef struct DistortionWorldWarp {
-    G3DPipelineState *p3DCallback;
+    G3DPipelineBuffers *p3DCallback;
     Camera *camera;
     SysTask *task;
     int frameCnt;
@@ -52,9 +52,9 @@ static void DWWarp_DeleteCamera(DistortionWorldWarp *warp);
 static void DWWarp_InitModel(DistortionWorldWarp *warp);
 static void DWWarp_DeleteModel(DistortionWorldWarp *warp);
 static void Model3D_Update(DistortionWorldWarp *warp);
-static G3DPipelineState *DWWarp_Init3D(int heapID);
+static G3DPipelineBuffers *DWWarp_Init3D(int heapID);
 static void DWWarp_Setup3D(void);
-static void DWWarp_Exit3D(G3DPipelineState *param0);
+static void DWWarp_Exit3D(G3DPipelineBuffers *param0);
 static void DWWarp_CameraMove(DistortionWorldWarp *warp);
 
 BOOL DWWarp_Init(ApplicationManager *appMan, int *state)
@@ -313,9 +313,9 @@ static void Model3D_Update(DistortionWorldWarp *warp)
     NNS_G3dGePopMtx(1);
 }
 
-static G3DPipelineState *DWWarp_Init3D(int heapID)
+static G3DPipelineBuffers *DWWarp_Init3D(int heapID)
 {
-    return G3DPipelineState_New(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, DWWarp_Setup3D);
+    return G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, DWWarp_Setup3D);
 }
 
 static void DWWarp_Setup3D(void)
@@ -334,9 +334,9 @@ static void DWWarp_Setup3D(void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void DWWarp_Exit3D(G3DPipelineState *param0)
+static void DWWarp_Exit3D(G3DPipelineBuffers *param0)
 {
-    G3DPipelineState_Free(param0);
+    G3DPipelineBuffers_Free(param0);
 }
 
 static void DWWarp_CameraMove(DistortionWorldWarp *warp)
