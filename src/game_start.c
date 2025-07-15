@@ -26,7 +26,6 @@
 
 #include "constdata/const_020EA10C.h"
 #include "constdata/const_020EA11C.h"
-#include "constdata/const_020F6824.h"
 
 static int GameStartRowanIntro_Init(ApplicationManager *appMan, int *state);
 static int GameStartRowanIntro_Main(ApplicationManager *appMan, int *state);
@@ -41,6 +40,8 @@ static int GameStartLoadSave_Exit(ApplicationManager *appMan, int *state);
 static void InitializeNewSave(enum HeapId heapID, SaveData *saveData, BOOL setTrainerID);
 static void TryLoadingSave(int unused, SaveData *saveData);
 static void StartNewSave(int unused, SaveData *saveData);
+
+extern const ApplicationManagerTemplate gRowanIntroAppTemplate;
 
 const ApplicationManagerTemplate gGameStartRowanIntroAppTemplate = {
     .init = GameStartRowanIntro_Init,
@@ -80,7 +81,7 @@ static BOOL GameStartRowanIntro_Main(ApplicationManager *appMan, int *state)
 static int GameStartRowanIntro_Exit(ApplicationManager *appMan, int *state)
 {
     Heap_Destroy(HEAP_ID_GAME_START);
-    EnqueueApplication(FS_OVERLAY_ID_NONE, &Unk_020F6824);
+    EnqueueApplication(FS_OVERLAY_ID_NONE, &gRowanIntroAppTemplate);
     return TRUE;
 }
 
