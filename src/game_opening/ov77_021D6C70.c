@@ -1,4 +1,4 @@
-#include "overlay077/ov77_021D6C70.h"
+#include "game_opening/ov77_021D6C70.h"
 
 #include <nitro.h>
 #include <string.h>

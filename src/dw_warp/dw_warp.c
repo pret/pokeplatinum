@@ -85,7 +85,7 @@ BOOL DWWarp_Init(ApplicationManager *appMan, int *state)
 
     DWWarp_InitModel(dww);
     DWWarp_InitCamera(dww);
-    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 16, 1, HEAP_ID_DISTORTION_WORLD_WARP);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 16, 1, HEAP_ID_DISTORTION_WORLD_WARP);
 
     gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
 
@@ -131,7 +131,7 @@ BOOL DWWarp_Main(ApplicationManager *appMan, int *state)
         }
         break;
     case DWARP_SEQ_CLEAR_SCREEN:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 20, 1, HEAP_ID_DISTORTION_WORLD_WARP);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 20, 1, HEAP_ID_DISTORTION_WORLD_WARP);
         (*state)++;
         break;
     case DWARP_SEQ_WAIT:
@@ -257,7 +257,7 @@ static void DWWarp_InitModel(DistortionWorldWarp *warp)
 
     Easy3DObject_SetPosition(&warp->animationObj, 0, 0, 0);
     Easy3DObject_SetScale(&warp->animationObj, FX32_ONE, FX32_ONE, FX32_ONE);
-    Easy3DObject_SetVisibility(&warp->animationObj, TRUE);
+    Easy3DObject_SetVisible(&warp->animationObj, TRUE);
 
     Easy3DObject_AddAnim(&warp->animationObj, &warp->animationAnimation);
     Easy3DObject_AddAnim(&warp->animationObj, &warp->animationAnimation2);

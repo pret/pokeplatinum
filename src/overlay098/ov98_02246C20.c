@@ -6,8 +6,8 @@
 
 #include "struct_defs/struct_02089438.h"
 
+#include "game_opening/const_ov77_021D742C.h"
 #include "overlay065/ov65_0222DCE0.h"
-#include "overlay077/const_ov77_021D742C.h"
 #include "overlay094/ov94_0223B140.h"
 #include "overlay098/ov98_022471C8.h"
 #include "overlay098/ov98_022499C8.h"
@@ -35,7 +35,7 @@
 #include "constdata/const_020F2DBC.h"
 
 FS_EXTERN_OVERLAY(overlay65);
-FS_EXTERN_OVERLAY(overlay77);
+FS_EXTERN_OVERLAY(game_opening);
 FS_EXTERN_OVERLAY(overlay94);
 FS_EXTERN_OVERLAY(overlay98);
 
@@ -180,7 +180,7 @@ int ov98_02246DC0(ApplicationManager *appMan, int *param1)
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_108);
     Heap_Destroy(HEAP_ID_91);
-    EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenAppTemplate);
+    EnqueueApplication(FS_OVERLAY_ID(game_opening), &gTitleScreenAppTemplate);
 
     return 1;
 }

@@ -249,7 +249,7 @@ int ov71_0223B140(ApplicationManager *appMan, int *param1)
     SetVBlankCallback(ov71_0223C18C, NULL);
     DrawWifiConnectionIcon();
     Sound_SetPlayerVolume(1, (127 / 3));
-    StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_3, FADE_TYPE_UNK_3, FADE_TO_BLACK, 6, 1, HEAP_ID_TRAINER_CARD_SCREEN);
+    StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_3, FADE_TYPE_UNK_3, COLOR_BLACK, 6, 1, HEAP_ID_TRAINER_CARD_SCREEN);
     NARC_dtor(v1);
 
     return 1;
@@ -319,7 +319,7 @@ int ov71_0223B388(ApplicationManager *appMan, int *param1)
             } else if (v1 == 4) {
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
 
-                StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_4, FADE_TYPE_UNK_4, FADE_TO_BLACK, 6, 1, HEAP_ID_TRAINER_CARD_SCREEN);
+                StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_4, FADE_TYPE_UNK_4, COLOR_BLACK, 6, 1, HEAP_ID_TRAINER_CARD_SCREEN);
                 *param1 = 2;
             }
         }

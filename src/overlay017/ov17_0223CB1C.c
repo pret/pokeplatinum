@@ -205,7 +205,7 @@ int ov17_0223CB1C(ApplicationManager *appMan, int *param1)
     PaletteData_FillBufferRange(v0->unk_0C.unk_44, 2, 0, 0x7fff, 0, ((16 - 2) * 16));
     PaletteData_FillBufferRange(v0->unk_0C.unk_44, 3, 0, 0x7fff, 0, 16 * 16);
     sub_02039734();
-    StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_27, FADE_TYPE_UNK_27, FADE_TO_BLACK, 6, 1, HEAP_ID_22);
+    StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_27, FADE_TYPE_UNK_27, COLOR_BLACK, 6, 1, HEAP_ID_22);
 
     v0->unk_04 = SysTask_Start(ov17_0223D164, v0, 60000);
     v0->unk_4F6 = 1;
@@ -255,7 +255,7 @@ int ov17_0223CDDC(ApplicationManager *appMan, int *param1)
             } else if ((v1 == 3) && (v0->unk_F14 == 1)) {
                 *param1 = 2;
                 MI_CpuClear8(&v0->unk_F0C, sizeof(UnkStruct_ov17_0223D60C));
-                StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_16, FADE_TYPE_UNK_36, FADE_TO_BLACK, 6, 1, HEAP_ID_22);
+                StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_16, FADE_TYPE_UNK_36, COLOR_BLACK, 6, 1, HEAP_ID_22);
                 break;
             }
         }
@@ -266,7 +266,7 @@ int ov17_0223CDDC(ApplicationManager *appMan, int *param1)
         if ((v0->unk_F14 == 1) && (ov17_0224F3D0(&v0->unk_4F8) == 0) && (sub_02094EDC(v0->unk_00) == 0)) {
             *param1 = 2;
             MI_CpuClear8(&v0->unk_F0C, sizeof(UnkStruct_ov17_0223D60C));
-            StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_16, FADE_TYPE_UNK_36, FADE_TO_BLACK, 6, 1, HEAP_ID_22);
+            StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_16, FADE_TYPE_UNK_36, COLOR_BLACK, 6, 1, HEAP_ID_22);
         }
         break;
     case 2:

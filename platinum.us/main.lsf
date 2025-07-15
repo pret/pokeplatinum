@@ -1286,14 +1286,14 @@ Overlay overlay76
 	Object main.nef.p/src_overlay076_ov76_0223D338.c.o
 }
 
-Overlay overlay77
+Overlay game_opening
 {
 	After main
-	Object main.nef.p/src_overlay077_ov77_021D0D80.c.o
-	Object main.nef.p/src_overlay077_ov77_021D25B0.c.o
-	Object main.nef.p/src_overlay077_ov77_021D54B0.c.o
-	Object main.nef.p/src_overlay077_ov77_021D6670.c.o
-	Object main.nef.p/src_overlay077_ov77_021D6C70.c.o
+	Object main.nef.p/src_applications_title_screen.c.o
+	Object main.nef.p/src_game_opening_ov77_021D25B0.c.o
+	Object main.nef.p/src_game_opening_ov77_021D54B0.c.o
+	Object main.nef.p/src_game_opening_ov77_021D6670.c.o
+	Object main.nef.p/src_game_opening_ov77_021D6C70.c.o
 }
 
 Overlay choose_starter

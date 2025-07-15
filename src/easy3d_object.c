@@ -188,12 +188,12 @@ void Easy3DObject_DrawRotated(Easy3DObject *obj, const MtxFx33 *rotation)
     }
 }
 
-void Easy3DObject_SetVisibility(Easy3DObject *obj, BOOL visible)
+void Easy3DObject_SetVisible(Easy3DObject *obj, BOOL visible)
 {
     obj->visible = visible;
 }
 
-BOOL Easy3DObject_GetVisibility(const Easy3DObject *obj)
+BOOL Easy3DObject_IsVisible(const Easy3DObject *obj)
 {
     return obj->visible;
 }

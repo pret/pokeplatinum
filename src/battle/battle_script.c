@@ -10856,8 +10856,8 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
             {
                 UnkStruct_0208737C *v16;
 
-                SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
-                SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+                SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
+                SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
 
                 v3 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
                 v16 = sub_0208712C(HEAP_ID_BATTLE, 1, Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL), 10, BattleSystem_GetOptions(v2->battleSys));

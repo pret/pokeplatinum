@@ -255,7 +255,7 @@ int ov117_02260668(ApplicationManager *appMan, int *param1)
     sub_02039734();
 
     v0->unk_D4 = ov117_022626B0(v0);
-    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_27, FADE_TYPE_UNK_27, FADE_TO_BLACK, 6, 1, HEAP_ID_110);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_27, FADE_TYPE_UNK_27, COLOR_BLACK, 6, 1, HEAP_ID_110);
     v0->unk_94 = SysTask_Start(ov117_02260F7C, v0, 60000);
 
     gSystem.whichScreenIs3D = DS_SCREEN_SUB;
@@ -301,7 +301,7 @@ int ov117_0226098C(ApplicationManager *appMan, int *param1)
                 FinishScreenFade();
             }
 
-            SetColorBrightness(FADE_TO_BLACK);
+            SetColorBrightness(COLOR_BLACK);
             GX_SetVisibleWnd(GX_WNDMASK_NONE);
             v0->unk_00->unk_3E++;
             break;
@@ -346,7 +346,7 @@ int ov117_0226098C(ApplicationManager *appMan, int *param1)
     case 5:
         if (v0->unk_2FC0 == 1) {
             ov117_02266150(v0);
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_26, FADE_TYPE_UNK_26, FADE_TO_BLACK, 6, 1, HEAP_ID_110);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_26, FADE_TYPE_UNK_26, COLOR_BLACK, 6, 1, HEAP_ID_110);
             (*param1)++;
         }
 
@@ -1102,7 +1102,7 @@ static void ov117_02261C2C(UnkStruct_ov117_02261280 *param0, NARC *param1)
     Easy3DObject_Init(&v2->unk_10, &v2->unk_00);
     Easy3DObject_SetPosition(&v2->unk_10, (FX32_CONST(0)), (FX32_CONST(-25)), (FX32_CONST(0)));
     Easy3DObject_SetScale(&v2->unk_10, (FX32_CONST(1.00f)), (FX32_CONST(1.00f)), (FX32_CONST(1.00f)));
-    Easy3DObject_SetVisibility(&v2->unk_10, 1);
+    Easy3DObject_SetVisible(&v2->unk_10, 1);
     Easy3DModel_LoadFrom(&v2->unk_88[0], param1, Unk_ov117_022669F0[v4].unk_04, HEAP_ID_110);
     Easy3DModel_LoadFrom(&v2->unk_88[1], param1, Unk_ov117_022669F0[v4].unk_08, HEAP_ID_110);
     Easy3DModel_LoadFrom(&v2->unk_88[2], param1, Unk_ov117_022669F0[v4].unk_0C, HEAP_ID_110);
@@ -1125,7 +1125,7 @@ static void ov117_02261C2C(UnkStruct_ov117_02261280 *param0, NARC *param1)
     Easy3DObject_Init(&v3->unk_10, &v3->unk_00);
     Easy3DObject_SetPosition(&v3->unk_10, (FX32_CONST(0)), (FX32_CONST(-25)), (FX32_CONST(0)));
     Easy3DObject_SetScale(&v3->unk_10, (FX32_CONST(1.00f)), (FX32_CONST(1.00f)), (FX32_CONST(1.00f)));
-    Easy3DObject_SetVisibility(&v3->unk_10, 1);
+    Easy3DObject_SetVisible(&v3->unk_10, 1);
 }
 
 static void ov117_02261DD0(UnkStruct_ov117_02261280 *param0)
@@ -1171,7 +1171,7 @@ BOOL ov117_02261E38(UnkStruct_ov117_02261280 *param0, int param1)
             Easy3DObject_Init(&v0->unk_C8[v2][v3].unk_04, v1);
             Easy3DObject_SetPosition(&v0->unk_C8[v2][v3].unk_04, (FX32_CONST(0)), (FX32_CONST(-25)), (FX32_CONST(0)));
             Easy3DObject_SetScale(&v0->unk_C8[v2][v3].unk_04, (FX32_CONST(1.00f)), (FX32_CONST(1.00f)), (FX32_CONST(1.00f)));
-            Easy3DObject_SetVisibility(&v0->unk_C8[v2][v3].unk_04, 1);
+            Easy3DObject_SetVisible(&v0->unk_C8[v2][v3].unk_04, 1);
             Easy3DAnim_SetFrame(&v0->unk_C8[v2][v3].unk_7C, 0);
             Easy3DObject_AddAnim(&v0->unk_C8[v2][v3].unk_04, &v0->unk_C8[v2][v3].unk_7C);
 

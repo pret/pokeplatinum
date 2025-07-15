@@ -631,7 +631,7 @@ static void ov116_0226501C(UnkStruct_ov116_02265470 *param0)
         break;
 
     case 1:
-        Easy3DObject_SetVisibility(&v0->unk_00, 1);
+        Easy3DObject_SetVisible(&v0->unk_00, 1);
         param0->unk_28[0] = 0;
         param0->unk_00++;
         break;
@@ -662,7 +662,7 @@ static void ov116_0226501C(UnkStruct_ov116_02265470 *param0)
         param0->unk_04 = 0;
         param0->unk_00 = 0;
 
-        Easy3DObject_SetVisibility(&v0->unk_00, 0);
+        Easy3DObject_SetVisible(&v0->unk_00, 0);
 
         break;
     }
@@ -764,7 +764,7 @@ static void ov116_02265260(UnkStruct_ov116_02265470 *param0)
             UnkStruct_ov116_0226501C *v1 = param0->unk_08[v0];
 
             Easy3DAnim_SetFrame(&v1->unk_88[0], (v0 * 20) % 40);
-            Easy3DObject_SetVisibility(&v1->unk_00, 1);
+            Easy3DObject_SetVisible(&v1->unk_00, 1);
         }
 
         param0->unk_28[9] = 0;
@@ -781,7 +781,7 @@ static void ov116_02265260(UnkStruct_ov116_02265470 *param0)
         for (v0 = 0; v0 < 8; v0++) {
             UnkStruct_ov116_0226501C *v2 = param0->unk_08[v0];
 
-            Easy3DObject_SetVisibility(&v2->unk_00, 0);
+            Easy3DObject_SetVisible(&v2->unk_00, 0);
         }
 
         param0->unk_50[0] = 0;

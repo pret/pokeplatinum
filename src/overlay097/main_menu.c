@@ -10,7 +10,7 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay077/const_ov77_021D742C.h"
+#include "game_opening/const_ov77_021D742C.h"
 #include "overlay097/const_ov97_0223D674.h"
 #include "overlay097/distribution_cartridge.h"
 #include "overlay097/main_menu_util.h"
@@ -55,7 +55,7 @@
 #include "res/text/bank/unk_0695.h"
 
 FS_EXTERN_OVERLAY(game_start);
-FS_EXTERN_OVERLAY(overlay77);
+FS_EXTERN_OVERLAY(game_opening);
 FS_EXTERN_OVERLAY(overlay97);
 FS_EXTERN_OVERLAY(overlay98);
 
@@ -1123,8 +1123,8 @@ static int MainMenu_Init(ApplicationManager *appMan, int *unused)
     memset(appData, 0, sizeof(MainMenuAppData));
     appData->bgConfig = BgConfig_New(HEAP_ID_MAIN_MENU);
 
-    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
-    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
 
     appData->saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
     appData->mysteryGift = SaveData_GetMysteryGift(appData->saveData);
@@ -1173,13 +1173,13 @@ static int MainMenu_Main(ApplicationManager *appMan, int *state)
         if (CheckWFCUserInfoErased(appData) == FALSE) {
             *state = MAIN_MENU_STATE_CHECK_NEW_GAME_AND_GBA;
         } else {
-            MainMenuUtil_StartScreenFadeToState(FADE_TYPE_UNK_1, MAIN_MENU_STATE_WARM_WFC_USER_INFO_ERASED, state, MAIN_MENU_STATE_WAIT_SCREEN_TRANSITION);
+            MainMenuUtil_StartScreenFadeToState(FADE_TYPE_BRIGHTNESS_IN, MAIN_MENU_STATE_WARM_WFC_USER_INFO_ERASED, state, MAIN_MENU_STATE_WAIT_SCREEN_TRANSITION);
             *HW_BG_A_PLTT_COLOR(PLTT_0, 0) = BACKGROUND_COLOR;
         }
         break;
     case MAIN_MENU_STATE_WARM_WFC_USER_INFO_ERASED:
         if (ShowWFCUserInfoErasedMsg(appData) == FALSE) {
-            MainMenuUtil_StartScreenFadeToState(FADE_TYPE_UNK_0, MAIN_MENU_STATE_CHECK_NEW_GAME_AND_GBA, state, MAIN_MENU_STATE_WAIT_SCREEN_TRANSITION);
+            MainMenuUtil_StartScreenFadeToState(FADE_TYPE_BRIGHTNESS_OUT, MAIN_MENU_STATE_CHECK_NEW_GAME_AND_GBA, state, MAIN_MENU_STATE_WAIT_SCREEN_TRANSITION);
         }
         break;
     case MAIN_MENU_STATE_CHECK_NEW_GAME_AND_GBA:
@@ -1187,7 +1187,7 @@ static int MainMenu_Main(ApplicationManager *appMan, int *state)
 
         if (appData->isNewGame == TRUE) {
             appData->nextApplication = NEXT_APP_GAME_INTRO;
-            MainMenuUtil_StartScreenFadeToState(FADE_TYPE_UNK_0, MAIN_MENU_STATE_EXIT, state, MAIN_MENU_STATE_WAIT_SCREEN_TRANSITION);
+            MainMenuUtil_StartScreenFadeToState(FADE_TYPE_BRIGHTNESS_OUT, MAIN_MENU_STATE_EXIT, state, MAIN_MENU_STATE_WAIT_SCREEN_TRANSITION);
         } else {
             DetectGBAGame(appData);
             *state = MAIN_MENU_STATE_LOAD_GRAPHICS;
@@ -1201,7 +1201,7 @@ static int MainMenu_Main(ApplicationManager *appMan, int *state)
 
         RenderOptions(appData);
         RenderOptionsFrames(appData, appData->focusedOption);
-        MainMenuUtil_StartScreenFadeToState(FADE_TYPE_UNK_1, MAIN_MENU_STATE_SELECT_OPTION, state, MAIN_MENU_STATE_WAIT_SCREEN_TRANSITION);
+        MainMenuUtil_StartScreenFadeToState(FADE_TYPE_BRIGHTNESS_IN, MAIN_MENU_STATE_SELECT_OPTION, state, MAIN_MENU_STATE_WAIT_SCREEN_TRANSITION);
 
         *HW_BG_A_PLTT_COLOR(PLTT_0, 0) = BACKGROUND_COLOR;
         appData->wirelessCheckState = MAIN_MENU_WIRELESS_CHECK_START;
@@ -1236,7 +1236,7 @@ static int MainMenu_Main(ApplicationManager *appMan, int *state)
                     MainMenuUtil_SetFadeToWhite(TRUE);
                 }
 
-                MainMenuUtil_StartScreenFadeToState(FADE_TYPE_UNK_0, MAIN_MENU_STATE_EXIT, state, MAIN_MENU_STATE_WAIT_SCREEN_TRANSITION);
+                MainMenuUtil_StartScreenFadeToState(FADE_TYPE_BRIGHTNESS_OUT, MAIN_MENU_STATE_EXIT, state, MAIN_MENU_STATE_WAIT_SCREEN_TRANSITION);
             }
 
             if (appData->wirelessCheckState == MAIN_MENU_WIRELESS_CHECK_CHECK_RESULT) {
@@ -1273,7 +1273,7 @@ static int MainMenu_Main(ApplicationManager *appMan, int *state)
             if (appData->alertDismissKeys & PAD_BUTTON_B) {
                 *state = MAIN_MENU_STATE_SELECT_OPTION;
             } else {
-                MainMenuUtil_StartScreenFadeToState(FADE_TYPE_UNK_0, MAIN_MENU_STATE_EXIT, state, MAIN_MENU_STATE_WAIT_SCREEN_TRANSITION);
+                MainMenuUtil_StartScreenFadeToState(FADE_TYPE_BRIGHTNESS_OUT, MAIN_MENU_STATE_EXIT, state, MAIN_MENU_STATE_WAIT_SCREEN_TRANSITION);
             }
         }
         break;
@@ -1332,7 +1332,7 @@ static void EnqueueNextApplication(MainMenuAppData *appData)
         EnqueueApplication(FS_OVERLAY_ID(overlay98), &gWiiMessageAppTemplate);
         break;
     case NEXT_APP_TITLE_SCREEN:
-        EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenAppTemplate);
+        EnqueueApplication(FS_OVERLAY_ID(game_opening), &gTitleScreenAppTemplate);
         break;
     }
 }

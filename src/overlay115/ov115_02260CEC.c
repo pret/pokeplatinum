@@ -3335,7 +3335,7 @@ static void ov115_02263DF8(UnkStruct_ov115_02263DF8 *param0, NARC *param1, u32 h
     for (v2 = 0; v2 < 3; v2++) {
         Easy3DModel_LoadFrom(&param0->unk_168[v2], param1, v1[v2], heapID);
         Easy3DObject_Init(&param0->unk_00[v2], &param0->unk_168[v2]);
-        Easy3DObject_SetVisibility(&param0->unk_00[v2], 0);
+        Easy3DObject_SetVisible(&param0->unk_00[v2], 0);
         Easy3DObject_SetPosition(&param0->unk_00[v2], Unk_ov115_02265B20.x, Unk_ov115_02265B20.y + (-FX32_CONST(200)), Unk_ov115_02265B20.z);
         Easy3DObject_SetScale(&param0->unk_00[v2], (FX32_CONST(1.50f)), (FX32_CONST(1.50f)), (FX32_CONST(1.50f)));
     }
@@ -3373,7 +3373,7 @@ static void ov115_02263DF8(UnkStruct_ov115_02263DF8 *param0, NARC *param1, u32 h
 
     Easy3DObject_AddAnim(&param0->unk_00[1], &param0->unk_198[4]);
     Easy3DAnim_SetFrame(&param0->unk_198[4], 0);
-    Easy3DObject_SetVisibility(&param0->unk_00[1], 1);
+    Easy3DObject_SetVisible(&param0->unk_00[1], 1);
 
     param0->unk_210 = 4;
 }
@@ -3482,8 +3482,8 @@ static void ov115_02264190(UnkStruct_ov115_02263DF8 *param0, u32 param1)
         Easy3DObject_RemoveAnim(&param0->unk_00[Unk_ov115_02266644[param0->unk_210]], &param0->unk_198[param0->unk_210]);
         Easy3DObject_AddAnim(&param0->unk_00[Unk_ov115_02266644[param1]], &param0->unk_198[param1]);
         Easy3DAnim_SetFrame(&param0->unk_198[param1], 0);
-        Easy3DObject_SetVisibility(&param0->unk_00[Unk_ov115_02266644[param0->unk_210]], 0);
-        Easy3DObject_SetVisibility(&param0->unk_00[Unk_ov115_02266644[param1]], 1);
+        Easy3DObject_SetVisible(&param0->unk_00[Unk_ov115_02266644[param0->unk_210]], 0);
+        Easy3DObject_SetVisible(&param0->unk_00[Unk_ov115_02266644[param1]], 1);
         param0->unk_210 = param1;
     }
 }
@@ -3703,7 +3703,7 @@ static void ov115_022646BC(UnkStruct_ov115_02261ADC *param0, UnkStruct_ov115_022
     }
 
     Easy3DObject_Init(&param1->unk_7C, &param0->unk_760.unk_50);
-    Easy3DObject_SetVisibility(&param1->unk_7C, 0);
+    Easy3DObject_SetVisible(&param1->unk_7C, 0);
 }
 
 static void ov115_02264728(UnkStruct_ov115_02261ADC *param0, UnkStruct_ov115_022647A0 *param1)
@@ -3758,7 +3758,7 @@ static void ov115_022647A0(UnkStruct_ov115_022647A0 *param0, UnkStruct_ov115_022
         Easy3DObject_SetPosition(&param0->unk_04, param0->unk_F8->unk_2C.x, param0->unk_F8->unk_2C.y, param0->unk_F8->unk_2C.z);
         Easy3DObject_Draw(&param0->unk_04);
 
-        if (Easy3DObject_GetVisibility(&param0->unk_7C) == 1) {
+        if (Easy3DObject_IsVisible(&param0->unk_7C) == 1) {
             ov115_02264848(param0);
             Easy3DObject_Draw(&param0->unk_7C);
             ov115_02264908(param0);
@@ -3812,7 +3812,7 @@ static void ov115_02264924(UnkStruct_ov115_022647A0 *param0)
     param0->unk_F4 = 0;
 
     Sprite_SetDrawFlag(param0->unk_00, FALSE);
-    Easy3DObject_SetVisibility(&param0->unk_7C, 0);
+    Easy3DObject_SetVisible(&param0->unk_7C, 0);
 }
 
 static UnkStruct_ov115_022647A0 *ov115_02264948(UnkStruct_ov115_02261ADC *param0)
@@ -3862,10 +3862,10 @@ static void ov115_022649F0(UnkStruct_ov115_022647A0 *param0, UnkStruct_ov115_022
     v0 = ov115_02264A40(param0->unk_F8, &param1->unk_760);
 
     Easy3DObject_Init(&param0->unk_04, v0);
-    Easy3DObject_SetVisibility(&param0->unk_04, 1);
+    Easy3DObject_SetVisible(&param0->unk_04, 1);
 
     if (param0->unk_F8->unk_00 == 1) {
-        Easy3DObject_SetVisibility(&param0->unk_7C, 1);
+        Easy3DObject_SetVisible(&param0->unk_7C, 1);
     }
 }
 
@@ -4123,7 +4123,7 @@ static void ov115_02264E48(UnkStruct_ov115_02264FA0 *param0, UnkStruct_ov115_022
         Easy3DObject_SetScale(&param0->unk_00[v4], (FX32_CONST(1.50f)), (FX32_CONST(1.50f)), (FX32_CONST(1.50f)));
 
         if (v4 == 1) {
-            Easy3DObject_SetVisibility(&param0->unk_00[v4], 0);
+            Easy3DObject_SetVisible(&param0->unk_00[v4], 0);
         }
 
         if ((v4 == 0) || (v4 == 1)) {
@@ -4215,8 +4215,8 @@ static void ov115_02264FA0(UnkStruct_ov115_02264FA0 *param0)
 
 static void ov115_022650C8(UnkStruct_ov115_02264FA0 *param0)
 {
-    Easy3DObject_SetVisibility(&param0->unk_00[0], 0);
-    Easy3DObject_SetVisibility(&param0->unk_00[1], 1);
+    Easy3DObject_SetVisible(&param0->unk_00[0], 0);
+    Easy3DObject_SetVisible(&param0->unk_00[1], 1);
 
     param0->unk_1DC = 0;
     param0->unk_1E0 = (FX32_CONST(1.0));
