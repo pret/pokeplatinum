@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/jubilife_city_mart.h"
 
-    .data
 
     ScriptEntry _0016
     ScriptEntry _002C

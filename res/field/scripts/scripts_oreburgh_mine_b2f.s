@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/oreburgh_mine_b2f.h"
 
-    .data
 
     ScriptEntry _0016
     ScriptEntry _00FC

@@ -1,6 +1,5 @@
 #include "macros/btlcmd.inc"
 
-    .data
 
 _000:
     CheckSubstitute BTLSCR_DEFENDER, _060

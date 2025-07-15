@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/lake_verity_low_water.h"
 
-    .data
 
     ScriptEntry _001E
     ScriptEntry _004E

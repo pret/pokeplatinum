@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_218_gate_to_canalave_city.h"
 
-    .data
 
     ScriptEntry _0208
     ScriptEntry _000A

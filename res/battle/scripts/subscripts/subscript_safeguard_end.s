@@ -1,6 +1,5 @@
 #include "macros/btlcmd.inc"
 
-    .data
 
 _000:
     // Your team is no longer protected by Safeguard!

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/vista_lighthouse.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _0025

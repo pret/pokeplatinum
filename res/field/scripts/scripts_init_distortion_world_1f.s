@@ -1,6 +1,5 @@
 #include "macros/scrcmd.inc"
 
-    .data
 
     .byte 2
     .short 1, 0

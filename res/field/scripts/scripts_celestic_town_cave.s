@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/celestic_town_cave.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _0538

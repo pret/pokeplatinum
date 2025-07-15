@@ -1,6 +1,5 @@
 #include "macros/scrcmd.inc"
 
-    .data
 
     ScriptEntry _001A
     ScriptEntry _00BE

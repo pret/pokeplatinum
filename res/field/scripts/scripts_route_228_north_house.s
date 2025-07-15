@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_228_north_house.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _02C6

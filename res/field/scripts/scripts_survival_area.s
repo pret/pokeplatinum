@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/survival_area.h"
 
-    .data
 
     ScriptEntry _005C
     ScriptEntry _006F

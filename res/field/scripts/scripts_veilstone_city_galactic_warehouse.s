@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/veilstone_city_galactic_warehouse.h"
 
-    .data
 
     ScriptEntry _003B
     ScriptEntry _00D8

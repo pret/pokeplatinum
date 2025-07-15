@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/sandgem_town_mart.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _0028

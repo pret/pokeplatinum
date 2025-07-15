@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pastoria_city.h"
 
-    .data
 
     ScriptEntry _005E
     ScriptEntry _00B2

@@ -1,6 +1,5 @@
 #include "macros/btlcmd.inc"
 
-    .data
 
 _000:
     CheckAbility CHECK_NOT_HAVE, BTLSCR_ATTACKER, ABILITY_RECKLESS, _008

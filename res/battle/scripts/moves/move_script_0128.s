@@ -1,6 +1,5 @@
 #include "macros/btlcmd.inc"
 
-    .data
 
 _000:
     // {1} clamped {0}!

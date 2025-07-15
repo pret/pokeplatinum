@@ -1,6 +1,5 @@
 #include "macros/btlcmd.inc"
 
-    .data
 
 _000:
     // {0} chose {1} as its destiny!

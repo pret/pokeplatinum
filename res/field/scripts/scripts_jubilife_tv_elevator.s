@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/jubilife_tv_elevator.h"
 
-    .data
 
     ScriptEntry _0006
     ScriptEntryEnd

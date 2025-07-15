@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/fight_area_middle_house.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _0021

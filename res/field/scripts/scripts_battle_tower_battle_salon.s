@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_tower_battle_salon.h"
 
-    .data
 
     ScriptEntry _01AC
     ScriptEntry _0275

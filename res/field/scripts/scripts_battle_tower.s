@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_tower.h"
 
-    .data
 
     ScriptEntry _028A
     ScriptEntry _0ACF

@@ -2,7 +2,6 @@
 #include "generated/tutor_locations.h"
 #include "res/text/bank/snowpoint_city_east_house.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _0085

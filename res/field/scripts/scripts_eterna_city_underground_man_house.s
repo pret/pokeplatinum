@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/eterna_city_underground_man_house.h"
 
-    .data
 
     ScriptEntry _001A
     ScriptEntry _0634

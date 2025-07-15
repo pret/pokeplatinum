@@ -1,6 +1,5 @@
 #include "macros/btlcmd.inc"
 
-    .data
 
 _000:
     CheckSideCondition BTLSCR_DEFENDER, CHECK_SIDE_COND_VAL_NOT_ZERO, SIDE_COND_REFLECT_TURNS, _041

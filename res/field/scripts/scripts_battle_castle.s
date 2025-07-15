@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_castle.h"
 
-    .data
 
     ScriptEntry _0059
     ScriptEntry _06A4

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/survival_area_pokecenter_1f.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _001E

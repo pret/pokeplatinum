@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_218_gate_to_jubilife_city.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _001D

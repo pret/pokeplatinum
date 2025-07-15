@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/veilstone_city_southeast_house.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _018C

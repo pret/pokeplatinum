@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/sandgem_town_counterpart_house_1f.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _003A
