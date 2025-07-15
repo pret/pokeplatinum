@@ -21,7 +21,6 @@
 #include "narc.h"
 #include "pokemon.h"
 #include "rtc.h"
-#include "species.h"
 #include "terrain_collision_manager.h"
 #include "unk_0202EEC0.h"
 
