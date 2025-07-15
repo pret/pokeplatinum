@@ -1522,241 +1522,44 @@ static u8 ov107_022477CC (UnkStruct_ov107_02246170 * param0, int param1, u8 para
     return v0;
 }
 
-// clang-format off
-asm static void ov107_02247804 (UnkStruct_ov107_02246170 * param0, Window * param1, Pokemon * param2)
+static void ov107_02247804(UnkStruct_ov107_02246170 *param0, Window *window, Pokemon *mon)
 {
-    push {r4, r5, r6, lr}
-    sub sp, #8
-    add r4, r1, #0
-    add r5, r0, #0
-    add r6, r2, #0
-    add r0, r4, #0
-    mov r1, #0
-    bl Window_FillTilemap
-    add r0, r6, #0
-    mov r1, #6
-    mov r2, #0
-    bl Pokemon_GetValue
-    add r2, r0, #0
-    ldr r0, [r5, #0x24]
-    mov r1, #0
-    bl StringTemplate_SetItemName
-    mov r3, #8
-    str r3, [sp]
-    mov r0, #0
-    str r0, [sp, #4]
-    add r0, r5, #0
-    add r1, r4, #0
-    mov r2, #0x30
-    bl ov107_02247A14
-    mov r0, #8
-    str r0, [sp]
-    mov r0, #0
-    str r0, [sp, #4]
-    add r0, r5, #0
-    add r1, r4, #0
-    mov r2, #0x31
-    mov r3, #0x48
-    bl ov107_02247A14
-    add r0, r6, #0
-    bl Pokemon_GetNature
-    add r2, r0, #0
-    ldr r0, [r5, #0x24]
-    mov r1, #0
-    bl StringTemplate_SetNatureName
-    mov r0, #0x18
-    str r0, [sp]
-    mov r0, #0
-    str r0, [sp, #4]
-    add r0, r5, #0
-    add r1, r4, #0
-    mov r2, #0x32
-    mov r3, #8
-    bl ov107_02247A14
-    mov r0, #0x18
-    str r0, [sp]
-    mov r0, #0
-    str r0, [sp, #4]
-    add r0, r5, #0
-    add r1, r4, #0
-    mov r2, #0x33
-    mov r3, #0x48
-    bl ov107_02247A14
-    add r0, r6, #0
-    mov r1, #0xa
-    mov r2, #0
-    bl Pokemon_GetValue
-    add r2, r0, #0
-    ldr r0, [r5, #0x24]
-    mov r1, #0
-    bl StringTemplate_SetAbilityName
-    mov r0, #0x28
-    str r0, [sp]
-    mov r0, #0
-    str r0, [sp, #4]
-    add r0, r5, #0
-    add r1, r4, #0
-    mov r2, #0x34
-    mov r3, #8
-    bl ov107_02247A14
-    mov r0, #0x28
-    str r0, [sp]
-    mov r0, #0
-    str r0, [sp, #4]
-    add r0, r5, #0
-    add r1, r4, #0
-    mov r2, #0x35
-    mov r3, #0x48
-    bl ov107_02247A14
-    add r0, r6, #0
-    mov r1, #0xa5
-    mov r2, #0
-    bl Pokemon_GetValue
-    add r2, r0, #0
-    mov r0, #1
-    str r0, [sp]
-    add r0, r5, #0
-    mov r1, #0
-    mov r3, #3
-    bl ov107_022480EC
-    mov r0, #0x38
-    str r0, [sp]
-    mov r0, #0
-    str r0, [sp, #4]
-    add r0, r5, #0
-    add r1, r4, #0
-    mov r2, #0x36
-    mov r3, #8
-    bl ov107_02247A14
-    mov r0, #0x38
-    str r0, [sp]
-    mov r0, #2
-    str r0, [sp, #4]
-    add r0, r5, #0
-    add r1, r4, #0
-    mov r2, #0x37
-    mov r3, #0x58
-    bl ov107_02247A14
-    add r0, r6, #0
-    mov r1, #0xa6
-    mov r2, #0
-    bl Pokemon_GetValue
-    add r2, r0, #0
-    mov r0, #1
-    str r0, [sp]
-    add r0, r5, #0
-    mov r1, #0
-    mov r3, #3
-    bl ov107_022480EC
-    mov r2, #0x38
-    str r2, [sp]
-    mov r0, #0
-    str r0, [sp, #4]
-    add r0, r5, #0
-    add r1, r4, #0
-    mov r3, #0x68
-    bl ov107_02247A14
-    mov r0, #0x38
-    str r0, [sp]
-    mov r0, #2
-    str r0, [sp, #4]
-    add r0, r5, #0
-    add r1, r4, #0
-    mov r2, #0x39
-    mov r3, #0xb8
-    bl ov107_02247A14
-    add r0, r6, #0
-    mov r1, #0xa8
-    mov r2, #0
-    bl Pokemon_GetValue
-    add r2, r0, #0
-    mov r0, #1
-    str r0, [sp]
-    add r0, r5, #0
-    mov r1, #0
-    mov r3, #3
-    bl ov107_022480EC
-    mov r0, #0x48
-    str r0, [sp]
-    mov r0, #0
-    str r0, [sp, #4]
-    add r0, r5, #0
-    add r1, r4, #0
-    mov r2, #0x3a
-    mov r3, #8
-    bl ov107_02247A14
-    mov r0, #0x48
-    str r0, [sp]
-    mov r0, #2
-    str r0, [sp, #4]
-    add r0, r5, #0
-    add r1, r4, #0
-    mov r2, #0x3b
-    mov r3, #0x58
-    bl ov107_02247A14
-    add r0, r6, #0
-    mov r1, #0xa9
-    mov r2, #0
-    bl Pokemon_GetValue
-    add r2, r0, #0
-    mov r0, #1
-    str r0, [sp]
-    add r0, r5, #0
-    mov r1, #0
-    mov r3, #3
-    bl ov107_022480EC
-    mov r0, #0x48
-    str r0, [sp]
-    mov r0, #0
-    str r0, [sp, #4]
-    add r0, r5, #0
-    add r1, r4, #0
-    mov r2, #0x3c
-    mov r3, #0x68
-    bl ov107_02247A14
-    mov r0, #0x48
-    str r0, [sp]
-    mov r0, #2
-    str r0, [sp, #4]
-    add r0, r5, #0
-    add r1, r4, #0
-    mov r2, #0x3d
-    mov r3, #0xb8
-    bl ov107_02247A14
-    add r0, r6, #0
-    mov r1, #0xa7
-    mov r2, #0
-    bl Pokemon_GetValue
-    add r2, r0, #0
-    mov r0, #1
-    str r0, [sp]
-    add r0, r5, #0
-    mov r1, #0
-    mov r3, #3
-    bl ov107_022480EC
-    mov r0, #0x58
-    str r0, [sp]
-    mov r0, #0
-    str r0, [sp, #4]
-    add r0, r5, #0
-    add r1, r4, #0
-    mov r2, #0x3e
-    mov r3, #8
-    bl ov107_02247A14
-    mov r3, #0x58
-    str r3, [sp]
-    mov r0, #2
-    str r0, [sp, #4]
-    add r0, r5, #0
-    add r1, r4, #0
-    mov r2, #0x3f
-    bl ov107_02247A14
-    add r0, r4, #0
-    bl Window_ScheduleCopyToVRAM
-    add sp, #8
-    pop {r4, r5, r6, pc}
+    Window_FillTilemap(window, 0);
+
+    StringTemplate_SetItemName(param0->unk_24, 0, Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL));
+    ov107_02247A14(param0, window, 48, 8, 8, 0);
+    ov107_02247A14(param0, window, 49, 72, 8, 0);
+
+    StringTemplate_SetNatureName(param0->unk_24, 0, Pokemon_GetNature(mon));
+    ov107_02247A14(param0, window, 50, 8, 24, 0);
+    ov107_02247A14(param0, window, 51, 72, 24, 0);
+
+    StringTemplate_SetAbilityName(param0->unk_24, 0, Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL));
+    ov107_02247A14(param0, window, 52, 8, 40, 0);
+    ov107_02247A14(param0, window, 53, 72, 40, 0);
+
+    ov107_022480EC(param0, 0, Pokemon_GetValue(mon, MON_DATA_ATK, NULL), 3, 1);
+    ov107_02247A14(param0, window, 54, 8, 56, 0);
+    ov107_02247A14(param0, window, 55, 88, 56, 2);
+
+    ov107_022480EC(param0, 0, Pokemon_GetValue(mon, MON_DATA_DEF, NULL), 3, 1);
+    ov107_02247A14(param0, window, 56, 104, 56, 0);
+    ov107_02247A14(param0, window, 57, 184, 56, 2);
+
+    ov107_022480EC(param0, 0, Pokemon_GetValue(mon, MON_DATA_SP_ATK, NULL), 3, 1);
+    ov107_02247A14(param0, window, 58, 8, 72, 0);
+    ov107_02247A14(param0, window, 59, 88, 72, 2);
+
+    ov107_022480EC(param0, 0, Pokemon_GetValue(mon, MON_DATA_SP_DEF, NULL), 3, 1);
+    ov107_02247A14(param0, window, 60, 104, 72, 0);
+    ov107_02247A14(param0, window, 61, 184, 72, 2);
+
+    ov107_022480EC(param0, 0, Pokemon_GetValue(mon, MON_DATA_SPEED, NULL), 3, 1);
+    ov107_02247A14(param0, window, 62, 8, 88, 0);
+    ov107_02247A14(param0, window, 63, 88, 88, 2);
+
+    Window_ScheduleCopyToVRAM(window);
 }
-// clang-format on
 
 static void ov107_02247A14 (UnkStruct_ov107_02246170 * param0, Window * param1, int param2, u16 param3, u16 param4, u32 param5)
 {
@@ -2890,275 +2693,47 @@ static void ov107_02248BEC (UnkStruct_ov107_02246170 * param0)
     return;
 }
 
-// clang-format off
-asm static void ov107_02248C08 (UnkStruct_ov107_02246170 * param0, Window * param1)
+static void ov107_02248C08(UnkStruct_ov107_02246170 *param0, Window *window)
 {
-    push {r3, r4, r5, r6, r7, lr}
-    sub sp, #0x30
-    add r4, r1, #0
-    add r1, sp, #0x28
-    str r1, [sp]
-    add r1, sp, #0x2c
-    add r3, sp, #0x28
-    add r5, r0, #0
-    add r1, #2
-    add r2, sp, #0x2c
-    add r3, #2
-    bl ov107_022484DC
-    ldrb r0, [r5, #9]
-    bl ov104_0223BA14
-    cmp r0, #0
-    bne _02248CA2
-    add r1, sp, #0x28
-    ldrh r0, [r1, #6]
-    ldrh r6, [r1, #4]
-    mov r1, #0
-    add r0, #0x68
-    lsl r0, r0, #0x10
-    lsr r7, r0, #0x10
-    add r2, r7, #0
-    mov r0, #0x30
-    sub r2, #0x30
-    str r0, [sp]
-    mov r0, #0x10
-    lsl r2, r2, #0x10
-    str r0, [sp, #4]
-    add r0, r4, #0
-    lsr r2, r2, #0x10
-    add r3, r6, #0
-    bl Window_FillRectWithColor
-    ldrb r0, [r5, #9]
-    bl sub_0205E630
-    str r0, [sp, #0x1c]
-    ldrb r0, [r5, #9]
-    bl sub_0205E630
-    bl sub_0205E6A8
-    add r2, r0, #0
-    ldr r0, [r5, #4]
-    ldr r1, [sp, #0x1c]
-    bl sub_02030698
-    add r2, r0, #0
-    mov r0, #1
-    str r0, [sp]
-    add r0, r5, #0
-    mov r1, #0
-    mov r3, #4
-    bl ov107_022480EC
-    str r6, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    mov r0, #1
-    str r0, [sp, #8]
-    mov r2, #2
-    str r2, [sp, #0xc]
-    mov r0, #0
-    str r0, [sp, #0x10]
-    str r0, [sp, #0x14]
-    add r0, r5, #0
-    add r1, r4, #0
-    add r3, r7, #0
-    str r2, [sp, #0x18]
-    bl ov107_02247744
-    strb r0, [r5, #0xa]
-    b _02248E46
- _02248CA2:
-    bl CommSys_CurNetId
-    cmp r0, #0
-    add r1, sp, #0x28
-    bne _02248D7A
-    ldrh r0, [r1, #6]
-    ldrh r6, [r1, #4]
-    mov r1, #0
-    add r0, #0x68
-    lsl r0, r0, #0x10
-    lsr r7, r0, #0x10
-    add r2, r7, #0
-    mov r0, #0x30
-    sub r2, #0x30
-    str r0, [sp]
-    mov r0, #0x10
-    lsl r2, r2, #0x10
-    str r0, [sp, #4]
-    add r0, r4, #0
-    lsr r2, r2, #0x10
-    add r3, r6, #0
-    bl Window_FillRectWithColor
-    ldrb r0, [r5, #9]
-    bl sub_0205E630
-    str r0, [sp, #0x20]
-    ldrb r0, [r5, #9]
-    bl sub_0205E630
-    bl sub_0205E6A8
-    add r2, r0, #0
-    ldr r0, [r5, #4]
-    ldr r1, [sp, #0x20]
-    bl sub_02030698
-    add r2, r0, #0
-    mov r0, #1
-    str r0, [sp]
-    add r0, r5, #0
-    mov r1, #0
-    mov r3, #4
-    bl ov107_022480EC
-    str r6, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    mov r0, #1
-    str r0, [sp, #8]
-    mov r2, #2
-    str r2, [sp, #0xc]
-    mov r0, #0
-    str r0, [sp, #0x10]
-    str r0, [sp, #0x14]
-    add r0, r5, #0
-    add r1, r4, #0
-    add r3, r7, #0
-    str r2, [sp, #0x18]
-    bl ov107_02247744
-    add r1, sp, #0x28
-    strb r0, [r5, #0xa]
-    ldrh r0, [r1, #2]
-    ldrh r6, [r1]
-    mov r1, #0
-    add r0, #0x68
-    lsl r0, r0, #0x10
-    lsr r7, r0, #0x10
-    add r2, r7, #0
-    mov r0, #0x30
-    sub r2, #0x30
-    str r0, [sp]
-    mov r0, #0x10
-    lsl r2, r2, #0x10
-    str r0, [sp, #4]
-    add r0, r4, #0
-    lsr r2, r2, #0x10
-    add r3, r6, #0
-    bl Window_FillRectWithColor
-    mov r0, #1
-    str r0, [sp]
-    ldr r2, = 0x3D6
-    add r0, r5, #0
-    ldrh r2, [r5, r2]
-    mov r1, #0
-    mov r3, #4
-    bl ov107_022480EC
-    str r6, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    mov r0, #1
-    str r0, [sp, #8]
-    mov r2, #2
-    str r2, [sp, #0xc]
-    mov r0, #0
-    str r0, [sp, #0x10]
-    str r0, [sp, #0x14]
-    add r0, r5, #0
-    add r1, r4, #0
-    add r3, r7, #0
-    str r2, [sp, #0x18]
-    bl ov107_02247744
-    strb r0, [r5, #0xa]
-    b _02248E46
- _02248D7A:
-    ldrh r0, [r1, #6]
-    ldrh r6, [r1, #4]
-    mov r1, #0
-    add r0, #0x68
-    lsl r0, r0, #0x10
-    lsr r7, r0, #0x10
-    add r2, r7, #0
-    mov r0, #0x30
-    sub r2, #0x30
-    str r0, [sp]
-    mov r0, #0x10
-    lsl r2, r2, #0x10
-    str r0, [sp, #4]
-    add r0, r4, #0
-    lsr r2, r2, #0x10
-    add r3, r6, #0
-    bl Window_FillRectWithColor
-    mov r0, #1
-    str r0, [sp]
-    ldr r2, = 0x3D6
-    add r0, r5, #0
-    ldrh r2, [r5, r2]
-    mov r1, #0
-    mov r3, #4
-    bl ov107_022480EC
-    str r6, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    mov r0, #1
-    str r0, [sp, #8]
-    mov r2, #2
-    str r2, [sp, #0xc]
-    mov r0, #0
-    str r0, [sp, #0x10]
-    str r0, [sp, #0x14]
-    add r0, r5, #0
-    add r1, r4, #0
-    add r3, r7, #0
-    str r2, [sp, #0x18]
-    bl ov107_02247744
-    add r1, sp, #0x28
-    strb r0, [r5, #0xa]
-    ldrh r0, [r1, #2]
-    ldrh r6, [r1]
-    mov r1, #0
-    add r0, #0x68
-    lsl r0, r0, #0x10
-    lsr r7, r0, #0x10
-    add r2, r7, #0
-    mov r0, #0x30
-    sub r2, #0x30
-    str r0, [sp]
-    mov r0, #0x10
-    lsl r2, r2, #0x10
-    str r0, [sp, #4]
-    add r0, r4, #0
-    lsr r2, r2, #0x10
-    add r3, r6, #0
-    bl Window_FillRectWithColor
-    ldrb r0, [r5, #9]
-    bl sub_0205E630
-    str r0, [sp, #0x24]
-    ldrb r0, [r5, #9]
-    bl sub_0205E630
-    bl sub_0205E6A8
-    add r2, r0, #0
-    ldr r0, [r5, #4]
-    ldr r1, [sp, #0x24]
-    bl sub_02030698
-    add r2, r0, #0
-    mov r0, #1
-    str r0, [sp]
-    add r0, r5, #0
-    mov r1, #0
-    mov r3, #4
-    bl ov107_022480EC
-    str r6, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    mov r0, #1
-    str r0, [sp, #8]
-    mov r2, #2
-    str r2, [sp, #0xc]
-    mov r0, #0
-    str r0, [sp, #0x10]
-    str r0, [sp, #0x14]
-    add r0, r5, #0
-    add r1, r4, #0
-    add r3, r7, #0
-    str r2, [sp, #0x18]
-    bl ov107_02247744
-    strb r0, [r5, #0xa]
- _02248E46:
-    add r0, r4, #0
-    bl Window_ScheduleCopyToVRAM
-    add sp, #0x30
-    pop {r3, r4, r5, r6, r7, pc}
+    u16 v0, v1, v2, v3, x, y;
+    ov107_022484DC(param0, &v0, &v1, &v2, &v3);
+
+    if (ov104_0223BA14(param0->unk_09) == FALSE) {
+        x = v0 + 104;
+        y = v1;
+        Window_FillRectWithColor(window, 0, x - 48, y, 48, 16);
+        ov107_022480EC(param0, 0, sub_02030698(param0->frontier, sub_0205E630(param0->unk_09), sub_0205E6A8(sub_0205E630(param0->unk_09))), 4, 1);
+        param0->unk_0A = ov107_02247744(param0, window, 2, x, y, 0xFF, 1, 2, 0, 0, 2);
+    } else {
+        if (CommSys_CurNetId() == 0) {
+            x = v0 + 104;
+            y = v1;
+            Window_FillRectWithColor(window, 0, x - 48, y, 48, 16);
+            ov107_022480EC(param0, 0, sub_02030698(param0->frontier, sub_0205E630(param0->unk_09), sub_0205E6A8(sub_0205E630(param0->unk_09))), 4, 1);
+            param0->unk_0A = ov107_02247744(param0, window, 2, x, y, 0xFF, 1, 2, 0, 0, 2);
+
+            x = v2 + 104;
+            y = v3;
+            Window_FillRectWithColor(window, 0, x - 48, v3, 48, 16);
+            ov107_022480EC(param0, 0, param0->unk_43A, 4, 1);
+            param0->unk_0A = ov107_02247744(param0, window, 2, x, y, 0xFF, 1, 2, 0, 0, 2);
+        } else {
+            x = v0 + 104;
+            y = v1;
+            Window_FillRectWithColor(window, 0, x - 48, v1, 48, 16);
+            ov107_022480EC(param0, 0, param0->unk_43A, 4, 1);
+            param0->unk_0A = ov107_02247744(param0, window, 2, x, y, 0xFF, 1, 2, 0, 0, 2);
+
+            x = v2 + 104;
+            y = v3;
+            Window_FillRectWithColor(window, 0, x - 48, v3, 48, 16);
+            ov107_022480EC(param0, 0, sub_02030698(param0->frontier, sub_0205E630(param0->unk_09), sub_0205E6A8(sub_0205E630(param0->unk_09))), 4, 1);
+            param0->unk_0A = ov107_02247744(param0, window, 2, x, y, 0xFF, 1, 2, 0, 0, 2);
+        }
+    }
+
+    Window_ScheduleCopyToVRAM(window);
 }
-// clang-format on
 
 static void ov107_02248E54 (UnkStruct_ov107_02246170 * param0, u8 param1)
 {
