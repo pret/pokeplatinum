@@ -7,7 +7,6 @@
 
 #include "struct_defs/seal_case.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_0207C690.h"
 
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/struct_ov12_02225F6C.h"
@@ -20,6 +19,7 @@
 #include "bg_window.h"
 #include "char_transfer.h"
 #include "font.h"
+#include "g3d_pipeline.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -42,7 +42,6 @@
 #include "touch_screen.h"
 #include "unk_02012744.h"
 #include "unk_0202419C.h"
-#include "unk_02024220.h"
 #include "unk_0202C9F4.h"
 #include "unk_02097B18.h"
 
@@ -367,9 +366,9 @@ void ov76_0223BD30(UnkStruct_ov76_0223DE00 *param0, s8 param1, int param2)
     SysTask_Start(ov76_0223BCA0, v0, 0x1000);
 }
 
-GenericPointerData *ov76_0223BE6C(void)
+G3DPipelineBuffers *ov76_0223BE6C(void)
 {
-    return sub_02024220(HEAP_ID_53, 0, 2, 0, 2, ov76_0223BE8C);
+    return G3DPipeline_Init(HEAP_ID_53, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov76_0223BE8C);
 }
 
 void ov76_0223BE8C(void)

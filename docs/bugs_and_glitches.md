@@ -23,6 +23,8 @@ this is some code
   - [Fishing Encounters ignore Sticky Hold and Suction Cups](#fishing-encounters-ignore-sticky-hold-and-suction-cups)
 - [Title Screen](#title-screen)
   - [Giratina Hover Range](#giratina-hover-range)
+- [3D Rendering](#3d-rendering)
+  - [Invalid VRAM Manager Type in G3DPipeline_InitEx](#invalid-vram-manager-type-in-g3dpipeline_initex)
 
 ## Battle Engine
 
@@ -187,4 +189,15 @@ The Giratina model on the title screen hovers up and down slowly, but the range 
 ```diff
 -    fx32 offset = CalcSineDegrees_Wraparound((titleScreen->giratinaHoverAngle * 0xFFFF) / 360);
 +    fx32 offset = CalcSineDegrees_Wraparound(titleScreen->giratinaHoverAngle);
+```
+
+## 3D Rendering
+### Invalid VRAM Manager Type in G3DPipeline_InitEx
+When creating a new 3D graphics state using `G3DPipeline_InitEx`, with the `plttVramManagerType` parameter set to `VRAM_MANAGER_TYPE_FRAME`, the system will allocate a second texture VRAM manager instead of the intended palette VRAM manager. This bug never actually occurs in the game as the `plttVramManagerType` parameter is always set to `VRAM_MANAGER_TYPE_LINKED_LIST`, but it is still a bug in the code.
+
+**Fix:** Edit the function `G3DPipeline_InitEx` in [`src/g3d_pipeline_state.c`](https://github.com/pret/pokeplatinum/blob/main/src/g3d_pipeline_state.c#L40):
+
+```diff
+- NNS_GfdInitFrmTexVramManager(plttVramSize * PALETTE_VRAM_BLOCK_SIZE, TRUE);
++ NNS_GfdInitFrmPlttVramManager(plttVramSize * PALETTE_VRAM_BLOCK_SIZE, TRUE);
 ```

@@ -7,7 +7,6 @@
 #include "constants/narc.h"
 
 #include "struct_defs/sprite_animation_frame.h"
-#include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay119/struct_ov119_021D0FD0.h"
@@ -19,6 +18,7 @@
 #include "bg_window.h"
 #include "camera.h"
 #include "font.h"
+#include "g3d_pipeline.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -38,12 +38,11 @@
 #include "string_template.h"
 #include "text.h"
 #include "unk_0202419C.h"
-#include "unk_02024220.h"
 #include "vram_transfer.h"
 
 void ov119_021D0D80(void);
 void ov119_021D0DA8(void);
-GenericPointerData *ov119_021D0DD4(void);
+G3DPipelineBuffers *ov119_021D0DD4(void);
 void ov119_021D0DF4(void);
 void ov119_021D0E78(void);
 static u32 ov119_021D13B4(u32 param0, BOOL param1);
@@ -67,9 +66,9 @@ void ov119_021D0DA8(void)
     G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 7, 8);
 }
 
-GenericPointerData *ov119_021D0DD4(void)
+G3DPipelineBuffers *ov119_021D0DD4(void)
 {
-    return sub_02024220(HEAP_ID_71, 0, 2, 0, 2, ov119_021D0DF4);
+    return G3DPipeline_Init(HEAP_ID_71, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov119_021D0DF4);
 }
 
 void ov119_021D0DF4(void)

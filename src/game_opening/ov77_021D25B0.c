@@ -3,7 +3,6 @@
 
 #include "constants/graphics.h"
 
-#include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "game_opening/ov77_021D54B0.h"
@@ -19,6 +18,7 @@
 #include "brightness_controller.h"
 #include "camera.h"
 #include "easy3d.h"
+#include "g3d_pipeline.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -34,7 +34,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "unk_0202419C.h"
-#include "unk_02024220.h"
 #include "vram_transfer.h"
 
 FS_EXTERN_OVERLAY(game_opening);
@@ -128,7 +127,7 @@ typedef struct {
     int unk_04;
     BOOL unk_08;
     BgConfig *unk_0C;
-    GenericPointerData *unk_10;
+    G3DPipelineBuffers *unk_10;
     u32 unk_14;
     UnkStruct_ov77_021D2F38 unk_18;
     UnkStruct_ov77_021D37C0 unk_34;
@@ -822,7 +821,7 @@ static void ov77_021D2A58(UnkStruct_ov77_021D2E9C *param0)
     NNSGfdPlttKey v1;
     u32 v2, v3;
 
-    param0->unk_10 = sub_02024220(param0->unk_00, 0, 1, 0, 4, ov77_021D2AA0);
+    param0->unk_10 = G3DPipeline_Init(param0->unk_00, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_64K, ov77_021D2AA0);
 
     v0 = NNS_GfdAllocTexVram(0x2000 * 4, 0, 0);
     v1 = NNS_GfdAllocPlttVram(0x20 * 4, 0, NNS_GFD_ALLOC_FROM_LOW);
@@ -1454,7 +1453,7 @@ static void ov77_021D36F8(UnkStruct_ov77_021D2E9C *param0)
             param0->unk_34.unk_240 = NULL;
         }
 
-        sub_020242C4(param0->unk_10);
+        G3DPipelineBuffers_Free(param0->unk_10);
         param0->unk_34.unk_02 = 0;
     }
 

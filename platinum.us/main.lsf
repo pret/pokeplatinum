@@ -101,7 +101,7 @@ Static main
 	Object main.nef.p/src_unk_0202414C.c.o
 	Object main.nef.p/src_unk_0202419C.c.o
 	Object main.nef.p/src_hardware_palette.c.o
-	Object main.nef.p/src_unk_02024220.c.o
+	Object main.nef.p/src_g3d_pipeline.c.o
 	Object main.nef.p/src_boot.c.o
 	Object main.nef.p/src_savedata_save_table.c.o
 	Object main.nef.p/src_savedata.c.o

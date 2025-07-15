@@ -16,6 +16,7 @@
 
 #include "bg_window.h"
 #include "camera.h"
+#include "g3d_pipeline.h"
 #include "game_options.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -28,7 +29,6 @@
 #include "sound.h"
 #include "sprite_system.h"
 #include "system.h"
-#include "unk_02024220.h"
 #include "vram_transfer.h"
 
 FS_EXTERN_OVERLAY(overlay100);
@@ -215,7 +215,7 @@ static void ov100_021D1034(UnkStruct_ov100_021D46C8 *param0)
     param0->unk_00 = NARC_ctor(NARC_INDEX_ARC__DEMO_TENGAN_GRA, HEAP_ID_111);
     param0->unk_0C = BgConfig_New(HEAP_ID_111);
     param0->unk_10 = PaletteData_New(HEAP_ID_111);
-    param0->unk_14 = sub_02024220(HEAP_ID_111, 0, 1, 0, 4, NULL);
+    param0->unk_14 = G3DPipeline_Init(HEAP_ID_111, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_64K, NULL);
     param0->camera = Camera_Alloc(HEAP_ID_111);
     param0->unk_2C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPEAR_PILLAR, HEAP_ID_111);
 
@@ -259,7 +259,7 @@ static void ov100_021D111C(UnkStruct_ov100_021D46C8 *param0)
     PaletteData_Free(param0->unk_10);
 
     NARC_dtor(param0->unk_00);
-    sub_020242C4(param0->unk_14);
+    G3DPipelineBuffers_Free(param0->unk_14);
     Camera_Delete(param0->camera);
     SpriteSystem_FreeResourcesAndManager(param0->unk_04, param0->unk_08);
     SpriteSystem_Free(param0->unk_04);
