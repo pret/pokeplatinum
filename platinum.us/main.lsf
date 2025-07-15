@@ -343,7 +343,7 @@ Static main
 	Object main.nef.p/src_pokedex_language.c.o
 	Object main.nef.p/src_pokedex_heightweight.c.o
 	Object main.nef.p/src_pokedex_data_index.c.o
-	Object main.nef.p/src_unk_020F6824.c.o
+	Object main.nef.p/src_rowan_intro_app_template.c.o
 	Object main.nef.p/src_unk_020989DC.c.o
 	Object main.nef.p/src_unk_02098FFC.c.o
 	Object main.nef.p/src_unk_02099500.c.o

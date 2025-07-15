@@ -1,7 +1,6 @@
 #include <nitro.h>
-#include <string.h>
 
-#include "constdata/const_020F6824.h"
+#include "overlay_manager.h"
 
 FS_EXTERN_OVERLAY(overlay73);
 
@@ -9,7 +8,7 @@ int RowanIntro_Init(ApplicationManager *appMan, int *state);
 int RowanIntro_Main(ApplicationManager *appMan, int *state);
 int RowanIntro_Exit(ApplicationManager *appMan, int *state);
 
-const ApplicationManagerTemplate ApplicationManagerTemplate_RowanIntro = {
+const ApplicationManagerTemplate gRowanIntroAppTemplate = {
     RowanIntro_Init,
     RowanIntro_Main,
     RowanIntro_Exit,

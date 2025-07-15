@@ -351,7 +351,7 @@ pokeplatinum_c = files(
     'unk_0209C370.c',
     'unk_0209C390.c',
     'unk_020EDBAC.c',
-    'unk_020F6824.c',
+    'rowan_intro_app_template.c',
     'overlay000/ov0_dummy.c',
     'overlay001/ov1_021D0D80.c',
     'overlay002/ov2_dummy.c',
