@@ -2090,88 +2090,33 @@ static int ov65_0222F90C(UnkStruct_ov65_0222EBE0 *param0, int param1)
     return param1;
 }
 
-// clang-format off
-asm static int ov65_0222FAA0 (UnkStruct_ov65_0222EBE0 * param0, int param1)
+static int ov65_0222FAA0(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
-    push {r3, r4, r5, lr}
-    add r5, r0, #0
-    mov r0, #6
-    lsl r0, r0, #6
-    ldr r0, [r5, r0]
-    add r4, r1, #0
-    lsl r0, r0, #0x18
-    lsr r0, r0, #0x18
-    bl Text_IsPrinterActive
-    cmp r0, #0
-    beq _0222FABC
-    add r0, r4, #0
-    pop {r3, r4, r5, pc}
- _0222FABC:
-    bl ov4_021D27E0
-    cmp r0, #0
-    beq _0222FAF6
-    mov r0, #0xd1
-    mov r1, #0x45
-    lsl r0, r0, #2
-    str r1, [r5, r0]
-    add r0, r5, #0
-    mov r1, #0x1e
-    mov r2, #1
-    bl ov65_02232B58
-    mov r0, #0x62
-    lsl r0, r0, #2
-    ldr r0, [r5, r0]
-    cmp r0, #0
-    beq _0222FAE4
-    bl ErrorHandling_AssertFail
- _0222FAE4:
-    mov r1, #0xb3
-    lsl r1, r1, #2
-    add r0, r5, r1
-    sub r1, #0xea
-    bl Window_AddWaitDial
-    mov r1, #0x62
-    lsl r1, r1, #2
-    str r0, [r5, r1]
- _0222FAF6:
-    bl sub_02038294
-    cmp r0, #0
-    beq _0222FB2A
-    mov r0, #0xd9
-    lsl r0, r0, #2
-    ldr r1, [r5, r0]
-    cmp r1, #0
-    beq _0222FB10
-    mov r1, #0x10
-    sub r0, #0x20
-    str r1, [r5, r0]
-    b _0222FB40
- _0222FB10:
-    add r0, r5, #0
-    mov r1, #0x10
-    bl ov65_0222F4C4
-    add r0, r5, #0
-    bl ov65_0222F5BC
-    bl ov65_0222EBB8
-    mov r1, #0xd1
-    lsl r1, r1, #2
-    str r0, [r5, r1]
-    b _0222FB40
- _0222FB2A:
-    bl sub_020383E8
-    cmp r0, #0
-    bne _0222FB3A
-    bl sub_020380E4
-    cmp r0, #3
-    bne _0222FB40
- _0222FB3A:
-    add r0, r5, #0
-    bl ov65_0222F6EC
- _0222FB40:
-    add r0, r4, #0
-    pop {r3, r4, r5, pc}
+    if (Text_IsPrinterActive(param0->unk_180) != FALSE) {
+        return param1;
+    }
+
+    if (ov4_021D27E0()) {
+        param0->unk_3A8 = 69;
+        ov65_02232B58(param0, 30, 1);
+        GF_ASSERT(param0->unk_188 == NULL);
+        param0->unk_188 = Window_AddWaitDial(&param0->unk_330, (512 - (18 + 12)));
+    }
+
+    if (sub_02038294()) {
+        if (param0->unk_3C8) {
+            param0->unk_3A8 = 16;
+        } else {
+            ov65_0222F4C4(param0, 16);
+            ov65_0222F5BC(param0);
+            param0->unk_3A8 = ov65_0222EBB8();
+        }
+    } else if (sub_020383E8() || sub_020380E4() == 3) {
+        ov65_0222F6EC(param0);
+    }
+
+    return param1;
 }
-// clang-format on
 
 static int ov65_0222FB44(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
@@ -5369,558 +5314,99 @@ static void ov65_02233874(UnkStruct_ov65_0222EBE0 *param0, u32 heapID)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
 }
 
-// clang-format off
-asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
+static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
 {
-    push {r3, r4, r5, r6, r7, lr}
-    sub sp, #0x18
-    add r5, r0, #0
-    ldr r0, = 0xB89
-    mov r2, #8
-    ldrb r0, [r5, r0]
-    sub r4, r0, #1
-    ldr r0, [r5, #0]
-    add r1, r4, #0
-    bl sub_0202AD2C
-    cmp r0, #0
-    bne _0223395E
-    ldr r0, = 0x50600
-    b _02233962
- _0223395E:
-    mov r0, #0xc1
-    lsl r0, r0, #0xa
- _02233962:
-    str r0, [sp, #0x14]
-    add r0, r5, #0
-    add r1, r4, #0
-    bl ov65_02234F68
-    mov r2, #0x5a
-    lsl r2, r2, #2
-    ldr r0, [r5, r2]
-    add r2, #8
-    ldr r2, [r5, r2]
-    mov r1, #0x2a
-    bl MessageLoader_GetStrbuf
-    mov r2, #0x5e
-    ldr r0, = 0xB18
-    lsl r2, r2, #2
-    ldr r1, [r5, r2]
-    sub r2, #8
-    ldr r0, [r5, r0]
-    ldr r2, [r5, r2]
-    bl StringTemplate_Format
-    mov r0, #8
-    str r0, [sp]
-    mov r2, #0xff
-    str r2, [sp, #4]
-    ldr r0, [sp, #0x14]
-    add r2, #0x79
-    str r0, [sp, #8]
-    mov r0, #0
-    str r0, [sp, #0xc]
-    ldr r0, = 0xD14
-    ldr r2, [r5, r2]
-    add r0, r5, r0
-    mov r1, #1
-    mov r3, #0x20
-    bl Text_AddPrinterWithParamsAndColor
-    add r0, r5, #0
-    add r1, r4, #0
-    bl ov65_02234FA8
-    str r0, [sp, #0x10]
-    ldr r1, [sp, #0x10]
-    add r0, r5, #0
-    bl ov65_0222DD20
-    add r1, sp, #0x14
-    add r7, r0, #0
-    bl ov65_0223484C
-    mov r2, #0x5a
-    lsl r2, r2, #2
-    add r1, r0, #0
-    ldr r0, [r5, r2]
-    add r2, #8
-    ldr r2, [r5, r2]
-    bl MessageLoader_GetStrbuf
-    mov r0, #8
-    str r0, [sp]
-    mov r2, #0xff
-    str r2, [sp, #4]
-    ldr r0, [sp, #0x14]
-    mov r1, #0
-    str r0, [sp, #8]
-    ldr r0, = 0xD14
-    str r1, [sp, #0xc]
-    add r2, #0x71
-    ldr r2, [r5, r2]
-    add r0, r5, r0
-    mov r3, #0x68
-    bl Text_AddPrinterWithParamsAndColor
-    mov r0, #0x36
-    bl TrainerInfo_New
-    add r6, r0, #0
-    ldr r0, [r5, #0]
-    add r1, r4, #0
-    bl sub_0202AF34
-    add r1, r0, #0
-    add r0, r6, #0
-    bl TrainerInfo_SetName
-    ldr r0, = 0xB18
-    mov r1, #0
-    ldr r0, [r5, r0]
-    add r2, r6, #0
-    bl StringTemplate_SetPlayerName
-    add r0, r6, #0
-    bl Heap_Free
-    mov r2, #0x5a
-    lsl r2, r2, #2
-    ldr r0, [r5, r2]
-    add r2, #0x10
-    ldr r2, [r5, r2]
-    mov r1, #0x2b
-    bl MessageLoader_GetStrbuf
-    mov r0, #0x20
-    str r0, [sp]
-    mov r2, #0xff
-    str r2, [sp, #4]
-    ldr r0, = 0x10200
-    mov r1, #0
-    str r0, [sp, #8]
-    ldr r0, = 0xD14
-    str r1, [sp, #0xc]
-    add r2, #0x79
-    ldr r2, [r5, r2]
-    add r0, r5, r0
-    mov r3, #8
-    bl Text_AddPrinterWithParamsAndColor
-    mov r1, #0x96
-    mov r0, #0x5a
-    add r2, r1, #0
-    lsl r0, r0, #2
-    add r2, #0xda
-    ldr r0, [r5, r0]
-    ldr r2, [r5, r2]
-    bl MessageLoader_GetStrbuf
-    mov r2, #0x5e
-    ldr r0, = 0xB18
-    lsl r2, r2, #2
-    ldr r1, [r5, r2]
-    sub r2, #8
-    ldr r0, [r5, r0]
-    ldr r2, [r5, r2]
-    bl StringTemplate_Format
-    mov r1, #0x5e
-    lsl r1, r1, #2
-    mov r0, #0
-    ldr r1, [r5, r1]
-    add r2, r0, #0
-    bl Font_CalcStrbufWidth
-    mov r1, #0xe8
-    sub r3, r1, r0
-    mov r0, #0x20
-    str r0, [sp]
-    mov r2, #0xff
-    str r2, [sp, #4]
-    ldr r0, = 0x10200
-    mov r1, #0
-    str r0, [sp, #8]
-    ldr r0, = 0xD14
-    str r1, [sp, #0xc]
-    add r2, #0x79
-    ldr r2, [r5, r2]
-    add r0, r5, r0
-    bl Text_AddPrinterWithParamsAndColor
-    mov r2, #0x5a
-    lsl r2, r2, #2
-    ldr r0, [r5, r2]
-    add r2, #0x10
-    ldr r2, [r5, r2]
-    mov r1, #0x2c
-    bl MessageLoader_GetStrbuf
-    mov r0, #0x38
-    str r0, [sp]
-    mov r2, #0xff
-    str r2, [sp, #4]
-    ldr r0, = 0x10200
-    mov r1, #0
-    str r0, [sp, #8]
-    ldr r0, = 0xD14
-    str r1, [sp, #0xc]
-    add r2, #0x79
-    ldr r2, [r5, r2]
-    add r0, r5, r0
-    mov r3, #8
-    bl Text_AddPrinterWithParamsAndColor
-    ldr r0, [r5, #0]
-    add r1, r4, #0
-    mov r2, #1
-    bl sub_0202AD2C
-    add r2, r0, #0
-    mov r0, #1
-    str r0, [sp]
-    str r0, [sp, #4]
-    ldr r0, = 0xB18
-    mov r1, #0
-    ldr r0, [r5, r0]
-    mov r3, #4
-    bl StringTemplate_SetNumber
-    mov r2, #0x5a
-    lsl r2, r2, #2
-    ldr r0, [r5, r2]
-    add r2, #8
-    ldr r2, [r5, r2]
-    mov r1, #0x2d
-    bl MessageLoader_GetStrbuf
-    mov r2, #0x5e
-    ldr r0, = 0xB18
-    lsl r2, r2, #2
-    ldr r1, [r5, r2]
-    sub r2, #8
-    ldr r0, [r5, r0]
-    ldr r2, [r5, r2]
-    bl StringTemplate_Format
-    mov r0, #0x38
-    str r0, [sp]
-    mov r2, #0xff
-    str r2, [sp, #4]
-    ldr r0, = 0x10200
-    mov r1, #0
-    str r0, [sp, #8]
-    ldr r0, = 0xD14
-    str r1, [sp, #0xc]
-    add r2, #0x79
-    ldr r2, [r5, r2]
-    add r0, r5, r0
-    mov r3, #0x78
-    bl Text_AddPrinterWithParamsAndColor
-    ldr r0, [r5, #0]
-    add r1, r4, #0
-    mov r2, #2
-    bl sub_0202AD2C
-    add r2, r0, #0
-    mov r0, #1
-    str r0, [sp]
-    str r0, [sp, #4]
-    ldr r0, = 0xB18
-    mov r1, #0
-    ldr r0, [r5, r0]
-    mov r3, #4
-    bl StringTemplate_SetNumber
-    mov r0, #0x5a
-    mov r1, #0x2e
-    lsl r0, r0, #2
-    lsl r2, r1, #3
-    ldr r0, [r5, r0]
-    ldr r2, [r5, r2]
-    bl MessageLoader_GetStrbuf
-    mov r2, #0x5e
-    ldr r0, = 0xB18
-    lsl r2, r2, #2
-    ldr r1, [r5, r2]
-    sub r2, #8
-    ldr r0, [r5, r0]
-    ldr r2, [r5, r2]
-    bl StringTemplate_Format
-    mov r1, #0x5e
-    lsl r1, r1, #2
-    mov r0, #0
-    ldr r1, [r5, r1]
-    add r2, r0, #0
-    bl Font_CalcStrbufWidth
-    mov r1, #0xe8
-    sub r3, r1, r0
-    mov r0, #0x38
-    str r0, [sp]
-    mov r2, #0xff
-    str r2, [sp, #4]
-    ldr r0, = 0x10200
-    mov r1, #0
-    str r0, [sp, #8]
-    ldr r0, = 0xD14
-    str r1, [sp, #0xc]
-    add r2, #0x79
-    ldr r2, [r5, r2]
-    add r0, r5, r0
-    bl Text_AddPrinterWithParamsAndColor
-    mov r0, #0x5a
-    mov r1, #0x2f
-    lsl r0, r0, #2
-    lsl r2, r1, #3
-    ldr r0, [r5, r0]
-    ldr r2, [r5, r2]
-    bl MessageLoader_GetStrbuf
-    mov r0, #0x50
-    str r0, [sp]
-    mov r2, #0xff
-    str r2, [sp, #4]
-    ldr r0, = 0x10200
-    mov r1, #0
-    str r0, [sp, #8]
-    ldr r0, = 0xD14
-    str r1, [sp, #0xc]
-    add r2, #0x79
-    ldr r2, [r5, r2]
-    add r0, r5, r0
-    mov r3, #8
-    bl Text_AddPrinterWithParamsAndColor
-    ldr r0, [r5, #0]
-    add r1, r4, #0
-    mov r2, #3
-    bl sub_0202AD2C
-    add r2, r0, #0
-    mov r0, #1
-    str r0, [sp]
-    str r0, [sp, #4]
-    ldr r0, = 0xB18
-    mov r1, #0
-    ldr r0, [r5, r0]
-    mov r3, #4
-    bl StringTemplate_SetNumber
-    mov r2, #0x5a
-    lsl r2, r2, #2
-    ldr r0, [r5, r2]
-    add r2, #8
-    ldr r2, [r5, r2]
-    mov r1, #0x30
-    bl MessageLoader_GetStrbuf
-    mov r2, #0x5e
-    ldr r0, = 0xB18
-    lsl r2, r2, #2
-    ldr r1, [r5, r2]
-    sub r2, #8
-    ldr r0, [r5, r0]
-    ldr r2, [r5, r2]
-    bl StringTemplate_Format
-    mov r1, #0x5e
-    lsl r1, r1, #2
-    mov r0, #0
-    ldr r1, [r5, r1]
-    add r2, r0, #0
-    bl Font_CalcStrbufWidth
-    mov r1, #0xe8
-    sub r3, r1, r0
-    mov r0, #0x50
-    str r0, [sp]
-    mov r2, #0xff
-    str r2, [sp, #4]
-    ldr r0, = 0x10200
-    mov r1, #0
-    str r0, [sp, #8]
-    ldr r0, = 0xD14
-    str r1, [sp, #0xc]
-    add r2, #0x79
-    ldr r2, [r5, r2]
-    add r0, r5, r0
-    bl Text_AddPrinterWithParamsAndColor
-    add r0, r5, #0
-    bl ov65_0222DCF8
-    cmp r0, #1
-    bne _02233CF4
-    mov r2, #0x5a
-    lsl r2, r2, #2
-    ldr r0, [r5, r2]
-    add r2, #0x10
-    ldr r2, [r5, r2]
-    mov r1, #0x31
-    bl MessageLoader_GetStrbuf
-    mov r0, #0x68
-    str r0, [sp]
-    mov r2, #0xff
-    str r2, [sp, #4]
-    ldr r0, = 0x10200
-    mov r1, #0
-    str r0, [sp, #8]
-    ldr r0, = 0xD14
-    str r1, [sp, #0xc]
-    add r2, #0x79
-    ldr r2, [r5, r2]
-    add r0, r5, r0
-    mov r3, #8
-    bl Text_AddPrinterWithParamsAndColor
-    ldr r0, [r5, #0]
-    add r1, r4, #0
-    mov r2, #9
-    bl sub_0202AD2C
-    add r2, r0, #0
-    mov r0, #1
-    str r0, [sp]
-    str r0, [sp, #4]
-    ldr r0, = 0xB18
-    mov r1, #0
-    ldr r0, [r5, r0]
-    mov r3, #4
-    bl StringTemplate_SetNumber
-    mov r2, #0x5a
-    lsl r2, r2, #2
-    ldr r0, [r5, r2]
-    add r2, #8
-    ldr r2, [r5, r2]
-    mov r1, #0x32
-    bl MessageLoader_GetStrbuf
-    mov r2, #0x5e
-    ldr r0, = 0xB18
-    lsl r2, r2, #2
-    ldr r1, [r5, r2]
-    sub r2, #8
-    ldr r0, [r5, r0]
-    ldr r2, [r5, r2]
-    bl StringTemplate_Format
-    mov r1, #0x5e
-    lsl r1, r1, #2
-    mov r0, #0
-    ldr r1, [r5, r1]
-    add r2, r0, #0
-    bl Font_CalcStrbufWidth
-    mov r1, #0xe8
-    sub r3, r1, r0
-    mov r0, #0x68
-    str r0, [sp]
-    mov r2, #0xff
-    str r2, [sp, #4]
-    ldr r0, = 0x10200
-    mov r1, #0
-    str r0, [sp, #8]
-    ldr r0, = 0xD14
-    b _02233CE8
- _02233CE8:
-    str r1, [sp, #0xc]
-    add r2, #0x79
-    ldr r2, [r5, r2]
-    add r0, r5, r0
-    bl Text_AddPrinterWithParamsAndColor
- _02233CF4:
-    mov r2, #0x5a
-    lsl r2, r2, #2
-    ldr r0, [r5, r2]
-    add r2, #0x10
-    ldr r2, [r5, r2]
-    mov r1, #0x33
-    bl MessageLoader_GetStrbuf
-    mov r0, #0x80
-    str r0, [sp]
-    mov r2, #0xff
-    str r2, [sp, #4]
-    ldr r0, = 0x10200
-    mov r1, #0
-    str r0, [sp, #8]
-    ldr r0, = 0xD14
-    str r1, [sp, #0xc]
-    add r2, #0x79
-    ldr r2, [r5, r2]
-    add r0, r5, r0
-    mov r3, #8
-    bl Text_AddPrinterWithParamsAndColor
-    ldr r0, [r5, #0]
-    add r1, r4, #0
-    mov r2, #6
-    bl sub_0202AD2C
-    add r2, r0, #0
-    beq _02233DC8
-    mov r0, #0
-    str r0, [sp]
-    mov r0, #1
-    str r0, [sp, #4]
-    ldr r0, = 0xB18
-    mov r1, #2
-    ldr r0, [r5, r0]
-    add r3, r1, #0
-    bl StringTemplate_SetNumber
-    ldr r0, [r5, #0]
-    add r1, r4, #0
-    mov r2, #4
-    bl sub_0202AD2C
-    mov r1, #0
-    add r2, r0, #0
-    str r1, [sp]
-    mov r0, #1
-    str r0, [sp, #4]
-    ldr r0, = 0xB18
-    mov r3, #4
-    ldr r0, [r5, r0]
-    bl StringTemplate_SetNumber
-    ldr r0, [r5, #0]
-    add r1, r4, #0
-    mov r2, #5
-    bl sub_0202AD2C
-    add r2, r0, #0
-    ldr r0, = 0xB18
-    mov r1, #1
-    ldr r0, [r5, r0]
-    bl StringTemplate_SetMonthName
-    mov r2, #0x5a
-    lsl r2, r2, #2
-    ldr r0, [r5, r2]
-    add r2, #8
-    ldr r2, [r5, r2]
-    mov r1, #0x4a
-    bl MessageLoader_GetStrbuf
-    mov r2, #0x5e
-    ldr r0, = 0xB18
-    lsl r2, r2, #2
-    ldr r1, [r5, r2]
-    sub r2, #8
-    ldr r0, [r5, r0]
-    ldr r2, [r5, r2]
-    bl StringTemplate_Format
-    mov r1, #0x5e
-    lsl r1, r1, #2
-    mov r0, #0
-    ldr r1, [r5, r1]
-    add r2, r0, #0
-    bl Font_CalcStrbufWidth
-    mov r1, #0xe8
-    sub r3, r1, r0
-    mov r0, #0x80
-    str r0, [sp]
-    mov r2, #0xff
-    str r2, [sp, #4]
-    ldr r0, = 0x10200
-    mov r1, #0
-    str r0, [sp, #8]
-    ldr r0, = 0xD14
-    str r1, [sp, #0xc]
-    add r2, #0x79
-    ldr r2, [r5, r2]
-    add r0, r5, r0
-    bl Text_AddPrinterWithParamsAndColor
- _02233DC8:
-    mov r3, #2
-    str r3, [sp]
-    mov r0, #0x57
-    ldr r1, = 0xB08
-    str r7, [sp, #4]
-    lsl r0, r0, #2
-    ldr r0, [r5, r0]
-    add r1, r5, r1
-    mov r2, #6
-    bl ov65_0222EA38
-    ldr r0, [sp, #0x10]
-    add r0, #0x21
-    str r0, [sp, #0x10]
-    ldrb r0, [r0]
-    cmp r0, #0
-    beq _02233DEE
-    mov r1, #8
-    b _02233DF0
- _02233DEE:
-    mov r1, #1
- _02233DF0:
-    mov r0, #2
-    str r0, [sp]
-    str r1, [sp, #4]
-    mov r0, #0
-    str r0, [sp, #8]
-    mov r0, #0x57
-    lsl r0, r0, #2
-    ldr r1, = 0xB08
-    ldr r0, [r5, r0]
-    add r1, r5, r1
-    mov r2, #6
-    mov r3, #0x1c
-    bl ov65_0222E9C0
-    add sp, #0x18
-    pop {r3, r4, r5, r6, r7, pc}
+    int v0 = param0->unk_BE0.unk_71 - 1;
+    TextColor color;
+
+    if (sub_0202AD2C(param0->unk_00, v0, 8) == 0) {
+        color = TEXT_COLOR(5, 6, 0);
+    } else {
+        color = TEXT_COLOR(3, 4, 0);
+    }
+
+    ov65_02234F68(param0, v0);
+    MessageLoader_GetStrbuf(param0->unk_168, 42, param0->unk_170);
+    StringTemplate_Format(param0->unk_BE0.unk_00, param0->unk_178, param0->unk_170);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_MESSAGE, param0->unk_178, 32, 8, TEXT_SPEED_NO_TRANSFER, color, NULL);
+
+    UnkStruct_0207E060 *v2 = ov65_02234FA8(param0, v0);
+    u32 v3 = ov65_0222DD20(param0, v2);
+    MessageLoader_GetStrbuf(param0->unk_168, ov65_0223484C(v3, &color), param0->unk_170);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_170, 104, 8, TEXT_SPEED_NO_TRANSFER, color, NULL);
+
+    TrainerInfo *trainerInfo = TrainerInfo_New(HEAP_ID_54);
+    TrainerInfo_SetName(trainerInfo, sub_0202AF34(param0->unk_00, v0));
+    StringTemplate_SetPlayerName(param0->unk_BE0.unk_00, 0, trainerInfo);
+    Heap_Free(trainerInfo);
+    MessageLoader_GetStrbuf(param0->unk_168, 43, param0->unk_178);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, 8, 32, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+
+    MessageLoader_GetStrbuf(param0->unk_168, 150, param0->unk_170);
+    StringTemplate_Format(param0->unk_BE0.unk_00, param0->unk_178, param0->unk_170);
+    u32 xOffset = 232 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_178, 0);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, xOffset, 32, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+
+    MessageLoader_GetStrbuf(param0->unk_168, 44, param0->unk_178);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, 8, 56, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+
+    StringTemplate_SetNumber(param0->unk_BE0.unk_00, 0, sub_0202AD2C(param0->unk_00, v0, 1), 4, PADDING_MODE_SPACES, CHARSET_MODE_EN);
+    MessageLoader_GetStrbuf(param0->unk_168, 45, param0->unk_170);
+    StringTemplate_Format(param0->unk_BE0.unk_00, param0->unk_178, param0->unk_170);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, 120, 56, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+
+    StringTemplate_SetNumber(param0->unk_BE0.unk_00, 0, sub_0202AD2C(param0->unk_00, v0, 2), 4, PADDING_MODE_SPACES, CHARSET_MODE_EN);
+    MessageLoader_GetStrbuf(param0->unk_168, 46, param0->unk_170);
+    StringTemplate_Format(param0->unk_BE0.unk_00, param0->unk_178, param0->unk_170);
+    xOffset = 232 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_178, 0);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, xOffset, 56, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+
+    MessageLoader_GetStrbuf(param0->unk_168, 47, param0->unk_178);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, 8, 80, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+
+    StringTemplate_SetNumber(param0->unk_BE0.unk_00, 0, sub_0202AD2C(param0->unk_00, v0, 3), 4, PADDING_MODE_SPACES, CHARSET_MODE_EN);
+    MessageLoader_GetStrbuf(param0->unk_168, 48, param0->unk_170);
+    StringTemplate_Format(param0->unk_BE0.unk_00, param0->unk_178, param0->unk_170);
+    xOffset = 232 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_178, 0);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, xOffset, 80, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+
+    if (ov65_0222DCF8(param0) == TRUE) {
+        MessageLoader_GetStrbuf(param0->unk_168, 49, param0->unk_178);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, 8, 104, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+
+        StringTemplate_SetNumber(param0->unk_BE0.unk_00, 0, sub_0202AD2C(param0->unk_00, v0, 9), 4, PADDING_MODE_SPACES, CHARSET_MODE_EN);
+        MessageLoader_GetStrbuf(param0->unk_168, 50, param0->unk_170);
+        StringTemplate_Format(param0->unk_BE0.unk_00, param0->unk_178, param0->unk_170);
+        xOffset = 232 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_178, 0);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, xOffset, 104, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    }
+
+    MessageLoader_GetStrbuf(param0->unk_168, 51, param0->unk_178);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, 8, 128, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+
+    u32 v4 = sub_0202AD2C(param0->unk_00, v0, 6);
+    if (v4 != 0) {
+        StringTemplate_SetNumber(param0->unk_BE0.unk_00, 2, v4, 2, PADDING_MODE_NONE, CHARSET_MODE_EN);
+        StringTemplate_SetNumber(param0->unk_BE0.unk_00, 0, sub_0202AD2C(param0->unk_00, v0, 4), 4, PADDING_MODE_NONE, CHARSET_MODE_EN);
+        StringTemplate_SetMonthName(param0->unk_BE0.unk_00, 1, sub_0202AD2C(param0->unk_00, v0, 5));
+        MessageLoader_GetStrbuf(param0->unk_168, 74, param0->unk_170);
+        StringTemplate_Format(param0->unk_BE0.unk_00, param0->unk_178, param0->unk_170);
+        xOffset = 232 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_178, 0);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, xOffset, 128, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    }
+
+    ov65_0222EA38(param0->unk_15C, &param0->unk_BD0, 6, 2, 2, v3);
+
+    int v5;
+    
+    if (v2->unk_21) {
+        v5 = 8;
+    } else {
+        v5 = 1;
+    }
+
+    ov65_0222E9C0(param0->unk_15C, &param0->unk_BD0, 6, 28, 2, v5, 0);
 }
-// clang-format on
 
 static void ov65_02233E20(UnkStruct_ov65_0222EBE0 *param0, u32 param1)
 {
@@ -5944,293 +5430,50 @@ static void ov65_02233E20(UnkStruct_ov65_0222EBE0 *param0, u32 param1)
     }
 }
 
-// clang-format off
-asm static void ov65_02233EF0 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
-{
-    push {r3, r4, r5, lr}
-    sub sp, #0x10
-    add r5, r0, #0
-    ldr r0, = 0xB89
-    mov r2, #0x5a
-    ldrb r0, [r5, r0]
-    lsl r2, r2, #2
-    mov r1, #0x35
-    sub r4, r0, #1
-    ldr r0, [r5, r2]
-    add r2, #0x10
-    ldr r2, [r5, r2]
-    bl MessageLoader_GetStrbuf
-    mov r1, #0
-    str r1, [sp]
-    mov r2, #0xff
-    str r2, [sp, #4]
-    ldr r0, = 0xF0E00
-    add r2, #0x79
-    str r0, [sp, #8]
-    str r1, [sp, #0xc]
-    ldr r0, = 0xD14
-    ldr r2, [r5, r2]
-    add r0, r5, r0
-    mov r3, #8
-    bl Text_AddPrinterWithParamsAndColor
-    mov r2, #0x5a
-    lsl r2, r2, #2
-    ldr r0, [r5, r2]
-    add r2, #0x10
-    ldr r2, [r5, r2]
-    mov r1, #0x3c
-    bl MessageLoader_GetStrbuf
-    mov r0, #0x18
-    str r0, [sp]
-    mov r2, #0xff
-    str r2, [sp, #4]
-    ldr r0, = 0x10200
-    mov r1, #0
-    str r0, [sp, #8]
-    ldr r0, = 0xD14
-    str r1, [sp, #0xc]
-    add r2, #0x79
-    ldr r2, [r5, r2]
-    add r0, r5, r0
-    mov r3, #8
-    bl Text_AddPrinterWithParamsAndColor
-    mov r2, #0x5a
-    lsl r2, r2, #2
-    ldr r0, [r5, r2]
-    add r2, #0x10
-    ldr r2, [r5, r2]
-    mov r1, #0x3e
-    bl MessageLoader_GetStrbuf
-    mov r1, #0x5e
-    lsl r1, r1, #2
-    mov r0, #0
-    ldr r1, [r5, r1]
-    add r2, r0, #0
-    bl Font_CalcStrbufWidth
-    mov r1, #0xe8
-    sub r3, r1, r0
-    mov r0, #0x18
-    str r0, [sp]
-    mov r2, #0xff
-    str r2, [sp, #4]
-    ldr r0, = 0x10200
-    mov r1, #0
-    str r0, [sp, #8]
-    ldr r0, = 0xD14
-    str r1, [sp, #0xc]
-    add r2, #0x79
-    ldr r2, [r5, r2]
-    add r0, r5, r0
-    bl Text_AddPrinterWithParamsAndColor
-    mov r1, #0x5e
-    lsl r1, r1, #2
-    ldr r1, [r5, r1]
-    add r0, r5, #0
-    mov r2, #1
-    add r3, r4, #0
-    bl ov65_022346C4
-    mov r0, #0x30
-    str r0, [sp]
-    mov r2, #0xff
-    str r2, [sp, #4]
-    ldr r0, = 0x10200
-    mov r1, #0
-    str r0, [sp, #8]
-    ldr r0, = 0xD14
-    str r1, [sp, #0xc]
-    add r2, #0x79
-    ldr r2, [r5, r2]
-    add r0, r5, r0
-    mov r3, #8
-    bl Text_AddPrinterWithParamsAndColor
-    mov r0, #0x68
-    str r0, [sp]
-    mov r0, #0x30
-    str r0, [sp, #4]
-    add r0, r5, #0
-    mov r1, #0x41
-    mov r2, #0x73
-    add r3, r4, #0
-    bl ov65_02234694
-    mov r0, #0xd4
-    str r0, [sp]
-    mov r0, #0x30
-    str r0, [sp, #4]
-    add r0, r5, #0
-    mov r1, #0x42
-    mov r2, #0x75
-    add r3, r4, #0
-    bl ov65_02234694
-    mov r2, #0x5a
-    lsl r2, r2, #2
-    ldr r0, [r5, r2]
-    add r2, #0x10
-    ldr r2, [r5, r2]
-    mov r1, #0x3b
-    bl MessageLoader_GetStrbuf
-    mov r0, #0x40
-    str r0, [sp]
-    mov r2, #0xff
-    str r2, [sp, #4]
-    ldr r0, = 0x10200
-    mov r1, #0
-    str r0, [sp, #8]
-    ldr r0, = 0xD14
-    str r1, [sp, #0xc]
-    add r2, #0x79
-    ldr r2, [r5, r2]
-    add r0, r5, r0
-    mov r3, #8
-    bl Text_AddPrinterWithParamsAndColor
-    mov r0, #0x68
-    str r0, [sp]
-    mov r0, #0x40
-    str r0, [sp, #4]
-    add r0, r5, #0
-    mov r1, #0x41
-    mov r2, #0x72
-    add r3, r4, #0
-    bl ov65_02234694
-    mov r0, #0xd4
-    str r0, [sp]
-    mov r0, #0x40
-    str r0, [sp, #4]
-    add r0, r5, #0
-    mov r1, #0x42
-    mov r2, #0x74
-    add r3, r4, #0
-    bl ov65_02234694
-    mov r2, #0x5a
-    lsl r2, r2, #2
-    ldr r0, [r5, r2]
-    add r2, #0x10
-    ldr r2, [r5, r2]
-    mov r1, #0x3d
-    bl MessageLoader_GetStrbuf
-    mov r0, #0x58
-    str r0, [sp]
-    mov r2, #0xff
-    str r2, [sp, #4]
-    ldr r0, = 0x10200
-    mov r1, #0
-    str r0, [sp, #8]
-    ldr r0, = 0xD14
-    str r1, [sp, #0xc]
-    add r2, #0x79
-    ldr r2, [r5, r2]
-    add r0, r5, r0
-    mov r3, #8
-    bl Text_AddPrinterWithParamsAndColor
-    mov r2, #0x5a
-    lsl r2, r2, #2
-    ldr r0, [r5, r2]
-    add r2, #0x10
-    ldr r2, [r5, r2]
-    mov r1, #0x3e
-    bl MessageLoader_GetStrbuf
-    mov r1, #0x5e
-    lsl r1, r1, #2
-    mov r0, #0
-    ldr r1, [r5, r1]
-    add r2, r0, #0
-    bl Font_CalcStrbufWidth
-    mov r1, #0xe8
-    sub r3, r1, r0
-    mov r0, #0x58
-    str r0, [sp]
-    mov r2, #0xff
-    str r2, [sp, #4]
-    ldr r0, = 0x10200
-    mov r1, #0
-    str r0, [sp, #8]
-    ldr r0, = 0xD14
-    str r1, [sp, #0xc]
-    add r2, #0x79
-    ldr r2, [r5, r2]
-    add r0, r5, r0
-    bl Text_AddPrinterWithParamsAndColor
-    mov r1, #0x5e
-    lsl r1, r1, #2
-    ldr r1, [r5, r1]
-    add r0, r5, #0
-    mov r2, #2
-    add r3, r4, #0
-    bl ov65_022346C4
-    mov r0, #0x70
-    str r0, [sp]
-    mov r2, #0xff
-    str r2, [sp, #4]
-    ldr r0, = 0x10200
-              mov r1, #0
-    str r0, [sp, #8]
-    ldr r0, = 0xD14
-              str r1, [sp, #0xc]
-    add r2, #0x79
-    ldr r2, [r5, r2]
-    add r0, r5, r0
-    mov r3, #8
-    bl Text_AddPrinterWithParamsAndColor
-    mov r0, #0x68
-    str r0, [sp]
-    mov r0, #0x70
-    str r0, [sp, #4]
-    add r0, r5, #0
-    mov r1, #0x41
-    mov r2, #0x77
-    add r3, r4, #0
-    bl ov65_02234694
-    mov r0, #0xd4
-    str r0, [sp]
-    mov r0, #0x70
-    str r0, [sp, #4]
-    add r0, r5, #0
-    mov r1, #0x42
-    mov r2, #0x79
-    add r3, r4, #0
-    bl ov65_02234694
-    mov r2, #0x5a
-    lsl r2, r2, #2
-    ldr r0, [r5, r2]
-    add r2, #0x10
-    ldr r2, [r5, r2]
-    mov r1, #0x3b
-    bl MessageLoader_GetStrbuf
-    mov r0, #0x80
-    str r0, [sp]
-    mov r2, #0xff
-    str r2, [sp, #4]
-    ldr r0, = 0x10200
-    mov r1, #0
-    str r0, [sp, #8]
-    ldr r0, = 0xD14
-    str r1, [sp, #0xc]
-    add r2, #0x79
-    ldr r2, [r5, r2]
-    add r0, r5, r0
-    mov r3, #8
-    bl Text_AddPrinterWithParamsAndColor
-    mov r0, #0x68
-    str r0, [sp]
-    mov r0, #0x80
-    str r0, [sp, #4]
-    add r0, r5, #0
-    mov r1, #0x41
-    mov r2, #0x76
-    add r3, r4, #0
-    bl ov65_02234694
-    mov r0, #0xd4
-    str r0, [sp]
-    mov r0, #0x80
-    str r0, [sp, #4]
-    add r0, r5, #0
-    mov r1, #0x42
-    mov r2, #0x78
-    add r3, r4, #0
-    bl ov65_02234694
-    add sp, #0x10
-    pop {r3, r4, r5, pc}
+static void ov65_02233EF0(UnkStruct_ov65_0222EBE0 *param0, u32 param1) {
+    int v0 = param0->unk_BE0.unk_71 - 1;
+
+    MessageLoader_GetStrbuf(param0->unk_168, 53, param0->unk_178);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, 8, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+
+    MessageLoader_GetStrbuf(param0->unk_168, 60, param0->unk_178);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, 8, 24, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+
+    MessageLoader_GetStrbuf(param0->unk_168, 62, param0->unk_178);
+    u32 xOffset = 232 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_178, 0);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, xOffset, 24, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+
+    ov65_022346C4(param0, param0->unk_178, 1, v0);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, 8, 48, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+
+    ov65_02234694(param0, 65, 115, v0, 104, 48);
+    ov65_02234694(param0, 66, 117, v0, 212, 48);
+
+    MessageLoader_GetStrbuf(param0->unk_168, 59, param0->unk_178);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, 8, 64, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+
+    ov65_02234694(param0, 65, 114, v0, 104, 64);
+    ov65_02234694(param0, 66, 116, v0, 212, 64);
+
+    MessageLoader_GetStrbuf(param0->unk_168, 61, param0->unk_178);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, 8, 88, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+
+    MessageLoader_GetStrbuf(param0->unk_168, 62, param0->unk_178);
+    xOffset = 232 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_178, 0);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, xOffset, 88, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+
+    ov65_022346C4(param0, param0->unk_178, 2, v0);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, 8, 112, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+
+    ov65_02234694(param0, 65, 119, v0, 104, 112);
+    ov65_02234694(param0, 66, 121, v0, 212, 112);
+
+    MessageLoader_GetStrbuf(param0->unk_168, 59, param0->unk_178);
+    Text_AddPrinterWithParamsAndColor(&param0->unk_BE0.unk_1FC, FONT_SYSTEM, param0->unk_178, 8, 128, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+
+    ov65_02234694(param0, 65, 118, v0, 104, 128);
+    ov65_02234694(param0, 66, 120, v0, 212, 128);
 }
-// clang-format on
 
 static void ov65_0223416C(UnkStruct_ov65_0222EBE0 *param0, u32 param1)
 {
