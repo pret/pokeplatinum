@@ -33,6 +33,8 @@ argparser.add_argument('-p', '--private-dir',
 argparser.add_argument('-o', '--output-dir',
                        required=True,
                        help='Path to the output directory (where the NARC will be made)')
+argparser.add_argument('sinnoh_pokedex',
+                       help='List of pokemon in the Sinnoh Pokedex')
 argparser.add_argument('giratina_form',
                        help='String of either giratina_origin or giratina_altered')
 args = argparser.parse_args()
@@ -133,7 +135,7 @@ if errors:
     sys.exit(1)
 
 # sinnoh dex order
-with open(source_dir / 'sinnoh_pokedex.json') as data_file:
+with open(args.sinnoh_pokedex) as data_file:
     pokedex = json.load(data_file)
     for mon in pokedex:
         if mon not in ['SPECIES_EGG', 'SPECIES_BAD_EGG', 'SPECIES_NONE', 'SPECIES_ARCEUS']:

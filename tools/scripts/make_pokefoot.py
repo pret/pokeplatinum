@@ -5,8 +5,6 @@ import pathlib
 import os
 import subprocess
 
-from generated.species import Species
-
 SPECIES_DIRS = os.environ['SPECIES'].split(';')
 
 argparser = argparse.ArgumentParser(

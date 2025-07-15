@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/pokemon.h"
+#include "constants/species.h"
 
 #include "data/pokeicon_palettes.h"
 
