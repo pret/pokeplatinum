@@ -572,8 +572,8 @@ static BOOL ScrCmd_CheckBackdrop(ScriptContext *ctx);
 static BOOL ScrCmd_192(ScriptContext *ctx);
 static BOOL ScrCmd_194(ScriptContext *ctx);
 static BOOL ScrCmd_195(ScriptContext *ctx);
-static BOOL ScrCmd_1E8(ScriptContext *ctx);
-static BOOL ScrCmd_1E9(ScriptContext *ctx);
+static BOOL ScrCmd_CheckLocalDexCompleted(ScriptContext *ctx);
+static BOOL ScrCmd_CheckNationalDexCompleted(ScriptContext *ctx);
 static BOOL ScrCmd_1EA(ScriptContext *ctx);
 static BOOL ScrCmd_1EB(ScriptContext *ctx);
 static BOOL ScrCmd_AddTrophyGardenMon(ScriptContext *ctx);
@@ -1256,8 +1256,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_IncrementGameRecord,
     ScrCmd_1E6,
     ScrCmd_1E7,
-    ScrCmd_1E8,
-    ScrCmd_1E9,
+    ScrCmd_CheckLocalDexCompleted,
+    ScrCmd_CheckNationalDexCompleted,
     ScrCmd_1EA,
     ScrCmd_1EB,
     ScrCmd_AddTrophyGardenMon,
@@ -5991,29 +5991,29 @@ static BOOL ScrCmd_CheckBackdrop(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_1E8(ScriptContext *ctx)
+static BOOL ScrCmd_CheckLocalDexCompleted(ScriptContext *ctx)
 {
-    const Pokedex *v0 = SaveData_GetPokedex(ctx->fieldSystem->saveData);
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    const Pokedex *pokedex = SaveData_GetPokedex(ctx->fieldSystem->saveData);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = 0;
+    *destVar = FALSE;
 
-    if (Pokedex_LocalDexCompleted(v0) == TRUE) {
-        *v1 = 1;
+    if (Pokedex_LocalDexCompleted(pokedex) == TRUE) {
+        *destVar = TRUE;
     }
 
     return FALSE;
 }
 
-static BOOL ScrCmd_1E9(ScriptContext *ctx)
+static BOOL ScrCmd_CheckNationalDexCompleted(ScriptContext *ctx)
 {
-    const Pokedex *v0 = SaveData_GetPokedex(ctx->fieldSystem->saveData);
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    const Pokedex *pokedex = SaveData_GetPokedex(ctx->fieldSystem->saveData);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = 0;
+    *destVar = FALSE;
 
-    if (Pokedex_NationalDexCompleted(v0) == TRUE) {
-        *v1 = 1;
+    if (Pokedex_NationalDexCompleted(pokedex) == TRUE) {
+        *destVar = TRUE;
     }
 
     return FALSE;

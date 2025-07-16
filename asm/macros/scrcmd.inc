@@ -2732,14 +2732,14 @@
     .byte \arg3
     .endm
 
-    .macro ScrCmd_1E8 arg0
+    .macro CheckLocalDexCompleted destVar
     .short 488
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_1E9 arg0
+    .macro CheckNationalDexCompleted destVar
     .short 489
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro ScrCmd_1EA
