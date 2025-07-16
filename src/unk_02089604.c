@@ -293,457 +293,181 @@ BOOL sub_02089BEC(UnkStruct_02089688 *param0)
     return v0;
 }
 
-const int Unk_020F2EC8[][5] = {
-    { 0, 1, 2, 3, 4 },
-    { 5, 6, 7, 8, 9 },
-    { 10, 10, 10, 11, 11 },
-};
-
-extern void _s32_div_f(void);
-
-// clang-format off
-asm void sub_02089C20 (UnkStruct_02089688 * param0)
+void sub_02089C20(UnkStruct_02089688 *param0)
 {
-    push {r3, r4, r5, r6, r7, lr}
-    sub sp, #0x40
-    ldr r5, = Unk_020F2EC8
-              add r4, r0, #0
-    add r3, sp, #4
-    mov r2, #7
- _02089C2C:
-    ldmia r5 !, {r0, r1}
-    stmia r3 !, {r0, r1}
-    sub r2, r2, #1
-    bne _02089C2C
-    ldr r0, [r5, #0]
-    mov r1, #0x14
-    str r0, [r3]
-    mov r3, #0x91
-    lsl r3, r3, #2
-    add r0, r3, #2
-    ldrsh r0, [r4, r0]
-    ldrsh r7, [r4, r3]
-    mov r6, #0
-    mov ip, r0
-    mul r1, r0
-    add r0, sp, #4
-    lsl r2, r7, #2
-    add r0, r0, r1
-    ldr r5, [r2, r0]
-    add r0, r3, #0
-    add r0, #0x7c
-    ldr r0, [r4, r0]
-    cmp r0, #1
-    bne _02089C80
-    mov r2, #0xeb
-    lsl r2, r2, #2
-    ldr r0, [r4, r2]
-    cmp r0, #1
-    beq _02089C80
-    add r0, r2, #0
-    sub r0, #0x38
-    ldr r0, [r4, r0]
-    cmp r0, #1
-    bne _02089CBC
-    ldr r0, = gSystem
-              ldr r0, [r0, #0x48]
-    cmp r0, #0
-    beq _02089C80
-    bl TouchScreen_Touched
-    cmp r0, #0
-    beq _02089C82
- _02089C80:
-    b _02089F78
- _02089C82:
-    mov r0, #0xdd
-    add r1, r6, #0
-    lsl r0, r0, #2
-    str r1, [r4, r0]
-    add r0, r4, #0
-    add r1, r5, #0
-    bl sub_0208AB2C
-    sub r5, #0xa
-    cmp r5, #1
-    bhi _02089CAA
-    mov r0, #0x23
-    lsl r0, r0, #4
-    ldr r1, [r4, r0]
-    cmp r1, #2
-    beq _02089D8C
-    mov r1, #2
-    add sp, #0x40
-    str r1, [r4, r0]
-    pop {r3, r4, r5, r6, r7, pc}
- _02089CAA:
-    mov r0, #0x23
-    lsl r0, r0, #4
-    ldr r1, [r4, r0]
-    cmp r1, #1
-    beq _02089D8C
-    mov r1, #1
-    add sp, #0x40
-    str r1, [r4, r0]
-    pop {r3, r4, r5, r6, r7, pc}
- _02089CBC:
-    ldr r0, = gSystem
-              mov r1, #0x40
-    ldr r0, [r0, #0x4c]
-    tst r1, r0
-    beq _02089CDE
-    mov r0, ip
-    cmp r0, #0
-    ble _02089CD4
-    add r0, r3, #2
-    ldrsh r0, [r4, r0]
-    sub r1, r0, #1
-    b _02089CD6
- _02089CD4:
-    mov r1, #2
- _02089CD6:
-    add r0, r3, #2
-    strh r1, [r4, r0]
-    mov r6, #1
-    b _02089F2A
- _02089CDE:
-    mov r1, #0x80
-    tst r1, r0
-    beq _02089CFE
-    add r0, r3, #2
-    ldrsh r0, [r4, r0]
-    add r1, r0, #1
-    add r0, r3, #2
-    strh r1, [r4, r0]
-    ldrsh r0, [r4, r0]
-    mov r1, #3
-    bl _s32_div_f
-    ldr r0, = 0x246
-              mov r6, #1
-    strh r1, [r4, r0]
-    b _02089F2A
- _02089CFE:
-    mov r1, #0x10
-    tst r1, r0
-    beq _02089D2C
-    cmp r5, #0xa
-    bne _02089D0E
-    mov r0, #3
-    strh r0, [r4, r3]
-    b _02089D28
- _02089D0E:
-    cmp r5, #0xb
-    bne _02089D16
-    strh r6, [r4, r3]
-    b _02089D28
- _02089D16:
-    add r0, r7, #1
-    strh r0, [r4, r3]
-    ldrsh r0, [r4, r3]
-    mov r1, #5
-    bl _s32_div_f
-    mov r0, #0x91
-    lsl r0, r0, #2
-    strh r1, [r4, r0]
- _02089D28:
-    mov r6, #1
-    b _02089F2A
- _02089D2C:
-    mov r1, #0x20
-    tst r1, r0
-    beq _02089D56
-    cmp r5, #0xa
-    bne _02089D3C
-    mov r0, #3
-    strh r0, [r4, r3]
-    b _02089D52
- _02089D3C:
-    cmp r5, #0xb
-    bne _02089D44
-    strh r6, [r4, r3]
-    b _02089D52
- _02089D44:
-    cmp r7, #0
-    ble _02089D4E
-    sub r0, r7, #1
-    strh r0, [r4, r3]
-    b _02089D52
- _02089D4E:
-    mov r0, #4
-    strh r0, [r4, r3]
- _02089D52:
-    mov r6, #1
-    b _02089F2A
- _02089D56:
-    ldr r1, = gSystem
-              ldr r7, [r1, #0x48]
-    mov r1, #1
-    tst r1, r7
-    beq _02089E3C
-    cmp r5, #0xa
-    bne _02089D72
-    add r0, r4, #0
-    bl sub_02089FFC
-    ldr r0, = 0x5E5
-              bl Sound_PlayEffect
-              b _02089F2A
- _02089D72:
-              cmp r5, #0xb
-    bne _02089D84
-    add r0, r4, #0
-    bl sub_02089F80
-    ldr r0, = 0x5E2
-              bl Sound_PlayEffect
-              b _02089F2A
- _02089D84:
-              sub r2, #0xd8
-    ldr r0, [r4, r2]
-    cmp r0, #0
-    bne _02089D8E
- _02089D8C:
-    b _02089F78
- _02089D8E:
-    sub r3, #0x30
-    ldr r0, [r4, r3]
-    mov r1, #0x1c
-    add r7, r0, #0
-    str r0, [sp]
-    mul r7, r1
-    add r0, r5, #1
-    str r0, [r4, r7]
-    add r0, r4, #0
-    mov r1, #1
-    add r2, r6, #0
-    bl sub_0208AAB4
-    add r0, r4, #0
-    mov r1, #2
-    mov r2, #1
-    bl sub_0208AAB4
-    add r0, r4, #0
-    add r1, r5, #0
-    mov r2, #2
-    bl sub_0208AB6C
-    add r1, r4, r7
-    ldr r0, [r4, r7]
-    ldr r1, [r1, #8]
-    bl sub_0208AD98
-    add r1, r0, #0
-    add r0, r4, r7
-    ldr r0, [r0, #0xc]
-    bl ManagedSprite_SetAnim
-    mov r0, #0x96
-    lsl r0, r0, #2
-    ldr r0, [r4, r0]
-    mov r1, #3
-    bl ManagedSprite_SetAnim
-    add r0, r4, r7
-    ldr r3, [r0, #4]
-    ldr r0, [sp]
-    add r2, r0, #1
-    mov r0, #0x2d
-    lsl r0, r0, #4
-    ldr r1, [r4, r0]
-    cmp r2, r1
-    bne _02089E0E
-    add r1, r0, #0
-    mov r6, #1
-    add r1, #0xdc
-    str r6, [r4, r1]
-    add r1, r0, #0
-    mov r2, #0
-    add r1, #0xe0
-    str r2, [r4, r1]
-    add r1, r0, #0
-    mov r2, #3
-    sub r1, #0x8c
-    strh r2, [r4, r1]
-    mov r1, #2
-    sub r0, #0x8a
-    strh r1, [r4, r0]
-    b _02089F2A
- _02089E0E:
-    mov r1, #0x1c
-    mul r1, r2
-    add r1, r4, r1
-    ldr r1, [r1, #4]
-    cmp r3, r1
-    beq _02089E28
-    add r2, r0, #0
-    mov r3, #1
-    add r2, #0xdc
-    str r3, [r4, r2]
-    add r0, #0xe0
-    str r1, [r4, r0]
-    b _02089E34
- _02089E28:
-    add r1, r0, #0
-    mov r3, #2
-    add r1, #0xdc
-    str r3, [r4, r1]
-    add r0, #0xe0
-    str r2, [r4, r0]
- _02089E34:
-    ldr r0, = 0x5E5
-              bl Sound_PlayEffect
-              b _02089F2A
- _02089E3C:
-              mov r1, #2
-    add r5, r7, #0
-    tst r5, r1
-    beq _02089E52
-    add r0, r4, #0
-    bl sub_02089FFC
-    ldr r0, = 0x5E5
-              bl Sound_PlayEffect
-              b _02089F2A
- _02089E52:
-              lsl r5, r1, #8
-    tst r5, r0
-    beq _02089EB6
-    add r0, r3, #0
-    sub r0, #0x30
-    ldr r1, [r4, r0]
-    add r0, r2, #0
-    add r0, #0x44
-    ldr r0, [r4, r0]
-    cmp r1, r0
-    bne _02089E6E
-    sub r2, #0xdc
-    ldr r0, [r4, r2]
-    b _02089E74
- _02089E6E:
-    add r0, r3, #0
-    sub r0, #0x30
-    ldr r0, [r4, r0]
- _02089E74:
-    sub r0, r0, #1
-    sub r3, #0x30
-    str r0, [r4, r3]
-    mov r0, #0x85
-    lsl r0, r0, #2
-    ldr r0, [r4, r0]
-    mov r1, #0x1c
-    mul r1, r0
-    add r2, r4, r1
-    ldr r1, [r2, #8]
-    cmp r1, #1
-    bne _02089E9A
-    mov r1, #0xeb
-    mov r2, #2
-    lsl r1, r1, #2
-    str r2, [r4, r1]
-    add r1, r1, #4
-    str r0, [r4, r1]
-    b _02089EAC
- _02089E9A:
-    mov r1, #0xeb
-    lsl r1, r1, #2
-    mov r3, #1
-    str r3, [r4, r1]
-    add r0, r1, #4
-    ldr r2, [r2, #4]
-    add r1, #8
-    str r2, [r4, r0]
-    str r3, [r4, r1]
- _02089EAC:
-    mov r0, #0x5e
-    lsl r0, r0, #4
-    bl Sound_PlayEffect
-    b _02089F2A
- _02089EB6:
-    add r1, #0xfe
-    tst r0, r1
-    beq _02089F2A
-    add r1, r2, #0
-    add r0, r3, #0
-    sub r1, #0xdc
-    sub r0, #0x30
-    ldr r1, [r4, r1]
-    ldr r0, [r4, r0]
-    sub r1, r1, #1
-    cmp r0, r1
-    bne _02089ED4
-    add r2, #0x44
-    ldr r0, [r4, r2]
-    b _02089EDC
- _02089ED4:
-    add r0, r3, #0
-    sub r0, #0x30
-    ldr r0, [r4, r0]
-    add r0, r0, #1
- _02089EDC:
-    sub r3, #0x30
-    str r0, [r4, r3]
-    mov r0, #0x85
-    lsl r0, r0, #2
-    ldr r0, [r4, r0]
-    mov r1, #0x1c
-    mul r1, r0
-    add r2, r4, r1
-    ldr r1, [r2, #8]
-    cmp r1, #1
-    bne _02089F14
-    mov r1, #0xeb
-    mov r2, #2
-    lsl r1, r1, #2
-    str r2, [r4, r1]
-    add r1, r1, #4
-    str r0, [r4, r1]
-    b _02089F22
- _02089F14:
-    mov r0, #0xeb
-    mov r1, #1
-    lsl r0, r0, #2
-    str r1, [r4, r0]
-    ldr r1, [r2, #4]
-    add r0, r0, #4
-    str r1, [r4, r0]
- _02089F22:
-    mov r0, #0x5e
-    lsl r0, r0, #4
-    bl Sound_PlayEffect
- _02089F2A:
-    cmp r6, #1
-    bne _02089F78
-    mov r0, #0x5e
-    lsl r0, r0, #4
-    bl Sound_PlayEffect
-    ldr r1, = 0x246
-              mov r0, #0x14
-    ldrsh r2, [r4, r1]
-    sub r1, r1, #2
-    ldrsh r1, [r4, r1]
-    mul r0, r2
-    add r2, sp, #4
-    lsl r1, r1, #2
-    add r0, r2, r0
-    ldr r5, [r1, r0]
-    add r0, r4, #0
-    add r1, r5, #0
-    bl sub_0208AB2C
-    sub r5, #0xa
-    cmp r5, #1
-    bhi _02089F6A
-    mov r0, #0x23
-    lsl r0, r0, #4
-    ldr r1, [r4, r0]
-    cmp r1, #2
-    beq _02089F78
-    mov r1, #2
-    add sp, #0x40
-    str r1, [r4, r0]
-    pop {r3, r4, r5, r6, r7, pc}
- _02089F6A:
-    mov r0, #0x23
-    lsl r0, r0, #4
-    ldr r1, [r4, r0]
-    cmp r1, #1
-    beq _02089F78
-    mov r1, #1
-    str r1, [r4, r0]
- _02089F78:
-    add sp, #0x40
-    pop {r3, r4, r5, r6, r7, pc}
+    const int Unk_020F2EC8[][5] = {
+        { 0, 1, 2, 3, 4 },
+        { 5, 6, 7, 8, 9 },
+        { 10, 10, 10, 11, 11 },
+    };
+    BOOL v1 = FALSE;
+    int v2 = Unk_020F2EC8[param0->unk_214[1].unk_14.unk_02][param0->unk_214[1].unk_14.unk_00];
+
+    if (param0->unk_2C0 != 1 || param0->unk_3AC.unk_00 == 1) {
+        return;
+    }
+
+    if (param0->unk_2EC.unk_88 == TRUE) {
+        if (gSystem.pressedKeys && !TouchScreen_Touched()) {
+            param0->unk_2EC.unk_88 = FALSE;
+            sub_0208AB2C(param0, v2);
+            if (v2 == 10 || v2 == 11) {
+                if (param0->unk_214[1].unk_00 != 2) {
+                    param0->unk_214[1].unk_00 = 2;
+                }
+            } else {
+                if (param0->unk_214[1].unk_00 != 1) {
+                    param0->unk_214[1].unk_00 = 1;
+                }
+            }
+        }
+        return;
+    }
+
+    if (gSystem.pressedKeysRepeatable & PAD_KEY_UP) {
+        if (param0->unk_214[1].unk_14.unk_02 > 0) {
+            param0->unk_214[1].unk_14.unk_02--;
+        } else {
+            param0->unk_214[1].unk_14.unk_02 = 2;
+        }
+        v1 = TRUE;
+    } else if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
+        param0->unk_214[1].unk_14.unk_02++;
+        param0->unk_214[1].unk_14.unk_02 %= 3;
+        v1 = TRUE;
+    } else if (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT) {
+
+        if (v2 == 10) {
+            param0->unk_214[1].unk_14.unk_00 = 3;
+        } else if (v2 == 11) {
+            param0->unk_214[1].unk_14.unk_00 = 0;
+        } else {
+            param0->unk_214[1].unk_14.unk_00++;
+            param0->unk_214[1].unk_14.unk_00 %= 5;
+        }
+        v1 = TRUE;
+    } else if (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) {
+
+        if (v2 == 10) {
+            param0->unk_214[1].unk_14.unk_00 = 3;
+        } else if (v2 == 11) {
+            param0->unk_214[1].unk_14.unk_00 = 0;
+        } else {
+            if (param0->unk_214[1].unk_14.unk_00 > 0) {
+                param0->unk_214[1].unk_14.unk_00--;
+            } else {
+                param0->unk_214[1].unk_14.unk_00 = 4;
+            }
+        }
+        v1 = TRUE;
+    } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
+        int v3;
+        int v4;
+        int v5;
+
+        if (v2 == 10) {
+            sub_02089FFC(param0);
+
+            Sound_PlayEffect(1509);
+        } else if (v2 == 11) {
+            sub_02089F80(param0);
+
+            Sound_PlayEffect(1506);
+        } else {
+            if (param0->unk_2D4 == 0) {
+                return;
+            }
+
+            v3 = param0->unk_214[0].unk_00;
+            param0->unk_00[v3].unk_00 = v2 + 1;
+            sub_0208AAB4(param0, 1, FALSE);
+            sub_0208AAB4(param0, 2, TRUE);
+            sub_0208AB6C(param0, v2, 2);
+            ManagedSprite_SetAnim(param0->unk_00[v3].unk_0C, sub_0208AD98(param0->unk_00[v3].unk_00, param0->unk_00[v3].unk_08));
+            ManagedSprite_SetAnim(param0->unk_214[2].unk_0C, 3);
+
+            v4 = param0->unk_00[v3].unk_04;
+            v3++;
+            if (v3 == param0->unk_2D0) {
+
+                param0->unk_3AC.unk_00 = 1;
+                param0->unk_3AC.unk_04 = 0;
+                param0->unk_214[1].unk_14.unk_00 = 3;
+                param0->unk_214[1].unk_14.unk_02 = 2;
+                v1 = TRUE;
+            } else {
+                v5 = param0->unk_00[v3].unk_04;
+
+                if (v4 != v5) {
+
+                    param0->unk_3AC.unk_00 = 1;
+                    param0->unk_3AC.unk_04 = v5;
+                } else {
+                    param0->unk_3AC.unk_00 = 2;
+                    param0->unk_3AC.unk_04 = v3;
+                }
+                Sound_PlayEffect(1509);
+            }
+        }
+    } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
+        sub_02089FFC(param0);
+        Sound_PlayEffect(1509);
+    } else if (gSystem.pressedKeysRepeatable & PAD_BUTTON_L) {
+        int v6 = param0->unk_214[0].unk_00;
+
+        if (v6 == param0->unk_3F0) {
+            param0->unk_214[0].unk_00 = param0->unk_2D0 - 1;
+        } else {
+            param0->unk_214[0].unk_00--;
+        }
+        v6 = param0->unk_214[0].unk_00;
+
+        if (param0->unk_00[v6].unk_08 == 1) {
+            param0->unk_3AC.unk_00 = 2;
+            param0->unk_3AC.unk_04 = v6;
+        } else {
+            param0->unk_3AC.unk_00 = 1;
+            param0->unk_3AC.unk_04 = param0->unk_00[v6].unk_04;
+            param0->unk_3AC.unk_08 = 1;
+        }
+        Sound_PlayEffect(1504);
+    } else if (gSystem.pressedKeysRepeatable & PAD_BUTTON_R) {
+        int v7 = param0->unk_214[0].unk_00;
+
+        if (v7 == param0->unk_2D0 - 1) {
+            param0->unk_214[0].unk_00 = param0->unk_3F0;
+        } else {
+            param0->unk_214[0].unk_00++;
+        }
+        v7 = param0->unk_214[0].unk_00;
+
+        if (param0->unk_00[v7].unk_08 == 1) {
+            param0->unk_3AC.unk_00 = 2;
+            param0->unk_3AC.unk_04 = v7;
+        } else {
+            param0->unk_3AC.unk_00 = 1;
+            param0->unk_3AC.unk_04 = param0->unk_00[v7].unk_04;
+        }
+        Sound_PlayEffect(1504);
+    }
+
+    if (v1 == TRUE) {
+        Sound_PlayEffect(1504);
+
+        v2 = Unk_020F2EC8[param0->unk_214[1].unk_14.unk_02][param0->unk_214[1].unk_14.unk_00];
+        sub_0208AB2C(param0, v2);
+
+        if (v2 == 10 || v2 == 11) {
+            if (param0->unk_214[1].unk_00 != 2) {
+                param0->unk_214[1].unk_00 = 2;
+            }
+        } else {
+            if (param0->unk_214[1].unk_00 != 1) {
+                param0->unk_214[1].unk_00 = 1;
+            }
+        }
+    }
 }
-// clang-format on
 
 void sub_02089F80(UnkStruct_02089688 *param0)
 {
