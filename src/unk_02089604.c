@@ -293,12 +293,12 @@ BOOL sub_02089BEC(UnkStruct_02089688 *param0)
     return v0;
 }
 
-void sub_02089C20(UnkStruct_02089688 * param0)
+void sub_02089C20(UnkStruct_02089688 *param0)
 {
     const int Unk_020F2EC8[][5] = {
-        {0, 1, 2, 3, 4},
-        {5, 6, 7, 8, 9},
-        {10,10,10,11,11},
+        { 0, 1, 2, 3, 4 },
+        { 5, 6, 7, 8, 9 },
+        { 10, 10, 10, 11, 11 },
     };
     BOOL v1 = FALSE;
     int v2 = Unk_020F2EC8[param0->unk_214[1].unk_14.unk_02][param0->unk_214[1].unk_14.unk_00];
@@ -311,12 +311,11 @@ void sub_02089C20(UnkStruct_02089688 * param0)
         if (gSystem.pressedKeys && !TouchScreen_Touched()) {
             param0->unk_2EC.unk_88 = FALSE;
             sub_0208AB2C(param0, v2);
-            if (v2 == 10 || v2 == 11){
+            if (v2 == 10 || v2 == 11) {
                 if (param0->unk_214[1].unk_00 != 2) {
                     param0->unk_214[1].unk_00 = 2;
                 }
-            }
-            else {
+            } else {
                 if (param0->unk_214[1].unk_00 != 1) {
                     param0->unk_214[1].unk_00 = 1;
                 }
@@ -328,50 +327,40 @@ void sub_02089C20(UnkStruct_02089688 * param0)
     if (gSystem.pressedKeysRepeatable & PAD_KEY_UP) {
         if (param0->unk_214[1].unk_14.unk_02 > 0) {
             param0->unk_214[1].unk_14.unk_02--;
-        }
-        else {
+        } else {
             param0->unk_214[1].unk_14.unk_02 = 2;
         }
         v1 = TRUE;
-    }
-    else if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
+    } else if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
         param0->unk_214[1].unk_14.unk_02++;
         param0->unk_214[1].unk_14.unk_02 %= 3;
         v1 = TRUE;
-    }
-    else if (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT) {
-        
+    } else if (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT) {
+
         if (v2 == 10) {
             param0->unk_214[1].unk_14.unk_00 = 3;
-        }
-        else if (v2 == 11) {
-            param0->unk_214[1].unk_14.unk_00 = 0;            
-        }
-        else {                
+        } else if (v2 == 11) {
+            param0->unk_214[1].unk_14.unk_00 = 0;
+        } else {
             param0->unk_214[1].unk_14.unk_00++;
             param0->unk_214[1].unk_14.unk_00 %= 5;
         }
         v1 = TRUE;
-    }
-    else if (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) {
-        
-        if (v2 == 10){
+    } else if (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) {
+
+        if (v2 == 10) {
             param0->unk_214[1].unk_14.unk_00 = 3;
-        }
-        else if (v2 == 11){
-            param0->unk_214[1].unk_14.unk_00 = 0;            
-        }
-        else {                
+        } else if (v2 == 11) {
+            param0->unk_214[1].unk_14.unk_00 = 0;
+        } else {
             if (param0->unk_214[1].unk_14.unk_00 > 0) {
                 param0->unk_214[1].unk_14.unk_00--;
-            }
-            else {
+            } else {
                 param0->unk_214[1].unk_14.unk_00 = 4;
             }
         }
         v1 = TRUE;
-    }
-    else if (gSystem.pressedKeys & PAD_BUTTON_A) {
+    } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
         int v3;
         int v4;
         int v5;
@@ -380,17 +369,16 @@ void sub_02089C20(UnkStruct_02089688 * param0)
             sub_02089FFC(param0);
 
             Sound_PlayEffect(1509);
-        }        
-        else if (v2 == 11) {
-            sub_02089F80(param0);    
+        } else if (v2 == 11) {
+            sub_02089F80(param0);
 
-            Sound_PlayEffect(1506);                
-        }
-        else {
-            if (param0->unk_2D4 == 0)
+            Sound_PlayEffect(1506);
+        } else {
+            if (param0->unk_2D4 == 0) {
                 return;
+            }
 
-            v3 = param0->unk_214[0].unk_00;                
+            v3 = param0->unk_214[0].unk_00;
             param0->unk_00[v3].unk_00 = v2 + 1;
             sub_0208AAB4(param0, 1, FALSE);
             sub_0208AAB4(param0, 2, TRUE);
@@ -401,71 +389,62 @@ void sub_02089C20(UnkStruct_02089688 * param0)
             v4 = param0->unk_00[v3].unk_04;
             v3++;
             if (v3 == param0->unk_2D0) {
-                                    
-                param0->unk_3AC.unk_00     = 1;
-                param0->unk_3AC.unk_04 = 0;                
+
+                param0->unk_3AC.unk_00 = 1;
+                param0->unk_3AC.unk_04 = 0;
                 param0->unk_214[1].unk_14.unk_00 = 3;
                 param0->unk_214[1].unk_14.unk_02 = 2;
                 v1 = TRUE;
-            }
-            else {                    
+            } else {
                 v5 = param0->unk_00[v3].unk_04;
-                
+
                 if (v4 != v5) {
-                    
+
                     param0->unk_3AC.unk_00 = 1;
                     param0->unk_3AC.unk_04 = v5;
-                }
-                else {
+                } else {
                     param0->unk_3AC.unk_00 = 2;
                     param0->unk_3AC.unk_04 = v3;
                 }
                 Sound_PlayEffect(1509);
             }
         }
-    }
-    else if (gSystem.pressedKeys & PAD_BUTTON_B) {
+    } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
         sub_02089FFC(param0);
         Sound_PlayEffect(1509);
-    }
-    else if (gSystem.pressedKeysRepeatable & PAD_BUTTON_L) {
+    } else if (gSystem.pressedKeysRepeatable & PAD_BUTTON_L) {
         int v6 = param0->unk_214[0].unk_00;
-        
+
         if (v6 == param0->unk_3F0) {
             param0->unk_214[0].unk_00 = param0->unk_2D0 - 1;
-        }
-        else {
+        } else {
             param0->unk_214[0].unk_00--;
         }
         v6 = param0->unk_214[0].unk_00;
-        
+
         if (param0->unk_00[v6].unk_08 == 1) {
             param0->unk_3AC.unk_00 = 2;
             param0->unk_3AC.unk_04 = v6;
-        }
-        else {
+        } else {
             param0->unk_3AC.unk_00 = 1;
             param0->unk_3AC.unk_04 = param0->unk_00[v6].unk_04;
             param0->unk_3AC.unk_08 = 1;
         }
         Sound_PlayEffect(1504);
-    }
-    else if (gSystem.pressedKeysRepeatable & PAD_BUTTON_R) {
+    } else if (gSystem.pressedKeysRepeatable & PAD_BUTTON_R) {
         int v7 = param0->unk_214[0].unk_00;
-        
-        if (v7 == param0->unk_2D0 - 1){
+
+        if (v7 == param0->unk_2D0 - 1) {
             param0->unk_214[0].unk_00 = param0->unk_3F0;
-        }
-        else {
+        } else {
             param0->unk_214[0].unk_00++;
         }
         v7 = param0->unk_214[0].unk_00;
-        
+
         if (param0->unk_00[v7].unk_08 == 1) {
             param0->unk_3AC.unk_00 = 2;
             param0->unk_3AC.unk_04 = v7;
-        }
-        else {
+        } else {
             param0->unk_3AC.unk_00 = 1;
             param0->unk_3AC.unk_04 = param0->unk_00[v7].unk_04;
         }
@@ -477,13 +456,12 @@ void sub_02089C20(UnkStruct_02089688 * param0)
 
         v2 = Unk_020F2EC8[param0->unk_214[1].unk_14.unk_02][param0->unk_214[1].unk_14.unk_00];
         sub_0208AB2C(param0, v2);
-        
+
         if (v2 == 10 || v2 == 11) {
             if (param0->unk_214[1].unk_00 != 2) {
                 param0->unk_214[1].unk_00 = 2;
             }
-        }
-        else {
+        } else {
             if (param0->unk_214[1].unk_00 != 1) {
                 param0->unk_214[1].unk_00 = 1;
             }
