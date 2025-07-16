@@ -31,6 +31,7 @@
     "safari_flee_rate": 120,
     "body_color": "MON_COLOR_GREEN",
     "flip_sprite": false,
+    "icon_palette": 1,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_THIEF" ],
@@ -121,6 +122,14 @@
             "MOVE_KNOCK_OFF",
             "MOVE_SUCKER_PUNCH",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_DISABLE",
+            "MOVE_MAGIC_COAT",
+            "MOVE_TRICK",
+            "MOVE_FAKE_OUT",
+            "MOVE_NASTY_PLOT",
+            "MOVE_DIZZY_PUNCH"
         ]
     },
     "evolutions": [  ],

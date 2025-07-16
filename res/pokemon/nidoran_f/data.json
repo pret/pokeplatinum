@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BLUE",
     "flip_sprite": false,
+    "icon_palette": 2,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_GROWL" ],
@@ -87,6 +88,16 @@
             "MOVE_MUD_SLAP",
             "MOVE_SNORE",
             "MOVE_HELPING_HAND"
+        ],
+        "egg_moves": [
+            "MOVE_SUPERSONIC",
+            "MOVE_DISABLE",
+            "MOVE_TAKE_DOWN",
+            "MOVE_FOCUS_ENERGY",
+            "MOVE_CHARM",
+            "MOVE_COUNTER",
+            "MOVE_BEAT_UP",
+            "MOVE_PURSUIT"
         ]
     },
     "evolutions": [

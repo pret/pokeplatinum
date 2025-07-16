@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_RED",
     "flip_sprite": false,
+    "icon_palette": 2,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_MUD_SPORT" ],
@@ -96,6 +97,17 @@
             "MOVE_ANCIENT_POWER",
             "MOVE_IRON_DEFENSE",
             "MOVE_KNOCK_OFF"
+        ],
+        "egg_moves": [
+            "MOVE_DIG",
+            "MOVE_HAZE",
+            "MOVE_AMNESIA",
+            "MOVE_FLAIL",
+            "MOVE_SLAM",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWORDS_DANCE",
+            "MOVE_TICKLE",
+            "MOVE_ANCIENT_POWER"
         ]
     },
     "evolutions": [

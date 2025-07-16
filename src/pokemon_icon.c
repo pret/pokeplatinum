@@ -6,9 +6,9 @@
 #include "constants/pokemon.h"
 #include "constants/species.h"
 
-#include "data/pokeicon_palettes.h"
-
 #include "pokemon.h"
+
+#include "res/pokemon/species_icon_palettes.h"
 
 enum PokeIconSharedResourceIndex {
     POKEICON_SHARED_PALETTES = 0,

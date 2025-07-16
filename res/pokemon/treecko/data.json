@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_GREEN",
     "flip_sprite": false,
+    "icon_palette": 1,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_POUND" ],
@@ -94,6 +95,20 @@
             "MOVE_SYNTHESIS",
             "MOVE_SEED_BOMB",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_CRUNCH",
+            "MOVE_MUD_SPORT",
+            "MOVE_ENDEAVOR",
+            "MOVE_LEECH_SEED",
+            "MOVE_DRAGON_BREATH",
+            "MOVE_CRUSH_CLAW",
+            "MOVE_WORRY_SEED",
+            "MOVE_DOUBLE_KICK",
+            "MOVE_GRASS_WHISTLE",
+            "MOVE_SYNTHESIS",
+            "MOVE_MAGICAL_LEAF",
+            "MOVE_LEAF_STORM"
         ]
     },
     "evolutions": [

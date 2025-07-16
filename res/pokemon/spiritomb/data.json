@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PURPLE",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_CURSE" ],
@@ -94,6 +95,14 @@
             "MOVE_TRICK",
             "MOVE_SUCKER_PUNCH",
             "MOVE_UPROAR"
+        ],
+        "egg_moves": [
+            "MOVE_DESTINY_BOND",
+            "MOVE_PAIN_SPLIT",
+            "MOVE_SMOKE_SCREEN",
+            "MOVE_IMPRISON",
+            "MOVE_GRUDGE",
+            "MOVE_SHADOW_SNEAK"
         ]
     },
     "evolutions": [  ],

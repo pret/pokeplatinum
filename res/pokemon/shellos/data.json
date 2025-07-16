@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PURPLE",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_MUD_SLAP" ],
@@ -76,6 +77,18 @@
             "MOVE_SNORE",
             "MOVE_ANCIENT_POWER",
             "MOVE_EARTH_POWER"
+        ],
+        "egg_moves": [
+            "MOVE_COUNTER",
+            "MOVE_MIRROR_COAT",
+            "MOVE_STOCKPILE",
+            "MOVE_SWALLOW",
+            "MOVE_SPIT_UP",
+            "MOVE_YAWN",
+            "MOVE_MEMENTO",
+            "MOVE_CURSE",
+            "MOVE_AMNESIA",
+            "MOVE_FISSURE"
         ]
     },
     "evolutions": [
