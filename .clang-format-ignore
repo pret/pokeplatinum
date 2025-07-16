@@ -1,6 +1,3 @@
-# These files still contain inline-ASM functions; ignore them for formatting for now
-src/overlay064/ov64_0222DCE0.c
-
 # Do not format any .s or .inc file
 *.s
 *.inc
