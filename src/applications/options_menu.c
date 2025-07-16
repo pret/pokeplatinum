@@ -449,7 +449,6 @@ static void SetupBgs(OptionsMenuData *menuData)
             .bgExtPltt = GX_BG_EXTPLTT_01,
             .priority = 1,
             .areaOver = 0,
-            .dummy = 0,
             .mosaic = FALSE,
         },
         {
@@ -464,7 +463,6 @@ static void SetupBgs(OptionsMenuData *menuData)
             .bgExtPltt = GX_BG_EXTPLTT_01,
             .priority = 2,
             .areaOver = 0,
-            .dummy = 0,
             .mosaic = FALSE,
         },
         {
@@ -479,7 +477,6 @@ static void SetupBgs(OptionsMenuData *menuData)
             .bgExtPltt = GX_BG_EXTPLTT_01,
             .priority = 3,
             .areaOver = 0,
-            .dummy = 0,
             .mosaic = FALSE,
         },
         {
@@ -494,7 +491,6 @@ static void SetupBgs(OptionsMenuData *menuData)
             .bgExtPltt = GX_BG_EXTPLTT_01,
             .priority = 0,
             .areaOver = 0,
-            .dummy = 0,
             .mosaic = FALSE,
         },
         {
@@ -509,7 +505,6 @@ static void SetupBgs(OptionsMenuData *menuData)
             .bgExtPltt = GX_BG_EXTPLTT_01,
             .priority = 0,
             .areaOver = 0,
-            .dummy = 0,
             .mosaic = FALSE,
         },
     };

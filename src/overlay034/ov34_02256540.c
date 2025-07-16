@@ -153,19 +153,18 @@ static void ov34_0225667C(PoketchTaskManager *param0)
 static void ov34_02256690(SysTask *param0, void *param1)
 {
     static const BgTemplate v0 = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0x7000,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        2,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x7000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
     GXSDispCnt v1;
     UnkStruct_ov34_02256540 *v2;
@@ -326,7 +325,7 @@ static void ov34_02256974(UnkStruct_ov34_02256540 *param0, const UnkStruct_ov34_
     u32 v0;
 
     for (v0 = 0; v0 < param1->unk_0C; v0++) {
-        PoketchAnimation_SetSpritePosition(param0->unk_38[v0], (param1->unk_10[v0].unk_00 << FX32_SHIFT), (param1->unk_10[v0].unk_02 << FX32_SHIFT));
+        PoketchAnimation_SetSpritePosition(param0->unk_38[v0], param1->unk_10[v0].unk_00 << FX32_SHIFT, param1->unk_10[v0].unk_02 << FX32_SHIFT);
     }
 }
 

@@ -795,7 +795,7 @@ static void ov12_0222B914(SysTask *param0, void *param1)
 
 void ov12_0222B9E0(BattleAnimSystem *param0)
 {
-    UnkStruct_ov12_0222B914 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222B914));
+    UnkStruct_ov12_0222B914 *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222B914));
 
     v0->unk_00 = 0;
     v0->unk_02 = 0;
@@ -848,7 +848,7 @@ static void ov12_0222BA18(SysTask *param0, void *param1)
 
 void ov12_0222BAE4(BattleAnimSystem *param0)
 {
-    UnkStruct_ov12_0222BA18 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222BA18));
+    UnkStruct_ov12_0222BA18 *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222BA18));
 
     v0->unk_00 = 0;
     v0->unk_01 = 0;
@@ -922,7 +922,7 @@ static void ov12_0222BB30(SysTask *param0, void *param1)
 
 void ov12_0222BCF4(BattleAnimSystem *param0)
 {
-    UnkStruct_ov12_0222BB30 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222BB30));
+    UnkStruct_ov12_0222BB30 *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222BB30));
 
     v0->unk_00 = 0;
     v0->unk_01 = 0;
@@ -974,7 +974,7 @@ static void ov12_0222BD48(SysTask *param0, void *param1)
 
 void ov12_0222BE48(BattleAnimSystem *param0)
 {
-    UnkStruct_ov12_0222BD48 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222BD48));
+    UnkStruct_ov12_0222BD48 *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222BD48));
 
     v0->unk_08 = param0;
     v0->unk_04 = BattleAnimSystem_GetPaletteData(v0->unk_08);
@@ -1043,7 +1043,7 @@ static void ov12_0222BE80(SysTask *param0, void *param1)
 
 void ov12_0222BFA8(BattleAnimSystem *param0)
 {
-    UnkStruct_ov12_0222BE80 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222BE80));
+    UnkStruct_ov12_0222BE80 *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222BE80));
 
     v0->unk_00 = 0;
     v0->unk_01 = 0;
@@ -1074,8 +1074,8 @@ static void ov12_0222BFF4(SysTask *param0, void *param1)
         break;
     case 2:
         if ((++v0->unk_01) >= 10) {
-            G2_SetWndOutsidePlane((GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ), 0);
-            G2_SetWndOBJInsidePlane((GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ), 0);
+            G2_SetWndOutsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 0);
+            G2_SetWndOBJInsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 0);
             ManagedSprite_SetDrawFlag(v0->unk_0C, 0);
             ManagedSprite_SetDrawFlag(v0->unk_10, 0);
             v0->unk_01 = 0;
@@ -1096,7 +1096,7 @@ static void ov12_0222BFF4(SysTask *param0, void *param1)
 
 void ov12_0222C0C0(BattleAnimSystem *param0)
 {
-    UnkStruct_ov12_0222BFF4 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222BFF4));
+    UnkStruct_ov12_0222BFF4 *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222BFF4));
 
     v0->unk_04 = param0;
     v0->unk_08 = BattleAnimSystem_GetPokemonSpriteManager(v0->unk_04);
@@ -1104,7 +1104,7 @@ void ov12_0222C0C0(BattleAnimSystem *param0)
     v0->unk_10 = BattleAnimSystem_GetPokemonSprite(v0->unk_04, 1);
 
     GX_SetVisibleWnd(GX_WNDMASK_OW);
-    G2_SetWndOutsidePlane((GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ), 0);
+    G2_SetWndOutsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 0);
     G2_SetWndOBJInsidePlane(GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_OBJ, 0);
 
     {
@@ -1231,7 +1231,7 @@ static void ov12_0222C1A4(SysTask *param0, void *param1)
 
 void ov12_0222C3C0(BattleAnimSystem *param0)
 {
-    UnkStruct_ov12_0222C1A4 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222C1A4));
+    UnkStruct_ov12_0222C1A4 *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222C1A4));
 
     v0->unk_00 = 0;
     v0->unk_01 = 0;
@@ -1353,7 +1353,7 @@ static void ov12_0222C4A8(SysTask *param0, void *param1)
 void ov12_0222C5FC(BattleAnimSystem *param0)
 {
     int v0;
-    UnkStruct_ov12_0222C4A8 *v1 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222C4A8));
+    UnkStruct_ov12_0222C4A8 *v1 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222C4A8));
 
     v1->unk_00 = 0;
     v1->unk_01 = 0;
@@ -1413,7 +1413,7 @@ void ov12_0222C6D4(BattleAnimSystem *param0)
     UnkStruct_ov12_0222C678 *v0;
     int v1;
 
-    v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222C678));
+    v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222C678));
 
     v0->unk_00 = 0;
     v0->unk_01 = 0;
@@ -1440,7 +1440,7 @@ void ov12_0222C6D4(BattleAnimSystem *param0)
     }
 
     ov12_022357BC(v0->unk_0C, (1 << BattleAnimSystem_GetBgID(param0, 2)) | GX_BLEND_PLANEMASK_BD | (1 << BattleAnimSystem_GetBgID(param0, 1)) | GX_WND_PLANEMASK_BG0, 0xffffffff, 0xffffffff);
-    ov12_02226424(&v0->unk_64, 31, 0, 0, 31, (20 - 5));
+    ov12_02226424(&v0->unk_64, 31, 0, 0, 31, 20 - 5);
 
     ManagedSprite_SetExplicitOamMode(v0->unk_18, GX_OAM_MODE_XLU);
     BattleAnimSystem_StartAnimTask(v0->unk_0C, ov12_0222C678, v0);
@@ -1529,7 +1529,7 @@ void ov12_0222C8F8(BattleAnimSystem *param0)
     UnkStruct_ov12_0222C7E0 *v0;
     int v1 = 0;
 
-    v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222C7E0));
+    v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222C7E0));
     ov12_0223595C(param0, &v0->unk_00);
 
     v0->unk_28[0] = BattleAnimSystem_GetBattlerSprite(v0->unk_00.unk_04, BattleAnimSystem_GetAttacker(v0->unk_00.unk_04));
@@ -1587,7 +1587,7 @@ static void ov12_0222C994(SysTask *param0, void *param1)
 
 void ov12_0222CA2C(BattleAnimSystem *param0)
 {
-    UnkStruct_ov12_0222C994 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222C994));
+    UnkStruct_ov12_0222C994 *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222C994));
     int v1;
 
     ov12_0223595C(param0, &v0->unk_00);
@@ -1665,7 +1665,7 @@ static void ov12_0222CACC(SysTask *param0, void *param1)
 
 void ov12_0222CB90(BattleAnimSystem *param0)
 {
-    UnkStruct_ov12_0222CACC *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222CACC));
+    UnkStruct_ov12_0222CACC *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222CACC));
     int v1;
 
     ov12_0223595C(param0, &v0->unk_00);
@@ -1705,7 +1705,7 @@ void ov12_0222CC54(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
 {
     int v0;
     int v1;
-    UnkStruct_ov12_0222CBFC *v2 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222CBFC));
+    UnkStruct_ov12_0222CBFC *v2 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222CBFC));
     ov12_0223595C(param0, &v2->unk_10);
 
     v2->unk_0C.unk_00 = BattleAnimSystem_GetScriptVar(param0, 0);
@@ -1822,7 +1822,7 @@ static void ov12_0222CDF0(SysTask *param0, void *param1)
 
 void ov12_0222CFA0(BattleAnimSystem *param0)
 {
-    UnkStruct_ov12_0222CDF0 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222CDF0));
+    UnkStruct_ov12_0222CDF0 *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222CDF0));
 
     ov12_0223595C(param0, &v0->unk_18);
 
@@ -2097,7 +2097,7 @@ void ov12_0222D56C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     UnkStruct_ov12_0222D128 *v1;
     SpriteTemplate v2;
 
-    v1 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222D128));
+    v1 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222D128));
 
     v1->unk_00 = 0;
     v1->unk_01 = 0;
@@ -2128,11 +2128,11 @@ void ov12_0222D56C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     }
 
     if (BattleAnimSystem_IsContest(param0) == 1) {
-        ManagedSprite_SetPositionXY(v1->unk_30[0].unk_00, 180 - 20, (40 - 16 + 20 + 10));
-        ManagedSprite_SetPositionXY(v1->unk_30[1].unk_00, 100 - 20, (25 - 16 + 20 + 10));
+        ManagedSprite_SetPositionXY(v1->unk_30[0].unk_00, 180 - 20, 40 - 16 + 20 + 10);
+        ManagedSprite_SetPositionXY(v1->unk_30[1].unk_00, 100 - 20, 25 - 16 + 20 + 10);
     } else {
-        ManagedSprite_SetPositionXY(v1->unk_30[0].unk_00, 100, (40 - 16 + 20 + 10));
-        ManagedSprite_SetPositionXY(v1->unk_30[1].unk_00, 180, (25 - 16 + 20 + 10));
+        ManagedSprite_SetPositionXY(v1->unk_30[0].unk_00, 100, 40 - 16 + 20 + 10);
+        ManagedSprite_SetPositionXY(v1->unk_30[1].unk_00, 180, 25 - 16 + 20 + 10);
     }
 
     BattleAnimSystem_StartAnimTask(v1->unk_10, ov12_0222D128, v1);

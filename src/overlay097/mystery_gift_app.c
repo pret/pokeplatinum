@@ -823,14 +823,13 @@ static void InitBgLayer(BgConfig *bgConfig, int bgLayer, u32 screenBase, u32 cha
         .y = 0,
         .bufferSize = 0x800,
         .baseTile = 0,
-        .screenSize = 1,
+        .screenSize = BG_SCREEN_SIZE_256x256,
         .colorMode = GX_BG_COLORMODE_16,
         .screenBase = GX_BG_SCRBASE_0xe000,
         .charBase = GX_BG_CHARBASE_0x00000,
         .bgExtPltt = GX_BG_EXTPLTT_01,
         .priority = 0,
         .areaOver = 0,
-        .dummy = 0,
         .mosaic = 0
     };
 

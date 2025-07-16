@@ -379,71 +379,76 @@ static const UnkStruct_ov64_0223221C Unk_ov64_0223221C[3] = {
 };
 
 static const BgTemplate Unk_ov64_02232390[5] = {
-    { 0x0,
-        0x0,
-        0x800,
-        0x0,
-        0x1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xc000,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        0x3,
-        0x0,
-        0x0,
-        0x0 },
-    { 0x0,
-        0x0,
-        0x800,
-        0x0,
-        0x1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xc800,
-        GX_BG_CHARBASE_0x04000,
-        GX_BG_EXTPLTT_01,
-        0x0,
-        0x0,
-        0x0,
-        0x0 },
-    { 0x0,
-        0x0,
-        0x1000,
-        0x0,
-        0x3,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xd000,
-        GX_BG_CHARBASE_0x10000,
-        GX_BG_EXTPLTT_01,
-        0x2,
-        0x0,
-        0x0,
-        0x0 },
-    { 0x0,
-        0x0,
-        0x1000,
-        0x0,
-        0x3,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xe000,
-        GX_BG_CHARBASE_0x20000,
-        GX_BG_EXTPLTT_01,
-        0x1,
-        0x0,
-        0x0,
-        0x0 },
-    { 0x0,
-        0x0,
-        0x800,
-        0x0,
-        0x1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xc000,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        0x0,
-        0x0,
-        0x0,
-        0x0 }
+    {
+        .x = 0x0,
+        .y = 0x0,
+        .bufferSize = 0x800,
+        .baseTile = 0x0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xc000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0x3,
+        .areaOver = 0x0,
+        .mosaic = FALSE,
+    },
+    {
+        .x = 0x0,
+        .y = 0x0,
+        .bufferSize = 0x800,
+        .baseTile = 0x0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xc800,
+        .charBase = GX_BG_CHARBASE_0x04000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0x0,
+        .areaOver = 0x0,
+        .mosaic = FALSE,
+    },
+    {
+        .x = 0x0,
+        .y = 0x0,
+        .bufferSize = 0x1000,
+        .baseTile = 0x0,
+        .screenSize = BG_SCREEN_SIZE_512x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xd000,
+        .charBase = GX_BG_CHARBASE_0x10000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0x2,
+        .areaOver = 0x0,
+        .mosaic = FALSE,
+    },
+    {
+        .x = 0x0,
+        .y = 0x0,
+        .bufferSize = 0x1000,
+        .baseTile = 0x0,
+        .screenSize = BG_SCREEN_SIZE_512x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xe000,
+        .charBase = GX_BG_CHARBASE_0x20000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0x1,
+        .areaOver = 0x0,
+        .mosaic = FALSE,
+    },
+    {
+        .x = 0x0,
+        .y = 0x0,
+        .bufferSize = 0x800,
+        .baseTile = 0x0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xc000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0x0,
+        .areaOver = 0x0,
+        .mosaic = FALSE,
+    }
 };
 
 static const u32 Unk_ov64_02232258[5] = {
@@ -1021,10 +1026,10 @@ static void ov64_0222E620(UnkStruct_ov64_0222E21C *param0, const UnkStruct_ov64_
     int v0 = Options_Frame(SaveData_GetOptions(param1->saveData));
 
     Font_LoadScreenIndicatorsPalette(0, 7 * 0x20, heapID);
-    LoadMessageBoxGraphics(param0->unk_00, Unk_ov64_02232258[1], (1 + 9), 8, v0, heapID);
+    LoadMessageBoxGraphics(param0->unk_00, Unk_ov64_02232258[1], 1 + 9, 8, v0, heapID);
     LoadStandardWindowGraphics(param0->unk_00, Unk_ov64_02232258[1], 1, 9, 0, heapID);
     Window_Init(&param0->unk_220);
-    Window_Add(param0->unk_00, &param0->unk_220, Unk_ov64_02232258[1], 1, 0, 24, 3, 7, ((1 + 9) + (18 + 12)));
+    Window_Add(param0->unk_00, &param0->unk_220, Unk_ov64_02232258[1], 1, 0, 24, 3, 7, (1 + 9) + (18 + 12));
 
     param0->unk_230 = Strbuf_Init(128, heapID);
     param0->unk_234 = Strbuf_Init(128, heapID);
@@ -1155,7 +1160,7 @@ static void ov64_0222E9A4(UnkStruct_ov64_0222E21C *param0, u32 heapID)
     static AffineSpriteListTemplate v0[2] = {
         { NULL,
             NULL,
-            { (FX32_CONST(6)), (FX32_CONST(98)), 0 },
+            { (FX32_CONST(6)), FX32_CONST(98), 0 },
             { FX32_ONE, FX32_ONE, FX32_ONE },
             0,
             8,
@@ -1163,7 +1168,7 @@ static void ov64_0222E9A4(UnkStruct_ov64_0222E21C *param0, u32 heapID)
             0 },
         { NULL,
             NULL,
-            { (FX32_CONST(249)), (FX32_CONST(98)), 0 },
+            { (FX32_CONST(249)), FX32_CONST(98), 0 },
             { FX32_ONE, FX32_ONE, FX32_ONE },
             0,
             8,
@@ -1518,7 +1523,7 @@ static void ov64_0222EFBC(UnkStruct_ov64_0222F038 *param0, UnkStruct_ov64_0222E2
 
     param0->unk_30 = Text_AddPrinterWithParamsAndColor(&param0->unk_1C, FONT_MESSAGE, param0->unk_38, 0, 0, param0->unk_34, TEXT_COLOR(1, 2, 0), NULL);
 
-    Window_DrawMessageBoxWithScrollCursor(&param0->unk_1C, 1, (1 + 9), 8);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_1C, 1, 1 + 9, 8);
     Window_ScheduleCopyToVRAM(&param0->unk_1C);
     Strbuf_Free(v0);
 }
@@ -2235,7 +2240,7 @@ static void ov64_0222FE70(UnkStruct_ov64_0222F0C4 *param0, UnkStruct_ov64_0222E2
 
     param0->unk_D8 = Text_AddPrinterWithParamsAndColor(&param0->unk_C4, FONT_MESSAGE, param0->unk_D4, 0, 0, param0->unk_DC, TEXT_COLOR(1, 2, 0), NULL);
 
-    Window_DrawMessageBoxWithScrollCursor(&param0->unk_C4, 1, (1 + 9), 8);
+    Window_DrawMessageBoxWithScrollCursor(&param0->unk_C4, 1, 1 + 9, 8);
     Window_ScheduleCopyToVRAM(&param0->unk_C4);
     Strbuf_Free(v0);
 }
@@ -2833,8 +2838,8 @@ static void ov64_02230B1C(UnkStruct_ov64_02230904 *param0, UnkStruct_ov64_0222E0
     int v0, v1;
     static const u32 v2[3] = {
         1,
-        (1 + 500),
-        (1 + 500),
+        1 + 500,
+        1 + 500,
     };
 
     ov64_02230F24(&param0->unk_DC, param2, heapID);

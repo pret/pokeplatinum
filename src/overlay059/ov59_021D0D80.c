@@ -402,19 +402,18 @@ static void ov59_021D1148(BgConfig *param0)
 
     {
         BgTemplate v1 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xf000,
-            GX_BG_CHARBASE_0x10000,
-            GX_BG_EXTPLTT_01,
-            0,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xf000,
+            .charBase = GX_BG_CHARBASE_0x10000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v1, 0);
@@ -423,19 +422,18 @@ static void ov59_021D1148(BgConfig *param0)
 
     {
         BgTemplate v2 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xf800,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_01,
-            1,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xf800,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 1,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0, BG_LAYER_SUB_1, &v2, 0);
@@ -444,19 +442,18 @@ static void ov59_021D1148(BgConfig *param0)
 
     {
         BgTemplate v3 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xd800,
-            GX_BG_CHARBASE_0x08000,
-            GX_BG_EXTPLTT_01,
-            2,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xd800,
+            .charBase = GX_BG_CHARBASE_0x08000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 2,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0, BG_LAYER_SUB_2, &v3, 0);
@@ -464,19 +461,18 @@ static void ov59_021D1148(BgConfig *param0)
 
     {
         BgTemplate v4 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xf800,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_01,
-            0,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xf800,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0, BG_LAYER_MAIN_0, &v4, 0);
@@ -485,19 +481,18 @@ static void ov59_021D1148(BgConfig *param0)
 
     {
         BgTemplate v5 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xf000,
-            GX_BG_CHARBASE_0x08000,
-            GX_BG_EXTPLTT_01,
-            1,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xf000,
+            .charBase = GX_BG_CHARBASE_0x08000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 1,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v5, 0);
@@ -520,8 +515,8 @@ static void ov59_021D1250(UnkStruct_020961E8 *param0, NARC *param1)
         param0->unk_3F0[v0] = 0;
     }
 
-    param0->unk_44 = Strbuf_Init((90 * 2), HEAP_ID_51);
-    param0->unk_48 = Strbuf_Init((20 * 2), HEAP_ID_51);
+    param0->unk_44 = Strbuf_Init(90 * 2, HEAP_ID_51);
+    param0->unk_48 = Strbuf_Init(20 * 2, HEAP_ID_51);
     param0->unk_3A8 = 0;
 
     MessageLoader_GetStrbuf(param0->unk_28, 17, param0->unk_48);
@@ -604,7 +599,7 @@ static void ov59_021D14A4(UnkStruct_020961E8 *param0, NARC *param1)
 
     param0->unk_50 = SpriteList_InitRendering(30, &param0->unk_54, HEAP_ID_51);
 
-    SetSubScreenViewRect(&param0->unk_54, 0, (256 * FX32_ONE));
+    SetSubScreenViewRect(&param0->unk_54, 0, 256 * FX32_ONE);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_1E0[v0] = SpriteResourceCollection_New(3, v0, HEAP_ID_51);
@@ -680,16 +675,16 @@ static void ov59_021D16A0(UnkStruct_020961E8 *param0, ApplicationManager *appMan
 {
     Window_Add(param0->unk_00, &param0->unk_35C, 5, 26, 20, 6, 2, 13, 1 + 30 * 15);
     Window_FillTilemap(&param0->unk_35C, 0x0);
-    Window_Add(param0->unk_00, &param0->unk_34C, 0, 2, 19, 27, 4, 13, (1 + (18 + 12) + 9));
+    Window_Add(param0->unk_00, &param0->unk_34C, 0, 2, 19, 27, 4, 13, 1 + (18 + 12) + 9);
     Window_FillTilemap(&param0->unk_34C, 0xf0f);
-    Window_Add(param0->unk_00, &param0->unk_36C, 0, 3, 1, 26, 2, 15, ((1 + (18 + 12) + 9) + 27 * 4));
+    Window_Add(param0->unk_00, &param0->unk_36C, 0, 3, 1, 26, 2, 15, (1 + (18 + 12) + 9) + 27 * 4);
 
     ov59_021D1784(&param0->unk_36C, param0->unk_48, TEXT_SPEED_INSTANT);
 
     {
         int v0;
 
-        Window_Add(param0->unk_00, &param0->unk_2FC[0], 0, 2, 6, 16, 11, 15, (((1 + (18 + 12) + 9) + 27 * 4) + 26 * 2));
+        Window_Add(param0->unk_00, &param0->unk_2FC[0], 0, 2, 6, 16, 11, 15, ((1 + (18 + 12) + 9) + 27 * 4) + 26 * 2);
         Window_FillTilemap(&param0->unk_2FC[0], 0);
 
         ov59_021D2418(param0->unk_2FC, 0, TEXT_COLOR(1, 3, 0), param0);
@@ -851,7 +846,7 @@ static const WindowTemplate Unk_ov59_021D3288 = {
 
 static int ov59_021D1A14(UnkStruct_020961E8 *param0, int param1)
 {
-    param0->unk_384 = Menu_MakeYesNoChoice(param0->unk_00, &Unk_ov59_021D3288, (1 + (18 + 12)), 11, 51);
+    param0->unk_384 = Menu_MakeYesNoChoice(param0->unk_00, &Unk_ov59_021D3288, 1 + (18 + 12), 11, 51);
     param0->unk_3A8 = 5;
 
     ov59_021D1994(param0);
@@ -978,7 +973,7 @@ static int ov59_021D1C14(UnkStruct_020961E8 *param0, int param1)
 
 static int ov59_021D1C34(UnkStruct_020961E8 *param0, int param1)
 {
-    param0->unk_384 = Menu_MakeYesNoChoice(param0->unk_00, &Unk_ov59_021D3288, (1 + (18 + 12)), 11, 51);
+    param0->unk_384 = Menu_MakeYesNoChoice(param0->unk_00, &Unk_ov59_021D3288, 1 + (18 + 12), 11, 51);
     param0->unk_3A8 = 23;
 
     ov59_021D1994(param0);
@@ -1145,7 +1140,7 @@ static int ov59_021D1EB8(UnkStruct_020961E8 *param0, int param1)
 
 static int ov59_021D1EF4(UnkStruct_020961E8 *param0, int param1)
 {
-    param0->unk_384 = Menu_MakeYesNoChoice(param0->unk_00, &Unk_ov59_021D3288, (1 + (18 + 12)), 11, 51);
+    param0->unk_384 = Menu_MakeYesNoChoice(param0->unk_00, &Unk_ov59_021D3288, 1 + (18 + 12), 11, 51);
     param0->unk_3A8 = 12;
 
     ov59_021D1994(param0);
@@ -1559,7 +1554,7 @@ static BOOL ov59_021D254C(UnkStruct_020961E8 *param0)
 
 static void ov59_021D2628(UnkStruct_020961E8 *param0, int param1, int param2)
 {
-    Strbuf *v0 = Strbuf_Init((90 * 2), HEAP_ID_51);
+    Strbuf *v0 = Strbuf_Init(90 * 2, HEAP_ID_51);
 
     MessageLoader_GetStrbuf(param0->unk_28, param1, v0);
     StringTemplate_Format(param0->unk_24, param0->unk_44, v0);

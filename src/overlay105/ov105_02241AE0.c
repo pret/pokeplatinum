@@ -634,7 +634,7 @@ static BOOL ov105_02241FF4(UnkStruct_ov105_02241FF4 *param0)
             ov105_02245F5C(param0->unk_2F4[v0]);
         }
 
-        Bg_SetOffset(param0->unk_4C, BG_LAYER_MAIN_2, 0, (33 * 8));
+        Bg_SetOffset(param0->unk_4C, BG_LAYER_MAIN_2, 0, 33 * 8);
         PokemonSprite_SetAttribute(param0->unk_12C[0], MON_SPRITE_HIDE, 1);
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1 * 3, HEAP_ID_93);
         param0->unk_08++;
@@ -753,7 +753,7 @@ static void ov105_0224227C(UnkStruct_ov105_02241FF4 *param0)
 
     ov105_02244FF8(param0, &param0->unk_50[2 + param0->unk_11], ov105_022461A0(param0->unk_30C), 0, 0, 15, 2, 0, 0, param0->unk_31C);
     ov105_0224628C(&param0->unk_50[5], Options_Frame(param0->options));
-    ov105_02244EE8(param0, 0, (param0->unk_11 + 1));
+    ov105_02244EE8(param0, 0, param0->unk_11 + 1);
 
     param0->unk_10 = ov105_02244D14(param0, 0);
 
@@ -761,7 +761,7 @@ static void ov105_0224227C(UnkStruct_ov105_02241FF4 *param0)
         ov105_022461A4(param0->unk_30C, 1);
         ov105_02244DF0(param0);
 
-        param0->unk_310 = ov105_02245FB8(&param0->unk_144, (NELEMS(Unk_ov105_02246308)), (NELEMS(Unk_ov105_02246308)), 1, 0, Unk_ov105_02246308, NULL);
+        param0->unk_310 = ov105_02245FB8(&param0->unk_144, NELEMS(Unk_ov105_02246308), NELEMS(Unk_ov105_02246308), 1, 0, Unk_ov105_02246308, NULL);
 
         if (param0->unk_18 != 0) {
             for (v0 = 0; v0 < v1; v0++) {
@@ -805,9 +805,9 @@ static void ov105_022424CC(UnkStruct_ov105_02241FF4 *param0)
     ov105_0224628C(&param0->unk_50[5], Options_Frame(param0->options));
 
     if (ov104_0223AED4(param0->unk_09) == 0) {
-        param0->unk_30C = ov105_02245FB8(&param0->unk_144, param0->unk_1A, (NELEMS(Unk_ov105_02246340) - 1), 2, param0->unk_334, Unk_ov105_02246340, Unk_ov105_022462D0);
+        param0->unk_30C = ov105_02245FB8(&param0->unk_144, param0->unk_1A, NELEMS(Unk_ov105_02246340) - 1, 2, param0->unk_334, Unk_ov105_02246340, Unk_ov105_022462D0);
     } else {
-        param0->unk_30C = ov105_02245FB8(&param0->unk_144, param0->unk_1A, (NELEMS(Unk_ov105_022462FC) - 1), 2, param0->unk_334, Unk_ov105_022462FC, Unk_ov105_022462CC);
+        param0->unk_30C = ov105_02245FB8(&param0->unk_144, param0->unk_1A, NELEMS(Unk_ov105_022462FC) - 1, 2, param0->unk_334, Unk_ov105_022462FC, Unk_ov105_022462CC);
     }
 
     ov105_02244F0C(param0, &param0->unk_50[0], 0, 0, 0);
@@ -820,7 +820,7 @@ static void ov105_022424CC(UnkStruct_ov105_02241FF4 *param0)
 
     if (param0->unk_13_1 == 1) {
         ov105_02244DF0(param0);
-        param0->unk_310 = ov105_02245FB8(&param0->unk_144, (NELEMS(Unk_ov105_02246308)), (NELEMS(Unk_ov105_02246308)), 1, 0, Unk_ov105_02246308, NULL);
+        param0->unk_310 = ov105_02245FB8(&param0->unk_144, NELEMS(Unk_ov105_02246308), NELEMS(Unk_ov105_02246308), 1, 0, Unk_ov105_02246308, NULL);
     }
 
     return;
@@ -898,7 +898,7 @@ static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0)
             ov105_022461A4(param0->unk_30C, 1);
             ov105_02244DF0(param0);
 
-            param0->unk_310 = ov105_02245FB8(&param0->unk_144, (NELEMS(Unk_ov105_02246308)), (NELEMS(Unk_ov105_02246308)), 1, 0, Unk_ov105_02246308, NULL);
+            param0->unk_310 = ov105_02245FB8(&param0->unk_144, NELEMS(Unk_ov105_02246308), NELEMS(Unk_ov105_02246308), 1, 0, Unk_ov105_02246308, NULL);
             param0->unk_08++;
         } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
             if (param0->unk_11 > 0) {
@@ -995,7 +995,7 @@ static void ov105_0224296C(UnkStruct_ov105_02241FF4 *param0)
     Window_FillTilemap(&param0->unk_50[2 + param0->unk_11], 0);
 
     ov105_02244FF8(param0, &param0->unk_50[2 + param0->unk_11], ov105_022461A0(param0->unk_30C), 0, 0, 15, 2, 0, 0, param0->unk_31C);
-    ov105_02244EE8(param0, 0, (param0->unk_11 + 1));
+    ov105_02244EE8(param0, 0, param0->unk_11 + 1);
 
     param0->unk_10 = ov105_02244D14(param0, 0);
 
@@ -1026,7 +1026,7 @@ static void ov105_02242A58(UnkStruct_ov105_02241FF4 *param0)
         param0->unk_310 = NULL;
 
         ov105_02244FF8(param0, &param0->unk_50[2 + param0->unk_11], ov105_022461A0(param0->unk_30C), 0, 0, 15, 2, 0, 0, param0->unk_31C);
-        ov105_02244EE8(param0, 0, (param0->unk_11 + 1));
+        ov105_02244EE8(param0, 0, param0->unk_11 + 1);
 
         param0->unk_10 = ov105_02244D14(param0, 0);
     }
@@ -1074,7 +1074,7 @@ static void ov105_02242B54(UnkStruct_ov105_02241FF4 *param0)
         Window_ScheduleCopyToVRAM(&param0->unk_50[2 + v1]);
     }
 
-    ov105_02244EE8(param0, 0, (param0->unk_11 + 1));
+    ov105_02244EE8(param0, 0, param0->unk_11 + 1);
     param0->unk_10 = ov105_02244D14(param0, 0);
 
     return;
@@ -1204,7 +1204,7 @@ static BOOL ov105_02242D04(UnkStruct_ov105_02241FF4 *param0)
         param0->unk_10 = ov105_02244D14(param0, 1);
         ov105_02244E94(param0);
 
-        param0->unk_310 = ov105_02245FB8(&param0->unk_144, (NELEMS(Unk_ov105_022462F4)), (NELEMS(Unk_ov105_022462F4)), 1, 0, Unk_ov105_022462F4, NULL);
+        param0->unk_310 = ov105_02245FB8(&param0->unk_144, NELEMS(Unk_ov105_022462F4), NELEMS(Unk_ov105_022462F4), 1, 0, Unk_ov105_022462F4, NULL);
         param0->unk_19 = 0;
         param0->unk_08++;
         break;
@@ -1391,7 +1391,7 @@ static void ov105_022433AC(UnkStruct_ov105_02241FF4 *param0)
     ov105_02245F50(param0->unk_2F4[ov105_022461A0(param0->unk_30C)]);
     ov105_02245FAC(param0->unk_2F4[ov105_022461A0(param0->unk_30C)], 1);
     ov105_02245F90(param0->unk_2F4[ov105_022461A0(param0->unk_30C)], 6);
-    ov105_02244EE8(param0, 0, (param0->unk_11 + 1));
+    ov105_02244EE8(param0, 0, param0->unk_11 + 1);
 
     param0->unk_10 = ov105_02244D14(param0, 0);
     return;
@@ -1432,7 +1432,7 @@ static BOOL ov105_022434BC(UnkStruct_ov105_02241FF4 *param0)
                 ov105_022461A4(param0->unk_30C, 1);
                 ov105_02244DF0(param0);
 
-                param0->unk_310 = ov105_02245FB8(&param0->unk_144, (NELEMS(Unk_ov105_02246308)), (NELEMS(Unk_ov105_02246308)), 1, 0, Unk_ov105_02246308, NULL);
+                param0->unk_310 = ov105_02245FB8(&param0->unk_144, NELEMS(Unk_ov105_02246308), NELEMS(Unk_ov105_02246308), 1, 0, Unk_ov105_02246308, NULL);
                 param0->unk_08++;
             }
         } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
@@ -1541,7 +1541,7 @@ static BOOL ov105_02243818(UnkStruct_ov105_02241FF4 *param0)
         ov105_02246074(param0->unk_30C, 0);
         ov105_022461A4(param0->unk_30C, 1);
         ov105_02244E94(param0);
-        param0->unk_310 = ov105_02245FB8(&param0->unk_144, (NELEMS(Unk_ov105_022462F4)), (NELEMS(Unk_ov105_022462F4)), 1, 0, Unk_ov105_022462F4, NULL);
+        param0->unk_310 = ov105_02245FB8(&param0->unk_144, NELEMS(Unk_ov105_022462F4), NELEMS(Unk_ov105_022462F4), 1, 0, Unk_ov105_022462F4, NULL);
         param0->unk_08++;
         break;
     case 1:
@@ -1616,9 +1616,9 @@ static BOOL ov105_02243A3C(UnkStruct_ov105_02241FF4 *param0)
         Window_ScheduleCopyToVRAM(&param0->unk_50[7]);
 
         if (ov104_0223AED4(param0->unk_09) == 0) {
-            param0->unk_30C = ov105_02245FB8(&param0->unk_144, param0->unk_1B, (NELEMS(Unk_ov105_02246350) - 2), 2, 0, Unk_ov105_02246350, Unk_ov105_022462D4);
+            param0->unk_30C = ov105_02245FB8(&param0->unk_144, param0->unk_1B, NELEMS(Unk_ov105_02246350) - 2, 2, 0, Unk_ov105_02246350, Unk_ov105_022462D4);
         } else {
-            param0->unk_30C = ov105_02245FB8(&param0->unk_144, param0->unk_1B, (NELEMS(Unk_ov105_0224637C) - 2), 2, 0, Unk_ov105_0224637C, Unk_ov105_022462E4);
+            param0->unk_30C = ov105_02245FB8(&param0->unk_144, param0->unk_1B, NELEMS(Unk_ov105_0224637C) - 2, 2, 0, Unk_ov105_0224637C, Unk_ov105_022462E4);
         }
 
         v3 = ov105_022461A0(param0->unk_30C);
@@ -1656,7 +1656,7 @@ static BOOL ov105_02243A3C(UnkStruct_ov105_02241FF4 *param0)
                 ov105_022461A4(param0->unk_30C, 1);
                 ov105_02244E94(param0);
 
-                param0->unk_310 = ov105_02245FB8(&param0->unk_144, (NELEMS(Unk_ov105_022462F4)), (NELEMS(Unk_ov105_022462F4)), 1, 0, Unk_ov105_022462F4, NULL);
+                param0->unk_310 = ov105_02245FB8(&param0->unk_144, NELEMS(Unk_ov105_022462F4), NELEMS(Unk_ov105_022462F4), 1, 0, Unk_ov105_022462F4, NULL);
                 param0->unk_10 = ov105_02244D14(param0, 14);
                 param0->unk_08++;
             }
@@ -1769,7 +1769,7 @@ static BOOL ov105_02243E84(UnkStruct_ov105_02241FF4 *param0)
         ov105_02246074(param0->unk_30C, 0);
 
         ov105_02244E94(param0);
-        param0->unk_310 = ov105_02245FB8(&param0->unk_144, (NELEMS(Unk_ov105_022462F4)), (NELEMS(Unk_ov105_022462F4)), 1, 0, Unk_ov105_022462F4, NULL);
+        param0->unk_310 = ov105_02245FB8(&param0->unk_144, NELEMS(Unk_ov105_022462F4), NELEMS(Unk_ov105_022462F4), 1, 0, Unk_ov105_022462F4, NULL);
         param0->unk_08++;
         break;
 
@@ -2078,7 +2078,7 @@ static BOOL ov105_02244424(UnkStruct_ov105_02241FF4 *param0)
 
         ov104_0222E5D0(param0->unk_20, 0);
 
-        v1 = Party_GetPokemonBySlotIndex(param0->unk_31C, (2 + param0->unk_324[0]));
+        v1 = Party_GetPokemonBySlotIndex(param0->unk_31C, 2 + param0->unk_324[0]);
         v2 = Pokemon_GetBoxPokemon(v1);
 
         ov105_02244F00(param0, 1, v2);
@@ -2164,19 +2164,18 @@ static void ov105_02244584(BgConfig *param0)
 
     {
         BgTemplate v1 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x0000,
-            GX_BG_CHARBASE_0x04000,
-            GX_BG_EXTPLTT_01,
-            1,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x0000,
+            .charBase = GX_BG_CHARBASE_0x04000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 1,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v1, 0);
@@ -2186,19 +2185,18 @@ static void ov105_02244584(BgConfig *param0)
 
     {
         BgTemplate v2 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x1800,
-            GX_BG_CHARBASE_0x0c000,
-            GX_BG_EXTPLTT_01,
-            2,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x1800,
+            .charBase = GX_BG_CHARBASE_0x0c000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 2,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v2, 0);
@@ -2207,19 +2205,18 @@ static void ov105_02244584(BgConfig *param0)
 
     {
         BgTemplate v3 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x2800,
-            GX_BG_CHARBASE_0x0c000,
-            GX_BG_EXTPLTT_01,
-            3,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x2800,
+            .charBase = GX_BG_CHARBASE_0x0c000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 3,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v3, 0);
@@ -2228,19 +2225,18 @@ static void ov105_02244584(BgConfig *param0)
 
     {
         BgTemplate v4 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x3800,
-            GX_BG_CHARBASE_0x10000,
-            GX_BG_EXTPLTT_01,
-            0,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x3800,
+            .charBase = GX_BG_CHARBASE_0x10000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v4, 0);
@@ -2260,8 +2256,8 @@ static void ov105_02244678(UnkStruct_ov105_02241FF4 *param0)
 
     param0->unk_120 = PaletteData_New(HEAP_ID_93);
 
-    PaletteData_AllocBuffer(param0->unk_120, 2, (32 * 16), HEAP_ID_93);
-    PaletteData_AllocBuffer(param0->unk_120, 0, (32 * 16), HEAP_ID_93);
+    PaletteData_AllocBuffer(param0->unk_120, 2, 32 * 16, HEAP_ID_93);
+    PaletteData_AllocBuffer(param0->unk_120, 0, 32 * 16, HEAP_ID_93);
 
     ov105_02244AF8();
 
@@ -2475,8 +2471,8 @@ static void ov105_02244AF8(void)
 
     v0 = Graphics_GetPlttData(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 130, &v1, HEAP_ID_93);
 
-    DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 11));
-    GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 11));
+    DC_FlushRange(v1->pRawData, sizeof(u16) * 16 * 11);
+    GX_LoadBGPltt(v1->pRawData, 0, sizeof(u16) * 16 * 11);
     Heap_Free(v0);
 
     return;
@@ -2581,7 +2577,7 @@ static void ov105_02244DC4(UnkStruct_ov105_02241FF4 *param0, u8 param1, u8 param
 static void ov105_02244DF0(UnkStruct_ov105_02241FF4 *param0)
 {
     ov105_02246260(param0->unk_4C, &param0->unk_50[7]);
-    ov105_02244D48(param0, &param0->unk_50[7], (NELEMS(Unk_ov105_02246308)));
+    ov105_02244D48(param0, &param0->unk_50[7], NELEMS(Unk_ov105_02246308));
     ov105_02244DC4(param0, 0, 0, 5);
 
     if (ov105_022454F8(param0, 0) == 1) {
@@ -2603,7 +2599,7 @@ static void ov105_02244DF0(UnkStruct_ov105_02241FF4 *param0)
 static void ov105_02244E94(UnkStruct_ov105_02241FF4 *param0)
 {
     ov105_02246260(param0->unk_4C, &param0->unk_50[7]);
-    ov105_02244D48(param0, &param0->unk_50[7], (NELEMS(Unk_ov105_022462F4)));
+    ov105_02244D48(param0, &param0->unk_50[7], NELEMS(Unk_ov105_022462F4));
     ov105_02244DC4(param0, 0, 0, 3);
     ov105_02244DC4(param0, 1, 1, 4);
 
@@ -2627,7 +2623,7 @@ static void ov105_02244F0C(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32
 {
     TextColor v0;
     const TrainerInfo *v1 = SaveData_GetTrainerInfo(param0->saveData);
-    Strbuf *v2 = Strbuf_Init((7 + 1), HEAP_ID_93);
+    Strbuf *v2 = Strbuf_Init(7 + 1, HEAP_ID_93);
 
     Window_FillTilemap(param1, 0);
     Strbuf_CopyChars(v2, TrainerInfo_Name(v1));
@@ -2649,7 +2645,7 @@ static void ov105_02244F84(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32
 {
     TextColor v0;
     TrainerInfo *v2 = CommInfo_TrainerInfo(1 - CommSys_CurNetId());
-    Strbuf *v1 = Strbuf_Init((7 + 1), HEAP_ID_93);
+    Strbuf *v1 = Strbuf_Init(7 + 1, HEAP_ID_93);
 
     Window_FillTilemap(param1, 0);
     TrainerInfo_NameStrbuf(v2, v1);
@@ -2680,7 +2676,7 @@ static void ov105_02244FF8(UnkStruct_ov105_02241FF4 *param0, Window *param1, u8 
     Pokemon_GetValue(v5, MON_DATA_SPECIES_NAME, v6);
     Window_FillTilemap(param1, param7);
 
-    v4 = Strbuf_Init((10 + 1), HEAP_ID_93);
+    v4 = Strbuf_Init(10 + 1, HEAP_ID_93);
     Strbuf_CopyChars(v4, v6);
     Text_AddPrinterWithParamsAndColor(param1, param8, v4, param3, param4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(param5, param6, param7), NULL);
 

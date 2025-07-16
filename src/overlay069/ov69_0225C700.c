@@ -425,79 +425,74 @@ static const u32 Unk_ov69_0225F060[5] = {
 
 static const BgTemplate Unk_ov69_0225F154[5] = {
     {
-        0x0,
-        0x0,
-        0x800,
-        0x0,
-        0x1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0x3800,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
+        .x = 0x0,
+        .y = 0x0,
+        .bufferSize = 0x800,
+        .baseTile = 0x0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x3800,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0x0,
+        .areaOver = 0x0,
+        .mosaic = FALSE,
     },
     {
-        0x0,
-        0x0,
-        0x800,
-        0x0,
-        0x1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xd000,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        0x2,
-        0x0,
-        0x0,
-        0x0,
+        .x = 0x0,
+        .y = 0x0,
+        .bufferSize = 0x800,
+        .baseTile = 0x0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xd000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0x2,
+        .areaOver = 0x0,
+        .mosaic = FALSE,
     },
     {
-        0x0,
-        0x0,
-        0x800,
-        0x0,
-        0x1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xe000,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        0x3,
-        0x0,
-        0x0,
-        0x0,
+        .x = 0x0,
+        .y = 0x0,
+        .bufferSize = 0x800,
+        .baseTile = 0x0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xe000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0x3,
+        .areaOver = 0x0,
+        .mosaic = FALSE,
     },
     {
-        0x0,
-        0x0,
-        0x800,
-        0x0,
-        0x1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xe800,
-        GX_BG_CHARBASE_0x10000,
-        GX_BG_EXTPLTT_01,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
+        .x = 0x0,
+        .y = 0x0,
+        .bufferSize = 0x800,
+        .baseTile = 0x0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xe800,
+        .charBase = GX_BG_CHARBASE_0x10000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0x0,
+        .areaOver = 0x0,
+        .mosaic = FALSE,
     },
     {
-        0x0,
-        0x0,
-        0x800,
-        0x0,
-        0x1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xd800,
-        GX_BG_CHARBASE_0x10000,
-        GX_BG_EXTPLTT_01,
-        0x1,
-        0x0,
-        0x0,
-        0x0,
+        .x = 0x0,
+        .y = 0x0,
+        .bufferSize = 0x800,
+        .baseTile = 0x0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xd800,
+        .charBase = GX_BG_CHARBASE_0x10000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0x1,
+        .areaOver = 0x0,
+        .mosaic = FALSE,
     },
 };
 
@@ -1415,8 +1410,8 @@ static void ov69_0225D3A4(UnkStruct_ov69_0225D35C *param0, Options *options, u32
 
     Font_LoadScreenIndicatorsPalette(0, 1 * 0x20, heapID);
     Font_LoadScreenIndicatorsPalette(4, 11 * 0x20, heapID);
-    LoadStandardWindowGraphics(param0->unk_00, BG_LAYER_MAIN_1, (1 + (18 + 12)), 0, 0, heapID);
-    LoadStandardWindowGraphics(param0->unk_00, BG_LAYER_MAIN_1, (1 + (18 + 12)), 0, 0, heapID);
+    LoadStandardWindowGraphics(param0->unk_00, BG_LAYER_MAIN_1, 1 + (18 + 12), 0, 0, heapID);
+    LoadStandardWindowGraphics(param0->unk_00, BG_LAYER_MAIN_1, 1 + (18 + 12), 0, 0, heapID);
 
     u8 v1 = Options_Frame(options);
 
@@ -1457,7 +1452,7 @@ static void ov69_0225D53C(UnkStruct_ov69_0225D35C *param0, u32 heapID)
 
     param0->unk_04 = SpriteList_InitRendering(32, &param0->unk_08, heapID);
 
-    SetSubScreenViewRect(&param0->unk_08, 0, (FX32_CONST(256)));
+    SetSubScreenViewRect(&param0->unk_08, 0, FX32_CONST(256));
 
     for (i = 0; i < 4; i++) {
         param0->unk_194[i] = SpriteResourceCollection_New(32, i, heapID);
@@ -1486,7 +1481,7 @@ static void ov69_0225D5D8(UnkStruct_ov69_0225D35C *param0)
 static void ov69_0225D604(UnkStruct_ov69_0225D35C *param0, u32 heapID)
 {
     param0->unk_1A4 = G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_64K, ov69_0225D64C);
-    NNS_G3dGlbLightVector(0, 0, 0, (-(FX32_ONE - 1)));
+    NNS_G3dGlbLightVector(0, 0, 0, -(FX32_ONE - 1));
 }
 
 static void ov69_0225D63C(UnkStruct_ov69_0225D35C *param0)
@@ -1512,7 +1507,7 @@ static void ov69_0225D64C(void)
 static void ov69_0225D6D8(UnkStruct_ov69_0225D71C *param0, UnkStruct_ov69_0225D35C *param1, u32 heapID)
 {
     VEC_Set(&param0->unk_00, 0, 0, 0);
-    VEC_Set(&param0->unk_0C, (FX32_ONE), (FX32_ONE), (FX32_ONE));
+    VEC_Set(&param0->unk_0C, FX32_ONE, FX32_ONE, FX32_ONE);
     VEC_Set(&param0->unk_18, 0x1A40, 0x7C00, 0);
     Easy3DModel_LoadFrom(&param0->unk_9C, param1->unk_1A8, 3, heapID);
     Easy3DObject_Init(&param0->unk_24, &param0->unk_9C);
@@ -1567,9 +1562,9 @@ static void ov69_0225D7A0(UnkStruct_ov69_0225CA7C *param0, const UnkStruct_ov66_
     }
 
     if (param3.unk_00_0 == 0) {
-        VEC_Set(&param0->unk_B804, 0x300, 0x300, (FX32_ONE));
+        VEC_Set(&param0->unk_B804, 0x300, 0x300, FX32_ONE);
     } else {
-        VEC_Set(&param0->unk_B804, (FX32_ONE), (FX32_ONE), (FX32_ONE));
+        VEC_Set(&param0->unk_B804, FX32_ONE, FX32_ONE, FX32_ONE);
     }
 }
 
@@ -1712,7 +1707,7 @@ static void ov69_0225DA74(UnkStruct_ov69_0225DAEC *param0, UnkStruct_ov69_0225DA
     param0->camera = Camera_Alloc(heapID);
 
     Camera_InitWithTargetAndPosition(&Unk_ov69_0225F034, &Unk_ov69_0225F01C, 0x5c1, 0, 0, param0->camera);
-    Camera_SetClipping(0, (FX32_ONE * 100), param0->camera);
+    Camera_SetClipping(0, FX32_ONE * 100, param0->camera);
     Camera_ComputeProjectionMatrix(0, param0->camera);
     Camera_SetAsActive(param0->camera);
 
@@ -1793,7 +1788,7 @@ static void ov69_0225DBB4(UnkStruct_ov69_0225DC48 *param0, UnkStruct_ov69_0225D3
 {
     memset(param0, 0, sizeof(UnkStruct_ov69_0225DC48));
 
-    Window_Add(param1->unk_00, &param0->unk_1C, 1, 25, 21, 6, 2, 1, ((1 + (18 + 12)) + 9));
+    Window_Add(param1->unk_00, &param0->unk_1C, 1, 25, 21, 6, 2, 1, (1 + (18 + 12)) + 9);
     Window_FillTilemap(&param0->unk_1C, 15);
 
     {
@@ -1810,7 +1805,7 @@ static void ov69_0225DBB4(UnkStruct_ov69_0225DC48 *param0, UnkStruct_ov69_0225D3
         Font_Free(FONT_SUBSCREEN);
     }
 
-    Window_DrawStandardFrame(&param0->unk_1C, 0, (1 + (18 + 12)), 0);
+    Window_DrawStandardFrame(&param0->unk_1C, 0, 1 + (18 + 12), 0);
 }
 
 static void ov69_0225DC48(UnkStruct_ov69_0225DC48 *param0)
@@ -1900,7 +1895,7 @@ static void ov69_0225DD2C(UnkStruct_ov69_0225DC48 *param0)
 static void ov69_0225DD44(UnkStruct_ov69_0225DC48 *param0)
 {
     Window_ScheduleCopyToVRAM(&param0->unk_1C);
-    Window_DrawStandardFrame(&param0->unk_1C, 0, (1 + (18 + 12)), 0);
+    Window_DrawStandardFrame(&param0->unk_1C, 0, 1 + (18 + 12), 0);
 }
 
 static void ov69_0225DD60(UnkStruct_ov69_0225DDC8 *param0, UnkStruct_ov69_0225D35C *param1, UnkStruct_ov69_0225EF54 *param2, SaveData *saveData, u32 heapID)
@@ -1910,7 +1905,7 @@ static void ov69_0225DD60(UnkStruct_ov69_0225DDC8 *param0, UnkStruct_ov69_0225D3
     param0->unk_08 = Options_TextFrameDelay(SaveData_GetOptions(saveData));
     param0->unk_0C = Strbuf_Init(128, heapID);
 
-    Window_Add(param1->unk_00, &param0->unk_10, 1, 2, 1, 27, 4, 1, (((1 + (18 + 12)) + 9) + (6 * 2)));
+    Window_Add(param1->unk_00, &param0->unk_10, 1, 2, 1, 27, 4, 1, ((1 + (18 + 12)) + 9) + (6 * 2));
     Window_FillTilemap(&param0->unk_10, 15);
 
     ov69_0225EF84(param2, 5, param0->unk_0C);
@@ -1988,7 +1983,7 @@ static void ov69_0225DEC0(UnkStruct_ov69_0225E084 *param0, UnkStruct_ov69_0225D3
     {
         Strbuf *v1;
 
-        Window_Add(param1->unk_00, &param0->unk_1A8, 4, 2, 19, 27, 4, 11, (10 + (18 + 12)));
+        Window_Add(param1->unk_00, &param0->unk_1A8, 4, 2, 19, 27, 4, 11, 10 + (18 + 12));
         Window_FillTilemap(&param0->unk_1A8, 15);
 
         v1 = ov69_0225EF74(param2, 0);
@@ -2414,7 +2409,7 @@ static void ov69_0225E590(UnkStruct_ov69_0225E084 *param0, UnkStruct_ov69_0225D3
         Window_CopyToVRAM(&param0->unk_168[v0]);
     }
 
-    Window_Add(param1->unk_00, &param0->unk_198, 5, 0, 0, 27, 6, 14, ((10 + (18 + 12)) + (27 * 4)));
+    Window_Add(param1->unk_00, &param0->unk_198, 5, 0, 0, 27, 6, 14, (10 + (18 + 12)) + (27 * 4));
     Window_FillTilemap(&param0->unk_198, 0);
 }
 
@@ -2595,9 +2590,9 @@ static void ov69_0225E960(UnkStruct_ov69_0225EB60 *param0, UnkStruct_ov69_0225D3
     SpriteResource_ReleaseData(param0->unk_6C[0][1]);
 
     for (v0 = 0; v0 < 12; v0++) {
-        param0->unk_6C[v0][0] = SpriteResourceCollection_AddTilesFrom(param1->unk_194[0], param1->unk_1A8, (21 + ((v0) * 3)), 0, v0, NNS_G2D_VRAM_TYPE_2DSUB, param3);
-        param0->unk_6C[v0][2] = SpriteResourceCollection_AddFrom(param1->unk_194[2], param1->unk_1A8, (22 + ((v0) * 3)), 0, v0, 2, param3);
-        param0->unk_6C[v0][3] = SpriteResourceCollection_AddFrom(param1->unk_194[3], param1->unk_1A8, (23 + ((v0) * 3)), 0, v0, 3, param3);
+        param0->unk_6C[v0][0] = SpriteResourceCollection_AddTilesFrom(param1->unk_194[0], param1->unk_1A8, 21 + ((v0) * 3), 0, v0, NNS_G2D_VRAM_TYPE_2DSUB, param3);
+        param0->unk_6C[v0][2] = SpriteResourceCollection_AddFrom(param1->unk_194[2], param1->unk_1A8, 22 + ((v0) * 3), 0, v0, 2, param3);
+        param0->unk_6C[v0][3] = SpriteResourceCollection_AddFrom(param1->unk_194[3], param1->unk_1A8, 23 + ((v0) * 3), 0, v0, 3, param3);
 
         v2 = SpriteTransfer_RequestCharAtEnd(param0->unk_6C[v0][0]);
         GF_ASSERT(v2);

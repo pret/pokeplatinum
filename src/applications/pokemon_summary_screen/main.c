@@ -416,7 +416,6 @@ static void SetupBgs(BgConfig *bgConfig)
         .bgExtPltt = GX_BG_EXTPLTT_01,
         .priority = 0,
         .areaOver = 0,
-        .dummy = 0,
         .mosaic = FALSE
     };
 
@@ -435,7 +434,6 @@ static void SetupBgs(BgConfig *bgConfig)
         .bgExtPltt = GX_BG_EXTPLTT_01,
         .priority = 1,
         .areaOver = 0,
-        .dummy = 0,
         .mosaic = FALSE
     };
 
@@ -455,7 +453,6 @@ static void SetupBgs(BgConfig *bgConfig)
         .bgExtPltt = GX_BG_EXTPLTT_01,
         .priority = 3,
         .areaOver = 0,
-        .dummy = 0,
         .mosaic = FALSE
     };
 
@@ -473,7 +470,6 @@ static void SetupBgs(BgConfig *bgConfig)
         .bgExtPltt = GX_BG_EXTPLTT_01,
         .priority = 0,
         .areaOver = 0,
-        .dummy = 0,
         .mosaic = FALSE
     };
 
@@ -492,7 +488,6 @@ static void SetupBgs(BgConfig *bgConfig)
         .bgExtPltt = GX_BG_EXTPLTT_01,
         .priority = 1,
         .areaOver = 0,
-        .dummy = 0,
         .mosaic = FALSE
     };
 
@@ -987,7 +982,7 @@ static int SetupPoffinFeedConditionPage(PokemonSummaryScreen *summaryScreen)
         }
 
         Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(14), HEAP_ID_POKEMON_SUMMARY_SCREEN);
-        LoadMessageBoxGraphics(summaryScreen->bgConfig, BG_LAYER_MAIN_1, (1024 - (18 + 12)), 13, Options_Frame(summaryScreen->data->options), HEAP_ID_POKEMON_SUMMARY_SCREEN);
+        LoadMessageBoxGraphics(summaryScreen->bgConfig, BG_LAYER_MAIN_1, 1024 - (18 + 12), 13, Options_Frame(summaryScreen->data->options), HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
         if (summaryScreen->pageState == STAT_INCREASE_NONE) {
             PokemonSummaryScreen_PrintPoffinFeedMsg(summaryScreen, SUMMARY_MSG_NOTHING_CHANGED);
@@ -2172,7 +2167,7 @@ static int TryFeedPoffin(PokemonSummaryScreen *summaryScreen)
 {
     if (summaryScreen->monData.sheen == MAX_POKEMON_SHEEN) {
         Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(14), HEAP_ID_POKEMON_SUMMARY_SCREEN);
-        LoadMessageBoxGraphics(summaryScreen->bgConfig, BG_LAYER_MAIN_1, (1024 - (18 + 12)), 13, Options_Frame(summaryScreen->data->options), HEAP_ID_POKEMON_SUMMARY_SCREEN);
+        LoadMessageBoxGraphics(summaryScreen->bgConfig, BG_LAYER_MAIN_1, 1024 - (18 + 12), 13, Options_Frame(summaryScreen->data->options), HEAP_ID_POKEMON_SUMMARY_SCREEN);
         PokemonSummaryScreen_PrintPoffinFeedMsg(summaryScreen, SUMMARY_MSG_MON_WONT_EAT_MORE);
         summaryScreen->data->returnMode = SUMMARY_RETURN_CANCEL;
 

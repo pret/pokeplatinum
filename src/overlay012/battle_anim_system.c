@@ -883,7 +883,7 @@ static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
 
 void BattleAnimSystem_SetDefaultAlphaBlending(void)
 {
-    G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 8, 8);
+    G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 8, 8);
 }
 
 static inline void BattleAnimScript_Next(BattleAnimSystem *system)
@@ -1812,7 +1812,7 @@ static void BattleAnimScriptCmd_LoadPokemonSpriteIntoBg(BattleAnimSystem *system
     MI_CpuFill8(bgTiles, 0, 10 * 10 * 2 * TILE_SIZE_4BPP);
 
     Bg_ToggleLayer(BG_LAYER_MAIN_2, FALSE);
-    Bg_LoadTiles(system->bgConfig, BG_LAYER_MAIN_2, charData, (10 * 10 * ((8 / 2) * 8)), 0);
+    Bg_LoadTiles(system->bgConfig, BG_LAYER_MAIN_2, charData, 10 * 10 * ((8 / 2) * 8), 0);
     PaletteData_LoadBufferFromFileStart(
         system->paletteData,
         narcID,
@@ -1879,7 +1879,7 @@ static void BattleAnimScriptCmd_InitPokemonSpriteManager(BattleAnimSystem *syste
     system->pokemonSpriteManager = SpriteManager_New(system->context->spriteSystem);
 
     SpriteSystem_InitSprites(system->context->spriteSystem, system->pokemonSpriteManager, BATTLE_ANIM_SCRIPT_MAX_POKEMON_SPRITES);
-    SetSubScreenViewRect(SpriteSystem_GetRenderer(system->context->spriteSystem), 0, ((192 + 80) << FX32_SHIFT));
+    SetSubScreenViewRect(SpriteSystem_GetRenderer(system->context->spriteSystem), 0, (192 + 80) << FX32_SHIFT);
     SpriteSystem_InitManagerWithCapacities(system->context->spriteSystem, system->pokemonSpriteManager, &caps);
 }
 
@@ -2014,7 +2014,7 @@ static void BattleAnimScriptCmd_AddPokemonSprite(BattleAnimSystem *system)
             NNS_GFD_DST_2D_OBJ_CHAR_MAIN,
             proxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN],
             charData,
-            (10 * 10 * ((8 / 2) * 8)));
+            10 * 10 * ((8 / 2) * 8));
     }
 
     if (BattleAnimSystem_GetBattlerSprite(system, battler) != NULL) {
@@ -3382,7 +3382,7 @@ static void BattleAnimScriptCmd_InitSpriteManager(BattleAnimSystem *system)
     GF_ASSERT(system->spriteManagers[id] != NULL);
 
     SpriteSystem_InitSprites(system->context->spriteSystem, system->spriteManagers[id], maxSprites);
-    SetSubScreenViewRect(SpriteSystem_GetRenderer(system->context->spriteSystem), 0, ((192 + 80) << FX32_SHIFT));
+    SetSubScreenViewRect(SpriteSystem_GetRenderer(system->context->spriteSystem), 0, (192 + 80) << FX32_SHIFT);
 
     SpriteResourceCapacities caps;
 
@@ -4066,7 +4066,7 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, int heapID, int 
                     NNSG2dImageProxy *v17;
 
                     v17 = Sprite_GetImageProxy(v10->sprite);
-                    VramTransfer_Request(NNS_GFD_DST_2D_OBJ_CHAR_MAIN, v17->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN], v8, (10 * 10 * ((8 / 2) * 8)));
+                    VramTransfer_Request(NNS_GFD_DST_2D_OBJ_CHAR_MAIN, v17->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN], v8, 10 * 10 * ((8 / 2) * 8));
                 }
 
                 if (v13 != NULL) {

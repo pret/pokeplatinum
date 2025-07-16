@@ -532,7 +532,7 @@ static void ov97_02233DD0(GBAMigrator *migrator, UnkStruct_ov97_02233DAC *param1
 
     if (param2 & 0x8) {
         if (param2 & 0x10) {
-            Window_DrawMessageBoxWithScrollCursor(param1->unk_00, 0, (0x3F0 - (18 + 12)), 13);
+            Window_DrawMessageBoxWithScrollCursor(param1->unk_00, 0, 0x3F0 - (18 + 12), 13);
         } else {
             Window_DrawStandardFrame(param1->unk_00, 0, 0x3F0, 14);
         }
@@ -565,7 +565,7 @@ static void ov97_02233FA4(GBAMigrator *migrator)
 
     RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, HEAP_ID_MIGRATE_FROM_GBA);
     migrator->unk_28 = SpriteList_InitRendering(80, &migrator->unk_2C, HEAP_ID_MIGRATE_FROM_GBA);
-    SetSubScreenViewRect(&migrator->unk_2C, 0, (256 * FX32_ONE));
+    SetSubScreenViewRect(&migrator->unk_2C, 0, 256 * FX32_ONE);
 
     for (i = 0; i < 6; i++) {
         migrator->unk_1B8[i] = SpriteResourceCollection_New(3, i, HEAP_ID_MIGRATE_FROM_GBA);
@@ -698,8 +698,8 @@ static void ov97_02234278(int species, int isEgg, u32 personality, int gbaVersio
     form = GetSpeciesGBAForm(species, personality, gbaVersion);
     v0 = ov97_022341B4(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconSpriteIndex(species, isEgg, form), &v2, HEAP_ID_MIGRATE_FROM_GBA);
 
-    DC_FlushRange(v2->pRawData, ((4 * 4) * 0x20));
-    GX_LoadOBJ(v2->pRawData, (0x64 + param4 * (4 * 4)) * 0x20, ((4 * 4) * 0x20));
+    DC_FlushRange(v2->pRawData, (4 * 4) * 0x20);
+    GX_LoadOBJ(v2->pRawData, (0x64 + param4 * (4 * 4)) * 0x20, (4 * 4) * 0x20);
 
     Sprite_SetExplicitPalette(param5, PokeIconPaletteIndex(species, form, isEgg) + 8);
     Heap_Free(v0);
@@ -722,7 +722,7 @@ static void ov97_022342E4(int speciesGBA, int isEgg, int form, int param3, Sprit
         spriteIndex = PokeIconSpriteIndex(speciesGBA, isEgg, form);
 
         ov97_022341EC(spriteIndex, &v1, param5, param6);
-        MI_CpuCopyFast(v1->pRawData, v2->unk_0C, ((4 * 4) * 0x20));
+        MI_CpuCopyFast(v1->pRawData, v2->unk_0C, (4 * 4) * 0x20);
 
         v2->unk_00 = (0x64 + param3 * (4 * 4)) * 0x20;
         v2->iconSprite = monIconSprite;
@@ -739,8 +739,8 @@ static void ov97_02234364(void)
 
     for (i = 0; i < GBA_MAX_MONS_PER_BOX; i++, v1++) {
         if (v1->iconSprite) {
-            DC_FlushRange(v1->unk_0C, ((4 * 4) * 0x20));
-            GX_LoadOBJ(v1->unk_0C, v1->unk_00, ((4 * 4) * 0x20));
+            DC_FlushRange(v1->unk_0C, (4 * 4) * 0x20);
+            GX_LoadOBJ(v1->unk_0C, v1->unk_00, (4 * 4) * 0x20);
             Sprite_SetExplicitPalette(v1->iconSprite, v1->unk_04);
         }
     }
@@ -1354,14 +1354,13 @@ static void ov97_02234D28(BgConfig *bgConfig)
             .y = 0,
             .bufferSize = 0x800,
             .baseTile = 0,
-            .screenSize = 1,
+            .screenSize = BG_SCREEN_SIZE_256x256,
             .colorMode = GX_BG_COLORMODE_16,
             .screenBase = GX_BG_SCRBASE_0xe000,
             .charBase = GX_BG_CHARBASE_0x00000,
             .bgExtPltt = GX_BG_EXTPLTT_01,
             .priority = 0,
             .areaOver = 0,
-            .dummy = 0,
             .mosaic = 0,
         };
 
@@ -1375,14 +1374,13 @@ static void ov97_02234D28(BgConfig *bgConfig)
             .y = 0,
             .bufferSize = 0x800,
             .baseTile = 0,
-            .screenSize = 1,
+            .screenSize = BG_SCREEN_SIZE_256x256,
             .colorMode = GX_BG_COLORMODE_16,
             .screenBase = GX_BG_SCRBASE_0xe800,
             .charBase = GX_BG_CHARBASE_0x08000,
             .bgExtPltt = GX_BG_EXTPLTT_01,
             .priority = 1,
             .areaOver = 0,
-            .dummy = 0,
             .mosaic = 0,
         };
 
@@ -1396,14 +1394,13 @@ static void ov97_02234D28(BgConfig *bgConfig)
             .y = 0,
             .bufferSize = 0x800,
             .baseTile = 0,
-            .screenSize = 1,
+            .screenSize = BG_SCREEN_SIZE_256x256,
             .colorMode = GX_BG_COLORMODE_16,
             .screenBase = GX_BG_SCRBASE_0xf000,
             .charBase = GX_BG_CHARBASE_0x08000,
             .bgExtPltt = GX_BG_EXTPLTT_23,
             .priority = 2,
             .areaOver = 0,
-            .dummy = 0,
             .mosaic = 0,
         };
 
@@ -1417,14 +1414,13 @@ static void ov97_02234D28(BgConfig *bgConfig)
             .y = 0,
             .bufferSize = 0x800,
             .baseTile = 0,
-            .screenSize = 1,
+            .screenSize = BG_SCREEN_SIZE_256x256,
             .colorMode = GX_BG_COLORMODE_16,
             .screenBase = GX_BG_SCRBASE_0xf800,
             .charBase = GX_BG_CHARBASE_0x08000,
             .bgExtPltt = GX_BG_EXTPLTT_23,
             .priority = 3,
             .areaOver = 0,
-            .dummy = 0,
             .mosaic = 0,
         };
 
@@ -1473,7 +1469,7 @@ static void ov97_02234ECC(GBAMigrator *migrator)
 {
     Font_LoadTextPalette(0, 14 * 32, HEAP_ID_MIGRATE_FROM_GBA);
     LoadStandardWindowGraphics(migrator->bgConfig, BG_LAYER_MAIN_0, 0x3F0, 14, 0, HEAP_ID_MIGRATE_FROM_GBA);
-    LoadMessageBoxGraphics(migrator->bgConfig, BG_LAYER_MAIN_0, (0x3F0 - (18 + 12)), 13, migrator->messageBoxFrame, HEAP_ID_MIGRATE_FROM_GBA);
+    LoadMessageBoxGraphics(migrator->bgConfig, BG_LAYER_MAIN_0, 0x3F0 - (18 + 12), 13, migrator->messageBoxFrame, HEAP_ID_MIGRATE_FROM_GBA);
 
     memset(&migrator->unk_490, 0, sizeof(UnkStruct_ov97_02233DAC));
 
@@ -1537,7 +1533,7 @@ static void ov97_02234F88(GBAMigrator *migrator)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
     Font_LoadTextPalette(0, 14 * 32, HEAP_ID_MIGRATE_FROM_GBA);
     LoadStandardWindowGraphics(migrator->bgConfig, BG_LAYER_MAIN_0, 0x3F0, 14, 0, HEAP_ID_MIGRATE_FROM_GBA);
-    LoadMessageBoxGraphics(migrator->bgConfig, BG_LAYER_MAIN_0, (0x3F0 - (18 + 12)), 13, migrator->messageBoxFrame, HEAP_ID_MIGRATE_FROM_GBA);
+    LoadMessageBoxGraphics(migrator->bgConfig, BG_LAYER_MAIN_0, 0x3F0 - (18 + 12), 13, migrator->messageBoxFrame, HEAP_ID_MIGRATE_FROM_GBA);
 
     ov97_02234ECC(migrator);
     migrator->unk_490.messageEntryID = MigrateFromGBA_Text_SixChosenWillMigrate;
@@ -1986,7 +1982,7 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
             migrator->unk_490.unk_44 = 0;
             migrator->unk_490.messageEntryID = MigrateFromGBA_Text_MakingAdjustments;
             ov97_02233DD0(migrator, &migrator->unk_490, 0);
-            migrator->unk_E8F0.unk_08 = Window_AddWaitDial(&migrator->unk_4FC, (0x3F0 - (18 + 12)));
+            migrator->unk_E8F0.unk_08 = Window_AddWaitDial(&migrator->unk_4FC, 0x3F0 - (18 + 12));
             *state = GBA_MIGRATOR_STATE_10;
             break;
         case 2:
@@ -2127,7 +2123,7 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
             ov97_02233DD0(migrator, &migrator->unk_490, 0);
             sub_02015A54(migrator->unk_E8EC);
             migrator->unk_E8F0.unk_00 = 0;
-            migrator->unk_E8F0.unk_08 = Window_AddWaitDial(&migrator->unk_4FC, (0x3F0 - (18 + 12)));
+            migrator->unk_E8F0.unk_08 = Window_AddWaitDial(&migrator->unk_4FC, 0x3F0 - (18 + 12));
             *state = GBA_MIGRATOR_STATE_21;
             ResetLock(RESET_LOCK_SOFT_RESET);
             break;

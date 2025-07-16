@@ -150,7 +150,7 @@ int ov17_0223CB1C(ApplicationManager *appMan, int *param1)
     PaletteData_SetAutoTransparent(v0->unk_0C.unk_44, 1);
     PaletteData_AllocBuffer(v0->unk_0C.unk_44, 0, 0x200, HEAP_ID_22);
     PaletteData_AllocBuffer(v0->unk_0C.unk_44, 1, 0x200, HEAP_ID_22);
-    PaletteData_AllocBuffer(v0->unk_0C.unk_44, 2, (((16 - 2) * 16) * sizeof(u16)), HEAP_ID_22);
+    PaletteData_AllocBuffer(v0->unk_0C.unk_44, 2, ((16 - 2) * 16) * sizeof(u16), HEAP_ID_22);
     PaletteData_AllocBuffer(v0->unk_0C.unk_44, 3, 0x200, HEAP_ID_22);
 
     v0->unk_0C.unk_24 = BgConfig_New(HEAP_ID_22);
@@ -166,22 +166,22 @@ int ov17_0223CB1C(ApplicationManager *appMan, int *param1)
 
     v0->unk_0C.unk_1C = SpriteSystem_Alloc(22);
 
-    SpriteSystem_Init(v0->unk_0C.unk_1C, &Unk_ov17_02252EFC, &Unk_ov17_02252EB4, (16 + 16));
+    SpriteSystem_Init(v0->unk_0C.unk_1C, &Unk_ov17_02252EFC, &Unk_ov17_02252EB4, 16 + 16);
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
     ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
     v0->unk_0C.unk_20 = SpriteManager_New(v0->unk_0C.unk_1C);
 
-    SpriteSystem_InitSprites(v0->unk_0C.unk_1C, v0->unk_0C.unk_20, (64 + 64));
+    SpriteSystem_InitSprites(v0->unk_0C.unk_1C, v0->unk_0C.unk_20, 64 + 64);
     SpriteSystem_InitManagerWithCapacities(v0->unk_0C.unk_1C, v0->unk_0C.unk_20, &Unk_ov17_02252EC8);
-    SetSubScreenViewRect(SpriteSystem_GetRenderer(v0->unk_0C.unk_1C), 0, (256 * FX32_ONE));
+    SetSubScreenViewRect(SpriteSystem_GetRenderer(v0->unk_0C.unk_1C), 0, 256 * FX32_ONE);
 
     v0->unk_0C.unk_04 = PokemonSpriteManager_New(HEAP_ID_22);
     ov17_0223D350();
 
     v0->unk_0C.unk_38 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0209, HEAP_ID_22);
     v0->unk_0C.unk_3C = StringTemplate_Default(HEAP_ID_22);
-    v0->unk_0C.unk_40 = Strbuf_Init((2 * 160), HEAP_ID_22);
+    v0->unk_0C.unk_40 = Strbuf_Init(2 * 160, HEAP_ID_22);
 
     {
         NARC *v1;
@@ -202,7 +202,7 @@ int ov17_0223CB1C(ApplicationManager *appMan, int *param1)
 
     PaletteData_FillBufferRange(v0->unk_0C.unk_44, 0, 0, 0x7fff, 1, 16 * 16);
     PaletteData_FillBufferRange(v0->unk_0C.unk_44, 1, 0, 0x7fff, 1, 16 * 16);
-    PaletteData_FillBufferRange(v0->unk_0C.unk_44, 2, 0, 0x7fff, 0, ((16 - 2) * 16));
+    PaletteData_FillBufferRange(v0->unk_0C.unk_44, 2, 0, 0x7fff, 0, (16 - 2) * 16);
     PaletteData_FillBufferRange(v0->unk_0C.unk_44, 3, 0, 0x7fff, 0, 16 * 16);
     sub_02039734();
     StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_27, FADE_TYPE_UNK_27, COLOR_BLACK, 6, 1, HEAP_ID_22);
@@ -442,49 +442,46 @@ static void ov17_0223D1B8(BgConfig *param0)
     {
         BgTemplate v2[] = {
             {
-                0,
-                0,
-                0x1000,
-                0,
-                3,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x0000,
-                GX_BG_CHARBASE_0x0c000,
-                GX_BG_EXTPLTT_01,
-                0,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x1000,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_512x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x0000,
+                .charBase = GX_BG_CHARBASE_0x0c000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 0,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
             {
-                0,
-                0,
-                0x2000,
-                0,
-                4,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x1000,
-                GX_BG_CHARBASE_0x14000,
-                GX_BG_EXTPLTT_01,
-                2,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x2000,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_512x512,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x1000,
+                .charBase = GX_BG_CHARBASE_0x14000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 2,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
             {
-                0,
-                0,
-                0x1000,
-                0,
-                3,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x3000,
-                GX_BG_CHARBASE_0x04000,
-                GX_BG_EXTPLTT_01,
-                3,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x1000,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_512x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x3000,
+                .charBase = GX_BG_CHARBASE_0x04000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 3,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
         };
 
@@ -508,19 +505,18 @@ static void ov17_0223D1B8(BgConfig *param0)
     {
         BgTemplate v3[] = {
             {
-                0,
-                0,
-                0x800,
-                0,
-                1,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x7800,
-                GX_BG_CHARBASE_0x00000,
-                GX_BG_EXTPLTT_01,
-                3,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x800,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_256x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x7800,
+                .charBase = GX_BG_CHARBASE_0x00000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 3,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
         };
 
@@ -533,7 +529,7 @@ static void ov17_0223D1B8(BgConfig *param0)
 
 static void ov17_0223D324(UnkStruct_ov17_02247A48 *param0)
 {
-    Window_Add(param0->unk_0C.unk_24, &param0->unk_0C.unk_28[0], 1, 0x2, 0x13, 27, 4, 13, ((18 + 12) + 1));
+    Window_Add(param0->unk_0C.unk_24, &param0->unk_0C.unk_28[0], 1, 0x2, 0x13, 27, 4, 13, (18 + 12) + 1);
 }
 
 static void ov17_0223D350(void)

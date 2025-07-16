@@ -382,19 +382,18 @@ static void ov6_0223E1D0(BgConfig *param0)
 
     {
         BgTemplate v1 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x4000,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_23,
-            0,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x4000,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_23,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v1, 0);
@@ -527,7 +526,7 @@ void ov6_0223E384(FieldTask *taskMan)
     memset(v1, 0, sizeof(UnkStruct_ov6_0223E33C));
     v1->unk_00 = ov6_0223FDE4(HEAP_ID_FIELD);
 
-    ov6_0223FE1C(v1->unk_00, (FX32_CONST(2.0f)), 0, 1, 16, fieldSystem->camera);
+    ov6_0223FE1C(v1->unk_00, FX32_CONST(2.0f), 0, 1, 16, fieldSystem->camera);
     FieldTask_InitCall(taskMan, ov6_0223E33C, v1);
 }
 
@@ -540,7 +539,7 @@ static void ov6_0223E3D8(UnkStruct_ov6_0223E33C *param0)
     if (param0->unk_08 != v2) {
         param0->unk_08 = v2;
 
-        v1 = FX_Div(v0, (8 * FX32_ONE));
+        v1 = FX_Div(v0, 8 * FX32_ONE);
         v1 = v0 - v1;
 
         ov6_0223FFFC(param0->unk_00, v1);
@@ -614,7 +613,7 @@ void ov6_0223E4EC(FieldTask *param0)
     memset(v1, 0, sizeof(UnkStruct_ov6_0223E33C));
     v1->unk_00 = ov6_0223FDE4(HEAP_ID_FIELD);
 
-    ov6_0223FE1C(v1->unk_00, (FX32_CONST(4.0f)), 0, 1, 24, fieldSystem->camera);
+    ov6_0223FE1C(v1->unk_00, FX32_CONST(4.0f), 0, 1, 24, fieldSystem->camera);
 
     v1->unk_08 = ov6_0223FFF4(v1->unk_00);
     FieldTask_InitCall(param0, ov6_0223E408, v1);
@@ -2440,7 +2439,7 @@ static void ov6_022406D8(UnkStruct_ov6_02240774 *param0)
         v1 = ov6_022408A8(param0);
         GF_ASSERT(v1);
 
-        ov6_022407E8(v1, 0, (FX32_CONST(16)), 96, param0->unk_1CC, param0->unk_1D0, param0->unk_1D4, param0->unk_1D8, param0->unk_1DA, param0->unk_1DC);
+        ov6_022407E8(v1, 0, FX32_CONST(16), 96, param0->unk_1CC, param0->unk_1D0, param0->unk_1D4, param0->unk_1D8, param0->unk_1DA, param0->unk_1DC);
     }
 
     for (v0 = 0; v0 < 3; v0++) {

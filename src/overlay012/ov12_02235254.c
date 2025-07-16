@@ -672,7 +672,7 @@ void ov12_022357EC(BattleAnimSystem *param0, int param1, int param2)
         v1 = 5;
     }
 
-    G2_SetBlendAlpha((1 << BattleAnimSystem_GetBgID(param0, 1)), (1 << BattleAnimSystem_GetBgID(param0, 2)) | GX_WND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ, v0, v1);
+    G2_SetBlendAlpha(1 << BattleAnimSystem_GetBgID(param0, 1), (1 << BattleAnimSystem_GetBgID(param0, 2)) | GX_WND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ, v0, v1);
 }
 
 void ov12_02235838(BattleAnimSystem *param0, int param1, BOOL param2)

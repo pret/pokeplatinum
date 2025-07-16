@@ -141,7 +141,7 @@ static void ov12_0222E91C(SysTask *param0, void *param1)
 
 void ov12_0222EAA0(BattleAnimSystem *param0)
 {
-    UnkStruct_ov12_0222E91C *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222E91C));
+    UnkStruct_ov12_0222E91C *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222E91C));
 
     ov12_0223595C(param0, &v0->unk_00);
 
@@ -224,7 +224,7 @@ void ov12_0222EC90(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
 {
     UnkStruct_ov12_0222EC18 *v0 = NULL;
 
-    v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222EC18));
+    v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222EC18));
     v0->unk_1C = 10;
 
     ov12_0223595C(param0, &v0->unk_00);
@@ -386,7 +386,7 @@ void ov12_0222EFB0(BattleAnimSystem *param0)
     s16 v4;
     s16 v5;
 
-    v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222EE50));
+    v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222EE50));
     ov12_0223595C(param0, &v0->unk_00);
 
     v0->unk_1C[0] = BattleAnimSystem_GetPokemonSprite(v0->unk_00.unk_04, 0);
@@ -525,7 +525,7 @@ static void ov12_0222F208(SysTask *param0, void *param1)
 void ov12_0222F2F8(BattleAnimSystem *param0)
 {
     int v0;
-    UnkStruct_ov12_0222F208 *v1 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222F208));
+    UnkStruct_ov12_0222F208 *v1 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222F208));
     ov12_0223595C(param0, &v1->unk_00);
 
     {
@@ -647,7 +647,7 @@ static void ov12_0222F464(SysTask *param0, void *param1)
 
 void ov12_0222F5EC(BattleAnimSystem *param0)
 {
-    UnkStruct_ov12_0222F464 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222F464));
+    UnkStruct_ov12_0222F464 *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222F464));
     ov12_0223595C(param0, &v0->unk_20);
 
     v0->unk_1C = BattleAnimSystem_GetBattlerSprite(param0, BattleAnimSystem_GetDefender(param0));
@@ -661,7 +661,7 @@ void ov12_0222F5EC(BattleAnimSystem *param0)
         switch (v1) {
         case 3:
         case 4:
-            Bg_SetPriority(BG_LAYER_MAIN_2, (BattleAnimSystem_GetPokemonSpritePriority(param0) - 1));
+            Bg_SetPriority(BG_LAYER_MAIN_2, BattleAnimSystem_GetPokemonSpritePriority(param0) - 1);
             break;
         }
     }

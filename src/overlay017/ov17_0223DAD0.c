@@ -248,7 +248,7 @@ int ov17_0223DAD0(ApplicationManager *appMan, int *param1)
     PaletteData_SetAutoTransparent(v0->unk_14.unk_90, 1);
     PaletteData_AllocBuffer(v0->unk_14.unk_90, 0, 0x200, HEAP_ID_23);
     PaletteData_AllocBuffer(v0->unk_14.unk_90, 1, 0x200, HEAP_ID_23);
-    PaletteData_AllocBuffer(v0->unk_14.unk_90, 2, (((16 - 2) * 16) * sizeof(u16)), HEAP_ID_23);
+    PaletteData_AllocBuffer(v0->unk_14.unk_90, 2, ((16 - 2) * 16) * sizeof(u16), HEAP_ID_23);
     PaletteData_AllocBuffer(v0->unk_14.unk_90, 3, 0x200, HEAP_ID_23);
 
     v0->unk_1050.unk_00 = Heap_AllocFromHeap(HEAP_ID_23, 0x200);
@@ -268,23 +268,23 @@ int ov17_0223DAD0(ApplicationManager *appMan, int *param1)
 
     v0->unk_14.unk_58 = SpriteSystem_Alloc(23);
 
-    SpriteSystem_Init(v0->unk_14.unk_58, &Unk_ov17_02253008, &Unk_ov17_02252FDC, (16 + 16));
+    SpriteSystem_Init(v0->unk_14.unk_58, &Unk_ov17_02253008, &Unk_ov17_02252FDC, 16 + 16);
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
     ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
     v0->unk_14.unk_5C = SpriteManager_New(v0->unk_14.unk_58);
 
-    SpriteSystem_InitSprites(v0->unk_14.unk_58, v0->unk_14.unk_5C, (64 + 64));
+    SpriteSystem_InitSprites(v0->unk_14.unk_58, v0->unk_14.unk_5C, 64 + 64);
     SpriteSystem_InitManagerWithCapacities(v0->unk_14.unk_58, v0->unk_14.unk_5C, &Unk_ov17_02252FF0);
-    SetSubScreenViewRect(SpriteSystem_GetRenderer(v0->unk_14.unk_58), 0, (256 * FX32_ONE));
+    SetSubScreenViewRect(SpriteSystem_GetRenderer(v0->unk_14.unk_58), 0, 256 * FX32_ONE);
 
     v0->unk_14.unk_44 = PokemonSpriteManager_New(HEAP_ID_23);
     ov17_0223E450();
 
     v0->unk_14.unk_84 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0206, HEAP_ID_23);
     v0->unk_14.unk_88 = StringTemplate_Default(HEAP_ID_23);
-    v0->unk_14.unk_8C = Strbuf_Init((2 * 160), HEAP_ID_23);
-    v0->unk_14.unk_94 = sub_02012744((3 * 3), HEAP_ID_23);
+    v0->unk_14.unk_8C = Strbuf_Init(2 * 160, HEAP_ID_23);
+    v0->unk_14.unk_94 = sub_02012744(3 * 3, HEAP_ID_23);
 
     {
         NARC *v1;
@@ -322,7 +322,7 @@ int ov17_0223DAD0(ApplicationManager *appMan, int *param1)
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_CONTEST, SEQ_CONTEST_DRESSING_ROOM, 1);
     sub_020959F4(v0->unk_00->unk_155);
 
-    G2_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD | GX_BLEND_PLANEMASK_OBJ), -6);
+    G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD | GX_BLEND_PLANEMASK_OBJ, -6);
 
     Sound_PlayEffect(SEQ_SE_DP_CON_007);
     SetVBlankCallback(ov17_0223E09C, v0);
@@ -602,49 +602,46 @@ static void ov17_0223E250(BgConfig *param0)
     {
         BgTemplate v2[] = {
             {
-                0,
-                0,
-                0x1000,
-                0,
-                3,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x0000,
-                GX_BG_CHARBASE_0x14000,
-                GX_BG_EXTPLTT_01,
-                0,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x1000,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_512x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x0000,
+                .charBase = GX_BG_CHARBASE_0x14000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 0,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
             {
-                0,
-                0,
-                0x2000,
-                0,
-                4,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x1000,
-                GX_BG_CHARBASE_0x0c000,
-                GX_BG_EXTPLTT_01,
-                0,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x2000,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_512x512,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x1000,
+                .charBase = GX_BG_CHARBASE_0x0c000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 0,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
             {
-                0,
-                0,
-                0x1000,
-                0,
-                3,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x3000,
-                GX_BG_CHARBASE_0x04000,
-                GX_BG_EXTPLTT_01,
-                3,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x1000,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_512x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x3000,
+                .charBase = GX_BG_CHARBASE_0x04000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 3,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
         };
 
@@ -672,8 +669,8 @@ static void ov17_0223E250(BgConfig *param0)
 
 static void ov17_0223E380(UnkStruct_ov17_0224DF54 *param0)
 {
-    Window_Add(param0->unk_14.unk_60, &param0->unk_14.unk_64[0], 1, 0x2, 0x13, 27, 4, 13, ((18 + 12) + 1));
-    Window_Add(param0->unk_14.unk_60, &param0->unk_14.unk_64[1], 1, 0x2, 0xb, 27, 2, 13, ((18 + 12) + 1));
+    Window_Add(param0->unk_14.unk_60, &param0->unk_14.unk_64[0], 1, 0x2, 0x13, 27, 4, 13, (18 + 12) + 1);
+    Window_Add(param0->unk_14.unk_60, &param0->unk_14.unk_64[1], 1, 0x2, 0xb, 27, 2, 13, (18 + 12) + 1);
 }
 
 static BOOL ov17_0223E3CC(UnkStruct_ov17_0224DF54 *param0, int *param1, int *param2)
@@ -834,7 +831,7 @@ static void ov17_0223E778(UnkStruct_ov17_0224DF54 *param0)
     param0->unk_0C = ParticleSystem_New(ov17_0223E800, ov17_0223E81C, v0, 0x4800, 1, HEAP_ID_23);
 
     camera = ParticleSystem_GetCamera(param0->unk_0C);
-    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
+    Camera_SetClipping(FX32_ONE, FX32_ONE * 900, camera);
 
     v2 = ParticleSystem_LoadResourceFromNARC(61, 3, 23);
     ParticleSystem_SetResource(param0->unk_0C, v2, (1 << 1) | (1 << 3), 1);

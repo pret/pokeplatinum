@@ -873,8 +873,8 @@ static void ov108_02242658(UnkStruct_ov108_02241DB0 *param0)
 
     param0->unk_D4 = PaletteData_New(HEAP_ID_103);
 
-    PaletteData_AllocBuffer(param0->unk_D4, 2, (32 * 16), HEAP_ID_103);
-    PaletteData_AllocBuffer(param0->unk_D4, 0, (32 * 16), HEAP_ID_103);
+    PaletteData_AllocBuffer(param0->unk_D4, 2, 32 * 16, HEAP_ID_103);
+    PaletteData_AllocBuffer(param0->unk_D4, 0, 32 * 16, HEAP_ID_103);
 
     ov108_02242828(param0, 3);
     ov108_022428C0();
@@ -951,19 +951,18 @@ static void ov108_02242760(BgConfig *param0)
 
     {
         BgTemplate v1 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x0000,
-            GX_BG_CHARBASE_0x04000,
-            GX_BG_EXTPLTT_01,
-            0,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x0000,
+            .charBase = GX_BG_CHARBASE_0x04000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v1, 0);
@@ -973,19 +972,18 @@ static void ov108_02242760(BgConfig *param0)
 
     {
         BgTemplate v2 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x2000,
-            GX_BG_CHARBASE_0x0c000,
-            GX_BG_EXTPLTT_01,
-            2,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x2000,
+            .charBase = GX_BG_CHARBASE_0x0c000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 2,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v2, 0);
@@ -994,19 +992,18 @@ static void ov108_02242760(BgConfig *param0)
 
     {
         BgTemplate v3 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x3000,
-            GX_BG_CHARBASE_0x10000,
-            GX_BG_EXTPLTT_01,
-            0,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x3000,
+            .charBase = GX_BG_CHARBASE_0x10000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v3, 0);
@@ -1056,8 +1053,8 @@ static void ov108_022428C0(void)
 
     v0 = Graphics_GetPlttData(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 167, &v1, HEAP_ID_103);
 
-    DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 7));
-    GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 7));
+    DC_FlushRange(v1->pRawData, sizeof(u16) * 16 * 7);
+    GX_LoadBGPltt(v1->pRawData, 0, sizeof(u16) * 16 * 7);
     Heap_Free(v0);
 
     return;
@@ -1066,7 +1063,7 @@ static void ov108_022428C0(void)
 static void ov108_022428F4(UnkStruct_ov108_02241DB0 *param0, u32 param1)
 {
     Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_3D0, 122, param0->unk_90, param1, 0, 0, 1, HEAP_ID_103);
-    Graphics_LoadPaletteFromOpenNARC(param0->unk_3D0, 168, 4, 0, (sizeof(u16) * 16 * 2), HEAP_ID_103);
+    Graphics_LoadPaletteFromOpenNARC(param0->unk_3D0, 168, 4, 0, sizeof(u16) * 16 * 2, HEAP_ID_103);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_3D0, 121, param0->unk_90, param1, 0, 0, 1, HEAP_ID_103);
 
     return;

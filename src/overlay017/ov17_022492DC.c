@@ -149,64 +149,60 @@ static void ov17_022495F8(UnkStruct_ov17_022492DC *param0);
 
 static const BgTemplate Unk_ov17_022545C0[] = {
     {
-        0x0,
-        0x0,
-        0x800,
-        0x0,
-        0x1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0x6000,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
+        .x = 0x0,
+        .y = 0x0,
+        .bufferSize = 0x800,
+        .baseTile = 0x0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x6000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0x0,
+        .areaOver = 0x0,
+        .mosaic = FALSE,
     },
     {
-        0x0,
-        0x0,
-        0x800,
-        0x0,
-        0x1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0x6800,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
+        .x = 0x0,
+        .y = 0x0,
+        .bufferSize = 0x800,
+        .baseTile = 0x0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x6800,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0x0,
+        .areaOver = 0x0,
+        .mosaic = FALSE,
     },
     {
-        0x0,
-        0x0,
-        0x800,
-        0x0,
-        0x1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0x7000,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
+        .x = 0x0,
+        .y = 0x0,
+        .bufferSize = 0x800,
+        .baseTile = 0x0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x7000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0x0,
+        .areaOver = 0x0,
+        .mosaic = FALSE,
     },
     {
-        0x0,
-        0x0,
-        0x800,
-        0x0,
-        0x1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0x7800,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
+        .x = 0x0,
+        .y = 0x0,
+        .bufferSize = 0x800,
+        .baseTile = 0x0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x7800,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0x0,
+        .areaOver = 0x0,
+        .mosaic = FALSE,
     },
 };
 
@@ -335,8 +331,8 @@ static void ov17_022493DC(UnkStruct_ov17_022492DC *param0)
     NNSG2dScreenData *v1;
     void *v2;
 
-    param0->unk_C4[0] = Heap_AllocFromHeap(HEAP_ID_23, (0x8000 - (0x800 * 4)));
-    param0->unk_C4[1] = Heap_AllocFromHeap(HEAP_ID_23, (0x8000 - (0x800 * 4)));
+    param0->unk_C4[0] = Heap_AllocFromHeap(HEAP_ID_23, 0x8000 - (0x800 * 4));
+    param0->unk_C4[1] = Heap_AllocFromHeap(HEAP_ID_23, 0x8000 - (0x800 * 4));
     param0->unk_C4[2] = Heap_AllocFromHeap(HEAP_ID_23, 6 * 12 * 0x20 * 3);
 
     param0->unk_D0[0] = Heap_AllocFromHeap(HEAP_ID_23, 0x800);
@@ -348,11 +344,11 @@ static void ov17_022493DC(UnkStruct_ov17_022492DC *param0)
     param0->unk_E0[1] = Heap_AllocFromHeap(HEAP_ID_23, 0x200);
 
     v2 = Graphics_GetCharData(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 9, 1, &v0, HEAP_ID_23);
-    MI_CpuCopy32(v0->pRawData, param0->unk_C4[0], (0x8000 - (0x800 * 4)));
+    MI_CpuCopy32(v0->pRawData, param0->unk_C4[0], 0x8000 - (0x800 * 4));
     Heap_Free(v2);
 
     v2 = Graphics_GetCharData(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 18, 1, &v0, HEAP_ID_23);
-    MI_CpuCopy32(v0->pRawData, param0->unk_C4[1], (0x8000 - (0x800 * 4)));
+    MI_CpuCopy32(v0->pRawData, param0->unk_C4[1], 0x8000 - (0x800 * 4));
     Heap_Free(v2);
 
     v2 = Graphics_GetCharData(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 16, 1, &v0, HEAP_ID_23);
@@ -524,8 +520,8 @@ static void ov17_02249828(UnkStruct_ov17_022492DC *param0)
     v0 = MessageLoader_GetNewStrbuf(v4, v2);
     v1 = MessageLoader_GetNewStrbuf(v4, v3);
 
-    ov17_02249BC4(param0, &param0->unk_1C[0], v0, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 0, 33003, 128, (8 * 0x10 - 1), 1);
-    ov17_02249BC4(param0, &param0->unk_1C[1], v1, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 0, 33003, 128, (8 * 0x14 - 1), 1);
+    ov17_02249BC4(param0, &param0->unk_1C[0], v0, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 0, 33003, 128, 8 * 0x10 - 1, 1);
+    ov17_02249BC4(param0, &param0->unk_1C[1], v1, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 0, 33003, 128, 8 * 0x14 - 1, 1);
 
     Strbuf_Free(v0);
     Strbuf_Free(v1);
@@ -864,7 +860,7 @@ static void ov17_02249DA0(SysTask *param0, void *param1)
 
         for (v4 = 0; v4 < 3; v4++) {
             if (v0->unk_8C.unk_04_val1.unk_10[v4] != NULL) {
-                Sprite_OffsetPositionXY(v0->unk_8C.unk_04_val1.unk_10[v4]->sprite, 0, (-(16 + -4)));
+                Sprite_OffsetPositionXY(v0->unk_8C.unk_04_val1.unk_10[v4]->sprite, 0, -(16 + -4));
             }
         }
 
@@ -915,7 +911,7 @@ static void ov17_0224A088(SysTask *param0, void *param1)
     UnkStruct_ov17_022492DC *v0 = param1;
 
     if (v0->unk_88 != 0xffff) {
-        Bg_LoadTiles(v0->unk_04->unk_60, 4, v0->unk_C4[v0->unk_88], (0x8000 - (0x800 * 4)), 0);
+        Bg_LoadTiles(v0->unk_04->unk_60, 4, v0->unk_C4[v0->unk_88], 0x8000 - (0x800 * 4), 0);
         v0->unk_88 = 0xffff;
     }
 
@@ -933,5 +929,5 @@ static void ov17_0224A0C8(SysTask *param0, void *param1)
 
 void ov17_0224A0E0(UnkStruct_ov17_022492DC *param0, u16 param1, u8 param2)
 {
-    PaletteData_Blend(param0->unk_04->unk_90, 1, (0 * 16), (16 * 4), param2, param1);
+    PaletteData_Blend(param0->unk_04->unk_90, 1, 0 * 16, 16 * 4, param2, param1);
 }

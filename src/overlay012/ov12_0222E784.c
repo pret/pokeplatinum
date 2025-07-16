@@ -62,7 +62,7 @@ static void ov12_0222E784(SysTask *param0, void *param1)
 
 void ov12_0222E810(BattleAnimSystem *param0)
 {
-    UnkStruct_ov12_0222E784 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222E784));
+    UnkStruct_ov12_0222E784 *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222E784));
 
     ov12_0223595C(param0, &v0->unk_00);
 

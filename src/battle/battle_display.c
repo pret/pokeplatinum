@@ -263,11 +263,11 @@ void ov16_0225CBDC(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
     if (param1->battlerType & 0x1) {
         v4->unk_13 = 2;
         v4->unk_0C = ov16_0223E020(battleSys, 1);
-        ManagedSprite_SetPositionXY(v4->unk_0C->unk_00, Unk_ov12_0223B0B8[param1->battlerType & 1][0], (8 * 11));
+        ManagedSprite_SetPositionXY(v4->unk_0C->unk_00, Unk_ov12_0223B0B8[param1->battlerType & 1][0], 8 * 11);
     } else {
         v4->unk_13 = 0;
         v4->unk_0C = ov16_0223E020(battleSys, 0);
-        ManagedSprite_SetPositionXY(v4->unk_0C->unk_00, Unk_ov12_0223B0B8[param1->battlerType & 1][0], (128 + 8));
+        ManagedSprite_SetPositionXY(v4->unk_0C->unk_00, Unk_ov12_0223B0B8[param1->battlerType & 1][0], 128 + 8);
     }
 
     if (param2->unk_01_2) {
@@ -298,7 +298,7 @@ void ov16_0225CBDC(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
         v10 = ((24 * 8) - -80) / 2;
 
         PokemonSprite_SetAttribute(v4->unk_08, MON_SPRITE_SHADOW_SIZE, 0);
-        PokemonSprite_SetAttribute(v4->unk_08, MON_SPRITE_X_CENTER, (256 - 64));
+        PokemonSprite_SetAttribute(v4->unk_08, MON_SPRITE_X_CENTER, 256 - 64);
         PokemonSprite_SetAttribute(v4->unk_08, MON_SPRITE_Y_CENTER, v11 - v10);
 
         v4->unk_14 = v11;
@@ -486,11 +486,11 @@ void ov16_0225D228(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
     if (param1->battlerType & 0x1) {
         v1->unk_0F = 2;
         v1->unk_04 = ov16_0223E020(battleSys, 1);
-        ManagedSprite_SetPositionXY(v1->unk_04->unk_00, Unk_ov12_0223B0B8[param1->battlerType & 1][0], (8 * 11));
+        ManagedSprite_SetPositionXY(v1->unk_04->unk_00, Unk_ov12_0223B0B8[param1->battlerType & 1][0], 8 * 11);
     } else {
         v1->unk_0F = 0;
         v1->unk_04 = ov16_0223E020(battleSys, 0);
-        ManagedSprite_SetPositionXY(v1->unk_04->unk_00, Unk_ov12_0223B0B8[param1->battlerType & 1][0], (128 + 8));
+        ManagedSprite_SetPositionXY(v1->unk_04->unk_00, Unk_ov12_0223B0B8[param1->battlerType & 1][0], 128 + 8);
     }
 
     if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) || ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_TAG) && (param1->battlerType & BATTLE_TYPE_TRAINER))) {
@@ -1477,7 +1477,7 @@ static void ov16_0225E4E8(SysTask *param0, void *param1)
                 if (v2 < (24 * 8)) {
                     ManagedSprite_OffsetPositionXY(v0->unk_0C->unk_00, 8, 0);
                 } else {
-                    ManagedSprite_SetPositionXY(v0->unk_0C->unk_00, (24 * 8), (8 * 11));
+                    ManagedSprite_SetPositionXY(v0->unk_0C->unk_00, 24 * 8, 8 * 11);
                 }
             }
 
@@ -1511,7 +1511,7 @@ static void ov16_0225E4E8(SysTask *param0, void *param1)
                 }
 
                 if ((v0->unk_1C == 1) || (v0->unk_1C == 3)) {
-                    ManagedSprite_SetPositionXY(v0->unk_0C->unk_00, (24 * 8), (8 * 11));
+                    ManagedSprite_SetPositionXY(v0->unk_0C->unk_00, 24 * 8, 8 * 11);
                 }
 
                 PokemonSprite_StartFade(v0->unk_08, 8, 0, 0, 0x0);
@@ -1524,7 +1524,7 @@ static void ov16_0225E4E8(SysTask *param0, void *param1)
                 if (v2 > 64) {
                     ManagedSprite_OffsetPositionXY(v0->unk_0C->unk_00, -8, 0);
                 } else {
-                    ManagedSprite_SetPositionXY(v0->unk_0C->unk_00, 64, (128 + 8));
+                    ManagedSprite_SetPositionXY(v0->unk_0C->unk_00, 64, 128 + 8);
                 }
             }
 
@@ -1554,7 +1554,7 @@ static void ov16_0225E4E8(SysTask *param0, void *param1)
                 }
 
                 if ((v0->unk_1C == 0) || (v0->unk_1C == 2)) {
-                    ManagedSprite_SetPositionXY(v0->unk_0C->unk_00, 64, (128 + 8));
+                    ManagedSprite_SetPositionXY(v0->unk_0C->unk_00, 64, 128 + 8);
                 }
 
                 v0->unk_12++;
@@ -1616,7 +1616,7 @@ static void ov16_0225E894(SysTask *param0, void *param1)
             if (v2 < (24 * 8)) {
                 ManagedSprite_OffsetPositionXY(v0->unk_0C->unk_00, 8, 0);
             } else {
-                ManagedSprite_SetPositionXY(v0->unk_0C->unk_00, (24 * 8), (8 * 11));
+                ManagedSprite_SetPositionXY(v0->unk_0C->unk_00, 24 * 8, 8 * 11);
             }
         }
 
@@ -1637,7 +1637,7 @@ static void ov16_0225E894(SysTask *param0, void *param1)
                 Pokemon_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_11), v0->unk_18, v0->unk_16, v0->unk_2C, 117, 127, NULL, 5, v4);
             }
 
-            ManagedSprite_SetPositionXY(v0->unk_0C->unk_00, (24 * 8), (8 * 11));
+            ManagedSprite_SetPositionXY(v0->unk_0C->unk_00, 24 * 8, 8 * 11);
             PokemonSprite_StartFade(v0->unk_08, 8, 0, 0, 0x0);
 
             v0->unk_12++;
@@ -2292,7 +2292,7 @@ static void ov16_0225FA70(SysTask *param0, void *param1)
                 if (v1 < (24 * 8)) {
                     ManagedSprite_OffsetPositionXY(v0->unk_04->unk_00, 8, 0);
                 } else {
-                    ManagedSprite_SetPositionXY(v0->unk_04->unk_00, (24 * 8), (8 * 11));
+                    ManagedSprite_SetPositionXY(v0->unk_04->unk_00, 24 * 8, 8 * 11);
                 }
             }
 
@@ -2318,7 +2318,7 @@ static void ov16_0225FA70(SysTask *param0, void *param1)
                 ManagedSprite_SetPositionXY(v0->unk_08, v0->unk_10, v4);
 
                 if ((v0->unk_14 == 1) || (v0->unk_14 == 3)) {
-                    ManagedSprite_SetPositionXY(v0->unk_04->unk_00, (24 * 8), (8 * 11));
+                    ManagedSprite_SetPositionXY(v0->unk_04->unk_00, 24 * 8, 8 * 11);
                 }
 
                 if (ManagedSprite_GetNumFrames(v0->unk_08) > 1) {
@@ -2335,7 +2335,7 @@ static void ov16_0225FA70(SysTask *param0, void *param1)
                 if (v1 > 64) {
                     ManagedSprite_OffsetPositionXY(v0->unk_04->unk_00, -8, 0);
                 } else {
-                    ManagedSprite_SetPositionXY(v0->unk_04->unk_00, 64, (128 + 8));
+                    ManagedSprite_SetPositionXY(v0->unk_04->unk_00, 64, 128 + 8);
                 }
             }
 
@@ -2361,7 +2361,7 @@ static void ov16_0225FA70(SysTask *param0, void *param1)
                 ManagedSprite_SetPositionXY(v0->unk_08, v0->unk_10, v4);
 
                 if ((v0->unk_14 == 0) || (v0->unk_14 == 2)) {
-                    ManagedSprite_SetPositionXY(v0->unk_04->unk_00, 64, (128 + 8));
+                    ManagedSprite_SetPositionXY(v0->unk_04->unk_00, 64, 128 + 8);
                 }
 
                 v0->unk_0E = 4;
@@ -3533,8 +3533,8 @@ static void ov16_022611DC(SysTask *param0, void *param1)
     case 0:
         v0->unk_10 = ov16_0226CD08(ov16_0223E02C(v0->unk_00));
         sub_02015738(ov16_0223E220(v0->unk_00), 1);
-        PaletteData_StartFade(v1, (0x1 | 0x4), 0xc00, -8, 0, 7, 0x0);
-        PaletteData_StartFade(v1, (0x2 | 0x8), 0xffff, -8, 0, 16, 0x0);
+        PaletteData_StartFade(v1, 0x1 | 0x4, 0xc00, -8, 0, 7, 0x0);
+        PaletteData_StartFade(v1, 0x2 | 0x8, 0xffff, -8, 0, 16, 0x0);
         v0->unk_0E++;
         break;
     case 1:
@@ -3646,8 +3646,8 @@ static void ov16_022611DC(SysTask *param0, void *param1)
     case 6:
         ov16_0223B430(v0->unk_00);
         ov16_0226CD10(ov16_0223E02C(v0->unk_00), v0->unk_10);
-        PaletteData_StartFade(v1, (0x1 | 0x4), 0xc00, -8, 7, 0, 0x0);
-        PaletteData_StartFade(v1, (0x2 | 0x8), 0xffff, -8, 16, 0, 0x0);
+        PaletteData_StartFade(v1, 0x1 | 0x4, 0xc00, -8, 7, 0, 0x0);
+        PaletteData_StartFade(v1, 0x2 | 0x8, 0xffff, -8, 16, 0, 0x0);
         v0->unk_0E++;
         break;
     case 7:
@@ -4125,8 +4125,8 @@ static void ov16_02261E8C(SysTask *param0, void *param1)
 
         v0->unk_17 = ov16_0226CD08(ov16_0223E02C(v0->unk_00));
         sub_02015738(ov16_0223E220(v0->unk_00), 1);
-        PaletteData_StartFade(v1, (0x1 | 0x4), 0xc00, -8, 0, 7, 0x0);
-        PaletteData_StartFade(v1, (0x2 | 0x8), 0xffff, -8, 0, 16, 0x0);
+        PaletteData_StartFade(v1, 0x1 | 0x4, 0xc00, -8, 0, 7, 0x0);
+        PaletteData_StartFade(v1, 0x2 | 0x8, 0xffff, -8, 0, 16, 0x0);
         v0->unk_0A++;
         break;
     case 1:
@@ -4235,8 +4235,8 @@ static void ov16_02261E8C(SysTask *param0, void *param1)
         if (v0->unk_04->battlePartyExited) {
             ov16_0223B430(v0->unk_00);
             ov16_0226CD10(ov16_0223E02C(v0->unk_00), v0->unk_04->isCursorEnabled);
-            PaletteData_StartFade(v1, (0x1 | 0x4), 0xc00, -8, 7, 0, 0x0);
-            PaletteData_StartFade(v1, (0x2 | 0x8), 0xffff, -8, 16, 0, 0x0);
+            PaletteData_StartFade(v1, 0x1 | 0x4, 0xc00, -8, 7, 0, 0x0);
+            PaletteData_StartFade(v1, 0x2 | 0x8, 0xffff, -8, 16, 0, 0x0);
             v0->unk_0A++;
         }
         break;
@@ -4842,7 +4842,7 @@ static void ov16_02262D28(SysTask *param0, void *param1)
     switch (v0->unk_06) {
     case 0:
         sub_02015738(ov16_0223E220(v0->unk_00), 1);
-        PaletteData_StartFade(v1, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
+        PaletteData_StartFade(v1, 0x1 | 0x2 | 0x4 | 0x8, 0xffff, 1, 0, 16, 0x0);
         PokemonSpriteManager_StartFadeAll(v2, 0, 16, 0, 0x0);
         Sound_FadeOutBGM(0, 16);
         v0->unk_06++;
@@ -5117,7 +5117,7 @@ static void ov16_02263014(SysTask *param0, void *param1)
 
             PaletteData_StartFade(v2, 0x1, 0xf3ff, 0, 16, 0, v4);
             PaletteData_StartFade(v2, 0x4, 0x3fff, 0, 16, 0, v4);
-            PaletteData_StartFade(v2, (0x2 | 0x8), 0xffff, 0, 16, 0, v4);
+            PaletteData_StartFade(v2, 0x2 | 0x8, 0xffff, 0, 16, 0, v4);
         }
 
         if (v0->unk_15 >= 50) {
@@ -5155,7 +5155,7 @@ static void ov16_02263014(SysTask *param0, void *param1)
 
         PaletteData_StartFade(v2, 0x1, 0xffff, 0, 0, 0, 0x7fff);
         PaletteData_StartFade(v2, 0x4, 0x3fff, 0, 0, 0, 0xffff);
-        PaletteData_StartFade(v2, (0x2 | 0x8), 0xffff, 0, 0, 0, 0x7fff);
+        PaletteData_StartFade(v2, 0x2 | 0x8, 0xffff, 0, 0, 0, 0x7fff);
         v0->unk_14 = 3;
         break;
     }
@@ -5168,7 +5168,7 @@ static void ov16_022633A4(SysTask *param0, void *param1)
 
     switch (v0->unk_0A) {
     case 0:
-        PaletteData_StartFade(v1, (0x2 | 0x8), 0xffff, -8, 0, 16, 0x0);
+        PaletteData_StartFade(v1, 0x2 | 0x8, 0xffff, -8, 0, 16, 0x0);
         v0->unk_0A++;
         break;
     case 1:
@@ -5195,7 +5195,7 @@ static void ov16_022633A4(SysTask *param0, void *param1)
     case 2:
         if (v0->unk_04->battlePartyExited) {
             ov16_0223B430(v0->unk_00);
-            PaletteData_StartFade(v1, (0x2 | 0x8), 0xffff, -8, 16, 0, 0x0);
+            PaletteData_StartFade(v1, 0x2 | 0x8, 0xffff, -8, 16, 0, 0x0);
             v0->unk_0A++;
         }
         break;

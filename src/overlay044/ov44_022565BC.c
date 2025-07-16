@@ -209,19 +209,18 @@ static void ov44_02256780(PoketchTaskManager *param0)
 static void ov44_02256794(SysTask *param0, void *param1)
 {
     static const BgTemplate v0 = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0x7000,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        2,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x7000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
     GXSDispCnt v1;
     UnkStruct_ov44_022565BC *v2;
@@ -334,8 +333,8 @@ static void ov44_02256954(UnkStruct_ov44_022565BC *param0, u32 param1, u32 param
 
 static void ov44_022569AC(UnkStruct_ov44_022565BC *param0)
 {
-    PoketchAnimation_SetSpritePosition(param0->unk_24[2], (48 << FX32_SHIFT), (88 << FX32_SHIFT));
-    PoketchAnimation_SetSpritePosition(param0->unk_24[3], (176 << FX32_SHIFT), (88 << FX32_SHIFT));
+    PoketchAnimation_SetSpritePosition(param0->unk_24[2], 48 << FX32_SHIFT, 88 << FX32_SHIFT);
+    PoketchAnimation_SetSpritePosition(param0->unk_24[3], 176 << FX32_SHIFT, 88 << FX32_SHIFT);
     PoketchAnimation_UpdateAnimationIdx(param0->unk_24[2], 5);
     PoketchAnimation_UpdateAnimationIdx(param0->unk_24[3], 6);
     PoketchAnimation_UpdateAnimationIdx(param0->unk_24[1], 0);
@@ -522,8 +521,8 @@ func_start:
                 param0->unk_78 = param0->unk_80;
             }
 
-            PoketchAnimation_SetSpritePosition(param0->unk_24[2], (48 << FX32_SHIFT) + param0->unk_78, (88 << FX32_SHIFT));
-            PoketchAnimation_SetSpritePosition(param0->unk_24[3], (176 << FX32_SHIFT) - param0->unk_78, (88 << FX32_SHIFT));
+            PoketchAnimation_SetSpritePosition(param0->unk_24[2], (48 << FX32_SHIFT) + param0->unk_78, 88 << FX32_SHIFT);
+            PoketchAnimation_SetSpritePosition(param0->unk_24[3], (176 << FX32_SHIFT) - param0->unk_78, 88 << FX32_SHIFT);
         }
 
         if (param0->unk_84 == 0) {
