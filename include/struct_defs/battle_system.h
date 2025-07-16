@@ -21,7 +21,7 @@
 #include "battle/struct_ov16_02268A14_decl.h"
 #include "battle/struct_ov16_0226D160_decl.h"
 #include "overlay010/struct_ov10_0221F800.h"
-#include "overlay012/struct_ov12_0221FCDC_decl.h"
+#include "overlay012/battle_anim_system.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -65,7 +65,7 @@ struct BattleSystem {
     Party *parties[MAX_BATTLERS];
     ChatotCry *unk_78[MAX_BATTLERS];
     PokemonSpriteManager *unk_88;
-    UnkStruct_ov12_0221FCDC *unk_8C;
+    BattleAnimSystem *unk_8C;
     SpriteSystem *spriteSys;
     SpriteManager *spriteMan;
     Poketch *poketch;

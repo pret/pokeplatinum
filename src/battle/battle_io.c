@@ -1598,12 +1598,12 @@ void ov16_02266B78(BattleSystem *battleSys, BattleContext *param1, UnkStruct_ov1
             param2->unk_08 = param1->aiContext.moveTable[param7].power;
         }
 
-        param2->unk_0C = param1->battleMons[param5].friendship;
+        param2->friendship = param1->battleMons[param5].friendship;
 
         if ((BattleSystem_CountAbility(battleSys, param1, COUNT_ALIVE_BATTLERS, 0, ABILITY_CLOUD_NINE) == 0) && (BattleSystem_CountAbility(battleSys, param1, COUNT_ALIVE_BATTLERS, 0, ABILITY_AIR_LOCK) == 0)) {
-            param2->unk_10 = param1->fieldConditionsMask;
+            param2->fieldConditions = param1->fieldConditionsMask;
         } else {
-            param2->unk_10 = 0;
+            param2->fieldConditions = 0;
         }
 
         param2->unk_0A = param1->moveEffectChance;

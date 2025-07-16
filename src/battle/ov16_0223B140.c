@@ -31,7 +31,7 @@
 #include "overlay010/ov10_0221F800.h"
 #include "overlay010/struct_ov10_0221F800.h"
 #include "overlay011/ov11_0221F840.h"
-#include "overlay012/ov12_0221FC20.h"
+#include "overlay012/battle_anim_system.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -605,7 +605,7 @@ static void ov16_0223B790(ApplicationManager *appMan)
     ov16_0223F36C(battleSys);
     ov16_0223CE28();
 
-    battleSys->unk_8C = ov12_0221FCDC(HEAP_ID_BATTLE);
+    battleSys->unk_8C = BattleAnimSystem_New(HEAP_ID_BATTLE);
 
     ov16_0223C210(battleSys);
 
@@ -762,7 +762,7 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
     sub_02015FB8(battleSystem->pokemonAnimationSys);
     ParticleSystem_FreeAll();
 
-    ov12_0221FDF4(battleSystem->unk_8C);
+    BattleAnimSystem_Delete(battleSystem->unk_8C);
     BattleContext_Free(battleSystem->battleCtx);
 
     for (battlerId = 0; battlerId < battleSystem->maxBattlers; battlerId++) {

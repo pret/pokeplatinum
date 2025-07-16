@@ -633,7 +633,7 @@ Overlay overlay11
 Overlay overlay12
 {
 	After overlay11
-	Object main.nef.p/src_overlay012_ov12_0221FC20.c.o
+	Object main.nef.p/src_overlay012_battle_anim_system.c.o
 	Object main.nef.p/src_overlay012_ov12_022237EC.c.o
 	Object main.nef.p/src_overlay012_ov12_0222389C.c.o
 	Object main.nef.p/src_overlay012_ov12_0222421C.c.o

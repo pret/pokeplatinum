@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay012/ov12_0221FC20.h"
+#include "overlay012/battle_anim_system.h"
 #include "overlay012/ov12_02235254.h"
 #include "overlay012/struct_ov12_02225640.h"
 
@@ -103,7 +103,7 @@ static BOOL ov12_02225724(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
     camera = ParticleSystem_GetCamera(param1->unk_04);
     ParticleSystem_SetCameraProjection(param1->unk_04, 1);
 
-    if (ov12_0221FDD4(param1->unk_00) == 1) {
+    if (BattleAnimSystem_IsContest(param1->unk_00) == 1) {
         Camera_SetAngleAroundTarget(&v1, camera);
     } else {
         Camera_SetAngleAroundTarget(&v2, camera);
