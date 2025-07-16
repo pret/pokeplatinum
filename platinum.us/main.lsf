@@ -1717,7 +1717,7 @@ Overlay library_tv
 
 Overlay dw_warp
 {
-    After main
-            Object main.nef.p
-        / src_dw_warp_dw_warp.c.o
+	After main
+	Object main.nef.p/src_dw_warp_dw_warp.c.o
 }
+

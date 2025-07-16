@@ -886,7 +886,7 @@ pokeplatinum_c = files(
     'overlay097/ov97_02232DC8.c',
     'overlay097/ov97_02233408.c',
     'overlay097/ov97_022337FC.c',
-    'overlay097/ov97_02233814.c',
+'overlay097/ov97_02233814.c',
     'overlay097/gba_migrator.c',
     'overlay097/ov97_02235D18.c',
     'overlay097/ov97_0223635C.c',
@@ -1018,4 +1018,5 @@ pokeplatinum_c = files(
     'overlay119/ov119_021D191C.c',
     'library_tv/library_tv.c',
     'dw_warp/dw_warp.c',
-    'debug.c')
+    'debug.c'
+)

@@ -442,8 +442,8 @@ Sprite *MainMenuUtil_InitSprite(enum DSScreen screen, Sprite *sprite, int x, int
         template.affineScale.y = FX32_ONE;
         template.affineScale.z = FX32_ONE;
         template.affineZRotation = 0;
-        template.position.x = FX32_ONE * x;
-        template.position.y = FX32_ONE * y;
+        template.position.x = FX32_ONE *x;
+        template.position.y = FX32_ONE *y;
         template.priority = 10;
         template.vramType = screen == DS_SCREEN_MAIN ? NNS_G2D_VRAM_TYPE_2DMAIN : NNS_G2D_VRAM_TYPE_2DSUB;
         template.heapID = utilMan->heapID;
