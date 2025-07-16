@@ -93,8 +93,8 @@ void *MainMenuUtil_InitAppAndFadeToBlack(ApplicationManager *appMan, enum HeapId
 
     memset(newAppData, 0, appDataSize);
 
-    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
-    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
 
     return newAppData;
 }

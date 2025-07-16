@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/floaroma_meadow.h"
 
-    .data
 
     ScriptEntry _001E
     ScriptEntry _0024

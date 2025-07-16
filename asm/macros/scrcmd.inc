@@ -4892,3 +4892,7 @@
     CanFitItem \item, \count, \destVarID
     GoToIfEq \destVarID, FALSE, \offset
     .endm
+
+    .text
+    .globl _start
+_start:

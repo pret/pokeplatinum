@@ -2,7 +2,6 @@
 #include "res/text/bank/unk_0547.h"
 #include "constants/daycare.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _0124

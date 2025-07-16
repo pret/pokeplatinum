@@ -7,7 +7,6 @@
 
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_defs/struct_02015958.h"
-#include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 #include "struct_defs/wi_fi_history.h"
 
@@ -24,6 +23,7 @@
 #include "char_transfer.h"
 #include "easy3d_object.h"
 #include "font.h"
+#include "g3d_pipeline.h"
 #include "game_options.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -51,7 +51,6 @@
 #include "text.h"
 #include "unk_02015920.h"
 #include "unk_0202419C.h"
-#include "unk_02024220.h"
 #include "unk_0202C858.h"
 #include "unk_020393C8.h"
 #include "unk_020996D0.h"
@@ -108,7 +107,7 @@ typedef struct {
     SpriteList *unk_04;
     G2dRenderer unk_08;
     SpriteResourceCollection *unk_194[4];
-    GenericPointerData *unk_1A4;
+    G3DPipelineBuffers *unk_1A4;
     NARC *unk_1A8;
 } UnkStruct_ov69_0225D35C;
 
@@ -717,7 +716,7 @@ int ov69_0225C820(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_105);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_105);
         ov66_0222E31C(v1->unk_0C, 1);
         (*param1)++;
         break;
@@ -746,7 +745,7 @@ int ov69_0225C820(ApplicationManager *appMan, int *param1)
         }
         break;
     case 5:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_105);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_105);
         (*param1)++;
         break;
     case 6:
@@ -1486,13 +1485,13 @@ static void ov69_0225D5D8(UnkStruct_ov69_0225D35C *param0)
 
 static void ov69_0225D604(UnkStruct_ov69_0225D35C *param0, u32 heapID)
 {
-    param0->unk_1A4 = sub_02024220(heapID, 0, 2, 0, 4, ov69_0225D64C);
+    param0->unk_1A4 = G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_64K, ov69_0225D64C);
     NNS_G3dGlbLightVector(0, 0, 0, (-(FX32_ONE - 1)));
 }
 
 static void ov69_0225D63C(UnkStruct_ov69_0225D35C *param0)
 {
-    sub_020242C4(param0->unk_1A4);
+    G3DPipelineBuffers_Free(param0->unk_1A4);
 }
 
 static void ov69_0225D64C(void)

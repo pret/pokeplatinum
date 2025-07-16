@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/sendoff_spring.h"
 
-    .data
 
     ScriptEntry _0021
     ScriptEntry _00C0

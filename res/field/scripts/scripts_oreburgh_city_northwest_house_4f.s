@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/oreburgh_city_northwest_house_4f.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _0021

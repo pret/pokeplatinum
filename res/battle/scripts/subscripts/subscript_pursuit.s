@@ -1,6 +1,5 @@
 #include "macros/btlcmd.inc"
 
-    .data
 
 _000:
     Call BATTLE_SUBSCRIPT_PUSH_ATTACKER_AND_DEFENDER

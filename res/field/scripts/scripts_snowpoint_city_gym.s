@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/snowpoint_city_gym.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _0025

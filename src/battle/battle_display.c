@@ -95,14 +95,13 @@
 #include "battle/struct_ov16_0226C378.h"
 #include "battle/struct_ov16_0226D160_decl.h"
 #include "battle/trainer_ai.h"
+#include "overlay012/battle_anim_system.h"
 #include "overlay012/const_ov12_0223B0A0.h"
 #include "overlay012/const_ov12_0223B0B8.h"
 #include "overlay012/const_ov12_0223B0DC.h"
-#include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_02235E94.h"
 #include "overlay012/ov12_02237EFC.h"
 #include "overlay012/ov12_022380BC.h"
-#include "overlay012/struct_ov12_0221FCDC_decl.h"
 #include "overlay012/struct_ov12_02236030.h"
 #include "overlay012/struct_ov12_02237728.h"
 #include "overlay012/struct_ov12_02237F38.h"
@@ -202,7 +201,7 @@ static void ov16_022641B4(BattleSystem *battleSys, BattlerData *param1, BattleMe
 static void ov16_02264270(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C9F0 *param2, BattleMessage *param3);
 static void ov16_02264360(BattleSystem *battleSys, BattlerData *param1, BattleMessage *param2);
 static ManagedSprite *ov16_022643B8(BattleSystem *battleSys, int param1, int param2, int param3, s16 param4, s16 param5);
-static void ov16_02264408(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov12_0221FCDC *param2, UnkStruct_ov16_02265BBC *param3);
+static void ov16_02264408(BattleSystem *battleSys, BattlerData *param1, BattleAnimSystem *param2, UnkStruct_ov16_02265BBC *param3);
 static void ov16_02264530(BattleSystem *battleSys, UnkStruct_ov16_02265BBC *param1, UnkStruct_ov12_022380DC *param2, int param3);
 static void ov16_022645B8(u8 *param0, u8 *param1, int param2, int param3, u16 param4);
 static BOOL ov16_02264650(UnkStruct_ov16_02264650_1 *param0, ManagedSprite *param1);
@@ -1457,7 +1456,7 @@ void ov16_0225E4C8(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
 static void ov16_0225E4E8(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225E4E8 *v0 = (UnkStruct_ov16_0225E4E8 *)param1;
-    UnkStruct_ov12_0221FCDC *v1 = ov16_0223E008(v0->unk_00);
+    BattleAnimSystem *v1 = ov16_0223E008(v0->unk_00);
     s16 v2, v3;
 
     switch (v0->unk_12) {
@@ -1578,10 +1577,10 @@ static void ov16_0225E4E8(SysTask *param0, void *param1)
         }
         break;
     case 4:
-        ov12_0222016C(v1);
+        BattleAnimSystem_ExecuteScript(v1);
 
-        if (ov12_02220188(v1) == 0) {
-            ov12_02220198(v1);
+        if (BattleAnimSystem_IsMoveActive(v1) == 0) {
+            BattleAnimSystem_FreeScriptData(v1);
             v0->unk_12 = 0xff;
         }
         break;
@@ -1597,7 +1596,7 @@ static void ov16_0225E4E8(SysTask *param0, void *param1)
 static void ov16_0225E894(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225E4E8 *v0 = (UnkStruct_ov16_0225E4E8 *)param1;
-    UnkStruct_ov12_0221FCDC *v1 = ov16_0223E008(v0->unk_00);
+    BattleAnimSystem *v1 = ov16_0223E008(v0->unk_00);
     s16 v2, v3;
 
     switch (v0->unk_12) {
@@ -1660,10 +1659,10 @@ static void ov16_0225E894(SysTask *param0, void *param1)
         }
         break;
     case 4:
-        ov12_0222016C(v1);
+        BattleAnimSystem_ExecuteScript(v1);
 
-        if (ov12_02220188(v1) == 0) {
-            ov12_02220198(v1);
+        if (BattleAnimSystem_IsMoveActive(v1) == 0) {
+            BattleAnimSystem_FreeScriptData(v1);
             v0->unk_12 = 0xff;
         }
         break;
@@ -1862,7 +1861,7 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
                 {
                     UnkStruct_ov16_02265BBC v8;
 
-                    v0->unk_24 = ov12_0221FCDC(HEAP_ID_BATTLE);
+                    v0->unk_24 = BattleAnimSystem_New(HEAP_ID_BATTLE);
                     ov16_02266B78(v0->unk_00, NULL, &v8, 1, 11, v0->unk_81, v0->unk_81, NULL);
                     ov16_02264408(v0->unk_00, v0->unk_04, v0->unk_24, &v8);
                 }
@@ -1873,11 +1872,11 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
         }
         break;
     case 7:
-        ov12_0222016C(v0->unk_24);
+        BattleAnimSystem_ExecuteScript(v0->unk_24);
 
-        if (ov12_02220188(v0->unk_24) == 0) {
-            ov12_02220198(v0->unk_24);
-            ov12_0221FDF4(v0->unk_24);
+        if (BattleAnimSystem_IsMoveActive(v0->unk_24) == 0) {
+            BattleAnimSystem_FreeScriptData(v0->unk_24);
+            BattleAnimSystem_Delete(v0->unk_24);
             v0->unk_83 = 0xff;
         }
         break;
@@ -1893,7 +1892,7 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
 static void ov16_0225F0C0(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225EA80 *v0 = (UnkStruct_ov16_0225EA80 *)param1;
-    UnkStruct_ov12_0221FCDC *v1 = ov16_0223E008(v0->unk_00);
+    BattleAnimSystem *v1 = ov16_0223E008(v0->unk_00);
 
     switch (v0->unk_83) {
     case 0: {
@@ -2065,10 +2064,10 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
     case 7:
     case 9:
     case 11:
-        ov12_0222016C(v1);
+        BattleAnimSystem_ExecuteScript(v1);
 
-        if (ov12_02220188(v1) == 0) {
-            ov12_02220198(v1);
+        if (BattleAnimSystem_IsMoveActive(v1) == 0) {
+            BattleAnimSystem_FreeScriptData(v1);
             v0->unk_83++;
         }
         break;
@@ -2109,7 +2108,7 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
 static void ov16_0225F764(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225F764 *v0 = (UnkStruct_ov16_0225F764 *)param1;
-    UnkStruct_ov12_0221FCDC *v1 = ov16_0223E008(v0->unk_00);
+    BattleAnimSystem *v1 = ov16_0223E008(v0->unk_00);
 
     switch (v0->unk_6B) {
     case 0:
@@ -2139,10 +2138,10 @@ static void ov16_0225F764(SysTask *param0, void *param1)
         break;
     case 1:
     case 3:
-        ov12_0222016C(v1);
+        BattleAnimSystem_ExecuteScript(v1);
 
-        if (ov12_02220188(v1) == 0) {
-            ov12_02220198(v1);
+        if (BattleAnimSystem_IsMoveActive(v1) == 0) {
+            BattleAnimSystem_FreeScriptData(v1);
             v0->unk_6B++;
         }
         break;
@@ -4024,10 +4023,10 @@ static void ov16_022611DC(SysTask *param0, void *param1)
     case 20:
     case 26:
     case 28:
-        ov12_0222016C(ov16_0223E008(v0->unk_00));
+        BattleAnimSystem_ExecuteScript(ov16_0223E008(v0->unk_00));
 
-        if (ov12_02220188(ov16_0223E008(v0->unk_00)) == 0) {
-            ov12_02220198(ov16_0223E008(v0->unk_00));
+        if (BattleAnimSystem_IsMoveActive(ov16_0223E008(v0->unk_00)) == 0) {
+            BattleAnimSystem_FreeScriptData(ov16_0223E008(v0->unk_00));
             v0->unk_0E++;
         }
         break;
@@ -4613,10 +4612,10 @@ static void ov16_022626C0(SysTask *param0, void *param1)
     case 5:
     case 7:
     case 9:
-        ov12_0222016C(v0->unk_0C);
+        BattleAnimSystem_ExecuteScript(v0->unk_0C);
 
-        if (ov12_02220188(v0->unk_0C) == 0) {
-            ov12_02220198(v0->unk_0C);
+        if (BattleAnimSystem_IsMoveActive(v0->unk_0C) == 0) {
+            BattleAnimSystem_FreeScriptData(v0->unk_0C);
             v0->unk_6A++;
         }
         break;
@@ -4717,7 +4716,7 @@ static void ov16_022629DC(SysTask *param0, void *param1)
 static void ov16_02262A9C(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225DB74 *v0 = (UnkStruct_ov16_0225DB74 *)param1;
-    UnkStruct_ov12_0221FCDC *v1 = ov16_0223E008(v0->unk_00);
+    BattleAnimSystem *v1 = ov16_0223E008(v0->unk_00);
     int v2;
     int v3;
 
@@ -4750,10 +4749,10 @@ static void ov16_02262A9C(SysTask *param0, void *param1)
         break;
     case 1:
     case 3:
-        ov12_0222016C(v1);
+        BattleAnimSystem_ExecuteScript(v1);
 
-        if (ov12_02220188(v1) == 0) {
-            ov12_02220198(v1);
+        if (BattleAnimSystem_IsMoveActive(v1) == 0) {
+            BattleAnimSystem_FreeScriptData(v1);
             v0->unk_66++;
         }
         break;
@@ -4863,7 +4862,7 @@ static void ov16_02262D28(SysTask *param0, void *param1)
 static void ov16_02262DC4(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225DCB0 *v0 = (UnkStruct_ov16_0225DCB0 *)param1;
-    UnkStruct_ov12_0221FCDC *v1 = ov16_0223E008(v0->unk_00);
+    BattleAnimSystem *v1 = ov16_0223E008(v0->unk_00);
 
     switch (v0->unk_62) {
     case 0:
@@ -4907,10 +4906,10 @@ static void ov16_02262DC4(SysTask *param0, void *param1)
         break;
     case 2:
     case 4:
-        ov12_0222016C(v1);
+        BattleAnimSystem_ExecuteScript(v1);
 
-        if (ov12_02220188(v1) == 0) {
-            ov12_02220198(v1);
+        if (BattleAnimSystem_IsMoveActive(v1) == 0) {
+            BattleAnimSystem_FreeScriptData(v1);
             v0->unk_62++;
         }
         break;
@@ -6082,7 +6081,7 @@ static ManagedSprite *ov16_022643B8(BattleSystem *battleSys, int param1, int par
     return v3;
 }
 
-static void ov16_02264408(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov12_0221FCDC *param2, UnkStruct_ov16_02265BBC *param3)
+static void ov16_02264408(BattleSystem *battleSys, BattlerData *param1, BattleAnimSystem *param2, UnkStruct_ov16_02265BBC *param3)
 {
     UnkStruct_ov16_02264408 v0;
     int i;
@@ -6124,7 +6123,7 @@ static void ov16_02264408(BattleSystem *battleSys, BattlerData *param1, UnkStruc
     v0.unk_54.unk_10 = 0;
     v0.unk_54.unk_14 = 8;
 
-    ov12_0221FE30(param2, param3, v2, &v0);
+    BattleAnimSystem_StartMove(param2, param3, v2, &v0);
 }
 
 static void ov16_02264530(BattleSystem *battleSys, UnkStruct_ov16_02265BBC *param1, UnkStruct_ov12_022380DC *param2, int param3)

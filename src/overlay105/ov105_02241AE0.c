@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "applications/pokemon_summary_screen/main.h"
@@ -27,6 +26,7 @@
 #include "communication_system.h"
 #include "dexmode_checker.h"
 #include "font.h"
+#include "g3d_pipeline.h"
 #include "game_options.h"
 #include "game_overlay.h"
 #include "graphics.h"
@@ -54,7 +54,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_02024220.h"
 #include "unk_020363E8.h"
 #include "unk_020393C8.h"
 #include "unk_0209BA80.h"
@@ -100,7 +99,7 @@ struct UnkStruct_ov105_02241FF4_t {
     Menu *unk_FC;
     StringList unk_100[4];
     PaletteData *unk_120;
-    GenericPointerData *unk_124;
+    G3DPipelineBuffers *unk_124;
     PokemonSpriteManager *unk_128;
     PokemonSprite *unk_12C[3];
     Options *options;
@@ -357,7 +356,7 @@ int ov105_02241AE0(ApplicationManager *appMan, int *param1)
     v1 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov105_02241FF4), HEAP_ID_93);
     memset(v1, 0, sizeof(UnkStruct_ov105_02241FF4));
 
-    v1->unk_124 = sub_02024220(HEAP_ID_93, 0, 2, 0, 2, ov105_02245CD0);
+    v1->unk_124 = G3DPipeline_Init(HEAP_ID_93, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov105_02245CD0);
     v1->unk_4C = BgConfig_New(HEAP_ID_93);
     v1->unk_00 = appMan;
 
@@ -637,7 +636,7 @@ static BOOL ov105_02241FF4(UnkStruct_ov105_02241FF4 *param0)
 
         Bg_SetOffset(param0->unk_4C, BG_LAYER_MAIN_2, 0, (33 * 8));
         PokemonSprite_SetAttribute(param0->unk_12C[0], MON_SPRITE_HIDE, 1);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1 * 3, HEAP_ID_93);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1 * 3, HEAP_ID_93);
         param0->unk_08++;
         break;
     case 3:
@@ -720,7 +719,7 @@ static BOOL ov105_022421F0(UnkStruct_ov105_02241FF4 *param0)
         }
 
         if (param0->unk_13_4 == 1) {
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1 * 3, HEAP_ID_93);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1 * 3, HEAP_ID_93);
         }
 
         param0->unk_13_4 = 1;
@@ -927,7 +926,7 @@ static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0)
             ov105_02246060(param0->unk_310);
             param0->unk_310 = NULL;
             param0->unk_13_6 = 1;
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_93);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_93);
             param0->unk_08++;
             break;
         case 1:
@@ -1455,7 +1454,7 @@ static BOOL ov105_022434BC(UnkStruct_ov105_02241FF4 *param0)
             ov105_02246060(param0->unk_310);
             param0->unk_310 = NULL;
             param0->unk_13_6 = 1;
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_93);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_93);
             param0->unk_08++;
             break;
         case 4:
@@ -2048,7 +2047,7 @@ static BOOL ov105_022443DC(UnkStruct_ov105_02241FF4 *param0)
 
     switch (param0->unk_08) {
     case 0:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_93);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_93);
         param0->unk_08++;
         break;
     case 1:
@@ -2782,7 +2781,7 @@ static void ov105_022451B4(UnkStruct_ov105_02241FF4 *param0)
     ov105_0224473C(param0->unk_4C);
 
     NARC_dtor(param0->unk_338);
-    sub_020242C4(param0->unk_124);
+    G3DPipelineBuffers_Free(param0->unk_124);
 
     return;
 }
@@ -2793,7 +2792,7 @@ static void ov105_022452A0(UnkStruct_ov105_02241FF4 *param0)
 
     ov105_022452E4();
 
-    param0->unk_124 = sub_02024220(HEAP_ID_93, 0, 2, 0, 2, ov105_02245CD0);
+    param0->unk_124 = G3DPipeline_Init(HEAP_ID_93, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov105_02245CD0);
     param0->unk_4C = BgConfig_New(HEAP_ID_93);
 
     ov105_0224531C(param0);

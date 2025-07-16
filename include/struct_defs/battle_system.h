@@ -12,7 +12,6 @@
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0206D140_decl.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/struct_0207C690.h"
 #include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
@@ -22,11 +21,12 @@
 #include "battle/struct_ov16_02268A14_decl.h"
 #include "battle/struct_ov16_0226D160_decl.h"
 #include "overlay010/struct_ov10_0221F800.h"
-#include "overlay012/struct_ov12_0221FCDC_decl.h"
+#include "overlay012/battle_anim_system.h"
 
 #include "bag.h"
 #include "bg_window.h"
 #include "field_battle_data_transfer.h"
+#include "g3d_pipeline.h"
 #include "game_options.h"
 #include "message.h"
 #include "pal_pad.h"
@@ -42,7 +42,7 @@
 #include "unk_0201567C.h"
 
 struct BattleSystem {
-    GenericPointerData *unk_00;
+    G3DPipelineBuffers *unk_00;
     BgConfig *unk_04;
     Window *windows;
     MessageLoader *unk_0C;
@@ -65,7 +65,7 @@ struct BattleSystem {
     Party *parties[MAX_BATTLERS];
     ChatotCry *unk_78[MAX_BATTLERS];
     PokemonSpriteManager *unk_88;
-    UnkStruct_ov12_0221FCDC *unk_8C;
+    BattleAnimSystem *unk_8C;
     SpriteSystem *spriteSys;
     SpriteManager *spriteMan;
     Poketch *poketch;

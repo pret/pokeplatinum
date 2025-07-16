@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/field_moves.h"
 
-    .data
 
     ScriptEntry FieldMoves_CutTree
     ScriptEntry FieldMoves_Rock

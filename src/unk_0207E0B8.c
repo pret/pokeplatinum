@@ -5,7 +5,6 @@
 
 #include "constants/items.h"
 
-#include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_0207F248.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -17,6 +16,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "font.h"
+#include "g3d_pipeline.h"
 #include "game_options.h"
 #include "game_overlay.h"
 #include "graphics.h"
@@ -46,7 +46,6 @@
 #include "touch_pad.h"
 #include "touch_screen.h"
 #include "unk_0200C440.h"
-#include "unk_02024220.h"
 #include "unk_0202602C.h"
 #include "unk_020393C8.h"
 #include "unk_0206B9D8.h"
@@ -123,9 +122,9 @@ static u8 CheckDuplicateValues(GameWindowLayout *param0);
 static u8 CheckUniqueValues(GameWindowLayout *param0);
 static u8 CheckEqualityInArray(GameWindowLayout *param0);
 static BOOL ValidateGameWindowState(GameWindowLayout *param0);
-static GenericPointerData *sub_0207EAD4(int heapID);
+static G3DPipelineBuffers *sub_0207EAD4(int heapID);
 static void sub_0207EAF4(void);
-static void sub_0207EB64(GenericPointerData *param0);
+static void sub_0207EB64(G3DPipelineBuffers *param0);
 static int ProcessMessageResult(GameWindowLayout *param0);
 static int HandleOverlayCompletion(GameWindowLayout *param0);
 static void sub_0207F388(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1);
@@ -261,7 +260,7 @@ static int sub_0207E0B8(ApplicationManager *appMan, int *param1)
     v1 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, HEAP_ID_12);
     v0 = sub_0207ECC0(appMan);
 
-    StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_3, FADE_TYPE_UNK_3, FADE_TO_BLACK, 6, 1, HEAP_ID_12);
+    StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_3, FADE_TYPE_UNK_3, COLOR_BLACK, 6, 1, HEAP_ID_12);
     sub_0207EDC0(v0);
     sub_0207E8C0();
     sub_0207E918(v0->unk_00);
@@ -881,9 +880,9 @@ void sub_0207EA74(GameWindowLayout *windowLayout, int param1)
     }
 }
 
-static GenericPointerData *sub_0207EAD4(int heapID)
+static G3DPipelineBuffers *sub_0207EAD4(int heapID)
 {
-    return sub_02024220(heapID, 0, 1, 0, 2, sub_0207EAF4);
+    return G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_32K, sub_0207EAF4);
 }
 
 static void sub_0207EAF4(void)
@@ -898,9 +897,9 @@ static void sub_0207EAF4(void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void sub_0207EB64(GenericPointerData *param0)
+static void sub_0207EB64(G3DPipelineBuffers *param0)
 {
-    sub_020242C4(param0);
+    G3DPipelineBuffers_Free(param0);
 }
 
 static void sub_0207EB6C(GameWindowLayout *param0, NARC *param1)

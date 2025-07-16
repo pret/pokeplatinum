@@ -13,7 +13,6 @@
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/struct_0207A778.h"
-#include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "battle/battle_context.h"
@@ -32,7 +31,7 @@
 #include "overlay010/ov10_0221F800.h"
 #include "overlay010/struct_ov10_0221F800.h"
 #include "overlay011/ov11_0221F840.h"
-#include "overlay012/ov12_0221FC20.h"
+#include "overlay012/battle_anim_system.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -41,6 +40,7 @@
 #include "field_battle_data_transfer.h"
 #include "flags.h"
 #include "font.h"
+#include "g3d_pipeline.h"
 #include "game_options.h"
 #include "game_overlay.h"
 #include "game_records.h"
@@ -76,7 +76,6 @@
 #include "unk_0200C440.h"
 #include "unk_02015F84.h"
 #include "unk_0202419C.h"
-#include "unk_02024220.h"
 #include "unk_0202F1D4.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
@@ -125,8 +124,8 @@ static void ov16_0223CE68(void *param0);
 static void ov16_0223CF1C(void *param0);
 static void ov16_0223CF48(SysTask *param0, void *param1);
 static void ov16_0223CF8C(SysTask *param0, void *param1);
-static GenericPointerData *ov16_0223CD7C(void);
-static void ov16_0223CE20(GenericPointerData *param0);
+static G3DPipelineBuffers *ov16_0223CD7C(void);
+static void ov16_0223CE20(G3DPipelineBuffers *param0);
 static void ov16_0223CD9C(void);
 static void ov16_0223DD4C(BattleSystem *battleSys);
 static void ov16_0223D0C4(SysTask *param0, void *param1);
@@ -606,7 +605,7 @@ static void ov16_0223B790(ApplicationManager *appMan)
     ov16_0223F36C(battleSys);
     ov16_0223CE28();
 
-    battleSys->unk_8C = ov12_0221FCDC(HEAP_ID_BATTLE);
+    battleSys->unk_8C = BattleAnimSystem_New(HEAP_ID_BATTLE);
 
     ov16_0223C210(battleSys);
 
@@ -712,8 +711,8 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
         BattleSystem_LoadFightOverlay(battleSystem, 0);
     }
 
-    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
-    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
     BattleSystem_SetBurmyForm(battleSystem);
 
     if (battleSystem->resultMask != 0x4) {
@@ -763,7 +762,7 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
     sub_02015FB8(battleSystem->pokemonAnimationSys);
     ParticleSystem_FreeAll();
 
-    ov12_0221FDF4(battleSystem->unk_8C);
+    BattleAnimSystem_Delete(battleSystem->unk_8C);
     BattleContext_Free(battleSystem->battleCtx);
 
     for (battlerId = 0; battlerId < battleSystem->maxBattlers; battlerId++) {
@@ -1422,9 +1421,13 @@ static BOOL ov16_0223CD3C(u16 param0)
     return 0;
 }
 
-static GenericPointerData *ov16_0223CD7C(void)
+static G3DPipelineBuffers *ov16_0223CD7C(void)
 {
-    return sub_02024220(HEAP_ID_BATTLE, 0, 2, 0, 2, ov16_0223CD9C);
+    return G3DPipeline_Init(
+        HEAP_ID_BATTLE,
+        TEXTURE_VRAM_SIZE_256K,
+        PALETTE_VRAM_SIZE_32K,
+        ov16_0223CD9C);
 }
 
 static void ov16_0223CD9C(void)
@@ -1442,9 +1445,9 @@ static void ov16_0223CD9C(void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void ov16_0223CE20(GenericPointerData *param0)
+static void ov16_0223CE20(G3DPipelineBuffers *param0)
 {
-    sub_020242C4(param0);
+    G3DPipelineBuffers_Free(param0);
 }
 
 static void ov16_0223CE28(void)
@@ -1983,7 +1986,7 @@ static void ov16_0223D7B4(ApplicationManager *appMan)
     UnkStruct_0207A778 *v0 = ApplicationManager_Data(appMan);
 
     SetVBlankCallback(NULL, NULL);
-    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
     PaletteData_FreeBuffer(v0->unk_0C, 0);
     PaletteData_Free(v0->unk_0C);
     Windows_Delete(v0->unk_08, 1);

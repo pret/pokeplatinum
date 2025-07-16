@@ -1,6 +1,5 @@
 #include "macros/btlcmd.inc"
 
-    .data
 
 _000:
     TryRestoreStatusOnSwitch BTLSCR_PLAYER_SLOT_1, _007

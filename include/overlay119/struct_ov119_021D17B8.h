@@ -2,11 +2,11 @@
 #define POKEPLATINUM_STRUCT_OV119_021D17B8_H
 
 #include "struct_decls/pokemon_animation_sys_decl.h"
-#include "struct_defs/struct_0207C690.h"
 
 #include "overlay119/struct_ov119_021D14DC.h"
 
 #include "bg_window.h"
+#include "g3d_pipeline.h"
 #include "menu.h"
 #include "narc.h"
 #include "palette.h"
@@ -21,7 +21,7 @@ typedef struct {
     int unk_0C;
     int unk_10;
     Window unk_14[2];
-    GenericPointerData *unk_34;
+    G3DPipelineBuffers *unk_34;
     PokemonSpriteManager *unk_38;
     NARC *unk_3C;
     UnkStruct_ov119_021D14DC *unk_40;

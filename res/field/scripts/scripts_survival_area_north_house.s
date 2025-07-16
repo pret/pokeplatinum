@@ -2,7 +2,6 @@
 #include "generated/tutor_locations.h"
 #include "res/text/bank/survival_area_north_house.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _0021

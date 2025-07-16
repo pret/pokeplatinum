@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/foreign_building.h"
 
-    .data
 
     ScriptEntry _0026
     ScriptEntry _0039

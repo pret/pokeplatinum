@@ -1232,4 +1232,8 @@
     .long 222
     .endm
 
+    .text
+    .globl _start
+_start:
+
     .endif // ASM_BATTLE_SCRIPT_INC

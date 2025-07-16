@@ -95,7 +95,7 @@ int ov115_0226048C(ApplicationManager *appMan, int *param1)
                 FinishScreenFade();
             }
 
-            SetColorBrightness(FADE_TO_BLACK);
+            SetColorBrightness(COLOR_BLACK);
             v0->unk_78++;
             break;
         case 1:

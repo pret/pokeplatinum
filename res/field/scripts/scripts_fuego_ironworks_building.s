@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/fuego_ironworks_building.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _0010

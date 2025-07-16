@@ -16,7 +16,7 @@
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay077/const_ov77_021D742C.h"
+#include "game_opening/const_ov77_021D742C.h"
 #include "overlay097/gba_convert_string.h"
 #include "overlay097/gba_pokemon.h"
 #include "overlay097/gba_save.h"
@@ -66,7 +66,7 @@
 
 #include "res/text/bank/migrate_from_gba.h"
 
-FS_EXTERN_OVERLAY(overlay77);
+FS_EXTERN_OVERLAY(game_opening);
 
 enum GBAMigratorState {
     GBA_MIGRATOR_STATE_0 = 0,
@@ -1829,8 +1829,8 @@ static int GBAMigrator_Init(ApplicationManager *appMan, int *state)
     migrator->bgConfig = BgConfig_New(HEAP_ID_MIGRATE_FROM_GBA);
     migrator->unk_E8EC = sub_02015920(HEAP_ID_MIGRATE_FROM_GBA);
 
-    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
-    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
 
     migrator->saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
     migrator->trainerInfo = SaveData_GetTrainerInfo(migrator->saveData);
@@ -1905,14 +1905,14 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
 
         if (migrator->canMigrateStatus == CANNOT_MIGRATE_GBA_PAK_READ_ERROR) {
-            ov97_02234CC4(migrator, FADE_TYPE_UNK_1, 11, state);
+            ov97_02234CC4(migrator, FADE_TYPE_BRIGHTNESS_IN, 11, state);
         } else {
             *state = GBA_MIGRATOR_STATE_2;
         }
         break;
     case GBA_MIGRATOR_STATE_2:
         ov97_02235344(migrator);
-        ov97_02234CC4(migrator, FADE_TYPE_UNK_1, 3, state);
+        ov97_02234CC4(migrator, FADE_TYPE_BRIGHTNESS_IN, 3, state);
         break;
     case GBA_MIGRATOR_STATE_3:
         boxPos = sub_020159FC(migrator->unk_E8EC);
@@ -1925,7 +1925,7 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
             break;
         case 2:
             sub_02015A54(migrator->unk_E8EC);
-            ov97_02234CF4(migrator, FADE_TYPE_UNK_0, 24, state);
+            ov97_02234CF4(migrator, FADE_TYPE_BRIGHTNESS_OUT, 24, state);
             break;
         }
         break;
@@ -1958,7 +1958,7 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
             break;
         case 2:
             sub_02015A54(migrator->unk_E8EC);
-            ov97_02234CF4(migrator, FADE_TYPE_UNK_0, 24, state);
+            ov97_02234CF4(migrator, FADE_TYPE_BRIGHTNESS_OUT, 24, state);
             break;
         }
         break;
@@ -1969,7 +1969,7 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
         break;
     case GBA_MIGRATOR_STATE_7:
         if (gSystem.touchPressed || gSystem.pressedKeys) {
-            ov97_02234CC4(migrator, FADE_TYPE_UNK_0, 12, state);
+            ov97_02234CC4(migrator, FADE_TYPE_BRIGHTNESS_OUT, 12, state);
         }
         break;
     case GBA_MIGRATOR_STATE_8:
@@ -1991,7 +1991,7 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
             break;
         case 2:
             sub_02015A54(migrator->unk_E8EC);
-            ov97_02234CF4(migrator, FADE_TYPE_UNK_0, 24, state);
+            ov97_02234CF4(migrator, FADE_TYPE_BRIGHTNESS_OUT, 24, state);
             break;
         }
         break;
@@ -2016,7 +2016,7 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         PrintGBABoxMonInfo(migrator, NULL);
-        ov97_02234CC4(migrator, FADE_TYPE_UNK_1, 13, state);
+        ov97_02234CC4(migrator, FADE_TYPE_BRIGHTNESS_IN, 13, state);
 
         break;
     case GBA_MIGRATOR_STATE_13:
@@ -2069,7 +2069,7 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
                     Sound_PlayEffect(SEQ_SE_CONFIRM);
                     break;
                 case (GBA_MAX_MONS_PER_BOX + 0):
-                    ov97_02234CF4(migrator, FADE_TYPE_UNK_0, 24, state);
+                    ov97_02234CF4(migrator, FADE_TYPE_BRIGHTNESS_OUT, 24, state);
                     Sound_PlayEffect(SEQ_SE_CONFIRM);
                     break;
                 }
@@ -2084,12 +2084,12 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
         break;
     case GBA_MIGRATOR_STATE_WAIT_FOR_FULL_SELECTION_TIMER:
         if (--migrator->fullSelectionTimer == 0) {
-            ov97_02234CC4(migrator, FADE_TYPE_UNK_0, 16, state);
+            ov97_02234CC4(migrator, FADE_TYPE_BRIGHTNESS_OUT, 16, state);
         }
         break;
     case GBA_MIGRATOR_STATE_16:
         ov97_02234F88(migrator);
-        ov97_02234CC4(migrator, FADE_TYPE_UNK_1, 17, state);
+        ov97_02234CC4(migrator, FADE_TYPE_BRIGHTNESS_IN, 17, state);
         ov97_02235310(migrator);
 
         break;
@@ -2103,7 +2103,7 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
             break;
         case 2:
             sub_02015A54(migrator->unk_E8EC);
-            ov97_02234CC4(migrator, FADE_TYPE_UNK_0, 20, state);
+            ov97_02234CC4(migrator, FADE_TYPE_BRIGHTNESS_OUT, 20, state);
             break;
         }
         break;
@@ -2133,7 +2133,7 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
             break;
         case 2:
             sub_02015A54(migrator->unk_E8EC);
-            ov97_02234CC4(migrator, FADE_TYPE_UNK_0, 20, state);
+            ov97_02234CC4(migrator, FADE_TYPE_BRIGHTNESS_OUT, 20, state);
             break;
         }
         break;
@@ -2161,7 +2161,7 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
         break;
     case GBA_MIGRATOR_STATE_22:
         if (gSystem.touchPressed || gSystem.pressedKeys) {
-            ov97_02234CF4(migrator, FADE_TYPE_UNK_0, 24, state);
+            ov97_02234CF4(migrator, FADE_TYPE_BRIGHTNESS_OUT, 24, state);
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         }
         break;
@@ -2185,14 +2185,14 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
 
 static int GBAMigrator_Exit(ApplicationManager *appMan, int *state)
 {
-    FS_EXTERN_OVERLAY(overlay77);
+    FS_EXTERN_OVERLAY(game_opening);
 
     GBAMigrator *migrator = ApplicationManager_Data(appMan);
 
     Strbuf_Free(migrator->unk_12668);
     Strbuf_Free(migrator->unk_1266C);
     Heap_Free(migrator->bgConfig);
-    EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenAppTemplate);
+    EnqueueApplication(FS_OVERLAY_ID(game_opening), &gTitleScreenAppTemplate);
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_MIGRATE_FROM_GBA);
 

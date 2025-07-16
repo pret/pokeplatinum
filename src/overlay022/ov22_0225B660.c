@@ -127,7 +127,7 @@ int ov22_0225B738(ApplicationManager *appMan, int *param1)
         (*param1)++;
         break;
     case 1:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_5, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_13);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_5, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_13);
         (*param1)++;
         break;
     case 2:
@@ -141,7 +141,7 @@ int ov22_0225B738(ApplicationManager *appMan, int *param1)
         }
         break;
     case 4:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_2, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_13);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_2, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_13);
         (*param1)++;
         break;
     case 5:

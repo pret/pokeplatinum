@@ -2,7 +2,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/canalave_city_east_house.h"
 
-    .data
 
     ScriptEntry _0006
     ScriptEntryEnd

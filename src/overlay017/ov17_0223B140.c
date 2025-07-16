@@ -6,7 +6,7 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay011/ov11_0221F840.h"
-#include "overlay012/ov12_0221FC20.h"
+#include "overlay012/battle_anim_system.h"
 #include "overlay017/const_ov17_022536B4.h"
 #include "overlay017/ov17_0223F118.h"
 #include "overlay017/ov17_0223F7E4.h"
@@ -200,8 +200,8 @@ int ov17_0223B140(ApplicationManager *appMan, int *param1)
     v0->unk_0C.unk_04 = PokemonSpriteManager_New(HEAP_ID_21);
     ov17_0223B884();
 
-    v0->unk_0C.unk_20 = ov12_0221FCDC(HEAP_ID_21);
-    ov12_0221FDC0(v0->unk_0C.unk_20, 1);
+    v0->unk_0C.unk_20 = BattleAnimSystem_New(HEAP_ID_21);
+    BattleAnimSystem_SetIsContest(v0->unk_0C.unk_20, 1);
 
     v0->unk_0C.unk_38 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_TEXT, HEAP_ID_21);
     v0->unk_0C.unk_3C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0205, HEAP_ID_21);
@@ -244,7 +244,7 @@ int ov17_0223B140(ApplicationManager *appMan, int *param1)
     ov17_022415E4(&v0->unk_0C);
 
     sub_02039734();
-    StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_31, FADE_TYPE_UNK_31, FADE_TO_BLACK, 6, 1, HEAP_ID_21);
+    StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_31, FADE_TYPE_UNK_31, COLOR_BLACK, 6, 1, HEAP_ID_21);
 
     v0->unk_04 = SysTask_Start(ov17_0223B6F0, v0, 60000);
     v0->unk_7EC = 1;
@@ -287,7 +287,7 @@ int ov17_0223B444(ApplicationManager *appMan, int *param1)
             } else if ((v1 == 3) && (v0->unk_1614 == 1)) {
                 *param1 = 2;
                 MI_CpuClear8(&v0->unk_160C, sizeof(UnkStruct_ov17_0223BCE8));
-                StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_32, FADE_TYPE_UNK_32, FADE_TO_BLACK, 6, 1, HEAP_ID_21);
+                StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_32, FADE_TYPE_UNK_32, COLOR_BLACK, 6, 1, HEAP_ID_21);
                 break;
             }
         }
@@ -298,7 +298,7 @@ int ov17_0223B444(ApplicationManager *appMan, int *param1)
         if ((v0->unk_1614 == 1) && (ov17_0224F3D0(&v0->unk_BF8) == 0) && (sub_02094EDC(v0->unk_00) == 0)) {
             *param1 = 2;
             MI_CpuClear8(&v0->unk_160C, sizeof(UnkStruct_ov17_0223BCE8));
-            StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_32, FADE_TYPE_UNK_32, FADE_TO_BLACK, 6, 1, HEAP_ID_21);
+            StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_32, FADE_TYPE_UNK_32, COLOR_BLACK, 6, 1, HEAP_ID_21);
         }
         break;
     case 2:
@@ -320,7 +320,7 @@ int ov17_0223B580(ApplicationManager *appMan, int *param1)
 
     ParticleSystem_FreeAll();
 
-    ov12_0221FDF4(v0->unk_0C.unk_20);
+    BattleAnimSystem_Delete(v0->unk_0C.unk_20);
     ov17_0223B9A4(v0);
     ov17_0223BAD0(v0);
     ov17_0223BCDC(v0);

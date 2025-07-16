@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/spear_pillar_distorted.h"
 
-    .data
 
     ScriptEntry _0022
     ScriptEntry _0184

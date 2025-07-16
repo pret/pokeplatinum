@@ -1,6 +1,5 @@
 #include "macros/btlcmd.inc"
 
-    .data
 
 _000:
     UpdateVar OPCODE_SET, BTLVAR_MSG_MOVE_TEMP, MOVE_FOCUS_PUNCH

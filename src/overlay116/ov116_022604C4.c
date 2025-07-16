@@ -27,6 +27,7 @@
 #include "communication_information.h"
 #include "communication_system.h"
 #include "easy3d_object.h"
+#include "g3d_pipeline.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "math_util.h"
@@ -39,7 +40,6 @@
 #include "sprite_util.h"
 #include "system.h"
 #include "touch_pad.h"
-#include "unk_02024220.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
@@ -136,7 +136,7 @@ static void ov116_022604C4(UnkStruct_ov116_0226139C *param0)
                 Easy3DAnim_LoadFrom(&param0->unk_04->unk_B38[v4].unk_88[0], &param0->unk_04->unk_B38[v4].unk_78, param0->unk_48.unk_00, v5[v4][1], 106, &param0->unk_48.unk_24);
                 Easy3DObject_AddAnim(&param0->unk_04->unk_B38[v4].unk_00, &param0->unk_04->unk_B38[v4].unk_88[0]);
                 Easy3DAnim_SetFrame(&param0->unk_04->unk_B38[v4].unk_88[0], 0);
-                Easy3DObject_SetVisibility(&param0->unk_04->unk_B38[v4].unk_00, 0);
+                Easy3DObject_SetVisible(&param0->unk_04->unk_B38[v4].unk_00, 0);
 
                 {
                     int v6 = 5;
@@ -162,7 +162,7 @@ static void ov116_022604C4(UnkStruct_ov116_0226139C *param0)
 
         ov116_022618A8(&param0->unk_04->unk_92C, param0->unk_48.unk_00, 71);
         ov116_022618B4(&param0->unk_04->unk_92C, param0->unk_14.unk_00);
-        Easy3DObject_SetVisibility(&param0->unk_04->unk_92C.unk_00, 0);
+        Easy3DObject_SetVisible(&param0->unk_04->unk_92C.unk_00, 0);
 
         {
             int v7[] = {
@@ -760,7 +760,7 @@ static void ov116_022612CC(UnkStruct_ov116_0226139C *param0)
     param0->unk_48.unk_04 = NARC_ctor(NARC_INDEX_GRAPHIC__BUCKET, HEAP_ID_106);
     param0->unk_48.unk_10 = BgConfig_New(HEAP_ID_106);
     param0->unk_48.unk_14 = PaletteData_New(HEAP_ID_106);
-    param0->unk_48.unk_18 = sub_02024220(HEAP_ID_106, 0, 1, 0, 4, NULL);
+    param0->unk_48.unk_18 = G3DPipeline_Init(HEAP_ID_106, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_64K, NULL);
     param0->unk_48.camera = Camera_Alloc(HEAP_ID_106);
 
     ov116_02261C88(param0);
@@ -821,7 +821,7 @@ void ov116_0226139C(UnkStruct_ov116_0226139C *param0)
     PaletteData_Free(param0->unk_48.unk_14);
     NARC_dtor(param0->unk_48.unk_00);
     NARC_dtor(param0->unk_48.unk_04);
-    sub_020242C4(param0->unk_48.unk_18);
+    G3DPipelineBuffers_Free(param0->unk_48.unk_18);
     Camera_Delete(param0->unk_48.camera);
     SpriteSystem_FreeResourcesAndManager(param0->unk_48.unk_08, param0->unk_48.unk_0C);
     SpriteSystem_Free(param0->unk_48.unk_08);
@@ -1134,7 +1134,7 @@ static u32 ov116_022617E4(UnkStruct_ov116_0226139C *param0)
                 FinishScreenFade();
             }
 
-            SetColorBrightness(FADE_TO_BLACK);
+            SetColorBrightness(COLOR_BLACK);
             param0->unk_48.unk_2C.unk_00 = 1;
 
             return 1;

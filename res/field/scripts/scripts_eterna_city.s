@@ -2,7 +2,6 @@
 #include "res/text/bank/eterna_city.h"
 #include "res/text/bank/special_met_location_names.h"
 
-    .data
 
     ScriptEntry _01BF
     ScriptEntry _04FC

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/old_chateau.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _0010

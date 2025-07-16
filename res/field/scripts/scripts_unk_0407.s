@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/mystery_gift_deliveryman.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _0035

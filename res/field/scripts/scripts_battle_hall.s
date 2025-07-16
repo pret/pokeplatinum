@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_hall.h"
 
-    .data
 
     ScriptEntry _026D
     ScriptEntry _08B4

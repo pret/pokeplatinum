@@ -5,11 +5,11 @@
 
 #include "constants/graphics.h"
 
-#include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "camera.h"
 #include "easy3d_object.h"
+#include "g3d_pipeline.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "narc.h"
@@ -22,13 +22,12 @@
 #include "system.h"
 #include "touch_pad.h"
 #include "unk_0202419C.h"
-#include "unk_02024220.h"
 
 #define DWARP_SND_EFFECT_DELAY 15
 #define DWARP_ANM_DURATION     85
 
 typedef struct DistortionWorldWarp {
-    GenericPointerData *p3DCallback;
+    G3DPipelineBuffers *p3DCallback;
     Camera *camera;
     SysTask *task;
     int frameCnt;
@@ -53,9 +52,9 @@ static void DWWarp_DeleteCamera(DistortionWorldWarp *warp);
 static void DWWarp_InitModel(DistortionWorldWarp *warp);
 static void DWWarp_DeleteModel(DistortionWorldWarp *warp);
 static void Model3D_Update(DistortionWorldWarp *warp);
-static GenericPointerData *DWWarp_Init3D(int heapID);
+static G3DPipelineBuffers *DWWarp_Init3D(int heapID);
 static void DWWarp_Setup3D(void);
-static void DWWarp_Exit3D(GenericPointerData *param0);
+static void DWWarp_Exit3D(G3DPipelineBuffers *param0);
 static void DWWarp_CameraMove(DistortionWorldWarp *warp);
 
 BOOL DWWarp_Init(ApplicationManager *appMan, int *state)
@@ -85,7 +84,7 @@ BOOL DWWarp_Init(ApplicationManager *appMan, int *state)
 
     DWWarp_InitModel(dww);
     DWWarp_InitCamera(dww);
-    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 16, 1, HEAP_ID_DISTORTION_WORLD_WARP);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 16, 1, HEAP_ID_DISTORTION_WORLD_WARP);
 
     gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
 
@@ -131,7 +130,7 @@ BOOL DWWarp_Main(ApplicationManager *appMan, int *state)
         }
         break;
     case DWARP_SEQ_CLEAR_SCREEN:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 20, 1, HEAP_ID_DISTORTION_WORLD_WARP);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 20, 1, HEAP_ID_DISTORTION_WORLD_WARP);
         (*state)++;
         break;
     case DWARP_SEQ_WAIT:
@@ -257,7 +256,7 @@ static void DWWarp_InitModel(DistortionWorldWarp *warp)
 
     Easy3DObject_SetPosition(&warp->animationObj, 0, 0, 0);
     Easy3DObject_SetScale(&warp->animationObj, FX32_ONE, FX32_ONE, FX32_ONE);
-    Easy3DObject_SetVisibility(&warp->animationObj, TRUE);
+    Easy3DObject_SetVisible(&warp->animationObj, TRUE);
 
     Easy3DObject_AddAnim(&warp->animationObj, &warp->animationAnimation);
     Easy3DObject_AddAnim(&warp->animationObj, &warp->animationAnimation2);
@@ -314,9 +313,9 @@ static void Model3D_Update(DistortionWorldWarp *warp)
     NNS_G3dGePopMtx(1);
 }
 
-static GenericPointerData *DWWarp_Init3D(int heapID)
+static G3DPipelineBuffers *DWWarp_Init3D(int heapID)
 {
-    return sub_02024220(heapID, 0, 2, 0, 2, DWWarp_Setup3D);
+    return G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, DWWarp_Setup3D);
 }
 
 static void DWWarp_Setup3D(void)
@@ -335,9 +334,9 @@ static void DWWarp_Setup3D(void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void DWWarp_Exit3D(GenericPointerData *param0)
+static void DWWarp_Exit3D(G3DPipelineBuffers *param0)
 {
-    sub_020242C4(param0);
+    G3DPipelineBuffers_Free(param0);
 }
 
 static void DWWarp_CameraMove(DistortionWorldWarp *warp)

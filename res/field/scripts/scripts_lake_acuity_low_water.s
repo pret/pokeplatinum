@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/lake_acuity_low_water.h"
 
-    .data
 
     ScriptEntry _0006
     ScriptEntryEnd

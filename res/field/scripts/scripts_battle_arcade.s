@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_arcade.h"
 
-    .data
 
     ScriptEntry _0065
     ScriptEntry _06B8

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/unk_0552.h"
 
-    .data
 
     ScriptEntry _0006
     ScriptEntryEnd

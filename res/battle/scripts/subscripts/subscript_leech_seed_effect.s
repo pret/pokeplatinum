@@ -1,6 +1,5 @@
 #include "macros/btlcmd.inc"
 
-    .data
 
 _000:
     PlayBattleAnimationOnMons BTLSCR_MSG_ATTACKER, BTLSCR_MSG_DEFENDER, BATTLE_ANIMATION_DAMAGE_LEECH_SEED

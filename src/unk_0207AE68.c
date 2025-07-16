@@ -22,6 +22,7 @@
 
 #include "bag.h"
 #include "bg_window.h"
+#include "g3d_pipeline.h"
 #include "game_options.h"
 #include "game_records.h"
 #include "graphics.h"
@@ -51,7 +52,6 @@
 #include "text.h"
 #include "unk_02015F84.h"
 #include "unk_0202419C.h"
-#include "unk_02024220.h"
 #include "unk_020393C8.h"
 #include "unk_0207C63C.h"
 #include "vram_transfer.h"
@@ -187,8 +187,8 @@ void sub_0207B0E0(UnkStruct_0207AE68 *param0)
 {
     int v0;
 
-    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
-    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
     SetVBlankCallback(NULL, NULL);
     Windows_Delete(param0->unk_04, 1);
     PaletteData_FreeBuffer(param0->unk_14, 0);
@@ -198,7 +198,7 @@ void sub_0207B0E0(UnkStruct_0207AE68 *param0)
     PaletteData_Free(param0->unk_14);
     PokemonSpriteManager_Free(param0->unk_18);
     sub_02015FB8(param0->unk_44);
-    sub_020242C4(param0->unk_34);
+    G3DPipelineBuffers_Free(param0->unk_34);
     sub_0207C460(param0->unk_00);
     MessageLoader_Free(param0->unk_08);
     StringTemplate_Free(param0->unk_0C);
@@ -490,8 +490,8 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         break;
     case 22:
         if (PaletteData_GetSelectedBuffersMask(param0->unk_14) == 0) {
-            SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
-            SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+            SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
+            SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
             sub_0207C460(param0->unk_00);
             PokemonSprite_SetAttribute(param0->unk_1C[0], MON_SPRITE_HIDE, 1);
             PokemonSprite_SetAttribute(param0->unk_1C[1], MON_SPRITE_HIDE, 1);

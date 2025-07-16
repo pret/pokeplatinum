@@ -6,7 +6,6 @@
 
 #include "constants/graphics.h"
 
-#include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay004/ov4_021D0D80.h"
@@ -27,6 +26,7 @@
 #include "easy3d_object.h"
 #include "enums.h"
 #include "font.h"
+#include "g3d_pipeline.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -51,16 +51,15 @@
 #include "trainer_info.h"
 #include "unk_02012744.h"
 #include "unk_0202419C.h"
-#include "unk_02024220.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 #include "vram_transfer.h"
 
 static void ov117_02260DA0(void *param0);
-static GenericPointerData *ov117_02260E14(int heapID);
+static G3DPipelineBuffers *ov117_02260E14(int heapID);
 static void ov117_02260E34(void);
-static void ov117_02260EB8(GenericPointerData *param0);
+static void ov117_02260EB8(G3DPipelineBuffers *param0);
 static void ov117_02260F7C(SysTask *param0, void *param1);
 static void ov117_022610D8(BgConfig *param0);
 static void ov117_02261280(UnkStruct_ov117_02261280 *param0);
@@ -255,7 +254,7 @@ int ov117_02260668(ApplicationManager *appMan, int *param1)
     sub_02039734();
 
     v0->unk_D4 = ov117_022626B0(v0);
-    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_27, FADE_TYPE_UNK_27, FADE_TO_BLACK, 6, 1, HEAP_ID_110);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_27, FADE_TYPE_UNK_27, COLOR_BLACK, 6, 1, HEAP_ID_110);
     v0->unk_94 = SysTask_Start(ov117_02260F7C, v0, 60000);
 
     gSystem.whichScreenIs3D = DS_SCREEN_SUB;
@@ -301,7 +300,7 @@ int ov117_0226098C(ApplicationManager *appMan, int *param1)
                 FinishScreenFade();
             }
 
-            SetColorBrightness(FADE_TO_BLACK);
+            SetColorBrightness(COLOR_BLACK);
             GX_SetVisibleWnd(GX_WNDMASK_NONE);
             v0->unk_00->unk_3E++;
             break;
@@ -346,7 +345,7 @@ int ov117_0226098C(ApplicationManager *appMan, int *param1)
     case 5:
         if (v0->unk_2FC0 == 1) {
             ov117_02266150(v0);
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_26, FADE_TYPE_UNK_26, FADE_TO_BLACK, 6, 1, HEAP_ID_110);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_26, FADE_TYPE_UNK_26, COLOR_BLACK, 6, 1, HEAP_ID_110);
             (*param1)++;
         }
 
@@ -508,9 +507,9 @@ static void ov117_02260DA0(void *param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static GenericPointerData *ov117_02260E14(int heapID)
+static G3DPipelineBuffers *ov117_02260E14(int heapID)
 {
-    return sub_02024220(heapID, 0, 1, 0, 2, ov117_02260E34);
+    return G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_32K, ov117_02260E34);
 }
 
 static void ov117_02260E34(void)
@@ -528,9 +527,9 @@ static void ov117_02260E34(void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void ov117_02260EB8(GenericPointerData *param0)
+static void ov117_02260EB8(G3DPipelineBuffers *param0)
 {
-    sub_020242C4(param0);
+    G3DPipelineBuffers_Free(param0);
 }
 
 static void ov117_02260EC0(UnkStruct_ov117_02261280 *param0)
@@ -1102,7 +1101,7 @@ static void ov117_02261C2C(UnkStruct_ov117_02261280 *param0, NARC *param1)
     Easy3DObject_Init(&v2->unk_10, &v2->unk_00);
     Easy3DObject_SetPosition(&v2->unk_10, (FX32_CONST(0)), (FX32_CONST(-25)), (FX32_CONST(0)));
     Easy3DObject_SetScale(&v2->unk_10, (FX32_CONST(1.00f)), (FX32_CONST(1.00f)), (FX32_CONST(1.00f)));
-    Easy3DObject_SetVisibility(&v2->unk_10, 1);
+    Easy3DObject_SetVisible(&v2->unk_10, 1);
     Easy3DModel_LoadFrom(&v2->unk_88[0], param1, Unk_ov117_022669F0[v4].unk_04, HEAP_ID_110);
     Easy3DModel_LoadFrom(&v2->unk_88[1], param1, Unk_ov117_022669F0[v4].unk_08, HEAP_ID_110);
     Easy3DModel_LoadFrom(&v2->unk_88[2], param1, Unk_ov117_022669F0[v4].unk_0C, HEAP_ID_110);
@@ -1125,7 +1124,7 @@ static void ov117_02261C2C(UnkStruct_ov117_02261280 *param0, NARC *param1)
     Easy3DObject_Init(&v3->unk_10, &v3->unk_00);
     Easy3DObject_SetPosition(&v3->unk_10, (FX32_CONST(0)), (FX32_CONST(-25)), (FX32_CONST(0)));
     Easy3DObject_SetScale(&v3->unk_10, (FX32_CONST(1.00f)), (FX32_CONST(1.00f)), (FX32_CONST(1.00f)));
-    Easy3DObject_SetVisibility(&v3->unk_10, 1);
+    Easy3DObject_SetVisible(&v3->unk_10, 1);
 }
 
 static void ov117_02261DD0(UnkStruct_ov117_02261280 *param0)
@@ -1171,7 +1170,7 @@ BOOL ov117_02261E38(UnkStruct_ov117_02261280 *param0, int param1)
             Easy3DObject_Init(&v0->unk_C8[v2][v3].unk_04, v1);
             Easy3DObject_SetPosition(&v0->unk_C8[v2][v3].unk_04, (FX32_CONST(0)), (FX32_CONST(-25)), (FX32_CONST(0)));
             Easy3DObject_SetScale(&v0->unk_C8[v2][v3].unk_04, (FX32_CONST(1.00f)), (FX32_CONST(1.00f)), (FX32_CONST(1.00f)));
-            Easy3DObject_SetVisibility(&v0->unk_C8[v2][v3].unk_04, 1);
+            Easy3DObject_SetVisible(&v0->unk_C8[v2][v3].unk_04, 1);
             Easy3DAnim_SetFrame(&v0->unk_C8[v2][v3].unk_7C, 0);
             Easy3DObject_AddAnim(&v0->unk_C8[v2][v3].unk_04, &v0->unk_C8[v2][v3].unk_7C);
 

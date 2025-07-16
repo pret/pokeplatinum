@@ -7,7 +7,7 @@
 #include "constants/graphics.h"
 #include "constants/heap.h"
 
-#include "overlay077/const_ov77_021D742C.h"
+#include "game_opening/const_ov77_021D742C.h"
 
 #include "assert.h"
 #include "bg_window.h"
@@ -40,7 +40,7 @@
 #define RESET_COMBO (PAD_BUTTON_START | PAD_BUTTON_SELECT | PAD_BUTTON_L | PAD_BUTTON_R)
 
 FS_EXTERN_OVERLAY(game_start);
-FS_EXTERN_OVERLAY(overlay77);
+FS_EXTERN_OVERLAY(game_opening);
 
 typedef struct Application {
     FSOverlayID currOverlayID;
@@ -98,12 +98,12 @@ void NitroMain(void)
         switch (OS_GetResetParameter()) {
         case RESET_CLEAN:
             sApplication.args.error = FALSE;
-            EnqueueApplication(FS_OVERLAY_ID(overlay77), &gOpeningCutsceneAppTemplate);
+            EnqueueApplication(FS_OVERLAY_ID(game_opening), &gOpeningCutsceneAppTemplate);
             break;
 
         case RESET_ERROR:
-            SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
-            SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+            SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
+            SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
             sApplication.args.error = TRUE;
             EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartLoadSaveAppTemplate);
             break;
@@ -113,7 +113,7 @@ void NitroMain(void)
         }
     }
 
-    gSystem.unk_6C = 1;
+    gSystem.showTitleScreenIntro = TRUE;
     gSystem.frameCounter = 0;
 
     InitRNG();
@@ -250,8 +250,8 @@ static void CheckHeapCanary(void)
 
 static void SoftReset(enum OSResetParameter resetParam)
 {
-    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_WHITE);
-    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_WHITE);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_WHITE);
+    SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_WHITE);
 
     if (sub_02037DB0()) {
         SaveData_SaveStateCancel(SaveData_Ptr());

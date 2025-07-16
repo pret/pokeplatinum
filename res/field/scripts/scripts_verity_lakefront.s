@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/verity_lakefront.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _004E
