@@ -1315,7 +1315,7 @@ static void PrintGBABoxMonInfo(GBAMigrator *migrator, GBABoxPokemon *gbaBoxMon)
 
 static void ov97_02234CC4(GBAMigrator *migrator, enum FadeType fadeType, int param2, int *state)
 {
-    StartScreenFade(FADE_BOTH_SCREENS, fadeType, fadeType, RGB(0, 0, 0), 6, 1, HEAP_ID_MIGRATE_FROM_GBA);
+    StartScreenFade(FADE_BOTH_SCREENS, fadeType, fadeType, COLOR_BLACK, 6, 1, HEAP_ID_MIGRATE_FROM_GBA);
 
     if (state != NULL) {
         *state = GBA_MIGRATOR_STATE_FADE_OUT_TO_SELECTED_MON;
@@ -1326,7 +1326,7 @@ static void ov97_02234CC4(GBAMigrator *migrator, enum FadeType fadeType, int par
 
 static void ov97_02234CF4(GBAMigrator *migrator, enum FadeType fadeType, int param2, int *state)
 {
-    StartScreenFade(FADE_BOTH_SCREENS, fadeType, fadeType, RGB(31, 31, 31), 6, 1, HEAP_ID_MIGRATE_FROM_GBA);
+    StartScreenFade(FADE_BOTH_SCREENS, fadeType, fadeType, COLOR_WHITE, 6, 1, HEAP_ID_MIGRATE_FROM_GBA);
 
     if (state != NULL) {
         *state = GBA_MIGRATOR_STATE_FADE_OUT_TO_SELECTED_MON;
