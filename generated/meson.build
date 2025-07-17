@@ -93,6 +93,7 @@ metang_generators = {
     'text_banks': { 'type': 'enum', 'tag': 'TextBank' },
     'trainers': { 'type': 'enum', 'tag': 'TrainerID' },
     'trainer_classes': { 'type': 'enum', 'tag': 'TrainerClass' },
+    'trainer_message_types': { 'type': 'enum', 'tag': 'TrainerMessageType' },
     'trainer_score_events': { 'type': 'enum', 'tag': 'TrainerScoreEvent' },
     'trainer_types': { 'type': 'enum', 'tag': 'TrainerType' },
     'tutor_locations': {'type': 'enum', 'tag': 'TutorLocation'},

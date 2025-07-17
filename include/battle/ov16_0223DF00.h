@@ -297,7 +297,7 @@ void ov16_0223F9A0(BattleSystem *battleSys, int param1);
  */
 BOOL BattleSystem_CaughtSpecies(BattleSystem *battleSys, int species);
 void Battle_SetDefaultBlend(void);
-u8 ov16_0223F9FC(BattleSystem *battleSys, int param1, int param2, int param3, int param4);
+u8 ov16_0223F9FC(BattleSystem *battleSys, int trainerID, int param2, int msgType, int param4);
 
 /**
  * @brief Print a BattleMessage to the main text display window.

@@ -1346,9 +1346,9 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_0E4 arg0
+    .macro GetTrainerID destVar
     .short 228
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro StartTrainerBattle enemyTrainer1, enemyTrainer2=0
@@ -1357,29 +1357,29 @@
     .short \enemyTrainer2
     .endm
 
-    .macro ScrCmd_0E6 arg0, arg1
+    .macro PrintTrainerDialogue trainerID, msgType
     .short 230
-    .short \arg0
-    .short \arg1
+    .short \trainerID
+    .short \msgType
     .endm
 
-    .macro ScrCmd_0E7 arg0, arg1, arg2
+    .macro GetTrainerMessageTypes destVar0, destVar1, destVar2
     .short 231
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \destVar0
+    .short \destVar1
+    .short \destVar2
     .endm
 
-    .macro ScrCmd_0E8 arg0, arg1, arg2
+    .macro GetTrainerRematchMessageTypes destVar0, destVar1, destVar2
     .short 232
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \destVar0
+    .short \destVar1
+    .short \destVar2
     .endm
 
-    .macro ScrCmd_0E9 arg0
+    .macro CheckIsTrainerDoubleBattle destVar
     .short 233
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro PlayTrainerEncounterBGM trainerID
