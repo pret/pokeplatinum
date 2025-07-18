@@ -78,7 +78,7 @@ typedef struct HMCutIn {
     Sprite *unk_24C;
     UnkStruct_ov101_021D5D90 *unk_250;
     UnkStruct_ov101_021D5D90 *unk_254;
-    PokemonSpriteTemplate unk_258;
+    PokemonSpriteTemplate monSpriteTemplate;
     int unk_268;
     int unk_26C;
     void *unk_270;
@@ -162,8 +162,8 @@ typedef struct {
     UnkStruct_ov6_02243258_sub1 *unk_1B4;
 } UnkStruct_ov6_02243258;
 
-typedef struct {
-    int unk_00;
+typedef struct FlyLandingEnv {
+    int state;
     int unk_04;
     int unk_08;
     int unk_0C;
@@ -174,7 +174,7 @@ typedef struct {
     UnkStruct_020711EC *unk_1D4;
     UnkStruct_ov101_021D5D90 *unk_1D8;
     SysTask *unk_1DC;
-} UnkStruct_ov6_02249270;
+} FlyLandingEnv;
 
 typedef struct {
     UnkStruct_020711EC *unk_00;
@@ -257,10 +257,10 @@ static void ov6_022446B8(SysTask *param0, void *param1);
 static void ov6_02244734(SysTask *param0, void *param1);
 static void ov6_022447B4(SysTask *param0, void *param1);
 static void ov6_022447EC(SysTask *param0, void *param1);
-static void ov6_0224481C(HMCutIn *cutIn);
+static void InitSprites(HMCutIn *cutIn);
 static void ov6_022448C8(HMCutIn *cutIn);
-static NARC *GetFieldCutinNarc(void);
-static void ov6_02244928(HMCutIn *cutIn, NARC *param1);
+static NARC *GetFieldCutInNarc2(void);
+static void LoadSpriteResources(HMCutIn *cutIn, NARC *param1);
 static void ov6_02244B6C(HMCutIn *cutIn);
 static void ov6_02244C10(HMCutIn *cutIn);
 static Sprite *ov6_02244C20(HMCutIn *cutIn, const VecFx32 *param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, int param7);
@@ -269,9 +269,9 @@ static Sprite *ov6_02244CFC(HMCutIn *cutIn, const VecFx32 *param1);
 static void ov6_02244D34(Sprite *param0);
 static Sprite *ov6_02244D4C(HMCutIn *cutIn, const VecFx32 *param1, int param2, int param3);
 static void ov6_02244DB4(HMCutIn *cutIn);
-static void ov6_02244E54(NARC *narc, u32 memberIndex, NNSG2dPaletteData **plttData);
-static void ov6_02244E7C(BgConfig *bgConfig, NARC *narc, u32 memberIndex, NNSG2dCharacterData **charData);
-static void ov6_02244EB4(BgConfig *bgConfig, NARC *narc, u32 memberIndex, NNSG2dScreenData **screenData);
+static void LoadBgPltt(NARC *narc, u32 memberIndex, NNSG2dPaletteData **plttData);
+static void LoadBgChar(BgConfig *bgConfig, NARC *narc, u32 memberIndex, NNSG2dCharacterData **charData);
+static void LoadBgScreenData(BgConfig *bgConfig, NARC *narc, u32 memberIndex, NNSG2dScreenData **screenData);
 static void ov6_02244F20(BgConfig *param0);
 static void ov6_02244F2C(HMCutIn *cutIn);
 static void ov6_02244F50(HMCutIn *cutIn);
@@ -282,7 +282,7 @@ static void ov6_02244F80(HMCutIn *cutIn, fx32 param1, fx32 param2, fx32 param3, 
 static void ov6_02244F8C(HMCutIn *cutIn);
 static void ov6_02244FB4(HMCutIn *cutIn);
 static void ov6_02244FE4(SysTask *param0, void *param1);
-static void ov6_0224508C(HMCutIn *cutIn, PokemonSpriteTemplate *param1);
+static void BuildMonSpriteTemplate(HMCutIn *cutIn, PokemonSpriteTemplate *spriteTemplate);
 static void *ov6_0224509C(Pokemon *param0, PokemonSpriteTemplate *param1, u32 heapID);
 static void *ov6_022450E4(PokemonSpriteTemplate *param0, u32 heapID);
 static SpriteResource *ov6_022450F4(HMCutIn *param0, NARC *param1);
@@ -309,34 +309,12 @@ static void ov6_02246018(HMCutIn *cutIn);
 static void ov6_02243F2C(void);
 static void ov6_02243F50(void);
 static void *ov6_02245F44(u32 heapID, int param1);
-static void ov6_02243F74(FieldSystem *fieldSystem, int param1);
-static void ov6_02245D10(SysTask *param0, void *param1);
-static int ov6_02244038(HMCutIn *cutIn);
-static int ov6_02244050(HMCutIn *cutIn);
-static int ov6_022440C0(HMCutIn *cutIn);
-static int ov6_022440F8(HMCutIn *cutIn);
-static int ov6_02244138(HMCutIn *cutIn);
-static int ov6_022441BC(HMCutIn *cutIn);
-static int ov6_022441DC(HMCutIn *cutIn);
-static int ov6_02244228(HMCutIn *cutIn);
-static int ov6_02244284(HMCutIn *cutIn);
-static int ov6_022442A4(HMCutIn *cutIn);
-static int ov6_02244308(HMCutIn *cutIn);
-static int ov6_02244388(HMCutIn *cutIn);
-static int ov6_0224439C(HMCutIn *cutIn);
-static int ov6_022443B0(HMCutIn *cutIn);
-static int ov6_022443EC(HMCutIn *cutIn);
-static int ov6_0224445C(HMCutIn *cutIn);
-static int ov6_02244470(HMCutIn *cutIn);
-static int ov6_02244488(HMCutIn *cutIn);
-static int ov6_022444A8(HMCutIn *cutIn);
-static int ov6_022444D0(HMCutIn *cutIn);
-static int ov6_022444F8(HMCutIn *cutIn);
-static int ov6_02244518(HMCutIn *cutIn);
-static int ov6_02244548(HMCutIn *cutIn);
-static int ov6_022445EC(HMCutIn *cutIn);
-static int ov6_02244634(HMCutIn *cutIn);
+static void HidePlayer(FieldSystem *fieldSystem, BOOL hidden);
+static void FlyLandingTask(SysTask *param0, void *param1);
 
+typedef int (*CutInTaskFunc)(HMCutIn *);
+const CutInTaskFunc sCutInTaskFuncs[];
+const CutInTaskFunc sCutInTaskFuncsFly[];
 static const UnkStruct_ov101_021D86B0 Unk_ov6_02249248;
 int (*const *const Unk_ov6_02249198[])(UnkStruct_ov6_02249198 *);
 int (*const Unk_ov6_022490E8[])(UnkStruct_ov6_02249198 *);
@@ -1035,7 +1013,7 @@ static int ov6_02243ECC(UnkStruct_ov6_02249110 *param0)
 
     if (param0->unk_04 == 8) {
         Sprite_SetAnim(param0->unk_58.unk_08, 1);
-        ov6_02243F74(param0->unk_58.fieldSystem, 0);
+        HidePlayer(param0->unk_58.fieldSystem, 0);
     }
 
     if (param0->unk_04 == 10) {
@@ -1072,7 +1050,7 @@ static int (*const *const Unk_ov6_02249110[])(UnkStruct_ov6_02249110 *) = {
     Unk_ov6_02249288
 };
 
-static NARC *ov6_02243F20(void)
+static NARC *GetFieldCutInNarc1(void)
 {
     return NARC_ctor(NARC_INDEX_DATA__FIELD_CUTIN, HEAP_ID_FIELD);
 }
@@ -1087,10 +1065,10 @@ static void ov6_02243F50(void)
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 6, 1, HEAP_ID_FIELD);
 }
 
-static void ov6_02243F74(FieldSystem *fieldSystem, int param1)
+static void HidePlayer(FieldSystem *fieldSystem, BOOL hidden)
 {
-    MapObject *v0 = Player_MapObject(fieldSystem->playerAvatar);
-    MapObject_SetHidden(v0, param1);
+    MapObject *playerMapObject = Player_MapObject(fieldSystem->playerAvatar);
+    MapObject_SetHidden(playerMapObject, hidden);
 }
 
 SysTask *SysTask_CutIn_New(FieldSystem *fieldSystem, u32 param1, Pokemon *shownPokemon, int playerGender)
@@ -1146,7 +1124,7 @@ static void SysTask_CutIn(SysTask *cutInTask, void *hmCutInPtr)
     HMCutIn *cutIn = hmCutInPtr;
 
     do {
-        ret = CutInTaskFuncs[cutIn->state](cutIn);
+        ret = sCutInTaskFuncs[cutIn->state](cutIn);
     } while (ret == 1);
 
     if (cutIn->unk_10 == 1) {
@@ -1160,7 +1138,7 @@ static void SysTask_CutIn(SysTask *cutInTask, void *hmCutInPtr)
 
 static int ov6_02244038(HMCutIn *cutIn)
 {
-    ov6_0224481C(cutIn);
+    InitSprites(cutIn);
     ov6_0224464C(cutIn);
     cutIn->state++;
     return 0;
@@ -1397,13 +1375,30 @@ static int ov6_022443B0(HMCutIn *cutIn)
     return 0;
 }
 
-static void SysTask_CutInFly(SysTask *cutInTask, void *hmCutInPtr)
+static const CutInTaskFunc sCutInTaskFuncs[] = {
+    ov6_02244038,
+    ov6_02244050,
+    ov6_022440C0,
+    ov6_022440F8,
+    ov6_02244138,
+    ov6_022441BC,
+    ov6_022441DC,
+    ov6_02244228,
+    ov6_02244284,
+    ov6_022442A4,
+    ov6_02244308,
+    ov6_02244388,
+    ov6_0224439C,
+    ov6_022443B0
+};
+
+static void SysTask_CutInFly(SysTask *param0, void *param1)
 {
     int v0;
     HMCutIn *cutIn = hmCutInPtr;
 
     do {
-        v0 = CutInTaskFuncsFly[cutIn->state](cutIn);
+        v0 = sCutInTaskFuncsFly[cutIn->state](cutIn);
     } while (v0 == 1);
 
     if (cutIn->unk_10 == 1) {
@@ -1590,11 +1585,37 @@ static int ov6_02244634(HMCutIn *param0)
     return 0;
 }
 
-static void ov6_0224464C(HMCutIn *param0)
+static int (*const sCutInTaskFuncsFly[])(HMCutIn *) = {
+    ov6_02244038,
+    ov6_022443EC,
+    ov6_022440C0,
+    ov6_022440F8,
+    ov6_02244138,
+    ov6_022441BC,
+    ov6_022441DC,
+    ov6_02244228,
+    ov6_02244284,
+    ov6_022442A4,
+    ov6_0224445C,
+    ov6_02244470,
+    ov6_02244488,
+    ov6_022444A8,
+    ov6_022444D0,
+    ov6_022444F8,
+    ov6_02244518,
+    ov6_02244548,
+    ov6_022445EC,
+    ov6_02244634,
+    ov6_02244388,
+    ov6_0224439C,
+    ov6_022443B0
+};
+
+static void ov6_0224464C(HMCutIn *cutIn)
 {
-    param0->unk_268 = 0;
-    param0->unk_26C = 0;
-    param0->unk_278 = SysTask_ExecuteOnVBlank(ov6_022446B8, param0, 0x80);
+    cutIn->unk_268 = 0;
+    cutIn->unk_26C = 0;
+    cutIn->unk_278 = SysTask_ExecuteOnVBlank(ov6_022446B8, cutIn, 0x80);
 }
 
 static void ov6_02244674(HMCutIn *param0)
@@ -1612,35 +1633,35 @@ static void ov6_0224469C(HMCutIn *param0)
     }
 }
 
-static void ov6_022446B8(SysTask *param0, void *param1)
+static void ov6_022446B8(SysTask *param0, void *hmCutInPtr)
 {
     int v0;
-    HMCutIn *v1 = param1;
+    HMCutIn *cutIn = hmCutInPtr;
 
-    switch (v1->unk_268) {
+    switch (cutIn->unk_268) {
     case 0:
         for (v0 = 0; v0 < 4; v0++) {
-            if (v1->unk_210[v0] != NULL) {
-                SpriteTransfer_RequestCharAtEnd(v1->unk_210[v0]);
+            if (cutIn->unk_210[v0] != NULL) {
+                SpriteTransfer_RequestCharAtEnd(cutIn->unk_210[v0]);
             }
         }
 
         for (v0 = 0; v0 < 3; v0++) {
-            if (v1->unk_220[v0] != NULL) {
-                SpriteTransfer_RequestPlttFreeSpace(v1->unk_220[v0]);
+            if (cutIn->unk_220[v0] != NULL) {
+                SpriteTransfer_RequestPlttFreeSpace(cutIn->unk_220[v0]);
             }
         }
 
-        if (v1->unk_270 != NULL) {
-            ov6_02245118(v1, v1->unk_270);
+        if (cutIn->unk_270 != NULL) {
+            ov6_02245118(cutIn, cutIn->unk_270);
         }
 
-        if (v1->unk_274 != NULL) {
-            ov6_02245170(v1, v1->unk_274);
+        if (cutIn->unk_274 != NULL) {
+            ov6_02245170(cutIn, cutIn->unk_274);
         }
 
-        v1->unk_268++;
-        SysTask_ExecuteAfterVBlank(ov6_02244734, v1, 0x80);
+        cutIn->unk_268++;
+        SysTask_ExecuteAfterVBlank(ov6_02244734, cutIn, 0x80);
 
         break;
     }
@@ -1705,9 +1726,9 @@ static void ov6_022447EC(SysTask *param0, void *param1)
     }
 }
 
-static void ov6_0224481C(HMCutIn *cutIn)
+static void InitSprites(HMCutIn *cutIn)
 {
-    NARC *cutInNarc = GetFieldCutinNarc();
+    NARC *cutInNarc = GetFieldCutInNarc2();
 
     ov6_02244F80(cutIn, (FX32_ONE * 0), (FX32_ONE * 192), (FX32_ONE * 1), (FX32_ONE * 192));
     ov6_02244F2C(cutIn);
@@ -1720,10 +1741,10 @@ static void ov6_0224481C(HMCutIn *cutIn)
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, FALSE);
 
-    ov6_02244E54(cutInNarc, 2, &cutIn->unk_6C);
-    ov6_02244E7C(cutIn->fieldSystem->bgConfig, cutInNarc, 0, &cutIn->unk_68);
-    ov6_02244EB4(cutIn->fieldSystem->bgConfig, cutInNarc, 1, &cutIn->unk_64);
-    ov6_02244928(cutIn, cutInNarc);
+    LoadBgPltt(cutInNarc, 2, &cutIn->unk_6C);
+    LoadBgChar(cutIn->fieldSystem->bgConfig, cutInNarc, 0, &cutIn->unk_68);
+    LoadBgScreenData(cutIn->fieldSystem->bgConfig, cutInNarc, 1, &cutIn->unk_64);
+    LoadSpriteResources(cutIn, cutInNarc);
 
     NARC_dtor(cutInNarc);
     cutIn->unk_244 = sub_020711EC(HEAP_ID_FIELD, 32);
@@ -1745,76 +1766,76 @@ static void ov6_022448C8(HMCutIn *param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
 }
 
-static NARC *GetFieldCutinNarc(void)
+static NARC *GetFieldCutInNarc2(void)
 {
     return NARC_ctor(NARC_INDEX_DATA__FIELD_CUTIN, HEAP_ID_FIELD);
 }
 
-static void ov6_02244928(HMCutIn *param0, NARC *param1)
+static void LoadSpriteResources(HMCutIn *cutIn, NARC *param1)
 {
     int v0;
 
-    ov6_0224508C(param0, &param0->unk_258);
-    param0->unk_70 = SpriteList_InitRendering(32, &param0->unk_74, HEAP_ID_FIELD);
-    SetSubScreenViewRect(&param0->unk_74, 0, FX32_CONST(512));
+    BuildMonSpriteTemplate(cutIn, &cutIn->monSpriteTemplate);
+    cutIn->unk_70 = SpriteList_InitRendering(32, &cutIn->unk_74, HEAP_ID_FIELD);
+    SetSubScreenViewRect(&cutIn->unk_74, 0, FX32_CONST(512));
 
-    param0->unk_200 = SpriteResourceCollection_New(4, 0, HEAP_ID_FIELD);
-    param0->unk_204 = SpriteResourceCollection_New(3, 1, HEAP_ID_FIELD);
-    param0->unk_208 = SpriteResourceCollection_New(4, 2, HEAP_ID_FIELD);
-    param0->unk_20C = SpriteResourceCollection_New(2, 3, HEAP_ID_FIELD);
+    cutIn->unk_200 = SpriteResourceCollection_New(4, 0, HEAP_ID_FIELD);
+    cutIn->unk_204 = SpriteResourceCollection_New(3, 1, HEAP_ID_FIELD);
+    cutIn->unk_208 = SpriteResourceCollection_New(4, 2, HEAP_ID_FIELD);
+    cutIn->unk_20C = SpriteResourceCollection_New(2, 3, HEAP_ID_FIELD);
 
     for (v0 = 0; v0 < 1; v0++) {
-        param0->unk_210[v0] = SpriteResourceCollection_AddTilesFrom(param0->unk_200, param1, Unk_ov6_02249108[v0].unk_04, 0, Unk_ov6_02249108[v0].unk_00, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD);
+        cutIn->unk_210[v0] = SpriteResourceCollection_AddTilesFrom(cutIn->unk_200, param1, Unk_ov6_02249108[v0].unk_04, 0, Unk_ov6_02249108[v0].unk_00, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD);
     }
 
-    if (param0->playerGender == 0) {
-        param0->unk_210[v0] = SpriteResourceCollection_AddTilesFrom(param0->unk_200, param1, 13, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD);
+    if (cutIn->playerGender == 0) {
+        cutIn->unk_210[v0] = SpriteResourceCollection_AddTilesFrom(cutIn->unk_200, param1, 13, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD);
     } else {
-        param0->unk_210[v0] = SpriteResourceCollection_AddTilesFrom(param0->unk_200, param1, 16, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD);
+        cutIn->unk_210[v0] = SpriteResourceCollection_AddTilesFrom(cutIn->unk_200, param1, 16, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD);
     }
 
     v0++;
-    param0->unk_210[v0] = ov6_022450F4(param0, param1);
+    cutIn->unk_210[v0] = ov6_022450F4(cutIn, param1);
 
     for (v0 = 0; v0 < 1; v0++) {
-        param0->unk_220[v0] = SpriteResourceCollection_AddPaletteFrom(param0->unk_204, param1, Unk_ov6_022490F8[v0].unk_04, 0, Unk_ov6_022490F8[v0].unk_00, NNS_G2D_VRAM_TYPE_2DMAIN, 1, HEAP_ID_FIELD);
+        cutIn->unk_220[v0] = SpriteResourceCollection_AddPaletteFrom(cutIn->unk_204, param1, Unk_ov6_022490F8[v0].unk_04, 0, Unk_ov6_022490F8[v0].unk_00, NNS_G2D_VRAM_TYPE_2DMAIN, 1, HEAP_ID_FIELD);
     }
 
-    if (param0->playerGender == 0) {
+    if (cutIn->playerGender == 0) {
         (void)0;
     } else {
-        param0->unk_220[v0] = SpriteResourceCollection_AddPaletteFrom(param0->unk_204, param1, 4, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 1, HEAP_ID_FIELD);
+        cutIn->unk_220[v0] = SpriteResourceCollection_AddPaletteFrom(cutIn->unk_204, param1, 4, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 1, HEAP_ID_FIELD);
         v0++;
     }
 
-    param0->unk_220[v0] = ov6_0224514C(param0, param1);
+    cutIn->unk_220[v0] = ov6_0224514C(cutIn, param1);
 
     for (v0 = 0; v0 < 1; v0++) {
-        param0->unk_22C[v0] = SpriteResourceCollection_AddFrom(
-            param0->unk_208, param1, Unk_ov6_02249118[v0].unk_04, 0, Unk_ov6_02249118[v0].unk_00, 2, 4);
+        cutIn->unk_22C[v0] = SpriteResourceCollection_AddFrom(
+            cutIn->unk_208, param1, Unk_ov6_02249118[v0].unk_04, 0, Unk_ov6_02249118[v0].unk_00, 2, 4);
     }
 
-    if (param0->playerGender == 0) {
-        param0->unk_22C[v0] = SpriteResourceCollection_AddFrom(param0->unk_208, param1, 14, 0, 2, 2, HEAP_ID_FIELD);
+    if (cutIn->playerGender == 0) {
+        cutIn->unk_22C[v0] = SpriteResourceCollection_AddFrom(cutIn->unk_208, param1, 14, 0, 2, 2, HEAP_ID_FIELD);
     } else {
-        param0->unk_22C[v0] = SpriteResourceCollection_AddFrom(param0->unk_208, param1, 17, 0, 2, 2, HEAP_ID_FIELD);
+        cutIn->unk_22C[v0] = SpriteResourceCollection_AddFrom(cutIn->unk_208, param1, 17, 0, 2, 2, HEAP_ID_FIELD);
     }
 
     v0++;
-    param0->unk_22C[v0] = SpriteResourceCollection_AddFrom(param0->unk_208, param1, 6, 0, 3, 2, HEAP_ID_FIELD);
+    cutIn->unk_22C[v0] = SpriteResourceCollection_AddFrom(cutIn->unk_208, param1, 6, 0, 3, 2, HEAP_ID_FIELD);
 
     for (v0 = 0; v0 < 1; v0++) {
-        param0->unk_23C[v0] = SpriteResourceCollection_AddFrom(param0->unk_20C, param1, Unk_ov6_02249100[v0].unk_04, 0, Unk_ov6_02249100[v0].unk_00, 3, HEAP_ID_FIELD);
+        cutIn->unk_23C[v0] = SpriteResourceCollection_AddFrom(cutIn->unk_20C, param1, Unk_ov6_02249100[v0].unk_04, 0, Unk_ov6_02249100[v0].unk_00, 3, HEAP_ID_FIELD);
     }
 
-    if (param0->playerGender == 0) {
-        param0->unk_23C[v0] = SpriteResourceCollection_AddFrom(param0->unk_20C, param1, 15, 0, 1, 3, HEAP_ID_FIELD);
+    if (cutIn->playerGender == 0) {
+        cutIn->unk_23C[v0] = SpriteResourceCollection_AddFrom(cutIn->unk_20C, param1, 15, 0, 1, 3, HEAP_ID_FIELD);
     } else {
-        param0->unk_23C[v0] = SpriteResourceCollection_AddFrom(param0->unk_20C, param1, 18, 0, 1, 3, HEAP_ID_FIELD);
+        cutIn->unk_23C[v0] = SpriteResourceCollection_AddFrom(cutIn->unk_20C, param1, 18, 0, 1, 3, HEAP_ID_FIELD);
     }
 
-    param0->unk_270 = ov6_0224509C(param0->pokemon, &param0->unk_258, HEAP_ID_FIELD);
-    param0->unk_274 = ov6_022450E4(&param0->unk_258, HEAP_ID_FIELD);
+    cutIn->unk_270 = ov6_0224509C(cutIn->pokemon, &cutIn->monSpriteTemplate, HEAP_ID_FIELD);
+    cutIn->unk_274 = ov6_022450E4(&cutIn->monSpriteTemplate, HEAP_ID_FIELD);
 }
 
 static void ov6_02244B6C(HMCutIn *param0)
@@ -1937,7 +1958,7 @@ static Sprite *ov6_02244D4C(HMCutIn *param0, const VecFx32 *param1, int param2, 
 static void ov6_02244DB4(HMCutIn *param0)
 {
     int v0;
-    NARC *v1 = GetFieldCutinNarc();
+    NARC *v1 = GetFieldCutInNarc2();
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param0->unk_210[v0] == NULL) {
@@ -1959,39 +1980,39 @@ static void ov6_02244DB4(HMCutIn *param0)
     NARC_dtor(v1);
 }
 
-static void ov6_02244E54(NARC *narc, u32 memberIndex, NNSG2dPaletteData **plttData)
+static void LoadBgPltt(NARC *narc, u32 memberIndex, NNSG2dPaletteData **plttData)
 {
     void *nclrFile = NARC_AllocAndReadWholeMember(narc, memberIndex, HEAP_ID_FIELD);
 
     NNS_G2dGetUnpackedPaletteData(nclrFile, plttData);
 
-    Bg_LoadPalette(3, (*plttData)->pRawData, (32 * 1), (32 * 12));
+    Bg_LoadPalette(BG_LAYER_MAIN_3, (*plttData)->pRawData, (32 * 1), (32 * 12));
     Heap_Free(nclrFile);
 }
 
-static void ov6_02244E7C(BgConfig *bgConfig, NARC *narc, u32 memberIndex, NNSG2dCharacterData **charData)
+static void LoadBgChar(BgConfig *bgConfig, NARC *narc, u32 memberIndex, NNSG2dCharacterData **charData)
 {
-    void *v0 = NARC_AllocAndReadWholeMember(narc, memberIndex, 4);
-    NNS_G2dGetUnpackedCharacterData(v0, charData);
+    void *ncgrFile = NARC_AllocAndReadWholeMember(narc, memberIndex, HEAP_ID_FIELD);
+    NNS_G2dGetUnpackedCharacterData(ncgrFile, charData);
 
-    Bg_LoadTiles(bgConfig, 3, (*charData)->pRawData, (*charData)->szByte, 0);
-    Heap_Free(v0);
+    Bg_LoadTiles(bgConfig, BG_LAYER_MAIN_3, (*charData)->pRawData, (*charData)->szByte, 0);
+    Heap_Free(ncgrFile);
 }
 
-static void ov6_02244EB4(BgConfig *bgConfig, NARC *narc, u32 memberIndex, NNSG2dScreenData **screenData)
+static void LoadBgScreenData(BgConfig *bgConfig, NARC *narc, u32 memberIndex, NNSG2dScreenData **screenData)
 {
-    void *v0;
+    void *nscrFile;
 
     Bg_SetOffset(bgConfig, BG_LAYER_MAIN_3, 0, 0);
     Bg_SetOffset(bgConfig, BG_LAYER_MAIN_3, 3, 0);
 
-    v0 = NARC_AllocAndReadWholeMember(narc, memberIndex, 4);
-    NNS_G2dGetUnpackedScreenData(v0, screenData);
+    nscrFile = NARC_AllocAndReadWholeMember(narc, memberIndex, HEAP_ID_FIELD);
+    NNS_G2dGetUnpackedScreenData(nscrFile, screenData);
 
-    Bg_LoadTilemapBuffer(bgConfig, 3, (void *)(*screenData)->rawData, (*screenData)->szByte);
-    Bg_ChangeTilemapRectPalette(bgConfig, 3, 0, 0, 32, 32, 12);
-    Bg_CopyTilemapBufferToVRAM(bgConfig, 3);
-    Heap_Free(v0);
+    Bg_LoadTilemapBuffer(bgConfig, BG_LAYER_MAIN_3, (void *)(*screenData)->rawData, (*screenData)->szByte);
+    Bg_ChangeTilemapRectPalette(bgConfig, BG_LAYER_MAIN_3, 0, 0, 32, 32, 12);
+    Bg_CopyTilemapBufferToVRAM(bgConfig, BG_LAYER_MAIN_3);
+    Heap_Free(nscrFile);
 }
 
 static void ov6_02244F20(BgConfig *param0)
@@ -2071,9 +2092,9 @@ static void ov6_02244FE4(SysTask *param0, void *param1)
     G2_SetWnd0Position(v0->unk_44 / FX32_ONE, v0->unk_4C / FX32_ONE, v0->unk_48 / FX32_ONE, v0->unk_50 / FX32_ONE);
 }
 
-static void ov6_0224508C(HMCutIn *param0, PokemonSpriteTemplate *param1)
+static void BuildMonSpriteTemplate(HMCutIn *cutIn, PokemonSpriteTemplate *spriteTemplate)
 {
-    Pokemon_BuildSpriteTemplate(param1, param0->pokemon, 2);
+    Pokemon_BuildSpriteTemplate(spriteTemplate, cutIn->pokemon, 2);
 }
 
 static void *ov6_0224509C(Pokemon *param0, PokemonSpriteTemplate *param1, u32 heapID)
@@ -2901,73 +2922,73 @@ static const UnkStruct_ov101_021D86B0 dummy_field_cutin = {
     sub_020715FC,
 };
 
-int (*const Unk_ov6_02249270[])(UnkStruct_ov6_02249270 *);
+int (*const Unk_ov6_02249270[])(FlyLandingEnv *);
 
 SysTask *FieldTask_InitFlyLandingTask(FieldSystem *fieldSystem, int param1)
 {
-    UnkStruct_ov6_02249270 *v0 = ov6_02245F44(HEAP_ID_FIELD, (sizeof(UnkStruct_ov6_02249270)));
+    FlyLandingEnv *v0 = ov6_02245F44(HEAP_ID_FIELD, (sizeof(FlyLandingEnv)));
 
     v0->unk_0C = param1;
     v0->fieldSystem = fieldSystem;
 
     {
-        SysTask *v1 = SysTask_Start(ov6_02245D10, v0, 133);
+        SysTask *v1 = SysTask_Start(FlyLandingTask, v0, 133);
         return v1;
     }
 }
 
 int ov6_02245CF0(SysTask *param0)
 {
-    UnkStruct_ov6_02249270 *v0 = SysTask_GetParam(param0);
+    FlyLandingEnv *v0 = SysTask_GetParam(param0);
     return v0->unk_04;
 }
 
 void ov6_02245CFC(SysTask *param0)
 {
-    UnkStruct_ov6_02249270 *v0 = SysTask_GetParam(param0);
+    FlyLandingEnv *v0 = SysTask_GetParam(param0);
 
     Heap_Free(v0);
     SysTask_Done(param0);
 }
 
-static void ov6_02245D10(SysTask *param0, void *param1)
+static void FlyLandingTask(SysTask *task, void *param1)
 {
     int v0;
-    UnkStruct_ov6_02249270 *v1 = param1;
+    FlyLandingEnv *taskEnv = param1;
 
-    while (Unk_ov6_02249270[v1->unk_00](v1) == 1) {
+    while (Unk_ov6_02249270[taskEnv->state](taskEnv) == 1) {
         (void)0;
     }
 
-    if (v1->unk_10) {
-        if (v1->unk_1D4 != NULL) {
-            sub_020713D0(v1->unk_1D4);
+    if (taskEnv->unk_10) {
+        if (taskEnv->unk_1D4 != NULL) {
+            sub_020713D0(taskEnv->unk_1D4);
         }
 
-        if (v1->unk_18.unk_08 != NULL) {
-            SpriteList_Update(v1->unk_18.unk_08);
+        if (taskEnv->unk_18.unk_08 != NULL) {
+            SpriteList_Update(taskEnv->unk_18.unk_08);
         }
     }
 }
 
-static int ov6_02245D48(UnkStruct_ov6_02249270 *param0)
+static int SubTask_FlyLanding_HidePlayer(FlyLandingEnv *taskEnv)
 {
-    ov6_02243F74(param0->fieldSystem, 1);
-    param0->unk_00++;
+    HidePlayer(taskEnv->fieldSystem, TRUE);
+    taskEnv->state++;
     return 0;
 }
 
-static int ov6_02245D60(UnkStruct_ov6_02249270 *param0)
+static int ov6_02245D60(FlyLandingEnv *param0)
 {
     param0->unk_1D4 = sub_020711EC(HEAP_ID_FIELD, 32);
     ov6_02243258(&param0->unk_18, 32, 2, 2, 2, 1, 4, 3, 4, 2);
 
     {
-        NARC *v0 = ov6_02243F20();
+        NARC *narc = GetFieldCutInNarc1();
 
-        ov6_022434B0(&param0->unk_18, v0, 7, 0);
-        ov6_02243588(&param0->unk_18, v0, 3, 0);
-        ov6_02243660(&param0->unk_18, v0, 8, 0);
+        ov6_022434B0(&param0->unk_18, narc, 7, 0);
+        ov6_02243588(&param0->unk_18, narc, 3, 0);
+        ov6_02243660(&param0->unk_18, narc, 8, 0);
 
         ov6_02243520(&param0->unk_18, 0);
         ov6_022435F8(&param0->unk_18, 0);
@@ -2975,17 +2996,17 @@ static int ov6_02245D60(UnkStruct_ov6_02249270 *param0)
         ov6_0224362C(&param0->unk_18, 0);
 
         if (param0->unk_0C == 0) {
-            ov6_022434B0(&param0->unk_18, v0, 13, 2);
-            ov6_02243660(&param0->unk_18, v0, 14, 2);
-            ov6_022436D0(&param0->unk_18, v0, 15, 1);
+            ov6_022434B0(&param0->unk_18, narc, 13, 2);
+            ov6_02243660(&param0->unk_18, narc, 14, 2);
+            ov6_022436D0(&param0->unk_18, narc, 15, 1);
 
             ov6_02243520(&param0->unk_18, 2);
             ov6_02243554(&param0->unk_18, 2);
         } else {
-            ov6_022434B0(&param0->unk_18, v0, 16, 2);
-            ov6_02243588(&param0->unk_18, v0, 4, 1);
-            ov6_02243660(&param0->unk_18, v0, 17, 2);
-            ov6_022436D0(&param0->unk_18, v0, 18, 1);
+            ov6_022434B0(&param0->unk_18, narc, 16, 2);
+            ov6_02243588(&param0->unk_18, narc, 4, 1);
+            ov6_02243660(&param0->unk_18, narc, 17, 2);
+            ov6_022436D0(&param0->unk_18, narc, 18, 1);
 
             ov6_02243520(&param0->unk_18, 2);
             ov6_022435F8(&param0->unk_18, 1);
@@ -2993,14 +3014,14 @@ static int ov6_02245D60(UnkStruct_ov6_02249270 *param0)
             ov6_0224362C(&param0->unk_18, 1);
         }
 
-        NARC_dtor(v0);
+        NARC_dtor(narc);
     }
 
-    param0->unk_00++;
+    param0->state++;
     return 0;
 }
 
-static int ov6_02245EA4(UnkStruct_ov6_02249270 *param0)
+static int ov6_02245EA4(FlyLandingEnv *param0)
 {
     param0->unk_1D0 = ov6_02243848(&param0->unk_18, param0->unk_0C);
     Sprite_SetDrawFlag(param0->unk_1D0, TRUE);
@@ -3008,48 +3029,48 @@ static int ov6_02245EA4(UnkStruct_ov6_02249270 *param0)
     param0->unk_1D8 = ov6_02243888(param0->fieldSystem, param0->unk_1D4, &param0->unk_18, param0->unk_1D0);
     ov6_02243950(param0->unk_1D8);
 
-    param0->unk_00++;
+    param0->state++;
     param0->unk_10 = 1;
 
     return 0;
 }
 
-static int ov6_02245EEC(UnkStruct_ov6_02249270 *param0)
+static int ov6_02245EEC(FlyLandingEnv *param0)
 {
     if (ov6_022438BC(param0->unk_1D8) != 2) {
         return 0;
     }
 
     ov6_022438EC(param0->unk_1D8);
-    param0->unk_00++;
+    param0->state++;
 
     return 0;
 }
 
-static int ov6_02245F18(UnkStruct_ov6_02249270 *param0)
+static int ov6_02245F18(FlyLandingEnv *param0)
 {
     sub_0207121C(param0->unk_1D4);
     ov6_0224339C(&param0->unk_18);
 
     param0->unk_10 = 0;
     param0->unk_04 = 1;
-    param0->unk_00++;
+    param0->state++;
 
     return 0;
 }
 
-static int ov6_02245F40(UnkStruct_ov6_02249270 *param0)
+static int SubTask_FlyLanding_NOP(FlyLandingEnv *param0)
 {
     return 0;
 }
 
-static int (*const Unk_ov6_02249270[])(UnkStruct_ov6_02249270 *) = {
-    ov6_02245D48,
+static int (*const Unk_ov6_02249270[])(FlyLandingEnv *) = {
+    SubTask_FlyLanding_HidePlayer,
     ov6_02245D60,
     ov6_02245EA4,
     ov6_02245EEC,
     ov6_02245F18,
-    ov6_02245F40
+    SubTask_FlyLanding_NOP
 };
 
 static void *ov6_02245F44(u32 heapID, int param1)
