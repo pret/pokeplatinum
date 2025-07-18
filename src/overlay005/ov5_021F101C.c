@@ -42,12 +42,12 @@ BOOL ov5_021F101C(FieldTask *param0)
         break;
     case 2: {
         int v5 = PlayerAvatar_Gender(fieldSystem->playerAvatar);
-        v3->unk_00 = SysTask_FlyCutIn(fieldSystem, 0, v1->unk_00, v5);
+        v3->unk_00 = SysTask_CutIn_New(fieldSystem, 0, v1->unk_00, v5);
     }
         (*v2)++;
         break;
     case 3:
-        if (CheckFlyCutInFinished(v3->unk_00)) {
+        if (CheckCutInFinished(v3->unk_00)) {
             SysTask_CutIn_Done(v3->unk_00);
             (*v2)++;
         }

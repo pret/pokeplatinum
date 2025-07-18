@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_decls/struct_020711EC_decl.h"
 
@@ -31,7 +33,7 @@
 #include "unk_020131EC.h"
 #include "unk_020711EC.h"
 
-typedef struct {
+typedef struct HMCutIn {
     int state;
     int isFinished;
     int unk_08;
@@ -40,9 +42,9 @@ typedef struct {
     int unk_14;
     int unk_18;
     int unk_1C;
-    u32 unk_20;
-    u16 unk_24;
-    u16 unk_26;
+    u32 dummy_20;
+    u16 bgPriority0;
+    u16 bgPriority3;
     int unk_28;
     int unk_2C;
     u32 unk_30;
@@ -246,8 +248,8 @@ typedef struct {
 
 static HMCutIn *HMCutIn_New(FieldSystem *fieldSystem);
 static void HMCutIn_Free(HMCutIn *cutIn);
-static void ov6_02244004(SysTask *param0, void *param1);
-static void ov6_022443B8(SysTask *param0, void *param1);
+static void SysTask_CutIn(SysTask *param0, void *param1);
+static void SysTask_CutInFly(SysTask *param0, void *param1);
 static void ov6_0224464C(HMCutIn *cutIn);
 static void ov6_02244674(HMCutIn *cutIn);
 static void ov6_0224469C(HMCutIn *cutIn);
@@ -257,7 +259,7 @@ static void ov6_022447B4(SysTask *param0, void *param1);
 static void ov6_022447EC(SysTask *param0, void *param1);
 static void ov6_0224481C(HMCutIn *cutIn);
 static void ov6_022448C8(HMCutIn *cutIn);
-static NARC *ov6_0224491C(void);
+static NARC *GetFieldCutinNarc(void);
 static void ov6_02244928(HMCutIn *cutIn, NARC *param1);
 static void ov6_02244B6C(HMCutIn *cutIn);
 static void ov6_02244C10(HMCutIn *cutIn);
@@ -267,9 +269,9 @@ static Sprite *ov6_02244CFC(HMCutIn *cutIn, const VecFx32 *param1);
 static void ov6_02244D34(Sprite *param0);
 static Sprite *ov6_02244D4C(HMCutIn *cutIn, const VecFx32 *param1, int param2, int param3);
 static void ov6_02244DB4(HMCutIn *cutIn);
-static void ov6_02244E54(NARC *param0, u32 param1, NNSG2dPaletteData **param2);
-static void ov6_02244E7C(BgConfig *param0, NARC *param1, u32 param2, NNSG2dCharacterData **param3);
-static void ov6_02244EB4(BgConfig *param0, NARC *param1, u32 param2, NNSG2dScreenData **param3);
+static void ov6_02244E54(NARC *narc, u32 memberIndex, NNSG2dPaletteData **plttData);
+static void ov6_02244E7C(BgConfig *bgConfig, NARC *narc, u32 memberIndex, NNSG2dCharacterData **charData);
+static void ov6_02244EB4(BgConfig *bgConfig, NARC *narc, u32 memberIndex, NNSG2dScreenData **screenData);
 static void ov6_02244F20(BgConfig *param0);
 static void ov6_02244F2C(HMCutIn *cutIn);
 static void ov6_02244F50(HMCutIn *cutIn);
@@ -348,7 +350,7 @@ static const UnkStruct_ov6_02249108 Unk_ov6_02249100[1];
 
 typedef int (*HMCutInTaskFunc)(HMCutIn *);
 
-static const HMCutInTaskFunc Unk_ov6_022492D8[] = {
+static const HMCutInTaskFunc CutInTaskFuncs[] = {
     ov6_02244038,
     ov6_02244050,
     ov6_022440C0,
@@ -365,7 +367,7 @@ static const HMCutInTaskFunc Unk_ov6_022492D8[] = {
     ov6_022443B0
 };
 
-static const HMCutInTaskFunc Unk_ov6_02249310[] = {
+static const HMCutInTaskFunc CutInTaskFuncsFly[] = {
     ov6_02244038,
     ov6_022443EC,
     ov6_022440C0,
@@ -1098,12 +1100,12 @@ SysTask *SysTask_CutIn_New(FieldSystem *fieldSystem, u32 param1, Pokemon *shownP
 
     cutIn->pokemon = shownPokemon;
     cutIn->playerGender = playerGender;
-    cutIn->unk_20 = param1;
+    cutIn->dummy_20 = param1;
 
     if (param1 == 0) {
-        task = SysTask_Start(ov6_02244004, cutIn, 133);
+        task = SysTask_Start(SysTask_CutIn, cutIn, 133);
     } else {
-        task = SysTask_Start(ov6_022443B8, cutIn, 133);
+        task = SysTask_Start(SysTask_CutInFly, cutIn, 133);
     }
 
     return task;
@@ -1138,29 +1140,29 @@ static void HMCutIn_Free(HMCutIn *cutIn)
     Heap_Free(cutIn);
 }
 
-static void ov6_02244004(SysTask *param0, void *param1)
+static void SysTask_CutIn(SysTask *cutInTask, void *hmCutInPtr)
 {
-    int v0;
-    HMCutIn *v1 = param1;
+    int ret;
+    HMCutIn *cutIn = hmCutInPtr;
 
     do {
-        v0 = Unk_ov6_022492D8[v1->state](v1);
-    } while (v0 == 1);
+        ret = CutInTaskFuncs[cutIn->state](cutIn);
+    } while (ret == 1);
 
-    if (v1->unk_10 == 1) {
-        if (v1->unk_244 != NULL) {
-            sub_020713D0(v1->unk_244);
+    if (cutIn->unk_10 == 1) {
+        if (cutIn->unk_244 != NULL) {
+            sub_020713D0(cutIn->unk_244);
         }
 
-        ov6_02244C10(v1);
+        ov6_02244C10(cutIn);
     }
 }
 
-static int ov6_02244038(HMCutIn *param0)
+static int ov6_02244038(HMCutIn *cutIn)
 {
-    ov6_0224481C(param0);
-    ov6_0224464C(param0);
-    param0->state++;
+    ov6_0224481C(cutIn);
+    ov6_0224464C(cutIn);
+    cutIn->state++;
     return 0;
 }
 
@@ -1395,13 +1397,13 @@ static int ov6_022443B0(HMCutIn *cutIn)
     return 0;
 }
 
-static void ov6_022443B8(SysTask *cutInTask, void *hmCutInPtr)
+static void SysTask_CutInFly(SysTask *cutInTask, void *hmCutInPtr)
 {
     int v0;
     HMCutIn *cutIn = hmCutInPtr;
 
     do {
-        v0 = Unk_ov6_02249310[cutIn->state](cutIn);
+        v0 = CutInTaskFuncsFly[cutIn->state](cutIn);
     } while (v0 == 1);
 
     if (cutIn->unk_10 == 1) {
@@ -1703,28 +1705,28 @@ static void ov6_022447EC(SysTask *param0, void *param1)
     }
 }
 
-static void ov6_0224481C(HMCutIn *param0)
+static void ov6_0224481C(HMCutIn *cutIn)
 {
-    NARC *v0 = ov6_0224491C();
+    NARC *cutInNarc = GetFieldCutinNarc();
 
-    ov6_02244F80(param0, (FX32_ONE * 0), (FX32_ONE * 192), (FX32_ONE * 1), (FX32_ONE * 192));
-    ov6_02244F2C(param0);
+    ov6_02244F80(cutIn, (FX32_ONE * 0), (FX32_ONE * 192), (FX32_ONE * 1), (FX32_ONE * 192));
+    ov6_02244F2C(cutIn);
 
-    param0->unk_24 = Bg_GetPriority(param0->fieldSystem->bgConfig, 0);
-    param0->unk_26 = Bg_GetPriority(param0->fieldSystem->bgConfig, 3);
+    cutIn->bgPriority0 = Bg_GetPriority(cutIn->fieldSystem->bgConfig, BG_LAYER_MAIN_0);
+    cutIn->bgPriority3 = Bg_GetPriority(cutIn->fieldSystem->bgConfig, BG_LAYER_MAIN_3);
 
     G2_SetBG1Priority(1);
     G2_SetBG3Priority(0);
 
-    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, FALSE);
 
-    ov6_02244E54(v0, 2, &param0->unk_6C);
-    ov6_02244E7C(param0->fieldSystem->bgConfig, v0, 0, &param0->unk_68);
-    ov6_02244EB4(param0->fieldSystem->bgConfig, v0, 1, &param0->unk_64);
-    ov6_02244928(param0, v0);
+    ov6_02244E54(cutInNarc, 2, &cutIn->unk_6C);
+    ov6_02244E7C(cutIn->fieldSystem->bgConfig, cutInNarc, 0, &cutIn->unk_68);
+    ov6_02244EB4(cutIn->fieldSystem->bgConfig, cutInNarc, 1, &cutIn->unk_64);
+    ov6_02244928(cutIn, cutInNarc);
 
-    NARC_dtor(v0);
-    param0->unk_244 = sub_020711EC(HEAP_ID_FIELD, 32);
+    NARC_dtor(cutInNarc);
+    cutIn->unk_244 = sub_020711EC(HEAP_ID_FIELD, 32);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
 }
 
@@ -1736,14 +1738,14 @@ static void ov6_022448C8(HMCutIn *param0)
     ov6_02244F20(param0->fieldSystem->bgConfig);
     ov6_02244B6C(param0);
 
-    G2_SetBG0Priority(param0->unk_24);
-    G2_SetBG3Priority(param0->unk_26);
+    G2_SetBG0Priority(param0->bgPriority0);
+    G2_SetBG3Priority(param0->bgPriority3);
 
     FieldMessage_LoadTextPalettes(0, TRUE);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
 }
 
-static NARC *ov6_0224491C(void)
+static NARC *GetFieldCutinNarc(void)
 {
     return NARC_ctor(NARC_INDEX_DATA__FIELD_CUTIN, HEAP_ID_FIELD);
 }
@@ -1935,7 +1937,7 @@ static Sprite *ov6_02244D4C(HMCutIn *param0, const VecFx32 *param1, int param2, 
 static void ov6_02244DB4(HMCutIn *param0)
 {
     int v0;
-    NARC *v1 = ov6_0224491C();
+    NARC *v1 = GetFieldCutinNarc();
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param0->unk_210[v0] == NULL) {
@@ -1957,38 +1959,38 @@ static void ov6_02244DB4(HMCutIn *param0)
     NARC_dtor(v1);
 }
 
-static void ov6_02244E54(NARC *param0, u32 param1, NNSG2dPaletteData **param2)
+static void ov6_02244E54(NARC *narc, u32 memberIndex, NNSG2dPaletteData **plttData)
 {
-    void *v0 = NARC_AllocAndReadWholeMember(param0, param1, 4);
+    void *nclrFile = NARC_AllocAndReadWholeMember(narc, memberIndex, HEAP_ID_FIELD);
 
-    NNS_G2dGetUnpackedPaletteData(v0, param2);
+    NNS_G2dGetUnpackedPaletteData(nclrFile, plttData);
 
-    Bg_LoadPalette(3, (*param2)->pRawData, (32 * 1), (32 * 12));
+    Bg_LoadPalette(3, (*plttData)->pRawData, (32 * 1), (32 * 12));
+    Heap_Free(nclrFile);
+}
+
+static void ov6_02244E7C(BgConfig *bgConfig, NARC *narc, u32 memberIndex, NNSG2dCharacterData **charData)
+{
+    void *v0 = NARC_AllocAndReadWholeMember(narc, memberIndex, 4);
+    NNS_G2dGetUnpackedCharacterData(v0, charData);
+
+    Bg_LoadTiles(bgConfig, 3, (*charData)->pRawData, (*charData)->szByte, 0);
     Heap_Free(v0);
 }
 
-static void ov6_02244E7C(BgConfig *param0, NARC *param1, u32 param2, NNSG2dCharacterData **param3)
-{
-    void *v0 = NARC_AllocAndReadWholeMember(param1, param2, 4);
-    NNS_G2dGetUnpackedCharacterData(v0, param3);
-
-    Bg_LoadTiles(param0, 3, (*param3)->pRawData, (*param3)->szByte, 0);
-    Heap_Free(v0);
-}
-
-static void ov6_02244EB4(BgConfig *param0, NARC *param1, u32 param2, NNSG2dScreenData **param3)
+static void ov6_02244EB4(BgConfig *bgConfig, NARC *narc, u32 memberIndex, NNSG2dScreenData **screenData)
 {
     void *v0;
 
-    Bg_SetOffset(param0, BG_LAYER_MAIN_3, 0, 0);
-    Bg_SetOffset(param0, BG_LAYER_MAIN_3, 3, 0);
+    Bg_SetOffset(bgConfig, BG_LAYER_MAIN_3, 0, 0);
+    Bg_SetOffset(bgConfig, BG_LAYER_MAIN_3, 3, 0);
 
-    v0 = NARC_AllocAndReadWholeMember(param1, param2, 4);
-    NNS_G2dGetUnpackedScreenData(v0, param3);
+    v0 = NARC_AllocAndReadWholeMember(narc, memberIndex, 4);
+    NNS_G2dGetUnpackedScreenData(v0, screenData);
 
-    Bg_LoadTilemapBuffer(param0, 3, (void *)(*param3)->rawData, (*param3)->szByte);
-    Bg_ChangeTilemapRectPalette(param0, 3, 0, 0, 32, 32, 12);
-    Bg_CopyTilemapBufferToVRAM(param0, 3);
+    Bg_LoadTilemapBuffer(bgConfig, 3, (void *)(*screenData)->rawData, (*screenData)->szByte);
+    Bg_ChangeTilemapRectPalette(bgConfig, 3, 0, 0, 32, 32, 12);
+    Bg_CopyTilemapBufferToVRAM(bgConfig, 3);
     Heap_Free(v0);
 }
 
@@ -2033,12 +2035,12 @@ static void ov6_02244F74(HMCutIn *param0)
     param0->unk_40 = 1;
 }
 
-static void ov6_02244F80(HMCutIn *param0, fx32 param1, fx32 param2, fx32 param3, fx32 param4)
+static void ov6_02244F80(HMCutIn *cutIn, fx32 param1, fx32 param2, fx32 param3, fx32 param4)
 {
-    param0->unk_44 = param1;
-    param0->unk_48 = param3;
-    param0->unk_4C = param2;
-    param0->unk_50 = param4;
+    cutIn->unk_44 = param1;
+    cutIn->unk_48 = param3;
+    cutIn->unk_4C = param2;
+    cutIn->unk_50 = param4;
 }
 
 static void ov6_02244F8C(HMCutIn *param0)

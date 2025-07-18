@@ -322,7 +322,7 @@ static int ov6_022474E8(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6
 {
     int v0 = PlayerAvatar_Gender(fieldSystem->playerAvatar);
 
-    param2->unk_10 = SysTask_FlyCutIn(fieldSystem, 0, param2->unk_20, v0);
+    param2->unk_10 = SysTask_CutIn_New(fieldSystem, 0, param2->unk_20, v0);
     param2->unk_00++;
 
     return 0;
@@ -330,7 +330,7 @@ static int ov6_022474E8(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6
 
 static int ov6_0224750C(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param2)
 {
-    if (CheckFlyCutInFinished(param2->unk_10) == 0) {
+    if (CheckCutInFinished(param2->unk_10) == 0) {
         return 0;
     }
 
