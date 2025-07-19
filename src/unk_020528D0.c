@@ -2,6 +2,7 @@
 
 #include <nitro.h>
 #include <string.h>
+
 #include "generated/text_banks.h"
 
 #include "struct_decls/struct_0203A790_decl.h"

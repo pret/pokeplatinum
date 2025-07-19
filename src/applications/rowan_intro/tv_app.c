@@ -1,5 +1,6 @@
 #include <nitro.h>
 #include <string.h>
+
 #include "generated/text_banks.h"
 
 #include "struct_defs/struct_02099F80.h"
