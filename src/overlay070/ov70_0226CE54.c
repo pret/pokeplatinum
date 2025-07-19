@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/species.h"
+
 #include "overlay063/struct_ov63_0222CC3C.h"
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
@@ -47,8 +49,8 @@ typedef struct UnkStruct_ov70_0226CF38_t {
 } UnkStruct_ov70_0226CF38;
 
 typedef struct {
-    u16 unk_00;
-    u16 unk_02;
+    u16 species;
+    u16 species2;
     u16 unk_04;
     u16 unk_06;
     u16 unk_08;
@@ -58,7 +60,7 @@ typedef struct {
 static void ov70_0226D020(UnkStruct_ov70_0226CF38 *param0, u32 param1);
 static void ov70_0226D46C(UnkStruct_ov70_0226CF38 *param0, u32 param1);
 static void ov70_0226D0E8(UnkStruct_ov70_0226CF38 *param0, u32 param1, BOOL param2, BOOL param3, u32 param4);
-static void ov70_0226D24C(BOOL param0, BOOL param1, BOOL param2, u32 param3);
+static void ov70_0226D24C(BOOL param0, BOOL param1, BOOL param2, u32 seqID);
 static void ov70_0226D27C(BOOL param0, BOOL param1, BOOL param2, u32 species);
 static BOOL ov70_0226D2A0(UnkStruct_ov70_0226D2A0 *param0, u32 param1, UnkStruct_ov70_02261E10 *param2, u32 param3);
 static BOOL ov70_0226D2D8(UnkStruct_ov70_0226D2A0 *param0, UnkStruct_ov70_02261E10 *param1, u32 param2);
@@ -66,13 +68,15 @@ static void ov70_0226D31C(UnkStruct_ov70_0226D2A0 *param0, UnkStruct_ov70_02261E
 static void ov70_0226D33C(UnkStruct_ov70_0226D2A0 *param0, UnkStruct_ov70_02261E10 *param1, u32 param2);
 static BOOL ov70_0226D35C(UnkStruct_ov70_0226D2A0 *param0, UnkStruct_ov70_02261E10 *param1, u32 param2);
 
+// clang-format off
 static const UnkStruct_ov70_0226E774 Unk_ov70_0226E774[5] = {
-    { 0xFF, 0x6, 0xFFFE, 0x5B4, 0x5B7, 0x5AE },
-    { 0x189, 0x82, 0x5B4, 0x5B6, 0x5B8, 0x5B4 },
-    { 0x19, 0x1CE, 0xFFFE, 0x5B4, 0xFFFE, 0x5B9 },
-    { 0x1, 0x1C7, 0x5BA, 0x5B5, 0x5AE, 0x5B4 },
-    { 0x97, 0x97, 0xFFFE, 0x5B4, 0x5BB, 0x5B4 }
+    { SPECIES_TORCHIC,   SPECIES_CHARIZARD, 0xFFFE,            SEQ_SE_PL_FLOAT10, SEQ_SE_PL_FIRE,      SEQ_SE_PL_FLOAT03 },
+    { SPECIES_PIPLUP,    SPECIES_GYARADOS,  SEQ_SE_PL_FLOAT10, SEQ_SE_PL_FLOAT12, SEQ_SE_PL_WATER,     SEQ_SE_PL_FLOAT10 },
+    { SPECIES_PIKACHU,   SPECIES_MAGNEZONE, 0xFFFE,            SEQ_SE_PL_FLOAT10, 0xFFFE,              SEQ_SE_PL_ELECTRO },
+    { SPECIES_BULBASAUR, SPECIES_CARNIVINE, SEQ_SE_PL_WHIP,    SEQ_SE_PL_FLOAT11, SEQ_SE_PL_FLOAT03,   SEQ_SE_PL_FLOAT10 },
+    { SPECIES_MEW,       SPECIES_MEW,       0xFFFE,            SEQ_SE_PL_FLOAT10, SEQ_SE_PL_KIRAKIRA4, SEQ_SE_PL_FLOAT10 }
 };
+// clang-format on
 
 UnkStruct_ov70_0226CF38 *ov70_0226CE54(UnkStruct_ov70_0225DEE8 *param0, u32 heapID)
 {
@@ -225,13 +229,13 @@ static void ov70_0226D0E8(UnkStruct_ov70_0226CF38 *param0, u32 param1, BOOL para
 
                 if (v2 == 1) {
                     if ((param1 % 3) == 2) {
-                        ov70_0226D27C(param2, param3, v5, Unk_ov70_0226E774[v4].unk_02);
+                        ov70_0226D27C(param2, param3, v5, Unk_ov70_0226E774[v4].species2);
 
                         if (Unk_ov70_0226E774[v4].unk_08 != 0xfffe) {
                             ov70_0226D24C(param2, param3, v5, Unk_ov70_0226E774[v4].unk_08);
                         }
                     } else {
-                        ov70_0226D27C(param2, param3, v5, Unk_ov70_0226E774[v4].unk_00);
+                        ov70_0226D27C(param2, param3, v5, Unk_ov70_0226E774[v4].species);
 
                         if (Unk_ov70_0226E774[v4].unk_04 != 0xfffe) {
                             ov70_0226D24C(param2, param3, v5, Unk_ov70_0226E774[v4].unk_04);
@@ -254,7 +258,7 @@ static void ov70_0226D0E8(UnkStruct_ov70_0226CF38 *param0, u32 param1, BOOL para
 
                 if (v2 == 1) {
                     ov66_0222EBF4(param0->unk_04, (param1 * 3) + v0);
-                    ov70_0226D24C(param2, param3, v5, 1455);
+                    ov70_0226D24C(param2, param3, v5, SEQ_SE_PL_FLOAT13);
                 }
             } break;
             case 2:
@@ -275,18 +279,18 @@ static void ov70_0226D0E8(UnkStruct_ov70_0226CF38 *param0, u32 param1, BOOL para
     }
 }
 
-static void ov70_0226D24C(BOOL param0, BOOL param1, BOOL param2, u32 param3)
+static void ov70_0226D24C(BOOL param0, BOOL param1, BOOL param2, u32 seqID)
 {
     if (param0) {
         if (param1) {
             if (param2) {
-                Sound_PlayEffectOnPlayer(param3, 5);
+                Sound_PlayEffectOnPlayer(seqID, 5);
             } else {
-                Sound_PlayEffect(param3);
+                Sound_PlayEffect(seqID);
             }
         }
     } else {
-        Sound_PlayEffect(param3);
+        Sound_PlayEffect(seqID);
     }
 }
 
