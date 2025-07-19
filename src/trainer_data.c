@@ -137,7 +137,7 @@ void Trainer_LoadMessage(int trainerID, enum TrainerMessageType msgType, Strbuf 
         NARC_ReadFromMember(narc, 0, offset, 4, data);
 
         if (data[0] == trainerID && data[1] == msgType) {
-            MessageBank_GetStrbufFromNARC(NARC_INDEX_MSGDATA__PL_MSG, 617, offset / 4, heapID, strbuf);
+            MessageBank_GetStrbufFromNARC(NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NPC_TRAINER_MESSAGES, offset / 4, heapID, strbuf);
             break;
         }
 

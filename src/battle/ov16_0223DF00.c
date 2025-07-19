@@ -1719,17 +1719,17 @@ void Battle_SetDefaultBlend(void)
     G2_BlendNone();
 }
 
-u8 ov16_0223F9FC(BattleSystem *battleSystem, int param1, int param2, int param3, int param4)
+u8 ov16_0223F9FC(BattleSystem *battleSystem, int trainerID, int param2, int msgType, int param4)
 {
     Window *v0 = BattleSystem_Window(battleSystem, 0);
     int v1;
 
     if (battleSystem->battleType & BATTLE_TYPE_FRONTIER) {
-        if (param1 == 10000) {
+        if (trainerID == 10000) {
             {
                 Strbuf *v2;
 
-                if (param3 == 100) {
+                if (msgType == TRMSG_WIN) {
                     v2 = sub_02014B34(&battleSystem->trainers[param2].winMsg, HEAP_ID_BATTLE);
                 } else {
                     v2 = sub_02014B34(&battleSystem->trainers[param2].loseMsg, HEAP_ID_BATTLE);
@@ -1747,10 +1747,10 @@ u8 ov16_0223F9FC(BattleSystem *battleSystem, int param1, int param2, int param3,
                 u32 v6;
                 int v7;
 
-                if (param3 == 100) {
-                    v5 = param1 * 3 + 1;
+                if (msgType == TRMSG_WIN) {
+                    v5 = trainerID * 3 + 1;
                 } else {
-                    v5 = param1 * 3 + 2;
+                    v5 = trainerID * 3 + 2;
                 }
 
                 for (v7 = 0; v7 < 4; v7++) {
@@ -1776,7 +1776,7 @@ u8 ov16_0223F9FC(BattleSystem *battleSystem, int param1, int param2, int param3,
             }
         }
     } else {
-        Trainer_LoadMessage(param1, param3, battleSystem->msgBuffer, 5);
+        Trainer_LoadMessage(trainerID, msgType, battleSystem->msgBuffer, HEAP_ID_BATTLE);
         Window_FillTilemap(v0, 0xff);
         v1 = Text_AddPrinterWithParams(v0, FONT_MESSAGE, battleSystem->msgBuffer, 0, 0, param4, BattleMessage_Callback);
     }

@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/common_strings.h"
+#include "generated/trainer_message_types.h"
 
 
     ScriptEntry _0E86
@@ -937,14 +938,14 @@ _0E86:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_0E4 VAR_0x8004
+    GetTrainerID VAR_0x8004
     ScrCmd_2AD VAR_0x8001, VAR_LAST_TALKED
     CallIfEq VAR_0x8001, 51, _0FE7
     CallIfEq VAR_0x8001, 52, _0FE7
     CallIfEq VAR_0x8001, 53, _0FE7
     CallIfEq VAR_0x8001, 54, _0FE7
     GoToIfDefeated VAR_0x8004, _0F40
-    ScrCmd_0E9 VAR_RESULT
+    CheckIsTrainerDoubleBattle VAR_RESULT
     GoToIfNe VAR_RESULT, 1, _0F01
     CheckHasTwoAliveMons VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0FCB
@@ -954,8 +955,8 @@ _0E86:
 _0F01:
     PlayTrainerEncounterBGM VAR_0x8004
     OpenMessage
-    ScrCmd_0E7 VAR_0x8000, VAR_0x8001, VAR_0x8002
-    ScrCmd_0E6 VAR_0x8004, VAR_0x8000
+    GetTrainerMessageTypes VAR_0x8000, VAR_0x8001, VAR_0x8002
+    PrintTrainerDialogue VAR_0x8004, VAR_0x8000
     GoTo _0F1D
     End
 
@@ -977,8 +978,8 @@ _0F40:
 
 _0F5B:
     OpenMessage
-    ScrCmd_0E7 VAR_0x8000, VAR_0x8001, VAR_0x8002
-    ScrCmd_0E6 VAR_0x8004, VAR_0x8001
+    GetTrainerMessageTypes VAR_0x8000, VAR_0x8001, VAR_0x8002
+    PrintTrainerDialogue VAR_0x8004, VAR_0x8001
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -986,7 +987,7 @@ _0F5B:
 
 _0F73:
     SetVar VAR_0x8007, VAR_RESULT
-    ScrCmd_0E9 VAR_RESULT
+    CheckIsTrainerDoubleBattle VAR_RESULT
     GoToIfNe VAR_RESULT, 1, _0FA3
     CheckHasTwoAliveMons VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0FCB
@@ -996,8 +997,8 @@ _0F73:
 _0FA3:
     PlayTrainerEncounterBGM VAR_0x8004
     OpenMessage
-    ScrCmd_0E8 VAR_0x8000, VAR_0x8001, VAR_0x8002
-    ScrCmd_0E6 VAR_0x8004, VAR_0x8000
+    GetTrainerRematchMessageTypes VAR_0x8000, VAR_0x8001, VAR_0x8002
+    PrintTrainerDialogue VAR_0x8004, VAR_0x8000
     SetVar VAR_0x8004, VAR_0x8007
     GoTo _0F1D
     End
@@ -1008,10 +1009,10 @@ _0FC5:
     End
 
 _0FCB:
-    ScrCmd_0E4 VAR_0x8004
+    GetTrainerID VAR_0x8004
     OpenMessage
-    ScrCmd_0E7 VAR_0x8000, VAR_0x8001, VAR_0x8002
-    ScrCmd_0E6 VAR_0x8004, VAR_0x8002
+    GetTrainerMessageTypes VAR_0x8000, VAR_0x8001, VAR_0x8002
+    PrintTrainerDialogue VAR_0x8004, VAR_0x8002
     WaitABPress
     CloseMessage
     ReleaseAll
@@ -1021,10 +1022,10 @@ _0FE7:
     ApplyMovement VAR_LAST_TALKED, _104C
     WaitMovement
     GetPlayerDir VAR_0x8000
-    CallIfEq VAR_0x8000, 0, _102B
-    CallIfEq VAR_0x8000, 1, _1033
-    CallIfEq VAR_0x8000, 2, _103B
-    CallIfEq VAR_0x8000, 3, _1043
+    CallIfEq VAR_0x8000, DIR_NORTH, _102B
+    CallIfEq VAR_0x8000, DIR_SOUTH, _1033
+    CallIfEq VAR_0x8000, DIR_WEST, _103B
+    CallIfEq VAR_0x8000, DIR_EAST, _1043
     Return
 
 _102B:
@@ -1065,7 +1066,7 @@ _1083:
     ScrCmd_0B9 0, VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     OpenMessage
-    ScrCmd_0E6 VAR_0x8004, 0
+    PrintTrainerDialogue VAR_0x8004, TRMSG_PRE_BATTLE
     CloseMessage
     StartTrainerBattle VAR_0x8004
     CheckWonBattle VAR_RESULT
@@ -1091,12 +1092,12 @@ _10F3:
     ScrCmd_0B9 0, VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     OpenMessage
-    ScrCmd_0E6 VAR_0x8004, 3
+    PrintTrainerDialogue VAR_0x8004, TRMSG_PRE_DOUBLE_BATTLE_1
     CloseMessage
     ScrCmd_0B9 1, VAR_RESULT
     SetVar VAR_0x8005, VAR_RESULT
     OpenMessage
-    ScrCmd_0E6 VAR_0x8005, 7
+    PrintTrainerDialogue VAR_0x8005, TRMSG_PRE_DOUBLE_BATTLE_2
     CloseMessage
     StartTrainerBattle VAR_0x8004, VAR_0x8005
     CheckWonBattle VAR_RESULT
@@ -1126,7 +1127,7 @@ _11A0:
     ScrCmd_0B9 0, VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     OpenMessage
-    ScrCmd_0E6 VAR_0x8004, 0
+    PrintTrainerDialogue VAR_0x8004, TRMSG_PRE_BATTLE
     CloseMessage
     ScrCmd_0B9 1, VAR_RESULT
     SetVar VAR_0x8005, VAR_RESULT
@@ -1136,7 +1137,7 @@ _11A0:
     ScrCmd_0B9 1, VAR_RESULT
     SetVar VAR_0x8005, VAR_RESULT
     OpenMessage
-    ScrCmd_0E6 VAR_0x8005, 0
+    PrintTrainerDialogue VAR_0x8005, TRMSG_PRE_BATTLE
     CloseMessage
     StartTrainerBattle VAR_0x8004, VAR_0x8005
     CheckWonBattle VAR_RESULT
