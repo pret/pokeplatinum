@@ -31,6 +31,7 @@
     "safari_flee_rate": 150,
     "body_color": "MON_COLOR_BLUE",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_ASTONISH" ],
@@ -105,6 +106,19 @@
             "MOVE_BOUNCE",
             "MOVE_KNOCK_OFF",
             "MOVE_SUCKER_PUNCH"
+        ],
+        "egg_moves": [
+            "MOVE_ME_FIRST",
+            "MOVE_FEINT",
+            "MOVE_DYNAMIC_PUNCH",
+            "MOVE_HEADBUTT",
+            "MOVE_VACUUM_WAVE",
+            "MOVE_MEDITATE",
+            "MOVE_FAKE_OUT",
+            "MOVE_WAKE_UP_SLAP",
+            "MOVE_SMELLING_SALT",
+            "MOVE_CROSS_CHOP",
+            "MOVE_BULLET_PUNCH"
         ]
     },
     "evolutions": [

@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BLUE",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_BIDE" ],
@@ -101,6 +102,19 @@
             "MOVE_VACUUM_WAVE",
             "MOVE_TRICK",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_FIRE_PUNCH",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_ICE_PUNCH",
+            "MOVE_FORESIGHT",
+            "MOVE_FAKE_OUT",
+            "MOVE_BATON_PASS",
+            "MOVE_DYNAMIC_PUNCH",
+            "MOVE_POWER_SWAP",
+            "MOVE_GUARD_SWAP",
+            "MOVE_PSYCHO_CUT",
+            "MOVE_BULLET_PUNCH"
         ]
     },
     "evolutions": [

@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BLACK",
     "flip_sprite": false,
+    "icon_palette": 1,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
@@ -109,6 +110,16 @@
             "MOVE_GUNK_SHOT",
             "MOVE_SEED_BOMB",
             "MOVE_LAST_RESORT"
+        ],
+        "egg_moves": [
+            "MOVE_LICK",
+            "MOVE_CHARM",
+            "MOVE_DOUBLE_EDGE",
+            "MOVE_CURSE",
+            "MOVE_FISSURE",
+            "MOVE_SUBSTITUTE",
+            "MOVE_WHIRLWIND",
+            "MOVE_PURSUIT"
         ]
     },
     "evolutions": [  ],

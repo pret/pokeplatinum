@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BROWN",
     "flip_sprite": false,
+    "icon_palette": 2,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
@@ -101,6 +102,17 @@
             "MOVE_SUCKER_PUNCH",
             "MOVE_SWIFT",
             "MOVE_UPROAR"
+        ],
+        "egg_moves": [
+            "MOVE_SPITE",
+            "MOVE_DISABLE",
+            "MOVE_BITE",
+            "MOVE_SWAGGER",
+            "MOVE_PSYCH_UP",
+            "MOVE_EXTRASENSORY",
+            "MOVE_THRASH",
+            "MOVE_DOUBLE_KICK",
+            "MOVE_ZEN_HEADBUTT"
         ]
     },
     "evolutions": [  ],
