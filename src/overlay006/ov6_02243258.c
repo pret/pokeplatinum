@@ -1226,7 +1226,7 @@ static int ov6_02244228(UnkStruct_ov6_02243FFC *param0)
         param0->unk_00++;
 
         {
-            Pokemon_IsEligibleForAction(param0->unk_5C);
+            Pokemon_PlayCry(param0->unk_5C);
         }
     }
 

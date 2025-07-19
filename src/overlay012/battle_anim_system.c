@@ -3612,7 +3612,7 @@ static void BattleAnimScriptCmd_PlayPokemonCry(BattleAnimSystem *system)
     int species = system->context->battlerSpecies[system->context->attacker];
     int form = system->context->battlerForms[system->context->attacker];
 
-    Pokemon_PlayCry(system->context->chatotCry,
+    Species_PlayCry(system->context->chatotCry,
         modulation,
         species,
         form,

@@ -479,11 +479,11 @@ BOOL ov100_021D39E4(void *param0)
         v0->unk_04++;
 
         if (v0->unk_04 == 80) {
-            Sound_PlayPannedEffect(1746, -70);
+            Sound_PlayPannedEffect(SEQ_SE_DP_CLIMAX01, -70);
         }
 
         if (v0->unk_04 == 135) {
-            Sound_PlayPannedEffect(1746, +70);
+            Sound_PlayPannedEffect(SEQ_SE_DP_CLIMAX01, +70);
         }
 
         if ((v0->unk_04 == 310) || (v0->unk_04 == 375) || (v0->unk_04 == 432)) {
@@ -495,19 +495,19 @@ BOOL ov100_021D39E4(void *param0)
         }
 
         if (v0->unk_04 == 165) {
-            Sound_PlayPannedEffect(1747, -70);
+            Sound_PlayPannedEffect(SEQ_SE_DP_CLIMAX03, -70);
         }
 
         if (v0->unk_04 == 220) {
-            Sound_PlayPannedEffect(1747, +70);
+            Sound_PlayPannedEffect(SEQ_SE_DP_CLIMAX03, +70);
         }
 
         if (v0->unk_04 == 470) {
-            Sound_PlayPannedEffect(1750, -70);
+            Sound_PlayPannedEffect(SEQ_SE_DP_CLIMAX10, -70);
         }
 
         if (v0->unk_04 == 520) {
-            Sound_PlayPannedEffect(1750, +70);
+            Sound_PlayPannedEffect(SEQ_SE_DP_CLIMAX10, +70);
         }
 
         if (v0->unk_04 == 120) {
@@ -521,7 +521,7 @@ BOOL ov100_021D39E4(void *param0)
         if (v0->unk_0C.unk_10DC[0].unk_160 == 0) {
             v0->unk_1D28->unk_AC.unk_00 = 6;
             ov100_021D398C(v0, 0, 483);
-            Sound_PlayPannedEffect(1751, -70);
+            Sound_PlayPannedEffect(SEQ_SE_DP_CLIMAX12, -70);
             v0->unk_00++;
         }
         break;
@@ -529,7 +529,7 @@ BOOL ov100_021D39E4(void *param0)
         if (v0->unk_0C.unk_10DC[1].unk_160 == 0) {
             v0->unk_1D28->unk_AC.unk_00 = 7;
             ov100_021D398C(v0, 1, 484);
-            Sound_PlayPannedEffect(1751, +70);
+            Sound_PlayPannedEffect(SEQ_SE_DP_CLIMAX12, +70);
             v0->unk_00++;
             v0->unk_04 = 0;
         }
