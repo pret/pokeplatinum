@@ -3,22 +3,23 @@
 
 #include "badges.h"
 #include "savedata.h"
+#include "trainer_card.h"
 
-typedef struct TrainerCardBadge {
-    int cleanliness;
-} TrainerCardBadge;
+typedef struct TrainerCardSaveDataBadge {
+    int polish;
+} TrainerCardSaveDataBadge;
 
 typedef struct TrainerCardSaveData {
-    TrainerCardBadge badges[MAX_BADGES];
-    u8 signature[1536];
+    TrainerCardSaveDataBadge badges[MAX_BADGES];
+    u8 signature[SIGNATURE_WIDTH * SIGNATURE_HEIGHT * 8];
 } TrainerCardSaveData;
 
 int TrainerCardSaveData_Size(void);
 void TrainerCardSaveData_Init(TrainerCardSaveData *tcSaveData);
 TrainerCardSaveData *SaveData_GetTrainerCardSaveData(SaveData *saveData);
 u8 *TrainerCardSaveData_GetSignature(TrainerCardSaveData *tcSaveData);
-TrainerCardBadge *TrainerCardSaveData_GetTrainerCardBadges(TrainerCardSaveData *tcSaveData);
-int TrainerCardBadge_GetCleanliness(const u8 badgeID, TrainerCardBadge *badges);
-void TrainerCardBadge_SetCleanliness(const u8 badgeID, const int cleanliness, TrainerCardBadge *badges);
+TrainerCardSaveDataBadge *TrainerCardSaveData_GetTrainerCardSaveDataBadges(TrainerCardSaveData *tcSaveData);
+int TrainerCardSaveDataBadge_GetPolish(u8 badgeID, TrainerCardSaveDataBadge *badges);
+void TrainerCardSaveDataBadge_SetPolish(u8 badgeID, int polish, TrainerCardSaveDataBadge *badges);
 
 #endif // POKEPLATINUM_TRAINERCARD_SAVEDATA_H

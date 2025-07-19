@@ -3930,7 +3930,7 @@ u8 Pokemon_HasPokerus(Party *party, u8 param1)
     return result;
 }
 
-void Party_UpdatePokerusStatus(Party *party, s32 param1)
+void Party_UpdatePokerusStatus(Party *party, s32 daysPassed)
 {
     int currentPartyCount = Party_GetCurrentCount(party);
 
@@ -3941,10 +3941,10 @@ void Party_UpdatePokerusStatus(Party *party, s32 param1)
             u8 monPokerus = Pokemon_GetValue(mon, MON_DATA_POKERUS, NULL);
 
             if (monPokerus & 0xf) {
-                if (((monPokerus & 0xf) < param1) || (param1 > 4)) {
+                if (((monPokerus & 0xf) < daysPassed) || (daysPassed > 4)) {
                     monPokerus &= 0xf0;
                 } else {
-                    monPokerus -= param1;
+                    monPokerus -= daysPassed;
                 }
 
                 if (monPokerus == 0) {
