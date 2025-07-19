@@ -2,6 +2,7 @@
 
 #include <nitro.h>
 #include <string.h>
+#include "generated/text_banks.h"
 
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_defs/struct_02099F80.h"
@@ -116,7 +117,7 @@ static void sub_02052914(FieldSystem *fieldSystem, FieldTask *task)
 
     sub_020528D0(v0->unk_08);
 
-    v0->unk_1C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0373, HEAP_ID_FIELDMAP);
+    v0->unk_1C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BLACK_OUT_SCENE, HEAP_ID_FIELDMAP);
     v0->unk_20 = StringTemplate_Default(HEAP_ID_FIELDMAP);
 
     Window_AddFromTemplate(v0->unk_08, &v0->unk_0C, &Unk_020EC2F0);

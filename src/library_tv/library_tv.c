@@ -305,7 +305,7 @@ static void LibraryTV_ReleaseVramBank(LibraryTV *ltv)
 
 static void LibraryTV_SetMsgLdr(LibraryTV *ltv)
 {
-    ltv->msgLdr = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0607, ltv->heapID);
+    ltv->msgLdr = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_TWINLEAF_TV, ltv->heapID);
     Text_ResetAllPrinters();
     ltv->tvState = 0;
 }

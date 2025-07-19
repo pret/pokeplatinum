@@ -442,7 +442,7 @@ static void ov85_022417CC(void)
 
 static void ov85_022417E4(UnkStruct_ov85_022417E4 *param0)
 {
-    param0->unk_C4 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0398, HEAP_ID_36);
+    param0->unk_C4 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BERRY_TAG, HEAP_ID_36);
     param0->unk_CC = sub_0200C440(15, 2, 0, HEAP_ID_36);
     param0->unk_C8 = StringTemplate_Default(HEAP_ID_36);
 }

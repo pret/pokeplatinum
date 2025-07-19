@@ -1,5 +1,6 @@
 #include <nitro.h>
 #include <string.h>
+#include "generated/text_banks.h"
 
 #include "struct_defs/struct_02099F80.h"
 
@@ -319,7 +320,7 @@ static void ov73_021D35F4(UnkStruct_ov73_021D342C *param0)
 
 static void ov73_021D366C(UnkStruct_ov73_021D342C *param0)
 {
-    param0->unk_08 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0607, param0->heapID);
+    param0->unk_08 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_TWINLEAF_TV, param0->heapID);
 
     Text_ResetAllPrinters();
     param0->unk_0C = 0;
