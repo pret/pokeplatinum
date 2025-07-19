@@ -588,8 +588,8 @@ static const u8 Unk_ov115_02265AE0[1] = {
 
 static const VecFx32 Unk_ov115_02265B20 = {
     (FX32_CONST(0)),
-    (FX32_CONST(-90)),
-    (FX32_CONST(0)),
+    FX32_CONST(-90),
+    FX32_CONST(0),
 };
 
 static const VecFx32 Unk_ov115_02265B44 = {
@@ -794,7 +794,7 @@ BOOL ov115_02260DAC(UnkStruct_ov115_02260D78 *param0, u32 param1)
             Sound_PlayEffect(SEQ_SE_DP_HAMARU);
         }
 
-        ov115_02264214(&param0->unk_1AB4.unk_524, (FX32_CONST(1.0)));
+        ov115_02264214(&param0->unk_1AB4.unk_524, FX32_CONST(1.0));
 
         if (param0->unk_1AB4.unk_4E8.unk_08 == 0) {
             ov115_02261A74(&param0->unk_1AB4.unk_4E8, &param0->unk_1AB4);
@@ -849,7 +849,7 @@ BOOL ov115_02260F70(UnkStruct_ov115_02260D78 *param0, u32 param1)
         ov115_022625A8(param0);
         ov115_02262D90(param0);
 
-        BrightnessController_StartTransition(24, -14, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_SUB_SCREEN);
+        BrightnessController_StartTransition(24, -14, 0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, BRIGHTNESS_SUB_SCREEN);
 
         ov115_02261ADC(&param0->unk_1AB4);
         ov114_0225CBB0(param0->unk_1AB4.unk_754);
@@ -1188,13 +1188,13 @@ static void ov115_022613F8(UnkStruct_ov115_02260D78 *param0, u16 param1, u16 par
 
     if (v5 > (0x8000 + 0x16200)) {
         VEC_Normalize(&v0.unk_04, &v0.unk_04);
-        v0.unk_04.x = FX_Mul(v0.unk_04.x, (0x8000 + 0x16200));
-        v0.unk_04.z = FX_Mul(v0.unk_04.z, (0x8000 + 0x16200));
+        v0.unk_04.x = FX_Mul(v0.unk_04.x, 0x8000 + 0x16200);
+        v0.unk_04.z = FX_Mul(v0.unk_04.z, 0x8000 + 0x16200);
     }
 
     v0.unk_04.y = 0x26000;
     v0.unk_10 = VEC_Mag(&v0.unk_04);
-    v0.unk_10 = FX_Mul(v0.unk_10, (FX32_CONST(0.6)));
+    v0.unk_10 = FX_Mul(v0.unk_10, FX32_CONST(0.6));
 
     VEC_Normalize(&v0.unk_04, &v0.unk_04);
     ov115_022642F8(param3, param4, &v0.unk_14);
@@ -1395,7 +1395,7 @@ static void ov115_0226177C(UnkStruct_ov115_022615B0 *param0, u32 param1)
     fx32 v0;
     VecFx32 v1;
 
-    v0 = FX_Div(FX_Mul(FX32_ONE * param0->unk_0C[param1], (-FX32_CONST(16))), FX32_CONST(16));
+    v0 = FX_Div(FX_Mul(FX32_ONE * param0->unk_0C[param1], -FX32_CONST(16)), FX32_CONST(16));
     v1 = param0->unk_18[param1];
     v1.y += v0;
 
@@ -1414,7 +1414,7 @@ static void ov115_022617E8(UnkStruct_ov115_022617E8 *param0, UnkStruct_ov115_022
 
     memset(param0, 0, sizeof(UnkStruct_ov115_022617E8));
 
-    Window_Add(param1->unk_00, &param0->unk_0C, 1, 2, 19, 28, 4, 5, (1 + 9));
+    Window_Add(param1->unk_00, &param0->unk_0C, 1, 2, 19, 28, 4, 5, 1 + 9);
     Window_FillRectWithColor(&param0->unk_0C, 15, 0, 0, 28 * 8, 4 * 8);
 
     v0 = Strbuf_Init(128, heapID);
@@ -1512,7 +1512,7 @@ static void ov115_02261A54(UnkStruct_ov115_022617E8 *param0, UnkStruct_ov115_022
 static void ov115_02261A74(UnkStruct_ov115_022617E8 *param0, UnkStruct_ov115_02261ADC *param1)
 {
     ov115_02264190(&param1->unk_524, 1);
-    Easy3DAnim_SetFrame(&param1->unk_524.unk_198[1], (FX32_CONST(180)));
+    Easy3DAnim_SetFrame(&param1->unk_524.unk_198[1], FX32_CONST(180));
     ov115_0226422C(&param1->unk_524, 1);
 }
 
@@ -1555,7 +1555,7 @@ static BOOL ov115_02261AEC(UnkStruct_ov115_02261ADC *param0)
     param0->unk_504.unk_04++;
 
     if (param0->unk_504.unk_04 >= 60) {
-        v0 = Easy3DAnim_Update(&param0->unk_524.unk_198[5], (FX32_CONST(2)));
+        v0 = Easy3DAnim_Update(&param0->unk_524.unk_198[5], FX32_CONST(2));
 
         if (v0 == 1) {
             return 1;
@@ -1580,8 +1580,8 @@ static void ov115_02261B34(const UnkStruct_ov115_02260D78 *param0, UnkStruct_ov1
 {
     param1->unk_06 = 0;
 
-    ov115_02261C48(param1, ((180 * 0xffff) / 360));
-    ov115_02261C1C(param1, ((20 * 0xffff) / 360));
+    ov115_02261C48(param1, (180 * 0xffff) / 360);
+    ov115_02261C1C(param1, (20 * 0xffff) / 360);
 
     param1->unk_00 = 0;
     param1->unk_01 = 1;
@@ -1698,7 +1698,7 @@ static u32 ov115_02261D84(const UnkStruct_ov115_02261C18 *param0, const VecFx32 
     }
 
     if ((v0 > 0) && (v2 < param0->unk_94)) {
-        v3 = FX_Mul((param0->unk_94 - v2), param0->unk_98);
+        v3 = FX_Mul(param0->unk_94 - v2, param0->unk_98);
         VEC_Normalize(&v4, &v5);
 
         param3->x = FX_Mul(v5.x, v3);
@@ -1783,17 +1783,17 @@ static fx32 ov115_02261F68(const UnkStruct_ov115_02261C18 *param0, u16 param1)
 static void ov115_02261F94(UnkStruct_ov115_02261C18 *param0, fx32 param1)
 {
     param0->unk_A8 = param1;
-    param0->unk_AC = FX_Mul((FX32_CONST(30)), param1);
-    param0->unk_B0 = FX_Mul((FX32_CONST(50)), param1);
-    param0->unk_B4 = FX_Mul(((FX32_CONST(50)) + (FX32_CONST(30))), param1);
+    param0->unk_AC = FX_Mul(FX32_CONST(30), param1);
+    param0->unk_B0 = FX_Mul(FX32_CONST(50), param1);
+    param0->unk_B4 = FX_Mul((FX32_CONST(50)) + (FX32_CONST(30)), param1);
     param0->unk_B8 = FX_Mul(0, param1);
-    param0->unk_BC = FX_Mul((FX32_CONST(55)), param1);
-    param0->unk_C0 = FX_Mul((FX32_CONST(150)), param1);
-    param0->unk_C4 = FX_Mul((FX32_CONST(60)), param1);
-    param0->unk_C8 = FX_Mul((FX32_CONST(80)), param1);
-    param0->unk_CC = FX_Mul((FX32_CONST(120)), param1);
+    param0->unk_BC = FX_Mul(FX32_CONST(55), param1);
+    param0->unk_C0 = FX_Mul(FX32_CONST(150), param1);
+    param0->unk_C4 = FX_Mul(FX32_CONST(60), param1);
+    param0->unk_C8 = FX_Mul(FX32_CONST(80), param1);
+    param0->unk_CC = FX_Mul(FX32_CONST(120), param1);
     param0->unk_D0 = param0->unk_CC - param0->unk_C8;
-    param0->unk_D4 = FX_Mul((FX32_CONST(1.50f)), param1);
+    param0->unk_D4 = FX_Mul(FX32_CONST(1.50f), param1);
 }
 
 static void ov115_022620D8(UnkStruct_ov115_02261C18 *param0, u16 param1)
@@ -1838,7 +1838,7 @@ static void ov115_02262134(const UnkStruct_ov115_02262134 *param0, UnkStruct_ov1
     param1->unk_04.x = param0->unk_04.x;
     param1->unk_04.y = param0->unk_04.y;
     param1->unk_04.z = param0->unk_04.z;
-    param1->unk_10 = FX_Mul(param0->unk_10, (FX32_CONST(0.16)));
+    param1->unk_10 = FX_Mul(param0->unk_10, FX32_CONST(0.16));
     param1->unk_0A.x = param0->unk_14.x >> FX32_SHIFT;
     param1->unk_0A.y = param0->unk_14.y >> FX32_SHIFT;
     param1->unk_0A.z = param0->unk_14.z >> FX32_SHIFT;
@@ -1853,7 +1853,7 @@ static void ov115_0226218C(const UnkStruct_ov115_02265AD0 *param0, UnkStruct_ov1
     param1->unk_04.x = param0->unk_04.x;
     param1->unk_04.y = param0->unk_04.y;
     param1->unk_04.z = param0->unk_04.z;
-    param1->unk_10 = FX_Div(param0->unk_10, (FX32_CONST(0.16)));
+    param1->unk_10 = FX_Div(param0->unk_10, FX32_CONST(0.16));
     param1->unk_14.x = param0->unk_0A.x << FX32_SHIFT;
     param1->unk_14.y = param0->unk_0A.y << FX32_SHIFT;
     param1->unk_14.z = param0->unk_0A.z << FX32_SHIFT;
@@ -2027,7 +2027,7 @@ static void ov115_02262354(UnkStruct_ov115_02260D78 *param0, UnkStruct_ov115_022
                 v3 = 1;
 
                 VEC_Subtract(&param1->unk_2C, &v0, &param1->unk_2C);
-                ov115_022626E0(param1, param0, 1, (FX32_CONST(0.250f)), 0);
+                ov115_022626E0(param1, param0, 1, FX32_CONST(0.250f), 0);
             }
         }
 
@@ -2151,7 +2151,7 @@ static void ov115_022626E0(UnkStruct_ov115_022622F8 *param0, UnkStruct_ov115_022
             v3 = MTRNG_Next();
 
             if (MATH_ABS(param0->unk_04.unk_04.x) <= MATH_ABS(param0->unk_04.unk_04.z)) {
-                v1 = FX_Mul(param0->unk_04.unk_04.z, (FX32_CONST(1.0f)));
+                v1 = FX_Mul(param0->unk_04.unk_04.z, FX32_CONST(1.0f));
 
                 if ((v3 % 2) == 1) {
                     param0->unk_04.unk_04.x = -v1;
@@ -2159,7 +2159,7 @@ static void ov115_022626E0(UnkStruct_ov115_022622F8 *param0, UnkStruct_ov115_022
                     param0->unk_04.unk_04.x = v1;
                 }
             } else {
-                v1 = FX_Mul(param0->unk_04.unk_04.x, (FX32_CONST(1.0f)));
+                v1 = FX_Mul(param0->unk_04.unk_04.x, FX32_CONST(1.0f));
 
                 if ((v3 % 2) == 1) {
                     param0->unk_04.unk_04.z = -v1;
@@ -2224,7 +2224,7 @@ static void ov115_022627B4(UnkStruct_ov115_022622F8 *param0, UnkStruct_ov115_022
 
             if (v1 == 1) {
                 VEC_Subtract(&param0->unk_2C, &v0, &param0->unk_2C);
-                ov115_022626E0(param0, param1, 1, (FX32_CONST(0.250f)), 0);
+                ov115_022626E0(param0, param1, 1, FX32_CONST(0.250f), 0);
             }
         }
     }
@@ -2362,14 +2362,14 @@ static void ov115_02262990(UnkStruct_ov115_02260D78 *param0)
             }
         } else if (v7 > (0x8000 + 0x16200)) {
             VEC_Normalize(&v0.unk_04, &v0.unk_04);
-            v0.unk_04.x = FX_Mul(v0.unk_04.x, (0x8000 + 0x16200));
-            v0.unk_04.z = FX_Mul(v0.unk_04.z, (0x8000 + 0x16200));
+            v0.unk_04.x = FX_Mul(v0.unk_04.x, 0x8000 + 0x16200);
+            v0.unk_04.z = FX_Mul(v0.unk_04.z, 0x8000 + 0x16200);
         }
 
         if (v6 == 0) {
             v0.unk_04.y = 0x26000;
             v0.unk_10 = VEC_Mag(&v0.unk_04);
-            v0.unk_10 = FX_Mul(v0.unk_10, (FX32_CONST(0.6)));
+            v0.unk_10 = FX_Mul(v0.unk_10, FX32_CONST(0.6));
 
             VEC_Normalize(&v0.unk_04, &v0.unk_04);
             ov115_022642F8(v4.x, v4.y, &v0.unk_14);
@@ -2989,19 +2989,18 @@ static void ov115_0226376C(UnkStruct_ov115_02261ADC *param0, u32 heapID)
 
     {
         BgTemplate v1 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x7800,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_01,
-            0,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x7800,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0->unk_00, BG_LAYER_MAIN_1, &v1, 0);
@@ -3011,19 +3010,18 @@ static void ov115_0226376C(UnkStruct_ov115_02261ADC *param0, u32 heapID)
 
     {
         BgTemplate v2 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x7000,
-            GX_BG_CHARBASE_0x04000,
-            GX_BG_EXTPLTT_01,
-            1,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x7000,
+            .charBase = GX_BG_CHARBASE_0x04000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 1,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0->unk_00, BG_LAYER_MAIN_2, &v2, 0);
@@ -3033,19 +3031,18 @@ static void ov115_0226376C(UnkStruct_ov115_02261ADC *param0, u32 heapID)
 
     {
         BgTemplate v3 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xd000,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_01,
-            0,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xd000,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0->unk_00, BG_LAYER_SUB_0, &v3, 0);
@@ -3055,19 +3052,18 @@ static void ov115_0226376C(UnkStruct_ov115_02261ADC *param0, u32 heapID)
 
     {
         BgTemplate v4 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xd800,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_01,
-            1,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xd800,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 1,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0->unk_00, BG_LAYER_SUB_1, &v4, 0);
@@ -3077,19 +3073,18 @@ static void ov115_0226376C(UnkStruct_ov115_02261ADC *param0, u32 heapID)
 
     {
         BgTemplate v5 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xe000,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_01,
-            2,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xe000,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 2,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0->unk_00, BG_LAYER_SUB_2, &v5, 0);
@@ -3099,19 +3094,18 @@ static void ov115_0226376C(UnkStruct_ov115_02261ADC *param0, u32 heapID)
 
     {
         BgTemplate v6 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xe800,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_01,
-            3,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xe800,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 3,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0->unk_00, BG_LAYER_SUB_3, &v6, 0);
@@ -3153,7 +3147,7 @@ static void ov115_02263990(UnkStruct_ov115_02261ADC *param0, u32 heapID)
 
     {
         CharTransferTemplate v1 = {
-            16, (128 * 1024), (16 * 1024), 0
+            16, 128 * 1024, 16 * 1024, 0
         };
 
         v1.heapID = heapID;
@@ -3168,7 +3162,7 @@ static void ov115_02263990(UnkStruct_ov115_02261ADC *param0, u32 heapID)
 
     param0->unk_1C = SpriteList_InitRendering(128, &param0->unk_20, heapID);
 
-    SetSubScreenViewRect(&param0->unk_20, 0, (512 << FX32_SHIFT));
+    SetSubScreenViewRect(&param0->unk_20, 0, 512 << FX32_SHIFT);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_1AC[v0] = SpriteResourceCollection_New(16, v0, heapID);
@@ -3257,7 +3251,7 @@ static void ov115_02263C24(UnkStruct_ov115_02261ADC *param0, u32 param1, u32 par
     v0.y = Unk_ov115_02265C5C[param1 - 1][param2];
     v0.z = ((0 * 0xffff) / 360);
 
-    Camera_InitWithTarget(&param0->unk_1F8, 0x1d9000, &v0, ((22 * 0xffff) / 360), 0, 1, param0->camera);
+    Camera_InitWithTarget(&param0->unk_1F8, 0x1d9000, &v0, (22 * 0xffff) / 360, 0, 1, param0->camera);
 
     v1.x = 0;
     v1.y = (FX32_ONE);
@@ -3265,7 +3259,7 @@ static void ov115_02263C24(UnkStruct_ov115_02261ADC *param0, u32 param1, u32 par
 
     Camera_SetUp(&v1, param0->camera);
     Camera_SetAsActive(param0->camera);
-    Camera_SetClipping((FX32_CONST(200)), (FX32_CONST(1000)), param0->camera);
+    Camera_SetClipping(FX32_CONST(200), FX32_CONST(1000), param0->camera);
 }
 
 static void ov115_02263CC0(UnkStruct_ov115_02261ADC *param0)
@@ -3336,7 +3330,7 @@ static void ov115_02263DF8(UnkStruct_ov115_02263DF8 *param0, NARC *param1, u32 h
         Easy3DObject_Init(&param0->unk_00[v2], &param0->unk_168[v2]);
         Easy3DObject_SetVisible(&param0->unk_00[v2], 0);
         Easy3DObject_SetPosition(&param0->unk_00[v2], Unk_ov115_02265B20.x, Unk_ov115_02265B20.y + (-FX32_CONST(200)), Unk_ov115_02265B20.z);
-        Easy3DObject_SetScale(&param0->unk_00[v2], (FX32_CONST(1.50f)), (FX32_CONST(1.50f)), (FX32_CONST(1.50f)));
+        Easy3DObject_SetScale(&param0->unk_00[v2], FX32_CONST(1.50f), FX32_CONST(1.50f), FX32_CONST(1.50f));
     }
 
     for (v2 = 0; v2 < 6; v2++) {
@@ -3412,14 +3406,14 @@ static void ov115_02264044(UnkStruct_ov115_02263DF8 *param0, const UnkStruct_ov1
     case 1:
         ov115_02264190(param0, 3);
         ov115_0226422C(param0, 0);
-        ov115_02264214(param0, (FX32_CONST(1.0)));
+        ov115_02264214(param0, FX32_CONST(1.0));
         break;
     }
 }
 
 static void ov115_022640A4(UnkStruct_ov115_02263DF8 *param0, const UnkStruct_ov115_02261C18 *param1, int param2)
 {
-    Easy3DAnim_UpdateLooped(&param0->unk_198[0], (FX32_CONST(1)));
+    Easy3DAnim_UpdateLooped(&param0->unk_198[0], FX32_CONST(1));
     ov115_02264270(param0);
 }
 
@@ -3790,11 +3784,11 @@ static void ov115_02264848(UnkStruct_ov115_022647A0 *param0)
     Easy3DObject_SetPosition(&param0->unk_7C, param0->unk_F8->unk_2C.x, v2, param0->unk_F8->unk_2C.z);
 
     v1 = param0->unk_F8->unk_2C.y - v2;
-    v3 = FX32_ONE + (FX_Div(FX_Mul(v1, (FX32_CONST(1))), (FX32_CONST(300))));
+    v3 = FX32_ONE + (FX_Div(FX_Mul(v1, FX32_CONST(1)), FX32_CONST(300)));
 
     Easy3DObject_SetScale(&param0->unk_7C, v3, v3, v3);
 
-    v4 = (FX_Div(FX_Mul(v1, FX32_CONST(16)), (FX32_CONST(300)))) >> FX32_SHIFT;
+    v4 = (FX_Div(FX_Mul(v1, FX32_CONST(16)), FX32_CONST(300))) >> FX32_SHIFT;
     v4 = 8 + 16 - v4;
 
     NNS_G3dGlbPolygonAttr(0, 0, 0, 0, v4, 0);
@@ -4118,8 +4112,8 @@ static void ov115_02264E48(UnkStruct_ov115_02264FA0 *param0, UnkStruct_ov115_022
 
         Easy3DModel_LoadFrom(&param0->unk_168[v4], param2, v3, heapID);
         Easy3DObject_Init(&param0->unk_00[v4], &param0->unk_168[v4]);
-        Easy3DObject_SetPosition(&param0->unk_00[v4], 0, (FX32_CONST(-90) - FX32_CONST(8)), 0);
-        Easy3DObject_SetScale(&param0->unk_00[v4], (FX32_CONST(1.50f)), (FX32_CONST(1.50f)), (FX32_CONST(1.50f)));
+        Easy3DObject_SetPosition(&param0->unk_00[v4], 0, FX32_CONST(-90) - FX32_CONST(8), 0);
+        Easy3DObject_SetScale(&param0->unk_00[v4], FX32_CONST(1.50f), FX32_CONST(1.50f), FX32_CONST(1.50f));
 
         if (v4 == 1) {
             Easy3DObject_SetVisible(&param0->unk_00[v4], 0);
@@ -4128,7 +4122,7 @@ static void ov115_02264E48(UnkStruct_ov115_02264FA0 *param0, UnkStruct_ov115_022
         if ((v4 == 0) || (v4 == 1)) {
             Easy3DObject_SetRotation(&param0->unk_00[v4], Unk_ov115_02265C5C[param3 - 1][param4], 1);
         } else {
-            Easy3DObject_SetRotation(&param0->unk_00[v4], (CalcAngleRotationIdx(180)), 1);
+            Easy3DObject_SetRotation(&param0->unk_00[v4], CalcAngleRotationIdx(180), 1);
         }
     }
 
@@ -4236,7 +4230,7 @@ static void ov115_02265100(const VecFx32 *param0, const VecFx32 *param1, const V
 
     v1 = FX_Mul(param2->x, param1->x) + FX_Mul(param2->y, param1->y) + FX_Mul(param2->z, param1->z);
     v2 = -FX_Mul(param2->x, param0->x) - FX_Mul(param2->y, param0->y) - FX_Mul(param2->z, param0->z);
-    v0 = FX_Div((v2 + param3), v1);
+    v0 = FX_Div(v2 + param3, v1);
 
     param4->x = param0->x + FX_Mul(param1->x, v0);
     param4->y = param0->y + FX_Mul(param1->y, v0);
@@ -4352,7 +4346,7 @@ static void ov115_022653F4(UnkStruct_ov115_02261ADC *param0, s16 param1, u16 par
 
         v1 += 4;
 
-        Bg_SetPriority(v1, (2 - v0));
+        Bg_SetPriority(v1, 2 - v0);
 
         if (v0 == 0) {
             Bg_ChangeTilemapRectPalette(param0->unk_00, v1, 0, 0, 32, 32, 2 + (param2 * 2));
@@ -4439,8 +4433,8 @@ static void ov115_02265478(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_022
         Window_Remove(&param0->unk_38);
     }
 
-    ov115_02261304(&param0->unk_64, (-FX32_CONST(64)), (FX32_CONST(32)), (FX32_CONST(36)), 8);
-    ov115_02261304(&param0->unk_7C, (FX32_CONST(48)), (FX32_CONST(48)), (FX32_CONST(12)), 4);
+    ov115_02261304(&param0->unk_64, -FX32_CONST(64), FX32_CONST(32), FX32_CONST(36), 8);
+    ov115_02261304(&param0->unk_7C, FX32_CONST(48), FX32_CONST(48), FX32_CONST(12), 4);
 
     param0->unk_94 = 0;
     param0->unk_96 = 4;
@@ -4604,19 +4598,19 @@ static void ov115_022658F8(UnkStruct_ov115_022658E0 *param0, UnkStruct_ov115_022
         }
         break;
     case 1:
-        BrightnessController_StartTransition(4, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_MAIN_SCREEN);
+        BrightnessController_StartTransition(4, 16, 0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, BRIGHTNESS_MAIN_SCREEN);
         param0->unk_00++;
         break;
     case 2:
         if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) {
             ov115_022650C8(param1);
-            ov115_022650F8(param1, (FX32_CONST(2)));
+            ov115_022650F8(param1, FX32_CONST(2));
             ov115_0226425C(param2, 1);
             param0->unk_00++;
         }
         break;
     case 3:
-        BrightnessController_StartTransition(14, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_MAIN_SCREEN);
+        BrightnessController_StartTransition(14, 0, 16, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, BRIGHTNESS_MAIN_SCREEN);
         param0->unk_00++;
         break;
     case 4:

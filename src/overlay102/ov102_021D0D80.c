@@ -210,19 +210,18 @@ static void ov102_021D0F8C(UnkStruct_ov102_021D0F8C *param0)
     }
     {
         BgTemplate v2 = {
-            0,
-            0,
-            0,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            0,
-            0,
-            GX_BG_EXTPLTT_01,
-            0,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = 0,
+            .charBase = 0,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         v2.screenBase = GX_BG_SCRBASE_0x0000;
@@ -369,21 +368,21 @@ static void ov102_021D1274(UnkStruct_ov102_021D0F8C *param0)
 
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, v0, param0->unk_10, 3, 0, 0, 0, param0->heapID);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, v1, param0->unk_10, 3, 0, 0, 0, param0->heapID);
-    Graphics_LoadPalette(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, v2, 0, 0 * (2 * 16), (2 * 16), param0->heapID);
+    Graphics_LoadPalette(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, v2, 0, 0 * (2 * 16), 2 * 16, param0->heapID);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, v0, param0->unk_10, 7, 0, 0, 0, param0->heapID);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, v1, param0->unk_10, 7, 0, 0, 0, param0->heapID);
-    Graphics_LoadPalette(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, v2, 4, 0 * (2 * 16), (2 * 16), param0->heapID);
+    Graphics_LoadPalette(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, v2, 4, 0 * (2 * 16), 2 * 16, param0->heapID);
 
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, v3, param0->unk_10, 1, 0, 0, 0, param0->heapID);
     Bg_ChangeTilemapRectPalette(param0->unk_10, 1, 0, 0, 32, 24, 1);
     Bg_CopyTilemapBufferToVRAM(param0->unk_10, 1);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, v4, param0->unk_10, 1, 0, 0, 0, param0->heapID);
-    Graphics_LoadPalette(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, v5, 0, 1 * (2 * 16), (2 * 16), param0->heapID);
+    Graphics_LoadPalette(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, v5, 0, 1 * (2 * 16), 2 * 16, param0->heapID);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, v3, param0->unk_10, 5, 0, 0, 0, param0->heapID);
     Bg_ChangeTilemapRectPalette(param0->unk_10, 5, 0, 0, 32, 24, 1);
     Bg_CopyTilemapBufferToVRAM(param0->unk_10, 5);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, v4, param0->unk_10, 5, 0, 0, 0, param0->heapID);
-    Graphics_LoadPalette(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, v5, 4, 1 * (2 * 16), (2 * 16), param0->heapID);
+    Graphics_LoadPalette(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, v5, 4, 1 * (2 * 16), 2 * 16, param0->heapID);
 
     Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, param0->heapID);
     Bg_ClearTilesRange(4, 32, 0, param0->heapID);

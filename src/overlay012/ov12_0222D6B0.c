@@ -700,7 +700,7 @@ static void ov12_0222E080(SysTask *param0, void *param1)
         }
 
         v0->unk_00 = 0;
-        v0->unk_28 = ov12_0222662C(0, 160, ((2 * 0xffff) / 360), (12 * FX32_ONE), (2 * 100), BattleAnimSystem_GetBgID(v0->unk_04.unk_04, 1), 0, ov12_022266E8(0, 0), BattleAnimSystem_GetHeapID(v0->unk_04.unk_04));
+        v0->unk_28 = ov12_0222662C(0, 160, (2 * 0xffff) / 360, 12 * FX32_ONE, 2 * 100, BattleAnimSystem_GetBgID(v0->unk_04.unk_04, 1), 0, ov12_022266E8(0, 0), BattleAnimSystem_GetHeapID(v0->unk_04.unk_04));
         v0->unk_04.unk_00++;
         break;
     case 2:
@@ -744,7 +744,7 @@ void ov12_0222E1A8(BattleAnimSystem *param0)
 {
     UnkStruct_ov12_0222E080 *v0 = NULL;
 
-    v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222E080));
+    v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222E080));
     ov12_0223595C(param0, &v0->unk_04);
 
     v0->unk_20 = BattleAnimSystem_GetPokemonSprite(v0->unk_04.unk_04, 0);
@@ -816,7 +816,7 @@ void ov12_0222E2F8(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
 {
     UnkStruct_ov12_0222E25C *v0 = NULL;
 
-    v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222E25C));
+    v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222E25C));
     v0->unk_1C = 10;
 
     ov12_0223595C(param0, &v0->unk_00);
@@ -955,7 +955,7 @@ void ov12_0222E61C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
 {
     UnkStruct_ov12_0222E390 *v0 = NULL;
 
-    v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222E390));
+    v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222E390));
     v0->unk_20 = 10;
 
     ov12_0223595C(param0, &v0->unk_00);

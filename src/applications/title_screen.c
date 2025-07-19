@@ -762,7 +762,6 @@ static void TitleScreen_InitBgs(TitleScreenAppData *appData)
         .bgExtPltt = GX_BG_EXTPLTT_01,
         .priority = 0,
         .areaOver = 0,
-        .dummy = 0,
         .mosaic = FALSE
     };
     Bg_InitFromTemplate(appData->bgConfig, TITLE_SCREEN_LAYER_PRESS_START, &bgSub0, BG_TYPE_STATIC);
@@ -779,7 +778,6 @@ static void TitleScreen_InitBgs(TitleScreenAppData *appData)
         .bgExtPltt = GX_BG_EXTPLTT_01,
         .priority = 0,
         .areaOver = 0,
-        .dummy = 0,
         .mosaic = FALSE
     };
     Bg_InitFromTemplate(appData->bgConfig, TITLE_SCREEN_LAYER_LOGO_BG_2, &bgSub1, BG_TYPE_STATIC);
@@ -796,7 +794,6 @@ static void TitleScreen_InitBgs(TitleScreenAppData *appData)
         .bgExtPltt = GX_BG_EXTPLTT_23,
         .priority = 0,
         .areaOver = 0,
-        .dummy = 0,
         .mosaic = FALSE
     };
     Bg_InitFromTemplate(appData->bgConfig, TITLE_SCREEN_LAYER_LOGO, &bgSub2, BG_TYPE_STATIC);
@@ -813,7 +810,6 @@ static void TitleScreen_InitBgs(TitleScreenAppData *appData)
         .bgExtPltt = GX_BG_EXTPLTT_01,
         .priority = 0,
         .areaOver = 0,
-        .dummy = 0,
         .mosaic = FALSE
     };
     Bg_InitFromTemplate(appData->bgConfig, TITLE_SCREEN_LAYER_COPYRIGHT, &bgMain1, BG_TYPE_STATIC);
@@ -830,7 +826,6 @@ static void TitleScreen_InitBgs(TitleScreenAppData *appData)
         .bgExtPltt = GX_BG_EXTPLTT_01,
         .priority = 3,
         .areaOver = 0,
-        .dummy = 0,
         .mosaic = FALSE
     };
     Bg_InitFromTemplate(appData->bgConfig, TITLE_SCREEN_LAYER_GIRATINA_BG, &bgMain3, BG_TYPE_STATIC);
@@ -847,7 +842,6 @@ static void TitleScreen_InitBgs(TitleScreenAppData *appData)
         .bgExtPltt = GX_BG_EXTPLTT_01,
         .priority = 3,
         .areaOver = 0,
-        .dummy = 0,
         .mosaic = FALSE
     };
     Bg_InitFromTemplate(appData->bgConfig, TITLE_SCREEN_LAYER_LOGO_BG, &bgSub3, BG_TYPE_STATIC);
@@ -1017,7 +1011,6 @@ static void TitleScreen_LoadTopScreenBg(BgConfig *bgConfig, enum HeapId heapID)
         .bgExtPltt = GX_BG_EXTPLTT_01,
         .priority = 1,
         .areaOver = 0,
-        .dummy = 0,
         .mosaic = FALSE
     };
 
@@ -1052,7 +1045,6 @@ static void TitleScreen_ShowBlurEffect(BgConfig *bgConfig, enum HeapId heapID)
         .bgExtPltt = GX_BG_EXTPLTT_23,
         .priority = 2,
         .areaOver = 0,
-        .dummy = 0,
         .mosaic = FALSE
     };
     Bg_InitFromTemplate(bgConfig, TITLE_SCREEN_LAYER_PRESS_START, &template, BG_TYPE_STATIC);

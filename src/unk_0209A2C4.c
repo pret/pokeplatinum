@@ -162,19 +162,18 @@ static void sub_0209A3D0(UnkStruct_0209A3D0 *param0)
     }
     {
         BgTemplate v2 = {
-            0x0,
-            0x0,
-            0x800,
-            0x0,
-            0x1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x0000,
-            GX_BG_CHARBASE_0x18000,
-            GX_BG_EXTPLTT_01,
-            0x1,
-            0x0,
-            0x0,
-            0x0
+            .x = 0x0,
+            .y = 0x0,
+            .bufferSize = 0x800,
+            .baseTile = 0x0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x0000,
+            .charBase = GX_BG_CHARBASE_0x18000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0x1,
+            .areaOver = 0x0,
+            .mosaic = FALSE,
         };
         Bg_InitFromTemplate(param0->unk_18, BG_LAYER_MAIN_0, &v2, 0);
         Bg_ClearTilemap(param0->unk_18, BG_LAYER_MAIN_0);

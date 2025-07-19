@@ -491,64 +491,60 @@ static const u32 Unk_ov70_0226D5CC[4] = {
 
 static const BgTemplate Unk_ov70_0226D6B4[4] = {
     {
-        0x0,
-        0x0,
-        0x800,
-        0x0,
-        0x1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0x7800,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
+        .x = 0x0,
+        .y = 0x0,
+        .bufferSize = 0x800,
+        .baseTile = 0x0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x7800,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0x0,
+        .areaOver = 0x0,
+        .mosaic = FALSE,
     },
     {
-        0x0,
-        0x0,
-        0x800,
-        0x0,
-        0x1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0x7800,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        0x2,
-        0x0,
-        0x0,
-        0x0,
+        .x = 0x0,
+        .y = 0x0,
+        .bufferSize = 0x800,
+        .baseTile = 0x0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x7800,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0x2,
+        .areaOver = 0x0,
+        .mosaic = FALSE,
     },
     {
-        0x0,
-        0x0,
-        0x800,
-        0x0,
-        0x1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0x7000,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        0x1,
-        0x0,
-        0x0,
-        0x0,
+        .x = 0x0,
+        .y = 0x0,
+        .bufferSize = 0x800,
+        .baseTile = 0x0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x7000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0x1,
+        .areaOver = 0x0,
+        .mosaic = FALSE,
     },
     {
-        0x0,
-        0x0,
-        0x800,
-        0x0,
-        0x1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0x6800,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
+        .x = 0x0,
+        .y = 0x0,
+        .bufferSize = 0x800,
+        .baseTile = 0x0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x6800,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0x0,
+        .areaOver = 0x0,
+        .mosaic = FALSE,
     },
 };
 
@@ -1279,9 +1275,9 @@ static void ov70_0225E4EC(UnkStruct_ov70_0225E4EC *param0, SaveData *saveData, u
         Font_LoadTextPalette(0, 5 * 32, heapID);
         Font_LoadScreenIndicatorsPalette(0, 4 * 32, heapID);
 
-        LoadStandardWindowGraphics(param0->unk_00, Unk_ov70_0226D5CC[0], ((1 + (18 + 12)) + ((18 + 12) + 24)), 3, 0, heapID);
+        LoadStandardWindowGraphics(param0->unk_00, Unk_ov70_0226D5CC[0], (1 + (18 + 12)) + ((18 + 12) + 24), 3, 0, heapID);
         LoadMessageBoxGraphics(param0->unk_00, Unk_ov70_0226D5CC[0], 1, 1, v2, heapID);
-        LoadSignpostContentGraphics(param0->unk_00, Unk_ov70_0226D5CC[0], (1 + (18 + 12)), 2, SIGNPOST_TYPE_SCROLLING, 0, heapID);
+        LoadSignpostContentGraphics(param0->unk_00, Unk_ov70_0226D5CC[0], 1 + (18 + 12), 2, SIGNPOST_TYPE_SCROLLING, 0, heapID);
 
         Graphics_LoadPalette(NARC_INDEX_GRAPHIC__WIFI_LOBBY_OTHER, 90, 0, 2 * 32, 32, heapID);
     }
@@ -1303,7 +1299,7 @@ static void ov70_0225E4EC(UnkStruct_ov70_0225E4EC *param0, SaveData *saveData, u
 
         sub_02039734();
         param0->unk_04 = SpriteList_InitRendering(24, &param0->unk_08, heapID);
-        SetSubScreenViewRect(&param0->unk_08, 0, (256 * FX32_ONE));
+        SetSubScreenViewRect(&param0->unk_08, 0, 256 * FX32_ONE);
 
         for (v3 = 0; v3 < 4; v3++) {
             param0->unk_194[v3] = SpriteResourceCollection_New(24, v3, heapID);
@@ -1497,7 +1493,7 @@ static void ov70_0225E970(UnkStruct_ov70_0225DEE8 *param0)
 
 static void ov70_0225E9C8(UnkStruct_ov70_0225E9C8 *param0, UnkStruct_ov70_0225E4EC *param1, SaveData *saveData, u32 heapID)
 {
-    Window_Add(param1->unk_00, &param0->unk_00, Unk_ov70_0226D5CC[0], 2, 19, 27, 4, 4, (((1 + (18 + 12)) + ((18 + 12) + 24)) + 9));
+    Window_Add(param1->unk_00, &param0->unk_00, Unk_ov70_0226D5CC[0], 2, 19, 27, 4, 4, ((1 + (18 + 12)) + ((18 + 12) + 24)) + 9);
     Window_FillTilemap(&param0->unk_00, 15);
 
     param0->unk_18 = Strbuf_Init(384, heapID);
@@ -1617,7 +1613,7 @@ static void ov70_0225EBC4(UnkStruct_ov70_0225E9C8 *param0, const Strbuf *param1)
 
     param0->unk_10 = Text_AddPrinterWithParams(&param0->unk_00, FONT_MESSAGE, param0->unk_18, 0, 0, param0->unk_14, NULL);
 
-    Window_DrawSignpost(&param0->unk_00, 1, (1 + (18 + 12)), 2, 3);
+    Window_DrawSignpost(&param0->unk_00, 1, 1 + (18 + 12), 2, 3);
 }
 
 static void ov70_0225EC20(UnkStruct_ov70_0225EC20 *param0, UnkStruct_ov70_0225E4EC *param1, u32 heapID)
@@ -1735,9 +1731,9 @@ static void ov70_0225EE30(UnkStruct_ov70_0225EC20 *param0, const ListMenuTemplat
     param0->unk_3A = param1->count;
     param0->unk_00.cursorCallback = ov70_0225EF58;
 
-    Window_Add(param2->unk_00, &param0->unk_20, Unk_ov70_0226D5CC[0], param6, param7, param8, param1->maxDisplay * 2, 5, ((((1 + (18 + 12)) + ((18 + 12) + 24)) + 9) + (27 * 4)));
+    Window_Add(param2->unk_00, &param0->unk_20, Unk_ov70_0226D5CC[0], param6, param7, param8, param1->maxDisplay * 2, 5, (((1 + (18 + 12)) + ((18 + 12) + 24)) + 9) + (27 * 4));
     Window_FillTilemap(&param0->unk_20, 15);
-    Window_DrawStandardFrame(&param0->unk_20, 1, ((1 + (18 + 12)) + ((18 + 12) + 24)), 3);
+    Window_DrawStandardFrame(&param0->unk_20, 1, (1 + (18 + 12)) + ((18 + 12) + 24), 3);
 
     param0->unk_30 = ListMenu_New(&param0->unk_00, param3, param4, heapID);
 
@@ -1839,8 +1835,8 @@ static void ov70_0225EFD8(UnkStruct_ov70_0225EFD4 *param0)
 
 static void ov70_0225EFE0(UnkStruct_ov70_0225EFD4 *param0, UnkStruct_ov70_0225E4EC *param1, u32 param2, u8 param3, u8 param4, u8 param5, u8 param6)
 {
-    Window_Add(param1->unk_00, &param0->unk_00, Unk_ov70_0226D5CC[0], param3, param4, param5, param6, 5, ((((1 + (18 + 12)) + ((18 + 12) + 24)) + 9) + (27 * 4)));
-    Window_DrawStandardFrame(&param0->unk_00, 1, ((1 + (18 + 12)) + ((18 + 12) + 24)), 3);
+    Window_Add(param1->unk_00, &param0->unk_00, Unk_ov70_0226D5CC[0], param3, param4, param5, param6, 5, (((1 + (18 + 12)) + ((18 + 12) + 24)) + 9) + (27 * 4));
+    Window_DrawStandardFrame(&param0->unk_00, 1, (1 + (18 + 12)) + ((18 + 12) + 24), 3);
     Window_FillTilemap(&param0->unk_00, 15);
     Window_ScheduleCopyToVRAM(&param0->unk_00);
 }
@@ -1892,7 +1888,7 @@ static void ov70_0225F100(UnkStruct_ov70_0225F098 *param0)
 
 static void ov70_0225F114(UnkStruct_ov70_0225F114 *param0, UnkStruct_ov70_0225E4EC *param1, u32 heapID)
 {
-    Window_Add(param1->unk_00, &param0->unk_00, Unk_ov70_0226D5CC[0], 4, 4, 23, 16, 5, (((1 + (18 + 12)) + ((18 + 12) + 24)) + 9));
+    Window_Add(param1->unk_00, &param0->unk_00, Unk_ov70_0226D5CC[0], 4, 4, 23, 16, 5, ((1 + (18 + 12)) + ((18 + 12) + 24)) + 9);
     Window_FillTilemap(&param0->unk_00, 15);
 }
 
@@ -1904,7 +1900,7 @@ static void ov70_0225F144(UnkStruct_ov70_0225F114 *param0)
 static void ov70_0225F14C(UnkStruct_ov70_0225F114 *param0, const Strbuf *param1)
 {
     Text_AddPrinterWithParamsAndColor(&param0->unk_00, FONT_SYSTEM, param1, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
-    Window_DrawStandardFrame(&param0->unk_00, 1, ((1 + (18 + 12)) + ((18 + 12) + 24)), 3);
+    Window_DrawStandardFrame(&param0->unk_00, 1, (1 + (18 + 12)) + ((18 + 12) + 24), 3);
     Window_ScheduleCopyToVRAM(&param0->unk_00);
 }
 

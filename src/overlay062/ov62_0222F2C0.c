@@ -209,17 +209,121 @@ void ov62_0222F514(UnkStruct_0208C06C *param0)
 }
 
 static const BgTemplate Unk_ov62_022487B0[] = {
-    { 0x0, 0x0, 0x800, 0x0, 0x1, GX_BG_COLORMODE_16, GX_BG_SCRBASE_0x2000, GX_BG_CHARBASE_0x10000, GX_BG_EXTPLTT_01, 0x1, 0x0, 0x0, 0x0 },
-    { 0x0, 0x0, 0x800, 0x0, 0x1, GX_BG_COLORMODE_16, GX_BG_SCRBASE_0x2800, GX_BG_CHARBASE_0x14000, GX_BG_EXTPLTT_01, 0x3, 0x0, 0x0, 0x0 },
-    { 0x0, 0x0, 0x800, 0x0, 0x1, GX_BG_COLORMODE_16, GX_BG_SCRBASE_0x3000, GX_BG_CHARBASE_0x18000, GX_BG_EXTPLTT_01, 0x2, 0x0, 0x0, 0x0 },
-    { 0x0, 0x0, 0x800, 0x0, 0x1, GX_BG_COLORMODE_16, GX_BG_SCRBASE_0x3800, GX_BG_CHARBASE_0x1c000, GX_BG_EXTPLTT_01, 0x1, 0x0, 0x0, 0x0 }
+    {
+        .x = 0x0,
+        .y = 0x0,
+        .bufferSize = 0x800,
+        .baseTile = 0x0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x2000,
+        .charBase = GX_BG_CHARBASE_0x10000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0x1,
+        .areaOver = 0x0,
+        .mosaic = FALSE,
+    },
+    {
+        .x = 0x0,
+        .y = 0x0,
+        .bufferSize = 0x800,
+        .baseTile = 0x0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x2800,
+        .charBase = GX_BG_CHARBASE_0x14000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0x3,
+        .areaOver = 0x0,
+        .mosaic = FALSE,
+    },
+    {
+        .x = 0x0,
+        .y = 0x0,
+        .bufferSize = 0x800,
+        .baseTile = 0x0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x3000,
+        .charBase = GX_BG_CHARBASE_0x18000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0x2,
+        .areaOver = 0x0,
+        .mosaic = FALSE,
+    },
+    {
+        .x = 0x0,
+        .y = 0x0,
+        .bufferSize = 0x800,
+        .baseTile = 0x0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x3800,
+        .charBase = GX_BG_CHARBASE_0x1c000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0x1,
+        .areaOver = 0x0,
+        .mosaic = FALSE,
+    }
 };
 
 static const BgTemplate Unk_ov62_02248820[] = {
-    { 0x0, 0x0, 0x800, 0x0, 0x1, GX_BG_COLORMODE_16, GX_BG_SCRBASE_0xc000, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_01, 0x1, 0x0, 0x0, 0x0 },
-    { 0x0, 0x0, 0x800, 0x0, 0x1, GX_BG_COLORMODE_16, GX_BG_SCRBASE_0xc800, GX_BG_CHARBASE_0x04000, GX_BG_EXTPLTT_01, 0x3, 0x0, 0x0, 0x0 },
-    { 0x0, 0x0, 0x800, 0x0, 0x1, GX_BG_COLORMODE_16, GX_BG_SCRBASE_0xd000, GX_BG_CHARBASE_0x08000, GX_BG_EXTPLTT_01, 0x2, 0x0, 0x0, 0x0 },
-    { 0x0, 0x0, 0x800, 0x0, 0x1, GX_BG_COLORMODE_16, GX_BG_SCRBASE_0xd800, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_01, 0x1, 0x0, 0x0, 0x0 }
+    {
+        .x = 0x0,
+        .y = 0x0,
+        .bufferSize = 0x800,
+        .baseTile = 0x0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xc000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0x1,
+        .areaOver = 0x0,
+        .mosaic = FALSE,
+    },
+    {
+        .x = 0x0,
+        .y = 0x0,
+        .bufferSize = 0x800,
+        .baseTile = 0x0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xc800,
+        .charBase = GX_BG_CHARBASE_0x04000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0x3,
+        .areaOver = 0x0,
+        .mosaic = FALSE,
+    },
+    {
+        .x = 0x0,
+        .y = 0x0,
+        .bufferSize = 0x800,
+        .baseTile = 0x0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xd000,
+        .charBase = GX_BG_CHARBASE_0x08000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0x2,
+        .areaOver = 0x0,
+        .mosaic = FALSE,
+    },
+    {
+        .x = 0x0,
+        .y = 0x0,
+        .bufferSize = 0x800,
+        .baseTile = 0x0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xd800,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0x1,
+        .areaOver = 0x0,
+        .mosaic = FALSE,
+    }
 };
 
 static void ov62_0222F670(BgConfig *param0)
@@ -351,7 +455,7 @@ static void ov62_0222F848(UnkStruct_0208C06C *param0)
         GF_ASSERT(v2);
     }
 
-    SetSubScreenViewRect(SpriteSystem_GetRenderer(param0->unk_14.unk_04), 0, (256 * FX32_ONE));
+    SetSubScreenViewRect(SpriteSystem_GetRenderer(param0->unk_14.unk_04), 0, 256 * FX32_ONE);
 }
 
 void ov62_0222F8E4(void *param0)

@@ -293,19 +293,18 @@ static void ov110_021D1098(BgConfig *param0)
 
     {
         BgTemplate v1 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x0000,
-            GX_BG_CHARBASE_0x04000,
-            GX_BG_EXTPLTT_01,
-            0,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x0000,
+            .charBase = GX_BG_CHARBASE_0x04000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0, BG_LAYER_MAIN_0, &v1, 0);
@@ -315,19 +314,18 @@ static void ov110_021D1098(BgConfig *param0)
 
     {
         BgTemplate v2 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x1000,
-            GX_BG_CHARBASE_0x0c000,
-            GX_BG_EXTPLTT_01,
-            0,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x1000,
+            .charBase = GX_BG_CHARBASE_0x0c000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v2, 0);
@@ -337,19 +335,18 @@ static void ov110_021D1098(BgConfig *param0)
 
     {
         BgTemplate v3 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x3000,
-            GX_BG_CHARBASE_0x04000,
-            GX_BG_EXTPLTT_01,
-            0,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x3000,
+            .charBase = GX_BG_CHARBASE_0x04000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0, BG_LAYER_SUB_2, &v3, 0);
@@ -372,8 +369,8 @@ static void ov110_021D1180(UnkStruct_ov110_021D0F78 *param0)
 
     param0->unk_120 = PaletteData_New(HEAP_ID_114);
 
-    PaletteData_AllocBuffer(param0->unk_120, 2, (32 * 16), HEAP_ID_114);
-    PaletteData_AllocBuffer(param0->unk_120, 0, (32 * 16), HEAP_ID_114);
+    PaletteData_AllocBuffer(param0->unk_120, 2, 32 * 16, HEAP_ID_114);
+    PaletteData_AllocBuffer(param0->unk_120, 0, 32 * 16, HEAP_ID_114);
 
     ov110_021D123C(param0, 2);
     ov110_021D128C();
@@ -448,8 +445,8 @@ static void ov110_021D128C(void)
 
     v0 = Graphics_GetPlttData(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 170, &v1, HEAP_ID_114);
 
-    DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 2));
-    GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 2));
+    DC_FlushRange(v1->pRawData, sizeof(u16) * 16 * 2);
+    GX_LoadBGPltt(v1->pRawData, 0, sizeof(u16) * 16 * 2);
     Heap_Free(v0);
 
     return;

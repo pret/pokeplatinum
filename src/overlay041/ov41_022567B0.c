@@ -175,34 +175,32 @@ static void ov41_022568C8(PoketchTaskManager *param0)
 static void ov41_022568DC(SysTask *param0, void *param1)
 {
     static const BgTemplate v0 = {
-        0,
-        0,
-        0,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0x7000,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        2,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x7000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
     static const BgTemplate v1 = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0x7800,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        3,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x7800,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 3,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
     GXSDispCnt v2;
     UnkStruct_ov41_022567B0 *v3;
@@ -245,7 +243,7 @@ static void ov41_022569BC(UnkStruct_ov41_022567B0 *param0, u32 param1)
 
     Window_AddFromTemplate(param0->unk_04, &param0->unk_48, &v0);
 
-    if (PoketchMemory_ReadFast(param0->unk_00->unk_08, param0->unk_48.pixels, (20 * 19 * 0x20)) == FALSE) {
+    if (PoketchMemory_ReadFast(param0->unk_00->unk_08, param0->unk_48.pixels, 20 * 19 * 0x20) == FALSE) {
         Window_FillTilemap(&param0->unk_48, 0x4);
     }
 
@@ -263,7 +261,7 @@ static void ov41_02256A1C(SysTask *param0, void *param1)
         PoketchTask_IncrementState(param1);
         break;
     case 1:
-        PoketchMemory_WriteFast(v0->unk_00->unk_08, v0->unk_48.pixels, (20 * 19 * 0x20));
+        PoketchMemory_WriteFast(v0->unk_00->unk_08, v0->unk_48.pixels, 20 * 19 * 0x20);
         Window_Remove(&v0->unk_48);
         Bg_FreeTilemapBuffer(v0->unk_04, BG_LAYER_SUB_2);
         Bg_FreeTilemapBuffer(v0->unk_04, BG_LAYER_SUB_3);

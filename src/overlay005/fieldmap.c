@@ -566,19 +566,18 @@ static void ov5_021D1444(BgConfig *bgl)
 
     {
         BgTemplate v1 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x0000,
-            GX_BG_CHARBASE_0x10000,
-            GX_BG_EXTPLTT_01,
-            3,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x0000,
+            .charBase = GX_BG_CHARBASE_0x10000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 3,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(bgl, BG_LAYER_MAIN_1, &v1, 0);
@@ -588,19 +587,18 @@ static void ov5_021D1444(BgConfig *bgl)
 
     {
         BgTemplate v2 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x0800,
-            GX_BG_CHARBASE_0x14000,
-            GX_BG_EXTPLTT_23,
-            3,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x0800,
+            .charBase = GX_BG_CHARBASE_0x14000,
+            .bgExtPltt = GX_BG_EXTPLTT_23,
+            .priority = 3,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(bgl, BG_LAYER_MAIN_2, &v2, 0);
@@ -609,19 +607,18 @@ static void ov5_021D1444(BgConfig *bgl)
     }
     {
         BgTemplate v3 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x1000,
-            GX_BG_CHARBASE_0x08000,
-            GX_BG_EXTPLTT_23,
-            0,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x1000,
+            .charBase = GX_BG_CHARBASE_0x08000,
+            .bgExtPltt = GX_BG_EXTPLTT_23,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(bgl, BG_LAYER_MAIN_3, &v3, 0);
@@ -831,7 +828,7 @@ static void ov5_021D1878(FieldSystem *fieldSystem)
         ov5_021DF47C(fieldSystem->unk_40, v0);
     }
 
-    ov5_021DF488(fieldSystem->unk_40, HEAP_ID_FIELD, 32, 32, 32, 32, (0x500 * (32 / 2)), (0x80 * (32 / 2)), (0x800 * 32));
+    ov5_021DF488(fieldSystem->unk_40, HEAP_ID_FIELD, 32, 32, 32, 32, 0x500 * (32 / 2), 0x80 * (32 / 2), 0x800 * 32);
 
     if ((fieldSystem->mapLoadType == MAP_LOAD_TYPE_UNDERGROUND) || (fieldSystem->mapLoadType == MAP_LOAD_TYPE_UNION)) {
         MapObjectMan_SetEndMovement(fieldSystem->mapObjMan, 0);

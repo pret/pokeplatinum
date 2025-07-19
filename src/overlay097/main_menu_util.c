@@ -113,7 +113,6 @@ void MainMenuUtil_InitBG(BgConfig *bgConfig, enum BgLayer bgLayer, u8 screenSize
         .bgExtPltt = GX_BG_EXTPLTT_01,
         .priority = 0,
         .areaOver = 0,
-        .dummy = 0,
         .mosaic = FALSE
     };
 

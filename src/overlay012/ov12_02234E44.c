@@ -63,7 +63,7 @@ static void ov12_02234E54(UnkStruct_ov12_02234E54 *param0, int param1)
 
     Bg_SetPriority(param1, v1);
     Graphics_LoadTilesToBgLayer(param0->unk_00.unk_00, Unk_ov12_0223A1D8[param0->unk_00.unk_04][0], param0->unk_18.unk_14, param1, 0, 0, 1, v0);
-    PaletteData_LoadBufferFromFileStart(param0->unk_18.unk_18, param0->unk_00.unk_00, Unk_ov12_0223A1D8[param0->unk_00.unk_04][1], v0, 0, 0x20, (8 * 16));
+    PaletteData_LoadBufferFromFileStart(param0->unk_18.unk_18, param0->unk_00.unk_00, Unk_ov12_0223A1D8[param0->unk_00.unk_04][1], v0, 0, 0x20, 8 * 16);
     Bg_ClearTilemap(param0->unk_18.unk_14, param1);
     Graphics_LoadTilemapToBgLayer(param0->unk_00.unk_00, Unk_ov12_0223A1D8[param0->unk_00.unk_04][2], param0->unk_18.unk_14, param1, 0, 0, 1, v0);
 }
@@ -108,8 +108,8 @@ static void ov12_02234EF0(SysTask *param0, void *param1)
         G2_ChangeBlendAlpha(v0->unk_00.unk_14, v0->unk_00.unk_16);
         break;
     default:
-        G2_SetWndOutsidePlane((GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ), 0);
-        G2_SetWndOBJInsidePlane((GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ), 0);
+        G2_SetWndOutsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 0);
+        G2_SetWndOBJInsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 0);
         Bg_SetOffset(v0->unk_18.unk_14, 2, 0, 0);
         Bg_SetOffset(v0->unk_18.unk_14, 2, 3, 0);
         GX_SetVisibleWnd(GX_WNDMASK_NONE);
@@ -140,7 +140,7 @@ static void ov12_0223505C(BattleAnimSystem *param0, UnkStruct_ov12_02234E44 *par
 
 static void ov12_0223507C(BattleAnimSystem *param0, UnkStruct_ov12_02234E44 *param1)
 {
-    UnkStruct_ov12_02234E54 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_02234E54));
+    UnkStruct_ov12_02234E54 *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_02234E54));
 
     ov12_0223595C(param0, &v0->unk_18);
 
@@ -197,7 +197,7 @@ static void ov12_0223507C(BattleAnimSystem *param0, UnkStruct_ov12_02234E44 *par
 
     {
         G2_SetWndOBJInsidePlane(GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_OBJ | GX_WND_PLANEMASK_BG2, 1);
-        G2_SetWndOutsidePlane((GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ), 1);
+        G2_SetWndOutsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 1);
         GX_SetVisibleWnd(GX_WNDMASK_OW);
 
         ManagedSprite_SetExplicitOamMode(v0->unk_38, GX_OAM_MODE_OBJWND);

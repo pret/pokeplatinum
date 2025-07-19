@@ -528,19 +528,16 @@ static void RowanIntro_InitGraphics(RowanIntro *manager)
     }
     {
         BgTemplate bgConfig = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            0,
-            0,
-            GX_BG_EXTPLTT_01,
-            1,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 1,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         bgConfig.screenBase = GX_BG_SCRBASE_0x7800;
@@ -601,19 +598,16 @@ static void RowanIntro_InitGraphics(RowanIntro *manager)
     }
     {
         BgTemplate bgConfig = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            0,
-            0,
-            GX_BG_EXTPLTT_01,
-            0,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         bgConfig.screenBase = GX_BG_SCRBASE_0x7800;

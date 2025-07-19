@@ -1395,7 +1395,7 @@ static BOOL ov12_02236C64(BallRotation *param0)
             }
 
             ManagedSprite_OffsetPositionXY(param0->unk_30, v0, 0);
-            ManagedSprite_OffsetAffineZRotation(param0->unk_30, ((((v0) * 2) * 0xffff) / 360));
+            ManagedSprite_OffsetAffineZRotation(param0->unk_30, (((v0) * 2) * 0xffff) / 360);
         }
     } break;
     default:
@@ -2246,7 +2246,7 @@ static void ov12_02237C54(BallRotation *param0)
     SpriteSystem_InitSprites(param0->unk_90.cellActorSys, param0->unk_2C, 10);
 
     if (param0->unk_90.surface == 0) {
-        SetSubScreenViewRect(SpriteSystem_GetRenderer(param0->unk_90.cellActorSys), 0, ((192 + 80) << FX32_SHIFT));
+        SetSubScreenViewRect(SpriteSystem_GetRenderer(param0->unk_90.cellActorSys), 0, (192 + 80) << FX32_SHIFT);
     }
 
     {

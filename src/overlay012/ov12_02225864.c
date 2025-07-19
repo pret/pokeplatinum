@@ -196,7 +196,7 @@ u32 ov12_022259AC(fx32 param0, fx32 param1, fx32 param2)
     fx32 v0;
     fx32 v1;
 
-    v0 = FX_Div((param1 - param0), param2);
+    v0 = FX_Div(param1 - param0, param2);
 
     v1 = FX_Modf(v0, &v0);
 
@@ -365,7 +365,7 @@ void ov12_02225C98(UnkStruct_ov12_02225F6C *param0, UnkStruct_ov12_02225F6C *par
     ov12_02225BC8(param0, param2, param3, param4, param5, param6);
     param1->unk_00 = 0;
     param1->unk_02 = 0;
-    ov12_02225A5C(param1, 0, 0, ((90 * 0xffff) / 360), ((270 * 0xffff) / 360), 0, param7, param6);
+    ov12_02225A5C(param1, 0, 0, (90 * 0xffff) / 360, (270 * 0xffff) / 360, 0, param7, param6);
 }
 
 BOOL ov12_02225CE4(UnkStruct_ov12_02225F6C *param0, UnkStruct_ov12_02225F6C *param1)
@@ -793,7 +793,7 @@ void ov12_022263A4(UnkStruct_ov12_02225F6C *param0, int param1, int param2)
 {
     int v0;
 
-    ov12_02225A5C(param0, 0, ((360 * 0xffff) / 360), 0, ((360 * 0xffff) / 360), (32 * FX32_ONE), (-8 * FX32_ONE), param2);
+    ov12_02225A5C(param0, 0, (360 * 0xffff) / 360, 0, (360 * 0xffff) / 360, 32 * FX32_ONE, -8 * FX32_ONE, param2);
     param0->unk_04[0] *= param1;
 }
 
@@ -1054,7 +1054,7 @@ void ov12_0222676C(s16 param0, s16 param1, s16 param2, s16 param3, u16 *param4)
     s16 v1 = (param1 - param3) * -1;
     s16 v2;
 
-    *param4 = FX_Atan2Idx((v1 * FX32_ONE), v0 * FX32_ONE);
+    *param4 = FX_Atan2Idx(v1 * FX32_ONE, v0 * FX32_ONE);
 
     if ((*param4 > 0) && (v1 < 0)) {
         *param4 = (*param4 - ((180 * 0xffff) / 360)) * 0xffff;

@@ -53,7 +53,7 @@ static BOOL ov12_0222564C(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 static BOOL ov12_02225670(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 {
     Camera *camera;
-    CameraAngle v1 = { (0x1000 * 2), (0x1000 * 2), 0 };
+    CameraAngle v1 = { (0x1000 * 2), 0x1000 * 2, 0 };
 
     camera = ParticleSystem_GetCamera(param1->unk_04);
 
@@ -84,7 +84,7 @@ static BOOL ov12_022256AC(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 static BOOL ov12_022256E8(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 {
     Camera *camera;
-    CameraAngle v1 = { -(0x1000 * 3), (0x1000 * 2), 0x1000 };
+    CameraAngle v1 = { -(0x1000 * 3), 0x1000 * 2, 0x1000 };
 
     camera = ParticleSystem_GetCamera(param1->unk_04);
 

@@ -237,19 +237,18 @@ static void ov95_0224A518(UnkStruct_ov95_0224A42C *param0)
         GX_BG0_AS_3D
     };
     static const BgTemplate v2 = {
-        0,
-        0,
-        0x0,
-        0,
-        2,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xf000,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        3,
-        1,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x0,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x512,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 3,
+        .areaOver = 1,
+        .mosaic = FALSE,
     };
     u32 v3, v4, v5, v6;
 

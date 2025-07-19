@@ -337,7 +337,7 @@ static void ov17_02243F68(SysTask *param0, void *param1)
 
         PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v3], MON_SPRITE_HIDE_2, 0);
         PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v3], MON_SPRITE_HIDE, 0);
-        PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v3], MON_SPRITE_X_CENTER, ((256 - 40) + 40));
+        PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v3], MON_SPRITE_X_CENTER, (256 - 40) + 40);
         PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v3], MON_SPRITE_Y_CENTER, ((104 + 8) + 60) + v4);
 
         v0->unk_0C = ((256 - 40) + 40) << 8;
@@ -730,12 +730,12 @@ static void ov17_022444BC(SysTask *param0, void *param1)
             }
 
             PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v0->unk_0D], MON_SPRITE_HIDE_2, 0);
-            PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v0->unk_0D], MON_SPRITE_X_CENTER, (256 - 40));
+            PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v0->unk_0D], MON_SPRITE_X_CENTER, 256 - 40);
             PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v0->unk_0D], MON_SPRITE_Y_CENTER, (104 + 8) + v17);
 
             PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v1], MON_SPRITE_HIDE_2, 1);
             PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v1], MON_SPRITE_X_CENTER, 80);
-            PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v1], MON_SPRITE_Y_CENTER, (50 - 8));
+            PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v1], MON_SPRITE_Y_CENTER, 50 - 8);
         }
 
         v0->unk_0C++;

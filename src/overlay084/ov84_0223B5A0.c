@@ -659,56 +659,53 @@ static void ov84_0223BA5C(BgConfig *param0)
     }
     {
         BgTemplate v1 = {
-            0x0,
-            0x0,
-            0x800,
-            0x0,
-            0x1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xf800,
-            GX_BG_CHARBASE_0x10000,
-            GX_BG_EXTPLTT_01,
-            0x0,
-            0x0,
-            0x0,
-            0x0
+            .x = 0x0,
+            .y = 0x0,
+            .bufferSize = 0x800,
+            .baseTile = 0x0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xf800,
+            .charBase = GX_BG_CHARBASE_0x10000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0x0,
+            .areaOver = 0x0,
+            .mosaic = FALSE,
         };
         Bg_InitFromTemplate(param0, BG_LAYER_MAIN_0, &v1, 0);
         Bg_ClearTilemap(param0, BG_LAYER_MAIN_0);
     }
     {
         BgTemplate v2 = {
-            0x0,
-            0x0,
-            0x800,
-            0x0,
-            0x1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xf000,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_01,
-            0x1,
-            0x0,
-            0x0,
-            0x0
+            .x = 0x0,
+            .y = 0x0,
+            .bufferSize = 0x800,
+            .baseTile = 0x0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xf000,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0x1,
+            .areaOver = 0x0,
+            .mosaic = FALSE,
         };
         Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v2, 0);
     }
     {
         BgTemplate v3 = {
-            0x0,
-            0x0,
-            0x800,
-            0x0,
-            0x1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xe800,
-            GX_BG_CHARBASE_0x10000,
-            GX_BG_EXTPLTT_01,
-            0x2,
-            0x0,
-            0x0,
-            0x0
+            .x = 0x0,
+            .y = 0x0,
+            .bufferSize = 0x800,
+            .baseTile = 0x0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xe800,
+            .charBase = GX_BG_CHARBASE_0x10000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0x2,
+            .areaOver = 0x0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v3, 0);
@@ -716,74 +713,70 @@ static void ov84_0223BA5C(BgConfig *param0)
     }
     {
         BgTemplate v4 = {
-            0x0,
-            0x0,
-            0x800,
-            0x0,
-            0x1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xe000,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_01,
-            0x3,
-            0x0,
-            0x0,
-            0x0
+            .x = 0x0,
+            .y = 0x0,
+            .bufferSize = 0x800,
+            .baseTile = 0x0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xe000,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0x3,
+            .areaOver = 0x0,
+            .mosaic = FALSE,
         };
         Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v4, 0);
     }
     {
         BgTemplate v5 = {
-            0x0,
-            0x0,
-            0x800,
-            0x0,
-            0x1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xf800,
-            GX_BG_CHARBASE_0x10000,
-            GX_BG_EXTPLTT_01,
-            0x0,
-            0x0,
-            0x0,
-            0x0
+            .x = 0x0,
+            .y = 0x0,
+            .bufferSize = 0x800,
+            .baseTile = 0x0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xf800,
+            .charBase = GX_BG_CHARBASE_0x10000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0x0,
+            .areaOver = 0x0,
+            .mosaic = FALSE,
         };
         Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v5, 0);
         Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
     }
     {
         BgTemplate v6 = {
-            0x0,
-            0x0,
-            0x800,
-            0x0,
-            0x1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xf000,
-            GX_BG_CHARBASE_0x08000,
-            GX_BG_EXTPLTT_01,
-            0x1,
-            0x0,
-            0x0,
-            0x0
+            .x = 0x0,
+            .y = 0x0,
+            .bufferSize = 0x800,
+            .baseTile = 0x0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xf000,
+            .charBase = GX_BG_CHARBASE_0x08000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0x1,
+            .areaOver = 0x0,
+            .mosaic = FALSE,
         };
         Bg_InitFromTemplate(param0, BG_LAYER_SUB_1, &v6, 0);
     }
     {
         BgTemplate v7 = {
-            0x0,
-            0x0,
-            0x400,
-            0x0,
-            0x1,
-            GX_BG_COLORMODE_256,
-            GX_BG_SCRBASE_0xe800,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_01,
-            0x2,
-            0x0,
-            0x0,
-            0x0
+            .x = 0x0,
+            .y = 0x0,
+            .bufferSize = 0x400,
+            .baseTile = 0x0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_256,
+            .screenBase = GX_BG_SCRBASE_0xe800,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0x2,
+            .areaOver = 0x0,
+            .mosaic = FALSE,
         };
         Bg_InitFromTemplate(param0, BG_LAYER_SUB_3, &v7, 1);
         Bg_ScheduleAffineRotationCenter(param0, 7, 9, 128);

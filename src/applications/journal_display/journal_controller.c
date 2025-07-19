@@ -190,75 +190,71 @@ static void JournalController_SetupBgs(BgConfig *bgConfig)
     SetAllGraphicsModes(&graphicsModes);
 
     BgTemplate bgTemplate1 = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xf800,
-        GX_BG_CHARBASE_0x10000,
-        GX_BG_EXTPLTT_01,
-        0,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf800,
+        .charBase = GX_BG_CHARBASE_0x10000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
 
     Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_0, &bgTemplate1, BG_TYPE_STATIC);
     Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_0);
 
     BgTemplate bgTemplate2 = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xf000,
-        GX_BG_CHARBASE_0x20000,
-        GX_BG_EXTPLTT_01,
-        2,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf000,
+        .charBase = GX_BG_CHARBASE_0x20000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
 
     Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_1, &bgTemplate2, BG_TYPE_STATIC);
     Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_1);
 
     BgTemplate bgTemplate3 = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xe800,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        1,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xe800,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
 
     Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_2, &bgTemplate3, BG_TYPE_STATIC);
 
     BgTemplate bgTemplate4 = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xe000,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        3,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xe000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 3,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
 
     Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_3, &bgTemplate4, BG_TYPE_STATIC);

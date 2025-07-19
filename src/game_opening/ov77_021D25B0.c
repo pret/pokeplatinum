@@ -302,19 +302,18 @@ static void ov77_021D2610(UnkStruct_ov77_021D2E9C *param0)
 
     {
         BgTemplate v1 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x0000,
-            GX_BG_CHARBASE_0x04000,
-            GX_BG_EXTPLTT_01,
-            0,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x0000,
+            .charBase = GX_BG_CHARBASE_0x04000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_1, &v1, 0);
@@ -322,19 +321,18 @@ static void ov77_021D2610(UnkStruct_ov77_021D2E9C *param0)
 
     {
         BgTemplate v2 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x0800,
-            GX_BG_CHARBASE_0x08000,
-            GX_BG_EXTPLTT_01,
-            1,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x0800,
+            .charBase = GX_BG_CHARBASE_0x08000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 1,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_2, &v2, 0);
@@ -342,19 +340,18 @@ static void ov77_021D2610(UnkStruct_ov77_021D2E9C *param0)
 
     {
         BgTemplate v3 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x1000,
-            GX_BG_CHARBASE_0x08000,
-            GX_BG_EXTPLTT_01,
-            2,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x1000,
+            .charBase = GX_BG_CHARBASE_0x08000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 2,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_3, &v3, 0);
@@ -362,19 +359,18 @@ static void ov77_021D2610(UnkStruct_ov77_021D2E9C *param0)
 
     {
         BgTemplate v4 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x1000,
-            GX_BG_CHARBASE_0x08000,
-            GX_BG_EXTPLTT_01,
-            0,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x1000,
+            .charBase = GX_BG_CHARBASE_0x08000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_SUB_1, &v4, 0);
@@ -382,19 +378,18 @@ static void ov77_021D2610(UnkStruct_ov77_021D2E9C *param0)
 
     {
         BgTemplate v5 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x0000,
-            GX_BG_CHARBASE_0x04000,
-            GX_BG_EXTPLTT_01,
-            1,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x0000,
+            .charBase = GX_BG_CHARBASE_0x04000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 1,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_SUB_2, &v5, 0);
@@ -402,19 +397,18 @@ static void ov77_021D2610(UnkStruct_ov77_021D2E9C *param0)
 
     {
         BgTemplate v6 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x0800,
-            GX_BG_CHARBASE_0x04000,
-            GX_BG_EXTPLTT_01,
-            2,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x0800,
+            .charBase = GX_BG_CHARBASE_0x04000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 2,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_SUB_3, &v6, 0);
@@ -441,19 +435,18 @@ static void ov77_021D2724(UnkStruct_ov77_021D2E9C *param0)
 
     {
         BgTemplate v1 = {
-            0,
-            0,
-            0,
-            0,
-            4,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x2000,
-            GX_BG_CHARBASE_0x10000,
-            GX_BG_EXTPLTT_01,
-            3,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_512x512,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x2000,
+            .charBase = GX_BG_CHARBASE_0x10000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 3,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_1, &v1, 0);
@@ -461,19 +454,18 @@ static void ov77_021D2724(UnkStruct_ov77_021D2E9C *param0)
 
     {
         BgTemplate v2 = {
-            0,
-            0,
-            0,
-            0,
-            2,
-            GX_BG_COLORMODE_256,
-            GX_BG_SCRBASE_0x4000,
-            GX_BG_CHARBASE_0x18000,
-            GX_BG_EXTPLTT_01,
-            3,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x512,
+            .colorMode = GX_BG_COLORMODE_256,
+            .screenBase = GX_BG_SCRBASE_0x4000,
+            .charBase = GX_BG_CHARBASE_0x18000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 3,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_2, &v2, 0);
@@ -481,19 +473,18 @@ static void ov77_021D2724(UnkStruct_ov77_021D2E9C *param0)
 
     {
         BgTemplate v3 = {
-            0,
-            0,
-            0,
-            0,
-            2,
-            GX_BG_COLORMODE_256,
-            GX_BG_SCRBASE_0x0000,
-            GX_BG_CHARBASE_0x08000,
-            GX_BG_EXTPLTT_01,
-            3,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x512,
+            .colorMode = GX_BG_COLORMODE_256,
+            .screenBase = GX_BG_SCRBASE_0x0000,
+            .charBase = GX_BG_CHARBASE_0x08000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 3,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_3, &v3, 0);
@@ -501,19 +492,18 @@ static void ov77_021D2724(UnkStruct_ov77_021D2E9C *param0)
 
     {
         BgTemplate v4 = {
-            0,
-            0,
-            0x1000,
-            0,
-            1,
-            GX_BG_COLORMODE_256,
-            GX_BG_SCRBASE_0x6000,
-            GX_BG_CHARBASE_0x14000,
-            GX_BG_EXTPLTT_01,
-            0,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x1000,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_256,
+            .screenBase = GX_BG_SCRBASE_0x6000,
+            .charBase = GX_BG_CHARBASE_0x14000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_SUB_0, &v4, 0);
@@ -522,49 +512,46 @@ static void ov77_021D2724(UnkStruct_ov77_021D2E9C *param0)
     {
         BgTemplate v5[] = {
             {
-                0,
-                0,
-                0,
-                0,
-                4,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x0000,
-                GX_BG_CHARBASE_0x08000,
-                GX_BG_EXTPLTT_01,
-                3,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_512x512,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x0000,
+                .charBase = GX_BG_CHARBASE_0x08000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 3,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
             {
-                0,
-                0,
-                0,
-                0,
-                2,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x2000,
-                GX_BG_CHARBASE_0x0c000,
-                GX_BG_EXTPLTT_01,
-                3,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_256x512,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x2000,
+                .charBase = GX_BG_CHARBASE_0x0c000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 3,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
             {
-                0,
-                0,
-                0,
-                0,
-                2,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x4000,
-                GX_BG_CHARBASE_0x10000,
-                GX_BG_EXTPLTT_01,
-                3,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_256x512,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x4000,
+                .charBase = GX_BG_CHARBASE_0x10000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 3,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
         };
 
@@ -583,19 +570,18 @@ static void ov77_021D2828(UnkStruct_ov77_021D2E9C *param0)
 
     {
         BgTemplate v0 = {
-            0,
-            0,
-            0,
-            0,
-            4,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x0000,
-            GX_BG_CHARBASE_0x08000,
-            GX_BG_EXTPLTT_01,
-            3,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_512x512,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x0000,
+            .charBase = GX_BG_CHARBASE_0x08000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 3,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_3, &v0, 0);
@@ -603,19 +589,18 @@ static void ov77_021D2828(UnkStruct_ov77_021D2E9C *param0)
 
     {
         BgTemplate v1 = {
-            0,
-            0,
-            0,
-            0,
-            4,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x2000,
-            GX_BG_CHARBASE_0x0c000,
-            GX_BG_EXTPLTT_01,
-            3,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_512x512,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x2000,
+            .charBase = GX_BG_CHARBASE_0x0c000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 3,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_1, &v1, 0);
@@ -623,19 +608,18 @@ static void ov77_021D2828(UnkStruct_ov77_021D2E9C *param0)
 
     {
         BgTemplate v2 = {
-            0,
-            0,
-            0,
-            0,
-            4,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x4000,
-            GX_BG_CHARBASE_0x10000,
-            GX_BG_EXTPLTT_01,
-            3,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_512x512,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x4000,
+            .charBase = GX_BG_CHARBASE_0x10000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 3,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_2, &v2, 0);
@@ -644,49 +628,46 @@ static void ov77_021D2828(UnkStruct_ov77_021D2E9C *param0)
     {
         BgTemplate v3[] = {
             {
-                0,
-                0,
-                0,
-                0,
-                4,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x0000,
-                GX_BG_CHARBASE_0x08000,
-                GX_BG_EXTPLTT_01,
-                3,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_512x512,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x0000,
+                .charBase = GX_BG_CHARBASE_0x08000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 3,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
             {
-                0,
-                0,
-                0,
-                0,
-                4,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x2000,
-                GX_BG_CHARBASE_0x0c000,
-                GX_BG_EXTPLTT_01,
-                3,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_512x512,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x2000,
+                .charBase = GX_BG_CHARBASE_0x0c000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 3,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
             {
-                0,
-                0,
-                0,
-                0,
-                4,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x4000,
-                GX_BG_CHARBASE_0x10000,
-                GX_BG_EXTPLTT_01,
-                3,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_512x512,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x4000,
+                .charBase = GX_BG_CHARBASE_0x10000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 3,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
         };
 
@@ -720,19 +701,18 @@ static void ov77_021D2900(UnkStruct_ov77_021D2E9C *param0)
 
     {
         BgTemplate v1 = {
-            0,
-            0,
-            0,
-            0,
-            2,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x6000,
-            GX_BG_CHARBASE_0x14000,
-            GX_BG_EXTPLTT_01,
-            0,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x512,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x6000,
+            .charBase = GX_BG_CHARBASE_0x14000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_0, &v1, 0);
@@ -740,19 +720,18 @@ static void ov77_021D2900(UnkStruct_ov77_021D2E9C *param0)
 
     {
         BgTemplate v2 = {
-            0,
-            0,
-            0,
-            0,
-            2,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x6000,
-            GX_BG_CHARBASE_0x14000,
-            GX_BG_EXTPLTT_01,
-            0,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x512,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x6000,
+            .charBase = GX_BG_CHARBASE_0x14000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_SUB_0, &v2, 0);
@@ -794,19 +773,18 @@ static void ov77_021D2A00(UnkStruct_ov77_021D2E9C *param0)
 
     {
         BgTemplate v1 = {
-            0,
-            0,
-            0x1000,
-            0,
-            2,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x0000,
-            GX_BG_CHARBASE_0x08000,
-            GX_BG_EXTPLTT_01,
-            1,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x1000,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x512,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x0000,
+            .charBase = GX_BG_CHARBASE_0x08000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 1,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_2, &v1, 0);
@@ -1087,8 +1065,8 @@ static void ov77_021D2F38(UnkStruct_ov77_021D2F38 *param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
 
-    G2_SetBlendAlpha((GX_BLEND_PLANEMASK_BG1), (GX_BLEND_PLANEMASK_BG3), 0, 16);
-    G2S_SetBlendAlpha((GX_BLEND_PLANEMASK_BG1), (GX_BLEND_PLANEMASK_BG3), 0, 16);
+    G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_PLANEMASK_BG3, 0, 16);
+    G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_PLANEMASK_BG3, 0, 16);
 
     OS_WaitIrq(1, OS_IE_V_BLANK);
 
@@ -1126,8 +1104,8 @@ static BOOL ov77_021D30D0(UnkStruct_ov77_021D2F38 *param0, const int param1)
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
             GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
 
-            G2_SetBlendAlpha((GX_BLEND_PLANEMASK_BG2), (GX_BLEND_PLANEMASK_BG3), 0, 16);
-            G2S_SetBlendAlpha((GX_BLEND_PLANEMASK_BG2), (GX_BLEND_PLANEMASK_BG3), 0, 16);
+            G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG3, 0, 16);
+            G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG3, 0, 16);
 
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
             GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
@@ -1205,8 +1183,8 @@ static void ov77_021D32A4(SysTask *param0, void *param1)
         v0->unk_08 = 1;
     }
 
-    G2_SetBlendAlpha((GX_BLEND_PLANEMASK_BG1), (GX_BLEND_PLANEMASK_BG3), v0->unk_06, 16);
-    G2S_SetBlendAlpha((GX_BLEND_PLANEMASK_BG1), (GX_BLEND_PLANEMASK_BG3), v0->unk_06, 16);
+    G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_PLANEMASK_BG3, v0->unk_06, 16);
+    G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_PLANEMASK_BG3, v0->unk_06, 16);
 }
 
 static void ov77_021D3300(SysTask *param0, void *param1)
@@ -1227,8 +1205,8 @@ static void ov77_021D3300(SysTask *param0, void *param1)
         *(v0->unk_18) = 1;
     }
 
-    G2_SetBlendAlpha((GX_BLEND_PLANEMASK_BG1), (GX_BLEND_PLANEMASK_BG3), v0->unk_06, 16);
-    G2S_SetBlendAlpha((GX_BLEND_PLANEMASK_BG1), (GX_BLEND_PLANEMASK_BG3), v0->unk_06, 16);
+    G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_PLANEMASK_BG3, v0->unk_06, 16);
+    G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_PLANEMASK_BG3, v0->unk_06, 16);
 }
 
 static void ov77_021D3360(SysTask *param0, void *param1)
@@ -1248,7 +1226,7 @@ static void ov77_021D3360(SysTask *param0, void *param1)
         v0->unk_08 = 1;
     }
 
-    G2_SetBlendAlpha((GX_BLEND_PLANEMASK_BG2), (GX_BLEND_PLANEMASK_BG3), v0->unk_06, 16);
+    G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG3, v0->unk_06, 16);
 }
 
 static void ov77_021D33A8(SysTask *param0, void *param1)
@@ -1268,7 +1246,7 @@ static void ov77_021D33A8(SysTask *param0, void *param1)
         v0->unk_08 = 1;
     }
 
-    G2S_SetBlendAlpha((GX_BLEND_PLANEMASK_BG2), (GX_BLEND_PLANEMASK_BG3), v0->unk_06, 16);
+    G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG3, v0->unk_06, 16);
 }
 
 static BOOL ov77_021D33F0(UnkStruct_ov77_021D2E9C *param0)
@@ -1737,7 +1715,7 @@ static void ov77_021D4044(UnkStruct_ov77_021D37C0 *param0, int param1)
         Camera_SetFOV(0x981, param0->unk_20.camera);
 
         {
-            VecFx32 v1 = { 0, (FX32_ONE * 16 * 5), 0 };
+            VecFx32 v1 = { 0, FX32_ONE * 16 * 5, 0 };
             Camera_Move(&v1, param0->unk_20.camera);
         }
 
@@ -2062,7 +2040,7 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
         }
         break;
     case 10:
-        ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
+        ov77_021D6290(param1->unk_14, 16 << FX32_SHIFT);
         ov77_021D4DC8(param1, param2);
 
         if (IsScreenFadeDone()) {
@@ -2073,7 +2051,7 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
         }
         break;
     case 11:
-        ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
+        ov77_021D6290(param1->unk_14, 16 << FX32_SHIFT);
 
         if (IsScreenFadeDone()) {
             G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 0, 0);
@@ -2083,7 +2061,7 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
         }
         break;
     case 12:
-        ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
+        ov77_021D6290(param1->unk_14, 16 << FX32_SHIFT);
 
         if (IsScreenFadeDone()) {
             if (ov77_021D6E78(param1->unk_1C, 0, param2)) {
@@ -2093,7 +2071,7 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
         }
         break;
     case 13:
-        ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
+        ov77_021D6290(param1->unk_14, 16 << FX32_SHIFT);
 
         if (IsScreenFadeDone()) {
             if (1) {
@@ -2107,7 +2085,7 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
         }
         break;
     case 14:
-        ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
+        ov77_021D6290(param1->unk_14, 16 << FX32_SHIFT);
 
         if (IsScreenFadeDone()) {
             if (param2 >= (2085 + 15 + 30)) {
@@ -2120,7 +2098,7 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
         }
         break;
     case 15:
-        ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
+        ov77_021D6290(param1->unk_14, 16 << FX32_SHIFT);
 
         if (IsScreenFadeDone()) {
             MI_CpuCopy16(param1->unk_240, (void *)HW_BG_PLTT, 0x200);
@@ -2143,7 +2121,7 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
         }
         break;
     case 16:
-        ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
+        ov77_021D6290(param1->unk_14, 16 << FX32_SHIFT);
 
         if (IsScreenFadeDone()) {
             StartScreenFade(FADE_SUB_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 16, 1, HEAP_ID_76);
@@ -2151,7 +2129,7 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
         }
         break;
     case 17:
-        ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
+        ov77_021D6290(param1->unk_14, 16 << FX32_SHIFT);
 
         if (IsScreenFadeDone()) {
             if (param2 >= (2200 + 15)) {
@@ -2168,7 +2146,7 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
         break;
     case 18:
         ov77_021D4E90(param1);
-        ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
+        ov77_021D6290(param1->unk_14, 16 << FX32_SHIFT);
 
         if (IsScreenFadeDone()) {
             gSystem.whichScreenIs3D = DS_SCREEN_SUB;
@@ -2372,7 +2350,7 @@ static void ov77_021D4F38(UnkStruct_ov77_021D37C0 *param0, const int param1)
         Camera_InitWithTarget(&v2, Unk_ov77_021D74FC.distance, &Unk_ov77_021D74FC.cameraAngle, Unk_ov77_021D74FC.fovY, Unk_ov77_021D74FC.projectionMtx, 0, param0->unk_20.camera);
 
         {
-            VecFx32 v3 = { 0, (FX32_ONE * 16 * 5), 0 };
+            VecFx32 v3 = { 0, FX32_ONE * 16 * 5, 0 };
             Camera_Move(&v3, param0->unk_20.camera);
         }
 
@@ -2407,7 +2385,7 @@ static void ov77_021D4F38(UnkStruct_ov77_021D37C0 *param0, const int param1)
         VecFx32 v6 = { FX32_ONE * 16 * 30, 0, FX32_ONE * 0 - 0x70000 };
         Camera_InitWithTarget(&v6, Unk_ov77_021D74FC.distance, &Unk_ov77_021D74FC.cameraAngle, Unk_ov77_021D74FC.fovY, Unk_ov77_021D74FC.projectionMtx, 0, param0->unk_20.camera);
         {
-            VecFx32 v7 = { 0, (FX32_ONE * 16 * 5), 0 };
+            VecFx32 v7 = { 0, FX32_ONE * 16 * 5, 0 };
             Camera_Move(&v7, param0->unk_20.camera);
         }
 
