@@ -36,28 +36,28 @@
 typedef struct HMCutIn {
     int state;
     int isFinished;
-    int unk_08;
+    int monSlideSpeed;
     int playerGender;
     BOOL updateSprites;
     int unk_14;
     int unk_18;
     int unk_1C;
     u32 dummy_20;
-    u16 bgPriority0;
-    u16 bgPriority3;
+    u16 bg0Priority;
+    u16 bg3Priority;
     int dummmy_28;
-    int unk_2C;
-    u32 unk_30;
-    u32 unk_34;
-    u32 unk_38;
-    u32 unk_3C;
-    u32 unk_40;
-    fx32 unk_44;
-    fx32 unk_48;
-    fx32 unk_4C;
-    fx32 unk_50;
-    fx32 unk_54;
-    fx32 unk_58;
+    BOOL updateWindow;
+    u32 window;
+    u32 planeMaskInside;
+    BOOL effectInside;
+    u32 planeMaskOutside;
+    BOOL effectOutside;
+    fx32 windowX1;
+    fx32 windowX2;
+    fx32 windowY1;
+    fx32 windowY2;
+    fx32 windowDelta;
+    fx32 monSpriteDeltaX;
     Pokemon *pokemon;
     FieldSystem *fieldSystem;
     NNSG2dScreenData *g2dScreenData;
@@ -75,16 +75,16 @@ typedef struct HMCutIn {
     SpriteResource *animSource[2];
     UnkStruct_020711EC *unk_244;
     Sprite *playerSprite;
-    Sprite *unk_24C;
+    Sprite *monSprite;
     UnkStruct_ov101_021D5D90 *unk_250;
     UnkStruct_ov101_021D5D90 *unk_254;
     PokemonSpriteTemplate monSpriteTemplate;
-    int drawState;
-    BOOL drawingFinished;
-    void *unk_270;
-    void *unk_274;
+    int resourceState;
+    BOOL resourcesLoaded;
+    void *monCharSource;
+    void *monPlttSource;
     SysTask *drawTask;
-    SysTask *unk_27C;
+    SysTask *windowTask;
 } HMCutIn;
 
 typedef struct ResourceLocation {
@@ -238,59 +238,59 @@ typedef struct {
     fx32 unk_24;
     fx32 unk_28;
     MapObject *unk_2C;
-    HMCutIn *unk_30;
+    HMCutIn *cutIn;
 } UnkStruct_ov100_021D4890;
 
 typedef struct {
-    Sprite *unk_00;
-    HMCutIn *unk_04;
+    Sprite *playerSprite;
+    HMCutIn *cutIn;
 } UnkStruct_ov6_02245F80;
 
 static HMCutIn *HMCutIn_New(FieldSystem *fieldSystem);
 static void HMCutIn_Free(HMCutIn *cutIn);
 static void SysTask_CutIn(SysTask *param0, void *param1);
 static void SysTask_CutInFly(SysTask *param0, void *param1);
-static void CreateDrawTask(HMCutIn *cutIn);
+static void CreateResourceTransferTask(HMCutIn *cutIn);
 static void ov6_02244674(HMCutIn *cutIn);
-static void DeleteDrawTask(HMCutIn *cutIn);
-static void SysTask_DrawSprites(SysTask *param0, void *param1);
-static void ov6_02244734(SysTask *param0, void *param1);
+static void DeleteResourceTransferTask(HMCutIn *cutIn);
+static void SysTask_LoadResources(SysTask *param0, void *param1);
+static void SysTask_FreeResources(SysTask *param0, void *param1);
 static void ov6_022447B4(SysTask *param0, void *param1);
 static void ov6_022447EC(SysTask *param0, void *param1);
-static void InitSprites(HMCutIn *cutIn);
-static void ov6_022448C8(HMCutIn *cutIn);
+static void InitSpriteResources(HMCutIn *cutIn);
+static void DeleteSprites(HMCutIn *cutIn);
 static NARC *GetFieldCutInNarc2(void);
 static void LoadSpriteResources(HMCutIn *cutIn, NARC *narc);
-static void ov6_02244B6C(HMCutIn *cutIn);
+static void DeleteSpriteResources(HMCutIn *cutIn);
 static void UpdateSpriteList(HMCutIn *cutIn);
 static Sprite *CreateSprite(HMCutIn *cutIn, const VecFx32 *position, u32 charResourceID, u32 plttResourceID, u32 cellResourceID, u32 animResourceID, int priority, int listPriority);
 static Sprite *ov6_02244CD4(HMCutIn *cutIn, const VecFx32 *position, int listPriority, int animID);
 static Sprite *InitPlayerSprite(HMCutIn *cutIn, const VecFx32 *position);
-static void ov6_02244D34(Sprite *param0);
+static void StartPlayerAnim(Sprite *param0);
 static Sprite *ov6_02244D4C(HMCutIn *cutIn, const VecFx32 *param1, int param2, int param3);
 static void ov6_02244DB4(HMCutIn *cutIn);
 static void LoadBgPltt(NARC *narc, u32 memberIndex, NNSG2dPaletteData **plttData);
 static void LoadBgChar(BgConfig *bgConfig, NARC *narc, u32 memberIndex, NNSG2dCharacterData **charData);
 static void LoadBgScreenData(BgConfig *bgConfig, NARC *narc, u32 memberIndex, NNSG2dScreenData **screenData);
-static void ov6_02244F20(BgConfig *param0);
+static void CleartTileMapBG3(BgConfig *bgConfig);
 static void ov6_02244F2C(HMCutIn *cutIn);
 static void ov6_02244F50(HMCutIn *cutIn);
 static void ov6_02244F58(HMCutIn *cutIn);
 static void ov6_02244F60(HMCutIn *cutIn);
 static void ov6_02244F74(HMCutIn *cutIn);
-static void ov6_02244F80(HMCutIn *cutIn, fx32 param1, fx32 param2, fx32 param3, fx32 param4);
-static void ov6_02244F8C(HMCutIn *cutIn);
-static void ov6_02244FB4(HMCutIn *cutIn);
-static void ov6_02244FE4(SysTask *param0, void *param1);
+static void SetCutInWindowSize(HMCutIn *cutIn, fx32 x1, fx32 y1, fx32 x2, fx32 y2);
+static void CreateCutInWindowTask(HMCutIn *cutIn);
+static void DeleteWindowTask(HMCutIn *cutIn);
+static void SysTask_ShowCutInWindow(SysTask *param0, void *param1);
 static void BuildMonSpriteTemplate(HMCutIn *cutIn, PokemonSpriteTemplate *spriteTemplate);
 static void *ov6_0224509C(Pokemon *mon, PokemonSpriteTemplate *spriteTemplate, u32 heapID);
 static void *ov6_022450E4(PokemonSpriteTemplate *spriteTemplate, u32 heapID);
 static SpriteResource *GetMonCharResource(HMCutIn *cutIn, NARC *narc);
-static void ov6_02245118(HMCutIn *cutIn, void *param1);
+static void LoadMonChar(HMCutIn *cutIn, void *imgSource);
 static SpriteResource *GetPlayerMalePlttResource(HMCutIn *cutIn, NARC *narc);
-static void ov6_02245170(HMCutIn *cutIn, void *param1);
+static void LoadMonPltt(HMCutIn *cutIn, void *imgSource);
 static void ov6_022451B8(HMCutIn *cutIn);
-static Sprite *ov6_0224529C(HMCutIn *cutIn, const VecFx32 *param1);
+static Sprite *InitMonSprite(HMCutIn *cutIn, const VecFx32 *param1);
 static void ov6_022452BC(HMCutIn *cutIn, int param1);
 static void ov6_02245328(HMCutIn *cutIn, const VecFx32 *param1, const VecFx32 *param2, int param3, int param4, int param5);
 static void ov6_0224543C(HMCutIn *cutIn);
@@ -310,7 +310,7 @@ static void FadeIn(void);
 static void FadeOut(void);
 static void *ov6_02245F44(u32 heapID, int param1);
 static void HidePlayer(FieldSystem *fieldSystem, BOOL hidden);
-static void FlyLandingTask(SysTask *param0, void *param1);
+static void FlyLandingTask(SysTask *task, void *param1);
 
 typedef int (*CutInTaskFunc)(HMCutIn *);
 const CutInTaskFunc sCutInTaskFuncs[];
@@ -1091,28 +1091,28 @@ static void SysTask_CutIn(SysTask *cutInTask, void *hmCutInPtr)
     }
 }
 
-static int ov6_02244038(HMCutIn *cutIn)
+static int SubTask_HMCutIn_Init(HMCutIn *cutIn)
 {
-    InitSprites(cutIn);
-    CreateDrawTask(cutIn);
+    InitSpriteResources(cutIn);
+    CreateResourceTransferTask(cutIn);
     cutIn->state++;
     return 0;
 }
 
-static int ov6_02244050(HMCutIn *cutIn)
+static int SubTask_HMCutIn_InitSprites(HMCutIn *cutIn)
 {
-    if (cutIn->drawingFinished == FALSE) {
+    if (cutIn->resourcesLoaded == FALSE) {
         return 0;
     }
 
     VecFx32 playerSpritePosition = { (FX32_ONE * 128), (FX32_ONE * 96), 0 };
-    VecFx32 v1 = { (FX32_ONE * (256 + 40)), (FX32_ONE * 96), 0 };
+    VecFx32 monSpritePosition = { (FX32_ONE * (256 + 40)), (FX32_ONE * 96), 0 };
 
     cutIn->playerSprite = InitPlayerSprite(cutIn, &playerSpritePosition);
-    cutIn->unk_24C = ov6_0224529C(cutIn, &v1);
+    cutIn->monSprite = InitMonSprite(cutIn, &monSpritePosition);
 
     ov6_022452BC(cutIn, 1);
-    DeleteDrawTask(cutIn);
+    DeleteResourceTransferTask(cutIn);
 
     cutIn->updateSprites = TRUE;
     cutIn->state++;
@@ -1120,227 +1120,226 @@ static int ov6_02244050(HMCutIn *cutIn)
     return 1;
 }
 
-static int ov6_022440C0(HMCutIn *param0)
+static int SubTask_HMCutIn_InitWindow(HMCutIn *cutIn)
 {
-    ov6_02245FDC(param0);
+    ov6_02245FDC(cutIn);
 
-    param0->unk_2C = 0;
-    param0->unk_54 = (FX32_ONE * -64);
-    param0->unk_44 = (FX32_ONE * 254);
-    param0->unk_48 = (FX32_ONE * 255);
-    param0->unk_4C = (FX32_ONE * (96 - 1));
-    param0->unk_50 = (FX32_ONE * (96 + 1));
-    param0->unk_2C = 1;
-    param0->state++;
+    cutIn->updateWindow = FALSE;
+    cutIn->windowDelta = (FX32_ONE * -64);
+    cutIn->windowX1 = (FX32_ONE * 254);
+    cutIn->windowX2 = (FX32_ONE * 255);
+    cutIn->windowY1 = (FX32_ONE * (96 - 1));
+    cutIn->windowY2 = (FX32_ONE * (96 + 1));
+    cutIn->updateWindow = TRUE;
+    cutIn->state++;
 
     return 0;
 }
 
-static int ov6_022440F8(HMCutIn *param0)
+static int SubTask_HMCutIn_WindowExpandX(HMCutIn *cutIn)
 {
-    param0->unk_2C = 0;
-    param0->unk_44 += param0->unk_54;
+    cutIn->updateWindow = FALSE;
+    cutIn->windowX1 += cutIn->windowDelta;
 
-    if (param0->unk_44 <= 0) {
-        param0->unk_44 = 0;
-        param0->unk_54 = 0x2000;
-        param0->state++;
+    if (cutIn->windowX1 <= 0) {
+        cutIn->windowX1 = 0;
+        cutIn->windowDelta = 0x2000;
+        cutIn->state++;
     }
 
-    ov6_02244F80(param0, param0->unk_44, param0->unk_4C, param0->unk_48, param0->unk_50);
-    param0->unk_2C = 1;
+    SetCutInWindowSize(cutIn, cutIn->windowX1, cutIn->windowY1, cutIn->windowX2, cutIn->windowY2);
+    cutIn->updateWindow = TRUE;
 
     return 0;
 }
 
-static int ov6_02244138(HMCutIn *param0)
+static int SubTask_HMCutIn_WindowExpandY(HMCutIn *cutIn)
 {
-    param0->unk_2C = 0;
-    param0->unk_4C -= param0->unk_54;
-    param0->unk_50 += param0->unk_54;
-    param0->unk_54 += 0x2000;
+    cutIn->updateWindow = FALSE;
+    cutIn->windowY1 -= cutIn->windowDelta;
+    cutIn->windowY2 += cutIn->windowDelta;
+    cutIn->windowDelta += 0x2000;
 
-    if (param0->unk_54 > (FX32_ONE * 32)) {
-        param0->unk_54 = (FX32_ONE * 32);
+    if (cutIn->windowDelta > (FX32_ONE * 32)) {
+        cutIn->windowDelta = (FX32_ONE * 32);
     }
 
-    if (param0->unk_4C < (FX32_ONE * (96 - 40))) {
-        param0->unk_4C = (FX32_ONE * (96 - 40));
+    if (cutIn->windowY1 < (FX32_ONE * (96 - 40))) {
+        cutIn->windowY1 = (FX32_ONE * (96 - 40));
     }
 
-    if (param0->unk_50 > (FX32_ONE * (96 + 40))) {
-        param0->unk_50 = (FX32_ONE * (96 + 40));
+    if (cutIn->windowY2 > (FX32_ONE * (96 + 40))) {
+        cutIn->windowY2 = (FX32_ONE * (96 + 40));
     }
 
-    ov6_02244F80(param0, param0->unk_44, param0->unk_4C, param0->unk_48, param0->unk_50);
-    param0->unk_2C = 1;
+    SetCutInWindowSize(cutIn, cutIn->windowX1, cutIn->windowY1, cutIn->windowX2, cutIn->windowY2);
+    cutIn->updateWindow = TRUE;
 
-    if ((param0->unk_4C == (FX32_ONE * (96 - 40))) && (param0->unk_50 == (FX32_ONE * (96 + 40)))) {
-        ov6_02244D34(param0->playerSprite);
-        param0->state++;
-    }
-
-    return 0;
-}
-
-static int ov6_022441BC(HMCutIn *param0)
-{
-    param0->unk_08++;
-
-    if (param0->unk_08 >= 15) {
-        param0->unk_08 = 0;
-        param0->unk_58 = (FX32_ONE * -64);
-        param0->state++;
+    if ((cutIn->windowY1 == (FX32_ONE * (96 - 40))) && (cutIn->windowY2 == (FX32_ONE * (96 + 40)))) {
+        StartPlayerAnim(cutIn->playerSprite);
+        cutIn->state++;
     }
 
     return 0;
 }
 
-static int ov6_022441DC(HMCutIn *param0)
+static int SubTask_HMCutIn_SlideInSpeedUp(HMCutIn *cutIn)
+{
+    cutIn->monSlideSpeed++;
+
+    if (cutIn->monSlideSpeed >= 15) {
+        cutIn->monSlideSpeed = 0;
+        cutIn->monSpriteDeltaX = (FX32_ONE * -64);
+        cutIn->state++;
+    }
+
+    return 0;
+}
+
+static int SubTask_HMCutIn_SlideMonIn(HMCutIn *cutIn)
+{
+    const VecFx32 *monSpritePosition;
+    VecFx32 position;
+
+    monSpritePosition = Sprite_GetPosition(cutIn->monSprite);
+    position = *monSpritePosition;
+    position.x += cutIn->monSpriteDeltaX;
+
+    if (position.x <= (FX32_ONE * (128 + 32))) {
+        position.x = (FX32_ONE * (128 + 64));
+        cutIn->state++;
+    }
+
+    Sprite_SetPosition(cutIn->monSprite, &position);
+    return 0;
+}
+
+static int SubTask_HMCutIn_SlideMonToCenter(HMCutIn *cutIn)
+{
+    const VecFx32 *monSpritePosition;
+    VecFx32 position;
+
+    cutIn->monSpriteDeltaX /= 2;
+
+    // Pokemon sprite has reached the center of the screen
+    if (cutIn->monSpriteDeltaX > (FX32_ONE * -2)) {
+        cutIn->monSpriteDeltaX = (FX32_ONE * -2);
+        cutIn->state++;
+
+        Pokemon_PlayCry(cutIn->pokemon);
+    }
+
+    monSpritePosition = Sprite_GetPosition(cutIn->monSprite);
+    position = *monSpritePosition;
+    position.x += cutIn->monSpriteDeltaX;
+
+    Sprite_SetPosition(cutIn->monSprite, &position);
+    return 0;
+}
+
+static int SubTask_HMCutIn_SlideOutSpeedUp(HMCutIn *cutIn)
+{
+    cutIn->monSlideSpeed++;
+
+    if (cutIn->monSlideSpeed >= 8) {
+        cutIn->monSlideSpeed = 0;
+        cutIn->monSpriteDeltaX = (FX32_ONE * -1);
+        cutIn->state++;
+    }
+
+    return 0;
+}
+
+static int SubTask_HMCutIn_SlideMonOut(HMCutIn *cutIn)
 {
     const VecFx32 *v0;
     VecFx32 v1;
 
-    v0 = Sprite_GetPosition(param0->unk_24C);
+    cutIn->monSpriteDeltaX *= 2;
+
+    if (cutIn->monSpriteDeltaX < (FX32_ONE * -64)) {
+        cutIn->monSpriteDeltaX = (FX32_ONE * -64);
+    }
+
+    v0 = Sprite_GetPosition(cutIn->monSprite);
     v1 = *v0;
-    v1.x += param0->unk_58;
+    v1.x += cutIn->monSpriteDeltaX;
 
-    if (v1.x <= (FX32_ONE * (128 + 32))) {
-        v1.x = (FX32_ONE * (128 + 64));
-        param0->state++;
-    }
-
-    Sprite_SetPosition(param0->unk_24C, &v1);
-    return 0;
-}
-
-static int ov6_02244228(HMCutIn *param0)
-{
-    const VecFx32 *v0;
-    VecFx32 v1;
-
-    param0->unk_58 /= 2;
-
-    if (param0->unk_58 > (FX32_ONE * -2)) {
-        param0->unk_58 = (FX32_ONE * -2);
-        param0->state++;
-
-        {
-            Pokemon_PlayCry(param0->pokemon);
-        }
-    }
-
-    v0 = Sprite_GetPosition(param0->unk_24C);
-    v1 = *v0;
-    v1.x += param0->unk_58;
-
-    Sprite_SetPosition(param0->unk_24C, &v1);
-    return 0;
-}
-
-static int ov6_02244284(HMCutIn *param0)
-{
-    param0->unk_08++;
-
-    if (param0->unk_08 >= 8) {
-        param0->unk_08 = 0;
-        param0->unk_58 = (FX32_ONE * -1);
-        param0->state++;
-    }
-
-    return 0;
-}
-
-static int ov6_022442A4(HMCutIn *param0)
-{
-    const VecFx32 *v0;
-    VecFx32 v1;
-
-    param0->unk_58 *= 2;
-
-    if (param0->unk_58 < (FX32_ONE * -64)) {
-        param0->unk_58 = (FX32_ONE * -64);
-    }
-
-    v0 = Sprite_GetPosition(param0->unk_24C);
-    v1 = *v0;
-    v1.x += param0->unk_58;
-
-    Sprite_SetPosition(param0->unk_24C, &v1);
+    Sprite_SetPosition(cutIn->monSprite, &v1);
 
     if (v1.x <= (FX32_ONE * -40)) {
-        param0->unk_54 = 0x1000;
-        param0->state++;
+        cutIn->windowDelta = 0x1000;
+        cutIn->state++;
     }
 
     return 0;
 }
 
-static int ov6_02244308(HMCutIn *param0)
+static int SubTask_HMCutIn_WindowShrinkY(HMCutIn *cutIn)
 {
-    param0->unk_2C = 0;
-    param0->unk_4C += param0->unk_54;
-    param0->unk_50 -= param0->unk_54;
-    param0->unk_54 += 0x4000;
+    cutIn->updateWindow = 0;
+    cutIn->windowY1 += cutIn->windowDelta;
+    cutIn->windowY2 -= cutIn->windowDelta;
+    cutIn->windowDelta += 0x4000;
 
-    if (param0->unk_54 > (FX32_ONE * 32)) {
-        param0->unk_54 = (FX32_ONE * 32);
+    if (cutIn->windowDelta > (FX32_ONE * 32)) {
+        cutIn->windowDelta = (FX32_ONE * 32);
     }
 
-    if (param0->unk_4C >= (FX32_ONE * (96 - 8))) {
-        param0->unk_4C = (FX32_ONE * (96 - 8));
+    if (cutIn->windowY1 >= (FX32_ONE * (96 - 8))) {
+        cutIn->windowY1 = (FX32_ONE * (96 - 8));
     }
 
-    if (param0->unk_50 <= (FX32_ONE * (96 + 8))) {
-        param0->unk_50 = (FX32_ONE * (96 + 8));
+    if (cutIn->windowY2 <= (FX32_ONE * (96 + 8))) {
+        cutIn->windowY2 = (FX32_ONE * (96 + 8));
     }
 
-    ov6_02244F80(param0, param0->unk_44, param0->unk_4C, param0->unk_48, param0->unk_50);
-    param0->unk_2C = 1;
+    SetCutInWindowSize(cutIn, cutIn->windowX1, cutIn->windowY1, cutIn->windowX2, cutIn->windowY2);
+    cutIn->updateWindow = 1;
 
-    if ((param0->unk_4C == (FX32_ONE * (96 - 8))) && (param0->unk_50 == (FX32_ONE * (96 + 8)))) {
-        ov6_02246018(param0);
-        param0->state++;
+    if ((cutIn->windowY1 == (FX32_ONE * (96 - 8))) && (cutIn->windowY2 == (FX32_ONE * (96 + 8)))) {
+        ov6_02246018(cutIn);
+        cutIn->state++;
     }
 
     return 0;
 }
 
-static int ov6_02244388(HMCutIn *cutIn)
+static int SubTask_HMCutIn_DeleteSprites(HMCutIn *cutIn)
 {
-    ov6_022448C8(cutIn);
+    DeleteSprites(cutIn);
     cutIn->updateSprites = FALSE;
     cutIn->state++;
     return 0;
 }
 
-static int ov6_0224439C(HMCutIn *cutIn)
+static int SubTask_HMCutIn_WindowTaskDone(HMCutIn *cutIn)
 {
-    ov6_02244FB4(cutIn);
+    DeleteWindowTask(cutIn);
     cutIn->state++;
     return 0;
 }
 
 static int SubTask_HMCutIn_Done(HMCutIn *cutIn)
 {
-    cutIn->isFinished = 1;
+    cutIn->isFinished = TRUE;
     return 0;
 }
 
 static const CutInTaskFunc sCutInTaskFuncs[] = {
-    ov6_02244038,
-    ov6_02244050,
-    ov6_022440C0,
-    ov6_022440F8,
-    ov6_02244138,
-    ov6_022441BC,
-    ov6_022441DC,
-    ov6_02244228,
-    ov6_02244284,
-    ov6_022442A4,
-    ov6_02244308,
-    ov6_02244388,
-    ov6_0224439C,
+    SubTask_HMCutIn_Init,
+    SubTask_HMCutIn_InitSprites,
+    SubTask_HMCutIn_InitWindow,
+    SubTask_HMCutIn_WindowExpandX,
+    SubTask_HMCutIn_WindowExpandY,
+    SubTask_HMCutIn_SlideInSpeedUp,
+    SubTask_HMCutIn_SlideMonIn,
+    SubTask_HMCutIn_SlideMonToCenter,
+    SubTask_HMCutIn_SlideOutSpeedUp,
+    SubTask_HMCutIn_SlideMonOut,
+    SubTask_HMCutIn_WindowShrinkY,
+    SubTask_HMCutIn_DeleteSprites,
+    SubTask_HMCutIn_WindowTaskDone,
     SubTask_HMCutIn_Done
 };
 
@@ -1364,20 +1363,20 @@ static void SysTask_CutInFly(SysTask *param0, void *param1)
 
 static int ov6_022443EC(HMCutIn *cutIn)
 {
-    if (cutIn->drawingFinished == FALSE) {
+    if (cutIn->resourcesLoaded == FALSE) {
         return 0;
     }
 
     {
-        VecFx32 v0 = { (FX32_ONE * 128), (FX32_ONE * 96), 0 };
-        VecFx32 v1 = { (FX32_ONE * (256 + 40)), (FX32_ONE * 96), 0 };
+        VecFx32 playerPosition = { (FX32_ONE * 128), (FX32_ONE * 96), 0 };
+        VecFx32 monPosition = { (FX32_ONE * (256 + 40)), (FX32_ONE * 96), 0 };
 
-        cutIn->playerSprite = InitPlayerSprite(cutIn, &v0);
-        cutIn->unk_24C = ov6_0224529C(cutIn, &v1);
+        cutIn->playerSprite = InitPlayerSprite(cutIn, &playerPosition);
+        cutIn->monSprite = InitMonSprite(cutIn, &monPosition);
         ov6_022452BC(cutIn, 1);
     }
 
-    DeleteDrawTask(cutIn);
+    DeleteResourceTransferTask(cutIn);
 
     cutIn->updateSprites = TRUE;
     cutIn->state++;
@@ -1385,169 +1384,169 @@ static int ov6_022443EC(HMCutIn *cutIn)
     return 1;
 }
 
-static int ov6_0224445C(HMCutIn *param0)
+static int ov6_0224445C(HMCutIn *cutIn)
 {
-    ov6_022451B8(param0);
-    param0->state++;
+    ov6_022451B8(cutIn);
+    cutIn->state++;
     return 0;
 }
 
-static int ov6_02244470(HMCutIn *param0)
+static int ov6_02244470(HMCutIn *cutIn)
 {
-    ov6_02244DB4(param0);
-    ov6_02244674(param0);
-    param0->state++;
+    ov6_02244DB4(cutIn);
+    ov6_02244674(cutIn);
+    cutIn->state++;
     return 0;
 }
 
 static int ov6_02244488(HMCutIn *cutIn)
 {
-    if (cutIn->drawingFinished == FALSE) {
+    if (cutIn->resourcesLoaded == FALSE) {
         return 0;
     }
 
-    DeleteDrawTask(cutIn);
+    DeleteResourceTransferTask(cutIn);
 
     cutIn->state++;
     return 1;
 }
 
-static int ov6_022444A8(HMCutIn *param0)
+static int ov6_022444A8(HMCutIn *cutIn)
 {
-    ov6_0224543C(param0);
-    ov6_0224551C(param0);
-    ov6_02244F74(param0);
-    ov6_02245F64(param0, 1);
-    param0->state++;
+    ov6_0224543C(cutIn);
+    ov6_0224551C(cutIn);
+    ov6_02244F74(cutIn);
+    ov6_02245F64(cutIn, 1);
+    cutIn->state++;
     return 0;
 }
 
-static int ov6_022444D0(HMCutIn *param0)
+static int ov6_022444D0(HMCutIn *cutIn)
 {
-    if (ov6_02245470(param0) != 2) {
+    if (ov6_02245470(cutIn) != 2) {
         return 0;
     }
 
-    Sprite_SetAnim(param0->playerSprite, 1);
-    param0->state++;
+    Sprite_SetAnim(cutIn->playerSprite, 1);
+    cutIn->state++;
 
     return 0;
 }
 
-static int ov6_022444F8(HMCutIn *param0)
+static int ov6_022444F8(HMCutIn *cutIn)
 {
-    param0->unk_08++;
+    cutIn->monSlideSpeed++;
 
-    if (param0->unk_08 >= 20) {
-        param0->unk_08 = 0;
-        param0->state++;
+    if (cutIn->monSlideSpeed >= 20) {
+        cutIn->monSlideSpeed = 0;
+        cutIn->state++;
 
-        ov6_022456D4(param0);
+        ov6_022456D4(cutIn);
     }
 
     return 1;
 }
 
-static int ov6_02244518(HMCutIn *param0)
+static int ov6_02244518(HMCutIn *cutIn)
 {
-    if (ov6_02245470(param0) != 3) {
+    if (ov6_02245470(cutIn) != 3) {
         return 0;
     }
 
     Sound_PlayEffect(SEQ_SE_DP_FW019);
 
-    param0->unk_54 = 0x800;
-    param0->unk_14 = 2;
-    param0->state++;
+    cutIn->windowDelta = 0x800;
+    cutIn->unk_14 = 2;
+    cutIn->state++;
 
     return 1;
 }
 
-static int ov6_02244548(HMCutIn *param0)
+static int ov6_02244548(HMCutIn *cutIn)
 {
-    param0->unk_2C = 0;
-    param0->unk_4C += param0->unk_54;
-    param0->unk_50 -= param0->unk_54;
-    param0->unk_54 += 0x800;
+    cutIn->updateWindow = 0;
+    cutIn->windowY1 += cutIn->windowDelta;
+    cutIn->windowY2 -= cutIn->windowDelta;
+    cutIn->windowDelta += 0x800;
 
-    if (param0->unk_54 > (FX32_ONE * 16)) {
-        param0->unk_54 = (FX32_ONE * 16);
+    if (cutIn->windowDelta > (FX32_ONE * 16)) {
+        cutIn->windowDelta = (FX32_ONE * 16);
     }
 
-    if (param0->unk_4C >= (FX32_ONE * (96 - 1))) {
-        param0->unk_4C = (FX32_ONE * (96 - 1));
+    if (cutIn->windowY1 >= (FX32_ONE * (96 - 1))) {
+        cutIn->windowY1 = (FX32_ONE * (96 - 1));
     }
 
-    if (param0->unk_50 <= (FX32_ONE * (96 + 1))) {
-        param0->unk_50 = (FX32_ONE * (96 + 1));
+    if (cutIn->windowY2 <= (FX32_ONE * (96 + 1))) {
+        cutIn->windowY2 = (FX32_ONE * (96 + 1));
     }
 
-    ov6_02244F80(param0, param0->unk_44, param0->unk_4C, param0->unk_48, param0->unk_50);
-    param0->unk_2C = 1;
+    SetCutInWindowSize(cutIn, cutIn->windowX1, cutIn->windowY1, cutIn->windowX2, cutIn->windowY2);
+    cutIn->updateWindow = 1;
 
-    if (param0->unk_18 == 0) {
-        if (ov6_02245470(param0) == 4) {
-            param0->unk_18 = 1;
+    if (cutIn->unk_18 == 0) {
+        if (ov6_02245470(cutIn) == 4) {
+            cutIn->unk_18 = 1;
 
             FadeOut();
         }
     }
 
-    if ((param0->unk_4C == (FX32_ONE * (96 - 1))) && (param0->unk_50 == (FX32_ONE * (96 + 1)))) {
-        ov6_02244F20(param0->fieldSystem->bgConfig);
-        param0->unk_14 = 1;
-        ov6_02244F58(param0);
-        param0->state++;
+    if ((cutIn->windowY1 == (FX32_ONE * (96 - 1))) && (cutIn->windowY2 == (FX32_ONE * (96 + 1)))) {
+        CleartTileMapBG3(cutIn->fieldSystem->bgConfig);
+        cutIn->unk_14 = 1;
+        ov6_02244F58(cutIn);
+        cutIn->state++;
     }
 
     return 0;
 }
 
-static int ov6_022445EC(HMCutIn *param0)
+static int ov6_022445EC(HMCutIn *cutIn)
 {
-    if (param0->unk_18 == 0) {
-        if (ov6_02245470(param0) == 4) {
-            param0->unk_18 = 1;
+    if (cutIn->unk_18 == 0) {
+        if (ov6_02245470(cutIn) == 4) {
+            cutIn->unk_18 = 1;
 
             FadeOut();
         }
     }
 
-    if (ov6_02245470(param0) != 2) {
+    if (ov6_02245470(cutIn) != 2) {
         return 0;
     }
 
-    if (param0->unk_18 == 0) {
-        param0->unk_18 = 1;
+    if (cutIn->unk_18 == 0) {
+        cutIn->unk_18 = 1;
 
         FadeOut();
     }
 
-    ov6_02245480(param0);
-    param0->state++;
+    ov6_02245480(cutIn);
+    cutIn->state++;
     return 0;
 }
 
-static int ov6_02244634(HMCutIn *param0)
+static int ov6_02244634(HMCutIn *cutIn)
 {
     if (IsScreenFadeDone()) {
-        param0->state++;
+        cutIn->state++;
     }
 
     return 0;
 }
 
 static int (*const sCutInTaskFuncsFly[])(HMCutIn *) = {
-    ov6_02244038,
+    SubTask_HMCutIn_Init,
     ov6_022443EC,
-    ov6_022440C0,
-    ov6_022440F8,
-    ov6_02244138,
-    ov6_022441BC,
-    ov6_022441DC,
-    ov6_02244228,
-    ov6_02244284,
-    ov6_022442A4,
+    SubTask_HMCutIn_InitWindow,
+    SubTask_HMCutIn_WindowExpandX,
+    SubTask_HMCutIn_WindowExpandY,
+    SubTask_HMCutIn_SlideInSpeedUp,
+    SubTask_HMCutIn_SlideMonIn,
+    SubTask_HMCutIn_SlideMonToCenter,
+    SubTask_HMCutIn_SlideOutSpeedUp,
+    SubTask_HMCutIn_SlideMonOut,
     ov6_0224445C,
     ov6_02244470,
     ov6_02244488,
@@ -1558,26 +1557,26 @@ static int (*const sCutInTaskFuncsFly[])(HMCutIn *) = {
     ov6_02244548,
     ov6_022445EC,
     ov6_02244634,
-    ov6_02244388,
-    ov6_0224439C,
+    SubTask_HMCutIn_DeleteSprites,
+    SubTask_HMCutIn_WindowTaskDone,
     SubTask_HMCutIn_Done
 };
 
-static void CreateDrawTask(HMCutIn *cutIn)
+static void CreateResourceTransferTask(HMCutIn *cutIn)
 {
-    cutIn->drawState = 0;
-    cutIn->drawingFinished = 0;
-    cutIn->drawTask = SysTask_ExecuteOnVBlank(SysTask_DrawSprites, cutIn, 0x80);
+    cutIn->resourceState = 0;
+    cutIn->resourcesLoaded = 0;
+    cutIn->drawTask = SysTask_ExecuteOnVBlank(SysTask_LoadResources, cutIn, 0x80);
 }
 
 static void ov6_02244674(HMCutIn *cutIn)
 {
-    cutIn->drawState = 0;
-    cutIn->drawingFinished = 0;
+    cutIn->resourceState = 0;
+    cutIn->resourcesLoaded = 0;
     cutIn->drawTask = SysTask_ExecuteOnVBlank(ov6_022447B4, cutIn, 0x80);
 }
 
-static void DeleteDrawTask(HMCutIn *cutIn)
+static void DeleteResourceTransferTask(HMCutIn *cutIn)
 {
     if (cutIn->drawTask != NULL) {
         SysTask_Done(cutIn->drawTask);
@@ -1585,12 +1584,12 @@ static void DeleteDrawTask(HMCutIn *cutIn)
     }
 }
 
-static void SysTask_DrawSprites(SysTask *dummyTask, void *hmCutInPtr)
+static void SysTask_LoadResources(SysTask *dummyTask, void *hmCutInPtr)
 {
     int index;
     HMCutIn *cutIn = hmCutInPtr;
 
-    switch (cutIn->drawState) {
+    switch (cutIn->resourceState) {
     case 0:
         for (index = 0; index < 4; index++) {
             if (cutIn->charSource[index] != NULL) {
@@ -1604,27 +1603,27 @@ static void SysTask_DrawSprites(SysTask *dummyTask, void *hmCutInPtr)
             }
         }
 
-        if (cutIn->unk_270 != NULL) {
-            ov6_02245118(cutIn, cutIn->unk_270);
+        if (cutIn->monCharSource != NULL) {
+            LoadMonChar(cutIn, cutIn->monCharSource);
         }
 
-        if (cutIn->unk_274 != NULL) {
-            ov6_02245170(cutIn, cutIn->unk_274);
+        if (cutIn->monPlttSource != NULL) {
+            LoadMonPltt(cutIn, cutIn->monPlttSource);
         }
 
-        cutIn->drawState++;
-        SysTask_ExecuteAfterVBlank(ov6_02244734, cutIn, 0x80);
+        cutIn->resourceState++;
+        SysTask_ExecuteAfterVBlank(SysTask_FreeResources, cutIn, 0x80);
 
         break;
     }
 }
 
-static void ov6_02244734(SysTask *task, void *hmCutInPtr)
+static void SysTask_FreeResources(SysTask *task, void *hmCutInPtr)
 {
     int index;
     HMCutIn *cutIn = hmCutInPtr;
 
-    if (cutIn->drawState == 1) {
+    if (cutIn->resourceState == 1) {
         for (index = 0; index < 4; index++) {
             if (cutIn->charSource[index] != NULL) {
                 SpriteResource_ReleaseData(cutIn->charSource[index]);
@@ -1637,31 +1636,31 @@ static void ov6_02244734(SysTask *task, void *hmCutInPtr)
             }
         }
 
-        if (cutIn->unk_270 != NULL) {
-            Heap_Free(cutIn->unk_270);
-            cutIn->unk_270 = NULL;
+        if (cutIn->monCharSource != NULL) {
+            Heap_Free(cutIn->monCharSource);
+            cutIn->monCharSource = NULL;
         }
 
-        if (cutIn->unk_274 != NULL) {
-            Heap_Free(cutIn->unk_274);
-            cutIn->unk_274 = NULL;
+        if (cutIn->monPlttSource != NULL) {
+            Heap_Free(cutIn->monPlttSource);
+            cutIn->monPlttSource = NULL;
         }
 
-        cutIn->drawingFinished = TRUE;
+        cutIn->resourcesLoaded = TRUE;
         SysTask_Done(task);
     }
 }
 
-static void ov6_022447B4(SysTask *param0, void *param1)
+static void ov6_022447B4(SysTask *param0, void *hmCutInPtr)
 {
-    HMCutIn *v0 = param1;
-    SpriteResource *v1 = SpriteResourceCollection_Find(v0->charLocation, 0);
+    HMCutIn *cutIn = hmCutInPtr;
+    SpriteResource *charResource = SpriteResourceCollection_Find(cutIn->charLocation, 0);
 
-    switch (v0->drawState) {
+    switch (cutIn->resourceState) {
     case 0:
-        SpriteTransfer_RequestCharAtEnd(v1);
-        SysTask_ExecuteAfterVBlank(ov6_022447EC, v0, 0x80);
-        v0->drawState++;
+        SpriteTransfer_RequestCharAtEnd(charResource);
+        SysTask_ExecuteAfterVBlank(ov6_022447EC, cutIn, 0x80);
+        cutIn->resourceState++;
         break;
     }
 }
@@ -1671,22 +1670,22 @@ static void ov6_022447EC(SysTask *task, void *hmCutInPtr)
     HMCutIn *cutIn = hmCutInPtr;
     SpriteResource *v1 = SpriteResourceCollection_Find(cutIn->charLocation, 0);
 
-    if (cutIn->drawState == 1) {
+    if (cutIn->resourceState == 1) {
         SpriteResource_ReleaseData(v1);
-        cutIn->drawingFinished = TRUE;
+        cutIn->resourcesLoaded = TRUE;
         SysTask_Done(task);
     }
 }
 
-static void InitSprites(HMCutIn *cutIn)
+static void InitSpriteResources(HMCutIn *cutIn)
 {
     NARC *cutInNarc = GetFieldCutInNarc2();
 
-    ov6_02244F80(cutIn, (FX32_ONE * 0), (FX32_ONE * 192), (FX32_ONE * 1), (FX32_ONE * 192));
+    SetCutInWindowSize(cutIn, (FX32_ONE * 0), (FX32_ONE * 192), (FX32_ONE * 1), (FX32_ONE * 192));
     ov6_02244F2C(cutIn);
 
-    cutIn->bgPriority0 = Bg_GetPriority(cutIn->fieldSystem->bgConfig, BG_LAYER_MAIN_0);
-    cutIn->bgPriority3 = Bg_GetPriority(cutIn->fieldSystem->bgConfig, BG_LAYER_MAIN_3);
+    cutIn->bg0Priority = Bg_GetPriority(cutIn->fieldSystem->bgConfig, BG_LAYER_MAIN_0);
+    cutIn->bg3Priority = Bg_GetPriority(cutIn->fieldSystem->bgConfig, BG_LAYER_MAIN_3);
 
     G2_SetBG1Priority(1);
     G2_SetBG3Priority(0);
@@ -1703,16 +1702,16 @@ static void InitSprites(HMCutIn *cutIn)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
 }
 
-static void ov6_022448C8(HMCutIn *param0)
+static void DeleteSprites(HMCutIn *cutIn)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
-    sub_0207121C(param0->unk_244);
+    sub_0207121C(cutIn->unk_244);
 
-    ov6_02244F20(param0->fieldSystem->bgConfig);
-    ov6_02244B6C(param0);
+    CleartTileMapBG3(cutIn->fieldSystem->bgConfig);
+    DeleteSpriteResources(cutIn);
 
-    G2_SetBG0Priority(param0->bgPriority0);
-    G2_SetBG3Priority(param0->bgPriority3);
+    G2_SetBG0Priority(cutIn->bg0Priority);
+    G2_SetBG3Priority(cutIn->bg3Priority);
 
     FieldMessage_LoadTextPalettes(0, TRUE);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
@@ -1797,44 +1796,44 @@ static void LoadSpriteResources(HMCutIn *cutIn, NARC *narc)
         cutIn->animSource[index] = SpriteResourceCollection_AddFrom(cutIn->animLocation, narc, 18, 0, 1, 3, HEAP_ID_FIELD);
     }
 
-    cutIn->unk_270 = ov6_0224509C(cutIn->pokemon, &cutIn->monSpriteTemplate, HEAP_ID_FIELD);
-    cutIn->unk_274 = ov6_022450E4(&cutIn->monSpriteTemplate, HEAP_ID_FIELD);
+    cutIn->monCharSource = ov6_0224509C(cutIn->pokemon, &cutIn->monSpriteTemplate, HEAP_ID_FIELD);
+    cutIn->monPlttSource = ov6_022450E4(&cutIn->monSpriteTemplate, HEAP_ID_FIELD);
 }
 
-static void ov6_02244B6C(HMCutIn *param0)
+static void DeleteSpriteResources(HMCutIn *cutIn)
 {
-    int v0;
+    int index;
 
-    for (v0 = 0; v0 < 4; v0++) {
-        if (param0->charSource[v0] != NULL) {
-            SpriteTransfer_ResetCharTransfer(param0->charSource[v0]);
+    for (index = 0; index < 4; index++) {
+        if (cutIn->charSource[index] != NULL) {
+            SpriteTransfer_ResetCharTransfer(cutIn->charSource[index]);
         }
     }
 
-    for (v0 = 0; v0 < 3; v0++) {
-        if (param0->plttSource[v0] != NULL) {
-            SpriteTransfer_ResetPlttTransfer(param0->plttSource[v0]);
+    for (index = 0; index < 3; index++) {
+        if (cutIn->plttSource[index] != NULL) {
+            SpriteTransfer_ResetPlttTransfer(cutIn->plttSource[index]);
         }
     }
 
-    for (v0 = 0; v0 < 4; v0++) {
-        if (param0->cellSource[v0] != NULL) {
-            SpriteResource_ReleaseData(param0->cellSource[v0]);
+    for (index = 0; index < 4; index++) {
+        if (cutIn->cellSource[index] != NULL) {
+            SpriteResource_ReleaseData(cutIn->cellSource[index]);
         }
     }
 
-    for (v0 = 0; v0 < 2; v0++) {
-        if (param0->animSource[v0] != NULL) {
-            SpriteResource_ReleaseData(param0->animSource[v0]);
+    for (index = 0; index < 2; index++) {
+        if (cutIn->animSource[index] != NULL) {
+            SpriteResource_ReleaseData(cutIn->animSource[index]);
         }
     }
 
-    SpriteResourceCollection_Delete(param0->charLocation);
-    SpriteResourceCollection_Delete(param0->plttLocation);
-    SpriteResourceCollection_Delete(param0->cellLocation);
-    SpriteResourceCollection_Delete(param0->animLocation);
-    SpriteList_DeleteAll(param0->spriteList);
-    SpriteList_Delete(param0->spriteList);
+    SpriteResourceCollection_Delete(cutIn->charLocation);
+    SpriteResourceCollection_Delete(cutIn->plttLocation);
+    SpriteResourceCollection_Delete(cutIn->cellLocation);
+    SpriteResourceCollection_Delete(cutIn->animLocation);
+    SpriteList_DeleteAll(cutIn->spriteList);
+    SpriteList_Delete(cutIn->spriteList);
 }
 
 static void UpdateSpriteList(HMCutIn *cutIn)
@@ -1924,19 +1923,19 @@ static Sprite *InitPlayerSprite(HMCutIn *cutIn, const VecFx32 *position)
     return playerSprite;
 }
 
-static void ov6_02244D34(Sprite *param0)
+static void StartPlayerAnim(Sprite *param0)
 {
     Sprite_SetAnimateFlag(param0, 1);
     Sprite_SetAnimSpeed(param0, FX32_ONE);
 }
 
-static Sprite *ov6_02244D4C(HMCutIn *param0, const VecFx32 *param1, int param2, int param3)
+static Sprite *ov6_02244D4C(HMCutIn *cutIn, const VecFx32 *param1, int param2, int param3)
 {
     Sprite *v0;
     VecFx32 v1 = { 0, 0, 0 };
     VecFx32 v2 = { 0x1000, 0x1000, 0 };
 
-    v0 = CreateSprite(param0, param1, 0, 0, 0, 0xffffffff, 0, param2);
+    v0 = CreateSprite(cutIn, param1, 0, 0, 0, 0xffffffff, 0, param2);
 
     Sprite_SetAffineOverwriteMode(v0, 2);
     Sprite_SetAffineTranslation(v0, &v1);
@@ -1946,14 +1945,14 @@ static Sprite *ov6_02244D4C(HMCutIn *param0, const VecFx32 *param1, int param2, 
     return v0;
 }
 
-static void ov6_02244DB4(HMCutIn *param0)
+static void ov6_02244DB4(HMCutIn *cutIn)
 {
     int v0;
     NARC *v1 = GetFieldCutInNarc2();
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param0->charSource[v0] == NULL) {
-            param0->charSource[v0] = SpriteResourceCollection_AddTilesFrom(param0->charLocation, v1, 7, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD);
+        if (cutIn->charSource[v0] == NULL) {
+            cutIn->charSource[v0] = SpriteResourceCollection_AddTilesFrom(cutIn->charLocation, v1, 7, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD);
             break;
         }
     }
@@ -1961,8 +1960,8 @@ static void ov6_02244DB4(HMCutIn *param0)
     GF_ASSERT(v0 < 4);
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param0->cellSource[v0] == NULL) {
-            param0->cellSource[v0] = SpriteResourceCollection_AddFrom(param0->cellLocation, v1, 8, 0, 0, 2, HEAP_ID_FIELD);
+        if (cutIn->cellSource[v0] == NULL) {
+            cutIn->cellSource[v0] = SpriteResourceCollection_AddFrom(cutIn->cellLocation, v1, 8, 0, 0, 2, HEAP_ID_FIELD);
             break;
         }
     }
@@ -2006,81 +2005,81 @@ static void LoadBgScreenData(BgConfig *bgConfig, NARC *narc, u32 memberIndex, NN
     Heap_Free(nscrFile);
 }
 
-static void ov6_02244F20(BgConfig *param0)
+static void CleartTileMapBG3(BgConfig *bgConfig)
 {
-    Bg_ClearTilemap(param0, BG_LAYER_MAIN_3);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_3);
 }
 
 static void ov6_02244F2C(HMCutIn *cutIn)
 {
-    ov6_02244F8C(cutIn);
-    cutIn->unk_2C = 0;
+    CreateCutInWindowTask(cutIn);
+    cutIn->updateWindow = 0;
 
     ov6_02244F58(cutIn);
     ov6_02244F60(cutIn);
     ov6_02244F50(cutIn);
 
-    cutIn->unk_2C = 1;
+    cutIn->updateWindow = 1;
 }
 
-static void ov6_02244F50(HMCutIn *param0)
+static void ov6_02244F50(HMCutIn *cutIn)
 {
-    param0->unk_30 = (GX_WNDMASK_W0);
+    cutIn->window = (GX_WNDMASK_W0);
 }
 
-static void ov6_02244F58(HMCutIn *param0)
+static void ov6_02244F58(HMCutIn *cutIn)
 {
-    param0->unk_30 = GX_WNDMASK_NONE;
+    cutIn->window = GX_WNDMASK_NONE;
 }
 
-static void ov6_02244F60(HMCutIn *param0)
+static void ov6_02244F60(HMCutIn *cutIn)
 {
-    param0->unk_34 = (GX_WND_PLANEMASK_BG3) | GX_WND_PLANEMASK_OBJ;
-    param0->unk_38 = 0;
-    param0->unk_3C = (GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ) & (~(GX_WND_PLANEMASK_BG3));
-    param0->unk_40 = 1;
+    cutIn->planeMaskInside = (GX_WND_PLANEMASK_BG3) | GX_WND_PLANEMASK_OBJ;
+    cutIn->effectInside = 0;
+    cutIn->planeMaskOutside = (GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ) & (~(GX_WND_PLANEMASK_BG3));
+    cutIn->effectOutside = 1;
 }
 
-static void ov6_02244F74(HMCutIn *param0)
+static void ov6_02244F74(HMCutIn *cutIn)
 {
-    param0->unk_3C = (GX_WND_PLANEMASK_OBJ | GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3) & (~(GX_WND_PLANEMASK_BG3));
-    param0->unk_40 = 1;
+    cutIn->planeMaskOutside = (GX_WND_PLANEMASK_OBJ | GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3) & (~(GX_WND_PLANEMASK_BG3));
+    cutIn->effectOutside = 1;
 }
 
-static void ov6_02244F80(HMCutIn *cutIn, fx32 param1, fx32 param2, fx32 param3, fx32 param4)
+static void SetCutInWindowSize(HMCutIn *cutIn, fx32 x1, fx32 y1, fx32 x2, fx32 y2)
 {
-    cutIn->unk_44 = param1;
-    cutIn->unk_48 = param3;
-    cutIn->unk_4C = param2;
-    cutIn->unk_50 = param4;
+    cutIn->windowX1 = x1;
+    cutIn->windowX2 = x2;
+    cutIn->windowY1 = y1;
+    cutIn->windowY2 = y2;
 }
 
-static void ov6_02244F8C(HMCutIn *param0)
+static void CreateCutInWindowTask(HMCutIn *cutIn)
 {
-    GF_ASSERT(param0->unk_27C == NULL);
-    param0->unk_27C = SysTask_ExecuteOnVBlank(ov6_02244FE4, param0, 0x81);
+    GF_ASSERT(cutIn->windowTask == NULL);
+    cutIn->windowTask = SysTask_ExecuteOnVBlank(SysTask_ShowCutInWindow, cutIn, 0x81);
 }
 
-static void ov6_02244FB4(HMCutIn *param0)
+static void DeleteWindowTask(HMCutIn *cutIn)
 {
-    GF_ASSERT(param0->unk_27C != NULL);
+    GF_ASSERT(cutIn->windowTask != NULL);
 
-    SysTask_Done(param0->unk_27C);
+    SysTask_Done(cutIn->windowTask);
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
 }
 
-static void ov6_02244FE4(SysTask *param0, void *param1)
+static void SysTask_ShowCutInWindow(SysTask *task, void *hmCutInPtr)
 {
-    HMCutIn *v0 = param1;
+    HMCutIn *cutIn = hmCutInPtr;
 
-    if (v0->unk_2C == 0) {
+    if (cutIn->updateWindow == 0) {
         return;
     }
 
-    GX_SetVisibleWnd(v0->unk_30);
-    G2_SetWnd0InsidePlane(v0->unk_34, v0->unk_38);
-    G2_SetWndOutsidePlane(v0->unk_3C, v0->unk_40);
-    G2_SetWnd0Position(v0->unk_44 / FX32_ONE, v0->unk_4C / FX32_ONE, v0->unk_48 / FX32_ONE, v0->unk_50 / FX32_ONE);
+    GX_SetVisibleWnd(cutIn->window);
+    G2_SetWnd0InsidePlane(cutIn->planeMaskInside, cutIn->effectInside);
+    G2_SetWndOutsidePlane(cutIn->planeMaskOutside, cutIn->effectOutside);
+    G2_SetWnd0Position(cutIn->windowX1 / FX32_ONE, cutIn->windowY1 / FX32_ONE, cutIn->windowX2 / FX32_ONE, cutIn->windowY2 / FX32_ONE);
 }
 
 static void BuildMonSpriteTemplate(HMCutIn *cutIn, PokemonSpriteTemplate *spriteTemplate)
@@ -2114,18 +2113,18 @@ static SpriteResource *GetMonCharResource(HMCutIn *cutIn, NARC *narc)
     return spriteResource;
 }
 
-static void ov6_02245118(HMCutIn *param0, void *param1)
+static void LoadMonChar(HMCutIn *cutIn, void *imgSource)
 {
-    u32 v0;
-    SpriteResource *v1;
-    const NNSG2dImageProxy *v2;
+    u32 imageLocation;
+    SpriteResource *charResource;
+    const NNSG2dImageProxy *imageProxy;
 
-    v1 = SpriteResourceCollection_Find(param0->charLocation, 3);
-    v2 = SpriteTransfer_GetImageProxy(v1);
-    v0 = NNS_G2dGetImageLocation(v2, NNS_G2D_VRAM_TYPE_2DMAIN);
+    charResource = SpriteResourceCollection_Find(cutIn->charLocation, 3);
+    imageProxy = SpriteTransfer_GetImageProxy(charResource);
+    imageLocation = NNS_G2dGetImageLocation(imageProxy, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    DC_FlushRange((void *)param1, ((32 * 10) * 10));
-    GX_LoadOBJ(param1, v0, ((32 * 10) * 10));
+    DC_FlushRange((void *)imgSource, ((32 * 10) * 10));
+    GX_LoadOBJ(imgSource, imageLocation, ((32 * 10) * 10));
 }
 
 static SpriteResource *GetPlayerMalePlttResource(HMCutIn *cutIn, NARC *narc)
@@ -2134,61 +2133,61 @@ static SpriteResource *GetPlayerMalePlttResource(HMCutIn *cutIn, NARC *narc)
     return spriteResource;
 }
 
-static void ov6_02245170(HMCutIn *param0, void *param1)
+static void LoadMonPltt(HMCutIn *cutIn, void *imgSource)
 {
-    u32 v0;
-    SpriteResource *v1;
-    SpriteResource *v2;
-    NNSG2dImageProxy *v3;
-    const NNSG2dImagePaletteProxy *v4;
+    u32 plttLocation;
+    SpriteResource *plttResource;
+    SpriteResource *charResource;
+    NNSG2dImageProxy *imageProxy;
+    const NNSG2dImagePaletteProxy *plttProxy;
 
-    v2 = SpriteResourceCollection_Find(param0->charLocation, 3);
-    v3 = SpriteTransfer_GetImageProxy(v2);
-    v1 = SpriteResourceCollection_Find(param0->plttLocation, 2);
-    v4 = SpriteTransfer_GetPaletteProxy(v1, v3);
-    v0 = NNS_G2dGetImagePaletteLocation(v4, NNS_G2D_VRAM_TYPE_2DMAIN);
+    charResource = SpriteResourceCollection_Find(cutIn->charLocation, 3);
+    imageProxy = SpriteTransfer_GetImageProxy(charResource);
+    plttResource = SpriteResourceCollection_Find(cutIn->plttLocation, 2);
+    plttProxy = SpriteTransfer_GetPaletteProxy(plttResource, imageProxy);
+    plttLocation = NNS_G2dGetImagePaletteLocation(plttProxy, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    DC_FlushRange((void *)param1, 32);
-    GX_LoadOBJPltt(param1, v0, 32);
+    DC_FlushRange((void *)imgSource, 32);
+    GX_LoadOBJPltt(imgSource, plttLocation, 32);
 }
 
-static void ov6_022451B8(HMCutIn *param0)
+static void ov6_022451B8(HMCutIn *cutIn)
 {
     int v0;
-    SpriteResource *v1 = SpriteResourceCollection_Find(param0->charLocation, 3);
+    SpriteResource *v1 = SpriteResourceCollection_Find(cutIn->charLocation, 3);
 
     SpriteTransfer_ResetCharTransfer(v1);
-    SpriteResourceCollection_Remove(param0->charLocation, v1);
+    SpriteResourceCollection_Remove(cutIn->charLocation, v1);
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param0->charSource[v0] == v1) {
-            param0->charSource[v0] = NULL;
+        if (cutIn->charSource[v0] == v1) {
+            cutIn->charSource[v0] = NULL;
             break;
         }
     }
 
     GF_ASSERT(v0 < 4);
 
-    v1 = SpriteResourceCollection_Find(param0->plttLocation, 2);
+    v1 = SpriteResourceCollection_Find(cutIn->plttLocation, 2);
     SpriteTransfer_ResetPlttTransfer(v1);
-    SpriteResourceCollection_Remove(param0->plttLocation, v1);
+    SpriteResourceCollection_Remove(cutIn->plttLocation, v1);
 
     for (v0 = 0; v0 < 3; v0++) {
-        if (param0->plttSource[v0] == v1) {
-            param0->plttSource[v0] = NULL;
+        if (cutIn->plttSource[v0] == v1) {
+            cutIn->plttSource[v0] = NULL;
             break;
         }
     }
 
     GF_ASSERT(v0 < 3);
-    v1 = SpriteResourceCollection_Find(param0->cellLocation, 3);
+    v1 = SpriteResourceCollection_Find(cutIn->cellLocation, 3);
 
     SpriteResource_ReleaseData(v1);
-    SpriteResourceCollection_Remove(param0->cellLocation, v1);
+    SpriteResourceCollection_Remove(cutIn->cellLocation, v1);
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param0->cellSource[v0] == v1) {
-            param0->cellSource[v0] = NULL;
+        if (cutIn->cellSource[v0] == v1) {
+            cutIn->cellSource[v0] = NULL;
             break;
         }
     }
@@ -2196,10 +2195,10 @@ static void ov6_022451B8(HMCutIn *param0)
     GF_ASSERT(v0 < 4);
 }
 
-static Sprite *ov6_0224529C(HMCutIn *cutIn, const VecFx32 *param1)
+static Sprite *InitMonSprite(HMCutIn *cutIn, const VecFx32 *position)
 {
-    Sprite *v0 = CreateSprite(cutIn, param1, 3, 2, 3, 0xffffffff, 0, 129);
-    return v0;
+    Sprite *monSprite = CreateSprite(cutIn, position, 3, 2, 3, 0xffffffff, 0, 129);
+    return monSprite;
 }
 
 static const UnkStruct_ov101_021D86B0 Unk_ov6_02249220;
@@ -2243,17 +2242,17 @@ static void ov6_022452BC(HMCutIn *cutIn, int param1)
     }
 }
 
-static void ov6_02245328(HMCutIn *param0, const VecFx32 *param1, const VecFx32 *param2, int param3, int param4, int param5)
+static void ov6_02245328(HMCutIn *cutIn, const VecFx32 *param1, const VecFx32 *param2, int param3, int param4, int param5)
 {
     UnkStruct_ov101_021D5D90 *v0;
     UnkStruct_ov6_02245328 v1;
 
     v1.unk_00 = param3;
     v1.unk_04 = param5;
-    v1.cutIn = param0;
+    v1.cutIn = cutIn;
     v1.unk_0C = *param2;
 
-    v0 = sub_02071330(param0->unk_244, &Unk_ov6_02249220, param1, param4, &v1, 132);
+    v0 = sub_02071330(cutIn->unk_244, &Unk_ov6_02249220, param1, param4, &v1, 132);
 }
 
 static int ov6_02245364(UnkStruct_ov101_021D5D90 *param0, void *param1)
@@ -2297,7 +2296,7 @@ static void ov6_022453B8(UnkStruct_ov101_021D5D90 *param0, void *param1)
 
         if (v2->unk_14 == 2) {
             int v3 = 0;
-            fx32 v4 = v2->unk_4C, v5 = v2->unk_50;
+            fx32 v4 = v2->windowY1, v5 = v2->windowY2;
 
             if (((v0.y - (FX32_ONE * 2)) >= v4) && ((v0.y - (FX32_ONE * 2)) <= v5) && ((v0.y + (FX32_ONE * 2)) >= v4) && ((v0.y + (FX32_ONE * 2)) <= v5)) {
                 v3 = 1;
@@ -2323,24 +2322,24 @@ static const UnkStruct_ov101_021D86B0 Unk_ov6_02249220 = {
     ov6_02245438
 };
 
-static void ov6_0224543C(HMCutIn *param0)
+static void ov6_0224543C(HMCutIn *cutIn)
 {
     VecFx32 v0 = { 0, 0, 0 };
     UnkStruct_ov6_0224543C v1;
 
-    v1.cutIn = param0;
-    param0->unk_250 = sub_02071330(param0->unk_244, &Unk_ov6_02249248, &v0, 0, &v1, 130);
+    v1.cutIn = cutIn;
+    cutIn->unk_250 = sub_02071330(cutIn->unk_244, &Unk_ov6_02249248, &v0, 0, &v1, 130);
 }
 
-static int ov6_02245470(HMCutIn *param0)
+static int ov6_02245470(HMCutIn *cutIn)
 {
-    UnkStruct_ov6_02249198 *v0 = sub_02071598(param0->unk_250);
+    UnkStruct_ov6_02249198 *v0 = sub_02071598(cutIn->unk_250);
     return v0->unk_02;
 }
 
-static void ov6_02245480(HMCutIn *param0)
+static void ov6_02245480(HMCutIn *cutIn)
 {
-    UnkStruct_ov6_02249198 *v0 = sub_02071598(param0->unk_250);
+    UnkStruct_ov6_02249198 *v0 = sub_02071598(cutIn->unk_250);
 
     if (v0->unk_60) {
         sub_0207136C(v0->unk_60);
@@ -2350,7 +2349,7 @@ static void ov6_02245480(HMCutIn *param0)
         ov5_021F0EFC(v0->unk_64);
     }
 
-    sub_0207136C(param0->unk_250);
+    sub_0207136C(cutIn->unk_250);
 }
 
 static int ov6_022454B0(UnkStruct_ov101_021D5D90 *param0, void *param1)
@@ -2414,11 +2413,11 @@ static int (*const Unk_ov6_022490E8[])(UnkStruct_ov6_02249198 *) = {
     ov6_0224550C
 };
 
-static void ov6_0224551C(HMCutIn *param0)
+static void ov6_0224551C(HMCutIn *cutIn)
 {
     VecFx32 v0 = { (FX32_ONE * (128 + 8)), (FX32_ONE * (96 - 8)), 0 };
     VecFx32 v1 = { 0x400, 0x400, 0 };
-    UnkStruct_ov6_02249198 *v2 = sub_02071598(param0->unk_250);
+    UnkStruct_ov6_02249198 *v2 = sub_02071598(cutIn->unk_250);
 
     v2->unk_00 = 1;
     v2->unk_01 = 0;
@@ -2503,11 +2502,11 @@ static int (*const Unk_ov6_022490F0[])(UnkStruct_ov6_02249198 *) = {
     ov6_022456D0
 };
 
-static void ov6_022456D4(HMCutIn *param0)
+static void ov6_022456D4(HMCutIn *cutIn)
 {
     VecFx32 v0 = { (FX32_ONE * 128), (FX32_ONE * 104), 0 };
     VecFx32 v1 = { 0x1400, 0x1400, 0 };
-    UnkStruct_ov6_02249198 *v2 = sub_02071598(param0->unk_250);
+    UnkStruct_ov6_02249198 *v2 = sub_02071598(cutIn->unk_250);
 
     v2->unk_00 = 2;
     v2->unk_01 = 0;
@@ -2534,9 +2533,9 @@ static void ov6_022456D4(HMCutIn *param0)
     Sprite_SetAffineZRotation(v2->unk_58, CalcAngleRotationIdx_Wraparound((v2->unk_38) / FX32_ONE));
     Sprite_SetDrawFlag(v2->unk_58, TRUE);
 
-    v2->unk_60 = ov6_02245B4C(param0->unk_244, param0->playerSprite);
-    param0->unk_1C = 1;
-    v2->unk_64 = ov5_021F0EB0(param0->fieldSystem, HEAP_ID_FIELD);
+    v2->unk_60 = ov6_02245B4C(cutIn->unk_244, cutIn->playerSprite);
+    cutIn->unk_1C = 1;
+    v2->unk_64 = ov5_021F0EB0(cutIn->fieldSystem, HEAP_ID_FIELD);
 
     ov5_021F0F10(v2->unk_64, 1, -(FX32_ONE * 120), 12);
 
@@ -3074,9 +3073,9 @@ static void *ov6_02245F44(u32 heapID, int param1)
     return v0;
 }
 
-static void ov6_02245F64(HMCutIn *param0, int param1)
+static void ov6_02245F64(HMCutIn *cutIn, int param1)
 {
-    MapObject *v0 = Player_MapObject(param0->fieldSystem->playerAvatar);
+    MapObject *v0 = Player_MapObject(cutIn->fieldSystem->playerAvatar);
 
     MapObject_SetPauseMovementOff(v0);
     MapObject_SetHidden(v0, param1);
@@ -3097,19 +3096,19 @@ static void ov6_02245F94(UnkStruct_ov101_021D5D90 *param0, void *param1)
     const VecFx32 *v3;
     UnkStruct_ov6_02245F80 *v4 = param1;
 
-    v3 = Sprite_GetPosition(v4->unk_00);
+    v3 = Sprite_GetPosition(v4->playerSprite);
     v0 = v3->y;
-    v1 = v4->unk_04->unk_4C;
-    v2 = v4->unk_04->unk_50;
+    v1 = v4->cutIn->windowY1;
+    v2 = v4->cutIn->windowY2;
 
-    if (v4->unk_04->unk_1C == 0) {
+    if (v4->cutIn->unk_1C == 0) {
         if (((v0 - (FX32_ONE * 8)) >= v1) && ((v0 + (FX32_ONE * 8)) <= v2)) {
-            Sprite_SetDrawFlag(v4->unk_00, TRUE);
+            Sprite_SetDrawFlag(v4->playerSprite, TRUE);
         } else {
-            Sprite_SetDrawFlag(v4->unk_00, FALSE);
+            Sprite_SetDrawFlag(v4->playerSprite, FALSE);
         }
     } else {
-        Sprite_SetDrawFlag(v4->unk_00, TRUE);
+        Sprite_SetDrawFlag(v4->playerSprite, TRUE);
     }
 }
 
@@ -3121,15 +3120,15 @@ static const UnkStruct_ov101_021D86B0 Unk_ov6_02249234 = {
     sub_020715FC
 };
 
-static void ov6_02245FDC(HMCutIn *param0)
+static void ov6_02245FDC(HMCutIn *cutIn)
 {
     VecFx32 v0 = { 0, 0, 0 };
     UnkStruct_ov6_02245F80 v1;
 
-    v1.unk_00 = param0->playerSprite;
-    v1.unk_04 = param0;
+    v1.playerSprite = cutIn->playerSprite;
+    v1.cutIn = cutIn;
 
-    param0->unk_254 = sub_02071330(param0->unk_244, &Unk_ov6_02249234, &v0, 0, &v1, 134);
+    cutIn->unk_254 = sub_02071330(cutIn->unk_244, &Unk_ov6_02249234, &v0, 0, &v1, 134);
 }
 
 static void ov6_02246018(HMCutIn *param0)
