@@ -84,7 +84,7 @@ enum GBAMigratorState {
     GBA_MIGRATOR_STATE_12,
     GBA_MIGRATOR_STATE_13,
     GBA_MIGRATOR_STATE_14,
-    GBA_MIGRATOR_STATE_15,
+    GBA_MIGRATOR_STATE_WAIT_FOR_FULL_SELECTION_TIMER,
     GBA_MIGRATOR_STATE_16,
     GBA_MIGRATOR_STATE_17,
     GBA_MIGRATOR_STATE_18,
@@ -92,15 +92,15 @@ enum GBAMigratorState {
     GBA_MIGRATOR_STATE_20,
     GBA_MIGRATOR_STATE_21,
     GBA_MIGRATOR_STATE_22,
-    GBA_MIGRATOR_STATE_23,
+    GBA_MIGRATOR_STATE_FADE_OUT_TO_SELECTED_MON,
     GBA_MIGRATOR_STATE_24,
 };
 
 enum GBAMonState {
-    GBA_MON_STATE_0,
-    GBA_MON_STATE_1,
-    GBA_MON_STATE_2,
-    GBA_MON_STATE_3,
+    GBA_MON_STATE_NONE,
+    GBA_MON_STATE_SELECTED,
+    GBA_MON_STATE_DESELECTED,
+    GBA_MON_STATE_EMPTY_SLOT,
     GBA_MON_STATE_IS_EGG,
     GBA_MON_STATE_HAS_HM,
     GBA_MON_STATE_HAS_INVALID_ITEM,
@@ -171,7 +171,7 @@ typedef struct {
     int messageEntryID;
     int unk_0C;
     SaveData *saveData;
-    TrainerInfo *unk_14;
+    TrainerInfo *trainerInfo;
     Options *options;
     int messageBoxFrame;
     BgConfig *bgConfig;
@@ -188,7 +188,7 @@ typedef struct {
     Sprite *unk_41C[4];
     SelectedMonData selectedMonData[CATCHING_SHOW_MONS];
     int selectedCount;
-    Sprite *unk_478[CATCHING_SHOW_MONS];
+    Sprite *selectedMonIcons[CATCHING_SHOW_MONS];
     UnkStruct_ov97_02233DAC unk_490;
     Window unk_4DC;
     Window unk_4EC;
@@ -198,7 +198,7 @@ typedef struct {
     u32 unk_514[14580];
     GBAPokemonStorage *pokemonStorage;
     int currentBox;
-    int unk_E8E8;
+    int fullSelectionTimer; // Used track how long to wait until fade out once all 6 mon have been selected.
     UnkStruct_02015920 *unk_E8EC;
     UnkStruct_ov97_02233B8C unk_E8F0;
     UnkStruct_ov97_0223F434 unk_E8FC[GBA_MAX_MONS_PER_BOX];
@@ -668,16 +668,16 @@ static u8 GetSpeciesGBAForm(int speciesNDS, u32 personality, int gbaVersion)
         default:
         case VERSION_RUBY:
         case VERSION_SAPPHIRE:
-            form = 0;
+            form = DEOXYS_FORM_NORMAL;
             break;
         case VERSION_FIRERED:
-            form = 1;
+            form = DEOXYS_FORM_ATTACK;
             break;
         case VERSION_LEAFGREEN:
-            form = 2;
+            form = DEOXYS_FORM_DEFENSE;
             break;
         case VERSION_EMERALD:
-            form = 3;
+            form = DEOXYS_FORM_SPEED;
             break;
         }
 
@@ -687,7 +687,7 @@ static u8 GetSpeciesGBAForm(int speciesNDS, u32 personality, int gbaVersion)
     return form;
 }
 
-static void ov97_02234278(int species, int isEgg, u32 personality, int gbaVersion, int param4, Sprite *param5)
+static void ov97_02234278(int species, int isEgg, u32 personality, int gbaVersion, int param4, Sprite *iconSprite)
 {
     u8 *v0;
     u8 form;
@@ -701,7 +701,7 @@ static void ov97_02234278(int species, int isEgg, u32 personality, int gbaVersio
     DC_FlushRange(v2->pRawData, ((4 * 4) * 0x20));
     GX_LoadOBJ(v2->pRawData, (0x64 + param4 * (4 * 4)) * 0x20, ((4 * 4) * 0x20));
 
-    Sprite_SetExplicitPalette(param5, PokeIconPaletteIndex(species, form, isEgg) + 8);
+    Sprite_SetExplicitPalette(iconSprite, PokeIconPaletteIndex(species, form, isEgg) + 8);
     Heap_Free(v0);
 }
 
@@ -1079,13 +1079,13 @@ static BOOL IsBoxMonGBAInvalidSpecies(GBAMigrator *migrator, int boxPosition)
     return IsGBASpeciesInvalid(species);
 }
 
-static int ov97_02234854(GBAMigrator *migrator, int boxPosition)
+static int GBAMigrator_TrySelectGBABoxMon(GBAMigrator *migrator, int boxPosition)
 {
     int i, v1;
 
     if (migrator->unk_20C[boxPosition].monIconSprite != NULL
         && (Sprite_GetDrawFlag(migrator->unk_20C[boxPosition].monIconSprite) == FALSE)) {
-        return GBA_MON_STATE_3;
+        return GBA_MON_STATE_EMPTY_SLOT;
     }
 
     for (v1 = -1, i = 0; v1 == -1 && i < CATCHING_SHOW_MONS; i++) {
@@ -1115,7 +1115,7 @@ static int ov97_02234854(GBAMigrator *migrator, int boxPosition)
         VecFx32 v3;
 
         if (migrator->selectedCount == CATCHING_SHOW_MONS) {
-            return GBA_MON_STATE_0;
+            return GBA_MON_STATE_NONE;
         }
 
         for (i = 0; i < CATCHING_SHOW_MONS; i++) {
@@ -1135,7 +1135,7 @@ static int ov97_02234854(GBAMigrator *migrator, int boxPosition)
                 migrator->selectedMonData[i].boxId = migrator->currentBox;
                 migrator->selectedCount++;
 
-                return GBA_MON_STATE_1;
+                return GBA_MON_STATE_SELECTED;
             }
         }
     } else {
@@ -1144,10 +1144,10 @@ static int ov97_02234854(GBAMigrator *migrator, int boxPosition)
         migrator->selectedMonData[v1].boxPosition = -1;
         migrator->selectedCount--;
 
-        return GBA_MON_STATE_2;
+        return GBA_MON_STATE_DESELECTED;
     }
 
-    return GBA_MON_STATE_0;
+    return GBA_MON_STATE_NONE;
 }
 
 static void ov97_022349E0(GBAMigrator *migrator)
@@ -1213,7 +1213,7 @@ static void ov97_02234AB4(GBAMigrator *migrator, GBABoxPokemon *gbaBoxMon)
     Bg_CopyTilemapBufferToVRAM(migrator->bgConfig, BG_LAYER_MAIN_2);
 }
 
-static void ov97_02234B0C(GBAMigrator *migrator, GBABoxPokemon *gbaBoxMon)
+static void PrintGBABoxMonInfo(GBAMigrator *migrator, GBABoxPokemon *gbaBoxMon)
 {
     int species, level;
     int gbaItemID, itemID;
@@ -1313,12 +1313,12 @@ static void ov97_02234B0C(GBAMigrator *migrator, GBABoxPokemon *gbaBoxMon)
     Sound_PlayPokemonCry(species, 0);
 }
 
-static void ov97_02234CC4(GBAMigrator *migrator, int param1, int param2, int *state)
+static void ov97_02234CC4(GBAMigrator *migrator, enum FadeType fadeType, int param2, int *state)
 {
-    StartScreenFade(FADE_BOTH_SCREENS, param1, param1, 0x0, 6, 1, HEAP_ID_MIGRATE_FROM_GBA);
+    StartScreenFade(FADE_BOTH_SCREENS, fadeType, fadeType, COLOR_BLACK, 6, 1, HEAP_ID_MIGRATE_FROM_GBA);
 
     if (state != NULL) {
-        *state = GBA_MIGRATOR_STATE_23;
+        *state = GBA_MIGRATOR_STATE_FADE_OUT_TO_SELECTED_MON;
     }
 
     migrator->unk_24 = param2;
@@ -1326,10 +1326,10 @@ static void ov97_02234CC4(GBAMigrator *migrator, int param1, int param2, int *st
 
 static void ov97_02234CF4(GBAMigrator *migrator, enum FadeType fadeType, int param2, int *state)
 {
-    StartScreenFade(FADE_BOTH_SCREENS, fadeType, fadeType, RGB(31, 31, 31), 6, 1, HEAP_ID_MIGRATE_FROM_GBA);
+    StartScreenFade(FADE_BOTH_SCREENS, fadeType, fadeType, COLOR_WHITE, 6, 1, HEAP_ID_MIGRATE_FROM_GBA);
 
     if (state != NULL) {
-        *state = GBA_MIGRATOR_STATE_23;
+        *state = GBA_MIGRATOR_STATE_FADE_OUT_TO_SELECTED_MON;
     }
 
     migrator->unk_24 = param2;
@@ -1516,19 +1516,19 @@ static void ov97_02234F88(GBAMigrator *migrator)
         v5.position.x = FX32_ONE * (i * 40 + 28);
         v5.position.y = FX32_ONE * 142;
 
-        migrator->unk_478[i] = SpriteList_AddAffine(&v5);
+        migrator->selectedMonIcons[i] = SpriteList_AddAffine(&v5);
 
-        Sprite_SetAnimateFlag(migrator->unk_478[i], 1);
-        Sprite_SetAnim(migrator->unk_478[i], 10 + i);
-        Sprite_SetExplicitPriority(migrator->unk_478[i], 1);
-        Sprite_SetDrawFlag(migrator->unk_478[i], TRUE);
+        Sprite_SetAnimateFlag(migrator->selectedMonIcons[i], 1);
+        Sprite_SetAnim(migrator->selectedMonIcons[i], 10 + i);
+        Sprite_SetExplicitPriority(migrator->selectedMonIcons[i], 1);
+        Sprite_SetDrawFlag(migrator->selectedMonIcons[i], TRUE);
 
         species = GetGBABoxMonSpeciesInBox(migrator, migrator->selectedMonData[i].boxId, migrator->selectedMonData[i].boxPosition);
         isEgg = IsGBABoxMonEggInBox(migrator, migrator->selectedMonData[i].boxId, migrator->selectedMonData[i].boxPosition);
         personality = GetGBABoxMonPersonalityInBox(migrator, migrator->selectedMonData[i].boxId, migrator->selectedMonData[i].boxPosition);
         gbaVersion = gSystem.gbaCartridgeVersion;
 
-        ov97_02234278(species, isEgg, personality, gbaVersion, i, migrator->unk_478[i]);
+        ov97_02234278(species, isEgg, personality, gbaVersion, i, migrator->selectedMonIcons[i]);
     }
 
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 21, migrator->bgConfig, 2, 0, 32 * 24 * 2, 1, HEAP_ID_MIGRATE_FROM_GBA);
@@ -1558,7 +1558,7 @@ static void ResetChosenPokemonData(GBAMigrator *migrator)
     int i;
 
     for (i = 0; i < CATCHING_SHOW_MONS; i++) {
-        Sprite_Delete(migrator->unk_478[i]);
+        Sprite_Delete(migrator->selectedMonIcons[i]);
     }
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
@@ -1833,7 +1833,7 @@ static int GBAMigrator_Init(ApplicationManager *appMan, int *state)
     SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
 
     migrator->saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
-    migrator->unk_14 = SaveData_GetTrainerInfo(migrator->saveData);
+    migrator->trainerInfo = SaveData_GetTrainerInfo(migrator->saveData);
     migrator->options = SaveData_GetOptions(migrator->saveData);
     migrator->messageBoxFrame = Options_Frame(migrator->options);
     migrator->unk_12668 = Strbuf_Init(256, HEAP_ID_MIGRATE_FROM_GBA);
@@ -1905,14 +1905,14 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
 
         if (migrator->canMigrateStatus == CANNOT_MIGRATE_GBA_PAK_READ_ERROR) {
-            ov97_02234CC4(migrator, 1, 11, state);
+            ov97_02234CC4(migrator, FADE_TYPE_BRIGHTNESS_IN, 11, state);
         } else {
             *state = GBA_MIGRATOR_STATE_2;
         }
         break;
     case GBA_MIGRATOR_STATE_2:
         ov97_02235344(migrator);
-        ov97_02234CC4(migrator, 1, 3, state);
+        ov97_02234CC4(migrator, FADE_TYPE_BRIGHTNESS_IN, 3, state);
         break;
     case GBA_MIGRATOR_STATE_3:
         boxPos = sub_020159FC(migrator->unk_E8EC);
@@ -1969,7 +1969,7 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
         break;
     case GBA_MIGRATOR_STATE_7:
         if (gSystem.touchPressed || gSystem.pressedKeys) {
-            ov97_02234CC4(migrator, 0, 12, state);
+            ov97_02234CC4(migrator, FADE_TYPE_BRIGHTNESS_OUT, 12, state);
         }
         break;
     case GBA_MIGRATOR_STATE_8:
@@ -2015,8 +2015,8 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
         SetVBlankCallback(ov97_022353CC, migrator);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
-        ov97_02234B0C(migrator, NULL);
-        ov97_02234CC4(migrator, 1, 13, state);
+        PrintGBABoxMonInfo(migrator, NULL);
+        ov97_02234CC4(migrator, FADE_TYPE_BRIGHTNESS_IN, 13, state);
 
         break;
     case GBA_MIGRATOR_STATE_13:
@@ -2024,17 +2024,17 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
 
         if (boxPos != -1) {
             if (boxPos < GBA_MAX_MONS_PER_BOX) {
-                gbaMonValidity = ov97_02234854(migrator, boxPos);
+                gbaMonValidity = GBAMigrator_TrySelectGBABoxMon(migrator, boxPos);
 
-                if (gbaMonValidity == GBA_MON_STATE_1) {
-                    ov97_02234B0C(migrator, &(migrator->pokemonStorage->boxes[migrator->currentBox][boxPos]));
+                if (gbaMonValidity == GBA_MON_STATE_SELECTED) {
+                    PrintGBABoxMonInfo(migrator, &(migrator->pokemonStorage->boxes[migrator->currentBox][boxPos]));
 
                     if (migrator->selectedCount == CATCHING_SHOW_MONS) {
-                        migrator->unk_E8E8 = 45;
-                        *state = GBA_MIGRATOR_STATE_15;
+                        migrator->fullSelectionTimer = 45;
+                        *state = GBA_MIGRATOR_STATE_WAIT_FOR_FULL_SELECTION_TIMER;
                     }
-                } else if (gbaMonValidity == GBA_MON_STATE_2) {
-                    ov97_02234B0C(migrator, NULL);
+                } else if (gbaMonValidity == GBA_MON_STATE_DESELECTED) {
+                    PrintGBABoxMonInfo(migrator, NULL);
                 } else if (gbaMonValidity == GBA_MON_STATE_IS_EGG) {
                     migrator->messageEntryID = MigrateFromGBA_Text_EggCannotMigrate;
                     *state = GBA_MIGRATOR_STATE_14;
@@ -2082,14 +2082,14 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
             *state = GBA_MIGRATOR_STATE_13;
         }
         break;
-    case GBA_MIGRATOR_STATE_15:
-        if (--migrator->unk_E8E8 == 0) {
-            ov97_02234CC4(migrator, 0, 16, state);
+    case GBA_MIGRATOR_STATE_WAIT_FOR_FULL_SELECTION_TIMER:
+        if (--migrator->fullSelectionTimer == 0) {
+            ov97_02234CC4(migrator, FADE_TYPE_BRIGHTNESS_OUT, 16, state);
         }
         break;
     case GBA_MIGRATOR_STATE_16:
         ov97_02234F88(migrator);
-        ov97_02234CC4(migrator, 1, 17, state);
+        ov97_02234CC4(migrator, FADE_TYPE_BRIGHTNESS_IN, 17, state);
         ov97_02235310(migrator);
 
         break;
@@ -2103,7 +2103,7 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
             break;
         case 2:
             sub_02015A54(migrator->unk_E8EC);
-            ov97_02234CC4(migrator, 0, 20, state);
+            ov97_02234CC4(migrator, FADE_TYPE_BRIGHTNESS_OUT, 20, state);
             break;
         }
         break;
@@ -2133,7 +2133,7 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
             break;
         case 2:
             sub_02015A54(migrator->unk_E8EC);
-            ov97_02234CC4(migrator, 0, 20, state);
+            ov97_02234CC4(migrator, FADE_TYPE_BRIGHTNESS_OUT, 20, state);
             break;
         }
         break;
@@ -2165,7 +2165,7 @@ static int GBAMigrator_Main(ApplicationManager *appMan, int *state)
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         }
         break;
-    case GBA_MIGRATOR_STATE_23:
+    case GBA_MIGRATOR_STATE_FADE_OUT_TO_SELECTED_MON:
         if (IsScreenFadeDone()) {
             *state = migrator->unk_24;
         }
