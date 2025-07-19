@@ -383,7 +383,7 @@ static void ov83_0223CF2C(UnkStruct_ov83_0223B784 *param0)
 {
     int v0;
 
-    param0->unk_15E0.unk_00 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0464, param0->heapID);
+    param0->unk_15E0.unk_00 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POFFIN_MAKING, param0->heapID);
     param0->unk_15E0.unk_04 = StringTemplate_New(4, 64, param0->heapID);
     param0->unk_15E0.unk_08 = Strbuf_Init(64, param0->heapID);
     param0->unk_15E0.unk_0C = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 0);
