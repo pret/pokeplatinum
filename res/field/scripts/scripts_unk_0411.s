@@ -85,7 +85,7 @@ _00DF:
 
 _00E8:
     GoToIfUnset FLAG_UNK_0x09BA, _0104
-    ScrCmd_1E8 VAR_RESULT
+    CheckLocalDexCompleted VAR_RESULT
     CallIfEq VAR_RESULT, 1, _0120
 _0104:
     ScrCmd_11E VAR_0x8004
