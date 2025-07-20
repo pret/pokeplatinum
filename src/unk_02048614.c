@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "constants/heap.h"
-#include "constants/trainer.h"
+#include "generated/trainer_message_types.h"
 
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -25,23 +25,6 @@
 #include "unk_020553DC.h"
 #include "unk_02067A84.h"
 #include "vars_flags.h"
-
-BOOL ScrCmd_0B6(ScriptContext *param0);
-BOOL ScrCmd_0B7(ScriptContext *param0);
-BOOL ScrCmd_0B8(ScriptContext *param0);
-BOOL ScrCmd_0B9(ScriptContext *param0);
-BOOL ScrCmd_GetTrainerID(ScriptContext *ctx);
-BOOL ScrCmd_StartTrainerBattle(ScriptContext *ctx);
-BOOL ScrCmd_StartTagBattle(ScriptContext *ctx);
-BOOL ScrCmd_GetTrainerMessageTypes(ScriptContext *ctx);
-BOOL ScrCmd_GetTrainerRematchMessageTypes(ScriptContext *ctx);
-BOOL ScrCmd_CheckIsTrainerDoubleBattle(ScriptContext *ctx);
-BOOL ScrCmd_BlackOutFromBattle(ScriptContext *ctx);
-BOOL ScrCmd_CheckHasTwoAliveMons(ScriptContext *ctx);
-BOOL ScrCmd_StartDummyTrainerBattle(ScriptContext *ctx);
-BOOL ScrCmd_0F0(ScriptContext *param0);
-BOOL ScrCmd_0F1(ScriptContext *param0);
-BOOL ScrCmd_314(ScriptContext *param0);
 
 BOOL ScrCmd_0B6(ScriptContext *param0)
 {
@@ -181,9 +164,9 @@ BOOL ScrCmd_GetTrainerMessageTypes(ScriptContext *ctx)
 {
     u16 isDoubleBattle, battlerIndex, preBattleMsgType, postBattleMsgType, notEnoughPokemonMessageType;
     u16 *scriptIDPtr = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_SCRIPT_ID);
-    u16 *destVar0 = ScriptContext_GetVarPointer(ctx);
-    u16 *destVar1 = ScriptContext_GetVarPointer(ctx);
-    u16 *destVar2 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVarPreBattleMsgType = ScriptContext_GetVarPointer(ctx);
+    u16 *destVarPostBattleMsgType = ScriptContext_GetVarPointer(ctx);
+    u16 *destVarNotEnoughPokemonMessageType = ScriptContext_GetVarPointer(ctx);
 
     isDoubleBattle = Script_IsTrainerDoubleBattle(Script_GetTrainerID(*scriptIDPtr));
 
@@ -205,9 +188,9 @@ BOOL ScrCmd_GetTrainerMessageTypes(ScriptContext *ctx)
         }
     }
 
-    *destVar0 = preBattleMsgType;
-    *destVar1 = postBattleMsgType;
-    *destVar2 = notEnoughPokemonMessageType;
+    *destVarPreBattleMsgType = preBattleMsgType;
+    *destVarPostBattleMsgType = postBattleMsgType;
+    *destVarNotEnoughPokemonMessageType = notEnoughPokemonMessageType;
 
     return FALSE;
 }
@@ -216,9 +199,9 @@ BOOL ScrCmd_GetTrainerRematchMessageTypes(ScriptContext *ctx)
 {
     u16 isDoubleBattle, battlerIndex, preBattleMsgType, postBattleMsgType, notEnoughPokemonMessageType;
     u16 *scriptIDPtr = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_SCRIPT_ID);
-    u16 *destVar0 = ScriptContext_GetVarPointer(ctx);
-    u16 *destVar1 = ScriptContext_GetVarPointer(ctx);
-    u16 *destVar2 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVarPreBattleMsgType = ScriptContext_GetVarPointer(ctx);
+    u16 *destVarPostBattleMsgType = ScriptContext_GetVarPointer(ctx);
+    u16 *destVarNotEnoughPokemonMessageType = ScriptContext_GetVarPointer(ctx);
 
     isDoubleBattle = Script_IsTrainerDoubleBattle(Script_GetTrainerID(*scriptIDPtr));
 
@@ -240,9 +223,9 @@ BOOL ScrCmd_GetTrainerRematchMessageTypes(ScriptContext *ctx)
         }
     }
 
-    *destVar0 = preBattleMsgType;
-    *destVar1 = postBattleMsgType;
-    *destVar2 = notEnoughPokemonMessageType;
+    *destVarPreBattleMsgType = preBattleMsgType;
+    *destVarPostBattleMsgType = postBattleMsgType;
+    *destVarNotEnoughPokemonMessageType = notEnoughPokemonMessageType;
 
     return FALSE;
 }

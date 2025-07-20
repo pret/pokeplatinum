@@ -2,7 +2,7 @@
 
 #include "constants/battle.h"
 #include "constants/pokemon.h"
-#include "constants/trainer.h"
+#include "generated/trainer_message_types.h"
 
 #include "struct_defs/trainer.h"
 

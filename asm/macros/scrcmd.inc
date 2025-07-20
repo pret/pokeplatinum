@@ -1363,18 +1363,18 @@
     .short \msgType
     .endm
 
-    .macro GetTrainerMessageTypes destVar0, destVar1, destVar2
+    .macro GetTrainerMessageTypes destVarPreBattleMsgType, destVarPostBattleMsgType, destVarNotEnoughPokemonMessageType
     .short 231
-    .short \destVar0
-    .short \destVar1
-    .short \destVar2
+    .short \destVarPreBattleMsgType
+    .short \destVarPostBattleMsgType
+    .short \destVarNotEnoughPokemonMessageType
     .endm
 
-    .macro GetTrainerRematchMessageTypes destVar0, destVar1, destVar2
+    .macro GetTrainerRematchMessageTypes destVarPreBattleMsgType, destVarPostBattleMsgType, destVarNotEnoughPokemonMessageType
     .short 232
-    .short \destVar0
-    .short \destVar1
-    .short \destVar2
+    .short \destVarPreBattleMsgType
+    .short \destVarPostBattleMsgType
+    .short \destVarNotEnoughPokemonMessageType
     .endm
 
     .macro CheckIsTrainerDoubleBattle destVar
