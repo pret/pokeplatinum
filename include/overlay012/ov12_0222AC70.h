@@ -8,7 +8,7 @@
 void ov12_0222AE68(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
 void BattleAnimScriptFunc_Strength(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_BulkUp(BattleAnimSystem *param0);
-void ov12_0222B68C(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_DoubleTeam(BattleAnimSystem *param0);
 void ov12_0222B9E0(BattleAnimSystem *param0);
 void ov12_0222BAE4(BattleAnimSystem *param0);
 void ov12_0222BCF4(BattleAnimSystem *param0);

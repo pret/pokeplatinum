@@ -311,39 +311,39 @@ BOOL ov12_02225BA0(XYTransformContext *param0, s16 param1, s16 param2, PokemonSp
     return 0;
 }
 
-void ov12_02225BC8(XYTransformContext *param0, s16 param1, s16 param2, s16 param3, s16 param4, u16 param5)
+void PosLerpContext_Init(XYTransformContext *ctx, s16 sx, s16 ex, s16 sy, s16 ey, u16 steps)
 {
-    GF_ASSERT(param0);
+    GF_ASSERT(ctx);
 
-    param0->x = param1;
-    param0->y = param3;
-    param0->data[0] = param5;
-    param0->data[1] = BattleAnimMath_GetStepSize(param1 * FX32_ONE, param2 * FX32_ONE, param5);
-    param0->data[2] = BattleAnimMath_GetStepSize(param3 * FX32_ONE, param4 * FX32_ONE, param5);
-    param0->data[3] = param1 * FX32_ONE;
-    param0->data[4] = param3 * FX32_ONE;
+    ctx->x = sx;
+    ctx->y = sy;
+    ctx->data[XY_PARAM_STEPS] = steps;
+    ctx->data[XY_PARAM_STEP_SIZE_X] = BattleAnimMath_GetStepSize(sx * FX32_ONE, ex * FX32_ONE, steps);
+    ctx->data[XY_PARAM_STEP_SIZE_Y] = BattleAnimMath_GetStepSize(sy * FX32_ONE, ey * FX32_ONE, steps);
+    ctx->data[XY_PARAM_CUR_X] = sx * FX32_ONE;
+    ctx->data[XY_PARAM_CUR_Y] = sy * FX32_ONE;
 }
 
-BOOL ov12_02225C14(XYTransformContext *param0)
+BOOL PosLerpContext_Update(XYTransformContext *ctx)
 {
-    GF_ASSERT(param0);
+    GF_ASSERT(ctx);
 
-    if (param0->data[0]) {
-        param0->data[3] += param0->data[1];
-        param0->data[4] += param0->data[2];
-        param0->x = param0->data[3] >> FX32_SHIFT;
-        param0->y = param0->data[4] >> FX32_SHIFT;
-        param0->data[0]--;
+    if (ctx->data[XY_PARAM_STEPS]) {
+        ctx->data[XY_PARAM_CUR_X] += ctx->data[XY_PARAM_STEP_SIZE_X];
+        ctx->data[XY_PARAM_CUR_Y] += ctx->data[XY_PARAM_STEP_SIZE_Y];
+        ctx->x = ctx->data[XY_PARAM_CUR_X] >> FX32_SHIFT;
+        ctx->y = ctx->data[XY_PARAM_CUR_Y] >> FX32_SHIFT;
+        ctx->data[XY_PARAM_STEPS]--;
 
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ov12_02225C50(XYTransformContext *param0, ManagedSprite *param1)
 {
-    if (ov12_02225C14(param0)) {
+    if (PosLerpContext_Update(param0)) {
         ov12_022259DC(param0, param1, 0, 0);
         return 1;
     }
@@ -353,7 +353,7 @@ BOOL ov12_02225C50(XYTransformContext *param0, ManagedSprite *param1)
 
 BOOL ov12_02225C74(XYTransformContext *param0, PokemonSprite *param1)
 {
-    if (ov12_02225C14(param0)) {
+    if (PosLerpContext_Update(param0)) {
         ov12_02225A18(param0, param1, 0, 0);
         return 1;
     }
@@ -363,7 +363,7 @@ BOOL ov12_02225C74(XYTransformContext *param0, PokemonSprite *param1)
 
 void ov12_02225C98(XYTransformContext *param0, XYTransformContext *param1, s16 param2, s16 param3, s16 param4, s16 param5, u16 param6, fx32 param7)
 {
-    ov12_02225BC8(param0, param2, param3, param4, param5, param6);
+    PosLerpContext_Init(param0, param2, param3, param4, param5, param6);
     param1->x = 0;
     param1->y = 0;
     ov12_02225A5C(param1, 0, 0, (90 * 0xffff) / 360, (270 * 0xffff) / 360, 0, param7, param6);
@@ -376,7 +376,7 @@ BOOL ov12_02225CE4(XYTransformContext *param0, XYTransformContext *param1)
     GF_ASSERT(param0);
     GF_ASSERT(param1);
 
-    v0 = ov12_02225C14(param0);
+    v0 = PosLerpContext_Update(param0);
     v1 = ov12_02225AE0(param1);
 
     param0->x += param1->x;
@@ -800,7 +800,7 @@ static void ov12_022263DC(SysTask *param0, void *param1)
     BOOL v0;
     UnkStruct_ov12_02226454 *v1 = param1;
 
-    v0 = ov12_02225C14(&v1->unk_00);
+    v0 = PosLerpContext_Update(&v1->unk_00);
 
     if (v0 == 0) {
         v1->unk_24 = 1;
@@ -820,7 +820,7 @@ static void ov12_022263DC(SysTask *param0, void *param1)
 
 void ov12_02226424(UnkStruct_ov12_02226454 *param0, s16 param1, s16 param2, s16 param3, s16 param4, int param5)
 {
-    ov12_02225BC8(&param0->unk_00, param1, param2, param3, param4, param5);
+    PosLerpContext_Init(&param0->unk_00, param1, param2, param3, param4, param5);
 
     param0->unk_24 = 0;
     SysTask_Start(ov12_022263DC, param0, 0);

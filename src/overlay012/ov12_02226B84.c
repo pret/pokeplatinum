@@ -1354,7 +1354,7 @@ void ov12_02227CBC(BattleAnimSystem *param0)
     ManagedSprite_SetExplicitOamMode(v0->unk_10, GX_OAM_MODE_XLU);
     ManagedSprite_SetAffineOverwriteMode(v0->unk_10, AFFINE_OVERWRITE_MODE_DOUBLE);
 
-    ov12_02235780(v0->unk_00, v0->unk_38, 16 - v0->unk_38);
+    BattleAnimUtil_SetEffectBgBlending(v0->unk_00, v0->unk_38, 16 - v0->unk_38);
     BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02227B4C, v0);
 
     v2 = BattleAnimSystem_GetScriptVar(param0, 0);
@@ -1590,7 +1590,7 @@ void ov12_02228168(BattleAnimSystem *param0)
     v4 = BattleAnimSystem_GetScriptVar(param0, 1);
     v5 = BattleAnimSystem_GetScriptVar(param0, 3);
 
-    ov12_02235780(v0->unk_00, v4, v5);
+    BattleAnimUtil_SetEffectBgBlending(v0->unk_00, v4, v5);
     ov12_02226424(&v0->unk_08, v4, BattleAnimSystem_GetScriptVar(param0, 2), v5, BattleAnimSystem_GetScriptVar(param0, 4), BattleAnimSystem_GetScriptVar(param0, 5));
     BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_0222813C, v0);
 }
@@ -1654,11 +1654,11 @@ static void ov12_0222830C(SysTask *param0, void *param1)
 
     switch (v0->unk_24.unk_00) {
     case 0:
-        ov12_02225BC8(&v0->unk_40, v0->unk_10.unk_04.unk_00, v0->unk_10.unk_04.unk_00 + v0->unk_0C, v0->unk_10.unk_04.unk_02, v0->unk_10.unk_04.unk_02, v0->unk_08);
+        PosLerpContext_Init(&v0->unk_40, v0->unk_10.unk_04.unk_00, v0->unk_10.unk_04.unk_00 + v0->unk_0C, v0->unk_10.unk_04.unk_02, v0->unk_10.unk_04.unk_02, v0->unk_08);
         v0->unk_24.unk_00++;
         break;
     case 1:
-        if (ov12_02225C14(&v0->unk_40) == 0) {
+        if (PosLerpContext_Update(&v0->unk_40) == 0) {
             v0->unk_24.unk_00++;
         }
 
@@ -1738,10 +1738,10 @@ static void ov12_02228488(SysTask *param0, void *param1)
             break;
         }
 
-        ov12_02225BC8(&v0->unk_3C, v0->unk_0C.unk_04.unk_00, v0->unk_0C.unk_04.unk_00 + v0->unk_64, v0->unk_0C.unk_04.unk_02, v0->unk_0C.unk_04.unk_02, v0->unk_08);
+        PosLerpContext_Init(&v0->unk_3C, v0->unk_0C.unk_04.unk_00, v0->unk_0C.unk_04.unk_00 + v0->unk_64, v0->unk_0C.unk_04.unk_02, v0->unk_0C.unk_04.unk_02, v0->unk_08);
         v0->unk_20.unk_00++;
     case 1:
-        if (ov12_02225C14(&v0->unk_3C) == 0) {
+        if (PosLerpContext_Update(&v0->unk_3C) == 0) {
             v0->unk_20.unk_00++;
         }
 
@@ -2057,10 +2057,10 @@ static void ov12_02228BD0(SysTask *param0, void *param1)
 
     switch (v0->unk_20.unk_00) {
     case 0:
-        ov12_02225BC8(&v0->unk_3C, v0->unk_0C.unk_04.unk_00, v0->unk_0C.unk_04.unk_00 + v0->unk_64, v0->unk_0C.unk_04.unk_02, v0->unk_0C.unk_04.unk_02 + v0->unk_66, v0->unk_08);
+        PosLerpContext_Init(&v0->unk_3C, v0->unk_0C.unk_04.unk_00, v0->unk_0C.unk_04.unk_00 + v0->unk_64, v0->unk_0C.unk_04.unk_02, v0->unk_0C.unk_04.unk_02 + v0->unk_66, v0->unk_08);
         v0->unk_20.unk_00++;
     case 1:
-        if (ov12_02225C14(&v0->unk_3C) == 0) {
+        if (PosLerpContext_Update(&v0->unk_3C) == 0) {
             v0->unk_20.unk_00++;
         }
 
@@ -2188,7 +2188,7 @@ static void ov12_02228E78(SysTask *param0, void *param1)
 
     switch (v0->unk_00.unk_00) {
     case 0:
-        if (ov12_02225C14(&v0->unk_30) == 0) {
+        if (PosLerpContext_Update(&v0->unk_30) == 0) {
             v0->unk_00.unk_00++;
         }
 
@@ -2246,7 +2246,7 @@ void ov12_02228EC0(BattleAnimSystem *param0)
         v5->unk_58.unk_00 = (256 + 80);
     }
 
-    ov12_02225BC8(&v5->unk_30, v5->unk_1C.unk_04.unk_00, v5->unk_58.unk_00, v5->unk_1C.unk_04.unk_02, v5->unk_1C.unk_04.unk_02, v4);
+    PosLerpContext_Init(&v5->unk_30, v5->unk_1C.unk_04.unk_00, v5->unk_58.unk_00, v5->unk_1C.unk_04.unk_02, v5->unk_1C.unk_04.unk_02, v4);
     BattleAnimSystem_StartAnimTask(v5->unk_00.battleAnimSystem, ov12_02228E78, v5);
 }
 
@@ -2297,12 +2297,12 @@ void ov12_02228FB4(BattleAnimSystem *param0)
     }
 
     if (v1 == 0) {
-        ov12_02225BC8(&v6->unk_30, v6->unk_1C.unk_04.unk_00, v6->unk_58.unk_00, v6->unk_1C.unk_04.unk_02, v6->unk_1C.unk_04.unk_02, v4);
+        PosLerpContext_Init(&v6->unk_30, v6->unk_1C.unk_04.unk_00, v6->unk_58.unk_00, v6->unk_1C.unk_04.unk_02, v6->unk_1C.unk_04.unk_02, v4);
     } else {
         s16 v7;
 
         v7 = BattleAnimUtil_GetBattlerPos(param0, v2, 0);
-        ov12_02225BC8(&v6->unk_30, v6->unk_58.unk_00, v7, v6->unk_1C.unk_04.unk_02, v6->unk_1C.unk_04.unk_02, v4);
+        PosLerpContext_Init(&v6->unk_30, v6->unk_58.unk_00, v7, v6->unk_1C.unk_04.unk_02, v6->unk_1C.unk_04.unk_02, v4);
     }
 
     BattleAnimSystem_StartAnimTask(v6->unk_00.battleAnimSystem, ov12_02228E78, v6);
@@ -2871,7 +2871,7 @@ static void ov12_02229A6C(SysTask *param0, void *param1)
         return;
     }
 
-    if ((ov12_02225C14(&v0->unk_A8[0]) == 0) && (v1 == 0)) {
+    if ((PosLerpContext_Update(&v0->unk_A8[0]) == 0) && (v1 == 0)) {
         ParticleSystem_DeleteEmitter(v0->unk_34, v0->unk_38);
         BattleAnimSystem_EndAnimTask(v0->unk_3C.battleAnimSystem, param0);
         ov12_02235E80(v0);
@@ -2906,7 +2906,7 @@ void ov12_02229B28(BattleAnimSystem *param0)
 
     ov12_02235508(param0, v3->unk_14, &v1);
     ov12_02235508(param0, v3->unk_18, &v2);
-    ov12_02225BC8(&v3->unk_A8[0], v1.x / 172, (v2.x / 172) + (v3->unk_0C.unk_00 * v0), v1.y / 172, (v2.y / 172) + (v3->unk_0C.unk_02 * v0), v3->unk_06);
+    PosLerpContext_Init(&v3->unk_A8[0], v1.x / 172, (v2.x / 172) + (v3->unk_0C.unk_00 * v0), v1.y / 172, (v2.y / 172) + (v3->unk_0C.unk_02 * v0), v3->unk_06);
 
     if (v0 > 0) {
         AngleLerpContext_Init(&v3->unk_F0, ((20 * 0xffff) / 360) * v0, ((130 * 0xffff) / 360) * v0, 10);
@@ -2918,7 +2918,7 @@ void ov12_02229B28(BattleAnimSystem *param0)
         int v4;
 
         for (v4 = 0; v4 < v3->unk_20; v4++) {
-            ov12_02225C14(&v3->unk_A8[0]);
+            PosLerpContext_Update(&v3->unk_A8[0]);
         }
 
         if (v3->unk_24 != 0xFF) {
@@ -2991,13 +2991,13 @@ void ov12_02229C5C(BattleAnimSystem *param0)
         v1.x = v0.x;
     }
 
-    ov12_02225BC8(&v3->unk_A8[0], v0.x / 172, v1.x / 172, v0.y / 172, v1.y / 172, v3->unk_06);
+    PosLerpContext_Init(&v3->unk_A8[0], v0.x / 172, v1.x / 172, v0.y / 172, v1.y / 172, v3->unk_06);
 
     {
         int v5;
 
         for (v5 = 0; v5 < v3->unk_20; v5++) {
-            ov12_02225C14(&v3->unk_A8[0]);
+            PosLerpContext_Update(&v3->unk_A8[0]);
         }
 
         if (v3->unk_24 != 0xFF) {
@@ -3397,7 +3397,7 @@ static void ov12_0222A4A0(SysTask *param0, void *param1)
             ManagedSprite_SetExplicitOamMode(v0->unk_1C, GX_OAM_MODE_XLU);
             v0->unk_20 = 16;
             v0->unk_21 = 0;
-            ov12_02235780(v0->unk_00.battleAnimSystem, v0->unk_20, v0->unk_21);
+            BattleAnimUtil_SetEffectBgBlending(v0->unk_00.battleAnimSystem, v0->unk_20, v0->unk_21);
             v0->unk_00.unk_00++;
         }
     } break;

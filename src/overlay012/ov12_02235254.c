@@ -627,20 +627,21 @@ void ov12_02235760(int param0, VecFx32 *param1)
     }
 }
 
-void ov12_02235780(BattleAnimSystem *param0, int param1, int param2)
+void BattleAnimUtil_SetEffectBgBlending(BattleAnimSystem *system, int blendA, int blendB)
 {
-    int v0 = param1;
-    int v1 = param2;
-
-    if (param1 == 0xffffffff) {
-        v0 = 26;
+    if (blendA == -1) {
+        blendA = 26;
     }
 
-    if (param2 == 0xffffffff) {
-        v1 = 5;
+    if (blendB == -1) {
+        blendB = 5;
     }
 
-    G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, (1 << BattleAnimSystem_GetBgID(param0, 2)) | GX_BLEND_PLANEMASK_BG0, v0, v1);
+    G2_SetBlendAlpha(
+        GX_BLEND_PLANEMASK_NONE,
+        (1 << BattleAnimSystem_GetBgID(system, BATTLE_ANIM_BG_EFFECT)) | GX_BLEND_PLANEMASK_BG0,
+        blendA, 
+        blendB);
 }
 
 void ov12_022357BC(BattleAnimSystem *param0, int param1, int param2, int param3)

@@ -2,6 +2,7 @@
 
 #include <nitro.h>
 #include <string.h>
+#include "constants/battle.h"
 #include "constants/graphics.h"
 
 #include "overlay012/battle_anim_system.h"
@@ -14,6 +15,7 @@
 #include "overlay012/ov12_02235254.h"
 #include "overlay012/struct_ov12_02235998.h"
 
+#include "battle_script_battlers.h"
 #include "bg_window.h"
 #include "heap.h"
 #include "palette.h"
@@ -105,21 +107,60 @@ enum BulkUpState {
 #define BULK_UP_GROW_STEPS              5
 #define BULK_UP_SHRINK_STEPS            5
 
-typedef struct {
-    u8 unk_00;
-    u8 unk_01;
+// -------------------------------------------------------------------
+// Double Team
+// -------------------------------------------------------------------
+
+#define DOUBLE_TEAM_SPRITE_COUNT 4
+
+typedef struct DoubleTeamContext {
+    u8 iteration;
+    u8 state;
     u16 unk_02;
-    u8 unk_04;
-    u8 unk_05;
+    u8 blendA;
+    u8 blendB;
     u16 unk_06;
-    s16 unk_08;
-    s16 unk_0A;
-    BattleAnimSystem *unk_0C;
-    PokemonSprite *unk_10;
-    SpriteManager *unk_14;
-    ManagedSprite *unk_18[4];
-    XYTransformContext unk_28[4];
-} UnkStruct_ov12_0222B4C8;
+    s16 attackerX;
+    s16 attackerY;
+    BattleAnimSystem *battleAnimSys;
+    PokemonSprite *attackerSprite;
+    SpriteManager *pokeonSpriteManager;
+    ManagedSprite *monSprites[DOUBLE_TEAM_SPRITE_COUNT];
+    XYTransformContext pos[DOUBLE_TEAM_SPRITE_COUNT];
+} DoubleTeamContext;
+
+enum DoubleTeamState {
+    DOUBLE_TEAM_STATE_INIT = 0,
+    DOUBLE_TEAM_STATE_UPDATE_SPRITES,
+    DOUBLE_TEAM_STATE_FADE_OUT_SPRITES,
+};
+
+// If X is the attacker sprite, double team performs the following transformations simultaneously:
+// (Longer arrow means takes more frames)
+// L1 <-  X  -> R1
+// L2 <-- X --> R2
+#define DOUBLE_TEAM_SPRITE_R1 0
+#define DOUBLE_TEAM_SPRITE_L1 1
+#define DOUBLE_TEAM_SPRITE_R2 2
+#define DOUBLE_TEAM_SPRITE_L2 3
+
+#define DOUBLE_TEAM_BLEND_A 8
+#define DOUBLE_TEAM_BLEND_B 6
+#define DOUBLE_TEAM_MON_1_PRIORITY 10
+#define DOUBLE_TEAM_MON_2_PRIORITY 20
+#define DOUBLE_TEAM_MON_1_TINT_R 128
+#define DOUBLE_TEAM_MON_1_TINT_G 128
+#define DOUBLE_TEAM_MON_1_TINT_B 128
+#define DOUBLE_TEAM_MON_2_TINT_R 196
+#define DOUBLE_TEAM_MON_2_TINT_G 196
+#define DOUBLE_TEAM_MON_2_TINT_B 196
+#define DOUBLE_TEAM_BASEPOS 0
+#define DOUBLE_TEAM_RANGE_X 32
+#define DOUBLE_TEAM_ITERATION_FRAMES_1 7
+#define DOUBLE_TEAM_ITERATION_FRAMES_2 10
+
+// One iteration is either a single outwards or inwards movement of all sprites
+#define DOUBLE_TEAM_MAX_MOVE_ITERATIONS 8
 
 typedef struct {
     u8 unk_00;
@@ -433,7 +474,7 @@ void ov12_0222AE68(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v1->unk_08 = param0;
 
     v2 = BattleAnimSystem_GetLastSpriteTemplate(param0);
-    ov12_02235780(v1->unk_08, 0xffffffff, 0xffffffff);
+    BattleAnimUtil_SetEffectBgBlending(v1->unk_08, 0xffffffff, 0xffffffff);
 
     v1->unk_05 = 15;
     v1->unk_06 = 0;
@@ -685,144 +726,227 @@ void BattleAnimScriptFunc_BulkUp(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_BulkUp, ctx);
 }
 
-static const s16 Unk_ov12_0223A0FE[][3] = {
-    { 0x0, 0x20, 0x7 },
-    { 0x0, 0x20, 0xA },
-    { 0x20, 0x0, 0x7 },
-    { 0x20, 0x0, 0xA }
+enum DoubleTeamTableIndex {
+    TABLE_BASEPOS = 0,
+    TABLE_RANGE_X,
+    TABLE_ITERATION_FRAMES,
 };
 
-static void ov12_0222B4C8(SysTask *param0, void *param1)
+static const s16 sDoubleTeamPositions[][3] = {
+    { DOUBLE_TEAM_BASEPOS, DOUBLE_TEAM_RANGE_X, DOUBLE_TEAM_ITERATION_FRAMES_1 },
+    { DOUBLE_TEAM_BASEPOS, DOUBLE_TEAM_RANGE_X, DOUBLE_TEAM_ITERATION_FRAMES_2 },
+    { DOUBLE_TEAM_RANGE_X, DOUBLE_TEAM_BASEPOS, DOUBLE_TEAM_ITERATION_FRAMES_1 },
+    { DOUBLE_TEAM_RANGE_X, DOUBLE_TEAM_BASEPOS, DOUBLE_TEAM_ITERATION_FRAMES_2 }
+};
+
+static void BattleAnimTask_DoubleTeam(SysTask *task, void *param)
 {
-    int v0;
-    u8 v1;
-    UnkStruct_ov12_0222B4C8 *v2 = (UnkStruct_ov12_0222B4C8 *)param1;
+    int i;
+    u8 numComplete;
+    DoubleTeamContext *ctx = param;
 
-    switch (v2->unk_01) {
-    case 0: {
-        int v3 = (v2->unk_00 % 2) * 2;
-        int v4 = (v2->unk_00 + 1) / 2;
+    switch (ctx->state) {
+    case DOUBLE_TEAM_STATE_INIT: {
+        int posIndex = (ctx->iteration % 2) * 2;
+        int frameReduction = (ctx->iteration + 1) / 2;
 
-        ov12_02225BC8(&v2->unk_28[0], v2->unk_08 + Unk_ov12_0223A0FE[v3][0], v2->unk_08 + Unk_ov12_0223A0FE[v3][1], v2->unk_0A, v2->unk_0A, Unk_ov12_0223A0FE[v3][2] - v4);
-        ov12_02225BC8(&v2->unk_28[1], v2->unk_08 - Unk_ov12_0223A0FE[v3][0], v2->unk_08 - Unk_ov12_0223A0FE[v3][1], v2->unk_0A, v2->unk_0A, Unk_ov12_0223A0FE[v3][2] - v4);
-        ov12_02225BC8(&v2->unk_28[2], v2->unk_08 + Unk_ov12_0223A0FE[v3 + 1][0], v2->unk_08 + Unk_ov12_0223A0FE[v3 + 1][1], v2->unk_0A, v2->unk_0A, Unk_ov12_0223A0FE[v3 + 1][2] - v4);
-        ov12_02225BC8(&v2->unk_28[3], v2->unk_08 - Unk_ov12_0223A0FE[v3 + 1][0], v2->unk_08 - Unk_ov12_0223A0FE[v3 + 1][1], v2->unk_0A, v2->unk_0A, Unk_ov12_0223A0FE[v3 + 1][2] - v4);
+        PosLerpContext_Init(
+            &ctx->pos[DOUBLE_TEAM_SPRITE_R1],
+            ctx->attackerX + sDoubleTeamPositions[posIndex][TABLE_BASEPOS],
+            ctx->attackerX + sDoubleTeamPositions[posIndex][TABLE_RANGE_X],
+            ctx->attackerY,
+            ctx->attackerY,
+            sDoubleTeamPositions[posIndex][TABLE_ITERATION_FRAMES] - frameReduction);
+
+        PosLerpContext_Init(
+            &ctx->pos[DOUBLE_TEAM_SPRITE_L1],
+            ctx->attackerX - sDoubleTeamPositions[posIndex][TABLE_BASEPOS],
+            ctx->attackerX - sDoubleTeamPositions[posIndex][TABLE_RANGE_X],
+            ctx->attackerY,
+            ctx->attackerY,
+            sDoubleTeamPositions[posIndex][TABLE_ITERATION_FRAMES] - frameReduction);
+
+        PosLerpContext_Init(
+            &ctx->pos[DOUBLE_TEAM_SPRITE_R2],
+            ctx->attackerX + sDoubleTeamPositions[posIndex + 1][TABLE_BASEPOS],
+            ctx->attackerX + sDoubleTeamPositions[posIndex + 1][TABLE_RANGE_X], 
+            ctx->attackerY,
+            ctx->attackerY,
+            sDoubleTeamPositions[posIndex + 1][TABLE_ITERATION_FRAMES] - frameReduction);
+
+        PosLerpContext_Init(
+            &ctx->pos[DOUBLE_TEAM_SPRITE_L2],
+            ctx->attackerX - sDoubleTeamPositions[posIndex + 1][TABLE_BASEPOS],
+            ctx->attackerX - sDoubleTeamPositions[posIndex + 1][TABLE_RANGE_X],
+            ctx->attackerY,
+            ctx->attackerY,
+            sDoubleTeamPositions[posIndex + 1][TABLE_ITERATION_FRAMES] - frameReduction);
     }
-        v2->unk_00++;
-        v2->unk_01++;
-    case 1:
-        v1 = 0;
+        ctx->iteration++;
+        ctx->state++;
+    case DOUBLE_TEAM_STATE_UPDATE_SPRITES:
+        numComplete = 0;
 
-        for (v0 = 0; v0 < 4; v0++) {
-            if (ov12_02225C14(&v2->unk_28[v0]) == 0) {
-                v1++;
+        for (i = 0; i < DOUBLE_TEAM_SPRITE_COUNT; i++) {
+            if (PosLerpContext_Update(&ctx->pos[i]) == FALSE) {
+                numComplete++;
             } else {
-                ManagedSprite_SetPositionXY(v2->unk_18[v0], v2->unk_28[v0].x, v2->unk_28[v0].y);
+                ManagedSprite_SetPositionXY(ctx->monSprites[i], ctx->pos[i].x, ctx->pos[i].y);
             }
 
-            ManagedSprite_TickFrame(v2->unk_18[v0]);
+            ManagedSprite_TickFrame(ctx->monSprites[i]);
         }
 
-        if (v1 == 4) {
-            if (v2->unk_00 == 9) {
-                v2->unk_01++;
+        if (numComplete == DOUBLE_TEAM_SPRITE_COUNT) {
+            if (ctx->iteration == DOUBLE_TEAM_MAX_MOVE_ITERATIONS + 1) {
+                ctx->state++;
             } else {
-                v2->unk_01 = 0;
+                ctx->state = DOUBLE_TEAM_STATE_INIT;
             }
         }
         break;
-    case 2:
-        if (v2->unk_04 > 0) {
-            v2->unk_04--;
+    case DOUBLE_TEAM_STATE_FADE_OUT_SPRITES:
+        if (ctx->blendA > 0) {
+            ctx->blendA--;
         }
 
-        if (v2->unk_05 < 15) {
-            v2->unk_05++;
+        if (ctx->blendB < 15) {
+            ctx->blendB++;
         }
 
-        if ((v2->unk_04 == 0) && (v2->unk_05 == 15)) {
-            v2->unk_01++;
+        if (ctx->blendA == 0 && ctx->blendB == 15) {
+            ctx->state++;
         }
 
-        G2_ChangeBlendAlpha(v2->unk_04, v2->unk_05);
+        G2_ChangeBlendAlpha(ctx->blendA, ctx->blendB);
         break;
     default:
-        BattleAnimSystem_EndAnimTask(v2->unk_0C, param0);
-        Heap_Free(v2);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         return;
     }
 
-    SpriteSystem_DrawSprites(v2->unk_14);
+    SpriteSystem_DrawSprites(ctx->pokeonSpriteManager);
 }
 
-void ov12_0222B68C(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_DoubleTeam(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_0222B4C8 *v0 = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222B4C8));
+    DoubleTeamContext *ctx = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(system), sizeof(DoubleTeamContext));
 
-    v0->unk_01 = 0;
-    v0->unk_00 = 0;
-    v0->unk_0C = param0;
-    v0->unk_10 = BattleAnimSystem_GetBattlerSprite(v0->unk_0C, BattleAnimSystem_GetAttacker(v0->unk_0C));
-    v0->unk_08 = PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_X_CENTER);
-    v0->unk_0A = PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_Y_CENTER);
-    v0->unk_0A -= PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_SHADOW_HEIGHT);
-    v0->unk_14 = BattleAnimSystem_GetPokemonSpriteManager(v0->unk_0C);
-    v0->unk_04 = 8;
-    v0->unk_05 = 6;
+    ctx->state = 0;
+    ctx->iteration = 0;
+    ctx->battleAnimSys = system;
+    ctx->attackerSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    ctx->attackerX = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_X_CENTER);
+    ctx->attackerY = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_Y_CENTER);
+    ctx->attackerY -= PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_SHADOW_HEIGHT);
+    ctx->pokeonSpriteManager = BattleAnimSystem_GetPokemonSpriteManager(ctx->battleAnimSys);
+    ctx->blendA = DOUBLE_TEAM_BLEND_A;
+    ctx->blendB = DOUBLE_TEAM_BLEND_B;
 
-    ov12_02235780(v0->unk_0C, 0xffffffff, 0xffffffff);
-    G2_ChangeBlendAlpha(v0->unk_04, v0->unk_05);
+    BattleAnimUtil_SetEffectBgBlending(ctx->battleAnimSys, -1, -1);
+    G2_ChangeBlendAlpha(ctx->blendA, ctx->blendB);
 
-    {
-        int v1;
-        u16 v2;
-        int v3 = BattleAnimSystem_GetBattlerSpritePaletteIndex(v0->unk_0C, BattleAnimSystem_GetAttacker(v0->unk_0C));
-        int v4 = BattleAnimSystem_GetPokemonSpritePriority(v0->unk_0C);
-        int v5 = BattleAnimSystem_GetBattlerSpriteNarcID(v0->unk_0C, BattleAnimSystem_GetAttacker(v0->unk_0C));
+    int monPlttIndex = BattleAnimSystem_GetBattlerSpritePaletteIndex(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    int monSpritePriority = BattleAnimSystem_GetPokemonSpritePriority(ctx->battleAnimSys);
+    enum NarcID monSpriteNarcIndex = BattleAnimSystem_GetBattlerSpriteNarcID(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
 
-        for (v1 = 0; v1 < 4; v1++) {
-            v0->unk_18[v1] = BattleAnimSystem_GetPokemonSprite(v0->unk_0C, v1);
-            ManagedSprite_SetExplicitOamMode(v0->unk_18[v1], GX_OAM_MODE_XLU);
-        }
-
-        if (BattleAnimUtil_GetBattlerSide(v0->unk_0C, BattleAnimSystem_GetAttacker(v0->unk_0C)) == 0x3) {
-            ManagedSprite_SetPriority(v0->unk_18[0], 10);
-            ManagedSprite_SetPriority(v0->unk_18[1], 10);
-            ManagedSprite_SetPriority(v0->unk_18[2], 20);
-            ManagedSprite_SetPriority(v0->unk_18[3], 20);
-            ManagedSprite_SetExplicitPriority(v0->unk_18[0], v4);
-            ManagedSprite_SetExplicitPriority(v0->unk_18[1], v4);
-            ManagedSprite_SetExplicitPriority(v0->unk_18[2], v4);
-            ManagedSprite_SetExplicitPriority(v0->unk_18[3], v4);
-
-            v2 = PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(v0->unk_18[0]->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
-            PaletteData_LoadBufferFromFileStartWithTint(BattleAnimSystem_GetPaletteData(v0->unk_0C), v5, v3, BattleAnimSystem_GetHeapID(param0), 2, 0x20, v2 * 16, 128, 128, 128);
-
-            v2 = PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(v0->unk_18[2]->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
-            PaletteData_LoadBufferFromFileStartWithTint(BattleAnimSystem_GetPaletteData(v0->unk_0C), v5, v3, BattleAnimSystem_GetHeapID(param0), 2, 0x20, v2 * 16, 196, 196, 196);
-        } else {
-            ManagedSprite_SetPriority(v0->unk_18[0], 20);
-            ManagedSprite_SetPriority(v0->unk_18[1], 20);
-            ManagedSprite_SetPriority(v0->unk_18[2], 10);
-            ManagedSprite_SetPriority(v0->unk_18[3], 10);
-            ManagedSprite_SetExplicitPriority(v0->unk_18[0], v4 + 1);
-            ManagedSprite_SetExplicitPriority(v0->unk_18[1], v4 + 1);
-            ManagedSprite_SetExplicitPriority(v0->unk_18[2], v4 + 1);
-            ManagedSprite_SetExplicitPriority(v0->unk_18[3], v4 + 1);
-            ManagedSprite_SetExplicitPriority(v0->unk_18[0], v4);
-            ManagedSprite_SetExplicitPriority(v0->unk_18[1], v4);
-            ManagedSprite_SetExplicitPriority(v0->unk_18[2], v4);
-            ManagedSprite_SetExplicitPriority(v0->unk_18[3], v4);
-
-            v2 = PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(v0->unk_18[0]->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
-            PaletteData_LoadBufferFromFileStartWithTint(BattleAnimSystem_GetPaletteData(v0->unk_0C), v5, v3, BattleAnimSystem_GetHeapID(param0), 2, 0x20, v2 * 16, 196, 196, 196);
-
-            v2 = PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(v0->unk_18[2]->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
-            PaletteData_LoadBufferFromFileStartWithTint(BattleAnimSystem_GetPaletteData(v0->unk_0C), v5, v3, BattleAnimSystem_GetHeapID(param0), 2, 0x20, v2 * 16, 128, 128, 128);
-        }
+    for (int i = 0; i < DOUBLE_TEAM_SPRITE_COUNT; i++) {
+        ctx->monSprites[i] = BattleAnimSystem_GetPokemonSprite(ctx->battleAnimSys, i);
+        ManagedSprite_SetExplicitOamMode(ctx->monSprites[i], GX_OAM_MODE_XLU);
     }
 
-    BattleAnimSystem_StartAnimTask(v0->unk_0C, ov12_0222B4C8, v0);
+    if (BattleAnimUtil_GetBattlerSide(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys)) == BTLSCR_PLAYER) {
+        // Player side
+        ManagedSprite_SetPriority(ctx->monSprites[DOUBLE_TEAM_SPRITE_R1], DOUBLE_TEAM_MON_1_PRIORITY);
+        ManagedSprite_SetPriority(ctx->monSprites[DOUBLE_TEAM_SPRITE_L1], DOUBLE_TEAM_MON_1_PRIORITY);
+        ManagedSprite_SetPriority(ctx->monSprites[DOUBLE_TEAM_SPRITE_R2], DOUBLE_TEAM_MON_2_PRIORITY);
+        ManagedSprite_SetPriority(ctx->monSprites[DOUBLE_TEAM_SPRITE_L2], DOUBLE_TEAM_MON_2_PRIORITY);
+        ManagedSprite_SetExplicitPriority(ctx->monSprites[DOUBLE_TEAM_SPRITE_R1], monSpritePriority);
+        ManagedSprite_SetExplicitPriority(ctx->monSprites[DOUBLE_TEAM_SPRITE_L1], monSpritePriority);
+        ManagedSprite_SetExplicitPriority(ctx->monSprites[DOUBLE_TEAM_SPRITE_R2], monSpritePriority);
+        ManagedSprite_SetExplicitPriority(ctx->monSprites[DOUBLE_TEAM_SPRITE_L2], monSpritePriority);
+
+        u16 offset = PlttTransfer_GetPlttOffset(
+            Sprite_GetPaletteProxy(ctx->monSprites[DOUBLE_TEAM_SPRITE_R1]->sprite),
+            NNS_G2D_VRAM_TYPE_2DMAIN);
+        
+        PaletteData_LoadBufferFromFileStartWithTint(
+            BattleAnimSystem_GetPaletteData(ctx->battleAnimSys),
+            monSpriteNarcIndex,
+            monPlttIndex,
+            BattleAnimSystem_GetHeapID(system),
+            PLTTBUF_MAIN_OBJ,
+            PALETTE_SIZE_BYTES,
+            PLTT_DEST(offset),
+            DOUBLE_TEAM_MON_1_TINT_R,
+            DOUBLE_TEAM_MON_1_TINT_G,
+            DOUBLE_TEAM_MON_1_TINT_B);
+
+        offset = PlttTransfer_GetPlttOffset(
+            Sprite_GetPaletteProxy(ctx->monSprites[DOUBLE_TEAM_SPRITE_R2]->sprite),
+            NNS_G2D_VRAM_TYPE_2DMAIN);
+        
+        PaletteData_LoadBufferFromFileStartWithTint(
+            BattleAnimSystem_GetPaletteData(ctx->battleAnimSys),
+            monSpriteNarcIndex,
+            monPlttIndex,
+            BattleAnimSystem_GetHeapID(system),
+            PLTTBUF_MAIN_OBJ,
+            PALETTE_SIZE_BYTES,
+            PLTT_DEST(offset),
+            DOUBLE_TEAM_MON_2_TINT_R,
+            DOUBLE_TEAM_MON_2_TINT_G,
+            DOUBLE_TEAM_MON_2_TINT_B);
+    } else {
+        // Enemy side; flip mon 1 and 2 priorities
+        ManagedSprite_SetPriority(ctx->monSprites[DOUBLE_TEAM_SPRITE_R1], DOUBLE_TEAM_MON_2_PRIORITY);
+        ManagedSprite_SetPriority(ctx->monSprites[DOUBLE_TEAM_SPRITE_L1], DOUBLE_TEAM_MON_2_PRIORITY);
+        ManagedSprite_SetPriority(ctx->monSprites[DOUBLE_TEAM_SPRITE_R2], DOUBLE_TEAM_MON_1_PRIORITY);
+        ManagedSprite_SetPriority(ctx->monSprites[DOUBLE_TEAM_SPRITE_L2], DOUBLE_TEAM_MON_1_PRIORITY);
+        ManagedSprite_SetExplicitPriority(ctx->monSprites[DOUBLE_TEAM_SPRITE_R1], monSpritePriority + 1);
+        ManagedSprite_SetExplicitPriority(ctx->monSprites[DOUBLE_TEAM_SPRITE_L1], monSpritePriority + 1);
+        ManagedSprite_SetExplicitPriority(ctx->monSprites[DOUBLE_TEAM_SPRITE_R2], monSpritePriority + 1);
+        ManagedSprite_SetExplicitPriority(ctx->monSprites[DOUBLE_TEAM_SPRITE_L2], monSpritePriority + 1);
+        ManagedSprite_SetExplicitPriority(ctx->monSprites[DOUBLE_TEAM_SPRITE_R1], monSpritePriority);
+        ManagedSprite_SetExplicitPriority(ctx->monSprites[DOUBLE_TEAM_SPRITE_L1], monSpritePriority);
+        ManagedSprite_SetExplicitPriority(ctx->monSprites[DOUBLE_TEAM_SPRITE_R2], monSpritePriority);
+        ManagedSprite_SetExplicitPriority(ctx->monSprites[DOUBLE_TEAM_SPRITE_L2], monSpritePriority);
+
+        u16 offset = PlttTransfer_GetPlttOffset(
+            Sprite_GetPaletteProxy(ctx->monSprites[DOUBLE_TEAM_SPRITE_R1]->sprite),
+            NNS_G2D_VRAM_TYPE_2DMAIN);
+        
+        PaletteData_LoadBufferFromFileStartWithTint(
+            BattleAnimSystem_GetPaletteData(ctx->battleAnimSys),
+            monSpriteNarcIndex,
+            monPlttIndex,
+            BattleAnimSystem_GetHeapID(system),
+            PLTTBUF_MAIN_OBJ,
+            PALETTE_SIZE_BYTES,
+            PLTT_DEST(offset),
+            DOUBLE_TEAM_MON_2_TINT_R,
+            DOUBLE_TEAM_MON_2_TINT_G,
+            DOUBLE_TEAM_MON_2_TINT_B);
+
+        offset = PlttTransfer_GetPlttOffset(
+            Sprite_GetPaletteProxy(ctx->monSprites[DOUBLE_TEAM_SPRITE_R2]->sprite),
+            NNS_G2D_VRAM_TYPE_2DMAIN);
+        
+        PaletteData_LoadBufferFromFileStartWithTint(
+            BattleAnimSystem_GetPaletteData(ctx->battleAnimSys),
+            monSpriteNarcIndex,
+            monPlttIndex,
+            BattleAnimSystem_GetHeapID(system),
+            PLTTBUF_MAIN_OBJ,
+            PALETTE_SIZE_BYTES,
+            PLTT_DEST(offset),
+            DOUBLE_TEAM_MON_1_TINT_R,
+            DOUBLE_TEAM_MON_1_TINT_G,
+            DOUBLE_TEAM_MON_1_TINT_B);
+    }
+
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_DoubleTeam, ctx);
 }
 
 static const u8 Unk_ov12_0223A098[][3] = {
@@ -959,11 +1083,11 @@ static void ov12_0222BB30(SysTask *param0, void *param1)
         ov12_02226024(v0->unk_0C, v0->unk_02, v0->unk_06, v0->unk_10.data[4], 0);
         break;
     case 2:
-        ov12_02225BC8(&v0->unk_10, 0, 0, PokemonSprite_GetAttribute(v0->unk_0C, MON_SPRITE_Y_CENTER), 0, 5);
+        PosLerpContext_Init(&v0->unk_10, 0, 0, PokemonSprite_GetAttribute(v0->unk_0C, MON_SPRITE_Y_CENTER), 0, 5);
         v0->unk_00++;
         break;
     case 3:
-        if (ov12_02225C14(&v0->unk_10) == 0) {
+        if (PosLerpContext_Update(&v0->unk_10) == 0) {
             v0->unk_00++;
         }
 
@@ -1076,7 +1200,7 @@ static void ov12_0222BE80(SysTask *param0, void *param1)
     switch (v0->unk_00) {
     case 0:
         ScaleLerpContext_InitXY(&v0->unk_10, Unk_ov12_0223A0C1[v0->unk_01][0], Unk_ov12_0223A0C1[v0->unk_01][1], Unk_ov12_0223A0C1[v0->unk_01][2], Unk_ov12_0223A0C1[v0->unk_01][3], 100, Unk_ov12_0223A0C1[v0->unk_01][4]);
-        ov12_02225BC8(&v0->unk_34, 0, 0, v0->unk_04 + Unk_ov12_0223A0A4[v0->unk_01][0], v0->unk_04 + Unk_ov12_0223A0A4[v0->unk_01][1], Unk_ov12_0223A0A4[v0->unk_01][2]);
+        PosLerpContext_Init(&v0->unk_34, 0, 0, v0->unk_04 + Unk_ov12_0223A0A4[v0->unk_01][0], v0->unk_04 + Unk_ov12_0223A0A4[v0->unk_01][1], Unk_ov12_0223A0A4[v0->unk_01][2]);
         v0->unk_01++;
         v0->unk_00++;
         break;
@@ -1087,7 +1211,7 @@ static void ov12_0222BE80(SysTask *param0, void *param1)
             v1++;
         }
 
-        if (ov12_02225C14(&v0->unk_34) == 0) {
+        if (PosLerpContext_Update(&v0->unk_34) == 0) {
             v1++;
         }
 
@@ -1316,7 +1440,7 @@ void ov12_0222C3C0(BattleAnimSystem *param0)
     v0->unk_02 -= PokemonSprite_GetAttribute(v0->unk_0C, MON_SPRITE_SHADOW_HEIGHT);
     v0->unk_04 = BattleAnimSystem_GetBattlerSpriteHeight(v0->unk_10, BattleAnimSystem_GetAttacker(v0->unk_10));
 
-    ov12_02235780(v0->unk_10, 0xffffffff, 0xffffffff);
+    BattleAnimUtil_SetEffectBgBlending(v0->unk_10, 0xffffffff, 0xffffffff);
     G2_ChangeBlendAlpha(12, 6);
 
     {
@@ -1464,7 +1588,7 @@ static void ov12_0222C678(SysTask *param0, void *param1)
 
     switch (v0->unk_00) {
     case 0:
-        if (ov12_02225C14(&v0->unk_40) == 0) {
+        if (PosLerpContext_Update(&v0->unk_40) == 0) {
             v0->unk_00++;
         }
 
@@ -1510,7 +1634,7 @@ void ov12_0222C6D4(BattleAnimSystem *param0)
         int v2 = BattleAnimMath_GetRotationDirection(v0->unk_0C, v1);
         int v3 = ov12_0222598C(v0->unk_0C, v1);
 
-        ov12_02225BC8(&v0->unk_40, v0->unk_04.unk_00, v0->unk_04.unk_00 + (-20 * v2), v0->unk_04.unk_02, v0->unk_04.unk_02 + ((+20) * v3), 20);
+        PosLerpContext_Init(&v0->unk_40, v0->unk_04.unk_00, v0->unk_04.unk_00 + (-20 * v2), v0->unk_04.unk_02, v0->unk_04.unk_02 + ((+20) * v3), 20);
     }
 
     ov12_022357BC(v0->unk_0C, (1 << BattleAnimSystem_GetBgID(param0, 2)) | GX_BLEND_PLANEMASK_BD | (1 << BattleAnimSystem_GetBgID(param0, 1)) | GX_WND_PLANEMASK_BG0, 0xffffffff, 0xffffffff);
@@ -1903,7 +2027,7 @@ void ov12_0222CFA0(BattleAnimSystem *param0)
     v0->unk_44[0] = BattleAnimSystem_GetSprite(param0, 0);
     v0->unk_44[1] = BattleAnimSystem_GetSprite(param0, 1);
 
-    ov12_02235780(v0->unk_18.battleAnimSystem, 0xffffffff, 0xffffffff);
+    BattleAnimUtil_SetEffectBgBlending(v0->unk_18.battleAnimSystem, 0xffffffff, 0xffffffff);
 
     if (BattleAnimSystem_GetScriptVar(param0, 0) == 0) {
         v0->unk_0C = 0;

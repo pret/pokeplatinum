@@ -93,13 +93,13 @@ static void ov12_0222E91C(SysTask *param0, void *param1)
     switch (v0->unk_00.unk_00) {
     case 0:
         if (v0->unk_A0 == 0) {
-            ov12_02225BC8(&v0->unk_34, v0->unk_1C.unk_04.unk_00, v0->unk_1C.unk_04.unk_00 + 48, v0->unk_1C.unk_04.unk_02, v0->unk_1C.unk_04.unk_02, 3);
-            ov12_02225BC8(&v0->unk_58, v0->unk_1C.unk_04.unk_00, v0->unk_1C.unk_04.unk_00 + 48, v0->unk_1C.unk_04.unk_02 + v0->unk_A4, v0->unk_1C.unk_04.unk_02 + v0->unk_A4, 6);
-            ov12_02225BC8(&v0->unk_7C, v0->unk_1C.unk_04.unk_00, v0->unk_1C.unk_04.unk_00 + 48, v0->unk_1C.unk_04.unk_02 + v0->unk_A4, v0->unk_1C.unk_04.unk_02 + v0->unk_A4, 8);
+            PosLerpContext_Init(&v0->unk_34, v0->unk_1C.unk_04.unk_00, v0->unk_1C.unk_04.unk_00 + 48, v0->unk_1C.unk_04.unk_02, v0->unk_1C.unk_04.unk_02, 3);
+            PosLerpContext_Init(&v0->unk_58, v0->unk_1C.unk_04.unk_00, v0->unk_1C.unk_04.unk_00 + 48, v0->unk_1C.unk_04.unk_02 + v0->unk_A4, v0->unk_1C.unk_04.unk_02 + v0->unk_A4, 6);
+            PosLerpContext_Init(&v0->unk_7C, v0->unk_1C.unk_04.unk_00, v0->unk_1C.unk_04.unk_00 + 48, v0->unk_1C.unk_04.unk_02 + v0->unk_A4, v0->unk_1C.unk_04.unk_02 + v0->unk_A4, 8);
         } else {
-            ov12_02225BC8(&v0->unk_34, v0->unk_1C.unk_04.unk_00 + 48, v0->unk_1C.unk_04.unk_00, v0->unk_1C.unk_04.unk_02, v0->unk_1C.unk_04.unk_02, 3);
-            ov12_02225BC8(&v0->unk_58, v0->unk_1C.unk_04.unk_00 + 48, v0->unk_1C.unk_04.unk_00, v0->unk_1C.unk_04.unk_02 + v0->unk_A4, v0->unk_1C.unk_04.unk_02 + v0->unk_A4, 6);
-            ov12_02225BC8(&v0->unk_7C, v0->unk_1C.unk_04.unk_00 + 48, v0->unk_1C.unk_04.unk_00, v0->unk_1C.unk_04.unk_02 + v0->unk_A4, v0->unk_1C.unk_04.unk_02 + v0->unk_A4, 9);
+            PosLerpContext_Init(&v0->unk_34, v0->unk_1C.unk_04.unk_00 + 48, v0->unk_1C.unk_04.unk_00, v0->unk_1C.unk_04.unk_02, v0->unk_1C.unk_04.unk_02, 3);
+            PosLerpContext_Init(&v0->unk_58, v0->unk_1C.unk_04.unk_00 + 48, v0->unk_1C.unk_04.unk_00, v0->unk_1C.unk_04.unk_02 + v0->unk_A4, v0->unk_1C.unk_04.unk_02 + v0->unk_A4, 6);
+            PosLerpContext_Init(&v0->unk_7C, v0->unk_1C.unk_04.unk_00 + 48, v0->unk_1C.unk_04.unk_00, v0->unk_1C.unk_04.unk_02 + v0->unk_A4, v0->unk_1C.unk_04.unk_02 + v0->unk_A4, 9);
         }
 
         v0->unk_A0++;
@@ -149,7 +149,7 @@ void ov12_0222EAA0(BattleAnimSystem *param0)
     v0->unk_A2 = 8;
     v0->unk_A3 = 8;
 
-    ov12_02235780(v0->unk_00.battleAnimSystem, 0xffffffff, 0xffffffff);
+    BattleAnimUtil_SetEffectBgBlending(v0->unk_00.battleAnimSystem, 0xffffffff, 0xffffffff);
     G2_ChangeBlendAlpha(v0->unk_A2, v0->unk_A3);
 
     v0->unk_1C.unk_08 = BattleAnimSystem_GetBattlerSprite(v0->unk_00.battleAnimSystem, BattleAnimSystem_GetAttacker(v0->unk_00.battleAnimSystem));
@@ -259,7 +259,7 @@ void ov12_0222EC90(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
             v7 = PokemonSprite_GetAttribute(v5, MON_SPRITE_X_CENTER);
             v9 = PokemonSprite_GetAttribute(v5, MON_SPRITE_Y_CENTER);
 
-            ov12_02225BC8(&v0->unk_50, v6, v7, v8, v9, (8 + 2) * 2);
+            PosLerpContext_Init(&v0->unk_50, v6, v7, v8, v9, (8 + 2) * 2);
         }
 
         {
@@ -273,7 +273,7 @@ void ov12_0222EC90(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
             }
 
             do {
-                v10 = ov12_02225C14(&v0->unk_50);
+                v10 = PosLerpContext_Update(&v0->unk_50);
 
                 if (v11 % 2) {
                     if (v13 == 0) {
@@ -463,7 +463,7 @@ void ov12_0222EFB0(BattleAnimSystem *param0)
     v0->unk_34 = 0;
     v0->unk_35 = 15;
 
-    ov12_02235780(v0->unk_00.battleAnimSystem, 0xffffffff, 0xffffffff);
+    BattleAnimUtil_SetEffectBgBlending(v0->unk_00.battleAnimSystem, 0xffffffff, 0xffffffff);
     G2_ChangeBlendAlpha(v0->unk_34, v0->unk_35);
 
     {
@@ -480,12 +480,12 @@ static void ov12_0222F208(SysTask *param0, void *param1)
 
     switch (v0->unk_00.unk_00) {
     case 0:
-        ov12_02225BC8(&v0->unk_30, v0->unk_1C.unk_04.unk_00, v0->unk_6C[v0->unk_68], v0->unk_78[v0->unk_68], v0->unk_78[v0->unk_68], 15);
+        PosLerpContext_Init(&v0->unk_30, v0->unk_1C.unk_04.unk_00, v0->unk_6C[v0->unk_68], v0->unk_78[v0->unk_68], v0->unk_78[v0->unk_68], 15);
         PokemonSprite_SetAttribute(v0->unk_1C.unk_08, MON_SPRITE_Z_CENTER, v0->unk_84[v0->unk_68]);
         PokemonSprite_SetAttribute(v0->unk_1C.unk_08, MON_SPRITE_SHADOW_SHOULD_FOLLOW_Y, 1);
         v0->unk_00.unk_00++;
     case 1:
-        if (ov12_02225C14(&v0->unk_30) == 0) {
+        if (PosLerpContext_Update(&v0->unk_30) == 0) {
             v0->unk_68++;
 
             if (v0->unk_68 > 2) {
