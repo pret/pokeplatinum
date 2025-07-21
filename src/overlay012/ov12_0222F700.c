@@ -9,6 +9,7 @@
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/struct_ov12_02226504_decl.h"
 #include "overlay012/struct_ov12_0222660C_decl.h"
+#include "pch/global_pch.h"
 
 #include "bg_window.h"
 #include "brightness_controller.h"
@@ -20,17 +21,29 @@
 #include "sprite_system.h"
 #include "sys_task_manager.h"
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    SpriteManager *unk_04;
-    PokemonSprite *unk_08;
-    XYTransformContext unk_0C;
-    ManagedSprite *unk_30[2];
-    UnkStruct_ov12_02226274 unk_38;
-    s16 unk_E8;
-    s16 unk_EA;
-    s16 unk_EC;
-} UnkStruct_ov12_0222F700;
+// -------------------------------------------------------------------
+// Quick Attack
+// -------------------------------------------------------------------
+#define QUICK_ATTACK_AFTERIMAGE_COUNT 2
+
+typedef struct QuickAttackContext {
+    BattleAnimSystem *battleAnimSys;
+    SpriteManager *pokemonSpriteManager;
+    PokemonSprite *attackerSprite;
+    XYTransformContext rev;
+    ManagedSprite *afterimageSprites[QUICK_ATTACK_AFTERIMAGE_COUNT];
+    AfterimageContext afterImageCtx;
+    s16 attackerX;
+    s16 attackerY;
+    s16 attackerShadowHeight;
+} QuickAttackContext;
+
+#define QUICK_ATTACK_REVOLUTION_FRAMES            8
+#define QUICK_ATTACK_AFTERIMAGE_REVOLUTION_FRAMES 10
+#define QUICK_ATTACK_SPRITE_PRIORITY              100
+#define QUICK_ATTACK_SPRITE_EXP_PRIORITY          1
+#define QUICK_ATTACK_AFTERIMAGE_DELAY             2
+
 
 typedef struct {
     BattleAnimSystem *unk_00;
@@ -380,7 +393,7 @@ typedef struct {
     s16 unk_38;
     s16 unk_3A;
     ManagedSprite *unk_3C[3];
-    UnkStruct_ov12_02226274 unk_48;
+    AfterimageContext unk_48;
     XYTransformContext unk_F8;
 } UnkStruct_ov12_022332E8;
 
@@ -493,65 +506,74 @@ typedef struct {
     XYTransformContext unk_3C;
 } UnkStruct_ov12_02234528;
 
-static void ov12_0222F700(SysTask *param0, void *param1)
+static void BattleAnimTask_QuickAttack(SysTask *task, void *param)
 {
-    UnkStruct_ov12_0222F700 *v0 = param1;
-    BOOL v1[3];
-    int v2;
+    QuickAttackContext *ctx = param;
+    
+    BOOL transformsActive[3];
+    transformsActive[0] = RevolutionContext_UpdateAndApply(&ctx->rev, ctx->attackerX, ctx->attackerY, ctx->attackerSprite);
+    transformsActive[1] = Afterimage_Update(&ctx->afterImageCtx);
+    transformsActive[2] = FALSE;
 
-    v1[0] = ov12_02225BA0(&v0->unk_0C, v0->unk_E8, v0->unk_EA, v0->unk_08);
-    v1[1] = ov12_02226274(&v0->unk_38);
-    v1[2] = 0;
+    SpriteSystem_DrawSprites(ctx->pokemonSpriteManager);
 
-    SpriteSystem_DrawSprites(v0->unk_04);
-
-    for (v2 = 0; v2 < 3; v2++) {
-        if (v1[v2] == 1) {
+    for (int i = 0; i < 3; i++) {
+        if (transformsActive[i] == TRUE) {
             return;
         }
     }
 
-    PokemonSprite_SetAttribute(v0->unk_08, MON_SPRITE_X_CENTER, v0->unk_E8);
-    PokemonSprite_SetAttribute(v0->unk_08, MON_SPRITE_Y_CENTER, v0->unk_EA + ((-8 * FX32_ONE) >> FX32_SHIFT));
-    BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
-    Heap_Free(v0);
+    PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_X_CENTER, ctx->attackerX);
+    PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_Y_CENTER, ctx->attackerY + (REVOLUTION_CONTEXT_OVAL_RADIUS_Y >> FX32_SHIFT));
+    BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+    Heap_Free(ctx);
 }
 
-void ov12_0222F770(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_QuickAttack(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_0222F700 *v0;
-    int v1;
-    int v2;
-    XYTransformContext v3;
+    QuickAttackContext *ctx = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(system), sizeof(QuickAttackContext));
 
-    v0 = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222F700));
+    ctx->battleAnimSys = system;
+    ctx->pokemonSpriteManager = BattleAnimSystem_GetPokemonSpriteManager(ctx->battleAnimSys);
+    ctx->attackerSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    ctx->attackerX = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_X_CENTER);
+    ctx->attackerY = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_Y_CENTER);
+    ctx->attackerShadowHeight = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_SHADOW_HEIGHT);
+    ctx->attackerY -= REVOLUTION_CONTEXT_OVAL_RADIUS_Y >> FX32_SHIFT;
 
-    v0->unk_00 = param0;
-    v0->unk_04 = BattleAnimSystem_GetPokemonSpriteManager(v0->unk_00);
-    v0->unk_08 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
-    v0->unk_E8 = PokemonSprite_GetAttribute(v0->unk_08, MON_SPRITE_X_CENTER);
-    v0->unk_EA = PokemonSprite_GetAttribute(v0->unk_08, MON_SPRITE_Y_CENTER);
-    v0->unk_EC = PokemonSprite_GetAttribute(v0->unk_08, MON_SPRITE_SHADOW_HEIGHT);
-    v0->unk_EA -= (-8 * FX32_ONE) >> FX32_SHIFT;
+    RevolutionContext_InitOvalRevolutions(&ctx->rev, 1, QUICK_ATTACK_REVOLUTION_FRAMES);
 
-    ov12_022263A4(&v0->unk_0C, 1, 8);
-    ov12_022263A4(&v3, 1, 10);
+    XYTransformContext afterImageRev;
+    RevolutionContext_InitOvalRevolutions(&afterImageRev, 1, QUICK_ATTACK_AFTERIMAGE_REVOLUTION_FRAMES);
 
-    v2 = BattleAnimMath_GetRotationDirection(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
+    // Adjust rotation direction based on if the attacker is on the player's side or not
+    int dir = BattleAnimMath_GetRotationDirection(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    ctx->rev.data[XY_PARAM_REV_RADIUS_X] *= dir;
+    afterImageRev.data[XY_PARAM_REV_RADIUS_X] *= dir;
 
-    v0->unk_0C.data[2] *= v2;
-    v3.data[2] *= v2;
-
-    for (v1 = 0; v1 < 2; v1++) {
-        v0->unk_30[v1] = BattleAnimSystem_GetPokemonSprite(v0->unk_00, v1);
-        ManagedSprite_SetPriority(v0->unk_30[v1], 100);
-        ManagedSprite_SetExplicitPriority(v0->unk_30[v1], 1);
-        ManagedSprite_SetExplicitOamMode(v0->unk_30[v1], GX_OAM_MODE_XLU);
+    for (int i = 0; i < QUICK_ATTACK_AFTERIMAGE_COUNT; i++) {
+        ctx->afterimageSprites[i] = BattleAnimSystem_GetPokemonSprite(ctx->battleAnimSys, i);
+        ManagedSprite_SetPriority(ctx->afterimageSprites[i], QUICK_ATTACK_SPRITE_PRIORITY);
+        ManagedSprite_SetExplicitPriority(ctx->afterimageSprites[i], QUICK_ATTACK_SPRITE_EXP_PRIORITY);
+        ManagedSprite_SetExplicitOamMode(ctx->afterimageSprites[i], GX_OAM_MODE_XLU);
     }
 
-    ov12_022261C4(&v0->unk_38, &v3, ov12_02225AE0, v0->unk_E8, v0->unk_EA - v0->unk_EC, 2, 2, 0, v0->unk_30[0], v0->unk_30[1], NULL, NULL);
-    BattleAnimUtil_SetEffectBgBlending(v0->unk_00, 0xffffffff, 0xffffffff);
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_0222F700, v0);
+    Afterimage_Init(
+        &ctx->afterImageCtx,
+        &afterImageRev,
+        RevolutionContext_Update,
+        ctx->attackerX,
+        ctx->attackerY - ctx->attackerShadowHeight,
+        QUICK_ATTACK_AFTERIMAGE_DELAY,
+        QUICK_ATTACK_AFTERIMAGE_COUNT,
+        AFTERIMAGE_TRANSFORM_POSITION,
+        ctx->afterimageSprites[0],
+        ctx->afterimageSprites[1],
+        NULL,
+        NULL);
+
+    BattleAnimUtil_SetEffectBgBlending(ctx->battleAnimSys, -1, -1);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_QuickAttack, ctx);
 }
 
 static void ov12_0222F888(SysTask *param0, void *param1)
@@ -561,7 +583,7 @@ static void ov12_0222F888(SysTask *param0, void *param1)
     switch (v0->unk_04) {
     case 0:
         if (PosLerpContext_Update(&v0->unk_10)) {
-            ov12_02225A18(&v0->unk_10, v0->unk_0C, v0->unk_48, v0->unk_4A);
+            RevolutionContext_Apply(&v0->unk_10, v0->unk_0C, v0->unk_48, v0->unk_4A);
         } else {
             PosLerpContext_Init(&v0->unk_10, v0->unk_10.x, 0, 0, 0, 2);
             v0->unk_04++;
@@ -585,7 +607,7 @@ static void ov12_0222F888(SysTask *param0, void *param1)
         break;
     case 3:
         if (PosLerpContext_Update(&v0->unk_10)) {
-            ov12_02225A18(&v0->unk_10, v0->unk_0C, v0->unk_48, v0->unk_4A);
+            RevolutionContext_Apply(&v0->unk_10, v0->unk_0C, v0->unk_48, v0->unk_4A);
         } else {
             v0->unk_04++;
             v0->unk_08 = 32;
@@ -622,7 +644,7 @@ void ov12_0222F9E4(BattleAnimSystem *param0)
     int v2;
     int v3;
 
-    v0 = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222F700));
+    v0 = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(param0), sizeof(QuickAttackContext));
 
     v0->unk_00 = param0;
     v0->unk_04 = 0;
@@ -694,7 +716,7 @@ static BOOL ov12_0222FB84(UnkStruct_ov12_0222FAFC *param0)
     switch (param0->unk_44) {
     case 0:
     case 1:
-        if (ov12_02225AE0(&param0->unk_04)) {
+        if (RevolutionContext_Update(&param0->unk_04)) {
             AngleLerpContext_UpdateCos(&param0->unk_28);
             param0->unk_04.data[5] = param0->unk_3C + param0->unk_28.angle;
             ManagedSprite_SetPositionXY(param0->unk_00, param0->unk_3E + param0->unk_04.x, param0->unk_40 + param0->unk_04.y);
@@ -866,7 +888,7 @@ static void ov12_0222FF80(UnkStruct_ov12_0222FF80 *param0)
     PokemonSprite_SetAttribute(param0->unk_5C, MON_SPRITE_Y_CENTER, param0->unk_62 + param0->unk_10.y);
     ManagedSprite_SetPositionXY(param0->unk_58, param0->unk_60 + param0->unk_10.x, param0->unk_62 + param0->unk_10.y - param0->unk_66);
 
-    ov12_02225FA4(&param0->unk_34, &v0, &v1);
+    BattleAnimUtil_ConvertRelativeToAffineScale(&param0->unk_34, &v0, &v1);
     v0 += (f32)(param0->unk_64 * (0.10f));
     ManagedSprite_SetAffineScale(param0->unk_58, v0, v1);
 
@@ -1106,7 +1128,7 @@ static void ov12_02230540(SysTask *param0, void *param1)
         break;
     case 2:
         v1 = ScaleLerpContext_Update(&v0->unk_14);
-        ov12_02225FA4(&v0->unk_14, &v2, &v3);
+        BattleAnimUtil_ConvertRelativeToAffineScale(&v0->unk_14, &v2, &v3);
 
         if (v0->unk_4C == 1) {
             v2 = -v2;
@@ -1136,7 +1158,7 @@ static void ov12_02230600(SysTask *param0, void *param1)
     switch (v0->unk_04) {
     case 0:
         ShakeContext_Update(&v0->unk_14);
-        ov12_02225A18(&v0->unk_14, v0->unk_08, v0->unk_38, v0->unk_3A);
+        RevolutionContext_Apply(&v0->unk_14, v0->unk_08, v0->unk_38, v0->unk_3A);
 
         if (v0->unk_10 == 1) {
             ov12_022259DC(&v0->unk_14, v0->unk_0C, v0->unk_38, v0->unk_3A - v0->unk_3C);
@@ -1157,7 +1179,7 @@ static void ov12_02230600(SysTask *param0, void *param1)
         break;
     case 1:
         v1 = ShakeContext_Update(&v0->unk_14);
-        ov12_02225A18(&v0->unk_14, v0->unk_08, v0->unk_38, v0->unk_3A);
+        RevolutionContext_Apply(&v0->unk_14, v0->unk_08, v0->unk_38, v0->unk_3A);
 
         if (v0->unk_10 == 1) {
             ov12_022259DC(&v0->unk_14, v0->unk_0C, v0->unk_38, v0->unk_3A - v0->unk_3C);
@@ -1389,7 +1411,7 @@ static void ov12_02230BE0(SysTask *param0, void *param1)
         v1 = ScaleLerpContext_Update(&v0->unk_14);
 
         if (v1 == 1) {
-            ov12_02225FA4(&v0->unk_14, &v2, &v3);
+            BattleAnimUtil_ConvertRelativeToAffineScale(&v0->unk_14, &v2, &v3);
             ManagedSprite_SetAffineScale(v0->unk_10, v2 * v0->unk_54, v3);
         } else {
             v0->unk_0C++;
@@ -1421,7 +1443,7 @@ static void ov12_02230BE0(SysTask *param0, void *param1)
         v1 = ScaleLerpContext_Update(&v0->unk_14);
 
         if (v1 == 1) {
-            ov12_02225FA4(&v0->unk_14, &v2, &v3);
+            BattleAnimUtil_ConvertRelativeToAffineScale(&v0->unk_14, &v2, &v3);
             ManagedSprite_SetAffineScale(v0->unk_10, v2 * v0->unk_54, v3);
         } else {
             v0->unk_0C++;
@@ -1536,7 +1558,7 @@ static BOOL ov12_02230EC0(UnkStruct_ov12_02230E24 *param0)
     v0 = ScaleLerpContext_Update(&param0->unk_04);
 
     if (v0 == 1) {
-        ov12_02225FA4(&param0->unk_04, &v1, &v2);
+        BattleAnimUtil_ConvertRelativeToAffineScale(&param0->unk_04, &v1, &v2);
 
         if (param0->unk_28) {
             ManagedSprite_SetAffineScale(param0->unk_00, -v1, 1);
@@ -1655,7 +1677,7 @@ static void ov12_022310D4(SysTask *param0, void *param1)
     switch (v0->unk_0C) {
     case 0:
         if (PosLerpContext_Update(&v0->unk_18)) {
-            ov12_02225A18(&v0->unk_18, v0->unk_10, v0->unk_14, v0->unk_16);
+            RevolutionContext_Apply(&v0->unk_18, v0->unk_10, v0->unk_14, v0->unk_16);
         } else {
             PosLerpContext_Init(
                 &v0->unk_18, v0->unk_18.x, 0, 0, 0, 2);
@@ -1665,7 +1687,7 @@ static void ov12_022310D4(SysTask *param0, void *param1)
         return;
     case 1:
         if (PosLerpContext_Update(&v0->unk_18)) {
-            ov12_02225A18(&v0->unk_18, v0->unk_10, v0->unk_14, v0->unk_16);
+            RevolutionContext_Apply(&v0->unk_18, v0->unk_10, v0->unk_14, v0->unk_16);
         } else {
             PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_X_CENTER, v0->unk_14);
             PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_Y_CENTER, v0->unk_16);
@@ -1688,7 +1710,7 @@ static void ov12_022310D4(SysTask *param0, void *param1)
         break;
     case 4:
         if (PosLerpContext_Update(&v0->unk_18)) {
-            ov12_02225A18(&v0->unk_18, v0->unk_10, v0->unk_14, v0->unk_16);
+            RevolutionContext_Apply(&v0->unk_18, v0->unk_10, v0->unk_14, v0->unk_16);
         } else {
             PosLerpContext_Init(&v0->unk_18, v0->unk_18.x, 0, 0, 0, 4);
             v0->unk_0C++;
@@ -1696,7 +1718,7 @@ static void ov12_022310D4(SysTask *param0, void *param1)
         break;
     case 5:
         if (PosLerpContext_Update(&v0->unk_18)) {
-            ov12_02225A18(&v0->unk_18, v0->unk_10, v0->unk_14, v0->unk_16);
+            RevolutionContext_Apply(&v0->unk_18, v0->unk_10, v0->unk_14, v0->unk_16);
         } else {
             PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_X_CENTER, v0->unk_14);
             PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_Y_CENTER, v0->unk_16);
@@ -1800,7 +1822,7 @@ void ov12_02231444(BattleAnimSystem *param0)
     ManagedSprite_SetExplicitOamMode(v0->unk_14, GX_OAM_MODE_XLU);
     PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_HIDE, 1);
 
-    ov12_022263A4(&v0->unk_1C, 2, 16);
+    RevolutionContext_InitOvalRevolutions(&v0->unk_1C, 2, 16);
     BattleAnimUtil_SetEffectBgBlending(v0->unk_00, 16, 16 - 16);
     ov12_02226424(&v0->unk_40, 16, 0, 16 - 16, 16 - 0, 32);
 
@@ -2590,7 +2612,7 @@ static void ov12_02232430(SysTask *param0, void *param1)
         break;
     case 1:
         if (PosLerpContext_Update(&v0->unk_10)) {
-            ov12_02225A18(&v0->unk_10, v0->unk_08, v0->unk_0C, v0->unk_0E);
+            RevolutionContext_Apply(&v0->unk_10, v0->unk_08, v0->unk_0C, v0->unk_0E);
         } else {
             v0->unk_34++;
 
@@ -2627,12 +2649,12 @@ static void ov12_022324E0(SysTask *param0, void *param1)
 
     switch (v0->unk_00) {
     case 0:
-        ov12_022263A4(&v0->unk_14, 1, 64);
+        RevolutionContext_InitOvalRevolutions(&v0->unk_14, 1, 64);
         v0->unk_14.data[2] *= v0->unk_08;
         v0->unk_00++;
         break;
     case 1:
-        if (ov12_02225BA0(&v0->unk_14, v0->unk_10, v0->unk_12 - -8, v0->unk_0C) == 0) {
+        if (RevolutionContext_UpdateAndApply(&v0->unk_14, v0->unk_10, v0->unk_12 - -8, v0->unk_0C) == 0) {
             PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_X_CENTER, v0->unk_10);
             PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_Y_CENTER, v0->unk_12);
 
@@ -3013,7 +3035,7 @@ static void ov12_02232D64(UnkStruct_ov12_02232D38 *param0)
     ManagedSprite_SetDrawFlag(param0->unk_20, Unk_ov12_0223A1CC[v0]);
     ManagedSprite_SetDrawFlag(param0->unk_18, 1);
 
-    ov12_02225FA4(&param0->unk_28, &v1, &v2);
+    BattleAnimUtil_ConvertRelativeToAffineScale(&param0->unk_28, &v1, &v2);
 
     if (param0->unk_C8 == 1) {
         v1 = -v1;
@@ -3031,7 +3053,7 @@ static BOOL ov12_02232E04(UnkStruct_ov12_02232D38 *param0)
     switch (param0->unk_94) {
     case 0:
         ScaleLerpContext_UpdateXY(&param0->unk_28);
-        ov12_02225FA4(&param0->unk_28, &v1, &v2);
+        BattleAnimUtil_ConvertRelativeToAffineScale(&param0->unk_28, &v1, &v2);
 
         if (param0->unk_C8 == 1) {
             v1 = -v1;
@@ -3052,7 +3074,7 @@ static BOOL ov12_02232E04(UnkStruct_ov12_02232D38 *param0)
         if (ScaleLerpContext_Update(&param0->unk_4C)) {
             param0->unk_28.x = param0->unk_4C.x;
 
-            ov12_02225FA4(&param0->unk_28, &v1, &v2);
+            BattleAnimUtil_ConvertRelativeToAffineScale(&param0->unk_28, &v1, &v2);
 
             if (param0->unk_C8 == 1) {
                 v1 = -v1;
@@ -3087,7 +3109,7 @@ static void ov12_02232F30(UnkStruct_ov12_02232D38 *param0)
 
     PosLerpContext_Init(&param0->unk_70, v0, v0, v1 - 64, v1, 8);
     ScaleLerpContext_InitXY(&param0->unk_28, 2, 10, 20, 10, 10, 8);
-    ov12_02225FA4(&param0->unk_28, &v2, &v3);
+    BattleAnimUtil_ConvertRelativeToAffineScale(&param0->unk_28, &v2, &v3);
 
     if (param0->unk_CC == 1) {
         v2 = -v2;
@@ -3126,7 +3148,7 @@ static BOOL ov12_02232FF0(UnkStruct_ov12_02232D38 *param0)
         ov12_02225C50(&param0->unk_70, param0->unk_1C);
 
         v3 = ScaleLerpContext_UpdateXY(&param0->unk_28);
-        ov12_02225FA4(&param0->unk_28, &v0, &v1);
+        BattleAnimUtil_ConvertRelativeToAffineScale(&param0->unk_28, &v0, &v1);
 
         if (param0->unk_CC == 1) {
             v0 = -v0;
@@ -3255,13 +3277,13 @@ void ov12_02233178(BattleAnimSystem *param0)
 static void ov12_022332E8(UnkStruct_ov12_022332E8 *param0)
 {
     ScaleLerpContext_Init(&param0->unk_F8, 25, 10, 10, 10);
-    ov12_022261C4(&param0->unk_48, &param0->unk_F8, ScaleLerpContext_Update, param0->unk_38, param0->unk_3A, 9, 3, 1, param0->unk_3C[2], param0->unk_3C[1], param0->unk_3C[0], NULL);
+    Afterimage_Init(&param0->unk_48, &param0->unk_F8, ScaleLerpContext_Update, param0->unk_38, param0->unk_3A, 9, 3, 1, param0->unk_3C[2], param0->unk_3C[1], param0->unk_3C[0], NULL);
 }
 
 static void ov12_02233338(UnkStruct_ov12_022332E8 *param0)
 {
     ScaleLerpContext_Init(&param0->unk_F8, 10, 10, 25, 6);
-    ov12_022261C4(&param0->unk_48, &param0->unk_F8, ScaleLerpContext_Update, param0->unk_38, param0->unk_3A, 5, 3, 1, param0->unk_3C[0], param0->unk_3C[1], param0->unk_3C[2], NULL);
+    Afterimage_Init(&param0->unk_48, &param0->unk_F8, ScaleLerpContext_Update, param0->unk_38, param0->unk_3A, 5, 3, 1, param0->unk_3C[0], param0->unk_3C[1], param0->unk_3C[2], NULL);
     ManagedSprite_SetDrawFlag(param0->unk_3C[0], 1);
 }
 
@@ -3276,7 +3298,7 @@ static void ov12_02233394(SysTask *param0, void *param1)
         v0->unk_0C++;
         break;
     case 1:
-        if (ov12_02226274(&v0->unk_48) == 0) {
+        if (Afterimage_Update(&v0->unk_48) == 0) {
             ManagedSprite_SetDrawFlag(v0->unk_3C[0], 1);
             v0->unk_0C++;
             ShakeContext_Init(&v0->unk_14, 4, 0, 1, 6);
@@ -3289,7 +3311,7 @@ static void ov12_02233394(SysTask *param0, void *param1)
         }
         break;
     case 3:
-        if (ov12_02226274(&v0->unk_48) == 0) {
+        if (Afterimage_Update(&v0->unk_48) == 0) {
             v0->unk_0C++;
         }
         break;
@@ -3349,7 +3371,7 @@ static void ov12_0223351C(UnkStruct_ov12_0223351C *param0, int param1)
     int v1 = ((360 * 0xffff) / 360) / 6;
 
     for (v0 = 0; v0 < 6; v0++) {
-        ov12_02225A5C(&param0->unk_30[v0], (0 * 0xffff) / 360, (180 * 0xffff) / 360, 0, 0, FX32_ONE * 50, 0, 48);
+        RevolutionContext_Init(&param0->unk_30[v0], (0 * 0xffff) / 360, (180 * 0xffff) / 360, 0, 0, FX32_ONE * 50, 0, 48);
         param0->unk_30[v0].data[1] += (v1 * v0);
         param0->unk_30[v0].data[5] *= param1;
     }
@@ -3362,7 +3384,7 @@ static void ov12_02233574(UnkStruct_ov12_0223351C *param0)
     u16 v2;
 
     for (v0 = 0; v0 < 6; v0++) {
-        ov12_02225AE0(&param0->unk_30[v0]);
+        RevolutionContext_Update(&param0->unk_30[v0]);
 
         v2 = param0->unk_30[v0].data[1] * 5;
         v1 = FX_Mul(FX_SinIdx(v2), (FX32_ONE * 10) * param0->unk_14) >> FX32_SHIFT;

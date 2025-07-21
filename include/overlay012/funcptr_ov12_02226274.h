@@ -1,7 +1,0 @@
-#ifndef POKEPLATINUM_FUNCPTR_OV12_02226274_H
-#define POKEPLATINUM_FUNCPTR_OV12_02226274_H
-
-struct XYTransformContext;
-typedef BOOL (*UnkFuncPtr_ov12_02226274)(struct XYTransformContext *);
-
-#endif // POKEPLATINUM_FUNCPTR_OV12_02226274_H

@@ -7,7 +7,6 @@
 #include "constants/graphics.h"
 
 #include "overlay012/battle_anim_system.h"
-#include "overlay012/funcptr_ov12_02226274.h"
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/ov12_02235254.h"
 #include "overlay012/ov12_02225864.h"
@@ -219,14 +218,14 @@ void ov12_022259FC(XYTransformContext *param0, ManagedSprite *param1)
 {
     f32 v0, v1;
 
-    ov12_02225FA4(param0, &v0, &v1);
+    BattleAnimUtil_ConvertRelativeToAffineScale(param0, &v0, &v1);
     ManagedSprite_SetAffineScale(param1, v0, v1);
 }
 
-void ov12_02225A18(XYTransformContext *param0, PokemonSprite *param1, s16 param2, s16 param3)
+void RevolutionContext_Apply(XYTransformContext *ctx, PokemonSprite *sprite, s16 cx, s16 cy)
 {
-    PokemonSprite_SetAttribute(param1, MON_SPRITE_X_CENTER, param2 + param0->x);
-    PokemonSprite_SetAttribute(param1, MON_SPRITE_Y_CENTER, param3 + param0->y);
+    PokemonSprite_SetAttribute(sprite, MON_SPRITE_X_CENTER, cx + ctx->x);
+    PokemonSprite_SetAttribute(sprite, MON_SPRITE_Y_CENTER, cy + ctx->y);
 }
 
 void ov12_02225A3C(XYTransformContext *param0, PokemonSprite *param1)
@@ -235,15 +234,15 @@ void ov12_02225A3C(XYTransformContext *param0, PokemonSprite *param1)
     PokemonSprite_SetAttribute(param1, MON_SPRITE_SCALE_Y, param0->y);
 }
 
-void ov12_02225A5C(XYTransformContext *param0, u16 param1, u16 param2, u16 param3, u16 param4, fx32 param5, fx32 param6, int param7)
+void RevolutionContext_Init(XYTransformContext *ctx, u16 sx, u16 ex, u16 sy, u16 ey, fx32 rx, fx32 ry, int steps)
 {
-    param0->data[0] = param7;
-    param0->data[1] = param1;
-    param0->data[2] = param5;
-    param0->data[3] = param3;
-    param0->data[4] = param6;
-    param0->data[5] = (param2 - param1) / param7;
-    param0->data[6] = (param4 - param3) / param7;
+    ctx->data[XY_PARAM_REV_STEPS] = steps;
+    ctx->data[XY_PARAM_REV_CUR_X] = sx;
+    ctx->data[XY_PARAM_REV_RADIUS_X] = rx;
+    ctx->data[XY_PARAM_REV_CUR_Y] = sy;
+    ctx->data[XY_PARAM_REV_RADIUS_Y] = ry;
+    ctx->data[XY_PARAM_REV_STEP_SIZE_X] = (ex - sx) / steps;
+    ctx->data[XY_PARAM_REV_STEP_SIZE_Y] = (ey - sy) / steps;
 }
 
 void ov12_02225A8C(XYTransformContext *param0, u16 param1, u16 param2, u16 param3, u16 param4, fx32 param5, fx32 param6, u16 param7)
@@ -267,33 +266,31 @@ void ov12_02225A8C(XYTransformContext *param0, u16 param1, u16 param2, u16 param
     param0->data[6] = (param4 - param3) / param0->data[0];
 }
 
-BOOL ov12_02225AE0(XYTransformContext *param0)
+BOOL RevolutionContext_Update(XYTransformContext *ctx)
 {
-    fx32 v0, v1;
+    GF_ASSERT(ctx);
 
-    GF_ASSERT(param0);
+    if (ctx->data[XY_PARAM_REV_STEPS]) {
+        ctx->data[XY_PARAM_REV_CUR_X] += ctx->data[XY_PARAM_REV_STEP_SIZE_X];
+        ctx->data[XY_PARAM_REV_CUR_Y] += ctx->data[XY_PARAM_REV_STEP_SIZE_Y];
 
-    if (param0->data[0]) {
-        param0->data[1] += param0->data[5];
-        param0->data[3] += param0->data[6];
+        ctx->data[XY_PARAM_REV_CUR_X] &= 0xFFFF;
+        ctx->data[XY_PARAM_REV_CUR_Y] &= 0xFFFF;
 
-        param0->data[1] &= 0xffff;
-        param0->data[3] &= 0xffff;
+        ctx->data[XY_PARAM_REV_STEPS]--;
 
-        param0->data[0]--;
+        ctx->x = FX_Mul(FX_SinIdx(ctx->data[XY_PARAM_REV_CUR_X]), ctx->data[XY_PARAM_REV_RADIUS_X]) >> FX32_SHIFT;
+        ctx->y = FX_Mul(FX_CosIdx(ctx->data[XY_PARAM_REV_CUR_Y]), ctx->data[XY_PARAM_REV_RADIUS_Y]) >> FX32_SHIFT;
 
-        param0->x = FX_Mul(FX_SinIdx(param0->data[1]), param0->data[2]) >> FX32_SHIFT;
-        param0->y = FX_Mul(FX_CosIdx(param0->data[3]), param0->data[4]) >> FX32_SHIFT;
-
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ov12_02225B78(XYTransformContext *param0, s16 param1, s16 param2, ManagedSprite *param3)
 {
-    if (ov12_02225AE0(param0)) {
+    if (RevolutionContext_Update(param0)) {
         ov12_022259DC(param0, param3, param1, param2);
         return 1;
     }
@@ -301,14 +298,14 @@ BOOL ov12_02225B78(XYTransformContext *param0, s16 param1, s16 param2, ManagedSp
     return 0;
 }
 
-BOOL ov12_02225BA0(XYTransformContext *param0, s16 param1, s16 param2, PokemonSprite *param3)
+BOOL RevolutionContext_UpdateAndApply(XYTransformContext *ctx, s16 cx, s16 cy, PokemonSprite *sprite)
 {
-    if (ov12_02225AE0(param0)) {
-        ov12_02225A18(param0, param3, param1, param2);
-        return 1;
+    if (RevolutionContext_Update(ctx)) {
+        RevolutionContext_Apply(ctx, sprite, cx, cy);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 void PosLerpContext_Init(XYTransformContext *ctx, s16 sx, s16 ex, s16 sy, s16 ey, u16 steps)
@@ -354,7 +351,7 @@ BOOL ov12_02225C50(XYTransformContext *param0, ManagedSprite *param1)
 BOOL ov12_02225C74(XYTransformContext *param0, PokemonSprite *param1)
 {
     if (PosLerpContext_Update(param0)) {
-        ov12_02225A18(param0, param1, 0, 0);
+        RevolutionContext_Apply(param0, param1, 0, 0);
         return 1;
     }
 
@@ -366,7 +363,7 @@ void ov12_02225C98(XYTransformContext *param0, XYTransformContext *param1, s16 p
     PosLerpContext_Init(param0, param2, param3, param4, param5, param6);
     param1->x = 0;
     param1->y = 0;
-    ov12_02225A5C(param1, 0, 0, (90 * 0xffff) / 360, (270 * 0xffff) / 360, 0, param7, param6);
+    RevolutionContext_Init(param1, 0, 0, (90 * 0xffff) / 360, (270 * 0xffff) / 360, 0, param7, param6);
 }
 
 BOOL ov12_02225CE4(XYTransformContext *param0, XYTransformContext *param1)
@@ -377,7 +374,7 @@ BOOL ov12_02225CE4(XYTransformContext *param0, XYTransformContext *param1)
     GF_ASSERT(param1);
 
     v0 = PosLerpContext_Update(param0);
-    v1 = ov12_02225AE0(param1);
+    v1 = RevolutionContext_Update(param1);
 
     param0->x += param1->x;
     param0->y += param1->y;
@@ -544,10 +541,10 @@ BOOL ScaleLerpContext_UpdateXY(XYTransformContext *ctx)
     return FALSE;
 }
 
-void ov12_02225FA4(XYTransformContext *param0, f32 *param1, f32 *param2)
+void BattleAnimUtil_ConvertRelativeToAffineScale(XYTransformContext *ctx, f32 *px, f32 *py)
 {
-    *param1 = (1.0f * param0->x) / 0x100;
-    *param2 = (1.0f * param0->y) / 0x100;
+    *px = (1.0f * ctx->x) / MON_AFFINE_SCALE(1);
+    *py = (1.0f * ctx->y) / MON_AFFINE_SCALE(1);
 }
 
 // This function calculates a vertical offset to be applied to a pokemon sprites
@@ -709,90 +706,97 @@ BOOL ShakeContext_Update(XYTransformContext *ctx)
 BOOL ov12_0222619C(XYTransformContext *param0, s16 param1, s16 param2, PokemonSprite *param3)
 {
     if (ShakeContext_Update(param0)) {
-        ov12_02225A18(param0, param3, param1, param2);
+        RevolutionContext_Apply(param0, param3, param1, param2);
         return 1;
     }
 
     return 0;
 }
 
-void ov12_022261C4(UnkStruct_ov12_02226274 *param0, XYTransformContext *param1, UnkFuncPtr_ov12_02226274 param2, s16 param3, s16 param4, u16 param5, u8 param6, u8 param7, ManagedSprite *param8, ManagedSprite *param9, ManagedSprite *param10, ManagedSprite *param11)
+void Afterimage_Init(AfterimageContext *ctx, XYTransformContext *transformCtx, XYTransformFunc transformFunc, s16 x, s16 y, u16 delay, u8 count, u8 mode, ManagedSprite *sprite0, ManagedSprite *sprite1, ManagedSprite *sprite2, ManagedSprite *sprite3)
 {
-    int v0;
+    int i;
 
-    param0->unk_00 = param3;
-    param0->unk_02 = param4;
-    param0->unk_94 = param2;
-    param0->unk_A8 = param5;
-    param0->unk_AA = 0;
-    param0->unk_AC = param6;
-    param0->unk_AD = 0;
-    param0->unk_AE = param7;
+    ctx->x = x;
+    ctx->y = y;
+    ctx->transformFunc = transformFunc;
+    ctx->delay = delay;
+    ctx->delayCounter = 0;
+    ctx->count = count;
+    ctx->activeCount = 0;
+    ctx->mode = mode;
 
-    for (v0 = 0; v0 < param6; v0++) {
-        param0->unk_04[v0] = *param1;
+    for (i = 0; i < count; i++) {
+        ctx->transforms[i] = *transformCtx;
     }
 
-    param0->unk_98[0] = param8;
-    param0->unk_98[1] = param9;
-    param0->unk_98[2] = param10;
-    param0->unk_98[3] = param11;
+    ctx->sprites[0] = sprite0;
+    ctx->sprites[1] = sprite1;
+    ctx->sprites[2] = sprite2;
+    ctx->sprites[3] = sprite3;
 
-    for (v0 = 0; v0 < param0->unk_AC; v0++) {
-        ManagedSprite_SetDrawFlag(param0->unk_98[v0], 0);
+    for (i = 0; i < ctx->count; i++) {
+        ManagedSprite_SetDrawFlag(ctx->sprites[i], FALSE);
     }
 }
 
-BOOL ov12_02226274(UnkStruct_ov12_02226274 *param0)
+BOOL Afterimage_Update(AfterimageContext *ctx)
 {
-    int v0;
-    BOOL v1[4];
-    f32 v2, v3;
+    int i;
+    BOOL active[MAX_AFTERIMAGES];
 
-    for (v0 = 0; v0 < 4; v0++) {
-        v1[v0] = 1;
+    for (i = 0; i < MAX_AFTERIMAGES; i++) {
+        active[i] = TRUE;
     }
 
-    if (param0->unk_A8 <= param0->unk_AA) {
-        ManagedSprite_SetDrawFlag(param0->unk_98[param0->unk_AD], 1);
-        param0->unk_AD++;
-        param0->unk_AA = 0;
+    if (ctx->delay <= ctx->delayCounter) {
+        ManagedSprite_SetDrawFlag(ctx->sprites[ctx->activeCount], TRUE);
+        ctx->activeCount++;
+        ctx->delayCounter = 0;
     }
 
-    if (param0->unk_AD < param0->unk_AC) {
-        param0->unk_AA++;
+    if (ctx->activeCount < ctx->count) {
+        ctx->delayCounter++;
     }
 
-    for (v0 = 0; v0 < param0->unk_AD; v0++) {
-        v1[v0] = param0->unk_94(&param0->unk_04[v0]);
+    for (i = 0; i < ctx->activeCount; i++) {
+        active[i] = ctx->transformFunc(&ctx->transforms[i]);
 
-        if (v1[v0]) {
-            if (param0->unk_AE == 0) {
-                ManagedSprite_SetPositionXY(param0->unk_98[v0], param0->unk_00 + param0->unk_04[v0].x, param0->unk_02 + param0->unk_04[v0].y);
+        if (active[i]) {
+            if (ctx->mode == AFTERIMAGE_TRANSFORM_POSITION) {
+                ManagedSprite_SetPositionXY(ctx->sprites[i], ctx->x + ctx->transforms[i].x, ctx->y + ctx->transforms[i].y);
             } else {
-                ov12_02225FA4(&param0->unk_04[v0], &v2, &v3);
-                ManagedSprite_SetAffineScale(param0->unk_98[v0], v2, v3);
+                f32 x, y;
+                BattleAnimUtil_ConvertRelativeToAffineScale(&ctx->transforms[i], &x, &y);
+                ManagedSprite_SetAffineScale(ctx->sprites[i], x, y);
             }
         } else {
-            ManagedSprite_SetDrawFlag(param0->unk_98[v0], 0);
+            ManagedSprite_SetDrawFlag(ctx->sprites[i], FALSE);
         }
     }
 
-    for (v0 = 0; v0 < param0->unk_AC; v0++) {
-        if (v1[v0] == 1) {
-            return 1;
+    for (i = 0; i < ctx->count; i++) {
+        if (active[i] == TRUE) {
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-void ov12_022263A4(XYTransformContext *param0, int param1, int param2)
+void RevolutionContext_InitOvalRevolutions(XYTransformContext *ctx, int revs, int stepsPerRev)
 {
-    int v0;
-
-    ov12_02225A5C(param0, 0, (360 * 0xffff) / 360, 0, (360 * 0xffff) / 360, 32 * FX32_ONE, -8 * FX32_ONE, param2);
-    param0->data[0] *= param1;
+    RevolutionContext_Init(
+        ctx,
+        DEG_TO_IDX(0),
+        DEG_TO_IDX(360),
+        DEG_TO_IDX(0),
+        DEG_TO_IDX(360),
+        REVOLUTION_CONTEXT_OVAL_RADIUS_X,
+        REVOLUTION_CONTEXT_OVAL_RADIUS_Y,
+        stepsPerRev);
+    
+    ctx->data[0] *= revs;
 }
 
 static void ov12_022263DC(SysTask *param0, void *param1)
