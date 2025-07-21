@@ -23,7 +23,7 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_GenericExample,
     BattleAnimScriptFunc_RotateMon,
     BattleAnimScriptFunc_Strength,
-    ov12_0222B45C,
+    BattleAnimScriptFunc_BulkUp,
     ov12_0222B68C,
     ov12_0222F770,
     ov12_0222F9E4,

@@ -1376,7 +1376,7 @@ static void ov12_02227DE0(SysTask *param0, void *param1)
 
     switch (v0->unk_04) {
     case 0:
-        ov12_02225EF0(&v0->unk_10, v0->unk_34, v0->unk_38, v0->unk_3C, v0->unk_40, v0->unk_44, v0->unk_4C >> 16);
+        ScaleLerpContext_InitXY(&v0->unk_10, v0->unk_34, v0->unk_38, v0->unk_3C, v0->unk_40, v0->unk_44, v0->unk_4C >> 16);
         ov12_022260C8(&v0->unk_10, v0->unk_0C);
         v0->unk_04++;
         break;
@@ -1395,7 +1395,7 @@ static void ov12_02227DE0(SysTask *param0, void *param1)
             break;
         }
     case 3:
-        ov12_02225EF0(&v0->unk_10, v0->unk_38, v0->unk_34, v0->unk_40, v0->unk_3C, v0->unk_44, v0->unk_4C & 0xffff);
+        ScaleLerpContext_InitXY(&v0->unk_10, v0->unk_38, v0->unk_34, v0->unk_40, v0->unk_3C, v0->unk_44, v0->unk_4C & 0xffff);
         ov12_022260E8(&v0->unk_10, v0->unk_0C);
         v0->unk_04++;
         break;
@@ -1905,7 +1905,7 @@ static void ov12_02228868(SysTask *param0, void *param1)
 
     switch (v0->unk_00) {
     case 0:
-        if (ov12_02225F6C(&v0->unk_20) == 1) {
+        if (ScaleLerpContext_UpdateXY(&v0->unk_20) == 1) {
             ShakeContext_Update(&v0->unk_44);
 
             PokemonSprite_SetAttribute(v0->unk_1C, MON_SPRITE_SCALE_X, v0->unk_20.x);
@@ -1932,14 +1932,14 @@ static void ov12_02228868(SysTask *param0, void *param1)
                 v3 = v0->unk_10 >> 16;
                 v5 = v0->unk_10 & 0xFF;
 
-                ov12_02225EF0(&v0->unk_20, v2, v4, v3, v5, 100, v0->unk_14);
+                ScaleLerpContext_InitXY(&v0->unk_20, v2, v4, v3, v5, 100, v0->unk_14);
             }
 
             v0->unk_00++;
         }
         break;
     case 2:
-        if (ov12_02225F6C(&v0->unk_20) == 1) {
+        if (ScaleLerpContext_UpdateXY(&v0->unk_20) == 1) {
             PokemonSprite_SetAttribute(v0->unk_1C, MON_SPRITE_SCALE_X, v0->unk_20.x);
             PokemonSprite_SetAttribute(v0->unk_1C, MON_SPRITE_SCALE_Y, v0->unk_20.y);
 
@@ -1952,7 +1952,7 @@ static void ov12_02228868(SysTask *param0, void *param1)
         }
         break;
     case 3:
-        if (ov12_02225F6C(&v0->unk_20) == 1) {
+        if (ScaleLerpContext_UpdateXY(&v0->unk_20) == 1) {
             PokemonSprite_SetAttribute(v0->unk_1C, MON_SPRITE_SCALE_X, v0->unk_20.x);
             PokemonSprite_SetAttribute(v0->unk_1C, MON_SPRITE_SCALE_Y, v0->unk_20.y);
 
@@ -2003,7 +2003,7 @@ void ov12_02228A0C(BattleAnimSystem *param0)
         v2 = BattleAnimSystem_GetScriptVar(param0, 1) >> 16;
         v4 = BattleAnimSystem_GetScriptVar(param0, 1) & 0xFF;
 
-        ov12_02225EF0(&v0->unk_20, v1, v3, v2, v4, 100, BattleAnimSystem_GetScriptVar(param0, 2));
+        ScaleLerpContext_InitXY(&v0->unk_20, v1, v3, v2, v4, 100, BattleAnimSystem_GetScriptVar(param0, 2));
     }
 
     ShakeContext_Init(&v0->unk_44, 2, 0, 0, 10);

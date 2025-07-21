@@ -23,6 +23,8 @@
 #include "sprite_system.h"
 #include "sys_task_manager.h"
 
+#define BASE_SCALE_XY 100
+
 typedef struct {
     u8 unk_00;
     u8 unk_01[3];
@@ -42,13 +44,12 @@ typedef struct {
 // -------------------------------------------------------------------
 typedef struct StrengthContext {
     u8 state;
-    u8 unused;
     s16 baseY;
     int spriteHeight;
     u8 blinkCounter;
     BattleAnimSystem *battleAnimSys;
     PokemonSprite *sprite;
-    XYTransformContext scaleLerp;
+    XYTransformContext scale;
     XYTransformContext shake;
 } StrengthContext;
 
@@ -68,22 +69,41 @@ enum StrengthState {
 #define STRENGTH_BLINK_COLOR    COLOR_RED
 #define STRENGTH_BLINK_ALPHA    10
 #define STRENGTH_BLINK_COUNT    3
-// Script vars
+
 #define STRENGTH_VAR_SHRINK_SCALE    0
 #define STRENGTH_VAR_GROW_SCALE      1
 #define STRENGTH_VAR_SHRINK_STEPS    2
 #define STRENGTH_VAR_GROW_STEPS      3
 
-typedef struct {
-    u8 unk_00;
-    u8 unk_01;
-    s16 unk_02;
-    int unk_04;
-    BattleAnimSystem *unk_08;
-    PokemonSprite *unk_0C;
-    XYTransformContext unk_10;
-    XYTransformContext unk_34;
-} UnkStruct_ov12_0222B220;
+// -------------------------------------------------------------------
+// Bulk Up
+// -------------------------------------------------------------------
+typedef struct BulkUpContext {
+    u8 state;
+    s16 baseY;
+    int spriteHeight;
+    BattleAnimSystem *battleAnimSys;
+    PokemonSprite *sprite;
+    XYTransformContext scale;
+    XYTransformContext unused;
+} BulkUpContext;
+
+enum BulkUpState {
+    BULK_UP_STATE_SQUISH_Y = 0,
+    BULK_UP_STATE_SQUISH_X,
+    BULK_UP_STATE_RETURN_TO_NORMAL,
+    BULK_UP_STATE_GROW,
+    BULK_UP_STATE_SHRINK,
+};
+
+#define BULK_UP_STRETCH_X               150
+#define BULK_UP_SQUISH_X                50
+#define BULK_UP_STRETCH_Y               150
+#define BULK_UP_SQUISH_Y                50
+#define BULK_UP_SQUISH_STRETCH_STEPS    10
+#define BULK_UP_RETURN_TO_NORMAL_STEPS  5
+#define BULK_UP_GROW_STEPS              5
+#define BULK_UP_SHRINK_STEPS            5
 
 typedef struct {
     u8 unk_00;
@@ -347,11 +367,11 @@ static void ov12_0222AC70(SysTask *param0, void *param1)
         }
         break;
     case 1:
-        ov12_02225EF0(&v1->unk_20, 100, 60, 100, 100, 100, 10);
+        ScaleLerpContext_InitXY(&v1->unk_20, 100, 60, 100, 100, 100, 10);
         v1->unk_00++;
         break;
     case 2:
-        if (ov12_02225F6C(&v1->unk_20) == 1) {
+        if (ScaleLerpContext_UpdateXY(&v1->unk_20) == 1) {
             for (v0 = 0; v0 < BattleAnimSystem_GetScriptVar(v1->unk_08, 0); v0++) {
                 f32 v4, v5;
 
@@ -456,14 +476,14 @@ static void BattleAnimTask_Strength(SysTask *task, void *param)
 
     switch (ctx->state) {
     case STRENGTH_STATE_SHRINK:
-        if (ScaleLerpContext_Update(&ctx->scaleLerp) == TRUE) {
+        if (ScaleLerpContext_Update(&ctx->scale) == TRUE) {
             ShakeContext_Update(&ctx->shake);
 
-            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_X, ctx->scaleLerp.x);
-            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_Y, ctx->scaleLerp.y);
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_X, ctx->scale.x);
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_Y, ctx->scale.y);
             PokemonSprite_AddAttribute(ctx->sprite, MON_SPRITE_X_CENTER, ctx->shake.x);
 
-            s16 offset = BattleAnimUtil_GetGroundAnchoredScaleOffset(ctx->baseY, ctx->spriteHeight, ctx->scaleLerp.data[XY_PARAM_CUR_Y]);
+            s16 offset = BattleAnimUtil_GetGroundAnchoredScaleOffset(ctx->baseY, ctx->spriteHeight, ctx->scale.data[XY_PARAM_CUR_Y]);
             PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_Y_CENTER, ctx->baseY + offset);
         } else {
             ctx->state++;
@@ -485,7 +505,7 @@ static void BattleAnimTask_Strength(SysTask *task, void *param)
 
             if (ctx->blinkCounter >= STRENGTH_BLINK_COUNT) {
                 ScaleLerpContext_Init(
-                    &ctx->scaleLerp,
+                    &ctx->scale,
                     BattleAnimSystem_GetScriptVar(ctx->battleAnimSys, STRENGTH_VAR_SHRINK_SCALE),
                     100,
                     BattleAnimSystem_GetScriptVar(ctx->battleAnimSys, STRENGTH_VAR_GROW_SCALE),
@@ -497,20 +517,20 @@ static void BattleAnimTask_Strength(SysTask *task, void *param)
         }
         break;
     case STRENGTH_STATE_GROW:
-        if (ScaleLerpContext_Update(&ctx->scaleLerp) == TRUE) {
-            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_X, ctx->scaleLerp.x);
-            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_Y, ctx->scaleLerp.y);
-            s16 offset = BattleAnimUtil_GetGroundAnchoredScaleOffset(ctx->baseY, ctx->spriteHeight, ctx->scaleLerp.data[XY_PARAM_CUR_Y]);
+        if (ScaleLerpContext_Update(&ctx->scale) == TRUE) {
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_X, ctx->scale.x);
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_Y, ctx->scale.y);
+            s16 offset = BattleAnimUtil_GetGroundAnchoredScaleOffset(ctx->baseY, ctx->spriteHeight, ctx->scale.data[XY_PARAM_CUR_Y]);
             PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_Y_CENTER, ctx->baseY + offset);
         } else {
             ctx->state++;
         }
         break;
     case STRENGTH_STATE_CLEANUP:
-        if (ScaleLerpContext_Update(&ctx->scaleLerp) == TRUE) {
-            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_X, ctx->scaleLerp.x);
-            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_Y, ctx->scaleLerp.y);
-            s16 offset = BattleAnimUtil_GetGroundAnchoredScaleOffset(ctx->baseY, ctx->spriteHeight, ctx->scaleLerp.data[XY_PARAM_CUR_Y]);
+        if (ScaleLerpContext_Update(&ctx->scale) == TRUE) {
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_X, ctx->scale.x);
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_Y, ctx->scale.y);
+            s16 offset = BattleAnimUtil_GetGroundAnchoredScaleOffset(ctx->baseY, ctx->spriteHeight, ctx->scale.data[XY_PARAM_CUR_Y]);
             PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_Y_CENTER, ctx->baseY + offset);
         } else {
             PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_X, MON_AFFINE_SCALE(1));
@@ -531,113 +551,138 @@ void BattleAnimScriptFunc_Strength(BattleAnimSystem *system)
     StrengthContext *ctx = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(system), sizeof(StrengthContext));
 
     ctx->blinkCounter = 0;
-    ctx->state = 0;
+    ctx->state = STRENGTH_STATE_SHRINK;
     ctx->battleAnimSys = system;
     ctx->sprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
     ctx->baseY = PokemonSprite_GetAttribute(ctx->sprite, MON_SPRITE_Y_CENTER);
     ctx->spriteHeight = BattleAnimSystem_GetBattlerSpriteHeight(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
 
     ScaleLerpContext_Init(
-        &ctx->scaleLerp,
-        100,
-        100,
+        &ctx->scale,
+        BASE_SCALE_XY,
+        BASE_SCALE_XY,
         BattleAnimSystem_GetScriptVar(system, STRENGTH_VAR_SHRINK_SCALE),
         BattleAnimSystem_GetScriptVar(system, STRENGTH_VAR_SHRINK_STEPS));
     ShakeContext_Init(&ctx->shake, STRENGTH_SHAKE_X, STRENGTH_SHAKE_Y, STRENGTH_SHAKE_INTERVAL, STRENGTH_SHAKE_AMOUNT);
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Strength, ctx);
 }
 
-static void ov12_0222B220(SysTask *param0, void *param1)
+static void BattleAnimTask_BulkUp(SysTask *task, void *param)
 {
-    UnkStruct_ov12_0222B220 *v0 = (UnkStruct_ov12_0222B220 *)param1;
+    BulkUpContext *ctx = param;
 
-    switch (v0->unk_00) {
-    case 0:
-        if (ov12_02225F6C(&v0->unk_10) == 1) {
-            PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_SCALE_X, v0->unk_10.x);
-            PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_SCALE_Y, v0->unk_10.y);
-            {
-                s16 v1 = BattleAnimUtil_GetGroundAnchoredScaleOffset(v0->unk_02, v0->unk_04, v0->unk_10.data[4]);
-                PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_Y_CENTER, v0->unk_02 + v1);
-            }
+    switch (ctx->state) {
+    case BULK_UP_STATE_SQUISH_Y:
+        if (ScaleLerpContext_UpdateXY(&ctx->scale) == TRUE) {
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_X, ctx->scale.x);
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_Y, ctx->scale.y);
+            s16 offset = BattleAnimUtil_GetGroundAnchoredScaleOffset(ctx->baseY, ctx->spriteHeight, ctx->scale.data[XY_PARAM_CUR_Y]);
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_Y_CENTER, ctx->baseY + offset);
         } else {
-            ov12_02225EF0(&v0->unk_10, 150, 50, 50, 150, 100, 10);
-            v0->unk_00++;
+            ScaleLerpContext_InitXY(
+                &ctx->scale,
+                BULK_UP_STRETCH_X,
+                BULK_UP_SQUISH_X,
+                BULK_UP_SQUISH_Y,
+                BULK_UP_STRETCH_Y,
+                BASE_SCALE_XY,
+                BULK_UP_SQUISH_STRETCH_STEPS);
+            ctx->state++;
         }
         break;
-    case 1:
-        if (ov12_02225F6C(&v0->unk_10) == 1) {
-            PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_SCALE_X, v0->unk_10.x);
-            PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_SCALE_Y, v0->unk_10.y);
-            {
-                s16 v2 = BattleAnimUtil_GetGroundAnchoredScaleOffset(v0->unk_02, v0->unk_04, v0->unk_10.data[4]);
-                PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_Y_CENTER, v0->unk_02 + v2);
-            }
+    case BULK_UP_STATE_SQUISH_X:
+        if (ScaleLerpContext_UpdateXY(&ctx->scale) == TRUE) {
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_X, ctx->scale.x);
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_Y, ctx->scale.y);
+            s16 offset = BattleAnimUtil_GetGroundAnchoredScaleOffset(ctx->baseY, ctx->spriteHeight, ctx->scale.data[XY_PARAM_CUR_Y]);
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_Y_CENTER, ctx->baseY + offset);
         } else {
-            ov12_02225EF0(&v0->unk_10, 50, 100, 150, 100, 100, 5);
-            v0->unk_00++;
+            ScaleLerpContext_InitXY(
+                &ctx->scale,
+                BULK_UP_SQUISH_X,
+                BASE_SCALE_XY,
+                BULK_UP_STRETCH_Y,
+                BASE_SCALE_XY,
+                BASE_SCALE_XY,
+                BULK_UP_RETURN_TO_NORMAL_STEPS);
+            ctx->state++;
         }
         break;
-    case 2:
-        if (ov12_02225F6C(&v0->unk_10) == 1) {
-            PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_SCALE_X, v0->unk_10.x);
-            PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_SCALE_Y, v0->unk_10.y);
-            {
-                s16 v3 = BattleAnimUtil_GetGroundAnchoredScaleOffset(v0->unk_02, v0->unk_04, v0->unk_10.data[4]);
-                PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_Y_CENTER, v0->unk_02 + v3);
-            }
+    case BULK_UP_STATE_RETURN_TO_NORMAL:
+        if (ScaleLerpContext_UpdateXY(&ctx->scale) == TRUE) {
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_X, ctx->scale.x);
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_Y, ctx->scale.y);
+            s16 offset = BattleAnimUtil_GetGroundAnchoredScaleOffset(ctx->baseY, ctx->spriteHeight, ctx->scale.data[XY_PARAM_CUR_Y]);
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_Y_CENTER, ctx->baseY + offset);
         } else {
-            ov12_02225EF0(&v0->unk_10, 100, 150, 100, 150, 100, 5);
-            v0->unk_00++;
+            ScaleLerpContext_InitXY(
+                &ctx->scale,
+                BASE_SCALE_XY,
+                BULK_UP_STRETCH_X,
+                BASE_SCALE_XY,
+                BULK_UP_STRETCH_Y,
+                BASE_SCALE_XY,
+                BULK_UP_GROW_STEPS);
+            ctx->state++;
         }
         break;
-    case 3:
-        if (ov12_02225F6C(&v0->unk_10) == 1) {
-            PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_SCALE_X, v0->unk_10.x);
-            PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_SCALE_Y, v0->unk_10.y);
-            {
-                s16 v4 = BattleAnimUtil_GetGroundAnchoredScaleOffset(v0->unk_02, v0->unk_04, v0->unk_10.data[4]);
-                PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_Y_CENTER, v0->unk_02 + v4);
-            }
+    case BULK_UP_STATE_GROW:
+        if (ScaleLerpContext_UpdateXY(&ctx->scale) == TRUE) {
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_X, ctx->scale.x);
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_Y, ctx->scale.y);
+            s16 offset = BattleAnimUtil_GetGroundAnchoredScaleOffset(ctx->baseY, ctx->spriteHeight, ctx->scale.data[XY_PARAM_CUR_Y]);
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_Y_CENTER, ctx->baseY + offset);
         } else {
-            ov12_02225EF0(&v0->unk_10, 150, 100, 150, 100, 100, 5);
-            v0->unk_00++;
+            ScaleLerpContext_InitXY(
+                &ctx->scale,
+                BULK_UP_STRETCH_X,
+                BASE_SCALE_XY,
+                BULK_UP_STRETCH_Y,
+                BASE_SCALE_XY,
+                BASE_SCALE_XY,
+                BULK_UP_SHRINK_STEPS);
+            ctx->state++;
         }
         break;
-    case 4:
-        if (ov12_02225F6C(&v0->unk_10) == 1) {
-            PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_SCALE_X, v0->unk_10.x);
-            PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_SCALE_Y, v0->unk_10.y);
-            {
-                s16 v5 = BattleAnimUtil_GetGroundAnchoredScaleOffset(v0->unk_02, v0->unk_04, v0->unk_10.data[4]);
-                PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_Y_CENTER, v0->unk_02 + v5);
-            }
+    case BULK_UP_STATE_SHRINK:
+        if (ScaleLerpContext_UpdateXY(&ctx->scale) == TRUE) {
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_X, ctx->scale.x);
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_Y, ctx->scale.y);
+            s16 offset = BattleAnimUtil_GetGroundAnchoredScaleOffset(ctx->baseY, ctx->spriteHeight, ctx->scale.data[XY_PARAM_CUR_Y]);
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_Y_CENTER, ctx->baseY + offset);
         } else {
-            PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_SCALE_X, 0x100);
-            PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_SCALE_Y, 0x100);
-            PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_Y_CENTER, v0->unk_02);
-            v0->unk_00++;
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_X, MON_AFFINE_SCALE(1));
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_Y, MON_AFFINE_SCALE(1));
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_Y_CENTER, ctx->baseY);
+            ctx->state++;
         }
         break;
     default:
-        BattleAnimSystem_EndAnimTask(v0->unk_08, param0);
-        Heap_Free(v0);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         break;
     }
 }
 
-void ov12_0222B45C(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_BulkUp(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_0222B220 *v0 = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222B220));
+    BulkUpContext *ctx = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(system), sizeof(BulkUpContext));
 
-    v0->unk_00 = 0;
-    v0->unk_08 = param0;
-    v0->unk_0C = BattleAnimSystem_GetBattlerSprite(v0->unk_08, BattleAnimSystem_GetAttacker(v0->unk_08));
-    v0->unk_02 = PokemonSprite_GetAttribute(v0->unk_0C, MON_SPRITE_Y_CENTER);
-    v0->unk_04 = BattleAnimSystem_GetBattlerSpriteHeight(v0->unk_08, BattleAnimSystem_GetAttacker(v0->unk_08));
+    ctx->state = BULK_UP_STATE_SQUISH_Y;
+    ctx->battleAnimSys = system;
+    ctx->sprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    ctx->baseY = PokemonSprite_GetAttribute(ctx->sprite, MON_SPRITE_Y_CENTER);
+    ctx->spriteHeight = BattleAnimSystem_GetBattlerSpriteHeight(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
 
-    ov12_02225EF0(&v0->unk_10, 100, 150, 100, 50, 100, 10);
-    BattleAnimSystem_StartAnimTask(v0->unk_08, ov12_0222B220, v0);
+    ScaleLerpContext_InitXY(
+        &ctx->scale,
+        BASE_SCALE_XY,
+        BULK_UP_STRETCH_X,
+        BASE_SCALE_XY,
+        BULK_UP_SQUISH_Y,
+        BASE_SCALE_XY,
+        BULK_UP_SQUISH_STRETCH_STEPS);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_BulkUp, ctx);
 }
 
 static const s16 Unk_ov12_0223A0FE[][3] = {
@@ -847,12 +892,12 @@ static void ov12_0222BA18(SysTask *param0, void *param1)
 
     switch (v0->unk_00) {
     case 0:
-        ov12_02225EF0(&v0->unk_10, Unk_ov12_0223A0DF[v0->unk_01][0], Unk_ov12_0223A0DF[v0->unk_01][1], Unk_ov12_0223A0DF[v0->unk_01][2], Unk_ov12_0223A0DF[v0->unk_01][3], 100, Unk_ov12_0223A0DF[v0->unk_01][4]);
+        ScaleLerpContext_InitXY(&v0->unk_10, Unk_ov12_0223A0DF[v0->unk_01][0], Unk_ov12_0223A0DF[v0->unk_01][1], Unk_ov12_0223A0DF[v0->unk_01][2], Unk_ov12_0223A0DF[v0->unk_01][3], 100, Unk_ov12_0223A0DF[v0->unk_01][4]);
         v0->unk_01++;
         v0->unk_00++;
         break;
     case 1:
-        if (ov12_02225F6C(&v0->unk_10) == 0) {
+        if (ScaleLerpContext_UpdateXY(&v0->unk_10) == 0) {
             if (v0->unk_01 < 3) {
                 v0->unk_00--;
             } else {
@@ -900,12 +945,12 @@ static void ov12_0222BB30(SysTask *param0, void *param1)
 
     switch (v0->unk_00) {
     case 0:
-        ov12_02225EF0(&v0->unk_10, Unk_ov12_0223A0B7[v0->unk_01][0], Unk_ov12_0223A0B7[v0->unk_01][1], Unk_ov12_0223A0B7[v0->unk_01][2], Unk_ov12_0223A0B7[v0->unk_01][3], 100, Unk_ov12_0223A0B7[v0->unk_01][4]);
+        ScaleLerpContext_InitXY(&v0->unk_10, Unk_ov12_0223A0B7[v0->unk_01][0], Unk_ov12_0223A0B7[v0->unk_01][1], Unk_ov12_0223A0B7[v0->unk_01][2], Unk_ov12_0223A0B7[v0->unk_01][3], 100, Unk_ov12_0223A0B7[v0->unk_01][4]);
         v0->unk_01++;
         v0->unk_00++;
         break;
     case 1:
-        if (ov12_02225F6C(&v0->unk_10) == 0) {
+        if (ScaleLerpContext_UpdateXY(&v0->unk_10) == 0) {
             v0->unk_00++;
         }
 
@@ -925,12 +970,12 @@ static void ov12_0222BB30(SysTask *param0, void *param1)
         PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_Y_CENTER, v0->unk_10.y);
         break;
     case 4:
-        ov12_02225EF0(&v0->unk_10, Unk_ov12_0223A0B7[v0->unk_01][0], Unk_ov12_0223A0B7[v0->unk_01][1], Unk_ov12_0223A0B7[v0->unk_01][2], Unk_ov12_0223A0B7[v0->unk_01][3], 100, Unk_ov12_0223A0B7[v0->unk_01][4]);
+        ScaleLerpContext_InitXY(&v0->unk_10, Unk_ov12_0223A0B7[v0->unk_01][0], Unk_ov12_0223A0B7[v0->unk_01][1], Unk_ov12_0223A0B7[v0->unk_01][2], Unk_ov12_0223A0B7[v0->unk_01][3], 100, Unk_ov12_0223A0B7[v0->unk_01][4]);
         v0->unk_02 = PokemonSprite_GetAttribute(v0->unk_0C, MON_SPRITE_Y_CENTER);
         v0->unk_00++;
         break;
     case 5:
-        if (ov12_02225F6C(&v0->unk_10) == 0) {
+        if (ScaleLerpContext_UpdateXY(&v0->unk_10) == 0) {
             v0->unk_00++;
         }
 
@@ -1030,7 +1075,7 @@ static void ov12_0222BE80(SysTask *param0, void *param1)
 
     switch (v0->unk_00) {
     case 0:
-        ov12_02225EF0(&v0->unk_10, Unk_ov12_0223A0C1[v0->unk_01][0], Unk_ov12_0223A0C1[v0->unk_01][1], Unk_ov12_0223A0C1[v0->unk_01][2], Unk_ov12_0223A0C1[v0->unk_01][3], 100, Unk_ov12_0223A0C1[v0->unk_01][4]);
+        ScaleLerpContext_InitXY(&v0->unk_10, Unk_ov12_0223A0C1[v0->unk_01][0], Unk_ov12_0223A0C1[v0->unk_01][1], Unk_ov12_0223A0C1[v0->unk_01][2], Unk_ov12_0223A0C1[v0->unk_01][3], 100, Unk_ov12_0223A0C1[v0->unk_01][4]);
         ov12_02225BC8(&v0->unk_34, 0, 0, v0->unk_04 + Unk_ov12_0223A0A4[v0->unk_01][0], v0->unk_04 + Unk_ov12_0223A0A4[v0->unk_01][1], Unk_ov12_0223A0A4[v0->unk_01][2]);
         v0->unk_01++;
         v0->unk_00++;
@@ -1038,7 +1083,7 @@ static void ov12_0222BE80(SysTask *param0, void *param1)
     case 1: {
         int v1 = 0;
 
-        if (ov12_02225F6C(&v0->unk_10) == 0) {
+        if (ScaleLerpContext_UpdateXY(&v0->unk_10) == 0) {
             v1++;
         }
 
@@ -1175,12 +1220,12 @@ static void ov12_0222C1A4(SysTask *param0, void *param1)
             switch (v2->unk_18[v0].unk_00) {
             case 0:
                 if ((++v2->unk_18[v0].unk_01) >= Unk_ov12_0223A094[v0]) {
-                    ov12_02225EF0(&v2->unk_18[v0].unk_08, 100, 5, 100, 5, 100, 5);
+                    ScaleLerpContext_InitXY(&v2->unk_18[v0].unk_08, 100, 5, 100, 5, 100, 5);
                     v2->unk_18[v0].unk_00++;
                 }
                 break;
             case 1:
-                if (ov12_02225F6C(&v2->unk_18[v0].unk_08) == 0) {
+                if (ScaleLerpContext_UpdateXY(&v2->unk_18[v0].unk_08) == 0) {
                     v2->unk_18[v0].unk_00++;
                 } else {
                     f32 v3, v4;
@@ -1224,7 +1269,7 @@ static void ov12_0222C1A4(SysTask *param0, void *param1)
     case 2:
         for (v0 = 0; v0 < 3; v0++) {
             ManagedSprite_SetExplicitOamMode(v2->unk_18[v0].unk_04, GX_OAM_MODE_NORMAL);
-            ov12_02225EF0(&v2->unk_18[v0].unk_08, 5, 100, 5, 100, 100, 5);
+            ScaleLerpContext_InitXY(&v2->unk_18[v0].unk_08, 5, 100, 5, 100, 100, 5);
         }
 
         v2->unk_00++;
@@ -1233,7 +1278,7 @@ static void ov12_0222C1A4(SysTask *param0, void *param1)
         v1 = 0;
 
         for (v0 = 0; v0 < 3; v0++) {
-            if (ov12_02225F6C(&v2->unk_18[v0].unk_08) == 0) {
+            if (ScaleLerpContext_UpdateXY(&v2->unk_18[v0].unk_08) == 0) {
                 v1++;
             } else {
                 f32 v7, v8;
@@ -1781,12 +1826,12 @@ static void ov12_0222CDF0(SysTask *param0, void *param1)
 
     switch (v0->unk_18.unk_00) {
     case 0:
-        ov12_02225EF0(&v0->unk_9C, 100 * v0->unk_12, 60 * v0->unk_12, 5, 150, 100, 12);
+        ScaleLerpContext_InitXY(&v0->unk_9C, 100 * v0->unk_12, 60 * v0->unk_12, 5, 150, 100, 12);
         v0->unk_18.unk_00++;
         break;
     case 1:
-        if (ov12_02225F6C(&v0->unk_9C) == 0) {
-            ov12_02225EF0(&v0->unk_9C, 60 * v0->unk_12, 150 * v0->unk_12, 150, 10, 100, 12);
+        if (ScaleLerpContext_UpdateXY(&v0->unk_9C) == 0) {
+            ScaleLerpContext_InitXY(&v0->unk_9C, 60 * v0->unk_12, 150 * v0->unk_12, 150, 10, 100, 12);
             v0->unk_18.unk_00++;
         } else {
             f32 v1, v2;
@@ -1814,7 +1859,7 @@ static void ov12_0222CDF0(SysTask *param0, void *param1)
         }
         break;
     case 3:
-        if (ov12_02225F6C(&v0->unk_9C) == 0) {
+        if (ScaleLerpContext_UpdateXY(&v0->unk_9C) == 0) {
             v0->unk_18.unk_00++;
         } else {
             f32 v4, v5;
@@ -1911,8 +1956,8 @@ void ov12_0222CFA0(BattleAnimSystem *param0)
         f32 v1, v2;
         s16 v3;
 
-        ov12_02225EF0(&v0->unk_9C, 100 * v0->unk_12, 100 * v0->unk_12, 100, 5, 100, 1);
-        ov12_02225F6C(&v0->unk_9C);
+        ScaleLerpContext_InitXY(&v0->unk_9C, 100 * v0->unk_12, 100 * v0->unk_12, 100, 5, 100, 1);
+        ScaleLerpContext_UpdateXY(&v0->unk_9C);
 
         ov12_02225FA4(&v0->unk_9C, &v1, &v2);
         ManagedSprite_SetAffineScale(v0->unk_40, v1, v2);
@@ -1937,12 +1982,12 @@ static void ov12_0222D128(SysTask *param0, void *param1)
 
     switch (v1->unk_00) {
     case 0:
-        ov12_02225EF0(&v1->unk_CC, Unk_ov12_0223A0D0[v1->unk_0C][0], Unk_ov12_0223A0D0[v1->unk_0C][1], Unk_ov12_0223A0D0[v1->unk_0C][2], Unk_ov12_0223A0D0[v1->unk_0C][3], 100, Unk_ov12_0223A0D0[v1->unk_0C][4]);
+        ScaleLerpContext_InitXY(&v1->unk_CC, Unk_ov12_0223A0D0[v1->unk_0C][0], Unk_ov12_0223A0D0[v1->unk_0C][1], Unk_ov12_0223A0D0[v1->unk_0C][2], Unk_ov12_0223A0D0[v1->unk_0C][3], 100, Unk_ov12_0223A0D0[v1->unk_0C][4]);
         v1->unk_0C++;
         v1->unk_00++;
         break;
     case 1:
-        if (ov12_02225F6C(&v1->unk_CC) == 1) {
+        if (ScaleLerpContext_UpdateXY(&v1->unk_CC) == 1) {
             PokemonSprite_SetAttribute(v1->unk_1C, MON_SPRITE_SCALE_X, v1->unk_CC.x);
             PokemonSprite_SetAttribute(v1->unk_1C, MON_SPRITE_SCALE_Y, v1->unk_CC.y);
             {

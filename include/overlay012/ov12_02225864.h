@@ -26,7 +26,8 @@ typedef struct AngleLerpContext {
 enum XYTransformParam {
     XY_PARAM_STEPS = 0,
     XY_PARAM_STEP_SIZE,
-    XY_PARAM_02,
+    XY_PARAM_STEP_SIZE_X = 1,
+    XY_PARAM_STEP_SIZE_Y,
     XY_PARAM_CUR_X,
     XY_PARAM_CUR_Y,
 
@@ -97,8 +98,8 @@ void AngleLerpContext_InitCos(AngleLerpContext *param0, u16 param1, u16 param2, 
 BOOL AngleLerpContext_UpdateCos(AngleLerpContext *param0);
 void ScaleLerpContext_Init(XYTransformContext *param0, s16 param1, s16 param2, s16 param3, u32 param4);
 BOOL ScaleLerpContext_Update(XYTransformContext *param0);
-void ov12_02225EF0(XYTransformContext *param0, s16 param1, s16 param2, s16 param3, s16 param4, s16 param5, u32 param6);
-BOOL ov12_02225F6C(XYTransformContext *param0);
+void ScaleLerpContext_InitXY(XYTransformContext *param0, s16 param1, s16 param2, s16 param3, s16 param4, s16 param5, u32 param6);
+BOOL ScaleLerpContext_UpdateXY(XYTransformContext *param0);
 void ov12_02225FA4(XYTransformContext *param0, f32 *param1, f32 *param2);
 s16 BattleAnimUtil_GetGroundAnchoredScaleOffset(s16 param0, int param1, fx32 param2);
 void ov12_02226024(PokemonSprite *param0, s16 param1, s16 param2, fx32 param3, int param4);
