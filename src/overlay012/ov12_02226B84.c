@@ -864,7 +864,7 @@ void BattleAnimScriptFunc_RotateMon(BattleAnimSystem *system)
     AngleLerpContext_Init(&ctx->lerpCtx, ctx->start, BattleAnimSystem_GetScriptVar(system, 1), ctx->steps);
 
     // Adjust step direction
-    int dir = BattleAnimMath_GetRotationDirection(system, battler);
+    int dir = BattleAnimUtil_GetTransformDirection(system, battler);
     ctx->lerpCtx.data[1] *= dir;
 
     if (type == 2) {
@@ -1030,7 +1030,7 @@ void ov12_0222777C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     ManagedSprite_SetDrawFlag(v0->unk_14, FALSE);
 
     v0->unk_44 = 4;
-    v0->unk_3C = BattleAnimMath_GetRotationDirection(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
+    v0->unk_3C = BattleAnimUtil_GetTransformDirection(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
 
     v1 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetDefender(param0));
 
@@ -1716,7 +1716,7 @@ void ov12_02228394(BattleAnimSystem *param0)
     v3->unk_10.unk_08 = BattleAnimSystem_GetBattlerSprite(param0, v2);
 
     ov12_02235918(v3->unk_10.unk_08, &v3->unk_10.unk_04);
-    v0 = BattleAnimMath_GetRotationDirection(param0, v2);
+    v0 = BattleAnimUtil_GetTransformDirection(param0, v2);
 
     if (v0 > 0) {
         v3->unk_0C *= +1;
@@ -1798,7 +1798,7 @@ void ov12_02228520(BattleAnimSystem *param0)
 
     v3->unk_0C.unk_08 = BattleAnimSystem_GetBattlerSprite(param0, v2);
     ov12_02235918(v3->unk_0C.unk_08, &v3->unk_0C.unk_04);
-    v0 = BattleAnimMath_GetRotationDirection(param0, v2);
+    v0 = BattleAnimUtil_GetTransformDirection(param0, v2);
 
     if (v0 > 0) {
         v3->unk_64 *= +1;
@@ -2125,7 +2125,7 @@ void ov12_02228C6C(BattleAnimSystem *param0)
     }
 
     ov12_02235918(v3->unk_0C.unk_08, &v3->unk_0C.unk_04);
-    v0 = BattleAnimMath_GetRotationDirection(param0, v2);
+    v0 = BattleAnimUtil_GetTransformDirection(param0, v2);
 
     if (v0 > 0) {
         v3->unk_64 *= +1;
@@ -2902,7 +2902,7 @@ void ov12_02229B28(BattleAnimSystem *param0)
     ov12_0223595C(param0, &v3->unk_3C);
     ov12_02229980(param0, v3);
 
-    v0 = BattleAnimMath_GetRotationDirection(param0, BattleAnimSystem_GetAttacker(param0));
+    v0 = BattleAnimUtil_GetTransformDirection(param0, BattleAnimSystem_GetAttacker(param0));
 
     ov12_02235508(param0, v3->unk_14, &v1);
     ov12_02235508(param0, v3->unk_18, &v2);
@@ -3038,7 +3038,7 @@ void ov12_02229E54(BattleAnimSystem *param0)
     ov12_0223595C(param0, &v3->unk_3C);
     ov12_02229980(param0, v3);
 
-    v0 = BattleAnimMath_GetRotationDirection(param0, BattleAnimSystem_GetAttacker(param0));
+    v0 = BattleAnimUtil_GetTransformDirection(param0, BattleAnimSystem_GetAttacker(param0));
 
     ov12_02235508(param0, v3->unk_14, &v1);
     ov12_02235508(param0, v3->unk_18, &v2);

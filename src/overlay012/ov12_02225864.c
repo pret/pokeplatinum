@@ -153,7 +153,7 @@ u8 ov12_02225950(ManagedSprite *param0)
     return PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(param0->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
 }
 
-int BattleAnimMath_GetRotationDirection(BattleAnimSystem *system, int battler)
+int BattleAnimUtil_GetTransformDirection(BattleAnimSystem *system, int battler)
 {
     int dir = 1;
 
@@ -222,7 +222,7 @@ void ov12_022259FC(XYTransformContext *param0, ManagedSprite *param1)
     ManagedSprite_SetAffineScale(param1, v0, v1);
 }
 
-void RevolutionContext_Apply(XYTransformContext *ctx, PokemonSprite *sprite, s16 cx, s16 cy)
+void XYTransformContext_ApplyPosOffset(XYTransformContext *ctx, PokemonSprite *sprite, s16 cx, s16 cy)
 {
     PokemonSprite_SetAttribute(sprite, MON_SPRITE_X_CENTER, cx + ctx->x);
     PokemonSprite_SetAttribute(sprite, MON_SPRITE_Y_CENTER, cy + ctx->y);
@@ -351,7 +351,7 @@ BOOL ov12_02225C50(XYTransformContext *param0, ManagedSprite *param1)
 BOOL ov12_02225C74(XYTransformContext *param0, PokemonSprite *param1)
 {
     if (PosLerpContext_Update(param0)) {
-        RevolutionContext_Apply(param0, param1, 0, 0);
+        XYTransformContext_ApplyPosOffset(param0, param1, 0, 0);
         return 1;
     }
 
@@ -401,8 +401,8 @@ void AngleLerpContext_Init(AngleLerpContext *ctx, s32 start, s32 end, u32 steps)
     GF_ASSERT(ctx);
 
     ctx->angle = start;
-    ctx->data[0] = steps;
-    ctx->data[1] = BattleAnimMath_GetStepSize(start * FX32_ONE, end * FX32_ONE, steps) >> FX32_SHIFT;
+    ctx->data[ANGLE_PARAM_STEPS] = steps;
+    ctx->data[ANGLE_PARAM_STEP_SIZE] = BattleAnimMath_GetStepSize(start * FX32_ONE, end * FX32_ONE, steps) >> FX32_SHIFT;
 }
 
 void AngleLerpContext_InitFX32(AngleLerpContext *ctx, s16 start, s16 end, u32 steps)
@@ -410,18 +410,18 @@ void AngleLerpContext_InitFX32(AngleLerpContext *ctx, s16 start, s16 end, u32 st
     GF_ASSERT(ctx);
 
     ctx->angle = start;
-    ctx->data[0] = steps;
-    ctx->data[1] = BattleAnimMath_GetStepSize(start * FX32_ONE, end * FX32_ONE, steps);
-    ctx->data[2] = start * FX32_ONE;
+    ctx->data[ANGLE_PARAM_FX32_STEPS] = steps;
+    ctx->data[ANGLE_PARAM_FX32_STEP_SIZE] = BattleAnimMath_GetStepSize(start * FX32_ONE, end * FX32_ONE, steps);
+    ctx->data[ANGLE_PARAM_FX32_CUR_ANGLE] = start * FX32_ONE;
 }
 
 BOOL AngleLerpContext_Update(AngleLerpContext *ctx)
 {
     GF_ASSERT(ctx);
 
-    if (ctx->data[0]) {
-        ctx->angle += ctx->data[1];
-        ctx->data[0]--;
+    if (ctx->data[ANGLE_PARAM_STEPS]) {
+        ctx->angle += ctx->data[ANGLE_PARAM_STEP_SIZE];
+        ctx->data[ANGLE_PARAM_STEPS]--;
 
         return TRUE;
     }
@@ -433,10 +433,10 @@ BOOL AngleLerpContext_UpdateFX32(AngleLerpContext *ctx)
 {
     GF_ASSERT(ctx);
 
-    if (ctx->data[0]) {
-        ctx->data[2] += ctx->data[1];
-        ctx->angle = ctx->data[2] >> FX32_SHIFT;
-        ctx->data[0]--;
+    if (ctx->data[ANGLE_PARAM_FX32_STEPS]) {
+        ctx->data[ANGLE_PARAM_FX32_CUR_ANGLE] += ctx->data[ANGLE_PARAM_FX32_STEP_SIZE];
+        ctx->angle = ctx->data[ANGLE_PARAM_FX32_CUR_ANGLE] >> FX32_SHIFT;
+        ctx->data[ANGLE_PARAM_FX32_STEPS]--;
 
         return TRUE;
     }
@@ -446,21 +446,21 @@ BOOL AngleLerpContext_UpdateFX32(AngleLerpContext *ctx)
 
 void AngleLerpContext_InitCos(AngleLerpContext *ctx, u16 start, u16 end, fx32 amplitude, u32 steps)
 {
-    ctx->data[0] = steps;
-    ctx->data[1] = start;
-    ctx->data[2] = amplitude;
-    ctx->data[3] = (end - start) / steps;
+    ctx->data[ANGLE_PARAM_COS_STEPS] = steps;
+    ctx->data[ANGLE_PARAM_COS_CUR_ANGLE] = start;
+    ctx->data[ANGLE_PARAM_COS_AMPLITUDE] = amplitude;
+    ctx->data[ANGLE_PARAM_COS_STEP_SIZE] = (end - start) / steps;
 }
 
 BOOL AngleLerpContext_UpdateCos(AngleLerpContext *ctx)
 {
     GF_ASSERT(ctx);
 
-    if (ctx->data[0]) {
-        ctx->data[1] += ctx->data[3];
-        ctx->data[1] &= 0xFFFF;
-        ctx->data[0]--;
-        ctx->angle = FX_Mul(FX_CosIdx(ctx->data[1]), ctx->data[2]) >> FX32_SHIFT;
+    if (ctx->data[ANGLE_PARAM_COS_STEPS]) {
+        ctx->data[ANGLE_PARAM_COS_CUR_ANGLE] += ctx->data[ANGLE_PARAM_COS_STEP_SIZE];
+        ctx->data[ANGLE_PARAM_COS_CUR_ANGLE] &= 0xFFFF;
+        ctx->data[ANGLE_PARAM_COS_STEPS]--;
+        ctx->angle = FX_Mul(FX_CosIdx(ctx->data[ANGLE_PARAM_COS_CUR_ANGLE]), ctx->data[ANGLE_PARAM_COS_AMPLITUDE]) >> FX32_SHIFT;
 
         return TRUE;
     }
@@ -706,7 +706,7 @@ BOOL ShakeContext_Update(XYTransformContext *ctx)
 BOOL ov12_0222619C(XYTransformContext *param0, s16 param1, s16 param2, PokemonSprite *param3)
 {
     if (ShakeContext_Update(param0)) {
-        RevolutionContext_Apply(param0, param3, param1, param2);
+        XYTransformContext_ApplyPosOffset(param0, param3, param1, param2);
         return 1;
     }
 

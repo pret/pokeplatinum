@@ -24,10 +24,19 @@ enum BattleAnimPositionType {
     BATTLE_ANIM_POSITION_PARTICLE_Y,
 };
 
-typedef struct AngleLerpContext {
-    s32 angle;
-    s32 data[4];
-} AngleLerpContext;
+enum AngleLerpParam {
+    ANGLE_PARAM_STEPS = 0,
+    ANGLE_PARAM_STEP_SIZE,
+
+    ANGLE_PARAM_FX32_STEPS = 0,
+    ANGLE_PARAM_FX32_STEP_SIZE,
+    ANGLE_PARAM_FX32_CUR_ANGLE,
+
+    ANGLE_PARAM_COS_STEPS = 0,
+    ANGLE_PARAM_COS_CUR_ANGLE,
+    ANGLE_PARAM_COS_AMPLITUDE,
+    ANGLE_PARAM_COS_STEP_SIZE,
+};
 
 enum XYTransformParam {
     XY_PARAM_STEPS = 0,
@@ -54,6 +63,11 @@ enum XYTransformParam {
     XY_PARAM_REV_STEP_SIZE_X,
     XY_PARAM_REV_STEP_SIZE_Y,
 };
+
+typedef struct AngleLerpContext {
+    s32 angle;
+    s32 data[4];
+} AngleLerpContext;
 
 typedef struct XYTransformContext {
     s16 x;
@@ -86,13 +100,15 @@ void ov12_02225864(int param0, int param1, s16 *param2, s16 *param3);
 void ov12_02225898(BattleAnimSystem *param0, int param1, s16 *param2, s16 *param3);
 s16 BattleAnimUtil_GetBattlerPos(BattleAnimSystem *param0, int param1, enum BattleAnimPositionType param2);
 u8 ov12_02225950(ManagedSprite *param0);
-int BattleAnimMath_GetRotationDirection(BattleAnimSystem *param0, int param1);
+int BattleAnimUtil_GetTransformDirection(BattleAnimSystem *param0, int param1);
 int ov12_0222598C(BattleAnimSystem *param0, int param1);
 fx32 BattleAnimMath_GetStepSize(fx32 param0, fx32 param1, u32 param2);
 u32 ov12_022259AC(fx32 param0, fx32 param1, fx32 param2);
 void ov12_022259DC(XYTransformContext *param0, ManagedSprite *param1, s16 param2, s16 param3);
 void ov12_022259FC(XYTransformContext *param0, ManagedSprite *param1);
-void RevolutionContext_Apply(XYTransformContext *param0, PokemonSprite *param1, s16 param2, s16 param3);
+void XYTransformContext_ApplyPosOffset(XYTransformContext *param0, PokemonSprite *param1, s16 param2, s16 param3);
+#define RevolutionContext_Apply XYTransformContext_ApplyPosOffset
+#define PosLerpContext_Apply XYTransformContext_ApplyPosOffset
 void ov12_02225A3C(XYTransformContext *param0, PokemonSprite *param1);
 void RevolutionContext_Init(XYTransformContext *param0, u16 param1, u16 param2, u16 param3, u16 param4, fx32 param5, fx32 param6, int param7);
 void ov12_02225A8C(XYTransformContext *param0, u16 param1, u16 param2, u16 param3, u16 param4, fx32 param5, fx32 param6, u16 param7);

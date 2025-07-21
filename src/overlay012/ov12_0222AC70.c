@@ -74,8 +74,8 @@ enum StrengthState {
 
 #define STRENGTH_VAR_SHRINK_SCALE    0
 #define STRENGTH_VAR_GROW_SCALE      1
-#define STRENGTH_VAR_SHRINK_STEPS    2
-#define STRENGTH_VAR_GROW_STEPS      3
+#define STRENGTH_VAR_SHRINK_FRAMES   2
+#define STRENGTH_VAR_GROW_FRAMES     3
 
 // -------------------------------------------------------------------
 // Bulk Up
@@ -102,10 +102,10 @@ enum BulkUpState {
 #define BULK_UP_SQUISH_X                50
 #define BULK_UP_STRETCH_Y               150
 #define BULK_UP_SQUISH_Y                50
-#define BULK_UP_SQUISH_STRETCH_STEPS    10
-#define BULK_UP_RETURN_TO_NORMAL_STEPS  5
-#define BULK_UP_GROW_STEPS              5
-#define BULK_UP_SHRINK_STEPS            5
+#define BULK_UP_SQUISH_STRETCH_FRAMES   10
+#define BULK_UP_RETURN_TO_NORMAL_FRAMES 5
+#define BULK_UP_GROW_FRAMES             5
+#define BULK_UP_SHRINK_FRAMES           5
 
 // -------------------------------------------------------------------
 // Double Team
@@ -549,7 +549,7 @@ static void BattleAnimTask_Strength(SysTask *task, void *param)
                     BattleAnimSystem_GetScriptVar(ctx->battleAnimSys, STRENGTH_VAR_SHRINK_SCALE),
                     100,
                     BattleAnimSystem_GetScriptVar(ctx->battleAnimSys, STRENGTH_VAR_GROW_SCALE),
-                    BattleAnimSystem_GetScriptVar(ctx->battleAnimSys, STRENGTH_VAR_GROW_STEPS));
+                    BattleAnimSystem_GetScriptVar(ctx->battleAnimSys, STRENGTH_VAR_GROW_FRAMES));
                 ctx->state++;
             } else {
                 ctx->state = STRENGTH_STATE_FADE_TO_RED;
@@ -602,7 +602,7 @@ void BattleAnimScriptFunc_Strength(BattleAnimSystem *system)
         BASE_SCALE_XY,
         BASE_SCALE_XY,
         BattleAnimSystem_GetScriptVar(system, STRENGTH_VAR_SHRINK_SCALE),
-        BattleAnimSystem_GetScriptVar(system, STRENGTH_VAR_SHRINK_STEPS));
+        BattleAnimSystem_GetScriptVar(system, STRENGTH_VAR_SHRINK_FRAMES));
     ShakeContext_Init(&ctx->shake, STRENGTH_SHAKE_X, STRENGTH_SHAKE_Y, STRENGTH_SHAKE_INTERVAL, STRENGTH_SHAKE_AMOUNT);
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Strength, ctx);
 }
@@ -626,7 +626,7 @@ static void BattleAnimTask_BulkUp(SysTask *task, void *param)
                 BULK_UP_SQUISH_Y,
                 BULK_UP_STRETCH_Y,
                 BASE_SCALE_XY,
-                BULK_UP_SQUISH_STRETCH_STEPS);
+                BULK_UP_SQUISH_STRETCH_FRAMES);
             ctx->state++;
         }
         break;
@@ -644,7 +644,7 @@ static void BattleAnimTask_BulkUp(SysTask *task, void *param)
                 BULK_UP_STRETCH_Y,
                 BASE_SCALE_XY,
                 BASE_SCALE_XY,
-                BULK_UP_RETURN_TO_NORMAL_STEPS);
+                BULK_UP_RETURN_TO_NORMAL_FRAMES);
             ctx->state++;
         }
         break;
@@ -662,7 +662,7 @@ static void BattleAnimTask_BulkUp(SysTask *task, void *param)
                 BASE_SCALE_XY,
                 BULK_UP_STRETCH_Y,
                 BASE_SCALE_XY,
-                BULK_UP_GROW_STEPS);
+                BULK_UP_GROW_FRAMES);
             ctx->state++;
         }
         break;
@@ -680,7 +680,7 @@ static void BattleAnimTask_BulkUp(SysTask *task, void *param)
                 BULK_UP_STRETCH_Y,
                 BASE_SCALE_XY,
                 BASE_SCALE_XY,
-                BULK_UP_SHRINK_STEPS);
+                BULK_UP_SHRINK_FRAMES);
             ctx->state++;
         }
         break;
@@ -721,7 +721,7 @@ void BattleAnimScriptFunc_BulkUp(BattleAnimSystem *system)
         BASE_SCALE_XY,
         BULK_UP_SQUISH_Y,
         BASE_SCALE_XY,
-        BULK_UP_SQUISH_STRETCH_STEPS);
+        BULK_UP_SQUISH_STRETCH_FRAMES);
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_BulkUp, ctx);
 }
 
@@ -1630,7 +1630,7 @@ void ov12_0222C6D4(BattleAnimSystem *param0)
     v0->unk_04.unk_02 -= PokemonSprite_GetAttribute(v0->unk_14, MON_SPRITE_SHADOW_HEIGHT);
 
     {
-        int v2 = BattleAnimMath_GetRotationDirection(v0->unk_0C, v1);
+        int v2 = BattleAnimUtil_GetTransformDirection(v0->unk_0C, v1);
         int v3 = ov12_0222598C(v0->unk_0C, v1);
 
         PosLerpContext_Init(&v0->unk_40, v0->unk_04.unk_00, v0->unk_04.unk_00 + (-20 * v2), v0->unk_04.unk_02, v0->unk_04.unk_02 + ((+20) * v3), 20);
@@ -1910,7 +1910,7 @@ void ov12_0222CC54(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v2->unk_04 = BattleAnimSystem_GetScriptVar(param0, 2);
     v2->unk_08 = BattleAnimSystem_GetScriptVar(param0, 3);
 
-    v1 = BattleAnimMath_GetRotationDirection(param0, BattleAnimSystem_GetAttacker(param0));
+    v1 = BattleAnimUtil_GetTransformDirection(param0, BattleAnimSystem_GetAttacker(param0));
     v2->unk_38 = param3;
 
     ManagedSprite_SetAffineOverwriteMode(v2->unk_38, AFFINE_OVERWRITE_MODE_DOUBLE);

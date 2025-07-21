@@ -79,7 +79,7 @@ void ov12_022346A4(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v1->unk_0C = param2;
 
     v3 = BattleAnimSystem_GetAttacker(param0);
-    v1->unk_10 = BattleAnimMath_GetRotationDirection(param0, v3);
+    v1->unk_10 = BattleAnimUtil_GetTransformDirection(param0, v3);
 
     v0 = BattleAnimSystem_GetLastSpriteTemplate(v1->unk_00);
     v0.x = BattleAnimUtil_GetBattlerPos(param0, v3, 0);
@@ -256,7 +256,7 @@ void ov12_02234A10(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v1->unk_08 = param2;
 
     v2 = BattleAnimSystem_GetAttacker(v1->unk_00);
-    v4 = BattleAnimMath_GetRotationDirection(param0, v2);
+    v4 = BattleAnimUtil_GetTransformDirection(param0, v2);
     v0 = BattleAnimSystem_GetLastSpriteTemplate(v1->unk_00);
 
     v0.x = BattleAnimUtil_GetBattlerPos(param0, v2, 0);
@@ -459,6 +459,6 @@ void ov12_02234D98(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
         ManagedSprite_SetAnimateFlag(v0->unk_18[v1], 1);
     }
 
-    v0->unk_14 = BattleAnimMath_GetRotationDirection(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
+    v0->unk_14 = BattleAnimUtil_GetTransformDirection(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
     BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02234CA8, v0);
 }
