@@ -6,7 +6,7 @@
 #include "overlay012/battle_anim_system.h"
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/ov12_02235254.h"
-#include "overlay012/struct_ov12_02225F6C.h"
+#include "overlay012/ov12_02225864.h"
 #include "overlay012/ov12_02235254.h"
 #include "overlay012/struct_ov12_02235998.h"
 
@@ -21,7 +21,7 @@ typedef struct {
     s16 unk_58;
     s16 unk_5A;
     s16 unk_5C;
-    UnkStruct_ov12_02225F6C unk_60;
+    XYTransformContext unk_60;
 } UnkStruct_ov12_0222E784;
 
 static void ov12_0222E784(SysTask *param0, void *param1)
@@ -47,7 +47,7 @@ static void ov12_0222E784(SysTask *param0, void *param1)
 
             ov12_02225FA4(&v0->unk_60, &v1, &v2);
             ManagedSprite_SetAffineScale(v0->unk_1C.unk_0C, v1, v2);
-            ov12_0222605C(v0->unk_1C.unk_0C, v0->unk_58, v0->unk_5A, v0->unk_60.unk_04[4], 0);
+            ov12_0222605C(v0->unk_1C.unk_0C, v0->unk_58, v0->unk_5A, v0->unk_60.data[4], 0);
         }
         break;
     default:

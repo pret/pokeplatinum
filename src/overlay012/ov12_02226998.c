@@ -22,7 +22,7 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_SoundExample,
     BattleAnimScriptFunc_GenericExample,
     BattleAnimScriptFunc_RotateMon,
-    ov12_0222B194,
+    BattleAnimScriptFunc_Strength,
     ov12_0222B45C,
     ov12_0222B68C,
     ov12_0222F770,

@@ -9,7 +9,7 @@
 #include "struct_defs/struct_020127E8.h"
 
 #include "overlay012/ov12_02225864.h"
-#include "overlay012/struct_ov12_02225F6C.h"
+#include "overlay012/ov12_02225864.h"
 #include "overlay076/const_ov76_0223EF3C.h"
 #include "overlay076/ov76_0223D338.h"
 #include "overlay076/struct_ov76_0223BBAC.h"
@@ -46,7 +46,7 @@
 #include "unk_02097B18.h"
 
 typedef struct {
-    UnkStruct_ov12_02225F6C unk_00[9];
+    XYTransformContext unk_00[9];
     ManagedSprite *unk_144[8];
     BgConfig *unk_164;
     int unk_168;
@@ -318,8 +318,8 @@ static void ov76_0223BCA0(SysTask *param0, void *param1)
 
         if (ov12_02225C14(&v0->unk_00[8]) == 1) {
             v1 = 1;
-            Bg_SetOffset(v0->unk_164, BG_LAYER_SUB_1, 0, v0->unk_00[8].unk_00);
-            Bg_SetOffset(v0->unk_164, BG_LAYER_SUB_1, 3, v0->unk_00[8].unk_02);
+            Bg_SetOffset(v0->unk_164, BG_LAYER_SUB_1, 0, v0->unk_00[8].x);
+            Bg_SetOffset(v0->unk_164, BG_LAYER_SUB_1, 3, v0->unk_00[8].y);
         }
     }
 

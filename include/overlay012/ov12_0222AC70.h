@@ -6,7 +6,7 @@
 #include "sprite_system.h"
 
 void ov12_0222AE68(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
-void ov12_0222B194(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_Strength(BattleAnimSystem *param0);
 void ov12_0222B45C(BattleAnimSystem *param0);
 void ov12_0222B68C(BattleAnimSystem *param0);
 void ov12_0222B9E0(BattleAnimSystem *param0);
