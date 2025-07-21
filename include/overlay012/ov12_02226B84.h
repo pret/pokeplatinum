@@ -43,7 +43,7 @@ void ov12_0222A410(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
 void ov12_0222A5C0(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
 void ov12_0222A604(BattleAnimSystem *param0);
 void ov12_0222A8F4(BattleAnimSystem *param0);
-void ov12_0222AB50(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_RenderPokemonSprites(BattleAnimSystem *param0);
 void ov12_0222AC40(BattleAnimSystem *param0);
 
 #endif // POKEPLATINUM_OV12_02226B84_H

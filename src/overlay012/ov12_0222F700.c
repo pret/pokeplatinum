@@ -1344,7 +1344,7 @@ void ov12_02230A8C(BattleAnimSystem *param0)
     int v4;
     int v5;
 
-    v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_02230910));
+    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02230910));
 
     v0->unk_00 = param0;
     v0->unk_18 = BattleAnimSystem_GetPaletteData(v0->unk_00);
@@ -1446,7 +1446,7 @@ void ov12_02230CEC(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     int v2;
     s16 v3, v4;
 
-    v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_02230BE0));
+    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02230BE0));
 
     v0->unk_00 = param0;
     v0->unk_04 = param1;
@@ -1619,7 +1619,7 @@ void ov12_02231010(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     int v4;
     SpriteTemplate v5;
 
-    v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_02230F3C));
+    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02230F3C));
     v0->unk_00 = param0;
     v0->unk_04 = param1;
     v0->unk_08 = param2;
@@ -1718,7 +1718,7 @@ static void ov12_022310D4(SysTask *param0, void *param1)
 
 void ov12_022312A4(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
 {
-    UnkStruct_ov12_022310D4 *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_022310D4));
+    UnkStruct_ov12_022310D4 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_022310D4));
 
     v0->unk_00 = param0;
     v0->unk_04 = param1;
@@ -1785,7 +1785,7 @@ void ov12_02231444(BattleAnimSystem *param0)
     UnkStruct_ov12_02231390 *v0;
     int v1;
 
-    v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_02231390));
+    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02231390));
 
     v0->unk_00 = param0;
     v0->unk_04 = BattleAnimSystem_GetPokemonSpriteManager(v0->unk_00);
@@ -1905,7 +1905,7 @@ void ov12_02231650(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     s16 v4;
     int v5;
 
-    v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_02231508));
+    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02231508));
     v0->unk_00 = param0;
     v0->unk_04 = param1;
     v0->unk_08 = param2;
@@ -2032,7 +2032,7 @@ static void ov12_0223181C(SysTask *param0, void *param1)
 
 void ov12_02231950(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
 {
-    UnkStruct_ov12_02231760 *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_02231760));
+    UnkStruct_ov12_02231760 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02231760));
 
     v0->unk_00 = param0;
     v0->unk_04 = param1;
@@ -2167,7 +2167,7 @@ void ov12_02231C1C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     UnkStruct_ov12_022319AC *v0;
     int v1;
 
-    v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_022319AC));
+    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_022319AC));
 
     v0->unk_00 = param0;
     v0->unk_04 = param1;
@@ -2291,7 +2291,7 @@ void ov12_02231E7C(BattleAnimSystem *param0)
     UnkStruct_ov12_02231CD4 *v0;
     int v1;
 
-    v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_02231CD4));
+    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02231CD4));
     v0->unk_04 = param0;
 
     v1 = BattleAnimMath_GetRotationDirection(v0->unk_04, BattleAnimSystem_GetAttacker(v0->unk_04));
@@ -2385,7 +2385,7 @@ void ov12_02232024(BattleAnimSystem *param0)
     UnkStruct_ov12_02231F18 *v0;
     PokemonSprite *v1;
 
-    v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_02231F18));
+    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02231F18));
 
     v0->unk_00 = param0;
     v0->unk_0C = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetAttacker(param0));
@@ -2546,7 +2546,7 @@ void ov12_02232378(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     UnkStruct_ov12_02232084 *v0;
     PokemonSprite *v1;
 
-    v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_02232084));
+    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02232084));
 
     v0->unk_00 = param0;
     v0->unk_04 = param1;
@@ -2612,7 +2612,7 @@ static void ov12_02232430(SysTask *param0, void *param1)
 
 void ov12_0223249C(BattleAnimSystem *param0)
 {
-    UnkStruct_ov12_022323E4 *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_022323E4));
+    UnkStruct_ov12_022323E4 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_022323E4));
 
     v0->unk_04 = param0;
     v0->unk_08 = BattleAnimSystem_GetBattlerSprite(v0->unk_04, BattleAnimSystem_GetAttacker(param0));
@@ -2689,7 +2689,7 @@ static void ov12_022324E0(SysTask *param0, void *param1)
 
 void ov12_022326AC(BattleAnimSystem *param0)
 {
-    UnkStruct_ov12_022324E0 *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_022324E0));
+    UnkStruct_ov12_022324E0 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_022324E0));
 
     v0->unk_04 = param0;
     v0->unk_08 = BattleAnimMath_GetRotationDirection(v0->unk_04, BattleAnimSystem_GetAttacker(v0->unk_04));
@@ -2857,7 +2857,7 @@ void ov12_022329E0(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     s16 v5;
     s16 v6;
 
-    v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_02232720));
+    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02232720));
 
     v0->unk_00 = param0;
     v0->unk_04 = param1;
@@ -2966,7 +2966,7 @@ void ov12_02232CA8(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     UnkStruct_ov12_02232B40 *v0;
     s16 v1, v2;
 
-    v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_02232B40));
+    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02232B40));
     v0->unk_00 = param0;
     v0->unk_04 = param1;
     v0->unk_08 = param2;
@@ -3206,7 +3206,7 @@ void ov12_02233178(BattleAnimSystem *param0)
     s16 v2, v3;
     s16 v4, v5;
 
-    v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_02232D38));
+    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02232D38));
 
     v0->unk_00 = param0;
     v0->unk_04 = BattleAnimSystem_GetPokemonSpriteManager(v0->unk_00);
@@ -3314,7 +3314,7 @@ void ov12_02233454(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     int v1;
     SpriteTemplate v2;
 
-    v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_022332E8));
+    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_022332E8));
 
     v0->unk_00 = param0;
     v0->unk_04 = param1;
@@ -3436,7 +3436,7 @@ void ov12_02233734(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     PokemonSprite *v2;
     SpriteTemplate v3;
 
-    v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0223351C));
+    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0223351C));
 
     v0->unk_00 = param0;
     v0->unk_04 = param1;
@@ -3555,7 +3555,7 @@ void ov12_022339C4(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     PokemonSprite *v4;
     SpriteTemplate v5;
 
-    v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_02233900));
+    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02233900));
 
     v0->unk_00 = param0;
     v0->unk_04 = param1;
@@ -3708,7 +3708,7 @@ void ov12_02233CD4(BattleAnimSystem *param0)
     s16 v2, v3;
     int v4;
 
-    v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_02233AA0));
+    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02233AA0));
 
     v0->unk_00 = param0;
     v0->unk_0C = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetDefender(param0));
@@ -3788,7 +3788,7 @@ static void ov12_02233DCC(SysTask *param0, void *param1)
 
 void ov12_02233F30(BattleAnimSystem *param0)
 {
-    UnkStruct_ov12_02233DCC *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_02233AA0));
+    UnkStruct_ov12_02233DCC *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02233AA0));
     v0->unk_00 = param0;
 
     BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02233DCC, v0);
@@ -3832,7 +3832,7 @@ static void ov12_02233F4C(SysTask *param0, void *param1)
 
 void ov12_02234008(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
 {
-    UnkStruct_ov12_02233F4C *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_02233F4C));
+    UnkStruct_ov12_02233F4C *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02233F4C));
 
     v0->unk_00 = param0;
     v0->unk_04 = param1;
@@ -3904,7 +3904,7 @@ static void ov12_02234044(SysTask *param0, void *param1)
 
 void ov12_02234214(BattleAnimSystem *param0)
 {
-    UnkStruct_ov12_02234044 *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_02234044));
+    UnkStruct_ov12_02234044 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02234044));
 
     v0->unk_00 = param0;
     v0->unk_0C = BattleAnimSystem_GetBattlerSpriteHeight(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00));
@@ -3944,10 +3944,10 @@ void ov12_022342C4(BattleAnimSystem *param0)
     int v2, v3;
     int v4, v5;
 
-    v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_02234290));
+    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02234290));
 
     v0->unk_00 = param0;
-    v0->unk_04 = ov12_02220300(param0);
+    v0->unk_04 = BattleAnimSystem_GetPrimarySpriteManager(param0);
 
     v1 = BattleAnimSystem_GetAttacker(param0);
 
@@ -4021,7 +4021,7 @@ void ov12_022344D0(BattleAnimSystem *param0)
     UnkStruct_ov12_022343A0 *v0;
     int v1;
 
-    v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_022343A0));
+    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_022343A0));
     v0->unk_00 = param0;
 
     v1 = BattleAnimSystem_GetAttacker(param0);
@@ -4079,7 +4079,7 @@ void ov12_0223464C(BattleAnimSystem *param0)
     UnkStruct_ov12_02234528 *v0;
     int v1;
 
-    v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_02234528));
+    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02234528));
     v0->unk_00 = param0;
 
     v1 = BattleAnimSystem_GetDefender(param0);

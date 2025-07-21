@@ -95,7 +95,7 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     ov12_0222A8F4,
     ov12_0222AC40,
     ov12_02228FB4,
-    ov12_0222AB50,
+    BattleAnimScriptFunc_RenderPokemonSprites,
     ov12_0222F5EC,
     ov12_022351A4,
     ov12_022351D0,

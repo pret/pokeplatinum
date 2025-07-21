@@ -658,9 +658,9 @@ SpriteManager *BattleAnimSystem_GetPokemonSpriteManager(BattleAnimSystem *system
     return system->pokemonSpriteManager;
 }
 
-SpriteManager *ov12_02220300(BattleAnimSystem *param0)
+SpriteManager *BattleAnimSystem_GetPrimarySpriteManager(BattleAnimSystem *system)
 {
-    return param0->spriteManagers[0];
+    return system->spriteManagers[0];
 }
 
 SpriteSystem *BattleAnimSystem_GetSpriteSystem(BattleAnimSystem *system)
