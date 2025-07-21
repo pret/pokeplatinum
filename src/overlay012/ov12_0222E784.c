@@ -7,7 +7,7 @@
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/ov12_02235254.h"
 #include "overlay012/struct_ov12_02225F6C.h"
-#include "overlay012/struct_ov12_0223595C.h"
+#include "overlay012/ov12_02235254.h"
 #include "overlay012/struct_ov12_02235998.h"
 
 #include "pokemon_sprite.h"
@@ -35,7 +35,7 @@ static void ov12_0222E784(SysTask *param0, void *param1)
             ManagedSprite_SetDrawFlag(v0->unk_30[0].unk_0C, 0);
             ManagedSprite_SetDrawFlag(v0->unk_30[0].unk_0C, 0);
 
-            BattleAnimSystem_EndAnimTask(v0->unk_00.unk_04, param0);
+            BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSystem, param0);
             ov12_02235E80(v0);
             (v0) = NULL;
 
@@ -57,19 +57,19 @@ static void ov12_0222E784(SysTask *param0, void *param1)
     ManagedSprite_TickFrame(v0->unk_1C.unk_0C);
     ManagedSprite_TickFrame(v0->unk_30[0].unk_0C);
     ManagedSprite_TickFrame(v0->unk_30[1].unk_0C);
-    SpriteSystem_DrawSprites(v0->unk_00.unk_0C);
+    SpriteSystem_DrawSprites(v0->unk_00.pokemonSpriteManager);
 }
 
 void ov12_0222E810(BattleAnimSystem *param0)
 {
-    UnkStruct_ov12_0222E784 *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222E784));
+    UnkStruct_ov12_0222E784 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222E784));
 
     ov12_0223595C(param0, &v0->unk_00);
 
-    v0->unk_1C.unk_08 = BattleAnimSystem_GetBattlerSprite(v0->unk_00.unk_04, BattleAnimSystem_GetDefender(v0->unk_00.unk_04));
+    v0->unk_1C.unk_08 = BattleAnimSystem_GetBattlerSprite(v0->unk_00.battleAnimSystem, BattleAnimSystem_GetDefender(v0->unk_00.battleAnimSystem));
     v0->unk_58 = PokemonSprite_GetAttribute(v0->unk_1C.unk_08, MON_SPRITE_Y_CENTER);
     v0->unk_5C = v0->unk_58;
-    v0->unk_5A = BattleAnimSystem_GetBattlerSpriteHeight(v0->unk_00.unk_04, BattleAnimSystem_GetDefender(v0->unk_00.unk_04));
+    v0->unk_5A = BattleAnimSystem_GetBattlerSpriteHeight(v0->unk_00.battleAnimSystem, BattleAnimSystem_GetDefender(v0->unk_00.battleAnimSystem));
     v0->unk_1C.unk_0C = BattleAnimSystem_GetPokemonSprite(param0, 0);
     v0->unk_30[0].unk_0C = BattleAnimSystem_GetPokemonSprite(param0, 1);
     v0->unk_30[1].unk_0C = BattleAnimSystem_GetPokemonSprite(param0, 2);
@@ -82,7 +82,7 @@ void ov12_0222E810(BattleAnimSystem *param0)
     {
         int v1;
 
-        v1 = BattleAnimSystem_GetBattlerType(v0->unk_00.unk_04, BattleAnimSystem_GetDefender(v0->unk_00.unk_04));
+        v1 = BattleAnimSystem_GetBattlerType(v0->unk_00.battleAnimSystem, BattleAnimSystem_GetDefender(v0->unk_00.battleAnimSystem));
 
         if ((v1 == 3) || (v1 == 4)) {
             ManagedSprite_SetPriority(v0->unk_1C.unk_0C, 30);
@@ -96,5 +96,5 @@ void ov12_0222E810(BattleAnimSystem *param0)
     }
 
     ov12_02225EF0(&v0->unk_60, 100, 20, 100, 20, 100, 10);
-    BattleAnimSystem_StartAnimTask(v0->unk_00.unk_04, ov12_0222E784, v0);
+    BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSystem, ov12_0222E784, v0);
 }

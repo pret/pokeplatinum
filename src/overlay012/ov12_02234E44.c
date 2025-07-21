@@ -5,7 +5,7 @@
 
 #include "overlay012/battle_anim_system.h"
 #include "overlay012/ov12_02235254.h"
-#include "overlay012/struct_ov12_0223595C.h"
+#include "overlay012/ov12_02235254.h"
 
 #include "bg_window.h"
 #include "graphics.h"
@@ -58,14 +58,14 @@ static void ov12_02234E54(UnkStruct_ov12_02234E54 *param0, int param1)
     int v0;
     int v1;
 
-    v0 = BattleAnimSystem_GetHeapID(param0->unk_18.unk_04);
-    v1 = BattleAnimSystem_GetBgPriority(param0->unk_18.unk_04, 3);
+    v0 = BattleAnimSystem_GetHeapID(param0->unk_18.battleAnimSystem);
+    v1 = BattleAnimSystem_GetBgPriority(param0->unk_18.battleAnimSystem, 3);
 
     Bg_SetPriority(param1, v1);
-    Graphics_LoadTilesToBgLayer(param0->unk_00.unk_00, Unk_ov12_0223A1D8[param0->unk_00.unk_04][0], param0->unk_18.unk_14, param1, 0, 0, 1, v0);
-    PaletteData_LoadBufferFromFileStart(param0->unk_18.unk_18, param0->unk_00.unk_00, Unk_ov12_0223A1D8[param0->unk_00.unk_04][1], v0, 0, 0x20, 8 * 16);
-    Bg_ClearTilemap(param0->unk_18.unk_14, param1);
-    Graphics_LoadTilemapToBgLayer(param0->unk_00.unk_00, Unk_ov12_0223A1D8[param0->unk_00.unk_04][2], param0->unk_18.unk_14, param1, 0, 0, 1, v0);
+    Graphics_LoadTilesToBgLayer(param0->unk_00.unk_00, Unk_ov12_0223A1D8[param0->unk_00.unk_04][0], param0->unk_18.bgConfig, param1, 0, 0, 1, v0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_18.paletteData, param0->unk_00.unk_00, Unk_ov12_0223A1D8[param0->unk_00.unk_04][1], v0, 0, 0x20, 8 * 16);
+    Bg_ClearTilemap(param0->unk_18.bgConfig, param1);
+    Graphics_LoadTilemapToBgLayer(param0->unk_00.unk_00, Unk_ov12_0223A1D8[param0->unk_00.unk_04][2], param0->unk_18.bgConfig, param1, 0, 0, 1, v0);
 }
 
 static void ov12_02234EF0(SysTask *param0, void *param1)
@@ -98,7 +98,7 @@ static void ov12_02234EF0(SysTask *param0, void *param1)
         }
 
         if ((v0->unk_00.unk_14 == 0) && (v0->unk_00.unk_16 == 16)) {
-            Bg_ClearTilemap(v0->unk_18.unk_14, 2);
+            Bg_ClearTilemap(v0->unk_18.bgConfig, 2);
             ManagedSprite_SetDrawFlag(v0->unk_34, 0);
             ManagedSprite_SetDrawFlag(v0->unk_38, 0);
             ManagedSprite_SetDrawFlag(v0->unk_3C, 0);
@@ -110,10 +110,10 @@ static void ov12_02234EF0(SysTask *param0, void *param1)
     default:
         G2_SetWndOutsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 0);
         G2_SetWndOBJInsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 0);
-        Bg_SetOffset(v0->unk_18.unk_14, 2, 0, 0);
-        Bg_SetOffset(v0->unk_18.unk_14, 2, 3, 0);
+        Bg_SetOffset(v0->unk_18.bgConfig, 2, 0, 0);
+        Bg_SetOffset(v0->unk_18.bgConfig, 2, 3, 0);
         GX_SetVisibleWnd(GX_WNDMASK_NONE);
-        BattleAnimSystem_EndAnimTask(v0->unk_18.unk_04, param0);
+        BattleAnimSystem_EndAnimTask(v0->unk_18.battleAnimSystem, param0);
         ov12_02235E80(v0);
         (v0) = NULL;
         return;
@@ -122,13 +122,13 @@ static void ov12_02234EF0(SysTask *param0, void *param1)
     v0->unk_00.unk_10 += v0->unk_00.unk_0C;
     v0->unk_00.unk_12 += v0->unk_00.unk_0E;
 
-    Bg_SetOffset(v0->unk_18.unk_14, 2, 0, v0->unk_00.unk_10);
-    Bg_SetOffset(v0->unk_18.unk_14, 2, 3, v0->unk_00.unk_12);
+    Bg_SetOffset(v0->unk_18.bgConfig, 2, 0, v0->unk_00.unk_10);
+    Bg_SetOffset(v0->unk_18.bgConfig, 2, 3, v0->unk_00.unk_12);
 
     ManagedSprite_TickFrame(v0->unk_34);
     ManagedSprite_TickFrame(v0->unk_38);
     ManagedSprite_TickFrame(v0->unk_3C);
-    SpriteSystem_DrawSprites(v0->unk_18.unk_0C);
+    SpriteSystem_DrawSprites(v0->unk_18.pokemonSpriteManager);
 }
 
 static void ov12_0223505C(BattleAnimSystem *param0, UnkStruct_ov12_02234E44 *param1)
@@ -140,19 +140,19 @@ static void ov12_0223505C(BattleAnimSystem *param0, UnkStruct_ov12_02234E44 *par
 
 static void ov12_0223507C(BattleAnimSystem *param0, UnkStruct_ov12_02234E44 *param1)
 {
-    UnkStruct_ov12_02234E54 *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_02234E54));
+    UnkStruct_ov12_02234E54 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02234E54));
 
     ov12_0223595C(param0, &v0->unk_18);
 
     v0->unk_00 = (*param1);
-    v0->unk_34 = BattleAnimSystem_GetPokemonSprite(v0->unk_18.unk_04, 0);
-    v0->unk_38 = BattleAnimSystem_GetPokemonSprite(v0->unk_18.unk_04, 1);
-    v0->unk_3C = BattleAnimSystem_GetPokemonSprite(v0->unk_18.unk_04, 2);
+    v0->unk_34 = BattleAnimSystem_GetPokemonSprite(v0->unk_18.battleAnimSystem, 0);
+    v0->unk_38 = BattleAnimSystem_GetPokemonSprite(v0->unk_18.battleAnimSystem, 1);
+    v0->unk_3C = BattleAnimSystem_GetPokemonSprite(v0->unk_18.battleAnimSystem, 2);
 
     {
         int v1;
 
-        v1 = BattleAnimSystem_GetBgPriority(v0->unk_18.unk_04, 2);
+        v1 = BattleAnimSystem_GetBgPriority(v0->unk_18.battleAnimSystem, 2);
         v1 = 2;
 
         ManagedSprite_SetExplicitPriority(v0->unk_34, v1);
@@ -172,7 +172,7 @@ static void ov12_0223507C(BattleAnimSystem *param0, UnkStruct_ov12_02234E44 *par
 
             if (BattleAnimSystem_IsContest(param0) == 1) {
                 ManagedSprite_SetDrawFlag(v0->unk_3C, 0);
-                v1 = BattleAnimSystem_GetBgPriority(v0->unk_18.unk_04, 2);
+                v1 = BattleAnimSystem_GetBgPriority(v0->unk_18.battleAnimSystem, 2);
                 ManagedSprite_SetExplicitPriority(v0->unk_34, v1);
                 ManagedSprite_SetExplicitPriority(v0->unk_38, v1);
             } else {
@@ -206,7 +206,7 @@ static void ov12_0223507C(BattleAnimSystem *param0, UnkStruct_ov12_02234E44 *par
     v0->unk_00.unk_10 = 0;
     v0->unk_00.unk_12 = 0;
 
-    BattleAnimSystem_StartAnimTask(v0->unk_18.unk_04, ov12_02234EF0, v0);
+    BattleAnimSystem_StartAnimTask(v0->unk_18.battleAnimSystem, ov12_02234EF0, v0);
 }
 
 void ov12_022351A4(BattleAnimSystem *param0)

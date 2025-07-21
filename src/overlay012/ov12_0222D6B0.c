@@ -11,7 +11,7 @@
 #include "overlay012/struct_ov12_0222660C_decl.h"
 #include "overlay012/struct_ov12_022267D4_decl.h"
 #include "overlay012/struct_ov12_02235350.h"
-#include "overlay012/struct_ov12_0223595C.h"
+#include "overlay012/ov12_02235254.h"
 
 #include "bg_window.h"
 #include "heap.h"
@@ -689,7 +689,7 @@ static void ov12_0222E080(SysTask *param0, void *param1)
     case 0: {
         PokemonSprite *v1;
 
-        v1 = BattleAnimSystem_GetBattlerSprite(v0->unk_04.unk_04, BattleAnimSystem_GetAttacker(v0->unk_04.unk_04));
+        v1 = BattleAnimSystem_GetBattlerSprite(v0->unk_04.battleAnimSystem, BattleAnimSystem_GetAttacker(v0->unk_04.battleAnimSystem));
         PokemonSprite_SetAttribute(v1, MON_SPRITE_HIDE, 1);
     }
         v0->unk_04.unk_00++;
@@ -700,7 +700,7 @@ static void ov12_0222E080(SysTask *param0, void *param1)
         }
 
         v0->unk_00 = 0;
-        v0->unk_28 = ov12_0222662C(0, 160, (2 * 0xffff) / 360, 12 * FX32_ONE, 2 * 100, BattleAnimSystem_GetBgID(v0->unk_04.unk_04, 1), 0, ov12_022266E8(0, 0), BattleAnimSystem_GetHeapID(v0->unk_04.unk_04));
+        v0->unk_28 = ov12_0222662C(0, 160, (2 * 0xffff) / 360, 12 * FX32_ONE, 2 * 100, BattleAnimSystem_GetBgID(v0->unk_04.battleAnimSystem, 1), 0, ov12_022266E8(0, 0), BattleAnimSystem_GetHeapID(v0->unk_04.battleAnimSystem));
         v0->unk_04.unk_00++;
         break;
     case 2:
@@ -722,46 +722,46 @@ static void ov12_0222E080(SysTask *param0, void *param1)
         {
             PokemonSprite *v2;
 
-            v2 = BattleAnimSystem_GetBattlerSprite(v0->unk_04.unk_04, BattleAnimSystem_GetAttacker(v0->unk_04.unk_04));
+            v2 = BattleAnimSystem_GetBattlerSprite(v0->unk_04.battleAnimSystem, BattleAnimSystem_GetAttacker(v0->unk_04.battleAnimSystem));
             PokemonSprite_SetAttribute(v2, MON_SPRITE_HIDE, 0);
         }
         v0->unk_04.unk_00++;
         break;
     default:
         GX_SetVisibleWnd(GX_WNDMASK_NONE);
-        BattleAnimSystem_UnloadBaseBg(v0->unk_04.unk_04, 2);
-        BattleAnimSystem_EndAnimTask(v0->unk_04.unk_04, param0);
+        BattleAnimSystem_UnloadBaseBg(v0->unk_04.battleAnimSystem, 2);
+        BattleAnimSystem_EndAnimTask(v0->unk_04.battleAnimSystem, param0);
         Heap_Free(v0);
         return;
     }
 
     ManagedSprite_TickFrame(v0->unk_24);
     ManagedSprite_TickFrame(v0->unk_20);
-    SpriteSystem_DrawSprites(v0->unk_04.unk_0C);
+    SpriteSystem_DrawSprites(v0->unk_04.pokemonSpriteManager);
 }
 
 void ov12_0222E1A8(BattleAnimSystem *param0)
 {
     UnkStruct_ov12_0222E080 *v0 = NULL;
 
-    v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222E080));
+    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222E080));
     ov12_0223595C(param0, &v0->unk_04);
 
-    v0->unk_20 = BattleAnimSystem_GetPokemonSprite(v0->unk_04.unk_04, 0);
+    v0->unk_20 = BattleAnimSystem_GetPokemonSprite(v0->unk_04.battleAnimSystem, 0);
     ManagedSprite_SetExplicitOamMode(v0->unk_20, GX_OAM_MODE_OBJWND);
 
     GX_SetVisibleWnd(GX_WNDMASK_OW);
     G2_SetWndOutsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 0);
     G2_SetWndOBJInsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_OBJ, 0);
 
-    v0->unk_24 = BattleAnimSystem_GetPokemonSprite(v0->unk_04.unk_04, 1);
+    v0->unk_24 = BattleAnimSystem_GetPokemonSprite(v0->unk_04.battleAnimSystem, 1);
     ManagedSprite_SetExplicitOamMode(v0->unk_24, GX_OAM_MODE_XLU);
 
     ov12_02226424(&v0->unk_2C, 16, 2, 2, 16, 16);
-    BattleAnimSystem_LoadBaseBg(v0->unk_04.unk_04, 2);
+    BattleAnimSystem_LoadBaseBg(v0->unk_04.battleAnimSystem, 2);
 
     Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
-    BattleAnimSystem_StartAnimTask(v0->unk_04.unk_04, ov12_0222E080, v0);
+    BattleAnimSystem_StartAnimTask(v0->unk_04.battleAnimSystem, ov12_0222E080, v0);
 }
 
 void ov12_0222E248(ManagedSprite *param0)
@@ -803,20 +803,20 @@ static void ov12_0222E25C(SysTask *param0, void *param1)
                 Sprite_DeleteAndFreeResources(v0->unk_28[v1]);
             }
 
-            BattleAnimSystem_EndAnimTask(v0->unk_00.unk_04, param0);
+            BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSystem, param0);
             Heap_Free(v0);
             return;
         }
     }
 
-    SpriteSystem_DrawSprites(v0->unk_00.unk_10);
+    SpriteSystem_DrawSprites(v0->unk_00.primarySpriteManager);
 }
 
 void ov12_0222E2F8(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
 {
     UnkStruct_ov12_0222E25C *v0 = NULL;
 
-    v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222E25C));
+    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222E25C));
     v0->unk_1C = 10;
 
     ov12_0223595C(param0, &v0->unk_00);
@@ -825,14 +825,14 @@ void ov12_0222E2F8(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
         int v1;
         SpriteTemplate v2;
 
-        v2 = BattleAnimSystem_GetLastSpriteTemplate(v0->unk_00.unk_04);
+        v2 = BattleAnimSystem_GetLastSpriteTemplate(v0->unk_00.battleAnimSystem);
 
         v0->unk_28[0] = param3;
         v0->unk_1E[0] = 0;
 
         for (v1 = 1; v1 < 4; v1++) {
             v0->unk_1E[v1] = 0;
-            v0->unk_28[v1] = SpriteSystem_NewSprite(v0->unk_00.unk_08, v0->unk_00.unk_10, &v2);
+            v0->unk_28[v1] = SpriteSystem_NewSprite(v0->unk_00.spriteSystem, v0->unk_00.primarySpriteManager, &v2);
         }
 
         ManagedSprite_SetFlipMode(v0->unk_28[0], 1);
@@ -848,7 +848,7 @@ void ov12_0222E2F8(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
         ManagedSprite_OffsetPositionXY(v0->unk_28[3], +32, +32);
     }
 
-    BattleAnimSystem_StartAnimTask(v0->unk_00.unk_04, ov12_0222E25C, v0);
+    BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSystem, ov12_0222E25C, v0);
 }
 
 static void ov12_0222E390(SysTask *param0, void *param1)
@@ -869,7 +869,7 @@ static void ov12_0222E390(SysTask *param0, void *param1)
             ov12_0222E248(v0->unk_2C[v1]);
 
             if (v0->unk_22[0] == 110) {
-                ov12_02235780(v0->unk_00.unk_04, 0xffffffff, 0xffffffff);
+                ov12_02235780(v0->unk_00.battleAnimSystem, 0xffffffff, 0xffffffff);
 
                 ManagedSprite_SetExplicitOamMode(v0->unk_2C[0], GX_OAM_MODE_XLU);
                 ManagedSprite_SetExplicitOamMode(v0->unk_2C[1], GX_OAM_MODE_XLU);
@@ -882,31 +882,31 @@ static void ov12_0222E390(SysTask *param0, void *param1)
         }
 
         if (v0->unk_22[0] == 40 + 10) {
-            v0->unk_3C[0] = ov12_02226870(v0->unk_00.unk_18, BattleAnimSystem_GetHeapID(v0->unk_00.unk_04), 2, v0->unk_1C * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
+            v0->unk_3C[0] = ov12_02226870(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSystem), 2, v0->unk_1C * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
         }
 
         if (v0->unk_22[0] == 50 + 10) {
-            v0->unk_3C[1] = ov12_02226870(v0->unk_00.unk_18, BattleAnimSystem_GetHeapID(v0->unk_00.unk_04), 2, v0->unk_1C * 16, 16, -2, 2, 14, 0, 0xFFFF, 1002);
+            v0->unk_3C[1] = ov12_02226870(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSystem), 2, v0->unk_1C * 16, 16, -2, 2, 14, 0, 0xFFFF, 1002);
         }
 
         if (v0->unk_22[0] == 60 + 10) {
-            v0->unk_3C[2] = ov12_02226870(v0->unk_00.unk_18, BattleAnimSystem_GetHeapID(v0->unk_00.unk_04), 2, v0->unk_1C * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
+            v0->unk_3C[2] = ov12_02226870(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSystem), 2, v0->unk_1C * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
         }
 
         if (v0->unk_22[0] == 70 + 10) {
-            v0->unk_3C[3] = ov12_02226870(v0->unk_00.unk_18, BattleAnimSystem_GetHeapID(v0->unk_00.unk_04), 2, v0->unk_1C * 16, 16, -2, 2, 14, 0, 0xFFFF, 1002);
+            v0->unk_3C[3] = ov12_02226870(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSystem), 2, v0->unk_1C * 16, 16, -2, 2, 14, 0, 0xFFFF, 1002);
         }
 
         if (v0->unk_22[0] == 80 + 10) {
-            v0->unk_3C[4] = ov12_02226870(v0->unk_00.unk_18, BattleAnimSystem_GetHeapID(v0->unk_00.unk_04), 2, v0->unk_1C * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
+            v0->unk_3C[4] = ov12_02226870(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSystem), 2, v0->unk_1C * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
         }
 
         if (v0->unk_22[0] == 90 + 10) {
-            v0->unk_3C[5] = ov12_02226870(v0->unk_00.unk_18, BattleAnimSystem_GetHeapID(v0->unk_00.unk_04), 2, v0->unk_1C * 16, 16, -2, 2, 14, 0, 0xFFFF, 1002);
+            v0->unk_3C[5] = ov12_02226870(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSystem), 2, v0->unk_1C * 16, 16, -2, 2, 14, 0, 0xFFFF, 1002);
         }
 
         if (v0->unk_22[0] == 110) {
-            ov12_02235780(v0->unk_00.unk_04, 0xffffffff, 0xffffffff);
+            ov12_02235780(v0->unk_00.battleAnimSystem, 0xffffffff, 0xffffffff);
 
             ManagedSprite_SetExplicitOamMode(v0->unk_2C[0], GX_OAM_MODE_XLU);
             ManagedSprite_SetExplicitOamMode(v0->unk_2C[1], GX_OAM_MODE_XLU);
@@ -942,20 +942,20 @@ static void ov12_0222E390(SysTask *param0, void *param1)
                 ov12_02226858(v0->unk_3C[v1]);
             }
 
-            BattleAnimSystem_EndAnimTask(v0->unk_00.unk_04, param0);
+            BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSystem, param0);
             Heap_Free(v0);
             return;
         }
     }
 
-    SpriteSystem_DrawSprites(v0->unk_00.unk_10);
+    SpriteSystem_DrawSprites(v0->unk_00.primarySpriteManager);
 }
 
 void ov12_0222E61C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
 {
     UnkStruct_ov12_0222E390 *v0 = NULL;
 
-    v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222E390));
+    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222E390));
     v0->unk_20 = 10;
 
     ov12_0223595C(param0, &v0->unk_00);
@@ -965,14 +965,14 @@ void ov12_0222E61C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
         s16 v2, v3;
         SpriteTemplate v4;
 
-        v4 = BattleAnimSystem_GetLastSpriteTemplate(v0->unk_00.unk_04);
+        v4 = BattleAnimSystem_GetLastSpriteTemplate(v0->unk_00.battleAnimSystem);
 
         v0->unk_2C[0] = param3;
         v0->unk_22[0] = 0;
 
         for (v1 = 1; v1 < 4; v1++) {
             v0->unk_22[v1] = (LCRNG_Next() % 4) + (v1 * 5);
-            v0->unk_2C[v1] = SpriteSystem_NewSprite(v0->unk_00.unk_08, v0->unk_00.unk_10, &v4);
+            v0->unk_2C[v1] = SpriteSystem_NewSprite(v0->unk_00.spriteSystem, v0->unk_00.primarySpriteManager, &v4);
         }
 
         ManagedSprite_SetFlipMode(v0->unk_2C[1], 1);
@@ -1029,5 +1029,5 @@ void ov12_0222E61C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     }
 
     v0->unk_1C = ManagedSprite_GetExplicitPaletteOffset(v0->unk_2C[0]);
-    BattleAnimSystem_StartAnimTask(v0->unk_00.unk_04, ov12_0222E390, v0);
+    BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSystem, ov12_0222E390, v0);
 }

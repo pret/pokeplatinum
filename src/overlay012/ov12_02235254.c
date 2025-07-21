@@ -5,7 +5,7 @@
 
 #include "overlay012/battle_anim_system.h"
 #include "overlay012/struct_ov12_02235350.h"
-#include "overlay012/struct_ov12_0223595C.h"
+#include "overlay012/ov12_02235254.h"
 #include "overlay012/struct_ov12_02235998.h"
 
 #include "heap.h"
@@ -707,18 +707,18 @@ void ov12_02235950(ManagedSprite *param0, UnkStruct_ov12_02235350 *param1)
     ManagedSprite_GetPositionXY(param0, &(param1->unk_00), &(param1->unk_02));
 }
 
-void ov12_0223595C(BattleAnimSystem *param0, UnkStruct_ov12_0223595C *param1)
+void ov12_0223595C(BattleAnimSystem *system, UnkStruct_ov12_0223595C *param1)
 {
     param1->unk_00 = 0;
     param1->unk_01 = 0;
     param1->unk_02 = 0;
     param1->unk_03 = 0;
-    param1->unk_04 = param0;
-    param1->unk_08 = BattleAnimSystem_GetSpriteSystem(param0);
-    param1->unk_0C = BattleAnimSystem_GetPokemonSpriteManager(param0);
-    param1->unk_10 = ov12_02220300(param0);
-    param1->unk_14 = BattleAnimSystem_GetBgConfig(param0);
-    param1->unk_18 = BattleAnimSystem_GetPaletteData(param0);
+    param1->battleAnimSystem = system;
+    param1->spriteSystem = BattleAnimSystem_GetSpriteSystem(system);
+    param1->pokemonSpriteManager = BattleAnimSystem_GetPokemonSpriteManager(system);
+    param1->primarySpriteManager = BattleAnimSystem_GetPrimarySpriteManager(system);
+    param1->bgConfig = BattleAnimSystem_GetBgConfig(system);
+    param1->paletteData = BattleAnimSystem_GetPaletteData(system);
 }
 
 void ov12_02235998(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235998 *param2, int *param3)
@@ -891,18 +891,15 @@ void ov12_02235D74(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235998
     }
 }
 
-void *ov12_02235E50(BattleAnimSystem *param0, int param1)
+void *BattleAnimUtil_Alloc(BattleAnimSystem *system, int size)
 {
-    int heapID;
-    void *v1 = NULL;
+    GF_ASSERT(system != NULL);
 
-    GF_ASSERT(param0 != NULL);
-
-    heapID = BattleAnimSystem_GetHeapID(param0);
-    v1 = Heap_AllocFromHeap(heapID, param1);
+    enum HeapId heapID = BattleAnimSystem_GetHeapID(system);
+    void *v1 = Heap_AllocFromHeap(heapID, size);
 
     GF_ASSERT(v1 != NULL);
-    memset(v1, 0, param1);
+    memset(v1, 0, size);
 
     return v1;
 }

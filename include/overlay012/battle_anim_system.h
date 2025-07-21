@@ -250,7 +250,7 @@ s32 BattleAnimSystem_GetScriptVar(BattleAnimSystem *param0, int param1);
 ManagedSprite *BattleAnimSystem_GetSprite(BattleAnimSystem *param0, int param1);
 ManagedSprite *BattleAnimSystem_GetPokemonSprite(BattleAnimSystem *param0, int param1);
 SpriteManager *BattleAnimSystem_GetPokemonSpriteManager(BattleAnimSystem *param0);
-SpriteManager *ov12_02220300(BattleAnimSystem *param0);
+SpriteManager *BattleAnimSystem_GetPrimarySpriteManager(BattleAnimSystem *param0);
 SpriteSystem *BattleAnimSystem_GetSpriteSystem(BattleAnimSystem *param0);
 void BattleAnimSystem_SetDefaultAlphaBlending(void);
 int BattleAnimSystem_GetMoveInfo(BattleAnimSystem *param0, enum BattleAnimMoveInfoType param1);

@@ -7,11 +7,23 @@
 
 #include "overlay012/battle_anim_system.h"
 #include "overlay012/struct_ov12_02235350.h"
-#include "overlay012/struct_ov12_0223595C.h"
 #include "overlay012/struct_ov12_02235998.h"
 
 #include "pokemon_sprite.h"
 #include "sprite.h"
+
+typedef struct UnkStruct_ov12_0223595C {
+    u8 unk_00;
+    u8 unk_01;
+    u8 unk_02;
+    u8 unk_03;
+    BattleAnimSystem *battleAnimSystem;
+    SpriteSystem *spriteSystem;
+    SpriteManager *pokemonSpriteManager;
+    SpriteManager *primarySpriteManager;
+    BgConfig *bgConfig;
+    PaletteData *paletteData;
+} UnkStruct_ov12_0223595C;
 
 int BattleAnimUtil_GetBattlerType(BattleAnimSystem *param0, int param1);
 enum Battler BattleAnimUtil_GetBattlerSide(BattleAnimSystem *param0, int param1);
@@ -56,7 +68,7 @@ void ov12_02235950(ManagedSprite *param0, UnkStruct_ov12_02235350 *param1);
 void ov12_0223595C(BattleAnimSystem *param0, UnkStruct_ov12_0223595C *param1);
 void ov12_02235998(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235998 *param2, int *param3);
 void ov12_02235D74(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235998 *param2, int *param3);
-void *ov12_02235E50(BattleAnimSystem *param0, int param1);
+void *BattleAnimUtil_Alloc(BattleAnimSystem *param0, int param1);
 void ov12_02235E80(void *param0);
 
 #endif // POKEPLATINUM_OV12_02235254_H
