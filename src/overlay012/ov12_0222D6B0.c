@@ -6,8 +6,7 @@
 #include "overlay012/battle_anim_system.h"
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/ov12_02235254.h"
-#include "overlay012/struct_ov12_02225F6C.h"
-#include "overlay012/struct_ov12_02226454.h"
+#include "overlay012/ov12_02225864.h"
 #include "overlay012/struct_ov12_0222660C_decl.h"
 #include "overlay012/struct_ov12_022267D4_decl.h"
 #include "overlay012/struct_ov12_02235350.h"
@@ -31,7 +30,7 @@ typedef struct {
     SpriteSystem *unk_0C;
     SpriteManager *unk_10;
     ManagedSprite *unk_14[3];
-    UnkStruct_ov12_02225F6C unk_20;
+    XYTransformContext unk_20;
 } UnkStruct_ov12_0222D6B0;
 
 typedef struct {
@@ -48,8 +47,8 @@ typedef struct {
     int unk_30;
     ManagedSprite *unk_34;
     ManagedSprite *unk_38;
-    UnkStruct_ov12_02225F6C unk_3C;
-    UnkStruct_ov12_02225F6C unk_60;
+    XYTransformContext unk_3C;
+    XYTransformContext unk_60;
 } UnkStruct_ov12_0222D934;
 
 typedef struct {
@@ -61,7 +60,7 @@ typedef struct {
     u8 unk_0E;
     u8 unk_0F;
     ManagedSprite *unk_10;
-    UnkStruct_ov12_02225F6C unk_14;
+    XYTransformContext unk_14;
     f32 unk_38;
     int *unk_3C;
 } UnkStruct_ov12_0222DC98;

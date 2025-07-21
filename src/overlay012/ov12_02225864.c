@@ -4,14 +4,13 @@
 #include <string.h>
 
 #include "constants/battle/battle_anim.h"
+#include "constants/graphics.h"
 
 #include "overlay012/battle_anim_system.h"
 #include "overlay012/funcptr_ov12_02226274.h"
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/ov12_02235254.h"
-#include "overlay012/struct_ov12_02225F6C.h"
-#include "overlay012/struct_ov12_02226274.h"
-#include "overlay012/struct_ov12_02226454.h"
+#include "overlay012/ov12_02225864.h"
 
 #include "battle_script_battlers.h"
 #include "buffer_manager.h"
@@ -25,6 +24,8 @@
 #include "sprite_system.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+
+#define MAX_CYCLES_PER_SHAKE 4
 
 typedef struct BattleAnimPosition {
     s16 x;
@@ -209,12 +210,12 @@ u32 ov12_022259AC(fx32 param0, fx32 param1, fx32 param2)
     return v0 >> FX32_SHIFT;
 }
 
-void ov12_022259DC(UnkStruct_ov12_02225F6C *param0, ManagedSprite *param1, s16 param2, s16 param3)
+void ov12_022259DC(XYTransformContext *param0, ManagedSprite *param1, s16 param2, s16 param3)
 {
-    ManagedSprite_SetPositionXY(param1, param2 + param0->unk_00, param3 + param0->unk_02);
+    ManagedSprite_SetPositionXY(param1, param2 + param0->x, param3 + param0->y);
 }
 
-void ov12_022259FC(UnkStruct_ov12_02225F6C *param0, ManagedSprite *param1)
+void ov12_022259FC(XYTransformContext *param0, ManagedSprite *param1)
 {
     f32 v0, v1;
 
@@ -222,30 +223,30 @@ void ov12_022259FC(UnkStruct_ov12_02225F6C *param0, ManagedSprite *param1)
     ManagedSprite_SetAffineScale(param1, v0, v1);
 }
 
-void ov12_02225A18(UnkStruct_ov12_02225F6C *param0, PokemonSprite *param1, s16 param2, s16 param3)
+void ov12_02225A18(XYTransformContext *param0, PokemonSprite *param1, s16 param2, s16 param3)
 {
-    PokemonSprite_SetAttribute(param1, MON_SPRITE_X_CENTER, param2 + param0->unk_00);
-    PokemonSprite_SetAttribute(param1, MON_SPRITE_Y_CENTER, param3 + param0->unk_02);
+    PokemonSprite_SetAttribute(param1, MON_SPRITE_X_CENTER, param2 + param0->x);
+    PokemonSprite_SetAttribute(param1, MON_SPRITE_Y_CENTER, param3 + param0->y);
 }
 
-void ov12_02225A3C(UnkStruct_ov12_02225F6C *param0, PokemonSprite *param1)
+void ov12_02225A3C(XYTransformContext *param0, PokemonSprite *param1)
 {
-    PokemonSprite_SetAttribute(param1, MON_SPRITE_SCALE_X, param0->unk_00);
-    PokemonSprite_SetAttribute(param1, MON_SPRITE_SCALE_Y, param0->unk_02);
+    PokemonSprite_SetAttribute(param1, MON_SPRITE_SCALE_X, param0->x);
+    PokemonSprite_SetAttribute(param1, MON_SPRITE_SCALE_Y, param0->y);
 }
 
-void ov12_02225A5C(UnkStruct_ov12_02225F6C *param0, u16 param1, u16 param2, u16 param3, u16 param4, fx32 param5, fx32 param6, int param7)
+void ov12_02225A5C(XYTransformContext *param0, u16 param1, u16 param2, u16 param3, u16 param4, fx32 param5, fx32 param6, int param7)
 {
-    param0->unk_04[0] = param7;
-    param0->unk_04[1] = param1;
-    param0->unk_04[2] = param5;
-    param0->unk_04[3] = param3;
-    param0->unk_04[4] = param6;
-    param0->unk_04[5] = (param2 - param1) / param7;
-    param0->unk_04[6] = (param4 - param3) / param7;
+    param0->data[0] = param7;
+    param0->data[1] = param1;
+    param0->data[2] = param5;
+    param0->data[3] = param3;
+    param0->data[4] = param6;
+    param0->data[5] = (param2 - param1) / param7;
+    param0->data[6] = (param4 - param3) / param7;
 }
 
-void ov12_02225A8C(UnkStruct_ov12_02225F6C *param0, u16 param1, u16 param2, u16 param3, u16 param4, fx32 param5, fx32 param6, u16 param7)
+void ov12_02225A8C(XYTransformContext *param0, u16 param1, u16 param2, u16 param3, u16 param4, fx32 param5, fx32 param6, u16 param7)
 {
     s16 v0;
 
@@ -257,32 +258,32 @@ void ov12_02225A8C(UnkStruct_ov12_02225F6C *param0, u16 param1, u16 param2, u16 
 
     v0 = param7;
 
-    param0->unk_04[0] = ov12_022259AC(param1 * FX32_ONE, param2 * FX32_ONE, v0 * FX32_ONE);
-    param0->unk_04[1] = param1;
-    param0->unk_04[2] = param5;
-    param0->unk_04[3] = param3;
-    param0->unk_04[4] = param6;
-    param0->unk_04[5] = v0;
-    param0->unk_04[6] = (param4 - param3) / param0->unk_04[0];
+    param0->data[0] = ov12_022259AC(param1 * FX32_ONE, param2 * FX32_ONE, v0 * FX32_ONE);
+    param0->data[1] = param1;
+    param0->data[2] = param5;
+    param0->data[3] = param3;
+    param0->data[4] = param6;
+    param0->data[5] = v0;
+    param0->data[6] = (param4 - param3) / param0->data[0];
 }
 
-BOOL ov12_02225AE0(UnkStruct_ov12_02225F6C *param0)
+BOOL ov12_02225AE0(XYTransformContext *param0)
 {
     fx32 v0, v1;
 
     GF_ASSERT(param0);
 
-    if (param0->unk_04[0]) {
-        param0->unk_04[1] += param0->unk_04[5];
-        param0->unk_04[3] += param0->unk_04[6];
+    if (param0->data[0]) {
+        param0->data[1] += param0->data[5];
+        param0->data[3] += param0->data[6];
 
-        param0->unk_04[1] &= 0xffff;
-        param0->unk_04[3] &= 0xffff;
+        param0->data[1] &= 0xffff;
+        param0->data[3] &= 0xffff;
 
-        param0->unk_04[0]--;
+        param0->data[0]--;
 
-        param0->unk_00 = FX_Mul(FX_SinIdx(param0->unk_04[1]), param0->unk_04[2]) >> FX32_SHIFT;
-        param0->unk_02 = FX_Mul(FX_CosIdx(param0->unk_04[3]), param0->unk_04[4]) >> FX32_SHIFT;
+        param0->x = FX_Mul(FX_SinIdx(param0->data[1]), param0->data[2]) >> FX32_SHIFT;
+        param0->y = FX_Mul(FX_CosIdx(param0->data[3]), param0->data[4]) >> FX32_SHIFT;
 
         return 1;
     }
@@ -290,7 +291,7 @@ BOOL ov12_02225AE0(UnkStruct_ov12_02225F6C *param0)
     return 0;
 }
 
-BOOL ov12_02225B78(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, ManagedSprite *param3)
+BOOL ov12_02225B78(XYTransformContext *param0, s16 param1, s16 param2, ManagedSprite *param3)
 {
     if (ov12_02225AE0(param0)) {
         ov12_022259DC(param0, param3, param1, param2);
@@ -300,7 +301,7 @@ BOOL ov12_02225B78(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, Mana
     return 0;
 }
 
-BOOL ov12_02225BA0(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, PokemonSprite *param3)
+BOOL ov12_02225BA0(XYTransformContext *param0, s16 param1, s16 param2, PokemonSprite *param3)
 {
     if (ov12_02225AE0(param0)) {
         ov12_02225A18(param0, param3, param1, param2);
@@ -310,29 +311,29 @@ BOOL ov12_02225BA0(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, Poke
     return 0;
 }
 
-void ov12_02225BC8(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, s16 param3, s16 param4, u16 param5)
+void ov12_02225BC8(XYTransformContext *param0, s16 param1, s16 param2, s16 param3, s16 param4, u16 param5)
 {
     GF_ASSERT(param0);
 
-    param0->unk_00 = param1;
-    param0->unk_02 = param3;
-    param0->unk_04[0] = param5;
-    param0->unk_04[1] = BattleAnimMath_GetStepSize(param1 * FX32_ONE, param2 * FX32_ONE, param5);
-    param0->unk_04[2] = BattleAnimMath_GetStepSize(param3 * FX32_ONE, param4 * FX32_ONE, param5);
-    param0->unk_04[3] = param1 * FX32_ONE;
-    param0->unk_04[4] = param3 * FX32_ONE;
+    param0->x = param1;
+    param0->y = param3;
+    param0->data[0] = param5;
+    param0->data[1] = BattleAnimMath_GetStepSize(param1 * FX32_ONE, param2 * FX32_ONE, param5);
+    param0->data[2] = BattleAnimMath_GetStepSize(param3 * FX32_ONE, param4 * FX32_ONE, param5);
+    param0->data[3] = param1 * FX32_ONE;
+    param0->data[4] = param3 * FX32_ONE;
 }
 
-BOOL ov12_02225C14(UnkStruct_ov12_02225F6C *param0)
+BOOL ov12_02225C14(XYTransformContext *param0)
 {
     GF_ASSERT(param0);
 
-    if (param0->unk_04[0]) {
-        param0->unk_04[3] += param0->unk_04[1];
-        param0->unk_04[4] += param0->unk_04[2];
-        param0->unk_00 = param0->unk_04[3] >> FX32_SHIFT;
-        param0->unk_02 = param0->unk_04[4] >> FX32_SHIFT;
-        param0->unk_04[0]--;
+    if (param0->data[0]) {
+        param0->data[3] += param0->data[1];
+        param0->data[4] += param0->data[2];
+        param0->x = param0->data[3] >> FX32_SHIFT;
+        param0->y = param0->data[4] >> FX32_SHIFT;
+        param0->data[0]--;
 
         return 1;
     }
@@ -340,7 +341,7 @@ BOOL ov12_02225C14(UnkStruct_ov12_02225F6C *param0)
     return 0;
 }
 
-BOOL ov12_02225C50(UnkStruct_ov12_02225F6C *param0, ManagedSprite *param1)
+BOOL ov12_02225C50(XYTransformContext *param0, ManagedSprite *param1)
 {
     if (ov12_02225C14(param0)) {
         ov12_022259DC(param0, param1, 0, 0);
@@ -350,7 +351,7 @@ BOOL ov12_02225C50(UnkStruct_ov12_02225F6C *param0, ManagedSprite *param1)
     return 0;
 }
 
-BOOL ov12_02225C74(UnkStruct_ov12_02225F6C *param0, PokemonSprite *param1)
+BOOL ov12_02225C74(XYTransformContext *param0, PokemonSprite *param1)
 {
     if (ov12_02225C14(param0)) {
         ov12_02225A18(param0, param1, 0, 0);
@@ -360,15 +361,15 @@ BOOL ov12_02225C74(UnkStruct_ov12_02225F6C *param0, PokemonSprite *param1)
     return 0;
 }
 
-void ov12_02225C98(UnkStruct_ov12_02225F6C *param0, UnkStruct_ov12_02225F6C *param1, s16 param2, s16 param3, s16 param4, s16 param5, u16 param6, fx32 param7)
+void ov12_02225C98(XYTransformContext *param0, XYTransformContext *param1, s16 param2, s16 param3, s16 param4, s16 param5, u16 param6, fx32 param7)
 {
     ov12_02225BC8(param0, param2, param3, param4, param5, param6);
-    param1->unk_00 = 0;
-    param1->unk_02 = 0;
+    param1->x = 0;
+    param1->y = 0;
     ov12_02225A5C(param1, 0, 0, (90 * 0xffff) / 360, (270 * 0xffff) / 360, 0, param7, param6);
 }
 
-BOOL ov12_02225CE4(UnkStruct_ov12_02225F6C *param0, UnkStruct_ov12_02225F6C *param1)
+BOOL ov12_02225CE4(XYTransformContext *param0, XYTransformContext *param1)
 {
     BOOL v0, v1;
 
@@ -378,8 +379,8 @@ BOOL ov12_02225CE4(UnkStruct_ov12_02225F6C *param0, UnkStruct_ov12_02225F6C *par
     v0 = ov12_02225C14(param0);
     v1 = ov12_02225AE0(param1);
 
-    param0->unk_00 += param1->unk_00;
-    param0->unk_02 += param1->unk_02;
+    param0->x += param1->x;
+    param0->y += param1->y;
 
     if ((v0 == v1) && (v0 == 0)) {
         return 0;
@@ -388,7 +389,7 @@ BOOL ov12_02225CE4(UnkStruct_ov12_02225F6C *param0, UnkStruct_ov12_02225F6C *par
     return 1;
 }
 
-BOOL ov12_02225D2C(UnkStruct_ov12_02225F6C *param0, UnkStruct_ov12_02225F6C *param1, ManagedSprite *param2)
+BOOL ov12_02225D2C(XYTransformContext *param0, XYTransformContext *param1, ManagedSprite *param2)
 {
     if (ov12_02225CE4(param0, param1)) {
         ov12_022259DC(param0, param2, 0, 0);
@@ -470,37 +471,73 @@ BOOL AngleLerpContext_UpdateCos(AngleLerpContext *ctx)
     return FALSE;
 }
 
-#define SCALE_RATE_PER(p1, p2) (((p1) * 0x100) / p2)
-void ov12_02225E68(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, s16 param3, u32 param4)
+// SCALE and REFERENCE are percentages, e.g. 100 for "normal" scale
+#define RELATIVE_SCALE(SCALE, REFERENCE) ((SCALE * MON_AFFINE_SCALE(1)) / REFERENCE)
+
+void ScaleLerpContext_Init(XYTransformContext *ctx, s16 startScale, s16 refScale, s16 endScale, u32 steps)
 {
-    UnkStruct_ov12_02225F6C *v0;
+    GF_ASSERT(ctx);
 
-    GF_ASSERT(param0);
-
-    v0 = param0;
-
-    v0->unk_04[0] = param4;
-    v0->unk_04[1] = BattleAnimMath_GetStepSize(SCALE_RATE_PER(param1, param2) * FX32_ONE, SCALE_RATE_PER(param3, param2) * FX32_ONE, param4);
-    v0->unk_00 = SCALE_RATE_PER(param1, param2);
-    v0->unk_02 = SCALE_RATE_PER(param1, param2);
-    v0->unk_04[3] = v0->unk_00 * FX32_ONE;
-    v0->unk_04[4] = v0->unk_02 * FX32_ONE;
+    ctx->data[XY_PARAM_STEPS] = steps;
+    ctx->data[XY_PARAM_STEP_SIZE] = BattleAnimMath_GetStepSize(
+        RELATIVE_SCALE(startScale, refScale) * FX32_ONE,
+        RELATIVE_SCALE(endScale, refScale) * FX32_ONE,
+        steps);
+    
+    ctx->x = RELATIVE_SCALE(startScale, refScale);
+    ctx->y = RELATIVE_SCALE(startScale, refScale);
+    ctx->data[XY_PARAM_CUR_X] = ctx->x * FX32_ONE;
+    ctx->data[XY_PARAM_CUR_Y] = ctx->y * FX32_ONE;
 }
 
-BOOL ov12_02225EB8(UnkStruct_ov12_02225F6C *param0)
+BOOL ScaleLerpContext_Update(XYTransformContext *ctx)
 {
-    UnkStruct_ov12_02225F6C *v0;
+    GF_ASSERT(ctx);
+
+    if (ctx->data[XY_PARAM_STEPS]) {
+        ctx->data[XY_PARAM_STEPS]--;
+        ctx->data[XY_PARAM_CUR_X] += ctx->data[XY_PARAM_STEP_SIZE];
+        ctx->data[XY_PARAM_CUR_Y] += ctx->data[XY_PARAM_STEP_SIZE];
+        ctx->x = (ctx->data[XY_PARAM_CUR_X] >> FX32_SHIFT);
+        ctx->y = (ctx->data[XY_PARAM_CUR_Y] >> FX32_SHIFT);
+
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
+void ov12_02225EF0(XYTransformContext *param0, s16 param1, s16 param2, s16 param3, s16 param4, s16 param5, u32 param6)
+{
+    XYTransformContext *v0;
 
     GF_ASSERT(param0);
 
     v0 = param0;
 
-    if (v0->unk_04[0]) {
-        v0->unk_04[0]--;
-        v0->unk_04[3] += v0->unk_04[1];
-        v0->unk_04[4] += v0->unk_04[1];
-        v0->unk_00 = (v0->unk_04[3] >> FX32_SHIFT);
-        v0->unk_02 = (v0->unk_04[4] >> FX32_SHIFT);
+    v0->data[0] = param6;
+    v0->data[1] = BattleAnimMath_GetStepSize(RELATIVE_SCALE(param1, param5) * FX32_ONE, RELATIVE_SCALE(param2, param5) * FX32_ONE, param6);
+    v0->data[2] = BattleAnimMath_GetStepSize(RELATIVE_SCALE(param3, param5) * FX32_ONE, RELATIVE_SCALE(param4, param5) * FX32_ONE, param6);
+    v0->x = RELATIVE_SCALE(param1, param5);
+    v0->y = RELATIVE_SCALE(param3, param5);
+    v0->data[3] = v0->x * FX32_ONE;
+    v0->data[4] = v0->y * FX32_ONE;
+}
+
+BOOL ov12_02225F6C(XYTransformContext *param0)
+{
+    XYTransformContext *v0;
+
+    GF_ASSERT(param0);
+
+    v0 = param0;
+
+    if (v0->data[0]) {
+        v0->data[0]--;
+        v0->data[3] += v0->data[1];
+        v0->data[4] += v0->data[2];
+        v0->x = (v0->data[3] >> FX32_SHIFT);
+        v0->y = (v0->data[4] >> FX32_SHIFT);
 
         return 1;
     }
@@ -508,86 +545,56 @@ BOOL ov12_02225EB8(UnkStruct_ov12_02225F6C *param0)
     return 0;
 }
 
-void ov12_02225EF0(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, s16 param3, s16 param4, s16 param5, u32 param6)
+void ov12_02225FA4(XYTransformContext *param0, f32 *param1, f32 *param2)
 {
-    UnkStruct_ov12_02225F6C *v0;
-
-    GF_ASSERT(param0);
-
-    v0 = param0;
-
-    v0->unk_04[0] = param6;
-    v0->unk_04[1] = BattleAnimMath_GetStepSize(SCALE_RATE_PER(param1, param5) * FX32_ONE, SCALE_RATE_PER(param2, param5) * FX32_ONE, param6);
-    v0->unk_04[2] = BattleAnimMath_GetStepSize(SCALE_RATE_PER(param3, param5) * FX32_ONE, SCALE_RATE_PER(param4, param5) * FX32_ONE, param6);
-    v0->unk_00 = SCALE_RATE_PER(param1, param5);
-    v0->unk_02 = SCALE_RATE_PER(param3, param5);
-    v0->unk_04[3] = v0->unk_00 * FX32_ONE;
-    v0->unk_04[4] = v0->unk_02 * FX32_ONE;
+    *param1 = (1.0f * param0->x) / 0x100;
+    *param2 = (1.0f * param0->y) / 0x100;
 }
 
-BOOL ov12_02225F6C(UnkStruct_ov12_02225F6C *param0)
+// This function calculates a vertical offset to be applied to a pokemon sprites
+// Y position when the sprite is scaled, to ensure that the sprite appears
+// anchored to the ground. This is necessary because scaling a sprite
+// scales it from its center, which would otherwise cause the sprite to
+// appear to float above the ground when scaled up, or sink below the ground
+// when scaled down.
+s16 BattleAnimUtil_GetGroundAnchoredScaleOffset(s16 baseY, int height, fx32 scaleY)
 {
-    UnkStruct_ov12_02225F6C *v0;
+    // Calculate the available height for the sprite to scale within
+    // The 2x multiplier accounts for the fact that scaling goes
+    // in both directions (up and down)
+    fx32 availableHeight = (MON_SPRITE_FRAME_HEIGHT - (height * 2)) * FX32_ONE;
 
-    GF_ASSERT(param0);
+    // Base scale (reference scale) is 1.0, i.e. 100%
+    fx32 baseScale = FX32_CONST(MON_AFFINE_SCALE(1));
 
-    v0 = param0;
+    // Scales the available height by the scale factor
+    fx32 scaledAvailableHeight = FX_Mul(availableHeight, scaleY);
 
-    if (v0->unk_04[0]) {
-        v0->unk_04[0]--;
-        v0->unk_04[3] += v0->unk_04[1];
-        v0->unk_04[4] += v0->unk_04[2];
-        v0->unk_00 = (v0->unk_04[3] >> FX32_SHIFT);
-        v0->unk_02 = (v0->unk_04[4] >> FX32_SHIFT);
+    // Calculates the scaled height relative to the base scale
+    fx32 relativeScaledHeight = FX_Div(scaledAvailableHeight, baseScale);
 
-        return 1;
+    // The difference between the available height and the scaled height
+    fx32 scaledHeightDiff = (availableHeight - relativeScaledHeight);
+
+    fx32 fractionalPart;
+    fx32 integerPart = FX_Modf(scaledHeightDiff, &fractionalPart);
+
+    // Adjust the integer part to ensure proper rounding
+    if (integerPart) {
+        integerPart += FX32_HALF;
     }
 
-    return 0;
-}
+    scaledHeightDiff = fractionalPart + integerPart;
 
-void ov12_02225FA4(UnkStruct_ov12_02225F6C *param0, f32 *param1, f32 *param2)
-{
-    *param1 = (1.0f * param0->unk_00) / 0x100;
-    *param2 = (1.0f * param0->unk_02) / 0x100;
-}
-
-s16 ov12_02225FD4(s16 param0, int param1, fx32 param2)
-{
-    fx32 v0 = (80 - (param1 * 2)) * FX32_ONE;
-    fx32 v1 = 0x100 * FX32_ONE;
-    fx32 v2;
-    fx32 v3;
-    fx32 v4;
-    s16 v5;
-
-    v3 = FX_Mul(v0, param2);
-    v4 = FX_Div(v3, v1);
-    v2 = (v0 - v4);
-
-    {
-        fx32 v6;
-        fx32 v7;
-
-        v7 = FX_Modf(v2, &v6);
-
-        if (v7) {
-            v7 += FX32_HALF;
-        }
-
-        v2 = v6 + v7;
-    }
-
-    v5 = (v2 >> FX32_SHIFT) / 2;
-
-    return v5;
+    // Finally, divide by half the height difference to get the offset
+    return (scaledHeightDiff >> FX32_SHIFT) / 2;
 }
 
 void ov12_02226024(PokemonSprite *param0, s16 param1, s16 param2, fx32 param3, int param4)
 {
     s16 v0;
     s16 v1 = param1;
-    v0 = ov12_02225FD4(param1, param2, param3);
+    v0 = BattleAnimUtil_GetGroundAnchoredScaleOffset(param1, param2, param3);
 
     if (param4 == 1) {
         v0 *= -1;
@@ -605,7 +612,7 @@ void ov12_0222605C(ManagedSprite *param0, s16 param1, s16 param2, fx32 param3, i
     s16 v3;
 
     v1 = param1;
-    v0 = ov12_02225FD4(param1, param2, param3);
+    v0 = BattleAnimUtil_GetGroundAnchoredScaleOffset(param1, param2, param3);
 
     if (param4 == 1) {
         v0 *= -1;
@@ -616,9 +623,9 @@ void ov12_0222605C(ManagedSprite *param0, s16 param1, s16 param2, fx32 param3, i
     ManagedSprite_SetPositionXY(param0, v2, v1 + v0);
 }
 
-BOOL ov12_022260A8(UnkStruct_ov12_02225F6C *param0, ManagedSprite *param1)
+BOOL ov12_022260A8(XYTransformContext *param0, ManagedSprite *param1)
 {
-    if (ov12_02225EB8(param0)) {
+    if (ScaleLerpContext_Update(param0)) {
         ov12_022259FC(param0, param1);
         return 1;
     }
@@ -626,9 +633,9 @@ BOOL ov12_022260A8(UnkStruct_ov12_02225F6C *param0, ManagedSprite *param1)
     return 0;
 }
 
-BOOL ov12_022260C8(UnkStruct_ov12_02225F6C *param0, PokemonSprite *param1)
+BOOL ov12_022260C8(XYTransformContext *param0, PokemonSprite *param1)
 {
-    if (ov12_02225EB8(param0)) {
+    if (ScaleLerpContext_Update(param0)) {
         ov12_02225A3C(param0, param1);
         return 1;
     }
@@ -636,7 +643,7 @@ BOOL ov12_022260C8(UnkStruct_ov12_02225F6C *param0, PokemonSprite *param1)
     return 0;
 }
 
-BOOL ov12_022260E8(UnkStruct_ov12_02225F6C *param0, PokemonSprite *param1)
+BOOL ov12_022260E8(XYTransformContext *param0, PokemonSprite *param1)
 {
     if (ov12_02225F6C(param0)) {
         ov12_02225A3C(param0, param1);
@@ -646,71 +653,63 @@ BOOL ov12_022260E8(UnkStruct_ov12_02225F6C *param0, PokemonSprite *param1)
     return 0;
 }
 
-static inline void inline_ov12_02226138(s16 *param0, s32 *param1, s32 param2)
+static inline void ShakeContext_FlipPosition(s16 *cur, s32 *prev, s32 unused)
 {
-    s32 v0 = *param1;
+    s32 prevVal = *prev;
 
-    *param1 = *param0;
+    *prev = *cur;
 
-    if (v0 == 0) {
-        *param0 = 0;
+    if (prevVal == 0) {
+        *cur = 0;
     } else {
-        *param0 = v0 *= -1;
+        *cur = -prevVal;
     }
 }
 
-void ov12_02226108(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, u32 param3, u32 param4)
+void ShakeContext_Init(XYTransformContext *ctx, s16 extentX, s16 extentY, u32 interval, u32 amount)
 {
-    UnkStruct_ov12_02225F6C *v0;
+    GF_ASSERT(ctx);
 
-    GF_ASSERT(param0);
-
-    v0 = param0;
-
-    v0->unk_04[0] = param3;
-    v0->unk_04[1] = param3;
-    v0->unk_04[2] = param4;
-    v0->unk_04[3] = 0;
-    v0->unk_04[4] = param1;
-    v0->unk_04[5] = param2;
-    v0->unk_04[6] = param1 * -1;
-    v0->unk_04[7] = param2 * -1;
-    v0->unk_00 = 0;
-    v0->unk_02 = 0;
+    ctx->data[XY_PARAM_SHAKE_COUNTER] = interval;
+    ctx->data[XY_PARAM_SHAKE_INTERVAL] = interval;
+    ctx->data[XY_PARAM_SHAKE_REMAINING] = amount;
+    ctx->data[XY_PARAM_SHAKE_CYCLE] = 0;
+    ctx->data[XY_PARAM_SHAKE_EXTENT_X] = extentX;
+    ctx->data[XY_PARAM_SHAKE_EXTENT_Y] = extentY;
+    ctx->data[XY_PARAM_SHAKE_PREV_X] = -extentX;
+    ctx->data[XY_PARAM_SHAKE_PREV_Y] = -extentY;
+    ctx->x = 0;
+    ctx->y = 0;
 }
 
-BOOL ov12_02226138(UnkStruct_ov12_02225F6C *param0)
+BOOL ShakeContext_Update(XYTransformContext *ctx)
 {
-    UnkStruct_ov12_02225F6C *v0;
+    GF_ASSERT(ctx);
 
-    GF_ASSERT(param0);
+    if (ctx->data[XY_PARAM_SHAKE_REMAINING]) {
+        ctx->data[XY_PARAM_SHAKE_COUNTER]++;
 
-    v0 = param0;
+        if (ctx->data[XY_PARAM_SHAKE_COUNTER] >= ctx->data[XY_PARAM_SHAKE_INTERVAL]) {
+            ctx->data[XY_PARAM_SHAKE_COUNTER] = 0;
 
-    if (v0->unk_04[2]) {
-        v0->unk_04[0]++;
+            ShakeContext_FlipPosition(&ctx->x, &ctx->data[XY_PARAM_SHAKE_PREV_X], ctx->data[XY_PARAM_SHAKE_EXTENT_X]);
+            ShakeContext_FlipPosition(&ctx->y, &ctx->data[XY_PARAM_SHAKE_PREV_Y], ctx->data[XY_PARAM_SHAKE_EXTENT_Y]);
 
-        if (v0->unk_04[0] >= v0->unk_04[1]) {
-            v0->unk_04[0] = 0;
-
-            inline_ov12_02226138(&v0->unk_00, &v0->unk_04[6], v0->unk_04[4]);
-            inline_ov12_02226138(&v0->unk_02, &v0->unk_04[7], v0->unk_04[5]);
-
-            if ((++v0->unk_04[3]) >= 4) {
-                v0->unk_04[3] = 0;
-                v0->unk_04[2]--;
+            if (++ctx->data[XY_PARAM_SHAKE_CYCLE] >= MAX_CYCLES_PER_SHAKE) {
+                ctx->data[XY_PARAM_SHAKE_CYCLE] = 0;
+                ctx->data[XY_PARAM_SHAKE_REMAINING]--;
             }
         }
-
-        return 1;
+        
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ov12_0222619C(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, PokemonSprite *param3)
+BOOL ov12_0222619C(XYTransformContext *param0, s16 param1, s16 param2, PokemonSprite *param3)
 {
-    if (ov12_02226138(param0)) {
+    if (ShakeContext_Update(param0)) {
         ov12_02225A18(param0, param3, param1, param2);
         return 1;
     }
@@ -718,7 +717,7 @@ BOOL ov12_0222619C(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, Poke
     return 0;
 }
 
-void ov12_022261C4(UnkStruct_ov12_02226274 *param0, UnkStruct_ov12_02225F6C *param1, UnkFuncPtr_ov12_02226274 param2, s16 param3, s16 param4, u16 param5, u8 param6, u8 param7, ManagedSprite *param8, ManagedSprite *param9, ManagedSprite *param10, ManagedSprite *param11)
+void ov12_022261C4(UnkStruct_ov12_02226274 *param0, XYTransformContext *param1, UnkFuncPtr_ov12_02226274 param2, s16 param3, s16 param4, u16 param5, u8 param6, u8 param7, ManagedSprite *param8, ManagedSprite *param9, ManagedSprite *param10, ManagedSprite *param11)
 {
     int v0;
 
@@ -770,7 +769,7 @@ BOOL ov12_02226274(UnkStruct_ov12_02226274 *param0)
 
         if (v1[v0]) {
             if (param0->unk_AE == 0) {
-                ManagedSprite_SetPositionXY(param0->unk_98[v0], param0->unk_00 + param0->unk_04[v0].unk_00, param0->unk_02 + param0->unk_04[v0].unk_02);
+                ManagedSprite_SetPositionXY(param0->unk_98[v0], param0->unk_00 + param0->unk_04[v0].x, param0->unk_02 + param0->unk_04[v0].y);
             } else {
                 ov12_02225FA4(&param0->unk_04[v0], &v2, &v3);
                 ManagedSprite_SetAffineScale(param0->unk_98[v0], v2, v3);
@@ -789,12 +788,12 @@ BOOL ov12_02226274(UnkStruct_ov12_02226274 *param0)
     return 0;
 }
 
-void ov12_022263A4(UnkStruct_ov12_02225F6C *param0, int param1, int param2)
+void ov12_022263A4(XYTransformContext *param0, int param1, int param2)
 {
     int v0;
 
     ov12_02225A5C(param0, 0, (360 * 0xffff) / 360, 0, (360 * 0xffff) / 360, 32 * FX32_ONE, -8 * FX32_ONE, param2);
-    param0->unk_04[0] *= param1;
+    param0->data[0] *= param1;
 }
 
 static void ov12_022263DC(SysTask *param0, void *param1)
@@ -808,15 +807,15 @@ static void ov12_022263DC(SysTask *param0, void *param1)
         v1->unk_24 = 1;
         SysTask_Done(param0);
     } else {
-        if (v1->unk_00.unk_00 < 0) {
-            v1->unk_00.unk_00 = 0;
+        if (v1->unk_00.x < 0) {
+            v1->unk_00.x = 0;
         }
 
-        if (v1->unk_00.unk_02 < 0) {
-            v1->unk_00.unk_02 = 0;
+        if (v1->unk_00.y < 0) {
+            v1->unk_00.y = 0;
         }
 
-        G2_ChangeBlendAlpha(v1->unk_00.unk_00, v1->unk_00.unk_02);
+        G2_ChangeBlendAlpha(v1->unk_00.x, v1->unk_00.y);
     }
 }
 

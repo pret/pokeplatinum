@@ -43,9 +43,6 @@
 
 #define MON_SHADOW_BASE_PLTT_SLOT 3
 
-#define MON_AFFINE_SHIFT    8
-#define MON_AFFINE_SCALE(i) (i << MON_AFFINE_SHIFT)
-
 // one particular usage of the PLTT_OFFSET macro in this file doesn't match without the cast
 #define PLTT_OFFSET_CAST(i) ((i) * (u16)PALETTE_SIZE_BYTES)
 

@@ -11,7 +11,7 @@
 #include "overlay012/ov12_02235254.h"
 #include "overlay012/ov12_02237E54.h"
 #include "overlay012/struct_ov12_02223764.h"
-#include "overlay012/struct_ov12_02225F6C.h"
+#include "overlay012/ov12_02225864.h"
 #include "overlay012/struct_ov12_022267D4_decl.h"
 #include "overlay012/struct_ov12_02236030.h"
 #include "overlay012/struct_ov12_02236690.h"
@@ -96,7 +96,7 @@ typedef struct BallRotation {
     SpriteManager *unk_2C;
     ManagedSprite *unk_30;
     AngleLerpContext unk_34;
-    UnkStruct_ov12_02225F6C unk_48[2];
+    XYTransformContext unk_48[2];
     BallThrow unk_90;
     UnkStruct_ov12_02237C54_sub1 unk_B8;
     SysTask *unk_CC;

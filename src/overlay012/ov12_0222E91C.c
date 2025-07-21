@@ -8,7 +8,7 @@
 #include "overlay012/ov12_0222D6B0.h"
 #include "overlay012/ov12_02235254.h"
 #include "overlay012/ov12_022380BC.h"
-#include "overlay012/struct_ov12_02225F6C.h"
+#include "overlay012/ov12_02225864.h"
 #include "overlay012/struct_ov12_022267D4_decl.h"
 #include "overlay012/struct_ov12_02235350.h"
 #include "overlay012/ov12_02235254.h"
@@ -29,9 +29,9 @@ typedef struct {
     UnkStruct_ov12_0223595C unk_00;
     UnkStruct_ov12_02235998 unk_1C;
     ManagedSprite *unk_30;
-    UnkStruct_ov12_02225F6C unk_34;
-    UnkStruct_ov12_02225F6C unk_58;
-    UnkStruct_ov12_02225F6C unk_7C;
+    XYTransformContext unk_34;
+    XYTransformContext unk_58;
+    XYTransformContext unk_7C;
     u8 unk_A0;
     u8 unk_A1;
     u8 unk_A2;
@@ -44,7 +44,7 @@ typedef struct {
     s16 unk_1C;
     s16 unk_1E[8];
     ManagedSprite *unk_30[8];
-    UnkStruct_ov12_02225F6C unk_50;
+    XYTransformContext unk_50;
 } UnkStruct_ov12_0222EC18;
 
 typedef struct {
@@ -62,7 +62,7 @@ typedef struct {
 typedef struct {
     UnkStruct_ov12_0223595C unk_00;
     UnkStruct_ov12_02235998 unk_1C;
-    UnkStruct_ov12_02225F6C unk_30;
+    XYTransformContext unk_30;
     s16 unk_54;
     int unk_58;
     UnkStruct_ov12_02235350 unk_5C[2];
@@ -278,7 +278,7 @@ void ov12_0222EC90(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
                 if (v11 % 2) {
                     if (v13 == 0) {
                         if (v12 < 8) {
-                            ManagedSprite_SetPositionXY(v0->unk_30[v12], v0->unk_50.unk_00, v0->unk_50.unk_02);
+                            ManagedSprite_SetPositionXY(v0->unk_30[v12], v0->unk_50.x, v0->unk_50.y);
                             v12++;
                         }
                     } else {
@@ -511,8 +511,8 @@ static void ov12_0222F208(SysTask *param0, void *param1)
             v0->unk_1C.unk_04.unk_00 = PokemonSprite_GetAttribute(v0->unk_1C.unk_08, MON_SPRITE_X_CENTER);
         }
 
-        PokemonSprite_SetAttribute(v0->unk_1C.unk_08, MON_SPRITE_X_CENTER, v0->unk_30.unk_00);
-        PokemonSprite_SetAttribute(v0->unk_1C.unk_08, MON_SPRITE_Y_CENTER, v0->unk_30.unk_02);
+        PokemonSprite_SetAttribute(v0->unk_1C.unk_08, MON_SPRITE_X_CENTER, v0->unk_30.x);
+        PokemonSprite_SetAttribute(v0->unk_1C.unk_08, MON_SPRITE_Y_CENTER, v0->unk_30.y);
         break;
     default:
         PokemonSprite_SetAttribute(v0->unk_1C.unk_08, MON_SPRITE_SHADOW_SHOULD_FOLLOW_Y, 0);

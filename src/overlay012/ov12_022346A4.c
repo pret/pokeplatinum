@@ -6,8 +6,7 @@
 #include "overlay012/battle_anim_system.h"
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/ov12_02235254.h"
-#include "overlay012/struct_ov12_02225F6C.h"
-#include "overlay012/struct_ov12_02226454.h"
+#include "overlay012/ov12_02225864.h"
 
 #include "heap.h"
 #include "pokemon_sprite.h"
@@ -22,8 +21,8 @@ typedef struct {
     SpriteManager *unk_0C;
     int unk_10;
     ManagedSprite *unk_14[2];
-    UnkStruct_ov12_02225F6C unk_1C[2];
-    UnkStruct_ov12_02225F6C unk_64[2];
+    XYTransformContext unk_1C[2];
+    XYTransformContext unk_64[2];
 } UnkStruct_ov12_022346A4;
 
 typedef struct {
@@ -52,15 +51,15 @@ typedef struct {
     int unk_10;
     int unk_14;
     ManagedSprite *unk_18[6];
-    UnkStruct_ov12_02225F6C unk_30[6];
+    XYTransformContext unk_30[6];
     UnkStruct_ov12_02226454 unk_108;
     s16 unk_130;
     s16 unk_132;
 } UnkStruct_ov12_02234BD8;
 
 static void ov12_02234750(SysTask *param0, void *param1);
-static void ov12_0223483C(ManagedSprite *param0, UnkStruct_ov12_02225F6C *param1, UnkStruct_ov12_02225F6C *param2, int param3);
-static BOOL ov12_0223489C(ManagedSprite *param0, UnkStruct_ov12_02225F6C *param1, UnkStruct_ov12_02225F6C *param2);
+static void ov12_0223483C(ManagedSprite *param0, XYTransformContext *param1, XYTransformContext *param2, int param3);
+static BOOL ov12_0223489C(ManagedSprite *param0, XYTransformContext *param1, XYTransformContext *param2);
 static void ov12_02234918(SysTask *param0, void *param1);
 static void ov12_02234B64(SysTask *param0, void *param1);
 static BOOL ov12_02234B34(ManagedSprite *param0, int *param1, int *param2);
@@ -148,7 +147,7 @@ static void ov12_02234750(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v0->unk_0C);
 }
 
-static void ov12_0223483C(ManagedSprite *param0, UnkStruct_ov12_02225F6C *param1, UnkStruct_ov12_02225F6C *param2, int param3)
+static void ov12_0223483C(ManagedSprite *param0, XYTransformContext *param1, XYTransformContext *param2, int param3)
 {
     s16 v0, v1;
 
@@ -157,10 +156,10 @@ static void ov12_0223483C(ManagedSprite *param0, UnkStruct_ov12_02225F6C *param1
     ManagedSprite_GetPositionXY(param0, &v0, &v1);
 
     ov12_02225BC8(param1, v0, v0 + (16 * param3), v1, v1 + -32, 32);
-    ov12_02225E68(param2, 2, 10, 10, 32);
+    ScaleLerpContext_Init(param2, 2, 10, 10, 32);
 }
 
-static BOOL ov12_0223489C(ManagedSprite *param0, UnkStruct_ov12_02225F6C *param1, UnkStruct_ov12_02225F6C *param2)
+static BOOL ov12_0223489C(ManagedSprite *param0, XYTransformContext *param1, XYTransformContext *param2)
 {
     BOOL v0;
 
@@ -354,8 +353,8 @@ static void ov12_02234BD8(UnkStruct_ov12_02234BD8 *param0, int param1)
 
     for (v0 = 0; v0 < 6; v0++) {
         ov12_02225A5C(&param0->unk_30[v0], (0 * 0xffff) / 360, (180 * 0xffff) / 360, 0, 0, FX32_ONE * 50, 0, 48);
-        param0->unk_30[v0].unk_04[1] += (v1 * v0);
-        param0->unk_30[v0].unk_04[5] *= param1;
+        param0->unk_30[v0].data[1] += (v1 * v0);
+        param0->unk_30[v0].data[5] *= param1;
     }
 }
 
@@ -367,9 +366,9 @@ static void ov12_02234C30(UnkStruct_ov12_02234BD8 *param0)
     for (v0 = 0; v0 < 6; v0++) {
         ov12_02225AE0(&param0->unk_30[v0]);
 
-        ManagedSprite_SetPositionXY(param0->unk_18[v0], param0->unk_130 + param0->unk_30[v0].unk_00, param0->unk_132);
+        ManagedSprite_SetPositionXY(param0->unk_18[v0], param0->unk_130 + param0->unk_30[v0].x, param0->unk_132);
 
-        if ((param0->unk_30[v0].unk_04[1] >= ((90 * 0xffff) / 360)) && (param0->unk_30[v0].unk_04[1] <= ((269 * 0xffff) / 360))) {
+        if ((param0->unk_30[v0].data[1] >= ((90 * 0xffff) / 360)) && (param0->unk_30[v0].data[1] <= ((269 * 0xffff) / 360))) {
             ManagedSprite_SetExplicitPriority(param0->unk_18[v0], 1);
         } else {
             ManagedSprite_SetExplicitPriority(param0->unk_18[v0], BattleAnimSystem_GetPokemonSpritePriority(param0->unk_00) + 1);
