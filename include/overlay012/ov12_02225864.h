@@ -2,7 +2,6 @@
 #define POKEPLATINUM_OV12_02225864_H
 
 #include "overlay012/battle_anim_system.h"
-#include "overlay012/funcptr_ov12_02226274.h"
 #include "overlay012/struct_ov12_02226504_decl.h"
 #include "overlay012/struct_ov12_0222660C_decl.h"
 #include "overlay012/struct_ov12_022267D4_decl.h"
@@ -10,6 +9,13 @@
 #include "palette.h"
 #include "pokemon_sprite.h"
 #include "sprite.h"
+
+#define REVOLUTION_CONTEXT_OVAL_RADIUS_X FX32_CONST(32)
+#define REVOLUTION_CONTEXT_OVAL_RADIUS_Y FX32_CONST(-8)
+
+#define MAX_AFTERIMAGES               4
+#define AFTERIMAGE_TRANSFORM_POSITION 0
+#define AFTERIMAGE_TRANSFORM_SCALE    1
 
 enum BattleAnimPositionType {
     BATTLE_ANIM_POSITION_MON_X = 0,
@@ -39,6 +45,14 @@ enum XYTransformParam {
     XY_PARAM_SHAKE_EXTENT_Y,
     XY_PARAM_SHAKE_PREV_X,
     XY_PARAM_SHAKE_PREV_Y,
+
+    XY_PARAM_REV_STEPS = 0,
+    XY_PARAM_REV_CUR_X,
+    XY_PARAM_REV_RADIUS_X,
+    XY_PARAM_REV_CUR_Y,
+    XY_PARAM_REV_RADIUS_Y,
+    XY_PARAM_REV_STEP_SIZE_X,
+    XY_PARAM_REV_STEP_SIZE_Y,
 };
 
 typedef struct XYTransformContext {
@@ -47,19 +61,21 @@ typedef struct XYTransformContext {
     s32 data[8];
 } XYTransformContext;
 
-typedef struct {
-    s16 unk_00;
-    s16 unk_02;
-    XYTransformContext unk_04[4];
-    UnkFuncPtr_ov12_02226274 unk_94;
-    ManagedSprite *unk_98[4];
-    u16 unk_A8;
-    u16 unk_AA;
-    u8 unk_AC;
-    u8 unk_AD;
-    u8 unk_AE;
+typedef BOOL (*XYTransformFunc)(XYTransformContext *);
+
+typedef struct AfterimageContext {
+    s16 x;
+    s16 y;
+    XYTransformContext transforms[MAX_AFTERIMAGES];
+    XYTransformFunc transformFunc;
+    ManagedSprite *sprites[MAX_AFTERIMAGES];
+    u16 delay; // Delay before the next afterimage appears
+    u16 delayCounter;
+    u8 count; // Number of afterimages
+    u8 activeCount; // Number of active afterimages
+    u8 mode; // See AFTERIMAGE_TRANSFORM_*
     u8 unk_AF;
-} UnkStruct_ov12_02226274;
+} AfterimageContext;
 
 typedef struct {
     XYTransformContext unk_00;
@@ -76,13 +92,13 @@ fx32 BattleAnimMath_GetStepSize(fx32 param0, fx32 param1, u32 param2);
 u32 ov12_022259AC(fx32 param0, fx32 param1, fx32 param2);
 void ov12_022259DC(XYTransformContext *param0, ManagedSprite *param1, s16 param2, s16 param3);
 void ov12_022259FC(XYTransformContext *param0, ManagedSprite *param1);
-void ov12_02225A18(XYTransformContext *param0, PokemonSprite *param1, s16 param2, s16 param3);
+void RevolutionContext_Apply(XYTransformContext *param0, PokemonSprite *param1, s16 param2, s16 param3);
 void ov12_02225A3C(XYTransformContext *param0, PokemonSprite *param1);
-void ov12_02225A5C(XYTransformContext *param0, u16 param1, u16 param2, u16 param3, u16 param4, fx32 param5, fx32 param6, int param7);
+void RevolutionContext_Init(XYTransformContext *param0, u16 param1, u16 param2, u16 param3, u16 param4, fx32 param5, fx32 param6, int param7);
 void ov12_02225A8C(XYTransformContext *param0, u16 param1, u16 param2, u16 param3, u16 param4, fx32 param5, fx32 param6, u16 param7);
-BOOL ov12_02225AE0(XYTransformContext *param0);
+BOOL RevolutionContext_Update(XYTransformContext *param0);
 BOOL ov12_02225B78(XYTransformContext *param0, s16 param1, s16 param2, ManagedSprite *param3);
-BOOL ov12_02225BA0(XYTransformContext *param0, s16 param1, s16 param2, PokemonSprite *param3);
+BOOL RevolutionContext_UpdateAndApply(XYTransformContext *param0, s16 param1, s16 param2, PokemonSprite *param3);
 void PosLerpContext_Init(XYTransformContext *param0, s16 param1, s16 param2, s16 param3, s16 param4, u16 param5);
 BOOL PosLerpContext_Update(XYTransformContext *param0);
 BOOL ov12_02225C50(XYTransformContext *param0, ManagedSprite *param1);
@@ -100,7 +116,7 @@ void ScaleLerpContext_Init(XYTransformContext *param0, s16 param1, s16 param2, s
 BOOL ScaleLerpContext_Update(XYTransformContext *param0);
 void ScaleLerpContext_InitXY(XYTransformContext *param0, s16 param1, s16 param2, s16 param3, s16 param4, s16 param5, u32 param6);
 BOOL ScaleLerpContext_UpdateXY(XYTransformContext *param0);
-void ov12_02225FA4(XYTransformContext *param0, f32 *param1, f32 *param2);
+void BattleAnimUtil_ConvertRelativeToAffineScale(XYTransformContext *param0, f32 *param1, f32 *param2);
 s16 BattleAnimUtil_GetGroundAnchoredScaleOffset(s16 param0, int param1, fx32 param2);
 void ov12_02226024(PokemonSprite *param0, s16 param1, s16 param2, fx32 param3, int param4);
 void ov12_0222605C(ManagedSprite *param0, s16 param1, s16 param2, fx32 param3, int param4);
@@ -110,9 +126,9 @@ BOOL ov12_022260E8(XYTransformContext *param0, PokemonSprite *param1);
 void ShakeContext_Init(XYTransformContext *ctx, s16 extentX, s16 extentY, u32 interval, u32 amount);
 BOOL ShakeContext_Update(XYTransformContext *param0);
 BOOL ov12_0222619C(XYTransformContext *param0, s16 param1, s16 param2, PokemonSprite *param3);
-void ov12_022261C4(UnkStruct_ov12_02226274 *param0, XYTransformContext *param1, UnkFuncPtr_ov12_02226274 param2, s16 param3, s16 param4, u16 param5, u8 param6, u8 param7, ManagedSprite *param8, ManagedSprite *param9, ManagedSprite *param10, ManagedSprite *param11);
-BOOL ov12_02226274(UnkStruct_ov12_02226274 *param0);
-void ov12_022263A4(XYTransformContext *param0, int param1, int param2);
+void Afterimage_Init(AfterimageContext *ctx, XYTransformContext *transformCtx, XYTransformFunc transformFunc, s16 x, s16 y, u16 delay, u8 count, u8 mode, ManagedSprite *sprite0, ManagedSprite *sprite1, ManagedSprite *sprite2, ManagedSprite *sprite3);
+BOOL Afterimage_Update(AfterimageContext *param0);
+void RevolutionContext_InitOvalRevolutions(XYTransformContext *param0, int param1, int param2);
 void ov12_02226424(UnkStruct_ov12_02226454 *param0, s16 param1, s16 param2, s16 param3, s16 param4, int param5);
 BOOL ov12_02226454(const UnkStruct_ov12_02226454 *param0);
 UnkStruct_ov12_02226504 *ov12_02226544(u32 param0, u32 param1, enum HeapId heapID);

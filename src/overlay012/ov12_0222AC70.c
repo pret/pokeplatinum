@@ -110,7 +110,6 @@ enum BulkUpState {
 // -------------------------------------------------------------------
 // Double Team
 // -------------------------------------------------------------------
-
 #define DOUBLE_TEAM_SPRITE_COUNT 4
 
 typedef struct DoubleTeamContext {
@@ -124,7 +123,7 @@ typedef struct DoubleTeamContext {
     s16 attackerY;
     BattleAnimSystem *battleAnimSys;
     PokemonSprite *attackerSprite;
-    SpriteManager *pokeonSpriteManager;
+    SpriteManager *pokemonSpriteManager;
     ManagedSprite *monSprites[DOUBLE_TEAM_SPRITE_COUNT];
     XYTransformContext pos[DOUBLE_TEAM_SPRITE_COUNT];
 } DoubleTeamContext;
@@ -416,7 +415,7 @@ static void ov12_0222AC70(SysTask *param0, void *param1)
             for (v0 = 0; v0 < BattleAnimSystem_GetScriptVar(v1->unk_08, 0); v0++) {
                 f32 v4, v5;
 
-                ov12_02225FA4(&v1->unk_20, &v4, &v5);
+                BattleAnimUtil_ConvertRelativeToAffineScale(&v1->unk_20, &v4, &v5);
                 ManagedSprite_SetAffineScale(v1->unk_14[v0], v4, v5);
             }
         } else {
@@ -826,7 +825,7 @@ static void BattleAnimTask_DoubleTeam(SysTask *task, void *param)
         return;
     }
 
-    SpriteSystem_DrawSprites(ctx->pokeonSpriteManager);
+    SpriteSystem_DrawSprites(ctx->pokemonSpriteManager);
 }
 
 void BattleAnimScriptFunc_DoubleTeam(BattleAnimSystem *system)
@@ -840,7 +839,7 @@ void BattleAnimScriptFunc_DoubleTeam(BattleAnimSystem *system)
     ctx->attackerX = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_X_CENTER);
     ctx->attackerY = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_Y_CENTER);
     ctx->attackerY -= PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_SHADOW_HEIGHT);
-    ctx->pokeonSpriteManager = BattleAnimSystem_GetPokemonSpriteManager(ctx->battleAnimSys);
+    ctx->pokemonSpriteManager = BattleAnimSystem_GetPokemonSpriteManager(ctx->battleAnimSys);
     ctx->blendA = DOUBLE_TEAM_BLEND_A;
     ctx->blendB = DOUBLE_TEAM_BLEND_B;
 
@@ -1354,7 +1353,7 @@ static void ov12_0222C1A4(SysTask *param0, void *param1)
                 } else {
                     f32 v3, v4;
 
-                    ov12_02225FA4(&v2->unk_18[v0].unk_08, &v3, &v4);
+                    BattleAnimUtil_ConvertRelativeToAffineScale(&v2->unk_18[v0].unk_08, &v3, &v4);
                     ManagedSprite_SetAffineScale(v2->unk_18[v0].unk_04, v3 * v2->unk_08, v4);
                     ov12_0222605C(v2->unk_18[v0].unk_04, v2->unk_02, v2->unk_04, v2->unk_18[v0].unk_08.data[4], 0);
                 }
@@ -1407,7 +1406,7 @@ static void ov12_0222C1A4(SysTask *param0, void *param1)
             } else {
                 f32 v7, v8;
 
-                ov12_02225FA4(&v2->unk_18[v0].unk_08, &v7, &v8);
+                BattleAnimUtil_ConvertRelativeToAffineScale(&v2->unk_18[v0].unk_08, &v7, &v8);
                 ManagedSprite_SetAffineScale(v2->unk_18[v0].unk_04, v7 * v2->unk_08, v8);
                 ov12_0222605C(v2->unk_18[v0].unk_04, v2->unk_02, v2->unk_04, v2->unk_18[v0].unk_08.data[4], 0);
             }
@@ -1961,7 +1960,7 @@ static void ov12_0222CDF0(SysTask *param0, void *param1)
             f32 v1, v2;
             s16 v3;
 
-            ov12_02225FA4(&v0->unk_9C, &v1, &v2);
+            BattleAnimUtil_ConvertRelativeToAffineScale(&v0->unk_9C, &v1, &v2);
             ManagedSprite_SetAffineScale(v0->unk_40, v1, v2);
             v3 = BattleAnimUtil_GetGroundAnchoredScaleOffset(v0->unk_14.unk_02, 16, v0->unk_9C.data[4]);
             ManagedSprite_SetPositionXY(v0->unk_40, v0->unk_14.unk_00, v0->unk_14.unk_02 + v3);
@@ -1989,7 +1988,7 @@ static void ov12_0222CDF0(SysTask *param0, void *param1)
             f32 v4, v5;
             s16 v6;
 
-            ov12_02225FA4(&v0->unk_9C, &v4, &v5);
+            BattleAnimUtil_ConvertRelativeToAffineScale(&v0->unk_9C, &v4, &v5);
             ManagedSprite_SetAffineScale(v0->unk_40, v4, v5);
             v6 = BattleAnimUtil_GetGroundAnchoredScaleOffset(v0->unk_14.unk_02, 16, v0->unk_9C.data[4]);
             ManagedSprite_SetPositionXY(v0->unk_40, v0->unk_14.unk_00, v0->unk_14.unk_02 + v6);
@@ -2083,7 +2082,7 @@ void ov12_0222CFA0(BattleAnimSystem *param0)
         ScaleLerpContext_InitXY(&v0->unk_9C, 100 * v0->unk_12, 100 * v0->unk_12, 100, 5, 100, 1);
         ScaleLerpContext_UpdateXY(&v0->unk_9C);
 
-        ov12_02225FA4(&v0->unk_9C, &v1, &v2);
+        BattleAnimUtil_ConvertRelativeToAffineScale(&v0->unk_9C, &v1, &v2);
         ManagedSprite_SetAffineScale(v0->unk_40, v1, v2);
 
         v3 = BattleAnimUtil_GetGroundAnchoredScaleOffset(v0->unk_14.unk_02, 16, v0->unk_9C.data[4]);

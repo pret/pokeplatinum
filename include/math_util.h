@@ -8,6 +8,10 @@
 #define LCRNG_MULTIPLIER 1103515245L
 #define LCRNG_INCREMENT  24691
 
+// Does almost the same as FX_DEG_TO_IDX but takes integers as input instead of fx32
+// Use if FX_DEG_TO_IDX(FX32_CONST(degrees)) doesn't match
+#define DEG_TO_IDX(degrees) (((degrees) * 0xFFFF) / 360)
+
 enum AffineTransformationMatrixMode {
     AFFINE_MODE_NORMAL = 0,
     AFFINE_MODE_MAX_256,

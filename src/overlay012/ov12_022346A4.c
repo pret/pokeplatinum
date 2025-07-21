@@ -352,7 +352,7 @@ static void ov12_02234BD8(UnkStruct_ov12_02234BD8 *param0, int param1)
     int v1 = ((360 * 0xffff) / 360) / 6;
 
     for (v0 = 0; v0 < 6; v0++) {
-        ov12_02225A5C(&param0->unk_30[v0], (0 * 0xffff) / 360, (180 * 0xffff) / 360, 0, 0, FX32_ONE * 50, 0, 48);
+        RevolutionContext_Init(&param0->unk_30[v0], (0 * 0xffff) / 360, (180 * 0xffff) / 360, 0, 0, FX32_ONE * 50, 0, 48);
         param0->unk_30[v0].data[1] += (v1 * v0);
         param0->unk_30[v0].data[5] *= param1;
     }
@@ -364,7 +364,7 @@ static void ov12_02234C30(UnkStruct_ov12_02234BD8 *param0)
     u16 v1;
 
     for (v0 = 0; v0 < 6; v0++) {
-        ov12_02225AE0(&param0->unk_30[v0]);
+        RevolutionContext_Update(&param0->unk_30[v0]);
 
         ManagedSprite_SetPositionXY(param0->unk_18[v0], param0->unk_130 + param0->unk_30[v0].x, param0->unk_132);
 

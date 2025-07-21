@@ -891,7 +891,7 @@ static void ov12_022274E4(SysTask *param0, void *param1)
 {
     UnkStruct_ov12_022274E4 *v0 = param1;
 
-    if (ov12_02225BA0(&v0->unk_04, v0->unk_2C, v0->unk_2E, v0->unk_28) == 0) {
+    if (RevolutionContext_UpdateAndApply(&v0->unk_04, v0->unk_2C, v0->unk_2E, v0->unk_28) == 0) {
         PokemonSprite_SetAttribute(v0->unk_28, MON_SPRITE_X_CENTER, v0->unk_2C);
         PokemonSprite_SetAttribute(v0->unk_28, MON_SPRITE_Y_CENTER, v0->unk_2E + ((-8 * FX32_ONE) >> FX32_SHIFT));
         PokemonSprite_SetAttribute(v0->unk_28, MON_SPRITE_ROTATION_Z, 0);
@@ -905,7 +905,7 @@ void ov12_02227534(BattleAnimSystem *param0)
     UnkStruct_ov12_022274E4 *v0 = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_022274E4));
     v0->unk_00 = param0;
 
-    ov12_022263A4(&v0->unk_04, BattleAnimSystem_GetScriptVar(param0, 0), BattleAnimSystem_GetScriptVar(param0, 1));
+    RevolutionContext_InitOvalRevolutions(&v0->unk_04, BattleAnimSystem_GetScriptVar(param0, 0), BattleAnimSystem_GetScriptVar(param0, 1));
 
     switch (BattleAnimSystem_GetScriptVar(param0, 2)) {
     case 0x2:
@@ -1260,7 +1260,7 @@ static void ov12_02227B4C(SysTask *param0, void *param1)
     switch (v0->unk_08) {
     case 0:
         ScaleLerpContext_Init(&v0->unk_14, v0->unk_3C, v0->unk_44, v0->unk_40, v0->unk_4C >> 16);
-        ov12_02225FA4(&v0->unk_14, &v1, &v2);
+        BattleAnimUtil_ConvertRelativeToAffineScale(&v0->unk_14, &v1, &v2);
 
         if (v0->unk_50 == 1) {
             v1 = -v1;
@@ -1271,7 +1271,7 @@ static void ov12_02227B4C(SysTask *param0, void *param1)
         break;
     case 1:
         v3 = ScaleLerpContext_Update(&v0->unk_14);
-        ov12_02225FA4(&v0->unk_14, &v1, &v2);
+        BattleAnimUtil_ConvertRelativeToAffineScale(&v0->unk_14, &v1, &v2);
 
         if (v0->unk_50 == 1) {
             v1 = -v1;
@@ -1291,7 +1291,7 @@ static void ov12_02227B4C(SysTask *param0, void *param1)
         break;
     case 3:
         v3 = ScaleLerpContext_Update(&v0->unk_14);
-        ov12_02225FA4(&v0->unk_14, &v1, &v2);
+        BattleAnimUtil_ConvertRelativeToAffineScale(&v0->unk_14, &v1, &v2);
 
         if (v0->unk_50 == 1) {
             v1 = -v1;
@@ -2152,7 +2152,7 @@ static void ov12_02228DB8(SysTask *param0, void *param1)
     int v0;
     UnkStruct_ov12_02228DB8 *v1 = (UnkStruct_ov12_02228DB8 *)param1;
 
-    v0 = ov12_02225BA0(&v1->unk_30, v1->unk_1C.unk_04.unk_00, v1->unk_1C.unk_04.unk_02, v1->unk_1C.unk_08);
+    v0 = RevolutionContext_UpdateAndApply(&v1->unk_30, v1->unk_1C.unk_04.unk_00, v1->unk_1C.unk_04.unk_02, v1->unk_1C.unk_08);
 
     if (v0 == 0) {
         PokemonSprite_SetAttribute(v1->unk_1C.unk_08, MON_SPRITE_X_CENTER, v1->unk_1C.unk_04.unk_00);
@@ -2172,7 +2172,7 @@ void ov12_02228E00(BattleAnimSystem *param0)
 
     v1->unk_1C.unk_04.unk_02 -= (-8 * FX32_ONE) >> FX32_SHIFT;
 
-    ov12_022263A4(&v1->unk_30, BattleAnimSystem_GetScriptVar(param0, 1), BattleAnimSystem_GetScriptVar(param0, 2));
+    RevolutionContext_InitOvalRevolutions(&v1->unk_30, BattleAnimSystem_GetScriptVar(param0, 1), BattleAnimSystem_GetScriptVar(param0, 2));
 
     {
         v1->unk_30.data[2] /= 2;
@@ -3073,7 +3073,7 @@ static void ov12_02229F9C(SysTask *param0, void *param1)
     UnkStruct_ov12_02229F9C *v0 = param1;
     BOOL v1 = ov12_02229A50(v0->unk_38);
 
-    if ((ov12_02225AE0(&v0->unk_58) == 0) && (v1 == 0)) {
+    if ((RevolutionContext_Update(&v0->unk_58) == 0) && (v1 == 0)) {
         ParticleSystem_DeleteEmitter(v0->unk_34, v0->unk_38);
         BattleAnimSystem_EndAnimTask(v0->unk_3C.battleAnimSystem, param0);
         Heap_Free(v0);
@@ -3115,12 +3115,12 @@ void ov12_0222A00C(BattleAnimSystem *param0)
     v0->unk_38 = BattleAnimSystem_GetEmitter(param0, v0->unk_00);
     v0->unk_34 = BattleAnimSystem_GetParticleSystem(param0, BattleAnimSystem_GetScriptVar(param0, 9));
 
-    ov12_02225A5C(&v0->unk_58, (v0->unk_04 * 0xffff) / 360, (v0->unk_0C * 0xffff) / 360, (v0->unk_08 * 0xffff) / 360, (v0->unk_10 * 0xffff) / 360, v0->unk_14 * FX32_ONE, v0->unk_18 * FX32_ONE, v0->unk_1C);
+    RevolutionContext_Init(&v0->unk_58, (v0->unk_04 * 0xffff) / 360, (v0->unk_0C * 0xffff) / 360, (v0->unk_08 * 0xffff) / 360, (v0->unk_10 * 0xffff) / 360, v0->unk_14 * FX32_ONE, v0->unk_18 * FX32_ONE, v0->unk_1C);
 
     {
         VecFx32 v1;
 
-        ov12_02225AE0(&v0->unk_58);
+        RevolutionContext_Update(&v0->unk_58);
 
         v1.x = v0->unk_88.x + (v0->unk_58.x * 172);
         v1.y = v0->unk_88.y + (v0->unk_58.y * 172);
