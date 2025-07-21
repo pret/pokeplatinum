@@ -58,6 +58,6 @@ BOOL Coins_CanAdd(u16 *coins, u16 amount);
  *
  * @returns: TRUE if success, otherwise FALSE
  */
-BOOL Coins_Remove(u16 *coins, u16 amount);
+BOOL Coins_Subtract(u16 *coins, u16 amount);
 
 #endif // POKEPLATINUM_COINS_H
