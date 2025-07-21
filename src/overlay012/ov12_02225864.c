@@ -507,42 +507,41 @@ BOOL ScaleLerpContext_Update(XYTransformContext *ctx)
     return FALSE;
 }
 
-void ov12_02225EF0(XYTransformContext *param0, s16 param1, s16 param2, s16 param3, s16 param4, s16 param5, u32 param6)
+void ScaleLerpContext_InitXY(XYTransformContext *ctx, s16 sx, s16 ex, s16 sy, s16 ey, s16 ref, u32 steps)
 {
-    XYTransformContext *v0;
+    GF_ASSERT(ctx);
 
-    GF_ASSERT(param0);
-
-    v0 = param0;
-
-    v0->data[0] = param6;
-    v0->data[1] = BattleAnimMath_GetStepSize(RELATIVE_SCALE(param1, param5) * FX32_ONE, RELATIVE_SCALE(param2, param5) * FX32_ONE, param6);
-    v0->data[2] = BattleAnimMath_GetStepSize(RELATIVE_SCALE(param3, param5) * FX32_ONE, RELATIVE_SCALE(param4, param5) * FX32_ONE, param6);
-    v0->x = RELATIVE_SCALE(param1, param5);
-    v0->y = RELATIVE_SCALE(param3, param5);
-    v0->data[3] = v0->x * FX32_ONE;
-    v0->data[4] = v0->y * FX32_ONE;
+    ctx->data[XY_PARAM_STEPS] = steps;
+    ctx->data[XY_PARAM_STEP_SIZE_X] = BattleAnimMath_GetStepSize(
+        RELATIVE_SCALE(sx, ref) * FX32_ONE,
+        RELATIVE_SCALE(ex, ref) * FX32_ONE,
+        steps);
+    ctx->data[XY_PARAM_STEP_SIZE_Y] = BattleAnimMath_GetStepSize(
+        RELATIVE_SCALE(sy, ref) * FX32_ONE,
+        RELATIVE_SCALE(ey, ref) * FX32_ONE,
+        steps);
+    
+    ctx->x = RELATIVE_SCALE(sx, ref);
+    ctx->y = RELATIVE_SCALE(sy, ref);
+    ctx->data[XY_PARAM_CUR_X] = ctx->x * FX32_ONE;
+    ctx->data[XY_PARAM_CUR_Y] = ctx->y * FX32_ONE;
 }
 
-BOOL ov12_02225F6C(XYTransformContext *param0)
+BOOL ScaleLerpContext_UpdateXY(XYTransformContext *ctx)
 {
-    XYTransformContext *v0;
+    GF_ASSERT(ctx);
 
-    GF_ASSERT(param0);
+    if (ctx->data[XY_PARAM_STEPS]) {
+        ctx->data[XY_PARAM_STEPS]--;
+        ctx->data[XY_PARAM_CUR_X] += ctx->data[XY_PARAM_STEP_SIZE_X];
+        ctx->data[XY_PARAM_CUR_Y] += ctx->data[XY_PARAM_STEP_SIZE_Y];
+        ctx->x = (ctx->data[XY_PARAM_CUR_X] >> FX32_SHIFT);
+        ctx->y = (ctx->data[XY_PARAM_CUR_Y] >> FX32_SHIFT);
 
-    v0 = param0;
-
-    if (v0->data[0]) {
-        v0->data[0]--;
-        v0->data[3] += v0->data[1];
-        v0->data[4] += v0->data[2];
-        v0->x = (v0->data[3] >> FX32_SHIFT);
-        v0->y = (v0->data[4] >> FX32_SHIFT);
-
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 void ov12_02225FA4(XYTransformContext *param0, f32 *param1, f32 *param2)
@@ -645,7 +644,7 @@ BOOL ov12_022260C8(XYTransformContext *param0, PokemonSprite *param1)
 
 BOOL ov12_022260E8(XYTransformContext *param0, PokemonSprite *param1)
 {
-    if (ov12_02225F6C(param0)) {
+    if (ScaleLerpContext_UpdateXY(param0)) {
         ov12_02225A3C(param0, param1);
         return 1;
     }

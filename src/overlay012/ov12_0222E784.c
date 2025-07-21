@@ -30,7 +30,7 @@ static void ov12_0222E784(SysTask *param0, void *param1)
 
     switch (v0->unk_00.unk_00) {
     case 0:
-        if (ov12_02225F6C(&v0->unk_60) == 0) {
+        if (ScaleLerpContext_UpdateXY(&v0->unk_60) == 0) {
             ManagedSprite_SetDrawFlag(v0->unk_1C.unk_0C, 0);
             ManagedSprite_SetDrawFlag(v0->unk_30[0].unk_0C, 0);
             ManagedSprite_SetDrawFlag(v0->unk_30[0].unk_0C, 0);
@@ -95,6 +95,6 @@ void ov12_0222E810(BattleAnimSystem *param0)
         }
     }
 
-    ov12_02225EF0(&v0->unk_60, 100, 20, 100, 20, 100, 10);
+    ScaleLerpContext_InitXY(&v0->unk_60, 100, 20, 100, 20, 100, 10);
     BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSystem, ov12_0222E784, v0);
 }

@@ -881,18 +881,18 @@ static void ov12_02230018(SysTask *param0, void *param1)
     switch (v0->unk_08) {
     case 0:
         ShakeContext_Update(&v0->unk_10);
-        v1 = ov12_02225F6C(&v0->unk_34);
+        v1 = ScaleLerpContext_UpdateXY(&v0->unk_34);
 
         ov12_0222FF80(v0);
 
         if (v1 == 0) {
-            ov12_02225EF0(&v0->unk_34, 12, 10, 15, 10, 10, 4);
+            ScaleLerpContext_InitXY(&v0->unk_34, 12, 10, 15, 10, 10, 4);
             v0->unk_08++;
         }
         break;
     case 1:
         ShakeContext_Update(&v0->unk_10);
-        v1 = ov12_02225F6C(&v0->unk_34);
+        v1 = ScaleLerpContext_UpdateXY(&v0->unk_34);
 
         ov12_0222FF80(v0);
 
@@ -932,7 +932,7 @@ void ov12_022300C4(BattleAnimSystem *param0)
     ManagedSprite_SetPriority(v0->unk_58, 100);
     ManagedSprite_SetExplicitPriority(v0->unk_58, 1);
 
-    ov12_02225EF0(&v0->unk_34, 10, 12, 10, 15, 10, 7);
+    ScaleLerpContext_InitXY(&v0->unk_34, 10, 12, 10, 15, 10, 7);
     v0->unk_64 = 1;
     ov12_02235780(v0->unk_00, 28, 15);
     BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02230018, v0);
@@ -2704,7 +2704,7 @@ void ov12_022326AC(BattleAnimSystem *param0)
 static void ov12_02232720(UnkStruct_ov12_02232720 *param0)
 {
     param0->unk_40 = 0;
-    ov12_02225EF0(&param0->unk_1C, 10, 9, 10, 8, 10, 2);
+    ScaleLerpContext_InitXY(&param0->unk_1C, 10, 9, 10, 8, 10, 2);
 }
 
 static BOOL ov12_02232744(UnkStruct_ov12_02232720 *param0)
@@ -2717,7 +2717,7 @@ static BOOL ov12_02232744(UnkStruct_ov12_02232720 *param0)
             ov12_02226024(param0->unk_18, param0->unk_44, param0->unk_46, param0->unk_1C.data[4], 0);
         } else {
             param0->unk_40++;
-            ov12_02225EF0(&param0->unk_1C, 9, 11, 8, 15, 10, 2);
+            ScaleLerpContext_InitXY(&param0->unk_1C, 9, 11, 8, 15, 10, 2);
         }
         break;
     case 1:
@@ -2725,7 +2725,7 @@ static BOOL ov12_02232744(UnkStruct_ov12_02232720 *param0)
             ov12_02226024(param0->unk_18, param0->unk_44, param0->unk_46, param0->unk_1C.data[4], 0);
         } else {
             param0->unk_40++;
-            ov12_02225EF0(&param0->unk_1C, 11, 10, 15, 10, 10, 2);
+            ScaleLerpContext_InitXY(&param0->unk_1C, 11, 10, 15, 10, 10, 2);
         }
         break;
     case 2:
@@ -3002,7 +3002,7 @@ static void ov12_02232D64(UnkStruct_ov12_02232D38 *param0)
     int v0;
     f32 v1, v2;
 
-    ov12_02225EF0(&param0->unk_28, 10, 10, 10, 20, 10, 8);
+    ScaleLerpContext_InitXY(&param0->unk_28, 10, 10, 10, 20, 10, 8);
     ScaleLerpContext_Init(&param0->unk_4C, 10, 10, 1, 4);
 
     param0->unk_94 = 0;
@@ -3030,7 +3030,7 @@ static BOOL ov12_02232E04(UnkStruct_ov12_02232D38 *param0)
 
     switch (param0->unk_94) {
     case 0:
-        ov12_02225F6C(&param0->unk_28);
+        ScaleLerpContext_UpdateXY(&param0->unk_28);
         ov12_02225FA4(&param0->unk_28, &v1, &v2);
 
         if (param0->unk_C8 == 1) {
@@ -3043,11 +3043,11 @@ static BOOL ov12_02232E04(UnkStruct_ov12_02232D38 *param0)
 
         if (param0->unk_98 < 0) {
             param0->unk_94++;
-            ov12_02225EF0(&param0->unk_28, 10, 1, 20, 20, 10, 4);
+            ScaleLerpContext_InitXY(&param0->unk_28, 10, 1, 20, 20, 10, 4);
         }
         break;
     case 1:
-        ov12_02225F6C(&param0->unk_28);
+        ScaleLerpContext_UpdateXY(&param0->unk_28);
 
         if (ScaleLerpContext_Update(&param0->unk_4C)) {
             param0->unk_28.x = param0->unk_4C.x;
@@ -3086,7 +3086,7 @@ static void ov12_02232F30(UnkStruct_ov12_02232D38 *param0)
     ManagedSprite_GetPositionXY(param0->unk_1C, &v0, &v1);
 
     ov12_02225BC8(&param0->unk_70, v0, v0, v1 - 64, v1, 8);
-    ov12_02225EF0(&param0->unk_28, 2, 10, 20, 10, 10, 8);
+    ScaleLerpContext_InitXY(&param0->unk_28, 2, 10, 20, 10, 10, 8);
     ov12_02225FA4(&param0->unk_28, &v2, &v3);
 
     if (param0->unk_CC == 1) {
@@ -3125,7 +3125,7 @@ static BOOL ov12_02232FF0(UnkStruct_ov12_02232D38 *param0)
     case 1:
         ov12_02225C50(&param0->unk_70, param0->unk_1C);
 
-        v3 = ov12_02225F6C(&param0->unk_28);
+        v3 = ScaleLerpContext_UpdateXY(&param0->unk_28);
         ov12_02225FA4(&param0->unk_28, &v0, &v1);
 
         if (param0->unk_CC == 1) {
@@ -3850,7 +3850,7 @@ static void ov12_02234044(SysTask *param0, void *param1)
 
     switch (v0->unk_04) {
     case 0:
-        ov12_02225EF0(&v0->unk_14, v0->unk_5C, v0->unk_60, v0->unk_64, v0->unk_68, v0->unk_6C, v0->unk_74 >> 16);
+        ScaleLerpContext_InitXY(&v0->unk_14, v0->unk_5C, v0->unk_60, v0->unk_64, v0->unk_68, v0->unk_6C, v0->unk_74 >> 16);
         ov12_0222619C(&v0->unk_38, v0->unk_0A, v0->unk_08, v0->unk_10);
         ov12_022260E8(&v0->unk_14, v0->unk_10);
         ov12_02226024(v0->unk_10, v0->unk_08, v0->unk_0C, v0->unk_14.data[4], 0);
@@ -3866,7 +3866,7 @@ static void ov12_02234044(SysTask *param0, void *param1)
         }
         break;
     case 2:
-        ov12_02225EF0(&v0->unk_14, v0->unk_60, v0->unk_5C, v0->unk_68, v0->unk_64, v0->unk_6C, v0->unk_74 & 0xffff);
+        ScaleLerpContext_InitXY(&v0->unk_14, v0->unk_60, v0->unk_5C, v0->unk_68, v0->unk_64, v0->unk_6C, v0->unk_74 & 0xffff);
         ov12_0222619C(&v0->unk_38, v0->unk_0A, v0->unk_08, v0->unk_10);
         ov12_022260E8(&v0->unk_14, v0->unk_10);
         ov12_02226024(v0->unk_10, v0->unk_08, v0->unk_0C, v0->unk_14.data[4], 0);
