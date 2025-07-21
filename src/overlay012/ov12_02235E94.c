@@ -1242,7 +1242,7 @@ static BOOL ov12_02236B20(BallRotation *param0)
             s16 v0, v1;
 
             ManagedSprite_GetPositionXY(param0->unk_30, &v0, &v1);
-            ov12_02225BC8(&param0->unk_48[0], v0, v0, v1, v1 + 32, 32 / 3);
+            PosLerpContext_Init(&param0->unk_48[0], v0, v0, v1, v1 + 32, 32 / 3);
 
             param0->unk_08++;
         }

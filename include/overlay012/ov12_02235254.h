@@ -59,7 +59,7 @@ void ov12_02235718(BattleAnimSystem *param0, int param1, VecFx32 *param2);
 void ov12_02235748(VecFx32 *param0);
 void ov12_02235758(int param0, VecFx32 *param1, int param2, int param3);
 void ov12_02235760(int param0, VecFx32 *param1);
-void ov12_02235780(BattleAnimSystem *param0, int param1, int param2);
+void BattleAnimUtil_SetEffectBgBlending(BattleAnimSystem *param0, int param1, int param2);
 void ov12_022357BC(BattleAnimSystem *param0, int param1, int param2, int param3);
 void ov12_022357EC(BattleAnimSystem *param0, int param1, int param2);
 void ov12_02235838(BattleAnimSystem *param0, int param1, BOOL param2);

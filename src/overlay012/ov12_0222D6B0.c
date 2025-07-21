@@ -198,7 +198,7 @@ void ov12_0222D7C0(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v1->unk_08 = param0;
 
     v2 = BattleAnimSystem_GetLastSpriteTemplate(param0);
-    ov12_02235780(v1->unk_08, 0xffffffff, 0xffffffff);
+    BattleAnimUtil_SetEffectBgBlending(v1->unk_08, 0xffffffff, 0xffffffff);
 
     v1->unk_05 = BattleAnimSystem_GetScriptVar(v1->unk_08, 0);
     v1->unk_06 = 0;
@@ -328,10 +328,10 @@ static void ov12_0222D934(SysTask *param0, void *param1)
             s16 v3, v4;
 
             ManagedSprite_GetPositionXY(v2->unk_34, &v3, &v4);
-            ov12_02225BC8(&v2->unk_3C, v3, Unk_ov12_0223A17A[v2->unk_30][0].unk_00, v4, Unk_ov12_0223A17A[v2->unk_30][0].unk_02, Unk_ov12_0223A140[v2->unk_30]);
+            PosLerpContext_Init(&v2->unk_3C, v3, Unk_ov12_0223A17A[v2->unk_30][0].unk_00, v4, Unk_ov12_0223A17A[v2->unk_30][0].unk_02, Unk_ov12_0223A140[v2->unk_30]);
 
             ManagedSprite_GetPositionXY(v2->unk_38, &v3, &v4);
-            ov12_02225BC8(&v2->unk_60, v3, Unk_ov12_0223A17A[v2->unk_30][1].unk_00, v4, Unk_ov12_0223A17A[v2->unk_30][1].unk_02, Unk_ov12_0223A140[v2->unk_30]);
+            PosLerpContext_Init(&v2->unk_60, v3, Unk_ov12_0223A17A[v2->unk_30][1].unk_00, v4, Unk_ov12_0223A17A[v2->unk_30][1].unk_02, Unk_ov12_0223A140[v2->unk_30]);
         }
         v2->unk_30++;
         v2->unk_00++;
@@ -418,7 +418,7 @@ void ov12_0222DB60(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v1->unk_0C = param0;
 
     v2 = BattleAnimSystem_GetLastSpriteTemplate(param0);
-    ov12_02235780(v1->unk_0C, 0xffffffff, 0xffffffff);
+    BattleAnimUtil_SetEffectBgBlending(v1->unk_0C, 0xffffffff, 0xffffffff);
 
     v1->unk_09 = 0;
     v1->unk_0A = 15;
@@ -526,7 +526,7 @@ static void ov12_0222DC98(SysTask *param0, void *param1)
         v2 = 10 + (LCRNG_Next() % 10);
 
         ManagedSprite_GetPositionXY(v0->unk_10, &v1.unk_00, &v1.unk_02);
-        ov12_02225BC8(&v0->unk_14, v1.unk_00, Unk_ov12_0223A14A[v0->unk_0F].unk_00, v1.unk_02, Unk_ov12_0223A14A[v0->unk_0F].unk_02, v2);
+        PosLerpContext_Init(&v0->unk_14, v1.unk_00, Unk_ov12_0223A14A[v0->unk_0F].unk_00, v1.unk_02, Unk_ov12_0223A14A[v0->unk_0F].unk_02, v2);
         v0->unk_0C++;
     } break;
     case 7: {
@@ -633,7 +633,7 @@ void ov12_0222DEFC(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v2->unk_08 = param0;
 
     v3 = BattleAnimSystem_GetLastSpriteTemplate(param0);
-    ov12_02235780(v2->unk_08, 0xffffffff, 0xffffffff);
+    BattleAnimUtil_SetEffectBgBlending(v2->unk_08, 0xffffffff, 0xffffffff);
 
     v2->unk_02 = BattleAnimSystem_GetScriptVar(v2->unk_08, 0);
     v2->unk_02 = 12;
@@ -868,7 +868,7 @@ static void ov12_0222E390(SysTask *param0, void *param1)
             ov12_0222E248(v0->unk_2C[v1]);
 
             if (v0->unk_22[0] == 110) {
-                ov12_02235780(v0->unk_00.battleAnimSystem, 0xffffffff, 0xffffffff);
+                BattleAnimUtil_SetEffectBgBlending(v0->unk_00.battleAnimSystem, 0xffffffff, 0xffffffff);
 
                 ManagedSprite_SetExplicitOamMode(v0->unk_2C[0], GX_OAM_MODE_XLU);
                 ManagedSprite_SetExplicitOamMode(v0->unk_2C[1], GX_OAM_MODE_XLU);
@@ -905,7 +905,7 @@ static void ov12_0222E390(SysTask *param0, void *param1)
         }
 
         if (v0->unk_22[0] == 110) {
-            ov12_02235780(v0->unk_00.battleAnimSystem, 0xffffffff, 0xffffffff);
+            BattleAnimUtil_SetEffectBgBlending(v0->unk_00.battleAnimSystem, 0xffffffff, 0xffffffff);
 
             ManagedSprite_SetExplicitOamMode(v0->unk_2C[0], GX_OAM_MODE_XLU);
             ManagedSprite_SetExplicitOamMode(v0->unk_2C[1], GX_OAM_MODE_XLU);

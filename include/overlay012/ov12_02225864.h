@@ -83,8 +83,8 @@ void ov12_02225A8C(XYTransformContext *param0, u16 param1, u16 param2, u16 param
 BOOL ov12_02225AE0(XYTransformContext *param0);
 BOOL ov12_02225B78(XYTransformContext *param0, s16 param1, s16 param2, ManagedSprite *param3);
 BOOL ov12_02225BA0(XYTransformContext *param0, s16 param1, s16 param2, PokemonSprite *param3);
-void ov12_02225BC8(XYTransformContext *param0, s16 param1, s16 param2, s16 param3, s16 param4, u16 param5);
-BOOL ov12_02225C14(XYTransformContext *param0);
+void PosLerpContext_Init(XYTransformContext *param0, s16 param1, s16 param2, s16 param3, s16 param4, u16 param5);
+BOOL PosLerpContext_Update(XYTransformContext *param0);
 BOOL ov12_02225C50(XYTransformContext *param0, ManagedSprite *param1);
 BOOL ov12_02225C74(XYTransformContext *param0, PokemonSprite *param1);
 void ov12_02225C98(XYTransformContext *param0, XYTransformContext *param1, s16 param2, s16 param3, s16 param4, s16 param5, u16 param6, fx32 param7);
