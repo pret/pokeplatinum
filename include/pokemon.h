@@ -3,6 +3,7 @@
 
 #include <nitro/rtc.h>
 
+#include "constants/flavor.h"
 #include "constants/forms.h"
 #include "constants/pokemon.h"
 #include "constants/sound.h"
@@ -629,7 +630,7 @@ void BoxPokemon_FromPokemon(Pokemon *src, BoxPokemon *dest);
  * @param flavor
  * @return 1 if liked flavor, -1 if disliked flavor, else 0
  */
-s8 Pokemon_GetFlavorAffinity(Pokemon *mon, int flavor);
+s8 Pokemon_GetFlavorAffinity(Pokemon *mon, enum Flavor flavor);
 
 /**
  * @brief Gets the affinitiy of a given Pokemon personality to a given flavor
@@ -638,7 +639,7 @@ s8 Pokemon_GetFlavorAffinity(Pokemon *mon, int flavor);
  * @param flavor
  * @return 1 if liked flavor, -1 if disliked flavor, else 0
  */
-s8 Pokemon_GetFlavorAffinityOf(u32 monPersonality, int flavor);
+s8 Pokemon_GetFlavorAffinityOf(u32 monPersonality, enum Flavor flavor);
 
 /**
  * @brief Gets all moves that the given pokemon species and form can learn by leveling up
