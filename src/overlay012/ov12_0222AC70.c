@@ -210,16 +210,38 @@ enum MeditateState {
 #define MEDITATE_SQUISH_FRAMES   8
 #define MEDITATE_REVERT_FRAMES   8
 
-typedef struct {
-    u8 unk_00;
-    u8 unk_01;
-    s16 unk_02;
-    s16 unk_04;
-    s16 unk_06;
-    BattleAnimSystem *unk_08;
-    PokemonSprite *unk_0C;
-    XYTransformContext unk_10;
-} UnkStruct_ov12_0222BB30;
+// -------------------------------------------------------------------
+// Teleport
+// -------------------------------------------------------------------
+typedef struct TeleportContext {
+    u8 state;
+    u8 scaleType;
+    s16 attackerY;
+    s16 baseY;
+    s16 attackerHeight;
+    BattleAnimSystem *battleAnimSys;
+    PokemonSprite *attackerSprite;
+    XYTransformContext scale;
+} TeleportContext;
+
+enum TeleportState {
+    TELEPORT_STATE_SETUP_SQUISH = 0,
+    TELEPORT_STATE_SQUISH,
+    TELEPORT_STATE_SETUP_MOVE,
+    TELEPORT_STATE_MOVE,
+    TELEPORT_STATE_SETUP_SHRINK,
+    TELEPORT_STATE_SHRINK,
+};
+
+#define TELEPORT_SQUISH_SCALE_X    10
+#define TELEPORT_SQUISH_SCALE_Y    180
+#define TELEPORT_SHRINK_SCALE_X    10
+#define TELEPORT_SHRINK_SCALE_Y    0
+#define TELEPORT_SQUISH_FRAMES     10
+#define TELEPORT_SHRINK_FRAMES     5
+#define TELEPORT_REVERT_POS_X      0
+#define TELEPORT_REVERT_POS_Y      0
+#define TELEPORT_REVERT_POS_FRAMES 5
 
 typedef struct {
     u8 unk_00;
@@ -1091,7 +1113,7 @@ static void BattleAnimTask_Meditate(SysTask *task, void *param)
         PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_SCALE_X, ctx->scale.x);
         PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_SCALE_Y, ctx->scale.y);
 
-        s16 offset = BattleAnimUtil_GetGroundAnchoredScaleOffset(ctx->attackerY, ctx->attackerHeight, ctx->scale.data[4]);
+        s16 offset = BattleAnimUtil_GetGroundAnchoredScaleOffset(ctx->attackerY, ctx->attackerHeight, ctx->scale.data[XY_PARAM_CUR_Y]);
         PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_Y_CENTER, ctx->attackerY + offset);
     } break;
     default:
@@ -1105,7 +1127,7 @@ void BattleAnimScriptFunc_Meditate(BattleAnimSystem *system)
 {
     MeditateContext *ctx = BattleAnimUtil_Alloc(system, sizeof(MeditateContext));
 
-    ctx->state = 0;
+    ctx->state = MEDITATE_STATE_SCALE;
     ctx->iterations = 0;
     ctx->battleAnimSys = system;
     ctx->attackerSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
@@ -1115,79 +1137,120 @@ void BattleAnimScriptFunc_Meditate(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Meditate, ctx);
 }
 
-static const u8 Unk_ov12_0223A0B7[][5] = {
-    { 0x64, 0xA, 0x64, 0xB4, 0xA },
-    { 0xA, 0xA, 0xB4, 0x0, 0x5 }
+enum {
+    TELEPORT_TABLE_SCALE_SX = 0,
+    TELEPORT_TABLE_SCALE_EX,
+    TELEPORT_TABLE_SCALE_SY,
+    TELEPORT_TABLE_SCALE_EY,
+    TELEPORT_TABLE_SCALE_FRAMES,
+    TELEPORT_TABLE_COUNT
 };
 
-static void ov12_0222BB30(SysTask *param0, void *param1)
+static const u8 sTeleportScaleTable[][TELEPORT_TABLE_COUNT] = {
+    { BASE_SCALE_XY,           TELEPORT_SQUISH_SCALE_X, BASE_SCALE_XY,           TELEPORT_SQUISH_SCALE_Y, TELEPORT_SQUISH_FRAMES },
+    { TELEPORT_SQUISH_SCALE_X, TELEPORT_SHRINK_SCALE_X, TELEPORT_SQUISH_SCALE_Y, TELEPORT_SHRINK_SCALE_Y, TELEPORT_SHRINK_FRAMES }
+};
+
+static void BattleAnimTask_Teleport(SysTask *task, void *param)
 {
-    UnkStruct_ov12_0222BB30 *v0 = (UnkStruct_ov12_0222BB30 *)param1;
+    TeleportContext *ctx = param;
 
-    switch (v0->unk_00) {
-    case 0:
-        ScaleLerpContext_InitXY(&v0->unk_10, Unk_ov12_0223A0B7[v0->unk_01][0], Unk_ov12_0223A0B7[v0->unk_01][1], Unk_ov12_0223A0B7[v0->unk_01][2], Unk_ov12_0223A0B7[v0->unk_01][3], 100, Unk_ov12_0223A0B7[v0->unk_01][4]);
-        v0->unk_01++;
-        v0->unk_00++;
+    switch (ctx->state) {
+    case TELEPORT_STATE_SETUP_SQUISH:
+        ScaleLerpContext_InitXY(
+            &ctx->scale,
+            sTeleportScaleTable[ctx->scaleType][TELEPORT_TABLE_SCALE_SX],
+            sTeleportScaleTable[ctx->scaleType][TELEPORT_TABLE_SCALE_EX],
+            sTeleportScaleTable[ctx->scaleType][TELEPORT_TABLE_SCALE_SY],
+            sTeleportScaleTable[ctx->scaleType][TELEPORT_TABLE_SCALE_EY],
+            BASE_SCALE_XY,
+            sTeleportScaleTable[ctx->scaleType][TELEPORT_TABLE_SCALE_FRAMES]);
+
+        ctx->scaleType++;
+        ctx->state++;
         break;
-    case 1:
-        if (ScaleLerpContext_UpdateXY(&v0->unk_10) == 0) {
-            v0->unk_00++;
+    case TELEPORT_STATE_SQUISH:
+        if (ScaleLerpContext_UpdateXY(&ctx->scale) == FALSE) {
+            ctx->state++;
         }
 
-        PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_SCALE_X, v0->unk_10.x);
-        PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_SCALE_Y, v0->unk_10.y);
-        ov12_02226024(v0->unk_0C, v0->unk_02, v0->unk_06, v0->unk_10.data[4], 0);
+        PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_SCALE_X, ctx->scale.x);
+        PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_SCALE_Y, ctx->scale.y);
+        BattleAnimUtil_SetPokemonSpriteAnchoredPosition(
+            ctx->attackerSprite,
+            ctx->attackerY,
+            ctx->attackerHeight,
+            ctx->scale.data[XY_PARAM_CUR_Y],
+            BATTLE_ANIM_ANCHOR_BOTTOM);
         break;
-    case 2:
-        PosLerpContext_Init(&v0->unk_10, 0, 0, PokemonSprite_GetAttribute(v0->unk_0C, MON_SPRITE_Y_CENTER), 0, 5);
-        v0->unk_00++;
+    case TELEPORT_STATE_SETUP_MOVE:
+        PosLerpContext_Init(
+            &ctx->scale,
+            0,
+            TELEPORT_REVERT_POS_X,
+            PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_Y_CENTER),
+            TELEPORT_REVERT_POS_Y,
+            TELEPORT_REVERT_POS_FRAMES);
+        ctx->state++;
         break;
-    case 3:
-        if (PosLerpContext_Update(&v0->unk_10) == 0) {
-            v0->unk_00++;
+    case TELEPORT_STATE_MOVE:
+        if (PosLerpContext_Update(&ctx->scale) == FALSE) {
+            ctx->state++;
         }
 
-        PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_Y_CENTER, v0->unk_10.y);
+        PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_Y_CENTER, ctx->scale.y);
         break;
-    case 4:
-        ScaleLerpContext_InitXY(&v0->unk_10, Unk_ov12_0223A0B7[v0->unk_01][0], Unk_ov12_0223A0B7[v0->unk_01][1], Unk_ov12_0223A0B7[v0->unk_01][2], Unk_ov12_0223A0B7[v0->unk_01][3], 100, Unk_ov12_0223A0B7[v0->unk_01][4]);
-        v0->unk_02 = PokemonSprite_GetAttribute(v0->unk_0C, MON_SPRITE_Y_CENTER);
-        v0->unk_00++;
+    case TELEPORT_STATE_SETUP_SHRINK:
+        ScaleLerpContext_InitXY(
+            &ctx->scale,
+            sTeleportScaleTable[ctx->scaleType][TELEPORT_TABLE_SCALE_SX],
+            sTeleportScaleTable[ctx->scaleType][TELEPORT_TABLE_SCALE_EX],
+            sTeleportScaleTable[ctx->scaleType][TELEPORT_TABLE_SCALE_SY],
+            sTeleportScaleTable[ctx->scaleType][TELEPORT_TABLE_SCALE_EY],
+            BASE_SCALE_XY,
+            sTeleportScaleTable[ctx->scaleType][TELEPORT_TABLE_SCALE_FRAMES]);
+
+        ctx->attackerY = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_Y_CENTER);
+        ctx->state++;
         break;
-    case 5:
-        if (ScaleLerpContext_UpdateXY(&v0->unk_10) == 0) {
-            v0->unk_00++;
+    case TELEPORT_STATE_SHRINK:
+        if (ScaleLerpContext_UpdateXY(&ctx->scale) == FALSE) {
+            ctx->state++;
         }
 
-        PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_SCALE_X, v0->unk_10.x);
-        PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_SCALE_Y, v0->unk_10.y);
-        ov12_02226024(v0->unk_0C, v0->unk_02, v0->unk_06, v0->unk_10.data[4], 1);
+        PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_SCALE_X, ctx->scale.x);
+        PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_SCALE_Y, ctx->scale.y);
+        BattleAnimUtil_SetPokemonSpriteAnchoredPosition(
+            ctx->attackerSprite,
+            ctx->attackerY,
+            ctx->attackerHeight,
+            ctx->scale.data[XY_PARAM_CUR_Y],
+            BATTLE_ANIM_ANCHOR_TOP);
         break;
     default:
-        PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_Y_CENTER, v0->unk_04);
-        PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_HIDE, 1);
-        PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_SCALE_X, 0x100);
-        PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_SCALE_Y, 0x100);
-        BattleAnimSystem_EndAnimTask(v0->unk_08, param0);
-        Heap_Free(v0);
+        PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_Y_CENTER, ctx->baseY);
+        PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_HIDE, TRUE);
+        PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_SCALE_X, MON_AFFINE_SCALE(1));
+        PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_SCALE_Y, MON_AFFINE_SCALE(1));
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         break;
     }
 }
 
-void ov12_0222BCF4(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_Teleport(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_0222BB30 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222BB30));
+    TeleportContext *ctx = BattleAnimUtil_Alloc(system, sizeof(TeleportContext));
 
-    v0->unk_00 = 0;
-    v0->unk_01 = 0;
-    v0->unk_08 = param0;
-    v0->unk_0C = BattleAnimSystem_GetBattlerSprite(v0->unk_08, BattleAnimSystem_GetAttacker(v0->unk_08));
-    v0->unk_02 = PokemonSprite_GetAttribute(v0->unk_0C, MON_SPRITE_Y_CENTER);
-    v0->unk_04 = v0->unk_02;
-    v0->unk_06 = BattleAnimSystem_GetBattlerSpriteHeight(v0->unk_08, BattleAnimSystem_GetAttacker(v0->unk_08));
+    ctx->state = TELEPORT_STATE_SETUP_SQUISH;
+    ctx->scaleType = 0;
+    ctx->battleAnimSys = system;
+    ctx->attackerSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    ctx->attackerY = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_Y_CENTER);
+    ctx->baseY = ctx->attackerY;
+    ctx->attackerHeight = BattleAnimSystem_GetBattlerSpriteHeight(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
 
-    BattleAnimSystem_StartAnimTask(v0->unk_08, ov12_0222BB30, v0);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Teleport, ctx);
 }
 
 static void ov12_0222BD48(SysTask *param0, void *param1)
@@ -1287,7 +1350,7 @@ static void ov12_0222BE80(SysTask *param0, void *param1)
 
         PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_SCALE_X, v0->unk_10.x);
         PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_SCALE_Y, v0->unk_10.y);
-        ov12_02226024(v0->unk_0C, v0->unk_34.y, v0->unk_06, v0->unk_10.data[4], 0);
+        BattleAnimUtil_SetPokemonSpriteAnchoredPosition(v0->unk_0C, v0->unk_34.y, v0->unk_06, v0->unk_10.data[4], 0);
     } break;
     default:
         BattleAnimSystem_EndAnimTask(v0->unk_08, param0);
@@ -1413,7 +1476,7 @@ static void ov12_0222C1A4(SysTask *param0, void *param1)
 
                     BattleAnimUtil_ConvertRelativeToAffineScale(&v2->unk_18[v0].unk_08, &v3, &v4);
                     ManagedSprite_SetAffineScale(v2->unk_18[v0].unk_04, v3 * v2->unk_08, v4);
-                    ov12_0222605C(v2->unk_18[v0].unk_04, v2->unk_02, v2->unk_04, v2->unk_18[v0].unk_08.data[4], 0);
+                    BattleAnimUtil_SetSpriteAnchoredPosition(v2->unk_18[v0].unk_04, v2->unk_02, v2->unk_04, v2->unk_18[v0].unk_08.data[4], 0);
                 }
                 break;
             default:
@@ -1466,7 +1529,7 @@ static void ov12_0222C1A4(SysTask *param0, void *param1)
 
                 BattleAnimUtil_ConvertRelativeToAffineScale(&v2->unk_18[v0].unk_08, &v7, &v8);
                 ManagedSprite_SetAffineScale(v2->unk_18[v0].unk_04, v7 * v2->unk_08, v8);
-                ov12_0222605C(v2->unk_18[v0].unk_04, v2->unk_02, v2->unk_04, v2->unk_18[v0].unk_08.data[4], 0);
+                BattleAnimUtil_SetSpriteAnchoredPosition(v2->unk_18[v0].unk_04, v2->unk_02, v2->unk_04, v2->unk_18[v0].unk_08.data[4], 0);
             }
         }
 

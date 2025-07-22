@@ -2457,7 +2457,7 @@ static BOOL ov12_02231F18(UnkStruct_ov12_02231F18 *param0)
     switch (param0->unk_38) {
     case 0:
         if (ov12_022260C8(&param0->unk_10, param0->unk_0C)) {
-            ov12_02226024(param0->unk_0C, param0->unk_3C, param0->unk_40, param0->unk_10.data[4], 0);
+            BattleAnimUtil_SetPokemonSpriteAnchoredPosition(param0->unk_0C, param0->unk_3C, param0->unk_40, param0->unk_10.data[4], 0);
         } else {
             param0->unk_38++;
         }
@@ -2472,7 +2472,7 @@ static BOOL ov12_02231F18(UnkStruct_ov12_02231F18 *param0)
         break;
     case 2:
         if (ov12_022260C8(&param0->unk_10, param0->unk_0C)) {
-            ov12_02226024(param0->unk_0C, param0->unk_3C, param0->unk_40, param0->unk_10.data[4], 0);
+            BattleAnimUtil_SetPokemonSpriteAnchoredPosition(param0->unk_0C, param0->unk_3C, param0->unk_40, param0->unk_10.data[4], 0);
         } else {
             param0->unk_38++;
         }
@@ -2848,7 +2848,7 @@ static BOOL ov12_02232744(UnkStruct_ov12_02232720 *param0)
     switch (param0->unk_40) {
     case 0:
         if (ov12_022260E8(&param0->unk_1C, param0->unk_18)) {
-            ov12_02226024(param0->unk_18, param0->unk_44, param0->unk_46, param0->unk_1C.data[4], 0);
+            BattleAnimUtil_SetPokemonSpriteAnchoredPosition(param0->unk_18, param0->unk_44, param0->unk_46, param0->unk_1C.data[4], 0);
         } else {
             param0->unk_40++;
             ScaleLerpContext_InitXY(&param0->unk_1C, 9, 11, 8, 15, 10, 2);
@@ -2856,7 +2856,7 @@ static BOOL ov12_02232744(UnkStruct_ov12_02232720 *param0)
         break;
     case 1:
         if (ov12_022260E8(&param0->unk_1C, param0->unk_18)) {
-            ov12_02226024(param0->unk_18, param0->unk_44, param0->unk_46, param0->unk_1C.data[4], 0);
+            BattleAnimUtil_SetPokemonSpriteAnchoredPosition(param0->unk_18, param0->unk_44, param0->unk_46, param0->unk_1C.data[4], 0);
         } else {
             param0->unk_40++;
             ScaleLerpContext_InitXY(&param0->unk_1C, 11, 10, 15, 10, 10, 2);
@@ -2864,7 +2864,7 @@ static BOOL ov12_02232744(UnkStruct_ov12_02232720 *param0)
         break;
     case 2:
         if (ov12_022260E8(&param0->unk_1C, param0->unk_18)) {
-            ov12_02226024(param0->unk_18, param0->unk_44, param0->unk_46, param0->unk_1C.data[4], 0);
+            BattleAnimUtil_SetPokemonSpriteAnchoredPosition(param0->unk_18, param0->unk_44, param0->unk_46, param0->unk_1C.data[4], 0);
         } else {
             PokemonSprite_SetAttribute(param0->unk_18, MON_SPRITE_SCALE_X, 0x100);
             PokemonSprite_SetAttribute(param0->unk_18, MON_SPRITE_SCALE_Y, 0x100);
@@ -3172,7 +3172,7 @@ static BOOL ov12_02232E04(UnkStruct_ov12_02232D38 *param0)
         }
 
         ManagedSprite_SetAffineScale(param0->unk_18, v1, v2);
-        ov12_0222605C(param0->unk_18, param0->unk_14, param0->unk_10, param0->unk_28.data[4], 0);
+        BattleAnimUtil_SetSpriteAnchoredPosition(param0->unk_18, param0->unk_14, param0->unk_10, param0->unk_28.data[4], 0);
         param0->unk_98--;
 
         if (param0->unk_98 < 0) {
@@ -3193,7 +3193,7 @@ static BOOL ov12_02232E04(UnkStruct_ov12_02232D38 *param0)
             }
 
             ManagedSprite_SetAffineScale(param0->unk_18, v1, v2);
-            ov12_0222605C(param0->unk_18, param0->unk_14, param0->unk_10, param0->unk_28.data[4], 0);
+            BattleAnimUtil_SetSpriteAnchoredPosition(param0->unk_18, param0->unk_14, param0->unk_10, param0->unk_28.data[4], 0);
         } else {
             param0->unk_94++;
 
@@ -3987,13 +3987,13 @@ static void ov12_02234044(SysTask *param0, void *param1)
         ScaleLerpContext_InitXY(&v0->unk_14, v0->unk_5C, v0->unk_60, v0->unk_64, v0->unk_68, v0->unk_6C, v0->unk_74 >> 16);
         ov12_0222619C(&v0->unk_38, v0->unk_0A, v0->unk_08, v0->unk_10);
         ov12_022260E8(&v0->unk_14, v0->unk_10);
-        ov12_02226024(v0->unk_10, v0->unk_08, v0->unk_0C, v0->unk_14.data[4], 0);
+        BattleAnimUtil_SetPokemonSpriteAnchoredPosition(v0->unk_10, v0->unk_08, v0->unk_0C, v0->unk_14.data[4], 0);
         v0->unk_04++;
         break;
     case 1:
         ov12_0222619C(&v0->unk_38, v0->unk_0A, v0->unk_08, v0->unk_10);
         v1 = ov12_022260E8(&v0->unk_14, v0->unk_10);
-        ov12_02226024(v0->unk_10, v0->unk_08, v0->unk_0C, v0->unk_14.data[4], 0);
+        BattleAnimUtil_SetPokemonSpriteAnchoredPosition(v0->unk_10, v0->unk_08, v0->unk_0C, v0->unk_14.data[4], 0);
 
         if (v1 == 0) {
             v0->unk_04++;
@@ -4003,13 +4003,13 @@ static void ov12_02234044(SysTask *param0, void *param1)
         ScaleLerpContext_InitXY(&v0->unk_14, v0->unk_60, v0->unk_5C, v0->unk_68, v0->unk_64, v0->unk_6C, v0->unk_74 & 0xffff);
         ov12_0222619C(&v0->unk_38, v0->unk_0A, v0->unk_08, v0->unk_10);
         ov12_022260E8(&v0->unk_14, v0->unk_10);
-        ov12_02226024(v0->unk_10, v0->unk_08, v0->unk_0C, v0->unk_14.data[4], 0);
+        BattleAnimUtil_SetPokemonSpriteAnchoredPosition(v0->unk_10, v0->unk_08, v0->unk_0C, v0->unk_14.data[4], 0);
         v0->unk_04++;
         break;
     case 3:
         ov12_0222619C(&v0->unk_38, v0->unk_0A, v0->unk_08, v0->unk_10);
         v1 = ov12_022260E8(&v0->unk_14, v0->unk_10);
-        ov12_02226024(v0->unk_10, v0->unk_08, v0->unk_0C, v0->unk_14.data[4], 0);
+        BattleAnimUtil_SetPokemonSpriteAnchoredPosition(v0->unk_10, v0->unk_08, v0->unk_0C, v0->unk_14.data[4], 0);
 
         if (v1 == 0) {
             v0->unk_70--;

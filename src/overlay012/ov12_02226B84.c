@@ -1290,7 +1290,7 @@ static void ov12_02227B4C(SysTask *param0, void *param1)
         ManagedSprite_SetAffineScale(v0->unk_10, v1, v2);
 
         if (v3) {
-            ov12_0222605C(v0->unk_10, v0->unk_0C, v0->unk_0E, v0->unk_14.data[4], 0);
+            BattleAnimUtil_SetSpriteAnchoredPosition(v0->unk_10, v0->unk_0C, v0->unk_0E, v0->unk_14.data[4], 0);
         } else {
             v0->unk_08++;
         }
@@ -1310,7 +1310,7 @@ static void ov12_02227B4C(SysTask *param0, void *param1)
         ManagedSprite_SetAffineScale(v0->unk_10, v1, v2);
 
         if (v3) {
-            ov12_0222605C(v0->unk_10, v0->unk_0C, v0->unk_0E, v0->unk_14.data[4], 0);
+            BattleAnimUtil_SetSpriteAnchoredPosition(v0->unk_10, v0->unk_0C, v0->unk_0E, v0->unk_14.data[4], 0);
         } else {
             v0->unk_48--;
 
@@ -1392,7 +1392,7 @@ static void ov12_02227DE0(SysTask *param0, void *param1)
         break;
     case 1:
         if (ov12_022260E8(&v0->unk_10, v0->unk_0C)) {
-            ov12_02226024(v0->unk_0C, v0->unk_08, v0->unk_0A, v0->unk_10.data[4], 0);
+            BattleAnimUtil_SetPokemonSpriteAnchoredPosition(v0->unk_0C, v0->unk_08, v0->unk_0A, v0->unk_10.data[4], 0);
         } else {
             v0->unk_04++;
         }
@@ -1411,7 +1411,7 @@ static void ov12_02227DE0(SysTask *param0, void *param1)
         break;
     case 4:
         if (ov12_022260E8(&v0->unk_10, v0->unk_0C)) {
-            ov12_02226024(v0->unk_0C, v0->unk_08, v0->unk_0A, v0->unk_10.data[4], 0);
+            BattleAnimUtil_SetPokemonSpriteAnchoredPosition(v0->unk_0C, v0->unk_08, v0->unk_0A, v0->unk_10.data[4], 0);
         } else {
             v0->unk_48--;
 
