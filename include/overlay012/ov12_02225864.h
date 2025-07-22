@@ -76,9 +76,9 @@ enum BattleAnimAnchorType {
 };
 
 typedef struct AngleLerpContext {
-    s32 angle;
+    s32 value;
     s32 data[4];
-} AngleLerpContext;
+} ValueLerpContext;
 
 typedef struct XYTransformContext {
     s16 x;
@@ -135,16 +135,16 @@ typedef struct BgScrollContext {
 void ov12_02225864(int param0, int param1, s16 *param2, s16 *param3);
 void ov12_02225898(BattleAnimSystem *param0, int param1, s16 *param2, s16 *param3);
 s16 BattleAnimUtil_GetBattlerPos(BattleAnimSystem *param0, int param1, enum BattleAnimPositionType param2);
-u8 ov12_02225950(ManagedSprite *param0);
+u8 BattleAnimUtil_GetSpritePalette(ManagedSprite *param0);
 int BattleAnimUtil_GetTransformDirection(BattleAnimSystem *param0, int param1);
 int ov12_0222598C(BattleAnimSystem *param0, int param1);
 fx32 BattleAnimMath_GetStepSize(fx32 param0, fx32 param1, u32 param2);
 u32 ov12_022259AC(fx32 param0, fx32 param1, fx32 param2);
-void ov12_022259DC(XYTransformContext *param0, ManagedSprite *param1, s16 param2, s16 param3);
+void XYTransformContext_ApplyPosOffsetToSprite(XYTransformContext *param0, ManagedSprite *param1, s16 param2, s16 param3);
 void ov12_022259FC(XYTransformContext *param0, ManagedSprite *param1);
-void XYTransformContext_ApplyPosOffset(XYTransformContext *param0, PokemonSprite *param1, s16 param2, s16 param3);
-#define RevolutionContext_Apply XYTransformContext_ApplyPosOffset
-#define PosLerpContext_Apply XYTransformContext_ApplyPosOffset
+void XYTransformContext_ApplyPosOffsetToMon(XYTransformContext *param0, PokemonSprite *param1, s16 param2, s16 param3);
+#define RevolutionContext_Apply XYTransformContext_ApplyPosOffsetToMon
+#define PosLerpContext_Apply XYTransformContext_ApplyPosOffsetToMon
 void ov12_02225A3C(XYTransformContext *param0, PokemonSprite *param1);
 void RevolutionContext_Init(XYTransformContext *param0, u16 param1, u16 param2, u16 param3, u16 param4, fx32 param5, fx32 param6, int param7);
 void ov12_02225A8C(XYTransformContext *param0, u16 param1, u16 param2, u16 param3, u16 param4, fx32 param5, fx32 param6, u16 param7);
@@ -158,12 +158,12 @@ BOOL ov12_02225C74(XYTransformContext *param0, PokemonSprite *param1);
 void ov12_02225C98(XYTransformContext *param0, XYTransformContext *param1, s16 param2, s16 param3, s16 param4, s16 param5, u16 param6, fx32 param7);
 BOOL ov12_02225CE4(XYTransformContext *param0, XYTransformContext *param1);
 BOOL ov12_02225D2C(XYTransformContext *param0, XYTransformContext *param1, ManagedSprite *param2);
-void AngleLerpContext_Init(AngleLerpContext *param0, s32 param1, s32 param2, u32 param3);
-void AngleLerpContext_InitFX32(AngleLerpContext *param0, s16 param1, s16 param2, u32 param3); // Uses FX32 internally
-BOOL AngleLerpContext_Update(AngleLerpContext *param0);
-BOOL AngleLerpContext_UpdateFX32(AngleLerpContext *param0);
-void AngleLerpContext_InitCos(AngleLerpContext *param0, u16 param1, u16 param2, fx32 param3, u32 param4);
-BOOL AngleLerpContext_UpdateCos(AngleLerpContext *param0);
+void ValueLerpContext_Init(ValueLerpContext *param0, s32 param1, s32 param2, u32 param3);
+void ValueLerpContext_InitFX32(ValueLerpContext *param0, s16 param1, s16 param2, u32 param3); // Uses FX32 internally
+BOOL ValueLerpContext_Update(ValueLerpContext *param0);
+BOOL ValueLerpContext_UpdateFX32(ValueLerpContext *param0);
+void AngleLerpContext_InitCos(ValueLerpContext *param0, u16 param1, u16 param2, fx32 param3, u32 param4);
+BOOL AngleLerpContext_UpdateCos(ValueLerpContext *param0);
 void ScaleLerpContext_Init(XYTransformContext *param0, s16 param1, s16 param2, s16 param3, u32 param4);
 BOOL ScaleLerpContext_Update(XYTransformContext *param0);
 void ScaleLerpContext_InitXY(XYTransformContext *param0, s16 param1, s16 param2, s16 param3, s16 param4, s16 param5, u32 param6);

@@ -58,7 +58,7 @@ typedef struct {
     s16 delay;
     PokemonSprite *attackerSprite;
     XYTransformContext pos;
-    AngleLerpContext angle;
+    ValueLerpContext angle;
     s16 attackerX;
     s16 attackerY;
 } DrillPeckContext;
@@ -86,7 +86,7 @@ enum DrillPeckState {
 typedef struct {
     ManagedSprite *unk_00;
     XYTransformContext unk_04;
-    AngleLerpContext unk_28;
+    ValueLerpContext unk_28;
     s16 unk_3C;
     s16 unk_3E;
     s16 unk_40;
@@ -186,28 +186,70 @@ enum AcidArmorState {
 #define ACID_ARMOR_ALPHA_FADE_FRAMES      16
 #define ACID_ARMOR_ALPHA_FADE_DELAY       8 // Delay before starting the second fade
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    SpriteManager *unk_04;
-    int unk_08;
-    int unk_0C;
-    ManagedSprite *unk_10;
-    XYTransformContext unk_14;
-    AngleLerpContext unk_38;
-    BOOL unk_4C;
-} UnkStruct_ov12_02230540;
+// -------------------------------------------------------------------
+// Night Shade (Attacker)
+// -------------------------------------------------------------------
+typedef struct NightShaderAttackerContext {
+    BattleAnimSystem *battleAnimSys;
+    SpriteManager *pokemonSpriteManager;
+    int state;
+    int delay;
+    ManagedSprite *xluSprite;
+    XYTransformContext scale;
+    ValueLerpContext alpha;
+    BOOL isContest;
+} NightShaderAttackerContext;
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    int unk_04;
-    PokemonSprite *unk_08;
-    ManagedSprite *unk_0C;
-    BOOL unk_10;
-    XYTransformContext unk_14;
-    s16 unk_38;
-    s16 unk_3A;
-    int unk_3C;
-} UnkStruct_ov12_02230600;
+enum NightShadeAttackerState {
+    NIGHT_SHADE_ATTACKER_STATE_FADE_IN = 0,
+    NIGHT_SHADE_ATTACKER_STATE_DELAY,
+    NIGHT_SHADE_ATTACKER_STATE_GROW,
+    NIGHT_SHADE_ATTACKER_STATE_CLEANUP,
+};
+
+#define NIGHT_SHADE_ATTACKER_START_SCALE  14
+#define NIGHT_SHADE_ATTACKER_END_SCALE    10
+#define NIGHT_SHADE_ATTACKER_REF_SCALE    10
+#define NIGHT_SHADE_ATTACKER_START_ALPHA  0
+#define NIGHT_SHADE_ATTACKER_END_ALPHA    16
+#define NIGHT_SHADE_ATTACKER_SCALE_FRAMES 8
+#define NIGHT_SHADE_ATTACKER_ALPHA_FRAMES 8
+#define NIGHT_SHADE_ATTACKER_SPRITE_PRIORITY     100
+#define NIGHT_SHADE_ATTACKER_SPRITE_EXP_PRIORITY 1
+#define NIGHT_SHADE_ATTACKER_SPRITE_MAX_ALPHA 31
+#define NIGHT_SHADE_ATTACKER_SCALE_DELAY 32
+#define NIGHT_SHADE_ATTACKER_START_SCALE_F ((f32)NIGHT_SHADE_ATTACKER_START_SCALE / NIGHT_SHADE_ATTACKER_REF_SCALE)
+
+// -------------------------------------------------------------------
+// Night Shade (Defender)
+// -------------------------------------------------------------------
+typedef struct NightShadeDefenderContext {
+    BattleAnimSystem *battleAnimSys;
+    int state;
+    PokemonSprite *defenderSprite;
+    ManagedSprite *managedSprite;
+    BOOL animateManagedSprite;
+    XYTransformContext shake;
+    s16 defenderX;
+    s16 defenderY;
+    int defenderShadowHeight;
+} NightShadeDefenderContext;
+
+enum NightShadeDefenderState {
+    NIGHT_SHADE_DEFENDER_STATE_FADE_OUT = 0,
+    NIGHT_SHADE_DEFENDER_STATE_FADE_IN,
+    NIGHT_SHADE_DEFENDER_STATE_CLEANUP,
+};
+
+#define NIGHT_SHADE_DEFENDER_SHAKE_EXTENT_X   4
+#define NIGHT_SHADE_DEFENDER_SHAKE_EXTENT_Y   0
+#define NIGHT_SHADE_DEFENDER_SHAKE_INTERVAL   1
+#define NIGHT_SHADE_DEFENDER_SHAKE_CYCLES     4
+#define NIGHT_SHADE_DEFENDER_FADE_START_ALPHA 0
+#define NIGHT_SHADE_DEFENDER_FADE_END_ALPHA   16
+#define NIGHT_SHADE_DEFENDER_FADE_COLOR       COLOR_BLACK
+#define NIGHT_SHADE_DEFENDER_FADE_DELAY       0
+#define NIGHT_SHADE_DEFENDER_FADE_PLTTBUF     PLTTBUF_MAIN_OBJ_F
 
 typedef struct {
     BattleAnimSystem *unk_00;
@@ -229,7 +271,7 @@ typedef struct {
     int unk_0C;
     ManagedSprite *unk_10;
     XYTransformContext unk_14;
-    AngleLerpContext unk_38;
+    ValueLerpContext unk_38;
     int unk_4C;
     int unk_50;
     int unk_54;
@@ -345,7 +387,7 @@ typedef struct {
     PokemonSprite *unk_08;
     s16 unk_0C;
     s16 unk_0E;
-    AngleLerpContext unk_10;
+    ValueLerpContext unk_10;
     XYTransformContext unk_24;
     int unk_48;
     int unk_4C;
@@ -668,10 +710,10 @@ static void BattleAnimTask_DrillPeck(SysTask *task, void *param)
         }
         break;
     case DRILL_PECK_STATE_ROTATE_FWD:
-        if (AngleLerpContext_Update(&ctx->angle)) {
-            PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_ROTATION_Z, ctx->angle.angle);
+        if (ValueLerpContext_Update(&ctx->angle)) {
+            PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_ROTATION_Z, ctx->angle.value);
         } else {
-            AngleLerpContext_Init(&ctx->angle, ctx->angle.angle, DEG_TO_IDX(0), DRILL_PECK_ROTATION_BWD_FRAMES);
+            ValueLerpContext_Init(&ctx->angle, ctx->angle.value, DEG_TO_IDX(0), DRILL_PECK_ROTATION_BWD_FRAMES);
             ctx->state++;
             ctx->delay = DRILL_PECK_POST_ROTATION_FWD_DELAY;
         }
@@ -697,8 +739,8 @@ static void BattleAnimTask_DrillPeck(SysTask *task, void *param)
         }
         break;
     case DRILL_PECK_STATE_ROTATE_BWD:
-        if (AngleLerpContext_Update(&ctx->angle)) {
-            PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_ROTATION_Z, ctx->angle.angle);
+        if (ValueLerpContext_Update(&ctx->angle)) {
+            PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_ROTATION_Z, ctx->angle.value);
         } else {
             ctx->state++;
         }
@@ -725,7 +767,7 @@ void BattleAnimScriptFunc_DrillPeck(BattleAnimSystem *system)
     ctx->attackerY = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_Y_CENTER);
 
     PosLerpContext_Init(&ctx->pos, 0, DRILL_PECK_MOVE_BWD_X, 0, DRILL_PECK_MOVE_BWD_Y, DRILL_PECK_MOVE_BWD_FRAMES);
-    AngleLerpContext_Init(&ctx->angle, 0, DRILL_PECK_ROTATION_FWD_ANGLE, DRILL_PECK_ROTATION_FWD_FRAMES);
+    ValueLerpContext_Init(&ctx->angle, 0, DRILL_PECK_ROTATION_FWD_ANGLE, DRILL_PECK_ROTATION_FWD_FRAMES);
 
     int dir = BattleAnimUtil_GetTransformDirection(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
     ctx->pos.data[XY_PARAM_STEP_SIZE] *= dir;
@@ -787,7 +829,7 @@ static BOOL ov12_0222FB84(UnkStruct_ov12_0222FAFC *param0)
     case 1:
         if (RevolutionContext_Update(&param0->unk_04)) {
             AngleLerpContext_UpdateCos(&param0->unk_28);
-            param0->unk_04.data[5] = param0->unk_3C + param0->unk_28.angle;
+            param0->unk_04.data[5] = param0->unk_3C + param0->unk_28.value;
             ManagedSprite_SetPositionXY(param0->unk_00, param0->unk_3E + param0->unk_04.x, param0->unk_40 + param0->unk_04.y);
         } else {
             if (param0->unk_44 < 1) {
@@ -1215,182 +1257,219 @@ void BattleAnimScriptFunc_AcidArmor(BattleAnimSystem *system)
     BattleAnimTask_AcidArmor(task, ctx);
 }
 
-static void ov12_02230540(SysTask *param0, void *param1)
+static void BattleAnimTask_NightShadeAttacker(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02230540 *v0 = param1;
-    BOOL v1;
-    f32 v2, v3;
+    NightShaderAttackerContext *ctx = param;
+    BOOL active;
+    f32 scaleX, scaleY;
 
-    switch (v0->unk_08) {
-    case 0:
-        v1 = AngleLerpContext_UpdateFX32(&v0->unk_38);
-        G2_ChangeBlendAlpha(v0->unk_38.angle, 31 - v0->unk_38.angle);
+    switch (ctx->state) {
+    case NIGHT_SHADE_ATTACKER_STATE_FADE_IN:
+        active = ValueLerpContext_UpdateFX32(&ctx->alpha);
+        G2_ChangeBlendAlpha(ctx->alpha.value, NIGHT_SHADE_ATTACKER_SPRITE_MAX_ALPHA - ctx->alpha.value);
 
-        if (v1 == 0) {
-            v0->unk_08++;
-            v0->unk_0C = 0;
+        if (active == FALSE) {
+            ctx->state++;
+            ctx->delay = 0;
         }
         break;
-    case 1:
-        v0->unk_0C++;
-
-        if (v0->unk_0C > 32) {
-            v0->unk_08++;
+    case NIGHT_SHADE_ATTACKER_STATE_DELAY:
+        ctx->delay++;
+        if (ctx->delay > NIGHT_SHADE_ATTACKER_SCALE_DELAY) {
+            ctx->state++;
         }
         break;
-    case 2:
-        v1 = ScaleLerpContext_Update(&v0->unk_14);
-        BattleAnimUtil_ConvertRelativeToAffineScale(&v0->unk_14, &v2, &v3);
+    case NIGHT_SHADE_ATTACKER_STATE_GROW:
+        active = ScaleLerpContext_Update(&ctx->scale);
+        BattleAnimUtil_ConvertRelativeToAffineScale(&ctx->scale, &scaleX, &scaleY);
 
-        if (v0->unk_4C == 1) {
-            v2 = -v2;
+        if (ctx->isContest == TRUE) {
+            scaleX = -scaleX;
         }
 
-        ManagedSprite_SetAffineScale(v0->unk_10, v2, v3);
+        ManagedSprite_SetAffineScale(ctx->xluSprite, scaleX, scaleY);
 
-        if (v1 == 0) {
-            ManagedSprite_SetDrawFlag(v0->unk_10, 0);
-            v0->unk_08++;
+        if (active == FALSE) {
+            ManagedSprite_SetDrawFlag(ctx->xluSprite, FALSE);
+            ctx->state++;
         }
         break;
-    case 3:
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
-        Heap_Free(v0);
+    case NIGHT_SHADE_ATTACKER_STATE_CLEANUP:
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         return;
     }
 
-    SpriteSystem_DrawSprites(v0->unk_04);
+    SpriteSystem_DrawSprites(ctx->pokemonSpriteManager);
 }
 
-static void ov12_02230600(SysTask *param0, void *param1)
+static void BattleAnimTask_NightShadeDefender(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02230600 *v0 = param1;
-    BOOL v1;
+    NightShadeDefenderContext *ctx = param;
+    BOOL active;
 
-    switch (v0->unk_04) {
-    case 0:
-        ShakeContext_Update(&v0->unk_14);
-        XYTransformContext_ApplyPosOffset(&v0->unk_14, v0->unk_08, v0->unk_38, v0->unk_3A);
+    switch (ctx->state) {
+    case NIGHT_SHADE_DEFENDER_STATE_FADE_OUT:
+        ShakeContext_Update(&ctx->shake);
+        XYTransformContext_ApplyPosOffsetToMon(&ctx->shake, ctx->defenderSprite, ctx->defenderX, ctx->defenderY);
 
-        if (v0->unk_10 == 1) {
-            ov12_022259DC(&v0->unk_14, v0->unk_0C, v0->unk_38, v0->unk_3A - v0->unk_3C);
+        if (ctx->animateManagedSprite == TRUE) {
+            XYTransformContext_ApplyPosOffsetToSprite(
+                &ctx->shake,
+                ctx->managedSprite,
+                ctx->defenderX,
+                ctx->defenderY - ctx->defenderShadowHeight);
         }
 
-        if (PokemonSprite_IsFadeActive(v0->unk_08) == 0) {
-            PokemonSprite_StartFade(v0->unk_08, 16, 0, 0, 0);
+        if (PokemonSprite_IsFadeActive(ctx->defenderSprite) == FALSE) {
+            PokemonSprite_StartFade(
+                ctx->defenderSprite,
+                NIGHT_SHADE_DEFENDER_FADE_END_ALPHA,
+                NIGHT_SHADE_DEFENDER_FADE_START_ALPHA,
+                NIGHT_SHADE_DEFENDER_FADE_DELAY,
+                NIGHT_SHADE_DEFENDER_FADE_COLOR);
 
-            if (v0->unk_10 == 1) {
-                int v2;
-
-                v2 = 1 << ov12_02225950(v0->unk_0C);
-                PaletteData_StartFade(BattleAnimSystem_GetPaletteData(v0->unk_00), 0x4, v2, 0, 16, 0, 0);
+            if (ctx->animateManagedSprite == TRUE) {
+                int palette = 1 << BattleAnimUtil_GetSpritePalette(ctx->managedSprite);
+                PaletteData_StartFade(
+                    BattleAnimSystem_GetPaletteData(ctx->battleAnimSys),
+                    NIGHT_SHADE_DEFENDER_FADE_PLTTBUF,
+                    palette,
+                    NIGHT_SHADE_DEFENDER_FADE_DELAY,
+                    NIGHT_SHADE_DEFENDER_FADE_END_ALPHA,
+                    NIGHT_SHADE_DEFENDER_FADE_START_ALPHA,
+                    NIGHT_SHADE_DEFENDER_FADE_COLOR);
             }
 
-            v0->unk_04++;
+            ctx->state++;
         }
         break;
-    case 1:
-        v1 = ShakeContext_Update(&v0->unk_14);
-        XYTransformContext_ApplyPosOffset(&v0->unk_14, v0->unk_08, v0->unk_38, v0->unk_3A);
+    case NIGHT_SHADE_DEFENDER_STATE_FADE_IN:
+        active = ShakeContext_Update(&ctx->shake);
+        XYTransformContext_ApplyPosOffsetToMon(&ctx->shake, ctx->defenderSprite, ctx->defenderX, ctx->defenderY);
 
-        if (v0->unk_10 == 1) {
-            ov12_022259DC(&v0->unk_14, v0->unk_0C, v0->unk_38, v0->unk_3A - v0->unk_3C);
+        if (ctx->animateManagedSprite == TRUE) {
+            XYTransformContext_ApplyPosOffsetToSprite(
+                &ctx->shake,
+                ctx->managedSprite,
+                ctx->defenderX,
+                ctx->defenderY - ctx->defenderShadowHeight);
         }
 
-        if (PokemonSprite_IsFadeActive(v0->unk_08) == 0) {
-            PokemonSprite_SetAttribute(v0->unk_08, MON_SPRITE_X_CENTER, v0->unk_38);
-            PokemonSprite_SetAttribute(v0->unk_08, MON_SPRITE_Y_CENTER, v0->unk_3A);
+        if (PokemonSprite_IsFadeActive(ctx->defenderSprite) == FALSE) {
+            PokemonSprite_SetAttribute(ctx->defenderSprite, MON_SPRITE_X_CENTER, ctx->defenderX);
+            PokemonSprite_SetAttribute(ctx->defenderSprite, MON_SPRITE_Y_CENTER, ctx->defenderY);
 
-            if (v0->unk_10 == 1) {
-                if (BattleAnimSystem_IsBattlerSemiInvulnerable(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00)) == 0) {
-                    PokemonSprite_SetAttribute(v0->unk_08, MON_SPRITE_HIDE, 0);
+            if (ctx->animateManagedSprite == TRUE) {
+                if (BattleAnimSystem_IsBattlerSemiInvulnerable(ctx->battleAnimSys, BattleAnimSystem_GetDefender(ctx->battleAnimSys)) == FALSE) {
+                    PokemonSprite_SetAttribute(ctx->defenderSprite, MON_SPRITE_HIDE, FALSE);
                 }
 
-                ManagedSprite_SetPositionXY(v0->unk_0C, v0->unk_38, v0->unk_3A - v0->unk_3C);
+                ManagedSprite_SetPositionXY(ctx->managedSprite, ctx->defenderX, ctx->defenderY - ctx->defenderShadowHeight);
             }
 
-            v0->unk_04++;
+            ctx->state++;
         }
         break;
-    case 2:
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
-        Heap_Free(v0);
+    case NIGHT_SHADE_DEFENDER_STATE_CLEANUP:
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         return;
     }
 }
 
-void ov12_02230754(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_NightShadeAttacker(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_02230540 *v0;
-    int v1;
+    NightShaderAttackerContext *ctx = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(system), sizeof(NightShaderAttackerContext));
+    memset(ctx, 0, sizeof(NightShaderAttackerContext));
 
-    v0 = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_02230540));
-    memset(v0, 0, sizeof(UnkStruct_ov12_02230540));
+    ctx->battleAnimSys = system;
+    ctx->pokemonSpriteManager = BattleAnimSystem_GetPokemonSpriteManager(ctx->battleAnimSys);
+    ctx->isContest = BattleAnimSystem_IsContest(system);
+    ctx->xluSprite = BattleAnimSystem_GetPokemonSprite(ctx->battleAnimSys, BATTLE_ANIM_MON_SPRITE_0);
 
-    v0->unk_00 = param0;
-    v0->unk_04 = BattleAnimSystem_GetPokemonSpriteManager(v0->unk_00);
-    v0->unk_4C = BattleAnimSystem_IsContest(param0);
-    v0->unk_10 = BattleAnimSystem_GetPokemonSprite(v0->unk_00, 0);
+    ScaleLerpContext_Init(
+        &ctx->scale,
+        NIGHT_SHADE_ATTACKER_START_SCALE,
+        NIGHT_SHADE_ATTACKER_REF_SCALE,
+        NIGHT_SHADE_ATTACKER_END_SCALE,
+        NIGHT_SHADE_ATTACKER_SCALE_FRAMES);
+    ValueLerpContext_InitFX32(
+        &ctx->alpha,
+        NIGHT_SHADE_ATTACKER_START_ALPHA,
+        NIGHT_SHADE_ATTACKER_END_ALPHA,
+        NIGHT_SHADE_ATTACKER_ALPHA_FRAMES);
 
-    ScaleLerpContext_Init(&v0->unk_14, 14, 10, 10, 8);
-    AngleLerpContext_InitFX32(&v0->unk_38, 0, 16, 8);
+    ManagedSprite_SetExplicitOamMode(ctx->xluSprite, GX_OAM_MODE_XLU);
+    BattleAnimUtil_SetEffectBgBlending(ctx->battleAnimSys, 0, NIGHT_SHADE_ATTACKER_SPRITE_MAX_ALPHA);
+    ManagedSprite_SetAffineOverwriteMode(ctx->xluSprite, AFFINE_OVERWRITE_MODE_DOUBLE);
 
-    ManagedSprite_SetExplicitOamMode(v0->unk_10, GX_OAM_MODE_XLU);
-    BattleAnimUtil_SetEffectBgBlending(v0->unk_00, 0, 31);
-    ManagedSprite_SetAffineOverwriteMode(v0->unk_10, AFFINE_OVERWRITE_MODE_DOUBLE);
-
-    if (v0->unk_4C == 1) {
-        ManagedSprite_SetAffineScale(v0->unk_10, -(14 / (f32)10), 14 / (f32)10);
+    if (ctx->isContest == TRUE) {
+        ManagedSprite_SetAffineScale(ctx->xluSprite, -NIGHT_SHADE_ATTACKER_START_SCALE_F, NIGHT_SHADE_ATTACKER_START_SCALE_F);
     } else {
-        ManagedSprite_SetAffineScale(v0->unk_10, 14 / (f32)10, 14 / (f32)10);
+        ManagedSprite_SetAffineScale(ctx->xluSprite, NIGHT_SHADE_ATTACKER_START_SCALE_F, NIGHT_SHADE_ATTACKER_START_SCALE_F);
     }
 
-    ManagedSprite_SetPriority(v0->unk_10, 100);
-    ManagedSprite_SetExplicitPriority(v0->unk_10, 1);
+    ManagedSprite_SetPriority(ctx->xluSprite, NIGHT_SHADE_ATTACKER_SPRITE_PRIORITY);
+    ManagedSprite_SetExplicitPriority(ctx->xluSprite, NIGHT_SHADE_ATTACKER_SPRITE_EXP_PRIORITY);
 
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02230540, v0);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_NightShadeAttacker, ctx);
 }
 
-void ov12_02230804(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_NightShadeDefender(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_02230600 *v0;
-    int v1;
-    int v2;
-    int v3;
+    NightShadeDefenderContext *ctx = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(system), sizeof(NightShadeDefenderContext));
+    memset(ctx, 0, sizeof(NightShadeDefenderContext));
 
-    v0 = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_02230600));
-    memset(v0, 0, sizeof(UnkStruct_ov12_02230600));
+    ctx->battleAnimSys = system;
+    ctx->defenderSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetDefender(ctx->battleAnimSys));
+    ctx->defenderX = PokemonSprite_GetAttribute(ctx->defenderSprite, MON_SPRITE_X_CENTER);
+    ctx->defenderY = PokemonSprite_GetAttribute(ctx->defenderSprite, MON_SPRITE_Y_CENTER);
+    ctx->defenderShadowHeight = PokemonSprite_GetAttribute(ctx->defenderSprite, MON_SPRITE_SHADOW_HEIGHT);
 
-    v0->unk_00 = param0;
-    v0->unk_08 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00));
-    v0->unk_38 = PokemonSprite_GetAttribute(v0->unk_08, MON_SPRITE_X_CENTER);
-    v0->unk_3A = PokemonSprite_GetAttribute(v0->unk_08, MON_SPRITE_Y_CENTER);
-    v0->unk_3C = PokemonSprite_GetAttribute(v0->unk_08, MON_SPRITE_SHADOW_HEIGHT);
+    ShakeContext_Init(
+        &ctx->shake,
+        NIGHT_SHADE_DEFENDER_SHAKE_EXTENT_X,
+        NIGHT_SHADE_DEFENDER_SHAKE_EXTENT_Y,
+        NIGHT_SHADE_DEFENDER_SHAKE_INTERVAL,
+        NIGHT_SHADE_DEFENDER_SHAKE_CYCLES);
 
-    ShakeContext_Init(&v0->unk_14, 4, 0, 1, 4);
+    int dir = BattleAnimUtil_GetTransformDirection(ctx->battleAnimSys, BattleAnimSystem_GetDefender(ctx->battleAnimSys));
 
-    v1 = BattleAnimUtil_GetTransformDirection(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00));
-    v0->unk_14.x += v1;
+    // BUG: This should be
+    // ctx->shake.data[XY_PARAM_SHAKE_EXTENT_X] *= dir;
+    ctx->shake.x += dir;
 
-    PokemonSprite_StartFade(v0->unk_08, 0, 16, 0, 0);
+    PokemonSprite_StartFade(
+        ctx->defenderSprite,
+        NIGHT_SHADE_DEFENDER_FADE_START_ALPHA,
+        NIGHT_SHADE_DEFENDER_FADE_END_ALPHA,
+        NIGHT_SHADE_DEFENDER_FADE_DELAY,
+        NIGHT_SHADE_DEFENDER_FADE_COLOR);
 
-    v0->unk_0C = BattleAnimSystem_GetPokemonSprite(v0->unk_00, 1);
-    v2 = BattleAnimUtil_GetBattlerType(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
-    v3 = BattleAnimUtil_GetBattlerType(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00));
+    ctx->managedSprite = BattleAnimSystem_GetPokemonSprite(ctx->battleAnimSys, BATTLE_ANIM_MON_SPRITE_1);
+    int attackerType = BattleAnimUtil_GetBattlerType(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    int defenderType = BattleAnimUtil_GetBattlerType(ctx->battleAnimSys, BattleAnimSystem_GetDefender(ctx->battleAnimSys));
 
-    if (((v2 == 2) && (v3 == 4)) || ((v2 == 5) && (v3 == 3))) {
-        int v4;
+    if ((attackerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1 && defenderType == BATTLER_TYPE_PLAYER_SIDE_SLOT_2) ||
+        (attackerType == BATTLER_TYPE_ENEMY_SIDE_SLOT_2 && defenderType == BATTLER_TYPE_ENEMY_SIDE_SLOT_1)) {
+        int palette = 1 << BattleAnimUtil_GetSpritePalette(ctx->managedSprite);
+        PaletteData_StartFade(
+            BattleAnimSystem_GetPaletteData(ctx->battleAnimSys),
+            NIGHT_SHADE_DEFENDER_FADE_PLTTBUF,
+            palette,
+            NIGHT_SHADE_DEFENDER_FADE_DELAY,
+            NIGHT_SHADE_DEFENDER_FADE_START_ALPHA,
+            NIGHT_SHADE_DEFENDER_FADE_END_ALPHA,
+            NIGHT_SHADE_DEFENDER_FADE_COLOR);
+        ctx->animateManagedSprite = TRUE;
 
-        v4 = 1 << ov12_02225950(v0->unk_0C);
-        PaletteData_StartFade(BattleAnimSystem_GetPaletteData(v0->unk_00), 0x4, v4, 0, 0, 16, 0);
-        v0->unk_10 = 1;
-
-        if (BattleAnimSystem_IsBattlerSemiInvulnerable(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00)) == 0) {
-            PokemonSprite_SetAttribute(v0->unk_08, MON_SPRITE_HIDE, 1);
+        if (BattleAnimSystem_IsBattlerSemiInvulnerable(ctx->battleAnimSys, BattleAnimSystem_GetDefender(ctx->battleAnimSys)) == FALSE) {
+            PokemonSprite_SetAttribute(ctx->defenderSprite, MON_SPRITE_HIDE, TRUE);
         }
     }
 
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02230600, v0);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_NightShadeDefender, ctx);
 }
 
 static BOOL ov12_02230910(UnkStruct_ov12_02230910 *param0)
@@ -1534,18 +1613,18 @@ static void ov12_02230BE0(SysTask *param0, void *param1)
         }
         break;
     case 1:
-        v1 = AngleLerpContext_Update(&v0->unk_38);
-        ManagedSprite_SetAffineZRotation(v0->unk_10, v0->unk_38.angle);
+        v1 = ValueLerpContext_Update(&v0->unk_38);
+        ManagedSprite_SetAffineZRotation(v0->unk_10, v0->unk_38.value);
 
         if (v1 == 0) {
             if (v0->unk_4C > 0) {
                 v0->unk_4C--;
 
-                v4 = v0->unk_38.angle;
+                v4 = v0->unk_38.value;
                 v5 = v0->unk_50;
-                v0->unk_50 = v0->unk_38.angle;
+                v0->unk_50 = v0->unk_38.value;
 
-                AngleLerpContext_Init(&v0->unk_38, v4, v5, 4);
+                ValueLerpContext_Init(&v0->unk_38, v4, v5, 4);
             } else {
                 v0->unk_0C++;
             }
@@ -1616,10 +1695,10 @@ void ov12_02230CEC(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     ScaleLerpContext_Init(&v0->unk_14, 1, 10, 10, 8);
 
     if (v2 >= 0) {
-        AngleLerpContext_Init(&v0->unk_38, (359 * 0xffff) / 360, (320 * 0xffff) / 360, 4);
+        ValueLerpContext_Init(&v0->unk_38, (359 * 0xffff) / 360, (320 * 0xffff) / 360, 4);
         v0->unk_50 = ((359 * 0xffff) / 360);
     } else {
-        AngleLerpContext_Init(&v0->unk_38, (0 * 0xffff) / 360, (40 * 0xffff) / 360, 4);
+        ValueLerpContext_Init(&v0->unk_38, (0 * 0xffff) / 360, (40 * 0xffff) / 360, 4);
         v0->unk_50 = ((0 * 0xffff) / 360);
     }
 
@@ -1789,7 +1868,7 @@ static void ov12_022310D4(SysTask *param0, void *param1)
     switch (v0->unk_0C) {
     case 0:
         if (PosLerpContext_Update(&v0->unk_18)) {
-            XYTransformContext_ApplyPosOffset(&v0->unk_18, v0->unk_10, v0->unk_14, v0->unk_16);
+            XYTransformContext_ApplyPosOffsetToMon(&v0->unk_18, v0->unk_10, v0->unk_14, v0->unk_16);
         } else {
             PosLerpContext_Init(
                 &v0->unk_18, v0->unk_18.x, 0, 0, 0, 2);
@@ -1799,7 +1878,7 @@ static void ov12_022310D4(SysTask *param0, void *param1)
         return;
     case 1:
         if (PosLerpContext_Update(&v0->unk_18)) {
-            XYTransformContext_ApplyPosOffset(&v0->unk_18, v0->unk_10, v0->unk_14, v0->unk_16);
+            XYTransformContext_ApplyPosOffsetToMon(&v0->unk_18, v0->unk_10, v0->unk_14, v0->unk_16);
         } else {
             PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_X_CENTER, v0->unk_14);
             PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_Y_CENTER, v0->unk_16);
@@ -1822,7 +1901,7 @@ static void ov12_022310D4(SysTask *param0, void *param1)
         break;
     case 4:
         if (PosLerpContext_Update(&v0->unk_18)) {
-            XYTransformContext_ApplyPosOffset(&v0->unk_18, v0->unk_10, v0->unk_14, v0->unk_16);
+            XYTransformContext_ApplyPosOffsetToMon(&v0->unk_18, v0->unk_10, v0->unk_14, v0->unk_16);
         } else {
             PosLerpContext_Init(&v0->unk_18, v0->unk_18.x, 0, 0, 0, 4);
             v0->unk_0C++;
@@ -1830,7 +1909,7 @@ static void ov12_022310D4(SysTask *param0, void *param1)
         break;
     case 5:
         if (PosLerpContext_Update(&v0->unk_18)) {
-            XYTransformContext_ApplyPosOffset(&v0->unk_18, v0->unk_10, v0->unk_14, v0->unk_16);
+            XYTransformContext_ApplyPosOffsetToMon(&v0->unk_18, v0->unk_10, v0->unk_14, v0->unk_16);
         } else {
             PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_X_CENTER, v0->unk_14);
             PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_Y_CENTER, v0->unk_16);
@@ -1985,7 +2064,7 @@ static BOOL ov12_02231584(UnkStruct_ov12_02231508 *param0)
         v1 = PosLerpContext_Update(&param0->unk_68);
 
         if (v1) {
-            ov12_022259DC(&param0->unk_68, param0->unk_3C, param0->unk_B4, param0->unk_B6);
+            XYTransformContext_ApplyPosOffsetToSprite(&param0->unk_68, param0->unk_3C, param0->unk_B4, param0->unk_B6);
         } else {
             param0->unk_40++;
             AlphaFadeContext_Init(&param0->unk_8C, 16, 0, 14, 16, 8);
@@ -2118,7 +2197,7 @@ static void ov12_0223181C(SysTask *param0, void *param1)
         break;
     case 1:
         if (PosLerpContext_Update(&v0->unk_18)) {
-            ov12_022259DC(&v0->unk_18, v0->unk_14, v0->unk_64, v0->unk_66);
+            XYTransformContext_ApplyPosOffsetToSprite(&v0->unk_18, v0->unk_14, v0->unk_64, v0->unk_66);
         } else {
             v0->unk_68++;
 
@@ -2217,7 +2296,7 @@ static void ov12_02231A38(SysTask *param0, void *param1)
         break;
     case 1:
         if (PosLerpContext_Update(&v0->unk_28)) {
-            ov12_022259DC(&v0->unk_28, v0->unk_24, v0->unk_4C, v0->unk_4E);
+            XYTransformContext_ApplyPosOffsetToSprite(&v0->unk_28, v0->unk_24, v0->unk_4C, v0->unk_4E);
         } else {
             v0->unk_50++;
 
@@ -2332,7 +2411,7 @@ static void ov12_02231CD4(UnkStruct_ov12_02231CD4 *param0, BOOL param1)
 {
     fx32 v0;
 
-    AngleLerpContext_InitFX32(&param0->unk_10, 0, (15 * 0xffff) / 360, 3);
+    ValueLerpContext_InitFX32(&param0->unk_10, 0, (15 * 0xffff) / 360, 3);
 
     if (param1) {
         param0->unk_10.data[1] *= -1;
@@ -2351,8 +2430,8 @@ static BOOL ov12_02231D18(UnkStruct_ov12_02231CD4 *param0)
 
     switch (param0->unk_4C) {
     case 0:
-        AngleLerpContext_UpdateFX32(&param0->unk_10);
-        PokemonSprite_SetAttribute(param0->unk_08, MON_SPRITE_ROTATION_Z, param0->unk_10.angle);
+        ValueLerpContext_UpdateFX32(&param0->unk_10);
+        PokemonSprite_SetAttribute(param0->unk_08, MON_SPRITE_ROTATION_Z, param0->unk_10.value);
 
         param0->unk_50--;
 
@@ -2363,21 +2442,21 @@ static BOOL ov12_02231D18(UnkStruct_ov12_02231CD4 *param0)
         }
         break;
     case 1:
-        if (AngleLerpContext_UpdateFX32(&param0->unk_10)) {
-            PokemonSprite_SetAttribute(param0->unk_08, MON_SPRITE_ROTATION_Z, param0->unk_10.angle);
+        if (ValueLerpContext_UpdateFX32(&param0->unk_10)) {
+            PokemonSprite_SetAttribute(param0->unk_08, MON_SPRITE_ROTATION_Z, param0->unk_10.value);
         }
 
         if (ov12_02225C74(&param0->unk_24, param0->unk_08) == 0) {
             param0->unk_4C++;
-            AngleLerpContext_InitFX32(&param0->unk_10, param0->unk_10.angle, 0, 3);
+            ValueLerpContext_InitFX32(&param0->unk_10, param0->unk_10.value, 0, 3);
             PosLerpContext_Init(&param0->unk_24, param0->unk_0C, param0->unk_0C, param0->unk_0E + 2, param0->unk_0E, 2);
         }
         break;
     case 2:
         ov12_02225C74(&param0->unk_24, param0->unk_08);
 
-        if (AngleLerpContext_UpdateFX32(&param0->unk_10)) {
-            PokemonSprite_SetAttribute(param0->unk_08, MON_SPRITE_ROTATION_Z, param0->unk_10.angle);
+        if (ValueLerpContext_UpdateFX32(&param0->unk_10)) {
+            PokemonSprite_SetAttribute(param0->unk_08, MON_SPRITE_ROTATION_Z, param0->unk_10.value);
         } else {
             PokemonSprite_SetAttribute(param0->unk_08, MON_SPRITE_X_CENTER, param0->unk_0C);
             PokemonSprite_SetAttribute(param0->unk_08, MON_SPRITE_Y_CENTER, param0->unk_0E);
@@ -2724,7 +2803,7 @@ static void ov12_02232430(SysTask *param0, void *param1)
         break;
     case 1:
         if (PosLerpContext_Update(&v0->unk_10)) {
-            XYTransformContext_ApplyPosOffset(&v0->unk_10, v0->unk_08, v0->unk_0C, v0->unk_0E);
+            XYTransformContext_ApplyPosOffsetToMon(&v0->unk_10, v0->unk_08, v0->unk_0C, v0->unk_0E);
         } else {
             v0->unk_34++;
 
@@ -3127,7 +3206,7 @@ static const u16 Unk_ov12_0223A1CC[6] = {
 
 static void ov12_02232D38(UnkStruct_ov12_02232D38 *param0, ManagedSprite *param1)
 {
-    int v0 = 1 << ov12_02225950(param1);
+    int v0 = 1 << BattleAnimUtil_GetSpritePalette(param1);
     PaletteData_BlendMulti(param0->unk_C4, 2, v0, 8, 0x0);
 }
 
