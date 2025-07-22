@@ -70,6 +70,11 @@ enum XYTransformParam {
     XY_PARAM_REV_STEP_SIZE_Y,
 };
 
+enum BattleAnimAnchorType {
+    BATTLE_ANIM_ANCHOR_BOTTOM = 0,
+    BATTLE_ANIM_ANCHOR_TOP,
+};
+
 typedef struct AngleLerpContext {
     s32 angle;
     s32 data[4];
@@ -165,8 +170,8 @@ void ScaleLerpContext_InitXY(XYTransformContext *param0, s16 param1, s16 param2,
 BOOL ScaleLerpContext_UpdateXY(XYTransformContext *param0);
 void BattleAnimUtil_ConvertRelativeToAffineScale(XYTransformContext *param0, f32 *param1, f32 *param2);
 s16 BattleAnimUtil_GetGroundAnchoredScaleOffset(s16 param0, int param1, fx32 param2);
-void ov12_02226024(PokemonSprite *param0, s16 param1, s16 param2, fx32 param3, int param4);
-void ov12_0222605C(ManagedSprite *param0, s16 param1, s16 param2, fx32 param3, int param4);
+void BattleAnimUtil_SetPokemonSpriteAnchoredPosition(PokemonSprite *param0, s16 param1, s16 param2, fx32 param3, enum BattleAnimAnchorType param4);
+void BattleAnimUtil_SetSpriteAnchoredPosition(ManagedSprite *param0, s16 param1, s16 param2, fx32 param3, enum BattleAnimAnchorType param4);
 BOOL ov12_022260A8(XYTransformContext *param0, ManagedSprite *param1);
 BOOL ov12_022260C8(XYTransformContext *param0, PokemonSprite *param1);
 BOOL ov12_022260E8(XYTransformContext *param0, PokemonSprite *param1);

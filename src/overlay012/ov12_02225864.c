@@ -560,37 +560,30 @@ s16 BattleAnimUtil_GetGroundAnchoredScaleOffset(s16 baseY, int height, fx32 scal
     return (scaledHeightDiff >> FX32_SHIFT) / 2;
 }
 
-void ov12_02226024(PokemonSprite *param0, s16 param1, s16 param2, fx32 param3, int param4)
+void BattleAnimUtil_SetPokemonSpriteAnchoredPosition(PokemonSprite *sprite, s16 y, s16 height, fx32 scale, enum BattleAnimAnchorType anchor)
 {
-    s16 v0;
-    s16 v1 = param1;
-    v0 = BattleAnimUtil_GetGroundAnchoredScaleOffset(param1, param2, param3);
+    s16 offset = BattleAnimUtil_GetGroundAnchoredScaleOffset(y, height, scale);
 
-    if (param4 == 1) {
-        v0 *= -1;
-        v1 = param1 - param2;
+    if (anchor == BATTLE_ANIM_ANCHOR_TOP) {
+        offset *= -1;
+        y -= height;
     }
 
-    PokemonSprite_SetAttribute(param0, MON_SPRITE_Y_CENTER, v1 + v0);
+    PokemonSprite_SetAttribute(sprite, MON_SPRITE_Y_CENTER, y + offset);
 }
 
-void ov12_0222605C(ManagedSprite *param0, s16 param1, s16 param2, fx32 param3, int param4)
+void BattleAnimUtil_SetSpriteAnchoredPosition(ManagedSprite *sprite, s16 y, s16 height, fx32 scale, enum BattleAnimAnchorType anchor)
 {
-    s16 v0;
-    s16 v1;
-    s16 v2;
-    s16 v3;
-
-    v1 = param1;
-    v0 = BattleAnimUtil_GetGroundAnchoredScaleOffset(param1, param2, param3);
-
-    if (param4 == 1) {
-        v0 *= -1;
-        v1 = param1 - param2;
+    s16 offset = BattleAnimUtil_GetGroundAnchoredScaleOffset(y, height, scale);
+    
+    if (anchor == BATTLE_ANIM_ANCHOR_TOP) {
+        offset *= -1;
+        y -= height;
     }
-
-    ManagedSprite_GetPositionXY(param0, &v2, &v3);
-    ManagedSprite_SetPositionXY(param0, v2, v1 + v0);
+    
+    s16 curX, curY;
+    ManagedSprite_GetPositionXY(sprite, &curX, &curY);
+    ManagedSprite_SetPositionXY(sprite, curX, y + offset);
 }
 
 BOOL ov12_022260A8(XYTransformContext *param0, ManagedSprite *param1)

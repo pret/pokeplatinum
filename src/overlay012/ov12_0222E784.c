@@ -47,7 +47,7 @@ static void ov12_0222E784(SysTask *param0, void *param1)
 
             BattleAnimUtil_ConvertRelativeToAffineScale(&v0->unk_60, &v1, &v2);
             ManagedSprite_SetAffineScale(v0->unk_1C.unk_0C, v1, v2);
-            ov12_0222605C(v0->unk_1C.unk_0C, v0->unk_58, v0->unk_5A, v0->unk_60.data[4], 0);
+            BattleAnimUtil_SetSpriteAnchoredPosition(v0->unk_1C.unk_0C, v0->unk_58, v0->unk_5A, v0->unk_60.data[4], 0);
         }
         break;
     default:
