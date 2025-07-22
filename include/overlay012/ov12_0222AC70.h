@@ -10,7 +10,7 @@ void BattleAnimScriptFunc_Strength(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_BulkUp(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_DoubleTeam(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_Growth(BattleAnimSystem *param0);
-void ov12_0222BAE4(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_Meditate(BattleAnimSystem *param0);
 void ov12_0222BCF4(BattleAnimSystem *param0);
 void ov12_0222BE48(BattleAnimSystem *param0);
 void ov12_0222BFA8(BattleAnimSystem *param0);

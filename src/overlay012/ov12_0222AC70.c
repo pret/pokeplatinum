@@ -184,15 +184,31 @@ enum GrowthState {
 #define GROWTH_BLINK_COLOR  COLOR_WHITE
 #define GROWTH_BLINK_ALPHA  6
 
-typedef struct {
-    u8 unk_00;
-    u8 unk_01;
-    s16 unk_02;
-    s16 unk_04;
-    BattleAnimSystem *unk_08;
-    PokemonSprite *unk_0C;
-    XYTransformContext unk_10;
-} UnkStruct_ov12_0222BA18;
+// -------------------------------------------------------------------
+// Meditate
+// -------------------------------------------------------------------
+typedef struct MeditateContext {
+    u8 state;
+    u8 iterations;
+    s16 attackerY;
+    s16 attackerHeight;
+    BattleAnimSystem *battleAnimSys;
+    PokemonSprite *attackerSprite;
+    XYTransformContext scale;
+} MeditateContext;
+
+enum MeditateState {
+    MEDITATE_STATE_SCALE,
+    MEDITATE_STATE_WAIT_FOR_SCALE,
+};
+
+#define MEDITATE_STRETCH_SCALE_X 150
+#define MEDITATE_STRETCH_SCALE_Y 50
+#define MEDITATE_SQUISH_SCALE_X  50
+#define MEDITATE_SQUISH_SCALE_Y  150
+#define MEDITATE_STRETCH_FRAMES  8
+#define MEDITATE_SQUISH_FRAMES   8
+#define MEDITATE_REVERT_FRAMES   8
 
 typedef struct {
     u8 unk_00;
@@ -1030,58 +1046,73 @@ void BattleAnimScriptFunc_Growth(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Growth, ctx);
 }
 
-static const u8 Unk_ov12_0223A0DF[][5] = {
-    { 0x64, 0x96, 0x64, 0x32, 0x8 },
-    { 0x96, 0x32, 0x32, 0x96, 0x8 },
-    { 0x32, 0x64, 0x96, 0x64, 0x8 }
+enum {
+    MEDITATE_TABLE_SCALE_SX = 0,
+    MEDITATE_TABLE_SCALE_EX,
+    MEDITATE_TABLE_SCALE_SY,
+    MEDITATE_TABLE_SCALE_EY,
+    MEDITATE_TABLE_SCALE_FRAMES,
+    MEDITATE_TABLE_COUNT
 };
 
-static void ov12_0222BA18(SysTask *param0, void *param1)
-{
-    UnkStruct_ov12_0222BA18 *v0 = (UnkStruct_ov12_0222BA18 *)param1;
+static const u8 sMeditateScaleTable[][MEDITATE_TABLE_COUNT] = {
+    { BASE_SCALE_XY,            MEDITATE_STRETCH_SCALE_X, BASE_SCALE_XY,            MEDITATE_STRETCH_SCALE_Y, MEDITATE_STRETCH_FRAMES },
+    { MEDITATE_STRETCH_SCALE_X, MEDITATE_SQUISH_SCALE_X,  MEDITATE_STRETCH_SCALE_Y, MEDITATE_SQUISH_SCALE_Y,  MEDITATE_SQUISH_FRAMES },
+    { MEDITATE_SQUISH_SCALE_X,  BASE_SCALE_XY,            MEDITATE_SQUISH_SCALE_Y,  BASE_SCALE_XY,            MEDITATE_REVERT_FRAMES }
+};
 
-    switch (v0->unk_00) {
-    case 0:
-        ScaleLerpContext_InitXY(&v0->unk_10, Unk_ov12_0223A0DF[v0->unk_01][0], Unk_ov12_0223A0DF[v0->unk_01][1], Unk_ov12_0223A0DF[v0->unk_01][2], Unk_ov12_0223A0DF[v0->unk_01][3], 100, Unk_ov12_0223A0DF[v0->unk_01][4]);
-        v0->unk_01++;
-        v0->unk_00++;
+static void BattleAnimTask_Meditate(SysTask *task, void *param)
+{
+    MeditateContext *ctx = param;
+
+    switch (ctx->state) {
+    case MEDITATE_STATE_SCALE:
+        ScaleLerpContext_InitXY(
+            &ctx->scale,
+            sMeditateScaleTable[ctx->iterations][MEDITATE_TABLE_SCALE_SX],
+            sMeditateScaleTable[ctx->iterations][MEDITATE_TABLE_SCALE_EX],
+            sMeditateScaleTable[ctx->iterations][MEDITATE_TABLE_SCALE_SY],
+            sMeditateScaleTable[ctx->iterations][MEDITATE_TABLE_SCALE_EY],
+            BASE_SCALE_XY,
+            sMeditateScaleTable[ctx->iterations][MEDITATE_TABLE_SCALE_FRAMES]);
+
+        ctx->iterations++;
+        ctx->state++;
         break;
-    case 1:
-        if (ScaleLerpContext_UpdateXY(&v0->unk_10) == 0) {
-            if (v0->unk_01 < 3) {
-                v0->unk_00--;
+    case MEDITATE_STATE_WAIT_FOR_SCALE: {
+        if (ScaleLerpContext_UpdateXY(&ctx->scale) == FALSE) {
+            if (ctx->iterations < NELEMS(sMeditateScaleTable)) {
+                ctx->state--;
             } else {
-                v0->unk_00++;
+                ctx->state++;
             }
         }
 
-        PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_SCALE_X, v0->unk_10.x);
-        PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_SCALE_Y, v0->unk_10.y);
+        PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_SCALE_X, ctx->scale.x);
+        PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_SCALE_Y, ctx->scale.y);
 
-        {
-            s16 v1 = BattleAnimUtil_GetGroundAnchoredScaleOffset(v0->unk_02, v0->unk_04, v0->unk_10.data[4]);
-            PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_Y_CENTER, v0->unk_02 + v1);
-        }
-        break;
+        s16 offset = BattleAnimUtil_GetGroundAnchoredScaleOffset(ctx->attackerY, ctx->attackerHeight, ctx->scale.data[4]);
+        PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_Y_CENTER, ctx->attackerY + offset);
+    } break;
     default:
-        BattleAnimSystem_EndAnimTask(v0->unk_08, param0);
-        Heap_Free(v0);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         break;
     }
 }
 
-void ov12_0222BAE4(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_Meditate(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_0222BA18 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222BA18));
+    MeditateContext *ctx = BattleAnimUtil_Alloc(system, sizeof(MeditateContext));
 
-    v0->unk_00 = 0;
-    v0->unk_01 = 0;
-    v0->unk_08 = param0;
-    v0->unk_0C = BattleAnimSystem_GetBattlerSprite(v0->unk_08, BattleAnimSystem_GetAttacker(v0->unk_08));
-    v0->unk_02 = PokemonSprite_GetAttribute(v0->unk_0C, MON_SPRITE_Y_CENTER);
-    v0->unk_04 = BattleAnimSystem_GetBattlerSpriteHeight(v0->unk_08, BattleAnimSystem_GetAttacker(v0->unk_08));
+    ctx->state = 0;
+    ctx->iterations = 0;
+    ctx->battleAnimSys = system;
+    ctx->attackerSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    ctx->attackerY = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_Y_CENTER);
+    ctx->attackerHeight = BattleAnimSystem_GetBattlerSpriteHeight(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
 
-    BattleAnimSystem_StartAnimTask(v0->unk_08, ov12_0222BA18, v0);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Meditate, ctx);
 }
 
 static const u8 Unk_ov12_0223A0B7[][5] = {
