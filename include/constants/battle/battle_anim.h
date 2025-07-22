@@ -59,5 +59,11 @@
 #define BATTLE_BG_SCREEN_REVERSE_ENEMY_ONLY 1 //< Reverse BG screen only for enemy attacking player
 #define BATTLE_BG_SCREEN_REVERSE_DEFAULT    2 //< Reverse BG screen for enemy attacking player OR enemy attacking enemy
 
+
+#define BATTLE_ANIM_ATTACKER         (1 << 1) //< Attacker
+#define BATTLE_ANIM_ATTACKER_PARTNER (1 << 2) //< Attacker's partner
+#define BATTLE_ANIM_DEFENDER         (1 << 3) //< Defender
+#define BATTLE_ANIM_DEFENDER_PARTNER (1 << 4) //< Defender's partner
+
 // clang-format on
 #endif // POKEPLATINUM_CONSTANTS_BATTLE_ANIM_H
