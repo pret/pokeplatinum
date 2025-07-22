@@ -8,7 +8,7 @@
 void BattleAnimScriptFunc_QuickAttack(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_DrillPeck(BattleAnimSystem *param0);
 void ov12_0222FE30(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
-void ov12_022300C4(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_Confusion(BattleAnimSystem *param0);
 void ov12_022303D0(BattleAnimSystem *param0);
 void ov12_02230754(BattleAnimSystem *param0);
 void ov12_02230804(BattleAnimSystem *param0);

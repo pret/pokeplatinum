@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 #include "constants/graphics.h"
+#include "constants/battle/battle_anim.h"
 
 #include "overlay012/battle_anim_system.h"
 #include "overlay012/ov12_02225864.h"
@@ -104,20 +105,43 @@ typedef struct {
     int unk_F8;
 } UnkStruct_ov12_0222FC44;
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    SpriteManager *unk_04;
-    int unk_08;
-    int unk_0C;
-    XYTransformContext unk_10;
-    XYTransformContext unk_34;
-    ManagedSprite *unk_58;
-    PokemonSprite *unk_5C;
-    s16 unk_60;
-    s16 unk_62;
-    s16 unk_64;
-    s16 unk_66;
-} UnkStruct_ov12_0222FF80;
+typedef struct ConfusionContext {
+    BattleAnimSystem *battleAnimSys;
+    SpriteManager *pokemonSpriteManager;
+    int state;
+    int unused;
+    XYTransformContext shake;
+    XYTransformContext scale;
+    ManagedSprite *monSprite;
+    PokemonSprite *defenderSprite;
+    s16 defenderX;
+    s16 defenderY;
+    s16 jitterDir;
+    s16 defenderShadowHeight;
+} ConfusionContext;
+
+enum ConfusionState {
+    CONFUSION_STATE_GROW = 0,
+    CONFUSION_STATE_SHRINK,
+    CONFUSION_STATE_CLEANUP,
+};
+
+#define CONFUSION_SHAKE_EXTENT_X      2
+#define CONFUSION_SHAKE_EXTENT_Y      0
+#define CONFUSION_SHAKE_INTERVAL      1
+#define CONFUSION_SHAKE_CYCLES        6
+#define CONFUSION_SPRITE_PRIORITY     100
+#define CONFUSION_SPRITE_EXP_PRIORITY 1
+#define CONFUSION_BASE_SCALE_X      10
+#define CONFUSION_BASE_SCALE_Y      10
+#define CONFUSION_SCALE_X          12
+#define CONFUSION_SCALE_Y          15
+#define CONFUSION_REFERENCE_SCALE 10
+#define CONFUSION_SCALE_FRAMES 7
+#define CONFUSION_SCALE_BACK_FRAMES 4
+#define CONFUSION_BLEND_A 28
+#define CONFUSION_BLEND_B 15
+#define CONFUSION_SCALE_X_JITTER 0.1f
 
 typedef struct {
     BattleAnimSystem *unk_00;
@@ -896,84 +920,104 @@ void ov12_0222FE30(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_0222FC44, v0);
 }
 
-static void ov12_0222FF80(UnkStruct_ov12_0222FF80 *param0)
+static void ConfusionContext_Apply(ConfusionContext *ctx)
 {
-    f32 v0, v1;
+    PokemonSprite_SetAttribute(ctx->defenderSprite, MON_SPRITE_X_CENTER, ctx->defenderX + ctx->shake.x);
+    PokemonSprite_SetAttribute(ctx->defenderSprite, MON_SPRITE_Y_CENTER, ctx->defenderY + ctx->shake.y);
+    ManagedSprite_SetPositionXY(ctx->monSprite, ctx->defenderX + ctx->shake.x, ctx->defenderY + ctx->shake.y - ctx->defenderShadowHeight);
 
-    PokemonSprite_SetAttribute(param0->unk_5C, MON_SPRITE_X_CENTER, param0->unk_60 + param0->unk_10.x);
-    PokemonSprite_SetAttribute(param0->unk_5C, MON_SPRITE_Y_CENTER, param0->unk_62 + param0->unk_10.y);
-    ManagedSprite_SetPositionXY(param0->unk_58, param0->unk_60 + param0->unk_10.x, param0->unk_62 + param0->unk_10.y - param0->unk_66);
+    f32 x, y;
+    BattleAnimUtil_ConvertRelativeToAffineScale(&ctx->scale, &x, &y);
+    x += ctx->jitterDir * CONFUSION_SCALE_X_JITTER;
+    ManagedSprite_SetAffineScale(ctx->monSprite, x, y);
 
-    BattleAnimUtil_ConvertRelativeToAffineScale(&param0->unk_34, &v0, &v1);
-    v0 += (f32)(param0->unk_64 * (0.10f));
-    ManagedSprite_SetAffineScale(param0->unk_58, v0, v1);
-
-    param0->unk_64 *= -1;
+    ctx->jitterDir *= -1;
 }
 
-static void ov12_02230018(SysTask *param0, void *param1)
+static void BattleAnimTask_Confusion(SysTask *task, void *param)
 {
-    UnkStruct_ov12_0222FF80 *v0 = param1;
-    BOOL v1;
+    ConfusionContext *ctx = param;
+    BOOL active;
 
-    switch (v0->unk_08) {
-    case 0:
-        ShakeContext_Update(&v0->unk_10);
-        v1 = ScaleLerpContext_UpdateXY(&v0->unk_34);
+    switch (ctx->state) {
+    case CONFUSION_STATE_GROW:
+        ShakeContext_Update(&ctx->shake);
+        active = ScaleLerpContext_UpdateXY(&ctx->scale);
 
-        ov12_0222FF80(v0);
+        ConfusionContext_Apply(ctx);
 
-        if (v1 == 0) {
-            ScaleLerpContext_InitXY(&v0->unk_34, 12, 10, 15, 10, 10, 4);
-            v0->unk_08++;
+        if (active == FALSE) {
+            ScaleLerpContext_InitXY(
+                &ctx->scale,
+                CONFUSION_SCALE_X,
+                CONFUSION_BASE_SCALE_X,
+                CONFUSION_SCALE_Y,
+                CONFUSION_BASE_SCALE_Y,
+                CONFUSION_REFERENCE_SCALE,
+                CONFUSION_SCALE_BACK_FRAMES);
+            ctx->state++;
         }
         break;
-    case 1:
-        ShakeContext_Update(&v0->unk_10);
-        v1 = ScaleLerpContext_UpdateXY(&v0->unk_34);
+    case CONFUSION_STATE_SHRINK:
+        ShakeContext_Update(&ctx->shake);
+        active = ScaleLerpContext_UpdateXY(&ctx->scale);
 
-        ov12_0222FF80(v0);
+        ConfusionContext_Apply(ctx);
 
-        if (v1 == 0) {
-            PokemonSprite_SetAttribute(v0->unk_5C, MON_SPRITE_X_CENTER, v0->unk_60);
-            PokemonSprite_SetAttribute(v0->unk_5C, MON_SPRITE_Y_CENTER, v0->unk_62);
-            v0->unk_08++;
+        if (active == FALSE) {
+            PokemonSprite_SetAttribute(ctx->defenderSprite, MON_SPRITE_X_CENTER, ctx->defenderX);
+            PokemonSprite_SetAttribute(ctx->defenderSprite, MON_SPRITE_Y_CENTER, ctx->defenderY);
+            ctx->state++;
         }
         break;
-    case 2:
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
-        Heap_Free(v0);
+    case CONFUSION_STATE_CLEANUP:
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         return;
     }
 
-    SpriteSystem_DrawSprites(v0->unk_04);
+    SpriteSystem_DrawSprites(ctx->pokemonSpriteManager);
 }
 
-void ov12_022300C4(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_Confusion(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_0222FF80 *v0 = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222FF80));
+    ConfusionContext *ctx = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(system), sizeof(ConfusionContext));
 
-    v0->unk_00 = param0;
-    v0->unk_04 = BattleAnimSystem_GetPokemonSpriteManager(v0->unk_00);
-    v0->unk_08 = 0;
-    v0->unk_0C = 0;
-    v0->unk_5C = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00));
-    v0->unk_60 = PokemonSprite_GetAttribute(v0->unk_5C, MON_SPRITE_X_CENTER);
-    v0->unk_62 = PokemonSprite_GetAttribute(v0->unk_5C, MON_SPRITE_Y_CENTER);
-    v0->unk_66 = PokemonSprite_GetAttribute(v0->unk_5C, MON_SPRITE_SHADOW_HEIGHT);
+    ctx->battleAnimSys = system;
+    ctx->pokemonSpriteManager = BattleAnimSystem_GetPokemonSpriteManager(ctx->battleAnimSys);
+    ctx->state = 0;
+    ctx->unused = 0;
+    ctx->defenderSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetDefender(ctx->battleAnimSys));
+    ctx->defenderX = PokemonSprite_GetAttribute(ctx->defenderSprite, MON_SPRITE_X_CENTER);
+    ctx->defenderY = PokemonSprite_GetAttribute(ctx->defenderSprite, MON_SPRITE_Y_CENTER);
+    ctx->defenderShadowHeight = PokemonSprite_GetAttribute(ctx->defenderSprite, MON_SPRITE_SHADOW_HEIGHT);
 
-    ShakeContext_Init(&v0->unk_10, 2, 0, 1, 6);
-    v0->unk_58 = BattleAnimSystem_GetPokemonSprite(v0->unk_00, 0);
+    ShakeContext_Init(
+        &ctx->shake,
+        CONFUSION_SHAKE_EXTENT_X,
+        CONFUSION_SHAKE_EXTENT_Y,
+        CONFUSION_SHAKE_INTERVAL,
+        CONFUSION_SHAKE_CYCLES);
+    ctx->monSprite = BattleAnimSystem_GetPokemonSprite(ctx->battleAnimSys, BATTLE_ANIM_MON_SPRITE_0);
 
-    ManagedSprite_SetExplicitOamMode(v0->unk_58, GX_OAM_MODE_XLU);
-    ManagedSprite_SetAffineOverwriteMode(v0->unk_58, AFFINE_OVERWRITE_MODE_DOUBLE);
-    ManagedSprite_SetPriority(v0->unk_58, 100);
-    ManagedSprite_SetExplicitPriority(v0->unk_58, 1);
+    ManagedSprite_SetExplicitOamMode(ctx->monSprite, GX_OAM_MODE_XLU);
+    ManagedSprite_SetAffineOverwriteMode(ctx->monSprite, AFFINE_OVERWRITE_MODE_DOUBLE);
+    ManagedSprite_SetPriority(ctx->monSprite, CONFUSION_SPRITE_PRIORITY);
+    ManagedSprite_SetExplicitPriority(ctx->monSprite, CONFUSION_SPRITE_EXP_PRIORITY);
 
-    ScaleLerpContext_InitXY(&v0->unk_34, 10, 12, 10, 15, 10, 7);
-    v0->unk_64 = 1;
-    BattleAnimUtil_SetEffectBgBlending(v0->unk_00, 28, 15);
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02230018, v0);
+    ScaleLerpContext_InitXY(
+        &ctx->scale,
+        CONFUSION_BASE_SCALE_X,
+        CONFUSION_SCALE_X,
+        CONFUSION_BASE_SCALE_Y,
+        CONFUSION_SCALE_Y,
+        CONFUSION_REFERENCE_SCALE,
+        CONFUSION_SCALE_FRAMES);
+
+    ctx->jitterDir = 1;
+
+    BattleAnimUtil_SetEffectBgBlending(ctx->battleAnimSys, CONFUSION_BLEND_A, CONFUSION_BLEND_B);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Confusion, ctx);
 }
 
 static void ov12_02230194(UnkStruct_ov12_02230194 *param0, void *param1)
