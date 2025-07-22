@@ -7,7 +7,6 @@
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/ov12_02235254.h"
 #include "overlay012/ov12_02225864.h"
-#include "overlay012/struct_ov12_0222660C_decl.h"
 #include "overlay012/struct_ov12_022267D4_decl.h"
 #include "overlay012/struct_ov12_02235350.h"
 #include "overlay012/ov12_02235254.h"
@@ -83,8 +82,8 @@ typedef struct {
     UnkStruct_ov12_0223595C unk_04;
     ManagedSprite *unk_20;
     ManagedSprite *unk_24;
-    UnkStruct_ov12_0222660C *unk_28;
-    UnkStruct_ov12_02226454 unk_2C;
+    BgScrollContext *unk_28;
+    AlphaFadeContext unk_2C;
 } UnkStruct_ov12_0222E080;
 
 typedef struct {
@@ -694,12 +693,12 @@ static void ov12_0222E080(SysTask *param0, void *param1)
         v0->unk_04.unk_00++;
         break;
     case 1:
-        if (ov12_02226454(&v0->unk_2C) == 0) {
+        if (AlphaFadeContext_IsDone(&v0->unk_2C) == 0) {
             break;
         }
 
         v0->unk_00 = 0;
-        v0->unk_28 = ov12_0222662C(0, 160, (2 * 0xffff) / 360, 12 * FX32_ONE, 2 * 100, BattleAnimSystem_GetBgID(v0->unk_04.battleAnimSystem, 1), 0, ov12_022266E8(0, 0), BattleAnimSystem_GetHeapID(v0->unk_04.battleAnimSystem));
+        v0->unk_28 = BgScrollContext_New(0, 160, (2 * 0xffff) / 360, 12 * FX32_ONE, 2 * 100, BattleAnimSystem_GetBgID(v0->unk_04.battleAnimSystem, 1), 0, BattleAnimUtil_MakeBgOffsetValue(0, 0), BattleAnimSystem_GetHeapID(v0->unk_04.battleAnimSystem));
         v0->unk_04.unk_00++;
         break;
     case 2:
@@ -709,12 +708,12 @@ static void ov12_0222E080(SysTask *param0, void *param1)
             break;
         }
 
-        ov12_0222669C(v0->unk_28);
-        ov12_02226424(&v0->unk_2C, 2, 16, 16, 2, 16);
+        BgScrollContext_Free(v0->unk_28);
+        AlphaFadeContext_Init(&v0->unk_2C, 2, 16, 16, 2, 16);
         v0->unk_04.unk_00++;
         break;
     case 3:
-        if (ov12_02226454(&v0->unk_2C) == 0) {
+        if (AlphaFadeContext_IsDone(&v0->unk_2C) == 0) {
             break;
         }
 
@@ -756,7 +755,7 @@ void ov12_0222E1A8(BattleAnimSystem *param0)
     v0->unk_24 = BattleAnimSystem_GetPokemonSprite(v0->unk_04.battleAnimSystem, 1);
     ManagedSprite_SetExplicitOamMode(v0->unk_24, GX_OAM_MODE_XLU);
 
-    ov12_02226424(&v0->unk_2C, 16, 2, 2, 16, 16);
+    AlphaFadeContext_Init(&v0->unk_2C, 16, 2, 2, 16, 16);
     BattleAnimSystem_LoadBaseBg(v0->unk_04.battleAnimSystem, 2);
 
     Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);

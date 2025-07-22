@@ -8,8 +8,8 @@
 #include "battle/battle_anim_battler_context.h"
 #include "battle/struct_ov16_02265BBC.h"
 #include "overlay012/struct_ov12_02223764.h"
-#include "overlay012/struct_ov12_02226504_decl.h"
 #include "overlay012/struct_ov12_022380DC.h"
+#include "overlay012/struct_ov12_02223764.h"
 
 #include "bg_window.h"
 #include "palette.h"
@@ -25,6 +25,14 @@
 #define BATTLE_ANIM_SCRIPT_MAX_POKEMON_SPRITES  5
 #define BATTLE_ANIM_SCRIPT_MAX_SPRITES          10
 #define BATTLE_ANIM_SCRIPT_MAX_SPRITE_MANAGERS  4
+
+#define BATTLE_BG_WINDOW BG_LAYER_MAIN_1
+#define BATTLE_BG_BASE   BG_LAYER_MAIN_2
+#define BATTLE_BG_EFFECT BG_LAYER_MAIN_3
+
+#define BATTLE_BG_BLENDMASK_WINDOW GX_BLEND_PLANEMASK_BG1
+#define BATTLE_BG_BLENDMASK_BASE   GX_BLEND_PLANEMASK_BG2
+#define BATTLE_BG_BLENDMASK_EFFECT GX_BLEND_PLANEMASK_BG3
 
 enum BattleAnimSystemArc {
     BATTLE_ANIM_SYSTEM_ARC_BATT_BG = 0,
@@ -146,9 +154,10 @@ typedef struct {
     int unk_08;
 } UnkStruct_ov12_022224F8_sub1;
 
+struct UnkStruct_ov12_02226504;
 typedef struct {
     UnkStruct_ov12_022224F8_sub1 unk_00[16];
-    UnkStruct_ov12_02226504 *unk_C0;
+    struct UnkStruct_ov12_02226504 *unk_C0;
 } UnkStruct_ov12_022224F8;
 
 typedef struct UnkStruct_ov12_022222D4_t {

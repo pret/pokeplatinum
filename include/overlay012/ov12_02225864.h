@@ -1,13 +1,14 @@
 #ifndef POKEPLATINUM_OV12_02225864_H
 #define POKEPLATINUM_OV12_02225864_H
 
+#include "nitro/hw/common/lcd.h"
 #include "overlay012/battle_anim_system.h"
-#include "overlay012/struct_ov12_02226504_decl.h"
-#include "overlay012/struct_ov12_0222660C_decl.h"
 #include "overlay012/struct_ov12_022267D4_decl.h"
 
+#include "buffer_manager.h"
 #include "palette.h"
 #include "pokemon_sprite.h"
+#include "screen_scroll_manager.h"
 #include "sprite.h"
 
 #define REVOLUTION_CONTEXT_OVAL_RADIUS_X FX32_CONST(32)
@@ -16,6 +17,11 @@
 #define MAX_AFTERIMAGES               4
 #define AFTERIMAGE_TRANSFORM_POSITION 0
 #define AFTERIMAGE_TRANSFORM_SCALE    1
+
+#define BG_OFFSET_X_MASK  0xFFFF
+#define BG_OFFSET_Y_MASK  0xFFFF
+#define BG_OFFSET_X_SHIFT 0
+#define BG_OFFSET_Y_SHIFT 16
 
 enum BattleAnimPositionType {
     BATTLE_ANIM_POSITION_MON_X = 0,
@@ -92,9 +98,34 @@ typedef struct AfterimageContext {
 } AfterimageContext;
 
 typedef struct {
-    XYTransformContext unk_00;
-    int unk_24;
-} UnkStruct_ov12_02226454;
+    XYTransformContext lerp;
+    int done;
+} AlphaFadeContext;
+
+typedef void (*VBlankDMAFunc)(void *);
+
+typedef struct {
+    SysTask *onVBlankTask;
+    SysTask *postVBlankTask;
+    BOOL doDMA;
+    BOOL swapBuffers;
+    VBlankDMAFunc dmaFunc;
+    VBlankDMAFunc swapBufferFunc;
+    void *param;
+} VBlankDMAController;
+
+typedef struct UnkStruct_ov12_02226504 {
+    VBlankDMAController unk_00;
+    BufferManager *bufferManager;
+    u32 unk_20[HW_LCD_HEIGHT];
+    u32 unk_320[HW_LCD_HEIGHT];
+    u32 unk_620;
+} UnkStruct_ov12_02226504;
+
+typedef struct BgScrollContext {
+    VBlankDMAController dmaController;
+    ScreenScrollManager *screenScrollMgr;
+} BgScrollContext;
 
 void ov12_02225864(int param0, int param1, s16 *param2, s16 *param3);
 void ov12_02225898(BattleAnimSystem *param0, int param1, s16 *param2, s16 *param3);
@@ -145,17 +176,17 @@ BOOL ov12_0222619C(XYTransformContext *param0, s16 param1, s16 param2, PokemonSp
 void Afterimage_Init(AfterimageContext *ctx, XYTransformContext *transformCtx, XYTransformFunc transformFunc, s16 x, s16 y, u16 delay, u8 count, u8 mode, ManagedSprite *sprite0, ManagedSprite *sprite1, ManagedSprite *sprite2, ManagedSprite *sprite3);
 BOOL Afterimage_Update(AfterimageContext *param0);
 void RevolutionContext_InitOvalRevolutions(XYTransformContext *param0, int param1, int param2);
-void ov12_02226424(UnkStruct_ov12_02226454 *param0, s16 param1, s16 param2, s16 param3, s16 param4, int param5);
-BOOL ov12_02226454(const UnkStruct_ov12_02226454 *param0);
+void AlphaFadeContext_Init(AlphaFadeContext *param0, s16 param1, s16 param2, s16 param3, s16 param4, int param5);
+BOOL AlphaFadeContext_IsDone(const AlphaFadeContext *param0);
 UnkStruct_ov12_02226504 *ov12_02226544(u32 param0, u32 param1, enum HeapId heapID);
 void ov12_022265C0(UnkStruct_ov12_02226504 *param0);
 void *ov12_022265E4(const UnkStruct_ov12_02226504 *param0);
 void ov12_022265F8(UnkStruct_ov12_02226504 *param0);
-UnkStruct_ov12_0222660C *ov12_0222662C(u8 param0, u8 param1, u16 param2, fx32 param3, s16 param4, u32 param5, u32 param6, u32 param7, int heapID);
-void ov12_0222669C(UnkStruct_ov12_0222660C *param0);
-void *ov12_022266C0(const UnkStruct_ov12_0222660C *param0);
-void ov12_022266D4(UnkStruct_ov12_0222660C *param0);
-u32 ov12_022266E8(u16 param0, u16 param1);
+BgScrollContext *BgScrollContext_New(u8 param0, u8 param1, u16 param2, fx32 param3, s16 param4, u32 param5, u32 param6, u32 param7, enum HeapId heapID);
+void BgScrollContext_Free(BgScrollContext *param0);
+void *BgScrollContext_GetWriteBuffer(const BgScrollContext *param0);
+void BgScrollContext_Stop(BgScrollContext *param0);
+u32 BattleAnimUtil_MakeBgOffsetValue(u16 param0, u16 param1);
 u32 BattleAnimUtil_GetHOffsetRegisterForBg(int param0);
 void ov12_02226728(s16 param0, s16 param1, s16 param2, s16 param3, s16 *param4, s16 *param5);
 void ov12_02226744(s16 param0, s16 param1, s16 param2, s16 param3, fx32 *param4);

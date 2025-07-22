@@ -1,7 +1,10 @@
 #include "overlay012/ov12_0222F700.h"
 
+#include "nitro/gx/g2.h"
+#include "nitro/hw/common/lcd.h"
 #include <nitro.h>
 #include <string.h>
+#include "constants/battle.h"
 #include "constants/graphics.h"
 #include "constants/battle/battle_anim.h"
 
@@ -9,8 +12,6 @@
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/ov12_02235254.h"
 #include "overlay012/ov12_02225864.h"
-#include "overlay012/struct_ov12_02226504_decl.h"
-#include "overlay012/struct_ov12_0222660C_decl.h"
 #include "pch/global_pch.h"
 
 #include "battle_script_battlers.h"
@@ -105,6 +106,9 @@ typedef struct {
     int unk_F8;
 } UnkStruct_ov12_0222FC44;
 
+// -------------------------------------------------------------------
+// Confusion
+// -------------------------------------------------------------------
 typedef struct ConfusionContext {
     BattleAnimSystem *battleAnimSys;
     SpriteManager *pokemonSpriteManager;
@@ -143,19 +147,44 @@ enum ConfusionState {
 #define CONFUSION_BLEND_B 15
 #define CONFUSION_SCALE_X_JITTER 0.1f
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    int unk_04;
-    int unk_08;
-    PokemonSprite *unk_0C;
-    s16 unk_10;
-    s16 unk_12;
-    s16 unk_14;
-    s16 unk_16;
-    UnkStruct_ov12_0222660C *unk_18;
-    XYTransformContext unk_1C;
-    UnkStruct_ov12_02226454 unk_40;
-} UnkStruct_ov12_02230194;
+// -------------------------------------------------------------------
+// Acid Armor
+// -------------------------------------------------------------------
+typedef struct AcidArmorContext {
+    BattleAnimSystem *battleAnimSys;
+    int state;
+    int delay;
+    PokemonSprite *attackerSprite;
+    s16 attackerX;
+    s16 attackerY;
+    s16 scrollStartY;
+    s16 scrollEndY;
+    BgScrollContext *bgScroll;
+    XYTransformContext pos;
+    AlphaFadeContext alphaFade;
+} AcidArmorContext;
+
+enum AcidArmorState {
+    ACID_ARMOR_STATE_SCROLL = 0,
+    ACID_ARMOR_STATE_FADE,
+    ACID_ARMOR_STATE_WAIT,
+    ACID_ARMOR_STATE_FADE_BACK,
+    ACID_ARMOR_STATE_CLEANUP,
+};
+
+#define ACID_ARMOR_MOVE_X                 80
+#define ACID_ARMOR_MOVE_Y                 40
+#define ACID_ARMOR_MOVE_FRAMES            24
+#define ACID_ARMOR_SCROLL_CORRECTION      8
+#define ACID_ARMOR_SCROLL_ANGLE_INCREMENT DEG_TO_IDX(5)
+#define ACID_ARMOR_SCROLL_AMPLITUDE       FX32_CONST(8)
+#define ACID_ARMOR_SCROLL_SPEED           80
+#define ACID_ARMOR_ALPHA_BASE_START       31
+#define ACID_ARMOR_ALPHA_BASE_END         0
+#define ACID_ARMOR_ALPHA_EFFECT_START     0
+#define ACID_ARMOR_ALPHA_EFFECT_END       31
+#define ACID_ARMOR_ALPHA_FADE_FRAMES      16
+#define ACID_ARMOR_ALPHA_FADE_DELAY       8 // Delay before starting the second fade
 
 typedef struct {
     BattleAnimSystem *unk_00;
@@ -186,9 +215,9 @@ typedef struct {
     int unk_08;
     int unk_0C;
     PokemonSprite *unk_10;
-    UnkStruct_ov12_0222660C *unk_14;
+    BgScrollContext *unk_14;
     PaletteData *unk_18;
-    UnkStruct_ov12_02226454 unk_1C;
+    AlphaFadeContext unk_1C;
     int unk_44;
     ManagedSprite *unk_48;
 } UnkStruct_ov12_02230910;
@@ -258,7 +287,7 @@ typedef struct {
     s16 unk_18;
     s16 unk_1A;
     XYTransformContext unk_1C;
-    UnkStruct_ov12_02226454 unk_40;
+    AlphaFadeContext unk_40;
     s16 unk_68;
 } UnkStruct_ov12_02231390;
 
@@ -274,7 +303,7 @@ typedef struct {
     int unk_40;
     XYTransformContext unk_44;
     XYTransformContext unk_68;
-    UnkStruct_ov12_02226454 unk_8C;
+    AlphaFadeContext unk_8C;
     s16 unk_B4;
     s16 unk_B6;
 } UnkStruct_ov12_02231508;
@@ -287,7 +316,7 @@ typedef struct {
     PokemonSprite *unk_10;
     ManagedSprite *unk_14;
     XYTransformContext unk_18;
-    UnkStruct_ov12_02226454 unk_3C;
+    AlphaFadeContext unk_3C;
     s16 unk_64;
     s16 unk_66;
     int unk_68;
@@ -344,7 +373,7 @@ typedef struct {
     int unk_10;
     ManagedSprite *unk_14;
     XYTransformContext unk_18;
-    UnkStruct_ov12_02226454 unk_3C;
+    AlphaFadeContext unk_3C;
     int unk_64;
     int unk_68;
     int unk_6C;
@@ -426,7 +455,7 @@ typedef struct {
     XYTransformContext unk_70;
     int unk_94;
     int unk_98;
-    UnkStruct_ov12_02226454 unk_9C;
+    AlphaFadeContext unk_9C;
     PaletteData *unk_C4;
     BOOL unk_C8;
     BOOL unk_CC;
@@ -455,7 +484,7 @@ typedef struct {
     int unk_14;
     ManagedSprite *unk_18[6];
     XYTransformContext unk_30[6];
-    UnkStruct_ov12_02226454 unk_108;
+    AlphaFadeContext unk_108;
     s16 unk_130;
     s16 unk_132;
 } UnkStruct_ov12_0223351C;
@@ -502,7 +531,7 @@ typedef struct {
     SpriteManager *unk_08;
     int unk_0C;
     ManagedSprite *unk_10;
-    UnkStruct_ov12_02226454 unk_14;
+    AlphaFadeContext unk_14;
 } UnkStruct_ov12_02233F4C;
 
 typedef struct {
@@ -1020,147 +1049,170 @@ void BattleAnimScriptFunc_Confusion(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Confusion, ctx);
 }
 
-static void ov12_02230194(UnkStruct_ov12_02230194 *param0, void *param1)
+static void AcidArmorContext_ClearBuffer(AcidArmorContext *ctx, void *buffer)
 {
-    u32 v0 = ((-param0->unk_12 & 0xffff) << 16) | (-param0->unk_10 & 0xffff);
-    MI_CpuFill32(param1, v0, sizeof(u32) * 192);
+    u32 value = ((-ctx->attackerY & BG_OFFSET_Y_MASK) << BG_OFFSET_Y_SHIFT) | (-ctx->attackerX & BG_OFFSET_X_MASK);
+    MI_CpuFill32(buffer, value, sizeof(u32) * HW_LCD_HEIGHT);
 }
 
-static BOOL ov12_022301B4(UnkStruct_ov12_02230194 *param0)
+static BOOL AcidArmorContext_UpdateBgScroll(AcidArmorContext *ctx)
 {
-    u32 *v0;
-    int v1;
-    BOOL v2;
-    s16 v3, v4;
-    int v5;
+    u32 *writeBuffer = BgScrollContext_GetWriteBuffer(ctx->bgScroll);
+    AcidArmorContext_ClearBuffer(ctx, writeBuffer);
 
-    v0 = ov12_022266C0(param0->unk_18);
-    ov12_02230194(param0, v0);
-    v2 = PosLerpContext_Update(&param0->unk_1C);
+    BOOL active = PosLerpContext_Update(&ctx->pos);
 
-    for (v1 = param0->unk_14; v1 <= param0->unk_16; v1++) {
-        v3 = v0[v1] & 0xffff;
-        v4 = v0[v1] >> 16;
+    for (int y = ctx->scrollStartY; y <= ctx->scrollEndY; y++) {
+        s16 xOff = writeBuffer[y] & BG_OFFSET_X_MASK;
+        s16 yOff = writeBuffer[y] >> BG_OFFSET_Y_SHIFT;
 
-        v4 -= ((param0->unk_16 - v1) * (param0->unk_1C.y)) / 100;
-        v3 -= (((param0->unk_14 + (80 / 2)) - v1) * (param0->unk_1C.x)) / 100;
+        yOff -= ((ctx->scrollEndY - y) * ctx->pos.y) / 100;
+        xOff -= ((ctx->scrollStartY + MON_SPRITE_FRAME_HEIGHT / 2 - y) * ctx->pos.x) / 100;
 
-        v5 = v1 - 1;
-
-        if (v5 < 0) {
-            v5 += 192;
+        int prevY = y - 1;
+        if (prevY < 0) {
+            prevY += HW_LCD_HEIGHT;
         }
 
-        v0[v5] = ov12_022266E8(v3, v4);
+        writeBuffer[prevY] = BattleAnimUtil_MakeBgOffsetValue(xOff, yOff);
     }
 
-    return v2;
+    return active;
 }
 
-static void ov12_0223025C(SysTask *param0, void *param1)
+static void BattleAnimTask_AcidArmor(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02230194 *v0 = param1;
+    AcidArmorContext *ctx = param;
 
-    switch (v0->unk_04) {
-    case 0:
-        if (ov12_022301B4(v0) == 0) {
-            v0->unk_04++;
-            ov12_022357EC(v0->unk_00, 31, 0);
-            ov12_02226424(&v0->unk_40, 31, 0, 0, 31, 16);
+    switch (ctx->state) {
+    case ACID_ARMOR_STATE_SCROLL:
+        if (AcidArmorContext_UpdateBgScroll(ctx) == FALSE) {
+            ctx->state++;
+            BattleAnimUtil_SetEffectBaseBgBlending(ctx->battleAnimSys, ACID_ARMOR_ALPHA_BASE_START, ACID_ARMOR_ALPHA_EFFECT_START);
+            AlphaFadeContext_Init(
+                &ctx->alphaFade,
+                ACID_ARMOR_ALPHA_BASE_START,
+                ACID_ARMOR_ALPHA_BASE_END,
+                ACID_ARMOR_ALPHA_EFFECT_START,
+                ACID_ARMOR_ALPHA_EFFECT_END,
+                ACID_ARMOR_ALPHA_FADE_FRAMES);
         }
         break;
-    case 1:
-        ov12_022301B4(v0);
+    case ACID_ARMOR_STATE_FADE:
+        AcidArmorContext_UpdateBgScroll(ctx);
 
-        if (ov12_02226454(&v0->unk_40)) {
-            v0->unk_04++;
+        if (AlphaFadeContext_IsDone(&ctx->alphaFade)) {
+            ctx->state++;
 
-            ov12_022266D4(v0->unk_18);
-            v0->unk_08 = 0;
+            BgScrollContext_Stop(ctx->bgScroll);
+            ctx->delay = 0;
         }
         break;
-    case 2:
-        Bg_SetOffset(BattleAnimSystem_GetBgConfig(v0->unk_00), 2, 0, -v0->unk_10);
-        Bg_SetOffset(BattleAnimSystem_GetBgConfig(v0->unk_00), 2, 3, -v0->unk_12);
+    case ACID_ARMOR_STATE_WAIT:
+        Bg_SetOffset(BattleAnimSystem_GetBgConfig(ctx->battleAnimSys), BATTLE_BG_BASE, BG_OFFSET_UPDATE_SET_X, -ctx->attackerX);
+        Bg_SetOffset(BattleAnimSystem_GetBgConfig(ctx->battleAnimSys), BATTLE_BG_BASE, BG_OFFSET_UPDATE_SET_Y, -ctx->attackerY);
 
-        v0->unk_08++;
+        ctx->delay++;
 
-        if (v0->unk_08 > 8) {
-            ov12_02226424(&v0->unk_40, 0, 31, 31, 0, 16);
-            v0->unk_04++;
+        if (ctx->delay > ACID_ARMOR_ALPHA_FADE_DELAY) {
+            AlphaFadeContext_Init(
+                &ctx->alphaFade,
+                ACID_ARMOR_ALPHA_BASE_END,
+                ACID_ARMOR_ALPHA_BASE_START,
+                ACID_ARMOR_ALPHA_EFFECT_END,
+                ACID_ARMOR_ALPHA_EFFECT_START,
+                ACID_ARMOR_ALPHA_FADE_FRAMES);
+            ctx->state++;
         }
         break;
-    case 3:
-        if (ov12_02226454(&v0->unk_40)) {
-            PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_HIDE, 0);
-            v0->unk_04++;
+    case ACID_ARMOR_STATE_FADE_BACK:
+        if (AlphaFadeContext_IsDone(&ctx->alphaFade)) {
+            PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_HIDE, FALSE);
+            ctx->state++;
         }
         break;
-    case 4:
-        ov12_0222669C(v0->unk_18);
+    case ACID_ARMOR_STATE_CLEANUP:
+        BgScrollContext_Free(ctx->bgScroll);
 
-        Bg_SetPriority(BattleAnimSystem_GetBgLayer(v0->unk_00, 1), BattleAnimSystem_GetBgPriority(v0->unk_00, 1));
-        Bg_SetPriority(BG_LAYER_MAIN_0, BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00));
+        Bg_SetPriority(
+            BattleAnimSystem_GetBgLayer(ctx->battleAnimSys, BATTLE_ANIM_BG_BASE),
+            BattleAnimSystem_GetBgPriority(ctx->battleAnimSys, BATTLE_ANIM_BG_BASE));
+        Bg_SetPriority(BG_LAYER_MAIN_0, BattleAnimSystem_GetPokemonSpritePriority(ctx->battleAnimSys));
 
-        Bg_ClearTilesRange(BattleAnimSystem_GetBgLayer(v0->unk_00, 1), 0x4000, 0, BattleAnimSystem_GetHeapID(v0->unk_00));
-        Bg_ClearTilemap(BattleAnimSystem_GetBgConfig(v0->unk_00), BattleAnimSystem_GetBgLayer(v0->unk_00, 1));
+        Bg_ClearTilesRange(
+            BattleAnimSystem_GetBgLayer(ctx->battleAnimSys, BATTLE_ANIM_BG_BASE),
+            0x4000,
+            0,
+            BattleAnimSystem_GetHeapID(ctx->battleAnimSys));
 
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
-        Heap_Free(v0);
+        Bg_ClearTilemap(
+            BattleAnimSystem_GetBgConfig(ctx->battleAnimSys),
+            BattleAnimSystem_GetBgLayer(ctx->battleAnimSys, BATTLE_ANIM_BG_BASE));
+
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         break;
     default:
         break;
     }
 }
 
-void ov12_022303D0(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_AcidArmor(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_02230194 *v0;
-    int v1;
-    SysTask *v2;
-    int v3;
+    AcidArmorContext *ctx = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(system), sizeof(AcidArmorContext));
+    memset(ctx, 0, sizeof(AcidArmorContext));
 
-    v0 = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_02230194));
-    memset(v0, 0, sizeof(UnkStruct_ov12_02230194));
+    ctx->battleAnimSys = system;
 
-    v0->unk_00 = param0;
+    SysTask *task = BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_AcidArmor, ctx);
 
-    v2 = BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_0223025C, v0);
+    ctx->attackerSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    ctx->attackerX = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_X_CENTER);
+    ctx->attackerY = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_Y_CENTER);
+    ctx->attackerY -= PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_SHADOW_HEIGHT);
 
-    v0->unk_0C = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
-    v0->unk_10 = PokemonSprite_GetAttribute(v0->unk_0C, MON_SPRITE_X_CENTER);
-    v0->unk_12 = PokemonSprite_GetAttribute(v0->unk_0C, MON_SPRITE_Y_CENTER);
-    v0->unk_12 -= PokemonSprite_GetAttribute(v0->unk_0C, MON_SPRITE_SHADOW_HEIGHT);
-    v0->unk_10 -= 80 / 2;
-    v0->unk_12 -= 80 / 2;
+    // Adjust coordinates to the top-left corner of the sprite
+    ctx->attackerX -= MON_SPRITE_FRAME_WIDTH / 2;
+    ctx->attackerY -= MON_SPRITE_FRAME_HEIGHT / 2;
 
-    PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_HIDE, 1);
+    PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_HIDE, TRUE);
 
-    v1 = BattleAnimUtil_GetTransformDirection(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
+    int dir = BattleAnimUtil_GetTransformDirection(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
 
-    v0->unk_14 = v0->unk_12 + -8;
-    v0->unk_16 = v0->unk_12 + 80 - -8;
+    ctx->scrollStartY = ctx->attackerY - ACID_ARMOR_SCROLL_CORRECTION;
+    ctx->scrollEndY = ctx->attackerY + MON_SPRITE_FRAME_HEIGHT + ACID_ARMOR_SCROLL_CORRECTION;
 
-    if (v0->unk_14 < 0) {
-        v0->unk_14 = 0;
+    if (ctx->scrollStartY < 0) {
+        ctx->scrollStartY = 0;
     }
 
-    if (v0->unk_16 > 192) {
-        v0->unk_16 = 192;
+    if (ctx->scrollEndY > HW_LCD_HEIGHT) {
+        ctx->scrollEndY = HW_LCD_HEIGHT;
     }
 
-    v0->unk_18 = ov12_0222662C(v0->unk_14, v0->unk_16, (5 * 0xffff) / 360, (8 * FX32_ONE) * v1, 80, BattleAnimSystem_GetBgID(param0, 1), SysTask_GetPriority(v2) + 1, ov12_022266E8(v0->unk_10, v0->unk_12), BattleAnimSystem_GetHeapID(param0));
-    PosLerpContext_Init(&v0->unk_1C, 0, 80, 0, 40, 24);
-    v0->unk_1C.data[1] *= v1;
+    ctx->bgScroll = BgScrollContext_New(
+        ctx->scrollStartY,
+        ctx->scrollEndY,
+        ACID_ARMOR_SCROLL_ANGLE_INCREMENT,
+        ACID_ARMOR_SCROLL_AMPLITUDE * dir,
+        ACID_ARMOR_SCROLL_SPEED,
+        BattleAnimSystem_GetBgID(system, BATTLE_ANIM_BG_BASE),
+        SysTask_GetPriority(task) + 1,
+        BattleAnimUtil_MakeBgOffsetValue(ctx->attackerX, ctx->attackerY),
+        BattleAnimSystem_GetHeapID(system));
 
-    v3 = BattleAnimUtil_GetBattlerType(v0->unk_00, BattleAnimSystem_GetAttacker(param0));
+    PosLerpContext_Init(&ctx->pos, 0, ACID_ARMOR_MOVE_X, 0, ACID_ARMOR_MOVE_Y, ACID_ARMOR_MOVE_FRAMES);
+    ctx->pos.data[XY_PARAM_STEP_SIZE_X] *= dir;
 
-    if ((v3 == 3) || (v3 == 4)) {
-        Bg_SetPriority(BattleAnimSystem_GetBgLayer(v0->unk_00, 1), BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00));
-        Bg_SetPriority(BG_LAYER_MAIN_0, BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00) + 1);
+    int battlerType = BattleAnimUtil_GetBattlerType(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(system));
+    if (battlerType == BATTLER_TYPE_ENEMY_SIDE_SLOT_1 || battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_2) {
+        Bg_SetPriority(
+            BattleAnimSystem_GetBgLayer(ctx->battleAnimSys, BATTLE_ANIM_BG_BASE),
+            BattleAnimSystem_GetPokemonSpritePriority(ctx->battleAnimSys));
+        Bg_SetPriority(BG_LAYER_MAIN_0, BattleAnimSystem_GetPokemonSpritePriority(ctx->battleAnimSys) + 1);
     }
 
-    ov12_0223025C(v2, v0);
+    BattleAnimTask_AcidArmor(task, ctx);
 }
 
 static void ov12_02230540(SysTask *param0, void *param1)
@@ -1347,7 +1399,7 @@ static BOOL ov12_02230910(UnkStruct_ov12_02230910 *param0)
 
     switch (param0->unk_08) {
     case 0:
-        if (ov12_02226454(&param0->unk_1C) == 1) {
+        if (AlphaFadeContext_IsDone(&param0->unk_1C) == 1) {
             param0->unk_08++;
             param0->unk_44 = 32;
         }
@@ -1358,13 +1410,13 @@ static BOOL ov12_02230910(UnkStruct_ov12_02230910 *param0)
         if (param0->unk_44 < 0) {
             param0->unk_08++;
 
-            ov12_02226424(&param0->unk_1C, 8, 0, 8, 16, 24);
+            AlphaFadeContext_Init(&param0->unk_1C, 8, 0, 8, 16, 24);
         }
         break;
     case 2:
-        if (ov12_02226454(&param0->unk_1C) == 1) {
+        if (AlphaFadeContext_IsDone(&param0->unk_1C) == 1) {
             param0->unk_08++;
-            ov12_0222669C(param0->unk_14);
+            BgScrollContext_Free(param0->unk_14);
         }
         break;
     case 3:
@@ -1429,8 +1481,8 @@ void ov12_02230A8C(BattleAnimSystem *param0)
     v0->unk_00 = param0;
     v0->unk_18 = BattleAnimSystem_GetPaletteData(v0->unk_00);
 
-    ov12_022357EC(v0->unk_00, 0, 16);
-    ov12_02226424(&v0->unk_1C, 0, 8, 16, 8, 24);
+    BattleAnimUtil_SetEffectBaseBgBlending(v0->unk_00, 0, 16);
+    AlphaFadeContext_Init(&v0->unk_1C, 0, 8, 16, 8, 24);
 
     v0->unk_10 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00));
 
@@ -1452,7 +1504,7 @@ void ov12_02230A8C(BattleAnimSystem *param0)
         ManagedSprite_SetDrawFlag(v0->unk_48, 0);
     }
 
-    v0->unk_14 = ov12_0222662C(v3, v3 + 80, (5 * 0xffff) / 360, 5 * FX32_ONE, 100, BattleAnimSystem_GetBgID(param0, 1), 0, ov12_022266E8(-v2, -v3), BattleAnimSystem_GetHeapID(param0));
+    v0->unk_14 = BgScrollContext_New(v3, v3 + 80, (5 * 0xffff) / 360, 5 * FX32_ONE, 100, BattleAnimSystem_GetBgID(param0, 1), 0, BattleAnimUtil_MakeBgOffsetValue(-v2, -v3), BattleAnimSystem_GetHeapID(param0));
     v4 = 1 << 8;
 
     PaletteData_BlendMulti(v0->unk_18, 0, v4, 8, 0x0);
@@ -1840,12 +1892,12 @@ static void ov12_02231390(SysTask *param0, void *param1)
         if (v0->unk_0C < 0) {
             v0->unk_08++;
 
-            ov12_02226424(
+            AlphaFadeContext_Init(
                 &v0->unk_40, 0, 16, 16 - 0, 16 - 16, 32);
         }
         break;
     case 2:
-        if (ov12_02226454(&v0->unk_40)) {
+        if (AlphaFadeContext_IsDone(&v0->unk_40)) {
             ManagedSprite_SetDrawFlag(v0->unk_14, 1);
             PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_HIDE, 0);
             v0->unk_08++;
@@ -1884,7 +1936,7 @@ void ov12_02231444(BattleAnimSystem *param0)
 
     RevolutionContext_InitOvalRevolutions(&v0->unk_1C, 2, 16);
     BattleAnimUtil_SetEffectBgBlending(v0->unk_00, 16, 16 - 16);
-    ov12_02226424(&v0->unk_40, 16, 0, 16 - 16, 16 - 0, 32);
+    AlphaFadeContext_Init(&v0->unk_40, 16, 0, 16 - 16, 16 - 0, 32);
 
     v0->unk_1C.data[2] *= v1;
 
@@ -1936,11 +1988,11 @@ static BOOL ov12_02231584(UnkStruct_ov12_02231508 *param0)
             ov12_022259DC(&param0->unk_68, param0->unk_3C, param0->unk_B4, param0->unk_B6);
         } else {
             param0->unk_40++;
-            ov12_02226424(&param0->unk_8C, 16, 0, 14, 16, 8);
+            AlphaFadeContext_Init(&param0->unk_8C, 16, 0, 14, 16, 8);
         }
         break;
     case 1:
-        if (ov12_02226454(&param0->unk_8C)) {
+        if (AlphaFadeContext_IsDone(&param0->unk_8C)) {
             ManagedSprite_SetDrawFlag(param0->unk_3C, 0);
             param0->unk_40++;
         }
@@ -2078,7 +2130,7 @@ static void ov12_0223181C(SysTask *param0, void *param1)
                 v0->unk_0C++;
 
                 ManagedSprite_SetExplicitOamMode(v0->unk_14, GX_OAM_MODE_XLU);
-                ov12_02226424(
+                AlphaFadeContext_Init(
                     &v0->unk_3C, 16, 0, 0, 16, 16);
 
                 PokemonSprite_StartFade(v0->unk_10, 0, 10, 0, GX_RGB(31, 31, 31));
@@ -2086,7 +2138,7 @@ static void ov12_0223181C(SysTask *param0, void *param1)
         }
         break;
     case 2:
-        if (ov12_02226454(&v0->unk_3C)) {
+        if (AlphaFadeContext_IsDone(&v0->unk_3C)) {
             ManagedSprite_SetDrawFlag(v0->unk_14, 0);
         }
 
@@ -2483,7 +2535,7 @@ static void ov12_02232084(UnkStruct_ov12_02232084 *param0)
 {
     ScaleLerpContext_Init(&param0->unk_18, param0->unk_74 / 100, 10, param0->unk_78 / 100, param0->unk_70 / 100);
     BattleAnimUtil_SetEffectBgBlending(param0->unk_00, 16, 16 - 16);
-    ov12_02226424(&param0->unk_3C, 16, 10, 16 - 16, 16 - 10, (param0->unk_70 / 100) * 2);
+    AlphaFadeContext_Init(&param0->unk_3C, 16, 10, 16 - 16, 16 - 10, (param0->unk_70 / 100) * 2);
 
     param0->unk_64 = 0;
     param0->unk_68 = 0;
@@ -2513,7 +2565,7 @@ static BOOL ov12_022320EC(UnkStruct_ov12_02232084 *param0)
         }
         break;
     case 2:
-        if (ov12_02226454(&param0->unk_3C)) {
+        if (AlphaFadeContext_IsDone(&param0->unk_3C)) {
             param0->unk_64++;
             v0 = 1;
         }
@@ -2574,7 +2626,7 @@ static void ov12_0223223C(SysTask *param0, void *param1)
             ManagedSprite_SetAnimateFlag(v0->unk_14, 1);
             ManagedSprite_SetAffineScale(v0->unk_14, 1, 1);
 
-            ov12_02226424(&v0->unk_3C, 0, 16, 16, 0, 4);
+            AlphaFadeContext_Init(&v0->unk_3C, 0, 16, 16, 0, 4);
         }
         break;
     case 1:
@@ -2602,11 +2654,11 @@ static void ov12_0223223C(SysTask *param0, void *param1)
         if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN)) {
             v0->unk_0C++;
             BattleAnimUtil_SetEffectBgBlending(v0->unk_00, 16, 0);
-            ov12_02226424(&v0->unk_3C, 16, 0, 0, 16, 8);
+            AlphaFadeContext_Init(&v0->unk_3C, 16, 0, 0, 16, 8);
         }
         break;
     case 3:
-        if (ov12_02226454(&v0->unk_3C)) {
+        if (AlphaFadeContext_IsDone(&v0->unk_3C)) {
             ManagedSprite_SetDrawFlag(v0->unk_14, 0);
             v0->unk_0C++;
         }
@@ -3236,11 +3288,11 @@ static void ov12_02233094(SysTask *param0, void *param1)
     switch (v0->unk_08) {
     case 0:
         BattleAnimUtil_SetEffectBgBlending(v0->unk_00, 0, 16 - 0);
-        ov12_02226424(&v0->unk_9C, 0, 8, 16 - 0, 16 - 8, 8);
+        AlphaFadeContext_Init(&v0->unk_9C, 0, 8, 16 - 0, 16 - 8, 8);
         v0->unk_08++;
         break;
     case 1:
-        if (ov12_02226454(&v0->unk_9C)) {
+        if (AlphaFadeContext_IsDone(&v0->unk_9C)) {
             v0->unk_08++;
             ov12_02232D64(v0);
         }
@@ -3262,11 +3314,11 @@ static void ov12_02233094(SysTask *param0, void *param1)
     case 4:
         if (ov12_02232FF0(v0)) {
             v0->unk_08++;
-            ov12_02226424(&v0->unk_9C, 8, 0, 16 - 8, 16 - 0, 8);
+            AlphaFadeContext_Init(&v0->unk_9C, 8, 0, 16 - 8, 16 - 0, 8);
         }
         break;
     case 5:
-        if (ov12_02226454(&v0->unk_9C)) {
+        if (AlphaFadeContext_IsDone(&v0->unk_9C)) {
             v0->unk_08++;
         }
         break;
@@ -3467,7 +3519,7 @@ static void ov12_02233644(SysTask *param0, void *param1)
     switch (v0->unk_0C) {
     case 0:
         BattleAnimUtil_SetEffectBgBlending(v0->unk_00, 1, 16 - 1);
-        ov12_02226424(&v0->unk_108, 1, 16, 16 - 1, 16 - 16, 10);
+        AlphaFadeContext_Init(&v0->unk_108, 1, 16, 16 - 1, 16 - 16, 10);
         ov12_0223351C(v0, v0->unk_14);
         ov12_02233574(v0);
         v0->unk_0C++;
@@ -3475,7 +3527,7 @@ static void ov12_02233644(SysTask *param0, void *param1)
     case 1:
         ov12_02233574(v0);
 
-        if (ov12_02226454(&v0->unk_108)) {
+        if (AlphaFadeContext_IsDone(&v0->unk_108)) {
             v0->unk_0C++;
             v0->unk_10 = (48 - (10 * 2));
         }
@@ -3486,13 +3538,13 @@ static void ov12_02233644(SysTask *param0, void *param1)
 
         if (v0->unk_10 < 0) {
             v0->unk_0C++;
-            ov12_02226424(&v0->unk_108, 16, 1, 16 - 16, 16 - 1, 10);
+            AlphaFadeContext_Init(&v0->unk_108, 16, 1, 16 - 16, 16 - 1, 10);
         }
         break;
     case 3:
         ov12_02233574(v0);
 
-        if (ov12_02226454(&v0->unk_108)) {
+        if (AlphaFadeContext_IsDone(&v0->unk_108)) {
             v0->unk_0C++;
         }
         break;
@@ -3733,7 +3785,7 @@ static void ov12_02233AF4(UnkStruct_ov12_02233AA0 *param0)
             v9 += 192;
         }
 
-        v0[v9] = ov12_022266E8(v3 + v2, v4);
+        v0[v9] = BattleAnimUtil_MakeBgOffsetValue(v3 + v2, v4);
     }
 }
 
@@ -3805,7 +3857,7 @@ void ov12_02233CD4(BattleAnimSystem *param0)
     v2 = v2 - (80 / 2);
 
     v0->unk_10 = v3 - (80 / 2);
-    v0->unk_30 = ov12_022266E8(-v2, -v0->unk_10);
+    v0->unk_30 = BattleAnimUtil_MakeBgOffsetValue(-v2, -v0->unk_10);
     v0->unk_04 = ov12_02226544(BattleAnimUtil_GetHOffsetRegisterForBg(BattleAnimSystem_GetBgID(v0->unk_00, 1)), v0->unk_30, BattleAnimSystem_GetHeapID(v0->unk_00));
     v0->unk_20 = 1;
 
@@ -3881,22 +3933,22 @@ static void ov12_02233F4C(SysTask *param0, void *param1)
     switch (v0->unk_0C) {
     case 0:
         BattleAnimUtil_SetEffectBgBlending(v0->unk_00, 0, 16 - 0);
-        ov12_02226424(&v0->unk_14, 0, 16, 16 - 0, 16 - 16, 8);
+        AlphaFadeContext_Init(&v0->unk_14, 0, 16, 16 - 0, 16 - 16, 8);
         v0->unk_0C++;
         break;
     case 1:
-        if (ov12_02226454(&v0->unk_14)) {
+        if (AlphaFadeContext_IsDone(&v0->unk_14)) {
             v0->unk_0C++;
         }
         break;
     case 2:
         if (ManagedSprite_IsAnimated(v0->unk_10) == 0) {
             v0->unk_0C++;
-            ov12_02226424(&v0->unk_14, 16, 0, 16 - 16, 16 - 0, 8);
+            AlphaFadeContext_Init(&v0->unk_14, 16, 0, 16 - 16, 16 - 0, 8);
         }
         break;
     case 3:
-        if (ov12_02226454(&v0->unk_14)) {
+        if (AlphaFadeContext_IsDone(&v0->unk_14)) {
             v0->unk_0C++;
         }
         break;

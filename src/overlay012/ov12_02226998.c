@@ -29,7 +29,7 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_DrillPeck,
     BattleAnimScriptFunc_Submission,
     BattleAnimScriptFunc_Confusion,
-    ov12_022303D0,
+    BattleAnimScriptFunc_AcidArmor,
     ov12_0222B9E0,
     ov12_0222BAE4,
     ov12_0222BCF4,

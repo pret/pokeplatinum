@@ -24,7 +24,6 @@
 #include "overlay012/ov12_02235254.h"
 #include "overlay012/ov12_022380BC.h"
 #include "overlay012/struct_ov12_02223764.h"
-#include "overlay012/struct_ov12_02226504_decl.h"
 #include "overlay012/struct_ov12_022380DC.h"
 #include "overlay017/ov17_022413D8.h"
 
@@ -52,14 +51,6 @@
 
 #define BATTLE_ANIM_SCRIPT_RES_ID(MEMBER_IDX)  (MEMBER_IDX + 5000)
 #define BATTLE_ANIM_SCRIPT_MAX_SFX_WAIT_FRAMES 90 // 3s
-
-#define BATTLE_BG_WINDOW BG_LAYER_MAIN_1
-#define BATTLE_BG_BASE   BG_LAYER_MAIN_2
-#define BATTLE_BG_EFFECT BG_LAYER_MAIN_3
-
-#define BATTLE_BG_BLENDMASK_WINDOW GX_BLEND_PLANEMASK_BG1
-#define BATTLE_BG_BLENDMASK_BASE   GX_BLEND_PLANEMASK_BG2
-#define BATTLE_BG_BLENDMASK_EFFECT GX_BLEND_PLANEMASK_BG3
 
 typedef struct BattleAnimSoundContext {
     u8 type;
@@ -1809,11 +1800,11 @@ static void BattleAnimScriptCmd_LoadPokemonSpriteIntoBg(BattleAnimSystem *system
         memberIndex = 264;
     }
 
-    u8 *bgTiles = Bg_GetCharPtr(BG_LAYER_MAIN_2);
+    u8 *bgTiles = Bg_GetCharPtr(BATTLE_BG_BASE);
     MI_CpuFill8(bgTiles, 0, 10 * 10 * 2 * TILE_SIZE_4BPP);
 
-    Bg_ToggleLayer(BG_LAYER_MAIN_2, FALSE);
-    Bg_LoadTiles(system->bgConfig, BG_LAYER_MAIN_2, charData, 10 * 10 * ((8 / 2) * 8), 0);
+    Bg_ToggleLayer(BATTLE_BG_BASE, FALSE);
+    Bg_LoadTiles(system->bgConfig, BATTLE_BG_BASE, charData, 10 * 10 * ((8 / 2) * 8), 0);
     PaletteData_LoadBufferFromFileStart(
         system->paletteData,
         narcID,
@@ -1827,7 +1818,7 @@ static void BattleAnimScriptCmd_LoadPokemonSpriteIntoBg(BattleAnimSystem *system
         system->arcs[BATTLE_ANIM_SYSTEM_ARC_BATT_BG],
         memberIndex,
         system->bgConfig,
-        BG_LAYER_MAIN_2,
+        BATTLE_BG_BASE,
         0,
         0,
         FALSE,
@@ -1847,11 +1838,11 @@ static void BattleAnimScriptCmd_LoadPokemonSpriteIntoBg(BattleAnimSystem *system
     s16 y = PokemonSprite_GetAttribute(BattleAnimSystem_GetBattlerSprite(system, battler), MON_SPRITE_Y_CENTER);
     y -= PokemonSprite_GetAttribute(BattleAnimSystem_GetBattlerSprite(system, battler), MON_SPRITE_SHADOW_HEIGHT);
 
-    Bg_SetOffset(system->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_X, -(x - 40));
-    Bg_SetOffset(system->bgConfig, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_Y, -(y - 40));
+    Bg_SetOffset(system->bgConfig, BATTLE_BG_BASE, BG_OFFSET_UPDATE_SET_X, -(x - 40));
+    Bg_SetOffset(system->bgConfig, BATTLE_BG_BASE, BG_OFFSET_UPDATE_SET_Y, -(y - 40));
 
-    Bg_ToggleLayer(BG_LAYER_MAIN_2, TRUE);
-    Bg_SetPriority(BG_LAYER_MAIN_2, BattleAnimSystem_GetPokemonSpritePriority(system));
+    Bg_ToggleLayer(BATTLE_BG_BASE, TRUE);
+    Bg_SetPriority(BATTLE_BG_BASE, BattleAnimSystem_GetPokemonSpritePriority(system));
 }
 
 static void BattleAnimScriptCmd_RemovePokemonSpriteFromBg(BattleAnimSystem *system)
@@ -2824,7 +2815,7 @@ static BOOL ov12_0222240C(BattleBgSwitch *param0)
     v3->cancel = 0;
     v3->unk_1C->unk_C0 = ov12_02226544(
         BattleAnimUtil_GetHOffsetRegisterForBg(BattleAnimSystem_GetBgID(system, BATTLE_ANIM_BG_EFFECT)),
-        ov12_022266E8(0, 0),
+        BattleAnimUtil_MakeBgOffsetValue(0, 0),
         system->heapID);
 
     for (v0 = 0; v0 < ((192 - 64) / 8); v0++) {
@@ -2832,7 +2823,7 @@ static BOOL ov12_0222240C(BattleBgSwitch *param0)
         v3->unk_1C->unk_00[v0].unk_02 = (v3->unk_1C->unk_00[v0].unk_00 + 8);
         v3->unk_1C->unk_00[v0].unk_04 = Unk_ov12_02238660[v0];
         v3->unk_1C->unk_00[v0].unk_06 = 0;
-        v3->unk_1C->unk_00[v0].unk_08 = ov12_022266E8(0, 0);
+        v3->unk_1C->unk_00[v0].unk_08 = BattleAnimUtil_MakeBgOffsetValue(0, 0);
 
         if (BattleBgSwitch_ShouldBeReversed(param0, param0->battleAnimSystem, 6) == 1) {
             v3->unk_1C->unk_00[v0].unk_04 *= -1;
@@ -2881,7 +2872,7 @@ static void ov12_022224F8(SysTask *param0, void *param1)
             v5 = v3->unk_00[v0].unk_08 & 0xffff;
             v6 = v3->unk_00[v0].unk_08 >> 16;
 
-            v2[v1] = ov12_022266E8(v5 + v3->unk_00[v0].unk_06, v6);
+            v2[v1] = BattleAnimUtil_MakeBgOffsetValue(v5 + v3->unk_00[v0].unk_06, v6);
         }
     }
 }
