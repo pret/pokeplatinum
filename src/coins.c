@@ -14,12 +14,12 @@ void Coins_SetValue(u16 *coins, u32 value)
     *coins = value;
 }
 
-u32 Coins_GetValue(const u16 *coins)
+u16 Coins_GetValue(u16 *coins)
 {
     return *coins;
 }
 
-BOOL Coins_Add(u16 *coins, u32 amount)
+BOOL Coins_Add(u16 *coins, u16 amount)
 {
     if (*coins >= MAX_COINS) {
         return FALSE;
@@ -34,16 +34,12 @@ BOOL Coins_Add(u16 *coins, u32 amount)
     return TRUE;
 }
 
-BOOL Coins_CanAddAmount(const u16 *coins, u32 amount)
+BOOL Coins_CanAdd(u16 *coins, u16 amount)
 {
-    if (amount + (u32)*coins <= MAX_COINS) {
-        return TRUE;
-    } else {
-        return FALSE;
-    }
+    return (u32)(amount + *coins) <= MAX_COINS;
 }
 
-BOOL Coins_Subtract(u16 *coins, u32 amount)
+BOOL Coins_Subtract(u16 *coins, u16 amount)
 {
     if (*coins < amount) {
         return FALSE;
