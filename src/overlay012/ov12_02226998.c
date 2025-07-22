@@ -33,7 +33,7 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_Growth,
     BattleAnimScriptFunc_Meditate,
     BattleAnimScriptFunc_Teleport,
-    ov12_0222BE48,
+    BattleAnimScriptFunc_Flash,
     ov12_02230754,
     ov12_02230804,
     ov12_0222BFA8,

@@ -243,14 +243,35 @@ enum TeleportState {
 #define TELEPORT_REVERT_POS_Y      0
 #define TELEPORT_REVERT_POS_FRAMES 5
 
-typedef struct {
-    u8 unk_00;
-    u8 unk_01;
-    PaletteData *unk_04;
-    BattleAnimSystem *unk_08;
+// -------------------------------------------------------------------
+// Flash
+// -------------------------------------------------------------------
+typedef struct FlashContext {
+    u8 state;
+    u8 delay;
+    PaletteData *paletteData;
+    BattleAnimSystem *battleAnimSys;
     UnkStruct_ov12_022267D4 *unk_0C;
-    PokemonSprite *unk_10;
-} UnkStruct_ov12_0222BD48;
+    PokemonSprite *attackerSprite;
+} FlashContext;
+
+enum FlashState {
+    FLASH_STATE_SETUP_FADE_OUT = 0,
+    FLASH_STATE_FADE_OUT,
+    FLASH_STATE_HOLD,
+    FLASH_STATE_SETUP_FADE_IN,
+    FLASH_STATE_FADE_IN,
+};
+
+#define FLASH_PALETTE_FADE_BUFFERS PLTTBUF_MAIN_BG_F
+#define FLASH_FADE_START_ALPHA     0
+#define FLASH_FADE_END_ALPHA       16
+#define FLASH_PALETTE_FADE_DELAY   -2
+#define FLASH_POKEMON_FADE_DELAY   0
+#define FLASH_PALETTE_FADE_COLOR   COLOR_WHITE
+#define FLASH_POKEMON_FADE_COLOR   COLOR_BLACK
+#define FLASH_HOLD_FRAMES          5
+
 
 typedef struct {
     u8 unk_00;
@@ -1253,52 +1274,80 @@ void BattleAnimScriptFunc_Teleport(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Teleport, ctx);
 }
 
-static void ov12_0222BD48(SysTask *param0, void *param1)
+static void BattleAnimTask_Flash(SysTask *task, void *param)
 {
-    UnkStruct_ov12_0222BD48 *v0 = (UnkStruct_ov12_0222BD48 *)param1;
+    FlashContext *ctx = param;
 
-    switch (v0->unk_00) {
-    case 0:
-        PaletteData_StartFade(v0->unk_04, 0x1, BattleAnimSystem_GetBaseBgPalettes(v0->unk_08), -2, 0, 16, 0x7FFF);
-        PokemonSprite_StartFade(v0->unk_10, 0, 16, 0, 0x0);
-        v0->unk_00++;
+    switch (ctx->state) {
+    case FLASH_STATE_SETUP_FADE_OUT:
+        PaletteData_StartFade(
+            ctx->paletteData,
+            FLASH_PALETTE_FADE_BUFFERS,
+            BattleAnimSystem_GetBaseBgPalettes(ctx->battleAnimSys),
+            FLASH_PALETTE_FADE_DELAY,
+            FLASH_FADE_START_ALPHA,
+            FLASH_FADE_END_ALPHA,
+            FLASH_PALETTE_FADE_COLOR);
+
+        PokemonSprite_StartFade(
+            ctx->attackerSprite,
+            FLASH_FADE_START_ALPHA,
+            FLASH_FADE_END_ALPHA,
+            FLASH_POKEMON_FADE_DELAY,
+            FLASH_POKEMON_FADE_COLOR);
+        ctx->state++;
         break;
-    case 1:
-        if ((PaletteData_GetSelectedBuffersMask(v0->unk_04) == 0) && (PokemonSprite_IsFadeActive(v0->unk_10) == 0)) {
-            v0->unk_00++;
+    case FLASH_STATE_FADE_OUT:
+        if (PaletteData_GetSelectedBuffersMask(ctx->paletteData) == FALSE &&
+            PokemonSprite_IsFadeActive(ctx->attackerSprite) == FALSE) {
+            ctx->state++;
         }
         break;
-    case 2:
-        if ((++v0->unk_01) > 5) {
-            v0->unk_00++;
+    case FLASH_STATE_HOLD:
+        if (++ctx->delay > FLASH_HOLD_FRAMES) {
+            ctx->state++;
         }
         break;
-    case 3:
-        PaletteData_StartFade(v0->unk_04, 0x1, BattleAnimSystem_GetBaseBgPalettes(v0->unk_08), -2, 16, 0, 0x7FFF);
-        PokemonSprite_StartFade(v0->unk_10, 16, 0, 0, 0x0);
-        v0->unk_00++;
+    case FLASH_STATE_SETUP_FADE_IN:
+        PaletteData_StartFade(
+            ctx->paletteData,
+            FLASH_PALETTE_FADE_BUFFERS,
+            BattleAnimSystem_GetBaseBgPalettes(ctx->battleAnimSys),
+            FLASH_PALETTE_FADE_DELAY,
+            FLASH_FADE_END_ALPHA,
+            FLASH_FADE_START_ALPHA,
+            FLASH_PALETTE_FADE_COLOR);
+
+        PokemonSprite_StartFade(
+            ctx->attackerSprite,
+            FLASH_FADE_END_ALPHA,
+            FLASH_FADE_START_ALPHA,
+            FLASH_POKEMON_FADE_DELAY,
+            FLASH_POKEMON_FADE_COLOR);
+        ctx->state++;
         break;
-    case 4:
-        if ((PaletteData_GetSelectedBuffersMask(v0->unk_04) == 0) && (PokemonSprite_IsFadeActive(v0->unk_10) == 0)) {
-            v0->unk_00++;
+    case FLASH_STATE_FADE_IN:
+        if (PaletteData_GetSelectedBuffersMask(ctx->paletteData) == FALSE &&
+            PokemonSprite_IsFadeActive(ctx->attackerSprite) == FALSE) {
+            ctx->state++;
         }
         break;
     default:
-        BattleAnimSystem_EndAnimTask(v0->unk_08, param0);
-        Heap_Free(v0);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         break;
     }
 }
 
-void ov12_0222BE48(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_Flash(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_0222BD48 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222BD48));
+    FlashContext *ctx = BattleAnimUtil_Alloc(system, sizeof(FlashContext));
 
-    v0->unk_08 = param0;
-    v0->unk_04 = BattleAnimSystem_GetPaletteData(v0->unk_08);
-    v0->unk_10 = BattleAnimSystem_GetBattlerSprite(v0->unk_08, BattleAnimSystem_GetAttacker(v0->unk_08));
+    ctx->battleAnimSys = system;
+    ctx->paletteData = BattleAnimSystem_GetPaletteData(ctx->battleAnimSys);
+    ctx->attackerSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
 
-    BattleAnimSystem_StartAnimTask(v0->unk_08, ov12_0222BD48, v0);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Flash, ctx);
 }
 
 static const u8 Unk_ov12_0223A0C1[][5] = {

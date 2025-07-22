@@ -12,7 +12,7 @@ void BattleAnimScriptFunc_DoubleTeam(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_Growth(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_Meditate(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_Teleport(BattleAnimSystem *param0);
-void ov12_0222BE48(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_Flash(BattleAnimSystem *param0);
 void ov12_0222BFA8(BattleAnimSystem *param0);
 void ov12_0222C0C0(BattleAnimSystem *param0);
 void ov12_0222C3C0(BattleAnimSystem *param0);
