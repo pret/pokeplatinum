@@ -1,15 +1,11 @@
 #ifndef POKEPLATINUM_SCREEN_FADE_H
 #define POKEPLATINUM_SCREEN_FADE_H
 
+#include "constants/graphics.h"
 #include "constants/heap.h"
-#include "constants/screen.h"
 
 #include "hardware_window.h"
 #include "system.h"
-
-#define FADE_TO_WHITE       0x7FFF
-#define FADE_TO_BLACK       0x0000
-#define FADE_TO_SAVED_COLOR 0xFFFF
 
 enum FadeMode {
     FADE_BOTH_SCREENS = 0,
@@ -30,8 +26,8 @@ enum FadeMethod {
 };
 
 enum FadeType {
-    FADE_TYPE_UNK_0 = 0,
-    FADE_TYPE_UNK_1,
+    FADE_TYPE_BRIGHTNESS_OUT = 0,
+    FADE_TYPE_BRIGHTNESS_IN,
     FADE_TYPE_UNK_2,
     FADE_TYPE_UNK_3,
     FADE_TYPE_UNK_4,

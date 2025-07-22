@@ -2,7 +2,7 @@
 
 #include <nitro/gx/gx.h>
 
-#include "constants/screen.h"
+#include "constants/graphics.h"
 
 #include "sys_task.h"
 #include "sys_task_manager.h"

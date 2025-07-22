@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/jubilife_tv_3f_global_ranking_room.h"
 
-    .data
 
     ScriptEntry _001E
     ScriptEntry _002C

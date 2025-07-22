@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/turnback_cave_entrance.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _002A

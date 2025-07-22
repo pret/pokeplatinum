@@ -243,7 +243,7 @@ int ov22_02255E50(ApplicationManager *appMan, int *param1)
     switch (*param1) {
     case 0:
     case 1:
-        StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_5, FADE_TYPE_UNK_5, FADE_TO_BLACK, 6, 1, HEAP_ID_13);
+        StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_5, FADE_TYPE_UNK_5, COLOR_BLACK, 6, 1, HEAP_ID_13);
         (*param1) = 2;
         break;
     case 2:
@@ -338,7 +338,7 @@ int ov22_02255E50(ApplicationManager *appMan, int *param1)
         }
         break;
     case 11:
-        StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_13);
+        StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_13);
         (*param1)++;
         break;
     case 12:
@@ -549,7 +549,7 @@ int ov22_022562EC(ApplicationManager *appMan, int *param1)
         (*param1)++;
         break;
     case 11:
-        StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_17, FADE_TYPE_UNK_19, FADE_TO_BLACK, 6, 1, HEAP_ID_13);
+        StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_17, FADE_TYPE_UNK_19, COLOR_BLACK, 6, 1, HEAP_ID_13);
         (*param1)++;
         break;
     case 12:
@@ -606,7 +606,7 @@ int ov22_022562EC(ApplicationManager *appMan, int *param1)
             break;
         }
 
-        StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_26, FADE_TYPE_UNK_26, FADE_TO_BLACK, 6, 1, HEAP_ID_13);
+        StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_26, FADE_TYPE_UNK_26, COLOR_BLACK, 6, 1, HEAP_ID_13);
         Sound_PlayEffect(SEQ_SE_DP_CON_017);
         (*param1)++;
         break;
@@ -1206,7 +1206,7 @@ static void ov22_02256FD8(UnkStruct_02029C88 *param0, UnkStruct_ov22_02257964 *p
     sub_0202A35C(param0, param1->unk_2C.unk_48);
     sub_0202A378(param0, param2);
     sub_0202A240(param0);
-    Heap_FreeToHeap(v2);
+    Heap_Free(v2);
 }
 
 static BOOL ov22_02257098(UnkStruct_ov22_02256C48 *param0, int param1, int param2, int param3)
@@ -1260,7 +1260,7 @@ static void ov22_0225718C(UnkStruct_ov22_02255D44 *param0)
 
     ov22_022568DC(param0);
 
-    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
     SpriteList_SetActive(param0->unk_00.unk_44, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);

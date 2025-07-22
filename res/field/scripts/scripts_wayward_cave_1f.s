@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/wayward_cave_1f.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _002B

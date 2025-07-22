@@ -28,7 +28,7 @@ typedef struct UnkStruct_ov23_02253E2C_t {
     SysTask *unk_20;
     MessageLoader *unk_24;
     StringTemplate *unk_28;
-    int unk_2C;
+    int bankID;
     int unk_30;
     int heapID;
     int unk_38;
@@ -70,7 +70,7 @@ const ListMenuTemplate *ov23_02253D40(void)
     return &Unk_ov23_022569E0;
 }
 
-UnkStruct_ov23_02253E2C *ov23_02253D48(int param0, int heapID, BgConfig *param2, int param3, int param4)
+UnkStruct_ov23_02253E2C *ov23_02253D48(int bankID, int heapID, BgConfig *param2, int param3, int param4)
 {
     int v0 = param4;
     UnkStruct_ov23_02253E2C *v1 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov23_02253E2C));
@@ -84,8 +84,8 @@ UnkStruct_ov23_02253E2C *ov23_02253D48(int param0, int heapID, BgConfig *param2,
     v1->unk_00 = Strbuf_Init(v0, heapID);
     v1->unk_04 = Strbuf_Init(v0, heapID);
     v1->unk_28 = StringTemplate_Default(heapID);
-    v1->unk_2C = param0;
-    v1->unk_24 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, param0, heapID);
+    v1->bankID = bankID;
+    v1->unk_24 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, bankID, heapID);
     v1->heapID = heapID;
     v1->unk_18 = param2;
 
@@ -107,16 +107,16 @@ void ov23_02253DD8(UnkStruct_ov23_02253E2C *param0)
     Strbuf_Free(param0->unk_04);
     StringTemplate_Free(param0->unk_28);
     MessageLoader_Free(param0->unk_24);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
-void ov23_02253DFC(UnkStruct_ov23_02253E2C *param0, int param1, int param2)
+void ov23_02253DFC(UnkStruct_ov23_02253E2C *param0, int bankID, int param2)
 {
-    if (param0->unk_2C != param1) {
-        param0->unk_2C = param1;
+    if (param0->bankID != bankID) {
+        param0->bankID = bankID;
         MessageLoader_Free(param0->unk_24);
 
-        param0->unk_24 = MessageLoader_Init(param2, NARC_INDEX_MSGDATA__PL_MSG, param1, param0->heapID);
+        param0->unk_24 = MessageLoader_Init(param2, NARC_INDEX_MSGDATA__PL_MSG, bankID, param0->heapID);
         GF_ASSERT(param0->unk_24 != NULL);
     }
 }

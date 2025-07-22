@@ -253,32 +253,31 @@ u16 SaveData_GetFirstNonEggInParty(SaveData *saveData)
 
 BOOL HasAllLegendaryTitansInParty(SaveData *saveData)
 {
-    int v0, v1, v2, v3 = 0;
-    Party *v4;
-    static const u16 v5[] = { 377, 378, 379 };
-    u16 v6[6];
+    int i, j, titansInParty = 0;
+    static const u16 titans[] = { SPECIES_REGIROCK, SPECIES_REGICE, SPECIES_REGISTEEL };
+    u16 partySpecies[MAX_PARTY_SIZE];
 
-    v4 = SaveData_GetParty(saveData);
-    v2 = Party_GetCurrentCount(v4);
+    Party *party = SaveData_GetParty(saveData);
+    int partyCount = Party_GetCurrentCount(party);
 
-    for (v0 = 0; v0 < v2; v0++) {
-        v6[v0] = Pokemon_GetValue(Party_GetPokemonBySlotIndex(v4, v0), MON_DATA_SPECIES, NULL);
+    for (i = 0; i < partyCount; i++) {
+        partySpecies[i] = Pokemon_GetValue(Party_GetPokemonBySlotIndex(party, i), MON_DATA_SPECIES, NULL);
     }
 
-    for (v0 = 0; v0 < 3; v0++) {
-        for (v1 = 0; v1 < v2; v1++) {
-            if (v6[v1] == v5[v0]) {
-                ++v3;
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < partyCount; j++) {
+            if (partySpecies[j] == titans[i]) {
+                ++titansInParty;
                 break;
             }
         }
     }
 
-    if (v3 == 3) {
-        return 1;
+    if (titansInParty == 3) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL sub_0205E268(FieldTask *param0)
@@ -305,7 +304,7 @@ static BOOL sub_0205E268(FieldTask *param0)
     if (v2->unk_0C == 0) {
         v0.x = v0.y = v0.z = 0;
         sub_020630AC(v2->unk_00, &v0);
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
         return 1;
     }
 
@@ -340,7 +339,7 @@ static BOOL sub_0205E3AC(FieldTask *param0)
         v1->unk_08 = 0;
 
         if (v1->unk_04-- == 0) {
-            Heap_FreeToHeap(v1);
+            Heap_Free(v1);
             return 1;
         }
     }

@@ -141,7 +141,7 @@ void ov95_02247BC8(void *param0)
         }
 
         PokemonSpriteManager_Free(v0->unk_0C);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 }
 
@@ -210,34 +210,32 @@ static int ov95_02247CB4(UnkStruct_ov95_02247C6C *param0, int *param1)
         GX_BG0_AS_3D
     };
     static const BgTemplate v2 = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xf800,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        0,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf800,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
     static const BgTemplate v3 = {
-        0,
-        0,
-        0,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xf000,
-        GX_BG_CHARBASE_0x04000,
-        GX_BG_EXTPLTT_01,
-        2,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf000,
+        .charBase = GX_BG_CHARBASE_0x04000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
 
     GXLayers_SetBanks(&v0);
@@ -285,7 +283,7 @@ static int ov95_02247CB4(UnkStruct_ov95_02247C6C *param0, int *param1)
 
     sub_02039734();
     sub_020397C8(1, HEAP_ID_57);
-    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 16, 1, HEAP_ID_58);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 16, 1, HEAP_ID_58);
 
     return 1;
 }
@@ -296,7 +294,7 @@ static int ov95_02247ED8(UnkStruct_ov95_02247C6C *param0, int *param1)
     case 0:
         if (IsScreenFadeDone()) {
             Sprite_SetAnim(param0->unk_3C[0], 1);
-            Sprite_SetDrawFlag(param0->unk_3C[0], 1);
+            Sprite_SetDrawFlag(param0->unk_3C[0], TRUE);
             return 1;
         }
         break;
@@ -391,7 +389,7 @@ static int ov95_02248090(UnkStruct_ov95_02247C6C *param0, int *param1)
         if (ov95_022483B4(param0)) {
             PokemonSprite_Delete(param0->unk_10);
             Sprite_SetAnim(param0->unk_3C[1], 0);
-            Sprite_SetDrawFlag(param0->unk_3C[1], 1);
+            Sprite_SetDrawFlag(param0->unk_3C[1], TRUE);
             (*param1)++;
         }
         break;
@@ -405,7 +403,7 @@ static int ov95_02248090(UnkStruct_ov95_02247C6C *param0, int *param1)
         break;
     case 3:
         if ((ov95_0224847C(param0) >= 2) || (ov95_0224846C(param0) == 1)) {
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 24, 1, HEAP_ID_58);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 24, 1, HEAP_ID_58);
             (*param1)++;
         }
         break;
@@ -484,8 +482,8 @@ static void ov95_0224829C(UnkStruct_ov95_02247C6C *param0)
     param0->unk_3C[1] = ov95_022475E4(param0->unk_00, &v2, 128, 90, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
     Sprite_SetExplicitPriority(param0->unk_3C[1], 1);
-    Sprite_SetDrawFlag(param0->unk_3C[0], 0);
-    Sprite_SetDrawFlag(param0->unk_3C[1], 0);
+    Sprite_SetDrawFlag(param0->unk_3C[0], FALSE);
+    Sprite_SetDrawFlag(param0->unk_3C[1], FALSE);
 }
 
 static void ov95_02248340(UnkStruct_ov95_02247C6C *param0)
@@ -586,7 +584,7 @@ static int ov95_0224847C(UnkStruct_ov95_02247C6C *param0)
 static void ov95_02248490(UnkStruct_ov95_02247C6C *param0)
 {
     if (param0->unk_7C) {
-        Heap_FreeToHeap(SysTask_GetParam(param0->unk_7C));
+        Heap_Free(SysTask_GetParam(param0->unk_7C));
         SysTask_Done(param0->unk_7C);
         param0->unk_7C = NULL;
     }

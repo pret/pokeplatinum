@@ -66,7 +66,7 @@ BOOL ov48_0225650C(UnkStruct_ov48_0225650C **param0, const UnkStruct_ov48_022565
 void ov48_0225654C(UnkStruct_ov48_0225650C *param0)
 {
     if (param0 != NULL) {
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0);
     }
 }
 
@@ -101,19 +101,18 @@ static void ov48_02256594(PoketchTaskManager *param0)
 static void ov48_022565A8(SysTask *param0, void *param1)
 {
     static const BgTemplate v0 = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0x7000,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        2,
-        0,
-        0,
-        1
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x7000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 0,
+        .mosaic = TRUE,
     };
     GXSDispCnt v1;
     UnkStruct_ov48_0225650C *v2;
@@ -286,7 +285,7 @@ static void ov48_02256920(UnkStruct_ov48_0225650C *param0)
 
     for (v2 = 0; v2 < param0->unk_00->unk_08; v2++) {
         ov25_02255DBC(param0->unk_00->unk_0C[v2].unk_00, param0->unk_00->unk_0C[v2].unk_01, &v0, &v1);
-        PoketchAnimation_SetSpritePosition(param0->unk_28[v2], ((v0) << FX32_SHIFT), ((v1) << FX32_SHIFT));
+        PoketchAnimation_SetSpritePosition(param0->unk_28[v2], (v0) << FX32_SHIFT, (v1) << FX32_SHIFT);
         PoketchAnimation_HideSprite(param0->unk_28[v2], 0);
     }
 
@@ -335,6 +334,6 @@ static void ov48_022569FC(SysTask *param0, void *param1)
         u32 v2, v3;
 
         ov25_02255DBC(v1->unk_00, v1->unk_04, &v2, &v3);
-        PoketchAnimation_SetSpritePosition(v0->unk_24, ((v2) << FX32_SHIFT), ((v3) << FX32_SHIFT));
+        PoketchAnimation_SetSpritePosition(v0->unk_24, (v2) << FX32_SHIFT, (v3) << FX32_SHIFT);
     }
 }

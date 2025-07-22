@@ -129,8 +129,8 @@ void CharTransfer_Free(void)
 
         CharTransfer_ResetAllTasks();
 
-        Heap_FreeToHeap(sTaskManager->tasks);
-        Heap_FreeToHeap(sTaskManager);
+        Heap_Free(sTaskManager->tasks);
+        Heap_Free(sTaskManager);
         sTaskManager = NULL;
     }
 }
@@ -785,11 +785,11 @@ static void InitTransferBuffers(u32 numBlocksMain, u32 numBlocksSub, enum HeapId
     sTaskManager->numBlocksSub = numBlocksSub;
 
     if (sTaskManager->bufMain != NULL) {
-        Heap_FreeToHeap(sTaskManager->bufMain);
+        Heap_Free(sTaskManager->bufMain);
     }
 
     if (sTaskManager->bufSub != NULL) {
-        Heap_FreeToHeap(sTaskManager->bufSub);
+        Heap_Free(sTaskManager->bufSub);
     }
 
     if (sTaskManager->numBlocksMain != 0) {
@@ -808,10 +808,10 @@ static void FreeBlockTransferBuffer(u8 *buf)
     if (buf != NULL) {
         if (buf == sTaskManager->bufMain) {
             sTaskManager->numBlocksMain = 0;
-            Heap_FreeToHeap(buf);
+            Heap_Free(buf);
         } else {
             sTaskManager->numBlocksSub = 0;
-            Heap_FreeToHeap(buf);
+            Heap_Free(buf);
         }
         buf = NULL;
     }

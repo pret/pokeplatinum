@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/screen.h"
+#include "constants/graphics.h"
 
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"
@@ -127,7 +127,7 @@ int ov22_0225B738(ApplicationManager *appMan, int *param1)
         (*param1)++;
         break;
     case 1:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_5, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_13);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_5, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_13);
         (*param1)++;
         break;
     case 2:
@@ -141,7 +141,7 @@ int ov22_0225B738(ApplicationManager *appMan, int *param1)
         }
         break;
     case 4:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_2, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_13);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_2, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_13);
         (*param1)++;
         break;
     case 5:
@@ -203,7 +203,7 @@ static void ov22_0225B85C(UnkStruct_ov22_0225B85C *param0)
 
     Bg_LoadToTilemapRect(param0->unk_14.unk_40, 1, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Bg_ChangeTilemapRectPalette(param0->unk_14.unk_40, 1, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8, v3);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     Bg_ScheduleTilemapTransfer(param0->unk_14.unk_40, 1);
 }
 
@@ -344,7 +344,7 @@ static void ov22_0225BC18(UnkStruct_ov22_0225B85C *param0)
     sub_0202A560(param0->unk_04, v5);
     v6 = Pokemon_GetBoxPokemon(v5);
     StringTemplate_SetNickname(v1, 4, v6);
-    Heap_FreeToHeap(v5);
+    Heap_Free(v5);
 
     v7 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0385, HEAP_ID_13);
     GF_ASSERT(v7);

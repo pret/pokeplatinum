@@ -27,7 +27,7 @@
 static BOOL ov104_0222E7CC(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0222E930 *param1);
 static void ov104_0222E7FC(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0222E930 *param1);
 static void ov104_0222E82C(UnkStruct_ov104_022320B4 *param0, u16 param1, u32 *param2, void *param3);
-static void ov104_0222E830(u8 **param0, MessageLoader **param1, int param2, int param3);
+static void ov104_0222E830(u8 **param0, MessageLoader **param1, int param2, int heapID);
 static void ov104_0222E904(UnkStruct_ov104_0222E930 *param0, int param1);
 
 UnkStruct_ov104_022320B4 *ov104_0222E63C(UnkStruct_0209B75C *param0, int heapID, int param2)
@@ -93,10 +93,10 @@ void ov104_0222E710(UnkStruct_ov104_022320B4 *param0)
     StringTemplate_Free(param0->unk_44);
     Strbuf_Free(param0->unk_48);
     Strbuf_Free(param0->unk_4C);
-    Heap_FreeToHeap(param0->unk_40);
+    Heap_Free(param0->unk_40);
     MessageLoader_Free(param0->unk_3C);
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov104_0222E748(UnkStruct_ov104_022320B4 *param0, int param1, int param2)
@@ -143,10 +143,10 @@ static void ov104_0222E7FC(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_022
     }
 
     if (param1->unk_84 != param0->unk_40) {
-        Heap_FreeToHeap(param1->unk_84);
+        Heap_Free(param1->unk_84);
     }
 
-    Heap_FreeToHeap(param1);
+    Heap_Free(param1);
 }
 
 static void ov104_0222E82C(UnkStruct_ov104_022320B4 *param0, u16 param1, u32 *param2, void *param3)
@@ -156,16 +156,16 @@ static void ov104_0222E82C(UnkStruct_ov104_022320B4 *param0, u16 param1, u32 *pa
     }
 }
 
-static void ov104_0222E830(u8 **param0, MessageLoader **param1, int param2, int param3)
+static void ov104_0222E830(u8 **param0, MessageLoader **param1, int param2, int heapID)
 {
     int v0 = ov104_0222EA90(param2, 1);
     int v1 = ov104_0222EA90(param2, 2);
 
-    *param0 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_FRONTIER__SCRIPT__FR_SCRIPT, v0, param3);
-    *param1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, v1, param3);
+    *param0 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_FRONTIER__SCRIPT__FR_SCRIPT, v0, heapID);
+    *param1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, v1, heapID);
 }
 
-void ov104_0222E86C(UnkStruct_ov104_022320B4 *param0, int param1, int param2)
+void ov104_0222E86C(UnkStruct_ov104_022320B4 *param0, int param1, int heapID)
 {
     int v0;
     UnkStruct_ov104_0222E930 *v1;
@@ -179,7 +179,7 @@ void ov104_0222E86C(UnkStruct_ov104_022320B4 *param0, int param1, int param2)
         return;
     }
 
-    v4 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, v3, param2);
+    v4 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, v3, heapID);
 
     for (v0 = 0; v0 < 8; v0++) {
         v1 = param0->unk_04[v0];
@@ -206,7 +206,7 @@ UnkStruct_ov104_0222E8C8 *ov104_0222E8C8(UnkStruct_ov104_022320B4 *param0, int h
 void ov104_0222E8E8(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0222E8C8 *param1)
 {
     param0->unk_24 = *param1;
-    Heap_FreeToHeap(param1);
+    Heap_Free(param1);
 }
 
 static void ov104_0222E904(UnkStruct_ov104_0222E930 *param0, int param1)

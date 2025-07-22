@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/screen.h"
+#include "constants/graphics.h"
 
 #include "struct_decls/struct_02015128_decl.h"
 #include "struct_decls/struct_020151A4_decl.h"
@@ -109,16 +109,16 @@ void ov22_02255134(UnkStruct_ov22_0225A0E4 *param0)
     ov22_02255784(param0);
     ov22_02255984(param0);
 
-    Heap_FreeToHeap(param0->unk_40);
+    Heap_Free(param0->unk_40);
 
     ov22_02255C90(param0);
     ov22_02255A98(param0);
     ov22_022559E0(param0);
 
     NARC_dtor(param0->unk_5C);
-    Heap_FreeToHeap(param0->unk_04);
+    Heap_Free(param0->unk_04);
     param0->unk_04 = NULL;
-    Heap_FreeToHeap(param0->unk_10);
+    Heap_Free(param0->unk_10);
     param0->unk_10 = NULL;
 }
 
@@ -219,7 +219,7 @@ void ov22_02255300(UnkStruct_ov22_0225A0E4 *param0, int param1)
 
 void ov22_02255314(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255CB8 *param1)
 {
-    ov22_02255CB8(param1, (100 + 18), (1 + 18), HEAP_ID_14);
+    ov22_02255CB8(param1, 100 + 18, 1 + 18, HEAP_ID_14);
     ov22_02255ACC(param0, param1);
     ov22_02255B50(param0, param1);
 }
@@ -249,7 +249,7 @@ void ov22_02255390(void)
     GX_SetVisibleWnd(GX_WNDMASK_W0);
     G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 0);
     G2_SetWndOutsidePlane(GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_OBJ, 0);
-    G2_SetWnd0Position((8 + 2), (16 + 2), (136 + 2) + (112 - (2 * 2)), (16 + 2) + (129 - (2 * 2)));
+    G2_SetWnd0Position(8 + 2, 16 + 2, (136 + 2) + (112 - (2 * 2)), (16 + 2) + (129 - (2 * 2)));
     G2_SetBG0Priority(0);
     G2_SetBG1Priority(1);
 }
@@ -263,7 +263,7 @@ void ov22_022553F8(UnkStruct_ov22_0225A0E4 *param0)
 
 void ov22_02255410(UnkStruct_ov22_02255CB8 *param0, int heapID)
 {
-    ov22_02255CB8(param0, (100 + 18), (1 + 18), heapID);
+    ov22_02255CB8(param0, 100 + 18, 1 + 18, heapID);
 }
 
 int ov22_02255420(NNSG2dCharacterData *param0, int param1, int param2, int param3)
@@ -308,19 +308,18 @@ void ov22_022554A8(UnkStruct_ov22_0225A0E4 *param0, BgConfig *param1, int param2
 
     {
         BgTemplate v0 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xf000,
-            GX_BG_CHARBASE_0x04000,
-            GX_BG_EXTPLTT_01,
-            2,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xf000,
+            .charBase = GX_BG_CHARBASE_0x04000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 2,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_FreeTilemapBuffer(param0->unk_40, BG_LAYER_MAIN_2);
@@ -336,10 +335,10 @@ void ov22_022554F8(UnkStruct_ov22_0225A0E4 *param0)
     ov22_02255784(param0);
     ov22_02255C90(param0);
 
-    Heap_FreeToHeap(param0->unk_04);
+    Heap_Free(param0->unk_04);
     param0->unk_04 = NULL;
 
-    Heap_FreeToHeap(param0->unk_10);
+    Heap_Free(param0->unk_10);
     param0->unk_10 = NULL;
 }
 
@@ -395,7 +394,7 @@ void ov22_022555D4(UnkStruct_ov22_0225A0E4 *param0, int param1)
 void ov22_022555FC(UnkStruct_ov22_0225A0E4 *param0)
 {
     ov22_02255984(param0);
-    Heap_FreeToHeap(param0->unk_40);
+    Heap_Free(param0->unk_40);
     NARC_dtor(param0->unk_5C);
     ov22_02255A98(param0);
 }
@@ -467,8 +466,8 @@ static void ov22_022556DC(void)
 
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
-    GXLayers_EngineAToggleLayers((GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ), 1);
-    GXLayers_EngineBToggleLayers((GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_OBJ), 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_OBJ, 1);
 }
 
 static void ov22_0225572C(void)
@@ -546,19 +545,18 @@ static void ov22_02255860(UnkStruct_ov22_0225A0E4 *param0)
 {
     {
         BgTemplate v0 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xf800,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_01,
-            0,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xf800,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0->unk_40, BG_LAYER_MAIN_1, &v0, 0);
@@ -568,19 +566,18 @@ static void ov22_02255860(UnkStruct_ov22_0225A0E4 *param0)
 
     {
         BgTemplate v1 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xf000,
-            GX_BG_CHARBASE_0x04000,
-            GX_BG_EXTPLTT_01,
-            2,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xf000,
+            .charBase = GX_BG_CHARBASE_0x04000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 2,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0->unk_40, BG_LAYER_MAIN_2, &v1, 0);
@@ -590,19 +587,18 @@ static void ov22_02255860(UnkStruct_ov22_0225A0E4 *param0)
 
     {
         BgTemplate v2 = {
-            0,
-            -(16 + 129),
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xe800,
-            GX_BG_CHARBASE_0x08000,
-            GX_BG_EXTPLTT_01,
-            3,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = -(16 + 129),
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xe800,
+            .charBase = GX_BG_CHARBASE_0x08000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 3,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0->unk_40, BG_LAYER_MAIN_3, &v2, 0);
@@ -612,19 +608,18 @@ static void ov22_02255860(UnkStruct_ov22_0225A0E4 *param0)
 
     {
         BgTemplate v3 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x7800,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_01,
-            1,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x7800,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 1,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0->unk_40, BG_LAYER_SUB_0, &v3, 0);
@@ -634,19 +629,18 @@ static void ov22_02255860(UnkStruct_ov22_0225A0E4 *param0)
 
     {
         BgTemplate v4 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x7000,
-            GX_BG_CHARBASE_0x04000,
-            GX_BG_EXTPLTT_01,
-            0,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x7000,
+            .charBase = GX_BG_CHARBASE_0x04000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0->unk_40, BG_LAYER_SUB_1, &v4, 0);
@@ -666,7 +660,7 @@ static void ov22_02255984(UnkStruct_ov22_0225A0E4 *param0)
 
 static void ov22_022559B4(UnkStruct_ov22_0225A0E4 *param0)
 {
-    param0->unk_34 = ResourceCollection_New(((100 + 18) + 1), HEAP_ID_14);
+    param0->unk_34 = ResourceCollection_New((100 + 18) + 1, HEAP_ID_14);
     param0->unk_38 = Heap_AllocFromHeap(HEAP_ID_14, sizeof(NNSG2dCharacterData *) * ((100 + 18) + 1));
     memset(param0->unk_38, 0, sizeof(NNSG2dCharacterData *) * ((100 + 18) + 1));
     param0->unk_3C = ((100 + 18) + 1);
@@ -674,7 +668,7 @@ static void ov22_022559B4(UnkStruct_ov22_0225A0E4 *param0)
 
 static void ov22_022559E0(UnkStruct_ov22_0225A0E4 *param0)
 {
-    Heap_FreeToHeap(param0->unk_38);
+    Heap_Free(param0->unk_38);
     ResourceCollection_Delete(param0->unk_34);
     param0->unk_3C = 0;
 }
@@ -700,7 +694,7 @@ static void ov22_022559F8(UnkStruct_ov22_0225A0E4 *param0)
 
     RenderOam_Init(0, 124, 0, 31, 0, 124, 0, 31, 14);
     param0->unk_44 = SpriteList_InitRendering(48, &param0->unk_58, HEAP_ID_14);
-    SetSubScreenViewRect(&param0->unk_58, 0, (512 * FX32_ONE));
+    SetSubScreenViewRect(&param0->unk_58, 0, 512 * FX32_ONE);
 
     param0->unk_48[0] = SpriteResourceCollection_New(8, 0, HEAP_ID_14);
     param0->unk_48[1] = SpriteResourceCollection_New(5, 1, HEAP_ID_14);
@@ -788,7 +782,7 @@ static void ov22_02255BF4(UnkStruct_ov22_0225A0E4 *param0, int heapID)
 
 static void ov22_02255C14(UnkStruct_ov22_0225A0E4 *param0)
 {
-    Heap_FreeToHeap(param0->unk_30);
+    Heap_Free(param0->unk_30);
     param0->unk_30 = NULL;
 }
 
@@ -839,8 +833,8 @@ static void ov22_02255D0C(UnkStruct_ov22_02255CB8 *param0)
         param0->unk_14 = NULL;
     }
 
-    Heap_FreeToHeap(param0->unk_00);
+    Heap_Free(param0->unk_00);
     param0->unk_00 = NULL;
-    Heap_FreeToHeap(param0->unk_08);
+    Heap_Free(param0->unk_08);
     param0->unk_08 = NULL;
 }

@@ -19,6 +19,7 @@
 #include "field_system.h"
 #include "field_task.h"
 #include "field_transition.h"
+#include "g3d_pipeline.h"
 #include "game_options.h"
 #include "game_records.h"
 #include "gx_layers.h"
@@ -35,7 +36,6 @@
 #include "system.h"
 #include "trainer_info.h"
 #include "unk_02015F84.h"
-#include "unk_02024220.h"
 #include "unk_0202F180.h"
 #include "unk_0208694C.h"
 #include "unk_02092494.h"
@@ -155,7 +155,7 @@ static int sub_02098388(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov119_021D0FD0 *v0 = ApplicationManager_Data(appMan);
 
-    sub_020242C4(v0->unk_04.unk_34);
+    G3DPipelineBuffers_Free(v0->unk_04.unk_34);
 
     GXLayers_EngineAToggleLayers(1, 0);
     GXLayers_EngineAToggleLayers(2, 0);
@@ -173,7 +173,7 @@ static int sub_02098388(ApplicationManager *appMan, int *param1)
     Bg_FreeTilemapBuffer(v0->unk_04.unk_00, 3);
     Bg_FreeTilemapBuffer(v0->unk_04.unk_00, 4);
 
-    Heap_FreeToHeap(v0->unk_04.unk_00);
+    Heap_Free(v0->unk_04.unk_00);
     VramTransfer_Free();
     PokemonSpriteManager_Free(v0->unk_04.unk_38);
     sub_02015FB8(v0->unk_04.unk_54);
@@ -262,7 +262,7 @@ static BOOL sub_0209843C(FieldTask *param0)
         v0->unk_00++;
         break;
     case 6:
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return 1;
     }
 

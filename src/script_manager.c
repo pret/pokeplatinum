@@ -117,7 +117,7 @@ static BOOL FieldTask_RunScript(FieldTask *taskManager)
             Strbuf_Free(scriptManager->msgBuf);
             Strbuf_Free(scriptManager->tmpBuf);
             scriptManager->magic = 0;
-            Heap_FreeToHeap(scriptManager);
+            Heap_Free(scriptManager);
 
             if (scriptFunction != NULL) {
                 scriptFunction(fieldSystem);
@@ -146,8 +146,8 @@ static ScriptManager *ScriptManager_New()
 static void ScriptContext_Free(ScriptContext *ctx)
 {
     MessageLoader_Free(ctx->loader);
-    Heap_FreeToHeap(ctx->scripts);
-    Heap_FreeToHeap(ctx);
+    Heap_Free(ctx->scripts);
+    Heap_Free(ctx);
 }
 
 static void sub_0203EA68(FieldSystem *fieldSystem, ScriptManager *scriptManager, u16 scriptID, MapObject *object, void *saveType)
@@ -215,9 +215,9 @@ static u16 ScriptContext_LoadAndOffsetID(FieldSystem *fieldSystem, ScriptContext
     } else if (retScriptID >= 10100) {
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_1115, TEXT_BANK_UNK_0622);
         retScriptID -= 10100;
-    } else if (retScriptID >= 10000) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0409, TEXT_BANK_UNK_0381);
-        retScriptID -= 10000;
+    } else if (retScriptID >= SCRIPT_ID_OFFSET_FIELD_MOVES) {
+        ScriptContext_Load(fieldSystem, ctx, scripts_field_moves, TEXT_BANK_FIELD_MOVES);
+        retScriptID -= SCRIPT_ID_OFFSET_FIELD_MOVES;
     } else if (retScriptID >= 9950) {
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_0411, TEXT_BANK_UNK_0383);
         retScriptID -= 9950;

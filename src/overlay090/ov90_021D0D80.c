@@ -158,7 +158,7 @@ int ov90_021D0E04(ApplicationManager *appMan, int *param1)
             break;
         }
 
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, v1->heapID);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, v1->heapID);
         (*param1)++;
         break;
     case 1:
@@ -179,7 +179,7 @@ int ov90_021D0E04(ApplicationManager *appMan, int *param1)
             break;
         }
 
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, v1->heapID);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, v1->heapID);
         (*param1)++;
         break;
     case 3:
@@ -451,49 +451,46 @@ static void ov90_021D11EC(UnkStruct_ov90_021D0ECC *param0)
     {
         BgTemplate v3[] = {
             {
-                0,
-                0,
-                0x800,
-                0,
-                1,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0xf800,
-                GX_BG_CHARBASE_0x00000,
-                GX_BG_EXTPLTT_01,
-                0,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x800,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_256x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0xf800,
+                .charBase = GX_BG_CHARBASE_0x00000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 0,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
             {
-                0,
-                0,
-                0x800,
-                0,
-                1,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0xf000,
-                GX_BG_CHARBASE_0x00000,
-                GX_BG_EXTPLTT_01,
-                1,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x800,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_256x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0xf000,
+                .charBase = GX_BG_CHARBASE_0x00000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 1,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
             {
-                0,
-                0,
-                0x800,
-                0,
-                1,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0xe800,
-                GX_BG_CHARBASE_0x10000,
-                GX_BG_EXTPLTT_01,
-                2,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x800,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_256x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0xe800,
+                .charBase = GX_BG_CHARBASE_0x10000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 2,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
         };
 
@@ -520,7 +517,7 @@ static void ov90_021D1280(UnkStruct_ov90_021D0ECC *param0)
         Bg_FreeTilemapBuffer(param0->unk_10, v1++);
     }
 
-    Heap_FreeToHeap(param0->unk_10);
+    Heap_Free(param0->unk_10);
 }
 
 static void ov90_021D12B0(UnkStruct_ov90_021D0ECC *param0)
@@ -566,12 +563,12 @@ static void ov90_021D1340(UnkStruct_ov90_021D0ECC *param0)
     if (param0->unk_08 == 0) {
         for (v0 = 0; v0 < 5; v0++) {
             Window_AddFromTemplate(param0->unk_10, &(param0->unk_6C[v0]), &(v1[v0]));
-            Window_FillTilemap(&param0->unk_6C[v0], ((0 << 4) | 0));
+            Window_FillTilemap(&param0->unk_6C[v0], (0 << 4) | 0);
         }
     } else {
         for (v0 = 0; v0 < 3; v0++) {
             Window_AddFromTemplate(param0->unk_10, &(param0->unk_6C[v0]), &(v2[v0]));
-            Window_FillTilemap(&param0->unk_6C[v0], ((0 << 4) | 0));
+            Window_FillTilemap(&param0->unk_6C[v0], (0 << 4) | 0);
         }
     }
 
@@ -599,8 +596,8 @@ static void ov90_021D13D8(UnkStruct_ov90_021D0ECC *param0)
     int v0 = 0;
 
     param0->unk_28.unk_00 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0022, param0->heapID);
-    param0->unk_28.unk_04 = StringTemplate_New(2, ((18 + 1) * 4), param0->heapID);
-    param0->unk_28.unk_08 = Strbuf_Init(((18 + 1) * 4), param0->heapID);
+    param0->unk_28.unk_04 = StringTemplate_New(2, (18 + 1) * 4, param0->heapID);
+    param0->unk_28.unk_08 = Strbuf_Init((18 + 1) * 4, param0->heapID);
 
     for (v0 = 0; v0 < 6; v0++) {
         param0->unk_28.unk_24[v0] = MessageLoader_GetNewStrbuf(param0->unk_28.unk_00, 9 + v0);
@@ -730,7 +727,7 @@ static void ov90_021D1750(UnkStruct_ov90_021D0ECC *param0)
         }
     }
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
 static void ov90_021D17DC(UnkStruct_ov90_021D0ECC *param0)
@@ -748,7 +745,7 @@ static void ov90_021D17F8(UnkStruct_ov90_021D17F8 *param0, Window *param1, Strbu
     int v1, v2, v3, v4, v5;
     u32 v6;
 
-    Window_FillTilemap(param1, ((0 << 4) | 0));
+    Window_FillTilemap(param1, (0 << 4) | 0);
 
     if (param3 >= (10 - 2)) {
         v4 = 2;
@@ -801,7 +798,7 @@ static void ov90_021D1984(UnkStruct_ov90_021D0ECC *param0)
 {
     UnkStruct_ov90_021D17F8 *v0 = &(param0->unk_BC[param0->unk_0B * 3 + param0->unk_0C]);
 
-    Window_FillTilemap(&param0->unk_6C[2], ((0 << 4) | 0));
+    Window_FillTilemap(&param0->unk_6C[2], (0 << 4) | 0);
 
     if (v0->unk_05 == 0) {
         Text_AddPrinterWithParamsAndColor(&param0->unk_6C[2], FONT_SYSTEM, param0->unk_28.unk_20, 0, 4, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
@@ -827,14 +824,14 @@ static void ov90_021D1A48(UnkStruct_ov90_021D0ECC *param0)
 
     v0 = sub_02014B34(&v1->unk_08, param0->heapID);
 
-    Window_FillTilemap(&param0->unk_6C[2], ((0 << 4) | 0));
+    Window_FillTilemap(&param0->unk_6C[2], (0 << 4) | 0);
     Text_AddPrinterWithParamsAndColor(&param0->unk_6C[2], FONT_SYSTEM, v0, 0, 4, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v0);
 }
 
 static void ov90_021D1A9C(UnkStruct_ov90_021D0ECC *param0)
 {
-    Window_FillTilemap(&param0->unk_6C[2], ((0 << 4) | 0));
+    Window_FillTilemap(&param0->unk_6C[2], (0 << 4) | 0);
     Window_ClearAndCopyToVRAM(&param0->unk_6C[2]);
     ov90_021D1C44(param0, 1);
 }
@@ -923,8 +920,8 @@ static void ov90_021D1BAC(UnkStruct_ov90_021D0ECC *param0)
         param0->unk_2A4[v0] = SpriteSystem_NewSpriteFromResourceHeader(param0->unk_29C, param0->unk_2A0, &v1[v0]);
     }
 
-    Sprite_SetDrawFlag(param0->unk_2A4[2], 0);
-    Sprite_SetDrawFlag(param0->unk_2A4[1], 0);
+    Sprite_SetDrawFlag(param0->unk_2A4[2], FALSE);
+    Sprite_SetDrawFlag(param0->unk_2A4[1], FALSE);
     Sprite_SetAnimateFlag(param0->unk_2A4[0], 1);
     Sprite_SetAnimateFlag(param0->unk_2A4[2], 1);
     Sprite_SetAnimateFlag(param0->unk_2A4[3], 1);
@@ -962,30 +959,30 @@ static void ov90_021D1C90(UnkStruct_ov90_021D0ECC *param0, u8 param1, u8 param2,
     u16 v0, v1;
 
     if (param0->unk_0E == 10 - 2) {
-        Sprite_SetDrawFlag(param0->unk_2A4[1], 1);
+        Sprite_SetDrawFlag(param0->unk_2A4[1], TRUE);
 
         if (param1 == 10) {
             Sprite_SetAnimFrame(param0->unk_2A4[1], 1);
-            Sprite_SetDrawFlag(param0->unk_2A4[0], 0);
+            Sprite_SetDrawFlag(param0->unk_2A4[0], FALSE);
         } else {
             Sprite_SetAnimFrame(param0->unk_2A4[1], 0);
-            Sprite_SetDrawFlag(param0->unk_2A4[0], 1);
+            Sprite_SetDrawFlag(param0->unk_2A4[0], TRUE);
         }
     } else {
-        Sprite_SetDrawFlag(param0->unk_2A4[0], 1);
-        Sprite_SetDrawFlag(param0->unk_2A4[1], 0);
+        Sprite_SetDrawFlag(param0->unk_2A4[0], TRUE);
+        Sprite_SetDrawFlag(param0->unk_2A4[1], FALSE);
     }
 
     switch (param0->unk_0E) {
     case 0:
-        Sprite_SetDrawFlag(param0->unk_2A4[2], 0);
+        Sprite_SetDrawFlag(param0->unk_2A4[2], FALSE);
         break;
     case (10 - 2):
-        Sprite_SetDrawFlag(param0->unk_2A4[3], 0);
+        Sprite_SetDrawFlag(param0->unk_2A4[3], FALSE);
         break;
     default:
-        Sprite_SetDrawFlag(param0->unk_2A4[2], 1);
-        Sprite_SetDrawFlag(param0->unk_2A4[3], 1);
+        Sprite_SetDrawFlag(param0->unk_2A4[2], TRUE);
+        Sprite_SetDrawFlag(param0->unk_2A4[3], TRUE);
         break;
     }
 

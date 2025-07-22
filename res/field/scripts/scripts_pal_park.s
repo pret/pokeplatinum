@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pal_park.h"
 
-    .data
 
     ScriptEntry _001A
     ScriptEntry PalPark_Trigger_Countdown

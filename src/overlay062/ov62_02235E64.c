@@ -437,7 +437,7 @@ static BOOL ov62_02236624(UnkStruct_0208C06C *param0)
     switch (param0->unk_08) {
     case 0:
         ov62_02231AAC(param0, 299);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_102);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_102);
         param0->unk_08++;
         break;
     case 1:
@@ -478,7 +478,7 @@ static BOOL ov62_022366D4(UnkStruct_0208C06C *param0)
 
     switch (param0->unk_08) {
     case 0:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_102);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_102);
         param0->unk_08++;
         break;
     case 1:
@@ -510,7 +510,7 @@ static BOOL ov62_022366D4(UnkStruct_0208C06C *param0)
         param0->unk_08++;
         break;
     default:
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return 1;
     }
 
@@ -568,7 +568,7 @@ static BOOL ov62_022367B4(UnkStruct_0208C06C *param0)
             PaletteData_BlendMulti(param0->unk_14.unk_14, 2, 0xC, 16, param0->unk_14.unk_44);
             ov62_0222FB44(param0, 1, 1, param0->unk_10);
             ov62_0222FB60(param0, 5);
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
         } else {
             PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
             PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);
@@ -629,7 +629,7 @@ static BOOL ov62_02236920(UnkStruct_0208C06C *param0)
         PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
         break;
     case 4:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_102);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_102);
         param0->unk_08++;
         break;
     case 5:

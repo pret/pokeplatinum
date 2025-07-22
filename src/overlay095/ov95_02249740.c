@@ -147,7 +147,7 @@ void ov95_02249770(void *param0)
         ov95_02249C10(v0);
         ov95_02249C30(&(v0->unk_34));
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 }
 
@@ -193,7 +193,7 @@ static int ov95_022497F8(UnkStruct_ov95_022497D8 *param0, int *param1)
     param0->unk_0C = 0;
 
     SysTask_ExecuteAfterVBlank(ov95_02249F38, param0, 0);
-    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_WHITE, 3, 1, HEAP_ID_58);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_WHITE, 3, 1, HEAP_ID_58);
 
     return 1;
 }
@@ -217,13 +217,13 @@ static int ov95_02249840(UnkStruct_ov95_022497D8 *param0, int *param1)
         if (ov95_02249CF0(&(param0->unk_34))) {
             Sound_PlayEffect(SEQ_SE_DP_KOUKAN07);
             Sprite_SetAnim(param0->unk_20[0], 3);
-            Sprite_SetDrawFlag(param0->unk_20[0], 1);
+            Sprite_SetDrawFlag(param0->unk_20[0], TRUE);
             (*param1)++;
         }
         break;
     case 3:
         if (Sprite_IsAnimated(param0->unk_20[0]) == 0) {
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_WHITE, 16, 1, HEAP_ID_58);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 16, 1, HEAP_ID_58);
             (*param1)++;
         }
         break;
@@ -257,19 +257,18 @@ static void ov95_02249910(UnkStruct_ov95_022497D8 *param0)
         GX_BG0_AS_3D
     };
     static const BgTemplate v2 = {
-        0,
-        0,
-        0x0,
-        0,
-        2,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xf000,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        3,
-        1,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x0,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x512,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 3,
+        .areaOver = 1,
+        .mosaic = FALSE,
     };
     u32 v3, v4, v5, v6;
 
@@ -410,7 +409,7 @@ static void ov95_02249B90(UnkStruct_ov95_022497D8 *param0)
 
     param0->unk_20[0] = ov95_022475E4(param0->unk_00, &v2, UnkEnum_ov95_02249B90_00, UnkEnum_ov95_02249B90_01, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    Sprite_SetDrawFlag(param0->unk_20[0], 0);
+    Sprite_SetDrawFlag(param0->unk_20[0], FALSE);
 }
 
 static void ov95_02249C10(UnkStruct_ov95_022497D8 *param0)

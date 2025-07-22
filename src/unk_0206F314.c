@@ -229,7 +229,7 @@ static int sub_0206F3A0(UnkStruct_0206F314 *param0)
 
     heapID = v5->heapID;
 
-    Heap_FreeToHeap(v5);
+    Heap_Free(v5);
     MI_CpuClear8(v5, sizeof(UnkStruct_0206F7F8));
     Heap_Destroy(heapID);
 
@@ -512,7 +512,7 @@ static void sub_0206F9D4(UnkStruct_0206F7F8 *param0)
         sub_0202EE8C(param0->unk_308[v0]);
     }
 
-    Heap_FreeToHeap(param0->unk_324);
+    Heap_Free(param0->unk_324);
 }
 
 static void sub_0206FA08(UnkStruct_0206F7F8 *param0)
@@ -890,7 +890,7 @@ static BOOL sub_020702D0(FieldTask *param0)
         v1->unk_00 = sub_0206F3A0(v1);
         break;
     case 12:
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return 1;
     }
 

@@ -19,7 +19,7 @@
 #include "battle/struct_ov16_02268520.h"
 #include "battle/struct_ov16_02268A14_decl.h"
 #include "battle/struct_ov16_0226D160_decl.h"
-#include "overlay012/struct_ov12_0221FCDC_decl.h"
+#include "overlay012/battle_anim_system.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -35,6 +35,7 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "trainer_info.h"
+#include "unk_0201567C.h"
 
 #define ENEMY_IN_SLOT_RIGHT 0
 #define ENEMY_IN_SLOT_LEFT  2
@@ -84,7 +85,7 @@ int BattleSystem_PartyCount(BattleSystem *battleSys, int battler);
  */
 Pokemon *BattleSystem_PartyPokemon(BattleSystem *battleSys, int battler, int slot);
 PokemonSpriteManager *ov16_0223E000(BattleSystem *battleSys);
-UnkStruct_ov12_0221FCDC *ov16_0223E008(BattleSystem *battleSys);
+BattleAnimSystem *ov16_0223E008(BattleSystem *battleSys);
 SpriteSystem *BattleSystem_GetSpriteSystem(BattleSystem *battleSys);
 SpriteManager *BattleSystem_GetSpriteManager(BattleSystem *battleSys);
 UnkStruct_ov16_02268520 *ov16_0223E020(BattleSystem *battleSys, int param1);
@@ -141,7 +142,7 @@ u32 BattleSystem_GetTrainerGender(BattleSystem *battleSys, int battler);
 int BattleSystem_BattlerOfType(BattleSystem *battleSys, int type);
 u8 BattleSystem_BattlerSlot(BattleSystem *battleSys, int param1);
 u8 Battler_Side(BattleSystem *battleSys, int param1);
-void *ov16_0223E220(BattleSystem *battleSys);
+UnkStruct_020157E4 *ov16_0223E220(BattleSystem *battleSys);
 PCBoxes *BattleSystem_PCBoxes(BattleSystem *battleSys);
 
 /**

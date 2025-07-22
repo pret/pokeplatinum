@@ -7,7 +7,6 @@
 #define LOCALID_FOOTPRINT_TYPE VAR_0x8001
 #define LOCALID_PARTY_SLOT VAR_0x8002
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry FootstepHouse_DrFootstep

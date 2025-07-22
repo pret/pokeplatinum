@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_defs/struct_02039A58.h"
-#include "struct_defs/struct_02072014.h"
 
 #include "overlay023/ov23_0223E140.h"
 #include "overlay023/ov23_022416A8.h"
@@ -18,6 +17,7 @@
 
 #include "comm_player_manager.h"
 #include "field_comm_manager.h"
+#include "trainer_card.h"
 #include "trainer_info.h"
 #include "unk_02032798.h"
 #include "unk_0204FA34.h"
@@ -93,7 +93,7 @@ static const CommCmdTable Unk_020F68A4[] = {
     { ov23_0223EB8C, CommPacketSizeOf_NetId, NULL },
     { ov23_0223EBC0, CommPacketSizeOf_NetId, NULL },
     { ov23_0223EBE4, ov23_0223EBFC, NULL },
-    { ov23_0223EC00, ov23_0223EC30, NULL },
+    { Mining_TakeLinkInput, ov23_0223EC30, NULL },
     { ov23_02243390, ov23_022433B8, NULL },
     { ov23_022413A0, sub_0203294C, NULL },
     { ov23_0224142C, ov23_022414D0, NULL },

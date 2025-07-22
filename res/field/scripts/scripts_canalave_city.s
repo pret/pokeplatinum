@@ -2,7 +2,6 @@
 #include "generated/distribution_events.h"
 #include "res/text/bank/canalave_city.h"
 
-    .data
 
     ScriptEntry _0066
     ScriptEntry _01F9
@@ -54,7 +53,7 @@ _00F8:
 _0100:
     SetObjectEventPos 16, 55, 0x2CC
     SetObjectEventDir 16, DIR_EAST
-    ScrCmd_188 16, 17
+    SetObjectEventMovementType 16, MOVEMENT_TYPE_LOOK_RIGHT
     Return
 
 _0116:
@@ -64,13 +63,13 @@ _0116:
 _011C:
     SetObjectEventPos 11, 37, 0x2D1
     SetObjectEventDir 11, DIR_SOUTH
-    ScrCmd_188 11, 15
+    SetObjectEventMovementType 11, MOVEMENT_TYPE_LOOK_SOUTH
     Return
 
 _0132:
     SetObjectEventPos 11, 39, 0x2DD
     SetObjectEventDir 11, DIR_NORTH
-    ScrCmd_188 11, 14
+    SetObjectEventMovementType 11, MOVEMENT_TYPE_LOOK_NORTH
     Return
 
 _0148:
@@ -145,7 +144,7 @@ _027C:
     GoTo _028A
 
 _028A:
-    ScrCmd_188 11, 17
+    SetObjectEventMovementType 11, MOVEMENT_TYPE_LOOK_RIGHT
     ClearFlag FLAG_UNK_0x01B2
     AddObject 11
     ApplyMovement 11, _0340
@@ -675,7 +674,7 @@ _0959:
     RemoveObject 16
     SetObjectEventPos 16, 45, 0x2EE
     SetObjectEventDir 16, DIR_WEST
-    ScrCmd_188 16, 16
+    SetObjectEventMovementType 16, MOVEMENT_TYPE_LOOK_LEFT
     AddObject 16
     SetVar VAR_UNK_0x40F8, 4
     ReleaseAll
@@ -701,7 +700,7 @@ _09BC:
     FacePlayer
     CheckItem ITEM_HM04, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _09FA
-    ScrCmd_09A VAR_RESULT, 70
+    FindPartySlotWithMove VAR_RESULT, MOVE_STRENGTH
     GoToIfNe VAR_RESULT, 6, _09FA
     BufferRivalName 0
     Message 3

@@ -3,13 +3,13 @@
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
-#include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_0207C8C4.h"
 
 #include "applications/pokemon_summary_screen/main.h"
 
 #include "bag.h"
 #include "bg_window.h"
+#include "g3d_pipeline.h"
 #include "game_options.h"
 #include "game_records.h"
 #include "message.h"
@@ -22,6 +22,7 @@
 #include "poketch.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "unk_0201567C.h"
 
 struct UnkStruct_0207AE68_t {
     BgConfig *unk_00;
@@ -36,7 +37,7 @@ struct UnkStruct_0207AE68_t {
     Pokemon *unk_28;
     Options *options;
     UnkStruct_0207C8C4 *unk_30;
-    GenericPointerData *unk_34;
+    G3DPipelineBuffers *unk_34;
     ApplicationManager *appMan;
     PokemonSummary *unk_3C;
     void *unk_40;
@@ -45,7 +46,7 @@ struct UnkStruct_0207AE68_t {
     Bag *unk_4C;
     GameRecords *records;
     Poketch *poketch;
-    void *unk_58;
+    UnkStruct_020157E4 *unk_58;
     int heapID;
     u16 unk_60;
     u16 unk_62;

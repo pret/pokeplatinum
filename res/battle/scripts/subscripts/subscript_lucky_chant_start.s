@@ -1,6 +1,5 @@
 #include "macros/btlcmd.inc"
 
-    .data
 
 _000:
     UpdateVar OPCODE_SET, BTLVAR_CALC_TEMP, 0x00005000

@@ -57,7 +57,7 @@ void BattleRecording_Init(BattleRecording *param0)
 void sub_0202F1F8(SaveData *saveData, int heapID, int *param2)
 {
     if (Unk_021C07A4 != NULL) {
-        Heap_FreeToHeap(Unk_021C07A4);
+        Heap_Free(Unk_021C07A4);
         Unk_021C07A4 = NULL;
     }
 
@@ -69,7 +69,7 @@ void sub_0202F22C(void)
 {
     GF_ASSERT(Unk_021C07A4);
 
-    Heap_FreeToHeap(Unk_021C07A4);
+    Heap_Free(Unk_021C07A4);
     Unk_021C07A4 = NULL;
 }
 
@@ -100,7 +100,7 @@ BOOL sub_0202F298(SaveData *saveData, int param1, int *param2, FieldBattleDTO *p
     UnkStruct_0202F41C *v1;
 
     if (Unk_021C07A4) {
-        Heap_FreeToHeap(Unk_021C07A4);
+        Heap_Free(Unk_021C07A4);
         Unk_021C07A4 = NULL;
     }
 
@@ -142,7 +142,7 @@ BOOL sub_0202F330(SaveData *saveData, int param1, int *param2, int param3)
 
     if (*param2 != 1) {
         *param2 = 3;
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
         return 0;
     }
 
@@ -153,18 +153,18 @@ BOOL sub_0202F330(SaveData *saveData, int param1, int *param2, int param3)
 
     if (sub_0202F75C(saveData, v2) == 1) {
         *param2 = 0;
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
         return 0;
     }
 
     if (sub_0202F794(saveData, v2) == 0) {
         *param2 = 2;
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
         return 0;
     }
 
     *param2 = 1;
-    Heap_FreeToHeap(v2);
+    Heap_Free(v2);
     return 1;
 }
 
@@ -612,7 +612,7 @@ static void sub_0202FD30(UnkStruct_0202FD30 *param0, Party *party)
         Party_AddPokemon(party, v1);
     }
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
 UnkStruct_0202F41C *sub_0202FD88(int heapID)
@@ -714,5 +714,5 @@ UnkStruct_0202F41C *sub_0202FF2C(int heapID)
 
 void sub_0202FF44(UnkStruct_0202F41C *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }

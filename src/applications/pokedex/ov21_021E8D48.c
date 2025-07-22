@@ -86,7 +86,7 @@ static void ov21_021E8E0C(UnkStruct_ov21_021E8D48 *param0, const UnkStruct_ov21_
 static void ov21_021E900C(UnkStruct_ov21_021E8D48 *param0);
 static void ov21_021E90B0(BgConfig *param0, int heapID);
 static void ov21_021E9194(BgConfig *param0);
-static Window *ov21_021E91B0(BgConfig *param0, int param1);
+static Window *ov21_021E91B0(BgConfig *param0, int heapID);
 static void ov21_021E91F0(Window *param0);
 static void ov21_021E9208(SpriteResourceCollection **param0, int heapID);
 static void ov21_021E9228(SpriteResourceCollection **param0);
@@ -155,7 +155,7 @@ void ov21_021E8DD0(UnkStruct_ov21_021E8D48 *param0)
     ov21_021E900C(param0);
 
     SysTask_Done(param0->unk_224);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 BOOL ov21_021E8DEC(const UnkStruct_ov21_021E8D48 *param0)
@@ -203,7 +203,7 @@ static void ov21_021E8E0C(UnkStruct_ov21_021E8D48 *param0, const UnkStruct_ov21_
     param0->unk_1B0 = PokedexTextManager_New(&textManTemplate);
 
     ov21_021E90B0(param0->unk_00, param1->heapID);
-    G2_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), -16);
+    G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, -16);
 
     param0->unk_04 = ov21_021E91B0(param0->unk_00, param1->heapID);
 
@@ -267,19 +267,18 @@ static void ov21_021E90B0(BgConfig *param0, int heapID)
 {
     {
         BgTemplate v0 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x0000,
-            GX_BG_CHARBASE_0x04000,
-            GX_BG_EXTPLTT_01,
-            1,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x0000,
+            .charBase = GX_BG_CHARBASE_0x04000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 1,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
@@ -290,19 +289,18 @@ static void ov21_021E90B0(BgConfig *param0, int heapID)
 
     {
         BgTemplate v1 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x0800,
-            GX_BG_CHARBASE_0x0c000,
-            GX_BG_EXTPLTT_01,
-            2,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x0800,
+            .charBase = GX_BG_CHARBASE_0x0c000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 2,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
@@ -317,19 +315,18 @@ static void ov21_021E90B0(BgConfig *param0, int heapID)
 
     {
         BgTemplate v2 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x1000,
-            GX_BG_CHARBASE_0x14000,
-            GX_BG_EXTPLTT_01,
-            3,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x1000,
+            .charBase = GX_BG_CHARBASE_0x14000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 3,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_3);
@@ -346,9 +343,9 @@ static void ov21_021E9194(BgConfig *param0)
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_3);
 }
 
-static Window *ov21_021E91B0(BgConfig *param0, int param1)
+static Window *ov21_021E91B0(BgConfig *param0, int heapID)
 {
-    Window *v0 = Window_New(param1, 1);
+    Window *v0 = Window_New(heapID, 1);
 
     Window_Add(param0, v0, 1, 0, 0, 32, 32, 0xc, 0);
     Window_FillTilemap(v0, 0);
@@ -626,22 +623,22 @@ static void ov21_021E96A8(BgConfig *param0, int param1, NARC *param2)
     v0 = Graphics_GetScrnDataFromOpenNARC(param2, 50, 1, &v1, param1);
 
     Bg_LoadToTilemapRect(param0, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     v0 = Graphics_GetScrnDataFromOpenNARC(param2, 51, 1, &v1, param1);
 
     Bg_LoadToTilemapRect(param0, 3, v1->rawData, 0, 3, v1->screenWidth / 8, v1->screenHeight / 8);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     v0 = Graphics_GetScrnDataFromOpenNARC(param2, 52, 1, &v1, param1);
 
     Bg_LoadToTilemapRect(param0, 3, v1->rawData, 12, 8, v1->screenWidth / 8, v1->screenHeight / 8);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     v0 = Graphics_GetScrnDataFromOpenNARC(param2, 54, 1, &v1, param1);
 
     Bg_LoadToTilemapRect(param0, 3, v1->rawData, 0, 16, v1->screenWidth / 8, v1->screenHeight / 8);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     Bg_ScheduleTilemapTransfer(param0, 3);
 }
 
@@ -655,7 +652,7 @@ static void ov21_021E97C4(BgConfig *param0, int param1, NARC *param2)
     v0 = Graphics_GetScrnDataFromOpenNARC(param2, 57, 1, &v1, param1);
 
     Bg_LoadToTilemapRect(param0, 2, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     Bg_ScheduleTilemapTransfer(param0, 2);
 }
 
@@ -700,7 +697,7 @@ static void ov21_021E9828(SysTask *param0, void *param1)
 static void ov21_021E98D8(PaletteData *param0, PokemonSprite *param1)
 {
     PaletteData_LoadBufferFromHardware(param0, 0, 0, 32 * 0x10);
-    PaletteData_LoadBufferFromHardware(param0, 2, 0, (((16 - 2) * 16) * sizeof(u16)));
+    PaletteData_LoadBufferFromHardware(param0, 2, 0, ((16 - 2) * 16) * sizeof(u16));
 }
 
 static void ov21_021E98F8(PaletteData *param0, PokemonSprite *param1, int param2, int param3, int param4, int param5, int param6)
@@ -753,7 +750,7 @@ static PokemonSprite *ov21_021E99E0(PokemonSpriteManager *param0, Pokemon *param
 static void ov21_021E9A0C(int param0)
 {
     CharTransferTemplate v0 = {
-        32, (1024 * 0x40), (512 * 0x20), 0
+        32, 1024 * 0x40, 512 * 0x20, 0
     };
 
     v0.heapID = param0;
@@ -807,7 +804,7 @@ static void ov21_021E9AC8(UnkStruct_ov21_021E9A9C *param0)
     int v0;
 
     for (v0 = 0; v0 < 2; v0++) {
-        Heap_FreeToHeap(param0->unk_00[0]);
+        Heap_Free(param0->unk_00[0]);
     }
 
     memset(param0, 0, sizeof(UnkStruct_ov21_021E9A9C));

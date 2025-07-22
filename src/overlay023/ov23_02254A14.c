@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02029894_decl.h"
-#include "struct_defs/underground_data.h"
+#include "struct_defs/underground.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
@@ -221,7 +221,7 @@ static BOOL ov23_02254AD4(FieldTask *param0)
         ov23_02255EBC(1, v1);
         break;
     case 1:
-        StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_41, FADE_TYPE_UNK_41, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_41, FADE_TYPE_UNK_41, COLOR_BLACK, 6, 1, HEAP_ID_FIELD);
         ov23_02255EBC(2, v1);
         break;
     case 2:
@@ -254,7 +254,7 @@ static BOOL ov23_02254AD4(FieldTask *param0)
         break;
     case 9:
         Sound_PlayEffect(SEQ_SE_DP_PC_LOGOFF);
-        StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_40, FADE_TYPE_UNK_40, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_40, FADE_TYPE_UNK_40, COLOR_BLACK, 6, 1, HEAP_ID_FIELD);
         ov23_02255EBC(10, v1);
         break;
     case 10:
@@ -262,7 +262,7 @@ static BOOL ov23_02254AD4(FieldTask *param0)
             ov23_022545D0(v1->unk_508);
             ov23_0225430C(v1->unk_504);
             ov5_021D1BEC(v1->unk_50C);
-            Heap_FreeToHeap(v1);
+            Heap_Free(v1);
             return 1;
         }
         break;
@@ -282,10 +282,10 @@ static BOOL ov23_02254C84(FieldTask *param0)
     if (v0) {
         switch (ov23_02254314(v2->unk_504)) {
         case 0: {
-            UndergroundData *v3;
+            Underground *v3;
             int v4;
 
-            v3 = SaveData_GetUndergroundData(fieldSystem->saveData);
+            v3 = SaveData_GetUnderground(fieldSystem->saveData);
             v4 = sub_020289A0(v3);
 
             if (v4 == 0) {
@@ -364,9 +364,9 @@ static BOOL ov23_02254DF8(FieldTask *param0)
         if (v7) {
             u32 v8;
             int v9;
-            UndergroundData *v10;
+            Underground *v10;
 
-            v10 = SaveData_GetUndergroundData(v6->fieldSystem->saveData);
+            v10 = SaveData_GetUnderground(v6->fieldSystem->saveData);
             v8 = ov23_022545D8(v6->unk_508);
 
             if (v8 == 0xfffffffe) {
@@ -467,9 +467,9 @@ static BOOL ov23_02254DF8(FieldTask *param0)
             if (v15) {
                 u32 v16;
                 int v17;
-                UndergroundData *v18;
+                Underground *v18;
 
-                v18 = SaveData_GetUndergroundData(v6->fieldSystem->saveData);
+                v18 = SaveData_GetUnderground(v6->fieldSystem->saveData);
                 v17 = ov23_02255B78(&v6->unk_3C, v6->unk_5C);
                 v16 = ov23_022545D8(v6->unk_508);
 
@@ -665,9 +665,9 @@ static BOOL ov23_02255100(FieldTask *param0)
                             v7->unk_04 = 2;
                         }
                     } else {
-                        UndergroundData *v17;
+                        Underground *v17;
 
-                        v17 = SaveData_GetUndergroundData(v7->fieldSystem->saveData);
+                        v17 = SaveData_GetUnderground(v7->fieldSystem->saveData);
 
                         Sound_PlayEffect(SEQ_SE_DP_BOX02);
                         sub_02028B20(v17, v16);
@@ -1312,7 +1312,7 @@ static void ov23_02255EC4(UnkStruct_ov23_02255EC4 *param0)
 
 static void ov23_02255EF0(UnkStruct_ov23_02255EC4 *param0)
 {
-    Heap_FreeToHeap(param0->unk_54);
+    Heap_Free(param0->unk_54);
 }
 
 static void ov23_02255EFC(UnkStruct_ov23_02255EC4 *param0)

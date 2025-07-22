@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/valley_windworks_building.h"
 
-    .data
 
     ScriptEntry _0022
     ScriptEntry _005F
@@ -21,10 +20,10 @@ _0022:
 _0035:
     SetObjectEventPos 5, 21, 5
     SetObjectEventDir 5, DIR_WEST
-    ScrCmd_188 5, 16
+    SetObjectEventMovementType 5, MOVEMENT_TYPE_LOOK_LEFT
     SetObjectEventPos 2, 18, 4
     SetObjectEventDir 2, DIR_SOUTH
-    ScrCmd_188 2, 15
+    SetObjectEventMovementType 2, MOVEMENT_TYPE_LOOK_SOUTH
     End
 
 _005F:
@@ -140,7 +139,7 @@ _01DB:
     CloseMessage
     SetFlag FLAG_UNK_0x01F8
     ClearFlag FLAG_UNK_0x01F9
-    ScrCmd_188 5, 16
+    SetObjectEventMovementType 5, MOVEMENT_TYPE_LOOK_LEFT
     AddObject 5
     ScrCmd_062 5
     GetPlayerMapPos VAR_0x8004, VAR_0x8005

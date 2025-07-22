@@ -158,7 +158,7 @@ BOOL sub_020309A0(SaveData *saveData, int param1, int param2, int param3, int pa
     }
 
     if (v1 != NULL) {
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
     }
 
     return v6;

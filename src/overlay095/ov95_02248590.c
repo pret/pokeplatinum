@@ -254,7 +254,7 @@ void ov95_022485FC(void *param0)
         }
 
         MTRNG_SetSeed(v1->unk_BC);
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
     }
 
     OS_RestoreInterrupts(v0);
@@ -300,7 +300,7 @@ static int ov95_022486AC(UnkStruct_ov95_02248688 *param0, int *param1)
     ov95_022488A4(param0);
     ov95_02248B84(param0);
     ov95_02248CA8(param0);
-    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 8, 1, HEAP_ID_58);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 8, 1, HEAP_ID_58);
 
     return 1;
 }
@@ -394,7 +394,7 @@ static int ov95_022487D4(UnkStruct_ov95_02248688 *param0, int *param1)
         }
 
         if (ov95_022494F4(param0->unk_160)) {
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_WHITE, 4, 1, HEAP_ID_58);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 4, 1, HEAP_ID_58);
             (*param1)++;
         }
         break;
@@ -428,34 +428,32 @@ static void ov95_022488A4(UnkStruct_ov95_02248688 *param0)
         GX_BG0_AS_3D
     };
     static const BgTemplate v2 = {
-        0,
-        0,
-        0,
-        0,
-        5,
-        GX_BG_COLORMODE_256,
-        GX_BG_SCRBASE_0xb000,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        2,
-        1,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_1024x1024,
+        .colorMode = GX_BG_COLORMODE_256,
+        .screenBase = GX_BG_SCRBASE_0xb000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 1,
+        .mosaic = FALSE,
     };
     static const BgTemplate v3 = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_256,
-        GX_BG_SCRBASE_0xf000,
-        GX_BG_CHARBASE_0x10000,
-        GX_BG_EXTPLTT_01,
-        3,
-        1,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_256,
+        .screenBase = GX_BG_SCRBASE_0xf000,
+        .charBase = GX_BG_CHARBASE_0x10000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 3,
+        .areaOver = 1,
+        .mosaic = FALSE,
     };
     static const u16 v4[] = {
         0x20,
@@ -512,7 +510,7 @@ static void ov95_022488A4(UnkStruct_ov95_02248688 *param0)
             GX_EndLoadBGExtPltt();
             GXS_EndLoadBGExtPltt();
 
-            Heap_FreeToHeap(v7);
+            Heap_Free(v7);
         }
     }
 
@@ -623,8 +621,8 @@ static void ov95_02248CA8(UnkStruct_ov95_02248688 *param0)
 
         Sprite_SetAnim(param0->unk_1C[v3][0], 0);
         Sprite_SetAnim(param0->unk_1C[v3][1], 1);
-        Sprite_SetDrawFlag(param0->unk_1C[v3][0], 0);
-        Sprite_SetDrawFlag(param0->unk_1C[v3][1], 0);
+        Sprite_SetDrawFlag(param0->unk_1C[v3][0], FALSE);
+        Sprite_SetDrawFlag(param0->unk_1C[v3][1], FALSE);
     }
 }
 
@@ -683,7 +681,7 @@ static void ov95_02248E5C(UnkStruct_ov95_02248688 *param0, SysTask **param1, Unk
     *(param2->unk_00) = SysTask_Start(ov95_02248EC4, param2, 0);
 
     if (*(param2->unk_00) == NULL) {
-        Heap_FreeToHeap(param2);
+        Heap_Free(param2);
     }
 }
 
@@ -709,8 +707,8 @@ static void ov95_02248EC4(SysTask *param0, void *param1)
             v0->unk_58[v2].y = -114688 + (v0->unk_58[v2].y - 1736704);
 
             if (v0->unk_08[v2]) {
-                Sprite_SetDrawFlag(v0->unk_04->unk_1C[v2][0], 1);
-                Sprite_SetDrawFlag(v0->unk_04->unk_1C[v2][1], 1);
+                Sprite_SetDrawFlag(v0->unk_04->unk_1C[v2][0], TRUE);
+                Sprite_SetDrawFlag(v0->unk_04->unk_1C[v2][1], TRUE);
             }
         }
 
@@ -750,7 +748,7 @@ static void ov95_02248FAC(UnkStruct_ov95_02248688 *param0, SysTask **param1)
         *param1 = SysTask_ExecuteOnVBlank(ov95_02249020, v0, 0);
 
         if (*param1 == NULL) {
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
         }
     }
 }
@@ -781,7 +779,7 @@ static void ov95_022490A4(SysTask *param0)
 
         *(v0->unk_168) = NULL;
         ov95_02248F94(v0->unk_16C);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
     }
 }
@@ -811,7 +809,7 @@ static void ov95_02249118(SysTask *param0, void *param1)
         ov95_022479AC(v0->unk_10, v0->unk_00 >> 12);
     } else {
         ov95_022479AC(v0->unk_10, v0->unk_08 >> 12);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
     }
 }

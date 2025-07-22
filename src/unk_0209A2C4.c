@@ -89,8 +89,8 @@ int sub_0209A300(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
-        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
         SetVBlankCallback(NULL, NULL);
         SetHBlankCallback(NULL, NULL);
         GXLayers_DisableEngineALayers();
@@ -162,19 +162,18 @@ static void sub_0209A3D0(UnkStruct_0209A3D0 *param0)
     }
     {
         BgTemplate v2 = {
-            0x0,
-            0x0,
-            0x800,
-            0x0,
-            0x1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x0000,
-            GX_BG_CHARBASE_0x18000,
-            GX_BG_EXTPLTT_01,
-            0x1,
-            0x0,
-            0x0,
-            0x0
+            .x = 0x0,
+            .y = 0x0,
+            .bufferSize = 0x800,
+            .baseTile = 0x0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x0000,
+            .charBase = GX_BG_CHARBASE_0x18000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0x1,
+            .areaOver = 0x0,
+            .mosaic = FALSE,
         };
         Bg_InitFromTemplate(param0->unk_18, BG_LAYER_MAIN_0, &v2, 0);
         Bg_ClearTilemap(param0->unk_18, BG_LAYER_MAIN_0);
@@ -198,7 +197,7 @@ static void sub_0209A490(UnkStruct_0209A3D0 *param0)
     Bg_ToggleLayer(BG_LAYER_SUB_2, 0);
     Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
     Bg_FreeTilemapBuffer(param0->unk_18, BG_LAYER_MAIN_0);
-    Heap_FreeToHeap(param0->unk_18);
+    Heap_Free(param0->unk_18);
 }
 
 static void sub_0209A4E4(UnkStruct_0209A3D0 *param0)
@@ -259,7 +258,7 @@ static BOOL sub_0209A544(UnkStruct_0209A3D0 *param0)
     case 2:
         Bg_MaskPalette(BG_LAYER_MAIN_0, 0x6c21);
         Bg_MaskPalette(BG_LAYER_SUB_0, 0x6c21);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, param0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, param0->heapID);
         param0->unk_04 = 3;
         break;
     case 3:
@@ -269,7 +268,7 @@ static BOOL sub_0209A544(UnkStruct_0209A3D0 *param0)
         break;
     case 4:
         if (sub_0209A688(param0, param0->unk_08, 0, 4) == 1) {
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, param0->heapID);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, param0->heapID);
             param0->unk_04 = 5;
         }
         break;

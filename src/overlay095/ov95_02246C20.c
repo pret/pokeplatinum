@@ -210,7 +210,7 @@ int ov95_02246E1C(ApplicationManager *appMan, int *param1)
     StringTemplate_Free(v1->unk_0C);
     MessageLoader_Free(v1->unk_10);
     Strbuf_Free(v1->unk_14);
-    Heap_FreeToHeap(v1->unk_08);
+    Heap_Free(v1->unk_08);
     SpriteList_Delete(v1->unk_18);
     RenderOam_Free();
     ApplicationManager_FreeData(appMan);
@@ -278,7 +278,7 @@ UnkStruct_ov95_02247004 *ov95_02246F30(BOOL *param0, int param1)
 
         if (v2) {
             MI_CpuFill16(v0->unk_00, 0x0, 96);
-            Heap_FreeToHeap(v2);
+            Heap_Free(v2);
         }
 
         v0->unk_EC = 0;
@@ -326,7 +326,7 @@ void ov95_02247018(UnkStruct_ov95_02247004 *param0)
 
         *(param0->unk_E4) = 0;
         SysTask_Done(param0->unk_C0);
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0);
     }
 }
 
@@ -371,7 +371,7 @@ static void ov95_02247060(SysTask *param0, void *param1)
 
         if (v0->unk_F4 == 0) {
             *(v0->unk_E4) = 0;
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             SysTask_Done(param0);
         }
     }
@@ -417,7 +417,7 @@ static void ov95_02247170(UnkStruct_ov95_02247004 *param0)
                     param0->unk_F8 = 0;
                 }
             } else {
-                Heap_FreeToHeap(v0);
+                Heap_Free(v0);
             }
         }
     }
@@ -426,7 +426,7 @@ static void ov95_02247170(UnkStruct_ov95_02247004 *param0)
 static void ov95_02247224(UnkStruct_ov95_02247004 *param0, int param1)
 {
     if (param0->unk_C4[param1]) {
-        Heap_FreeToHeap(SysTask_GetParam(param0->unk_C4[param1]));
+        Heap_Free(SysTask_GetParam(param0->unk_C4[param1]));
         SysTask_Done(param0->unk_C4[param1]);
         param0->unk_C4[param1] = NULL;
         param0->unk_F4--;
@@ -483,7 +483,7 @@ UnkStruct_ov95_022472C4 *ov95_022472C4(BgConfig *param0, fx32 param1, fx32 param
             (void)0;
         } else {
             *param6 = 1;
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
         }
     }
 
@@ -582,7 +582,7 @@ void ov95_022473E8(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 
         Bg_LoadTiles(param0->unk_08, param2, v3, v2, 0);
 
         BoxPokemon_ExitDecryptionContext(v5, v6);
-        Heap_FreeToHeap(v3);
+        Heap_Free(v3);
     }
 
     v1 = (param2 >= 4) ? 4 : 0;
@@ -606,7 +606,7 @@ void ov95_022474D4(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 
     if (v0) {
         Bg_CopyToTilemapRect(param0->unk_08, param2, param4, param5, 10, 10, v1->rawData, 0, 0, 32, 32);
         Bg_ChangeTilemapRectPalette(param0->unk_08, param2, param4, param5, 10, 10, param3);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 }
 
@@ -619,12 +619,12 @@ void ov95_02247568(UnkStruct_ov95_02247568 *param0, u32 param1, u32 param2, u32 
 void ov95_022475A0(UnkStruct_ov95_02247568 *param0)
 {
     if (param0->unk_00) {
-        Heap_FreeToHeap(param0->unk_00);
+        Heap_Free(param0->unk_00);
         param0->unk_00 = NULL;
     }
 
     if (param0->unk_04) {
-        Heap_FreeToHeap(param0->unk_04);
+        Heap_Free(param0->unk_04);
         param0->unk_04 = NULL;
     }
 }
@@ -740,7 +740,7 @@ static void ov95_02247694(void)
         int i;
 
         for (i = 0; i < Unk_ov95_0224C2E0; i++) {
-            Heap_FreeToHeap(Unk_ov95_0224C2E4[i]);
+            Heap_Free(Unk_ov95_0224C2E4[i]);
         }
 
         Unk_ov95_0224C2E0 = 0;

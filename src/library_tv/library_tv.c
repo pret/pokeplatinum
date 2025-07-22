@@ -69,8 +69,8 @@ BOOL LibraryTV_Main(ApplicationManager *appMan, int *state)
 
     switch (*state) {
     case STATE_INIT:
-        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
-        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
 
         SetVBlankCallback(NULL, NULL);
         SetHBlankCallback(NULL, NULL);
@@ -107,7 +107,7 @@ BOOL LibraryTV_Main(ApplicationManager *appMan, int *state)
             ltv->waitTiming--;
         } else {
             ltv->waitTiming = 0;
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, ltv->heapID);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, ltv->heapID);
             *state = STATE_FADE_WAIT;
         }
         break;
@@ -126,7 +126,7 @@ BOOL LibraryTV_Main(ApplicationManager *appMan, int *state)
             ltv->waitTiming--;
         } else {
             ltv->waitTiming = 0;
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, ltv->heapID);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, ltv->heapID);
             *state = STATE_EXIT;
         }
         break;
@@ -192,13 +192,39 @@ static void LibraryTV_SetVramBank(LibraryTV *ltv)
     SetAllGraphicsModes(&bgData);
     int frame, charSetID, screenID;
 
-    BgTemplate bgHeader0 = { 0, 0, 0x800, 0, 1, GX_BG_COLORMODE_16, GX_BG_SCRBASE_0x0000, GX_BG_CHARBASE_0x18000, GX_BG_EXTPLTT_01, 1, 0, 0, FALSE };
+    BgTemplate bgHeader0 = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x0000,
+        .charBase = GX_BG_CHARBASE_0x18000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
     frame = 2;
     Bg_InitFromTemplate(ltv->bgl, frame, &bgHeader0, 0);
     Bg_ClearTilesRange(frame, 32, 0, ltv->heapID);
     Bg_ClearTilemap(ltv->bgl, frame);
 
-    BgTemplate bgHeader1 = { 0, 0, 0x800, 0, 1, GX_BG_COLORMODE_16, GX_BG_SCRBASE_0x0800, GX_BG_CHARBASE_0x14000, GX_BG_EXTPLTT_01, 1, 0, 0, FALSE };
+    BgTemplate bgHeader1 = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x0800,
+        .charBase = GX_BG_CHARBASE_0x14000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
     frame = 0;
     charSetID = 1;
     screenID = 4;
@@ -206,7 +232,20 @@ static void LibraryTV_SetVramBank(LibraryTV *ltv)
     Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO_TV, charSetID, ltv->bgl, frame, 0, 0, 0, ltv->heapID);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO_TV, screenID, ltv->bgl, frame, 0, 0, 0, ltv->heapID);
 
-    BgTemplate bgHeader2 = { 0, 0, 0x800, 0, 1, GX_BG_COLORMODE_16, GX_BG_SCRBASE_0x1000, GX_BG_CHARBASE_0x10000, GX_BG_EXTPLTT_01, 1, 0, 0, FALSE };
+    BgTemplate bgHeader2 = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x1000,
+        .charBase = GX_BG_CHARBASE_0x10000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
     frame = 1;
     charSetID = 2;
     screenID = 5;
@@ -214,7 +253,20 @@ static void LibraryTV_SetVramBank(LibraryTV *ltv)
     Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO_TV, charSetID, ltv->bgl, frame, 0, 0, 0, ltv->heapID);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO_TV, screenID, ltv->bgl, frame, 0, 0, 0, ltv->heapID);
 
-    BgTemplate bgHeader3 = { 0, 0, 0x800, 0, 1, GX_BG_COLORMODE_256, GX_BG_SCRBASE_0x1800, GX_BG_CHARBASE_0x20000, GX_BG_EXTPLTT_01, 1, 0, 0, FALSE };
+    BgTemplate bgHeader3 = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_256,
+        .screenBase = GX_BG_SCRBASE_0x1800,
+        .charBase = GX_BG_CHARBASE_0x20000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
     frame = 3;
     charSetID = 2;
     screenID = 4;
@@ -227,7 +279,7 @@ static void LibraryTV_SetVramBank(LibraryTV *ltv)
     Bg_MaskPalette(BG_LAYER_MAIN_0, 0x0);
     Bg_MaskPalette(BG_LAYER_SUB_0, 0x0);
 
-    G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, (GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3), 0x4, 0xc);
+    G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 0x4, 0xc);
 }
 
 static void LibraryTV_ReleaseVramBank(LibraryTV *ltv)
@@ -248,7 +300,7 @@ static void LibraryTV_ReleaseVramBank(LibraryTV *ltv)
     Bg_FreeTilemapBuffer(ltv->bgl, BG_LAYER_MAIN_0);
     Bg_FreeTilemapBuffer(ltv->bgl, BG_LAYER_MAIN_2);
 
-    Heap_FreeToHeap(ltv->bgl);
+    Heap_Free(ltv->bgl);
 }
 
 static void LibraryTV_SetMsgLdr(LibraryTV *ltv)

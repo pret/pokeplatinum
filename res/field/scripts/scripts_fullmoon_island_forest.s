@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/fullmoon_island_forest.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _000C

@@ -7,10 +7,10 @@
 #include "constants/narc.h"
 #include "generated/string_padding_mode.h"
 
+#include "overlay097/main_menu_util.h"
 #include "overlay097/mystery_gift_app.h"
 #include "overlay097/ov97_0222D04C.h"
 #include "overlay097/ov97_02232054.h"
-#include "overlay097/ov97_02237694.h"
 #include "savedata/save_table.h"
 
 #include "bg_window.h"
@@ -596,7 +596,7 @@ static StateTransitionListMenuEntryTemplate sConfirmStartWirelessOptions[] = {
 
 static ListMenuTemplate sWonderCardsAppListMenuTemplate = {
     .choices = NULL,
-    .cursorCallback = ov97_022383C4,
+    .cursorCallback = MainMenuUtil_ListMenuCursorCB,
     .printCallback = NULL,
     .window = NULL,
     .count = 0,
@@ -618,9 +618,9 @@ static ListMenuTemplate sWonderCardsAppListMenuTemplate = {
 static void LoadWcShareScreenButtonsGraphics(WonderCardsAppData *appData)
 {
     ResetAllSprites(appData);
-    ov97_02237A20();
-    ov97_02237A74();
-    ov97_02237B0C(NARC_INDEX_GRAPHIC__MYSTERY, 15, 12, 14, 13, 0);
+    MainMenuUtil_InitCharPlttTransferBuffers();
+    MainMenuUtil_InitSpriteLoader();
+    MainMenuUtil_LoadSprite(NARC_INDEX_GRAPHIC__MYSTERY, 15, 12, 14, 13, 0);
 }
 
 static void ResetAllSprites(WonderCardsAppData *appData)
@@ -648,16 +648,16 @@ static void ResetAllSprites(WonderCardsAppData *appData)
     }
 
     appData->selectedWcSprites[0] = appData->selectedWcSprites[1] = appData->selectedWcSprites[2] = NULL;
-    ov97_02237DA0();
+    MainMenuUtil_FreeSprites();
 }
 
 static void ShowWcShareButtons(WonderCardsAppData *appData)
 {
     appData->shareScreenSelectedBtn = 0;
-    appData->shareScreenBtnSprites[WC_SHARE_BTN_SEND] = ov97_02237D14(0, appData->shareScreenBtnSprites[WC_SHARE_BTN_SEND], 72, WONDERCARD_HEIGHT, 1);
+    appData->shareScreenBtnSprites[WC_SHARE_BTN_SEND] = MainMenuUtil_InitSprite(0, appData->shareScreenBtnSprites[WC_SHARE_BTN_SEND], 72, WONDERCARD_HEIGHT, 1);
     Sprite_SetExplicitPriority(appData->shareScreenBtnSprites[WC_SHARE_BTN_SEND], 2);
 
-    appData->shareScreenBtnSprites[WC_SHARE_BTN_CANCEL] = ov97_02237D14(0, appData->shareScreenBtnSprites[WC_SHARE_BTN_CANCEL], 184, WONDERCARD_HEIGHT, 0);
+    appData->shareScreenBtnSprites[WC_SHARE_BTN_CANCEL] = MainMenuUtil_InitSprite(0, appData->shareScreenBtnSprites[WC_SHARE_BTN_CANCEL], 184, WONDERCARD_HEIGHT, 0);
     Sprite_SetExplicitPriority(appData->shareScreenBtnSprites[WC_SHARE_BTN_CANCEL], 2);
 }
 
@@ -1082,7 +1082,7 @@ static void LoadTilemapBufferFromNarc(WonderCardsAppData *appData, u32 narcMembe
     NNS_G2dGetUnpackedScreenData(nscr, &screenData);
 
     Bg_LoadTilemapBuffer(appData->bgConfig, bgLayer, screenData->rawData, size);
-    Heap_FreeToHeap(nscr);
+    Heap_Free(nscr);
 }
 
 static void LoadWondercardGraphics(WonderCardsAppData *appData, enum WonderCardsAppScreen screen)
@@ -1154,13 +1154,13 @@ static void LoadPokemonSpritesForSelectedWc(WonderCardsAppData *appData)
     int spriteX, i; // forward declarations required to match
 
     if (appData->selectedWcSprites[0] == NULL && appData->selectedWcSprites[1] == NULL && appData->selectedWcSprites[2] == NULL) {
-        if (ov97_02237A60() == TRUE) {
+        if (MainMenuUtil_CheckSpriteLoaderInit() == TRUE) {
             ResetAllSprites(appData);
         }
 
-        ov97_02237A20();
-        ov97_02237A74();
-        ov97_02237B0C(NARC_INDEX_GRAPHIC__MYSTERY, 26, 23, 25, 24, 0);
+        MainMenuUtil_InitCharPlttTransferBuffers();
+        MainMenuUtil_InitSpriteLoader();
+        MainMenuUtil_LoadSprite(NARC_INDEX_GRAPHIC__MYSTERY, 26, 23, 25, 24, 0);
 
         Graphics_LoadPalette(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), PAL_LOAD_MAIN_OBJ, PLTT_OFFSET(3), 0, appData->heapID);
     }
@@ -1181,14 +1181,14 @@ static void LoadPokemonSpritesForSelectedWc(WonderCardsAppData *appData)
 
         NNSG2dCharacterData *charData;
 
-        appData->selectedWcSprites[i] = ov97_02237D14(0, appData->selectedWcSprites[i], spriteX, 16, 10 + i);
+        appData->selectedWcSprites[i] = MainMenuUtil_InitSprite(0, appData->selectedWcSprites[i], spriteX, 16, 10 + i);
         u8 *ncgrBuffer = Graphics_GetCharData(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconSpriteIndex(species, FALSE, HEAP_ID_SYSTEM), FALSE, &charData, appData->heapID);
 
         DC_FlushRange(charData->pRawData, (4 * 4 * 0x20));
         GX_LoadOBJ(charData->pRawData, (0x64 + i * 4 * 4) * 0x20, (4 * 4 * 0x20));
 
         Sprite_SetExplicitPalette(appData->selectedWcSprites[i], PokeIconPaletteIndex(species, 0, 0) + 3);
-        Heap_FreeToHeap(ncgrBuffer);
+        Heap_Free(ncgrBuffer);
     }
 }
 
@@ -1202,13 +1202,13 @@ static BOOL WonderCardsApp_Init(ApplicationManager *appMan, int *unused)
     appData->bgConfig = BgConfig_New(HEAP_ID_WONDER_CARDS_APP);
     appData->heapID = HEAP_ID_WONDER_CARDS_APP;
 
-    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
-    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
 
     appData->selectedWondercardSlot = NUM_WONDERCARD_SLOTS - 1;
     appData->numPlayerConnections = 1;
 
-    ov97_02237694(HEAP_ID_WONDER_CARDS_APP);
+    MainMenuUtil_Init(HEAP_ID_WONDER_CARDS_APP);
     Heap_Create(HEAP_ID_SYSTEM, HEAP_ID_91, 0x300);
 
     return TRUE;
@@ -1317,7 +1317,7 @@ static BOOL RunFlipAnimFrame(WonderCardsAppData *appData)
 
 static void WonderCardsAppCallbackSaveGame(WonderCardsAppData *appData)
 {
-    int stage = ov97_0223847C();
+    int stage = MainMenuUtil_SaveState();
 
     if (stage == 2 || stage == 3) {
         Sound_PlayEffect(SEQ_SE_DP_SAVE);
@@ -1339,7 +1339,7 @@ static void UpdateShareCount(WonderCardsAppData *appData)
     }
 
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_MYSTERY_GIFT);
-    ov97_0223846C(appData->saveData);
+    MainMenuUtil_InitSaving(appData->saveData);
 
     appData->mainCallback = WonderCardsAppCallbackSaveGame;
 }
@@ -1578,21 +1578,21 @@ static int WonderCardsApp_Main(ApplicationManager *appMan, enum WonderCardsAppSt
         break;
     case WC_APP_STATE_DISTRIBUTION_UNDERWAY:
         if (--appData->shouldSendWc == FALSE) {
-            ov97_0223829C(&appData->mysteryGiftAppData.eventData, &appData->currentWonderCard, appData->heapID);
+            MainMenuUtil_EncryptWonderCard(&appData->mysteryGiftAppData.eventData, &appData->currentWonderCard, appData->heapID);
             ov97_0222D1F0((const void *)&appData->currentWonderCard, sizeof(WonderCard));
             UpdateShareCount(appData);
             *state = WC_APP_STATE_START_COMM_SYNC;
         }
         break;
     case WC_APP_STATE_START_COMM_SYNC:
-        if (ov97_02238528() == 4) {
+        if (MainMenuUtil_GetSavingStatus() == 4) {
             CommTiming_StartSync(0x93);
             *state = WC_APP_STATE_WAIT_FOR_COMM_SYNC;
         }
         break;
     case WC_APP_STATE_WAIT_FOR_COMM_SYNC:
         if (CountConnectedPlayers(appData) == 0 || CommTiming_IsSyncState(0x93) == TRUE) {
-            ov97_022384F4();
+            MainMenuUtil_ContinueSaving();
             ShowWindowFromTemplateIndex(appData, &appData->messageBox, MSG_BOX_DISTRIBUTION_SUCCESSFUL, 640);
             DestroyWaitDial(appData->waitDial);
             StopWirelessCommunication(appData, state, WC_APP_STATE_DISTRIBUTION_SUCCESSFUL);
@@ -1624,7 +1624,7 @@ static int WonderCardsApp_Main(ApplicationManager *appMan, enum WonderCardsAppSt
         SpriteList_Update(appData->spriteList);
     }
 
-    ov97_02237CA0();
+    MainMenuUtil_UpdateSpritesSkipGift();
 
     if (appData->mainCallback) {
         appData->mainCallback(appData);
@@ -1825,7 +1825,7 @@ static BOOL WonderCardsApp_Exit(ApplicationManager *appMan, int *unused)
     Bg_FreeTilemapBuffer(appData->bgConfig, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(appData->bgConfig, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(appData->bgConfig, BG_LAYER_MAIN_3);
-    Heap_FreeToHeap(appData->bgConfig);
+    Heap_Free(appData->bgConfig);
     EnqueueApplication(FS_OVERLAY_ID(overlay97), &gMysteryGiftAppTemplate);
     Heap_Destroy(HEAP_ID_91);
     ApplicationManager_FreeData(appMan);
@@ -1857,5 +1857,5 @@ void WonderCardsApp_ShowWondercard(BgConfig *bgConfig, WonderCard *wonderCard, e
     appData->selectedWondercardSlot = 0;
 
     ShowWindowsForScreen(appData, 1, WC_SCREEN_WONDERCARD_FRONT);
-    Heap_FreeToHeap(appData);
+    Heap_Free(appData);
 }

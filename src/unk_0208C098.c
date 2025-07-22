@@ -80,9 +80,9 @@ u8 HealthBar_Color(u16 curHP, u16 maxHP, u32 barSize)
 void sub_0208C120(u8 param0, u32 heapID)
 {
     if (param0 == 0) {
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, heapID);
     } else {
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, heapID);
     }
 }
 
@@ -195,7 +195,7 @@ void sub_0208C210(BgConfig *param0, int heapID, NARC *param2, int param3, int pa
         Bg_LoadPalette(param5, v4->pRawData, param7, param8);
     }
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
 void *sub_0208C2F4(NARC *param0, int param1, int param2, NNSG2dScreenData **param3, int heapID)

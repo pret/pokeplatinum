@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/celestic_town.h"
 
-    .data
 
     ScriptEntry _0032
     ScriptEntry _026C
@@ -85,7 +84,7 @@ _013C:
     RemoveObject 3
     SetObjectEventPos 3, 0x1D2, 0x213
     SetObjectEventDir 3, DIR_NORTH
-    ScrCmd_188 3, 14
+    SetObjectEventMovementType 3, MOVEMENT_TYPE_LOOK_NORTH
     ClearFlag FLAG_UNK_0x01AC
     AddObject 3
     ScrCmd_062 3

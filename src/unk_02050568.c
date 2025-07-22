@@ -121,7 +121,7 @@ static BOOL sub_020505A0(FieldTask *taskMan)
         v1->unk_08++;
         break;
     case 11:
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         sub_02070428(fieldSystem, 0);
         return 1;
     }

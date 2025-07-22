@@ -112,7 +112,7 @@ void ov87_021D1140(UnkStruct_ov87_021D106C *param0)
 {
     if (param0) {
         SetVBlankCallback(NULL, NULL);
-        Heap_FreeToHeap(param0->unk_1FC);
+        Heap_Free(param0->unk_1FC);
         Strbuf_Free(param0->unk_1F8);
         Strbuf_Free(param0->unk_1F4);
         StringTemplate_Free(param0->unk_1F0);
@@ -121,8 +121,8 @@ void ov87_021D1140(UnkStruct_ov87_021D106C *param0)
         MessageLoader_Free(param0->unk_1E4);
         SpriteList_Delete(param0->unk_34);
         RenderOam_Free();
-        Heap_FreeToHeap(param0->unk_10);
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0->unk_10);
+        Heap_Free(param0);
     }
 }
 
@@ -154,7 +154,7 @@ static BOOL ov87_021D1210(UnkStruct_ov87_021D106C *param0, int *param1)
     case 0:
         ov87_021D139C(param0);
         ov87_021D1818(param0);
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_61);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_61);
         (*param1)++;
         break;
     case 1:
@@ -173,7 +173,7 @@ static BOOL ov87_021D1260(UnkStruct_ov87_021D106C *param0, int *param1)
     switch (*param1) {
     case 0:
         Sound_PlayEffect(SEQ_SE_DP_PC_LOGOFF);
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_61);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_61);
         (*param1)++;
         break;
     case 1:
@@ -264,34 +264,32 @@ static void ov87_021D139C(UnkStruct_ov87_021D106C *param0)
         GX_BG0_AS_3D,
     };
     static const BgTemplate v2 = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xf000,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        0,
-        1,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0,
+        .areaOver = 1,
+        .mosaic = FALSE,
     };
     static const BgTemplate v3 = {
-        0,
-        0,
-        0,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xf800,
-        GX_BG_CHARBASE_0x04000,
-        GX_BG_EXTPLTT_01,
-        0,
-        2,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf800,
+        .charBase = GX_BG_CHARBASE_0x04000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0,
+        .areaOver = 2,
+        .mosaic = FALSE,
     };
     u32 v4;
 
@@ -460,8 +458,8 @@ static void ov87_021D186C(UnkStruct_ov87_021D106C *param0)
         }
     }
 
-    Heap_FreeToHeap(param0->unk_1DC);
-    Heap_FreeToHeap(param0->unk_1E0);
+    Heap_Free(param0->unk_1DC);
+    Heap_Free(param0->unk_1E0);
 }
 
 static void ov87_021D18A0(UnkStruct_ov87_021D106C *param0, NNSG2dCellDataBank *param1, NNSG2dAnimBankData *param2)
@@ -516,11 +514,11 @@ static void ov87_021D18A0(UnkStruct_ov87_021D106C *param0, NNSG2dCellDataBank *p
         v2.priority = v9 + 1;
 
         param0->unk_1C4[v9] = SpriteList_Add(&v2);
-        Sprite_SetDrawFlag(param0->unk_1C4[v9], 0);
+        Sprite_SetDrawFlag(param0->unk_1C4[v9], FALSE);
     }
 
-    Heap_FreeToHeap(v8);
-    Heap_FreeToHeap(v7);
+    Heap_Free(v8);
+    Heap_Free(v7);
 }
 
 static void ov87_021D1970(UnkStruct_ov87_021D106C *param0)
@@ -556,11 +554,11 @@ static void ov87_021D1970(UnkStruct_ov87_021D106C *param0)
             Sprite_SetExplicitOAMMode(param0->unk_1C4[v3], GX_OAM_MODE_XLU);
         }
 
-        Sprite_SetDrawFlag(param0->unk_1C4[v3], 1);
+        Sprite_SetDrawFlag(param0->unk_1C4[v3], TRUE);
     }
 
     for (; v3 < 6; v3++) {
-        Sprite_SetDrawFlag(param0->unk_1C4[v3], 0);
+        Sprite_SetDrawFlag(param0->unk_1C4[v3], FALSE);
     }
 }
 
@@ -569,6 +567,6 @@ static void ov87_021D1AB8(UnkStruct_ov87_021D106C *param0)
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        Sprite_SetDrawFlag(param0->unk_1C4[v0], 0);
+        Sprite_SetDrawFlag(param0->unk_1C4[v0], FALSE);
     }
 }

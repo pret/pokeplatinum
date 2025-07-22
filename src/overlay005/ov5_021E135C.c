@@ -67,10 +67,10 @@ static void ov5_021E139C(SysTask *param0, void *param1)
         v0->unk_0C++;
 
         if (v0->unk_0C == 20) {
-            StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
+            StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_FIELD);
         } else if ((v0->unk_0C > 20) && IsScreenFadeDone()) {
             *v0->unk_04 = 1;
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             SysTask_Done(param0);
         } else {
             break;
@@ -109,7 +109,7 @@ static void ov5_021E1470(SysTask *param0, void *param1)
         v0->unk_0C++;
 
         if (v0->unk_0C == 2) {
-            StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
+            StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_FIELD);
         }
 
         if (v0->unk_0C > 20) {
@@ -120,7 +120,7 @@ static void ov5_021E1470(SysTask *param0, void *param1)
         if (IsScreenFadeDone()) {
             Player_SetDir(v0->fieldSystem->playerAvatar, 1);
             *v0->unk_04 = 1;
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             SysTask_Done(param0);
         }
         break;

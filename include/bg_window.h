@@ -4,9 +4,6 @@
 #include <nitro/fx/fx.h>
 #include <nitro/gx.h>
 
-#define TILE_SIZE_4BPP 0x20
-#define TILE_SIZE_8BPP 0x40
-
 #define TILEMAP_COPY_SRC_FLAT 0 // source dimensions are equal to dest dimensions
 #define TILEMAP_COPY_SRC_RECT 1 // dest dimensions carve a window from source
 
@@ -107,7 +104,6 @@ typedef struct BgTemplate {
     u8 bgExtPltt;
     u8 priority;
     u8 areaOver;
-    u8 dummy;
     BOOL mosaic;
 } BgTemplate;
 

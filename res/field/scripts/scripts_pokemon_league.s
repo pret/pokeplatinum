@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pokemon_league.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _0025

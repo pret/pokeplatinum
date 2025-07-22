@@ -58,7 +58,7 @@ static int sub_0208BBA8(ApplicationManager *appMan, int *param1);
 static int sub_0208BBB4(ApplicationManager *appMan, int *param1);
 static int sub_0208BBC0(ApplicationManager *appMan, int *param1);
 static int sub_0208BC08(ApplicationManager *appMan, int *param1);
-static BOOL sub_0208BC3C(UnkStruct_0208BC3C *param0, int param1);
+static BOOL sub_0208BC3C(UnkStruct_0208BC3C *param0, int heapID);
 static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int heapID);
 static BOOL sub_0208BE80(int param0);
 
@@ -178,7 +178,7 @@ static int sub_0208BBC0(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        v0 = sub_0208BC3C(v1, 119);
+        v0 = sub_0208BC3C(v1, HEAP_ID_119);
 
         if (v0) {
             if (v1->unk_18.unk_00 == 1) {
@@ -210,7 +210,7 @@ static int sub_0208BC08(ApplicationManager *appMan, int *param1)
         sub_0202F22C();
     }
 
-    Heap_FreeToHeap(v0->unk_14);
+    Heap_Free(v0->unk_14);
     ApplicationManager_FreeData(appMan);
     Sound_SetPlayerVolume(1, 127);
     Heap_Destroy(HEAP_ID_119);
@@ -218,14 +218,14 @@ static int sub_0208BC08(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static BOOL sub_0208BC3C(UnkStruct_0208BC3C *param0, int param1)
+static BOOL sub_0208BC3C(UnkStruct_0208BC3C *param0, int heapID)
 {
     switch (param0->unk_00) {
     case 0:
         if (param0->unk_14->unk_00 == 0) {
-            param0->appMan = ApplicationManager_New(&Unk_020F3050, param0, param1);
+            param0->appMan = ApplicationManager_New(&Unk_020F3050, param0, heapID);
         } else {
-            param0->appMan = ApplicationManager_New(&Unk_020F3060, param0, param1);
+            param0->appMan = ApplicationManager_New(&Unk_020F3060, param0, heapID);
         }
 
         param0->unk_00++;
@@ -276,7 +276,7 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int heapID)
         param0->unk_14->unk_874 = 1;
 
         if (v0 != 1) {
-            Heap_FreeToHeap(param0->unk_10->bagCursor);
+            Heap_Free(param0->unk_10->bagCursor);
             FieldBattleDTO_Free(param0->unk_10);
             param0->unk_00 = 0;
             return 1;
@@ -310,7 +310,7 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int heapID)
             }
         }
 
-        Heap_FreeToHeap(param0->unk_10->bagCursor);
+        Heap_Free(param0->unk_10->bagCursor);
         FieldBattleDTO_Free(param0->unk_10);
         ApplicationManager_Free(param0->appMan);
 

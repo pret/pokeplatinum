@@ -119,7 +119,7 @@ void sub_0206C784(FieldSystem *fieldSystem, const u8 param1, const u8 param2, co
             }
         } else {
             GF_ASSERT(FALSE);
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             return;
         }
     } else {
@@ -159,7 +159,7 @@ static BOOL sub_0206C8F8(FieldTask *taskMan)
         }
         break;
     case 2:
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return 1;
     }
 
@@ -199,7 +199,7 @@ static BOOL sub_0206C964(FieldTask *taskMan)
         }
     } break;
     case 2:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELDMAP);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_FIELDMAP);
         Sound_FadeOutBGM(0, 6);
         v1->unk_00 = 3;
         break;
@@ -230,7 +230,7 @@ static BOOL sub_0206C964(FieldTask *taskMan)
         v1->unk_00 = 7;
         break;
     case 7:
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return 1;
     }
 

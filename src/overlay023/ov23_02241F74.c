@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_02029894_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/underground_data.h"
+#include "struct_defs/underground.h"
 
 #include "field/field_system.h"
 #include "overlay005/land_data.h"
@@ -126,7 +126,7 @@ static CommManUnderground *sCommManUnderground = NULL;
 static void CommManUnderground_Init(CommManUnderground *param0, FieldSystem *fieldSystem)
 {
     u8 v0 = Options_TextFrameDelay(SaveData_GetOptions(fieldSystem->saveData));
-    int v1;
+    int i;
 
     sCommManUnderground = param0;
     MI_CpuFill8(sCommManUnderground, 0, sizeof(CommManUnderground));
@@ -137,20 +137,20 @@ static void CommManUnderground_Init(CommManUnderground *param0, FieldSystem *fie
     sCommManUnderground->unk_1C.unk_02 = 0;
     sCommManUnderground->unk_14B = 0;
     sCommManUnderground->unk_147 = 1;
-    sCommManUnderground->unk_118 = ov23_02253D48(634, HEAP_ID_33, fieldSystem->bgConfig, v0, 500);
-    sCommManUnderground->unk_11C = ov23_02253D48(638, HEAP_ID_33, fieldSystem->bgConfig, v0, 0);
-    sCommManUnderground->unk_120 = ov23_02253D48(636, HEAP_ID_33, fieldSystem->bgConfig, v0, 1000);
-    sCommManUnderground->unk_124 = ov23_02253D48(637, HEAP_ID_33, fieldSystem->bgConfig, v0, 0);
-    sCommManUnderground->unk_128 = ov23_02253D48(630, HEAP_ID_33, fieldSystem->bgConfig, v0, 0);
+    sCommManUnderground->unk_118 = ov23_02253D48(TEXT_BANK_UNDERGROUND_COMMON, HEAP_ID_33, fieldSystem->bgConfig, v0, 500);
+    sCommManUnderground->unk_11C = ov23_02253D48(TEXT_BANK_UNDERGROUND_CAPTURE_FLAG, HEAP_ID_33, fieldSystem->bgConfig, v0, 0);
+    sCommManUnderground->unk_120 = ov23_02253D48(TEXT_BANK_UNDERGROUND_NPCS, HEAP_ID_33, fieldSystem->bgConfig, v0, 1000);
+    sCommManUnderground->unk_124 = ov23_02253D48(TEXT_BANK_UNDERGROUND_DECORATE_BASE, HEAP_ID_33, fieldSystem->bgConfig, v0, 0);
+    sCommManUnderground->unk_128 = ov23_02253D48(TEXT_BANK_UNDERGROUND_TRAP_NAMES, HEAP_ID_33, fieldSystem->bgConfig, v0, 0);
 
     LoadMessageBoxGraphics(sCommManUnderground->fieldSystem->bgConfig, 3, (1024 - (18 + 12)), 10, 0, HEAP_ID_FIELD);
     Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, 52, 0, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD);
     LoadStandardWindowGraphics(sCommManUnderground->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
 
-    for (v1 = 0; v1 < (7 + 1); v1++) {
-        sCommManUnderground->unk_C2[v1] = 0xff;
-        sCommManUnderground->unk_D2[v1] = 0xff;
-        sCommManUnderground->unk_DC[v1] = NULL;
+    for (i = 0; i < (7 + 1); i++) {
+        sCommManUnderground->unk_C2[i] = 0xff;
+        sCommManUnderground->unk_D2[i] = 0xff;
+        sCommManUnderground->unk_DC[i] = NULL;
     }
 
     SystemFlag_SetEnteredUnderground(SaveData_GetVarsFlags(sCommManUnderground->fieldSystem->saveData));
@@ -160,11 +160,11 @@ static void CommManUnderground_Init(CommManUnderground *param0, FieldSystem *fie
 
 static void ov23_02242108(void)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < (7 + 1); v0++) {
-        if (sCommManUnderground->unk_DC[v0]) {
-            Strbuf_Free(sCommManUnderground->unk_DC[v0]);
+    for (i = 0; i < (7 + 1); i++) {
+        if (sCommManUnderground->unk_DC[i]) {
+            Strbuf_Free(sCommManUnderground->unk_DC[i]);
         }
     }
 
@@ -178,7 +178,7 @@ static void ov23_02242108(void)
     ov23_02253DD8(sCommManUnderground->unk_128);
 
     sCommManUnderground->fieldSystem->unk_90 = 0;
-    Heap_FreeToHeap(sCommManUnderground);
+    Heap_Free(sCommManUnderground);
     sCommManUnderground = NULL;
 }
 
@@ -261,7 +261,7 @@ BOOL ov23_022422A8(TrainerInfo *param0, int param1, int param2, Strbuf *param3)
 
 static BOOL ov23_02242308(Strbuf *param0)
 {
-    int v0;
+    int i;
     StringTemplate *v1;
     Strbuf *v2;
     TrainerInfo *v3;
@@ -271,44 +271,44 @@ static BOOL ov23_02242308(Strbuf *param0)
         return 0;
     }
 
-    for (v0 = 0; v0 < (7 + 1); v0++) {
-        if (sub_02032DE0(v0)) {
-            v3 = CommInfo_TrainerInfo(v0);
-            CommInfo_SetReceiveEnd(v0);
+    for (i = 0; i < (7 + 1); i++) {
+        if (sub_02032DE0(i)) {
+            v3 = CommInfo_TrainerInfo(i);
+            CommInfo_SetReceiveEnd(i);
 
             if (ov23_022422A8(v3, 1, 91, param0)) {
                 return 1;
             }
         }
 
-        if (sCommManUnderground->unk_C2[v0] != 0xff) {
-            v3 = CommInfo_TrainerInfo(v0);
-            v4 = CommInfo_TrainerInfo(sCommManUnderground->unk_C2[v0]);
+        if (sCommManUnderground->unk_C2[i] != 0xff) {
+            v3 = CommInfo_TrainerInfo(i);
+            v4 = CommInfo_TrainerInfo(sCommManUnderground->unk_C2[i]);
 
-            sCommManUnderground->unk_C2[v0] = 0xff;
+            sCommManUnderground->unk_C2[i] = 0xff;
 
             if (ov23_0224223C(v3, v4, 111, param0)) {
                 return 1;
             }
         }
 
-        if (sCommManUnderground->unk_D2[v0] != 0xff) {
-            v3 = CommInfo_TrainerInfo(v0);
-            sCommManUnderground->unk_D2[v0] = 0xff;
+        if (sCommManUnderground->unk_D2[i] != 0xff) {
+            v3 = CommInfo_TrainerInfo(i);
+            sCommManUnderground->unk_D2[i] = 0xff;
 
             if (ov23_022422A8(v3, 0, 112, param0)) {
                 return 1;
             }
         }
 
-        if (sCommManUnderground->unk_13D[v0] == 1) {
-            if (sCommManUnderground->unk_DC[v0]) {
-                Strbuf_Copy(param0, sCommManUnderground->unk_DC[v0]);
-                Strbuf_Free(sCommManUnderground->unk_DC[v0]);
-                sCommManUnderground->unk_DC[v0] = NULL;
+        if (sCommManUnderground->unk_13D[i] == 1) {
+            if (sCommManUnderground->unk_DC[i]) {
+                Strbuf_Copy(param0, sCommManUnderground->unk_DC[i]);
+                Strbuf_Free(sCommManUnderground->unk_DC[i]);
+                sCommManUnderground->unk_DC[i] = NULL;
             }
 
-            sCommManUnderground->unk_13D[v0] = 0;
+            sCommManUnderground->unk_13D[i] = 0;
             return 1;
         }
     }
@@ -575,7 +575,7 @@ void ov23_02242830(u8 param0)
     u8 v0 = param0;
     UnkStruct_ov23_02242830 v1;
     int v2, v3;
-    UndergroundData *v4 = SaveData_GetUndergroundData(sCommManUnderground->fieldSystem->saveData);
+    Underground *v4 = SaveData_GetUnderground(sCommManUnderground->fieldSystem->saveData);
 
     if ((sCommManUnderground->unk_146 != 0) && (sCommManUnderground->unk_134 != 0)) {
         return;
@@ -728,18 +728,18 @@ void ov23_022428D8(int param0, int param1, void *param2, void *param3)
 
 void ov23_02242B14(void)
 {
-    int v0;
+    int i;
 
     if (CommSys_CurNetId() == 0) {
-        for (v0 = 0; v0 < (7 + 1); v0++) {
-            if ((NULL != CommInfo_TrainerInfo(v0)) && !sCommManUnderground->unk_135[v0]) {
-                ov23_0224B5CC(v0);
+        for (i = 0; i < (7 + 1); i++) {
+            if ((NULL != CommInfo_TrainerInfo(i)) && !sCommManUnderground->unk_135[i]) {
+                ov23_0224B5CC(i);
             }
 
-            if (CommInfo_TrainerInfo(v0)) {
-                sCommManUnderground->unk_135[v0] = 1;
+            if (CommInfo_TrainerInfo(i)) {
+                sCommManUnderground->unk_135[i] = 1;
             } else {
-                sCommManUnderground->unk_135[v0] = 0;
+                sCommManUnderground->unk_135[i] = 0;
             }
         }
 
@@ -788,7 +788,7 @@ void ov23_02242BC0(FieldSystem *fieldSystem)
 
         v0 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, ov23_02253608());
         ov23_02253598(v0, SaveData_UndergroundRecord(FieldSystem_GetSaveData(fieldSystem)), FieldSystem_GetSaveData(fieldSystem));
-        ov23_0224F588(SaveData_GetUndergroundData(FieldSystem_GetSaveData(fieldSystem)));
+        ov23_0224F588(SaveData_GetUnderground(FieldSystem_GetSaveData(fieldSystem)));
     }
 }
 
@@ -1076,28 +1076,28 @@ void ov23_022430D0(u16 param0)
 
 void ov23_022430E0(u16 param0, u16 param1, u16 param2)
 {
-    int v0;
+    int i;
 
     if (sCommManUnderground->unk_C0 == 0) {
         return;
     }
 
-    for (v0 = 0; v0 < 20; v0++) {
-        if (sCommManUnderground->unk_C0 == sCommManUnderground->unk_20[v0].unk_00) {
-            if (sCommManUnderground->unk_20[v0].unk_02 == param0) {
-                sCommManUnderground->unk_20[v0].unk_04 = param1;
-                sCommManUnderground->unk_20[v0].unk_06 = param2;
+    for (i = 0; i < 20; i++) {
+        if (sCommManUnderground->unk_C0 == sCommManUnderground->unk_20[i].unk_00) {
+            if (sCommManUnderground->unk_20[i].unk_02 == param0) {
+                sCommManUnderground->unk_20[i].unk_04 = param1;
+                sCommManUnderground->unk_20[i].unk_06 = param2;
                 return;
             }
         }
     }
 
-    for (v0 = 0; v0 < 20; v0++) {
-        if (0 == sCommManUnderground->unk_20[v0].unk_00) {
-            sCommManUnderground->unk_20[v0].unk_00 = sCommManUnderground->unk_C0;
-            sCommManUnderground->unk_20[v0].unk_02 = param0;
-            sCommManUnderground->unk_20[v0].unk_04 = param1;
-            sCommManUnderground->unk_20[v0].unk_06 = param2;
+    for (i = 0; i < 20; i++) {
+        if (0 == sCommManUnderground->unk_20[i].unk_00) {
+            sCommManUnderground->unk_20[i].unk_00 = sCommManUnderground->unk_C0;
+            sCommManUnderground->unk_20[i].unk_02 = param0;
+            sCommManUnderground->unk_20[i].unk_04 = param1;
+            sCommManUnderground->unk_20[i].unk_06 = param2;
             return;
         }
     }
@@ -1107,12 +1107,12 @@ void ov23_022430E0(u16 param0, u16 param1, u16 param2)
 
 u16 ov23_02243154(u16 param0)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < 20; v0++) {
-        if (sCommManUnderground->unk_C0 == sCommManUnderground->unk_20[v0].unk_00) {
-            if (sCommManUnderground->unk_20[v0].unk_02 == param0) {
-                return sCommManUnderground->unk_20[v0].unk_06;
+    for (i = 0; i < 20; i++) {
+        if (sCommManUnderground->unk_C0 == sCommManUnderground->unk_20[i].unk_00) {
+            if (sCommManUnderground->unk_20[i].unk_02 == param0) {
+                return sCommManUnderground->unk_20[i].unk_06;
             }
         }
     }
@@ -1122,12 +1122,12 @@ u16 ov23_02243154(u16 param0)
 
 u16 ov23_0224318C(u16 param0)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < 20; v0++) {
-        if (sCommManUnderground->unk_C0 == sCommManUnderground->unk_20[v0].unk_00) {
-            if (sCommManUnderground->unk_20[v0].unk_02 == param0) {
-                return sCommManUnderground->unk_20[v0].unk_04;
+    for (i = 0; i < 20; i++) {
+        if (sCommManUnderground->unk_C0 == sCommManUnderground->unk_20[i].unk_00) {
+            if (sCommManUnderground->unk_20[i].unk_02 == param0) {
+                return sCommManUnderground->unk_20[i].unk_04;
             }
         }
     }
@@ -1259,10 +1259,10 @@ void ov23_022433BC(int param0, int param1, void *param2, void *param3)
 
 int ov23_022433D0(void)
 {
-    int v0, v1 = 0;
+    int i, v1 = 0;
 
-    for (v0 = 0; v0 < (7 + 1); v0++) {
-        if (sCommManUnderground->unk_CA[v0]) {
+    for (i = 0; i < (7 + 1); i++) {
+        if (sCommManUnderground->unk_CA[i]) {
             v1++;
         }
     }

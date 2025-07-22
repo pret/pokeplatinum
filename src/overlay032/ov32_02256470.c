@@ -82,7 +82,7 @@ void PartyStatusGraphics_UnloadAndFree(PoketchPartyStatusGraphics *graphicsData)
             SysTask_Done(graphicsData->bounceAnimTask);
         }
 
-        Heap_FreeToHeap(graphicsData);
+        Heap_Free(graphicsData);
     }
 }
 
@@ -117,19 +117,18 @@ static void EndPoketchTask(PoketchTaskManager *poketchTaskMan)
 static void DrawAppScreen(SysTask *param0, void *param1)
 {
     static const BgTemplate v0 = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0x7000,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        2,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x7000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
     GXSDispCnt v1;
     PoketchPartyStatusGraphics *v2;
@@ -273,11 +272,11 @@ static void ov32_0225692C(PoketchPartyStatusGraphics *param0, const PlayerPartyS
         v1.hasAffineTransform = TRUE;
 
         for (v3 = 0; v3 < param1->partyCount; v3++) {
-            NARC_ReadFromMember(v0, param1->mons[v3].iconSpriteIndex, 0, ((16 * TILE_SIZE_4BPP) + 0x80), param0->iconSpriteBuffer);
+            NARC_ReadFromMember(v0, param1->mons[v3].iconSpriteIndex, 0, (16 * TILE_SIZE_4BPP) + 0x80, param0->iconSpriteBuffer);
 
             NNS_G2dGetUnpackedCharacterData(param0->iconSpriteBuffer, &v2);
-            DC_FlushRange(v2->pRawData, (16 * TILE_SIZE_4BPP));
-            GXS_LoadOBJ(v2->pRawData, (0 + 8) * TILE_SIZE_4BPP + (16 * TILE_SIZE_4BPP) * v3, (16 * TILE_SIZE_4BPP));
+            DC_FlushRange(v2->pRawData, 16 * TILE_SIZE_4BPP);
+            GXS_LoadOBJ(v2->pRawData, (0 + 8) * TILE_SIZE_4BPP + (16 * TILE_SIZE_4BPP) * v3, 16 * TILE_SIZE_4BPP);
 
             v1.translation.x = ((sMonIconCoords[v3].x) << FX32_SHIFT);
             v1.translation.y = ((sMonIconCoords[v3].y) << FX32_SHIFT);
@@ -343,7 +342,7 @@ static void Task_HandleMonIconBounce(SysTask *task, void *taskData)
     case 1:
         if (data->bouncesDone == data->numBounces) { // bouncing will continue for as long as the touch screen is held on the same icon
             if (!(playerData->isTouchingPoketch && (data->partySlot == PoketchPartyStatus_CheckTouchingPartySlot(playerData->touchX, playerData->touchY, playerData->partyCount)))) {
-                PoketchAnimation_SetSpritePosition(graphicsData->unk_9C[data->partySlot], (sMonIconCoords[data->partySlot].x << FX32_SHIFT), (sMonIconCoords[data->partySlot].y << FX32_SHIFT));
+                PoketchAnimation_SetSpritePosition(graphicsData->unk_9C[data->partySlot], sMonIconCoords[data->partySlot].x << FX32_SHIFT, sMonIconCoords[data->partySlot].y << FX32_SHIFT);
                 data->taskState = 0;
                 break;
             }

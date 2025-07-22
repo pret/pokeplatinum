@@ -19,7 +19,6 @@
 #define VAR_TRAINER    VAR_0x8005
 #define VAR_DEFEATED   VAR_0x8006
 
-    .data
 
     ScriptEntry PokemonCenterDailyTrainers_CheckUnlockedVSSeeker
     ScriptEntry PokemonCenterDailyTrainers_FirstNPC

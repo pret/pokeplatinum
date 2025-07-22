@@ -1,6 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0222E63C.h"
 #include "overlay104/ov104_0222E930.h"
@@ -193,7 +195,7 @@ static void ov104_02233478(void *param0)
     UnkStruct_ov104_02234130 *v1 = param0;
 
     ov104_0223410C(v1->unk_1C, param0);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 
     return;
 }
@@ -291,7 +293,7 @@ BOOL ov104_022334DC(UnkStruct_ov104_0222E930 *param0)
         v3 = Pokemon_New(HEAP_ID_FIELDMAP);
         ov104_0222DF40(&v4->unk_3F0[v13], v3, ov104_0223ADA0(v4));
         *v15 = Pokemon_GetValue(v3, MON_DATA_TYPE_1, NULL);
-        Heap_FreeToHeap(v3);
+        Heap_Free(v3);
         break;
     case 18:
         v5 = ov104_0223AA74(v4->unk_04, 1);
@@ -319,7 +321,7 @@ BOOL ov104_022334DC(UnkStruct_ov104_0222E930 *param0)
             }
         }
 
-        Heap_FreeToHeap(v3);
+        Heap_Free(v3);
 
         v9 = 0;
 
@@ -379,8 +381,8 @@ BOOL ov104_022334DC(UnkStruct_ov104_0222E930 *param0)
         }
         break;
     case 33:
-        ov104_0222E278(&(v4->unk_34[0]), v4->unk_18[v4->unk_06], 11, 178);
-        ov104_0222E278(&(v4->unk_34[1]), v4->unk_18[v4->unk_06 + 7], 11, 178);
+        ov104_0222E278(&(v4->unk_34[0]), v4->unk_18[v4->unk_06], HEAP_ID_FIELDMAP, 178);
+        ov104_0222E278(&(v4->unk_34[1]), v4->unk_18[v4->unk_06 + 7], HEAP_ID_FIELDMAP, 178);
         break;
     case 34:
         v6 = ov104_0223AA50(v4->unk_04);

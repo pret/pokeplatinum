@@ -36,7 +36,7 @@
 #include "battle/struct_ov16_02268520.h"
 #include "battle/struct_ov16_02268A14_decl.h"
 #include "battle/struct_ov16_0226D160_decl.h"
-#include "overlay012/struct_ov12_0221FCDC_decl.h"
+#include "overlay012/battle_anim_system.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -80,7 +80,7 @@ Party *BattleSystem_Party(BattleSystem *battleSystem, int param1);
 int BattleSystem_PartyCount(BattleSystem *battleSys, int battler);
 Pokemon *BattleSystem_PartyPokemon(BattleSystem *battleSys, int battler, int slot);
 PokemonSpriteManager *ov16_0223E000(BattleSystem *battleSystem);
-UnkStruct_ov12_0221FCDC *ov16_0223E008(BattleSystem *battleSystem);
+BattleAnimSystem *ov16_0223E008(BattleSystem *battleSystem);
 SpriteSystem *BattleSystem_GetSpriteSystem(BattleSystem *battleSystem);
 SpriteManager *BattleSystem_GetSpriteManager(BattleSystem *battleSystem);
 UnkStruct_ov16_02268520 *ov16_0223E020(BattleSystem *battleSystem, int param1);
@@ -111,7 +111,7 @@ u32 BattleSystem_GetTrainerGender(BattleSystem *battleSystem, int param1);
 int BattleSystem_BattlerOfType(BattleSystem *battleSys, int type);
 u8 BattleSystem_BattlerSlot(BattleSystem *battleSys, int battler);
 u8 Battler_Side(BattleSystem *battleSystem, int param1);
-void *ov16_0223E220(BattleSystem *battleSystem);
+UnkStruct_020157E4 *ov16_0223E220(BattleSystem *battleSystem);
 enum BattleTerrain BattleSystem_Terrain(BattleSystem *battleSys);
 int BattleSystem_MapHeader(BattleSystem *battleSystem);
 int BattleSystem_Partner(BattleSystem *battleSys, int battler);
@@ -292,7 +292,7 @@ PokemonSpriteManager *ov16_0223E000(BattleSystem *battleSystem)
     return battleSystem->unk_88;
 }
 
-UnkStruct_ov12_0221FCDC *ov16_0223E008(BattleSystem *battleSystem)
+BattleAnimSystem *ov16_0223E008(BattleSystem *battleSystem)
 {
     return battleSystem->unk_8C;
 }
@@ -490,7 +490,7 @@ u8 Battler_Side(BattleSystem *battleSystem, int battler)
     return Battler_Type(battleSystem->battlers[battler]) & 1;
 }
 
-void *ov16_0223E220(BattleSystem *battleSystem)
+UnkStruct_020157E4 *ov16_0223E220(BattleSystem *battleSystem)
 {
     return battleSystem->unk_1AC;
 }
@@ -1560,7 +1560,7 @@ void BattleSystem_SetStopRecording(BattleSystem *battleSys, int flag)
 
     ov16_0226CEB0(battleSys->unk_198, flag);
 
-    StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 16, 2, HEAP_ID_BATTLE);
+    StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 16, 2, HEAP_ID_BATTLE);
     Sound_StopWaveOutAndSequences();
     Sound_SetMasterVolume(0);
 

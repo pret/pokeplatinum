@@ -114,7 +114,7 @@ void AccessoryShop_Free(AccessoryShop *shop)
     AccessoryShop_DeleteSpriteList(shop);
 
     memset(shop, 0, sizeof(AccessoryShop));
-    Heap_FreeToHeap(shop);
+    Heap_Free(shop);
 }
 
 BOOL AccessoryShop_Main(AccessoryShop *shop)

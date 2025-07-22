@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/twinleaf_town_player_house_1f.h"
 
-    .data
 
     ScriptEntry _002E
     ScriptEntry _0064
@@ -24,7 +23,7 @@ _002E:
 _0048:
     SetObjectEventPos 0, 2, 4
     SetObjectEventDir 0, DIR_NORTH
-    ScrCmd_188 0, 14
+    SetObjectEventMovementType 0, MOVEMENT_TYPE_LOOK_NORTH
     Return
 
 _005E:

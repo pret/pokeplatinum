@@ -100,13 +100,13 @@ void ov99_021D4170(UnkStruct_ov99_021D2CB0 *param0)
         for (v0 = 0; v0 < v2->unk_00; v0++) {
             Easy3DObject_SetPosition(&param0->unk_6C[v1][v0], v2->unk_04 - v2->unk_08 * v0, v2->unk_0C - v2->unk_10 * v0, v2->unk_14 - v2->unk_18 * v0);
             Easy3DObject_SetScale(&param0->unk_6C[v1][v0], FX32_ONE, FX32_ONE, FX32_ONE);
-            Easy3DObject_SetVisibility(&param0->unk_6C[v1][v0], 1);
+            Easy3DObject_SetVisible(&param0->unk_6C[v1][v0], 1);
         }
 
         for (; v0 < 16; v0++) {
             Easy3DObject_SetPosition(&param0->unk_6C[v1][v0], 0, (-64 * FX32_ONE), (-50 * FX32_ONE));
             Easy3DObject_SetScale(&param0->unk_6C[v1][v0], FX32_ONE, FX32_ONE, FX32_ONE);
-            Easy3DObject_SetVisibility(&param0->unk_6C[v1][v0], 0);
+            Easy3DObject_SetVisible(&param0->unk_6C[v1][v0], 0);
         }
     }
 }
@@ -142,7 +142,7 @@ BOOL ov99_021D425C(UnkStruct_ov99_021D2CB0 *param0, s32 param1)
                 Easy3DObject_SetPosition(&param0->unk_6C[v6][v7], v3 + v0, v4 + v1, v5 + v2);
             }
 
-            Easy3DObject_SetVisibility(&param0->unk_6C[v6][v7], 1);
+            Easy3DObject_SetVisible(&param0->unk_6C[v6][v7], 1);
         }
     }
 
@@ -193,7 +193,7 @@ void ov99_021D439C(UnkStruct_ov99_021D2CB0 *param0, int param1, int param2, int 
 
     GX_EndLoadBGExtPltt();
 
-    Heap_FreeToHeap(v2);
+    Heap_Free(v2);
     PaletteData_FillBufferRange(param0->unk_0C, 0, 2, 0x0, 0, 1);
     PaletteData_FillBufferRange(param0->unk_0C, 1, 2, 0x0, 0, 1);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_10F8, v3->unk_00, param0->unk_08, param2, 0, 0, 0, HEAP_ID_75);

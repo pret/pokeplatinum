@@ -13,7 +13,6 @@
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/struct_0207A778.h"
-#include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "battle/battle_context.h"
@@ -32,7 +31,7 @@
 #include "overlay010/ov10_0221F800.h"
 #include "overlay010/struct_ov10_0221F800.h"
 #include "overlay011/ov11_0221F840.h"
-#include "overlay012/ov12_0221FC20.h"
+#include "overlay012/battle_anim_system.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -41,6 +40,7 @@
 #include "field_battle_data_transfer.h"
 #include "flags.h"
 #include "font.h"
+#include "g3d_pipeline.h"
 #include "game_options.h"
 #include "game_overlay.h"
 #include "game_records.h"
@@ -74,10 +74,8 @@
 #include "touch_pad.h"
 #include "trainer_info.h"
 #include "unk_0200C440.h"
-#include "unk_0201567C.h"
 #include "unk_02015F84.h"
 #include "unk_0202419C.h"
-#include "unk_02024220.h"
 #include "unk_0202F1D4.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
@@ -126,8 +124,8 @@ static void ov16_0223CE68(void *param0);
 static void ov16_0223CF1C(void *param0);
 static void ov16_0223CF48(SysTask *param0, void *param1);
 static void ov16_0223CF8C(SysTask *param0, void *param1);
-static GenericPointerData *ov16_0223CD7C(void);
-static void ov16_0223CE20(GenericPointerData *param0);
+static G3DPipelineBuffers *ov16_0223CD7C(void);
+static void ov16_0223CE20(G3DPipelineBuffers *param0);
 static void ov16_0223CD9C(void);
 static void ov16_0223DD4C(BattleSystem *battleSys);
 static void ov16_0223D0C4(SysTask *param0, void *param1);
@@ -358,7 +356,7 @@ void ov16_0223B430(BattleSystem *battleSys)
     NARC_dtor(v1);
     TextPrinter_SetScrollArrowBaseTile(1);
     ov16_0223DD4C(battleSys);
-    SetSubScreenViewRect(SpriteSystem_GetRenderer(battleSys->spriteSys), 0, ((192 + 80) << FX32_SHIFT));
+    SetSubScreenViewRect(SpriteSystem_GetRenderer(battleSys->spriteSys), 0, (192 + 80) << FX32_SHIFT);
 }
 
 void ov16_0223B53C(BattleSystem *battleSys)
@@ -381,49 +379,46 @@ void ov16_0223B578(BattleSystem *battleSys)
     {
         BgTemplate v0[] = {
             {
-                0,
-                0,
-                0x800,
-                0,
-                1,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x0000,
-                GX_BG_CHARBASE_0x04000,
-                GX_BG_EXTPLTT_01,
-                0,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x800,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_256x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x0000,
+                .charBase = GX_BG_CHARBASE_0x04000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 0,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
             {
-                0,
-                0,
-                0x2000,
-                0,
-                4,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x1000,
-                GX_BG_CHARBASE_0x0c000,
-                GX_BG_EXTPLTT_01,
-                1,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x2000,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_512x512,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x1000,
+                .charBase = GX_BG_CHARBASE_0x0c000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 1,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
             {
-                0,
-                0,
-                0x1000,
-                0,
-                3,
-                GX_BG_COLORMODE_256,
-                GX_BG_SCRBASE_0x3000,
-                GX_BG_CHARBASE_0x10000,
-                GX_BG_EXTPLTT_01,
-                3,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x1000,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_512x256,
+                .colorMode = GX_BG_COLORMODE_256,
+                .screenBase = GX_BG_SCRBASE_0x3000,
+                .charBase = GX_BG_CHARBASE_0x10000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 3,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
         };
 
@@ -545,14 +540,14 @@ static void ov16_0223B790(ApplicationManager *appMan)
     PaletteData_SetAutoTransparent(battleSys->paletteSys, 1);
     PaletteData_AllocBuffer(battleSys->paletteSys, 0, 0x200, HEAP_ID_BATTLE);
     PaletteData_AllocBuffer(battleSys->paletteSys, 1, 0x200, HEAP_ID_BATTLE);
-    PaletteData_AllocBuffer(battleSys->paletteSys, 2, (((16 - 2) * 16) * sizeof(u16)), HEAP_ID_BATTLE);
+    PaletteData_AllocBuffer(battleSys->paletteSys, 2, ((16 - 2) * 16) * sizeof(u16), HEAP_ID_BATTLE);
     PaletteData_AllocBuffer(battleSys->paletteSys, 3, 0x200, HEAP_ID_BATTLE);
 
     battleSys->unk_04 = BgConfig_New(HEAP_ID_BATTLE);
     battleSys->windows = Window_New(HEAP_ID_BATTLE, 3);
 
     for (v3 = 0; v3 < 4; v3++) {
-        battleSys->unk_1CC[v3].unk_00 = Heap_AllocFromHeap(HEAP_ID_BATTLE, (32 * 10 * 10));
+        battleSys->unk_1CC[v3].unk_00 = Heap_AllocFromHeap(HEAP_ID_BATTLE, 32 * 10 * 10);
     }
 
     VramTransfer_New(64, HEAP_ID_BATTLE);
@@ -569,21 +564,21 @@ static void ov16_0223B790(ApplicationManager *appMan)
 
     ov16_0223C004(battleSys, battleSys->unk_04);
 
-    Window_Add(battleSys->unk_04, &battleSys->windows[0], 1, 2, 0x13, 27, 4, 11, ((18 + 12) + 1));
+    Window_Add(battleSys->unk_04, &battleSys->windows[0], 1, 2, 0x13, 27, 4, 11, (18 + 12) + 1);
     Window_FillTilemap(&battleSys->windows[0], 0xff);
     Window_DrawMessageBoxWithScrollCursor(&battleSys->windows[0], 0, 1, 10);
 
     battleSys->spriteSys = SpriteSystem_Alloc(5);
 
-    SpriteSystem_Init(battleSys->spriteSys, &Unk_ov16_0226E2E4, &Unk_ov16_0226E29C, (16 + 16));
+    SpriteSystem_Init(battleSys->spriteSys, &Unk_ov16_0226E2E4, &Unk_ov16_0226E29C, 16 + 16);
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
     ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
     battleSys->spriteMan = SpriteManager_New(battleSys->spriteSys);
 
-    SpriteSystem_InitSprites(battleSys->spriteSys, battleSys->spriteMan, (64 + 64));
+    SpriteSystem_InitSprites(battleSys->spriteSys, battleSys->spriteMan, 64 + 64);
     SpriteSystem_InitManagerWithCapacities(battleSys->spriteSys, battleSys->spriteMan, &Unk_ov16_0226E2B0);
-    SetSubScreenViewRect(SpriteSystem_GetRenderer(battleSys->spriteSys), 0, ((192 + 80) << FX32_SHIFT));
+    SetSubScreenViewRect(SpriteSystem_GetRenderer(battleSys->spriteSys), 0, (192 + 80) << FX32_SHIFT);
 
     ov16_02268A88(battleSys->unk_198);
 
@@ -602,12 +597,12 @@ static void ov16_0223B790(ApplicationManager *appMan)
     }
 
     battleSys->unk_88 = PokemonSpriteManager_New(HEAP_ID_BATTLE);
-    PokemonSpriteManager_SetPlttBaseAddrAndSize(battleSys->unk_88, 0, (0x20 * 6));
+    PokemonSpriteManager_SetPlttBaseAddrAndSize(battleSys->unk_88, 0, 0x20 * 6);
 
     ov16_0223F36C(battleSys);
     ov16_0223CE28();
 
-    battleSys->unk_8C = ov12_0221FCDC(HEAP_ID_BATTLE);
+    battleSys->unk_8C = BattleAnimSystem_New(HEAP_ID_BATTLE);
 
     ov16_0223C210(battleSys);
 
@@ -617,7 +612,7 @@ static void ov16_0223B790(ApplicationManager *appMan)
     battleSys->unk_0C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_STRINGS, HEAP_ID_BATTLE);
     battleSys->unk_10 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVES_USED_IN_BATTLE, HEAP_ID_BATTLE);
     battleSys->strFormatter = StringTemplate_Default(HEAP_ID_BATTLE);
-    battleSys->msgBuffer = Strbuf_Init((2 * 160), HEAP_ID_BATTLE);
+    battleSys->msgBuffer = Strbuf_Init(2 * 160, HEAP_ID_BATTLE);
 
     MI_CpuCopy16(PaletteData_GetUnfadedBuffer(battleSys->paletteSys, 0), &battleSys->unk_2224[0], 0x20 * 7);
     MI_CpuCopy16(PaletteData_GetUnfadedBuffer(battleSys->paletteSys, 2), &battleSys->unk_2304[0], 0x20 * 7);
@@ -713,8 +708,8 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
         BattleSystem_LoadFightOverlay(battleSystem, 0);
     }
 
-    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
-    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
     BattleSystem_SetBurmyForm(battleSystem);
 
     if (battleSystem->resultMask != 0x4) {
@@ -723,16 +718,16 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
 
     for (battlerId = 0; battlerId < MAX_BATTLERS; battlerId++) {
         Party_Copy(battleSystem->parties[battlerId], v1->parties[battlerId]);
-        Heap_FreeToHeap(battleSystem->parties[battlerId]);
+        Heap_Free(battleSystem->parties[battlerId]);
         TrainerInfo_Copy(battleSystem->trainerInfo[battlerId], v1->trainerInfo[battlerId]);
-        Heap_FreeToHeap(battleSystem->trainerInfo[battlerId]);
+        Heap_Free(battleSystem->trainerInfo[battlerId]);
     }
 
     sub_02015760(battleSystem->unk_1AC);
     Bag_Copy(battleSystem->bag, v1->bag);
-    Heap_FreeToHeap(battleSystem->bag);
+    Heap_Free(battleSystem->bag);
     Pokedex_Copy(battleSystem->pokedex, v1->pokedex);
-    Heap_FreeToHeap(battleSystem->pokedex);
+    Heap_Free(battleSystem->pokedex);
     v1->pcBoxes = battleSystem->pcBoxes;
     v1->bagCursor = battleSystem->bagCursor;
     v1->subscreenCursorOn = battleSystem->unk_1BC;
@@ -749,10 +744,10 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
     v1->unk_19C = battleSystem->recordingStopped;
 
     for (battlerId = 0; battlerId < 4; battlerId++) {
-        Heap_FreeToHeap(battleSystem->unk_1CC[battlerId].unk_00);
+        Heap_Free(battleSystem->unk_1CC[battlerId].unk_00);
     }
 
-    Heap_FreeToHeap(battleSystem->msgBuffer);
+    Heap_Free(battleSystem->msgBuffer);
     PaletteData_FreeBuffer(battleSystem->paletteSys, 0);
     PaletteData_FreeBuffer(battleSystem->paletteSys, 1);
     PaletteData_FreeBuffer(battleSystem->paletteSys, 2);
@@ -764,7 +759,7 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
     sub_02015FB8(battleSystem->pokemonAnimationSys);
     ParticleSystem_FreeAll();
 
-    ov12_0221FDF4(battleSystem->unk_8C);
+    BattleAnimSystem_Delete(battleSystem->unk_8C);
     BattleContext_Free(battleSystem->battleCtx);
 
     for (battlerId = 0; battlerId < battleSystem->maxBattlers; battlerId++) {
@@ -781,9 +776,9 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
     RenderControlFlags_SetAutoScrollFlags(0);
     RenderControlFlags_SetSpeedUpOnTouch(0);
     Windows_Delete(battleSystem->windows, 3);
-    Heap_FreeToHeap(battleSystem->unk_04);
-    Heap_FreeToHeap(battleSystem->unk_21C);
-    Heap_FreeToHeap(battleSystem->unk_220);
+    Heap_Free(battleSystem->unk_04);
+    Heap_Free(battleSystem->unk_21C);
+    Heap_Free(battleSystem->unk_220);
     sub_0200C560(battleSystem->unk_1A4);
     Font_Free(FONT_SUBSCREEN);
     SysTask_Done(battleSystem->unk_1C);
@@ -808,7 +803,7 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
         ov16_0226E174(battleSystem->playbackStopButton);
     }
 
-    Heap_FreeToHeap(battleSystem);
+    Heap_Free(battleSystem);
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay11));
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay12));
 
@@ -863,49 +858,46 @@ static void ov16_0223C004(BattleSystem *battleSys, BgConfig *param1)
     {
         BgTemplate v2[] = {
             {
-                0,
-                0,
-                0x800,
-                0,
-                1,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x0000,
-                GX_BG_CHARBASE_0x04000,
-                GX_BG_EXTPLTT_01,
-                0,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x800,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_256x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x0000,
+                .charBase = GX_BG_CHARBASE_0x04000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 0,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
             {
-                0,
-                0,
-                0x2000,
-                0,
-                4,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x1000,
-                GX_BG_CHARBASE_0x0c000,
-                GX_BG_EXTPLTT_01,
-                1,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x2000,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_512x512,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x1000,
+                .charBase = GX_BG_CHARBASE_0x0c000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 1,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
             {
-                0,
-                0,
-                0x1000,
-                0,
-                3,
-                GX_BG_COLORMODE_256,
-                GX_BG_SCRBASE_0x3000,
-                GX_BG_CHARBASE_0x10000,
-                GX_BG_EXTPLTT_01,
-                3,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x1000,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_512x256,
+                .colorMode = GX_BG_COLORMODE_256,
+                .screenBase = GX_BG_SCRBASE_0x3000,
+                .charBase = GX_BG_CHARBASE_0x10000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 3,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
         };
 
@@ -1065,7 +1057,7 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *dto)
     battleSys->battleType = dto->battleType;
 
     for (i = 0; i < 4; i++) {
-        battleSys->trainerInfo[i] = TrainerInfo_New(5);
+        battleSys->trainerInfo[i] = TrainerInfo_New(HEAP_ID_BATTLE);
         TrainerInfo_Copy(dto->trainerInfo[i], battleSys->trainerInfo[i]);
         battleSys->unk_78[i] = dto->chatotCries[i];
     }
@@ -1423,9 +1415,13 @@ static BOOL ov16_0223CD3C(u16 param0)
     return 0;
 }
 
-static GenericPointerData *ov16_0223CD7C(void)
+static G3DPipelineBuffers *ov16_0223CD7C(void)
 {
-    return sub_02024220(HEAP_ID_BATTLE, 0, 2, 0, 2, ov16_0223CD9C);
+    return G3DPipeline_Init(
+        HEAP_ID_BATTLE,
+        TEXTURE_VRAM_SIZE_256K,
+        PALETTE_VRAM_SIZE_32K,
+        ov16_0223CD9C);
 }
 
 static void ov16_0223CD9C(void)
@@ -1443,9 +1439,9 @@ static void ov16_0223CD9C(void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void ov16_0223CE20(GenericPointerData *param0)
+static void ov16_0223CE20(G3DPipelineBuffers *param0)
 {
-    sub_020242C4(param0);
+    G3DPipelineBuffers_Free(param0);
 }
 
 static void ov16_0223CE28(void)
@@ -1589,7 +1585,7 @@ static void ov16_0223CF8C(SysTask *param0, void *param1)
             v2 = ov16_02263B08(v1);
 
             if (v2 != NULL) {
-                if (HealthBar_Color(v2->curHP, v2->maxHP, (8 * 6)) == 1) {
+                if (HealthBar_Color(v2->curHP, v2->maxHP, 8 * 6) == 1) {
                     v5 |= FlagIndex(v3);
                 }
             }
@@ -1694,19 +1690,18 @@ static void ov16_0223D10C(ApplicationManager *appMan, FieldBattleDTO *param1)
 
     {
         BgTemplate v3 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x0000,
-            GX_BG_CHARBASE_0x04000,
-            GX_BG_EXTPLTT_01,
-            0,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x0000,
+            .charBase = GX_BG_CHARBASE_0x04000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(v0->unk_04, BG_LAYER_MAIN_1, &v3, 0);
@@ -1726,7 +1721,7 @@ static void ov16_0223D10C(ApplicationManager *appMan, FieldBattleDTO *param1)
 
     GXLayers_TurnBothDispOn();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    Window_Add(v0->unk_04, v0->unk_08, 1, 2, 0x13, 27, 4, 11, ((18 + 12) + 1));
+    Window_Add(v0->unk_04, v0->unk_08, 1, 2, 0x13, 27, 4, 11, (18 + 12) + 1);
     Window_FillTilemap(v0->unk_08, 0xff);
     Window_DrawMessageBoxWithScrollCursor(v0->unk_08, 0, 1, 10);
 
@@ -1745,7 +1740,7 @@ static void ov16_0223D10C(ApplicationManager *appMan, FieldBattleDTO *param1)
     }
 
     SetVBlankCallback(ov16_0223CF1C, v0);
-    PaletteData_StartFade(v0->unk_0C, (0x1 | 0x4), 0xffff, 0, 16, 0, 0x0);
+    PaletteData_StartFade(v0->unk_0C, 0x1 | 0x4, 0xffff, 0, 16, 0, 0x0);
 
     v0->unk_1024 = Window_AddWaitDial(v0->unk_08, 1);
 
@@ -1948,7 +1943,7 @@ static BOOL ov16_0223D354(ApplicationManager *appMan)
                 int v2;
 
                 for (v2 = 0; v2 < 4; v2++) {
-                    Heap_FreeToHeap(v0->unk_10[v2]);
+                    Heap_Free(v0->unk_10[v2]);
                 }
             }
 
@@ -1957,7 +1952,7 @@ static BOOL ov16_0223D354(ApplicationManager *appMan)
             v0->unk_1021++;
 
             if (v0->unk_1021 == 33) {
-                PaletteData_StartFade(v0->unk_0C, (0x1 | 0x4), 0xffff, 0, 0, 16, 0x0);
+                PaletteData_StartFade(v0->unk_0C, 0x1 | 0x4, 0xffff, 0, 0, 16, 0x0);
             }
         } else {
             v0->unk_1022++;
@@ -1984,14 +1979,14 @@ static void ov16_0223D7B4(ApplicationManager *appMan)
     UnkStruct_0207A778 *v0 = ApplicationManager_Data(appMan);
 
     SetVBlankCallback(NULL, NULL);
-    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
     PaletteData_FreeBuffer(v0->unk_0C, 0);
     PaletteData_Free(v0->unk_0C);
     Windows_Delete(v0->unk_08, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
     Bg_FreeTilemapBuffer(v0->unk_04, BG_LAYER_MAIN_1);
-    Heap_FreeToHeap(v0->unk_04);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0->unk_04);
+    Heap_Free(v0);
 }
 
 static BOOL ov16_0223D800(ApplicationManager *appMan)
@@ -2058,11 +2053,11 @@ static BOOL ov16_0223D944(ApplicationManager *appMan)
     if (v1->unk_1C0->unk_2B) {
         for (v0 = 0; v0 < 4; v0++) {
             if (v1->unk_1C0->unk_14[v0] != NULL) {
-                Heap_FreeToHeap(v1->unk_1C0->unk_14[v0]);
+                Heap_Free(v1->unk_1C0->unk_14[v0]);
             }
         }
 
-        Heap_FreeToHeap(v1->unk_1C0);
+        Heap_Free(v1->unk_1C0);
         return 1;
     }
 
@@ -2118,11 +2113,11 @@ static BOOL ov16_0223DAD4(ApplicationManager *appMan)
     if (v1->unk_1C0->unk_2B) {
         for (v0 = 0; v0 < 4; v0++) {
             if (v1->unk_1C0->unk_14[v0] != NULL) {
-                Heap_FreeToHeap(v1->unk_1C0->unk_14[v0]);
+                Heap_Free(v1->unk_1C0->unk_14[v0]);
             }
         }
 
-        Heap_FreeToHeap(v1->unk_1C0);
+        Heap_Free(v1->unk_1C0);
         return 1;
     }
 
@@ -2153,16 +2148,16 @@ static BOOL ov16_0223DB1C(ApplicationManager *appMan)
     switch (v0->resultMask) {
     case BATTLE_RESULT_WIN:
         if (!sub_020389B8()) {
-            GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_021);
+            GameRecords_IncrementRecordValue(v0->records, RECORD_LOCAL_LINK_BATTLE_WINS);
         } else {
-            GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_026);
+            GameRecords_IncrementRecordValue(v0->records, RECORD_WIFI_BATTLE_WINS);
         }
         break;
     case BATTLE_RESULT_LOSE:
         if (!sub_020389B8()) {
-            GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_022);
+            GameRecords_IncrementRecordValue(v0->records, RECORD_LOCAL_LINK_BATTLE_LOSSES);
         } else {
-            GameRecords_IncrementRecordValue(v0->records, RECORD_UNK_027);
+            GameRecords_IncrementRecordValue(v0->records, RECORD_WIFI_BATTLE_LOSSES);
         }
         break;
     case BATTLE_RESULT_DRAW:
@@ -2222,11 +2217,11 @@ static BOOL ov16_0223DD10(ApplicationManager *appMan)
     if (v2->unk_2B) {
         for (v0 = 0; v0 < 4; v0++) {
             if (v2->unk_14[v0] != NULL) {
-                Heap_FreeToHeap(v2->unk_14[v0]);
+                Heap_Free(v2->unk_14[v0]);
             }
         }
 
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
         return 1;
     }
 

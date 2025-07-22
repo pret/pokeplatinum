@@ -300,7 +300,7 @@ BOOL Sound_SetSceneAndPlayBGM(u8 scene, u16 bgmID, int unused)
     case 68:
         Sound_Impl_LoadSubSceneSoundData(scene);
         break;
-    case SOUND_SCENE_1:
+    case SOUND_SCENE_TITLE_SCREEN:
         Sound_ConfigureBGMChannelsAndReverb(SOUND_CHANNEL_CONFIG_TITLE);
         Sound_Impl_PlayCutsceneBGM(scene, bgmID, unused);
         break;
@@ -933,7 +933,7 @@ void Sound_StopWaveOutReversed(enum WaveOutChannel channel)
 
     if (*reversedPlaybackEnabled == TRUE) {
         *reversedPlaybackEnabled = FALSE;
-        Heap_FreeToHeap(*reverseBuffer);
+        Heap_Free(*reverseBuffer);
     }
 }
 

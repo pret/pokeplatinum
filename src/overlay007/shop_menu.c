@@ -257,7 +257,7 @@ void Shop_Start(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 ma
     } else if (shopMenu->martType == MART_TYPE_FRONTIER) {
         shopMenu->destInventory = SaveData_GetBag(fieldSystem->saveData);
     } else if (shopMenu->martType == MART_TYPE_DECOR) {
-        shopMenu->destInventory = SaveData_GetUndergroundData(fieldSystem->saveData);
+        shopMenu->destInventory = SaveData_GetUnderground(fieldSystem->saveData);
     } else {
         shopMenu->destInventory = SaveData_GetSealCase(fieldSystem->saveData);
     }
@@ -475,8 +475,8 @@ static u8 Shop_Exit(FieldSystem *fieldSystem, ShopMenu *shopMenu)
         }
 
         sub_0200C560(shopMenu->unk_2B4);
-        Heap_FreeToHeap(shopMenu->itemsPtr);
-        Heap_FreeToHeap(shopMenu);
+        Heap_Free(shopMenu->itemsPtr);
+        Heap_Free(shopMenu);
 
         return TRUE;
     }

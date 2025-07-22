@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/spear_pillar_distorted.h"
 
-    .data
 
     ScriptEntry _0022
     ScriptEntry _0184
@@ -20,7 +19,7 @@ _0022:
     ScrCmd_1B2 1
     SetObjectEventPos 0, 32, 34
     SetObjectEventDir 0, DIR_NORTH
-    ScrCmd_188 0, 14
+    SetObjectEventMovementType 0, MOVEMENT_TYPE_LOOK_NORTH
     ClearFlag FLAG_UNK_0x01CD
     AddObject 0
     ScrCmd_066 30, 30

@@ -1,6 +1,5 @@
 #include "macros/btlcmd.inc"
 
-    .data
 
 _000:
     CheckIgnorableAbility CHECK_HAVE, BTLSCR_ALL_BATTLERS, ABILITY_DAMP, _038

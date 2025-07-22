@@ -10,13 +10,13 @@
 
 #include "applications/poketch/poketch_system.h"
 #include "field/field_system_sub2_t.h"
+#include "game_opening/const_ov77_021D742C.h"
 #include "overlay005/field_control.h"
 #include "overlay005/fieldmap.h"
 #include "overlay005/map_name_popup.h"
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/ov5_021EA714.h"
 #include "overlay005/signpost.h"
-#include "overlay077/const_ov77_021D742C.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -40,7 +40,7 @@
 #include "unk_0209C370.h"
 
 FS_EXTERN_OVERLAY(overlay5);
-FS_EXTERN_OVERLAY(overlay77);
+FS_EXTERN_OVERLAY(game_opening);
 
 static BOOL InitFieldSystemContinue(ApplicationManager *appMan, int *state);
 static BOOL InitFieldSystemNewGame(ApplicationManager *appMan, int *state);
@@ -88,7 +88,7 @@ static BOOL ExecuteFieldProcesses(ApplicationManager *appMan, int *state)
 static BOOL ReturnToTitleScreen(ApplicationManager *appMan, int *state)
 {
     TeardownFieldSystem(appMan);
-    EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenAppTemplate);
+    EnqueueApplication(FS_OVERLAY_ID(game_opening), &gTitleScreenAppTemplate);
     return TRUE;
 }
 
@@ -182,12 +182,12 @@ static void TeardownFieldSystem(ApplicationManager *appMan)
 
     MapMatrix_Free(fieldSystem->mapMatrix);
     MapHeaderData_Free(fieldSystem);
-    Heap_FreeToHeap(fieldSystem->bagCursor);
+    Heap_Free(fieldSystem->bagCursor);
     RadarChain_Free(fieldSystem->chain);
     PokedexMemory_Free(fieldSystem->pokedexMemory);
     sub_0209C388(fieldSystem->battleSubscreenCursorOn);
 
-    Heap_FreeToHeap(fieldSystem->processManager);
+    Heap_Free(fieldSystem->processManager);
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_91);
     Heap_Destroy(HEAP_ID_FIELDMAP);

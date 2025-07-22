@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/sunyshore_city.h"
 
-    .data
 
     ScriptEntry _0593
     ScriptEntry _0680
@@ -37,7 +36,7 @@ _0077:
 
 _0083:
     SetObjectEventPos 18, 0x349, 0x316
-    ScrCmd_188 18, 16
+    SetObjectEventMovementType 18, MOVEMENT_TYPE_LOOK_LEFT
     SetObjectEventDir 18, DIR_WEST
     End
 
@@ -479,7 +478,7 @@ _05D7:
     RemoveObject 18
     WaitTime 1, VAR_RESULT
     SetObjectEventPos 18, 0x34D, 0x2EC
-    ScrCmd_188 18, 15
+    SetObjectEventMovementType 18, MOVEMENT_TYPE_LOOK_SOUTH
     SetObjectEventDir 18, DIR_SOUTH
     ClearFlag FLAG_UNK_0x0239
     AddObject 18

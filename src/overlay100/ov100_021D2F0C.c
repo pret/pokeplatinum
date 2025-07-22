@@ -125,8 +125,8 @@ static void ov100_021D3084(UnkStruct_ov100_021D3084 *param0)
     param0->unk_0C.unk_624[0].unk_164 = 1;
     param0->unk_0C.unk_624[0].unk_154 = FX32_HALF;
 
-    Easy3DObject_SetVisibility(&param0->unk_0C.unk_624[0].unk_00, 0);
-    Easy3DObject_SetVisibility(&param0->unk_0C.unk_16FC[0].unk_00, 0);
+    Easy3DObject_SetVisible(&param0->unk_0C.unk_624[0].unk_00, 0);
+    Easy3DObject_SetVisible(&param0->unk_0C.unk_16FC[0].unk_00, 0);
 
     ov100_021D4AC8(&param0->unk_0C.unk_624[1], 68, param0->unk_1D28->unk_00);
     Easy3DObject_SetPosition(&param0->unk_0C.unk_624[1].unk_00, FX32_CONST(+50), FX32_CONST(+0), FX32_CONST(-50));
@@ -136,8 +136,8 @@ static void ov100_021D3084(UnkStruct_ov100_021D3084 *param0)
     param0->unk_0C.unk_624[1].unk_164 = 1;
     param0->unk_0C.unk_624[1].unk_154 = FX32_HALF;
 
-    Easy3DObject_SetVisibility(&param0->unk_0C.unk_624[1].unk_00, 0);
-    Easy3DObject_SetVisibility(&param0->unk_0C.unk_16FC[1].unk_00, 0);
+    Easy3DObject_SetVisible(&param0->unk_0C.unk_624[1].unk_00, 0);
+    Easy3DObject_SetVisible(&param0->unk_0C.unk_16FC[1].unk_00, 0);
 
     if (TrainerInfo_Gender(param0->unk_1D2C->unk_08) != 1) {
         ov100_021D4AC8(&param0->unk_0C.unk_13EC[0], 61, param0->unk_1D28->unk_00);
@@ -360,8 +360,8 @@ static void ov100_021D37F4(SysTask *param0, void *param1)
 
         v0->unk_04++;
 
-        Easy3DObject_SetVisibility(&v0->unk_10->unk_00, 1);
-        Easy3DObject_SetVisibility(&v0->unk_14->unk_00, 1);
+        Easy3DObject_SetVisible(&v0->unk_10->unk_00, 1);
+        Easy3DObject_SetVisible(&v0->unk_14->unk_00, 1);
 
         v0->unk_00++;
         break;
@@ -640,7 +640,7 @@ BOOL ov100_021D39E4(void *param0)
             Easy3DObject_SetScale(&v0->unk_0C.unk_934[0].unk_00, v0->unk_0C.unk_934[0].unk_150, FX32_CONST(1.0), v0->unk_0C.unk_934[0].unk_150);
             Easy3DObject_SetScale(&v0->unk_0C.unk_934[1].unk_00, v0->unk_0C.unk_934[1].unk_150, FX32_CONST(1.0), v0->unk_0C.unk_934[1].unk_150);
         } else {
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_111);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_111);
             v0->unk_00++;
         }
         break;
@@ -688,7 +688,7 @@ BOOL ov100_021D3FD4(void *param0)
         v0->unk_00++;
         break;
     default:
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return 0;
     }
 

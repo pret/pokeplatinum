@@ -10,7 +10,6 @@
 #include "struct_defs/struct_0203E348.h"
 #include "struct_defs/struct_02042434.h"
 #include "struct_defs/struct_020684D0.h"
-#include "struct_defs/struct_02072014.h"
 #include "struct_defs/struct_02097728.h"
 #include "struct_defs/struct_02098C44.h"
 #include "struct_defs/struct_020997B8.h"
@@ -24,6 +23,7 @@
 #include "field_task.h"
 #include "pokemon.h"
 #include "savedata.h"
+#include "trainer_card.h"
 
 void FieldSystem_StartBattleProcess(FieldSystem *fieldSystem, FieldBattleDTO *dto);
 void sub_0203D1E4(FieldSystem *fieldSystem, void *param1);

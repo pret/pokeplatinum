@@ -59,7 +59,7 @@ void ov70_0225C730(void **param0, NARC *param1, u32 param2, u32 heapID)
         NNS_G3dPlttSetPlttKey(v5, v4);
     }
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
 BOOL ov70_0225C7A0(const Easy3DModel *param0, const Easy3DObject *param1)

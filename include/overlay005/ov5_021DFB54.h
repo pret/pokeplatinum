@@ -11,12 +11,12 @@
 void PlayerAvatar_SetRequestStateBit(PlayerAvatar *playerAvatar, u32 param1);
 void PlayerAvatar_RequestChangeState(PlayerAvatar *playerAvatar);
 int ov5_021DFDE0(FieldSystem *fieldSystem, PlayerAvatar *param1, int param2, int param3);
-void ov5_021E00EC(FieldTask *param0, int param1, int param2);
+void FieldTask_StartUseSurf(FieldTask *task, int direction, int partySlot);
 int PlayerAvatar_CanUseSurf(PlayerAvatar *playerAvatar, u32 currTileBehavior, u32 nextTileBehavior);
-void ov5_021E0734(FieldTask *param0, int param1, int param2);
+void FieldTask_StartUseRockClimb(FieldTask *task, int direction, int partySlot);
 BOOL PlayerAvatar_CanUseRockClimb(u32 metatileBehavior, int facingDir);
 void ov5_021E097C(FieldSystem *fieldSystem, int param1);
-void ov5_021E0998(FieldTask *param0, int param1, int param2);
+void FieldTask_StartUseWaterfall(FieldTask *task, int direction, int partySlot);
 void ov5_021E0DD4(FieldTask *param0);
 void ov5_021E0E94(PlayerAvatar *playerAvatar);
 void ov5_021E0EEC(PlayerAvatar *playerAvatar);

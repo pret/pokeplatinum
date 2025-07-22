@@ -50,8 +50,8 @@ UnkStruct_ov63_0222D1C0 *ov63_0222D1C0(G2dRenderer *param0, BgConfig *param1, co
 
 void ov63_0222D214(UnkStruct_ov63_0222D1C0 *param0)
 {
-    Heap_FreeToHeap(param0->unk_08);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0->unk_08);
+    Heap_Free(param0);
 }
 
 void ov63_0222D228(UnkStruct_ov63_0222D1C0 *param0, const UnkStruct_ov63_0222D160 *param1)
@@ -72,11 +72,11 @@ void ov63_0222D228(UnkStruct_ov63_0222D1C0 *param0, const UnkStruct_ov63_0222D16
 static void ov63_0222D31C(BgConfig *param0, int param1, const UnkStruct_ov65_0223582C *param2)
 {
     BgTemplate v0 = {
-        0,
-        0,
-        0x1000,
-        0,
-        3,
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x1000,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_512x256,
     };
 
     v0.colorMode = param2->unk_02;

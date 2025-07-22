@@ -5,7 +5,6 @@
 
 #include "constants/items.h"
 
-#include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_0207F248.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -17,6 +16,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "font.h"
+#include "g3d_pipeline.h"
 #include "game_options.h"
 #include "game_overlay.h"
 #include "graphics.h"
@@ -46,7 +46,6 @@
 #include "touch_pad.h"
 #include "touch_screen.h"
 #include "unk_0200C440.h"
-#include "unk_02024220.h"
 #include "unk_0202602C.h"
 #include "unk_020393C8.h"
 #include "unk_0206B9D8.h"
@@ -123,9 +122,9 @@ static u8 CheckDuplicateValues(GameWindowLayout *param0);
 static u8 CheckUniqueValues(GameWindowLayout *param0);
 static u8 CheckEqualityInArray(GameWindowLayout *param0);
 static BOOL ValidateGameWindowState(GameWindowLayout *param0);
-static GenericPointerData *sub_0207EAD4(int heapID);
+static G3DPipelineBuffers *sub_0207EAD4(int heapID);
 static void sub_0207EAF4(void);
-static void sub_0207EB64(GenericPointerData *param0);
+static void sub_0207EB64(G3DPipelineBuffers *param0);
 static int ProcessMessageResult(GameWindowLayout *param0);
 static int HandleOverlayCompletion(GameWindowLayout *param0);
 static void sub_0207F388(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1);
@@ -261,7 +260,7 @@ static int sub_0207E0B8(ApplicationManager *appMan, int *param1)
     v1 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, HEAP_ID_12);
     v0 = sub_0207ECC0(appMan);
 
-    StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_3, FADE_TYPE_UNK_3, FADE_TO_BLACK, 6, 1, HEAP_ID_12);
+    StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_3, FADE_TYPE_UNK_3, COLOR_BLACK, 6, 1, HEAP_ID_12);
     sub_0207EDC0(v0);
     sub_0207E8C0();
     sub_0207E918(v0->unk_00);
@@ -706,19 +705,18 @@ static void sub_0207E8C0(void)
 static void sub_0207E8E0(BgConfig *param0)
 {
     BgTemplate v0 = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xf800,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        0,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf800,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
 
     Bg_InitFromTemplate(param0, BG_LAYER_MAIN_0, &v0, 0);
@@ -744,19 +742,18 @@ static void sub_0207E918(BgConfig *param0)
 
     {
         BgTemplate v1 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xf000,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_01,
-            1,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xf000,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 1,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v1, 0);
@@ -765,19 +762,18 @@ static void sub_0207E918(BgConfig *param0)
 
     {
         BgTemplate v2 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xe800,
-            GX_BG_CHARBASE_0x10000,
-            GX_BG_EXTPLTT_01,
-            2,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xe800,
+            .charBase = GX_BG_CHARBASE_0x10000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 2,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v2, 0);
@@ -786,19 +782,18 @@ static void sub_0207E918(BgConfig *param0)
 
     {
         BgTemplate v3 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xe000,
-            GX_BG_CHARBASE_0x10000,
-            GX_BG_EXTPLTT_01,
-            3,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xe000,
+            .charBase = GX_BG_CHARBASE_0x10000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 3,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v3, 0);
@@ -806,19 +801,18 @@ static void sub_0207E918(BgConfig *param0)
 
     {
         BgTemplate v4 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xf800,
-            GX_BG_CHARBASE_0x10000,
-            GX_BG_EXTPLTT_01,
-            0,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xf800,
+            .charBase = GX_BG_CHARBASE_0x10000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v4, 0);
@@ -827,19 +821,18 @@ static void sub_0207E918(BgConfig *param0)
 
     {
         BgTemplate v5 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xf000,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_01,
-            1,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xf000,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 1,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0, BG_LAYER_SUB_1, &v5, 0);
@@ -859,7 +852,7 @@ static void sub_0207EA24(BgConfig *param0)
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
-    Heap_FreeToHeapExplicit(HEAP_ID_12, param0);
+    Heap_FreeExplicit(HEAP_ID_12, param0);
 }
 
 void sub_0207EA74(GameWindowLayout *windowLayout, int param1)
@@ -881,9 +874,9 @@ void sub_0207EA74(GameWindowLayout *windowLayout, int param1)
     }
 }
 
-static GenericPointerData *sub_0207EAD4(int heapID)
+static G3DPipelineBuffers *sub_0207EAD4(int heapID)
 {
-    return sub_02024220(heapID, 0, 1, 0, 2, sub_0207EAF4);
+    return G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_32K, sub_0207EAF4);
 }
 
 static void sub_0207EAF4(void)
@@ -898,9 +891,9 @@ static void sub_0207EAF4(void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void sub_0207EB64(GenericPointerData *param0)
+static void sub_0207EB64(G3DPipelineBuffers *param0)
 {
-    sub_020242C4(param0);
+    G3DPipelineBuffers_Free(param0);
 }
 
 static void sub_0207EB6C(GameWindowLayout *param0, NARC *param1)
@@ -919,12 +912,12 @@ static void sub_0207EB6C(GameWindowLayout *param0, NARC *param1)
 
         v2 = (u16 *)v0->pRawData;
         memcpy(param0->unk_4A4, &v2[3 * 16], 32 * 8);
-        Heap_FreeToHeapExplicit(HEAP_ID_12, v1);
+        Heap_FreeExplicit(HEAP_ID_12, v1);
     }
 
     Font_LoadScreenIndicatorsPalette(0, 13 * 32, HEAP_ID_12);
     LoadStandardWindowGraphics(param0->unk_00, BG_LAYER_MAIN_0, 1, 14, 0, HEAP_ID_12);
-    LoadMessageBoxGraphics(param0->unk_00, BG_LAYER_MAIN_0, (1 + 9), 15, Options_Frame(param0->partyManagementData->options), HEAP_ID_12);
+    LoadMessageBoxGraphics(param0->unk_00, BG_LAYER_MAIN_0, 1 + 9, 15, Options_Frame(param0->partyManagementData->options), HEAP_ID_12);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 3, param0->unk_00, 4, 0, 0, 0, HEAP_ID_12);
     Graphics_LoadPaletteFromOpenNARC(param1, 4, 4, 0x20, 0x20, HEAP_ID_12);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 12, param0->unk_00, 5, 0, 0, 0, HEAP_ID_12);
@@ -1000,7 +993,7 @@ static void sub_0207EE14(GameWindowLayout *param0)
     }
 
     if ((param0->partyManagementData->unk_20 != 2) && (param0->partyManagementData->unk_20 != 17) && (param0->partyManagementData->unk_20 != 23) && (param0->partyManagementData->unk_20 != 22)) {
-        Sprite_SetDrawFlag(param0->unk_5B0[8], 0);
+        Sprite_SetDrawFlag(param0->unk_5B0[8], FALSE);
         Sprite_SetAnim(param0->unk_5B0[9], 0);
 
         {
@@ -1014,7 +1007,7 @@ static void sub_0207EE14(GameWindowLayout *param0)
     }
 
     if ((param0->partyManagementData->unk_20 == 4) || (param0->partyManagementData->unk_20 == 21)) {
-        Sprite_SetDrawFlag(param0->unk_5B0[9], 0);
+        Sprite_SetDrawFlag(param0->unk_5B0[9], FALSE);
         v0 ^= 2;
     }
 
@@ -1444,10 +1437,10 @@ static u8 sub_0207FA24(GameWindowLayout *param0)
 
     if ((v0 != param0->partySlot) && (v0 != 0xff)) {
         if ((v0 == 6) || (v0 == 7)) {
-            Sprite_SetDrawFlag(param0->unk_5B0[6], 0);
+            Sprite_SetDrawFlag(param0->unk_5B0[6], FALSE);
         } else {
             Sprite_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->partyManagementData->unk_21, v0));
-            Sprite_SetDrawFlag(param0->unk_5B0[6], 1);
+            Sprite_SetDrawFlag(param0->unk_5B0[6], TRUE);
             Sprite_SetPositionXY(param0->unk_5B0[6], v2, v3);
         }
 
@@ -1535,7 +1528,7 @@ static u8 sub_0207FC94(GameWindowLayout *param0)
 
         GridMenuCursor_CheckNavigation(param0->unk_7F4, &v1, &v2, NULL, NULL, param0->partySlot, GRID_MENU_CURSOR_POSITION_DIRECTION_NONE);
         Sprite_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->partyManagementData->unk_21, param0->partySlot));
-        Sprite_SetDrawFlag(param0->unk_5B0[6], 1);
+        Sprite_SetDrawFlag(param0->unk_5B0[6], TRUE);
         Sprite_SetPositionXY(param0->unk_5B0[6], v1, v2);
 
         param0->unk_B0C = 1;
@@ -1556,13 +1549,13 @@ static u8 sub_0207FC94(GameWindowLayout *param0)
 void sub_0207FD68(GameWindowLayout *windowLayout, u8 partySlot)
 {
     if ((partySlot == 6) || (partySlot == 7)) {
-        Sprite_SetDrawFlag(windowLayout->unk_5B0[6], 0);
+        Sprite_SetDrawFlag(windowLayout->unk_5B0[6], FALSE);
     } else {
         u8 v0, v1;
 
         GridMenuCursor_CheckNavigation(windowLayout->unk_7F4, &v0, &v1, NULL, NULL, windowLayout->partySlot, GRID_MENU_CURSOR_POSITION_DIRECTION_NONE);
         Sprite_SetAnim(windowLayout->unk_5B0[6], sub_020805D0(windowLayout->partyManagementData->unk_21, partySlot));
-        Sprite_SetDrawFlag(windowLayout->unk_5B0[6], 1);
+        Sprite_SetDrawFlag(windowLayout->unk_5B0[6], TRUE);
         Sprite_SetPositionXY(windowLayout->unk_5B0[6], v0, v1);
     }
 
@@ -1708,7 +1701,7 @@ static void sub_0207FFC8(GameWindowLayout *param0)
     }
 
     sub_02081CF4(param0, v0, v1);
-    Heap_FreeToHeapExplicit(HEAP_ID_12, v0);
+    Heap_FreeExplicit(HEAP_ID_12, v0);
     sub_02081E08(param0);
     sub_020826F4(param0, 0xffffffff, 1);
     Sprite_SetExplicitPalette2(param0->unk_5B0[6], 1);
@@ -2556,19 +2549,19 @@ static int ApplyItemEffectOnPokemon(GameWindowLayout *param0)
 
     if ((param0->partyManagementData->usedItemID == 466) && (Pokemon_CanShayminSkyForm(Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->partySlot)) == 1)) {
         param0->partyManagementData->evoTargetSpecies = 1;
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         LoadOverlay118(param0);
         return 31;
     }
 
     if ((Item_Get(v0, 34) != 0) || (Item_Get(v0, 35) != 0)) {
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         sub_020866A0(param0, 0);
         return 6;
     }
 
     if ((Item_Get(v0, 36) != 0) && (Item_Get(v0, 37) == 0)) {
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         sub_020866A0(param0, 1);
         return 6;
     }
@@ -2581,7 +2574,7 @@ static int ApplyItemEffectOnPokemon(GameWindowLayout *param0)
 
             param0->partyManagementData->evoTargetSpecies = Pokemon_GetEvolutionTargetSpecies(NULL, v1, EVO_CLASS_BY_ITEM, param0->partyManagementData->usedItemID, &param0->partyManagementData->evoType);
             param0->partyManagementData->menuSelectionResult = 8;
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             return 32;
         }
 
@@ -2597,7 +2590,7 @@ static int ApplyItemEffectOnPokemon(GameWindowLayout *param0)
         param0->unk_B00 = sub_02085348;
     }
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     return 5;
 }
 
@@ -2669,7 +2662,7 @@ static int ProcessItemApplication(GameWindowLayout *param0)
         }
     }
 
-    Window_DrawMessageBoxWithScrollCursor(v1, 1, (1 + 9), 15);
+    Window_DrawMessageBoxWithScrollCursor(v1, 1, 1 + 9, 15);
     Window_FillTilemap(v1, 15);
     sub_0208274C(param0);
 
@@ -2853,7 +2846,7 @@ static int UpdatePokemonFormWithItem(GameWindowLayout *param0)
         StringTemplate_Format(param0->template, param0->unk_6A4, param0->unk_6A8);
     }
 
-    Window_DrawMessageBoxWithScrollCursor(v1, 1, (1 + 9), 15);
+    Window_DrawMessageBoxWithScrollCursor(v1, 1, 1 + 9, 15);
     Window_FillTilemap(v1, 15);
     sub_0208274C(param0);
 
@@ -2925,7 +2918,7 @@ void LoadScreenDataFromNARC(u32 param0, u16 *param1, u16 *param2, u16 *param3)
         memcpy(&param3[v3 * 16], &v2[((6 + 6) + v3) * 32], 16 * 2);
     }
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
 void LoadOverlay118(GameWindowLayout *windowLayout)

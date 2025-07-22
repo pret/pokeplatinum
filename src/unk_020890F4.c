@@ -4,7 +4,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/screen.h"
+#include "constants/graphics.h"
 
 #include "struct_defs/struct_02089438.h"
 #include "struct_defs/struct_02089688.h"
@@ -50,7 +50,7 @@ static int sub_020890F4(ApplicationManager *appMan, int *param1)
 
     v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_02089688), HEAP_ID_101);
     memset(v0, 0, sizeof(UnkStruct_02089688));
-    v0->unk_38C = *((UnkStruct_02089438 *)ApplicationManager_Args(appMan));
+    v0->unk_3B8 = *((UnkStruct_02089438 *)ApplicationManager_Args(appMan));
 
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
@@ -60,16 +60,16 @@ static int sub_020890F4(ApplicationManager *appMan, int *param1)
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
 
-    v0->unk_2C0.unk_00 = NARC_ctor(NARC_INDEX_ARC__CODEIN_GRA, HEAP_ID_101);
-    v0->unk_2C0.unk_0C = BgConfig_New(HEAP_ID_101);
-    v0->unk_2C0.unk_10 = PaletteData_New(HEAP_ID_101);
+    v0->unk_2EC.unk_00 = NARC_ctor(NARC_INDEX_ARC__CODEIN_GRA, HEAP_ID_101);
+    v0->unk_2EC.unk_0C = BgConfig_New(HEAP_ID_101);
+    v0->unk_2EC.unk_10 = PaletteData_New(HEAP_ID_101);
 
-    PaletteData_SetAutoTransparent(v0->unk_2C0.unk_10, 1);
-    PaletteData_AllocBuffer(v0->unk_2C0.unk_10, 0, 0x200, HEAP_ID_101);
-    PaletteData_AllocBuffer(v0->unk_2C0.unk_10, 1, 0x200, HEAP_ID_101);
-    PaletteData_AllocBuffer(v0->unk_2C0.unk_10, 2, 0x200, HEAP_ID_101);
-    PaletteData_AllocBuffer(v0->unk_2C0.unk_10, 3, 0x200, HEAP_ID_101);
-    sub_0208945C(v0->unk_2C0.unk_0C);
+    PaletteData_SetAutoTransparent(v0->unk_2EC.unk_10, 1);
+    PaletteData_AllocBuffer(v0->unk_2EC.unk_10, 0, 0x200, HEAP_ID_101);
+    PaletteData_AllocBuffer(v0->unk_2EC.unk_10, 1, 0x200, HEAP_ID_101);
+    PaletteData_AllocBuffer(v0->unk_2EC.unk_10, 2, 0x200, HEAP_ID_101);
+    PaletteData_AllocBuffer(v0->unk_2EC.unk_10, 3, 0x200, HEAP_ID_101);
+    sub_0208945C(v0->unk_2EC.unk_0C);
     sub_0208A3F4(v0);
     sub_02089688(v0);
 
@@ -79,7 +79,7 @@ static int sub_020890F4(ApplicationManager *appMan, int *param1)
         sub_0208A0B8(v0);
     }
 
-    if (v0->unk_38C.unk_30 != 0) {
+    if (v0->unk_3B8.unk_30 != 0) {
         sub_02039734();
         sub_020397C8(1, HEAP_ID_101);
     }
@@ -98,7 +98,7 @@ static int sub_0208924C(ApplicationManager *appMan, int *param1)
     UnkStruct_02089688 *v1 = ApplicationManager_Data(appMan);
     v0 = sub_02089BEC(v1);
 
-    if (v1->unk_38C.unk_30 != 0) {
+    if (v1->unk_3B8.unk_30 != 0) {
         sub_020397B0(WM_LINK_LEVEL_3 - DWC_GetLinkLevel());
     }
 
@@ -109,7 +109,7 @@ static int sub_0208927C(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_02089688 *v0 = ApplicationManager_Data(appMan);
 
-    if (v0->unk_38C.unk_30 != 0) {
+    if (v0->unk_3B8.unk_30 != 0) {
         sub_02039794();
     }
 
@@ -122,29 +122,29 @@ static int sub_0208927C(ApplicationManager *appMan, int *param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
-    Bg_FreeTilemapBuffer(v0->unk_2C0.unk_0C, 1);
-    Bg_FreeTilemapBuffer(v0->unk_2C0.unk_0C, 2);
-    Bg_FreeTilemapBuffer(v0->unk_2C0.unk_0C, 3);
-    Bg_FreeTilemapBuffer(v0->unk_2C0.unk_0C, 4);
-    Bg_FreeTilemapBuffer(v0->unk_2C0.unk_0C, 5);
-    Bg_FreeTilemapBuffer(v0->unk_2C0.unk_0C, 6);
-    Bg_FreeTilemapBuffer(v0->unk_2C0.unk_0C, 7);
-    Heap_FreeToHeap(v0->unk_2C0.unk_0C);
-    PaletteData_FreeBuffer(v0->unk_2C0.unk_10, 0);
-    PaletteData_FreeBuffer(v0->unk_2C0.unk_10, 1);
-    PaletteData_FreeBuffer(v0->unk_2C0.unk_10, 2);
-    PaletteData_FreeBuffer(v0->unk_2C0.unk_10, 3);
-    PaletteData_Free(v0->unk_2C0.unk_10);
-    NARC_dtor(v0->unk_2C0.unk_00);
+    Bg_FreeTilemapBuffer(v0->unk_2EC.unk_0C, 1);
+    Bg_FreeTilemapBuffer(v0->unk_2EC.unk_0C, 2);
+    Bg_FreeTilemapBuffer(v0->unk_2EC.unk_0C, 3);
+    Bg_FreeTilemapBuffer(v0->unk_2EC.unk_0C, 4);
+    Bg_FreeTilemapBuffer(v0->unk_2EC.unk_0C, 5);
+    Bg_FreeTilemapBuffer(v0->unk_2EC.unk_0C, 6);
+    Bg_FreeTilemapBuffer(v0->unk_2EC.unk_0C, 7);
+    Heap_Free(v0->unk_2EC.unk_0C);
+    PaletteData_FreeBuffer(v0->unk_2EC.unk_10, 0);
+    PaletteData_FreeBuffer(v0->unk_2EC.unk_10, 1);
+    PaletteData_FreeBuffer(v0->unk_2EC.unk_10, 2);
+    PaletteData_FreeBuffer(v0->unk_2EC.unk_10, 3);
+    PaletteData_Free(v0->unk_2EC.unk_10);
+    NARC_dtor(v0->unk_2EC.unk_00);
 
     {
         u32 v1;
         v1 = DisableTouchPad();
     }
 
-    SpriteSystem_FreeResourcesAndManager(v0->unk_2C0.unk_04, v0->unk_2C0.unk_08);
-    SpriteSystem_Free(v0->unk_2C0.unk_04);
-    TouchScreenActions_Free(v0->unk_2C0.unk_14);
+    SpriteSystem_FreeResourcesAndManager(v0->unk_2EC.unk_04, v0->unk_2EC.unk_08);
+    SpriteSystem_Free(v0->unk_2EC.unk_04);
+    TouchScreenActions_Free(v0->unk_2EC.unk_14);
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_101);
 
@@ -197,7 +197,7 @@ void sub_02089438(UnkStruct_02089438 *param0)
     GF_ASSERT(param0 != NULL);
 
     Strbuf_Free(param0->unk_1C);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void sub_0208945C(BgConfig *param0)
@@ -229,49 +229,46 @@ static void sub_0208945C(BgConfig *param0)
     {
         BgTemplate v1[] = {
             {
-                0,
-                0,
-                0x800,
-                0,
-                1,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x0000,
-                GX_BG_CHARBASE_0x04000,
-                GX_BG_EXTPLTT_01,
-                0x1,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x800,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_256x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x0000,
+                .charBase = GX_BG_CHARBASE_0x04000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 0x1,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
             {
-                0,
-                0,
-                0x1000,
-                0,
-                1,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x1000,
-                GX_BG_CHARBASE_0x0c000,
-                GX_BG_EXTPLTT_01,
-                0x2,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x1000,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_256x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x1000,
+                .charBase = GX_BG_CHARBASE_0x0c000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 0x2,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
             {
-                0,
-                0,
-                0x1800,
-                0,
-                1,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x3000,
-                GX_BG_CHARBASE_0x10000,
-                GX_BG_EXTPLTT_01,
-                0x3,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x1800,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_256x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x3000,
+                .charBase = GX_BG_CHARBASE_0x10000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 0x3,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
         };
 
@@ -290,34 +287,32 @@ static void sub_0208945C(BgConfig *param0)
     {
         BgTemplate v2[] = {
             {
-                0,
-                0,
-                0x800,
-                0,
-                1,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x6800,
-                GX_BG_CHARBASE_0x00000,
-                GX_BG_EXTPLTT_01,
-                0x0,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x800,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_256x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x6800,
+                .charBase = GX_BG_CHARBASE_0x00000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 0x0,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
             {
-                0,
-                0,
-                0x800,
-                0,
-                1,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x7000,
-                GX_BG_CHARBASE_0x04000,
-                GX_BG_EXTPLTT_01,
-                0x1,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x800,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_256x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x7000,
+                .charBase = GX_BG_CHARBASE_0x04000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 0x1,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
             { 0 },
             { 0 },
@@ -350,8 +345,8 @@ static void sub_020895CC(void *param0)
 
     VramTransfer_Process();
     SpriteSystem_TransferOam();
-    PaletteData_CommitFadedBuffers(v0->unk_2C0.unk_10);
-    Bg_RunScheduledUpdates(v0->unk_2C0.unk_0C);
+    PaletteData_CommitFadedBuffers(v0->unk_2EC.unk_10);
+    Bg_RunScheduledUpdates(v0->unk_2EC.unk_0C);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }

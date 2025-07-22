@@ -327,7 +327,7 @@ void RoamingPokemon_ActivateSlot(SaveData *saveData, const u8 slot)
     Roamer_SetData(newRoamer, ROAMER_DATA_IVS, Pokemon_GetValue(roamerMonData, MON_DATA_COMBINED_IVS, NULL));
     Roamer_SetData(newRoamer, ROAMER_DATA_PERSONALITY, Pokemon_GetValue(roamerMonData, MON_DATA_PERSONALITY, NULL));
     Roamer_SetData(newRoamer, ROAMER_DATA_CURRENT_HP, Pokemon_GetValue(roamerMonData, MON_DATA_MAX_HP, NULL));
-    Heap_FreeToHeap(roamerMonData);
+    Heap_Free(roamerMonData);
 
     previouslyVisitedMap = SpecialEncounter_GetPlayerPreviousMap(speEnc);
     MoveRoamerRandom(speEnc, slot, previouslyVisitedMap);

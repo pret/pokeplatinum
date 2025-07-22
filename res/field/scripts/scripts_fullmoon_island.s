@@ -2,7 +2,6 @@
 #include "generated/hidden_locations.h"
 #include "res/text/bank/fullmoon_island.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _0015

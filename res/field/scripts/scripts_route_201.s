@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_201.h"
 
-    .data
 
     ScriptEntry _0042
     ScriptEntry _0072
@@ -267,7 +266,7 @@ _03DE:
     WaitABXPadPress
     CloseMessage
     CallCommonScript 0x7F9
-    ScrCmd_188 2, 16
+    SetObjectEventMovementType 2, MOVEMENT_TYPE_LOOK_LEFT
     SetVar VAR_FOLLOWER_RIVAL_STATE, 1
     ReleaseAll
     End

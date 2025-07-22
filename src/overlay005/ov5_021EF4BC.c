@@ -55,7 +55,7 @@ void ov5_021EF4F8(UnkStruct_ov5_021EF4F8 *param0)
     }
 
     BufferManager_Delete(param0->bufferManager);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void Field_DoPoisonEffect(UnkStruct_ov5_021EF4F8 *param0)

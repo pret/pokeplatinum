@@ -3,11 +3,12 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
 #include "generated/movement_actions.h"
 #include "generated/trainer_score_events.h"
 
 #include "struct_decls/struct_02029894_decl.h"
-#include "struct_defs/underground_data.h"
+#include "struct_defs/underground.h"
 #include "struct_defs/underground_record.h"
 
 #include "field/field_system.h"
@@ -481,7 +482,7 @@ void ov23_0224B4E4(void)
     ov23_0224C6E8();
 
     if (Unk_ov23_022577AC) {
-        Heap_FreeToHeap(Unk_ov23_022577AC);
+        Heap_Free(Unk_ov23_022577AC);
     }
 
     Unk_ov23_022577AC = NULL;
@@ -806,7 +807,7 @@ static void ov23_0224BA48(SysTask *param0, void *param1)
     }
 
     SysTask_Done(param0);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     ov23_02243204();
 }
@@ -826,7 +827,7 @@ static void ov23_0224BA6C(SysTask *param0, void *param1)
 
     CommSys_SendDataFixedSize(59, &v1);
     SysTask_Done(param0);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     ov23_02243204();
     ov23_0224DC24();
@@ -1006,17 +1007,17 @@ static int ov23_0224BD1C(int param0, BOOL param1)
     return v1;
 }
 
-static Menu *ov23_0224BD90(BgConfig *param0, const WindowTemplate *param1, u16 param2, u8 param3, u32 param4)
+static Menu *ov23_0224BD90(BgConfig *param0, const WindowTemplate *param1, u16 param2, u8 param3, u32 heapID)
 {
     MenuTemplate v0;
     MessageLoader *v1 = ov23_02253E3C(ov23_0224219C());
-    StringList *v2 = StringList_New(2, param4);
+    StringList *v2 = StringList_New(2, heapID);
 
     StringList_AddFromMessageBank(v2, v1, 38, 0);
     StringList_AddFromMessageBank(v2, v1, 39, 1);
 
     v0.choices = v2;
-    v0.window = Window_New(param4, 1);
+    v0.window = Window_New(heapID, 1);
     v0.fontID = FONT_SYSTEM;
     v0.xSize = 1;
     v0.ySize = 2;
@@ -1027,7 +1028,7 @@ static Menu *ov23_0224BD90(BgConfig *param0, const WindowTemplate *param1, u16 p
     Window_AddFromTemplate(param0, v0.window, param1);
     Window_DrawStandardFrame(v0.window, 1, param2, param3);
 
-    return Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, param4, PAD_BUTTON_B);
+    return Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, heapID, PAD_BUTTON_B);
 }
 
 static void ov23_0224BE28(SysTask *param0, void *param1)
@@ -1098,7 +1099,7 @@ static void ov23_0224BE28(SysTask *param0, void *param1)
         break;
     case 6:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            v0->unk_04 = ov23_0224BD90(fieldSystem->bgConfig, &Unk_ov23_0225686C, 1024 - (18 + 12) - 9, 11, 4);
+            v0->unk_04 = ov23_0224BD90(fieldSystem->bgConfig, &Unk_ov23_0225686C, 1024 - (18 + 12) - 9, 11, HEAP_ID_FIELD);
             v0->unk_0C = 7;
         }
         break;
@@ -1579,7 +1580,7 @@ static BOOL ov23_0224C790(FieldTask *param0)
         break;
     case 1:
         FinishScreenFade();
-        StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_16, FADE_TYPE_UNK_18, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_16, FADE_TYPE_UNK_18, COLOR_BLACK, 6, 1, HEAP_ID_FIELD);
         ov23_0224942C(fieldSystem->unk_6C);
         Sound_PlayEffect(SEQ_SE_DP_KAIDAN2);
         v1->unk_0C++;
@@ -1613,7 +1614,7 @@ static BOOL ov23_0224C790(FieldTask *param0)
     case 6:
         fieldSystem->unk_6C = ov23_02249404(fieldSystem);
         FinishScreenFade();
-        StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_17, FADE_TYPE_UNK_19, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_17, FADE_TYPE_UNK_19, COLOR_BLACK, 6, 1, HEAP_ID_FIELD);
         (v1->unk_0C)++;
         break;
     case 7:
@@ -1686,7 +1687,7 @@ static BOOL ov23_0224C790(FieldTask *param0)
 
         sub_02059638(0);
         sub_02059514();
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
 
         if (sub_02033DFC() && ov23_02242E58(v1->unk_1C, v1->unk_20)) {
             ov23_02242FA8();
@@ -1836,7 +1837,7 @@ static void ov23_0224CB1C(SysTask *param0, void *param1)
 
             CommSys_SendDataFixedSize(86, &v10);
             SysTask_Done(param0);
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
 
             ov23_02243204();
             return;
@@ -1856,7 +1857,7 @@ static void ov23_0224CB1C(SysTask *param0, void *param1)
         }
 
         SysTask_Done(param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
 
         ov23_02243204();
         ov23_0224DC24();
@@ -1947,7 +1948,7 @@ static void ov23_0224CE94(SysTask *param0, void *param1)
     }
 
     SysTask_Done(param0);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     ov23_02243204();
     sub_02059514();
@@ -2145,7 +2146,7 @@ BOOL ov23_0224D1A0(int param0, int param1)
 static void ov23_0224D238(void)
 {
     UnkStruct_02029894 *v0 = sub_02029894(FieldSystem_GetSaveData(Unk_ov23_022577AC->fieldSystem));
-    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(Unk_ov23_022577AC->fieldSystem));
+    Underground *v1 = SaveData_GetUnderground(FieldSystem_GetSaveData(Unk_ov23_022577AC->fieldSystem));
     int v2 = CommPlayer_AddXServer(0);
     int v3 = CommPlayer_AddZServer(0);
     int v4 = CommPlayer_DirServer(0);
@@ -2340,7 +2341,7 @@ static void ov23_0224D54C(UnkStruct_ov23_0224D54C *param0)
 
 static void ov23_0224D5A8(SysTask *param0, void *param1)
 {
-    Heap_FreeToHeap(param1);
+    Heap_Free(param1);
     SysTask_Done(param0);
 }
 
@@ -2376,10 +2377,10 @@ static void ov23_0224D5BC(SysTask *param0, void *param1)
         }
         break;
     case 3:
-        StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_FIELD);
         break;
     case 4:
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         ov23_02243204();
         break;

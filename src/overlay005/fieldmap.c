@@ -221,7 +221,7 @@ static BOOL FieldMap_Init(ApplicationManager *appMan, int *param1)
         sub_020556A0(fieldSystem, fieldSystem->location->mapId);
         sub_0203F5C0(fieldSystem, 3);
 
-        fieldSystem->unk_04->hBlankSystem = HBlankSystem_New(4);
+        fieldSystem->unk_04->hBlankSystem = HBlankSystem_New(HEAP_ID_FIELD);
         HBlankSystem_Start(fieldSystem->unk_04->hBlankSystem);
         fieldSystem->unk_04->unk_20 = ov5_021EF4BC(HEAP_ID_FIELD, fieldSystem->unk_04->hBlankSystem);
         break;
@@ -335,8 +335,8 @@ static BOOL FieldMap_Exit(ApplicationManager *appMan, int *param1)
             Easy3D_Shutdown();
             ov5_021D1AE4(fieldSystem->unk_04->unk_04);
             SetVBlankCallback(NULL, NULL);
-            Heap_FreeToHeap(fieldSystem->bgConfig);
-            Heap_FreeToHeap(fieldSystem->unk_04);
+            Heap_Free(fieldSystem->bgConfig);
+            Heap_Free(fieldSystem->unk_04);
 
             fieldSystem->unk_04 = NULL;
 
@@ -566,19 +566,18 @@ static void ov5_021D1444(BgConfig *bgl)
 
     {
         BgTemplate v1 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x0000,
-            GX_BG_CHARBASE_0x10000,
-            GX_BG_EXTPLTT_01,
-            3,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x0000,
+            .charBase = GX_BG_CHARBASE_0x10000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 3,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(bgl, BG_LAYER_MAIN_1, &v1, 0);
@@ -588,19 +587,18 @@ static void ov5_021D1444(BgConfig *bgl)
 
     {
         BgTemplate v2 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x0800,
-            GX_BG_CHARBASE_0x14000,
-            GX_BG_EXTPLTT_23,
-            3,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x0800,
+            .charBase = GX_BG_CHARBASE_0x14000,
+            .bgExtPltt = GX_BG_EXTPLTT_23,
+            .priority = 3,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(bgl, BG_LAYER_MAIN_2, &v2, 0);
@@ -609,19 +607,18 @@ static void ov5_021D1444(BgConfig *bgl)
     }
     {
         BgTemplate v3 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x1000,
-            GX_BG_CHARBASE_0x08000,
-            GX_BG_EXTPLTT_23,
-            0,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x1000,
+            .charBase = GX_BG_CHARBASE_0x08000,
+            .bgExtPltt = GX_BG_EXTPLTT_23,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(bgl, BG_LAYER_MAIN_3, &v3, 0);
@@ -694,7 +691,7 @@ static void ov5_021D15F4(FieldSystem *fieldSystem)
 
     if (fieldSystem->unk_20 == 1) {
         if (FieldMap_InDistortionWorld(fieldSystem) == TRUE) {
-            ov9_02249F9C(fieldSystem);
+            DistWorld_UpdateCameraAngle(fieldSystem);
         }
 
         Camera_ComputeViewMatrixWithRoll();
@@ -702,7 +699,7 @@ static void ov5_021D15F4(FieldSystem *fieldSystem)
         Camera_ComputeViewMatrix();
     }
 
-    sub_0206979C(fieldSystem);
+    PokeRadar_ClearIfAllOutOfView(fieldSystem);
     LandDataManager_RenderLoadedMaps(fieldSystem->landDataMan, fieldSystem->areaModelAttrs);
 
     if (FieldMap_InDistortionWorld(fieldSystem) == TRUE) {
@@ -765,9 +762,9 @@ static void ov5_021D173C(FieldSystem *fieldSystem)
 void ov5_021D1744(const u8 param0)
 {
     if (param0 == 1) {
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_FIELD);
     } else if (param0 == 0) {
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_FIELD);
     } else {
         GF_ASSERT(FALSE);
     }
@@ -831,7 +828,7 @@ static void ov5_021D1878(FieldSystem *fieldSystem)
         ov5_021DF47C(fieldSystem->unk_40, v0);
     }
 
-    ov5_021DF488(fieldSystem->unk_40, HEAP_ID_FIELD, 32, 32, 32, 32, (0x500 * (32 / 2)), (0x80 * (32 / 2)), (0x800 * 32));
+    ov5_021DF488(fieldSystem->unk_40, HEAP_ID_FIELD, 32, 32, 32, 32, 0x500 * (32 / 2), 0x80 * (32 / 2), 0x800 * 32);
 
     if ((fieldSystem->mapLoadType == MAP_LOAD_TYPE_UNDERGROUND) || (fieldSystem->mapLoadType == MAP_LOAD_TYPE_UNION)) {
         MapObjectMan_SetEndMovement(fieldSystem->mapObjMan, 0);
@@ -931,7 +928,7 @@ static UnkStruct_ov5_021D1A68 *ov5_021D1A14(int fieldSystem, int param1)
     }
 
     v2->unk_00 = v0;
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
     return v2;
 }
 
@@ -947,7 +944,7 @@ static const int ov5_021D1A6C(const UnkStruct_ov5_021D1A68 *param0)
 
 static void ov5_021D1A70(UnkStruct_ov5_021D1A68 *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static BOOL FieldMap_InDistortionWorld(FieldSystem *fieldSystem)

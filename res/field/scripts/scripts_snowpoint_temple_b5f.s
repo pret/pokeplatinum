@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/snowpoint_temple_b5f.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _0025
@@ -22,7 +21,7 @@ _0025:
     PlayFanfare SEQ_SE_CONFIRM
     WaitFanfare SEQ_SE_CONFIRM
     GoToIfSet FLAG_UNK_0x011A, _0081
-    ScrCmd_26B VAR_RESULT
+    CheckHasAllLegendaryTitansInParty VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0073
     SetFlag FLAG_UNK_0x011A
     BufferPlayerName 0

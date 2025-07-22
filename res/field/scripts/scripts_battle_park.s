@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_park.h"
 
-    .data
 
     ScriptEntry _0032
     ScriptEntry _0308

@@ -286,16 +286,16 @@ static void ov79_021D1D20(UnkStruct_ov79_021D0E1C *param0, UnkStruct_020989DC *p
 
     if (param1 == NULL) {
         for (v0 = 0; v0 < 5; v0++) {
-            Sprite_SetDrawFlag(param0->unk_1CC[v0], 0);
+            Sprite_SetDrawFlag(param0->unk_1CC[v0], FALSE);
         }
         return;
     }
 
     for (v0 = 0; v0 < 5; v0++) {
         if (param1->unk_20_val2 & v1) {
-            Sprite_SetDrawFlag(param0->unk_1CC[v0], 1);
+            Sprite_SetDrawFlag(param0->unk_1CC[v0], TRUE);
         } else {
-            Sprite_SetDrawFlag(param0->unk_1CC[v0], 0);
+            Sprite_SetDrawFlag(param0->unk_1CC[v0], FALSE);
         }
 
         v1 <<= 1;
@@ -327,15 +327,15 @@ static void ov79_021D1D94(ListMenu *param0, u32 param1, u8 param2)
     Sprite_SetPositionXY(v0->unk_1C0[0], 105, v3 * 16 + 40);
 
     if (v2 == 0) {
-        Sprite_SetDrawFlag(v0->unk_1C0[1], 0);
+        Sprite_SetDrawFlag(v0->unk_1C0[1], FALSE);
     } else {
-        Sprite_SetDrawFlag(v0->unk_1C0[1], 1);
+        Sprite_SetDrawFlag(v0->unk_1C0[1], TRUE);
     }
 
     if (v2 < (v0->unk_1C - 6)) {
-        Sprite_SetDrawFlag(v0->unk_1C0[2], 1);
+        Sprite_SetDrawFlag(v0->unk_1C0[2], TRUE);
     } else {
-        Sprite_SetDrawFlag(v0->unk_1C0[2], 0);
+        Sprite_SetDrawFlag(v0->unk_1C0[2], FALSE);
     }
 
     Window_FillRectWithColor(&(v0->unk_E8[1]), ((0 << 4) | 0), 0, 0, 10 * 8, 2 * 8);

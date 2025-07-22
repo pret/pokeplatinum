@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/mt_coronet_2f.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _0036
@@ -33,7 +32,7 @@ _0036:
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     SetVar VAR_UNK_0x40A9, 2
     SetObjectEventPos 5, 20, 25
-    ScrCmd_188 5, 16
+    SetObjectEventMovementType 5, MOVEMENT_TYPE_LOOK_LEFT
     SetObjectEventDir 5, DIR_WEST
     ClearFlag FLAG_UNK_0x029F
     AddObject 5

@@ -3,8 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/graphics.h"
 #include "constants/narc.h"
-#include "constants/screen.h"
+#include "generated/string_padding_mode.h"
 
 #include "struct_decls/struct_0202F298_decl.h"
 #include "struct_decls/struct_0202F41C_decl.h"
@@ -59,7 +60,7 @@
 #include "unk_020393C8.h"
 #include "unk_0208B284.h"
 
-static void ov62_022349E4(Strbuf *param0, int param1);
+static void ov62_022349E4(Strbuf *param0, int heapID);
 
 StringTemplate *ov62_02231690(u32 heapID)
 {
@@ -1108,374 +1109,106 @@ int ov62_02232BB4(UnkStruct_ov62_02233310 *param0, UnkStruct_0208C06C *param1, S
     return v1;
 }
 
-const int Unk_ov62_02248904[] = {
-    0x10,
-    0xC,
-    0x14
-};
-
-// clang-format off
-asm int ov62_02232C78 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param1, int param2, int param3, Strbuf *param4)
+int ov62_02232C78(UnkStruct_ov62_02233310 *a0, UnkStruct_0208C06C *a1, int a2, int a3, Strbuf *a4)
 {
-    push {r4, r5, r6, r7, lr}
-    sub sp, #0x1fc
-    sub sp, #0xe8
-    add r4, r0, #0
-    ldr r0, [sp, #0x2f8]
-    str r1, [sp, #0x10]
-    str r0, [sp, #0x2f8]
-    mov r0, #8
-    ldrsh r1, [r4, r0]
-    ldr r0, [r4, #0xc]
-    str r3, [sp, #0x14]
-    cmp r1, r0
-    bne _02232C9A
-    add sp, #0x1fc
-    add sp, #0xe8
-    mov r0, #0
-    pop {r4, r5, r6, r7, pc}
- _02232C9A:
-    ldr r1, [r4, #0x10]
-    ldr r0, [r4, #4]
-    cmp r1, r0
-    bne _02232CAA
-    add sp, #0x1fc
-    add sp, #0xe8
-    mov r0, #0
-    pop {r4, r5, r6, r7, pc}
- _02232CAA:
-    add r0, r4, #0
-    str r0, [sp, #0x58]
-    add r0, #0x18
-    str r0, [sp, #0x58]
-    mov r0, #0x66
-    bl ov62_02231690
-    add r5, r0, #0
-    ldr r0, [sp, #0x58]
-    mov r1, #0
-    bl Window_FillTilemap
-    mov r0, #0
-    str r0, [sp, #0x44]
-    str r0, [sp, #0x40]
-    mov r0, #8
-    ldrsh r0, [r4, r0]
-    ldr r1, [r4, #0x10]
-    add r3, sp, #0x26c
-    str r0, [sp, #0x18]
-    add r0, r0, r1
-    str r0, [sp, #0x34]
-    ldr r0, [sp, #0x44]
-    mov r2, #7
-    add r1, r0, #0
- _02232CDC:
-    stmia r3 !, {r0, r1}
-    stmia r3 !, {r0, r1}
-    sub r2, r2, #1
-    bne _02232CDC
-    stmia r3 !, {r0, r1}
-    ldr r1, [r4, #4]
-    ldr r0, [sp, #0x34]
-    cmp r0, r1
-    blt _02232CF6
-    ldr r0, [r4, #0x10]
-    str r1, [sp, #0x34]
-    sub r0, r1, r0
-    str r0, [sp, #0x18]
- _02232CF6:
-    ldr r3, = Unk_ov62_02248904
-    add r2, sp, #0x60
-    ldmia r3 !, {r0, r1}
-    add r7, r2, #0
-    stmia r2 !, {r0, r1}
-    ldr r0, [r3, #0]
-    mov r6, #1
-    str r0, [r2, #0]
-    ldr r0, [r4, #0x28]
-    ldr r1, [r0, #0]
-    ldr r0, [r1, #8]
-    str r0, [sp, #0x38]
-    ldr r0, [r1, #0xc]
-    str r0, [sp, #0x3c]
-    mov r0, #0
-    str r0, [sp, #0x26c]
-    ldr r0, [sp, #0x14]
-    lsl r0, r0, #2
-    ldr r1, [r7, r0]
-    cmp r1, #1
-    ble _02232D5C
-    add r0, r1, #0
-    mov r2, #0x10
-    add r3, sp, #0x270
-    mov ip, r0
- _02232D28:
-    ldr r0, [r4, #0x28]
-    ldr r0, [r0, #0]
-    add r0, r0, r2
-    ldr r1, [r0, #0xc]
-    ldr r7, [r0, #8]
-    ldr r0, [sp, #0x3c]
-    str r1, [sp, #0x5c]
-    eor r1, r0
-    ldr r0, [sp, #0x38]
-    eor r0, r7
-    orr r0, r1
-    bne _02232D46
-    ldr r0, [sp, #0x40]
-    str r0, [r3, #0]
-    b _02232D50
- _02232D46:
-    ldr r0, [sp, #0x5c]
-    str r7, [sp, #0x38]
-    str r0, [sp, #0x3c]
-    str r6, [r3, #0]
-    str r6, [sp, #0x40]
- _02232D50:
-    add r6, r6, #1
-    mov r0, ip
-    add r2, #0x10
-    add r3, r3, #4
-    cmp r6, r0
-    blt _02232D28
- _02232D5C:
-    ldr r1, [sp, #0x18]
-    ldr r0, [sp, #0x34]
-    cmp r1, r0
-    blt _02232D66
-    b _02232F46
- _02232D66:
-    add r0, r1, #0
-    lsl r6, r0, #4
-    add r1, sp, #0x26c
-    lsl r0, r0, #2
-    add r0, r1, r0
-    str r0, [sp, #0x20]
-    ldr r0, [sp, #0x14]
-    str r0, [sp, #0x1c]
-    add r0, #0x58
-    str r0, [sp, #0x1c]
- _02232D7A:
-    ldr r0, [sp, #0x10]
-    ldr r1, [sp, #0x1c]
-    ldr r0, [r0, #0x48]
-    bl MessageLoader_GetNewStrbuf
-    str r0, [sp, #0x54]
-    mov r0, #0xff
-    mov r1, #0x66
-    bl Strbuf_Init
-    str r0, [sp, #0x50]
-    mov r0, #0xff
-    mov r1, #0x66
-    bl Strbuf_Init
-    add r7, r0, #0
-    mov r0, #0xff
-    mov r1, #0x66
-    bl Strbuf_Init
-    str r0, [sp, #0x48]
-    ldr r0, [sp, #0x14]
-    cmp r0, #0
-    beq _02232DB4
-    cmp r0, #1
-    beq _02232DDA
-    cmp r0, #2
-    beq _02232DFA
-    b _02232E34
- _02232DB4:
-    ldr r1, [r4, #0x28]
-    ldr r0, [r4, #0x34]
-    ldr r1, [r1, #0]
-    add r1, r1, r6
-    ldr r1, [r1, #4]
-    bl MessageLoader_GetNewStrbuf
-    str r0, [sp, #0x4c]
-    mov r0, #1
-    str r0, [sp]
-    mov r0, #2
-    str r0, [sp, #4]
-    ldr r2, [sp, #0x4c]
-    add r0, r5, #0
-    mov r1, #1
-    mov r3, #0
-    bl StringTemplate_SetStrbuf
-    b _02232E34
- _02232DDA:
-    ldr r0, [r4, #0x28]
-    mov r1, #0x66
-    ldr r0, [r0, #0]
-    add r0, r0, r6
-    ldr r0, [r0, #4]
-    str r0, [sp, #0x30]
-    mov r0, #0xff
-    bl Strbuf_Init
-    str r0, [sp, #0x4c]
-    ldr r2, [sp, #0x30]
-    add r0, r5, #0
-    mov r1, #1
-    bl StringTemplate_SetMonthName
-    b _02232E34
- _02232DFA:
-    ldr r0, [r4, #0x28]
-    mov r1, #0x66
-    ldr r0, [r0, #0]
-    add r0, r0, r6
-    ldr r0, [r0, #4]
-    str r0, [sp, #0x2c]
-    mov r0, #0xff
-    bl Strbuf_Init
-    str r0, [sp, #0x4c]
-    ldr r0, [sp, #0x2c]
-    mov r1, #0x66
-    add r2, sp, #0x6c
-    bl MessageLoader_GetSpeciesName
-    ldr r0, [sp, #0x4c]
-    add r1, sp, #0x6c
-    bl Strbuf_CopyChars
-    mov r0, #1
-    str r0, [sp]
-    mov r0, #2
-    str r0, [sp, #4]
-    ldr r2, [sp, #0x4c]
-    add r0, r5, #0
-    mov r1, #1
-    mov r3, #0
-    bl StringTemplate_SetStrbuf
- _02232E34:
-    ldr r0, [r4, #0x28]
-    ldr r0, [r0, #0]
-    add r1, r0, r6
-    ldr r0, [r1, #8]
-    str r0, [sp, #0x24]
-    ldr r0, [r1, #0xc]
-    str r0, [sp, #0x28]
-    ldr r0, [sp, #0x24]
-    ldr r1, [sp, #0x28]
-    bl ov62_0223438C
-    add r3, r0, #0
-    mov r0, #0
-    str r0, [sp]
-    mov r0, #1
-    str r0, [sp, #4]
-    ldr r0, [sp, #0x48]
-    ldr r1, [sp, #0x24]
-    ldr r2, [sp, #0x28]
-    bl Strbuf_FormatU64
-    mov r0, #1
-    str r0, [sp]
-    ldr r1, [sp, #0x20]
-    ldr r0, [sp, #0x50]
-    ldr r1, [r1, #0]
-    mov r2, #2
-    add r1, r1, #1
-    mov r3, #1
-    bl Strbuf_FormatInt
-    mov r0, #1
-    str r0, [sp]
-    mov r0, #2
-    mov r1, #0
-    str r0, [sp, #4]
-    ldr r2, [sp, #0x50]
-    add r0, r5, #0
-    add r3, r1, #0
-    bl StringTemplate_SetStrbuf
-    ldr r2, [sp, #0x54]
-    add r0, r5, #0
-    add r1, r7, #0
-    bl StringTemplate_Format
-    ldr r0, [r4, #0x28]
-    add r2, r7, #0
-    ldr r0, [r0, #8]
-    lsl r1, r0, #4
-    ldr r0, [sp, #0x44]
-    mul r1, r0
-    str r1, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    ldr r0, = 0xF0D00
-              mov r1, #0
-    str r0, [sp, #8]
-    mov r0, #0
-    str r0, [sp, #0xc]
-    ldr r0, [sp, #0x58]
-    add r3, r1, #0
-    bl Text_AddPrinterWithParamsAndColor
-    ldr r0, [r4, #0x28]
-    ldr r0, [r0, #8]
-    cmp r0, #2
-    bne _02232F06
-    ldr r0, [sp, #0x2f8]
-    cmp r0, #0
-    beq _02232F06
-    mov r0, #1
-    str r0, [sp]
-    mov r0, #2
-    str r0, [sp, #4]
-    ldr r2, [sp, #0x48]
-    add r0, r5, #0
-    mov r1, #2
-    mov r3, #0
-    bl StringTemplate_SetStrbuf
-    ldr r2, [sp, #0x2f8]
-    add r0, r5, #0
-    add r1, r7, #0
-    bl StringTemplate_Format
-    ldr r0, [r4, #0x28]
-    add r2, r7, #0
-    ldr r0, [r0, #8]
-    mov r3, #0x10
-    lsl r1, r0, #4
-    ldr r0, [sp, #0x44]
-    mul r1, r0
-    add r1, #0x10
-    str r1, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    ldr r0, = 0xF0D00
-              mov r1, #0
-    str r0, [sp, #8]
-    mov r0, #0
-    str r0, [sp, #0xc]
-    ldr r0, [sp, #0x58]
-    bl Text_AddPrinterWithParamsAndColor
- _02232F06:
-    ldr r0, [sp, #0x44]
-    add r0, r0, #1
-    str r0, [sp, #0x44]
-    ldr r0, [sp, #0x54]
-    bl Strbuf_Free
-    ldr r0, [sp, #0x50]
-    bl Strbuf_Free
-    ldr r0, [sp, #0x4c]
-    bl Strbuf_Free
-    add r0, r7, #0
-    bl Strbuf_Free
-    ldr r0, [sp, #0x48]
-    bl Strbuf_Free
-    add r0, r5, #0
-    bl StringTemplate_ClearArgs
-    ldr r0, [sp, #0x20]
-    add r6, #0x10
-    add r0, r0, #4
-    str r0, [sp, #0x20]
-    ldr r0, [sp, #0x18]
-    add r1, r0, #1
-    ldr r0, [sp, #0x34]
-    str r1, [sp, #0x18]
-    cmp r1, r0
-    bge _02232F46
-    b _02232D7A
- _02232F46:
-    ldr r0, [sp, #0x58]
-    bl Window_ScheduleCopyToVRAM
-    add r0, r5, #0
-    bl StringTemplate_Free
-    mov r0, #8
-    ldrsh r0, [r4, r0]
-    str r0, [r4, #0xc]
-    mov r0, #0
-    add sp, #0x1fc
-    add sp, #0xe8
-    pop {r4, r5, r6, r7, pc}
+    int i;
+    Window *sp58;
+    Strbuf *sp54;
+    Strbuf *sp50;
+    Strbuf *sp4c;
+    Strbuf *r7;
+    Strbuf *sp48;
+
+    if (a0->unk_08 == a0->unk_0C) {
+        return 0;
+    }
+    if (a0->unk_10 == a0->unk_04) {
+        return 0;
+    }
+
+    sp58 = &a0->unk_18;
+    StringTemplate *r5 = ov62_02231690(HEAP_ID_102);
+    Window_FillTilemap(sp58, 0);
+    int sp44 = 0;
+    int sp40 = 0;
+    u64 sp3c;
+    int sp18 = a0->unk_08;
+    int sp34 = sp18 + a0->unk_10;
+    int sp26c[30] = { 0 };
+
+    if (sp34 >= a0->unk_04) {
+        sp34 = a0->unk_04;
+        sp18 = a0->unk_04 - a0->unk_10;
+    }
+
+    u64 sp38 = a0->unk_28->unk_00[0].unk_08;
+    int sp60[] = { 0x10, 0xc, 0x14 };
+    sp3c = sp38;
+    sp26c[0] = 0;
+
+    for (i = 1; i < sp60[a3]; i++) {
+        u64 r7 = a0->unk_28->unk_00[i].unk_08;
+        if (r7 == sp3c) {
+            sp26c[i] = sp40;
+        } else {
+            sp3c = r7;
+            sp26c[i] = i;
+            sp40 = i;
+        }
+    }
+
+    for (i = sp18; i < sp34; i++) {
+        sp54 = MessageLoader_GetNewStrbuf(a1->unk_14.unk_34, 88 + a3);
+        sp50 = Strbuf_Init(255, HEAP_ID_102);
+        r7 = Strbuf_Init(255, HEAP_ID_102);
+        sp48 = Strbuf_Init(255, HEAP_ID_102);
+        switch (a3) {
+        case 0:
+            int r1 = a0->unk_28->unk_00[i].unk_04;
+            sp4c = MessageLoader_GetNewStrbuf(a0->unk_34, r1);
+            StringTemplate_SetStrbuf(r5, 1, sp4c, 0, 1, 2);
+            break;
+        case 1:
+            int sp30 = a0->unk_28->unk_00[i].unk_04;
+            sp4c = Strbuf_Init(255, HEAP_ID_102);
+            StringTemplate_SetMonthName(r5, 1, sp30);
+            break;
+        case 2:
+            charcode_t sp6c[255];
+            int sp2c = a0->unk_28->unk_00[i].unk_04;
+            sp4c = Strbuf_Init(255, HEAP_ID_102);
+            MessageLoader_GetSpeciesName(sp2c, HEAP_ID_102, sp6c);
+            Strbuf_CopyChars(sp4c, sp6c);
+            StringTemplate_SetStrbuf(r5, 1, sp4c, 0, 1, 2);
+            break;
+        }
+        u64 sp24 = a0->unk_28->unk_00[i].unk_08;
+        Strbuf_FormatU64(sp48, sp24, ov62_0223438C(sp24), PADDING_MODE_NONE, 1);
+        Strbuf_FormatInt(sp50, sp26c[i] + 1, 2, PADDING_MODE_SPACES, 1);
+        StringTemplate_SetStrbuf(r5, 0, sp50, 0, TRUE, 2);
+        StringTemplate_Format(r5, r7, sp54);
+        int yOffset = 16 * a0->unk_28->unk_08 * sp44;
+        Text_AddPrinterWithParamsAndColor(sp58, FONT_SYSTEM, r7, 0, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 0), NULL);
+        if (a0->unk_28->unk_08 == 2 && a4) {
+            StringTemplate_SetStrbuf(r5, 2, sp48, 0, 1, 2);
+            StringTemplate_Format(r5, r7, a4);
+            yOffset = (16 * a0->unk_28->unk_08 * sp44) + 16;
+            Text_AddPrinterWithParamsAndColor(sp58, FONT_SYSTEM, r7, 0x10, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 0), NULL);
+        }
+        sp44++;
+        Strbuf_Free(sp54);
+        Strbuf_Free(sp50);
+        Strbuf_Free(sp4c);
+        Strbuf_Free(r7);
+        Strbuf_Free(sp48);
+        StringTemplate_ClearArgs(r5);
+    }
+
+    Window_ScheduleCopyToVRAM(sp58);
+    StringTemplate_Free(r5);
+    a0->unk_0C = a0->unk_08;
+    return 0;
 }
-// clang-format on
 
 int ov62_02232F68(UnkStruct_ov62_02233310 *param0, UnkStruct_0208C06C *param1)
 {
@@ -2131,12 +1864,12 @@ void ov62_022339A0(UnkStruct_0208C06C *param0)
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param0->unk_87C[v0] != NULL) {
-            Heap_FreeToHeap(param0->unk_87C[v0]);
+            Heap_Free(param0->unk_87C[v0]);
             param0->unk_87C[v0] = NULL;
         }
 
         if (param0->unk_88C[v0] != NULL) {
-            Heap_FreeToHeap(param0->unk_88C[v0]);
+            Heap_Free(param0->unk_88C[v0]);
             param0->unk_88C[v0] = NULL;
         }
     }
@@ -3183,12 +2916,12 @@ void ov62_022349A8(UnkStruct_0208C06C *param0, Strbuf *param1)
     Strbuf_Free(v1);
 }
 
-static void ov62_022349E4(Strbuf *param0, int param1)
+static void ov62_022349E4(Strbuf *param0, int heapID)
 {
     MessageLoader *v0;
 
     Strbuf_Clear(param0);
-    v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0010, param1);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0010, heapID);
 
     MessageLoader_GetStrbuf(v0, 332, param0);
     MessageLoader_Free(v0);

@@ -82,7 +82,7 @@ UnkStruct_ov20_021D30F8 *ov20_021D2EA4(UnkStruct_ov20_021D2128 *param0, const Un
     v0->unk_44 = NULL;
     v0->unk_4C = Strbuf_Init(128, HEAP_ID_35);
     v0->unk_48 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0437, HEAP_ID_35);
-    v0->unk_50 = ColoredArrow_New(35);
+    v0->unk_50 = ColoredArrow_New(HEAP_ID_35);
 
     return v0;
 }
@@ -116,7 +116,7 @@ void ov20_021D2EF0(UnkStruct_ov20_021D30F8 *param0)
     Window_Remove(&param0->unk_0C);
     Window_Remove(&param0->unk_1C);
     Window_Remove(&param0->unk_2C);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov20_021D2F50(UnkStruct_ov20_021D30F8 *param0, NARC *param1)
@@ -171,7 +171,7 @@ static void ov20_021D30A4(UnkStruct_ov20_021D30F8 *param0, NARC *param1)
     MI_CpuCopy16(v0->pRawData, param0->unk_70, sizeof(param0->unk_70));
     DC_FlushRange(param0->unk_70, sizeof(param0->unk_70));
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
 static void ov20_021D30F8(UnkStruct_ov20_021D30F8 *param0)
@@ -229,8 +229,8 @@ static void ov20_021D3184(UnkStruct_ov20_021D30F8 *param0)
     Sprite_SetAnim(param0->unk_44, 12);
 
     if (ov20_021D1F84(param0->unk_04) != 2) {
-        Sprite_SetDrawFlag(param0->unk_44, 0);
-        Sprite_SetDrawFlag(param0->unk_40, 0);
+        Sprite_SetDrawFlag(param0->unk_44, FALSE);
+        Sprite_SetDrawFlag(param0->unk_40, FALSE);
     }
 }
 
@@ -475,16 +475,16 @@ void ov20_021D369C(UnkStruct_ov20_021D30F8 *param0, BOOL param1)
 void ov20_021D36B0(UnkStruct_ov20_021D30F8 *param0)
 {
     if (ov20_021D1F84(param0->unk_04) == 2) {
-        Sprite_SetDrawFlag(param0->unk_40, 0);
-        Sprite_SetDrawFlag(param0->unk_44, 0);
+        Sprite_SetDrawFlag(param0->unk_40, FALSE);
+        Sprite_SetDrawFlag(param0->unk_44, FALSE);
     }
 }
 
 void ov20_021D36D0(UnkStruct_ov20_021D30F8 *param0)
 {
     if (ov20_021D1F84(param0->unk_04) == 2) {
-        Sprite_SetDrawFlag(param0->unk_40, 1);
-        Sprite_SetDrawFlag(param0->unk_44, 1);
+        Sprite_SetDrawFlag(param0->unk_40, TRUE);
+        Sprite_SetDrawFlag(param0->unk_44, TRUE);
 
         Sprite_SetAnim(param0->unk_40, 13);
         Sprite_SetAnim(param0->unk_44, 12);

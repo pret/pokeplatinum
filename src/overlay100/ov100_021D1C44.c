@@ -126,45 +126,45 @@ static void ov100_021D1C98(UnkStruct_ov100_021D1C98 *param0)
 
     ov100_021D4AC8(&param0->unk_1A0.unk_934[0], 26, param0->unk_1EBC->unk_00);
     Easy3DObject_SetPosition(&param0->unk_1A0.unk_934[0].unk_00, FX32_CONST(0), FX32_CONST(-90), FX32_CONST(0));
-    Easy3DObject_SetVisibility(&param0->unk_1A0.unk_934[0].unk_00, 0);
+    Easy3DObject_SetVisible(&param0->unk_1A0.unk_934[0].unk_00, 0);
     ov100_021D4B4C(0, &param0->unk_1A0.unk_934[0], 25, param0->unk_1EBC->unk_00, &param0->unk_1EBC->unk_1C);
     ov100_021D4B4C(1, &param0->unk_1A0.unk_934[0], 27, param0->unk_1EBC->unk_00, &param0->unk_1EBC->unk_1C);
 
     param0->unk_1A0.unk_934[0].unk_168 = 1;
 
     ov100_021D4AC8(&param0->unk_1A0.unk_934[1], 29, param0->unk_1EBC->unk_00);
-    Easy3DObject_SetVisibility(&param0->unk_1A0.unk_934[1].unk_00, 0);
+    Easy3DObject_SetVisible(&param0->unk_1A0.unk_934[1].unk_00, 0);
     ov100_021D4B4C(0, &param0->unk_1A0.unk_934[1], 28, param0->unk_1EBC->unk_00, &param0->unk_1EBC->unk_1C);
     ov100_021D4B4C(1, &param0->unk_1A0.unk_934[1], 30, param0->unk_1EBC->unk_00, &param0->unk_1EBC->unk_1C);
 
     param0->unk_1A0.unk_934[1].unk_168 = 1;
 
     ov100_021D4AC8(&param0->unk_1A0.unk_934[2], 32, param0->unk_1EBC->unk_00);
-    Easy3DObject_SetVisibility(&param0->unk_1A0.unk_934[2].unk_00, 0);
+    Easy3DObject_SetVisible(&param0->unk_1A0.unk_934[2].unk_00, 0);
     ov100_021D4B4C(0, &param0->unk_1A0.unk_934[2], 31, param0->unk_1EBC->unk_00, &param0->unk_1EBC->unk_1C);
     ov100_021D4B4C(1, &param0->unk_1A0.unk_934[2], 33, param0->unk_1EBC->unk_00, &param0->unk_1EBC->unk_1C);
 
     param0->unk_1A0.unk_934[2].unk_168 = 1;
 
     ov100_021D4AC8(&param0->unk_1A0.unk_934[3], 35, param0->unk_1EBC->unk_00);
-    Easy3DObject_SetVisibility(&param0->unk_1A0.unk_934[3].unk_00, 0);
+    Easy3DObject_SetVisible(&param0->unk_1A0.unk_934[3].unk_00, 0);
     ov100_021D4B4C(0, &param0->unk_1A0.unk_934[3], 34, param0->unk_1EBC->unk_00, &param0->unk_1EBC->unk_1C);
     ov100_021D4B4C(1, &param0->unk_1A0.unk_934[3], 36, param0->unk_1EBC->unk_00, &param0->unk_1EBC->unk_1C);
 
     param0->unk_1A0.unk_934[3].unk_168 = 1;
 
     ov100_021D4AC8(&param0->unk_1A0.unk_934[4], 38, param0->unk_1EBC->unk_00);
-    Easy3DObject_SetVisibility(&param0->unk_1A0.unk_934[4].unk_00, 0);
+    Easy3DObject_SetVisible(&param0->unk_1A0.unk_934[4].unk_00, 0);
     ov100_021D4B4C(0, &param0->unk_1A0.unk_934[4], 37, param0->unk_1EBC->unk_00, &param0->unk_1EBC->unk_1C);
     ov100_021D4B4C(1, &param0->unk_1A0.unk_934[4], 39, param0->unk_1EBC->unk_00, &param0->unk_1EBC->unk_1C);
 
     param0->unk_1A0.unk_934[4].unk_168 = 1;
 
     ov100_021D4AC8(&param0->unk_1A0.unk_10DC[0], 41, param0->unk_1EBC->unk_00);
-    Easy3DObject_SetVisibility(&param0->unk_1A0.unk_10DC[0].unk_00, 0);
+    Easy3DObject_SetVisible(&param0->unk_1A0.unk_10DC[0].unk_00, 0);
     ov100_021D4B4C(0, &param0->unk_1A0.unk_10DC[0], 40, param0->unk_1EBC->unk_00, &param0->unk_1EBC->unk_1C);
     ov100_021D4AC8(&param0->unk_1A0.unk_10DC[1], 42, param0->unk_1EBC->unk_00);
-    Easy3DObject_SetVisibility(&param0->unk_1A0.unk_10DC[1].unk_00, 0);
+    Easy3DObject_SetVisible(&param0->unk_1A0.unk_10DC[1].unk_00, 0);
 
     if (TrainerInfo_Gender(param0->unk_1EC0->unk_08) != 1) {
         ov100_021D4AC8(&param0->unk_1A0.unk_13EC[0], 61, param0->unk_1EBC->unk_00);
@@ -263,7 +263,7 @@ void *ov100_021D2340(UnkStruct_ov100_021D4DD8 *param0)
     ov100_021D2250(v0);
 
     {
-        ov100_021D4E3C(&v0->unk_08.unk_00, 111);
+        ov100_021D4E3C(&v0->unk_08.unk_00, HEAP_ID_111);
         ov100_021D4E70(&v0->unk_08.unk_00, 0, 191, ((0xffff / 192) * 2), FX32_CONST(4), (1 * 100), REG_DB_BG1HOFS_ADDR, 0, 0x1000, 1);
     }
 
@@ -303,7 +303,7 @@ BOOL ov100_021D2428(void *param0)
 
     switch (v0->unk_00) {
     case 0:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_WHITE, 6, 1, HEAP_ID_111);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_WHITE, 6, 1, HEAP_ID_111);
         v0->unk_1EBC->unk_50.unk_03 = 0;
         G2_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), v0->unk_1EBC->unk_50.unk_03);
         G2S_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), v0->unk_1EBC->unk_50.unk_03);
@@ -453,7 +453,7 @@ BOOL ov100_021D2428(void *param0)
         break;
     case 11:
         v0->unk_1A0.unk_10DC[0].unk_160 = 1;
-        Easy3DObject_SetVisibility(&v0->unk_1A0.unk_10DC[0].unk_00, 1);
+        Easy3DObject_SetVisible(&v0->unk_1A0.unk_10DC[0].unk_00, 1);
         Sound_PlayBGM(SEQ_PL_EV_GIRA);
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_63, SEQ_NONE, 0);
         v0->unk_00++;
@@ -469,9 +469,9 @@ BOOL ov100_021D2428(void *param0)
         }
 
         if (v0->unk_1A0.unk_10DC[0].unk_160 == 0) {
-            Easy3DObject_SetVisibility(&v0->unk_1A0.unk_10DC[0].unk_00, 0);
-            Easy3DObject_SetVisibility(&v0->unk_1A0.unk_10DC[1].unk_00, 1);
-            Easy3DObject_SetVisibility(&v0->unk_1A0.unk_934[0].unk_00, 1);
+            Easy3DObject_SetVisible(&v0->unk_1A0.unk_10DC[0].unk_00, 0);
+            Easy3DObject_SetVisible(&v0->unk_1A0.unk_10DC[1].unk_00, 1);
+            Easy3DObject_SetVisible(&v0->unk_1A0.unk_934[0].unk_00, 1);
 
             v0->unk_1A0.unk_934[0].unk_160 = 1;
             v0->unk_04 = 0;
@@ -496,8 +496,8 @@ BOOL ov100_021D2428(void *param0)
             v0->unk_1A0.unk_18C.unk_160 = 1;
             v0->unk_1A0.unk_18C.unk_168 = 1;
 
-            Easy3DObject_SetVisibility(&v0->unk_1A0.unk_934[0].unk_00, 0);
-            Easy3DObject_SetVisibility(&v0->unk_1A0.unk_934[1].unk_00, 1);
+            Easy3DObject_SetVisible(&v0->unk_1A0.unk_934[0].unk_00, 0);
+            Easy3DObject_SetVisible(&v0->unk_1A0.unk_934[1].unk_00, 1);
 
             v0->unk_00++;
         }
@@ -554,8 +554,8 @@ BOOL ov100_021D2428(void *param0)
         v0->unk_1A0.unk_49C.unk_16C = 1;
         v0->unk_1A0.unk_934[2].unk_160 = 1;
 
-        Easy3DObject_SetVisibility(&v0->unk_1A0.unk_934[1].unk_00, 0);
-        Easy3DObject_SetVisibility(&v0->unk_1A0.unk_934[2].unk_00, 1);
+        Easy3DObject_SetVisible(&v0->unk_1A0.unk_934[1].unk_00, 0);
+        Easy3DObject_SetVisible(&v0->unk_1A0.unk_934[2].unk_00, 1);
         Sound_PlayPokemonCryEx(POKECRY_FIELD_EVENT, SPECIES_GIRATINA, 0, 127, HEAP_ID_111, 0);
 
         v0->unk_04 = 0;
@@ -569,9 +569,9 @@ BOOL ov100_021D2428(void *param0)
             v0->unk_1A0.unk_934[3].unk_164 = 1;
             v0->unk_1A0.unk_49C.unk_160 = 0;
 
-            Easy3DObject_SetVisibility(&v0->unk_1A0.unk_49C.unk_00, 0);
-            Easy3DObject_SetVisibility(&v0->unk_1A0.unk_934[2].unk_00, 0);
-            Easy3DObject_SetVisibility(&v0->unk_1A0.unk_934[3].unk_00, 1);
+            Easy3DObject_SetVisible(&v0->unk_1A0.unk_49C.unk_00, 0);
+            Easy3DObject_SetVisible(&v0->unk_1A0.unk_934[2].unk_00, 0);
+            Easy3DObject_SetVisible(&v0->unk_1A0.unk_934[3].unk_00, 1);
 
             v0->unk_00++;
         }
@@ -589,8 +589,8 @@ BOOL ov100_021D2428(void *param0)
 
         v0->unk_1A0.unk_934[4].unk_160 = 1;
 
-        Easy3DObject_SetVisibility(&v0->unk_1A0.unk_934[3].unk_00, 0);
-        Easy3DObject_SetVisibility(&v0->unk_1A0.unk_934[4].unk_00, 1);
+        Easy3DObject_SetVisible(&v0->unk_1A0.unk_934[3].unk_00, 0);
+        Easy3DObject_SetVisible(&v0->unk_1A0.unk_934[4].unk_00, 1);
         v0->unk_04 = 0;
         v0->unk_00++;
         break;
@@ -642,7 +642,7 @@ BOOL ov100_021D2428(void *param0)
         }
         break;
     case 20:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 1, 1, HEAP_ID_111);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 1, 1, HEAP_ID_111);
         v0->unk_00++;
     case 21:
         if (IsScreenFadeDone() == FALSE) {
@@ -723,7 +723,7 @@ BOOL ov100_021D2C8C(void *param0)
         v0->unk_00++;
         break;
     default:
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return 0;
     }
 

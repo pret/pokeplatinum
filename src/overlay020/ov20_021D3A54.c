@@ -66,7 +66,7 @@ void ov20_021D3A80(UnkStruct_ov20_021D3E0C *param0)
         Sprite_Delete(param0->unk_5C);
     }
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov20_021D3A98(UnkStruct_ov20_021D3E0C *param0, NARC *param1)
@@ -229,7 +229,7 @@ static void ov20_021D3E0C(UnkStruct_ov20_021D3E0C *param0)
     ov20_021D2E0C(param0->unk_00, &v0, 0, 1);
     param0->unk_5C = ov20_021D2E50(param0->unk_00, &v0, 48, 54, 2, NNS_G2D_VRAM_TYPE_2DMAIN);
     Sprite_SetAnim(param0->unk_5C, 4);
-    Sprite_SetDrawFlag(param0->unk_5C, 0);
+    Sprite_SetDrawFlag(param0->unk_5C, FALSE);
 }
 
 void ov20_021D3E48(UnkStruct_ov20_021D3E0C *param0, BOOL param1)

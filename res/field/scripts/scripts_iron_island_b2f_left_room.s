@@ -2,7 +2,6 @@
 #include "res/text/bank/iron_island_b2f_left_room.h"
 #include "res/text/bank/special_met_location_names.h"
 
-    .data
 
     ScriptEntry _0026
     ScriptEntry _0060
@@ -27,7 +26,7 @@ _0035:
 
 _004A:
     SetObjectEventPos 4, 19, 41
-    ScrCmd_188 4, 17
+    SetObjectEventMovementType 4, MOVEMENT_TYPE_LOOK_RIGHT
     SetObjectEventDir 4, DIR_EAST
     End
 

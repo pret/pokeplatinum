@@ -74,7 +74,7 @@ int ov94_022444C8(UnkStruct_ov94_0223FD4C *param0, int param1)
     }
 
     param0->unk_E8.options = param0->unk_00->options;
-    param0->appMan = ApplicationManager_New(&Unk_ov94_0224636C, &param0->unk_E8, 62);
+    param0->appMan = ApplicationManager_New(&Unk_ov94_0224636C, &param0->unk_E8, HEAP_ID_62);
     param0->unk_104 = 1;
 
     return 2;
@@ -129,7 +129,7 @@ int ov94_02244678(UnkStruct_ov94_0223FD4C *param0, int param1)
                     v0 = 4;
                 }
 
-                Heap_FreeToHeap(v5);
+                Heap_Free(v5);
             } else {
                 ov94_0223C4C0(param0, 1, 0);
                 v0 = 4;
@@ -152,8 +152,8 @@ int ov94_02244678(UnkStruct_ov94_0223FD4C *param0, int param1)
 
 int ov94_0224484C(UnkStruct_ov94_0223FD4C *param0, int param1)
 {
-    Heap_FreeToHeap(param0->unk_1104);
-    Heap_FreeToHeap(param0->unk_120);
+    Heap_Free(param0->unk_1104);
+    Heap_Free(param0->unk_120);
     ov94_0223C4C8(param0);
 
     return 1;

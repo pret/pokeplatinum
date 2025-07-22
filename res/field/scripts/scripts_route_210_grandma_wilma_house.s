@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_210_grandma_wilma_house.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _0010

@@ -1,5 +1,6 @@
 nitrofs_files = []
 naix_headers = []
+h_headers = []
 
 ### PREBUILT FILES ###
 subdir('prebuilt')
@@ -41,6 +42,7 @@ script_bin_gen = generator(make_script_bin_sh,
     depends: [
         text_banks,
         c_consts_generators,
+        h_headers,
     ],
     output: '@BASENAME@',
     depfile: '@BASENAME@.d',

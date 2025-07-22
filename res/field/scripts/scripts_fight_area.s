@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/fight_area.h"
 
-    .data
 
     ScriptEntry _00D8
     ScriptEntry _049C
@@ -37,7 +36,7 @@ _0066:
 
 _0082:
     SetObjectEventPos 7, 0x28F, 0x1AA
-    ScrCmd_188 7, 14
+    SetObjectEventMovementType 7, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 7, DIR_NORTH
     End
 

@@ -57,8 +57,8 @@ BOOL ov5_021F101C(FieldTask *param0)
         (*v2)++;
         break;
     case 5:
-        Heap_FreeToHeap(v1->unk_04);
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1->unk_04);
+        Heap_Free(v1);
         return 1;
     }
 

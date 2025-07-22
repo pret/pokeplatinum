@@ -45,10 +45,10 @@ void ov55_02256360(UnkStruct_ov55_0225632C *param0)
 {
     if (param0 != NULL) {
         if (param0->unk_04 != NULL) {
-            Heap_FreeToHeap(param0->unk_04);
+            Heap_Free(param0->unk_04);
         }
 
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0);
     }
 }
 
@@ -83,19 +83,18 @@ static void ov55_022563B4(PoketchTaskManager *param0)
 static void ov55_022563C8(SysTask *param0, void *param1)
 {
     static const BgTemplate v0 = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0x7000,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        2,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x7000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
     GXSDispCnt v1;
     UnkStruct_ov55_0225632C *v2 = PoketchTask_GetTaskData(param1);

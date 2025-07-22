@@ -1,21 +1,20 @@
 #ifndef POKEPLATINUM_OV119_021D0D80_H
 #define POKEPLATINUM_OV119_021D0D80_H
 
-#include "struct_defs/struct_0207C690.h"
-
 #include "overlay119/struct_ov119_021D0FD0.h"
 #include "overlay119/struct_ov119_021D14DC.h"
 #include "overlay119/struct_ov119_021D17B8.h"
 #include "overlay119/struct_ov119_021D1930.h"
 
 #include "bg_window.h"
+#include "g3d_pipeline.h"
 #include "palette.h"
 #include "particle_system.h"
 #include "pokemon.h"
 
 void ov119_021D0D80(void);
 void ov119_021D0DA8(void);
-GenericPointerData *ov119_021D0DD4(void);
+G3DPipelineBuffers *ov119_021D0DD4(void);
 void ov119_021D0DF4(void);
 void ov119_021D0E78(void);
 void ov119_021D0EB8(BgConfig *param0);

@@ -148,7 +148,7 @@ static void ov104_0223E8D8(SysTask *param0, void *param1)
         }
 
         SysTask_Done(param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
 
         return;
     }
@@ -222,7 +222,7 @@ UnkStruct_ov104_0223EA84 *ov104_0223EA64(u32 heapID)
 
 void ov104_0223EA7C(UnkStruct_ov104_0223EA84 *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov104_0223EA84(UnkStruct_ov104_0223EA84 *param0, int param1, int param2, int param3, int param4, int param5, Window *param6, u32 param7, u32 param8, u8 param9)
@@ -318,7 +318,7 @@ void ov104_0223EBD0(UnkStruct_ov104_0223EBD0 *param0)
         ov104_0223EA7C(param0->unk_04[v0]);
     }
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov104_0223EBF0(UnkStruct_ov104_0223EBD0 *param0, u8 param1, u8 param2, Window *param3, u8 param4)
@@ -506,9 +506,9 @@ static void ov104_0223F070(SysTask *param0, void *param1)
     v0->unk_08++;
 }
 
-void ov104_0223F094(UnkStruct_ov104_0223F094 *param0, u32 param1)
+void ov104_0223F094(UnkStruct_ov104_0223F094 *param0, u32 heapID)
 {
-    param0->screenScrollMgr = ScreenScrollManager_New(param1);
+    param0->screenScrollMgr = ScreenScrollManager_New(heapID);
     param0->unk_08 = 0;
     param0->unk_04 = ov104_0223F05C(param0);
 }
@@ -625,7 +625,7 @@ void ov104_0223F258(UnkStruct_ov104_0223F174 *param0)
         BufferManager_Delete(param0->bufferManager);
     }
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void *ov104_0223F27C(const UnkStruct_ov104_0223F174 *param0)

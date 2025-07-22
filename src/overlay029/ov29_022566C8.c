@@ -69,7 +69,7 @@ static BOOL ov29_02256728(UnkStruct_ov29_022566C8 *param0)
     if (param0->unk_70) {
         Window_AddFromTemplate(param0->unk_04, param0->unk_70, &v0);
 
-        if (PoketchMemory_ReadFast(param0->unk_00->unk_16E8, param0->unk_70->pixels, (20 * 19 * 0x20)) == FALSE) {
+        if (PoketchMemory_ReadFast(param0->unk_00->unk_16E8, param0->unk_70->pixels, 20 * 19 * 0x20) == FALSE) {
             Window_FillTilemap(param0->unk_70, 0x4);
         }
 
@@ -85,12 +85,12 @@ void ov29_02256770(UnkStruct_ov29_022566C8 *param0)
         GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_POKETCH_MAIN));
 
         if (param0->unk_70) {
-            PoketchMemory_WriteFast(param0->unk_00->unk_16E8, param0->unk_70->pixels, (20 * 19 * 0x20));
+            PoketchMemory_WriteFast(param0->unk_00->unk_16E8, param0->unk_70->pixels, 20 * 19 * 0x20);
             Window_Remove(param0->unk_70);
-            Heap_FreeToHeap(param0->unk_70);
+            Heap_Free(param0->unk_70);
         }
 
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0);
     }
 }
 
@@ -128,34 +128,32 @@ static void ov29_022567F0(PoketchTaskManager *param0)
 static void ov29_02256804(SysTask *param0, void *param1)
 {
     static const BgTemplate v0 = {
-        0,
-        0,
-        0,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0x7000,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        2,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x7000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
     static const BgTemplate v1 = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0x7800,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        3,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x7800,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 3,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
     GXSDispCnt v2;
     UnkStruct_ov29_022566C8 *v3;

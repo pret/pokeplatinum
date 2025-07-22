@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/floaroma_town_middle_house.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _0021

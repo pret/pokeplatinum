@@ -158,7 +158,7 @@ void SpriteManager_FreeResources(SpriteManager *spriteMan)
         SpriteResourceTable_Clear(resTable);
     }
 
-    Heap_FreeToHeap(spriteMan->resourcePaths);
+    Heap_Free(spriteMan->resourcePaths);
     SpriteTransfer_ResetCharTransferList(spriteMan->unownedResources[SPRITE_RESOURCE_CHAR]);
     SpriteTransfer_ResetPlttTransferList(spriteMan->unownedResources[SPRITE_RESOURCE_PLTT]);
 
@@ -182,7 +182,7 @@ void SpriteSystem_FreeVramTransfers(SpriteSystem *spriteSys)
 void SpriteSystem_FreeSpriteManager(SpriteSystem *spriteSys, SpriteManager *spriteMan)
 {
     spriteSys->spriteManagerCount--;
-    Heap_FreeToHeap(spriteMan);
+    Heap_Free(spriteMan);
 }
 
 void SpriteSystem_DestroySpriteManager(SpriteSystem *spriteSys, SpriteManager *spriteMan)
@@ -197,7 +197,7 @@ void SpriteSystem_Free(SpriteSystem *spriteSys)
 {
     GF_ASSERT(spriteSys->spriteManagerCount == 0);
     SpriteSystem_FreeVramTransfers(spriteSys);
-    Heap_FreeToHeap(spriteSys);
+    Heap_Free(spriteSys);
 }
 
 BOOL SpriteSystem_LoadResourceDataFromFilepaths(SpriteSystem *spriteSys, SpriteManager *spriteMan, const SpriteResourceDataPaths *paths)
@@ -220,7 +220,7 @@ BOOL SpriteSystem_LoadResourceDataFromFilepaths(SpriteSystem *spriteSys, SpriteM
         SpriteResourceTable *resourceTable = SpriteResourceTable_GetArrayElement(spriteMan->resourcePaths, i);
         void *buf = ReadFileToHeap(spriteSys->heapID, paths->asArray[i]);
         SpriteResourceTable_LoadFromBinary(buf, resourceTable, spriteSys->heapID);
-        Heap_FreeToHeap(buf);
+        Heap_Free(buf);
     }
 
     for (int i = 0; i < numResourceTypes; i++) {
@@ -249,7 +249,7 @@ BOOL SpriteSystem_LoadResourceDataFromFilepaths(SpriteSystem *spriteSys, SpriteM
         spriteMan->ownedResources[SPRITE_RESOURCE_MULTI_CELL],
         spriteMan->ownedResources[SPRITE_RESOURCE_MULTI_ANIM]);
 
-    Heap_FreeToHeap(buf);
+    Heap_Free(buf);
     return TRUE;
 }
 
@@ -496,7 +496,7 @@ ManagedSprite *SpriteSystem_NewSprite(SpriteSystem *spriteSys, SpriteManager *sp
     managedSprite->resourceHeader = managedSprite->resourceHeaderList->headers;
     if (managedSprite->resourceHeaderList->headers == NULL) {
         if (managedSprite->resourceHeaderList) {
-            Heap_FreeToHeap(managedSprite->resourceHeaderList);
+            Heap_Free(managedSprite->resourceHeaderList);
         }
         return NULL;
     }
@@ -621,7 +621,7 @@ void Sprite_DeleteAndFreeResources(ManagedSprite *managedSprite)
 
     Sprite_Delete(managedSprite->sprite);
     SpriteResourcesHeaderList_Free(managedSprite->resourceHeaderList);
-    Heap_FreeToHeap(managedSprite);
+    Heap_Free(managedSprite);
 }
 
 static BOOL LoadResObjInternal(SpriteSystem *spriteSys, SpriteManager *spriteMan, enum NarcID narcID, int memberIdx, int compressed, int type, int resourceID)

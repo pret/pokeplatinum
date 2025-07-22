@@ -54,7 +54,7 @@ static void MapMatrixData_Load(MapMatrixData *mapMatrixData, const u16 mapMatrix
     }
 
     MI_CpuCopy8(iter, mapMatrixData->landDataIDs, mapMatrixData->width * mapMatrixData->height * sizeof(u16));
-    Heap_FreeToHeap(buffer);
+    Heap_Free(buffer);
 }
 
 MapMatrix *MapMatrix_New(void)
@@ -93,7 +93,7 @@ void MapMatrix_Load(const int mapHeaderID, MapMatrix *mapMatrix)
 
 void MapMatrix_Free(MapMatrix *const mapMatrix)
 {
-    Heap_FreeToHeap(mapMatrix);
+    Heap_Free(mapMatrix);
 }
 
 u16 MapMatrix_GetLandDataIDByIndex2(int index, const MapMatrix *mapMatrix)
@@ -159,7 +159,7 @@ MainMapMatrixData *MainMapMatrixData_Load(const u32 heapID)
     iter += modelNamePrefixLen;
 
     MI_CpuCopy8(iter, mainMapMatrixData->mapHeaderIDs, MAP_MATRIX_MAX_SIZE * sizeof(u16));
-    Heap_FreeToHeap(buffer);
+    Heap_Free(buffer);
 
     return mainMapMatrixData;
 }
@@ -167,7 +167,7 @@ MainMapMatrixData *MainMapMatrixData_Load(const u32 heapID)
 void MainMapMatrixData_Free(MainMapMatrixData *mainMapMatrixData)
 {
     GF_ASSERT(mainMapMatrixData != NULL);
-    Heap_FreeToHeap(mainMapMatrixData);
+    Heap_Free(mainMapMatrixData);
 }
 
 int MainMapMatrixData_GetMapHeaderIDAtCoords(const MainMapMatrixData *mainMapMatrixData, const u32 x, const u32 y)

@@ -102,7 +102,7 @@ void StringTemplate_Free(StringTemplate *template)
             }
         }
 
-        Heap_FreeToHeap(template->args);
+        Heap_Free(template->args);
     }
 
     if (template->templateBuf) {
@@ -110,7 +110,7 @@ void StringTemplate_Free(StringTemplate *template)
     }
 
     template->maxArgs = 0;
-    Heap_FreeToHeap(template);
+    Heap_Free(template);
 }
 
 static void InitStringTemplateArgHeader(StringTemplateArgHeader *header)

@@ -287,7 +287,7 @@ int ov85_022415A0(ApplicationManager *appMan, int *param1)
     ov85_0224181C(v0);
     ov85_0224202C(v0);
 
-    Heap_FreeToHeap(v0->unk_1FC);
+    Heap_Free(v0->unk_1FC);
     ApplicationManager_FreeData(appMan);
     SetVBlankCallback(NULL, NULL);
     Heap_Destroy(HEAP_ID_36);
@@ -341,19 +341,18 @@ static void ov85_02241634(BgConfig *param0)
 
     {
         BgTemplate v1 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xf800,
-            GX_BG_CHARBASE_0x10000,
-            GX_BG_EXTPLTT_01,
-            2,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xf800,
+            .charBase = GX_BG_CHARBASE_0x10000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 2,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v1, 0);
@@ -362,19 +361,18 @@ static void ov85_02241634(BgConfig *param0)
 
     {
         BgTemplate v2 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xf000,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_01,
-            3,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xf000,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 3,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v2, 0);
@@ -383,19 +381,18 @@ static void ov85_02241634(BgConfig *param0)
 
     {
         BgTemplate v3 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xe800,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_01,
-            1,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xe800,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 1,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v3, 0);
@@ -410,7 +407,7 @@ static void ov85_022416E8(BgConfig *param0)
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_3);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
-    Heap_FreeToHeapExplicit(HEAP_ID_36, param0);
+    Heap_FreeExplicit(HEAP_ID_36, param0);
 }
 
 static void ov85_02241718(UnkStruct_ov85_022417E4 *param0, NARC *param1)
@@ -431,7 +428,7 @@ static void ov85_02241718(UnkStruct_ov85_022417E4 *param0, NARC *param1)
         }
 
         Bg_LoadToTilemapRect(param0->unk_00, 1, v0, 2, 5, 8, 8);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         Bg_CopyTilemapBufferToVRAM(param0->unk_00, 1);
     }
 
@@ -849,7 +846,7 @@ static void ov85_02241F0C(UnkStruct_ov85_022417E4 *param0)
 {
     NARC *v0;
 
-    Heap_FreeToHeap(param0->unk_1FC);
+    Heap_Free(param0->unk_1FC);
     param0->unk_1FC = BerryData_Load(param0->unk_1F8->unk_08, 36);
     ov85_02241CD0(param0);
 

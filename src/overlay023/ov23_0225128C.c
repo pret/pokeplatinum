@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/underground_data.h"
+#include "struct_defs/underground.h"
 
 #include "field/field_system.h"
 #include "overlay023/funcptr_ov23_022515D8.h"
@@ -227,7 +227,7 @@ int ov23_02251414(void)
 
 static BOOL ov23_02251418(int param0, UnkStruct_ov23_02250CD4 *param1)
 {
-    UndergroundData *v0 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(param1->fieldSystem));
+    Underground *v0 = SaveData_GetUnderground(FieldSystem_GetSaveData(param1->fieldSystem));
     int v1 = sub_02028B88(v0, param0);
 
     if (sub_0202895C(v0, v1)) {
@@ -240,7 +240,7 @@ static BOOL ov23_02251418(int param0, UnkStruct_ov23_02250CD4 *param1)
 
 static int ov23_0225144C(int param0, UnkStruct_ov23_02250CD4 *param1)
 {
-    UndergroundData *v0 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(param1->fieldSystem));
+    Underground *v0 = SaveData_GetUnderground(FieldSystem_GetSaveData(param1->fieldSystem));
     int v1;
 
     if (sub_02028AFC(v0, param0)) {
@@ -301,7 +301,7 @@ static BOOL ov23_022514D8(SysTask *param0, void *param1)
         v0->unk_2AA = 2;
         break;
     case 0: {
-        UndergroundData *v4 = SaveData_GetUndergroundData(v0->fieldSystem->saveData);
+        Underground *v4 = SaveData_GetUnderground(v0->fieldSystem->saveData);
 
         if (0 == sub_020289A0(v4)) {
             ov23_02253F40(ov23_022421BC(), 60, 0, NULL);
@@ -350,7 +350,7 @@ static void ov23_022515D8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
 
     ov23_0224FB7C(param0);
 
-    param0->unk_40 = StringList_New(v1, 4);
+    param0->unk_40 = StringList_New(v1, HEAP_ID_FIELD);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, 3, 17, 3, 14, v1 * 2, 13, 2);
     Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
@@ -385,7 +385,7 @@ static void ov23_022515D8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
 
     v0.parent = param0;
     ov23_02251238(param0, v1, v0.count);
-    param0->unk_48 = ListMenu_New(&v0, param0->unk_294, param0->unk_290, 4);
+    param0->unk_48 = ListMenu_New(&v0, param0->unk_294, param0->unk_290, HEAP_ID_FIELD);
 }
 
 static void ov23_022516E8(UnkStruct_ov23_02250CD4 *param0, int param1, int param2, UnkFuncPtr_ov23_022515D8 param3, int param4)
@@ -396,7 +396,7 @@ static void ov23_022516E8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
 
     ov23_0224FB7C(param0);
 
-    param0->unk_40 = StringList_New(v1, 4);
+    param0->unk_40 = StringList_New(v1, HEAP_ID_FIELD);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, 3, 17, 3, 14, v1 * 2, 13, (2 + 14 * 16));
     Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
@@ -431,7 +431,7 @@ static void ov23_022516E8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
 
     v0.parent = param0;
     ov23_02251238(param0, v1, v0.count);
-    param0->unk_48 = ListMenu_New(&v0, param0->unk_294, param0->unk_290, 4);
+    param0->unk_48 = ListMenu_New(&v0, param0->unk_294, param0->unk_290, HEAP_ID_FIELD);
 }
 
 static BOOL ov23_022517E0(SysTask *param0, void *param1)
@@ -613,7 +613,7 @@ static BOOL ov23_02251ACC(FieldTask *param0)
     switch (v1->unk_00) {
     case 0:
         Sound_PlayEffect(SEQ_SE_DP_PC_LOGIN);
-        StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_FIELD);
         v1->unk_00 = 1;
         break;
     case 1:
@@ -634,7 +634,7 @@ static BOOL ov23_02251ACC(FieldTask *param0)
     case 4:
         PlayerAvatar_SetHidden(fieldSystem->playerAvatar, 1);
         ov23_02251A84(0, fieldSystem);
-        StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_FIELD);
         v1->unk_00 = 5;
         break;
     case 5:
@@ -642,7 +642,7 @@ static BOOL ov23_02251ACC(FieldTask *param0)
             ov23_0224B2C8(fieldSystem);
             SystemFlag_SetDecoratedSecretBase(SaveData_GetVarsFlags(fieldSystem->saveData));
             ov23_02251F94(fieldSystem);
-            Heap_FreeToHeap(v1);
+            Heap_Free(v1);
             return 1;
         }
         break;
@@ -670,7 +670,7 @@ static void ov23_02251BB4(SysTask *param0, UnkStruct_ov23_02250CD4 *param1)
     ov23_02254044(ov23_022421BC());
 
     SysTask_Done(param0);
-    Heap_FreeToHeap(param1);
+    Heap_Free(param1);
 }
 
 static void ov23_02251C04(SysTask *param0, void *param1)
@@ -699,7 +699,7 @@ static void ov23_02251C04(SysTask *param0, void *param1)
     case 6:
         ov23_0224FB7C(param1);
         ov23_02254044(ov23_022421BC());
-        v0->unk_270 = ov23_02253C64(v0->fieldSystem->bgConfig, SaveData_GetTrainerInfo(FieldSystem_GetSaveData(v0->fieldSystem)), SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem)), NULL, NULL);
+        v0->unk_270 = ov23_02253C64(v0->fieldSystem->bgConfig, SaveData_GetTrainerInfo(FieldSystem_GetSaveData(v0->fieldSystem)), SaveData_GetUnderground(FieldSystem_GetSaveData(v0->fieldSystem)), NULL, NULL);
         v0->unk_2AA = 7;
         break;
     case 7:
@@ -885,7 +885,7 @@ static void ov23_02252038(SysTask *param0, void *param1)
         v0->unk_08 = NULL;
         break;
     case 2:
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         ov23_02243204();
         SysTask_Done(param0);
         break;
@@ -900,7 +900,7 @@ static void ov23_022520C8(SysTask *param0, void *param1)
         Menu_DestroyForExit(v0->unk_08, 4);
     }
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     SysTask_Done(param0);
 }
 

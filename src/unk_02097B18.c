@@ -19,6 +19,7 @@
 #include "bg_window.h"
 #include "field_task.h"
 #include "field_transition.h"
+#include "g3d_pipeline.h"
 #include "game_options.h"
 #include "game_overlay.h"
 #include "gx_layers.h"
@@ -38,7 +39,6 @@
 #include "touch_pad.h"
 #include "touch_screen_actions.h"
 #include "unk_02015F84.h"
-#include "unk_02024220.h"
 #include "unk_0202C9F4.h"
 #include "unk_0206CCB0.h"
 #include "vram_transfer.h"
@@ -230,14 +230,14 @@ static int sub_02097D88(ApplicationManager *appMan, int *param1)
     Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 5);
     Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 6);
     Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 7);
-    Heap_FreeToHeap(v0->unk_D4.unk_10);
+    Heap_Free(v0->unk_D4.unk_10);
     PaletteData_FreeBuffer(v0->unk_D4.unk_14, 0);
     PaletteData_FreeBuffer(v0->unk_D4.unk_14, 1);
     PaletteData_FreeBuffer(v0->unk_D4.unk_14, 2);
     PaletteData_FreeBuffer(v0->unk_D4.unk_14, 3);
     PaletteData_Free(v0->unk_D4.unk_14);
     sub_02097F20(v0->unk_00, v0->unk_3C4[0]);
-    Heap_FreeToHeap(v0->unk_428);
+    Heap_Free(v0->unk_428);
     ov76_0223B678(v0);
     TouchScreenActions_Free(v0->unk_D4.unk_F8);
     PokemonSpriteManager_Free(v0->unk_D4.unk_D0);
@@ -245,7 +245,7 @@ static int sub_02097D88(ApplicationManager *appMan, int *param1)
     ov76_0223B8C4(v0);
     ov76_0223C424(&v0->unk_D4);
     VramTransfer_Free();
-    sub_020242C4(v0->unk_D4.unk_15C);
+    G3DPipelineBuffers_Free(v0->unk_D4.unk_15C);
     ov76_0223EB54(53);
     NARC_dtor(v0->unk_42C);
     ApplicationManager_FreeData(appMan);
@@ -398,9 +398,9 @@ static BOOL sub_02097F38(FieldTask *param0)
         v0->unk_14 = 6;
         break;
     case 6:
-        Heap_FreeToHeap(v0->unk_0C);
-        Heap_FreeToHeap(v0->unk_08);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0->unk_0C);
+        Heap_Free(v0->unk_08);
+        Heap_Free(v0);
         return 1;
     }
 

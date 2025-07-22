@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_213.h"
 
-    .data
 
     ScriptEntry _0022
     ScriptEntry _0078
@@ -34,7 +33,7 @@ _0051:
 _0062:
     SetObjectEventPos 30, 0x28E, 0x32C
     SetObjectEventDir 30, DIR_EAST
-    ScrCmd_188 30, 17
+    SetObjectEventMovementType 30, MOVEMENT_TYPE_LOOK_RIGHT
     Return
 
 _0078:
@@ -79,7 +78,7 @@ _010B:
     RemoveObject 30
     SetObjectEventPos 30, 0x2AB, 0x341
     SetObjectEventDir 30, DIR_EAST
-    ScrCmd_188 30, 17
+    SetObjectEventMovementType 30, MOVEMENT_TYPE_LOOK_RIGHT
     ClearFlag FLAG_UNK_0x021A
     AddObject 30
     ReleaseAll

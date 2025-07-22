@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/twinleaf_town_rival_house_2f.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _0090

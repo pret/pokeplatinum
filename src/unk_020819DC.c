@@ -197,7 +197,7 @@ void sub_02081CF4(GameWindowLayout *param0, const u8 *param1, u8 param2)
 
     Window_Add(param0->unk_00, &param0->unk_254[0], 0, 19, 23 - param2 * 2, 12, param2 * 2, 0, (((((((((((((((((((((((((((((((1 + 9) + (18 + 12)) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 5 * 2) + 7 * 2) + 20 * 2) + 13 * 4) + 27 * 4));
 
-    param0->unk_6FC = StringList_New(param2, 12);
+    param0->unk_6FC = StringList_New(param2, HEAP_ID_12);
     v2 = 0;
 
     for (v1 = 0; v1 < param2; v1++) {

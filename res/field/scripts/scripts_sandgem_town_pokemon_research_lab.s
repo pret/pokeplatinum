@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/sandgem_town_pokemon_research_lab.h"
 
-    .data
 
     ScriptEntry _003E
     ScriptEntry _01AE
@@ -29,11 +28,11 @@ _005A:
     ClearFlag FLAG_UNK_0x0198
     SetObjectEventPos 0, 7, 14
     SetObjectEventDir 0, DIR_SOUTH
-    ScrCmd_188 0, 15
+    SetObjectEventMovementType 0, MOVEMENT_TYPE_LOOK_SOUTH
     ClearFlag FLAG_UNK_0x0199
     SetObjectEventPos 3, 6, 14
     SetObjectEventDir 3, DIR_SOUTH
-    ScrCmd_188 3, 15
+    SetObjectEventMovementType 3, MOVEMENT_TYPE_LOOK_SOUTH
     Return
 
 _008C:
@@ -53,7 +52,7 @@ _00B7:
     GetNationalDexEnabled VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _07AE
     GoToIfUnset FLAG_UNK_0x09BA, _00E5
-    ScrCmd_1E8 VAR_RESULT
+    CheckLocalDexCompleted VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _060E
 _00E5:
     GoToIfGe VAR_UNK_0x4071, 2, _0100

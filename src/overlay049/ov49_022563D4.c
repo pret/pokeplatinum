@@ -64,7 +64,7 @@ static void ov49_02256410(UnkStruct_ov49_022563D4 *param0, const UnkStruct_ov49_
 
     PoketchAnimation_LoadSpriteFromNARC(&param0->unk_28, 12, 67, 68, 8);
     param0->unk_24 = PoketchAnimation_SetupNewAnimatedSprite(param0->unk_20, &v0, &param0->unk_28);
-    PoketchAnimation_SetSpritePosition(param0->unk_24, (56 + (16 * param1->unk_00)) << FX32_SHIFT, (148 << FX32_SHIFT));
+    PoketchAnimation_SetSpritePosition(param0->unk_24, (56 + (16 * param1->unk_00)) << FX32_SHIFT, 148 << FX32_SHIFT);
 }
 
 static void ov49_02256464(UnkStruct_ov49_022563D4 *param0)
@@ -82,7 +82,7 @@ void ov49_02256480(UnkStruct_ov49_022563D4 *param0)
 {
     if (param0 != NULL) {
         ov49_02256464(param0);
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0);
     }
 }
 
@@ -117,19 +117,18 @@ static void ov49_022564D0(PoketchTaskManager *param0)
 static void ov49_022564E4(SysTask *param0, void *param1)
 {
     static const BgTemplate v0 = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0x7000,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        2,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x7000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
     GXSDispCnt v1;
     UnkStruct_ov49_022563D4 *v2;
@@ -168,6 +167,6 @@ static void ov49_02256594(SysTask *param0, void *param1)
 
     PoketchSystem_PlaySoundEffect(1635);
     PoketchGraphics_LoadActivePalette(0, 0);
-    PoketchAnimation_SetSpritePosition(v0->unk_24, (56 + (16 * v1->unk_00)) << FX32_SHIFT, (148 << FX32_SHIFT));
+    PoketchAnimation_SetSpritePosition(v0->unk_24, (56 + (16 * v1->unk_00)) << FX32_SHIFT, 148 << FX32_SHIFT);
     ov49_022564D0(param1);
 }

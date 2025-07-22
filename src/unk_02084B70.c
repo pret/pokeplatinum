@@ -59,22 +59,22 @@ static u8 sub_02084B70(u16 itemID)
     itemData = Item_Load(itemID, 0, HEAP_ID_12);
 
     if (Item_Get(itemData, ITEM_PARAM_PARTY_USE) != 1) {
-        Heap_FreeToHeap(itemData);
+        Heap_Free(itemData);
         return 28;
     }
 
     if ((Item_Get(itemData, ITEM_PARAM_ATK_STAGES) != 0) || (Item_Get(itemData, ITEM_PARAM_DEF_STAGES) != 0) || (Item_Get(itemData, ITEM_PARAM_SPATK_STAGES) != 0) || (Item_Get(itemData, ITEM_PARAM_SPDEF_STAGES) != 0) || (Item_Get(itemData, ITEM_PARAM_SPEED_STAGES) != 0) || (Item_Get(itemData, ITEM_PARAM_ACC_STAGES) != 0) || (Item_Get(itemData, ITEM_PARAM_CRIT_STAGES) != 0)) {
-        Heap_FreeToHeap(itemData);
+        Heap_Free(itemData);
         return 0;
     }
 
     if (Item_Get(itemData, ITEM_PARAM_REVIVE_ALL) != 0) {
-        Heap_FreeToHeap(itemData);
+        Heap_Free(itemData);
         return 1;
     }
 
     if (Item_Get(itemData, ITEM_PARAM_LEVEL_UP) != 0) {
-        Heap_FreeToHeap(itemData);
+        Heap_Free(itemData);
         return 2;
     }
 
@@ -87,136 +87,136 @@ static u8 sub_02084B70(u16 itemID)
 
     switch (itemParam) {
     case 0x1:
-        Heap_FreeToHeap(itemData);
+        Heap_Free(itemData);
         return 3;
     case 0x2:
-        Heap_FreeToHeap(itemData);
+        Heap_Free(itemData);
         return 4;
     case 0x4:
-        Heap_FreeToHeap(itemData);
+        Heap_Free(itemData);
         return 5;
     case 0x8:
-        Heap_FreeToHeap(itemData);
+        Heap_Free(itemData);
         return 6;
     case 0x10:
-        Heap_FreeToHeap(itemData);
+        Heap_Free(itemData);
         return 7;
     case 0x20:
-        Heap_FreeToHeap(itemData);
+        Heap_Free(itemData);
         return 8;
     case 0x3f:
         if (Item_Get(itemData, ITEM_PARAM_HP_RESTORE) != 0) {
-            Heap_FreeToHeap(itemData);
+            Heap_Free(itemData);
             return 11; // Full Restore
         } else {
-            Heap_FreeToHeap(itemData);
+            Heap_Free(itemData);
             return 9; // Full Heal
         }
     }
 
     if (Item_Get(itemData, ITEM_PARAM_HEAL_ATTRACT) != 0) {
-        Heap_FreeToHeap(itemData);
+        Heap_Free(itemData);
         return 10;
     }
 
     if (Item_Get(itemData, ITEM_PARAM_HP_RESTORE) != 0) {
-        Heap_FreeToHeap(itemData);
+        Heap_Free(itemData);
         return 11;
     }
 
     itemParam = Item_Get(itemData, ITEM_PARAM_HP_EVS);
 
     if (itemParam > 0) {
-        Heap_FreeToHeap(itemData);
+        Heap_Free(itemData);
         return 12;
     }
 
     if (itemParam < 0) {
-        Heap_FreeToHeap(itemData);
+        Heap_Free(itemData);
         return 18;
     }
 
     itemParam = Item_Get(itemData, ITEM_PARAM_ATK_EVS);
 
     if (itemParam > 0) {
-        Heap_FreeToHeap(itemData);
+        Heap_Free(itemData);
         return 13;
     }
 
     if (itemParam < 0) {
-        Heap_FreeToHeap(itemData);
+        Heap_Free(itemData);
         return 19;
     }
 
     itemParam = Item_Get(itemData, ITEM_PARAM_DEF_EVS);
 
     if (itemParam > 0) {
-        Heap_FreeToHeap(itemData);
+        Heap_Free(itemData);
         return 14;
     }
 
     if (itemParam < 0) {
-        Heap_FreeToHeap(itemData);
+        Heap_Free(itemData);
         return 20;
     }
 
     itemParam = Item_Get(itemData, ITEM_PARAM_SPEED_EVS);
 
     if (itemParam > 0) {
-        Heap_FreeToHeap(itemData);
+        Heap_Free(itemData);
         return 15;
     }
 
     if (itemParam < 0) {
-        Heap_FreeToHeap(itemData);
+        Heap_Free(itemData);
         return 21;
     }
 
     itemParam = Item_Get(itemData, ITEM_PARAM_SPATK_EVS);
 
     if (itemParam > 0) {
-        Heap_FreeToHeap(itemData);
+        Heap_Free(itemData);
         return 16;
     }
 
     if (itemParam < 0) {
-        Heap_FreeToHeap(itemData);
+        Heap_Free(itemData);
         return 22;
     }
 
     itemParam = Item_Get(itemData, ITEM_PARAM_SPDEF_EVS);
 
     if (itemParam > 0) {
-        Heap_FreeToHeap(itemData);
+        Heap_Free(itemData);
         return 17;
     }
 
     if (itemParam < 0) {
-        Heap_FreeToHeap(itemData);
+        Heap_Free(itemData);
         return 23;
     }
 
     if (Item_Get(itemData, ITEM_PARAM_EVOLVE) != 0) {
-        Heap_FreeToHeap(itemData);
+        Heap_Free(itemData);
         return 24;
     }
 
     if (Item_Get(itemData, ITEM_PARAM_PP_UP) != 0) {
-        Heap_FreeToHeap(itemData);
+        Heap_Free(itemData);
         return 25;
     }
 
     if (Item_Get(itemData, ITEM_PARAM_PP_MAX) != 0) {
-        Heap_FreeToHeap(itemData);
+        Heap_Free(itemData);
         return 26;
     }
 
     if ((Item_Get(itemData, ITEM_PARAM_PP_RESTORE) != 0) || (Item_Get(itemData, ITEM_PARAM_PP_RESTORE_ALL) != 0)) {
-        Heap_FreeToHeap(itemData);
+        Heap_Free(itemData);
         return 27;
     }
 
-    Heap_FreeToHeap(itemData);
+    Heap_Free(itemData);
     return 28;
 }
 
@@ -1162,7 +1162,7 @@ void sub_020866A0(GameWindowLayout *windowLayout, u8 param1)
         sub_020826F4(windowLayout, 40, 1);
     }
 
-    windowLayout->unk_6FC = StringList_New(4, 12);
+    windowLayout->unk_6FC = StringList_New(4, HEAP_ID_12);
 
     moveCount = BufferLearnedMoveInSlot(windowLayout, 0);
     moveCount += BufferLearnedMoveInSlot(windowLayout, 1);

@@ -208,7 +208,7 @@ static void ov104_0223DD30(UnkStruct_ov104_0223DD30 *param0, SysTask *param1)
     SysTask_Done(param0->unk_140);
     SysTask_Done(param0->unk_34);
     NARC_dtor(param0->unk_24);
-    Heap_FreeToHeapExplicit(HEAP_ID_94, param0->unk_0C);
+    Heap_FreeExplicit(HEAP_ID_94, param0->unk_0C);
     SysTask_FinishAndFreeParam(param1);
 }
 
@@ -291,7 +291,7 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 heapID, const U
         param0->unk_00++;
         break;
     case 1:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_WHITE, 3, 1, heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 3, 1, heapID);
         param0->unk_00++;
         break;
     case 2:
@@ -300,7 +300,7 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 heapID, const U
         }
         break;
     case 3:
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_WHITE, 3, 1, heapID);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_WHITE, 3, 1, heapID);
         param0->unk_00++;
         break;
     case 4:
@@ -352,7 +352,7 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 heapID, const U
             break;
         }
 
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_WHITE, 3, 1, heapID);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 3, 1, heapID);
         param0->unk_00++;
         break;
     case 12:
@@ -365,7 +365,7 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 heapID, const U
         }
         break;
     case 13:
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_WHITE, 3, 1, heapID);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_WHITE, 3, 1, heapID);
         param0->unk_00++;
         break;
     case 14:
@@ -382,7 +382,7 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 heapID, const U
         }
         break;
     case 16:
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_WHITE, 15, 1, HEAP_ID_94);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 15, 1, HEAP_ID_94);
         param0->unk_00++;
         break;
     case 17:
@@ -391,7 +391,7 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 heapID, const U
         }
         break;
     case 18:
-        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_WHITE);
+        SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_WHITE);
 
         if (param0->unk_20 != NULL) {
             *(param0->unk_20) = 1;
@@ -551,7 +551,7 @@ static BOOL ov104_0223E4A4(UnkStruct_ov104_0223E48C *param0)
         v3 = ov104_0223E58C(param0->unk_14[v0].currentValue, param0->unk_14[v0].currentValue, param0->unk_14[v0].currentValue);
 
         Sprite_SetAffineScale(param0->unk_04[v0]->sprite, &v3);
-        Sprite_SetDrawFlag(param0->unk_04[v0]->sprite, 1);
+        Sprite_SetDrawFlag(param0->unk_04[v0]->sprite, TRUE);
 
         if (v1 == 0) {
             v2 = 0;
@@ -621,7 +621,7 @@ static void ov104_0223E5A8(UnkStruct_ov104_0223DD30 *param0, const UnkStruct_ov1
         v0 = Graphics_GetPlttData(NARC_INDEX_GRAPHIC__FIELD_ENCOUNTEFFECT, param1->unk_08, &v1, HEAP_ID_94);
 
         MI_CpuCopy16(v1->pRawData, param0->unk_40, 8 * 32);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 
     param0->unk_140 = SysTask_Start(ov104_0223E6BC, param0, 1100);

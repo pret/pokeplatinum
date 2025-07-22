@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/snowpoint_city.h"
 
-    .data
 
     ScriptEntry _0032
     ScriptEntry _00B4

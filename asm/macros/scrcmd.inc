@@ -12,6 +12,7 @@
 #include "generated/mart_frontier_id.h"
 #include "generated/mart_seal_id.h"
 #include "generated/mart_specialties_id.h"
+#include "generated/movement_types.h"
 #include "generated/moves.h"
 #include "generated/mystery_gift_delivery_stages.h"
 #include "generated/npc_trades.h"
@@ -961,10 +962,10 @@
     .short \partySlot
     .endm
 
-    .macro ScrCmd_09A arg0, arg1
+    .macro FindPartySlotWithMove destVar, move
     .short 154
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \move
     .endm
 
     .macro ScrCmd_09B arg0, arg1
@@ -1143,19 +1144,19 @@
     .short \direction
     .endm
 
-    .macro ScrCmd_0BF arg0
+    .macro UseRockClimb partySlot
     .short 191
-    .short \arg0
+    .short \partySlot
     .endm
 
-    .macro ScrCmd_0C0 arg0
+    .macro UseSurf partySlot
     .short 192
-    .short \arg0
+    .short \partySlot
     .endm
 
-    .macro ScrCmd_0C1 arg0
+    .macro UseWaterfall partySlot
     .short 193
-    .short \arg0
+    .short \partySlot
     .endm
 
     .macro ScrCmd_0C2 arg0, arg1, arg2
@@ -1276,10 +1277,10 @@
     .short \appID
     .endm
 
-    .macro ScrCmd_0D8 arg0, arg1
+    .macro BufferTrainerClassName templateArg, trainerClass
     .short 216
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \trainerClass
     .endm
 
     .macro ScrCmd_0D9 arg0
@@ -2177,10 +2178,10 @@
     .short \arg4
     .endm
 
-    .macro ScrCmd_188 arg0, arg1
+    .macro SetObjectEventMovementType localID, movementType
     .short 392
-    .short \arg0
-    .short \arg1
+    .short \localID
+    .short \movementType
     .endm
 
     .macro SetObjectEventDir localID, dir
@@ -2731,14 +2732,14 @@
     .byte \arg3
     .endm
 
-    .macro ScrCmd_1E8 arg0
+    .macro CheckLocalDexCompleted destVar
     .short 488
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_1E9 arg0
+    .macro CheckNationalDexCompleted destVar
     .short 489
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro ScrCmd_1EA
@@ -3379,10 +3380,10 @@
     .short 592
     .endm
 
-    .macro ScrCmd_251 arg0, arg1
+    .macro BufferMonNicknameFromPC templateArg, boxSlotIndex
     .short 593
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \boxSlotIndex
     .endm
 
     .macro GetPCBoxesFreeSlotCount destVar
@@ -3520,9 +3521,9 @@
     .short \arg2
     .endm
 
-    .macro ScrCmd_26B arg0
+    .macro CheckHasAllLegendaryTitansInParty destVar
     .short 619
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro TryGetRandomMassageGirlAccessory destAccessoryID
@@ -4536,7 +4537,7 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_31F
+    .macro ResetDistortionWorldPersistedCameraAngles
     .short 799
     .endm
 
@@ -4891,3 +4892,7 @@
     CanFitItem \item, \count, \destVarID
     GoToIfEq \destVarID, FALSE, \offset
     .endm
+
+    .text
+    .globl _start
+_start:

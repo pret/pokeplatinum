@@ -1575,7 +1575,7 @@ FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104
 
     Party_HealAllMembers(v13);
 
-    FieldBattleDTO *v8 = FieldBattleDTO_New(11, ov104_0223B4D4(param0->unk_04));
+    FieldBattleDTO *v8 = FieldBattleDTO_New(HEAP_ID_FIELDMAP, ov104_0223B4D4(param0->unk_04));
     FieldBattleDTO_InitFromGameState(v8, NULL, param1->saveData, param1->unk_1C, param1->journalEntry, param1->bagCursor, param1->unk_20);
 
     v8->background = BACKGROUND_BATTLE_HALL;
@@ -1589,10 +1589,10 @@ FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104
         FieldBattleDTO_AddPokemonToBattler(v8, v9, 0);
     }
 
-    Heap_FreeToHeap(v9);
+    Heap_Free(v9);
     FieldBattleDTO_CopyPlayerInfoToTrainerData(v8);
 
-    Heap_FreeToHeap(ov104_0222DD04(&v10, param0->unk_18[v6], HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+    Heap_Free(ov104_0222DD04(&v10, param0->unk_18[v6], HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
     ov104_0222E284(v8, &v10, v5, 1, 11);
     Party_InitWithCapacity(v8->parties[1], v5);
 
@@ -1625,7 +1625,7 @@ FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104
         FieldBattleDTO_AddPokemonToBattler(v8, v9, 1);
     }
 
-    Heap_FreeToHeap(v9);
+    Heap_Free(v9);
 
     switch (param0->unk_04) {
     case 2:
@@ -1634,7 +1634,7 @@ FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104
 
         TrainerInfo_Copy(CommInfo_TrainerInfo(1 - CommSys_CurNetId()), v8->trainerInfo[2]);
 
-        Heap_FreeToHeap(ov104_0222DD04(&v10, param0->unk_18[v6 + 1], HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+        Heap_Free(ov104_0222DD04(&v10, param0->unk_18[v6 + 1], HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
 
         ov104_0222E284(v8, &v10, v5, 3, 11);
         Party_InitWithCapacity(v8->parties[3], v5);
@@ -1651,7 +1651,7 @@ FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104
 
         Pokemon_CalcAbility(v9);
         FieldBattleDTO_AddPokemonToBattler(v8, v9, 3);
-        Heap_FreeToHeap(v9);
+        Heap_Free(v9);
         break;
     }
 

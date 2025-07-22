@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/unk_0217.h"
 
-    .data
 
     ScriptEntry _0036
     ScriptEntry _0148
@@ -150,7 +149,7 @@ _01B1:
 
 _01BE:
     SetObjectEventPos 9, 24, 6
-    ScrCmd_188 9, 15
+    SetObjectEventMovementType 9, MOVEMENT_TYPE_LOOK_SOUTH
     SetObjectEventDir 9, DIR_SOUTH
     Return
 

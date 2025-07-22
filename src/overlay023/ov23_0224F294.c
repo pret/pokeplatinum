@@ -3,7 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/underground_data.h"
+#include "constants/heap.h"
+
+#include "struct_defs/underground.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021D2F14.h"
@@ -59,7 +61,7 @@
 typedef void (*UnkFuncPtr_ov23_0224FA58)(UnkStruct_ov23_02250CD4 *);
 
 typedef struct {
-    UndergroundData *unk_00;
+    Underground *underground;
     u8 unk_04;
     u8 unk_05;
 } UnkStruct_ov23_022577B8;
@@ -272,24 +274,24 @@ static void ov23_0224F560(Sprite *param0)
     }
 }
 
-void ov23_0224F588(UndergroundData *param0)
+void ov23_0224F588(Underground *underground)
 {
     Unk_ov23_022577B8 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sizeof(UnkStruct_ov23_022577B8));
     MI_CpuClear8(Unk_ov23_022577B8, sizeof(UnkStruct_ov23_022577B8));
     Unk_ov23_022577B8->unk_04 = 0;
     Unk_ov23_022577B8->unk_05 = 0;
-    Unk_ov23_022577B8->unk_00 = param0;
+    Unk_ov23_022577B8->underground = underground;
 }
 
 void ov23_0224F5B8(void)
 {
-    Heap_FreeToHeap(Unk_ov23_022577B8);
+    Heap_Free(Unk_ov23_022577B8);
 }
 
 static int ov23_0224F5C8(void *param0)
 {
     UnkStruct_ov23_02250CD4 *v0 = param0;
-    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
+    Underground *v1 = SaveData_GetUnderground(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_02028E28(v1);
 }
@@ -297,7 +299,7 @@ static int ov23_0224F5C8(void *param0)
 static int ov23_0224F5DC(void *param0)
 {
     UnkStruct_ov23_02250CD4 *v0 = param0;
-    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
+    Underground *v1 = SaveData_GetUnderground(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_020289A0(v1);
 }
@@ -305,7 +307,7 @@ static int ov23_0224F5DC(void *param0)
 int ov23_0224F5F0(int param0, void *param1)
 {
     UnkStruct_ov23_02250CD4 *v0 = param1;
-    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
+    Underground *v1 = SaveData_GetUnderground(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_020289B8(v1, param0);
 }
@@ -313,7 +315,7 @@ int ov23_0224F5F0(int param0, void *param1)
 static int ov23_0224F608(void *param0)
 {
     UnkStruct_ov23_02250CD4 *v0 = param0;
-    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
+    Underground *v1 = SaveData_GetUnderground(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_02028B70(v1);
 }
@@ -321,7 +323,7 @@ static int ov23_0224F608(void *param0)
 int ov23_0224F61C(int param0, void *param1)
 {
     UnkStruct_ov23_02250CD4 *v0 = param1;
-    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
+    Underground *v1 = SaveData_GetUnderground(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_02028B88(v1, param0);
 }
@@ -329,21 +331,21 @@ int ov23_0224F61C(int param0, void *param1)
 void ov23_0224F634(int param0)
 {
     GF_ASSERT(Unk_ov23_022577B8->unk_05 == param0);
-    sub_02028B94(Unk_ov23_022577B8->unk_00, Unk_ov23_022577B8->unk_04);
+    sub_02028B94(Unk_ov23_022577B8->underground, Unk_ov23_022577B8->unk_04);
 }
 
 static int ov23_0224F658(void *param0)
 {
     UnkStruct_ov23_02250CD4 *v0 = param0;
-    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
+    Underground *underground = SaveData_GetUnderground(FieldSystem_GetSaveData(v0->fieldSystem));
 
-    return sub_02028C3C(v1);
+    return Underground_GetSphereCount(underground);
 }
 
 int ov23_0224F66C(int param0, void *param1)
 {
     UnkStruct_ov23_02250CD4 *v0 = param1;
-    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
+    Underground *v1 = SaveData_GetUnderground(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_02028E44(v1, param0);
 }
@@ -351,7 +353,7 @@ int ov23_0224F66C(int param0, void *param1)
 int ov23_0224F684(int param0, void *param1)
 {
     UnkStruct_ov23_02250CD4 *v0 = param1;
-    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
+    Underground *v1 = SaveData_GetUnderground(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_02028C54(v1, param0);
 }
@@ -359,7 +361,7 @@ int ov23_0224F684(int param0, void *param1)
 int ov23_0224F69C(int param0, void *param1)
 {
     UnkStruct_ov23_02250CD4 *v0 = param1;
-    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
+    Underground *v1 = SaveData_GetUnderground(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_02028C60(v1, param0);
 }
@@ -367,50 +369,50 @@ int ov23_0224F69C(int param0, void *param1)
 static int ov23_0224F6B4(void *param0)
 {
     UnkStruct_ov23_02250CD4 *v0 = param0;
-    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
+    Underground *underground = SaveData_GetUnderground(FieldSystem_GetSaveData(v0->fieldSystem));
 
-    return sub_02028D58(v1);
+    return Underground_GetTreasureCount(underground);
 }
 
 int ov23_0224F6C8(int param0, void *param1)
 {
     UnkStruct_ov23_02250CD4 *v0 = param1;
-    UndergroundData *v1 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
+    Underground *v1 = SaveData_GetUnderground(FieldSystem_GetSaveData(v0->fieldSystem));
 
     return sub_02028D74(v1, param0);
 }
 
-BOOL ov23_0224F6E0(int param0, int param1)
+BOOL Underground_TryAddSphere2(int sphereID, int sphereSize)
 {
-    int v0 = param0;
+    int sphereType = sphereID;
 
-    GF_ASSERT(param0 < 11);
+    GF_ASSERT(sphereID < MINING_TREASURE_OVAL_STONE);
 
-    if (param0 >= 6) {
-        v0 -= 5;
+    if (sphereID >= MINING_LARGE_PRISM_SPHERE) {
+        sphereType -= (MINING_LARGE_PRISM_SPHERE - 1);
     }
 
-    if (param1 > 99) {
-        param1 = 99;
+    if (sphereSize > 99) {
+        sphereSize = 99;
     }
 
-    return sub_02028CB0(Unk_ov23_022577B8->unk_00, v0, param1);
+    return Underground_TryAddSphere(Unk_ov23_022577B8->underground, sphereType, sphereSize);
 }
 
-BOOL ov23_0224F710(int param0)
+BOOL Underground_TryAddTreasure2(int treasureID)
 {
-    GF_ASSERT(param0 < 60);
-    return sub_02028DB4(Unk_ov23_022577B8->unk_00, param0);
+    GF_ASSERT(treasureID < MINING_ROCK_1);
+    return Underground_TryAddTreasure(Unk_ov23_022577B8->underground, treasureID);
 }
 
 BOOL ov23_0224F730(int param0)
 {
-    return sub_02028E84(Unk_ov23_022577B8->unk_00, param0);
+    return sub_02028E84(Unk_ov23_022577B8->underground, param0);
 }
 
 BOOL ov23_0224F744(int param0)
 {
-    return sub_02028BC8(Unk_ov23_022577B8->unk_00, param0);
+    return sub_02028BC8(Unk_ov23_022577B8->underground, param0);
 }
 
 void ov23_0224F758(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSystem)
@@ -470,7 +472,7 @@ static void ov23_0224F7F4(UnkStruct_ov23_02250CD4 *param0)
     const int v1 = 4;
     u8 v2[7];
     int v3 = ov23_0224F7D4(v2);
-    param0->unk_40 = StringList_New(NELEMS(Unk_ov23_02256924), 4);
+    param0->unk_40 = StringList_New(NELEMS(Unk_ov23_02256924), HEAP_ID_FIELD);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, 3, 20, 1, 11, NELEMS(Unk_ov23_02256924) * 3, 13, (1024 - (18 + 12) - 9 - 11 * 22));
     Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
@@ -510,7 +512,7 @@ static void ov23_0224F7F4(UnkStruct_ov23_02250CD4 *param0)
         v0.loopAround = FALSE;
     }
 
-    param0->unk_54 = Menu_New(&v0, 28, 4, param0->unk_29C, 11, PAD_BUTTON_B | PAD_BUTTON_X);
+    param0->unk_54 = Menu_New(&v0, 28, 4, param0->unk_29C, HEAP_ID_FIELDMAP, PAD_BUTTON_B | PAD_BUTTON_X);
     param0->unk_48 = NULL;
 
     Window_ScheduleCopyToVRAM(&param0->unk_10);
@@ -725,7 +727,7 @@ static void ov23_0224FBFC(UnkStruct_ov23_02250CD4 *param0, int param1)
         break;
     }
 
-    param0->unk_44 = StringList_New(v1, 4);
+    param0->unk_44 = StringList_New(v1, HEAP_ID_FIELD);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_20, 3, v5, v3, v4, v1 * 2, 13, (1024 - (18 + 12) - 9 - 11 * 22));
     Window_DrawStandardFrame(&param0->unk_20, 1, 1024 - (18 + 12) - 9, 11);
@@ -749,7 +751,7 @@ static void ov23_0224FBFC(UnkStruct_ov23_02250CD4 *param0, int param1)
     v0.window = &param0->unk_20;
     v0.parent = param0;
 
-    param0->unk_50 = ListMenu_New(&v0, 0, 0, 4);
+    param0->unk_50 = ListMenu_New(&v0, 0, 0, HEAP_ID_FIELD);
 }
 
 static void ov23_0224FCF4(UnkStruct_ov23_02250CD4 *param0)
@@ -784,7 +786,7 @@ static void ov23_0224FD3C(UnkStruct_ov23_02250CD4 *param0)
 void ov23_0224FD68(int param0)
 {
     if (Unk_ov23_022577B8->unk_05 == param0) {
-        sub_02028E50(Unk_ov23_022577B8->unk_00, Unk_ov23_022577B8->unk_04);
+        sub_02028E50(Unk_ov23_022577B8->underground, Unk_ov23_022577B8->unk_04);
     }
 }
 
@@ -837,7 +839,7 @@ static void ov23_0224FE38(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
     ov23_0224FB7C(param0);
     ov23_02253DFC(ov23_022421DC(), 630, 0);
 
-    param0->unk_40 = StringList_New(v3 + 1, 4);
+    param0->unk_40 = StringList_New(v3 + 1, HEAP_ID_FIELD);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, 3, 19, 3, 12, (6 * 2), 13, ((1024 - (18 + 12) - 9 - 11 * 22) - 12 * (6 * 2)));
     Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
@@ -866,7 +868,7 @@ static void ov23_0224FE38(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
 
     ov23_02251238(param0, v4, v2.count);
 
-    param0->unk_4C = ov23_02248C08(&v2, param0->unk_294, param0->unk_290, HEAP_ID_FIELD, param1, Unk_ov23_022577B8->unk_00, 0);
+    param0->unk_4C = ov23_02248C08(&v2, param0->unk_294, param0->unk_290, HEAP_ID_FIELD, param1, Unk_ov23_022577B8->underground, 0);
     param0->unk_2AA = 5;
 }
 
@@ -974,7 +976,7 @@ static BOOL ov23_02250048(SysTask *param0, void *param1)
 void ov23_02250128(int param0)
 {
     GF_ASSERT(Unk_ov23_022577B8->unk_05 == param0);
-    sub_02028C6C(Unk_ov23_022577B8->unk_00, Unk_ov23_022577B8->unk_04);
+    sub_02028C6C(Unk_ov23_022577B8->underground, Unk_ov23_022577B8->unk_04);
 }
 
 static void ov23_0225014C(ListMenu *param0, u32 param1, u8 param2)
@@ -1028,7 +1030,7 @@ static void ov23_0225021C(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
     ov23_0224FB7C(param0);
     ov23_02253DFC(ov23_022421DC(), 628, 0);
 
-    param0->unk_40 = StringList_New(v4 + 1, 4);
+    param0->unk_40 = StringList_New(v4 + 1, HEAP_ID_FIELD);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, 3, 19, 3, 12, (6 * 2), 13, ((1024 - (18 + 12) - 9 - 11 * 22) - 12 * (6 * 2)));
     Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
@@ -1060,7 +1062,7 @@ static void ov23_0225021C(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
 
     ov23_02251238(param0, v5, v3.count);
 
-    param0->unk_4C = ov23_02248C08(&v3, param0->unk_294, param0->unk_290, HEAP_ID_FIELD, param1, Unk_ov23_022577B8->unk_00, 0);
+    param0->unk_4C = ov23_02248C08(&v3, param0->unk_294, param0->unk_290, HEAP_ID_FIELD, param1, Unk_ov23_022577B8->underground, 0);
     param0->unk_2AA = 6;
 }
 
@@ -1204,7 +1206,7 @@ static void ov23_022505EC(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
     ov23_0224FB7C(param0);
     ov23_02253DFC(ov23_022421DC(), 628, 0);
 
-    param0->unk_40 = StringList_New(v3 + 1, 4);
+    param0->unk_40 = StringList_New(v3 + 1, HEAP_ID_FIELD);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, 3, 19, 3, 12, (6 * 2), 13, ((1024 - (18 + 12) - 9 - 11 * 22) - 12 * (6 * 2)));
     Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
@@ -1232,7 +1234,7 @@ static void ov23_022505EC(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
 
     ov23_02251238(param0, v4, v2.count);
 
-    param0->unk_4C = ov23_02248C08(&v2, param0->unk_294, param0->unk_290, HEAP_ID_FIELD, param1, Unk_ov23_022577B8->unk_00, 0);
+    param0->unk_4C = ov23_02248C08(&v2, param0->unk_294, param0->unk_290, HEAP_ID_FIELD, param1, Unk_ov23_022577B8->underground, 0);
     param0->unk_2AA = 7;
 }
 
@@ -1310,13 +1312,13 @@ static BOOL ov23_022507D8(SysTask *param0, void *param1)
         ov23_0224FCF4(v0);
 
         if (v1 == 3) {
-            int item = Underground_GetMiningItemID(Unk_ov23_022577B8->unk_05);
+            int item = Underground_ConvertTreasureToBagItem(Unk_ov23_022577B8->unk_05);
             Bag *v4 = SaveData_GetBag(v0->fieldSystem->saveData);
 
             Sound_PlayEffect(SEQ_SE_CONFIRM);
 
             if (Bag_TryAddItem(v4, item, 1, HEAP_ID_FIELD)) {
-                sub_02028D80(Unk_ov23_022577B8->unk_00, Unk_ov23_022577B8->unk_04);
+                sub_02028D80(Unk_ov23_022577B8->underground, Unk_ov23_022577B8->unk_04);
                 ov23_022541A0(ov23_0224219C(), 0, Unk_ov23_022577B8->unk_05);
 
                 if ((Unk_ov23_022577B8->unk_05 == 29) || (Unk_ov23_022577B8->unk_05 == 30)) {
@@ -1330,7 +1332,7 @@ static BOOL ov23_022507D8(SysTask *param0, void *param1)
             }
         } else if (v1 == 2) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            sub_02028D80(Unk_ov23_022577B8->unk_00, Unk_ov23_022577B8->unk_04);
+            sub_02028D80(Unk_ov23_022577B8->underground, Unk_ov23_022577B8->unk_04);
 
             ov23_022541A0(ov23_0224219C(), 2, Unk_ov23_022577B8->unk_05);
             ov23_02253F40(ov23_0224219C(), 130, 0, NULL);
@@ -1474,7 +1476,7 @@ static void ov23_02250B34(SysTask *param0, UnkStruct_ov23_02250CD4 *param1, BOOL
         sub_0206A844(param1->unk_08);
     }
 
-    Heap_FreeToHeap(param1);
+    Heap_Free(param1);
 
     if (!param2) {
         sub_02059514();
@@ -1543,7 +1545,7 @@ static void ov23_02250C74(ListMenu *param0, u32 param1, u8 param2)
 {
     UnkStruct_ov23_02250CD4 *v0 = (UnkStruct_ov23_02250CD4 *)ListMenu_GetAttribute(param0, 19);
     int v1 = param1;
-    UndergroundData *v2 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(v0->fieldSystem));
+    Underground *v2 = SaveData_GetUnderground(FieldSystem_GetSaveData(v0->fieldSystem));
 
     if (!sub_02028AFC(v2, v1)) {
         ListMenu_SetAltTextColors(param0, 1, 15, 2);
@@ -1605,7 +1607,7 @@ static void ov23_02250D90(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
     ov23_0224FB7C(param0);
     ov23_02253DFC(ov23_022421DC(), 626, 0);
 
-    param0->unk_40 = StringList_New(v3 + 1, 4);
+    param0->unk_40 = StringList_New(v3 + 1, HEAP_ID_FIELD);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, 3, 19, 3, 12, (6 * 2), 13, ((1024 - (18 + 12) - 9 - 11 * 22) - 12 * (6 * 2)));
     Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
@@ -1634,7 +1636,7 @@ static void ov23_02250D90(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
 
     ov23_02251238(param0, v4, v2.count);
 
-    param0->unk_4C = ov23_02248C08(&v2, param0->unk_294, param0->unk_290, HEAP_ID_FIELD, param1, Unk_ov23_022577B8->unk_00, 0);
+    param0->unk_4C = ov23_02248C08(&v2, param0->unk_294, param0->unk_290, HEAP_ID_FIELD, param1, Unk_ov23_022577B8->underground, 0);
     param0->unk_2AA = 8;
 }
 
@@ -1714,7 +1716,7 @@ static BOOL ov23_02250F8C(SysTask *param0, void *param1)
 
         if (v1 == 2) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            sub_02028B94(Unk_ov23_022577B8->unk_00, Unk_ov23_022577B8->unk_04);
+            sub_02028B94(Unk_ov23_022577B8->underground, Unk_ov23_022577B8->unk_04);
             ov23_022541C8(ov23_0224219C(), 2, Unk_ov23_022577B8->unk_05);
             ov23_02253F40(ov23_0224219C(), 130, 0, NULL);
         }
@@ -1777,7 +1779,7 @@ void ov23_02251044(void *param0, u32 param1)
         SysTask_Done(v0->unk_04);
     }
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 static BOOL ov23_022510F0(SysTask *param0, void *param1)

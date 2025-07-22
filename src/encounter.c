@@ -139,7 +139,7 @@ static Encounter *NewEncounter(FieldBattleDTO *dto, int introEffectID, int battl
 static void FreeEncounter(Encounter *encounter)
 {
     FieldBattleDTO_Free(encounter->dto);
-    Heap_FreeToHeap(encounter);
+    Heap_Free(encounter);
 }
 
 static BOOL CheckPlayerWonEncounter(Encounter *encounter)
@@ -339,7 +339,7 @@ static WildEncounter *NewWildEncounter(FieldBattleDTO *dto, int introEffectID, i
 static void FreeWildEncounter(WildEncounter *encounter)
 {
     FieldBattleDTO_Free(encounter->dto);
-    Heap_FreeToHeap(encounter);
+    Heap_Free(encounter);
 }
 
 void Encounter_NewVsWild(FieldSystem *fieldSystem, FieldBattleDTO *dto)
@@ -429,7 +429,7 @@ static BOOL FieldTask_WildEncounter(FieldTask *task)
     case 5:
         if (GetRadarChainActive(fieldSystem->chain)) {
             SetupGrassPatches(fieldSystem, encounter->dto->resultMask, fieldSystem->chain);
-            sub_02069638(fieldSystem, fieldSystem->chain);
+            FieldSystem_CreateShakingRadarPatches(fieldSystem, fieldSystem->chain);
         }
 
         encounter->state++;

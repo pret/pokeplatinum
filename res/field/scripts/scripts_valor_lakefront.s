@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/valor_lakefront.h"
 
-    .data
 
     ScriptEntry _0026
     ScriptEntry _0061
@@ -24,7 +23,7 @@ _0026:
 _004B:
     SetObjectEventPos 5, 0x2D3, 0x301
     SetObjectEventDir 5, DIR_NORTH
-    ScrCmd_188 5, 14
+    SetObjectEventMovementType 5, MOVEMENT_TYPE_LOOK_NORTH
     Return
 
 _0061:
@@ -184,7 +183,7 @@ _0248:
     CallIfEq VAR_0x8000, 3, _040A
     ClearFlag FLAG_UNK_0x01AD
     SetObjectEventDir 0, DIR_SOUTH
-    ScrCmd_188 0, 15
+    SetObjectEventMovementType 0, MOVEMENT_TYPE_LOOK_SOUTH
     AddObject 0
     ApplyMovement 0, _0594
     WaitMovement
@@ -196,7 +195,7 @@ _0248:
     CallIfEq VAR_0x8000, 3, _0462
     ClearFlag FLAG_UNK_0x01D5
     SetObjectEventDir 10, DIR_NORTH
-    ScrCmd_188 10, 14
+    SetObjectEventMovementType 10, MOVEMENT_TYPE_LOOK_NORTH
     AddObject 10
     CallCommonScript 0x7FA
     CallIfEq VAR_0x8000, 0, _046C

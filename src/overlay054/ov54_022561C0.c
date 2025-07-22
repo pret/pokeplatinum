@@ -57,7 +57,7 @@ static BOOL ov54_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *pa
             }
         }
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 
     return 0;
@@ -130,7 +130,7 @@ static BOOL ov54_0225621C(UnkStruct_ov54_0225621C *param0, PoketchSystem *poketc
         param0->unk_00 = 0;
         param0->unk_01 = 0;
         param0->unk_02 = 0;
-        param0->buttonManager = PoketchButtonManager_New(v0, NELEMS(v0), ov54_02256340, param0, 8);
+        param0->buttonManager = PoketchButtonManager_New(v0, NELEMS(v0), ov54_02256340, param0, HEAP_ID_POKETCH_APP);
         param0->unk_A4 = 0;
         param0->unk_A8 = 0;
         param0->poketchSys = poketchSys;
@@ -146,7 +146,7 @@ static void ov54_022562D4(UnkStruct_ov54_0225621C *param0)
     PoketchButtonManager_Free(param0->buttonManager);
     ov54_02256460(param0->unk_98);
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov54_022562F4(SysTask *param0, void *param1)

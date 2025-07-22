@@ -5,7 +5,7 @@
 #include <ppwlobby/ppw_lobby.h>
 #include <string.h>
 
-#include "constants/screen.h"
+#include "constants/graphics.h"
 
 #include "struct_decls/struct_02030EC4_decl.h"
 #include "struct_defs/struct_02099F80.h"
@@ -240,64 +240,60 @@ static const u32 Unk_ov68_0225DD68[4] = {
 
 static const BgTemplate Unk_ov68_0225DE18[4] = {
     {
-        0x0,
-        0x0,
-        0x800,
-        0x0,
-        0x1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xf800,
-        GX_BG_CHARBASE_0x08000,
-        GX_BG_EXTPLTT_01,
-        0x3,
-        0x0,
-        0x0,
-        0x0,
+        .x = 0x0,
+        .y = 0x0,
+        .bufferSize = 0x800,
+        .baseTile = 0x0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf800,
+        .charBase = GX_BG_CHARBASE_0x08000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0x3,
+        .areaOver = 0x0,
+        .mosaic = FALSE,
     },
     {
-        0x0,
-        0x0,
-        0x800,
-        0x0,
-        0x1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xf000,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        0x1,
-        0x0,
-        0x0,
-        0x0,
+        .x = 0x0,
+        .y = 0x0,
+        .bufferSize = 0x800,
+        .baseTile = 0x0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0x1,
+        .areaOver = 0x0,
+        .mosaic = FALSE,
     },
     {
-        0x0,
-        0x0,
-        0x800,
-        0x0,
-        0x1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xe800,
-        GX_BG_CHARBASE_0x10000,
-        GX_BG_EXTPLTT_01,
-        0x2,
-        0x0,
-        0x0,
-        0x0,
+        .x = 0x0,
+        .y = 0x0,
+        .bufferSize = 0x800,
+        .baseTile = 0x0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xe800,
+        .charBase = GX_BG_CHARBASE_0x10000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0x2,
+        .areaOver = 0x0,
+        .mosaic = FALSE,
     },
     {
-        0x0,
-        0x0,
-        0x800,
-        0x0,
-        0x1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xf800,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        0x0,
-        0x0,
-        0x0,
-        0x0,
+        .x = 0x0,
+        .y = 0x0,
+        .bufferSize = 0x800,
+        .baseTile = 0x0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf800,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0x0,
+        .areaOver = 0x0,
+        .mosaic = FALSE,
     },
 };
 
@@ -350,7 +346,7 @@ int ov68_0225C798(ApplicationManager *appMan, int *param1)
 
     switch (*param1) {
     case 0:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_122);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_122);
         ov66_0222E31C(v1->unk_04, 1);
         (*param1)++;
         break;
@@ -382,7 +378,7 @@ int ov68_0225C798(ApplicationManager *appMan, int *param1)
         }
         break;
     case 3:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_122);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_122);
         (*param1)++;
         break;
     case 4:
@@ -478,7 +474,7 @@ static void ov68_0225C9A0(UnkStruct_ov68_0225C91C *param0, Options *options, u32
     Font_LoadScreenIndicatorsPalette(0, 4 * 0x20, heapID);
 
     LoadMessageBoxGraphics(param0->unk_00, BG_LAYER_MAIN_1, 1, 5, Options_Frame(options), heapID);
-    LoadStandardWindowGraphics(param0->unk_00, BG_LAYER_MAIN_1, (1 + (18 + 12)), 6, 0, heapID);
+    LoadStandardWindowGraphics(param0->unk_00, BG_LAYER_MAIN_1, 1 + (18 + 12), 6, 0, heapID);
 
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__LOBBY_NEWS, 2, param0->unk_00, 4, 0, 0, 0, heapID);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__LOBBY_NEWS, 6, param0->unk_00, 4, 0, 0, 0, heapID);
@@ -495,7 +491,7 @@ static void ov68_0225CA8C(UnkStruct_ov68_0225C91C *param0)
         }
     }
 
-    Heap_FreeToHeap(param0->unk_00);
+    Heap_Free(param0->unk_00);
 }
 
 static void ov68_0225CAB4(UnkStruct_ov68_0225C91C *param0, u32 heapID)
@@ -622,7 +618,7 @@ static void ov68_0225CC78(UnkStruct_ov68_0225CB70 *param0, u32 param1, u32 heapI
 
     ov66_0222E640(v1, v0, heapID);
     StringTemplate_SetPlayerName(param0->unk_24, param1, v0);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 static void ov68_0225CCA8(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov66_02231374 *param3, u32 param4)
@@ -680,7 +676,7 @@ static void ov68_0225CCD0(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB
         v2.heapID = param3;
 
         param0->unk_14 = SpriteList_Add(&v2);
-        Sprite_SetDrawFlag(param0->unk_14, 0);
+        Sprite_SetDrawFlag(param0->unk_14, FALSE);
     }
 
     {
@@ -870,7 +866,7 @@ static void ov68_0225D06C(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB
 
 static void ov68_0225D0F8(UnkStruct_ov68_0225D0F8 *param0)
 {
-    Sprite_SetDrawFlag(param0->unk_14, 1);
+    Sprite_SetDrawFlag(param0->unk_14, TRUE);
     Sprite_SetPosition(param0->unk_14, &Unk_ov68_0225DD78[param0->unk_10]);
 }
 
@@ -881,7 +877,7 @@ static void ov68_0225D11C(UnkStruct_ov68_0225D0F8 *param0)
 
 static void ov68_0225D128(UnkStruct_ov68_0225D128 *param0, UnkStruct_ov68_0225C91C *param1, SaveData *saveData, u32 heapID)
 {
-    Window_Add(param1->unk_00, &param0->unk_08, 1, 2, 19, 27, 4, 4, ((1 + (18 + 12)) + 9));
+    Window_Add(param1->unk_00, &param0->unk_08, 1, 2, 19, 27, 4, 4, (1 + (18 + 12)) + 9);
     Window_FillTilemap(&param0->unk_08, 15);
 
     param0->unk_18 = Strbuf_Init(256, heapID);
@@ -965,7 +961,7 @@ static void ov68_0225D2CC(UnkStruct_ov68_0225D128 *param0)
 static void ov68_0225D304(UnkStruct_ov68_0225D128 *param0, UnkStruct_ov68_0225C91C *param1, u32 param2)
 {
     GF_ASSERT(param0->unk_20 == NULL);
-    param0->unk_20 = Menu_MakeYesNoChoice(param1->unk_00, &Unk_ov68_0225DD38, (1 + (18 + 12)), 6, param2);
+    param0->unk_20 = Menu_MakeYesNoChoice(param1->unk_00, &Unk_ov68_0225DD38, 1 + (18 + 12), 6, param2);
 }
 
 static u32 ov68_0225D330(UnkStruct_ov68_0225D128 *param0, u32 param1)
@@ -1140,7 +1136,7 @@ static BOOL ov68_0225D478(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
         }
     } break;
     case 9:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, heapID);
         param0->unk_60 = 10;
         break;
     case 10:
@@ -1150,7 +1146,7 @@ static BOOL ov68_0225D478(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
         }
         break;
     case 11:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, heapID);
         param0->unk_60 = 12;
         break;
     case 12:
@@ -1255,7 +1251,7 @@ static void ov68_0225D868(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
         ov68_0225DC24(&param0->unk_A8);
     }
 
-    Heap_FreeToHeap(param0->unk_80);
+    Heap_Free(param0->unk_80);
     param0->unk_80 = NULL;
 
     {

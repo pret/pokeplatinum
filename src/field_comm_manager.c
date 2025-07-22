@@ -3,12 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/graphics.h"
 #include "constants/heap.h"
-#include "constants/screen.h"
 
 #include "struct_decls/struct_02029894_decl.h"
 #include "struct_defs/struct_0205964C.h"
-#include "struct_defs/struct_02072014.h"
 
 #include "field/field_system.h"
 #include "functypes/funcptr_020598EC.h"
@@ -27,12 +26,12 @@
 #include "script_manager.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "trainer_card.h"
 #include "trainer_info.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_0205A0D8.h"
-#include "unk_02071D40.h"
 #include "unk_02099500.h"
 
 static void FieldCommMan_RunTask(SysTask *task, void *unused);
@@ -107,15 +106,15 @@ void FieldCommMan_Delete(void)
 
     for (i = 0; i < 4; i++) {
         if (sFieldCommMan->trainerCard[i]) {
-            Heap_FreeToHeap(sFieldCommMan->trainerCard[i]);
+            Heap_Free(sFieldCommMan->trainerCard[i]);
         }
     }
 
     if (sFieldCommMan->party) {
-        Heap_FreeToHeap(sFieldCommMan->party);
+        Heap_Free(sFieldCommMan->party);
     }
 
-    Heap_FreeToHeap(sFieldCommMan);
+    Heap_Free(sFieldCommMan);
     sFieldCommMan = NULL;
 }
 
@@ -154,8 +153,8 @@ void FieldCommMan_ReconnectBattleClient(void)
 
 void FieldCommMan_EnterBattleRoom(FieldSystem *fieldSystem)
 {
-    SetupScreenFadeRegisters(DS_SCREEN_MAIN, FADE_TO_BLACK);
-    SetupScreenFadeRegisters(DS_SCREEN_SUB, FADE_TO_BLACK);
+    SetupScreenFadeRegisters(DS_SCREEN_MAIN, COLOR_BLACK);
+    SetupScreenFadeRegisters(DS_SCREEN_SUB, COLOR_BLACK);
     CommMan_SetErrorHandling(1, 1);
 
     if (!CommMan_IsInitialized()) {
@@ -181,7 +180,7 @@ void FieldCommMan_EnterBattleRoom(FieldSystem *fieldSystem)
             }
         }
 
-        sub_02071D40(0, 0, 0, 0xff, sFieldCommMan->fieldSystem, sFieldCommMan->trainerCard[netId]);
+        TrainerCard_Init(0, 0, 0, 0xff, sFieldCommMan->fieldSystem, sFieldCommMan->trainerCard[netId]);
     }
 
     CommTiming_StartSync(95);
@@ -311,7 +310,7 @@ static void sub_020599E4(void)
     }
 
     if (CommTiming_IsSyncState(92)) {
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_FIELD);
         ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
         ResetVisibleHardwareWindows(DS_SCREEN_SUB);
         CommPlayerMan_Restart();
@@ -387,7 +386,7 @@ static void sub_02059B10(void)
         u8 v0 = 1;
         CommSys_SendDataFixedSize(94, &v0);
 
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_FIELD);
         ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
         ResetVisibleHardwareWindows(DS_SCREEN_SUB);
         FieldCommMan_SetTask(sub_02059CD8, 0);
@@ -404,7 +403,7 @@ static void sub_02059B74(void)
                 if (sFieldCommMan->fieldSystem->task == NULL) {
                     for (j = 0; j < 4; j++) {
                         if (sFieldCommMan->trainerCard[j]) {
-                            Heap_FreeToHeap(sFieldCommMan->trainerCard[j]);
+                            Heap_Free(sFieldCommMan->trainerCard[j]);
                             sFieldCommMan->trainerCard[j] = NULL;
                         }
                     }
@@ -531,7 +530,7 @@ static void sub_02059D58(void)
         Encounter_NewVsLinkWithRecording(sFieldCommMan->fieldSystem, v2, v1);
     } else {
         Encounter_NewVsLinkWithRecordingAndParty(sFieldCommMan->fieldSystem, sFieldCommMan->party, v1);
-        Heap_FreeToHeap(sFieldCommMan->party);
+        Heap_Free(sFieldCommMan->party);
         sFieldCommMan->party = NULL;
     }
 

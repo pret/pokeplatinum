@@ -6,7 +6,7 @@
 #include "struct_defs/struct_0206C8D4.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay009/struct_ov9_02249FF4.h"
+#include "overlay009/camera_configuration.h"
 
 #include "camera.h"
 #include "easy3d.h"
@@ -42,7 +42,7 @@ static void ov93_021D133C(void);
 static void ov93_021D13A0(void);
 static void ov93_021D13C0(UnkStruct_ov93_021D13C0 *param0);
 
-static const UnkStruct_ov9_02249FF4 Unk_ov93_021D1534 = {
+static const CameraConfiguration Unk_ov93_021D1534 = {
     0x29AEC1,
     { -0x29fe, 0x0, 0x0 },
     0x0,
@@ -103,7 +103,7 @@ int ov93_021D111C(ApplicationManager *appMan, int *param1)
     {
         VecFx32 v3 = { 0, 0, 0 };
 
-        Camera_InitWithTarget(&v3, Unk_ov93_021D1534.unk_00, &Unk_ov93_021D1534.cameraAngle, Unk_ov93_021D1534.unk_0E, Unk_ov93_021D1534.unk_0C, 0, v1->camera);
+        Camera_InitWithTarget(&v3, Unk_ov93_021D1534.distance, &Unk_ov93_021D1534.cameraAngle, Unk_ov93_021D1534.fovY, Unk_ov93_021D1534.projectionMtx, 0, v1->camera);
         Camera_SetAsActive(v1->camera);
     }
 
@@ -186,10 +186,10 @@ int ov93_021D12F0(ApplicationManager *appMan, int *param1)
 
     for (v0 = 0; v0 < 3; v0++) {
         NNS_G3dFreeAnmObj(&v1->unk_6C, v1->unk_7C[v0]);
-        Heap_FreeToHeap(v1->unk_60[v0]);
+        Heap_Free(v1->unk_60[v0]);
     }
 
-    Heap_FreeToHeap(v1->unk_5C);
+    Heap_Free(v1->unk_5C);
     Camera_Delete(v1->camera);
     ApplicationManager_FreeData(appMan);
     Easy3D_Shutdown();

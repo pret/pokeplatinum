@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/sandgem_town.h"
 
-    .data
 
     ScriptEntry _0032
     ScriptEntry _0085
@@ -27,7 +26,7 @@ _0032:
 _005F:
     SetObjectEventPos 4, 168, 0x34D
     SetObjectEventDir 4, DIR_NORTH
-    ScrCmd_188 4, 14
+    SetObjectEventMovementType 4, MOVEMENT_TYPE_LOOK_NORTH
     Return
 
 _0075:

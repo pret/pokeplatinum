@@ -149,8 +149,8 @@ void Camera_InitHistory(int historySize, int delay, int delayMask, enum HeapId h
 void Camera_DeleteHistory(Camera *camera)
 {
     if (camera->history != NULL) {
-        Heap_FreeToHeap(camera->history->positions);
-        Heap_FreeToHeap(camera->history);
+        Heap_Free(camera->history->positions);
+        Heap_Free(camera->history);
         camera->history = NULL;
     }
 }
@@ -162,7 +162,7 @@ Camera *Camera_Alloc(const enum HeapId heapID)
 
 void Camera_Delete(Camera *camera)
 {
-    Heap_FreeToHeap(camera);
+    Heap_Free(camera);
 }
 
 void Camera_Copy(Camera const *src, Camera *dst)

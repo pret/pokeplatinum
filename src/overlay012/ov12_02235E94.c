@@ -5,13 +5,12 @@
 
 #include "struct_defs/seal_case.h"
 
-#include "overlay012/ov12_0221FC20.h"
+#include "overlay012/battle_anim_system.h"
 #include "overlay012/ov12_022237EC.h"
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/ov12_02235254.h"
 #include "overlay012/ov12_02237E54.h"
 #include "overlay012/struct_ov12_02223764.h"
-#include "overlay012/struct_ov12_02225D50.h"
 #include "overlay012/struct_ov12_02225F6C.h"
 #include "overlay012/struct_ov12_022267D4_decl.h"
 #include "overlay012/struct_ov12_02236030.h"
@@ -96,7 +95,7 @@ typedef struct BallRotation {
     BOOL unk_28;
     SpriteManager *unk_2C;
     ManagedSprite *unk_30;
-    UnkStruct_ov12_02225D50 unk_34;
+    AngleLerpContext unk_34;
     UnkStruct_ov12_02225F6C unk_48[2];
     BallThrow unk_90;
     UnkStruct_ov12_02237C54_sub1 unk_B8;
@@ -553,7 +552,7 @@ void ov12_02236320(UnkStruct_ov12_02235FE0 *param0)
         v3 = ov12_02235F64(param0->unk_98);
 
         param0->unk_10 = 1;
-        param0->unk_14[0] = ov12_02223818(param0->heapID, 99, v3, 0);
+        param0->unk_14[0] = BattleParticleUtil_CreateParticleSystemEx(param0->heapID, 99, v3, 0);
         param0->unk_90 = 0xFF;
     } else {
         param0->unk_10 = 0;
@@ -581,7 +580,7 @@ void ov12_02236384(UnkStruct_ov12_02235FE0 *param0, SPLEmitterCallback param1)
 {
     param0->unk_88 = 1;
 
-    ov12_02220474();
+    BattleAnimSystem_SetDefaultAlphaBlending();
     ov12_0223646C(param0, param1);
 
     param0->unk_84 = SysTask_Start(ov12_022363CC, param0, 1000);
@@ -613,7 +612,7 @@ static void ov12_022363CC(SysTask *param0, void *param1)
         }
 
         if ((ParticleSystem_GetActiveEmitterCount(v2->unk_14[v0]) == 0) && (v2->unk_5C[v0] != 0)) {
-            ov12_02223894(v2->unk_14[v0]);
+            BattleParticleUtil_FreeParticleSystem(v2->unk_14[v0]);
             v2->unk_14[v0] = NULL;
             v2->unk_5C[v0] = 0;
             continue;
@@ -630,7 +629,7 @@ static void ov12_022363CC(SysTask *param0, void *param1)
 
 void ov12_02236428(UnkStruct_ov12_02235FE0 *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov12_02236430(SysTask *param0, void *param1)
@@ -642,7 +641,7 @@ static void ov12_02236430(SysTask *param0, void *param1)
         ParticleSystem_CreateEmitterWithCallback(v0->unk_10, 0, v0->unk_18, v0);
         ParticleSystem_SetCameraProjection(v0->unk_10, 1);
         SysTask_Done(param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     } else {
         v0->unk_04--;
     }
@@ -835,7 +834,7 @@ UnkStruct_ov12_02236648 *ov12_02236690(UnkStruct_ov12_02236690 *param0)
         v0->unk_1C = ov12_02235FA0(v0->unk_00.unk_04);
     }
 
-    v0->unk_18 = ov12_02223818(v0->unk_00.heapID, 99, v0->unk_20, 0);
+    v0->unk_18 = BattleParticleUtil_CreateParticleSystemEx(v0->unk_00.heapID, 99, v0->unk_20, 0);
 
     return v0;
 }
@@ -873,7 +872,7 @@ BOOL ov12_02236764(UnkStruct_ov12_02236648 *param0)
     UnkStruct_ov12_02236648 *v0 = param0;
 
     if (ParticleSystem_GetActiveEmitterCount(v0->unk_18) == 0) {
-        ov12_02223894(v0->unk_18);
+        BattleParticleUtil_FreeParticleSystem(v0->unk_18);
         return 0;
     }
 
@@ -882,7 +881,7 @@ BOOL ov12_02236764(UnkStruct_ov12_02236648 *param0)
 
 void ov12_02236780(UnkStruct_ov12_02236648 *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static BOOL (*const Unk_ov12_0223AB84[])(BallRotation *) = {
@@ -1396,7 +1395,7 @@ static BOOL ov12_02236C64(BallRotation *param0)
             }
 
             ManagedSprite_OffsetPositionXY(param0->unk_30, v0, 0);
-            ManagedSprite_OffsetAffineZRotation(param0->unk_30, ((((v0) * 2) * 0xffff) / 360));
+            ManagedSprite_OffsetAffineZRotation(param0->unk_30, (((v0) * 2) * 0xffff) / 360);
         }
     } break;
     default:
@@ -1901,9 +1900,9 @@ static BOOL ov12_02237608(BallRotation *param0)
     switch (param0->unk_08) {
     case 0: {
         if (param0->unk_10 == 0) {
-            ov12_02225D50(&param0->unk_34, -((45 * 0xffff) / 360), +((45 * 0xffff) / 360), 10);
+            AngleLerpContext_Init(&param0->unk_34, -((45 * 0xffff) / 360), +((45 * 0xffff) / 360), 10);
         } else {
-            ov12_02225D50(&param0->unk_34, +((45 * 0xffff) / 360), -((45 * 0xffff) / 360), 10);
+            AngleLerpContext_Init(&param0->unk_34, +((45 * 0xffff) / 360), -((45 * 0xffff) / 360), 10);
         }
 
         param0->unk_10 ^= 1;
@@ -1911,9 +1910,9 @@ static BOOL ov12_02237608(BallRotation *param0)
         param0->unk_08++;
         break;
     case 1:
-        ManagedSprite_SetAffineZRotation(param0->unk_30, param0->unk_34.unk_00);
+        ManagedSprite_SetAffineZRotation(param0->unk_30, param0->unk_34.angle);
 
-        if (ov12_02225DA0(&param0->unk_34) == 0) {
+        if (AngleLerpContext_Update(&param0->unk_34) == 0) {
             if (param0->unk_0C >= 1) {
                 param0->unk_08++;
             } else {
@@ -2001,7 +2000,7 @@ BallRotation *ov12_02237728(BallThrow *param0)
     v0->unk_20 = 16;
     v0->unk_21 = 0;
 
-    ov12_02220474();
+    BattleAnimSystem_SetDefaultAlphaBlending();
 
     {
         int v1;
@@ -2057,7 +2056,7 @@ void ov12_0223783C(BallRotation *param0)
     SpriteSystem_FreeResourcesAndManager(param0->unk_90.cellActorSys, param0->unk_2C);
     Sprite_DeleteAndFreeResources(param0->unk_30);
     SysTask_Done(param0->unk_CC);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov12_0223786C(BallRotation *param0, int param1)
@@ -2247,7 +2246,7 @@ static void ov12_02237C54(BallRotation *param0)
     SpriteSystem_InitSprites(param0->unk_90.cellActorSys, param0->unk_2C, 10);
 
     if (param0->unk_90.surface == 0) {
-        SetSubScreenViewRect(SpriteSystem_GetRenderer(param0->unk_90.cellActorSys), 0, ((192 + 80) << FX32_SHIFT));
+        SetSubScreenViewRect(SpriteSystem_GetRenderer(param0->unk_90.cellActorSys), 0, (192 + 80) << FX32_SHIFT);
     }
 
     {
@@ -2310,7 +2309,7 @@ static void ov12_02237D8C(BallRotation *param0)
     ManagedSprite_SetAnim(param0->unk_30, 0);
     ManagedSprite_TickFrame(param0->unk_30);
 
-    ov12_02220474();
+    BattleAnimSystem_SetDefaultAlphaBlending();
 }
 
 void ov12_02237E0C(BallRotation *param0, int param1)

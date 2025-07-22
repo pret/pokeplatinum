@@ -2,7 +2,6 @@
 #include "res/text/bank/resort_area_ribbon_syndicate_1f.h"
 #include "generated/ribbons.h"
 
-    .data
 
     ScriptEntry _00C0
     ScriptEntry _00D6

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_factory.h"
 
-    .data
 
     ScriptEntry _0059
     ScriptEntry _05B0

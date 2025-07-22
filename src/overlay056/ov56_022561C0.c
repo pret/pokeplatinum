@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0205B43C_decl.h"
 #include "struct_defs/sentence.h"
 #include "struct_defs/struct_0203330C.h"
@@ -23,6 +22,7 @@
 #include "heap.h"
 #include "message.h"
 #include "message_util.h"
+#include "pal_pad.h"
 #include "save_player.h"
 #include "sound_playback.h"
 #include "sprite.h"
@@ -38,7 +38,6 @@
 #include "trainer_info.h"
 #include "unk_0200679C.h"
 #include "unk_02014A84.h"
-#include "unk_02027F84.h"
 #include "unk_02033200.h"
 #include "unk_0205B33C.h"
 
@@ -257,7 +256,7 @@ void ov56_02256468(UnkStruct_ov56_02256468 *param0)
         ov56_022563E8(param0->unk_22C);
         ov56_022564E4(v0);
 
-        Heap_FreeToHeap(param0->unk_20);
+        Heap_Free(param0->unk_20);
         SysTask_FinishAndFreeParam(param0->unk_2F8);
     } else {
         GF_ASSERT(0);
@@ -278,19 +277,18 @@ static void ov56_02256508(BgConfig *param0)
 
     {
         BgTemplate v0 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x6000,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_01,
-            1,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x6000,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 1,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v0, 0);
@@ -300,19 +298,18 @@ static void ov56_02256508(BgConfig *param0)
 
     {
         BgTemplate v1 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x6800,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_01,
-            2,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x6800,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 2,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0, BG_LAYER_SUB_1, &v1, 0);
@@ -322,19 +319,18 @@ static void ov56_02256508(BgConfig *param0)
 
     {
         BgTemplate v2 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x7000,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_01,
-            2,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x7000,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 2,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0, BG_LAYER_SUB_2, &v2, 0);
@@ -344,19 +340,18 @@ static void ov56_02256508(BgConfig *param0)
 
     {
         BgTemplate v3 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x7800,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_01,
-            2,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x7800,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 2,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0, BG_LAYER_SUB_3, &v3, 0);
@@ -759,7 +754,7 @@ static Strbuf *ov56_02256E5C(PalPad *param0, u32 param1, StringTemplate *param2,
     int v2 = 0;
 
     if (param1 != TrainerInfo_ID(param4)) {
-        v2 = sub_020280E0(param0, param1);
+        v2 = PalPad_TrainerIsFriend(param0, param1);
     }
 
     if (v2 > 0) {
@@ -770,8 +765,8 @@ static Strbuf *ov56_02256E5C(PalPad *param0, u32 param1, StringTemplate *param2,
 
             v1 = Strbuf_Init(10, HEAP_ID_89);
 
-            Strbuf_CopyChars(v1, sub_02027FBC(param0, v3));
-            StringTemplate_SetStrbuf(param2, 0, v1, 0, 0, sub_02027FC4(param0, v3));
+            Strbuf_CopyChars(v1, PalPad_GetTrainerNamePointer(param0, v3));
+            StringTemplate_SetStrbuf(param2, 0, v1, 0, 0, PalPad_GetTrainerRegionCode(param0, v3));
             Strbuf_Free(v1);
         }
 

@@ -69,8 +69,8 @@ int ov102_021D0D80(ApplicationManager *appMan, int *param1)
         v0->unk_0C = SaveData_GetTrainerInfo(v0->saveData);
     }
 
-    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
-    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
     SetVBlankCallback(NULL, NULL);
     SetHBlankCallback(NULL, NULL);
     GXLayers_DisableEngineALayers();
@@ -113,7 +113,7 @@ int ov102_021D0E2C(ApplicationManager *appMan, int *param1)
         ;
         Bg_ToggleLayer(BG_LAYER_SUB_3, 1);
         ;
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, v0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, v0->heapID);
         *param1 = 1;
         break;
     case 1:
@@ -141,7 +141,7 @@ int ov102_021D0E2C(ApplicationManager *appMan, int *param1)
         break;
     case 4:
         if (((gSystem.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A) || ((gSystem.pressedKeys & PAD_BUTTON_B) == PAD_BUTTON_B) || (gSystem.touchPressed)) {
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, v0->heapID);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, v0->heapID);
             *param1 = 5;
         }
         break;
@@ -210,19 +210,18 @@ static void ov102_021D0F8C(UnkStruct_ov102_021D0F8C *param0)
     }
     {
         BgTemplate v2 = {
-            0,
-            0,
-            0,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            0,
-            0,
-            GX_BG_EXTPLTT_01,
-            0,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = 0,
+            .charBase = 0,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         v2.screenBase = GX_BG_SCRBASE_0x0000;
@@ -301,7 +300,7 @@ static void ov102_021D10F8(UnkStruct_ov102_021D0F8C *param0)
     Bg_FreeTilemapBuffer(param0->unk_10, BG_LAYER_SUB_0);
     Bg_FreeTilemapBuffer(param0->unk_10, BG_LAYER_SUB_1);
     Bg_FreeTilemapBuffer(param0->unk_10, BG_LAYER_SUB_3);
-    Heap_FreeToHeap(param0->unk_10);
+    Heap_Free(param0->unk_10);
 }
 
 static void ov102_021D1174(UnkStruct_ov102_021D0F8C *param0)
@@ -369,21 +368,21 @@ static void ov102_021D1274(UnkStruct_ov102_021D0F8C *param0)
 
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, v0, param0->unk_10, 3, 0, 0, 0, param0->heapID);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, v1, param0->unk_10, 3, 0, 0, 0, param0->heapID);
-    Graphics_LoadPalette(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, v2, 0, 0 * (2 * 16), (2 * 16), param0->heapID);
+    Graphics_LoadPalette(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, v2, 0, 0 * (2 * 16), 2 * 16, param0->heapID);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, v0, param0->unk_10, 7, 0, 0, 0, param0->heapID);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, v1, param0->unk_10, 7, 0, 0, 0, param0->heapID);
-    Graphics_LoadPalette(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, v2, 4, 0 * (2 * 16), (2 * 16), param0->heapID);
+    Graphics_LoadPalette(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, v2, 4, 0 * (2 * 16), 2 * 16, param0->heapID);
 
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, v3, param0->unk_10, 1, 0, 0, 0, param0->heapID);
     Bg_ChangeTilemapRectPalette(param0->unk_10, 1, 0, 0, 32, 24, 1);
     Bg_CopyTilemapBufferToVRAM(param0->unk_10, 1);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, v4, param0->unk_10, 1, 0, 0, 0, param0->heapID);
-    Graphics_LoadPalette(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, v5, 0, 1 * (2 * 16), (2 * 16), param0->heapID);
+    Graphics_LoadPalette(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, v5, 0, 1 * (2 * 16), 2 * 16, param0->heapID);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, v3, param0->unk_10, 5, 0, 0, 0, param0->heapID);
     Bg_ChangeTilemapRectPalette(param0->unk_10, 5, 0, 0, 32, 24, 1);
     Bg_CopyTilemapBufferToVRAM(param0->unk_10, 5);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, v4, param0->unk_10, 5, 0, 0, 0, param0->heapID);
-    Graphics_LoadPalette(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, v5, 4, 1 * (2 * 16), (2 * 16), param0->heapID);
+    Graphics_LoadPalette(NARC_INDEX_DEMO__SYOUJYOU__SYOUJYOU, v5, 4, 1 * (2 * 16), 2 * 16, param0->heapID);
 
     Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, param0->heapID);
     Bg_ClearTilesRange(4, 32, 0, param0->heapID);

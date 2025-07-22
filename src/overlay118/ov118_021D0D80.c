@@ -162,7 +162,7 @@ int ov118_021D0DBC(GameWindowLayout *param0)
 
 static void ov118_021D0F70(GameWindowLayout *param0)
 {
-    Heap_FreeToHeap(param0->unk_B24);
+    Heap_Free(param0->unk_B24);
     param0->unk_B24 = NULL;
 }
 
@@ -246,7 +246,7 @@ static void ov118_021D110C(OverlayMetadata *param0)
 {
     void *v0 = ParticleSystem_GetHeapStart(param0->unk_18);
     ParticleSystem_Free(param0->unk_18);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 static u32 ov118_021D1128(u32 param0, BOOL param1)

@@ -260,8 +260,8 @@ void ov66_02234548(UnkStruct_ov66_02234548 *param0)
     TextureResourceManager_Delete(param0->unk_08);
     ResourceCollection_Delete(param0->unk_00);
     ResourceCollection_Delete(param0->unk_04);
-    Heap_FreeToHeap(param0->unk_10);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0->unk_10);
+    Heap_Free(param0);
 }
 
 void ov66_02234590(UnkStruct_ov66_02234548 *param0)
@@ -803,10 +803,10 @@ static void ov66_02234D3C(UnkStruct_ov66_02234798 *param0)
 {
     if ((param0->unk_00_4 == 0) && (param0->unk_00_6 == 1)) {
         sub_02021320(param0->unk_08, 1);
-        Easy3DObject_SetVisibility(&param0->unk_0C, 1);
+        Easy3DObject_SetVisible(&param0->unk_0C, 1);
     } else {
         sub_02021320(param0->unk_08, 0);
-        Easy3DObject_SetVisibility(&param0->unk_0C, 0);
+        Easy3DObject_SetVisible(&param0->unk_0C, 0);
     }
 }
 

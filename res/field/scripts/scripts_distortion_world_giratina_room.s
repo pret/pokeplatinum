@@ -2,7 +2,6 @@
 #include "generated/hidden_locations.h"
 #include "res/text/bank/distortion_world_giratina_room.h"
 
-    .data
 
     ScriptEntry _0022
     ScriptEntry _0026
@@ -23,7 +22,7 @@ _0026:
     End
 
 _0033:
-    ScrCmd_31F
+    ResetDistortionWorldPersistedCameraAngles
     SetVar VAR_DISTORTION_WORLD_PROGRESS, 14
     RemoveObject 128
     End

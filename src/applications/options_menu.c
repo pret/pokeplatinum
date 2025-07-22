@@ -225,7 +225,7 @@ BOOL OptionsMenu_Main(ApplicationManager *appMan, int *state)
             return FALSE;
         }
 
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, menuData->heapID);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, menuData->heapID);
         break;
 
     case STATE_WAIT_FOR_FADE_IN:
@@ -286,7 +286,7 @@ BOOL OptionsMenu_Main(ApplicationManager *appMan, int *state)
             Text_RemovePrinter(menuData->textPrinter);
         }
 
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, menuData->heapID);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, menuData->heapID);
         break;
 
     case STATE_WAIT_FOR_FADE_OUT:
@@ -449,7 +449,6 @@ static void SetupBgs(OptionsMenuData *menuData)
             .bgExtPltt = GX_BG_EXTPLTT_01,
             .priority = 1,
             .areaOver = 0,
-            .dummy = 0,
             .mosaic = FALSE,
         },
         {
@@ -464,7 +463,6 @@ static void SetupBgs(OptionsMenuData *menuData)
             .bgExtPltt = GX_BG_EXTPLTT_01,
             .priority = 2,
             .areaOver = 0,
-            .dummy = 0,
             .mosaic = FALSE,
         },
         {
@@ -479,7 +477,6 @@ static void SetupBgs(OptionsMenuData *menuData)
             .bgExtPltt = GX_BG_EXTPLTT_01,
             .priority = 3,
             .areaOver = 0,
-            .dummy = 0,
             .mosaic = FALSE,
         },
         {
@@ -494,7 +491,6 @@ static void SetupBgs(OptionsMenuData *menuData)
             .bgExtPltt = GX_BG_EXTPLTT_01,
             .priority = 0,
             .areaOver = 0,
-            .dummy = 0,
             .mosaic = FALSE,
         },
         {
@@ -509,7 +505,6 @@ static void SetupBgs(OptionsMenuData *menuData)
             .bgExtPltt = GX_BG_EXTPLTT_01,
             .priority = 0,
             .areaOver = 0,
-            .dummy = 0,
             .mosaic = FALSE,
         },
     };
@@ -539,7 +534,7 @@ static void TeardownBgs(OptionsMenuData *menuData)
     Bg_FreeTilemapBuffer(menuData->bgConfig, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(menuData->bgConfig, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(menuData->bgConfig, BG_LAYER_MAIN_0);
-    Heap_FreeToHeap(menuData->bgConfig);
+    Heap_Free(menuData->bgConfig);
 }
 
 static void LoadBgTiles(OptionsMenuData *menuData)
@@ -555,7 +550,7 @@ static void LoadBgTiles(OptionsMenuData *menuData)
     NNS_G2dGetUnpackedCharacterData(memberBuffer, &cursorTiles);
     Bg_LoadTiles(menuData->bgConfig, BG_LAYER_MAIN_0, cursorTiles->pRawData, cursorTiles->szByte, 0);
     Bg_LoadTiles(menuData->bgConfig, BG_LAYER_SUB_0, cursorTiles->pRawData, cursorTiles->szByte, 0);
-    Heap_FreeToHeap(memberBuffer);
+    Heap_Free(memberBuffer);
 
     memberSize = NARC_GetMemberSize(narc, tiles_NCLR);
     memberBuffer = Heap_AllocFromHeapAtEnd(menuData->heapID, memberSize);
@@ -563,7 +558,7 @@ static void LoadBgTiles(OptionsMenuData *menuData)
     NNS_G2dGetUnpackedPaletteData(memberBuffer, &cursorPalette);
     Bg_LoadPalette(BG_LAYER_MAIN_0, cursorPalette->pRawData, PALETTE_SIZE_BYTES, 0);
     Bg_LoadPalette(BG_LAYER_SUB_0, cursorPalette->pRawData, PALETTE_SIZE_BYTES, 0);
-    Heap_FreeToHeap(memberBuffer);
+    Heap_Free(memberBuffer);
 
     memberSize = NARC_GetMemberSize(narc, tilemap_bin);
     menuData->nscrBuffer = Heap_AllocFromHeap(menuData->heapID, memberSize);
@@ -609,7 +604,7 @@ static void LoadBgTiles(OptionsMenuData *menuData)
 
 static void TeardownTilemaps(OptionsMenuData *menuData)
 {
-    Heap_FreeToHeap(menuData->nscrBuffer);
+    Heap_Free(menuData->nscrBuffer);
 }
 
 static void SetupWindows(OptionsMenuData *menuData)

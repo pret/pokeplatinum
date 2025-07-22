@@ -343,7 +343,7 @@ FieldBattleDTO *ov104_0223ABA0(UnkStruct_ov104_0223ADA0 *param0, UnkStruct_ov104
     Party_HealAllMembers(param0->unk_4D4);
     Party_HealAllMembers(param0->unk_4D8);
 
-    v4 = FieldBattleDTO_New(11, ov104_0223AD74(param0->unk_04));
+    v4 = FieldBattleDTO_New(HEAP_ID_FIELDMAP, ov104_0223AD74(param0->unk_04));
     FieldBattleDTO_InitFromGameState(v4, NULL, param1->saveData, param1->unk_1C, param1->journalEntry, param1->bagCursor, param1->unk_20);
 
     v4->background = BACKGROUND_BATTLE_FACTORY;
@@ -357,10 +357,10 @@ FieldBattleDTO *ov104_0223ABA0(UnkStruct_ov104_0223ADA0 *param0, UnkStruct_ov104
         FieldBattleDTO_AddPokemonToBattler(v4, v5, 0);
     }
 
-    Heap_FreeToHeap(v5);
+    Heap_Free(v5);
     FieldBattleDTO_CopyPlayerInfoToTrainerData(v4);
 
-    Heap_FreeToHeap(ov104_0222DD04(&v6, param0->unk_18[param0->unk_06], HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+    Heap_Free(ov104_0222DD04(&v6, param0->unk_18[param0->unk_06], HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
 
     ov104_0222E284(v4, &v6, v3, 1, 11);
     Party_InitWithCapacity(v4->parties[1], ov104_0223AA74(param0->unk_04, 0));
@@ -376,7 +376,7 @@ FieldBattleDTO *ov104_0223ABA0(UnkStruct_ov104_0223ADA0 *param0, UnkStruct_ov104
         FieldBattleDTO_AddPokemonToBattler(v4, v5, 1);
     }
 
-    Heap_FreeToHeap(v5);
+    Heap_Free(v5);
 
     switch (param0->unk_04) {
     case 2:
@@ -385,7 +385,7 @@ FieldBattleDTO *ov104_0223ABA0(UnkStruct_ov104_0223ADA0 *param0, UnkStruct_ov104
 
         TrainerInfo_Copy(CommInfo_TrainerInfo(1 - CommSys_CurNetId()), v4->trainerInfo[2]);
 
-        Heap_FreeToHeap(ov104_0222DD04(&v6, param0->unk_18[param0->unk_06 + 7], HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+        Heap_Free(ov104_0222DD04(&v6, param0->unk_18[param0->unk_06 + 7], HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
 
         ov104_0222E284(v4, &v6, v3, 3, 11);
         Party_InitWithCapacity(v4->parties[3], ov104_0223AA74(param0->unk_04, 0));
@@ -397,7 +397,7 @@ FieldBattleDTO *ov104_0223ABA0(UnkStruct_ov104_0223ADA0 *param0, UnkStruct_ov104
             FieldBattleDTO_AddPokemonToBattler(v4, v5, 3);
         }
 
-        Heap_FreeToHeap(v5);
+        Heap_Free(v5);
         break;
     }
 
@@ -444,7 +444,7 @@ void ov104_0223ADB0(UnkStruct_ov104_0223ADA0 *param0)
         ov104_0222E1C0(param0->saveData, param0->unk_4D4, v1);
     }
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 
     return;
 }
@@ -471,7 +471,7 @@ void ov104_0223AE30(UnkStruct_ov104_0223ADA0 *param0)
         param0->unk_4E8[v0 + 2] = param0->unk_584[v0];
     }
 
-    Heap_FreeToHeap(v2);
+    Heap_Free(v2);
     return;
 }
 

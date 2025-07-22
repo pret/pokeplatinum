@@ -160,11 +160,11 @@ BOOL ScrCmd_2DE(ScriptContext *ctx)
             }
         }
 
-        Heap_FreeToHeap(v3);
+        Heap_Free(v3);
     }
 
     if (v1 != NULL) {
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
     }
 
     v7 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, HEAP_ID_FIELD_TASK);
@@ -282,7 +282,7 @@ static void ov5_021F6768(UnkStruct_ov5_021F6704 *param0)
     Window_DrawStandardFrame(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
     ov5_021F68BC(param0);
 
-    param0->unk_23C = ListMenu_New((const ListMenuTemplate *)&param0->unk_21C, *param0->unk_214, *param0->unk_218, 4);
+    param0->unk_23C = ListMenu_New((const ListMenuTemplate *)&param0->unk_21C, *param0->unk_214, *param0->unk_218, HEAP_ID_FIELD);
     param0->unk_04 = SysTask_Start(ov5_021F6A34, param0, 0);
 
     return;
@@ -427,7 +427,7 @@ static void ov5_021F6AD4(UnkStruct_ov5_021F6704 *param0)
     }
 
     SysTask_Done(param0->unk_04);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 
     return;
 }

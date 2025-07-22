@@ -58,7 +58,7 @@ UnkStruct_ov5_021D432C *ov5_021D431C(void)
 
 void ov5_021D432C(UnkStruct_ov5_021D432C *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov5_021D4334(const int param0, const int param1, UnkStruct_ov5_021D432C *param2)
@@ -703,7 +703,7 @@ static BOOL ov5_021D4BC8(FieldTask *param0)
     v0 = MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, *v2);
 
     if (v0) {
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
         return 1;
     }
 
@@ -897,7 +897,7 @@ BOOL ov5_021D4E10(FieldTask *param0)
             Camera_AdjustFOV(-96, fieldSystem->camera);
         }
 
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_WHITE, 6, 1, HEAP_ID_FIELDMAP);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_WHITE, 6, 1, HEAP_ID_FIELDMAP);
         v2->unk_08 = 1;
         break;
     case 1:
@@ -916,7 +916,7 @@ BOOL ov5_021D4E10(FieldTask *param0)
         break;
     case 3:
         if (IsScreenFadeDone() && (v2->unk_0C == Camera_GetFOV(fieldSystem->camera))) {
-            Heap_FreeToHeap(v2);
+            Heap_Free(v2);
             return 1;
         }
         break;
@@ -946,14 +946,14 @@ BOOL ov5_021D4F14(FieldTask *param0)
         v1->unk_04 = 0;
 
         Sound_PlayEffect(SEQ_SE_DP_KAIDAN2);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_WHITE, 6, 1, HEAP_ID_FIELDMAP);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 6, 1, HEAP_ID_FIELDMAP);
 
         v1->unk_08 = 1;
         (v1->unk_00)++;
     } break;
     case 1:
         if (IsScreenFadeDone()) {
-            Heap_FreeToHeap(v1);
+            Heap_Free(v1);
             return 1;
         }
         break;
@@ -984,7 +984,7 @@ BOOL ov5_021D4FA0(FieldTask *param0)
     } break;
     case 1:
         if (IsScreenFadeDone()) {
-            Heap_FreeToHeap(v1);
+            Heap_Free(v1);
             return 1;
         }
         break;
@@ -1063,7 +1063,7 @@ BOOL ov5_021D5020(FieldTask *param0)
         break;
     case 3:
         if (IsScreenFadeDone() && (v2->unk_0C == Camera_GetFOV(fieldSystem->camera))) {
-            Heap_FreeToHeap(v2);
+            Heap_Free(v2);
             return 1;
         }
         break;
@@ -1116,7 +1116,7 @@ BOOL ov5_021D5150(FieldTask *param0)
         break;
     case 3:
         if (IsScreenFadeDone()) {
-            Heap_FreeToHeap(v2);
+            Heap_Free(v2);
             return 1;
         }
         break;

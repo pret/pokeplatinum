@@ -318,7 +318,7 @@ static BOOL sub_020685AC(FieldTask *task)
         (*v2)++;
         break;
     case 1:
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return 1;
     }
 
@@ -918,7 +918,7 @@ static BOOL sub_02068F48(FieldTask *task)
         MapObjectMan_UnpauseAllMovement(fieldSystem->mapObjMan);
         Window_Remove(&v1->unk_00);
         Strbuf_Free(v1->unk_10);
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
 
         return 1;
     }
@@ -1087,7 +1087,7 @@ BOOL sub_02069238(FieldSystem *fieldSystem)
     }
 
     v3 = (u16)Bag_GetRegisteredItem(SaveData_GetBag(fieldSystem->saveData));
-    v4 = (u16)Item_LoadParam(v3, 6, 11);
+    v4 = (u16)Item_LoadParam(v3, ITEM_PARAM_FIELD_USE_FUNC, HEAP_ID_FIELDMAP);
     v2 = (UnkFuncPtr_02069238)sub_020683F4(2, v4);
     v1 = (UnkFuncPtr_020EF79C)sub_020683F4(1, v4);
 
@@ -1118,7 +1118,7 @@ BOOL sub_02069238(FieldSystem *fieldSystem)
     }
 
     if (v5 == 0) {
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 
     return 1;
@@ -1131,7 +1131,7 @@ static void sub_020692E4(UnkStruct_02068870 *param0, u32 param1)
     v0->unk_16 = 0;
     v0->unk_10 = Strbuf_Init(128, HEAP_ID_FIELDMAP);
 
-    sub_0207CD34(SaveData_GetTrainerInfo(param0->fieldSystem->saveData), v0->unk_10, param0->unk_28, param1, 11);
+    sub_0207CD34(SaveData_GetTrainerInfo(param0->fieldSystem->saveData), v0->unk_10, param0->unk_28, param1, HEAP_ID_FIELDMAP);
     FieldSystem_CreateTask(param0->fieldSystem, sub_02068F48, v0);
 }
 
@@ -1161,7 +1161,7 @@ static BOOL sub_0206932C(FieldTask *task)
             if (v1->unk_20 == sub_02068B9C) {
                 sub_02098AF0(v1->unk_24);
             } else {
-                Heap_FreeToHeap(v1->unk_24);
+                Heap_Free(v1->unk_24);
             }
         }
 
@@ -1178,7 +1178,7 @@ static BOOL sub_0206932C(FieldTask *task)
     case 4:
         if (IsScreenFadeDone()) {
             MapObjectMan_UnpauseAllMovement(fieldSystem->mapObjMan);
-            Heap_FreeToHeap(v1);
+            Heap_Free(v1);
             return 1;
         }
         break;

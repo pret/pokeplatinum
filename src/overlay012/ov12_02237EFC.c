@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay012/ov12_0221FC20.h"
+#include "overlay012/battle_anim_system.h"
 #include "overlay012/ov12_022237EC.h"
 #include "overlay012/struct_ov12_02237EFC.h"
 #include "overlay012/struct_ov12_02237F38.h"
@@ -46,7 +46,7 @@ UnkStruct_ov12_02237F98 *ov12_02237EFC(int heapID, UnkStruct_ov12_02237EFC *para
         return NULL;
     }
 
-    ov12_02220474();
+    BattleAnimSystem_SetDefaultAlphaBlending();
 
     v0->heapID = heapID;
 
@@ -100,10 +100,10 @@ void ov12_02237F74(UnkStruct_ov12_02237F98 *param0)
             continue;
         }
 
-        Heap_FreeToHeap(param0->unk_08[v0]);
+        Heap_Free(param0->unk_08[v0]);
     }
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov12_02237F98(UnkStruct_ov12_02237F98 *param0)
@@ -115,7 +115,7 @@ void ov12_02237F98(UnkStruct_ov12_02237F98 *param0)
             continue;
         }
 
-        ov12_02223894(param0->unk_08[v0]->unk_10);
+        BattleParticleUtil_FreeParticleSystem(param0->unk_08[v0]->unk_10);
 
         if (param0->unk_08[v0]->unk_20 == 0) {
             continue;
@@ -145,7 +145,7 @@ UnkStruct_ov12_02238004 *ov12_02237FC8(int heapID, UnkStruct_ov12_02237F38 *para
     v0->heapID = heapID;
     v0->unk_08 = *param1;
     v0->unk_1C = ov12_02238088(v0->unk_08.unk_00);
-    v0->unk_10 = ov12_022237F0(v0->heapID, v0->unk_08.unk_00, 1);
+    v0->unk_10 = BattleParticleUtil_CreateParticleSystem(v0->heapID, v0->unk_08.unk_00, 1);
 
     return v0;
 }
@@ -175,7 +175,7 @@ static void ov12_02238030(SysTask *param0, void *param1)
 
     v0->unk_20 = 0;
 
-    ov12_02223894(v0->unk_10);
+    BattleParticleUtil_FreeParticleSystem(v0->unk_10);
     SysTask_Done(param0);
 }
 

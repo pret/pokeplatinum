@@ -95,7 +95,7 @@ int ov115_0226048C(ApplicationManager *appMan, int *param1)
                 FinishScreenFade();
             }
 
-            SetColorBrightness(FADE_TO_BLACK);
+            SetColorBrightness(COLOR_BLACK);
             v0->unk_78++;
             break;
         case 1:
@@ -535,7 +535,7 @@ static void ov115_02260ADC(UnkStruct_ov115_0226095C *param0, u32 param1)
 
 static void ov115_02260B30(UnkStruct_ov115_0226095C *param0)
 {
-    Heap_FreeToHeap(param0->unk_48.unk_04);
+    Heap_Free(param0->unk_48.unk_04);
     param0->unk_48.unk_04 = NULL;
     param0->unk_48.unk_00 = 0;
 }

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/canalave_city_sailor_eldritch_house.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _010B
@@ -32,7 +31,7 @@ _0073:
 _007B:
     SetObjectEventPos 0, 8, 6
     SetObjectEventDir 0, DIR_SOUTH
-    ScrCmd_188 0, 0
+    SetObjectEventMovementType 0, MOVEMENT_TYPE_NONE
     SetObjectEventPos 1, 9, 6
     SetObjectEventDir 1, DIR_WEST
     Return

@@ -547,7 +547,7 @@ static int ov83_0223BCEC(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
             break;
         }
 
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, param1->heapID);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, param1->heapID);
         (*param2)++;
         break;
     case 2:
@@ -600,7 +600,7 @@ static int ov83_0223BCEC(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
             v0 = Poffin_New(param1->heapID);
             ov83_0223FFD4(&param1->unk_34C, v0, &param1->unk_1494, param1->unk_1488, param1->heapID);
             v1 = ov83_0223D508(28, v0, Poffin_SizeOf(), param1->unk_148C);
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
 
             if (v1 == 1) {
                 (*param2)++;
@@ -647,7 +647,7 @@ static int ov83_0223BF74(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
         param1->unk_31C = 0;
 
         ov83_0223F730(&param1->unk_1478, 128, 144, param1->unk_1494.unk_58.unk_0C, param1->heapID);
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, param1->heapID);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, param1->heapID);
         (*param2)++;
         break;
     case 1:
@@ -813,7 +813,7 @@ static int ov83_0223C258(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
         }
         break;
     case 2:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, param1->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, param1->heapID);
         (*param2)++;
         break;
     case 3:
@@ -1074,7 +1074,7 @@ static void ov83_0223C87C(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B7
 {
     GF_ASSERT(param1->unk_1494.unk_100);
 
-    Heap_FreeToHeap(param1->unk_1494.unk_100);
+    Heap_Free(param1->unk_1494.unk_100);
     param1->unk_1494.unk_100 = NULL;
 
     if (param0->unk_26) {

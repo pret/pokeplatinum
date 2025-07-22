@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/oreburgh_city.h"
 
-    .data
 
     ScriptEntry _005A
     ScriptEntry _0090
@@ -79,7 +78,7 @@ _00CC:
 _00D7:
     LockAll
     ClearFlag FLAG_UNK_0x017C
-    ScrCmd_188 3, 16
+    SetObjectEventMovementType 3, MOVEMENT_TYPE_LOOK_LEFT
     SetObjectEventDir 3, DIR_WEST
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 0x2EC, _011E

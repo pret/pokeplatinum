@@ -412,10 +412,62 @@ __attribute__((aligned(4))) static const u16 Unk_ov16_02270304[][2] = {
 };
 
 static const BgTemplate Unk_ov16_02270540[] = {
-    { 0x0, 0x0, 0x800, 0x0, 0x1, GX_BG_COLORMODE_16, GX_BG_SCRBASE_0x6000, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_01, 0x0, 0x0, 0x0, 0x0 },
-    { 0x0, 0x0, 0x800, 0x0, 0x1, GX_BG_COLORMODE_16, GX_BG_SCRBASE_0x6800, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_01, 0x0, 0x0, 0x0, 0x0 },
-    { 0x0, 0x0, 0x800, 0x0, 0x1, GX_BG_COLORMODE_16, GX_BG_SCRBASE_0x7000, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_01, 0x0, 0x0, 0x0, 0x0 },
-    { 0x0, 0x0, 0x800, 0x0, 0x1, GX_BG_COLORMODE_16, GX_BG_SCRBASE_0x7800, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_01, 0x0, 0x0, 0x0, 0x0 }
+    {
+        .x = 0x0,
+        .y = 0x0,
+        .bufferSize = 0x800,
+        .baseTile = 0x0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x6000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0x0,
+        .areaOver = 0x0,
+        .mosaic = FALSE,
+    },
+    {
+        .x = 0x0,
+        .y = 0x0,
+        .bufferSize = 0x800,
+        .baseTile = 0x0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x6800,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0x0,
+        .areaOver = 0x0,
+        .mosaic = FALSE,
+    },
+    {
+        .x = 0x0,
+        .y = 0x0,
+        .bufferSize = 0x800,
+        .baseTile = 0x0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x7000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0x0,
+        .areaOver = 0x0,
+        .mosaic = FALSE,
+    },
+    {
+        .x = 0x0,
+        .y = 0x0,
+        .bufferSize = 0x800,
+        .baseTile = 0x0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x7800,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0x0,
+        .areaOver = 0x0,
+        .mosaic = FALSE,
+    }
 };
 
 static const TouchScreenRect Unk_ov16_02270350[] = {
@@ -1029,7 +1081,7 @@ void ov16_02268744(BgConfig *param0)
 
     for (i = 0; i < NELEMS(Unk_ov16_02270540); i++) {
         Bg_InitFromTemplate(param0, BG_LAYER_SUB_0 + i, &Unk_ov16_02270540[i], 0);
-        Bg_FillTilemap(param0, 4 + i, (0x6000 / 0x20 - 1));
+        Bg_FillTilemap(param0, 4 + i, 0x6000 / 0x20 - 1);
         Bg_SetOffset(param0, BG_LAYER_SUB_0 + i, 0, 0);
         Bg_SetOffset(param0, BG_LAYER_SUB_0 + i, 3, 0);
     }
@@ -1091,7 +1143,7 @@ void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *battleSys, int par
             v4 = Graphics_GetScrnData(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, v6, 1, &v3, 5);
 
             MI_CpuCopy32(v3->rawData, v0->unk_3C[i], 0x800);
-            Heap_FreeToHeap(v4);
+            Heap_Free(v4);
         }
     }
 
@@ -1157,7 +1209,7 @@ void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *battleSys, int par
             MI_CpuCopy16(v13->pRawData, v0->unk_60, 0x20);
         }
 
-        Heap_FreeToHeap(v14);
+        Heap_Free(v14);
         RenderControlFlags_ZeroSpeedUpBattle();
         RenderControlFlags_ZeroWaitBattle();
 
@@ -1183,15 +1235,15 @@ void ov16_02268A14(UnkStruct_ov16_02268A14 *param0)
     SysTask_Done(param0->unk_678);
 
     for (i = 0; i < 7; i++) {
-        Heap_FreeToHeap(param0->unk_3C[i]);
+        Heap_Free(param0->unk_3C[i]);
     }
 
-    Heap_FreeToHeap(param0->unk_58);
+    Heap_Free(param0->unk_58);
     ov16_0226ABE8(param0);
-    Heap_FreeToHeap(param0->unk_5C);
-    Heap_FreeToHeap(param0->unk_60);
+    Heap_Free(param0->unk_5C);
+    Heap_Free(param0->unk_60);
     SysTask_Done(param0->unk_64);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov16_02268A88(UnkStruct_ov16_02268A14 *param0)
@@ -1287,12 +1339,12 @@ void ov16_02268C04(NARC *param0, NARC *param1, UnkStruct_ov16_02268A14 *param2, 
             v6 = v0->unk_00;
         }
 
-        Graphics_LoadTilesToBgLayerFromOpenNARC(param0, v6, v3, 4, 0, (0x6000 - (32 * 12 * 0x20)), 1, HEAP_ID_BATTLE);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param0, v6, v3, 4, 0, 0x6000 - (32 * 12 * 0x20), 1, HEAP_ID_BATTLE);
 
         if (param2->unk_66D == 0) {
-            Graphics_LoadTilesToBgLayerFromOpenNARC(param0, 37, v3, 4, ((0x6000 - (32 * 12 * 0x20)) / 0x20), (32 * 12 * 0x20), 1, HEAP_ID_BATTLE);
+            Graphics_LoadTilesToBgLayerFromOpenNARC(param0, 37, v3, 4, (0x6000 - (32 * 12 * 0x20)) / 0x20, 32 * 12 * 0x20, 1, HEAP_ID_BATTLE);
         } else {
-            Graphics_LoadTilesToBgLayerFromOpenNARC(param0, 38, v3, 4, ((0x6000 - (32 * 12 * 0x20)) / 0x20), (32 * 12 * 0x20), 1, HEAP_ID_BATTLE);
+            Graphics_LoadTilesToBgLayerFromOpenNARC(param0, 38, v3, 4, (0x6000 - (32 * 12 * 0x20)) / 0x20, 32 * 12 * 0x20, 1, HEAP_ID_BATTLE);
         }
     }
 
@@ -1310,7 +1362,7 @@ void ov16_02268C04(NARC *param0, NARC *param1, UnkStruct_ov16_02268A14 *param2, 
     SpriteSystem_LoadPaletteBufferFromOpenNarc(BattleSystem_PaletteSys(param2->battleSys), 3, v4, v5, param1, 72, 0, 7, NNS_G2D_VRAM_TYPE_2DSUB, 20023);
     param2->unk_66B = param3;
 
-    G2S_SetBlendAlpha((GX_BLEND_PLANEMASK_BG1), (GX_BLEND_BGALL), 8, 12);
+    G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_BGALL, 8, 12);
     ov16_0226B1E8(param2);
 
     if (v0->unk_28 != NULL) {
@@ -1341,11 +1393,11 @@ void ov16_02268D40(NARC *param0, UnkStruct_ov16_02268A14 *param1)
 
     for (i = 0; i < 6; i++) {
         param1->unk_5BC[i] = SpriteSystem_NewSprite(v1, v2, &Unk_ov16_02270414);
-        Sprite_SetPositionXYWithSubscreenOffset(param1->unk_5BC[i]->sprite, 12 + 19 * i, 13, ((192 + 80) << FX32_SHIFT));
+        Sprite_SetPositionXYWithSubscreenOffset(param1->unk_5BC[i]->sprite, 12 + 19 * i, 13, (192 + 80) << FX32_SHIFT);
         ManagedSprite_SetAffineOverwriteMode(param1->unk_5BC[i], AFFINE_OVERWRITE_MODE_NORMAL);
 
         param1->unk_5D4[i] = SpriteSystem_NewSprite(v1, v2, &Unk_ov16_02270448);
-        Sprite_SetPositionXYWithSubscreenOffset(param1->unk_5D4[i]->sprite, 246 + -12 * i, 9, ((192 + 80) << FX32_SHIFT));
+        Sprite_SetPositionXYWithSubscreenOffset(param1->unk_5D4[i]->sprite, 246 + -12 * i, 9, (192 + 80) << FX32_SHIFT);
     }
 
     ov16_02269218(param1);
@@ -1436,7 +1488,7 @@ static void ov16_02268FCC(SysTask *param0, void *param1)
             ManagedSprite_OffsetAffineZRotation(v0->unk_5BC[i], 0x800);
             v2->unk_00 += 0x180;
 
-            ManagedSprite_SetPositionXYWithSubscreenOffset(v0->unk_5BC[i], 12 + 19 * i + v2->unk_00 / 0x100, 13, ((192 + 80) << FX32_SHIFT));
+            ManagedSprite_SetPositionXYWithSubscreenOffset(v0->unk_5BC[i], 12 + 19 * i + v2->unk_00 / 0x100, 13, (192 + 80) << FX32_SHIFT);
             v2->unk_06++;
 
             if (v2->unk_06 >= v2->unk_07) {
@@ -1446,7 +1498,7 @@ static void ov16_02268FCC(SysTask *param0, void *param1)
                     v2->unk_03++;
                 } else {
                     ManagedSprite_SetAffineZRotation(v0->unk_5BC[i], 0);
-                    ManagedSprite_SetPositionXYWithSubscreenOffset(v0->unk_5BC[i], 12 + 19 * i, 13, ((192 + 80) << FX32_SHIFT));
+                    ManagedSprite_SetPositionXYWithSubscreenOffset(v0->unk_5BC[i], 12 + 19 * i, 13, (192 + 80) << FX32_SHIFT);
 
                     v2->unk_00 = 0;
 
@@ -1470,7 +1522,7 @@ static void ov16_02268FCC(SysTask *param0, void *param1)
             ManagedSprite_OffsetAffineZRotation(v0->unk_5BC[i], -0x800);
             v2->unk_00 -= 0x180;
 
-            ManagedSprite_SetPositionXYWithSubscreenOffset(v0->unk_5BC[i], 12 + 19 * i + v2->unk_00 / 0x100, 13, ((192 + 80) << FX32_SHIFT));
+            ManagedSprite_SetPositionXYWithSubscreenOffset(v0->unk_5BC[i], 12 + 19 * i + v2->unk_00 / 0x100, 13, (192 + 80) << FX32_SHIFT);
             v2->unk_06++;
 
             if (v2->unk_06 >= v2->unk_07 * 2) {
@@ -1678,7 +1730,7 @@ static void ov16_022694A8(SysTask *param0, void *param1)
     ov16_0226940C(v0);
 
     if (v1 == 1) {
-        Bg_FillTilemap(v2, 7, (0x6000 / 0x20 - 1));
+        Bg_FillTilemap(v2, 7, 0x6000 / 0x20 - 1);
         Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
         Bg_SetPriority(BG_LAYER_SUB_3, 0);
         GXS_SetVisibleWnd(GX_WNDMASK_NONE);
@@ -1697,8 +1749,8 @@ static void ov16_02269550(UnkStruct_ov16_02268A14 *param0, int param1)
     G2S_SetWndOutsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3, 1);
     G2S_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3, 1);
     G2S_SetWnd1InsidePlane(GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3, 1);
-    G2S_SetWnd0Position(0, 0, 255, (18 * 8));
-    G2S_SetWnd1Position(0, (18 * 8), 255, 192);
+    G2S_SetWnd0Position(0, 0, 255, 18 * 8);
+    G2S_SetWnd1Position(0, 18 * 8, 255, 192);
     GXS_SetVisibleWnd(GX_WNDMASK_W0 | GX_WNDMASK_W1);
 
     v1 = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(UnkStruct_ov16_0226B988));
@@ -1791,7 +1843,7 @@ static void ov16_02269668(UnkStruct_ov16_02268A14 *param0, int param1, int param
             v9 -= 32 / 2;
         }
 
-        ManagedSprite_SetPositionXYWithSubscreenOffset(v8, v9, v10 - (((192 + 80) << FX32_SHIFT) >> FX32_SHIFT), ((192 + 80) << FX32_SHIFT));
+        ManagedSprite_SetPositionXYWithSubscreenOffset(v8, v9, v10 - (((192 + 80) << FX32_SHIFT) >> FX32_SHIFT), (192 + 80) << FX32_SHIFT);
     }
 }
 
@@ -1814,7 +1866,7 @@ static void ov16_022698BC(UnkStruct_ov16_02268A14 *param0, int param1, int param
 
         v1 = BattleSystem_BGL(param0->battleSys);
 
-        Bg_FillTilemapRect(v1, 4, (0x6000 / 0x20 - 1), 0, 0x10, 32, 8, 17);
+        Bg_FillTilemapRect(v1, 4, 0x6000 / 0x20 - 1, 0, 0x10, 32, 8, 17);
         Bg_ScheduleTilemapTransfer(v1, 5);
     }
 
@@ -1842,8 +1894,8 @@ static void ov16_02269938(UnkStruct_ov16_02268A14 *param0, int param1, int param
 
         v1 = BattleSystem_BGL(param0->battleSys);
 
-        Bg_FillTilemapRect(v1, 4, (0x6000 / 0x20 - 1), 0, 0x10, 10, 8, 17);
-        Bg_FillTilemapRect(v1, 4, (0x6000 / 0x20 - 1), 0x16, 0x10, 10, 8, 17);
+        Bg_FillTilemapRect(v1, 4, 0x6000 / 0x20 - 1, 0, 0x10, 10, 8, 17);
+        Bg_FillTilemapRect(v1, 4, 0x6000 / 0x20 - 1, 0x16, 0x10, 10, 8, 17);
         Bg_ScheduleTilemapTransfer(v1, 5);
     }
 
@@ -2000,7 +2052,7 @@ static void ov16_02269E94(UnkStruct_ov16_02268A14 *param0, int param1, int param
     MessageLoader *v0;
     Strbuf *v1;
 
-    G2S_SetBlendAlpha((GX_BLEND_PLANEMASK_BG1), (GX_BLEND_BGALL), 31, 0);
+    G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_BGALL, 31, 0);
 
     v0 = BattleSystem_MessageLoader(param0->battleSys);
     v1 = MessageLoader_GetNewStrbuf(v0, 1260);
@@ -2012,7 +2064,7 @@ static void ov16_02269E94(UnkStruct_ov16_02268A14 *param0, int param1, int param
 
         v4 = Graphics_GetScrnData(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 46, 1, &v3, 5);
         MI_CpuCopy32(v3->rawData, param0->unk_3C[6], 0x800);
-        Heap_FreeToHeap(v4);
+        Heap_Free(v4);
 
         v2 = BattleSystem_BGL(param0->battleSys);
         Bg_LoadTilemapBuffer(v2, 4, param0->unk_3C[6], 0x800);
@@ -2112,7 +2164,7 @@ static void ov16_0226A12C(UnkStruct_ov16_02268A14 *param0, int param1, int param
     ov16_0223F87C(param0->battleSys, v10);
     ov16_0223F858(param0->battleSys, v11);
 
-    v4 = Strbuf_Init((12 + 2 + (5 * 2)), HEAP_ID_BATTLE);
+    v4 = Strbuf_Init(12 + 2 + (5 * 2), HEAP_ID_BATTLE);
 
     for (i = 0; i < 4; i++) {
         v12 = v11[2 + i];
@@ -2363,7 +2415,7 @@ static int ov16_0226A528(UnkStruct_ov16_02268A14 *param0, int param1, int param2
         BgConfig *v2;
 
         v2 = BattleSystem_BGL(param0->battleSys);
-        Bg_FillTilemap(v2, 5, (0x6000 / 0x20 - 1));
+        Bg_FillTilemap(v2, 5, 0x6000 / 0x20 - 1);
         Bg_ScheduleTilemapTransfer(v2, 5);
     }
 
@@ -2490,7 +2542,7 @@ static ManagedSprite *ov16_0226A7A4(UnkStruct_ov16_02268A14 *param0, Pokemon *pa
     v3.y = Unk_ov16_02270304[v5][1];
     v4 = SpriteSystem_NewSprite(v0, v1, &v3);
 
-    ManagedSprite_SetPositionXYWithSubscreenOffset(v4, v3.x, v3.y, ((192 + 80) << FX32_SHIFT));
+    ManagedSprite_SetPositionXYWithSubscreenOffset(v4, v3.x, v3.y, (192 + 80) << FX32_SHIFT);
     Sprite_SetExplicitPaletteOffsetAutoAdjust(v4->sprite, Pokemon_IconPaletteIndex(param1));
 
     {
@@ -2501,7 +2553,7 @@ static ManagedSprite *ov16_0226A7A4(UnkStruct_ov16_02268A14 *param0, Pokemon *pa
         } else if (param5 == 3) {
             v6 = 5;
         } else {
-            switch (HealthBar_Color(param3, param4, (8 * 6))) {
+            switch (HealthBar_Color(param3, param4, 8 * 6)) {
             case 4:
                 v6 = 1;
                 break;
@@ -2724,7 +2776,7 @@ static void ov16_0226ABE8(UnkStruct_ov16_02268A14 *param0)
 
     for (i = 0; i < 4; i++) {
         for (j = 0; j < 4; j++) {
-            Heap_FreeToHeap(param0->unk_68[i].moveIcons[j]);
+            Heap_Free(param0->unk_68[i].moveIcons[j]);
 
             if (param0->unk_68[i].unk_28[j].unk_00.pixels != NULL) {
                 Window_Remove(&param0->unk_68[i].unk_28[j].unk_00);
@@ -2758,7 +2810,7 @@ void ov16_0226AC98(UnkStruct_ov16_02268A14 *param0, int param1, const MoveDispla
     v3 = sub_0208C098(6);
     v9 = MessageLoader_GetNewStrbuf(v12, 938);
     v10 = BattleSystem_StringTemplate(param0->battleSys);
-    v7 = Strbuf_Init(((2 + 2 + 1 + 2) * 2 + 2), HEAP_ID_BATTLE);
+    v7 = Strbuf_Init((2 + 2 + 1 + 2) * 2 + 2, HEAP_ID_BATTLE);
     v8 = MessageLoader_GetNewStrbuf(v12, 937);
 
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
@@ -2766,7 +2818,7 @@ void ov16_0226AC98(UnkStruct_ov16_02268A14 *param0, int param1, const MoveDispla
             v5 = MoveTable_LoadParam(param2->move[i], MOVEATTRIBUTE_TYPE);
             v1 = Graphics_GetCharData(TypeIcon_GetNARC(), TypeIcon_GetChar(v5), 1, &v2, HEAP_ID_BATTLE);
             MI_CpuCopy32(v2->pRawData, v0->moveIcons[i], v3);
-            Heap_FreeToHeap(v1);
+            Heap_Free(v1);
         }
 
         if ((v0->unk_28[i].unk_00.pixels == NULL) || ((param2->move[i] != v0->unk_00.move[i]) && (param2->move[i] != 0))) {
@@ -2845,7 +2897,7 @@ static void DrawMoveTypeIcons(UnkStruct_ov16_02268A14 *param0)
 
             param0->moveSelectSprites[i] = TypeIcon_NewTypeIconSprite(spriteSys, spriteMan, moveType, &spriteTemplate);
 
-            ManagedSprite_SetPositionXYWithSubscreenOffset(param0->moveSelectSprites[i], spriteTemplate.x, spriteTemplate.y, ((192 + 80) << FX32_SHIFT));
+            ManagedSprite_SetPositionXYWithSubscreenOffset(param0->moveSelectSprites[i], spriteTemplate.x, spriteTemplate.y, (192 + 80) << FX32_SHIFT);
 
             {
                 void *v8;
@@ -2919,7 +2971,7 @@ static void ov16_0226B0DC(UnkStruct_ov16_02268A14 *param0, int param1)
 
     PaletteData_LoadBuffer(v0, &param0->unk_58[0xe * 16], 1, v2[param1] * 16, 0x20);
     Bg_ScheduleTilemapTransfer(v3, 4);
-    Bg_FillTilemapRect(v3, 5, (0x6000 / 0x20 - 1), Unk_ov16_022702C4[param1].unk_02, Unk_ov16_022702C4[param1].unk_00, Unk_ov16_022702C4[param1].unk_03 - Unk_ov16_022702C4[param1].unk_02 + 1, Unk_ov16_022702C4[param1].unk_01 - Unk_ov16_022702C4[param1].unk_00 + 1, 17);
+    Bg_FillTilemapRect(v3, 5, 0x6000 / 0x20 - 1, Unk_ov16_022702C4[param1].unk_02, Unk_ov16_022702C4[param1].unk_00, Unk_ov16_022702C4[param1].unk_03 - Unk_ov16_022702C4[param1].unk_02 + 1, Unk_ov16_022702C4[param1].unk_01 - Unk_ov16_022702C4[param1].unk_00 + 1, 17);
     Bg_ScheduleTilemapTransfer(v3, 5);
 }
 
@@ -3499,7 +3551,7 @@ static void ov16_0226B988(SysTask *param0, void *param1)
         Bg_SetOffset(v1, BG_LAYER_SUB_1, 0, 0);
         Bg_SetOffset(v1, BG_LAYER_SUB_1, 3, 0);
         BattleSystem_SetCommandSelectionFlags(v0->unk_00->battleSys, 1);
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
 
         return;
@@ -3555,16 +3607,16 @@ static void ov16_0226BA88(SysTask *param0, void *param1)
     }
 
     if (v0->unk_12 == 4) {
-        G2S_SetWnd0Position(0, 0, v2, (18 * 8));
+        G2S_SetWnd0Position(0, 0, v2, 18 * 8);
     } else {
         if (v2 == 0) {
             v2 = 1;
         }
 
-        G2S_SetWnd0Position(v2, 0, 0, (18 * 8));
+        G2S_SetWnd0Position(v2, 0, 0, 18 * 8);
     }
 
-    G2S_SetWnd1Position(0, (18 * 8), 255, v3);
+    G2S_SetWnd1Position(0, 18 * 8, 255, v3);
     v0->unk_10 = v0->unk_0E;
 }
 
@@ -3776,7 +3828,7 @@ static int ov16_0226BEC0(UnkStruct_ov16_02268A14 *param0, int param1)
         v0->unk_02 = v6->unk_00;
         v0->unk_01 = v6->unk_01;
         v4 = Unk_ov16_022701EC[v0->unk_01][v0->unk_02];
-        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
+        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
         return 0xffffffff;
     }
 
@@ -3816,7 +3868,7 @@ static int ov16_0226BEC0(UnkStruct_ov16_02268A14 *param0, int param1)
     case PAD_KEY_LEFT:
     case PAD_KEY_RIGHT:
         v4 = Unk_ov16_022701EC[v0->unk_01][v0->unk_02];
-        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
+        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
         break;
     case PAD_BUTTON_A:
         return Unk_ov16_022701EC[v0->unk_01][v0->unk_02];
@@ -3871,7 +3923,7 @@ static int ov16_0226C100(UnkStruct_ov16_02268A14 *param0, int param1)
         v0->unk_02 = 0;
         v0->unk_01 = 0;
         v4 = Unk_ov16_022701CC[v0->unk_01][v0->unk_02];
-        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
+        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
         return 0xffffffff;
     }
 
@@ -3883,7 +3935,7 @@ static int ov16_0226C100(UnkStruct_ov16_02268A14 *param0, int param1)
     case PAD_KEY_LEFT:
     case PAD_KEY_RIGHT:
         v4 = Unk_ov16_022701CC[v0->unk_01][v0->unk_02];
-        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
+        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
         break;
     case PAD_BUTTON_A:
         return Unk_ov16_022701CC[v0->unk_01][v0->unk_02];
@@ -3920,7 +3972,7 @@ static int ov16_0226C1F8(UnkStruct_ov16_02268A14 *param0, int param1)
             v3 = Unk_ov16_022701E4[v0->unk_01][v0->unk_02];
         }
 
-        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v3].rect.left + 8, v2->unk_14[v3].rect.right - 8, v2->unk_14[v3].rect.top + 8, v2->unk_14[v3].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
+        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v3].rect.left + 8, v2->unk_14[v3].rect.right - 8, v2->unk_14[v3].rect.top + 8, v2->unk_14[v3].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
         return 0xffffffff;
     }
 
@@ -3933,7 +3985,7 @@ static int ov16_0226C1F8(UnkStruct_ov16_02268A14 *param0, int param1)
     case PAD_KEY_LEFT:
     case PAD_KEY_RIGHT:
         v3 = Unk_ov16_022701E4[v0->unk_01][v0->unk_02];
-        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v3].rect.left + 8, v2->unk_14[v3].rect.right - 8, v2->unk_14[v3].rect.top + 8, v2->unk_14[v3].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
+        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v3].rect.left + 8, v2->unk_14[v3].rect.right - 8, v2->unk_14[v3].rect.top + 8, v2->unk_14[v3].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
         break;
     case PAD_BUTTON_A:
         return Unk_ov16_022701E4[v0->unk_01][v0->unk_02];
@@ -4146,21 +4198,21 @@ static int ov16_0226C3C8(UnkStruct_ov16_02268A14 *param0, int param1)
             }
 
             v4 = Unk_ov16_022701DC[v0->unk_01][v0->unk_02];
-            ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
+            ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
         } else {
             v0->unk_02 = 0;
             v0->unk_01 = 0;
 
             if (((v28 == -1) && (v27 == -1)) || (v17 == -1)) {
-                ov16_0226DD9C(param0->unk_6B8, v13, v14, v15, v16, ((192 + 80) << FX32_SHIFT));
+                ov16_0226DD9C(param0->unk_6B8, v13, v14, v15, v16, (192 + 80) << FX32_SHIFT);
             } else if ((v28 != -1) && (v27 == -1)) {
-                ov16_0226DCCC(param0->unk_6B8, v13, v15, v14, v15, v13, v28, v14, v16, ((192 + 80) << FX32_SHIFT));
+                ov16_0226DCCC(param0->unk_6B8, v13, v15, v14, v15, v13, v28, v14, v16, (192 + 80) << FX32_SHIFT);
             } else {
-                ov16_0226DCCC(param0->unk_6B8, v13, v15, v14, v15, v13, v16, v14, v27, ((192 + 80) << FX32_SHIFT));
+                ov16_0226DCCC(param0->unk_6B8, v13, v15, v14, v15, v13, v16, v14, v27, (192 + 80) << FX32_SHIFT);
             }
 
             if (v17 != -1) {
-                ov16_0226DDC0(param0->unk_6B8, v17, v18, v29, ((192 + 80) << FX32_SHIFT));
+                ov16_0226DDC0(param0->unk_6B8, v17, v18, v29, (192 + 80) << FX32_SHIFT);
             }
         }
 
@@ -4180,24 +4232,24 @@ static int ov16_0226C3C8(UnkStruct_ov16_02268A14 *param0, int param1)
     case PAD_KEY_RIGHT:
         if (v5 == 0) {
             v4 = Unk_ov16_022701DC[v0->unk_01][v0->unk_02];
-            ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
+            ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
         } else {
             if (v0->unk_01 == 0) {
                 if (((v27 == -1) && (v28 == -1)) || (v17 == -1)) {
-                    ov16_0226DD9C(param0->unk_6B8, v13, v14, v15, v16, ((192 + 80) << FX32_SHIFT));
+                    ov16_0226DD9C(param0->unk_6B8, v13, v14, v15, v16, (192 + 80) << FX32_SHIFT);
                 } else if ((v28 != -1) && (v27 == -1)) {
-                    ov16_0226DCCC(param0->unk_6B8, v13, v15, v14, v15, v13, v28, v14, v16, ((192 + 80) << FX32_SHIFT));
+                    ov16_0226DCCC(param0->unk_6B8, v13, v15, v14, v15, v13, v28, v14, v16, (192 + 80) << FX32_SHIFT);
                 } else {
-                    ov16_0226DCCC(param0->unk_6B8, v13, v15, v14, v15, v13, v16, v14, v27, ((192 + 80) << FX32_SHIFT));
+                    ov16_0226DCCC(param0->unk_6B8, v13, v15, v14, v15, v13, v16, v14, v27, (192 + 80) << FX32_SHIFT);
                 }
 
                 if (v17 != -1) {
-                    ov16_0226DDC0(param0->unk_6B8, v17, v18, v29, ((192 + 80) << FX32_SHIFT));
+                    ov16_0226DDC0(param0->unk_6B8, v17, v18, v29, (192 + 80) << FX32_SHIFT);
                 } else {
                     ov16_0226DE04(param0->unk_6B8);
                 }
             } else {
-                ov16_0226DD9C(param0->unk_6B8, v2->unk_14[4].rect.left + 8, v2->unk_14[4].rect.right - 8, v2->unk_14[4].rect.top + 8, v2->unk_14[4].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
+                ov16_0226DD9C(param0->unk_6B8, v2->unk_14[4].rect.left + 8, v2->unk_14[4].rect.right - 8, v2->unk_14[4].rect.top + 8, v2->unk_14[4].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
                 ov16_0226DE04(param0->unk_6B8);
             }
         }
@@ -4266,7 +4318,7 @@ static int ov16_0226CA14(UnkStruct_ov16_02268A14 *param0, int param1)
 
     if (param1 == 1) {
         v3 = Unk_ov16_022701C8[v0->unk_01][v0->unk_02];
-        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v3].rect.left + 8, v2->unk_14[v3].rect.right - 8, v2->unk_14[v3].rect.top + 8, v2->unk_14[v3].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
+        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v3].rect.left + 8, v2->unk_14[v3].rect.right - 8, v2->unk_14[v3].rect.top + 8, v2->unk_14[v3].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
         return 0xffffffff;
     }
 
@@ -4278,7 +4330,7 @@ static int ov16_0226CA14(UnkStruct_ov16_02268A14 *param0, int param1)
     case PAD_KEY_LEFT:
     case PAD_KEY_RIGHT:
         v3 = Unk_ov16_022701C8[v0->unk_01][v0->unk_02];
-        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v3].rect.left + 8, v2->unk_14[v3].rect.right - 8, v2->unk_14[v3].rect.top + 8, v2->unk_14[v3].rect.bottom - 8, ((192 + 80) << FX32_SHIFT));
+        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v3].rect.left + 8, v2->unk_14[v3].rect.right - 8, v2->unk_14[v3].rect.top + 8, v2->unk_14[v3].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
         break;
     case PAD_BUTTON_A:
         v3 = Unk_ov16_022701C8[v0->unk_01][v0->unk_02];
@@ -4460,7 +4512,7 @@ static int ov16_0226CD84(UnkStruct_ov16_02268A14 *param0)
 {
     switch (param0->unk_6C4.unk_05) {
     case 0:
-        ov16_0226DF80(param0->unk_6C4.unk_00, 128, 84 - 24, ((192 + 80) << FX32_SHIFT));
+        ov16_0226DF80(param0->unk_6C4.unk_00, 128, 84 - 24, (192 + 80) << FX32_SHIFT);
         ov16_0226DFD0(param0->unk_6C4.unk_00, 60);
         param0->unk_6C4.unk_05++;
         break;
@@ -4480,7 +4532,7 @@ static int ov16_0226CDDC(UnkStruct_ov16_02268A14 *param0)
 {
     switch (param0->unk_6C4.unk_05) {
     case 0:
-        ov16_0226DF80(param0->unk_6C4.unk_00, 64, 46 - 24, ((192 + 80) << FX32_SHIFT));
+        ov16_0226DF80(param0->unk_6C4.unk_00, 64, 46 - 24, (192 + 80) << FX32_SHIFT);
         ov16_0226DFD0(param0->unk_6C4.unk_00, 60);
         param0->unk_6C4.unk_05++;
         break;
@@ -4507,7 +4559,7 @@ static int ov16_0226CE34(UnkStruct_ov16_02268A14 *param0)
         }
         break;
     case 1:
-        ov16_0226DF80(param0->unk_6C4.unk_00, 40, 170 - 24, ((192 + 80) << FX32_SHIFT));
+        ov16_0226DF80(param0->unk_6C4.unk_00, 40, 170 - 24, (192 + 80) << FX32_SHIFT);
         ov16_0226DFD0(param0->unk_6C4.unk_00, 60);
         param0->unk_6C4.unk_05++;
         break;

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/solaceon_town_pokemon_news_press.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _02BB

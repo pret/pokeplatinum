@@ -515,8 +515,8 @@ void sub_02094F04(UnkStruct_02095C48 *param0, int heapID, int param2, int param3
         }
     }
 
-    Heap_FreeToHeap(v2);
-    Heap_FreeToHeap(v9);
+    Heap_Free(v2);
+    Heap_Free(v9);
 }
 
 void sub_020951B0(UnkStruct_02095C48 *param0, int param1)
@@ -597,7 +597,7 @@ void sub_020951B0(UnkStruct_02095C48 *param0, int param1)
         sub_0202A378(param0->unk_00.unk_E8[v0], param0->unk_00.unk_110);
     }
 
-    Heap_FreeToHeap(v2);
+    Heap_Free(v2);
 }
 
 void sub_02095338(UnkStruct_02095C48 *param0)
@@ -612,7 +612,7 @@ void sub_02095338(UnkStruct_02095C48 *param0)
     }
 }
 
-void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, int param2)
+void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, int heapID)
 {
     int v0;
     u16 v1;
@@ -628,7 +628,7 @@ void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, int par
         Strbuf *v3, *v4;
         MessageLoader *v5;
 
-        v5 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0205, param2);
+        v5 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0205, heapID);
         v3 = MessageLoader_GetNewStrbuf(v5, param0->unk_16);
         v4 = MessageLoader_GetNewStrbuf(v5, param0->unk_18);
 
@@ -754,9 +754,9 @@ void sub_020954F0(UnkStruct_02095C48 *param0, int heapID, int param2, int param3
         param0->unk_00.unk_C0[2] = v9;
     }
 
-    Heap_FreeToHeap(v8);
-    Heap_FreeToHeap(v7);
-    Heap_FreeToHeap(v6);
+    Heap_Free(v8);
+    Heap_Free(v7);
+    Heap_Free(v6);
 }
 
 s8 sub_02095734(int param0)

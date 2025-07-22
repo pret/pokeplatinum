@@ -79,7 +79,7 @@ static void sub_02052C6C(FieldSystem *fieldSystem, BOOL param1)
     GetCurrentDate(&v2);
     sub_0202DFA8(v0, v1, &v2);
     SaveData_SaveHallOfFame(fieldSystem->saveData, v0);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 static BOOL sub_02052CBC(FieldTask *param0)
@@ -100,7 +100,7 @@ static BOOL sub_02052CBC(FieldTask *param0)
         if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELD, 0x20000);
             sub_02052F28(fieldSystem, v3);
-            StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 8, 1, HEAP_ID_FIELD_TASK);
+            StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 8, 1, HEAP_ID_FIELD_TASK);
             (*v4)++;
         }
         break;
@@ -145,7 +145,7 @@ static BOOL sub_02052CBC(FieldTask *param0)
         }
         break;
     case 7:
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 8, 1, HEAP_ID_FIELD_TASK);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 8, 1, HEAP_ID_FIELD_TASK);
         (*v4)++;
         break;
     case 8:
@@ -157,7 +157,7 @@ static BOOL sub_02052CBC(FieldTask *param0)
         break;
     case 9:
         if (!FieldSystem_IsRunningApplication(fieldSystem)) {
-            Heap_FreeToHeap(v3);
+            Heap_Free(v3);
             Heap_Destroy(HEAP_ID_FIELD);
             OS_ResetSystem(0);
             return 1;
@@ -233,19 +233,18 @@ static void sub_02052F28(FieldSystem *fieldSystem, UnkStruct_0205300C *param1)
         GX_BG0_AS_2D
     };
     static const BgTemplate v2 = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        0,
-        0,
-        GX_BG_EXTPLTT_01,
-        1,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = 0,
+        .charBase = 0,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
 
     param1->unk_2C = NULL;

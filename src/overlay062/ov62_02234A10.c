@@ -70,7 +70,7 @@ static BOOL ov62_02234AB4(UnkStruct_0208C06C *param0)
             break;
         }
 
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_102);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_102);
         PaletteData_BlendMulti(param0->unk_14.unk_14, 2, 0xFFFE, 16, ov62_022316D0(param0));
         PaletteData_BlendMulti(param0->unk_14.unk_14, 0, 0xBFFF, 16, ov62_022316D0(param0));
         PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0x3FFE, 16, ov62_022316D0(param0));
@@ -357,7 +357,7 @@ BOOL ov62_02235008(UnkStruct_0208C06C *param0)
             sub_0208B8B8(param0->unk_6F0, v9 + (15 + 1), v10);
             sub_0208B9E0(param0->unk_6F0, 0);
             ov62_0222FF7C(param0);
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
         }
         return 1;
     }

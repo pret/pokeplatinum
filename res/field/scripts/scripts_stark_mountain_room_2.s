@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/stark_mountain_room_2.h"
 
-    .data
 
     ScriptEntry _0031
     ScriptEntry _00FC
@@ -45,7 +44,7 @@ _0031:
 _007D:
     SetObjectEventPos 14, 42, 78
     SetObjectEventDir 14, DIR_NORTH
-    ScrCmd_188 14, 14
+    SetObjectEventMovementType 14, MOVEMENT_TYPE_LOOK_NORTH
     ClearFlag FLAG_UNK_0x01DA
     AddObject 14
     ApplyMovement 14, _00DC
@@ -60,7 +59,7 @@ _007D:
 _00B7:
     SetObjectEventPos 14, 42, 68
     SetObjectEventDir 14, DIR_NORTH
-    ScrCmd_188 14, 14
+    SetObjectEventMovementType 14, MOVEMENT_TYPE_LOOK_NORTH
     ApplyMovement 14, _0144
     WaitMovement
     Message 3

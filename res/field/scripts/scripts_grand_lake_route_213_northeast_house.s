@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/grand_lake_route_213_northeast_house.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _0045

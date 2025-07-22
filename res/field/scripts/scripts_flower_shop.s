@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/flower_shop.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _006E

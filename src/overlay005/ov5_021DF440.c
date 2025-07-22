@@ -173,8 +173,8 @@ void ov5_021DF500(UnkStruct_ov5_021DF47C *param0)
     ov5_021DF644(param0);
     ov5_021DF7C4(param0);
     ov5_021DF59C(param0);
-    Heap_FreeToHeap(param0->unk_14);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0->unk_14);
+    Heap_Free(param0);
 }
 
 void *ov5_021DF528(const UnkStruct_ov5_021DF47C *param0, u32 param1, int param2)
@@ -200,7 +200,7 @@ void *ov5_021DF53C(const UnkStruct_ov5_021DF47C *param0, u32 param1, int param2,
 
 void ov5_021DF554(void *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void *ov5_021DF55C(UnkStruct_ov5_021DF47C *param0, u32 param1)

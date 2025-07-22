@@ -4,6 +4,7 @@
 
 #include "overlay022/struct_ov22_022550D4.h"
 
+#include "bg_window.h"
 #include "font.h"
 #include "gx_layers.h"
 #include "pokemon.h"
@@ -87,7 +88,7 @@ void PokedexGraphics_Free(PokedexGraphicData *pokedexGraphicData)
     FreeWindow(pokedexGraphicData);
     FreeBackgrounds(pokedexGraphicData->bgConfig);
 
-    Heap_FreeToHeap(pokedexGraphicData->bgConfig);
+    Heap_Free(pokedexGraphicData->bgConfig);
     SpriteList_Delete(pokedexGraphicData->spriteList);
     SpriteResourceCollection_Delete(pokedexGraphicData->spriteResourceCollection[SPRITE_RESOURCE_CHAR]);
     SpriteResourceCollection_Delete(pokedexGraphicData->spriteResourceCollection[SPRITE_RESOURCE_PLTT]);
@@ -435,7 +436,7 @@ static void *LoadGraphicsFile(PokedexGraphicData *pokedexGraphicData, u32 member
 
             if (uncompressedGraphicFile) {
                 MI_UncompressLZ8(graphicFile, uncompressedGraphicFile);
-                Heap_FreeToHeap(graphicFile);
+                Heap_Free(graphicFile);
             }
 
             graphicFile = uncompressedGraphicFile;
@@ -460,7 +461,7 @@ u32 PokedexGraphics_LoadGraphicNarcCharacterData(PokedexGraphicData *pokedexGrap
             Bg_LoadTiles(bgConfig, bgLayer, charData->pRawData, size, tileStart);
         }
 
-        Heap_FreeToHeap(graphicFile);
+        Heap_Free(graphicFile);
     }
 
     return size;
@@ -493,7 +494,7 @@ void PokedexGraphics_LoadGraphicNarcPaletteData(PokedexGraphicData *pokedexGraph
             sPaletteLoadFuncs[loadLocation](paletteData->pRawData, offset, szByte);
         }
 
-        Heap_FreeToHeap(graphicFile);
+        Heap_Free(graphicFile);
     }
 }
 
@@ -503,7 +504,7 @@ void *PokedexGraphics_GetGraphicNarcScreenData(PokedexGraphicData *pokedexGraphi
 
     if (graphicFile != NULL) {
         if (NNS_G2dGetUnpackedScreenData(graphicFile, screenData) == FALSE) {
-            Heap_FreeToHeap(graphicFile);
+            Heap_Free(graphicFile);
             return NULL;
         }
     }
@@ -517,7 +518,7 @@ void *PokedexGraphics_GetGraphicNarcPaletteData(PokedexGraphicData *pokedexGraph
 
     if (graphicFile != NULL) {
         if (NNS_G2dGetUnpackedPaletteData(graphicFile, paletteData) == FALSE) {
-            Heap_FreeToHeap(graphicFile);
+            Heap_Free(graphicFile);
             return NULL;
         }
     }
@@ -531,7 +532,7 @@ void *PokedexGraphics_GetGraphicNarcCharacterData(PokedexGraphicData *pokedexGra
 
     if (graphicFile != NULL) {
         if (NNS_G2dGetUnpackedBGCharacterData(graphicFile, characterData) == FALSE) {
-            Heap_FreeToHeap(graphicFile);
+            Heap_Free(graphicFile);
             return NULL;
         }
     }
@@ -546,14 +547,13 @@ static void InitBackgrounds(BgConfig *bgConfig, enum HeapId heapID)
         .y = 0,
         .bufferSize = 0x800,
         .baseTile = 0,
-        .screenSize = 1,
+        .screenSize = BG_SCREEN_SIZE_256x256,
         .colorMode = GX_BG_COLORMODE_16,
         .screenBase = GX_BG_SCRBASE_0x0000,
         .charBase = GX_BG_CHARBASE_0x04000,
         .bgExtPltt = GX_BG_EXTPLTT_01,
         .priority = 0,
         .areaOver = 0,
-        .dummy = 0,
         .mosaic = 0
     };
 
@@ -566,14 +566,13 @@ static void InitBackgrounds(BgConfig *bgConfig, enum HeapId heapID)
         .y = 0,
         .bufferSize = 0x800,
         .baseTile = 0,
-        .screenSize = 1,
+        .screenSize = BG_SCREEN_SIZE_256x256,
         .colorMode = GX_BG_COLORMODE_16,
         .screenBase = GX_BG_SCRBASE_0x0800,
         .charBase = GX_BG_CHARBASE_0x0c000,
         .bgExtPltt = GX_BG_EXTPLTT_01,
         .priority = 1,
         .areaOver = 0,
-        .dummy = 0,
         .mosaic = 0
     };
 
@@ -589,14 +588,13 @@ static void InitBackgrounds(BgConfig *bgConfig, enum HeapId heapID)
         .y = 0,
         .bufferSize = 0x800,
         .baseTile = 0,
-        .screenSize = 1,
+        .screenSize = BG_SCREEN_SIZE_256x256,
         .colorMode = GX_BG_COLORMODE_16,
         .screenBase = GX_BG_SCRBASE_0x1000,
         .charBase = GX_BG_CHARBASE_0x14000,
         .bgExtPltt = GX_BG_EXTPLTT_01,
         .priority = 3,
         .areaOver = 0,
-        .dummy = 0,
         .mosaic = 0
     };
 
@@ -609,14 +607,13 @@ static void InitBackgrounds(BgConfig *bgConfig, enum HeapId heapID)
         .y = 0,
         .bufferSize = 0x800,
         .baseTile = 0,
-        .screenSize = 1,
+        .screenSize = BG_SCREEN_SIZE_256x256,
         .colorMode = GX_BG_COLORMODE_16,
         .screenBase = GX_BG_SCRBASE_0x0000,
         .charBase = GX_BG_CHARBASE_0x04000,
         .bgExtPltt = GX_BG_EXTPLTT_01,
         .priority = 0,
         .areaOver = 0,
-        .dummy = 0,
         .mosaic = 0
     };
 
@@ -629,14 +626,13 @@ static void InitBackgrounds(BgConfig *bgConfig, enum HeapId heapID)
         .y = 0,
         .bufferSize = 0x800,
         .baseTile = 0,
-        .screenSize = 1,
+        .screenSize = BG_SCREEN_SIZE_256x256,
         .colorMode = GX_BG_COLORMODE_16,
         .screenBase = GX_BG_SCRBASE_0x1000,
         .charBase = GX_BG_CHARBASE_0x08000,
         .bgExtPltt = GX_BG_EXTPLTT_01,
         .priority = 2,
         .areaOver = 0,
-        .dummy = 0,
         .mosaic = 0
     };
 
@@ -649,14 +645,13 @@ static void InitBackgrounds(BgConfig *bgConfig, enum HeapId heapID)
         .y = 0,
         .bufferSize = 0x400,
         .baseTile = 0,
-        .screenSize = 1,
+        .screenSize = BG_SCREEN_SIZE_256x256,
         .colorMode = GX_BG_COLORMODE_256,
         .screenBase = GX_BG_SCRBASE_0x0800,
         .charBase = GX_BG_CHARBASE_0x10000,
         .bgExtPltt = GX_BG_EXTPLTT_01,
         .priority = 1,
         .areaOver = 0,
-        .dummy = 0,
         .mosaic = 0
     };
 

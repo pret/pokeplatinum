@@ -23,7 +23,7 @@ PokedexPanelData *PokedexPanel_Alloc(enum HeapId heapID)
 
 void PokedexPanel_Free(PokedexPanelData *pokedexPanelData)
 {
-    Heap_FreeToHeap(pokedexPanelData);
+    Heap_Free(pokedexPanelData);
 }
 
 void PokedexPanel_New(PokedexPanelData *pokedexPanelData, const PokedexCursorData *pokedexCursorData, int numCols, int numRows)

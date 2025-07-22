@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV23_0224F294_H
 #define POKEPLATINUM_OV23_0224F294_H
 
-#include "struct_defs/underground_data.h"
+#include "struct_defs/underground.h"
 
 #include "field/field_system_decl.h"
 #include "overlay023/funcptr_ov23_0224F758.h"
@@ -10,7 +10,7 @@
 #include "list_menu.h"
 #include "sys_task_manager.h"
 
-void ov23_0224F588(UndergroundData *param0);
+void ov23_0224F588(Underground *underground);
 void ov23_0224F5B8(void);
 int ov23_0224F5F0(int param0, void *param1);
 int ov23_0224F61C(int param0, void *param1);
@@ -19,8 +19,8 @@ int ov23_0224F66C(int param0, void *param1);
 int ov23_0224F684(int param0, void *param1);
 int ov23_0224F69C(int param0, void *param1);
 int ov23_0224F6C8(int param0, void *param1);
-BOOL ov23_0224F6E0(int param0, int param1);
-BOOL ov23_0224F710(int param0);
+BOOL Underground_TryAddSphere2(int sphereID, int sphereSize);
+BOOL Underground_TryAddTreasure2(int treasureID);
 BOOL ov23_0224F730(int param0);
 BOOL ov23_0224F744(int param0);
 void ov23_0224F758(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSystem);

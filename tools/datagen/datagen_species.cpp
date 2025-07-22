@@ -286,11 +286,10 @@ static u16 TryParseOffspring(rapidjson::Document &root, u16 personalValue)
     return LookupConst(root["offspring"].GetString(), Species);
 }
 
-
 static void PackOffspring(std::vector<u16> offspringData, fs::path path)
 {
     std::ofstream ofs(path);
-    ofs.write(reinterpret_cast<char*>(&offspringData[0]), offspringData.size() * sizeof(u16));
+    ofs.write(reinterpret_cast<char *>(&offspringData[0]), offspringData.size() * sizeof(u16));
 }
 
 static std::vector<Move> EmitTutorableMoves(fs::path &tutorSchemaFname, fs::path outFname)

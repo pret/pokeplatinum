@@ -101,7 +101,7 @@ Static main
 	Object main.nef.p/src_unk_0202414C.c.o
 	Object main.nef.p/src_unk_0202419C.c.o
 	Object main.nef.p/src_hardware_palette.c.o
-	Object main.nef.p/src_unk_02024220.c.o
+	Object main.nef.p/src_g3d_pipeline.c.o
 	Object main.nef.p/src_boot.c.o
 	Object main.nef.p/src_savedata_save_table.c.o
 	Object main.nef.p/src_savedata.c.o
@@ -116,7 +116,7 @@ Static main
 	Object main.nef.p/src_game_options.c.o
 	Object main.nef.p/src_berry_patches.c.o
 	Object main.nef.p/src_persisted_map_features.c.o
-	Object main.nef.p/src_unk_02027F84.c.o
+	Object main.nef.p/src_pal_pad.c.o
 	Object main.nef.p/src_mail.c.o
 	Object main.nef.p/src_unk_0202854C.c.o
 	Object main.nef.p/src_unk_020298BC.c.o
@@ -125,7 +125,7 @@ Static main
 	Object main.nef.p/src_record_mixed_rng.c.o
 	Object main.nef.p/src_coins.c.o
 	Object main.nef.p/src_journal.c.o
-	Object main.nef.p/src_unk_0202C7FC.c.o
+	Object main.nef.p/src_trainer_card_save_data.c.o
 	Object main.nef.p/src_unk_0202C858.c.o
 	Object main.nef.p/src_unk_0202C9F4.c.o
 	Object main.nef.p/src_play_time.c.o
@@ -283,7 +283,7 @@ Static main
 	Object main.nef.p/src_platform_lift.c.o
 	Object main.nef.p/src_persisted_map_features_init.c.o
 	Object main.nef.p/src_map_header_util.c.o
-	Object main.nef.p/src_unk_02071D40.c.o
+	Object main.nef.p/src_trainer_card.c.o
 	Object main.nef.p/src_unk_020722AC.c.o
 	Object main.nef.p/src_unk_02073700.c.o
 	Object main.nef.p/src_unk_02073838.c.o
@@ -343,7 +343,7 @@ Static main
 	Object main.nef.p/src_pokedex_language.c.o
 	Object main.nef.p/src_pokedex_heightweight.c.o
 	Object main.nef.p/src_pokedex_data_index.c.o
-	Object main.nef.p/src_unk_020F6824.c.o
+	Object main.nef.p/src_rowan_intro_app_template.c.o
 	Object main.nef.p/src_unk_020989DC.c.o
 	Object main.nef.p/src_unk_02098FFC.c.o
 	Object main.nef.p/src_unk_02099500.c.o
@@ -633,7 +633,7 @@ Overlay overlay11
 Overlay overlay12
 {
 	After overlay11
-	Object main.nef.p/src_overlay012_ov12_0221FC20.c.o
+	Object main.nef.p/src_overlay012_battle_anim_system.c.o
 	Object main.nef.p/src_overlay012_ov12_022237EC.c.o
 	Object main.nef.p/src_overlay012_ov12_0222389C.c.o
 	Object main.nef.p/src_overlay012_ov12_0222421C.c.o
@@ -749,7 +749,7 @@ Overlay overlay19
 {
 	After main
 	Object main.nef.p/src_overlay019_ov19_021D0D80.c.o
-	Object main.nef.p/src_overlay019_ov19_021D603C.c.o
+	Object main.nef.p/src_overlay019_touch_dial.c.o
 	Object main.nef.p/src_overlay019_ov19_021D61B0.c.o
 	Object main.nef.p/src_overlay019_ov19_021D79F8.c.o
 	Object main.nef.p/src_overlay019_ov19_021D8B54.c.o
@@ -1248,7 +1248,7 @@ Overlay overlay71
 {
 	After overlay12
 	Object main.nef.p/src_overlay071_ov71_0223B140.c.o
-	Object main.nef.p/src_overlay071_ov71_0223C69C.c.o
+	Object main.nef.p/src_overlay071_trainer_card_display_text.c.o
 	Object main.nef.p/src_overlay071_ov71_0223CF0C.c.o
 	Object main.nef.p/src_overlay071_ov71_0223D324.c.o
 }
@@ -1259,11 +1259,11 @@ Overlay overlay72
 	Object main.nef.p/src_overlay072_ov72_0223D7A0.c.o
 }
 
-Overlay overlay73
+Overlay rowan_intro
 {
 	After main
-	Object main.nef.p/src_overlay073_ov73_021D0D80.c.o
-	Object main.nef.p/src_overlay073_ov73_021D3250.c.o
+	Object main.nef.p/src_applications_rowan_intro_rowan_intro_app.c.o
+	Object main.nef.p/src_applications_rowan_intro_tv_app.c.o
 }
 
 Overlay options_menu
@@ -1286,14 +1286,14 @@ Overlay overlay76
 	Object main.nef.p/src_overlay076_ov76_0223D338.c.o
 }
 
-Overlay overlay77
+Overlay game_opening
 {
 	After main
-	Object main.nef.p/src_overlay077_ov77_021D0D80.c.o
-	Object main.nef.p/src_overlay077_ov77_021D25B0.c.o
-	Object main.nef.p/src_overlay077_ov77_021D54B0.c.o
-	Object main.nef.p/src_overlay077_ov77_021D6670.c.o
-	Object main.nef.p/src_overlay077_ov77_021D6C70.c.o
+	Object main.nef.p/src_applications_title_screen.c.o
+	Object main.nef.p/src_game_opening_ov77_021D25B0.c.o
+	Object main.nef.p/src_game_opening_ov77_021D54B0.c.o
+	Object main.nef.p/src_game_opening_ov77_021D6670.c.o
+	Object main.nef.p/src_game_opening_ov77_021D6C70.c.o
 }
 
 Overlay choose_starter
@@ -1470,9 +1470,9 @@ Overlay overlay97
 	Object main.nef.p/src_overlay097_gba_migrator.c.o
 	Object main.nef.p/src_overlay097_ov97_02235D18.c.o
 	Object main.nef.p/src_overlay097_ov97_0223635C.c.o
-	Object main.nef.p/src_overlay097_ov97_02236380.c.o
+	Object main.nef.p/src_overlay097_gba_pokemon.c.o
 	Object main.nef.p/src_overlay097_distribution_cartridge.c.o
-	Object main.nef.p/src_overlay097_ov97_02237694.c.o
+	Object main.nef.p/src_overlay097_main_menu_util.c.o
 	Object main.nef.p/src_overlay097_ov97_02238534.c.o
 	Object main.nef.p/src_overlay097_ov97_02238D74.c.o
 	Object main.nef.p/src_overlay097_gba_convert_string.c.o

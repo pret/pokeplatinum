@@ -1,0 +1,711 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="37978" />
+	<row id="pl_msg_00000634_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hey, there!\nWhat’s up?</language>
+	</row>
+	<row id="pl_msg_00000634_00001" index="1">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000634_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...\nThis person seems to be occupied.</language>
+	</row>
+	<row id="pl_msg_00000634_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">GREET</language>
+	</row>
+	<row id="pl_msg_00000634_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">QUESTION</language>
+	</row>
+	<row id="pl_msg_00000634_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">GIVE GOODS</language>
+	</row>
+	<row id="pl_msg_00000634_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">EXIT</language>
+	</row>
+	<row id="pl_msg_00000634_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’re going to show me your Trainer\nCase?\rI’ll show you my Trainer Case as\nwell!</language>
+	</row>
+	<row id="pl_msg_00000634_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Huh? I can’t seem to find my Trainer\nCase.\rSorry about that!\nMaybe next time.</language>
+	</row>
+	<row id="pl_msg_00000634_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you!\nPlease don’t be a stranger!\r</language>
+	</row>
+	<row id="pl_msg_00000634_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Would you like to do something else?</language>
+	</row>
+	<row id="pl_msg_00000634_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, that’s OK.\nNext time will be fine.</language>
+	</row>
+	<row id="pl_msg_00000634_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Huh? You want to give me your\n{STRVAR_1 25, 2, 0}?</language>
+	</row>
+	<row id="pl_msg_00000634_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thanks, but no.\nI can’t take that from you.\rMaybe another time!</language>
+	</row>
+	<row id="pl_msg_00000634_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you!\rYour {STRVAR_1 25, 2, 0}\nwas given to {STRVAR_1 3, 0, 0}.</language>
+	</row>
+	<row id="pl_msg_00000634_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OK, see you!</language>
+	</row>
+	<row id="pl_msg_00000634_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sorry!\nSomething’s come up!</language>
+	</row>
+	<row id="UndergroundCommon_Text_ItemWasObtained" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 25, 2, 0}\nwas obtained.</language>
+	</row>
+	<row id="pl_msg_00000634_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 25, 3, 0} was\nfound in the ground!\r{STRVAR_1 3, 1, 0} disengaged\nthe {STRVAR_1 25, 3, 0}!</language>
+	</row>
+	<row id="UndergroundCommon_Text_WallIsBulging" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The wall is bulging slightly.\nTry digging into it?</language>
+	</row>
+	<row id="UndergroundCommon_Text_TooBadBagIsFull1" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Too bad!\nYour Bag is full!</language>
+	</row>
+	<row id="UndergroundCommon_Text_TooBadBagIsFull2" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Too bad!\nYour Bag is full!</language>
+	</row>
+	<row id="pl_msg_00000634_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hello!</language>
+	</row>
+	<row id="pl_msg_00000634_00023" index="23">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000634_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’ll let you see my Trainer Case.\rMay I see your Trainer Case?</language>
+	</row>
+	<row id="pl_msg_00000634_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, you’re busy? Sorry to bug you!\nMaybe next time!</language>
+	</row>
+	<row id="pl_msg_00000634_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Glad to have met you,\n{STRVAR_1 3, 0, 0}!</language>
+	</row>
+	<row id="pl_msg_00000634_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">So...</language>
+	</row>
+	<row id="pl_msg_00000634_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, right! You can have this\n{STRVAR_1 25, 2, 0}!\rI’d really like you to have it.</language>
+	</row>
+	<row id="pl_msg_00000634_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh?\nDo you have one already?</language>
+	</row>
+	<row id="pl_msg_00000634_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh? You don’t have room for it in\nyour Bag.\rOK, next time, then!</language>
+	</row>
+	<row id="pl_msg_00000634_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OK, here you go!\nTake care of it!\rYou received {STRVAR_1 3, 0, 0}’s\n{STRVAR_1 25, 2, 0}!</language>
+	</row>
+	<row id="pl_msg_00000634_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OK, see you around!</language>
+	</row>
+	<row id="pl_msg_00000634_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {STRVAR_1 25, 3, 0} was used!</language>
+	</row>
+	<row id="pl_msg_00000634_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Discovered a small cavern!\r</language>
+	</row>
+	<row id="pl_msg_00000634_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Would you like to make your\nSecret Base here?</language>
+	</row>
+	<row id="pl_msg_00000634_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Would you like to move here?</language>
+	</row>
+	<row id="pl_msg_00000634_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Leave the entrance open?\nOr close it so you can decorate?</language>
+	</row>
+	<row id="pl_msg_00000634_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Leave door open</language>
+	</row>
+	<row id="pl_msg_00000634_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Close and decorate</language>
+	</row>
+	<row id="pl_msg_00000634_00040" index="40">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000634_00041" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s your own Secret Base.\nWould you like to go in?</language>
+	</row>
+	<row id="pl_msg_00000634_00042" index="42">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000634_00043" index="43">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000634_00044" index="44">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You entered your own Secret Base.</language>
+	</row>
+	<row id="pl_msg_00000634_00045" index="45">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Discovered a small cavern!\nWould you like to go in?</language>
+	</row>
+	<row id="pl_msg_00000634_00046" index="46">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000634_00047" index="47">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Open the door and exit the\nSecret Base?</language>
+	</row>
+	<row id="pl_msg_00000634_00048" index="48">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">DS Wireless Communications will be\nlaunched.</language>
+	</row>
+	<row id="pl_msg_00000634_00049" index="49">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000634_00050" index="50">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Exit the Secret Base?</language>
+	</row>
+	<row id="pl_msg_00000634_00051" index="51">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s an earthquake!\rEscaped into the corridor\nto avoid danger!</language>
+	</row>
+	<row id="pl_msg_00000634_00052" index="52">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Would you like to return to the\nsurface from where you entered?</language>
+	</row>
+	<row id="pl_msg_00000634_00053" index="53">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000634_00054" index="54">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That can’t be used here!</language>
+	</row>
+	<row id="pl_msg_00000634_00055" index="55">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That can’t be placed there.</language>
+	</row>
+	<row id="pl_msg_00000634_00056" index="56">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Closed up the hole.</language>
+	</row>
+	<row id="pl_msg_00000634_00057" index="57">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Someone is inside your Secret Base.\nYou may not move your base now.</language>
+	</row>
+	<row id="pl_msg_00000634_00058" index="58">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {STRVAR_1 25, 0, 0} {STRVAR_1 51, 1, 0}\nwas buried right in front of you.</language>
+	</row>
+	<row id="pl_msg_00000634_00059" index="59">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Something was already buried in\nthe ground.</language>
+	</row>
+	<row id="pl_msg_00000634_00060" index="60">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You can’t bury anything in a wall.</language>
+	</row>
+	<row id="pl_msg_00000634_00061" index="61">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXX</language>
+	</row>
+	<row id="UndergroundCommon_Text_SomethingPingedInWall" index="62">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Something pinged in the wall!\n{STRVAR_1 50, 0, 0} confirmed!</language>
+	</row>
+	<row id="UndergroundCommon_Text_WallCollapsed" index="63">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The wall collapsed!</language>
+	</row>
+	<row id="UndergroundCommon_Text_EverythingDugUp" index="64">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Everything was dug up!</language>
+	</row>
+	<row id="UndergroundCommon_Text_TooBadBagIsFull3" index="65">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Too bad!\nYour Bag is full!</language>
+	</row>
+	<row id="pl_msg_00000634_00066" index="66">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You can’t return to the surface\nfrom a Secret Base.</language>
+	</row>
+	<row id="pl_msg_00000634_00067" index="67">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This appears to be {STRVAR_1 3, 0, 0}’s\nSecret Base.\rTake the Trainer’s Flag?</language>
+	</row>
+	<row id="pl_msg_00000634_00068" index="68">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Blocked the entrance to decorate\nthe Secret Base.</language>
+	</row>
+	<row id="UndergroundCommon_Text_YouObtainedSphere" index="69">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You obtained {STRVAR_1 25, 2, 0}, size {STRVAR_1 51, 1, 0}!</language>
+	</row>
+	<row id="pl_msg_00000634_00070" index="70">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oops!\n{STRVAR_1 25, 0, 0}!</language>
+	</row>
+	<row id="pl_msg_00000634_00071" index="71">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Helped out {STRVAR_1 3, 0, 0}!</language>
+	</row>
+	<row id="pl_msg_00000634_00072" index="72">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m digging for Treasure right now.\nWant to dig with me?\rThere just might be another dig spot\nclose by...</language>
+	</row>
+	<row id="pl_msg_00000634_00073" index="73">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You can’t put down a Trap inside\na Secret Base.</language>
+	</row>
+	<row id="pl_msg_00000634_00074" index="74">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You can’t drill holes inside\na Secret Base!</language>
+	</row>
+	<row id="pl_msg_00000634_00075" index="75">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Its size grew bigger by {STRVAR_1 51, 0, 0} since\nit was buried!</language>
+	</row>
+	<row id="pl_msg_00000634_00076" index="76">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Blow the Trap away!</language>
+	</row>
+	<row id="pl_msg_00000634_00077" index="77">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Remove the Trap by touch!</language>
+	</row>
+	<row id="pl_msg_00000634_00078" index="78">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Trap was found, but your Bag is\nfull. The Trap was left as is.</language>
+	</row>
+	<row id="pl_msg_00000634_00079" index="79">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {STRVAR_1 25, 0, 0} was placed in\nthe Bag’s {COLOR 2}♈{COLOR 0}ITEMS Pocket.</language>
+	</row>
+	<row id="pl_msg_00000634_00080" index="80">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your Bag is full. The {STRVAR_1 25, 0, 0}\ncouldn’t be put away.</language>
+	</row>
+	<row id="pl_msg_00000634_00081" index="81">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {STRVAR_1 25, 0, 0} was placed in the\nBag’s {COLOR 2}♌{COLOR 0}MEDICINE Pocket.</language>
+	</row>
+	<row id="pl_msg_00000634_00082" index="82">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000634_00083" index="83">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Sphere was found, but your Bag is\nfull. The Sphere was left as is.</language>
+	</row>
+	<row id="pl_msg_00000634_00084" index="84">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You can’t bury a Sphere inside\na Secret Base.</language>
+	</row>
+	<row id="UndergroundCommon_Text_MiningTutorial" index="85">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...\rOh? There is a note tucked inside\nthe Explorer Kit.\r“Digging for Treasure and Spheres!”\rI’ve put a sledgehammer and pickax\nin your Explorer Kit!\rUse them, and you’ll be able to touch\nwalls to dig out all sorts of stuff!\rI’m sure you can dig them out before\nthe wall comes tumbling down!\rYou can do it!\nGood luck, youngster!</language>
+	</row>
+	<row id="pl_msg_00000634_00086" index="86">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I can’t accept anything that\nimportant!</language>
+	</row>
+	<row id="pl_msg_00000634_00087" index="87">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thanks for the offer, but I’ll pass.\nSee you again tomorrow.</language>
+	</row>
+	<row id="pl_msg_00000634_00088" index="88">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...\rThe wall started to crumble.\nIt’s too dangerous to go in.</language>
+	</row>
+	<row id="pl_msg_00000634_00089" index="89">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000634_00090" index="90">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} disengaged the Trap!</language>
+	</row>
+	<row id="pl_msg_00000634_00091" index="91">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 1, 0} has entered.</language>
+	</row>
+	<row id="pl_msg_00000634_00092" index="92">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000634_00093" index="93">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000634_00094" index="94">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000634_00095" index="95">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 25, 2, 0}\nwas obtained!</language>
+	</row>
+	<row id="pl_msg_00000634_00096" index="96">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000634_00097" index="97">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000634_00098" index="98">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} escaped from the Trap.</language>
+	</row>
+	<row id="pl_msg_00000634_00099" index="99">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} triggered a Trap!</language>
+	</row>
+	<row id="pl_msg_00000634_00100" index="100">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} triggered\n{STRVAR_1 3, 1, 0}’s Trap!</language>
+	</row>
+	<row id="pl_msg_00000634_00101" index="101">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000634_00102" index="102">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000634_00103" index="103">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000634_00104" index="104">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} entered\n{STRVAR_1 3, 1, 0}’s Secret Base.</language>
+	</row>
+	<row id="pl_msg_00000634_00105" index="105">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} is digging for Treasure!</language>
+	</row>
+	<row id="pl_msg_00000634_00106" index="106">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000634_00107" index="107">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000634_00108" index="108">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} obtained\n{STRVAR_1 3, 1, 0}’s Flag!</language>
+	</row>
+	<row id="pl_msg_00000634_00109" index="109">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} took back the Flag!</language>
+	</row>
+	<row id="pl_msg_00000634_00110" index="110">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} took\n{STRVAR_1 3, 1, 0}’s Flag!</language>
+	</row>
+	<row id="pl_msg_00000634_00111" index="111">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} talked with\n{STRVAR_1 3, 1, 0}.</language>
+	</row>
+	<row id="pl_msg_00000634_00112" index="112">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} talked with\nsomeone.</language>
+	</row>
+	<row id="pl_msg_00000634_00113" index="113">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000634_00114" index="114">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000634_00115" index="115">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} has left the\nunderground tunnels.</language>
+	</row>
+	<row id="pl_msg_00000634_00116" index="116">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} helped {STRVAR_1 3, 1, 0}!</language>
+	</row>
+	<row id="pl_msg_00000634_00117" index="117">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s an alert from {STRVAR_1 3, 0, 0}!\n“Hello! Nice to meet you!”</language>
+	</row>
+	<row id="pl_msg_00000634_00118" index="118">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s an alert from {STRVAR_1 3, 0, 0}!\n“Good-bye! I’m going back up!”</language>
+	</row>
+	<row id="pl_msg_00000634_00119" index="119">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s an alert from {STRVAR_1 3, 0, 0}!\n“Let’s go to the Union Room!”</language>
+	</row>
+	<row id="pl_msg_00000634_00120" index="120">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s an alert from {STRVAR_1 3, 0, 0}!\n“Please come here!”</language>
+	</row>
+	<row id="pl_msg_00000634_00121" index="121">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TRAPS</language>
+	</row>
+	<row id="pl_msg_00000634_00122" index="122">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">SPHERES</language>
+	</row>
+	<row id="pl_msg_00000634_00123" index="123">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">GOODS</language>
+	</row>
+	<row id="pl_msg_00000634_00124" index="124">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TREASURES</language>
+	</row>
+	<row id="pl_msg_00000634_00125" index="125">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 1, 1, 0}</language>
+	</row>
+	<row id="pl_msg_00000634_00126" index="126">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">GO UP</language>
+	</row>
+	<row id="pl_msg_00000634_00127" index="127">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CLOSE</language>
+	</row>
+	<row id="pl_msg_00000634_00128" index="128">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 8, 2, 0} {STRVAR_1 51, 6, 0}</language>
+	</row>
+	<row id="pl_msg_00000634_00129" index="129">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What would you like to do with\nthis {STRVAR_1 25, 2, 0}?</language>
+	</row>
+	<row id="pl_msg_00000634_00130" index="130">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Threw away the {STRVAR_1 25, 2, 0}.</language>
+	</row>
+	<row id="pl_msg_00000634_00131" index="131">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {STRVAR_1 25, 3, 0} was set in\nthe ground.</language>
+	</row>
+	<row id="pl_msg_00000634_00132" index="132">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TRASH</language>
+	</row>
+	<row id="pl_msg_00000634_00133" index="133">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CANCEL</language>
+	</row>
+	<row id="pl_msg_00000634_00134" index="134">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">BURY</language>
+	</row>
+	<row id="pl_msg_00000634_00135" index="135">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PUT IN BAG</language>
+	</row>
+	<row id="pl_msg_00000634_00136" index="136">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What’s that?\nYou wanted to ask me something?</language>
+	</row>
+	<row id="pl_msg_00000634_00137" index="137">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 29, 5, 0}?\nLet me see...</language>
+	</row>
+	<row id="pl_msg_00000634_00138" index="138">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Yeah, I guess I have an answer.\rWhat would your answer be?</language>
+	</row>
+	<row id="pl_msg_00000634_00139" index="139">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hmm...\nI can’t really decide.\r</language>
+	</row>
+	<row id="pl_msg_00000634_00140" index="140">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, really?\n{STRVAR_1 30, 5, 0}?\rWell, for me...\n{STRVAR_1 30, 6, 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000634_00141" index="141">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, really?\n{STRVAR_1 30, 5, 0}?\rWell, for me...\n{STRVAR_1 30, 6, 0}!\r...Oh!\nIt’s the same answer!\r</language>
+	</row>
+	<row id="pl_msg_00000634_00142" index="142">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I see...</language>
+	</row>
+	<row id="pl_msg_00000634_00143" index="143">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hi, may I ask you a question?\rLet’s see...\r</language>
+	</row>
+	<row id="pl_msg_00000634_00144" index="144">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">How’s this? {STRVAR_1 29, 5, 0}!\nWhat’s your choice?</language>
+	</row>
+	<row id="pl_msg_00000634_00145" index="145">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, don’t worry! You don’t have to\nanswer if you don’t want to.\r</language>
+	</row>
+	<row id="pl_msg_00000634_00146" index="146">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’ve decided?\rWell, let me see...\nIf it were me...</language>
+	</row>
+	<row id="pl_msg_00000634_00147" index="147">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 30, 5, 0} would be\nmy answer, I guess.\rWhat did you choose?\r...\n{STRVAR_1 30, 6, 0}! OK!\r</language>
+	</row>
+	<row id="pl_msg_00000634_00148" index="148">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 30, 5, 0} would be\nmy answer, I guess.\rWhat did you choose?\r...\n{STRVAR_1 30, 6, 0}! OK!\rOh, right.\nIt’s the same as me!\r</language>
+	</row>
+	<row id="pl_msg_00000634_00149" index="149">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I see...</language>
+	</row>
+	<row id="pl_msg_00000634_00150" index="150">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thanks for answering!\rI hope to see you around!\r</language>
+	</row>
+	<row id="pl_msg_00000634_00151" index="151">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000634_00152" index="152">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000634_00153" index="153">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000634_00154" index="154">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000634_00155" index="155">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pardon me?\nYou wanted to ask me something?</language>
+	</row>
+	<row id="pl_msg_00000634_00156" index="156">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 29, 5, 0}?\nWell, let me think...</language>
+	</row>
+	<row id="pl_msg_00000634_00157" index="157">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Yes, I’ve decided!\rIf it were you, what would you\nchoose?</language>
+	</row>
+	<row id="pl_msg_00000634_00158" index="158">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I don’t know...\nI can’t really decide.\r</language>
+	</row>
+	<row id="pl_msg_00000634_00159" index="159">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Is that right?\n{STRVAR_1 30, 5, 0}?\rMy answer would be...\n{STRVAR_1 30, 6, 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000634_00160" index="160">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Is that right?\n{STRVAR_1 30, 5, 0}?\rMy answer would be...\n{STRVAR_1 30, 6, 0}!\r...Oh!\nIt’s the same answer!\r</language>
+	</row>
+	<row id="pl_msg_00000634_00161" index="161">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I see...</language>
+	</row>
+	<row id="pl_msg_00000634_00162" index="162">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hi, may I ask you a question?\rLet’s see...\r</language>
+	</row>
+	<row id="pl_msg_00000634_00163" index="163">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">How’s this? {STRVAR_1 29, 5, 0}!\nWhat’s your choice out of these?</language>
+	</row>
+	<row id="pl_msg_00000634_00164" index="164">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Not to worry! You don’t have to\nanswer if you don’t want to.\r</language>
+	</row>
+	<row id="pl_msg_00000634_00165" index="165">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’ve decided?\rWell, let me think...\nIf it were me...</language>
+	</row>
+	<row id="pl_msg_00000634_00166" index="166">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 30, 5, 0}, maybe?\rWhat did you choose?\r...\n{STRVAR_1 30, 6, 0}! OK!\r</language>
+	</row>
+	<row id="pl_msg_00000634_00167" index="167">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 30, 5, 0}, maybe?\rWhat did you choose?\r...\n{STRVAR_1 30, 6, 0}! OK!\rOh, right.\nIt’s the same as me!\r</language>
+	</row>
+	<row id="pl_msg_00000634_00168" index="168">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I see...</language>
+	</row>
+	<row id="pl_msg_00000634_00169" index="169">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thanks for answering!\rI hope to see you around!\r</language>
+	</row>
+</body>

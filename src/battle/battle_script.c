@@ -3907,7 +3907,7 @@ static u32 BattleScript_CalcPrizeMoney(BattleSystem *battleSys, BattleContext *b
         prize = lastLevel * 4 * battleCtx->prizeMoneyMul * sTrainerClassPrizeMul[trainer.header.trainerType];
     }
 
-    Heap_FreeToHeap(rawParty);
+    Heap_Free(rawParty);
     return prize;
 }
 
@@ -10222,7 +10222,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
             BattleScript_FreePartyLevelUpIcon(data->battleSys, data);
         }
 
-        Heap_FreeToHeap(data->battleCtx->tmpData);
+        Heap_Free(data->battleCtx->tmpData);
         data->seqNum = 15;
         break;
     }
@@ -10422,7 +10422,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
 
     case SEQ_GET_EXP_DONE:
         data->battleCtx->taskData = NULL;
-        Heap_FreeToHeap(inData);
+        Heap_Free(inData);
         SysTask_Done(task);
         break;
     }
@@ -10856,8 +10856,8 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
             {
                 UnkStruct_0208737C *v16;
 
-                SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
-                SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+                SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
+                SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
 
                 v3 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
                 v16 = sub_0208712C(HEAP_ID_BATTLE, 1, Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL), 10, BattleSystem_GetOptions(v2->battleSys));
@@ -10872,7 +10872,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 v16->unk_08 = Pokemon_GetValue(v3, MON_DATA_FORM, NULL);
                 v16->pcBoxes = BattleSystem_PCBoxes(v2->battleSys);
                 v16->unk_10 = Pokemon_GetValue(v3, MON_DATA_GENDER, NULL);
-                v2->tmpPtr[0] = ApplicationManager_New(&Unk_020F2DAC, v16, 5);
+                v2->tmpPtr[0] = ApplicationManager_New(&Unk_020F2DAC, v16, HEAP_ID_BATTLE);
                 v2->seqNum = 21;
 
                 ov16_0223F414(v2->battleSys);
@@ -11042,7 +11042,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
         if (Text_IsPrinterActive(v2->tmpData[0]) == 0) {
             if (--v2->tmpData[1] == 0) {
                 v2->battleCtx->taskData = NULL;
-                Heap_FreeToHeap(param1);
+                Heap_Free(param1);
                 SysTask_Done(param0);
             }
         }
@@ -11075,7 +11075,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
         if (Text_IsPrinterActive(v2->tmpData[0]) == 0) {
             if (--v2->tmpData[1] == 0) {
                 v2->battleCtx->taskData = NULL;
-                Heap_FreeToHeap(param1);
+                Heap_Free(param1);
                 SysTask_Done(param0);
             }
         }
@@ -11090,7 +11090,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
             v2->battleSys->resultMask = 0x4;
             v2->battleCtx->taskData = NULL;
 
-            Heap_FreeToHeap(param1);
+            Heap_Free(param1);
             SysTask_Done(param0);
         }
         break;

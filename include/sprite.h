@@ -5,10 +5,8 @@
 #include <nitro/gx.h>
 #include <nnsys.h>
 
+#include "constants/graphics.h"
 #include "constants/heap.h"
-
-#define SPRITE_ANIM_SIZE 29
-#define MAX_SPRITES      128
 
 enum CellAnimType {
     CELL_ANIM_TYPE_NONE = 0,

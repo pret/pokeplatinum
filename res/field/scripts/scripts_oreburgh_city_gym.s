@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/oreburgh_city_gym.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _011F

@@ -2,7 +2,6 @@
 #include "res/text/bank/sunyshore_market.h"
 #include "generated/ribbons.h"
 
-    .data
 
     ScriptEntry _001A
     ScriptEntry _0096
