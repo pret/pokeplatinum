@@ -27,7 +27,7 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_DoubleTeam,
     BattleAnimScriptFunc_QuickAttack,
     BattleAnimScriptFunc_DrillPeck,
-    ov12_02227534,
+    BattleAnimScriptFunc_Submission,
     ov12_022300C4,
     ov12_022303D0,
     ov12_0222B9E0,

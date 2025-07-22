@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 #include "constants/battle.h"
+#include "constants/battle/battle_anim.h"
 
 #include "overlay012/battle_anim_system.h"
 #include "overlay012/ov12_02225864.h"
@@ -66,13 +67,20 @@ typedef struct RotateMonContext {
     s16 centerY;
 } RotateMonContext;
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    XYTransformContext unk_04;
-    PokemonSprite *unk_28;
-    s16 unk_2C;
-    s16 unk_2E;
-} UnkStruct_ov12_022274E4;
+// -------------------------------------------------------------------
+// Submission
+// -------------------------------------------------------------------
+typedef struct SubmissionContext {
+    BattleAnimSystem *battleAnimSys;
+    XYTransformContext rev;
+    PokemonSprite *sprite;
+    s16 baseX;
+    s16 baseY;
+} SubmissionContext;
+
+#define SUBMISSION_VAR_NUM_REVS       0
+#define SUBMISSION_VAR_FRAMES_PER_REV 1
+#define SUBMISSION_VAR_TARGET_BATTLER 2
 
 typedef struct {
     BattleAnimSystem *unk_00;
@@ -887,51 +895,54 @@ void BattleAnimScriptFunc_RotateMon(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->system, BattleAnimTask_RotateMon, ctx);
 }
 
-static void ov12_022274E4(SysTask *param0, void *param1)
+static void BattleAnimTask_Submission(SysTask *task, void *param)
 {
-    UnkStruct_ov12_022274E4 *v0 = param1;
+    SubmissionContext *ctx = param;
 
-    if (RevolutionContext_UpdateAndApply(&v0->unk_04, v0->unk_2C, v0->unk_2E, v0->unk_28) == 0) {
-        PokemonSprite_SetAttribute(v0->unk_28, MON_SPRITE_X_CENTER, v0->unk_2C);
-        PokemonSprite_SetAttribute(v0->unk_28, MON_SPRITE_Y_CENTER, v0->unk_2E + ((-8 * FX32_ONE) >> FX32_SHIFT));
-        PokemonSprite_SetAttribute(v0->unk_28, MON_SPRITE_ROTATION_Z, 0);
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
-        Heap_Free(v0);
+    if (RevolutionContext_UpdateAndApply(&ctx->rev, ctx->baseX, ctx->baseY, ctx->sprite) == FALSE) {
+        PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_X_CENTER, ctx->baseX);
+        PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_Y_CENTER, ctx->baseY + (REVOLUTION_CONTEXT_OVAL_RADIUS_Y >> FX32_SHIFT));
+        PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_ROTATION_Z, 0);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
     }
 }
 
-void ov12_02227534(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_Submission(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_022274E4 *v0 = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_022274E4));
-    v0->unk_00 = param0;
+    SubmissionContext *ctx = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(system), sizeof(SubmissionContext));
+    ctx->battleAnimSys = system;
 
-    RevolutionContext_InitOvalRevolutions(&v0->unk_04, BattleAnimSystem_GetScriptVar(param0, 0), BattleAnimSystem_GetScriptVar(param0, 1));
+    RevolutionContext_InitOvalRevolutions(
+        &ctx->rev,
+        BattleAnimSystem_GetScriptVar(system, SUBMISSION_VAR_NUM_REVS),
+        BattleAnimSystem_GetScriptVar(system, SUBMISSION_VAR_FRAMES_PER_REV));
 
-    switch (BattleAnimSystem_GetScriptVar(param0, 2)) {
-    case 0x2:
-        v0->unk_28 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetAttacker(param0));
-        v0->unk_04.data[2] *= -1;
+    switch (BattleAnimSystem_GetScriptVar(system, SUBMISSION_VAR_TARGET_BATTLER)) {
+    case BATTLE_ANIM_ATTACKER:
+        ctx->sprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(system));
+        ctx->rev.data[XY_PARAM_REV_RADIUS_X] *= -1;
         break;
-    case 0x4:
-        v0->unk_28 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimUtil_GetAlliedBattlerType(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00)));
-        v0->unk_04.data[2] *= -1;
+    case BATTLE_ANIM_ATTACKER_PARTNER:
+        ctx->sprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimUtil_GetAlliedBattlerType(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys)));
+        ctx->rev.data[XY_PARAM_REV_RADIUS_X] *= -1;
         break;
-    case 0x8:
-        v0->unk_28 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetDefender(param0));
+    case BATTLE_ANIM_DEFENDER:
+        ctx->sprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetDefender(system));
         break;
-    case 0x10:
-        v0->unk_28 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimUtil_GetAlliedBattlerType(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00)));
+    case BATTLE_ANIM_DEFENDER_PARTNER:
+        ctx->sprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimUtil_GetAlliedBattlerType(ctx->battleAnimSys, BattleAnimSystem_GetDefender(ctx->battleAnimSys)));
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
-    v0->unk_2C = PokemonSprite_GetAttribute(v0->unk_28, MON_SPRITE_X_CENTER);
-    v0->unk_2E = PokemonSprite_GetAttribute(v0->unk_28, MON_SPRITE_Y_CENTER);
-    v0->unk_2E -= (-8 * FX32_ONE) >> FX32_SHIFT;
+    ctx->baseX = PokemonSprite_GetAttribute(ctx->sprite, MON_SPRITE_X_CENTER);
+    ctx->baseY = PokemonSprite_GetAttribute(ctx->sprite, MON_SPRITE_Y_CENTER);
+    ctx->baseY -= REVOLUTION_CONTEXT_OVAL_RADIUS_Y >> FX32_SHIFT;
 
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_022274E4, v0);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Submission, ctx);
 }
 
 static void ov12_02227620(UnkStruct_ov12_02227620 *param0, s16 param1, s16 param2)
