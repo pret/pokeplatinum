@@ -95,7 +95,7 @@ typedef struct BallRotation {
     BOOL unk_28;
     SpriteManager *unk_2C;
     ManagedSprite *unk_30;
-    AngleLerpContext unk_34;
+    ValueLerpContext unk_34;
     XYTransformContext unk_48[2];
     BallThrow unk_90;
     UnkStruct_ov12_02237C54_sub1 unk_B8;
@@ -1900,9 +1900,9 @@ static BOOL ov12_02237608(BallRotation *param0)
     switch (param0->unk_08) {
     case 0: {
         if (param0->unk_10 == 0) {
-            AngleLerpContext_Init(&param0->unk_34, -((45 * 0xffff) / 360), +((45 * 0xffff) / 360), 10);
+            ValueLerpContext_Init(&param0->unk_34, -((45 * 0xffff) / 360), +((45 * 0xffff) / 360), 10);
         } else {
-            AngleLerpContext_Init(&param0->unk_34, +((45 * 0xffff) / 360), -((45 * 0xffff) / 360), 10);
+            ValueLerpContext_Init(&param0->unk_34, +((45 * 0xffff) / 360), -((45 * 0xffff) / 360), 10);
         }
 
         param0->unk_10 ^= 1;
@@ -1910,9 +1910,9 @@ static BOOL ov12_02237608(BallRotation *param0)
         param0->unk_08++;
         break;
     case 1:
-        ManagedSprite_SetAffineZRotation(param0->unk_30, param0->unk_34.angle);
+        ManagedSprite_SetAffineZRotation(param0->unk_30, param0->unk_34.value);
 
-        if (AngleLerpContext_Update(&param0->unk_34) == 0) {
+        if (ValueLerpContext_Update(&param0->unk_34) == 0) {
             if (param0->unk_0C >= 1) {
                 param0->unk_08++;
             } else {

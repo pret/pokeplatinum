@@ -59,7 +59,7 @@ typedef struct RotateMonContext {
     u8 state;
     BattleAnimSystem *system;
     PokemonSprite *sprite;
-    AngleLerpContext lerpCtx;
+    ValueLerpContext lerpCtx;
     s32 start;
     int steps;
     s16 centerX;
@@ -352,7 +352,7 @@ typedef struct {
     UnkStruct_ov12_0223595C unk_3C;
     UnkStruct_ov12_02235998 unk_58[4];
     XYTransformContext unk_A8[2];
-    AngleLerpContext unk_F0;
+    ValueLerpContext unk_F0;
 } UnkStruct_ov12_02229980;
 
 typedef struct {
@@ -385,14 +385,14 @@ typedef struct {
 typedef struct {
     UnkStruct_ov12_0223595C unk_00;
     ManagedSprite *unk_1C;
-    AngleLerpContext unk_20;
+    ValueLerpContext unk_20;
     int unk_34;
 } UnkStruct_ov12_0222A1F478;
 
 typedef struct {
     UnkStruct_ov12_0223595C unk_00;
     ManagedSprite *unk_1C;
-    AngleLerpContext unk_20;
+    ValueLerpContext unk_20;
 } UnkStruct_ov12_0222A3DC;
 
 typedef struct {
@@ -833,10 +833,10 @@ static void BattleAnimTask_RotateMon(SysTask *task, void *param)
     switch (ctx->state) {
     case 0:
     case 1:
-        if (AngleLerpContext_Update(&ctx->lerpCtx) == TRUE) {
-            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_ROTATION_Z, (u16)ctx->lerpCtx.angle);
+        if (ValueLerpContext_Update(&ctx->lerpCtx) == TRUE) {
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_ROTATION_Z, (u16)ctx->lerpCtx.value);
         } else {
-            AngleLerpContext_Init(&ctx->lerpCtx, ctx->lerpCtx.angle, ctx->start, ctx->steps);
+            ValueLerpContext_Init(&ctx->lerpCtx, ctx->lerpCtx.value, ctx->start, ctx->steps);
             ctx->state++;
         }
         break;
@@ -868,7 +868,7 @@ void BattleAnimScriptFunc_RotateMon(BattleAnimSystem *system)
         battler = BattleAnimSystem_GetAttacker(ctx->system);
     }
 
-    AngleLerpContext_Init(&ctx->lerpCtx, ctx->start, BattleAnimSystem_GetScriptVar(system, 1), ctx->steps);
+    ValueLerpContext_Init(&ctx->lerpCtx, ctx->start, BattleAnimSystem_GetScriptVar(system, 1), ctx->steps);
 
     // Adjust step direction
     int dir = BattleAnimUtil_GetTransformDirection(system, battler);
@@ -2919,9 +2919,9 @@ void ov12_02229B28(BattleAnimSystem *param0)
     PosLerpContext_Init(&v3->unk_A8[0], v1.x / 172, (v2.x / 172) + (v3->unk_0C.unk_00 * v0), v1.y / 172, (v2.y / 172) + (v3->unk_0C.unk_02 * v0), v3->unk_06);
 
     if (v0 > 0) {
-        AngleLerpContext_Init(&v3->unk_F0, ((20 * 0xffff) / 360) * v0, ((130 * 0xffff) / 360) * v0, 10);
+        ValueLerpContext_Init(&v3->unk_F0, ((20 * 0xffff) / 360) * v0, ((130 * 0xffff) / 360) * v0, 10);
     } else {
-        AngleLerpContext_Init(&v3->unk_F0, ((90 * 0xffff) / 360) * v0, ((130 * 0xffff) / 360) * v0, 10);
+        ValueLerpContext_Init(&v3->unk_F0, ((90 * 0xffff) / 360) * v0, ((130 * 0xffff) / 360) * v0, 10);
     }
 
     {
@@ -3055,9 +3055,9 @@ void ov12_02229E54(BattleAnimSystem *param0)
     ov12_02225C98(&v3->unk_A8[0], &v3->unk_A8[1], v1.x / 172, (v2.x / 172) + (v3->unk_0C.unk_00 * v0), v1.y / 172, (v2.y / 172) + (v3->unk_0C.unk_02 * v0), v3->unk_06, v3->unk_08 * -FX32_ONE);
 
     if (v0 > 0) {
-        AngleLerpContext_Init(&v3->unk_F0, ((20 * 0xffff) / 360) * v0, ((130 * 0xffff) / 360) * v0, 10);
+        ValueLerpContext_Init(&v3->unk_F0, ((20 * 0xffff) / 360) * v0, ((130 * 0xffff) / 360) * v0, 10);
     } else {
-        AngleLerpContext_Init(&v3->unk_F0, ((90 * 0xffff) / 360) * v0, ((130 * 0xffff) / 360) * v0, 10);
+        ValueLerpContext_Init(&v3->unk_F0, ((90 * 0xffff) / 360) * v0, ((130 * 0xffff) / 360) * v0, 10);
     }
 
     {
@@ -3258,15 +3258,15 @@ static void ov12_0222A1F4(SysTask *param0, void *param1)
             ManagedSprite_OffsetPositionXY(v0->unk_1C, v1, 0);
         } else {
             ManagedSprite_SetAffineOverwriteMode(v0->unk_1C, AFFINE_OVERWRITE_MODE_DOUBLE);
-            AngleLerpContext_Init(&v0->unk_20, 0, +((20 * 0xffff) / 360), 4);
+            ValueLerpContext_Init(&v0->unk_20, 0, +((20 * 0xffff) / 360), 4);
             ManagedSprite_SetAffineTranslation(v0->unk_1C, -8, 16);
             v0->unk_34 = 0;
             v0->unk_00.unk_00++;
         }
     } break;
     case 1: {
-        if (AngleLerpContext_Update(&v0->unk_20) == 1) {
-            ManagedSprite_SetAffineZRotation(v0->unk_1C, v0->unk_20.angle);
+        if (ValueLerpContext_Update(&v0->unk_20) == 1) {
+            ManagedSprite_SetAffineZRotation(v0->unk_1C, v0->unk_20.value);
         } else {
             if (v0->unk_34 > 5) {
                 v0->unk_00.unk_00++;
@@ -3275,19 +3275,19 @@ static void ov12_0222A1F4(SysTask *param0, void *param1)
 
                 switch (v0->unk_34) {
                 case 1:
-                    AngleLerpContext_Init(&v0->unk_20, +((20 * 0xffff) / 360), -((20 * 0xffff) / 360), 4);
+                    ValueLerpContext_Init(&v0->unk_20, +((20 * 0xffff) / 360), -((20 * 0xffff) / 360), 4);
                     break;
                 case 2:
-                    AngleLerpContext_Init(&v0->unk_20, -((20 * 0xffff) / 360), +((20 * 0xffff) / 360), 4);
+                    ValueLerpContext_Init(&v0->unk_20, -((20 * 0xffff) / 360), +((20 * 0xffff) / 360), 4);
                     break;
                 case 3:
-                    AngleLerpContext_Init(&v0->unk_20, +((20 * 0xffff) / 360), -((20 * 0xffff) / 360), 4);
+                    ValueLerpContext_Init(&v0->unk_20, +((20 * 0xffff) / 360), -((20 * 0xffff) / 360), 4);
                     break;
                 case 4:
-                    AngleLerpContext_Init(&v0->unk_20, -((20 * 0xffff) / 360), +((20 * 0xffff) / 360), 4);
+                    ValueLerpContext_Init(&v0->unk_20, -((20 * 0xffff) / 360), +((20 * 0xffff) / 360), 4);
                     break;
                 case 5:
-                    AngleLerpContext_Init(&v0->unk_20, +((20 * 0xffff) / 360), 0, 4 / 2);
+                    ValueLerpContext_Init(&v0->unk_20, +((20 * 0xffff) / 360), 0, 4 / 2);
                     break;
                 }
             }
