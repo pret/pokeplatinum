@@ -9,7 +9,6 @@
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/ov12_02235254.h"
 #include "overlay012/ov12_02225864.h"
-#include "overlay012/struct_ov12_0222660C_decl.h"
 #include "overlay012/struct_ov12_022267D4_decl.h"
 #include "overlay012/struct_ov12_0222C7E0_sub1.h"
 #include "overlay012/struct_ov12_02235350.h"
@@ -151,7 +150,7 @@ typedef struct {
 typedef struct {
     BattleAnimSystem *unk_00;
     SpriteManager *unk_04;
-    UnkStruct_ov12_02226454 unk_08;
+    AlphaFadeContext unk_08;
 } UnkStruct_ov12_0222813C;
 
 typedef struct {
@@ -428,7 +427,7 @@ typedef struct {
     int unk_00;
     int unk_04;
     UnkStruct_ov12_0223595C unk_08;
-    UnkStruct_ov12_0222660C *unk_24;
+    BgScrollContext *unk_24;
 } UnkStruct_ov12_0222ABBC;
 
 static int ov12_02229454(BattleAnimSystem *param0, int param1);
@@ -1567,7 +1566,7 @@ static void ov12_0222813C(SysTask *param0, void *param1)
 {
     UnkStruct_ov12_0222813C *v0 = param1;
 
-    if (ov12_02226454(&v0->unk_08)) {
+    if (AlphaFadeContext_IsDone(&v0->unk_08)) {
         Heap_Free(v0);
         BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
     } else {
@@ -1602,7 +1601,7 @@ void ov12_02228168(BattleAnimSystem *param0)
     v5 = BattleAnimSystem_GetScriptVar(param0, 3);
 
     BattleAnimUtil_SetEffectBgBlending(v0->unk_00, v4, v5);
-    ov12_02226424(&v0->unk_08, v4, BattleAnimSystem_GetScriptVar(param0, 2), v5, BattleAnimSystem_GetScriptVar(param0, 4), BattleAnimSystem_GetScriptVar(param0, 5));
+    AlphaFadeContext_Init(&v0->unk_08, v4, BattleAnimSystem_GetScriptVar(param0, 2), v5, BattleAnimSystem_GetScriptVar(param0, 4), BattleAnimSystem_GetScriptVar(param0, 5));
     BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_0222813C, v0);
 }
 
@@ -3769,7 +3768,7 @@ static void ov12_0222ABBC(SysTask *param0, void *param1)
     switch (v0->unk_08.unk_00) {
     case 0:
         v0->unk_00 = 0;
-        v0->unk_24 = ov12_0222662C(0, 160, (1 * 0xffff) / 360, 32 * FX32_ONE, 2 * 100, BattleAnimSystem_GetBgID(v0->unk_08.battleAnimSystem, 2), 0, ov12_022266E8(0, 0), BattleAnimSystem_GetHeapID(v0->unk_08.battleAnimSystem));
+        v0->unk_24 = BgScrollContext_New(0, 160, (1 * 0xffff) / 360, 32 * FX32_ONE, 2 * 100, BattleAnimSystem_GetBgID(v0->unk_08.battleAnimSystem, 2), 0, BattleAnimUtil_MakeBgOffsetValue(0, 0), BattleAnimSystem_GetHeapID(v0->unk_08.battleAnimSystem));
         v0->unk_08.unk_00++;
         break;
     case 1:
@@ -3779,7 +3778,7 @@ static void ov12_0222ABBC(SysTask *param0, void *param1)
             break;
         }
 
-        ov12_0222669C(v0->unk_24);
+        BgScrollContext_Free(v0->unk_24);
         v0->unk_08.unk_00++;
     default:
         BattleAnimSystem_EndAnimTask(v0->unk_08.battleAnimSystem, param0);

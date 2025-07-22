@@ -627,21 +627,21 @@ void ov12_02235760(int param0, VecFx32 *param1)
     }
 }
 
-void BattleAnimUtil_SetEffectBgBlending(BattleAnimSystem *system, int blendA, int blendB)
+void BattleAnimUtil_SetEffectBgBlending(BattleAnimSystem *system, int alphaNone, int alphaEffect)
 {
-    if (blendA == -1) {
-        blendA = 26;
+    if (alphaNone == BATTLE_ANIM_DEFAULT_ALPHA) {
+        alphaNone = 26;
     }
 
-    if (blendB == -1) {
-        blendB = 5;
+    if (alphaEffect == BATTLE_ANIM_DEFAULT_ALPHA) {
+        alphaEffect = 5;
     }
 
     G2_SetBlendAlpha(
         GX_BLEND_PLANEMASK_NONE,
         (1 << BattleAnimSystem_GetBgID(system, BATTLE_ANIM_BG_EFFECT)) | GX_BLEND_PLANEMASK_BG0,
-        blendA, 
-        blendB);
+        alphaNone, 
+        alphaEffect);
 }
 
 void ov12_022357BC(BattleAnimSystem *param0, int param1, int param2, int param3)
@@ -649,31 +649,32 @@ void ov12_022357BC(BattleAnimSystem *param0, int param1, int param2, int param3)
     int v0 = param2;
     int v1 = param3;
 
-    if (param2 == 0xffffffff) {
+    if (param2 == BATTLE_ANIM_DEFAULT_ALPHA) {
         v0 = 26;
     }
 
-    if (param3 == 0xffffffff) {
+    if (param3 == BATTLE_ANIM_DEFAULT_ALPHA) {
         v1 = 5;
     }
 
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, param1, v0, v1);
 }
 
-void ov12_022357EC(BattleAnimSystem *param0, int param1, int param2)
+void BattleAnimUtil_SetEffectBaseBgBlending(BattleAnimSystem *system, int alphaBase, int alphaEffect)
 {
-    int v0 = param1;
-    int v1 = param2;
-
-    if (param1 == 0xffffffff) {
-        v0 = 26;
+    if (alphaBase == BATTLE_ANIM_DEFAULT_ALPHA) {
+        alphaBase = 26;
     }
 
-    if (param2 == 0xffffffff) {
-        v1 = 5;
+    if (alphaEffect == BATTLE_ANIM_DEFAULT_ALPHA) {
+        alphaEffect = 5;
     }
 
-    G2_SetBlendAlpha(1 << BattleAnimSystem_GetBgID(param0, 1), (1 << BattleAnimSystem_GetBgID(param0, 2)) | GX_WND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ, v0, v1);
+    G2_SetBlendAlpha(
+        1 << BattleAnimSystem_GetBgID(system, BATTLE_ANIM_BG_BASE),
+        (1 << BattleAnimSystem_GetBgID(system, BATTLE_ANIM_BG_EFFECT)) | GX_WND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ,
+        alphaBase,
+        alphaEffect);
 }
 
 void ov12_02235838(BattleAnimSystem *param0, int param1, BOOL param2)

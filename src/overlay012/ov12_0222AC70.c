@@ -267,7 +267,7 @@ typedef struct {
     ManagedSprite *unk_18;
     XYTransformContext unk_1C;
     XYTransformContext unk_40;
-    UnkStruct_ov12_02226454 unk_64;
+    AlphaFadeContext unk_64;
 } UnkStruct_ov12_0222C678;
 
 typedef struct {
@@ -1592,7 +1592,7 @@ static void ov12_0222C678(SysTask *param0, void *param1)
         }
 
         ShakeContext_Update(&v0->unk_1C);
-        ov12_02226454(&v0->unk_64);
+        AlphaFadeContext_IsDone(&v0->unk_64);
 
         ManagedSprite_SetPositionXY(v0->unk_18, v0->unk_40.x, v0->unk_40.y);
         ManagedSprite_TickFrame(v0->unk_18);
@@ -1637,7 +1637,7 @@ void ov12_0222C6D4(BattleAnimSystem *param0)
     }
 
     ov12_022357BC(v0->unk_0C, (1 << BattleAnimSystem_GetBgID(param0, 2)) | GX_BLEND_PLANEMASK_BD | (1 << BattleAnimSystem_GetBgID(param0, 1)) | GX_WND_PLANEMASK_BG0, 0xffffffff, 0xffffffff);
-    ov12_02226424(&v0->unk_64, 31, 0, 0, 31, 20 - 5);
+    AlphaFadeContext_Init(&v0->unk_64, 31, 0, 0, 31, 20 - 5);
 
     ManagedSprite_SetExplicitOamMode(v0->unk_18, GX_OAM_MODE_XLU);
     BattleAnimSystem_StartAnimTask(v0->unk_0C, ov12_0222C678, v0);

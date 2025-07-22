@@ -18,7 +18,6 @@
 #include "palette.h"
 #include "pltt_transfer.h"
 #include "pokemon_sprite.h"
-#include "screen_scroll_manager.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "sys_task.h"
@@ -30,31 +29,6 @@ typedef struct BattleAnimPosition {
     s16 x;
     s16 y;
 } BattleAnimPosition;
-
-typedef void (*UnkFuncPtr_ov12_02226490)(void *);
-
-typedef struct {
-    SysTask *unk_00;
-    SysTask *unk_04;
-    BOOL unk_08;
-    BOOL unk_0C;
-    UnkFuncPtr_ov12_02226490 unk_10;
-    UnkFuncPtr_ov12_02226490 unk_14;
-    void *unk_18;
-} UnkStruct_ov12_02226490;
-
-typedef struct UnkStruct_ov12_02226504_t {
-    UnkStruct_ov12_02226490 unk_00;
-    BufferManager *bufferManager;
-    u32 unk_20[192];
-    u32 unk_320[192];
-    u32 unk_620;
-} UnkStruct_ov12_02226504;
-
-typedef struct UnkStruct_ov12_0222660C_t {
-    UnkStruct_ov12_02226490 unk_00;
-    ScreenScrollManager *screenScrollMgr;
-} UnkStruct_ov12_0222660C;
 
 typedef struct UnkStruct_ov12_022267D4_t {
     BOOL unk_00;
@@ -799,96 +773,93 @@ void RevolutionContext_InitOvalRevolutions(XYTransformContext *ctx, int revs, in
     ctx->data[0] *= revs;
 }
 
-static void ov12_022263DC(SysTask *param0, void *param1)
+static void AlphaFadeContext_Update(SysTask *task, void *param)
 {
-    BOOL v0;
-    UnkStruct_ov12_02226454 *v1 = param1;
+    AlphaFadeContext *ctx = param;
 
-    v0 = PosLerpContext_Update(&v1->unk_00);
-
-    if (v0 == 0) {
-        v1->unk_24 = 1;
-        SysTask_Done(param0);
+    if (PosLerpContext_Update(&ctx->lerp) == FALSE) {
+        ctx->done = TRUE;
+        SysTask_Done(task);
     } else {
-        if (v1->unk_00.x < 0) {
-            v1->unk_00.x = 0;
+        if (ctx->lerp.x < 0) {
+            ctx->lerp.x = 0;
         }
 
-        if (v1->unk_00.y < 0) {
-            v1->unk_00.y = 0;
+        if (ctx->lerp.y < 0) {
+            ctx->lerp.y = 0;
         }
 
-        G2_ChangeBlendAlpha(v1->unk_00.x, v1->unk_00.y);
+        G2_ChangeBlendAlpha(ctx->lerp.x, ctx->lerp.y);
     }
 }
 
-void ov12_02226424(UnkStruct_ov12_02226454 *param0, s16 param1, s16 param2, s16 param3, s16 param4, int param5)
+void AlphaFadeContext_Init(AlphaFadeContext *ctx, s16 sev1, s16 eev1, s16 sev2, s16 eev2, int steps)
 {
-    PosLerpContext_Init(&param0->unk_00, param1, param2, param3, param4, param5);
+    PosLerpContext_Init(&ctx->lerp, sev1, eev1, sev2, eev2, steps);
 
-    param0->unk_24 = 0;
-    SysTask_Start(ov12_022263DC, param0, 0);
+    ctx->done = FALSE;
+    SysTask_Start(AlphaFadeContext_Update, ctx, 0);
 }
 
-BOOL ov12_02226454(const UnkStruct_ov12_02226454 *param0)
+BOOL AlphaFadeContext_IsDone(const AlphaFadeContext *ctx)
 {
-    return param0->unk_24;
+    return ctx->done;
 }
 
-static void ov12_02226458(SysTask *param0, void *param1)
+static void VBlankDMAController_PostVBlank(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02226490 *v0 = param1;
+    VBlankDMAController *dmaController = param;
 
-    if (v0->unk_08) {
-        v0->unk_0C = 1;
-        v0->unk_10(v0->unk_18);
+    if (dmaController->doDMA) {
+        dmaController->swapBuffers = TRUE;
+        dmaController->dmaFunc(dmaController->param);
     } else {
         BufferManager_StopDMA();
     }
 }
 
-static void ov12_02226474(SysTask *param0, void *param1)
+static void VBlankDMAController_OnVBlank(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02226490 *v0 = param1;
+    VBlankDMAController *dmaController = param;
 
-    if (v0->unk_08 && v0->unk_0C) {
-        v0->unk_14(v0->unk_18);
-        v0->unk_0C = 0;
+    if (dmaController->doDMA && dmaController->swapBuffers) {
+        dmaController->swapBufferFunc(dmaController->param);
+        dmaController->swapBuffers = FALSE;
     }
 }
 
-static void ov12_02226490(UnkStruct_ov12_02226490 *param0, void *param1, UnkFuncPtr_ov12_02226490 param2, UnkFuncPtr_ov12_02226490 param3)
+static void VBlankDMAController_Init(VBlankDMAController *dmaController, void *param, VBlankDMAFunc dmaFunc, VBlankDMAFunc swapBuffersFunc)
 {
-    GF_ASSERT(param0);
+    GF_ASSERT(dmaController);
 
-    param0->unk_08 = 1;
-    param0->unk_0C = 0;
-    param0->unk_18 = param1;
-    param0->unk_10 = param2;
-    param0->unk_14 = param3;
-    param0->unk_04 = SysTask_ExecuteAfterVBlank(ov12_02226458, param0, 0);
-    param0->unk_00 = SysTask_ExecuteOnVBlank(ov12_02226474, param0, 0);
+    dmaController->doDMA = TRUE;
+    dmaController->swapBuffers = FALSE;
+    dmaController->param = param;
+    dmaController->dmaFunc = dmaFunc;
+    dmaController->swapBufferFunc = swapBuffersFunc;
+    dmaController->postVBlankTask = SysTask_ExecuteAfterVBlank(VBlankDMAController_PostVBlank, dmaController, 0);
+    dmaController->onVBlankTask = SysTask_ExecuteOnVBlank(VBlankDMAController_OnVBlank, dmaController, 0);
 }
 
-static void ov12_022264D0(UnkStruct_ov12_02226490 *param0)
+static void VBlankDMAController_Deinit(VBlankDMAController *dmaController)
 {
-    GF_ASSERT(param0);
+    GF_ASSERT(dmaController);
 
-    if (param0->unk_04 != NULL) {
-        SysTask_Done(param0->unk_04);
+    if (dmaController->postVBlankTask != NULL) {
+        SysTask_Done(dmaController->postVBlankTask);
     }
 
-    if (param0->unk_00 != NULL) {
-        SysTask_Done(param0->unk_00);
+    if (dmaController->onVBlankTask != NULL) {
+        SysTask_Done(dmaController->onVBlankTask);
     }
 
     BufferManager_StopDMA();
 }
 
-static void ov12_022264F4(UnkStruct_ov12_02226490 *param0)
+static void VBlankDMAController_DisableDMA(VBlankDMAController *dmaController)
 {
-    GF_ASSERT(param0);
-    param0->unk_08 = 0;
+    GF_ASSERT(dmaController);
+    dmaController->doDMA = FALSE;
 }
 
 static void ov12_02226504(UnkStruct_ov12_02226504 *param0)
@@ -899,9 +870,9 @@ static void ov12_02226504(UnkStruct_ov12_02226504 *param0)
     BufferManager_StartDMA(v0, (void *)param0->unk_620, 4, 1);
 }
 
-static void ov12_02226528(void *param0)
+static void ov12_02226528(void *param)
 {
-    UnkStruct_ov12_02226504 *v0 = param0;
+    UnkStruct_ov12_02226504 *v0 = param;
 
     BufferManager_SwapBuffers(v0->bufferManager);
     ov12_02226504(v0);
@@ -927,7 +898,7 @@ UnkStruct_ov12_02226504 *ov12_02226544(u32 param0, u32 param1, enum HeapId heapI
     MI_CpuFill32(v0->unk_20, param1, sizeof(u32) * 192);
     MI_CpuFill32(v0->unk_320, param1, sizeof(u32) * 192);
 
-    ov12_02226490(&v0->unk_00, v0, ov12_02226528, ov12_0222653C);
+    VBlankDMAController_Init(&v0->unk_00, v0, ov12_02226528, ov12_0222653C);
 
     return v0;
 }
@@ -936,7 +907,7 @@ void ov12_022265C0(UnkStruct_ov12_02226504 *param0)
 {
     GF_ASSERT(param0);
 
-    ov12_022264D0(&param0->unk_00);
+    VBlankDMAController_Deinit(&param0->unk_00);
 
     if (param0->bufferManager != NULL) {
         BufferManager_Delete(param0->bufferManager);
@@ -954,72 +925,67 @@ void *ov12_022265E4(const UnkStruct_ov12_02226504 *param0)
 void ov12_022265F8(UnkStruct_ov12_02226504 *param0)
 {
     GF_ASSERT(param0);
-    ov12_022264F4(&param0->unk_00);
+    VBlankDMAController_DisableDMA(&param0->unk_00);
 }
 
-static void ov12_0222660C(void *param0)
+static void BgScrollContext_SwapBuffers(void *param)
 {
-    UnkStruct_ov12_0222660C *v0 = param0;
+    BgScrollContext *ctx = param;
 
-    ScreenScrollManager_SwapBuffers(v0->screenScrollMgr);
-    ScreenScrollManager_RestartDMA(v0->screenScrollMgr);
+    ScreenScrollManager_SwapBuffers(ctx->screenScrollMgr);
+    ScreenScrollManager_RestartDMA(ctx->screenScrollMgr);
 }
 
-static void ov12_02226620(void *param0)
+static void BgScrollContext_DoDMA(void *param)
 {
-    UnkStruct_ov12_0222660C *v0 = param0;
-    ScreenScrollManager_RestartDMA(v0->screenScrollMgr);
+    BgScrollContext *ctx = param;
+    ScreenScrollManager_RestartDMA(ctx->screenScrollMgr);
 }
 
-UnkStruct_ov12_0222660C *ov12_0222662C(u8 param0, u8 param1, u16 param2, fx32 param3, s16 param4, u32 param5, u32 param6, u32 param7, int heapID)
+BgScrollContext *BgScrollContext_New(u8 startY, u8 endY, u16 angleIncrement, fx32 amplitude, s16 speed, u32 bgID, u32 priority, u32 initValue, enum HeapId heapID)
 {
-    UnkStruct_ov12_0222660C *v0;
-    u32 v1;
-    void *v2;
-    const void *v3;
+    BgScrollContext *ctx = Heap_AllocFromHeap(heapID, sizeof(BgScrollContext));
+    GF_ASSERT(ctx);
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov12_0222660C));
-    GF_ASSERT(v0);
+    memset(ctx, 0, sizeof(BgScrollContext));
 
-    memset(v0, 0, sizeof(UnkStruct_ov12_0222660C));
+    u32 offsetReg = BattleAnimUtil_GetHOffsetRegisterForBg(bgID);
+    ctx->screenScrollMgr = ScreenScrollManager_New(heapID);
 
-    v1 = BattleAnimUtil_GetHOffsetRegisterForBg(param5);
-    v0->screenScrollMgr = ScreenScrollManager_New(heapID);
+    ScreenScrollManager_ScrollX(ctx->screenScrollMgr, startY, endY, angleIncrement, amplitude, speed, offsetReg, initValue, priority);
+    VBlankDMAController_Init(&ctx->dmaController, ctx, BgScrollContext_SwapBuffers, BgScrollContext_DoDMA);
 
-    ScreenScrollManager_ScrollX(v0->screenScrollMgr, param0, param1, param2, param3, param4, v1, param7, param6);
-    ov12_02226490(&v0->unk_00, v0, ov12_0222660C, ov12_02226620);
-
-    return v0;
+    return ctx;
 }
 
-void ov12_0222669C(UnkStruct_ov12_0222660C *param0)
+void BgScrollContext_Free(BgScrollContext *ctx)
 {
-    GF_ASSERT(param0);
+    GF_ASSERT(ctx);
 
-    ov12_022264D0(&param0->unk_00);
+    VBlankDMAController_Deinit(&ctx->dmaController);
 
-    if (param0->screenScrollMgr) {
-        ScreenScrollManager_Delete(param0->screenScrollMgr);
+    if (ctx->screenScrollMgr) {
+        ScreenScrollManager_Delete(ctx->screenScrollMgr);
     }
 
-    Heap_Free(param0);
+    Heap_Free(ctx);
 }
 
-void *ov12_022266C0(const UnkStruct_ov12_0222660C *param0)
+void *BgScrollContext_GetWriteBuffer(const BgScrollContext *ctx)
 {
-    GF_ASSERT(param0);
-    return ScreenScrollManager_GetWriteBuffer(param0->screenScrollMgr);
+    GF_ASSERT(ctx);
+    return ScreenScrollManager_GetWriteBuffer(ctx->screenScrollMgr);
 }
 
-void ov12_022266D4(UnkStruct_ov12_0222660C *param0)
+void BgScrollContext_Stop(BgScrollContext *ctx)
 {
-    GF_ASSERT(param0);
-    ov12_022264F4(&param0->unk_00);
+    GF_ASSERT(ctx);
+    VBlankDMAController_DisableDMA(&ctx->dmaController);
 }
 
-u32 ov12_022266E8(u16 param0, u16 param1)
+u32 BattleAnimUtil_MakeBgOffsetValue(u16 x, u16 y)
 {
-    return (param1 << 16) | param0;
+    return (y << BG_OFFSET_Y_SHIFT) | x;
 }
 
 u32 BattleAnimUtil_GetHOffsetRegisterForBg(int bgID)

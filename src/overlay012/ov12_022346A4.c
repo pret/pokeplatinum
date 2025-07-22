@@ -31,7 +31,7 @@ typedef struct {
     int unk_08;
     SpriteManager *unk_0C;
     ManagedSprite *unk_10;
-    UnkStruct_ov12_02226454 unk_14;
+    AlphaFadeContext unk_14;
 } UnkStruct_ov12_022348C8;
 
 typedef struct {
@@ -52,7 +52,7 @@ typedef struct {
     int unk_14;
     ManagedSprite *unk_18[6];
     XYTransformContext unk_30[6];
-    UnkStruct_ov12_02226454 unk_108;
+    AlphaFadeContext unk_108;
     s16 unk_130;
     s16 unk_132;
 } UnkStruct_ov12_02234BD8;
@@ -202,13 +202,13 @@ static void ov12_02234918(SysTask *param0, void *param1)
 
     switch (v0->unk_04) {
     case 0:
-        ov12_02226424(&v0->unk_14, 0, 16, 20 - 0, 20 - 16, 10);
+        AlphaFadeContext_Init(&v0->unk_14, 0, 16, 20 - 0, 20 - 16, 10);
         ManagedSprite_SetDrawFlag(v0->unk_10, 1);
         BattleAnimUtil_SetEffectBgBlending(v0->unk_00, 0, 20 - 0);
         v0->unk_04++;
         break;
     case 1:
-        if (ov12_02226454(&v0->unk_14)) {
+        if (AlphaFadeContext_IsDone(&v0->unk_14)) {
             v0->unk_04++;
 
             ManagedSprite_SetAnimateFlag(v0->unk_10, 1);
@@ -223,11 +223,11 @@ static void ov12_02234918(SysTask *param0, void *param1)
 
         if (ManagedSprite_IsAnimated(v0->unk_10) == 0) {
             v0->unk_04++;
-            ov12_02226424(&v0->unk_14, 16, 0, 20 - 16, 20 - 0, 8);
+            AlphaFadeContext_Init(&v0->unk_14, 16, 0, 20 - 16, 20 - 0, 8);
         }
         break;
     case 3:
-        if (ov12_02226454(&v0->unk_14)) {
+        if (AlphaFadeContext_IsDone(&v0->unk_14)) {
             v0->unk_04++;
             ManagedSprite_SetDrawFlag(v0->unk_10, 0);
         }
@@ -385,7 +385,7 @@ static void ov12_02234CA8(SysTask *param0, void *param1)
     case 0:
 
         BattleAnimUtil_SetEffectBgBlending(v0->unk_00, 1, 16 - 1);
-        ov12_02226424(&v0->unk_108, 1, 16, 16 - 1, 16 - 16, 10);
+        AlphaFadeContext_Init(&v0->unk_108, 1, 16, 16 - 1, 16 - 16, 10);
         ov12_02234BD8(v0, v0->unk_14);
         ov12_02234C30(v0);
         v0->unk_0C++;
@@ -393,7 +393,7 @@ static void ov12_02234CA8(SysTask *param0, void *param1)
     case 1:
         ov12_02234C30(v0);
 
-        if (ov12_02226454(&v0->unk_108)) {
+        if (AlphaFadeContext_IsDone(&v0->unk_108)) {
             v0->unk_0C++;
             v0->unk_10 = (48 - (10 * 2));
         }
@@ -404,13 +404,13 @@ static void ov12_02234CA8(SysTask *param0, void *param1)
 
         if (v0->unk_10 < 0) {
             v0->unk_0C++;
-            ov12_02226424(&v0->unk_108, 16, 1, 16 - 16, 16 - 1, 10);
+            AlphaFadeContext_Init(&v0->unk_108, 16, 1, 16 - 16, 16 - 1, 10);
         }
         break;
     case 3:
         ov12_02234C30(v0);
 
-        if (ov12_02226454(&v0->unk_108)) {
+        if (AlphaFadeContext_IsDone(&v0->unk_108)) {
             v0->unk_0C++;
         }
         break;
