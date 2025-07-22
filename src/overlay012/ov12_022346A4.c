@@ -6,7 +6,6 @@
 #include "overlay012/battle_anim_system.h"
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/ov12_02235254.h"
-#include "overlay012/ov12_02225864.h"
 
 #include "heap.h"
 #include "pokemon_sprite.h"

@@ -2,6 +2,7 @@
 #define POKEPLATINUM_OV12_02225864_H
 
 #include "nitro/hw/common/lcd.h"
+
 #include "overlay012/battle_anim_system.h"
 #include "overlay012/struct_ov12_022267D4_decl.h"
 
@@ -144,7 +145,7 @@ void XYTransformContext_ApplyPosOffsetToSprite(XYTransformContext *param0, Manag
 void ov12_022259FC(XYTransformContext *param0, ManagedSprite *param1);
 void XYTransformContext_ApplyPosOffsetToMon(XYTransformContext *param0, PokemonSprite *param1, s16 param2, s16 param3);
 #define RevolutionContext_Apply XYTransformContext_ApplyPosOffsetToMon
-#define PosLerpContext_Apply XYTransformContext_ApplyPosOffsetToMon
+#define PosLerpContext_Apply    XYTransformContext_ApplyPosOffsetToMon
 void ov12_02225A3C(XYTransformContext *param0, PokemonSprite *param1);
 void RevolutionContext_Init(XYTransformContext *param0, u16 param1, u16 param2, u16 param3, u16 param4, fx32 param5, fx32 param6, int param7);
 void ov12_02225A8C(XYTransformContext *param0, u16 param1, u16 param2, u16 param3, u16 param4, fx32 param5, fx32 param6, u16 param7);

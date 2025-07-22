@@ -9,7 +9,6 @@
 #include "overlay012/battle_anim_system.h"
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/ov12_02235254.h"
-#include "overlay012/ov12_02225864.h"
 
 #include "battle_script_battlers.h"
 #include "buffer_manager.h"
@@ -454,7 +453,7 @@ void ScaleLerpContext_Init(XYTransformContext *ctx, s16 startScale, s16 refScale
         RELATIVE_SCALE(startScale, refScale) * FX32_ONE,
         RELATIVE_SCALE(endScale, refScale) * FX32_ONE,
         steps);
-    
+
     ctx->x = RELATIVE_SCALE(startScale, refScale);
     ctx->y = RELATIVE_SCALE(startScale, refScale);
     ctx->data[XY_PARAM_CUR_X] = ctx->x * FX32_ONE;
@@ -491,7 +490,7 @@ void ScaleLerpContext_InitXY(XYTransformContext *ctx, s16 sx, s16 ex, s16 sy, s1
         RELATIVE_SCALE(sy, ref) * FX32_ONE,
         RELATIVE_SCALE(ey, ref) * FX32_ONE,
         steps);
-    
+
     ctx->x = RELATIVE_SCALE(sx, ref);
     ctx->y = RELATIVE_SCALE(sy, ref);
     ctx->data[XY_PARAM_CUR_X] = ctx->x * FX32_ONE;
@@ -575,12 +574,12 @@ void BattleAnimUtil_SetPokemonSpriteAnchoredPosition(PokemonSprite *sprite, s16 
 void BattleAnimUtil_SetSpriteAnchoredPosition(ManagedSprite *sprite, s16 y, s16 height, fx32 scale, enum BattleAnimAnchorType anchor)
 {
     s16 offset = BattleAnimUtil_GetGroundAnchoredScaleOffset(y, height, scale);
-    
+
     if (anchor == BATTLE_ANIM_ANCHOR_TOP) {
         offset *= -1;
         y -= height;
     }
-    
+
     s16 curX, curY;
     ManagedSprite_GetPositionXY(sprite, &curX, &curY);
     ManagedSprite_SetPositionXY(sprite, curX, y + offset);
@@ -663,7 +662,7 @@ BOOL ShakeContext_Update(XYTransformContext *ctx)
                 ctx->data[XY_PARAM_SHAKE_REMAINING]--;
             }
         }
-        
+
         return TRUE;
     }
 
@@ -762,7 +761,7 @@ void RevolutionContext_InitOvalRevolutions(XYTransformContext *ctx, int revs, in
         REVOLUTION_CONTEXT_OVAL_RADIUS_X,
         REVOLUTION_CONTEXT_OVAL_RADIUS_Y,
         stepsPerRev);
-    
+
     ctx->data[0] *= revs;
 }
 

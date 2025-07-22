@@ -2,17 +2,16 @@
 
 #include <nitro.h>
 #include <string.h>
+
 #include "constants/battle.h"
 #include "constants/graphics.h"
 
 #include "overlay012/battle_anim_system.h"
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/ov12_02235254.h"
-#include "overlay012/ov12_02225864.h"
 #include "overlay012/struct_ov12_022267D4_decl.h"
 #include "overlay012/struct_ov12_0222C7E0_sub1.h"
 #include "overlay012/struct_ov12_02235350.h"
-#include "overlay012/ov12_02235254.h"
 #include "overlay012/struct_ov12_02235998.h"
 
 #include "battle_script_battlers.h"
@@ -39,7 +38,6 @@ typedef struct {
     ManagedSprite *unk_14[3];
     XYTransformContext unk_20;
 } UnkStruct_ov12_0222AC70;
-
 
 // -------------------------------------------------------------------
 // Strength
@@ -72,10 +70,10 @@ enum StrengthState {
 #define STRENGTH_BLINK_ALPHA    10
 #define STRENGTH_BLINK_COUNT    3
 
-#define STRENGTH_VAR_SHRINK_SCALE    0
-#define STRENGTH_VAR_GROW_SCALE      1
-#define STRENGTH_VAR_SHRINK_FRAMES   2
-#define STRENGTH_VAR_GROW_FRAMES     3
+#define STRENGTH_VAR_SHRINK_SCALE  0
+#define STRENGTH_VAR_GROW_SCALE    1
+#define STRENGTH_VAR_SHRINK_FRAMES 2
+#define STRENGTH_VAR_GROW_FRAMES   3
 
 // -------------------------------------------------------------------
 // Bulk Up
@@ -143,18 +141,18 @@ enum DoubleTeamState {
 #define DOUBLE_TEAM_SPRITE_R2 2
 #define DOUBLE_TEAM_SPRITE_L2 3
 
-#define DOUBLE_TEAM_BLEND_A 8
-#define DOUBLE_TEAM_BLEND_B 6
-#define DOUBLE_TEAM_MON_1_PRIORITY 10
-#define DOUBLE_TEAM_MON_2_PRIORITY 20
-#define DOUBLE_TEAM_MON_1_TINT_R 128
-#define DOUBLE_TEAM_MON_1_TINT_G 128
-#define DOUBLE_TEAM_MON_1_TINT_B 128
-#define DOUBLE_TEAM_MON_2_TINT_R 196
-#define DOUBLE_TEAM_MON_2_TINT_G 196
-#define DOUBLE_TEAM_MON_2_TINT_B 196
-#define DOUBLE_TEAM_BASEPOS 0
-#define DOUBLE_TEAM_RANGE_X 32
+#define DOUBLE_TEAM_BLEND_A            8
+#define DOUBLE_TEAM_BLEND_B            6
+#define DOUBLE_TEAM_MON_1_PRIORITY     10
+#define DOUBLE_TEAM_MON_2_PRIORITY     20
+#define DOUBLE_TEAM_MON_1_TINT_R       128
+#define DOUBLE_TEAM_MON_1_TINT_G       128
+#define DOUBLE_TEAM_MON_1_TINT_B       128
+#define DOUBLE_TEAM_MON_2_TINT_R       196
+#define DOUBLE_TEAM_MON_2_TINT_G       196
+#define DOUBLE_TEAM_MON_2_TINT_B       196
+#define DOUBLE_TEAM_BASEPOS            0
+#define DOUBLE_TEAM_RANGE_X            32
 #define DOUBLE_TEAM_ITERATION_FRAMES_1 7
 #define DOUBLE_TEAM_ITERATION_FRAMES_2 10
 
@@ -272,18 +270,30 @@ enum FlashState {
 #define FLASH_POKEMON_FADE_COLOR   COLOR_BLACK
 #define FLASH_HOLD_FRAMES          5
 
-
 typedef struct {
-    u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
-    s16 unk_04;
-    s16 unk_06;
-    BattleAnimSystem *unk_08;
-    PokemonSprite *unk_0C;
-    XYTransformContext unk_10;
-    XYTransformContext unk_34;
-} UnkStruct_ov12_0222BE80;
+    u8 state;
+    u8 interation;
+    u8 cycles;
+    s16 attackerY;
+    s16 attackerHeight;
+    BattleAnimSystem *battleAnimSys;
+    PokemonSprite *attackerSprite;
+    XYTransformContext scale;
+    XYTransformContext pos;
+} SplashContext;
+
+enum SplashState {
+    SPLASH_STATE_SETUP_ANIMS = 0,
+    SPLASH_STATE_WAIT_FOR_ANIMS,
+};
+
+#define SPLASH_CYCLES        3
+#define SPLASH_BASE_SCALE    BASE_SCALE_XY
+#define SPLASH_STRETCH_SCALE 120
+#define SPLASH_SQUISH_SCALE  80
+#define SPLASH_ANIM_FRAMES   5
+#define SPLASH_BASE_POS_Y    0
+#define SPLASH_OFFSET_POS_Y  16
 
 typedef struct {
     u8 unk_00;
@@ -842,7 +852,7 @@ static void BattleAnimTask_DoubleTeam(SysTask *task, void *param)
         PosLerpContext_Init(
             &ctx->pos[DOUBLE_TEAM_SPRITE_R2],
             ctx->attackerX + sDoubleTeamPositions[posIndex + 1][DOUBLE_TEAM_TABLE_BASEPOS],
-            ctx->attackerX + sDoubleTeamPositions[posIndex + 1][DOUBLE_TEAM_TABLE_RANGE_X], 
+            ctx->attackerX + sDoubleTeamPositions[posIndex + 1][DOUBLE_TEAM_TABLE_RANGE_X],
             ctx->attackerY,
             ctx->attackerY,
             sDoubleTeamPositions[posIndex + 1][DOUBLE_TEAM_TABLE_ITERATION_FRAMES] - frameReduction);
@@ -943,7 +953,7 @@ void BattleAnimScriptFunc_DoubleTeam(BattleAnimSystem *system)
         u16 offset = PlttTransfer_GetPlttOffset(
             Sprite_GetPaletteProxy(ctx->monSprites[DOUBLE_TEAM_SPRITE_R1]->sprite),
             NNS_G2D_VRAM_TYPE_2DMAIN);
-        
+
         PaletteData_LoadBufferFromFileStartWithTint(
             BattleAnimSystem_GetPaletteData(ctx->battleAnimSys),
             monSpriteNarcIndex,
@@ -959,7 +969,7 @@ void BattleAnimScriptFunc_DoubleTeam(BattleAnimSystem *system)
         offset = PlttTransfer_GetPlttOffset(
             Sprite_GetPaletteProxy(ctx->monSprites[DOUBLE_TEAM_SPRITE_R2]->sprite),
             NNS_G2D_VRAM_TYPE_2DMAIN);
-        
+
         PaletteData_LoadBufferFromFileStartWithTint(
             BattleAnimSystem_GetPaletteData(ctx->battleAnimSys),
             monSpriteNarcIndex,
@@ -989,7 +999,7 @@ void BattleAnimScriptFunc_DoubleTeam(BattleAnimSystem *system)
         u16 offset = PlttTransfer_GetPlttOffset(
             Sprite_GetPaletteProxy(ctx->monSprites[DOUBLE_TEAM_SPRITE_R1]->sprite),
             NNS_G2D_VRAM_TYPE_2DMAIN);
-        
+
         PaletteData_LoadBufferFromFileStartWithTint(
             BattleAnimSystem_GetPaletteData(ctx->battleAnimSys),
             monSpriteNarcIndex,
@@ -1005,7 +1015,7 @@ void BattleAnimScriptFunc_DoubleTeam(BattleAnimSystem *system)
         offset = PlttTransfer_GetPlttOffset(
             Sprite_GetPaletteProxy(ctx->monSprites[DOUBLE_TEAM_SPRITE_R2]->sprite),
             NNS_G2D_VRAM_TYPE_2DMAIN);
-        
+
         PaletteData_LoadBufferFromFileStartWithTint(
             BattleAnimSystem_GetPaletteData(ctx->battleAnimSys),
             monSpriteNarcIndex,
@@ -1099,9 +1109,9 @@ enum {
 };
 
 static const u8 sMeditateScaleTable[][MEDITATE_TABLE_COUNT] = {
-    { BASE_SCALE_XY,            MEDITATE_STRETCH_SCALE_X, BASE_SCALE_XY,            MEDITATE_STRETCH_SCALE_Y, MEDITATE_STRETCH_FRAMES },
-    { MEDITATE_STRETCH_SCALE_X, MEDITATE_SQUISH_SCALE_X,  MEDITATE_STRETCH_SCALE_Y, MEDITATE_SQUISH_SCALE_Y,  MEDITATE_SQUISH_FRAMES },
-    { MEDITATE_SQUISH_SCALE_X,  BASE_SCALE_XY,            MEDITATE_SQUISH_SCALE_Y,  BASE_SCALE_XY,            MEDITATE_REVERT_FRAMES }
+    { BASE_SCALE_XY, MEDITATE_STRETCH_SCALE_X, BASE_SCALE_XY, MEDITATE_STRETCH_SCALE_Y, MEDITATE_STRETCH_FRAMES },
+    { MEDITATE_STRETCH_SCALE_X, MEDITATE_SQUISH_SCALE_X, MEDITATE_STRETCH_SCALE_Y, MEDITATE_SQUISH_SCALE_Y, MEDITATE_SQUISH_FRAMES },
+    { MEDITATE_SQUISH_SCALE_X, BASE_SCALE_XY, MEDITATE_SQUISH_SCALE_Y, BASE_SCALE_XY, MEDITATE_REVERT_FRAMES }
 };
 
 static void BattleAnimTask_Meditate(SysTask *task, void *param)
@@ -1168,7 +1178,7 @@ enum {
 };
 
 static const u8 sTeleportScaleTable[][TELEPORT_TABLE_COUNT] = {
-    { BASE_SCALE_XY,           TELEPORT_SQUISH_SCALE_X, BASE_SCALE_XY,           TELEPORT_SQUISH_SCALE_Y, TELEPORT_SQUISH_FRAMES },
+    { BASE_SCALE_XY, TELEPORT_SQUISH_SCALE_X, BASE_SCALE_XY, TELEPORT_SQUISH_SCALE_Y, TELEPORT_SQUISH_FRAMES },
     { TELEPORT_SQUISH_SCALE_X, TELEPORT_SHRINK_SCALE_X, TELEPORT_SQUISH_SCALE_Y, TELEPORT_SHRINK_SCALE_Y, TELEPORT_SHRINK_FRAMES }
 };
 
@@ -1298,8 +1308,7 @@ static void BattleAnimTask_Flash(SysTask *task, void *param)
         ctx->state++;
         break;
     case FLASH_STATE_FADE_OUT:
-        if (PaletteData_GetSelectedBuffersMask(ctx->paletteData) == FALSE &&
-            PokemonSprite_IsFadeActive(ctx->attackerSprite) == FALSE) {
+        if (PaletteData_GetSelectedBuffersMask(ctx->paletteData) == FALSE && PokemonSprite_IsFadeActive(ctx->attackerSprite) == FALSE) {
             ctx->state++;
         }
         break;
@@ -1327,8 +1336,7 @@ static void BattleAnimTask_Flash(SysTask *task, void *param)
         ctx->state++;
         break;
     case FLASH_STATE_FADE_IN:
-        if (PaletteData_GetSelectedBuffersMask(ctx->paletteData) == FALSE &&
-            PokemonSprite_IsFadeActive(ctx->attackerSprite) == FALSE) {
+        if (PaletteData_GetSelectedBuffersMask(ctx->paletteData) == FALSE && PokemonSprite_IsFadeActive(ctx->attackerSprite) == FALSE) {
             ctx->state++;
         }
         break;
@@ -1350,76 +1358,110 @@ void BattleAnimScriptFunc_Flash(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Flash, ctx);
 }
 
-static const u8 Unk_ov12_0223A0C1[][5] = {
-    { 0x64, 0x78, 0x64, 0x50, 0x5 },
-    { 0x78, 0x64, 0x50, 0x78, 0x5 },
-    { 0x64, 0x64, 0x78, 0x64, 0x5 }
+enum {
+    SPLASH_TABLE_SCALE_SX = 0,
+    SPLASH_TABLE_SCALE_EX,
+    SPLASH_TABLE_SCALE_SY,
+    SPLASH_TABLE_SCALE_EY,
+    SPLASH_TABLE_SCALE_FRAMES,
+    SPLASH_TABLE_SCALE_COUNT,
+
+    SPLASH_TABLE_POS_SY = 0,
+    SPLASH_TABLE_POS_EY,
+    SPLASH_TABLE_POS_FRAMES,
+    SPLASH_TABLE_POS_COUNT
 };
 
-static const u8 Unk_ov12_0223A0A4[][3] = {
-    { 0x0, 0x10, 0x5 },
-    { 0x10, 0x0, 0x5 },
-    { 0x0, 0x0, 0x5 }
+static const u8 sSplashScaleTable[][SPLASH_TABLE_SCALE_COUNT] = {
+    { SPLASH_BASE_SCALE, SPLASH_STRETCH_SCALE, SPLASH_BASE_SCALE, SPLASH_SQUISH_SCALE, SPLASH_ANIM_FRAMES },
+    { SPLASH_STRETCH_SCALE, SPLASH_BASE_SCALE, SPLASH_SQUISH_SCALE, SPLASH_STRETCH_SCALE, SPLASH_ANIM_FRAMES },
+    { SPLASH_BASE_SCALE, SPLASH_BASE_SCALE, SPLASH_STRETCH_SCALE, SPLASH_BASE_SCALE, SPLASH_ANIM_FRAMES }
 };
 
-static void ov12_0222BE80(SysTask *param0, void *param1)
+static const u8 sSplashPosTable[][SPLASH_TABLE_POS_COUNT] = {
+    { SPLASH_BASE_POS_Y, SPLASH_OFFSET_POS_Y, SPLASH_ANIM_FRAMES },
+    { SPLASH_OFFSET_POS_Y, SPLASH_BASE_POS_Y, SPLASH_ANIM_FRAMES },
+    { SPLASH_BASE_POS_Y, SPLASH_BASE_POS_Y, SPLASH_ANIM_FRAMES }
+};
+
+static void BattleAnimTask_Splash(SysTask *task, void *param)
 {
-    UnkStruct_ov12_0222BE80 *v0 = (UnkStruct_ov12_0222BE80 *)param1;
+    SplashContext *ctx = param;
 
-    switch (v0->unk_00) {
-    case 0:
-        ScaleLerpContext_InitXY(&v0->unk_10, Unk_ov12_0223A0C1[v0->unk_01][0], Unk_ov12_0223A0C1[v0->unk_01][1], Unk_ov12_0223A0C1[v0->unk_01][2], Unk_ov12_0223A0C1[v0->unk_01][3], 100, Unk_ov12_0223A0C1[v0->unk_01][4]);
-        PosLerpContext_Init(&v0->unk_34, 0, 0, v0->unk_04 + Unk_ov12_0223A0A4[v0->unk_01][0], v0->unk_04 + Unk_ov12_0223A0A4[v0->unk_01][1], Unk_ov12_0223A0A4[v0->unk_01][2]);
-        v0->unk_01++;
-        v0->unk_00++;
+    switch (ctx->state) {
+    case SPLASH_STATE_SETUP_ANIMS:
+        ScaleLerpContext_InitXY(
+            &ctx->scale,
+            sSplashScaleTable[ctx->interation][SPLASH_TABLE_SCALE_SX],
+            sSplashScaleTable[ctx->interation][SPLASH_TABLE_SCALE_EX],
+            sSplashScaleTable[ctx->interation][SPLASH_TABLE_SCALE_SY],
+            sSplashScaleTable[ctx->interation][SPLASH_TABLE_SCALE_EY],
+            100,
+            sSplashScaleTable[ctx->interation][SPLASH_TABLE_SCALE_FRAMES]);
+
+        PosLerpContext_Init(
+            &ctx->pos,
+            0,
+            0,
+            ctx->attackerY + sSplashPosTable[ctx->interation][SPLASH_TABLE_POS_SY],
+            ctx->attackerY + sSplashPosTable[ctx->interation][SPLASH_TABLE_POS_EY],
+            sSplashPosTable[ctx->interation][SPLASH_TABLE_POS_FRAMES]);
+
+        ctx->interation++;
+        ctx->state++;
         break;
-    case 1: {
-        int v1 = 0;
+    case SPLASH_STATE_WAIT_FOR_ANIMS: {
+        int done = 0;
 
-        if (ScaleLerpContext_UpdateXY(&v0->unk_10) == 0) {
-            v1++;
+        if (ScaleLerpContext_UpdateXY(&ctx->scale) == FALSE) {
+            done++;
         }
 
-        if (PosLerpContext_Update(&v0->unk_34) == 0) {
-            v1++;
+        if (PosLerpContext_Update(&ctx->pos) == FALSE) {
+            done++;
         }
 
-        if (v1 >= 2) {
-            if (v0->unk_01 >= 3) {
-                v0->unk_02++;
-                v0->unk_01 = 0;
+        if (done >= 2) {
+            if (ctx->interation >= NELEMS(sSplashScaleTable)) {
+                ctx->cycles++;
+                ctx->interation = 0;
 
-                if (v0->unk_02 >= 3) {
-                    v0->unk_00++;
+                if (ctx->cycles >= SPLASH_CYCLES) {
+                    ctx->state++;
                 }
             } else {
-                v0->unk_00 = 0;
+                ctx->state = SPLASH_STATE_SETUP_ANIMS;
             }
         }
 
-        PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_SCALE_X, v0->unk_10.x);
-        PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_SCALE_Y, v0->unk_10.y);
-        BattleAnimUtil_SetPokemonSpriteAnchoredPosition(v0->unk_0C, v0->unk_34.y, v0->unk_06, v0->unk_10.data[4], 0);
+        PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_SCALE_X, ctx->scale.x);
+        PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_SCALE_Y, ctx->scale.y);
+        BattleAnimUtil_SetPokemonSpriteAnchoredPosition(
+            ctx->attackerSprite,
+            ctx->pos.y,
+            ctx->attackerHeight,
+            ctx->scale.data[XY_PARAM_CUR_Y],
+            BATTLE_ANIM_ANCHOR_BOTTOM);
     } break;
     default:
-        BattleAnimSystem_EndAnimTask(v0->unk_08, param0);
-        Heap_Free(v0);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         break;
     }
 }
 
-void ov12_0222BFA8(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_Splash(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_0222BE80 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222BE80));
+    SplashContext *ctx = BattleAnimUtil_Alloc(system, sizeof(SplashContext));
 
-    v0->unk_00 = 0;
-    v0->unk_01 = 0;
-    v0->unk_08 = param0;
-    v0->unk_0C = BattleAnimSystem_GetBattlerSprite(v0->unk_08, BattleAnimSystem_GetAttacker(v0->unk_08));
-    v0->unk_04 = PokemonSprite_GetAttribute(v0->unk_0C, MON_SPRITE_Y_CENTER);
-    v0->unk_06 = BattleAnimSystem_GetBattlerSpriteHeight(v0->unk_08, BattleAnimSystem_GetAttacker(v0->unk_08));
+    ctx->state = SPLASH_STATE_SETUP_ANIMS;
+    ctx->interation = 0;
+    ctx->battleAnimSys = system;
+    ctx->attackerSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    ctx->attackerY = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_Y_CENTER);
+    ctx->attackerHeight = BattleAnimSystem_GetBattlerSpriteHeight(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
 
-    BattleAnimSystem_StartAnimTask(v0->unk_08, ov12_0222BE80, v0);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Splash, ctx);
 }
 
 static void ov12_0222BFF4(SysTask *param0, void *param1)

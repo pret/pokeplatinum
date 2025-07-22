@@ -4,14 +4,14 @@
 #include "nitro/hw/common/lcd.h"
 #include <nitro.h>
 #include <string.h>
+
 #include "constants/battle.h"
-#include "constants/graphics.h"
 #include "constants/battle/battle_anim.h"
+#include "constants/graphics.h"
 
 #include "overlay012/battle_anim_system.h"
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/ov12_02235254.h"
-#include "overlay012/ov12_02225864.h"
 #include "pch/global_pch.h"
 
 #include "battle_script_battlers.h"
@@ -136,16 +136,16 @@ enum ConfusionState {
 #define CONFUSION_SHAKE_CYCLES        6
 #define CONFUSION_SPRITE_PRIORITY     100
 #define CONFUSION_SPRITE_EXP_PRIORITY 1
-#define CONFUSION_BASE_SCALE_X      10
-#define CONFUSION_BASE_SCALE_Y      10
-#define CONFUSION_SCALE_X          12
-#define CONFUSION_SCALE_Y          15
-#define CONFUSION_REFERENCE_SCALE 10
-#define CONFUSION_SCALE_FRAMES 7
-#define CONFUSION_SCALE_BACK_FRAMES 4
-#define CONFUSION_BLEND_A 28
-#define CONFUSION_BLEND_B 15
-#define CONFUSION_SCALE_X_JITTER 0.1f
+#define CONFUSION_BASE_SCALE_X        10
+#define CONFUSION_BASE_SCALE_Y        10
+#define CONFUSION_SCALE_X             12
+#define CONFUSION_SCALE_Y             15
+#define CONFUSION_REFERENCE_SCALE     10
+#define CONFUSION_SCALE_FRAMES        7
+#define CONFUSION_SCALE_BACK_FRAMES   4
+#define CONFUSION_BLEND_A             28
+#define CONFUSION_BLEND_B             15
+#define CONFUSION_SCALE_X_JITTER      0.1f
 
 // -------------------------------------------------------------------
 // Acid Armor
@@ -207,18 +207,18 @@ enum NightShadeAttackerState {
     NIGHT_SHADE_ATTACKER_STATE_CLEANUP,
 };
 
-#define NIGHT_SHADE_ATTACKER_START_SCALE  14
-#define NIGHT_SHADE_ATTACKER_END_SCALE    10
-#define NIGHT_SHADE_ATTACKER_REF_SCALE    10
-#define NIGHT_SHADE_ATTACKER_START_ALPHA  0
-#define NIGHT_SHADE_ATTACKER_END_ALPHA    16
-#define NIGHT_SHADE_ATTACKER_SCALE_FRAMES 8
-#define NIGHT_SHADE_ATTACKER_ALPHA_FRAMES 8
+#define NIGHT_SHADE_ATTACKER_START_SCALE         14
+#define NIGHT_SHADE_ATTACKER_END_SCALE           10
+#define NIGHT_SHADE_ATTACKER_REF_SCALE           10
+#define NIGHT_SHADE_ATTACKER_START_ALPHA         0
+#define NIGHT_SHADE_ATTACKER_END_ALPHA           16
+#define NIGHT_SHADE_ATTACKER_SCALE_FRAMES        8
+#define NIGHT_SHADE_ATTACKER_ALPHA_FRAMES        8
 #define NIGHT_SHADE_ATTACKER_SPRITE_PRIORITY     100
 #define NIGHT_SHADE_ATTACKER_SPRITE_EXP_PRIORITY 1
-#define NIGHT_SHADE_ATTACKER_SPRITE_MAX_ALPHA 31
-#define NIGHT_SHADE_ATTACKER_SCALE_DELAY 32
-#define NIGHT_SHADE_ATTACKER_START_SCALE_F ((f32)NIGHT_SHADE_ATTACKER_START_SCALE / NIGHT_SHADE_ATTACKER_REF_SCALE)
+#define NIGHT_SHADE_ATTACKER_SPRITE_MAX_ALPHA    31
+#define NIGHT_SHADE_ATTACKER_SCALE_DELAY         32
+#define NIGHT_SHADE_ATTACKER_START_SCALE_F       ((f32)NIGHT_SHADE_ATTACKER_START_SCALE / NIGHT_SHADE_ATTACKER_REF_SCALE)
 
 // -------------------------------------------------------------------
 // Night Shade (Defender)
@@ -1451,8 +1451,7 @@ void BattleAnimScriptFunc_NightShadeDefender(BattleAnimSystem *system)
     int attackerType = BattleAnimUtil_GetBattlerType(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
     int defenderType = BattleAnimUtil_GetBattlerType(ctx->battleAnimSys, BattleAnimSystem_GetDefender(ctx->battleAnimSys));
 
-    if ((attackerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1 && defenderType == BATTLER_TYPE_PLAYER_SIDE_SLOT_2) ||
-        (attackerType == BATTLER_TYPE_ENEMY_SIDE_SLOT_2 && defenderType == BATTLER_TYPE_ENEMY_SIDE_SLOT_1)) {
+    if ((attackerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1 && defenderType == BATTLER_TYPE_PLAYER_SIDE_SLOT_2) || (attackerType == BATTLER_TYPE_ENEMY_SIDE_SLOT_2 && defenderType == BATTLER_TYPE_ENEMY_SIDE_SLOT_1)) {
         int palette = 1 << BattleAnimUtil_GetSpritePalette(ctx->managedSprite);
         PaletteData_StartFade(
             BattleAnimSystem_GetPaletteData(ctx->battleAnimSys),

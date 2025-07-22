@@ -4,8 +4,8 @@
 #include <string.h>
 
 #include "overlay012/battle_anim_system.h"
-#include "overlay012/struct_ov12_02235350.h"
 #include "overlay012/ov12_02235254.h"
+#include "overlay012/struct_ov12_02235350.h"
 #include "overlay012/struct_ov12_02235998.h"
 
 #include "heap.h"
@@ -640,7 +640,7 @@ void BattleAnimUtil_SetEffectBgBlending(BattleAnimSystem *system, int alphaNone,
     G2_SetBlendAlpha(
         GX_BLEND_PLANEMASK_NONE,
         (1 << BattleAnimSystem_GetBgID(system, BATTLE_ANIM_BG_EFFECT)) | GX_BLEND_PLANEMASK_BG0,
-        alphaNone, 
+        alphaNone,
         alphaEffect);
 }
 
